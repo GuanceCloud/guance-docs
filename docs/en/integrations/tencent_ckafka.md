@@ -1,0 +1,145 @@
+---
+title: 'Tencent Cloud CKafka'
+summary: 'Use the 「Guance platform Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+__int_icon: 'icon/tencent_ckafka'
+dashboard:
+
+  - desc: 'Tencent Cloud CKafka Dashboard'  
+    path: 'dashboard/zh/tencent_ckafka'
+
+monitor:
+  - desc: 'Tencent Cloud CKafka Monitor'
+    path: 'monitor/zh/tencent_ckafka'
+
+---
+
+<!-- markdownlint-disable MD025 -->
+# Tencent Cloud CKafka
+<!-- markdownlint-enable -->
+
+Use the 「Guance platform Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+
+## Config {#config}
+
+### Install Func
+
+Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+
+If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+
+
+### Installation script
+
+> Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+
+To synchronize the monitoring data of CKafka, install the corresponding data collection script: "Observation Cloud Integration (Tencent Cloud - CKafka)" (ID: `guance_tencentcloud_ckafka`).
+
+Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.
+
+Click [Deploy Startup Scripts], the system will automatically create the `Startup` script set and automatically configure the corresponding startup scripts.
+
+You can see the corresponding auto-trigger configuration in "Management / Auto-trigger Configuration" after you turn it on. Click "Execute" to execute the task immediately without waiting for the regular time. Wait for a while, you can check the record and log of the executed task.
+
+We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+
+
+### Verify
+
+1. Check whether the automatic triggering configuration exists for the corresponding task in "Management / Crontab Config". Additionally, you can review task records and logs to identify any exceptions.
+2. On the Guance platform, go to "Infrastructure / Custom" to verify the presence of asset information.
+3. Press "Metrics" on the Guance platform to confirm the availability of monitoring data.
+
+## Metrics {#metric}
+After configuring Tencent Cloud Cloud Monitor, the default metric set is as follows. You can collect more metrics by configuring them. For more details about Tencent Cloud Cloud Monitor metrics, please refer to [Tencent Cloud Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/45121){:target="_blank"}
+
+### Performance Metrics
+
+| Metric Name          | Description         | Meaning of Metric                                       | Unit | Dimension  |
+| -------------------- | ------------------- | ------------------------------------------------------- | ---- | ---------- |
+| InstanceProCount    | Produced Messages Count | Total count of messages produced by the instance within the selected time granularity | pieces | instanceId |
+| InstanceConCount    | Consumed Messages Count | Total count of messages consumed by the instance within the selected time granularity | pieces | instanceId |
+| InstanceConReqCount | Consumed Requests Count | Total count of consumer requests at the instance level within the selected time granularity | times | instanceId |
+| InstanceProReqCount | Produced Requests Count | Total count of producer requests at the instance level within the selected time granularity | times | instanceId |
+
+### System Metrics
+
+| Metric Name        | Description     | Meaning of Metric                             | Unit | Dimension  |
+| ----------------- | -------------- | ---------------------------------------- | ---- | ---------- |
+| InstanceDiskUsage | Disk Usage Percentage | Current disk usage percentage compared to the total capacity of the instance's disk specification | %    | instanceId |
+
+### Cumulative Usage Metrics
+
+| Metric Name                         | Description                           | Meaning of Metric                                              | Unit | Dimension  |
+| ---------------------------------- | ------------------------------------ | ------------------------------------------------------------ | ---- | ---------- |
+| InstanceConnectCount               | Instance Connection Count            | Count of connections between clients and servers             | pieces   | instanceId |
+| InstanceConFlow                    | Consumed Flow                        | Total consumed flow of the instance (excluding the flow generated by replicas) within the selected time granularity | MB   | instanceId |
+| InstanceMaxConFlow                 | Maximum Consumed Message Bandwidth   | Maximum bandwidth of consumed messages by the instance (excluding replicas) | MB/s | instanceId |
+| InstanceMaxProFlow                 | Maximum Produced Message Bandwidth   | Maximum bandwidth of produced messages by the instance (excluding replica bandwidth) | MB/s | instanceId |
+| InstanceMsgCount                   | Total Messages Written to Disk       | Total number of messages written to disk by the instance (excluding replicas) | pieces   | instanceId |
+| InstanceMsgHeap                    | Disk Usage                           | Disk usage of the instance (including replicas) within the selected time granularity | MB   | instanceId |
+| InstanceProFlow                    | Produced Flow                        | Total produced flow of the instance (excluding replica-produced flow) within the selected time granularity | MB   | instanceId |
+| InstanceConnectPercentage          | Connection Percentage                | Connection percentage (client and server connections as a percentage of the quota) | %    | instanceId |
+| InstanceConsumeBandwidthPercentage | Consumed Bandwidth Percentage       | Consumed bandwidth percentage (consumed bandwidth as a percentage of the quota) | %    | instanceId |
+| InstanceConsumeGroupNum            | Consumer Group Count                 | Count of consumer groups at the instance level                 | pieces   | instanceId |
+| InstanceConsumeGroupPercentage     | Consumer Group Percentage            | Consumer group percentage (consumer group count as a percentage of the quota) | %    | instanceId |
+| InstanceConsumeThrottle            | Consumption Throttle Count           | Count of consumption throttling incidents                       | times | instanceId |
+| InstancePartitionNum               | Partition Count                      | Count of partitions in the instance                              | pieces   | instanceId |
+| InstancePartitionPercentage        | Partition Percentage                 | Partition percentage (percentage of occupied quota)              | %    | instanceId |
+| InstanceProduceBandwidthPercentage | Produced Bandwidth Percentage       | Produced bandwidth percentage (percentage of occupied quota)    | %    | instanceId |
+| InstanceProduceThrottle            | Production Throttle Count            | Count of production throttling incidents                        | times | instanceId |
+| InstanceReplicaProduceFlow         | Replica-Produced Flow                | Maximum bandwidth of messages produced by the instance (including replica-produced bandwidth) | MB/s | instanceId |
+| InstanceTopicNum                   | Topic Count                          | Count of topics in the instance                                 | pieces   | instanceId |
+| InstanceTopicPercentage            | Topic Percentage                    | Topic percentage (percentage of occupied quota)                  | %    | instanceId |
+
+## Objects {#object}
+
+The collected Tencent Cloud CKafka object data structure can be viewed from "Infrastructure / Custom".
+
+```json
+{
+  "Healthy": "1",
+  "account_name": "guance",
+  "InstanceType": "profession",
+  "RenewFlag": "0",
+  "SubnetId": "subnet-bp2jqhcj",
+  "Vip": "172.17.32.16",
+  "Bandwidth": "160",
+  "ZoneId": "200002",
+  "message": "{\"AllowDowngrade\": true, \"Bandwidth\": 160, \"ClusterType\": \"CLOUD_EKS_TSE\", \"CreateTime\": 1692066710, \"Cvm\": 1, \"DiskSize\": 200, \"DiskType\": \"CLOUD_BASIC\", \"ExpireTime\": -62170009580, \"Features\": [], \"Healthy\": 1, \"HealthyMessage\": \"\", \"InstanceId\": \"ckafka-jamo82wo\", \"InstanceName\": \"\\u672a\\u547d\\u540d\", \"InstanceType\": \"profession\", \"IsInternal\": 0, \"MaxPartitionNumber\": 400, \"MaxTopicNumber\": 200, \"PartitionNumber\": 3, \"PublicNetwork\": 3, \"PublicNetworkChargeType\": \"BANDWIDTH_POSTPAID_BY_HOUR\", \"RebalanceDeadLineTimeStamp\": \"0000-00-00 00:00:00\", \"RebalanceTime\": \"0000-00-00 00:00:00\", \"RegionId\": \"ap-shanghai\", \"RenewFlag\": 0, \"Status\": 1, \"SubnetId\": \"subnet-bp2jqhcj\", \"Tags\": [], \"TopicNum\": 1, \"Version\": \"2.4.1\", \"Vip\": \"172.17.32.16\", \"VipList\": [{\"Vip\": \"172.17.32.16\", \"Vport\": \"9092\"}], \"VpcId\": \"vpc-kcphyzty\", \"Vport\": \"9092\", \"ZoneId\": 200002, \"ZoneIds\": [200002, 200003]}",
+  "__docid": "CO_31e0187c3c5c2842b60f88a87c11eca0",
+  "InstanceId": "ckafka-jamo82wo",
+  "InstanceName": "未命名",
+  "Status": "1",
+  "VpcId": "vpc-kcphyzty",
+  "Cvm": "1",
+  "__namespace": "custom_object",
+  "cloud_provider": "tencentcloud",
+  "create_time": 1692089426315,
+  "DiskType": "CLOUD_BASIC",
+  "ExpireTime": "-62170009580",
+  "TopicNum": "1",
+  "VipList": "[{\"Vip\": \"172.17.32.16\", \"Vport\": \"9092\"}]",
+  "time": 1692089425851,
+  "IsInternal": "0",
+  "Vport": "9092",
+  "class": "tencentcloud_ckafka",
+  "date": 1692089425000,
+  "date_ns": 0,
+  "name": "ckafka-jamo82wo",
+  "CreateTime": "1692066710",
+  "DiskSize": "200",
+  "RegionId": "ap-shanghai",
+  "Version": "2.4.1"
+}
+```
+
+> *Note: Fields in `tags` and `fields` may be subject to change in subsequent updates.*
+
+### Appendix
+
+#### TencentCloud-CKafka Regions and Availability Zones
+
+Please refer to the Tencent official documentation:
+
+- [TencentCloud-CKafka Region List](https://cloud.tencent.com/document/api/597/40826#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)
+

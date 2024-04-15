@@ -2,7 +2,7 @@
 ---
 
 
-初始化 RUM 后，使用`addAction（'<NAME>'，'<JSON_OBJECT>'）` API,可以自定义添加采集之外的action 指标数据
+初始化 RUM 后，使用 `addAction（'<NAME>'，'<JSON_OBJECT>'）` API，可以自定义添加采集之外的 Action 指标数据。
 
 ### 添加 Action
 

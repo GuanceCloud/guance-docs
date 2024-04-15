@@ -1,5 +1,19 @@
+---
+title     : 'Jaeger'
+summary   : 'Receive Jaeger APM Data'
+__int_icon      : 'icon/jaeger'
+dashboard :
+  - desc  : 'N/A'
+    path  : '-'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # Jaeger
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -8,15 +22,11 @@
 
 The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze Jaeger Tracing protocol data.
 
-## Jaeger Doc {#doc}
+## Configuration {#config}
 
-- [Quickstart](https://www.jaegertracing.io/docs/1.27/getting-started/){:target="_blank"}
-- [Docs](https://www.jaegertracing.io/docs/){:target="_blank"}
-- [Clients Download](https://www.jaegertracing.io/download/){:target="_blank"}
-- [Source Code](https://github.com/jaegertracing/jaeger){:target="_blank"}
+### Collector Configuration {#input-config}
 
-## Configure Jaeger Agent {#config-agent}
-
+<!-- markdownlint-disable MD046 -->
 ???+ info
 
     The current version of Jaeger supports the HTTP and UDP communication protocols and the Apache Thrift encoding specification.
@@ -43,6 +53,9 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
       ## If some resources are rare enough(not presend in 1 hour), those resource will always send
       ## to data center and do not consider samplers and filters.
       # keep_rare_resource = false
+    
+      ## delete trace message
+      # del_message = true
     
       ## Ignore tracing resources map like service:[resources...].
       ## The service name is the full service name in current application.
@@ -86,21 +99,111 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
-    Multiple environment variables supported that can be used in Kubernetes showing below:
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    
+    - **ENV_INPUT_JAEGER_HTTP_ENDPOINT**
+    
+        Endpoint for receiving tracing span over HTTP
+    
+        **Type**: String
+    
+        **ConfField**: `endpoint`
+    
+        **Example**: /apis/traces
+    
+    - **ENV_INPUT_JAEGER_UDP_ENDPOINT**
+    
+        Agent URL for UDP transport
+    
+        **Type**: String
+    
+        **ConfField**: `address`
+    
+        **Example**: 127.0.0.1:6831
+    
+    - **ENV_INPUT_JAEGER_IGNORE_TAGS**
+    
+        Ignore tags
+    
+        **Type**: JSON
+    
+        **ConfField**: `ignore_tags`
+    
+        **Example**: ["block1","block2"]
+    
+    - **ENV_INPUT_JAEGER_KEEP_RARE_RESOURCE**
+    
+        Keep rare tracing resources list switch
+    
+        **Type**: Boolean
+    
+        **ConfField**: `keep_rare_resource`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_JAEGER_DEL_MESSAGE**
+    
+        Delete trace message
+    
+        **Type**: Boolean
+    
+        **ConfField**: `del_message`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_JAEGER_CLOSE_RESOURCE**
+    
+        Ignore tracing resources that service (regular)
+    
+        **Type**: JSON
+    
+        **ConfField**: `close_resource`
+    
+        **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
+    
+    - **ENV_INPUT_JAEGER_SAMPLER**
+    
+        Global sampling rate
+    
+        **Type**: Float
+    
+        **ConfField**: `sampler`
+    
+        **Example**: 0.3
+    
+    - **ENV_INPUT_JAEGER_THREADS**
+    
+        Total number of threads and buffer
+    
+        **Type**: JSON
+    
+        **ConfField**: `threads`
+    
+        **Example**: {"buffer":1000, "threads":100}
+    
+    - **ENV_INPUT_JAEGER_STORAGE**
+    
+        Local cache file path and size (MB) 
+    
+        **Type**: JSON
+    
+        **ConfField**: `storage`
+    
+        **Example**: {"storage":"./jaeger_storage", "capacity": 5120}
+    
+    - **ENV_INPUT_JAEGER_TAGS**
+    
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+    
+        **Type**: JSON
+    
+        **ConfField**: `tags`
+    
+        **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 
-    | Envrionment Variable Name             | Type        | Example                                                                          |
-    | ------------------------------------- | ----------- | -------------------------------------------------------------------------------- |
-    | `ENV_INPUT_JAEGER_HTTP_ENDPOINT`      | string      | "/apis/traces"                                                                   |
-    | `ENV_INPUT_JAEGER_UDP_ENDPOINT`       | string      | "127.0.0.1:6831"                                                                 |
-    | `ENV_INPUT_JAEGER_IGNORE_TAGS`        | JSON string | `["block1", "block2"]`                                                           |
-    | `ENV_INPUT_JAEGER_KEEP_RARE_RESOURCE` | bool        | true                                                                             |
-    | `ENV_INPUT_JAEGER_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}` |
-    | `ENV_INPUT_JAEGER_SAMPLER`            | float       | 0.3                                                                              |
-    | `ENV_INPUT_JAEGER_TAGS`               | JSON string | `{"k1":"v1", "k2":"v2", "k3":"v3"}`                                              |
-    | `ENV_INPUT_JAEGER_THREADS`            | JSON string | `{"buffer":1000, "threads":100}`                                                 |
-    | `ENV_INPUT_JAEGER_STORAGE`            | JSON string | `{"storage":"./jaeger_storage", "capacity": 5120}`                               |
+<!-- markdownlint-enable -->
 
 ### Configure Jaeger HTTP Agent {#config-http-agent}
 
@@ -128,7 +231,9 @@ Modify the Agent UDP Host: Port of the Jaeger Client to the address specified in
 
 Refer to [Datakit Tracing](datakit-tracing.md) for configuration of data sampling, data filtering, closing resources, and so on.
 
-## Golang Sample {#go-http}
+## Sample {#demo}
+
+### Golang Sample {#go-http}
 
 Here is an example of an HTTP Agent:
 
@@ -225,7 +330,7 @@ func send(urlstr string, i int) {
 }
 ```
 
-## Golang UDP Sample {#go-udp}
+### Golang UDP Sample {#go-udp}
 
 Here is an example of a UDP Agent:
 
@@ -288,7 +393,7 @@ func foo() {
 }
 ```
 
-## Measurements {#measurements}
+## Metric {#metric}
 
 
 
@@ -327,8 +432,6 @@ func foo() {
 |`duration`|Duration of span|int|μs|
 |`message`|Origin content of span|string|-|
 |`parent_id`|Parent span ID of current span|string|-|
-|`pid`|Application process id. Available in DDTrace, OpenTelemetry. Optional.|string|-|
-|`priority`|Optional.|int|-|
 |`resource`|Resource name produce current span|string|-|
 |`span_id`|Span id|string|-|
 |`start`|start time of span.|int|usec|
@@ -336,3 +439,10 @@ func foo() {
 
 
 
+
+## Jaeger Official Documentation {#doc}
+
+- [Quick Start](https://www.jaegertracing.io/docs/1.27/getting-started/){:target="_blank"}
+- [Docs](https://www.jaegertracing.io/docs/){:target="_blank"}
+- [Clients Download](https://www.jaegertracing.io/download/){:target="_blank"}
+- [Source Code](https://github.com/jaegertracing/jaeger){:target="_blank"}

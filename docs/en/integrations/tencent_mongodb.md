@@ -1,14 +1,14 @@
 ---
 title: 'Tencent Cloud MongoDB'
-summary: 'Use the 「Observation Cloud Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud'
+summary: 'Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud'
 __int_icon: 'icon/tencent_mongodb'
 dashboard:
 
-  - desc: 'Tencent Cloud MongoDB 内置视图'
+  - desc: 'Tencent Cloud MongoDB Monitoring View'
     path: 'dashboard/zh/tencent_mongodb'
 
 monitor:
-  - desc: 'Tencent Cloud MongoDB 监控器'
+  - desc: 'Tencent Cloud MongoDB Monitor'
     path: 'monitor/zh/tencent_mongodb'
 
 ---
@@ -17,7 +17,7 @@ monitor:
 # Tencent Cloud MongoDB
 <!-- markdownlint-enable -->
 
-Use the 「Observation Cloud Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud
+Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud
 
 ## Config {#config}
 
@@ -31,7 +31,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of ECS cloud resources, we install the corresponding collection script：「观测云集成（腾讯云-MongoDB采集）」(ID：`guance_tencentcloud_mongodb`)
+To synchronize the monitoring data of ECS cloud resources, we install the corresponding collection script：「Guance Integration（Tencent Cloud - MongoDBCollect）」(ID：`guance_tencentcloud_mongodb`)
 
 Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.。
 
@@ -51,54 +51,54 @@ We collected some configurations by default, as described in the Metrics column 
 
 ## Metric {#metric}
 
-Configure Tencent Cloud OSS monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/45104){:target="_blank"}
+Configure Tencent Cloud OSS monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/45104){:target="_blank"}
 
 ### Request class
 
 | Metric Id      | Metric name           | Implication                        | Unit  | Dimensions              |
 | --------------- | ---------------------- | --------------------------- | ----- | ----------------- |
-| Inserts_sum         | 写入请求次数           | 单位时间内写入次数          | 次    | target（实例 ID） |
-| Reads_sum           | 读取请求次数           | 单位时间内读取次数          | 次    | target（实例 ID） |
-| Updates_sum         | 更新请求次数           | 单位时间内更新次数          | 次    | target（实例 ID） |
-| Deletes_sum         | 删除请求次数           | 单位时间内删除次数          | 次    | target（实例 ID） |
-| Counts_sum          | count 请求次数         | 单位时间内 count 次数       | 次    | target（实例 ID） |
-| Success_sum         | 成功请求次数           | 单位时间内成功请求次数      | 次    | target（实例 ID） |
-| Commands_sum        | command 请求次数       | 单位时间内 command 请求次数 | 次    | target（实例 ID） |
-| Qps_sum             | 每秒钟请求次数         | 每秒操作数，包含 CRUD 操作  | 次/秒 | target（实例 ID） |
-| CountPerSecond_sum  | 每秒钟 count 请求次数  | 每秒钟 count 请求次数       | 次/秒 | target（实例 ID） |
-| DeletePerSecond_sum | 每秒钟 delete 请求次数 | 每秒钟 delete 请求次数      | 次/秒 | target（实例 ID） |
-| InsertPerSecond_sum | 每秒钟 insert 请求次数 | 每秒钟 insert 请求次数      | 次/秒 | target（实例 ID） |
-| ReadPerSecond_sum   | 每秒钟 read 请求次数   | 每秒钟 read 请求次数        | 次/秒 | target（实例 ID） |
-| UpdatePerSecond_sum | 每秒钟 update 请求次数 | 每秒钟 update 请求次数      | 次/秒 | target（实例 ID） |
+| Inserts_sum         | Number of write requests           | Number of writes per unit time          | Times    | target（Instance ID） |
+| Reads_sum           | Number of read requests           | Number of reads per unit time          | Times    | target（Instance ID） |
+| Updates_sum         | Number of update requests           | Number of updates per unit time          | Times    | target（Instance ID） |
+| Deletes_sum         | Number of delete requests           | Number of deletes per unit time          | Times    | target（Instance ID） |
+| Counts_sum          | Number of count requests         | Number of counts per unit time       | Times    | target（Instance ID） |
+| Success_sum         | Number of successful requests           | Number of successful requests per unit time      | Times    | target（Instance ID） |
+| Commands_sum        | Number of command requests       | Number of command requests per unit time | Times    | target（Instance ID） |
+| Qps_sum             | Number of requests per second         | Number of operations per second, including CRUD operations  | Times/second | target（Instance ID） |
+| CountPerSecond_sum  | Number of count requests per second  | Number of count requests per second       | Times/second | target（Instance ID） |
+| DeletePerSecond_sum | Number of delete requests per second | Number of delete requests per second      | Times/second | target（Instance ID） |
+| InsertPerSecond_sum | Number of insert requests per second | Number of insert requests per second      | Times/second | target（Instance ID） |
+| ReadPerSecond_sum   | Number of read requests per second   | Number of read requests per second        | Times/second | target（Instance ID） |
+| UpdatePerSecond_sum | Number of update requests per second | Number of update requests per second      | Times/second | target（Instance ID） |
 
 ### Delay request class
 
 | Metric Id      | Metric name           | Implication                        | Unit  | Dimensions              |
 | ------------------ | ---------------------------- | ---------------------------------------- | ---- | ----------------- |
-| Delay10_sum            | 时延在10 - 50毫秒间请求次数  | 单位时间内成功请求延迟在10ms - 50ms次数  | 次   | target（实例 ID） |
-| Delay50_sum            | 时延在50 - 100毫秒间请求次数 | 单位时间内成功请求延迟在50ms - 100ms次数 | 次   | target（实例 ID） |
-| Delay100_sum           | 时延在100毫秒以上请求次数    | 单位时间内成功请求延迟在100ms以上次数    | 次   | target（实例 ID） |
-| AvgAllRequestDelay_sum | 所有请求平均延迟             | 所有请求平均延迟                         | ms   | target（实例 ID） |
+| Delay10_sum            | Number of requests with delay between 10 - 50 ms  | Number of successful requests with delay between 10ms - 50ms per unit time  | Times   | target（Instance ID） |
+| Delay50_sum            | Number of requests with delay between 50 - 100 ms | Number of successful requests with delay between 50ms - 100ms per unit time | Times   | target（Instance ID） |
+| Delay100_sum           | Number of requests with delay over 100 ms    | Number of successful requests with delay over 100ms per unit time    | Times   | target（Instance ID） |
+| AvgAllRequestDelay_sum | Average delay of all requests             | Average delay of all requests                         | ms   | target（Instance ID） |
 
 ### Connection number class
 
 | Metric Id      | Metric name           | Implication                        | Unit  | Dimensions              |
 | ----------- | ---------- | ------------------------------------------- | ---- | ----------------- |
-| ClusterConn_max | 集群连接数 | 集群总连接数，指当前集群 proxy 收到的连接数 | 次   | target（实例 ID） |
-| Connper_max     | 连接使用率 | 当前集群的连接数与集群总连接配置的比例      | %    | target（实例 ID） |
+| `ClusterConn_max` | Cluster connection number | Total number of connections received by the current cluster proxy | Times   | target（Instance ID） |
+| `Connper_max`     | Connection usage rate | The ratio of the number of connections in the current cluster to the total connection configuration      | %    | target（Instance ID） |
 
 ### System class
 
 | Metric Id      | Metric name           | Implication                        | Unit  | Dimensions              |
 | ---------------- | ---------- | ------------------------------------------ | ---- | ----------------- |
-| ClusterDiskusage | 磁盘使用率 | 集群当前实际占用存储空间与总容量配置的比例 | %    | target（实例 ID） |
+| `ClusterDiskusage` | Disk usage rate | The ratio of the actual occupied storage space of the cluster to the total capacity configuration | %    | target（Instance ID） |
 
 ### In/Out flow class
 
 | Metric Id      | Metric name           | Implication                        | Unit  | Dimensions              |
 | ------------- | ---------- | -------------- | ----- | ----------------- |
-| ClusterNetin  | 入流量     | 集群网络入流量 | Bytes | target（实例 ID） |
-| ClusterNetout | 出流量     | 集群网络出流程 | Bytes | target（实例 ID） |
+| `ClusterNetin`  | Inflow     | Cluster network inflow | Bytes | target（Instance ID） |
+| `ClusterNetout` | Outflow     | Cluster network outflow | Bytes | target（Instance ID） |
 
 ### MongoDB Replica set
 
@@ -106,76 +106,78 @@ Configure Tencent Cloud OSS monitoring. The default indicator set is as follows.
 
 | Metric Id      | Metric name           | Implication                        | Unit  | Dimensions              |
 | ---------------- | ---------- | ---------------- | ---- | ------------------- |
-| ReplicaDiskusage | 磁盘使用率 | 副本集容量使用率 | %    | target（副本集 ID） |
+| `ReplicaDiskusage` | Disk usage rate | Replica set capacity usage rate | %    | target（Replica set ID） |
 
 #### 2. Master-slave class
 
 | Metric Id      | Metric name           | Implication                        | Unit  | Dimensions              |
 | ----------------- | -------------- | ---------------------------------------- | ---- | ------------------- |
-| SlaveDelay        | 主从延迟       | 主从单位时间内平均延迟                   | 秒   | target（副本集 ID） |
-| Oplogreservedtime | oplog 保存时间 | oplog 记录中最后一次操作和首次操作时间差 | 小时 | target（副本集 ID)  |
+| `SlaveDelay`        | Master-slave delay       | Average delay of master and slave in unit time                   | Seconds   | target（Replica set ID） |
+| `Oplogreservedtime` | **Oplog** retention time | The time difference between the last operation and the first operation in the **oplog** record | Hours | target（Replica set ID)  |
 
 #### 3. Cache class
 
 | Metric Id      | Metric name           | Implication                        | Unit  | Dimensions              |
 | ---------- | ------------------ | ----------------------------- | ---- | ------------------ |
-| CacheDirty | Cache 脏数据百分比 | 当前内存 Cache 中脏数据百分比 | %    | target（副本集 ID) |
-| CacheUsed  | Cache 使用百分比   | 当前 Cache 使用百分比         | %    | target（副本集 ID) |
-| HitRatio   | Cache 命中率       | 当前 Cache 命中率             | %    | target（副本集 ID) |
+| CacheDirty | Percentage of dirty data in Cache | Percentage of dirty data in current memory Cache | %    | target（Replica set ID) |
+| CacheUsed  | Cache usage percentage   | Current Cache usage percentage         | %    | target（Replica set ID) |
+| HitRatio   | Cache hit rate       | Current Cache hit rate             | %    | target（Replica set ID) |
 
 ### Mongo Node
 
+<!-- markdownlint-disable MD024 -->
 #### 1. System class
+<!-- markdownlint-enable -->
 
 | Metric Id      | Metric name           | Implication                        | Unit  | Dimensions              |
 | --------------------- | ------------------ | ------------------------ | ----- | ---------------- |
-| CpuUsage              | CPU 使用率         | CPU 使用率               | %     | target（节点 ID) |
-| MemUsage              | 内存使用率         | 内存使用率               | %     | target（节点 ID) |
-| NetIn                 | 网络入流量         | 网络入流量               | MB/s  | target（节点 ID) |
-| NetOut                | 网络出流量         | 网络出流量               | MB/s  | target（节点 ID) |
-| Disk                  | 节点磁盘用量       | 节点磁盘用量             | MB    | target（节点 ID) |
-| Conn                  | 连接数             | 连接数                   | 次    | target（节点 ID) |
-| ActiveSession         | 活跃 session 数量  | 活跃 session 数量        | 次    | target（节点 ID) |
-| NodeOplogReservedTime | Oplog 保存时长     | 节点 oplog 保存时长      | -     | target（节点 ID) |
-| NodeHitRatio          | Cache 命中率       | Cache 命中率             | %     | target（节点 ID) |
-| NodeCacheUsed         | Cache 使用百分比   | Cache 内存在总内存中占比 | %     | target（节点 ID) |
-| NodeSlavedelay        | 主从延迟           | 从节点延迟               | s     | target（节点 ID) |
-| Diskusage             | 节点磁盘使用率     | 节点磁盘使用率           | %     | target（节点 ID) |
-| Ioread                | 磁盘读次数         | 磁盘读 IOPS              | 次/秒 | target（节点 ID) |
-| Iowrite               | 磁盘写次数         | 磁盘写 IOPS              | 次/秒 | target（节点 ID) |
-| NodeCacheDirty        | Cache 脏数据百分比 | Cache 中脏数据比例       | %     | target（节点 ID) |
+| `CpuUsage`              | CPU usage rate         | CPU usage rate               | %     | target（Node ID) |
+| `MemUsage`              | Memory usage rate         | Memory usage rate               | %     | target（Node ID) |
+| `NetIn`                 | Network inflow         | Network inflow               | MB/s  | target（Node ID) |
+| `NetOut`                | Network outflow         | Network outflow               | MB/s  | target（Node ID) |
+| `Disk`                  | Node disk usage       | Node disk usage             | MB    | target（Node ID) |
+| `Conn`                  | Number of connections             | Number of connections                   | Times    | target（Node ID) |
+| `ActiveSession`         | Number of active sessions  | Number of active sessions        | Times    | target（Node ID) |
+| `NodeOplogReservedTime` | **Oplog** retention duration     | Node **oplog** retention duration      | -     | target（Node ID) |
+| `NodeHitRatio`          | Cache hit rate       | Cache hit rate             | %     | target（Node ID) |
+| `NodeCacheUsed`         | Cache usage percentage   | Percentage of Cache memory in total memory | %     | target（Node ID) |
+| `NodeSlavedelay`        | Master-slave delay           | Delay of slave nodes               | Seconds     | target（Node ID) |
+| `Diskusage`             | Node disk usage rate     | Node disk usage rate           | %     | target（Node ID) |
+| `Ioread`                | Number of disk reads         | Disk read IOPS              | Times/second | target（Node ID) |
+| `Iowrite`               | Number of disk writes         | Disk write IOPS              | Times/second | target（Node ID) |
+| `NodeCacheDirty`        | Percentage of dirty data in Cache | Percentage of dirty data in Cache       | %     | target（Node ID) |
 
 #### 2. Read/Write class
 
 | Metric Id      | Metric name           | Implication                        | Unit  | Dimensions              |
 | ---------- | -------------------------- | -------------------------- | ---- | ---------------- |
-| Qr         | Read 请求等待队列中的个数  | Read 请求等待队列中的个数  | 个   | target（节点 ID) |
-| Qw         | Write 请求等待队列中的个数 | Write 请求等待队列中的个数 | 个   | target（节点 ID) |
-| Ar         | WT 引擎的ActiveRead        | Read 请求活跃个数          | 个   | target（节点 ID) |
-| Aw         | WT 引擎ActiveWrite         | Write 请求活跃个数         | 个   | target（节点 ID) |
+| Qr         | Number of read requests in the waiting queue  | Number of read requests in the waiting queue  | Count   | target（Node ID) |
+| Qw         | Number of write requests in the waiting queue | Number of write requests in the waiting queue | Count   | target（Node ID) |
+| Ar         | ActiveRead of WT engine        | Number of active read requests          | Count   | target（Node ID) |
+| Aw         | ActiveWrite of WT engine         | Number of active write requests         | Count   | target（Node ID) |
 
 #### 3. Delay&Request class
 
 | Metric Id      | Metric name           | Implication                        | Unit  | Dimensions              |
 | ---------------------- | ------------------------------ | ------------------------------ | ----- | ---------------- |
-| NodeAvgAllRequestDelay | 所有请求平均时延               | 节点所有请求平均延迟           | ms    | target（节点 ID) |
-| NodeDelay100           | 节点延迟超过100毫秒请求量      | 节点延迟超过100毫秒请求量      | 次    | target（节点 ID) |
-| NodeDelay10            | 节点延迟介于10-50毫秒间请求量  | 节点延迟介于10-50毫秒间请求量  | 次    | target（节点 ID) |
-| NodeDelay50            | 节点延迟介于50-100毫秒间请求量 | 节点延迟介于50-100毫秒间请求量 | 次    | target（节点 ID) |
-| NodeSuccessPerSecond   | 节点每秒钟请求成功数           | 节点每秒钟请求成功数           | 次/秒 | target（节点 ID) |
-| NodeCountPerSecond     | 节点每秒钟 count 请求次数      | 节点每秒钟 count 请求次数      | 次/秒 | target（节点 ID) |
-| NodeDeletePerSecond    | 节点每秒钟 delete 请求次数     | 节点每秒钟 delete 请求次数     | 次/秒 | target（节点 ID) |
-| NodeInsertPerSecond    | 节点每秒钟 insert 请求次数     | 节点每秒钟 insert 请求次数     | 次/秒 | target（节点 ID) |
-| NodeReadPerSecond      | 节点每秒钟 read 请求次数       | 节点每秒钟 read 请求次数       | 次/秒 | target（节点 ID) |
-| NodeUpdatePerSecond    | 节点每秒钟 update 请求次数     | 节点每秒钟 update 请求次数     | 次/秒 | target（节点 ID) |
-| SuccessPerSecond       | 总请求                         | 节点每秒钟请求成功数           | 次/秒 | target（节点 ID) |
+| NodeAvgAllRequestDelay | Average delay of all requests               | Average delay of all requests on node           | ms    | target（Node ID) |
+| NodeDelay100           | Number of requests on node with delay over 100 ms      | Number of requests on node with delay over 100 ms      | Times    | target（Node ID) |
+| NodeDelay10            | Number of requests on node with delay between 10-50 ms  | Number of requests on node with delay between 10-50 ms  | Times    | target（Node ID) |
+| NodeDelay50            | Number of requests on node with delay between 50-100 ms | Number of requests on node with delay between 50-100 ms | Times    | target（Node ID) |
+| NodeSuccessPerSecond   | Number of successful requests on node per second           | Number of successful requests on node per second           | Times/second | target（Node ID) |
+| NodeCountPerSecond     | Number of count requests on node per second      | Number of count requests on node per second      | Times/second | target（Node ID) |
+| NodeDeletePerSecond    | Number of delete requests on node per second     | Number of delete requests on node per second     | Times/second | target（Node ID) |
+| NodeInsertPerSecond    | Number of insert requests on node per second     | Number of insert requests on node per second     | Times/second | target（Node ID) |
+| NodeReadPerSecond      | Number of read requests on node per second       | Number of read requests on node per second       | Times/second | target（Node ID) |
+| NodeUpdatePerSecond    | Number of update requests on node per second     | Number of update requests on node per second     | Times/second | target（Node ID) |
+| SuccessPerSecond       | Total requests                         | Number of successful requests on node per second           | Times/second | target（Node ID) |
 
 #### 4. TTL Index class
 
 | Metric Id      | Metric name           | Implication                        | Unit  | Dimensions              |
 | ---------- | ------------------ | ------------------ | ---- | ---------------- |
-| TtlDeleted | TTL 删除的数据条数 | TTL 删除的数据条数 | 个   | target（节点 ID) |
-| TtlPass    | TTL 运转轮数       | TTL 运转轮数       | 个   | target（节点 ID) |
+| TtlDeleted | Number of data deleted by TTL | Number of data deleted by TTL | Count   | target（Node ID) |
+| TtlPass    | Number of TTL rotations       | Number of TTL rotations       | Count   | target（Node ID) |
 
 ## Object {#object}
 
@@ -204,15 +206,15 @@ The collected Tencent Cloud MongoDB object data structure can be seen from the "
     "CreateTime"       : "2022-08-24 13:54:00",
     "DeadLine"         : "2072-08-24 13:54:00",
     "ReadonlyInstances": "[]",
-    "RelatedInstance"  : "{实例 JSON 数据}",
-    "ReplicaSets"      : "{实例 JSON 数据}",
+    "RelatedInstance"  : "{Instance JSON data}",
+    "ReplicaSets"      : "{Instance JSON data}",
     "StandbyInstances" : "[]",
-    "message"          : "{实例 JSON 数据}",
+    "message"          : "{Instance JSON data}",
   }
 }
 ```
 
-## Loging {#logging}
+## **Loging** {#logging}
 
 ### Slow query statistics
 
@@ -220,13 +222,15 @@ The collected Tencent Cloud MongoDB object data structure can be seen from the "
 
 > Tip 1: The code running of this script depends on the collection of MongoDB instance objects. If the custom collection of MongoDB object is not configured, the slow log script cannot collect slow log data
 
+<!-- markdownlint-disable MD024 -->
 #### Installation script
+<!-- markdownlint-enable -->
 
-On the basis of the previous, you need to install another script for **MongoDB slow query statistics log collection **
+On the basis of the previous, you need to install another script for **MongoDB slow query statistics log collection**
 
 In "Manage/Script Marketplace", click and install the corresponding script package:
 
-- 「观测云集成（腾讯云-MongoDB慢查询日志采集）  」(ID：`guance_tencentcloud_mongodb_slowlog`)
+- 「Guance Integration（Tencent Cloud - MongoDB Slow Query Log Collect）  」(ID：`guance_tencentcloud_mongodb_slowlog`)
 
 After data is synchronized, you can view the data in Logs of the observation cloud.
 
@@ -239,13 +243,13 @@ The following is an example of the reported data:
 
   },
   "fields": {
-      "Slowlog": "慢日志详情",
-      "message": "{实例 JSON 数据}"
+      "Slowlog": "Slow log details",
+      "message": "{Instance JSON data}"
   }
 }
 ```
 
-> * Note: The fields in tags and Fields may change with subsequent updates *
+> Note: The fields in tags and Fields may change with subsequent updates
 >
 > Tip 1: The tags value is supplemented by a custom object
 >

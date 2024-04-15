@@ -1,10 +1,10 @@
-# OpenTelemetry to Jeager 、Grafana、ELK
+# OpenTelemetry to Jaeger 、Grafana、ELK
 
 ----
 
 OpenTelemetry 有很多种开源组合方案，我们通过三种平台/架构来分别介绍并演示 OpenTelemetry 在不同技术架构下部署
 
-> 1、[OpenTelemetry to Jeager 、Grafana、ELK](./opentelemetry-elk.md)
+> 1、[OpenTelemetry to Jaeger 、Grafana、ELK](./opentelemetry-elk.md)
 
 > 2、[OpenTelemetry to Grafana](./opentelemetry-grafana.md)
 
@@ -658,7 +658,7 @@ ELK 为 ElasticSearch 、Logstash 、Kibana 简称。
 
 ![image.png](../images/opentelemetry-elk-8.png)
 
-### Jeager、Zipkin 链路展示
+### Jaeger、Zipkin 链路展示
 
 ![jaeger-ui.gif](../images/opentelemetry-elk-9.gif)
 

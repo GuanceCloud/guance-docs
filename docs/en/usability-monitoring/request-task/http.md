@@ -1,25 +1,24 @@
-# HTTP Request Task
+# HTTP Tests
 
-## Introduction
 
-HTTP Request carries out periodic usability monitoring of websites, domain names and background interfaces based on the `HTTP` protocol. Through real-time monitoring of the site, statistics of its availability, provide dial-up log and real-time alarm, help you quickly find network problems and improve the quality of network access.
+HTTP Tests carries out periodic synthetic testing of websites, domain names and background interfaces based on the `HTTP` protocol. Through real-time monitoring of the site, statistics of its availability, provide test log and real-time alarm, help you quickly find network problems and improve the quality of network access.
 
-HTTP Request allows you to send HTTP requests to the API interface of your application to validate defined requests and criteria such as request headers status codes response times and so on.
+HTTP Tests allows you to send HTTP Tests to the API interface of your application to validate defined requests and criteria such as request headers status codes response times and so on.
 
-## Create HTTP Request
+## Setup
 
-In the Guance workspace, click "New"-"API Test" and select "HTTP Protocol" to create a new HTTP Request, and periodically monitor the performance of websites, domain names and background interfaces based on the `HTTP` protocol.
+In the Guance workspace, click Create and select "HTTP Protocol" to create a new HTTP Tests, and periodically monitor the performance of websites, domain names and background interfaces based on the `HTTP` protocol.
 
 ![](../img/4.dailtesting_http_1.png)
 
 ### Define the Request Format
 
-- URL: Supports both http and https URLs, including four request modes: `GET`, `POST`, `PUT` and `HEAD`.
+- URL: Support both http and https URLs, including four request modes: `GET`, `POST`, `PUT` and `HEAD`.
 - Advanced settings: Advanced settings according to the actual situation, including request settings, request body content, certificates, proxies and privacy.
 
 ![](../img/4.dailtesting_http_2.png)
 
-- Name: User-defined HTTP Request task name. Duplicate name is not supported in current space.
+- Name: User-defined HTTP Tests task name. Duplicate name is not supported in current space.
 
 ### Available Judgment
 

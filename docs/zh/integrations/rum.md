@@ -11,7 +11,7 @@ monitor   :
 ---
 
 <!-- markdownlint-disable MD025 -->
-# 采集器配置
+# RUM
 <!-- markdownlint-enable -->
 
 ---
@@ -22,7 +22,9 @@ monitor   :
 
 RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用户访问监测数据。
 
-## 接入方式 {#supported-platforms}
+## 配置 {#config}
+
+### 接入方式 {#supported-platforms}
 
 <div class="grid cards" markdown>
 - :material-web: [JavaScript](../real-user-monitoring/web/app-access.md)
@@ -32,8 +34,6 @@ RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用
 - [Flutter](../real-user-monitoring/flutter/app-access.md)
 - :material-react:[ReactNative](../real-user-monitoring/react-native/app-access.md)
 </div>
-
-## 配置 {#config}
 
 ### 前置条件 {#requirements}
 
@@ -59,8 +59,11 @@ RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用
       ## Default value set as below. DO NOT MODIFY THESE ENDPOINTS if not necessary.
       endpoints = ["/v1/write/rum"]
     
-      ## use to upload rum screenshot,html,etc...
+      ## used to upload rum session replay.
       session_replay_endpoints = ["/v1/write/rum/replay"]
+    
+      ## specify which metrics should be captured.
+      measurements = ["view", "resource", "action", "long_task", "error", "telemetry"]
     
       ## Android command-line-tools HOME
       android_cmdline_home = "/usr/local/datakit/data/rum/tools/cmdline-tools"
@@ -77,6 +80,18 @@ RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用
       ## such as https://github.com/everettjf/atosl-rs
       atos_bin_path = "/usr/local/datakit/data/rum/tools/atosl"
     
+      # Provide a list to resolve CDN of your static resource.
+      # Below is the Datakit default built-in CDN list, you can uncomment that and change it to your cdn list,
+      # it's a JSON array like: [{"domain": "CDN domain", "name": "CDN human readable name", "website": "CDN official website"},...],
+      # domain field value can contains '*' as wildcard, for example: "kunlun*.com",
+      # it will match "kunluna.com", "kunlunab.com" and "kunlunabc.com" but not "kunlunab.c.com".
+      # cdn_map = '''
+      # [
+      #   {"domain":"15cdn.com","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"},
+      #   {"domain":"tzcdn.cn","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"}
+      # ]
+      # '''
+    
       ## Threads config controls how many goroutines an agent cloud start to handle HTTP request.
       ## buffer is the size of jobs' buffering of worker channel.
       ## threads is the total number fo goroutines at running time.
@@ -91,17 +106,26 @@ RUM（Real User Monitor）采集器用于收集网页端或移动端上报的用
       #   path = "./rum_storage"
       #   capacity = 5120
     
-      # Provide a list to resolve CDN of your static resource.
-      # Below is the Datakit default built-in CDN list, you can uncomment that and change it to your cdn list,
-      # it's a JSON array like: [{"domain": "CDN domain", "name": "CDN human readable name", "website": "CDN official website"},...],
-      # domain field value can contains '*' as wildcard, for example: "kunlun*.com",
-      # it will match "kunluna.com", "kunlunab.com" and "kunlunabc.com" but not "kunlunab.c.com".
-      # cdn_map = '''
-      # [
-      #   {"domain":"15cdn.com","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"},
-      #   {"domain":"tzcdn.cn","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"}
-      # ]
-      # '''
+      ## session_replay config is used to control Session Replay uploading behavior.
+      ## cache_path set the disk directory where temporarily cache session replay data.
+      ## cache_capacity_mb specify the max storage space (in MiB) that session replay cache can use.
+      ## clear_cache_on_start set whether we should clear all previous session replay cache on restarting Datakit.
+      ## upload_workers set the count of session replay uploading workers.
+      ## send_timeout specify the http timeout when uploading session replay data to dataway.
+      ## send_retry_count set the max retry count when sending every session replay request.
+      ## filter_rules set the the filtering rules that matched session replay data will be dropped, 
+      ## all rules are of relationship OR, that is to day, the data match any one of them will be dropped.
+      # [inputs.rum.session_replay]
+      #   cache_path = "/usr/local/datakit/cache/session_replay"
+      #   cache_capacity_mb = 20480
+      #   clear_cache_on_start = false
+      #   upload_workers = 16
+      #   send_timeout = "75s"
+      #   send_retry_count = 3
+      #   filter_rules = [
+      #       "{ service = 'xxx' or version IN [ 'v1', 'v2'] }",
+      #       "{ app_id = 'yyy' and env = 'production' }"
+      #   ]
     
     ```
 
@@ -355,32 +379,42 @@ sudo datakit install --symbol-tools
 
 ### 文件上传和删除 {#upload-delete}
 
-打包完成后，除了手动拷贝至 DataKit 相关目录，还可通过 http 接口上传和删除该文件，前提是 Datakit 开启了 DCA 服务。
+打包完成后，除了手动拷贝至 DataKit 相关目录，还可通过 http 接口上传和删除该文件。
 
-上传：
+> 从 Datakit [:octicons-tag-24: Version-1.16.0](../datakit/changelog.md#cl-1.16.0) 起，原先通过 DCA 服务来提供的 sourcemap 相关接口已经弃用，转至 DataKit 服务中。
+
+[上传](../datakit/apis.md#api-sourcemap-upload)：
 
 ```shell
-curl -X POST '<dca_address>/v1/rum/sourcemap?app_id=<app_id>&env=<env>&version=<version>&platform=<platform>' -F "file=@<sourcemap_path>" -H "Content-Type: multipart/form-data"
+curl -X PUT '<datakit_address>/v1/sourcemap?app_id=<app_id>&env=<env>&version=<version>&platform=<platform>&token=<token>' -F "file=@<sourcemap_path>" -H "Content-Type: multipart/form-data"
 ```
 
-删除：
+[删除](../datakit/apis.md#api-sourcemap-delete)：
 
 ```shell
-curl -X DELETE '<dca_address>/v1/rum/sourcemap?app_id=<app_id>&env=<env>&version=<version>&platform=<platform>'
+curl -X DELETE '<datakit_address>/v1/sourcemap?app_id=<app_id>&env=<env>&version=<version>&platform=<platform>&token=<token>'
+```
+
+[验证 sourcemap](../datakit/apis.md#api-sourcemap-check):
+
+```shell
+curl -X GET '<datakit_address>/v1/sourcemap/check?app_id=<app_id>&env=<env>&version=<version>&platform=<platform>&error_stack=<error_stack>'
 ```
 
 变量说明：
 
-- `<dca_address>`: DCA 服务的地址，如 `http://localhost:9531`
+- `<datakit_address>`: DataKit 服务的地址，如 `http://localhost:9529`
+- `<token>`: 配置文件 `datakit.conf` 中 `dataway` 的 token
 - `<app_id>`: 对应 RUM 的 `applicationId`
 - `<env>`: 对应 RUM 的 `env`
 - `<version>`: 对应 RUM 的 `version`
 - `<platform>` 应用平台，当前支持 `web/miniapp/android/ios`
 - `<sourcemap_path>`: 待上传的 `sourcemap` 压缩包文件路径
+- `<error_stack>`: 需要验证的 `error_stack`
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
-
+    - 上传和删除接口需要进行 `token` 认证
     - 该转换过程，只针对 `error` 指标集
     - 当前只支持 Javascript/Android/iOS 的 sourcemap 转换
     - 如果未找到对应的 sourcemap 文件，将不进行转换
@@ -428,5 +462,37 @@ DataKit 内置了一个主流 CDN 厂家信息列表，如果发现你所使用�
 <!-- markdownlint-disable MD046 -->
 ???+ info
 
-    RUM 配置文件默认位于 `/usr/local/datakit/conf.d/rum/rum.conf`，具体根据你所使用的操作系统和 Datakit 安装位置确定。
+    RUM 配置文件默认位于 */usr/local/datakit/conf.d/rum/rum.conf*（Linux/macOS）和 *C:\\Program Files\\datakit\\conf.d\\rum*（Windows），具体根据你所使用的操作系统和 Datakit 安装位置确定。
 <!-- markdownlint-enable -->
+
+### RUM 会话重放数据的过滤 {#rum-session-replay-filter}
+
+从 Datakit [:octicons-tag-24: Version-1.20.0](../datakit/changelog.md#cl-1.20.0) 版本开始支持利用配置过滤掉不需要的会话重放数据，新增的配置项名称为 `filter_rules`， 格式类似如下（可以参考 `rum.conf.sample` RUM 示例配置文件）：
+
+```toml
+[inputs.rum.session_replay]
+#   cache_path = "/usr/local/datakit/cache/session_replay"
+#   cache_capacity_mb = 20480
+#   clear_cache_on_start = false
+#   upload_workers = 16
+#   send_timeout = "75s"
+#   send_retry_count = 3
+   filter_rules = [
+       "{ service = 'xxx' or version IN [ 'v1', 'v2'] }",
+       "{ app_id = 'yyy' and env = 'production' }"
+   ]
+```
+
+`filter_rules` 是一个规则数组，每一条规则之间是"或"的逻辑关系，也就是说某条会话重放数据只要命中其中任何一条规则就会被丢弃，只有全部规则都没命中才会被保留。过滤规则目前支持的字段如下表所示：
+
+| 字段名                 | 类型     | 说明                 | 示例              |
+|---------------------|--------|--------------------|-----------------|
+| `app_id`            | string | 应用 ID              | appid_123456789 |
+| `service`           | string | 服务名称               | user_center     |
+| `version`           | string | 服务版本               | v1.0.0          |
+| `env`               | string | 服务部署环境             | production      |
+| `sdk_name`          | string | RUM SDK 名称         | df_web_rum_sdk  |
+| `sdk_version`       | string | RUM SDK 版本         | 3.1.5           |
+| `source`            | string | 数据来源               | browser         |
+| `has_full_snapshot` | string | 是否是全量数据            | false           |
+| `raw_segment_size`  | int    | 原始会话重放数据的大小（单位：字节） | 656             |

@@ -1,5 +1,19 @@
+---
+title     : 'Nginx'
+summary   : 'Collect metrics of Nginx'
+__int_icon      : 'icon/nginx'
+dashboard :
+  - desc  : 'Nginx'
+    path  : 'dashboard/en/nginx'
+monitor   :
+  - desc  : 'None'
+    path  : '-'
+---
 
-Nginx
+<!-- markdownlint-disable MD025 -->
+# Nginx
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
@@ -8,7 +22,9 @@ Nginx
 
 NGINX collector can take many metrics from NGINX instances, such as the total number of requests, connections, cache and other metrics, and collect the metrics into Guance Cloud to help monitor and analyze various abnormal situations of NGINX.
 
-## Preconditions {#requirements}
+## Config {#config}
+
+### Requirements {#requirements}
 
 - NGINX version >= `1.8.0`; Already tested version:
     - [x] 1.23.2
@@ -31,7 +47,7 @@ NGINX collector can take many metrics from NGINX instances, such as the total nu
 
 - Take the example of generating the `nginx_upstream_zone` measurements. An example of NGINX-related configuration is as follows:
 
-```
+```nginx
     ...
     http {
        ...
@@ -50,54 +66,62 @@ NGINX collector can take many metrics from NGINX instances, such as the total nu
 
 - After the VTS function has been turned on, it is no longer necessary to collect the data of the `http_stub_status_module` module, because the data of the VTS module will include the data of the `http_stub_status_module` module.
 
-## Configuration {#config}
+### Configuration {#input-config}
 
-Go to the `conf.d/nginx` directory under the DataKit installation directory, copy `nginx.conf.sample` and name it `nginx.conf`. Examples are as follows:
+<!-- markdownlint-disable MD046 -->
+=== "Host"
 
-```toml
-[[inputs.nginx]]
-# Nginx status URL.
-# (Default) If not use with VTS, the formula is like this: "http://localhost:80/basic_status".
-# If using with VTS, the formula is like this: "http://localhost:80/status/format/json".
-url = "http://localhost:80/basic_status"
+    Go to the `conf.d/nginx` directory under the DataKit installation directory, copy `nginx.conf.sample` and name it `nginx.conf`. Examples are as follows:
 
-# ##(optional) collection interval, default is 30s
-# interval = "30s"
-use_vts = false
-## Optional TLS Config
-# tls_ca = "/xxx/ca.pem"
-# tls_cert = "/xxx/cert.cer"
-# tls_key = "/xxx/key.key"
-## Use TLS but skip chain & host verification
-insecure_skip_verify = false
-# HTTP response timeout (default: 5s)
-response_timeout = "20s"
+    ```toml
+        [[inputs.nginx]]
+    # Nginx status URL.
+    # (Default) If not use with VTS, the formula is like this: "http://localhost:80/basic_status".
+    # If using with VTS, the formula is like this: "http://localhost:80/status/format/json".
+    url = "http://localhost:80/basic_status"
+    
+    # ##(optional) collection interval, default is 30s
+    # interval = "30s"
+    use_vts = false
+    ## Optional TLS Config
+    # tls_ca = "/xxx/ca.pem"
+    # tls_cert = "/xxx/cert.cer"
+    # tls_key = "/xxx/key.key"
+    ## Use TLS but skip chain & host verification
+    insecure_skip_verify = false
+    # HTTP response timeout (default: 5s)
+    response_timeout = "20s"
+    
+    ## Set true to enable election
+    election = true
+    
+    [inputs.nginx.log]
+    #files = ["/var/log/nginx/access.log","/var/log/nginx/error.log"]
+    ## grok pipeline script path
+    #pipeline = "nginx.p"
+    [inputs.nginx.tags]
+    # some_tag = "some_value"
+    # more_tag = "some_other_value"
+    # ...
+    ```
 
-## Set true to enable election
-election = true
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
-[inputs.nginx.log]
-#files = ["/var/log/nginx/access.log","/var/log/nginx/error.log"]
-## grok pipeline script path
-#pipeline = "nginx.p"
-[inputs.nginx.tags]
-# some_tag = "some_value"
-# more_tag = "some_other_value"
-# ...
-```
+=== "Kubernetes"
 
-???+ warnning
+    [Inject collector configuration through ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) to enable the collector
 
-    `url` are configurable, `/basic_status` are prefereed.
+???+ attention
 
-After configuration, restart DataKit.
+    The `url` address is subject to the specific configuration of nginx. The common usage is to use the `/basic_status` route.
+<!-- markdownlint-enable -->
 
-## Measurements {#measurements}
+## Metric {#metric}
 
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.nginx.tags]`:
 
 ``` toml
- [inputs.nginx.tags]
+[inputs.nginx.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
   # ...
@@ -112,10 +136,10 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|host name which installed nginx|
-|`nginx_port`|nginx server port|
-|`nginx_server`|nginx server host|
-|`nginx_version`|nginx version, exist when using vts|
+|`host`|Host name which installed nginx|
+|`nginx_port`|Nginx server port|
+|`nginx_server`|Nginx server host|
+|`nginx_version`|Nginx version, exist when using vts|
 
 - metric list
 
@@ -129,7 +153,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`connection_requests`|The total number of requests client connections|int|count|
 |`connection_waiting`|The total number of waiting client connections|int|count|
 |`connection_writing`|The total number of writing client connections|int|count|
-|`load_timestamp`|nginx process load time in milliseconds, exist when using vts|int|msec|
+|`load_timestamp`|Nginx process load time in milliseconds, exist when using vts|int|msec|
 
 
 
@@ -225,32 +249,28 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
+## Log {#logging}
 
+To collect NGINX logs, open `files` in nginx.conf and write to the absolute path of the NGINX log file. For example:
 
-
-## Log Collection {#logging}
-
-To collect NGINX logs, open `files` in NGINX.conf and write to the absolute path of the NGINX log file. For example:
-
-```
+```toml
     [[inputs.nginx]]
       ...
       [inputs.nginx.log]
-		files = ["/var/log/nginx/access.log","/var/log/nginx/error.log"]
+    files = ["/var/log/nginx/access.log","/var/log/nginx/error.log"]
 ```
-
 
 When log collection is turned on, logs with a log `source` of `nginx` are generated by default.
 
 >Note: DataKit must be installed on the NGINX host to collect NGINX logs.
 
-
-## Log Pipeline Feature Cut Field Description {#pipeline}
+### Log Pipeline Feature Cut Field Description {#pipeline}
 
 - NGINX error log cutting
 
 Example error log text:
-```
+
+```log
 2021/04/21 09:24:04 [alert] 7#7: *168 write() to "/var/log/nginx/access.log" failed (28: No space left on device) while logging request, client: 120.204.196.129, server: localhost, request: "GET / HTTP/1.1", host: "47.98.103.73"
 ```
 
@@ -270,7 +290,7 @@ The list of cut fields is as follows:
 
 Example of error log text:
 
-```
+```log
 2021/04/29 16:24:38 [emerg] 50102#0: unexpected ";" in /usr/local/etc/nginx/nginx.conf:23
 ```
 
@@ -278,14 +298,15 @@ The list of cut fields is as follows:
 
 | Field Name | Field Value                                                          | Description                         |
 | ---    | ---                                                             | ---                          |
-| status | error                                                           | Log level (emerg changed to error)   |
-| msg    | 50102#0: unexpected \";\" in /usr/local/etc/nginx/nginx.conf:23 | log content                     |
-| time   | 1619684678000000000                                             | Nanosecond timestamp (as row protocol time) |
+| `status` | `error`                                                           | Log level (`emerg` changed to `error`)   |
+| `msg`    | `50102#0: unexpected \";\" in /usr/local/etc/nginx/nginx.conf:23` | log content                     |
+| `time`   | `1619684678000000000`                                             | Nanosecond timestamp (as row protocol time) |
 
 - NGINX access log cutting
 
 Example of access log text:
-```
+
+```log
 127.0.0.1 - - [24/Mar/2021:13:54:19 +0800] "GET /basic_status HTTP/1.1" 200 97 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.72 Safari/537.36"
 ```
 
@@ -293,16 +314,16 @@ The list of cut fields is as follows:
 
 | Field Name       | Field Value                       | Description                         |
 | ---          | ---                          | ---                          |
-| client_ip    | 127.0.0.1                    | Log level (emerg changed to error)   |
-| status       | ok                           | log level                     |
-| status_code  | 200                          | http code                    |
-| http_method  | GET                          | http request method                |
-| http_url     | /basic_status                | http request url                 |
-| http_version | 1.1                          | http version                 |
-| agent        | Mozilla/5.0... Safari/537.36 | User-Agent                   |
-| browser      | Chrome                       | browser                       |
-| browserVer   | 89.0.4389.72                 | browser version                   |
-| isMobile     | false                        | Is it a cell phone                     |
-| engine       | AppleWebKit                  | engine                         |
-| os           | Intel Mac OS X 11_1_0        | system                         |
-| time         | 1619243659000000000          | Nanosecond timestamp (as line protocol time) |
+| `client_ip`    | `127.0.0.1`                    | Log level (`emerg` changed to `error`)   |
+| `status`       | `ok`                           | log level                     |
+| `status_code`  | `200`                          | http code                    |
+| `http_method`  | `GET`                          | http request method                |
+| `http_url`     | `/basic_status`                | http request url                 |
+| `http_version` | `1.1`                          | http version                 |
+| `agent`        | `Mozilla/5.0... Safari/537.36` | User-Agent                   |
+| `browser`      | `Chrome`                       | browser                       |
+| `browserVer`   | `89.0.4389.72`                 | browser version                   |
+| `isMobile`     | `false`                        | Is it a cell phone                     |
+| `engine`       | `AppleWebKit`                  | engine                         |
+| `os`           | `Intel Mac OS X 11_1_0`        | system                         |
+| `time`         | `1619243659000000000`          | Nanosecond timestamp (as line protocol time) |

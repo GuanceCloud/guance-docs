@@ -1,10 +1,10 @@
 ---
 title     : 'Seata'
-summary   : 'Collect information about Seata-related indicators'
+summary   : 'Collect information about Seata-related metrics'
 __int_icon: 'icon/seata'
 dashboard :
-  - desc  : 'Seata Monitoring View'
-    path  : 'dashboard/zh/seata'
+  - desc  : 'Seata'
+    path  : 'dashboard/en/seata'
 monitor   :
   - desc  : 'No'
     path  : '-'
@@ -21,7 +21,7 @@ Seata supports Metrics data collection on TC and output to Prometheus monitoring
 
 ### Open Seata Metrics
 
-1. Configure Metrics on TC and Metrics on TC. Seata Server already contains Metrics ( `seata-metrics-all`) dependencies, but it is off by default and needs to turn on metrics collection configuration. (** This step is very important) **
+- Configure Metrics on TC and Metrics on TC. Seata Server already contains Metrics ( `seata-metrics-all`) dependencies, but it is off by default and needs to turn on metrics collection configuration. (**This step is very important)**  
 
  `Seata 1.5.0+` Use `application.yaml`
 
@@ -76,7 +76,7 @@ config {
 }
 ```
 
-2. Visit [ http://tc-server-ip:9898/metrics ](http://tc-server-ip:9898/metrics) to see if metrics data is accessible
+- Visit [http://tc-server-ip:9898/metrics](http://tc-server-ip:9898/metrics) to see if metrics data is accessible  
 
 ```shell
 # HELP seata seata
@@ -97,14 +97,14 @@ Similar data above proves that `metric` was successfully turned on. (If some Tra
 
 ### Open DataKit Collector
 
-1. Open the DataKit Prometheus plug-in and create `seata-prom.conf`
+- Open the DataKit Prometheus plug-in and create `seata-prom.conf`
 
 ```shell
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample seata-prom.conf
 ```
 
-2. Modify `seata-prom.conf` Profile
+- Modify `seata-prom.conf` Profile
 
 ```toml
 [[inputs.prom]]
@@ -122,7 +122,7 @@ cp prom.conf.sample seata-prom.conf
 
 ```
 
-3. Restart DataKit
+- Restart DataKit
 
 ```shell
 systemctl restart datakit

@@ -201,7 +201,7 @@ icon: zy/best-practices
 - 监控最佳实践
     - [OpenTelemetry 可观测建设](./cloud-native/opentelemetry-observable.md)
 
-    - [OpenTelemetry to Jeager 、Grafana、ELK](./cloud-native/opentelemetry-elk.md)
+    - [OpenTelemetry to Jaeger 、Grafana、ELK](./cloud-native/opentelemetry-elk.md)
     - [OpenTelemetry to Grafana](./cloud-native/opentelemetry-grafana.md)
     - [OpenTelemetry to 观测云](./cloud-native/opentelemetry-guance.md)
 ### 更新记录

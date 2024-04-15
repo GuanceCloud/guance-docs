@@ -52,25 +52,24 @@ vim /etc/clickhouse-server/config.xml
 
 详见[ClickHouse 官方文档](https://ClickHouse.com/docs/en/operations/server-configuration-parameters/settings/#server_configuration_parameters-prometheus){:target="_blank"}
 
+### 采集器配置 {input-config}
+
 <!-- markdownlint-disable MD046 -->
 === "主机安装"
 
-    进入 DataKit 安装目录下的 `conf.d/clickhouse` 目录，复制 `clickhousev1.conf.sample` 并命名为 `clickhousev1.conf`。示例如下：
+    进入 DataKit 安装目录下的 `conf.d/clickhousev1` 目录，复制 `clickhousev1.conf.sample` 并命名为 `clickhousev1.conf`。示例如下：
     
     ```toml
         
     [[inputs.clickhousev1]]
       ## Exporter URLs.
-      # urls = ["http://127.0.0.1:9363/metrics"]
+      urls = ["http://127.0.0.1:9363/metrics"]
     
       ## Unix Domain Socket URL. Using socket to request data when not empty.
       uds_path = ""
     
       ## Ignore URL request errors.
       ignore_req_err = false
-    
-      ## Collector alias.
-      source = "clickhouse"
     
       ## Collect data output.
       ## Fill this when want to collect the data to local file nor center.
@@ -176,12 +175,6 @@ vim /etc/clickhouse-server/config.xml
         # tag2 = "new-name-2"
         # tag3 = "new-name-3"
     
-      ## Send collected metrics to center as log.
-      ## When 'service' field is empty, using 'service tag' as measurement set name.
-      [inputs.clickhousev1.as_logging]
-        enable = false
-        service = "service_name"
-    
       ## Customize tags.
       [inputs.clickhousev1.tags]
         # some_tag = "some_value"
@@ -225,12 +218,12 @@ vim /etc/clickhouse-server/config.xml
 
 | Tag | Description |
 |  ----  | --------|
-|`cpu`|cpu id|
-|`disk`|disk name|
-|`eth`|eth id|
-|`host`|host name|
+|`cpu`|Cpu id|
+|`disk`|Disk name|
+|`eth`|Eth id|
+|`host`|Host name|
 |`instance`|Instance endpoint|
-|`unit`|unit name|
+|`unit`|Unit name|
 
 - 字段列表
 
@@ -398,7 +391,7 @@ vim /etc/clickhouse-server/config.xml
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|host name|
+|`host`|Host name|
 |`instance`|Instance endpoint|
 
 - 字段列表
@@ -610,7 +603,7 @@ vim /etc/clickhouse-server/config.xml
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|host name|
+|`host`|Host name|
 |`instance`|Instance endpoint|
 
 - 字段列表
@@ -1071,7 +1064,7 @@ vim /etc/clickhouse-server/config.xml
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|host name|
+|`host`|Host name|
 |`instance`|Instance endpoint|
 
 - 字段列表

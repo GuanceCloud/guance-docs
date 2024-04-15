@@ -40,9 +40,10 @@ OTEL 提供与 vendor 无关的实现，根据用户的需要将观测类数据�
     ```toml
         
     [[inputs.opentelemetry]]
-      ## ignore_tags will work as a blacklist to prevent tags send to data center.
-      ## Every value in this list is a valid string of regular expression.
-      # ignore_tags = ["block1", "block2"]
+      ## customer_tags will work as a whitelist to prevent tags send to data center.
+      ## All . will replace to _ ,like this :
+      ## "project.name" to send to GuanCe center is "project_name"
+      # customer_tags = ["sink_project", "custom.otel.tag"]
     
       ## Keep rare tracing resources list switch.
       ## If some resources are rare enough(not presend in 1 hour), those resource will always send
@@ -55,6 +56,9 @@ OTEL 提供与 vendor 无关的实现，根据用户的需要将观测类数据�
     
       ## compatible ddtrace: It is possible to compatible OTEL Trace with DDTrace trace
       # compatible_ddtrace=false
+    
+      ## delete trace message
+      # del_message = true
     
       ## Ignore tracing resources map like service:[resources...].
       ## The service name is the full service name in current application.
@@ -127,23 +131,129 @@ OTEL 提供与 vendor 无关的实现，根据用户的需要将观测类数据�
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
 
-    在 Kubernetes 中支持的环境变量如下表：
+    也支持以环境变量的方式修改配置参数（需要在 ENV_DEFAULT_ENABLED_INPUTS 中加为默认采集器）：
 
-    | 环境变量名                          | 类型        | 示例                                                                                                     |
-    | ----------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------- |
-    | `ENV_INPUT_OTEL_IGNORE_KEYS`        | JSON string | `["block1", "block2"]`                                                                                   |
-    | `ENV_INPUT_OTEL_KEEP_RARE_RESOURCE` | bool        | true                                                                                                     |
-    | `ENV_INPUT_OTEL_OMIT_ERR_STATUS`    | JSON string | `["404", "403", "400"]`                                                                                  |
-    | `ENV_INPUT_OTEL_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}`                         |
-    | `ENV_INPUT_OTEL_SAMPLER`            | float       | 0.3                                                                                                      |
-    | `ENV_INPUT_OTEL_TAGS`               | JSON string | `{"k1":"v1", "k2":"v2", "k3":"v3"}`                                                                      |
-    | `ENV_INPUT_OTEL_THREADS`            | JSON string | `{"buffer":1000, "threads":100}`                                                                         |
-    | `ENV_INPUT_OTEL_STORAGE`            | JSON string | `{"storage":"./otel_storage", "capacity": 5120}`                                                         |
-    | `ENV_INPUT_OTEL_HTTP`               | JSON string | `{"enable":true, "http_status_ok": 200, "trace_api": "/otel/v1/trace", "metric_api": "/otel/v1/metric"}` |
-    | `ENV_INPUT_OTEL_GRPC`               | JSON string | `{"trace_enable": true, "metric_enable": true, "addr": "127.0.0.1:4317"}`                                |
-    | `ENV_INPUT_OTEL_EXPECTED_HEADERS`   | JSON string | `{"ex_version": "1.2.3", "ex_name": "env_resource_name"}`                                                |
+    - **ENV_INPUT_OTEL_CUSTOMER_TAGS**
+    
+        标签白名单
+    
+        **Type**: JSON
+    
+        **ConfField**: `customer_tags`
+    
+        **Example**: `["sink_project", "custom.tag"]`
+    
+    - **ENV_INPUT_OTEL_KEEP_RARE_RESOURCE**
+    
+        保持稀有跟踪资源列表
+    
+        **Type**: Boolean
+    
+        **ConfField**: `keep_rare_resource`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_OTEL_DEL_MESSAGE**
+    
+        删除 trace 消息
+    
+        **Type**: Boolean
+    
+        **ConfField**: `del_message`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_OTEL_OMIT_ERR_STATUS**
+    
+        错误状态白名单
+    
+        **Type**: JSON
+    
+        **ConfField**: `omit_err_status`
+    
+        **Example**: ["404", "403", "400"]
+    
+    - **ENV_INPUT_OTEL_CLOSE_RESOURCE**
+    
+        忽略指定服务器的 tracing（正则匹配）
+    
+        **Type**: JSON
+    
+        **ConfField**: `close_resource`
+    
+        **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
+    
+    - **ENV_INPUT_OTEL_SAMPLER**
+    
+        全局采样率
+    
+        **Type**: Float
+    
+        **ConfField**: `sampler`
+    
+        **Example**: 0.3
+    
+    - **ENV_INPUT_OTEL_THREADS**
+    
+        线程和缓存的数量
+    
+        **Type**: JSON
+    
+        **ConfField**: `threads`
+    
+        **Example**: {"buffer":1000, "threads":100}
+    
+    - **ENV_INPUT_OTEL_STORAGE**
+    
+        本地缓存路径和大小（MB）
+    
+        **Type**: JSON
+    
+        **ConfField**: `storage`
+    
+        **Example**: `{"storage":"./otel_storage", "capacity": 5120}`
+    
+    - **ENV_INPUT_OTEL_HTTP**
+    
+        代理 HTTP 配置
+    
+        **Type**: JSON
+    
+        **ConfField**: `http`
+    
+        **Example**: `{"enable":true, "http_status_ok": 200, "trace_api": "/otel/v1/trace", "metric_api": "/otel/v1/metric"}`
+    
+    - **ENV_INPUT_OTEL_GRPC**
+    
+        代理 GRPC 配置
+    
+        **Type**: JSON
+    
+        **ConfField**: `grpc`
+    
+        **Example**: {"trace_enable": true, "metric_enable": true, "addr": "127.0.0.1:4317"}
+    
+    - **ENV_INPUT_OTEL_EXPECTED_HEADERS**
+    
+        配置使用客户端的 HTTP 头
+    
+        **Type**: JSON
+    
+        **ConfField**: `expected_headers`
+    
+        **Example**: {"ex_version": "1.2.3", "ex_name": "env_resource_name"}
+    
+    - **ENV_INPUT_OTEL_TAGS**
+    
+        自定义标签。如果配置文件有同名标签，将会覆盖它
+    
+        **Type**: JSON
+    
+        **ConfField**: `tags`
+    
+        **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 
 <!-- markdownlint-enable -->
 
@@ -156,6 +266,24 @@ OTEL 提供与 vendor 无关的实现，根据用户的需要将观测类数据�
 5. HTTP 协议请求格式同时支持 JSON 和 Protobuf 两种序列化格式。但 gRPC 仅支持 Protobuf 一种。
 
 使用 OTEL HTTP exporter 时注意环境变量的配置，由于 Datakit 的默认配置是 `/otel/v1/trace` 和 `/otel/v1/metric`，所以想要使用 HTTP 协议的话，需要单独配置 `trace` 和 `metric`，
+
+## SDK 常规配置 {#sdk-configuration}
+
+| 命令                           | 说明                                         | 默认                    | 注意                                          |
+|:------------------------------|:--------------------------------------------|:------------------------|:---------------------------------------------|
+| `OTEL_SDK_DISABLED`           | 关闭 SDK                                     | false                   | 关闭后将不会产生任何链路指标信息                   |
+| `OTEL_RESOURCE_ATTRIBUTES`    | "service.name=App,username=liu"             |                         | 每一个 span 中都会有该 tag 信息                  |
+| `OTEL_SERVICE_NAME`           | 服务名，等效于上面 "service.name=App"           |                         | 优先级高于上面                                 |
+| `OTEL_LOG_LEVEL`              | 日志级别                                      | `info`                  |                                              |
+| `OTEL_PROPAGATORS`            | 透传协议                                      | `tracecontext,baggage`  |                                              |
+| `OTEL_TRACES_SAMPLER`         | 采样                                         | `parentbased_always_on` |                                              |
+| `OTEL_TRACES_SAMPLER_ARG`     | 配合上面采样 参数                              | 1.0                     | 0 - 1.0                                      |
+| `OTEL_EXPORTER_OTLP_PROTOCOL` | 协议包括： `grpc`,`http/protobuf`,`http/json` | gRPC                    |                                              |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | OTLP 地址                                    | <http://localhost:4317> | <http://datakit-endpoint:9529/otel/v1/trace> |
+| `OTEL_TRACES_EXPORTER`        | 链路导出器                                    | `otlp`                  |                                              |
+
+
+> 您可以将 `otel.javaagent.debug=true` 参数传递给 Agent 以查看调试日志。请注意，这些日志内容相当冗长，生产环境下谨慎使用。
 
 ## 链路 {#tracing}
 
@@ -190,6 +318,76 @@ Datakit 只接收 OTLP 的数据，OTLP 有三种数据类型： `gRPC` ， `htt
 - 需要配合 collector 的尾部采样： [OpenTelemetry 采样最佳实践](../best-practices/cloud-native/opentelemetry-simpling.md)
 - Agent 端的头部采样： [OpenTelemetry Java Agent 端采样策略](../best-practices/cloud-native/otel-agent-sampling.md)
 
+### Tag {#tags}
+
+从 DataKit 版本 [1.22.0](../datakit/changelog.md#cl-1.22.0) 开始，黑名单功能废弃。增加固定标签列表，只有在此列表中的才会提取到一级标签中，以下是固定列表：
+
+| Attributes                 | tag                   | 说明                        |
+|:---------------------------|:----------------------|:--------------------------|
+| http.url                   | http_url              | HTTP 请求完整路径               |
+| http.hostname              | http_hostname         | hostname                  |
+| http.route                 | http_route            | 路由                        |
+| http.status_code           | http_status_code      | 状态码                       |
+| http.request.method        | http_request_method   | 请求方法                      |
+| http.method                | http_method           | 同上                        |
+| http.client_ip             | http_client_ip        | 客户端 IP                    |
+| http.scheme                | http_scheme           | 请求协议                      |
+| url.full                   | url_full              | 请求全路径                     |
+| url.scheme                 | url_scheme            | 请求协议                      |
+| url.path                   | url_path              | 请求路径                      |
+| url.query                  | url_query             | 请求参数                      |
+| span_kind                  | span_kind             | span 类型                   |
+| db.system                  | db_system             | span 类型                   |
+| db.operation               | db_operation          | DB 动作                     |
+| db.name                    | db_name               | 数据库名称                     |
+| db.statement               | db_statement          | 详细信息                      |
+| server.address             | server_address        | 服务地址                      |
+| net.host.name              | net_host_name         | 请求的 host                  |
+| server.port                | server_port           | 服务端口号                     |
+| net.host.port              | net_host_port         | 同上                        |
+| network.peer.address       | network_peer_address  | 网络地址                      |
+| network.peer.port          | network_peer_port     | 网络端口                      |
+| network.transport          | network_transport     | 协议                        |
+| messaging.system           | messaging_system      | 消息队列名称                    |
+| messaging.operation        | messaging_operation   | 消息动作                      |
+| messaging.message          | messaging_message     | 消息                        |
+| messaging.destination      | messaging_destination | 消息详情                      |
+| rpc.service                | rpc_service           | RPC 服务地址                  |
+| rpc.system                 | rpc_system            | RPC 服务名称                  |
+| error                      | error                 | 是否错误                      |
+| error.message              | error_message         | 错误信息                      |
+| error.stack                | error_stack           | 堆栈信息                      |
+| error.type                 | error_type            | 错误类型                      |
+| error.msg                  | error_message         | 错误信息                      |
+| project                    | project               | project                   |
+| version                    | version               | 版本                        |
+| env                        | env                   | 环境                        |
+| host                       | host                  | Attributes 中的 host 标签     |
+| pod_name                   | pod_name              | Attributes 中的 pod_name 标签 |
+
+如果想要增加自定义标签，可使用环境变量：
+
+```shell
+# 通过启动参数添加自定义标签
+-Dotel.resource.attributes=username=myName,env=1.1.0
+```
+
+并修改配置文件中的白名单，这样就可以在观测云的链路详情的一级标签出现自定义的标签。
+
+```toml
+customer_tags = ["sink_project", "username","env"]
+```
+
+### Kind {#kind}
+
+所有的 `Span` 都有 `span_kind` 标签，共有 6 中属性：
+
+- `unspecified`:  未设置。
+- `internal`:  内部 span 或子 span 类型。
+- `server`:  WEB 服务、RPC 服务 等等。
+- `client`:  客户端类型。
+- `producer`:  消息的生产者。
+- `consumer`:  消息的消费者。
 
 ### 示例 {#examples}
 
@@ -219,46 +417,46 @@ OpenTelemetry Java Agent 从应用程序中通过 JMX 协议获取 MBean 的指�
 
 | Tag | Description |
 |  ----  | --------|
-|`action`|gc 动作|
-|`area`|堆/非堆|
-|`cause`|gc 原因|
-|`container.id`|容器 ID|
-|`description`|指标说明|
-|`exception`|异常信息|
-|`gc`|gc 类型|
-|`host`|主机名|
-|`http.flavor`|HTTP 版本|
-|`http.method`|HTTP 请求类型|
-|`http.route`|HTTP 请求路由|
-|`http.scheme`|http/https|
-|`http.target`|HTTP 请求目标|
-|`id`|jvm 类型|
-|`instrumentation_name`|指标名|
-|`level`|日志级别|
-|`main-application-class`|main 方法入口|
-|`method`|HTTP 请求类型|
-|`name`|线程池名称|
-|`net.protocol.name`|网络协议名称|
-|`net.protocol.version`|网络协议版本|
-|`os.description`|操作系统版本信息|
-|`os.type`|操作系统类型|
-|`outcome`|http 结果|
-|`path`|磁盘路径|
-|`pool`|jvm 池类型|
-|`process.command_line`|进程启动命令|
-|`process.executable.path`|可执行文件路径|
-|`process.runtime.description`|进程运行时说明|
-|`process.runtime.name`|jvm 池类型|
-|`process.runtime.version`|jvm 池类型|
-|`service.name`|服务名称|
-|`spanProcessorType`|span 处理器类型|
-|`state`|线程状态|
-|`status`|HTTP 状态码|
-|`telemetry.auto.version`|代码版本|
-|`telemetry.sdk.language`|语言|
-|`telemetry.sdk.name`|SDK 名称|
-|`telemetry.sdk.version`|SDK 版本|
-|`uri`|http 请求路径|
+|`action`|GC Action|
+|`area`|Heap or not|
+|`cause`|GC Cause|
+|`container.id`|Container ID|
+|`description`|Metric Description|
+|`exception`|Exception Information|
+|`gc`|GC Type|
+|`host`|Host Name|
+|`http.flavor`|HTTP Version|
+|`http.method`|HTTP Method|
+|`http.route`|HTTP Request Route|
+|`http.scheme`|HTTP/HTTPS|
+|`http.target`|HTTP Target|
+|`id`|JVM Type|
+|`instrumentation_name`|Metric Name|
+|`level`|Log Level|
+|`main-application-class`|Main Entry Point|
+|`method`|HTTP Type|
+|`name`|Thread Pool Name|
+|`net.protocol.name`|Net Protocol Name|
+|`net.protocol.version`|Net Protocol Version|
+|`os.description`|OS Version|
+|`os.type`|OS Type|
+|`outcome`|HTTP Outcome|
+|`path`|Disk Path|
+|`pool`|JVM Pool Type|
+|`process.command_line`|Process Command Line|
+|`process.executable.path`|Executable File Path|
+|`process.runtime.description`|Process Runtime Description|
+|`process.runtime.name`|JVM Pool Runtime Name|
+|`process.runtime.version`|JVM Pool Runtime Version|
+|`service.name`|Service Name|
+|`spanProcessorType`|Span Processor Type|
+|`state`|Thread State|
+|`status`|HTTP Status Code|
+|`telemetry.auto.version`|Version|
+|`telemetry.sdk.language`|Language|
+|`telemetry.sdk.name`|SDK Name|
+|`telemetry.sdk.version`|SDK Version|
+|`uri`|HTTP Request URI|
 
 - 指标列表
 

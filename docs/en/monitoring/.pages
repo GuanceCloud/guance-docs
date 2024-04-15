@@ -1,11 +1,10 @@
 nav:
   - index.md
-  - 'Monitor': monitor
-  - 'Monitor Template': template.md
-  - 'Intelligent Inspection': bot-obs
+  - 'Monitors': monitor
+  - 'Intelligent Monitoring': intelligent-monitoring
   - 'SLO': slo.md
-  - 'Silent Management': silent-management.md
-  - 'Alert Setting': alert-setting.md
-  - 'Notification Object Management': notify-object.md
-  - 'Event Notification Template': event-template.md
-  - 'Internal Principle of Monitor': monitor-internal.md
+  - 'Mute Management': silent-management.md
+  - 'Alert Strategies': alert-setting.md
+  - 'Notification Targets': notify-object.md
+  - 'Event Notification Templates': event-template.md
+  - 'Internal Principles of Monitor': monitor-internal.md

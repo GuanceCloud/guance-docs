@@ -23,6 +23,8 @@ CPU 采集器用于系统 CPU 使用率等指标的采集。
 
 ## 配置  {#config}
 
+### 采集器配置 {#input-config}
+
 成功安装 DataKit 并启动后，会默认开启 CPU 采集器，无需手动开启。
 
 <!-- markdownlint-disable MD046 -->
@@ -36,20 +38,22 @@ CPU 采集器用于系统 CPU 使用率等指标的采集。
     [[inputs.cpu]]
       ## Collect interval, default is 10 seconds. (optional)
       interval = '10s'
-      ##
+    
       ## Collect CPU usage per core, default is false. (optional)
       percpu = false
-      ##
-      ## Setting disable_temperature_collect to false will collect cpu temperature stats for linux.
-      ##
+    
+      ## Setting disable_temperature_collect to false will collect cpu temperature stats for linux. (deprecated)
       # disable_temperature_collect = false
+    
+      ## Enable to collect core temperature data.
       enable_temperature = true
-      ##
+    
+      ## Enable gets average load information every five seconds.
       enable_load5s = true
-      ##
-      [inputs.cpu.tags]
-        # some_tag = "some_value"
-        # more_tag = "some_other_value"
+    
+    [inputs.cpu.tags]
+      # some_tag = "some_value"
+      # more_tag = "some_other_value"
     
     ```
 
@@ -57,16 +61,59 @@ CPU 采集器用于系统 CPU 使用率等指标的采集。
 
 === "Kubernetes"
 
-    Kubernetes 中支持以环境变量的方式修改配置参数：
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
 
-    | 环境变量名                                  | 对应的配置参数项              | 参数示例                                                                              |
-    | :---                                        | ---                           | ---                                                                                   |
-    | `ENV_INPUT_CPU_PERCPU`                      | `percpu`                      | `true/false`                                                                          |
-    | `ENV_INPUT_CPU_ENABLE_TEMPERATURE`          | `enable_temperature`          | `true/false`                                                                          |
-    | `ENV_INPUT_CPU_TAGS`                        | `tags`                        | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它                          |
-    | `ENV_INPUT_CPU_INTERVAL`                    | `interval`                    | `10s`                                                                                 |
-    | `ENV_INPUT_CPU_DISABLE_TEMPERATURE_COLLECT` | `disable_temperature_collect` | `false/true`。给任意字符串就认为是 `true`，没定义就是 `false`。                       |
-    | `ENV_INPUT_CPU_ENABLE_LOAD5S`               | `enable_load5s`               | `false/true`。给任意字符串就认为是。给任意字符串就认为是 `true`，没定义就是 `false`。 |
+    也支持以环境变量的方式修改配置参数（需要在 ENV_DEFAULT_ENABLED_INPUTS 中加为默认采集器）：
+
+    - **ENV_INPUT_CPU_INTERVAL**
+    
+        采集器重复间隔时长
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_CPU_PERCPU**
+    
+        采集每一个 cpu 核
+    
+        **Type**: Boolean
+    
+        **ConfField**: `percpu`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_CPU_ENABLE_TEMPERATURE**
+    
+        采集 cpu 温度
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_temperature`
+    
+        **Default**: true
+    
+    - **ENV_INPUT_CPU_ENABLE_LOAD5S**
+    
+        每五秒钟获取一次平均负载信息
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_load5s`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_CPU_TAGS**
+    
+        自定义标签。如果配置文件有同名标签，将会覆盖它
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 

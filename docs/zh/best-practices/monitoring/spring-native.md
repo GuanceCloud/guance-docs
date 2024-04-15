@@ -167,7 +167,7 @@ systemctl restart datakit
 
 ```shell
 cd /usr/local/df-demo/springboot-native-demo/target
- java  -DspringAot=true -javaagent:/usr/local/datakit/data/dd-java-agent.jar  -Ddd.service=spring-native-demo    -Ddd.env=dev  -Ddd.agent.port=9529  -jar springboot-native-demo-1.0-SNAPSHOT-exec.jar
+ java  -DspringAot=true -javaagent:/usr/local/datakit/data/dd-java-agent.jar  -Ddd.service.name=spring-native-demo    -Ddd.env=dev  -Ddd.agent.port=9529  -jar springboot-native-demo-1.0-SNAPSHOT-exec.jar
 ```
 
 ![image](../images/spring-native/11.png)

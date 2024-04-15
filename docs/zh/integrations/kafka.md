@@ -40,37 +40,21 @@ export KAFKA_OPTS="$KAFKA_OPTS -javaagent:/usr/local/datakit/data/jolokia-jvm-ag
 java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <Kafka-PID>
 ```
 
-在开启 Kafka 服务后，如需采集 Producer/Consumer/Connector 指标，则需分别为其配置 Jolokia。
+<!-- markdownlint-disable MD046 -->
 
-参考 [Kafka Quick Start](https://kafka.apache.org/quickstart){:target="_blank"} ，以 Producer 为例，先配置 `KAFKA_OPTS` 环境变量，示例如下：
+???+ attention
 
-```shell
-export KAFKA_OPTS="-javaagent:/usr/local/datakit/data/jolokia-jvm-agent.jar=host=127.0.0.1,port=8090"
-```
+    Jolokia 不允许运行过程中修改端口号。如果发现通过 `--port` 命令无法修改端口号，就是这个原因。
 
-进入 Kafka 目录下启动一个 Producer：
+    若想修改 Jolokia 端口号必须先退出 Jolokia 再启动才能成功。
 
-```shell
-bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092
-```
+???+ tip
 
-复制出一个 kafka.conf 以开启多个 Kafka 采集器，并配置该 url：
+    退出 Jolokia 命令是： `java -jar </path/to/jolokia-jvm-agent.jar> --quiet stop <Kafka-PID>`
 
-```toml
-  urls = ["http://localhost:8090/jolokia"]
-```
+    更多 Jolokia 命令信息可参考[这里](https://jolokia.org/reference/html/agents.html#jvm-agent){:target="_blank"}。
 
-并将采集 Producer 指标部分的字段去掉注释：
-
-```toml
-  # The following metrics are available on producer instances.  
-  [[inputs.kafka.metric]]
-    name       = "kafka_producer"
-    mbean      = "kafka.producer:type=*,client-id=*"
-    tag_keys   = ["client-id", "type"]
-```
-
-重启 Datakit，这时 Datakit 便可采集到 Producer 实例的指标。
+<!-- markdownlint-enable -->
 
 ### 采集器配置 {#input-config}
 
@@ -234,6 +218,8 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 
 
 ### `kafka_controller`
+
+In Kafka cluster mode, a unique controller node will be elected, and only the controller node will receive valid metrics.
 
 - 标签
 
@@ -588,6 +574,8 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 
 ### `kafka_replica_manager`
 
+
+
 - 标签
 
 
@@ -633,6 +621,8 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 
 ### `kafka_purgatory`
 
+
+
 - 标签
 
 
@@ -665,6 +655,8 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 
 
 ### `kafka_request`
+
+
 
 - 标签
 
@@ -770,6 +762,8 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 
 
 ### `kafka_topics`
+
+
 
 - 标签
 
@@ -914,6 +908,8 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 
 ### `kafka_topic`
 
+
+
 - 标签
 
 
@@ -967,6 +963,8 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 
 ### `kafka_partition`
 
+
+
 - 标签
 
 
@@ -990,6 +988,8 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 
 
 ### `kafka_zookeeper`
+
+
 
 - 标签
 
@@ -1019,6 +1019,8 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 
 ### `kafka_network`
 
+
+
 - 标签
 
 
@@ -1041,6 +1043,8 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 
 
 ### `kafka_log`
+
+
 
 - 标签
 
@@ -1065,6 +1069,8 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 
 
 ### `kafka_consumer`
+
+This metrics needs to be collected on the Consumer instance
 
 - 标签
 
@@ -1151,6 +1157,8 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 
 ### `kafka_producer`
 
+This metrics needs to be collected on the Producer instance
+
 - 标签
 
 
@@ -1226,6 +1234,8 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 
 
 ### `kafka_connect`
+
+This metrics needs to be collected on the Connect instance
 
 - 标签
 
@@ -1338,3 +1348,42 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 | name   | io.confluent.connect.s3.storage.S3OutputStream:286     |
 | status | DEBUG                                                  |
 | time   | 1594105469333000000                                    |
+
+## FAQ {#faq}
+
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: 为什么看不到 `kafka_producer` / `kafka_consumer` / `kafka_connect` 指标集？ {#faq-no-data}
+
+在开启 Kafka 服务后，如需采集 Producer/Consumer/Connector 指标，则需分别为其配置 Jolokia。
+
+参考 [Kafka Quick Start](https://kafka.apache.org/quickstart){:target="_blank"} ，以 Producer 为例，先配置 `KAFKA_OPTS` 环境变量，示例如下：
+
+```shell
+export KAFKA_OPTS="-javaagent:/usr/local/datakit/data/jolokia-jvm-agent.jar=host=127.0.0.1,port=8090"
+```
+
+进入 Kafka 目录下启动一个 Producer：
+
+```shell
+bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092
+```
+
+复制出一个 kafka.conf 以开启多个 Kafka 采集器，并配置该 url：
+
+```toml
+  urls = ["http://localhost:8090/jolokia"]
+```
+
+并将采集 Producer 指标部分的字段去掉注释：
+
+```toml
+  # The following metrics are available on producer instances.  
+  [[inputs.kafka.metric]]
+    name       = "kafka_producer"
+    mbean      = "kafka.producer:type=*,client-id=*"
+    tag_keys   = ["client-id", "type"]
+```
+
+重启 Datakit，这时 Datakit 便可采集到 Producer 实例的指标。
+
+<!-- markdownlint-enable -->

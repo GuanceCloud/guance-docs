@@ -1,96 +1,207 @@
 ---
 icon: fontawesome/solid/mobile-screen
 ---
-# Mobile Terminal
+# Mobile Application
 ---
 
-Guance mobile terminal can help you view log data and scene views from the Guance anytime and anywhere on the mobile device, and receive all alarm events notified to you by mail, nailing robot, enterprise WeChat robot, Webhook, etc.
+Guance Mobile App allows you to conveniently access Event data, Log data, Scene views, and more from Guance on your mobile device, anytime and anywhere.
 
-## Installation
+## Installation {#app-install}
 
-In the workspace of Guance, you can download it through "Integration"-"Mobile Terminal" or scan the code below.
-![](img/app_1.png)
+In the workspace of Guance, you can download it through "Integration"-"Mobile Application" or scan the code below.
+
+<img src="img/1.mobile_qrcode.png" width=300px  />
 
 Or you can directly click on the following link to download.             
 
-- [ iOS system download](https://apps.apple.com/cn/app/dataflux-mobile/id1494097190)
+- [iOS system download](https://apps.apple.com/cn/app/dataflux-mobile/id1494097190)
 
 - [Android system download](https://android.myapp.com/myapp/detail.htm?apkName=com.cloudcare.ft.dataflux.mobile&info=BC6B6D70A723FAA93DB84F11BF50AE8A)
 
-## Function Description
+## Login
+
+Existing Guance free/commercial users can log in to the Guance App using their registered account, password, or mobile verification code. You can select the corresponding Access Node for your account. If you don't have an Guance account yet, you can visit the [Sign Up Now](https://auth.guance.com/register) page on the Guance official website and choose the appropriate Access Node for registration.
+
+## Account Manager
+
+Once you're logged into the Guance App, you can access various features under the 'Mine' menu. You can switch workspaces, enable message notifications, configure dashboard quick action entry, clear cache, view the terms of service, privacy policy, and check the current mobile version. If you need to switch accounts, you can log out of the current user's session.
+
+![](img/1.mobile_account.png)
 
 
-### Login
+### Change Workspace
 
-Users of the existing free/agile version of Guance can select the site corresponding to the account and log in to the mobile terminal of guance by means of account password and mobile phone verification code. If you don't have an Guance account yet, you can go to the guance official website  [apply now](https://auth.guance.com/register) and choose to register a suitable site account. If you need to switch accounts, please log out of the current user first.
+The Guance App supports viewing data content from all workspaces under your account. By switching workspaces, you can view Logs, Events, and Scenes from different workspaces.
 
-### Workspace
+After logging into the Guance App, you need to select a default workspace to view its corresponding data. During usage, if you need to switch to another workspace, you can change the workspace through "Mine" - "Change Workspace."
 
-Guance mobile terminal supports viewing the data content of all workspaces under the account. By switching workspaces, you can view logs, events, scenes & views in different workspaces.
+If you currently don't have any workspaces, you can either create a new workspace on the Guance web version by [creating a new workspace](../management/space-management.md), or you can be invited as a new member to other spaces by the space administrators of those spaces [via invitation](../management/member-management.md).
 
-After logging in to the Guance mobile terminal, you need to select a default workspace to view the corresponding data; During use, if you need to switch to another workspace, you can change the workspace by "My"-"Switch Workspace".
+### Notification {#notification}
 
-If you don't have a workspace at present, you can go to the Guance Web page to [create a new workspace](../management/space-management.md), or the space administrator of another space [invites you to become a new member of another space](../management/member-management.md).
+The Guance App offers mobile intelligent push services based on Guance Workbench alerts. This helps you integrate notifications for your alert events, enabling efficient, accurate, and real-time information push. You can enable or disable alert notification push through "Mine" - "Notification" in the app.
 
-### Message Notification
+### Configure Dashboard Quick Action Entry {#shortcut-entry}
 
-The Guance mobile terminal provides a mobile intelligent push service based on the alarm notification of the Guance workbench, which helps you quickly integrate the alarm events notified to you and realize efficient, accurate and real-time information push. You can turn on or off alarm notification push through "My"-"Message Push Switch".
+The Guance App provides a shortcut to configure dashboards, allowing you to quickly access key dashboard data. You can configure the dashboards you want to access quickly through "Mine" - "Configure Dashboard Quick Action Entry" in the app.
 
-### Clean up the Cache
+![](img/1.mobile_board_shortcut.png)
 
-The cache files on the mobile side of Guance include temporary files generated by some applications, which may cause the application to run slowly. You can clean up the file cache through "mine"-"clean the cache".
+### Clear Cache
 
-### Small Component
+The cache files of the Guance App include certain temporary files generated by the application, which might lead to slow app performance. You can clean up file caches and more through "Mine" - "Clear Cache" in the app.
 
-By observing the search, filtering and filtering components on the cloud mobile side, you can quickly locate data and discover, investigate and solve problems in time.
+## Common Function
 
-#### Time Range
-The Guance mobile terminal still provides you with time components to set the time range of scene view, log and event data display. You can quickly select the preset time range, or customize the time range by selecting the start and end time.
+The Guance App supports searching and filtering data. You can select different time ranges to quickly locate data, enabling you to promptly identify, investigate, and resolve issues. Additionally, you can share the data you're currently viewing and use macOS's Continuity feature to sync data viewing between your mobile device and computer.
 
-#### Keyword Search
-Keyword search saves you the trouble of locating and finding data in massive data. Through the search button, you can search related text data in scene view, log and event explorer.
+### Time Control Component
 
-#### List Sorting
-The Guance mobile terminal supports forward sorting and reverse sorting of the original list.
+The Guance App supports using the time component to set the time range for displaying Scene views, Logs, and Event data. You can quickly select preset time ranges or customize a time range by choosing start and end times.
 
-## Scene
-Scenario module enables users to view all accessible dashboards, notes and explorers in their workspace.
+![](img/1.mobile_time_1.png) &nbsp;![](img/1.mobile_time_2.png)
 
-### Dashboard
+### Search and Filter {#search-filter}
 
-The **dashboard**, the data insight scenario, supports adding a variety of visual charts for data display, helping users intuitively track, analyze and display key performance metrics, and monitor the overall operation status. Switch the explorer to "Dashboard", you can view all the dashboards in the current space that meet different business scenarios.
+The Guance App allows you to quickly locate and query relevant text data in Scene views, Logs, and Event viewers through search and filtering. It supports searching by keywords, `key:value` field filters, and more. For further details on field filtering, please refer to the documentation on [Search Instructions](../getting-started/function-details/explorer-search.md#filter).
 
-Guance allows you to switch "All Dashboards", "My Favorites", "Import Projects", "My Creations" and "Browse Frequently" by clicking the drop-down menu to quickly filter and find the corresponding dashboard. The dashboard is synchronized with the contents of the web page. For details, please refer to the [dashboard](../scene/dashboard.md).            ![](img/app_2.png)
+![](img/1.mobile_filter.png) &nbsp;![](img/1.mobile_search.png)
 
+### Share {#share}
 
+The Guance App offers the functionality to share and view Event details, Logs details, Dashboards, Notes, and Explorers. Simply click the "Share" option in the upper-right corner to generate a shareable link for others to view.
 
-### Notes
+>Note: The shared content can only be viewed by individuals who also have permission to access the workspace of the shared content.
 
-Notes support inserting real-time visual charts and text document descriptions, so as to combine charts and documents for data analysis and summary report, and assist in problem tracing, location and solution. Switch the explorer to Notes, so that you can view all notes within the view permission in the current space.
+![](img/1.mobile_share.png)
 
-Guance supports you to switch "All Notes", "My Favorites" and "My Creation" by clicking the drop-down menu to quickly filter and find the corresponding notes. Notes are synchronized with the contents of the web page. For details, please refer to [notes](../scene/note.md).
+**Scenario 1：Share to PC**
 
+In this scenario, clicking on the received shared link allows you to log in and view the corresponding data on a PC.
 
+**Scenario 2：Share with mobile devices running Android or iOS that have the Guance App installed.**
 
-### Explorer
-
-**Explorer** is a custom log explorer, which supports various customized log viewing requirements in the viewing space. Switch the explorer to Explorer, so that you can view all the explorers within the view permission in the current space.
-
-Guance allows you to switch "All Explorers", "My Favorites", "Import Items", "My Creations" and "Browse Frequently" by clicking the drop-down menu to quickly filter and find the corresponding explorer. The explorer is synchronized with the content on the web page. For details, please refer to the [explorer](../scene/explorer/custom-explorer.md).
+In this scenario, clicking on the received shared link allows you to open the corresponding data.
 
 
+#### Link {#link}
+If you have the Guance App installed on your iOS or Android device, opening any web link from Guance will redirect you to the corresponding content page within the Guance App. This includes alert notifications from platforms like DingTalk, Feishu (Lark), and email.
 
-## Log Data
-
-In Log, you can view the log data of the Guance workbench synchronously. By selecting different log sources, you can query and analyze different log data in your workspace. The Guance mobile terminal displays the log data in the last 15 minutes for you by default. If you need to view more log data, you can search and view relevant data by selecting the time range. See [log explorer](../logs/explorer.md).
-
-![](img/app_3.png)
+>Currently, this feature only supports Envents, Scene and Logs pages.
 
 
+### Hand Off {#hand-off}
 
-## Events
-The Guance mobile terminal supports you to keep connected with the guance workbench anytime and anywhere. You can view, search and filter all unrecovered events, emergency events, important events, warning event contents, etc. triggered by "Monitor" through "All" events; Through the "My" event, you can view the event contents notified to you by email, nailing robot, enterprise WeChat robot, Webhook, etc., which have not been recovered yet. After an alarm event notifies you, the guance mobile terminal will send a notification to you in time to ensure that you can respond quickly and solve related problems. See [event explorer](../events/explorer.md).
+The Guance App supports using Continuity to sync data viewing between mobile and computer devices. This helps you quickly switch devices when necessary to address issues.
 
-Note: The Guance mobile terminal only provides you with 1000 pieces of time data in the "All" event/"My" event. If you need to view more time, please go to the web page to view more.
+>Note: When using Continuity, your computer must be running macOS, and your mobile device must be running iOS. Both devices need to have Continuity enabled, and you should be logged into iCloud with the same Apple ID. For more settings, refer to the documentation on [How to Use Continuity](https://support.apple.com/en-us/HT209455).
 
-  ![](img/app_4.png)
+**Scenario 1：When viewing Guance App events on your mobile device, your computer will display a prompt to sync the viewing.**
+
+In this scenario, while viewing an event on your mobile device, your computer's web browser will display a viewing prompt. Clicking the browser will open the corresponding event content. Refer to the illustrative image below:
+
+<img src="img/1.mobile_handoff_2.jpg" width=240px border=1px/>
+<img src="img/1.mobile_handoff_1.1.png" width=370px />
+
+**Scenario 2：When viewing Guance App events on your computer, your mobile device will display a prompt to sync the viewing** 
+
+In this scenario, when you're viewing an event on your computer, the bottom of your mobile device will display a Guance viewing prompt. Clicking on it will open the relevant event content on your mobile device. See the illustrative image below:
+ 
+<img src="img/1.mobile_handoff_3.png" width=640px/>
+
+
+### iOS Widget  {#widget}
+
+Guance App supports the Widget feature, allowing you to customize and add Guance to your mobile device's home screen widget. You can use the widget's information display feature to quickly view relevant data from Guance.
+
+>Note: When using the Widget feature on iOS, you need to have an iOS version of 14 or above.
+
+You can follow the steps below to add the Guance widget:
+
+1. Download and install Guance, then log in to the desired workspace.
+2. In the widget search, type "Guance" to search for it.
+3. Open Guance and click "Add Widget."
+4. After adding the widget, you can view real-time data from Guance on your mobile device's home screen.
+
+<img src="img/1.mobile_widget_1.png" width=210px border=1px/>&nbsp;<img src="img/1.mobile_widget_2.png" width= 210px border=1px />&nbsp;<img src="img/1.mobile_widget_3.png"  width= 210px border=1px/>
+
+## Scene {#scene}
+
+The Scene module supports users in viewing all accessible Dashboards, Notes, and Viewers within their workspace.
+
+### Dashboard {#board}
+
+**Dashboard**，Indeed, the Data Insight Scene supports adding various visualization charts to display data. This feature aids users in visually tracking, analyzing, and displaying key performance indicators, allowing them to monitor the overall operational status. By switching the viewer to "Dashboard," you can view all dashboards that cater to different business scenarios within the current workspace.
+
+Guance App supports switching between "All Dashboards," "My Favorites," "Imported Projects," "My Creations," and "Frequently Viewed" by clicking on the dropdown menu. This allows you to quickly filter and locate the corresponding dashboard. Dashboards are synchronized with the web content. For more details, you can refer to the [Dashboard documentation](../scene/dashboard.md).  
+
+**Dashboard Icon Explanations**
+
+- Search: Quickly search using keywords or fields.
+- Filter: Switch and view variables within the dashboard scenes.
+- Share: Share the current dashboard with others for viewing.
+- Dropdown Toggle: In dashboard view, click the dropdown to toggle and view different charts.
+        
+<img src="img/1.mobile_board_1.png"/>&nbsp;<img src="img/1.mobile_board_2.png"  />
+
+### Note {#note}
+
+**Note Integration and Viewing**
+
+Notes support the insertion of real-time visualizations, text documents, and explanations, allowing you to combine charts and documentation for data analysis and summary reporting. This assists in problem retrospection, localization, and resolution. Switching the viewer to "Notes" enables you to see all notes within your viewing permissions for the current workspace.
+
+Guance allows you to use the dropdown menu to switch between "All Notes," "My Favorites," and "My Creations" for quickly filtering and finding relevant notes. Notes are synchronized with the web content, and you can find more details in the [Notes section](../scene/note.md).
+
+**Note Icon Explanations**
+
+- Search: Quickly search using keywords or fields.
+- Share: Share the current note with others for viewing.
+
+<img src="img/1.mobile_note_1.png"  />&nbsp;<img src="img/1.mobile_note_2.png"  />
+
+### Explorer {#explorer}
+
+**Viewer and Its Icons Explanation**
+
+The term "Explorer" refers to a customizable Log Explorer that supports various tailored log viewing needs within the workspace. By switching to the "Viewer" section, you can access all viewers within your viewing permissions for the current workspace.
+
+Guance allows you to use the dropdown menu to switch between "All Explorer","My Favorites","Imported Projects","Created By You" and "Frequently Viewed" to quickly filter and locate the corresponding viewers. Viewers are synchronized with the web content, and you can find more details in the [Viewer section](../scene/explorer/custom-explorer.md).
+
+**Viewer Icon Explanations**
+
+- Search: Quickly search using keywords or fields.
+- Filter: Swiftly filter and view based on the data status within the viewer.
+- Share: Share the current viewer with others for viewing.
+
+<img src="img/1.mobile_viewer_1.png"  />&nbsp;<img src="img/1.mobile_viewer_2.png"  />
+
+## Log Data {#log}
+
+In the "Logs" section, you can synchronize and view log data from the Guance workspace. By selecting different log sources, you can query and analyze various log data within the workspace. The Guance mobile app defaults to displaying log data from the last 15 minutes. If you need to view more log data, you can search and view relevant data by selecting a time range. For more details, please refer to the [Log Explorer](../logs/explorer.md).
+
+Please note that the translation is based on the provided text and may be slightly adjusted according to contextual needs. If there are specific terms or context that require further adjustments, please make appropriate modifications.
+
+**Log Icon**
+
+- Search: Quickly search using keywords or fields.
+- Filter: Swiftly filter and view based on the log status.
+- Share: Share the current log with others for viewing.
+
+<img src="img/1.mobile_log_1.png"  width=210px/>&nbsp;<img src="img/1.mobile_log_2.png"  width=210px />&nbsp;<img src="img/1.mobile_log_3.png"  width=210px />
+
+
+
+## Events {#event}
+Guance mobile app enables you to stay connected with the Guance workspace anytime, anywhere. You can use the "All" events section to view, search, and filter all unrecovered events triggered by **monitors**, including critical events, important events, warning events, and more. Through the "My" events section, you can view events that have been notified to you through emails, DingTalk robots, WeChat Work robots, Webhooks, and similar methods, and that are currently unresolved. Once you receive notifications for alert events, the Guance mobile app promptly sends you alerts to ensure you can react and resolve issues swiftly. For more details, please refer to the [Events section](../events/index.md).
+
+> Note: In the "All Events" and "My Events" sections of the Guance mobile app, only up to 1000 event entries are provided. If you need to view more events, please go to the web version for additional access.
+
+**Event Icon Explanations**
+
+- Collapse: Collapse or expand the window for unrecovered events.
+- All Events/Unrecovered Events: Switch between viewing all events and unrecovered events.
+- Filter: Swiftly filter and view based on event status.
+- Search: Quickly search using keywords or fields.
+- Share: Share the current event with others for viewing.
+
+<img src="img/1.mobile_event_1.png" width=210px />&nbsp;<img src="img/1.mobile_event_2.png"  width=210px   />&nbsp;<img src="img/1.mobile_event_3.png"  width=210px  />

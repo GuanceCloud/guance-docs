@@ -1,12 +1,26 @@
+---
+title     : 'Promtail'
+summary   : 'Collect log data reported by Promtail'
+__int_icon      : 'icon/promtail'
+dashboard :
+  - desc  : 'N/A'
+    path  : '-'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # Promtail Data Access
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-Start an HTTP endpoint to listen and receive promtail log data and report it to Guance Cloud.
+Start an HTTP endpoint to listen and receive Promtail log data and report it to Guance Cloud.
 
 ## Configuration {#config}
 
@@ -18,20 +32,25 @@ Already tested version:
 - [x] 1.0.0
 - [x] 0.1.0
 
+### Collector Configuration {#input-config}
+<!-- markdownlint-disable MD046 -->
 Go to the `conf.d/log` directory under the DataKit installation directory, copy `promtail.conf.sample` and name it `promtail.conf`. Examples are as follows:
 
-```toml
-
-[inputs.promtail]
-  #  以 legacy 版本接口处理请求时设置为 true，对应 loki 的 API 为 /api/prom/push。
-  legacy = false
-
-  [inputs.promtail.tags]
-    # some_tag = "some_value"
-    # more_tag = "some_other_value"
- 
-```
-
+    ```toml
+        
+    [inputs.promtail]
+      ##  When processing requests with the legacy version interface,
+      ##  setting it to true corresponds to the Loki API endpoint /api/prom/push.
+      #
+      legacy = false
+    
+      [inputs.promtail.tags]
+        # some_tag = "some_value"
+        # more_tag = "some_other_value"
+    
+    ```
+    After configuration, [Restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+<!-- markdownlint-enable -->
 ### API Version {#API version}
 
 For Promtail versions `v0.3.0` and before, Datakit's configuration should set `legacy = true`, by using legacy API [`POST /api/prom/push`](https://grafana.com/docs/loki/latest/api/#post-apiprompush){:target="_blank"} to receiving logging data from Promtail.
@@ -52,7 +71,7 @@ After configuration, restart DataKit.
 
 ### Supported parameter {#args}
 
-The promtail collector supports adding parameters to the HTTP URL. The list of parameters is as follows:
+The Promtail collector supports adding parameters to the HTTP URL. The list of parameters is as follows:
 
 - `source`: Identifies the data source. Such as `nginx` or `redis`（`/v1/write/promtail?source=nginx`), With `source` set to `default`by default;
 - `pipeline`: Specify the pipeline name required for the data, Such as `nginx.p`（`/v1/write/promtail?pipeline=nginx.p`）；
@@ -60,7 +79,7 @@ The promtail collector supports adding parameters to the HTTP URL. The list of p
 
 ## Best Practice {#best practice}
 
-Promtail's data was originally sent to Loki, which is, `/loki/api/v1/push`. Change the `url` in Promtail's configuration to Datakit, after enabled Datakit's promtail collector, Promtail would send its data to Datakit's promtail collector.
+Promtail's data was originally sent to Loki, which is, `/loki/api/v1/push`. Change the `url` in Promtail's configuration to Datakit, after enabled Datakit's Promtail collector, Promtail would send its data to Datakit's Promtail collector.
 
 Promtail's configuration is like below:
 
@@ -84,3 +103,7 @@ scrape_configs:
           job: varlogs
           __path__: /var/log/*log
 ```
+
+## Logging {#logging}
+
+The logs delivered by Promtail shall prevail.

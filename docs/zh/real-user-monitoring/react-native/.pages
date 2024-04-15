@@ -1,4 +1,4 @@
 nav:
-  - 'React Native 应用数据采集': app-data-collection.md
-  - 'React Native 应用接入': app-access.md
-  - 'React Native 故障排查': app-troubleshooting.md
+  - '应用接入': app-access.md
+  - '应用数据采集': app-data-collection.md
+  - '故障排查': app-troubleshooting.md

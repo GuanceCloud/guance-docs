@@ -333,7 +333,7 @@ TLAB 的全称是 Thread Local Allocation Buffer，即线程本地分配缓存�
 
 <[async-profiler](https://github.com/jvm-profiling-tools/async-profiler)>
 
-<[DataKit 集成 async-profiler](/datakit/profile-java-async-profiler/)>
+<[DataKit 集成 async-profiler](/integrations/profile-java#install)>
 
 <[async-profiler 演示代码](https://github.com/lrwh/observable-demo/tree/main/profiling)>
 

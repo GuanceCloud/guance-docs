@@ -1,6 +1,6 @@
 ---
 title     : 'Ingress Nginx (Prometheus)'
-summary   : 'Collect Ingress Nginx (Prometheus) related indicator information'
+summary   : 'Collect Ingress Nginx (Prometheus) related metric information'
 __int_icon: 'icon/ingress'
 dashboard :
   - desc  : 'Ingress Nginx Monitoring View'
@@ -25,21 +25,21 @@ Information about Ingress Nginx (Prometheus) was collected, including average CP
 
 Note: The sample Ingress version is `willdockerhub/ingress-nginx-controller:v1.0.0` (deployment of `kubeadmin` in a CentOS environment), and the metrics for different versions may differ.
 
-### Indicator Collection
+### Metric Collection
 
-1. Get the yaml file for deploying Ingress
+- Get the yaml file for deploying Ingress
 
 ```shell
 wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/baremetal/deploy.yaml
 ```
 
-2. Edit `deploy.yaml`, set the service type to `NodePort`, and expose `10254` ports externally. Refer to the following figure:
+- Edit `deploy.yaml`, set the service type to `NodePort`, and expose `10254` ports externally. Refer to the following figure:
 
 ```shell
 vi deploy.yaml
 ```
 
-3. Open Input
+- Open Input
 
 Observing cloud access to Ingress metrics data requires DataKit to turn on the `prom` plug-in, specify a URL `exporter` in the `prom` plug-in configuration, collect Ingress Controller metrics in the Kubernetes cluster, and recommend adding annotations. <br />
 Edit the `deploy.yaml` file, find the Deployment corresponding to the ingress-nginx-controller image, increase `annotations`.
@@ -69,23 +69,23 @@ Parameter Description
 
 - `url`: Exporter urls, multiple URLs separated by commas
 - `source`:Collector Alias
-- `metric_types`: Indicator type, optional values are counter, gauge, histogram, summary
-- `measurement_name`:Indicator Set Name
+- `metric_types`: Metric type, optional values are counter, gauge, histogram, summary
+- `measurement_name`:Metric Set Name
 - `interval`: acquisition frequency
-- `inputs.prom.measurements`: Indicator set whose prefix is prefix to name
+- `inputs.prom.measurements`: Metric set whose prefix is prefix to name
 - `tags_ignore`: Ignored tag
-- `metric_name_filter`:Reserved indicator name
+- `metric_name_filter`:Reserved metric name
 
-4. Deploy Ingress
+- Deploy Ingress
 
 ```shell
 kubectl apply -f deploy.yaml
 ```
 
-## Indicator Details {metric}
+## Metric Details {metric}
 
 If `inputs.prom.measurements` is configured, the indices collected by the observation cloud need to be prefixed to match the table. <br />
-For example, the prefix `nginx*ingress_controller` is configured below, and the indicator set is `prom_ingress`.
+For example, the prefix `nginx*ingress_controller` is configured below, and the metric set is `prom_ingress`.
 
 ```toml
  [[inputs.prom.measurements]]
@@ -93,7 +93,7 @@ For example, the prefix `nginx*ingress_controller` is configured below, and the 
               name = "prom_ingress"
 ```
 
-The `nginx_ingress_controller_requests` indicator on the observation cloud is the `prom_ingress` indicator under the indicator set `requests` indicator.
+The `nginx_ingress_controller_requests` metric on the observation cloud is the `prom_ingress` metric under the metric set `requests` metric.
 
 | Metrics                                                         |Describe| Data type | unit  |
 | ------------------------------------------------------------ | ----------------------------------------------------------------------------------- | -------- | ----- |

@@ -1,13 +1,16 @@
 # 应用镜像获取
 
 
-## 线上获取
+## 在线部署方式 {#online-image}
 
-观测云镜像公网地址可以访问 [观测云版本历史](changelog.md) 获取。
+在线部署是指 Kubernetes 环境可以访问公网，那么部署时可以由 Kubernetes 从观测云官方的公网镜像仓库自动下载镜像。
+
+观测云镜像公网地址获取，可以访问 [观测云版本历史](changelog.md)。
 
 
+## 离线部署方式 {#offline-image}
 
-## 观测云离线包下载、导入 {#offline-image}
+### 观测云离线镜像包的下载以及导入
 
 ???+ warning "注意"
      如果 kubernetes 节点主机可以访问公网，不需要通过以上离线导入的方式导入镜像，安装程序会自动下载镜像。
@@ -58,9 +61,11 @@
     ```
 
 
-## 修改 launcher 自建镜像仓库配置 {#registry-key-change}
+### launcher 自建镜像仓库配置 {#registry-key-change}
 
 ???+ warning "注意"
+     如下载的离线镜像包导入到自建的镜像仓库后使用，请做以下配置。
+
      此操作必须要在部署 luancher 前操作。
 
 === "helm"
@@ -80,9 +85,9 @@
     - 生成密钥
 
       ```shell
-      kubectl create secret docker-registry dataflux-test --docker-server='Docker Server' --docker-username='Docker Username' --docker-password='Docker Password'
+      kubectl create secret docker-registry dataflux-test --docker-server='<Repo Server>' --docker-username='<Repo Username>' --docker-password='<Repo Password>'
       ```
-      > 记得替换 docker-server、docker-username、docker-password 参数的值
+      > 注意替换 docker-server、docker-username、docker-password 三个参数的值，分别是你的镜像仓库地址、账号、密码。
 
     - 获取密钥
     
@@ -114,9 +119,3 @@
       ```shell
       kubectl apply -f launcher.yaml
       ```
-
-
-
-
-
-

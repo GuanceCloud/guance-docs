@@ -28,13 +28,14 @@ Ingress 性能指标展示，包括 Ingress Controller 的平均 CPU 使用率�
 说明：示例 Ingress 版本为 `willdockerhub/ingress-nginx-controller:v1.0.0`(CentOS 环境下 `kubeadmin` 部署)，各个不同版本指标可能存在差异。
 
 ### 指标采集
-1、 获取部署 Ingress 的 yaml 文件
+
+- 获取部署 Ingress 的 yaml 文件
 
 ```shell
 wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/baremetal/deploy.yaml
 ```
 
-2、 编辑 deploy.yaml
+- 编辑 deploy.yaml
 把 service 的 type 设置成 `NodePort`，并对外暴露 `10254` 端口
 
 ```yaml
@@ -58,7 +59,7 @@ dnsPolicy: ClusterFirstWithHostNet #修改
 
 ```
 
-3、开启 Input
+-开启 Input
 观测云接入 Ingress 指标数据，需要 DataKit 开启 prom 插件，在 prom 插件配置中指定 exporter 的 url，在 Kubernetes 集群中采集 Ingress Controller 指标，推荐使用 annotations 增加注解的方式。打开部署 Ingress 的 deploy.yaml 文件，找到上步中修改的 DaemonSet 部分 ，增加 annotations。
 
 ```yaml
@@ -81,7 +82,7 @@ annotations:
       namespace = "$NAMESPACE"
 ```
 
-4、 参数说明：
+- 参数说明：
 
 - url: Exporter urls，多个 url 用逗号分割
 - source: 采集器别名
@@ -92,7 +93,7 @@ annotations:
 - tags_ignore: 忽略的 tag
 - metric_name_filter: 保留的指标名
 
-5、 部署 Ingress
+- 部署 Ingress
 
 ```shell
 kubectl apply -f deploy.yaml

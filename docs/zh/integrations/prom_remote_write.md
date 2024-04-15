@@ -26,11 +26,17 @@ monitor   :
 
 ### 前置条件 {#requirements}
 
+注意，对于 `vmalert` 的一些早期版本，需要在采集器的配置文件中打开设置 `default_content_encoding = "snappy"`。
+
 开启 Prometheus Remote Write 功能，在 *prometheus.yml* 添加如下配置：
 
 ```yml
 remote_write:
  - url: "http://<datakit-ip>:9529/prom_remote_write"
+
+# If want add some tag, ( __source will not in tag, only show in Datakit expose metrics)
+# remote_write:
+# - url: "http://<datakit-ip>:9529/prom_remote_write?host=1.2.3.4&foo=bar&__source=<your_source>" 
 ```
 
 ### 采集器配置 {#input-config}
@@ -48,6 +54,11 @@ remote_write:
     
       ## accepted methods
       methods = ["PUT", "POST"]
+      
+      ## If the data is decoded incorrectly, you need to set the default HTTP body encoding;
+      ## this usually occurs when the sender does not correctly pass the encoding in the HTTP header.
+      #
+      # default_content_encoding = "snappy"
     
       ## Part of the request to consume.  Available options are "body" and "query".
       # data_source = "body"
@@ -70,14 +81,14 @@ remote_write:
       # measurement_name_filter = ["kubernetes", "container"]
     
       ## metric name prefix
-      # prefix will be added to metric name
+      ## prefix will be added to metric name
       # measurement_prefix = "prefix_"
     
       ## metric name
-      # metric name will be divided by "_" by default.
-      # metric is named by the first divided field, the remaining field is used as the current metric name
-      # metric name will not be divided if measurement_name is configured
-      # measurement_prefix will be added to the start of measurement_name
+      ## metric name will be divided by "_" by default.
+      ## metric is named by the first divided field, the remaining field is used as the current metric name
+      ## metric name will not be divided if measurement_name is configured
+      ## measurement_prefix will be added to the start of measurement_name
       # measurement_name = "prom_remote_write"
     
       ## max body size in bytes, default set to 500MB
@@ -88,11 +99,18 @@ remote_write:
       # basic_username = ""
       # basic_password = ""
     
-      ## tags to ignore
+      ## If both blacklist and whitelist, all list will cancel.
+      ## tags to ignore (blacklist)
       # tags_ignore = ["xxxx"]
     
-      ## tags to ignore with regex
-      tags_ignore_regex = ["xxxx"]
+      ## tags to ignore with regex (blacklist)
+      # tags_ignore_regex = ["xxxx"]
+    
+      ## tags whitelist
+      # tags_only = ["xxxx"]
+    
+      ## tags whitelist with regex
+      # tags_only_regex = ["xxxx"]
     
       ## Indicate whether tags_rename overwrites existing key if tag with the new key name already exists.
       overwrite = false
@@ -108,6 +126,18 @@ remote_write:
       [inputs.prom_remote_write.http_header_tags]
       # HTTP_HEADER = "TAG_NAME"
     
+      ## Customize measurement set name.
+      ## Treat those metrics with prefix as one set.
+      ## Prioritier over 'measurement_name' configuration.
+      ## Must measurement_name = ""
+      [[inputs.prom_remote_write.measurements]]
+        prefix = "etcd_network_"
+        name = "etcd_network"
+        
+      [[inputs.prom_remote_write.measurements]]
+        prefix = "etcd_server_"
+        name = "etcd_server"
+    
       ## custom tags
       [inputs.prom_remote_write.tags]
       # some_tag = "some_value"
@@ -119,7 +149,7 @@ remote_write:
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
 <!-- markdownlint-enable -->
 
 ### tags 的处理 {#tag-ops}
@@ -133,18 +163,34 @@ remote_write:
   more_tag = "some_other_value"
 ```
 
-可以通过配置 `tags_ignore` 忽略指标上的某些标签，如下：
+注意：黑名单和白名单同时配置，黑白名单会全部失效。
+
+可以通过配置 `tags_ignore` 忽略指标上的某些标签（黑名单），如下：
 
 ```toml
   ## tags to ignore
   tags_ignore = ["xxxx"]
 ```
 
-可以通过配置 `tags_ignore_regex` 正则匹配并忽略指标上的标签，如下：
+可以通过配置 `tags_ignore_regex` 正则匹配并忽略指标上的标签（黑名单），如下：
 
 ```toml
   ## tags to ignore with regex
   tags_ignore_regex = ["xxxx"]
+```
+
+可以通过配置 `tags_only` 配置指标上的标签白名单，如下：
+
+```toml
+  ## tags white list
+  # tags_only = ["xxxx"]
+```
+
+可以通过配置 `tags_only_regex` 正则匹配指标上的标签白名单，如下：
+
+```toml
+  ## tags white list with regex
+  # tags_only_regex = ["xxxx"]
 ```
 
 可以通过配置 `tags_rename` 重命名指标已有的某些标签名，如下：

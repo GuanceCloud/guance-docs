@@ -1,19 +1,86 @@
 # Android 应用接入
 ---
 
-## 简介
+???- quote "更新日志"
+
+    === "ft-sdk"
+		**1.4.4**：
+        ``` markdown
+        1. 数据库链接容错保护
+		2. 修正 setOnlySupportMainProcess true 时，子进程配置部份不起效问题
+		3. 修正 RUM 不开启 View 采集, Crash 不会 rethrow 的问题
+        ```
+        **1.4.3**：
+        ``` markdown
+        1. 支持 Dataway 与 Datakit 的地址上传
+        2. 支持发送 Action，View，Resource，LongTask，Error 类型的 RUM 数据。
+          - View，Action 页面跳转，控件点击操作自动采集，需要使用 ft-plugin
+          - Resource，自动采集，仅支持 Okhttp，并需要使用 ft-plugin
+          - Error 中的 Native Crash 和 ANR 需要使用 ft-native
+        3. 支持发送 Log 数据，控制台自动写入，需要使用 ft-plugin
+        4. 链路 http header propagation，仅支持 Okhttp，并需要使用 ft-plugin
+        5. 支持数据同步参数配置，请求条目数据，同步间歇时间，以及日志缓存条目数。
+        6. 支持 SDK 内部日志转化为文件
+        ```
+        [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/CHANGELOG.md)
+
+    === "ft-native"
+        **1.1.0**：
+        ``` markdown
+        1. 支持捕获 ANR Crash
+        2. 支持捕获 C/C++ Native Crash
+        3. 支持崩溃时采集应用运行状态
+        4. 支持 ANR 和 Native Crash 触发回调用
+        ```
+        [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-native/CHANGELOG.md)
+
+    === "ft-plguin ( AGP >=7.4.2 )"
+        **1.3.0**：
+        ``` markdown
+        1. 支持 datakit source map 自动上传，支持 native symbol 的上传
+        2. 支持捕获 Application 冷热启动，Activity 页面跳转，View、ListView、Dialog、Tab 点击事件。
+        3. 支持 Webview Js 监听方法的写入
+        4. 支持 Okhttp Trace 和 Resource 数据自动写入
+        5. 支持 Gradle 8.0,AGP 8.0 
+        6. 支持 IgnoreAOP 忽略标记
+        7. 支持兼容阿里云热修复框架
+        ```
+        [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-plugin/CHANGELOG.md)
+   
+    === "ft-plugin-legacy ( AGP <=7.4.2 )"
+        **1.1.6**：
+        ``` markdown
+        1. 支持 datakit source map 自动上传，支持 native symbol 的上传
+        2. 支持捕获 Application 冷热启动，Activity 页面跳转，View、ListView、Dialog、Tab 点击事件。
+        3. 支持 Webview Js 监听方法的写入
+        4. 支持 Okhttp Trace 和 Resource 数据自动写入
+        5. 支持 AGP 7.4.2 以下的版本
+        6. 支持 IgnoreAOP 忽略标记
+        7. 支持兼容阿里云热修复框架
+        ```
+        [更多日志](https://github.com/GuanceCloud/datakit-android/blob/plugin_legacy_support/ft-plugin/CHANGELOG.md)
+
+
 
 观测云应用监测能够通过收集各个 Android 应用的指标数据，以可视化的方式分析各个 Android 应用端的性能。
 
 ## 前置条件
 
+**注意**：若您开通了 [RUM Headless](../../dataflux-func/headless.md) 服务，前置条件已自动帮您配置完成，直接接入应用即可。
+
 - 安装 [DataKit](../../datakit/datakit-install.md)；  
 - 配置 [RUM 采集器](../../integrations/rum.md)；
 - DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 
-## Android 应用接入 {#android-integration} 
+## 应用接入 {#android-integration} 
 
 登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
+
+- 观测云提供**公网 DataWay**直接接收 RUM 数据，无需安装 DataKit 采集器。配置 `site` 和 `clientToken` 参数即可。
+
+![](../img/android_01.png)
+
+- 观测云同时支持**本地环境部署**接收 RUM 数据，该方式需满足前置条件。
 
 ![](../img/6.rum_android_1.png)
 
@@ -142,6 +209,14 @@ android{
 
 > 最新的版本请看上方的 Agent 和 Plugin 的版本名
 
+## Application 配置 {#application-setting}
+理论上最佳初始化 SDK 的位置在 `Application` 的 `onCreate` 方法中，如果您的应用还没有创建 `Application`，您需要创建一个，并且在 `AndroidManifest.xml` 中 `Application` 中声明，示例请参考[这里](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/AndroidManifest.xml)。
+
+```xml
+<application 
+       android:name="YourApplication"> 
+</application> 
+```
 
 ## SDK 初始化
 
@@ -153,11 +228,13 @@ android{
 
 	    @Override
 	    public void onCreate() {
-	        FTSDKConfig config = FTSDKConfig.builder(DATAKIT_URL)//Datakit 安装地址
-	                .setDebug(true);
+			 //本地环境部署、Datakit 部署
+	        FTSDKConfig config = FTSDKConfig.builder(datakitUrl);
+
+			//使用公网 DataWay
+			FTSDKConfig config = FTSDKConfig.builder(datawayUrl, clientToken);
 
 	        FTSdk.install(config);
-
 	        // ...
 	    }
 	}
@@ -168,36 +245,34 @@ android{
 	```kotlin
 	class DemoApplication : Application() {
 	    override fun onCreate() {
-	        val config = FTSDKConfig
-	            .builder(DATAKIT_URL)//Datakit 安装地址
-	            .setDebug(true);
+			//本地环境部署、Datakit 部署
+			val config = FTSDKConfig.builder(datakitUrl)
 
-	        FTSdk.install(config)
+			//使用公网 DataWay
+			val config = FTSDKConfig.builder(datawayUrl, clientToken)
 
-	        //...
+			FTSdk.install(config)
+			//...
 	    }
 	}
     ```
 
-理论上最佳初始化 SDK 的位置在 `Application` 的 `onCreate` 方法中，如果你的应用还没有创建 `Application`，你需要创建一个，并且在 `AndroidManifest.xml` 中 `Application` 中声明，示例请参考[这里](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/AndroidManifest.xml)
-
-```xml
-<application 
-       android:name="YourApplication"> 
-</application> 
-```
-
-| **方法名** | **类型** | **必须** | **含义** | **注意** |
-| --- | --- | --- | --- | --- |
-| metricsUrl | String | 是 | Datakit 安装地址 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，。注意：安装 SDK 设备需能访问这地址 |
-| setDebug | String | 否 | 是否开启调试模式 | 默认为 `false`，开启后方可打印 SDK 运行日志 |
-| setEnv | EnvType | 否 | 设置采集环境 | 默认为 `EnvType.PROD` |
-| setEnv | String | 否 | 设置采集环境 | 默认为 `prod` |
-| setOnlySupportMainProcess | Boolean | 否 | 是否只支持在主进程运行 | 默认为 `true` ，如果需要在其他进程中执行需要将该字段设置为 `false` |
-| setEnableAccessAndroidID | Boolean | 否 | 开启获取 `Android ID` | 默认，为 `true`，设置为 `false`，则 `device_uuid` 字段数据将不进行采集,市场隐私审核相关[查看这里](#adpot-to-privacy-audits) |
-| addGlobalContext | Dictionary | 否 | 添加 SDK 全局属性 | 添加规则请查阅[此处](#key-conflict) |
-| setServiceName | String | 否 | 设置服务名 | 影响 Log 和 RUM 中 service 字段数据，默认为 `df_rum_android` |
-
+| **方法名** | **类型** | **必须** | **含义** |
+| --- | --- | --- | --- | 
+| datakitUrl | String | 是 | Datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，注意：安装 SDK 设备需能访问这地址。**注意：datakit 和 dataway 配置两者二选一**|
+| datawayUrl | String | 是 | 公网 Dataway 访问 URL 地址，例子：http://10.0.0.1:9528，端口默认 9528，注意：安装 SDK 设备需能访问这地址。**注意：datakit 和 dataway 配置两者二选一** |
+| clientToken | String | 是 | 认证 token，需要与 datawayUrl 同时配置  |
+| setDebug | Boolean | 否 | 是否开启调试模式 。默认为 `false`，开启后方可打印 SDK 运行日志 |
+| setEnv | EnvType | 否 | 设置采集环境, 默认为 `EnvType.PROD`， |
+| setEnv | String | 否 | 设置采集环境，默认为 `prod`。注意: String 或 EnvType 类型只需配置一个|
+| setOnlySupportMainProcess | Boolean | 否 | 是否只支持在主进程运行，默认为 `true` ，如果需要在其他进程中执行需要将该字段设置为 `false` |
+| setEnableAccessAndroidID | Boolean | 否 | 开启获取 `Android ID`，默认为 `true`，设置为 `false`，则 `device_uuid` 字段数据将不进行采集,市场隐私审核相关[查看这里](#adpot-to-privacy-audits) |
+| addGlobalContext | Dictionary | 否 | 添加 SDK 全局属性，添加规则请查阅[此处](#key-conflict) |
+| setServiceName | String | 否 | 设置服务名，影响 Log 和 RUM 中 service 字段数据，默认为 `df_rum_android` |
+| setAutoSync | Boolean | 否 | 是否开启自动同步，默认为 `true` |  
+| setSyncPageSize | enum | 否 | 设置同步请求条目数，`SyncPageSize.MINI` 5 条，`SyncPageSize.MEDIUM` 10 条，`SyncPageSize.LARGE` 50 条，默认 `SyncPageSize.MEDIUM`   |
+| setCustomSyncPageSize | enum | 否 | 设置同步请求条目数，范围 [5,)，注意请求条目数越大，代表数据同步占用更大的计算资源   |
+| setSyncSleepTime | Int | 否 | 设置同步间歇时间，范围 [0,100]，默认不设置  |
 
 ### RUM 配置 {#rum-config}
 
@@ -240,20 +315,21 @@ android{
 	```
 
 
-| **方法名** | **类型** | **必须** | **含义** | **注意** |
-| --- | --- | --- | --- | --- |
-| setRumAppId | String | 是 | 设置`Rum AppId` | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#android-integration) |
-| setSampleRate | Boolean | 否 | 设置采集率 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
-| setEnableTrackAppCrash | Boolean | 否 | 是否上报 App 崩溃日志 | 默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#retrace-log) |
-| setExtraMonitorTypeWithError | Array| 否 | 设置辅助监控信息 | 添加附加监控数据到 `Rum` 崩溃数据中，`ErrorMonitorType.BATTERY` 为电池余量，`ErrorMonitorType.MEMORY` 为内存用量，`ErrorMonitorType.CPU` 为 CPU 占有率 |
-| setDeviceMetricsMonitorType | Array | 否 | 设置 View 监控信息 | 在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.BATTERY` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.MEMORY` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.CPU` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.FPS` 监控屏幕帧率|
-| setEnableTrackAppANR | Boolean | 否 | 是否开启  ANR 检测 | 默认为 `false` |
-| setEnableTrackAppUIBlock | Boolean | 否 | 是否开启 UI 卡顿检测 | 默认为 `false` |
-| setEnableTraceUserAction | Boolean | 否 | 是否自动追踪用户操作 | 目前只支持用户启动和点击操作，默认为 `false` |
-| setEnableTraceUserView | Boolean | 否 | 是否自动追踪用户页面操作 | 默认为 `false` |
-| setEnableTraceUserResource | Boolean | 否 | 是否自动追动用户网络请求 | 仅支持 `Okhttp`，默认为 `false` |
-| setResourceUrlHandler | callback| 否 | 设置需要过滤的 Resource 条件| 默认不过滤 |
-| addGlobalContext | Dictionary | 否 | 添加自定义标签 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
+| **方法名** | **类型** | **必须** | **含义** |
+| --- | --- | --- | --- |
+| setRumAppId | String | 是 | 设置`Rum AppId`。对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#android-integration) |
+| setSampleRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据 |
+| setEnableTrackAppCrash | Boolean | 否 | 是否上报 App 崩溃日志，默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#retrace-log) |
+| setExtraMonitorTypeWithError | Array| 否 | 设置辅助监控信息，添加附加监控数据到 `Rum` 崩溃数据中，`ErrorMonitorType.BATTERY` 为电池余量，`ErrorMonitorType.MEMORY` 为内存用量，`ErrorMonitorType.CPU` 为 CPU 占有率 |
+| setDeviceMetricsMonitorType | Array | 否 | 设置 View 监控信息，在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.BATTERY` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.MEMORY` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.CPU` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.FPS` 监控屏幕帧率。监控周期，`DetectFrequency.DEFAULT` 500 毫秒，`DetectFrequency.FREQUENT` 100毫秒，`DetectFrequency.RARE` 1 秒 |
+| setEnableTrackAppANR | Boolean | 否 | 是否开启  ANR 检测，默认为 `false` |
+| setEnableTrackAppUIBlock | Boolean | 否 | 是否开启 UI 卡顿检测，默认为 `false` |
+| setEnableTraceUserAction | Boolean | 否 | 是否自动追踪用户操作，目前只支持用户启动和点击操作，默认为 `false` |
+| setEnableTraceUserView | Boolean | 否 | 是否自动追踪用户页面操作，默认为 `false` |
+| setEnableTraceUserResource | Boolean | 否 | 是否自动追动用户网络请求 ，仅支持 `Okhttp`，默认为 `false` |
+| setResourceUrlHandler | callback| 否 | 设置需要过滤的 Resource 条件，默认不过滤 |
+| setOkHttpEventListenerHandler | callback| 否 | ASM 设置全局 Okhttp EventListener，默认不设置 |
+| addGlobalContext | Dictionary | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
 
 
 #### 添加自定义标签 {#track}
@@ -380,15 +456,16 @@ android{
 	        )
 	```
 
-| **方法名** | **类型** | **必须** | **含义** | **注意** |
-| --- | --- | --- | --- | --- |
-| setSampleRate | Boolean | 否 | 设置采集率 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
-| setEnableConsoleLog | Boolean | 否 | 是否上报控制台日志 | 日志等级对应关系<br>Log.v -> ok;<br>Log.i、Log.d -> info;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤 |
-| setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联 | 默认为 `false` |
-| setLogCacheDiscardStrategy| LogCacheDiscard | 否 | 设置频繁日志丢弃规则 | 默认为 `LogCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据 |
-| setEnableCustomLog | Boolean| 否 | 是否上传自定义日志 | 默认为 `false` |
-| setLogLevelFilters | Array | 否 | 设置日志等级过滤 | 设置等级日志过滤，默认不设置 |
-| addGlobalContext | Dictionary | 否 | 添加 log 全局属性 | 添加规则请查阅[此处](#key-conflict) |
+| **方法名** | **类型** | **必须** | **含义** |
+| --- | --- | --- | --- |
+| setSampleRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
+| setEnableConsoleLog | Boolean | 否 | 是否上报控制台日志，日志等级对应关系<br>Log.v -> ok;<br>Log.i、Log.d -> info;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤。注意：Android 控制台量是很大的，为了避免响应应用性能，减少不必要的资源浪费，建议使用 `prefix` 过滤出有价值的日志 |
+| setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联，默认为 `false` |
+| setLogCacheDiscardStrategy| LogCacheDiscard | 否 | 设置频繁日志丢弃规则，默认为 `LogCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据 |
+| setEnableCustomLog | Boolean| 否 | 是否上传自定义日志，默认为 `false` |
+| setLogLevelFilters | Array | 否 | 设置等级日志过滤，默认不设置 |
+| addGlobalContext | Dictionary | 否 | 添加 log 全局属性，添加规则请查阅[此处](#key-conflict) |
+| setLogCacheLimitCount | Int | 否 | 获取最大日志条目数量限制 [1000,)，日志越大，代表磁盘缓存压力越大，默认 5000   |
 
 ### Trace 配置 {#trace-config}
 
@@ -412,13 +489,13 @@ android{
 	        )
 	```
 
-| **方法名** | **类型** | **必须** | **含义** | **注意** |
-| --- | --- | --- | --- | --- |
-| setSampleRate | Boolean | 否 | 设置采集率 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
-| setTraceType | TraceType | 否 | 设置链路追踪的类型 | 默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
-| setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联 | 默认为 `false` |
-| setEnableAutoTrace | Boolean | 否 | 设置是否开启自动 http trace | 目前只支持 OKhttp 的自动追踪，默认为 `false` |
-| setEnableWebTrace | Boolean | 否 | 设置 webview 是否开启链路追踪 | alpha 功能，有一部分场景可能会有部分 js 加载问题，默认为 `false` |
+| **方法名** | **类型** | **必须** | **含义** |
+| --- | --- | --- | --- |
+| setSampleRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
+| setTraceType | TraceType | 否 | 设置链路追踪的类型，默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
+| setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联，默认为 `false` |
+| setEnableAutoTrace | Boolean | 否 | 设置是否开启自动 http trace，目前只支持 OKhttp 的自动追踪，默认为 `false` |
+| setEnableWebTrace | Boolean | 否 | 设置 webview 是否开启链路追踪，alpha 功能，有一部分场景可能会有部分 js 加载问题，默认为 `false` |
 
 ## RUM 用户数据追踪 {#rum-trace}
 
@@ -660,7 +737,7 @@ android{
 
 
 	     /**
-	     * 添加错误
+	     * 添加错误信息
 	     *
 	     * @param log       日志
 	     * @param message   消息
@@ -673,17 +750,17 @@ android{
 	    /**
 	     * 添加错误信息
 	     *
-	     * @param log
-	     * @param message
-	     * @param errorType
-	     * @param state
-	     * @param property
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+		 * @param property  附加属性
 	     */
 	    public void addError(String log, String message, ErrorType errorType, AppState state, HashMap<String, Object> property)
 
 
 	    /**
-	     * 添加错误
+	     * 添加错误信息
 	     *
 	     * @param log       日志
 	     * @param message   消息
@@ -693,6 +770,55 @@ android{
 	     */
 	    public void addError(String log, String message, long dateline, ErrorType errorType,
 	                         AppState state, HashMap<String, Object> property)
+
+		
+		/**
+	     * 添加错误信息
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     */
+	    public void addError(String log, String message, String errorType, AppState state)
+
+
+	     /**
+	     * 添加错误信息
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     * @param dateline  发生时间，纳秒
+	     */
+	    public void addError(String log, String message, long dateline, String errorType, AppState state)
+
+	    /**
+	     * 添加错误信息
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     * @param property  附加属性
+	     */
+	    public void addError(String log, String message, String errorType, AppState state, HashMap<String, Object> property)
+
+
+	    /**
+	     * 添加错误信息
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     * @param dateline  发生时间，纳秒
+	     * @param property  附加属性
+	     */
+	    public void addError(String log, String message, long dateline, String errorType,
+	                         AppState state, HashMap<String, Object> property)
+
 
 	```
 
@@ -710,7 +836,7 @@ android{
 		fun addError(log: String, message: String, errorType: ErrorType, state: AppState)
 
 		 /**
-	     * 添加错误
+	     * 添加错误信息
 	     *
 	     * @param log       日志
 	     * @param message   消息
@@ -723,16 +849,39 @@ android{
 		 /**
 	     * 添加错误信息
 	     *
-	     * @param log
-	     * @param message
-	     * @param errorType
-	     * @param state
-	     * @param property
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     * @param property  附加属性
 	     */
 		fun addError(log: String, message: String, errorType: ErrorType, state: AppState, property: HashMap<String, Any>)
 
 		 /**
-	     * 添加错误
+	     * 添加错误信息
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     * @param dateline  发生时间，纳秒
+	     * @param property  附加属性
+	     */
+		fun addError(log: String, message: String, dateline: Long, errorType: ErrorType,state: AppState, property: HashMap<String, Any>)
+
+
+			/**
+	     * 添加错误信息
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     */
+		fun addError(log: String, message: String, errorType: String, state: AppState)
+
+		 /**
+	     * 添加错误信息
 	     *
 	     * @param log       日志
 	     * @param message   消息
@@ -740,7 +889,30 @@ android{
 	     * @param state     程序运行状态
 	     * @param dateline  发生时间，纳秒
 	     */
-		fun addError(log: String, message: String, dateline: Long, errorType: ErrorType,state: AppState, property: HashMap<String, Any>)
+		fun addError(log: String, message: String, dateline: Long, errorType: String, state: AppState)
+
+		 /**
+	     * 添加错误信息
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+		 * @param property  附加属性
+	     */
+		fun addError(log: String, message: String, errorType: String, state: AppState, property: HashMap<String, Any>)
+
+		 /**
+	     * 添加错误信息
+	     *
+	     * @param log       日志
+	     * @param message   消息
+	     * @param errorType 错误类型
+	     * @param state     程序运行状态
+	     * @param dateline  发生时间，纳秒
+		 * @param property  附加属性
+	     */
+		fun addError(log: String, message: String, dateline: Long, errorType: String,state: AppState, property: HashMap<String, Any>)
 
 	```
 
@@ -1036,25 +1208,27 @@ android{
 
 	```
 
-| **方法名** | **含义** | **必须** | **说明** |
+| **方法名** | **必须** | **含义** |**说明** |
 | --- | --- | --- | --- |
-| NetStatusBean.fetchStartTime | 请求开始时间 | 否 | |
-| NetStatusBean.tcpStartTime | tcp 连接时间 | 否 |  |
-| NetStatusBean.tcpEndTime | tcp 结束时间 | 否 |  |
-| NetStatusBean.dnsStartTime | dns 开始时间 | 否 |  |
-| NetStatusBean.dnsEndTime | dns 结束时间 | 否 |  |
-| NetStatusBean.responseStartTime | 响应开始时间 | 否 |  |
-| NetStatusBean.responseEndTime | 响应结束时间 | 否 |  |
-| NetStatusBean.sslStartTime | ssl 开始时间 | 否 |  |
-| NetStatusBean.sslEndTime | ssl 结束时间 | 否 |  |
-| ResourceParams.url | url 地址 | 是 |  |
-| ResourceParams.requestHeader | 请求头参数 | 否 |  |
-| ResourceParams.responseHeader | 响应头参数 | 否 |  |
-| ResourceParams.responseConnection | 响应  connection | 否 |  |
-| ResourceParams.responseContentType | 响应  ContentType | 否 |  |
-| ResourceParams.responseContentEncoding | 响应  ContentEncoding | 否 |  |
-| ResourceParams.resourceMethod | 请求方法 | 否 |  GET,POST 等 |
-| ResourceParams.responseBody | 返回 body 内容 | 否 |  |
+| NetStatusBean.fetchStartTime | 否 | 请求开始时间 | |
+| NetStatusBean.tcpStartTime | 否 | tcp 连接时间 |  |
+| NetStatusBean.tcpEndTime | 否 | tcp 结束时间 |  |
+| NetStatusBean.dnsStartTime | 否 | dns 开始时间 |  |
+| NetStatusBean.dnsEndTime | 否 |  dns 结束时间 | |
+| NetStatusBean.responseStartTime | 否 | 响应开始时间 |  |
+| NetStatusBean.responseEndTime | 否 | 响应结束时间 |  |
+| NetStatusBean.sslStartTime | 否 | ssl 开始时间 |  |
+| NetStatusBean.sslEndTime | 否 |  ssl 结束时间 | |
+| NetStatusBean.property| 否 |  附加属性 | |
+| ResourceParams.url | 是 |  url 地址 | |
+| ResourceParams.requestHeader | 否 | 请求头参数 |  |
+| ResourceParams.responseHeader | 否 | 响应头参数 |  |
+| ResourceParams.responseConnection | 否 |  响应  connection | |
+| ResourceParams.responseContentType | 否 |  响应  ContentType | |
+| ResourceParams.responseContentEncoding | 否 | 响应  ContentEncoding |  |
+| ResourceParams.resourceMethod | 否 | 请求方法 |  GET,POST 等 |
+| ResourceParams.responseBody | 否 |  返回 body 内容 | |
+| ResourceParams.property| 否 | 附加属性 |  |
 
 ## Logger 日志打印 {#log} 
 使用 `FTLogger` 进行日志输出
@@ -1245,8 +1419,95 @@ android{
 
 	 val builder: Request.Builder = Request.Builder().url(url).method(RequestMethod.GET.name, null)
 	client.newCall(builder.build()).execute()
+	```
 
-    ```
+## 通过 OKHttp Interceptor 自定义 Resource 和 TraceHeader {#okhttp_resource_trace_interceptor_custom}
+
+ `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace` 配置，同时开启，优先加载自定义 `Interceptor` 配置
+ >ft-sdk < 1.4.1，需要关闭 `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace`
+
+=== "Java"
+
+	```java
+	 new OkHttpClient.Builder()
+	        .addInterceptor(new FTTraceInterceptor(new FTTraceInterceptor.HeaderHandler() {
+	               @Override
+	               public HashMap<String, String> getTraceHeader(Request request) {
+	                   HashMap<String, String> map = new HashMap<>();
+	                   map.put("custom_header","custom_value");
+	                   return map;
+	              }
+	        }))
+           .addInterceptor(new FTResourceInterceptor(new FTResourceInterceptor.ContentHandlerHelper() {
+               @Override
+               public void onRequest(Request request, HashMap<String, Object> extraData) {
+                   String contentType = request.header("Content-Type");
+                   extraData.put("df_request_header", request.headers().toString());
+                   if ("application/json".equals(contentType) ||
+                           "application/x-www-form-urlencoded".equals(contentType) ||
+                           "application/xml".equals(contentType)) {
+                       extraData.put("df_request_body", request.body());
+                
+            
+               @Override
+               public void onResponse(Response response, HashMap<String, Object> extraData) throws IOException {
+                   String contentType = response.header("Content-Type");
+                   extraData.put("df_response_header", response.headers().toString());
+                   if ("application/json".equals(contentType) ||
+                           "application/xml".equals(contentType)) {
+                       //copy 读取部分 body，避免大数据消费
+                       ResponseBody body = response.peekBody(33554432);
+                       extraData.put("df_response_body", body.string());
+                   }
+            
+               @Override
+               public void onException(Exception e, HashMap<String, Object> extraData)
+               }
+           }))
+           .eventListenerFactory(new FTResourceEventListener.FTFactory())
+           .build();
+	```
+	
+=== "Kotlin"
+
+	```kotlin
+	OkHttpClient.Builder()
+    .addInterceptor(FTTraceInterceptor(object : FTTraceInterceptor.HeaderHandler {
+        override fun getTraceHeader(request: Request): HashMap<String, String> {
+            val map = HashMap<String, String>()
+            map["custom_header"] = "custom_value"
+            return map
+        }
+    }))
+    .addInterceptor(FTResourceInterceptor(object : FTResourceInterceptor.ContentHandlerHelper {
+        override fun onRequest(request: Request, extraData: HashMap<String, Any>) {
+            val contentType = request.header("Content-Type")
+            extraData["df_request_header"] = request.headers().toString()
+            if ("application/json" == contentType ||
+                "application/x-www-form-urlencoded" == contentType ||
+                "application/xml" == contentType) {
+                extraData["df_request_body"] = request.body()
+            }
+        }
+
+        override fun onResponse(response: Response, extraData: HashMap<String, Any>) {
+            val contentType = response.header("Content-Type")
+            extraData["df_response_header"] = response.headers().toString()
+            if ("application/json" == contentType ||
+                "application/xml" == contentType) {
+                // 复制部分响应体以避免大数据消耗
+                val body = response.peekBody(33554432)
+                extraData["df_response_body"] = body.string()
+            }
+        }
+
+        override fun onException(e: Exception, extraData: HashMap<String, Any>) {
+            // 处理异常情况
+        }
+    }))
+    .eventListenerFactory(FTResourceEventListener.FTFactory())
+    .build()
+	```
 
 ## 用户信息绑定与解绑 {#userdata-bind-and-unbind}
 使用  `FTSdk` 进行用户的绑定和解绑 
@@ -1255,7 +1516,7 @@ android{
 
 === "Java"
 
-	```
+	```java
 
 	   /**
 	     * 绑定用户信息
@@ -1434,30 +1695,33 @@ android{
 	FTSdk.setEnableAccessAndroidID(false)
 	```
 
-## R8 / Proguard 混淆配置
+## R8 / Proguard 混淆配置 {#r8_proguard}
 
-```c
+```java
 -dontwarn com.ft.sdk.**
 
+### ft-sdk 库
 -keep class com.ft.sdk.**{*;}
 
+### ft-native 库
 -keep class ftnative.*{*;}
 
-### 防止获取时 ActionName 被混淆###
+### 防止 Action 获取时 action_name 中类名被混淆###
 -keepnames class * extends android.view.View
 -keepnames class * extends android.view.MenuItem
 ```
 
-## 符号文件上传
+## 符号文件上传 {#source_map}
 ### plugin 上传
-`ft-plugin` 版本需要 `1.1.2` 以上版本支持符号文件上传，支持 `productFlavor` 多版本区分管理，plugin 会在 `gradle task assembleRelease` 之后执行上传符号文件，详细配置可以参考 [SDK Demo](#setup)
+`ft-plugin` 版本需要 `1.3.0` 以上版本支持最新的符号文件上传规则，支持 `productFlavor` 多版本区分管理，plugin 会在 `gradle task assembleRelease` 之后执行上传符号文件，详细配置可以参考 [SDK Demo](#setup)
 
 ``` groovy
 FTExt {
 	//...
     autoUploadMap = true
     autoUploadNativeDebugSymbol = true
-    datakitDCAUrl = 'https://datakit.url:9531'//datakit 安装地址，默认 9531 
+    datakitUrl = 'https://datakit.url'
+    datawayToken = 'dataway_token'
     appId = "appid_xxxxx"// appid
     env = 'common'
 
@@ -1465,14 +1729,16 @@ FTExt {
         prodTest {
             autoUploadMap = false
             autoUploadNativeDebugSymbol = false
-            datakitDCAUrl = 'https://datakit.test.url:9531'
+            datakitUrl = 'https://datakit.url'
+    		datawayToken = 'dataway_token'
             appId = "appid_prodTest"
             env = "gray"
         }
         prodPublish {
             autoUploadMap = true
             autoUploadNativeDebugSymbol = true
-            datakitDCAUrl = 'https://datakit.publish.url:9531'
+            datakitUrl = 'https://datakit.url'
+    		datawayToken = 'dataway_token'
             appId = "appid_prodPublish"
             env = "prod"
         }
@@ -1482,6 +1748,8 @@ FTExt {
 ```
 ### 手动上传
 需要开发者将符号文件自行打包成 `zip` 文件，然后自行上传至 `datakit` ，推荐使用 `zip` 命令行进行打包，避免将一些系统隐藏文件打入 `zip` 包中，符号上传请参考 [sourcemap 上传](../../integrations/rum.md#sourcemap)
+
+> Unity Native Symbol 文件请参考[官方文档](https://docs.unity3d.com/Manual/android-symbols.html#public-symbols)
 
 ## 权限配置说明
 
@@ -1519,10 +1787,15 @@ FTExt {
 
 为了避免自定义字段与 SDK 数据冲突，建议标签命名添加 **项目缩写** 的前缀，例如 `df_tag_name`，项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。SDK 全局变量中出现与 RUM、Log 相同变量时，RUM、Log 会覆盖 SDK 中的全局变量。
 
+### SDK 兼容性
+
+* [可运行环境](app-troubleshooting.md#runnable)
+* [可兼容环境](app-troubleshooting.md#compatible) 
+
 ### 应对市场隐私审核 {#adpot-to-privacy-audits}
 #### 隐私声明
 [前往查看](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
-#### SDK AndroidID 配置
+#### 方式 1: SDK AndroidID 配置
 SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在应用市场上架，需要通过如下方式对应市场隐私审核。
 
 === "Java"
@@ -1565,9 +1838,73 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	//用户同意隐私协议后再开启
 	FTSdk.setEnableAccessAndroidID(true);
 	```
+#### 方式 2：延迟初始化 SDK
+如果需要在应用中延迟加载 SDK，建议使用如下方式初始化。
+
+=== "Java"
+
+	```java
+	// Application
+	public class DemoApplication extends Application {
+		@Override
+		public void onCreate() {
+		    //如果已经同意协议，在 Application 中初始化
+			if(agreeProtocol){
+				FTSdk.init();
+			}
+		}
+	}
+	
+	// 隐私声明  Activity 页面
+	public class MainActivity extends Activity {
+		@Override
+		protected void onCreate(Bundle savedInstanceState) {
+			//未阅读隐私声明
+			if ( notReadProtocol ) {
+			    //隐私声明弹出弹窗
+				showProtocolView();
+	
+			    //如果同意隐私声明
+				if( agreeProtocol ){
+					FTSdk.init();
+				}
+			}
+		}
+	}
+	```
+	
+=== "Kotlin"
+
+	```kotlin
+	// Application	
+	class DemoApplication : Application() {
+	    override fun onCreate() {
+	        // 如果已经同意协议，在 Application 中初始化
+	        if (agreeProtocol) {
+	            FTSdk.init()
+	        }
+	    }
+	}
+	
+	// 隐私声明 Activity 页面
+	class MainActivity : Activity() {
+	    override fun onCreate(savedInstanceState: Bundle?) {
+	        // 未阅读隐私声明
+	        if (notReadProtocol) {
+	            // 隐私声明弹出弹窗
+	            showProtocolView()
+	
+	            // 如果同意隐私声明
+	            if (agreeProtocol) {
+	                FTSdk.init()
+	            }
+	        }
+	    }
+	}
+	```
 
 ### 无法使用 ft-plugin 情况下如何接入 SDK {#manual-set}
-观测云使用的 Androig Grale Plugin Transformation 实现的代码注入，从而实现数据自动收集。但是由于一些兼容性问题，可能存在无法使用 `ft-plugin` 的问题。受影响包括 **RUM** `Action`，`Resource`，和 `android.util.Log` ，Java 与 Kotlin`println` **控制台日志自动抓取**，以及符号文件的自动上传。
+观测云使用的 Androig Grale Plugin Transformation 实现的代码注入，从而实现数据自动收集。但是由于一些兼容性问题，可能存在无法使用 `ft-plugin` 的问题。受影响包括 **RUM** `Action`，`Resource`，和 `android.util.Log` ，Java 与 Kotlin `println` **控制台日志自动抓取**，以及符号文件的自动上传。
 
 目前针对这种情况，我们有另外一种集成方案，应对方案如下：
 
@@ -1601,7 +1938,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	    }
 	```
 
-* 按键等事件需要在触发处自行添加，例如，Button onClick 事件为例，源码示例参考[ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)：
+* 按键等事件需要在触发处自行添加，例如，Button onClick 事件为例，源码示例参考 [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)：
 
 === "Java"
 
@@ -1623,7 +1960,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 		}
 	```
 
-* `OKhttp` 通过 `addInterceptor` ，`eventListener` 方式接入 `Resource`，`Trace`，示例如下，源码示例参考[ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)：
+* `OKhttp` 通过 `addInterceptor` ，`eventListener` 方式接入 `Resource`，`Trace`，示例如下，源码示例参考 [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)：
 
 === "Java"
 
@@ -1645,7 +1982,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	val client = builder.build()
 	```
 
-* 其他网络框架需要自行实现使用 `FTRUMGlobalManager` 中 `startResource` ,`stopResource`,`addResource`, `FTTraceManager.getTraceHeader` 。具体实现方式，请参考源码示例[ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)
+* 其他网络框架需要自行实现使用 `FTRUMGlobalManager` 中 `startResource` ,`stopResource`,`addResource`, `FTTraceManager.getTraceHeader` 。具体实现方式，请参考源码示例 [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)
 
 
 

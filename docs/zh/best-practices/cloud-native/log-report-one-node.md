@@ -481,7 +481,7 @@ spec:
           value: $(HOST_IP)    
         - name: JAVA_OPTS
           value: |-
-            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=k8s-guance-service  -Ddd.tags=container_host:$(PODE_NAME)  -Ddd.tags=node_ip:$(DD_AGENT_HOST) -Ddd.env=dev -Ddd.agent.port=9529                   
+            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service.name=k8s-guance-service  -Ddd.tags=container_host:$(PODE_NAME)  -Ddd.tags=node_ip:$(DD_AGENT_HOST) -Ddd.env=dev -Ddd.agent.port=9529                   
         ports:
         - containerPort: 8090
           protocol: TCP

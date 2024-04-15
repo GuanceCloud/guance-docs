@@ -48,7 +48,7 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
 
     [SDK :material-download:](https://github.com/DataDog/dd-trace-rb){:target="_blank"} ·
     [:octicons-book-16: 文档](https://docs.datadoghq.com/tracing/setup_overview/setup/ruby){:target="_blank"} ·
-    [:octicons-arrow-right-24: 示例](ddtrace-java.md)
+    [:octicons-arrow-right-24: 示例](ddtrace-ruby.md)
 
 -   :fontawesome-brands-golang: __Golang__
 
@@ -87,8 +87,8 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
     ---
 
     [SDK :material-download:](https://github.com/DataDog/dd-trace-dotnet){:target="_blank"} ·
-    [:octicons-book-16: 文档](https://docs.datadoghq.com/tracing/setup_overview/setup/dotnet-framework?tab=windows){:target="_blank"} ·
-    [:octicons-book-16: .Net Core 文档](https://docs.datadoghq.com/tracing/setup_overview/setup/dotnet-framework?tab=windows){:target="_blank"}
+    [:octicons-book-16: 文档](https://docs.datadoghq.com/tracing/trace_collection/automatic_instrumentation/dd_libraries/dotnet-framework?tab=windows){:target="_blank"} ·
+    [:octicons-book-16: .Net Core 文档](https://docs.datadoghq.com/tracing/trace_collection/automatic_instrumentation/dd_libraries/dotnet-core?tab=windows){:target="_blank"}
 </div>
 
 ???+ tip
@@ -109,9 +109,10 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
       ## NOTE: DO NOT EDIT.
       endpoints = ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
     
-      ## ignore_tags will work as a blacklist to prevent tags send to data center.
-      ## Every value in this list is a valid string of regular expression.
-      # ignore_tags = ["block1", "block2"]
+      ## customer_tags will work as a whitelist to prevent tags send to data center.
+      ## All . will replace to _ ,like this :
+      ## "project.name" to send to GuanCe center is "project_name"
+      # customer_tags = ["sink_project", "custom_dd_tag"]
     
       ## Keep rare tracing resources list switch.
       ## If some resources are rare enough(not presend in 1 hour), those resource will always send
@@ -121,6 +122,16 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
       ## By default every error presents in span will be send to data center and omit any filters or
       ## sampler. If you want to get rid of some error status, you can set the error status list here.
       # omit_err_status = ["404"]
+    
+      ## compatible otel: It is possible to compatible OTEL Trace with DDTrace trace.
+      ## make span_id and parent_id to hex encoding.
+      # compatible_otel=true
+    
+      ##  It is possible to compatible B3/B3Multi TraceID with DDTrace.
+      # trace_id_64_bit_hex=true
+    
+      ## delete trace message
+      # del_message = true
     
       ## Ignore tracing resources map like service:[resources...].
       ## The service name is the full service name in current application.
@@ -163,21 +174,191 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
 
-    在 Kubernetes 中支持的环境变量如下表：
+    也支持以环境变量的方式修改配置参数（需要在 ENV_DEFAULT_ENABLED_INPUTS 中加为默认采集器）：
 
-    | 环境变量名                             | 类型        | 示例                                                                             |
-    | -------------------------------------- | ----------- | -------------------------------------------------------------------------------- |
-    | `ENV_INPUT_DDTRACE_ENDPOINTS`          | JSON string | `["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]`                               |
-    | `ENV_INPUT_DDTRACE_IGNORE_TAGS`        | JSON string | `["block1", "block2"]`                                                           |
-    | `ENV_INPUT_DDTRACE_KEEP_RARE_RESOURCE` | bool        | true                                                                             |
-    | `ENV_INPUT_DDTRACE_OMIT_ERR_STATUS`    | JSON string | `["404", "403", "400"]`                                                          |
-    | `ENV_INPUT_DDTRACE_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}` |
-    | `ENV_INPUT_DDTRACE_SAMPLER`            | float       | 0.3                                                                              |
-    | `ENV_INPUT_DDTRACE_TAGS`               | JSON string | `{"k1":"v1", "k2":"v2", "k3":"v3"}`                                              |
-    | `ENV_INPUT_DDTRACE_THREADS`            | JSON string | `{"buffer":1000, "threads":100}`                                                 |
-    | `ENV_INPUT_DDTRACE_STORAGE`            | JSON string | `{"storage":"./ddtrace_storage", "capacity": 5120}`                              |
+    - **ENV_INPUT_DDTRACE_ENDPOINTS**
+    
+        代理端点
+    
+        **Type**: JSON
+    
+        **ConfField**: `endpoints`
+    
+        **Example**: ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
+    
+    - **ENV_INPUT_DDTRACE_CUSTOMER_TAGS**
+    
+        标签白名单
+    
+        **Type**: JSON
+    
+        **ConfField**: `customer_tags`
+    
+        **Example**: `["sink_project", "custom_dd_tag"]`
+    
+    - **ENV_INPUT_DDTRACE_KEEP_RARE_RESOURCE**
+    
+        保持稀有跟踪资源列表
+    
+        **Type**: Boolean
+    
+        **ConfField**: `keep_rare_resource`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_DDTRACE_COMPATIBLE_OTEL**
+    
+        将 `otel Trace` 与 `DDTrace Trace` 兼容
+    
+        **Type**: Boolean
+    
+        **ConfField**: `compatible_otel`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_DDTRACE_TRACE_ID_64_BIT_HEX**
+    
+        将 `B3/B3Multi-TraceID` 与 `DDTrace` 兼容
+    
+        **Type**: Boolean
+    
+        **ConfField**: `trace_id_64_bit_hex`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_DDTRACE_DEL_MESSAGE**
+    
+        删除 trace 消息
+    
+        **Type**: Boolean
+    
+        **ConfField**: `del_message`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_DDTRACE_OMIT_ERR_STATUS**
+    
+        错误状态白名单
+    
+        **Type**: JSON
+    
+        **ConfField**: `omit_err_status`
+    
+        **Example**: ["404", "403", "400"]
+    
+    - **ENV_INPUT_DDTRACE_CLOSE_RESOURCE**
+    
+        忽略指定服务器的 tracing（正则匹配）
+    
+        **Type**: JSON
+    
+        **ConfField**: `close_resource`
+    
+        **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
+    
+    - **ENV_INPUT_DDTRACE_SAMPLER**
+    
+        全局采样率
+    
+        **Type**: Float
+    
+        **ConfField**: `sampler`
+    
+        **Example**: 0.3
+    
+    - **ENV_INPUT_DDTRACE_THREADS**
+    
+        线程和缓存的数量
+    
+        **Type**: JSON
+    
+        **ConfField**: `threads`
+    
+        **Example**: {"buffer":1000, "threads":100}
+    
+    - **ENV_INPUT_DDTRACE_STORAGE**
+    
+        本地缓存路径和大小（MB）
+    
+        **Type**: JSON
+    
+        **ConfField**: `storage`
+    
+        **Example**: {"storage":"./ddtrace_storage", "capacity": 5120}
+    
+    - **ENV_INPUT_DDTRACE_TAGS**
+    
+        自定义标签。如果配置文件有同名标签，将会覆盖它
+    
+        **Type**: JSON
+    
+        **ConfField**: `tags`
+    
+        **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
+
+### 多线路工具串联注意事项 {#trace_propagator}
+
+DDTrace 目前支持的透传协议有：`datadog/b3multi/tracecontext` ，有两种情况需要注意：
+
+- 当使用 `tracecontext` 时，由于链路 ID 为 128 位需要将配置中的 `compatible_otel=true` 开关打开。
+- 当使用 `b3multi` 时，需要注意 `trace_id` 的长度，如果为 64 位的 hex 编码，需要将配置文件中的 `trace_id_64_bit_hex=true` 打开。
+- 更多的透传协议及工具使用请查看： [多链路串联](tracing-propagator.md){:target="_blank"}
+
+### 注入 Pod 和 Node 信息 {#add-pod-node-info}
+
+当应用在 Kubernetes 等容器环境部署时，我们可以在在最终的 Span 数据上追加 Pod/Node 信息，通过修改应用的 Yaml 即可，下面是一个 Kubernetes Deployment 的 yaml 示例：
+
+```yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  selector:
+    matchLabels:
+      app: my-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: my-app
+        service: my-service
+    spec:
+      containers:
+        - name: my-app
+          image: my-app:v0.0.1
+          env:
+            - name: POD_NAME    # <------
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: DD_SERVICE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['service']
+            - name: DD_TAGS
+              value: pod_name:$(POD_NAME),host:$(NODE_NAME)
+```
+
+注意，此处要先定义 `POD_NAME` 和 `NODE_NAME`，然后再将它们嵌入到到 DDTrace 专用的环境变量中。
+
+应用启动后，进入对应的 Pod，我们可以验证 ENV 是否生效：
+
+```shell
+$ env | grep DD_
+...
+```
+
+一旦注入成功，在最终的 Span 数据中，我们就能看到该 Span 所处的 Pod 以及 Node 名称。
+
+---
 
 ???+ attention
 
@@ -200,12 +381,12 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
 
 ### HTTP 设置 {#http}
 
-如果 Trace 数据是跨机器发送过来的，那么需要设置 [DataKit 的 HTTP 设置](datakit-conf.md#config-http-server)。
+如果 Trace 数据是跨机器发送过来的，那么需要设置 [DataKit 的 HTTP 设置](../datakit/datakit-conf.md#config-http-server)。
 
 如果有 DDTrace 数据发送给 Datakit，那么在 [DataKit 的 monitor](../datakit/datakit-monitor.md) 上能看到：
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/input-ddtrace-monitor.png){ width="800" }
+  ![input-ddtrace-monitor](https://static.guance.com/images/datakit/input-ddtrace-monitor.png){ width="800" }
   <figcaption> DDtrace 将数据发送给了 /v0.4/traces 接口</figcaption>
 </figure>
 
@@ -253,28 +434,42 @@ DD_TAGS="project:your_project_name,env=test,version=v1" ddtrace-run python app.p
   more_tag = "some_other_value"
 ```
 
-### 在代码中添加业务 tag {#add-tags}
+### 固定提取 tag {#add-tags}
 
-在应用代码中，可通过诸如 `span.SetTag(some-tag-key, some-tag-value)`（不同语言方式不同） 这样的方式来设置业务自定义 tag。对于这些业务自定义 tag，可通过在 ddtrace.conf 中配置 `customer_tags` 来识别并提取：
+从 DataKit 版本 [1.21.0](../datakit/changelog.md#cl-1.21.0) 开始，黑名单功能废弃，并且不在将 Span.Mate 中全部都提前到一级标签中，而是选择性提取。
 
-```toml
-customer_tags = [
-  "order_id",
-  "task_id",
-  "some.key",  # 被重命名为 some_key
-]
-```
+以下是可能会提取出的标签列表：
 
-注意，这些 tag-key 中不能包含英文字符 '.'，带 `.` 的 tag-key 会替换为 `_`。
+| Mete              | tag               | 说明             |
+|:------------------|:------------------|:---------------|
+| http.url          | http_url          | HTTP 请求完整路径    |
+| http.hostname     | http_hostname     | hostname       |
+| http.route        | http_route        | 路由             |
+| http.status_code  | http_status_code  | 状态码            |
+| http.method       | http_method       | 请求方法           |
+| http.client_ip    | http_client_ip    | 客户端 IP         |
+| sampling.priority | sampling_priority | 采样             |
+| span.kind         | span_kind         | span 类型        |
+| error             | error             | 是否错误           |
+| dd.version        | dd_version        | agent 版本       |
+| error.message     | error_message     | 错误信息           |
+| error.stack       | error_stack       | 堆栈信息           |
+| error.type        | error_type        | 错误类型           |
+| system.pid        | pid               | pid            |
+| error.msg         | error_message     | 错误信息           |
+| project           | project           | project        |
+| version           | version           | 版本             |
+| env               | env               | 环境             |
+| host              | host              | tag 中的主机名      |
+| pod_name          | pod_name          | tag 中的 pod 名称  |
+| _dd.base_service  | _dd_base_service  | 上级服务           |
 
-<!-- markdownlint-disable MD046 -->
-???+ attention "应用代码中添加业务 tag 注意事项"
+在观测云中的链路界面，不在列表中的标签也可以进行筛选。
 
-    - 在应用代码中添加了对应的 Tag 后，必须在 *ddtrace.conf* 的 `customer_tags` 中也同步添加对应的 Tag-Key 列表，否则 Datakit 不会对这些业务 Tag 进行提取
-    - 在开启了采样的情况下，部分添加了 Tag 的 Span 有可能被舍弃
-<!-- markdownlint-enable -->
+从 DataKit 版本 [1.22.0](../datakit/changelog.md#cl-1.22.0) 恢复白名单功能，如果有必须要提取到一级标签列表中的标签，可以在 `customer_tags` 中配置。
+配置的白名单标签如果是原生的 `message.meta` 中，会使用 `.` 作为分隔符，采集器会进行转换将 `.` 替换成 `_` 。
 
-## 链路字段 {#tracing}
+## 链路 {#tracing}
 
 
 
@@ -313,8 +508,6 @@ customer_tags = [
 |`duration`|Duration of span|int|μs|
 |`message`|Origin content of span|string|-|
 |`parent_id`|Parent span ID of current span|string|-|
-|`pid`|Application process id. Available in DDTrace, OpenTelemetry. Optional.|string|-|
-|`priority`|Optional.|int|-|
 |`resource`|Resource name produce current span|string|-|
 |`span_id`|Span id|string|-|
 |`start`|start time of span.|int|usec|
@@ -328,3 +521,5 @@ customer_tags = [
 - [DataKit Tracing 字段定义](datakit-tracing-struct.md)
 - [DataKit 通用 Tracing 数据采集说明](datakit-tracing.md)
 - [正确使用正则表达式来配置](../datakit/datakit-input-conf.md#debug-regex)
+- [多链路串联](tracing-propagator.md)
+- [Java 接入与异常说明](ddtrace-java.md)

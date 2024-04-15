@@ -14,8 +14,6 @@ monitor   :
 # Net
 <!-- markdownlint-enable -->
 
-<!-- markdownlint-enable -->
-
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -37,28 +35,24 @@ Net 采集器用于采集主机网络信息，如各网络接口的流量信息�
     ```toml
         
     [[inputs.net]]
-      ##(optional) collect interval, default is 10 seconds
+      ## (optional) collect interval, default is 10 seconds
       interval = '10s'
-      ##
+    
       ## By default, gathers stats from any up interface, but Linux does not contain virtual interfaces.
       ## Setting interfaces using regular expressions will collect these expected interfaces.
-      ##
       # interfaces = ['''eth[\w-]+''', '''lo''', ]
-      ##
+    
       ## Datakit does not collect network virtual interfaces under the linux system.
       ## Setting enable_virtual_interfaces to true will collect virtual interfaces stats for linux.
-      ##
       # enable_virtual_interfaces = true
-      ##
+    
       ## On linux systems also collects protocol stats.
       ## Setting ignore_protocol_stats to true will skip reporting of protocol metrics.
-      ##
       # ignore_protocol_stats = false
-      ##
     
     [inputs.net.tags]
-    # some_tag = "some_value"
-    # more_tag = "some_other_value"
+      # some_tag = "some_value"
+      # more_tag = "some_other_value"
     
     ```
 
@@ -66,15 +60,59 @@ Net 采集器用于采集主机网络信息，如各网络接口的流量信息�
 
 === "Kubernetes"
 
-    支持以环境变量的方式修改配置参数：
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
 
-    | 环境变量名                                | 对应的配置参数项            | 参数示例                                                     |
-    | :---                                      | ---                         | ---                                                          |
-    | `ENV_INPUT_NET_IGNORE_PROTOCOL_STATS`     | `ignore_protocol_stats`     | `true`/`false`                                               |
-    | `ENV_INPUT_NET_ENABLE_VIRTUAL_INTERFACES` | `enable_virtual_interfaces` | `true`/`false`                                               |
-    | `ENV_INPUT_NET_TAGS`                      | `tags`                      | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
-    | `ENV_INPUT_NET_INTERVAL`                  | `interval`                  | `10s`                                                        |
-    | `ENV_INPUT_NET_INTERFACES`                | `interfaces`                | `'''eth[\w-]+''', '''lo'''` 以英文逗号隔开                   |
+    也支持以环境变量的方式修改配置参数（需要在 ENV_DEFAULT_ENABLED_INPUTS 中加为默认采集器）：
+
+    - **ENV_INPUT_NET_INTERVAL**
+    
+        采集器重复间隔时长
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_NET_IGNORE_PROTOCOL_STATS**
+    
+        跳过协议度量的报告
+    
+        **Type**: Boolean
+    
+        **ConfField**: `ignore_protocol_stats`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_NET_ENABLE_VIRTUAL_INTERFACES**
+    
+        采集 Linux 的虚拟网卡
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_virtual_interfaces`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_NET_INTERFACES**
+    
+        期望采集的网卡（正则）
+    
+        **Type**: List
+    
+        **ConfField**: `interfaces`
+    
+        **Example**: eth[\w-]+,lo
+    
+    - **ENV_INPUT_NET_TAGS**
+    
+        自定义标签。如果配置文件有同名标签，将会覆盖它
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 
@@ -140,6 +178,7 @@ Net 采集器用于采集主机网络信息，如各网络接口的流量信息�
 |`udp_indatagrams`|The number of UDP datagram delivered to UDP users.|int|count|
 |`udp_indatagrams/sec`|The number of UDP datagram delivered to UDP users per second.|int|count|
 |`udp_inerrors`|The number of packet receive errors.|int|count|
+|`udp_memerrors`|The number of memory errors.|int|count|
 |`udp_noports`|The number of packets to unknown port received.|int|count|
 |`udp_outdatagrams`|The number of UDP datagram sent from this entity.|int|count|
 |`udp_outdatagrams/sec`|The number of UDP datagram sent from this entity per second.|int|count|

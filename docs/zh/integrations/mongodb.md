@@ -31,15 +31,37 @@ MongoDb 数据库，Collection， MongoDb 数据库集群运行状态数据采�
     - [x] 5.0
     - [x] 4.0
     - [x] 3.0
+    - [x] 2.8.0
 
 - 开发使用 MongoDB 版本 `4.4.5`;
 - 编写配置文件在对应目录下然后启动 DataKit 即可完成配置；
 - 使用 TLS 进行安全连接请在配置文件中配置 `## TLS connection config` 下响应证书文件路径与配置；
-- 如果 MongoDb 启动了访问控制那么需要配置必须的用户权限用于建立授权连接。例如：
+- 如果 MongoDB 启动了访问控制那么需要配置必须的用户权限用于建立授权连接：
 
-```mongodb
-> db.grantRolesToUser("user", [{role: "read", actions: "find", db: "local"}])
+```sh
+# Run MongoDB shell.
+$ mongo
+
+# Authenticate as the admin/root user.
+> use admin
+> db.auth("<admin OR root>", "<YOUR_MONGODB_ADMIN_PASSWORD>")
+
+# Create the user for the Datakit.
+> db.createUser({
+  "user": "datakit",
+  "pwd": "<YOUR_COLLECT_PASSWORD>",
+  "roles": [
+    { role: "read", db: "admin" },
+    { role: "clusterMonitor", db: "admin" },
+    { role: "backup", db: "admin" },
+    { role: "read", db: "local" }
+  ]
+})
 ```
+
+>更多权限说明可参见官方文档 [Built-In Roles](https://www.mongodb.com/docs/manual/reference/built-in-roles/){:target="_blank"}。
+
+执行完上述命令后将创建的「用户名」和「密码」填入 Datakit 的配置文件 `conf.d/db/mongodb.conf` 中。
 
 ### 采集器配置 {#input-config}
 
@@ -54,14 +76,33 @@ MongoDb 数据库，Collection， MongoDb 数据库集群运行状态数据采�
       ## Gathering interval
       interval = "10s"
     
+      ## Specify one single Mongodb server. These server related fields will be ignored when the 'servers' field is not empty.
+      ## connection_format is a string in the standard connection format (mongodb://) or SRV connection format (mongodb+srv://).
+      connection_format = "mongodb://"
+    
+      ## The host and port. 
+      host_port = "127.0.0.1:27017"
+    
+      ## Username
+      username = "datakit"
+    
+      ## Password
+      password = "<PASS>"
+    
+      ## The authentication database to use.
+      # default_db = "admin"
+    
+      ## A query string that specifies connection specific options as <name>=<value> pairs.
+      # query_string = "authSource=admin&authMechanism=SCRAM-SHA-256"
+    
       ## A list of Mongodb servers URL
       ## Note: must escape special characters in password before connect to Mongodb server, otherwise parse will failed.
-      ## Form: "mongodb://" [user ":" pass "@"] host [ ":" port]
+      ## Form: "mongodb://[user ":" pass "@"] host [ ":" port]"
       ## Some examples:
       ## mongodb://user:pswd@localhost:27017/?authMechanism=SCRAM-SHA-256&authSource=admin
       ## mongodb://user:pswd@127.0.0.1:27017,
       ## mongodb://10.10.3.33:18832,
-      servers = ["mongodb://127.0.0.1:27017"]
+      # servers = ["mongodb://127.0.0.1:27017"]
     
       ## When true, collect replica set stats
       gather_replica_set_stats = false
@@ -112,7 +153,7 @@ MongoDb 数据库，Collection， MongoDb 数据库集群运行状态数据采�
     目前可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
 <!-- markdownlint-enable -->
 
-### TLS config (self-signed) {#tls}
+### TLS 配置 (self-signed) {#tls}
 
 使用 `openssl` 生成证书文件用于 MongoDB TLS 配置，用于开启服务端加密和客户端认证。
 

@@ -1,0 +1,36 @@
+{% macro render_content(toc_item, title) %}
+  <span class="md-ellipsis"> {{ title or toc_item.title }} </span>
+{% endmacro %} 
+{% macro render(toc_item, path, level) %}
+  {% set class = "md-nav__item" %}
+  {% if toc_item.active %}
+    {% set class = class ~ " md-nav__item--active" %}
+  {% endif %} 
+  {% if toc_item.children %}
+    <li class="{{ class }} md-nav__item--nested">
+      {% set checked = "checked" %}
+      <input class="md-nav__toggle md-toggle" data-md-toggle="{{ path }}" type="checkbox" id="{{ path }}" {{ checked }} />
+      <div class="md-nav__link md-nav__container left-md-nav__nav__container">
+        <label class="md-nav__link left-md-nav__link" for="{{ path }}">
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+        <a href="{{ toc_item.url | url }}" class="md-nav__link"> {{ render_content(toc_item, toc_item.title) }} </a>
+      </div>
+      <nav class="md-nav" aria-label="{{ toc_item.title }}" data-md-level="{{ level }}">
+        <label class="md-nav__title" for="{{ path }}">
+          <span class="md-nav__icon md-icon"></span>
+          {{ toc_item.title }}
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          {% for toc_item in toc_item.children %} {{ render(toc_item, path ~ "_" ~ loop.index, level + 1) }} {% endfor %}
+        </ul>
+      </nav>
+    </li>
+  {% else %}
+    <li class="{{ class }}">
+      <span class="nav__prefix"></span>
+      <a href="{{ toc_item.url | url }}" class="md-nav__link"> {{ render_content(toc_item) }} </a>
+    </li>
+  {% endif %} 
+{% endmacro %} 
+{{ render(toc_item, path, level) }}

@@ -1,4 +1,19 @@
+---
+title     : 'Pythond'
+summary   : 'Collect data via Python extension'
+__int_icon      : 'icon/pythond'
+dashboard :
+  - desc  : 'N/A'
+    path  : '-'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
+
+<!-- markdownlint-disable MD025 -->
 # Developing Custom Collector with Python
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -7,7 +22,7 @@
 
 pythond is a complete set of scenes for firing user-defined python collection scripts at regular intervals.
 
-## Preconditions {#reqirement}
+## Configuration {#config}
 
 ### Python Environment {#req-python}
 
@@ -42,7 +57,7 @@ Create a folder named as Python package under the path `datakit/python.d`, then 
 
 For example, as the Python package name is `Demo`, the path is like below. The `demo.py` is the Python script, and its name could change to whatever you want.
 
-```
+```shell
 datakit
    └── python.d
        ├── Demo
@@ -52,7 +67,7 @@ datakit
 You need the user to inherit the `DataKitFramework` class and then override the `run` method.
 
 >The `DataKitFramework` class source code file path is `datakit_framework.py` at `datakit/python.d/core/datakit_framework.py`.
-
+<!-- markdownlint-disable MD046 -->
 ??? note "Python script example"
     ```python
     #encoding: utf-8
@@ -175,7 +190,7 @@ You need the user to inherit the `DataKitFramework` class and then override the 
         #         **kwargs
         #         )
     ```
-
+<!-- markdownlint-enable -->
 Python SDK API definition (see `datakit_framework.py`):
 
 - Reporting metrics data: `feed_metric(self, input=None, measurement=None, tags=None, fields=None, time=None, **kwargs)`;
@@ -270,7 +285,7 @@ class Demo(DataKitFramework):
             )
 ```
 
-## Configuration {#config}
+### Collector Configuration {#config}
 
 Go to the `conf.d/pythond` directory under the DataKit installation directory, copy `pythond.conf.sample` and name it `pythond.conf`. Examples are as follows:
 
@@ -290,11 +305,11 @@ Go to the `conf.d/pythond` directory under the DataKit installation directory, c
   dirs = []
 ```
 
-## Git Support {#git}
+### Git Support {#git}
 
 Support the use of git repo. Once git repo is enabled, the path filled in args in conf is relative to the path of `gitrepos` . For example, args will fill in `mytest` in the following case:
 
-```
+```shell
 ├── datakit
 └── gitrepos
     └── myconf
@@ -363,7 +378,7 @@ class MyTest(DataKitFramework):
 
 Step 2: We don't turn on git repo here. Put `test.py` under the `mytest` folder of `python.d`:
 
-```
+```shell
 └── python.d
     ├── mytest
     │   ├── test.py
@@ -394,9 +409,9 @@ sudo datakit service -R
 ```
 
 ## FAQ {#faq}
-
+<!-- markdownlint-disable MD013 -->
 ### :material-chat-question: How to Troubleshoot Errors {#log}
-
+<!-- markdownlint-enable -->
 If the results are not as expected, you can view the following log files:
 
 - `~/_datakit_pythond_cli.log`

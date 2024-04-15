@@ -61,7 +61,7 @@ datafluxLogs.init({
     window,
     document,
     'script',
-    'https://static.guance.com/browser-sdk/v1/dataflux-logs.js',
+    'https://static.guance.com/browser-sdk/v3/dataflux-logs.js',
     'DATAFLUX_LOGS'
   )
   DATAFLUX_LOGS.onReady(function () {
@@ -78,7 +78,7 @@ datafluxLogs.init({
 
 ```html
 <script
-  src="https://static.guance.com/browser-sdk/v1/dataflux-logs.js" 
+  src="https://static.guance.com/browser-sdk/v3/dataflux-logs.js" 
   type="text/javascript"
 ></script>
 <script>
@@ -94,6 +94,7 @@ datafluxLogs.init({
 ## 配置
 
 ### 初始化参数
+
 | **参数**              | **类型** | **是否必须** | **默认值** | **描述**                                                     |
 | --------------------- | -------- | ------------ | ---------- | ------------------------------------------------------------ |
 | `datakitOrigin`       | String   | 是           |            | DataKit 数据上报 Origin 注释：`协议（包括：//），域名（或 IP 地址）[和端口号] `例如：https://www.datakit.com, http://100.20.34.3:8088。 |
@@ -103,6 +104,7 @@ datafluxLogs.init({
 | `sampleRate`          | Number   | 否           | `100`      | 指标数据收集百分比：`100` 表示全收集，`0` 表示不收集            |
 | `forwardErrorsToLogs` | Boolean  | 否           | `true`     | 设置为 `false` 表示停止采集 console.error、 js、以及网络错误上报到观测云日志数据中 |
 | `silentMultipleInit`  | Boolean  | 否           | `false`    | 不允许有多个日志对象被初始化                                 |
+| `forwardConsoleLogs`             | 字符串/数组 |  |  | 需要采集浏览器 console 日志类型，可选值：`error`, `log`, `info`, `warn`, `error`             |
 
 
 ## 使用

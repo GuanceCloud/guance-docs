@@ -110,7 +110,6 @@ In addition to global attributes, you can also build scenarios and configure eve
 | **Field**        | **Type** | **Description**                                            |
 | --------------- | -------- | --------------------------------------------------- |
 | `view_id`       | string   | Unique ID generated every time the page is accessed                          |
-| `is_active`     | boolean  | Judge whether the user is still active, reference value: true &#124; false |
 | `view_referrer` | string   | Page source, parent of page                                |
 | `view_name`     | string   | Page name                                            |
 
@@ -120,6 +119,7 @@ In addition to global attributes, you can also build scenarios and configure eve
 | --- | --- | --- |
 | <del>`loading_time`</del> | number（ns） | <del>Page loading time</del> |
 | `time_spent` | number（ns） | Page dwell time |
+| `is_active`     | boolean  | Judge whether the user is still active. |
 
 #### Statistical Metrics
 
@@ -140,6 +140,14 @@ In addition to global attributes, you can also build scenarios and configure eve
 | `is_active`     | boolean  | Judge whether the user is still active, reference value: true &#124; false |
 | `view_referrer` | string   | Page source, parent of page                                |
 | `view_name`     | string   | Page name                                            |
+
+#### Action Attributes
+
+| **Field**     | **Type** | **Description**                                        |
+| ------------- | -------- | ------------------------------------------------------ |
+| `action_id`   | string   | Unique ID generated when the user operates on the page |
+| `action_name` | string   | Operation name                                         |
+| `action_type` | string   | Operation type (hot and cold start, click click, etc.) |
 
 #### Resource Attributes
 
@@ -180,6 +188,14 @@ In addition to global attributes, you can also build scenarios and configure eve
 | `view_referrer` | string   | Page source, parent of page                                |
 | `view_name`     | string   | Page name                                            |
 
+#### Action Attributes
+
+| **Field**     | **Type** | **Description**                                        |
+| ------------- | -------- | ------------------------------------------------------ |
+| `action_id`   | string   | Unique ID generated when the user operates on the page |
+| `action_name` | string   | Operation name                                         |
+| `action_type` | string   | Operation type (hot and cold start, click click, etc.) |
+
 #### Error Attributes
 
 | **Field** | **Type** | **Description** |
@@ -207,18 +223,26 @@ In addition to global attributes, you can also build scenarios and configure eve
 
 | **Field**        | **Type** | **Description**                                            |
 | --------------- | -------- | --------------------------------------------------- |
-| `view_id`       | string   | Unique ID generated every time the page is accessed                          |
-| `is_active`     | boolean  | Judge whether the user is still active, reference value: true &#124; false |
-| `view_referrer` | string   | Page source, parent of page                                |
-| `view_name`     | string   | Page name                                            |
+| <del>`view_id`</del> | string   | <del>Unique ID generated every time the page is accessed</del>               |
+| <del>`is_active`</del> | boolean  | <del>Judge whether the user is still active, reference value: true &#124; false</del> |
+| <del>`view_referrer`</del> | string   | <del>Page source, parent of page</del>                     |
+| <del>`view_name`</del> | string   | <del>Page name</del>                                 |
+
+#### Action Attributes
+
+| **Field**                | **Type** | **Description**                                              |
+| ------------------------ | -------- | ------------------------------------------------------------ |
+| <del>`action_id`</del>   | string   | <del>Unique ID generated when the user operates on the page</del> |
+| <del>`action_name`</del> | string   | <del>Operation name</del>                                    |
+| <del>`action_type`</del> | string   | <del>Operation type (hot and cold start, click click, etc.)</del> |
 
 #### Metrics
 
 | **Field** | **Type** | **Description** |
 | --- | --- | --- |
-| `duration` | number（ns） | Carton duration |
-| `long_task_message` | string | Carton info |
-| `long_task_stack` | string | Carton stack |
+| <del>`duration`</del> | number（ns） | <del>Carton duration</del> |
+| <del>`long_task_message`</del> | string | <del>Carton info</del> |
+| <del>`long_task_stack`</del> | string | <del>Carton stack</del> |
 
 ### Action
 

@@ -1,4 +1,591 @@
 # 更新日志
+
+## 1.27.0(2024/04/03) {#cl-1.27.0}
+
+### 新增功能 {#cl-1.27.0-new}
+
+- 新增 Pipeline Offload 采集器，专用于集中处理 Pipeline（#1917）
+- 支持基于 BPF 的 HTTP/HTTP2/gRPC 网络数据采集，以覆盖较低版本的 Linux 内核（#2017）
+
+### 问题修复 {#cl-1.27.0-fix}
+
+- 修复 Point 构建的缺省时间紊乱问题（#2163）
+- 修复 Kubernetes 采集中可能奔溃的问题（#2176）
+- 修复 Nodejs Profiling 采集问题（#2149）
+
+### 功能优化 {#cl-1.27.0-opt}
+
+- Prometheus Remote Write 采集支持通过指标前缀来归属指标集（#2165）
+- 完善 Datakit 自身指标，增加各模块 Goroutine 崩溃数统计（#2173）
+- 完善 bug report 功能，支持将 info 文件直接上传到 OSS（#2170）
+- 优化 Windows Event 采集性能（#2155）
+- 优化日志采集中历史位置记录功能（#2156）
+- 拨测采集器支持禁止内网拨测（#2142）
+- 其它杂项以及文档更新（#2154/#2148/#1975/#2164）
+
+---
+
+## 1.26.1(2024/03/27) {#cl-1.26.1}
+
+本次发布属于 Hotfix 发布，修复如下问题：
+
+- 修复 Redis 不支持 TLS 问题（#2161）
+- 修复 Trace 数据时间戳问题（#2162）
+- 修复 vmalert 写入 Prometheus Remote Write 问题（#2153）
+
+---
+
+## 1.26.0(2024/03/20) {#cl-1.26.0}
+
+### 新增功能 {#cl-1.26.0-new}
+
+- 新增 Doris 采集器（#2137）
+
+### 问题修复 {#cl-1.26.0-fix}
+
+- 修复 DDTrace 头采样后再次重复采样的问题（#2131）
+- 修复 SQLServer 自定义采集中缺少 tag 的问题（#2144）
+- 修复 Kubernetes Event 重复采集问题（#2145）
+- 修复 Kubernetes 中容器个数采集不准确问题（#2146）
+
+### 功能优化 {#cl-1.26.0-opt}
+
+- *datakit.conf* 中增加升级程序配置，同时主机对象采集器中，也新增跟升级程序有关的字段（#2124）
+- 完善 bug report 功能，将自身的报错信息也附加在附件中（#2132）
+- 优化 MySQL 采集器 TLS 设置以及默认采集器配置文件（#2134）
+- 优化主机云同步 global tag 配置逻辑，允许将云同步下来的 tag 不加入到 global-host-tag 中（#2136）
+- Datakit 镜像中新增 `redis-cli` 命令，便于采集 Redis 中的 big-key/hot-key（#2138）
+- Kafka-MQ 采集的数据中增加 `offset/partition` 字段（#2140）
+- 其它杂项以及文档更新（#2133/#2143）
+
+---
+
+## 1.25.0(2024/03/06) {#cl-1.25.0}
+
+本次发布属于迭代发布，主要有如下更新：
+
+### 新增功能 {#cl-1.25.0-new}
+
+- Datakit API 新增动态更新 Global Tag 的相关接口（#2076）
+- 新增 Kubernetes PersistentVolume / PersistentVolumeClaim 采集，需要添加额外的 [RBAC](../integrations/container.md#rbac-pv-pvc)（#2109）
+
+### 问题修复 {#cl-1.25.0-fix}
+
+- 修复 SkyWalking RUM root-span 问题（#2131）
+- 修复 Windows Event 采集不全问题（#2118）
+- 修复 Pinpoint 采集中缺失 `host` 字段问题（#2114）
+- 修复 RabbitMQ 指标采集问题（#2108）
+- 修复 OpenTelemetry 老版本兼容性问题（#2089）
+- 修复 Containerd 日志的分行解析错误（#2121）
+
+### 功能优化 {#cl-1.25.0-opt}
+
+- StatsD 采集 count 类数据时，默认将其转换成浮点（#2127）
+- 容器采集器支持 Docker 1.24+ 以上版本（#2112）
+- 优化 SQLServer 采集器（#2105）
+- 优化 Health Check 采集器（#2105）
+- 日志采集的默认时间取值（#2116）
+- 新增使用环境变量 `ENV_INPUT_CONTAINER_DISABLE_COLLECT_KUBE_JOB` 关闭对 Kubernetes Job 资源的采集（#2129）
+- 更新一批采集器内置视图：
+    - ssh（#2125）
+    - etcd（#2101）
+- 其它杂项以及文档更新（#2119/#2123/#2115/#2113）
+
+---
+
+## 1.24.0(2024/01/24) {#cl-1.24.0}
+
+本次发布属于迭代发布，主要有如下更新：
+
+### 新增功能 {#cl-1.24.0-new}
+
+- 新增主机 [Health Check 采集器](../integrations/host_healthcheck.md)（#2061）
+
+### 问题修复 {#cl-1.24.0-fix}
+
+- 修复 Windows Event 采集可能导致的崩溃问题（#2087）
+- 修复数据录制功能问题并完善[相关文档](datakit-daemonset-deploy.md#env-recorder)（#2092）
+- 修复 DDTrace 多链路传播串联问题（#2093）
+- 修复 Socket 日志采集截断问题（#2095）
+- 修复 Datakit 升级时主配置文件残留问题（#2096）
+- 修复更新脚本覆盖问题（#2085）
+
+### 功能优化 {#cl-1.24.0-opt}
+
+- 优化主机安装中，Linux 非 root 安装时资源限制功能（#2011）
+- 优化分流和黑名单匹配性能，大幅度（*10X*）减少内存消耗（#2077）
+- Log Streaming 采集[支持 FireLens](../integrations/logstreaming.md#firelens) 类型（#2090）
+- Log Forward 采集日志中增加字段 `log_read_lines`（#2098）
+- 优化 K8s 中对 tag `cluster_name_k8s` 的处理（#2099）
+- K8s Pod 时序指标中增加重启次数（`restarts`）指标
+- 优化时序指标集 `kubernetes`，增加容器统计数
+- 优化 Kubelet 指标采集逻辑
+
+---
+
+## 1.23.1(2024/01/12) {#cl-1.23.1}
+
+本次发布属于 Hotfix 发布，修复如下问题：
+
+- 修复 Datakit 服务在 Windows 下异常问题
+
+---
+
+## 1.23.0(2024/01/11) {#cl-1.23.0}
+
+本次发布属于迭代发布，主要有如下更新：
+
+### 新增功能 {#cl-1.23.0-new}
+
+- Kubernetes 部署时支持通过环境变量（`ENV_DATAKIT_INPUTS`）配置任何采集器配置（#2068）
+- 容器采集器支持更精细的配置，将 Kubernetes 对象 label 转换为采集数据的 tags（#2064）
+    - `ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2_FOR_METRIC`：支持将 label 转换成指标类数据的 tag
+    - `ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2` 支持将 label 转换为非指标类（如对象/日志等）数据的 tag
+
+### 问题修复 {#cl-1.23.0-fix}
+
+- 修复容器采集器的 `deployment` 和 `daemonset` 字段偶发错误的问题（#2081）
+- 修复容器日志采集在容器短暂运行并退出后，会丢失最后几行日志的问题（#2082）
+- 修复 [Oracle](../integrations/oracle.md) 采集器慢查询 SQL 时间错误（#2079）
+- 修复 Prom 采集器 `instance` 设置问题（#2084）
+
+### 功能优化 {#cl-1.23.0-opt}
+
+- 优化 Prometheus Remote Write 采集（#2069）
+- eBPF 采集支持设置资源占用（#2075）
+- 优化 Profiling 数据采集流程（#2083）
+- [MongoDB](../integrations/mongodb.md) 采集器支持用户名和密码单独配置（#2073）
+- [SQLServer](../integrations/sqlserver.md) 采集器支持配置实例名称（#2074）
+- 优化 [ElasticSearch](../integrations/elasticsearch.md) 采集器视图和监控器（#2058）
+- [KafkaMQ](../integrations/kafkamq.md) 采集器支持多线程模式（#2051）
+- [SkyWalking](../integrations/skywalking.md) 采集器增加支持 Meter 数据类型（#2078）
+- 更新一部分采集器文档以及其他 bug 修复（#2074/#2067）
+- 优化 Proxy 代理安装时的升级命令（#2033）
+- 优化非 root 用户安装时资源限制功能（#2011）
+
+---
+
+## 1.22.0(2023/12/28) {#cl-1.22.0}
+
+本次发布属于迭代发布，主要有如下更新：
+
+### 新增功能 {#cl-1.22.0-new}
+
+- 新增 [OceanBase](../integrations/oceanbase.md) 自定义 SQL 采集（#2046）
+- 新增 [Prometheus Remote](../integrations/prom_remote_write.md) 黑名单/白名单（#2053）
+- Kubernetes 资源数量采集添加 `node_name` tag（仅支持 Pod 资源）（#2057）
+- Kubernetes Pod 指标新增 `cpu_limit_millicores/mem_limit/mem_used_percent_base_limit` 字段
+- eBPF 采集器新增 `bpf-netlog` 插件 (#2017)
+- Kubernetes 中数据录制功能支持通过环境变量配置
+
+### 问题修复 {#cl-1.22.0-fix}
+
+- 修复 [`external`](../integrations/external.md) 采集器僵尸进程问题（#2063）
+- 修复容器日志 tags 冲突问题（#2066）
+- 修复虚拟网卡信息获取失败问题 (#2050)
+- 修复 Pipeline Refer table 和 IPDB 功能失效问题 (#2045)
+
+### 优化 {#cl-1.22.0-opt}
+
+- 优化 DDTrace 和 OTEL 字段提取白名单功能 （#2056）
+- 优化 [SQLServer](../integrations/sqlserver.md) 采集器的 `sqlserver_lock_dead` 指标获取 SQL（#2049）
+- 优化 [PostgreSQL](../integrations/postgresql.md) 采集器的连接库（#2044）
+- 优化 [ElasticSearch](../integrations/elasticsearch.md) 采集器的配置文件，设置 `local` 默认为 `false`（#2048）
+- K8s 安装时增加更多 ENV 配置项（#2025）
+- 优化 Datakit 自身指标暴露
+- 更新部分采集器集成文档
+
+---
+
+## 1.21.1(2023/12/21) {#cl-1.21.1}
+
+本次发布属于 Hotfix 发布，修复如下问题：
+
+- 修复 Prometheus Remote Write 不添加 Datakit 主机类 Tag 问题，主要兼容之前的老配置（#2055）
+- 修复一批中间件默认的日志采集不加主机类 Tag 问题
+- 日志采集修复中文字符颜色擦除乱码问题
+
+---
+
+## 1.21.0(2023/12/14)
+
+本次发布属于迭代发布，主要有如下更新：
+
+### 新增功能 {#cl-1.21.0-new}
+
+- 添加 [ECS Fargate 采集模式](ecs-fargate.md)（#2018）
+- 添加 [Prometheus Remote](../integrations/prom_remote_write.md) 采集器 tag 白名单（#2031）
+
+### 问题修复 {#cl-1.21.0-fix}
+
+- 修复 [PostgreSQL](../integrations/postgresql.md) 采集器版本检测问题（#2040）
+- 修复 [ElasticSearch](../integrations/elasticsearch.md) 采集器帐号权限设置问题（#2036）
+- 修复 [Host Dir](../integrations/hostdir.md) 采集器采集磁盘根目录崩溃问题（#2037）
+
+### 优化 {#cl-1.21.0-opt}
+
+- 优化 DDTrace 采集器：[去除 `message.Mate` 中重复的标签](../integrations/ddtrace.md#tags)（#2010）
+- 优化容器内日志文件的路径搜寻策略（#2027）
+- [拨测采集器](../integrations/dialtesting.md)增加 `datakit_version` 字段以及采集时间设置为任务开始执行的时间（#2029）
+- 移除了 `datakit export` 命令优化二进制包大小（#2024）
+- [调试采集器配置](why-no-data.md#check-input-conf) 中增加采集点的时间线数量（#2016）
+- [Profile 采集](../integrations/profile.md)使用磁盘缓存实现异步化上报（#2041）
+- 优化 Windows 下 Datakit 安装脚本（#2026）
+- 更新一批采集器的内置视图和监控器
+
+### Breaking Changes {#cl-1.21.0-brk}
+
+- DDTrace 采集不再默认提取所有字段，这可能会导致某些页面自定义字段的数据缺失。可以通过编写 Pipeline 或者新的 JSON 查看语法（`message@json.meta.xxx`）来提取特定的字段
+
+---
+
+## 1.20.1(2023/12/07) {#cl-1.20.1}
+
+本次发布属于 Hotfix 发布，修复如下问题：
+
+### 问题修复 {#cl-1.20.1-fix}
+
+- 修复 DDTrace 一个采样 bug
+- 修复 `error_message` 丢失信息的 bug
+- 修复 Kubernetes Pod 对象数据没有正确采集 deployment 字段的 bug
+
+## 1.20.0(2023/11/30) {#cl-1.20.0}
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.20.0-new}
+
+- [Redis](../integrations/redis.md) 采集器新增 hotkey 指标（#2019）
+- monitor 命令支持播放 [bug report](why-no-data.md#bug-report) 中的指标数据（#2001）
+- [Oracle](../integrations/oracle.md) 采集器增加自定义查询（#1929）
+- [Container](../integrations/container.md) 容器内的日志文件支持通配采集（#2004）
+- Kubernetes Pod 指标支持 `network` 和 `storage` 字段采集（#2022）
+- [RUM](../integrations/rum.md) 新增配置支持对会话重放进行过滤（#1945）
+
+### 问题修复 {#cl-1.20.0-fix}
+
+- 修复 cgroup 在某些而环境下出现的 panic 错误（#2003）
+- 修复 Windows 安装脚本在低版本 PowerShell 下执行失败（#1997）
+- 修复磁盘缓存默认开启问题（#2023）
+- 调整 Kubernetes Auto-Discovery 的 Prom 指标集命名风格（#2015）
+
+### 功能优化 {#cl-1.20.0-opt}
+
+- 优化内置采集器模板视图和监控器视图导出逻辑以及更新 MySQL/PostgreSQL/SQLServer 视图模板（#2008/#2007/#2013/#2024）
+- 优化 Prom 采集器自身指标名称（#2014）
+- 优化 Proxy 采集器，提供基本性能测试基准（#1988）
+- 容器日志采集支持添加所属 Pod 的 Labels（#2006）
+- 采集 Kubernetes 数据时默认使用 `NODE_LOCAL` 模式，需要添加额外的 [RBAC](../integrations/container.md#rbac-nodes-stats)（#2025）
+- 优化链路处理流程（#1966）
+- 重构 PinPoint 采集器，优化上下级关系 (#1947)
+- APM 支持丢弃 `message` 字段以节约存储（#2021）
+
+---
+
+## 1.19.2(2023/11/20) {#cl-1.19.2}
+
+本次发布属于 Hotfix 发布，修复如下问题：
+
+### 问题修复 {#cl-1.19.2-fix}
+
+- 修复磁盘缓存 bug 导致 session replay 数据丢失问题
+- 增加 Kubernetes 中资源采集耗时有关的 Prometheus 指标
+
+---
+
+## 1.19.1(2023/11/17) {#cl-1.19.1}
+
+本次发布属于 Hotfix 发布，修复如下问题：
+
+### 问题修复 {#cl-1.19.1-fix}
+
+- 修复磁盘缓存因 *.pos* 文件无法启动问题（[issue](https://github.com/GuanceCloud/cliutils/pull/59){:target="_blank"} ）
+
+---
+
+## 1.19.0(2023/11/16) {#cl-1.19.0}
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.19.0-new}
+
+- 支持 [OceanBase](../integrations/oceanbase.md) MySQL 模式采集（#1952）
+- 新增[数据录制/播放](datakit-tools-how-to.md#record-and-replay)功能（#1738）
+
+### 问题修复 {#cl-1.19.0-fix}
+
+- 修复 Windows 低版本资源限制无效问题（#1987）
+- 修复 ICMP 拨测问题（#1998）
+
+### 功能优化 {#cl-1.19.0-opt}
+
+- 优化 statsd 采集（#1995）
+- 优化 Datakit 安装脚本（#1979）
+- 优化 MySQL 内置视图（#1974）
+- 完善 Datakit 自身指标暴露，增加完整 Golang 运行时等多项指标（#1971/#1969）
+- 其它文档优化以及单元测试优化（#1952/#1993）
+- 完善 Redis 指标采集，增加更多指标（#1940）
+- TCP 拨测中允许增加报文（只支持 ASCII 文本）检测（#1934）
+- 优化非 root 用户安装时的问题：
+    - 可能因 ulimit 设置失败无法启动（#1991）
+    - 完善文档，增加非 root 安装时的受限功能描述（#1989）
+    - 调整非 root 安装时的前置操作，改为用户手动配置，避免不同操作系统可能存在的命令差异（#1990）
+- MongoDB 采集器增加对老版本 2.8.0 的支持（#1985）
+- RabbitMQ 采集器增加对低版本（3.6.X/3.7.X）的支持（#1944）
+- 优化 Kubernetes 中 Pod 指标采集，以替换原始 Metric Server 方式（#1972）
+- Kubernetes 下采集 Prometheus 指标时允许增加指标集名称配置（#1970）
+
+### 兼容调整 {#cl-1.19.0-brk}
+
+- 由于新增了数据录制/播放功能，故移除将数据写入文件的功能（#1738）
+
+---
+
+## 1.18.0(2023/11/02) {#cl-1.18.0}
+
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.18.0-new}
+
+- 新增 OceanBase 采集（#1924）
+
+### 问题修复 {#cl-1.18.0-fix}
+
+- 修复 Tracing 数据中较大 Tag 值兼容，现已调至 32MB（#1932）
+- 修复 RUM session replay 脏数据问题（#1958）
+- 修复指标信息导出问题（#1953）
+- 修复 [v2 版本协议](datakit-conf.md#dataway-settings)构建错误问题
+
+### 功能优化 {#cl-1.18.0-opt}
+
+- 主机目录采集和磁盘采集中，新增挂载点等指标（#1941）
+- KafkaMQ 支持 OpenTelemetry Tracing 数据处理（#1887）
+- Bug Report 新增更多信息收集（#1908）
+- 完善 Prom 采集过程中自身指标暴露（#1951）
+- 更新默认 IP 库以支持 IPv6（#1957）
+- 更新镜像名下载地址为 `pubrepo.guance.com`（#1949）
+- 优化日志采集文件位置功能（#1961）
+- Kubernetes
+    - 支持 Node-Local Pod 信息采集，以缓解选举节点压力（#1960）
+    - 容器日志采集支持更多粒度的过滤（#1959）
+    - 增加 service 相关的指标采集（#1948）
+    - 支持筛选 PodMonitor 和 ServiceMonitor 上的 Label 功能（#1963）
+    - 支持将 Node Label 转换为 Node 对象的 Tag（#1962）
+
+### 兼容调整 {#cl-1.18.0-brk}
+
+- Kubernetes 不再采集 Job/CronJob 创建的 Pod 的 CPU/内存指标（#1964）
+
+---
+
+## 1.17.3(2023/10/31) {#cl-1.17.3}
+
+本次发布属于 Hotfix 发布，修复如下问题：
+
+### 问题修复 {#cl-1.17.3-fix}
+
+- 修复日志采集设置 Pipeline 无效问题（#1954）
+- 修复 eBPF 在 arm64 平台无法运行的问题（#1955）
+
+---
+
+## 1.17.2(2023/10/27) {#cl-1.17.2}
+
+本次发布属于 Hotfix 发布，修复如下问题：
+
+### 问题修复 {#cl-1.17.2-fix}
+
+- 修复日志采集没有带 global host tag 的问题（#1942）
+- 优化 Session Replay 数据的处理（#1943）
+- 优化 Point 编码对非 UTF8 字符串的处理
+
+---
+
+## 1.17.1(2023/10/26) {#cl-1.17.1}
+
+本次发布属于 Hotfix 发布，修复如下问题：
+
+### 问题修复 {#cl-1.17.1-fix}
+
+- 修复拨测数据无法上传的问题
+
+### 新加功能 {#cl-1.17.1-new}
+
+- 新增通过 [eBPF 构建链路数据](../integrations/ebpftrace.md)，用来表示 Linux 进程/线程的调用关系（#1836）
+- Pipeline 新增函数 [`pt_name`](../developers/pipeline/pipeline-built-in-function.md#fn-pt-name)（#1937）
+
+### 功能优化 {#cl-1.17.1-opt}
+
+- 优化 point 数据构建，提升内存使用效率（#1792）
+
+---
+
+## 1.17.0(2023/10/19) {#cl-1.17.0}
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.17.0-new}
+
+- Pod 添加 cpu_limit 指标 （#1913）
+- `New Relic` 链路数据接入（#1834）
+
+### 问题修复 {#cl-1.17.0-fix}
+
+- 修复日志单行数据太长可能导致的内存问题（#1923）
+- 修复 [disk](../integrations/disk.md) 采集器磁盘挂载点获取失败问题（#1919）
+- 修复 helm 和 yaml 中的 Service 名称不一致问题（#1910）
+- 修复 pinpoint span 中缺失 `agentid` 字段（#1897）
+- 修复采集器中 `goroutine group` 错误处理问题（#1893）
+- 修复[MongoDB](../integrations/mongodb.md) 采集器空数据上报问题（#1884）
+- 修复 [rum](../integrations/rum.md) 采集器请求中出现大量 408 和 500 状态码（#1915）
+
+### 功能优化 {#cl-1.17.0-opt}
+
+- 优化 logfwd 的退出逻辑，避免因为配置错误导致程序退出影响到业务 Pod （#1922）
+- 优化 [`ElasticSearch`](../integrations/elasticsearch.md) 采集器，增加索引指标集 `elasticsearch_indices_stats` 分片和副本等指标（#1921）
+- 增加 [disk](../integrations/disk.md) 集成测试（#1920）
+- DataKit monitor 支持 HTTPS（#1909）
+- Oracle 采集器添加慢查询日志（#1906）
+- 优化采集器 point 实现（#1900）
+- [MongoDB](../integrations/mongodb.md) 采集器集成测试增加检测授权功能（#1885）
+- 优化 Dataway 发送的重试功能，额外放出可配置参数
+
+---
+
+## 1.16.1(2023/10/09) {#cl-1.16.1}
+
+本次发布属于 Hotfix 发布，修复如下问题：
+
+### 问题修复 {#cl-1.16.1-fix}
+
+- 修复 [K8s/容器采集器](../integrations/container.md) CPU 指标获取失败以及 containerd 下多行日志采集问题（#1895）
+- 修复 [Prom 采集器](../integrations/prom.md)内存占用过大问题（#1905）
+
+### Breaking Changes {#cl-1.16.1-bc}
+
+- Tracing 数据采集的时候，所有 meta 信息中带 `-` 的字段名不会再被替换成 `_`。之所以这么修改，是为了避免 Tracing 数据和日志数据关联不上的问题（#1903）
+- 所有 [Prom 采集器](../integrations/prom.md) 默认采用流式采集，以免未知的 Exporter 因数据量巨大造成 Datakit 大量的内存开销。
+
+---
+
+## 1.16.0(2023/09/21) {#cl-1.16.0}
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.16.0-new}
+
+- 新增 Neo4j 采集器（#1846）
+- [RUM](../integrations/rum.md#upload-delete) 采集器新增 sourcemap 文件上传、删除和校验接口，并移除 DCA 服务中 sourcemap 上传和删除接口 (#1860)
+- 新增 IBM Db2 采集器的监控视图和检测库（#1862）
+
+### 问题修复 {#cl-1.16.0-fix}
+
+- 修复环境变量 `ENV_GLOBAL_HOST_TAGS` 中使用 `__datakit_hostname` 无法获取主机 hostname 的问题 (#1874)
+- 修复 [host_processes](../integrations/host_processes.md) 采集器指标数据缺少 `open_files` 字段 (#1875)
+- 修复 Pinpoint 采集器 resource 大量为空的情况和 Pinpoint 占用内存过高问题 (#1857 #1849)
+
+### 功能优化 {#cl-1.16.0-opt}
+
+- 优化 Kubernetes 指标采集和对象采集的效率 (#1854)
+- 优化日志采集的 metrics 输出 (#1881)
+- Kubernetes Node 对象采集添加 unschedulable 和 node_ready 两个新字段 (#1886)
+- [Oracle 采集器](../integrations/oracle.md)支持 Linux ARM64 架构（#1859）
+- `logstreaming` 采集器增加集成测试（#1570）
+- [Datakit 开发文档](development.md)中增加 IBM Db2 采集器内容（#1870）
+- [Kafka](../integrations/kafka.md)、[MongoDB](../integrations/mongodb.md) 采集器文档完善（#1883）
+- [MySQL](../integrations/mysql.md) 采集器监控帐号创建时，MySQL 8.0+ 默认采用 `caching_sha2_password` 加密方式 (#1882)
+- 优化 [`bug report`](why-no-data.md#bug-report) 命令采集 syslog 文件过大问题（#1872）
+
+### Breaking Changes {#cl-1.16.0-bc}
+
+- 删除 DCA 服务中的 sourcemap 文件上传和删除接口，相关接口移至 [RUM](../integrations/rum.md#upload-delete) 采集器
+
+---
+
+## 1.15.1(2023/09/12) {#cl-1.15.1}
+
+### 问题修复 {#cl-1.15.1-fix}
+
+- 修复 logfwd 重复采集的问题
+
+---
+
+## 1.15.0(2023/09/07) {#cl-1.15.0}
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.15.0-new}
+
+- [Windows](datakit-install.md#resource-limit) 支持内存/CPU 限制（#1850）
+- 新增 [IBM Db2 采集器](../integrations/db2.md)（#1818）
+
+### 问题修复 {#cl-1.15.0-fix}
+
+- 修复容器采集配置 include/exclude 的 double star 问题 (#1855)
+- 修复一处 k8s Service 对象数据的字段错误
+
+### 功能优化 {#cl-1.15.0-opt}
+
+- [DataKit 精简版](datakit-install.md#lite-install)支持[日志](../integrations/logging.md)采集（#1861）
+- [Bug Report](why-no-data.md#bug-report) 支持禁用 profile 数据采集（避免给当前 Datakit 造成压力）（#1868）
+- Pipeline
+    - 增加函数 `parse_int()` 和 `format_int()`（#1824）
+    - 数据聚合函数 `agg_create()` 和 `agg_metric()` 支持输出任意类别的数据（#1865）
+- 优化 Datakit 镜像大小（#1869）
+- 文档
+    - 增加[Datakit 指标性能测试报告](../integrations/datakit-metric-performance.md)（#1867）
+    - 增加[external 采集器的使用文档](../integrations/external.md)（#1851）
+    - 增加不同 Trace 传递说明的[文档](../integrations/tracing-propagator.md)（#1824）
+
+---
+
+## 1.14.2(2023/09/04) {#cl-1.14.2}
+
+### 问题修复 {#cl-1.14.2-fix}
+
+- 修复 Kubernetes 中 Pod 上 Prometheus Annotation 缺少 `instance` tag 的问题
+- 修复 Pod 对象无法采集的问题
+
+---
+
+## 1.14.1(2023/08/30) {#cl-1.14.1}
+
+### 问题修复 {#cl-1.14.1-fix}
+
+- Kubernetes 中 Prometheus 指标采集优化（流式采集），避免可能的大量内存占用（#1853/#1845）
+- 修复日志[颜色字符处理](../integrations/logging.md#ansi-decode)
+    - Kubernetes 下环境变量为 `ENV_INPUT_CONTAINER_LOGGING_REMOVE_ANSI_ESCAPE_CODES`
+
+---
+
+## 1.14.0(2023/08/24) {#cl-1.14.0}
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.14.0-new}
+
+- 新增采集器 [NetFlow](../integrations/netflow.md)（#1821）
+- 新增[黑名单调试器](datakit-tools-how-to.md#debug-filter)（#1787）
+- 新增 Kubernetes StatefulSet 指标和对象采集，新增 `replicas_desired` 对象字段（#1822）
+- 新增 [DK_LITE](datakit-install.md#lite-install) 环境变量，用于安装 DataKit 精简版（#123）
+
+### 问题修复 {#cl-1.14.0-fix}
+
+- 修复 Container 和 Kubernetes 采集没有正确添加 HostTags 和 ElectionTags 的问题（#1833）
+- 修复 [MySQL](../integrations/mysql.md#input-config) 自定义采集 Tags 为空时指标无法采集的问题（#1835）
+
+### 功能优化 {#cl-1.14.0-opt}
+
+- 增加 System 采集器中的 [process_count](../integrations/system.md#metric) 指标表示当前机器的进程数（#1838）
+- 去掉 Process 采集器中的 [open_files_list](../integrations/host_processes.md#object) 字段（#1838）
+- 增加[主机对象](../integrations/hostobject.md#faq)采集器文档中指标丢失的处理案例（#1838）
+- 优化 Datakit 视图，完善 Datakit Prometheus 指标文档
+- 优化 Pod/容器 日志采集的 [mount 方式](../integrations/container-log.md#logging-with-inside-config) (#1844)
+- 增加 Process、System 采集器集成测试（#1841/#1842）
+- 优化 etcd 集成测试（#1847）
+- 升级 Golang 1.19.12（#1516）
+- 增加通过 `ash` 命令[安装 DataKit](datakit-install.md#get-install) (#123)
+- [RUM 采集](../integrations/rum.md)支持自定义指标集，默认的指标集新增 `telemetry`（#1843）
+
+### 兼容调整 {#cl-1.14.0-brk}
+
+- 移除 Datakit 端的 Sinker 功能，将其功能转移到 [Dataway 侧实现](../deployment/dataway-sink.md)（#1801）
+- 移除 Kubernetes Deployment 指标数据的 `pasued` 和 `condition` 字段，新增对象数据 `paused` 字段
+
 ---
 
 ## 1.13.2(2023/08/15) {#cl-1.13.2}
@@ -31,7 +618,7 @@
 - 主机对象采集器支持调试命令。（#1802）
 - KafkaMQ 增加支持外部插件 handle 功能 (#1797)
 - 容器采集支持 cri-o 运行时。 (#1763)
-- Pipeline 增加用于指标生成的 create_point 函数 (#1803)
+- Pipeline 增加用于指标生成的 `create_point` 函数 (#1803)
 - 增加 PHP 语言的 Profiling 支持 （#1811）
 
 ### 问题修复 {#cl-1.13.0-fix}
@@ -433,7 +1020,7 @@
 ### 功能优化 {#cl-1.5.9-opt}
 
 - 优化升级功能，避免 *datakit.conf* 文件被破坏(#1449)
-- 优化 [cgroup 配置](datakit-conf.md#enable-cgroup)，移除 CPU 最小值限制(#1538)
+- 优化 [cgroup 配置](datakit-conf.md#resource-limit)，移除 CPU 最小值限制(#1538)
 - 优化 *self* 采集器，我们能选择是否开启该采集器，同时对其采集性能做了一些优化(#1386)
 - 由于有了新的故障排查手段，简化了现有 monitor 展示(#1505)
 - [Prom 采集器](prom.md)允许增加 *instance tag*，以保持跟原生 Prometheus 体系一致(#1517)
@@ -472,7 +1059,7 @@
 ### 功能优化 {#cl-1.5.8-opt}
 
 - 补全 Jenkins 采集器内存有关的指标(#1489)
-- 完善 [cgroup v2](datakit-conf.md#enable-cgroup) 支持(#1494)
+- 完善 [cgroup v2](datakit-conf.md#resource-limit) 支持(#1494)
 - Kubernetes 安装时增加环境变量（`ENV_CLUSTER_K8S_NAME`）来配置 cluster 名称(#1504)
 - Pipeline
     - [`kv_split()`](../developers/pipeline/pipeline-built-in-function.md#fn-kv_split) 函数增加强制保护措施，避免数据膨胀(#1510)
@@ -1694,7 +2281,7 @@ $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
 Set-ExecutionPolicy Bypass -scope Process -Force;
 Import-Module bitstransfer;
 start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
-powershell .install.ps1;
+powershell ./.install.ps1;
 ```
 
 ---

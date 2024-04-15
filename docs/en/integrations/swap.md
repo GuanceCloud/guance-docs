@@ -1,18 +1,31 @@
+---
+title     : 'Swap'
+summary   : 'Collect metrics of host swap'
+__int_icon      : 'icon/swap'
+dashboard :
+  - desc  : 'Swap'
+    path  : 'dashboard/en/swap'
+monitor   :
+  - desc  : 'Host monitoring library'
+    path  : 'monitor/en/host'
+---
 
+<!-- markdownlint-disable MD025 -->
 # Swap
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
+## Configuration {#config}
+
 The swap collector is used to collect the usage of the host swap memory.
 
-## Preconditions {#requrements}
-
-None
-
-## Configuration {#config}
+<!-- markdownlint-disable MD046 -->
+## Collector Configuration {#input-config}
 
 === "Host Installation"
 
@@ -36,22 +49,41 @@ None
 
 === "Kubernetes"
 
-    Modifying configuration parameters as environment variables is supported:
-    
-    | Environment Variable Name                | Corresponding Configuration Parameter Item | Parameter Example                                                     |
-    | :---                      | ---              | ---                                                          |
-    | `ENV_INPUT_SWAP_TAGS`     | `tags`           | `tag1=value1,tag2=value2`. If there is a tag with the same name in the configuration file, it will be overwritten |
-    | `ENV_INPUT_SWAP_INTERVAL` | `interval`       | `10s`                                                        |
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
-## Measurements {#measurements}
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    
+    - **ENV_INPUT_SWAP_INTERVAL**
+    
+        Collect interval
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_SWAP_TAGS**
+    
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
+
+<!-- markdownlint-enable -->
+
+## Metric {#metric}
 
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.swap.tags]`:
 
-``` toml
- [inputs.swap.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-  # ...
+```toml
+[inputs.swap.tags]
+ # some_tag = "some_value"
+ # more_tag = "some_other_value"
+ # ...
 ```
 
 

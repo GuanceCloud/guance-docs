@@ -27,6 +27,8 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
 
 - CoreDNS [配置](https://coredns.io/plugins/metrics/){:target="_blank"}启用 `prometheus` 插件
 
+### 采集器配置 {#input-config}
+
 <!-- markdownlint-disable MD046 -->
 === "主机安装"
 
@@ -96,7 +98,7 @@ CoreDNS 采集器用于采集 CoreDNS 相关的指标数据。
     目前可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
 <!-- markdownlint-enable -->
 
-## 指标 {#metrics}
+## 指标 {#metric}
 
 
 

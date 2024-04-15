@@ -1,5 +1,5 @@
 ---
-title     : 'tidb'
+title     : 'TiDB'
 summary   : '采集 TiDB cluster、TiDB、Etcd、Region 等相关组件指标信息'
 __int_icon: 'icon/tidb'
 dashboard :

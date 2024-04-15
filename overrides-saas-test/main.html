@@ -7,8 +7,7 @@
   name="description"
   content="观测云提供大量标准化数据源,可观测性,observability,可观察性,云计算,云原生,SaaS 版配置简单,性能强大,对比开源自建降低 50% 成本,通过数据监测多云、多应用及业务,打造云时代的系统可观测平台,解放和发展数字化生产力"
 />
-{% endblock %} {% block libs %} {{ super() }} {%- set search_config = { "base": base_url, "search": {}} -%} {% if
-"search" in config["plugins"] %} {%- set searchConfig = config.plugins.search.config -%} {%- set search =
+{% endblock %} {% block libs %} {{ super() }} {%- set search_config = { "base": base_url, "search": {}} -%} {% if "material/search" in config["plugins"] %} {%- set searchConfig = config.plugins['material/search'].config -%} {%- set search =
 search_config.search -%} {%- set _ = search.update({"lang": searchConfig.clang}) -%} {%- set _ = search.update({"api":
 searchConfig.api}) -%}
 <script id="__search_config" type="application/json">

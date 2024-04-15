@@ -1,7 +1,0 @@
-nav:
-  - 'Select Register Site': select-site.md
-  - 'Deploy the First DataKit': deploy-datakit.md
-  - 'Configure Datakit': configure-datakit.md
-  - 'Enable Log Collection': enable-log-collection.md
-  - 'Custom Dashboard': custom-dashboard.md
-  - 'Explorer Instructions': explorer-search.md

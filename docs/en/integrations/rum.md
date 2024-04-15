@@ -1,5 +1,19 @@
+---
+title     : 'RUM'
+summary   : 'Collect user behavior data'
+__int_icon      : 'icon/rum'
+dashboard :
+  - desc  : 'N/A'
+    path  : '-'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
-# Collector Configuration
+<!-- markdownlint-disable MD025 -->
+# RUM
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -8,7 +22,9 @@
 
 RUM (Real User Monitor) collector is used to collect user access monitoring data reported by web page or mobile terminal.
 
-## Access Mode {#supported-platforms}
+## Configuration {#config}
+
+### Access Mode {#supported-platforms}
 
 <div class="grid cards" markdown>
 - :material-web: [__JavaScript__](../real-user-monitoring/web/app-access.md)
@@ -19,7 +35,7 @@ RUM (Real User Monitor) collector is used to collect user access monitoring data
 - :material-react:[__ReactNative__](../real-user-monitoring/react-native/app-access.md)
 </div>
 
-## Preconditions {#requirements}
+### Preconditions {#requirements}
 
 - Deploy DataKit to be publicly accessible
 
@@ -28,8 +44,8 @@ It is recommended that RUM be deployed separately on the public network, not wit
 - On the DataKit [install IP geo-Repository](datakit-tools-how-to.md#install-ipdb)
 - Since [1.2.7](../datakit/changelog.md#cl-1.2.7), due to the adjustment of the installation method of IP geographic information base, the default installation no longer comes with its own IP information base, but needs to be installed manually.
 
-## Configuration {#config}
-
+### Collector Configuration {#input-config}
+<!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
     Go to the `conf.d/rum` directory under the DataKit installation directory, copy `rum.conf.sample` and name it `rum.conf`. Examples are as follows:
@@ -42,8 +58,11 @@ It is recommended that RUM be deployed separately on the public network, not wit
       ## Default value set as below. DO NOT MODIFY THESE ENDPOINTS if not necessary.
       endpoints = ["/v1/write/rum"]
     
-      ## use to upload rum screenshot,html,etc...
+      ## used to upload rum session replay.
       session_replay_endpoints = ["/v1/write/rum/replay"]
+    
+      ## specify which metrics should be captured.
+      measurements = ["view", "resource", "action", "long_task", "error", "telemetry"]
     
       ## Android command-line-tools HOME
       android_cmdline_home = "/usr/local/datakit/data/rum/tools/cmdline-tools"
@@ -60,6 +79,18 @@ It is recommended that RUM be deployed separately on the public network, not wit
       ## such as https://github.com/everettjf/atosl-rs
       atos_bin_path = "/usr/local/datakit/data/rum/tools/atosl"
     
+      # Provide a list to resolve CDN of your static resource.
+      # Below is the Datakit default built-in CDN list, you can uncomment that and change it to your cdn list,
+      # it's a JSON array like: [{"domain": "CDN domain", "name": "CDN human readable name", "website": "CDN official website"},...],
+      # domain field value can contains '*' as wildcard, for example: "kunlun*.com",
+      # it will match "kunluna.com", "kunlunab.com" and "kunlunabc.com" but not "kunlunab.c.com".
+      # cdn_map = '''
+      # [
+      #   {"domain":"15cdn.com","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"},
+      #   {"domain":"tzcdn.cn","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"}
+      # ]
+      # '''
+    
       ## Threads config controls how many goroutines an agent cloud start to handle HTTP request.
       ## buffer is the size of jobs' buffering of worker channel.
       ## threads is the total number fo goroutines at running time.
@@ -74,17 +105,26 @@ It is recommended that RUM be deployed separately on the public network, not wit
       #   path = "./rum_storage"
       #   capacity = 5120
     
-      # Provide a list to resolve CDN of your static resource.
-      # Below is the Datakit default built-in CDN list, you can uncomment that and change it to your cdn list,
-      # it's a JSON array like: [{"domain": "CDN domain", "name": "CDN human readable name", "website": "CDN official website"},...],
-      # domain field value can contains '*' as wildcard, for example: "kunlun*.com",
-      # it will match "kunluna.com", "kunlunab.com" and "kunlunabc.com" but not "kunlunab.c.com".
-      # cdn_map = '''
-      # [
-      #   {"domain":"15cdn.com","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"},
-      #   {"domain":"tzcdn.cn","name":"腾正安全加速(原 15CDN)","website":"https://www.15cdn.com"}
-      # ]
-      # '''
+      ## session_replay config is used to control Session Replay uploading behavior.
+      ## cache_path set the disk directory where temporarily cache session replay data.
+      ## cache_capacity_mb specify the max storage space (in MiB) that session replay cache can use.
+      ## clear_cache_on_start set whether we should clear all previous session replay cache on restarting Datakit.
+      ## upload_workers set the count of session replay uploading workers.
+      ## send_timeout specify the http timeout when uploading session replay data to dataway.
+      ## send_retry_count set the max retry count when sending every session replay request.
+      ## filter_rules set the the filtering rules that matched session replay data will be dropped, 
+      ## all rules are of relationship OR, that is to day, the data match any one of them will be dropped.
+      # [inputs.rum.session_replay]
+      #   cache_path = "/usr/local/datakit/cache/session_replay"
+      #   cache_capacity_mb = 20480
+      #   clear_cache_on_start = false
+      #   upload_workers = 16
+      #   send_timeout = "75s"
+      #   send_retry_count = 3
+      #   filter_rules = [
+      #       "{ service = 'xxx' or version IN [ 'v1', 'v2'] }",
+      #       "{ app_id = 'yyy' and env = 'production' }"
+      #   ]
     
     ```
 
@@ -98,14 +138,14 @@ It is recommended that RUM be deployed separately on the public network, not wit
 
 === "Kubernetes"
 
-    In datakit.yaml, the environment variable `ENV_DEFAULT_ENABLED_INPUTS` adds the rum collector name (as shown in the first in `value` below):
+    In *datakit.yaml*, the environment variable `ENV_DEFAULT_ENABLED_INPUTS` adds the rum collector name (as shown in the first in `value` below):
 
     ```yaml
     - name: ENV_DEFAULT_ENABLED_INPUTS
       value: rum,cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container
     ```
-
-## Security Restrictions {#security-setting}
+<!-- markdownlint-enable -->
+### Security Restrictions {#security-setting}
 
 Because RUM DataKit is generally deployed in a public network environment, but only uses a specific [DataKit API](apis.md) interface, other interfaces cannot be opened. API access control can be tightened by modifying the following *public_apis* field configuration in *datakit.conf*:
 
@@ -136,7 +176,7 @@ You can disable public network access to DataKit 404 pages with the following co
 disable_404page = true
 ```
 
-## Measurements {#measurements}
+## RUM {#rum}
 
 The RUM collector collects the following metric sets by default:
 
@@ -151,9 +191,9 @@ The RUM collector collects the following metric sets by default:
 Usually, js files in production environment or App code on mobile side will be confused and compressed to reduce the size of application. The call stack when an error occurs is quite different from the source code at development time, which is inconvenient for debugging (`troubleshoot`). If you need to locate errors in the source code, you have to rely on the `sourcemap` file.
 
 DataKit supports this mapping of source code file information by zipping the corresponding symbol table file, named *<app_id\>-<env\>-<version\>.zip* and uploading it to *<DataKit Installation Directory\>/data/rum/<platform\>* so that the reported `error` measurement data can be automatically converted and the `error_stack_source` field appended to the metric set.
-
-### Install the sourcemap Toolset {#install-tools}
-
+<!-- markdownlint-disable MD025 -->
+### Install the sourcemap tools {#install-tools}
+<!-- markdownlint-enable -->
 First, you need to install the corresponding symbol restoration tool. Datakit provides a one-click installation command to simplify the installation of the tool:
 
 ```shell
@@ -162,9 +202,8 @@ sudo datakit install --symbol-tools
 
 If a software installation fails during the installation process, you may need to manually install the corresponding software according to the error prompt.
 
-
 ### Zip Packaging Instructions {#zip}
-
+<!-- markdownlint-disable MD046 -->
 === "Web"
 
     After the js file is obfuscated and compressed by webpack, the `.map` file is zip compressed and packaged, and then copied to the *<DataKit installation directory\>/data/rum/web* directory. It is necessary to ensure that the uncompressed file path of the compressed package is consistent with the URL path in `error_stack`. Assume the following `error_stack`：
@@ -328,7 +367,6 @@ If a software installation fails during the installation process, you may need t
 
 ---
 
-<!-- markdownlint-disable MD046 -->
 ???+ attention "For RUM Headless"
 
     For [RUM headless](../dataflux-func/headless.md), you can upload these package files on web pages, and following upload/delete operations are not required.
@@ -336,28 +374,38 @@ If a software installation fails during the installation process, you may need t
 
 ### File Upload and Delete {#upload-delete}
 
-After packaging, in addition to manually copying to Datakit related directories, the file can also be uploaded and deleted through http interface, provided that Datakit starts DCA service.
+After packaging, in addition to manually copying to Datakit related directories, the file can also be uploaded and deleted through http interface.
 
-Upload:
+> From Datakit [:octicons-tag-24: Version-1.16.0](../datakit/changelog.md#cl-1.16.0), sourcemap related apis were moved from DCA service to DataKit service.
+
+[Upload](../datakit/apis.md#api-sourcemap-upload):
 
 ```shell
-curl -X POST '<dca_address>/v1/rum/sourcemap?app_id=<app_id>&env=<env>&version=<version>&platform=<platform>' -F "file=@<sourcemap_path>" -H "Content-Type: multipart/form-data"
+curl -X PUT '<datakit_address>/v1/sourcemap?app_id=<app_id>&env=<env>&version=<version>&platform=<platform>&token=<token>' -F "file=@<sourcemap_path>" -H "Content-Type: multipart/form-data"
 ```
 
-Delete:
+[Delete](../datakit/apis.md#api-sourcemap-delete):
 
 ```shell
-curl -X DELETE '<dca_address>/v1/rum/sourcemap?app_id=<app_id>&env=<env>&version=<version>&platform=<platform>'
+curl -X DELETE '<datakit_address>/v1/sourcemap?app_id=<app_id>&env=<env>&version=<version>&platform=<platform>&token=<token>'
+```
+
+[Verify sourcemap](../datakit/apis.md#api-sourcemap-check):
+
+```shell
+curl -X GET '<datakit_address>/v1/sourcemap/check?app_id=<app_id>&env=<env>&version=<version>&platform=<platform>&error_stack=<error_stack>'
 ```
 
 Variable description:
 
-- `<dca_address>`: DCA shost，such as `http://localhost:9531`
+- `<datakit_address>`: DataKit host，such as `http://localhost:9529`
+- `<token>`: The token is specified by dataway field in `datakit.conf`
 - `<app_id>`: RUM's application ID
 - `<env>`: RUM's tag `env`
 - `<version>`: RUM's tag `version`
 - `<platform>` RUM supported platform, currently support `web/miniapp/android/ios`
 - `<sourcemap_path>`: Path of zipped file path
+- `<error_stack>`: The error stack string
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
@@ -391,7 +439,7 @@ We can easily copy and modify the [built-in CDN Dict](built-in_cdn_dict_config.m
 
 ## RUM Session Replay {#rum-session-replay}
 
-Starting from version [:octicons-tag-24: Version-1.5.5](../datakit/changelog.md#cl-1.5.5), Datakit support to collect the data of RUM Session Replay. It needs you to add item `session_replay_endpoints` to RUM configuration as bellow and then restart Datakit. 
+As of version [:octicons-tag-24: Version-1.5.5](../datakit/changelog.md#cl-1.5.5), Datakit support to collect the data of RUM Session Replay. It needs you to add item `session_replay_endpoints` to RUM configuration as bellow and then restart Datakit.
 
 ```toml
 [[inputs.rum]]
@@ -406,6 +454,40 @@ Starting from version [:octicons-tag-24: Version-1.5.5](../datakit/changelog.md#
   ...
 ```
 
+<!-- markdownlint-disable MD046 -->
 ???+ info
 
-    RUM configuration file is located at `/usr/local/datakit/conf.d/rum/rum.conf` by default, depending on the operating system you use and the installation location of the Datakit.
+    RUM configuration file is located at */usr/local/datakit/conf.d/rum/rum.conf*(Linux/macOS) and *C:\\Program Files\\datakit\\conf.d\\rum*（Windows） by default, which depend on the operating system you use and the installation location of Datakit.
+<!-- markdownlint-enable -->
+
+### RUM Session Replay Filter {#rum-session-replay-filter}
+
+Starting from the Datakit [:octicons-tag-24: Version-1.20.0](../datakit/changelog.md#cl-1.20.0) version, it is supported to use configuration to filter out unnecessary session replay data. New The configuration item name is `filter_rules`, and the format is similar to the following (please refer to `rum.conf.sample` RUM sample configuration file):
+
+```toml
+[inputs.rum.session_replay]
+#   cache_path = "/usr/local/datakit/cache/session_replay"
+#   cache_capacity_mb = 20480
+#   clear_cache_on_start = false
+#   upload_workers = 16
+#   send_timeout = "75s"
+#   send_retry_count = 3
+   filter_rules = [
+       "{ service = 'xxx' or version IN [ 'v1', 'v2'] }",
+       "{ app_id = 'yyy' and env = 'production' }"
+   ]
+```
+
+`filter_rules` is an array of rules. There is an "OR" logical relationship between each rule. That is to say, a certain session replay data will be discarded as long as it hits any one of the rules. It will be discarded only if all the rules fail to hit. reserve. The fields currently supported by filtering rules are as shown in the following table:
+
+| Field name          | Type   | Description                                   | Example         |
+| ------------------- | ------ | --------------------------------------------- | --------------- |
+| `app_id`            | string | Application ID                                | appid_123456789 |
+| `service`           | string | service name                                  | user_center     |
+| `version`           | string | Service version                               | v1.0.0          |
+| `env`               | string | Service deployment environment                | production      |
+| `sdk_name`          | string | RUM SDK name                                  | df_web_rum_sdk  |
+| `sdk_version`       | string | RUM SDK version                               | 3.1.5           |
+| `source`            | string | data source                                   | browser         |
+| `has_full_snapshot` | string | Whether it is full data                       | false           |
+| `raw_segment_size`  | int    | Size of raw session replay data (unit: bytes) | 656             |

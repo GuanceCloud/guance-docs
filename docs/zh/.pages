@@ -3,6 +3,7 @@ nav:
   - 更新日志: release-notes
   - <br/>开始使用: ""
   - 快速入门: getting-started
+  - 版本说明: plans
   - DataKit: datakit
   - 集成: integrations
   - <br/>产品功能: ""
@@ -30,6 +31,8 @@ nav:
   - <br/>其他: ""
   - DQL: dql
   - 最佳实践: best-practices
+  - 第三方接入: third-party
+  - 数据安全: security
   - 移动端: mobile
   - 常见问题: faq
   - 相关协议: agreements

@@ -1,5 +1,19 @@
+---
+title     : 'Kafka'
+summary   : 'Collect metrics of Kafka'
+__int_icon      : 'icon/kafka'
+dashboard :
+  - desc  : 'Kafka'
+    path  : 'dashboard/en/kafka'
+monitor   :
+  - desc  : 'Kafka'
+    path  : 'monitor/en/kafka'
+---
 
+<!-- markdownlint-disable MD025 -->
 # Kafka
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
@@ -8,11 +22,13 @@
 
 Collect Kafka indicators and logs and report them to Guance Cloud to help you monitor and analyze various abnormal situations of Kafka.
 
-## Preconditions {#requirements}
+## Configuration {#config}
+
+### Requirements {#requirements}
 
 Install or download [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar){:target="_blank"}. The downloaded Jolokia jar package is already available in the `data` directory under the DataKit installation directory.
 
-Jolokia is a java agent of Kafka, which provides an external interface using json as data format based on HTTP protocol for DataKit to use. When Kafka starts, first configure the `KAFKA_OPTS` environment variable: (port can be modified to be available according to the actual situation)
+Jolokia is a Java agent of Kafka, which provides an external interface using JSON as data format based on HTTP protocol for DataKit to use. When Kafka starts, first configure the `KAFKA_OPTS` environment variable: (port can be modified to be available according to the actual situation)
 
 ```shell
 export KAFKA_OPTS="$KAFKA_OPTS -javaagent:/usr/local/datakit/data/jolokia-jvm-agent.jar=host=*,port=8080"
@@ -24,40 +40,25 @@ Alternatively, you can start Jolokia separately and point it to the Kafka proces
 java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <Kafka-PID>
 ```
 
-After Kafka service is started, if you need to collect Producer/Consumer/Connector indicators, you need to configure Jolokia for them respectively.
+<!-- markdownlint-disable MD046 -->
 
-Referring to [KAFKA QUICKSTART](https://kafka.apache.org/quickstart){:target="_blank"}, configure the `KAFKA_OPTS` environment variable for the example of Producer, as follows:
+???+ attention
 
-```shell
-export KAFKA_OPTS="-javaagent:/usr/local/datakit/data/jolokia-jvm-agent.jar=host=127.0.0.1,port=8090"
-```
+    Jolokia not allows change port number in the running state. If found command with `--port` can't change the port, this indicates Jolokia is still in running.
 
-Go into the Kafka directory and start a Producer:
+    If want to change Jolokia port, you must exit Jolokia first and restart it.
 
-```shell
-bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092
-```
+???+ tip
 
-Copy a Kafka.conf to open multiple Kafka collectors and configure the url:
+    Exit Jolokia command: `java -jar </path/to/jolokia-jvm-agent.jar> --quiet stop <Kafka-PID>`
 
-```toml
-  urls = ["http://localhost:8090/jolokia"]
-```
+    For more Jolokia command information can refer to [here](https://jolokia.org/reference/html/agents.html#jvm-agent){:target="_blank"}.
 
-And remove comments from the fields in the collect producer metrics section:
+<!-- markdownlint-enable -->
 
-```toml
-  # The following metrics are available on producer instances.  
-  [[inputs.kafka.metric]]
-    name       = "kafka_producer"
-    mbean      = "kafka.producer:type=*,client-id=*"
-    tag_keys   = ["client-id", "type"]
-```
+### Collector Configuration {#input-config}
 
-Restart Datakit, which then collects metrics for the Producer instance.
-
-## Configuration {#config}
-
+<!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
     Go to the `conf.d/db` directory under the DataKit installation directory, copy `kafka.conf.sample` and name it `kafka.conf`. Examples are as follows:
@@ -201,8 +202,9 @@ Restart Datakit, which then collects metrics for the Producer instance.
 === "Kubernetes"
 
     The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-enable -->
 
-## Measurements {#measurements}
+## Metric {#metric}
 
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.kafka.tags]`:
 
@@ -216,6 +218,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 ### `kafka_controller`
+
+In Kafka cluster mode, a unique controller node will be elected, and only the controller node will receive valid metrics.
 
 - tag
 
@@ -570,6 +574,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `kafka_replica_manager`
 
+
+
 - tag
 
 
@@ -615,6 +621,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `kafka_purgatory`
 
+
+
 - tag
 
 
@@ -647,6 +655,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 ### `kafka_request`
+
+
 
 - tag
 
@@ -752,6 +762,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 ### `kafka_topics`
+
+
 
 - tag
 
@@ -896,6 +908,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `kafka_topic`
 
+
+
 - tag
 
 
@@ -949,6 +963,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `kafka_partition`
 
+
+
 - tag
 
 
@@ -972,6 +988,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 ### `kafka_zookeeper`
+
+
 
 - tag
 
@@ -1001,6 +1019,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `kafka_network`
 
+
+
 - tag
 
 
@@ -1023,6 +1043,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 ### `kafka_log`
+
+
 
 - tag
 
@@ -1047,6 +1069,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 ### `kafka_consumer`
+
+This metrics needs to be collected on the Consumer instance
 
 - tag
 
@@ -1133,6 +1157,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `kafka_producer`
 
+This metrics needs to be collected on the Producer instance
+
 - tag
 
 
@@ -1208,6 +1234,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 ### `kafka_connect`
+
+This metrics needs to be collected on the Connect instance
 
 - tag
 
@@ -1302,14 +1330,13 @@ To collect kafka's log, open `files` in kafka.conf and write to the absolute pat
     files = ["/usr/local/var/log/kafka/error.log","/usr/local/var/log/kafka/kafka.log"]
 ```
 
-
 When log collection is turned on, a log with a log `source` of `kafka` is generated by default.
 
 >Note: DataKit must be installed on Kafka's host to collect Kafka logs.
 
 Example of cutting logs:
 
-```
+```log
 [2020-07-07 15:04:29,333] DEBUG Progress event: HTTP_REQUEST_COMPLETED_EVENT, bytes: 0 (io.confluent.connect.s3.storage.S3OutputStream:286)
 ```
 
@@ -1321,3 +1348,42 @@ The list of cut fields is as follows:
 | name   | io.confluent.connect.s3.storage.S3OutputStream:286     |
 | status | DEBUG                                                  |
 | time   | 1594105469333000000                                    |
+
+## FAQ {#faq}
+
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: Why can't see `kafka_producer` / `kafka_producer` / `kafka_connect` measurements? {#faq-no-data}
+
+After Kafka service is started, if you need to collect Producer/Consumer/Connector indicators, you need to configure Jolokia for them respectively.
+
+Referring to [Kafka Quick Start](https://kafka.apache.org/quickstart){:target="_blank"}, configure the `KAFKA_OPTS` environment variable for the example of Producer, as follows:
+
+```shell
+export KAFKA_OPTS="-javaagent:/usr/local/datakit/data/jolokia-jvm-agent.jar=host=127.0.0.1,port=8090"
+```
+
+Go into the Kafka directory and start a Producer:
+
+```shell
+bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092
+```
+
+Copy a Kafka.conf to open multiple Kafka collectors and configure the url:
+
+```toml
+  urls = ["http://localhost:8090/jolokia"]
+```
+
+And remove comments from the fields in the collect producer metrics section:
+
+```toml
+  # The following metrics are available on producer instances.  
+  [[inputs.kafka.metric]]
+    name       = "kafka_producer"
+    mbean      = "kafka.producer:type=*,client-id=*"
+    tag_keys   = ["client-id", "type"]
+```
+
+Restart Datakit, which then collects metrics for the Producer instance.
+
+<!-- markdownlint-enable -->

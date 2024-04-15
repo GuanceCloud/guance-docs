@@ -26,8 +26,8 @@
 
 3、您还可以进行以下操作：
 
-- 查询：在 🔍栏 基于监控器名称进行搜索。  
-- 删除：Hover 至某条监控器，可点击右侧 :fontawesome-regular-trash-can: 进行删除。<br/>您还可以点击名称旁的 :material-crop-square: ，即可选中特定图表批量删除。 
+- 查询：基于监控器名称进行搜索。  
+- 删除：Hover 至某条监控器，可点击右侧 :fontawesome-regular-trash-can: 进行删除。您还可以点击名称旁的 :material-crop-square: ，即可选中特定图表批量删除。 
 - 点击名称旁的 :material-crop-square: ，即可选中特定图表批量创建新的监控器。
 
 ![](../img/custom-monitor-2.png)

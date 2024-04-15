@@ -17,7 +17,7 @@ type Input struct {
     // 用户自定义 tag
     Tags map[string]string
     // (可选)采集到的指标缓存，在每个采集周期必须重新 make
-    collectCache []inputs.Measurement
+    collectCache []*point.Point
     // (可选)采集到的日志缓存，在每个采集周期必须重新 make
     loggingCache []*point.Point
     // 操作系统类型
@@ -362,6 +362,8 @@ datakit -M --vvv            # 检查所有采集器的运行情况
     sudo apt-get install -y linux-headers-$(uname -r)
     # Centos: TODO
     ```
+
+    - IBM Db2 ODBC/CLI driver（仅限 Linux 操作系统）。方法参见 [IBM Db2 的集成文档](../integrations/db2.md#reqirement){:target="_blank"}。
 
 === "Mac"
 

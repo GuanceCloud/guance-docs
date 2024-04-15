@@ -35,6 +35,11 @@ Prom 采集器可以获取各种 Prometheus Exporters 暴露出来的指标数�
       ## Exporter URLs.
       urls = ["http://127.0.0.1:9100/metrics", "http://127.0.0.1:9200/metrics"]
     
+      ## Stream Size. 
+      ## The source stream segmentation size.
+      ## Default 1, source stream undivided. 
+      # stream_size = 1
+    
       ## Unix Domain Socket URL. Using socket to request data when not empty.
       uds_path = ""
     
@@ -107,9 +112,9 @@ Prom 采集器可以获取各种 Prometheus Exporters 暴露出来的指标数�
       ## Customize authentification. For now support Bearer Token only.
       ## Filling in 'token' or 'token_file' is acceptable.
       # [inputs.prom.auth]
-      # type = "bearer_token"
-      # token = "xxxxxxxx"
-      # token_file = "/tmp/token"
+        # type = "bearer_token"
+        # token = "xxxxxxxx"
+        # token_file = "/tmp/token"
     
       ## Customize measurement set name.
       ## Treat those metrics with prefix as one set.
@@ -123,19 +128,20 @@ Prom 采集器可以获取各种 Prometheus Exporters 暴露出来的指标数�
         name = "etcd_server"
     
       ## Not collecting those data when tag matched.
-      [inputs.prom.ignore_tag_kv_match]
-      # key1 = [ "val1.*", "val2.*"]
-      # key2 = [ "val1.*", "val2.*"]
+      # [inputs.prom.ignore_tag_kv_match]
+        # key1 = [ "val1.*", "val2.*"]
+        # key2 = [ "val1.*", "val2.*"]
     
       ## Add HTTP headers to data pulling.
-      [inputs.prom.http_headers]
-      # Root = "passwd"
-      # Michael = "1234"
+      # [inputs.prom.http_headers]
+        # Root = "passwd"
+        # Michael = "1234"
     
       ## Rename tag key in prom data.
       [inputs.prom.tags_rename]
         overwrite_exist_tags = false
-        [inputs.prom.tags_rename.mapping]
+    
+      # [inputs.prom.tags_rename.mapping]
         # tag1 = "new-name-1"
         # tag2 = "new-name-2"
         # tag3 = "new-name-3"
@@ -147,9 +153,9 @@ Prom 采集器可以获取各种 Prometheus Exporters 暴露出来的指标数�
         service = "service_name"
     
       ## Customize tags.
-      [inputs.prom.tags]
-      # some_tag = "some_value"
-      # more_tag = "some_other_value"
+      # [inputs.prom.tags]
+        # some_tag = "some_value"
+        # more_tag = "some_other_value"
       
       ## (Optional) Collect interval: (defaults to "30s").
       # interval = "30s"
@@ -251,7 +257,7 @@ node_filesystem_files{device="/dev/disk1s4",fstype="apfs",mountpoint="/private/v
 node_filesystem_files{device="/dev/disk3s1",fstype="apfs",mountpoint="/Volumes/PostgreSQL 13.2-2"} 9.223372036854776e+18
 node_filesystem_files{device="/dev/disk5s1",fstype="apfs",mountpoint="/Volumes/Git 2.15.0 Mavericks Intel Universal"} 9.223372036854776e+18
 node_filesystem_files{device="map -hosts",fstype="autofs",mountpoint="/net"} 0
-node_filesystem_files{device="map auto_home",fstype="autof
+node_filesystem_files{device="map auto_home",fstype="autof}
 ```
 
 对 Influxdb 而言，上面数据的一种组织方式为

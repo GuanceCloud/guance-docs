@@ -108,22 +108,47 @@ GRANT SELECT ON DBA_USERS TO datakit;
 
 根据操作系统和 Oracle 版本选择安装对应的安装包，参考[这里](https://oracle.github.io/odpi/doc/installation.html){:target="_blank"}，如：
 
-```shell
-wget https://download.oracle.com/otn_software/linux/instantclient/211000/instantclient-basiclite-linux.x64-21.1.0.0.0.zip
-unzip instantclient-basiclite-linux.x64-21.1.0.0.0.zip
-```
+<!-- markdownlint-disable MD046 -->
 
-将解压后的目录文件路径添加到以下配置信息中的 `LD_LIBRARY_PATH` 环境变量路径中。
+=== "x86_64 系统"
 
-> 也可以直接下载我们预先准备好的依赖包：
+    ```shell
+    wget https://download.oracle.com/otn_software/linux/instantclient/2110000/instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip
+    unzip instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip
+    ```
 
-```shell
-wget -q https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.x64-19.8.0.0.0dbru.zip \
-    -O /usr/local/datakit/externals/instantclient-basiclite-linux.zip \
-    && unzip /usr/local/datakit/externals/instantclient-basiclite-linux.zip -d /opt/oracle;
-```
+    将解压后的目录文件路径添加到以下配置信息中的 `LD_LIBRARY_PATH` 环境变量路径中。
 
-另外，可能还需要安装额外的依赖库：
+    > 也可以直接下载我们预先准备好的依赖包：
+
+    ```shell
+    wget https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip \
+        -O /usr/local/datakit/externals/instantclient-basiclite-linux.zip \
+        && unzip /usr/local/datakit/externals/instantclient-basiclite-linux.zip -d /opt/oracle \
+        && mv /opt/oracle/instantclient_21_10 /opt/oracle/instantclient;
+    ```
+
+=== "ARM64 系统"
+
+    ```shell
+    wget https://download.oracle.com/otn_software/linux/instantclient/1919000/instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip
+    unzip instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip
+    ```
+
+    将解压后的目录文件路径添加到以下配置信息中的 `LD_LIBRARY_PATH` 环境变量路径中。
+
+    > 也可以直接下载我们预先准备好的依赖包：
+
+    ```shell
+    wget https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip \
+        -O /usr/local/datakit/externals/instantclient-basiclite-linux.zip \
+        && unzip /usr/local/datakit/externals/instantclient-basiclite-linux.zip -d /opt/oracle \
+        && mv /opt/oracle/instantclient_19_19 /opt/oracle/instantclient;
+    ```
+
+<!-- markdownlint-enable -->
+
+- 部分系统需要安装额外的依赖库：
 
 ```shell
 apt-get install -y libaio-dev libaio1
@@ -132,6 +157,7 @@ apt-get install -y libaio-dev libaio1
 ### 采集器配置 {#input-config}
 
 <!-- markdownlint-disable MD046 -->
+
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `oracle.conf.sample` 并命名为 `oracle.conf`。示例如下：
@@ -140,38 +166,54 @@ apt-get install -y libaio-dev libaio1
         
     [[inputs.external]]
       daemon = true
-      name = 'oracle'
-      cmd  = "/usr/local/datakit/externals/oracle"
+      name   = "oracle"
+      cmd    = "/usr/local/datakit/externals/oracle"
     
       ## Set true to enable election
       election = true
     
+      ## Modify below if necessary.
+      ## The password use environment variable named "ENV_INPUT_ORACLE_PASSWORD".
       args = [
-        '--interval'       , '1m'                        ,
-        '--host'           , '<your-oracle-host>'        ,
-        '--port'           , '1521'                      ,
-        '--username'       , '<oracle-user-name>'        ,
-        '--password'       , '<oracle-password>'         ,
-        '--service-name'   , '<oracle-service-name>'     ,
+        "--interval"        , "1m"                           ,
+        "--host"            , "<your-oracle-host>"           ,
+        "--port"            , "1521"                         ,
+        "--username"        , "<oracle-user-name>"           ,
+        "--service-name"    , "<oracle-service-name>"        ,
+        "--slow-query-time" , "0s"                           ,
+        "--log"             , "/var/log/datakit/oracle.log"  ,
       ]
       envs = [
-        'LD_LIBRARY_PATH=/opt/oracle/instantclient_19_8:$LD_LIBRARY_PATH',
+        "ENV_INPUT_ORACLE_PASSWORD=<oracle-password>",
+        "LD_LIBRARY_PATH=/opt/oracle/instantclient:$LD_LIBRARY_PATH",
       ]
     
       [inputs.external.tags]
         # some_tag = "some_value"
         # more_tag = "some_other_value"
     
+      ## Run a custom SQL query and collect corresponding metrics.
+      # [[inputs.external.custom_queries]]
+      #   sql = '''
+      #     SELECT
+      #       GROUP_ID, METRIC_NAME, VALUE
+      #     FROM GV$SYSMETRIC
+      #   '''
+      #   metric = "oracle_custom"
+      #   tags = ["GROUP_ID", "METRIC_NAME"]
+      #   fields = ["VALUE"]
+    
       #############################
-      # 参数说明(标 * 为必选项)
+      # Parameter Description (Marked with * is required field)
       #############################
-      # *--interval       : 采集的频度，最小粒度 5m
-      # *--host           : Oracle 实例地址(ip)
-      #  --port           : Oracle 监听端口
-      # *--username       : Oracle 用户名
-      # *--password       : Oracle 密码
-      # *--service-name   : Oracle 的服务名
-      # *--query          : 自定义查询语句，格式为 <sql:metricName:tags>，sql 为自定义采集的语句，tags 填入使用 tag 字段
+      # *--interval                   : Collect interval (Default is 1m).
+      # *--host                       : Oracle instance address (IP).
+      # *--port                       : Oracle listen port (Default is 1521).
+      # *--username                   : Oracle username.
+      # *--service-name               : Oracle service name.
+      # *--slow-query-time            : Oracle slow query time threshold defined. If larger than this, the executed sql will be reported.
+      # *--log                        : Collector log path.
+      # *ENV_INPUT_ORACLE_PASSWORD    : Oracle password.
     
     ```
     
@@ -180,6 +222,19 @@ apt-get install -y libaio-dev libaio1
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+
+???+ tip
+
+    上述配置会以命令行形式展示在进程列表中（包括密码），如果想隐藏密码，可以通过将密码写进环境变量 `ENV_INPUT_ORACLE_PASSWORD` 形式实现，示例：
+
+    ```toml
+    envs = [
+      "ENV_INPUT_ORACLE_PASSWORD=<YOUR-SAFE-PASSWORD>"
+    ] 
+    ```
+
+    该环境变量在读取密码时有最高优先级，即只要出现该环境变量，那密码就以该环境变量中的值为准。
+
 <!-- markdownlint-enable -->
 
 ## 指标 {#metric}
@@ -283,6 +338,7 @@ apt-get install -y libaio-dev libaio1
 |`logical_reads`|Logical reads per second|float|count|
 |`logons`|Number of logon attempts|float|count|
 |`memory_sorts_ratio`|Memory sorts ratio|float|percent|
+|`pga_over_allocation_count`|Over-allocating PGA memory count|float|count|
 |`physical_reads`|Physical reads per second|float|count|
 |`physical_reads_direct`|Physical reads direct per second|float|count|
 |`physical_writes`|Physical writes per second|float|count|
@@ -300,12 +356,45 @@ apt-get install -y libaio-dev libaio1
 
 
 
+## 慢查询支持 {#slow}
+
+Datakit 可以将执行超过用户自定义时间的 SQL 语句报告给观测云，在日志中显示，来源名是 `oracle_log`。
+
+该功能默认情况下是关闭的，用户可以在 Oracle 的配置文件中将其打开，方法如下：
+
+将 `--slow-query-time` 后面的值从 `0s` 改成用户心中的阈值，最小值 1 毫秒。一般推荐 10 秒。
+
+```conf
+  args = [
+    ...
+    '--slow-query-time' , '10s'                        ,
+  ]
+```
+
+???+ info "字段说明"
+    - `avg_elapsed`: 该 SQL 语句执行的平均耗时。
+    - `username`：执行该语句的用户名。
+    - `failed_obfuscate`：SQL 脱敏失败的原因。只有在 SQL 脱敏失败才会出现。SQL 脱敏失败后原 SQL 会被上报。
+    更多字段解释可以查看[这里](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/V-SQLAREA.html#GUID-09D5169F-EE9E-4297-8E01-8D191D87BDF7)。
+
+???+ attention "重要信息"
+    - 如果值是 `0s` 或空或小于 1 毫秒，则不会开启 Oracle 采集器的慢查询功能，即默认状态。
+    - 没有执行完成的 SQL 语句不会被查询到。
+
+## 自定义查询支持 {#custom}
+
+<!-- markdownlint-disable MD051 -->
+支持自定义查询数据采集。具体用法与例子见上面 [采集器配置](oracle.md#input-config) 里面的 `custom_queries`。
+<!-- markdownlint-enable -->
+
 ## FAQ {#faq}
 
 <!-- markdownlint-disable MD013 -->
 ### :material-chat-question: 如何查看 Oracle 采集器的运行日志？ {#faq-logging}
 
-由于 Oracle 采集器是外部采集器，其日志是单独存放在 *[Datakit 安装目录]/externals/oracle.log* 中。
+由于 Oracle 采集器是外部采集器，其日志是默认单独存放在 *[Datakit 安装目录]/externals/oracle.log* 中。
+
+另外，可以在配置文件中通过 `--log` 参数来指定日志文件位置。
 
 ### :material-chat-question: 配置好 Oracle 采集之后，为何 monitor 中无数据显示？ {#faq-no-data}
 
@@ -334,11 +423,11 @@ $ ldd <DataKit 安装目录>/externals/oracle
 externals/oracle: /lib64/libc.so.6: version  `GLIBC_2.14` not found (required by externals/oracle)
 ```
 
-- Oracle 采集器只能在 Linux/amd64 架构的 DataKit 使用，其它平台均不支持
+- Oracle 采集器只能在 Linux x86_64/ARM64 架构的 DataKit 使用，其它平台均不支持
 
-这意味着 Oracle 这个采集器只能在 amd64(X86) 的 Linux 上运行，其它平台一律无法运行当前的 Oracle 采集器。
+这意味着 Oracle 这个采集器只能在 x86_64/ARM64 的 Linux 上运行，其它平台一律无法运行当前的 Oracle 采集器。
 
-### 为什么看不到 `oracle_system` 指标集? {#faq-no-system}
+### :material-chat-question: 为什么看不到 `oracle_system` 指标集? {#faq-no-system}
 
 需要数据库运行起来之后，过 1 分钟才能看到。
 

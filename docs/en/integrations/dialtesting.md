@@ -1,4 +1,18 @@
+---
+title     : 'Diatesting'
+summary   : 'Obtain network performance through network dialing test'
+__int_icon      : 'icon/dialtesting'
+dashboard :
+  - desc  : 'N/A'
+    path  : '-'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
+
+<!-- markdownlint-disable MD025 -->
 # Network Dial Test
+<!-- markdownlint-enable -->
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -9,8 +23,19 @@ The collector collects the data of network dialing test results, and all the dat
 
 ## Configuration {#config}
 
+### Environment Variables {#env}
+
+By default, the dialtesting service can dial up any network, which may pose certain security risks. If you need to prohibit to connect to certain network, you can restrict it by setting the following environmental variables:
+
+
+|  Environment variable name     |  Parameter example | Description |
+| :----------------------------- | ------------------ | ------------ |
+| `ENV_INPUT_DIALTESTING_DISABLE_INTERNAL_NETWORK_TASK`      |  `true`             | Enable or disable internal network dialing test. Default is `false`|
+| `ENV_INPUT_DIALTESTING_DISABLED_INTERNAL_NETWORK_CIDR_LIST`      |  `["192.168.0.0/16"]`             | List of network CIDRs that prohibit testing, which supports multiple entries. If left empty, all private networks will be disabled. |
+
 ### Private Test Node Deployment {#private-deploy}
 
+<!-- markdownlint-disable MD046 -->
 === "host installation"
 
     To deploy private dial-test nodes, you need to [create private dial-test nodes on Guance Cloud page](../usability-monitoring/self-node.md). When you're done, fill in the page with the relevant information in `conf.d/network/dialtesting.conf`:
@@ -39,6 +64,9 @@ The collector collects the data of network dialing test results, and all the dat
       # The number of the workers.
       workers = 6
     
+      # Collect related metric when job execution time error interval is larger than task_exec_time_interval
+      task_exec_time_interval = "5s"
+     
       # Stop the task when the task failed to send data to dataway over max_send_fail_count.
       max_send_fail_count = 16
     
@@ -47,6 +75,12 @@ The collector collects the data of network dialing test results, and all the dat
     
       # The max number of job chan. Default 1000.
       max_job_chan_number = 1000
+    
+      # Disable internal network task.
+      disable_internal_network_task = true
+    
+      # Disable internal network cidr list.
+      disabled_internal_network_cidr_list = []
     
       # Custom tags.
       [inputs.dialtesting.tags]
@@ -65,15 +99,16 @@ The collector collects the data of network dialing test results, and all the dat
 
 ???+ attention
 
-    Currently, only linux dial-up nodes support, and the tracing data is stored in the [traceroute](#fields) field of the relevant metrics.
+    Currently, only Linux dial-up nodes support, and the tracing data is stored in the [traceroute](#fields) field of the relevant metrics.
+<!-- markdownlint-enable -->
 
 ### Dial Test Deployment Map {#arch}
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/dialtesting-net-arch.png){ width="800" }
+  ![dialtesting-net-arch](https://static.guance.com/images/datakit/dialtesting-net-arch.png){ width="800" }
 </figure>
 
-## metric {#metric}
+## Metric {#metric}
 
 Dialtesting collector could expose some [Prometheus metrics](../datakit/datakit-metrics.md). You can upload these metrics to Guance Cloud through [Datakit collector](dk.md). The relevant configuration is as follows:
 
@@ -94,7 +129,7 @@ Dialtesting collector could expose some [Prometheus metrics](../datakit/datakit-
 
 ```
 
-## Measurements {#measurements}
+## Log {#logging}
 
 All of the following data collections are appended with a global tag named `host` by default (the tag value is the host name of the DataKit), or can be named in the configuration by `[[inputs.dialtesting.tags]]` alternative host.
 
@@ -102,13 +137,14 @@ All of the following data collections are appended with a global tag named `host
 
 ### `http_dial_testing`
 
--  tag
+- tag
 
 
 | Tag | Description |
 |  ----  | --------|
 |`city`|The name of the city|
 |`country`|The name of the country|
+|`datakit_version`|The DataKit version|
 |`dest_ip`|The IP address of the destination|
 |`internal`|The boolean value, true for domestic and false for overseas|
 |`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
@@ -144,13 +180,14 @@ All of the following data collections are appended with a global tag named `host
 
 ### `tcp_dial_testing`
 
--  tag
+- tag
 
 
 | Tag | Description |
 |  ----  | --------|
 |`city`|The name of the city|
 |`country`|The name of the country|
+|`datakit_version`|The DataKit version|
 |`dest_host`|The name of the host to be monitored|
 |`dest_ip`|The IP address|
 |`dest_port`|The port of the TCP connection|
@@ -179,13 +216,14 @@ All of the following data collections are appended with a global tag named `host
 
 ### `icmp_dial_testing`
 
--  tag
+- tag
 
 
 | Tag | Description |
 |  ----  | --------|
 |`city`|The name of the city|
 |`country`|The name of the country|
+|`datakit_version`|The DataKit version|
 |`dest_host`|The name of the host to be monitored|
 |`internal`|The boolean value, true for domestic and false for overseas|
 |`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
@@ -221,13 +259,14 @@ All of the following data collections are appended with a global tag named `host
 
 ### `websocket_dial_testing`
 
--  tag
+- tag
 
 
 | Tag | Description |
 |  ----  | --------|
 |`city`|The name of the city|
 |`country`|The name of the country|
+|`datakit_version`|The DataKit version|
 |`internal`|The boolean value, true for domestic and false for overseas|
 |`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
 |`name`|The name of the task|
@@ -254,7 +293,7 @@ All of the following data collections are appended with a global tag named `host
 
 
 
-## `traceroute` Field Description {#fields}
+### `traceroute` Field Description {#fields}
 
 traceroute is the JSON text of the "route trace" data, and the entire data is an array object in which each array element records a route probe, as shown in the following example:
 
@@ -301,7 +340,7 @@ traceroute is the JSON text of the "route trace" data, and the entire data is an
 ]
 ```
 
-Field description:
+**Field description:**
 
 | Field  | Type      | Description            |
 | :---       | ---           | ---                         |

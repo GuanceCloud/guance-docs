@@ -30,10 +30,10 @@ The whole constraints are as follows:
 
 ```
 AND AS ASC AUTO
-BY DESC FALSE FILTER
-LIMIT LINK WITH LINEAR
+BY DESC FALSE
+LIMIT LINEAR
 NIL OFFSET OR PREVIOUS
-SLIMIT SOFFSET TRUE WITH
+SLIMIT SOFFSET TRUE
 ```
 
 - Identifiers: There are several forms of identifiers, which are compatible with various variable naming forms.
@@ -65,16 +65,6 @@ SLIMIT SOFFSET TRUE WITH
   - Boolean(`true`, `false`)
   - Duration(`1y`, `1w`, `1d`, `1h`, `1m`, `1s`, `1ms`, `1us`, `1ns` for 1 year/week/day/hour/minute/second/millisecond/microsecond/nanosecond, respectively)
 
-- Special function
-
-  - `tz()` - time zone, supported in two forms
-    - `tz(+-12)` is specified with an offset of 24 time zones, so be `tz(+8),tz(8), tz('Asia/Shanghai')` , and daylight saving time cannot be specified in this form.
-    - `tz('Asia/Shanghai')` specifies the time zone in international standard form. For daylight saving time, it can only be specified in this form.
-
-  - `identifier()` is used to modify variables with `` ` `` 字characters in variable names.
-
-  - `int()` and `float()` type-convert the returned data and apply only to time series data.
-
 ## Query
 
 The query follows the following syntax pattern, noting that the relative order between the parts cannot be reversed, for example, `time-expr` cannot appear before `filter-clause`.
@@ -86,9 +76,11 @@ namespace::
 	filter-clause
 	time-expr
 	by-clause
+	having-clause
 	order-by-clause
 	limit-clause
 	offset-clause
+  sorder-by-clause
 	slimit-clause
 	soffset-clause
 ```
@@ -218,16 +210,26 @@ M::some_metric {(a>123.45 && b!=re("abc")) || (z!="abc"), c=re("xyz")} [1d::30m]
 
 ### Time-expr
 
-DataFlux data features all have time attributes, so the expression of time is expressed by a separate clause:
+DataFlux data features all have a time attribute, so the expression of time is represented by a separate clause:
 
-- `[5m]` - last 5 minutes
-- `[10m:5m]` - last 10 minutes to last 5 minutes
-- `[10m:5m:1m]` - last 10 minutes to last 5 minutes with results aggregated at 1-minute intervals
-- `[2019-01-01 12:13:14:5m:1w]` -  2019/1/1 12:13:14 to the last 5 minutes, and the results are aggregated at one-week intervals. Note that when specifying a date, it can only be accurate to the second level. And there are only two date formats:
-  - `2006-01-02 15:04:05`: The time here refers to the time in UTC time zone, and the specified time zone is unavailable.
-  - `2006-01-02`
+`time-expr` consists of 3 parts [`start_time`:`end_time`:`interval`:`rollup`]:
 
-The following time units are available:
+| Number | Name         | Required | Description                                                                                                                                                                       | Example                        |
+| ------ | ------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| 1      | `start_time` | No       | The start time for time filtering                                                                                                                                                 | `1672502400000` / `1672502400` |
+| 2      | `end_time`   | No       | The end time for time filtering                                                                                                                                                   | `1672588800000` / `1672588800` |
+| 3      | `interval`   | No       | Time aggregation period, generally used in conjunction with aggregation or rolling aggregation, supports time units like `s`, `m`, `h`, `d`, etc., and can be used in combination | `1s`/`1m`/`1h` etc.            |
+| 4      | `rollup`     | No       | The rollup function name, currently supported `avg`, `sum`, `min`, `max`, `count`, `first`, `last`, `last`                                                                        |
+
+**Note:**
+
+`start_time` and `end_time` support 3 formats:
+
+- Numerical value with time unit, e.g., `1m`
+- Timestamp, e.g., `1672502400`
+- Time value in milliseconds, `1672502400000`
+
+The `interval` time unit supports the following:
 
 - `ns` - nanoseconds
 - `us` - microseconds
@@ -237,49 +239,72 @@ The following time units are available:
 - `h` - hours
 - `d` - days
 - `w` - weeks
-- `y` - years, specified as 365 days, with no distinction between leap years.
+- `y` - years, specified as 365d, leap years not distinguished.
+
+`Rollup` function names for aggregation currently supported include:
+
+- `avg`: Average
+- `sum`: Summation
+- `min`: Minimum value
+- `max`: Maximum value
+- `count`: Count
+- `first`: First value
+- `last`: Last value
+- `deriv`: Rate of change per second, estimated by subtracting the first value from the last and dividing by the time interval
+- `rate`: Rate of change per second, similar to `deriv` but returns no negative results, consistent with PromQL logic
+- `irate`: Instantaneous rate of change, estimated by dividing the difference of the last two values by the time interval, consistent with PromQL logic
+- `p99`, `p95`, `p90`, `p75`: Percentile calculations, allowing any number to follow `p` to express a percentage
+- `median`: Median, equivalent to `p50`
+- `stddev`: Standard deviation
+
+`Rollup` aggregation splits a single timeline into different segments based on the given `interval` and aggregates values in each segment. When `rollup` is null, it indicates no rolling aggregation is performed.
 
 ### By-clause Statement
 
 The `BY` clause is used to categorize and aggregate the results. Similar to `GROUP BY` in MySQL.
 
+### Having-clause Statement
+
+The `HAVING` clause is used to filter the results obtained after aggregation, similar to the `HAVING` clause in MySQL.
+
+```python
+# Retrieve all hosts with CPU usage greater than 80%
+M::cpu:(max(`usage_total`) as `max_usage`) by host having max_usage > 80
+```
+
 ### Order-by-clause Statement
 
 The `ORDER BY` clause sorts the results, similar to the `ORDER BY` in MySQL.
 
-⚠️ Time series data, only time field sorting is supported.
+⚠️ 1. "Metric Data" only time field sorting is supported.; 2. When grouping is by in the query, order-by will not take effect. Please use sorder-by sort.
 
 ```python
-# Get the maximum CPU utilization of different hosts, in reverse order of time.
-M::cpu:(max('usage_total')) by host order by time desc
+# Get the CPU utilization of different hosts, in reverse order of time.
+M::cpu:(`usage_total`) order by time desc
 ```
 
 ```python
-# Obtain the response time of processing requests under different hosts, in ascending order of response time.
-L::`*`:(max('response_time') as m1) by host order by m1 asc
+# Get all log data, in ascending order of response time.
+L::`*`:(`*`) order by response_time asc
 ```
 
-### Filter-clause Statement
+### sorder-by-clause statement
 
-`FILTER ... WITH ...` is used to filter different data sets:
+The `SORDER BY` clause sorts groups.
 
 ```python
-# Get the CPU usage of all objects.
-M::cpu:(host, usage) FILTER O::ecs:(hostname) WITH {host = hostname}
+# Get the maximum CPU utilization of different hosts, in reverse order of hostname.
+M::cpu:(max(`usage_total`)) by host sorder by host desc
 ```
 
-### Link-with Statement
-
-`LINK ... WITH ...` is used to combine output from different data sets:
+```python
+# Get the maximum CPU utilization of different hosts, in ascending order of the maximum CPU utilization.
+M::cpu:(max(`usage_total`) as m) by host sorder by m
+```
 
 ```python
-O::ecs:(host, region) LINK M::cpu:(usage, hostname) [:5m] WITH {host = hostname}
-
-# Multiple LINK writing
-O::ecs:(host, region)  
-    LINK M::cpu:(usage, hostname) [:5m]
-    LINK M::mem:(percent, hostname) [:5m]
-    WITH {host = hostname}
+# Get CPU utilization,  in ascending order of the last CPU utilization.
+M::cpu:(`usage_total`) sorder by usage_total
 ```
 
 ### Limit Statement
@@ -354,7 +379,7 @@ Use `()` to indicate the separation of subqueries and outer queries, such as two
 ```python
 metric::(
 		# Subquery
-		metric::cpu,mem:(f1, f2) {host="abcd"} [1m:2m:5s] BY f1 DESC 
+		metric::cpu,mem:(f1, f2) {host="abcd"} [1m:2m:5s] BY f1 DESC
 	):(f1)              # Outer query target column
 	{ host=re("abc*") } # Outer query filter criteria
 	[1m:2m:1s]          # Outer query time limit
@@ -406,4 +431,3 @@ See [DQL Outer Functions](out-funcs.md)
 
 
 ---
-

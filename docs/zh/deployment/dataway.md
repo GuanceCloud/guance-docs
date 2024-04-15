@@ -1,127 +1,648 @@
-# 数据网关
+# Dataway
 ---
 
-## 简介
+## 简介 {#intro}
 
-DataWay 是观测云的数据网关，采集器上报数据到观测云都需要经过 DataWay 网关，DataWay 网关主要作用有两个：
+DataWay 是观测云的数据网关，采集器上报数据到观测云都需要经过 DataWay 网关。
 
-- 接收采集器发送的数据，然后上报到观测云进行存储，多用于数据代理上报的场景； 
-- 将采集的数据进行处理后再发送到观测云进行存储，多用于数据清洗的场景。 
+## Dataway 安装 {#install}
 
-注意：观测云部署版 DataWay 需要在本地服务器进行安装后才可以使用。
-## 新建 DataWay
+- **新建 Dataway**
 
-在观测云管理后台「数据网关」页面，点击「新建 DataWay 」。
+在观测云管理后台「数据网关」页面，点击「新建 Dataway 」。输入名称、绑定地址后，点击「创建」。
 
-![](img/19.deployment_1.png)
+创建成功后会自动创建新的 Dataway 并生成 Dataway 的安装脚本。
 
-输入“名称”、“绑定地址”，点击「创建」。
+<!-- markdownlint-disable MD046 -->
+???+ info
 
-- 绑定地址：即 DataWay 网关地址，必须填写完整的 HTTP 地址，例如 http(s)://1.2.3.4:9528，包含协议、主机地址和端口， 主机地址一般可使用部署 DataWay 机器的 IP 地址，也可以指定为一个域名，域名需做好解析。**注意：需确保采集器能够访问该地址，否则数据将采集将不成功）**
+    绑定地址即 Dataway 网关地址，必须填写完整的 HTTP 地址，例如 `http(s)://1.2.3.4:9528`，包含协议、主机地址和端口， 主机地址一般可使用部署 Dataway 机器的 IP 地址，也可以指定为一个域名，域名需做好解析。
 
-![](img/19.deployment_2.png)
+    注意：需确保采集器能够访问该地址，否则数据将采集将不成功）
+<!-- markdownlint-enable -->
 
-创建成功后会自动创建新的 DataWay 并生成 DataWay 的安装脚本。
+- **安装 Dataway**
 
-![](img/19.deployment_3.png)
+<!-- markdownlint-disable MD046 -->
+=== "主机安装"
 
-## 安装 DataWay
+    ```shell
+    DW_KODO=http://kodo_ip:port \
+       DW_TOKEN=<tkn_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX> \
+       DW_UUID=<YOUR_UUID> \
+       bash -c "$(curl https://static.guance.com/dataway/install.sh)"
+    ```
 
-新建的 DataWay 支持 Linux 和 Docker 两种安装方式，复制安装脚本到需要部署 DataWay 的服务器中执行。安装成功会提示如下图所示信息。此时 DataWay 默认会自动运行。
+    安装完成后，在安装目录下，会生成 *dataway.yaml*，其内容示例如下，可手动修改，通过重启服务来生效。
 
-![](img/19.deployment_4.png)
+    ??? info "*dataway.yaml*（单击点开）"
 
-安装完毕后，等待片刻刷新“数据网关”页面，如果在刚刚添加的数据网关的“版本信息”列中看到了版本号，即表示这个 DataWay 已成功与观测云中心连接，前台用户可以通过它来接入数据了。
+        ```yaml
+        uuid                  : not-set
+        token                 : tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        secret_token          : ""
+        enable_internal_token : false
+        enable_empty_token    : false
+        http_timeout          : 30s
+        insecure_skip_verify  : false
+        remote_host           : https://kodo.guance.com:443
+        cascaded              : false
+        bind                  : 0.0.0.0:9528
+        api_limit_rate        : 100000
+        max_http_body_bytes   : 67108864
+        heartbeat_second      : 60
+        http_client_trace     : true
+        white_list            : []
 
-![](img/19.deployment_6.png)
+        log       : log
+        log_level : debug
+        gin_log   : gin.log
 
-### 注意事项
+        cache_cfg:
+          disabled            : false
+          max_disk_size       : 20480
+          max_data_size       : 67108864
+          batch_size          : 67108864
+          dir                 : disk_cache
+          clean_interval      : 30s
+          expire_duration     : 24h
 
--  只能在 Linux 系统上运行，不要在 Mac/Windows 等非 Linux 机器上执行安装脚本 
--  关于 Docker 形式安装 
-   -  DataWay 支持以 Docker 方式运行，在执行命令头部增加 `DOCKER=1` 即可 
-   -  除了增加 `DOCKER=1` 这个设置之外，还可以增加以下这些选项（**在非 Docker 安装中，也能指定**) 
-      - `DW_BIND=<port>`: 这个是**容器内部**的绑定端口(**不要超过 50000**)，会占用宿主机的 `10000 + <port>` 端口。如果不指定，该端口默认为 `9528`，即使用宿主机上的 `19528` 端口。故务必确保宿主机上该端口可用。如果不是以 Docker 方式运行，则该处指定的端口即**宿主机将占用的端口**。
-      - `DW_KODO=<http://your-kodo-host:port>`: 用于指定特定的 kodo 服务器地址
-      - `DW_UPGRADE=1`: 升级的时候，指定该选项即可。另外，即使只是升级，如果被升级的 DataWay 是运行在 Docker 中的，也需要指定 `DOCKER=1` 这个选项
-   -  建议**不要在非 Linux 环境下用 Docker 安装**(虽然主流的 Windows/Mac 都已经支持 Docker) 
-   -  用 Docker 安装，**不是登陆到 Docker 容器之后再安装，而是在宿主机上直接执行安装指令** 
-   -  执行 `docker ps -a |grep <your-agent-uuid>` 即可看到运行 DataWay 的容器情况(**需要 root 权限**) 
-   -  安装完后，数据文件会落在宿主机 `/dataway-data/<your-agent-uuid>/` 目录下，包括程序、配置文件、数据文件以及日志等。如果要更新配置文件以及 license 文件，请再宿主机的该目录下更新即可，更新完后，记得重启容器: `docker restart <dataway-container-id>` 
+        sinker: null
 
-## 使用 DataWay 
+        prometheus:
+          url                 : /metrics
+          listen              : 0.0.0.0:9091
+          enable              : true
+          disablegometrics    : false
+        ```
 
-DataWay 成功与观测云中心连接后，登录观测云控制台，在「集成」-「DataKit」页面，即可查看所有的 DataWay 地址，选择需要的 DataWay 网关地址，获取 DataKit 安装指令在服务器上执行，即可开始采集数据。
+=== "Kubernetes"
 
-![](img/19.deployment_6.png)
+    下载 [*dataway.yaml*](https://static.guance.com/dataway/dataway.yaml){:target="_blank"}，安装：
 
-## 管理 DataWay
+    ```shell
+    $ wget https://static.guance.com/dataway/dataway.yaml -O dw-deployment.yaml
+    $ kubectl apply -f dw-deployment.yaml
+    ```
 
-### 删除 DataWay
+    在 *dw-deployment.yaml* 中可通过环境变量修改 Dataway 配置，参见[这里](dataway.md#img-envs)。
+
+    也可以通过 ConfigMap 外挂一个 *dataway.yaml*，但必须将其挂载成 */usr/local/cloudcare/dataflux/dataway/dataway.yaml*：
+
+    ```yaml
+    containers:
+      volumeMounts:
+        - name: dataway-config
+          mountPath: /usr/local/cloudcare/dataflux/dataway/dataway.yaml
+          subPath: config.yaml
+    volumes:
+    - configMap:
+        defaultMode: 256
+        name: dataway-config
+        optional: false
+      name: dataway-config
+    ```
+---
+
+???+ note "注意事项"
+
+    - Dataway 只能在 Linux 系统上运行（目前只发布了 Linux arm64/amd64 二进制）
+    - 主机安装时，Dataway 安装路径为 */usr/local/cloudcare/dataflux/dataway*
+    - Kubernetes 下默认设置了 4000m/4Gi 的资源限制，可根据实际情况做调整。最低要求为 100m/512Mi
+<!-- markdownlint-enable -->
+
+- **验证 Dataway 安装**
+
+安装完毕后，等待片刻刷新「数据网关」页面，如果在刚刚添加的数据网关的「版本信息」列中看到了版本号，即表示这个 Dataway 已成功与观测云中心连接，前台用户可以通过它来接入数据了。
+
+Dataway 成功与观测云中心连接后，登录观测云控制台，在「集成」/「DataKit」页面，即可查看所有的 Dataway 地址，选择需要的 Dataway 网关地址，获取 DataKit 安装指令在服务器上执行，即可开始采集数据。
+
+## 管理 DataWay {#manage}
+
+### 删除 DataWay {#delete}
 
 在观测云管理后台「数据网关」页面，选择需要删除的 DataWay ，点击「配置」，在弹出的编辑 DataWay 对话框，点击左下角「删除」按钮即可。
 
-**注意：**删除 DataWay 后，还需登录部署 DataWay 网关的服务器中停止 DataWay 的运行，然后删除安装目录才可彻底删除 DataWay。
+<!-- markdownlint-disable MD046 -->
+???+ attention
 
-![](img/19.deployment_7.png)
+    删除 DataWay 后，还需登录部署 DataWay 网关的服务器中停止 DataWay 的运行，然后删除安装目录才可彻底删除 DataWay。
+<!-- markdownlint-enable -->
 
-### 升级 DataWay
+### 升级 DataWay {#upgrade}
 
-在观测云管理后台「数据网关」页面，如果 DataWay 存在可升级的版本，版本信息处会有升级提示。选择需要升级的 DataWay，点击「配置」，，在弹出的编辑 DataWay 对话框，打开 DataWay 弹框，点击「获取升级脚本」，复制升级脚本到部署 DataWay 的主机上执行即可。
+在观测云管理后台「数据网关」页面，如果 DataWay 存在可升级的版本，版本信息处会有升级提示。
 
-![](img/19.deployment_8.png)
+<!-- markdownlint-disable MD046 -->
+=== "主机升级"
 
-### 更改 DataWay 配置
+    ```shell
+    DW_UPGRADE=1 bash -c "$(curl https://static.guance.com/dataway/install.sh)"
+    ```
 
-打开配置文件 `dataway.yaml`：
+=== "Kubernetes 升级"
 
-```
-bind             : ":9528"                                       # 绑定地址和端口，如果希望调整为 1.2.3.4，端口 9538，可配置为 "1.2.3.4:9538"
-remote_host      : "https://kodo.dataflux.cn/"                   # kodo服务地址
-ws_bind:         : ":9530"                                       # datakit websocket proxy bind 
-remote_ws_host   : "wss://kodo.dataflux.cn"                      # ws 服务 地址
-log       : /usr/local/cloudcare/dataflux/dataway/log            # 日志文件位置
-log_level : info                                                 # 日志等级
-gin_log   : /usr/local/cloudcare/dataflux/dataway/gin.log        # gin 日志文件位置
+    直接替换镜像版本即可：
 
-enable_internal_token : true                                     # 允许使用 __internal__ 这个 token，此时数据打到系统工作空间
-enable_empty_token    : true                                     # 允许 token 为空，此时数据打到系统工作空间
-```
+    ```yaml
+    - image: pubrepo.jiagouyun.com/dataflux/dataway:<VERSION>
+    ```
+<!-- markdownlint-enable -->
 
-### DataWay 状态管理命令
+### Dataway 服务管理 {#manage-service}
 
-**systemd**
+主机安装 Dataway 时，可用如下命令管理 Dataway 服务。
 
-```
-启动：systemctl start dataway
-重启：systemctl restart dataway
-停止：systemctl stop dataway
-```
+``` shell
+# 启动
+$ systemctl start dataway
 
-**upstart**
+# 重启
+$ systemctl restart dataway
 
-```
-启动：start dataway
-重启：restart dataway
-停止：stop dataway
+# 停止
+$ systemctl stop dataway
 ```
 
-**其他**
+Kubernetes 重启对应的 Pod 即可。
 
-其他状态管理命令可参考安装成功后的终端提示
+## 环境变量 {#dw-envs}
 
-### DataWay 相关路径
+### 主机安装支持环境变量 {#install-envs}
 
-DataWay 默认数据上报路径为 `/v1/write/metrics`
+主机安装时，可以在安装命令中注入如下环境变量：
 
-DataWay 默认安装路径为 `/usr/local/cloudcare/dataflux/dataway`
+| Env                  | 是否必需 | 说明                                                                                               | 取值 |
+| ---                  | ---      | ---                                                                                                | ---  |
+| DW_BIND              | N        | Dataway HTTP API 绑定地址，默认 `0.0.0.0:9528`                                                     |      |
+| DW_CASCADED          | N        | Dataway 是否级联                                                                                   | `on` |
+| DW_ETCD_HOST         | N        | etcd 地址，目前仅支持指定单个地址，如 `http://1.2.3.4:2379`                                        |      |
+| DW_ETCD_PASSWORD     | N        | etcd 密码                                                                                          |      |
+| DW_ETCD_USERNAME     | N        | etcd 用户名                                                                                        |      |
+| DW_HTTP_CLIENT_TRACE | N        | Dataway 自己作为 HTTP 客户端，可以开启一些相关的指标收集，这些指标最终会在其 Prometheus 指标中输出 | `on` |
+| DW_KODO              | Y        | Kodo 地址，或下一个 Dataway 地址，形如 `http://host:port`                                          |      |
+| DW_SECRET_TOKEN      | N        | 当开启 Sinker 功能时，可设置一下该 Token                                                           |      |
+| DW_TOKEN             | Y        | 一般是系统工作空间的数据 Token                                                                     |      |
+| DW_UPGRADE           | N        | 升级时将其指定为 1                                                                                 |      |
+| DW_UUID              | Y        | Dataway UUID，这个在新建 Dataway 的时候，系统工作空间会生成                                        |      |
 
-DataWay 默认网关地址：`绑定地址/v1/write/metrics`
+### 镜像环境变量 {#img-envs}
 
+Dataway 在 Kubernetes 环境中运行时，支持如下环境变量。
+
+??? attention "兼容已有 dataway.yaml"
+
+    由于一些老的 Dataway 是通过 ConfigMap 方式来注入配置的（挂到容器中的文件名一般都是 *dataway.yaml*），
+    如果 Dataway 镜像启动后，发现安装目录中存在 ConfigMap 挂进来的文件，则下述 `DW_*` 环境变量将不生效。
+    移除已有的 ConfigMap 挂载后，这些环境变量方可生效。
+
+    如果环境变量生效，则在 Dataway 安装目录下会有一个隐藏（通过 `ls -a` 查看）的 *.dataway.yaml* 文件，可以 `cat`
+    该文件以确认环境变量的生效情况。
+
+#### API 有关 {#env-apis}
+
+| Env                         | 是否必需 | 说明                                                                                               | 取值 |
+| ---                         | ---      | ---                                                                                                | ---  |
+| DW_REMOTE_HOST              | Y        | Kodo 地址，或下一个 Dataway 地址，形如 `http://host:port`                                          |      |
+| DW_WHITE_LIST               | N        | Dataway 客户端 IP 白名单，以英文 `,` 分割                                                          |      |
+| DW_HTTP_TIMEOUT             | N        | Dataway 请求 Kodo 或下一个 Dataway 的超时设置，默认 30s                                            |      |
+| DW_BIND                     | N        | Dataway HTTP API 绑定地址，默认 `0.0.0.0:9528`                                                     |      |
+| DW_API_LIMIT                | N        | Dataway API 限流设置，如设置为 1000，则每个具体的 API 在 1s 以内只允许请求 1000 次，默认 100K      |      |
+| DW_HEARTBEAT                | N        | Dataway 跟中心的心跳间隔，默认 60s                                                                 |      |
+| DW_MAX_HTTP_BODY_BYTES      | N        | Dataway API 允许的最大 HTTP Body（**单位字节**），默认 64MB                                        |      |
+| DW_TLS_INSECURE_SKIP_VERIFY | N        | 忽略 HTTPS/TLS 证书错误                                                                            | `on` |
+| DW_HTTP_CLIENT_TRACE        | N        | Dataway 自己作为 HTTP 客户端，可以开启一些相关的指标收集，这些指标最终会在其 Prometheus 指标中输出 | `on` |
+
+#### 日志有关 {#env-logging}
+
+| Env          | 是否必需 | 说明                   | 取值 |
+| ---          | ---      | ---                    | ---  |
+| DW_LOG       | N        | 日志路径，默认为 *log* |      |
+| DW_LOG_LEVEL | N        | 默认为 `info`          |      |
+| DW_GIN_LOG   | N        | 默认为 *gin.log*       |      |
+
+#### Token/UUID 设置 {#env-token-uuid}
+
+| Env                      | 是否必需 | 说明                                                                     | 取值 |
+| ---                      | ---      | ---                                                                      | ---  |
+| DW_UUID                  | Y        | Dataway UUID，这个在新建 Dataway 的时候，系统工作空间会生成              |      |
+| DW_TOKEN                 | Y        | 一般是系统工作空间的数据 Token                                           |      |
+| DW_SECRET_TOKEN          | N        | 当开启 Sinker 功能时，可设置一下该 Token                                 |      |
+| DW_ENABLE_INTERNAL_TOKEN | N        | 允许以 `__internal__` 作为客户端 Token，此时默认使用系统工作空间的 Token |      |
+| DW_ENABLE_EMPTY_TOKEN    | N        | 允许不使用 Token 上传数据，此时默认使用系统工作空间的 Token              |      |
+
+#### Sinker 有关设置 {#env-sinker}
+
+| Env                         | 是否必需 | 说明                                                                     | 取值 |
+| ---                         | ---      | ---                                                                      | ---  |
+| DW_CASCADED                 | N        | Dataway 是否级联                                                         | `on` |
+| DW_SINKER_ETCD_URLS         | N        | etcd 地址列表，以 `,` 分割，如 `http://1.2.3.4:2379,http://1.2.3.4:2380` |      |
+| DW_SINKER_ETCD_DIAL_TIMEOUT | N        | etcd 连接超时，默认 30s                                                  |      |
+| DW_SINKER_ETCD_KEY_SPACE    | N        | Sinker 配置所在的 etcd key 名称（默认 `/dw_sinker`）                     |      |
+| DW_SINKER_ETCD_USERNAME     | N        | etcd 用户名                                                              |      |
+| DW_SINKER_ETCD_PASSWORD     | N        | etcd 密码                                                                |      |
+| DW_SINKER_FILE_PATH         | N        | 通过本地文件来指定 sinker 规则配置                                       |      |
+
+<!-- markdownlint-disable MD046 -->
+???+ attention
+
+    如果同时指定本地文件和 etcd 两种方式，则优先采用本地文件中的 Sinker 规则。
+<!-- markdownlint-enable -->
+
+#### Prometheus 指标暴露 {#env-metrics}
+
+| Env              | 是否必需 | 说明                                             | 取值 |
+| ---              | ---      | ---                                              | ---  |
+| DW_PROM_URL      | N        | Prometheus 指标的 URL Path（默认 `/metrics`）    |      |
+| DW_PROM_LISTEN   | N        | Prometheus 指标暴露地址（默认 `localhost:9090`） |      |
+| DW_PROM_DISABLED | N        | 禁用 Prometheus 指标暴露                         | `on` |
+
+#### 磁盘缓存设置 {#env-diskcache}
+
+| Env                          | 是否必需 | 说明                                               | 取值                               |
+| ---                          | ---      | ---                                                | ---                                |
+| DW_DISKCACHE_DIR             | N        | 设置缓存目录，**该目录一般外挂存储**               | *path/to/your/cache*               |
+| DW_DISKCACHE_DISABLE         | N        | 禁用磁盘缓存，**如果不禁用缓存，需删除该环境变量** | `on`                               |
+| DW_DISKCACHE_CLEAN_INTERVAL  | N        | 缓存清理间隔，默认 30s                             | Duration 字符串                    |
+| DW_DISKCACHE_EXPIRE_DURATION | N        | 缓存过期时间，默认 168h（7d）                      | Duration 字符串，如 `72h` 表示三天 |
+
+## Dataway API 列表 {#apis}
+
+> 以下各个 API 详情待补充。
+
+### `POST /v1/write/:category` {#v1-write-category}
+
+- API 说明：接收 Datakit 上传的各种采集数据
+
+### `GET /v1/datakit/pull` {#v1-datakit-pull}
+
+- API 说明：处理 Datakit 拉取中心配置（黑名单/Pipeline）请求
+
+### `POST /v1/write/rum/replay` {#v1-write-rum-replay}
+
+- API 说明：接收 Datakit 上传的 Session Replay 数据
+
+### `POST /v1/upload/profiling` {#v1-upload-profiling}
+
+- API 说明：接收 Datakit 上传的 Profiling 数据
+
+### `POST /v1/election` {#v1-election}
+
+- API 说明：处理 Datakit 的选举请求
+
+### `POST /v1/election/heartbeat` {#v1-election-heartbeat}
+
+- API 说明：处理 Datakit 的选举心跳请求
+
+### `POST /v1/query/raw` {#v1-query-raw}
+
+处理 DQL 查询请求，简单示例如下：
+
+``` text
+POST /v1/query/raw?token=<workspace-token> HTTP/1.1
+Content-Type: application/json
+
+{
+    "token": "workspace-token",
+    "queries": [
+        {
+            "query": "M::cpu LIMIT 1"
+        }
+    ],
+    "echo_explain": <true/false>
+}
 ```
-dataway.yaml： DataWay 配置文件
-install.log：DataWay 安装日志
-log：DataWay 运行日志
+
+返回示例：
+
+```json
+{
+  "content": [
+    {
+      "series": [
+        {
+          "name": "cpu",
+          "columns": [
+            "time",
+            "usage_iowait",
+            "usage_total",
+            "usage_user",
+            "usage_guest",
+            "usage_system",
+            "usage_steal",
+            "usage_guest_nice",
+            "usage_irq",
+            "load5s",
+            "usage_idle",
+            "usage_nice",
+            "usage_softirq",
+            "global_tag1",
+            "global_tag2",
+            "host",
+            "cpu"
+          ],
+          "values": [
+            [
+              1709782208662,
+              0,
+              7.421875,
+              3.359375,
+              0,
+              4.0625,
+              0,
+              0,
+              0,
+              1,
+              92.578125,
+              0,
+              0,
+              null,
+              null,
+              "WIN-JCHUL92N9IP",
+              "cpu-total"
+            ]
+          ]
+        }
+      ],
+      "points": null,
+      "cost": "24.558375ms",
+      "is_running": false,
+      "async_id": "",
+      "query_parse": {
+        "namespace": "metric",
+        "sources": {
+          "cpu": "exact"
+        },
+        "fields": {},
+        "funcs": {}
+      },
+      "index_name": "",
+      "index_store_type": "",
+      "query_type": "guancedb",
+      "complete": false,
+      "index_names": "",
+      "scan_completed": false,
+      "scan_index": "",
+      "next_cursor_time": -1,
+      "sample": 1,
+      "interval": 0,
+      "window": 0
+    }
+  ]
+}
 ```
 
+返回结果说明：
 
+- 真实的数据位于里层的 `series` 字段中
+- `name` 表示指标集名字（此处查询的是 CPU 指标，如果是日志类数据，则没有该字段）
+- `columns` 表示返回的结果列名称
+- `values` 中即 `columns` 中对应的列结果
+
+---
+
+<!-- markdownlint-disable MD046 -->
+???+ info
+
+    - URL 请求参数中的 token 可以和 JSON body 中的 token 不同。前者用于验证查询请求是否合法，后者用于确定目标数据所在的工作空间。
+    - `queries` 字段可以带多个查询，每个查询可以携带额外字段，具体字段列表，参见[这里](../datakit/apis.md#api-raw-query)
+<!-- markdownlint-enable -->
+
+---
+
+### `POST /v1/workspace` {#v1-workspace}
+
+- API 说明：处理 Datakit 端发起的工作空间查询请求
+
+### `POST /v1/object/labels` {#v1-object-labels}
+
+- API 说明：处理修改对象 Label 请求
+
+### `DELETE /v1/object/labels` {#v1-delete-object-labels}
+
+- API 说明：处理删除对象 Label 请求
+
+### `GET /v1/check/:token` {#v1-check-token}
+
+- API 说明：检测 tokken 是否合法
+
+## Dataway 指标采集 {#collect-metrics}
+
+<!-- markdownlint-disable MD046 -->
+???+ attention "HTTP client 指标采集"
+
+    如果要采集 Dataway HTTP 请求 Kodo（或者下一跳 Dataway）的指标，需要手动开启 `http_client_trace` 配置。或者指定环境变量 `DW_HTTP_CLIENT_TRACE=on`。
+
+=== "主机部署"
+
+    Dataway 自身暴露了 Prometheus 指标，通过 Datakit 自带的 `prom` 采集器能采集其指标，采集器示例配置如下：
+
+    ```toml
+    [[inputs.prom]]
+      ## Exporter URLs.
+      urls = [ "http://localhost:9090/metrics", ]
+      source = "dataway"
+      election = true
+      measurement_name = "dw" # dataway 指标集固定为 dw，不要更改
+    [inputs.prom.tags]
+      service = "dataway"
+    ```
+
+=== "Kubernetes"
+
+    如果集群中有部署 Datakit（需 [Datakit 1.14.2](../datakit/changelog.md#cl-1.14.2) 以上版本），那么可以在 Dataway 中开启 Prometheus 指标暴露（Dataway 默认 POD yaml 已经自带）：
+
+    ```yaml
+    annotations: # 以下 annotation 默认已添加
+       datakit/prom.instances: |
+         [[inputs.prom]]
+           url = "http://$IP:9090/metrics" # 此处端口（默认 9090）视情况而定
+           source = "dataway"
+           measurement_name = "dw" # 固定为该指标集
+           interval = "10s"
+           disable_instance_tag = true
+
+         [inputs.prom.tags]
+           service = "dataway"
+           instance = "$PODNAME"
+
+    ...
+    env:
+    - name: DW_PROM_LISTEN
+      value: "0.0.0.0:9090" # 此处端口保持跟上面 url 中端口一致
+    ```
+
+<!-- markdownlint-enable -->
+
+---
+
+如果采集成功，在观测云「场景」/「内置视图」中搜索 `dataway` 即可看到对应的监控视图。
+
+### Dataway 指标列表 {#metrics}
+
+以下是 Dataway 暴露的指标，通过请求 `http://localhost:9090/metrics` 即可获取这些指标，可通过如下命令实时查看（3s）某个具体的指标：
+
+> 某些指标如果查询不到，可能是相关业务模块尚未运行所致。某些新的指标只在最新版本中存在，此处不再一一标明各个指标的版本信息，以 `/metrics` 接口返回的指标列表为准。
+
+```shell
+watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
+```
+
+|TYPE|NAME|LABELS|HELP|
+|---|---|---|---|
+|COUNTER|`dataway_http_api_body_too_large_dropped_total`|`api,method`|API request too large dropped|
+|COUNTER|`dataway_http_api_with_inner_token`|`api,method`|API request with inner token|
+|COUNTER|`dataway_http_api_dropped_total`|`api,method`|API request dropped when sinker rule match failed|
+|COUNTER|`dataway_http_api_signed_total`|`api,method`|API signature count|
+|SUMMARY|`dataway_http_api_cached_bytes`|`api,cache_type,method,reason`|API cached body bytes|
+|SUMMARY|`dataway_http_api_reusable_body_read_bytes`|`api,method`|API re-read body on forking request|
+|COUNTER|`dataway_http_api_forked_total`|`api,method,token`|API request forked total|
+|GAUGE|`dataway_http_info`|`cascaded,docker,http_client_trace,listen,max_body,release_date,remote,version`|Dataway API basic info|
+|GAUGE|`dataway_cpu_usage`|`N/A`|Dataway CPU usage(%)|
+|GAUGE|`dataway_open_files`|`N/A`|Dataway open files|
+|GAUGE|`dataway_cpu_cores`|`N/A`|Dataway CPU cores|
+|COUNTER|`dataway_process_ctx_switch_total`|`type`|Dataway process context switch count(Linux only)|
+|COUNTER|`dataway_process_io_count_total`|`type`|Dataway process IO count count|
+|COUNTER|`dataway_process_io_bytes_total`|`type`|Dataway process IO bytes count|
+|GAUGE|`dataway_last_heartbeat_time`|`N/A`|Dataway last heartbeat with Kodo timestamp|
+|SUMMARY|`dataway_http_api_dropped_expired_cache`|`api,method`|Dropped expired cache data|
+|SUMMARY|`dataway_http_api_elapsed_seconds`|`api,method,status`|API request latency|
+|SUMMARY|`dataway_http_api_req_size_bytes`|`api,method,status`|API request size|
+|COUNTER|`dataway_http_api_total`|`api,method,status`|API request count|
+|SUMMARY|`dataway_httpcli_http_connect_cost_seconds`|`server`|HTTP connect cost|
+|SUMMARY|`dataway_httpcli_got_first_resp_byte_cost_seconds`|`server`|Got first response byte cost|
+|COUNTER|`dataway_httpcli_tcp_conn_total`|`server,remote,type`|HTTP TCP connection count|
+|COUNTER|`dataway_httpcli_conn_reused_from_idle_total`|`server`|HTTP connection reused from idle count|
+|SUMMARY|`dataway_httpcli_conn_idle_time_seconds`|`server`|HTTP connection idle time|
+|SUMMARY|`dataway_httpcli_dns_cost_seconds`|`server`|HTTP DNS cost|
+|SUMMARY|`dataway_httpcli_tls_handshake_seconds`|`server`|HTTP TLS handshake cost|
+|COUNTER|`dataway_sinker_pull_total`|`event,source`|Sinker pulled or pushed counter|
+|GAUGE|`dataway_sinker_rule_cache_miss`|`N/A`|Sinker rule cache miss|
+|GAUGE|`dataway_sinker_rule_cache_hit`|`N/A`|Sinker rule cache hit|
+|GAUGE|`dataway_sinker_rule_cache_size`|`N/A`|Sinker rule cache size|
+|GAUGE|`dataway_sinker_rule_error`|`error`|Rule errors|
+|GAUGE|`dataway_sinker_rule_last_applied_time`|`source`|Rule last appliied time(Unix timestamp)|
+|SUMMARY|`dataway_sinker_rule_cost_seconds`|`N/A`|Rule cost time seconds|
+|COUNTER|`diskcache_put_bytes_total`|`path`|Cache Put() bytes count|
+|COUNTER|`diskcache_get_total`|`path`|Cache Get() count|
+|COUNTER|`diskcache_wakeup_total`|`path`|Wakeup count on sleeping write file|
+|COUNTER|`diskcache_seek_back_total`|`path`|Seek back when Get() got any error|
+|COUNTER|`diskcache_get_bytes_total`|`path`|Cache Get() bytes count|
+|GAUGE|`diskcache_capacity`|`path`|Current capacity(in bytes)|
+|GAUGE|`diskcache_max_data`|`path`|Max data to Put(in bytes), default 0|
+|GAUGE|`diskcache_batch_size`|`path`|Data file size(in bytes)|
+|GAUGE|`diskcache_size`|`path`|Current cache size(in bytes)|
+|GAUGE|`diskcache_open_time`|`no_fallback_on_error,no_lock,no_pos,no_sync,path`|Current cache Open time in unix timestamp(second)|
+|GAUGE|`diskcache_last_close_time`|`path`|Current cache last Close time in unix timestamp(second)|
+|GAUGE|`diskcache_datafiles`|`path`|Current un-read data files|
+|SUMMARY|`diskcache_get_latency`|`path`|Get() time cost(micro-second)|
+|SUMMARY|`diskcache_put_latency`|`path`|Put() time cost(micro-second)|
+|COUNTER|`diskcache_dropped_bytes_total`|`path`|Dropped bytes during Put() when capacity reached.|
+|COUNTER|`diskcache_dropped_total`|`path,reason`|Dropped files during Put() when capacity reached.|
+|COUNTER|`diskcache_rotate_total`|`path`|Cache rotate count, mean file rotate from data to data.0000xxx|
+|COUNTER|`diskcache_remove_total`|`path`|Removed file count, if some file read EOF, remove it from un-read list|
+|COUNTER|`diskcache_put_total`|`path`|Cache Put() count|
+
+### Dataway 自身日志采集和处理 {#logging}
+
+Dataway 自身 Log 分为两类，一个是 gin 日志，一个是自身程序日志，通过如下 Pipeline 可将其分离出来：
+
+```python
+# Pipeline for dataway logging
+
+# Testing sample loggin
+'''
+2023-12-14T11:27:06.744+0800	DEBUG	apis	apis/api_upload_profile.go:272	save profile file to disk [ok] /v1/upload/profiling?token=****************a4e3db8481c345a94fe5a
+[GIN] 2021/10/25 - 06:48:07 | 200 |   30.890624ms |  114.215.200.73 | POST     "/v1/write/logging?token=tkn_5c862a11111111111111111111111111"
+'''
+
+add_pattern("TOKEN", "tkn_\\w+")
+add_pattern("GINTIME", "%{YEAR}/%{MONTHNUM}/%{MONTHDAY}%{SPACE}-%{SPACE}%{HOUR}:%{MINUTE}:%{SECOND}")
+grok(_,"\\[GIN\\]%{SPACE}%{GINTIME:timestamp}%{SPACE}\\|%{SPACE}%{NUMBER:dataway_code}%{SPACE}\\|%{SPACE}%{NOTSPACE:cost_time}%{SPACE}\\|%{SPACE}%{NOTSPACE:client_ip}%{SPACE}\\|%{SPACE}%{NOTSPACE:method}%{SPACE}%{GREEDYDATA:http_url}")
+
+# gin logging
+if cost_time != nil {
+  if http_url != nil  {
+    grok(http_url, "%{TOKEN:token}")
+    cover(token, [5, 15])
+    replace(message, "tkn_\\w{0,5}\\w{6}", "****************$4")
+    replace(http_url, "tkn_\\w{0,5}\\w{6}", "****************$4")
+  }
+
+  group_between(dataway_code, [200,299], "info", status)
+  group_between(dataway_code, [300,399], "notice", status)
+  group_between(dataway_code, [400,499], "warning", status)
+  group_between(dataway_code, [500,599], "error", status)
+
+  if sample(0.1) { # drop 90% debug log
+    drop()
+    exit()
+  } else {
+    set_tag(sample_rate, "0.1")
+  }
+
+  parse_duration(cost_time)
+  duration_precision(cost_time, "ns", "ms")
+  
+  set_measurement('gin', true)
+  set_tag(service,"dataway")
+  exit()
+}
+
+# app logging
+if cost_time == nil {
+  grok(_,"%{TIMESTAMP_ISO8601:timestamp}%{SPACE}%{NOTSPACE:status}%{SPACE}%{NOTSPACE:module}%{SPACE}%{NOTSPACE:code}%{SPACE}%{GREEDYDATA:msg}")
+  if level == nil {
+    grok(message,"Error%{SPACE}%{DATA:errormsg}")
+    if errormsg != nil {
+      add_key(status,"error")
+      drop_key(errormsg)
+    }
+  }
+  lowercase(level)
+
+  # if debug level enabled, drop most of them
+  if status == 'debug' {
+    if sample(0.1) { # drop 90% debug log
+      drop()
+      exit()
+    } else {
+      set_tag(sample_rate, "0.1")
+    }
+  }
+  
+  group_in(status, ["error", "panic", "dpanic", "fatal","err","fat"], "error", status) # mark them as 'error'
+  
+  if msg != nil {
+    grok(msg, "%{TOKEN:token}")
+    cover(token, [5, 15])
+    replace(message, "tkn_\\w{0,5}\\w{6}", "****************$4")
+    replace(msg, "tkn_\\w{0,5}\\w{6}", "****************$4")
+  }
+  
+  set_measurement("dataway-log", true)
+  set_tag(service,"dataway")
+}
+```
+
+## FAQ {#faq}
+
+### 请求体太大问题 {#too-large-request-body}
+
+[:octicons-tag-24: Version-1.3.7](dataway-changelog.md#cl-1.3.7)
+
+Dataway 对请求体大小有默认设置（默认 64MB），但请求体太大时，客户端会收到一个 HTTP 413 报错（`Request Entity Too Large`），如果请求体在合理范围内，可以适当放大该数值（单位字节）：
+
+- 设置环境变量 `DW_MAX_HTTP_BODY_BYTES`
+- 在 *dataway.yaml* 中设置 `max_http_body_bytes`
+
+如果运行期间出现太大的请求包，在指标和日志中都有体现：
+
+- 指标 `dataway_http_too_large_dropped_total` 暴露了丢弃的大请求个数
+- 搜索 Dataway 日志 `cat log | grep 'drop too large request'`，日志会输出 HTTP 请求的 Header 详情，便于进一步了解客户端情况
+
+<!-- markdownlint-disable MD046 -->
+???+ attention
+
+    在磁盘缓存模块，也有一个最大的数据块写入限制（默认 64MB）。如果增加最大请求体配置，也要一并调整该配置（[ENV_DISKCACHE_MAX_DATA_SIZE](https://github.com/GuanceCloud/cliutils/tree/main/diskcache#%E9%80%9A%E8%BF%87-env-%E6%8E%A7%E5%88%B6%E7%BC%93%E5%AD%98-option){:target="_blank"}），以确保大请求能正确写入磁盘缓存。
+<!-- markdownlint-enable -->

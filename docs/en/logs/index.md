@@ -25,13 +25,13 @@ Guance provides comprehensive log collection capability. By configuring [log col
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :material-clipboard-text-search: __Log Analysis__</font>](explorer.md): Count the number of logs with different grades at each time point.
-- [<font color="coral"> :material-book-arrow-down-outline: __Log Pipeline__</font>](../management/overall-pipeline.md): Cut the text of the log to extract specific fields as labels or timestamps of the log.
+- [<font color="coral"> :material-clipboard-text-search: __Log Explorer__</font>](explorer.md): Count the number of logs with different grades at each time point.
+- [<font color="coral"> :material-book-arrow-down-outline: __Log Pipelines__</font>](../management/overall-pipeline.md): Cut the text of the log to extract specific fields as labels or timestamps of the log.
 - [<font color="coral"> :fontawesome-brands-atlassian: __Generate Metrics__</font>](generate-metrics.md): Customize the rules for generating monitoring metrics based on logs.
 - [<font color="coral"> :material-calendar-text-outline: __Log Index__</font>](multi-index.md): Filter eligible logs to be saved in different log indexes.
 - [<font color="coral"> :material-filter-multiple: __Log Blacklist__</font>](../management/overall-blacklist.md): Customize the filtering rules of log collection, and filter log data in real time.      
-- [<font color="coral"> :material-clipboard-check-multiple-outline: __Backup Log__</font>](backup.md): Back up the log to help save your use cost.
-- [<font color="coral"> :fontawesome-solid-photo-film: __Snapshot__</font>](../getting-started/function-details/snapshot.md): Save the current data set as a copy, which is easy to view repeatedly in the future.
+- [<font color="coral"> :material-clipboard-check-multiple-outline: __Data Forward__</font>](../management/backup.md): Back up the log to help save your use cost.
+- [<font color="coral"> :fontawesome-solid-photo-film: __Snapshots__</font>](../getting-started/function-details/snapshot.md): Save the current data set as a copy, which is easy to view repeatedly in the future.
 - [<font color="coral"> :material-database-check: __Data Access__</font>](../logs/logdata-access.md): Configure log data access query scopes for different roles.
       
 </div>

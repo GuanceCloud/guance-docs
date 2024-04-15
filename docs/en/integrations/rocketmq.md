@@ -15,7 +15,7 @@ monitor   :
 # RocketMQ
 <!-- markdownlint-enable -->
 
-RocketMQ indicator display, including producer TPS/message size, consumer TPS/message size, message stacking, topic information, etc.
+RocketMQ metric display, including producer TPS/message size, consumer TPS/message size, message stacking, topic information, etc.
 
 
 ## Configuration {#config}
@@ -28,19 +28,19 @@ Note: The example Linux version is CentOS Linux release 7.8.2003 (Core), Windows
 
 ### Install exporter
 
-1. Pull `rocketmq-exporter`
+- Pull `rocketmq-exporter`
 
 ```shell
 git clone https://github.com/apache/rocketmq-exporter.git
 ```
 
-2. Enter the installation directory
+- Enter the installation directory
 
 ```shell
 cd rocketmq-exporter/
 ```
 
-3. Build the installation package (2 choose 1)
+- Build the installation package (2 choose 1)
 
 (1) How to build jar packages
 
@@ -72,30 +72,30 @@ Start Docker using mirroring (replace `nameserverip` address on command line)
 docker run -d --net="host" --name rocketmq-exporter -p 5557:5557 docker.io/rocketmq-exporter --rocketmq.config.namesrvAddr=nameserverip:9876
 ```
 
-4. Test if `rocketmq-exporter` is normal
+- Test if `rocketmq-exporter` is normal
 
 ```shell
 curl http://127.0.0.1:5557/metrics
 ```
 
-### Indicator Collection
+### Metric Collection
 
-1. Open the DataKit Prometheus plug-in and copy the sample file
+- Open the DataKit Prometheus plug-in and copy the sample file
 
 ```shell
 cd /usr/local/datakit/conf.d/prom
 cp prom.conf.sample prom.conf
 ```
 
-2. Modify the configuration file `prom.conf`
+- Modify the configuration file `prom.conf`
 
 Description of main parameters
 
-- Urls:exporter address, recommended to fill in Intranet address, remote collection can use public network
-- Ignore_ Req_ Err: Ignore request errors for URLs
-- Source: collector alias
-- Metrics_ Types: only counter and gauge type metrics are collected by default
-- Interval: acquisition frequency
+- `urls`:exporter address, recommended to fill in Intranet address, remote collection can use public network
+- `ignore_req_err`: Ignore request errors for URLs
+- `source`: collector alias
+- `metrics_types`: only counter and gauge type metrics are collected by default
+- `interval`: acquisition frequency
 
 ```toml
 [[inputs.prom]]
@@ -109,7 +109,7 @@ Description of main parameters
 
 Restart DataKit
 
-[Restart DataKit] (.. /datakit/datakit-service-how-to.md/#manage-service)
+[Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
 ## Metric {#metric}
 
@@ -129,6 +129,6 @@ Restart DataKit
 
 ## Doc {#doc}
 
-[RocketMQ Exporter Git Code] ( https://github.com/apache/rocketmq-exporter )
+[RocketMQ Exporter Git Code](https://github.com/apache/rocketmq-exporter )
 
 

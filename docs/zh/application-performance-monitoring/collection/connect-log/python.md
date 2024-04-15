@@ -4,9 +4,9 @@
 
 `Python` 应用日志关联链路数据需经过如下步骤：
 
-- 应用中开启日志与链路功能；  
-- Datakit 开启[链路数据采集](../../../integrations/ddtrace.md)，并配置日志切割的 [`Pipeline` 脚本](../../../datakit/pipeline.md)，启动 Datakit；  
-- 启动 Python 应用。
+1. 应用中开启日志与链路功能；  
+2. Datakit 开启[链路数据采集](../../../integrations/ddtrace.md)，并配置日志切割的 [`Pipeline` 脚本](../../../datakit/pipeline.md)，启动 Datakit；  
+3. 启动 Python 应用。
 
 ## 应用开启日志与链路
 
@@ -18,9 +18,9 @@ import logging
 from flask import Flask
 from ddtrace import tracer
 
-os.environ["DD_SERVICE"] = "Python-App"    # 设置服务名
-os.environ["DD_ENV"] = "Testing"          # 设置环境名
-os.environ["DD_VERSION"] = "V1.1"         # 设置版本号
+os.environ["DD_SERVICE"] = "SERVICE_A"  # 设置服务名
+os.environ["DD_ENV"] = "test"  # 设置环境名
+os.environ["DD_VERSION"] = "v1"  # 设置版本号
 os.environ["DD_LOGS_INJECTION"] = "true"  # 开启log注入
 
 # 设置datakit接收链路数据ip地址与端口
@@ -31,14 +31,21 @@ tracer.configure(
 
 log = logging.getLogger(__name__)
 log.level = logging.INFO
+stream_handler = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(filename)s %(dd.service)s %(dd.trace_id)s %(funcName)s:%(lineno)s %(message)s')
+stream_handler.setFormatter(formatter)
+log.addHandler(stream_handler)
+
 
 app = Flask(__name__)
 
-@app.route('/a',  methods=['GET'])
+
+@app.route('/a', methods=['GET'])
 def index():
     # 打印一条log日志
     log.info('Hello, World!')
     return "abcdefg", 200
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=10001, debug=True)
@@ -70,7 +77,7 @@ ddtrace,env=Testing,host=DESKTOP-7BK497S,operation=flask.do_teardown_appcontext,
 产生的日志数据如下：
 
 ```
-2021-06-18 10:07:08,786 INFO [__main__] [lt.py:26] [dd.service=Python-App dd.env=Testing dd.version=V1.1 dd.trace_id=16108321602917563239 dd.span_id=12837828046733169079] - Hello, World!
+2021-06-18 10:07:08,786 INFO [__main__] [lt.py:26] [dd.service.name=Python-App dd.env=Testing dd.version=V1.1 dd.trace_id=16108321602917563239 dd.span_id=12837828046733169079] - Hello, World!
 ```
 
 DDtrace 相关配置除了在源文件中指定外，还可以在启动应用时通过环境变量注入来实现：

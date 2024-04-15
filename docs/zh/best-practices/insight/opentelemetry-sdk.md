@@ -341,7 +341,7 @@ API定义了一个 Meter 接口。该接口由一组 instrument 构造器，和�
 
 ## 相关文档
 
-[OpenTelemetry 链路数据接入](opentelemetry.md)
+[OpenTelemetry 链路数据接入](/integrations/opentelemetry/)
 
 [springboot-opentelemetry-otlp-server](https://github.com/lrwh/observable-demo/tree/main/springboot-opentelemetry-otlp-server)
 

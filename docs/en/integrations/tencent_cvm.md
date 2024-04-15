@@ -33,7 +33,7 @@ If you want to deploy Func yourself refer to [deploy Func yourself](https://func
 
 > Tip: Please prepare the required Ali Cloud AK in advance (for simplicity, you can directly grant global read-only permissions`ReadOnlyAccess`）
 
-To synchronize the monitoring data of ECS cloud resources, we install the corresponding acquisition script:「观测云集成（腾讯云-CVM采集）」(ID：`guance_tencentcloud_cvm`)
+To synchronize the monitoring data of ECS cloud resources, we install the corresponding acquisition script:「Guance Integration（Tencent Cloud-CVMCollect）」(ID：`guance_tencentcloud_cvm`)
 
 After clicking 【Install】, input the corresponding parameters: Ali Cloud AK, Ali cloud account name.
 
@@ -56,17 +56,17 @@ We collect some configurations by default, as described in the metrics column.
 3. At the Guance cloud platform, at the「Metrics」check to see if there is any monitoring data.
 
 ## Metrics {#metric}
-Configuring Tencent Cloud-cloud monitoring, the default indicator set is as follows, and more indicators can be collected through configuration [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/6843){:target="_blank"}
+Configuring Tencent Cloud-cloud monitoring, the default metric set is as follows, and more metrics can be collected through configuration [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/6843){:target="_blank"}
 
 ### CPU Monitor
 
 | Metric Name   | Illustrate                                                         | Unit | Dimension       | Statistical granularity                      |
 | ------------- | ----------------------------------------------------------  | ---- | ---------- | ----------------------------- |
-| CpuUsage      | Percentage of CPU occupied in real time while the machine is running      | %    | InstanceId | 10s、60s、300s、3600s、86400s |
-| CpuLoadavg    | Average number of tasks using and waiting for CPU in 1 minute (Windows machines do not have this metric) | -    | InstanceId | 10s、60s、300s、3600s、86400s |
-| Cpuloadavg5m  | Average number of tasks using and waiting for CPU in 5 minutes (not available on Windows machines) | -    | InstanceId | 60s、300s、3600s              |
-| Cpuloadavg15m | Average number of tasks using and waiting for CPU in 15 minutes (not available on Windows machines) | -    | InstanceId | 60s、300s、3600s              |
-| BaseCpuUsage  | The basic CPU utilization rate is collected and reported through the host machine, and the data can be viewed without installing the monitoring component. The data can still be collected and reported under the high load of the child machine | %    | InstanceId | 10s、60s、300s、3600s、86400s |
+| `CpuUsage`     | Percentage of CPU occupied in real time while the machine is running      | %    | InstanceId | 10s、60s、300s、3600s、86400s |
+| `CpuLoadavg`    | Average number of tasks using and waiting for CPU in 1 minute (Windows machines do not have this metric) | -    | InstanceId | 10s、60s、300s、3600s、86400s |
+| `Cpuloadavg5m`  | Average number of tasks using and waiting for CPU in 5 minutes (not available on Windows machines) | -    | InstanceId | 60s、300s、3600s              |
+| `Cpuloadavg15m` | Average number of tasks using and waiting for CPU in 15 minutes (not available on Windows machines) | -    | InstanceId | 60s、300s、3600s              |
+| `BaseCpuUsage`  | The basic CPU utilization rate is collected and reported through the host machine, and the data can be viewed without installing the monitoring component. The data can still be collected and reported under the high load of the child machine | %    | InstanceId | 10s、60s、300s、3600s、86400s |
 
 ### GPU Monitor
 
@@ -85,17 +85,17 @@ Configuring Tencent Cloud-cloud monitoring, the default indicator set is as foll
 
 | Metric Name    | Illustrate                                                      | Unit  | Dimension       | Statistical granularity                      |
 | -------------  | ------------------------------------------------------------ | ----- | ---------- | ----------------------------- |
-| LanOuttraffic  | The average traffic per second of an internal network card               | Mbps  | InstanceId | 10s、60s、300s、3600s、86400s |
-| LanIntraffic   | The average incoming traffic per second of an internal network card      | Mbps  | InstanceId | 10s、60s、300s、3600s、86400s |
-| LanOutpkg      | The average number of packets per second of an internal network card     | individual per second | InstanceId | 10s、60s、300s、3600s、86400s |
-| LanInpkg       | The average incoming packets per second of the internal network card     | individual per second| InstanceId | 10s、60s、300s、3600s、86400s |
-| WanOuttraffic  | The average outgoing traffic rate of the external network per second, the minimum granularity data is calculated as 10 seconds total traffic /10 seconds, which is the sum of outgoing/incoming bandwidth of the external network of EIP+CLB+CVM | Mbps  | InstanceId | 10s、60s、300s、3600s、86400s |
-| WanIntraffic   | The average incoming traffic rate of the external network per second, the minimum granularity data is calculated as 10 seconds total traffic /10 seconds, which is the sum of outgoing/incoming bandwidth of the external network of EIP+CLB+CVM | Mbps  | InstanceId | 10s、60s、300s、3600s、86400s |
-| WanOutpkg      | The average number of outgoing packets per second of the external network card   | individual per second | InstanceId | 10s、60s、300s、3600s、86400s |
-| WanInpkg       | The average incoming packets per second of the external network card    | individual per second | InstanceId | 10s、60s、300s、3600s、86400s |
-| AccOuttraffic  | The average traffic per second of the external network card   | MB    | InstanceId | 10s、60s、300s、3600s、86400s |
-| TcpCurrEstab   | The number of TCP connections in the ESTABLISHED state     | individual  | InstanceId | 10s、60s、300s、3600s、86400s |
-| TimeOffset     | The difference between utc time and ntp time of the child      | second    | InstanceId | 60s、300s、3600s、86400s      |
+| `LanOuttraffic`  | The average traffic per second of an internal network card               | Mbps  | InstanceId | 10s、60s、300s、3600s、86400s |
+| `LanIntraffic`   | The average incoming traffic per second of an internal network card      | Mbps  | InstanceId | 10s、60s、300s、3600s、86400s |
+| `LanOutpkg`      | The average number of packets per second of an internal network card     | individual per second | InstanceId | 10s、60s、300s、3600s、86400s |
+| `LanInpkg`       | The average incoming packets per second of the internal network card     | individual per second| InstanceId | 10s、60s、300s、3600s、86400s |
+| `WanOuttraffic`  | The average outgoing traffic rate of the external network per second, the minimum granularity data is calculated as 10 seconds total traffic /10 seconds, which is the sum of outgoing/incoming bandwidth of the external network of EIP+CLB+CVM | Mbps  | InstanceId | 10s、60s、300s、3600s、86400s |
+| `WanIntraffic`   | The average incoming traffic rate of the external network per second, the minimum granularity data is calculated as 10 seconds total traffic /10 seconds, which is the sum of outgoing/incoming bandwidth of the external network of EIP+CLB+CVM | Mbps  | InstanceId | 10s、60s、300s、3600s、86400s |
+| `WanOutpkg`      | The average number of outgoing packets per second of the external network card   | individual per second | InstanceId | 10s、60s、300s、3600s、86400s |
+| `WanInpkg`       | The average incoming packets per second of the external network card    | individual per second | InstanceId | 10s、60s、300s、3600s、86400s |
+| `AccOuttraffic`  | The average traffic per second of the external network card   | MB    | InstanceId | 10s、60s、300s、3600s、86400s |
+| `TcpCurrEstab`   | The number of TCP connections in the ESTABLISHED state     | individual  | InstanceId | 10s、60s、300s、3600s、86400s |
+| `TimeOffset`     | The difference between utc time and ntp time of the child      | second    | InstanceId | 60s、300s、3600s、86400s      |
 
 ### Memory Monitor
 
@@ -111,21 +111,21 @@ Configuring Tencent Cloud-cloud monitoring, the default indicator set is as foll
 | ------------  | ---------------------------------------- | ---- | ---------- | --------- |
 | CvmDiskUsage  | Disk used capacity as a percentage of total capacity (all disks) | %    | InstanceId | 60s、300s |
 
-### RDMA Monitor
+### **RDMA Monitor**
 
 | Metric Name        | Illustrate         | Unit  | Dimension       | Statistical granularity                    |
 | -----------------  | ------------------ | ----- | ---------- | --------------------------- |
-| RdmaIntraffic      | RDMA network cards receive bandwidth  | Mbps  | InstanceId | 60s、 300s、 3600s、 86400s |
-| RdmaOuttraffic     | RDMA network card send bandwidth | Mbps  | InstanceId | 60s、 300s、 3600s、 86400s |
-| RdmaInpkt          | RDMA network card packet size    | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
-| RdmaOutpkt         | RDMA network card output packets   | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
-| CnpCount           | Congestion notification packet statistics   | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
-| EcnCount           | Display congestion notification statistics   | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
-| RdmaPktDiscard     | End measurement of packet loss        | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
-| RdmaOutOfSequence  | The amount of out-of-order error at the receiver   | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
-| RdmaTimeoutCount   | The amount of sender timeout error   | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
-| TxPfcCount         | TX PFC statistics     | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
-| RxPfcCount         | RX PFC statistics     | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
+| `RdmaIntraffic`      | **RDMA** network cards receive bandwidth  | Mbps  | InstanceId | 60s、 300s、 3600s、 86400s |
+| `RdmaOuttraffic`     | **RDMA** network card send bandwidth | Mbps  | InstanceId | 60s、 300s、 3600s、 86400s |
+| `RdmaInpkt`          | **RDMA** network card packet size    | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
+| `RdmaOutpkt`         | **RDMA** network card output packets   | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
+| `CnpCount`           | Congestion notification packet statistics   | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
+| `EcnCount`           | Display congestion notification statistics   | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
+| `RdmaPktDiscard`     | End measurement of packet loss        | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
+| `RdmaOutOfSequence`  | The amount of out-of-order error at the receiver   | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
+| `RdmaTimeoutCount`   | The amount of sender timeout error   | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
+| `TxPfcCount`         | TX PFC statistics     | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
+| `RxPfcCount`        | RX PFC statistics     | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
 
 ## Object {#object}
 You could see the object data structure of the collected Tencent Cloud CVM objects obtained .
@@ -146,13 +146,13 @@ You could see the object data structure of the collected Tencent Cloud CVM objec
     "CPU"               : 2,
     "Memory"            : 2,
     "InstanceState"     : "RUNNING",
-    "PublicIpAddresses" : "{公网 IP 数据}",
-    "PrivateIpAddresses": "{私网 IP 数据}",
-    "SystemDisk"        : "{系统盘 JSON 数据}",
-    "DataDisks"         : "{数据盘 JSON 数据}",
-    "Placement"         : "{地区 JSON 数据}",
+    "PublicIpAddresses" : "{Public network IP data}",
+    "PrivateIpAddresses": "{Private network IP data}",
+    "SystemDisk"        : "{System disk JSON data}",
+    "DataDisks"         : "{data disk JSON data}",
+    "Placement"         : "{Region JSON data}",
     "ExpiredTime"       : "2022-05-07T01:51:38Z",
-    "message"           : "{实例 JSON 数据}"
+    "message"           : "{Instance JSON data}"
   }
 }
 ```

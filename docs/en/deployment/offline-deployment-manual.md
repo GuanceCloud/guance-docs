@@ -857,12 +857,14 @@ parameters:
 ```
 
 
-#### 2.2.2 基础资源及中间件资源创建
-##### **Mysql、Redis、InfluxDB、Elasticsearch、NFS 存储**按配置要求创建。
-### 2.3 资源配置
+#### 2.2.2 Create Basic Resources and Middleware Resources
+
+##### Mysql, Redis, InfluxDB, Elasticsearch, NFS storage should be created according to the configuration requirements.
+### 2.3 Resource Configuration
 #### 2.3.1 MySQL
 
-- 创建管理员账号（必须是**管理员账号**，后续安装初始化需要用此账号去创建和初始化各应用 DB，若需要远程连接需自行开启）
+- Create an administrator account (must be an **administrator account** as it will be used to create and initialize various application databases during installation and initialization. If remote connection is required, it needs to be enabled manually).
+
 ```yaml
 ---
 apiVersion: v1
@@ -989,10 +991,12 @@ spec:
   type: NodePort
 
 ```
-**注：如果部署不成功，可以使用docker部署mysql的方式进行部署**
+
+Note: If the deployment is not successful, you can use Docker to deploy MySQL.
+
 #### 2.3.2 Redis
 
-- 需设置 Redis 密码
+- Redis password needs to be set
 ```yaml
 ---
 apiVersion: v1
@@ -1068,13 +1072,13 @@ spec:
 
 #### 2.3.3 InfluxDB
 
-- 部署InfluxDB之前需先给选定节点打上标签:
+- Before deploying InfluxDB, you need to label the selected nodes: 
 
 ```shell
-$ kubectl label nodes <node名称> app01: influxdb
+$ kubectl label nodes <nodename> app01: influxdb
 ```
 
-- 创建管理员账号（必须是**管理员账号**，后续安装初始化需要用此账号去创建和初始化 DB 及 RP等信息）
+- Create an administrator account (it must be an **administrator account** as it will be used to create and initialize DB, RP, and other information during the subsequent installation).
 
 ```yaml
 ---
@@ -1093,7 +1097,7 @@ spec:
       storage: 10Gi
   volumeMode: Filesystem
   storageClassName: standard-nfs-storage 
-  # 此处配置实际存在的storageclass，若配置有默认storageclass 可以不配置该字段 #
+  # Specify the actual existing storage class here. If there is a default storage class configured, this field can be left empty. #
 
 
 
@@ -1144,7 +1148,7 @@ spec:
       labels:
         app: influxdb
     spec:
-      nodeSelector:     ## 配置该容器调度到指定节点，前提是将指定节点打好标签  ##
+      nodeSelector:     ## Configure the container to schedule to the specified node, provided that the specified node is labeled  ##
         app01: influxdb
       containers:
       - env:
@@ -1221,13 +1225,15 @@ spec:
   type: NodePort
 ```
 #### 2.3.4 Elasticsearch
-k8s集群中部署es参考示例
-注：该yaml适用于poc环境，便于测试。
+
+K8s Cluster Deploying ES Reference Example
+
+Note: This yaml is suitable for the poc environment and is convenient for testing.
 
 ```yaml
-## ConfigMap 可根据实际测试需要自行更改
-## Namespace 为elastic 可根据实际测试需要自行更改
-## Volume 使用自动存储，需要提前确认。若未配置自动存储可以按需修改为使用宿主机目录。
+## ConfigMap can be modified according to actual testing needs
+## Namespace is elastic, which can be modified according to actual testing needs
+## Volume uses automatic storage, which needs to be confirmed in advance. If automatic storage is not configured, it can be modified as needed to use the host directory.
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -1320,7 +1326,7 @@ spec:
         command: ["sh", "-c", "ulimit -n 65536"]
         securityContext:
           privileged: true 
-      nodeName: cf-standard-02003 #配置需要调度机器的主机名，以实际环境为准
+      nodeName: cf-standard-02003 #Configuration requires the host name of the scheduling machine, based on the actual environment
       containers:
       - name: elasticsearch-master
         image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
@@ -1334,7 +1340,7 @@ spec:
         - name: MASTER_NODES
           value: elasticsearch-master
         - name: "ES_JAVA_OPTS"
-          value: "-Xms512m -Xmx512m" #根据测试需要调整
+          value: "-Xms512m -Xmx512m" #Adjust according to test needs
         - name: xpack.security.enabled
           value: "true"
         - name: xpack.security.transport.ssl.enabled

@@ -11,7 +11,7 @@
 This document describes how to capture Prometheus metrics exposed by custom Pods in Kubernetes clusters in two ways:
 
 - Expose the pointer interface to the DataKit through Annotations
-- Expose the metric interface to the DataKit by automatically discovering Kubernetes endpoint services to prometheus
+- Expose the metric interface to the DataKit by automatically discovering Kubernetes endpoint services to Prometheus
 
 The usage of the two methods will be explained in detail below.
 
@@ -44,6 +44,7 @@ The following wildcard characters are supported:
 - `$PODNAME`: Pod Name
 - `$NODENAME`: The name of the Node where the Pod is located
 
+<!-- markdownlint-disable MD046 -->
 !!! tip
 
     Instead of automatically adding tags such as `namespace` and `pod_name`, the Prom collector can add additional tags using wildcards in the config above, for example:
@@ -54,6 +55,7 @@ The following wildcard characters are supported:
         pod_name = "$PODNAME"
         node_name = "$NODENAME"
     ```
+<!-- markdownlint-enable -->
 
 ### Select Specified Pod IP {#pod-ip}
 
@@ -97,9 +99,11 @@ spec:
               node_name = "$NODENAME"
 ```
 
+<!-- markdownlint-disable MD046 -->
 ???+ attention
 
     The `annotations` must be added under the `template` field so that the Pod created by *deployment.yaml* carries `datakit/prom.instances`.
+<!-- markdownlint-enable -->
 
 
 - Create a resource with the new yaml
@@ -110,7 +114,9 @@ kubectl apply -f deployment.yaml
 
 At this point, Annotations has been added. DataKit later reads the Pod's Annotations and collects the metrics exposed on `url`.
 
+<!-- markdownlint-disable MD013 -->
 ## Automatically Discover the Service Exposure Metrics Interface {#auto-discovery-metrics-with-prometheus}
+<!-- markdownlint-enable -->
 
 [:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
 
@@ -151,7 +157,7 @@ metadata:
   namespace: ns-testing
   annotations:
     prometheus.io/scrape: "true"
-    prometheus.io/port: "8080"
+    prometheus.io/port: "80"
 spec:
   selector:
     app.kubernetes.io/name: proxy
@@ -164,57 +170,94 @@ spec:
 
 Datakit automatically discovers a Service with `prometheus.io/scrape: "true"` and builds a prom collection with `selector` to find a matching Pod:
 
-- `prometheus.io/scrape`: Only services as "true" are collected, required
-- `prometheus.io/port`: Specify the metrics port, required
-- `prometheus.io/scheme`: Select `https` and `http` according to metrics endpoint, default is `http`
-- `prometheus.io/path`: Configure the metrics path, default to `/metrics`
+- `prometheus.io/scrape`: Only services as "true" are collected, required.
+- `prometheus.io/port`: Specify the metrics port, required. That this port must be present in the Pod or the collect will fail.
+- `prometheus.io/scheme`: Select `https` and `http` according to metrics endpoint, default is `http`.
+- `prometheus.io/path`: Configure the metrics path, default to `/metrics`.
+- `prometheus.io/param_measurement`：Configure the measurement, default is Pod OwnerReference.
 
 The IP address of the collect target is `PodIP`.
 
+<!-- markdownlint-disable MD046 -->
 ???+ attention
 
     Datakit doesn't collects the Service itself, it collects the Pod that the Service is paired with.
+<!-- markdownlint-enable -->
 
 
 The collection interval is 1 minute.
 
 ### Measurements and Tags {#measurement-and-tags}
 
-Autodiscover Pod/Service Prometheus, whose metrics set name is obtained by Datakit parsing the Pod OwnerReference, as exemplified by the following Pod details:
+Automatic discovery of Pod/Service Prometheus involves three scenarios for naming metrics, prioritized as follows:
 
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  creationTimestamp: "2023-08-15T06:32:41Z"
-  generateName: prom-server-
-  labels:
-    app.kubernetes.io/name: proxy
-    pod-template-generation: "1"
-  name: prom-server-lsk4g
-  ownerReferences:
-  - apiVersion: apps/v1
-    kind: DaemonSet
-    name: prom-server
-```
+1. Manual configuration of metric sets
 
-Its Prometheus metric name set is `prom-server`.
+   In Pod/Service Annotations, configure `prometheus.io/param_measurement`, with its value being the specified metric set name. For example:
 
-If the pod does not have OwnerReferences, the metric name will be cut with an underscore `_`. The first field after cutting will be the measurement name, and the remaining fields will be the current metric name.
+   ```yaml
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: testing-prom
+     labels:
+       app.kubernetes.io/name: MyApp
+     annotations:
+       prometheus.io/scrape: "true"
+       prometheus.io/port: "8080"
+       prometheus.io/param_measurement: "pod-measurement"
+   ```
 
-For example, the following prometheus raw data:
+   Its Prometheus data metric set would be `pod-measurement`.
 
-```
-# TYPE promhttp_metric_handler_errors_total counter
-promhttp_metric_handler_errors_total{cause="encoding"} 0
-```
+   For Prometheus's PodMonitor/ServiceMonitor CRDs, you can use `params` to specify `measurement`, for instance:
 
-Distinguished by the first underscore, `promhttp` on the left is the metric set name, and `metric_handler_errors_total` on the right is the field name.
+   ```yaml
+   # URL parameter of the scrape request
+   params:
+       measurement:
+       - new-measurement
+   ```
 
-Datakit will add additional tags to locate this resource in a Kubernetes cluster:
+2. Datakit parsing of Pod OwnerReferences
 
-- For `Service`, two tags `namespace` and `service_name` `pod_name` will be added.
-- For `Pod`, two tags `namespace` and `pod_name` will be added.
+   Most Pods have OwnerReferences. Parsing the first Owner of a Pod yields the metric set name. Consider the following Pod details as an example:
+
+   ```yaml
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     creationTimestamp: "2023-08-15T06:32:41Z"
+     generateName: prom-server-
+     labels:
+       app.kubernetes.io/name: proxy
+       pod-template-generation: "1"
+     name: prom-server-lsk4g
+     ownerReferences:
+     - apiVersion: apps/v1
+       kind: DaemonSet
+       name: prom-server
+   ```
+
+   Its Prometheus data metric set would be `prom-server`.
+
+3. Obtained through data segmentation
+
+   If the Pod does not have OwnerReferences, the metric name will default to being segmented using an underscore `_`. The first segmented field becomes the metric set name, and the remaining fields become the current metric name.
+
+   For example, consider the following Prometheus raw data:
+
+   ```not-set
+   # TYPE promhttp_metric_handler_errors_total counter
+   promhttp_metric_handler_errors_total{cause="encoding"} 0
+   ```
+
+   Using the first underscore as a delimiter, the left side `promhttp` becomes the metric set name, and the right side `metric_handler_errors_total` becomes the field name.
+
+   Datakit will add additional tags to locate this resource in the Kubernetes cluster:
+
+   - For `Service`, it will add three tags: `namespace`, `service_name`, and `pod_name`.
+   - For `Pod`, it will add two tags: `namespace` and `pod_name`.
 
 ## Extended Reading {#more-readings}
 

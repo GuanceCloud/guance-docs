@@ -1,92 +1,94 @@
-# Custom Object Data Reporting
+# Data Report
 ---
 
 
 Custom object data reporting needs to install and connect DataKit and DataFlux Func first, then report data to DataKit through DataFlux Func, and finally DataKit reports data to Guance workspace.
 
-![](../img/自定义对象.png)
+![](../img/object.png)
 
 ## Install DataKit
 
-In the Guance workspace, click "Integration"-"DataKit" in turn, select the DataKit installation method, see the following information, and then copy the "Installation Instruction" to execute on the host.
+In the Guance workspace, click **Integration > DataKit** in turn, select the DataKit installation method, see the following information, and then copy the installation to execute on the host.
 
 ![](../img/1.datakit_install.png)
 
-In the Guance workspace, click "Integration"-"DataKit" in turn, select the DataKit installation method, see the following information, and then copy the `Install Success`.
+Open the command line terminal tool, log in to the host, and execute the copied installation command. After the installation is complete, it will prompt `Install Success`.
 
-[Learn more about getting started with DataKit.](../../datakit/datakit-service-how-to.md)
+> See [Getting Started with DataKit](../../datakit/datakit-service-how-to.md).
 
-## Install Function
+## Install DataFlux Func
 
 In the Guance workspace, click "Integration"-"Func" in turn, and install Func in the command line terminal tool according to the following steps.
 
 ![](../img/1.func_install.png)
 
-1）Download the portable version.
+I. Download the portable version.
 
 ![](../img/3.object_more_api_function_2.png)
 
-2）Automatically deploy script installation.
+II. Automatically deploy script installation.
+
 ![](../img/3.object_more_api_function_3.png)
 
-3）After the installation is complete, enter `http://server IP address:8088` in the browser and click "save and initialize database" to initialize.
+III. After the installation is complete, enter `http://server IP address:8088` in the browser and save and initialize database to initialize.
 
 ![](../img/3.object_more_api_function_1.png)
 
-For more Func installations, refer to the doc [quick start](../../dataflux-func/quick-start.md).
+> For more Func installations, see [Quick Start](../../dataflux-func/quick-start.md).
 
-## Connect Function and DataKit
+## Connect DataFlux Func and DataKit
 
 Before using DataFlux Func to write data to a DataKit, ensure connectivity first. Therefore, after the DataKit installation is complete, you need to adjust the configuration to allow the DataFlux Func connection.
 
-1.Open the datakit configuration: `sudo vim /usr/local/datakit/conf.d/datakit.conf`
+I. Open the datakit configuration: `sudo vim /usr/local/datakit/conf.d/datakit.conf`
 
-2.Amend `http_listen = "localhost:9529"` to `http_listen = "0.0.0.0:9529"`
+II. Amend `http_listen = "localhost:9529"` to `http_listen = "0.0.0.0:9529"`
 
 ![](../img/21.lab_rum_3.png)
 
-3.Restart DataKit: `sudo datakit --restart`
+III. Restart DataKit: `sudo datakit --restart`
 
-For more details, please refer to the doc [connect and operate DataKit](../../dataflux-func/connect-to-datakit.md).
+> For more details, see [Connect and Operate DataKit](../../dataflux-func/connect-to-datakit.md).
 
-## Report Custom Object Data
+## Report Custom Data
 
 After DataFlux Func and DataKit are connected, you can write functions in DataFlux Func to report custom object data.
 
-- Refer to the doc [DataKit API](../../datakit/apis.md) for an interface description of the DataFlux Func function call.
-- For instructions on how DataFlux Func writes data to DataKit, refer to the doc [write data from DataKit](../../dataflux-func/write-data-via-datakit.md).
+> See [DataKit API](../../datakit/apis.md) for an interface description of the DataFlux Func function call.
+>
+> For instructions on how DataFlux Func writes data to DataKit, see [Write Data from DataKit](../../dataflux-func/write-data-via-datakit.md).
 
 ## Example Description
 
 The following example mainly uses Alibaba Cloud products as an example to show how to report custom object data through DataFlux Func.
 
-Preconditions: DataKit and DataFlux Func are installed and connected.
+**Preconditions**: DataKit and DataFlux Func are installed and connected.
 
-1.Enter `http://server IP address:8088`in the browser, and enter the account number and password, which can be configured at initialization time. The default is `admin/admin`.
+I. Enter `http://server IP address:8088` in the browser, and enter the account number and password, which can be configured at initialization time. The default is `admin/admin`.
 
 ![](../img/3.object_more_api_function_4.png)
 
-2.After you log in to DataFlux Func, you can add scripts in the Script Editor.
+II. After you log in to DataFlux Func, you can add scripts in the Script Editor.
 
 ![](../img/3.object_more_api_function_5.png)
 
-3.DataFlux Func supports scripting data through python. Before you start adding scripts, you need to install Alibaba Cloud's Python SDK.
+III. DataFlux Func supports scripting data through Python. Before you start adding scripts, you need to install Alibaba Cloud's Python SDK.
 
-1）In DataFlux Func "Administration"-"Experimental Features"-"Open PIP Tool Module".
+i. In DataFlux Func **Management > Experimental Features > Open PIP Tool Module**.
 
 ![](../img/3.object_more_api_function_6.png)
 
-2）In the "PIP Tools" module, click to open [Alibaba Cloud's Python SDK](https://help.aliyun.com/document_detail/53090.html?spm=a2c4g.11186623.6.556.3533694ccdcH5B) and copy `aliyun-python-sdk-core` for installation.
+ii. In the PIP Tools module, click to open [Alibaba Cloud's Python SDK](https://help.aliyun.com/document_detail/53090.html?spm=a2c4g.11186623.6.556.3533694ccdcH5B) and copy `aliyun-python-sdk-core` for installation.
 
 ![](../img/3.object_more_api_function_8.png)
 
-4.After installing Alibaba Cloud's Python SDK, click to enter Script Editor-Add Script Set.
+IV. After installing Alibaba Cloud's Python SDK, click to enter **Script Editor > Add Script Set**.
 
 ![](../img/3.object_more_api_function_9.png)
 
 Obtain the reporting API interface and script for reporting data to DataFlux according to the [DataKit API](../../datakit/apis.md) document, and write the fields for obtaining basic information of Alibaba Cloud products according to the [Alibaba Cloud API](https://next.api.aliyun.com/product/Ecs) document.
 
-After the script is written, you can click "Execute" in the upper right corner to see if you can execute the code normally.
+After the script is written, you can click **Execute** in the upper right corner to see if you can execute the code normally.
 
 ![](../img/3.object_more_api_function_10.1.png)
 
@@ -142,10 +144,10 @@ def main():
         pushdata(data)
 ```
 
-5.After the DataFlux Func script configuration is completed, the reported data can be viewed in "Infrastructure"-"Customization" of the "Guance" workspace.
+V. After the DataFlux Func script configuration is completed, the reported data can be viewed in **Infrastructure > Custom** of the Guance workspace.
 
 ![](../img/3.object_more_api_function_11.png)
 
-6.If you need to execute script tasks regularly, you can create timed report tasks in DataFlux Func "Administration"-"Automatic Trigger Configuration".
+VI. If you need to execute script tasks regularly, you can create timed report tasks in DataFlux Func **Management > Automatic Trigger Configuration**.
 
 ![](../img/3.object_more_api_function_12.png)

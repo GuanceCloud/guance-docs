@@ -1,44 +1,47 @@
 # Metric Analysis
 ---
 
-## Overview
 
 After the Guance data collection is reported to the workspace, metrics and other data types (log, basic object, custom object, event, application performance, user access, security inspection, network and Profile) can be queried and analyzed on the **Metrics** > **Metric Analysis** page.
 
 ## Metric Query
 
-**Metric Analysis** supports users to visually query metric data in the form of time sequence diagram based on three ways: **Simple Query**, **Expression Query** and **DQL Query**. Support three viewing modes: area chart, line chart and histogram. For more data query instructions, please refer to [chart query](../scene/visual-chart/chart-query.md#query).
+Metric Analysis supports users to visually query metric data in the form of time sequence diagram based on three ways: **Simple Query**, **Expression Query**, **DQL Query** and **PromQL Query**. The data can be visualized in four viewing modes: area chart, line chart, bar chart and table.
 
-![](img/4.changelog_1.2.png)
+Among them, the table chart supports querying and analyzing data in both **time mode and group mode**. When you select the time mode, you can choose different time intervals to display the queried data.
 
+<img src="../img/analysis.png" width="70%" >
 
+> For more information on data querying, see [Chart Query](../scene/visual-chart/chart-query.md#query).
 
-### Time Interval
-
-**Time Interval** is the length of time between time sequence diagram data points. By switching the time interval in the upper right corner of the explorer, you can pinpoint [time interval](../scene/visual-chart/timeseries-chart.md#advanced-setting) to milliseconds, seconds, minutes, days, weeks and months. Specifically, it includes 1 millisecond, 50 milliseconds, 15 seconds, 30 seconds, 1 minute, 5 minutes, 10 minutes, 30 minutes, 1 hour, 6 hours, 12 hours, 1 day, 1 week and 1 month.
-
-???+ info
-
-    As [time control](../getting-started/necessary-for-beginners/explorer-search.md#time) would affect the data display range of **Metrics Analysis**, the customizable time interval would be automatically adjusted according to the time control range. If you choose to view the last 15 minutes of metric data, you would not be able to select "1 hour" as the time interval.
+![](img/4.changelog_1.2.gif)
 
 
 
+## Time Interval {#interval}
 
-### Legends
+The time interval is the length of time between data points in a [timeseries chart](../scene/visual-chart/timeseries-chart.md). By switching the time interval in the upper right corner of the explorer, you can set the [time interval](../scene/visual-chart/timeseries-chart.md#advanced-setting) to be precise to 10 seconds, 20 seconds, 30 seconds, 1 minute, 5 minutes, and 10 minutes.
 
-Legend is an auxiliary element of chart, which supports distinguishing data based on different colors, points and shapes.
-
-- In the **Metric Analysis** explorer, click **Legend**, which can be used to filter the data in the chart.
-
-- In the **Metric Analysis** explorer, you can hide or adjust the legend position to the bottom or right by using the top right corner ![](img/icon1.png) of the explorer.
+**Note**: As [time control](../getting-started/necessary-for-beginners/explorer-search.md#time) would affect the data display range of **Metric Analysis**, the customizable time interval would be automatically adjusted according to the time control range. If you choose to view the last 15 minutes of metric data, you would not be able to select "1 hour" as the time interval.
 
 
 
-### Color
+## Legends
 
-In order to make better use of lines, points and surfaces with different colors to represent the data trends of different metrics, Guance supports clicking the **Color** button :art: in the upper right corner of the explorer to modify the legend color.
+Legend is an auxiliary element of chart, which supports distinguishing data based on different colors, points and shapes. By checking the :fontawesome-solid-table-list: in the top right corner of the explorer, you can hide or adjust the position of the legend to the bottom or right side.
 
-### Export
 
-After querying the data and returning the results on **Metric Analysis**, you can directly click the **Export** button :material-export-variant: and export the chart to the specified **dashboard**, **notes** or **clipboard**.
 
+## Color
+
+In order to better utilize different colors of lines, points, and areas to represent the data trends of different indicators, click the Color button :art: in the top right corner of the explorer to modify the legend colors.
+
+## Export
+
+
+In Metrics Analysis, after performing a data query and obtaining the results, you can directly click on the Export button :material-export-variant: to choose exporting the chart to a dashboard & note or copying it to the clipboard.
+
+When visualizing with a table chart, in addition to the three export options mentioned above, you can also choose to Download as CSV.
+
+
+![](img/chart-1.png)

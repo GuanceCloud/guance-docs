@@ -1,5 +1,19 @@
+---
+title     : 'Zipkin'
+summary   : 'Zipkin Tracing Data Ingestion'
+__int_icon      : 'icon/zipkin'
+dashboard :
+  - desc  : 'N/A'
+    path  : '-'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # Zipkin
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -8,14 +22,11 @@
 
 The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze the data of Zipkin Tracing protocol.
 
-## Zipkin Docs {#docs}
+## Configuration {#config}
 
-- [Quickstart](https://zipkin.io/pages/quickstart.html){:target="_blank"}
-- [Docs](https://zipkin.io/pages/instrumenting.html){:target="_blank"}
-- [Souce Code](https://github.com/openzipkin/zipkin){:target="_blank"}
+### Collector Config {#input-config}
 
-## Configure Zipkin Agent {#config-agent}
-
+<!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
     Go to the `conf.d/zipkin` directory under the DataKit installation directory, copy `zipkin.conf.sample` and name it `zipkin.conf`. Examples are as follows:
@@ -34,6 +45,9 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
       ## If some resources are rare enough(not presend in 1 hour), those resource will always send
       ## to data center and do not consider samplers and filters.
       # keep_rare_resource = false
+    
+      ## delete trace message
+      # del_message = true
     
       ## Ignore tracing resources map like service:[resources...].
       ## The service name is the full service name in current application.
@@ -80,19 +94,21 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
 
     Multiple environment variables supported that can be used in Kubernetes showing below:
 
-    | Envrionment Variable Name             | Type        | Example                                                                          |
+    | Environment Variable Name             | Type        | Example                                                                          |
     | ------------------------------------- | ----------- | -------------------------------------------------------------------------------- |
     | `ENV_INPUT_ZIPKIN_PATH_V1`            | string      | "/api/v1/spans"                                                                  |
     | `ENV_INPUT_ZIPKIN_PATH_V2`            | string      | "/api/v2/spans"                                                                  |
     | `ENV_INPUT_ZIPKIN_IGNORE_TAGS`        | JSON string | `["block1", "block2"]`                                                           |
     | `ENV_INPUT_ZIPKIN_KEEP_RARE_RESOURCE` | bool        | true                                                                             |
+    | `ENV_INPUT_ZIPKIN_DEL_MESSAGE`        | bool        | true                                                                             |
     | `ENV_INPUT_ZIPKIN_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}` |
     | `ENV_INPUT_ZIPKIN_SAMPLER`            | float       | 0.3                                                                              |
     | `ENV_INPUT_ZIPKIN_TAGS`               | JSON string | `{"k1":"v1", "k2":"v2", "k3":"v3"}`                                              |
     | `ENV_INPUT_ZIPKIN_THREADS`            | JSON string | `{"buffer":1000, "threads":100}`                                                 |
     | `ENV_INPUT_ZIPKIN_STORAGE`            | JSON string | `{"storage":"./zipkin_storage", "capacity": 5120}`                               |
+<!-- markdownlint-enable -->
 
-## Measurements {#measurements}
+## Tracing {#tracing}
 
 
 
@@ -131,8 +147,6 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
 |`duration`|Duration of span|int|μs|
 |`message`|Origin content of span|string|-|
 |`parent_id`|Parent span ID of current span|string|-|
-|`pid`|Application process id. Available in DDTrace, OpenTelemetry. Optional.|string|-|
-|`priority`|Optional.|int|-|
 |`resource`|Resource name produce current span|string|-|
 |`span_id`|Span id|string|-|
 |`start`|start time of span.|int|usec|
@@ -140,3 +154,9 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
 
 
 
+
+## Zipkin Docs {#docs}
+
+- [Quick Start](https://zipkin.io/pages/quickstart.html){:target="_blank"}
+- [Docs](https://zipkin.io/pages/instrumenting.html){:target="_blank"}
+- [Source Code](https://github.com/openzipkin/zipkin){:target="_blank"}

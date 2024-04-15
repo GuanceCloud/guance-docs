@@ -1,69 +1,57 @@
 # MFA Management
 ---
 
-## Overview
-MFA, namely **Multi-Factor Authentication**, helps to add an additional layer of security protection to the account user name and password. After MFA in Guance is turned on, you need to perform secondary verification when logging in to help you improve the security of your account.
 
-## Preconditions
+Guance provides mandatory two-factor MFA security authentication, adding an additional layer of security protection beyond the account username and password. After enabling MFA, all members of the workspaces must complete MFA binding and authentication, otherwise they will not be able to access the workspace.
 
-When using Guance MFA, you need to download and install **Google Authenticator** on your mobile phone to obtain MFA security code.
+## Bind
 
+In the Guance workspace, click on **Your Account > Account Management > Security Settings > MFA**, and click **Bind** on the right side.
 
-## Bind MFA
+<img src="../img/6.mfa_1.png" width="90%" >
 
-In the Guance workspace, click **Your Account > Account Management** in the lower left corner, MFA under **Security Settings**, and click **Bind** on the right.
+MFA binding supports authentication through email. Click on Get Verification Code and enter the code, then click **Confirm**.
 
-![](img/1.mfa_1.png)
+<img src="../img/1.mfa_2.1.png" width="50%" >
 
-Binding MFA supports verification by email. Click and get verification code input, and then click **Confirm**.
-
-
-
-![](img/1.mfa_2.1.png)
-
-If you have not downloaded and installed Google Authenticator on your mobile phone before, you can download and install it first. After the installation is completed, use Google Authenticator to scan and obtain MFA security code.
+Download and install the Google Authenticator, Alibaba Cloud Identity Verification and other authentication apps on your mobile device, and scan to obtain the MFA security code.
 
 ![](img/1.mfa_4.1.png)
 
-Fill in the obtained 6-digit dynamic security code on the above page and click **Confirm**. You can modify or delete the added account with the button ... in the upper right corner.
+Enter the 6-digit dynamic security code obtained and click **Confirm**.
 
-![](img/1.mfa_11.1.png)
-
-After clicking **Confirm**, prompt MFA binding successfully, return to **Account Management** page, and prompt **Bound** in MFA.
+After clicking **Confirm**, a prompt will appear indicating successful MFA binding, and you will be returned to the **Account Management** page with the MFA status showing Bound.
 
 ![](img/6.mfa_1.1.png)
 
+## Log in with MFA
 
+When MFA mandatory authentication is enabled, if a member of the workspace has not bound MFA before logging in, they will need to complete the following steps for identity authentication.
 
-## Log in to MFA Authenticated Account
+![](../img/mfa-1.png)
 
-After binding MFA, when you log in to [Guance](https://www.guance.com/), you will be prompted with the following dialog box. Enter the 6-digit dynamic security code obtained through Google Authenticator and click **Confirm** to log in.
+If the current account has bound MFA, when logging into Guance, you must enter the 6-digit dynamic security code to log in:
 
-![](img/1.mfa_6.1.png)
+![](../img/mfa-2.png)
 
-
-## Unbind MFA
+## Unbind
 
 ### Method 1
 
-If you no longer need to use MFA, you can unbind MFA for your account. In Guance workspace, click **Account > Account Management** in the lower left corner, **MFA** under **Security Settings**, click **Unbind** on the right, enter the dynamic code and click **Confirm**.
+If you no longer need to use MFA, you can unbind MFA from your account. In the Guance workspace, click on **Account Management > Security Settings > MFA**, click **Unbind** on the right side. Enter the dynamic code and click **Confirm**.
 
-![](img/1.mfa_8.png)
+<img src="../img/1.mfa_8.png" width="60%" >
 
-After unbinding, you can see that the **MFA** prompt is unbound.
+After unbinding, you will see that the MFA status is Unbound.
 
-![](img/6.mfa_1.png)
-
-At the same time, you will receive an unbound email reminder from Guance.
-
-![](img/1.mfa_10.png)
-
+![](../img/6.mfa_1.png)
 
 ### Method 2
 
-If the device installed with MFA is not around when logging in, and the security code cannot be generated for logging in, you can contact Guance customer service to apply for unbinding. On the login page, click **Unbind MFA**, select the ticket type as **Unbind MFA**, fill in the ticket title, description and email verification code and submit the ticket.
+If you are unable to generate a security code for login because the device with MFA is not available, you can contact Guance customer service to request unbinding. On the login page, click on **Unbind MFA**, select the ticket type as **Unbind MFA**, fill in the ticket title, description and email verification code, then submit the ticket.
 
-After receiving the application, Guance customer service will handle it for you as soon as possible. See [Ticket Management](work-order-management.md).
+Once the Guance customer service receives the request, they will process it as soon as possible. 
 
-![](img/1.work_order_2.png)
+> For more details, see [Tickets](work-order-management.md).
 
+<img src="../img/1.work_order_2.png" width="60%" >

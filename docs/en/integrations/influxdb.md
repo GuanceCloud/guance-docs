@@ -1,23 +1,40 @@
+---
+title     : 'InfluxDB'
+summary   : 'Collect InfluxDB metrics'
+__int_icon      : 'icon/influxdb'
+dashboard :
+  - desc  : 'InfluxDB'
+    path  : 'dashboard/en/influxdb'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # InfluxDB
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-The InfuxDB collector is used to collect the data of the InfuxDB.
+The InfluxDB collector is used to collect the data of the InfluxDB.
 
-## Preconditions {#requirements}
+## Configuration {#config}
 
-The infuxdb collector is only applicable to infuxdb v1.x, and the prom collector is required for infuxdb v2.x.
+### Preconditions {#requirements}
+
+The influxdb collector is only applicable to influxdb v1.x, and the prom collector is required for influxdb v2.x.
 
 Already tested version:
 
 - [x] 1.8.10
 
-## InfluxDB Collector Configuration {#config}
+### Collector Configuration {#input-config}
 
+<!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
     Go to the `conf.d/influxdb` directory under the DataKit installation directory, copy `influxdb.conf.sample` and name it `influxdb.conf`. Examples are as follows:
@@ -64,8 +81,10 @@ Already tested version:
 === "Kubernetes"
 
     The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-enable -->
 
-### Sample Prom Collector Configuration for InfuxDB v2.x {#prom-config}
+
+### InfluxDB v2.x {#prom-config}
 
 ```toml
 [[inputs.prom]]
@@ -114,7 +133,7 @@ Already tested version:
 
 ```
 
-## Measurements {#measurements}
+## Metric {#metric}
 
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.influxdb.tags]`:
 
@@ -530,7 +549,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ## Log Collection {#logging}
 
-To collect the InfuxDB log, open `files` in infuxdb.conf and write to the absolute path of the InfuxDB log file. For example:
+To collect the InfluxDB log, open `files` in influxdb.conf and write to the absolute path of the InfluxDB log file. For example:
 
 ```toml
 [inputs.influxdb.log]

@@ -9,14 +9,14 @@
 | `false` | `Boolean` | `false` | `false` |
 | 大于0的数字 | `Integer`、`Float` | `true` | `1` |
 | 小于等于0的数字 | `Integer`、`Float` | `false` | `0` |
-| 转换为小写后值为`"true"`字符串 | `String` | `true` | `"True"` |
+| 转换为小写后值为`true`字符串 | `String` | `true` | `true` |
 | 转换为小写后值为`"yes"`字符串 | `String` | `true` | `"Yes"` |
 | 转换为小写后值为`"ok"`字符串 | `String` | `true` | `"OK"` |
 | 转换为小写后值为`"on"`字符串 | `String` | `true` | `"ON"` |
 | 转换为小写后值为`"1"`字符串 | `String` | `true` | `"1"` |
 | 转换为小写后值为`"o"`字符串 | `String` | `true` | `"o"` |
 | 转换为小写后值为`"y"`字符串 | `String` | `true` | `"y"` |
-| 转换为小写后值为`"false"`字符串 | `String` | `false` | `"False"` |
+| 转换为小写后值为`false`字符串 | `String` | `false` | `false` |
 | 转换为小写后值为`"no"`字符串 | `String` | `false` | `"No"` |
 | 转换为小写后值为`"ng"`字符串 | `String` | `false` | `"NG"` |
 | 转换为小写后值为`"off"`字符串 | `String` | `false` | `"OFF"` |

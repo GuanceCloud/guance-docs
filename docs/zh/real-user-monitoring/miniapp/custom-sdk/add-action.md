@@ -2,13 +2,13 @@
 ---
 
 
-初始化 RUM 后，使用`addAction（'<NAME>'，'<JSON_OBJECT>'）` API,可以自定义添加采集之外的action 指标数据
+初始化 RUM 后，使用 `addAction（'<NAME>'，'<JSON_OBJECT>'）` API，可以自定义添加采集之外的 Action 指标数据。
 
 ### 添加 Action
 
 === "CDN" 
 
-    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    [下载文件](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -23,7 +23,7 @@
     ```
 === "NPM"
 
-    引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    [引入](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')

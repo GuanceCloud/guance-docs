@@ -62,7 +62,7 @@ mkdocs serve -a 127.0.0.1:8090
 
 ## 多语言
 
-多语言在开发阶段先使用 ```feature/multi-language```  分支，等多语言编写完成可以发布，再并入 dev 分支做常规化分支管理。
+多语言在开发阶段先使用 ```feature/multi-language```  分支，等多语言编写完成可以发布，再并入 `merge` 分支做常规化分支管理。
 
 本地中、英文服务需要分开调试，分别启动中文或英文的文档服务：
 
@@ -246,22 +246,22 @@ $ git lfs fetch --all
 
 ## 文档协作流程
 
-目前项目的 master 分支只有 maintainer 可以直接推送；dev 分支禁止了任何推送，只能从其它分支合并更新。
+目前项目的 master 分支只有 maintainer 可以直接推送；`merge` 分支禁止了任何推送，只能从其它分支合并更新。
 
 所有文档更新，都应该走如下流程：
 
-1. 作者：文档更新，应该在本地创建一个 git 分支（xxx），修改完成后，将该分支推送上来。
-1. 作者：创建一个 merge request，将该分支合并到 dev 分支（当前项目已经将 dev 设为默认分支，所有 MR 默认都是往 dev 合并）
-1. maintainer：合并该分支到 dev
-1. maintainer：在其本地切换到 dev 分支，拉取最新的 dev 分支
+1. 作者：文档更新，应该在本地创建一个 git 分支（`feature-xxx`），修改完成后，将该分支推送上来。
+1. 作者：创建一个 merge request，将该分支合并到 `merge` 分支（当前项目已经将 `merge` 设为默认分支，所有 MR 默认都是往 `merge` 合并）
+1. maintainer：合并该分支到 `merge`
+1. maintainer：在其本地切换到 `merge` 分支，拉取最新的 `merge` 分支
 1. maintainer：切换到 master 分支，拉取最新的 master 分支
-1. maintainer：将本地的 dev 分支合并到 master
-1. maintainer：将本地的 master 分支推送到 gitlab
-1. 至此分支合并完毕，等 gitlab CI 跑完，即完成文档发送
-1. 作者：本地从其 xxx 分支切换到 dev，拉取 dev 的更新
-1. 作者：删除本地 xxx 分支。对于已经合并的本地 xxx 分支，不要在上面再做任何更新。可以将 xxx 删掉（`git branch -D xxx`），再在 dev 基础上，再次新建一个分支（该分支甚至能跟之前的命名一致）
+1. maintainer：将本地的 `merge` 分支合并到 master
+1. maintainer：将本地的 master 分支推送到 Gitlab
+1. 至此分支合并完毕，等 Gitlab CI 跑完，即完成文档发送
+1. 作者：本地从其 `feature-xxx` 分支切换到 `merge` 分支，拉取 `merge` 分支的更新
+1. 作者：删除本地 `feature-xxx` 分支。对于已经合并的本地 `feature-xxx` 分支，不要在上面再做任何更新。可以将 `feature-xxx` 删掉（`git branch -D feature-xxx`），再在 `merge` 基础上，再次新建一个分支（该分支甚至能跟之前的命名一致）
 
-即使是 maintainer，也不建议直接往 master 推送自己的更新，也需要走如上的流程，以保持 dev 跟 master 的一致。
+即使是 maintainer，也不建议直接往 master 推送自己的更新，也需要走如上的流程，以保持 `merge` 跟 `master` 的一致。
 
 > 分支建议：建议在一个特定的分支上，只做一件特定的事情，不要所有事情都在一个分支上修改，这样不利于分支提交：
 >  - 事情 1 做好了，但是事情 2 还没改完，但它们混在一个分支上，导致当前该分支不能提交。

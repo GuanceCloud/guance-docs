@@ -12,12 +12,12 @@ MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL
 
 ## 基础信息及兼容
 
-|     名称     |                   描述                   |
-| :------------------: | :---------------------------------------------: |
-|     MySQL 版本     |                   5.7                  |
-|      支持集群版本       |  1.18+  |
-|    是否支离线安装    |                       是                        |
-|       支持架构       |                   amd64/arm64                   |
+|     名称     |     描述      |
+| :------------------: |:-----------:|
+|     MySQL 版本     |     8.0     |
+|      支持集群版本       |    1.18+    |
+|    是否支离线安装    |      是      |
+|       支持架构       | amd64/arm64 |
 
 
 ## 部署默认配置信息
@@ -115,9 +115,16 @@ MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL
               value: admin
             - name: MYSQL_PASSWORD
               value: admin@123
-            image: pubrepo.guance.com/googleimages/mysql:5.7
+            image: pubrepo.guance.com/googleimages/mysql:8.0
             imagePullPolicy: IfNotPresent
             name: mysql
+            resources:
+               limits:
+                 cpu: '4'
+                 memory: 4Gi
+               requests:
+                 cpu: 100m
+                 memory: 512Mi                   
             ports:
             - containerPort: 3306
               name: dbport
@@ -127,13 +134,15 @@ MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL
             volumeMounts:
             - mountPath: /var/lib/mysql
               name: db
-            - mountPath: /etc/mysql/mysql.conf.d/mysqld.cnf
+              subPath: data
+            - mountPath: /etc/mysql/conf.d/mysqld.cnf
               name: config
               subPath: mysqld.cnf
           dnsPolicy: ClusterFirst
           restartPolicy: Always
           schedulerName: default-scheduler
           securityContext: {}
+     
           terminationGracePeriodSeconds: 30
           volumes:
           - name: db

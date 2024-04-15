@@ -33,6 +33,8 @@ InfluxDB 采集器，用于采集 InfluxDB 的数据。
 
 - [x] 1.8.10
 
+### 采集器配置 {#input-config}
+
 <!-- markdownlint-disable MD046 -->
 === "主机安装"
 

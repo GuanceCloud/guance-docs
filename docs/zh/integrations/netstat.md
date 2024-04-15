@@ -35,29 +35,30 @@ NetStat 指标展示，包括 Tcp 连接数、等待连接、等待处理请求�
       ##(Optional) Collect interval, default is 10 seconds
       interval = '10s'
     
-      ## The ports you want display
-      ## Can add tags too
-      # [[inputs.netstat.addr_ports]]
-      #   ports = ["80","443"]
+    ## The ports you want display
+    ## Can add tags too
+    # [[inputs.netstat.addr_ports]]
+      # ports = ["80","443"]
     
-      ## Groups of ports and add different tags to facilitate statistics
-      # [[inputs.netstat.addr_ports]]
-      #   ports = ["80","443"]
-      #   [inputs.netstat.addr_ports.tags]
-      #     service = "http"
-      # [[inputs.netstat.addr_ports]]
-      #   ports = ["9529"]
-      #   [inputs.netstat.addr_ports.tags]
-      #     service = "datakit"
-      #     foo = "bar"
+    ## Groups of ports and add different tags to facilitate statistics
+    # [[inputs.netstat.addr_ports]]
+      # ports = ["80","443"]
+    # [inputs.netstat.addr_ports.tags]
+      # service = "http"
     
-      ## Server may have multiple network cards
-      ## Display only some network cards
-      ## Can add tags too
-      # [[inputs.netstat.addr_ports]]
-      #   ports = ["1.1.1.1:80","2.2.2.2:80"]
-      #   ports_match is preferred if both ports and ports_match configured
-      #   ports_match = ["*:80","*:443"]
+    # [[inputs.netstat.addr_ports]]
+      # ports = ["9529"]
+    # [inputs.netstat.addr_ports.tags]
+      # service = "datakit"
+      # foo = "bar"
+    
+    ## Server may have multiple network cards
+    ## Display only some network cards
+    ## Can add tags too
+    # [[inputs.netstat.addr_ports]]
+      # ports = ["1.1.1.1:80","2.2.2.2:80"]
+      # ports_match is preferred if both ports and ports_match configured
+      # ports_match = ["*:80","*:443"]
     
     [inputs.netstat.tags]
       # some_tag = "some_value"
@@ -102,14 +103,40 @@ NetStat 指标展示，包括 Tcp 连接数、等待连接、等待处理请求�
 
 === "Kubernetes"
 
-    Kubernetes 中支持以环境变量的方式修改配置参数：
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
 
+    也支持以环境变量的方式修改配置参数（需要在 ENV_DEFAULT_ENABLED_INPUTS 中加为默认采集器）：
 
-    | 环境变量名                          | 对应的配置参数项 | 参数示例 |
-    |:-----------------------------     | ---            | ---   |
-    | `ENV_INPUT_NETSTAT_TAGS`          | `tags`         | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
-    | `ENV_INPUT_NETSTAT_INTERVAL`      | `interval`     | `10s` |
-    | `ENV_INPUT_NETSTAT_ADDR_PORTS`    | `ports`        | `["1.1.1.1:80","443"]` |
+    - **ENV_INPUT_NETSTAT_INTERVAL**
+    
+        采集器重复间隔时长
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_NETSTAT_ADDR_PORTS**
+    
+        端口分组并添加不同的标签以便于统计
+    
+        **Type**: JSON
+    
+        **ConfField**: `addr_ports`
+    
+        **Example**: ["1.1.1.1:80","443"]
+    
+    - **ENV_INPUT_NETSTAT_TAGS**
+    
+        自定义标签。如果配置文件有同名标签，将会覆盖它
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
+
 <!-- markdownlint-enable -->
 ---
 

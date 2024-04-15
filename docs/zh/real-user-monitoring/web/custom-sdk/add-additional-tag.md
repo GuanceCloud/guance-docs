@@ -1,10 +1,11 @@
-# 自定义添加额外的数据TAG
+# 自定义添加额外的数据 TAG
 ---
 
 
-初始化 RUM 后，使用`addRumGlobalContext（key:string，value:any）` API 向从应用程序收集的所有 RUM 事件添加额外的TAG。
+初始化 RUM 后，使用 `addRumGlobalContext（key:string，value:any）` API 向从应用程序收集的所有 RUM 事件添加额外的 TAG。
 
-### 添加TAG
+### 添加 TAG
+
 === "CDN 同步"
 
     ``` javascript
@@ -50,7 +51,7 @@
     });
     ```
 
-### 替换TAG（覆盖）
+### 替换 TAG（覆盖）
 
 === "CDN 同步"
 
@@ -91,7 +92,7 @@
     });
     ```
 
-### 获取所有设置的自定义TAG
+### 获取所有设置的自定义 TAG
 
 === "CDN 同步"
 
@@ -115,7 +116,7 @@
 
     ```
 
-### 移除特定key对应的自定义TAG
+### 移除特定 key 对应的自定义 TAG
 
 === "CDN 同步"
 

@@ -17,7 +17,7 @@
 | 部署操作机 | 在浏览器访问 launcher 服务来完成 观测云 引导、安装、调试的机器 |
 | kubectl | Kubernetes 的命令行客户端工具，安装在运维操作机上 |
 
-### 1.3 部署步骤架构 
+### 1.3 部署步骤架构
 ![](img/23.install-step.png)
 
 ## 2 资源准备
@@ -64,16 +64,16 @@
 
 
 
-## 3 kubectl 安装及配置
-### 3.1 安装 kubectl
+## 4 kubectl 安装及配置
+### 4.1 安装 kubectl
 kubectl 是一个 kubernetes 的一个命令行客户端工具，可以通过此命令行工具去部署应用、检查和管理集群资源等。
 我们的 Launcher 就是基于此命令行工具，去部署应用的，具体安装方式可以看官方文档：
 
 [https://kubernetes.io/docs/tasks/tools/install-kubectl/](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
-### 3.2 配置 kube config
+### 4.2 配置 kube config
 kubectl 要获得管理集群的能力，需要将集群的 kubeconfig 利用kubeadm部署的集群完成后  kubeconfig 文件魔默认文件为 /etc/kubernetes/admin.conf   需将文件内容写入到客户端用户路劲  **$HOME/.kube/config** 文件内。
 
-## 4 开始安装 观测云
+## 5 开始安装 观测云
 
 操作完成后，可以参考手册 [开始安装](launcher-install.md)

@@ -1,24 +1,21 @@
 # macOS 应用接入
----
 
-## 简介
+---
 
 观测云应用监测能够通过收集各个 macOS 应用的指标数据，以可视化的方式分析各个 macOS 应用端的性能。
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
+**注意**：若您开通了 [RUM Headless](../../dataflux-func/headless.md) 服务，前置条件已自动帮您配置完成，直接接入应用即可。
 
-## macOS 应用接入
+- 安装 [DataKit](../../datakit/datakit-install.md)。
 
-登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
+## 应用接入 {#macOS-integration}
 
-1.输入「应用名称」、「应用ID」，选择 「自定义」 应用类型
-
-- 应用名称：用于识别当前用户访问监测的应用名称。
-- 应用 ID ：应用在当前工作空间的唯一标识，对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
+登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，选择**自定义**，即可开始创建一个新的应用。
 
 ![](../img/image_14.png)
+
 ## 安装
 
 ![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/macos/version.json&link=https://github.com/GuanceCloud/datakit-macos) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/macos/info.json&link=https://github.com/GuanceCloud/datakit-macos) ![](https://img.shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://static.guance.com/ft-sdk-package/badge/macos/info.json&link=https://github.com/GuanceCloud/datakit-macos) ![](https://img.shields.io/badge/dynamic/json?label=macOS&color=brightgreen&query=$.macos_api_support&uri=https://static.guance.com/ft-sdk-package/badge/macos/info.json&link=https://github.com/GuanceCloud/datakit-macos) 
@@ -86,198 +83,167 @@
 
 由于第一个显示的视图 `NSViewController` 的 `viewDidLoad` 方法、 `NSWindowController` 的 `windowDidLoad` 方法调用要早于 AppDelegate `applicationDidFinishLaunching`，为避免第一个视图的生命周期采集异常，建议在 ` main.m`  文件中进行 SDK 初始化。
 
-```objectivec
-// main.m 文件
-#import "FTMacOSSDK.h"
+=== "Objective-C"
 
-int main(int argc, const char * argv[]) {
-    @autoreleasepool {
-        // Setup code that might create autoreleased objects goes here.
-        FTSDKConfig *config = [[FTSDKConfig alloc]initWithMetricsUrl:@"YOUR_ACCESS_SERVER_URL"];
-        config.enableSDKDebugLog = YES;
-        [FTSDKAgent startWithConfigOptions:config];
+    ```objectivec
+    // main.m 文件
+    #import "FTMacOSSDK.h"
+    
+    int main(int argc, const char * argv[]) {
+        @autoreleasepool {
+            // 本地环境部署、Datakit 部署
+            FTSDKConfig *config = [[FTSDKConfig alloc]initWithDatakitUrl:datakitUrl];
+            // 使用公网 DataWay 部署
+            //FTSDKConfig *config = [[FTSDKConfig alloc]initWithDatawayUrl:datawayUrl clientToken:clientToken];
+            config.enableSDKDebugLog = YES;
+            [FTSDKAgent startWithConfigOptions:config];
+        }
+        return NSApplicationMain(argc, argv);
     }
-    return NSApplicationMain(argc, argv);
-}
-```
+    ```
 
-| **字段**          | **类型**     | **说明**                                                     | **必须**         |
-| ----------------- | ------------ | ------------------------------------------------------------ | ---------------- |
-| metricsUrl        | NSString     | datakit 安装地址 URL 地址，例子：http://datakit.url:[port]。注意：安装 SDK 设备需能访问这地址 | 是               |
-| enableSDKDebugLog | BOOL         | 设置是否允许打印日志                                         | 否（默认NO）     |
-| env               | NSString     | 环境，支持自定义，也可根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置 | 否  （默认prod） |
-| service           | NSString     | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_macos` | 否               |
-| globalContext     | NSDictionary | [添加自定义标签](#user-global-context)                       | 否               |
+=== "Swift"
 
-#### env 环境
+    创建 mian.swift 文件，删除 AppDelegate.swift 中 @main 或 @NSApplicationMain
+    ```swift
+    import Cocoa
+    import FTMacOSSDK
+    // 创建 AppDelegate，并设置为代理
+    let delegate = AppDelegate()
+    NSApplication.shared.delegate = delegate
+    // 初始化 SDK 
+    let config = FTSDKConfig.init(datakitUrl: datakitUrl)
+    // 使用公网 DataWay 部署
+    //let config = FTSDKConfig(datawayUrl: datawayUrl, clientToken: clientToken)
+    config.enableSDKDebugLog = true
+    FTSDKAgent.start(withConfigOptions: config)
+    
+    _ = NSApplicationMain(CommandLine.argc, CommandLine.unsafeArgv)
+    
+    ```
 
-```objectivec
-/// 环境字段。属性值：prod/gray/pre/common/local。
-typedef NS_ENUM(NSInteger, FTEnv) {
-    /// 线上环境
-    FTEnvProd         = 0,
-    /// 灰度环境
-    FTEnvGray,
-    /// 预发布环境
-    FTEnvPre,
-    /// 日常环境
-    FTEnvCommon,
-    /// 本地环境
-    FTEnvLocal,
-};
-
-/// 根据提供的 FTEnv 类型设置 env
-/// - Parameter envType: 环境
-- (void)setEnvWithType:(FTEnv)envType;
-```
+| **属性**          | **类型**     | **必须** | **含义**                 | 注意                                                         |
+| ----------------- | ------------ | -------- | ------------------------ | ------------------------------------------------------------ |
+| datakitUrl        | NSString     | 是       | Datakit 访问地址         | datakit 访问 URL 地址，例子：[http://10.0.0.1:9529](http://10.0.0.1:9529/)，端口默认 9529，注意：安装 SDK 设备需能访问这地址.**注意：datakit 和 dataway 配置两者二选一** |
+| datawayUrl        | NSString     | 是       | 公网 Dataway 访问地址    | dataway 访问 URL 地址，例子：[http://10.0.0.1:9528](http://10.0.0.1:9528/)，端口默认 9528，注意：安装 SDK 设备需能访问这地址.**注意：datakit 和 dataway 配置两者二选一** |
+| clientToken       | NSString     | 是       | 认证 token               | 需要与 datawayUrl 同时使用                                   |
+| enableSDKDebugLog | BOOL         | 否       | 设置是否允许打印日志     | 默认 `NO`                                                    |
+| env               | NSString     | 否       | 设置采集环境             | 默认 `prod`，支持自定义，也可根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置<br/>`FTEnv`<br/>`FTEnvProd`： prod<br/>`FTEnvGray`： gray<br/>`FTEnvPre` ：pre <br/>`FTEnvCommon` ：common <br/>`FTEnvLocal`： local |
+| service           | NSString     | 否       | 设置所属业务或服务的名称 | 影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_macos`    |
+| globalContext     | NSDictionary | 否       | 添加自定义标签           | 添加规则请查阅[此处](#user-global-context)                   |
 
 ### RUM 配置 {#rum-config}
 
-```objectivec
-  //开启 rum
-  FTRumConfig *rumConfig = [[FTRumConfig alloc]initWithAppid:appid];
-  rumConfig.enableTrackAppCrash = YES;
-  rumConfig.enableTrackAppANR = YES;
-  rumConfig.enableTrackAppFreeze = YES;
-  rumConfig.enableTraceUserAction = YES;
-  rumConfig.enableTraceUserVIew = YES;
-  rumConfig.enableTraceUserResource = YES;
-  rumConfig.errorMonitorType = FTErrorMonitorAll;
-  rumConfig.deviceMetricsMonitorType = FTDeviceMetricsMonitorAll;
-  [[FTSDKAgent sharedInstance] startRumWithConfigOptions:rumConfig];
-```
+=== "Objective-C"
 
-| **字段**                 | **类型**     | **说明**                                                     | **必须**      |
-| ------------------------ | ------------ | ------------------------------------------------------------ | ------------- |
-| appid                    | NSString     | 用户访问监测应用 ID 唯一标识，在用户访问监测控制台上面创建监控时自动生成。 | 是            |
-| sampleRate               | int          | 采样采集率                                                   | 否（默认100） |
-| enableTrackAppCrash      | BOOL         | 设置是否需要采集崩溃日志                                     | 否（默认NO）  |
-| enableTrackAppANR        | BOOL         | 采集ANR卡顿无响应事件                                        | 否（默认NO）  |
-| enableTrackAppFreeze     | BOOL         | 采集UI卡顿事件                                               | 否（默认NO）  |
-| enableTraceUserView      | BOOL         | 设置是否追踪用户 View 操作                                   | 否（默认NO）  |
-| enableTraceUserAction    | BOOL         | 设置是否追踪用户 Action 操作                                 | 否（默认NO）  |
-| enableTraceUserResource  | BOOL         | 设置是否追踪用户网络请求 （仅作用于 native http ）           | 否（默认NO）  |
-| errorMonitorType         | NS_OPTIONS   | 错误事件监控补充类型                                         | 否            |
-| monitorFrequency         | NS_OPTIONS   | 视图的性能监控采样周期                                       | 否            |
-| deviceMetricsMonitorType | NS_OPTIONS   | 视图的性能监控类型                                           | 否            |
-| globalContext            | NSDictionary | [添加自定义标签](#user-global-context)                       | 否            |
+    ```objectivec
+       FTRumConfig *rumConfig = [[FTRumConfig alloc]initWithAppid:appid];
+       rumConfig.enableTrackAppCrash = YES;
+       rumConfig.enableTrackAppANR = YES;
+       rumConfig.enableTrackAppFreeze = YES;
+       rumConfig.enableTraceUserAction = YES;
+       rumConfig.enableTraceUserVIew = YES;
+       rumConfig.enableTraceUserResource = YES;
+       rumConfig.errorMonitorType = FTErrorMonitorAll;
+       rumConfig.deviceMetricsMonitorType = FTDeviceMetricsMonitorAll;
+       [[FTSDKAgent sharedInstance] startRumWithConfigOptions:rumConfig];
+    ```
+=== "Swift"
 
-#### 监控数据配置
+    ```swift
+       let rumConfig = FTRumConfig(appid: appid)
+       rumConfig.enableTraceUserAction = true
+       rumConfig.enableTrackAppANR = true
+       rumConfig.enableTraceUserView = true
+       rumConfig.enableTraceUserResource = true
+       rumConfig.enableTrackAppCrash = true
+       rumConfig.enableTrackAppFreeze = true
+       rumConfig.errorMonitorType = .all
+       rumConfig.deviceMetricsMonitorType = .all
+       rumConfig.monitorFrequency = .rare
+       FTSDKAgent.sharedInstance().startRum(withConfigOptions: rumConfig)
+    ```
 
-配置 `FTRumConfig` 的 `errorMonitorType` 属性，将在采集的崩溃数据中添加对应的信息。可采集的类型如下：
-
-```objectivec
-/// ERROR 中的设备信息
-typedef NS_OPTIONS(NSUInteger, FTErrorMonitorType) {
-    /// 开启所有监控： 电池、内存、CPU使用率
-    FTErrorMonitorAll          = 0xFFFFFFFF,
-    /// 电池电量
-    FTErrorMonitorBattery      = 1 << 1,
-    /// 内存总量、内存使用率
-    FTErrorMonitorMemory       = 1 << 2,
-    /// CPU使用率
-    FTErrorMonitorCpu          = 1 << 3,
-};
-```
-
-配置 `FTRumConfig` 的 `deviceMetricsMonitorType` 属性，将在采集的  **View** 数据中添加对应监控项信息，同时可配置 `monitorFrequency` 来设置监控采样周期。可采集的类型与采样周期如下：
-
-```objective-c
-/// 设备信息监控项
-typedef NS_OPTIONS(NSUInteger, FTDeviceMetricsMonitorType){
-    /// 开启所有监控项:内存、CPU
-    FTDeviceMetricsMonitorAll      = 0xFFFFFFFF,
-    /// 平均内存、最高内存
-    FTDeviceMetricsMonitorMemory   = 1 << 2,
-    /// CPU 跳动最大、平均数
-    FTDeviceMetricsMonitorCpu      = 1 << 3,
-};
-
-/// 监控项采样周期
-typedef NS_ENUM(NSUInteger, FTMonitorFrequency) {
-    /// 500ms (默认)
-    FTMonitorFrequencyDefault,
-    /// 100ms
-    FTMonitorFrequencyFrequent,
-    /// 1000ms
-    FTMonitorFrequencyRare,
-};
-```
+| **属性**                 | **类型**                   | **必须** | **含义**                     | 注意                                                         |
+| ------------------------ | -------------------------- | -------- | ---------------------------- | ------------------------------------------------------------ |
+| appid                    | NSString                   | 是       | 用户访问监测应用 ID 唯一标识 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#macOS-integration) |
+| sampleRate               | int                        | 否       | 采样率                   | 取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据                 |
+| enableTrackAppCrash      | BOOL                       | 否       | 设置是否需要采集崩溃日志     | 默认 `NO`                                                    |
+| enableTrackAppANR        | BOOL                       | 否       | 采集ANR卡顿无响应事件        | 默认 `NO`                                                    |
+| enableTrackAppFreeze     | BOOL                       | 否       | 采集UI卡顿事件               | 默认 `NO`                                                    |
+| enableTraceUserView      | BOOL                       | 否       | 设置是否追踪用户 View 操作   | 默认 `NO`                                                    |
+| enableTraceUserAction    | BOOL                       | 否       | 设置是否追踪用户 Action 操作 | 默认 `NO`                                                    |
+| enableTraceUserResource  | BOOL                       | 否       | 设置是否追踪用户网络请求     | 默认`NO`，仅作用于 native http                               |
+| resourceUrlHandler | FTResourceUrlHandler | 否 | 自定义采集 resource 规则 | 默认不过滤。 返回：NO 表示要采集，YES 表示不需要采集。 |
+| errorMonitorType         | FTErrorMonitorType         | 否       | 错误事件监控补充类型         | 在采集的崩溃数据中添加监控的信息。<br/>`FTErrorMonitorType`<br/>`FTErrorMonitorAll`：开启所有监控： 电池、内存、CPU 使用率<br/>`FTErrorMonitorBattery`：电池电量<br/>`FTErrorMonitorMemory`：内存总量、内存使用率<br/>`FTErrorMonitorCpu`：Cpu 使用率 |
+| monitorFrequency         | FTMonitorFrequency         | 否       | 视图的性能监控采样周期       | 配置 `monitorFrequency` 来设置 **View** 监控项信息的采样周期。<br/>`FTMonitorFrequency`<br/>`FTMonitorFrequencyDefault`：500ms (默认)<br/>`FTMonitorFrequencyFrequent`：100ms<br/>`FTMonitorFrequencyRare`：1000ms |
+| deviceMetricsMonitorType | FTDeviceMetricsMonitorType | 否       | 视图的性能监控类型           | 在采集的  **View** 数据中添加对应监控项信息。<br/>`FTDeviceMetricsMonitorType`<br/>`FTDeviceMetricsMonitorAll`：开启所有监控项:内存、CPU、FPS<br/>`FTDeviceMetricsMonitorMemory`：平均内存、最高内存<br/>`FTDeviceMetricsMonitorCpu`：CPU 跳动最大、平均数 |
+| globalContext            | NSDictionary               | 否       | 添加自定义标签               | 添加规则请查阅[此处](#user-global-context)                   |
 
 ### Log 配置 {#log-config}
 
-```objectivec
-  //开启 logger
-  FTLoggerConfig *loggerConfig = [[FTLoggerConfig alloc]init];
-  loggerConfig.enableCustomLog = YES;
-  loggerConfig.enableLinkRumData = YES;
-  loggerConfig.printCustomLogToConsole = YES;
-  [[FTSDKAgent sharedInstance] startLoggerWithConfigOptions:loggerConfig];
-```
+=== "Objective-C"
 
-| **字段**                | **类型**          | **说明**                               | **必须**               |
-| ----------------------- | ----------------- | -------------------------------------- | ---------------------- |
-| sampleRate              | int               | 采样采集率                             | 否（默认100）          |
-| enableCustomLog         | BOOL              | 是否上传自定义 log                     | 否（默认NO）           |
-| logLevelFilter          | NSArray           | 设置要采集的自定义 log 的状态数组      | 否（默认全采集）       |
-| enableLinkRumData       | BOOL              | 是否与 RUM 数据关联                    | 否（默认NO）           |
-| discardType             | FTLogCacheDiscard | 设置日志废弃策略                       | 否（默认丢弃最新数据） |
-| printCustomLogToConsole | BOOL              | 设置是否将自定义日志打印到控制台       | 否（默认NO）           |
-| globalContext           | NSDictionary      | [添加自定义标签](#user-global-context) | 否                     |
+    ```objective-c
+        //开启 logger
+        FTLoggerConfig *loggerConfig = [[FTLoggerConfig alloc]init];
+        loggerConfig.enableCustomLog = YES;
+        loggerConfig.printCustomLogToConsole = YES;
+        loggerConfig.enableLinkRumData = YES;
+        loggerConfig.logLevelFilter = @[@(FTStatusError),@(FTStatusCritical)];
+        loggerConfig.discardType = FTDiscardOldest;
+        [[FTSDKAgent sharedInstance] startLoggerWithConfigOptions:loggerConfig];
+    ```
 
-#### 日志废弃策略
+=== "Swift"
 
-**上传机制** : 日志数据采集后会存储到本地数据库中，等待时机进行上传。数据库存储日志数据的量限制在 5000 条，如果网络异常等原因导致数据堆积，存储 5000 条后，会根据您设置的废弃策略丢弃数据。
+    ```
+        let loggerConfig = FTLoggerConfig()
+        loggerConfig.enableCustomLog = true
+        loggerConfig.enableLinkRumData = true
+        loggerConfig.printCustomLogToConsole = true
+        loggerConfig.logLevelFilter = [NSNumber(value: FTLogStatus.statusError.rawValue),NSNumber(value: FTLogStatus.statusCritical.rawValue)] // loggerConfig.logLevelFilter = [2,3]
+        loggerConfig.discardType = .discardOldest
+        FTSDKAgent.sharedInstance().startLogger(withConfigOptions: loggerConfig)
+    ```
 
-```objectivec
-/// 日志废弃策略
-typedef NS_ENUM(NSInteger, FTLogCacheDiscard)  {
-    /// 默认，当日志数据数量大于最大值（5000）时，新数据不进行写入
-    FTDiscard,
-    /// 当日志数据大于最大值时,废弃旧数据
-    FTDiscardOldest
-};
-/// 日志废弃策略
-@property (nonatomic, assign) FTLogCacheDiscard  discardType;
-```
+| **属性**                | **类型**          | **必须** | **含义**                          | 注意                                                         |
+| ----------------------- | ----------------- | -------- | --------------------------------- | ------------------------------------------------------------ |
+| sampleRate              | int               | 否       | 采样率                        | 取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。                   |
+| enableCustomLog         | BOOL              | 否       | 是否上传自定义 log                | 默认`NO`                                                     |
+| logLevelFilter          | NSArray           | 否       | 设置要采集的自定义 log 的状态数组 | 默认全采集                                                   |
+| enableLinkRumData       | BOOL              | 否       | 是否与 RUM 数据关联               | 默认`NO`                                                     |
+| discardType             | FTLogCacheDiscard | 否       | 设置频繁日志丢弃规则              | 默认 `FTDiscard` <br/>`FTLogCacheDiscard`:<br/>`FTDiscard`：默认，当日志数据数量大于最大值（5000）时，丢弃追加数据<br/>`FTDiscardOldest`：当日志数据大于最大值时,丢弃老数据 |
+| printCustomLogToConsole | BOOL              | 否       | 设置是否将自定义日志打印到控制台  | 默认`NO`<br/>自定义日志[输出格式](#printCustomLogToConsole)  |
+| globalContext           | NSDictionary      | 否       | 添加自定义标签                    | 添加规则请查阅[此处](#user-global-context)                   |
 
 ### Trace 配置 {#trace-config}
 
-```objectivec
-  //开启 trace
-  FTTraceConfig *traceConfig = [[FTTraceConfig alloc]init];
-  traceConfig.enableLinkRumData = YES;
-  traceConfig.enableAutoTrace = YES;
-  traceConfig.networkTraceType = FTNetworkTraceTypeDDtrace;
-  [[FTSDKAgent sharedInstance] startTraceWithConfigOptions:traceConfig];
-```
+=== "Objective-C"
 
-| 字段              | 类型    | 说明                                                         | 必须              |
-| ----------------- | ------- | ------------------------------------------------------------ | ----------------- |
-| sampleRate        | int     | 采样采集率                                                   | 否（默认100)      |
-| networkTraceType  | NS_ENUM | 设置网络请求信息采集时 使用链路追踪类型，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 | 否（默认DDtrace） |
-| enableLinkRumData | BOOL    | 是否与 RUM 数据关联                                          | 否（默认NO）      |
-| enableAutoTrace   | BOOL    | 设置是否开启自动 http trace，目前只支持 NSURLSession         | 否（默认NO）      |
+    ```objective-c
+       FTTraceConfig *traceConfig = [[FTTraceConfig alloc]init];
+       traceConfig.enableLinkRumData = YES;
+    	 traceConfig.enableAutoTrace = YES;
+       traceConfig.networkTraceType = FTNetworkTraceTypeDDtrace;
+       [[FTSDKAgent sharedInstance] startTraceWithConfigOptions:traceConfig];
+    ```
 
-#### 链路追踪类型
+=== "Swift"
 
-```objectivec
-/// 网络链路追踪使用类型
-typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
-    /// datadog trace
-    FTNetworkTraceTypeDDtrace,
-    /// zipkin multi header
-    FTNetworkTraceTypeZipkinMultiHeader,
-    /// zipkin single header
-    FTNetworkTraceTypeZipkinSingleHeader,
-    /// w3c traceparent
-    FTNetworkTraceTypeTraceparent,
-    /// skywalking 8.0+
-    FTNetworkTraceTypeSkywalking,
-    /// jaeger
-    FTNetworkTraceTypeJaeger,
-};
-```
+    ```swift
+       let traceConfig = FTTraceConfig.init()
+       traceConfig.enableLinkRumData = true
+       traceConfig.enableAutoTrace = true
+       FTSDKAgent.sharedInstance().startTrace(withConfigOptions: traceConfig)
+    ```
+
+| 属性              | 类型    | 必须 | 含义                        | 注意                                                         |
+| ----------------- | ------- | ---- | --------------------------- | ------------------------------------------------------------ |
+| sampleRate        | int     | 否   | 采样率                  | 取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。                  |
+| networkTraceType  | NS_ENUM | 否   | 设置链路追踪的类型          | 默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
+| enableLinkRumData | BOOL    | 否   | 是否与 RUM 数据关联         | 默认`NO`                                                     |
+| enableAutoTrace   | BOOL    | 否   | 设置是否开启自动 http trace | 默认`NO`，目前只支持 NSURLSession                            |
 
 ## RUM 用户数据追踪
 
@@ -285,271 +251,636 @@ typedef NS_ENUM(NSInteger, FTNetworkTraceType) {
 
 ### View
 
-若设置 `enableTraceUserView= YES` 开启自动采集 ，SDK 将自动采集 Window 的生命周期，以 window 的 `becomeKeyWindow` 为开始，记录进入页面， 以 `resignKeyWindow` 为结束，记录离开页面。页面名称根据 contentViewController > windowController > window 的优先顺序来设置，即若 window 的 contentViewController 存在，则页面名称为 contentViewController 的类名，如 contentViewController 不存在，则查看 windowController 是否存在，存在即为 windowController 的类名，反之则为 Window 的类名。
+若设置 `enableTraceUserView = YES` 开启自动采集 ，SDK 将自动采集 Window 的生命周期。以 window 的生命周期  `-becomeKeyWindow` 定义 **View** 的开始， `-resignKeyWindow` 定义 **View** 的结束。
 
-若想记录 window 内更为详细的 NSViewController 的生命周期，可以使用下面的 API 手动采集。
+页面名称以   `NSStringFromClass(window.contentViewController.class)` > `NSStringFromClass(window.windowController.class)` > `NSStringFromClass(window)`  的优先顺序来设置。
 
-```objectivec
-//进入页面时调用  duration 以纳秒为单位 示例中为 1s
-[[FTGlobalRumManager sharedManager] onCreateView:@"TestVC" loadTime:@1000000000];
+如果 window 内的视图十分复杂，您可以使用以下 API 自定义采集。
 
-[[FTGlobalRumManager sharedManager] startViewWithName:@"TestVC"];
+#### 使用方法
 
-[[FTGlobalRumManager sharedManager] stopView];
-```
+=== "Objective-C"
 
-```objectivec
-/// 创建页面
-///
-/// 在 `-startViewWithName` 方法前调用，该方法用于记录页面的加载时间，如果无法获得加载时间该方法可以不调用。
-/// - Parameters:
-///   - viewName: 页面名称
-///   - loadTime: 页面加载时间
--(void)onCreateView:(NSString *)viewName loadTime:(NSNumber *)loadTime;
-/// 进入页面
-///
-/// - Parameters:
-///   - viewName: 页面名称
--(void)startViewWithName:(NSString *)viewName;
-/// 进入页面
-/// - Parameters:
-///   - viewName: 页面名称
-///   - property: 事件自定义属性(可选)
--(void)startViewWithName:(NSString *)viewName property:(nullable NSDictionary *)property;
-/// 离开页面
--(void)stopView;
-/// 离开页面
-/// - Parameter property: 事件自定义属性(可选)
--(void)stopViewWithProperty:(nullable NSDictionary *)property;
-```
+    ```objective-c
+    /// 创建页面
+    ///
+    /// 在 `-startViewWithName` 方法前调用，该方法用于记录页面的加载时间，如果无法获得加载时间该方法可以不调用。
+    /// - Parameters:
+    ///  - viewName: 页面名称
+    ///  - loadTime: 页面加载时间（纳秒级）
+    -(void)onCreateView:(NSString *)viewName loadTime:(NSNumber *)loadTime;
+    
+    /// 进入页面
+    ///
+    /// - Parameters:
+    ///  - viewName: 页面名称
+    -(void)startViewWithName:(NSString *)viewName;
+    
+    /// 进入页面
+    /// - Parameters:
+    ///  - viewName: 页面名称
+    ///  - property: 事件自定义属性(可选)
+    -(void)startViewWithName:(NSString *)viewName property:(nullable NSDictionary *)property;
+    
+    /// 离开页面
+    -(void)stopView;
+    
+    /// 离开页面
+    /// - Parameter property: 事件自定义属性(可选)
+    -(void)stopViewWithProperty:(nullable NSDictionary *)property;
+    ```
+
+=== "Swift"
+
+    ```swift
+    /// 创建页面
+    ///
+    /// 在 `-startViewWithName` 方法前调用，该方法用于记录页面的加载时间，如果无法获得加载时间该方法可以不调用。
+    /// - Parameters:
+    ///  - viewName: 页面名称
+    ///  - loadTime: 页面加载时间（ns）
+    open func onCreateView(_ viewName: String, loadTime: NSNumber)
+    
+    /// 进入页面
+    ///
+    /// - Parameters:
+    ///  - viewName: 页面名称
+    open func startView(withName viewName: String)
+    
+    /// 进入页面
+    /// - Parameters:
+    ///  - viewName: 页面名称
+    ///  - property: 事件自定义属性(可选)
+    open func startView(withName viewName: String, property: [AnyHashable : Any]?)
+    
+    /// 离开页面
+    open func stopView() 
+    
+    /// 离开页面
+    /// - Parameter property: 事件自定义属性(可选)
+    open func stopView(withProperty property: [AnyHashable : Any]?)
+    ```
+
+#### 代码示例
+
+=== "Objective-C"
+
+    ```objectivec
+    - (void)viewDidAppear{
+      [super viewDidAppear];
+      // 场景 1：
+      [[FTGlobalRumManager sharedManager] startViewWithName:@"TestVC"];  
+      
+      // 场景 2：动态参数
+      [[FTGlobalRumManager sharedManager] startViewWithName:@"TestVC" property:@{@"custom_key":@"custom_value"}];  
+    }
+    -(void)viewDidDisappear{
+      [super viewDidDisappear];
+      // 场景 1：
+      [[FTGlobalRumManager sharedManager] stopView];  
+      
+      // 场景 2：动态参数
+      [[FTGlobalRumManager sharedManager] stopViewWithProperty:@{@"custom_key":@"custom_value"}];
+    }
+    ```
+
+=== "Swift"
+
+    ```swift
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        // 场景 1：
+        FTExternalDataManager.shared().startView(withName: "TestVC")
+        // 场景 2：动态参数
+        FTExternalDataManager.shared().startView(withName: "TestVC",property: ["custom_key":"custom_value"])
+    }
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        // 场景 1：
+        FTGlobalRumManager.shared().stopView()
+        // 场景 2：动态参数
+        FTGlobalRumManager.shared().stopView(withProperty: ["custom_key":"custom_value"])
+    }
+    ```
 
 ### Action
 
-```objective-c
-[[FTGlobalRumManager sharedManager]  addActionName:@"UITableViewCell click" actionType:@"click"];
-```
+#### 使用方法
 
-```objectivec
-/// 添加 Action 事件
-///
-/// - Parameters:
-///   - actionName: 事件名称
-///   - actionType: 事件类型
-- (void)addActionName:(NSString *)actionName actionType:(NSString *)actionType;
-/// 添加 Action 事件
-/// - Parameters:
-///   - actionName: 事件名称
-///   - actionType: 事件类型
-///   - property: 事件自定义属性(可选)
-- (void)addActionName:(NSString *)actionName actionType:(NSString *)actionType property:(nullable NSDictionary *)property;
-```
+=== "Objective-C"
+
+    ```objectivec
+    /// 添加 Action 事件
+    ///
+    /// - Parameters:
+    ///   - actionName: 事件名称
+    ///   - actionType: 事件类型
+    - (void)addActionName:(NSString *)actionName actionType:(NSString *)actionType;
+    /// 添加 Action 事件
+    /// - Parameters:
+    ///   - actionName: 事件名称
+    ///   - actionType: 事件类型
+    ///   - property: 事件自定义属性(可选)
+    - (void)addActionName:(NSString *)actionName actionType:(NSString *)actionType property:(nullable NSDictionary *)property;
+    ```
+
+=== "Swift"
+
+    ```swift
+    /// 添加 Action 事件
+    ///
+    /// - Parameters:
+    ///   - actionName: 事件名称
+    ///   - actionType: 事件类型
+    func addActionName(String, actionType: String)
+    
+    /// 添加 Action 事件
+    /// - Parameters:
+    ///   - actionName: 事件名称
+    ///   - actionType: 事件类型
+    ///   - property: 事件自定义属性(可选)
+    func addActionName(String, actionType: String, property: [AnyHashable : Any]?)
+    ```
+#### 代码示例
+
+=== "Objective-C"
+
+    ```objective-c
+    // 场景1
+    [[FTGlobalRumManager sharedManager] addActionName:@"UITableViewCell click" actionType:@"click"];
+    // 场景2: 动态参数
+    [[FTGlobalRumManager sharedManager]  addActionName:@"UITableViewCell click" actionType:@"click" property:@{@"custom_key":@"custom_value"}];
+    ```
+=== "Swift"
+
+    ```swift
+    // 场景1
+    FTGlobalRumManager.shared().addActionName("custom_action", actionType: "click")
+    // 场景2: 动态参数
+    FTGlobalRumManager.shared().addActionName("custom_action", actionType: "click",property: ["custom_key":"custom_value"])
+    ```
 
 ### Error
 
-```objectivec
-[[FTGlobalRumManager sharedManager] addErrorWithType:@"type" situation:RUN message:@"message" stack:@"stack"];
-```
+#### 使用方法
 
-```objectivec
-/// 添加 Error 事件
-///
-/// - Parameters:
-///   - type: error 类型
-///   - message: 错误信息
-///   - stack: 堆栈信息
-- (void)addErrorWithType:(NSString *)type message:(NSString *)message stack:(NSString *)stack;
-/// 添加 Error 事件
-/// - Parameters:
-///   - type: error 类型
-///   - message: 错误信息
-///   - stack: 堆栈信息
-///   - property: 事件自定义属性(可选)
-- (void)addErrorWithType:(NSString *)type message:(NSString *)message stack:(NSString *)stack property:(nullable NSDictionary *)property;
-```
+=== "Objective-C"
+
+    ```objectivec
+    /// 添加 Error 事件
+    ///
+    /// - Parameters:
+    ///   - type: error 类型
+    ///   - message: 错误信息
+    ///   - stack: 堆栈信息
+    - (void)addErrorWithType:(NSString *)type message:(NSString *)message stack:(NSString *)stack;
+    
+    /// 添加 Error 事件
+    /// - Parameters:
+    ///   - type: error 类型
+    ///   - message: 错误信息
+    ///   - stack: 堆栈信息
+    ///   - property: 事件自定义属性(可选)
+    - (void)addErrorWithType:(NSString *)type message:(NSString *)message stack:(NSString *)stack property:(nullable NSDictionary *)property;
+    
+    /// 添加 Error 事件
+    /// - Parameters:
+    ///   - type: error 类型
+    ///   - state: 程序运行状态
+    ///   - message: 错误信息
+    ///   - stack: 堆栈信息
+    ///   - property: 事件自定义属性(可选)
+    - (void)addErrorWithType:(NSString *)type state:(FTAppState)state  message:(NSString *)message stack:(NSString *)stack property:(nullable NSDictionary *)property;
+    ```
+
+=== "Swift"
+
+    ```swift
+    /// 添加 Error 事件
+    ///
+    /// - Parameters:
+    ///   - type: error 类型
+    ///   - message: 错误信息
+    ///   - stack: 堆栈信息
+    open func addError(withType: String, message: String, stack: String)
+    
+    /// 添加 Error 事件
+    /// - Parameters:
+    ///   - type: error 类型
+    ///   - message: 错误信息
+    ///   - stack: 堆栈信息
+    ///   - property: 事件自定义属性(可选)
+    open func addError(withType: String, message: String, stack: String, property: [AnyHashable : Any]?)
+    
+    /// 添加 Error 事件
+    /// - Parameters:
+    ///   - type: error 类型
+    ///   - state: 程序运行状态
+    ///   - message: 错误信息
+    ///   - stack: 堆栈信息
+    ///   - property: 事件自定义属性(可选)
+    open func addError(withType type: String, state: FTAppState, message: String, stack: String, property: [AnyHashable : Any]?)
+    ```
+#### 代码示例
+
+=== "Objective-C"
+
+    ```objectivec
+    // 场景1
+    [[FTGlobalRumManager sharedManager] addErrorWithType:@"type" message:@"message" stack:@"stack"];
+    // 场景2: 动态参数
+    [[FTGlobalRumManager sharedManager] addErrorWithType:@"ios_crash" message:@"crash_message" stack:@"crash_stack" property:@{@"custom_key":@"custom_value"}];
+    // 场景3: 动态参数
+    [[FTGlobalRumManager sharedManager] addErrorWithType:@"ios_crash" state:FTAppStateUnknown message:@"crash_message" stack:@"crash_stack" property:@{@"custom_key":@"custom_value"}];
+    ```
+
+=== "Swift"
+
+    ```swift
+    // 场景1
+    FTGlobalRumManager.shared().addError(withType: "custom_type", message: "custom_message", stack: "custom_stack")
+    // 场景2: 动态参数
+    FTGlobalRumManager.shared().addError(withType: "custom_type", message: "custom_message", stack: "custom_stack",property: ["custom_key":"custom_value"])
+    // 场景3: 动态参数       
+    FTGlobalRumManager.shared().addError(withType: "custom_type", state: .unknown, message: "custom_message", stack: "custom_stack", property: ["custom_key":"custom_value"])
+    ```
 
 ### LongTask
 
-```objectivec
-[[FTGlobalRumManager sharedManager] addLongTaskWithStack:@"堆栈信息 string" duration:@1000000000];
-```
+#### 使用方法
 
-```objectivec
-/// 添加 卡顿 事件
-///
-/// - Parameters:
-///   - stack: 卡顿堆栈
-///   - duration: 卡顿时长（纳秒）
-- (void)addLongTaskWithStack:(NSString *)stack duration:(NSNumber *)duration;
-/// 添加 卡顿 事件
-/// - Parameters:
-///   - stack: 卡顿堆栈
-///   - duration: 卡顿时长（纳秒）
-///   - property: 事件自定义属性(可选)
-- (void)addLongTaskWithStack:(NSString *)stack duration:(NSNumber *)duration property:(nullable NSDictionary *)property;
-```
+=== "Objective-C"
+
+    ```objectivec
+    /// 添加 卡顿 事件
+    ///
+    /// - Parameters:
+    ///   - stack: 卡顿堆栈
+    ///   - duration: 卡顿时长（纳秒）
+    - (void)addLongTaskWithStack:(NSString *)stack duration:(NSNumber *)duration;
+    
+    /// 添加 卡顿 事件
+    /// - Parameters:
+    ///   - stack: 卡顿堆栈
+    ///   - duration: 卡顿时长（纳秒）
+    ///   - property: 事件自定义属性(可选)
+    - (void)addLongTaskWithStack:(NSString *)stack duration:(NSNumber *)duration property:(nullable NSDictionary *)property;
+    ```
+
+=== "Swift"
+
+    ```swift
+    /// 添加 卡顿 事件
+    ///
+    /// - Parameters:
+    ///   - stack: 卡顿堆栈
+    ///   - duration: 卡顿时长（纳秒）
+    func addLongTask(withStack: String, duration: NSNumber)
+    
+    /// 添加 卡顿 事件
+    /// - Parameters:
+    ///   - stack: 卡顿堆栈
+    ///   - duration: 卡顿时长（纳秒）
+    ///   - property: 事件自定义属性(可选)
+    func addLongTask(withStack: String, duration: NSNumber, property: [AnyHashable : Any]?)
+    ```
+
+#### 代码示例
+
+=== "Objective-C"
+
+    ```objectivec
+    // 场景1
+    [[FTGlobalRumManager sharedManager] addLongTaskWithStack:@"stack string" duration:@1000000000];
+    // 场景2: 动态参数
+    [[FTGlobalRumManager sharedManager] addLongTaskWithStack:@"stack string" duration:@1000000000 property:@{@"custom_key":@"custom_value"}];
+    
+    ```
+
+=== "Swift"
+
+    ```swift
+    // 场景1
+    FTGlobalRumManager.shared().addLongTask(withStack: "stack string", duration: 1000000000)
+    // 场景2: 动态参数
+    FTGlobalRumManager.shared().addLongTask(withStack: "stack string", duration: 1000000000 ,property: [["custom_key":"custom_value"]])
+    ```
 
 ### Resource
 
-```objectivec
-#import "FTMacOSSDK.h"
-#import "FTResourceContentModel.h"
-#import "FTResourceMetricsModel.h"
-//第一步：请求开始前
- [[FTGlobalRumManager sharedManager] startResourceWithKey:key];
+#### 使用方法
 
- //第二步：请求完成
- [[FTGlobalRumManager sharedManager] stopResourceWithKey:key];
+=== "Objective-C"
 
- //第三步：拼接 Resource 数据
- //FTResourceContentModel 数据
-  FTResourceContentModel *content = [[FTResourceContentModel alloc]init];
-  content.httpMethod = request.HTTPMethod;
-  content.requestHeader = request.allHTTPHeaderFields;
-  content.responseHeader = httpResponse.allHeaderFields;
-  content.httpStatusCode = httpResponse.statusCode;
-  content.responseBody = responseBody;
-  //ios native
-  content.error = error;
-  
-  //如果能获取到各阶段的时间数据 
-  //FTResourceMetricsModel
-  //ios native 获取到 NSURLSessionTaskMetrics 数据 直接使用 FTResourceMetricsModel 的初始化方法
-  FTResourceMetricsModel *metricsModel = [[FTResourceMetricsModel alloc]initWithTaskMetrics:metrics];
-  
-  //其他平台 所有时间数据以纳秒为单位
-  FTResourceMetricsModel *metricsModel = [[FTResourceMetricsModel alloc]init];
-  [metricsModel setDnsStart:dstart end:dend];
-  [metricsModel setTcpStart:tstart end:tend];
-  [metricsModel setSslStart:sstart end:send];
-  [metricsModel setTtfbStart:ttstart end:ttend];
-  [metricsModel setTransStart:trstart end:trend];
-  [metricsModel setFirstByteStart:fstart end:fend];
-  [metricsModel setDurationStart:dstart end:dend];
+    ```objectivec
+    /// HTTP 请求开始
+    ///
+    /// - Parameters:
+    ///   - key: 请求标识
+    - (void)startResourceWithKey:(NSString *)key;
+    /// HTTP 请求开始
+    /// - Parameters:
+    ///   - key: 请求标识
+    ///   - property: 事件自定义属性(可选)
+    - (void)startResourceWithKey:(NSString *)key property:(nullable NSDictionary *)property;
+    
+    /// HTTP 添加请求数据
+    ///
+    /// - Parameters:
+    ///   - key: 请求标识
+    ///   - metrics: 请求相关性能属性
+    ///   - content: 请求相关数据
+    - (void)addResourceWithKey:(NSString *)key metrics:(nullable FTResourceMetricsModel *)metrics content:(FTResourceContentModel *)content;
+    /// HTTP 请求结束
+    ///
+    /// - Parameters:
+    ///   - key: 请求标识
+    - (void)stopResourceWithKey:(NSString *)key;
+    /// HTTP 请求结束
+    /// - Parameters:
+    ///   - key: 请求标识
+    ///   - property: 事件自定义属性(可选)
+    - (void)stopResourceWithKey:(NSString *)key property:(nullable NSDictionary *)property;
+    ```
+=== "Swift"
 
- //第四步：add resource 如果没有时间数据 metrics 传 nil
- [[FTGlobalRumManager sharedManager] addResourceWithKey:key metrics:metricsModel content:content];
-```
+    ```swift
+    /// HTTP 请求开始
+    ///
+    /// - Parameters:
+    ///   - key: 请求标识
+    open func startResource(withKey key: String)
+    
+    /// HTTP 请求开始
+    /// - Parameters:
+    ///   - key: 请求标识
+    ///   - property: 事件自定义属性(可选)
+    open func startResource(withKey key: String, property: [AnyHashable : Any]?)
+    
+    /// HTTP 请求结束
+    ///
+    /// - Parameters:
+    ///   - key: 请求标识
+    open func stopResource(withKey key: String)
+    
+    /// HTTP 请求结束
+    /// - Parameters:
+    ///   - key: 请求标识
+    ///   - property: 事件自定义属性(可选)
+    open func stopResource(withKey key: String, property: [AnyHashable : Any]?)
+    
+    /// HTTP 添加请求数据
+    ///
+    /// - Parameters:
+    ///   - key: 请求标识
+    ///   - metrics: 请求相关性能属性
+    ///   - content: 请求相关数据
+    open func addResource(withKey key: String, metrics: FTResourceMetricsModel?, content: FTResourceContentModel)
+    ```
 
-```objectivec
-/// HTTP 请求开始
-///
-/// - Parameters:
-///   - key: 请求标识
-- (void)startResourceWithKey:(NSString *)key;
-/// HTTP 请求开始
-/// - Parameters:
-///   - key: 请求标识
-///   - property: 事件自定义属性(可选)
-- (void)startResourceWithKey:(NSString *)key property:(nullable NSDictionary *)property;
-/// HTTP 请求结束
-///
-/// - Parameters:
-///   - key: 请求标识
-- (void)stopResourceWithKey:(NSString *)key;
-/// HTTP 请求结束
-/// - Parameters:
-///   - key: 请求标识
-///   - property: 事件自定义属性(可选)
-- (void)stopResourceWithKey:(NSString *)key property:(nullable NSDictionary *)property;
-/// HTTP 请求数据
-///
-/// - Parameters:
-///   - key: 请求标识
-///   - metrics: 请求相关性能属性
-///   - content: 请求相关数据
-- (void)addResourceWithKey:(NSString *)key metrics:(nullable FTResourceMetricsModel *)metrics content:(FTResourceContentModel *)content;
-```
+#### 代码示例
 
-#### Resource url 过滤
+=== "Objective-C"
 
-当开启自动采集后，内部会进行处理不采集 SDK 的数据上报地址。您也可以通过 Open API 设置过滤条件，采集您需要的网络地址。
+    ```objectivec
+    #import "FTMacOSSDK.h"
+    
+    //第一步：请求开始前
+    [[FTGlobalRumManager sharedManager] startResourceWithKey:key];
+    
+    //第二步：请求完成
+    [[FTGlobalRumManager sharedManager] stopResourceWithKey:key];
+    
+    //第三步：拼接 Resource 数据
+    //FTResourceContentModel 数据
+    FTResourceContentModel *content = [[FTResourceContentModel alloc]init];
+    content.httpMethod = request.HTTPMethod;
+    content.requestHeader = request.allHTTPHeaderFields;
+    content.responseHeader = httpResponse.allHeaderFields;
+    content.httpStatusCode = httpResponse.statusCode;
+    content.responseBody = responseBody;
+    //ios native
+    content.error = error;
+    
+    //如果能获取到各阶段的时间数据 
+    //FTResourceMetricsModel
+    //ios native 获取到 NSURLSessionTaskMetrics 数据 直接使用 FTResourceMetricsModel 的初始化方法
+    FTResourceMetricsModel *metricsModel = [[FTResourceMetricsModel alloc]initWithTaskMetrics:metrics];
+    
+    //其他平台 所有时间数据以纳秒为单位
+    FTResourceMetricsModel *metricsModel = [[FTResourceMetricsModel alloc]init];
+    
+    //第四步：add resource 如果没有时间数据 metrics 传 nil
+    [[FTGlobalRumManager sharedManager] addResourceWithKey:key metrics:metricsModel content:content];
+    ```
 
-```objective-c
-[[FTSDKAgent sharedInstance] isIntakeUrl:^BOOL(NSURL * _Nonnull url) {
-        // 您的采集判断逻辑
-        return YES;//return NO; (YES 采集，NO 不采集)
- }];
-```
+=== "Swift"
 
-```objective-c
-//  FTSDKAgent.h
-//  
-/// 自动埋点功能中，过滤不需要进行采集的地址，一般用于排除非业务相关的一些请求
-/// - Parameter handler: 判断是否采集回调，返回 YES 采集， NO 过滤掉
-- (void)isIntakeUrl:(BOOL(^)(NSURL *url))handler;
-```
+    ```swift
+    import FTMacOSSDK
+    
+    //第一步：请求开始前
+    FTGlobalRumManager.shared().startResource(withKey: key)
+    
+    //第二步：请求完成
+    FTGlobalRumManager.shared().stopResource(withKey: resource.key)
+    
+    //第三步：① 拼接 Resource 数据
+    let contentModel = FTResourceContentModel(request: task.currentRequest!, response: task.response as? HTTPURLResponse, data: resource.data, error: error)
+    
+    //② 如果能获取到各阶段的时间数据 
+    //FTResourceMetricsModel
+    //ios native 获取到 NSURLSessionTaskMetrics 数据 直接使用 FTResourceMetricsModel 的初始化方法
+    var metricsModel:FTResourceMetricsModel?
+    if let metrics = resource.metrics {
+       metricsModel = FTResourceMetricsModel(taskMetrics:metrics)
+    }
+    //其他平台 所有时间数据以纳秒为单位
+    metricsModel = FTResourceMetricsModel()
+    ...
+    
+    //第四步：add resource 如果没有时间数据 metrics 传 nil
+    FTGlobalRumManager.shared().addResource(withKey: resource.key, metrics: metricsModel, content: contentModel)
+    ```
 
 ## Logger 日志打印 {#user-logger}
 
-```objectivec
-// 方法一：通过 FTSDKAgent
-// 注意：需要保证在使用的时候 SDK 已经初始化成功，否则在测试环境会断言失败从而崩溃。
-[[FTSDKAgent sharedInstance] logging:@"TestLoggingBackground" status:FTStatusInfo];
+### 使用方法
 
-// 方法二：通过 FTLogger （推荐）
-// SDK 如果没有初始化成功，调用 FTLogger 中方法添加自定义日志会失败，但不会有断言失败崩溃问题。
-[[FTLogger sharedInstance] info:@"test" property:@{@"custom_key":@"custom_value"}];
-```
+=== "Objective-C"
 
-```objectivec
-//  FTSDKAgent.h
-//  FTMacOSSDK
-///事件等级和状态，默认：FTStatusInfo
-typedef NS_ENUM(NSInteger, FTLogStatus) {
-    /// 提示
-    FTStatusInfo         = 0,
-    /// 警告
-    FTStatusWarning,
-    /// 错误
-    FTStatusError,
-    /// 严重
-    FTStatusCritical,
-    /// 恢复
-    FTStatusOk,
-};
-/// 日志上报
-/// @param content 日志内容，可为json字符串
-/// @param status  事件等级和状态
--(void)logging:(NSString *)content status:(FTLogStatus)status;
+    ```objectivec
+    //  FTSDKAgent.h
+    //  FTMacOSSDK
+    
+    /// 日志上报
+    /// @param content 日志内容，可为json字符串
+    /// @param status  事件等级和状态
+    -(void)logging:(NSString *)content status:(FTStatus)status;
+    
+    /// 日志上报
+    /// @param content 日志内容，可为json字符串
+    /// @param status  事件等级和状态
+    /// @param property 事件属性
+    -(void)logging:(NSString *)content status:(FTLogStatus)status property:(nullable NSDictionary *)property;
+    ```
+    
+    ```objective-c
+    //
+    //  FTLogger.h
+    //  FTMacOSSDK
+    
+    /// 添加 info 类型自定义日志
+    /// - Parameters:
+    ///   - content: 日志内容
+    ///   - property: 自定义属性(可选)
+    -(void)info:(NSString *)content property:(nullable NSDictionary *)property;
+    
+    /// 添加 warning 类型自定义日志
+    /// - Parameters:
+    ///   - content: 日志内容
+    ///   - property: 自定义属性(可选)
+    -(void)warning:(NSString *)content property:(nullable NSDictionary *)property;
+    
+    /// 添加 error 类型自定义日志
+    /// - Parameters:
+    ///   - content: 日志内容
+    ///   - property: 自定义属性(可选)
+    -(void)error:(NSString *)content  property:(nullable NSDictionary *)property;
+    
+    /// 添加 critical 类型自定义日志
+    /// - Parameters:
+    ///   - content: 日志内容
+    ///   - property: 自定义属性(可选)
+    -(void)critical:(NSString *)content property:(nullable NSDictionary *)property;
+    
+    /// 添加 ok 类型自定义日志
+    /// - Parameters:
+    ///   - content: 日志内容
+    ///   - property: 自定义属性(可选)
+    -(void)ok:(NSString *)content property:(nullable NSDictionary *)property;
+    ```
 
-/// 日志上报
-/// @param content 日志内容，可为json字符串
-/// @param status  事件等级和状态
-/// @param property 事件属性
--(void)logging:(NSString *)content status:(FTLogStatus)status property:(nullable NSDictionary *)property;
-```
+=== "Swift"
 
-```objective-c
-//
-//  FTLogger.h
-//  FTMacOSSDK
+    ```swift
+    open class FTSDKAgent : NSObject {
+    /// 添加自定义日志
+    ///
+    /// - Parameters:
+    ///   - content: 日志内容，可为 json 字符串
+    ///   - status: 事件等级和状态
+    open func logging(_ content: String, status: FTLogStatus)
+    
+    /// 添加自定义日志
+    /// - Parameters:
+    ///   - content: 日志内容，可为 json 字符串
+    ///   - status: 事件等级和状态
+    ///   - property: 事件自定义属性(可选)
+    open func logging(_ content: String, status: FTLogStatus, property: [AnyHashable : Any]?)
+    }
+    ```
+    
+    ```swift
+    open class FTLogger : NSObject, FTLoggerProtocol {}
+    public protocol FTLoggerProtocol : NSObjectProtocol {
+    /// 添加 info 类型自定义日志
+    /// - Parameters:
+    ///   - content: 日志内容
+    ///   - property: 自定义属性(可选)
+    optional func info(_ content: String, property: [AnyHashable : Any]?)
+    
+    /// 添加 warning 类型自定义日志
+    /// - Parameters:
+    ///   - content: 日志内容
+    ///   - property: 自定义属性(可选)
+    optional func warning(_ content: String, property: [AnyHashable : Any]?)
+    
+    /// 添加 error 类型自定义日志
+    /// - Parameters:
+    ///   - content: 日志内容
+    ///   - property: 自定义属性(可选)
+    optional func error(_ content: String, property: [AnyHashable : Any]?)
+    
+    /// 添加 critical 类型自定义日志
+    /// - Parameters:
+    ///   - content: 日志内容
+    ///   - property: 自定义属性(可选)
+    optional func critical(_ content: String, property: [AnyHashable : Any]?)
+    
+    /// 添加 ok 类型自定义日志
+    /// - Parameters:
+    ///   - content: 日志内容
+    ///   - property: 自定义属性(可选)
+    optional func ok(_ content: String, property: [AnyHashable : Any]?)
+    }
+    ```
+#### 日志等级
 
-/// 添加 info 类型自定义日志
-/// - Parameters:
-///   - content: 日志内容
-///   - property: 自定义属性(可选)
--(void)info:(NSString *)content property:(nullable NSDictionary *)property;
-/// 添加 warning 类型自定义日志
-/// - Parameters:
-///   - content: 日志内容
-///   - property: 自定义属性(可选)
--(void)warning:(NSString *)content property:(nullable NSDictionary *)property;
-/// 添加 error 类型自定义日志
-/// - Parameters:
-///   - content: 日志内容
-///   - property: 自定义属性(可选)
--(void)error:(NSString *)content  property:(nullable NSDictionary *)property;
-/// 添加 critical 类型自定义日志
-/// - Parameters:
-///   - content: 日志内容
-///   - property: 自定义属性(可选)
--(void)critical:(NSString *)content property:(nullable NSDictionary *)property;
-/// 添加 ok 类型自定义日志
-/// - Parameters:
-///   - content: 日志内容
-///   - property: 自定义属性(可选)
--(void)ok:(NSString *)content property:(nullable NSDictionary *)property;
-```
+=== "Objective-C"
+
+    ```objective-c
+    ///事件等级和状态，默认：FTStatusInfo
+    typedef NS_ENUM(NSInteger, FTLogStatus) {
+        /// 提示
+        FTStatusInfo         = 0,
+        /// 警告
+        FTStatusWarning,
+        /// 错误
+        FTStatusError,
+        /// 严重
+        FTStatusCritical,
+        /// 恢复
+        FTStatusOk,
+    };
+    ```
+=== "Swift"
+
+    ```swift
+    ///事件等级和状态，默认：FTStatusInfo
+    public enum FTLogStatus : Int, @unchecked Sendable {
+        /// 提示
+        case statusInfo = 0
+        /// 警告
+        case statusWarning = 1
+        /// 错误
+        case statusError = 2
+        /// 严重
+        case statusCritical = 3
+        /// 恢复
+        case statusOk = 4
+    }
+    ```
+
+### 代码示例
+
+=== "Objective-C"
+
+    ```objectivec
+    // 方法一：通过 FTSDKAgent
+    // 注意：需要保证在使用的时候 SDK 已经初始化成功，否则在测试环境会断言失败从而崩溃。
+    [[FTSDKAgent sharedInstance] logging:@"test_custom" status:FTStatusInfo];
+    
+    // 方法二：通过 FTLogger （推荐）
+    // SDK 如果没有初始化成功，调用 FTLogger 中方法添加自定义日志会失败，但不会有断言失败崩溃问题。
+    [[FTLogger sharedInstance] info:@"test" property:@{@"custom_key":@"custom_value"}];
+    
+    ```
+
+=== "Swift"
+
+    ```swift
+    // 方法一：通过 FTSDKAgent
+    // 注意：需要保证在使用的时候 SDK 已经初始化成功，否则在测试环境会断言失败从而崩溃。
+    FTSDKAgent.sharedInstance().logging("contentStr", status: .statusInfo, property:["custom_key":"custom_value"])
+    
+    // 方法二：通过 FTLogger （推荐）
+    // SDK 如果没有初始化成功，调用 FTLogger 中方法添加自定义日志会失败，但不会有断言失败崩溃问题。
+    FTLogger.shared().info("contentStr", property: ["custom_key":"custom_value"])
+    ```
+
+### 自定义日志输出到控制台 {#printCustomLogToConsole}
+
 
 设置 `printCustomLogToConsole = YES` ，开启将自定义日志输出到控制台，将会在 xcode 调试控制台看到以下格式的日志：
 
@@ -563,7 +894,7 @@ typedef NS_ENUM(NSInteger, FTLogStatus) {
 
 `[INFO]`：自定义日志的等级；
 
-`content`：自定义日志内容。
+`content`：自定义日志内容；
 
 `{K=V,...,Kn=Vn}`：自定义属性。
 
@@ -571,10 +902,40 @@ typedef NS_ENUM(NSInteger, FTLogStatus) {
 
 可以 `FTTraceConfig`  配置开启自动模式，或手动添加。Trace 相关数据，通过 `FTTraceManager` 单例，进行传入，相关 API 如下：
 
-```objectivec
- NSString *key = [[NSUUID UUID]UUIDString];
+#### 使用方法
+
+=== "Objective-C"
+
+    ```objective-c
+    // FTTraceManager.h
+    
+    /// 获取 trace 的请求头参数
+    /// - Parameters:
+    ///   - key: 能够确定某一请求的唯一标识
+    ///   - url: 请求 URL
+    /// - Returns: trace 的请求头参数字典
+    - (NSDictionary *)getTraceHeaderWithKey:(NSString *)key url:(NSURL *)url;
+    ```
+
+=== "Swift"
+
+    ```swift
+    /// 获取 trace 的请求头参数
+    /// - Parameters:
+    ///   - key: 能够确定某一请求的唯一标识
+    ///   - url: 请求 URL
+    /// - Returns: trace 的请求头参数字典
+    open func getTraceHeader(withKey key: String, url: URL) -> [AnyHashable : Any]
+    ```
+
+#### 代码示例
+
+=== "Objective-C"
+
+    ```objectivec
+    NSString *key = [[NSUUID UUID]UUIDString];
     NSURL *url = [NSURL URLWithString:@"http://www.baidu.com"];
-//需要的手动操作： 请求前获取 traceHeader 添加到请求头
+    //需要的手动操作： 请求前获取 traceHeader 添加到请求头
     NSDictionary *traceHeader = [[FTTraceManager sharedInstance] getTraceHeaderWithKey:key url:url];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     if (traceHeader && traceHeader.allKeys.count>0) {
@@ -589,54 +950,166 @@ typedef NS_ENUM(NSInteger, FTLogStatus) {
     }];
     
     [task resume];
-```
+    ```
 
-```objectivec
-// FTTraceManager.h
+=== "Swift"
 
-/// 获取 trace 的请求头参数
-/// - Parameters:
-///   - key: 能够确定某一请求的唯一标识
-///   - url: 请求 URL
-/// - Returns: trace 的请求头参数字典
-- (NSDictionary *)getTraceHeaderWithKey:(NSString *)key url:(NSURL *)url;
-```
+    ```swift
+    let url:URL = NSURL.init(string: "https://www.baidu.com")! as URL
+    if let traceHeader = FTTraceManager.sharedInstance().getTraceHeader(withKey: NSUUID().uuidString, url: url) {
+         let request = NSMutableURLRequest(url: url)
+         //需要的手动操作： 请求前获取 traceHeader 添加到请求头
+         for (a,b) in traceHeader {
+             request.setValue(b as? String, forHTTPHeaderField: a as! String)
+         }
+         let task = URLSession.shared.dataTask(with: request as URLRequest) {  data,  response,  error in
+            //您的代码
+         }
+         task.resume()
+    }
+    ```
 
 ## 用户的绑定与注销
+### 使用方法
 
-```objectivec
-/// 绑定用户信息
-///
-/// - Parameters:
-///   - Id:  用户Id
-///   - userName: 用户名称
-///   - userEmail: 用户邮箱
-///   - extra: 用户的额外信息
-[[FTSDKAgent sharedInstance] bindUserWithUserID:USERID];
-//or
-[[FTSDKAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL];
-//or
-[[FTSDKAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL extra:@{EXTRA_KEY:EXTRA_VALUE}];
+=== "Objective-C"
 
-///解绑用户
-[[FTSDKAgent sharedInstance] unbindUser];
-```
+    ```objectivec
+    /// 绑定用户信息
+    ///
+    /// - Parameters:
+    ///   - Id:  用户Id
+    - (void)bindUserWithUserID:(NSString *)userId;
+    
+    /// 绑定用户信息
+    ///
+    /// - Parameters:
+    ///   - Id:  用户Id
+    ///   - userName: 用户名称
+    ///   - userEmailL: 用户邮箱
+    - (void)bindUserWithUserID:(NSString *)Id userName:(nullable NSString *)userName userEmail:(nullable NSString *)userEmail;
+    
+    /// 绑定用户信息
+    ///
+    /// - Parameters:
+    ///   - Id:  用户Id
+    ///   - userName: 用户名称
+    ///   - userEmail: 用户邮箱
+    ///   - extra: 用户的额外信息
+    - (void)bindUserWithUserID:(NSString *)Id userName:(nullable NSString *)userName userEmail:(nullable NSString *)userEmail extra:(nullable NSDictionary *)extra;
+    
+    /// 注销当前用户
+    - (void)unbindUser;
+    ```
 
+=== "Swift"
+
+    ```swift
+    /// 绑定用户信息
+    ///
+    /// - Parameters:
+    ///   - Id:  用户Id
+    open func bindUser(withUserID userId: String)
+    
+    /// 绑定用户信息
+    ///
+    /// - Parameters:
+    ///   - Id:  用户Id
+    ///   - userName: 用户名称
+    ///   - userEmailL: 用户邮箱
+    open func bindUser(withUserID Id: String, userName: String?, userEmail: String?)
+       
+    /// 绑定用户信息
+    ///
+    /// - Parameters:
+    ///   - Id:  用户Id
+    ///   - userName: 用户名称
+    ///   - userEmail: 用户邮箱
+    ///   - extra: 用户的额外信息
+    open func bindUser(withUserID Id: String, userName: String?, userEmail: String?, extra: [AnyHashable : Any]?)
+    
+    /// 注销当前用户
+    open func unbindUser()
+    ```
+
+### 代码示例
+
+=== "Objective-C"
+
+    ```objectivec
+    // 可以在用户登录成功后调用此方法用来绑定用户信息
+    [[FTSDKAgent sharedInstance] bindUserWithUserID:USERID];
+    // or
+    [[FTSDKAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL];
+    // or
+    [[FTSDKAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL extra:@{EXTRA_KEY:EXTRA_VALUE}];
+    
+    // 可以在用户退出登录后调用此方法来解绑用户信息
+    [[FTSDKAgent sharedInstance] unbindUser];
+    ```
+=== "Swift"
+
+    ```swift
+    // 可以在用户登录成功后调用此方法用来绑定用户信息
+    FTSDKAgent.sharedInstance().bindUser(withUserID: USERID)
+    // or
+    FTSDKAgent.sharedInstance().bindUser(withUserID: USERID, userName: USERNAME, userEmail: USEREMAIL)
+    // or
+    FTSDKAgent.sharedInstance().bindUser(withUserID: USERID, userName: USERNAME, userEmail: USEREMAIL,extra:[EXTRA_KEY:EXTRA_VALUE])
+    
+    // 可以在用户退出登录后调用此方法来解绑用户信息
+    FTSDKAgent.sharedInstance().unbindUser()
+    ```
+
+## 关闭 SDK
+
+使用 `FTSDKAgent` 关闭 SDK。
+
+### 使用方法
+
+=== "Objective-C"
+
+    ```objective-c
+    /// 关闭 SDK 内正在运行对象
+    - (void)shutDown;
+    ```
+
+=== "Swift"
+
+    ```swift
+    /// 关闭 SDK 内正在运行对象
+    func shutDown()
+    ```
+### 代码示例
+
+=== "Objective-C"
+
+    ```objective-c
+    //如果动态改变 SDK 配置，需要先关闭，以避免错误数据的产生
+    [[FTSDKAgent sharedInstance] shutDown];
+    ```  
+
+=== "Swift"
+
+    ```swift
+    //如果动态改变 SDK 配置，需要先关闭，以避免错误数据的产生
+    FTSDKAgent.sharedInstance().shutDown()
+    ```
 ## 添加自定义标签 {#user-global-context}
 
 ### 静态使用
 
-可采用创建多 Configurations ，使用预编译指令进行设置值
+可采用创建多 Configurations，使用预编译指令进行设置值：
 
-1. 创建多 Configurations ：
+1、创建多 Configurations：
 
 ![](../img/image_9.png)
 
-2. 设置预设属性来区分不同 Configurations:
+2、设置预设属性来区分不同 Configurations:
 
 ![](../img/image_10.png)
 
-3. 使用预编译指令：
+3、使用预编译指令：
 
 ```objectivec
 //Target -> Build Settings -> GCC_PREPROCESSOR_DEFINITIONS 进行配置预设定义
@@ -661,7 +1134,7 @@ rumConfig.globalContext = @{@"track_id":Track_id,@"static_tag":STATIC_TAG};
 
 因 RUM 启动后设置的 globalContext 不会生效，用户可自行本地保存，在下次应用启动时进行设置生效。
 
-1. 通过存文件本地保存，例如`NSUserDefaults`，配置使用 `SDK`，在配置处添加获取标签数据的代码。
+1、通过存文件本地保存，例如 `NSUserDefaults`，配置使用 `SDK`，在配置处添加获取标签数据的代码。
 
 ```objectivec
 NSString *dynamicTag = [[NSUserDefaults standardUserDefaults] valueForKey:@"DYNAMIC_TAG"]?:@"NO_VALUE";
@@ -672,13 +1145,13 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 [[FTSDKAgent sharedInstance] startRumWithConfigOptions:rumConfig];
 ```
 
-2. 在任意处添加改变文件数据的方法。
+2、在任意处添加改变文件数据的方法。
 
 ```objectivec
  [[NSUserDefaults standardUserDefaults] setValue:@"dynamic_tags" forKey:@"DYNAMIC_TAG"];
 ```
 
-3. 最后重启应用生效。
+3、最后重启应用生效。
 
 ### 注意
 
@@ -690,7 +1163,7 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 
 4. `FTSDKConfig` 中配置的自定义标签将添加在所有类型的数据中。
 
-详细细节请见 [SDK Demo](https://github.com/GuanceCloud/datakit-macos/tree/development/Example)。
+> 更多详细细节，可参考 [SDK Demo](https://github.com/GuanceCloud/datakit-macos/tree/development/Example)。
 
 
 

@@ -7,6 +7,11 @@ dashboard:
   - desc: '腾讯云 PostgreSQL 内置视图'
     path: 'dashboard/zh/tencent_postgresql'
 
+monitor:
+  - desc: '腾讯云 PostgreSQL 监控器'
+    path: 'monitor/zh/tencent_postgresql'
+
+
 ---
 <!-- markdownlint-disable MD025 -->
 # 腾讯云 PostgreSQL

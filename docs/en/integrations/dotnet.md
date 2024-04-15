@@ -45,12 +45,13 @@ Use metrics, traces, logs, and profiling information for.NET applications throug
 
     2. Run the .NET Tracer MSI installer with administrator privileges.
 
-    You can also script the MSI setup by running the following in PowerShell: Start-Process -Wait msiexec -ArgumentList '/qn /i datadog-apm.msi'
+    You can also script the MSI setup by running the following in PowerShell: `Start-Process -Wait msiexec -ArgumentList '/qn /i datadog-apm.msi'`
 
 === "Linux"
     
     1. Download the latest [ .NET Tracer MSI ](https://github.com/DataDog/dd-trace-dotnet/releases) package that supports your operating system and architecture.
-    2. Run one of the following commands to install the package and create the .NET tracer log directory /var/log/datadog/dotnet with the appropriate permissions:
+    2. Run one of the following commands to install the package and create the .NET tracer log directory `/var/log/datadog/dotnet` with the appropriate permissions:
+    
     To install the .NET Tracer machine-wide:
 
     > ** Debian or Ubuntu **
@@ -109,12 +110,12 @@ For information about the different methods for setting environment variables, s
 === "Nuget"
 
 
-    1. In application code, access the global tracker through the `Datadog.Trace.Trace.Instance` property to create a new `span`.
+    1. In application code, access the global tracker through the `Datadog.Trace.Tracer.Instance` property to create a new `span`.
 
 
 ### Environment variable configuration{#env}
 
-To attach automatic detection to a service, you must set the required environment variables before starting the application. Refer to the [ Open tracer for application ](dotnet.md#tracer) section to determine the environment variables to be set based on the.NET tracer installation method, and follow the example below to set the environment variables correctly based on the service's environment for the insert instructions.
+To attach automatic detection to a service, you must set the required environment variables before starting the application. Refer to the [Open tracer for application](dotnet.md#tracer) section to determine the environment variables to be set based on the .NET tracer installation method, and follow the example below to set the environment variables correctly based on the service's environment for the insert instructions.
 
 #### Windows
 
@@ -257,7 +258,7 @@ To attach automatic detection to a service, you must set the required environmen
     Enable runtime metrics collection in the `.NET Tracer 1.23.0+` with the `DD_RUNTIME_METRICS_ENABLED=true` environment variable.
     
 <!-- markdownlint-enable -->
-### Runtime Indicator Compatibility
+### Runtime Metric Compatibility
 
 - [x] .NET Framework 4.6.1+
 - [x] .NET Core 3.1
@@ -271,9 +272,9 @@ To attach automatic detection to a service, you must set the required environmen
 2. The default port is `8125`
 3. If you run Agent as a container, make sure that `DD_DOGSTATSD_NON_LOCAL_TRAFFIC` is set to `true` and that the port `8125` on the Agent is open.
 
-### Indicator Information
+### Metric Information
 
-[Detailed Indicator Information] ( https://docs.datadoghq.com/tracing/metrics/runtime_metrics/dotnet/ )
+[Detailed Metric Information](https://docs.datadoghq.com/tracing/metrics/runtime_metrics/dotnet/ )
 
 
 ## Logging {#logging}
@@ -299,14 +300,14 @@ Log files are saved in the following directories by default. Use the DD_TRACE_LO
 <!-- markdownlint-enable -->
 ## Profiler{#profiling}
 
-Reference Document [ .NET profiling ](profile-dotnet.md)
+Reference Document [.NET profiling](profile-dotnet.md)
 
 ## Documents{#docs}
 
-[.NET Parameters Document] ( https://docs.datadoghq.com/tracing/trace_collection/library_config/dotnet-core/?tab=environmentvariables )
+[.NET Parameters Document](https://docs.datadoghq.com/tracing/trace_collection/library_config/dotnet-core/?tab=environmentvariables)
 
 [.NET Tracer](https://docs.datadoghq.com/tracing/trace_collection/dd_libraries/dotnet-core)
 
-[.NET Log](https://docs.datadoghq.com/tracing/troubleshooting/tracer_startup_logs/?code -lang=dotnet)
+[.NET Log](https://docs.datadoghq.com/tracing/troubleshooting/tracer_startup_logs/?code-lang=dotnet)
 
 [.NET Runtime Metrics](https://docs.datadoghq.com/tracing/metrics/runtime_metrics/dotnet/)

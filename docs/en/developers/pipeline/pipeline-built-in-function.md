@@ -4,10 +4,10 @@
 Function parameter description:
 
 - In function arguments, the anonymous argument (`_`) refers to the original input text data
-- json path, expressed directly as `x.y.z`, without any other modifications. For example, `{"a":{"first":2.3, "second":2, "third":"abc", "forth":true}, "age":47}`, where the json path is `a.thrid` to indicate that the data to be manipulated is `abc`
+- JSON path, expressed directly as `x.y.z`, without any other modifications. For example, `{"a":{"first":2.3, "second":2, "third":"abc", "forth":true}, "age":47}`, where the JSON path is `a.thrid` to indicate that the data to be manipulated is `abc`
 - The relative order of all function arguments is fixed, and the engine will check it concretely
 - All of the `key` parameters mentioned below refer to the `key` generated after the initial extraction (via `grok()` or `json()`)
-- The path of the json to be processed, supports the writing of identifiers, and cannot use strings. If you are generating new keys, you need to use strings
+- The path of the JSON to be processed, supports the writing of identifiers, and cannot use strings. If you are generating new keys, you need to use strings
 
 ## Function List {#function-list}
 
@@ -159,33 +159,33 @@ After using `adjust_timezone` will get:
 
 ### `agg_create()` {#fn-agg-create}
 
-Function prototype: `fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil)`
+Function prototype: `fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil, category: str = "M")`
 
-Function description: Create an aggregation measurement, set the time or number of times through `on_interval` or `on_count` as the aggregation period, upload the aggregated data after the aggregation is completed, and choose whether to keep the last aggregated data
+Function description: Create an aggregation measurement, set the time or number of times through `on_interval` or `on_count` as the aggregation period, upload the aggregated data after the aggregation is completed, and choose whether to keep the last aggregated data. This function does not work with central Pipeline.
 
 Function parameters:
 
 - `bucket`: String type, as an aggregated field, if the bucket has already been created, the function will not perform any operations.
 - `on_interval`：The default value is `60s`, which takes time as the aggregation period, and the unit is `s`, and the parameter takes effect when the value is greater than `0`; it cannot be combined with `on_count` less than or equal to 0.
-- `on_count`: The default value is `0`, the number of processed points is used as the aggregation period, and the parameter takes effect when the value is greater than `0`
-- `keep_value`: The default value is `false`
-- `const_tags`: Custom tags, empty by default
+- `on_count`: The default value is `0`, the number of processed points is used as the aggregation period, and the parameter takes effect when the value is greater than `0`.
+- `keep_value`: The default value is `false`.
+- `const_tags`: Custom tags, empty by default.
+- `category`: Data category for aggregated data, optional parameter, the default value is "M", indicating the indicator category data.
 
 示例：
 
 ```python
-agg_create("cpu_agg_info", interval = 60)
+agg_create("cpu_agg_info", on_interval = "30s")
 ```
-
 
 
 ### `agg_metric()` {#fn-agg-metric}
 
 [:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
 
-Function prototype: `fn agg_metric(bucket: str, new_field: str, agg_fn: str, agg_by: []string, agg_field: str)`
+Function prototype: `fn agg_metric(bucket: str, new_field: str, agg_fn: str, agg_by: []string, agg_field: str, category: str = "M")`
 
-Function description: According to the field name in the input data, the value is automatically taken as the label of the aggregated data, and the aggregated data is stored in the corresponding bucket.
+Function description: According to the field name in the input data, the value is automatically taken as the label of the aggregated data, and the aggregated data is stored in the corresponding bucket. This function does not work with central Pipeline.
 
 Function parameters:
 
@@ -194,45 +194,38 @@ Function parameters:
 - `agg_fn`: Aggregation function, can be one of `"avg"`, `"sum"`, `"min"`, `"max"`, `"set"`.
 - `agg_by`: The name of the field in the input data will be used as the tag of the aggregated data, and the value of these fields can only be string type data.
 - `agg_field`: The field name in the input data, automatically obtain the field value for aggregation.
+- `category`: Data category for aggregated data, optional parameter, the default value is "M", indicating the indicator category data.
 
 Example:
 
 Take `logging` category data as an example:
 
-multiple logs：
-```
-1
-```
+Multiple inputs in a row:
 
-```
-2
-```
-
-```
-3
-```
+- Sample log one: `{"a": 1}`
+- Sample log two: `{"a": 2}`
 
 script:
 
 ```python
-agg_create("cpu_agg_info", interval=10, const_tags={"tag1":"value_user_define_tag"})
+agg_create("cpu_agg_info", on_interval="10s", const_tags={"tag1":"value_user_define_tag"})
 
 set_tag("tag1", "value1")
 
-field1 = _
+field1 = load_json(_)
 
-cast(field1, "int")
+field1 = field1["a"]
 
 agg_metric("cpu_agg_info", "agg_field_1", "sum", ["tag1", "host"], "field1")
 ```
 
 metric output:
 
-```
+```json
 {
     "host": "your_hostname",
     "tag1": "value1",
-    "agg_field_1": 6,
+    "agg_field_1": 3
 }
 ```
 
@@ -427,7 +420,7 @@ cover(abc, [2, 4])
 
 Function prototype: `fn create_point(name, tags, fields, ts = 0, category = "M", after_use = "")`
 
-Function description: Create new data and output
+Function description: Create new data and output. This function does not work with central Pipeline.
 
 Function parameters:
 
@@ -794,6 +787,54 @@ json(_, str_b)
 ```
 
 
+### `format_int()` {#fn-format-int}
+
+Function prototype: `fn format_int(val: int, base: int) str`
+
+Function description: Converts a numeric value to a numeric string in the specified base.
+
+Function parameters:
+
+- `val`: The number to be converted.
+- `base`: Base, ranging from 2 to 36; when the base is greater than 10, lowercase letters a to z are used to represent values 10 and later.
+
+Example:
+
+```python
+# script0
+a = 7665324064912355185
+b = format_int(a, 16)
+if b != "6a60b39fd95aaf71" {
+    add_key(abc, b)
+} else {
+    add_key(abc, "ok")
+}
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+
+# script1
+a = "7665324064912355185"
+b = format_int(parse_int(a, 10), 16)
+if b != "6a60b39fd95aaf71" {
+    add_key(abc, b)
+} else {
+    add_key(abc, "ok")
+}
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+```
+
+
 ### `geoip()` {#fn-geoip}
 
 Function prototype: `fn geoip(ip: str)`
@@ -883,6 +924,7 @@ Function parameters:
 - `input`：The text to be extracted can be the original text (`_`) or a `key` after the initial extraction
 - `pattern`: grok expression, the data type of the specified key is supported in the expression: bool, float, int, string (corresponding to Pipeline's str, can also be written as str), the default is string
 - `trim_space`: Delete the leading and trailing blank characters in the extracted characters, the default value is true
+
 ```python
 grok(_, pattern)    #Use the entered text directly as raw data
 grok(key, pattern)  # For a key that has been extracted before, do grok again
@@ -1269,7 +1311,7 @@ json(_, first) lowercase(first)
 
 # result
 {
-		"first": "hello"
+    "first": "hello"
 }
 ```
 
@@ -1308,7 +1350,7 @@ add_key(match_2, match('''\w+\s[,\w]+''', test_2))
 
 Function prototype: `fn mquery_refer_table(table_name: str, keys: list, values: list)`
 
-Function description: Query the external reference table by specifying multiple keys, and append all columns of the first row of the query result to field.
+Function description: Query the external reference table by specifying multiple keys, and append all columns of the first row of the query result to field. This function does not work with central Pipeline.
 
 Function parameters:
 
@@ -1446,11 +1488,108 @@ parse_duration(abc) # result abc = -2300000000
 ```
 
 
+### `parse_int()` {#fn-parse-int}
+
+Function prototype: `fn parse_int(val: int, base: int) str`
+
+Function description: Converts the string representation of a numeric value to a numeric value.
+
+Function parameters:
+
+- `val`: The string to be converted.
+- `base`: Base, the range is 0, or 2 to 36; when the value is 0, the base is judged according to the string prefix.
+
+Example:
+
+```python
+# script0
+a = "7665324064912355185"
+b = format_int(parse_int(a, 10), 16)
+if b != "6a60b39fd95aaf71" {
+    add_key(abc, b)
+} else {
+    add_key(abc, "ok")
+}
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+
+# script1
+a = "6a60b39fd95aaf71" 
+b = parse_int(a, 16)            # base 16
+if b != 7665324064912355185 {
+    add_key(abc, b)
+} else {
+    add_key(abc, "ok")
+}
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+
+
+# script2
+a = "0x6a60b39fd95aaf71" 
+b = parse_int(a, 0)            # the true base is implied by the string's 
+if b != 7665324064912355185 {
+    add_key(abc, b)
+} else {
+    c = format_int(b, 16)
+    if "0x"+c != a {
+        add_key(abc, c)
+    } else {
+        add_key(abc, "ok")
+    }
+}
+
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+```
+
+
+### `pt_name()` {#fn-pt-name}
+
+Function prototype: `fn pt_name(name: str = "") -> str`
+
+Function description: Get the name of point; if the parameter is not empty, set the new name.
+
+Function parameters:
+
+- `name`: Value as point name; defaults to empty string.
+
+The field mapping relationship between point name and various types of data storage:
+
+| category      | field name |
+| ------------- | ---------- |
+| custom_object | class      |
+| keyevent      | -          |
+| logging       | source     |
+| metric        | -          |
+| network       | source     |
+| object        | class      |
+| profiling     | source     |
+| rum           | source     |
+| security      | rule       |
+| tracing       | source     |
+
+
 ### `query_refer_table()` {#fn-query-refer-table}
 
 Function prototype: `fn query_refer_table(table_name: str, key: str, value)`
 
-Function description: Query the external reference table through the specified key, and append all the columns of the first row of the query result to field.
+Function description: Query the external reference table through the specified key, and append all the columns of the first row of the query result to field. This function does not work with central Pipeline.
 
 Function parameters:
 
@@ -1569,6 +1708,7 @@ Function prototype: `fn sample(p)`
 Function description: Choose to collect/discard data with probability p.
 
 Function parameters:
+
 - `p`: the probability that the sample function returns true, the value range is [0, 1]
 
 Example:

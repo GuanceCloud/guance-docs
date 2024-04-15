@@ -23,6 +23,8 @@ nav:
   - 'China Map': china-map.md
   - 'World Map': world-map.md
   - 'Honeycomb': cellular-map.md
+  - 'Topology Chart': topology-map.md
+  - 'Sankey Diagram': sankey.md
   - 'Text': text.md
   - 'Pictures': picture.md
   - 'Video': video.md

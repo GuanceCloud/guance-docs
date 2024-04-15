@@ -1,6 +1,6 @@
 ---
 Title:'Aerospike'
-summary:'Collecting Aerospike-related indicator information'
+summary:'Collecting Aerospike-related metric information'
 __int_icon: 'icon/aerospike'
 dashboard:
   - Desc:'Aerospike Namespace Overview Monitoring View'
@@ -17,12 +17,12 @@ monitor   :
 <!-- markdownlint-enable -->
 ---
 
-: fontawesome-brands-linux:: fontawesome-brands-windows:[ :fontawesome-solid-flag-checkered: ](../datakit/index.md#legends "Election Enabled")
+:fontawesome-brands-linux: :fontawesome-brands-windows: · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
-Aerospike Namespace performance indicators are presented, including clusters, memory usage in space, disk usage, number of objects, read and write rates, and so on.
+Aerospike Namespace performance metrics are presented, including clusters, memory usage in space, disk usage, number of objects, read and write rates, and so on.
 
-Aerospike Node related indicators display, including Node cluster, Node status, number of records, memory, disk indicators, and so on.
+Aerospike Node related metrics display, including Node cluster, Node status, number of records, memory, disk metrics, and so on.
 
 
 
@@ -35,9 +35,9 @@ Aerospike Node related indicators display, including Node cluster, Node status, 
 
 The sample Aerospike version is Linux Environment 6.0.0 (CentOS), and the metrics may vary from version to version.
 
- `aerospike-prometheus-exporter` Exporter, an official development, facilitates fast access to Aerospike monitoring.
+`aerospike-prometheus-exporter` Exporter, an official development, facilitates fast access to Aerospike monitoring.
 
-### Indicator Collection
+### Metric Collection
 
 #### Install exporter
 
@@ -225,9 +225,9 @@ systemctl start aerospike-prometheus-exporter.service
 systemctl restart aerospike-prometheus-exporter.service
 ```
 
-#### Access Indicators
+#### Access Metrics
 
-Access indicators through `curl http://localhost:9145/metrics`
+Access metrics through `curl http://localhost:9145/metrics`
 
 #### DataKit adds `aerospike-prom.conf` profile{#input-config}
 
@@ -239,7 +239,7 @@ cp prom.conf.sample aerospike-prom.conf
 
 Description of main parameters
 
-- Url: `aerospike-prometheus-exporter` Indicator address
+- Url: `aerospike-prometheus-exporter` Metric address
 - Interval: acquisition frequency
 - Source: collector alias
 
@@ -262,9 +262,7 @@ Description of main parameters
 
 #### Restart DataKit
 
-```shell
-systemctl restart datakit
-```
+[Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
 ## Log Collection{#logging}
 
@@ -282,7 +280,7 @@ In the `/usr/local/datakit/conf.d` directory, copy a conf and rename it `logging
 cp logging.conf.sample logging-aerospike.conf
 ```
 
-###  `logging-aerospike.conf` Full Text
+### `logging-aerospike.conf` Full Text
 
 ```toml
 [[inputs.logging]]
@@ -334,5 +332,5 @@ ignore_dead_log = "10m"
 
 ## Metric {#metric}
 
-[Refer to Aerospike website metrics] ( https://docs.aerospike.com/server/operations/monitor/key_metrics )
+[Refer to Aerospike website metrics](https://docs.aerospike.com/server/operations/monitor/key_metrics )
 

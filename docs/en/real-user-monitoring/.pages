@@ -1,14 +1,16 @@
 nav:
   - index.md
-  - 'Web Monitoring': web
-  - 'Android Monitoring': android
-  - 'iOS Monitoring': ios
-  - 'Miniapp Monitoring': miniapp
-  - 'React Native Monitoring': react-native
-  - 'Flutter Monitoring': flutter
-  - 'UniApp Monitoring': uni-app
-  - 'Explorer': explorer
+  - 'Web': web
+  - 'Android': android
+  - 'iOS': ios
+  - 'Miniapp': miniapp
+  - 'React Native': react-native
+  - 'Flutter': flutter
+  - 'UniApp': uni-app
+  - 'macOS': macos
+  - 'Explorers': explorer
+  - 'Analysis Dashboard': app-analysis.md
   - 'Session Replay': session-replay
   - 'Generate Metrics': generate-metrics.md
-  - 'Self Tracking': self-tracking.md
-
+  - 'Tracking': self-tracking.md
+  - 'SourceMap': sourcemap

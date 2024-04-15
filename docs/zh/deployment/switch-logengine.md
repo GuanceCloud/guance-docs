@@ -2,7 +2,7 @@
 
 ## 简介
 
-本文将介绍观测云切换日志引擎，支持 6 种不同的引擎，包含原版开源的 Elasticsearch、原版开源的 OpenSearch、AWS 云上的托管 OpenSearch、华为云上的托管 Elasticsearch、aliyun 上的托管 Elasticsearch 日志增强版、aliyun 上的托管 Elasticsearch。次操作适用于 POC 切换生产日志引擎。
+本文将介绍观测云切换日志引擎，支持 6 种不同的引擎，包含原版开源的 Elasticsearch、原版开源的 OpenSearch、AWS 云上的托管 OpenSearch、华为云上的托管 Elasticsearch、aliyun 上的托管 Elasticsearch 日志增强版、aliyun 上的托管 Elasticsearch。此操作适用于 POC 切换生产日志引擎。
 
 ## 前提条件
 
@@ -98,7 +98,15 @@ $ curl 'http://127.0.0.1:5000/api/v1/inner/es/init_subsequent' -X 'POST'  -H 'Co
 kubectl scale -n forethought-kodo deploy kodo-x --replicas 3
 ```
 
-### 步骤六：验证
+### 步骤六：清空 redis 缓存
+
+登录 redis 数据库：
+
+```shell
+flushall
+```
+
+### 步骤七：验证
 
 请登录观测云控制台仔细查看基础设施和日志功能。
 

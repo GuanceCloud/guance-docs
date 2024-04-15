@@ -36,7 +36,7 @@
 | `hostobject` | 采集主机基础信息（如操作系统信息、硬件信息等） |
 | `container` | 采集主机上可能的容器对象以及容器日志 |
 
-更多主机对象数据采集，可参考帮助文档 [DataKit主机对象采集器](../datakit/hostobject.md)。
+更多主机对象数据采集，可参考帮助文档 [DataKit主机对象采集器](../integrations/hostobject.md)。
 
 ### Step2：开启云同步
 
@@ -70,7 +70,7 @@
 | `zone_id` | 实例 Zone ID |
 | `region` | 实例 Region ID |
 
-更多主机对象数据采集，可参考帮助文档 [DataKit主机对象采集器](../datakit/hostobject.md)。
+更多主机对象数据采集，可参考帮助文档 [DataKit主机对象采集器](../integrations/hostobject.md)。
 
 ### Step3：查看主机数据
 
@@ -130,7 +130,7 @@
 
 ![](img/6.png)
 
-详细的配置方法可参考：[DataKit主机对象采集器](../datakit/hostobject.md)
+详细的配置方法可参考：[DataKit主机对象采集器](../integrations/hostobject.md)
 
 ### 自定义label
 

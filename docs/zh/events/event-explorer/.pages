@@ -1,0 +1,5 @@
+nav:
+  - index.md
+  - '未恢复事件查看器': unrecovered-events.md
+  - '所有事件查看器': event-list.md
+  - '事件详情': event-details.md

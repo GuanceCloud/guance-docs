@@ -1,7 +1,6 @@
 # 日志采集
 ---
 
-## 简介
 
 观测云拥有全面的日志采集能力，主要分成<u>主机日志采集和 K8S 容器日志采集</u>，两者 DataKit 的安装方式不同，日志采集的方式也不尽相同。采集的日志数据统一汇总到观测云进行统一存储、搜索和分析，帮助我们快速定位问题并解决问题。
 
@@ -27,7 +26,7 @@ DataKit 安装完成后，您可以通过开启标准日志采集或者自定义
 
     通过开启观测云支持的标准日志采集器，如 [Nginx](../integrations/nginx.md)、[Redis](../integrations/redis.md)、[ES](../integrations/elasticsearch.md) 等，您可以一键开启日志采集。
 
-???+ attention
+???+ warning
 
     配置日志采集器时，需开通日志的 Pipeline 功能，提取日志时间 `time` 和日志等级 `status` 的字段：
     

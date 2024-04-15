@@ -214,41 +214,41 @@ java -jar bookstore-eureka-discovery-service-0.0.1-SNAPSHOT.jar
  
  
 java  -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
- -Ddd.service=book-gateway \
+ -Ddd.service.name=book-gateway \
  -Ddd.env=dev  \
  -Ddd.agent.port=9529   \
  -jar bookstore-api-gateway-service-0.0.1-SNAPSHOT.jar
  
  
 java  -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
- -Ddd.service=book-account \
+ -Ddd.service.name=book-account \
  -Ddd.env=dev  \
  -Ddd.agent.port=9529   \
  -jar bookstore-account-service-0.0.1-SNAPSHOT.jar  
  
 java  -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
- -Ddd.service=book-order \
+ -Ddd.service.name=book-order \
  -Ddd.env=dev  \
  -Ddd.agent.port=9529   \
  -jar bookstore-order-service-0.0.1-SNAPSHOT.jar
  
  
 java  -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
- -Ddd.service=book-billing \
+ -Ddd.service.name=book-billing \
  -Ddd.env=dev  \
  -Ddd.agent.port=9529   \
  -jar bookstore-billing-service-0.0.1-SNAPSHOT.jar
  
  
 java  -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
- -Ddd.service=book-payment \
+ -Ddd.service.name=book-payment \
  -Ddd.env=dev  \
  -Ddd.agent.port=9529   \
  -jar bookstore-payment-service-0.0.1-SNAPSHOT.jar
  
  
 java  -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
- -Ddd.service=book-catalog \
+ -Ddd.service.name=book-catalog \
  -Ddd.env=dev  \
  -Ddd.agent.port=9529   \
  -jar bookstore-catalog-service-0.0.1-SNAPSHOT.jar 

@@ -159,17 +159,18 @@ adjust_timezone(time)
 
 ### `agg_create()` {#fn-agg-create}
 
-函数原型：`fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil)`
+函数原型：`fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil, category: str = "M")`
 
-函数说明：创建一个用于聚合的指标集，通过 `on_interval` 或 `on_count` 设置时间或次数作为聚合周期，聚合结束后将上传聚合数据，可以选择是否保留上一次聚合的数据
+函数说明：创建一个用于聚合的指标集，通过 `on_interval` 或 `on_count` 设置时间或次数作为聚合周期，聚合结束后将上传聚合数据，可以选择是否保留上一次聚合的数据；该函数不适用于中心 Pipeline。
 
 函数参数：
 
-- `bucket`: 字符串类型，作为聚合出的指标的指标集名，如果该 bucket 已经创建，则函数不执行任何操作
-- `on_interval`：默认值 `60s`, 以时间作为聚合周期，单位 `s`，值大于 `0` 时参数生效；不能同时与 `on_count` 小于等于 0；
-- `on_count`: 默认值 `0`，以处理的点数作为聚合周期，值大于 `0` 时参数生效
-- `keep_value`: 默认值 `false`
-- `const_tags`: 自定义的 tags，默认为空
+- `bucket`: 字符串类型，作为聚合出的指标的指标集名，如果该 bucket 已经创建，则函数不执行任何操作。
+- `on_interval`：默认值 `60s`, 以时间作为聚合周期，单位 `s`，值大于 `0` 时参数生效；不能同时与 `on_count` 小于等于 0。
+- `on_count`: 默认值 `0`，以处理的点数作为聚合周期，值大于 `0` 时参数生效。
+- `keep_value`: 默认值 `false`。
+- `const_tags`: 自定义的 tags，默认为空。
+- `category`: 聚合数据的数据类别，可选参数，默认值为 "M"，表示指标类别数据。
 
 示例：
 
@@ -180,57 +181,49 @@ agg_create("cpu_agg_info", on_interval = "30s")
 
 ### `agg_metric()` {#fn-agg-metric}
 
-函数原型：`fn agg_metric(bucket: str, new_field: str, agg_fn: str, agg_by: []string, agg_field: str)`
+函数原型：`fn agg_metric(bucket: str, new_field: str, agg_fn: str, agg_by: []string, agg_field: str, category: str = "M")`
 
-函数说明：根据输入的数据中的字段的名，自动取值后作为聚合数据的 tag，并将这些聚合数据存储在对应的 bucket 中
+函数说明：根据输入的数据中的字段的名，自动取值后作为聚合数据的 tag，并将这些聚合数据存储在对应的 bucket 中；该函数不适用于中心 Pipeline。
 
 函数参数：
 
-- `bucket`: 字符串类型，函数 `agg_create` 创建出的对应指标集合的 bucket，如果该 bucket 未被创建，则函数不执行任何操作
-- `new_field`： 聚合出的数据中的指标名，其值的数据类型为 `float`
-- `agg_fn`: 聚合函数，可以是 `"avg"`,`"sum"`,`"min"`,`"max"`,`"set"` 中的一种
-- `agg_by`: 输入的数据中的字段的名，将作为聚合出的数据的 tag，这些字段的值只能是字符串类型的数据
-- `agg_field`: 输入的数据中的字段名，自动获取字段值进行聚合
+- `bucket`: 字符串类型，函数 `agg_create` 创建出的对应指标集合的 bucket，如果该 bucket 未被创建，则函数不执行任何操作。
+- `new_field`： 聚合出的数据中的指标名，其值的数据类型为 `float`。
+- `agg_fn`: 聚合函数，可以是 `"avg"`,`"sum"`,`"min"`,`"max"`,`"set"` 中的一种。
+- `agg_by`: 输入的数据中的字段的名，将作为聚合出的数据的 tag，这些字段的值只能是字符串类型的数据。
+- `agg_field`: 输入的数据中的字段名，自动获取字段值进行聚合。
+- `category`: 聚合数据的数据类别，可选参数，默认值为 "M"，表示指标类别数据。
 
 示例：
 
 以日志类别数据为例：
 
-多个输入日志：
+连续多个输入：
 
-``` not-set
-1
-```
-
-``` not-set
-2
-```
-
-``` not-set
-3
-```
+- 样本日志一： `{"a": 1}`
+- 样本日志二： `{"a": 2}`
 
 脚本：
 
 ```python
-agg_create("cpu_agg_info", interval=10, const_tags={"tag1":"value_user_define_tag"})
+agg_create("cpu_agg_info", on_interval="10s", const_tags={"tag1":"value_user_define_tag"})
 
 set_tag("tag1", "value1")
 
-field1 = _
+field1 = load_json(_)
 
-cast(field1, "int")
+field1 = field1["a"]
 
 agg_metric("cpu_agg_info", "agg_field_1", "sum", ["tag1", "host"], "field1")
 ```
 
 指标输出：
 
-``` not-set
+```json
 {
     "host": "your_hostname",
     "tag1": "value1",
-    "agg_field_1": 6,
+    "agg_field_1": 3
 }
 ```
 
@@ -428,7 +421,7 @@ cover(abc, [2, 4])
 
 函数原型：`fn create_point(name, tags, fields, ts = 0, category = "M", after_use = "")`
 
-函数说明：创建新的数据并输出
+函数说明：创建新的数据并输出。该函数不适用于中心 Pipeline。
 
 函数参数：
 
@@ -792,6 +785,54 @@ json(_, str_b)
 # }
 ```
 
+
+
+### `format_int()` {#fn-format-int}
+
+函数原型：`fn format_int(val: int, base: int) str`
+
+函数说明：将数值转换为指定进制的数值字符串。
+
+参数：
+
+- `val`: 待转换的整数
+- `base`: 进制，范围 2 到 36；进制大于 10 时使用小写字母 a 到 z 表示 10 及以后的数值。
+
+示例：
+
+```python
+# script0
+a = 7665324064912355185
+b = format_int(a, 16)
+if b != "6a60b39fd95aaf71" {
+    add_key(abc, b)
+} else {
+    add_key(abc, "ok")
+}
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+
+# script1
+a = "7665324064912355185"
+b = format_int(parse_int(a, 10), 16)
+if b != "6a60b39fd95aaf71" {
+    add_key(abc, b)
+} else {
+    add_key(abc, "ok")
+}
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+```
 
 
 ### `geoip()` {#fn-geoip}
@@ -1309,7 +1350,7 @@ add_key(match_2, match('''\w+\s[,\w]+''', test_2))
 
 函数原型：`fn mquery_refer_table(table_name: str, keys: list, values: list)`
 
-函数说明：通过指定多个 key 查询外部引用表，并将查询结果的首行的所有列追加到 field 中。
+函数说明：通过指定多个 key 查询外部引用表，并将查询结果的首行的所有列追加到 field 中。该函数不适用于中心 Pipeline。
 
 参数：
 
@@ -1450,11 +1491,108 @@ parse_duration(abc) # 结果 abc = -2300000000
 
 
 
+### `parse_int()` {#fn-parse-int}
+
+函数原型：`fn parse_int(val: int, base: int) str`
+
+函数说明：将数值的字符串表示转换为数值。
+
+参数：
+
+- `val`: 待转换的字符串
+- `base`: 进制，范围 0，或 2 到 36；值为 0 时根据字符串前缀判断进制。
+
+示例：
+
+```python
+# script0
+a = "7665324064912355185"
+b = format_int(parse_int(a, 10), 16)
+if b != "6a60b39fd95aaf71" {
+    add_key(abc, b)
+} else {
+    add_key(abc, "ok")
+}
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+
+# script1
+a = "6a60b39fd95aaf71" 
+b = parse_int(a, 16)            # base 16
+if b != 7665324064912355185 {
+    add_key(abc, b)
+} else {
+    add_key(abc, "ok")
+}
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+
+
+# script2
+a = "0x6a60b39fd95aaf71" 
+b = parse_int(a, 0)            # the true base is implied by the string's 
+if b != 7665324064912355185 {
+    add_key(abc, b)
+} else {
+    c = format_int(b, 16)
+    if "0x"+c != a {
+        add_key(abc, c)
+    } else {
+        add_key(abc, "ok")
+    }
+}
+
+
+# result
+'''
+{
+    "abc": "ok"
+}
+'''
+```
+
+
+### `pt_name()` {#fn-pt-name}
+
+函数原型：`fn pt_name(name: str = "") -> str`
+
+函数说明：获取 point 的 name；如果参数不为空则设置新的 name。
+
+函数参数：
+
+- `name`: 值作为 point name；默认值为空字符串
+
+Point Name 与各个类型数据存储时的字段映射关系：
+
+| 类别          | 字段名 |
+| ------------- | ------ |
+| custom_object | class  |
+| keyevent      | -      |
+| logging       | source |
+| metric        | -      |
+| network       | source |
+| object        | class  |
+| profiling     | source |
+| rum           | source |
+| security      | rule   |
+| tracing       | source |
+
+
 ### `query_refer_table()` {#fn-query-refer-table}
 
 函数原型：`fn query_refer_table(table_name: str, key: str, value)`
 
-函数说明：通过指定的 key 查询外部引用表，并将查询结果的首行的所有列追加到 field 中。
+函数说明：通过指定的 key 查询外部引用表，并将查询结果的首行的所有列追加到 field 中。该函数不适用于中心 Pipeline。
 
 参数：
 

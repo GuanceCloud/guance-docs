@@ -1,13 +1,12 @@
 # 用户访问查看器
 ---
 
-## 概述
 
-用户访问监测查看器可以帮助您<u>查看与分析用户访问应用程序的详细信息</u>。
+用户访问监测查看器可以帮助您查看与分析用户访问应用程序的详细信息。
 
-在**用户访问监测**，点击**应用列表 > 查看器**，即可了解每个用户会话、页面性能、资源、长任务、操作中的错误、延迟对用户的影响，帮助您通过搜索、筛选和关联分析全面了解和改善应用的运行状态和使用情况。
+在**用户访问监测 >应用列表 > 查看器**，可了解每个用户会话、页面性能、资源、长任务、操作中的错误、延迟对用户的影响，帮助您通过搜索、筛选和关联分析全面了解和改善应用的运行状态和使用情况。
 
-观测云**用户访问监测 > 查看器**包括以下几种：
+观测云用户访问监测下的查看器包括以下几种：
 
 | 查看器类型 | 概述 |
 | --- | --- |
@@ -18,25 +17,28 @@
 | [Long Task（长任务）](long-task.md) | 查看用户在使用应用期间，阻塞主线程超过 50ms 的长任务，包括页面地址、任务耗时等。 |
 | [Error（错误）](error.md) | 查看用户在使用应用期间，浏览器发出的前端错误，包括错误类型、错误内容等。 |
 
-## 查看器说明
+## 查看前提
 
-在查看器中，观测云支持通过选择时间范围、搜索关键字，筛选等方式查询和分析用户访问数据。
+观测云通过引入 SDK 脚本的方式来收集错误、资源、请求、性能指标等。
 
-### [时间控件](../../getting-started/function-details/explorer-search.md#time)
+> 具体的操作方式，可参考 [Rum 采集器配置](../../integrations/rum.md)。
 
-观测云查看器默认展示最近 15 分钟的数据，通过右上角的**时间控件**，您可以选择数据展示的时间范围。
+## 查询与分析
 
-### [搜索和筛选](../../getting-started/function-details/explorer-search.md)
+- **[时间控件](../../getting-started/function-details/explorer-search.md#time)**：默认展示最近 15 分钟的数据。
 
-### [分析模式](../../getting-started/function-details/explorer-search.md#analysis)
+- 在查看器搜索栏，支持[多种搜索方式和筛选方式](../../getting-started/function-details/explorer-search.md)。
+
+- 在查看器[分析栏](../../getting-started/function-details/explorer-search.md#analysis)，您可以基于 1-3 个标签进行多维度分析统计，并支持多种数据图表分析方式。
+
+- 在链路查看器[快捷筛选](../../getting-started/function-details/explorer-search.md#quick-filter)，您可以编辑、添加筛选字段。
+
+- 可通过[显示列](../../getting-started/function-details/explorer-search.md#columns)自定义添加、编辑、删除、拖动显示列。
 
 ### 用户访问数据分布图
 
 在查看器的数据分布图，您可以根据选择的时间范围统计，自动选取相应的时间间隔展示每个时间点上的用户访问数量分布趋势；若对数据进行了筛选过滤，将同步展示筛选后分布趋势，帮助您直观地查看不同时间点的用户访问数据。
 
-### [快捷筛选](../../getting-started/function-details/explorer-search.md#quick-filter)
-
-### 自定义[显示列](../../getting-started/function-details/explorer-search.md#columns)
 
 ### 错误数据提示
 

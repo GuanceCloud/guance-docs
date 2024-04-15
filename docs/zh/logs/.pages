@@ -6,5 +6,4 @@ nav:
   - '日志查看器': explorer.md
   - '生成指标': generate-metrics.md
   - '日志索引': multi-index.md
-  - '备份日志': backup.md
   - '数据访问': logdata-access.md

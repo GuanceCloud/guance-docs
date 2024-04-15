@@ -1,22 +1,38 @@
+---
+title     : 'StatsD'
+summary   : 'Collect metrics reported by StatsD'
+__int_icon      : 'icon/statsd'
+dashboard :
+  - desc  : 'N/A'
+    path  : '-'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
-# Statsd Data Access
+<!-- markdownlint-disable MD025 -->
+# StatsD data access
+<!-- markdownlint-enable -->
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
+
 The indicator data collected by the DDTrace agent will be sent to port 8125 of the DK through the StatsD data type.
 
 This includes the JVM CPU, memory, threads, and class loading information of the JVM runtime, as well as various collected JMX indicators such as Kafka, Tomcat, RabbitMQ, etc.
 
+## Config {#config}
 
-## Preconditions {#requrements}
+### Preconditions {#requrements}
 
 When DDTrace runs as an agent, there is no need for the user to specifically open the jmx port. If no port is opened, the agent will randomly open a local port.
 
 DDTrace will collect JVM information by default. By default, it will be sent to 'localhost: 8125'
 
 if k8s:
+
 ```shell
 DD_JMXFETCH_STATSD_HOST=datakit_url
 DD_JMXFETCH_STATSD_PORT=8125
@@ -34,8 +50,8 @@ For example, Tomcat or Kafka:
 -Ddd.jmxfetch.kafka.enabled=true 
 ```
 
-
-## Configuration {#config}
+<!-- markdownlint-disable MD046 -->
+### Collector Configuration {#input-config}
 
 === "Host Installation"
 
@@ -44,6 +60,12 @@ For example, Tomcat or Kafka:
     ```toml
         
     [[inputs.statsd]]
+      ## Collector alias.
+      # source = "statsd/-/-"
+    
+      ## Collect interval, default is 10 seconds. (optional)
+      # interval = '10s'
+    
       protocol = "udp"
     
       ## Address and port to host UDP listener on
@@ -61,6 +83,9 @@ For example, Tomcat or Kafka:
       delete_counters = true
       delete_sets = true
       delete_timings = true
+    
+      ## Counter metric is float in new Datakit version, set true if want be int.
+      # set_counter_int = false
     
       ## Percentiles to calculate for timing & histogram stats
       percentiles = [50.0, 90.0, 99.0, 99.9, 99.95, 100.0]
@@ -91,8 +116,8 @@ For example, Tomcat or Kafka:
       metric_mapping = [ ]
     
       ## Number of UDP messages allowed to queue up, once filled,
-      ## the statsd server will start dropping packets
-      allowed_pending_messages = 10000
+      ## the statsd server will start dropping packets, default is 128.
+      # allowed_pending_messages = 128
     
       ## Number of timing/histogram values to track per-measurement in the
       ## calculation of percentiles. Raising this limit increases the accuracy
@@ -112,6 +137,13 @@ For example, Tomcat or Kafka:
 === "Kubernetes"
 
     The collector can now be turned on by [configMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-enable -->
+
+<!-- markdownlint-disable MD046 -->
+???+ info
+
+    If find lot of Feed: io busy in the log, can configure interval='1s', minimum is 1s.
+<!-- markdownlint-enable -->
 
 ### Tag data sources {#config-tag}
 
@@ -124,9 +156,9 @@ In the above example, you need to specify that the key for source is `source_key
 
 The end result is that you can see `statsd/tomcat/cn-shanghai-sq5ei` in the `datakit monitor`, which distinguishes it from other data sources reported to the statsd collector. If the above configuration is not done, then the default display is seen on the `datakit monitor`: `statsd/-/-`.
 
-In addition, there is a configuration swith `save_above_key` that determine whether the tags corresponding to `statsd_source_key` and `statsd_host_key` are reported to the center. The default is not to report(`false`).
+In addition, there is a configuration switch `save_above_key` that determine whether the tags corresponding to `statsd_source_key` and `statsd_host_key` are reported to the center. The default is not to report(`false`).
 
-## Measurement {#measurement}
+## Metric {#metric}
 
 Statsd has no measurement definition at present, and all metrics are subject to the metrics sent by the network.
 

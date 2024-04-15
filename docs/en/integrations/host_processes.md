@@ -1,5 +1,19 @@
+---
+title     : 'Process'
+summary   : 'Collect host process and it's metrics'
+__int_icon      : 'icon/process'
+dashboard :
+  - desc  : 'process'
+    path  : 'dashboard/en/process'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # Process
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -8,21 +22,29 @@
 
 The process collector can monitor various running processes in the system, acquire and analyze various metrics when the process is running, Including memory utilization rate, CPU time occupied, current state of the process, port of process monitoring, etc. According to various index information of process running, users can configure relevant alarms in Guance Cloud, so that users can know the state of the process, and maintain the failed process in time when the process fails.
 
+<!-- markdownlint-disable MD046 -->
+
 ???+ attention
 
     Process collectors (whether objects or metrics) may consume a lot on macOS, causing CPU to soar, so you can turn them off manually. At present, the default collector still turns on the process object collector (it runs once every 5min by default).
 
-## Preconditions {#requirements}
-
-- The process collector does not collect process metrics by default. To collect metrics-related data, set `open_metric` to `true` in `host_processes.conf`. For example:
-                              
-```toml
-[[inputs.host_processes]]
-	...
-	 open_metric = true
-```
+<!-- markdownlint-enable -->
 
 ## Configuration {#config}
+
+### Preconditions {#requirements}
+
+- The process collector does not collect process metrics by default. To collect metrics-related data, set `open_metric` to `true` in `host_processes.conf`. For example:
+
+```toml
+[[inputs.host_processes]]
+    ...
+     open_metric = true
+```
+
+### Collector Configuration {#input-config}
+
+<!-- markdownlint-disable MD046 -->
 
 === "Host Installation"
 
@@ -42,11 +64,11 @@ The process collector can monitor various running processes in the system, acqui
       ## Enable process metric collecting
       open_metric = false
     
-      ## Enable listen ports tag
-      ## enable_listen_ports = true
+      ## Enable listen ports tag, default is false
+      enable_listen_ports = false
     
-      ## Enable open files field
-      ## enable_open_files = true
+      ## Enable open files field, default is false
+      enable_open_files = false
     
       # Extra tags
       [inputs.host_processes.tags]
@@ -60,18 +82,73 @@ The process collector can monitor various running processes in the system, acqui
 
 === "Kubernetes"
 
-    It supports modifying configuration parameters as environment variables (effective only when the DataKit is running in K8s daemonset mode, which is not supported for host-deployed DataKits):
-    
-    | Environment Variable Name                              | Corresponding Configuration Parameter Item | Parameter Example                                                     |
-    | :---                                    | ---              | ---                                                          |
-    | `ENV_INPUT_HOST_PROCESSES_OPEN_METRIC`  | `open_metric`    | `true`/`false`                                               |
-    | `ENV_INPUT_HOST_PROCESSES_TAGS`         | `tags`           | `tag1=value1,tag2=value2`, If there is a tag with the same name in the configuration file, it will be overwritten |
-    | `ENV_INPUT_HOST_PROCESSES_PROCESS_NAME` | `process_name`   | `".*datakit.*", "guance"`, separated by English commas                     |
-    | `ENV_INPUT_HOST_PROCESSES_MIN_RUN_TIME` | `min_run_time`   | `"10m"`                                                      |
-    | `ENV_INPUT_HOST_PROCESSES_ENABLE_LISTEN_PORTS` | `enable_listen_ports`   | `true`/`false`                                                     |
-    | `ENV_INPUT_HOST_PROCESSES_ENABLE_OPEN_FILES` | `enable_open_files`   |`true`/`false`                                                      |
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
-## Measurements {#measurement}
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    
+    - **ENV_INPUT_HOST_PROCESSES_OPEN_METRIC**
+    
+        Enable process metric collecting
+    
+        **Type**: Boolean
+    
+        **ConfField**: `open_metric`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_HOST_PROCESSES_PROCESS_NAME**
+    
+        Whitelist of process
+    
+        **Type**: List
+    
+        **ConfField**: `process_name`
+    
+        **Example**: .*datakit.*,guance
+    
+    - **ENV_INPUT_HOST_PROCESSES_MIN_RUN_TIME**
+    
+        Process minimal run time
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `min_run_time`
+    
+        **Default**: 10m
+    
+    - **ENV_INPUT_HOST_PROCESSES_ENABLE_LISTEN_PORTS**
+    
+        Enable listen ports tag
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_listen_ports`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_HOST_PROCESSES_ENABLE_OPEN_FILES**
+    
+        Enable open files field
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_open_files`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_HOST_PROCESSES_TAGS**
+    
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
+
+<!-- markdownlint-enable -->
+
+## Metric {#metric}
 
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.host_processes.tags]`:
 
@@ -82,90 +159,91 @@ For all of the following data collections, a global tag named `host` is appended
   # ...
 ```
 
-### Metrics {#metrics}
-
-
-
-
-
-#### `host_processes`
-
-采集进程指标数据，包括 CPU/内存使用率等
-
-- tag
-
-
-| Tag | Description |
-|  ----  | --------|
-|`host`|主机名|
-|`pid`|进程 ID|
-|`process_name`|进程名|
-|`username`|用户名|
-
-- field list
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`cpu_usage`|CPU 使用占比，进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 `top` 的瞬时百分比不同）|float|percent|
-|`cpu_usage_top`|CPU 使用占比，一个采集周期内的进程的 CPU 使用率均值|float|percent|
-|`mem_used_percent`|内存使用占比|float|percent|
-|`open_files`|打开文件个数(仅支持 Linux)|int|count|
-|`rss`|Resident Set Size （常驻内存大小）|int|B|
-|`threads`|线程数|int|count| 
+<!-- markdownlint-disable MD024 -->
 
 
 
 
 
 
+### `host_processes`
 
-
-### Objects {#objects}
-
-
-
-
-
-
-
-
-
-#### `host_processes`
-
-采集进程对象的数据，包括进程名，进程命令等
+Collect process metrics, including CPU/memory usage, etc.
 
 - tag
 
 
 | Tag | Description |
 |  ----  | --------|
-|`class`|固定为 `host_processes`|
-|`host`|主机名|
-|`listen_ports`|进程正在监听的端口。对应配置文件的 `enable_listen_ports`，默认为 false，不携带此字段|
-|`name`|name 字段，由 `[host-name]_[pid]` 组成|
-|`process_name`|进程名|
-|`state`|进程状态，暂不支持 Windows|
-|`username`|用户名|
+|`host`|Host name|
+|`pid`|Process ID|
+|`process_name`|Process name|
+|`username`|Username|
 
 - field list
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`cmdline`|进程的命令行参数|string|-|
-|`cpu_usage`|CPU 使用占比（%*100），进程自启动以来所占 CPU 百分比，该值相对会比较稳定（跟 `top` 的瞬时百分比不同）|float|percent|
-|`cpu_usage_top`|CPU 使用占比（%*100）, 一个采集周期内的进程的 CPU 使用率均值|float|percent|
-|`mem_used_percent`|内存使用占比（%*100）|float|percent|
-|`message`|进程详细信息|string|-|
-|`open_files`|打开的文件个数(仅支持 Linux)|int|count|
-|`open_files_list`|进程打开的文件及其描述符列表(仅支持 Linux)|string|-|
-|`pid`|进程 ID|int|-|
-|`rss`|Resident Set Size （常驻内存大小）|int|B|
-|`start_time`|进程启动时间|int|msec|
-|`started_duration`|进程启动时长|int|sec|
-|`state_zombie`|是否是僵尸进程|bool|-|
-|`threads`|线程数|int|count|
-|`work_directory`|工作目录(仅支持 Linux)|string|-| 
+|`cpu_usage`|CPU usage, the percentage of CPU occupied by the process since it was started. This value will be more stable (different from the instantaneous percentage of `top`)|float|percent|
+|`cpu_usage_top`|CPU usage, the average CPU usage of the process within a collection cycle|float|percent|
+|`mem_used_percent`|Memory usage percentage|float|percent|
+|`open_files`|Number of open files (only supports Linux)|int|count|
+|`rss`|Resident Set Size (resident memory size)|int|B|
+|`threads`|Total number of threads|int|count|
 
 
+
+
+
+
+
+
+## Object {#object}
+
+
+
+
+
+
+
+
+
+### `host_processes`
+
+Collect data on process objects, including process names, process commands, etc.
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`host`|Host name|
+|`listen_ports`|The port the process is listening onW|
+|`name`|Name field, consisting of `[host-name]_[pid]`|
+|`process_name`|Process name|
+|`state`|Process status, currently not supported on Windows|
+|`username`|Username|
+
+- field list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`cmdline`|Command line parameters for the process|string|-|
+|`cpu_usage`|CPU usage, the percentage of CPU occupied by the process since it was started. This value will be more stable (different from the instantaneous percentage of `top`)|float|percent|
+|`cpu_usage_top`|CPU usage, the average CPU usage of the process within a collection cycle|float|percent|
+|`mem_used_percent`|Memory usage percentage|float|percent|
+|`message`|Process details|string|-|
+|`open_files`|Number of open files (only supports Linux, and the `enable_open_files` option needs to be turned on)|int|count|
+|`pid`|Process ID|int|-|
+|`rss`|Resident Set Size (resident memory size)|int|B|
+|`start_time`|process start time|int|msec|
+|`started_duration`|Process startup time|int|sec|
+|`state_zombie`|Whether it is a zombie process|bool|-|
+|`threads`|Total number of threads|int|count|
+|`work_directory`|Working directory (Linux only)|string|-|
+
+
+
+<!-- markdownlint-enable -->

@@ -72,14 +72,14 @@ docker run -d  --name cbexporter                      --publish 9191:9191       
 <!-- markdownlint-disable MD046 -->
 === "主机安装"
 
-    1、 开启 DataKit Prom 插件，复制 sample 文件
+    - 开启 DataKit Prom 插件，复制 sample 文件
     
     ```bash
     /usr/local/datakit/conf.d/prom
     cp prom.conf.sample couchbase-prom.conf
     ```
     
-    2、 修改 `couchbase-prom.conf` 配置文件
+    - 修改 `couchbase-prom.conf` 配置文件
     
     ```toml
     [[inputs.prom]]
@@ -161,7 +161,7 @@ docker run -d  --name cbexporter                      --publish 9191:9191       
     # more_tag = "some_other_value"
     ```
     
-    3、 重启 DataKit
+    - 重启 DataKit
     
     ```bash
     systemctl restart datakit
@@ -266,7 +266,7 @@ docker run -d  --name cbexporter                      --publish 9191:9191       
 
 如需采集 CouchBase 的日志，步骤如下：
 
-1、 开启 DataKit log 插件，复制 sample 文件
+- 开启 DataKit log 插件，复制 sample 文件
 
 ```bash
 /usr/local/datakit/conf.d/log
@@ -275,7 +275,7 @@ cp logging.conf.sample couchbase-logging.conf
 
 > 注意：必须将 DataKit 安装在 CouchBase 所在主机才能采集 CouchBase 日志。
 
-2、 修改 `couchbase-prom.conf` 配置文件
+- 修改 `couchbase-prom.conf` 配置文件
 
 ```toml
 # {"version": "1.9.2", "desc": "do NOT edit this line"}

@@ -1,14 +1,12 @@
 ---
 title: 'AWS S3'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud'
+summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud'
 __int_icon: 'icon/aws_s3'
 dashboard:
-
-  - desc: 'AWS S3 内置视图'
+  - desc: 'AWS S3 Monitoring View'
     path: 'dashboard/zh/aws_s3'
-
 monitor:
-  - desc: 'AWS S3 监控器'
+  - desc: 'AWS S3 Monitor'
     path: 'monitor/zh/aws_s3'
 
 ---
@@ -18,7 +16,7 @@ monitor:
 # AWS S3
 <!-- markdownlint-enable -->
 
-Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
 
 
 ## config {#config}
@@ -33,7 +31,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of AWS S3, install the corresponding collection script:「观测云集成（AWS-S3采集）」(ID：`guance_aws_s3`)
+To synchronize the monitoring data of AWS S3, install the corresponding collection script:「Guance Integration（AWS-S3Collect）」(ID：`guance_aws_s3`)
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 
@@ -54,7 +52,9 @@ We collected some configurations by default, as described in the Metrics column 
 
 After configuring Amazon CloudWatch, the default metric set includes the following metrics. You can collect more metrics by configuring it [Amazon S3 CloudWatch Metrics Details](https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/metrics-dimensions.html){:target="_blank"}
 
+<!-- markdownlint-disable MD013 -->
 ### Amazon S3 daily storage metrics for buckets in CloudWatch
+<!-- markdownlint-enable -->
 
 The `AWS/S3` namespace includes the following daily storage metrics for buckets.
 
@@ -174,8 +174,8 @@ The collected AWS S3 object data structure can be viewed in "Infrastructure - Cu
   },
   "fields": {
     "CreationDate": "2022-03-09T06:13:31Z",
-    "Grants"      : "{JSON 数据}",
-    "message"     : "{实例 JSON 数据}"
+    "Grants"      : "{JSON data}",
+    "message"     : "{Instance JSON data}"
   }
 }
 ```

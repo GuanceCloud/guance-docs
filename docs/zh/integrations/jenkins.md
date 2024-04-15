@@ -160,7 +160,7 @@ Jenkins CI Visibility 开启方法：
 |`queue_pending`|Number of times a Job has been Pending in a Queue|float|count|
 |`queue_size`|The number of jobs that are in the Jenkins build queue.|float|count|
 |`queue_stuck`|he number of jobs that are in the Jenkins build queue and currently in the blocked state|float|count|
-|`system_cpu_load`|The system load on the Jenkins controller as reported by the JVM’s Operating System JMX bean|float|percent|
+|`system_cpu_load`|The system load on the Jenkins controller as reported by the JVM Operating System JMX bean|float|percent|
 |`vm_blocked_count`|The number of threads in the Jenkins JVM that are currently blocked waiting for a monitor lock.|float|count|
 |`vm_count`|The total number of threads in the Jenkins JVM. This is the sum of: vm.blocked.count, vm.new.count, vm.runnable.count, vm.terminated.count, vm.timed_waiting.count and vm.waiting.count|float|count|
 |`vm_cpu_load`|The rate of CPU time usage by the JVM per unit time on the Jenkins controller. This is equivalent to the number of CPU cores being used by the Jenkins JVM.|float|percent|
@@ -176,27 +176,27 @@ Jenkins CI Visibility 开启方法：
 
 | Tag | Description |
 |  ----  | --------|
-|`author_email`|作者邮箱|
-|`ci_status`|CI 状态|
-|`commit_sha`|触发 Pipeline 的最近一次 commit 的哈希值|
-|`object_kind`|Event 类型，此处为 Pipeline|
-|`operation_name`|操作名称|
-|`pipeline_name`|Pipeline 名称|
-|`pipeline_url`|Pipeline 的 URL|
-|`ref`|涉及的分支|
-|`repository_url`|仓库 URL|
-|`resource`|项目名|
+|`author_email`|Author's email|
+|`ci_status`|CI status|
+|`commit_sha`|The hash value of the most recent commit that triggered the Pipeline|
+|`object_kind`|Event type,here is Pipeline|
+|`operation_name`|Operation name|
+|`pipeline_name`|Pipeline name|
+|`pipeline_url`|Pipeline URL|
+|`ref`|Branches involved|
+|`repository_url`|Repository URL|
+|`resource`|Project name|
 
 - 指标列表
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`commit_message`|触发该 Pipeline 的代码的最近一次提交附带的 message|string|-|
-|`created_at`|Pipeline 创建的毫秒时间戳|int|msec|
-|`duration`|Pipeline 持续时长（微秒）|int|μs|
-|`finished_at`|Pipeline 结束的毫秒时间戳|int|msec|
-|`message`|该 Pipeline 的 ID，与 `pipeline_id` 相同|string|-|
+|`commit_message`|The message accompanying the most recent commit of the code that triggered the Pipeline|string|-|
+|`created_at`|The millisecond timestamp when Pipeline created|int|msec|
+|`duration`|Pipeline duration(μs)|int|μs|
+|`finished_at`|The millisecond timestamp when Pipeline finished|int|msec|
+|`message`|Pipeline id,same as `pipeline_id`|string|-|
 |`pipeline_id`|Pipeline id|string|-|
 
 
@@ -208,30 +208,30 @@ Jenkins CI Visibility 开启方法：
 
 | Tag | Description |
 |  ----  | --------|
-|`build_commit_sha`|build 对应的 commit 的哈希值|
-|`build_failure_reason`|build 失败的原因|
-|`build_name`|build 的名称|
-|`build_repo_name`|build 对应的仓库名|
-|`build_stage`|build 的阶段|
-|`build_status`|build 的状态|
-|`object_kind`|Event 类型，此处为 Job|
-|`project_name`|项目名|
-|`sha`|build 对应的 commit 的哈希值|
-|`user_email`|作者邮箱|
+|`build_commit_sha`|The hash value of the commit corresponding to Build|
+|`build_failure_reason`|Reason for Build failure|
+|`build_name`|Build name|
+|`build_repo_name`|The repository name corresponding to build|
+|`build_stage`|Build stage|
+|`build_status`|Build status|
+|`object_kind`|Event type,here is Job|
+|`project_name`|Project name|
+|`sha`|The hash value of the commit corresponding to Build|
+|`user_email`|Author's email|
 
 - 指标列表
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`build_commit_message`|触发该 build 的最近一次 commit 的 message|string|-|
-|`build_duration`|build 持续时长（微秒）|int|μs|
-|`build_finished_at`|build 结束的毫秒时间戳|int|msec|
-|`build_id`|build id|string|-|
-|`build_started_at`|build 开始的毫秒时间戳|int|msec|
-|`message`|build 对应的 job name|string|-|
-|`pipeline_id`|build 对应的 Pipeline id|string|-|
-|`runner_id`|build 对应的 runner id|string|-|
+|`build_commit_message`|The message of the latest commit that triggered this Build|string|-|
+|`build_duration`|Build duration(μs)|int|μs|
+|`build_finished_at`|The millisecond timestamp when Build finished|int|msec|
+|`build_id`|Build id|string|-|
+|`build_started_at`|The millisecond timestamp when Build started|int|msec|
+|`message`|The job name corresponding to Build|string|-|
+|`pipeline_id`|Pipeline id corresponding to Build|string|-|
+|`runner_id`|Runner id corresponding to Build|string|-|
 
 
 

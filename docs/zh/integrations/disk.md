@@ -38,8 +38,8 @@ monitor   :
       ##(optional) collect interval, default is 10 seconds
       interval = '10s'
     
-      # Physical devices only (e.g. hard disks, cd-rom drives, USB keys)
-      # and ignore all others (e.g. memory partitions such as /dev/shm)
+      ## Physical devices only (e.g. hard disks, cd-rom drives, USB keys)
+      ## and ignore all others (e.g. memory partitions such as /dev/shm)
       only_physical_device = false
     
       ## Deprecated
@@ -47,7 +47,6 @@ monitor   :
     
       ## Deprecated
       # mount_points = ["/"]
-    
     
       ## Deprecated
       # ignore_fs = ["tmpfs", "devtmpfs", "devfs", "iso9660", "overlay", "aufs", "squashfs"]
@@ -60,24 +59,70 @@ monitor   :
     
       ## exclude some with dev prefix (We collect all devices prefixed with dev by default)
       # exclude_device = ["/dev/loop0","/dev/loop1"]
+    
       [inputs.disk.tags]
-      # some_tag = "some_value"
-      # more_tag = "some_other_value"
+        # some_tag = "some_value"
+        # more_tag = "some_other_value"
+    
     ```
 
     配置好后，[重启 DataKit](../datakit/datakit-service-how-to.md#manage-service) 即可。
 
 === "Kubernetes"
 
-    支持以环境变量的方式修改配置参数：
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
 
-    | 环境变量名                            | 对应的配置参数项       | 参数示例                                                                                 |
-    | ---                                   | ---                    | ---                                                                                      |
-    | `ENV_INPUT_DISK_EXCLUDE_DEVICE`       | `exclude_device`       | `"/dev/loop0","/dev/loop1"` 以英文逗号隔开                      |
-    | `ENV_INPUT_DISK_EXTRA_DEVICE`         | `extra_device`         | `"/nfsdata"` 以英文逗号隔开                      |
-    | `ENV_INPUT_DISK_TAGS`                 | `tags`                 | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它                             |
-    | `ENV_INPUT_DISK_ONLY_PHYSICAL_DEVICE` | `only_physical_device` | 忽略非物理磁盘（如网盘、NFS 等，只采集本机硬盘/CD ROM/USB 磁盘等）任意给一个字符串值即可 |
-    | `ENV_INPUT_DISK_INTERVAL`             | `interval`             | `10s`                                                                                    |
+    也支持以环境变量的方式修改配置参数（需要在 ENV_DEFAULT_ENABLED_INPUTS 中加为默认采集器）：
+
+    - **ENV_INPUT_DISK_INTERVAL**
+    
+        采集器重复间隔时长
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_DISK_EXTRA_DEVICE**
+    
+        额外的设备前缀。（默认收集以 dev 为前缀的所有设备）
+    
+        **Type**: List
+    
+        **ConfField**: `extra_device`
+    
+        **Example**: `/nfsdata,other_data`
+    
+    - **ENV_INPUT_DISK_EXCLUDE_DEVICE**
+    
+        排除的设备前缀。（默认收集以 dev 为前缀的所有设备）
+    
+        **Type**: List
+    
+        **ConfField**: `exclude_device`
+    
+        **Example**: /dev/loop0,/dev/loop1
+    
+    - **ENV_INPUT_DISK_ONLY_PHYSICAL_DEVICE**
+    
+        忽略非物理磁盘（如网盘、NFS 等，只采集本机硬盘/CD ROM/USB 磁盘等）
+    
+        **Type**: Boolean
+    
+        **ConfField**: `only_physical_device`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_DISK_TAGS**
+    
+        自定义标签。如果配置文件有同名标签，将会覆盖它
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 
@@ -101,9 +146,10 @@ monitor   :
 
 | Tag | Description |
 |  ----  | --------|
-|`device`|Disk device name.|
+|`device`|Disk device name. (on /dev/mapper return symbolic link, like `readlink /dev/mapper/*` result)|
 |`fstype`|File system name.|
 |`host`|System hostname.|
+|`mount_point`|Mount point.|
 
 - 指标列表
 

@@ -17,10 +17,18 @@
 <!-- markdownlint-disable MD046 -->
 === "Linux/macOS"
 
-    命令如下：
-    
+    安装命令支持 `bash` 和 `ash`([:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0)) :
+
+    - `bash`
+
     ```shell
     DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    ```
+
+    - `ash`
+
+    ```shell
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> ash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
 
     安装完成后，在终端会看到安装成功的提示。
@@ -35,9 +43,53 @@
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
-    powershell .install.ps1;
+    powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
+
+### 安装精简版的 DataKit {#lite-install}
+
+可以通过在安装命令中添加 `DK_LITE` 环境变量来安装精简版的 DataKit ([:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0)) :
+
+<!-- markdownlint-disable MD046 -->
+=== "Linux/macOS"
+
+    ```shell
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_LITE=1 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    ```
+
+=== "Windows"
+
+    ```powershell
+    Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
+    $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
+    $env:DK_LITE="1";
+    Set-ExecutionPolicy Bypass -scope Process -Force;
+    Import-Module bitstransfer;
+    start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
+    powershell ./.install.ps1;
+    ```
+
+<!-- markdownlint-enable -->
+
+精简版 DataKit 只包含以下采集器：
+
+| 采集器名称                                                        | 说明                                                                         |
+| ---                                                               | ---                                                                          |
+| [CPU（`cpu`）](../integrations/cpu.md)                            | 采集主机的 CPU 使用情况                                                        |
+| [Disk（`disk`）](../integrations/disk.md)                         | 采集磁盘占用情况                                                             |
+| [磁盘 IO（`diskio`）](../integrations/diskio.md)                  | 采集主机的磁盘 IO 情况                                                         |
+| [内存（`mem`）](../integrations/mem.md)                           | 采集主机的内存使用情况                                                       |
+| [Swap（`swap`）](../integrations/swap.md)                         | 采集 Swap 内存使用情况                                                         |
+| [System（`system`）](../integrations/system.md)                   | 采集主机操作系统负载                                                         |
+| [Net（`net`）](../integrations/net.md)                            | 采集主机网络流量情况                                                         |
+| [主机进程（`host_processes`）](../integrations/host_processes.md) | 采集主机上常驻（存活 10min 以上）进程列表                                      |
+| [主机对象（`hostobject`）](../integrations/hostobject.md)         | 采集主机基础信息（如操作系统信息、硬件信息等）                               |
+| [Datakit（`dk`）](../integrations/dk.md)                          | 采集 Datakit 自身运行指标收集                                                |
+| [用户访问监测 (`rum`)](../integrations/rum.md)                    | 用于收集用户访问监测数据                                                |
+| [网络拨测 (`dialtesting`)](../integrations/dialtesting.md)        | 采集网络拨测数据                                                |
+| [Prom 采集 (`prom`)](../integrations/prom.md)                     | 采集 Prometheus Exporters 暴露出来的指标数据                          |
+| [日志采集 (`logging`)](../integrations/logging.md)                 | 采集文件日志数据                          |
 
 ### 安装指定版本的 DataKit {#version-install}
 
@@ -55,7 +107,7 @@ $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
 Set-ExecutionPolicy Bypass -scope Process -Force;
 Import-Module bitstransfer;
 start-bitstransfer  -source https://static.guance.com/datakit/install-1.2.3.ps1 -destination .install.ps1;
-powershell .install.ps1;
+powershell ./.install.ps1;
 ```
 
 ## 额外支持的安装变量 {#extra-envs}
@@ -78,7 +130,7 @@ powershell .install.ps1;
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
-    powershell .install.ps1;
+    powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
 
@@ -106,9 +158,10 @@ NAME1="value1" NAME2="value2"
 - `DK_GLOBAL_TAGS`：已弃用，改用 DK_GLOBAL_HOST_TAGS
 - `DK_GLOBAL_HOST_TAGS`：支持安装阶段填写全局主机 tag，格式范例：`host=__datakit_hostname,host_ip=__datakit_ip`（多个 tag 之间以英文逗号分隔）
 - `DK_GLOBAL_ELECTION_TAGS`：支持安装阶段填写全局选举 tag，格式范例：`project=my-porject,cluster=my-cluster`（多个 tag 之间以英文逗号分隔）
-- `DK_CLOUD_PROVIDER`：支持安装阶段填写云厂商(`aliyun/aws/tencent/hwcloud/azure`)
-- `DK_USER_NAME`：Datakit 服务运行时的用户名。目前仅支持 `root` 和 `datakit`, 默认为 `root`。
+- `DK_CLOUD_PROVIDER`：支持安装阶段填写云厂商(目前支持如下几类云主机 `aliyun/aws/tencent/hwcloud/azure`)。**该功能已弃用**，Datakit 已经可以自动识别云主机类型。
+- `DK_USER_NAME`：Datakit 服务运行时的用户名。默认为 `root`。更详情的说明见下面的 “注意事项”。
 - `DK_DEF_INPUTS`：[默认开启的采集器](datakit-input-conf.md#default-enabled-inputs)配置。如果要禁用某些采集器，需手动将其屏蔽，比如，要禁用 `cpu` 和 `mem` 采集器，需这样指定：`-cpu,-mem`，即除了这两个采集器之外，其它默认采集器均开启。
+- `DK_LITE`：安装精简版 DataKit 时，可设置该变量为 `1`。([:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0))
 
 <!-- markdownlint-disable MD046 -->
 ???+ tip "禁用所有默认采集器 [:octicons-tag-24: Version-1.5.5](changelog.md#cl-1.5.5)"
@@ -122,6 +175,71 @@ NAME1="value1" NAME2="value2"
     ```
 
     另外，如果之前有安装过 Datakit，必须将之前的默认采集器配置都删除掉，因为 Datakit 在安装的过程中只能添加采集器配置，但不能删除采集器配置。
+
+???+ attention "注意事项"
+
+    由于权限问题，如果通过 `DK_USER_NAME` 修改 Datakit 服务运行时的用户名为非 `root`，那么以下采集器将不可使用：
+
+    - [eBPF](../integrations/ebpf.md){:target="_blank"}
+
+    另外，需要注意以下几项：
+
+    - 必须先手动创建好用户和用户组，用户名和用户组名称必须一致，再进行安装。不同 Linux 发行版创建的命令可能会有差异，以下命令仅供参考：
+
+        === "CentOS/RedHat"
+
+            ```sh
+            # 创建系统用户组 datakit
+            groupadd --system datakit
+
+            # 创建系统用户 datakit，并将用户 datakit 添加进组 datakit 中（这里用户名和组名都是 datakit）
+            adduser --system --no-create-home datakit -g datakit
+
+            # 禁止用户名 datakit 用于登录（用于 CentOS/RedHat 系 Linux）
+            usermod -s /sbin/nologin datakit
+            ```
+
+        === "Ubuntu/Debian"
+
+            ```sh
+            # 在 Ubuntu 上，同时创建用户并添加进用户组的命令可能会报错，这个时候需要分成两步
+
+            # 创建系统用户组 datakit
+            groupadd --system datakit
+
+            # 创建系统用户 datakit
+            adduser --system --no-create-home datakit
+            
+            # 将用户 datakit 添加进组 datakit
+            usermod -a -G datakit datakit
+
+            # 禁止用户名 datakit 用于登录（用于 Ubuntu/Debian 系 Linux）
+            usermod -s /usr/sbin/nologin datakit
+            ```
+
+        === "其它 Linux"
+
+            ```sh
+            # 在其它 Linux 上，同时创建用户并添加进用户组的命令可能会报错，这个时候需要分成两步
+
+            # 创建系统用户组 datakit
+            groupadd --system datakit
+            
+            # 创建系统用户 datakit
+            adduser --system --no-create-home datakit
+            
+            # 将用户 datakit 添加进组 datakit
+            usermod -a -G datakit datakit
+            
+            # 禁止用户名 datakit 用于登录（用于其它 Linux）
+            usermod -s /bin/false datakit
+            ```
+
+        ```sh
+        # 安装 Datakit
+        DK_USER_NAME="datakit" DK_DATAWAY="..." bash -c ...
+        ```
+
 <!-- markdownlint-enable -->
 
 ### DataKit 自身日志相关 {#env-logging}
@@ -185,29 +303,52 @@ NAME1="value1" NAME2="value2"
 
 ### Sinker 相关配置 {#env-sink}
 
-- `DK_SINKER`：用于指定 Dataway Sinker 配置，它的值是一个 JSON 字符串，参见[这里的示例](datakit-daemonset-deploy.md#env-sinker)。
+通过 `DK_SINKER_GLOBAL_CUSTOMER_KEYS` 用于设置 sinker 过滤的 tag/field key 名称，其形式如下：
 
-### cgroup 配置相关 {#env-cgroup}
+<!-- markdownlint-disable MD046 -->
+=== "Linux/macOS"
 
-以下安装选项仅 Linux 平台支持：
+    ```shell
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_DATAWAY_ENABLE_SINKER=on DK_SINKER_GLOBAL_CUSTOMER_KEYS=key1,key2 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    ```
 
-- `DK_CGROUP_DISABLED`：Linux 系统下关闭 Cgroup 功能（默认开启）
-- `DK_LIMIT_CPUMAX`：Linux 系统下支持 CPU 的最大功率，默认 30.0
-- `DK_LIMIT_CPUMIN`：Linux 系统下支持 CPU 的最小功率，默认 5.0
-- `DK_LIMIT_MEMMAX`：Linux 系统下限制内存（含 swap）最大用量，默认 4096（4GB）
+=== "Windows"
+
+    ```powershell
+    Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
+    $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
+    $env:DK_DATAWAY_ENABLE_SINKER="on";
+    $env:DK_SINKER_GLOBAL_CUSTOMER_KEYS="key1,key2";
+    Set-ExecutionPolicy Bypass -scope Process -Force;
+    Import-Module bitstransfer;
+    start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
+    powershell ./.install.ps1;
+    ```
+<!-- markdownlint-enable -->
+
+### 资源限制配置相关 {#env-cgroup}
+
+目前仅支持 Linux 和 Windows ([:octicons-tag-24: Version-1.15.0](changelog.md#cl-1.15.0)) 操作系统。
+
+- `DK_LIMIT_DISABLED`：关闭资源限制功能（默认开启）
+- `DK_LIMIT_CPUMAX`：支持 CPU 的最大功率，默认 30.0
+- `DK_LIMIT_MEMMAX`：限制内存（含 swap）最大用量，默认 4096（4GB）
 
 ### 其它安装选项 {#env-others}
 
-- `DK_INSTALL_ONLY`：仅安装，不运行
-- `DK_HOSTNAME`：支持安装阶段自定义配置主机名
-- `DK_UPGRADE`：升级到最新版本（注：一旦开启该选项，除 `DK_UPGRADE_MANAGER` 外其它选项均无效）
-- `DK_UPGRADE_MANAGER`: 升级 Datakit 同时是否升级 **远程升级服务**，需要和 `DK_UPGRADE` 配合使用， 从 [1.5.9](changelog.md#cl-1.5.9) 版本开始支持
-- `DK_INSTALLER_BASE_URL`：可选择不同环境的安装脚本，默认为 `https://static.guance.com/datakit`
-- `DK_PROXY_TYPE`：代理类型。选项有：`datakit` 或 `nginx`，均为小写
-- `DK_NGINX_IP`：代理服务器 IP 地址（只需要填 IP 不需要填端口）。这个与上面的 "HTTP_PROXY" 和 "HTTPS_PROXY" 互斥，而且优先级最高，会覆盖以上两者
-- `DK_INSTALL_LOG`：设置安装程序日志路径，默认为当前目录下的 *install.log*，如果设置为 `stdout` 则输出到命令行终端
-- `HTTPS_PROXY`：通过 Datakit 代理安装
-- `DK_INSTALL_RUM_SYMBOL_TOOLS` 是否安装 RUM source map 工具集，从 Datakit [1.9.2](changelog.md#cl-1.9.2) 开始支持
+| 环境变量名                    | 取值示例           | 说明                                                                                                                             |
+| ----                          | ---                | ----                                                                                                                             |
+| `DK_INSTALL_ONLY`             | `on`               | 仅安装，不运行                                                                                                                   |
+| `DK_HOSTNAME`                 | `some-host-name`   | 支持安装阶段自定义配置主机名                                                                                                     |
+| `DK_UPGRADE`                  | `1`                | 升级到最新版本（注：一旦开启该选项，除 `DK_UPGRADE_MANAGER` 外其它选项均无效）                                                   |
+| `DK_UPGRADE_MANAGER`          | `on`               | 升级 Datakit 同时是否升级 **远程升级服务**，需要和 `DK_UPGRADE` 配合使用， 从 [1.5.9](changelog.md#cl-1.5.9) 版本开始支持        |
+| `DK_INSTALLER_BASE_URL`       | `https://your-url` | 可选择不同环境的安装脚本，默认为 `https://static.guance.com/datakit`                                                             |
+| `DK_PROXY_TYPE`               | -                  | 代理类型。选项有：`datakit` 或 `nginx`，均为小写                                                                                 |
+| `DK_NGINX_IP`                 | -                  | 代理服务器 IP 地址（只需要填 IP 不需要填端口）。这个与上面的 "HTTP_PROXY" 和 "HTTPS_PROXY" 互斥，而且优先级最高，会覆盖以上两者  |
+| `DK_INSTALL_LOG`              | -                  | 设置安装程序日志路径，默认为当前目录下的 *install.log*，如果设置为 `stdout` 则输出到命令行终端                                   |
+| `HTTPS_PROXY`                 | `IP:Port`          | 通过 Datakit 代理安装                                                                                                            |
+| `DK_INSTALL_RUM_SYMBOL_TOOLS` | `on`               | 是否安装 RUM source map 工具集，从 Datakit [1.9.2](changelog.md#cl-1.9.2) 开始支持                                               |
+| `DK_VERBOSE`                  | `on`               | 打开安装过程中的 verbose 选项（仅 Linux/Mac 支持），将输出更多调试信息[:octicons-tag-24: Version-1.19.0](changelog.md#cl-1.19.0) |
 
 ## FAQ {#faq}
 

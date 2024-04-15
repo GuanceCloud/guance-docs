@@ -1,24 +1,24 @@
 ---
-title: 'Huawei ECS'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+title: 'HUAWEI ECS'
+summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
 __int_icon: 'icon/huawei_ecs'
 dashboard:
 
-  - desc: '华为云 ECS 内置视图'
+  - desc: 'HUAWEI CLOUD ECS Monitoring View'
     path: 'dashboard/zh/huawei_ecs'
 
 monitor:
-  - desc: '华为云 ECS 监控器'
+  - desc: 'HUAWEI CLOUD ECS Monitor'
     path: 'monitor/zh/huawei_ecs'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# Huawei ECS
+# HUAWEI CLOUD ECS
 <!-- markdownlint-enable -->
 
-Use the「Guance Cloud Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud。
+Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud.
 
 ## Config {#config}
 
@@ -32,17 +32,17 @@ If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.gua
 
 ### Installation script
 
-> Tip：Please prepare Huawei AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of  Huawei OBS cloud resources, we install the corresponding collection script：「观测云集成（华为云-ECS采集）」(ID：`guance_huaweicloud_ecs`)
+To synchronize the monitoring data of  HUAWEI CLOUD OBS cloud resources, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD-ECS Collect）」(ID：`guance_huaweicloud_ecs`)
 
-Click 【Install】 and enter the corresponding parameters: Huawei AK, Huawei account name.。
+Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+tap【Deploy startup Script】,The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
 
-After the script is installed，Find the script in「Development」in Func「观测云集成（华为云-ECS采集）」，Expand to modify this script，find `collector_configs`and`monitor_configs`Edit the content in`region_projects`，Change the locale and Project ID to the actual locale and Project ID，Click Save Publish again。
+After the script is installed,Find the script in「Development」in Func「Guance Integration（HUAWEI CLOUD-ECS Collect）」,Expand to modify this script,find `collector_configs`and`monitor_configs`Edit the content in`region_projects`,Change the locale and Project ID to the actual locale and Project ID,Click Save Publish again.
 
-In addition, the corresponding automatic trigger configuration is displayed in「Management / Crontab Config」。tap【Run】，It can be executed immediately once, without waiting for a periodic time。After a while, you can view task execution records and corresponding logs.
+In addition, the corresponding automatic trigger configuration is displayed in「Management / Crontab Config」.tap【Run】,It can be executed immediately once, without waiting for a periodic time.After a while, you can view task execution records and corresponding logs.
 
 We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
 
@@ -54,29 +54,29 @@ We collected some configurations by default, as described in the Metrics column 
 3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure Huawei Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Huawei CloudMonitor Metrics Details](https://support.huaweicloud.com/usermanual-ecs/ecs_03_1003.html){:target="_blank"}
+Configure HUAWEI CLOUD - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/usermanual-ecs/ecs_03_1003.html){:target="_blank"}
 
-| Indicator ID                           | Index name                  | Indicator meaning                                                                             | Value range      | Measurement object (dimension) | Monitoring cycle (raw metrics) |
+| Metric ID                           | Index name                  | Metric meaning                                                                             | Value range      | Measurement object (dimension) | Monitoring cycle (raw metrics) |
 | -------------------------------- |-----------------------|----------------------------------------------------------------------------------| ------------- | ---------------- | -------------------------------------------- |
-| cpu_usage             | CPU usage             | This indicator measures the CPU usage of a measurement object. Unit: percentage。 | 0-100%    | Cloud server       | 1 min                                       |
+| cpu_usage             | CPU usage             | This metric measures the CPU usage of a measurement object. Unit: percentage. | 0-100%    | Cloud server       | 1 min                                       |
 | load_average1         | Average load in 1 minute | Measures the average CPU load of a measurement object in the past 1 minute.      | ≥ 0%          | Cloud server         | 1 min                                      |
 | load_average5        | Average load in 5 minute | Measures the average CPU load of a measurement object in the past 5 minute.      | ≥ 0%          | Cloud server         | 1 min                                       |
 | load_average15        | Average load in 15 minute | Measures the average CPU load of a measurement object in the past 15 minute.     | ≥ 0 Byte/s    | Cloud server         | 1 min                                        |
-| mem_usedPercent       | Memory usage     | This indicator measures the memory usage of a measurement object. Unit: percentage                                                        | 0-100% | Cloud server         | 1 min                                        |
+| mem_usedPercent       | Memory usage     | This metric measures the memory usage of a measurement object. Unit: percentage                                                        | 0-100% | Cloud server         | 1 min                                        |
 | net_bitSent           | Access bandwidth     | Measures the number of bits received by a measurement object's NIC per second. Unit: bit/s                                                 | ≥ 0 bit/s | Cloud server         | 1 min                                       |
 | net_bitRecv           | Outbound bandwidth   | Measures the number of bits sent per second by a measurement object's NIC. Unit: bit/s                                               | ≥ 0 bit/s | Cloud server         | 1 min                                       |
 | net_packetSent    | Nic packet sending rate   | Indicates the number of packets sent by a measurement object's network adapter per second. Unit: Counts/s                                            | ≥ 0 Counts/s | Cloud server         | 1 min                                        |
 | net_packetRecv    | Nic packet receiving rate | Indicates the number of packets received by a network adapter of a measurement object per second. Unit: Counts/s                                         | ≥ 0 Counts/s | Cloud server         | 1 min                                        |
-| net_tcp_established | TCP ESTABLISHED       | This indicator measures the number of TCP connections in the ESTABLISHED state of the measurement object. Unit: Count                              | ≥ 0 | Cloud server         | 1 min                                        |
+| net_tcp_established | TCP ESTABLISHED       | This metric measures the number of TCP connections in the ESTABLISHED state of the measurement object. Unit: Count                              | ≥ 0 | Cloud server         | 1 min                                        |
 | net_tcp_total | TCP TOTAL             | Measure the total number of TCP connections in all states of a measurement object. Unit: Count                                             | ≥ 0 | Cloud server          | 1 min                                        |
 | disk_usedPercent           | Disk usage                 | The disk usage of a measurement object is measured in percentage. Used disk storage capacity/Total disk storage capacity. Unit: percentage                            | 0-100%     | Cloud server - Mount point | 1 min                                        |
 | disk_free             | Remaining disk storage capacity              | This measurement entity measures the free storage space of the disk of a measurement object. Unit: GB                                               | ≥0 GB      | Cloud server - Mount point| 1 min                                        |
-| disk_ioUtils          | Disk I/O usage              | This indicator measures the disk I/O usage of a measurement object. Unit: percentage                                                     | 0-100%     | Cloud server - Disk Cloud server - Mount point | 1 min                                        |
-| disk_inodesUsedPercent                | inode used percentage            | This measurement entity measures the inode usage of disks on a measurement object. Unit: percentage                                            | 0-100%     | Cloud server - Mount point | 1 min                                        |
+| disk_ioUtils          | Disk I/O usage              | This metric measures the disk I/O usage of a measurement object. Unit: percentage                                                     | 0-100%     | Cloud server - Disk Cloud server - Mount point | 1 min                                        |
+| **disk_inodesUsedPercent**                | inode used percentage            | This measurement entity measures the inode usage of disks on a measurement object. Unit: percentage                                            | 0-100%     | Cloud server - Mount point | 1 min                                        |
 
 ## Object {#object}
 
-The collected Huawei Cloud ECS object data structure can see the object data from 「基础设施-自定义」
+The collected HUAWEI CLOUD ECS object data structure can see the object data from 「Infrastructure-Custom」
 
 ``` json
 {
@@ -98,10 +98,10 @@ The collected Huawei Cloud ECS object data structure can see the object data fro
   "fields": {
     "hostId"                              : "1e122315dac18163814b9e0d0fc6xxxxxx",
     "created"                             : "2022-06-16T10:13:24Z",
-    "description"                         : "{JSON 数据}",
-    "addresses"                           : "{IPJSON 数据}",
-    "os-extended-volumes:volumes_attached": "{JSON 数据}",
-    "message"                             : "{实例 JSON 数据}"
+    "description"                         : "{JSON data}",
+    "addresses"                           : "{IPJSON data}",
+    "os-extended-volumes:volumes_attached": "{JSON data}",
+    "message"                             : "{Instance JSON data}"
   }
 }
 ```

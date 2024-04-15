@@ -1,5 +1,18 @@
+---
+title     : 'Prometheus Exporter'
+summary   : 'Collect metrics exposed by Prometheus Exporter'
+__int_icon      : 'icon/prometheus'
+dashboard :
+  - desc  : 'N/A'
+    path  : '-'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # Prometheus Exporter Data Collection
+<!-- markdownlint-enable -->
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
@@ -8,12 +21,14 @@
 
 The Prom collector can obtain all kinds of metric data exposed by Prometheus Exporters, so long as the corresponding Exporter address is configured, the metric data can be accessed.
 
-## Preconditions {#requirements}
-
-Only metric data in Prometheus form can be accessed.
-
 ## Configuration {#config}
 
+### Preconditions {#requirements}
+
+### Collector Configuration {#input-config}
+
+<!-- markdownlint-disable MD046 -->
+Only metric data in Prometheus form can be accessed.
 === "Host Installation"
 
     Go to the `conf.d/prom` directory under the DataKit installation directory, copy `prom.conf.sample` and name it `prom.conf`. Examples are as follows:
@@ -23,6 +38,11 @@ Only metric data in Prometheus form can be accessed.
     [[inputs.prom]]
       ## Exporter URLs.
       urls = ["http://127.0.0.1:9100/metrics", "http://127.0.0.1:9200/metrics"]
+    
+      ## Stream Size. 
+      ## The source stream segmentation size.
+      ## Default 1, source stream undivided. 
+      # stream_size = 1
     
       ## Unix Domain Socket URL. Using socket to request data when not empty.
       uds_path = ""
@@ -96,9 +116,9 @@ Only metric data in Prometheus form can be accessed.
       ## Customize authentification. For now support Bearer Token only.
       ## Filling in 'token' or 'token_file' is acceptable.
       # [inputs.prom.auth]
-      # type = "bearer_token"
-      # token = "xxxxxxxx"
-      # token_file = "/tmp/token"
+        # type = "bearer_token"
+        # token = "xxxxxxxx"
+        # token_file = "/tmp/token"
     
       ## Customize measurement set name.
       ## Treat those metrics with prefix as one set.
@@ -112,19 +132,20 @@ Only metric data in Prometheus form can be accessed.
         name = "etcd_server"
     
       ## Not collecting those data when tag matched.
-      [inputs.prom.ignore_tag_kv_match]
-      # key1 = [ "val1.*", "val2.*"]
-      # key2 = [ "val1.*", "val2.*"]
+      # [inputs.prom.ignore_tag_kv_match]
+        # key1 = [ "val1.*", "val2.*"]
+        # key2 = [ "val1.*", "val2.*"]
     
       ## Add HTTP headers to data pulling.
-      [inputs.prom.http_headers]
-      # Root = "passwd"
-      # Michael = "1234"
+      # [inputs.prom.http_headers]
+        # Root = "passwd"
+        # Michael = "1234"
     
       ## Rename tag key in prom data.
       [inputs.prom.tags_rename]
         overwrite_exist_tags = false
-        [inputs.prom.tags_rename.mapping]
+    
+      # [inputs.prom.tags_rename.mapping]
         # tag1 = "new-name-1"
         # tag2 = "new-name-2"
         # tag3 = "new-name-3"
@@ -136,9 +157,9 @@ Only metric data in Prometheus form can be accessed.
         service = "service_name"
     
       ## Customize tags.
-      [inputs.prom.tags]
-      # some_tag = "some_value"
-      # more_tag = "some_other_value"
+      # [inputs.prom.tags]
+        # some_tag = "some_value"
+        # more_tag = "some_other_value"
       
       ## (Optional) Collect interval: (defaults to "30s").
       # interval = "30s"
@@ -162,7 +183,7 @@ Only metric data in Prometheus form can be accessed.
     [[inputs.prom]]
         interval = "10s"
     ```
-
+<!-- markdownlint-enable -->
 ### Configure Extra header {#extra-header}
 
 The Prom collector supports configuring additional request headers in HTTP requests for data pull, as follows:
@@ -179,7 +200,7 @@ The Prom collector supports configuring additional request headers in HTTP reque
 
 `tags_rename` can replace the tag name of the collected Prometheus Exporter data, and `overwrite_exist_tags` is used to open the option of overwriting existing tags. For example, for existing Prometheus Exporter data:
 
-```
+```not-set
 http_request_duration_seconds_bucket{le="0.003",status_code="404",tag_exists="yes", method="GET"} 1
 ```
 
@@ -211,9 +232,9 @@ Note that the tag name here is case-sensitive, and you can test the data with th
 
 ## Protocol Conversion Description {#proto-transfer}
 
-Because the data format of Prometheus is different from the line protocol format of Infuxdb. For Prometheus, the following is a piece of data exposed in a K8s cluster:
+Because the data format of Prometheus is different from the line protocol format of Influxdb. For Prometheus, the following is a piece of data exposed in a K8s cluster:
 
-```
+```not-set
 node_filesystem_avail_bytes{device="/dev/disk1s1",fstype="apfs",mountpoint="/"} 1.21585664e+08
 node_filesystem_avail_bytes{device="/dev/disk1s4",fstype="apfs",mountpoint="/private/var/vm"} 1.2623872e+08
 node_filesystem_avail_bytes{device="/dev/disk3s1",fstype="apfs",mountpoint="/Volumes/PostgreSQL 13.2-2"} 3.7269504e+07
@@ -238,9 +259,9 @@ node_filesystem_files{device="map -hosts",fstype="autofs",mountpoint="/net"} 0
 node_filesystem_files{device="map auto_home",fstype="autof
 ```
 
-For Infuxdb, one way to organize the above data is
+For Influxdb, one way to organize the above data is
 
-```
+```not-set
 node_filesystem,tag-list available_bytes=1.21585664e+08,device_error=0,files=9.223372036854776e+18 time
 ```
 
@@ -248,11 +269,11 @@ Its organizational basis is:
 
 - In Prometheus exposed metrics, if the name prefix is `node_filesystem`, then it is specified on the line protocol measurement `node_filesystem`.
 - Place the original Prometheus metrics with their prefixes cut off into the metrics of the measurement `node_filesystem`.
-- By default, all tags in Prometheus (that is, parts in `{}` remain in the row protocol of Infuxdb
+- By default, all tags in Prometheus (that is, parts in `{}` )remain in the row protocol of Influxdb
 
 To achieve this cutting purpose, you can configure `prom.conf` as follows
 
-```
+```not-set
   [[inputs.prom.measurements]]
     prefix = "node_filesystem_"
     name = "node_filesystem"
@@ -279,7 +300,7 @@ Parameter description:
 
 Output sample:
 
-```
+```not-set
 ================= Line Protocol Points ==================
 
  prom_node,device=disk0 disk_written_sectors_total=146531.087890625 1623379432917573000

@@ -1,14 +1,14 @@
 ---
 title: 'AWS EC2'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
 __int_icon: 'icon/aws_ec2'
 dashboard:
 
-  - desc: 'AWS EC2 内置视图'
+  - desc: 'AWS EC2 Monitoring View'
     path: 'dashboard/zh/aws_ec2'
 
 monitor:
-  - desc: 'AWS EC2 监控器'
+  - desc: 'AWS EC2 Monitor'
     path: 'monitor/zh/aws_ec2'
 
 ---
@@ -18,7 +18,7 @@ monitor:
 # AWS EC2
 <!-- markdownlint-enable -->
 
-Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
 
 
 ## config {#config}
@@ -33,7 +33,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of EC2 cloud resources, we install the corresponding collection script：「观测云集成（AWS EC2采集）」(ID：`guance_aws_ec2`)
+To synchronize the monitoring data of EC2 cloud resources, we install the corresponding collection script：「Guance Integration（AWS EC2Collect）」(ID：`guance_aws_ec2`)
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 
@@ -49,12 +49,12 @@ We collected some configurations by default, as described in the Metrics column 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
 
-Configure AWS Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/viewing_metrics_with_cloudwatch.html){:target="_blank"}
+Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/viewing_metrics_with_cloudwatch.html){:target="_blank"}
 
 
 | Metric                    | Description                                                         |
@@ -72,7 +72,7 @@ Configure AWS Cloud - cloud monitoring. The default indicator set is as follows.
 
 ### CPU credit metrics
 
-The `AWS/EC2` namespace includes the following CPU credit metrics for your [burstable performance instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html){:target="_blank"}.
+The `AWS/EC2` namespace includes the following CPU credit metrics for your [`burstable performance instances`](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html){:target="_blank"}.
 
 | Metric                           | Description                                                         |
 | :----------------------------- | :----------------------------------------------------------- |
@@ -94,7 +94,7 @@ The `AWS/EC2` namespace includes the following status check metrics. By default,
 
 ## Object {#object}
 
-The collected AWS EC2 object data structure can see the object data from 「基础设施-自定义」
+The collected AWS EC2 object data structure can see the object data from 「Infrastructure-Custom」
 
 ```json
 {
@@ -111,11 +111,11 @@ The collected AWS EC2 object data structure can see the object data from 「基�
     "AvailabilityZone": "cn-northwest-1",
   },
   "fields": {
-    "BlockDeviceMappings": "{设备 JSON 数据}",
+    "BlockDeviceMappings": "{Device JSON data}",
     "LaunchTime"         : "2021-10-26T07:00:44Z",
-    "NetworkInterfaces"  : "{网络 JSON 数据}",
-    "Placement"          : "{可用区 JSON 数据}",
-    "message"            : "{实例 JSON 数据}"
+    "NetworkInterfaces"  : "{Network JSON data}",
+    "Placement"          : "{Availability Zone JSON data}",
+    "message"            : "{Instance JSON data}"
   }
 }
 ```

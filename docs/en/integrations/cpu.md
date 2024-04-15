@@ -1,5 +1,18 @@
+---
+title     : 'CPU'
+summary   : 'Collect metric of cpu'
+__int_icon      : 'icon/cpu'
+dashboard :
+  - desc  : 'CPU'
+    path  : 'dashboard/en/cpu'
+monitor   :
+  - desc  : 'Host detection library'
+    path  : 'monitor/en/host'
+---
 
+<!-- markdownlint-disable MD025 -->
 # CPU
+<!-- markdownlint-enable -->
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :material-kubernetes: :material-docker:
@@ -8,11 +21,13 @@
 
 The CPU collector is used to collect the CPU utilization rate of the system.
 
-## Precondition {#requirement}
+## Configuration {#config}
 
-None.
+### Collector Configuration {#input-config}
 
-## Configuration  {#input-config}
+After successfully installing and starting DataKit, the CPU collector will be enabled by default without the need for manual activation.
+
+<!-- markdownlint-disable MD046 -->
 
 === "host installation"
 
@@ -23,20 +38,22 @@ None.
     [[inputs.cpu]]
       ## Collect interval, default is 10 seconds. (optional)
       interval = '10s'
-      ##
+    
       ## Collect CPU usage per core, default is false. (optional)
       percpu = false
-      ##
-      ## Setting disable_temperature_collect to false will collect cpu temperature stats for linux.
-      ##
+    
+      ## Setting disable_temperature_collect to false will collect cpu temperature stats for linux. (deprecated)
       # disable_temperature_collect = false
+    
+      ## Enable to collect core temperature data.
       enable_temperature = true
-      ##
+    
+      ## Enable gets average load information every five seconds.
       enable_load5s = true
-      ##
-      [inputs.cpu.tags]
-        # some_tag = "some_value"
-        # more_tag = "some_other_value"
+    
+    [inputs.cpu.tags]
+      # some_tag = "some_value"
+      # more_tag = "some_other_value"
     
     ```
     
@@ -44,20 +61,65 @@ None.
 
 === "Kubernetes"
 
-    Kubernetes supports modifying configuration parameters in the form of environment variables:
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
     
-    | Environment Variable Name                   | Corresponding Configuration Parameter Item              | Parameter Example                                                                              |
-    | :---                                        | ---                           | ---                                                                                   |
-    | `ENV_INPUT_CPU_PERCPU`                      | `percpu`                      | `true/false`                                                                          |
-    | `ENV_INPUT_CPU_ENABLE_TEMPERATURE`          | `enable_temperature`          | `true/false`                                                                          |
-    | `ENV_INPUT_CPU_TAGS`                        | `tags`                        | `tag1=value1,tag2=value2` If there is a tag with the same name in the configuration file, it will be overwritten.                          |
-    | `ENV_INPUT_CPU_INTERVAL`                    | `interval`                    | `10s`                                                                                 |
-    | `ENV_INPUT_CPU_DISABLE_TEMPERATURE_COLLECT` | `disable_temperature_collect` | `false/true`. Any string is considered ` true `, and if it is not defined, it is ` false `.                     |
-    | `ENV_INPUT_CPU_ENABLE_LOAD5S`               | `enable_load5s`               | `false/true`. Any string is considered ` true `, and if it is not defined, it is ` false `. |
+    - **ENV_INPUT_CPU_INTERVAL**
+    
+        Collect interval
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_CPU_PERCPU**
+    
+        Collect CPU usage per core
+    
+        **Type**: Boolean
+    
+        **ConfField**: `percpu`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_CPU_ENABLE_TEMPERATURE**
+    
+        Enable to collect core temperature data
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_temperature`
+    
+        **Default**: true
+    
+    - **ENV_INPUT_CPU_ENABLE_LOAD5S**
+    
+        Enable gets average load information every five seconds
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_load5s`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_CPU_TAGS**
+    
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
+
+<!-- markdownlint-enable -->
 
 ---
 
-## Measurements {#measurements}
+## Metric {#metric}
 
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration through `[inputs.cpu.tags]`:
 

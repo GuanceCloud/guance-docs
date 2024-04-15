@@ -7,10 +7,10 @@
   name="description"
   content="观测云提供大量标准化数据源,可观测性,observability,可观察性,云计算,云原生,SaaS 版配置简单,性能强大,对比开源自建降低 50% 成本,通过数据监测多云、多应用及业务,打造云时代的系统可观测平台,解放和发展数字化生产力"
 />
+<link rel="stylesheet" href="/assets/stylesheets/on-premises.css">
 <script src="https://static.guance.com/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
 <script src="/assets/javascripts/rum-config.js" type="text/javascript"></script>
-{% endblock %} {% block libs %} {{ super() }} {%- set search_config = { "base": base_url, "search": {}} -%} {% if
-"search" in config["plugins"] %} {%- set searchConfig = config.plugins.search.config -%} {%- set search =
+{% endblock %} {% block libs %} {{ super() }} {%- set search_config = { "base": base_url, "search": {}} -%} {% if "material/search" in config["plugins"] %} {%- set searchConfig = config.plugins['material/search'].config -%} {%- set search =
 search_config.search -%} {%- set _ = search.update({"lang": searchConfig.clang}) -%} {%- set _ = search.update({"api":
 searchConfig.api}) -%}
 <script id="__search_config" type="application/json">
@@ -24,7 +24,7 @@ searchConfig.api}) -%}
   }
   var script = document.getElementById('__search_config')
   var __search_config = JSON.parse(script.textContent)
-  document.addEventListener('keydown', function (evt) {
+  var searchKeydownEvent = function (evt) {
     if (evt.key === 'Enter') {
       const inputEl = document.querySelector('.md-search__input')
       if (!inputEl) return
@@ -37,8 +37,11 @@ searchConfig.api}) -%}
         location.href = `${new URL(`search/?s=${inputvalue}`, baseUrl)}`
       }
     }
-  })
+  }
+  
+  document.addEventListener('keydown', searchKeydownEvent)
 </script>
+<script src="/assets/javascripts/on-premises.js" type="text/javascript"></script>
 
 {% endblock %} {% block footer %} {% if config.theme.language == 'en' %} {% include "partials/en/footer.html" %} {%
 endif %} {% if config.theme.language == 'zh' %} {% include "partials/footer.html" %} {% endif %} {% endblock %}

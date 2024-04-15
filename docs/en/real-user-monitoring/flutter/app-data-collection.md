@@ -110,7 +110,6 @@ In addition to global properties, you can also build scenarios and configure eve
 | **Fields**        | **Type** | **Description**                                        |
 | :-------------- | :------- | :---------------------------------------------- |
 | `view_id`       | string   | Unique ID for each page view.                      |
-| `is_active`     | boolean  | Judge whether the user is still active. |
 | `view_referrer` | string   | The URL of the previous web page from which a link to the currently requested page was followed.                            |
 | `view_name`     | string   | View name                                        |
 
@@ -120,6 +119,7 @@ In addition to global properties, you can also build scenarios and configure eve
 | --- | --- | --- |
 | <del>`loading_time`</del> | number（ns） | <del>Page loading time</del> |
 | `time_spent` | number（ns） | Page dwell time |
+| `is_active`     | boolean  | Judge whether the user is still active. |
 
 #### Statistical Metrics
 
@@ -151,6 +151,13 @@ In addition to global properties, you can also build scenarios and configure eve
 | `view_referrer` | string   | The URL of the previous web page from which a link to the currently requested page was followed.                            |
 | `view_name`     | string   | View name                                        |
 
+#### Action Properties
+
+| **Fields**        | **Type**   | **Description**                 |
+| ------------- | ------ | --------------------------- |
+| `action_id`   | string | Unique ID generated when the user operates on the page. |
+| `action_name` | string | Action name                    |
+| `action_type` | string | Type of the user action. (Launch, Click action,etc)   |
 #### Resource Properties
 
 | **Fields**                    |  **Type**   | **Description**              |
@@ -190,6 +197,13 @@ In addition to global properties, you can also build scenarios and configure eve
 | `view_referrer` | string   | The URL of the previous web page from which a link to the currently requested page was followed.                            |
 | `view_name`     | string   | View name                                        |
 
+#### Action Properties
+
+| **Fields**        | **Type**   | **Description**                 |
+| ------------- | ------ | --------------------------- |
+| `action_id`   | string | Unique ID generated when the user operates on the page. |
+| `action_name` | string | Action name                    |
+| `action_type` | string | Type of the user action. (Launch, Click action,etc)   |
 #### Error Properties
 
 | **Fields** | **Type** | **Description** |
@@ -211,19 +225,20 @@ When type=network, the following Network Error properties is added.
 
 #### Error Monitor Properties
 
-| **Fields**     |  **Type**   | **Description**              |
+| **Fields**       | **Type** | **Description**                 |
 | -------------- | -------- | ------------------------ |
-| `memory_total` | string   | 可选，内存总量           |
-| `memory_use`   | number   | 可选，内存使用率         |
-| `cpu_use`      | number   | 可选，cpu 使用率         |
-| `battery_use`  | number   | 可选，当前电手机的电池量 |
+| `memory_total` | string   | Option，Memory Capacity in total|
+| `memory_use`   | number   | Option，Memory Usage         |
+| `cpu_use`      | number   | Option，CPU Usage         |
+| `battery_use`  | number   | Option，Battery Usage |
 
 #### Metrics
 
-| **Fields**      |  **Type**   | **Description**              |
+| **Fields**       | **Type** | **Description**                 |
 | --------------- | -------- | -------- |
-| `error_message` | string   | 错误信息 |
-| `error_stack`   | string   | 错误堆栈 |
+| `error_message` | string   | The message of error|
+| `error_stack`   | string   | The stack of error|
+
 
 ### Long Task
 
@@ -234,6 +249,14 @@ When type=network, the following Network Error properties is added.
 | `view_id`       | string   | Unique ID for each page view.                      |
 | `view_referrer` | string   | The URL of the previous web page from which a link to the currently requested page was followed.                            |
 | `view_name`     | string   | View name.                                        |
+
+#### Action Properties
+
+| **Fields**        | **Type**   | **Description**                 |
+| ------------- | ------ | --------------------------- |
+| `action_id`   | string | Unique ID generated when the user operates on the page. |
+| `action_name` | string | Action name                    |
+| `action_type` | string | Type of the user action. (Launch, Click action,etc)   |
 
 #### Metrics
 

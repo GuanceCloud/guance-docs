@@ -2,6 +2,7 @@ nav:
   - '应用性能监控 (APM)':
     - '调用链 (Tracing)':
       - 'SpringBoot3 WebFlux 可观测最佳实践': springboot3_webflux.md
+      - opentelemetry-operator.md
       - 分布式链路追踪(APM)最佳实践: apm.md
       - ddtrace-custom-traceId.md
       - ddtrace-instrumentation.md
@@ -12,6 +13,7 @@ nav:
       - Skywalking 采集 JVM 可观测最佳实践: skywalking-jvm.md
       - 使用 datakit-operator 注入 dd-java-agent: datakit-operator.md
       - trace-glame-graph.md
+      - 'tomcat_ruoyi.md'
     - '中间件 (Middleware)':
       - 'Nginx 可观测最佳实践': nginx.md
       - 'Redis 可观测最佳实践': redis.md

@@ -22,7 +22,9 @@ monitor   :
 
 监控 SSH/SFTP 服务，并把数据上报到观测云。
 
-## 采集器配置 {#config}
+## 配置 {#config}
+
+### 采集器配置 {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "主机安装"
@@ -80,17 +82,17 @@ monitor   :
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|the host of ssh|
+|`host`|The host of ssh|
 
 - 指标列表
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`sftp_check`|sftp service status|bool|-|
-|`sftp_err`|fail reason of connect sftp service|string|-|
-|`sftp_response_time`|response time of sftp service|float|ms|
-|`ssh_check`|ssh service status|bool|-|
-|`ssh_err`|fail reason of connect ssh service|string|-|
+|`sftp_check`|SFTP service status|bool|-|
+|`sftp_err`|Fail reason of connect sftp service|string|-|
+|`sftp_response_time`|Response time of sftp service|float|ms|
+|`ssh_check`|SSH service status|bool|-|
+|`ssh_err`|Fail reason of connect ssh service|string|-|
 
 

@@ -2,9 +2,9 @@
 ---
 
 
-自定义对象数据上报需要先安装并连通 DataKit 和 DataFlux Func ，再通过 DataFlux Func 上报数据到 DataKit，最终 DataKit 上报数据到观测云工作空间。
+自定义对象数据上报需要先安装并连通 DataKit 和 DataFlux Func，再通过 DataFlux Func 上报数据到 DataKit，最终 DataKit 上报数据到观测云工作空间。
 
-![](../img/自定义对象.png)
+![](../img/object.png)
 
 ## 安装 DataKit
 
@@ -14,60 +14,61 @@
 
 打开命令行终端工具，登录到主机，执行复制的**安装指令**，安装完成后会提示 `Install Success`。
 
-> [了解更多 DataKit 使用入门](../../datakit/datakit-service-how-to.md)
+> [了解更多 DataKit 使用入门](../../datakit/datakit-service-how-to.md)。
 
 ## 安装 DataFlux Func
 
-在观测云工作空间，依次点击**集成 > 扩展**，根据如下步骤在命令行终端工具进行安装 Func 。
+在观测云工作空间，依次点击**集成 > 扩展**，根据如下步骤在命令行终端工具进行安装 Func。
 
 ![](../img/1.func_install.png)
 
-1）下载携带版；   
+1、下载携带版；   
 
 ![](../img/3.object_more_api_function_2.png)
 
-2）自动部署脚本安装；
+2、自动部署脚本安装；
 
 ![](../img/3.object_more_api_function_3.png)
 
-3）安装完成后，可在浏览器输入 `http://服务器IP地址:8088` ，点击**保存并初始化数据库**进行初始化。
+3、安装完成后，可在浏览器输入 `http://服务器IP地址:8088` ，点击**保存并初始化数据库**进行初始化。
 
 ![](../img/3.object_more_api_function_1.png)
 
-> 更多 Func 安装可参考文档 [快速开始](https://func.guance.com/doc/quick-start/)。
+> 更多 Func 安装，可参考[快速开始](https://func.guance.com/doc/quick-start/)。
 
 ## 连接 DataFlux Func 和 DataKit
 
 在使用 DataFlux Func 向 DataKit 写入数据之前，首先要确保连通性。因此，在 DataKit 安装完成后，需要调整配置，允许 DataFlux Func 连接。
 
-1.打开 DataKit 配置：`sudo vim /usr/local/datakit/conf.d/datakit.conf`
+1、打开 DataKit 配置：`sudo vim /usr/local/datakit/conf.d/datakit.conf`；
 
-2.将`http_listen = "localhost:9529"`修改为`http_listen = "0.0.0.0:9529"`
+2、将 `http_listen = "localhost:9529"` 修改为 `http_listen = "0.0.0.0:9529"`；
 
 ![](../img/21.lab_rum_3.png)
 
-3.重启DataKit
+3、重启 DataKit；
 
 ```
 sudo datakit --restart
 ```
 
-> 更多详情可参考文档 [连接并操作DataKit](https://func.guance.com/doc/practice-connect-to-datakit/)。
+> 更多详情，可参考[连接并操作 DataKit](https://func.guance.com/doc/practice-connect-to-datakit/)。
 
 ## 上报自定义对象数据
 
 DataFlux Func 和 DataKit 连通以后，可以在 DataFlux Func 中撰写函数来完成上报自定义对象数据。
 
-- 关于 DataFlux Func 函数调用的接口说明可参考文档 [DataKit API](../../datakit/apis.md)；   
-- 关于 DataFlux Func 如何写入数据到 DataKit 的说明可参考文档 [通过DataKit 写入数据](https://func.guance.com/doc/practice-write-data-via-datakit/)。
+> 关于 DataFlux Func 函数调用的接口说明，可参考 [DataKit API](../../datakit/apis.md)；   
+> 
+> 关于 DataFlux Func 如何写入数据到 DataKit 的说明，可参考[通过 DataKit 写入数据](https://func.guance.com/doc/practice-write-data-via-datakit/)。
 
 ## 示例说明
 
 下面的示例主要以阿里云产品为例，说明如何通过 DataFlux Func 上报自定义对象数据。
 
-前提条件：已经完成 DataKit 和 DataFlux Func 安装及连通。
+**前提条件**：已经完成 DataKit 和 DataFlux Func 安装及连通。
 
-1、在浏览器输入 `http://服务器IP地址:8088`，输入账号和密码，可在初始化时配置，默认为`admin/admin`。
+1、在浏览器输入 `http://服务器IP地址:8088`，输入账号和密码，可在初始化时配置，默认为 `admin/admin`。
 
 ![](../img/3.object_more_api_function_4.png)
 
@@ -81,7 +82,7 @@ DataFlux Func 和 DataKit 连通以后，可以在 DataFlux Func 中撰写函数
 
 ![](../img/3.object_more_api_function_6.png)
 
-2）在**PIP 工具**模块，点击打开 [阿里云的Python SDK](https://help.aliyun.com/document_detail/53090.html?spm=a2c4g.11186623.6.556.3533694ccdcH5B) 的网址，复制 `aliyun-python-sdk-core` 进行安装。
+2）在**PIP 工具**模块，点击打开 [阿里云的 Python SDK](https://help.aliyun.com/document_detail/53090.html?spm=a2c4g.11186623.6.556.3533694ccdcH5B) 的网址，复制 `aliyun-python-sdk-core` 进行安装。
 
 ![](../img/3.object_more_api_function_8.png)
 
@@ -151,6 +152,6 @@ def main():
 
 ![](../img/3.object_more_api_function_11.png)
 
-6、若需要定时执行脚本任务，可在 **DataFlux Func  > 管理 > 自动触发配置**创建定时上报任务。
+6、若需要定时执行脚本任务，可在 **DataFlux Func > 管理 > 自动触发配置**创建定时上报任务。
 
 ![](../img/3.object_more_api_function_12.png)

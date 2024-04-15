@@ -2,7 +2,7 @@ nav:
   - index.md
   - '数据采集': data-collection.md
   - '主机': host.md
-  - '容器': contrainer.md
+  - '容器': container.md
   - '进程': process.md
   - '网络': network.md
   - '自定义': custom

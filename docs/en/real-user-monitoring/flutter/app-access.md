@@ -3,7 +3,9 @@
 
 ## Precondition
 
-- Installing DataKit ([DataKit Installation Documentation](... /... /datakit/datakit-install.md))
+- Installing [DataKit](../../datakit/datakit-install.md)；  
+- Collector Configuration [RUM Coloctor](../../integrations/rum.md)；
+- DataKit Configure[ for public access and install IP geolocation services.](../../datakit/datakit-tools-how-to.md#install-ipdb)
 
 ## Application Access
 The current version of Flutter only supports Android and iOS platforms for now. Login to Guance Console, enter "Real User Monitoring" page, click "New Application" in the upper right corner, enter "Application Name" and customize "Application ID" in the new window, and click "Create" to select the application type to get access.
@@ -13,12 +15,13 @@ The current version of Flutter only supports Android and iOS platforms for now. 
 ![](../img/image_13.png)
 
 ## Installation
+![](https://img.shields.io/badge/dynamic/json?label=pub.dev&color=blue&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/flutter/version.json) ![](https://img.shields.io/badge/dynamic/json?label=legacy.github.tag&color=blue&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/flutter/legacy/version.json) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/flutter/info.json)
 
 **Pub.Dev**: [ft_mobile_agent_flutter](https://pub.dev/packages/ft_mobile_agent_flutter)
 
-**Source Code Address**：[https://github.com/GuanceCloud/datakit-flutter](https://github.com/GuanceCloud/datakit-flutter)
+**Source Code**：[https://github.com/GuanceCloud/datakit-flutter](https://github.com/GuanceCloud/datakit-flutter)
 
-**Demo Address**：[https://github.com/GuanceCloud/datakit-flutter/example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example)
+**Demo**：[https://github.com/GuanceCloud/datakit-flutter/example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example)
 
 Under the project path, the terminal runs the Flutter command:
 
@@ -30,7 +33,13 @@ This will add a line like this to the package's pubspec.yaml (and run an implici
 
 ```yaml
 dependencies:
-  ft_mobile_agent_flutter: ^0.2.7-dev.2
+  ft_mobile_agent_flutter: [lastest_version]
+  
+  # flutter 2.0 Compatible Version
+  ft_mobile_agent_flutter:
+    git:
+      url: https://github.com/GuanceCloud/datakit-flutter.git
+      ref: [github_legacy_lastest_tag]
 ```
 
 Now in your Dart code, you can use:
@@ -45,7 +54,7 @@ import 'package:ft_mobile_agent_flutter/ft_mobile_agent_flutter.dart';
 import io.flutter.app.FlutterApplication
 
 /**
-* 如果需要统计【启动次数】和【启动时间】需要在此处添加自定义 Application
+* If you need to track "number of launches" and "launch time," you need to add a custom Application here.
 */
 class CustomApplication : FlutterApplication() {
 }
@@ -66,7 +75,7 @@ class CustomApplication : FlutterApplication() {
 ```dart
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
-    //初始化 SDK
+    //Initialization SDK
     await FTMobileFlutter.sdkConfig(
       serverUrl: serverUrl,
       debug: true,
@@ -77,10 +86,10 @@ void main() async {
 | Fields | **Type** | Required | **Description** |
 | --- | --- | --- | --- |
 | serverUrl | String | Yes | The url of the datakit installation address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed s |
-| useOAID | bool | No | Whether to use `OAID` for unique identification, default `false`, replace `deviceUUUID` for use when enabled, only for Android devices |
 | debug | bool | No | Set whether to allow printing of logs, default `false` |
-| datakitUUID | String | No | Request `HTTP` request header `X-Datakit-UUID` Data collection side will be configured automatically if the user does not set |
-| envType | enum EnvType | No | Environment, default `prod` |
+| envType | enum EnvType | No | Environment, default `EnvType.prod` |
+| env | String | No | Environment, defaulting to prod, any character is allowed, preferably a single word, such as test, etc.|
+| serviceName | String | No | Service name |
 
 ### RUM Configuration
 
@@ -88,8 +97,6 @@ void main() async {
  await FTRUMManager().setConfig(
         androidAppId: appAndroidId, 
         iOSAppId: appIOSId,
-        enableNativeUserAction:false,
-        enableNativeUserView: false
     );
 
 ```
@@ -102,8 +109,10 @@ void main() async {
 | enableNativeUserAction | bool | No | Whether or not to do `Native Action` tracking, `Button` click events, pure `Flutter` applications are recommended to be turned off, default is `false` |
 | enableNativeUserView | bool | No | Whether to do `Native View` auto-tracking, recommended to be turned off for pure `Flutter` applications, default is `false` |
 | enableNativeUserResource | bool | No | Whether to do `Native Resource` auto-tracking, pure `Flutter` applications are recommended to turn it off, default is `false` |
-| monitorType | enum MonitorType | No | Monitoring supplement type |
-| globalContext | Map | No | Customizing global parameters |
+| errorMonitorType | enum ErrorMonitorType | No | Configure auxiliary monitoring information, and add additional monitoring data to `RUM` Error data. Use `ErrorMonitorType.battery` for battery level, `ErrorMonitorType.memory` for memory usage, and `ErrorMonitorType.cpu` for CPU usage. |
+| deviceMetricsMonitorType | enum DeviceMetricsMonitorType | No |During the View lifecycle, add monitoring data. Use DeviceMetricsMonitorType.battery to monitor the highest current output of the battery on the current page, DeviceMetricsMonitorType.memory to monitor the memory usage of the current application, DeviceMetricsMonitorType.cpu to monitor CPU spikes, and DeviceMetricsMonitorType.fps to monitor the screen frame rate. |
+| globalContext | Map | No | Custom global parameters. |
+
 
 #### Add Custom Tags
 
@@ -117,7 +126,7 @@ void main() async {
 ///main_prod.dart
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
-    //初始化 SDK
+    //Initialization SDK
     await FTMobileFlutter.sdkConfig(
       serverUrl: serverUrl,
       debug: true,
@@ -144,7 +153,7 @@ String customDynamicValue = prefs.getString("customDynamicValue")?? "not set";
         androidAppId: appAndroidId,
         iOSAppId: appIOSId,
         globalContext: {CUSTOM_DYNAMIC_TAG:customDynamicValue},
-        //… 添加其他配置
+        //… Other configuration
     );
 ```
 
@@ -164,11 +173,10 @@ String customDynamicValue = prefs.getString("customDynamicValue")?? "not set";
 > 1. special key : track_id (for tracking function) 
 > 1. When the user adds a custom tag through globalContext and the SDK has the same tag, the SDK tag will override the user set, it is recommended that the tag name add the prefix of the project abbreviation, such as `df_tag_name`. Project use `key` value can be [query source code](https://github.com/DataFlux-cn/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants. java).
 
-### Log Configuration
+### Log Configuration {#log-config}
 
 ```dart
  await FTLogger().logConfig(
-   serviceName: "flutter_agent", 
    enableCustomLog: true
  );
 ```
@@ -176,13 +184,12 @@ String customDynamicValue = prefs.getString("customDynamicValue")?? "not set";
 | **Fields** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
 | sampleRate | double | No | Sampling rate, the value of the sample rate ranges from >= 0, <= 1, the default value is 1 |
-| serviceName | String | No | Service Name |
 | enableLinkRumData | bool | No | Associated with `RUM` or not |
 | enableCustomLog | bool | No | Whether to enable custom logging |
 | discardStrategy | enum FTLogCacheDiscard | No | Log discard policy, default `FTLogCacheDiscard.discard` |
 | logLevelFilters | List<FTLogStatus> | No | Log level filtering |
 
-### Trace Configuration
+### Trace Configuration {#trace-config}
 
 ```dart
 await FTTracer().setConfig(
@@ -192,10 +199,9 @@ await FTTracer().setConfig(
 );
 ```
 
-| **Fields** | Type | **Required** | Description |
+| **Fields** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
 | sampleRate | double | No | Sampling rate, the value of the sample rate ranges from >= 0, <= 1, the default value is 1 |
-| serviceName | String | No | Service Name |
 | traceType | enum TraceType | No | Trace type, default `TraceType.ddTrace` |
 | enableLinkRUMData | bool | No | Whether to associate with `RUM` data, default `false` |
 | enableAutoTrace | bool | No | Whether to enable flutter network tracking, default `false` |
@@ -203,20 +209,62 @@ await FTTracer().setConfig(
 
 ## RUM User Data Tracking
 
-### Action
+### Action {#action}
 
 ```dart
 FTRUMManager().startAction("action name", "action type");
 ```
 
-### View
+### View {#rum-view}
+#### Auto Track
+* **Method 1**:  Add `FTRouteObserver` to `MaterialApp.navigatorObservers`, and configure the pages to navigate to in `MaterialApp.routes`. In the `routes` section, the `key` corresponds to the page name (`view_name`).
 
 ```dart
-FTRUMManager().createView("Current Page Name",100000000)
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomeRoute(),
+      navigatorObservers: [
+        //RUM View： Monitor page lifecycle when using routing for Navigation
+        FTRouteObserver(),
+      ],
+      routes: <String, WidgetBuilder>{
+        //set Router looper
+        'logging': (BuildContext context) => Logging(),
+        'rum': (BuildContext context) => RUM(),
+        'tracing_custom': (BuildContext context) => CustomTracing(),
+        'tracing_auto': (BuildContext context) => AutoTracing(),
+      },
+    );
+  }
+}
 
-FTRUMManager().starView("Current Page Name");
-         
-FTRUMManager().stopView();
+// Page navigation using this approach, with the page name as 'logging'.
+Navigator.pushNamed(context, "logging");
+
+```
+
+* **Method 2**: Add `FTRouteObserver` to `MaterialApp.navigatorObservers` and generate using `FTMaterialPageRoute`. In this approach, the `widget` class name serves as the page name (`view_name`).
+
+```dart
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomeRoute(),
+      navigatorObservers: [
+        //RUM View： Monitor page lifecycle when using routing for Navigation
+        FTRouteObserver(),
+      ],
+    );
+  }
+}
+
+//View Name is NoRouteNamePage
+Navigator.of(context).push(
+          FTMaterialPageRoute(builder: (context) => new NoRouteNamePage()
 ```
 
 If you need to capture the hibernation and wake-up behavior of the application you need to add the following code.
@@ -227,24 +275,34 @@ class _HomeState extends State<HomeRoute> {
 	@override
 	void initState(){
 	
-		//添加应用休眠和唤醒监听
-		FTLifeRecycleHandler().initExplorer();
+		//Add Application sleep and wake-up listeners.
+		FTLifeRecycleHandler().initObserver();
 	}
 	
 	@override
 	void dispose(){
 	
-		//移除应用休眠和唤醒监听
-		FTLifeRecycleHandler().removeExplorer();
+		//Remove Application sleep and wake-up listeners.
+		FTLifeRecycleHandler().removeObserver();
 	}
 }
 
 ```
-
-### Error
+#### Custom View
 
 ```dart
-/// flutter 自动采集 error
+FTRUMManager().createView("Current Page Name",100000000)
+
+FTRUMManager().starView("Current Page Name");
+         
+FTRUMManager().stopView();
+```
+
+
+### Error {#error}
+#### Auto Track
+```dart
+
 void main() async {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -255,27 +313,31 @@ void main() async {
     await FTRUMManager().setConfig(
         androidAppId: appAndroidId,
         iOSAppId: appIOSId,
-        enableNativeUserAction:false,
-        enableNativeUserView: false
     );
     
-    // Flutter 框架异常捕获
+    // Flutter Exception Handling
     FlutterError.onError = FTRUMManager().addFlutterError;
     runApp(MyApp());
   }, (Object error, StackTrace stack) {
-    //其它异常捕获与日志收集
+    //Add Error Data
     FTRUMManager().addError(error, stack);
   });
-  
-  
- ///自定义 error
+ 
+```
+#### Custom Error
+``` 
  FTRUMManager().addCustomError("error stack", "error message");
 ```
 
 ### Resource
 
+#### Auto Track
+Achieve this by enabling `enableUserResource` through the configuration using `FTRUMManager().setConfig` as described in the [configuration](#rum-config) section.
+
+#### Custom Resource
+
 ```dart
-/// 使用 httpClient  
+/// Using httpClient  
 void httpClientGetHttp(String url) async {
     var httpClient = new HttpClient();
     String key = Uuid().v4();
@@ -337,7 +399,7 @@ FTLogger().logging("info log content", FTLogStatus.info);
 ## Tracer Network Trace Tracking
 
 ```dart
-/// 使用 httpClient    
+/// Using httpClient    
 void httpClientGetHttp() async {
     var url = 'http://www.google.cn';
     var httpClient = new HttpClient();
@@ -370,7 +432,7 @@ void httpClientGetHttp() async {
   }
 ```
 
-To use the http library and the dio library, see [example](https://github.com/DataFlux-cn/datakit-flutter/tree/dev/example/lib).
+To use the http library and the dio library, see [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib).
 
 ## User Information Binding and Unbinding
 
@@ -380,7 +442,7 @@ To use the http library and the dio library, see [example](https://github.com/Da
  FTMobileFlutter.unbindUser();
 ```
 
-## Frequently Asked Questions 
+## FAQ
 
 - [iOS Related](. /ios/app-access.md#FAQ)
 - [Android Related](../android/app-access.md#FAQ)

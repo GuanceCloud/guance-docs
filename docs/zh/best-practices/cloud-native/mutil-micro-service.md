@@ -52,7 +52,7 @@
           value: "4a10ede2a69f11eca952fa163e23efe1"
         - name: JAVA_OPTS
           value: |-
-            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=demo-k8s-auth  -Ddd.tags=container_host:$(POD_NAME),app_id:$(APP_ID) -Ddd.service.mapping=redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529
+            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service.name=demo-k8s-auth  -Ddd.tags=container_host:$(POD_NAME),app_id:$(APP_ID) -Ddd.service.mapping=redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529
 ```
 
 - Project B 相关微服务 yaml ，部分配置如下：
@@ -62,7 +62,7 @@
           value: "aea5a70da66811eca952fa163e23efe1"
         - name: JAVA_OPTS
           value: |-
-            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=k8sruoyi-auth  -Ddd.tags=container_host:$(POD_NAME),app_id:$(APP_ID) -Ddd.service.mapping=redis:redisk8s -Ddd.env=$(SPRING_BOOT_PROFILE) -Ddd.agent.port=9529
+            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service.name=k8sruoyi-auth  -Ddd.tags=container_host:$(POD_NAME),app_id:$(APP_ID) -Ddd.service.mapping=redis:redisk8s -Ddd.env=$(SPRING_BOOT_PROFILE) -Ddd.agent.port=9529
 ```
 
 ### 优化 DataKit yaml

@@ -1,14 +1,15 @@
-# Dashboards and Data Linking
+# Dashboards 
 ---
 
 ## Why are dashboards necessary?
 
-Real-time visual data can gather and visually display core data such as <u>IT and business that enterprises pay attention to, strengthen the efficiency of information sharing and communication, quickly discover abnormal problem data</u>, help teams pay attention to correct and effective things, and urge relevant personnel to make better decisions faster.
+Real-time visual data can gather and visually display core data such as IT and business that enterprises pay attention to, strengthen the efficiency of information sharing and communication, quickly discover abnormal problem data, help teams pay attention to correct and effective things, and urge relevant personnel to make better decisions faster.
 
 ## What is special about Guance dashboards?    
-Guance dashboard function has <u>built-in dashboard templates with various types, providing a high degree of customization flexibility, truly opening up the correlation between data</u>, clearly displaying IT system and business metric data concerned by users and assisting enterprises to grasp IT system and business operation in real time.
 
-:thinking: <font color=coral size=5>**So what exactly do we have?**</font>
+Guance dashboard function has built-in dashboard templates with various types, providing a high degree of customization flexibility, truly opening up the correlation between data, clearly displaying IT system and business metric data concerned by users and assisting enterprises to grasp IT system and business operation in real time.
+
+<font color=coral size=5>**So what exactly do we have?**</font>
 
 ## Out-of-the-box Templates
 
@@ -18,7 +19,7 @@ Guance dashboard function has <u>built-in dashboard templates with various types
 
 === "Method:material-numeric-1-circle-outline: Create from **Dashboards**"
     
-    Enter **Scenes > Dashboards > Create**, select or search the view template you want in **System View**, and click **Confirm** to successfully add it.
+    Enter **Scenes > Dashboards > Create**, select or search the view template you want in **System View**, and click **Confirm**.
 
     ![](../img/dashboard-1.png)
 
@@ -32,7 +33,7 @@ Guance dashboard function has <u>built-in dashboard templates with various types
 
 === "Method:material-numeric-2-circle-outline: Clone from **Inner View**"
 
-    Enter **Scenes > Inner View**, select or search the view template you want in **System View**, preview and click **Clone** to successfully add it.
+    Enter **Scenes > Inner View**, select or search the view template you want in **System View**, preview and click **Clone**.
 
     ![](../img/dashboard-1.gif)
 
@@ -55,7 +56,7 @@ Guance dashboard function has <u>built-in dashboard templates with various types
 ## Custom Visual Charts {#chart}
 
 
-Guance has built-in visual charts of more than 20 standards, which can quickly create different dashboards according to different business requirements, and meet users' requirements for <u>personalized data, data readability, format consistency, efficient and comprehensive visual display</u>.
+Guance has built-in visual charts of more than 20 standards, which can quickly create different dashboards according to different business requirements, and meet users' requirements for personalized data, data readability, format consistency, efficient and comprehensive visual display.
 
 At present, the supported chart types include: <u>Query value, Pie chart, Bar chart, Histogram, Top list, Gauge, Segmentation Threshold, Scatter Plot, Bubble, Table, Formatting configuration, Tree map, Funnel, China map, World map, Honeycomb, Logs Stream, Object list, Event, Command Panel, Iframe, text, picture, video, etc</u>.
 
@@ -66,20 +67,20 @@ At present, the supported chart types include: <u>Query value, Pie chart, Bar ch
 
 ## Data Link of Dashboards
 
-The data accessed by Guance has a <u>high degree of correlation and interactivity</u>.
+The data accessed by Guance has a high degree of correlation and interactivity.
 
 - Highly correlated data can provide more comprehensive and accurate information, helping users understand the real situation of business systems and then formulating more accurate countermeasures;
-- Interactive data can reduce inefficient collaboration across platforms, teams and members, and really bring you an observation experience of <u>One Platform Observes All</u>.
+- Interactive data can reduce inefficient collaboration across platforms, teams and members, and really bring you an observation experience of **One Platform Observes All**.
 
 ### Realized in Label Mode
 
-Guance dashboard can be linked with Infrastructure, Logs, APM, RUM, Explorers and other modules by means of custom Label `Label`. When viewing data in ther modules, you can <u>view the custom bound dashboard at the same time on current page</u>.
+Guance dashboard can be linked with Infrastructure, Logs, APM, RUM, Explorers and other modules by means of custom Label `Label`. When viewing data in ther modules, you can view the custom bound dashboard at the same time on current page.
 
-<u>Take the example of adding `kafka` here.</u>
+*Take the example of adding `kafka` here.*
 
 - Requirement: You want to see the usage of Kafka running on the host named `filebeat-logstash` and Label `Kafka` in the **Infrastructure** at the same time.
     
-- Plan: Through the Label `Label` association, you can bind the Kafka monitoring view in the **Dashboards** in the **Infrastructure**, so <u>that you can view without jumping</u>.
+- Plan: Through the Label `Label` association, you can bind the Kafka monitoring view in the **Dashboards** in the **Infrastructure**, so that you can view without jumping.
 
 ![](../img/dashboard-7.png)
 
@@ -116,7 +117,7 @@ Guance dashboard can be linked with Infrastructure, Logs, APM, RUM, Explorers an
 
 Visual charts in Guance dashboard can be linked with the explorer, other dashboards, infrastructure, external links and other modules through chart links. You can <u>jump from the current chart to the target page with one click</u>, so as to overview important metrics through the dashboard first, and then make targeted in-depth analysis.
 
-At present, chart links support <u>built-in association links and custom association links</u>, and the corresponding variable values in links can be modified through template variables, and data information can be transmitted to complete data linkage.
+At present, chart links support built-in association links and custom association links, and the corresponding variable values in links can be modified through template variables, and data information can be transmitted to complete data linkage.
 
 > See [Chart Links](../../scene/visual-chart/chart-link.md) for more details.
 

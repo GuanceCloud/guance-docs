@@ -43,28 +43,27 @@ ElasticSearch 采集器主要采集节点运行情况、集群健康、JVM 性�
 
 - 创建角色 `monitor`，设置如下权限
 
-```json
-  {
-    "applications": [],
-    "cluster": [
-        "monitor"
-    ],
-    "global": [],
-    "indices": [
-        {
-            "allow_restricted_indices": false,
-            "names": [
-                "all"
-            ],
-            "privileges": [
-                "manage_ilm",
-                "monitor"
-            ]
-        },
-    ],
-    "run_as": []
-  }
-
+```http
+POST /_security/role/monitor
+{
+  "applications": [],
+  "cluster": [
+      "monitor"
+  ],
+  "indices": [
+      {
+          "allow_restricted_indices": false,
+          "names": [
+              "*"
+          ],
+          "privileges": [
+              "manage_ilm",
+              "monitor"
+          ]
+      }
+  ],
+  "run_as": []
+}
 ```
 
 - 创建自定义用户，并赋予新创建的 `monitor` 角色。
@@ -146,47 +145,48 @@ PUT _plugins/_security/api/roles/monitor
     ```toml
         
     [[inputs.elasticsearch]]
-      ## Elasticsearch 服务器配置
-      # 支持 Basic 认证
+      ## Elasticsearch server url
+      # Basic Authentication is allowed
       # servers = ["http://user:pass@localhost:9200"]
       servers = ["http://localhost:9200"]
     
-      ## 采集间隔
-      # 单位 "ns", "us" (or "µs"), "ms", "s", "m", "h"
+      ## Collect interval
+      # Time unit: "ns", "us" (or "µs"), "ms", "s", "m", "h"
       interval = "10s"
     
-      ## HTTP 超时设置
+      ## HTTP timeout
       http_timeout = "5s"
     
-      ## 发行版本：elasticsearch/opendistro/opensearch
+      ## Distribution: elasticsearch, opendistro, opensearch
       distribution = "elasticsearch"
     
-      ## 默认 local 是开启的，只采集当前 Node 自身指标，如果需要采集集群所有 Node，需要将 local 设置为 false
-      local = true
+      ## Set local true to collect the metrics of the current node only.
+      # Or you can set local false to collect the metrics of all nodes in the cluster.
+      local = false
     
-      ## 设置为 true 可以采集 cluster health
-      cluster_health = false
+      ## Set true to collect the health metric of the cluster.
+      cluster_health = true
     
-      ## cluster health level 设置，indices (默认) 和 cluster
+      ## Set cluster health level, either indices or cluster.
       # cluster_health_level = "indices"
     
-      ## 设置为 true 时可以采集 cluster stats.
-      cluster_stats = false
+      ## Whether to collect the stats of the cluster.
+      cluster_stats = true 
     
-      ## 只从 master Node 获取 cluster_stats，这个前提是需要设置 local = true
+      ## Set true to collect cluster stats only from the master node.
       cluster_stats_only_from_master = true
     
-      ## 需要采集的 Indices, 默认为 _all
+      ## Indices to be collected, such as _all.
       indices_include = ["_all"]
     
-      ## indices 级别，可取值：shards/cluster/indices
+      ## Indices level, may be one of "shards", "cluster", "indices".
+      # Currently only "shards" is implemented.
       indices_level = "shards"
     
-      ## node_stats 可支持配置选项有 indices/os/process/jvm/thread_pool/fs/transport/http/breaker
-      # 默认是所有
+      ## Specify the metrics to be collected for the node stats, such as "indices", "os", "process", "jvm", "thread_pool", "fs", "transport", "http", "breaker".
       # node_stats = ["jvm", "http"]
     
-      ## HTTP Basic Authentication 用户名和密码
+      ## HTTP Basic Authentication
       # username = ""
       # password = ""
     
@@ -317,6 +317,31 @@ PUT _plugins/_security/api/roles/monitor
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`index_number_of_replicas`|Number of replicas.|float|count|
+|`index_number_of_shards`|Number of shards.|float|count|
+|`primaries_docs_count`|Number of documents. Only for the primary shards.|float|count|
+|`primaries_docs_deleted`|Number of deleted documents. Only for the primary shards.|float|count|
+|`primaries_flush_total`|Number of flush operations. Only for the primary shards.|float|count|
+|`primaries_flush_total_time_in_millis`|Total time in milliseconds spent performing flush operations. Only for the primary shards.|float|ms|
+|`primaries_get_missing_total`|Total number of failed get operations. Only for the primary shards.|float|count|
+|`primaries_indexing_index_current`|Number of indexing operations currently running. Only for the primary shards.|float|count|
+|`primaries_indexing_index_time_in_millis`|Total time in milliseconds spent performing indexing operations. Only for the primary shards.|float|ms|
+|`primaries_indexing_index_total`|Total number of indexing operations. Only for the primary shards.|float|count|
+|`primaries_merges_current_docs`|Number of document merges currently running. Only for the primary shards.|float|count|
+|`primaries_merges_total`|Total number of merge operations. Only for the primary shards.|float|count|
+|`primaries_merges_total_docs`|Total number of merged documents. Only for the primary shards.|float|count|
+|`primaries_merges_total_time_in_millis`|Total time in milliseconds spent performing merge operations. Only for the primary shards.|float|ms|
+|`primaries_refresh_total`|Total number of refresh operations. Only for the primary shards.|float|count|
+|`primaries_refresh_total_time_in_millis`|Total time in milliseconds spent performing refresh operations. Only for the primary shards.|float|ms|
+|`primaries_search_fetch_current`|Number of fetch operations currently running. Only for the primary shards.|float|count|
+|`primaries_search_fetch_time_in_millis`|Time in milliseconds spent performing fetch operations. Only for the primary shards.|float|ms|
+|`primaries_search_fetch_total`|Total number of fetch operations. Only for the primary shards.|float|count|
+|`primaries_search_query_current`|Number of query operations currently running. Only for the primary shards.|float|count|
+|`primaries_search_query_time_in_millis`|Time in milliseconds spent performing query operations. Only for the primary shards.|float|ms|
+|`primaries_search_query_total`|Total number of query operations. Only for the primary shards.|float|count|
+|`primaries_store_size_in_bytes`|Total size, in bytes, of all shards assigned to selected nodes. Only for the primary shards.|float|B|
+|`total_docs_count`|Number of documents.|float|B|
+|`total_docs_deleted`|Number of deleted documents.|float|B|
 |`total_flush_total`|Number of flush operations.|float|count|
 |`total_flush_total_time_in_millis`|Total time in milliseconds spent performing flush operations.|float|ms|
 |`total_get_missing_total`|Total number of failed get operations.|float|count|

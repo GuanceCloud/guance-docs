@@ -1,5 +1,19 @@
+---
+title     : 'Oracle'
+summary   : 'Collect Oracle Metric'
+__int_icon      : 'icon/oracle'
+dashboard :
+  - desc  : 'Oracle'
+    path  : 'dashboard/en/oracle'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # Oracle
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
@@ -9,7 +23,7 @@
 Oracle monitoring metrics collection has the following data collection functions.
 
 - process correlation
-- tablespace related data
+- Tablespace related data
 - system data collection
 - Custom query data collection
 
@@ -19,7 +33,9 @@ Already tested version:
 - [x] Oracle 12c
 - [x] Oracle 11g
 
-## Precondition {#reqirement}
+## Configuration {#config}
+
+### Precondition {#reqirement}
 
 - Create a monitoring account
 
@@ -54,7 +70,7 @@ GRANT SELECT ON V_$SYSMETRIC TO datakit;
 GRANT SELECT ON V_$SYSTEM_PARAMETER TO datakit;
 ```
 
-In CDB installations it is possible to monitor tablespaces from CDB (container database) and all PDBs (pluggable databases). In such case, a common user is needed with the correct rights:
+If you want to monitor table spaces from the CDB and all PDBs, you need a common user with the appropriate permissions:
 
 ```sql
 -- Create the datakit user. Replace the password placeholder with a secure password.
@@ -86,37 +102,59 @@ GRANT SELECT ON DBA_TABLESPACE_USAGE_METRICS TO datakit;
 GRANT SELECT ON DBA_USERS TO datakit;
 ```
 
+<!-- markdownlint-disable MD046 -->
 ???+ attention
 
     Some of the SQL above may lead to non-existent failure due to diverse Oracle version, just ignore it.
 
 
-- Assemble dependency package
+- Deploy dependency package
 
-Select the appropriate installation package based on the operating system and Oracle version, refer to [here](https://oracle.github.io/odpi/doc/installation.html){:target="_blank"}，如：
+Select the appropriate installation package based on the operating system and Oracle version, refer to [here](https://oracle.github.io/odpi/doc/installation.html){:target="_blank"}. For example：
 
-```shell
-wget https://download.oracle.com/otn_software/linux/instantclient/211000/instantclient-basiclite-linux.x64-21.1.0.0.0.zip
-unzip instantclient-basiclite-linux.x64-21.1.0.0.0.zip
-```
+=== "x86_64 OS"
 
-Add the extracted directory file path to the `LD_LIBRARY_PATH` environment variable path in the following configuration information.
+    ```shell
+    wget https://download.oracle.com/otn_software/linux/instantclient/2110000/instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip
+    unzip instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip
+    ```
 
-> You can also download our pre-prepared dependency package directly:
+    Add the extracted directory file path to the `LD_LIBRARY_PATH` environment variable path in the following configuration information.
 
-```shell
-wget -q https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.x64-19.8.0.0.0dbru.zip \
-			-O /usr/local/datakit/externals/instantclient-basiclite-linux.zip \
-			&& unzip /usr/local/datakit/externals/instantclient-basiclite-linux.zip -d /opt/oracle;
-```
+    > You can also download our pre-prepared dependency package directly:
 
-In addition, you may need to install additional dependent libraries: 
+    ```shell
+    wget https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip \
+        -O /usr/local/datakit/externals/instantclient-basiclite-linux.zip \
+        && unzip /usr/local/datakit/externals/instantclient-basiclite-linux.zip -d /opt/oracle \
+        && mv /opt/oracle/instantclient_21_10 /opt/oracle/instantclient;
+    ```
+
+=== "ARM64 OS"
+
+    ```shell
+    wget https://download.oracle.com/otn_software/linux/instantclient/1919000/instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip
+    unzip instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip
+    ```
+
+    Add the extracted directory file path to the `LD_LIBRARY_PATH` environment variable path in the following configuration information.
+
+    > You can also download our pre-prepared dependency package directly:
+
+    ```shell
+    wget https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip \
+        -O /usr/local/datakit/externals/instantclient-basiclite-linux.zip \
+        && unzip /usr/local/datakit/externals/instantclient-basiclite-linux.zip -d /opt/oracle \
+        && mv /opt/oracle/instantclient_19_19 /opt/oracle/instantclient;
+    ```
+
+- For some OS need to install additional dependent libraries:
 
 ```shell
 apt-get install -y libaio-dev libaio1
 ```
 
-## Configuration {#config}
+### Configuration {#input-config}
 
 === "Host Installation"
 
@@ -126,38 +164,54 @@ apt-get install -y libaio-dev libaio1
         
     [[inputs.external]]
       daemon = true
-      name = 'oracle'
-      cmd  = "/usr/local/datakit/externals/oracle"
+      name   = "oracle"
+      cmd    = "/usr/local/datakit/externals/oracle"
     
       ## Set true to enable election
       election = true
     
+      ## Modify below if necessary.
+      ## The password use environment variable named "ENV_INPUT_ORACLE_PASSWORD".
       args = [
-        '--interval'       , '1m'                        ,
-        '--host'           , '<your-oracle-host>'        ,
-        '--port'           , '1521'                      ,
-        '--username'       , '<oracle-user-name>'        ,
-        '--password'       , '<oracle-password>'         ,
-        '--service-name'   , '<oracle-service-name>'     ,
+        "--interval"        , "1m"                           ,
+        "--host"            , "<your-oracle-host>"           ,
+        "--port"            , "1521"                         ,
+        "--username"        , "<oracle-user-name>"           ,
+        "--service-name"    , "<oracle-service-name>"        ,
+        "--slow-query-time" , "0s"                           ,
+        "--log"             , "/var/log/datakit/oracle.log"  ,
       ]
       envs = [
-        'LD_LIBRARY_PATH=/opt/oracle/instantclient_19_8:$LD_LIBRARY_PATH',
+        "ENV_INPUT_ORACLE_PASSWORD=<oracle-password>",
+        "LD_LIBRARY_PATH=/opt/oracle/instantclient:$LD_LIBRARY_PATH",
       ]
     
       [inputs.external.tags]
         # some_tag = "some_value"
         # more_tag = "some_other_value"
     
+      ## Run a custom SQL query and collect corresponding metrics.
+      # [[inputs.external.custom_queries]]
+      #   sql = '''
+      #     SELECT
+      #       GROUP_ID, METRIC_NAME, VALUE
+      #     FROM GV$SYSMETRIC
+      #   '''
+      #   metric = "oracle_custom"
+      #   tags = ["GROUP_ID", "METRIC_NAME"]
+      #   fields = ["VALUE"]
+    
       #############################
-      # 参数说明(标 * 为必选项)
+      # Parameter Description (Marked with * is required field)
       #############################
-      # *--interval       : 采集的频度，最小粒度 5m
-      # *--host           : Oracle 实例地址(ip)
-      #  --port           : Oracle 监听端口
-      # *--username       : Oracle 用户名
-      # *--password       : Oracle 密码
-      # *--service-name   : Oracle 的服务名
-      # *--query          : 自定义查询语句，格式为 <sql:metricName:tags>，sql 为自定义采集的语句，tags 填入使用 tag 字段
+      # *--interval                   : Collect interval (Default is 1m).
+      # *--host                       : Oracle instance address (IP).
+      # *--port                       : Oracle listen port (Default is 1521).
+      # *--username                   : Oracle username.
+      # *--service-name               : Oracle service name.
+      # *--slow-query-time            : Oracle slow query time threshold defined. If larger than this, the executed sql will be reported.
+      # *--log                        : Collector log path.
+      # *ENV_INPUT_ORACLE_PASSWORD    : Oracle password.
     
     ```
     
@@ -167,12 +221,25 @@ apt-get install -y libaio-dev libaio1
 
     The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
-## Measurements {#measurements}
+???+ tip
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.oracle.tags]`:
+    The configuration above would shows in the process list(including password). If want to hide the password, can use the environment variable `ENV_INPUT_ORACLE_PASSWORD`, like below:
+
+    ```toml
+    envs = [
+      "ENV_INPUT_ORACLE_PASSWORD=<YOUR-SAFE-PASSWORD>"
+    ] 
+    ```
+
+    The environment variable has highest priority, which means if existed that environment variable, the value in the environment variable will always treated as the password.
+<!-- markdownlint-enable -->
+
+## Metric {#metric}
+
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.external.tags]`:
 
 ``` toml
- [inputs.oracle.tags]
+ [inputs.external.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
   # ...
@@ -268,6 +335,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`logical_reads`|Logical reads per second|float|count|
 |`logons`|Number of logon attempts|float|count|
 |`memory_sorts_ratio`|Memory sorts ratio|float|percent|
+|`pga_over_allocation_count`|Over-allocating PGA memory count|float|count|
 |`physical_reads`|Physical reads per second|float|count|
 |`physical_reads_direct`|Physical reads direct per second|float|count|
 |`physical_writes`|Physical writes per second|float|count|
@@ -285,14 +353,46 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
+## Long running queries {#slow}
+
+Datakit could reports the SQLs, those executed time exceeded the threshold time defined by user, to Guance Cloud, displays in the `Logs` side bar, the source name is `oracle_log`.
+
+This function is disabled by default, user could enabling it by modify Datakit's Oracle configuration like followings:
+
+Change the string value after `--slow-query-time` from `0s` to the threshold time, minimal value is 1 millsecond. Generally, recommand it to `10s`.
+
+```conf
+  args = [
+    ...
+    '--slow-query-time' , '10s',
+  ]
+```
+
+???+ info "Fields description"
+    - `avg_elapsed`: The SQL executed average time cost.
+    - `username`: The user who executed the SQL.
+    - `failed_obfuscate`：SQL obfuscated failed reason. Only exist when SQL obfuscated failed. Original SQL will be reported when SQL obfuscated failed.
+    [More fields](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/V-SQLAREA.html#GUID-09D5169F-EE9E-4297-8E01-8D191D87BDF7).
+
+???+ attention "Attention"
+    - If the string value after `--slow-query-time` is `0s` or empty or less than 1 millisecond, this function is disabled, which is also the default state.
+    - The SQL would not display here when NOT executed completed.
+
+## Custom Query {#custom}
+
+Support custom query collects. Guide and example is `custom_queries` in the [Configuration](oracle.md#input-config) above.
+
 ## FAQ {#faq}
-
+<!-- markdownlint-disable MD013 -->
 ### :material-chat-question: How to view the running log of Oracle Collector? {#faq-logging}
+<!-- markdownlint-enable -->
 
-Because the Oracle collector is an external collector, its logs are stored separately in *[Datakit-install-path]/externals/oracle.log*.
+Because the Oracle collector is an external collector, its logs by default are stored separately in *[Datakit-install-path]/externals/oracle.log*.
 
+In addition, the log path could modified by using `--log` parameter in configuration file.
+<!-- markdownlint-disable MD013 -->
 ### :material-chat-question: After Oracle collection is configured, why is there no data displayed in monitor? {#faq-no-data}
-
+<!-- markdownlint-enable -->
 There are several possible reasons:
 
 - Oracle dynamic library dependencies are problematic
@@ -305,11 +405,11 @@ As the Oracle collector is compiled independently and CGO is turned on, its runt
 
 ```shell
 $ ldd <Datakit-install-path>/externals/oracle
-	linux-vdso.so.1 (0x00007ffed33f9000)
-	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f70144e1000)
-	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f70144be000)
-	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f70142cc000)
-	/lib64/ld-linux-x86-64.so.2 (0x00007f70144fc000)
+  linux-vdso.so.1 (0x00007ffed33f9000)
+  libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f70144e1000)
+  libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f70144be000)
+  libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f70142cc000)
+  /lib64/ld-linux-x86-64.so.2 (0x00007f70144fc000)
 ```
 
 If the following information is reported, it is basically caused by the low glibc version on the current machine:
@@ -318,10 +418,10 @@ If the following information is reported, it is basically caused by the low glib
 externals/oracle: /lib64/libc.so.6: version  `GLIBC_2.14` not found (required by externals/oracle)
 ```
 
-- Oracle Collector is only available on Linux/amd64 Architecture DataKit and is not supported on other platforms.
+- Oracle Collector is only available on Linux x86_64/ARM64 architecture DataKit and is not supported on other platforms.
 
-This means that the Oracle collector can only run on amd64 (X86) Linux, and no other platform can run the current Oracle collector.
-
-### Why can't see `oracle_system` measurements? {#faq-no-system}
-
+This means that the Oracle collector can only run on x86_64/ARM64 Linux, and no other platform can run the current Oracle collector.
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: Why can't see `oracle_system` measurements? {#faq-no-system}
+<!-- markdownlint-enable -->
 It needs to taking 1 minute to see them after the database system starting up.

@@ -1,24 +1,39 @@
+---
+title     : 'JVM'
+summary   : 'Collect the JVM metrics'
+__int_icon      : 'icon/jvm'
+dashboard :
+  - desc  : 'JVM'
+    path  : 'dashboard/en/jvm'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # JVM
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-Here, we provide two kinds of JVM metrics collection methods, one is Jolokia and the other is ddtrace. How to choose the way, we have the following suggestions:
+Here, we provide two kinds of JVM metrics collection methods, one is Jolokia (deprecated) and the other is ddtrace. How to choose the way, we have the following suggestions:
 
 - It is recommended to use DDTrace to collect JVM metrics, and Jolokia is also acceptable as it is more cumbersome to use, so it is not recommended.
+- If we collect the JVM metrics of our own Java application, we recommend ddtrace scheme, which can collect the JVM metrics as well as link tracing (APM) data.
 
-- If we collect the JVM metrics of our own java application, we recommend ddtrace scheme, which can collect the JVM metrics as well as link tracing (APM) data.
+## Config {#config}
 
 ## Collect JVM Metrics Through Ddtrace {#jvm-ddtrace}
 
 DataKit has a built-in [statsd collector](statsd.md) for receiving statsd protocol data sent over the network. Here we use ddtrace to collect metrics from the JVM and send them to the DataKit via statsd protocol.
 
-### Prepare Statsd Configuration {#statsd}
+### Collector Configuration {#input-config}
 
-
+<!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
     The following statsd configuration is recommended for collecting ddtrace JVM metrics. Copy it to the `conf.d/statsd` directory and name it `ddtrace-jvm-statsd.conf`:
@@ -80,6 +95,7 @@ DataKit has a built-in [statsd collector](statsd.md) for receiving statsd protoc
 === "Kubernetes"
 
     The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-enable -->
 
 ---
 
@@ -95,27 +111,27 @@ A feasible JVM deployment method is as follows:
 
 ```shell
 java -javaagent:dd-java-agent.jar \
-	-Ddd.profiling.enabled=true \
-	-Ddd.logs.injection=true \
-	-Ddd.trace.sample.rate=1 \
-	-Ddd.service=my-app \
-	-Ddd.env=staging \
-	-Ddd.agent.host=localhost \
-	-Ddd.agent.port=9529 \
-	-Ddd.jmxfetch.enabled=true \
-	-Ddd.jmxfetch.check-period=1000 \
-	-Ddd.jmxfetch.statsd.host=127.0.0.1  \
-	-Ddd.jmxfetch.statsd.port=8125 \
-	-Ddd.version=1.0 \
-	-jar your-app.jar
+    -Ddd.profiling.enabled=true \
+    -Ddd.logs.injection=true \
+    -Ddd.trace.sample.rate=1 \
+    -Ddd.service.name=my-app \
+    -Ddd.env=staging \
+    -Ddd.agent.host=localhost \
+    -Ddd.agent.port=9529 \
+    -Ddd.jmxfetch.enabled=true \
+    -Ddd.jmxfetch.check-period=1000 \
+    -Ddd.jmxfetch.statsd.host=127.0.0.1  \
+    -Ddd.jmxfetch.statsd.port=8125 \
+    -Ddd.version=1.0 \
+    -jar your-app.jar
 ```
 
 Note:
 
 - For the download of the `dd-java-agent.jar` package, see [here](ddtrace.md)
 - It is recommended to name the following fields:
-    - `service` is used to indicate which application the JVM data comes from
-    - `env` is used to indicate which environment of an application the JVM data comes from (e.g. prod/test/preprod, etc.)
+    - `service.name` is used to indicate which application the JVM data comes from
+    - `env` is used to indicate which environment of an application the JVM data comes from (e.g. `prod/test/preprod`, etc.)
 
 - The meaning of several options here:
     - `-Ddd.jmxfetch.check-period` denotes the collection frequency, in milliseconds
@@ -128,15 +144,17 @@ Note:
 
 When turned on, you can collect jvm metrics exposed by DDTrace.
 
+<!-- markdownlint-disable MD046 -->
 ???+ attention
 
     The actual collected indicators are based on [DataDog's doc](https://docs.datadoghq.com/tracing/metrics/runtime_metrics/java/#data-collected){:target="_blank"}.
+<!-- markdownlint-enable -->
 
-### `jvm` {#dd-jvm-measurement}
+### Metric {#metric}
 
--  Tag
+- Tag
 
-Each metric has the following tags (the actual tags are affected by java startup parameters and statsd configuration).
+Each metric has the following tags (the actual tags are affected by Java startup parameters and statsd configuration).
 
 | Tag Name        | Description          |
 | ----          | --------      |
@@ -174,6 +192,8 @@ Each metric has the following tags (the actual tags are affected by java startup
 
 JVM collector can take many metrics through JMX, and collect metrics into Guance Cloud to help analyze Java operation.
 
+### Jolokia Config {#jolokia-config}
+
 ### Preconditions {#jolokia-requirements}
 
 Install or download  [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar){:target="_blank"}. The downloaded Jolokia jar package is already available in the `data` directory under the DataKit installation directory. Open the Java application by:
@@ -188,8 +208,6 @@ Already tested version:
 - [x] JDK 17
 - [x] JDK 11
 - [x] JDK 8
-
-### Configuration {#jolokia-config}
 
 Go to the `conf.d/jvm` directory under the DataKit installation directory, copy `jvm.conf.sample` and name it `jvm.conf`. Examples are as follows:
 
@@ -256,9 +274,9 @@ Go to the `conf.d/jvm` directory under the DataKit installation directory, copy 
 
 After configuration, restart DataKit.
 
-### Measurements {#measurements}
+### Jolokia Metric {#jolokia-metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.jvm.tags]`:
+For all the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.jvm.tags]`:
 
 ``` toml
  [inputs.jvm.tags]
@@ -277,7 +295,7 @@ For all of the following data collections, a global tag named `host` is appended
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path.|
 
 - metric list
 
@@ -300,7 +318,7 @@ For all of the following data collections, a global tag named `host` is appended
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path.|
 
 - metric list
 
@@ -331,8 +349,8 @@ For all of the following data collections, a global tag named `host` is appended
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent url path|
-|`name`|the name of GC generation|
+|`jolokia_agent_url`|Jolokia agent url path.|
+|`name`|The name of GC generation.|
 
 - metric list
 
@@ -356,7 +374,7 @@ For all of the following data collections, a global tag named `host` is appended
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path.|
 
 - metric list
 
@@ -382,7 +400,7 @@ For all of the following data collections, a global tag named `host` is appended
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path.|
 
 - metric list
 
@@ -407,8 +425,8 @@ For all of the following data collections, a global tag named `host` is appended
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent url path|
-|`name`|the name of space|
+|`jolokia_agent_url`|Jolokia agent url path.|
+|`name`|The name of space.|
 
 - metric list
 
@@ -419,12 +437,12 @@ For all of the following data collections, a global tag named `host` is appended
 |`CollectionUsageinit`|The amount of memory in bytes that the Java virtual machine initially requests from the operating system for memory management.|float|B|
 |`CollectionUsagemax`|The maximum amount of memory in bytes that can be used for memory management.|float|B|
 |`CollectionUsageused`|The amount of used memory in bytes.|float|B|
-|`PeakUsagecommitted`|The total peak Java memory pool committed to be used|int|B|
-|`PeakUsageinit`|The initial peak Java memory pool allocated|int|B|
+|`PeakUsagecommitted`|The total peak Java memory pool committed to be used.|int|B|
+|`PeakUsageinit`|The initial peak Java memory pool allocated.|int|B|
 |`PeakUsagemax`|The maximum peak Java  memory pool available.|int|B|
 |`PeakUsageused`|The total peak Java memory pool used.|int|B|
-|`Usagecommitted`|The total Java memory pool committed to be used|int|B|
-|`Usageinit`|The initial Java memory pool allocated|int|B|
+|`Usagecommitted`|The total Java memory pool committed to be used.|int|B|
+|`Usageinit`|The initial Java memory pool allocated.|int|B|
 |`Usagemax`|The maximum Java  memory pool available.|int|B|
 |`Usageused`|The total Java memory pool used.|int|B|
 
@@ -434,4 +452,4 @@ For all of the following data collections, a global tag named `host` is appended
 
 - [DDTrace Java example](ddtrace-java.md)
 - [SkyWalking](skywalking.md)
-- [Opentelemetry Java example](opentelemetry-java.md)
+- [OpenTelemetry Java example](opentelemetry-java.md)

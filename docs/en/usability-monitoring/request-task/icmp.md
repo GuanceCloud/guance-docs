@@ -1,4 +1,4 @@
-# ICMP Request Task
+# ICMP Tests
 ---
 
 ## Introduction

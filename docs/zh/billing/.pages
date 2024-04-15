@@ -1,18 +1,6 @@
 nav:
   - index.md
-  - 版本说明:
-    - version-description.md
-    - 公有云商业版:
-      - commercial.md
-      - '在观测云注册商业版': commercial-register.md   
-      - '阿里云市场开通商业版': commercial-aliyun.md
-      - '阿里云市场开通专属版': commercial-aliyun-sls.md
-      - 'AWS 云市场开通商业版': commercial-aws.md
-      - '华为云云商店开通商业版': commercial-huaweiyun.md
-    - 公有云体验版: trail.md
-    - 私有云部署版: deployment.md
-    - 专属存储版: independent-storage.md
   - '费用中心': cost-center  
   - '用量计费方式': billing-method
   - '费用结算方式': billing-account
-  - '常见问题': faq.md
+  - 常见问题: faq

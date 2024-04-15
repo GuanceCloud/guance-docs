@@ -3,8 +3,8 @@ title     : 'Nacos'
 summary   : 'Collect Nacos related index information'
 __int_icon: 'icon/nacos'
 dashboard :
-  - desc  : 'Nacos Monitoring View'
-    path  : 'dashboard/zh/nacos'
+  - desc  : 'Nacos'
+    path  : 'dashboard/en/nacos'
 monitor   :
   - desc  : 'No'
     path  : '-'
@@ -16,7 +16,7 @@ monitor   :
 <!-- markdownlint-enable -->
 
 
-Nacos performance indicators, including Nacos online length, Nacos Config long links, Nacos Config configuration number, Service Count, HTTP requests, and so on.
+Nacos performance metrics, including Nacos online length, Nacos Config long links, Nacos Config configuration number, Service Count, HTTP requests, and so on.
 
 
 ## Configuration {#config}
@@ -30,39 +30,39 @@ Description: Example Nacos version 1.4.1.
 
 (same Linux / Windows environment)
 
-### Indicator Collection (Required)
+### Metric Collection (Required)
 
-1. Configure `application.properties` files to expose metrics data
+- Configure `application.properties` files to expose metrics data
 
 ```shell
 management.endpoints.web.exposure.include=*
 ```
 
-2. Restart Nacos
+- Restart Nacos
 
 There are differences between cluster mode and singleton mode start parameters, refer to [Nacos 官方文档](https://nacos.io/zh-cn/docs/quick-start.html).
 
-3. Verification
+- Verification
 
 Visit `{ip}:8848/nacos/actuator/prometheus` to see if metrics data is accessible
 
-4. Open the DataKit Prometheus plug-in
+- Open the DataKit Prometheus plug-in
 
 ```shell
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample nacos-prom.conf
 ```
 
-5. Modify `nacos-prom.conf` Profile
+- Modify `nacos-prom.conf` Profile
 
 Description of main parameters
 
-- Urls: `prometheus` Indicator address, fill in the indicator URL exposed by Nacos here
+- Urls: `prometheus` Metric address, fill in the metric URL exposed by Nacos here
 - Source: alias of collector, recommended as `nacos`
 - Interval: collection interval
 - Measurement_ Prefix: index prefix for easy index classification query
 - Tls_ Open:TLS Configuration
-- Metric_ Types: Indicator type, not filled in, representing the collection of all indicators
+- Metric_ Types: Metric type, not filled in, representing the collection of all metrics
 
 ```toml
 [[inputs.prom]]
@@ -83,9 +83,9 @@ Description of main parameters
   # more_tag = "some_other_value"
 ```
 
-6. Restart DataKit
+- Restart DataKit
 
-[Restart DataKit] (.. /datakit/datakit-service-how-to.md/#manage-service)
+[Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
 ## Metric {#metric}
 
@@ -109,34 +109,34 @@ Description of main parameters
 |http_server_requests_seconds_sum| http server requests sum (by url、func、code) |
 | `nacos_timer_seconds_sum`| Nacos config notify duration |
 | `nacos_timer_seconds_count`| Nacos config notify count |
-| `nacos_monitor` {name='longPolling'}| Nacos config long poll |
-| `nacos_monitor` {name='configCount'}| Nacos config count |
-| `nacos_monitor` {name='dumpTask'}| Nacos config dump task count |
-| `nacos_monitor` {name='notifyTask'}| Nacos config  notify task count|
-| `nacos_monitor` {name='getConfig'}| Nacos config get  count |
-| `nacos_monitor` {name='publish'}| Nacos config publish count |
-| `nacos_monitor` {name='ipCount'}| Nacos naming ip count |
-| `nacos_monitor` {name='domCount'}| Nacos naming domain count (1.x version) |
-| `nacos_monitor` {name='serviceCount'}| Nacos naming domain count (2.x version) |
-| `nacos_monitor` {name='failedPush'}| Nacos naming  push failed|
-| `nacos_monitor` {name='avgPushCost'}| Nacos naming push cost by avg |
-| `nacos_monitor` {name='leaderStatus'}| Nacos naming leader status |
-| `nacos_monitor` {name='maxPushCost'}| Nacos naming max push cost time |
-| `nacos_monitor` {name='mysqlhealthCheck'}| Nacos naming mysql health check time |
-| `nacos_monitor` {name='httpHealthCheck'}| Nacos naming http health check time  |
-| `nacos_monitor` {name='tcpHealthCheck'}| Nacos naming tcp health check time  |
+| `nacos_monitor {name='longPolling'}`| Nacos config long poll |
+| `nacos_monitor {name='configCount'}`| Nacos config count |
+| `nacos_monitor {name='dumpTask'}`| Nacos config dump task count |
+| `nacos_monitor {name='notifyTask'}`| Nacos config  notify task count|
+| `nacos_monitor {name='getConfig'}`| Nacos config get  count |
+| `nacos_monitor {name='publish'}`| Nacos config publish count |
+| `nacos_monitor {name='ipCount'}`| Nacos naming ip count |
+| `nacos_monitor {name='domCount'}`| Nacos naming domain count (1.x version) |
+| `nacos_monitor {name='serviceCount'}`| Nacos naming domain count (2.x version) |
+| `nacos_monitor {name='failedPush'}`| Nacos naming  push failed|
+| `nacos_monitor {name='avgPushCost'}`| Nacos naming push cost by avg |
+| `nacos_monitor {name='leaderStatus'}`| Nacos naming leader status |
+| `nacos_monitor {name='maxPushCost'}`| Nacos naming max push cost time |
+| `nacos_monitor {name='mysqlhealthCheck'}`| Nacos naming mysql health check time |
+| `nacos_monitor {name='httpHealthCheck'}`| Nacos naming http health check time  |
+| `nacos_monitor {name='tcpHealthCheck'}`| Nacos naming tcp health check time  |
 
 ### Nacos exception Metric
 
 |Metric| Description |
 | --- | --- |
-| `nacos_exception_total` {name='db'}| db exception count |
-| `nacos_exception_total` {name='configNotify'}| Nacos config notify exception count |
-| `nacos_exception_total` {name='unhealth'}| Nacos config server unhealth count |
-| `nacos_exception_total` {name='disk'}| Nacos naming disk write error count |
-| `nacos_exception_total` {name='leaderSendBeatFailed'}| Nacos naming leader send beat error count |
-| `nacos_exception_total` {name='illegalArgument'}| illegal argument count |
-| `nacos_exception_total` {name='nacos'}| Nacos Request response internal error exception (read write failure, no permission, parameter error) |
+| `nacos_exception_total {name='db'}`| db exception count |
+| `nacos_exception_total {name='configNotify'}`| Nacos config notify exception count |
+| `nacos_exception_total {name='unhealth'}`| Nacos config server unHealth count |
+| `nacos_exception_total {name='disk'}`| Nacos naming disk write error count |
+| `nacos_exception_total {name='leaderSendBeatFailed'}`| Nacos naming leader send beat error count |
+| `nacos_exception_total {name='illegalArgument'}`| illegal argument count |
+| `nacos_exception_total {name='nacos'}`| Nacos Request response internal error exception (read write failure, no permission, parameter error) |
 
 
-For more Nacos metrics, refer to [ Nacos Official Website - Monitoring ](https://nacos.io/zh-cn/docs/monitor-guide.html)
+For more Nacos metrics, refer to [Nacos Official Website - Monitoring](https://nacos.io/zh-cn/docs/monitor-guide.html)
