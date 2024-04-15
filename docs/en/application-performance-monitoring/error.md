@@ -1,67 +1,74 @@
-# Error Tracing
+# Error Tracking
+
 ---
 
-## Introduction
+Guance provides an APM error data analysis explorer, you can quickly view the historical trend and distribution of similar errors in the trace in **APM > Error Tracking**, helping to quickly locate performance issues.
 
-Guance provides an application performance monitoring error data analysis explorer. You can quickly view the historical trend and distribution of similar errors in the link in the "error tracing" of "application performance monitoring", and help quickly locate performance problems.
+The error tracking explorer includes two lists: **All Errors** and **Pattern**:
 
-The error tracing explorer includes two lists: "All Errors" and "Clustering Analysis":
+- [All Errors](#errors): Used to <u>need to view all</u> trace errors that occur in the project application;
+- [Pattern](#analysis): Used for <u>quickly viewing the most frequently occurring</u> trace errors that need to be resolved.
 
-- All errors: Used to view all link errors that occurred in the project application as a whole.
+> Guance explorer provides powerful query and analysis functions, see [Powerful Explorer](../getting-started/function-details/explorer-search.md).
 
-- Clustering analysis: Used to quickly view the most frequent link errors that need to be resolved.
 
-## Data Query and Analysis
+## All Errors {#errors}
 
-Guance obserever provides powerful query and analysis functions, You can use the time control, search and filter data within a certain time range, quickly filter, customize display columns, export data and other operations. Through chart analysis mode, all wrong link data are grouped and counted based on **1-3 labels** in order to reflect the distribution characteristics and trends of wrong links in different groups and at different times and help you quickly find wrong links to locate performance problems. See the documentation [explorer notes](../getting-started/necessary-for-beginners/explorer-search.md).
+In the Guance workspace **APM > Error Tracking**, select the **All Errors** list to view and analyze all trace error data.
 
-## All errors
-
-If you need to view all link errors in the project application as a whole, you can view and analyze the error data of all links by selecting the "All Errors" list in the Guance workspace "Application Performance Monitoring"-"Error Tracking".
-
-???+ attention
-
-    All error statistics are based on the service top-level Span with the error status `status=error` and the error type `error_type` field. Service top-level Span refers to filtering and displaying all Span data entered for the first time within the currently selected time range.
+**Note:** All error data statistics are based on error status `status=error`, and contain the error type `error_type` field in the Span.
 
 ![](img/1.apm_error_12.png)
 
-### Error Link Association Analysis
+### Correlation Analysis
 
-In the Error Tracking Explorer, you can click any error to view the corresponding error link details, including service, error type, error content, error profile, error details, link details, extended attributes, associated logs, hosts and networks.
+In the error tracking explorer, you can click on any error to view the corresponding error trace details, including services, error types, error content, error distribution maps, error details, trace details, extended attributes, and associated logs, hosts, Networks, etc.
 
-#### Error Profile
+<div class="grid" markdown>
 
-On the error profile of the Error Explorer Details page, Based on the `error_message` and `error_type` two fields, the error links with high approximation are aggregated and counted, and according to the time range selected by the error explorer, the corresponding time interval is automatically selected to show the distribution trend of errors, which helps you intuitively view the time points or time ranges where frequent errors occur and quickly locate link problems.
+=== "Error Distribution"
 
-![](img/1.apm_error_11.1.png)
+    In Error explorer Details Page > Error Distribution Map, based on `error_message` and `error_type` two fields, **aggregate statistics of high similarity error traces, and according to the time range selected by the error explorer, automatically select the corresponding time interval to display the distribution trend of errors**. This helps you intuitively view the time point or time range of frequent errors and quickly locate trace problems.
+
+    ![](img/1.apm_error_11.1.png)
 
 
+=== "Error Details"
 
-#### View Link
+    Quickly locate error problems with the help of error detail information.
 
-Click "View Link" in the upper right corner, you can locate the link problem by viewing the upstream and downstream Span of the flame diagram of the wrong link, and click Span to view the corresponding "Link Details".
+    ![](img/1.apm_error_14.png)
 
-![](img/1.apm_error_13.png)
 
-You can also switch to "Error Details" to view the error details of upstream and downstream error Spans to quickly locate error problems. Click "Back" to return to the error tracking explorer details page.
+=== "Trace Details"
 
-![](img/1.apm_error_14.png)
+    This tab shows you the error information that occurred under the current trace service.
 
-## Cluster Analysis
+    ![](img/1.apm_error_13.png)
 
-If you need to check the errors with high frequency, you can select the "Cluster Analysis" list in the Guance workspace "Application Performance Monitoring"-"Error Tracing" to quickly check the most frequent error links and help you locate error problems.
 
-???+ attention
+</div>
 
-    Cluster analysis is to calculate and analyze the similarity of all wrong link data based on two fields: `error_message` and `error_type`. The current time period is fixed according to the time range selected at the upper right, and 10000 pieces of data in this time period are obtained for cluster analysis, and the error links with high approximation are aggregated, and the common Pattern cluster is extracted and counted to help quickly find abnormal links and positioning problems.
+## Pattern {#analysis}
+
+If you need to view more frequently occurring errors, you can select the **Pattern** list in the Guance workspace **APM > Error Tracking**.
+
+Pattern is a similarity calculation analysis of all error trace data based on cluster fields. The time range selected in the upper right corner is fixed for the current time period, and 10000 data within this time period are obtained for pattern. The error traces with high similarity are aggregated, and the common Pattern clusters are extracted and counted to help quickly find abnormal traces and locate problems.
+
+By default, aggregation is performed based on the `error_message` field, and you can customize the input clustering field, up to 3 can be entered.
 
 ![](img/1.apm_error_10.0.png)
 
+### Pattern Details
 
-
-### Cluster Analysis Details
-
-In the cluster analysis list, you can view all associated error links by clicking on any error, and click on the link to go to the error link details page for analysis.
+- In the pattern list, you can click on any error to view all associated error traces, click on the trace to enter the error trace detail page for viewing and analysis;
 
 ![](img/1.apm_error_10.png)
 
+- In the pattern page, click the sorting icon :octicons-triangle-up-16: & :octicons-triangle-down-16:, you can sort the document quantity in ascending/descending order (default descending).
+
+<img src="../img/error-1.png" width="60%" >
+
+- If you need to export a piece of data, open the data detail page and click the :material-tray-arrow-up: icon in the upper right corner.
+
+<img src="../img/error-0809.png" width="70%" >

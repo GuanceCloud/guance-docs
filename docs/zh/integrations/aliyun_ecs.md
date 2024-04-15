@@ -1,6 +1,6 @@
 ---
 title: '阿里云 ECS'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。'
+summary: '阿里云ECS的展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS，这些指标反映了ECS实例的计算、内存、网络和存储性能表现。'
 __int_icon: 'icon/aliyun_ecs'
 dashboard:
   - desc: '阿里云 ECS 内置视图'
@@ -16,7 +16,7 @@ monitor:
 <!-- markdownlint-enable -->
 
 
-使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。
+阿里云ECS的展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS，这些指标反映了ECS实例的计算、内存、网络和存储性能表现。
 
 
 ## 配置 {#config}
@@ -56,7 +56,7 @@ monitor:
 3. 在观测云平台，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
-配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://cms.console.aliyun.com/metric-meta/acs_ecs_dashboard/ecs){:target="_blank"}
+配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://cms.console.aliyun.com/metric-meta/acs_ecs_dashboard/ecs?spm=a2c4g.11186623.0.0.252476abTrNabN){:target="_blank"}
 
 > 注意：需要在 Aliyun ECS 控制台安装监控插件
 

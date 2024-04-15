@@ -1,10 +1,10 @@
 ---
 title     : 'Redis Sentinel'
-summary   : 'Collect Redis Sentinel Cluster Indicators, Log Information'
+summary   : 'Collect Redis Sentinel Cluster Metrics, Log Information'
 __int_icon: 'icon/redis'
 dashboard :
-  - desc  : 'Redis-sentinel Monitoring View'
-    path  : 'dashboard/zh/redis_sentinel'
+  - desc  : 'Redis Sentinel'
+    path  : 'dashboard/en/redis_sentinel'
 monitor   :
   - desc  : 'No'
     path  : '-'
@@ -15,16 +15,13 @@ monitor   :
 # Redis Sentinel
 <!-- markdownlint-enable -->
 
-Redis-sentinel indicators display, including Redis clusters, Slaves, node distribution information, and so on.
+Redis-sentinel metrics display, including Redis clusters, Slaves, node distribution information, and so on.
 
 
 ## Configuration {#config}
 
-### Preconditions
 
-- redis-sentinel-exporter >=0.1
-
-### Download redis-sentinel-exporter indicator collector
+### Download redis-sentinel-exporter metric collector
 
 Download address [https://github.com/lrwh/redis-sentinel-exporter/releases](https://github.com/lrwh/redis-sentinel-exporter/releases)
 
@@ -32,23 +29,23 @@ Download address [https://github.com/lrwh/redis-sentinel-exporter/releases](http
 ### Start redis-sentinel-exporter
 
 ```bash
-java -Xmx64m -jar redis-sentinel-exporter-0.1.jar --spring.redis.sentinel.master=mymaster --spring.redis.sentinel.nodes="127.0.0.1:26379,127.0.0.1:26380,127.0.0.1:26381"
+java -Xmx64m -jar redis-sentinel-exporter-0.2.jar --spring.redis.sentinel.master=mymaster --spring.redis.sentinel.nodes="127.0.0.1:26379,127.0.0.1:26380,127.0.0.1:26381"
 ```
 
 Parameter description spring.redis.sentinel.master: Cluster name spring.redis.sentinel.nodes: Sentry node address
 
 ### Collector Configuration
 
-#### Indicator Collection
+#### Metric Collection
 
-1. Open the DataKit Prom plug-in and copy the sample file
+- Open the DataKit Prom plug-in and copy the sample file
 
 ```bash
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample redis-sentinel-prom.conf
 ```
 
-2. Modify `redis-sentinel-prom.conf` Profile
+- Modify `redis-sentinel-prom.conf` Profile
 
 ??? Quote' `redis-sentinel-prom.conf` '
 <!-- markdownlint-disable MD046 -->
@@ -72,7 +69,7 @@ cp prom.conf.sample redis-sentinel-prom.conf
 <!-- markdownlint-enable -->
 
 
-3. Restart DataKit (configure log collection to restart if log needs to be turned on)
+- Restart DataKit (configure log collection to restart if log needs to be turned on)
 
 ```bash
 systemctl restart datakit
@@ -83,7 +80,7 @@ systemctl restart datakit
 
 ### Configure Collector
 
-1. Modify `redis.conf` Profile
+- Modify `redis.conf` Profile
 
 ```toml
 
@@ -135,7 +132,7 @@ systemctl restart datakit
 
 ```
 
-2. Restart DataKit (If you need to turn on custom tags, configure plug-in tags to restart)
+- Restart DataKit (If you need to turn on custom tags, configure plug-in tags to restart)
 
 ```bash
 systemctl restart datakit
@@ -182,7 +179,7 @@ systemctl restart datakit
 |redis_sentinel_link_pending_commands| sentinel pending command count | Gauge |
 |redis_sentinel_odown_slaves| slave down count | Gauge |
 |redis_sentinel_sdown_slaves| slave master down count | Gauge |
-|redis_sentinel_ok_slaves| 正在运行的slave数 | Gauge |
+|redis_sentinel_ok_slaves|  running slaves | Gauge |
 |redis_sentinel_ping_latency| sentinel ping latency | Gauge |
 |redis_sentinel_last_ok_ping_latency| sentinel ping ok latency  | Gauge |
-
+| redis_sentinel_node_state  | redis node state     | Gauge |

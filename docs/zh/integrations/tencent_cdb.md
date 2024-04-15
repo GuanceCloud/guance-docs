@@ -1,6 +1,6 @@
 ---
 title: '腾讯云 CDB'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+summary: '使用脚本市场中「官方脚本市场」系列脚本包把云监控 云资产的数据同步到观测云'
 __int_icon: 'icon/tencent_cdb'
 dashboard:
 
@@ -70,7 +70,6 @@ monitor:
 | `MemoryUseRate` | 内存利用率   | 允许闲时超用，内存利用率可能大于100%                         | %       | InstanceId、InstanceType（选填） | 5s、 60s、 300s、3600s、86400s |
 | `RealCapacity`  | 数据使用空间 | 仅包括 MySQL 数据目录，不含  `binlog、relaylog、undolog、errorlog、slowlog` 日志空间 | MB      | InstanceId、InstanceType（选填） | 5s、 60s、 300s、3600s、86400s |
 | `VolumeRate`    | 磁盘利用率   | 磁盘使用空间/实例购买空间                                    | %       | InstanceId、InstanceType（选填） | 5s、 60s、 300s、3600s、86400s |
-| `IopsUseRate`   | IOPS 利用率  | 磁盘 IOPS 利用率：已使用 IOPS/总 IOPS                        | %       | InstanceId、InstanceType（选填） | 5s、 60s、 300s、3600s、86400s |
 
 ### 引擎监控（普通）- **MyISAM**
 
@@ -118,8 +117,10 @@ monitor:
 
 | 指标英文名       | 指标中文名     | 指标说明             | 单位  | 维度                             | 统计粒度                     |
 | ---------------- | -------------- | -------------------- | ----- | -------------------------------- | ---------------------------- |
-| CreatedTmpTables | 内存临时表数量 | 创建临时表的数量     | 个/秒 | InstanceId、InstanceType（选填） | 5s、60s、300s、3600s、86400s |
-| TableLocksWaited | 等待表锁次数   | 不能立即获得表锁次数 | 次/秒 | InstanceId、InstanceType（选填） | 5s、60s、300s、3600s、86400s |
+| `CreatedTmpTables` | 内存临时表数量 | 创建临时表的数量     | 个/秒 | InstanceId、InstanceType（选填） | 5s、60s、300s、3600s、86400s |
+| `TableLocksWaited` | 等待表锁次数   | 不能立即获得表锁次数 | 次/秒 | InstanceId、InstanceType（选填） | 5s、60s、300s、3600s、86400s |
+| `OpenedTables`   | 已经打开的表数 | 引擎已经打开的表的数量  | 个 | InstanceId、InstanceType（选填） | 5s、60s、300s、3600s、86400s |
+| `TableLocksImmediate`| 立即释放的表锁数 | 引擎即将释放的表锁数  | 个 | InstanceId、InstanceType（选填） | 5s、60s、300s、3600s、86400s |
 
 ### 引擎监控（扩展）- **Tmp**
 

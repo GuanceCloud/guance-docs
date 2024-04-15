@@ -66,7 +66,7 @@ We can run Datakit command to test if input configure able to collect data. For 
 
 ``` shell
 $ datakit debug --input-conf /usr/local/datakit/conf.d/host/disk.conf
-loading /Users/tanbiao/datakit/conf.d/host/disk.conf with 1 inputs...
+loading /usr/local/datakit/conf.d/host/disk.conf with 1 inputs...
 running input "disk"(0th)...
 disk,device=/dev/disk3s1s1,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1631702195i,inodes_total_mb=1631i,inodes_used=349475i,inodes_used_mb=0i,inodes_used_percent=0.02141781760611041,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064064000
 disk,device=/dev/disk3s6,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1631352732i,inodes_total_mb=1631i,inodes_used=12i,inodes_used_mb=0i,inodes_used_percent=0.0000007355858585707753,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064243000
@@ -78,25 +78,26 @@ disk,device=/dev/disk1s3,fstype=apfs free=503996416i,inodes_free=4921840i,inodes
 disk,device=/dev/disk3s5,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1634318356i,inodes_total_mb=1634i,inodes_used=2965636i,inodes_used_mb=2i,inodes_used_percent=0.18146011694186712,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064280000
 disk,device=/dev/disk2s1,fstype=apfs free=3697000448i,inodes_free=36103520i,inodes_free_mb=36i,inodes_total=36103578i,inodes_total_mb=36i,inodes_used=58i,inodes_used_mb=0i,inodes_used_percent=0.00016064889745830732,total=5368664064i,used=1671663616i,used_percent=31.137422570532436 1685509141064285000
 disk,device=/dev/disk3s1,fstype=apfs free=167050518528i,inodes_free=1631352720i,inodes_free_mb=1631i,inodes_total=1631702197i,inodes_total_mb=1631i,inodes_used=349477i,inodes_used_mb=0i,inodes_used_percent=0.0214179401512444,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064289000
-# 10 points("M") from disk, cost 1.544792ms | Ctrl+c to exit.
+# 10 points("M"), 98 time series from disk, cost 1.544792ms | Ctrl+c to exit.
 ```
 
-Here Datakit will start input `disk` and print the collected points to terminal. At the buttom, there will show some result about these point:
+Here Datakit will start input `disk` and print the collected points to terminal. At the bottom, there will show some result about these point:
 
 - Collected points and its category(Here we got 10 points of category `Metric`)
+- Time series number(only for `Metric`)
 - Input name, here is `disk`
 - Collect cost, here is *1.544ms*
 
-We can interrupt the test by *Ctrl + c*. We can also change the `interval`(if exist) config to get test result more fequently.
+We can interrupt the test by *Ctrl + c*. We can also change the `interval`(if exist) config to get test result more frequently.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
     Some inputs that accept HTTP requests(such as DDTrace/RUM), we need to setup a HTTP server(`--http-listen=[IP:Port]`), then use some tools (such as `curl`) to post testing data to Datakit's HTTP server. For detailed info, see help with `datakit help debug`.
 <!-- markdownlint-enable -->
-
+<!-- markdownlint-disable MD013 -->
 ## Check whether the DataWay connection is normal  {#check-connection}
-
+<!-- markdownlint-enable -->
 ```shell
 curl http[s]://your-dataway-addr:port
 ```
@@ -109,7 +110,7 @@ curl https://openway.guance.com
 
 If the following results are obtained, the network is problematic:
 
-```
+```shell
 curl: (6) Could not resolve host: openway.guance.com
 ```
 
@@ -130,7 +131,7 @@ Wed Jul 21 16:22:32 CST 2021
 
 In some cases, this may appear as follows:
 
-```
+```txt
 Wed Jul 21 08:22:32 UTC 2021
 ```
 
@@ -140,8 +141,9 @@ If the time of the current system is far from that of your mobile phone, especia
 
 In addition, if the time lag, you will see some old data. Don't think that paranormal happened. In fact, it is very likely that the time of DataKit's machine is still in the past.
 
+<!-- markdownlint-disable MD013 -->
 ## See if the data is blacklisted or discarded by Pipeline {#filter-pl}
-
+<!-- markdownlint-enable -->
 If [a blacklist](datakit-filter)(such as a log blacklist) is configured, newly collected data may be filtered out by the blacklist.
 
 Similarly, if data is [discarded](pipeline#fb024a10) in Pipeline, it may also cause the center to see the data.
@@ -149,9 +151,9 @@ Similarly, if data is [discarded](pipeline#fb024a10) in Pipeline, it may also ca
 ## View monitor page {#monitor}
 
 See [here](datakit-monitor.md)
-
+<!-- markdownlint-disable MD013 -->
 ## Check whether there is data generated through dql {#dql}
-
+<!-- markdownlint-enable -->
 This function is supported on Windows/Linux/Mac, where Windows needs to be executed in Powershell.
 
 > This feature is supported only in DataKit [1.1.7-rc7](changelog#cl-1.1.7-rc7).
@@ -219,22 +221,22 @@ tail -f /var/log/datakit/log | grep "<采集器名称>" | grep "WARN\|ERROR"
 Get-Content -Path "C:\Program Files\datakit\log" -Wait | Select-String "<采集器名称>" | Select-String "ERROR", "WARN"
 ```
 
-也You can also remove the filter such as `ERROR/WARN` and directly view the corresponding collector log. If you don't have enough logs, open the debug log in `datakit.conf` to see more logs:
+也 You can also remove the filter such as `ERROR/WARN` and directly view the corresponding collector log. If you don't have enough logs, open the debug log in `datakit.conf` to see more logs:
 
-```
+```toml
 # DataKit >= 1.1.8-rc0
 [logging]
-	...
-	level = "debug" # 将默认的 info 改为 debug
-	...
+  ...
+  level = "debug" # 将默认的 info 改为 debug
+  ...
 
 # DataKit < 1.1.8-rc0
 log_level = "debug"
 ```
 
 ### View gin.log {#check-gin-log}
- 
-For remote data collection to DataKit, you can check gin.log to see if there is remote data sent: 
+
+For remote data collection to DataKit, you can check gin.log to see if there is remote data sent:
 
 ```shell
 tail -f /var/log/datakit/gin.log
@@ -257,18 +259,51 @@ After running the command, all log files in the log directory are packaged and c
 
 [:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9) · [:octicons-beaker-24: Experimental](index.md#experimental)
 
-When troubleshooting issues with DataKit, it is necessary to manually collect various relevant information such as logs, configuration files, and monitoring data. This process can be cumbersome. To simplify this process, DataKit provides a command that can retrieve all the relevant information at once and package it into a file. Usage is as follows:
+When troubleshooting issues with DataKit, it is necessary to manually collect various relevant information such as logs, configuration files, profile data and monitoring data. This process can be cumbersome. To simplify this process, DataKit provides a command that can retrieve all the relevant information at once and package it into a file. Usage is as follows:
 
 ```shell
-datakit debug --bug-report
+$ datakit debug --bug-report
+...
 ```
 
-After successful execution, a zip file will be generated in the current directory with the naming format of `info-<timestamp in milliseconds>.zip`。
+<!-- markdownlint-disable MD046 -->
+???+ tip
+
+    - By default, the command will collect profile data, which may have a certain performance impact on DataKit. You can disable the collection of profile data with the following command ([:octicons-tag-24: Version-1.15.0](changelog.md#cl-1.15.0)):
+    
+    ```shell
+    $ datakit debug --bug-report --disable-profile
+    ```
+    
+    After successful execution, a zip file will be generated in the current directory, named in the format `info-<timestamp_in_milliseconds>.zip`.
+    
+    - If you have public internet access, you can directly upload the file to OSS to avoid the hassle of file copying ([:octicons-tag-24: Version-1.27.0](changelog.md#cl-1.27.0)):
+    
+    ```shell hl_lines="7"
+    # Make sure to fill in the _correct_ OSS address/Bucket name and the corresponding AS/SK here
+    $ datakit debug --bug-report --oss OSS_HOST:OSS_BUCKET:OSS_ACCESS_KEY:OSS_SECRET_KEY
+    ...
+    bug report saved to info-1711794736881.zip
+    uploading info-1711794736881.zip...
+    download URL(size: 1.394224 M):
+        https://oss_bucket.oss_host/datakit-bugreport/2024-03-30/dkbr_co3v2375mqs8u82aa6sg.zip
+    ```
+    
+    Simply provide us with the link address at the bottom.(Ensure that the files in OSS are publicly accessible, otherwise the link will not be able to download directly.)
+    
+    - By default, the bug report will collect 3 times of DataKit's own metrics, and you can adjust the number of times with the `--nmetrics` option ([:octicons-tag-24: Version-1.27.0](changelog.md#cl-1.27.0)):
+    
+    ```shell
+    $ datakit debug --bug-report --nmetrics 10
+    ```
+<!-- markdownlint-enable -->
+
 
 The list of files is as follows:
 
 ```shell
-
+├── basic
+│   └── info
 ├── config
 │   ├── container
 │   │   └── container.conf.copy
@@ -289,7 +324,8 @@ The list of files is as follows:
 │   │   └── pythond.conf.copy
 │   └── rum
 │       └── rum.conf.copy
-├── env.txt
+├── data
+│   └── pull
 ├── metrics 
 │   ├── metric-1680513455403 
 │   ├── metric-1680513460410
@@ -311,16 +347,18 @@ The list of files is as follows:
 
 Document Explanation
 
-| name      | dir  | description                                                                                                                            |
-| ---:      | ---: | ---:                                                                                                                                   |
-| `config`  | yes  | Configuration file, including the main configuration and the configuration of the enabled collectors.                                  |
-| `env.txt` | no   | The environment variables of the runtime.                                                                                              |
-| `log`     | yes  | Latest log files, such as log and gin log, not supporting `stdout` currently                                                           |
-| `profile` | yes  | When pprof is enabled, it will collect profile data. [:octicons-tag-24: Version-1.9.2](changelog.md#cl-1.9.2) enabled pprof by default |
-| `metrics` | yes  | The data returned by the `/metrics` API is named in the format of `metric-<timestamp in milliseconds>`                                 |
-| `syslog`  | yes  | only supported in `linux`, based on the `journalctl` command                                                                           |
+| name        | dir  | description                                                                                                                            |
+| ---:        | ---: | ---:                                                                                                                                   |
+| `config`    | yes  | Configuration file, including the main configuration and the configuration of the enabled collectors.                                  |
+| `basic`     | yes   | The os information and environment variables of the runtime.                                                                                              |
+| `data`      | yes   | The blacklist file `.pull`, located in the `data` directory     |
+| `log`       | yes  | Latest log files, such as log and gin log, not supporting `stdout` currently                                                           |
+| `profile`   | yes  | When pprof is enabled, it will collect profile data. [:octicons-tag-24: Version-1.9.2](changelog.md#cl-1.9.2) enabled pprof by default |
+| `metrics`   | yes  | The data returned by the `/metrics` API is named in the format of `metric-<timestamp in milliseconds>`                                 |
+| `syslog`    | yes  | only supported in `linux`, based on the `journalctl` command                                                                           |
+| `error.log` | no      | output the error messages that occur during the collection process                                                        |
 
-**Mask sensitive information**
+### Mask sensitive information
 
 When collecting information, sensitive information (such as tokens, passwords, etc.) will be automatically filtered and replaced. The specific rules are as follows:
 
@@ -328,11 +366,11 @@ When collecting information, sensitive information (such as tokens, passwords, e
 
 Only retrieve environment variables starting with `ENV_`, and mask environment variables containing `password`, `token`, `key`, `key_pw`, `secret` in their names by replacing them with `******`.
 
-- Configuration files 
+- Configuration files
 
 Perform the following regular expression replacement on the contents of the configuration file, for example:
 
-```
+```txt
 https://openway.guance.com?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` => `https://openway.guance.com?token=******
 pass = "1111111"` => `pass = "******"
 postgres://postgres:123456@localhost/test` => `postgres://postgres:******@localhost/test

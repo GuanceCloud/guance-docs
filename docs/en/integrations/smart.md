@@ -1,5 +1,19 @@
+---
+title     : 'Disk S.M.A.R.T'
+summary   : 'Collect disk metrics through smartctl'
+__int_icon      : 'icon/smartctl'
+dashboard :
+  - desc  : 'N/A'
+    path  : '-'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # Disk S.M.A.R.T
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -8,19 +22,22 @@
 
 Data collection of computer hard disk running state.
 
-## Preconditions {#requrements}
+## Configuration {#config}
+
+### Preconditions {#requrements}
 
 Installing smartmontools
 
 - Linux: `sudo apt install smartmontools -y`
 
-	If the solid state drive is nvme compliant, it is recommended to install nvme-cli for more nvme information: `sudo apt install nvme-cli -y`
+  If the solid state drive is nvme compliant, it is recommended to install nvme-cli for more nvme information: `sudo apt install nvme-cli -y`
 
 - MacOS: `brew install smartmontools -y`
 - WinOS: download [Windows version](https://www.smartmontools.org/wiki/Download#InstalltheWindowspackage){:target="_blank"}
 
-## Configuration {#config}
+### Collector Configuration {#input-config}
 
+<!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
     Go to the `conf.d/smart` directory under the DataKit installation directory, copy `smart.conf.sample` and name it `smart.conf`. Examples are as follows:
@@ -75,8 +92,9 @@ Installing smartmontools
 === "Kubernetes"
 
     The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-enable -->
 
-## Measurements {#requrements}
+## Metric {#metric}
 
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.smart.tags]`:
 

@@ -1,13 +1,24 @@
+---
+title     : 'Tomcat'
+summary   : 'Collect Tomcat metrics'
+__int_icon      : 'icon/tomcat'
+dashboard :
+  - desc  : 'Tomcat'
+    path  : 'dashboard/en/tomcat'
+monitor   :
+  - desc  : 'Tomcat'
+    path  : 'monitor/en/tomcat'
+---
 
+<!-- markdownlint-disable MD025 -->
 # Tomcat
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
-
-
-# Collect Tomcat metrics by dd-trace {#dd-trace-tomcat}
 
 Tomcat metrics can be collected by using [dd-trace](ddtrace.md).
 
@@ -15,26 +26,29 @@ The flow of the collected data is as follows: Tomcat -> dd-trace -> DataKit(stat
 
 You can see that Datakit has already integrated the [statsd](https://github.com/statsd/statsd){:target="_blank"} server, and dd-trace collects Tomcat metric data and reports it to Datakit using statsd protocol.
 
-## Preconditions {#requrements-ddtrace}
+## Configuration {#config}
 
-- Already tested version:
+### Preconditions {#requrements}
+
+- Already tested Tomcat version:
     - [x] 11.0.0
     - [x] 10.1.10
     - [x] 9.0.76
     - [x] 8.5.90
+
+### DDtrace Configuration {#config-ddtrace}
+
 - Download `dd-java-agent.jar`, see [here](ddtrace.md){:target="_blank"};
 
-## Configuration {#config-ddtrace}
-
-- Datakit configuration: 
+- Datakit configuration:
 
 See the configuration of [statsd](statsd.md){:target="_blank"}.
 
 Restart Datakit to make configuration take effect.
 
-- Tomcat configuration: 
+- Tomcat configuration:
 
-Create the file `setenv.sh` under `/usr/local/tomcat/bin` and give it execuate permission, then write the following:
+Create the file `setenv.sh` under `/usr/local/tomcat/bin` and give it execute permission, then write the following:
 
 ```sh
 export CATALINA_OPTS="-javaagent:dd-java-agent.jar \
@@ -46,15 +60,15 @@ export CATALINA_OPTS="-javaagent:dd-java-agent.jar \
 
 The parameters are described below:
 
-- `javaagent`: Fill in the full path to `dd-java-agent.jar`; 
-- `Ddd.jmxfetch.enabled`: Fill in `true`, which means the dd-trace collection function is enabled; 
-- `Ddd.jmxfetch.statsd.host`: Fill in the network address that Datakit listens to. No port number is included; 
-- `Ddd.jmxfetch.statsd.port`: Fill in the port number that Datakit listens to. Usually `8125`, as determined by the Datakit side configuration; 
+- `javaagent`: Fill in the full path to `dd-java-agent.jar`;
+- `Ddd.jmxfetch.enabled`: Fill in `true`, which means the dd-trace collection function is enabled;
+- `Ddd.jmxfetch.statsd.host`: Fill in the network address that Datakit listens to. No port number is included;
+- `Ddd.jmxfetch.statsd.port`: Fill in the port number that Datakit listens to. Usually `8125`, as determined by the Datakit side configuration;
 - `Ddd.jmxfetch.tomcat.enabled`: Fill in `true`, which means the Tomcat collect function of dd-trace is enabled. When enabled, the metrics set named `tomcat` will showing up;
 
 Restart Datakit to make configuration take effect.
 
-## Measurement {#measurements-ddtrace}
+## Metric {#metric}
 
 There will be two metrics set, one for [JVM's metrics](jvm.md#dd-jvm-measurement){:target="_blank"}, and the other for `tomcat`, only `tomcat` is shown below.
 
@@ -92,7 +106,7 @@ All the following data collections will have a global tag named `host` appended 
 
 
 
-### `tomcat` {#measurements-tomcat}
+### `tomcat`
 
 - Tags
 
@@ -138,7 +152,7 @@ All the following data collections will have a global tag named `host` appended 
 
 <!-- markdownlint-enable -->
 
-## Log Collection {#logging-ddtrace}
+## Log Collection {#logging}
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
@@ -161,49 +175,53 @@ After the changes are made, restart Datakit to make the configuration take effec
 
 ### Field Description {#fields-ddtrace}
 
-* Access Log
+- Access Log
 
 Log sample:
 
-```
+```log
 0:0:0:0:0:0:0:1 - admin [24/Feb/2015:15:57:10 +0530] "GET /manager/images/tomcat.gif HTTP/1.1" 200 2066
 ```
 
 The list of cut fields is as follows:
 
-| Field Name       | Field Value                     | Description                           |
-| ---          | ---                        | ---                            |
-| time         | 1424773630000000000        | Time when the log was generated                 |
-| status       | OK                         | Log level                       |
-| client_ip    | 0:0:0:0:0:0:0:1            | Mobile  ip                      |
+| Field Name   | Field Value                | Description                                  |
+| ------------ | -------------------------- | -------------------------------------------- |
+| time         | 1424773630000000000        | Time when the log was generated              |
+| status       | OK                         | Log level                                    |
+| client_ip    | 0:0:0:0:0:0:0:1            | Mobile  ip                                   |
 | http_auth    | admin                      | Authorized users authenticated by HTTP Basic |
-| http_method  | GET                        | HTTP methods                      |
-| http_url     | /manager/images/tomcat.gif | Client request address                 |
-| http_version | 1.1                        | HTTP Protocol Version                  |
-| status_code  | 200                        | HTTP status code                    |
+| http_method  | GET                        | HTTP methods                                 |
+| http_url     | /manager/images/tomcat.gif | Client request address                       |
+| http_version | 1.1                        | HTTP Protocol Version                        |
+| status_code  | 200                        | HTTP status code                             |
 | bytes        | 2066                       | Number of bytes of HTTP response body        |
 
-* Cataline / Host-manager / Localhost / Manager Log
+- Catalina / Host-manager / Localhost / Manager Log
 
 log example:
 
-```
+```log
 06-Sep-2021 22:33:30.513 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Xmx256m
 ```
 
 the list of cut fields is as follows:
 
-| Field Name        | Field Value                                                | Description                 |
-| ---           | ---                                                   | ---                  |
-| time          | 1630938810513000000                                   | Time when the log was generated       |
-| status        | INFO                                                  | Log level             |
-| thread_name   | main                                                  | Thread name               |
-| report_source | org.apache.catalina.startup.VersionLoggerListener.log | ClassName.MethodName |
-| msg           | Command line argument: -Xmx256m                       | Message                 |
+| Field Name    | Field Value                                           | Description                     |
+| ------------- | ----------------------------------------------------- | ------------------------------- |
+| time          | 1630938810513000000                                   | Time when the log was generated |
+| status        | INFO                                                  | Log level                       |
+| thread_name   | main                                                  | Thread name                     |
+| report_source | org.apache.catalina.startup.VersionLoggerListener.log | ClassName.MethodName            |
+| msg           | Command line argument: -Xmx256m                       | Message                         |
 
-# Collect Tomcat metrics by Jolokia (Deprecated, removed in new version) {#jolokia-tomcat}
+## Jolokia {#jolokia}
 
-## Preconditions {#requrements}
+> Deprecated, removed in new version {#jolokia}
+
+### Config {#jolokia-config}
+
+### Preconditions {#jolokia-requrements}
 
 - Already tested version:
     - [x] 9
@@ -211,9 +229,9 @@ the list of cut fields is as follows:
 
 Download [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-war/1.6.2/jolokia-war-1.6.2.war){:target="_blank"}, rename it to `jolokia.war`, and place it in tomcat's webapps directory. You can also get the jolokia war package from the data directory under the Datakit installation directory. Edit `tomcat-users.xml` in tomcat's conf directory and add the user whose `role` is `jolokia`.
 
-Take `apache-tomcat-9.0.45` as an example (the username and password of the jolokia user in the example must be modified) :
+Take `apache-tomcat-9.0.45` as an example (the username and password of the `jolokia` user in the example must be modified) :
 
-```ssh
+```shell
 $ cd apache-tomcat-9.0.45/
 
 $ export tomcat_dir=`pwd`
@@ -244,7 +262,8 @@ $ $tomcat_dir/bin/startup.sh
 
 Go to `http://localhost:8080/jolokia` to see if the configuration was successful.
 
-## Configuration {#config}
+<!-- markdownlint-disable MD046 -->
+### Configuration {#jolokia-input-config}
 
 === "Host Installation"
 
@@ -318,6 +337,7 @@ Go to `http://localhost:8080/jolokia` to see if the configuration was successful
 === "Kubernetes"
 
     The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-enable -->
 
 ## Measurement {#measurements}
 
@@ -334,7 +354,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-### `tomcat_global_request_processor` {#measurements-not-tomcat}
+### `tomcat_global_request_processor`
 
 - Tags
 
@@ -361,7 +381,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-### `tomcat_jsp_monitor` {#measurements-not-tomcat}
+### `tomcat_jsp_monitor`
 
 - Tags
 
@@ -388,7 +408,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-### `tomcat_thread_pool` {#measurements-not-tomcat}
+### `tomcat_thread_pool`
 
 - Tags
 
@@ -413,7 +433,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-### `tomcat_servlet` {#measurements-not-tomcat}
+### `tomcat_servlet`
 
 - Tags
 
@@ -441,7 +461,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-### `tomcat_cache` {#measurements-not-tomcat}
+### `tomcat_cache`
 
 - Tags
 
@@ -468,11 +488,14 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-## Log Collection {#logging}
+### Log Collection {#jolokia-logging}
+
+<!-- markdownlint-disable MD046 -->
 
 ???+ attention
 
     Log collection only supports log collection on installed DataKit hosts.
+<!-- markdownlint-enable -->
 
 To collect Tomcat logs, open `files` in tomcat.conf and write to the absolute path of the Tomcat log file. For example:
 
@@ -483,44 +506,44 @@ To collect Tomcat logs, open `files` in tomcat.conf and write to the absolute pa
 
 After log collection is turned on, logs with `tomcat` as the log `source` will be generated by default.
 
-### Field Description
+### Field Description {#fields}
 
 - Access Log
 
 Log sample:
 
-```
+```log
 0:0:0:0:0:0:0:1 - admin [24/Feb/2015:15:57:10 +0530] "GET /manager/images/tomcat.gif HTTP/1.1" 200 2066
 ```
 
 The list of cut fields is as follows:
 
-| Field Name       | Field Value                     | Description                           |
-| ---          | ---                        | ---                            |
-| time         | 1424773630000000000        | Time when the log was generated                 |
-| status       | OK                         | Log level                       |
-| client_ip    | 0:0:0:0:0:0:0:1            | Mobile  ip                      |
+| Field Name   | Field Value                | Description                                  |
+| ------------ | -------------------------- | -------------------------------------------- |
+| time         | 1424773630000000000        | Time when the log was generated              |
+| status       | OK                         | Log level                                    |
+| client_ip    | 0:0:0:0:0:0:0:1            | Mobile  ip                                   |
 | http_auth    | admin                      | Authorized users authenticated by HTTP Basic |
-| http_method  | GET                        | HTTP methods                      |
-| http_url     | /manager/images/tomcat.gif | Client request address                 |
-| http_version | 1.1                        | HTTP Protocol Version                  |
-| status_code  | 200                        | HTTP status code                    |
+| http_method  | GET                        | HTTP methods                                 |
+| http_url     | /manager/images/tomcat.gif | Client request address                       |
+| http_version | 1.1                        | HTTP Protocol Version                        |
+| status_code  | 200                        | HTTP status code                             |
 | bytes        | 2066                       | Number of bytes of HTTP response body        |
 
-- Cataline / Host-manager / Localhost / Manager Log
+- Catalina / Host-manager / Localhost / Manager Log
 
-log example:
+Log example:
 
-```
+```log
 06-Sep-2021 22:33:30.513 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Xmx256m
 ```
 
 the list of cut fields is as follows:
 
-| Field Name        | Field Value                                                | Description                 |
-| ---           | ---                                                   | ---                  |
-| time          | 1630938810513000000                                   | Time when the log was generated       |
-| status        | INFO                                                  | Log level             |
-| thread_name   | main                                                  | Thread name               |
-| report_source | org.apache.catalina.startup.VersionLoggerListener.log | ClassName.MethodName |
-| msg           | Command line argument: -Xmx256m                       | Message                 |
+| Field Name    | Field Value                                           | Description                     |
+| ------------- | ----------------------------------------------------- | ------------------------------- |
+| time          | 1630938810513000000                                   | Time when the log was generated |
+| status        | INFO                                                  | Log level                       |
+| thread_name   | main                                                  | Thread name                     |
+| report_source | org.apache.catalina.startup.VersionLoggerListener.log | ClassName.MethodName            |
+| msg           | Command line argument: -Xmx256m                       | Message                         |

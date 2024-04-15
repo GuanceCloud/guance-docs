@@ -4,23 +4,18 @@
      如果您使用 Launcher 部署过 DataWay，可跳过本文安装步骤。
      本文描述如何使用观测云管理后台注册和安装 DataWay ，您也可以使用 Launcher [快速安装 DataWay](launcher-install.md#dataway-install)
 
-
-
 ## 前提条件
 
 - 已部署观测云，未部署参考 [使用 Launcher 部署产品](launcher-install.md)
 
-
 ## 基础信息及兼容
 
-|     名称     |                   描述                   |
+| 名称                 | 描述                                            |
 | :------------------: | :---------------------------------------------: |
-|      观测云管理控制台      |  http://df-management.dataflux.cn  |
-|    是否支离线安装    |                       是                        |
-|       支持架构       |                   amd64/arm64                   |
-|      部署机器IP      |                 192.168.100.105                 |
-
-
+| 观测云管理控制台     | http://df-management.dataflux.cn                |
+| 是否支离线安装       | 是                                              |
+| 支持架构             | amd64/arm64                                     |
+| 部署机器IP           | 192.168.100.105                                 |
 
 ## 安装步骤
 
@@ -75,7 +70,7 @@
 
 ## DataWay 访问设置
 
-=== "自建Kubernetes（NodePort）"
+=== "自建 Kubernetes（NodePort）"
     
      - 获取节点 IP
 
@@ -139,9 +134,6 @@
 
     你可以直接访问：`http://nlbIP`
 
-=== "主机和docker"
+=== "主机和 docker"
 
     您可以直接访问安装机器的 `9528` 端口。
-
-
-

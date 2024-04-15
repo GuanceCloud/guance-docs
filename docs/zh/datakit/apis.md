@@ -527,7 +527,7 @@ HTTP Code: 400
 
 ## `/v1/dialtesting/debug` | `POST` {#api-debug-dt}
 
-提供远程调试拨测的功能。
+提供远程调试拨测的功能，可通过[环境变量](../integrations/dialtesting.md#env)来控制禁拨网络。
 
 请求示例：
 
@@ -596,25 +596,26 @@ HTTP Code: 400
 }
 ```
 
-## `/v1/sourcemap` | `PUT` {#api-sourcemap}
+## `/v1/sourcemap` | `PUT` {#api-sourcemap-upload}
 
 [:octicons-tag-24: Version-1.12.0](changelog.md#cl-1.12.0)
 
-上传 sourcemap 文件。
+上传 sourcemap 文件，该接口需要开启 [RUM 采集器](../integrations/rum.md)。
 
 请求参数说明。
 
-|           参数 | 描述                                                                          | 类型     |
-| -------------: | ----------------------------------------------------------------------------- | -------- |
+|           参数 | 描述                                                            | 类型     |
+| -------------: | -------------------------------------------------------------- | -------- |
 | `token` |`datakit.conf` 配置中的 `dataway` 地址中包含的 token                      | `string` |
-| `app_id` | 用户访问应用唯一 ID 标识，如 `test-sourcmap`                            | `string` |
-|  `env` | 应用的部署环境，如 `prod`                           | `string` |
-|  `version` |应用的版本，如 `1.0.0`     | `string` |
+| `app_id` | 用户访问应用唯一 ID 标识，如 `test-sourcemap`                            | `string` |
+| `env` | 应用的部署环境，如 `prod`                                                  | `string` |
+| `version` |应用的版本，如 `1.0.0`                                                 | `string` |
+| `platform` |应用类型， 可选值 `web/miniapp/android/ios`, 默认 `web`                | `string` |
 
 请求示例：
 
 ``` shell
-curl -X PUT "http://localhost:9529/v1/sourcemap?app_id=test_sourcemap&env=production&version=1.0.0&token=tkn_xxxxx" \
+curl -X PUT "http://localhost:9529/v1/sourcemap?app_id=test_sourcemap&env=production&version=1.0.0&token=tkn_xxxxx&platform=web" \
 -F "file=@./sourcemap.zip" \
 -H "Content-Type: multipart/form-data"
 ```
@@ -623,11 +624,9 @@ curl -X PUT "http://localhost:9529/v1/sourcemap?app_id=test_sourcemap&env=produc
 
 ``` json
 {
-    "code":200,
-    "content":"uploaded to [/datakit/dir/data/rum/web/test_sourcemap-production-1.0.0.zip]!",
-    "errorCode":"",
-    "errorMsg":"",
-    "success":true
+  "content": "uploaded to [/path/to/datakit/data/rum/web/test_sourcemap-production-1.0.0.zip]!",
+  "errorMsg": "",
+  "success": true
 }
 ```
 
@@ -635,17 +634,304 @@ curl -X PUT "http://localhost:9529/v1/sourcemap?app_id=test_sourcemap&env=produc
 
 ``` json
 {
-    "code":401,
-    "content":null,
-    "errorCode":"auth.failed",
-    "errorMsg":"auth failed",
-    "success":false
+  "content": null,
+  "errorMsg": "app_id not found",
+  "success": false
 }
+```
+
+## `/v1/sourcemap` | `DELETE` {#api-sourcemap-delete}
+
+[:octicons-tag-24: Version-1.16.0](changelog.md#cl-1.16.0)
+
+删除 sourcemap 文件，该接口需要开启 [RUM 采集器](../integrations/rum.md)。
+
+请求参数说明。
+
+|           参数 | 描述                                                            | 类型     |
+| -------------: | -------------------------------------------------------------- | -------- |
+| `token` |`datakit.conf` 配置中的 `dataway` 地址中包含的 token                      | `string` |
+| `app_id` | 用户访问应用唯一 ID 标识，如 `test-sourcemap`                            | `string` |
+| `env` | 应用的部署环境，如 `prod`                                                  | `string` |
+| `version` |应用的版本，如 `1.0.0`                                                 | `string` |
+| `platform` |应用类型， 可选值 `web/miniapp/android/ios`, 默认 `web`     | `string` |
+
+请求示例：
+
+``` shell
+curl -X DELETE "http://localhost:9529/v1/sourcemap?app_id=test_sourcemap&env=production&version=1.0.0&token=tkn_xxxxx&platform=web"
+```
+
+成功返回示例：
+
+``` json
+{
+  "content":"deleted [/path/to/datakit/data/rum/web/test_sourcemap-production-1.0.0.zip]!",
+  "errorMsg":"",
+  "success":true
+}
+```
+
+失败返回示例：
+
+``` json
+{
+  "content": null,
+  "errorMsg": "delete sourcemap file [/path/to/datakit/data/rum/web/test_sourcemap-production-1.0.0.zip] failed: remove /path/to/datakit/data/rum/web/test_sourcemap-production-1.0.0.zip: no such file or directory",
+  "success": false
+}
+```
+
+## `/v1/sourcemap/check` | `GET` {#api-sourcemap-check}
+
+[:octicons-tag-24: Version-1.16.0](changelog.md#cl-1.16.0)
+
+验证 sourcemap 文件是否正确配置，该接口需要开启 [RUM 采集器](../integrations/rum.md)。
+
+请求参数说明。
+
+|           参数 | 描述                                                                          | 类型     |
+| -------------: | ----------------------------------------------------------------------------- | -------- |
+| `error_stack` | error 的堆栈信息                      | `string` |
+| `app_id` | 用户访问应用唯一 ID 标识，如 `test-sourcemap`                            | `string` |
+| `env` | 应用的部署环境，如 `prod`                           | `string` |
+| `version` |应用的版本，如 `1.0.0`     | `string` |
+| `platform` |应用类型， 可选值 `web/miniapp/android/ios`, 默认 `web`     | `string` |
+
+请求示例：
+
+``` shell
+curl "http://localhost:9529/v1/sourcemap/check?app_id=test_sourcemap&env=production&version=1.0.0&error_stack=at%20test%20%40%20http%3A%2F%2Flocalhost%3A8080%2Fmain.min.js%3A1%3A48"
+```
+
+成功返回示例：
+
+``` json
+{
+  "content": {
+    "error_stack": "at test @ main.js:6:6",
+    "original_error_stack": "at test @ http://localhost:8080/main.min.js:1:48"
+  },
+  "errorMsg": "",
+  "success": true
+}
+
+```
+
+失败返回示例：
+
+``` json
+{
+  "content": {
+    "error_stack": "at test @ http://localhost:8080/main.min.js:1:483",
+    "original_error_stack": "at test @ http://localhost:8080/main.min.js:1:483"
+  },
+  "errorMsg": "fetch original source information failed, make sure sourcemap file [main.min.js.map] is valid",
+  "success": false
+}
+
 ```
 
 ## `/metrics` | `GET` {#api-metrics}
 
 获取 Datakit 暴露的 Prometheus 指标。
+
+## `/v1/global/host/tags` | `GET` {#api-global-host-tags-get}
+
+获取 global-host-tags。
+
+请求示例：
+
+``` shell
+curl 127.0.0.1:9529/v1/global/host/tags
+```
+
+成功返回示例：
+
+``` json
+status_code: 200
+Response: {
+    "host-tags": {
+        "h": "h",
+        "host": "host-name"
+    }
+}
+```
+
+## `/v1/global/host/tags` | `POST` {#api-global-host-tags-post}
+
+创建或者更新 global-host-tags。
+
+请求示例：
+
+``` shell
+curl -X POST "127.0.0.1:9529/v1/global/host/tags?tag1=v1&tag2=v2"
+```
+
+成功返回示例：
+
+``` json
+status_code: 200
+Response: {
+    "dataway-tags": {
+        "e": "e",
+        "h": "h",
+        "tag1": "v1",
+        "tag2": "v2",
+        "host": "host-name"
+    },
+    "election-tags": {
+        "e": "e"
+    },
+    "host-tags": {
+        "h": "h",
+        "tag1": "v1",
+        "tag2": "v2",
+        "host": "host-name"
+    }
+}
+```
+
+修改成功后，如果是主机模式下，修改内容会持久化到配置文件 `datakit.conf` 中。
+
+## `/v1/global/host/tags` | `DELETE` {#api-global-host-tags-delete}
+
+删除部分 global-host-tags。
+
+请求示例：
+
+``` shell
+curl -X DELETE "127.0.0.1:9529/v1/global/host/tags?tags=tag1,tag3"
+```
+
+成功返回示例：
+
+``` json
+status_code: 200
+Response: {
+    "dataway-tags": {
+        "e": "e",
+        "h": "h",
+        "host": "host-name"
+    },
+    "election-tags": {
+        "e": "e"
+    },
+    "host-tags": {
+        "h": "h",
+        "host": "host-name"
+    }
+}
+```
+
+修改成功后，如果是主机模式下，修改内容会持久化到配置文件 `datakit.conf` 中。
+
+## `/v1/global/election/tags` | `GET` {#api-global-election-tags-get}
+
+获取 global-election-tags。
+
+请求示例：
+
+``` shell
+curl 127.0.0.1:9529/v1/global/election/tags
+```
+
+成功返回示例：
+
+``` json
+status_code: 200
+Response: {
+    "election-tags": {
+        "e": "e"
+    }
+}
+```
+
+## `/v1/global/election/tags` | `POST` {#api-global-election-tags-post}
+
+创建或者更新 global-election-tags。
+
+请求示例：
+
+``` shell
+curl -X POST "127.0.0.1:9529/v1/global/election/tags?tag1=v1&tag2=v2"
+```
+
+成功返回示例：
+
+``` json
+status_code: 200
+Response: {
+    "dataway-tags": {
+        "e": "e",
+        "h": "h",
+        "tag1": "v1",
+        "tag2": "v2",
+        "host": "host-name"
+    },
+    "election-tags": {
+        "tag1": "v1",
+        "tag2": "v2",
+        "e": "e"
+    },
+    "host-tags": {
+        "h": "h",
+        "host": "host-name"
+    }
+}
+```
+
+修改成功后，如果是主机模式下，修改内容会持久化到配置文件 `datakit.conf` 中。
+
+当全局 `global-election-enable = false` 禁止执行本指令，失败返回示例：
+
+``` json
+status_code: 500
+Response: {
+    "message": "Can't use this command when global-election is false."
+}
+```
+
+## `/v1/global/election/tags` | `DELETE` {#api-global-election-tags-delete}
+
+删除部分 global-election-tags。
+
+请求示例：
+
+``` shell
+curl -X DELETE "127.0.0.1:9529/v1/global/election/tags?tags=tag1,tag3"
+```
+
+成功返回示例：
+
+``` json
+status_code: 200
+Response: {
+    "dataway-tags": {
+        "e": "e",
+        "h": "h",
+        "host": "host-name"
+    },
+    "election-tags": {
+        "e": "e"
+    },
+    "host-tags": {
+        "h": "h",
+        "host": "host-name"
+    }
+}
+```
+
+修改成功后，如果是主机模式下，修改内容会持久化到配置文件 `datakit.conf` 中。
+
+当全局 `global-election-enable = false` 禁止执行本指令，失败返回示例：
+
+``` json
+status_code: 500
+Response: {
+    "message": "Can't use this command when global-election is false."
+}
+```
 
 ## DataKit 数据结构约束 {#lineproto-limitation}
 

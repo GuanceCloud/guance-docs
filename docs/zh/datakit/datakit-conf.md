@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.13.2）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.27.0）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -53,6 +53,9 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
     # collect data more frequently.
     protect_mode = true
     
+    # The user name running datakit. Generally for audit purpose. Default is root.
+    datakit_user = "root"
+    
     ################################################
     # ulimit: set max open-files limit(Linux only)
     ################################################
@@ -71,6 +74,16 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       # DCA client white list(raw IP or CIDR ip format)
       # Example: [ "1.2.3.4", "192.168.1.0/24" ]
       white_list = []
+    
+    ################################################
+    # Upgrader 
+    ################################################
+    [dk_upgrader]
+      # host address
+      host = "0.0.0.0"
+    
+      # port number
+      port = 9542 
     
     ################################################
     # Pipeline
@@ -130,6 +143,14 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       # If the list empty, all app's requests accepted.
       rum_app_id_white_list = []
     
+      # only these domains enable CORS. If list empty, all domains are enabled.
+      allowed_cors_origins = []
+    
+      # Start Datakit web server with HTTPS
+      [http_api.tls]
+        # cert = "path/to/certificate/file"
+        # privkey = "path/to/private_key/file"
+    
     ################################################
     # io configures
     ################################################
@@ -141,12 +162,6 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       max_cache_count = 1000
       flush_workers   = 0 # default to (cpu_core * 2 + 1)
       flush_interval  = "10s"
-    
-      # We can write these data points into file in line-proto format(truncated at 32MB).
-      output_file = ""
-      # only these input data points write to file. If list empy and output_file set,
-      # all points are write to the file.
-      output_file_inputs = []
     
       # Disk cache on datakit upload failed
       enable_cache = false
@@ -176,17 +191,41 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       #    "{ service = re("abc.*") AND some_tag CONTAIN ['def_.*'] }",
       #  ]
     
+    [recorder]
+      enabled = false
+      #path = "/path/to/point-data/dir"
+      encoding = "v2"  # use protobuf-json format
+      duration = "30m" # record for 30 minutes
+    
+      # only record these inputs, if empty, record all
+      inputs = [
+        #"cpu",
+        #"mem",
+      ]
+    
+      # only record these categoris, if empty, record all
+      category = [
+        #"logging",
+        #"object",
+      ]
+    
     ################################################
     # Dataway configure
     ################################################
     [dataway]
       # urls: Dataway URL list
-      # NOTE: do not configure multiple URLs here, it's a deprecated feature,
-      # we can use Dataway sinker(below) for that purpose.
+      # NOTE: do not configure multiple URLs here, it's a deprecated feature.
       urls = ["https://openway.guance.com?token=tkn_xxxxxxxxxxx"]
     
       # Dataway HTTP timeout
       timeout_v2 = "30s"
+    
+      # max_retry_count specifies at most how many times the data sending operation will be tried when it fails,
+      # valid minimum value is 1 (NOT 0) and maximum value is 10.
+      max_retry_count = 4
+    
+      # The interval between two retry operation, valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h"
+      retry_delay = "1s"
     
       # HTTP Proxy(IP:Port)
       http_proxy = ""
@@ -195,17 +234,22 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       enable_httptrace = false   # enable trace HTTP metrics(connection/NDS/TLS and so on)
       idle_timeout     = "90s"   # not-set, default 90s
     
-      # Sinkers: DataKit are able to upload data point to multiple workspace
-      #[[dataway.sinkers]]
-      #  categories = [ "L/M/O/..." ]
-      #  filters = [
-      #    "{ cpu = 'cpu-total' }",
-      #    "{ source = 'some-logging-source'}",
-      #  ]
-      #  url = "https//openway.guance.com?token=<YOUR-TOKEN>"
+      # HTTP body content type, other candidates are(case insensitive):
+      #  - v1: line-protocol
+      #  - v2: protobuf
+      content_encoding = "v1"
+    
+      # Enable GZip to upload point data.
       #
-      #[[dataway.sinkers]]
-      #  another sinker...
+      # do NOT disable gzip or your get large network payload.
+      gzip = true
+    
+      max_raw_body_size = 10485760 # max body size(before gizp) in bytes
+    
+      # Customer tag or field keys that will extract from exist points
+      # to build the X-Global-Tags HTTP header value.
+      global_customer_keys = []
+      enable_sinker        = false # disable sinker
     
     ################################################
     # Datakit logging configure
@@ -266,18 +310,18 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       ENV_HOSTNAME = ""
     
     ################################################
-    # cgroup configures
+    # resource limit configures
     ################################################
-    [cgroup]
+    [resource_limit]
     
-      # enable or disable cgroup
+      # enable or disable resource limit
       enable = true
     
-      # cgroup path
+      # Linux only, cgroup path
       path = "/datakit"
     
       # set max CPU usage(%, max 100.0, no matter how many CPU cores here)
-      cpu_max = 30.0
+      cpu_max = 20.0
     
       # set max memory usage(MB)
       mem_max_mb = 4096
@@ -321,7 +365,7 @@ DataKit 会开启 HTTP 服务，用来接收外部数据，或者对外提供基
 
     ### 修改 HTTP 服务地址 {#update-http-server-host}
     
-    默认的 HTTP 服务地址是 `localhost:9529`，如果 9529 端口被占用，或希望从外部访问 DataKit 的 HTTP 服务（比如希望接收 [RUM](rum.md) 或 [Tracing](datakit-tracing.md) 数据），可将其修改成：
+    默认的 HTTP 服务地址是 `localhost:9529`，如果 9529 端口被占用，或希望从外部访问 DataKit 的 HTTP 服务（比如希望接收 [RUM](../integrations/rum.md) 或 [Tracing](../integrations/datakit-tracing.md) 数据），可将其修改成：
     
     ```toml
     [http_api]
@@ -489,13 +533,13 @@ DataKit 默认日志等级为 `info`。编辑 `datakit.conf`，可修改日志�
     这里的 `cache_max_size_gb` 指每个分类（Category）的缓存大小，总共 10 个分类的话，如果每个指定 5GB，理论上会占用 50GB 左右的空间。
 <!-- markdownlint-enable -->
 
-### cgroup 限制  {#enable-cgroup}
+### 资源限制  {#resource-limit}
 
-由于 DataKit 上处理的数据量无法估计，如果不对 DataKit 消耗的资源做物理限制，将有可能消耗所在节点大量资源。这里我们可以借助 cgroup 来限制，在 *datakit.conf* 中有如下配置：
+由于 DataKit 上处理的数据量无法估计，如果不对 DataKit 消耗的资源做物理限制，将有可能消耗所在节点大量资源。这里我们可以借助 Linux 的 cgroup 和 Windows 的 job object 来限制，在 *datakit.conf* 中有如下配置：
 
 ```toml
-[cgroup]
-  path = "/datakit" # cgroup 限制目录，如 /sys/fs/cgroup/memory/datakit, /sys/fs/cgroup/cpu/datakit
+[resource_limit]
+  path = "/datakit" # Linux cgroup 限制目录，如 /sys/fs/cgroup/memory/datakit, /sys/fs/cgroup/cpu/datakit
 
   # 允许 CPU 最大使用率（百分制）
   cpu_max = 20.0
@@ -519,8 +563,10 @@ $ systemctl status datakit
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    - cgroup 限制只在[宿主机安装](datakit-install.md)的时候会默认开启
-    - cgroup 只支持 CPU 使用率和内存使用量（mem+swap）控制，且只支持 Linux 操作系统。
+    - 资源限制只在[宿主机安装](datakit-install.md)的时候会默认开启
+    - 只支持 CPU 使用率和内存使用量（mem+swap）控制，且只支持 Linux 和 windows ([:octicons-tag-24: Version-1.15.0](changelog.md#cl-1.15.0)) 操作系统。
+    - CPU 使用率控制目前不支持这些 windows 操作系统： Windows 7, Windows Server 2008 R2, Windows Server 2008, Windows Vista, Windows Server 2003 和 Windows XP。
+    - 非 root 用户改资源限制配置时，必须重装 service。
 
 ???+ tip
 
@@ -531,9 +577,23 @@ $ systemctl status datakit
 
 参见[这里](election.md#config)
 
-### DataWay Sinker 配置 {#dataway-sink}
+### DataWay 参数配置 {#dataway-settings}
 
-参见[这里](datakit-sink-dataway.md)
+Dataway 部分有如下几个配置可以配置，其它部分不建议改动：
+
+- `timeout`：上传观测云的超时时间，默认 30s
+- `max_retry_count`：设置 Dataway 发送的重试次数（默认 4 次）[:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0)
+- `retry_delay`：设置重试间隔基础步长，默认 200ms。所谓基础步长，即第一次 200ms，第二次 400ms，第三次 800ms，以此类推（以 $2^n$ 递增）[:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0)
+- `max_raw_body_size`：控制单个上传包的最大大小（压缩前），单位字节 [:octicons-tag-24: Version-1.17.1](changelog.md#cl-1.17.1)
+- `content_encoding`：可选择 v1 或 v2 [:octicons-tag-24: Version-1.17.1](changelog.md#cl-1.17.1)
+    - v1 即行协议（默认 v1）
+    - v2 即 Protobuf 协议，相比 v1，它各方面的性能都更优越。运行稳定后，后续将默认采用 v2
+
+Kubernetes 下部署相关配置参见[这里](datakit-daemonset-deploy.md#env-dataway)。
+
+### Sinker 配置 {#dataway-sink}
+
+参见[这里](../deployment/dataway-sink.md)
 
 ### 使用 Git 管理 DataKit 配置 {#using-gitrepo}
 
@@ -549,7 +609,7 @@ ulimit = 64000
 
 ulimit 默认配置为 64000。在 Kubernetes 中，通过[设置 `ENV_ULIMIT`](datakit-daemonset-deploy.md#env-others) 即可。
 
-### :material-chat-question: cgroup CPU 使用率说明 {#cgroup-how}
+### :material-chat-question: 资源限制 CPU 使用率说明 {#cgroup-how}
 
 CPU 使用率是百分比制（最大值 100.0），以一个 8 核心的 CPU 为例，如果限额 `cpu_max` 为 20.0（即 20%），则 DataKit 最大的 CPU 消耗，在 top 命令上将显示为 160% 左右。
 

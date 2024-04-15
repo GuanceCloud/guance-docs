@@ -1,6 +1,19 @@
-# CAT
+---
+title     : 'CAT'
+summary   : 'The performance, capacity, and business indicator monitoring system of Meituan Dianping'
+__int_icon      : 'icon/cat'
+dashboard :
+  - desc  : 'Cat dashboard'
+    path  : 'dashboard/en/cat'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
 ---
 
+<!-- markdownlint-disable MD025 -->
+# CAT
+<!-- markdownlint-enable -->
+---
 
 [:octicons-tag-24: Version-1.9.0](../datakit/changelog.md#cl-1.9.0) ·
 [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
@@ -12,9 +25,9 @@
 
 ---
 
-[dianping-cat](https://github.com/dianping/cat){:target="_blank"}  Cat is an open-source distributed real-time monitoring system mainly used to monitor the performance, capacity, and business indicators of the system. It is a monitoring system developed by Meituan Dianping Company and is currently open source and widely used.
+[Dianping-cat](https://github.com/dianping/cat){:target="_blank"}  Cat is an open-source distributed real-time monitoring system mainly used to monitor the performance, capacity, and business indicators of the system. It is a monitoring system developed by Meituan Dianping Company and is currently open source and widely used.
 
-Cat collects various indicator data of the system, such as CPU, memory, network, disk, etc., for real-time monitoring and analysis, helping developers quickly locate and solve system problems. 
+Cat collects various indicator data of the system, such as CPU, memory, network, disk, etc., for real-time monitoring and analysis, helping developers quickly locate and solve system problems.
 At the same time, it also provides some commonly used monitoring functions, such as alarms, statistics, log analysis, etc., to facilitate system monitoring and analysis by developers.
 
 
@@ -27,23 +40,23 @@ Data transmission protocol:
 - Native: Text form separated by specific symbols, currently supported by Datakit.
 
 
-数据分类：
+Data Classification：
 
-| type | long type         | doc               | datakit support | Corresponding data type |
+| type | long type         | doc               | Datakit support | Corresponding data type |
 |------|-------------------|:------------------|:---------------:|:------------------------|
 | t    | transaction start | transaction start |      true       | trace                   |
 | T    | transaction end   | transaction end   |      true       | trace                   |
 | E    | event             | event             |      false      | -                       |
 | M    | metric            | metric            |      false      | -                       |
 | L    | trace             | trace             |      false      | -                       |
-| H    | heartbeat         | heartbeat         |      true       | 指标                      |
+| H    | heartbeat         | heartbeat         |      true       | metric                      |
 
 
 
 
 ## CAT start mode {#cat-start}
 
-The data is all in the datakit, and the web page of cat no longer has data, so the significance of starting is not significant. 
+The data is all in the Datakit, and the web page of cat no longer has data, so the significance of starting is not significant.
 
 Moreover, the cat server will also send transaction data to the dk, causing a large amount of garbage data on the observation cloud page. It is not recommended to start a cat_ Home (cat server) service.
 
@@ -51,7 +64,7 @@ The corresponding configuration can be configured in client.xml, please refer to
 
 
 
-## Config {#config}
+## Configuration {#config}
 
 client config：
 
@@ -65,9 +78,11 @@ client config：
 </config>
 ```
 
-> Note: The 9529 port in the configuration is the HTTP port of the datakit. 2280 is the 2280 port opened by the cat input.
+> Note: The 9529 port in the configuration is the HTTP port of the Datakit. 2280 is the 2280 port opened by the cat input.
 
 Datakit config：
+
+<!-- markdownlint-disable MD046 -->
 
     Go to the `conf.d/cat` directory under the DataKit installation directory, copy `cat.conf.sample` and name it `cat.conf`. Examples are as follows:
     
@@ -99,8 +114,8 @@ Datakit config：
 
 === "Kubernetes"
 
-The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
-
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-disable MD046 -->
 
 
 Notes on configuration files:
@@ -111,9 +126,9 @@ Notes on configuration files:
 
 ---
 
-## Guance Trace and Metric {#traces_mertics}
+## Guance Trace and Metric {#trace-metric}
 
-### trace {#traces}
+### Guance trace {#guance-trace}
 
 login guance.com, and click on Application Performance.
 
@@ -124,7 +139,8 @@ login guance.com, and click on Application Performance.
 </figure>
 
 
-### Metric {#metrics}
+### Guance metric {#guance-metric}
+
 To [download dashboard](https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/songlongqi/cat/DianPing-Cat%20%E7%9B%91%E6%8E%A7%E8%A7%86%E5%9B%BE.json){:target="_blank"}
 
 At guance `Scenes` -> `dashboard` to `Create Dashboard`.
@@ -138,7 +154,7 @@ Effect display:
 </figure>
 
 
-## Metrics Set {#cat-metrics}
+## Metric {#metric}
 
 
 
@@ -151,43 +167,43 @@ Effect display:
 
 | Tag | Description |
 |  ----  | --------|
-|`domain`|IP 地址|
-|`hostName`|主机名|
-|`os_arch`|CPU 架构：amd/arm|
-|`os_name`|操作系统名称：`windows/linux/mac` 等|
-|`os_version`|操作系统的内核版本|
-|`runtime_java-version`|Java version|
-|`runtime_user-dir`|启动程序的 jar 包位置|
-|`runtime_user-name`|用户名|
+|`domain`|IP address.|
+|`hostName`|Host name.|
+|`os_arch`|CPU architecture:AMD/ARM.|
+|`os_name`|OS name:'Windows/Linux/Mac',etc.|
+|`os_version`|The kernel version of the OS.|
+|`runtime_java-version`|Java version.|
+|`runtime_user-dir`|The path of jar.|
+|`runtime_user-name`|User name.|
 
 - fields
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`disk_free`|磁盘空闲大小|float|B|
-|`disk_total`|数据节点磁盘总量|float|B|
-|`disk_usable`|使用大小|float|B|
-|`memory_free`|释放内存|float|count|
-|`memory_heap-usage`|当前使用内存|float|count|
-|`memory_max`|最大使用内存|float|count|
-|`memory_non-heap-usage`|非堆内存|float|count|
-|`memory_total`|总使用内存|float|count|
-|`os_available-processors`|主机 CPU 核心数|float|count|
-|`os_committed-virtual-memory`|使用内存|float|B|
-|`os_free-physical-memory`|空闲内存|float|B|
-|`os_free-swap-space`|交换区空闲大小|float|B|
-|`os_system-load-average`|系统负载|float|percent|
-|`os_total-physical-memory`|总物理内存|float|B|
-|`os_total-swap-space`|交换区总大小|float|B|
-|`runtime_start-time`|启动时间|int|s|
-|`runtime_up-time`|运行时长|int|ms|
-|`thread_cat_thread_count`|cat 使用线程数量|float|count|
-|`thread_count`|总线程数量|float|count|
-|`thread_daemon_count`|活跃线程数量|float|count|
-|`thread_http_thread_count`|http 线程数量|float|count|
-|`thread_peek_count`|线程峰值|float|count|
-|`thread_pigeon_thread_count`|pigeon 线程数量|float|count|
-|`thread_total_started_count`|总初始化过的线程|float|count|
+|`disk_free`|Free disk size.|float|B|
+|`disk_total`|Total disk size of data nodes.|float|B|
+|`disk_usable`|Used disk size.|float|B|
+|`memory_free`|Free memory size.|float|count|
+|`memory_heap-usage`|The usage of heap memory.|float|count|
+|`memory_max`|Max memory usage.|float|count|
+|`memory_non-heap-usage`|The usage of non heap memory.|float|count|
+|`memory_total`|Total memory size.|float|count|
+|`os_available-processors`|The number of available processors in the host.|float|count|
+|`os_committed-virtual-memory`|Committed virtual memory size.|float|B|
+|`os_free-physical-memory`|Free physical memory size.|float|B|
+|`os_free-swap-space`|Free swap space size|float|B|
+|`os_system-load-average`|Average system load.|float|percent|
+|`os_total-physical-memory`|Total physical memory size.|float|B|
+|`os_total-swap-space`|Total swap space size.|float|B|
+|`runtime_start-time`|Start time.|int|s|
+|`runtime_up-time`|Runtime.|int|ms|
+|`thread_cat_thread_count`|The number of threads used by cat.|float|count|
+|`thread_count`|Total number of threads.|float|count|
+|`thread_daemon_count`|The number of daemon threads.|float|count|
+|`thread_http_thread_count`|The number of http threads.|float|count|
+|`thread_peek_count`|Thread peek.|float|count|
+|`thread_pigeon_thread_count`|The number of pigeon threads.|float|count|
+|`thread_total_started_count`|Total number of started threads.|float|count|
 
 

@@ -3,17 +3,16 @@
 
 ## 前置条件
 
-- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
+**注意**：若您开通了 [RUM Headless](../../dataflux-func/headless.md) 服务，前置条件已自动帮您配置完成，直接接入应用即可。
+
+- 安装 [DataKit](../../datakit/datakit-install.md)；  
+- 配置 [RUM 采集器](../../integrations/rum.md)；
+- DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 
 ## 应用接入
-当前 Flutter 版本暂只支持 Android 和 iOS 平台。登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
 
-1.输入「应用名称」、「应用ID」，选择平台对应「应用类型」
+当前 Flutter 版本暂只支持 Android 和 iOS 平台。登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
-- 应用名称：用于识别当前用户访问监测的应用名称。
-- 应用 ID ：应用在当前工作空间的唯一标识，对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
-
-![](../img/image_12.png)
 
 ![](../img/image_13.png)
 
@@ -51,7 +50,7 @@ dependencies:
 import 'package:ft_mobile_agent_flutter/ft_mobile_agent_flutter.dart';
 ```
 
-> Android 需要在 app/android 目录下 build.gradle 安装 ft-plugin 配合使用，并在创建自定义 Application，并且 AndroidMainifest.xml  中声明使用，代码如下，详细配置请见 [Android SDK](../android/app-access.md#gradle-setting) 配置，或参考 demo
+> Android 需要在 app/android 目录下 build.gradle 安装 ft-plugin 配合使用，并在创建自定义 Application，并且 AndroidMainifest.xml  中声明使用，代码如下，详细配置可参考 [Android SDK](../android/app-access.md#gradle-setting) 配置，或参考 demo。
 
 ```kotlin
 import io.flutter.app.FlutterApplication
@@ -78,20 +77,26 @@ class CustomApplication : FlutterApplication() {
 ```dart
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
-    //初始化 SDK
+    //本地环境部署、Datakit 部署
     await FTMobileFlutter.sdkConfig(
-      serverUrl: serverUrl,
-      debug: true,
+      datakitUrl: datakitUrl
+    );
+
+    //使用公网 DataWay
+    await FTMobileFlutter.sdkConfig(
+      datakitUrl: datakitUrl
     );
 }  
 ```
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| serverUrl | String | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
-| debug | bool | 否 | 设置是否允许打印日志，默认`false` |
-| envType | enum EnvType | 否 | 环境，默认`EnvType.prod` |
-| env | String | 否 | 环境，默认`prod`，任意字符，建议使用单个单词，例如 `test` 等|
+| datakitUrl | String | 是 | datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。<br/>:warning: 安装 SDK 设备需能访问该地址。**注意：datakit 和 dataway 配置两者二选一**|
+| datawayUrl | String | 是 | dataway 访问 URL 地址，例子：http://10.0.0.1:9528，端口默认 9528，**注意：安装 SDK 设备需能访问这地址。注意：datakit 和 dataway 配置两者二选一** |
+| clientToken | String | 是 | 认证 token, 需要与 datawayUrl 同时配置  |
+| debug | bool | 否 | 设置是否允许打印日志，默认 `false` |
+| env | String | 否 | 环境配置，默认 `prod`，任意字符，建议使用单个单词，例如 `test` 等|
+| envType | enum EnvType | 否 | 环境配置，默认 `EnvType.prod`。注：env 与 envType 只需配置一个 |
 | serviceName | String | 否 | 服务名 |
 
 ### RUM 配置 {#rum-config}
@@ -108,12 +113,12 @@ void main() async {
 | --- | --- | --- | --- |
 | androidAppId | String | 是 | appId，监测中申请 |
 | iOSAppId | String | 是 | appId，监测中申请 |
-| sampleRate | double | 否 | 采样率，（采集率的值范围为>= 0、<= 1，默认值为 1） |
+| sampleRate | double | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据     |
 | enableUserResource | bool | 否 | 是否开启  http `Resource` 数据自动抓取，默认为 `false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面需求需要继承 `FTHttpOverrides`，并设置 enableAutoTrace  为 `false` |
 | enableNativeUserAction | bool | 否 | 是否进行 `Native Action` 追踪，`Button` 点击事件，纯 `Flutter` 应用建议关闭，默认为 `false` |
 | enableNativeUserView | bool | 否 | 是否进行 `Native View` 自动追踪，纯 `Flutter` 应用建议关闭，，默认为 `false` |
 | enableNativeUserResource | bool | 否 | 是否进行 `Native Resource` 自动追踪，纯 `Flutter` 应用建议关闭，默认为 `false` |
-| errorMonitorType | enum ErrorMonitorType | 否 | 设置辅助监控信息，添加附加监控数据到 `Rum` Error 数据中，`ErrorMonitorType.battery` 为电池余量，`ErrorMonitorType.memory` 为内存用量，`ErrorMonitorType.cpu` 为 CPU 占有率 |
+| errorMonitorType | enum ErrorMonitorType | 否 | 设置辅助监控信息，添加附加监控数据到 `RUM` Error 数据中，`ErrorMonitorType.battery` 为电池余量，`ErrorMonitorType.memory` 为内存用量，`ErrorMonitorType.cpu` 为 CPU 占有率 |
 | deviceMetricsMonitorType | enum DeviceMetricsMonitorType | 否 |在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.battery` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.memory` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.cpu` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.fps` 监控屏幕帧率 |
 | globalContext | Map | 否 | 自定义全局参数 |
 
@@ -141,7 +146,7 @@ void main() async {
     );
     runApp(MyApp());
   };
-}
+
 ```
 
 ##### 动态使用
@@ -171,10 +176,10 @@ String customDynamicValue = prefs.getString("customDynamicValue")?? "not set";
 
 3. 最后重启应用。
 
-> 注意：
-> 
-> 1. 特殊 key : track_id (用于追踪功能) 
-> 1. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
+**注意**：
+
+1. 特殊 key : track_id (用于追踪功能) 。
+2. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
 
 ### Log 配置 {#log-config}
 
@@ -186,7 +191,7 @@ String customDynamicValue = prefs.getString("customDynamicValue")?? "not set";
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| sampleRate | double | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
+| sampleRate | double | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。     |
 | enableLinkRumData | bool | 否 | 是否与 `RUM` 关联 |
 | enableCustomLog | bool | 否 | 是否开启自定义日志 |
 | discardStrategy | enum FTLogCacheDiscard | 否 | 日志丢弃策略，默认`FTLogCacheDiscard.discard` |
@@ -204,16 +209,24 @@ await FTTracer().setConfig(
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| sampleRate | double | 否 | 采样率，采集率的值范围为>= 0、<= 1，默认值为 1 |
-| traceType | enum TraceType | 否 | 链路类型，默认`TraceType.ddTrace` |
-| enableLinkRUMData | bool | 否 | 是否与 `RUM` 数据关联，默认`false` |
-| enableAutoTrace | bool | 否 | 是否 `http` 请求中添加 `Trace Header`，默认`false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面需求需要继承 `FTHttpOverrides`，并设置 enableAutoTrace  为 `false`|
-| enableNativeAutoTrace |  bool | 否 | 是否开启原生网络自动追踪 iOS `NSURLSession` ,Android `OKhttp`，默认`false` |
+| sampleRate | double | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。   |
+| traceType | enum TraceType | 否 | 链路类型，默认`TraceType.ddTrace`。 |
+| enableLinkRUMData | bool | 否 | 是否与 `RUM` 数据关联，默认`false`。 |
+| enableAutoTrace | bool | 否 | 是否 `http` 请求中添加 `Trace Header`，默认`false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面需求需要继承 `FTHttpOverrides`，并设置 enableAutoTrace  为 `false`。|
+| enableNativeAutoTrace |  bool | 否 | 是否开启原生网络自动追踪 iOS `NSURLSession` ,Android `OKhttp`，默认`false`。 |
 
 ## RUM 用户数据追踪
 
 ### Action {#action}
-
+#### 使用方法
+```dart
+  /// 添加 action
+  /// [actionName] action 名称
+  /// [actionType] action 类型
+  /// [property] 附加属性参数(可选)
+  Future<void> startAction(String actionName, String actionType, {Map<String, String>? property})
+```
+#### 代码示例
 ```dart
 FTRUMManager().startAction("action name", "action type");
 ```
@@ -266,9 +279,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//此处页面名称为 NoRouteNamePage
-Navigator.of(context).push(
-          FTMaterialPageRoute(builder: (context) => new NoRouteNamePage()
+//此处“页面名称”为 NoRouteNamePage
+Navigator.of(context).push(FTMaterialPageRoute(builder: (context) => new NoRouteNamePage()
 ```
 
 * 以上两种方法同时在一个项目中混合使用
@@ -297,20 +309,39 @@ class _HomeState extends State<HomeRoute> {
 
 ```
 #### 自定义 View
+##### 使用方法
 
 ```dart
-FTRUMManager().createView("Current Page Name",100000000)
+
+  /// view 创建,这个方法需要在 [starView] 之前被调用，目前 flutter route 中未有
+  /// [viewName] 界面名称
+  /// [duration]
+  Future<void> createView(String viewName, int duration)
+
+  /// view 开始
+  /// [viewName] 界面名称
+  /// [viewReferer] 前一个界面名称
+  /// [property] 附加属性参数(可选)
+  Future<void> starView(String viewName, {Map<String, String>? property})
+
+  /// view 结束
+  /// [property] 附加属性参数(可选)
+  Future<void> stopView({Map<String, String>? property})
+
+```
+
+##### 代码示例
+```dart
+FTRUMManager().createView("Current Page Name", 100000000)
 
 FTRUMManager().starView("Current Page Name");
          
 FTRUMManager().stopView();
 ```
-
-
 ### Error {#error}
 #### 自动采集
 ```dart
-/// flutter 自动采集 error
+
 void main() async {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -323,17 +354,31 @@ void main() async {
         iOSAppId: appIOSId,
     );
     
-    // Flutter 框架异常捕获
+    // Flutter 异常捕获
     FlutterError.onError = FTRUMManager().addFlutterError;
     runApp(MyApp());
   }, (Object error, StackTrace stack) {
-    //其它异常捕获与日志收集
+    //添加 Error 数据
     FTRUMManager().addError(error, stack);
   });
  
 ```
 #### 自定义 Error
-``` 
+##### 使用方法
+
+```dart
+  ///添加自定义错误
+  /// [stack] 堆栈日志
+  /// [message] 错误信息
+  /// [appState] 应用状态
+  /// [errorType] 自定义 errorType
+  /// [property] 附加属性参数(可选)
+  Future<void> addCustomError(String stack, String message, {Map<String, String>? property, String? errorType}) 
+```
+
+##### 代码示例
+
+```dart 
  ///自定义 error
  FTRUMManager().addCustomError("error stack", "error message");
 ```
@@ -344,6 +389,38 @@ void main() async {
 通过[配置](#rum-config) `FTRUMManager().setConfig` 开启 `enableUserResource`来实现。
 
 #### 自定义 Resource
+##### 使用方法
+
+```dart
+  ///开始资源请求
+  /// [key] 唯一 id
+  /// [property] 附加属性参数(可选)
+  Future<void> startResource(String key, {Map<String, String>? property})
+
+  ///结束资源请求
+  /// [key] 唯一 id
+  /// [property] 附加属性参数(可选)
+  Future<void> stopResource(String key, {Map<String, String>? property})
+
+  /// 发送资源数据指标
+  /// [key] 唯一 id
+  /// [url] 请求地址
+  /// [httpMethod] 请求方法
+  /// [requestHeader] 请求头参数
+  /// [responseHeader] 返回头参数
+  /// [responseBody] 返回内容
+  /// [resourceStatus] 返回状态码
+  Future<void> addResource(
+      {required String key,
+      required String url,
+      required String httpMethod,
+      required Map<String, dynamic> requestHeader,
+      Map<String, dynamic>? responseHeader,
+      String? responseBody = "",
+      int? resourceStatus})
+```
+
+##### 代码示例
 
 ```dart
 /// 使用 httpClient  
@@ -386,10 +463,21 @@ void httpClientGetHttp(String url) async {
   }
 ```
 
-使用 http 库与 dio 库，可参考 [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib)。
+> 使用 http 库与 dio 库，可参考 [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib)。
 
 ## Logger 日志打印 
+### 自定义日志
+#### 使用方法
+```dart
 
+  ///输出日志
+  ///[content] 日志内容
+  ///[status] 日志状态
+  ///[property] 附加属性参数(可选)
+  Future<void> logging(String content, FTLogStatus status, {Map<String, String>? property})
+
+```
+#### 代码示例
 ```dart
 FTLogger().logging("info log content", FTLogStatus.info);
 ```
@@ -406,6 +494,19 @@ FTLogger().logging("info log content", FTLogStatus.info);
 
 
 ## Tracer 网络链路追踪
+### 自动采集
+通过[配置](#trace-config) `FTTracer().setConfig` 开启 `enableAutoTrace`来实现。
+
+### 自定义 Tracer
+#### 使用方法
+```dart
+  /// 获取 trace http 请求头数据
+  /// [key] 唯一 id
+  /// [url] 请求地址
+  ///
+  Future<Map<String, String>> getTraceHeader(String url, {String? key})
+```
+#### 代码示例
 
 ```dart
 /// 使用 httpClient    
@@ -441,15 +542,40 @@ void httpClientGetHttp() async {
   }
 ```
 
-使用 http 库与 dio 库，可参考 [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib)。
+> 使用 http 库与 dio 库，可参考 [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib)。
 
 ## 用户信息绑定与解绑
+### FTMobileFlutter
+#### 使用方法
+```dart
+  ///绑定用户
+  ///
+  ///[userid] 用户 id
+  ///[userName] 用户名
+  ///[userEmail] 用户邮箱
+  ///[userExt] 扩展数据
+  static Future<void> bindRUMUserData(String userId,
+      {String? userName, String? userEmail, Map<String, String>? ext})
 
+  ///解绑用户
+  static Future<void> unbindRUMUserData()
+
+```
+#### 代码示例
 ```dart
  FTMobileFlutter.bindUser("flutterUser");
 
  FTMobileFlutter.unbindUser();
 ```
+
+## Publish Package 相关配置
+### Android
+* [Android R8/Prograd 配置](../android/app-access.md#r8_proguard)
+* [Android 符号文件上传](../android/app-access.md#source_map)
+
+### iOS
+* [iOS 符号文件上传](../ios/app-access.md#source_map)
+
 
 ## 常见问题
 

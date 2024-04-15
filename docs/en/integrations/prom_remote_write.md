@@ -1,5 +1,19 @@
+---
+title     : 'Prometheus Remote Write'
+summary   : 'Receive metrics via Prometheus Remote Write'
+__int_icon      : 'icon/prometheus'
+dashboard :
+  - desc  : 'N/A'
+    path  : '-'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # Prometheus Remote Write
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -8,17 +22,25 @@
 
 Monitor Prometheus Remote Write data and report it to Guance Cloud.
 
-## Preconditions {#requirements}
+## Configuration {#config}
 
-Turn on the Prometheus Remote Write feature and add the following configuration in prometheus.yml:
+### Preconditions {#requirements}
+
+Note that for some earlier versions of `vmalert`, the setting `default_content_encoding = "snappy"` needs to be turned on in the collector's configuration file.
+
+Turn on the Prometheus Remote Write feature and add the following configuration in Prometheus.yml:
 
 ```yml
 remote_write:
  - url: "http://<datakit-ip>:9529/prom_remote_write"
+
+# If want add some tag, ( __source will not in tag, only show in Datakit expose metrics)
+# remote_write:
+# - url: "http://<datakit-ip>:9529/prom_remote_write?host=1.2.3.4&foo=bar&__source=<your_source>" 
 ```
 
-## Configuration {#config}
-
+### Collector Configuration {#input-config}
+<!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
     Go to the `conf.d/prom` directory under the DataKit installation directory, copy `prom_remote_write.conf.sample` and name it `prom_remote_write.conf`. Examples are as follows:
@@ -31,6 +53,11 @@ remote_write:
     
       ## accepted methods
       methods = ["PUT", "POST"]
+      
+      ## If the data is decoded incorrectly, you need to set the default HTTP body encoding;
+      ## this usually occurs when the sender does not correctly pass the encoding in the HTTP header.
+      #
+      # default_content_encoding = "snappy"
     
       ## Part of the request to consume.  Available options are "body" and "query".
       # data_source = "body"
@@ -53,14 +80,14 @@ remote_write:
       # measurement_name_filter = ["kubernetes", "container"]
     
       ## metric name prefix
-      # prefix will be added to metric name
+      ## prefix will be added to metric name
       # measurement_prefix = "prefix_"
     
       ## metric name
-      # metric name will be divided by "_" by default.
-      # metric is named by the first divided field, the remaining field is used as the current metric name
-      # metric name will not be divided if measurement_name is configured
-      # measurement_prefix will be added to the start of measurement_name
+      ## metric name will be divided by "_" by default.
+      ## metric is named by the first divided field, the remaining field is used as the current metric name
+      ## metric name will not be divided if measurement_name is configured
+      ## measurement_prefix will be added to the start of measurement_name
       # measurement_name = "prom_remote_write"
     
       ## max body size in bytes, default set to 500MB
@@ -71,11 +98,18 @@ remote_write:
       # basic_username = ""
       # basic_password = ""
     
-      ## tags to ignore
+      ## If both blacklist and whitelist, all list will cancel.
+      ## tags to ignore (blacklist)
       # tags_ignore = ["xxxx"]
     
-      ## tags to ignore with regex
-      tags_ignore_regex = ["xxxx"]
+      ## tags to ignore with regex (blacklist)
+      # tags_ignore_regex = ["xxxx"]
+    
+      ## tags whitelist
+      # tags_only = ["xxxx"]
+    
+      ## tags whitelist with regex
+      # tags_only_regex = ["xxxx"]
     
       ## Indicate whether tags_rename overwrites existing key if tag with the new key name already exists.
       overwrite = false
@@ -91,6 +125,18 @@ remote_write:
       [inputs.prom_remote_write.http_header_tags]
       # HTTP_HEADER = "TAG_NAME"
     
+      ## Customize measurement set name.
+      ## Treat those metrics with prefix as one set.
+      ## Prioritier over 'measurement_name' configuration.
+      ## Must measurement_name = ""
+      [[inputs.prom_remote_write.measurements]]
+        prefix = "etcd_network_"
+        name = "etcd_network"
+        
+      [[inputs.prom_remote_write.measurements]]
+        prefix = "etcd_server_"
+        name = "etcd_server"
+    
       ## custom tags
       [inputs.prom_remote_write.tags]
       # some_tag = "some_value"
@@ -102,11 +148,11 @@ remote_write:
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
-
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+<!-- markdownlint-enable -->
 ### Add, Ignore and Rename Tags {#tag-ops}
 
-You can label the collected metrics by configuring `tags`, as follows:
+We can label the collected metrics by configuring `tags`, as follows:
 
 ```toml
   ## custom tags
@@ -115,21 +161,37 @@ You can label the collected metrics by configuring `tags`, as follows:
   more_tag = "some_other_value"
 ```
 
-You can ignore some of the tags on the metric by configuring `tags_ignore`, as follows:
+If both blacklist and whitelist, all list will cancel.
+
+We can apply blacklist on the tag to ignore it:
 
 ```toml
   ## tags to ignore
   tags_ignore = ["xxxx"]
 ```
 
-You can regularly match and ignore labels on metrics by configuring `tags_ignore_regex`, as follows:
+We can apply regex match blacklist on the tag to ignore it:
 
 ```toml
   ## tags to ignore with regex
   tags_ignore_regex = ["xxxx"]
 ```
 
-You can rename some of the tag names that an indicator already has by configuring `tags_rename`, as follows:
+We can apply whitelists on tags:
+
+```toml
+  ## tags white list
+  # tags_only = ["xxxx"]
+```
+
+We can apply regex match whitelist on tags:
+
+```toml
+  ## tags white list with regex
+  # tags_only_regex = ["xxxx"]
+```
+
+We can rename some of the tag names that an indicator already has by configuring `tags_rename`, as follows:
 
 ```toml
   ## tags to rename
@@ -142,7 +204,7 @@ In addition, when the renamed tag key is the same as the existing tag key: You c
 
 > Note: For [DataKit global tag key](datakit-conf.md#update-global-tag), renaming them is not supported here.
 
-## Measurements {#measurements}
+## Metric {#metric}
 
 The standard set is based on the measurements sent by Prometheus.
 
@@ -160,7 +222,7 @@ datakit service -R
 
 The *prom_remote_write* collector will then write the collected data to the local file indicated by the output.
 
-You can debug *prom_remote_write.conf* by executing the following command.
+We can debug *prom_remote_write.conf* by executing the following command.
 
 ```shell
 datakit debug --prom-conf prom_remote_write.conf
@@ -172,7 +234,7 @@ Parameter description:
 
 Output sample:
 
-```
+```not-set
 ================= Line Protocol Points ==================
 
  prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor target_scrapes_sample_out_of_order_total=0 1634548272855000000
@@ -215,17 +277,16 @@ Total time series: 155
 Total line protocol points: 487
 Total measurements: 6 (prometheus, promhttp, up, scrape, go, node)
 ```
-
-
-
+<!-- markdownlint-disable MD007 -->
 Output description:
 
 - Line Protocol Points: Generated line protocol points
 
 - Summary: Summary results
 
-- - Total time series: Number of timelines
+  - - Total time series: Number of timelines
 
-- - Total line protocol points: Line protocol points
+  - - Total line protocol points: Line protocol points
 
-- - Total measurements: The number of measurements and their names.
+  - - Total measurements: The number of measurements and their names.
+<!-- markdownlint-enable -->

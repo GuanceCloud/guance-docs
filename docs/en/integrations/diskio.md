@@ -1,4 +1,18 @@
+---
+title     : 'Disk IO'
+summary   : 'Collect metrics of disk io'
+__int_icon      : 'icon/diskio'
+dashboard :
+  - desc  : 'Disk IO'
+    path  : 'dashboard/en/diskio'
+monitor   :
+  - desc  : 'Host detection library'
+    path  : 'monitor/en/host'
+---
+
+<!-- markdownlint-disable MD025 -->
 # DiskIO
+<!-- markdownlint-enable -->
 
 ---
 
@@ -8,7 +22,11 @@
 
 Diskio collector is used to collect the index of disk flow and time.
 
-## Preconditions {#requests}
+## Configuration {#config}
+
+After successfully installing and starting DataKit, the DiskIO collector will be enabled by default without the need for manual activation.
+
+### Precondition {#requirement}
 
 For some older versions of Windows operating systems, if you encounter an error with Datakit: **"The system cannot find the file specified."**
 
@@ -20,7 +38,9 @@ diskperf -Y
 
 The Datakit service needs to be restarted after successful execution.
 
-## Configuration {#config}
+### Collector Configuration {#input-config}
+
+<!-- markdownlint-disable MD046 -->
 
 === "Host Installation"
 
@@ -31,15 +51,15 @@ The Datakit service needs to be restarted after successful execution.
     [[inputs.diskio]]
       ##(optional) collect interval, default is 10 seconds
       interval = '10s'
-      ##
+    
       ## By default, gather stats for all devices including
       ## disk partitions.
       ## Setting interfaces using regular expressions will collect these expected devices.
       # devices = ['''^sda\d*''', '''^sdb\d*''', '''vd.*''']
-      #
+    
       ## If the disk serial number is not required, please uncomment the following line.
       # skip_serial_number = true
-      #
+    
       ## On systems which support it, device metadata can be added in the form of
       ## tags.
       ## Currently only Linux is supported via udev properties. You can view
@@ -48,7 +68,7 @@ The Datakit service needs to be restarted after successful execution.
       ## Note: Most, but not all, udev properties can be accessed this way. Properties
       ## that are currently inaccessible include DEVTYPE, DEVNAME, and DEVPATH.
       # device_tags = ["ID_FS_TYPE", "ID_FS_USAGE"]
-      #
+    
       ## Using the same metadata source as device_tags,
       ## you can also customize the name of the device through a template.
       ## The "name_templates" parameter is a list of templates to try to apply equipment.
@@ -59,7 +79,6 @@ The Datakit service needs to be restarted after successful execution.
       ## not DM-0 names which are almost meaningless.
       ## In addition, "device" is reserved specifically to indicate the device name.
       # name_templates = ["$ID_FS_LABEL","$DM_VG_NAME/$DM_LV_NAME", "$device:$ID_FS_TYPE"]
-      #
     
     [inputs.diskio.tags]
       # some_tag = "some_value"
@@ -70,18 +89,73 @@ The Datakit service needs to be restarted after successful execution.
 
 === "Kubernetes"
 
-    Support modifying configuration parameters as environment variables:
-    
-    | Environment Variable Name                            | Corresponding Configuration Parameter Item     | Parameter Example                                                     |
-    | :---                                  | ---                  | ---                                                          |
-    | `ENV_INPUT_DISKIO_SKIP_SERIAL_NUMBER` | `skip_serial_number` | `true`/`false`                                               |
-    | `ENV_INPUT_DISKIO_TAGS`               | `tags`               | `tag1=value1,tag2=value2`; If there is a tag with the same name in the configuration file, it will be overwritten. |
-    | `ENV_INPUT_DISKIO_INTERVAL`           | `interval`           | `10s`                                                        |
-    | `ENV_INPUT_DISKIO_DEVICES`            | `devices`            | `'''^sdb\d*'''`                                              |
-    | `ENV_INPUT_DISKIO_DEVICE_TAGS`        | `device_tags`        | `"ID_FS_TYPE", "ID_FS_USAGE"`, separated by English commas                 |
-    | `ENV_INPUT_DISKIO_NAME_TEMPLATES`     | `name_templates`     | `"$ID_FS_LABEL", "$DM_VG_NAME/$DM_LV_NAME"`, separated by English commas   |
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
-## Measurements {#measurements}
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    
+    - **ENV_INPUT_DISKIO_INTERVAL**
+    
+        Collect interval
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_DISKIO_DEVICES**
+    
+        Setting interfaces using regular expressions will collect these expected devices
+    
+        **Type**: List
+    
+        **ConfField**: `devices`
+    
+        **Example**: `^sda\d,^sdb\d,vd.*`
+    
+    - **ENV_INPUT_DISKIO_DEVICE_TAGS**
+    
+        Device metadata added tags
+    
+        **Type**: List
+    
+        **ConfField**: `device_tags`
+    
+        **Example**: ID_FS_TYPE,ID_FS_USAGE
+    
+    - **ENV_INPUT_DISKIO_NAME_TEMPLATES**
+    
+        Using the same metadata source as device_tags
+    
+        **Type**: List
+    
+        **ConfField**: `name_templates`
+    
+        **Example**: $ID_FS_LABEL,$DM_VG_NAME/$DM_LV_NAME
+    
+    - **ENV_INPUT_DISKIO_SKIP_SERIAL_NUMBER**
+    
+        disk serial number is not required
+    
+        **Type**: Boolean
+    
+        **ConfField**: `skip_serial_number`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_DISKIO_TAGS**
+    
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
+
+<!-- markdownlint-enable -->
+
+## Metric {#metric}
 
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or it can be named by `[[inputs.diskio.tags]]` alternative host in the configuration.
 
@@ -118,7 +192,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-## Extended measurements {#extend}
+### Extended Metric {#extend}
 
 [:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
 
@@ -126,9 +200,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 By default, DataKit cannot collect the disk `await` metric. If you need to obtain this metric, you can collect it by [Custom Collector with Python](../../developers/pythond/).
 
-**Preconditions**
+Preconditions
 
-- [Enable pythond collector](../developers/pythond.md) 
+- [Enable Pythond collector](../developers/pythond.md)
 
 Enter the DataKit installation directory, copy the `pythond.conf.sample` file and rename it to `pythond.conf`. Modify the corresponding configuration as follows:
 
@@ -152,7 +226,7 @@ Enter the DataKit installation directory, copy the `pythond.conf.sample` file an
 
 - Install `sar` command. You can refer to [https://github.com/sysstat/sysstat#installation](https://github.com/sysstat/sysstat#installation){:target="_blank"}
 
-Install from Ubuntu 
+Install from Ubuntu
 
 ```shell
 sudo apt-get install sysstat
@@ -192,7 +266,7 @@ Average:     dev253-1      0.00      0.00      0.00      0.00      0.00      0.0
 
 ```
 
-**Python script**
+### Collect Scripts {#py-script}
 
 Create file *<DataKit Dir\>/python.d/diskio/diskio.py* and add the following content:
 
@@ -287,7 +361,7 @@ class DiskIO(DataKitFramework):
 
 After saving the file, restart DataKit and you will be able to see the corresponding metrics on the Guance platform shortly.
 
-**Metric list**
+### Metric List {#ext-metrics}
 
 The `sar` command can obtain many useful [disk metrics](https://man7.org/linux/man-pages/man1/sar.1.html){:target="_blank"}. The above script only collect `await` and `svctm`. If you need to collect additional metrics, you can modify the script accordingly.
 
@@ -299,9 +373,9 @@ The `sar` command can obtain many useful [disk metrics](https://man7.org/linux/m
 
 ## FAQ {#faq}
 
-### What is the data source for diskio metrics on Linux hosts {#linux-diskio}
+### What is the data source on Linux hosts {#linux-diskio}
 
-On Linux hosts, the metrics are parsed and calculated from the _/proc/diskstats_ file; an explanation of each column can be found in [_procfs-diskstats_](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats){:target="_blank"};
+On Linux hosts, the metrics are parsed and calculated from the */proc/diskstats* file; an explanation of each column can be found in [*procfs-diskstats*](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats){:target="_blank"};
 
 The corresponding relationship between some data source columns and indicators is as follows:
 

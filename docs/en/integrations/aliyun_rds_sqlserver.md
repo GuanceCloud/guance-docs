@@ -1,12 +1,12 @@
 ---
 title: 'Aliyun RDS SQLServer'
-summary: 'Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
 __int_icon: 'icon/aliyun_rds_sqlserver'
 dashboard:
-  - desc: '阿里云 RDS SQLServer 内置视图'
+  - desc: 'Aliyun  RDS SQLServer Monitoring View'
     path: 'dashboard/zh/aliyun_rds_sqlserver/'
 monitor:
-  - desc: '阿里云 RDS 监控器'
+  - desc: 'Aliyun  RDS Monitor'
     path: 'monitor/zh/aliyun_rds_sqlserver/'
 
 ---
@@ -18,7 +18,7 @@ monitor:
 <!-- markdownlint-enable -->
 
 
-Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
 
 ## config {#config}
 
@@ -34,43 +34,43 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of RDS cloud resources, we install the corresponding collection script：「观测云集成（阿里云- RDS 采集）」(ID：`guance_aliyun_rds`)
+To synchronize the monitoring data of RDS cloud resources, we install the corresponding collection script：「Guance Integration（Aliyun - RDS Collect）」(ID：`guance_aliyun_rds`)
 
-Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.。
+Click "Install" and enter the corresponding parameters: Aliyun AK, Aliyun account name.。
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+tap "Deploy startup Script"，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
+After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click "Run"，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
 
 > If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
 
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-rds/){:target="_blank"}
 
 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure Ali Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Alibaba Cloud Monitor Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_rds_dashboard/sqlserver){:target="_blank"}
+Configure Ali Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Aliyun Monitor Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_rds_dashboard/sqlserver){:target="_blank"}
 
 | Metric Id              | Metric Name           | Dimensions        | Statistics              | Unit        |
 | ---- | ------ | ------ | ---- | ---- |
-| SQLServer_CpuUsage | SQLServerCpu usage    | userId,instanceId | Average,Maximum,Minimum | %           |
-| SQLServer_DiskUsage | SQLServer disk usage   | userId,instanceId | Average,Maximum,Minimum | %           |
-| SQLServer_IOPS     | SQL Server IO count per second   | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| SQLServer_NetworkRead | SQLServer outbound network bandwidth | userId,instanceId | Average,Maximum,Minimum | bits/s      |
-| SQLServer_NetworkWrite | SQLServer inbound network bandwidth | userId,instanceId | Average,Maximum,Minimum | bits/s      |
-| SQLServer_QPS     | SQLServer queries per second   | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| SQLServer_TPS     | SQLServer transactions per second   | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| SQLServer_TotaConn | SQLServer total number of connections     | userId,instanceId | Average,Maximum,Minimum | count       |
+| `SQLServer_CpuUsage` | SQLServerCpu usage    | userId,instanceId | Average,Maximum,Minimum | %           |
+| `SQLServer_DiskUsage` | SQLServer disk usage   | userId,instanceId | Average,Maximum,Minimum | %           |
+| `SQLServer_IOPS`     | SQL Server IO count per second   | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `SQLServer_NetworkRead` | SQLServer outbound network bandwidth | userId,instanceId | Average,Maximum,Minimum | bits/s      |
+| `SQLServer_NetworkWrite` | SQLServer inbound network bandwidth | userId,instanceId | Average,Maximum,Minimum | bits/s      |
+| `SQLServer_QPS`     | SQLServer queries per second   | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `SQLServer_TPS`     | SQLServer transactions per second   | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `SQLServer_TotaConn` | SQLServer total number of connections     | userId,instanceId | Average,Maximum,Minimum | count       |
 
 ## Object {#object}
 
-The collected Alibaba Cloud RDS object data structure can see the object data from 「Infrastructure-custom-defined」」
+The collected Aliyun RDS object data structure can see the object data from 「Infrastructure-custom-defined」」
 
 ```json
 {
@@ -84,7 +84,7 @@ The collected Alibaba Cloud RDS object data structure can see the object data fr
     "DBInstanceId"         : "rm-xxxxx",
     "ZoneId"               : "cn-shanghai-h",
     "RegionId"             : "cn-shanghai",
-    "DBInstanceDescription": "业务系统",
+    "DBInstanceDescription": "Business system",
     "LockMode"             : "Unlock",
     "Category"             : "Basic",
     "ConnectionMode"       : "Standard",
@@ -99,12 +99,12 @@ The collected Alibaba Cloud RDS object data structure can see the object data fr
     "LogSize"          : "10000",
     "BackupLogSize"    : "10000",
     "BackupDataSize"   : "10000",
-    "ConnectionString" : "{连接地址 JSON 数据}",
+    "ConnectionString" : "{Connection address JSON data}",
     "DBInstanceStorage": "100",
-    "accounts"         : "{用户权限信息 JSON 数据}",
-    "databases"        : "{数据库信息 JSON 数据}",
+    "accounts"         : "{User permission information JSON data}",
+    "databases"        : "{Details of the data library JSON data}",
     "SSLExpireTime"    : "2022-10-11T08:16:43Z",
-    "message"          : "{实例 JSON 数据}",
+    "message"          : "{Instance JSON data}",
   }
 }
 
@@ -118,7 +118,7 @@ The collected Alibaba Cloud RDS object data structure can see the object data fr
 
 > Tip 1：The execution of this script depends on RDS instance object collection. If RDS custom object collection is not configured, the slow log script will not be able to collect slow log data.
 >
-> Tip 2：Due to the 6 to 8 hours data delay in the statistics returned by Alibaba Cloud, there might be a delay in the collector's data updates. For more details, please refer to the Alibaba Cloud documentation on "Cloud Database RDS Query Slow Log Statistics."
+> Tip 2：Due to the 6 to 8 hours data delay in the statistics returned by Aliyun, there might be a delay in the collector's data updates. For more details, please refer to the Aliyun documentation on "Cloud Database RDS Query Slow Log Statistics."
 >
 > Tip 3：This collector supports all versions of MySQL (except for MySQL 5.7 Basic Edition), SQL Server 2008 R2, and MariaDB 10.3 databases. If you want to collect data from other types of databases, please use the [Aliyun-RDS Slow query details](https://func.guance.com/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"} collector.
 
@@ -128,7 +128,7 @@ On top of that, you need to install a corresponding collector. **The script for 
 
 Click and install the corresponding script package in「Management / Script market」：
 
-- 「观测云集成（阿里云- RDS 慢查询统计日志采集）」(ID：`guance_aliyun_rds_slowlog`)
+- 「Guance Integration（Aliyun - RDS Slow query statistical log Collect）」(ID：`guance_aliyun_rds_slowlog`)
 
 Once the data is successfully synchronized, you can view it in the "Logs" section of Observing Cloud.
 
@@ -147,11 +147,11 @@ Examples of reported data are as follows：
     "Engine"               : "MySQL",
     "DBInstanceClass"      : "rds.mysql.s2.large",
     "ZoneId"               : "cn-shanghai-h",
-    "DBInstanceDescription": "业务系统"
+    "DBInstanceDescription": "Business system"
   },
   "fields": {
     "SQLHASH"                      : "436f9dd030e0a87920bbcd818b34f271",
-    "SQLText"                      : "{SQL 语句}",
+    "SQLText"                      : "{SQL}",
     "CreateTime"                   : "2022-06-05Z",
     "SQLServerTotalExecutionTimes" : 0,
     "MaxExecutionTime"             : 1,
@@ -162,7 +162,7 @@ Examples of reported data are as follows：
     "SQLServerTotalExecutionCounts": 0,
     "MySQLTotalExecutionCounts"    : 0,
     "SQLServerAvgExecutionTime"    : 0,
-    "message"                      : "{日志 JSON 数据}"
+    "message"                      : "{Log JSON data}"
   }
 }
 
@@ -197,7 +197,7 @@ On top of that, you need to install a corresponding script for **The script for 
 
 Click and install the corresponding script package in「Management / Script market」：
 
-- 「观测云集成（阿里云-RDS慢查询明细日志采集）」(ID：`guance_aliyun_rds_slowlog_record`)
+- 「Guance Integration（Aliyun -RDS Slow query detail log Collect）」(ID：`guance_aliyun_rds_slowlog_record`)
 
 After the data is successfully synchronized, you can view it in the 「Logs」 section of Observing Cloud.
 
@@ -218,7 +218,7 @@ The reported data example is as follows：
     "Engine"               : "MySQL",
     "DBInstanceClass"      : "rds.mysql.s2.large",
     "ZoneId"               : "cn-shanghai-h",
-    "DBInstanceDescription": "业务系统",
+    "DBInstanceDescription": "Business system",
     "HostAddress"          : "xxxx",
     "UserName"             : "xxxx",
     "ClientHostName"       : "xxxx",
@@ -227,7 +227,7 @@ The reported data example is as follows：
   },
   "fields": {
     "SQLHASH"                      : "436f9dd030e0a87920bbcd818b34f271",
-    "SQLText"                      : "{SQL 语句}",
+    "SQLText"                      : "{SQL}",
     "QueryTimes"                   : 0,
     "QueryTimesMS"                 : 0,
     "ReturnRowCounts"              : 0,
@@ -236,7 +236,7 @@ The reported data example is as follows：
     "CpuTime"                      : 1,
     "RowsAffectedCount"            : 0,
     "LastRowsAffectedCount"        : 0,
-    "message"                      : "{日志 JSON 数据}"
+    "message"                      : "{Log JSON data}"
   }
 }
 

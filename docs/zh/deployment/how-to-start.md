@@ -9,7 +9,6 @@
 
 - dataflux 【**用户前台（观测云）**】
 - df-management 【**管理后台**】
-- df-func 【**Func 平台**】
 - df-openapi 【**OpenAPI**】
 
 ## 方法步骤

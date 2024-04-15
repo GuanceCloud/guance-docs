@@ -1,3 +1,4 @@
 nav:
-  - 'macOS 应用数据采集': app-data-collection.md
-  - 'macOS 应用接入': app-access.md
+  - '应用接入': app-access.md
+  - '应用数据采集': app-data-collection.md
+

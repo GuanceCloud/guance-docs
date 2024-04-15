@@ -1,10 +1,12 @@
 nav:
   - index.md
   - '监控器': monitor
+  - '智能监控': intelligent-monitoring
   - '智能巡检': bot-obs
   - 'SLO': slo.md
   - '静默管理': silent-management.md
   - '告警策略管理': alert-setting.md
   - '通知对象管理': notify-object.md
-  - '事件通知模板': event-template.md
+  - '告警聚合通知模板': alert-template.md
+  - '自定义事件通知模板': event-template.md
   - '监控器内部原理': monitor-internal.md

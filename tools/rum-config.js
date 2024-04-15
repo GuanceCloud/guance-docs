@@ -1,7 +1,7 @@
 window.DATAFLUX_RUM &&
   window.DATAFLUX_RUM.init({
     applicationId: 'guance_docs_centre',
-    datakitOrigin: 'https://console.guance.com/', // 协议（包括：//），域名（或IP地址）[和端口号]
+    datakitOrigin: 'https://rum-report.guance.com/', // 协议（包括：//），域名（或IP地址）[和端口号]
     env: 'production',
     version: '1.0.0',
     service: 'guance-doc',

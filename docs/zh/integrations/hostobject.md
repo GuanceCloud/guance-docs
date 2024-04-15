@@ -62,6 +62,12 @@ monitor   :
     # Disable cloud provider information synchronization
     disable_cloud_provider_sync = false
     
+    ## Enable put cloud provider region/zone_id information into global election tags, (default to true).
+    # enable_cloud_host_tags_global_election = true
+    
+    ## Enable put cloud provider region/zone_id information into global host tags, (default to true).
+    # enable_cloud_host_tags_global_host = true
+    
     [inputs.hostobject.tags] # (optional) custom tags
     # cloud_provider = "aliyun" # aliyun/tencent/aws/hwcloud/azure, probe automatically if not set
     # some_tag = "some_value"
@@ -74,17 +80,99 @@ monitor   :
 
 === "Kubernetes"
 
-    Kubernetes 中支持以环境变量的方式修改默认参数：
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
 
-    | 环境变量名                                           | 对应的配置参数项                | 参数说明                                                           | 参数示例                                                                                                   |
-    | :---                                                 | ---                             | ---                                                                | ---                                                                                                        |
-    | `ENV_INPUT_HOSTOBJECT_ENABLE_NET_VIRTUAL_INTERFACES` | `enable_net_virtual_interfaces` | 允许采集虚拟网卡                                                   | `true`/`false`                                                                                             |
-    | `ENV_INPUT_HOSTOBJECT_ENABLE_ZERO_BYTES_DISK`        | `ignore_zero_bytes_disk`        | 忽略大小为 0 的磁盘                                                | `true`/`false`                                                                                             |
-    | `ENV_INPUT_HOSTOBJECT_TAGS`                          | `tags`                          | 增加额外标签                                                       | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它                                               |
-    | `ENV_INPUT_HOSTOBJECT_ONLY_PHYSICAL_DEVICE`          | `only_physical_device`          | 忽略非物理磁盘（如网盘、NFS 等，只采集本机硬盘/CD ROM/USB 磁盘等） | 任意给一个字符串值即可                                                                                     |
-    | `ENV_INPUT_HOSTOBJECT_EXCLUDE_DEVICE`                      | `exclude_device`                | 忽略的 device                                | `"/dev/loop0","/dev/loop1"` 以英文逗号隔开                      |
-    | `ENV_INPUT_HOSTOBJECT_EXTRA_DEVICE`                        | `extra_device`                  | 额外增加的 device                            | `"/nfsdata"` 以英文逗号隔开                      |
-    | `ENV_CLOUD_PROVIDER`                                 | `tags`                          | 指定云服务商                                                       | `aliyun/aws/tencent/hwcloud/azure`                                                                         |
+    也支持以环境变量的方式修改配置参数（需要在 ENV_DEFAULT_ENABLED_INPUTS 中加为默认采集器）：
+
+    - **ENV_INPUT_HOSTOBJECT_ENABLE_NET_VIRTUAL_INTERFACES**
+    
+        允许采集虚拟网卡
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_net_virtual_interfaces`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_HOSTOBJECT_IGNORE_ZERO_BYTES_DISK**
+    
+        忽略大小为 0 的磁盘
+    
+        **Type**: Boolean
+    
+        **ConfField**: `ignore_zero_bytes_disk`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_HOSTOBJECT_ONLY_PHYSICAL_DEVICE**
+    
+        忽略非物理磁盘（如网盘、NFS），任意非空字符串
+    
+        **Type**: Boolean
+    
+        **ConfField**: `only_physical_device`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_HOSTOBJECT_EXCLUDE_DEVICE**
+    
+        忽略的 device
+    
+        **Type**: List
+    
+        **ConfField**: `exclude_device`
+    
+        **Example**: /dev/loop0,/dev/loop1
+    
+    - **ENV_INPUT_HOSTOBJECT_EXTRA_DEVICE**
+    
+        额外增加的 device
+    
+        **Type**: List
+    
+        **ConfField**: `extra_device`
+    
+        **Example**: `/nfsdata,other`
+    
+    - **ENV_ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_ELECTION_TAGS**
+    
+        将云服务商 region/zone_id 信息放入全局选举标签
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_cloud_host_tags_global_election`
+    
+        **Default**: true
+    
+    - **ENV_ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_HOST_TAGS**
+    
+        将云服务商 region/zone_id 信息放入全局主机标签
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_cloud_host_tags_global_host`
+    
+        **Default**: true
+    
+    - **ENV_INPUT_HOSTOBJECT_TAGS**
+    
+        自定义标签。如果配置文件有同名标签，将会覆盖它
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
+    
+    - **ENV_CLOUD_PROVIDER**
+    
+        指定云服务商
+    
+        **Type**: String
+    
+        **ConfField**: `none`
+    
+        **Example**: `aliyun/aws/tencent/hwcloud/azure`
 
 <!-- markdownlint-enable -->
 
@@ -132,16 +220,18 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`cpu_usage`|CPU usage|float|percent|
-|`datakit_ver`|collector version|string|-|
-|`disk_used_percent`|disk usage|float|percent|
-|`diskio_read_bytes_per_sec`|disk read rate|int|B/S|
-|`diskio_write_bytes_per_sec`|disk write rate|int|B/S|
-|`load`|system load|float|-|
-|`logging_level`|log level|string|-|
-|`mem_used_percent`|memory usage|float|percent|
+|`datakit_ver`|Collector version|string|-|
+|`disk_used_percent`|Disk usage|float|percent|
+|`diskio_read_bytes_per_sec`|Disk read rate|int|B/S|
+|`diskio_write_bytes_per_sec`|Disk write rate|int|B/S|
+|`dk_upgrader`|Upgrade's host and port|string|-|
+|`is_docker`|Docker mode|int|-|
+|`load`|System load|float|-|
+|`logging_level`|Log level|string|-|
+|`mem_used_percent`|Memory usage|float|percent|
 |`message`|Summary of all host information|string|-|
-|`net_recv_bytes_per_sec`|network receive rate|int|B/S|
-|`net_send_bytes_per_sec`|network send rate|int|B/S|
+|`net_recv_bytes_per_sec`|Network receive rate|int|B/S|
+|`net_send_bytes_per_sec`|Network send rate|int|B/S|
 |`start_time`|Host startup time (Unix timestamp)|int|ms|
 
 
@@ -298,3 +388,13 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 | `last_err`      | 最后一次报错信息，只报告最近 30 秒（含）以内的错误 | string |
 | `last_err_time` | 最后一次报错时间（Unix 时间戳，单位为秒）          |  int   |
 | `last_time`     | 最近一次采集时间（Unix 时间戳，单位为秒）          |  int   |
+
+## FAQ {#faq}
+
+<!-- markdownlint-disable MD013 -->
+
+### :material-chat-question: 为什么 `entries` 和 `entries_limit` 采集不到，显示为 -1？ {#no-entries}
+
+<!-- markdownlint-enable -->
+
+需要加载 `nf_conntrack` 模块，终端执行 `modprobe nf_conntrack` 即可。

@@ -3,18 +3,23 @@ variables:
   PROJECT: "dataflux-doc"
 
 stages:
+  - build
   - deploy
 
 lint:
   stage: deploy
-  only:
-    - /.*/ # any branch
+  rules: # all branches with merge request will trigger the CI
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE =~ /^(\[Draft\]|\(Draft\)|Draft:)/
+      when: never
+    # Trigger a pipeline in case of MR event, which means the MR is ready, since we did not go through the first case
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
   script: # only lint datakit/integrations, other docs need too many fix
     - nvm use v16.14.0
     - make lint DOC_DIR=docs/zh/integrations
     - make lint DOC_DIR=docs/zh/datakit
-  except:
-    - tags # disable me under tag push
+    #- make lint DOC_DIR=docs/en/integrations
+    #- make lint DOC_DIR=docs/en/datakit
   tags:
     - cloudcare-ft
 
@@ -22,7 +27,7 @@ buildTesting:
   stage: deploy
   only:
     - dev
-    - testing
+    - /^testing.*/
   script:
     # - echo "$ES_VAR_DOC_SEARCH_TEST"
     # - echo "$ES_VAR_DOC_SEARCH_PROD"
@@ -68,6 +73,8 @@ buildMain:
       --build-arg release_env="saas_production"
       --build-arg GUANCE_HELPS_OSS_AK_ID="${GUANCE_HELPS_OSS_AK_ID}"
       --build-arg GUANCE_HELPS_OSS_AK_SECRET="${GUANCE_HELPS_OSS_AK_SECRET}"
+      --build-arg GUANCE_HELPS_CDN_AK_ID="${GUANCE_HELPS_CDN_AK_ID}"
+      --build-arg GUANCE_HELPS_CDN_AK_SECRET="${GUANCE_HELPS_CDN_AK_SECRET}"
       --build-arg GUANCE_HELPS_OSS_BUCKET="${GUANCE_HELPS_OSS_BUCKET}"
       --build-arg GUANCE_HELPS_OSS_ENDPOINT="${GUANCE_HELPS_OSS_ENDPOINT}"
       --build-arg ES_VAR_DOC_SEARCH_TEST=$ES_VAR_DOC_SEARCH_TEST
@@ -86,9 +93,22 @@ buildBasis:
     - /basis-\d+/
   script:
     - docker buildx build --platform linux/arm64,linux/amd64
-      -t registry.jiagouyun.com/basis/mkdocs:2.3
+      -t registry.jiagouyun.com/basis/mkdocs:2.6
       -f Dockerfile.basis .
       --push
+  tags:
+    - cloudcare-multiarch
+
+buildRTMStatic:
+  stage: build
+  only:
+    - /\d+\.\d+\.\d+-\w+-\d+-prod/
+  script:
+    # 分离镜像内容构建与多架构镜像打包，节省打包时间
+    - docker build 
+      -f ./Dockerfile.pre-rtm-build
+      -t registry.jiagouyun.com/cloudcare-front/$REPOSITORY:pre-rtm-build .
+    - docker push registry.jiagouyun.com/cloudcare-front/$REPOSITORY:pre-rtm-build
   tags:
     - cloudcare-multiarch
 
@@ -96,16 +116,42 @@ buildRTM:
   stage: deploy
   only:
     - /\d+\.\d+\.\d+-\w+-\d+-prod/
+  needs:
+    - buildRTMStatic
   script:
     - V=(${CI_COMMIT_REF_NAME//[\.-]/ })
     - VDIR=${V[0]}.${V[1]}.${V[2]}
     - REPO=dataflux/$VDIR
     - TAG=${PROJECT}-${V[3]}-${V[4]}
+
+    - docker buildx build 
+      --platform linux/arm64,linux/amd64
+      -f ./Dockerfile.rtm-build
+      -t pubrepo.jiagouyun.com/$REPO:$TAG . --push
+  tags:
+    - cloudcare-multiarch
+
+buildUOSRTM:
+  stage: deploy
+  only:
+    - /\d+\.\d+\.\d+-\w+-\d+-uos-prod/
+  script:
+    - V=(${CI_COMMIT_REF_NAME//[\.-]/ })
+    - VDIR=${V[0]}.${V[1]}.${V[2]}
+    - REPO=uos-dataflux/$VDIR
+    - TAG=${PROJECT}-${V[3]}-${V[4]}
     
     - docker buildx build 
       --build-arg release_env="rtm"
-      --platform linux/arm64,linux/amd64 
-      -t pubrepo.jiagouyun.com/$REPO:$TAG . --push
+      --build-arg GUANCE_HELPS_OSS_AK_ID="${GUANCE_HELPS_OSS_AK_ID}"
+      --build-arg GUANCE_HELPS_OSS_AK_SECRET="${GUANCE_HELPS_OSS_AK_SECRET}"
+      --build-arg GUANCE_HELPS_CDN_AK_ID="${GUANCE_HELPS_CDN_AK_ID}"
+      --build-arg GUANCE_HELPS_CDN_AK_SECRET="${GUANCE_HELPS_CDN_AK_SECRET}"
+      --build-arg GUANCE_HELPS_OSS_BUCKET="${GUANCE_HELPS_OSS_BUCKET}"
+      --build-arg GUANCE_HELPS_OSS_ENDPOINT="${GUANCE_HELPS_OSS_ENDPOINT}"
+      --platform linux/amd64 
+      -t pubrepo.jiagouyun.com/$REPO:$TAG
+      -f Dockerfile.uos . --push
   tags:
     - cloudcare-multiarch 
 
@@ -121,6 +167,12 @@ buildRTMPrev:
 
     - docker build 
       --build-arg release_env="rtm"
+      --build-arg GUANCE_HELPS_OSS_AK_ID="${GUANCE_HELPS_OSS_AK_ID}"
+      --build-arg GUANCE_HELPS_OSS_AK_SECRET="${GUANCE_HELPS_OSS_AK_SECRET}"
+      --build-arg GUANCE_HELPS_CDN_AK_ID="${GUANCE_HELPS_CDN_AK_ID}"
+      --build-arg GUANCE_HELPS_CDN_AK_SECRET="${GUANCE_HELPS_CDN_AK_SECRET}"
+      --build-arg GUANCE_HELPS_OSS_BUCKET="${GUANCE_HELPS_OSS_BUCKET}"
+      --build-arg GUANCE_HELPS_OSS_ENDPOINT="${GUANCE_HELPS_OSS_ENDPOINT}"
       -t pubrepo.jiagouyun.com/$REPO:$TAG .
     - docker push pubrepo.jiagouyun.com/$REPO:$TAG
   tags:

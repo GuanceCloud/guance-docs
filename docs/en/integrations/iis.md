@@ -1,5 +1,19 @@
+---
+title     : 'IIS'
+summary   : 'Collect IIS metrics'
+__int_icon      : 'icon/iis'
+dashboard :
+  - desc  : 'IIS'
+    path  : 'dashboard/en/iis'
+monitor   :
+  - desc  : 'IIS'
+    path  : 'monitor/en/iis'
+---
 
+<!-- markdownlint-disable MD025 -->
 # IIS
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-windows:
@@ -8,14 +22,16 @@
 
 Microsoft IIS collector
 
-## Preconditions {#requirements}
+## Configuration {#config}
+
+### Preconditions {#requirements}
 
 Operating system requirements::
 
-* Windows Vista and above (excluding Windows Vista)
-* Windows Server 2008 R2 and above
+- Windows Vista and above (excluding Windows Vista)
+- Windows Server 2008 R2 and above
 
-## Configuration {#config}
+### Collector Configuration {#input-config}
 
 Go to the `conf.d/iis` directory under the DataKit installation directory, copy `iis.conf.sample` and name it `iis.conf`. Examples are as follows:
 
@@ -29,7 +45,12 @@ Go to the `conf.d/iis` directory under the DataKit installation directory, copy 
   [inputs.iis.log]
     files = []
     ## grok pipeline script path
-    pipeline = "iis.p" 
+    pipeline = "iis.p"
+
+  [inputs.iis.tags]
+    ## tag1 = "v1"
+    ## tag2 = "v2"
+ 
 ```
 
 After configuration, restart DataKit.
@@ -43,7 +64,7 @@ For all of the following data collections, a global tag named `host` is appended
     # ...
 ```
 
-## Measurements {#measurements}
+## Metric {#metric}
 
 
 
@@ -59,7 +80,7 @@ For all of the following data collections, a global tag named `host` is appended
 | Tag | Description |
 |  ----  | --------|
 |`app_pool`|IIS app pool|
-|`host`|host name|
+|`host`|Host name|
 
 - metric list
 
@@ -68,7 +89,7 @@ For all of the following data collections, a global tag named `host` is appended
 | ---- |---- | :---:    | :----: |
 |`current_app_pool_state`|The current status of the application pool (1 - Uninitialized, 2 - Initialized, 3 - Running, 4 - Disabling, 5 - Disabled, 6 - Shutdown Pending, 7 - Delete Pending).|float|-|
 |`current_app_pool_uptime`|The uptime of the application pool since it was started.|float|s|
-|`total_app_pool_recycles`|The number of times that the application pool has been recycled since Windows Process Activation Service (WAS) started.|float|-| 
+|`total_app_pool_recycles`|The number of times that the application pool has been recycled since Windows Process Activation Service (WAS) started.|float|-|
 
 
 
@@ -83,7 +104,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|host name|
+|`host`|Host name|
 |`website`|IIS web site|
 
 - metric list
@@ -112,7 +133,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`requests_cgi`|Rate of CGI requests that are simultaneously processed by the web service.|float|req/s|
 |`requests_isapi_extension`|Rate of ISAPI extension requests that are simultaneously processed by the web service.|float|req/s|
 |`service_uptime`|Service uptime.|float|s|
-|`total_connection_attempts`|Number of connections that have been attempted using the web service (counted after service startup)|float|count| 
+|`total_connection_attempts`|Number of connections that have been attempted using the web service (counted after service startup)|float|count|
 
 
 

@@ -105,5 +105,5 @@ ebpf 采集器，操作系统支持：`linux/amd64`，除 CentOS 7.6+ 和 Ubuntu
 ![](img/22.gif)
 
 ## 更多参考
-更多关于网络性能监测可参考：[ebpf 采集器](../integrations/host/ebpf.md)
+更多关于网络性能监测可参考：[ebpf 采集器](../integrations/ebpf.md)
 

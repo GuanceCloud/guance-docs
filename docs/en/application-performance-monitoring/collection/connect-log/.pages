@@ -1,4 +1,4 @@
 nav:
   - index.md
-  - 'Java日志关联链路数据': java.md
-  - 'Python日志关联链路数据': python.md
+  - 'Associated with Java': java.md
+  - 'Associated with Python': python.md

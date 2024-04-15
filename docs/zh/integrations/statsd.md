@@ -59,6 +59,12 @@ DD_JMXFETCH_STATSD_PORT=8125
     ```toml
         
     [[inputs.statsd]]
+      ## Collector alias.
+      # source = "statsd/-/-"
+    
+      ## Collect interval, default is 10 seconds. (optional)
+      # interval = '10s'
+    
       protocol = "udp"
     
       ## Address and port to host UDP listener on
@@ -76,6 +82,9 @@ DD_JMXFETCH_STATSD_PORT=8125
       delete_counters = true
       delete_sets = true
       delete_timings = true
+    
+      ## Counter metric is float in new Datakit version, set true if want be int.
+      # set_counter_int = false
     
       ## Percentiles to calculate for timing & histogram stats
       percentiles = [50.0, 90.0, 99.0, 99.9, 99.95, 100.0]
@@ -106,8 +115,8 @@ DD_JMXFETCH_STATSD_PORT=8125
       metric_mapping = [ ]
     
       ## Number of UDP messages allowed to queue up, once filled,
-      ## the statsd server will start dropping packets
-      allowed_pending_messages = 10000
+      ## the statsd server will start dropping packets, default is 128.
+      # allowed_pending_messages = 128
     
       ## Number of timing/histogram values to track per-measurement in the
       ## calculation of percentiles. Raising this limit increases the accuracy
@@ -127,6 +136,12 @@ DD_JMXFETCH_STATSD_PORT=8125
 === "Kubernetes"
 
     目前可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+<!-- markdownlint-enable -->
+
+<!-- markdownlint-disable MD046 -->
+???+ info
+
+    如果日志出现大量 Feed: io busy，可以配置 interval = '1s'，最低 1s。
 <!-- markdownlint-enable -->
 
 ### 标记数据源 {#config-mark}

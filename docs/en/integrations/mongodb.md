@@ -1,6 +1,18 @@
+---
+title     : 'MongoDB'
+summary   : 'Collect mongodb metrics data'
+__int_icon      : 'icon/mongodb'
+dashboard :
+  - desc  : 'Mongodb'
+    path  : 'dashboard/en/mongodb'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
-
+<!-- markdownlint-disable MD025 -->
 # MongoDB
+<!-- markdownlint-enable -->
 
 ---
 
@@ -10,25 +22,50 @@
 
 MongoDb database, Collection, MongoDb database cluster running status data Collection.
 
-## Preconditions {#requirements}
+## Config {#config}
+
+### Preconditions {#requirements}
 
 - Already tested version:
     - [x] 6.0
     - [x] 5.0
     - [x] 4.0
     - [x] 3.0
+    - [x] 2.8.0
 
 - Developed and used MongoDB version `4.4.5`;
 - Write the configuration file in the corresponding directory and then start DataKit to complete the configuration;
 - For secure connections using TLS, please configure the response certificate file path and configuration under `## TLS connection config` in the configuration file;
-- If MongoDb has access control enabled, you need to configure the necessary user rights to establish an authorized connection. For example:
+- If MongoDB has access control enabled, you need to configure the necessary user rights to establish an authorized connection:
 
-```mongodb
-> db.grantRolesToUser("user", [{role: "read", actions: "find", db: "local"}])
+```sh
+# Run MongoDB shell.
+$ mongo
+
+# Authenticate as the admin/root user.
+> use admin
+> db.auth("<admin OR root>", "<YOUR_MONGODB_ADMIN_PASSWORD>")
+
+# Create the user for the Datakit.
+> db.createUser({
+  "user": "datakit",
+  "pwd": "<YOUR_COLLECT_PASSWORD>",
+  "roles": [
+    { role: "read", db: "admin" },
+    { role: "clusterMonitor", db: "admin" },
+    { role: "backup", db: "admin" },
+    { role: "read", db: "local" }
+  ]
+})
 ```
 
-## Configuration {#config}
+>More authorization information can refer to official documentation [Built-In Roles](https://www.mongodb.com/docs/manual/reference/built-in-roles/){:target="_blank"}。
 
+After done with commands above, filling the `user` and `pwd` to Datakit configuration file `conf.d/db/mongodb.conf`.
+
+### Collector Configuration {#input-config}
+
+<!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
     Go to the `conf.d/db` directory under the DataKit installation directory, copy `mongodb.conf.sample` and name it `mongodb.conf`. Examples are as follows:
@@ -39,14 +76,33 @@ MongoDb database, Collection, MongoDb database cluster running status data Colle
       ## Gathering interval
       interval = "10s"
     
+      ## Specify one single Mongodb server. These server related fields will be ignored when the 'servers' field is not empty.
+      ## connection_format is a string in the standard connection format (mongodb://) or SRV connection format (mongodb+srv://).
+      connection_format = "mongodb://"
+    
+      ## The host and port. 
+      host_port = "127.0.0.1:27017"
+    
+      ## Username
+      username = "datakit"
+    
+      ## Password
+      password = "<PASS>"
+    
+      ## The authentication database to use.
+      # default_db = "admin"
+    
+      ## A query string that specifies connection specific options as <name>=<value> pairs.
+      # query_string = "authSource=admin&authMechanism=SCRAM-SHA-256"
+    
       ## A list of Mongodb servers URL
       ## Note: must escape special characters in password before connect to Mongodb server, otherwise parse will failed.
-      ## Form: "mongodb://" [user ":" pass "@"] host [ ":" port]
+      ## Form: "mongodb://[user ":" pass "@"] host [ ":" port]"
       ## Some examples:
       ## mongodb://user:pswd@localhost:27017/?authMechanism=SCRAM-SHA-256&authSource=admin
       ## mongodb://user:pswd@127.0.0.1:27017,
       ## mongodb://10.10.3.33:18832,
-      servers = ["mongodb://127.0.0.1:27017"]
+      # servers = ["mongodb://127.0.0.1:27017"]
     
       ## When true, collect replica set stats
       gather_replica_set_stats = false
@@ -95,14 +151,15 @@ MongoDb database, Collection, MongoDb database cluster running status data Colle
 === "Kubernetes"
 
     The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-enable -->
 
-## TLS config (self-signed) {#tls}
+### TLS config (self-signed) {#tls}
 
-Use openssl to generate a certificate file for MongoDB TLS configuration to enable server-side encryption and client-side authentication.
+Use OpenSSL to generate a certificate file for MongoDB TLS configuration to enable server-side encryption and client-side authentication.
 
 - Configure TLS certificates
 
-Install openssl and run the following command:
+Install OpenSSL and run the following command:
 
 ```shell
 sudo apt install openssl -y
@@ -110,7 +167,7 @@ sudo apt install openssl -y
 
 - Configure MongoDB server-side encryption
 
-Use openssl to generate a certificate-level key file, run the following command and enter the corresponding authentication block information at the command prompt:
+Use OpenSSL to generate a certificate-level key file, run the following command and enter the corresponding authentication block information at the command prompt:
 
 ```shell
 sudo openssl req -x509 -newkey rsa:<bits> -days <days> -keyout <mongod.key.pem> -out <mongod.cert.pem> -nodes
@@ -157,7 +214,7 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem>
 
 - Configuring MongoDB Client Authentication
 
-Use openssl to generate a certificate-level key file and run the following command:
+Use OpenSSL to generate a certificate-level key file and run the following command:
 
 ```shell
 sudo openssl req -x509 -newkey rsa:<bits> -days <days> -keyout <mongod.key.pem> -out <mongod.cert.pem> -nodes
@@ -199,9 +256,9 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 
 **Note:**`insecure_skip_verify` must be `true` in mongodb.conf configuration when using self-signed certificates.
 
-## Measurements {#measurements}
+## Metric {#metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.mongodb.tags]`:
+For all the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.mongodb.tags]`:
 
 ```toml
  [inputs.mongodb.tags]
@@ -545,7 +602,7 @@ Annotate the configuration file `# enable_mongod_log = false` and change `false`
 
 Log raw data sample
 
-```
+```not-set
 {"t":{"$date":"2021-06-03T09:12:19.977+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"WTCheckpointThread","msg":"WiredTiger message","attr":{"message":"[1622711539:977142][1:0x7f1b9f159700], WT_SESSION.checkpoint: [WT_VERB_CHECKPOINT_PROGRESS] saving checkpoint snapshot min: 653, snapshot max: 653 snapshot count: 0, oldest timestamp: (0, 0) , meta checkpoint timestamp: (0, 0)"}}
 ```
 

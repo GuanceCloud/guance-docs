@@ -1,21 +1,22 @@
 ---
-title: '阿里云 OSS'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+title: 'Aliyun OSS'
+summary: 'Aliyun OSS metrics display, including request volume, availability, network traffic, request ratio, and more.'
 __int_icon: icon/aliyun_oss
 dashboard:
-  - desc: '阿里云 OSS 内置视图'
+  - desc: 'Aliyun OSS Built-in Dashboard'
     path: 'dashboard/zh/aliyun_oss/'
 monitor:
-  - desc: '阿里云 OSS 监控器'
+  - desc: 'Aliyun OSS Monitor'
     path: 'monitor/zh/aliyun_oss/'
 ---
 
 <!-- markdownlint-disable MD025 -->
+
 # Aliyun OSS
 <!-- markdownlint-enable -->
 
 
-Alibaba Cloud OSS metrics display, including request volume, availability, network traffic, request ratio, and more.
+Aliyun OSS metrics display, including request volume, availability, network traffic, request ratio, and more.
 
 
 ## config {#config}
@@ -32,7 +33,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of ECS cloud resources, we install the corresponding collection script：「观测云集成（阿里云-OSS采集）」(ID：`guance_aliyun_oss`)
+To synchronize the monitoring data of ECS cloud resources, we install the corresponding collection script：「Guance Integration（Aliyun -OSSCollect）」(ID：`guance_aliyun_oss`)
 
 Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.。
 
@@ -47,12 +48,12 @@ We collected some configurations by default, as described in the Metrics column 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
-## 指标 {#metric}
+## Metric {#metric}
 
-ConfigureAlibaba Cloud OSS monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Alibaba Cloud Monitor Metrics Details](https://help.aliyun.com/document_detail/31879.html?){:target="_blank"}
+Configure Aliyun OSS monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Aliyun Monitor Metrics Details](https://help.aliyun.com/document_detail/31879.html?){:target="_blank"}
 
 | Metric Id                          |                   Metric Name                    | Dimensions                           | Statistics | Unit         |
 | ---- | :----: | ---- | ---- | ---- |
@@ -105,7 +106,7 @@ ConfigureAlibaba Cloud OSS monitoring. The default indicator set is as follows. 
 
 ## Object {#object}
 
-The collected Alibaba Cloud ECS object data structure can see the object data from 「基础设施-自定义」
+The collected Aliyun ECS object data structure can see the object data from 「Infrastructure-Custom」
 
 ```json
 {
@@ -121,7 +122,7 @@ The collected Alibaba Cloud ECS object data structure can see the object data fr
     "extranet_endpoint": "oss-cn-hangzhou.aliyuncs.com",
     "intranet_endpoint": "oss-cn-hangzhou-internal.aliyuncs.com",
     "creation_date"    : 1638415082,
-    "message"          : "{实例 JSON 数据}"
+    "message"          : "{Instance JSON data}"
   }
 }
 

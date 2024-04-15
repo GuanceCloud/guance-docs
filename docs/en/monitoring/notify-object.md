@@ -1,159 +1,156 @@
-# Notification Object Management
+# Notification Targets
 ---
 
-Guance supports you to set notification objects of alarm events through "Management"-"Notification Object Management", including Dingding robot, enterprise WeChat robot, flying book robot, Webhook customization, mail group and SMS group. Refer to the documentation [alarm settings](../monitoring/alert-setting.md) for how to set up alarm notifications.
+???- quote "Release Note"
+
+    **September 21, 2023**: The **Email Group** type has been officially discontinued, but existing ones are not affected. The **Team** function under **Management > Member Management** can be used as a replacement.
 
 
-## New Notification Object
+Guance supports setting notification targets for alert events, including default notification targets (DingTalk, WeCom and Lark Robots, Webhook and SMS Groups) and custom notification targets.
 
-Enter "Management"-"Notification Object Management", click "New Notification Object", select "Nail Robot"/"Enterprise WeChat Robot"/"Feishu Robot"/"Webhook Custom"/"Mail Group"/"SMS Group", enter the corresponding configuration information, and click "Confirm" to complete the new notification object.
+> For information on how to set up alert notifications, see [Alert Setting](../monitoring/alert-setting.md).
 
-![](img/10.inform_1.png)
+## Default Notification Targets {#default}
 
-### 1. New nailing robot {#dingding}
+To create a new notification target, go to **Monitoring > Notification Targets > Create** and select one of the following: DingTalk, WeCom and Lark Robots, Webhook and SMS Groups. Enter the corresponding configuration information and click **Confirm** to complete the creation of the notification target.
 
-Enter "Management"-"Notification Object Management", click "New Notification Object", select "Nailing Robot", and enter configuration information, including custom notification object name, key and Webhook address.
+**Note**: The alert notifications for DingTalk, WeCom and Lark Robots are sent every minute in a merged format, rather than immediately after the event occurs. There may be a delay of about a minute.
 
-???+ attention
+![](img/3.alert-inform_1.png)
 
-    The nail robot alarm notification is sent every minute, not immediately after it is generated, and there will be a delay of about one minute.
+### 1. Create a DingTalk Robot {#dingding}
 
-![](img/10_inform_02.png)
+To create a new DingTalk Robot, go to **Monitoring > Notification Targets > Create** and select DingTalk Robot. Enter the configuration information, including a custom notification target name, key and webhook address.
 
-钉钉机器人的配置信息支持您通过在**钉钉群组**添加机器人之后，在机器人配置详情中查询该机器人**「加签」密钥和「Webhook」地址。**
+<img src="../img/10_inform_02.png" width="70%" >
 
-![](img/10_inform_03.png)
+After successfully adding a DingTalk robot to a group, you can find the signing key and webhook address in the robot's configuration details.
 
-
-### 2. Build a New Enterprise WeChat Robot {#work-weixin}
-
-Enter "Management"-"Notification Object Management", click "New Notification Object", select "Enterprise WeChat Robot", and enter configuration information, including custom notification object name and Webhook address.
-
-???+ attention
-    
-    Enterprise WeChat robot alarm notification is combined and sent every minute, not immediately after it is generated, and there will be a delay of about one minute.
-
-![](img/10_inform_04.png)
-
-The configuration information of enterprise WeChat robot supports you to query the unique **Webhook address** of the robot in the robot configuration details after adding the robot to **enterprise WeChat group**.
+<img src="../img/10_inform_03.png" width="70%" >
 
 
-### 3. New Flying Book Robot
+### 2. Create a WeCom Robot {#work-weixin}
 
-Enter "Management"-"Notification Object Management", click "New Notification Object", select "Flying Book Robot", and enter configuration information, including custom notification object name, Webhook address and key. 
+To create a new WeCom Robot, go to **Monitoring > Notification Targets > Create** and select WeCom Robot. Enter the configuration information, including a custom notification target name and webhook address.
 
-???+ attention
-    
-    The alarm notification of flying book robot is sent every minute, not immediately after it is generated, and there will be a delay of about one minute. 
+<img src="../img/10_inform_04.png" width="70%" >
 
-![](img/15.inform_feishu_1.png)
-
-飞书机器人的配置信息支持您通过在**飞书群组**添加机器人之后，在机器人配置详情中查询该机器人**「签名校验」和「Webhook地址」。**
-
-![](img/10_inform_06.png)
+After successfully adding a WeCom robot to a group, you can find the webhook address specific to that robot in the robot's configuration details.
 
 
-### 4. New Webhook Customization
+### 3. Create a Lark Robot
 
-Enter "Management"-"Notification Object Management", click "New Notification Object", select "Webhook Customization", and enter the required information.
+To create a new Lark Robot, go to **Monitoring > Notification Targets > Create** and select Lark Robot. Enter the configuration information, including a custom notification target name, webhook address, and key.
 
-![](img/10_inform_07.png)
+<img src="../img/15.inform_feishu_1.png" width="70%" >
 
-Webhook custom notification type `HTTPRequest` sends a plain text POST request to the specified address.  
+After successfully adding a Lark robot to a group, you can find the signature verification and webhook address in the robot's configuration details.
 
-Assuming the user-configured address is `[http://my-system/accept-webhook](http://my-system/accept-webhook)`, the resulting alarm header and content are:  
+<img src="../img/10_inform_06.png" width="70%" >
 
-Title: 
+
+### 4. Create a Webhook
+
+To create a new Webhook, go to **Monitoring > Notification Targets > Create** and select Webhook. Enter the required information.
+
+<img src="../img/10_inform_07.png" width="70%" >
+
+The Webhook notification type is `HTTPRequest`, which sends a plain text POST request to the specified address. 
+
+Assuming the user's configured address is `[<http://my-system/accept-webhook>](<http://my-system/accept-webhook>)`, the generated alert title and content are as follows:
+
+Title:
 
 ```
-There is a problem with your ECS 
+Error in ECS
 ```
 
 Content:
 
 ```
 Your ECS has the following issues:
-- High CPU utilization (92%)
-- Overused memory (81%)
+- High CPU usage (92%)
+- High memory usage (81%)
 ```
 
-The requests sent will vary according to the type of request configured:
+The sent request will vary depending on the configured request type:
 
-1）When `bodyType` is not specified or `text`, the request details are as follows:
+1. When bodyType is not specified or is text, the request details are as follows:
 
 ```http
-POST http://my-system/accept-webhook
+POST <http://my-system/accept-webhook>
 Content-Type: text/plain
 
-There is a problem with your ECS
+Your ECS has issues
 
 Your ECS has the following issues:
-- High CPU utilization （92%）
-- Overused memory (81%）
+- High CPU usage (92%)
+- High memory usage (81%)
 ```
 
-Where 1st is the event header `df_title`, 2nd is a blank line, and everything thereafter is the event content`df_message`。
+In the above example, the first line is the event title `df_title`, followed by an empty line, and then the event content `df_message`.
 
-2）When `bodyType` is `json`, the request details are as follows:
+2. When `bodyType` is `json`, the request details are as follows:
 
 ```http
-POST http://my-system/accept-webhook
+POST <http://my-system/accept-webhook>
 Content-Type: application/json
 
 {
     "timestamp"               : 1625638440,
     "df_status"               : "warning",
     "df_event_id"             : "event-xxxxxxxxxx",
-    "df_title"                : "web001存在问题",
-    "df_message"              : "web001存在问题\nCPU使用率大于90\n内存使用率大于90",
-    "df_dimension_tags"       : "{\"host\":\"web001\"}",
+    "df_title"                : "web001 has issues",
+    "df_message"              : "web001 has issues\\nCPU usage is greater than 90\\nMemory usage is greater than 90",
+    "df_dimension_tags"       : "{\\"host\\":\\"web001\\"}",
     "df_monitor_id"           : "monitor_xxxxxxxxxx",
-    "df_monitor_name"         : "异常检测名",
+    "df_monitor_name"         : "Abnormal Detection",
     "df_monitor_checker_id"   : "rul_xxxxxxxxxx",
-    "df_monitor_checker_name" : "异常检测项目名",
+    "df_monitor_checker_name" : "Abnormal Detection Project",
     "df_monitor_checker_value": "99",
-    "df_event_link"           : "https://console.guance.com/keyevents/monitorChart?xxxxxxxxxx"
+    "df_event_link"           : "<https://console.guance.com/keyevents/monitorChart?xxxxxxxxxx>",
     "df_workspace_uuid"       : "wksp_xxxxxxxxxx",
-    "df_workspace_name"       : "我的工作空间",
+    "df_workspace_name"       : "My Workspace",
     "Result"                  : 99,
-    "...其他更多字段": "略",
+    "...more fields": "omitted",
 
-    // 以下为旧版字段
+    // The following are old version fields
     "date"          : 1625638440,
     "workspace_uuid": "wksp_xxxxxxxxxx",
-    "workspace_name": "我的工作空间",
+    "workspace_name": "My Workspace"
 }
 ```
 
-Note: Webhook supports only the json format for the type of content sent by custom notifications. See the document [event generation](../events/generating.md).
+**Note**: When synchronizing event information to an external system via Webhook, the workspace [attribute claims](../management/attribute-claims.md) will be appended.
 
-For more detailed practice documentation on Webhook customization, please refer to《[Guance Webhook custom alert notification integration](../dataflux-func/guance-alert-webhook-integration.md)》
+> The Webhook notification only supports sending content in JSON format. For details of each field, see [Event Generation](../events/index.md#fields).
+>
+> 有For more detailed documentation on Webhook Custom, see [Guance Webhook Alert Notification Integration](https://func.guance.com/doc/practice-guance-alert-webhook-integration/).
 
-### 5. Create a New Message Group
 
-Enter "Management"-"Notification Object Management", click "New Notification Object", select "Mail Group", and enter the required information. Mail groups can add more than one member at a time.
+### 5. Create an SMS Group
 
-???+ attention
+To create a new SMS Group, go to **Monitoring > Notification Targets > Create** and select SMS. Enter the required information. Multiple members can be added to an SMS group.
 
-    - Members need to be invited to join the workspace in "Management"-"Member Management" before they can be selected.
-    - Mail group alert notifications are sent every minute combined, not immediately after they are generated, with a delay of about one minute.
+**Note**:
 
-![](img/10_inform_08.png)
+- Members need to be invited to join the workspace through **Management > Member Management** before they can be selected.
+- The SMS group alert notifications are sent every minute in a merged format, rather than immediately after the event occurs. There may be a delay of about a minute.
 
-### 6. Create a New SMS Group
+<img src="../img/10_inform_09.png" width="70%" >
 
-Enter "Management"-"Notification Object Management", click "New Notification Object", select "SMS", and enter the required information. SMS groups can add more than one member at a time.
+## Custom Notification Targets {#custom}
 
-???+ attention
+In addition to providing default notification targets, Guance also supports custom notification targets through third-party Func integration, allowing you to create your own notification targets and align them with relevant alert information.
 
-    - Members need to be invited to join the workspace in "Management"-"Member Management" before they can be selected.
-    - SMS group alerts are sent every minute combined, not immediately after generation, with a delay of about one minute.
+> For more details, see [Integrating Custom Notification Targets](https://func.guance.com/doc/practice-guance-self-build-notify-function/).
 
-![](img/10_inform_09.png)
 
-## Modify/Delete Notification Object
+## List Options
 
-After the notification object has been successfully added, it can be viewed on the Management-Notification Object Management page. At the same time, you can modify or delete the notification objects in each list.
+After successfully adding notification targets, you can view them on the **Monitoring > Notification Targets** page. You can modify or delete specific notification targets.
+
+![](img/notify-1.png)
 
 
 

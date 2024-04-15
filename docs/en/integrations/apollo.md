@@ -1,6 +1,6 @@
 ---
 title     : 'Apollo'
-summary   : 'Collect information about Apollo-related indicators'
+summary   : 'Collect information about Apollo-related metrics'
 __int_icon: 'icon/apollo'
 dashboard :
   - desc  : 'Apollo Monitoring View'
@@ -16,21 +16,20 @@ monitor   :
 # Apollo
 <!-- markdownlint-enable -->
 
-Information on Apollo-related indicators was collected.
+Information on Apollo-related metrics was collected.
 
 ## Installation Configuration{#config}
 
 - [x] Apollo >= 1.5.0
 
 
-### Apollo Indicators
+### Apollo Metrics
 
-The default Exposure Indicator port for Apollo is: `8070`. Indicator-related information can be viewed through a browser: `http://clientIP:8070/prometheus`.
+The default Exposure Metric port for Apollo is: `8070`. Metric-related information can be viewed through a browser: `http://clientIP:8070/prometheus`.
 
 ### DataKit Collector Configuration
 
-Because `Apollo` can expose `metrics` URL directly, it can be collected directly through [ `prom`](./prom.md) collector.
-
+Because `Apollo` can expose `metrics` URL directly, it can be collected directly through [`prom`](./prom.md) collector.
 
 
 The adjustments are as follows:
@@ -53,14 +52,14 @@ The adjustments are as follows:
 , adjust parameter description:
 
 <!-- markdownlint-disable MD004 -->
-- Urls: `prometheus` Indicator address, where you fill in the indicator URL exposed by the corresponding component
+- Urls: `prometheus` Metric address, where you fill in the metric URL exposed by the corresponding component
 - Source: Collector alias, recommended to distinguish
 - Interval: collection interval
 
 <!-- markdownlint-enable -->
 ### Restart DataKit
 
-[Restart DataKit] (.. /datakit/datakit-service-how-to.md/#manage-service)
+[Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
 ## Metric {#metric}
 
@@ -71,7 +70,7 @@ The adjustments are as follows:
 | component |Component name `apollo`|
 
 
-### Indicator Set `jvm`
+### Metric Set `jvm`
 
 |Metrics| Describe |
 | -- | -- |
@@ -79,7 +78,7 @@ The adjustments are as follows:
 |memory_used_bytes| memory used  |
 
 
-### Indicator Set `jdbc`
+### Metric Set `jdbc`
 
 |Metrics| Describe |
 | -- | -- |
@@ -88,20 +87,20 @@ The adjustments are as follows:
 |connections_max| max connections |
 |connections_min| min connections |
 
-### Indicator Set `process`
+### Metric Set `process`
 
 |Metrics| Describe |
 | -- | -- |
 |uptime_seconds| jvm start time |
 
-### Indicator Set `system`
+### Metric Set `system`
 
 |Metrics| Describe |
 | -- | -- |
 |cpu_usage| cpu usage |
 |cpu_count| cpu count |
 
-### Indicator Set `http`
+### Metric Set `http`
 
 |Metrics| Describe |
 | -- | -- |

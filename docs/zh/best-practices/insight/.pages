@@ -27,8 +27,12 @@ nav:
     - 'ddtrace 采样': ddtrace-skill-sampling.md
     - 'ddtrace-api 使用指南': ddtrace-skill-api.md
     - 'ddtrace log 关联': ddtrace-skill-log.md
+    - tracing_method.md
     - 'OpenTelemetry Java SDK': opentelemetry-sdk.md
+    - opentelemetry-params-for-java.md
+    - 'trace_thread.md'
 
   - '场景 (Scene)': 
     - '内网场景 Dubbo 微服务接入观测云': scene-dubbo.md
     - 'SpringBoot 项目外置 Tomcat 场景链路可观测': springboot-tomcat.md
+    - '异常追踪与 JIRA 实现双向联动最佳实践': im_jira.md

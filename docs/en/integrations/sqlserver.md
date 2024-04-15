@@ -1,5 +1,19 @@
+---
+title     : 'SQLServer'
+summary   : 'Collect SQLServer Metrics'
+__int_icon      : 'icon/sqlserver'
+dashboard :
+  - desc  : 'SQLServer'
+    path  : 'dashboard/en/sqlserver'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # SQLServer
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
@@ -8,7 +22,16 @@
 
 SQL Server Collector collects SQL Server `waitstats`, `database_io` and other related metrics.
 
-## Prerequisites {#requrements}
+
+## Configuration {#config}
+
+SQL Server  version >= 2012, tested version:
+
+- [x] 2017
+- [x] 2019
+- [x] 2022
+
+### Prerequisites {#requrements}
 
 - SQL Server version >= 2019
 
@@ -16,7 +39,7 @@ SQL Server Collector collects SQL Server `waitstats`, `database_io` and other re
 
 Linux、Windows:
 
-```
+```sql
 USE master;
 GO
 CREATE LOGIN [guance] WITH PASSWORD = N'yourpassword';
@@ -27,9 +50,9 @@ GRANT VIEW ANY DEFINITION TO [guance];
 GO
 ```
 
-aliyun RDS SQL Server:
+Aliyun RDS SQL Server:
 
-```
+```sql
 USE master;
 GO
 CREATE LOGIN [guance] WITH PASSWORD = N'yourpassword';
@@ -37,7 +60,8 @@ GO
 
 ```
 
-## Configuration {#config}
+<!-- markdownlint-disable MD046 -->
+### Collector Configuration {#input-config}
 
 === "Host Installation"
 
@@ -52,6 +76,9 @@ GO
       ## your sqlserver user,password
       user = ""
       password = ""
+    
+      ## Instance name. If not specified, a connection to the default instance is made.
+      instance_name = ""
     
       ## (optional) collection interval, default is 10s
       interval = "10s"
@@ -98,6 +125,26 @@ GO
 === "Kubernetes"
 
     The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-enable -->
+
+#### Log Collector Configuration {#logging-config}
+
+<!-- markdownlint-disable MD046 -->
+???+ attention
+
+     DataKit must be installed on the host where SQLServer is running.
+<!-- markdownlint-enable -->
+
+To collect SQL Server logs, enable `files` in *sqlserver.conf* and write to the absolute path of the SQL Server log file. For example:
+
+```toml hl_lines="4"
+[[inputs.sqlserver]]
+    ...
+    [inputs.sqlserver.log]
+        files = ["/var/opt/mssql/log/error.log"]
+```
+
+When log collection is turned on, a log with a log (aka *source*) of`sqlserver` is collected.
 
 ## Metrics {#measurements}
 
@@ -110,7 +157,9 @@ For all of the following data collections, a global tag name `host` is appended 
   # ...
 ```
 
- 
+<!-- markdownlint-disable MD024 -->
+
+
 
 ### `sqlserver`
 
@@ -119,7 +168,7 @@ For all of the following data collections, a global tag name `host` is appended 
 
 | Tag | Description |
 |  ----  | --------|
-|`sqlserver_host`|host name which installed SQLServer|
+|`sqlserver_host`|Host name which installed SQLServer|
 
 - field list
 
@@ -128,19 +177,21 @@ For all of the following data collections, a global tag name `host` is appended 
 | ---- |---- | :---:    | :----: |
 |`committed_memory`|The amount of memory committed to the memory manager|int|B|
 |`cpu_count`|Specifies the number of logical CPUs on the system. Not nullable|int|count|
-|`db_offline`|num of database state in offline|int|count|
-|`db_online`|num of database state in online|int|count|
-|`db_recovering`|num of database state in recovering|int|count|
-|`db_recovery_pending`|num of database state in recovery_pending|int|count|
-|`db_restoring`|num of database state in restoring|int|count|
-|`db_suspect`|num of database state in suspect|int|count|
+|`db_offline`|Num of database state in offline|int|count|
+|`db_online`|Num of database state in online|int|count|
+|`db_recovering`|Num of database state in recovering|int|count|
+|`db_recovery_pending`|Num of database state in recovery_pending|int|count|
+|`db_restoring`|Num of database state in restoring|int|count|
+|`db_suspect`|Num of database state in suspect|int|count|
 |`physical_memory`|Total physical memory on the machine|int|B|
-|`server_memory`|memory used|int|B|
+|`server_memory`|Memory used|int|B|
 |`target_memory`|Amount of memory that can be consumed by the memory manager. When this value is larger than the committed memory, then the memory manager will try to obtain more memory. When it is smaller, the memory manager will try to shrink the amount of memory committed.|int|B|
 |`uptime`|Total time elapsed since the last computer restart|int|ms|
 |`virtual_memory`|Amount of virtual memory available to the process in user mode.|int|B|
 
-  
+
+
+
 
 ### `sqlserver_performance`
 
@@ -153,7 +204,7 @@ For all of the following data collections, a global tag name `host` is appended 
 |`counter_type`|Type of the counter|
 |`instance`|Name of the specific instance of the counter|
 |`object_name`|Category to which this counter belongs.|
-|`sqlserver_host`|host name which installed SQLServer|
+|`sqlserver_host`|Host name which installed SQLServer|
 
 - field list
 
@@ -162,7 +213,9 @@ For all of the following data collections, a global tag name `host` is appended 
 | ---- |---- | :---:    | :----: |
 |`cntr_value`|Current value of the counter|float|count|
 
-  
+
+
+
 
 ### `sqlserver_waitstats`
 
@@ -171,8 +224,8 @@ For all of the following data collections, a global tag name `host` is appended 
 
 | Tag | Description |
 |  ----  | --------|
-|`sqlserver_host`|host name which installed SQLServer|
-|`wait_category`|wait category info|
+|`sqlserver_host`|Host name which installed SQLServer|
+|`wait_category`|Wait category info|
 |`wait_type`|Name of the wait type. For more information, see Types of Waits, later in this topic|
 
 - field list
@@ -186,7 +239,9 @@ For all of the following data collections, a global tag name `host` is appended 
 |`wait_time_ms`|Total wait time for this wait type in milliseconds. This time is inclusive of signal_wait_time_ms|int|ms|
 |`waiting_tasks_count`|Number of waits on this wait type. This counter is incremented at the start of each wait.|int|count|
 
-  
+
+
+
 
 ### `sqlserver_database_io`
 
@@ -195,11 +250,11 @@ For all of the following data collections, a global tag name `host` is appended 
 
 | Tag | Description |
 |  ----  | --------|
-|`database_name`|database name|
+|`database_name`|Database name|
 |`file_type`|Description of the file type, `ROWS/LOG/FILESTREAM/FULLTEXT` (Full-text catalogs earlier than SQL Server 2008.)|
 |`logical_filename`|Logical name of the file in the database|
 |`physical_filename`|Operating-system file name.|
-|`sqlserver_host`|host name which installed SQLServer|
+|`sqlserver_host`|Host name which installed SQLServer|
 
 - field list
 
@@ -211,11 +266,13 @@ For all of the following data collections, a global tag name `host` is appended 
 |`reads`|Number of reads issued on the file.|int|count|
 |`rg_read_stall_ms`|Does not apply to:: SQL Server 2008 through SQL Server 2012 (11.x).Total IO latency introduced by IO resource governance for reads|int|ms|
 |`rg_write_stall_ms`|Does not apply to:: SQL Server 2008 through SQL Server 2012 (11.x).Total IO latency introduced by IO resource governance for writes. Is not nullable.|int|ms|
-|`write_bytes`|Number of writes made on this file|int|B|
+|`write_bytes`|Total number of bytes written to the file|int|B|
 |`write_latency_ms`|Total time, in milliseconds, that users waited for writes to be completed on the file|int|ms|
 |`writes`|Number of writes issued on the file.|int|count|
 
-  
+
+
+
 
 ### `sqlserver_schedulers`
 
@@ -226,7 +283,7 @@ For all of the following data collections, a global tag name `host` is appended 
 |  ----  | --------|
 |`cpu_id`|CPU ID assigned to the scheduler.|
 |`scheduler_id`|ID of the scheduler. All schedulers that are used to run regular queries have ID numbers less than 1048576. Those schedulers that have IDs greater than or equal to 1048576 are used internally by SQL Server, such as the dedicated administrator connection scheduler. Is not nullable.|
-|`sqlserver_host`|host name which installed SQLServer|
+|`sqlserver_host`|Host name which installed SQLServer|
 
 - field list
 
@@ -248,7 +305,9 @@ For all of the following data collections, a global tag name `host` is appended 
 |`work_queue_count`|Number of tasks in the pending queue. These tasks are waiting for a worker to pick them up|int|count|
 |`yield_count`|Internal value that is used to indicate progress on this scheduler. This value is used by the Scheduler Monitor to determine whether a worker on the scheduler is not yielding to other workers on time.|int|count|
 
-  
+
+
+
 
 ### `sqlserver_volumespace`
 
@@ -257,7 +316,7 @@ For all of the following data collections, a global tag name `host` is appended 
 
 | Tag | Description |
 |  ----  | --------|
-|`sqlserver_host`|host name which installed SQLServer|
+|`sqlserver_host`|Host name which installed SQLServer|
 |`volume_mount_point`|Mount point at which the volume is rooted. Can return an empty string. Returns null on Linux operating system.|
 
 - field list
@@ -269,7 +328,19 @@ For all of the following data collections, a global tag name `host` is appended 
 |`volume_total_space_bytes`|Total size in bytes of the volume|int|B|
 |`volume_used_space_bytes`|Used size in bytes of the volume|int|B|
 
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### `sqlserver_database_size`
 
@@ -288,7 +359,9 @@ For all of the following data collections, a global tag name `host` is appended 
 |`data_size`|The size of file of Rows|float|KB|
 |`log_size`|The size of file of Log|float|KB|
 
-  
+
+
+
 
 ### `sqlserver_database_backup`
 
@@ -306,7 +379,9 @@ For all of the following data collections, a global tag name `host` is appended 
 | ---- |---- | :---:    | :----: |
 |`backup_count`|The total count of successful backups made for a database|int|count|
 
-  
+
+
+
 
 ### `sqlserver_database_files`
 
@@ -329,14 +404,27 @@ For all of the following data collections, a global tag name `host` is appended 
 | ---- |---- | :---:    | :----: |
 |`size`|Current size of the database file|int|KB|
 
- 
+
 
 
 ## Logging {#logging}
 
 Following measurements are collected as logs with the level of `info`.
 
-             
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### `sqlserver_lock_row`
 
@@ -362,7 +450,9 @@ NA
 |`session_id`|ID of the session to which this request is related|int|count|
 |`session_status`|Status of the session|string|TODO|
 
-  
+
+
+
 
 ### `sqlserver_lock_table`
 
@@ -382,7 +472,9 @@ NA
 |`request_status`|Current status of this request|string|TODO|
 |`resource_type`|Represents the resource type|string|TODO|
 
-  
+
+
+
 
 ### `sqlserver_lock_dead`
 
@@ -405,7 +497,9 @@ NA
 |`requesting_text`|Text of the SQL query which is requesting|string|TODO|
 |`resource_type`|Represents the resource type|string|TODO|
 
-  
+
+
+
 
 ### `sqlserver_logical_io`
 
@@ -429,7 +523,9 @@ NA
 |`total_logical_reads`|Total amount of logical reads|int|count|
 |`total_logical_writes`|Total amount of logical writes|int|count|
 
-  
+
+
+
 
 ### `sqlserver_worker_time`
 
@@ -451,39 +547,30 @@ NA
 |`last_execution_time`|Last time at which the plan started executing, unix time in millisecond|int|count|
 |`total_worker_time`|Total amount of CPU time, reported in milliseconds|int|count|
 
-       
 
-## Collec SQLServer running logging {#logging}
 
-???+ attention
 
-    DataKit must be installed on the host where SQLServer is running.
 
-To collect SQL Server logs, enable `files` in *sqlserver.conf* and write to the absolute path of the SQL Server log file. For example:
 
-```toml hl_lines="4"
-[[inputs.sqlserver]]
-	...
-	[inputs.sqlserver.log]
-		files = ["/var/opt/mssql/log/error.log"]
-```
 
-When log collection is turned on, a log with a log (aka *source*) of`sqlserver` is collected.
+
+
+<!-- markdownlint-enable -->
 
 ### Pipeline for  SQLServer logging {#pipeline}
 
-- SQL Server common log pipeline
+- SQL Server Common Log Pipeline
 
 Example of common log text:
 
-```
+```log
 2021-05-28 10:46:07.78 spid10s     0 transactions rolled back in database 'msdb' (4:0). This is an informational message only. No user action is required
 ```
 
 The list of extracted fields are as follows:
 
 | Field Name | Field Value         | Description                                                                                |
-| ---        | ---                 | ---                                                                                        |
+| ---------- | ------------------- | ------------------------------------------------------------------------------------------ |
 | `msg`      | spid...             | log content                                                                                |
 | `time`     | 1622169967780000000 | nanosecond timestamp (as row protocol time)                                                |
 | `origin`   | spid10s             | source                                                                                     |

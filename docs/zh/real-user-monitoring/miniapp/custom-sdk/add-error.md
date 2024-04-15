@@ -2,7 +2,7 @@
 ---
 
 
-初始化 RUM 后，使用 `addError（'<NAME>'，'<JSON_OBJECT>'）` API，可以自定义添加采集之外的 error 指标数据。
+初始化 RUM 后，使用 `addError（'<NAME>'，'<JSON_OBJECT>'）` API，可以自定义添加采集之外的 Error 指标数据。
 
 ### 添加 Error
 

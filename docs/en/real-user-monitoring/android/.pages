@@ -2,3 +2,4 @@ nav:
   - 'Android Application Data Collection': app-data-collection.md
   - 'Android Application Access': app-access.md
   - 'Android Application Analysis': app-analysis.md
+  - 'Android Application Troubleshooting': app-troubleshooting.md

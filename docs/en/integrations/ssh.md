@@ -1,5 +1,19 @@
+---
+title     : 'SSH'
+summary   : 'Collect SSH metrics'
+__int_icon      : 'icon/ssh'
+dashboard :
+  - desc  : 'SSH'
+    path  : 'dashboard/en/ssh'
+monitor   :
+  - desc  : 'SSH'
+    path  : 'monitor/en/ssh'
+---
 
+<!-- markdownlint-disable MD025 -->
 # SSH
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -10,6 +24,9 @@ Monitor SSH/SFTP services and report data to Guance Cloud.
 
 ## Configuration {#config}
 
+### Collector Configuration {#input-config}
+
+<!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
     Go to the `conf.d/ssh` directory under the DataKit installation directory, copy `ssh.conf.sample` and name it `ssh.conf`. Examples are as follows:
@@ -43,8 +60,9 @@ Monitor SSH/SFTP services and report data to Guance Cloud.
 === "Kubernetes"
 
     The collector can now be turned on by [configMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-enable -->
 
-## Measurements {#measurements}
+## Metric {#metric}
 
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.ssh.tags]`:
 
@@ -64,17 +82,17 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|the host of ssh|
+|`host`|The host of ssh|
 
 - metric list
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`sftp_check`|sftp service status|bool|-|
-|`sftp_err`|fail reason of connect sftp service|string|-|
-|`sftp_response_time`|response time of sftp service|float|ms|
-|`ssh_check`|ssh service status|bool|-|
-|`ssh_err`|fail reason of connect ssh service|string|-|
+|`sftp_check`|SFTP service status|bool|-|
+|`sftp_err`|Fail reason of connect sftp service|string|-|
+|`sftp_response_time`|Response time of sftp service|float|ms|
+|`ssh_check`|SSH service status|bool|-|
+|`ssh_err`|Fail reason of connect ssh service|string|-|
 
 

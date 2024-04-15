@@ -22,7 +22,6 @@ monitor   :
 
 Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事件日志
 
-
 ## 配置 {#config}
 
 ### 前置条件 {#requrements}
@@ -56,6 +55,10 @@ Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事
     </Query>
   </QueryList>
   '''
+
+  # event_fetch_size is the number of events to fetch per query.
+  event_fetch_size = 5
+
   [inputs.windows_event.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
@@ -64,7 +67,7 @@ Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事
 
 配置好后，重启 DataKit 即可。
 
-## 指标 {#metric}
+## 日志 {#logging}
 
 以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.windows_event.tags]` 指定其它标签：
 
@@ -85,18 +88,18 @@ Windows 事件日志采集是采集应用程序、安全、系统等 Windows 事
 | Tag | Description |
 |  ----  | --------|
 |`channel`|Channel|
-|`computer`|计算机|
-|`event_id`|事件 ID|
-|`event_record_id`|事件记录 ID|
-|`event_source`|Windows 事件来源|
-|`keyword`|关键字|
-|`level`|级别|
-|`message`|事件内容|
-|`process_id`|进程 ID|
-|`status`|日志等级|
-|`task`|任务类别|
-|`total_message`|事件全文|
-|`version`|版本|
+|`computer`|Computer|
+|`event_id`|Event ID|
+|`event_record_id`|Event record ID|
+|`event_source`|Windows event source|
+|`keyword`|Keyword|
+|`level`|Level|
+|`message`|Event content|
+|`process_id`|Process ID|
+|`status`|Log level|
+|`task`|Task category|
+|`total_message`|Full text of the event|
+|`version`|Version|
 
 - 指标列表
 

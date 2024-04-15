@@ -1,13 +1,13 @@
 ---
 title: 'Aliyun ECS'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'   
+summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'   
 __int_icon: 'icon/aliyun_ecs'
 dashboard:
-  - desc: '阿里云 ECS 内置视图'
+  - desc: 'Aliyun ECS Monitoring View'
     path: 'dashboard/zh/aliyun_ecs/'
 
 monitor:
-  - desc: '阿里云 ECS 监控器'
+  - desc: 'Aliyun ECS Monitor'
     path: 'monitor/zh/aliyun_ecs/'
 ---
 
@@ -16,7 +16,7 @@ monitor:
 <!-- markdownlint-enable -->
 
 
-Use the「Guance Cloud Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud。
+Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance。
 
 
 ## config {#config}
@@ -33,7 +33,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of ECS cloud resources, we install the corresponding collection script：「观测云集成（阿里云-ECS采集）」(ID：`guance_aliyun_ecs`)
+To synchronize the monitoring data of ECS cloud resources, we install the corresponding collection script：「Guance Integration（Aliyun -ECS Collect）」(ID：`guance_aliyun_ecs`)
 
 Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.。
 
@@ -51,13 +51,13 @@ We collected some configurations by default, as described in the Metrics column 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
-Configure Ali Cloud - cloud monitoring. The default indicator set is as follows. You can collect more indicators by configuring them [Alibaba Cloud Monitor Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_ecs_dashboard/ecs){:target="_blank"}
+Configure Ali Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Alibaba Cloud Monitor Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_ecs_dashboard/ecs?spm=a2c4g.11186623.0.0.252476abTrNabN){:target="_blank"}
 
-> Tip：The monitoring plug-in needs to be installed on the aliyun ECS console
+> Tip：The monitoring plug-in needs to be installed on the Aliyun ECS console
 
 | Metric | Description                        | Type | Unit |
 | ---- |------------------------------------| :---:    | :----: |
@@ -72,7 +72,7 @@ Configure Ali Cloud - cloud monitoring. The default indicator set is as follows.
 |`DiskWriteIOPS`| Number of writes per second for all disks|float|Count/Second|
 |`disk_readiops`| Number of disk reads per second  |float|Count/Second|
 |`disk_writeiops`| Number of disk writes per second |float|Count/Second|
-|`diskusage_utilization`| Host.diskusage.utilization         |float|%|
+|`diskusage_utilization`| `Host.diskusage.utilization`         |float|%|
 |`fs_inodeutilization`| (Agent)fs.inode.utilization_device |float|%|
 |`GroupVPC_PublicIP_InternetInRate`| IP bandwidth of the public network                       |float|bits/s|
 |`GroupVPC_PublicIP_InternetOutRate`| IP address outbound bandwidth of the public network                         |float|bits/s|
@@ -93,7 +93,8 @@ Configure Ali Cloud - cloud monitoring. The default indicator set is as follows.
 |`memory_totalspace`| (Agent)memory.total.space          |float|bytes|
 
 ## Object {#object}
-The collected Alibaba Cloud ECS object data structure can see the object data from 「基础设施-自定义」
+The collected Alibaba Cloud ECS object data structure can see the object data from 「Infrastructure-Custom」
+
 ``` json
 {
   "measurement": "aliyun_ecs",
@@ -116,17 +117,17 @@ The collected Alibaba Cloud ECS object data structure can see the object data fr
     "CreationTime"           : "2022-01-01T00:00Z",
     "StartTime"              : "2022-01-02T00:00Z",
     "ExpiredTime"            : "2023-01-01T00:00Z",
-    "disks"                  : "[ {关联磁盘 JSON 数据}, ... ]",
-    "network_interfaces"     : "[ {关联网卡 JSON 数据}, ... ]",
-    "instance_renew_attribute": "[ {自动续费 JSON 数据}, ...]",
-    "instances_full_status"  : "[ {全状态信息 JSON 数据}, ...]",
-    "OperationLocks"         : "[ {锁定原因 JSON 数据}, ...]",
+    "disks"                  : "[ {关联磁盘 JSON data}, ... ]",
+    "network_interfaces"     : "[ {关联网卡 JSON data}, ... ]",
+    "instance_renew_attribute": "[ {自动续费 JSON data}, ...]",
+    "instances_full_status"  : "[ {全状态信息 JSON data}, ...]",
+    "OperationLocks"         : "[ {锁定原因 JSON data}, ...]",
     "Memory"                 : "8192",
     "Cpu"                    : "4",
     "InternetMaxBandwidthOut": "0",
     "InternetMinBandwidthIn" : "0",
     "AutoReleaseTime"        : "xxxx",
-    "message"                : "{实例 JSON 数据}"
+    "message"                : "{Instance JSON data}"
   }
 }
 ```

@@ -2,9 +2,13 @@ nav:
   - integration-index.md
   - 公有云:
     - 阿里云:
+      - 'AnalyticDB PostgresSQL': aliyun_analyticdb_postgresql.md
       - 'CDN': aliyun_cdn.md
+      - 'ClickHouse': aliyun_clickhouse_community.md
       - 'ECS': aliyun_ecs.md
       - 'EIP': aliyun_eip.md
+      - 'Kafka': aliyun_kafka.md
+      - 'Lindorm': aliyun_lindorm.md
       - 'MongoDB': aliyun_mongodb.md
       - 'MySQL' : aliyun_rds_mysql.md
       - 'MySQL(PolarDB)': aliyun_polardb_mysql.md
@@ -12,27 +16,63 @@ nav:
       - 'OSS': aliyun_oss.md
       - 'Oracle(PolarDB)': aliyun_polardb_oracle.md
       - 'PostgreDQL(PolarDB)': aliyun_polardb_postgresql.md
+      - 'PolarDB 1.0': aliyun_polardb_1.0.md
+      - 'PolarDB 2.0': aliyun_polardb_2.0.md
+      - 'RDS(MariaDB)' : aliyun_rds_mariadb.md
+      - 'RDS(PostgreSQL)' : aliyun_rds_postgresql.md
       - 'Redis Shard': aliyun_redis_shard.md
       - 'Redis': aliyun_redis.md
+      - 'RocketMQ4' : aliyun_rocketmq4.md
+      - 'RocketMQ5' : aliyun_rocketmq5.md
       - 'SLB': aliyun_slb.md
       - 'SLS': aliyun_sls.md
       - 'SQLServer': aliyun_rds_sqlserver.md
+      - 'Tair': aliyun_tair.md
 
-    - 华为云:
+    - 华为云: 
+      - 'ASM': huawei_asm.md
       - 'DCS': huawei_dcs.md
+      - 'CCE': huawei_cce.md
+      - 'CSS(Elasticsearch)': huawei_css_es.md
       - 'ECS': huawei_ecs.md
       - 'ELB': huawei_elb.md
-      - 'MySQL': huawei_rds_mysql.md
+      - 'FunctionGraph': huawei_FunctionGraph.md
+      - 'GaussDB(Cassandra)': huawei_gaussdb_cassandra.md
+      - 'GaussDB(MySQL)': huawei_gaussdb_for_mysql.md
+      - 'GaussDB(Influx)': huawei_gaussdb_influx.md
+      - 'GaussDB(Redis)': huawei_gaussdb_redis.md
+      - 'GaussDBV5': huawei_gaussdb_sys.gaussdbv5.md
+      - 'Kafka': huawei_kafka.md
+      - 'RDS(MySQL)': huawei_rds_mysql.md
+      - 'MongoDB': huawei_mongodb.md
       - 'OBS': huawei_obs.md
+      - 'RDS(PostgreSQL)': huawei_rds_postgresql.md
+      - 'SYS.AS': huawei_SYS.AS.md
+      - 'SYS.CBR': huawei_SYS.CBR.md
+      - 'SYS DDMS': huaweiyun_SYS_DDMS.md
 
-    - AWS:
+    - AWS: 
+      - 'Aurora Serverless V2': aws_aurora_serverless_v2.md
+      - 'CloudFront': aws_cloudfront.md
+      - 'DynamoDB': aws_dynamodb.md
+      - 'DynamoDB(DAX)': aws_dynamodb_DAX.md
       - 'EC2': aws_ec2.md
+      - 'ECS': aws_ecs.md
       - 'ELB': aws_elb.md
+      - 'EventBridge': aws_eventbridge.md
+      - 'Lambda': aws_lambda.md
+      - 'MediaConvert': aws_mediaconvert.md
+      - 'MemoryDB': aws_memorydb.md
       - 'MSK': aws_msk.md
       - 'MySQL': aws_rds_mysql.md
+      - 'Neptune Cluster': aws_neptune_cluster.md
       - 'OpenSearch': aws_opensearch.md
+      - 'Redshift': aws_redshift.md
       - 'Redis': aws_elasticache_redis.md
+      - 'Simple Queue Service': aws_sqs.md
       - 'S3': aws_s3.md
+      - 'Timestream': aws_timestream.md
+      - 'RabbitMQ': aws_mq_rabbitmq.md
 
     - 腾讯云:
       - 'CDB': tencent_cdb.md
@@ -40,8 +80,18 @@ nav:
       - 'CLB(Public)': tencent_clb_public.md
       - 'COS': tencent_cos.md
       - 'CVM': tencent_cvm.md
+      - 'KeewiDB': tencent_keewidb.md
+      - 'MariaDB': tencent_mariadb.md
+      - 'Memcached': tencent_memcached.md
       - 'MongoDB': tencent_mongodb.md
       - 'Redis': tencent_redis_mem.md
+      - 'Tdsql-C': tencent_tdsql_c_mysql.md
+
+    - 火山云:
+      - 'ECS': volcengine_ecs.md
+      - 'Mysql': volcengine_mysql.md
+      - 'MongoDB  Replica Set': volcengine_mongodb_replica_set.md
+      - 'MongoDB Sharded Cluster': volcengine_mongodb_sharded_cluster.md
 
   - 主机:
     - 默认采集:
@@ -55,22 +105,33 @@ nav:
       - net.md
       - host_processes.md
       - hostobject.md
+    - 网络:
+      - 'Socket': socket.md
+      - netstat.md
+      - eBPF:
+        - ebpf.md
+        - 'eBPF Tracing': ebpftrace.md
     - chrony.md
-    - netstat.md
-    - socket.md
     - hostdir.md
+    - host_healthcheck.md
     - ssh.md
     - gpu_smi.md
     - Windows 相关:
       - 'Windows 事件': windows_event.md
       - iis.md
+      - active_directory.md
+      - exchange.md
 
   - 中间件:
     - '存储':
       - 'MySQL': mysql.md
       - clickhousev1.md
       - couchbase.md
+      - couchdb.md
+      - doris.md
+      - neo4j.md
       - oracle.md
+      - 'OceanBase': oceanbase.md
       - sqlserver.md
       - postgresql.md
       - redis.md
@@ -85,9 +146,12 @@ nav:
       - minio.md
       - aerospike.md
       - tidb.md
-      - couchbase.md
       - couchbase-prom.md
       - juicefs.md
+      - 'IBM Db2': db2.md
+      - dm_v8.md
+      - dongfangtong_ths.md
+      - opengauss.md
 
     - '消息队列':
       - emqx.md
@@ -96,10 +160,12 @@ nav:
       - rabbitmq.md
       - rocketmq.md
 
-
     - 'Web 服务器':
       - 'Nginx': nginx.md
       - apache.md
+      - resin.md
+      - dongfangtong_tweb.md
+      - apisix.md
 
     - 'Java':
       - 'JVM': jvm.md
@@ -110,10 +176,19 @@ nav:
       - consul.md
       - coredns.md
       - 'Flink': flinkv1.md
+      - 'Jira': monitor_jira.md
       - nacos.md
       - snmp.md
+      - netflow.md
       - seata.md
       - zookeeper.md
+      - 'Zadigx': zadigx.md
+      - 'OpenAI': openai.md
+      - 'PagerDuty': pagerduty.md
+      - '飞书与异常追踪联动': feishu_im.md
+      - external.md
+      - argocd.md
+      - langchain.md
 
   - CI/CD:
       - 'Jenkins': jenkins.md
@@ -129,6 +204,8 @@ nav:
     - 'Prometheus':
       - 'Exporter': kubernetes-prom.md
       - 'CRD': kubernetes-prometheus-operator-crd.md
+    - 'NPD': npd.md
+    - kubecost.md
 
   - 应用性能监测（APM）:
     - 'Tracing 综述': datakit-tracing.md
@@ -164,6 +241,7 @@ nav:
         - 'OTEL 和 DDTrace 链路串联': ddtrace-128-trace-id.md
       - 'jmxfetch 指标':
         - '指标暴露和自定义指标': ddtrace-jmxfetch.md
+      - nginx_tracing.md
 
     - 'SkyWalking':
       - skywalking.md
@@ -188,13 +266,30 @@ nav:
       - cat.md
 
     - 'Pinpoint':
-      -  pinpoint.md
-      -  pinpoint-java.md
-      -  pinpoint-go.md
+      - pinpoint.md
+      - pinpoint-java.md
+      - pinpoint-go.md
+
+    - 'New Relic':
+      - newrelic.md
+
+    - '链路工具及串联':
+      - tracing-propagator.md
 
   - '语言':
-    - 'Java': java.md
+    - 'Java': 
+      - java.md
+      - jmx.md
+      - jvm_jmx_exporter.md
+      - jvm_jolokia.md
+      - jvm_micrometer.md
+      - jvm_statsd.md
+
     - dotnet.md
+    - golang.md
+    - nodejs.md
+    - php.md
+
 
   - 用户访问监测（RUM）:
     - rum.md
@@ -204,7 +299,10 @@ nav:
     - '日志处理综述': datakit-logging-how.md
     - '日志采集':
       - logging.md
+      - ilogtail.md
       - 'Socket 接入示例': logging_socket.md
+      - fluentd.md
+      - logstash.md
     - '其它日志接入':
       - 'LogStreaming': logstreaming.md
 
@@ -225,7 +323,6 @@ nav:
     - 'Scheck': sec-checker.md
 
   - '其它采集器':
-    - eBPF: ebpf.md
     - Sensors: sensors.md
     - smart.md
     - ipmi.md

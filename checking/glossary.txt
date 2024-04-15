@@ -1,4 +1,6 @@
+################################################################
 # 专有名词
+################################################################
 Aerospike
 Akka
 Aliyun
@@ -18,10 +20,12 @@ Corefile # CoreDNS
 Couchbase
 DBCP
 DDTrace
+DIMM
 DKProto
 DKSpan
 DaemonSet
 DataDog
+Dataflux
 Datakit
 Dataway
 DialTesting
@@ -29,10 +33,12 @@ Distro
 Dubbo
 Dubbox
 ElasticSearch
+Fargate
 Fastjson
 Filebeat
 Flink
 Fluentd
+Gaussdb
 GitLab
 Goroutine
 Gson
@@ -43,6 +49,7 @@ Hbase
 IPDB
 Informix
 InnoDB
+Innodb
 Inode
 JTDS
 JXMFetch
@@ -55,12 +62,14 @@ Kubernetes
 Log4j
 Logback
 Loki
+Memtable
 Minio
 MkDocs
 MyISAM
 NGINX
 Nacos
 Ning
+ODBC
 OpenSSL
 OpenTelemetry
 OpenTracing
@@ -71,6 +80,8 @@ PromQL
 Prometheus
 Promtail
 Protobuf
+Proxied
+Proxied
 PushGateway
 Pyroscope
 Pythond
@@ -87,19 +98,28 @@ Sinker
 SkyWalking
 Solr
 Stddev
+Tablespace
 Tencent
 Uprobe
 Vertx
+Wakeup
 Weblogic
 Websphere
+XDA
+Zadigx
 Zipkin
 apiserver
 cgroup
+clidriver
 configfile
 containerd
 datagram
+diskcache
 dnssec
 eBPF
+ebpftrace
+fargate
+filesystems
 fsyncs
 gRPC
 guance
@@ -110,15 +130,20 @@ kubelet
 libc
 logfwd
 logfwdserver
+logstreaming
 macOS
 mcache
 mysqld
+netflow
 nginx
 nsec
 nullable
 pprof
+promremote
+quantile
 replicasets
 rwlock
+schedulability
 sharded
 stderr
 stdout
@@ -127,27 +152,35 @@ tcmalloc
 unflushed
 usec
 vmalloc
+wakeup
+workarea
 workqueue
 xpack
 zhangsan
 
+################################################################
 # 缩写
+################################################################
 CNCF
 CUDA
 DCGM
 DNAT
 EMQX
 JDBC
+MITM
 NVMe
 OTEL
 OTLP
 RUM
 SAAS
 SNMP
-XDCR
 Seata
+XDCR
+mitm
 
+################################################################
 # 合成词
+################################################################
 AGENTID
 AGENTNAME
 AGENTPORT
@@ -204,10 +237,24 @@ uncorrectable
 unroutable
 wakeups
 
+################################################################
 # 连词
+################################################################
 golangci
+bboltdb
+unsynced
+defrag
+txns
+fsyncing
+goroutines
+mallocs
+mspan
+sflow
+ipfix
 
+################################################################
 # 极限词
+################################################################
 !github
 !java
 !json

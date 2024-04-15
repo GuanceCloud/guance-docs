@@ -69,23 +69,33 @@ Client 创建后，按照如下截图进行配置，点击 **Save**。
 1）在观测云 Launcher **命名空间：forethought-core > core** 中配置 Keycloak 的基本信息。
 
 ```
-# Pass 版 keycloak 第三方认证服务配置
-KeyCloakPassSet:
-  # 认证服务登录地址, 必须以“/”结尾，例如 https://<keycloak 认证服务的域名地址>/"
-  serverUrl:
+
+# OIDC 客户端配置(当该项配置中配置了 wellKnowURL 时, KeyCloakPassSet 配置项自动失效)
+OIDCClientSet:
+  # OIDC Endpoints 配置地址,即完整的 `https://xxx.xxx.com/xx/.well-known/openid-configuration` 地址.
+  wellKnowURL:
   # 由认证服务提供的 客户端ID
   clientId:
-  # 认证服务所在的 realm
-  realmName:
   # 客户端的 Secret key
   clientSecret:
-  # 从认证服务中获取到的账号信息 与 DF 系统账号的映射配置, 其中必填项为: username, email, exterId, 按照以下默认配置即可。
+  # 认证方式，目前只支持 authorization_code
+  grantType: authorization_code
+  verify: false
+  # 数据访问范围
+  scope: "openid profile email address"
+  # 认证服务器认证成功之后的回调地址
+  innerUrl: "{}://{}/oidc/callback"
+  # 认证服务认证成功并回调 DF 系统之后，DF系统拿到用户信息后跳转到前端中专页面的地址
+  frontUrl: "{}://{}/tomiddlepage?uuid={}"
+  # 从认证服务中获取到的账号信息 与 DF 系统账号的映射配置, 其中必填项为: username, email, exterId
   mapping:
-    # 认证服务中，登录账号的用户名
+    # 认证服务中，登录账号的用户名，必填，如果值不存在，则取 email
     username: preferred_username
-    # 认证服务中，登录账号的邮箱
+    # 认证服务中，登录账号的邮箱，必填
     email: email
-    # 认证服务中，登录账号的唯一标识
+    # 认证服务中，登录账号的手机号字段名，选填
+    mobile: phone_number
+    # 认证服务中，登录账号的唯一标识， 必填
     exterId: sub
 ```
 

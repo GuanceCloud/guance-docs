@@ -18,10 +18,10 @@ spell_check:
 	fi
 
 markdown_check:
-	markdownlint -c checking/markdownlint.yml $(DOC_DIR) 2>&1 | tee mdlint.out;
+	markdownlint -c checking/markdownlint.yml $(DOC_DIR) 2>&1 | grep " MD" | tee mdlint.out;
 	@if [ -s mdlint.out ]; then \
 		printf "$(RED) [FAIL] mdlint.out not empty \n$(NC)"; \
 		exit -1; \
 	fi
 
-lint: markdown_check 404_check spell_check
+lint: 404_check spell_check markdown_check 

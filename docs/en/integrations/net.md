@@ -1,5 +1,19 @@
+---
+title     : 'Net'
+summary   : 'Collect NIC metrics data'
+__int_icon: 'icon/net'
+dashboard :
+  - desc  : 'Net'
+    path  : 'dashboard/en/net'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # Net
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -8,11 +22,13 @@
 
 Net collector is used to collect host network information, such as traffic information of each network interface. For Linux, system-wide TCP and UDP statistics will be collected.
 
-## Preconditions {#requirements}
+## Config {#config}
 
-None
+After successfully installing and launching DataKit, the Net Collector is automatically enabled and does not require manual activation.
 
-## Configuration {#config}
+### Collector Configuration {#input-config}
+
+<!-- markdownlint-disable MD046 -->
 
 === "Host Installation"
 
@@ -21,28 +37,24 @@ None
     ```toml
         
     [[inputs.net]]
-      ##(optional) collect interval, default is 10 seconds
+      ## (optional) collect interval, default is 10 seconds
       interval = '10s'
-      ##
+    
       ## By default, gathers stats from any up interface, but Linux does not contain virtual interfaces.
       ## Setting interfaces using regular expressions will collect these expected interfaces.
-      ##
       # interfaces = ['''eth[\w-]+''', '''lo''', ]
-      ##
+    
       ## Datakit does not collect network virtual interfaces under the linux system.
       ## Setting enable_virtual_interfaces to true will collect virtual interfaces stats for linux.
-      ##
       # enable_virtual_interfaces = true
-      ##
+    
       ## On linux systems also collects protocol stats.
       ## Setting ignore_protocol_stats to true will skip reporting of protocol metrics.
-      ##
       # ignore_protocol_stats = false
-      ##
     
     [inputs.net.tags]
-    # some_tag = "some_value"
-    # more_tag = "some_other_value"
+      # some_tag = "some_value"
+      # more_tag = "some_other_value"
     
     ```
     
@@ -50,19 +62,65 @@ None
 
 === "Kubernetes"
 
-    Support modifying configuration parameters as environment variables:
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
     
-    | Environment Variable Name                                | Corresponding Configuration Parameter Item            | Parameter Example                                                     |
-    | :---                                      | ---                         | ---                                                          |
-    | `ENV_INPUT_NET_IGNORE_PROTOCOL_STATS`     | `ignore_protocol_stats`     | `true`/`false`                                               |
-    | `ENV_INPUT_NET_ENABLE_VIRTUAL_INTERFACES` | `enable_virtual_interfaces` | `true`/`false`                                               |
-    | `ENV_INPUT_NET_TAGS`                      | `tags`                      | `tag1=value1,tag2=value2`; If there is a tag with the same name in the configuration file, it will be overwritten. |
-    | `ENV_INPUT_NET_INTERVAL`                  | `interval`                  | `10s`                                                        |
-    | `ENV_INPUT_NET_INTERFACES`                | `interfaces`                | `'''eth[\w-]+''', '''lo'''` 以英文逗号隔开                   |
+    - **ENV_INPUT_NET_INTERVAL**
+    
+        Collect interval
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_NET_IGNORE_PROTOCOL_STATS**
+    
+        Ignore reporting of protocol metrics
+    
+        **Type**: Boolean
+    
+        **ConfField**: `ignore_protocol_stats`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_NET_ENABLE_VIRTUAL_INTERFACES**
+    
+        Enable collect virtual interfaces stats for Linux
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_virtual_interfaces`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_NET_INTERFACES**
+    
+        Expected interfaces (regular)
+    
+        **Type**: List
+    
+        **ConfField**: `interfaces`
+    
+        **Example**: eth[\w-]+,lo
+    
+    - **ENV_INPUT_NET_TAGS**
+    
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
 
-## Measurements {#measurements}
+<!-- markdownlint-enable -->
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.net.tags]`:
+## Metric {#metric}
+
+For all the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.net.tags]`:
 
 ``` toml
  [inputs.net.tags]
@@ -122,13 +180,12 @@ For all of the following data collections, a global tag named `host` is appended
 |`udp_indatagrams`|The number of UDP datagram delivered to UDP users.|int|count|
 |`udp_indatagrams/sec`|The number of UDP datagram delivered to UDP users per second.|int|count|
 |`udp_inerrors`|The number of packet receive errors.|int|count|
+|`udp_memerrors`|The number of memory errors.|int|count|
 |`udp_noports`|The number of packets to unknown port received.|int|count|
 |`udp_outdatagrams`|The number of UDP datagram sent from this entity.|int|count|
 |`udp_outdatagrams/sec`|The number of UDP datagram sent from this entity per second.|int|count|
 |`udp_rcvbuferrors`|The number of receive buffer errors.|int|count|
 |`udp_sndbuferrors`|The number of send buffer errors.|int|count|
-
-
 
 
 

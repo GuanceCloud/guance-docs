@@ -10,6 +10,8 @@ nav:
     - 'K8s 安装': datakit-daemonset-deploy.md
     - '离线安装': datakit-offline-install.md
     - '批量安装': datakit-batch-deploy.md
+    - 'AWS ECS Fargate 集成': ecs-fargate.md
+    - 'AWS EKS 集成': datakit-eks-deploy.md
 
   - 'DataKit 使用':
     - 服务管理: datakit-service-how-to.md
@@ -17,7 +19,6 @@ nav:
     - '更新': datakit-update.md
     - 'DQL 查询': datakit-dql-how-to.md
     - '其它命令': datakit-tools-how-to.md
-    - '虚拟互联网接入': aliyun-access.md
     - '故障排查':
       - '无数据排查': why-no-data.md
       - 'Datakit Metrics': datakit-metrics.md

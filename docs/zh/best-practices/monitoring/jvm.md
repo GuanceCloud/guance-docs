@@ -60,7 +60,7 @@ java  ${JAVA_OPTS} -jar your-app.jar
  -Ddd.profiling.enabled=true  \
  -Ddd.logs.injection=true   \
  -Ddd.trace.sample.rate=1   \
- -Ddd.service=your-app-name   \
+ -Ddd.service.name=your-app-name   \
  -Ddd.env=dev  \ 
  -Ddd.agent.port=9529   \
  -Ddd.jmxfetch.enabled=true   \
@@ -76,7 +76,7 @@ java  ${JAVA_OPTS} -jar your-app.jar
 ```
 -Ddd.env：应用的环境类型，选填 
 -Ddd.tags：自定义标签，选填    
--Ddd.service：JVM数据来源的应用名称，必填  
+-Ddd.service.name: JVM数据来源的应用名称，必填  
 -Ddd.agent.host=localhost    DataKit地址，选填  
 -Ddd.agent.port=9529         DataKit端口，必填  
 -Ddd.version:版本，选填 
@@ -87,7 +87,7 @@ java  ${JAVA_OPTS} -jar your-app.jar
 -Ddd.trace.health.metrics.statsd.port=8125  自身指标数据采集发送端口，选填   
 -Ddd.service.mapping:应用调用的redis、mysql等别名，选填 
 ```
-如需详细了解 JVM，请参考 [JVM](../../datakit/jvm.md) 采集器
+如需详细了解 JVM，请参考 [JVM](/datakit/jvm.md) 采集器
 ### 1. jar 使用方式
 
 开启 statsd
@@ -115,7 +115,7 @@ $ datakit --restart
 ```shell
 nohup java -Dfile.encoding=utf-8  \
  -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
- -Ddd.service=your-app   \
+ -Ddd.service.name=your-app   \
  -Ddd.service.mapping=mysql:mysql01   \
  -Ddd.env=dev  \
  -Ddd.agent.port=9529   \
@@ -165,7 +165,7 @@ $ docker build -t your-app-image:v1 .
 **Docker run 启动**，请修改 172.16.0.215 为您的服务器的内网 ip 地址，替换 9299 为您应用的端口，替换 your-app 为您的应用名，替换 your-app-image:v1 为您的镜像名
 
 ```shell
-docker run  -v /tmp/work:/tmp/work -e JAVA_OPTS="-javaagent:/tmp/work/dd-java-agent.jar -Ddd.service=your-app  -Ddd.service.mapping=mysql:mysql01 -Ddd.env=dev  -Ddd.agent.host=172.16.0.215 -Ddd.agent.port=9529  -Ddd.jmxfetch.statsd.host=172.16.0.215  " --name your-app -d -p 9299:9299 your-app-image:v1
+docker run  -v /tmp/work:/tmp/work -e JAVA_OPTS="-javaagent:/tmp/work/dd-java-agent.jar -Ddd.service.name=your-app  -Ddd.service.mapping=mysql:mysql01 -Ddd.env=dev  -Ddd.agent.host=172.16.0.215 -Ddd.agent.port=9529  -Ddd.jmxfetch.statsd.host=172.16.0.215  " --name your-app -d -p 9299:9299 your-app-image:v1
 
 ```
 **Docker compose 启动**
@@ -200,7 +200,7 @@ services:
       dockerfile: DockerfileTest
       context: .
       args:
-        - JAVA_ARG=-javaagent:/tmp/work/dd-java-agent.jar  -Ddd.service=your-app  -Ddd.service.mapping=mysql:mysql01 -Ddd.env=dev  -Ddd.agent.host=172.16.0.215 -Ddd.agent.port=9529  -Ddd.jmxfetch.statsd.host=172.16.0.215  
+        - JAVA_ARG=-javaagent:/tmp/work/dd-java-agent.jar  -Ddd.service.name=your-app  -Ddd.service.mapping=mysql:mysql01 -Ddd.env=dev  -Ddd.agent.host=172.16.0.215 -Ddd.agent.port=9529  -Ddd.jmxfetch.statsd.host=172.16.0.215  
     ports:
       
     networks:
@@ -695,7 +695,7 @@ spec:
               fieldPath: metadata.name
         - name: JAVA_OPTS
           value: |-
-            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service=<your-app-name> -Ddd.tags=container_host:$(PODE_NAME)  -Ddd.env=dev  -Ddd.agent.port=9529   
+            -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service.name=<your-app-name> -Ddd.tags=container_host:$(PODE_NAME)  -Ddd.env=dev  -Ddd.agent.port=9529   
         - name: DD_AGENT_HOST
           valueFrom:
             fieldRef:
@@ -916,4 +916,4 @@ OOM（Out of Memory）异常常见有以下几个原因：
 
 ## 更多请关注：
 
-- [如何利用观测云采集JVM指标](../../datakit/jvm.md)
+- [如何利用观测云采集JVM指标](/datakit/jvm.md)

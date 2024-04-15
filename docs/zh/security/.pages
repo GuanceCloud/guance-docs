@@ -1,0 +1,5 @@
+nav:
+  - index.md
+  - 'beforeSend (数据拦截以及数据修改)': before-send.md
+  - '页面性能': page-performance.md
+  - 'Content Security Policy（内容安全策略）': content-security-policy.md

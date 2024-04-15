@@ -19,10 +19,6 @@ Redis-sentinel 指标展示，包括 Redis 集群、Slaves、节点分布信息�
 
 ## 安装部署 {#config}
 
-### 前置条件
-
-- redis-sentinel-exporter >=0.1
-
 ### 下载 redis-sentinel-exporter 指标采集器
 
 下载地址 [https://github.com/lrwh/redis-sentinel-exporter/releases](https://github.com/lrwh/redis-sentinel-exporter/releases)
@@ -31,7 +27,7 @@ Redis-sentinel 指标展示，包括 Redis 集群、Slaves、节点分布信息�
 ### 启动 redis-sentinel-exporter
 
 ```bash
-java -Xmx64m -jar redis-sentinel-exporter-0.1.jar --spring.redis.sentinel.master=mymaster --spring.redis.sentinel.nodes="127.0.0.1:26379,127.0.0.1:26380,127.0.0.1:26381"
+java -Xmx64m -jar redis-sentinel-exporter-0.2.jar --spring.redis.sentinel.master=mymaster --spring.redis.sentinel.nodes="127.0.0.1:26379,127.0.0.1:26380,127.0.0.1:26381"
 ```
 
 参数说明
@@ -42,14 +38,14 @@ spring.redis.sentinel.nodes ： 哨兵节点地址
 
 #### 指标采集
 
-1、 开启 DataKit prom 插件，复制 sample 文件
+- 开启 DataKit prom 插件，复制 sample 文件
 
 ```bash
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample redis-sentinel-prom.conf
 ```
 
-2、 修改 `redis-sentinel-prom.conf` 配置文件
+- 修改 `redis-sentinel-prom.conf` 配置文件
 
 ??? quote "`redis-sentinel-prom.conf`"
 <!-- markdownlint-disable MD046 -->
@@ -146,7 +142,7 @@ cp prom.conf.sample redis-sentinel-prom.conf
 - metric_types：指标类型，不填，代表采集所有指标
 - [inputs.prom.tags]：额外定义的 tag
 
-3、 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
+- 重启 DataKit (如果需要开启日志，请配置日志采集再重启)
 
 ```bash
 systemctl restart datakit
@@ -157,7 +153,7 @@ systemctl restart datakit
 
 ### 配置采集器
 
-1、 修改 `redis.conf` 配置文件
+- 修改 `redis.conf` 配置文件
 
 ```toml
 
@@ -219,7 +215,7 @@ systemctl restart datakit
 - match：开启多行日志收集
 ```
 
-2、 重启 DataKit (如果需要开启自定义标签，请配置插件标签再重启)
+- 重启 DataKit (如果需要开启自定义标签，请配置插件标签再重启)
 
 ```bash
 systemctl restart datakit
@@ -269,4 +265,4 @@ systemctl restart datakit
 | redis_sentinel_ok_slaves | 正在运行的slave数 | Gauge |
 | redis_sentinel_ping_latency | 哨兵ping的延迟显示为毫秒 | Gauge |
 | redis_sentinel_last_ok_ping_latency | 哨兵ping成功的秒数 | Gauge |
-
+| redis_sentinel_node_state  | redis 节点状态     | Gauge |

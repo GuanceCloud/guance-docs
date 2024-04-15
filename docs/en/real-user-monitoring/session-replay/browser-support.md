@@ -22,6 +22,9 @@
 | web vitals        | ✅     | ⚠️(1)   | ⚠️(1)  | ✅   | ✅             | ⚠️(1)      | ❌    | ❌     | ✅    |
 | FCP               | ✅     | ❌      | ❌     | ✅   | ✅             | ❌         | ❌    | ❌     | ✅    |
 
+
+**Notes**:
+
 1. FID only
 2. size information not available
 3. firstByte and download only

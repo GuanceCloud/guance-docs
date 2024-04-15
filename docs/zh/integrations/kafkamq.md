@@ -60,7 +60,7 @@ Datakit 支持从 Kafka 中订阅消息采集链路、指标和日志信息。�
       #[inputs.kafkamq.skywalking]
         ## Required！send to datakit skywalking input.
         #dk_endpoint="http://localhost:9529"
-    
+        #thread = 8 
         #topics = [
         #  "skywalking-metrics",
         #  "skywalking-profilings",
@@ -75,13 +75,16 @@ Datakit 支持从 Kafka 中订阅消息采集链路、指标和日志信息。�
       #[inputs.kafkamq.jaeger]
         ## Required！ ipv6 is "[::1]:9529"
         #dk_endpoint="http://localhost:9529"
-    
+        #thread = 8 
+        #source: agent,otel,others...
+        #source = "agent"
         ## Required！ topics
         #topics=["jaeger-spans","jaeger-my-spans"]
     
       ## user custom message with PL script.
       #[inputs.kafkamq.custom]
         #spilt_json_body = true
+        #thread = 8 
         ## spilt_topic_map determines whether to enable log splitting for specific topic based on the values in the spilt_topic_map[topic].
         #[inputs.kafkamq.custom.spilt_topic_map]
         #  "log_topic"=true
@@ -105,6 +108,15 @@ Datakit 支持从 Kafka 中订阅消息采集链路、指标和日志信息。�
         # debug = false
         # is_response_point = true
         # header_check = false
+      
+      ## Receive and consume OTEL data from kafka.
+      #[inputs.kafkamq.otel]
+        #dk_endpoint="http://localhost:9529"
+        #trace_api="/otel/v1/trace"
+        #metric_api="/otel/v1/metric"
+        #trace_topics=["trace1","trace2"]
+        #metric_topics=["otel-metric","otel-metric1"]
+        #thread = 8 
     
       ## todo: add other input-mq
     
@@ -126,6 +138,13 @@ Datakit 支持从 Kafka 中订阅消息采集链路、指标和日志信息。�
 1. `kafka_version`: 长度为 3，例如：`1.0.0`，`1.2.1` 等等
 1. `offsets`: 注意是 `Newest` 还是 `Oldest`
 1. `SASL` : 如果开启了安全认证，请正确配置用户和密码，如果 Kafka 监听地址是域名形式，请在 `/etc/hosts` 添加映射 IP
+1. 自 v1.23.0 开始支持多线程模式。
+
+### 消费组和消息分区 {#consumer_group}
+
+目前采集器采用的消费组模式来消费 Kafka 中的消息，消息的每一个分区只能被一个消费者去消费，同一个消息只能被一个消费者消费，去就是说，如果消息有 5 个分区，则最多有 5 个采集器同时消费，当某一个消费者离线或者无法消费时，kafka 会重新分配消费者的消费分区。
+所以，当消息量很大的时候可以通过多开分区并增加消费者来实现负载均衡和提高吞吐量。
+
 
 ### SkyWalking {#kafkamq-skywalking}
 
@@ -203,6 +222,24 @@ kafka 插件默认会将 `traces/JVM metrics/logging/Instance Properties/profile
 > 注意：metric 的 Pipeline 脚本应该放在 *pipeline/metric/* 目录下，RUM 的 Pipeline 脚本应该放到 *pipeline/rum/* 目录下。
 
 理论上每一个消息体应该是一条日志或者一个指标，如果您的消息是多条日志，可以使用 `spilt_json_body` 开启全局 JSON 切割数组功能，同时你也可以使用 `spilt_topic_map` 开启单个 Topic 的 JSON 切割数组功能，当数据是 JSON 数组，配合 PL 可以将数组切割成单个日志或者指标数据。
+
+### 消费 OpenTelemetry 数据 {#otel}
+
+配置说明：
+
+```toml
+## Receive and consume OTEL data from kafka.
+[inputs.kafkamq.otel]
+    dk_endpoint="http://localhost:9529"
+    trace_api="/otel/v1/trace" 
+    metric_api="/otel/v1/metric"
+    trace_topics=["trace1","trace2"]
+    metric_topics=["otel-metric","otel-metric1"]
+```
+
+配置文件中的 `dk_endpoint` `trace_api` `metric_api` 对应的是 DataKit 的地址和 OpenTelemetry 采集器的 API 地址。
+
+> 注意：从 Kafka 中订阅的消息并不会直接进行解析，而是 直接发送到 `OpenTelemetry` 采集器中，所以 必须打开 [OpenTelemetry 采集器](opentelemetry.md)，目前仅支持 `x-protobuf` 数据流格式。
 
 ### 示例 {#example}
 
@@ -331,22 +368,26 @@ X-category=tracing
 
 ## FAQ {#faq}
 
+### :material-chat-question: Pipeline script {#test_Pipeline}
+
 当写好 Pipeline 脚本之后不确定是否能切割正确，可以使用测试命令：
 
 ```shell
 datakit pipeline -P metric.p -T '{"time": 1666492218,"dimensions":{"bk_biz_id": 225,"ip": "172.253.64.45"},"metrics": {"cpu_usage_pct": 0.01}, "exemplar": null}'
 ```
 
-切割正确之后，可以查看行协议数据是否正确，暂时将 output_file 设置为本地文件：
-
-```shell
-vim conf/datakit.conf
-
-# 设置为本地文件，就不会输出到 io，测试结束之后赋值为空即可。
-output_file = "/usr/local/datakit/out.pts"
-# 查看文件 out.pts 是否正确
-```
+切割正确之后，通过在 *datakit.conf* 中开启[数据录制功能](../datakit/datakit-tools-how-to.md#enable-recorder)，可以查看数据是否正确。
 
 连接失败可能是版本问题，请在配置文件中正确填写 kafka 版本。目前支持的版本列表：[0.8.2] - [3.3.1]
+
+### :material-chat-question: 消息堆积 {#message_backlog}
+
+1. 开启多线程模式增加消费能力。
+2. 如果性能到达瓶颈之后，则扩展物理内存和 CPU 。
+3. 增加后端的写入能力。
+4. 取消任何网络带宽限制。
+5. 增加采集器数量并扩大消息分区数量让更多的消费者消费。
+6. 如果上述解决方案依旧无法解决问题，可以使用 [bug-report](../datakit/why-no-data.md#bug-report){:target="_blank"} 收集运行时指标分析。
+
 
 其他问题： 通过 `datakit monitor` 命令查看，或者 `datakit monitor -V` 查看。

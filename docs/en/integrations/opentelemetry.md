@@ -1,5 +1,21 @@
+---
+title     : 'OpenTelemetry'
+summary   : 'Collect OpenTelemetry metric, log and APM data'
+__int_icon      : 'icon/opentelemetry'
+dashboard :
+  - desc  : 'Opentelemetry JVM Monitoring View'
+    path  : 'dashboard/en/opentelemetry'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # OpenTelemetry
+<!-- markdownlint-enable -->
+
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -14,10 +30,12 @@ OTEL provides vendor-independent implementations that export observation class d
 
 The purpose of this article is to introduce how to configure and enable OTEL data access on Datakit, and the best practices of Java and Go.
 
-***Version Notes***: Datakit currently only accesses OTEL v1 version of otlp data.
+***Version Notes***: Datakit currently only accesses OTEL v1 version of OTLP data.
 
 <!-- markdownlint-disable MD046 -->
 ## Configuration {#config}
+
+### Collector Configuration {#input-config}
 
 === "Host Installation"
 
@@ -26,9 +44,10 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
     ```toml
         
     [[inputs.opentelemetry]]
-      ## ignore_tags will work as a blacklist to prevent tags send to data center.
-      ## Every value in this list is a valid string of regular expression.
-      # ignore_tags = ["block1", "block2"]
+      ## customer_tags will work as a whitelist to prevent tags send to data center.
+      ## All . will replace to _ ,like this :
+      ## "project.name" to send to GuanCe center is "project_name"
+      # customer_tags = ["sink_project", "custom.otel.tag"]
     
       ## Keep rare tracing resources list switch.
       ## If some resources are rare enough(not presend in 1 hour), those resource will always send
@@ -41,6 +60,9 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
     
       ## compatible ddtrace: It is possible to compatible OTEL Trace with DDTrace trace
       # compatible_ddtrace=false
+    
+      ## delete trace message
+      # del_message = true
     
       ## Ignore tracing resources map like service:[resources...].
       ## The service name is the full service name in current application.
@@ -113,23 +135,129 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
-    Multiple environment variables supported that can be used in Kubernetes showing below:
-
-    | Envrionment Variable Name           | Type        | Example                                                                                                  |
-    | ----------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------- |
-    | `ENV_INPUT_OTEL_IGNORE_TAGS`        | JSON string | `["block1", "block2"]`                                                                                   |
-    | `ENV_INPUT_OTEL_KEEP_RARE_RESOURCE` | bool        | true                                                                                                     |
-    | `ENV_INPUT_OTEL_OMIT_ERR_STATUS`    | JSON string | `["404", "403", "400"]`                                                                                  |
-    | `ENV_INPUT_OTEL_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}`                         |
-    | `ENV_INPUT_OTEL_SAMPLER`            | float       | 0.3                                                                                                      |
-    | `ENV_INPUT_OTEL_TAGS`               | JSON string | `{"k1":"v1", "k2":"v2", "k3":"v3"}`                                                                      |
-    | `ENV_INPUT_OTEL_THREADS`            | JSON string | `{"buffer":1000, "threads":100}`                                                                         |
-    | `ENV_INPUT_OTEL_STORAGE`            | JSON string | `{"storage":"./otel_storage", "capacity": 5120}`                                                         |
-    | `ENV_INPUT_OTEL_HTTP`               | JSON string | `{"enable":true, "http_status_ok": 200, "trace_api": "/otel/v1/trace", "metric_api": "/otel/v1/metric"}` |
-    | `ENV_INPUT_OTEL_GRPC`               | JSON string | `{"trace_enable": true, "metric_enable": true, "addr": "127.0.0.1:4317"}`                                |
-    | `ENV_INPUT_OTEL_EXPECTED_HEADERS`   | JSON string | `{"ex_version": "1.2.3", "ex_name": "env_resource_name"}`                                                |
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    
+    - **ENV_INPUT_OTEL_CUSTOMER_TAGS**
+    
+        Whitelist to tags
+    
+        **Type**: JSON
+    
+        **ConfField**: `customer_tags`
+    
+        **Example**: `["sink_project", "custom.tag"]`
+    
+    - **ENV_INPUT_OTEL_KEEP_RARE_RESOURCE**
+    
+        Keep rare tracing resources list switch
+    
+        **Type**: Boolean
+    
+        **ConfField**: `keep_rare_resource`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_OTEL_DEL_MESSAGE**
+    
+        Delete trace message
+    
+        **Type**: Boolean
+    
+        **ConfField**: `del_message`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_OTEL_OMIT_ERR_STATUS**
+    
+        Whitelist to error status
+    
+        **Type**: JSON
+    
+        **ConfField**: `omit_err_status`
+    
+        **Example**: ["404", "403", "400"]
+    
+    - **ENV_INPUT_OTEL_CLOSE_RESOURCE**
+    
+        Ignore tracing resources that service (regular)
+    
+        **Type**: JSON
+    
+        **ConfField**: `close_resource`
+    
+        **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
+    
+    - **ENV_INPUT_OTEL_SAMPLER**
+    
+        Global sampling rate
+    
+        **Type**: Float
+    
+        **ConfField**: `sampler`
+    
+        **Example**: 0.3
+    
+    - **ENV_INPUT_OTEL_THREADS**
+    
+        Total number of threads and buffer
+    
+        **Type**: JSON
+    
+        **ConfField**: `threads`
+    
+        **Example**: {"buffer":1000, "threads":100}
+    
+    - **ENV_INPUT_OTEL_STORAGE**
+    
+        Local cache file path and size (MB) 
+    
+        **Type**: JSON
+    
+        **ConfField**: `storage`
+    
+        **Example**: `{"storage":"./otel_storage", "capacity": 5120}`
+    
+    - **ENV_INPUT_OTEL_HTTP**
+    
+        HTTP agent config
+    
+        **Type**: JSON
+    
+        **ConfField**: `http`
+    
+        **Example**: `{"enable":true, "http_status_ok": 200, "trace_api": "/otel/v1/trace", "metric_api": "/otel/v1/metric"}`
+    
+    - **ENV_INPUT_OTEL_GRPC**
+    
+        GRPC agent config
+    
+        **Type**: JSON
+    
+        **ConfField**: `grpc`
+    
+        **Example**: {"trace_enable": true, "metric_enable": true, "addr": "127.0.0.1:4317"}
+    
+    - **ENV_INPUT_OTEL_EXPECTED_HEADERS**
+    
+        If 'expected_headers' is well config, then the obligation of sending certain wanted HTTP headers is on the client side
+    
+        **Type**: JSON
+    
+        **ConfField**: `expected_headers`
+    
+        **Example**: {"ex_version": "1.2.3", "ex_name": "env_resource_name"}
+    
+    - **ENV_INPUT_OTEL_TAGS**
+    
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+    
+        **Type**: JSON
+    
+        **ConfField**: `tags`
+    
+        **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 
 <!-- markdownlint-enable -->
 
@@ -139,12 +267,29 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
 2. The route of the http protocol is configurable and the default request path is trace: `/otel/v1/trace`, metric:`/otel/v1/metric`
 3. When data of type `float` `double` is involved, a maximum of two decimal places are reserved.
 4. Both http and grpc support the gzip compression format. You can configure the environment variable in exporter to turn it on: `OTEL_EXPORTER_OTLP_COMPRESSION = gzip`; gzip is not turned on by default.
-5. The http protocol request format supports both json and protobuf serialization formats. But grpc only supports protobuf.
+5. The http protocol request format supports both JSON and Protobuf serialization formats. But grpc only supports Protobuf.
 
-Pay attention to the configuration of environment variables when using OTEL HTTP exporter. Since the default configuration of datakit is `/otel/v1/trace` and `/otel/v1/metric`,
+Pay attention to the configuration of environment variables when using OTEL HTTP exporter. Since the default configuration of Datakit is `/otel/v1/trace` and `/otel/v1/metric`,
 if you want to use the HTTP protocol, you need to configure `trace` and `trace` separately `metric`,
 
-The default request routes of otlp are `v1/traces` and `v1/metrics`, which need to be configured separately for these two. If you modify the routing in the configuration file, just replace the routing address below.
+The default request routes of OTLP are `v1/traces` and `v1/metrics`, which need to be configured separately for these two. If you modify the routing in the configuration file, just replace the routing address below.
+
+## General SDK Configuration {#sdk-configuration}
+
+| Command                       | doc                                                     | default                 | note                                                                                                         |
+|:------------------------------|:--------------------------------------------------------|:------------------------|:-------------------------------------------------------------------------------------------------------------|
+| `OTEL_SDK_DISABLED`           | Disable the SDK for all signals                         | false                   | Boolean value. If “true”, a no-op SDK implementation will be used for all telemetry signals                  |
+| `OTEL_RESOURCE_ATTRIBUTES`    | Key-value pairs to be used as resource attributes       |                         |                                                                                                              |
+| `OTEL_SERVICE_NAME`           | Sets the value of the `service.name` resource attribute |                         | If `service.name` is also provided in `OTEL_RESOURCE_ATTRIBUTES`, then `OTEL_SERVICE_NAME` takes precedence. |
+| `OTEL_LOG_LEVEL`              | Log level used by the SDK logger                        | `info`                  |                                                                                                              |
+| `OTEL_PROPAGATORS`            | Propagators to be used as a comma-separated list        | `tracecontext,baggage`  | Values MUST be deduplicated in order to register a `Propagator` only once.                                   |
+| `OTEL_TRACES_SAMPLER`         | Sampler to be used for traces                           | `parentbased_always_on` |                                                                                                              |
+| `OTEL_TRACES_SAMPLER_ARG`     | String value to be used as the sampler argument         | 1.0                     | 0 - 1.0                                                                                                      |
+| `OTEL_EXPORTER_OTLP_PROTOCOL` | `grpc`,`http/protobuf`,`http/json`                      | gRPC                    |                                                                                                              |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | OTLP Addr                                               | <http://localhost:4317> | <http://datakit-endpoint:9529/otel/v1/trace>                                                                 |
+| `OTEL_TRACES_EXPORTER`        | Trace Exporter                                          | `otlp`                  |                                                                                                              |
+
+> You can pass the 'otel.javaagent.debug=true' parameter to the agent to view debugging logs. Please note that these logs are quite lengthy and should be used with caution in production environments.
 
 ## Tracing {#tracing}
 
@@ -169,6 +314,78 @@ Datakit only accepts OTLP data. OTLP has clear data types: `gRPC`, `http/protobu
 -Dotel.exporter.otlp.metrics.endpoint=http://datakit-endpoint:9529/otel/v1/metric
 ```
 
+### Tag {#tag}
+
+Starting from DataKit version [1.22.0](../datakit/changelog.md#cl-1.22.0) ,`ignore_tags` is deprecated.
+Add a fixed tags, only those in this list will be extracted into the tag. The following is the fixed list:
+
+| Attributes            | tag                   |
+|:----------------------|:----------------------|
+| http.url              | http_url              |
+| http.hostname         | http_hostname         |
+| http.route            | http_route            |
+| http.status_code      | http_status_code      |
+| http.request.method   | http_request_method   |
+| http.method           | http_method           |
+| http.client_ip        | http_client_ip        |
+| http.scheme           | http_scheme           |
+| url.full              | url_full              |
+| url.scheme            | url_scheme            |
+| url.path              | url_path              |
+| url.query             | url_query             |
+| span_kind             | span_kind             |
+| db.system             | db_system             |
+| db.operation          | db_operation          |
+| db.name               | db_name               |
+| db.statement          | db_statement          |
+| server.address        | server_address        |
+| net.host.name         | net_host_name         |
+| server.port           | server_port           |
+| net.host.port         | net_host_port         |
+| network.peer.address  | network_peer_address  |
+| network.peer.port     | network_peer_port     |
+| network.transport     | network_transport     |
+| messaging.system      | messaging_system      |
+| messaging.operation   | messaging_operation   |
+| messaging.message     | messaging_message     |
+| messaging.destination | messaging_destination |
+| rpc.service           | rpc_service           |
+| rpc.system            | rpc_system            |
+| error                 | error                 |
+| error.message         | error_message         |
+| error.stack           | error_stack           |
+| error.type            | error_type            |
+| error.msg             | error_message         |
+| project               | project               |
+| version               | version               |
+| env                   | env                   |
+| host                  | host                  |
+| pod_name              | pod_name              |
+
+If you want to add custom labels, you can use environment variables:
+
+```shell
+-Dotel.resource.attributes=username=myName,env=1.1.0
+```
+
+And modify the whitelist in the configuration file so that a custom label can appear in the first level label of the observation cloud link details.
+
+```toml
+customer_tags = ["sink_project", "username","env"]
+```
+
+### Kind {#kind}
+
+All `Span` has `span_kind` tag,
+
+- `unspecified`: unspecified.
+- `internal`: internal span.
+- `server`:  WEB server or RPC server.
+- `client`:  HTTP client or RPC client.
+- `producer`:  message producer.
+- `consumer`:  message consumer.
+
+
 ### Best Practices {#bp}
 
 Datakit currently provides [Go language](opentelemetry-go.md)、[Java](opentelemetry-java.md) languages, with other languages available later.
@@ -179,7 +396,7 @@ The OpenTelemetry Java Agent obtains the MBean's indicator information from the 
 
 You can enable and disable JMX metrics collection by command `otel.jmx.enabled=true/false`, which is enabled by default.
 
-To control the time interval between MBean detection attempts, one can use the otel.jmx.discovery.delay property, which defines the number of milliseconds to elapse between the first and the next detection cycle.
+To control the time interval between MBean detection attempts, one can use the OTEL.jmx.discovery.delay property, which defines the number of milliseconds to elapse between the first and the next detection cycle.
 
 In addition, the acquisition configuration of some third-party software built in the Agent. For details, please refer to: [JMX Metric Insight](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/instrumentation/jmx-metrics/javaagent/README.md){:target="_blank"}
 
@@ -194,46 +411,46 @@ In addition, the acquisition configuration of some third-party software built in
 
 | Tag | Description |
 |  ----  | --------|
-|`action`|gc 动作|
-|`area`|堆/非堆|
-|`cause`|gc 原因|
-|`container.id`|容器 ID|
-|`description`|指标说明|
-|`exception`|异常信息|
-|`gc`|gc 类型|
-|`host`|主机名|
-|`http.flavor`|HTTP 版本|
-|`http.method`|HTTP 请求类型|
-|`http.route`|HTTP 请求路由|
-|`http.scheme`|http/https|
-|`http.target`|HTTP 请求目标|
-|`id`|jvm 类型|
-|`instrumentation_name`|指标名|
-|`level`|日志级别|
-|`main-application-class`|main 方法入口|
-|`method`|HTTP 请求类型|
-|`name`|线程池名称|
-|`net.protocol.name`|网络协议名称|
-|`net.protocol.version`|网络协议版本|
-|`os.description`|操作系统版本信息|
-|`os.type`|操作系统类型|
-|`outcome`|http 结果|
-|`path`|磁盘路径|
-|`pool`|jvm 池类型|
-|`process.command_line`|进程启动命令|
-|`process.executable.path`|可执行文件路径|
-|`process.runtime.description`|进程运行时说明|
-|`process.runtime.name`|jvm 池类型|
-|`process.runtime.version`|jvm 池类型|
-|`service.name`|服务名称|
-|`spanProcessorType`|span 处理器类型|
-|`state`|线程状态|
-|`status`|HTTP 状态码|
-|`telemetry.auto.version`|代码版本|
-|`telemetry.sdk.language`|语言|
-|`telemetry.sdk.name`|SDK 名称|
-|`telemetry.sdk.version`|SDK 版本|
-|`uri`|http 请求路径|
+|`action`|GC Action|
+|`area`|Heap or not|
+|`cause`|GC Cause|
+|`container.id`|Container ID|
+|`description`|Metric Description|
+|`exception`|Exception Information|
+|`gc`|GC Type|
+|`host`|Host Name|
+|`http.flavor`|HTTP Version|
+|`http.method`|HTTP Method|
+|`http.route`|HTTP Request Route|
+|`http.scheme`|HTTP/HTTPS|
+|`http.target`|HTTP Target|
+|`id`|JVM Type|
+|`instrumentation_name`|Metric Name|
+|`level`|Log Level|
+|`main-application-class`|Main Entry Point|
+|`method`|HTTP Type|
+|`name`|Thread Pool Name|
+|`net.protocol.name`|Net Protocol Name|
+|`net.protocol.version`|Net Protocol Version|
+|`os.description`|OS Version|
+|`os.type`|OS Type|
+|`outcome`|HTTP Outcome|
+|`path`|Disk Path|
+|`pool`|JVM Pool Type|
+|`process.command_line`|Process Command Line|
+|`process.executable.path`|Executable File Path|
+|`process.runtime.description`|Process Runtime Description|
+|`process.runtime.name`|JVM Pool Runtime Name|
+|`process.runtime.version`|JVM Pool Runtime Version|
+|`service.name`|Service Name|
+|`spanProcessorType`|Span Processor Type|
+|`state`|Thread State|
+|`status`|HTTP Status Code|
+|`telemetry.auto.version`|Version|
+|`telemetry.sdk.language`|Language|
+|`telemetry.sdk.name`|SDK Name|
+|`telemetry.sdk.version`|SDK Version|
+|`uri`|HTTP Request URI|
 
 - metric list
 
@@ -309,7 +526,8 @@ In addition, the acquisition configuration of some third-party software built in
 
 
 ## More Docs {#more-readings}
-- Go open source address [opentelemetry-go](https://github.com/open-telemetry/opentelemetry-go){:target="_blank"}
+
+- Go open source address [OpenTelemetry-go](https://github.com/open-telemetry/opentelemetry-go){:target="_blank"}
 - Official user manual: [opentelemetry-io-docs](https://opentelemetry.io/docs/){:target="_blank"}
 - Environment variable configuration: [sdk-extensions](https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md#otlp-exporter-both-span-and-metric-exporters){:target="_blank"}
-- GitHub GuanceCloud version [opentelemetry-java-instrumentation](https://github.com/GuanceCloud/opentelemetry-java-instrumentation){:target="_blank"}
+- GitHub GuanceCloud version [OpenTelemetry-Java-instrumentation](https://github.com/GuanceCloud/opentelemetry-java-instrumentation){:target="_blank"}

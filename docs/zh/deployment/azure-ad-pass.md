@@ -1,7 +1,6 @@
 # Azure AD 单点登录（部署版）
 ---
 
-## 简介
 
 Azure Active Directory (Azure AD) 是 Microsoft 推出的基于云的标识和访问管理服务，可帮助企业管理内外部资源。
 
@@ -154,20 +153,27 @@ OIDCClientSet:
   clientSecret:
   # 认证方式，目前只支持 authorization_code
   grantType: authorization_code
+  # 请求中的证书认证开关
   verify: false
+  # 证书路径列表，依次填入 .crt 和 .key 文件路径
+  cert:
+  # 获取 token 接口的认证方式 basic: 位于请求头中的 Authorization 中; post_body: 位于请求body中
+  fetchTokenVerifyMethod: basic
   # 数据访问范围
   scope: "openid profile email address"
-  # 认证服务器认证成功之后的回调地址
+  # 【内部配置用户无需调整】认证服务器认证成功之后的回调地址
   innerUrl: "{}://{}/oidc/callback"
-  # 认证服务认证成功并回调 DF 系统之后，DF系统拿到用户信息后跳转到前端中专页面的地址
+  # 【内部配置用户无需调整】认证服务认证成功并回调 DF 系统之后，DF系统拿到用户信息后跳转到前端中专页面的地址
   frontUrl: "{}://{}/tomiddlepage?uuid={}"
-  # 从认证服务中获取到的账号信息 与 DF 系统账号的映射配置, 其中必填项为: username, email, exterId
+  # 从认证服务中获取到的账号信息 与 DF 系统账号信息字段的映射关系配置, 其中必填项为: username, email, exterId； 可选项为: mobile
   mapping:
-    # 认证服务中，登录账号的用户名，必填，如果值不存在，则取 email
+    # 认证服务中，登录账号的用户名字段名，必填，如果值不存在，则取 email
     username: preferred_username
-    # 认证服务中，登录账号的邮箱，必填
+    # 认证服务中，登录账号的邮箱字段名，必填
     email: email
-    # 认证服务中，登录账号的唯一标识， 必填
+    # 认证服务中，登录账号的手机号字段名，选填
+    mobile: phone_number
+    # 认证服务中，登录账号的唯一标识字段名， 必填
     exterId: sub
 ```
 
@@ -175,7 +181,7 @@ OIDCClientSet:
 
 ![](img/aad-14.png)
 
-???+ info "**客户端 ID** 和**客户端密钥值**可在下图位置中获取"
+???+ abstract "**客户端 ID** 和**客户端密钥值**可在下图位置中获取"
 
     ![](img/aad-15.png)
 
@@ -249,6 +255,8 @@ window.DEPLOYCONFIG = {
 };
 ```
 
+**注意**：`server_name` 即观测云登录页地址中的域名。
+
 参考示例图：
 
 ![](img/aad-18.png)
@@ -269,11 +277,11 @@ window.DEPLOYCONFIG = {
 
 4）登录到观测云对应的工作空间。
 
-???+ attention
+???+ warning
 
     - 若提示“当前账户未加入任何工作空间，请移步至管理后台将该账户添加到工作空间。”，则需要登录观测云管理后台为用户添加工作空间。
 
-    > 更多详情可参考文档 [部署版工作空间管理](space.md)。
+    > 更多详情，可参考 [部署版工作空间管理](space.md)。
  
     ![](img/1.keycloak_15.png)
 

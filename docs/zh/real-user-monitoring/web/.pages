@@ -1,6 +1,5 @@
 nav:
+  - '应用接入': app-access.md
+  - '应用数据采集': app-data-collection.md
   - '自定义用户访问监测 SDK 采集数据内容': custom-sdk
   - '如何配置用户访问监测采样': sampling.md
-  - 'Web 应用数据采集': app-data-collection.md
-  - 'Web 应用接入': app-access.md
-  - 'Web 应用分析': app-analysis.md

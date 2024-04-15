@@ -8,7 +8,99 @@ DataKit has built-in many different gadgets, which are convenient for everyone t
 datakit help
 ```
 
->Note: The specific help content will be different due to the differences of different platforms.
+> Note: The specific help content will be different due to the differences of different platforms.
+
+## Data Recording and Replay {#record-and-replay}
+
+[:octicons-tag-24: Version-1.18.0](changelog.md#cl-1.18.0)
+
+Data import is mainly used to add history data, which can be used for demonstration or testing.
+
+### Enable Data Recording {#enable-recorder}
+
+In *datakit.conf*, you can enable data recording. When enabled, Datakit records data to a specified directory:
+
+```toml
+[recorder]
+    enabled  = true
+    path = "/path/to/recorder"         # Absolute path, the default path is <Datakit installation directory >/recorder directory
+    encoding = "v2"                    # Use protobuf-JSON format (xxx.pbjson), or v1 (xxx.lp, aka line-protocol) can be selected(The former is easier to read, and the data type support is more complete).
+    duration = "10m"                   # Recording duration, starting after Datakit is started
+    inputs = ["cpu", "mem"]            # Record data for the specified inputs. All inputs are enabled if the list empty
+    categories = ["logging", "metric"] # Recording categories. All categories are enabled if the list empty
+```
+
+After restart Datakit, the recording directory structure seems like(here list the metric `pbjson` examples):
+
+```shell
+[ 416] /usr/local/datakit/recorder/
+├── [  64]  custom_object
+├── [  64]  dynamic_dw
+├── [  64]  keyevent
+├── [  64]  logging
+├── [  64]  network
+├── [  64]  object
+├── [  64]  profiling
+├── [  64]  rum
+├── [  64]  security
+├── [  64]  tracing
+└── [1.9K] metric
+    ├── [1.2 K] cpu.1698217783322857000.pbjson
+    ├── [1.2 K] cpu.1698217793321744000.pbjson
+    ├── [1.2 K] cpu.1698217803322683000.pbjson
+    ├── [1.2 K] cpu.1698217813322834000.pbjson
+    └── [1.2 K] cpu.1698218363360258000.pbjson
+
+12 directories, 59 files
+```
+
+<!-- markdownlint-disable MD046 -->
+???+ attention
+
+    - After record your data, remember to disable the record config(`enable = false`), or every restart of Datakit will recording, and may cause unexpected disk usage
+    - Input's name are not the name in input's TOML conf(`[[inputs.some-name]]`), it's the name from monitor's `Inputs Info` panel, the 1st column. And some input's name may like this `logging/some-pod-name`, we will set it's recording data to */usr/local/datakit/recorder/logging/logging-some-pod-name.1705636073033197000.pbjson*, here we replaced the `/` with `-`
+<!-- markdownlint-enable -->
+
+### Data Replay {#do-replay}
+
+[:octicons-tag-24: Version-1.19.0](changelog.md#cl-1.19.0)
+
+After Datakit has recorded the data, we can save the data in the directory in Git or some other way (**Do not to change the directory naming and structure under *recorder/***), and then import the data into Guance Cloud with the following command:
+
+```shell
+$ datakit import -P /usr/local/datakit/recorder -D https://openway.guance.com?token=tkn_xxxxxxxxx
+
+> Uploading "/usr/local/datakit/recorder/metric/cpu.1698217783322857000.pbjson"(1 points) on metric...
++1h53m6.137855s ~ 2023-10-25 15:09:43.321559 +0800 CST
+> Uploading "/usr/local/datakit/recorder/metric/cpu.1698217793321744000.pbjson"(1 points) on metric...
++1h52m56.137881s ~ 2023-10-25 15:09:53.321533 +0800 CST
+> Uploading "/usr/local/datakit/recorder/metric/cpu.1698217803322683000.pbjson"(1 points) on metric...
++1h52m46.137991s ~ 2023-10-25 15:10:03.321423 +0800 CST
+...
+Total upload 75 kB bytes ok
+```
+
+Although the recorded data comes with an absolute timestamp (nanosecond), when replay, Datakit automatically offset history data's timestamp to the current time (and preserving the relative time interval between data points) to make it appear as if it were newly collected.
+
+You can run the following command to obtain more help about the `import` command:
+
+```shell
+$ datakit help import
+
+usage: datakit import [options]
+
+Import used to play recorded history data to Guance Cloud. Available options:
+
+-D, --dataway strings   dataway list
+--log string        log path (default "/dev/null")
+-P, --path string       point data path (default "/usr/local/datakit/recorder")
+```
+
+<!-- markdownlint-disable MD046 -->
+???+ attention
+
+    For RUM, if the APP ID not exist in destination workspace, the replay will fail. We have to create a new RUM Application, set it's APP ID the same as recorded data, or replace APP ID in recorded data to the new APP ID in destination workspace.
+<!-- markdownlint-enable -->
 
 ## DataKit Automatic Command Completion {#completion}
 
@@ -55,9 +147,9 @@ datakit tool --completer-script > datakit-completer.sh
 You can view the running status of DataKit on the terminal, and its effect is similar to that of the monitor page on the browser side:
 
 DataKit's new monitor usage [see here](datakit-monitor.md).
-
+<!-- markdownlint-disable MD013 -->
 ## Check Whether the Collector is Configured Correctly {#check-conf}
-
+<!-- markdownlint-enable -->
 After editing the collector's configuration file, there may be some configuration errors (such as the configuration file format error), which can be checked by the following command:
 
 ```shell
@@ -140,11 +232,11 @@ create_time 1639657028706
 ```
 
 **Partial field description**
- - category: default to `default`, or an alternative value of `input`, indicating that it is associated with a collector (`input`)
- - status: Event level, and the desirable values are `info`, `warning` and `error`
+    - category: default to `default`, or an alternative value of `input`, indicating that it is associated with a collector (`input`)
+    - status: Event level, and the desirable values are `info`, `warning` and `error`
 
 ## DataKit Update IP Database File {#install-ipdb}
-
+<!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
     - You can install/update the IP Geographic Repository directly using the following command (here you can select another IP Address Repository `geolite2` by simply replacing  `iploc` with `geolite2`):
@@ -153,7 +245,7 @@ create_time 1639657028706
     datakit install --ipdb iploc
     ```
     
-    - Modify the datakit.conf configuration after updating the IP geo-repository:
+    - Modify the `datakit.conf` configuration after updating the IP geo-repository:
     
     ``` toml
     [pipeline]
@@ -260,7 +352,7 @@ create_time 1639657028706
       province:
        country:
     ```
-
+<!-- markdownlint-enable -->
 ## DataKit Installing Third-party Software {#extras}
 
 ### Telegraf Integration {#telegraf}
@@ -302,11 +394,11 @@ datakit install --ebpf
 ```
 
 If you are prompted `open /usr/local/datakit/externals/datakit-ebpf: text file busy`, stop the DataKit service before executing the command.
-
+<!-- markdownlint-disable MD046 -->
 ???+ warning
 
     The install command has been remove in [:octicons-tag-24: Version-1.5.6](changelog.md#cl-1.5.6-brk).
-
+<!-- markdownlint-enable -->
 ## View Cloud Property Data {#cloudinfo}
 
 If the DataKit is installed on a cloud server (currently supports `aliyun/tencent/aws/hwcloud/azure`), you can view some of the cloud attribute data with the following commands, such as (marked `-` to indicate that the field is invalid):
@@ -360,6 +452,44 @@ datakit tool --parse-lp /path/to/file --json
 ```
 
 ## DataKit Debugging Commands {#debugging}
+
+### Debugging Blacklist(Filter){#debug-filter}
+
+[:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0)
+
+To check if data is filtered by Blacklist(Filter), we can test by using following DataKit commands:
+
+<!-- markdownlint-disable MD046 -->
+=== "Linux/macOS"
+
+    ```shell
+    $ datakit debug --filter=/usr/local/datakit/data/.pull --data=/path/to/lineproto.data
+    
+    Dropped
+    
+        ddtrace,http_url=/webproxy/api/online_status,service=web_front f1=1i 1691755988000000000
+    
+    By 7th rule(cost 1.017708ms) from category "tracing":
+    
+        { service = 'web_front' and ( http_url in [ '/webproxy/api/online_status' ] )}
+    ```
+
+=== "Windows"
+
+    ```powershell
+    PS > datakit.exe debug --filter 'C:\Program Files\datakit\data\.pull' --data '\path\to\lineproto.data'
+    
+    Dropped
+    
+        ddtrace,http_url=/webproxy/api/online_status,service=web_front f1=1i 1691755988000000000
+    
+    By 7th rule(cost 1.017708ms) from category "tracing":
+    
+        { service = 'web_front' and ( http_url in [ '/webproxy/api/online_status' ] )}
+    ```
+<!-- markdownlint-enable -->
+
+The output said that, data in file *lineproto.data* has been matched by the 7th(start from 1) rule from category `tracing`, the matched data is dropped and will not upload.
 
 ### Using Glob Rules to Retrieve File Paths {#glob-conf}
 [:octicons-tag-24: Version-1.8.0](changelog.md#cl-1.8.0)

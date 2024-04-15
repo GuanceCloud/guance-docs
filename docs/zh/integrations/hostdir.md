@@ -74,17 +74,25 @@ monitor   :
 
 | Tag | Description |
 |  ----  | --------|
-|`file_ownership`|file ownership|
-|`file_system`|file system type|
-|`host_directory`|the start Dir|
+|`file_ownership`|File ownership.|
+|`file_system`|File system type.|
+|`host_directory`|The start Dir.|
+|`mount_point`|Mount point.|
 
 - 指标列表
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`dir_count`|The number of Dir|int|count|
-|`file_count`|The number of files|int|count|
-|`file_size`|The size of files|int|count|
+|`dir_count`|The number of Dir.|int|count|
+|`file_count`|The number of files.|int|count|
+|`file_size`|The size of files.|int|B|
+|`free`|Free disk size in bytes.|int|B|
+|`inodes_free`|Free inode.|int|count|
+|`inodes_total`|Total inode.|int|count|
+|`inodes_used`|Used inode(only this dir used).|int|count|
+|`inodes_used_percent`|Inode used percent(only this dir used in total inode).|float|percent|
+|`total`|Total disk size in bytes.|int|B|
+|`used_percent`|Used disk size in percent(only this dir used in total size).|float|percent|
 
 

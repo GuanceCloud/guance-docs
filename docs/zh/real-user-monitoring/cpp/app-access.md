@@ -1,15 +1,17 @@
 # C++ 应用接入
 ---
 ## 前置条件
-- 安装 DataKit（[DataKit 安装文档](../../datakit/datakit-install.md)）
+
+**注意**：若您开通了 [RUM Headless](../../dataflux-func/headless.md) 服务，前置条件已自动帮您配置完成，直接接入应用即可。
+
+- 安装 [DataKit](../../datakit/datakit-install.md)；  
+- 配置 [RUM 采集器](../../integrations/rum.md)；
+- DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 
 ## 应用接入 {#integration}
-当前 CPP 版本暂时支持 Windows 和 Linux 平台。登录观测云控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
 
-1.输入「应用名称」、「应用ID」，选择 「自定义」 应用类型
+当前 CPP 版本暂时支持 Windows 和 Linux 平台。登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
-- 应用名称：用于识别当前用户访问监测的应用名称。
-- 应用 ID ：应用在当前工作空间的唯一标识，对应字段：app_id 。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
 
 ![](../img/image_14.png)
 
@@ -99,6 +101,7 @@
 	```
 		
 ## 引用头
+
 ```cpp
 #include "datakit-sdk-cpp/FTSDKFactory.h"
 ```	
@@ -107,7 +110,6 @@
 ```cpp
 auto sdk = FTSDKFactory::get();
 sdk->init();
-
 ```
 
 | **字段** | **类型** | **必须** | **说明** |
@@ -139,8 +141,8 @@ sdk->install(gc)
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| setServerUrl | string | 是 | datakit 安装地址 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
-| setEnv | enum | 否 | 环境，默认`EnvType::PROD` |
+| setServerUrl | string | 是 | datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址 |
+| setEnv | enum | 否 | 环境配置，默认`EnvType::PROD` |
 | setAppVersion | enum | 否 | windows 会默认获取，linux 系统需要自行赋值 |
 | setEnableFileDBCache | Bool | 否 | 是否开启本地数据库，默认为 false|
 | addGlobalContext | dictionary | 否 | 添加 SDK 全局属性，添加规则请查阅[此处](#key-conflict)|
@@ -156,7 +158,7 @@ sdk->initRUMWithConfig(rc);
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
 | setRumAppId | string | 是 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#integration) |
-| setSamplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| setSamplingRate | float | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据 |
 | setExtraMonitorTypeWithError | ErrorMonitorType | 否 |添加附加监控数据到 `Rum` 崩溃数据中，`ErrorMonitorType::MEMORY` 为内存用量，`ErrorMonitorType::CPU` 为 CPU 占有率，`ErrorMonitorType::ALL` 为全部 |
 | addGlobalContext | dictionary | 否 | 添加标签数据，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值。添加规则请查阅 [此处](#key-conflict) |
 
@@ -172,7 +174,7 @@ lpc.setEnableCustomLog(true)
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| setSamplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| setSamplingRate | float | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
 | addGlobalContext | dictionary | 否 | 添加标签数据，添加规则请查阅 [此处](#key-conflict)  |
 | setLogLevelFilters | array | 否 | 设置等级日志过滤，默认不设置 |
 | setEnableCustomLog | bool | 否 | 是否上传自定义日志 ，默认为 `false` |
@@ -188,7 +190,7 @@ tc.setTraceType(TraceType::DDTRACE)
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| setSamplingRate | float | 否 | 采集率的值范围为>= 0、<= 1，默认值为 1 |
+| setSamplingRate | float | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。|
 | setTraceType | enum | 否 | 默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置  |
 | setEnableLinkRUMData | bool | 否 | 是否与 RUM 数据关联，默认为 `false` |
 

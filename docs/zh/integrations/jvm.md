@@ -112,7 +112,7 @@ java -javaagent:dd-java-agent.jar \
     -Ddd.profiling.enabled=true \
     -Ddd.logs.injection=true \
     -Ddd.trace.sample.rate=1 \
-    -Ddd.service=my-app \
+    -Ddd.service.name=my-app \
     -Ddd.env=staging \
     -Ddd.agent.host=localhost \
     -Ddd.agent.port=9529 \
@@ -128,7 +128,7 @@ java -javaagent:dd-java-agent.jar \
 
 - 关于 `dd-java-agent.jar` 包的下载，参见 [这里](ddtrace.md)
 - 建议给如下几个字段命名：
-    - `service` 用于表示该 JVM 数据来自哪个应用
+    - `service.name` 用于表示该 JVM 数据来自哪个应用
     - `env` 用于表示该 JVM 数据来自某个应用的哪个环境（如 `prod/testing/preprod` 等）
 
 - 此处几个选项的意义：
@@ -293,7 +293,7 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path.|
 
 - 指标列表
 
@@ -316,7 +316,7 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path.|
 
 - 指标列表
 
@@ -347,8 +347,8 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent url path|
-|`name`|the name of GC generation|
+|`jolokia_agent_url`|Jolokia agent url path.|
+|`name`|The name of GC generation.|
 
 - 指标列表
 
@@ -372,7 +372,7 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path.|
 
 - 指标列表
 
@@ -398,7 +398,7 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent url path.|
 
 - 指标列表
 
@@ -423,8 +423,8 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent url path|
-|`name`|the name of space|
+|`jolokia_agent_url`|Jolokia agent url path.|
+|`name`|The name of space.|
 
 - 指标列表
 
@@ -435,12 +435,12 @@ java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar you
 |`CollectionUsageinit`|The amount of memory in bytes that the Java virtual machine initially requests from the operating system for memory management.|float|B|
 |`CollectionUsagemax`|The maximum amount of memory in bytes that can be used for memory management.|float|B|
 |`CollectionUsageused`|The amount of used memory in bytes.|float|B|
-|`PeakUsagecommitted`|The total peak Java memory pool committed to be used|int|B|
-|`PeakUsageinit`|The initial peak Java memory pool allocated|int|B|
+|`PeakUsagecommitted`|The total peak Java memory pool committed to be used.|int|B|
+|`PeakUsageinit`|The initial peak Java memory pool allocated.|int|B|
 |`PeakUsagemax`|The maximum peak Java  memory pool available.|int|B|
 |`PeakUsageused`|The total peak Java memory pool used.|int|B|
-|`Usagecommitted`|The total Java memory pool committed to be used|int|B|
-|`Usageinit`|The initial Java memory pool allocated|int|B|
+|`Usagecommitted`|The total Java memory pool committed to be used.|int|B|
+|`Usageinit`|The initial Java memory pool allocated.|int|B|
 |`Usagemax`|The maximum Java  memory pool available.|int|B|
 |`Usageused`|The total Java memory pool used.|int|B|
 

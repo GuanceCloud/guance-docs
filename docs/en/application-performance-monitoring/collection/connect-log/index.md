@@ -1,12 +1,16 @@
-# Application Performance Monitoring Association Log
+# APM Association Logs
 ---
 
-## Introduction
-
-Guance supports users to access the monitoring association log, and associates the application performance monitoring by injecting `span_id`, `trace_id`, `env`, `service` and `version` into the log. After association, the specific log associated with the request can be viewed in the application performance monitoring.
+Guance allows APM assoictaed logs, by injecting `span_id`, `trace_id`, `env`, `service` and `version` into the logs to associate with APM. After association, you can view the specific logs associated with the request in **APM**.
 
 ![](../../img/13.apm_log.png)
 
-## Configure Association Log
+## Configure 
 
-Before configuring the association log, you need to [install DataKit](../../../datakit/datakit-install.md). After installing DataKit and opening DDtrace, configure the link's parameters such as `env`, `service` and `version` to associate logs, and inject log parameters `span_id`, `trace_id`, `env`, `service` and `version` to associate with application performance parameters in application code. See the document [DDtrace](../../../datakit/ddtrace.md).
+Before configuring the associated logs, you need to:
+
+:material-numeric-1-circle: [Install DataKit](https://www.notion.so/datakit/datakit-install.md);
+
+:material-numeric-2-circle: After installing DataKit, enable DDtrace, configure the chain's `env`, `service`, `version` parameters to associate logs, and inject log parameters `span_id`, `trace_id`, `env`, `service`, `version` and application performance parameters at the same time.
+
+> For more configuration content, you can check [DDtrace](../../../integrations/ddtrace.md).

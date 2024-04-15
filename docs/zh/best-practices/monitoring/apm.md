@@ -157,7 +157,7 @@ ddtrace 相关环境变量（启动参数）释义
 
 ```java
 Ddd.env：自定义环境类型    （可选项）
-Ddd.service：自定义应用名称   （必填项）    如果该配置配置后数据依旧无法展示，可将name去掉进行尝试
+Ddd.service.name: 自定义应用名称   （必填项）    如果该配置配置后数据依旧无法展示，可将name去掉进行尝试
 Ddd.agent.port:数据上传端口（默认9529 ）（必填项）
 Ddd.version:应用版本 （可选项）
 Ddd.trace.sample.rate：设置采样率（默认是全采）（可选项）
@@ -173,7 +173,7 @@ Ddd.host：数据传输目标IP，默认为本机localhost （可选项）
 
 ![image](../images/apm/9.png)
 
-用放置在应用环境同级目录<br />（**1.6版本 datakit 之后，ddtrace-java-agent 已默认内置于 datakit，目录：/usr/local/datakit/data/**）<br />2、在原有应用启动脚本中添加 ddtrace.jar 启动参数，添加字段如下 -javaagent:/xxx/ddtrace.jar -Ddd.env=xxx  -Ddd.service=xxx -Ddd.agent.port=xxx    其中 xxx 内容都需要填写。
+用放置在应用环境同级目录<br />（**1.6版本 datakit 之后，ddtrace-java-agent 已默认内置于 datakit，目录：/usr/local/datakit/data/**）<br />2、在原有应用启动脚本中添加 ddtrace.jar 启动参数，添加字段如下 -javaagent:/xxx/ddtrace.jar -Ddd.env=xxx  -Ddd.service.name=xxx -Ddd.agent.port=xxx    其中 xxx 内容都需要填写。
 
 ---
 
@@ -185,7 +185,7 @@ Ddd.host：数据传输目标IP，默认为本机localhost （可选项）
 $ cd /xxx/tomcat/bin
 $ vim catalina.sh
 
-$ CATALINA_OPTS="$CATALINA_OPTS -javaagent:/xxx/ddtrace.jar -Ddd.env=test -Ddd.service=demo001 -Ddd.agent.port=9529"; export CATALINA_OPTS
+$ CATALINA_OPTS="$CATALINA_OPTS -javaagent:/xxx/ddtrace.jar -Ddd.env=test -Ddd.service.name=demo001 -Ddd.agent.port=9529"; export CATALINA_OPTS
 
 $ wq!
 
@@ -206,7 +206,7 @@ $ ./bin/startup.sh
 $ nohup java -jar mall-admin.jar &
 
 ## 添加ddtrace启动参数后的启动脚本如下，执行命令重启应用：
-$ nohup java -javaagent:/xxx/dd-java-agent-0.72.0.jar -Ddd.service=mall-admin -Ddd.agent.port=9529 -jar mall-admin.jar &
+$ nohup java -javaagent:/xxx/dd-java-agent-0.72.0.jar -Ddd.service.name=mall-admin -Ddd.agent.port=9529 -jar mall-admin.jar &
 ```
 
 登录 [guance](https://console.guance.com/) 进入具体的项目空间，点击应用性能监测即可查看服务名为 mall-admin 的应用数据。
@@ -222,7 +222,7 @@ $ vim Dockerfile
 
 ##Dockerfile中添加ddteace-agent路径,xxx指代绝对路径
 $ ADD dd-java-agent-0.75.0.jar /xxx/  
-$ ENTRYPOINT ["java","-javaagent:/xxx/dd-java-agent-0.75.0.jar","-Ddd.service=mall-admin","-Ddd.version=v1","-Ddd.env=product","-Ddd.agent.port=9529","-Ddd.agent.host=172.16.0.198","-jar", “-Dspring.profiles.active=prod","/mall-admin-1.0-SNAPSHOT.jar"]
+$ ENTRYPOINT ["java","-javaagent:/xxx/dd-java-agent-0.75.0.jar","-Ddd.service.name=mall-admin","-Ddd.version=v1","-Ddd.env=product","-Ddd.agent.port=9529","-Ddd.agent.host=172.16.0.198","-jar", “-Dspring.profiles.active=prod","/mall-admin-1.0-SNAPSHOT.jar"]
 $ wq!
 ```
 
@@ -243,7 +243,7 @@ $ docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -
 $ docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -v /etc/localtime:/etc/localtime -v /mydata/app/admin/logs:/var/logs -d mall/mall-admin:v1
 
 ## 包含ddtrace的启动命令，需要查看dockerfile中jar包的启动命令
-$ docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -v /etc/localtime:/etc/localtime -v /mydata/app/admin/logs:/var/logs -d mall/mall-admin:v1 java -javaagent:/wx/dd-java-agent-0.75.0.jar -Ddd.service=mall-admin -Ddd.version=v1 -Ddd.env=product -Ddd.agent.port=9529 -Ddd.agent.host=172.16.0.198 -jar -Dspring.profiles.active=prod /mall-admin-1.0-SNAPSHOT.jar
+$ docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -v /etc/localtime:/etc/localtime -v /mydata/app/admin/logs:/var/logs -d mall/mall-admin:v1 java -javaagent:/wx/dd-java-agent-0.75.0.jar -Ddd.service.name=mall-admin -Ddd.version=v1 -Ddd.env=product -Ddd.agent.port=9529 -Ddd.agent.host=172.16.0.198 -jar -Dspring.profiles.active=prod /mall-admin-1.0-SNAPSHOT.jar
 
 ## 注意：添加完java –javaagent后需要在启动脚本后添加-jar your app name.jar
 ```
@@ -359,7 +359,7 @@ ddtrace-agent 的启动参数一定要放置在 java 应用启动 -jar之前，�
 $ java -jar mall-admin.jar
 
 ## 添加 ddtrace 启动参数后的启动脚本如下，执行命令重启应用：
-$ java -javaagent:/xxx/dd-java-agent-0.72.0.jar -Ddd.service=mall-admin -Ddd.agent.port=9529 -jar mall-admin.jar
+$ java -javaagent:/xxx/dd-java-agent-0.72.0.jar -Ddd.service.name=mall-admin -Ddd.agent.port=9529 -jar mall-admin.jar
 ```
 
 #### tomcat-catalina.sh 参数配置
@@ -370,7 +370,7 @@ $ java -javaagent:/xxx/dd-java-agent-0.72.0.jar -Ddd.service=mall-admin -Ddd.age
 $ cd /xxx/tomcat/bin
 $ vim catalina.sh
 
-$ CATALINA_OPTS="$CATALINA_OPTS -javaagent:/xxx/ddtrace.jar -Ddd.env=test -Ddd.service=demo001 -Ddd.agent.port=9529"; export CATALINA_OPTS
+$ CATALINA_OPTS="$CATALINA_OPTS -javaagent:/xxx/ddtrace.jar -Ddd.env=test -Ddd.service.name=demo001 -Ddd.agent.port=9529"; export CATALINA_OPTS
 
 $ wq!
 

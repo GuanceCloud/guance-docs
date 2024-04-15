@@ -1,6 +1,6 @@
 ---
 title: 'AWS DocumentDB'
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+summary: 'AWS DocumentDB 的展示指标包括读取和写入吞吐量、查询延迟和可扩展性等。'
 __int_icon: 'icon/aws_documentdb'
 dashboard:
 
@@ -18,7 +18,7 @@ monitor:
 # AWS DocumentDB
 <!-- markdownlint-enable -->
 
-使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云
+AWS DocumentDB 的展示指标包括读取和写入吞吐量、查询延迟和可扩展性等。
 
 
 ## 配置 {#config}

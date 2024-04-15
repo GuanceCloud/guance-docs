@@ -24,7 +24,7 @@ SDK 内部会使用**断言**检查多项配置的正确性，在配置错误时
 
 ## 开启 Debug 调试 {#debug-mode}
 
-你可以通过以下配置，开启 SDK 的 debug 功能。
+您可以通过以下配置，开启 SDK 的 debug 功能。
 
 ```vue
 	var ftMobileSDK = uni.requireNativePlugin("GCUniPlugin-MobileAgent");

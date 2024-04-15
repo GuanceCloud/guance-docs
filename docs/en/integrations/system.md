@@ -1,5 +1,19 @@
+---
+title     : 'System'
+summary   : 'Collecting metrics data related to the host system'
+__int_icon      : 'icon/system'
+dashboard :
+  - desc  : 'System'
+    path  : 'dashboard/en/system'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # System
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -8,11 +22,14 @@
 
 The system collector collects system load, uptime, the number of CPU cores, and the number of users logged in.
 
+## Configuration {#config}
+
 ## Preconditions {#requrements}
 
 None
 
-## Configuration {#config}
+<!-- markdownlint-disable MD046 -->
+## Collector Configuration {#input-config}
 
 === "Host Installation"
 
@@ -34,20 +51,38 @@ None
 
 === "Kubernetes"
 
-    Modifying configuration parameters as environment variables is supported:
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
     
-    | Environment variable name              | Corresponding configuration parameter item | Parameter example                                                     |
-    | :---                    | ---              | ---                                                          |
-    | `ENV_INPUT_SYSTEM_TAGS` | `tags`           | `tag1=value1,tag2=value2`. If there is a tag with the same name in the configuration file, it will be overwritten. |
-    | `ENV_INPUT_SYSTEM_INTERVAL` | `interval` | `10s` |
+    - **ENV_INPUT_SYSTEM_INTERVAL**
+    
+        Collect interval
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_SYSTEM_TAGS**
+    
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
 
 ---
+<!-- markdownlint-enable -->
 
-## Measurements {#measurements}
+## Metric {#metric}
 
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration through `[inputs.system.tags]`:
 
-``` toml
+```toml
  [inputs.system.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
@@ -82,6 +117,7 @@ Basic information about system operation.
 |`memory_usage`|The percentage of used memory.|float|percent|
 |`n_cpus`|CPU logical core count.|int|count|
 |`n_users`|User number.|int|count|
+|`process_count`|Number of Processes running on the machine.|int|-|
 |`uptime`|System uptime.|int|s|
 
 
@@ -135,3 +171,9 @@ System file handle metrics (Linux only).
 |`maximum_mega`|The maximum number of file handles, unit M(10^6).|float|count|
 
 
+
+## FAQ {#faq}
+
+### Why no `cpu_total_usage`? {#no-cpu}
+
+Some CPU acquisition features are not supported on some platforms, such as macOS.

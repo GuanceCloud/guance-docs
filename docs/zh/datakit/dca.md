@@ -11,6 +11,35 @@
 
 DCA 主要用于管理 Datakit，如 Datakit 列表查看、配置文件管理、Pipeline 管理以及帮助文档的查看等功能。
 
+DCA 基本网络拓扑结构如下：
+
+```mermaid
+flowchart LR;
+
+dca(DCA);
+dk1(Datakit);
+dk2(Datakit);
+dk3(Datakit);
+guance(观测云);
+dca_web(Web);
+%%%
+
+subgraph "局域网/Cluster"
+direction BT
+dca_web --> |更新 Datakit 配置|dca;
+
+dca --> dk1;
+dca --> dk2;
+dca --> dk3;
+end
+
+dk1 -.-> |上报数据|guance;
+dk2 -.-> |上报数据|guance;
+dk3 -.-> |上报数据|guance;
+dca -.-> |登录/认证|guance;
+guance -.-> |Datakit 列表| dca
+```
+
 ## 开启 DCA 服务 {#config}
 
 <!-- markdownlint-disable MD046 -->
@@ -147,7 +176,7 @@ DCA web 是 DCA 客户端的 web 版本，它通过部署一个后端服务来�
                   value: https://console-api.guance.com
                 - name: DCA_LOG_ENABLE_STDOUT
                   value: 'true'
-              image: pubrepo.guance.com/tools/dca:0.0.7
+              image: pubrepo.guance.com/tools/dca:0.0.8
               imagePullPolicy: Always
               name: dca
               ports:

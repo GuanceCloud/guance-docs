@@ -11,6 +11,9 @@ monitor:
   - desc: 'AWS EC2 监控器'
     path: 'monitor/zh/aws_ec2'
 
+cloudCollector:
+  - desc: '云采集器'
+    path: 'cloud-collector/zh/aws_ec2'
 ---
 
 
@@ -52,6 +55,8 @@ monitor:
 
 ## 指标 {#metric}
 配置好亚马逊-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [亚马逊云监控指标详情](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/viewing_metrics_with_cloudwatch.html){:target="_blank"}
+
+> 提示：如果发现内存、磁盘没有指标上报的情况， 前往 aws 控制台手动开启采集
 
 ### 实例指标
 

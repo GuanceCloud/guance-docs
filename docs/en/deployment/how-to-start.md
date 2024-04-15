@@ -9,7 +9,6 @@ You can refer to the doc [cloud deployment](cloud-deployment-manual.md) or [offl
 
 - dataflux 【**User Foreground (Guance)**】
 - df-management 【**Management Background**】
-- df-func 【**Func Platform**】
 - df-openapi 【**OpenAPI**】
 
 ## Method Step

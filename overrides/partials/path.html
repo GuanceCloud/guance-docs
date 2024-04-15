@@ -1,0 +1,44 @@
+{#-
+  This file was automatically generated - do not edit
+-#}
+{% import "partials/path-item.html" as item with context %}
+{% macro render_content(nav_item) %}
+  <span class="md-ellipsis">
+    {{ nav_item.title }}
+  </span>
+{% endmacro %}
+{% if page.meta and page.meta.hide %}
+  {% set hidden = "hidden" if "path" in page.meta.hide %}
+{% endif %}
+{% set depth = page.ancestors | length %}
+{% if nav.homepage %}
+  {% set depth = depth + 1 %}
+{% endif %}
+{% if depth > 0 %}
+  <nav class="md-path" aria-label="{{ lang.t('nav') }}" {{ hidden }}>
+    <ol class="md-path__list">
+      {% for nav_item in page.ancestors | reverse %}
+        {% if loop.index == 1 %}
+          <li class="md-path__item">
+            <a href="/" class="md-path__link">
+              {% set title = "首页" %}
+              {% if config.theme.language == 'en' %}
+                {% set title = "Home" %}
+              {% endif %}
+              {{ title }}
+            </a>
+          </li>
+        {% endif %}
+        <li class="md-path__item">
+          {% if nav_item.url %}
+            <a href="{{ nav_item.url | url }}" class="md-path__link">
+            {{ render_content(nav_item) }}
+          </a>
+          {% else %}
+            <span class="md-path__link md-path__link__text">{{ render_content(nav_item) }}</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </nav>
+{% endif %}

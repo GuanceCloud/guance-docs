@@ -22,12 +22,15 @@ monitor   :
 
 SQL Server 采集器采集 SQL Server `waitstats`、`database_io` 等相关指标
 
-
 ## 配置 {#config}
 
-### 前置条件 {#requrements}
+SQL Server 版本 >= 2012, 已测试的版本：
 
-- SQL Server 版本 >= 2019
+- [x] 2017
+- [x] 2019
+- [x] 2022
+
+### 前置条件 {#requrements}
 
 - 创建用户：
 
@@ -53,9 +56,16 @@ CREATE LOGIN [guance] WITH PASSWORD = N'yourpassword';
 GO
 ```
 
+<!-- markdownlint-disable MD046 -->
+???+ attention "注意事项"
+
+    注意，执行上述操作需要相应权限的帐号，否则可能会导致用户创建失败或者授权失败。
+
+    - 自建的 SQL Server 需要具备 WITH GRANT OPTION、CREATE ANY LOGIN、CREATE ANY USER、ALTER ANY LOGIN 权限的用户，也可以直接使用具有 sysadmin 角色的用户或者 local 用户授权。
+    - RDS for SQL Server 则需要使用高权限账号进行授权。
+
 ### 采集器配置 {#input-config}
 
-<!-- markdownlint-disable MD046 -->
 === "主机安装"
 
     进入 DataKit 安装目录下的 `conf.d/db` 目录，复制 `sqlserver.conf.sample` 并命名为 `sqlserver.conf`。示例如下：
@@ -69,6 +79,9 @@ GO
       ## your sqlserver user,password
       user = ""
       password = ""
+    
+      ## Instance name. If not specified, a connection to the default instance is made.
+      instance_name = ""
     
       ## (optional) collection interval, default is 10s
       interval = "10s"
@@ -117,7 +130,7 @@ GO
     目前可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
 <!-- markdownlint-enable -->
 
-#### 日志采集配置 {#logging-config}
+### 日志采集配置 {#logging-config}
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
@@ -157,7 +170,7 @@ GO
 
 | Tag | Description |
 |  ----  | --------|
-|`sqlserver_host`|host name which installed SQLServer|
+|`sqlserver_host`|Host name which installed SQLServer|
 
 - 字段列表
 
@@ -166,14 +179,14 @@ GO
 | ---- |---- | :---:    | :----: |
 |`committed_memory`|The amount of memory committed to the memory manager|int|B|
 |`cpu_count`|Specifies the number of logical CPUs on the system. Not nullable|int|count|
-|`db_offline`|num of database state in offline|int|count|
-|`db_online`|num of database state in online|int|count|
-|`db_recovering`|num of database state in recovering|int|count|
-|`db_recovery_pending`|num of database state in recovery_pending|int|count|
-|`db_restoring`|num of database state in restoring|int|count|
-|`db_suspect`|num of database state in suspect|int|count|
+|`db_offline`|Num of database state in offline|int|count|
+|`db_online`|Num of database state in online|int|count|
+|`db_recovering`|Num of database state in recovering|int|count|
+|`db_recovery_pending`|Num of database state in recovery_pending|int|count|
+|`db_restoring`|Num of database state in restoring|int|count|
+|`db_suspect`|Num of database state in suspect|int|count|
 |`physical_memory`|Total physical memory on the machine|int|B|
-|`server_memory`|memory used|int|B|
+|`server_memory`|Memory used|int|B|
 |`target_memory`|Amount of memory that can be consumed by the memory manager. When this value is larger than the committed memory, then the memory manager will try to obtain more memory. When it is smaller, the memory manager will try to shrink the amount of memory committed.|int|B|
 |`uptime`|Total time elapsed since the last computer restart|int|ms|
 |`virtual_memory`|Amount of virtual memory available to the process in user mode.|int|B|
@@ -192,7 +205,7 @@ GO
 |`counter_type`|Type of the counter|
 |`instance`|Name of the specific instance of the counter|
 |`object_name`|Category to which this counter belongs.|
-|`sqlserver_host`|host name which installed SQLServer|
+|`sqlserver_host`|Host name which installed SQLServer|
 
 - 字段列表
 
@@ -211,8 +224,8 @@ GO
 
 | Tag | Description |
 |  ----  | --------|
-|`sqlserver_host`|host name which installed SQLServer|
-|`wait_category`|wait category info|
+|`sqlserver_host`|Host name which installed SQLServer|
+|`wait_category`|Wait category info|
 |`wait_type`|Name of the wait type. For more information, see Types of Waits, later in this topic|
 
 - 字段列表
@@ -236,11 +249,11 @@ GO
 
 | Tag | Description |
 |  ----  | --------|
-|`database_name`|database name|
+|`database_name`|Database name|
 |`file_type`|Description of the file type, `ROWS/LOG/FILESTREAM/FULLTEXT` (Full-text catalogs earlier than SQL Server 2008.)|
 |`logical_filename`|Logical name of the file in the database|
 |`physical_filename`|Operating-system file name.|
-|`sqlserver_host`|host name which installed SQLServer|
+|`sqlserver_host`|Host name which installed SQLServer|
 
 - 字段列表
 
@@ -252,7 +265,7 @@ GO
 |`reads`|Number of reads issued on the file.|int|count|
 |`rg_read_stall_ms`|Does not apply to:: SQL Server 2008 through SQL Server 2012 (11.x).Total IO latency introduced by IO resource governance for reads|int|ms|
 |`rg_write_stall_ms`|Does not apply to:: SQL Server 2008 through SQL Server 2012 (11.x).Total IO latency introduced by IO resource governance for writes. Is not nullable.|int|ms|
-|`write_bytes`|Number of writes made on this file|int|B|
+|`write_bytes`|Total number of bytes written to the file|int|B|
 |`write_latency_ms`|Total time, in milliseconds, that users waited for writes to be completed on the file|int|ms|
 |`writes`|Number of writes issued on the file.|int|count|
 
@@ -268,7 +281,7 @@ GO
 |  ----  | --------|
 |`cpu_id`|CPU ID assigned to the scheduler.|
 |`scheduler_id`|ID of the scheduler. All schedulers that are used to run regular queries have ID numbers less than 1048576. Those schedulers that have IDs greater than or equal to 1048576 are used internally by SQL Server, such as the dedicated administrator connection scheduler. Is not nullable.|
-|`sqlserver_host`|host name which installed SQLServer|
+|`sqlserver_host`|Host name which installed SQLServer|
 
 - 字段列表
 
@@ -300,7 +313,7 @@ GO
 
 | Tag | Description |
 |  ----  | --------|
-|`sqlserver_host`|host name which installed SQLServer|
+|`sqlserver_host`|Host name which installed SQLServer|
 |`volume_mount_point`|Mount point at which the volume is rooted. Can return an empty string. Returns null on Linux operating system.|
 
 - 字段列表
@@ -544,7 +557,7 @@ SQL Server 通用日志文本示例：
 切割后的字段列表如下：
 
 | 字段名   | 字段值                | 说明                                          |
-| ---      | ---                   | ---                                           |
+| -------- | --------------------- | --------------------------------------------- |
 | `msg`    | `spid...`             | 日志内容                                      |
 | `time`   | `1622169967780000000` | 纳秒时间戳（作为行协议时间）                  |
 | `origin` | `spid10s`             | 源                                            |

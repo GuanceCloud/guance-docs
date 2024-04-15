@@ -1,14 +1,14 @@
-# 自定义添加额外的数据TAG
+# 自定义添加额外的数据 TAG
 ---
 
 
-初始化 RUM 后，使用`addRumGlobalContext（key:string，value:any）` API 向从应用程序收集的所有 RUM 事件添加额外的TAG。
+初始化 RUM 后，使用 `addRumGlobalContext（key:string，value:any）` API 向从应用程序收集的所有 RUM 事件添加额外的 TAG。
 
-### 添加TAG
+### 添加 TAG
 
 === "CDN" 
 
-    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    [下载文件](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -26,7 +26,7 @@
 
 === "NPM"
 
-    引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    [引入](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')
@@ -45,7 +45,7 @@
 
 === "CDN"
 
-    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    [下载文件](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -60,7 +60,7 @@
 
 === "NPM"
 
-    引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    [引入](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')
@@ -73,11 +73,11 @@
     });
     ```
 
-### 获取所有设置的自定义TAG
+### 获取所有设置的自定义 TAG
 
 === "CDN"
 
-    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    [下载文件](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -87,7 +87,7 @@
 
 === "NPM"
 
-    引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    [引入](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')
@@ -100,7 +100,7 @@
 
 === "CDN"
 
-    下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    [下载文件](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js');
@@ -110,7 +110,7 @@
 
 === "NPM"
 
-    引入(可参考微信官方[npm引入方式](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    [引入](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')

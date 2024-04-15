@@ -1,14 +1,14 @@
 ---
 title: 'AWS RDS MySQL'
-summary: 'Use the「观测云云同步」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
 __int_icon: 'icon/aws_rds_mysql'
 dashboard:
 
-  - desc: 'AWS RDS MySQL 内置视图'
+  - desc: 'AWS RDS MySQL Monitoring View'
     path: 'dashboard/zh/aws_rds_mysql'
 
 monitor:
-  - desc: 'AWS RDS MySQL 监控器'
+  - desc: 'AWS RDS MySQL Monitor'
     path: 'monitor/zh/aws_rds_mysql'
 
 ---
@@ -18,7 +18,7 @@ monitor:
 # AWS RDS MySQL
 <!-- markdownlint-enable -->
 
-Use the「Guance Cloud Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
 
 
 ## config {#config}
@@ -33,7 +33,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of RDS MySQL cloud resources, we install the corresponding collection script：「观测云集成（AWS-RDS采集）」(ID：`guance_aws_rds`)
+To synchronize the monitoring data of RDS MySQL cloud resources, we install the corresponding collection script：「Guance Integration（AWS-RDSCollect）」(ID：`guance_aws_rds`)
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 
@@ -53,11 +53,13 @@ We collected some configurations by default, as described in the Metrics column 
 ## Metric {#metric}
 After configuring Amazon CloudWatch - cloud monitoring, the default set of metrics is as follows. You can collect more metrics by configuring [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/AmazonRDS/latest/UserGuide/CHAP_Monitoring.html){:target="_blank"}
 
-### The Amazon CloudWatch instance-level metrics for Amazon RDS.
+<!-- markdownlint-disable MD013 -->
+### The Amazon CloudWatch instance-level metrics for Amazon RDS
+<!-- markdownlint-enable -->
 
 The `AWS/RDS` namespace in Amazon CloudWatch includes the following instance-level metrics.
 
-Attention: 
+Attention:
 
 Amazon RDS console, metrics may be displayed in units different from those sent to Amazon CloudWatch. For example, the RDS console may display a metric in megabytes (MB), while the same metric is sent to Amazon CloudWatch in bytes.
 
@@ -70,10 +72,10 @@ Amazon RDS console, metrics may be displayed in units different from those sent 
 | `CPUUtilization`                | **CPU Utilization (Percent)**                         | The percentage of CPU utilization.                           | All                          | Percentage             |
 | `CPUCreditUsage`                | **CPU Credit Usage (Count)**                          | (T2 instances) The number of CPU credits spent by the instance for CPU utilization. One CPU credit equals one vCPU running at 100 percent utilization for one minute or an equivalent combination of vCPUs, utilization, and time. For example, you might have one vCPU running at 50 percent utilization for two minutes or two vCPUs running at 25 percent utilization for two minutes.CPU credit metrics are available at a five-minute frequency only. If you specify a period greater than five minutes, use the `Sum` statistic instead of the `Average` statistic. |                              | Credits (vCPU-minutes) |
 | `CPUCreditBalance`              | **CPU Credit Balance (Count)**                        | (T2 instances) The number of earned CPU credits that an instance has accrued since it was launched or started. For T2 Standard, the `CPUCreditBalance` also includes the number of launch credits that have been accrued.Credits are accrued in the credit balance after they are earned, and removed from the credit balance when they are spent. The credit balance has a maximum limit, determined by the instance size. After the limit is reached, any new credits that are earned are discarded. For T2 Standard, launch credits don't count towards the limit.The credits in the `CPUCreditBalance` are available for the instance to spend to burst beyond its baseline CPU utilization.When an instance is running, credits in the `CPUCreditBalance` don't expire. When the instance stops, the `CPUCreditBalance` does not persist, and all accrued credits are lost.CPU credit metrics are available at a five-minute frequency only.Launch credits work the same way in Amazon RDS as they do in Amazon EC2. For more information, see [Launch credits](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-standard-mode-concepts.html#launch-credits){:target="_blank"} in the *Amazon Elastic Compute Cloud User Guide for Linux Instances*. |                              | Credits (vCPU-minutes) |
-| `DatabaseConnections`           | **DB Connections (Count)**                            | The number of client network connections to the database instance.The number of database sessions can be higher than the metric value because the metric value doesn't include the following:Sessions that no longer have a network connection but which the database hasn't cleaned upSessions created by the database engine for its own purposesSessions created by the database engine's parallel execution capabilitiesSessions created by the database engine job schedulerAmazon RDS connections | All                          | Count                  |
+| `DatabaseConnections`           | **DB Connections (Count)**                            | The number of client network connections to the database instance.The number of database sessions can be higher than the metric value because the metric value does not include the following:Sessions that no longer have a network connection but which the database has not cleaned upSessions created by the database engine for its own purposesSessions created by the database engine's parallel execution capabilitiesSessions created by the database engine job schedulerAmazon RDS connections | All                          | Count                  |
 | `DiskQueueDepth`                | **Queue Depth (Count)**                               | The number of outstanding I/Os (read/write requests) waiting to access the disk. | All                          | Count                  |
-| `EBSByteBalance%`               | **EBS Byte Balance (Percent)**                        | The percentage of throughput credits remaining in the burst bucket of your RDS database. This metric is available for basic monitoring only.The metric value is based on the throughput and IOPS of all volumes, including the root volume, rather than on only those volumes containing database files.To find the instance sizes that support this metric, see the instance sizes with an asterisk (*) in the [EBS optimized by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html#current){:target="_blank"} table in *Amazon EC2 User Guide for Linux Instances*. The `Sum` statistic is not applicable to this metric. | All                          | Percentage             |
-| `EBSIOBalance%`                 | **EBS IO Balance (Percent)**                          | The percentage of I/O credits remaining in the burst bucket of your RDS database. This metric is available for basic monitoring only.The metric value is based on the throughput and IOPS of all volumes, including the root volume, rather than on only those volumes containing database files.To find the instance sizes that support this metric, see the instance sizes with an asterisk (*) in the [EBS optimized by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html#current) table in *Amazon EC2 User Guide for Linux Instances*. The `Sum` statistic is not applicable to this metric.This metric is different from `BurstBalance`. To learn how to use this metric, see [Improving application performance and reducing costs with Amazon EBS-Optimized Instance burst capability](http://aws.amazon.com/blogs/compute/improving-application-performance-and-reducing-costs-with-amazon-ebs-optimized-instance-burst-capability/){:target="_blank"}. | All                          | Percentage             |
+| `EBSByteBalance%`               | **EBS Byte Balance (Percent)**                        | The percentage of throughput credits remaining in the burst bucket of your RDS database. This metric is available for basic monitoring only.The metric value is based on the throughput and IOPS of all volumes, including the root volume, rather than on only those volumes containing database files.To find the instance sizes that support this metric, see the instance sizes with an asterisk (`*`) in the [EBS optimized by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html#current){:target="_blank"} table in *Amazon EC2 User Guide for Linux Instances*. The `Sum` statistic is not applicable to this metric. | All                          | Percentage             |
+| `EBSIOBalance%`                 | **EBS IO Balance (Percent)**                          | The percentage of I/O credits remaining in the burst bucket of your RDS database. This metric is available for basic monitoring only.The metric value is based on the throughput and IOPS of all volumes, including the root volume, rather than on only those volumes containing database files.To find the instance sizes that support this metric, see the instance sizes with an asterisk (`*`) in the [EBS optimized by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html#current) table in *Amazon EC2 User Guide for Linux Instances*. The `Sum` statistic is not applicable to this metric.This metric is different from `BurstBalance`. To learn how to use this metric, see [Improving application performance and reducing costs with Amazon EBS-Optimized Instance burst capability](http://aws.amazon.com/blogs/compute/improving-application-performance-and-reducing-costs-with-amazon-ebs-optimized-instance-burst-capability/){:target="_blank"}. | All                          | Percentage             |
 | `FailedSQLServerAgentJobsCount` | **Failed SQL Server Agent Jobs Count (Count/Minute)** | The number of failed Microsoft SQL Server Agent jobs during the last minute. | Microsoft SQL Server         | Count per minute       |
 | `FreeableMemory`                | **Freeable Memory (MB)**                              | The amount of available random access memory.For MariaDB, MySQL, Oracle, and PostgreSQL DB instances, this metric reports the value of the `MemAvailable` field of `/proc/meminfo`. | All                          | Bytes                  |
 | `FreeStorageSpace`              | **Free Storage Space (MB)**                           | The amount of available storage space.                       | All                          | Bytes                  |
@@ -135,9 +137,9 @@ The collected AWS RDS MySQL object data structure can be viewed in "Infrastructu
   "fields": {
     "InstanceCreateTime"  : "2018-03-28T19:54:07.871Z",
     "LatestRestorableTime": "2018-03-28T19:54:07.871Z",
-    "Endpoint"            : "{连接地址 JSON 数据}",
+    "Endpoint"            : "{连接地址 JSON data}",
     "AllocatedStorage"    : 100,
-    "message"             : "{实例 JSON 数据}",
+    "message"             : "{Instance JSON data}",
   }
 }
 ```

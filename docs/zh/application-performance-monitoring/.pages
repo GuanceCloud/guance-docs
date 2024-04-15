@@ -1,13 +1,9 @@
 nav:
   - index.md
   - '数据采集': collection
-  - '生成指标': generate-metrics.md
-  - '服务': 
-    - '服务列表': service.md
-    - '服务拓扑图': service-map.md
-    - '服务清单': service-catalog.md
   - '概览': overview.md
-  - '链路查看器': explorer.md
+  - '链路': explorer.md
   - '错误追踪': error.md
-  - 'Profile': profile.md
+  - 'Profiling': profile.md
+  - '生成指标': generate-metrics.md
   - '常见问题': faq.md

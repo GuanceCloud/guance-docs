@@ -45,7 +45,7 @@ monitor:
 
 此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
 
-我们默认采集了一些配置, 具体见指标一栏 [配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
+我们默认采集了一些配置, 具体见指标一栏 [配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-huaweicloud-obs/){:target="_blank"}
 
 
 ### 验证
@@ -55,7 +55,7 @@ monitor:
 3. 在观测云平台，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
-配置好华为云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [华为云云监控指标详情](https://support.huaweicloud.com/ugobs-obs/obs_41_0048.html){:target="_blank"}
+配置好华为云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [华为云云监控指标详情](https://support.huaweicloud.com/usermanual-obs/obs_03_0010.html){:target="_blank"}
 
 | 指标ID                          | 指标名称                | 指标含义                                                     | 取值范围   | 测量对象         | 监控周期（原始指标） |
 | ------------------------------- | ----------------------- | ------------------------------------------------------------ | ---------- | ---------------- | -------------------- |

@@ -1,6 +1,6 @@
 ---
 title     : 'TiDB'
-summary   : 'Collect TiDB cluster, TiDB, Etcd, Region and other related component indicator information'
+summary   : 'Collect TiDB cluster, TiDB, Etcd, Region and other related component metric information'
 __int_icon: 'icon/tidb'
 dashboard :
   - desc  : 'TiDB Monitoring View
@@ -14,7 +14,7 @@ monitor   :
 # TiDB
 <!-- markdownlint-enable -->
 
-TiDB view display, including overview (such as start-up time, storage information, node information, etc.), cluster (cluster-related information), TiDB, Etcd, Region, and other related indicator information.
+TiDB view display, including overview (such as start-up time, storage information, node information, etc.), cluster (cluster-related information), TiDB, Etcd, Region, and other related metric information.
 
 
 ## Configuration {#config}
@@ -27,12 +27,12 @@ Description: Example TiDB version 6.3+
 
 (Linux / Windows environment is the same)
 
-To install TiDB, refer to the documentation [ TiDB Deployment Local Test Cluster ](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4)
+To install TiDB, refer to the documentation [TiDB Deployment Local Test Cluster](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4)
 
-The following collection processes were carried out as [ TiDB Deployment Local Test Cluster ](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4)deployment.
+The following collection processes were carried out as [TiDB Deployment Local Test Cluster](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4)deployment.
 
 
-### Indicator Collection Configuration
+### Metric Collection Configuration
 
 Each TiDB component (a total of four components) has been exposed `metrics` under the HTTP protocol
 
@@ -50,7 +50,7 @@ These are the `metrics` ports associated with single-node cluster component depl
 #### Open DataKit Collector
 
 <!-- markdownlint-disable MD046 MD038 MD010-->
-=== "TiDB Indicator Collection"
+=== "TiDB Metric Collection"
     1. Copy sample file
     ```bash hl_lines="2"
       cd /usr/local/datakit/conf.d/prom/
@@ -144,7 +144,7 @@ These are the `metrics` ports associated with single-node cluster component depl
 		
 		```
 
-=== "pd indicator collection"
+=== "pd metric collection"
 
     1. Copy the sample file
 	```shell hl_lines="2"
@@ -268,7 +268,7 @@ These are the `metrics` ports associated with single-node cluster component depl
 		
 		```
 
-=== "TiKV Indicator Collection"
+=== "TiKV Metric Collection"
 
     1. Copy the sample file
 	```shell hl_lines="2"
@@ -387,7 +387,7 @@ These are the `metrics` ports associated with single-node cluster component depl
 		
 		```
 
-=== "TiFlash Indicator Collection"
+=== "TiFlash Metric Collection"
 
     1. Copy the sample file
 	```shell hl_lines="2"
@@ -506,18 +506,19 @@ These are the `metrics` ports associated with single-node cluster component depl
 		```
 
 <!-- markdownlint-disable MD033 -->
-<font color="red">* Note that the marker needs to be adjusted *</font>
+
+<font color="red">*Note that the marker needs to be adjusted*</font>
 
 
 Description of main parameters:
 
-- Urls: `prometheus` Indicator address, where you fill in the indicator URL exposed by the corresponding component
-- Source: Collector alias, recommended to distinguish
-- Interval: collection interval
-- Measurement_ Prefix: Indicator set prefix for easy management of classification
-- Tls_ Open:TLS Configuration
-- Metric_ Types: Indicator type, not filled in, represents the collection of all indicators, recommended to fill in as needed, involving timeline
-- Tags_ Ignore: ignore unnecessary Tags
+- urls: `prometheus` Metric address, where you fill in the metric URL exposed by the corresponding component
+- source: Collector alias, recommended to distinguish
+- interval: collection interval
+- measurement_prefix: Metric set prefix for easy management of classification
+- tls_open:TLS Configuration
+- metric_types: Metric type, not filled in, represents the collection of all metrics, recommended to fill in as needed, involving timeline
+- tags_ignore: ignore unnecessary Tags
 - [inputs.prom.tags_rename.mapping]:<font color="red"> tag rename, if tag and filed rename are encountered, tag needs to be renamed, otherwise the whole index cannot be collected.</font>
 - [inputs.prom.tags]: Set tags to apply to all metrics currently in use
 <!-- markdownlint-enable -->

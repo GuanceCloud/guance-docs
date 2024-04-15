@@ -1,5 +1,18 @@
+---
+title     : 'IPMI'
+summary   : 'Collect IPMI metrics'
+__int_icon      : 'icon/ipmi'
+dashboard :
+  - desc  : 'N/A'
+    path  : '-'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # IPMI
+<!-- markdownlint-enable -->
 
 ---
 
@@ -9,23 +22,25 @@
 
 IPMI metrics show the current, voltage, power consumption, occupancy rate, fan speed, temperature and equipment status of the monitored equipment.
 
-### IPMI Introduction {#introduction}
-
 IPMI is the abbreviation of Intelligent Platform Management Interface, which is an industry standard for managing peripheral devices used in enterprise systems based on Intel structure. This standard is formulated by Intel, Hewlett-Packard, NEC, Dell Computer and SuperMicro. Users can use IPMI to monitor the physical health characteristics of the server, such as temperature, voltage, fan working status, power status, etc.
 
 IPMI enables the operation and maintenance system to obtain the operation health indicators of monitored servers and other devices **without intrusion**, thus ensuring information security.
 
-## Preconditions {#precondition}
+## Configuration {#config}
+
+### Preconditions {#requirements}
 
 - Install the `ipmitool` Toolkit
 
-DataKit collects IPMI data through the [ipmitool][1]  tool, so it needs to be installed on the machine. It can be installed by the following command:
+DataKit collects IPMI data through the [`ipmitool`][1]  tool, so it needs to be installed on the machine. It can be installed by the following command:
 
 ```shell
 # CentOS
 yum -y install ipmitool
+
 # Ubuntu
 sudo apt-get update && sudo apt -y install ipmitool
+
 # macOS
 brew install ipmitool # macOS
 ```
@@ -40,7 +55,7 @@ modprobe ipmi_devintf
 After successful installation, you can see the information output by ipmi server by running the following command:
 
 ```shell
-ipmitool -I lanplus -H <IP地址> -U <用户名> -P <密码> sdr elist
+ipmitool -I lanplus -H <IP 地址> -U <用户名> -P <密码> sdr elist
 
 SEL              | 72h | ns  |  7.1 | No Reading
 Intrusion        | 73h | ok  |  7.1 | 
@@ -56,6 +71,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
 ... more
 ```
 
+<!-- markdownlint-disable MD046 -->
 ???+ attention
 
     1. IP address refers to the IP address of the IPMI port of the server that you remotely manage
@@ -63,7 +79,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     1. Server `Channel Privilege Level Restrictions` operator level requirements and `<User Name>` keep level consistent
     1. `ipmitool` toolkit is installed on the machine running DataKit.
 
-## Configuration  {#input-config}
+### Collector Configuration {#input-config}
 
 === "Host deployment"
 
@@ -75,7 +91,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
       ## If you have so many servers that 10 seconds can't finish the job.
       ## You can start multiple collectors.
     
-      ## (Optional) collect interval: (defaults to "10s").
+      ## (Optional) Collect interval: (defaults to "10s").
       interval = "10s"
     
       ## Set true to enable election
@@ -84,7 +100,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
       ## The binPath of ipmitool
       ## (Example) bin_path = "/usr/bin/ipmitool"
       bin_path = "/usr/bin/ipmitool"
-
+    
       ## (Optional) The envs of LD_LIBRARY_PATH
       ## (Example) envs = [ "LD_LIBRARY_PATH=XXXX:$LD_LIBRARY_PATH" ]
     
@@ -109,7 +125,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
       ## (Warning!) You'd better use hex_keys, it's more secure.
       ipmi_passwords = ["calvin"]
     
-      ## (Optional) provide the hex key for the IMPI connection: (defaults to []string{}).
+      ## (Optional) Provide the hex key for the IMPI connection: (defaults to []string{}).
       ## If len(hex_keys)<len(ipmi_ips), will use hex_keys[0].
       ## (Example) hex_keys = ["XXXX"]
       # hex_keys = []
@@ -119,86 +135,264 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
       ## (Example) metric_versions = [2]
       metric_versions = [2]
     
-      ## (Optional) exec ipmitool timeout: (defaults to "5s").
+      ## (Optional) Exec ipmitool timeout: (defaults to "5s").
       timeout = "5s"
     
-      ## (Optional) ipmi server drop warning delay: (defaults to "300s").
+      ## (Optional) Ipmi server drop warning delay: (defaults to "300s").
       ## (Example) drop_warning_delay = "300s"
       drop_warning_delay = "300s"
     
-      ## key words of current.
+      ## Key words of current.
       ## (Example) regexp_current = ["current"]
       regexp_current = ["current"]
     
-      ## key words of voltage.
+      ## Key words of voltage.
       ## (Example) regexp_voltage = ["voltage"]
       regexp_voltage = ["voltage"]
     
-      ## key words of power.
-      ## (Example) regexp_power = ["pwr"]
-      regexp_power = ["pwr"]
+      ## Key words of power.
+      ## (Example) regexp_power = ["pwr","power"]
+      regexp_power = ["pwr","power"]
     
-      ## key words of temp.
+      ## Key words of temp.
       ## (Example) regexp_temp = ["temp"]
       regexp_temp = ["temp"]
     
-      ## key words of fan speed.
+      ## Key words of fan speed.
       ## (Example) regexp_fan_speed = ["fan"]
       regexp_fan_speed = ["fan"]
     
-      ## key words of usage.
+      ## Key words of usage.
       ## (Example) regexp_usage = ["usage"]
       regexp_usage = ["usage"]
     
-      ## key words of usage.
+      ## Key words of usage.
       ## (Example) regexp_count = []
       # regexp_count = []
     
-      ## key words of status.
-      ## (Example) regexp_status = ["fan","slot","drive"]
-      regexp_status = ["fan","slot","drive"]
+      ## Key words of status.
+      ## (Example) regexp_status = ["fan"]
+      regexp_status = ["fan"]
     
     [inputs.ipmi.tags]
       # some_tag = "some_value"
       # more_tag = "some_other_value"
+    
     ```
     
     After configuration, restart DataKit.
 
 === "Kubernetes"
 
-    Modification of configuration parameters as environment variables is supported in Kubernetes (effective only when the DataKit is running in K8s daemonset mode, which is not supported on host-deployed DataKits):
-    
-    | Environment Variable Name                          | Corresponding Configuration Parameter Item     | Parameter Example                                                     |
-    | :------------------------           | ---                  | ---                                                          |
-    | `ENV_INPUT_IPMI_TAGS`               | `tags`               | `tag1=value1,tag2=value2`; If there is a tag with the same name in the configuration file, it will be overwritten |
-    | `ENV_INPUT_IPMI_INTERVAL`           | `interval`           | `10s`                                                        |
-    | `ENV_INPUT_IPMI_TIMEOUT`            | `timeout`            | `5s`                                                         |
-    | `ENV_INPUT_IPMI_DEOP_WARNING_DELAY` | `drop_warning_delay` | `300s`                                                       |
-    | `ENV_INPUT_IPMI_BIN_PATH`           | `bin_path`           | `"/usr/bin/ipmitool"`                                        |
-    | `ENV_INPUT_IPMI_ENVS`               | `envs`               | `["LD_LIBRARY_PATH=XXXX:$LD_LIBRARY_PATH"]`                  |
-    | `ENV_INPUT_IPMI_SERVERS`            | `ipmi_servers`       | `["192.168.1.1"]`                                            |
-    | `ENV_INPUT_IPMI_INTERFACES`         | `ipmi_interfaces`    | `["lanplus"]`                                                |
-    | `ENV_INPUT_IPMI_USERS`              | `ipmi_users`         | `["root"]`                                                   |
-    | `ENV_INPUT_IPMI_PASSWORDS`          | `ipmi_passwords`     | `["calvin"]`                                                 |
-    | `ENV_INPUT_IPMI_HEX_KEYS`           | `hex_keys`           | `["50415353574F5244"]`                                       |
-    | `ENV_INPUT_IPMI_METRIC_VERSIONS`    | `metric_versions`    | `[2]`                                                        |
-    | `ENV_INPUT_IPMI_REGEXP_CURRENT`     | `regexp_current`     | `["current"]`                                                |
-    | `ENV_INPUT_IPMI_REGEXP_VOLTAGE`     | `regexp_voltage`     | `["voltage"]`                                                |
-    | `ENV_INPUT_IPMI_REGEXP_POWER`       | `regexp_power`       | `["pwr","power"]`                                            |
-    | `ENV_INPUT_IPMI_REGEXP_TEMP`        | `regexp_temp`        | `["temp"]`                                                   |
-    | `ENV_INPUT_IPMI_REGEXP_FAN_SPEED`   | `regexp_fan_speed`   | `["fan"]`                                                    |
-    | `ENV_INPUT_IPMI_REGEXP_USAGE`       | `regexp_usage`       | `["usage"]`                                                  |
-    | `ENV_INPUT_IPMI_REGEXP_COUNT`       | `regexp_count`       | `[]`                                                         |
-    | `ENV_INPUT_IPMI_REGEXP_STATUS`      | `regexp_status`      | `["fan"]`                                                    |
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
     
+    - **ENV_INPUT_IPMI_INTERVAL**
+    
+        Collect interval
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_IPMI_TIMEOUT**
+    
+        Timeout
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `timeout`
+    
+        **Default**: 5s
+    
+    - **ENV_INPUT_IPMI_DROP_WARNING_DELAY**
+    
+        Ipmi server drop warning delay
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `drop_warning_delay`
+    
+        **Default**: 5m
+    
+    - **ENV_INPUT_IPMI_BIN_PATH**
+    
+        The binPath of `ipmitool`
+    
+        **Type**: String
+    
+        **ConfField**: `bin_path`
+    
+        **Example**: `/usr/bin/ipmitool`
+    
+    - **ENV_INPUT_IPMI_ENVS**
+    
+        The envs of LD_LIBRARY_PATH
+    
+        **Type**: JSON
+    
+        **ConfField**: `envs`
+    
+        **Example**: ["LD_LIBRARY_PATH=XXXX:$LD_LIBRARY_PATH"]
+    
+    - **ENV_INPUT_IPMI_SERVERS**
+    
+        IPMI servers URL
+    
+        **Type**: JSON
+    
+        **ConfField**: `ipmi_servers`
+    
+        **Example**: ["192.168.1.1","192.168.1.2"]
+    
+    - **ENV_INPUT_IPMI_INTERFACES**
+    
+        The interfaces of IPMI servers
+    
+        **Type**: JSON
+    
+        **ConfField**: `ipmi_interfaces`
+    
+        **Example**: ["`lanplus`"]
+    
+    - **ENV_INPUT_IPMI_USERS**
+    
+        User name
+    
+        **Type**: JSON
+    
+        **ConfField**: `ipmi_users`
+    
+        **Example**: ["root"]
+    
+    - **ENV_INPUT_IPMI_PASSWORDS**
+    
+        Password
+    
+        **Type**: JSON
+    
+        **ConfField**: `ipmi_passwords`
+    
+        **Example**: ["Calvin"]
+    
+    - **ENV_INPUT_IPMI_HEX_KEYS**
+    
+        Provide the hex key for the IMPI connection
+    
+        **Type**: JSON
+    
+        **ConfField**: `hex_keys`
+    
+        **Example**: ["50415353574F5244"]
+    
+    - **ENV_INPUT_IPMI_METRIC_VERSIONS**
+    
+        Metric versions
+    
+        **Type**: JSON
+    
+        **ConfField**: `metric_versions`
+    
+        **Example**: [2] or [3]
+    
+    - **ENV_INPUT_IPMI_REGEXP_CURRENT**
+    
+        Regexp of current
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_current`
+    
+        **Example**: ["current"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_VOLTAGE**
+    
+        Regexp of voltage
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_voltage`
+    
+        **Example**: ["voltage"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_POWER**
+    
+        Regexp of power
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_power`
+    
+        **Example**: ["pwr","power"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_TEMP**
+    
+        Regexp of temperature
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_temp`
+    
+        **Example**: ["temp"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_FAN_SPEED**
+    
+        Regexp of fan speed
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_fan_speed`
+    
+        **Example**: ["fan"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_USAGE**
+    
+        Regexp of usage
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_usage`
+    
+        **Example**: ["usage"]
+    
+    - **ENV_INPUT_IPMI_REGEXP_COUNT**
+    
+        Regexp of count metrics
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_count`
+    
+        **Example**: []
+    
+    - **ENV_INPUT_IPMI_REGEXP_STATUS**
+    
+        Regexp of status metrics
+    
+        **Type**: JSON
+    
+        **ConfField**: `regexp_status`
+    
+        **Example**: ["fan"]
+    
+    - **ENV_INPUT_IPMI_TAGS**
+    
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
+
 ???+ tip "Configuration"
 
     - The keywords for each parameter classification are all in lowercase
-    - Refer to ipmitool -I The data returned by the command, then the keywords are reasonably configured
-
-
+    - Refer to `ipmitool -I ...` The data returned by the command, then the keywords are reasonably configured
+<!-- markdownlint-enable -->
 
 <!--
 ## Election Configuration {#election-config}
@@ -219,14 +413,13 @@ IPMI collector supports election function. When multiple machines run DataKit, i
   enable_namespace_tag = false
 ```
 `conf.d/ipmi/ipmi.conf` file opens the `election` function:
-
 ```
   ## Set true to enable election
   election = true
 ```
 -->
 
-## IPMI Measurements {#measurements}
+## Metric {#metric}
 
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.ipmi.tags]`:
 
@@ -239,18 +432,18 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
--  Tag
+- Tag
 
 
-| Tag Name | Description    |
+| Tag | Description |
 |  ----  | --------|
-|`host`|被监测主机名|
-|`unit`|设备内单元名|
+|`host`|Monitored host name|
+|`unit`|Unit name in the host|
 
 - Metrics List
 
 
-| Metrics | Description| Data Type | Unit   |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`count`|Count.|int|count|
 |`current`|Current.|float|ampere|
@@ -263,13 +456,5 @@ For all of the following data collections, a global tag named `host` is appended
 |`warning`|Warning on/off.|int|-|
 
 
-
-## Configuration of Alarm Notification for Service Withdrawal of Monitored Equipment {#warning-config}
-
-```
- [Monitor]-> [Monitor]-> [New Monitor] Select [Threshold Detection]-> Enter [Rule Name]
- Select [indicator]-> [indicator set], select [ipmi]-> [specific indicator], select [warning]-> next column, select [Max]-> by [detection dimension], select [host]
- Input [999] in [Urgent] -> Input [1] in [Important] -> Input [888] in [Warning] -> Input [N] in [Normal]
-```
 
 [1]: https://github.com/ipmitool/ipmitool

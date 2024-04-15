@@ -29,7 +29,7 @@ The collector can take many metrics from the CouchBase instance, such as the mem
 
 #### Install CouchBase Exporter
 
-Client collector CouchBase Exporter using CouchBase, collector document [地址](https://github.com/blakelead/couchbase_exporter)
+Client collector CouchBase Exporter using CouchBase, collector document [Address](https://github.com/blakelead/couchbase_exporter)
 
 Note: The user password used in this article is the user password of CouchBase Server
 
@@ -70,12 +70,10 @@ Parameter description:
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    
     ```bash
     /usr/local/datakit/conf.d/prom
     cp prom.conf.sample couchbase-prom.conf
     ```
-    
     
     ```toml
     [[inputs.prom]]
@@ -131,7 +129,7 @@ index
 | ------------------------------- | -------------------- |
 |cluster_rebalance_status| `Rebalancing` status |
 
-The complete indicators are as follows: [地址]( https://github.com/blakelead/couchbase_exporter/blob/master/resources/metrics.md#cluster-metrics)
+The complete metrics are as follows: [Address]( https://github.com/blakelead/couchbase_exporter/blob/master/resources/metrics.md#cluster-metrics)
 
 ### Node metrics
 
@@ -152,7 +150,7 @@ index
 | node_uptime_seconds               |Node uptime|
 | node_status                      |Status of CouchBase node|
 
-The complete indicators are as follows: [地址](https://github.com/blakelead/couchbase_exporter/blob/master/resources/metrics.md#node-metrics)
+The complete metrics are as follows: [Address](https://github.com/blakelead/couchbase_exporter/blob/master/resources/metrics.md#node-metrics)
 
 ### Bucket metrics
 
@@ -177,7 +175,7 @@ index
 | bucketstats_ep_bg_fetched       |Disk reads per second|
 | bucketstats_ep_mem_high_wat     |Memory usage high water mark for auto-evictions|
 
-The complete indicators are as follows: [address](https://github.com/blakelead/couchbase_exporter/blob/master/resources/metrics.md#bucket-metrics)
+The complete metrics are as follows: [address](https://github.com/blakelead/couchbase_exporter/blob/master/resources/metrics.md#bucket-metrics)
 
 ### XDCR metrics
 
@@ -191,13 +189,13 @@ Label
 
 index
 
-The complete indicators are as follows: [address](https://github.com/blakelead/couchbase_exporter/blob/master/resources/metrics.md#xdcr-metrics)
+The complete metrics are as follows: [address](https://github.com/blakelead/couchbase_exporter/blob/master/resources/metrics.md#xdcr-metrics)
 
 ## Journal{#logging}
 
 To collect a log of CouchBase, follow these steps:
 
-1. Open the DataKit log plug-in and copy the sample file
+- Open the DataKit log plug-in and copy the sample file
 
 ```bash
 /usr/local/datakit/conf.d/log
@@ -206,7 +204,7 @@ cp logging.conf.sample couchbase-logging.conf
 
 > Note: DataKit must be installed on the host of CouchBase in order to collect CouchBase logs.
 
-2. Modify `couchbase-prom.conf` Profile
+- Modify `couchbase-prom.conf` Profile
 
 ```toml
 # {"version": "1.9.2", "desc": "do NOT edit this line"}

@@ -1,6 +1,6 @@
 # 故障排查
 ## 开启 Debug 调试
-你可以通过以下配置，开启 SDK 的 debug 功能，开启之后 Android 系统，你可以直接在 Flutter 编译工具上看到输出的 debug 日志 ，iOS 你需要通过 Xcode 编译运行，Xcode 编译，或者通过 MacOS 「控制台」应用查看。
+您可以通过以下配置，开启 SDK 的 Debug 功能，开启之后 Android 系统，您可以直接在 Flutter 编译工具上看到输出的 Debug 日志，iOS 您需要通过 Xcode 编译运行，Xcode 编译，或者通过 MacOS 控制台应用查看。
 
 ```dart
 FTMobileFlutter.sdkConfig(
@@ -9,7 +9,7 @@ FTMobileFlutter.sdkConfig(
     );
 ```
 
->**建议 Release 版本发布时，关闭这个配置**
+**注意**：建议 Release 版本发布时，关闭这个配置。
 
 ## SDK 正常运行但是没有数据
 
@@ -73,7 +73,7 @@ You have either:
 
 ```
 
-如果编译 iOS 应用时碰到类似版本导入这个问题，你需要在终端在 flutter 项目的 ios 文件，执行以下命令：
+如果编译 iOS 应用时碰到类似版本导入这个问题，您需要在终端在 flutter 项目的 ios 文件，执行以下命令：
 
 ```bash
 pod install --repo-update
@@ -88,6 +88,7 @@ pod install --repo-update
 
 * 排查上传数据设备网络与安装 datakit 设备网路与负载问题。
 
-## 更多相关内容
+## 更多阅读
+
 * [Android 故障排查](../android/app-troubleshooting.md)
 * [iOS 故障排查](../ios/app-troubleshooting.md)

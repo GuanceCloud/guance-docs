@@ -1,5 +1,19 @@
+---
+title     : 'Windows Event'
+summary   : 'Collect event logs in Windows'
+__int_icon      : 'icon/winevent'
+dashboard :
+  - desc  : 'N/A'
+    path  : '-'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
-# Windows Events
+<!-- markdownlint-disable MD025 -->
+# Windows Event
+<!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-windows:
@@ -8,11 +22,13 @@
 
 Windows Event Log Collection is used to collect applications, security, systems and so on.
 
-## Preconditions {#requrements}
+## Configuration {#config}
+
+### Preconditions {#requrements}
 
 - Windows version >= Windows Server 2008 R2
 
-## Configuration {#config}
+### Collector Configuration {#input-config}
 
 Go to the `conf.d/windows` directory under the DataKit installation directory, copy `windows_event.conf.sample` and name it `windows_event.conf`. Examples are as follows:
 
@@ -39,6 +55,10 @@ Go to the `conf.d/windows` directory under the DataKit installation directory, c
     </Query>
   </QueryList>
   '''
+
+  # event_fetch_size is the number of events to fetch per query.
+  event_fetch_size = 5
+
   [inputs.windows_event.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
@@ -47,7 +67,7 @@ Go to the `conf.d/windows` directory under the DataKit installation directory, c
 
 After configuration, restart DataKit.
 
-## Measurement {#measurements}
+## Logging {#logging}
 
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration through `[inputs.windows_event.tags]`:
 
@@ -60,27 +80,26 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-
 ### `windows_event`
 
--  tag
+- tag
 
 
 | Tag | Description |
 |  ----  | --------|
 |`channel`|Channel|
-|`computer`|计算机|
-|`event_id`|事件 ID|
-|`event_record_id`|事件记录 ID|
-|`event_source`|Windows 事件来源|
-|`keyword`|关键字|
-|`level`|级别|
-|`message`|事件内容|
-|`process_id`|进程 ID|
-|`status`|日志等级|
-|`task`|任务类别|
-|`total_message`|事件全文|
-|`version`|版本|
+|`computer`|Computer|
+|`event_id`|Event ID|
+|`event_record_id`|Event record ID|
+|`event_source`|Windows event source|
+|`keyword`|Keyword|
+|`level`|Level|
+|`message`|Event content|
+|`process_id`|Process ID|
+|`status`|Log level|
+|`task`|Task category|
+|`total_message`|Full text of the event|
+|`version`|Version|
 
 - metric list
 
@@ -88,7 +107,4 @@ For all of the following data collections, a global tag named `host` is appended
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 
- 
-
- 
 
