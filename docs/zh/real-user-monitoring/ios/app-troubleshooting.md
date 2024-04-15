@@ -17,6 +17,20 @@ eg：当配置 SDK 时，未设置  datakit metrics 写入地址，程序会崩�
 
 > **建议 Release 版本发布时，关闭这个配置**
 
+## SDK 内部日志转化为缓存文件
+
+```objective-c
+// 默认：若未指定 logsDirectory ，那么将在应用程序的缓存目录中创建一个名为 'FTLogs' 的文件夹。
+//      若未指定 fileNamePrefix ，日志文件前缀为 'FTLog'
+ [[FTLog sharedInstance] registerInnerLogCacheToLogsDirectory:nil fileNamePrefix:nil];
+
+// 自定义存储日志文件的文件夹、日志文件名前缀
+ NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+ NSString *baseDir = paths.firstObject;
+ NSString *logsDirectory = [baseDir stringByAppendingPathComponent:@"CustomFolder"];
+ [[FTLog sharedInstance] registerInnerLogCacheToLogsDirectory:logsDirectory fileNamePrefix:@"CustomPrefix"];
+```
+
 ## SDK 正常运行但是没有数据
 
 * [排查 Datakit](../../datakit/why-no-data.md) 是否正常运行
