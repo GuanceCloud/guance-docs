@@ -33,18 +33,68 @@
 
 ![](../img/intelligent-detection07.png)
 
-4）**事件内容**：满足触发条件时发送的事件通知内容。支持输入 Markdown 格式文本信息并预览效果，支持使用预置的关联链接和[模板变量](../event-template.md)。
+1）**事件内容**：满足触发条件时发送的事件通知内容。支持输入 Markdown 格式文本信息并预览效果，支持使用预置的关联链接和[模板变量](../event-template.md)。
 
 **注意**：不同告警通知对象支持的 Markdown 语法不同，例如：企业微信不支持无序列表。
 
-5）**同步创建 Issue**：若该监控器下产生了异常事件，将同步创建 Issue 异常追踪，投递到异常追踪的频道中。您可以前往[异常追踪](../../exception/index.md) > 您选定的[频道](../../exception/channel.md)进行查看。
+2）**关联异常追踪**：开启关联后，若该监控器下产生了异常事件，将同步创建 Issue。选择 Issue 的等级以及需要投递的目标频道，产生的 Issue 可以前往[异常追踪](../../exception/index.md) > 您选定的[频道](../../exception/channel.md)进行查看。
+
+在事件恢复后，可以同步关闭 Issue。
+
+![](../img/issue-create.png)
+
+#### 事件内容自定义高级配置 {#advanced-settings}
+
+观测云支持在事件内容中通过高级配置添加关联日志或错误堆栈，以便查看异常情况发生时的上下文数据情况：
+
+![](../img/advanced-settings.png)
+
+- 添加关联日志：
+
+查询：
+
+如：获取一条索引为 `default` 的日志 `message`：
+
+```
+{% set dql_data = DQL("L::RE(`.*`):(`message`) { `index` = 'default' } LIMIT 1") %}
+```
+
+关联日志：
+
+
+
+```
+{{ dql_data.message | limit_lines(10) }}
+```
+
+- 添加关联错误堆栈
+  
+查询：
+
+```
+{% set dql_data = DQL("T::re(`.*`):(`error_message`,`error_stack`){ (`source` NOT IN ['service_map', 'tracing_stat', 'service_list_1m', 'service_list_1d', 'service_list_1h', 'profile']) AND (`error_stack` = exists()) } LIMIT 1") %}
+```
+
+关联错误堆栈：
+
+```
+{{ dql_data.error_message | limit_lines(10) }}
+
+{{ dql_data.error_stack | limit_lines(10) }}
+```
+
+
+
 
 ### 步骤三：告警配置
 
-6）**[告警策略](../alert-setting.md)**：监控满足触发条件后，立即发送告警消息给指定的通知对象。告警策略中包含需要通知的事件等级、通知对象、及告警聚合。在选择某一个告警策略后，若需要修改，可点击**编辑告警策略**，即可进行相关操作。
+![](../img/policy-create-1.png)
+
+**[告警策略](../alert-setting.md)**：监控满足触发条件后，立即发送告警消息给指定的通知对象。告警策略中包含需要通知的事件等级、通知对象、及告警聚合。在选择某一个告警策略后，若需要修改，可点击**编辑告警策略**，即可进行相关操作。
 
 **注意**：用户访问智能检测触发的事件等级为【紧急】【重要】【警告】。
 
+<!--
 ## 监控器列表
 
 创建智能监控检测后，可在**智能监控**列表查看及管理检测规则。
@@ -58,14 +108,15 @@
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 监控器列表操作</font>](../monitor/index.md#list)
 
 </div>
+-->
 
-### 查看事件
+## 查看事件
 
 监控器会获取最近 60 分钟的检测应用程序服务对象指标信息，识别出现异常情况时，会生成相应的事件，在[**事件 > 智能监控**](../../events/inte-monitoring-event.md)列表可查看对应异常事件。
 
 ![](../img/intelligent-detection04.png)
 
-#### 事件详情页
+### 事件详情页
 
 点击**事件**，可查看智能监控事件的详情页，包括事件状态、异常发生时间、异常名称、分析报告、告警通知、历史记录和关联事件。
 

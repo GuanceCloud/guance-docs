@@ -90,21 +90,139 @@ monitor   :
 
 === "Kubernetes"
 
-    支持以环境变量的方式修改配置参数（只在 Datakit 以 K8s DaemonSet 方式运行时生效，主机部署的 Datakit 不支持此功能）：
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
+
+    也支持以环境变量的方式修改配置参数（需要在 ENV_DEFAULT_ENABLED_INPUTS 中加为默认采集器）：
+
+    - **ENV_INPUT_GPUSMI_INTERVAL**
     
-    | 环境变量名                              | 对应的配置参数项         | 参数示例                                                     |
-    | :-----------------------------          | ---                      | ---                                                          |
-    | `ENV_INPUT_GPUSMI_TAGS`                 | `tags`                   | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它 |
-    | `ENV_INPUT_GPUSMI_INTERVAL`             | `interval`               | `10s`                                                        |
-    | `ENV_INPUT_GPUSMI_BIN_PATHS`            | `bin_paths`              | `["/usr/bin/nvidia-smi"]`                                    |
-    | `ENV_INPUT_GPUSMI_TIMEOUT`              | `timeout`                | `"5s"`                                                       |
-    | `ENV_INPUT_GPUSMI_PROCESS_INFO_MAX_LEN` | `process_info_max_len`   | `10`                                                         |
-    | `ENV_INPUT_GPUSMI_DROP_WARNING_DELAY`   | `gpu_drop_warning_delay` | `"300s"`                                                     |
-    | `ENV_INPUT_GPUSMI_ENVS`                 | `envs`                   | `["LD_LIBRARY_PATH=/usr/local/corex/lib/:$LD_LIBRARY_PATH"]` |
-    | `ENV_INPUT_GPUSMI_REMOTE_ADDRS`         | `remote_addrs`           | `["192.168.1.1:22"]`                                         |
-    | `ENV_INPUT_GPUSMI_REMOTE_USERS`         | `remote_users`           | `["remote_login_name"]`                                      |
-    | `ENV_INPUT_GPUSMI_REMOTE_RSA_PATHS`     | `remote_rsa_paths`       | `["/home/your_name/.ssh/id_rsa"]`                            |
-    | `ENV_INPUT_GPUSMI_REMOTE_COMMAND`       | `remote_command`         | `"nvidia-smi -x -q"`                                         |
+        采集器重复间隔时长
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_GPUSMI_TIMEOUT**
+    
+        超时时长
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `timeout`
+    
+        **Default**: 5s
+    
+    - **ENV_INPUT_GPUSMI_BIN_PATH**
+    
+        执行文件路径
+    
+        **Type**: JSON
+    
+        **ConfField**: `bin_path`
+    
+        **Example**: `["/usr/bin/nvidia-smi"]`
+    
+    - **ENV_INPUT_GPUSMI_PROCESS_INFO_MAX_LEN**
+    
+        最大收集最耗资源 GPU 进程数
+    
+        **Type**: Int
+    
+        **ConfField**: `process_info_max_len`
+    
+        **Default**: 10
+    
+    - **ENV_INPUT_GPUSMI_DROP_WARNING_DELAY**
+    
+        掉卡告警延迟
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `gpu_drop_warning_delay`
+    
+        **Default**: 5m
+    
+    - **ENV_INPUT_GPUSMI_ENVS**
+    
+        执行依赖库的路径
+    
+        **Type**: JSON
+    
+        **ConfField**: `envs`
+    
+        **Example**: ["LD_LIBRARY_PATH=/usr/local/corex/lib/:$LD_LIBRARY_PATH"]
+    
+    - **ENV_INPUT_GPUSMI_REMOTE_ADDRS**
+    
+        远程 GPU 服务器
+    
+        **Type**: JSON
+    
+        **ConfField**: `remote_addrs`
+    
+        **Example**: ["192.168.1.1:22","192.168.1.2:22"]
+    
+    - **ENV_INPUT_GPUSMI_REMOTE_USERS**
+    
+        远程登录名
+    
+        **Type**: JSON
+    
+        **ConfField**: `remote_users`
+    
+        **Example**: ["user_1","user_2"]
+    
+    - **ENV_INPUT_GPUSMI_REMOTE_PASSWORDS**
+    
+        远程登录密码
+    
+        **Type**: JSON
+    
+        **ConfField**: `remote_passwords`
+    
+        **Example**: ["pass_1","pass_2"]
+    
+    - **ENV_INPUT_GPUSMI_REMOTE_RSA_PATHS**
+    
+        秘钥文件路径
+    
+        **Type**: JSON
+    
+        **ConfField**: `remote_rsa_paths`
+    
+        **Example**: ["/home/your_name/.ssh/id_rsa"]
+    
+    - **ENV_INPUT_GPUSMI_REMOTE_COMMAND**
+    
+        远程执行指令
+    
+        **Type**: String
+    
+        **ConfField**: `remote_command`
+    
+        **Example**: "`nvidia-smi -x -q`"
+    
+    - **ENV_INPUT_GPUSMI_ELECTION**
+    
+        开启选举
+    
+        **Type**: Boolean
+    
+        **ConfField**: `election`
+    
+        **Default**: true
+    
+    - **ENV_INPUT_GPUSMI_TAGS**
+    
+        自定义标签。如果配置文件有同名标签，将会覆盖它
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 

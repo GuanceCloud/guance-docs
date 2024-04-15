@@ -1,4 +1,4 @@
-site_name: Guance Docs
+site_name: Docs
 docs_dir: './docs/en'
 site_dir: './site/en'
 
@@ -54,7 +54,7 @@ markdown_extensions:
       custom_icons:
         - overrides/.icons
 
-copyright: '&copy; 2013-2023 Shanghai Futuroscope Information Technology Co., Ltd. . All Rights Reserved.'
+copyright: '&copy; 2013-2024 Shanghai Futuroscope Information Technology Co., Ltd. . All Rights Reserved.'
 
 extra:
   generator: false

@@ -70,15 +70,59 @@ monitor   :
 
 === "Kubernetes"
 
-    支持以环境变量的方式修改配置参数：
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
 
-    | 环境变量名                            | 对应的配置参数项       | 参数示例                                                                                 |
-    | ---                                   | ---                    | ---                                                                                      |
-    | `ENV_INPUT_DISK_EXCLUDE_DEVICE`       | `exclude_device`       | `"/dev/loop0","/dev/loop1"` 以英文逗号隔开                      |
-    | `ENV_INPUT_DISK_EXTRA_DEVICE`         | `extra_device`         | `"/nfsdata"` 以英文逗号隔开                      |
-    | `ENV_INPUT_DISK_TAGS`                 | `tags`                 | `tag1=value1,tag2=value2` 如果配置文件中有同名 tag，会覆盖它                             |
-    | `ENV_INPUT_DISK_ONLY_PHYSICAL_DEVICE` | `only_physical_device` | 忽略非物理磁盘（如网盘、NFS 等，只采集本机硬盘/CD ROM/USB 磁盘等）任意给一个字符串值即可 |
-    | `ENV_INPUT_DISK_INTERVAL`             | `interval`             | `10s`                                                                                    |
+    也支持以环境变量的方式修改配置参数（需要在 ENV_DEFAULT_ENABLED_INPUTS 中加为默认采集器）：
+
+    - **ENV_INPUT_DISK_INTERVAL**
+    
+        采集器重复间隔时长
+    
+        **Type**: TimeDuration
+    
+        **ConfField**: `interval`
+    
+        **Default**: 10s
+    
+    - **ENV_INPUT_DISK_EXTRA_DEVICE**
+    
+        额外的设备前缀。（默认收集以 dev 为前缀的所有设备）
+    
+        **Type**: List
+    
+        **ConfField**: `extra_device`
+    
+        **Example**: `/nfsdata,other_data`
+    
+    - **ENV_INPUT_DISK_EXCLUDE_DEVICE**
+    
+        排除的设备前缀。（默认收集以 dev 为前缀的所有设备）
+    
+        **Type**: List
+    
+        **ConfField**: `exclude_device`
+    
+        **Example**: /dev/loop0,/dev/loop1
+    
+    - **ENV_INPUT_DISK_ONLY_PHYSICAL_DEVICE**
+    
+        忽略非物理磁盘（如网盘、NFS 等，只采集本机硬盘/CD ROM/USB 磁盘等）
+    
+        **Type**: Boolean
+    
+        **ConfField**: `only_physical_device`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_DISK_TAGS**
+    
+        自定义标签。如果配置文件有同名标签，将会覆盖它
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 

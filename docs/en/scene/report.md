@@ -1,4 +1,4 @@
-# Regular Report {#report}
+# Regular Reports {#report}
 
 Guance enables you to export dashboards into reports, which are regularly pushed to relevant members in different forms according to different time dimensions such as daily/weekly/monthly.
 
@@ -6,49 +6,72 @@ Enter **Scenes > Regular Report**:
 
 <img src="../img/report-9.png" width="40%" >
 
-Or **Scenes > Dashboards > Regular Report**:
+Or **Scenes > Dashboards > Regular Reports**:
 
 ![](img/report-1.png)
 
-On the current page, you can view information such as the name of the timed report, the dashboard associated with it and the reporting period.
 
-![](img/report-2.png)
+## Create
 
-## Create Report
 
-<img src="../img/report-3.png" width="70%" >
+:material-numeric-1-circle: **Basic info**:
 
-:material-numeric-1-circle: **Basic Info**:
+![](img/report-4.png)
 
-<img src="../img/report-4.png" width="60%" >
+:material-numeric-1-circle-outline: Dashboard: Select the dashboard you need to send the scheduled report.
 
-| <div style="width: 150px"> Field </div>     | Description               |
-| ----------- | ---------------- |
-| Dashboard      | Select the relevant dashboard for which you want to send timed reports.               |
-| Modify View Variable      | You can choose to customize and modify the view variables of the dashboard in the timed report.<br/>:warning: <br/><li>The modification here only affects the report, and will not affect the original default value configuration of the dashboard;<br/><li>If there are no view variables in the dashboard, the button will not be displayed to you.                 |
-| Query Scope     | That is, the time range of dashboard query when sending the report; "Recent 1 Day" is selected by default, and you can enter the time range manually.               |
+:material-numeric-2-circle-outline: Modify view variables: You can choose to customize the view variables of the dashboard in the scheduled report.
 
-:material-numeric-2-circle: **Timing Plan**：
+**Note**:
 
-<img src="../img/report-5.png" width="60%" >
+- The modification here only affects the report and will not affect the default values of the dashboard;
+- If there are no view variables in the dashboard, this option will not be shown to you.
 
-| <div style="width: 80px"> Field </div>     | Description               |
-| ----------- | ---------------- |
-| Zone      | The time zone displays UTC+08: 00 by default, and modification is not supported for the time being.               |
-| Report Time      | That is, the time when the current timing report is sent; You need to fill in a positive integer, hours: 0 to 23; minutes: 0 to 59.               |
-| Report Cycle      | That is, the sending frequency period of the current timing report; Includes "Once", "By Day", "By Week" and "By Month", which you can choose according to your needs.<br/><li>Once: If checked, the current report will only be sent at the specific time you selected;<br/><li>By Day: You can check every day; Or you can check the specific date of sending the current timing report, and support multiple choices;<br/><li>By Week: You can choose to send it regularly according to the time dimension of week;<br/><li>Monthly: You can check every month; Or you can check the specific month and day for sending the current regular report, and multiple choices are supported.              |
+:material-numeric-3-circle-outline: Query Scope: The time range of the dashboard query when sending the report; the default selection is "Last 1 day", you can manually enter the time range.
 
-:material-numeric-3-circle: **Email Notification**：
+:material-numeric-2-circle: **Timing plan**:
 
-Currently, there are four types of notifications supported: DingTalk Robot, WeChat Work Robot, Feishu Robot and Email Group.
+![](img/report-5.png)
 
-<img src="../img/report-6.png" width="60%" >
+:material-numeric-1-circle-outline: Time Zone: The time zone by default is `UTC+08:00`, modification is not supported.
 
-| Field      | Description               |
-| ----------- | ---------------- |
-| Recipient      | That is, the recipient of the current regular report; You can manually enter an external mailbox.               |
-| Title      | That is, the name of the current timing report displayed in the message.               |
-| Message      | That is, what the current timing report displays in the message.               |
+:material-numeric-2-circle-outline: Report time: The time to send the current scheduled report; you need to fill in a positive integer, range: hours 0-23; minutes 0-59.
+
+:material-numeric-3-circle-outline: Report cycle: The frequency of the current scheduled report; includes "One-time", "Daily", "Weekly", "Monthly", you can choose as needed.
+
+- One-time: If checked, the current report will only be sent at your specific time;
+- Daily: You can choose every day; or you can choose the specific date to send the current scheduled report, multiple choices are supported;
+- Weekly: You can choose to send it regularly based on the time dimension of the week;
+- Monthly: You can choose every month; or you can choose the specific month and day to send the current scheduled report, multiple choices are supported.
+
+:material-numeric-3-circle: **Notification method**:
+
+Currently, 4 types of notifications are supported: Email group, DingTalk robot, Enterprise WeChat robot, Lark robot.
+
+![](img/report-6.png)
+
+:material-numeric-1-circle-outline: Notification object: The recipient of the current scheduled report; you can go to **Monitoring > Notification object management** to create a new notification object.
+
+:material-numeric-2-circle-outline: Title: The name of the current scheduled report displayed in the email.
+
+:material-numeric-3-circle-outline: Content: The content of the current scheduled report displayed in the email.
+
+:material-numeric-4-circle: **Sharing Method**:
+
+![](img/report-3.png)
+
+:material-numeric-1-circle-outline: Type: You can choose the image form for sharing the scheduled report, including dashboard screenshots or icon screenshots.
+
+**Note**: The default email notification will export the dashboard content as an image. If your dashboard data query time range is too long, the data volume is too large or there are complex calculations, the related charts may appear blank.
+
+:material-numeric-2-circle-outline: Sharing Method:
+
+- **Public Sharing**: The short link to the scheduled report with public sharing selected can be opened directly;
+
+- **Encrypted Sharing**: You need to set a 4～8 digit English, numeric input password. After setting, the correct password must be entered to open the short link to the scheduled report.
+
+After the scheduled report is created, each chart in the dashboard will generate corresponding images and send them to the corresponding email according to the settings.
+
 
 
 ## Report List
@@ -60,5 +83,5 @@ From the report list, you can do the following:
 
 ![](img/report-8.gif)
 
-- In the **Operate** on the right side of the report, you can view the creator of the timed report, and you can choose to disable, edit, or delete the timed report.
+- In the **Options** on the right side of the report, you can view the creator of the timed report, and you can choose to disable, edit, or delete the timed report.
 

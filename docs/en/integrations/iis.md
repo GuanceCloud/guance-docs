@@ -4,10 +4,10 @@ summary   : 'Collect IIS metrics'
 __int_icon      : 'icon/iis'
 dashboard :
   - desc  : 'IIS'
-    path  : 'dashboard/zh/iis'
+    path  : 'dashboard/en/iis'
 monitor   :
   - desc  : 'IIS'
-    path  : 'monitor/zh/iis'
+    path  : 'monitor/en/iis'
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -28,8 +28,8 @@ Microsoft IIS collector
 
 Operating system requirements::
 
-* Windows Vista and above (excluding Windows Vista)
-* Windows Server 2008 R2 and above
+- Windows Vista and above (excluding Windows Vista)
+- Windows Server 2008 R2 and above
 
 ### Collector Configuration {#input-config}
 
@@ -89,7 +89,7 @@ For all of the following data collections, a global tag named `host` is appended
 | ---- |---- | :---:    | :----: |
 |`current_app_pool_state`|The current status of the application pool (1 - Uninitialized, 2 - Initialized, 3 - Running, 4 - Disabling, 5 - Disabled, 6 - Shutdown Pending, 7 - Delete Pending).|float|-|
 |`current_app_pool_uptime`|The uptime of the application pool since it was started.|float|s|
-|`total_app_pool_recycles`|The number of times that the application pool has been recycled since Windows Process Activation Service (WAS) started.|float|-| 
+|`total_app_pool_recycles`|The number of times that the application pool has been recycled since Windows Process Activation Service (WAS) started.|float|-|
 
 
 
@@ -133,7 +133,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`requests_cgi`|Rate of CGI requests that are simultaneously processed by the web service.|float|req/s|
 |`requests_isapi_extension`|Rate of ISAPI extension requests that are simultaneously processed by the web service.|float|req/s|
 |`service_uptime`|Service uptime.|float|s|
-|`total_connection_attempts`|Number of connections that have been attempted using the web service (counted after service startup)|float|count| 
+|`total_connection_attempts`|Number of connections that have been attempted using the web service (counted after service startup)|float|count|
 
 
 

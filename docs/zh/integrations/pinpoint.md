@@ -96,19 +96,79 @@ Datakit 内置的 Pinpoint Agent 用于接收，运算，分析 Pinpoint Tracing
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
 
-    在 Kubernetes 中支持的环境变量如下表：
+    也支持以环境变量的方式修改配置参数（需要在 ENV_DEFAULT_ENABLED_INPUTS 中加为默认采集器）：
 
-    | 环境变量名                              | 类型        | 示例                                                                             |
-    | --------------------------------------- | ----------- | -------------------------------------------------------------------------------- |
-    | `ENV_INPUT_PINPOINT_ADDRESS`            | string      | "127.0.0.1:9991"                                                                 |
-    | `ENV_INPUT_PINPOINT_KEEP_RARE_RESOURCE` | bool        | true                                                                             |
-    | `ENV_INPUT_PINPOINT_DEL_MESSAGE`        | bool        | true                                                                             |
-    | `ENV_INPUT_PINPOINT_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}` |
-    | `ENV_INPUT_PINPOINT_SAMPLER`            | string      | "0.3"                                                                            |
-    | `ENV_INPUT_PINPOINT_TAGS`               | JSON string | `{"k1":"v1", "k2":"v2", "k3":"v3"}`                                              |
-    | `ENV_INPUT_PINPOINT_STORAGE`            | JSON string | `{"storage":"./pinpoint_storage", "capacity": 5120}`                             |
+    - **ENV_INPUT_PINPOINT_ADDRESS**
+    
+        代理 URL
+    
+        **Type**: String
+    
+        **ConfField**: `address`
+    
+        **Example**: 127.0.0.1:9991
+    
+    - **ENV_INPUT_PINPOINT_KEEP_RARE_RESOURCE**
+    
+        保持稀有跟踪资源列表
+    
+        **Type**: Boolean
+    
+        **ConfField**: `keep_rare_resource`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_PINPOINT_DEL_MESSAGE**
+    
+        删除 trace 消息
+    
+        **Type**: Boolean
+    
+        **ConfField**: `del_message`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_PINPOINT_CLOSE_RESOURCE**
+    
+        忽略指定服务器的 tracing（正则匹配）
+    
+        **Type**: JSON
+    
+        **ConfField**: `close_resource`
+    
+        **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
+    
+    - **ENV_INPUT_PINPOINT_SAMPLER**
+    
+        全局采样率
+    
+        **Type**: Float
+    
+        **ConfField**: `sampler`
+    
+        **Example**: 0.3
+    
+    - **ENV_INPUT_PINPOINT_STORAGE**
+    
+        本地缓存路径和大小（MB）
+    
+        **Type**: JSON
+    
+        **ConfField**: `storage`
+    
+        **Example**: {"storage":"./pinpoint_storage", "capacity": 5120}
+    
+    - **ENV_INPUT_PINPOINT_TAGS**
+    
+        自定义标签。如果配置文件有同名标签，将会覆盖它
+    
+        **Type**: JSON
+    
+        **ConfField**: `tags`
+    
+        **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}                             |
 
 ???+ warning "Datakit 中的 Pinpoint Agent 存在以下限制"
 
@@ -174,7 +234,6 @@ Pinpoint APM 链路数据较为复杂：
 - 按顺序累加当前 `Event` 中 `startElapsed` 作为下一个 `Event` 的起始时间。
 - 按照 `Depth` 字段判断当前 `Event` 的父子级关系。
 - 遇到数据库查询会将 `sql` 语句替换当前的 '资源' 名称。
-
 
 ## 链路字段 {#tracing}
 
@@ -246,13 +305,13 @@ Pinpoint APM 链路数据较为复杂：
 
 | Tag | Description |
 |  ----  | --------|
-|`agentVersion`|Pinpoint 版本|
-|`agent_id`|服务 Agent ID|
-|`container`|是否为容器|
-|`hostname`|指标说明|
-|`ip`|agent ip|
-|`pid`|服务 pid|
-|`ports`|开启的端口|
+|`agentVersion`|Pinpoint agent version|
+|`agent_id`|Agent ID|
+|`container`|Whether it is a container|
+|`hostname`|Host name|
+|`ip`|Agent IP|
+|`pid`|Process ID|
+|`ports`|Open ports|
 
 - 指标列表
 
@@ -275,7 +334,6 @@ Pinpoint APM 链路数据较为复杂：
 |`PoolPermGenUsed`|The maximum file descriptor count|float|count|
 |`PoolSurvivorSpaceUsed`|Jvm Pool Survivor SpaceUsed|float|B|
 |`SystemCpuLoad`|system CPU load|int|percent|
-
 
 
 

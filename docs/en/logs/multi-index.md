@@ -27,7 +27,7 @@ On the **Index** page, enter **Index Name**, set **Filter Condition**, select **
     
     - After setting multiple indexes of logs, logs will be matched according to the order rule. Once matched, they will be stored in the corresponding index, and no further matching will be continued. (The same log will not be saved repeatedly across indexes.)
     
-    - Log multiple indexes include `default` indexes, and there are at most 3 indexes, that is, custom indexes can be created at most 2 indexes.
+    - Log multiple indexes include `default` indexes, and there are at most 6 indexes, that is, custom indexes can be created at most 5 indexes.
     
     - Standard members and read-only members only have view permissions, and administrators and owners can edit, delete, drag and sort. 
 

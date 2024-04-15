@@ -57,6 +57,7 @@ nav:
       - 'DynamoDB': aws_dynamodb.md
       - 'DynamoDB(DAX)': aws_dynamodb_DAX.md
       - 'EC2': aws_ec2.md
+      - 'ECS': aws_ecs.md
       - 'ELB': aws_elb.md
       - 'EventBridge': aws_eventbridge.md
       - 'Lambda': aws_lambda.md
@@ -86,6 +87,12 @@ nav:
       - 'Redis': tencent_redis_mem.md
       - 'Tdsql-C': tencent_tdsql_c_mysql.md
 
+    - 火山云:
+      - 'ECS': volcengine_ecs.md
+      - 'Mysql': volcengine_mysql.md
+      - 'MongoDB  Replica Set': volcengine_mongodb_replica_set.md
+      - 'MongoDB Sharded Cluster': volcengine_mongodb_sharded_cluster.md
+
   - 主机:
     - 默认采集:
       - 'DataKit': dk.md
@@ -98,10 +105,15 @@ nav:
       - net.md
       - host_processes.md
       - hostobject.md
+    - 网络:
+      - 'Socket': socket.md
+      - netstat.md
+      - eBPF:
+        - ebpf.md
+        - 'eBPF Tracing': ebpftrace.md
     - chrony.md
-    - netstat.md
-    - socket.md
     - hostdir.md
+    - host_healthcheck.md
     - ssh.md
     - gpu_smi.md
     - Windows 相关:
@@ -116,6 +128,8 @@ nav:
       - clickhousev1.md
       - couchbase.md
       - couchdb.md
+      - doris.md
+      - neo4j.md
       - oracle.md
       - 'OceanBase': oceanbase.md
       - sqlserver.md
@@ -146,7 +160,6 @@ nav:
       - rabbitmq.md
       - rocketmq.md
 
-
     - 'Web 服务器':
       - 'Nginx': nginx.md
       - apache.md
@@ -175,6 +188,7 @@ nav:
       - '飞书与异常追踪联动': feishu_im.md
       - external.md
       - argocd.md
+      - langchain.md
 
   - CI/CD:
       - 'Jenkins': jenkins.md
@@ -309,9 +323,6 @@ nav:
     - 'Scheck': sec-checker.md
 
   - '其它采集器':
-    - eBPF:
-      - ebpf.md
-      - 'eBPF Tracing': ebpftrace.md
     - Sensors: sensors.md
     - smart.md
     - ipmi.md

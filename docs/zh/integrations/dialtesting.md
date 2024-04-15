@@ -23,6 +23,15 @@ monitor   :
 
 ## 配置 {#config}
 
+### 环境变量 {#env}
+
+默认情况下，拨测服务可以拨测任意网址，这可能会造成一定的安全隐患，如果需要禁止拨测某些网段，可以通过设置以下环境变量来限制：
+
+| 环境变量名         |  参数示例                                   | 描述          |
+| :------------------------------------ | -------------------------------------------------- | ------------------------------------------------------------------------- |
+| `ENV_INPUT_DIALTESTING_DISABLE_INTERNAL_NETWORK_TASK`      |  `true`             | 是否开启，默认不开启                |
+| `ENV_INPUT_DIALTESTING_DISABLED_INTERNAL_NETWORK_CIDR_LIST`      |  `["192.168.0.0/16"]`             | 禁止拨测的网络 CIDR 列表，支持多个。如果为空，则所有私有网段都禁用|
+
 ### 私有拨测节点部署 {#private-deploy}
 
 <!-- markdownlint-disable MD046 -->
@@ -66,6 +75,12 @@ monitor   :
       # The max number of job chan. Default 1000.
       max_job_chan_number = 1000
     
+      # Disable internal network task.
+      disable_internal_network_task = true
+    
+      # Disable internal network cidr list.
+      disabled_internal_network_cidr_list = []
+    
       # Custom tags.
       [inputs.dialtesting.tags]
       # some_tag = "some_value"
@@ -89,7 +104,7 @@ monitor   :
 ### 拨测部署图 {#arch}
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/dialtesting-net-arch.png){ width="800" }
+  ![dialtesting-net-arch](https://static.guance.com/images/datakit/dialtesting-net-arch.png){ width="800" }
 </figure>
 
 ## 指标 {#metric}

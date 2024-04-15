@@ -2,7 +2,7 @@
 
 ---
 
-<br />**POST /api/v1/monitor/check/export**
+<br />**POST /api/v1/checker/export**
 
 ## 概述
 根据指定的检查器UUID列表导出一个/多个监控器配置
@@ -18,13 +18,16 @@
 
 ## 参数补充说明
 
+**关联接口：导入一个/多个监控器**
+
+导入监控器接口中 `checkers` 参数，即是导出监控器成功返回结果中的 `content.checkers` 内容
 
 
 
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/monitor/check/export' \
+curl 'https://openapi.guance.com/api/v1/checker/export' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"checkers": ["rul_f61a4470adf34d6789184979dab61147", "rul_6b1427d9c3a8430fbcd691b79381cbe9"]}' \

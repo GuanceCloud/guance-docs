@@ -31,6 +31,13 @@ Argo CD exposes metrics through the Prometheus protocol, which can be used to mo
 
 ### Metric
 
+### DataKit 开启 `ServiceMonitor`
+
+[Automatically Discover the Service Exposure Metrics Interface](kubernetes-prom.md#auto-discovery-metrics-with-prometheus)
+
+Collect `ArgoCD` indicator information through the `ServiceMonitor` method below.
+
+
 #### Installed Prometheus Operator
 
 ```shell
@@ -59,6 +66,10 @@ spec:
       app.kubernetes.io/name: argocd-metrics
   endpoints:
   - port: metrics
+    params:
+      measurement:
+        - argocd-application-controller
+
 ```
 
 - Created `argocd-server-metrics.yaml`
@@ -77,6 +88,9 @@ spec:
       app.kubernetes.io/name: argocd-server-metrics
   endpoints:
   - port: metrics
+    params:
+      measurement:
+        - argocd-server
 ```
 
 - Created `argocd-repo-server.yaml`
@@ -95,6 +109,9 @@ spec:
       app.kubernetes.io/name: argocd-repo-server
   endpoints:
   - port: metrics
+    params:
+      measurement:
+        - argocd-repo-server
 ```
 
 - Created `argocd-applicationset-controller.yaml`
@@ -113,6 +130,9 @@ spec:
       app.kubernetes.io/name: argocd-applicationset-controller
   endpoints:
   - port: metrics
+    params:
+      measurement: 
+        - argocd-applicationset-controller
 ```
 
 - Run

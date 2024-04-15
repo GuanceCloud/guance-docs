@@ -1,13 +1,25 @@
 
 ## 更新历史 {#changelog}
 
+### 1.3.9(2024/03/28) {#cl-1.3.9}
+
+- Sink 丢弃请求时，增加返回 HTTP `406 Not Acceptable` 错误，便于排查问题（#82）
+
+---
+
+### 1.3.8(2024/01/24) {#cl-1.3.8}
+
+- 新增更多指标暴露
+- 大幅度提升 Sinker 规则匹配性能（#26）
+---
+
 ### 1.3.7(2023/12/14) {#cl-1.3.7}
 
 - 新增更多指标暴露
 - 优化磁盘缓存清理策略，采集尽快消费原则：
     - 避免存储超限导致数据主动丢弃
     - 同时尽早将缓存的数据发送上去
-- 增加超大请求丢弃相关的客观性（[指标/日志](dataway.md#too-large-request-body)）
+- 增加超大请求丢弃相关的可观测性（[指标/日志](dataway.md#too-large-request-body)）
 - 调整 [Dataway 自身 POD yaml](https://static.guance.com/dataway/dataway.yaml)，完善其指标和日志采集
 ---
 

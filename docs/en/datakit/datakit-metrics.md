@@ -8,7 +8,7 @@ Foe better self-observability, Datakit has exported many Prometheus metrics amon
 
 Since Datakit [Version 1.5.9](changelog.md#cl-1.5.9), we can visit `http://localhost:9529/metrics` to see these metrics(Different release may got some new or renamed metrics).
 
-We have used these metrics in [Datakit monitor](datakit-monitor.md), and we can *playing* these metrics with some tricks like this(refresh CPU usage of Datakit): 
+We have used these metrics in [Datakit monitor](datakit-monitor.md), and we can *playing* these metrics with some tricks like this(refresh CPU usage of Datakit):
 
 ```shell
 # play CPU usage of Datakit on every 3 seconds
@@ -19,7 +19,7 @@ $ watch -n 3 'curl -s http://localhost:9529/metrics | grep -a datakit_cpu_usage'
 datakit_cpu_usage 4.9920266849857144
 ```
 
-We can also playing other metrics too(change the `grep` string), all available metrics list below(current Datakit version is 1.23.1):
+We can also playing other metrics too(change the `grep` string), all available metrics list below(current Datakit version is 1.27.0):
 
 <!-- we can run `make show_metrics` go export all these metrics -->
 |TYPE|NAME|LABELS|HELP|
@@ -36,11 +36,13 @@ We can also playing other metrics too(change the `grep` string), all available m
 |SUMMARY|`datakit_election_seconds`|`namespace,status`|Election latency|
 |GAUGE|`datakit_goroutine_alive`|`name`|Alive Goroutine count|
 |COUNTER|`datakit_goroutine_stopped_total`|`name`|Stopped Goroutine count|
+|COUNTER|`datakit_goroutine_crashed_total`|`name`|Crashed goroutines count|
 |GAUGE|`datakit_goroutine_groups`|`N/A`|Goroutine group count|
 |SUMMARY|`datakit_goroutine_cost_seconds`|`name`|Goroutine running duration|
 |SUMMARY|`datakit_http_api_elapsed_seconds`|`api,method,status`|API request cost|
 |SUMMARY|`datakit_http_api_req_size_bytes`|`api,method,status`|API request body size|
 |COUNTER|`datakit_http_api_total`|`api,method,status`|API request counter|
+|GAUGE|`datakit_http_api_global_tags_last_updated`|`api,method,status`|Global tag updated timestamp, in second|
 |COUNTER|`datakit_httpcli_tcp_conn_total`|`from,remote,type`|HTTP TCP connection count|
 |COUNTER|`datakit_httpcli_conn_reused_from_idle_total`|`from`|HTTP connection reused from idle count|
 |SUMMARY|`datakit_httpcli_conn_idle_time_seconds`|`from`|HTTP connection idle time|
@@ -52,6 +54,7 @@ We can also playing other metrics too(change the `grep` string), all available m
 |SUMMARY|`datakit_io_build_body_batch_bytes`|`category,encoding,gzip`|Batch HTTP body size|
 |COUNTER|`datakit_io_dataway_point_total`|`category,status`|Dataway uploaded points, partitioned by category and send status(HTTP status)|
 |COUNTER|`datakit_io_dataway_point_bytes_total`|`category,enc,status`|Dataway uploaded points bytes, partitioned by category and pint send status(HTTP status)|
+|COUNTER|`datakit_io_dataway_http_drop_point_total`|`category,error`|Dataway write drop points|
 |SUMMARY|`datakit_io_dataway_api_latency_seconds`|`api,status`|Dataway HTTP request latency partitioned by HTTP API(method@url) and HTTP status|
 |COUNTER|`datakit_io_http_retry_total`|`api,status`|Dataway HTTP retried count|
 |SUMMARY|`datakit_io_grouped_request`|`category`|Grouped requests under sinker|
@@ -64,6 +67,7 @@ We can also playing other metrics too(change the `grep` string), all available m
 |COUNTER|`datakit_filter_point_dropped_total`|`category,filters,source`|Dropped points of filters|
 |SUMMARY|`datakit_filter_pull_latency_seconds`|`status`|Filter pull(remote) latency|
 |SUMMARY|`datakit_filter_latency_seconds`|`category,filters,source`|Filter latency of these filters|
+|GAUGE|`datakit_io_queue_points`|`category`|IO module queued(cached) points|
 |COUNTER|`datakit_error_total`|`source,category`|Total errors, only count on error source, not include error message|
 |COUNTER|`datakit_io_feed_point_total`|`name,category`|Input feed point total|
 |COUNTER|`datakit_io_input_filter_point_total`|`name,category`|Input filtered point total|
@@ -76,14 +80,13 @@ We can also playing other metrics too(change the `grep` string), all available m
 |COUNTER|`datakit_io_feed_drop_point_total`|`category,from`|IO feed drop(on non-block mode) points|
 |GAUGE|`datakit_io_flush_workers`|`category`|IO flush workers|
 |COUNTER|`datakit_io_flush_total`|`category`|IO flush total|
-|GAUGE|`datakit_io_queue_points`|`category`|IO module queued(cached) points|
 |GAUGE|`datakit_goroutines`|`N/A`|Goroutine count within Datakit|
 |GAUGE|`datakit_heap_alloc_bytes`|`N/A`|Datakit memory heap bytes|
 |GAUGE|`datakit_sys_alloc_bytes`|`N/A`|Datakit memory system bytes|
 |GAUGE|`datakit_cpu_usage`|`N/A`|Datakit CPU usage(%)|
 |GAUGE|`datakit_open_files`|`N/A`|Datakit open files(only available on Linux)|
 |GAUGE|`datakit_cpu_cores`|`N/A`|Datakit CPU cores|
-|GAUGE|`datakit_uptime_seconds`|`auto_update,docker,hostname,lite,resource_limit,version=?,build_at=?,branch=?,os_arch=?`|Datakit uptime|
+|GAUGE|`datakit_uptime_seconds`|`auto_update,docker,hostname,lite,resource_limit,build_at=?,branch=?,os_arch=?,version=?`|Datakit uptime|
 |GAUGE|`datakit_data_overuse`|`N/A`|Does current workspace's data(metric/logging) usage(if 0 not beyond, or with a unix timestamp when overuse occurred)|
 |COUNTER|`datakit_process_ctx_switch_total`|`type`|Datakit process context switch count(Linux only)|
 |COUNTER|`datakit_process_io_count_total`|`type`|Datakit process IO count|
@@ -93,8 +96,9 @@ We can also playing other metrics too(change the `grep` string), all available m
 |SUMMARY|`datakit_kubernetes_collect_resource_cost_seconds`|`category,kind,fieldselector`|Kubernetes collect resource cost|
 |COUNTER|`datakit_kubernetes_collect_pts_total`|`category`|Kubernetes collect point total|
 |COUNTER|`datakit_kubernetes_pod_metrics_query_total`|`target`|Kubernetes query pod metrics count|
-|SUMMARY|`datakit_container_collect_cost_seconds`|`category`|Container collect cost|
-|COUNTER|`datakit_container_collect_pts_total`|`category`|Container collect point total|
+|SUMMARY|`datakit_input_container_collect_cost_seconds`|`category`|Container collect cost|
+|COUNTER|`datakit_input_container_collect_pts_total`|`category`|Container collect point total|
+|SUMMARY|`datakit_input_container_total_collect_cost_seconds`|`category`|Total container collect cost|
 |SUMMARY|`datakit_dialtesting_task_exec_time_interval_seconds`|`region,protocol`|Task execution time interval|
 |GAUGE|`datakit_dialtesting_worker_job_chan_number`|`type`|The number of the channel for the jobs|
 |GAUGE|`datakit_dialtesting_worker_job_number`|`N/A`|The number of the jobs to send data in parallel|
@@ -108,8 +112,9 @@ We can also playing other metrics too(change the `grep` string), all available m
 |COUNTER|`datakit_dialtesting_task_invalid_total`|`region,protocol,fail_reason`|Invalid task number|
 |SUMMARY|`datakit_dialtesting_task_check_cost_seconds`|`region,protocol,status`|Task check time|
 |SUMMARY|`datakit_dialtesting_task_run_cost_seconds`|`region,protocol`|Task run time|
-|COUNTER|`datakit_kafkamq_consumer_message_total`|`topic,partition,status`|Kafka consumer message numbers from Datakit start|
-|COUNTER|`datakit_kafkamq_group_election_total`|`N/A`|Kafka group election count|
+|COUNTER|`datakit_input_kafkamq_consumer_message_total`|`topic,partition,status`|Kafka consumer message numbers from Datakit start|
+|COUNTER|`datakit_input_kafkamq_group_election_total`|`N/A`|Kafka group election count|
+|SUMMARY|`datakit_input_kafkamq_process_message_nano`|`topic`|kafkamq process message nanoseconds duration|
 |GAUGE|`datakit_inputs_instance`|`input`|Input instance count|
 |COUNTER|`datakit_inputs_crash_total`|`input`|Input crash count|
 |SUMMARY|`datakit_input_promremote_collect_points`|`source`|Total number of promremote collection points|
@@ -135,11 +140,14 @@ We can also playing other metrics too(change the `grep` string), all available m
 |SUMMARY|`datakit_input_prom_http_get_bytes`|`mode,source`|HTTP get bytes|
 |SUMMARY|`datakit_input_prom_http_latency_in_second`|`mode,source`|HTTP latency(in second)|
 |GAUGE|`datakit_input_prom_stream_size`|`mode,source`|Stream size|
+|COUNTER|`datakit_input_logging_socket_feed_message_count_total`|`network`|socket feed to IO message count|
+|SUMMARY|`datakit_input_logging_socket_log_length`|`network`|record the length of each log line|
 |COUNTER|`datakit_tailer_collect_multiline_state_total`|`source,filepath,multilinestate`|Tailer multiline state total|
 |COUNTER|`datakit_tailer_file_rotate_total`|`source,filepath`|Tailer rotate total|
 |COUNTER|`datakit_tailer_buffer_force_flush_total`|`source,filepath`|Tailer force flush total|
 |COUNTER|`datakit_tailer_parse_fail_total`|`source,filepath,mode`|Tailer parse fail total|
 |GAUGE|`datakit_tailer_open_file_num`|`mode`|Tailer open file total|
+|COUNTER|`datakit_input_logging_socket_connect_status_total`|`network,status`|connect and close count for net.conn|
 |COUNTER|`diskcache_put_bytes_total`|`path`|Cache Put() bytes count|
 |COUNTER|`diskcache_get_total`|`path`|Cache Get() count|
 |COUNTER|`diskcache_wakeup_total`|`path`|Wakeup count on sleeping write file|

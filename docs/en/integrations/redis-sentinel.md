@@ -3,8 +3,8 @@ title     : 'Redis Sentinel'
 summary   : 'Collect Redis Sentinel Cluster Metrics, Log Information'
 __int_icon: 'icon/redis'
 dashboard :
-  - desc  : 'Redis-sentinel Monitoring View'
-    path  : 'dashboard/zh/redis_sentinel'
+  - desc  : 'Redis Sentinel'
+    path  : 'dashboard/en/redis_sentinel'
 monitor   :
   - desc  : 'No'
     path  : '-'

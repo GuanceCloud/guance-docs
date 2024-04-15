@@ -121,7 +121,10 @@ sinker:
 
 ### Sinker 规则设置 {#setup-sinker-rules}
 
-Dataway Sinker 规则是一组 JSON 形式的配置，目前支持两种配置来源：
+Dataway Sinker 规则是一组 JSON 形式的配置，匹配规则的写法跟黑名单写法一致，参见[这里](../datakit/datakit-filter.md)。
+
+
+目前支持两种配置来源：
 
 - 在本地指定一个 JSON 文件，主要用于调试 Sinker 规则，这种情况下，更新 JSON 文件中的 Sinker 规则后，**需要重启 Dataway 才能生效**
 - etcd：将调试好的规则文件，存放到 etcd 中，后面微调规则的时候，直接更新 etcd 即可，**不用重启 Dataway**
@@ -279,9 +282,41 @@ Datakit 会在其采集的数据中，寻找带有这些 Key 的字段（只寻�
   enable_sinker = true
 ```
 
-此处 `global_customer_keys` 除了手动配置进去的字段外，还会**自动追加 Datakit 中配置的全局选举 Tag 和全局选举 Tag**。
-
 除拨测数据、[常规的数据分类](../datakit/apis.md#category)外，还支持 [Session Replay](../integrations/rum.md#rum-session-replay) 以及 [Profiling](../integrations/profile.md) 等二进制文件数据，故此处可以选择所有的字段名，需要注意的一点是，**不要配置非字符串类型的字段**，正常的 Key 一般都来自于 Tag（所有 Tag 值都是字符串类型）。Datakit 不会将非字符串类型的字段当做分流依据。
+
+#### 全局 Tag 的影响 {#dk-global-tags-on-sink}
+
+除了 `global_customer_keys` 会影响分流标记，Datakit 上配置的[全局 Tag](../datakit/datakit-conf.md#set-global-tag)（含全局选举 Tag 和全局主机 Tag）也会影响分流标记。即如果数据点中带有全局 Tag 中出现的字段（这些字段值类型必须是字符串类型），也会计入分流。假定全局选举 Tag 如下：
+
+```toml
+# datakit.conf
+[election.tags]
+    cluster = "my-cluster"
+```
+
+对如下数据点：
+
+```not-set
+pi,cluster=cluster_A,app=math,other_tag=other_value value=3.14 1712796013000000000
+```
+
+由于全局选举 Tag 中带有 `cluster`（不管该 Tag 配置的值是多少），该点自身也有 `cluster` 这个 Tag，在最终的 `X-Global-Tags` 中，会追加 `cluster=cluster_A` 这对键值：
+
+```not-set
+X-Global-Tags: cluster=cluster_A
+```
+
+如果 `global_customer_keys` 还配置 `app` 这个 key，那么最终的分流 Header 为（两个键值对出现的顺序不重要）：
+
+```not-set
+X-Global-Tags: cluster=cluster_A,app=math
+```
+
+<!-- markdownlint-disable MD046 -->
+???+ note
+
+    此处示例故意将 *datakit.conf* 中 `cluster` 配置的值跟数据点中 `cluster` 字段值设置不同，主要是强调这里 Tag Key 的影响。可以理解为数据点中一旦出现符合条件的全局 Tag Key，**其效果相当于这个全局 Tag Key 加入了 `global_customer_keys`**。
+<!-- markdownlint-enable -->
 
 ## Dataway sink 命令 {#dw-sink-command}
 
@@ -617,6 +652,31 @@ $ cat <path/to/dataway/log> | grep dropped
 for API /v1/write/logging with X-Global-Tags <some-X-Global-Tags...> dropped
 ```
 
+### Datakit 请求被丢弃排查 {#dk-http-406}
+
+[:octicons-tag-24: Version-1.3.9](dataway-changelog.md#cl-1.3.9)
+
+当 Datakit 请求被 Dataway 丢弃时，Dataway 会返回对应的 HTTP 错误，在 Datakit 日志中，会有类似如下报错：
+
+```not-set
+post 3641 to http://dataway-ip:9528/v1/write/metric failed(HTTP: 406 Not Acceptable):
+{"error_code":"dataway.sinkRulesNotMatched","message":"X-Global-Tags: `host=my-host',
+URL: `/v1/write/metric'"}, data dropped
+```
+
+此错误标明，请求 `/v1/write/metric` 因自身的 X-Global-Tags 不满足 Dataway 上的所有规则而被丢弃。
+
+同时，在 Datakit monitor（`datakit monitor -V`） 右下角的 `DataWay APIs` 面板中，列 `Status` 会有 `Not Acceptable` 输出，它标明对应的 Dataway API 请求被丢弃。
+
+查看 Datakit 自身指标，也能看到对应指标：
+
+```shell
+$ curl -s http://localhost:9529/metrics | grep datakit_io_dataway_api_latency_seconds_count
+
+datakit_io_dataway_api_latency_seconds_count{api="/v1/datakit/pull",status="Not Acceptable"} 50
+datakit_io_dataway_api_latency_seconds_count{api="/v1/write/metric",status="Not Acceptable"} 301
+```
+
 ### Datakit 报错 403 {#dk-403}
 
 如果 Dataway 上 sinker 配置有误，导致所有 Datakit 请求都使用 `secret_token`，而这个 token 中心（Kodo）是不认可的，故报告 403 错误 `kodo.tokenNotFound`。
@@ -729,3 +789,17 @@ Datakit 内置了以下几个可用的自定义 Key，它们一般不会出现�
     ]
 }
 ```
+
+<!-- markdownlint-disable MD046 -->
+???+ attention
+
+    即使 URL（`__dataway_api`） 匹配了多个 Sink 规则，一些 API 请求只会分流一次。这些 API URL 如下：
+        
+    - `/v1/election`：选举请求
+    - `/v1/election/heartbeat`：选举心跳请求
+    - `/v1/datakit/pull`：拉取中心配置的 Pipeline 和黑名单
+    - `/v1/query/raw`：DQL 查询
+    - `/v1/workspace`：获取工作空间信息
+    - `/v1/object/labels`：更新/删除对象数据
+    - `/v1/check/token`：检查工作空间 Token 信息
+<!-- markdownlint-enable -->

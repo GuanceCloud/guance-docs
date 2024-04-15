@@ -20,9 +20,11 @@ monitor   :
 
 ---
 
-Hostobject is used to collect basic host information, such as hardware model, basic resource consumption and so on.
+Host Object is used to collect basic host information, such as hardware model, basic resource consumption and so on.
 
 ## Configuration {#config}
+
+### Collector Configuration {#input-config}
 
 In general, the host object is turned on by default and does not need to be configured.
 
@@ -62,6 +64,12 @@ In general, the host object is turned on by default and does not need to be conf
     # Disable cloud provider information synchronization
     disable_cloud_provider_sync = false
     
+    ## Enable put cloud provider region/zone_id information into global election tags, (default to true).
+    # enable_cloud_host_tags_global_election = true
+    
+    ## Enable put cloud provider region/zone_id information into global host tags, (default to true).
+    # enable_cloud_host_tags_global_host = true
+    
     [inputs.hostobject.tags] # (optional) custom tags
     # cloud_provider = "aliyun" # aliyun/tencent/aws/hwcloud/azure, probe automatically if not set
     # some_tag = "some_value"
@@ -74,17 +82,99 @@ In general, the host object is turned on by default and does not need to be conf
 
 === "Kubernetes"
 
-    In general, the host object is turned on by default and does not need to be configured. In Kubernetes, it is supported to modify default parameters in the form of environment variables:
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+
+    - **ENV_INPUT_HOSTOBJECT_ENABLE_NET_VIRTUAL_INTERFACES**
     
-    | Environment Variable Name                                           | Corresponding Configuration Parameter Item                | Parameter Description                                                           | Parameter Example                                                                                                   |
-    | :---                                                 | ---                             | ---                                                                | ---                                                                                                        |
-    | `ENV_INPUT_HOSTOBJECT_ENABLE_NET_VIRTUAL_INTERFACES` | `enable_net_virtual_interfaces` | Allow collection of virtual network card                                                   | `true`/`false`                                                                                             |
-    | `ENV_INPUT_HOSTOBJECT_ENABLE_ZERO_BYTES_DISK`        | `ignore_zero_bytes_disk`        | Ignore disks with size 0                                                | `true`/`false`                                                                                             |
-    | `ENV_INPUT_HOSTOBJECT_TAGS`                          | `tags`                          | Add additional labels                                                       | `tag1=value1,tag2=value2`; If there is a tag with the same name in the configuration file, it will be overwritten.                                               |
-    | `ENV_INPUT_HOSTOBJECT_ONLY_PHYSICAL_DEVICE`          | `only_physical_device`          | Ignore non-physical disks (such as network disk, NFS, etc., only collect local hard disk/CD ROM/USB disk, etc.) | Just give an arbitrary string value                                                                                     |
-    | `ENV_INPUT_HOSTOBJECT_EXCLUDE_DEVICE`                      | `exclude_device`                | ignored device                                | `"/dev/loop0","/dev/loop1"` separated by English commas                      |
-    | `ENV_INPUT_HOSTOBJECT_EXTRA_DEVICE`                        | `extra_device`                  | Additional device                            | `"/nfsdata"` separated by English commas                      |
-    | `ENV_CLOUD_PROVIDER`                                 | `tags`                          | Designate cloud service provider                                                       | `aliyun/aws/tencent/hwcloud/azure`                                                                         |
+        Enable collect network virtual interfaces
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_net_virtual_interfaces`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_HOSTOBJECT_IGNORE_ZERO_BYTES_DISK**
+    
+        Ignore the disk which space is zero
+    
+        **Type**: Boolean
+    
+        **ConfField**: `ignore_zero_bytes_disk`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_HOSTOBJECT_ONLY_PHYSICAL_DEVICE**
+    
+        Physical devices only, any string
+    
+        **Type**: Boolean
+    
+        **ConfField**: `only_physical_device`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_HOSTOBJECT_EXCLUDE_DEVICE**
+    
+        Exclude some with dev prefix
+    
+        **Type**: List
+    
+        **ConfField**: `exclude_device`
+    
+        **Example**: /dev/loop0,/dev/loop1
+    
+    - **ENV_INPUT_HOSTOBJECT_EXTRA_DEVICE**
+    
+        Additional device
+    
+        **Type**: List
+    
+        **ConfField**: `extra_device`
+    
+        **Example**: `/nfsdata,other`
+    
+    - **ENV_ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_ELECTION_TAGS**
+    
+        Enable put cloud provider region/zone_id information into global election tags
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_cloud_host_tags_global_election`
+    
+        **Default**: true
+    
+    - **ENV_ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_HOST_TAGS**
+    
+        Enable put cloud provider region/zone_id information into global host tags
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_cloud_host_tags_global_host`
+    
+        **Default**: true
+    
+    - **ENV_INPUT_HOSTOBJECT_TAGS**
+    
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+    
+        **Type**: Map
+    
+        **ConfField**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
+    
+    - **ENV_CLOUD_PROVIDER**
+    
+        Designate cloud service provider
+    
+        **Type**: String
+    
+        **ConfField**: `none`
+    
+        **Example**: `aliyun/aws/tencent/hwcloud/azure`
 
 <!-- markdownlint-enable -->
 
@@ -98,7 +188,7 @@ Datakit turns on cloud synchronization by default, and currently supports Alibab
   cloud_provider = "aliyun"
 ```
 
-You can turn off cloud synchronization by configuring `disable_cloud_provider_sync = true` in the hostobject configuration file.
+You can turn off cloud synchronization by configuring `disable_cloud_provider_sync = true` in the Host Object configuration file.
 
 ## Object {#object}
 
@@ -136,6 +226,8 @@ For all of the following data collections, a global tag named `host` is appended
 |`disk_used_percent`|Disk usage|float|percent|
 |`diskio_read_bytes_per_sec`|Disk read rate|int|B/S|
 |`diskio_write_bytes_per_sec`|Disk write rate|int|B/S|
+|`dk_upgrader`|Upgrade's host and port|string|-|
+|`is_docker`|Docker mode|int|-|
 |`load`|System load|float|-|
 |`logging_level`|Log level|string|-|
 |`mem_used_percent`|Memory usage|float|percent|
@@ -301,6 +393,10 @@ The `collectors` field is a list of objects with the following fields for each o
 
 ## FAQ {#faq}
 
+<!-- markdownlint-disable MD013 -->
+
 ### :material-chat-question: Why no `entries` and `entries_limit`, the value shows -1？ {#no-entries}
+
+<!-- markdownlint-enable -->
 
 Need to load `nf_conntrack` module, run `modprobe nf_conntrack` in a terminal.

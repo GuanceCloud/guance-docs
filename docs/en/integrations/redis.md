@@ -24,8 +24,8 @@ Redis indicator collector, which collects the following data:
 
 - Turn on AOF data persistence and collect relevant metrics
 - RDB data persistence metrics
-- Slowlog monitoring metrics
-- bigkey scan monitoring
+- Slow Log monitoring metrics
+- Big Key scan monitoring
 - Master-slave replication
 
 ## Configuration {#config}
@@ -34,6 +34,7 @@ Already tested version:
 
 - [x] 7.0.11
 - [x] 6.2.12
+- [x] 6.0.8
 - [x] 5.0.14
 - [x] 4.0.14
 
@@ -45,18 +46,18 @@ When collecting data under the master-slave architecture, please configure the h
 
 Create Monitor User (**optional**)
 
-redis6.0+ goes to the rediss-cli command line, create the user and authorize
+redis6.0+ goes to the `redis-cli` command line, create the user and authorize
 
 ```sql
 ACL SETUSER username >password
-ACL SETUSER username on +@dangerous
-ACL SETUSER username on +ping
+ACL SETUSER username on +@dangerous +ping
 ```
 
-- goes to the rediss-cli command line, authorization statistics hotkey information
+- goes to the `redis-cli` command line, authorization statistics `hotkey/bigkey` information
 
 ```sql
 CONFIG SET maxmemory-policy allkeys-lfu
+ACL SETUSER username on +get +@read +@connection +@keyspace ~*
 ```
 
 - collect hotkey & `bigkey` remote, need install redis-cli (collect local need not install it)
@@ -81,9 +82,20 @@ yum install -y  redis
     [[inputs.redis]]
       host = "localhost"
       port = 6379
+    
+      ## If tls_open = true, redis-cli version must up 6.0+
+      ## Otherwise, bigkey and hotkey will not be collect
+      ## TLS configuration.
+      tls_open = false
+      # tls_ca = "/opt/ca.crt"
+      # tls_cert = "/opt/peer.crt"
+      # tls_key = "/opt/peer.key"
+      # insecure_skip_verify = false
+    
       # unix_socket_path = "/var/run/redis/redis.sock"
-      # 配置多个 db，配置了 dbs，db 也会放入采集列表。dbs=[] 或者不配置则会采集 Redis 中所有非空的 db
-      # dbs=[]
+      ## Configure multiple dbs and configure dbs, and the dbs will also be placed in the collection list.
+      ## dbs=[] or not configured, all non-empty dbs in Redis will be collected
+      # dbs=[0]
       # username = "<USERNAME>"
       # password = "<PASSWORD>"
     
@@ -178,7 +190,7 @@ yum install -y  redis
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
 ---
 
@@ -206,7 +218,7 @@ To collect Redis logs, you need to open the log file `redis.config` output confi
 <!-- markdownlint-enable -->
 
 ## Metrics {#metric}
-
+<!-- markdownlint-disable MD009 -->
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.redis.tags]`:
 
 ``` toml
@@ -243,7 +255,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`server`|Server addr|
 |`service_name`|Service name|
 
-- feld list
+- field list
 
 
 | Metric | Description | Type | Unit |
@@ -285,7 +297,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`server_addr`|Server addr|
 |`service_name`|Service name|
 
-- feld list
+- field list
 
 
 | Metric | Description | Type | Unit |
@@ -343,7 +355,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`server`|Server addr|
 |`service_name`|Service name|
 
-- feld list
+- field list
 
 
 | Metric | Description | Type | Unit |
@@ -372,7 +384,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`server`|Server addr.|
 |`service_name`|Service name.|
 
-- feld list
+- field list
 
 
 | Metric | Description | Type | Unit |
@@ -402,7 +414,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`server`|Server addr.|
 |`service_name`|Service name.|
 
-- feld list
+- field list
 
 
 | Metric | Description | Type | Unit |
@@ -736,12 +748,12 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 |`slowlog_micros`|Cost time|int|μs| 
 
 
-
+<!-- markdownlint-enable -->
 ### Logging Pipeline {#pipeline}
 
 The original log is:
 
-```
+```log
 122:M 14 May 2019 19:11:40.164 * Background saving terminated with success
 ```
 

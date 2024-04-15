@@ -1,5 +1,18 @@
+---
+title     : 'ClickHouse'
+summary   : 'Collect metrics of ClickHouse'
+__int_icon      : 'icon/clickhouse'
+dashboard :
+  - desc  : 'ClickHouse'
+    path  : 'dashboard/en/clickhouse'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
+---
 
+<!-- markdownlint-disable MD025 -->
 # ClickHouse
+<!-- markdownlint-enable -->
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
@@ -8,11 +21,13 @@
 
 ClickHouse collector can collect various metrics actively exposed by ClickHouse server instances, such as the number of statements executed, memory storage, IO interaction and other metrics, and collect the metrics into Guance Cloud to help you monitor and analyze various abnormal situations of ClickHouse.
 
-## Preconditions {#requirements}
+## Configuration {#config}
+
+### Preconditions {#requirements}
 
 ClickHouse version >=v20.1.2.4
 
-Find the following code snippet in the config.xml configuration file of clickhouse-server, uncomment it, and set the port number exposed by metrics (which is unique if you choose it yourself). Restart after modification (if it is a cluster, every machine needs to operate).
+Find the following code snippet in the config.xml configuration file of ClickHouse-server, uncomment it, and set the port number exposed by metrics (which is unique if you choose it yourself). Restart after modification (if it is a cluster, every machine needs to operate).
 
 ```shell
 vim /etc/clickhouse-server/config.xml
@@ -38,6 +53,9 @@ Field description:
 
 See [ClickHouse official documents](https://ClickHouse.com/docs/en/operations/server-configuration-parameters/settings/#server_configuration_parameters-prometheus){:target="_blank"}
 
+### Collector Configuration {#input-config}
+
+<!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
     Go to the `conf.d/clickhousev1` directory under the DataKit installation directory, copy `clickhousev1.conf.sample` and name it `clickhousev1.conf`. Examples are as follows:
@@ -176,8 +194,9 @@ See [ClickHouse official documents](https://ClickHouse.com/docs/en/operations/se
 === "Kubernetes"
 
     At present, you can [inject collector configuration in ConfigMap mode](../datakit/datakit-daemonset-deploy.md#configmap-setting)。
+<!-- markdownlint-enable -->
 
-## Measurements {#measurements}
+## Metric {#metric}
 
 For all the following data collections, a global tag named `host` is appended by default (the tag value is the host name where the DataKit is located), or other tags can be customized in the configuration through `[inputs.prom.tags]`(Hostname can be added to the cluster).
 
@@ -186,8 +205,6 @@ For all the following data collections, a global tag named `host` is appended by
     # some_tag = "some_value"
     # more_tag = "some_other_value"
 ```
-
-## Metrics {#metrics}
 
 
 
@@ -202,12 +219,12 @@ For all the following data collections, a global tag named `host` is appended by
 
 | Tag | Description |
 |  ----  | --------|
-|`cpu`|cpu id|
-|`disk`|disk name|
-|`eth`|eth id|
-|`host`|host name|
+|`cpu`|Cpu id|
+|`disk`|Disk name|
+|`eth`|Eth id|
+|`host`|Host name|
 |`instance`|Instance endpoint|
-|`unit`|unit name|
+|`unit`|Unit name|
 
 - field list
 
@@ -359,7 +376,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`jemalloc_metadata`|Total number of bytes dedicated to metadata, which comprise base allocations used for bootstrap-sensitive allocator metadata structures .|float|B|
 |`jemalloc_metadata_thp`|Number of transparent huge pages (THP) used for metadata.|float|count|
 |`jemalloc_resident`|Maximum number of bytes in physically resident data pages mapped by the allocator.|float|B|
-|`jemalloc_retained`|Total number of bytes in virtual memory mappings.|float|B| 
+|`jemalloc_retained`|Total number of bytes in virtual memory mappings.|float|B|
 
 
 
@@ -374,7 +391,7 @@ For all the following data collections, a global tag named `host` is appended by
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|host name|
+|`host`|Host name|
 |`instance`|Instance endpoint|
 
 - field list
@@ -570,7 +587,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`Write`|Number of write (`write`/`pwrite`/`io_getevents`, etc.) `syscalls` in fly|float|count|
 |`ZooKeeperRequest`|Number of requests to ZooKeeper in fly.|float|count|
 |`ZooKeeperSession`|Number of sessions (connections) to ZooKeeper. Should be no more than one, because using more than one connection to ZooKeeper may lead to bugs due to lack of `linearizability` (stale reads) that ZooKeeper consistency model allows.|float|count|
-|`ZooKeeperWatch`|Number of watches (event subscriptions) in ZooKeeper.|float|count| 
+|`ZooKeeperWatch`|Number of watches (event subscriptions) in ZooKeeper.|float|count|
 
 
 
@@ -585,7 +602,7 @@ For all the following data collections, a global tag named `host` is appended by
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|host name|
+|`host`|Host name|
 |`instance`|Instance endpoint|
 
 - field list
@@ -1030,7 +1047,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`ZooKeeperTransactions`|Number of ZooKeeper operations, which include both read and write operations as well as multi-transactions.|float|count|
 |`ZooKeeperUserExceptions`|Number of exceptions while working with ZooKeeper related to the data (no node, bad version or similar).|float|count|
 |`ZooKeeperWaitMicroseconds`|Number of microseconds spent waiting for responses from ZooKeeper after creating a request, summed across all the requesting threads.|float|ms|
-|`ZooKeeperWatchResponse`|Number of times watch notification has been received from ZooKeeper.|float|count| 
+|`ZooKeeperWatchResponse`|Number of times watch notification has been received from ZooKeeper.|float|count|
 
 
 
@@ -1045,7 +1062,7 @@ For all the following data collections, a global tag named `host` is appended by
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|host name|
+|`host`|Host name|
 |`instance`|Instance endpoint|
 
 - field list
@@ -1053,6 +1070,6 @@ For all the following data collections, a global tag named `host` is appended by
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`DictionaryStatus`|Dictionary Status.|float|-| 
+|`DictionaryStatus`|Dictionary Status.|float|-|
 
 

@@ -5,26 +5,27 @@ This document describes how to install DataKit in K8s via DaemonSet.
 
 ## Installation {#install}
 
-=== "Daemonset"
+<!-- markdownlint-disable MD046 -->
+=== "DaemonSet"
 
-    Download [datakit.yaml](https://static.guance.com/datakit/datakit.yaml){:target="_blank"}, in which many [default collectors](datakit-input-conf.md#default-enabled-inputs) are turned on without configuration.
+    Download [`datakit.yaml`](https://static.guance.com/datakit/datakit.yaml){:target="_blank"}, in which many [default collectors](datakit-input-conf.md#default-enabled-inputs) are turned on without configuration.
     
     ???+ attention
     
-        If you want to modify the default configuration of these collectors, you can configure them by [mounting a separate conf in Configmap mode](k8s-config-how-to.md#via-configmap-conf). Some collectors can be adjusted directly by means of environment variables. See the documents of specific collectors for details. All in all, configuring the collector through [Configmap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/){:target="_blank"} is always effective when deploying the DataKit in DaemonSet mode, whether it is a collector turned on by default or other collectors.
+        If you want to modify the default configuration of these collectors, you can configure them by [mounting a separate conf in `ConfigMap` mode](k8s-config-how-to.md#via-configmap-conf). Some collectors can be adjusted directly by means of environment variables. See the documents of specific collectors for details. All in all, configuring the collector through [`ConfigMap`](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/){:target="_blank"} is always effective when deploying the DataKit in DaemonSet mode, whether it is a collector turned on by default or other collectors.
     
-    Modify the dataway configuration in `datakit.yaml`
+    Modify the Dataway configuration in `datakit.yaml`
     
     ```yaml
-    	- name: ENV_DATAWAY
-    		value: https://openway.guance.com?token=<your-token> # Fill in the real address of DataWay here
+        - name: ENV_DATAWAY
+            value: https://openway.guance.com?token=<your-token> # Fill in the real address of DataWay here
     ```
     
     If you choose another node, change the corresponding DataWay address here, such as AWS node:
     
     ```yaml
-    	- name: ENV_DATAWAY
-    		value: https://aws-openway.guance.com?token=<your-token> 
+        - name: ENV_DATAWAY
+            value: https://aws-openway.guance.com?token=<your-token> 
     ```
     
     Install yaml
@@ -33,7 +34,7 @@ This document describes how to install DataKit in K8s via DaemonSet.
     $ kubectl apply -f datakit.yaml
     ```
     
-    After installation, a DaemonSet deployment of datakit is created:
+    After installation, a DaemonSet deployment of DataKit is created:
     
     ```shell
     $ kubectl get pod -n datakit
@@ -76,10 +77,11 @@ This document describes how to install DataKit in K8s via DaemonSet.
     ```shell
     $ helm uninstall datakit -n datakit
     ```
+<!-- markdownlint-enable -->
 
 ## Kubernetes Tolerance Configuration {#toleration}
 
-DataKit is deployed on all nodes in the Kubernetes cluster by default (that is, all stains are ignored). If some node nodes in Kubernetes have added stain scheduling and do not want to deploy DataKit on them, you can modify datakit.yaml to adjust the stain tolerance:
+DataKit is deployed on all nodes in the Kubernetes cluster by default (that is, all stains are ignored). If some node nodes in Kubernetes have added stain scheduling and do not want to deploy DataKit on them, you can modify `datakit.yaml` to adjust the stain tolerance:
 
 ```yaml
       tolerations:
@@ -99,11 +101,11 @@ volumeMounts: #  this configuration have existed in datakit.yaml, and you can lo
 - mountPath: /usr/local/datakit/conf.d/db/mysql.conf
   name: datakit-conf
   subPath: mysql.conf
-	readOnly: true
+    readOnly: true
 - mountPath: /usr/local/datakit/conf.d/db/redis.conf
   name: datakit-conf
   subPath: redis.conf
-	readOnly: true
+    readOnly: true
 
 # append directly to the bottom of datakit.yaml
 ---
@@ -114,25 +116,25 @@ metadata:
   namespace: datakit
 data:
     mysql.conf: |-
-		  [[inputs.mysql]]
-			   ...
+          [[inputs.mysql]]
+               ...
     redis.conf: |-
-		  [[inputs.redis]]
-			   ...
+          [[inputs.redis]]
+               ...
 ```
 
-## Settings of Other Environment Variables in DataKit {#using-k8-env}
+## Environment Variables {#using-k8-env}
 
 > Note: If ENV_LOG is configured to `stdout`, do not set ENV_LOG_LEVEL to `debug`, otherwise looping logs may result in large amounts of log data.
 
 In DaemonSet mode, DataKit supports multiple environment variable configurations.
 
-- The approximate format in datakit.yaml is
+- The approximate format in `datakit.yaml` is
 
 ```yaml
 spec:
   containers:
-	- env
+    - env
     - name: ENV_XXX
       value: YYY
     - name: ENV_OTHER_XXX
@@ -151,10 +153,10 @@ spec:
 
 ## ENV Set Collectors: {#env-setting}
 
-The opening of some collectors can also be injected through ENV_DATAKIT_INPUTS. 
+The opening of some collectors can also be injected through ENV_DATAKIT_INPUTS.
 The following is an injection example of MySQL and Redis collectors:
 
-- The approximate format in datakit.yaml is
+- The approximate format in `datakit.yaml` is
 
 ```yaml
 spec:
@@ -205,7 +207,7 @@ The injected content will be stored in the conf.d/env_datakit_inputs.conf file o
 The values of the following environment variables are divided into the following data types:
 
 - string: string type
-- json: some of the more complex configurations that require setting environment variables in the form of a json string
+- JSON: some of the more complex configurations that require setting environment variables in the form of a JSON string
 - bool: switch type. Given **any non-empty string** , this function is turned on. It is recommended to use `"on"` as its value when turned on. If it is not opened, it must be deleted or commented out.
 - string-list: a string separated by an English comma, commonly used to represent a list
 - duration: a string representation of the length of time, such as `10s` for 10 seconds, where the unit supports h/m/s/ms/us/ns. **Don't give a negative value**.
@@ -216,13 +218,53 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 ### Most Commonly Used Environment Variables {#env-common}
 
-| Environment Variable Name    | Type        | Default Value | Required | Description                                                                                                                                                                                         |
-| :---                         | :---:       | :---          | :---     | :---                                                                                                                                                                                                |
-| `ENV_DISABLE_PROTECT_MODE`   | bool        | -             | No       | Disable protect mode                                                                                                                                                                                |
-| `ENV_DATAWAY`                | string      | None          | Yes      | Configure the DataWay address, such as `https://openway.guance.com?token=xxx`                                                                                                                       |
-| `ENV_DEFAULT_ENABLED_INPUTS` | string-list | None          | No       | [The list of collectors](datakit-input-conf.md#default-enabled-inputs) is opened by default, divided by English commas, such as `cpu,mem,disk`, and the old  `ENV_ENABLE_INPUTS` will be discarded. |
-| `ENV_GLOBAL_HOST_TAGS`       | string-list | None          | No       | Global tag, multiple tags are divided by English commas, such as `tag1=val,tag2=val2`. The old `ENV_GLOBAL_TAGS` will be discarded.                                                                 |
+<!-- markdownlint-disable MD046 -->
+- **ENV_DISABLE_PROTECT_MODE**
 
+    Disable protect mode
+
+    **Type**: Boolean
+
+- **ENV_DATAWAY**
+
+    Configure the DataWay address
+
+    **Type**: URL
+
+    **Example**: `https://openway.guance.com?token=xxx`
+
+    **Required**: Yes
+
+- **ENV_DEFAULT_ENABLED_INPUTS**
+
+    [The list of collectors](datakit-input-conf.md#default-enabled-inputs) is opened by default, divided by English commas, the old  `ENV_ENABLE_INPUTS` will be discarded
+
+    **Type**: List
+
+    **Example**: cpu,mem,disk
+
+- **ENV_ENABLE_INPUTS :fontawesome-solid-x:**
+
+    Same as ENV_DEFAULT_ENABLED_INPUTS, to be scrapped
+
+    **Type**: List
+
+- **ENV_GLOBAL_HOST_TAGS**
+
+    Global tag, multiple tags are divided by English commas. The old `ENV_GLOBAL_TAGS` will be discarded
+
+    **Type**: List
+
+    **Example**: tag1=val,tag2=val2
+
+- **ENV_GLOBAL_TAGS :fontawesome-solid-x:**
+
+    Same as ENV_GLOBAL_HOST-TAGS, to be scrapped
+
+    **Type**: List
+<!-- markdownlint-enable -->
+
+<!-- markdownlint-disable MD046 -->
 ???+ note "Distinguish between *global host tag*  and *global election tag*"
 
     `ENV_GLOBAL_HOST_TAGS` is used to specify host class global tags whose values generally follow host transitions, such as host name and host IP. Of course, other tags that do not follow the host changes can also be added. All collectors of non-elective classes are taken by default with the tag specified in `ENV_GLOBAL_HOST_TAGS`.
@@ -234,153 +276,698 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 ???+ attention "About Protect Mode(ENV_DISABLE_PROTECT_MODE)"
 
     Once protected mode is disabled, some dangerous configuration parameters can be set, and Datakit will accept any configuration parameters. These parameters may cause some Datakit functions to be abnormal or affect the collection function of the collector. For example, if the HTTP sending body is too small, the data upload function will be affected. And the collection frequency of some collectors set too high, which may affect the entities(for example MySQL) to be collected.
+<!-- markdownlint-enable -->
 
 ### Dataway Configuration Related Environments {#env-dataway}
 
-| Environment Variable Name       | Type     | Default Value | Required | Description                                                                                                                                                             |
-| ---:                            | ---:     | ---:          | ---:     | ---:                                                                                                                                                                    |
-| `ENV_DATAWAY_MAX_RAW_BODY_SIZE` | int      | 10MB          | No       | Set upload package size(before gzip)                                                                                                                                    |
-| `ENV_DATAWAY`                   | string   | No            | Yes      | Set DataWay address, such as `https://openway.guance.com?token=xxx`                                                                                                     |
-| `ENV_DATAWAY_TIMEOUT`           | duration | "30s"         | No       | Set DataWay request timeout                                                                                                                                             |
-| `ENV_DATAWAY_ENABLE_HTTPTRACE`  | bool     | -             | No       | Enable metrics on DataWay HTTP request                                                                                                                                  |
-| `ENV_DATAWAY_HTTP_PROXY`        | string   | No            | No       | Set DataWay HTTP Proxy                                                                                                                                                  |
-| `ENV_DATAWAY_MAX_IDLE_CONNS`    | int      | 100           | No       | Set DataWay HTTP connection pool size([:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0))                                                                         |
-| `ENV_DATAWAY_IDLE_TIMEOUT`      | duration | "90s"         | No       | Set DataWay HTTP Keep-Alive timeout([:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0))                                                                           |
-| `ENV_DATAWAY_MAX_RETRY_COUNT`   | int      | 4             | No       | Specify at most how many times the data sending operation will be performed when encounter failures([:octicons-tag-24: Version-1.18.0](changelog.md#cl-1.18.0))         |
-| `ENV_DATAWAY_RETRY_DELAY`       | duration | "200ms"       | No       | The interval between two data sending retry, valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h"([:octicons-tag-24: Version-1.18.0](changelog.md#cl-1.18.0)) |
-| `ENV_DATAWAY_CONTENT_ENCODING`  | string   | `v1`          | No       | Set the encoding of the point data at upload time (optional list: 'v1' is the line protocol, 'v2' is Protobuf)                                                          |
+<!-- markdownlint-disable MD046 -->
+- **ENV_DATAWAY**
+
+    Set DataWay address
+
+    **Type**: URL
+
+    **Example**: `https://openway.guance.com?token=xxx`
+
+    **Required**: Yes
+
+- **ENV_DATAWAY_TIMEOUT**
+
+    Set DataWay request timeout
+
+    **Type**: TimeDuration
+
+    **Default**: 30s
+
+- **ENV_DATAWAY_ENABLE_HTTPTRACE**
+
+    Enable metrics on DataWay HTTP request
+
+    **Type**: Boolean
+
+- **ENV_DATAWAY_HTTP_PROXY**
+
+    Set DataWay HTTP Proxy
+
+    **Type**: URL
+
+- **ENV_DATAWAY_MAX_IDLE_CONNS**
+
+    Set DataWay HTTP connection pool size([:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0))
+
+    **Type**: Int
+
+- **ENV_DATAWAY_IDLE_TIMEOUT**
+
+    Set DataWay HTTP Keep-Alive timeout([:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0))
+
+    **Type**: TimeDuration
+
+    **Default**: 90s
+
+- **ENV_DATAWAY_MAX_RETRY_COUNT**
+
+    Specify at most how many times the data sending operation will be performed when encounter failures([:octicons-tag-24: Version-1.18.0](changelog.md#cl-1.18.0))
+
+    **Type**: Int
+
+    **Default**: 4
+
+- **ENV_DATAWAY_RETRY_DELAY**
+
+    The interval between two data sending retry, valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h"([:octicons-tag-24: Version-1.18.0](changelog.md#cl-1.18.0))
+
+    **Type**: TimeDuration
+
+    **Default**: 200ms
+
+- **ENV_DATAWAY_MAX_RAW_BODY_SIZE**
+
+    Set upload package size(before gzip)
+
+    **Type**: Int
+
+    **Default**: 10MB
+
+- **ENV_DATAWAY_CONTENT_ENCODING**
+
+    Set the encoding of the point data at upload time (optional list: 'v1' is the line protocol, 'v2' is Protobuf)
+
+    **Type**: String
+<!-- markdownlint-enable -->
 
 ### Log Configuration Related Environments {#env-log}
 
-| Environment Variable Name | Type   | Default Value              | Required | Description                                                                                                                              |
-|:---                       |:---    |:---                        |:---      |:---                                                                                                                                      |
-| `ENV_GIN_LOG`             | string | */var/log/datakit/gin.log* | No       | If it is changed to `stdout`, the DataKit's own gin log will not be written to the file, but will be output by the terminal.             |
-| `ENV_LOG`                 | string | */var/log/datakit/log*     | No       | If it is changed to `stdout`, DataKit's own log will not be written to the file, but will be output by the terminal.                     |
-| `ENV_LOG_LEVEL`           | string | info                       | No       | Set DataKit's own log level, optional `info/debug`(case insensitive).                                                                                      |
-| `ENV_DISABLE_LOG_COLOR`   | bool   | -                          | No       | Turn off log colors                                                                                                                      |
-| `ENV_LOG_ROTATE_BACKUP`   | int    | 5                          | No       | The upper limit count for log files to be reserve.                                                                                       |
-| `ENV_LOG_ROTATE_SIZE_MB`  | int    | 32                         | No       | The threshold for automatic log rotating in MB, which automatically switches to a new file when the log file size reaches the threshold. |
+<!-- markdownlint-disable MD046 -->
+- **ENV_GIN_LOG**
 
-###  Something about DataKit pprof {#env-pprof}
+    If it is changed to `stdout`, the DataKit's own gin log will not be written to the file, but will be output by the terminal.
 
-| Environment Variable Name | Type   | Default Value | Required | Description                       |
-| :---                      | :---   | :---          | :---     | :---                              |
-| `ENV_ENABLE_PPROF`        | bool   | -             | No       | Whether to start `pprof`          |
-| `ENV_PPROF_LISTEN`        | string | None          | No       | `pprof` service listening address |
+    **Type**: String
+
+    **Default**: */var/log/datakit/gin.log*
+
+- **ENV_LOG**
+
+    If it is changed to `stdout`, DataKit's own log will not be written to the file, but will be output by the terminal.
+
+    **Type**: String
+
+    **Default**: */var/log/datakit/log*
+
+- **ENV_LOG_LEVEL**
+
+    Set DataKit's own log level, optional `info/debug`(case insensitive).
+
+    **Type**: String
+
+    **Default**: info
+
+- **ENV_DISABLE_LOG_COLOR**
+
+    Turn off log colors
+
+    **Type**: Boolean
+
+    **Default**: -
+
+- **ENV_LOG_ROTATE_BACKUP**
+
+    The upper limit count for log files to be reserve.
+
+    **Type**: Int
+
+    **Default**: 5
+
+- **ENV_LOG_ROTATE_SIZE_MB**
+
+    The threshold for automatic log rotating in MB, which automatically switches to a new file when the log file size reaches the threshold.
+
+    **Type**: Int
+
+    **Default**: 32
+<!-- markdownlint-enable -->
+
+### Something about DataKit pprof {#env-pprof}
+
+<!-- markdownlint-disable MD046 -->
+- **ENV_ENABLE_PPROF :fontawesome-solid-x:**
+
+    Whether to start `pprof`
+
+    **Type**: Boolean
+
+- **ENV_PPROF_LISTEN**
+
+    `pprof` service listening address
+
+    **Type**: String
+<!-- markdownlint-enable -->
 
 > `ENV_ENABLE_PPROF`: [:octicons-tag-24: Version-1.9.2](changelog.md#cl-1.9.2) enabled pprof by default.
 
 ### Election-related Environmental Variables {#env-elect}
 
-| Environment Variable Name           | Type        | Default Value | Required | Description                                                                                                                                                                                                                                                                                        |
-| :---                                | :---        | :---          | :---     | :---                                                                                                                                                                                                                                                                                               |
-| `ENV_ENABLE_ELECTION`               | bool        | -             | No       | If you want to open the [election](election.md), it will not be opened by default. If you want to open it, you can give any non-empty string value to the environment variable.                                                                                                                    |
-| `ENV_NAMESPACE`                     | string      | `default`     | No       | The namespace in which the DataKit resides, which defaults to null to indicate that it is namespace-insensitive and accepts any non-null string, such as `dk-namespace-example`. If the election is turned on, you can specify the workspace through this environment variable.                    |
-| `ENV_ENABLE_ELECTION_NAMESPACE_TAG` | bool        | -             | No       | When this option is turned on, all election classes are collected with an extra tag of `election_namespace=<your-election-namespace>`, which may result in some timeline growth. ([:octicons-tag-24: Version-1.4.7](changelog.md#cl-1.4.7))                                                        |
-| `ENV_GLOBAL_ELECTION_TAGS`          | string-list |               | No       | Tags are elected globally, and multiple tags are divided by English commas, such as `tag1=val,tag2=val2`. ENV_GLOBAL_ENV_TAGS will be discarded.                                                                                                                                                   |
-| `ENV_CLUSTER_NAME_K8S`              | string      | `default`     | No       | The cluster name in which the Datakit residers, if the cluster is not empty, a specified tag will be added to [global election tags](election.md#global-tags), the key is `cluster_name_k8s` and the value is the environment variable. ([:octicons-tag-24: Version-1.5.8](changelog.md#cl-1.5.8)) |
+<!-- markdownlint-disable MD046 -->
+- **ENV_ENABLE_ELECTION**
+
+    If you want to open the [election](election.md), it will not be opened by default. If you want to open it, you can give any non-empty string value to the environment variable.
+
+    **Type**: Boolean
+
+    **Default**: -
+
+- **ENV_NAMESPACE**
+
+    The namespace in which the DataKit resides, which defaults to null to indicate that it is namespace-insensitive and accepts any non-null string, such as `dk-namespace-example`. If the election is turned on, you can specify the workspace through this environment variable.
+
+    **Type**: String
+
+    **Default**: default
+
+- **ENV_ENABLE_ELECTION_NAMESPACE_TAG**
+
+    When this option is turned on, all election classes are collected with an extra tag of `election_namespace=<your-election-namespace>`, which may result in some timeline growth. ([:octicons-tag-24: Version-1.4.7](changelog.md#cl-1.4.7))
+
+    **Type**: Boolean
+
+    **Default**: -
+
+- **ENV_GLOBAL_ELECTION_TAGS**
+
+    Tags are elected globally, and multiple tags are divided by English commas. ENV_GLOBAL_ENV_TAGS will be discarded.
+
+    **Type**: List
+
+    **Example**: tag1=val,tag2=val2
+
+- **ENV_CLUSTER_NAME_K8S**
+
+    The cluster name in which the Datakit residers, if the cluster is not empty, a specified tag will be added to [global election tags](election.md#global-tags), the key is `cluster_name_k8s` and the value is the environment variable. ([:octicons-tag-24: Version-1.5.8](changelog.md#cl-1.5.8))
+
+    **Type**: String
+
+    **Default**: default
+<!-- markdownlint-enable -->
 
 ### HTTP/API Related Environment Variables {#env-http-api}
 
-| Environment Variable Name        | Type        | Default Value     | Required | Description                                                                                                                                                                                                                         |
-| :---                             | :---        | :---              | :---     | :---                                                                                                                                                                                                                                |
-| `ENV_DISABLE_404PAGE`            | bool        | -                 | No       | Disable the DataKit 404 page (commonly used when deploying DataKit RUM on the public network).                                                                                                                                      |
-| `ENV_HTTP_LISTEN`                | string      | localhost:9529    | No       | The address can be modified so that the [DataKit interface](apis) can be called externally.                                                                                                                                         |
-| `ENV_HTTP_PUBLIC_APIS`           | string-list | None              | No       | [API list](apis) that allow external access, separated by English commas between multiple APIs. When DataKit is deployed on the public network, it is used to disable some APIs.                                                    |
-| `ENV_HTTP_TIMEOUT`               | duration    | 30s               | No       | Setting the 9529 HTTP API Server Timeout [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental).                                                                     |
-| `ENV_HTTP_CLOSE_IDLE_CONNECTION` | bool        | -                 | No       | If turned on, the 9529 HTTP server actively closes idle connections (idle time equal to `ENV_HTTP_TIMEOUT`） [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental). |
-| `ENV_REQUEST_RATE_LIMIT`         | float       | None              | No       | Limit 9529 [API requests per second](datakit-conf.md#set-http-api-limit).                                                                                                                                                           |
-| `ENV_RUM_ORIGIN_IP_HEADER`       | string      | `X-Forwarded-For` | No       | RUM dedicated                                                                                                                                                                                                                       |
-| `ENV_RUM_APP_ID_WHITE_LIST`      | string      | None              | No       | RUM app-id white list, split by `,`,  such as `appid-1,appid-2`.                                                                                                                                                                    |
+<!-- markdownlint-disable MD046 -->
+- **ENV_DISABLE_404PAGE**
 
-### Confd Configures Related Environment Variables {#env-confd}
+    Disable the DataKit 404 page (commonly used when deploying DataKit RUM on the public network).
 
-| Environment Variable Name  | Type   | Applicable Scenario             | Description            | Sample Value                                   |
-| ---                        | ---    | ---                             | ---                    | ---                                            |
-| `ENV_CONFD_BACKEND`        | string | All                             | Backend source type    | `etcdv3` or `zookeeper` or `redis` or `consul` |
-| `ENV_CONFD_BASIC_AUTH`     | string | `etcdv3` or `consul`            | Optional               |                                                |
-| `ENV_CONFD_CLIENT_CA_KEYS` | string | `etcdv3` or `consul`            | Optional               |                                                |
-| `ENV_CONFD_CLIENT_CERT`    | string | `etcdv3` or `consul`            | Optional               |                                                |
-| `ENV_CONFD_CLIENT_KEY`     | string | `etcdv3` or `consul` or `redis` | Optional               |                                                |
-| `ENV_CONFD_BACKEND_NODES`  | string | All                             | Backend source address | `[IP address:2379,IP address2:2379]`           |
-| `ENV_CONFD_PASSWORD`       | string | `etcdv3` or `consul`            | Optional               |                                                |
-| `ENV_CONFD_SCHEME`         | string | `etcdv3` or `consul`            | Optional               |                                                |
-| `ENV_CONFD_SEPARATOR`      | string | `redis`                         | Optional default 0     |                                                |
-| `ENV_CONFD_USERNAME`       | string | `etcdv3` or `consul`            | Optional               |                                                |
+    **Type**: Boolean
 
-### Git Configuration Related Environment Variable {#env-git}
+    **Default**: -
 
-| Environment Variable Name | Type     | Default Value | Required | Description                                                                                                                                                        |
-| :---                      | :---     | :---          | :---     | :---                                                                                                                                                               |
-| `ENV_GIT_BRANCH`          | string   | None          | No       | Specifies the branch to pull. <stong>If it is empty, it is the default.</strong> And the default is the remotely specified main branch, which is usually `master`. |
-| `ENV_GIT_INTERVAL`        | duration | None          | No       | The interval of timed pull. (e.g. `1m`)                                                                                                                            |
-| `ENV_GIT_KEY_PATH`        | string   | None          | No       | The full path of the local PrivateKey. (e.g. `/Users/username/.ssh/id_rsa`）                                                                                       |
-| `ENV_GIT_KEY_PW`          | string   | None          | No       | Use password of local PrivateKey. (e.g. `passwd`）                                                                                                                 |
-| `ENV_GIT_URL`             | string   | None          | No       | Manage the remote git repo address of the configuration file. (e.g. `http://username:password@github.com/username/repository.git`）                                |
+- **ENV_HTTP_LISTEN**
+
+    The address can be modified so that the [DataKit interface](apis) can be called externally.
+
+    **Type**: String
+
+    **Default**: localhost:9529
+
+- **ENV_HTTP_PUBLIC_APIS**
+
+    [API list](apis) that allow external access, separated by English commas between multiple APIs. When DataKit is deployed on the public network, it is used to disable some APIs.
+
+    **Type**: List
+
+- **ENV_HTTP_TIMEOUT**
+
+    Setting the 9529 HTTP API Server Timeout [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental).
+
+    **Type**: TimeDuration
+
+    **Default**: 30s
+
+- **ENV_HTTP_CLOSE_IDLE_CONNECTION**
+
+    If turned on, the 9529 HTTP server actively closes idle connections (idle time equal to `ENV_HTTP_TIMEOUT`） [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental).
+
+    **Type**: Boolean
+
+    **Default**: -
+
+- **ENV_REQUEST_RATE_LIMIT**
+
+    Limit 9529 [API requests per second](datakit-conf.md#set-http-api-limit).
+
+    **Type**: Float
+
+- **ENV_RUM_ORIGIN_IP_HEADER**
+
+    RUM dedicated
+
+    **Type**: String
+
+    **Default**: `X-Forwarded-For`
+
+- **ENV_RUM_APP_ID_WHITE_LIST**
+
+    RUM app-id white list, split by `,`.
+
+    **Type**: String
+
+    **Example**: appid-1,appid-2
+<!-- markdownlint-enable -->
+
+### Confd Environment Variables {#env-confd}
+
+<!-- markdownlint-disable MD046 -->
+- **ENV_CONFD_BACKEND**
+
+    The backend to use
+
+    **Type**: String
+
+    **Example**: `etcdv3`
+
+- **ENV_CONFD_BASIC_AUTH**
+
+    Use Basic Auth to authenticate (used with `etcdv3`/consul)
+
+    **Type**: Boolean
+
+    **Default**: false
+
+- **ENV_CONFD_CLIENT_CA_KEYS**
+
+    The client CA key file
+
+    **Type**: String
+
+    **Example**: `/opt/ca.crt`
+
+- **ENV_CONFD_CLIENT_CERT**
+
+    The client cert file
+
+    **Type**: String
+
+    **Example**: `/opt/client.crt`
+
+- **ENV_CONFD_CLIENT_KEY**
+
+    The client key file
+
+    **Type**: String
+
+    **Example**: `/opt/client.key`
+
+- **ENV_CONFD_BACKEND_NODES**
+
+    Backend source address
+
+    **Type**: JSON
+
+    **Example**: `["http://aaa:2379","1.2.3.4:2379"]` (`Nacos must prefix http:// or https://`)
+
+- **ENV_CONFD_USERNAME**
+
+    The username to authenticate (used with `etcdv3/consul/nacos`)
+
+    **Type**: String
+
+- **ENV_CONFD_PASSWORD**
+
+    The password to authenticate (used with `etcdv3/consul/nacos`)
+
+    **Type**: String
+
+- **ENV_CONFD_SCHEME**
+
+    The backend URI scheme
+
+    **Type**: String
+
+    **Example**: http/https
+
+- **ENV_CONFD_SEPARATOR**
+
+    The separator to replace '/' with when looking up keys in the backend, prefixed '/' will also be removed (used with rides)
+
+    **Type**: String
+
+    **Default**: /
+
+- **ENV_CONFD_ACCESS_KEY**
+
+    Access Key Id (use with `nacos/aws`)
+
+    **Type**: String
+
+- **ENV_CONFD_SECRET_KEY**
+
+    Secret Access Key (use with `nacos/aws`)
+
+    **Type**: String
+
+- **ENV_CONFD_CIRCLE_INTERVAL**
+
+    Loop detection interval second (use with `nacos/aws`)
+
+    **Type**: Int
+
+    **Default**: 60
+
+- **ENV_CONFD_CONFD_NAMESPACE**
+
+    `confd` namespace id (use with `nacos`)
+
+    **Type**: String
+
+    **Example**: `6aa36e0e-bd57-4483-9937-e7c0ccf59599`
+
+- **ENV_CONFD_PIPELINE_NAMESPACE**
+
+    `pipeline` namespace id (use with `nacos`)
+
+    **Type**: String
+
+    **Example**: `d10757e6-aa0a-416f-9abf-e1e1e8423497`
+
+- **ENV_CONFD_REGION**
+
+    AWS Local Zone (use with aws)
+
+    **Type**: String
+
+    **Example**: `cn-north-1`
+<!-- markdownlint-enable -->
+
+### Git Environment Variable {#env-git}
+
+<!-- markdownlint-disable MD046 -->
+- **ENV_GIT_BRANCH**
+
+    Specifies the branch to pull. **If it is empty, it is the default.** And the default is the remotely specified main branch, which is usually `master`.
+
+    **Type**: String
+
+    **Example**: master
+
+- **ENV_GIT_INTERVAL**
+
+    The interval of timed pull.
+
+    **Type**: TimeDuration
+
+    **Example**: 1m
+
+- **ENV_GIT_KEY_PATH**
+
+    The full path of the local PrivateKey.
+
+    **Type**: String
+
+    **Example**: /Users/username/.ssh/id_rsa
+
+- **ENV_GIT_KEY_PW**
+
+    Use password of local PrivateKey.
+
+    **Type**: String
+
+    **Example**: passwd
+
+- **ENV_GIT_URL**
+
+    Manage the remote git repo address of the configuration file.
+
+    **Type**: URL
+
+    **Example**: `http://username:password@github.com/username/repository.git`
+<!-- markdownlint-enable -->
 
 ### Sinker {#env-sinker}
 
-| Environment Variable Name         | Type   | Default Value | Required | Description                                                                         |
-| :---                              | :---   | :---          | :---     | :---                                                                                |
-| `ENV_SINKER_GLOBAL_CUSTOMER_KEYS` | string | None          | No       | Sinker Global Customer Key list, keys are splited with `,`                          |
-| `ENV_DATAWAY_ENABLE_SINKER`       | bool   | None          | No       | Enable DataWay Sinker ([:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0)). |
+<!-- markdownlint-disable MD046 -->
+- **ENV_SINKER_GLOBAL_CUSTOMER_KEYS**
 
-### IO Module Configuring Related Environment Variables {#env-io}
+    Sinker Global Customer Key list, keys are split with `,`
 
-| Environment Variable Name     | Type     | Default Value      | Required | Description                                                                        |
-| `ENV_IO_FILTERS`              | json     | None               | No       | Add [row protocol filter](datakit-filter)                                          |
-| `ENV_IO_FEED_CHAN_SIZE`       | int      | 1                  | No       | IO channel capacity([:octicons-tag-24: Version-1.22.0](changelog.md#cl-1.22.0))    |
-| `ENV_IO_FLUSH_INTERVAL`       | duration | 10s                | No       | IO transmission time frequency                                                     |
-| `ENV_IO_FLUSH_WORKERS`        | int      | `cpu_core * 2 + 1` | No       | IO flush workers([:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9))         |
-| `ENV_IO_MAX_CACHE_COUNT`      | int      | 1000               | No       | Send buffer size                                                                   |
-| `ENV_IO_ENABLE_CACHE`         | bool     | false              | No       | Whether to open the disk cache that failed to send                                 |
-| `ENV_IO_CACHE_ALL`            | bool     | false              | No       | cache failed data points of all categories                                         |
-| `ENV_IO_CACHE_MAX_SIZE_GB`    | int      | 10                 | No       | Disk size of send failure cache (in GB)                                            |
-| `ENV_IO_CACHE_CLEAN_INTERVAL` | duration | 5s                 | No       | Periodically send failed tasks cached on disk                                      |
+    **Type**: String
 
+- **ENV_DATAWAY_ENABLE_SINKER**
+
+    Enable DataWay Sinker ([:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0)).
+
+    **Type**: Boolean
+
+    **Default**: -
+<!-- markdownlint-enable -->
+
+### IO Module Environment Variables {#env-io}
+
+<!-- markdownlint-disable MD046 -->
+- **ENV_IO_FILTERS**
+
+    Add [row protocol filter](datakit-filter)
+
+    **Type**: JSON
+
+- **ENV_IO_FLUSH_INTERVAL**
+
+    IO channel capacity([:octicons-tag-24: Version-1.22.0](changelog.md#cl-1.22.0))
+
+    **Type**: TimeDuration
+
+    **Default**: 10s
+
+- **ENV_IO_FEED_CHAN_SIZE**
+
+    IO transmission time frequency
+
+    **Type**: Int
+
+    **Default**: 1
+
+- **ENV_IO_FLUSH_WORKERS**
+
+    IO flush workers([:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9))
+
+    **Type**: Int
+
+    **Default**: `cpu_core * 2 + 1`
+
+- **ENV_IO_MAX_CACHE_COUNT**
+
+    Send buffer size
+
+    **Type**: Int
+
+    **Default**: 1000
+
+- **ENV_IO_ENABLE_CACHE**
+
+    Whether to open the disk cache that failed to send
+
+    **Type**: Boolean
+
+    **Default**: false
+
+- **ENV_IO_CACHE_ALL**
+
+    Cache failed data points of all categories
+
+    **Type**: Boolean
+
+    **Default**: false
+
+- **ENV_IO_CACHE_MAX_SIZE_GB**
+
+    Disk size of send failure cache (in GB)
+
+    **Type**: Int
+
+    **Default**: 10
+
+- **ENV_IO_CACHE_CLEAN_INTERVAL**
+
+    Periodically send failed tasks cached on disk
+
+    **Type**: TimeDuration
+
+    **Default**: 5s
+<!-- markdownlint-enable -->
+
+<!-- markdownlint-disable MD046 -->
 ???+ note "description on buffer and queue"
 
     `ENV_IO_MAX_CACHE_COUNT` is used to control the data sending policy, that is, when the number of (row protocol) points of the cache in memory exceeds this value, an attempt is made to send the number of points of the current cache in memory to the center. If the threshold of the cache is set too high, the data will accumulate in memory, causing memory to soar, but will improve the compression effect of GZip. If it is too small, it may affect the transmission throughput.
+<!-- markdownlint-enable -->
 
-`ENV_IO_FILTERS` is a json string, as shown below:
+`ENV_IO_FILTERS` is a JSON string, as shown below:
 
 ```json
 {
   "logging":[
-  	"{ source = 'datakit' and ( host in ['ubt-dev-01', 'tanb-ubt-dev-test'] )}",
-  	"{ source = 'abc' and ( host in ['ubt-dev-02', 'tanb-ubt-dev-test-1'] )}"
+      "{ source = 'datakit' and ( host in ['ubt-dev-01', 'tanb-ubt-dev-test'] )}",
+      "{ source = 'abc' and ( host in ['ubt-dev-02', 'tanb-ubt-dev-test-1'] )}"
   ],
 
   "metric":[
-  	"{ measurement in in ['datakit', 'redis_client'] )}"
+      "{ measurement in in ['datakit', 'redis_client'] )}"
   ],
 }
 ```
 
 ### DCA {#env-dca}
 
-| Environment Variable Name | Type   | Default Value  | Required | Description                                                                                                                                                     |
-| :---                      | :---   | :---           | :---     | :---                                                                                                                                                            |
-| `ENV_DCA_LISTEN`          | string | localhost:9531 | No       | The address can be modified so that the [DCA](dca.md) client can manage the DataKit. Once `ENV_DCA_LISTEN` is turned on, the DCA function is enabled by default |
-| `ENV_DCA_WHITE_LIST`      | string | None           | No       | Configure DCA white list, separated by English commas                                                                                                           |
+<!-- markdownlint-disable MD046 -->
+- **ENV_DCA_LISTEN**
+
+    The address can be modified so that the [DCA](dca.md) client can manage the DataKit. Once `ENV_DCA_LISTEN` is turned on, the DCA function is enabled by default
+
+    **Type**: URL
+
+    **Default**: localhost:9531
+
+- **ENV_DCA_WHITE_LIST**
+
+    Configure DCA white list, separated by English commas
+
+    **Type**: List
+<!-- markdownlint-enable -->
 
 ### Refer Table About Environment Variables {#env-reftab}
 
-| Environment Variable Name                    | Type   | Default Value | Required   | Description                          |
-| :---                            | :---   | :---   | :---   | :---                          |
-| `ENV_REFER_TABLE_URL`           | string | None     | No     | Set the data source URL                |
-| `ENV_REFER_TABLE_PULL_INTERVAL` | string | 5m     | No     | Set the request interval for the data source URL |
+<!-- markdownlint-disable MD046 -->
+- **ENV_REFER_TABLE_URL**
+
+    Set the data source URL
+
+    **Type**: String
+
+- **ENV_REFER_TABLE_PULL_INTERVAL**
+
+    Set the request interval for the data source URL
+
+    **Type**: String
+
+    **Default**: 5m
+
+- **ENV_REFER_TABLE_USE_SQLITE**
+
+    Set whether to use SQLite to save data
+
+    **Type**: Boolean
+
+    **Default**: false
+
+- **ENV_REFER_TABLE_SQLITE_MEM_MODE**
+
+    When using SQLite to save data, use SQLite memory mode/disk mode
+
+    **Type**: Boolean
+
+    **Default**: false
+<!-- markdownlint-enable -->
+
+### Recorder Environment Variables {#env-recorder}
+
+[:octicons-tag-24: Version-1.22.0](changelog.md#1.22.0)
+
+For more info about recorder, see [here](datakit-tools-how-to.md#record-and-replay).
+
+<!-- markdownlint-disable MD046 -->
+- **ENV_ENABLE_RECORDER**
+
+    To enable or disable recorder
+
+    **Type**: Boolean
+
+    **Default**: false
+
+- **ENV_RECORDER_PATH**
+
+    Set recorder data path
+
+    **Type**: String
+
+    **Default**: *Datakit 安装目录/recorder*
+
+- **ENV_RECORDER_ENCODING**
+
+    Set recorder format. v1 is lineprotocol, v2 is JSON
+
+    **Type**: String
+
+    **Default**: v2
+
+- **ENV_RECORDER_DURATION**
+
+    Set recorder duration(since Datakit start). After the duration, the recorder will stop to write data to file
+
+    **Type**: TimeDuration
+
+    **Default**: 30m
+
+- **ENV_RECORDER_INPUTS**
+
+    Set allowed input names for recording, split by comma
+
+    **Type**: List
+
+    **Example**: cpu,mem,disk
+
+- **ENV_RECORDER_CATEGORIES**
+
+    Set allowed categories for recording, split by comma, full list of categories see [here](apis.md#category)
+
+    **Type**: List
+
+    **Example**: metric,logging,object
+<!-- markdownlint-enable -->
 
 ### Others {#env-others}
 
-| Environment Variable Name        | Type   | Default Value  | Required | Description                                                                                                  |
-| :---                             | :---   | :---           | :---     | :---                                                                                                         |
-| `ENV_CLOUD_PROVIDER`             | string | None           | No       | Support filling in cloud suppliers during installation(`aliyun/aws/tencent/hwcloud/azure`)                   |
-| `ENV_HOSTNAME`                   | string | None           | No       | The default is the local host name, which can be specified at installation time, such as, `dk-your-hostname` |
-| `ENV_IPDB`                       | string | None           | No       | Specify the IP repository type, currently only supports `iploc/geolite2`                                     |
-| `ENV_ULIMIT`                     | int    | None           | No       | Specify the maximum number of open files for Datakit                                                         |
-| `ENV_PIPELINE_OFFLOAD_RECEIVER`  | string | `datakit-http` | false    | Set offload receiver                                                                                         |
-| `ENV_PIPELINE_OFFLOAD_ADDRESSES` | string | None           | false    | Set offload addresses                                                                                        |
+<!-- markdownlint-disable MD046 -->
+- **ENV_CLOUD_PROVIDER**
+
+    Support filling in cloud suppliers during installation
+
+    **Type**: String
+
+    **Example**: `aliyun/aws/tencent/hwcloud/azure`
+
+- **ENV_HOSTNAME**
+
+    The default is the local host name, which can be specified at installation time, such as, `dk-your-hostname`
+
+    **Type**: String
+
+- **ENV_IPDB**
+
+    Specify the IP repository type, currently only supports `iploc/geolite2`
+
+    **Type**: String
+
+- **ENV_ULIMIT**
+
+    Specify the maximum number of open files for Datakit
+
+    **Type**: Int
+
+- **ENV_PIPELINE_OFFLOAD_RECEIVER**
+
+    Set offload receiver
+
+    **Type**: String
+
+    **Default**: `datakit-http`
+
+- **ENV_PIPELINE_OFFLOAD_ADDRESSES**
+
+    Set offload addresses
+
+    **Type**: List
+
+    **Example**: `http://aaa:123,http://1.2.3.4:1234`
+<!-- markdownlint-enable -->
 
 ### Special Environment Variable {#env-special}
 
@@ -388,18 +975,19 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 When the k8s node name is different from its corresponding host name, the k8s node name can be replaced by the default collected host name, and the environment variable can be added in *datakit.yaml*:
 
-> This configuration is included by default in datakit.yaml version  [1.2.19](changelog.md#cl-1.2.19). If you upgrade directly from the old version of yaml, you need to make the following manual changes to *datakit.yaml*.
+> This configuration is included by default in `datakit.yaml` version  [1.2.19](changelog.md#cl-1.2.19). If you upgrade directly from the old version of yaml, you need to make the following manual changes to *datakit.yaml*.
 
 ```yaml
 - env:
-	- name: ENV_K8S_NODE_NAME
-		valueFrom:
-			fieldRef:
-				apiVersion: v1
-				fieldPath: spec.nodeName
+    - name: ENV_K8S_NODE_NAME
+        valueFrom:
+            fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
 ```
-
+<!-- markdownlint-disable MD013 -->
 ### Individual Collector-specific Environment Variable {#inputs-envs}
+<!-- markdownlint-enable -->
 
 Some collectors support external injection of environment variables to adjust the default configuration of the collector itself. See each specific collector document for details.
 

@@ -283,7 +283,7 @@ data:
         [[inputs.mysql]]
           host = "xxxxxxxxxxxxxxx"      ##修改对应MySQL连接地址
           user = "ste3"                 ##修改MySQL用户名
-          pass = "Test1234"             ##修改MySQL密码
+          pass = ""                     ##修改MySQL密码
           port = 3306
           # sock = "<SOCK>"
           # charset = "utf8"
@@ -346,13 +346,13 @@ data:
 
     redis.conf: |-
         [[inputs.redis]]
-          host = "r-6cq2279babc65984.redis.rds.ops.ste3.com"            ## 修改Redis连接地址
+          host = "r-6cxxxxxx4.redis.rds.ops.ste3.com"            ## 修改Redis连接地址
           port = 6379                                                   
           # unix_socket_path = "/var/run/redis/redis.sock"
           # 配置多个db，配置了dbs，db也会放入采集列表。dbs=[]或者不配置则会采集redis中所有非空的db
           # dbs=[]
           # username = "<USERNAME>"
-           password = "Test1234"                                        ## 修改Redis密码
+           password = ""                                        ## 修改Redis密码
 
           ## @param connect_timeout - number - optional - default: 10s
           # connect_timeout = "10s"
@@ -412,7 +412,7 @@ data:
           ## Elasticsearch服务器配置
           # 支持Basic认证:
           # servers = ["http://user:pass@localhost:9200"]
-          servers = ["http://guance:123.com@opensearch-cluster-client.middleware:9200"]    ## 修改相关配置
+          servers = ["http://guance:xxxxx@opensearch-cluster-client.middleware:9200"]    ## 修改相关配置
 
 
           ## 采集间隔
