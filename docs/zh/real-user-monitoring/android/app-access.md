@@ -228,8 +228,6 @@ android{
 
 	        FTSdk.install(config);
 
-		
-
 	        // ...
 	    }
 	}
@@ -241,14 +239,10 @@ android{
 	class DemoApplication : Application() {
 	    override fun onCreate() {
 			 //本地环境部署、Datakit 部署
-	        val config = FTSDKConfig
-	            .builder(datakitUrl)
-	            .setDebug(true);
+	        val config = FTSDKConfig.builder(datakitUrl)
 
 			//使用公网 DataWay
-			val config = FTSDKConfig
-	            .builder(datawayUrl, clientToken)
-	            .setDebug(true);
+			val config = FTSDKConfig.builder(datawayUrl, clientToken)
 
 	        FTSdk.install(config)
 
