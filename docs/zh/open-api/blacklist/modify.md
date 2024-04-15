@@ -67,7 +67,7 @@ curl 'https://openapi.guance.com/api/v1/blacklist/blist_58770f806d104f63bdee9bc1
         "status": 0,
         "type": "logging",
         "updateAt": 1678029845.282458,
-        "updator": "wsak_dca59c06eb144f10b6041c34ad1716a7",
+        "updator": "xxxx",
         "uuid": "blist_58770f806d104f63bdee9bc1941bed36",
         "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
     },

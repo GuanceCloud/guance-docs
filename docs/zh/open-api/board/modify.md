@@ -72,11 +72,11 @@
         },
         "type": "CUSTOM",
         "updateAt": 1642587908.306098,
-        "updator": "wsak_c1c8af0c545541428403c09481f1baf8",
+        "updator": "wsak_xxxxx",
         "updatorInfo": {
             "iconUrl": "",
             "name": "第一个key",
-            "username": "AK(wsak_c1c8af0c545541428403c09481f1baf8)"
+            "username": "AK(wsak_xxxxx)"
         },
         "uuid": "dsbd_541083cc19ec4d27ad597839a0477a97",
         "workspaceUUID": "wksp_c4201f4ef30c4a86b01a998e7544f822"

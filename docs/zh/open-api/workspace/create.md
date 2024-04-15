@@ -90,7 +90,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/create' \
         "wsInfo": {
             "billingState": "free",
             "createAt": 1672802266,
-            "creator": "wsak_60b430adbf1440ad991a4647e9ef411a",
+            "creator": "wsak_xxxxx",
             "dashboardUUID": null,
             "datastore": {
                 "backup_log": "es",
@@ -132,7 +132,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/create' \
             "status": 0,
             "supportJsonMessage": 1,
             "updateAt": 1672802266,
-            "updator": "wsak_60b430adbf1440ad991a4647e9ef411a",
+            "updator": "wsak_xxxxx",
             "uuid": "wksp_320a93deda9a47549ffb95ce26fc6bb4",
             "versionType": "free"
         }

@@ -57,7 +57,7 @@ curl 'https://openapi.guance.com/api/v1/checker/import' \
         "rule": [
             {
                 "createAt": 1642581539.6646779,
-                "creator": "wsak_9c2d4d998d9548949ce05680552254af",
+                "creator": "wsak_xxxxx",
                 "crontabInfo": {
                     "crontab": "*/1 * * * *",
                     "id": "cron-ABxzYMCHK2kj"

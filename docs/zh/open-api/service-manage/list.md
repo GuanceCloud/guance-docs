@@ -75,18 +75,18 @@ curl 'https://openapi.guance.com/api/v1/service_manage/list?originStr=0' \
             "createAt": 1693798688,
             "updateAt": 1693805504,
             "creatorInfo": {
-                "username": "wsak_470962cc97584f6a8b09d6c43db10752",
+                "username": "xxx",
                 "name": "阿里云监控数据源",
                 "iconUrl": "",
-                "email": "wsak_470962cc97584f6a8b09d6c43db10752",
+                "email": "wsak_xxxxx",
                 "acntWsNickname": ""
             },
             "colour": "#40C922",
             "updatorInfo": {
-                "username": "wsak_470962cc97584f6a8b09d6c43db10752",
+                "username": "xxx",
                 "name": "阿里云监控数据源",
                 "iconUrl": "",
-                "email": "wsak_470962cc97584f6a8b09d6c43db10752",
+                "email": "wsak_xxxxx",
                 "acntWsNickname": ""
             },
             "dfStatus": "ok",

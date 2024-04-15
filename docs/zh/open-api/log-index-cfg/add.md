@@ -45,7 +45,7 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/add' \
     "content": {
         "conditions": "{  `host` in [ 'custom_host1' ] }",
         "createAt": 1698751853,
-        "creator": "wsak_72b16919b18c411496b6dd06fc9ccc72",
+        "creator": "xxx",
         "deleteAt": -1,
         "duration": "14d",
         "extend": {
@@ -74,7 +74,7 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/add' \
         "status": 0,
         "storeType": "",
         "updateAt": 1698751853,
-        "updator": "wsak_72b16919b18c411496b6dd06fc9ccc72",
+        "updator": "xxx",
         "uuid": "lgim_e5ef2a328d084732a6bbcbac33fc2d67",
         "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
     },

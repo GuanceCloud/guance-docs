@@ -234,7 +234,7 @@ curl 'https://openapi.guance.com/api/v1/checker/rul_xxxxxx/modify' \
         ],
         "type": "trigger",
         "updateAt": 1710831784,
-        "updator": "wsak_a2d55c91bc134aaaa8d68e30cee8a53c",
+        "updator": "wsak_xxxxx",
         "uuid": "rul_8e33996045754736aeecd34b6a5f846a",
         "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
     },

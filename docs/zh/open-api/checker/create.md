@@ -247,7 +247,7 @@ curl 'https://openapi.guance.com/api/v1/checker/add' \
         ],
         "createAt": 1710831393,
         "createdWay": "manual",
-        "creator": "wsak_a2d55c91bc134aaaa8d68e30cee8a53c",
+        "creator": "wsak_xxxx",
         "crontabInfo": {
             "crontab": "*/1 * * * *",
             "id": "cron-2n8ZyrMWKXB8"

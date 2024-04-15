@@ -42,7 +42,7 @@ curl 'https://openapi.guance.com/api/v1/notes/create' \
     "code": 200,
     "content": {
         "createAt": 1677656782,
-        "creator": "wsak_ecdec9f27d6c482a997c218b2fb351a0",
+        "creator": "wsak_xxxxx",
         "deleteAt": -1,
         "extend": {
             "fixedTime": "15m"
@@ -60,7 +60,7 @@ curl 'https://openapi.guance.com/api/v1/notes/create' \
         ],
         "status": 0,
         "updateAt": 1677656782,
-        "updator": "wsak_ecdec9f27d6c482a997c218b2fb351a0",
+        "updator": "wsak_xxxxx",
         "uuid": "notes_7f074ca6505543e39020826d84ad6687",
         "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
     },

@@ -87,7 +87,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/modify' \
         "status": 0,
         "supportJsonMessage": 1,
         "updateAt": 1677670046.184892,
-        "updator": "wsak_ecdec9f27d6c482a997c218b2fb351a0",
+        "updator": "wsak_xxxxx",
         "uuid": "wksp_ed134a6485c8484dbd0e58ce9a9c6115",
         "versionType": "pay"
     },
