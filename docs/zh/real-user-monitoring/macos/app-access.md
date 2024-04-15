@@ -91,7 +91,7 @@
     
     int main(int argc, const char * argv[]) {
         @autoreleasepool {
-            // Setup code that might create autoreleased objects goes here.
+            // 本地环境部署、Datakit 部署
             FTSDKConfig *config = [[FTSDKConfig alloc]initWithDatakitUrl:datakitUrl];
             // 使用公网 DataWay 部署
             //FTSDKConfig *config = [[FTSDKConfig alloc]initWithDatawayUrl:datawayUrl clientToken:clientToken];

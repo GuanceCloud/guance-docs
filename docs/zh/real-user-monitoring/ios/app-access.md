@@ -1,6 +1,16 @@
 # iOS 应用接入
 
 ---
+???- quote "更新日志"
+
+    **1.4.11**
+    1. 新增支持数据同步参数配置，请求条目数据，同步间歇时间，以及日志缓存条目数
+    2. 新增内部日志转文件方法
+    3. 日志关联 RUM 数据获取错误修复
+    4. 耗时操作优化
+    5. 修复 WebView jsBridge 时产生的崩溃，对 WebView 引用改为弱引用
+    
+    [更多日志](https://github.com/GuanceCloud/datakit-ios/blob/develop/CHANGELOG.md)
 
 观测云应用监测能够通过收集各个 iOS 应用的指标数据，以可视化的方式分析各个 iOS 应用端的性能。
 
@@ -30,43 +40,69 @@
 
     1.配置 `Podfile` 文件。
     
-    **使用 Dynamic Library**
+    * 使用 Dynamic Library
     
-    ```
-    platform :ios, '10.0' 
-    use_frameworks!
-    def shared_pods
-    pod 'FTMobileSDK', '[latest_version]'
-    # 如果需要采集 widget Extension 数据
-    pod 'FTMobileSDK/Extension', '[latest_version]'
-    end
+      ```
+      platform :ios, '10.0' 
+      use_frameworks!
+      def shared_pods
+      pod 'FTMobileSDK', '[latest_version]'
+      # 如果需要采集 widget Extension 数据
+      pod 'FTMobileSDK/Extension', '[latest_version]'
+      end
     
-    //主工程
-    target 'yourProjectName' do
-    shared_pods
-    end
+      //主工程
+      target 'yourProjectName' do
+      shared_pods
+      end
     
-    //Widget Extension
-    target 'yourWidgetExtensionName' do
-    shared_pods
-    end
-    ```
+      //Widget Extension
+      target 'yourWidgetExtensionName' do
+      shared_pods
+      end
+      ```
     
-    **使用 Static Library**
+    * 使用 Static Library
     
-    ```
-    use_modular_headers!
-    //主工程
-    target 'yourProjectName' do
-    pod 'FTMobileSDK', '[latest_version]'
-    end
-    //Widget Extension
-    target 'yourWidgetExtensionName' do
-    pod 'FTMobileSDK/Extension', '[latest_version]'
-    end
-    ```
+      ```
+      use_modular_headers!
+      //主工程
+      target 'yourProjectName' do
+      pod 'FTMobileSDK', '[latest_version]'
+      end
+      //Widget Extension
+      target 'yourWidgetExtensionName' do
+      pod 'FTMobileSDK/Extension', '[latest_version]'
+      end
+      ```
+    
+    * [将代码库下载到本地使用](https://guides.cocoapods.org/using/the-podfile.html#using-the-files-from-a-folder-local-to-the-machine)
+      **`Podfile` 文件**
+      ```
+      use_modular_headers!
+      //主工程
+      target 'yourProjectName' do
+      pod 'FTMobileSDK', :path => '[folder_path]' 
+      end
+      //Widget Extension
+      target 'yourWidgetExtensionName' do
+      pod 'FTMobileSDK/Extension', :path => '[folder_path]'
+      end
+      ```
+      `folder_path`: `FTMobileSDK.podspec` 所在文件夹的路径。
+      **`FTMobileSDK.podspec` 文件**
+      修改 `FTMobileSDK.podspec` 文件中的 `s.version`  和 `s.source` 。
+      `s.version` ：修改为指定版本，建议与`FTMobileSDK/FTMobileAgent/Core/FTMobileAgentVersion.h`中`SDK_VERSION`一致。
+      `s.source`：tag => s.version
+      ```
+      Pod::Spec.new do |s|
+      s.name         = "FTMobileSDK"
+      s.version      = "[latest_version]"  
+      s.source       = { :git => "https://github.com/GuanceCloud/datakit-ios.git", :tag => s.version }
+      ```
     
     2.在 `Podfile` 目录下执行 `pod install` 安装 SDK。
+
 
 === "Carthage" 
 
@@ -94,7 +130,7 @@
     
     `FTMobileAgent`：添加到主项目 Target
     
-    `FTMobileExtension`：添加到 Widget Extension Target
+    `FTMobileExtension`：添加到小组件 Widget Extension Target
     
     3.在 `TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
     
@@ -159,10 +195,10 @@
     ```objective-c
     -(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
         // SDK FTMobileConfig 设置
-          // 本地环境部署
-          //FTMobileConfig *config = [[FTMobileConfig alloc]initWithDatakitUrl:datakitUrl];
-          // 使用公网 DataWay 部署
-         FTMobileConfig *config = [[FTMobileConfig alloc]initWithDatawayUrl:datawayUrl clientToken:clientToken];
+         // 本地环境部署、Datakit 部署
+         //FTMobileConfig *config = [[FTMobileConfig alloc]initWithDatakitUrl:datakitUrl];
+         // 使用公网 DataWay 部署
+        FTMobileConfig *config = [[FTMobileConfig alloc]initWithDatawayUrl:datawayUrl clientToken:clientToken];
         config.enableSDKDebugLog = YES;
         //启动 SDK
         [FTMobileAgent startWithConfigOptions:config];
@@ -177,7 +213,7 @@
     ```swift
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
          // SDK FTMobileConfig 设置
-           // 本地环境部署
+           // 本地环境部署、Datakit 部署
            //let config = FTMobileConfig(datakitUrl: url)
            // 使用公网 DataWay 部署
          let config = FTMobileConfig(datawayUrl: datawayUrl, clientToken: clientToken)
@@ -188,16 +224,19 @@
     }
     ```
 
-| 属性 | **类型** | **必须** | **含义** | 注意 |
-| --- | --- | --- | --- | --- |
-| datakitUrl | NSString | 是 | Datakit 访问地址 | datakit 访问 URL 地址，例子：[http://10.0.0.1:9529](http://10.0.0.1:9529/)，端口默认 9529，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
-| datawayUrl | NSString | 是 | 公网 Dataway 访问地址 | dataway 访问 URL 地址，例子：[http://10.0.0.1:9528](http://10.0.0.1:9528/)，端口默认 9528，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
-| clientToken | NSString | 是 | 认证 token                                                   | 需要与 datawayUrl 同时使用 |
-| enableSDKDebugLog | BOOL | 否 | 设置是否允许打印日志 | 默认 `NO` |
-| env | NSString | 否 | 设置采集环境 | 默认 `prod`，支持自定义，也可根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置<br>`FTEnv`<br>`FTEnvProd`： prod<br>`FTEnvGray`： gray<br>`FTEnvPre` ：pre <br>`FTEnvCommon` ：common <br>`FTEnvLocal`： local |
-| service | NSString | 否 | 设置所属业务或服务的名称 | 影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios` |
-| globalContext | NSDictionary |     否 | 添加自定义标签 | 添加规则请查阅[此处](#user-global-context) |
-| groupIdentifiers | NSArray | 否 | 需要采集的 Widget Extensions 对应的 AppGroups Identifier 数组 | 若开启 Widget Extensions 数据采集，则必须设置 [App Groups](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups)，并将 Identifier 配置到该属性中 |
+| 属性 | **类型** | **必须** | **含义** |
+| --- | --- | --- | --- |
+| datakitUrl | NSString | 是 | Datakit 访问地址，例子：[http://10.0.0.1:9529](http://10.0.0.1:9529/)，端口默认 9529，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
+| datawayUrl | NSString | 是 | 公网 Dataway 访问地址，例子：[http://10.0.0.1:9528](http://10.0.0.1:9528/)，端口默认 9528，注意：安装 SDK 设备需能访问这地址.注意：datakit 和 dataway 配置两者二选一 |
+| clientToken | NSString | 是 | 认证 token，需要与 datawayUrl 同时使用                               |
+| enableSDKDebugLog | BOOL | 否 | 设置是否允许打印日志。默认 `NO` |
+| env | NSString | 否 | 设置采集环境。默认 `prod`，支持自定义，也可根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置 |
+| service | NSString | 否 | 设置所属业务或服务的名称。影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios` |
+| globalContext | NSDictionary |     否 | 添加自定义标签。添加规则请查阅[此处](#user-global-context) |
+| groupIdentifiers | NSArray | 否 | 需要采集的 Widget Extensions 对应的 AppGroups Identifier 数组。若开启 Widget Extensions 数据采集，则必须设置 [App Groups](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups)，并将 Identifier 配置到该属性中 |
+| autoSync | BOOL | 否 | 是否开启自动同步。默认 `YES` |
+| syncPageSize | int | 否 | 设置同步请求条目数。范围 [5,）注意：请求条目数越大，代表数据同步占用更大的计算资源 |
+| syncSleepTime | int | 否 | 设置同步间歇时间。范围 [0,100]，默认不设置 |
 
 ### RUM 配置 {#rum-config}
 
@@ -235,21 +274,21 @@
         FTMobileAgent.sharedInstance().startRum(withConfigOptions: rumConfig)
     ```
 
-| **属性** | **类型** | **必须** | **含义** | 注意 |
-| --- | --- | --- | --- | --- |
-| appid | NSString | 是 | 用户访问监测应用 ID 唯一标识 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#iOS-integration) |
-| samplerate | int | 否 | 采样率 | 取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据 |
-| enableTrackAppCrash | BOOL | 否 | 设置是否需要采集崩溃日志 | 默认 `NO` |
-| enableTrackAppANR | BOOL | 否 | 采集ANR卡顿无响应事件 | 默认`NO` |
-| enableTrackAppFreeze | BOOL | 否 | 采集UI卡顿事件 | 默认`NO` |
-| enableTraceUserView | BOOL | 否 | 设置是否追踪用户 View 操作 | 默认`NO` |
-| enableTraceUserAction | BOOL | 否 | 设置是否追踪用户 Action 操作 | 默认`NO` |
-| enableTraceUserResource | BOOL | 否 | 设置是否追踪用户网络请求 | 默认`NO`，仅作用于 native http <br>注意：<br>不支持采集使用 **Swift URLSession async/await APIs** 和 `[NSURLSession sharedSession]`发起的请求. |
-| resourceUrlHandler | FTResourceUrlHandler | 否 | 自定义采集 resource 规则 | 默认不过滤。 返回：NO 表示要采集，YES 表示不需要采集。 |
-| errorMonitorType | FTErrorMonitorType | 否 | 错误事件监控补充类型 | 在采集的崩溃数据中添加监控的信息。<br>`FTErrorMonitorType`<br>`FTErrorMonitorAll`：开启所有监控： 电池、内存、CPU 使用率<br>`FTErrorMonitorBattery`：电池电量<br>`FTErrorMonitorMemory`：内存总量、内存使用率<br>`FTErrorMonitorCpu`：Cpu 使用率 |
-| deviceMetricsMonitorType | FTDeviceMetricsMonitorType | 否 | 视图的性能监控类型 | 在采集的  **View** 数据中添加对应监控项信息。<br>`FTDeviceMetricsMonitorType`<br>`FTDeviceMetricsMonitorAll`：开启所有监控项:内存、CPU、FPS<br>`FTDeviceMetricsMonitorMemory`：平均内存、最高内存<br>`FTDeviceMetricsMonitorCpu`：CPU 跳动最大、平均数<br>`FTDeviceMetricsMonitorFps`：Fps 最低帧率、平均帧率 |
-| monitorFrequency | FTMonitorFrequency | 否 | 视图的性能监控采样周期 | 配置 `monitorFrequency` 来设置 **View** 监控项信息的采样周期。<br>`FTMonitorFrequency`<br>`FTMonitorFrequencyDefault`：500ms (默认)<br>`FTMonitorFrequencyFrequent`：100ms<br>`FTMonitorFrequencyRare`：1000ms |
-| globalContext | NSDictionary |     否 | 添加自定义标签 | 添加规则请查阅[此处](#user-global-context) |
+| **属性** | **类型** | **必须** | **含义** |
+| --- | --- | --- | --- |
+| appid | NSString | 是 | 用户访问监测应用 ID 唯一标识。对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#iOS-integration) |
+| samplerate | int | 否 | 采样率。取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据 |
+| enableTrackAppCrash | BOOL | 否 | 设置是否需要采集崩溃日志。默认 `NO` |
+| enableTrackAppANR | BOOL | 否 | 采集ANR卡顿无响应事件。默认`NO` |
+| enableTrackAppFreeze | BOOL | 否 | 采集UI卡顿事件。默认`NO` |
+| enableTraceUserView | BOOL | 否 | 设置是否追踪用户 View 操作。默认`NO` |
+| enableTraceUserAction | BOOL | 否 | 设置是否追踪用户 Action 操作。默认`NO` |
+| enableTraceUserResource | BOOL | 否 | 设置是否追踪用户网络请求。默认`NO`，仅作用于 native http <br/>注意：不支持采集使用 **Swift URLSession async/await APIs** 和 `[NSURLSession sharedSession]`发起的请求. |
+| resourceUrlHandler | FTResourceUrlHandler | 否 | 自定义采集 resource 规则。默认不过滤。 返回：NO 表示要采集，YES 表示不需要采集。 |
+| errorMonitorType | FTErrorMonitorType | 否 | 错误事件监控补充类型。在采集的崩溃数据中添加监控的信息。`FTErrorMonitorBattery`为电池余量，`FTErrorMonitorMemory`为内存用量，`FTErrorMonitorCpu`为 CPU 占有率 。 |
+| deviceMetricsMonitorType | FTDeviceMetricsMonitorType | 否 | 视图的性能监控类型。在采集的  **View** 数据中添加对应监控项信息。`FTDeviceMetricsMonitorMemory`监控当前应用使用内存情况，`FTDeviceMetricsMonitorCpu`监控 CPU 跳动次数，`FTDeviceMetricsMonitorFps`监控屏幕帧率。 |
+| monitorFrequency | FTMonitorFrequency | 否 | 视图的性能监控采样周期。配置 `monitorFrequency` 来设置 **View** 监控项信息的采样周期。`FTMonitorFrequencyDefault`500ms (默认)，`FTMonitorFrequencyFrequent`100ms，`FTMonitorFrequencyRare`1000ms。 |
+| globalContext | NSDictionary | 否 | 添加自定义标签。添加规则请查阅[此处](#user-global-context) |
 
 ### Log 配置 {#log-config}
 
@@ -276,15 +315,16 @@
         FTMobileAgent.sharedInstance().startLogger(withConfigOptions: loggerConfig)
     ```
 
-| 属性 | **类型** | **必须** | **含义** | 注意 |
-| --- | --- | --- | --- | --- |
-| samplerate | int | 否 | 采样率 | 取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。 |
-| enableCustomLog | BOOL | 否 | 是否上传自定义 log | 默认`NO` |
-| printCustomLogToConsole | BOOL | 否 | 设置是否将自定义日志输出到控制台 | 默认`NO`<br>自定义日志[输出格式](#printCustomLogToConsole) |
-| logLevelFilter | NSArray | 否 | 设置要采集的自定义 log 的状态数组 | 默认全采集 |
-| enableLinkRumData | BOOL | 否 | 是否与 RUM 数据关联 | 默认`NO` |
-| discardType | FTLogCacheDiscard | 否 | 设置频繁日志丢弃规则 | 默认 `FTDiscard` <br>`FTLogCacheDiscard`:<br>`FTDiscard`：默认，当日志数据数量大于最大值（5000）时，丢弃追加数据<br>`FTDiscardOldest`：当日志数据大于最大值时,丢弃老数据 |
-| globalContext | NSDictionary |     否 | 添加自定义标签 | 添加规则请查阅[此处](#user-global-context) |
+| 属性 | **类型** | **必须** | **含义** |
+| --- | --- | --- | --- |
+| samplerate | int | 否 | 采样率。取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。 |
+| enableCustomLog | BOOL | 否 | 是否上传自定义 log。默认`NO` |
+| printCustomLogToConsole | BOOL | 否 | 设置是否将自定义日志输出到控制台。默认`NO`，自定义日志[输出格式](#printCustomLogToConsole) |
+| logLevelFilter | NSArray | 否 | 设置要采集的自定义 log 的状态数组。默认全采集 |
+| enableLinkRumData | BOOL | 否 | 是否与 RUM 数据关联。默认`NO` |
+| discardType | FTLogCacheDiscard | 否 | 设置频繁日志丢弃规则。默认 `FTDiscard` <br/>`FTDiscard`当日志数据数量大于最大值（5000）时，丢弃追加数据。`FTDiscardOldest`当日志数据大于最大值时,丢弃老数据。 |
+| globalContext | NSDictionary |     否 | 添加自定义标签。添加规则请查阅[此处](#user-global-context) |
+| logCacheLimitCount | int | 否 | 获取最大日志条目数量。限制 [1000,)，默认 5000 |
 
 ### Trace 配置 {#trace-config}
 
@@ -308,16 +348,16 @@
        FTMobileAgent.sharedInstance().startTrace(withConfigOptions: traceConfig)
     ```
 
-| 属性 | 类型 | 必须 | 含义 | 注意 |
-| --- | --- | --- | --- | --- |
-| samplerate | int | 否 | 采样率 | 取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。 |
-| networkTraceType | FTNetworkTraceType | 否 | 设置链路追踪的类型 | 默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
-| enableLinkRumData | BOOL | 否 | 是否与 RUM 数据关联 | 默认`NO` |
-| enableAutoTrace | BOOL | 否 | 设置是否开启自动 http trace | 默认`NO`，目前只支持 NSURLSession |
+| 属性 | 类型 | 必须 | 含义 |
+| --- | --- | --- | --- |
+| samplerate | int | 否 | 采样率。取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。 |
+| networkTraceType | FTNetworkTraceType | 否 | 设置链路追踪的类型。默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
+| enableLinkRumData | BOOL | 否 | 是否与 RUM 数据关联。默认`NO` |
+| enableAutoTrace | BOOL | 否 | 设置是否开启自动 http trace。默认`NO`，目前只支持 NSURLSession |
 
 ## RUM 用户数据追踪 {#rum}
 
-在 SDK 初始化 [RUM 配置](https://docs.guance.com/real-user-monitoring/react-native/app-access/#rum-config) 时可开启自动采集  **View**、 **Action** 、 **Error** 、**LongTask** 、**Resource**  外， SDK 也提供了自定义采集的 API ，用户自定义采集 RUM 相关数据，需要使用  `FTExternalDataManager` 单例，示例如下：
+`FTRUMConfig` 配置 `enableTraceUserAction`, `enableTraceUserView`, `enableTraceUserResource` 来实现自动获取数据的效果或手动使用 `FTExternalDataManager` 来实现添加这些数据，示例如下：
 
 ### View
 
@@ -985,7 +1025,7 @@
 
 `{K=V,...,Kn=Vn}`：自定义属性。
 
-## Trace 网络链接追踪
+## Trace 网络链路追踪
 
 可以 `FTTraceConfig` 配置开启自动模式，也支持用户自定义添加 Trace 相关数据。自定义添加相关 API 如下：
 
@@ -1028,13 +1068,22 @@
     }
     ```
 
-## 通过设置 URLSession Delegate 自定义采集 RUM Resource
+## 通过转发 URLSession Delegate 自定义采集 Network
 
 **注意：该方法不适用于 Swift URLSession async/await APIs**
 
-需要关闭 `FTRUMConfig` 的 `enableTraceUserResource` ，`FTTraceConfig` 的 `enableAutoTrace` 配置。
+SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 delegate 转发给 `FTURLSessionDelegate`，以帮助 SDK 采集 Network 的相关数据。
 
-SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 delegate 转发给 `FTURLSessionDelegate`，以帮助 SDK 采集 resource 的相关数据。
+采集 Network 的相关数据在 SDK 中分为 `RUM-Resource` 和 `网络链路追踪`。
+
+**RUM-Resource**：
+
+* 可以开启  `FTRUMConfig` 的 `enableTraceUserResource` ，自动采集逻辑会忽略当前 `URLSession` 发起的请求；
+* 支持添加自定义属性。
+
+**网络链路追踪**：
+
+* 可以开启  `FTTraceConfig` 的 `enableAutoTrace` 。当设置自定义链路追踪时自动追踪逻辑会忽略当前 `URLSession` 发起的请求。
 
 下面提供了三种方法，来满足用户的不同场景。
 
@@ -1051,6 +1100,17 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
                     NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
                     return @{@"df_requestbody":body};
                 };
+    // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪
+    delegate.requestInterceptor = ^NSURLRequest * _Nonnull(NSURLRequest * _Nonnull request) {
+                NSDictionary *traceHeader = [[FTExternalDataManager sharedManager] getTraceHeaderWithUrl:request.URL];
+                NSMutableURLRequest *newRequest = [request mutableCopy];
+                if(traceHeader){
+                    for (NSString *key in traceHeader.allKeys) {
+                        [newRequest setValue:traceHeader[key] forHTTPHeaderField:key];
+                    }
+                }
+                return newRequest;
+            };            
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:delegate delegateQueue:nil];
     ```
 
@@ -1070,6 +1130,16 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
                 }
                 return extraData
             }
+    // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪        
+    delegate.requestInterceptor = { request in
+                var mutableRequest = request
+                if let traceHeader = FTExternalDataManager.shared().getTraceHeader(with: request.url!){
+                    for (key,value) in traceHeader {
+                        mutableRequest.setValue(value as? String, forHTTPHeaderField: key as! String)
+                    }
+                }
+                return mutableRequest
+            }        
     let session =  URLSession.init(configuration: URLSessionConfiguration.default, delegate:delegate 
     , delegateQueue: nil)
     ```
@@ -1094,6 +1164,17 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
             NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
             return @{@"df_requestbody":body};
         };
+            // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪
+           self.requestInterceptor = ^NSURLRequest * _Nonnull(NSURLRequest * _Nonnull request) {
+                NSDictionary *traceHeader = [[FTExternalDataManager sharedManager] getTraceHeaderWithUrl:request.URL];
+                NSMutableURLRequest *newRequest = [request mutableCopy];
+                if(traceHeader){
+                    for (NSString *key in traceHeader.allKeys) {
+                        [newRequest setValue:traceHeader[key] forHTTPHeaderField:key];
+                    }
+                }
+                return newRequest;
+            }; 
         }
         return self;
     }
@@ -1111,7 +1192,6 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
     ```swift
     class InheritHttpEngine:FTURLSessionDelegate {
         var session:URLSession?
-        /// HttpEngine 初始化，当 apiHostUrl 为空 或 token 为"" 则初始化失败
         override init(){
             session = nil
             super.init()
@@ -1130,6 +1210,16 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
                     extraData["df_error"] = error.localizedDescription
                 }
                 return extraData
+            }
+            // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪
+            requestInterceptor = { request in
+                var mutableRequest = request
+                if let traceHeader = FTExternalDataManager.shared().getTraceHeader(with: request.url!){
+                    for (key,value) in traceHeader {
+                        mutableRequest.setValue(value as? String, forHTTPHeaderField: key as! String)
+                    }
+                }
+                return mutableRequest
             }
         }
         }
@@ -1172,6 +1262,17 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
                     NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
                     return @{@"df_requestbody":body};
                 };
+                // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪
+            _ftURLSessionDelegate.requestInterceptor = ^NSURLRequest * _Nonnull(NSURLRequest * _Nonnull request) {
+                NSDictionary *traceHeader = [[FTExternalDataManager sharedManager] getTraceHeaderWithUrl:request.URL];
+                NSMutableURLRequest *newRequest = [request mutableCopy];
+                if(traceHeader){
+                    for (NSString *key in traceHeader.allKeys) {
+                        [newRequest setValue:traceHeader[key] forHTTPHeaderField:key];
+                    }
+                }
+                return newRequest;
+            }; 
         }
         return _ftURLSessionDelegate;
     }
@@ -1210,6 +1311,16 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
                     extraData["df_error"] = error.localizedDescription
                 }
                 return extraData
+            }
+            // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪
+            ftURLSessionDelegate.requestInterceptor = { request in
+                var mutableRequest = request
+                if let traceHeader = FTExternalDataManager.shared().getTraceHeader(with: request.url!){
+                    for (key,value) in traceHeader {
+                        mutableRequest.setValue(value as? String, forHTTPHeaderField: key as! String)
+                    }
+                }
+                return mutableRequest
             }
         }
         // 下面方法一定要实现
@@ -1353,6 +1464,41 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
     ```swift
     //如果动态改变 SDK 配置，需要先关闭，以避免错误数据的产生
     FTMobileAgent.sharedInstance().shutDown()
+    ```
+
+## 主动同步数据
+
+使用 `FTMobileAgent` 主动同步数据。
+
+### 使用方法
+
+=== "Objective-C"
+
+    ```objective-c
+    ///  主动同步数据
+    - (void)flushSyncData;
+    ```
+
+=== "Swift"
+
+    ```swift
+    /// 主动同步数据
+    func flushSyncData()
+    ```
+
+### 代码示例
+
+=== "Objective-C"
+
+    ```objective-c
+    [[FTMobileAgent sharedInstance] flushSyncData];
+    ```  
+
+=== "Swift"
+
+    ```swift
+    //如果动态改变 SDK 配置，需要先关闭，以避免错误数据的产生
+    FTMobileAgent.sharedInstance().flushSyncData()
     ```
 
 ## 添加自定义标签 {#user-global-context}
@@ -1685,19 +1831,19 @@ XCode Release 编译默认会生成 dSYM 文件，而 Debug 编译默认不会�
 
     ![](../img/xcode_find_dsym2.png)
    
-3. 找到发布的归档包，右键点击对应归档包，选择Show in Finder操作
+3. 找到发布的归档包，右键点击对应归档包，选择 `Show in Finder`操作
 
     ![](../img/xcode_find_dsym3.png)
 
    
 
-4. 右键选择定位到的归档文件，选择显示包内容操作 
+4. 右键选择定位到的归档文件，选择 `显示包内容` 操作 
 
     ![](../img/xcode_find_dsym4.png)
 
    
 
-5. 选择dSYMs目录，目录内即为下载到的 dSYM 文件
+5. 选择 `dSYMs` 目录，目录内即为下载到的 dSYM 文件
 
     ![](../img/xcode_find_dsym5.png)
 
