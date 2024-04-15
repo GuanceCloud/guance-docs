@@ -73,11 +73,15 @@ import {
 ```typescript
  //本地环境部署、Datakit 部署
 let config: FTMobileConfig = {
-    datakitUrl: Config.SERVER_URL,
+    datakitUrl: datakitUrl,
   };
-FTMobileReactNative.sdkConfig(config)
 
  //使用公网 DataWay
+ let config: FTMobileConfig = {
+    datawayUrl: datawayUrl,
+    clientToken: clientToken
+  };
+FTMobileReactNative.sdkConfig(config)
 
 ```
 

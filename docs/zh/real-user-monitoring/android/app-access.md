@@ -209,6 +209,14 @@ android{
 
 > 最新的版本请看上方的 Agent 和 Plugin 的版本名
 
+## Application 配置 {#application-setting}
+理论上最佳初始化 SDK 的位置在 `Application` 的 `onCreate` 方法中，如果您的应用还没有创建 `Application`，您需要创建一个，并且在 `AndroidManifest.xml` 中 `Application` 中声明，示例请参考[这里](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/AndroidManifest.xml)。
+
+```xml
+<application 
+       android:name="YourApplication"> 
+</application> 
+```
 
 ## SDK 初始化
 
@@ -227,7 +235,6 @@ android{
 			FTSDKConfig config = FTSDKConfig.builder(datawayUrl, clientToken);
 
 	        FTSdk.install(config);
-
 	        // ...
 	    }
 	}
@@ -238,26 +245,17 @@ android{
 	```kotlin
 	class DemoApplication : Application() {
 	    override fun onCreate() {
-			 //本地环境部署、Datakit 部署
-	        val config = FTSDKConfig.builder(datakitUrl)
+			//本地环境部署、Datakit 部署
+			val config = FTSDKConfig.builder(datakitUrl)
 
 			//使用公网 DataWay
 			val config = FTSDKConfig.builder(datawayUrl, clientToken)
 
-	        FTSdk.install(config)
-
-	        //...
+			FTSdk.install(config)
+			//...
 	    }
 	}
     ```
-
-理论上最佳初始化 SDK 的位置在 `Application` 的 `onCreate` 方法中，如果您的应用还没有创建 `Application`，您需要创建一个，并且在 `AndroidManifest.xml` 中 `Application` 中声明，示例请参考[这里](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/AndroidManifest.xml)
-
-```xml
-<application 
-       android:name="YourApplication"> 
-</application> 
-```
 
 | **方法名** | **类型** | **必须** | **含义** |
 | --- | --- | --- | --- | 
@@ -275,7 +273,6 @@ android{
 | setSyncPageSize | enum | 否 | 设置同步请求条目数，`SyncPageSize.MINI` 5 条，`SyncPageSize.MEDIUM` 10 条，`SyncPageSize.LARGE` 50 条，默认 `SyncPageSize.MEDIUM`   |
 | setCustomSyncPageSize | enum | 否 | 设置同步请求条目数，范围 [5,)，注意请求条目数越大，代表数据同步占用更大的计算资源   |
 | setSyncSleepTime | Int | 否 | 设置同步间歇时间，范围 [0,100]，默认不设置  |
-
 
 ### RUM 配置 {#rum-config}
 
