@@ -20,7 +20,7 @@
 | alertPolicyUUIDs | array |  | 告警策略UUID<br>允许为空: False <br> |
 | dashboardUUID | string |  | 关联仪表板id<br>允许为空: False <br> |
 | tags | array |  | 用于筛选的标签名称<br>允许为空: False <br>例子: ['xx', 'yy'] <br> |
-| secret | string |  | Webhook地址的中段唯一标识secret<br>允许为空: False <br>例子: secret_xxxxx <br> |
+| secret | string |  | Webhook地址的中段唯一标识secret(一般取随机uuid, 确保工作空间内唯一)<br>允许为空: False <br>例子: secret_xxxxx <br> |
 | jsonScript | json |  | 规则配置<br>允许为空: False <br> |
 | jsonScript.type | string | Y | 检查方法类型<br>例子: simpleCheck <br>允许为空: False <br> |
 | jsonScript.windowDql | string |  | window dql<br>允许为空: False <br> |
@@ -59,7 +59,7 @@
 | jsonScript.channels | array |  | 频道UUID列表<br>例子: ['名称1', '名称2'] <br>允许为空: False <br> |
 | jsonScript.atAccounts | array |  | 正常检测下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
 | jsonScript.atNoDataAccounts | array |  | 无数据情况下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
-| jsonScript.subUri | string |  | 表示Webhook地址的地址后缀<br>例子: datakit/push <br>允许为空: False <br> |
+| jsonScript.subUri | string |  | 表示Webhook地址的地址后缀(根据用户业务侧需求可选设置，无特殊限制)<br>例子: datakit/push <br>允许为空: False <br> |
 | jsonScript.disableCheckEndTime | boolean |  | 是否禁用结束时间限制, https://confluence.jiagouyun.com/pages/viewpage.action?pageId=177405958<br>例子: True <br>允许为空: False <br> |
 
 ## 参数补充说明

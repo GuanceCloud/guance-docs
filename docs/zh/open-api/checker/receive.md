@@ -5,6 +5,8 @@
 <br />**POST /api/v1/push-events/\{secret\}/\{subUri\}**
 
 ## 概述
+接收一个外部事件, 并根据事件生成对应事件数据。
+注意, 当`secret`和`subUri`信息与监控器中记录的信息不一致时, 该事件将被忽略。
 
 
 
@@ -13,8 +15,8 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| secret | string | Y | 外部事件监控器secret<br> |
-| subUri | string | Y | 外部事件监控器subUri<br> |
+| secret | string | Y | 外部事件监控器secret(对应新建监控器中的`secret`字段; 该值与监控器配置不一致时, 将忽略该事件)<br> |
+| subUri | string | Y | 外部事件监控器subUri(对应新建监控器中的`jsonScript`.`subUri` 字段; 该值与监控器配置不一致时, 将忽略该事件)<br> |
 
 
 ## Body 请求参数
