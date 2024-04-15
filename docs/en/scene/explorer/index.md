@@ -109,9 +109,9 @@ You can create an Issue for the abnormal phenomena observed in the current dashb
  
 > For more related operations, see [how to manually create an Issue at the view level](../../exception/issue.md#dashboards). For more information about Issues, see [Incident](../../exception/index.md).
 
-### Save Snapshot
+### Save as a Snapshot
 
-Guance supports the shortcut key (Windows: Ctrl+K / Mac OS: Cmd+K) to quickly save the current log content as a snapshot for sharing, or choose to save it by clicking **Save Snapshot** in the **Setting** button.
+Guance supports the shortcut key (Windows: Ctrl+K / Mac OS: Cmd+K) to quickly save the current log content as a snapshot for sharing, or choose to save it by clicking **Save as a Snapshot** in the **Setting** button.
 
 ![](../img/explorer004.png)
 
@@ -119,7 +119,7 @@ After a snapshot is saved, you can click the Snapshot icon in the top left corne
 
 <img src="../img/explorer005.png" width="70%" >
 
-> See [Snapshot](../../getting-started/function-details/snapshot.md).
+> See [Snapshots](../../getting-started/function-details/snapshot.md).
 
 ## Import/Export/Copy 
 
@@ -147,7 +147,7 @@ After the explorer is created, you can query and analyze the log data with the f
 
 ![](../img/explorer02.png)
 
-> See [Explorer](../../getting-started/function-details/explorer-search.md).
+> See [Explorers](../../getting-started/function-details/explorer-search.md).
 
 
 <!--

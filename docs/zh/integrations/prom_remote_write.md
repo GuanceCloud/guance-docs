@@ -26,6 +26,8 @@ monitor   :
 
 ### 前置条件 {#requirements}
 
+注意，对于 `vmalert` 的一些早期版本，需要在采集器的配置文件中打开设置 `default_content_encoding = "snappy"`。
+
 开启 Prometheus Remote Write 功能，在 *prometheus.yml* 添加如下配置：
 
 ```yml
@@ -52,6 +54,11 @@ remote_write:
     
       ## accepted methods
       methods = ["PUT", "POST"]
+      
+      ## If the data is decoded incorrectly, you need to set the default HTTP body encoding;
+      ## this usually occurs when the sender does not correctly pass the encoding in the HTTP header.
+      #
+      # default_content_encoding = "snappy"
     
       ## Part of the request to consume.  Available options are "body" and "query".
       # data_source = "body"
@@ -74,14 +81,14 @@ remote_write:
       # measurement_name_filter = ["kubernetes", "container"]
     
       ## metric name prefix
-      # prefix will be added to metric name
+      ## prefix will be added to metric name
       # measurement_prefix = "prefix_"
     
       ## metric name
-      # metric name will be divided by "_" by default.
-      # metric is named by the first divided field, the remaining field is used as the current metric name
-      # metric name will not be divided if measurement_name is configured
-      # measurement_prefix will be added to the start of measurement_name
+      ## metric name will be divided by "_" by default.
+      ## metric is named by the first divided field, the remaining field is used as the current metric name
+      ## metric name will not be divided if measurement_name is configured
+      ## measurement_prefix will be added to the start of measurement_name
       # measurement_name = "prom_remote_write"
     
       ## max body size in bytes, default set to 500MB
@@ -119,6 +126,18 @@ remote_write:
       [inputs.prom_remote_write.http_header_tags]
       # HTTP_HEADER = "TAG_NAME"
     
+      ## Customize measurement set name.
+      ## Treat those metrics with prefix as one set.
+      ## Prioritier over 'measurement_name' configuration.
+      ## Must measurement_name = ""
+      [[inputs.prom_remote_write.measurements]]
+        prefix = "etcd_network_"
+        name = "etcd_network"
+        
+      [[inputs.prom_remote_write.measurements]]
+        prefix = "etcd_server_"
+        name = "etcd_server"
+    
       ## custom tags
       [inputs.prom_remote_write.tags]
       # some_tag = "some_value"
@@ -130,7 +149,7 @@ remote_write:
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
 <!-- markdownlint-enable -->
 
 ### tags 的处理 {#tag-ops}

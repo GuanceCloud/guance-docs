@@ -32,6 +32,7 @@ nav:
           - "Kubernetes": infra-kubernetes.md
           - "MySQL": infra-mysql.md
           - "日志引擎": infra-logengine.md
+          - "Doris": infra-doris.md
           - "OpenSearch 高可用": ha-opensearch.md
           - "时序引擎": infra-metric.md
           - "Redis": infra-redis.md
@@ -61,6 +62,7 @@ nav:
       - "配置 Keycloak 单点登录映射规则":  keycloak-rule.md
       - "Azure AD 单点登录（部署版）":  azure-ad-pass.md
       - "自定义映射": custom-mapping.md
+      - "LDAP 单点登录": ldap.md
     - '管理后台手册': 
       - "工作空间管理": space.md
       - "用户管理": user.md
@@ -74,12 +76,16 @@ nav:
       - '配置邮件服务': configuration-mail.md
       - '切换域名': switch-domain.md
       - '切换日志引擎': switch-logengine.md
+      - '切换时序引擎': switch-metricengine.md
       - '个性化配置优化': launcher-fix-cfg.md
       - '切换拨测中心': change-boce-center.md
       - '华为云更改 OpenSearch 磁盘类型': hw-change-disk-type.md
       - '配置数据转发': configure-data-forwarding.md
       - '离线环境模版更新': update-template.md
       - '开启中心Pipeline': center-pl.md
+      - '管理空间索引配置': manage-index-config.md
+      - '通过 iframe 实现页面嵌套': iframe.md
+      - '观测云集群备份和恢复': velero-install.md
     - '故障排查':
       - '查看器报“视图模板不存在”': noscenes.md
       - '日志引擎存储空间不足': es-disk-full.md
@@ -87,7 +93,7 @@ nav:
       - '无数据问题排查': troubleshooting-log-nodata.md
       - '集成中的 DataWay 列表为空': not-see-dataway.md
       - '数据写入延迟如何处理': data-write-delay.md
-      - '可用性监测查看无数据': boce-no-data.md
+      - '可用性监测故障排查': clouddial-troubleshooting.md
       #- '为什么不能使用拨测服务': no-boce.md 
     - '升级观测云': version-upgrade.md
     - '容量规划':  

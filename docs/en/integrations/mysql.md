@@ -23,7 +23,7 @@ monitor   :
 MySQL metrics collection, which collects the following data:
 
 - MySQL global status basic data collection
-- Scheam related data
+- Schema related data
 - InnoDB related metrics
 - Support custom query data collection
 
@@ -97,26 +97,26 @@ GRANT replication client on *.*  to 'datakit'@'localhost';
       ## Set dbm to true to collect database activity 
       # dbm = false
     
-      # [inputs.mysql.log]
-      # #required, glob logfiles
-      # files = ["/var/log/mysql/*.log"]
-    
-      ## glob filteer
-      # ignore = [""]
-    
-      ## optional encodings:
-      ##    "utf-8", "utf-16le", "utf-16le", "gbk", "gb18030" or ""
-      # character_encoding = ""
-    
-      ## The pattern should be a regexp. Note the use of '''this regexp'''
-      ## regexp link: https://golang.org/pkg/regexp/syntax/#hdr-Syntax
-      # multiline_match = '''^(# Time|\d{4}-\d{2}-\d{2}|\d{6}\s+\d{2}:\d{2}:\d{2}).*'''
-    
-      ## grok pipeline script path
-      # pipeline = "mysql.p"
-    
       ## Set true to enable election
       election = true
+    
+      [inputs.mysql.log]
+        # #required, glob logfiles
+        # files = ["/var/log/mysql/*.log"]
+    
+        ## glob filteer
+        # ignore = [""]
+    
+        ## optional encodings:
+        ## "utf-8", "utf-16le", "utf-16le", "gbk", "gb18030" or ""
+        # character_encoding = ""
+    
+        ## The pattern should be a regexp. Note the use of '''this regexp'''
+        ## regexp link: https://golang.org/pkg/regexp/syntax/#hdr-Syntax
+        multiline_match = '''^(# Time|\d{4}-\d{2}-\d{2}|\d{6}\s+\d{2}:\d{2}:\d{2}).*'''
+    
+        ## grok pipeline script path
+        pipeline = "mysql.p"
     
       ## Run a custom SQL query and collect corresponding metrics.
       # [[inputs.mysql.custom_queries]]
@@ -141,6 +141,14 @@ GRANT replication client on *.*  to 'datakit'@'localhost';
       [inputs.mysql.dbm_activity]
         enabled = true  
     
+      ## TLS Config
+      [inputs.mysql.tls]
+        # tls_ca = "/etc/mysql/ca.pem"
+        # tls_cert = "/etc/mysql/cert.pem"
+        # tls_key = "/etc/mysql/key.pem"
+        ## Use TLS but skip chain & host verification
+        insecure_skip_verify = true
+    
       [inputs.mysql.tags]
         # some_tag = "some_value"
         # more_tag = "some_other_value"
@@ -158,14 +166,14 @@ GRANT replication client on *.*  to 'datakit'@'localhost';
 
 ### Binlog Start {#binlog}
 
-MySQL binlog is not turned on. If you want to count the binlog size, you need to turn on the binlog function corresponding to MySQL:
+MySQL Binlog is not turned on. If you want to count the Binlog size, you need to turn on the Binlog function corresponding to MySQL:
 
 ```sql
--- ON:开启, OFF:关闭
+-- ON: turn on, OFF: turn off
 SHOW VARIABLES LIKE 'log_bin';
 ```
 
-binlog starts, see [this](https://stackoverflow.com/questions/40682381/how-do-i-enable-mysql-binary-logging){:target="_blank"} or [this answer](https://serverfault.com/questions/706699/enable-binlog-in-mysql-on-ubuntu){:target="_blank"}.
+Binlog starts, see [this](https://stackoverflow.com/questions/40682381/how-do-i-enable-mysql-binary-logging){:target="_blank"} or [this answer](https://serverfault.com/questions/706699/enable-binlog-in-mysql-on-ubuntu){:target="_blank"}.
 
 ### Database Performance Metrics Collection {#performance-schema}
 
@@ -220,7 +228,7 @@ performance-schema-consumer-events-statements-history = on
 Account authorization
 
 ```sql
--- 	MySQL 5.6 & 5.7
+-- MySQL 5.6 & 5.7
 GRANT REPLICATION CLIENT ON *.* TO datakit@'%' WITH MAX_USER_CONNECTIONS 5;
 GRANT PROCESS ON *.* TO datakit@'%';
 
@@ -238,7 +246,7 @@ GRANT EXECUTE ON datakit.* to datakit@'%';
 GRANT CREATE TEMPORARY TABLES ON datakit.* TO datakit@'%';
 ```
 
-Create the stored procedure `explain_statement` to get the sql execution plan
+Create the stored procedure `explain_statement` to get the SQL execution plan
 
 ```sql
 DELIMITER $$
@@ -402,7 +410,7 @@ All the following data collection will add a global tag named `host` by default 
 |`max_connections`|The maximum number of connections that have been in use simultaneously since the server started.|int|count|
 |`query_cache_size`|The amount of memory allocated for caching query results.|int|B|
 |`table_open_cache`|The number of open tables for all threads. Increasing this value increases the number of file descriptors that mysqld requires.|int|count|
-|`thread_cache_size`|How many threads the server should cache for reuse. When a client disconnects, the client's threads are put in the cache if there are fewer than thread_cache_size threads there.|int|B| 
+|`thread_cache_size`|How many threads the server should cache for reuse. When a client disconnects, the client's threads are put in the cache if there are fewer than thread_cache_size threads there.|int|B|
 
 
 
@@ -427,7 +435,7 @@ MySQL schema information
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`query_run_time_avg`|Avg query response time per schema.|float|ns|
-|`schema_size`|Size of schemas(MiB)|float|MB| 
+|`schema_size`|Size of schemas(MiB)|float|MB|
 
 
 
@@ -582,7 +590,7 @@ MySQL schema information
 |`trx_rseg_history_len`|Length of the TRX_RSEG_HISTORY list|int|count|
 |`x_lock_os_waits`|As shown in the SEMAPHORES section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
 |`x_lock_spin_rounds`|As shown in the SEMAPHORES section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
-|`x_lock_spin_waits`|As shown in the SEMAPHORES section of the `SHOW ENGINE INNODB STATUS` output.|int|count| 
+|`x_lock_spin_waits`|As shown in the SEMAPHORES section of the `SHOW ENGINE INNODB STATUS` output.|int|count|
 
 
 
@@ -613,7 +621,7 @@ MySQL table information
 |`data_free`|The number of rows. Some storage engines, such as MyISAM, store the exact count. For other storage engines, such as InnoDB, this value is an approximation, and may vary from the actual value by as much as 40% to 50%. In such cases, use SELECT COUNT(*) to obtain an accurate count.|int|count|
 |`data_length`|For InnoDB, DATA_LENGTH is the approximate amount of space allocated for the clustered index, in bytes. Specifically, it is the clustered index size, in pages, multiplied by the InnoDB page size|int|count|
 |`index_length`|For InnoDB, INDEX_LENGTH is the approximate amount of space allocated for non-clustered indexes, in bytes. Specifically, it is the sum of non-clustered index sizes, in pages, multiplied by the InnoDB page size|int|count|
-|`table_rows`|The number of rows. Some storage engines, such as MyISAM, store the exact count. For other storage engines, such as InnoDB, this value is an approximation, and may vary from the actual value by as much as 40% to 50%. In such cases, use SELECT COUNT(*) to obtain an accurate count.|int|count| 
+|`table_rows`|The number of rows. Some storage engines, such as MyISAM, store the exact count. For other storage engines, such as InnoDB, this value is an approximation, and may vary from the actual value by as much as 40% to 50%. In such cases, use SELECT COUNT(*) to obtain an accurate count.|int|count|
 
 
 
@@ -649,7 +657,7 @@ MySQL user information
 |`table_open_cache_hits`|The number of hits for open tables cache lookups.|int|count|
 |`table_open_cache_misses`|The number of misses for open tables cache lookups.|int|count|
 |`table_open_cache_overflows`|The number of overflows for the open tables cache. This is the number of times, after a table is opened or closed, a cache instance has an unused entry and the size of the instance is larger than table_open_cache / table_open_cache_instances.|int|count|
-|`total_connect`|The number of total connect|int|count| 
+|`total_connect`|The number of total connect|int|count|
 
 
 
@@ -728,7 +736,7 @@ Record the number of executions of the query statement, wait time, lock time, an
 |`sum_rows_sent`|The number of rows sent per normalized query and schema.|int|count|
 |`sum_select_full_join`|The total count of full table scans on a joined table per normalized query and schema.|int|count|
 |`sum_select_scan`|The total count of full table scans on the first table per normalized query and schema.|int|count|
-|`sum_timer_wait`|The total query execution time(nanosecond) per normalized query and schema.|int|count| 
+|`sum_timer_wait`|The total query execution time(nanosecond) per normalized query and schema.|int|count|
 
 
 
@@ -781,7 +789,7 @@ Select some of the SQL statements with high execution time, collect their execut
 |`sort_rows`|Number of rows sorted by the statement. |int|count|
 |`sort_scan`|Number of sorts performed by the statement which used a full table scan.|int|count|
 |`timer_wait_ns`|Value in nanoseconds of the event's duration |float|ns|
-|`timestamp`|The timestamp(millisecond) when then the event ends.|float|msec| 
+|`timestamp`|The timestamp(millisecond) when then the event ends.|float|msec|
 
 
 
@@ -834,7 +842,7 @@ Collect the waiting event of the current thread
 |`thread_id`|The thread ID|string|-|
 |`wait_event`|The name of the wait event|string|-|
 |`wait_timer_end`|The time when the waiting event timing ended|int|ns|
-|`wait_timer_start`|The time when the waiting event timing started|int|ns| 
+|`wait_timer_start`|The time when the waiting event timing started|int|ns|
 
 
 <!-- markdownlint-enable -->
@@ -897,7 +905,7 @@ The list of cut fields is as follows:
 | `bytes_sent`        | `123456`                                                                                    | Number of bytes sent                     |
 | `db_host`           | `localhost`                                                                                 | hostname                       |
 | `db_ip`             | `1.2.3.4`                                                                                   | ip                             |
-| `db_slow_statement` | `SET timestamp=1574851393;\nSELECT * FROM fruit f1, fruit f2, fruit f3, fruit f4, fruit f5` | Slow query sql                     |
+| `db_slow_statement` | `SET timestamp=1574851393;\nSELECT * FROM fruit f1, fruit f2, fruit f3, fruit f4, fruit f5` | Slow query SQL                     |
 | `db_user`           | `root[root]`                                                                                | User                           |
 | `lock_time`         | `0.000184`                                                                                  | Lock time                         |
 | `query_id`          | `35`                                                                                        | query id                        |
@@ -912,7 +920,7 @@ The list of cut fields is as follows:
 <!-- markdownlint-disable MD013 -->
 ### :material-chat-question: Why the measurement `mysql_user_status` is not collected for Aliyun RDS? {#faq-user-no-data}
 
-The measurment is collected from MySQL `performance_schema`. You should check if it is enabled by the SQL below：
+The measurement is collected from MySQL `performance_schema`. You should check if it is enabled by the SQL below：
 
 ```sql
 show variables like "performance_schema";
@@ -925,6 +933,6 @@ show variables like "performance_schema";
 
 ```
 
-If the value is `OFF`, please refer to the [document](https://help.aliyun.com/document_detail/41726.html?spm=a2c4g.276975.0.i9) to enable it.
+If the value is `OFF`, please refer to the [document](https://help.aliyun.com/document_detail/41726.html?spm=a2c4g.276975.0.i9){:target="_blank"} to enable it.
 
 <!-- markdownlint-enable -->

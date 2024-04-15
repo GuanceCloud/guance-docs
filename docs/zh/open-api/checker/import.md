@@ -2,7 +2,7 @@
 
 ---
 
-<br />**POST /api/v1/monitor/check/import**
+<br />**POST /api/v1/checker/import**
 
 ## 概述
 导入一个/多个监控器配置
@@ -16,8 +16,8 @@
 |:-----------|:-------|:-----|:----------------|
 | checkers | array | Y | 规则配置列表<br>允许为空: False <br> |
 | type | string |  | 智能监控导入传参 smartMonitor<br>允许为空: False <br>允许空字符串: False <br>可选值: ['smartMonitor'] <br> |
-| skipRepeatNameCheck | boolean |  | 是否跳过重名检测, false进行重名检测, true为跳过重名检测<br>例子: read <br>允许为空: False <br> |
-| skipRepeatNameCreate | boolean |  | true同名跳过创建, 不同名的直接创建, false创建所有导入信息<br>例子: read <br>允许为空: False <br> |
+| skipRepeatNameCheck | boolean |  | 是否跳过重名检测, false进行重名检测, true为跳过重名检测<br>例子: False <br>允许为空: False <br> |
+| skipRepeatNameCreate | boolean |  | true同名跳过创建, 不同名的直接创建, false创建所有导入信息<br>例子: False <br>允许为空: False <br> |
 
 ## 参数补充说明
 
@@ -31,18 +31,18 @@
 | 参数名 | type| 必传 | 说明|
 | :---- | :-- | :--- | :------- |
 | checker   | array | 必传 | 规则配置列表|
-| skipRepeatNameCheck   | boolean | 必传 | 是否跳过重名检测 |
-| skipRepeatNameCreate  | boolean | 必传 | 同名是否跳过创建|
+| skipRepeatNameCheck   | boolean | 必传 | 是否跳过重名检测, 如不跳过（false）：同名检测不通过则返回同名监控器名称列表 |
+| skipRepeatNameCreate  | boolean | 必传 | 同名是否跳过创建，如不跳过（false）：则会创建相同名称的监控器|
 
 
 
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/monitor/check/import' \
+curl 'https://openapi.guance.com/api/v1/checker/import' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"skipRepeatNameCheck":true,"checkers": [{"extend": {"funcName": "", "noDataInterval": null, "querylist": [{"datasource": "dataflux", "qtype": "dql", "query": {"alias": "", "code": "Result", "dataSource": "aliyun_acs_rds_dashboard", "field": "IOPSUsage_Average", "fieldFunc": "last", "fieldType": "float", "funcList": [], "groupBy": ["instanceId"], "groupByTime": "", "namespace": "metric", "q": "M::`aliyun_acs_rds_dashboard`:(LAST(`IOPSUsage_Average`))  BY `instanceId`", "type": "simple"}, "uuid": "7d4f9ff1-5f7f-4cdb-85c2-9b8f0dd8ceed"}], "recoverNeedPeriodCount": 1, "rules": [{"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": ["90"], "operator": ">="}], "status": "critical"}, {"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": ["80", "90"], "operator": "between"}], "status": "error"}, {"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": [], "operator": ">="}], "status": "warning"}]}, "is_disable": false, "jsonScript": {"checkerOpt": {"rules": [{"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": ["90"], "operator": ">="}], "status": "critical"}, {"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": ["80", "90"], "operator": "between"}], "status": "error"}]}, "every": "1m", "groupBy": ["instanceId"], "interval": 300, "message": ">等级：{{df_status}}  \n>实例：{{instanceId}}  \n>内容：RDS Mysql IOPS 使用率为 {{ Result |  to_fixed(2) }}%  \n>建议：登录阿里云控制台查看 RDS 是否有异常", "name": "阿里云 RDS Mysql IOPS 使用率过高", "noDataInterval": 0, "recoverNeedPeriodCount": 1, "targets": [{"alias": "Result", "dql": "M::`aliyun_acs_rds_dashboard`:(LAST(`IOPSUsage_Average`))  BY `instanceId`"}], "title": "阿里云 RDS Mysql 实例 ID 为 {{instanceId}} IOPS 使用率过高", "type": "simpleCheck"}, "monitorName": "BmUgtnAV"}, {"extend": {"funcName": "", "noDataInterval": null, "querylist": [{"datasource": "dataflux", "qtype": "dql", "query": {"alias": "", "code": "Result", "dataSource": "df_celery", "field": "events_total", "fieldFunc": "last", "fieldType": "float", "funcList": [], "groupBy": ["worker"], "groupByTime": "", "namespace": "metric", "q": "M::`df_celery`:(LAST(`events_total`)) BY `worker`", "type": "simple"}, "uuid": "1fae3947-1f0b-4b9b-8b30-654546d15cde"}], "recoverNeedPeriodCount": null, "rules": [{"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": ["50"], "operator": ">="}], "status": "critical"}, {"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": ["30"], "operator": ">="}], "status": "error"}, {"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": [], "operator": ">="}], "status": "warning"}]}, "is_disable": false, "jsonScript": {"checkerOpt": {"rules": [{"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": ["50"], "operator": ">="}], "status": "critical"}, {"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": ["30"], "operator": ">="}], "status": "error"}]}, "every": "1m", "groupBy": ["worker"], "interval": 300, "message": "超过{{ Result }}", "name": "测试用的", "noDataInterval": 0, "recoverNeedPeriodCount": 0, "targets": [{"alias": "Result", "dql": "M::`df_celery`:(LAST(`events_total`)) BY `worker`"}], "title": "df_celery触发", "type": "simpleCheck"}, "monitorName": "BmUgtnAV"}], "uChoose": "skip"}' \
+--data-raw '{"checkers":[{"extend":{"funcName":"","isNeedCreateIssue":false,"issueLevelUUID":"","needRecoverIssue":false,"querylist":[{"datasource":"dataflux","qtype":"dql","query":{"alias":"","code":"Result","dataSource":"ssh","field":"ssh_check","fieldFunc":"count","fieldType":"float","funcList":[],"groupBy":["host"],"groupByTime":"","namespace":"metric","q":"M::`ssh`:(count(`ssh_check`)) BY `host`","type":"simple"},"uuid":"aada629a-672e-46f9-9503-8fd61065c382"}],"rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["90"],"operator":">="}],"status":"critical"},{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["0"],"operator":">="}],"status":"error"}]},"is_disable":false,"jsonScript":{"atAccounts":[],"atNoDataAccounts":[],"channels":[],"checkerOpt":{"infoEvent":false,"rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["90"],"operator":">="}],"status":"critical"},{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["0"],"operator":">="}],"status":"error"}]},"disableCheckEndTime":false,"every":"1m","groupBy":["host"],"interval":300,"message":">等级：{{status}}  \n>主机：{{host}}  \n>内容：主机 SSH 状态 {{ Result |  to_fixed(2) }}%  \n>建议：检查主机 SSH 服务状态","noDataMessage":"","noDataTitle":"","recoverNeedPeriodCount":2,"targets":[{"alias":"Result","dql":"M::`ssh`:(count(`ssh_check`)) BY `host`","qtype":"dql"}],"title":"主机 {{ host }} SSH 服务异常","type":"simpleCheck"},"monitorName":"default","secret":"","tagInfo":[],"type":"trigger"}]}' \
 --compressed 
 ```
 

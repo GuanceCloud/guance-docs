@@ -20,7 +20,7 @@ monitor   :
 
 ---
 
-Start an HTTP endpoint to listen and receive promtail log data and report it to Guance Cloud.
+Start an HTTP endpoint to listen and receive Promtail log data and report it to Guance Cloud.
 
 ## Configuration {#config}
 
@@ -33,7 +33,7 @@ Already tested version:
 - [x] 0.1.0
 
 ### Collector Configuration {#input-config}
-
+<!-- markdownlint-disable MD046 -->
 Go to the `conf.d/log` directory under the DataKit installation directory, copy `promtail.conf.sample` and name it `promtail.conf`. Examples are as follows:
 
     ```toml
@@ -50,7 +50,7 @@ Go to the `conf.d/log` directory under the DataKit installation directory, copy 
     
     ```
     After configuration, [Restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
-
+<!-- markdownlint-enable -->
 ### API Version {#API version}
 
 For Promtail versions `v0.3.0` and before, Datakit's configuration should set `legacy = true`, by using legacy API [`POST /api/prom/push`](https://grafana.com/docs/loki/latest/api/#post-apiprompush){:target="_blank"} to receiving logging data from Promtail.
@@ -71,7 +71,7 @@ After configuration, restart DataKit.
 
 ### Supported parameter {#args}
 
-The promtail collector supports adding parameters to the HTTP URL. The list of parameters is as follows:
+The Promtail collector supports adding parameters to the HTTP URL. The list of parameters is as follows:
 
 - `source`: Identifies the data source. Such as `nginx` or `redis`（`/v1/write/promtail?source=nginx`), With `source` set to `default`by default;
 - `pipeline`: Specify the pipeline name required for the data, Such as `nginx.p`（`/v1/write/promtail?pipeline=nginx.p`）；
@@ -79,7 +79,7 @@ The promtail collector supports adding parameters to the HTTP URL. The list of p
 
 ## Best Practice {#best practice}
 
-Promtail's data was originally sent to Loki, which is, `/loki/api/v1/push`. Change the `url` in Promtail's configuration to Datakit, after enabled Datakit's promtail collector, Promtail would send its data to Datakit's promtail collector.
+Promtail's data was originally sent to Loki, which is, `/loki/api/v1/push`. Change the `url` in Promtail's configuration to Datakit, after enabled Datakit's Promtail collector, Promtail would send its data to Datakit's Promtail collector.
 
 Promtail's configuration is like below:
 

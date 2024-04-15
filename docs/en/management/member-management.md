@@ -1,4 +1,4 @@
-# Membership Management
+# Member Management
 ---
 
 

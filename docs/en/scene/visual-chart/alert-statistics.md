@@ -1,34 +1,29 @@
 # Event
 ---
 
-## Overview
+The alert events of anomaly detection, the alert statistics chart is divided into two parts, namely the statistics chart and the alert list.
 
-Event here refers to a chart recording alarm events of anomaly detection, the chart is divided into two parts, namely statistics chart and alarm list.
-
-- Statistical chart: Group the events by level and counts the number of events of each level; it supports jumping to query the details of events by clicking on the statistical chart.
-- Alarm list: Display the alarm events that have not been restored within the selected time range.
-## Chart Search
-
-- Search: Enter keywords to query event content.
-- Filtering: Support filtering log data by adding tags.
-
-## Chart Style
-| Options | Description |
-| --- | --- |
-| Chart title | It would be shown on the top left of the chart after setting the title name; it also supports hide. |
-| Display items | Show all, statistics graph only or alarm list only. |
-
-## Chart Setting
-
-### Advanced Settings
-| Options | Description |
-| --- | --- |
-| Lock time | It supports locking the time range of chart query data, not limited by the global time component. The time set by the user will appear in the upper right corner of the chart after successful setup, e.g.【xx minutes】,【xx hours】,【xx days】. If the time interval is locked at 30 minutes, then when adjusting the time component, only the last 30 minutes of data will be displayed no matter what time range view is queried. |
-| Chart description | It refers to add description information to the chart, then the chart title will appear behind the【i】prompt, and vice versa. |
-
-## Example Chart
-
-The following shows an example of event.
+- Statistics Chart: Group events by level and count the number of events at each level, support clicking on the statistics chart to query the details of the event;
+- Alert List: Display the alert events that have not been recovered within the selected time range.
 
 ![](../img/warning.png)
+
+## Chart Query
+
+- Search: Enter keywords to query event content;
+- Filter: Supports adding tags to filter log data.
+
+## Basic Settings
+
+| Option | Description |
+| --- | --- |
+| Title | Set the title name for the chart, after setting, it will be displayed in the upper left corner of the chart, and hiding is supported. |
+| Description | Add a description to the chart, after setting, a [i] prompt will appear after the chart title, if not set, it will not be displayed. |
+| Display Items | Display all, only statistics chart or only alert list. |
+
+## Advanced Settings
+
+| Option | Description |
+| --- | --- |
+| Lock Time | That is, fix the time range of the current chart query data, which is not restricted by the global time component. After the setting is successful, the upper right corner of the chart will display the user-set time, such as [xx minutes], [xx hours], [xx days]. If the lock time interval is 30 minutes, then no matter what time range view is queried when adjusting the time component, it will only display the latest 30 minutes of data. |
 

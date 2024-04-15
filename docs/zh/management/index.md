@@ -80,9 +80,7 @@ icon: zy/management
 通过 SSO 登录的账号，默认使用 SSO 配置的登录保持时间，在账号管理修改后，使用修改后的登录保持时间。
 
 
-## 账户安全相关
-
-观测云一直重视用户的账号安全，下列是一些相关的安全设置。
+## 账号安全设置
 
 ### MFA 认证 {#mfa}
 
@@ -109,9 +107,38 @@ icon: zy/management
 
 > 更多配置详情，可参考 [数据授权](data-authorization.md)。
 
-## 个人偏好设置
+### 注销账号 {#cancel}
 
-### 个人资料
+<font size=2>**注意**：该入口仅本地账号可见，单点登录账号无此入口。</font>
+
+<img src="img/cancel.png" width="70%" >
+
+:material-numeric-1-circle-outline: 选择上图任一方式进行身份验证；
+
+:material-numeric-2-circle-outline: 若当前账号为工作空间的拥有者，请先移交这一角色权限；
+
+<img src="img/all-workspaces.png" width="60%" >
+
+<img src="img/de-owner.png" width="70%" >
+
+:material-numeric-3-circle-outline: 在当前账号为非拥有者的前提下，进入第三步。在确认注销前需注意：
+
+1. 账号将无法登录进入观测云工作空间；  
+2. 账号在工作空间内所有关联信息将被清除且无法找回；  
+3. 账号提交的未关闭工单将于 7 个工作日内做关闭处理。
+
+阅读并同意相关协议后，点击**确认注销**，即可注销当前账号。
+
+<img src="img/confirm-cancel.png" width="60%" >
+
+???+ warning "账号被注销后："
+
+    1. 针对普通商业版：账号注销后，被注销的邮箱依旧可以被再次注册。注册后为一个全新的账号，历史账号的数据不会被关联显示。
+    2. 针对部署版：可以通过[管理后台 > 添加用户](../deployment/user.md#add)进行创建。
+
+## 个人账号设置
+
+### 用户信息
 
 在工作空间，点击左侧**账号 > 账号管理**，您可以修改头像、用户名、邮箱、手机和密码。
 
@@ -140,14 +167,15 @@ icon: zy/management
 
 <img src="img/zone-1.png" width="60%" >
 
-### 系统通知
+### 系统通知 {#system-notice}
 
-<div class="grid cards" markdown>
+![](img/system-notice.png)
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 点击管理您的工作空间系统通知</font>](./system-notification.md)
+您可以在导航栏 > **系统通知**统一查看当前账号下工作空间存在的异常状态，比如：数据转发规则、云账号可用状态、告警规则、数据使用上线等。
 
+点击上方的订阅按钮，当有新消息时，观测云会发送相关邮件至您的邮箱。
 
-</div>
+<img src="img/system-notice-1.png" width="60%" >
 
 ### 高性能模式
 
@@ -184,6 +212,8 @@ icon: zy/management
     ![](img/08_color_03.png)
 
 </div>
+
+
 
 
 ## 更多阅读

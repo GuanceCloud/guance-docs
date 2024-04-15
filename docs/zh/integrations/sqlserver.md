@@ -24,9 +24,13 @@ SQL Server 采集器采集 SQL Server `waitstats`、`database_io` 等相关指�
 
 ## 配置 {#config}
 
-### 前置条件 {#requrements}
+SQL Server 版本 >= 2012, 已测试的版本：
 
-- SQL Server 版本 >= 2019
+- [x] 2017
+- [x] 2019
+- [x] 2022
+
+### 前置条件 {#requrements}
 
 - 创建用户：
 
@@ -166,7 +170,7 @@ GO
 
 | Tag | Description |
 |  ----  | --------|
-|`sqlserver_host`|host name which installed SQLServer|
+|`sqlserver_host`|Host name which installed SQLServer|
 
 - 字段列表
 
@@ -175,14 +179,14 @@ GO
 | ---- |---- | :---:    | :----: |
 |`committed_memory`|The amount of memory committed to the memory manager|int|B|
 |`cpu_count`|Specifies the number of logical CPUs on the system. Not nullable|int|count|
-|`db_offline`|num of database state in offline|int|count|
-|`db_online`|num of database state in online|int|count|
-|`db_recovering`|num of database state in recovering|int|count|
-|`db_recovery_pending`|num of database state in recovery_pending|int|count|
-|`db_restoring`|num of database state in restoring|int|count|
-|`db_suspect`|num of database state in suspect|int|count|
+|`db_offline`|Num of database state in offline|int|count|
+|`db_online`|Num of database state in online|int|count|
+|`db_recovering`|Num of database state in recovering|int|count|
+|`db_recovery_pending`|Num of database state in recovery_pending|int|count|
+|`db_restoring`|Num of database state in restoring|int|count|
+|`db_suspect`|Num of database state in suspect|int|count|
 |`physical_memory`|Total physical memory on the machine|int|B|
-|`server_memory`|memory used|int|B|
+|`server_memory`|Memory used|int|B|
 |`target_memory`|Amount of memory that can be consumed by the memory manager. When this value is larger than the committed memory, then the memory manager will try to obtain more memory. When it is smaller, the memory manager will try to shrink the amount of memory committed.|int|B|
 |`uptime`|Total time elapsed since the last computer restart|int|ms|
 |`virtual_memory`|Amount of virtual memory available to the process in user mode.|int|B|
@@ -201,7 +205,7 @@ GO
 |`counter_type`|Type of the counter|
 |`instance`|Name of the specific instance of the counter|
 |`object_name`|Category to which this counter belongs.|
-|`sqlserver_host`|host name which installed SQLServer|
+|`sqlserver_host`|Host name which installed SQLServer|
 
 - 字段列表
 
@@ -220,8 +224,8 @@ GO
 
 | Tag | Description |
 |  ----  | --------|
-|`sqlserver_host`|host name which installed SQLServer|
-|`wait_category`|wait category info|
+|`sqlserver_host`|Host name which installed SQLServer|
+|`wait_category`|Wait category info|
 |`wait_type`|Name of the wait type. For more information, see Types of Waits, later in this topic|
 
 - 字段列表
@@ -245,11 +249,11 @@ GO
 
 | Tag | Description |
 |  ----  | --------|
-|`database_name`|database name|
+|`database_name`|Database name|
 |`file_type`|Description of the file type, `ROWS/LOG/FILESTREAM/FULLTEXT` (Full-text catalogs earlier than SQL Server 2008.)|
 |`logical_filename`|Logical name of the file in the database|
 |`physical_filename`|Operating-system file name.|
-|`sqlserver_host`|host name which installed SQLServer|
+|`sqlserver_host`|Host name which installed SQLServer|
 
 - 字段列表
 
@@ -277,7 +281,7 @@ GO
 |  ----  | --------|
 |`cpu_id`|CPU ID assigned to the scheduler.|
 |`scheduler_id`|ID of the scheduler. All schedulers that are used to run regular queries have ID numbers less than 1048576. Those schedulers that have IDs greater than or equal to 1048576 are used internally by SQL Server, such as the dedicated administrator connection scheduler. Is not nullable.|
-|`sqlserver_host`|host name which installed SQLServer|
+|`sqlserver_host`|Host name which installed SQLServer|
 
 - 字段列表
 
@@ -309,7 +313,7 @@ GO
 
 | Tag | Description |
 |  ----  | --------|
-|`sqlserver_host`|host name which installed SQLServer|
+|`sqlserver_host`|Host name which installed SQLServer|
 |`volume_mount_point`|Mount point at which the volume is rooted. Can return an empty string. Returns null on Linux operating system.|
 
 - 字段列表
