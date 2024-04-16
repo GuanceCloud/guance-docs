@@ -2,7 +2,7 @@
 
 ## 1.83.161（2024 年 04 月 10 日）
 
-pubrepo.guance.com/dataflux/1.83.161:launcher-4debd25-1713091048
+pubrepo.guance.com/dataflux/1.83.161:launcher-a44ccb3-1713091048
 
 ### 观测云部署版更新
 
