@@ -55,7 +55,7 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/lgim_1145381480dd4a4f95bcc
     "content": {
         "conditions": "",
         "createAt": 1677665779,
-        "creator": "wsak_ecdec9f27d6c482a997c218b2fb351a0",
+        "creator": "xxx",
         "deleteAt": -1,
         "duration": "",
         "extend": {},
@@ -74,7 +74,7 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/lgim_1145381480dd4a4f95bcc
         "status": 0,
         "storeType": "es",
         "updateAt": 1677665779,
-        "updator": "wsak_ecdec9f27d6c482a997c218b2fb351a0",
+        "updator": "xxx",
         "uuid": "lgim_1145381480dd4a4f95bccdb1f0889141",
         "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
     },

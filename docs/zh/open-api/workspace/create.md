@@ -74,24 +74,23 @@ curl 'https://openapi.guance.com/api/v1/workspace/create' \
     "code": 200,
     "content": {
         "accountInfo": [
-            "acnt_6f2fd4c0766d11ebb56ef2b2c21faf74"
+            "acnt_xxxxxx"
         ],
         "akInfo": {
-            "keyId": "wsak_fb0d6f7f2a3447b8871ad9119e4faac5",
-            "keySk": "RTkIO2q1WdHLzt8achfAXiZPvl0KrJu4",
+            "keyId": "wsak_xxxxxx",
+            "keySk": "xxxxxxxxxxx",
             "name": "test_ak"
         },
         "makeResourceExceptionCode": "",
         "ownerInfo": {
-            "accountUUID": "acnt_6f2fd4c0766d11ebb56ef2b2c21faf74",
-            "email": "88@qq.com",
+            "accountUUID": "acnt_xxxxxxxxxx",
+            "email": "xxxxx@qq.com",
             "name": "测试"
         },
         "wsInfo": {
             "billingState": "free",
-            "cliToken": "wkcli_3b8cd17e24f84c5fa1bfdefc27f492f5",
             "createAt": 1672802266,
-            "creator": "wsak_60b430adbf1440ad991a4647e9ef411a",
+            "creator": "wsak_xxxxx",
             "dashboardUUID": null,
             "datastore": {
                 "backup_log": "es",
@@ -132,9 +131,8 @@ curl 'https://openapi.guance.com/api/v1/workspace/create' \
             "rpName": "rp1",
             "status": 0,
             "supportJsonMessage": 1,
-            "token": "tkn_609ab0912a3f4e08b6d60184454ca59c",
             "updateAt": 1672802266,
-            "updator": "wsak_60b430adbf1440ad991a4647e9ef411a",
+            "updator": "wsak_xxxxx",
             "uuid": "wksp_320a93deda9a47549ffb95ce26fc6bb4",
             "versionType": "free"
         }

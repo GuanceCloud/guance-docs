@@ -20,7 +20,7 @@
 | alertPolicyUUIDs | array |  | 告警策略UUID<br>允许为空: False <br> |
 | dashboardUUID | string |  | 关联仪表板id<br>允许为空: False <br> |
 | tags | array |  | 用于筛选的标签名称<br>允许为空: False <br>例子: ['xx', 'yy'] <br> |
-| secret | string |  | Webhook地址的中段唯一标识secret<br>允许为空: False <br>例子: secret_xxxxx <br> |
+| secret | string |  | Webhook地址的中段唯一标识secret(一般取随机uuid, 确保工作空间内唯一)<br>允许为空: False <br>例子: secret_xxxxx <br> |
 | jsonScript | json |  | 规则配置<br>允许为空: False <br> |
 | jsonScript.type | string | Y | 检查方法类型<br>例子: simpleCheck <br>允许为空: False <br> |
 | jsonScript.windowDql | string |  | window dql<br>允许为空: False <br> |
@@ -40,7 +40,7 @@
 | jsonScript.periodBefore | integer |  | 针对高级检测,突变检测的(昨日/一小时前)参数,单位s<br>例子: 600 <br>允许为空: False <br> |
 | jsonScript.recoverNeedPeriodCount | integer |  | 指定异常在几个检查周期之后生成恢复事件,如果 检测频率为 自定义customCrontab, 该字段表示为时间长度, 单位s, 否则,表示几个检测频率<br>例子: 60 <br>允许为空: False <br> |
 | jsonScript.noDataInterval | integer |  | 多长时间内无数据则产生无数据事件<br>例子: 60 <br>允许为空: False <br> |
-| jsonScript.noDataAction | string |  | 无数据处理操作<br>允许为空: False <br>可选值: ['none', 'noData', 'recover'] <br> |
+| jsonScript.noDataAction | string |  | 无数据处理操作<br>允许为空: False <br>可选值: ['none', 'checkAs0', 'noDataEvent', 'criticalEvent', 'errorEvent', 'warningEvent', 'okEvent', 'noData', 'recover'] <br> |
 | jsonScript.checkFuncs | array |  | 检查函数信息列表<br>例子: [{'funcId': 'xxx', 'kwargs': {}}] <br>允许为空: False <br> |
 | jsonScript.groupBy | array |  | 触发维度<br>例子: ['性别'] <br>允许为空: False <br> |
 | jsonScript.targets | array |  | 检查目标<br>例子: [{'dql': 'M::`士兵信息`:(AVG(`潜力值`))  [::auto] by `性别`', 'alias': 'M1'}] <br>允许为空: False <br> |
@@ -59,7 +59,7 @@
 | jsonScript.channels | array |  | 频道UUID列表<br>例子: ['名称1', '名称2'] <br>允许为空: False <br> |
 | jsonScript.atAccounts | array |  | 正常检测下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
 | jsonScript.atNoDataAccounts | array |  | 无数据情况下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
-| jsonScript.subUri | string |  | 表示Webhook地址的地址后缀<br>例子: datakit/push <br>允许为空: False <br> |
+| jsonScript.subUri | string |  | 表示Webhook地址的地址后缀(根据用户业务侧需求可选设置，无特殊限制)<br>例子: datakit/push <br>允许为空: False <br> |
 | jsonScript.disableCheckEndTime | boolean |  | 是否禁用结束时间限制, https://confluence.jiagouyun.com/pages/viewpage.action?pageId=177405958<br>例子: True <br>允许为空: False <br> |
 
 ## 参数补充说明
@@ -204,6 +204,23 @@
 
 --------------
 
+**8.`jsonScript.noDataAction`参数信息 **
+
+|  参数名        |   说明  |
+|---------------|----------|
+| none          |  无动作（即与[关闭无数据相关处理]相同）  |
+| checkAs0      |  查询结果视为0                       |
+| noDataEvent   |  触发恢复事件(noData)                |
+| criticalEvent |  触发紧急事件(crtical)               |
+| errorEvent    |  触发重要事件(error)                 |
+| warningEvent  |  触发警告事件(warning)               |
+| okEvent       |  触发恢复事件(ok)                    |
+| noData        |  产生无数据事件, 该参数于 2024-04-10 日下架,  其功能逻辑等同于`noDataEvent`，可直接替换为`noDataEvent`  |
+| recover       |  触发恢复事件, 该参数于 2024-04-10 日下架,  其功能逻辑等同于`okEvent`，可直接替换为`okEvent`  |
+
+
+--------------
+
 
 
 
@@ -230,7 +247,7 @@ curl 'https://openapi.guance.com/api/v1/checker/add' \
         ],
         "createAt": 1710831393,
         "createdWay": "manual",
-        "creator": "wsak_a2d55c91bc134aaaa8d68e30cee8a53c",
+        "creator": "wsak_xxxx",
         "crontabInfo": {
             "crontab": "*/1 * * * *",
             "id": "cron-2n8ZyrMWKXB8"

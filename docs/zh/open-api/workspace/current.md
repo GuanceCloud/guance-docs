@@ -32,7 +32,6 @@ curl 'https://openapi.guance.com/api/v1/workspace/get' \
     "code": 200,
     "content": {
         "billingState": "normal",
-        "cliToken": "wkcli_2dc439f6693711eb8ff97aeee04b54af",
         "createAt": 1612697128,
         "creator": "mact-U2kcQuQum4Cs7YdLAe49B9Hg",
         "dashboardUUID": null,
@@ -59,7 +58,6 @@ curl 'https://openapi.guance.com/api/v1/workspace/get' \
         "name": "开发测试一起用",
         "rpName": "rp4",
         "status": 0,
-        "token": "tkn_2dc438b6693711eb8ff97aeee04b54af",
         "updateAt": 1642562104,
         "updator": "acnt_6f2fd4c0766d11ebb56ef2b2c21faf74",
         "uuid": "wksp_2dc431d6693711eb8ff97aeee04b54af",

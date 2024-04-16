@@ -191,7 +191,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/add' \
         ],
         "createAt": 1698732345,
         "createdWay": "manual",
-        "creator": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+        "creator": "wsak_xxxxx",
         "dashboardBindSet": [],
         "deleteAt": -1,
         "extend": {},
@@ -207,7 +207,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/add' \
         "status": 0,
         "type": "CUSTOM",
         "updateAt": 1698732345,
-        "updator": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+        "updator": "wsak_xxxxx",
         "uuid": "dsbd_c66d57c9f10149378b1fd36977145713",
         "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
     },

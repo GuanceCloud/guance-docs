@@ -194,7 +194,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_c66d57c9f10149378b1fd3697
         ],
         "createAt": 1698732345,
         "createdWay": "manual",
-        "creator": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+        "creator": "wsak_xxxxx",
         "dashboardBidding": {
             "app_id": [
                 {
@@ -224,13 +224,13 @@ curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_c66d57c9f10149378b1fd3697
         },
         "type": "CUSTOM",
         "updateAt": 1698732854,
-        "updator": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+        "updator": "wsak_xxxxx",
         "updatorInfo": {
             "acntWsNickname": "",
-            "email": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+            "email": "wsak_xxxxx",
             "iconUrl": "",
             "name": "a",
-            "username": "wsak_818fc4d5ff714411b0cc4db916de3e5f"
+            "username": "xxx"
         },
         "uuid": "dsbd_c66d57c9f10149378b1fd36977145713",
         "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
