@@ -81,3 +81,15 @@ docs/dataflux-func/maintenance-guide-helm/install-via-rancher-2.png filter=lfs d
 docs/dataflux-func/script-market-guance-tencentcloud-sdk-module-issue/open-file-manager.png filter=lfs diff=lfs merge=lfs -text
 docs/dataflux-func/sidecar-guide/add-datasource-2.png filter=lfs diff=lfs merge=lfs -text
 docs/dataflux-func/trouble-shooting/mysql-tls-version-setting.png filter=lfs diff=lfs merge=lfs -text
+overrides/.icons/zy/*.svg filter=lfs diff=lfs merge=lfs -text
+overrides/source/.icons/fontawesome/brands/*.svg filter=lfs diff=lfs merge=lfs -text
+overrides/source/.icons/fontawesome/regular/*.svg filter=lfs diff=lfs merge=lfs -text
+overrides/source/.icons/fontawesome/solid/*.svg filter=lfs diff=lfs merge=lfs -text
+overrides/source/.icons/*.svg filter=lfs diff=lfs merge=lfs -text
+overrides/source/.icons/material/*.svg filter=lfs diff=lfs merge=lfs -text
+overrides/source/.icons/octicons/*.svg filter=lfs diff=lfs merge=lfs -text
+overrides/source/assets/images/*.svg filter=lfs diff=lfs merge=lfs -text
+overrides/source/overrides/.icons/*.svg filter=lfs diff=lfs merge=lfs -text
+overrides/source/overrides/assets/images/layers/*.svg filter=lfs diff=lfs merge=lfs -text
+overrides/source/overrides/assets/images/spotlight/*.svg filter=lfs diff=lfs merge=lfs -text
+overrides/source/overrides/assets/images/users/*.svg filter=lfs diff=lfs merge=lfs -text

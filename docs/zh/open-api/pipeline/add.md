@@ -52,7 +52,7 @@ curl 'https://openapi.guance.com/api/v1/notes/create' \
         "category": "logging",
         "content": "YWRkX2tleShjaXR5LCAic2hhbmdoYWkiKQ==\n",
         "createAt": 1678026470,
-        "creator": "wsak_dca59c06eb144f10b6041c34ad1716a7",
+        "creator": "xxxx",
         "deleteAt": -1,
         "extend": {},
         "id": null,
@@ -61,7 +61,7 @@ curl 'https://openapi.guance.com/api/v1/notes/create' \
         "status": 0,
         "testData": "W10=\n",
         "updateAt": 1678026470,
-        "updator": "wsak_dca59c06eb144f10b6041c34ad1716a7",
+        "updator": "xxxx",
         "uuid": "pl_d221f03ac39d468d8d7fb262b5792607",
         "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
     },

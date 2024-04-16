@@ -36,8 +36,7 @@
 {
     "code": 200,
     "content": {
-        "shortUrl": "https://t.guance.com/HdPsQ",
-        "token": "shared.eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ3c191dWlkIjoid2tzcF8yZGM0MzFkNjY5MzcxMWViOGZmOTdhZWVlMDRiNTRhZiIsInNoYXJlX2NvbmZpZ191dWlkIjoic2hhcmVfMjk4YjJiOTBmMzk0NDkwOTg2ZmI2NmMyYjg3ZDJmODMiLCJleHBpcmF0aW9uQXQiOjE2NDI3NTExMjIsInJlc291cmNlVHlwZSI6InNuYXBzaG90In0.zjNAaVdtflGsZ46i1r9Q3hVHHfLhXRFUyp6wgWIIuoI"
+        "shortUrl": "https://t.guance.com/HdPsQ"
     },
     "errorCode": "",
     "message": "",

@@ -52,7 +52,7 @@ curl 'https://openapi.guance.com/api/v1/notice/date/add' \
     "code": 200,
     "content": {
         "createAt": 1705566710,
-        "creator": "wsak_72b16919b18c411496b6dd06fc9ccc72",
+        "creator": "xxx",
         "dates": [
             "2024/01/01",
             "2024/05/01"
@@ -75,7 +75,7 @@ curl 'https://openapi.guance.com/api/v1/notice/date/add' \
         "name": "test001",
         "status": 0,
         "updateAt": 1705566710,
-        "updator": "wsak_72b16919b18c411496b6dd06fc9ccc72",
+        "updator": "xxx",
         "uuid": "ndate_302cd65724974557aa25f45dade30f00",
         "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
     },

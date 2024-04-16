@@ -99,7 +99,7 @@ curl 'https://openapi.guance.com/api/v1/tag/tag_1e2950a080c949039285a5edfce12cd4
         "name": "test_15",
         "status": 0,
         "updateAt": 1698755100.0688698,
-        "updator": "wsak_72b16919b18c411496b6dd06fc9ccc72",
+        "updator": "xxxx",
         "uuid": "tag_1e2950a080c949039285a5edfce12cd4",
         "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
     },
