@@ -41,15 +41,15 @@ curl 'https://openapi.guance.com/api/v1/workspace/accesskey/add' \
     "code": 200,
     "content": {
         "createAt": 1678024319,
-        "creator": "wsak_b0f7f2b592614f0bbdb003eb9961717d",
+        "creator": "xxxx",
         "deleteAt": -1,
         "id": null,
         "name": "88",
         "sk": "QxbCoajsN6m41c3PD0YypBKUGtXSugIF",
         "status": 0,
         "updateAt": 1678024319,
-        "updator": "wsak_b0f7f2b592614f0bbdb003eb9961717d",
-        "uuid": "wsak_fffdee290b0f49a2b084458fec88f91f",
+        "updator": "xxx",
+        "uuid": "xxx",
         "workspaceUUID": "wksp_8ea5c78a71e64298bffd4d3ec03f1a5f"
     },
     "errorCode": "",
