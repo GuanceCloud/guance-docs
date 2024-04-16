@@ -37,9 +37,9 @@ curl 'https://openapi.guance.com/api/v1/dashboard/carousel/list' \
     "code": 200,
     "content": [
         {
-            "accountUUID": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+            "accountUUID": "wsak_xxxxx",
             "createAt": 1698663545,
-            "creator": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+            "creator": "wsak_xxxxx",
             "dashboardUUIDs": [
                 "dsbd_e4ce57f12e2145fa9c5994195906a5fe"
             ],
@@ -49,14 +49,14 @@ curl 'https://openapi.guance.com/api/v1/dashboard/carousel/list' \
             "name": "test2",
             "status": 0,
             "updateAt": 1698663545,
-            "updator": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+            "updator": "wsak_xxxxx",
             "uuid": "csel_66f8ae3900484007bc0c807832b7be11",
             "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
         },
         {
-            "accountUUID": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+            "accountUUID": "wsak_xxxxx",
             "createAt": 1698663461,
-            "creator": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+            "creator": "wsak_xxxxx",
             "dashboardUUIDs": [
                 "dsbd_e4ce57f12e2145fa9c5994195906a5fe"
             ],
@@ -66,7 +66,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/carousel/list' \
             "name": "test1",
             "status": 0,
             "updateAt": 1698663461,
-            "updator": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+            "updator": "wsak_xxxxx",
             "uuid": "csel_58b3ec27b9244ecc8e39f39c0d5c673d",
             "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
         }

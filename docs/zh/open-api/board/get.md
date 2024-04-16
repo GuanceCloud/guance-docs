@@ -77,7 +77,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/dsbd_501b8277ba88479b82020dbf
         },
         "type": "CUSTOM",
         "updateAt": 1642587908,
-        "updator": "wsak_c1c8af0c545541428403c09481f1baf8",
+        "updator": "wsak_xxxxx",
         "uuid": "dsbd_541083cc19ec4d27ad597839a0477a97",
         "workspaceUUID": "wksp_c4201f4ef30c4a86b01a998e7544f822"
     },

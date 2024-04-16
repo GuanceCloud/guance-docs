@@ -52,7 +52,7 @@ curl 'https://openapi.guance.com/api/v1/viewer/dsbd_e493a3c17d3c456bb1febfcbbe41
         "chartPos": [],
         "createAt": 1677661673,
         "createdWay": "import",
-        "creator": "wsak_ecdec9f27d6c482a997c218b2fb351a0",
+        "creator": "wsak_xxxxx",
         "dashboardBindSet": [],
         "deleteAt": -1,
         "extend": {

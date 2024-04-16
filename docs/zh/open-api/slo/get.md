@@ -67,13 +67,13 @@ curl 'https://openapi.guance.com/api/v1/slo/monitor_7e6dc134b827404f9ef31f890d53
             ]
         },
         "createAt": 1705638012,
-        "creator": "wsak_26258e3c085242f580f3d094b071d649",
+        "creator": "wsak_xxxxx",
         "creatorInfo": {
             "acntWsNickname": "",
-            "email": "wsak_26258e3c085242f580f3d094b071d649",
+            "email": "wsak_xxxxx",
             "iconUrl": "",
             "name": "test_api",
-            "username": "wsak_26258e3c085242f580f3d094b071d649"
+            "username": "wsak_xxxxx"
         },
         "declaration": {
             "b": [

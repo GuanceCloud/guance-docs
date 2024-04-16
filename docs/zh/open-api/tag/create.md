@@ -85,14 +85,14 @@ curl 'https://openapi.guance.com/api/v1/tag/create' \
     "content": {
         "colour": "style_key3",
         "createAt": 1698754975,
-        "creator": "wsak_72b16919b18c411496b6dd06fc9ccc72",
+        "creator": "xxxx",
         "deleteAt": -1,
         "description": "temp_test",
         "id": 358,
         "name": "test_1",
         "status": 0,
         "updateAt": 1698754975,
-        "updator": "wsak_72b16919b18c411496b6dd06fc9ccc72",
+        "updator": "xxx",
         "uuid": "tag_769821ae7f2c435d8ffe6c510cc3d38c",
         "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
     },

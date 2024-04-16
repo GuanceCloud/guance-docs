@@ -56,7 +56,7 @@ curl 'https://openapi.guance.com/api/v1/viewer/dsbd_e493a3c17d3c456bb1febfcbbe41
         "chartPos": [],
         "createAt": 1677661673,
         "createdWay": "manual",
-        "creator": "wsak_ecdec9f27d6c482a997c218b2fb351a0",
+        "creator": "wsak_xxxxx",
         "dashboardBidding": {},
         "dashboardBindSet": [],
         "deleteAt": -1,
@@ -98,12 +98,12 @@ curl 'https://openapi.guance.com/api/v1/viewer/dsbd_e493a3c17d3c456bb1febfcbbe41
         },
         "type": "CUSTOM",
         "updateAt": 1677662058.377045,
-        "updator": "wsak_ecdec9f27d6c482a997c218b2fb351a0",
+        "updator": "wsak_xxxxx",
         "updatorInfo": {
-            "email": "wsak_ecdec9f27d6c482a997c218b2fb351a0",
+            "email": "wsak_xxxxx",
             "iconUrl": "",
             "name": "智能巡检测试",
-            "username": "wsak_ecdec9f27d6c482a997c218b2fb351a0"
+            "username": "xxxx"
         },
         "uuid": "dsbd_e493a3c17d3c456bb1febfcbbe4148d2",
         "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
