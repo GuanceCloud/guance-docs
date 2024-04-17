@@ -164,15 +164,19 @@ Cat 通过采集系统的各种指标数据，如 CPU、内存、网络、磁盘
 </figure>
 
 
-## 指标 {#metric}
+## 数据字段说明 {#fields}
 
 
 
-### `cat`
 
 
 
-- 标签
+
+### 指标类型 {metric}
+
+
+
+- 指标的标签
 
 
 | Tag | Description |
@@ -215,5 +219,51 @@ Cat 通过采集系统的各种指标数据，如 CPU、内存、网络、磁盘
 |`thread_peek_count`|Thread peek.|float|count|
 |`thread_pigeon_thread_count`|The number of pigeon threads.|float|count|
 |`thread_total_started_count`|Total number of started threads.|float|count|
+
+
+
+
+
+
+### 链路字段说明 {tracing}
+
+
+
+- 标签（String 类型）
+
+
+| Tag | Description |
+|  ----  | --------|
+|`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
+|`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
+|`env`|Application environment info. Available in Jaeger. Optional.|
+|`host`|Hostname.|
+|`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
+|`http_route`|HTTP route. Optional.|
+|`http_status_code`|HTTP response code. Available in DDTrace, OpenTelemetry. Optional.|
+|`http_url`|HTTP URL. Optional.|
+|`operation`|Span name|
+|`project`|Project name. Available in Jaeger. Optional.|
+|`service`|Service name. Optional.|
+|`source_type`|Tracing source type|
+|`span_type`|Span type|
+|`status`|Span status|
+|`version`|Application version info. Available in Jaeger. Optional.|
+
+- 指标列表（非 String 类型，或者长 String 类型）
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`duration`|Duration of span|int|μs|
+|`message`|Origin content of span|string|-|
+|`parent_id`|Parent span ID of current span|string|-|
+|`resource`|Resource name produce current span|string|-|
+|`span_id`|Span id|string|-|
+|`start`|start time of span.|int|usec|
+|`trace_id`|Trace id|string|-|
+
+
+
 
 

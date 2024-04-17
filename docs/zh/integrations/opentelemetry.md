@@ -406,13 +406,19 @@ OpenTelemetry Java Agent 从应用程序中通过 JMX 协议获取 MBean 的指�
 
 另外 Agent 内置的一些三方软件的采集配置。具体可以参考： [GitHub OTEL JMX Metric](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/instrumentation/jmx-metrics/javaagent/README.md){:target="_blank"}
 
+## 数据字段说明 {#fields}
 
 
-### `opentelemetry`
 
 
 
-- 标签
+
+
+### 指标类型 {metric}
+
+
+
+- 指标的标签
 
 
 | Tag | Description |
@@ -528,6 +534,52 @@ OpenTelemetry Java Agent 从应用程序中通过 JMX 协议获取 MBean 的指�
 |`system.cpu.count`|The number of processors available to the Java virtual machine|int|count|
 |`system.cpu.usage`|The "recent cpu usage" for the whole system|float|percent|
 |`system.load.average.1m`|The sum of the number of runnable entities queued to available processors and the number of runnable entities running on the available processors averaged over a period of time|float|count|
+
+
+
+
+
+
+### 链路字段说明 {tracing}
+
+
+
+- 标签（String 类型）
+
+
+| Tag | Description |
+|  ----  | --------|
+|`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
+|`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
+|`env`|Application environment info. Available in Jaeger. Optional.|
+|`host`|Hostname.|
+|`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
+|`http_route`|HTTP route. Optional.|
+|`http_status_code`|HTTP response code. Available in DDTrace, OpenTelemetry. Optional.|
+|`http_url`|HTTP URL. Optional.|
+|`operation`|Span name|
+|`project`|Project name. Available in Jaeger. Optional.|
+|`service`|Service name. Optional.|
+|`source_type`|Tracing source type|
+|`span_type`|Span type|
+|`status`|Span status|
+|`version`|Application version info. Available in Jaeger. Optional.|
+
+- 指标列表（非 String 类型，或者长 String 类型）
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`duration`|Duration of span|int|μs|
+|`message`|Origin content of span|string|-|
+|`parent_id`|Parent span ID of current span|string|-|
+|`resource`|Resource name produce current span|string|-|
+|`span_id`|Span id|string|-|
+|`start`|start time of span.|int|usec|
+|`trace_id`|Trace id|string|-|
+
+
+
 
 
 
