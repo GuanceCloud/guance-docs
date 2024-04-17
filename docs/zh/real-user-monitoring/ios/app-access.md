@@ -1579,7 +1579,7 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 
 1. XCode 添加自定义 Run Script Phase：` Build Phases -> + -> New Run Script Phase`
 2. 将脚本复制到 Xcode 项目的构建阶段运行脚本中，脚本中需要设置参数如：＜app_id＞、＜datakit_address＞、＜env＞、<dataway_token>、＜version＞(脚本默认配置的版本格式为 `CFBundleShortVersionString`)。
-3. [脚本](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
+3. [脚本：FTdSYMUpload.sh](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
 
 ```sh
 #脚本中需要配置的参数
@@ -1674,6 +1674,8 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 #### 方法二：终端运行脚本
 
 找到 .dSYM 文件放在一个文件夹内，命令行下输入应用基本信息, .dSYM 文件的父目录路径, 输出文件目录即可
+
+[脚本：FTdSYMUpload.sh](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
 
 `sh FTdSYMUpload.sh <datakit_address> <app_id> <version> <env> <dataway_token> <dSYMBOL_src_dir> <dSYMBOL_dest_dir>`
 
