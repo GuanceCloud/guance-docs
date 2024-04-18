@@ -41,7 +41,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/list?pageIndex=1&pageSize=2
     "content": [
         {
             "createAt": 1642572752,
-            "creator": "wsak_220ed372243547ce847e915651664e14",
+            "creator": "wsak_xxxxx",
             "deleteAt": -1,
             "end": 1642576351,
             "id": 383,
@@ -57,10 +57,10 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/list?pageIndex=1&pageSize=2
             ],
             "type": "host",
             "updateAt": 1642572752,
-            "updator": "wsak_220ed372243547ce847e915651664e14",
+            "updator": "wsak_xxxxx",
             "updatorInfo": {
                 "name": "frasgreager",
-                "username": "AK(wsak_220ed372243547ce847e915651664e14)"
+                "username": "xxxx"
             },
             "uuid": "mute_9cfc0c557a5b4df6924c0f9648be8890",
             "workspaceUUID": "wksp_2dc431d6693711eb8ff97aeee04b54af"

@@ -46,3 +46,4 @@ nav:
   - 'Func 函数': outer-function
   - '监控 - SLO': slo
   - '账单分析': billing
+  - '免登录Token': offline-token

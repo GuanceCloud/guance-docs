@@ -61,7 +61,7 @@ curl 'https://openapi.guance.com/api/v1/alert_policy/list?pageIndex=1&pageSize=1
                     "silentTimeout": 21600
                 },
                 "createAt": 1706152082,
-                "creator": "wsak_0897f0d91a0b4d9a9532a0c28fe33c41",
+                "creator": "xx",
                 "deleteAt": -1,
                 "id": 4100,
                 "name": "jj_modify",
@@ -71,7 +71,7 @@ curl 'https://openapi.guance.com/api/v1/alert_policy/list?pageIndex=1&pageSize=1
                 "score": 0,
                 "status": 0,
                 "updateAt": 1706152340,
-                "updator": "wsak_0897f0d91a0b4d9a9532a0c28fe33c41",
+                "updator": "xx",
                 "uuid": "altpl_a293c3584b8143778d4fed7a54315c11",
                 "workspaceUUID": "wksp_be64f5691e7a46c38f92ac5c05035a4b"
             }

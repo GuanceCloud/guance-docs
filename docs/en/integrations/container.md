@@ -424,6 +424,26 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Default**: false
     
+    - **ENV_INPUT_CONTAINER_DISABLE_COLLECT_KUBE_JOB**
+    
+        Turn off collection of Kubernetes Job resources (including metrics data and object data)
+    
+        **Type**: Boolean
+    
+        **ConfField**: `disable_collect_kube_job`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_CONTAINER_ENABLE_K8S_METRIC_BY_PROM**
+    
+        Enable collection of Kubernetes Prometheus data, including APIServer, Scheduler, Etcd, etc.(Experimental)
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_k8s_metric_by_prom`
+    
+        **Default**: false
+    
     - **ENV_INPUT_CONTAINER_TAGS**
     
         Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
