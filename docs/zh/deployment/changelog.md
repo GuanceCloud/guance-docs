@@ -1,8 +1,20 @@
 # 版本历史
 
+## 1.83.162（2024 年 04 月 17 日）
+
+pubrepo.guance.com/dataflux/1.83.162:launcher-2fcb2e4-1713337267
+
+此版本是 fix 版本，主要有如下更新:
+
+### 观测云部署版更新
+
+- 修复部分服务镜像在 ARM64 架构下的打包问题
+- 修复安装程序（Launcher）在全新部署观测云时，可能碰到的 Kubernetes Secret 创建失败的问题
+- 修复一些其他小 Bug
+
 ## 1.83.161（2024 年 04 月 10 日）
 
-pubrepo.guance.com/dataflux/1.83.161:launcher-4debd25-1713091048
+pubrepo.guance.com/dataflux/1.83.161:launcher-a44ccb3-1713091048
 
 ### 观测云部署版更新
 

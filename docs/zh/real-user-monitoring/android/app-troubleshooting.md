@@ -108,25 +108,26 @@ buildscript {
 您可以通过以下配置，开启 SDK 的 debug 功能，开启之后，控制台 `LogCat` 会输出 SDK 调试日志，您可以过滤 `[FT-SDK]` 字符，定位到观测云 SDK 日志。
 
 ```kotlin
-  val config = FTSDKConfig.setDebug(true);
+  val config = FTSDKConfig.builder(datakitUrl).setDebug(true)
   FTSdk.install(config)
 ```
->**建议 Release 版本发布时，关闭这个配置**
+> **建议 Release 版本发布时，关闭这个配置**
 
 ## SDK 内部日志转化为缓存文件
 ```kotlin
 val cacheFile = File(filesDir, "LogCache.log")
 LogUtils.registerInnerLogCacheToFile(cacheFile)
 ```
+> **为了内部日志的完整性，需要在 SDK 初始化之前设置该配置**
 
 ## SDK 正常运行但是没有数据
 * [排查 Datakit](../../datakit/why-no-data.md) 是否正常运行
 
-* 确认 SDK 上传地址`metricsUrl`[配置正确](app-access.md#base-setting)，并正确初始化。debug 模式下，可以下列日志来判断上传地址配置问题。
+* 确认 SDK 上传地址 `datakitUrl` 或 `datawayUrl` [配置正确](app-access.md#base-setting)，并正确初始化。debug 模式下，可以下列日志来判断上传地址配置问题。
 
 	```java
 	//检查上传地址是否正确进入 SDK 配置
-	[FT-SDK]FTHttpConfigManager com.demo D serverUrl ==>
+	[FT-SDK]FTHttpConfigManager com.demo D  serverUrl ==>
                                     	Datakit Url:http://10.0.0.1:9529
 	//以下是连接错误日志
 	[FT-SDK]SyncTaskManager com.demo   E  Network not available Stop poll

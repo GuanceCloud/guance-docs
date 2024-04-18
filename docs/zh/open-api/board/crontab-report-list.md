@@ -41,13 +41,13 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
         {
             "content": "",
             "createAt": 1698666812,
-            "creator": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+            "creator": "wsak_xxxxx",
             "creatorInfo": {
                 "acntWsNickname": "",
-                "email": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+                "email": "wsak_xxxxx",
                 "iconUrl": "",
                 "name": "a",
-                "username": "wsak_818fc4d5ff714411b0cc4db916de3e5f"
+                "username": "wsak_xxxxx"
             },
             "crontab": "10 10 03,14,13 * *",
             "dashboardName": "whytest",
@@ -75,13 +75,13 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
             "timezone": "Asia/Shanghai",
             "title": "ceshi3",
             "updateAt": 1698667256,
-            "updator": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+            "updator": "wsak_xxxxx",
             "updatorInfo": {
                 "acntWsNickname": "",
-                "email": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+                "email": "wsak_xxxxx",
                 "iconUrl": "",
                 "name": "a",
-                "username": "wsak_818fc4d5ff714411b0cc4db916de3e5f"
+                "username": "wsak_xxxxx"
             },
             "uuid": "cron_cf1be3e00408416b9a1f1b8a7e233223",
             "variables": {},
@@ -90,13 +90,13 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
         {
             "content": "",
             "createAt": 1698665760,
-            "creator": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+            "creator": "wsak_xxxxx",
             "creatorInfo": {
                 "acntWsNickname": "",
-                "email": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+                "email": "wsak_xxxxx",
                 "iconUrl": "",
                 "name": "a",
-                "username": "wsak_818fc4d5ff714411b0cc4db916de3e5f"
+                "username": "wsak_xxxxx"
             },
             "crontab": "",
             "dashboardName": "whytest",

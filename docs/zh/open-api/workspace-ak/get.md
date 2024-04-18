@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/accesskey/wsak_b0f7f2b592614f0bbdb003eb9961717d/get' \
+curl 'https://openapi.guance.com/api/v1/workspace/accesskey/wsak_xxxxx/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -53,7 +53,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/accesskey/wsak_b0f7f2b592614f0
         "status": 0,
         "updateAt": 1677808718,
         "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-        "uuid": "wsak_b0f7f2b592614f0bbdb003eb9961717d",
+        "uuid": "wsak_xxxxx",
         "workspaceUUID": "wksp_8ea5c78a71e64298bffd4d3ec03f1a5f"
     },
     "errorCode": "",

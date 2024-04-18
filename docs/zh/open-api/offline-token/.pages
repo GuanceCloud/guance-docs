@@ -1,0 +1,3 @@
+nav:
+  - '【免登录Token】生成token': create-temporary-token.md
+  - '【免登录Token】作废token': revoke-temporary-token.md

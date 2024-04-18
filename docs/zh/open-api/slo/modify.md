@@ -94,7 +94,7 @@ curl 'https://openapi.guance.com/api/v1/slo/monitor_3b7557f9bdf749139fee94a7ecb4
             ]
         },
         "createAt": 1706610143,
-        "creator": "wsak_26258e3c085242f580f3d094b071d649",
+        "creator": "wsak_xxxxx",
         "declaration": {
             "b": [
                 "asfawfgajfasfafgafwba",
@@ -110,7 +110,7 @@ curl 'https://openapi.guance.com/api/v1/slo/monitor_3b7557f9bdf749139fee94a7ecb4
         "status": 0,
         "type": "slo",
         "updateAt": 1706610272.8664992,
-        "updator": "wsak_26258e3c085242f580f3d094b071d649",
+        "updator": "wsak_xxxxx",
         "uuid": "monitor_3b7557f9bdf749139fee94a7ecb4da12",
         "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
     },

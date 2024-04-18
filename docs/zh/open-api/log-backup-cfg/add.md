@@ -64,7 +64,7 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/add' \
     "content": {
         "conditions": "",
         "createAt": 1697613651,
-        "creator": "wsak_72b16919b18c411496b6dd06fc9ccc72",
+        "creator": "xxx",
         "dataType": "tracing",
         "deleteAt": -1,
         "extend": {
@@ -80,7 +80,7 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/add' \
         "taskErrorCode": "",
         "taskStatusCode": -1,
         "updateAt": 1697613651,
-        "updator": "wsak_72b16919b18c411496b6dd06fc9ccc72",
+        "updator": "xxx",
         "uuid": "lgbp_20454675957b4337b9d953b089b2b06c",
         "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
     },
