@@ -1,5 +1,7 @@
 ---
 title: 'Aliyun OSS'
+tags: 
+  - Alibaba Cloud
 summary: 'Aliyun OSS metrics display, including request volume, availability, network traffic, request ratio, and more.'
 __int_icon: icon/aliyun_oss
 dashboard:

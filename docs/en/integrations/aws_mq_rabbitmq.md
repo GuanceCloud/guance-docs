@@ -1,5 +1,7 @@
 ---
 title: 'Amazon MQ for RabbitMQ'
+tags: 
+  - AWS
 summary: 'Amazon MQ supports industry standard APIs and protocols to manage and maintain message brokers, and automatically provides infrastructure for high availability.'
 __int_icon: 'icon/aws_mq_rabbitmq'
 dashboard:

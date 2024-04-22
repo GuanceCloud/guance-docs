@@ -1,5 +1,7 @@
 ---
 title: 'AWS Redshift'
+tags: 
+  - AWS
 summary: 'AWS Redshift的核心性能指标包括查询性能、磁盘空间使用率、CPU利用率、数据库连接数和磁盘 I/O 操作，这些都是评估和优化数据仓库性能的关键指标。'
 __int_icon: 'icon/aws_redshift'
 dashboard:

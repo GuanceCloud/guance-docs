@@ -1,5 +1,7 @@
 ---
 title: 'Aliyun NAT'
+tags: 
+  - Alibaba Cloud
 summary: 'Aliyun NAT Metrics, including the number of concurrent connections, number of new connections, VPC traffic, and VPC data packets。'
 __int_icon: 'icon/aliyun_nat'
 dashboard:

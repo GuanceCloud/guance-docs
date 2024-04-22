@@ -1,5 +1,7 @@
 ---
 title: 'AWS ECS'
+tags: 
+  - AWS
 summary: 'Amazon ECS 功能与 亚马逊云科技 Fargate 无服务器计算引擎集成，使用观测云监控其服务运行态。'
 __int_icon: 'icon/aws_ecs'
 dashboard:

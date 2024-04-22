@@ -1,5 +1,7 @@
 ---
 title: 'HUAWEI SYS.CBR'
+tags: 
+  - 华为云
 summary: '华为云 SYS.CBR的展示指标包括带宽利用率、延迟、丢包率和网络吞吐量，这些指标反映了CBR在网络传输和带宽管理方面的性能表现和质量保证。'
 __int_icon: 'icon/huawei_sys_cbr'
 dashboard:

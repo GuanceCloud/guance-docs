@@ -1,5 +1,7 @@
 ---
 title: '阿里云 SLS'
+tags: 
+  - 阿里云
 summary: '阿里云 SLS 指标展示，包括服务状态、日志流量、操作次数、总体 QPS 等。'
 __int_icon: 'icon/aliyun_sls'
 dashboard:

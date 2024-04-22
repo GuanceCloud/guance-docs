@@ -1,5 +1,7 @@
 ---
 title: 'Amazon EC2 Spot'
+tags: 
+  - AWS
 summary: ' Amazon EC2 Spot，包括请求容量池、目标容量池、中止容量等。'
 __int_icon: 'icon/aws_ec2_spot'
 dashboard:

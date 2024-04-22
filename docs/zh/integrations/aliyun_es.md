@@ -1,5 +1,7 @@
 ---
 title: '阿里云 ElasticSearch'
+tags: 
+  - 阿里云
 summary: '阿里云 ElasticSearch 指标展示，包括集群状态、索引 QPS、 节点 CPU/内存/磁盘使用率等。'
 __int_icon: 'icon/aliyun_es'
 dashboard:

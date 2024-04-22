@@ -1,5 +1,7 @@
 ---
 title: '阿里云 Tair 社区版'
+tags: 
+  - 阿里云
 summary: '阿里云 Tair 社区版指标展示，包括 CPU 使用率、内存使用率、代理总QPS、网络流量、命中率等。'
 __int_icon: 'icon/aliyun_tair'
 dashboard:

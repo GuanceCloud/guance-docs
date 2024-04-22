@@ -1,5 +1,7 @@
 ---
 title: 'Huawei Cloud SYS.DDMS Monitoring View'
+tags: 
+  - Huawei Cloud
 summary: 'The Huawei Cloud SYS.DDMS monitoring view displays indicators including message throughput, latency, concurrent connections, and reliability, which reflect the performance and reliability assurance of DDMS in handling large-scale message delivery and real-time data flow.'
 __int_icon: 'icon/huaweiyun_SYS_DDMS'
 dashboard:

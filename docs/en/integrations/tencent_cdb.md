@@ -1,5 +1,7 @@
 ---
 title: 'Tencent Cloud CDB'
+tags: 
+  - Tencent Cloud
 summary:  'Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
 __int_icon: 'icon/tencent_cdb'
 dashboard:
