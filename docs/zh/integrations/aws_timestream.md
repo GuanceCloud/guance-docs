@@ -1,5 +1,7 @@
 ---
 title: 'AWS Timestream'
+tags: 
+  - AWS
 summary: 'AWS Timestream 的展示指标包括系统错误数（内部服务错误数）、当前 AWS 区域和当前 AWS 帐户的无效请求的总和、成功请求经过的时间和样本数量、存储在内存中的数据量，以及存储在磁存储器中的数据量等。'
 __int_icon: 'icon/aws_timestream'
 dashboard:

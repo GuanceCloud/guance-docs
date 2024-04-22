@@ -1,5 +1,7 @@
 ---
 title: '腾讯云 Redis'
+tags: 
+  - 腾讯云
 summary: '腾讯云 Redis 指标展示，包括连接数、请求数、时延、慢查询等。'
 __int_icon: 'icon/tencent_redis_mem'
 dashboard:

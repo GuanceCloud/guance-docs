@@ -1,5 +1,7 @@
 ---
 title: 'AWS Simple Queue Service'
+tags: 
+  - AWS
 summary: 'AWS Simple Queue Service 的展示指标包括队列中最旧的未删除消息的大约存在时间、延迟且无法立即读取的消息数量、处于空中状态的消息的数量、可从队列取回的消息数量等。'
 __int_icon: 'icon/aws_sqs'
 dashboard:

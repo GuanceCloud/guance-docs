@@ -1,5 +1,7 @@
 ---
 title: 'AWS RDS MySQL'
+tags: 
+  - AWS
 summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
 __int_icon: 'icon/aws_rds_mysql'
 dashboard:
@@ -11,6 +13,9 @@ monitor:
   - desc: 'AWS RDS MySQL Monitor'
     path: 'monitor/zh/aws_rds_mysql'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_rds_mysql'
 ---
 
 

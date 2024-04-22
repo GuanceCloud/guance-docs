@@ -1,5 +1,7 @@
 ---
 title: 'Tencent KeeWiDB'
+tags: 
+  - Tencent Cloud
 summary: 'Tencent Cloud KeeWiDB metric display includes metrics such as connection count, requests, cache, keys, and slow queries.'
 __int_icon: 'icon/tencent_keewidb'
 dashboard:

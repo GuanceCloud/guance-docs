@@ -1,5 +1,7 @@
 ---
 title: '华为云 GaussDB-Cassandra'
+tags: 
+  - 华为云
 summary: '华为云GaussDB-Cassandra的展示指标包括读写吞吐量、延迟、数据一致性和可扩展性，这些指标反映了GaussDB-Cassandra在处理大规模分布式数据存储和访问时的性能表现和可靠性。'
 __int_icon: 'icon/huawei_gaussdb_cassandra'
 dashboard:

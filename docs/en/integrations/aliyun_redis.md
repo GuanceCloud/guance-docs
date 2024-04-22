@@ -1,5 +1,7 @@
 ---
 title: 'Aliyun Redis Standard'
+tags: 
+  - Alibaba Cloud
 summary: 'Aliyun Redis Standard Metric display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc.'
 __int_icon: icon/aliyun_redis
 dashboard:

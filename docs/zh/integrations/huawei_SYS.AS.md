@@ -1,5 +1,7 @@
 ---
 title: 'HUAWEI SYS.AS'
+tags: 
+  - 华为云
 summary: '华为云 SYS.AS的核心性能指标包括CPU利用率、内存使用率、磁盘I/O、网络吞吐量和系统负载等，这些都是评估和优化自动缩放系统性能的关键指标。'
 __int_icon: 'icon/huawei_sys_as'
 dashboard:

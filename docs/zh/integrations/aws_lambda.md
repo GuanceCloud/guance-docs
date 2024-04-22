@@ -1,5 +1,7 @@
 ---
 title: 'AWS Lambda'
+tags: 
+  - AWS
 summary: 'AWS Lambda的展示指标包括冷启动时间、执行时间、并发执行数和内存使用量，这些指标反映了Lambda函数的响应速度、可扩展性和资源利用情况。'
 __int_icon: 'icon/aws_lambda'
 
