@@ -1,5 +1,7 @@
 ---
 title: '华为云 SYS.DDMS 监控视图'
+tags: 
+  - 华为云
 summary: '华为云 SYS.DDMS 监控视图展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了DDMS在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。'
 __int_icon: 'icon/huaweiyun_SYS_DDMS'
 dashboard:

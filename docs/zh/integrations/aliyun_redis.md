@@ -1,5 +1,7 @@
 ---
 title: '阿里云 Redis 标准版'
+tags: 
+  - 阿里云
 summary: '阿里云 Redis 标准版指标展示，包括 CPU 使用率、内存使用率、磁盘读写、网络流量、每秒访问次数等。'
 __int_icon: icon/aliyun_redis
 dashboard:

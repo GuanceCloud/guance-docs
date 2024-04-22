@@ -1,5 +1,7 @@
 ---
 title: 'aliyun Kafka'
+tags: 
+  - Alibaba Cloud
 summary: 'AliCloud Kafka's presentation metrics include message throughput, latency, number of concurrent connections, and reliability, which reflect Kafka's performance performance and reliability guarantees when dealing with large-scale messaging and real-time data streams.'
 __int_icon: 'icon/aliyun_kafka'
 dashboard:

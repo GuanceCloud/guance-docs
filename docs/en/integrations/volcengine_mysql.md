@@ -1,17 +1,19 @@
 ---
-title: 'Volcenine MySQL'
-summary: 'Volcenine MySQL indicators display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.'
+title: 'Volcengine MySQL'
+tags: 
+  - `Volcengine`
+summary: 'Volcengine MySQL indicators display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.'
 __int_icon: 'icon/volcengine_mysql'
 dashboard:
-  - desc: 'Volcenine MySQL'
+  - desc: 'Volcengine MySQL'
     path: 'dashboard/en/volcengine_mysql/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# `Volcenine` MySQL
+# `Volcengine` MySQL
 <!-- markdownlint-enable -->
 
-`Volcenine` MySQL indicators display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.
+`Volcengine` MySQL indicators display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.
 
 ## Config {#config}
 
@@ -25,11 +27,11 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 ### Installation script
 
 
-> Tip：Please prepare `Volcenine`  AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare `Volcengine`  AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of **MySQL** cloud resources, we install the corresponding collection script：「Guance Integration（`Volcenine`  -**MySQL** Collect）」(ID：`guance_volcengine_mysql`)
+To synchronize the monitoring data of **MySQL** cloud resources, we install the corresponding collection script：「Guance Integration（`Volcengine`  -**MySQL** Collect）」(ID：`guance_volcengine_mysql`)
 
-Click "Install" and enter the corresponding parameters: `Volcenine`  AK, `Volcenine`  account name.
+Click "Install" and enter the corresponding parameters: `Volcengine`  AK, `Volcengine`  account name.
 
 tap "Deploy startup Script"，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
 
@@ -48,7 +50,7 @@ We collected some configurations by default, as described in the Metrics column 
 
 
 ## Metric  {#metric}
-Configure `Volcenine` Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [`Volcenine` Cloud Monitor Metrics Details](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_MySQL){:target="_blank"}
+Configure `Volcengine` Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [`Volcengine` Cloud Monitor Metrics Details](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_MySQL){:target="_blank"}
 
 | Metric | Description                          | Unit |
 | ---- |-------------------------------------| :----: |
@@ -86,7 +88,7 @@ Configure `Volcenine` Cloud - cloud monitoring. The default metric set is as fol
 
 
 ## Object  {#object}
-The collected `Volcenine` Cloud **MySQL** object data structure can see the object data from 「Infrastructure-Custom」
+The collected `Volcengine` Cloud **MySQL** object data structure can see the object data from 「Infrastructure-Custom」
 
 ``` json
   {

@@ -1,5 +1,7 @@
 ---
 title: '华为云 GaussDB SYS.GAUSSDBV5'
+tags: 
+  - 华为云
 summary: '华为云 GaussDB SYS.GAUSSDBV5，提供cpu、内存、磁盘、死锁、SQL 响应时间指标等数据。'
 __int_icon: 'icon/huawei_gaussdb_sys.gaussdbv5'
 dashboard:

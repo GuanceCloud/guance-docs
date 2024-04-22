@@ -1,5 +1,7 @@
 ---
 title: '华为云搜索服务 CSS for Elasticsearch'
+tags: 
+  - 华为云
 summary: '华为云搜索服务 CSS for Elasticsearch 的核心性能指标包括查询延迟、索引速度、搜索速度、磁盘使用率和 CPU 使用率，这些都是评估和优化 Elasticsearch 性能的关键指标。'
 __int_icon: 'icon/huawei_css_es'
 dashboard:
