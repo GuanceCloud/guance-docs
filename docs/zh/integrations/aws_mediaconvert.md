@@ -1,5 +1,7 @@
 ---
 title: 'AWS MediaConvert'
+tags: 
+  - AWS
 summary: ' AWS MediaConvert，包括数据传输、视频报错、作业数、填充等。'
 __int_icon: 'icon/aws_mediaconvert'
 dashboard:

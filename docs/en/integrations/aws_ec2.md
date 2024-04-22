@@ -1,5 +1,7 @@
 ---
 title: 'AWS EC2'
+tags: 
+  - AWS
 summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
 __int_icon: 'icon/aws_ec2'
 dashboard:
@@ -11,6 +13,9 @@ monitor:
   - desc: 'AWS EC2 Monitor'
     path: 'monitor/zh/aws_ec2'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_ec2'
 ---
 
 

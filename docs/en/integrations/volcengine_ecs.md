@@ -1,14 +1,16 @@
 ---
-title: 'Volcenine ECS'
+title: 'Volcengine ECS'
+tags: 
+  - `Volcengine`
 summary: 'The display metrics of Voltage ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS, which reflect the computing, memory, network, and storage performance of ECS instances.'
 __int_icon: 'icon/volcengine_ecs'
 dashboard:
-  - desc: 'Volcenine  ECS'
+  - desc: 'Volcengine ECS'
     path: 'dashboard/en/volcengine_ecs/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# `Volcenine` ECS
+# `Volcengine` ECS
 <!-- markdownlint-enable -->
 
 

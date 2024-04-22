@@ -1,5 +1,7 @@
 ---
 title: '阿里云 AnalyticDB PostgreSQL'
+tags: 
+  - 阿里云
 summary: '阿里云 AnalyticDB PostgreSQL 指标展示，包括cpu、内存、磁盘、协调节点、实例查询等。'
 __int_icon: 'icon/aliyun_analyticdb_postgresql'
 dashboard:
@@ -16,7 +18,6 @@ monitor:
 
 
 阿里云  AnalyticDB PostgreSQL 指标展示，包括cpu、内存、磁盘、协调节点、实例查询等。
-
 
 ## 配置 {#config}
 
