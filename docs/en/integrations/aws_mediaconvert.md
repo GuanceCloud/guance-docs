@@ -1,5 +1,7 @@
 ---
 title: 'AWS MediaConvert'
+tags: 
+  - AWS
 summary: 'AWS MediaConvert, including data transfer, video errors, job count, padding, etc.'
 __int_icon: 'icon/aws_mediaconvert'
 dashboard:

@@ -1,5 +1,7 @@
 ---
 title: 'HUAWEI GaussDB SYS.GAUSSDBV5'
+tags: 
+  - Huawei Cloud
 summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
 __int_icon: 'icon/huawei_gaussdb_sys.gaussdbv5'
 dashboard:

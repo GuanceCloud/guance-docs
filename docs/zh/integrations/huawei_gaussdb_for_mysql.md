@@ -1,5 +1,7 @@
 ---
 title: '华为云 GaussDB for MySQL'
+tags: 
+  - 华为云
 summary: 'GaussDB for MySQL，包括cpu、内存、网络、缓冲池、存储、慢日志、`innoDB`等相关指标。'
 __int_icon: 'icon/huawei_gaussdb_for_mysql'
 dashboard:

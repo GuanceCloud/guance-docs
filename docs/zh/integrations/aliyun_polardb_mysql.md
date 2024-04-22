@@ -1,5 +1,7 @@
 ---
 title: '阿里云 PolarDB MySQL'
+tags: 
+  - 阿里云
 summary: '阿里云 PolarDB MySQL 指标展示，包括 CPU 使用率、内存命中率、网络流量、连接数、QPS、 TPS、 只读节点延迟等。'
 __int_icon: 'icon/aliyun_polardb'
 dashboard:

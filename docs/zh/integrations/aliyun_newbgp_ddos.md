@@ -1,5 +1,7 @@
 ---
 title: '阿里云 DDoS 新BGP高防'
+tags: 
+  - 阿里云
 summary: '阿里云DDoS新BGP高防的展示指标包括攻击防护能力、清洗能力、响应时间和可靠性，这些指标反映了新BGP高防服务在应对大规模DDoS攻击时的性能表现和可信度。'
 __int_icon: 'icon/aliyun_newbgp_ddos'
 dashboard:

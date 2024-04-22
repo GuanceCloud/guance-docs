@@ -1,5 +1,7 @@
 ---
 title: 'AWS CloudFront'
+tags: 
+  - AWS
 summary: 'AWS CloudFront的核心性能指标包括请求总数、数据传输量、HTTP 错误率、缓存命中率和延迟，这些可以帮助用户评估和优化内容分发网络的性能。'
 __int_icon: 'icon/aws_cloudfront'
 dashboard:
