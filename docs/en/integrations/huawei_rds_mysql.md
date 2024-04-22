@@ -1,5 +1,7 @@
 ---
 title: 'HUAWEI RDS MYSQL'
+tags: 
+  - Huawei Cloud
 summary: 'Use the「Guanc Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance.'
 __int_icon: 'icon/huawei_rds_mysql'
 dashboard:

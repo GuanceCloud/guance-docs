@@ -1,5 +1,7 @@
 ---
 title: '华为云 GaussDB-Influx'
+tags: 
+  - 华为云
 summary: '华为云GaussDB-Influx的展示指标包括写入吞吐量、查询延迟、数据保留策略和可扩展性，这些指标反映了GaussDB-Influx在处理大规模时序数据存储和查询时的性能表现和可靠性。'
 __int_icon: 'icon/huawei_gaussdb_influx'
 dashboard:

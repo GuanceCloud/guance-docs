@@ -1,5 +1,7 @@
 ---
 title: 'Aliyun ElasticSearch'
+tags: 
+  - Alibaba Cloud
 summary: 'Aliyun ElasticSearch metrics display, including cluster status, index QPS, node CPU/memory/disk utilization and so on.' 
 __int_icon: 'icon/aliyun_es'
 dashboard:

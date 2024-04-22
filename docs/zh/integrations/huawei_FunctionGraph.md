@@ -1,5 +1,7 @@
 ---
 title: '华为云 FunctionGraph'
+tags: 
+  - 华为云
 summary: '华为云 FunctionGraph的展示指标包括调用次数,错误次数,被拒绝次数,并发数,预留实例个数，运行时间（包括最大运行时间、最小运行时间、平均运行时间）等，这些指标反映了FunctionGraph函数运行情况。'
 __int_icon: 'icon/huawei_functiongraph'
 dashboard:

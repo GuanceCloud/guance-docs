@@ -1,5 +1,7 @@
 ---
 title: 'Tencent Cloud MariaDB'
+tags: 
+  - Tencent Cloud
 summary: 'Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
 __int_icon: 'icon/tencent_mariadb'
 dashboard:
