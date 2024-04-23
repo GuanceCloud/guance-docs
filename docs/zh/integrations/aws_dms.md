@@ -1,5 +1,7 @@
 ---
 title: 'AWS DMS'
+tags: 
+  - AWS
 summary: 'AWS DMS的展示指标包括数据迁移速度、延迟、数据一致性和迁移成功率，这些指标反映了DMS在进行数据库迁移和复制时的性能表现和可靠性。'
 __int_icon: 'icon/aws_dms'
 dashboard:

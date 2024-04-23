@@ -1,5 +1,7 @@
 ---
 title: '阿里云 RDS MariaDB'
+tags: 
+  - 阿里云
 summary: '阿里云 RDS MariaDB 的展示指标包括响应时间、并发连接数、QPS 和 TPS 等。'
 __int_icon: 'icon/aliyun_rds_mariadb'
 dashboard:

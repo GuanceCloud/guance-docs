@@ -1,18 +1,20 @@
 ---
-title: 'Volcenine MongoDB Replica Set'
-summary: 'Volcenine MongoDB replica set metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc.'
+title: 'Volcengine MongoDB Replica Set'
+tags: 
+  - `Volcengine`
+summary: 'Volcengine MongoDB replica set metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc.'
 __int_icon: 'icon/volcengine_mongodb'
 dashboard:
-  - desc: 'Volcenine Replica Set'
+  - desc: 'Volcengine Replica Set'
     path: 'dashboard/zh/volcengine_mongodb_replica_set/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# `Volcenine` MongoDB Replica Set
+# `Volcengine` MongoDB Replica Set
 <!-- markdownlint-enable -->
 
 
-`Volcenine` MongoDB replica set metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc.
+`Volcengine` MongoDB replica set metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc.
 
 
 ## Config {#config}
@@ -27,11 +29,11 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 ### Installation script
 
 
-> Tip：Please prepare `Volcenine`  AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare `Volcengine`  AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of **ECS** cloud resources, we install the corresponding collection script：「Guance Integration（`Volcenine` -**MongoDB Replica Set** Collect）」(ID：`guance_volcengine_mongodb_replica_set`)
+To synchronize the monitoring data of **ECS** cloud resources, we install the corresponding collection script：「Guance Integration（`Volcengine` -**MongoDB Replica Set** Collect）」(ID：`guance_volcengine_mongodb_replica_set`)
 
-Click "Install" and enter the corresponding parameters: `Volcenine` AK, `Volcenine` account name.
+Click "Install" and enter the corresponding parameters: `Volcengine` AK, `Volcengine` account name.
 
 tap "Deploy startup Script"，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
 
@@ -50,7 +52,7 @@ We collected some configurations by default, as described in the Metrics column 
 
 
 ## Metric  {#metric}
-Configure `Volcenine` Cloud - MongoDB Replica monitoring. The default metric set is as follows. You can collect more metrics by configuring them [`Volcenine` MongoDB Replica Monitor Metrics Details](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_MongoDB_Replica){:target="_blank"}
+Configure `Volcengine` Cloud - MongoDB Replica monitoring. The default metric set is as follows. You can collect more metrics by configuring them [`Volcengine` MongoDB Replica Monitor Metrics Details](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_MongoDB_Replica){:target="_blank"}
 
 
 | Metric | Description                          | Unit |
@@ -69,7 +71,7 @@ Configure `Volcenine` Cloud - MongoDB Replica monitoring. The default metric set
 |`CommandOperationPerSec`|Command operations per second| Count/Second|
 
 ## Object  {#object}
-The collected `Volcenine` Cloud **MongoDB** object data structure can see the object data from 「Infrastructure-Custom」
+The collected `Volcengine` Cloud **MongoDB** object data structure can see the object data from 「Infrastructure-Custom」
 
 ``` json
   {

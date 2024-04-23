@@ -1,5 +1,7 @@
 ---
 title: 'AWS ElastiCache Redis'
+tags: 
+  - AWS
 summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
 __int_icon: 'icon/aws_elasticache_redis'
 dashboard:
@@ -11,6 +13,9 @@ monitor:
   - desc: 'AWS ElastiCache Redis监控器'
     path: 'monitor/zh/aws_elasticache_redis'
 
+cloudCollector:
+  desc: '云采集器'
+  path: 'cloud-collector/zh/aws_elasticache_redis'
 ---
 
 
