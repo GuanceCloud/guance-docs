@@ -6,7 +6,36 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明。
 
+## 2024 年 4 月 24 日
 
+### 观测云更新
+
+- 管理：
+    - 新增[云账号管理](../management/cloud-account-manag.md)
+    - 账号管理：[账号登录过期时间](../management/index.md#login-hold-time)调整。
+- 新增[快速搜索](../management/index.md#quick-entry)弹窗，可快速查看当前工作空间内最近访问的页面和其他各功能相关页面。
+- 基础设施 > 容器：新增 [Statefulset](../infrastructure/container.md#statefulset)、[Persistent Volumes](../infrastructure/container.md#persistent-volumes) 两种对象查看器。
+- 异常追踪：
+    - 新增 Issue 负责人配置，观测云会为负责人发送邮件通知。
+    - 频道管理：支持[升级配置](../exception/channel.md#upgrade)。即，设置新 Issue 超过某特定分钟数时，若未指定负责人，则发送升级通知给对应的通知对象。
+- 监控 
+    - 监控器
+        - 检测配置：支持在【触发条件】配置连续多次判断触发条件生效后，再次触发生成事件。
+        - 检测指标：新增 `match` 函数，支持 `message` 字段配置 `match` 函数匹配。
+    - [静默管理](../monitoring/silent-management.md)：
+        - 列表列出所有静默规则，新增规则状态列；
+        - 列表页新增快捷筛选；
+        - 事件属性匹配支持反选。
+- 场景 > 仪表板[图表](../scene/visual-chart/index.md#download)可直接下载为 PNG 图片，表格图还可导出为 CSV 文件。
+- 日志 > 绑定索引：【字段映射】更改为非必填项。
+- 查看器/监控器：支持 `match` 精准匹配查询方式。
+- 集成/内置视图：模版新增标签管理。
+
+### 观测云部署版更新
+
+- 管理 > 基本信息 > License 信息：DataKit 数量限制支持按照数据统计范围调整，变更为存活时间 >= 12 小时以上的主机或 DK 数量。
+- 支持配置黑名单，自定义选择导入观测云集成、视图模板、监控器模板范围。
+- 
 ## 2024 年 4 月 10 日
 
 ### 观测云更新
