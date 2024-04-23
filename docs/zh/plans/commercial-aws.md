@@ -5,12 +5,13 @@
 
 > 关于直接注册商业版，可参考 [注册商业版](commercial-register.md)。
 
-## 在 AWS 云市场订阅观测云 {#subscribe}
+## 订阅观测云 {#subscribe}
 
-点击进入 [AWS 云市场](https://awsmarketplace.amazonaws.cn/marketplace/pp/prodview-4rki5nfjxktmy?locale=zh)观测云商品页，点击**继续订阅**。
+登录进入 [AWS 云市场](https://awsmarketplace.amazonaws.cn/marketplace/pp/prodview-4rki5nfjxktmy?locale=zh)观测云商品页，点击**继续订阅**。
 
 ![](img/8.space_4.png)
 
+<!--
 输入账户、用户名和密码进行登录。
 
 ![](img/8.space_5.png)
@@ -18,25 +19,56 @@
 登录后在观测云所属的页面点击**订阅**。
 
 ![](img/8.space_8.png)
-
-在弹出的对话框中，点击**建立您的账户**。
+-->
+成功订阅后，点击**设置您的账户**。
 
 ![](img/8.space_9.png)
 
 
 ## 开通观测云商业版
 
-在 AWS 云市场点击**建立您的账户**以后，跳转回观测云进行开通。提示**立即注册观测云商业版**和**已有费用中心账号，去绑定**。
+点击后自动跳转回观测云的开通页面。如果当前 AWS 账号未绑定观测云费用中心账号，会出现两种情况：
 
-**注意**：费用中心账号是观测云费用中心用于管理观测云商业版计费相关的独立账号，一个费用中心账号可以关联多个工作空间计费。
+:material-numeric-1-circle-outline: [没有费用中心账号](#register)：需要注册观测云账号和费用中心账号，再实现云账号绑定结算；
 
-![](img/15.aws_market_1.png)
+:material-numeric-2-circle-outline: [有费用中心账号](#bond)：可以直接绑定费用中心账号，实现云账号结算。
 
-整体流程参考如下：
+![](img/10.aliyun_market_2.png)
 
-![](img/17.process_1.png)
+???+ warning "什么是费用中心账号？"
 
-> 具体配置步骤，可参考 [注册观测云商业版](./commercial-aliyun.md#register)
+    费用中心账号是观测云费用中心用于管理观测云商业版计费相关的独立账号，一个费用中心账号可以关联多个工作空间计费。
+
+    整体流程参考如下：
+
+    <img src="../img/17.process_1.png" width="60%" >
+
+### 没有费用中心账号 {#register}
+
+若还未有费用中心账号，点击下一步，即可自动跳转至注册页面，[完成注册流程](./commercial-register.md)后，<u>获取观测云账号和费用中心账号</u>。
+
+1. 填写[**基本信息**](./commercial-register.md#info)；
+2. 填写[**企业信息**](./commercial-register.md#corporate)；
+3. 选择开通方式：输入工作空间名称，选择工作空间语言与工作空间风格，点击**开通**即可完成注册。
+
+![](img/aws.png)
+
+### 已有费用中心账号 {#bond}
+
+若您已有费用中心账号，点击下一步，直接进入绑定页面：
+
+![](img/aws-1.png)
+
+**注意**：此处页面右上角的站点与费用中心绑定流程无关，仅影响后续[创建工作空间](#create-workspace)时的站点，且后续无法在创建的页面无法更改站点。
+
+#### :material-numeric-1-circle: 绑定费用中心账号
+
+输入费用中心账号的用户名，通过邮箱验证进行绑定；
+
+![](img/aws-2.png)
+
+#### :material-numeric-2-circle: [绑定工作空间](./commercial-aliyun.md#bind-workspace)
+
 
 <!--
 ### 注册观测云商业版

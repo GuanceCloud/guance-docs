@@ -10,7 +10,9 @@
 | [饼图](pie-chart.md){ .md-button .md-button--primary } | [柱状图](bar-chart.md){ .md-button .md-button--primary } | [直方图](histogram.md){ .md-button .md-button--primary } |[SLO](slo-chart.md){ .md-button .md-button--primary } |[排行榜](leaderboard.md){ .md-button .md-button--primary } |
 | [仪表盘](dashboard.md){ .md-button .md-button--primary } | [散点图](scatter-plot.md){ .md-button .md-button--primary } | [气泡图](bubble-chart.md){ .md-button .md-button--primary } |[中国地图](china-map.md){ .md-button .md-button--primary } |[世界地图](world-map.md){ .md-button .md-button--primary } |
 | [蜂窝图](cellular-map.md){ .md-button .md-button--primary } | [桑基图](sankey.md){ .md-button .md-button--primary } | [文本](text.md){ .md-button .md-button--primary } |[图片](picture.md){ .md-button .md-button--primary } |[视频](video.md){ .md-button .md-button--primary } |
-| [命令面板](command-panel.md){ .md-button .md-button--primary } | [IFrame](iframe.md){ .md-button .md-button--primary } | [日志流图](log-stream.md){ .md-button .md-button--primary } |[对象列表图](object-list.md){ .md-button .md-button--primary } |[告警统计图](alert-statistics.md){ .md-button .md-button--primary } |
+| [命令面板](command-panel.md){ .md-button .md-button--primary } | [IFrame](iframe.md){ .md-button .md-button--primary } | [日志流图](log-stream.md){ .md-button .md-button--primary } |[对象列表图](object-list.md){ .md-button .md-button--primary } |[告警统计图](alert-statistics.md){ .md-button .md-button--primary } | 
+| [拓扑图](topology-map.md){ .md-button .md-button--primary } |  |  |  |  |
+
 
 ## 添加图表
 
@@ -26,25 +28,31 @@
 
 ![](../img/variables_1.png)
 
+<!--
 > 该图表联动显示功能适用于[时序图](timeseries-chart.md)、[概览图](overview-chart.md)、[表格图](table-chart.md)、[矩形树图](treemap.md)、[漏斗图](funnel-chart.md)、[饼图](pie-chart.md)、[柱状图](bar-chart.md)、[直方图](histogram.md)、[SLO](slo-chart.md)、[排行榜](leaderboard.md)、[仪表盘](dashboard.md)、[散点图](scatter-plot.md)、[气泡图](bubble-chart.md)、[中国地图](china-map.md)、[世界地图](world-map.md)、[蜂窝图](cellular-map.md)、[桑基图](sankey.md)、[命令面板](command-panel.md)、[IFrame](iframe.md)、[日志流图](log-stream.md)、[对象列表图](object-list.md)、[告警统计图](alert-statistics.md)。
-
+-->
 
 ## 相关设置
 
-![](../img/chart014.png)
+<img src="../../img/chart014.png" width="70%" >
 
+<!--
 其中，[日志流图](log-stream.md)支持 Copy as cURL、导出为 CSV 文件。
 
 ![](../img/stream-0724.png)
+-->
 
 ### 修改
 
-在图表中，点击 :fontawesome-solid-gear: 按钮，选择**修改**，即可对图表进行编辑。
+在图表中，点击 :fontawesome-solid-gear: 按钮，选择**修改**，即可编辑图表配置。
 
+在编辑图表时，可添加或者调整[图表查询](chart-query.md)，查看和复制[图表 JSON](chart-json.md) 代码，添加[图表链接](chart-link.md)，查看事件关联，调整图表样式和设置等内容。
 
-在编辑图表时，可添加或者调整 [图表查询](chart-query.md) ，查看和复制 [图表 JSON](chart-json.md) 代码，添加 [图表链接](chart-link.md) ，查看事件关联，调整图表样式和设置等内容。
+![](../img/chart007.gif)
 
-![](../img/chart007.png)
+在设置按钮下，还可快速修改主标题：
+
+<img src="../../img/2.scene_3.png" width="70%" >
 
 ##### 锁定时间
 
@@ -78,15 +86,15 @@
 
 ### 分享
 
-在图表中，点击 :fontawesome-solid-gear: 按钮，选择**分享**，即可对制作的可视化图表进行分享，分享的图表统一存储在**管理 > 分享管理 > 分享图表**。
-
-> 更多详情，可参考[图表分享](chart-share.md)。
+在 :fontawesome-solid-gear: 按钮下，可**分享**当前图表。分享后的图表统一存储在**管理 > 分享管理 > 分享图表**。
 
 **注意**：图表分享功能仅支持空间拥有者、管理员和标准成员操作，只读成员无法查看到分享图表的功能。
 
+> 更多详情，可参考 [图表分享](chart-share.md)。
+
 ### 复制、克隆、删除
 
-在图表中，点击 :fontawesome-solid-gear: 按钮，即可对制作的可视化图表进行相应的复制、克隆或删除。
+在 :fontawesome-solid-gear: 按钮下，您可以复制、克隆或删除图表。
 
 **注意**：
 
@@ -94,10 +102,19 @@
 - 克隆的图表可在当前仪表板直接编辑，帮助用户节约重新创建新图表的时间；
 - 图表一旦删除不可复原，需要重新制作。
 
+### 下载图表 {#download}
+
+点击 :material-tray-arrow-down: 即可将图表下载为 PNG 图片。
+
+<img src="../../img/upload.png" width="70%" >
+
+若图表为表格图，图表可下载为 PNG 图片、导出为 CSV 文件。
+
+<img src="../../img/upload-1.png" width="70%" >
 
 ## 分析图表 {#analysis}
 
-在仪表板中，点击图表上的**分析**按钮或双击图表空白处，可以放大图表进行查看和分析。您可以通过鼠标 hover 查看图表的数据信息；或通过选择[时间轴](timeseries-chart.md) 查看特定时间范围的指标趋势。
+在仪表板中，点击图表上的**分析**按钮或双击图表空白处，可以放大图表进行查看和分析。您可以通过鼠标 hover 查看图表的数据信息；或通过选择[时间轴](timeseries-chart.md)查看特定时间范围的指标趋势。
 
 ![](../img/0615-1.gif)
 
@@ -116,7 +133,7 @@
 
 ### 下钻分析 {#deep}
 
-为进一步从数据中获取事件根因，从而更好地分析和排查数据，您可以对<u>所有指标数据</u>进行**下钻分析**：
+为深入从数据中挖掘事件的根本原因，进而实现更精准的数据分析与排查，您可以对<u>所有指标数据</u>进行**下钻分析**。
 
 点击进入**下钻分析**，框选时间区域后，点击**开始检索**即可呈现下钻分析结果。您可以在查询结果中查看该时间区域内的下钻⼀级标签及对应时序图分析结果。
 
