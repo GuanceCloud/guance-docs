@@ -1,5 +1,7 @@
 ---
 title: 'AWS Aurora Serverless V2'
+tags: 
+  - AWS
 summary: 'AWS Aurora Serverless V2，包括连接数、IOPS、队列、读写延迟、网络吞吐量等。'
 __int_icon: 'icon/aws_aurora_serverless_v2'
 dashboard:

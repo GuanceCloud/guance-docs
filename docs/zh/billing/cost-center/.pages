@@ -5,6 +5,5 @@ nav:
   - '账户概览': account-wallet
   - '支持中心': support-center.md
   - '账单管理': billing-management.md
-  - '发票管理': invoice-management.md
   - '账户管理': account-management.md
   - '工作空间管理': workspace-management.md

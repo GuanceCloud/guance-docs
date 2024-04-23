@@ -1,5 +1,7 @@
 ---
 title: '使用观测云采集华为云CCE指标数据'
+tags: 
+  - 华为云
 summary: '观测云支持对 CCE 中各类资源的运行状态和服务能力进行监测，包括 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等。'
 __int_icon: 'icon/huawei_cce'
 dashboard:

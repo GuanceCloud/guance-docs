@@ -1,5 +1,7 @@
 ---
 title: '阿里云 RocketMQ5'
+tags: 
+  - 阿里云
 summary: '阿里云 RocketMQ 5.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。'
 __int_icon: 'icon/aliyun_rocketmq'
 dashboard:

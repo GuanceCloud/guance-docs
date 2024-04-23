@@ -65,8 +65,8 @@ message 信息如下：
 
 不同类型的字段支持的运算符有差异，如下所示：
 
-- 字符串字段运算符：`=` `≠` `wildcard` `not wildcard` `exist` `not exist` `regexp` `not regexp`；
-- 数值字段运算符：`=` `≠` `>` `>=` `<` `<=` `[xx TO xx]` `exist` `not exist`。
+- 字符串字段运算符：`=`、`≠`、`match`、`not match`、`wildcard`、`not wildcard`、`exist`、`not exist`、`regexp`、`not regexp`；
+- 数值字段运算符：`=`、`≠`、`>`、`>=`、`<`、`<=`、`[xx TO xx]`、`exist`、`not exist`。
 
 ![](../img/0620-1.png)
 
@@ -74,6 +74,8 @@ message 信息如下：
 | ----------- | ---------------- |
 | `=`      | 等于，示例：`attribute:value`                   |
 | `≠`      | 不等于，示例：`-attribute:value`               |
+| `match`      | 包含，示例：`attribute:~value`                  |
+| `not match`     | 不包含，示例：`-attribute:~value`                  |
 | `wildcard`      | 包含，需结合通配符进行模糊查询，示例：`attribute:*value*`         |
 | `not wildcard`      | 不包含，需结合通配符进行反向模糊查询，示例：`attribute:*value*`    |
 | `exist`      | 存在，筛选出存在指定字段的数据，示例：`attribute:*`                  |
@@ -108,13 +110,13 @@ attribute:gua*e*   // 第一个 * 匹配 nc ,第二个 * 匹配 yun
 
 ## 特殊字符检索处理 {#character}
 
-在查看器中部分字符具有特殊意义，例如 `空格` 用于分隔多个单词，所以若检索的内容中包含以下字符需要做特殊处理：`空格` `:` `"` `“` `\` `(` `)` `[` `]` `{` `}` `!`。
+在查看器中部分字符具有特殊意义，例如 `空格` 用于分隔多个单词，所以若检索的内容中包含以下字符需要做特殊处理：`空格`、`:`、`"`、`“`、`\`、`(`、`)`、`[`、`]`、`{`、`}`、`!`。
 
 ### :material-numeric-1-circle:将文本变成短语
 
 1. 在文本两侧加 `"` 双引号，可以将文本变为短语；
 2. 此写法下双引号的内容会作为一个整体发起匹配搜索，通配符不会生效；  
-3. 若文本中含有 `\` `"`，该方式无法检索，请使用[方式二](#method-two)查询。
+3. 若文本中含有 `\`、`"`，该方式无法检索，请使用[方式二](#method-two)查询。
 
 *举例说明：检索的字段名 `cmdline`，字段值 `nginx: worker process`：*
 

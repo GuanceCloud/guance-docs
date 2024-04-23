@@ -1,5 +1,7 @@
 ---
 title: '华为云 RDS PostgreSQL'
+tags: 
+  - 华为云
 summary: '华为云 RDS PostgreSQL 的展示指标包括查询性能、事务吞吐量、并发连接数和数据可靠性，这些指标反映了RDS PostgreSQL 在处理大规模关系型数据存储和事务处理时的性能表现和可靠性。'
 __int_icon: 'icon/huawei_rds_postgresql'
 dashboard:

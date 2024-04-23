@@ -1,5 +1,7 @@
 ---
 title: '阿里云 KafKa'
+tags: 
+  - 阿里云
 summary: '阿里云 KafKa 包括实例磁盘使用率、实例何topic 消息生产量、消息生产次数、消息消费量、消息消费次数等，这些指标反映了 Kafka 在处理大规模消息传递和实时数据流时的可靠性保证。
 '
 __int_icon: 'icon/aliyun_kafka'
