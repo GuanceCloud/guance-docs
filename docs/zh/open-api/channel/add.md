@@ -16,6 +16,9 @@
 | name | string | Y | 频道名称<br>例子: 频道1号 <br>允许为空: False <br>最大长度: 256 <br> |
 | description | string |  | 频道的描述信息<br>例子: CUSTOM <br>允许为空: False <br>允许空字符串: True <br>最大长度: 256 <br> |
 | notifyTarget | array |  | 通知对象UUID列表<br>例子: [] <br>允许为空: False <br> |
+| notifyUpgradeCfg | json |  | 规则配置<br>允许为空: False <br> |
+| notifyUpgradeCfg.triggerTime | integer | Y | 超过多长时间, 触发升级通知, 单位 s<br>例子: simpleCheck <br>允许为空: False <br> |
+| notifyUpgradeCfg.notifyTarget | array | Y | 升级通知对象UUID列表<br>例子: [] <br>允许为空: False <br> |
 
 ## 参数补充说明
 
