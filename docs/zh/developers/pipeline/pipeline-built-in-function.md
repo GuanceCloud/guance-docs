@@ -303,6 +303,45 @@ b64enc(`str`)
 ```
 
 
+### `cache_get()` {#fn-cache-get}
+
+函数原型：`fn cache_get(key: str) nil|str`
+
+函数说明：从 cache 中获取 key 所对应的 value
+
+参数：
+
+- `key`：键
+
+示例：
+
+```python
+a = cache_get("a")
+add_key(abc, a)
+```
+
+
+### `cache_set()` {#fn-cache-set}
+
+函数原型：`fn cache_set(key: str, value: str, expiration: int) nil`
+
+函数说明：将键值对保存到 cache 中
+
+参数：
+
+- `key`：键（必填）
+- `value`：值（必填）
+- `expiration`：过期时间（默认=100s）
+
+示例：
+
+```python
+a = cache_set("a", "123")
+a = cache_get("a")
+add_key(abc, a)
+```
+
+
 ### `cast()` {#fn-cast}
 
 函数原型：`fn cast(key, dst_type: str)`
@@ -1023,6 +1062,35 @@ group_in(log_level, ["info", "debug"], "OK")
 group_in(log_level, ["error", "panic"], "not-ok", status)
 ```
 
+
+### `http_request()` {#fn-http-request}
+
+函数原型： `fn http_request(method: str, url: str, headers: map) map`
+
+函数说明： 发送 HTTP 请求，接收响应并封装成 map
+
+参数：
+
+- `method`：GET|POST
+- `url`: 请求路径
+- `headers`：附加的 header，类型为 map[string]string
+
+返回值类型：map
+
+key 包含了状态码（status_code）和返回体（body）
+
+- `status_code`: 状态码
+- `body`: 返回体
+
+示例：
+
+```python
+resp = http_request("GET", "http://localhost:8080/testResp")
+resp_body = load_json(resp["body"])
+
+add_key(abc, resp["status_code"])
+add_key(abc, resp_body["a"])
+```
 
 ### `json()` {#fn-json}
 

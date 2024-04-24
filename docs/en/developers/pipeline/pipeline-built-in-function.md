@@ -305,6 +305,43 @@ b64enc(`str`)
 ```
 
 
+### `cache_get()` {#fn-cache}
+
+Function prototype: `fn cache_get(key: str) nil|str`
+
+Function description: Giving key, cache_get() get the correspond value from cache
+
+Function parameters:
+
+- `key`：key
+
+Example:
+
+```python
+a = cache_get("a")
+add_key(abc, a)
+```
+
+### `cache_set()` {#fn-cache}
+
+Function prototype: `fn cache_set(key: str, value: str, expiration: int) nil`
+
+Function description: save key value pair to cache
+
+Function parameters:
+
+- `key`：key (required)
+- `value`：value (required)
+- `expiration`：expire time (default=100s)
+
+Example:
+
+```python
+a = cache_set("a", "123")
+a = cache_get("a")
+add_key(abc, a)
+```
+
 ### `cast()` {#fn-cast}
 
 Function prototype: `fn cast(key, dst_type: str)`
@@ -1023,6 +1060,35 @@ group_in(log_level, ["info", "debug"], "OK")
 group_in(log_level, ["error", "panic"], "not-ok", status)
 ```
 
+
+### `http_request()` {#fn-http-request}
+
+Function prototype: `fn http_request(method: str, url: str, headers: map) map`
+
+Function description: Send an HTTP request, receive the response, and encapsulate it into a map
+
+Function parameters:
+
+- `method`: GET|POST
+- `url`: Request path
+- `headers`: Additional header，the type is map[string]string
+
+Return type: map
+
+key contains status code (status_code) and result body (body)
+
+- `status_code`: status_code
+- `body`: response body
+
+Example:
+
+```python
+resp = http_request("GET", "http://localhost:8080/testResp")
+resp_body = load_json(resp["body"])
+
+add_key(abc, resp["status_code"])
+add_key(abc, resp_body["a"])
+```
 
 ### `json()` {#fn-json}
 

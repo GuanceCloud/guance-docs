@@ -1,5 +1,7 @@
 ---
 title: 'AWS EventBridge'
+tags: 
+  - AWS
 summary: 'Use the「Guance   Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance .'
 __int_icon: 'icon/aws_eventbridge'
 dashboard:

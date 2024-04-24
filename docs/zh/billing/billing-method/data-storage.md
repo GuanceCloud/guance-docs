@@ -46,7 +46,7 @@
 
 观测云提供两种数据存储方案：**默认存储**和 **SLS 存储**：
 
-- 默认存储：使用观测云 [GuanceDB](./gauncedb.md) 存储指标类数据，Elasticsearch / OpenSearch 存储日志类数据；开通方式可参考文档 [注册观测云商业版](../../billing/commercial-register.md)；
+- 默认存储：使用观测云 [GuanceDB](./gauncedb.md) 存储指标类数据，Elasticsearch / OpenSearch 存储日志类数据；开通方式可参考文档 [注册观测云商业版](../../plans/commercial-register.md)；
 - SLS 存储：使用阿里云日志服务 SLS 存储数据，日志库（LogStore）存储日志类数据，时序库（MetricStore）存储指标类数据；开通方式可参考文档 [阿里云市场开通观测云专属版](../../billing/commercial-aliyun-sls.md)。
 
 

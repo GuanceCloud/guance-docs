@@ -1,5 +1,7 @@
 ---
 title: 'AWS Timestream'
+tags: 
+  - AWS
 summary: 'AWS Timestream displays the metrics include the number of system errors (internal service errors), the total number of invalid requests for the current AWS region and the current AWS account, the time elapsed for successful requests and the number of samples, the amount of data stored in memory, and the amount of data stored in magnetic storage.'
 __int_icon: 'icon/aws_timestream'
 dashboard:

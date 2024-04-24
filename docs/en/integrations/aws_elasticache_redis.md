@@ -1,5 +1,7 @@
 ---
 title: 'AWS ElastiCache Redis'
+tags: 
+  - AWS
 summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
 __int_icon: 'icon/aws_elasticache_redis'
 dashboard:
@@ -9,6 +11,9 @@ monitor:
   - desc: 'AWS ElastiCache RedisMonitor'
     path: 'monitor/zh/aws_elasticache_redis'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_elasticache_redis'
 ---
 
 

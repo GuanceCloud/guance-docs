@@ -1,5 +1,7 @@
 ---
 title: 'Amazon MQ for RabbitMQ'
+tags: 
+  - AWS
 summary: 'Amazon MQ 支持行业标准 API 和协议，对消息代理的管理和维护进行管理，并自动为高可用性提供基础设施。'
 __int_icon: 'icon/aws_mq_rabbitmq'
 dashboard:

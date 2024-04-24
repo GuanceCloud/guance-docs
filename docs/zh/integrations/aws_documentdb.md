@@ -1,5 +1,7 @@
 ---
 title: 'AWS DocumentDB'
+tags: 
+  - AWS
 summary: 'AWS DocumentDB 的展示指标包括读取和写入吞吐量、查询延迟和可扩展性等。'
 __int_icon: 'icon/aws_documentdb'
 dashboard:

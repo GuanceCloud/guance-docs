@@ -1,5 +1,7 @@
 ---
 title: 'AliCloud RDS PostgreSQL'
+tags: 
+  - Alibaba Cloud
 summary: 'AliCloud RDS PostgreSQL metrics showcase, including CPU utilization, memory usage, and more.'
 __int_icon: 'icon/aliyun_rds_postgresql'
 dashboard:

@@ -1,5 +1,7 @@
 ---
 title: 'Aliyun  PolarDB 1.0'
+tags: 
+  - Alibaba Cloud
 summary: 'Aliyun PolarDB Distributed 1.0 displays metrics including CPU utilization, memory utilization, network bandwidth, and disk IOPS.'   
 __int_icon: 'icon/aliyun_polardb_1.0'
 dashboard:

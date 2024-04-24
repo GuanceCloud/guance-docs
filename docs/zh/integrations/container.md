@@ -421,6 +421,26 @@ monitor:
     
         **Default**: false
     
+    - **ENV_INPUT_CONTAINER_DISABLE_COLLECT_KUBE_JOB**
+    
+        关闭对 Kubernetes Job 资源的采集（包括指标数据和对象数据）
+    
+        **Type**: Boolean
+    
+        **ConfField**: `disable_collect_kube_job`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_CONTAINER_ENABLE_K8S_METRIC_BY_PROM**
+    
+        开启对 Kubernetes Prometheus 数据的采集，包括 APIServer、Scheduler、Etcd 等（试验中）
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_k8s_metric_by_prom`
+    
+        **Default**: false
+    
     - **ENV_INPUT_CONTAINER_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它

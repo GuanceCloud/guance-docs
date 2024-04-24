@@ -1,5 +1,7 @@
 ---
 title: 'Tencent Redis'
+tags: 
+  - Tencent Cloud
 summary: 'Tencent Cloud Redis metrics display, including connection count, request count, latency, and slow queries.'
 __int_icon: 'icon/tencent_redis_mem'
 dashboard:
