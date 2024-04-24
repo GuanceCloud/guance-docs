@@ -1,5 +1,7 @@
 ---
 title: 'Aliyun PolarDB distributed2.0'
+tags: 
+  - Alibaba Cloud
 summary: 'Aliyun PolarDB distributed2.0 displays metrics of the computing layer and storage nodes, including CPU usage, connection usage, disk usage, disk usage, memory usage, and network bandwidth.'
 __int_icon: 'icon/aliyun_polardb_2.0'
 dashboard:

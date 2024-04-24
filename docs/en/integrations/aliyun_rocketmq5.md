@@ -1,5 +1,7 @@
 ---
 title: 'Aliyun RocketMQ 5'
+tags: 
+  - Alibaba Cloud
 summary: 'Aliyun RocketMQ 5.0 display metrics including message throughput, latency, reliability, and horizontal scalability.'
 __int_icon: 'icon/aliyun_rocketmq5'
 dashboard:

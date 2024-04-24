@@ -1,5 +1,7 @@
 ---
 title: '阿里云 RDS PostgreSQL'
+tags: 
+  - 阿里云
 summary: '阿里云 RDS PostgreSQL 指标展示，包括 CPU 使用率、内存使用率等。'
 __int_icon: 'icon/aliyun_rds_postgresql'
 dashboard:

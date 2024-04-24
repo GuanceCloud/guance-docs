@@ -1,18 +1,20 @@
 ---
-title: 'Volcenine MongoDB Sharded Cluster'
-summary: 'Volcenine MongoDB Sharded Cluster metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc.'
+title: 'Volcengine MongoDB Sharded Cluster'
+tags: 
+  - `Volcengine`
+summary: 'Volcengine MongoDB Sharded Cluster metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc.'
 __int_icon: 'icon/volcengine_mongodb'
 dashboard:
-  - desc: 'Volcenine Sharded Cluster'
+  - desc: 'Volcengine Sharded Cluster'
     path: 'dashboard/zh/volcengine_mongodb_sharded_cluster/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# `Volcenine` MongoDB Sharded Cluster
+# `Volcengine` MongoDB Sharded Cluster
 <!-- markdownlint-enable -->
 
 
-`Volcenine` MongoDB Sharded Cluster metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc.
+`Volcengine` MongoDB Sharded Cluster metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc.
 
 
 ## Config {#config}
@@ -27,11 +29,11 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 ### Installation script
 
 
-> Tip：Please prepare `Volcenine`  AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Tip：Please prepare `Volcengine`  AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of **ECS** cloud resources, we install the corresponding collection script：「Guance Integration（`Volcenine` -**MongoDB Sharded Cluster** Collect）」(ID：`guance_volcengine_mongodb_sharded_cluster`)
+To synchronize the monitoring data of **ECS** cloud resources, we install the corresponding collection script：「Guance Integration（`Volcengine` -**MongoDB Sharded Cluster** Collect）」(ID：`guance_volcengine_mongodb_sharded_cluster`)
 
-Click "Install" and enter the corresponding parameters: `Volcenine` AK, `Volcenine` account name.
+Click "Install" and enter the corresponding parameters: `Volcengine` AK, `Volcengine` account name.
 
 tap "Deploy startup Script"，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
 
@@ -50,7 +52,7 @@ We collected some configurations by default, as described in the Metrics column 
 
 
 ## Metric  {#metric}
-Configure `Volcenine` - MongoDB Sharded Cluster monitoring. The default metric set is as follows. You can collect more metrics by configuring them [`Volcenine` MongoDB Replica Monitor Metrics Details](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_MongoDB_Sharded_Cluster){:target="_blank"}
+Configure `Volcengine` - MongoDB Sharded Cluster monitoring. The default metric set is as follows. You can collect more metrics by configuring them [`Volcengine` MongoDB Replica Monitor Metrics Details](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_MongoDB_Sharded_Cluster){:target="_blank"}
 
 
 | Metric | Description                          | Unit |
@@ -69,7 +71,7 @@ Configure `Volcenine` - MongoDB Sharded Cluster monitoring. The default metric s
 |`CommandOperationPerSec`|Command operations per second| Count/Second|
 
 ## Object  {#object}
-The collected `Volcenine` Cloud **MongoDB** object data structure can see the object data from 「Infrastructure-Custom」
+The collected `Volcengine` Cloud **MongoDB** object data structure can see the object data from 「Infrastructure-Custom」
 
 ``` json
   {
