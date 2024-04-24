@@ -34,6 +34,41 @@
 |dashboardBidding         |dict |   仪表板绑定的信息|
 
 
+**绑定内置视图字段 dashboardBidding 说明**
+
+内部支持 op 值 in/wildcard
+
+**dashboardBidding 字段示例:**
+```
+{
+    "service": [
+        {
+            "value": [
+                "*"
+            ],
+            "op": "in"
+        }
+    ],
+    "app_id": [
+        {
+            "value": [
+                "test0"
+            ],
+            "op": "wildcard"
+        }
+    ],
+    "label": [
+        {
+            "value": [
+                "勿删"
+            ],
+            "op": "in"
+        }
+    ]
+}
+```
+
+
 
 
 ## 请求例子
