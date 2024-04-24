@@ -434,13 +434,13 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Default**: false
     
-    - **ENV_INPUT_CONTAINER_ENABLE_K8S_METRIC_BY_PROM**
+    - **ENV_INPUT_CONTAINER_ENABLE_K8S_SELF_METRIC_BY_PROM**
     
         Enable collection of Kubernetes Prometheus data, including APIServer, Scheduler, Etcd, etc.(Experimental)
     
         **Type**: Boolean
     
-        **ConfField**: `enable_k8s_metric_by_prom`
+        **ConfField**: `enable_k8s_self_metric_by_prom`
     
         **Default**: false
     
