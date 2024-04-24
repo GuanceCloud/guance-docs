@@ -1,5 +1,7 @@
 ---
 title: 'AWS S3'
+tags: 
+  - AWS
 summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud'
 __int_icon: 'icon/aws_s3'
 dashboard:
@@ -9,6 +11,9 @@ monitor:
   - desc: 'AWS S3 Monitor'
     path: 'monitor/zh/aws_s3'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_s3'
 ---
 
 

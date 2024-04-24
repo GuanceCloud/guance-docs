@@ -1,5 +1,7 @@
 ---
 title: '阿里云 SLB'
+tags: 
+  - 阿里云
 summary: '阿里云 SLB 指标展示，包括后端 ECS 实例状态、端口连接数、 QPS、网络流量、状态码等。'
 __int_icon: 'icon/aliyun_slb'
 dashboard:

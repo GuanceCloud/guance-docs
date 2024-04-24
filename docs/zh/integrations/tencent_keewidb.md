@@ -1,5 +1,7 @@
 ---
 title: '腾讯云 KeeWiDB'
+tags: 
+  - 腾讯云
 summary: '腾讯云 KeeWiDB 指标展示，包括连接数、请求、缓存、key、慢查询等'
 __int_icon: 'icon/tencent_keewidb'
 dashboard:

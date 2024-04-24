@@ -1,5 +1,7 @@
 ---
 title: 'AWS DynamoDB DAX'
+tags: 
+  - AWS
 summary: 'AWS DynamoDB DAX 的展示指标包括节点或集群的 CPU 使用率、在所有网络接口上收到或发出的字节数、数据包的数量等，这些指标反映了 DynamoDB DAX 的运行状态。'
 __int_icon: 'icon/aws_dynamodb_DAX'
 dashboard:

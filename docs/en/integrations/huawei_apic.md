@@ -1,5 +1,7 @@
 ---
 title: 'HUAWEI API Gateway'
+tags: 
+  - Huawei Cloud
 summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the APIervation cloud.'
 __int_icon: 'icon/huawei_API'
 dashboard:
