@@ -94,7 +94,7 @@ const otelExporter = new OTLPTraceExporter({
 
 ### 开启 OpenTelemetry 采集器
 
-参考[OpenTelemetry采集器接入文档](/datakit/opentelemetry/)
+参考[OpenTelemetry采集器接入文档](../../integrations/opentelemetry.md)。
 
 #### 调整参数以下参数
 

@@ -18,23 +18,27 @@ icon: zy/release-notes
 - 异常追踪：
     - 新增 Issue 负责人配置，观测云会为负责人发送邮件通知。
     - 频道管理：支持[升级配置](../exception/channel.md#upgrade)。即，设置新 Issue 超过某特定分钟数时，若未指定负责人，则发送升级通知给对应的通知对象。
-- 监控 
-    - 监控器
-        - 检测配置：支持在【触发条件】配置连续多次判断触发条件生效后，再次触发生成事件。
-        - 检测指标：新增 `match` 函数，支持 `message` 字段配置 `match` 函数匹配。
-    - [静默管理](../monitoring/silent-management.md)：
-        - 列表列出所有静默规则，新增规则状态列；
-        - 列表页新增快捷筛选；
-        - 事件属性匹配支持反选。
+- 监控 > [静默管理](../monitoring/silent-management.md)：静默规则列表页展示优化：支持列出当前工作空间所有静默规则，可通过快捷筛选快速过滤列出目标规则。
+- DQL `match` 函数的含义变更为`完全匹配`。此变更仅针对新引擎，分别应用查看器、监控器这两个场景。
+    - 查看器场景示例：`host:~cn_hangzhou`。
+    - 监控器场景示例：
+    ```
+    window("M::`cpu`:(avg(`load5s`)) { `host` = match('cn-hangzhou.172.16.***') } BY `host`", '1m')
+    ```
 - 场景 > 仪表板[图表](../scene/visual-chart/index.md#download)可直接下载为 PNG 图片，表格图还可导出为 CSV 文件。
 - 日志 > 绑定索引：【字段映射】更改为非必填项。
-- 查看器/监控器：支持 `match` 精准匹配查询方式。
 - 集成/内置视图：模版新增标签管理。
+- Service Map 跨工作空间节点[样式显示调整](../scene/service-manag.md#servicemap)。
 
 ### 观测云部署版更新
 
 - 管理 > 基本信息 > License 信息：DataKit 数量限制支持按照数据统计范围调整，变更为存活时间 >= 12 小时以上的主机或 DK 数量。
 - 支持配置黑名单，自定义选择导入观测云集成、视图模板、监控器模板范围。
+
+### OpenAPI 更新
+
+- Pipelines [新增](../open-api/pipeline/add.md)/[修改](../open-api/pipeline/modify.md)：新增 profiling 类型；
+- 用户视图[新增](../open-api/inner-dashboard/add.md)/[修改](../open-api/inner-dashboard/modify.md)：支持绑定仪表板配置。
 
 ## 2024 年 4 月 10 日
 
