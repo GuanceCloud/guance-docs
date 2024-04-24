@@ -1,5 +1,7 @@
 ---
 title: '华为云 GaussDB-Redis'
+tags: 
+  - 华为云
 summary: '华为云GaussDB-Redis的展示指标包括读写吞吐量、响应时间、并发连接数和数据持久性，这些指标反映了GaussDB-Redis在处理高并发数据存储和缓存时的性能表现和可靠性。'
 __int_icon: 'icon/huawei_gaussdb_redis'
 dashboard:

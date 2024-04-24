@@ -1,5 +1,7 @@
 ---
 title: '华为云ASM链路追踪 TO 观测云'
+tags: 
+  - 华为云
 summary: '华为云的ASM的链路追踪数据输出到观测云，进行查看、分析。'
 __int_icon: 'icon/huawei_asm'
 ---

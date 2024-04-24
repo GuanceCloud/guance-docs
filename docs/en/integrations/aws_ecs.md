@@ -1,5 +1,7 @@
 ---
 title: 'AWS ECS'
+tags: 
+  - AWS
 summary: 'The Amazon ECS feature is integrated with the Amazon Cloud Technology Fargate serverless computing engine, using observation clouds to monitor the operational status of its services.'
 __int_icon: 'icon/aws_ecs'
 dashboard:

@@ -1,18 +1,20 @@
 ---
-title: '火山云 MongoDB 分片集'
-summary: '火山云 MongoDB 分片集指标展示，包括 CPU 使用率、内存使用率、 连接数、延迟、OPS等。'
+title: '火山引擎 MongoDB 分片集'
+tags: 
+  - 火山引擎
+summary: '火山引擎 MongoDB 分片集指标展示，包括 CPU 使用率、内存使用率、 连接数、延迟、OPS等。'
 __int_icon: 'icon/volcengine_mongodb'
 dashboard:
-  - desc: '火山云 MongoDB'
+  - desc: '火山引擎 MongoDB'
     path: 'dashboard/zh/volcengine_mongodb_sharded_cluster/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# 火山云 MongoDB 分片集
+# 火山引擎 MongoDB 分片集
 <!-- markdownlint-enable -->
 
 
-火山云 MongoDB 分片集指标展示，包括 CPU 使用率、内存使用率、 连接数、延迟、OPS等。。
+火山引擎 MongoDB 分片集指标展示，包括 CPU 使用率、内存使用率、 连接数、延迟、OPS等。。
 
 ## 配置 {#config}
 
@@ -26,11 +28,11 @@ dashboard:
 
 ### 安装脚本
 
-> 提示：请提前准备好符合要求的火山云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
+> 提示：请提前准备好符合要求的火山引擎 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步 MongoDB 云资源的监控数据，我们安装对应的采集脚本：「观测云集成（火山云-MongoDB采集）」(ID：`guance_volcengine_mongodb_sharded_cluster`)
+同步 MongoDB 云资源的监控数据，我们安装对应的采集脚本：「观测云集成（火山引擎-MongoDB采集）」(ID：`guance_volcengine_mongodb_sharded_cluster`)
 
-点击【安装】后，输入相应的参数：火山云 AK、火山云账户名。
+点击【安装】后，输入相应的参数：火山引擎 AK、火山引擎账户名。
 
 点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
 
@@ -51,7 +53,7 @@ dashboard:
 3. 在观测云平台，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
-配置好火山云-MongoDB 分片集监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [火山云 MongoDB 监控指标详情](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_MongoDB_Sharded_Cluster){:target="_blank"}
+配置好火山引擎-MongoDB 分片集监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [火山引擎 MongoDB 监控指标详情](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_MongoDB_Sharded_Cluster){:target="_blank"}
 
 > 注意：需要在 `volcengine` MongoDB 控制台安装监控插件
 
@@ -74,7 +76,7 @@ dashboard:
 
 ## 对象 {#object}
 
-采集到的火山云 MongoDB 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
+采集到的火山引擎 MongoDB 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
 
 ``` json
   {

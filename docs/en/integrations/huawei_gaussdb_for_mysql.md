@@ -1,5 +1,7 @@
 ---
 title: 'HUAWEI GaussDB for MySQL'
+tags: 
+  - Huawei Cloud
 summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
 __int_icon: 'icon/gaussdb_for_mysql'
 dashboard:

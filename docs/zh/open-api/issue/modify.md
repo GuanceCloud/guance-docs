@@ -53,6 +53,7 @@
 |:--------:|:--------:|:--------:|:-----------------------:|
 | channels |  array   |    N     | 期望issue投递的资源列表 |
 | members  |     array     |     N     |       期望issue通知的通知对象成员    |
+| manager |  array   |    N     |              负责人的账号uuid               |
 
 
 

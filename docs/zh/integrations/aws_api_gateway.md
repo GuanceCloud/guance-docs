@@ -1,5 +1,7 @@
 ---
 title: 'AWS API Gateway'
+tags: 
+  - AWS
 summary: 'AWS API Gateway的展示指标包括请求响应时间、吞吐量、并发连接数和错误率，这些指标反映了API Gateway在处理API请求和流量管理时的性能表现和可靠性。'
 __int_icon: 'icon/aws_api_gateway'
 dashboard:
