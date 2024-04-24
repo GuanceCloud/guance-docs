@@ -14,7 +14,6 @@ icon: zy/agreements
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 如何创建 Issue？</font>](../exception/issue.md)
 
-<br/>
 
 </div>
 
@@ -23,7 +22,6 @@ icon: zy/agreements
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 在创建完 Issue 后，如何运用频道来管理 Issue？</font>](../exception/channel.md)
 
-<br/>
 
 </div>
 
