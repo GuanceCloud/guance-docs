@@ -5,4 +5,4 @@ nav:
   - '基础设施网络分析': network-analysis.md
   - '活用日志黑名单功能': logs-blacklist.md
   - '通知分组的好处与妙用': inform-group.md
-  - '特殊字符查询说明': inform-group.md
+  - '特殊字符查询说明': special-character-query.md

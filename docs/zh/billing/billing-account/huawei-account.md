@@ -13,7 +13,7 @@
 
 4、[开通成功](../commercial-register.md#success)。
 
-> 更多详情，可参考文档 [注册商业版](../../billing/commercial-register.md)。
+> 更多详情，可参考文档 [注册商业版](../../plans/commercial-register.md)。
 
 ## 在[费用中心](https://boss.guance.com/#/signin)更换华为云账号结算
 

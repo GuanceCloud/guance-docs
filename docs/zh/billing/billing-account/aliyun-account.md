@@ -3,7 +3,7 @@
 
 阿里云账号是指直接通过阿里云账号进行充值结算，一个阿里云账号支持关联多个工作空间、多个站点的工作空间进行费用结算。本文将介绍<u>观测云商业版如何开通阿里云账号结算</u>。
 
-> 关于如何开通商业版，可参考文档 [注册商业版](../../billing/commercial-register.md)。
+> 关于如何开通商业版，可参考文档 [注册商业版](../../plans/commercial-register.md)。
 
 ## 首次注册观测云商业版时选择阿里云账号结算
 
@@ -15,7 +15,7 @@
 
 4、[开通成功](../commercial-register.md#success)。
 
-> 更多详情，可参考文档 [注册商业版](../../billing/commercial-register.md)。
+> 更多详情，可参考文档 [注册商业版](../../plans/commercial-register.md)。
 
 ## 在[费用中心](https://boss.guance.com/#/signin)更换阿里云账号结算
 
