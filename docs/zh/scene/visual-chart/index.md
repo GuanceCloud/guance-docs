@@ -34,7 +34,7 @@
 
 ## 相关设置
 
-<img src="../../img/chart014.png" width="70%" >
+<img src="../img/chart014.png" width="70%" >
 
 <!--
 其中，[日志流图](log-stream.md)支持 Copy as cURL、导出为 CSV 文件。
@@ -52,7 +52,7 @@
 
 在设置按钮下，还可快速修改主标题：
 
-<img src="../../img/2.scene_3.png" width="70%" >
+<img src="../img/2.scene_3.png" width="70%" >
 
 ##### 锁定时间
 
@@ -106,11 +106,11 @@
 
 点击 :material-tray-arrow-down: 即可将图表下载为 PNG 图片。
 
-<img src="../../img/upload.png" width="70%" >
+<img src="../img/upload.png" width="70%" >
 
 若图表为表格图，图表可下载为 PNG 图片、导出为 CSV 文件。
 
-<img src="../../img/upload-1.png" width="70%" >
+<img src="../img/upload-1.png" width="70%" >
 
 ## 分析图表 {#analysis}
 

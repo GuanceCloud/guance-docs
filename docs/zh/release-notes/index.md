@@ -11,7 +11,7 @@ icon: zy/release-notes
 ### 观测云更新
 
 - 管理：
-    - 新增[云账号管理](../management/cloud-account-manag.md)
+    - 新增[云账号管理](../management/cloud-account-manag.md)：将企业所有的云服务账号集中起来进行统一管理，并借由账号下某些配置的唯一性来进行区分。通过配置集成采集器，针对每个账号下的云服务进行独立管理，从而实现对业务数据的精细化控制。
     - 账号管理：[账号登录过期时间](../management/index.md#login-hold-time)调整。
 - 新增[快速搜索](../management/index.md#quick-entry)弹窗，可快速查看当前工作空间内最近访问的页面和其他各功能相关页面。
 - 基础设施 > 容器：新增 [Statefulset](../infrastructure/container.md#statefulset)、[Persistent Volumes](../infrastructure/container.md#persistent-volumes) 两种对象查看器。
@@ -35,7 +35,7 @@ icon: zy/release-notes
 
 - 管理 > 基本信息 > License 信息：DataKit 数量限制支持按照数据统计范围调整，变更为存活时间 >= 12 小时以上的主机或 DK 数量。
 - 支持配置黑名单，自定义选择导入观测云集成、视图模板、监控器模板范围。
-- 
+
 ## 2024 年 4 月 10 日
 
 ### 观测云更新
