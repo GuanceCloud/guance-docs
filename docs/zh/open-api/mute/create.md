@@ -70,6 +70,20 @@
 | muteRanges         |  list  |  Y | 静默范围, [] 代表选择 全部                |
 | tags       |  dict  |  Y | 高级配置, 事件属性                |
 
+tags 配置支持反选配置, 示例:
+```json
+{
+    "tags": {
+        "-host": [
+            "cn-hangzhou"
+        ]
+    },
+    "muteRanges": [],
+    "type": "checker"
+}
+```
+
+
 type 为checker, 监控器类型, 示例:
 ```json
 {
@@ -148,6 +162,10 @@ type 为 custom, 自定义类型, 示例:
         {
             "name": "0306",
             "tagUUID": "tag_2963499b3f6244ac88xxxxxxx",
+        },
+        {
+            "name": "slo_test",
+            "sloUUID": "monitor_2963499b3f6244ac88xxxxxxx",
         }
     ],
     "type": "custom",

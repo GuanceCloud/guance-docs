@@ -45,7 +45,8 @@
 | jsonScript.groupBy | array |  | 触发维度<br>例子: ['性别'] <br>允许为空: False <br> |
 | jsonScript.targets | array |  | 检查目标<br>例子: [{'dql': 'M::`士兵信息`:(AVG(`潜力值`))  [::auto] by `性别`', 'alias': 'M1'}] <br>允许为空: False <br> |
 | jsonScript.checkerOpt | json |  | 检查条件设置<br>允许为空: False <br> |
-| jsonScript.checkerOpt.rules | array |  | 触发条件列表<br>例子: [{'status': 'warning', 'conditions': [{'operands': [60], 'operator': '>', 'alias': 'M1'}], 'conditionLogic': 'and'}] <br>允许为空: False <br> |
+| jsonScript.checkerOpt.rules | array |  | 触发条件列表<br>例子: [{'status': 'warning', 'conditions': [{'operands': [60], 'operator': '>', 'alias': 'M1'}], 'conditionLogic': 'and', 'matchTimes': 10}] <br>允许为空: False <br> |
+| jsonScript.checkerOpt.openMatchTimes | boolean |  | 开启连续触发判断, 默认 关闭false<br>例子: True <br> |
 | jsonScript.checkerOpt.infoEvent | boolean |  | 是否在持续正常时产生info事,默认false<br>例子: True <br> |
 | jsonScript.checkerOpt.diffMode | string |  | 高级检测中突变检测的,差值模式,枚举值, value, percent<br>例子: value <br>可选值: ['value', 'percent'] <br> |
 | jsonScript.checkerOpt.direction | string |  | 高级检测中突变检测,区间检测的触发条件方向<br>例子: up <br>可选值: ['up', 'down', 'both'] <br> |
@@ -93,7 +94,17 @@
 |smartRumCheck| 智能监控, 用户访问智能检测|
 |combinedCheck| 组合监控|
 
-**2. **触发条件比较操作符说明(`checkerOpt`.`rules` 中的参数说明)**
+**2. 已下线的检查类型`jsonScript.type` 说明**
+
+|key|说明|
+|---|----|
+|seniorCheck| 高级检查,已下线|
+|mutationsCheck| 突变检查,已下线, 更新为 seniorMutationsCheck|
+|waterLevelCheck| 水位检查,已下线|
+|rangeCheck| 区间检查,已下线, 更新为 seniorRangeCheck|
+
+
+**3. **触发条件比较操作符说明(`checkerOpt`.`rules` 中的参数说明)**
 
 |  参数名                |   type  | 必选  |          说明          |
 |-----------------------|----------|----|------------------------|
@@ -108,40 +119,69 @@
 |checkPercent    |integer     | |【区间参数】 异常百分比阈值，取值：1 ~ 100|
 |checkCount    |integer     | | 【水位/突变参数】连续异常点数量|
 |strength    |integer     | | 【水位/突变参数】检测强度，取值：1=弱，2=中，3=强|
+|matchTimes    |integer     | | 开启连续触发配置的(checkerOpt.openMatchTimes) 连续触发配置的次数 [1,10]|
 
 --------------
 
-**3.简单/日志/水位/突变/区间检查 `jsonScript.type` in （`simpleCheck`, `loggingCheck`, `waterLevelCheck`, `mutationsCheck`, `rangeCheck`, `securityCheck`）参数信息**
+**4.简单/日志/水位/突变/区间检查 `jsonScript.type` in （`simpleCheck`, `loggingCheck`, `waterLevelCheck`, `mutationsCheck`, `rangeCheck`, `securityCheck`）参数信息**
 
 |  参数名        |   type  | 必选  |          说明          |
 |---------------|----------|----|------------------------|
-| name          |  string  |  Y | 规则名                  |
-| title         |  string  |  Y | 事件标题                |
-| message       |  string  |  Y | 事件内容                |
-| name          |  string  |  Y | 规则名                  |
+| title         |  string  |  Y | 输出故障事件标题模板      |
+| message       |  string  |  N | 输出故障事件信息模板      |
+| recoverTitle  |  string  |  N | 输出恢复事件标题模板      |
+| recoverMessage |  string  |  N | 输出恢复事件信息模板     |
+| noDataTitle   |  string  |  N | 输出无数据事件标题模板     |
+| noDataMessage |  string  |  N | 输出无数据事件信息模板     |
+| noDataRecoverTitle |  string  |  N | 输出无数据恢复上传事件标题模板 |
+| noDataRecoverMessage |  string  |  N | 输出无数据恢复上传事件信息模板 |
+| name          |  string  |  Y | 规则名     |
 | type          |  string  |  Y | 规则类型   |
 | every         |  string  |  Y | 检查频率, 单位是 (1m/1h/1d)  |
-| interval      |  integer |  Y | 数据时间范围的时差，即time_range的时差, 单位：秒  |
 | customCrontab         |  string  |  N | 自定义检查频率的crontab  |
+| interval      |  integer |  Y | 数据时间范围的时差，即time_range的时差, 单位：秒  |
 | recoverNeedPeriodCount |  integer |  Y | 超过指定检查周期次数之后生成恢复事件,如果 检测频率为 自定义customCrontab, 该字段表示为时间长度, 单位s, 否则,表示几个检测频率 |
 | noDataInterval|  integer | N |  多长时间内无数据则产生无数据事件
+| noDataAction|  string | N |  无数据处理操作
 | targets       |  array   |  Y | 简单检查中的检查目标列表|
 | targets[*].dql|  string  |  Y | DQL查询语句|
 | targets[*].alias| string |  Y | 别名|
 | targets[*].monitorCheckerId| string |  Y | 组合监控, 监控器 ID（rul_xxxxx）|
 | checkerOpt    |  json    |  N | 检查配置,可选 |
 | checkerOpt.rules|  array |  Y | 检查规则列表 |
+| checkerOpt.openMatchTimes|  boolean |  N | 是否开启连续触发判断, 默认 关闭false |
+
 
 --------------
 
+**5.`jsonScript.noDataAction`参数信息 **
 
-**4.高级检查 `jsonScript.type` in （`seniorCheck`）参数信息**
+|  参数名        |   说明  |
+|---------------|----------|
+| none          |  无动作（即与[关闭无数据相关处理]相同）  |
+| checkAs0      |  查询结果视为0                       |
+| noDataEvent   |  触发恢复事件(noData)                |
+| criticalEvent |  触发紧急事件(crtical)               |
+| errorEvent    |  触发重要事件(error)                 |
+| warningEvent  |  触发警告事件(warning)               |
+| okEvent       |  触发恢复事件(ok)                    |
+| noData        |  产生无数据事件, 该参数于 2024-04-10 日下架,  其功能逻辑等同于`noDataEvent`，可直接替换为`noDataEvent`  |
+| recover       |  触发恢复事件, 该参数于 2024-04-10 日下架,  其功能逻辑等同于`okEvent`，可直接替换为`okEvent`  |
+
+--------------
+
+**6. 高级检查 `jsonScript.type` in （`seniorCheck`）参数信息**
 
 |  参数名        |   type  | 必选  |          说明          |
 |---------------|----------|----|------------------------|
-| name          |  string  |  Y | 规则名                  |
-| title         |  string  |  Y | 事件标题                |
-| message       |  string  |  Y | 事件内容                |
+| title         |  string  |  Y | 输出故障事件标题模板      |
+| message       |  string  |  N | 输出故障事件信息模板      |
+| recoverTitle  |  string  |  N | 输出恢复事件标题模板      |
+| recoverMessage |  string  |  N | 输出恢复事件信息模板     |
+| noDataTitle   |  string  |  N | 输出无数据事件标题模板     |
+| noDataMessage |  string  |  N | 输出无数据事件信息模板     |
+| noDataRecoverTitle |  string  |  N | 输出无数据恢复上传事件标题模板 |
+| noDataRecoverMessage |  string  |  N | 输出无数据恢复上传事件信息模板 |
 | type          |  string  |  Y | 规则类型  |
 | every         |  string  |  Y | 检查频率, 单位是 (1m/1h/1d)  |
 | customCrontab         |  string  |  N |自定义检查频率的crontab  |
@@ -151,7 +191,7 @@
 
 --------------
 
-**5.突变检查 seniorMutationsCheck 参数说明**
+**7. 突变检查 seniorMutationsCheck 参数说明**
 
 |  参数名        |   type  | 必选  |          说明          |
 |---------------|----------|----|------------------------|
@@ -165,7 +205,7 @@
 
 --------------
 
-**6.组合监控 相关字段 参数说明**
+**8. 组合监控 相关字段 参数说明**
 
 |  参数名        |   type  | 必选  |          说明          |
 |---------------|----------|----|------------------------|
@@ -174,7 +214,16 @@
 
 --------------
 
-**7. 字段 disableCheckEndTime 说明**
+**9. 外部事件检测`jsonScript.type` in （`OuterEventChecker`） 相关字段 参数说明**
+
+|  参数名        |   type  | 必选  |          说明          |
+|---------------|----------|----|------------------------|
+| secret        |  string  |  Y | 一个任意长度的随机字符串,工作空间内唯一, 用于识别事件所属监控器。  |
+| jsonScript.subUri        |  string  |   | 表示Webhook地址的地址后缀(根据用户业务侧需求可选设置，无特殊限制)  |
+
+--------------
+
+**10. 字段 disableCheckEndTime 说明**
 
 上报数据观测云对其处理逻辑包含 追加写入、更新覆盖 两种模式，根据这两种数据的特性，监控需要做检测的区别对待。此区别对应范围包含监控器、智能监控、智能巡检所有模块。
 所有覆盖更新机制的数据类型配置监控器检测时，为了避免因为监控器执行 delay 1 分钟导致更新模式的数据在固定的时间范围内有逃逸现象，此类监控器类型的检测区间不指定结束时间。
@@ -201,23 +250,6 @@
 | 安全巡检 | S |  |
 
 所有 写入模式为 覆盖 的 需要指定 disableCheckEndTime 为 true
-
---------------
-
-**8.`jsonScript.noDataAction`参数信息 **
-
-|  参数名        |   说明  |
-|---------------|----------|
-| none          |  无动作（即与[关闭无数据相关处理]相同）  |
-| checkAs0      |  查询结果视为0                       |
-| noDataEvent   |  触发恢复事件(noData)                |
-| criticalEvent |  触发紧急事件(crtical)               |
-| errorEvent    |  触发重要事件(error)                 |
-| warningEvent  |  触发警告事件(warning)               |
-| okEvent       |  触发恢复事件(ok)                    |
-| noData        |  产生无数据事件, 该参数于 2024-04-10 日下架,  其功能逻辑等同于`noDataEvent`，可直接替换为`noDataEvent`  |
-| recover       |  触发恢复事件, 该参数于 2024-04-10 日下架,  其功能逻辑等同于`okEvent`，可直接替换为`okEvent`  |
-
 
 --------------
 
