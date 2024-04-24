@@ -72,9 +72,9 @@
 
 输入费用中心账号的用户名，通过邮箱验证进行绑定；
 
-<img src="../img/10.market_aliyun_1.png" width="60%" >
+<img src="../img/10.market_aliyun_1.png" width="70%" >
 
-#### :material-numeric-2-circle: 绑定工作空间
+#### :material-numeric-2-circle: 绑定工作空间 {#bind-workspace}
 
 ##### 绑定已有工作空间
 

@@ -45,13 +45,13 @@
 如果需要导出某条数据，打开该条数据详情页，点击右上角 :material-tray-arrow-up: 图标即可。    
 
 
-#### Containers 列表 {#containers}
+#### Containers {#containers}
 
 支持查看工作空间内采集的全部容器信息，包括容器名称、相关主机、运行状态、CPU 使用率、MEM 使用率等。
 
 ##### 详情页
 
-点击 Containers 列表中的容器名称即可划出详情页查看容器的详细信息，包括容器状态、容器名称、容器 ID、容器镜像、容器所关联的主机、Pod、日志、进程和 Label 属性。
+点击列表某条对象可划出详情页查看容器的详细信息，包括容器状态、容器名称、容器 ID、容器镜像、容器所关联的主机、Pod、日志、进程和 Label 属性。
 
 ![](img/6.container_3.png)
 
@@ -123,15 +123,15 @@
 </div>
 
 
-#### Pods 列表 {#pods}
+#### Pods {#pods}
 
-通过左上角的对象 **Pods**，您可以切换至 **Pods** 查看空间内留存的全部 Pods 的信息，包括 Pods 名称、运行状态、重启次数、启动时间等。
+通过左上角的对象 **Pods**，您可以查看空间内留存的全部 Pods 的信息，包括 Pods 名称、运行状态、重启次数、启动时间等。
 
 ##### Pods 详情页
 
-点击 Pods 列表中的 Pods 名称即可划出详情页查看 Pods 的详细信息，包括运行状态、Pods 名称、所属的节点 Node、Label 属性、关联指标、关联容器、关联日志、YAML 文件、网络连接状态、关联服务器运行状态以及关联 kubernetes。
+点击列表某条对象可划出详情页查看 Pods 的详细信息，包括运行状态、Pods 名称、所属的节点 Node、Label 属性、关联指标、关联容器、关联日志、YAML 文件、网络连接状态、关联服务器运行状态以及关联 kubernetes。
 
-通过点击 Pods 详情页的标签**主机**，您可以对该主机相关的日志、容器、进程、链路、巡检等数据进行查询。
+通过点击标签**主机**，您可以对该主机相关的日志、容器、进程、链路、巡检等数据进行查询。
 
 | 操作 | 说明 |
 | --- | --- |
@@ -164,13 +164,13 @@ Kubernetes 日志/事件：点击 Kubernetes 日志/事件可查看 `namespace`�
 
 ![](img/0810-pods.png)
 
-#### Services 列表
+#### Services
 
-通过左上角的对象 **Services** ，您可以切换至 **Services** 查看空间内留存的全部 Services 的信息，包括 Services 名称、服务类型、Cluster IP、External IP、运行时长等。
+通过左上角的对象 **Services**，您可以查看空间内留存的全部 Services 的信息，包括 Services 名称、服务类型、Cluster IP、External IP、运行时长等。
 
 ##### Services 详情页
 
-点击 Services 列表中的 Services 名称即可划出详情页查看 Services 的详细信息，包括名称、基础信息、Label 属性、YAML 文件等。
+点击列表某条对象可划出详情页查看 Services 的详细信息，包括名称、基础信息、Label 属性、YAML 文件等。
 
 **注意**：若 Services 关联字段 `namespace`，则可以在 Services 详情页查看该字段对应的指标视图。
 
@@ -188,13 +188,13 @@ Kubernetes 日志/事件：点击 Kubernetes 日志/事件可查看 `namespace`�
 
 ![](img/0810-pods.png)
 
-#### Deployments 列表
+#### Deployments
 
-通过左上角的对象 **Deployments**，您可以切换至 **Deployments** 查看空间内留存的全部 Deployments 的详尽信息，包括 Deployments 名称、可用副本、已升级副本、准备就绪、运行时长等。
+通过左上角的对象 **Deployments**，您可以查看空间内留存的全部 Deployments 的详尽信息，包括 Deployments 名称、可用副本、已升级副本、准备就绪、运行时长等。
 
 ##### Deployments 详情页
 
-点击 Deployments 列表中的 Deployments 名称即可划出详情页查看 Deployments 的详细信息，包括名称、基础信息、Label 属性和其他字段属性。支持查看关联的日志、Replica Set、Pods、网络数据以及关联 kubernetes。
+点击列表某条对象可划出详情页查看 Deployments 的详细信息，包括名称、基础信息、Label 属性和其他字段属性。支持查看关联的日志、Replica Set、Pods、网络数据以及关联 kubernetes。
 
 **注意**：若 Deployments 关联字段 `namespace`，则可以在 Services 详情页查看该字段对应的指标视图。
 
@@ -244,13 +244,13 @@ Kubernetes 日志/事件：点击 Kubernetes 日志/事件可查看 `namespace`�
 
     ![](img/0810-pods.png)
 
-#### Clusters 列表
+#### Clusters
 
-通过左上角的对象 **Clusters** ，您可以切换至 **Clusters** 查看空间内留存的全部 Clusters 的信息，包括 Clusters 名称、运行时间、kubernetes 注释等。
+通过左上角的对象 **Clusters**，您可以查看空间内留存的全部 Clusters 的信息，包括 Clusters 名称、运行时间、kubernetes 注释等。
 
 ##### Clusters 详情页
 
-点击 Clusters 列表中的 Clusters 名称即可划出详情页查看 Clusters 的详细信息，包括名称、基础属性信息、Label 属性和其他字段属性。
+点击列表某条对象可划出详情页查看 Clusters 的详细信息，包括名称、基础属性信息、Label 属性和其他字段属性。
 
 ![](img/10.clusters_2.png)
 
@@ -261,13 +261,13 @@ Kubernetes 日志/事件：点击 Kubernetes 日志/事件可查看 `namespace`�
 **Label 属性**随 Clusters 信息默认自动上传。已有的标签，可在 Clusters 对象列表通过快捷筛选展示相同标签的 Clusters 数据。
 
 
-#### Nodes 列表
+#### Nodes
 
-通过左上角的对象 **Nodes** ，您可以切换至 **Nodes** 查看空间内留存的全部 Nodes 的信息，包括 Nodes 名称、状态、版本、运行时间。
+通过左上角的对象 **Nodes**，您可以查看空间内留存的全部 Nodes 的信息，包括 Nodes 名称、状态、版本、运行时间。
 
 ##### Nodes 详情页
 
-点击 Nodes 列表中的 Nodes 名称即可划出详情页查看 Nodes 的详细信息，包括名称、基础属性信息、Label 属性和其他字段属性。支持查看关联的 Pods 数据。
+点击列表某条对象可划出详情页查看 Nodes 的详细信息，包括名称、基础属性信息、Label 属性和其他字段属性。支持查看关联的 Pods 数据。
 
 ![](img/11.nodes_2.png)
 
@@ -281,13 +281,13 @@ Kubernetes 日志/事件：点击 Kubernetes 日志/事件可查看 `namespace`�
 **Label 属性**随 Nodes 信息默认自动上传。已有的标签，可在 Nodes 对象列表通过快捷筛选展示相同标签的 Nodes 数据。
 
 
-#### Replica Sets 列表
+#### Replica Sets
 
-通过左上角的对象 **Replica Sets** ，您可以切换至 **Replica Sets** 查看空间内留存的全部 Replica Sets 的详尽信息，包括 Replica Sets 名称、运行时间长，集群等。
+通过左上角的对象 **Replica Sets**，您可以查看空间内留存的全部 Replica Sets 的详尽信息，包括 Replica Sets 名称、运行时间长，集群等。
 
 ##### Replica Sets 详情页
 
-点击 Replica Sets 列表中的 Replica Sets 名称即可划出 Replica Sets 详情页查看 Replica Sets 的信息，包括名称、基础属性信息、 Label 属性和其他字段属性。支持查看关联的 Pods 数据。
+点击列表某条对象可划出 Replica Sets 详情页查看 Replica Sets 的信息，包括名称、基础属性信息、 Label 属性和其他字段属性。支持查看关联的 Pods 数据。
 
 **注意**：若 Replica Sets 关联字段 `namespace`，则可以在 Services 详情页查看该字段对应的指标视图。
 
@@ -304,13 +304,13 @@ Kubernetes 日志/事件：点击 Kubernetes 日志/事件可查看 `namespace`�
 **Label 属性**随 Replica Sets 信息默认自动上传。已有的标签，可在 Replica Sets 对象列表通过快捷筛选展示相同标签的 Replica Sets 数据。
 
 
-#### Jobs 列表
+#### Jobs
 
-通过左上角的对象 **Jobs**，您可以切换至 **Jobs** 查看空间内留存的全部 Jobs 的信息，包括 Jobs 名称、并行数量、活跃数、运行时间等。
+通过左上角的对象 **Jobs**，您可以查看空间内留存的全部 Jobs 的信息，包括 Jobs 名称、并行数量、活跃数、运行时间等。
 
 ##### Jobs 详情页
 
-点击 Jobs 列表中的 Jobs 名称即可划出详情页查看 Jobs 的详细信息，包括名称、基础属性信息、Label 属性和其他字段属性。
+点击列表某条对象可划出详情页查看 Jobs 的详细信息，包括名称、基础属性信息、Label 属性和其他字段属性。
 
 ![](img/13.jobs_2.png)
 
@@ -321,13 +321,13 @@ Kubernetes 日志/事件：点击 Kubernetes 日志/事件可查看 `namespace`�
 **Label 属性**随 Jobs 信息默认自动上传。已有的标签，可在 Jobs 对象列表通过快捷筛选展示相同标签的 Jobs 数据。
 
 
-#### Cron Jobs 列表
+#### Cron Jobs
 
-通过左上角的对象 **Cron Jobs** ，您可以切换至 **Cron Jobs** 查看空间内留存的全部 Cron Jobs 的信息，包括 Cron Jobs 名称、运行日程、是否暂停、Jobs 活跃数量、运行时间等。
+通过左上角的对象 **Cron Jobs**，您可以查看空间内留存的全部 Cron Jobs 的信息，包括 Cron Jobs 名称、运行日程、是否暂停、Jobs 活跃数量、运行时间等。
 
 ##### Cron Jobs 详情页
 
-点击 Cron Jobs 列表中的 Cron Jobs 名称即可划出详情页查看 Cron Jobs 的详细信息，包括名称、基础属性信息、 Label 属性和其他字段属性。
+点击列表某条对象可划出详情页查看 Cron Jobs 的详细信息，包括名称、基础属性信息、 Label 属性和其他字段属性。
 
 ![](img/14.cronjobs_2.png)
 
@@ -340,13 +340,13 @@ Kubernetes 日志/事件：点击 Kubernetes 日志/事件可查看 `namespace`�
 **Label 属性**随 Cron Jobs 信息默认自动上传。已有的标签，可在 Cron Jobs 对象列表通过快捷筛选展示相同标签的 Jobs 数据。
 
 
-#### Daemonsets 列表
+#### Daemonsets
 
-通过左上角的对象 **Daemonsets**，您可以切换至 **Daemonsets** 查看空间内留存的全部 Daemonsets 的信息，默认显示 Daemonsets 名称、期望节点数、更新节点数、准备就绪节点数、运行时长等。
+通过左上角的对象 **Daemonsets**，您可以查看空间内留存的全部 Daemonsets 信息，默认显示 Daemonsets 名称、期望节点数、更新节点数、准备就绪节点数、运行时长等。
 
 ##### Daemonsets 详情页 {#daemonsets}
 
-点击 Daemonsets 列表中的 Daemonsets 名称即可划出详情页查看 Daemonsets 更新节点数、准备就绪节点数和其他字段属性。
+点击列表某条对象可划出详情页查看 Daemonsets 更新节点数、准备就绪节点数和其他字段属性。
 
 ![](img/daemonsets.png)
 
@@ -358,7 +358,35 @@ Kubernetes 日志/事件：点击 Kubernetes 日志/事件可查看 `namespace`�
 
 **Label 属性**随 Daemonsets 信息默认自动上传。已有的标签，可在 Daemonsets 对象列表通过快捷筛选展示相同标签的 Daemonsets 数据。
 
+#### Statefulset {#statefulset}
 
+通过左上角的对象 **Statefulset**，您可以查看空间内留存的全部 Statefulset 信息，默认显示 Statefulset 名称、集群、命名空间、运行时长、已准备副本数、正在运行副本数和期望副本数。
+
+##### Statefulset 详情页 
+
+点击列表某条对象可划出详情页查看 Statefulset 关联的已准备副本数、运行时长和其他字段属性。
+
+![](img/statefulset.png)
+
+其中，点击 kubernetes 事件可自动查看 `source`、`involved_kind`、`involved_namespace`、`involved_name` 关联的对应数据。右上角时间控件支持自定义时间范围筛选数据。
+
+![](img/statefulset-1.png)
+
+#### Persistent Volumes {#persistent-volumes}
+
+通过左上角的对象 **Persistent Volumes**，您可以查看空间内留存的全部 Persistent Volumes 信息，默认显示 Persistent Volumes 名称、集群、命名空间、可用数、空闲节点和容量。
+
+##### Persistent Volumes 详情页 
+
+点击列表某条对象可划出详情页查看 Persistent Volumes 关联的 Pod 名称和可用空间。
+
+![](img/persistent-volumes.png)
+
+<!--
+其中，点击 kubernetes 事件可自动查看 `source`、`involved_kind`、`involved_namespace`、`involved_name` 关联的对应数据。右上角时间控件支持自定义时间范围筛选数据。
+
+![](img/persistent-volumes-1.png)
+-->
 
 ### 蜂窝图 {#distribution}
 

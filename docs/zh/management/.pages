@@ -13,9 +13,10 @@ nav:
   - 'API Key 管理': api-key
   - '黑名单': overall-blacklist.md 
   - 'Pipelines': overall-pipeline.md
-  - '数据转发': backup.md
+  - '数据转发': backup
   - '正则表达式': regex.md
-  - '操作审计': operation-audit.md
+  - '云账号管理': cloud-account-manag.md
+  - '审计事件': operation-audit.md
   - '分享管理': share-management.md
   - '跨工作空间授权': data-authorization.md
   - '敏感数据脱敏': data-mask.md
