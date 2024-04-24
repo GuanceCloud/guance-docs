@@ -26,9 +26,9 @@
 
 3、快捷键
 
-:fontawesome-brands-windows: &nbsp; &nbsp; ++ctrl+k++
+:fontawesome-brands-windows: &nbsp; &nbsp; ++ctrl+Shift+k++
 
-:fontawesome-brands-apple: &nbsp; &nbsp; ++cmd+k++
+:fontawesome-brands-apple: &nbsp; &nbsp; ++cmd+Shift+k++
 
 **注意**：若您后台程序存在的快捷键与上述冲突时，将无法使用**保存快照**的快捷键功能。
 
