@@ -431,13 +431,13 @@ monitor:
     
         **Default**: false
     
-    - **ENV_INPUT_CONTAINER_ENABLE_K8S_METRIC_BY_PROM**
+    - **ENV_INPUT_CONTAINER_ENABLE_K8S_SELF_METRIC_BY_PROM**
     
         开启对 Kubernetes Prometheus 数据的采集，包括 APIServer、Scheduler、Etcd 等（试验中）
     
         **Type**: Boolean
     
-        **ConfField**: `enable_k8s_metric_by_prom`
+        **ConfField**: `enable_k8s_self_metric_by_prom`
     
         **Default**: false
     
