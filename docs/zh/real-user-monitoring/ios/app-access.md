@@ -3,12 +3,11 @@
 ---
 ???- quote "更新日志"
 
-    **1.4.11**
-    1. 新增支持数据同步参数配置，请求条目数据，同步间歇时间，以及日志缓存条目数
-    2. 新增内部日志转文件方法
-    3. 日志关联 RUM 数据获取错误修复
-    4. 耗时操作优化
-    5. 修复 WebView jsBridge 时产生的崩溃，对 WebView 引用改为弱引用
+    **1.4.12**
+    1. 修复注销 SDK 后产生的内存泄漏问题
+    2. 修复采集 RUM-Resource 时与其他库冲突导致崩溃问题
+    3. 处理完 UncaughtException 传递 UncaughtExceptionHandler
+    4. 修复重复配置 SDK 造成的数据异常
     
     [更多日志](https://github.com/GuanceCloud/datakit-ios/blob/develop/CHANGELOG.md)
 
@@ -1579,7 +1578,7 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 
 1. XCode 添加自定义 Run Script Phase：` Build Phases -> + -> New Run Script Phase`
 2. 将脚本复制到 Xcode 项目的构建阶段运行脚本中，脚本中需要设置参数如：＜app_id＞、＜datakit_address＞、＜env＞、<dataway_token>、＜version＞(脚本默认配置的版本格式为 `CFBundleShortVersionString`)。
-3. [脚本](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
+3. [脚本：FTdSYMUpload.sh](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
 
 ```sh
 #脚本中需要配置的参数
@@ -1674,6 +1673,8 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 #### 方法二：终端运行脚本
 
 找到 .dSYM 文件放在一个文件夹内，命令行下输入应用基本信息, .dSYM 文件的父目录路径, 输出文件目录即可
+
+[脚本：FTdSYMUpload.sh](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
 
 `sh FTdSYMUpload.sh <datakit_address> <app_id> <version> <env> <dataway_token> <dSYMBOL_src_dir> <dSYMBOL_dest_dir>`
 
