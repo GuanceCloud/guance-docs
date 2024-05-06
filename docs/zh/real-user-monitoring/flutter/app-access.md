@@ -336,6 +336,7 @@ class _HomeState extends State<HomeRoute> {
 ```
 
 #### 自动采集过滤  {#view-auto-track-route-filter}
+仅支持 0.5.0-pre.1 以上的版本
 
 **FTRouteObserver**
 
