@@ -97,7 +97,7 @@ void main() async {
 | cliToken | String | 是 | 认证 token, 需要与 datawayUrl 同时配置  |
 | debug | bool | 否 | 设置是否允许打印日志，默认 `false` |
 | env | String | 否 | 环境配置，默认 `prod`，任意字符，建议使用单个单词，例如 `test` 等|
-| envType | enum EnvType | 否 | 环境配置，默认 `EnvType.prod`。注：env 与 envType 只需配置一个 |
+| envType | enum EnvType | 否 | 环境配置，默认 `EnvType.prod`。**注：env 与 envType 只需配置一个** |
 | serviceName | String | 否 | 服务名 |
 
 ### RUM 配置 {#rum-config}

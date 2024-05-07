@@ -4,13 +4,15 @@
 ???- quote "更新日志"
 
     **1.4.11**
+    ```
     1. 新增支持数据同步参数配置，请求条目数据，同步间歇时间，以及日志缓存条目数
     2. 新增内部日志转文件方法
     3. 日志关联 RUM 数据获取错误修复
     4. 耗时操作优化
     5. 修复 WebView jsBridge 时产生的崩溃，对 WebView 引用改为弱引用
-    
+    ```
     [更多日志](https://github.com/GuanceCloud/datakit-ios/blob/develop/CHANGELOG.md)
+    
 
 观测云应用监测能够通过收集各个 iOS 应用的指标数据，以可视化的方式分析各个 iOS 应用端的性能。
 
