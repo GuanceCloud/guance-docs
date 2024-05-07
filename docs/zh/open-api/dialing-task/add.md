@@ -280,7 +280,7 @@ curl 'https://openapi.guance.com/api/v1/dialing_task/add' \
             "method": "GET",
             "name": "test",
             "owner_external_id": "wksp_ed134a6485c8484dbd0e58ce9a9c6115",
-            "post_url": "http://testing-openway.cloudcare.cn?token=tkn_7ca9b1139db64fa6ac34801145a9cb6e",
+            "post_url": "http://testing-openway.cloudcare.cn?token=tkn_xxxxx",
             "status": "ok",
             "success_when": [
                 {

@@ -1,5 +1,7 @@
 ---
 title: '阿里云 ECS'
+tags: 
+  - 阿里云
 summary: '阿里云ECS的展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS，这些指标反映了ECS实例的计算、内存、网络和存储性能表现。'
 __int_icon: 'icon/aliyun_ecs'
 dashboard:

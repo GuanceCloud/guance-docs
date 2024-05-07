@@ -469,7 +469,7 @@ DD_TAGS="project:your_project_name,env=test,version=v1" ddtrace-run python app.p
 从 DataKit 版本 [1.22.0](../datakit/changelog.md#cl-1.22.0) 恢复白名单功能，如果有必须要提取到一级标签列表中的标签，可以在 `customer_tags` 中配置。
 配置的白名单标签如果是原生的 `message.meta` 中，会使用 `.` 作为分隔符，采集器会进行转换将 `.` 替换成 `_` 。
 
-## 链路 {#tracing}
+## 链路字段说明 {#tracing}
 
 
 
@@ -479,7 +479,7 @@ DD_TAGS="project:your_project_name,env=test,version=v1" ddtrace-run python app.p
 
 
 
-- 标签
+- 标签（String 类型）
 
 
 | Tag | Description |
@@ -500,7 +500,7 @@ DD_TAGS="project:your_project_name,env=test,version=v1" ddtrace-run python app.p
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- 指标列表
+- 指标列表（非 String 类型，或者长 String 类型）
 
 
 | Metric | Description | Type | Unit |

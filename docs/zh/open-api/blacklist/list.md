@@ -43,7 +43,7 @@ curl 'https://openapi.guance.com/api/v1/blacklist/list?type=all&pageIndex=1&page
         {
             "conditions": "{ source =  'kodo-log'  and ( host in [ '127.0.0.1' ] )}",
             "createAt": 1678029404,
-            "creator": "wsak_dca59c06eb144f10b6041c34ad1716a7",
+            "creator": "xxx",
             "deleteAt": -1,
             "filters": [
                 {
@@ -60,7 +60,7 @@ curl 'https://openapi.guance.com/api/v1/blacklist/list?type=all&pageIndex=1&page
             "status": 0,
             "type": "logging",
             "updateAt": 1678029404,
-            "updator": "wsak_dca59c06eb144f10b6041c34ad1716a7",
+            "updator": "xxx",
             "uuid": "blist_92c88afa154f44ca851e8465c8408481",
             "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
         },

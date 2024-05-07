@@ -53,7 +53,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/accesskey/list' \
             "status": 0,
             "updateAt": 1677808718,
             "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-            "uuid": "wsak_b0f7f2b592614f0bbdb003eb9961717d",
+            "uuid": "xxx",
             "workspaceUUID": "wksp_8ea5c78a71e64298bffd4d3ec03f1a5f"
         }
     ],

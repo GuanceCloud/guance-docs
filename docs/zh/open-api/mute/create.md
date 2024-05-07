@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| muteRanges | array |  | 沉默范围<br>例子: 监控器A <br>允许为空: False <br> |
+| muteRanges | array |  | 沉默范围<br>允许为空: False <br> |
 | tags | json |  | 标签集<br>允许为空: False <br> |
 | notifyTargets | array |  | 通知目标<br>允许为空: False <br> |
 | notifyMessage | string |  | 通知信息<br>允许为空: False <br>最大长度: 3000 <br> |
@@ -29,7 +29,7 @@
 | repeatCrontabSet.month | string |  | 月<br>例子: * <br>允许为空: False <br> |
 | repeatCrontabSet.week | string |  | 周<br>例子: 1,3 <br>允许为空: False <br> |
 | crontabDuration | int |  | 结束时间减去开始时间, 正整数,单位为 s<br>例子: 3600 <br>允许为空: False <br> |
-| repeatExpireTime | string |  | 重复结束时间 %Y/%m/%d %H:%M:%S<br>例子:  <br>允许为空: False <br>允许空字符串: True <br> |
+| repeatExpireTime | string |  | 重复结束时间 %Y/%m/%d %H:%M:%S<br>例子: 0 <br>允许为空: False <br>允许空字符串: True <br> |
 | timezone | str | Y | 静默规则时区<br>例子: Asia/Shanghai <br>允许为空: False <br> |
 | type | str | Y | 静默规则类型<br>例子: custom <br>允许为空: False <br>可选值: ['checker', 'alertPolicy', 'tag', 'custom'] <br> |
 
@@ -38,12 +38,13 @@
 
 数据说明.*
 
-- 请求参数说明
+**1.请求参数说明**
 
 | 参数名           | type | 说明                                                 |
 | ---------------- | ---- | ---------------------------------------------------- |
-| muteRanges       | list | 静默范围, 包含监控器,智能巡检,自建巡检, SLO,告警策略 |
-| tags             | dict | 标签                                                 |
+| type          |  string  | 对应静默规则类型 监控器:checker, 告警策略:monitor, 监控器标签:tag, 自定义:custom                  |
+| muteRanges       | list | 静默范围, 包含监控器,智能巡检,自建巡检,SLO,告警策略 |
+| tags             | dict | 高级配置, 事件属性                                                 |
 | notifyTargets    | list | to: 列表为通知对象,type为其通知类型                  |
 | repeatTimeSet    | int  | 是否重复静默, 1代表开启重复静默, 0代表仅一次         |
 | repeatCrontabSet | dict | 重复静默规则的时间配置                               |
@@ -52,13 +53,181 @@
 | notifyTimeStr    | str  | 通知时间,%Y/%m/%d %H:%M:%S    |
 | startTime        | str  | 静默开始时间  %Y/%m/%d %H:%M:%S                 |
 | endTime          | str  | 静默结束时间  %Y/%m/%d %H:%M:%S                 |
-| repeatExpireTime | str  | 重复静默的过期时间 %Y/%m/%d %H:%M:%S             |
+| repeatExpireTime | str  | 0代表永远重复, 重复静默的过期时间 %Y/%m/%d %H:%M:%S             |
 | timezone         | str  | 对应任务时区默认 Asia/Shanghai              |
-| type             | str  | 对应静默规则类型 checker:monitor:tag:custom |
 | repeatExpire     | int  | 重复静默的过期时间 （2023-08-24下架）                |
 | start            | int  | 静默开始时间  （2023-08-24下架）                  |
 | end              | int  | 静默结束时间  （2023-08-24下架）                  ｜
 | notifyTime       | int  | 通知时间, 时间点对应的秒级时间戳, -1代表立即通知 （2023-08-24下架） |
+
+--------------
+
+**2.静默范围说明**
+
+|  参数名        |   type  | 必选  |          说明          |
+|---------------|----------|----|------------------------|
+| type          |  string  |  Y | 对应静默规则类型 监控器:checker, 告警策略:monitor, 监控器标签:tag, 自定义:custom                  |
+| muteRanges         |  list  |  Y | 静默范围, [] 代表选择 全部                |
+| tags       |  dict  |  Y | 高级配置, 事件属性                |
+
+tags 配置支持反选配置, 示例:
+```json
+{
+    "tags": {
+        "-host": [
+            "cn-hangzhou"
+        ]
+    },
+    "muteRanges": [],
+    "type": "checker"
+}
+```
+
+
+type 为checker, 监控器类型, 示例:
+```json
+{
+    "tags": {
+        "host": [
+            "cn-hangzhou"
+        ]
+    },
+    "muteRanges": [
+        {
+            "name": "基础设施存活检测-类型为ReplicaSet- {{Result}}",
+            "checkerUUID": "rul_fdd041ec53a6497e9cxxxx",
+        },
+        {
+            "name": "hhh",
+            "checkerUUID": "rul_22929a982b634bbbxxxxx",
+        }
+    ],
+    "type": "checker"
+}
+```
+
+type 为alertPolicy, 告警策略类型, 示例:
+```json
+{
+    "tags": {
+        "host": [
+            "cn-hangzhou"
+        ]
+    },
+    "muteRanges": [
+        {
+            "name": "gary-test1234",
+            "alertPolicyUUID": "altpl_fcf8c799352846018539xxxxxx",
+        }
+    ],
+    "type": "alertPolicy",
+}
+```
+
+type 为 tag, 监控器标签, 示例:
+```json
+{
+    "tags": {
+        "service": [
+            "kodo.nsq.consumer"
+        ]
+    },
+    "muteRanges": [
+        {
+            "name": "zyl_test",
+            "tagUUID": "tag_cf2962d1ea9f4bf79xxxxxx",
+        },
+        {
+            "name": "0306",
+            "tagUUID": "tag_2963499b3f6244ac88bcxxxxxxxx",
+        }
+    ],
+    "type": "tag"
+}
+```
+
+type 为 custom, 自定义类型, 示例:
+```json
+{
+    "tags": {
+        "service": [
+            "kodo.nsq.consumer"
+        ]
+    },
+    "muteRanges": [
+        {
+            "name": "监控器优化验证-更新2",
+            "checkerUUID": "rul_fa52887259714d51xxxxxx",
+        },
+        {
+            "name": "0306",
+            "tagUUID": "tag_2963499b3f6244ac88xxxxxxx",
+        },
+        {
+            "name": "slo_test",
+            "sloUUID": "monitor_2963499b3f6244ac88xxxxxxx",
+        }
+    ],
+    "type": "custom",
+}
+```
+
+--------------
+
+**3.静默时间说明**
+
+静默时间分为, 单次静默, 重复静默
+
+--------------
+
+单次静默的参数配置:
+
+|  参数名        |   type  |          说明          |
+|---------------|----------|------------------------|
+| repeatTimeSet    | int  | 是否重复静默, 1代表开启重复静默, 0代表仅一次         |
+| startTime        | str  | 静默开始时间  %Y/%m/%d %H:%M:%S                 |
+| endTime          | str  | 静默结束时间  %Y/%m/%d %H:%M:%S                 |
+| timezone         | str  | 对应任务时区默认 Asia/Shanghai              |
+
+repeatTimeSet 为 0, 单次静默, 示例:
+```json
+{
+    "startTime": "2024/03/27 14:06:57",
+    "endTime": "2024/03/27 15:06:57",
+    "timezone": "Asia/Shanghai",
+    "repeatTimeSet": 0
+}
+```
+
+--------------
+
+重复静默的参数配置:
+
+|  参数名        |   type  |          说明          |
+|---------------|----------|------------------------|
+| repeatTimeSet    | int  | 是否重复静默, 1代表开启重复静默, 0代表仅一次         |
+| repeatCrontabSet | dict | 重复静默规则的时间配置 , 用于组 开始Crontab（Crontab 语法）                              |
+| crontabDuration  | int  | 代表为该定时任务开始后, 静默的时间持续时长, 单位 s               |
+| repeatExpireTime | str  | 0代表永远重复, 重复静默的过期时间 %Y/%m/%d %H:%M:%S             |
+| timezone         | str  | 对应任务时区默认 Asia/Shanghai              |
+
+repeatTimeSet 为 1, 重复静默, 示例:
+```json
+{
+    "timezone": "Asia/Shanghai",
+    "repeatTimeSet": 1,
+    "repeatCrontabSet": {
+        "min": "0",
+        "hour": "0",
+        "day": "*",
+        "month": "*",
+        "week": "1,2"
+    },
+    "crontabDuration": 18000,
+    "repeatExpireTime": "0"
+}
+```
+--------------
 
 
 

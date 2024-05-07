@@ -1,5 +1,7 @@
 ---
 title: 'AWS Auto Scaling'
+tags: 
+  - AWS
 summary: 'AWS Auto Scaling，包括实例数、容量单位、暖池等。'
 __int_icon: 'icon/aws_auto_scaling'
 dashboard:

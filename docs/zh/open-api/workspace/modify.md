@@ -43,7 +43,6 @@ curl 'https://openapi.guance.com/api/v1/workspace/modify' \
     "code": 200,
     "content": {
         "billingState": "normal",
-        "cliToken": "wkcli_6fbbb9037b9b428e9ce3376ae99e11f4",
         "createAt": 1676979022,
         "creator": "mact_738b7d961dfa464da4deb7b69f1bbca6",
         "dashboardUUID": null,
@@ -87,9 +86,8 @@ curl 'https://openapi.guance.com/api/v1/workspace/modify' \
         "rpName": "rp1",
         "status": 0,
         "supportJsonMessage": 1,
-        "token": "tkn_7ca9b1139db64fa6ac34801145a9cb6e",
         "updateAt": 1677670046.184892,
-        "updator": "wsak_ecdec9f27d6c482a997c218b2fb351a0",
+        "updator": "wsak_xxxxx",
         "uuid": "wksp_ed134a6485c8484dbd0e58ce9a9c6115",
         "versionType": "pay"
     },

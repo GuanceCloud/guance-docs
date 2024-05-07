@@ -42,7 +42,7 @@ curl 'https://openapi.guance.com/api/v1/pipeline/list' \
             {
                 "asDefault": 0,
                 "category": "logging",
-                "creator": "wsak_dca59c06eb144f10b6041c34ad1716a7",
+                "creator": "xxx",
                 "name": "openapi_test",
                 "status": 0,
                 "updateAt": 1678026470,

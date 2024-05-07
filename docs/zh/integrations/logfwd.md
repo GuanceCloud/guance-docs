@@ -140,7 +140,7 @@ spec:
           fieldPath: metadata.namespace
     - name: LOGFWD_GLOBAL_SOURCE
       value: nginx-souce-test
-    image: pubrepo.guance.com/datakit/logfwd:1.27.0
+    image: pubrepo.guance.com/datakit/logfwd:1.28.1
     imagePullPolicy: Always
     resources:
       requests:
@@ -242,7 +242,7 @@ spec:
         fieldRef:
           apiVersion: v1
           fieldPath: metadata.namespace
-    image: pubrepo.guance.com/datakit/logfwd:1.27.0
+    image: pubrepo.guance.com/datakit/logfwd:1.28.1
     imagePullPolicy: Always
     resources:
       requests:

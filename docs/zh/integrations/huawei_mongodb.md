@@ -1,5 +1,7 @@
 ---
 title: '华为云 MongoDB'
+tags: 
+  - 华为云
 summary: '华为云MongoDB的展示指标包括读写吞吐量、延迟、并发连接数和数据可靠性，这些指标反映了MongoDB在处理大规模文档存储和查询时的性能表现和可扩展性。'
 __int_icon: 'icon/huawei_mongodb'
 dashboard:

@@ -1,5 +1,7 @@
 ---
 title: '腾讯云 CKafka'
+tags: 
+  - 腾讯云
 summary: '腾讯云CKafka的展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了CKafka在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。'
 __int_icon: 'icon/tencent_ckafka'
 dashboard:

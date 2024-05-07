@@ -8,6 +8,7 @@
 Akka
 Aliyun
 Ansible
+APIServer
 BATIS
 Batis
 Binlog
@@ -62,6 +63,8 @@ Jolokia
 KafkaMQ
 Kodo
 Kubernetes
+labelselector
+labelselectors
 Log4j
 Logback
 Loki

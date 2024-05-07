@@ -42,10 +42,10 @@ curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
         "createType": "openapi",
         "creatorInfo": {
             "acntWsNickname": "",
-            "email": "wsak_470962cc97584f6a8b09d6c43db10752",
+            "email": "xxx",
             "iconUrl": "",
             "name": "阿里云监控数据源",
-            "username": "wsak_470962cc97584f6a8b09d6c43db10752"
+            "username": "xxx"
         },
         "dfStatus": "ok",
         "isFavorite": false,
@@ -97,8 +97,8 @@ curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
                     },
                     {
                         "mobiles": [
-                            "17621725786",
-                            "17621724231"
+                            "xxxxxxx5786",
+                            "xxxxxxx4231"
                         ],
                         "name": "zhuyun",
                         "type": "mobile"
@@ -118,10 +118,10 @@ curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
         "updateAt": 1693805504,
         "updatorInfo": {
             "acntWsNickname": "",
-            "email": "wsak_470962cc97584f6a8b09d6c43db10752",
+            "email": "xxx",
             "iconUrl": "",
             "name": "阿里云监控数据源",
-            "username": "wsak_470962cc97584f6a8b09d6c43db10752"
+            "username": "xxx"
         },
         "uuid": "sman_eb3e3c7acaef4d53acab866b83410edb"
     },
