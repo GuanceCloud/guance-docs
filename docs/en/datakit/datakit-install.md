@@ -376,7 +376,7 @@ Host files read/write during data collecting:
 
 - If log collection is configured, Datakit will scan and read logs that match the configuration (e.g., syslog, user application logs, etc.).
 
-- Port usage: Datakit may open some ports to receive external data for interfacing with other systems. [These ports](datakit-ports.md) are opened as needed based on the collector.
+- Port usage: Datakit may open some ports to receive external data for interfacing with other systems. [These ports](datakit-port.md) are opened as needed based on the collector.
 
 - eBPF collection: Due to its particularity, eBPF requires more binary information of the Linux kernel and processes, resulting in the following actions:
 
