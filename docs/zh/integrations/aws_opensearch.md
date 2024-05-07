@@ -1,5 +1,7 @@
 ---
 title: 'AWS OpenSearch'
+tags: 
+  - AWS
 summary: 'AWS OpenSearch，包括连接数、请求数、时延、慢查询等。'
 __int_icon: 'icon/aws_opensearch'
 dashboard:

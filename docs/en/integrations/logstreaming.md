@@ -38,21 +38,21 @@ Note: If DataKit is deployed in Kubernetes as a daemonset, it can be accessed as
     ```toml
         
     [inputs.logstreaming]
-      ignore_url_tags = true
+      ignore_url_tags = false
     
       ## Threads config controls how many goroutines an agent cloud start to handle HTTP request.
       ## buffer is the size of jobs' buffering of worker channel.
       ## threads is the total number fo goroutines at running time.
       # [inputs.logstreaming.threads]
-        # buffer = 100
-        # threads = 8
+      #   buffer = 100
+      #   threads = 8
     
       ## Storage config a local storage space in hard dirver to cache trace data.
       ## path is the local file path used to cache data.
       ## capacity is total space size(MB) used to store data.
       # [inputs.logstreaming.storage]
-        # path = "./log_storage"
-        # capacity = 5120
+      #   path = "./log_storage"
+      #   capacity = 5120
     
     ```
     

@@ -318,8 +318,93 @@ SkyWalking 会上报一些 JVM 指标数据。
 | `thread_time_waiting_state_count`  | time waiting state thread count.                                                                                                          |    int    |  count  |
 | `thread_waiting_state_count`       | waiting state thread count.                                                                                                               |    int    |  count  |
 
-## 链路字段 {#tracing}
+## 数据字段说明 {#fields}
 
+
+
+
+
+
+
+### 指标类型 {metric}
+
+jvm metrics collected by SkyWalking language agent.
+
+- 指标标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`service`|service name|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`class_loaded_count`|loaded class count.|int|count|
+|`class_total_loaded_count`|total loaded class count.|int|count|
+|`class_total_unloaded_class_count`|total unloaded class count.|int|count|
+|`cpu_usage_percent`|cpu usage percentile|float|percent|
+|`gc_phrase_old/new_count`|gc old or new count.|int|count|
+|`heap/stack_committed`|heap or stack committed amount of memory.|int|count|
+|`heap/stack_init`|heap or stack initialized amount of memory.|int|count|
+|`heap/stack_max`|heap or stack max amount of memory.|int|count|
+|`heap/stack_used`|heap or stack used amount of memory.|int|count|
+|`pool_*_committed`|committed amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage).|int|count|
+|`pool_*_init`|initialized amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage).|int|count|
+|`pool_*_max`|max amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage).|int|count|
+|`pool_*_used`|used amount of memory in variety of pool(code_cache_usage,newgen_usage,oldgen_usage,survivor_usage,permgen_usage,metaspace_usage).|int|count|
+|`thread_blocked_state_count`|blocked state thread count|int|count|
+|`thread_daemon_count`|thread daemon count.|int|count|
+|`thread_live_count`|thread live count.|int|count|
+|`thread_peak_count`|thread peak count.|int|count|
+|`thread_runnable_state_count`|runnable state thread count.|int|count|
+|`thread_time_waiting_state_count`|time waiting state thread count.|int|count|
+|`thread_waiting_state_count`|waiting state thread count.|int|count|
+
+
+
+
+
+
+### 链路字段说明 {tracing}
+
+
+
+- 标签（String 类型）
+
+
+| Tag | Description |
+|  ----  | --------|
+|`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
+|`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
+|`env`|Application environment info. Available in Jaeger. Optional.|
+|`host`|Hostname.|
+|`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
+|`http_route`|HTTP route. Optional.|
+|`http_status_code`|HTTP response code. Available in DDTrace, OpenTelemetry. Optional.|
+|`http_url`|HTTP URL. Optional.|
+|`operation`|Span name|
+|`project`|Project name. Available in Jaeger. Optional.|
+|`service`|Service name. Optional.|
+|`source_type`|Tracing source type|
+|`span_type`|Span type|
+|`status`|Span status|
+|`version`|Application version info. Available in Jaeger. Optional.|
+
+- 指标列表（非 String 类型，或者长 String 类型）
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`duration`|Duration of span|int|μs|
+|`message`|Origin content of span|string|-|
+|`parent_id`|Parent span ID of current span|string|-|
+|`resource`|Resource name produce current span|string|-|
+|`span_id`|Span id|string|-|
+|`start`|start time of span.|int|usec|
+|`trace_id`|Trace id|string|-|
 
 
 

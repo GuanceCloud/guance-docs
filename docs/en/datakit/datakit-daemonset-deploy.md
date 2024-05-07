@@ -278,7 +278,29 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
     Once protected mode is disabled, some dangerous configuration parameters can be set, and Datakit will accept any configuration parameters. These parameters may cause some Datakit functions to be abnormal or affect the collection function of the collector. For example, if the HTTP sending body is too small, the data upload function will be affected. And the collection frequency of some collectors set too high, which may affect the entities(for example MySQL) to be collected.
 <!-- markdownlint-enable -->
 
-### Dataway Configuration Related Environments {#env-dataway}
+### Point Pool Environments {#env-pointpool}
+
+[:octicons-tag-24: Version-1.28.0](changelog.md#cl-1.28.0) ·
+[:octicons-beaker-24: Experimental](index.md#experimental)
+
+<!-- markdownlint-disable MD046 -->
+- **ENV_ENABLE_POINT_POOL**
+
+    Enable point pool
+
+    **Type**: Boolean
+
+    **Example**: `on`
+
+- **ENV_POINT_POOL_RESERVED_CAPACITY**
+
+    Specify pool capacity(default 4096)
+
+    **Type**: Int
+<!-- markdownlint-enable -->
+
+
+### Dataway Configuration Environments {#env-dataway}
 
 <!-- markdownlint-disable MD046 -->
 - **ENV_DATAWAY**
@@ -356,7 +378,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
     **Type**: String
 <!-- markdownlint-enable -->
 
-### Log Configuration Related Environments {#env-log}
+### Log Configuration Environments {#env-log}
 
 <!-- markdownlint-disable MD046 -->
 - **ENV_GIN_LOG**
@@ -470,7 +492,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
     **Default**: default
 <!-- markdownlint-enable -->
 
-### HTTP/API Related Environment Variables {#env-http-api}
+### HTTP/API Environment Variables {#env-http-api}
 
 <!-- markdownlint-disable MD046 -->
 - **ENV_DISABLE_404PAGE**

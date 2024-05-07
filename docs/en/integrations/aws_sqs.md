@@ -1,5 +1,7 @@
 ---
 title: 'AWS Simple Queue Service'
+tags: 
+  - AWS
 summary: 'AWS Simple Queue Service displaed metrics include the approximate age of the oldest non-deleted message in the queue, the number of messages in the queue that are delayed and not available for reading immediately, the number of messages that are in flight, the number of messages to be processed, and so on.'
 __int_icon: 'icon/aws_sqs'
 dashboard:

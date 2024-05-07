@@ -78,7 +78,7 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/add' \
     "content": {
         "content": "",
         "createAt": 1698665760,
-        "creator": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+        "creator": "wsak_xxxxx",
         "crontab": "",
         "dashboardUUID": "dsbd_28a1718f1b5547a58a40f2167948bdc6",
         "deleteAt": -1,
@@ -104,7 +104,7 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/add' \
         "timezone": "Asia/Shanghai",
         "title": "ceshi2",
         "updateAt": 1698665760,
-        "updator": "wsak_818fc4d5ff714411b0cc4db916de3e5f",
+        "updator": "wsak_xxxxx",
         "uuid": "cron_3a819c6c1d4e4fcea690b18e678b174f",
         "variables": {},
         "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"

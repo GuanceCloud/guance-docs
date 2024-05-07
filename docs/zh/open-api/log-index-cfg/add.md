@@ -16,7 +16,7 @@
 |:-----------|:-------|:-----|:----------------|
 | name | string | Y | 索引名字<br>例子: xxx <br>允许为空: False <br>最大长度: 256 <br> |
 | extend | json |  | 前端自定义数据<br>允许为空: True <br> |
-| duration | string |  | 数据保留时长<br>允许为空: False <br>可选值: ['3d', '7d', '14d', '30d', '60d'] <br> |
+| duration | string |  | 数据保留时长<br>允许为空: False <br> |
 
 ## 参数补充说明
 
@@ -45,7 +45,7 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/add' \
     "content": {
         "conditions": "{  `host` in [ 'custom_host1' ] }",
         "createAt": 1698751853,
-        "creator": "wsak_72b16919b18c411496b6dd06fc9ccc72",
+        "creator": "xxx",
         "deleteAt": -1,
         "duration": "14d",
         "extend": {
@@ -74,7 +74,7 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/add' \
         "status": 0,
         "storeType": "",
         "updateAt": 1698751853,
-        "updator": "wsak_72b16919b18c411496b6dd06fc9ccc72",
+        "updator": "xxx",
         "uuid": "lgim_e5ef2a328d084732a6bbcbac33fc2d67",
         "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
     },

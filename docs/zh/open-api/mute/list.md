@@ -15,6 +15,11 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | search | string |  | 搜索规则名<br>允许为空: False <br> |
+| workStatus | commaArray |  | 过滤参数, 状态使用逗号(,)连接  待生效: pending_activation, 进行中: active, 已过期: expired<br>允许为空: False <br> |
+| isEnable | commaArray |  | 过滤参数, 1代表 查看启用, 0代表查看禁用<br>允许为空: False <br> |
+| type | commaArray |  | 过滤参数, custom/checker/alertPolicy/tag, 多个参数使用逗号(,)连接<br>允许为空: False <br> |
+| updator | commaArray |  | 过滤参数, 更新人UUID, 使用逗号(,)连接<br>允许为空: False <br> |
+| creator | commaArray |  | 过滤参数, 创建人UUID, 使用逗号(,)连接<br>允许为空: False <br> |
 | pageIndex | integer |  | 页码<br>允许为空: False <br>例子: 1 <br>$minValue: 1 <br> |
 | pageSize | integer |  | 每页返回数量<br>允许为空: False <br>例子: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
@@ -41,7 +46,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/list?pageIndex=1&pageSize=2
     "content": [
         {
             "createAt": 1642572752,
-            "creator": "wsak_220ed372243547ce847e915651664e14",
+            "creator": "wsak_xxxxx",
             "deleteAt": -1,
             "end": 1642576351,
             "id": 383,
@@ -57,10 +62,10 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/list?pageIndex=1&pageSize=2
             ],
             "type": "host",
             "updateAt": 1642572752,
-            "updator": "wsak_220ed372243547ce847e915651664e14",
+            "updator": "wsak_xxxxx",
             "updatorInfo": {
                 "name": "frasgreager",
-                "username": "AK(wsak_220ed372243547ce847e915651664e14)"
+                "username": "xxxx"
             },
             "uuid": "mute_9cfc0c557a5b4df6924c0f9648be8890",
             "workspaceUUID": "wksp_2dc431d6693711eb8ff97aeee04b54af"

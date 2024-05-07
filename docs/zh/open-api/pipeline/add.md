@@ -7,6 +7,8 @@
 ## 概述
 创建一个Pipeline
 
+当类型 category 为 profiling 时, 空间配置的字段 CentralPLServiceSwitch(/workspace/get 接口返回) 为true 该规则才会实际生效
+
 
 
 
@@ -19,7 +21,7 @@
 | content | string | Y | pipeline文件内容(base64编码)<br>允许为空: False <br> |
 | testData | string |  | 测试数据(base64编码)<br>允许为空: False <br>允许空字符串: True <br> |
 | isForce | boolean |  | 具体类型存在default时, 是否进行替换<br>允许为空: False <br> |
-| category | string | Y | 类别<br>允许为空: False <br>允许空字符串: False <br>可选值: ['logging', 'object', 'custom_object', 'network', 'tracing', 'rum', 'security', 'keyevent', 'metric'] <br> |
+| category | string | Y | 类别<br>允许为空: False <br>允许空字符串: False <br>可选值: ['logging', 'object', 'custom_object', 'network', 'tracing', 'rum', 'security', 'keyevent', 'metric', 'profiling'] <br> |
 | asDefault | int |  | 是否作为该类型的默认pipeline, 1设为默认, 0为非默认<br>允许为空: False <br> |
 | extend | json |  | 类别<br>允许为空: False <br> |
 | extend.appID | array |  | appID<br>允许为空: True <br> |
@@ -52,7 +54,7 @@ curl 'https://openapi.guance.com/api/v1/notes/create' \
         "category": "logging",
         "content": "YWRkX2tleShjaXR5LCAic2hhbmdoYWkiKQ==\n",
         "createAt": 1678026470,
-        "creator": "wsak_dca59c06eb144f10b6041c34ad1716a7",
+        "creator": "xxxx",
         "deleteAt": -1,
         "extend": {},
         "id": null,
@@ -61,7 +63,7 @@ curl 'https://openapi.guance.com/api/v1/notes/create' \
         "status": 0,
         "testData": "W10=\n",
         "updateAt": 1678026470,
-        "updator": "wsak_dca59c06eb144f10b6041c34ad1716a7",
+        "updator": "xxxx",
         "uuid": "pl_d221f03ac39d468d8d7fb262b5792607",
         "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
     },

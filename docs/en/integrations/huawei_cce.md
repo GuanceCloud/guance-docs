@@ -1,5 +1,7 @@
 ---
 title: 'HUAWEI CCE'
+tags: 
+  - Huawei Cloud
 summary: 'Guance supports monitoring the operational status and service capabilities of various resources in CCE, including Containers, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs, Cron Jobs, and more.'
 __int_icon: 'icon/huawei_cce'
 ---

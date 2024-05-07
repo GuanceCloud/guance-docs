@@ -1,5 +1,7 @@
 ---
 title: 'AWS DynamoDB DAX'
+tags: 
+  - AWS
 summary: 'The display metrics of AWS DynamoDB DAX include CPU usage of nodes or clusters, number of bytes received or sent on all network interfaces, number of packets, etc. These metrics reflect the running status of DynamoDB DAX.'
 __int_icon: 'icon/aws_dynamodb_DAX'
 dashboard:

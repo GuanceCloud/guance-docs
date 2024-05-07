@@ -1,5 +1,7 @@
 ---
 title: 'AWS EventBridge'
+tags: 
+  - AWS
 summary: 'AWS EventBridge 的展示指标包括事件传递延迟、吞吐量、事件规模和可伸缩性，这些指标反映了 EventBridge 在处理大规模事件流和实时数据传递时的性能表现和可靠性。'
 __int_icon: 'icon/aws_eventbridge'
 dashboard:
