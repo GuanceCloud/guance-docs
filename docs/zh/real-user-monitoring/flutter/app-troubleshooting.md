@@ -84,7 +84,7 @@ pod install --repo-update
 * 如果丢失 RUM 某一个 Session 数据或 Log，Trace 中的几条数据时，首先需要排除是否在 [FTRUMManager.setConfig](app-access.md#rum-config), [FTLogger.logConfig](app-access.md#log-config), [FTTracer.setConfig](app-access.md#trace-config) 设置了 `sampleRate <  1`。
 * 采集到 RUM 数据不全，没有 Resource 或 Action 数据？
 
-	Resource 和 Action 数据是与 View 进行绑定的，需要确保有 startView 操作，可参考 [RUM-View](app-access.md#rum-view}) 文档来实现 View 事件采集。
+	Resource 和 Action 数据是与 View 进行绑定的，需要确保有 startView 操作，可参考 [RUM-View](app-access.md#rum-view) 文档来实现 View 事件采集。
 
 * 排查上传数据设备网络与安装 datakit 设备网路与负载问题。
 
