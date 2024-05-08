@@ -27,17 +27,17 @@ Datakit Operator 是 Datakit 在 Kubernetes 编排的联动项目，旨在协助
 <!-- markdownlint-disable MD046 -->
 === "Deployment"
 
-下载 [*datakit-operator.yaml*](https://static.guance.com/datakit-operator/datakit-operator.yaml){:target="_blank"}，步骤如下：
-
-``` shell
-$ kubectl create namespace datakit
-$ wget https://static.guance.com/datakit-operator/datakit-operator.yaml
-$ kubectl apply -f datakit-operator.yaml
-$ kubectl get pod -n datakit
-
-NAME                               READY   STATUS    RESTARTS   AGE
-datakit-operator-f948897fb-5w5nm   1/1     Running   0          15s
-```
+    下载 [*datakit-operator.yaml*](https://static.guance.com/datakit-operator/datakit-operator.yaml){:target="_blank"}，步骤如下：
+    
+    ``` shell
+    $ kubectl create namespace datakit
+    $ wget https://static.guance.com/datakit-operator/datakit-operator.yaml
+    $ kubectl apply -f datakit-operator.yaml
+    $ kubectl get pod -n datakit
+    
+    NAME                               READY   STATUS    RESTARTS   AGE
+    datakit-operator-f948897fb-5w5nm   1/1     Running   0          15s
+    ```
 
 === "Helm"
 
@@ -146,30 +146,43 @@ Datakit Operator 配置是 JSON 格式，在 Kubernetes 中单独以 ConfigMap �
 
 <!-- markdownlint-disable MD013 -->
 #### enabled_namespaces 和 enabled_labelselectors 配置 {#datakit-operator-config-ddtrace-enabled}
-<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-enable -->
 
 `enabled_namespaces` 和 `enabled_labelselectors` 是 `ddtrace` 专属，可以对匹配到的 Pod 资源执行注入，不需要再给 Pod 添加 Annotation。它们的写法如下：
 
 ```json
-        # other..
-        "enabled_namespaces": [
-            {
-                "namespace": "testns",  # 指定 namespace
-                "language": "java"      # 指定需要注入的 agent 语言
-            }
-        ],
-        "enabled_labelselectors": [
-            {
-                "labelselector": "app=log-output",  # 指定 labelselector
-                "language": "java"                  # 指定需要注入的 agent 语言
-            }
-        ],
-        # other..
+{
+    "server_listen": "0.0.0.0:9543",
+    "log_level":     "info",
+    "admission_inject": {
+        "ddtrace": {
+            "enabled_namespaces": [
+                {
+                    "namespace": "testns",  # 指定 namespace
+                    "language": "java"      # 指定需要注入的 agent 语言
+                }
+            ],
+            "enabled_labelselectors": [
+                {
+                    "labelselector": "app=log-output",  # 指定 labelselector
+                    "language": "java"                  # 指定需要注入的 agent 语言
+                }
+            ]
+            # other..
+        }
+    }
+}
 ```
 
 如果一个 Pod 即满足 `enabled_namespaces` 规则，又满足 `enabled_labelselectors`，以 `enabled_labelselectors` 配置为准。
 
 关于 labelselector 的编写规范，可参考此[官方文档](https://kubernetes.io/zh-cn/docs/concepts/overview/working-with-objects/labels/#label-selectors){:target="_blank"}。
+
+<!-- markdownlint-disable MD046 -->
+???+ note
+
+    - 在 Kubernetes 1.16.9 或更早版本，Admission 不记录 Pod Namespace，所以无法使用 `enabled_namespaces` 功能。
+<!-- markdownlint-enable -->
 
 #### 应用 images 配置  {#datakit-operator-config-images}
 
