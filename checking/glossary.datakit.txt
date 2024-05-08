@@ -63,8 +63,6 @@ Jolokia
 KafkaMQ
 Kodo
 Kubernetes
-labelselector
-labelselectors
 Log4j
 Logback
 Loki
@@ -144,6 +142,8 @@ keyevent
 kprobe
 kubedns
 kubelet
+labelselector
+labelselectors
 libc
 lineprotocol
 logfiles

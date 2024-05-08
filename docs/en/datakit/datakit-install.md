@@ -339,9 +339,11 @@ In `datakit.conf`, modify the following configuration and the DataKit will read 
 ```
 
 > Note: If a host has collected data for a period of time, after changing the host name, the historical data will no longer be associated with the new host name. Changing the host name is equivalent to adding a brand-new host.
+
 <!-- markdownlint-disable MD013 -->
 ### :material-chat-question: Issue on macOS installation {#mac-failed}
 <!-- markdownlint-enable -->
+
 If it appears during the installation/upgrade process when installing on macOS:
 
 ```shell
@@ -410,6 +412,8 @@ During its operation, Datakit exposes many [internal metrics](datakit-metrics.md
 
 In addition, Datakit also comes with a [monitor command-line](datakit-monitor.md) tool that allows users to view the current operational status as well as the collection and reporting status.
 
+<!-- markdownlint-disable MD013 -->
 ## :material-chat-question: More Readings {#more-reading}
+<!-- markdownlint-enable -->
 
 - [Getting started with DataKit](datakit-service-how-to.md)
