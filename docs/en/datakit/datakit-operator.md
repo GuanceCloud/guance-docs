@@ -25,7 +25,6 @@ Prerequisites:
 ### Installation Steps {#datakit-operator-install}
 
 <!-- markdownlint-disable MD046 -->
-
 === "Deployment"
 
     Download [*datakit-operator.yaml*](https://static.guance.com/datakit-operator/datakit-operator.yaml){:target="_blank"}, and follow these steps:
