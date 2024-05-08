@@ -4,6 +4,12 @@
 ???- quote "更新日志"
 
     === "ft-sdk"
+		**1.4.5**：
+        ``` markdown
+        1. 重复初始化兼容优化处理
+		2. 优化 c/c++ 崩溃采集数据同步逻辑，避免在某些场景下意外中断退出，导致死锁
+		3. 优化 startAction Property 属性写入逻辑，避免发生线程安全访问问题	
+        ```
 		**1.4.4**：
         ``` markdown
         1. 数据库链接容错保护
@@ -259,12 +265,12 @@ android{
 
 | **方法名** | **类型** | **必须** | **含义** |
 | --- | --- | --- | --- | 
-| datakitUrl | String | 是 | Datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，注意：安装 SDK 设备需能访问这地址。**注意：datakit 和 dataway 配置两者二选一**|
-| datawayUrl | String | 是 | 公网 Dataway 访问 URL 地址，例子：http://10.0.0.1:9528，端口默认 9528，注意：安装 SDK 设备需能访问这地址。**注意：datakit 和 dataway 配置两者二选一** |
+| datakitUrl | String | 是 | Datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，安装 SDK 设备需能访问这地址。**注意：datakit 和 dataway 配置两者二选一**|
+| datawayUrl | String | 是 | 公网 Dataway 访问 URL 地址，例子：http://10.0.0.1:9528，端口默认 9528，安装 SDK 设备需能访问这地址。**注意：datakit 和 dataway 配置两者二选一** |
 | clientToken | String | 是 | 认证 token，需要与 datawayUrl 同时配置  |
 | setDebug | Boolean | 否 | 是否开启调试模式 。默认为 `false`，开启后方可打印 SDK 运行日志 |
 | setEnv | EnvType | 否 | 设置采集环境, 默认为 `EnvType.PROD`， |
-| setEnv | String | 否 | 设置采集环境，默认为 `prod`。注意: String 或 EnvType 类型只需配置一个|
+| setEnv | String | 否 | 设置采集环境，默认为 `prod`。**注意: String 或 EnvType 类型只需配置一个**|
 | setOnlySupportMainProcess | Boolean | 否 | 是否只支持在主进程运行，默认为 `true` ，如果需要在其他进程中执行需要将该字段设置为 `false` |
 | setEnableAccessAndroidID | Boolean | 否 | 开启获取 `Android ID`，默认为 `true`，设置为 `false`，则 `device_uuid` 字段数据将不进行采集,市场隐私审核相关[查看这里](#adpot-to-privacy-audits) |
 | addGlobalContext | Dictionary | 否 | 添加 SDK 全局属性，添加规则请查阅[此处](#key-conflict) |
