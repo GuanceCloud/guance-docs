@@ -147,7 +147,7 @@ Datakit Operator 配置是 JSON 格式，在 Kubernetes 中单独以 ConfigMap �
 
 <!-- markdownlint-disable MD013 -->
 #### enabled_namespaces 和 enabled_labelselectors 配置 {#datakit-operator-config-ddtrace-enabled}
-<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-enable -->
 
 `enabled_namespaces` 和 `enabled_labelselectors` 是 `ddtrace` 专属，可以对匹配到的 Pod 资源执行注入，不需要再给 Pod 添加 Annotation。它们的写法如下：
 
