@@ -1,0 +1,7 @@
+nav:
+  - '【工作空间AccessKey】生产新AK': add.md
+  - '【工作空间AccessKey】获取指定AK': get.md
+  - '【工作空间AccessKey】修改指定AK对应的名称': modify.md
+  - '【工作空间AccessKey】列出': list.md
+  - '【工作空间AccessKey】删除': delete.md
+  - '【工作空间AccessKey】批量删除': batch-delete.md
