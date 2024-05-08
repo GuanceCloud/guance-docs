@@ -131,8 +131,9 @@ LogUtils.registerInnerLogCacheToFile(cacheFile)
                                     	Datakit Url:http://10.0.0.1:9529
 	//以下是连接错误日志
 	[FT-SDK]SyncTaskManager com.demo   E  Network not available Stop poll
-   
-    [FT-SDK]SyncTaskManager com.demo   E 1:Sync Fail-[code:10003,response:failed to connect to /10.0.0.1 (port 9529) from /10.0.2.16 (port 47968) after 10000ms,检查本地网络连接是否正常]
+    [FT-SDK]SyncTaskManager com.demo   E  ↵
+						1:Sync Fail-[code:10003,response:failed to connect to 10.0.0.1 (port 9529) from ↵
+						10.0.2.16 (port 47968) after 10000ms,检查本地网络连接是否正常]
 	
 	//以下是正常同步日志
 	[FT-SDK]SyncTaskManager com.demo   D  Sync Success-[code:200,response:]
