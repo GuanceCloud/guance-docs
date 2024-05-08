@@ -1,0 +1,6 @@
+nav:
+  - '【账号】信息列出': list.md
+  - '【账号】信息获取': get.md
+  - '【账号】新增': create.md
+  - '【账号】启用/禁用': set-disable.md
+  - '【账号】删除': delete.md
