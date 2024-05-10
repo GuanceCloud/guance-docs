@@ -24,11 +24,62 @@
 
 
 
+## 请求例子
+```shell
+curl 'https://openapi.guance.com/api/v1/login_mapping/field/list?pageIndex=1&pageSize=1' \
+  -H 'Content-Type: application/json' \
+  -H 'X-Df-Access-Key: <AK key>' \
+  -H 'X-Df-Nonce: <随机字符>' \
+  -H 'X-Df-Signature: <签名>' \
+  -H 'X-Df-Timestamp: <时间戳>'
+```
+
+
 
 
 ## 响应
 ```shell
- 
+{
+    "code": 200,
+    "content": {
+        "data": [
+            {
+                "createAt": 1715323808,
+                "creator": "sys",
+                "deleteAt": -1,
+                "id": 230,
+                "isSystem": 1,
+                "roles": [
+                    {
+                        "name": "Read-only",
+                        "uuid": "readOnly"
+                    }
+                ],
+                "sourceField": "email2",
+                "sourceValue": "xxx@qq.com",
+                "status": 0,
+                "targetValues": [
+                    "readOnly"
+                ],
+                "updateAt": 1715324192,
+                "updator": "sys",
+                "uuid": "lgmp_xxxxx",
+                "workspaceName": "LWC测试B空间",
+                "workspaceUUID": "wksp_xxxxx"
+            }
+        ],
+        "pageInfo": {
+            "count": 1,
+            "pageIndex": 1,
+            "pageSize": 1,
+            "totalCount": 53
+        }
+    },
+    "errorCode": "",
+    "message": "",
+    "success": true,
+    "traceId": "TRACE-A046B901-DCF9-44BF-AC4C-E48DB7959BF9"
+} 
 ```
 
 

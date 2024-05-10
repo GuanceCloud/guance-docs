@@ -20,7 +20,6 @@
 | role | string | Y | 登陆角色(admin/dev)<br>例子: admin <br>允许为空: False <br> |
 | mobile | string |  | 手机号<br>允许为空: False <br> |
 | extend | json |  | 额外信息<br>允许为空: False <br> |
-| language | string |  | 语言信息<br>允许为空: True <br>允许空字符串: True <br> |
 | isDisable | boolean |  | 是否禁用<br>例子: True <br>允许为空: False <br>可选值: [True, False] <br> |
 
 ## 参数补充说明

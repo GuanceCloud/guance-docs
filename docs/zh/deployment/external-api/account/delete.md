@@ -1,4 +1,4 @@
-# 【账号】删除
+# 【前台账号】删除
 
 ---
 
@@ -21,11 +21,30 @@
 
 
 
+## 请求例子
+```shell
+curl 'https://openapi.guance.com/api/v1/account/delete' \
+  -H 'Content-Type: application/json' \
+  -H 'X-Df-Access-Key: <AK key>' \
+  -H 'X-Df-Nonce: <随机字符>' \
+  -H 'X-Df-Signature: <签名>' \
+  -H 'X-Df-Timestamp: <时间戳>' \
+  --data-raw $'{"accountUUIDs": ["acnt_xxx"]}'
+```
+
+
 
 
 ## 响应
 ```shell
- 
+{
+    "code": 200,
+    "content": true,
+    "errorCode": "",
+    "message": "",
+    "success": true,
+    "traceId": "TRACE-4E35F036-A866-483A-8E6A-3DBB31452FD5"
+} 
 ```
 
 
