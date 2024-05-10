@@ -352,7 +352,9 @@ NAME1="value1" NAME2="value2"
 
 ## FAQ {#faq}
 
+<!-- markdownlint-disable MD013 -->
 ### :material-chat-question: 如何应付不友好的主机名 {#bad-hostname}
+<!-- markdownlint-enable -->
 
 由于 DataKit 使用主机名（Hostname）作为数据串联的依据，某些情况下，一些主机名取得不是很友好，比如 `iZbp141ahn....`，但由于某些原因，又不能修改这些主机名，这给使用带来一定的困扰。在 DataKit 中，可在主配置中覆盖这个不友好的主机名。
 
@@ -369,7 +371,9 @@ NAME1="value1" NAME2="value2"
     如果之前某个主机已经采集了一段时间的数据，更改主机名后，这些历史数据将不再跟新的主机名关联。更改主机名，相当于新增了一台全新的主机。
 <!-- markdownlint-enable -->
 
+<!-- markdownlint-disable MD013 -->
 ### :material-chat-question: Mac 安装问题 {#mac-failed}
+<!-- markdownlint-enable -->
 
 Mac 上安装时，如果安装/升级过程中出现
 
