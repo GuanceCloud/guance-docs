@@ -24,11 +24,47 @@
 
 
 
+## 请求例子
+```shell
+curl 'https://openapi.guance.com/api/v1/login_mapping/field/add' \
+  -X 'POST' \
+  -H 'Content-Type: application/json' \
+  -H 'X-Df-Access-Key: <AK key>' \
+  -H 'X-Df-Nonce: <随机字符>' \
+  -H 'X-Df-Signature: <签名>' \
+  -H 'X-Df-Timestamp: <时间戳>' \
+  --data-raw $'{"workspaceUUID": "wksp_xxxx","sourceField": "email","sourceValue": "xxx@qq.com","targetValues": [  "readOnly"]}'
+```
+
+
 
 
 ## 响应
 ```shell
- 
+{
+    "code": 200,
+    "content": {
+        "createAt": 1715323808,
+        "creator": "sys",
+        "deleteAt": -1,
+        "id": null,
+        "isSystem": true,
+        "sourceField": "email",
+        "sourceValue": "xxx@qq.com",
+        "status": 0,
+        "targetValues": [
+            "readOnly"
+        ],
+        "updateAt": 1715323808,
+        "updator": "sys",
+        "uuid": "lgmp_xxxxx",
+        "workspaceUUID": "wksp_xxxx"
+    },
+    "errorCode": "",
+    "message": "",
+    "success": true,
+    "traceId": "TRACE-978CA704-5646-45D8-ACAE-84975BDD2250"
+} 
 ```
 
 

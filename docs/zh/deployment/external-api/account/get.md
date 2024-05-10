@@ -1,4 +1,4 @@
-# 【账号】信息获取
+# 【前台账号】获取
 
 ---
 
@@ -23,11 +23,58 @@
 
 
 
+## 请求例子
+```shell
+curl 'https://openapi.guance.com/api/v1/account/get?accountUUID=acnt_b3ba42650e75c8a8xxx' \
+  -H 'Content-Type: application/json' \
+  -H 'X-Df-Access-Key: <AK key>' \
+  -H 'X-Df-Nonce: <随机字符>' \
+  -H 'X-Df-Signature: <签名>' \
+  -H 'X-Df-Timestamp: <时间戳>'
+```
+
+
 
 
 ## 响应
 ```shell
- 
+{
+    "code": 200,
+    "content": {
+        "attributes": {},
+        "canaryPublic": false,
+        "createAt": 1715135066,
+        "creator": "extend",
+        "deleteAt": -1,
+        "email": "hd_phone02@qq.com",
+        "enableMFA": false,
+        "extend": {
+            "lastLoginTime": 1715135086
+        },
+        "exterId": "acnt-yf5o9juQBxTeTcADbroE8",
+        "id": 3023,
+        "isUsed": 1,
+        "language": "en",
+        "mfaSecret": "*********************",
+        "mobile": "15435364656",
+        "name": "hd_phone02",
+        "nameSpace": "",
+        "status": 0,
+        "statusPageSubs": 0,
+        "timezone": "",
+        "tokenHoldTime": 604800,
+        "tokenMaxValidDuration": 2592000,
+        "updateAt": 1715135066,
+        "updator": "extend",
+        "userIconUrl": null,
+        "username": "hd_phone02",
+        "uuid": "acnt_a95702ad60d04209b3ba42650e75c8a8"
+    },
+    "errorCode": "",
+    "message": "",
+    "success": true,
+    "traceId": "TRACE-6839324A-2A95-4FE1-95DE-92DE4FF206B1"
+} 
 ```
 
 

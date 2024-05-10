@@ -1,10 +1,13 @@
 nav:
   - index.md
-  - '账号': account
-  - '登录映射规则': login-mapping
-  - '工作空间': workspace
+  - '公共请求参数': public-request-params.md
+  - '公共响应结构': public-response-params.md
+  - '签名认证': signature-certification.md
+  - '前台账号': account
   - '管理后台账号': manage-account
   - '工作空间成员': workspace-account
-  - '数据查询': query-data
+  - '工作空间': workspace
   - '工作空间AK': workspace-ak
+  - '数据查询': query-data
+  - '登录映射规则': login-mapping
   - '链路追踪': tracing

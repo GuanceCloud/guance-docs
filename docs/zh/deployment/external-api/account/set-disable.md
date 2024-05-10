@@ -1,4 +1,4 @@
-# 【账号】启用/禁用
+# 【前台账号】启用/禁用
 
 ---
 
@@ -22,11 +22,31 @@
 
 
 
+## 请求例子
+```shell
+curl 'https://openapi.guance.com/api/v1/account/set-disable' \
+  -H 'Content-Type: application/json' \
+  -H 'X-Df-Access-Key: <AK key>' \
+  -H 'X-Df-Nonce: <随机字符>' \
+  -H 'X-Df-Signature: <签名>' \
+  -H 'X-Df-Timestamp: <时间戳>' \
+  --data-raw $'{"accountUUIDs": ["acnt_a95702ad60d04209b3ba42650e75c8a8"],"isDisable": true}'
+
+```
+
+
 
 
 ## 响应
 ```shell
- 
+{
+    "code": 200,
+    "content": {},
+    "errorCode": "",
+    "message": "",
+    "success": true,
+    "traceId": "TRACE-93470524-DF6A-4474-A07F-5294E7C3D880"
+} 
 ```
 
 

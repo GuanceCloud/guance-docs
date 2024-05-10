@@ -31,11 +31,32 @@
 
 
 
+## 请求例子
+```shell
+curl 'https://openapi.guance.com/api/v1/login_mapping/field/lgmp_xxxxx/modify' \
+  -X 'POST' \
+  -H 'Content-Type: application/json' \
+  -H 'X-Df-Access-Key: <AK key>' \
+  -H 'X-Df-Nonce: <随机字符>' \
+  -H 'X-Df-Signature: <签名>' \
+  -H 'X-Df-Timestamp: <时间戳>' \
+  --data-raw $'{ "workspaceUUID": "wksp_xxxx", "sourceField": "email2", "sourceValue": "xxx@qq.com", "targetValues": ["readOnly" ]}'
+
+```
+
+
 
 
 ## 响应
 ```shell
- 
+{
+    "code": 200,
+    "content": true,
+    "errorCode": "",
+    "message": "",
+    "success": true,
+    "traceId": "TRACE-FC3488AA-3452-4031-9BDA-3CD710025D66"
+} 
 ```
 
 
