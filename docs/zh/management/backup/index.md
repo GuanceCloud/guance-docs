@@ -27,16 +27,16 @@
 
 进入**数据转发**页面，点击**转发规则 > 新建规则**。
 
-![](img/5.log_backup_1.png)
+![](../img/5.log_backup_1.png)
 
-![](img/back-5.png)
+![](../img/back-5.png)
 
 **注意**：数据转发规则创建完成后，每 5 分钟执行一次规则校验。  
 
 
 ### 输入规则名称
 
-![](img/back-9.png)
+![](../img/back-9.png)
 
 在弹出的对话框，输入**规则名称**即可添加一条新的规则：
 
@@ -47,7 +47,7 @@
 
 ### 定义过滤条件
 
-![](img/back-1.png)
+![](../img/back-1.png)
 
 :material-numeric-1-circle-outline: 数据源：日志、链路、用户访问。
 
@@ -69,262 +69,39 @@
 
 ### 选择存档类型
 
+
+???- warning "注意"
+
+    五种存档类型全站点开放。
+
+    <img src="../img/back-4.png" width="70%" >
+
 为提供更加全面的数据转发存储方式，观测云支持以下五种存储路径：
 
-- [观测云](#guance)；
-- [AWS S3](#aws)；
-- [华为云 OBS](#obs)；
-- [阿里云 OSS](#oss)；
-- [Kafka 消息队列](#kafka)。
+:material-numeric-1-circle: 观测云：
 
-**注意**：五种存档类型全站点开放。
+![](../img/backup-guance.png)
 
-<img src="../img/back-4.png" width="70%" >
-
-#### 观测云 {#guance}
-
-![](img/backup-guance.png)
-
-当选择数据转发存储对象为观测云，匹配到的日志数据将被保存到观测云侧的 OSS、S3、OBS 对象存储中。
+当选择数据转发存储对象为观测云，匹配到的日志数据将被保存到**观测云侧的 OSS、S3、OBS 对象存储**中。
 
 该规则下的日志数据最低存储默认为 180 天，规则一旦创建无法取消，存储期间会每天收取费用；您可以前往**管理 > 设置 > 变更数据存储策略**中修改数据转发存储策略。
 
-#### AWS S3 {#aws}
+:material-numeric-2-circle: [AWS S3](./backup-aws.md)；
 
-<!--
-![](img/s3-0725.png)
--->
+:material-numeric-3-circle: [华为云 OBS](./backup-huawei.md)；
 
-1、存档类型选择 **AWS S3**，即表示将匹配到的日志数据保存到 S3 对象存储中；   
-2、选择访问类型： 
+:material-numeric-4-circle: [阿里云 OSS](./backup-ali.md)；
 
-=== "角色授权"
+:material-numeric-5-circle: [Kafka 消息队列](./backup-kafka.md)。
 
-    ![](img/back-2.png)
 
-    您需使用观测云默认生成的外部 ID 配置 AWS 资源第三方访问权。
-    
-    [在 AWS 中配置观测云 IAM 角色](./role-auth.md)后，填写存档信息，填入 AWS 账号 ID、AWS 角色名称、地区及 Bucket 名称。
-
-    点击**测试连接**，若上述信息满足规范，则提示测试连接成功；
-    
-    若未通过测试，您需确认：
-
-    - 外部 ID 是否失效；  
-    - 账号 ID 是否正确；  
-    - 账号角色是否存在；  
-    - 存储桶是否存在；  
-    - Region 是否不一致。  
-
-    <font color=coral>**当出现这种情况时，需谨慎操作：**</font>
-    
-    - 若您点击重新生成外部 ID，历史 ID 将于 24 小时后失效，请尽快前往 AWS 控制台替换；  
-    
-    - 不要多次点击生成外部 ID，请谨慎操作！
-
-=== "Access Keys"
-
-    ![](img/back-3.png)
-
-    点击下载 AWS 资源授权模板，[前往 AWS 中配置观测云 IAM 策略](./ak-auth.md)。
-
-    配置完成后，填写账号信息，输入 AWS 账号 ID、AWS AK & SK、地区及 Bucket 名称。
-
-    点击**测试连接**，若上述信息满足规范，则提示测试连接成功；
-    
-    若未通过测试，您需确认：
-
-    - 账号 ID 是否正确；  
-    - AK / SK 是否存在；  
-    - 存储桶是否存在；  
-    - Region 是否不一致。  
-
-=== "账号授权"
-
-    ![](img/back-2-1.png)
-
-    AWS 提供跨账号授权能力，您需使用观测云专属的账号 ID 并[依据配置说明](./aws-cross-account.md)添加跨账号访问授权策略。
-
-    **注意**：海外站点的账号 ID 与中国站点不同，请作区分：
-
-    | 站点 | ID    |
-    | ---------- | ------------- |
-    | 中国香港 | 588271335135    |
-    | 俄勒冈 | 521643107266    |
-    | 新加坡 | 521643107266    |
-    | 法兰克福 | 521643107266    |
-
-
-    配置完成后，选择地区并输入存储桶名称。
-
-    点击**测试连接**，若上述信息满足规范，则提示测试连接成功；
-
-    若未通过测试，您需确认：
-
-    - 账号 ID 是否正确；   
-    - 存储桶是否存在；  
-    - Region 是否不一致。
-
-3、点击**确定**，即可创建成功。
-
-**注意**：若存档类型信息有变动，将弹出确认框，进行创建规则的二次确定。
-
-<img src="../img/back-7.png" width="60%" >
-
-#### 华为云 OBS {#obs}
-
-
-1、存档类型选择**华为云 OBS**，即表示将匹配到规则的日志自动转发到外部 OBS；
-
-![](img/back-8.png)
-
-2、在**配置华为云资源访问授权**，须使用观测云为您提供的专属华为云账号 ID `f000ee4d7327428da2f53a081e7109bd`，[前往添加跨账号访问授权策略](./obs-config.md)；
-
-**注意**：海外站点的账号 ID 与中国站点不同，请作区分：
-
-| 站点 | ID    |
-| ---------- | ------------- |
-| 中国香港 | 25507c35fe7e40aeba77f7309e94dd77    |
-| 俄勒冈 | 25507c35fe7e40aeba77f7309e94dd77    |
-| 新加坡 | 25507c35fe7e40aeba77f7309e94dd77    |
-| 法兰克福 | 25507c35fe7e40aeba77f7309e94dd77    |
-
-3、选择地区；
-
-4、在**存储桶**，输入您在华为云的桶名称；
-
-5、点击**确定**，即可创建成功。
-
-#### 阿里云 OSS {#oss}
-
-1、存档类型选择 **阿里云 OSS**，即表示将匹配到的日志数据保存到 OSS 对象存储中；   
-2、选择访问类型： 
-
-=== "角色授权"
-
-    ![](img/oss-1.png)
-
-    您需使用观测云默认生成的外部 ID 配置角色授权使用。
-    
-    [在阿里云配置台配置授权角色](./aliyun-account.md)后，填写存档信息，填入阿里云账号 ID、OSS 角色名称、地区及 Bucket 名称。
-
-    点击**测试连接**，若上述信息满足规范，则提示测试连接成功；
-    
-    若未通过测试，您需确认：
-
-    - 授权是否成功；  
-    - 账号 ID 是否正确；   
-    - 存储桶是否存在；  
-    - Region 是否不一致。  
-
-    <font color=coral>**当出现这种情况时，需谨慎操作：**</font>
-    
-    - 若您点击重新生成外部 ID，历史 ID 将于 24 小时后失效，请尽快前往阿里云控制台替换；  
-    
-    - 不要多次点击生成外部 ID，请谨慎操作！
-
-=== "Access Keys"
-
-    ![](img/oss-2.png)
-
-    您需在阿里云中[配置观测云 RAM 策略](./aliyun-ram.md)。配置完成后，填写账号信息，输入阿里云账号 ID、阿里云 AK & SK 、地区及 Bucket 名称。
-
-    点击**测试连接**，若上述信息满足规范，则提示测试连接成功；
-    
-    若未通过测试，您需确认：
-
-    - 账号 ID 是否正确；  
-    - AK / SK 是否存在；  
-    - 存储桶是否存在；  
-    - Region 是否不一致。  
-
-=== "账号授权"
-
-    ![](img/oss-2-1.png)
-
-
-    阿里云提供跨账号授权能力，您需使用观测云专属的账号 ID 并[依据配置说明](./ali-cross-account.md)添加跨账号访问授权策略。
-
-    **注意**：海外站点的账号 ID 与中国站点不同，请作区分：
-
-    | 站点 | ID    |
-    | ---------- | ------------- |
-    | 中国香港 | 1702505505232494    |
-    | 俄勒冈 | 218475797167922022    |
-    | 新加坡 | 218475797167922022    |
-    | 法兰克福 | 218475797167922022    |
-
-    配置完成后，选择地区并输入存储桶名称。
-
-    点击**测试连接**，若上述信息满足规范，则提示测试连接成功；
-
-    若未通过测试，您需确认：
-
-    - 账号 ID 是否正确；   
-    - 存储桶是否存在；  
-    - Region 是否不一致。
-
-
-3、点击**确定**，即可创建成功。
-
-**注意**：若存档类型信息有变动，将弹出确认框，进行创建规则的二次确定。
-
-<img src="../img/back-7.png" width="60%" >
-
-#### Kafka 消息队列 {#kafka}
-
-<!--
-![](img/kafka.png)
--->
-
-1、地址：Host:Port，多个节点使用逗号间隔。
-
-2、消息主题：即 Topic 名称。
-
-3、安全协议：
-
-在 Kafka 侧，SASL 可以使用 PLAINTEXT 或者 SSL 协议作为传输层，相对应的就是使用 SASL_PLAINTEXT 或者 SASL_SSL 安全协议。如果使用 SASL_SSL 安全协议，必须配置 SSL 证书。
-
-=== "PLAINTEXT"
-
-    无需任何安全校验，可直接测试连接。
-
-=== "SASL_PLAINTEXT"
-
-    认证方式默认为 PLAIN，可选 SCRAM-SHA-256 与 SCRAM-SHA-512 两种。
-
-    输入在 Kafka 侧执行安全认证的 username/password，再测试连接。
-
-    ![](img/kafka-1.png)
-
-=== "SASL_SSL"
-
-    此处[需上传 SSL 证书](https://kafka.apachecn.org/documentation.html#security_ssl)。
-
-    认证方式默认为 PLAIN，可选 SCRAM-SHA-256 与 SCRAM-SHA-512 两种。
-
-    输入在 Kafka 侧执行安全认证的 username/password，再测试连接。
-
-    ![](img/kafka-2.png)
-
-点击**测试连接**，若上述信息满足规范，则提示测试连接成功；
-    
-若未通过测试，您需确认：
-
-- 地址是否正确；  
-- 消息主题名称是否正确；  
-- SSL 证书是否正确；  
-- 用户名是否正确；  
-- 密码是否正确。
-
-4、点击**确定**，即可创建成功。
 
 
 ## 查看转发规则
 
 规则创建完成后，自动进入转发规则列表：
 
-![](img/rule-update.png)
+![](../img/rule-update.png)
 
 :material-numeric-1-circle-outline: 支持输入规则名称进行搜索； 
 
@@ -332,17 +109,21 @@
 
 :material-numeric-3-circle-outline: 点击规则右侧 :material-text-search: 、编辑、 :fontawesome-regular-trash-can: 按钮，即可进行相应操作。
 
-**注意**：1. 编辑模式下，**访问类型**和**地区**不支持调整；选择**观测云**存储的规则，编辑和查看内容一致；2. 规则删除后已转发的数据不会被删除，但不再产生新的转发数据。
+**注意**：
+
+- 编辑模式下，**访问类型**和**地区**不支持调整；选择**观测云**存储的规则，编辑和查看内容一致；
+
+- 规则删除后已转发的数据不会被删除，但不再产生新的转发数据。
 
 :material-numeric-4-circle-outline: 您可以选中多个规则进行批量操作。
 
-![](img/rule-update-1.png)
+![](../img/rule-update-1.png)
 
 ### 转发规则查看器 {#explorer}
 
 回到**数据转发**页面，默认进入**转发规则** tab 页。首先在下拉框选定规则，您可以自定义时间范围查询，可选择多个日期及定义开始时间和结束时间，时间会精确到小时：
 
-![](img/rule-update-3.png)
+![](../img/rule-update-3.png)
 
 **注意**：
 
@@ -358,7 +139,7 @@
 
 在**索引**下，您可以查看观测云历史备份日志和 SLS Query Logstore 数据：
 
-![](img/rule-update-2.png)
+![](../img/rule-update-2.png)
 
 > 关于查看器具体操作，可参考 [查看器的强大之处](../getting-started/function-details/explorer-search.md)。
 
@@ -366,10 +147,10 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 数据转发计费逻辑</font>](../billing/billing-method/billing-item.md#backup) 
-  
-</div>
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 数据转发计费逻辑</font>](../billing/billing-method/billing-item.md#backup)
 
+
+</div>
 
 <div class="grid cards" markdown>
 
