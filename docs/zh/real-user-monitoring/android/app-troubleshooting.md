@@ -115,6 +115,11 @@ buildscript {
 
 ## SDK 内部日志转化为缓存文件
 ```kotlin
+// >= 1.4.6
+// 默认路径：/data/data/{package_name}/files/LogInner.log
+LogUtils.registerInnerLogCacheToFile()
+
+// >= 1.4.5+ 
 val cacheFile = File(filesDir, "LogCache.log")
 LogUtils.registerInnerLogCacheToFile(cacheFile)
 ```
