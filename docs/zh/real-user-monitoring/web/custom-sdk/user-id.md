@@ -1,12 +1,12 @@
 # 自定义用户标识
----
 
+---
 
 SDK 默认情况下，自动会给用户生成一个唯一标识 ID。这个 ID 不带任何标识属性，只能区别出不同用户属性。为此我们提供了额外的 API 去给当前用户添加不同的标识属性。
 
 | 属性       | 类型   | 描述               |
 | ---------- | ------ | ------------------ |
-| user.id    | string | 用户ID             |
+| user.id    | string | 用户 ID            |
 | user.name  | string | 用户昵称或者用户名 |
 | user.email | string | 用户邮箱           |
 
@@ -52,14 +52,14 @@ SDK 默认情况下，自动会给用户生成一个唯一标识 ID。这个 ID 
 === "CDN 同步"
 
     ```javascript
-    window.DATAFLUX_RUM && window.DATAFLUX_RUM.removeUser()
+    window.DATAFLUX_RUM && window.DATAFLUX_RUM.clearUser()
     ```
 
 === "CDN 异步"
 
     ```javascript
     DATAFLUX_RUM.onReady(function() {
-        DATAFLUX_RUM.removeUser()
+        DATAFLUX_RUM.clearUser()
     })
     ```
 
@@ -67,6 +67,5 @@ SDK 默认情况下，自动会给用户生成一个唯一标识 ID。这个 ID 
 
     ```javascript
     import { datafluxRum } from '@cloudcare/browser-rum'
-    datafluxRum.removeUser()
+    datafluxRum.clearUser()
     ```
-
