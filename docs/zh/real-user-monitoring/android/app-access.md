@@ -4,6 +4,13 @@
 ???- quote "更新日志"
 
     === "ft-sdk"
+		**1.4.6**：
+        ``` markdown
+     	1. SDK 初始化容错优化
+		2. 新增日志新增 Status.Debug 类型
+		3. 控制台日志等级对应关系 Log.i -> info，Log.d -> debug
+		4. FTLogger 自定义日志支持自定义 status 字段
+        ```
 		**1.4.5**：
         ``` markdown
         1. 重复初始化兼容优化处理
@@ -465,7 +472,7 @@ android{
 | **方法名** | **类型** | **必须** | **含义** |
 | --- | --- | --- | --- |
 | setSampleRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
-| setEnableConsoleLog | Boolean | 否 | 是否上报控制台日志，日志等级对应关系<br>Log.v -> ok;<br>Log.i、Log.d -> info;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤。注意：Android 控制台量是很大的，为了避免响应应用性能，减少不必要的资源浪费，建议使用 `prefix` 过滤出有价值的日志 |
+| setEnableConsoleLog | Boolean | 否 | 是否上报控制台日志，日志等级对应关系<br>Log.v -> ok;<br>Log.i -> info;<br> Log.d -> debug;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤。注意：Android 控制台量是很大的，为了避免影响应用性能，减少不必要的资源浪费，建议使用 `prefix` 过滤出有价值的日志 |
 | setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联，默认为 `false` |
 | setLogCacheDiscardStrategy| LogCacheDiscard | 否 | 设置频繁日志丢弃规则，默认为 `LogCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据 |
 | setEnableCustomLog | Boolean| 否 | 是否上传自定义日志，默认为 `false` |
@@ -1257,8 +1264,26 @@ android{
 	     *
 	     * @param content 日志内容
 	     * @param status  日志等级
+		 * @param property 附加属性
 	     */
 	    public void logBackground(String content, Status status, HashMap<String, Object> property)
+
+		/**
+	     * 将单条日志数据存入本地同步
+	     *
+	     * @param content 日志内容
+	     * @param status  日志等级
+	     */
+	    public void logBackground(String content, String status)
+
+	    /**
+	     * 将单条日志数据存入本地同步
+	     *
+	     * @param content 日志内容
+	     * @param status  日志等级
+		 * @param property 附加属性
+	     */
+	    public void logBackground(String content, String status, HashMap<String, Object> property)
 
 
 	    /**
@@ -1292,6 +1317,23 @@ android{
 	     */
 	    fun logBackground(content: String, status: Status, property: HashMap<String, Any>)
 
+		/**
+	     * 将单条日志数据存入本地同步
+	     *
+	     * @param content 日志内容
+	     * @param status  日志等级
+	     */
+	    fun logBackground(content: String, status: String)
+
+	    /**
+	     * 将单条日志数据存入本地同步
+	     *
+	     * @param content 日志内容
+	     * @param status  日志等级
+	     * @param property 日志属性
+	     */
+	    fun logBackground(content: String, status: String, property: HashMap<String, Any>)
+
 	    /**
 	     * 将多条日志数据存入本地同步
 	     *
@@ -1305,6 +1347,7 @@ android{
 
 | **方法名** | **含义** |
 | --- | --- |
+| Status.DEBUG | 调试 |
 | Status.INFO | 提示 |
 | Status.WARNING | 警告 |
 | Status.ERROR | 错误 |
