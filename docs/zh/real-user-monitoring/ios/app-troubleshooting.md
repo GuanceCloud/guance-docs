@@ -20,7 +20,7 @@ eg：当配置 SDK 时，未设置  datakit metrics 写入地址，程序会崩�
 ## SDK 内部日志转化为缓存文件
 
 ```objective-c
-// 默认：若未指定 logsDirectory ，那么将在应用程序的缓存目录中创建一个名为 'FTLogs' 的文件夹。
+// 默认：若未指定 logsDirectory ，那么将在应用程序的 Documents 中创建一个名为 'FTLogs' 的文件夹。
 //      若未指定 fileNamePrefix ，日志文件前缀为 'FTLog'
  [[FTLog sharedInstance] registerInnerLogCacheToLogsDirectory:nil fileNamePrefix:nil];
 
@@ -29,6 +29,12 @@ eg：当配置 SDK 时，未设置  datakit metrics 写入地址，程序会崩�
  NSString *baseDir = paths.firstObject;
  NSString *logsDirectory = [baseDir stringByAppendingPathComponent:@"CustomFolder"];
  [[FTLog sharedInstance] registerInnerLogCacheToLogsDirectory:logsDirectory fileNamePrefix:@"CustomPrefix"];
+ 
+// 将调试日志写入指定文件。
+ NSString *baseDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+ NSString *logsDirectory = [baseDir stringByAppendingPathComponent:@"ExampleLogs"];
+ NSString *filePath = [logsDirectory stringByAppendingPathComponent:@"ExampleName.log"];
+ [[FTLog sharedInstance] registerInnerLogCacheToLogsFilePath:filePath];
 ```
 
 ## SDK 正常运行但是没有数据
@@ -149,6 +155,21 @@ View 的采集：设置 `FTRumConfig` 的配置项`enableTraceUserView = YES` �
 * 如果丢失 RUM 中 Resource 事件或 Action 事件（launch action 除外），需要检查是否开启 View 的自动采集或者有使用 Open API 手动采集。 Resource 事件或 Action 事件是与 View 进行绑定的，需要确保在 View 被采集的情况下才能正常采集。
 * 排查上传数据设备网络与安装 datakit 设备网路与负载问题。
 
+### Error 数据丢失 Crash 类型数据
+
+* 检查是否开启 Crash 采集功能
+
+* SDK 的初始化是否在 Crash 之前完成
+
+* 是否有使用具有捕获 Crash 功能的其他第三方组件，若有将 FTMobileSDK 的初始化放在该组件后面
+
+* 是否在 Xcode 调试阶段
+  
+  SDK 中有使用 **UNIX 信号** 与 **Mach 异常**捕获崩溃，这两种捕获方式均会受到 Xcode 默认开启的 `Debug executable` 影响。它会在 SDK 捕获这些异常之前拦截掉，因此如果想在调试阶段也能正常捕获崩溃，需要手动将 `Debug executable` 功能关闭，或者不在 Xcode 连接调试下进行测试。
+  **注意：**关闭 `Debug executable`  后，断点调试功能将会失效。
+  
+  ![troubleshooting_debug_executable](../img/troubleshooting_debug_executable.png)
+
 ## 版本兼容问题
 
 ### RUM Resource 事件中的性能指标缺失
@@ -172,7 +193,7 @@ SDK 支持 iOS 9 及以上，RUM Resource 事件中的性能指标，需要使�
 * 升级 SDK 版本
 
 * 或在观察者即将释放前移除该观察者。
-  
+
 ```objc
    - (void)createWebView{
      [self.webView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
@@ -181,6 +202,8 @@ SDK 支持 iOS 9 及以上，RUM Resource 事件中的性能指标，需要使�
      [self.webView.scrollView removeObserver:self forKeyPath:@"contentSize"]
    }
 ```
+
+
 
 
 
