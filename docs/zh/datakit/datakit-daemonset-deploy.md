@@ -416,6 +416,12 @@ spec:
     设置上传时的 point 数据编码（可选列表：`v1` 即行协议，`v2` 即 Protobuf）
 
     **Type**: String
+
+- **ENV_DATAWAY_TLS_INSECURE**
+
+    允许对应的 Dataway 上的证书是自签证书[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
+
+    **Type**: Boolean
 <!-- markdownlint-enable -->
 
 ### 日志配置相关环境变量 {#env-log}
@@ -537,7 +543,7 @@ spec:
 <!-- markdownlint-disable MD046 -->
 - **ENV_DISABLE_404PAGE**
 
-    禁用 Datakit 404 页面（公网部署 Datakit RUM 时常用）
+    禁用 Datakit 404 页面（公网部署 Datakit RUM 时常用）。
 
     **Type**: Boolean
 
@@ -545,7 +551,7 @@ spec:
 
 - **ENV_HTTP_LISTEN**
 
-    可修改地址，使得外部可以调用 [Datakit 接口](apis.md)
+    可修改地址，使得外部可以调用 [Datakit 接口](apis.md)。
 
     **Type**: String
 
@@ -553,13 +559,13 @@ spec:
 
 - **ENV_HTTP_PUBLIC_APIS**
 
-    允许外部访问的 Datakit [API 列表](apis.md)，多个 API 之间以英文逗号分割。当 Datakit 部署在公网时，用来禁用部分 API
+    允许外部访问的 Datakit [API 列表](apis.md)，多个 API 之间以英文逗号分割。当 Datakit 部署在公网时，用来禁用部分 API。
 
     **Type**: List
 
 - **ENV_HTTP_TIMEOUT**
 
-    设置 9529 HTTP API 服务端超时时间 [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
+    设置 9529 HTTP API 服务端超时时间 [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)。
 
     **Type**: TimeDuration
 
@@ -567,21 +573,45 @@ spec:
 
 - **ENV_HTTP_CLOSE_IDLE_CONNECTION**
 
-    如果开启，则 9529 HTTP server 会主动关闭闲置连接（闲置时间等同于 `ENV_HTTP_TIMEOUT`） [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
+    如果开启，则 9529 HTTP server 会主动关闭闲置连接（闲置时间等同于 `ENV_HTTP_TIMEOUT`） [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)。
 
     **Type**: Boolean
 
     **Default**: -
 
+- **ENV_HTTP_ENABLE_TLS**
+
+    开启 Datakit 9529 HTTPS[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)。
+
+    **Type**: Boolean
+
+    **Default**: -
+
+- **ENV_HTTP_TLS_CRT**
+
+    配置 Datakit HTTP Server 上的 TLS cert 路径[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)。
+
+    **Type**: String
+
+    **Default**: -
+
+- **ENV_HTTP_TLS_KEY**
+
+    配置 Datakit HTTP Server 上的 TLS key 路径[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)。
+
+    **Type**: String
+
+    **Default**: -
+
 - **ENV_REQUEST_RATE_LIMIT**
 
-    限制 9529 [API 每秒请求数](datakit-conf.md#set-http-api-limit)
+    限制 9529 [API 每秒请求数](datakit-conf.md#set-http-api-limit)。
 
     **Type**: Float
 
 - **ENV_RUM_ORIGIN_IP_HEADER**
 
-    RUM 专用
+    设置 RUM 请求中真实 IP forward 对应的 HTTP header key。Datakit 将从该 Header 上获取端上用户的真实 IP，否则拿到可能是网关 IP。
 
     **Type**: String
 
@@ -589,11 +619,11 @@ spec:
 
 - **ENV_RUM_APP_ID_WHITE_LIST**
 
-    RUM app-id 白名单列表，以 `,` 分割
+    RUM app-id 白名单列表，以 `,` 分割。
 
     **Type**: String
 
-    **Example**: appid-1,appid-2
+    **Example**: appid-1, appid-2
 <!-- markdownlint-enable -->
 
 ### Confd 配置相关环境变量 {#env-confd}
