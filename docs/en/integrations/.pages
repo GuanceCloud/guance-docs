@@ -202,6 +202,7 @@ nav:
       - 'CRD': kubernetes-prometheus-operator-crd.md
     - 'NPD': npd.md
     - kubecost.md
+    - kubernetes_audit.md
 
   - APM:
     - Tracing Overview': datakit-tracing.md

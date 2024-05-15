@@ -65,6 +65,11 @@ At present, DataKit collects profiling data in two ways:
       #   send_timeout = "75s"
       #   send_retry_count = 4
     
+      ## set custom tags for profiling data
+      # [inputs.profile.tags]
+      #   some_tag = "some_value"
+      #   more_tag = "some_other_value"
+    
     ## go pprof config
     ## collect profiling data in pull mode
     #[[inputs.profile.go]]

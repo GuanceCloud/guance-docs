@@ -136,10 +136,9 @@ Only metric data in Prometheus form can be accessed.
         # key1 = [ "val1.*", "val2.*"]
         # key2 = [ "val1.*", "val2.*"]
     
-      ## Add HTTP headers to data pulling.
+      ## Add HTTP headers to data pulling (Example basic authentication).
       # [inputs.prom.http_headers]
-        # Root = "passwd"
-        # Michael = "1234"
+        # Authorization = “Basic bXl0b21jYXQ="
     
       ## Rename tag key in prom data.
       [inputs.prom.tags_rename]
@@ -186,7 +185,7 @@ Only metric data in Prometheus form can be accessed.
 <!-- markdownlint-enable -->
 ### Configure Extra header {#extra-header}
 
-The Prom collector supports configuring additional request headers in HTTP requests for data pull, as follows:
+The Prom collector supports configuring additional request headers in HTTP requests for data pull, (Example basic authentication):
 
 ```toml
   [inputs.prom.http_headers]
