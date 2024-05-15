@@ -107,7 +107,7 @@
 
 监控器会获取最近 10 分钟的检测对象主机的 CPU、内存使用情况，识别出现异常情况时，会生成相应的事件，在**事件 > 智能监控**列表可查看对应异常事件。
 
-![image](../img/intelligent-detection04.png)
+![](../img/intelligent-detection04.png)
 
 ### 事件详情页
 
