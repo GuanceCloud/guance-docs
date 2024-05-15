@@ -20,14 +20,6 @@ icon: zy/scene
 
     <br/>
 
--   [<font color=coral> :fontawesome-regular-rectangle-list:{ .lg .middle } __服务管理__</font>](service-manag.md)</font>
-
-    ---
-
-    在服务管理，您可以在服务管理页面，实现通过一个入口来访问和查看当前工作空间内关联服务下的所有关键信息。
-
-    <br/>
-
 
 -   [<font color=coral> :material-database-export:{ .lg .middle } __定时报告__</font>](report.md)
 
