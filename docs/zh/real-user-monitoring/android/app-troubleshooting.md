@@ -154,7 +154,7 @@ LogUtils.registerInnerLogCacheToFile(cacheFile)
 ### 丢失部份数据
 * 如果丢失 RUM 某一个 Session 数据或 Log，Trace 中的几条数据时，首先需要排除是否在 [FTRUMConfig](app-access.md#rum-config), [FTLoggerConfig](app-access.md#log-config), [FTTraceConfig](app-access.md#trace-config) 设置了 `sampleRate <  1` 
 * 排查上传数据设备网络与安装 datakit 设备网路与负载问题
-* 确认正确调用 `FTSdk.shutDown `，这个方法会释放 SDK 数据处理对象，包括缓存的数据。
+* 确认正确调用 `FTSdk.shutDown`，这个方法会释放 SDK 数据处理对象，包括缓存的数据。
 
 ### Resource 数据丢失 {#resource_missing}
 #### OkHttpClient.build() 在 SDK 初始化之前
@@ -172,6 +172,9 @@ Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpCli
 * **ft-sdk >= 1.4.1** 
 
 	SDK 自行适配兼容这个问题
+
+### Error 数据丢失 Crash 类型数据
+* 确认是否同时使用了其他第三方具有捕获 Crash 功能的 SDK，如果是，需要将观测 SDK 初始化方法放置到其他 SDK 后面。
 
 ## 数据丢失某个字段信息
 ### 用户数据字段
