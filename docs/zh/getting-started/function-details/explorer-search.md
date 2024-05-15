@@ -560,9 +560,16 @@ cmdline:E\:\\software_installer*exe    //检索成功，通配符模糊匹配
 
 <img src="../../img/3.explorer_export_1.png" width="70%" >
 
+
 如果需要导出某条数据，打开该条数据详情页，点击右上角 :material-tray-arrow-up: 图标即可。
 
 <img src="../../img/export-log-0808.png" width="70%" >
+
+### 导出到 CSV 文件 {#csv}
+
+![](../img/export-explorer.png)
+
+您可以选择导出 1k、5k、10k、50k、100k 的数据数量。
 
 ## 图表 {#chart}
 
