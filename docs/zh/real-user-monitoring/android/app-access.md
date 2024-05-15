@@ -8,7 +8,7 @@
         ``` markdown
      	1. SDK 初始化容错优化
 		2. 新增日志新增 Status.Debug 类型
-		3. 控制台日志等级对应关系 Log.i -> info，Log.d -> debug
+		3. 控制台抓取日志等级对应关系调整： Log.i -> info，Log.d -> debug
 		4. FTLogger 自定义日志支持自定义 status 字段
         ```
 		**1.4.5**：
