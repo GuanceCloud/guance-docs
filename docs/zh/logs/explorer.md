@@ -208,7 +208,7 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
 ### 查看上下文日志 {#up-down}
 
-在日志详情页，您可以直接查看该条数据内容的**上下文日志**；点击 :fontawesome-solid-arrow-up-right-from-square: 即可跳转到查看器打开。
+在日志详情页，您可以直接查看该条数据内容的**上下文日志**；hover 后点击 :fontawesome-solid-arrow-up-right-from-square: 即可跳转到查看器打开。
 
 ![](img/2.log_updown_1.png)
 
@@ -221,6 +221,9 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 **注意**：若第 10 条数据的时间与当前日志一致，则会检索不到当前日志。
 
 <img src="../img/log-0807.png" width="60%" >
+
+您还可以直接通过时间控件，对日志数据进行微妙级别的查询。若当日志上报时间不在查询的范围内时，需手动调整时间区间。
+
 
 ### 属性字段
 
