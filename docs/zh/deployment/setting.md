@@ -219,4 +219,23 @@
     - [Azure Active Directory](./azure-ad-pass.md)
 
 
+### DataKit 管理 {#datakit}
 
+在该页面，管理者可查看当前平台下所有在运行的 DataKit 情况，并进一步查看已安装 DataKit 的不同工作空间下的运行 ID、IP 地址、操作系统、硬件平台、计数、DataKit 版本等信息。
+
+**注意**：当用户以网关模式运行 DataKit，此处的【计数】不遵循物理计数，而遵循 CPU Core 数量统计。
+
+![](img/datakit.png)
+
+具体列表的显示信息可通过显示列进行调整：
+
+<img src="../img/datakit-1.png" width="70%" >
+
+针对该列表，您可以通过以下操作进行管理：
+
+- 点击工作空间、DataKit 版本进行下拉筛选；
+- 在搜索栏，直接输入主机名称、运行 ID、IP 地址等信息进行搜索定位。
+
+![](img/datakit-2.png)
+
+**注意**：若当前平台使用 DataKit 数量已超出 license 上限，需关注各工作空间 DataKit 的使用情况。同时，如出现该情况，管理后台、工作空间登录用户需要进行后续的续费等操作，且暂时无法升级观测云版本。如需增加更多 DataKit 用量，需联系您的客户经理增购数量。
