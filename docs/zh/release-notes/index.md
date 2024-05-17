@@ -16,7 +16,10 @@ icon: zy/release-notes
     - 智能监控 > 主机智能监控：新增网络流量、磁盘 IO 两项检测维度。
 - 场景 > 仪表板：
     - [视图变量](../scene/view-variable.md)：编辑页面样式优化，支持定义下拉单选、多选。
-    - 分组表格图、指标分析 > 表格图支持多列查询结果显示适配，如 `L::RE(.*):(count(*), message, host) { index = 'default' and  status = 'error'  } BY source, service`。
+    - 分组表格图、指标分析 > 表格图支持多列查询结果显示适配，如 
+```
+L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY source,service
+```
 - 查看器：
     - 日志查看器 > [上下文日志](../logs/explorer.md#up-down)支持微秒级的数据查询过滤，解决出现同一时刻（毫秒）有多条数据，导致不能命中定位显示某条日志上下文的问题。
     - 所有查看器支持选择[导出](../getting-started/function-details/explorer-search.md#csv)数据量为 CSV 文件。
