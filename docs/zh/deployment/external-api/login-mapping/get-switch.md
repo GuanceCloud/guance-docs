@@ -17,7 +17,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/login_mapping/switch/get' \
+curl '<Endpoint>/api/v1/login_mapping/switch/get' \
   -H 'Content-Type: application/json' \
   -H 'X-Df-Access-Key: <AK key>' \
   -H 'X-Df-Nonce: <随机字符>' \

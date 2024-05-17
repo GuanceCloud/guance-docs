@@ -30,7 +30,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/login_mapping/set_disable' \
+curl '<Endpoint>/api/v1/login_mapping/set_disable' \
   -X 'POST' \
   -H 'Content-Type: application/json' \
   -H 'X-Df-Access-Key: <AK key>' \
