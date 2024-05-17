@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/account/list?pageIndex=1&pageSize=5' \
+curl '<Endpoint>/api/v1/account/list?pageIndex=1&pageSize=5' \
   -H 'Content-Type: application/json' \
   -H 'X-Df-Access-Key: <AK key>' \
   -H 'X-Df-Nonce: <随机字符>' \
