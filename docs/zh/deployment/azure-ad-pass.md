@@ -247,7 +247,7 @@ window.DEPLOYCONFIG = {
  
     ......
     paasCustomLoginInfo:[
-        {url:"http://<server_name>/oidc/login",label:"第三方认证 登录按钮标签"}
+        { "iconUrl":"xxx", "label": "xxx", "url": "xxxx" ,desc:"xxx"}
     ]
      
     ......

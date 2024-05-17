@@ -6,6 +6,35 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明。
 
+## 2024 年 5 月 15 日
+
+### 观测云更新
+
+- 监控 
+    - 监控器 > [突变检测](../monitoring/monitor/mutation-detection.md) > 检测指标：支持环比上期选项，从而实现某个固定时间段内的数据进行最终比较。
+    - [静默管理](../monitoring/silent-management.md)：新增【附加信息】功能，支持针对静默规则添加解释说明，从而标识静默的原因或者来源等信息。
+    - 智能监控 > 主机智能监控：新增网络流量、磁盘 IO 两项检测维度。
+- 场景 > 仪表板：
+    - [视图变量](../scene/view-variable.md)：编辑页面样式优化，支持定义下拉单选、多选。
+    - 分组表格图、指标分析 > 表格图支持多列查询结果显示适配，如 `L::RE(.*):(count(*), message, host) { index = 'default' and  status = 'error'  } BY source, service`。
+- 查看器：
+    - 日志查看器 > [上下文日志](../logs/explorer.md#up-down)支持微秒级的数据查询过滤，解决出现同一时刻（毫秒）有多条数据，导致不能命中定位显示某条日志上下文的问题。
+    - 所有查看器支持选择[导出](../getting-started/function-details/explorer-search.md#csv)数据量为 CSV 文件。
+    - 新增查看器搜索查询审计事件，即由用户手动发起的查询操作会计入审计事件记录。
+- 服务管理：由原来所属的路径【场景】迁移至【应用性能监测】，优化使用体验。
+- 生成指标：支持配置多个 by 分组，不做数量限制。
+- DQL 查询：表达式查询支持指定值填充，支持针对子查询做结果填充和最终值填充。
+- 用户访问监测 > Android：应用配置显示优化。
+- 事件：新增详情页关联查看跳转入口。在不存在检测维度数据的情况下，可在详情页跳转查看器查看。
+
+### 观测云部署版更新
+
+- 新增 [DataKit 清单管理](../deployment/setting.md#datakit)页面。
+- 部署版配置单点登录对接时，支持自定义登录[显示标题、描述和 logo](../deployment/azure-ad-pass.md#config)。
+- [用户](../deployment/user.md#edit)：新增扩展属性配置。
+    - 支持本地用户直接在编辑页面配置属性。
+    - 支持单点登录时默认自动将第三方用户属性配置通过 userinfo 接口追加到观测云。
+
 ## 2024 年 4 月 24 日
 
 ### 观测云更新
@@ -18,7 +47,11 @@ icon: zy/release-notes
 - 异常追踪：
     - 新增 Issue 负责人配置，观测云会为负责人发送邮件通知。
     - 频道管理：支持[升级配置](../exception/channel.md#upgrade)。即，设置新 Issue 超过某特定分钟数时，若未指定负责人，则发送升级通知给对应的通知对象。
-- 监控 > [静默管理](../monitoring/silent-management.md)：静默规则列表页展示优化：支持列出当前工作空间所有静默规则，可通过快捷筛选快速过滤列出目标规则。
+- 监控 
+    - 监控器：检测配置：支持在【触发条件】配置连续多次判断触发条件生效后，再次触发生成事件。
+    - [静默管理](../monitoring/silent-management.md)：
+        - 静默规则列表页展示优化：支持列出当前工作空间所有静默规则，可通过快捷筛选快速过滤列出目标规则。
+        - 事件属性匹配支持反选，筛选条件格式如下：`attribute:value`、`attribute:*value*`、`-attribute:value`、`-attribute:*value*`，不同字段组合关系为 AND，相同字段的多个值为 OR。
 - DQL `match` 函数的含义变更为`完全匹配`。此变更仅针对新引擎，分别应用查看器、监控器这两个场景。
     - 查看器场景示例：`host:~cn_hangzhou`。
     - 监控器场景示例：
