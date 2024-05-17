@@ -1,6 +1,38 @@
 
 ## Update History {#changelog}
 
+### 1.4.0(2024/05/15) {#cl-1.4.0}
+
+- Add a new Datakit metering API (#29).
+- Fix the issue where data might be lost in the cache (#31).
+- Support direct configuration of HTTP TLS certificates on the Dataway side (#32).
+- Increase the exposure of additional metrics.
+
+---
+
+### 1.3.9(2024/03/28) {#cl-1.3.9}
+
+- When the Sink discards a request, it should return an HTTP `406 Not Acceptable` error to facilitate troubleshooting (#82).
+
+---
+
+### 1.3.8(2024/01/24) {#cl-1.3.8}
+
+- Export more Prometheus metrics
+- Significantly enhance the performance of Sinker rule matching (#26)
+---
+
+### 1.3.7(2023/12/14) {#cl-1.3.7}
+
+- Export more Prometheus metrics
+- Optimize disk cache cleaning strategy, adhere to the principle of collecting and consuming data as soon as possible:
+    - Prevent data from being actively discarded due to storage limits being exceeded.
+    - At the same time, ensure that cached data is sent out as early as possible.
+- Increase observability related to discarding of oversized requests (Metrics/Logs).
+- Adjust the [Dataway's own POD yaml](https://static.guance.com/dataway/dataway.yaml) to improve its metrics and log collection.
+
+---
+
 ### 1.3.6(2023/10/24) {#cl-1.3.6}
 
 - Added Dataway [`sink` command](./dataway-sink.md#dw-sink-command)
