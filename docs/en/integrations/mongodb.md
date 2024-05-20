@@ -271,6 +271,10 @@ For all the following data collections, a global tag named `host` is appended by
 
 ### `mongodb`
 
+- explain
+
+MongoDB measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
+
 - tag
 
 
@@ -417,6 +421,10 @@ For all the following data collections, a global tag named `host` is appended by
 
 ### `mongodb_db_stats`
 
+- explain
+
+MongoDB stats measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
+
 - tag
 
 
@@ -467,6 +475,10 @@ For all the following data collections, a global tag named `host` is appended by
 
 ### `mongodb_col_stats`
 
+- explain
+
+MongoDB collection measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
+
 - tag
 
 
@@ -516,6 +528,10 @@ For all the following data collections, a global tag named `host` is appended by
 
 ### `mongodb_shard_stats`
 
+- explain
+
+MongoDB shard measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
+
 - tag
 
 
@@ -537,6 +553,10 @@ For all the following data collections, a global tag named `host` is appended by
 
 
 ### `mongodb_top_stats`
+
+- explain
+
+MongoDB top measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
 
 - tag
 

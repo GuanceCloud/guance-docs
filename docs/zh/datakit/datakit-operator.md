@@ -25,7 +25,6 @@ Datakit Operator 是 Datakit 在 Kubernetes 编排的联动项目，旨在协助
 ### 安装步骤 {#datakit-operator-install}
 
 <!-- markdownlint-disable MD046 -->
-
 === "Deployment"
 
     下载 [*datakit-operator.yaml*](https://static.guance.com/datakit-operator/datakit-operator.yaml){:target="_blank"}，步骤如下：
