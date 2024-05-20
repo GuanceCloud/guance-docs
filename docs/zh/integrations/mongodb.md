@@ -271,6 +271,10 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 
 ### `mongodb`
 
+- 说明
+
+MongoDB measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
+
 - 标签
 
 
@@ -417,6 +421,10 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 
 ### `mongodb_db_stats`
 
+- 说明
+
+MongoDB stats measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
+
 - 标签
 
 
@@ -467,6 +475,10 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 
 ### `mongodb_col_stats`
 
+- 说明
+
+MongoDB collection measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
+
 - 标签
 
 
@@ -516,6 +528,10 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 
 ### `mongodb_shard_stats`
 
+- 说明
+
+MongoDB shard measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
+
 - 标签
 
 
@@ -537,6 +553,10 @@ mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCerti
 
 
 ### `mongodb_top_stats`
+
+- 说明
+
+MongoDB top measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
 
 - 标签
 
