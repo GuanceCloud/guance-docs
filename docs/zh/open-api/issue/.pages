@@ -9,6 +9,9 @@ nav:
   - '添加异常追踪自定义等级': level-add.md
   - '修改异常追踪自定义等级': level-modify.md
   - '删除异常追踪自定义等级': level-delete.md
-  - '获取空间异常追踪默认配置状态': config-get.md
-  - '修改空间异常追踪默认配置状态': config-set.md
-  - '获取空间异常追踪默认配置列表': level-list.md
+  - '获取异常追踪默认配置状态': config-get.md
+  - '修改异常追踪默认配置状态': config-set.md
+  - '获取异常追踪默认配置列表': level-list.md
+  - '附件上传': attachmentupload.md
+  - '附件删除': attachmentdelete.md
+  - '附件下载': downloadattachment.md

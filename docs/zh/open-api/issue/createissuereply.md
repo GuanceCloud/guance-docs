@@ -26,7 +26,7 @@
 |     参数名      | 参数类型 | 是否必填 |                  参数说明                   |
 |:---------------:|:--------:|:--------:|:-------------------------------------------:|
 |   issueUUID       |  string  |    Y     |                对应回复issue的UUID                |
-|   attachmentUuids      | array  |    N     |        对应回复issue的附件列表uuid        |
+|   attachmentUuids      | array  |    N     |        对应回复issue的附件列表uuid,需先通过 /api/v1/attachment/upload 接口进行上传        |
 |   content    |  string  |    N     |                回复的内容                      |
 | attachmentUuids |  array   |    N     |              附件上传列表uuid               |
 |     extend      |   json   |    Y     |                  扩展字段，默认传{}                  |
@@ -40,6 +40,17 @@
 |:--------:|:--------:|:--------:|:-----------------------:|
 | channels |  array   |    N     | 期望issue投递的资源列表 |
 | members  |     array     |     N     |       期望issue通知的通知对象成员    |
+| extra  |     json     |     N     |       回复创建人相关名称等信息    |
+
+extend.extra 示例:
+```json
+{
+  "creator": {
+    "name": "xxx",
+    "email": "xxx@qq.com",
+  }
+}
+```
 
 
 
