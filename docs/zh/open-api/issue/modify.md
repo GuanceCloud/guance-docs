@@ -1,4 +1,4 @@
-# 修改一个Issue信息
+# Issue 修改
 
 ---
 
@@ -43,27 +43,25 @@
 
 **level 等级字段说明**
 level 分为系统等级/自定义等级(可在配置管理中进行配置)
-系统等级:
-P0: system_level_0
-P1: system_level_1
-P2: system_level_2
-未知: system_level_3
 
-自定义等级
-名称xxx: issl_yyyyy
+|     level      | value |                  参数说明                   |
+|:---------------:|:--------:|:-------------------------------------------:|
+|      P0       |  system_level_0  |      传参 level: system_level_0, 表示系统等级 P0               |
+|      P1       |  system_level_1  |      传参 level: system_level_1, 表示系统等级 P1               |
+|      P2       |  system_level_2  |      传参 level: system_level_2, 表示系统等级 P2               |
+|      P3       |  system_level_3  |      传参 level: system_level_3, 表示系统等级 P3               |
+|      xxx      |  issl_yyyyy      |      传参 level: issl_yyyyy, 表示自定义等级 xxx            |
 
 
 **扩展字段extend说明**
 
-**更新场景中，channels和channelUUIDs的作用会默认的向默认频道和追加的频道中进行关联处理， 如果传[]，默认只会存在空间默认频道中**
-
 |  参数名  | 参数类型 | 是否必填 |        参数说明         |
 |:--------:|:--------:|:--------:|:-----------------------:|
-| channels |  array   |    N     | 期望issue投递的资源列表, |
+| channels |  array   |    N     | 描述内容里的 # : 期望issue投递的资源列表, |
 | linkList |  array   |    N     | 添加issue 链接 |
-| members  |     array     |     N     |       期望issue通知的通知对象成员    |
+| members  |     array     |     N     |       描述内容里的 @ 期望issue通知的通知对象成员    |
 | manager |  array   |    N     |              用户账号uuid, 邮箱, 团队uuid        |
-| extra  |     json     |     N     |      issue更新人/负责人邮箱对应名称等信息    |
+| extra  |     json     |     N     |      issue更新人/负责人邮箱对应名称等信息, 用于前端回显    |
 
 extend 字段示例:
 ```json
@@ -92,18 +90,18 @@ extend 字段示例:
         {
             "name": "解决",
             "link": "https://sd.com",
-            "id": "1c2ed570-1654-11ef-8a9e-bdbb71c3b39b"
         }
     ],
-    "updator": {
-        "name": "xxx",
-        "email": "xxx@qq.com",
-    },
-    "managerInfos": {
-        "111@qq.com": {"name": "111"},
-        "222@qq.com": {"name": "222"}
-
-    }
+    "extra":{
+              "updator": {
+                  "name": "xxx",
+                  "email": "xxx@qq.com",
+              },
+              "managerInfos": {
+                  "111@qq.com": {"name": "111"},
+                  "222@qq.com": {"name": "222"}
+              }
+            }
 }
 ```
 

@@ -1,4 +1,4 @@
-# 创建一个issue评论
+# Issue-回复 创建
 
 ---
 
@@ -40,15 +40,31 @@
 |:--------:|:--------:|:--------:|:-----------------------:|
 | channels |  array   |    N     | 期望issue投递的资源列表 |
 | members  |     array     |     N     |       期望issue通知的通知对象成员    |
-| extra  |     json     |     N     |       回复创建人相关名称等信息    |
+| extra  |     json     |     N     |       回复创建人相关名称等信息, 用于前端回显    |
 
-extend.extra 示例:
+extend 字段示例:
 ```json
 {
-  "creator": {
-    "name": "xxx",
-    "email": "xxx@qq.com",
-  }
+    "members": [
+        {
+            "type": "@",
+            "uuid": "acnt_d72e117f8902419fa1d135d1d781b79d",
+            "exists": true
+        }
+    ],
+    "channels": [
+        {
+            "type": "#",
+            "uuid": "chan_cf4f9aa671ef4dffa5a2b5d1824cd5b7",
+            "exists": true
+        }
+    ],
+    "extra": {
+            "creator": {
+                "name": "xxx",
+                "email": "xxx@qq.com",
+            }
+            }
 }
 ```
 
