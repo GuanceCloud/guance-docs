@@ -19,7 +19,7 @@ $ watch -n 3 'curl -s http://localhost:9529/metrics | grep -a datakit_cpu_usage'
 datakit_cpu_usage 4.9920266849857144
 ```
 
-We can also playing other metrics too(change the `grep` string), all available metrics list below(current Datakit version is 1.29.0):
+We can also playing other metrics too(change the `grep` string), all available metrics list below(current Datakit version is 1.29.1):
 
 <!-- we can run `make show_metrics` go export all these metrics -->
 |TYPE|NAME|LABELS|HELP|
