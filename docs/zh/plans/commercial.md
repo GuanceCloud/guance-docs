@@ -25,7 +25,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 费用中心</font>](../billing/cost-center/index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 费用中心</font>](../billing-center/index.md)
 
 <br/>
 
