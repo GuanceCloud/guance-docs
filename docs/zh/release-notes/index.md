@@ -11,7 +11,7 @@ icon: zy/release-notes
 ### 观测云更新
 
 - 监控 
-    - 监控器 > [突变检测](../monitoring/monitor/mutation-detection.md) > 检测指标：支持环比上期选项，从而实现某个固定时间段内的数据进行最终比较。
+    - 监控器 > [突变检测](../monitoring/monitor/mutation-detection.md) > 检测指标：支持【环比上期】选项，从而实现某个固定时间段内的数据进行最终比较。
     - [静默管理](../monitoring/silent-management.md)：新增【附加信息】功能，支持针对静默规则添加解释说明，从而标识静默的原因或者来源等信息。
     - 智能监控 > 主机智能监控：新增网络流量、磁盘 IO 两项检测维度。
 - 场景 > 仪表板：
@@ -196,7 +196,7 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
     - 服务管理 > 资源调用：排行榜新增 TOP / Bottom 数量选择。
 - 查看器：显示列设置新增【时间列】开关。
 - 付费计划与账单：
-    - 工作空间锁定弹窗页面新增[新建工作空间](../billing/cost-center/workspace-management.md#lock)入口，优化操作体验；
+    - 工作空间锁定弹窗页面新增[新建工作空间](../billing-center/workspace-management.md#lock)入口，优化操作体验；
     - AWS 注册流程优化。
 
 ### 观测云部署版更新
