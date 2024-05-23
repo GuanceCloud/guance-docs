@@ -40,7 +40,7 @@
 
 ## 客户端 DCA
 
-[客户端 DCA](../../datakit/dca.md) 是 DataKit 在线管理平台，支持查看 DataKit 运行情况，对采集器、黑名单、Pipeline 进行统一管理配置。
+[客户端 DCA (DataKit Control App)](../../datakit/dca.md) 是 DataKit 在线管理平台，支持查看 DataKit 运行情况，对采集器、黑名单、Pipeline 进行统一管理配置。
 
 ## 移动端 APP
 
