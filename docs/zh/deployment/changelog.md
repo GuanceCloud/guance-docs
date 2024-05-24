@@ -17,6 +17,8 @@ pubrepo.guance.com/dataflux/1.85.164:launcher-0f0b2bb-1716275675
 
 ### 观测云部署版更新
 
+> **注： 此版本依赖 GuanceDB-Logs v1.6.1 版本，升级前请先升级 GuanceDB-Logs 引擎到 [v1.6.1](https://static.guance.com/guancedb/guancedb-cluster-linux-amd64-v1.6.1.tar.gz) 或以上版本。**
+
 - 新增 [DataKit 清单管理](../deployment/setting.md#datakit)页面。
 - 部署版配置单点登录对接时，支持自定义登录[显示标题、描述和 logo](../deployment/azure-ad-pass.md#config)。
 - [用户](../deployment/user.md#edit)：新增扩展属性配置。
