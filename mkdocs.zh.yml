@@ -15,6 +15,7 @@ theme:
     - search.suggest
     - toc.follow
     - content.tabs.link
+    - content.code.copy
     - navigation.top
     - navigation.path
 
