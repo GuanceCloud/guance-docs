@@ -15,6 +15,7 @@ theme:
     code: Roboto Mono
   features:
     - content.tabs.link
+    - content.code.copy
     - navigation.instant
     - navigation.top
     - navigation.tracking
