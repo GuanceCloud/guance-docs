@@ -1,5 +1,6 @@
 nav:
   - 'issue 列出': list.md
+  - 'issue 详情获取': get.md
   - 'Issue 创建': add.md
   - 'Issue 修改': modify.md
   - 'Issue-回复 列出': getissuereplylist.md
