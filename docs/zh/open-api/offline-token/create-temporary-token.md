@@ -6,6 +6,9 @@
 
 ## 概述
 生成访问token
+使用方式: 
+1. 页面`url`上添加参数: `gc_view_token=xxxx`; 注意如果是跨域 iframe 嵌套可能会有第三方 cookie 拦截跨域问题。
+2. 如果不涉及到页面跳转。页面`url`上添加参数: `gc_route_token=xxx`。
 
 
 

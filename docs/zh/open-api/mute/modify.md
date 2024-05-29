@@ -39,6 +39,7 @@
 | repeatExpireTime | string |  | 重复结束时间 %Y/%m/%d %H:%M:%S<br>例子:  <br>允许为空: False <br>允许空字符串: True <br> |
 | timezone | str | Y | 静默规则时区<br>例子: Asia/Shanghai <br>允许为空: False <br> |
 | type | str | Y | 静默规则类型<br>例子: custom <br>允许为空: False <br>可选值: ['checker', 'alertPolicy', 'tag', 'custom'] <br> |
+| declaration | json |  | 自定义声明信息<br>允许为空: False <br> |
 
 ## 参数补充说明
 
@@ -66,6 +67,7 @@
 | start            | int  | 静默开始时间  （2023-08-24下架）                  |
 | end              | int  | 静默结束时间  （2023-08-24下架）  ｜
 | notifyTime       | int  | 通知时间, 时间点对应的秒级时间戳, -1代表立即通知 （2023-08-24下架） |
+| declaration             | dict  | 自定义声明信息 |
 
 
 
