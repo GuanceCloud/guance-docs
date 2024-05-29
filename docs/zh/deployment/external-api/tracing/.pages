@@ -1,0 +1,3 @@
+nav:
+  - '【链路追踪】apm 服务列表': tracing-list.md
+  - '【链路追踪】service map （有拓扑关系和统计数据）': tracing-service-map-v2.md
