@@ -1,0 +1,7 @@
+nav:
+  - '【管理后台账号】列出': list.md
+  - '【管理后台账号】创建': create.md
+  - '【管理后台账号】获取详情': get.md
+  - '【管理后台账号】修改': modify.md
+  - '【管理后台账号】启用禁用': set-disable.md
+  - '【管理后台账号】删除': delete.md

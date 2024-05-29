@@ -33,7 +33,7 @@ icon: zy/billing-center
 - [<font color="coral"> :fontawesome-solid-headphones: __提交工单__</font>](../billing-center/support-center.md)：支持提交和管理工单，观测云官方收到工单后会及时联系并解决问题。
 - [<font color="coral"> :material-page-layout-header-footer: __账单管理__</font>](../billing-center/billing-management.md)：用于管理费用中心的账单信息，包括月账单、消费明细、收支明细、代金券明细、预购卡明细。    
 - [<font color="coral"> :octicons-person-fill-16: __账户管理__</font>](../billing-center/account-management.md)：用于管理费用中心的账户信息，包括账户资料变更、密码修改、实名认证以及云账号管理。
-- [<font color="coral"> :fontawesome-solid-photo-film: __更换结算__</font>](../billing-account/index.md)：一个费用中心账户可绑定多个观测云工作空间。支持更改工作空间的结算方式。
+- [<font color="coral"> :fontawesome-solid-photo-film: __更换结算__</font>](../billing/billing-account/index.md)：一个费用中心账户可绑定多个观测云工作空间。支持更改工作空间的结算方式。
       
 </div>
 

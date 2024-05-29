@@ -115,10 +115,10 @@ for i in $NAMESPACE;
 do
   for ing in $(kubectl get ing -n $i -o jsonpath='{.items[*].metadata.name}');
   do
-  if [[ `kubectl get ing $ing -n $i -o yaml |grep $OLD_DOMAIN` ]]; then
-     echo "$i $ing 有$(kubectl get ing $ing -n $i -o yaml |grep -c $OLD_DOMAIN) 处"
+  if [[ `kubectl get ing $ing -n $i -o yaml |grep $OLD_VALUE` ]]; then
+     echo "$i $ing 有$(kubectl get ing $ing -n $i -o yaml |grep -c $OLD_VALUE) 处"
      kubectl get ing $ing -n $i -o yaml | \
-       sed "s/${OLD_DOMAIN}/${NEW_DOMAIN}/g" | \
+       sed "s/${OLD_VALUE}/${NEW_VALUE}/g" | \
        kubectl apply -f -
   fi
   done
