@@ -21,6 +21,7 @@ nav:
   - CI 可视化: ci-visibility
   - <br/>开放能力: ""
   - DataFlux Func: dataflux-func
+  - DCA: dca
   - 自定义开发: developers
   - OpenAPI: open-api
   - <br/>管理: ""
