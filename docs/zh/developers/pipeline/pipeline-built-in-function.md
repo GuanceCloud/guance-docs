@@ -952,84 +952,6 @@ if city != get_key("city") {
 ```
 
 
-### `gjson()` {#fn-gjson}
-
-函数原型：`fn gjson(input, json_path: str, newkey: str)`
-
-函数说明：提取 JSON 中的指定字段，可将其命名成新的字段，并保证按原始顺序排列
-
-参数：
-
-- `input`: 待提取 JSON，可以是原始文本（`_`）或经过初次提取之后的某个 `key`
-- `json_path`: JSON 路径信息
-- `newkey`：提取后数据写入新 key
-
-```python
-# 直接提取原始输入 JSON 中的 x.y 字段，并可将其命名成新字段 abc
-gjson(_, "x.y", "abc")
-
-# 已提取出的某个 `key`，对其再提取一次 `x.y`，提取后字段名为 `x.y`
-gjson(key, "x.y") 
-
-# 提取数组，`key` 和 `abc` 均为数组类型
-gjson(key, "1.abc.2")
-```
-
-示例一：
-
-```python
-# 待处理数据：
-# {"info": {"age": 17, "name": "zhangsan", "height": 180}}
-
-# 处理脚本：
-gjson(_, "info", "zhangsan")
-gjson(zhangsan, "name")
-gjson(zhangsan, "age", "age")
-
-# 处理结果：
-{
-  "age": 17,
-  "message": "{\"info\": {\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}}",
-  "name": "zhangsan",
-  "zhangsan": "{\"age\":17,\"height\":180,\"name\":\"zhangsan\"}"
-}
-```
-
-示例二：
-
-```python
-# 待处理数据：
-#    data = {
-#        "name": {"first": "Tom", "last": "Anderson"},
-#        "age":37,
-#        "children": ["Sara","Alex","Jack"],
-#        "fav.movie": "Deer Hunter",
-#        "friends": [
-#            {"first": "Dale", "last": "Murphy", "age": 44, "nets": ["ig", "fb", "tw"]},
-#            {"first": "Roger", "last": "Craig", "age": 68, "nets": ["fb", "tw"]},
-#            {"first": "Jane", "last": "Murphy", "age": 47, "nets": ["ig", "tw"]}
-#        ]
-#    }
-
-# 处理脚本：
-gjson(_, "name")
-gjson(name, "first")
-```
-
-示例三：
-
-```python
-# 待处理数据：
-#    [
-#            {"first": "Dale", "last": "Murphy", "age": 44, "nets": ["ig", "fb", "tw"]},
-#            {"first": "Roger", "last": "Craig", "age": 68, "nets": ["fb", "tw"]},
-#            {"first": "Jane", "last": "Murphy", "age": 47, "nets": ["ig", "tw"]}
-#    ]
-    
-# 处理脚本，json 数组处理：
-gjson(_, "0.nets.1")
-```
-
 ### `grok()` {#fn-grok}
 
 函数原型：`fn grok(input: str, pattern: str, trim_space: bool = true) bool`
@@ -1708,42 +1630,6 @@ if b != 7665324064912355185 {
 ```
 
 
-### `point_window` {fn-point-window}
-
-函数原型： `fn point_window(before: int, after: int, stream_tags = ["filepath", "host"])`
-
-函数说明： 记录被丢弃的数据，配合 `window_hit` 函数使用，上传被丢弃的上下文 `Point` 数据。
-
-函数参数：
-
-- `before`: 函数 `window_hit` 执行之前的最大可暂存的 Point 个数，未丢弃的数据参与计数。
-- `after`: 函数 `window_hit` 执行之后保留的 Point 个数，未丢弃的数据参与计数。
-- `stream_tags`: 通过数据上的标签区分日志（指标，链路等）流，默认数使用 `filepath` 和 `host` 可用于区分来自同一文件的日志。
-
-示例：
-
-```python
-# 建议放置在脚本首行
-#
-point_window(8, 8)
-
-# 如果是 panic 日志，保留前 8 条，以及后 8 条（包含当前一条）
-if grok(_, "abc.go:25 panic: xxxxxx") {
-    # 只有此次运行过程中 point_window() 被执行，这个函数才会生效
-    # 触发窗口内的数据恢复行为
-    #
-    window_hit()
-}
-
-# 默认丢弃全部的 service 为 test_app 的日志；
-# 若包含 panic 的日志，则保留相邻的 15 条以及当前这条
-#
-if service == "test_app" {
-    drop()
-}
-```
-
-
 ### `pt_name()` {#fn-pt-name}
 
 函数原型：`fn pt_name(name: str = "") -> str`
@@ -2353,38 +2239,6 @@ if value_type(d) == "map" && "a" in d  {
 {
   "message": "{\"a\":{\"first\": [2.2, 1.1], \"ff\": \"[2.2, 1.1]\",\"second\":2,\"third\":\"aBC\",\"forth\":true},\"age\":47}",
   "val_type": "map"
-}
-```
-
-
-### `window_hit` {fn-window-hit}
-
-函数原型： `fn window_hit()`
-
-函数说明： 触发上下文被丢弃的数据的恢复事件，从 `point_window` 函数记录的数据中进行恢复
-
-函数参数： 无
-
-示例：
-
-```python
-# 建议放置在脚本首行
-#
-point_window(8, 8)
-
-# 如果是 panic 日志，保留前 8 条，以及后 8 条（包含当前一条）
-if grok(_, "abc.go:25 panic: xxxxxx") {
-    # 只有此次运行过程中 point_window() 被执行，这个函数才会生效
-    # 触发窗口内的数据恢复行为
-    #
-    window_hit()
-}
-
-# 默认丢弃全部的 service 为 test_app 的日志；
-# 若包含 panic 的日志，则保留相邻的 15 条以及当前这条
-#
-if service == "test_app" {
-    drop()
 }
 ```
 

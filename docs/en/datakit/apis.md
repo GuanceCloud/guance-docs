@@ -1,146 +1,70 @@
+
 # DataKit API
 
 ---
 
-This document primarily describes the HTTP API interfaces provided by DataKit.
+This document mainly describes the HTTP API interface opened by DataKit.
 
-## API Overview {#intro}
+## API Summary {#intro}
 
-DataKit currently only supports HTTP interfaces, mainly involving data writing and data querying.
+At present, DataKit only supports HTTP interface, which mainly involves data writing and data query.
 
-### Obtaining the Remote DataKit Version Number {#api-get-dk-version}
+### Get the DataKit Version {#api-get-dk-version}
 
-There are two ways to obtain the version number:
+There are two ways to get the version number:
 
-- Request the DataKit ping interface: `curl http://ip:9529/v1/ping`
-- In the response header of each of the following API requests, the current DataKit version for the request can be identified through `X-DataKit`
+- Request DataKit ping interface: `curl http://ip:9529/v1/ping`
+- In the return Header of each of the following API requests, you can know the DataKit version of the current request through `X-DataKit`.
 
 ## `/v1/write/:category` {#api-v1-write}
 
-This API is used to report various types of data (`category`) to DataKit. The URL parameter description is as follows:
+This API is used to report various `category` of data to DataKit, and the parameters are described as follows:
 
-| Parameter                 | Type   | Required | Default Value  | Description                                                                                                                                                                                                                                              |
-| ---                       | ---    | ---      | ---            | ---                                                                                                                                                                                                                                                      |
-| `category`                | string | Y        | -              | Currently only supports `metric,logging,rum,object,custom_object,keyevent`. For example, for `metric`, the URL should be written as `/v1/write/metric`                                                                                                   |
-| `dry`                     | bool   | N        | false          | Test mode, which only POSTs the Point to Datakit without actually uploading it to the observation cloud ([:octicons-tag-24: Version-1.30.0](changelog.md#cl-1.30.0))                                                                                     |
-| `echo`                    | string | N        | -              | Optional values `lp/json/pbjson`, `lp` represents the line protocol form in the returned Body for the uploaded Point, followed by [regular JSON](apis.md#api-v1-write-body-json-protocol) and [advanced JSON](apis.md#api-v1-write-body-pbjson-protocol) |
-| `global_election_tags`    | bool   | N        | false          | Whether to append *global election tags* ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6))                                                                                                                                                      |
-| `ignore_global_host_tags` | bool   | N        | -              | Whether to ignore DataKit's *global host tags* ([:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6))                                                                                                                                                |
-| `input`                   | string | N        | `datakit-http` | The name of the data source, which will be displayed on Datakit monitor for easy debugging ([:octicons-tag-24: Version-1.30.0](changelog.md#cl-1.30.0))                                                                                                  |
-| `loose`                   | bool   | N        | true           | Whether it's loose mode, for some non-compliant Points, DataKit will try to fix them ([:octicons-tag-24: Version-1.4.11](changelog.md#cl-1.4.11))                                                                                                        |
-| `precision`               | string | N        |                | Data precision (supports `n/u/ms/s/m/h`), if the parameter is not passed, the time precision will be automatically recognized ([:octicons-tag-24: Version-1.30.0](changelog.md#cl-1.30.0))                                                               |
-| `source`                  | string | N        | -              | If `source` is not specified (or the corresponding *source.p* does not exist or is invalid), the uploaded Point data will not execute Pipeline                                                                                                           |
-| `strict`                  | bool   | N        | false          | Strict mode, for some non-compliant line protocols, the API will report an error directly and inform the specific reasons ([:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9))                                                                     |
+| Parameter                 | Type   | Required or not | Default Value | Description                                                                                                                                                                               |
+| ---                       | ---    | ---             | ---           | ---                                                                                                                                                                                       |
+| `category`                | string | Y               | no            | support `metric/logging/rum/object/custom_object/keyevent`. For example, the URL of `metric` is `/v1/write/metric`                                                                        |
+| `echo_line_proto`         | string | N               | no            | Giving any value (such as `true`) returns line protocol format point data. default not echoed.                                                                                            |
+| `echo_json`               | string | N               | -             | Giving any value (such as `true`) returns JSON format point data. default not echoed. If both echo enabled, preferred line protocol                                                       |
+| `global_election_tags`    | string | N               | -             | Giving any value (such as `true`) to append global-election tags（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）                                                              |
+| `ignore_global_host_tags` | string | false           | no            | Giving any value (such as `true`) is considered to ignore the global tag on DataKit（[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)）。`ignore_global_tags` would be abandoned. |
+| `input`                   | string | N               | `datakit`     | Data source name                                                                                                                                                                          |
+| `loose`                   | bool   | N               | true          | Loose mode, for some invalid POST(JSON or lineprotocol), DataKit would try to auto-fix them ([:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)).                                   |
+| `strict`                  | bool   | N               | false         | Strict mode, for some invalid POST(JSON or lineprotocol), DataKit would reject them and showing why([:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)).                            |
+| `precision`               | string | N               | `n`           | Data accuracy (supporting `n/u/ms/s/m/h`)                                                                                                                                                 |
+| `source`                  | string | N               | no            | Specify this field only for logging support (that is, `category` is `logging`). If you do not specify `source`, the uploaded log data would not be cut by Pipeline.                       |
+| `version`                 | string | N               | no            | The version number of the current collector                                                                                                                                               |
 
-<!-- markdownlint-disable MD046 -->
-???+ attention
+HTTP body supports both line protocol and JSON. See [here](apis.md#lineproto-limitation) for constraints on data structures, whether in line protocol or JSON form.
 
-    - The following parameters have been deprecated:
+### Categories {#category}
 
-        - `echo_line_proto` : Replace with the `echo` parameter
-        - `echo_json`       : Replace with the `echo` parameter
+In DataKit, the main data types are as follows (listed in alphabetical order according to their abbreviations):
 
-    - Although multiple parameters are of boolean type, if you do not need to enable the corresponding option, do not pass a `false` value. The API will only check for the presence of a value on the parameter and will not consider its content.
+| Abbreviations | Name          | URL form                | Description            |
+| ----          | ----          | ----                    | ---                    |
+| CO            | custom_object | /v1/write/custom_object | customized object data |
+| E             | keyevent      | /v1/write/keyevent      | Event data             |
+| L             | logging       | /v1/write/logging       | Logging data           |
+| M             | metric        | /v1/write/metric        | Time series            |
+| N             | network       | /v1/write/network       | eBPF data              |
+| O             | object        | /v1/write/object        | object data            |
+| P             | profiling     | /v1/write/profiling     | Profiling data         |
+| R             | rum           | /v1/write/rum           | RUM data               |
+| S             | security      | /v1/write/security      | Security check data    |
+| T             | tracing       | /v1/write/tracing       | APM(tracing) data      |
 
-    - Automatic recognition of time precision (`precision`) refers to guessing the likely time granularity based on the input timestamp value. While it cannot be mathematically guaranteed to be correct, it is sufficient for everyday use. For example, for a timestamp like 1716544492, it is interpreted as seconds, whereas 1716544492000 would be interpreted as milliseconds, and so on.
+不同的数据类型，其处理方式不一样，在观测云的用法也不尽相同。在 DataKit 的配置和使用过程中，有时候会穿插使用某个类型的不同形式（比如在 sinker 配置中用简写，在 API 请求中则用其 URL 表示）
 
-    - If the data point does not include a timestamp, the timestamp of the machine where Datakit is located will be used.
-    - Although the current protocol supports both binary format and any format types, Kodo **has not yet** supported the upload of these two types of data.
-<!-- markdownlint-enable -->
+### JSON Body Examples {#api-json-example}
 
-### Body Description {#api-v1-write-body}
+To facilitate line protocol processing, all data upload APIs support body in JSON form.  JSON body parameter descriptions are as follows.
 
-The HTTP body supports line protocol as well as two forms of JSON.
-
-#### Line Protocol Body {#api-v1-write-body-line-protocol}
-
-A single line protocol format is as follows:
-
-```text
-measurement,<tag-list> <field-list> timestamp
-```
-
-Multiple line protocols are separated by newlines:
-
-```text
-measurement_1,<tag-list> <field-list> timestamp
-measurement_2,<tag-list> <field-list> timestamp
-```
-
-Where:
-
-- `measurement` is the name of the measurement set, which represents a collection of metrics, such as the `disk` measurement set, which may include metrics like `free/used/total`, etc.
-- `<tag-list>` is a list of tags separated by `,`. A single tag is in the form of `key=value`, and the `value` is considered a string. In the line protocol, `<tag-list>` is **optional**
-- `<field-list>` is a list of metrics separated by `,`. In the line protocol, `<field-list>` is **required**. A single metric is in the form of `key=value`, and the `value` format depends on its type, as follows:
-    - int Example: `some_int=42i`, which means appending an `i` after the integer value to indicate
-    - uint Example: `some_uint=42u`, which means appending a `u` after the integer value to indicate
-    - float Example: `some_float_1=3.14,some_float_2=3`, where `some_float_2` is an integer 3, but it is still considered a float
-    - string Example: `some_string="hello world"`, string values need to be enclosed in quotes on both ends
-    - bool Example: `some_true=T,some_false=F`, where `T/F` can also be represented as `t/f/true/false` respectively
-    - Binary Example: `some_binary="base-64-encode-string"b`, binary data (text byte stream `[]byte`, etc.) needs to be base64 encoded to be represented in the line protocol, similar to string representation, but with a `b` appended at the end to identify
-    - Array Example: `some_array=[1i,2i,3i]`, note that the type within the array can only be a basic type (`int/uint/float/boolean/string/[]byte`, **excluding arrays**), and the types must be consistent, such as `invalid_array=[1i,3.14,"string"]` which is currently unsupported
-- `timestamp` is an integer timestamp, by default, Datakit processes this timestamp in nanoseconds, if the original data is not in nanoseconds, the actual timestamp precision needs to be specified through the request parameter `precision`. In the line protocol, `timestamp` is optional, if the data does not include a timestamp, Datakit takes the time it receives as the current line protocol time.
-
-The parts between them are:
-
-- `measurement` and `<tag-list>` are separated by `,`
-- `<tag-list>` and `<field-list>` are separated by a single space
-- `<field-list>` and `timestamp` are separated by a single space
-- In the line protocol, if there is a `#` at the beginning, it is considered a comment and will actually be ignored by the parser
-
-Here are some simple line protocol examples:
-
-```text
-# Normal example
-some_measurement,host=my_host,region=my_region cpu_usage=0.01,memory_usage=1048576u 1710321406000000000
-
-# No tag example
-some_measurement cpu_usage=0.01,memory_usage=1048576u 1710321406000000000
-
-# No timestamp example
-some_measurement,host=my_host,region=my_region cpu_usage=0.01,memory_usage=1048576u
-
-# All basic types included
-some_measurement,host=my_host,region=my_region float=0.01,uint=1048576u,int=42i,string="my-host",boolean=T,binary="aGVsbG8="b,array=[1.414,3.14] 1710321406000000000
-```
-
-Some special escapes for field names and field values are:
-
-- `measurement` needs to escape `,`
-- Tag key and field key need to escape `=`,`,` and spaces
-- `measurement`, tag key, and field key must not contain newlines (`\n`)
-- Tag value must not contain newlines (`\n`), newlines in field values do not need to be escaped
-- If the field value is a string, if there is a `"` character, it also needs to be escaped
-
-#### JSON Body {#api-v1-write-body-json-protocol}
-
-Compared to the line protocol, the JSON format does not require much escaping, a simple JSON format is as follows:
-
-```json
-[
-    {
-        "measurement": "metric set name",
-
-        "tags": {
-            "key": "value",
-            "another-key": "value"
-        },
-
-        "fields": {
-            "key": value,
-            "another-key": value # Here the value can be number/bool/string/list
-        },
-
-        "time": unix-timestamp
-    },
-
-    {
-        # another-point...
-    }
-]
-```
-
-Here is a simple JSON example:
+| Parameter        | Type                        | Required or not | Default Value | Description                                                                          |
+| ------------- | --------------------------- | -------- | ------ | ----------------------------------------------------------------------------- |
+| `measurement` | `string`                    | Yes       | None     | Measurement name                                                            |
+| `tags`        | `map[string]string`         | No       | None     | Tag list                                                                      |
+| `fields`      | `map[string]any-basic-type` | Yes       | None     | Line protocol can not be without a field, it can only be a base type, not a compound type (such as array, dictionary, etc.). |
+| `time`        | `int64`                     | No       | None     | If it is not provided, the receiving time of DataKit shall prevail.                                      |
 
 ```json
 [
@@ -155,7 +79,7 @@ Here is a simple JSON example:
       "f2": 3.4,
       "f3": "strval"
     },
-    "time": 1624550216000000000
+    "time": 1624550216
   },
   {
     "measurement": "def",
@@ -167,274 +91,102 @@ Here is a simple JSON example:
       "f1": 123,
       "f2": 3.4,
       "f3": "strval"
-      "f4": false,
-      "f5": [1, 2, 3, 4],
-      "f6": ["str1", "str2", "str3"]
     },
-    "time": 1624550216000000000
+    "time": 1624550216
   }
 ]
 ```
 
-<!-- markdownlint-disable MD046 -->
-???+ warning
+Notes:
 
-    Although this JSON structure is simple, it has several drawbacks:
+- If it is a JSON body, mark  `Content-Type: application/json` on the request header, otherwise it would be treated as a normal line protocol.
+- For now, `any-basic-type` refers to `int/float/bool/string` in the popular sense, regardless of the differences between different programming languages.
+- As for the field of numeric type, in JSON, because numeric value does not distinguish float/int, it is difficult to judge whether it is int or float for `{"a" : 123}` JSON at present. Based on this, API treats numeric value and translates it into float type uniformly. This approach may cause type conflicts on storage (for example, line protocol body is used before, and JSON body is used later).
+    - In the line protocol, int/float is clearly identified, such as `123i` for int and  `123` for float.
+- Compared with the line protocol body, the performance of JSON body is poor, which is about 7 ~ 8 times different. On the premise of the same amount of data, a rough Benchmark comparison:
 
-    - It cannot distinguish between int/uint/float numeric types. For example, for all numbers, JSON defaults to handling them as floats, and for the number 42, JSON cannot distinguish whether it is signed or unsigned.
-    - It does not support representing binary data (`[]byte`): Although in some cases, JSON encoding will automatically represent `[]byte` as a base64 string, JSON itself has no binary type representation.
-    - It cannot represent other information for specific fields, such as units, metric types (gauge/count/...), etc.
-<!-- markdownlint-enable -->
-
-#### PB-JSON Body {#api-v1-write-body-pbjson-protocol}
-
-[:octicons-tag-24: Version-1.30.0](changelog.md#cl-1.30.0) · [:octicons-beaker-24: Experimental](index.md#experimental)
-
-Due to the inherent shortcomings of simple JSON, it is recommended to use another JSON format, which has the following structure:
-
-```json
-[
-  {
-    "name": "point-1", # Metric set name
-    "fields": [...], # List of specific fields, including Field and Tag
-    "time": "1709523668830398000"
-  },
-  {
-    # another point...
-  }
-]
+```shell
+$ go test -bench=.
+goos: darwin
+goarch: amd64
+pkg: gitlab.jiagouyun.com/cloudcare-tools/datakit/http
+cpu: Intel(R) Core(TM) i5-8210Y CPU @ 1.60GHz
+BenchmarkHandleWriteBody-4     582792  2135 ns/op
+BenchmarkHandleJSONWriteBody-4  75606 15693 ns/op  # Obviously, the single overhead of json-body is higher
+PASS
+ok      gitlab.jiagouyun.com/cloudcare-tools/datakit/http       4.499s
 ```
 
-The structure of a single field is as follows:
+### Logging Example {#api-logging-example}
 
-```json
-{
-  "key"    : "field-name",        # Field name (required)
-  "x"      : <value>,             # Field value, the type depends on x (required)
-  "type"   : "<COUNT/GAUGE/...>", # Metric type (optional)
-  "unit"   : "<kb/s/...>"         # Metric unit (optional)
-  "is_tag" : true/false           # Whether it is a tag (optional)
-}
+```http
+POST /v1/write/logging?precision=n&input=my-sample-logger&ignore_global_tags=123 HTTP/1.1
+
+nginx,tag1=a,tag2=b,filename=a.log f1=1i,f2=1.2,f3="abc",message="real-log-data",status="debug" 1620723870000000000
+mysql,tag1=a,tag2=b,filename=b.log f1=1i,f2=1.2,f3="abc",message="other-log-data",status="info" 1620723870000000000
+redis,tag1=a,tag2=b,filename=c.log f1=1i,f2=1.2,f3="abc",message="more-log-data",status="error" 1620723870000000000
 ```
 
-Here `x` has several options, listed as follows:
+- The metric set name in the line protocol ( `nginx/mysql/redis`here) is stored as the `source` field of the log.
+- The original log data is stored in the `message` field.
+  
+### Metric Data Example {#api-metric-example}
 
-- `b`: Indicates that the value of this `key` is a boolean
-- `d`: Indicates that the value of this `key` is a stream of bytes, which may be binary (`[]byte`), in JSON, it must be base64 encoded
-- `f`: Indicates that the value of this `key` is a floating-point type (float64)
-- `i`: Indicates that the value of this `key` is a signed integer (int64)
-- `s`: Indicates that the value of this `key` is a string type (string)
-- `u`: Indicates that the value of this `key` is an unsigned integer (uint64)
-- `a`: Indicates that the value of this `key` is a dynamic type (`any`), currently it only supports arrays. It has two secondary fields:
-    - `@type`: String, the value is fixed as `type.googleapis.com/point.Array`
-    - `arr`: An array of objects, each element in the array is in the form of `{"x": <value>}`, where `x` is one of the above basic types ( `f/i/u/s/d/b` ), but not `a`. Here, the `x` of each element must be consistent
+``` http
+POST /v1/write/metric?precision=n&input=my-sample-logger&ignore_global_tags=123 HTTP/1.1
 
-<!-- markdownlint-disable MD046 -->
-???+ warning
-
-    The `i` and `u` here and the `time` field value of each Point are represented as strings in JSON
-<!-- markdownlint-enable -->
-
-Here is a specific JSON example:
-
-```json
-[
-  {
-    "name": "abc",
-    "fields": [
-      {
-        "key": "say",
-        "s": "hello"
-      },
-      {
-        "key": "some-flag",
-        "b": false
-      },
-      {
-        "key": "binary-data",
-        "d": "aGVsbG8gd29ybGQ="
-      },
-      {
-        "key": "int-arr",
-        "a": {
-          "@type": "type.googleapis.com/point.Array",
-          "arr": [
-            { "i": "1" },
-            { "i": "2" },
-            { "i": "3" }
-          ]
-        }
-      },
-      {
-        "key": "large-int",
-        "i": "1234567890"
-      },
-      {
-        "key": "large-bytes",
-        "u": "1234567890",
-        "type": "COUNT",
-        "unit": "kb"
-      },
-      {
-        "key": "some-tag",
-        "s": "v1",
-        "is_tag": true
-      },
-      {
-        "key": "pi",
-        "f": 3.14
-      }
-    ],
-    "time": "1709523668830398000"
-  }
-]
+cpu,tag1=a,tag2=b f1=1i,f2=1.2,f3="abc" 1620723870000000000
+mem,tag1=a,tag2=b f1=1i,f2=1.2,f3="abc" 1620723870000000000
+net,tag1=a,tag2=b f1=1i,f2=1.2,f3="abc" 1620723870000000000
 ```
 
----
+### Object Data Example {#api-object-example}
+
+``` http
+POST /v1/write/object?precision=n&input=my-sample-logger&ignore_global_tags=123 HTTP/1.1
+
+redis,name=xxx,tag2=b f1=1i,f2=1.2,f3="abc",message="xxx" 1620723870000000000
+rds,name=yyy,tag2=b f1=1i,f2=1.2,f3="abc",message="xxx" 1620723870000000000
+slb,name=zzz,tag2=b f1=1i,f2=1.2,f3="abc",message="xxx" 1620723870000000000
+```
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    - All Bodies, whether line protocol or the other two JSON formats, are array structures, that is, at least one Point is uploaded each time
-    - For JSON format Bodies, it is necessary to mark `Content-Type: application/json` in the Header, otherwise Datakit will parse it as line protocol
-    - Array support in the field requires version 1.30.0 or above (inclusive)
-    - Compared to the line protocol Body, the performance of the JSON format Body is relatively poor, with a gap of about 7-8 times
+    Object data must have the tag  `name` , otherwise the protocol will report an error.
+    
+    Object data should have a `message` field, which is mainly convenient for full-text search.
+
 <!-- markdownlint-enable -->
 
----
+### Custom Object Data Sample {#api-custom-object-example}
 
-### Data Type Classification {#category}
+Custom objects are almost identical to objects, except that the latter are collected autonomously by DataKit, and the former are objects created by users through the DataKit API.
 
-In DataKit, there are mainly the following data types (listed in alphabetical order of abbreviation):
+```http
+POST /v1/write/custom_object?precision=n&input=my-sample-logger&ignore_global_tags=123 HTTP/1.1
 
-| Abbreviation | Name            | URL Representation        | Description                   |
-| ---          | ---             | ---                       | ---                           |
-| CO           | `custom_object` | `/v1/write/custom_object` | Custom object data            |
-| E            | `keyevent`      | `/v1/write/keyevent`      | Event data                    |
-| L            | `logging`       | `/v1/write/logging`       | Log data                      |
-| M            | `metric`        | `/v1/write/metric`        | Time series data              |
-| N            | `network`       | `/v1/write/network`       | Generally refers to eBPF data |
-| O            | `object`        | `/v1/write/object`        | Object data                   |
-| P            | `profiling`     | `/v1/write/profiling`     | Profiling data                |
-| R            | `rum`           | `/v1/write/rum`           | RUM data                      |
-| S            | `security`      | `/v1/write/security`      | Security inspection data      |
-| T            | `tracing`       | `/v1/write/tracing`       | APM (Tracing) data            |
-
----
-
-### DataKit Data Structure Constraints {#point-limitation}
-
-1. For all types of Points, if the measurement is missing (or the measurement is an empty string), the `measurement` value will be automatically filled with `__default`
-2. For time series Points (M), strings are not allowed in the field, and Datakit will automatically discard them
-3. For non-time series Points, `.` characters are not allowed in tag keys and field keys, Datakit will automatically replace them with `_`
-4. For log Points (L), if the `status` field is missing (i.e., it does not exist in both tags and fields), Datakit will automatically set it to `unknown`
-5. For object Points (O/CO), if the `name` field is missing (i.e., it does not exist in both tags and fields), Datakit will automatically set it to `default`
-6. Tag and Field keys must not have the same name, that is, the same key cannot appear in both Tags and Fields, otherwise, it is undefined which key's value will be written
-7. The same key cannot appear multiple times within Tags or Fields, that is, the same key cannot appear multiple times in Tags/Fields, and only one of them will be retained, which one is also undefined
-8. The number of Tags does not exceed 256, and the excess Tags will be truncated
-9. The number of Fields does not exceed 1024, and the excess Fields will be truncated
-10. The length of Tag/Field Key does not exceed 256 bytes, and it will be truncated if it exceeds the length
-11. The length of the Tag Value does not exceed 1024 bytes, and it will be truncated if it exceeds the length
-12. When the Field Value is a string or byte stream, its length must not exceed 32M (32x1024x1024) bytes, and it will be truncated if it exceeds the length
-13. If the field value is a null value (`null/nil`, etc.), the final behavior is undefined
-
----
-
-### Line Protocol Error Analysis {#line-proto-parse-error}
-
-[:octicons-tag-24: Version-1.30.0](changelog.md#cl-1.30.0)
-
-If the line protocol uploaded is incorrect, the Datakit API will return the corresponding error code and error details.
-
-Assuming we send the following line protocol content to Datakit via HTTP POST. There are two errors in this line protocol, the second and fourth `t2` are missing tag values.
-
-```not-set
-# path/to/some/file.data
-some1,t1=1,t2=v2 f1=1i,f2=3
-some2,t1=1,t2 f1=1i,f2=3
-some3,t1=1,t2=v3 f1=1i,f2=3
-some2,t1=1,t2 f1=1i,f2=
-```
-
-```shell
-$ curl -s http://datakit-ip:9529/v1/write/logging --data-binary "@path/to/some/file.data"
-
-{
-  "error_code": "datakit.invalidLinePoint",
-  "message": "invalid lineprotocol: unable to parse 'some2,t1=1,t2 f1=1i,f2=3'(pos: 29): missing tag value\nunable to parse 'some2,t1=1,t2 f1=1i,f2='(pos: 82): missing tag value\nwith 2 point parse ok, 2 points failed. Origin data: \"some1,t1=1,t2=v2 f1=1i,f2=3\\nsome2,t1=1,t2 f1=1i,f2=3\\nsome3,t1=1,t2=v3 f1=1i,f2=3\\nsome2,t1=1,t2 f1=1i,f2=\\n\""
-}
+redis,name=xxx,tag2=b f1=1i,f2=1.2,f3="abc",message="xxx" 1620723870000000000
+rds,name=yyy,tag2=b f1=1i,f2=1.2,f3="abc",message="xxx" 1620723870000000000
+slb,name=zzz,tag2=b f1=1i,f2=1.2,f3="abc",message="xxx" 1620723870000000000
 ```
 
 <!-- markdownlint-disable MD046 -->
-???+ tips
+???+ attention
 
-    To better display the JSON in the request result, you can use the tool [jq](https://jqlang.github.io/jq/download/){:target="_blank"}, for example, the complex `message` field above can be directly extracted into pure text through jq:
+    Custom object data must have the tag `name` , otherwise the protocol will report an error.
+    
+    It would be better  to have a `message` field for custom object data, which is mainly convenient for full-text search.
 
-    ```shell
-    $ curl -s http://datakit-ip:9529/v1/write/logging --data-binary "@path/to/some/file.data" | jq -r .message
-    invalid lineprotocol: unable to parse 'some2,t1=1,t2 f1=1i,f2=3'(pos: 29): missing tag value
-    unable to parse 'some2,t1=1,t2 f1=1i,f2='(pos: 82): missing tag value
-    with 2 point parse ok, 2 points failed. Origin data: "some1,t1=1,t2=v2 f1=1i,f2=3\nsome2,t1=1,t2 f1=1i,f2=3\nsome3,t1=1,t2=v3 f1=1i,f2=3\nsome2,t1=1,t2 f1=1i,f2=\n"
-    ```
 <!-- markdownlint-enable -->
 
-Here, `message` expands to:
+### RUM {#api-rum}
 
-```not-set
-invalid lineprotocol: unable to parse 'some2,t1=1,t2 f1=1i,f2=3'(pos: 29): missing tag value
-unable to parse 'some2,t1=1,t2 f1=1i,f2='(pos: 82): missing tag value
-with 2 point parse ok, 2 points failed. Origin data: "some1,t1=1,t2=v2 f1=1i,f2=3\nsome2,t1=1,t2 f1=1i,f2=3\nsome3,t1=1,t2=v3 f1=1i,f2=3\nsome2,t1=1,t2 f1=1i,f2=\n"
-```
-
-`message` interpretation:
-
-- Since there are two errors, there are two `unable to parse...` in the returned information. Behind each error, the offset position of this line protocol in the original data ( `pos` ) will be attached to facilitate troubleshooting.
-- The returned error message will show the number of points that were parsed successfully and failed.
-- `Origin data...` attaches the original HTTP Body (if it contains binary, it will be displayed in hexadecimal form such as `\x00\x32\x54...`, etc.)
-
-In the Datakit logs, if the line protocol is incorrect, the content of `message` here will also be recorded.
-
-### Verifying Uploaded Data {#review-post-point}
-
-The `echo` parameter can be used to review the uploaded data for debugging to see if the data is processed as expected:
-
-<!-- markdownlint-disable MD046 -->
-=== "Advanced JSON form (`ebco=pbjson`)"
-
-    Presented in [advanced JSON format](apis.md#api-v1-write-body-pbjson-protocol). If the Point structure is automatically corrected, the JSON will have an additional `warns` field on the specific Point to indicate the reason for the correction.
-
-    For example, in log data, field keys with `.` are not allowed, Datakit will automatically convert them to `_`, and the reviewed JSON will have an additional `warns` message:
-
-    ```json
-    [
-       {
-           "name": "...",
-           "fields": [...],
-           "time": "...",
-           "warns": [
-             {
-                 "type": "dot_in_key",
-                 "message": "invalid field key `some.field`: found `.'"
-             }
-           ]
-       }
-    ]
-    ```
-
-=== "Regular JSON (`echo=json`)"
-
-    See [regular JSON format](apis.md#api-v1-write-body-json-protocol)
-
-=== "Line protocol (`echo=lp`)"
-
-    See [line protocol format](apis.md#api-v1-write-body-line-protocol)
-<!-- markdownlint-enable -->
-
----
+See [the document RUM](rum.md).
 
 ## `/v1/ping` {#api-ping}
 
-Detects whether DataKit is running at the target address and can obtain the DataKit start time and version information. Example:
+Detect whether there is DataKit running at the target address, and obtain the startup time and version information of DataKit. Example:
 
 ``` http
 GET /v1/ping HTTP/1.1
@@ -442,31 +194,31 @@ GET /v1/ping HTTP/1.1
 HTTP/1.1 200 OK
 
 {
-  "content":{
-    "version":"1.1.6-rc0",
-    "uptime":"1.022205003s"
-  }
+    "content":{
+        "version":"1.1.6-rc0",
+        "uptime":"1.022205003s"
+    }
 }
 ```
 
 ## `/v1/lasterror` {#api-lasterror}
 
-Used to report errors from external collectors. Example:
+Used to report errors of external collectors, for example:
 
 ``` http
 POST /v1/lasterror HTTP/1.1
 Content-Type: application/json
 
 {
-  "input":"redis",
-  "source":"us-east-9xwha",
-  "err_content":"Cache avalanche"
+    "input":"redis",
+    "source":"us-east-9xwha",
+    "err_content":"Cache avalanche"
 }
 ```
 
 ## `/v1/workspace` {#api-workspace}
 
-View workspace information and data quota information. Example:
+View workspace information and data quota information, for example:
 
 ``` http
 GET /v1/workspace HTTP/1.1
@@ -474,14 +226,15 @@ GET /v1/workspace HTTP/1.1
 HTTP/1.1 200 OK
 
 {
-  "content": [
+  "content":
+  [
     {
       "token": {
-        "ws_uuid": "wksp_2dc431d6693xxxxxxxxxxxxxxxxxxxxx",
+        "ws_uuid": "wksp_2dc431d6693711eb8ff97aeee04b54af",
         "bill_state": "normal",
         "ver_type": "pay",
-        "token": "tkn_2dc438bxxxxxxxxxxxxxxxxxxxxxxxxx",
-        "db_uuid": "ifdb_c0fsxxxxxxxxxxxxxxxx",
+        "token": "tkn_2dc438b6693711eb8ff97aeee04b54af",
+        "db_uuid": "ifdb_c0fss9qc8kg4gj9bjjag",
         "status": 0,
         "creator": "",
         "expire_at": -1,
@@ -503,7 +256,7 @@ HTTP/1.1 200 OK
 
 ## `/v1/query/raw` {#api-raw-query}
 
-Use DQL to query data (only data from the workspace where this DataKit is located can be queried), example:
+Use DQL to query data (only the data of the workspace where the DataKit is located), for example:
 
 ``` http
 POST /v1/query/raw HTTP/1.1
@@ -512,39 +265,39 @@ Content-Type: application/json
 {
     "queries":[
         {
-            "query": "cpu:(usage_idle) LIMIT 1",  # DQL query statement (required)
-            "conditions": "",                     # Additional DQL query conditions
-            "max_duration": "1d",                 # Maximum time range
-            "max_point": 0,                       # Maximum number of points
+            "query": "cpu:(usage_idle) LIMIT 1",  # dql query statement (required)
+            "conditions": "",                     # append dql query criteria
+            "max_duration": "1d",                 # maximum time range
+            "max_point": 0,                       # maximum points
             "time_range": [],                     #
             "orderby": [],                        #
-            "disable_slimit": true,               # Disable the default SLimit, when set to true, no default SLimit value will be added, otherwise SLimit 20 will be forcibly added
-            "disable_multiple_field": true        # Disable multiple fields. When set to true, only data from a single field (excluding the time field) can be queried
+            "disable_slimit": true,               # Disable the default SLimit. When true, no default SLimit value will be added, otherwise SLimit 20 will be forced to be added
+            "disable_multiple_field": true        # Disable multiple fields. When true, only the data of a single field can be queried (excluding the time field)
         }
     ],
     "echo_explain":true
 }
 ```
 
-Parameter Description
+Parameter description:
 
-| Name                     | Description                                                                                                                                                                                          |
-| :---                     | ---                                                                                                                                                           |
-| `conditions`             | Additional conditional expressions using DQL syntax, for example `hostname="cloudserver01" OR system="ubuntu"`. It has an `AND` relationship with the existing `query` conditions and will be enclosed in parentheses to avoid confusion with them. |
-| `disable_multiple_field` | Whether to disable multiple fields. When set to true, only data from a single field (excluding the time field) can be queried, default is `false`.                                                                            |
-| `disable_slimit`         | Whether to disable the default SLimit, when set to true, no default SLimit value will be added, otherwise SLimit 20 will be forcibly added, default is `false`.                                                                       |
-| `echo_explain`           | Whether to return the final execution statement (returned in the `raw_query` field of the JSON data).                                                                                                               |
-| `highlight`              | Highlight search results.                                                                                                                                                                         |
-| `limit`                  | Limit the number of points returned by a single timeline, which will override the limit in DQL.                                                                                                      |
-| `max_duration`           | Limit the maximum query time, supports units `ns/us/ms/s/m/h/d/w/y`, for example, `3d` is 3 days, `2w` is 2 weeks, `1y` is 1 year. The default is 1 year, and this parameter also limits the `time_range` parameter.        |
-| `max_point`              | Limit the maximum number of aggregated points. When using aggregate functions, if the aggregation density is too small and results in too many points, it will replace it with a new aggregation interval of `(end_time-start_time)/max_point`. |
-| `offset`                 | Generally used in conjunction with limit configuration for result pagination.                                                                                                                            |
-| `orderby`                | Specify `order by` parameters, content format is an array of `map[string]string`, `key` is the name of the field to be sorted, and `value` can only be the sorting method, i.e., `asc` and `desc`, for example `[ { "column01" : "asc" }, { "column02" : "desc" } ]`. This will replace the original query statement's `order by`. |
-| `queries`                | Basic query module, including query statements and various additional parameters.                                                                                                                                      |
-| `query`                  | DQL query statement (DQL [documentation](../dql/define.md)).                                                                                                                                                                          |
-| `search_after`           | Deep pagination, for the first call to pagination, pass in an empty list: `"search_after": []`, after a successful server response, the client directly reuses the value of this list through the `search_after` parameter for subsequent queries.                      |
-| `slimit`                 | Limit the number of timelines, which will override the `slimit` in DQL.                                                                                                                                                                      |
-| `time_range`             | Limit the time range, in timestamp format, unit is milliseconds, an array of int with a size of 2, if there is only one element, it is considered the start time, which will override the time range interval in the original query statement.                             |
+| Name                     | Description                                                                                                                                                                                                                       |
+| :----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `conditions`             | Add additional conditional expressions, using DQL syntax, such as `hostname="cloudserver01" OR system="ubuntu"`. It has an `AND` relationship with the conditional expression in the existing `query` , and parentheses are added at the outermost layer to avoid confusion.                                                  |
+| `disable_multiple_field` | Whether to disable multiple fields. When true, only the data of a single field (excluding the time field) can be queried, and the default is `false`.                                                                                                                                   |
+| `disable_slimit`         | Whether to disable the default SLimit, when true, the default SLimit value will not be added, otherwise, SLimit 20 will be forced to be added, and the default is `false`.                                                                                                                        |
+| `echo_explain`           | Whether to return the final execution statement (returns the `raw_query` field in the JSON data).                                                                                                                                                                |
+| `highlight`              | Highlight search results                                                                                                                |
+| `limit`                  | Limiting the number of points returned by a single timeline will override the limit existing in DQL.                                                                                                                                                                        |
+| `max_duration`           | Limit the maximum query time and support units  `ns/us/ms/s/m/h/d/w/y`, for example,  `3d` is 3 days, `2w` is 2 weeks, and `1y` is 1 year. The default is 1 year, which also restricts the `time_range` parameter.                                                                         |
+| `max_point`              | Limit the maximum number of aggregated points. When using an aggregate function, if the aggregation density is too low, resulting in too many points, it is replaced by a new aggregation interval `(end_time-start_time)/max_point`.                                                                                        |
+| `offset`                 | Typically used with limit configuration for result paging.                                                                                                                      |
+| `orderby`                | Specify `order by`, content format is `map[string]string`, `key` s the field name to be sorted, `value` can only be sorted by `asc` and `desc`, such as `[ { "column01" : "asc" }, { "column02" : "desc" } ]`This article replaces the `order by` in the original query statement. |
+| `queries`                | Basic query module, including query statements and various additional parameters.                                                                                                                                                                                   |
+| `query`                  | DQL query statement（DQL [document](../dql/define.md)）                                                                                                                                                                               |
+| `search_after`           | Deep paging, when calling paging for the first time, an empty list is passed in: `"search_after": []`. After success, the server will return a list, and the client can directly reuse the value of this list and pass it back to the subsequent query through the  `search_after` parameter.                                                   |
+| `slimit`                 | Limiting the number of timelines will override slime existing in DQL.                                                                                                                                                                                 |
+| `time_range`             | Limit the time range, adopt timestamp format, unit is millisecond, array size is 2 int, if there is only one element, it is considered as the start time, which will overwrite the query time interval in the original query statement.                                                                                          |
 
 Return data example:
 
@@ -579,19 +332,19 @@ Content-Type: application/json
 
 ## `/v1/object/labels` | `POST` {#api-object-labels}
 
-Create or update object `labels`.
+Create or update the `labels` of objects:
 
 `request body` description
 
-| Parameter       | Description | Type    |
-| ---:            | ---         | ---     |
-| `object_class`  | Indicates the type of `object` associated with `labels`, such as `HOST` | `string` |
-| `object_name`   | Indicates the name of the `object` associated with `labels`, such as `host-123` | `string` |
-| `key`           | Indicates the specific field name of the `object` associated with `labels`, such as the process name field `process_name` | `string` |
-| `value`         | Indicates the specific field value of the `object` associated with `labels`, such as the process name `systemsoundserverd` | `void`   |
-| `labels`        | `labels` list, an array of `string` | `[]string` |
+|           Parameter | Description                                                                          | Type       |
+| -------------: | ----------------------------------------------------------------------------- | ---------- |
+| `object_class` | represent the `object` type associated with `labels`, such as `HOST`                               | `string`   |
+|  `object_name` | represent the `object` type associated with `labels`, such as `host-123`                           | `string`   |
+|          `key` | represents the specific field name of the `object` to which `labels` is associated, such as the field `process_name`     | `string`   |
+|        `value` | represents the specific field value of the `object` to which `labels` is associated, such as the process name field `systemsoundserverd` | `void`     |
+|       `labels` | `labels` list, a `string` array                                             | `[]string` |
 
-Request example:
+Example of request:
 
 ``` shell
 curl -XPOST "127.0.0.1:9529/v1/object/labels" \
@@ -605,7 +358,7 @@ curl -XPOST "127.0.0.1:9529/v1/object/labels" \
         }'
 ```
 
-Success return example:
+Example of successful return:
 
 ``` json
 status_code: 200
@@ -616,7 +369,7 @@ status_code: 200
 }
 ```
 
-Failure return example:
+Example of failing return:
 
 ``` json
 status_code: 500
@@ -627,18 +380,18 @@ status_code: 500
 
 ## `/v1/object/labels` | `DELETE` {#api-delete-object-labels}
 
-Delete object `labels`.
+Delete the `labels` of objects
 
 `request body` description
 
-| Parameter       | Description | Type    |
-| ---:            | ---         | ---     |
-| `object_class`  | Indicates the type of `object` associated with `labels`, such as `HOST` | `string` |
-| `object_name`   | Indicates the name of the `object` associated with `labels`, such as `host-123` | `string` |
-| `key`           | Indicates the specific field name of the `object` associated with `labels`, such as the process name field `process_name` | `string` |
-| `value`         | Indicates the specific field value of the `object` associated with `labels`, such as the process name `systemsoundserverd` | `void`   |
+|           Parameter | Description                                                                          | Type     |
+| -------------: | ----------------------------------------------------------------------------- | -------- |
+| `object_class` | represent the `object` type associated with `labels`, such as `HOST`                               | `string` |
+|  `object_name` | represent the `object` type associated with `labels`, such as `host-123`                            | `string` |
+|          `key` | represent the specific field name of the `object` to which `labels` is associated, such as the field `process_name`     | `string` |
+|        `value` | represent the specific field value of the `object` to which `labels` is associated, such as the process name field `systemsoundserverd` | `void`   |
 
-Request example:
+Example of request:
 
 ``` shell
 curl -XPOST "127.0.0.1:9529/v1/object/labels"  \
@@ -651,7 +404,7 @@ curl -XPOST "127.0.0.1:9529/v1/object/labels"  \
         }'
 ```
 
-Success return example:
+Example of successful return:
 
 ``` json
 status_code: 200
@@ -662,9 +415,9 @@ status_code: 200
 }
 ```
 
-Failure return example:
+Example of failing return:
 
-```json
+``` json
 status_code: 500
 {
     "errorCode": "some-internal-error"
@@ -673,68 +426,25 @@ status_code: 500
 
 ## `/v1/pipeline/debug` | `POST` {#api-debug-pl}
 
-Provides the functionality of remote debugging of the Pipeline.
+Providing the function of remote debugging PL.
 
-Error information `PlError` structure:
-
-```go
-type Position struct {
-    File string `json:"file"`
-    Ln   int    `json:"ln"`
-    Col  int    `json:"col"`
-    Pos  int    `json:"pos"`
-}
-
-type PlError struct {
-    PosChain []Position `json:"pos_chain"`
-    Err      string     `json:"error"`
-}
-```
-
-Error information JSON example:
-
-```json
-{
-  "pos_chain": [
-    { // Error generation location (script termination)
-      "file": "xx.p",    // File name or file path
-      "ln":   15,        // Line number
-      "col":  29,        // Column number
-      "pos":  576,       // Absolute character position from 0 in the text
-    },
-    ... ,
-    { // Starting point of the call chain
-      "file": "b.p",
-      "ln":   1,
-      "col":  1,
-      "pos":  0,
-    },
-  ],
-  "error": "error msg"
-}
-```
-
-Request example:
+Example of request:
 
 ``` http
 POST /v1/pipeline/debug
 Content-Type: application/json
 
 {
-    "pipeline": {
-      "<caregory>": {
-        "<script_name>": <base64("pipeline-source-code")>
-      }
-    },
+    "pipeline": base64("pipeline-source-code"),
     "script_name": "<script_name>"
-    "category": "<logging[metric, tracing, ...]>", # Log category, pass in log text, other categories need to pass in line protocol text
-    "data": [ base64("raw-logging-data1"), ... ], # Can be log or line protocol
-    "encode": "@data's character encoding",         # Default is utf8 encoding
-    "benchmark": false,                  # Whether to enable benchmark
+    "category": "<logging[metric, tracing, ...]>", # Log categories pass in log text, while other categories need to pass in row protocol text
+    "data": [ base64("raw-logging-data1"), ... ], # It can be a log or a line protocol
+    "encode": "@data 的字符编码",         # The default utf8 encode
+    "benchmark": false,                  # Whether to turn on benchmark
 }
 ```
 
-Normal return example:
+Example of successful return:
 
 ``` http
 HTTP/1.1 200 OK
@@ -742,19 +452,17 @@ HTTP/1.1 200 OK
 {
     "content": {
         "cost": "2.3ms",
-        "benchmark": BenchmarkResult.String(), # Return benchmark results
-        "pl_errors": [],                       # PlError list generated during script parsing or inspection
-        "plresults": [                         # Since logs may be multi-line, multiple cutting results will be returned here
+        "benchmark": BenchmarkResult.String(), # return benchmark results
+        "error_msg": "",
+        "plresults": [ # Since the log may be multi-line, multiple cutting results will be returned here.
             {
-                "point": {
-                  "name" : "Can be metric set name, log source, etc.",
-                  "tags": { "key": "val", "other-key": "other-val"},
-                  "fields": { "f1": 1, "f2": "abc", "f3": 1.2 }
-                  "time": 1644380607,   # Unix timestamp (unit seconds), the front end can convert it to a readable date
-                  "time_ns": 421869748, # The remaining nanoseconds time, which is convenient for accurately converting to a date, the complete nanosecond timestamp is 1644380607421869748
-                }
-                "dropped": false,  # Whether the result is marked for discard during pipeline execution
-                "run_error": null  # If there is no error, the value is null
+                "measurement" : "Metrics set name, typically log source",
+                "tags": { "key": "val", "other-key": "other-val"},
+                "fields": { "f1": 1, "f2": "abc", "f3": 1.2 },
+                "time": 1644380607, # Unix time stamp (in seconds), which can be converted into a readable date by the front end.
+                "time_ns": 421869748, # The remaining nanosecond time is easy to accurately convert into a date, and the complete nanosecond timestamp is 1644380607421869748,
+                "dropped": false, # Whether to mark the result as to be discarded in the execution pipeline
+                "error":""
             },
             {  another-result },
             ...
@@ -763,7 +471,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-Error return example:
+Example of failing return:
 
 ``` http
 HTTP Code: 400
@@ -776,34 +484,34 @@ HTTP Code: 400
 
 ## `/v1/dialtesting/debug` | `POST` {#api-debug-dt}
 
-Provides remote debugging functionality for dial testing, which can control the prohibition of network dialing through [environment variables](../integrations/dialtesting.md#env).
+Providing the ability to debug dialtesting remotely, and the target network can be controlled through [environment variables](../integrations/dialtesting.md#env).
 
-Request example:
+Example of request: ：
 
 ``` http
 POST /v1/dialtesting/debug
 Content-Type: application/json
 
 {
-    "task_type" : "http",//"http","tcp","icmp","websocket"
-    "task" : {
-        "name"               : "",
-        "method"             : "",
-        "url"                : "",
-        "post_url"           : "",
-        "cur_status"         : "",
-        "frequency"          : "",
-        "enable_traceroute"  : true, // true represents checking, only useful for tcp, icmp
-        "success_when_logic" : "",
-        "SuccessWhen"        : []*HTTPSuccess ,
-        "tags"               : map[string]string ,
-        "labels"             : []string,
-        "advance_options"    : *HTTPAdvanceOption,
+    "task_type":"http",//"http","tcp","icmp","websocket"
+    "task": {
+        "name":"",
+        "method":"",
+        "url":"",
+        "post_url":"",
+        "cur_status":"",
+        "frequency":"",
+        "enable_traceroute":true,//true 代表勾选，tcp，icmp 才有用
+        "success_when_logic":"",
+        "SuccessWhen":[]*HTTPSuccess ,
+        "tags":map[string]string ,
+        "labels":[]string,
+        "advance_options":*HTTPAdvanceOption,
     }
 }
 ```
 
-Normal return example:
+Example of successful return:
 
 ``` http
 HTTP/1.1 200 OK
@@ -811,30 +519,14 @@ HTTP/1.1 200 OK
 {
     "content": {
         "cost": "2.3ms",
-        "status": "success", # success/fail
+        "status": "success",//  success/fail
         "error_msg": "",
-        "traceroute":[
-          {
-              "total"    : 3,
-              "failed"   : 0,
-              "loss"     : 0,
-              "avg_cost" : 0,
-              "min_cost" : 2,
-              "max_cost" : 3,
-              "std_cost" : 33,
-              "items" : [
-                  {
-                      "ip"            : "127.0.0.1",
-                      "response_time" : 33
-                  }
-              ]
-         }
-        ]
+        "traceroute":[{"total":3,"failed":0,"loss":0,"avg_cost":0,"min_cost":2,"max_cost":3,"std_cost":33,"items":[{"ip":"127.0.0.1","response_time":33}]}],
     }
 }
 ```
 
-Error return example:
+Example of failing return:
 
 ``` http
 HTTP Code: 400
@@ -845,31 +537,32 @@ HTTP Code: 400
 }
 ```
 
+
 ## `/v1/sourcemap` | `PUT` {#api-sourcemap-upload}
 
 [:octicons-tag-24: Version-1.12.0](changelog.md#cl-1.12.0)
 
-Upload sourcemap files, this interface requires the [RUM collector](../integrations/rum.md) to be enabled.
+Upload the sourcemap file. This api needs [RUM collector](../integrations/rum.md).
 
-Request parameter description.
+Description of the parameter.
 
-| Parameter      | Description | Type    |
-| ---:           | ---         | ---     |
-| `token`        | The token contained in the `dataway` address in `datakit.conf` configuration | `string` |
-| `app_id`       | The unique ID identifier for user access to the application, such as `test-sourcemap` | `string` |
-| `env`          | The deployment environment of the application, such as `prod` | `string` |
-| `version`      | The version of the application, such as `1.0.0` | `string` |
-| `platform`     | The type of application, optional values `web/miniapp/android/ios`, default `web` | `string` |
+|           Parameter | Description                                                              | Type     |
+| -------------: | ----------------------------------------------------------------------------- | -------- |
+| `token`    | The token is from the `dataway` address configured in `datakit.conf`                 | `string` |
+| `app_id`   | The unique ID generated when you create a application, such as `test-sourcmap`      | `string` |
+| `env`     | The environment variable, such as `prod`                                              | `string` |
+| `version` | The version of the application, such as `1.0.0`                                   | `string` |
+| `platform` | The platform, such as `web/miniapp/android/ios` and `web` is default             | `string` |
 
-Request example:
+Example of request:
 
 ``` shell
-curl -X PUT "http://localhost:9529/v1/sourcemap?app_id=test_sourcemap&env=production&version=1.0.0&token=tkn_xxxxx&platform=web"  \
+curl -X PUT "http://localhost:9529/v1/sourcemap?app_id=test_sourcemap&env=production&version=1.0.0&token=tkn_xxxxx&platform=web" \
 -F "file=@./sourcemap.zip" \
 -H "Content-Type: multipart/form-data"
 ```
 
-Success return example:
+Example of successful return:
 
 ``` json
 {
@@ -879,7 +572,7 @@ Success return example:
 }
 ```
 
-Failure return example:
+Example of failing return:
 
 ``` json
 {
@@ -893,25 +586,25 @@ Failure return example:
 
 [:octicons-tag-24: Version-1.16.0](changelog.md#cl-1.16.0)
 
-Delete sourcemap files; this endpoint requires the [RUM collector](../integrations/rum.md) to be enabled.
+Delete the sourcemap file. This api needs [RUM collector](../integrations/rum.md).
 
-Request parameter description:
+Description of the parameter.
 
-| Parameter | Description | Type    |
-| ---: | --- | --- |
-| `token` | The token included in the `dataway` address in `datakit.conf` configuration | `string` |
-| `app_id` | The unique ID identifier for user access to the application, such as `test-sourcemap` | `string` |
-| `env` | The deployment environment of the application, such as `prod` | `string` |
-| `version` | The version of the application, such as `1.0.0` | `string` |
-| `platform` | The type of application, with optional values `web/miniapp/android/ios`, defaulting to `web` | `string` |
+|           Parameter | Description                                                              | Type     |
+| -------------: | ----------------------------------------------------------------------------- | -------- |
+| `token`    | The token is from the `dataway` address configured in `datakit.conf`                 | `string` |
+| `app_id`   | The unique ID generated when you create a application, such as `test-sourcmap`      | `string` |
+| `env`     | The environment variable, such as `prod`                                              | `string` |
+| `version` | The version of the application, such as `1.0.0`                                   | `string` |
+| `platform` | The platform, such as `web/miniapp/android/ios` and `web` is default             | `string` |
 
-Request example:
+Example of request:
 
 ``` shell
 curl -X DELETE "http://localhost:9529/v1/sourcemap?app_id=test_sourcemap&env=production&version=1.0.0&token=tkn_xxxxx&platform=web"
 ```
 
-Success return example:
+Example of successful return:
 
 ``` json
 {
@@ -921,7 +614,7 @@ Success return example:
 }
 ```
 
-Failure return example:
+Example of failing return:
 
 ``` json
 {
@@ -935,25 +628,25 @@ Failure return example:
 
 [:octicons-tag-24: Version-1.16.0](changelog.md#cl-1.16.0)
 
-Verify if the sourcemap files are correctly configured; this endpoint requires the [RUM collector](../integrations/rum.md) to be enabled.
+Check whether sourcemap is properly configured and only web is supported. This api needs [RUM collector](../integrations/rum.md).
 
-Request parameter description:
+Description of the parameter.
 
-| Parameter | Description | Type    |
-| ---: | --- | --- |
-| `error_stack` | The error stack information | `string` |
-| `app_id` | The unique ID identifier for user access to the application, such as `test-sourcemap` | `string` |
-| `env` | The deployment environment of the application, such as `prod` | `string` |
-| `version` | The version of the application, such as `1.0.0` | `string` |
-| `platform` | The type of application, with optional values `web/miniapp/android/ios`, defaulting to `web` | `string` |
+|           Parameter | Description                                                              | Type     |
+| -------------: | ----------------------------------------------------------------------------- | -------- |
+| `error_stack`    | The error stack                                                             | `string` |
+| `app_id`   | The unique ID generated when you create a application, such as `test-sourcmap`      | `string` |
+| `env`     | The environment variable, such as `prod`                                              | `string` |
+| `version` | The version of the application, such as `1.0.0`                                   | `string` |
+| `platform` | The platform, such as `web/miniapp/android/ios` and `web` is default             | `string` |
 
-Request example:
+Example of request:
 
 ``` shell
 curl "http://localhost:9529/v1/sourcemap/check?app_id=test_sourcemap&env=production&version=1.0.0&error_stack=at%20test%20%40%20http%3A%2F%2Flocalhost%3A8080%2Fmain.min.js%3A1%3A48"
 ```
 
-Success return example:
+Example of successful return:
 
 ``` json
 {
@@ -964,10 +657,9 @@ Success return example:
   "errorMsg": "",
   "success": true
 }
-
 ```
 
-Failure return example:
+Example of failing return:
 
 ``` json
 {
@@ -978,24 +670,23 @@ Failure return example:
   "errorMsg": "fetch original source information failed, make sure sourcemap file [main.min.js.map] is valid",
   "success": false
 }
-
 ```
 
 ## `/metrics` | `GET` {#api-metrics}
 
-Retrieve the Prometheus metrics exposed by Datakit.
+Get Datakit Prometheus metrics.
 
 ## `/v1/global/host/tags` | `GET` {#api-global-host-tags-get}
 
-Retrieve global-host-tags.
+Get global-host-tags.
 
-Request example:
+Example of request:
 
 ``` shell
 curl 127.0.0.1:9529/v1/global/host/tags
 ```
 
-Success return example:
+Example of successful return:
 
 ``` json
 status_code: 200
@@ -1011,13 +702,13 @@ Response: {
 
 Create or update global-host-tags.
 
-Request example:
+Example of request:
 
 ``` shell
 curl -X POST "127.0.0.1:9529/v1/global/host/tags?tag1=v1&tag2=v2"
 ```
 
-Success return example:
+Example of successful return:
 
 ``` json
 status_code: 200
@@ -1041,19 +732,19 @@ Response: {
 }
 ```
 
-After successful modification, if in host mode, the changes will be persisted to the configuration file `datakit.conf`.
+Then, if in host mode, the modified content will be save to `datakit.conf`.
 
 ## `/v1/global/host/tags` | `DELETE` {#api-global-host-tags-delete}
 
 Delete some global-host-tags.
 
-Request example:
+Example of request:
 
 ``` shell
 curl -X DELETE "127.0.0.1:9529/v1/global/host/tags?tags=tag1,tag3"
 ```
 
-Success return example:
+Example of successful return:
 
 ``` json
 status_code: 200
@@ -1073,19 +764,19 @@ Response: {
 }
 ```
 
-After successful modification, if in host mode, the changes will be persisted to the configuration file `datakit.conf`.
+Then, if in host mode, the modified content will be save to `datakit.conf`.
 
 ## `/v1/global/election/tags` | `GET` {#api-global-election-tags-get}
 
-Retrieve global-election-tags.
+Get global-election-tags.
 
-Request example:
+Example of request:
 
 ``` shell
 curl 127.0.0.1:9529/v1/global/election/tags
 ```
 
-Success return example:
+Example of successful return:
 
 ``` json
 status_code: 200
@@ -1100,13 +791,13 @@ Response: {
 
 Create or update global-election-tags.
 
-Request example:
+Example of request:
 
 ``` shell
 curl -X POST "127.0.0.1:9529/v1/global/election/tags?tag1=v1&tag2=v2"
 ```
 
-Success return example:
+Example of successful return:
 
 ``` json
 status_code: 200
@@ -1130,9 +821,9 @@ Response: {
 }
 ```
 
-After successful modification, if in host mode, the changes will be persisted to the configuration file `datakit.conf`.
+Then, if in host mode, the modified content will be save to `datakit.conf`.
 
-When the global `global-election-enable = false`, this command is prohibited, and the failure return example is:
+When `global-election-enable = false` Will failing return:
 
 ``` json
 status_code: 500
@@ -1145,13 +836,13 @@ Response: {
 
 Delete some global-election-tags.
 
-Request example:
+Example of request:
 
 ``` shell
 curl -X DELETE "127.0.0.1:9529/v1/global/election/tags?tags=tag1,tag3"
 ```
 
-Success return example:
+Example of successful return:
 
 ``` json
 status_code: 200
@@ -1171,9 +862,9 @@ Response: {
 }
 ```
 
-After successful modification, if in host mode, the changes will be persisted to the configuration file `datakit.conf`.
+Then, if in host mode, the modified content will be save to `datakit.conf`.
 
-When the global `global-election-enable = false`, this command is prohibited, and the failure return example is:
+When `global-election-enable = false` Will failing return:
 
 ``` json
 status_code: 500
@@ -1182,8 +873,21 @@ Response: {
 }
 ```
 
-## Further Reading {#more-reading}
+## DataKit Data Structure Constraint {#lineproto-limitation}
+
+In order to standardize the data of Guance Cloud, the data collected by DataKit is constrained as follows (whether it is data in line protocol or JSON form), and the data that violates the constraints will be processed accordingly.
+
+1. The key between Tag and Field does not allow duplicate names, that is, the same key cannot appear in both Tag and Field, otherwise the Field with duplicate names will be discarded.
+2. key with the same name is not allowed inside Tag or Field, that is, the same key cannot appear more than once in Tag/Field, and only one key with the same name will be kept.
+3. Tag number does not exceed 256. After the number exceeds, it will be sorted by key, and the redundant ones will be removed.
+4. The number of Field does not exceed 1024. After the number exceeds, it will be sorted by key, and the redundant ones will be removed.
+5. Tag/Field Key length does not exceed 256 bytes, and when it exceeds the length, it will be truncated.
+6. Tag Value length does not exceed 1024 bytes, and truncation is performed when it exceeds the length.
+7. The Field Value does not exceed 32M (32x1024x1024) bytes, and when it exceeds the length, it will be truncated.
+8. `.` character is not allowed in Tag/Field key in any class of data except time series data.
+
+## Extended Reading {#more-reading}
 
 - [API Access Settings](datakit-conf.md#config-http-server)
-- [API Rate Limiting Configuration](datakit-conf.md#set-http-api-limit)
-- [API Security Controls](../integrations/rum.md#security-setting)
+- [API Current Limiting Configuration](datakit-conf.md#set-http-api-limit)
+- [API Security Control](rum.md#security-setting)
