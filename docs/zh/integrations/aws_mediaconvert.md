@@ -55,6 +55,22 @@ monitor:
 3. 在观测云平台，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
-配置好AWS Aurora Serverless V2,默认的指标集如下, 可以通过配置的方式采集更多的指标 [AWS云监控指标详情](https://docs.amazonaws.cn/mediaconvert/latest/ug/what-is.html){:target="_blank"}
+配置好 AWS MediaConvert,默认的指标集如下, 可以通过配置的方式采集更多的指标 [AWS MediaConvert 指标详情](https://docs.amazonaws.cn/mediaconvert/latest/ug/what-is.html){:target="_blank"}
 
+### 指标
 
+| TH | TH | TH |
+| -- | -- | -- |
+| `AvgBitrateBottom` | 平均数据传输速率 | B/S |
+| `AvgBitrateTop` | 数据传输速率最高值 | B/S |
+| `BlackVideoDetectedRatio` | 黑屏百分比 | % |
+| `BlackVideoDetected` | 黑屏发生时间 | seconds |
+| `Errors` | 视频错误数量 | count |
+| `JobsCanceledCount` | 作业取消数量 | count |
+| `JobsCompletedCount` | 作业完成数 | count |
+| `JobsErroredCount` | 作业报错数 | count |
+| `QVBRAvgQualityHighBitrate` | 视频可变比特率 | % |
+| `SDOutputDuration` | 标清输出检测 | seconds |
+| `StandbyTime` | 待机时间 | seconds |
+| `VideoPaddingInsertedRatio` | 视频填充比例 | % |
+| `VideoPaddingInserted` | 是否有视频填充 | count |
