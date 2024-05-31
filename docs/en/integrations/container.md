@@ -272,6 +272,16 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Default**: false
     
+    - **ENV_INPUT_CONTAINER_KEEP_EXIST_PROMETHEUS_METRIC_NAME**
+    
+        Whether to keep the raw field names for Prometheus, see [Kubernetes Prometheus doc](kubernetes-prom#measurement-and-tags
+    
+        **Type**: Boolean
+    
+        **ConfField**: `keep_exist_prometheus_metric_name`
+    
+        **Default**: false
+    
     - **ENV_INPUT_CONTAINER_CONTAINER_INCLUDE_LOG**
     
         Include condition of container log, filtering with image
@@ -1347,10 +1357,11 @@ The object of the Kubernetes Node.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`age`|Age (seconds)|int|s|
+|`age`|Age (seconds).|int|s|
 |`kubelet_version`|Kubelet Version reported by the node.|string|-|
-|`message`|Object details|string|-|
-|`node_ready`|NodeReady means kubelet is healthy and ready to accept pods (true/false/unknown)|string|-|
+|`message`|Object details.|string|-|
+|`node_ready`|NodeReady means kubelet is healthy and ready to accept pods (true/false/unknown).|string|-|
+|`taints`|Node's taints.|string|-|
 |`unschedulable`|Unschedulable controls node schedulability of new pods (yes/no).|string|-|
 
 
