@@ -12,7 +12,6 @@ Ansible
 BATIS
 Batis
 Binlog
-cAdvisor
 CORB
 CUBRID
 Chrony
@@ -37,7 +36,6 @@ Distro
 Dubbo
 Dubbox
 ElasticSearch
-ELinker
 Fastjson
 Filebeat
 FireLens
@@ -182,7 +180,6 @@ tcmalloc
 tdengine
 tdengine
 tdengine
-tempdb
 tracepoint
 unflushed
 uprobe
@@ -198,7 +195,6 @@ vnode
 workarea
 xpack
 zhangsan
-ppid
 
 ##############################################
 # 缩写
