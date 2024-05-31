@@ -15,7 +15,7 @@ eg：当配置 SDK 时，未设置  datakit metrics 写入地址，程序会崩�
 
 建议在 Debug 环境开启 `FTMobileConfig ` 的配置项 `enableSDKDebugLog = YES` ，Release 环境关闭。 SDK 的调试日志以 **[FTLog]** 作为前缀标识，可以使用 [FTLog] 进行筛选。
 
-**注意**：`scheme` 设置了 `OS_ACTIVITY_MODE=disable` 时，SDK 调试日志无法正常输出，建议调试时关闭该设置。
+**注意**：`scheme` 如果设置了环境变量 `OS_ACTIVITY_MODE=disable` ，将影响 SDK 调试日志的输出，建议移除。
 
 > **建议 Release 版本发布时，关闭这个配置**
 
@@ -154,9 +154,9 @@ View 的采集：设置 `FTRumConfig` 的配置项`enableTraceUserView = YES` �
 
 ### 丢失部份数据
 1.如果丢失 RUM 某一个 Session 数据或 Log，Trace 中的几条数据
-  
+
   首先需要排除是否在 [FTRUMConfig](app-access.md#rum-config), [FTLoggerConfig](app-access.md#log-config), [FTTraceConfig](app-access.md#trace-config) 设置了 `sampleRate <  1` 。
-  
+
 2.如果丢失 RUM 中 Resource 事件或 Action 事件（launch action 除外）
 
   需要检查是否开启 View 的自动采集或者有使用 Open API 手动采集。 Resource 事件或 Action 事件是与 View 进行绑定的，需要确保在 View 被采集的情况下才能正常采集。
