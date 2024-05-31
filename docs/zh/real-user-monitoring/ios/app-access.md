@@ -841,7 +841,7 @@
 ## Logger 日志打印 {#user-logger}
 
 在 SDK 初始化 [Log 配置](#log-config) 时，配置 `enableCustomLog` 允许自定义添加日志。
-
+> 目前日志内容限制为 30 KB，字符超出部分会进行截断处理
 ### 使用方法
 
 === "Objective-C"
