@@ -73,35 +73,39 @@ http {
     进入 DataKit 安装目录下的 `conf.d/nginx` 目录，复制 `nginx.conf.sample` 并命名为 `nginx.conf`。示例如下：
     
     ```toml
-        [[inputs.nginx]]
-    # Nginx status URL.
-    # (Default) If not use with VTS, the formula is like this: "http://localhost:80/basic_status".
-    # If using with VTS, the formula is like this: "http://localhost:80/status/format/json".
-    url = "http://localhost:80/basic_status"
+        
+    [[inputs.nginx]]
+      ## Nginx status URL.
+      ## (Default) If not use with VTS, the formula is like this: "http://localhost:80/basic_status".
+      ## If using with VTS, the formula is like this: "http://localhost:80/status/format/json".
+      url = "http://localhost:80/basic_status"
     
-    # ##(optional) collection interval, default is 30s
-    # interval = "30s"
-    use_vts = false
-    ## Optional TLS Config
-    # tls_ca = "/xxx/ca.pem"
-    # tls_cert = "/xxx/cert.cer"
-    # tls_key = "/xxx/key.key"
-    ## Use TLS but skip chain & host verification
-    insecure_skip_verify = false
-    # HTTP response timeout (default: 5s)
-    response_timeout = "20s"
+      ## Optional Can set ports as [<form>,<to>], Datakit will collect all ports.
+      # ports = [80,80]
     
-    ## Set true to enable election
-    election = true
+      ## Optional collection interval, default is 10s
+      # interval = "30s"
+      use_vts = false
+      ## Optional TLS Config
+      # tls_ca = "/xxx/ca.pem"
+      # tls_cert = "/xxx/cert.cer"
+      # tls_key = "/xxx/key.key"
+      ## Use TLS but skip chain & host verification
+      insecure_skip_verify = false
+      ## HTTP response timeout (default: 5s)
+      response_timeout = "20s"
     
-    [inputs.nginx.log]
-    #files = ["/var/log/nginx/access.log","/var/log/nginx/error.log"]
-    ## grok pipeline script path
-    #pipeline = "nginx.p"
-    [inputs.nginx.tags]
-    # some_tag = "some_value"
-    # more_tag = "some_other_value"
-    # ...
+      ## Set true to enable election
+      election = true
+    
+    # [inputs.nginx.log]
+      # files = ["/var/log/nginx/access.log","/var/log/nginx/error.log"]
+      ## grok pipeline script path
+      # pipeline = "nginx.p"
+    # [inputs.nginx.tags]
+      # some_tag = "some_value"
+      # more_tag = "some_other_value"
+    
     ```
     
     配置好后，[重启 DataKit](../datakit/datakit-service-how-to.md#manage-service) 即可。

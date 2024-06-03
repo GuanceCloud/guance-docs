@@ -1,3 +1,4 @@
 nav:
+  - 'DQL数据异步查询': query-data-asynchronous.md
   - 'DQL数据查询(旧版)': query-data.md
   - 'DQL数据查询': query-data-v1.md

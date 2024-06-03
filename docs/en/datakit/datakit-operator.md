@@ -27,17 +27,17 @@ Prerequisites:
 <!-- markdownlint-disable MD046 -->
 === "Deployment"
 
-Download [*datakit-operator.yaml*](https://static.guance.com/datakit-operator/datakit-operator.yaml){:target="_blank"}, and follow these steps:
-
-``` shell
-$ kubectl create namespace datakit
-$ wget https://static.guance.com/datakit-operator/datakit-operator.yaml
-$ kubectl apply -f datakit-operator.yaml
-$ kubectl get pod -n datakit
-
-NAME                               READY   STATUS    RESTARTS   AGE
-datakit-operator-f948897fb-5w5nm   1/1     Running   0          15s
-```
+    Download [*datakit-operator.yaml*](https://static.guance.com/datakit-operator/datakit-operator.yaml){:target="_blank"}, and follow these steps:
+    
+    ``` shell
+    $ kubectl create namespace datakit
+    $ wget https://static.guance.com/datakit-operator/datakit-operator.yaml
+    $ kubectl apply -f datakit-operator.yaml
+    $ kubectl get pod -n datakit
+    
+    NAME                               READY   STATUS    RESTARTS   AGE
+    datakit-operator-f948897fb-5w5nm   1/1     Running   0          15s
+    ```
 
 === "Helm"
 
@@ -151,25 +151,38 @@ The main configuration item is `admission_inject`, which involves various aspect
 `enabled_namespaces` and `enabled_labelselectors` are specific to `ddtrace` and can inject resources matched by Pod without adding annotations to the Pod. They are configured as follows:
 
 ```json
-        # other..
-        "enabled_namespaces": [
-            {
-                "namespace": "testns",  # Specify namespace
-                "language": "java"      # Specify the agent language to inject
-            }
-        ],
-        "enabled_labelselectors": [
-            {
-                "labelselector": "app=log-output",  # Specify labelselector
-                "language": "java"                  # Specify the agent language to inject
-            }
-        ],
-        # other..
+{
+    "server_listen": "0.0.0.0:9543",
+    "log_level":     "info",
+    "admission_inject": {
+        "ddtrace": {
+            "enabled_namespaces": [
+                {
+                    "namespace": "testns",  # Specify namespace
+                    "language": "java"      # Specify the agent language to inject
+                }
+            ],
+            "enabled_labelselectors": [
+                {
+                    "labelselector": "app=log-output",  # Specify labelselector
+                    "language": "java"                  # Specify the agent language to inject
+                }
+            ]
+            # other..
+        }
+    }
+}
 ```
 
 If a Pod satisfies both the `enabled_namespaces` and `enabled_labelselectors` rules, the configuration in `enabled_labelselectors` takes precedence.
 
 For writing labelselectors, refer to this [official documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors){:target="_blank"}.
+
+<!-- markdownlint-disable MD046 -->
+???+ note
+
+    - In Kubernetes 1.16.9 or earlier, Admission does not record Pod Namespace, so the `enabled_namespaces` feature is not available.
+<!-- markdownlint-enable -->
 
 #### Configuration of Images {#datakit-operator-config-images}
 

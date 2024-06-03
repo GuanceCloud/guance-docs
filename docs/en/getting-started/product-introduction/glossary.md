@@ -41,7 +41,7 @@ The functions of Guance include scenes, events, infrastructure, metrics, logs, a
 
 ## Client DCA
 
-[Client DCA](../../datakit/dca.md) is a DataKit online management platform, which supports viewing the running status of DataKit and managing and configuring collectors, blacklists and Pipelines in a unified way.
+[Client DCA (DataKit Control App)](../../datakit/dca.md) is a DataKit online management platform, which supports viewing the running status of DataKit and managing and configuring collectors, blacklists and Pipelines in a unified way.
 
 ## Mobile APP
 

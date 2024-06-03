@@ -52,7 +52,6 @@ nav:
       - 'SYS DDMS': huaweiyun_SYS_DDMS.md
 
     - AWS: 
-      - 'Aurora Serverless V2': aws_aurora_serverless_v2.md
       - 'CloudFront': aws_cloudfront.md
       - 'DynamoDB': aws_dynamodb.md
       - 'DynamoDB(DAX)': aws_dynamodb_DAX.md
@@ -206,6 +205,7 @@ nav:
       - 'CRD': kubernetes-prometheus-operator-crd.md
     - 'NPD': npd.md
     - kubecost.md
+    - kubernetes_audit.md
 
   - 应用性能监测（APM）:
     - 'Tracing 综述': datakit-tracing.md
