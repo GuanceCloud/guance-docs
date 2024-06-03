@@ -20,6 +20,7 @@ monitor:
 # AWS MSK
 <!-- markdownlint-enable -->
 
+Amazon Managed Streaming for Apache Kafka（Amazon MSK）是一项完全托管式服务，通过够构建并运行使用 Apache Kafka 来处理串流数据的应用程序。
 
 使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云
 
