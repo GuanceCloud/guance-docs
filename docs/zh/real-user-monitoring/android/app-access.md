@@ -4,6 +4,15 @@
 ???- quote "更新日志"
 
     === "ft-sdk"
+		**1.5.0**：
+        ``` markdown
+		1. RUM resource 网络请求添加 remote ip 地址解析功能
+		2. 修复开启 RUM SampleRate 后，高并发网路请求引发的数组线程安全问题
+		3. ConnectivityManager.registerDefaultNetworkCallback 方法容错优化
+		4. 添加行协议 Integer 数据兼容模式，处理 web 数据类型冲突问题
+		5. 自动采集 Action click 中控件资源名 id 获取优化
+		6. SDK config 配置读取异常问题容错优化
+        ```
 		**1.4.6**：
         ``` markdown
      	1. SDK 初始化容错优化
@@ -286,6 +295,7 @@ android{
 | setSyncPageSize | enum | 否 | 设置同步请求条目数，`SyncPageSize.MINI` 5 条，`SyncPageSize.MEDIUM` 10 条，`SyncPageSize.LARGE` 50 条，默认 `SyncPageSize.MEDIUM`   |
 | setCustomSyncPageSize | enum | 否 | 设置同步请求条目数，范围 [5,)，注意请求条目数越大，代表数据同步占用更大的计算资源   |
 | setSyncSleepTime | Int | 否 | 设置同步间歇时间，范围 [0,100]，默认不设置  |
+| enableDataIntegerCompatible | void | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题  |
 
 ### RUM 配置 {#rum-config}
 
@@ -340,6 +350,7 @@ android{
 | setEnableTraceUserAction | Boolean | 否 | 是否自动追踪用户操作，目前只支持用户启动和点击操作，默认为 `false` |
 | setEnableTraceUserView | Boolean | 否 | 是否自动追踪用户页面操作，默认为 `false` |
 | setEnableTraceUserResource | Boolean | 否 | 是否自动追动用户网络请求 ，仅支持 `Okhttp`，默认为 `false` |
+| setEnableResourceHostIP | Boolean | 否 | 是否采集请求目标域名地址的 IP。作用域：只影响 `EnableTraceUserResource`  为 true 的默认采集。自定义 Resource 采集，需要使用 `FTResourceEventListener.FTFactory(true)` 来开启这个功能。另外，单个 Okhttp 对相同域名存在 IP 缓存机制，相同 `OkhttpClient`，在连接服务端 IP 不发生变化的前提下，只会生成一次|
 | setResourceUrlHandler | callback| 否 | 设置需要过滤的 Resource 条件，默认不过滤 |
 | setOkHttpEventListenerHandler | callback| 否 | ASM 设置全局 Okhttp EventListener，默认不设置 |
 | addGlobalContext | Dictionary | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
@@ -1245,6 +1256,7 @@ android{
 
 ## Logger 日志打印 {#log} 
 使用 `FTLogger` 进行日志输出
+> 目前日志内容限制为 30 KB，字符超出部分会进行截断处理
 
 ### 使用方法
 
@@ -2018,6 +2030,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	.addInterceptor(new FTTraceInterceptor())
 	.addInterceptor(new FTResourceInterceptor())
 	.eventListenerFactory(new FTResourceEventListener.FTFactory());
+	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true));
 	OkHttpClient client = builder.build();
 	```
 
@@ -2028,6 +2041,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	.addInterceptor(FTTraceInterceptor())
 	.addInterceptor(FTResourceInterceptor())
 	.eventListenerFactory(FTResourceEventListener.FTFactory())
+	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true))
 	val client = builder.build()
 	```
 

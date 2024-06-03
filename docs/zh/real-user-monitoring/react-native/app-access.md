@@ -308,7 +308,7 @@ async getHttp(url:string){
 
 
 ##  Logger 日志打印 
-
+> 目前日志内容限制为 30 KB，字符超出部分会进行截断处理
 ```typescript
 FTReactNativeLog.logging("info log content",FTLogStatus.info);
 ```
