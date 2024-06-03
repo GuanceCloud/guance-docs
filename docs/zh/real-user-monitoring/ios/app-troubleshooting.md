@@ -15,27 +15,29 @@ eg：当配置 SDK 时，未设置  datakit metrics 写入地址，程序会崩�
 
 建议在 Debug 环境开启 `FTMobileConfig ` 的配置项 `enableSDKDebugLog = YES` ，Release 环境关闭。 SDK 的调试日志以 **[FTLog]** 作为前缀标识，可以使用 [FTLog] 进行筛选。
 
-> **建议 Release 版本发布时，关闭这个配置**
+**注意**：`scheme` 设置了 `OS_ACTIVITY_MODE=disable` 时，SDK 调试日志无法正常输出，建议调试时关闭该设置。
+
+> **建议 Release 版本发布时，关闭 Debug 调试**
 
 ## SDK 内部日志转化为缓存文件
 
 ```objective-c
-// 默认：若未指定 logsDirectory ，那么将在应用程序的 Documents 中创建一个名为 'FTLogs' 的文件夹。
-//      若未指定 fileNamePrefix ，日志文件前缀为 'FTLog'
+// 默认路径：1.4.11-1.4.12 /Library/Caches/FTLogs/FTLog xxxx-xx-xx--xx/xx/xx/xxx.log
+//         >= 1.4.13 /Documents/FTLogs/FTLog.log
+
+// >= 1.4.11
  [[FTLog sharedInstance] registerInnerLogCacheToLogsDirectory:nil fileNamePrefix:nil];
 
-// 自定义存储日志文件的文件夹、日志文件名前缀
- NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
- NSString *baseDir = paths.firstObject;
- NSString *logsDirectory = [baseDir stringByAppendingPathComponent:@"CustomFolder"];
- [[FTLog sharedInstance] registerInnerLogCacheToLogsDirectory:logsDirectory fileNamePrefix:@"CustomPrefix"];
- 
-// 将调试日志写入指定文件。
- NSString *baseDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
- NSString *logsDirectory = [baseDir stringByAppendingPathComponent:@"ExampleLogs"];
- NSString *filePath = [logsDirectory stringByAppendingPathComponent:@"ExampleName.log"];
+// >= 1.4.13
+//  方法一: 默认路径
+ [[FTLog sharedInstance] registerInnerLogCacheToDefaultPath]
+//  方法二: 指定路径
+ NSString *filePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject 
+stringByAppendingPathComponent:@"ExampleName.log"];
  [[FTLog sharedInstance] registerInnerLogCacheToLogsFilePath:filePath];
 ```
+
+> **为了内部日志的完整性，需要在 SDK 初始化之前设置该配置**
 
 ## SDK 正常运行但是没有数据
 
@@ -151,9 +153,33 @@ View 的采集：设置 `FTRumConfig` 的配置项`enableTraceUserView = YES` �
 ## 数据丢失
 
 ### 丢失部份数据
-* 如果丢失 RUM 某一个 Session 数据或 Log，Trace 中的几条数据时，首先需要排除是否在 [FTRUMConfig](app-access.md#rum-config), [FTLoggerConfig](app-access.md#log-config), [FTTraceConfig](app-access.md#trace-config) 设置了 `sampleRate <  1` 。
-* 如果丢失 RUM 中 Resource 事件或 Action 事件（launch action 除外），需要检查是否开启 View 的自动采集或者有使用 Open API 手动采集。 Resource 事件或 Action 事件是与 View 进行绑定的，需要确保在 View 被采集的情况下才能正常采集。
-* 排查上传数据设备网络与安装 datakit 设备网路与负载问题。
+1.如果丢失 RUM 某一个 Session 数据或 Log，Trace 中的几条数据
+
+  首先需要排除是否在 [FTRUMConfig](app-access.md#rum-config), [FTLoggerConfig](app-access.md#log-config), [FTTraceConfig](app-access.md#trace-config) 设置了 `sampleRate <  1` 。
+
+2.如果丢失 RUM 中 Resource 事件或 Action 事件（launch action 除外）
+
+  需要检查是否开启 View 的自动采集或者有使用 Open API 手动采集。 Resource 事件或 Action 事件是与 View 进行绑定的，需要确保在 View 被采集的情况下才能正常采集。
+
+3.在 SDK 版本 <= 1.4.14 时，如果丢失部分数据，且在 Xcode 调试器控制台查看到此类调试日志
+
+```tex
+*********此条数据格式错误********
+(null)*** 1717051153966272768
+******************
+```
+
+  请确认传入 SDK 的 `NSDictionary` 类型参数是否符合以下要求：
+
+  - 所有字典键都是 NSString
+
+  - 所有对象都是 NSString, NSNumber, NSArray, NSDictionary 或 NSNull
+
+  - NSNumber 不是 NaN 或无穷大
+
+  建议键值都使用 NSString。
+
+4.排查上传数据设备网络与安装 datakit 设备网路与负载问题。
 
 ### Error 数据丢失 Crash 类型数据
 
