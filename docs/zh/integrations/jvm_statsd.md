@@ -5,6 +5,10 @@ __int_icon: 'icon/jvm'
 dashboard :
   - desc  : 'JVM 监控视图'
     path  : 'dashboard/zh/jvm'
+  - desc  : 'JVM Kubernetes 监控视图'
+    path  : 'dashboard/zh/jvm_kubernetes'
+  - desc  : 'JVM Kubernetes by podName 监控视图'
+    path  : 'dashboard/zh/jvm_kubernetes_by_podname'
 monitor   :
   - desc  : '暂无'
     path  : '-'
