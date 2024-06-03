@@ -1,0 +1,7 @@
+nav:
+  - '【Login Mapping】添加一个映射配置': add.md
+  - '【Login Mapping】修改一个映射配置': modify.md
+  - '【Login Mapping】映射配置列表': list.md
+  - '【Login Mapping】删除一个映射配置': delete.md
+  - '【Login Mapping】开关状态设置': login-mapping-set-disable.md
+  - '【Login Mapping】获取开关状态信息': get-switch.md

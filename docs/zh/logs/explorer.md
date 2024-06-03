@@ -208,10 +208,46 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
 ### 查看上下文日志 {#up-down}
 
-在日志详情页，您可以直接查看该条数据内容的**上下文日志**；点击 :fontawesome-solid-arrow-up-right-from-square: 即可跳转到查看器打开。
+在日志详情页，您可以直接查看该条数据内容的**上下文日志**；点击 :fontawesome-solid-arrow-up-right-from-square: 即可打开上下文日志新页面。
 
 ![](img/2.log_updown_1.png)
 
+???- warning "相关逻辑补充理解"
+
+    按照返回数据，每次滚动加载 50 条数据。
+
+    返回的数据如何查询得到？
+
+    前提：日志是否存在 `log_read_lines` 字段？若存在，则遵循逻辑 a；若不存在，则遵循逻辑 b。
+
+    a. 获取当前日志的 `log_read_lines` 值，并带入筛选 `log_read_lines >= {{log_read_lines.value-30}} and log_read_lines <= {{log_read_lines.value +30}}`
+
+    DQL 示例：当前日志行数 = 1354170
+
+    则：
+
+    ```
+    L::RE(`.*`):(`message`) { `index` = 'default' and `host` = "ip-172-31-204-89.cn-northwest-1" AND `source` = "kodo-log" AND `service` = "kodo-inner" AND `filename` = "0.log" and `log_read_lines` >= 1354140 and `log_read_lines` <= 1354200}  sorder by log_read_lines
+    ```
+
+    b. 获取当前日志时间，向前/后推得出查询的【开始时间】、【结束时间】
+    - 开始时间：以当前日志时间向前推 5 分钟；
+    - 结束时间：取当前日志向后推 50 条数据，取第 50 条的时间(time)，若 time=当前日志时间，则以 `time+1微妙` 作为结束时间， 若time≠当前日志时间，则以 `time` 作为结束时间。
+
+#### 上下文日志详情页
+
+点击 :fontawesome-solid-arrow-up-right-from-square: 后跳转进入详情页：
+
+![](img/context-1.png)
+
+您可根据以下操作对当前所有数据进行管理：
+
+- 在搜索框输入文本进行搜索定位数据；
+- 点击侧边 :fontawesome-solid-gear: 按钮，可更换系统的默认选择自动换行，选择**内容溢出**后，每条日志都显示为一行，可按需左右滑动查看。
+
+![](img/context-1.gif)
+
+<!--
 在日志详情页查看上下文打开新的日志查看器时，会以 `host`、`source`、`service`、`filename` 为筛选条件，查看当前日志时间前后的数据。
 
 ![](img/2.log_updown_2.png)
@@ -221,6 +257,10 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 **注意**：若第 10 条数据的时间与当前日志一致，则会检索不到当前日志。
 
 <img src="../img/log-0807.png" width="60%" >
+
+<!--
+您还可以直接通过时间控件，对日志数据进行微妙级别的查询。若当日志上报时间不在查询的范围内时，需手动调整时间区间。
+-->
 
 ### 属性字段
 

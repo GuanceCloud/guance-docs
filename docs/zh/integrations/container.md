@@ -209,23 +209,23 @@ monitor:
     
         **Default**: false
     
-    - **ENV_INPUT_CONTAINER_ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2**
+    - **ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2**
     
         追加资源的 labels 到数据（不包括指标数据）的 tag 中。需指定 label keys，如果只有一个 key 且为空字符串（例如 [""]），会添加所有 labels 到 tag。容器会继承 Pod labels。如果 label 的 key 有 dot 字符，会将其变为横线
     
         **Type**: JSON
     
-        **ConfField**: `env_input_container_extract_k8s_label_as_tags_v2`
+        **ConfField**: `extract_k8s_label_as_tags_v2`
     
         **Example**: ["app","name"]
     
-    - **ENV_INPUT_CONTAINER_ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2_FOR_METRIC**
+    - **ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2_FOR_METRIC**
     
         追加资源的 labels 到指标数据的 tag 中。需指定 label keys，如果只有一个 key 且为空字符串（例如 [""]），会添加所有 labels 到 tag。容器会继承 Pod labels。如果 label 的 key 有 dot 字符，会将其变为横线
     
         **Type**: JSON
     
-        **ConfField**: `env_input_container_extract_k8s_label_as_tags_v2_for_metric`
+        **ConfField**: `extract_k8s_label_as_tags_v2_for_metric`
     
         **Example**: ["app","name"]
     

@@ -81,7 +81,7 @@ Description of configuration parameters:
 
 Supported environment variables:
 
-| Environment Variable Name        | Configuration Item Meaning                                                                                                 |
+| Environment Variable Name        | Configuration Item Meaning                                                                                                  |
 | :---                             | :---                                                                                                                        |
 | `LOGFWD_DATAKIT_HOST`            | Datakit 地址                                                                                                                |
 | `LOGFWD_DATAKIT_PORT`            | Datakit Port                                                                                                                |
@@ -90,6 +90,7 @@ Supported environment variables:
 | `LOGFWD_POD_NAME`                | Specifying pod name adds `pod_name` to tags                                                                                 |
 | `LOGFWD_POD_NAMESPACE`           | Specifying pod namespace adds `namespace` to tags                                                                           |
 | `LOGFWD_ANNOTATION_DATAKIT_LOGS` | Use the annotations `datakit/logs` configuration of the current Pod with higher priority than the logfwd JSON configuration |
+| `LOGFWD_JSON_CONFIG`             | Logfwd main configuration, i.e. the JSON-formatted text above                                                               |
 
 #### Installation and Running {#install-run}
 
@@ -124,7 +125,7 @@ spec:
           fieldPath: metadata.namespace
     - name: LOGFWD_GLOBAL_SOURCE
       value: nginx-souce-test
-    image: pubrepo.guance.com/datakit/logfwd:1.28.1
+    image: pubrepo.guance.com/datakit/logfwd:1.29.1
     imagePullPolicy: Always
     resources:
       requests:
@@ -226,7 +227,7 @@ spec:
         fieldRef:
           apiVersion: v1
           fieldPath: metadata.namespace
-    image: pubrepo.guance.com/datakit/logfwd:1.28.1
+    image: pubrepo.guance.com/datakit/logfwd:1.29.1
     imagePullPolicy: Always
     resources:
       requests:

@@ -156,6 +156,26 @@ ddtrace 支持给方法注入 Trace ，默认情况下，ddtrace 会对所有的
 
 ![image.png](../images/ddtrace-skill-6-2.png)
 
+### Baggage，让 tag 无限透传
+
+环境变量: DD_TRACE_HEADER_BAGGAGE
+
+默认值: null
+
+样例: CASE-insensitive-Header:my-baggage-name,User-ID:userId,My-Header-And-Baggage-Name
+
+如：
+```shell
+-Ddd.trace.header.baggage=userId:user_id
+```
+
+???+ info ""
+    `-Ddd.trace.header.tags` 不会实现透传功能，Baggage 可以让 header 的 tag 无限透传下去。
+
+链路效果：
+
+![image.png](../images/ddtrace_skill_params_baggage_01.png)
+
 
 ### 开启 debug 模式
 
@@ -229,8 +249,8 @@ ddtrace支持以下几种传播器，传播器类型不区分大小写。
     - B3SINGLE（B3_SINGLE_HEADER），对应 header 的 key 为 `b3`
     - B3（B3MULTI），对应 header 的 key 为 `x-b3-`
 - haystack
-- tracecontext
-- xray
+- tracecontext:默认传播器
+- xray ： AWS 传播器
 
 
 ```shell
@@ -283,28 +303,6 @@ ddtrace 1.9.0 之前使用
 ![Img](../images/ddtrace-param-request-header.png)
 
 :point_right: 目前支持 Servlet3 和 Netty4
-
-:heavy_check_mark: version >= 1.25.2-guance
-
-### Request body Tag :loudspeaker:
-
-把请求体添加到链路 tag 上，目前只支持 `POST` 请求，且 `Context-Type` 为 `application/json` 或 `application/json;charset=UTF-8`
-- 启动命令
-
-`-Ddd.trace.request.body.enabled`：默认值为 `false`，即不开启。
-
-- 环境变量
-
-`DD_TRACE_REQUEST_BODY_ENABLED`
-
-如执行以下请求
-
-> curl -X POST -H 'Content-Type: application/json' -d '{"username":"joy","age":18}' http://localhost:8090/jsonStr
-
-![Img](../images/ddtrace-param-request-body.png)
-
-
-:point_right: 目前支持 Servlet3
 
 :heavy_check_mark: version >= 1.25.2-guance
 
