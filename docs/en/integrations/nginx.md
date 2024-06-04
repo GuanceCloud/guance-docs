@@ -66,6 +66,30 @@ NGINX collector can take many metrics from NGINX instances, such as the total nu
 
 - After the VTS function has been turned on, it is no longer necessary to collect the data of the `http_stub_status_module` module, because the data of the VTS module will include the data of the `http_stub_status_module` module.
 
+- NGINX Plus users can still use the `http_stub_status_module` to collect basic data. Additionally, `http_api_module` should be enabled in the NGINX configuration file ([Reference](https://nginx.org/en/docs/http/ngx_http_api_module.html){:target="_blank"}) and set status_zone in the server blocks you want to monitor. The configuration example is as follows:
+
+``` nginx
+# enable http_api_module
+server {
+  listen 8080;
+  location /api {
+     api write=on;
+  }
+}
+# monitor more detailed metrics
+server {
+  listen 80;
+  status_zone <ZONE_NAME>;
+  ...
+}
+```
+
+- To enable NGINX Plus collection, you need to set the option `use_plus_api` to true in the `nginx.conf` file and uncomment the `plus_api_url` option. (Note: VTS does not support NGINX Plus).
+
+- NGINX Plus can generate the following measurements:
+
+    - `nginx_location_zone`
+
 ### Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
@@ -80,6 +104,9 @@ NGINX collector can take many metrics from NGINX instances, such as the total nu
       ## (Default) If not use with VTS, the formula is like this: "http://localhost:80/basic_status".
       ## If using with VTS, the formula is like this: "http://localhost:80/status/format/json".
       url = "http://localhost:80/basic_status"
+      # If using Nginx Plus, this formula is like this: "http://localhost:8080/api/<api_version>".
+      # Note: Nginx Plus not support VTS and should be used with http_stub_status_module (Default)
+      # plus_api_url = "http://localhost:8080/api/9"
     
       ## Optional Can set ports as [<form>,<to>], Datakit will collect all ports.
       # ports = [80,80]
@@ -87,6 +114,7 @@ NGINX collector can take many metrics from NGINX instances, such as the total nu
       ## Optional collection interval, default is 10s
       # interval = "30s"
       use_vts = false
+      use_plus_api = false
       ## Optional TLS Config
       # tls_ca = "/xxx/ca.pem"
       # tls_cert = "/xxx/cert.cer"
@@ -152,12 +180,15 @@ For all of the following data collections, a global tag named `host` is appended
 | ---- |---- | :---:    | :----: |
 |`connection_accepts`|The total number of accepts client connections|int|count|
 |`connection_active`|The current number of active client connections|int|count|
+|`connection_dropped`|The total number of dropped client connections|int|count|
 |`connection_handled`|The total number of handled client connections|int|count|
 |`connection_reading`|The total number of reading client connections|int|count|
 |`connection_requests`|The total number of requests client connections|int|count|
 |`connection_waiting`|The total number of waiting client connections|int|count|
 |`connection_writing`|The total number of writing client connections|int|count|
 |`load_timestamp`|Nginx process load time in milliseconds, exist when using vts|int|msec|
+|`pid`|The pid of nginx process (only for Nginx plus)|int|count|
+|`ppid`|The ppid of nginx process (only for Nginx plus)|int|count|
 
 
 
@@ -179,6 +210,12 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`code_200`|The number of responses with status code 200 (only for Nginx plus)|int|count|
+|`code_301`|The number of responses with status code 301 (only for Nginx plus)|int|count|
+|`code_404`|The number of responses with status code 404 (only for Nginx plus)|int|count|
+|`code_503`|The number of responses with status code 503 (only for Nginx plus)|int|count|
+|`discarded`|The number of requests being discarded (only for Nginx plus)|int|count|
+|`processing`|The number of requests being processed (only for Nginx plus)|int|count|
 |`received`|The total amount of data received from clients.|int|B|
 |`requests`|The total number of client requests received from clients.|int|count|
 |`response_1xx`|The number of responses with status codes 1xx|int|count|
@@ -186,6 +223,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`response_3xx`|The number of responses with status codes 3xx|int|count|
 |`response_4xx`|The number of responses with status codes 4xx|int|count|
 |`response_5xx`|The number of responses with status codes 5xx|int|count|
+|`responses`|The total number of responses (only for Nginx plus)|int|count|
 |`send`|The total amount of data sent to clients.|int|B|
 
 
@@ -209,6 +247,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`active`|The number of active connections (only for Nginx plus)|int|count|
+|`backup`|Whether it is configured as a backup server (only for Nginx plus)|int|count|
+|`fails`|The number of failed requests (only for Nginx plus)|int|count|
 |`received`|The total number of bytes received from this server.|int|B|
 |`request_count`|The total number of client requests received from server.|int|count|
 |`response_1xx`|The number of responses with status codes 1xx|int|count|
@@ -217,6 +258,9 @@ For all of the following data collections, a global tag named `host` is appended
 |`response_4xx`|The number of responses with status codes 4xx|int|count|
 |`response_5xx`|The number of responses with status codes 5xx|int|count|
 |`send`|The total number of bytes sent to clients.|int|B|
+|`state`|The current state of the server (only for Nginx plus)|int|count|
+|`unavail`|The number of unavailable server (only for Nginx plus)|int|count|
+|`weight`|Weights used when load balancing (only for Nginx plus)|int|count|
 
 
 
@@ -250,6 +294,41 @@ For all of the following data collections, a global tag named `host` is appended
 |`responses_updating`|The number of cache updating|int|count|
 |`send`|The total number of bytes sent from the cache.|int|B|
 |`used_size`|The current size of the cache.|int|B|
+
+
+
+### `nginx_location_zone`
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`host`|host name which installed nginx|
+|`location_zone`|cache zone|
+|`nginx_port`|nginx server port|
+|`nginx_server`|nginx server host|
+|`nginx_version`|nginx version|
+
+- metric list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`code_200`|The number of 200 code (only for Nginx plus)|int|count|
+|`code_301`|The number of 301 code (only for Nginx plus)|int|count|
+|`code_404`|The number of 404 code (only for Nginx plus)|int|count|
+|`code_503`|The number of 503 code (only for Nginx plus)|int|count|
+|`discarded`|The total number of discarded request (only for Nginx plus)|int|B|
+|`received`|The total number of received bytes (only for Nginx plus)|int|B|
+|`requests`|The number of requests (only for Nginx plus)|int|B|
+|`response`|The number of response (only for Nginx plus)|int|B|
+|`response_1xx`|The number of 1xx response (only for Nginx plus)|int|count|
+|`response_2xx`|The number of 2xx response (only for Nginx plus)|int|count|
+|`response_3xx`|The number of 3xx response (only for Nginx plus)|int|count|
+|`response_4xx`|The number of 4xx response (only for Nginx plus)|int|count|
+|`response_5xx`|The number of 5xx response (only for Nginx plus)|int|count|
+|`sent`|The total number of send bytes (only for Nginx plus)|int|count|
 
 
 
