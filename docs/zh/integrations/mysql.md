@@ -95,6 +95,11 @@ GRANT replication client on *.*  to 'datakit'@'localhost';
       ## user
       users = []
     
+      ## Set replication to true to collect replication metrics
+      # replication = false
+      ## Set group_replication to true to collect group replication metrics
+      # group_replication = false
+    
       ## Set dbm to true to collect database activity 
       # dbm = false
     
@@ -149,6 +154,9 @@ GRANT replication client on *.*  to 'datakit'@'localhost';
         # tls_key = "/etc/mysql/key.pem"
         ## Use TLS but skip chain & host verification
         insecure_skip_verify = true
+        ## by default, support TLS 1.2 and above.
+        ## set to true if server side uses TLS 1.0 or TLS 1.1
+        allow_tls10 = false
     
       [inputs.mysql.tags]
         # some_tag = "some_value"
@@ -302,6 +310,39 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name LIKE 'eve
 UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events_waits_current';
 ```
 
+### 主从复制指标采集 {#replication_metrics}
+
+采集主从复制 `mysql_replication` 指标的前提是开启主从复制，`mysql_replication` 指标都是由从数据库采集的，确认主从复制环境是否正常可以在从数据库输入：
+
+```sql
+SHOW SLAVE STATUS;;
+```
+
+可以看到 `Replica_IO_Running`、`Replica_SQL_Running` 的值均为 Yes，说明主从复制环境状态正常。
+
+若要采集组复制指标如 `count_transactions_in_queue`，需要将组复制插件添加到服务器在启动时加载的插件列表（group_replication 从 MySQL 版本 5.7.17 开始支持）。在从数据库的配置文件 `/etc/my.cnf` 中，添加一行
+
+```toml
+plugin_load_add ='group_replication.so'
+```
+
+可以通过 `show plugins;` 确认组复制插件已安装。
+
+如需开启，需要执行以下步骤。
+
+- 修改配置文件，开启监控采集
+
+```toml
+[[inputs.mysql]]
+
+## Set replication to true to collect replication metrics
+replication = true
+## Set group_replication to true to collect group replication metrics
+group_replication = true  
+...
+
+```
+
 ## 指标 {#metric}
 
 以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.mysql.tags]` 指定其它标签：
@@ -379,6 +420,7 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 |`Key_write_requests`|The number of requests to write a key block to the MyISAM key cache.|int|count|
 |`Key_writes`|The number of physical writes of a key block from the MyISAM key cache to disk.|int|count|
 |`Max_used_connections`|The maximum number of connections that have been in use simultaneously since the server started.|int|count|
+|`Mysqlx_ssl_ctx_verify_depth`||int|-|
 |`Open_files`|The number of open files.|int|count|
 |`Open_tables`|The number of of tables that are open.|int|count|
 |`Opened_tables`|The number of tables that have been opened. If Opened_tables is big, your table_open_cache value is probably too small.|int|count|
@@ -402,16 +444,59 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events
 |`Sort_range`|The number of sorts that were done using ranges.|int|count|
 |`Sort_rows`|The number of sorted rows.|int|count|
 |`Sort_scan`|The number of sorts that were done by scanning the table.|int|count|
+|`Ssl_ctx_verify_depth`||int|-|
 |`Table_locks_immediate`|The number of times that a request for a table lock could be granted immediately.|int|count|
 |`Table_locks_waited`|The total number of times that a request for a table lock could not be granted immediately and a wait was needed.|int|count|
 |`Threads_cached`|The number of threads in the thread cache.|int|count|
 |`Threads_connected`|The number of currently open connections.|int|count|
 |`Threads_created`|The number of threads created to handle connections. If Threads_created is big, you may want to increase the thread_cache_size value.|int|count|
 |`Threads_running`|The number of threads that are not sleeping.|int|count|
+|`connection_memory_limit`||int|B|
+|`global_connection_memory_limit`||int|B|
 |`max_connections`|The maximum number of connections that have been in use simultaneously since the server started.|int|count|
+|`max_join_size`||int|count|
+|`max_seeks_for_key`||int|count|
+|`max_write_lock_count`||int|-|
+|`myisam_mmap_size`||int|B|
+|`parser_max_mem_size`||int|B|
 |`query_cache_size`|The amount of memory allocated for caching query results.|int|B|
+|`sql_select_limit`||int|-|
 |`table_open_cache`|The number of open tables for all threads. Increasing this value increases the number of file descriptors that mysqld requires.|int|count|
 |`thread_cache_size`|How many threads the server should cache for reuse. When a client disconnects, the client's threads are put in the cache if there are fewer than thread_cache_size threads there.|int|B|
+
+
+
+
+
+
+### `mysql_replication`
+
+
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`host`|The server host address|
+|`server`|Server addr|
+
+- 字段列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`Replicas_connected`|Number of replicas connected to a replication source.|int|count|
+|`Seconds_Behind_Master`|The lag in seconds between the master and the slave. Used before MySQL 8.0.22|int|count|
+|`Seconds_Behind_Source`|The lag in seconds between the source and the replica. Used after MySQL 8.0.22|int|count|
+|`count_conflicts_detected`|The number of transactions that have not passed the conflict detection check.|int|count|
+|`count_transactions_checked`|The number of transactions that have been checked for conflicts.|int|count|
+|`count_transactions_in_queue`|The number of transactions in the queue pending conflict detection checks.|int|count|
+|`count_transactions_local_proposed`|The number of transactions which originated on this member and were sent to the group.|int|count|
+|`count_transactions_local_rollback`|The number of transactions which originated on this member and were rolled back by the group.|int|count|
+|`count_transactions_remote_applied`|The number of transactions this member has received from the group and applied.|int|count|
+|`count_transactions_remote_in_applier_queue`|The number of transactions that this member has received from the replication group which are waiting to be applied.|int|count|
+|`count_transactions_rows_validating`|The number of transaction rows which can be used for certification, but have not been garbage collected.|int|count|
 
 
 
@@ -682,6 +767,10 @@ MySQL user information
 ## 日志 {#logging}
 
 [:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)
+
+
+
+
 
 
 

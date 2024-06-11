@@ -540,6 +540,8 @@ void httpClientGetHttp(String url) async {
 
 ## Logger 日志打印 
 ### 自定义日志
+> 目前日志内容限制为 30 KB，字符超出部分会进行截断处理
+
 #### 使用方法
 ```dart
 

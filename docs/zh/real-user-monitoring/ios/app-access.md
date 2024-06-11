@@ -3,6 +3,14 @@
 ---
 ???- quote "更新日志"
 
+    **1.5.0**
+    ```
+    1. RUM resource 网络请求添加 remote ip 地址解析功能
+    2. 添加行协议 Integer 数据兼容模式，处理 web 数据类型冲突问题
+    3. 日志添加自定义 status 方法
+    4. 日志数据写入优化、数据同步优化
+    5. 对传入 SDK 的 NSDictionary 类型参数进行格式处理防止转换 json 失败造成数据丢失
+    ```
     **1.4.14**
     ```
     1. 修复 swizzle 方法与其他库 swizzle 方法冲突问题
@@ -32,7 +40,7 @@
     5. 修复 WebView jsBridge 时产生的崩溃，对 WebView 引用改为弱引用
     ```
     [更多日志](https://github.com/GuanceCloud/datakit-ios/blob/develop/CHANGELOG.md)
-    
+
 
 观测云应用监测能够通过收集各个 iOS 应用的指标数据，以可视化的方式分析各个 iOS 应用端的性能。
 
@@ -260,6 +268,7 @@
 | autoSync | BOOL | 否 | 是否开启自动同步。默认 `YES` |
 | syncPageSize | int | 否 | 设置同步请求条目数。范围 [5,）注意：请求条目数越大，代表数据同步占用更大的计算资源 |
 | syncSleepTime | int | 否 | 设置同步间歇时间。范围 [0,100]，默认不设置 |
+| enableDataIntegerCompatible | BOOL | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题 。 |
 
 ### RUM 配置 {#rum-config}
 
@@ -311,6 +320,7 @@
 | errorMonitorType | FTErrorMonitorType | 否 | 错误事件监控补充类型。在采集的崩溃数据中添加监控的信息。`FTErrorMonitorBattery`为电池余量，`FTErrorMonitorMemory`为内存用量，`FTErrorMonitorCpu`为 CPU 占有率 。 |
 | deviceMetricsMonitorType | FTDeviceMetricsMonitorType | 否 | 视图的性能监控类型。在采集的  **View** 数据中添加对应监控项信息。`FTDeviceMetricsMonitorMemory`监控当前应用使用内存情况，`FTDeviceMetricsMonitorCpu`监控 CPU 跳动次数，`FTDeviceMetricsMonitorFps`监控屏幕帧率。 |
 | monitorFrequency | FTMonitorFrequency | 否 | 视图的性能监控采样周期。配置 `monitorFrequency` 来设置 **View** 监控项信息的采样周期。`FTMonitorFrequencyDefault`500ms (默认)，`FTMonitorFrequencyFrequent`100ms，`FTMonitorFrequencyRare`1000ms。 |
+| enableResourceHostIP | BOOL | 否 | 是否采集请求目标域名地址的 IP。`>= iOS 13` 下支持 |
 | globalContext | NSDictionary | 否 | 添加自定义标签。添加规则请查阅[此处](#user-global-context) |
 
 ### Log 配置 {#log-config}
@@ -854,7 +864,7 @@
 ## Logger 日志打印 {#user-logger}
 
 在 SDK 初始化 [Log 配置](#log-config) 时，配置 `enableCustomLog` 允许自定义添加日志。
-
+> 目前日志内容限制为 30 KB，字符超出部分会进行截断处理
 ### 使用方法
 
 === "Objective-C"
