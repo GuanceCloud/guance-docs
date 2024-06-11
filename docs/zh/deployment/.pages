@@ -87,6 +87,7 @@ nav:
       - '通过 iframe 实现页面嵌套': iframe.md
       - '观测云集群备份和恢复': velero-install.md
       - '应用服务配置指南': application-configuration-guide.md
+      - '可靠性验证': proof-of-reliability.md
     - '故障排查':
       - '查看器报“视图模板不存在”': noscenes.md
       - '日志引擎存储空间不足': es-disk-full.md
