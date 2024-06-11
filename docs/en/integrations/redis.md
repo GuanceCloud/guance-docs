@@ -744,7 +744,11 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`command`|Slow command|int|μs|
+|`slowlog_95percentile`|Slow 95th percentile duration|int|μs|
+|`slowlog_avg`|Slow average duration|float|μs|
 |`slowlog_id`|Slow log unique id|int|-|
+|`slowlog_max`|Slow maximum duration|int|μs|
+|`slowlog_median`|Slow median duration|int|μs|
 |`slowlog_micros`|Cost time|int|μs| 
 
 
