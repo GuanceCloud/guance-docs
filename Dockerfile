@@ -116,7 +116,7 @@ RUN \
     fi
 
 # build static site
-FROM nginx:1.18.0
+FROM registry.jiagouyun.com/basis/nginx:1.18.0
 
 RUN mkdir /etc/nginx/ssl
 RUN mkdir /dataflux-doc
