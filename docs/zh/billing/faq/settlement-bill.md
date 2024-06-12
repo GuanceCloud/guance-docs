@@ -60,7 +60,7 @@
 
 - 若您使用云账号结算，您可以直接在云账号进行充值。
 
-> 更多详情，可参考 [账户钱包](../../billing/cost-center/account-wallet/index.md)。  
+> 更多详情，可参考 [账户钱包](../../billing-center/account-wallet/index.md)。  
 
 ## 如何申请发票？
 
@@ -70,13 +70,13 @@
 - AWS 账号结算的用户可在 AWS 中国进行发票申请；   
 - 华为云账号结算的用户可在华为云进行发票申请。 
 
-> 更多详情，可参考 [发票管理](../../billing/cost-center/invoice-management.md)。
+> 更多详情，可参考 [发票管理](../../billing-center/invoice-management.md)。
 
 ## 如何查看账单明细？
 
 观测云费用中心提供账单管理，包括月账单、消费明细、收支明细、代金券明细和预购卡明细管理。
 
-> 更多详情，可参考 [账单管理](../../billing/cost-center/billing-management.md)。
+> 更多详情，可参考 [账单管理](../../billing-center/billing-management.md)。
 
 
 ## 如何只针对企业财务相关人员赋予付费与账单处理权限？

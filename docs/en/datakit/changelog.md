@@ -1,5 +1,93 @@
 # Changelog
 
+## 1.30.0 (June 4, 2024) {#cl-1.30.0}
+
+This release is an iterative update with the following main changes:
+
+### New Features {#cl-1.30.0-new}
+
+- Pipeline
+    - Added `gjson()` function to provide ordered JSON field extraction (#2167)
+    - Added context caching feature (#2157)
+
+### Bug Fixes {#cl-1.30.0-fix}
+
+- Fixed the issue with appending global-tags in Prometheus Remote Write[^2244] (#2244)
+
+[^2244]: This issue was introduced in version 1.25.0. If the Prometheus Remote Write collector is enabled, it is recommended to upgrade.
+
+### Feature Enhancements {#cl-1.30.0-opt}
+
+- Optimized Datakit [`/v1/write/:category` API](apis.md#api-v1-write) with the following adjustments and features (#2130)
+    - Added more API parameters (`echo`/`dry`) for easier debugging
+    - Support for more types of data formats
+    - Support for fuzzy recognition of timestamp precision in data points (#2120)
+- Optimization of MySQL/Nginx/Redis/SQLServer metrics collection (#2196)
+    - Added master-slave replication related metrics for MySQL
+    - Added duration metrics for Redis slow logs
+    - Added more Nginx Plus related metrics for Nginx
+    - Optimized the structure of Performance-related metrics for SQLServer
+- Added support for low version TLS in MySQL collector (#2245)
+- Optimized TLS certificate configuration for Kubernetes self-etcd metrics collection (#2032)
+- Prometheus Exporter metrics collection supports configuration to preserve original metric names (#2231)
+- Added taint-related information to Kubernetes Node objects (#2239)
+- eBPF-Tracing added MySQL protocol recognition (#1768)
+- Optimized the performance of the ebpftrace collector (#2226)
+- The operational status of the dialing collector is supported to be displayed on the `datakit monitor` command panel (#2243)
+- Other view and documentation optimizations (#1976/#1977/#2194/#2195/#2221/#2235)
+
+### Compatibility Adjustments {#cl-1.30.0-brk}
+
+In this version, the data protocol has been extended. After upgrading from an older version of Datakit, if the center base is privately deployed, the following measures can be taken to maintain data compatibility:
+
+- Upgrade the center base to [1.86.166](../deployment/changelog.md#1861662024-05-29)
+- Modify the [upload protocol configuration `content_encoding`](datakit-conf.md#dataway-settings) in *datakit.conf* to `v2`
+
+---
+
+## 1.29.1 (May 20, 2024) {#cl-1.29.1}
+
+This release is a hotfix that addresses the following issue:
+
+- Fixed MongoDB crash bug (#2229).
+
+---
+
+## 1.29.0 (May 15, 2024) {#cl-1.29.0}
+
+This release is an iterative update with the following main changes:
+
+### New Features {#cl-1.29.0-new}
+
+- Container log collection now supports configuring color character filtering `remove_ansi_escape_codes` in Annotation (#2208).
+- The [Health Check Collector](../integrations/host_healthcheck.md) now supports command-line argument filtering (#2197).
+- Added new [Collector Cassandra](../integrations/cassandra.md) (#1812).
+- Added [Usage Statistics](datakit-conf.md#dk-usage-count) (#2177).
+- eBPF Tracing add support for HTTP2/gRPC (#2017).
+
+### Bug Fixes {#cl-1.29.0-fix}
+
+- Fixed an issue where Kubernetes was not collecting Pending Pods (#2214).
+- Resolved a startup crash of logfwd (#2216).
+- Fixed bug where logging collection did not perform color character filtering under special circumstances (#2209).
+- Fixed issue where profiling collection could not add customer tags (#2205).
+- Resolved a potential Goroutine leak issue with the Redis/MongoDB collectors (#2199/#2215).
+
+### Feature Enhancements {#cl-1.29.0-opt}
+
+- Support for the `insecureSkipVerify` configuration option in Prometheus PodMonitor/ServiceMonitor TLSConfig (#2211).
+- Enhanced security for the dial-testing debugging API (#2203).
+- Nginx collector now supports specifying a range of ports for collection (#2206).
+- Improved ENV configuration under Kubernetes related to TLS certificate (#2198).
+- Various other documentation and optimization updates (#2210/#2213/#2218/#2223/#2224/#2141/#2080).
+
+### Compatibility Adjustments {#cl-1.29.0-brk}
+
+- Removed the support for specifying certificate file paths in Prometheus PodMonitor/ServiceMonitor TLSConfig (#2211).
+- Optimizations to DCA routing parameters and reload logic (#2220).
+
+---
+
 ## 1.28.1 (April 22, 2024) {#cl-1.28.1}
 
 This release is a hotfix that addresses the following issue:

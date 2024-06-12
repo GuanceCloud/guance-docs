@@ -91,6 +91,10 @@ Only metric data in Prometheus form can be accessed.
       ## Always add 'measurement_prefix' prefix at last.
       # measurement_name = "prom"
     
+      ## Keep Exist Metric Name
+      ## If the keep_exist_metric_name is true, keep the raw value for field names.
+      keep_exist_metric_name = false
+    
       ## TLS configuration.
       tls_open = false
       # tls_ca = "/tmp/ca.crt"
@@ -136,10 +140,9 @@ Only metric data in Prometheus form can be accessed.
         # key1 = [ "val1.*", "val2.*"]
         # key2 = [ "val1.*", "val2.*"]
     
-      ## Add HTTP headers to data pulling.
+      ## Add HTTP headers to data pulling (Example basic authentication).
       # [inputs.prom.http_headers]
-        # Root = "passwd"
-        # Michael = "1234"
+        # Authorization = “Basic bXl0b21jYXQ="
     
       ## Rename tag key in prom data.
       [inputs.prom.tags_rename]
@@ -186,7 +189,7 @@ Only metric data in Prometheus form can be accessed.
 <!-- markdownlint-enable -->
 ### Configure Extra header {#extra-header}
 
-The Prom collector supports configuring additional request headers in HTTP requests for data pull, as follows:
+The Prom collector supports configuring additional request headers in HTTP requests for data pull, (Example basic authentication):
 
 ```toml
   [inputs.prom.http_headers]

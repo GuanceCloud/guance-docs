@@ -66,6 +66,11 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
       #   send_timeout = "75s"
       #   send_retry_count = 4
     
+      ## set custom tags for profiling data
+      # [inputs.profile.tags]
+      #   some_tag = "some_value"
+      #   more_tag = "some_other_value"
+    
     ## go pprof config
     ## collect profiling data in pull mode
     #[[inputs.profile.go]]

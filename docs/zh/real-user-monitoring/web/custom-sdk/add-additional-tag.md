@@ -2,7 +2,7 @@
 
 ---
 
-初始化 RUM 后，使用 `setGlobalContextProperty:string，value:any）` API 向从应用程序收集的所有 RUM 事件添加额外的 TAG。
+初始化 RUM 后，使用 `setGlobalContextProperty(key:string，value:any)` API 向从应用程序收集的所有 RUM 事件添加额外的 TAG。
 
 ### 添加 TAG
 

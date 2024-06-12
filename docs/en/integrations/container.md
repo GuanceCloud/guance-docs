@@ -212,23 +212,23 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Default**: false
     
-    - **ENV_INPUT_CONTAINER_ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2**
+    - **ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2**
     
         Append the labels of the resource to the tag of the non-metric (like object and logging) data. Label keys should be specified, if there is only one key and it is an empty string (e.g. [""]), all labels will be added to the tag. The container will inherit the Pod labels. If the key of the label has the dot character, it will be changed to a horizontal line
     
         **Type**: JSON
     
-        **ConfField**: `env_input_container_extract_k8s_label_as_tags_v2`
+        **ConfField**: `extract_k8s_label_as_tags_v2`
     
         **Example**: ["app","name"]
     
-    - **ENV_INPUT_CONTAINER_ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2_FOR_METRIC**
+    - **ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2_FOR_METRIC**
     
         Append the labels of the resource to the tag of the metric data. Label keys should be specified, if there is only one key and it is an empty string (e.g. [""]), all labels will be added to the tag. The container will inherit the Pod labels. If the key of the label has the dot character, it will be changed to a horizontal line
     
         **Type**: JSON
     
-        **ConfField**: `env_input_container_extract_k8s_label_as_tags_v2_for_metric`
+        **ConfField**: `extract_k8s_label_as_tags_v2_for_metric`
     
         **Example**: ["app","name"]
     
@@ -269,6 +269,16 @@ Collect indicators, objects and log data of container and Kubernetes and report 
         **Type**: Boolean
     
         **ConfField**: `enable_auto_discovery_of_prometheus_service_monitors`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_CONTAINER_KEEP_EXIST_PROMETHEUS_METRIC_NAME**
+    
+        Whether to keep the raw field names for Prometheus, see [Kubernetes Prometheus doc](kubernetes-prom#measurement-and-tags
+    
+        **Type**: Boolean
+    
+        **ConfField**: `keep_exist_prometheus_metric_name`
     
         **Default**: false
     
@@ -1347,10 +1357,11 @@ The object of the Kubernetes Node.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`age`|Age (seconds)|int|s|
+|`age`|Age (seconds).|int|s|
 |`kubelet_version`|Kubelet Version reported by the node.|string|-|
-|`message`|Object details|string|-|
-|`node_ready`|NodeReady means kubelet is healthy and ready to accept pods (true/false/unknown)|string|-|
+|`message`|Object details.|string|-|
+|`node_ready`|NodeReady means kubelet is healthy and ready to accept pods (true/false/unknown).|string|-|
+|`taints`|Node's taints.|string|-|
 |`unschedulable`|Unschedulable controls node schedulability of new pods (yes/no).|string|-|
 
 

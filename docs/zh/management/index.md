@@ -225,7 +225,7 @@ icon: zy/management
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **工作空间锁定/解锁/解散**</font>](../billing/cost-center/workspace-management.md#lock)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **工作空间锁定/解锁/解散**</font>](../billing-center/workspace-management.md#lock)
 
 </div>
 
