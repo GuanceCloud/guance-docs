@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.28.1）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.30.0）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -424,27 +424,39 @@ Datakit 允许给其采集的所有数据配置全局标签，全局标签分为
 - 选举类全局标签：采集的数据来自某个公共（远程）实体，比如 MySQL/Redis 等，这些采集一般都参与选举，故这些数据上不会带上当前主机相关的标签
 
 ```toml
-[global_host_tags]
+[global_host_tags] # 这里面的我们称之为「全局主机标签」：GHT
   ip   = "__datakit_ip"
   host = "__datakit_hostname"
 
 [election]
-  [election.tags]
+  [election.tags] # 这里面的我们称之为「全局选举标签」：GET
     project = "my-project"
     cluster = "my-cluster"
 ```
 
-加全局 Tag 时，有几个地方要注意：
+加全局标签时，有几个地方要注意：
 
-- 这些全局 Tag 的值可以用 DataKit 目前已经支持的几个变量（双下划线（`__`）前缀和 `$` 都是可以的）：
+1. 这些全局标签的值可以用 Datakit 目前已经支持的几个通配（双下划线（`__`）前缀和 `$` 都是可以的）：
 
-    - `__datakit_ip/$datakit_ip`：标签值会设置成 DataKit 获取到的第一个主网卡 IP
-    - `__datakit_hostname/$datakit_hostname`：标签值会设置成 DataKit 的主机名
+    1. `__datakit_ip/$datakit_ip`：标签值会设置成 DataKit 获取到的第一个主网卡 IP
+    1. `__datakit_hostname/$datakit_hostname`：标签值会设置成 DataKit 的主机名
 
-- 由于 [DataKit 数据传输协议限制](apis.md#lineproto-limitation)，不要在全局标签（Tag）中出现任何指标（Field）字段，否则会因为违反协议导致数据处理失败。具体参见具体采集器的字段列表。当然，也不要加太多 Tag，而且每个 Tag 的 Key 以及 Value 长度都有限制。
-- 如果被采集上来的数据中，本来就带有同名的 Tag，那么 DataKit 不会再追加这里配置的全局 Tag
-- 即使 `global_host_tags` 不配置任何全局 Tag，DataKit 仍然会在所有数据上尝试添加一个 `host=$HOSTNAME` 的全局 Tag
-- 这俩类全局标签是可以有交集的，比如都可以在其中设置一个 `project = "my-project"` 的标签
+1. 由于 [DataKit 数据传输协议限制](apis.md#lineproto-limitation)，不要在全局标签（Tag）中出现任何指标（Field）字段，否则会因为违反协议导致数据处理失败。具体参见具体采集器的字段列表。当然，也不要加太多标签，而且每个标签的 Key 以及 Value 长度都有限制。
+1. 如果被采集上来的数据中，本来就带有同名的标签，那么 DataKit 不会再追加这里配置的全局标签
+1. 即使 GET 中没有任何配置，DataKit 仍然会在所有数据上尝试添加一个 `host=__datakit_hostname` 的标签
+1. 这俩类全局标签（GHT/GET）是可以有交集的，比如都可以在其中设置一个 `project = "my-project"` 的标签
+1. 当没有开启选举的情况下，GET 沿用 GHT（它至少有一个 `host` 的标签）中的所有标签
+1. 选举类采集器默认追加 GET，非选举类采集器默认追加 GHT。
+
+<!-- markdownlint-disable MD046 -->
+???+ tip "如何区分选举和非选举采集器？"
+
+    在采集器文档中，在顶部有类似如下标识，它们表示当前采集器的平台适配情况以及采集特性：
+
+    :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · :fontawesome-solid-flag-checkered:
+
+    若带有 :fontawesome-solid-flag-checkered: 则表示当前采集器是选举类采集器。
+<!-- markdownlint-enable -->
 
 ### 全局 Tag 在远程采集时的设置 {#notice-global-tags}
 
@@ -466,7 +478,7 @@ Datakit 允许给其采集的所有数据配置全局标签，全局标签分为
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    自 [1.4.20](changelog.md#cl-1.4.20) 之后，DataKit 默认会以被采集服务的 IP/Host 等字段为 `host` 字段，故这一问题升级之后将得到改善。建议大家升级到该版本来避免这一问题。
+    自 [1.4.20](changelog.md#cl-1.4.20) 之后，DataKit 默认会以被采集服务连接地址中的的 IP/Host 作为 `host` 的标签值。
 <!-- markdownlint-enable -->
 
 ## DataKit 自身运行日志配置 {#logging-config}
@@ -602,6 +614,23 @@ $ systemctl status datakit
     Datakit 自 [1.5.8](changelog.md#cl-1.5.8) 开始支持 cgroup v2。如果不确定 cgroup 版本，可通过命令 `mount | grep cgroup` 来确认。
 <!-- markdownlint-enable -->
 
+#### Datakit 用量计量标准 {#dk-usage-count}
+
+[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
+
+为了规范 Datakit 用量统计，现对 Datakit 的逻辑计量方法进行如下说明：
+
+- 如果没有开启以下这些采集器，则 Datakit 逻辑计量个数为 1
+- 如果 Datakit 运行时长（中间断档不超过 30 分钟）超过 12 小时，则参与计量，否则不参与计量
+- 对于以下开启的采集器，按照 Datakit [当前配置的 CPU 核心数](datakit-conf.md#resource-limit)进行计量，最小值为 1，最大值为物理 CPU 核数 [^1]，小数点按照四舍五入规则取整：
+    - [RUM 采集器](../integrations/rum.md)
+    - 通过 [TCP/UDP 收取日志数据的采集器](../integrations/logging.md##socket)
+    - 通过 [kafkamq 采集器](../integrations/kafkamq.md)同步日志/指标/RUM 等数据的采集器
+    - 通过 [prom_remote_write 采集器](../integrations/prom_remote_write.md)同步 Prometheus 指标的采集器
+    - 通过 [beats_output](../integrations/beats_output.md) 同步日志数据的采集器
+
+通过上述规则，可以更加合理地反映 Datakit 的实际使用情况，为用户提供更加透明、公平的计费方式。
+
 ### 选举配置 {#election}
 
 参见[这里](election.md#config)
@@ -647,3 +676,5 @@ CPU 使用率是百分比制（最大值 100.0），以一个 8 核心的 CPU �
 - [DataKit 宿主机安装](datakit-install.md)
 - [DataKit DaemonSet 安装](datakit-daemonset-deploy.md)
 - [DataKit 行协议过滤器](datakit-filter.md)
+
+[^1]: 如果没有配置 CPU 限额，则 N 取物理机/Node 的 CPU 核心数

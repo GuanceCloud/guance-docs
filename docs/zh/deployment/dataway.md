@@ -185,6 +185,9 @@ Kubernetes 重启对应的 Pod 即可。
 | DW_TOKEN             | Y        | 一般是系统工作空间的数据 Token                                                                     |      |
 | DW_UPGRADE           | N        | 升级时将其指定为 1                                                                                 |      |
 | DW_UUID              | Y        | Dataway UUID，这个在新建 Dataway 的时候，系统工作空间会生成                                        |      |
+| DW_ENABLE_TLS        | N        | 开启 HTTPS(dataway-changelog.md#cl-1.4.0)                                                                                                    |                                                     |
+| DW_TLS_CRT           | N        | 指定 HTTPS/TLS crt 文件目录（dataway-changelog.md#cl-1.4.0）                                       |      |
+| DW_TLS_KEY           | N        | 指定 HTTPS/TLS key 文件目录（dataway-changelog.md#cl-1.4.0）                                       |      |
 
 ### 镜像环境变量 {#img-envs}
 
@@ -212,6 +215,52 @@ Dataway 在 Kubernetes 环境中运行时，支持如下环境变量。
 | DW_MAX_HTTP_BODY_BYTES      | N        | Dataway API 允许的最大 HTTP Body（**单位字节**），默认 64MB                                        |      |
 | DW_TLS_INSECURE_SKIP_VERIFY | N        | 忽略 HTTPS/TLS 证书错误                                                                            | `on` |
 | DW_HTTP_CLIENT_TRACE        | N        | Dataway 自己作为 HTTP 客户端，可以开启一些相关的指标收集，这些指标最终会在其 Prometheus 指标中输出 | `on` |
+| DW_TLS_CRT                  | N        | 指定 HTTPS/TLS crt 文件目录（dataway-changelog.md#cl-1.4.0）                                       |      |
+| DW_TLS_KEY                  | N        | 指定 HTTPS/TLS key 文件目录（dataway-changelog.md#cl-1.4.0）                                       |      |
+
+
+要生成一个有效期为一年的 TLS 证书，您可以使用以下 OpenSSL 命令：
+
+```shell
+# 生成有效期一年的 TLS 证书
+$ openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out tls.crt -keyout tls.key
+...
+```
+
+执行该命令后，系统会提示您输入一些必要信息，包括您的国家、地区、城市、组织名称、部门名称以及您的电子邮件地址。这些信息将被包含在您的证书中。
+
+完成信息输入后，您将生成两个文件：*tls.crt*（证书文件）和 *tls.key*（私钥文件）。请妥善保管您的私钥文件，并确保其安全性。
+
+为了使应用程序能够使用这些 TLS 证书，您需要将这两个文件的绝对路径设置到应用程序的环境变量中。以下是设置环境变量的一个示例：
+
+```yaml
+env:
+- name: DW_TLS_CRT
+  value: "/path/to/your/tls.crt"
+- name: DW_TLS_KEY
+  value: "/path/to/your/tls.key"
+```
+
+请将 `/path/to/your/tls.crt` 和 `/path/to/your/tls.key` 替换为您实际存放 `tls.crt` 和 `tls.key` 文件的路径。
+
+设置完以后，可以用如下命令测试 TLS 是否生效：
+
+```shell
+$ curl -k http://localhost:9528
+```
+
+如果成功，会显示一个 `It's working!` 的 ASCII Art 信息。如果证书不存在，Dataway 日志中会有类似如下报错：
+
+```text
+server listen(TLS) failed: open /path/to/your/tls.{crt,key}: no such file or directory
+```
+
+此时 Dataway 无法启动，上面的 curl 命令也会报错：
+
+```shell
+$ curl -vvv -k http://localhost:9528
+curl: (7) Failed to connect to localhost port 9528 after 6 ms: Couldn't connect to server
+```
 
 #### 日志有关 {#env-logging}
 
@@ -490,25 +539,30 @@ watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
 
 |TYPE|NAME|LABELS|HELP|
 |---|---|---|---|
+|SUMMARY|`dataway_http_api_req_size_bytes`|`api,method,status`|API request size|
+|COUNTER|`dataway_http_api_total`|`api,method,status`|API request count|
 |COUNTER|`dataway_http_api_body_too_large_dropped_total`|`api,method`|API request too large dropped|
 |COUNTER|`dataway_http_api_with_inner_token`|`api,method`|API request with inner token|
 |COUNTER|`dataway_http_api_dropped_total`|`api,method`|API request dropped when sinker rule match failed|
 |COUNTER|`dataway_http_api_signed_total`|`api,method`|API signature count|
 |SUMMARY|`dataway_http_api_cached_bytes`|`api,cache_type,method,reason`|API cached body bytes|
 |SUMMARY|`dataway_http_api_reusable_body_read_bytes`|`api,method`|API re-read body on forking request|
+|SUMMARY|`dataway_http_api_recv_points`|`api`|API /v1/write/:category recevied points|
+|SUMMARY|`dataway_http_api_send_points`|`api`|API /v1/write/:category send points|
+|SUMMARY|`dataway_http_api_cache_points`|`api,cache_type`|Disk cached /v1/write/:category points|
+|SUMMARY|`dataway_http_api_cache_cleaned_points`|`api,cache_type,status`|Disk cache cleaned /v1/write/:category points|
 |COUNTER|`dataway_http_api_forked_total`|`api,method,token`|API request forked total|
 |GAUGE|`dataway_http_info`|`cascaded,docker,http_client_trace,listen,max_body,release_date,remote,version`|Dataway API basic info|
+|GAUGE|`dataway_last_heartbeat_time`|`N/A`|Dataway last heartbeat with Kodo timestamp|
 |GAUGE|`dataway_cpu_usage`|`N/A`|Dataway CPU usage(%)|
 |GAUGE|`dataway_open_files`|`N/A`|Dataway open files|
 |GAUGE|`dataway_cpu_cores`|`N/A`|Dataway CPU cores|
 |COUNTER|`dataway_process_ctx_switch_total`|`type`|Dataway process context switch count(Linux only)|
 |COUNTER|`dataway_process_io_count_total`|`type`|Dataway process IO count count|
 |COUNTER|`dataway_process_io_bytes_total`|`type`|Dataway process IO bytes count|
-|GAUGE|`dataway_last_heartbeat_time`|`N/A`|Dataway last heartbeat with Kodo timestamp|
 |SUMMARY|`dataway_http_api_dropped_expired_cache`|`api,method`|Dropped expired cache data|
 |SUMMARY|`dataway_http_api_elapsed_seconds`|`api,method,status`|API request latency|
-|SUMMARY|`dataway_http_api_req_size_bytes`|`api,method,status`|API request size|
-|COUNTER|`dataway_http_api_total`|`api,method,status`|API request count|
+|SUMMARY|`dataway_http_api_body_buffer_utilization`|`api`|API body buffer utillization(Len/Cap)|
 |SUMMARY|`dataway_httpcli_http_connect_cost_seconds`|`server`|HTTP connect cost|
 |SUMMARY|`dataway_httpcli_got_first_resp_byte_cost_seconds`|`server`|Got first response byte cost|
 |COUNTER|`dataway_httpcli_tcp_conn_total`|`server,remote,type`|HTTP TCP connection count|
@@ -516,12 +570,14 @@ watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
 |SUMMARY|`dataway_httpcli_conn_idle_time_seconds`|`server`|HTTP connection idle time|
 |SUMMARY|`dataway_httpcli_dns_cost_seconds`|`server`|HTTP DNS cost|
 |SUMMARY|`dataway_httpcli_tls_handshake_seconds`|`server`|HTTP TLS handshake cost|
+|SUMMARY|`dataway_sinker_cache_key_len`|`N/A`|cache key length(bytes)|
+|SUMMARY|`dataway_sinker_cache_val_len`|`N/A`|cache value length(bytes)|
 |COUNTER|`dataway_sinker_pull_total`|`event,source`|Sinker pulled or pushed counter|
 |GAUGE|`dataway_sinker_rule_cache_miss`|`N/A`|Sinker rule cache miss|
 |GAUGE|`dataway_sinker_rule_cache_hit`|`N/A`|Sinker rule cache hit|
 |GAUGE|`dataway_sinker_rule_cache_size`|`N/A`|Sinker rule cache size|
 |GAUGE|`dataway_sinker_rule_error`|`error`|Rule errors|
-|GAUGE|`dataway_sinker_rule_last_applied_time`|`source`|Rule last appliied time(Unix timestamp)|
+|GAUGE|`dataway_sinker_rule_last_applied_time`|`source`|Rule last applied time(Unix timestamp)|
 |SUMMARY|`dataway_sinker_rule_cost_seconds`|`N/A`|Rule cost time seconds|
 |COUNTER|`diskcache_put_bytes_total`|`path`|Cache Put() bytes count|
 |COUNTER|`diskcache_get_total`|`path`|Cache Get() count|
@@ -644,5 +700,5 @@ Dataway 对请求体大小有默认设置（默认 64MB），但请求体太大�
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    在磁盘缓存模块，也有一个最大的数据块写入限制（默认 64MB）。如果增加最大请求体配置，也要一并调整该配置（[ENV_DISKCACHE_MAX_DATA_SIZE](https://github.com/GuanceCloud/cliutils/tree/main/diskcache#%E9%80%9A%E8%BF%87-env-%E6%8E%A7%E5%88%B6%E7%BC%93%E5%AD%98-option){:target="_blank"}），以确保大请求能正确写入磁盘缓存。
+    在磁盘缓存模块，也有一个最大的数据块写入限制（默认 64MB）。如果增加最大请求体配置，也要一并调整该配置（[`ENV_DISKCACHE_MAX_DATA_SIZE`](https://github.com/GuanceCloud/cliutils/tree/main/diskcache#%E9%80%9A%E8%BF%87-env-%E6%8E%A7%E5%88%B6%E7%BC%93%E5%AD%98-option){:target="_blank"}），以确保大请求能正确写入磁盘缓存。
 <!-- markdownlint-enable -->

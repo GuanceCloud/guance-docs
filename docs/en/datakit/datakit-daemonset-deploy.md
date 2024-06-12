@@ -376,6 +376,12 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
     Set the encoding of the point data at upload time (optional list: 'v1' is the line protocol, 'v2' is Protobuf)
 
     **Type**: String
+
+- **ENV_DATAWAY_TLS_INSECURE**
+
+    Enable self-signed TLS certificate on Dataway[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
+
+    **Type**: Boolean
 <!-- markdownlint-enable -->
 
 ### Log Configuration Environments {#env-log}
@@ -533,6 +539,30 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     **Default**: -
 
+- **ENV_HTTP_ENABLE_TLS**
+
+    Enable Datakit 9529 HTTPS[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0).
+
+    **Type**: Boolean
+
+    **Default**: -
+
+- **ENV_HTTP_TLS_CRT**
+
+    Set Datakit HTTP Server's TLS cert path[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0).
+
+    **Type**: String
+
+    **Default**: -
+
+- **ENV_HTTP_TLS_KEY**
+
+    Set Datakit HTTP Server's TLS key path[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0).
+
+    **Type**: String
+
+    **Default**: -
+
 - **ENV_REQUEST_RATE_LIMIT**
 
     Limit 9529 [API requests per second](datakit-conf.md#set-http-api-limit).
@@ -541,7 +571,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_RUM_ORIGIN_IP_HEADER**
 
-    RUM dedicated
+    Set RUM HTTP request(`/v1/write/rum`) real IP forward header key.
 
     **Type**: String
 
@@ -553,7 +583,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     **Type**: String
 
-    **Example**: appid-1,appid-2
+    **Example**: appid-1, appid-2
 <!-- markdownlint-enable -->
 
 ### Confd Environment Variables {#env-confd}

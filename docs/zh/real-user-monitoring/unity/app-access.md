@@ -372,6 +372,7 @@ FTUnityBridge.AddLongTask("long task test", 100002);
 ```
 
 ## Log 日志打印
+> 目前日志内容限制为 30 KB，字符超出部分会进行截断处理
 ### 使用方法
 ```csharp
 /// <summary>

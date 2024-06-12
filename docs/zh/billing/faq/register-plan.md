@@ -43,4 +43,4 @@ AWS 用户可以通过选择“中国区2（宁夏）”、“海外区1（俄�
 
 ## 若以上常见问题无法解决，如何获得在线支持？
 
-观测云提供在线工单[支持](../../billing/cost-center/support-center.md)。
+观测云提供在线工单[支持](../../billing-center/support-center.md)。

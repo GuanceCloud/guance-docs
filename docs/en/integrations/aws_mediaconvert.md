@@ -58,4 +58,21 @@ After this function is enabled, you can view the automatic triggering configurat
 Configure AWS MediaConvert. The default metric set is as follows. You can collect more metrics by configuring them [Aws Cloud Monitor Metrics Details](https://docs.amazonaws.cn/mediaconvert/latest/ug/what-is.html){:target="_blank"}
 
 
+### Metrics
+
+| Metric | Description | Unit |
+| -- | -- | -- |
+| AvgBitrateBottom | Average data transfer rate | B/S |
+| AvgBitrateTop | The highest value of data transmission rate | B/S |
+| BlackVideoDetectedRatio | Black screen percentage | % |
+| BlackVideoDetected | Black screen occurrence time | seconds |
+| Errors | Number of video errors | count |
+| JobsCanceledCount | Number of job cancellations | count |
+| JobsCompletedCount | Number of job completed | count |
+| JobsErroredCount | Number of job errors | count |
+| QVBRAvgQualityHighBitrate | Video Variable Bit Rate | % |
+| SDOutputDuration | Standard definition output detection | seconds |
+| StandbyTime | standby time | seconds |
+| VideoPaddingInsertedRatio | Video Fill Ratio | % |
+| VideoPaddingInserted | Is there a video filling | count |
 

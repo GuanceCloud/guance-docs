@@ -1,5 +1,92 @@
 # 更新日志
 
+## 1.30.0(2024/06/04) {#cl-1.30.0}
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.30.0-new}
+
+- Pipeline
+    - 新增 `gjson()` 函数，提供有序的 JSON 字段提取（#2167）
+    - 新增上下文缓存功能（#2157）
+
+### 问题修复 {#cl-1.30.0-fix}
+
+- 修复 Prometheus Remote Write global-tag 追加问题[^2244]（#2244）
+
+[^2244]: 该问题自 1.25.0 版本引入，如果开启了 Prometheus Remote Write 采集器，建议升级一下。
+
+### 功能优化 {#cl-1.30.0-opt}
+
+- 优化 Datakit [`/v1/write/:category` API](apis.md#api-v1-write)，做了如下调整和功能（#2130）
+    - 增加更多 API 参数（[`echo`](apis.md#preview-post-point)/`dry`），便于调试
+    - 支持更多类型的数据格式
+    - 支持模糊识别数据点中的时间戳精度（#2120）
+- 优化 MySQL/Nginx/Redis/SQLServer 指标采集（#2196）
+    - MySQL 增加主从复制相关指标
+    - Redis 慢日志增加耗时指标
+    - Nginx 增加更多 Nginx Plus 相关指标
+    - SQLServer 优化了 Performance 相关的指标结构
+- MySQL 采集器增加低版本 TLS 支持（#2245）
+- 优化 Kubernetes 自身 etcd 指标采集的 TLS 证书配置（#2032）
+- Prometheus Exporter 指标采集支持配置「保留原始指标名」（#2231）
+- Kubernetes Node 对象增加污点相关信息（#2239）
+- eBPF-Tracing 增加 MySQL 协议识别（#1768）
+- 优化 ebpftrace 采集器性能（#2226）
+- 拨测采集器的运行状态支持在 `datakit monitor` 命令面板上展示（#2243）
+- 其它视图和文档优化（#1976/#1977/#2194/#2195/#2221/#2235）
+
+### 兼容调整 {#cl-1.30.0-brk}
+
+本次版本，扩展了数据协议，老版本的 Datakit 升级上来之后，如果中心底座是私有部署的，可以做如下措施，保持数据兼容：
+
+- 升级中心底座至 [1.86.166](../deployment/changelog.md#1861662024-05-29)
+- 修改 *datakit.conf* 中[上传协议配置 `content_encoding`](datakit-conf.md#dataway-settings)，将其改为 `v2`
+
+---
+
+## 1.29.1(2024/05/20) {#cl-1.29.1}
+
+本次发布属于 Hotfix 发布，修复如下问题：
+
+- 修复 MongoDB 采集器可能崩溃的问题（#2229）
+
+---
+
+## 1.29.0(2024/05/15) {#cl-1.29.0}
+
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.29.0-new}
+
+- 容器日志采集支持在 Annotation 上配置颜色字符过滤 `remove_ansi_escape_codes`（#2208）
+- [Health Check 采集器](../integrations/host_healthcheck.md)支持命令行参数过滤（#2197）
+- 增加 [Cassandra 采集器](../integrations/cassandra.md)（#1812）
+- 新增[用量统计](datakit-conf.md#dk-usage-count)功能（#2177）
+- eBPF Tracing 新增 HTTP2/gRPC 支持（#2017）
+
+### 问题修复 {#cl-1.29.0-fix}
+
+- 修复 Kubernetes 不采集 Pending Pods 的问题（#2214）
+- 修复 logfwd 存在启动失败的问题（#2216）
+- 修复日志采集在特殊情况下没有执行颜色字符过滤的问题（#2209）
+- 修复 Profile 采集不能追加 Tag 的问题（#2205）
+- 修复 Redis/MongoDB 采集器可能导致的 Goroutine 泄漏问题（#2199/#2215）
+
+### 功能优化 {#cl-1.29.0-opt}
+
+- 支持 Prometheus PodMonitor/ServiceMonitor TLSConfig 的 insecureSkipVerify 配置项（#2211）
+- 拨测调试接口安全加固（#2203）
+- Nginx 采集器支持采集端口范围指定（#2206）
+- 完善 TLS 证书相关的 ENV 设置（#2198）
+- 其它文档等优化（#2210/#2213/#2218/#2223/#2224/#2141/#2080）
+
+### 兼容调整 {#cl-1.29.0-brk}
+
+- 移除 Prometheus PodMonitor/ServiceMonitor TLSConfig 证书文件路径的方式（#2211）
+- DCA 路由参数优化和 reload 逻辑优化（#2220）
+
+---
+
 ## 1.28.1(2024/04/22) {#cl-1.28.1}
 
 本次发布属于 Hotfix 发布，修复如下问题：
@@ -716,10 +803,10 @@
 ### 问题修复 {#cl-1.12.0-fix}
 
 - 修复拨测采集器缺失 `owner` 字段问题（#1789）
-- 修复 DDTrace 采集器缺失 `host` 问题，同时各类 Trace 的 tag 采集改为黑名单机制[^trace-black-list]（#1776）
+- 修复 DDTrace 采集器缺失 `host` 问题，同时各类 Trace 的 tag 采集改为黑名单机制[^1776]（#1776）
 - 修复 RUM API 跨域问题（#1785）
 
-[^trace-black-list]: 各类 Trace 会在其数据上带上各种业务字段（称之为 Tag、Annotation 或 Attribute 等），Datakit 为了收集更多数据，默认这些字段都予以接收。
+[^1776]: 各类 Trace 会在其数据上带上各种业务字段（称之为 Tag、Annotation 或 Attribute 等），Datakit 为了收集更多数据，默认这些字段都予以接收。
 
 ### 功能优化 {#cl-1.12.0-opt}
 
@@ -2354,8 +2441,8 @@ powershell ./.install.ps1;
 
 ```
 [
-	{"abc": 123},
-	{"def": true}
+    {"abc": 123},
+    {"def": true}
 ]
 ```
 
@@ -2526,12 +2613,6 @@ powershell ./.install.ps1;
     - [Redis](redis)
     - [Solr](solr)
 
-<!--
-- [DCA](dca) 相关功能完善
-	- 独立端口分离(#341)
-	- 远程重启功能调整(#345)
-	- 白名单功能(#244) -->
-
 ---
 
 ## 1.1.8-rc3(2021/09/10)
@@ -2656,15 +2737,15 @@ powershell ./.install.ps1;
   output_file                  = ""    # 输出 io 数据到本地文件，原主配置中 output_file
 
 [http_api]
-	listen          = "localhost:9529" # 原 http_listen
-	disable_404page = false            # 原 disable_404page
+    listen          = "localhost:9529" # 原 http_listen
+    disable_404page = false            # 原 disable_404page
 
 [logging]
-	log           = "/var/log/datakit/log"     # 原 log
-	gin_log       = "/var/log/datakit/gin.log" # 原 gin.log
-	level         = "info"                     # 原 log_level
-	rotate        = 32                         # 原 log_rotate
-	disable_color = false                      # 新增配置
+    log           = "/var/log/datakit/log"     # 原 log
+    gin_log       = "/var/log/datakit/gin.log" # 原 gin.log
+    level         = "info"                     # 原 log_level
+    rotate        = 32                         # 原 log_rotate
+    disable_color = false                      # 新增配置
 ```
 
 ---
@@ -3011,13 +3092,13 @@ powershell ./.install.ps1;
 - 支持在 http://localhost:9529/man 页面浏览 DataKit 文档（只有此次新改的采集器文档集成过来了，其它采集器文档需在原来的帮助中心查看）。默认情况下不支持远程查看 DataKit 文档，可在终端查看（仅 Mac/Linux 支持）：
 
 ```shell
-	# 进入采集器安装目录，输入采集器名字（通过 `Tab` 键选择自动补全）即可查看文档
-	$ ./datakit -cmd -man
-	man > nginx
-	(显示 Nginx 采集文档)
-	man > mysql
-	(显示 MySQL 采集文档)
-	man > Q               # 输入 Q 或 exit 退出
+# 进入采集器安装目录，输入采集器名字（通过 `Tab` 键选择自动补全）即可查看文档
+$ ./datakit -cmd -man
+man > nginx
+(显示 Nginx 采集文档)
+man > mysql
+(显示 MySQL 采集文档)
+man > Q               # 输入 Q 或 exit 退出
 ```
 
 ---
@@ -3175,25 +3256,3 @@ powershell ./.install.ps1;
 - `tailf` 采集器新日志匹配改成正向匹配
 - 其它一些细节问题修复
 - 支持 Mac 平台的 CPU 数据采集
-
-<!--
-[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
-[:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
-
-    ```toml
-        
-    ```
-
-# 外链的添加方式
-[some text](http://external-host.com){:target="_blank"}
-
-## x.x.x(YY/MM/DD) {#cl-x.x.x}
-
-本次发布属于迭代发布，主要有如下更新：
-
-### 新加功能 {#cl-x.x.x-new}
-### 问题修复 {#cl-x.x.x-fix}
-### 功能优化 {#cl-x.x.x-opt}
-### 兼容调整 {#cl-x.x.x-brk}
--->
-<!-- markdown-link-check-enable -->
