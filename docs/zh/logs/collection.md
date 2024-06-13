@@ -26,7 +26,7 @@ DataKit 安装完成后，您可以通过开启标准日志采集或者自定义
 
     通过开启观测云支持的标准日志采集器，如 [Nginx](../integrations/nginx.md)、[Redis](../integrations/redis.md)、[ES](../integrations/elasticsearch.md) 等，您可以一键开启日志采集。
 
-???+ warning
+???+ warning "注意"
 
     配置日志采集器时，需开通日志的 Pipeline 功能，提取日志时间 `time` 和日志等级 `status` 的字段：
     
