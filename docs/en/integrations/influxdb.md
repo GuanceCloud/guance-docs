@@ -135,7 +135,7 @@ Already tested version:
 
 ## Metric {#metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.influxdb.tags]`:
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.influxdb.tags]` if needed:
 
 ``` toml
  [inputs.influxdb.tags]

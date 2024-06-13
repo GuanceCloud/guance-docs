@@ -1059,6 +1059,22 @@ spec:
     **Type**: List
 
     **Example**: `http://aaa:123,http://1.2.3.4:1234`
+
+- **ENV_CRYPTO_AES_KEY**
+
+    AES 加解密的 key 长度是 16
+
+    **Type**: String
+
+    **Example**: `0123456789abcdef`
+
+- **ENV_CRYPTO_AES_KEY_FILE**
+
+    AES 加解密的 key 存放的文件路径
+
+    **Type**: String
+
+    **Example**: `/usr/local/datakit/enc4mysql`
 <!-- markdownlint-enable -->
 
 ### 特殊环境变量 {#env-special}
