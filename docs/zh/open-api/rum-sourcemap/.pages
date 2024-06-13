@@ -6,3 +6,4 @@ nav:
   - '列出一个分片上传事件所对应的已上传的分片列表': part-list.md
   - '合并各分片生成文件': part-merge.md
   - '取消一个分片上传事件': upload-cancel.md
+  - '上传单个文件内容': upload-file-content.md
