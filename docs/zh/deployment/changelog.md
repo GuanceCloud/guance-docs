@@ -1,5 +1,16 @@
 # 版本历史
 
+## 1.87.167（2024 年 06 月 05 日）
+
+pubrepo.guance.com/dataflux/1.87.167:launcher-135ba54-1718086022
+
+### 观测云更新
+
+- **管理 > [跨工作空间授权](../management/data-authorization.md#site)**：添加页面新增【数据范围】，支持多选数据类型。
+- **日志 > 日志查看器**：支持[跨工作空间索引查询](../logs/cross-workspace-index.md)，快速获取其它空间的日志数据，从而突破日志数据存储位置的限制，大幅度提升数据分析和故障定位的效率。
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
 ## 1.86.166（2024 年 05 月 29 日）
 
 pubrepo.guance.com/dataflux/1.86.166:launcher-edb908f-1717137436
@@ -2329,7 +2340,7 @@ pubrepo.guance.com/dataflux/1.41.94:launcher-249ba21-1653737335
 - 行协议构造支持自动纠错
 - DataKit 主配置增加示例配置
 - Prometheus Remote Write 支持 tag 重命名
-- 合并社区版 DataKit 已有的功能，主要包含 Sinker 功能以及 filebeat 采集器
+- 合并部署版 DataKit 已有的功能，主要包含 Sinker 功能以及 filebeat 采集器
 - 调整容器日志采集，DataKit 直接支持 containerd 下容器 stdout/stderr 日志采集
 - 调整 DaemonSet 模式下主机名获取策略
 - Trace 采集器支持通过服务名（service）通配来过滤资源（resource）
@@ -2413,8 +2424,6 @@ pubrepo.guance.com/dataflux/1.39.91:launcher-8943ead-1650979666
 ## v1.39.90(2022年4月25日)
 
 pubrepo.guance.com/dataflux/1.39.90:launcher-23f161d-1650898148 
-
-### 观测云社区版上线
 
 ### 观测云更新
 
