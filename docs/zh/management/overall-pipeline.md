@@ -9,17 +9,17 @@ Pipelines 用于数据解析，通过定义解析规则，将各种数据类型�
 - [安装 DataKit](../datakit/datakit-install.md)；
 - DataKit 版本要求 >= 1.5.0。
 
-为了保证 Pipeline 的正常使用，请将 DataKit 升级到1.5.0及以上。版本过低会导致部分 Pipeline 功能失效。在 `DataKit<1.5.0` 版本之前：
+为了保证 Pipeline 的正常使用，请将 DataKit 升级到 1.5.0 及以上。版本过低会导致部分 Pipeline 功能失效。在 `DataKit<1.5.0` 版本之前：
 
 - 不支持默认 Pipeline 功能；
 
-- 数据来源不支持多选，每个 Pipeline 只能选择一个 source。所以若你版本低于 1.5.0，同时又多选了数据来源，则不会生效；
+- 数据来源不支持多选，每个 Pipeline 只能选择一个 `source`。所以若您的版本低于 1.5.0，同时又多选了数据来源，则不会生效；
 
-- Pipeline 名称为固定生成不支持修改。例如：日志来源选择了 nginx，则 Pipeline 名称固定为 `nginx.p`。所以若你版本低于 1.5.0，Pipeline 名称与数据来源名称不一致，则 Pipeline 不会生效。
+- Pipeline 名称为固定生成不支持修改。例如：日志来源选择了 `nginx`，则 Pipeline 名称固定为 `nginx.p`。所以若您的版本低于 1.5.0，Pipeline 名称与数据来源名称不一致，则 Pipeline 不会生效。
 
 ## 新建 Pipeline
 
-在观测云工作空间**管理 > 文本处理（Pipelines）**，点击**新建 Pipeline**即可创建一个新的 Pipeline 文件。或者您可以在指标、日志、用户访问、应用性能、基础设施、安全巡检功能目录快捷入口，点击 **Pipelines** 进行创建。
+在观测云工作空间**管理 > Pipelines**，点击**新建 Pipeline** 即可创建一个新的 Pipeline 文件。或者您可以在指标、日志、用户访问、应用性能、基础设施、安全巡检功能目录快捷入口，点击 **Pipelines** 进行创建。
 
 ![](img/1-pipeline-2.png)
 
@@ -32,26 +32,28 @@ Pipelines 用于数据解析，通过定义解析规则，将各种数据类型�
 
 ### 配置说明
 
-在新建 Pipeline 页面，可以先**过滤**出想要进行文本处理的数据范围，然后再「定义解析规则」，若想要测试输入的解析规则是否正确有效，可以在**样本解析测试**输入对应的数据进行测试，测试通过后点击“保存”即可创建 pipeline 文件。
+在新建 Pipeline 页面，可以先**过滤**出想要进行文本处理的数据范围，然后再**定义解析规则**，若想要测试输入的解析规则是否正确有效，可以在**样本解析测试**输入对应的数据进行测试，测试通过后点击**保存**即可创建 Pipeline 文件。
 
-**1、基础设置**
+![](img/7.pipeline_1.png)
+
+:material-numeric-1-circle: 基础设置
 
 - 过滤：数据类型包括日志、指标、用户访问监测、应用性能监测、基础对象、自定义对象、网络、安全巡检，支持多选；  
 - Pipeline 名称：输入自定义的 Pipeline 文件名。
 
 **注意**：自定义 Pipeline 文件不能同名，但可以和官方 Pipeline 同名，此时 DataKit 会优先自动获取自定义 Pipeline 文件配置。若在采集器的 `.conf` 文件中手动配置 Pipeline 文件名，此时 DataKit 会优先获取手动配置的 Pipeline 文件名。
 
-- 设置为默认 Pipeline ：勾选**设置为默认 Pipeline**，若当前数据类型在匹配 Pipeline 处理时，未匹配到其他的 Pipeline 脚本，则数据会按照默认 Pipeline 脚本的规则处理。
+- 设置为默认 Pipeline：勾选**设置为默认 Pipeline**，若当前数据类型在匹配 Pipeline 处理时，未匹配到其他的 Pipeline 脚本，则数据会按照默认 Pipeline 脚本的规则处理。
 
-**注意**：每个数据类型只能设置一个「默认 Pipeline」，新建/导入时出现重复会弹出确认框，询问是否进行替换，已勾选为默认的 Pipeline ，名称后会有一个 “default” 标识。
+**注意**：每个数据类型只能设置一个默认 Pipeline，新建/导入时出现重复会弹出确认框，询问是否进行替换，已勾选为默认的 Pipeline，名称后会有一个 `default` 标识。
 
-**2、定义解析规则**
+:material-numeric-2-circle: 定义解析规则
 
 定义不同来源数据的解析规则，支持多种脚本函数，可通过观测云提供的脚本函数列表直接查看其语法格式，如 `add_pattern()` 等。
 
-> 关于如何定义解析规则，可参考文档 [Pipeline 手册](../developers/pipeline.md)。
+> 关于如何定义解析规则，可参考 [Pipeline 手册](../developers/pipeline.md)。
 
-**3、样本解析测试**
+:material-numeric-3-circle: 样本解析测试
 
 根据选择的数据类型，输入对应的数据，基于配置的解析规则进行测试。
 
@@ -61,9 +63,9 @@ Pipelines 用于数据解析，通过定义解析规则，将各种数据类型�
 
 **注意**：在观测云工作空间创建的 Pipeline 统一保存在 `<datakit 安装目录>/pipeline_remote 目录下` ，每种类型的 Pipeline 文件都保存在对应的二级目录下，其中一级目录下的文件默认为日志 Pipeline。如指标 `cpu.p` 保存在 `<datakit 安装目录>/pipeline_remote/metric/cpu.p 目录下`。
 
-> 更多详情，可参考[Pipeline 各类别数据处理](../developers/datakit-pl-global.md)。
+> 更多详情，可参考 [Pipeline 各类别数据处理](../developers/datakit-pl-global.md)。
 
-![](img/7.pipeline_1.png)
+
 
 ### 调试 Pipeline {#test}
 
@@ -83,16 +85,17 @@ Pipelines 用于数据解析，通过定义解析规则，将各种数据类型�
 
 您也可以直接手动输入样本数据进行测试，观测云支持两种格式类型：
 
-- 日志数据可在样本解析测试中直接输入 message 内容进行测试；
-> 更多日志 Pipeline 详情，可参考[日志 Pipeline 使用手册](../logs/pipelines/manual.md)。
+- 日志数据可在样本解析测试中直接输入 `message` 内容进行测试；
 - 其他数据类型先将内容转换成“行协议”格式的内容，再输入进行样本解析测试。
   
+> 更多日志 Pipeline 详情，可参考 [日志 Pipeline 使用手册](../logs/pipelines/manual.md)。
+
 ##### 行协议示例
 
 ![](img/5.pipeline_5.png)
 
 
-- cpu、redis 为指标集；tag1、tag2 为标签集；f1、f2、f3 为字段集（其中 f1=1i 表示为 int，f2=1.2 表示默认为 float，f3="abc" 表示为 string）；162072387000000000 为时间戳；    
+- `cpu`、`redis` 为指标集；tag1、tag2 为标签集；f1、f2、f3 为字段集（其中 f1=1i 表示为 int，f2=1.2 表示默认为 float，f3="abc" 表示为 string）；162072387000000000 为时间戳；    
 - 指标集和标签集之间用逗号隔开；多个标签之间用逗号隔开； 
 - 标签集和字段集之间用空格隔开；多个字段之间用逗号隔开；      
 - 字段集和时间戳之间用空格隔开；时间戳必填；           
@@ -112,19 +115,19 @@ Pipelines 用于数据解析，通过定义解析规则，将各种数据类型�
 
 除了在观测云控制台调试 Pipeline 以外，您也可以通过终端命令行来调试 Pipeline。
 
-> 更多详情，可参考[如何编写 Pipeline 脚本](../developers/datakit-pl-how-to.md)。
+> 更多详情，可参考 [如何编写 Pipeline 脚本](../developers/datakit-pl-how-to.md)。
 
 ### 配置示例
 
-> 更多 Pipeline 的配置示例相关，可参考[日志 Pipeline 使用手册](../logs/pipelines/manual.md)、[DataKit Pipeline 使用手册](../logs/pipelines/datakit-manual.md)。
+> 更多 Pipeline 的配置示例相关，可参考 [日志 Pipeline 使用手册](../logs/pipelines/manual.md)、[DataKit Pipeline 使用手册](../logs/pipelines/datakit-manual.md)。
 
-## 操作 Pipeline
+## 管理 Pipeline
 
 ### 编辑/删除/启用/禁用
 
-在观测云工作空间**管理 > 文本处理（Pipelines）**，点击右侧操作下的按钮即可对 Pipeline 文件编辑/删除/启用/禁用。
+在观测云工作空间**管理 > Pipelines**，点击右侧操作下的按钮即可对 Pipeline 文件编辑/删除/启用/禁用。
 
-???+ warning
+???+ warning "注意"
 
     - 编辑 Pipeline 文件后，默认生效时间为 1 分钟； 
     - 删除 Pipeline 文件后，无法恢复，需要重新创建；若存在同名的官方库 Pipeline 文件，DataKit 会自动匹配官方库 Pipeline 文件进行文本处理；  
@@ -136,14 +139,14 @@ Pipelines 用于数据解析，通过定义解析规则，将各种数据类型�
 
 **批量操作**功能支持用户在 Pipeline 文件列表中**批量导出**、**批量删除**。通过选定批量操作，您可以同时选定多个 Pipeline 文件进行导出、删除。
 
-在观测云工作空间**管理 > 文本处理（Pipelines）**，点击**批量操作**，即可**批量导出**或**批量删除** Pipelines。
+在观测云工作空间**管理 > Pipelines**，点击**批量操作**，即可**批量导出**或**批量删除** Pipelines。
 
 **注意**：该功能仅对工作空间拥有者、管理员、标准成员显示，只读成员不显示。
 
 
 ### 导入/导出
 
-在观测云工作空间**管理 > 文本处理（Pipelines）**中支持**导入/导出 Pipeline**，即通过导入/导出 JSON 文件的方式创建 Pipeline。
+在观测云工作空间**管理 > Pipelines**中支持**导入/导出 Pipeline**，即通过导入/导出 JSON 文件的方式创建 Pipeline。
 
 **注意**：导入的 JSON 文件需要是来自观测云的配置 JSON 文件。
 
@@ -161,7 +164,7 @@ Pipelines 用于数据解析，通过定义解析规则，将各种数据类型�
 
 选择打开任意一个 Pipeline 文件，如 `apache.p`，可以看到内置的解析规则，如果需要自定义修改，可以点击右上角的**克隆**。
 
-???+ warning
+???+ warning "注意"
 
     - Pipeline 官方库文件不支持修改；  
     - Pipeline 官方库自带多个日志样本测试数据，在**克隆**前可选择符合自身需求的日志样本测试数据；  
@@ -175,7 +178,7 @@ Pipelines 用于数据解析，通过定义解析规则，将各种数据类型�
 
 ![](img/2.pipeline_3.png)
 
-创建完成后，可以在**日志 > Pipelines** 查看所有已经创建的自定义 Pipeline 文件，支持对 Pipeline 编辑/删除/启用 /禁用。
+创建完成后，可以在**日志 > Pipelines** 查看所有已经创建的自定义 Pipeline 文件，支持对 Pipeline 编辑/删除/启用/禁用。
 
 ![](img/2.pipeline_4.png)
 
