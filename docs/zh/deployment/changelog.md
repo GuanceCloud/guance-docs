@@ -1,5 +1,16 @@
 # 版本历史
 
+## 1.87.167（2024 年 06 月 05 日）
+
+pubrepo.guance.com/dataflux/1.87.167:launcher-135ba54-1718086022
+
+### 观测云更新
+
+- **管理 > [跨工作空间授权](../management/data-authorization.md#site)**：添加页面新增【数据范围】，支持多选数据类型。
+- **日志 > 日志查看器**：支持[跨工作空间索引查询](../logs/cross-workspace-index.md)，快速获取其它空间的日志数据，从而突破日志数据存储位置的限制，大幅度提升数据分析和故障定位的效率。
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
 ## 1.86.166（2024 年 05 月 29 日）
 
 pubrepo.guance.com/dataflux/1.86.166:launcher-edb908f-1717137436
