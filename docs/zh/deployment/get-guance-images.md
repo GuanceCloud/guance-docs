@@ -106,7 +106,7 @@
       
       将上面的 YAML 内容保存为 **launcher.yaml** 文件，放到**运维操作机**上，然后替换文档内的变量部分：
     
-      - {{ launcher_image }} 替换为最新版的 Launcher 应用的镜像地址，可以在 [社区版部署镜像](changelog.md) 文档中获取到最新版本的 Launcher 安装镜像地址
+      - {{ launcher_image }} 替换为最新版的 Launcher 应用的镜像地址，可以在 [部署镜像](changelog.md) 文档中获取到最新版本的 Launcher 安装镜像地址
       - {{ domain }} 替换为主域名，如使用 dataflux.cn
       - {{ storageClassName }}替换为storage class name，如 alicloud-nas
 
