@@ -18,7 +18,7 @@
 
 ## 服务的部分常用配置说明
 
-### Studio 后端服务
+### Studio 后端服务 {#studio-backend}
 
 #### 配置文件位置
 
@@ -69,7 +69,7 @@ BusinessQueryViewTimeOffset: 900
 |                 |  external   | 布尔 | false    | External API 接口文档开放开关  |
 | BusinessQueryViewTimeOffset |    | 数值 | 900    | 查询 RUM Resource 对应的链路数据的前后时间偏移范围，单位：秒 |
 
-### Studio 前端站点
+### Studio 前端站点 {#studio-front}
 
 #### 配置文件位置
 
@@ -104,7 +104,7 @@ window.DEPLOYCONFIG = {
 | isOverseas |    | 数值 | 0    | 配置此观测云站点是否为海外部署，将影响 RUM 中的世界地图、中国地图组件的显示 |
 | maxTraceSpanLimit |    | 数值 | 10000    | 链路的火焰图中最大的 Span 条数，默认值：10000 |
 
-### kodo 组件
+### kodo 组件 {#kodo}
 
 #### 配置文件位置
 
@@ -145,7 +145,7 @@ dql:
 |  dql   |  metric_query_workers   | 布尔 | false    |  DQL 指标数据查询 worker 数量 |
 |        |  log_query_workers   | 布尔 | false    | DQL 日志文本类（日志、链路、RUM 等所有文本类数据）数据查询 worker 数量 |
 
-### kodo-inner 组件
+### kodo-inner 组件 {#kodo-inner}
 
 #### 配置文件位置
 
@@ -176,7 +176,7 @@ dql:
 |        |  log_query_workers   | 布尔 | false    | DQL 日志文本类（日志、链路、RUM 等所有文本类数据）数据查询 worker 数量 |
 
 
-### kodo-x 组件
+### kodo-x 组件 {#kodo-x}
 
 #### 配置文件位置
 
