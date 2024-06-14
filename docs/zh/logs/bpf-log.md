@@ -22,7 +22,7 @@ BPF 网络，即 Berkeley Packet Filter (BPF) 技术，是一种在操作系统�
 
 ![](img/bpf_net_l4_log-1.gif)
 
-右上角搜索框内，支持对针对 seq 搜素数据包，快速定位。
+右上角搜索框内，支持对针对 seq 搜索数据包，快速定位。
 
 ## bpf_net_l7_log
 
