@@ -118,13 +118,11 @@ database:
 # Logger Configuration
 logger:
   filename: /logdata/business.log
-  mode: a
   level: info
   # 每个日志文件的最大大小
   max_bytes: 52428800
   # 日志文件滚动的总数量
   backup_count: 3
-  delay: true
   # 控制日志输出方式, 默认即输出到文件也输出到stdout
   output_mode_switch:
     file: true
@@ -137,7 +135,6 @@ g_access_logger:
   level: info
   max_bytes: 52428800
   backup_count: 3
-  delay: true
   # 控制日志输出方式, 默认即输出到文件也输出到stdout
   output_mode_switch:
     file: true
@@ -187,6 +184,10 @@ WorkspaceDefaultesIndexSettings:
 
 | 配置项 | 子项  | 类型  | 默认值 | 描述  |
 | --- | --- | --- | --- | --- |
+| protocol |     | 字符串 | http    | 观测云控制台地址访问协议    |
+| hostname |     | 字符串 | console.cloudcare.cn    | 观测云控制台地址    |
+| managementHostname |     | 字符串 | management.cloudcare.cn    | 管理后台站点访问地址    |
+| defaultLanguage |     | 字符串 | zh    | 系统默认语言, 新建的工作空间如果未指定语言，则默认使用此配置值    |
 | token_exp_set |  front_web   | 数值 | 14400    | Studio 浏览端用户登录的有效时长，单位：秒    |
 |               |  manage   | 数值 | 7200    | 管理后台浏览端用户登录的有效时长，单位：秒    |
 | apiDocPageSwitch|  admin   | 布尔 | false    | 管理后台的 API 接口文档开放开关    |
@@ -195,6 +196,48 @@ WorkspaceDefaultesIndexSettings:
 |                 |  openapi   | 布尔 | false    | OpenAPI 接口文档开放开关    |
 |                 |  external   | 布尔 | false    | External API 接口文档开放开关  |
 | BusinessQueryViewTimeOffset |    | 数值 | 900    | 查询 RUM Resource 对应的链路数据的前后时间偏移范围，单位：秒 |
+| database |  connection  | 字符串 |    | 数据库链接字符串 |
+|          |  pool_size  | 数值 |  20  | 单个 worker 链接池连接数常规大小 |
+|          |  max_overflow  | 数值 |  100  | 单个 worker 连接池链接最大溢出数量 |
+|          |  pool_timeout  | 数值 |  30  | 数据库链接超时时间, 单位：秒 |
+|          |  pool_recycle  | 数值 |  3600  | 控制连接池链接的回收时间，链接创建之后在该值指定的时间之后会被回收。单位：秒。一般要与pool_pre_ping、 pool_use_lifo 配合使用，且 pool_use_lifo应为 true. 注意，链接回收机制是在数据库链接被使用时才会触发。|
+|          |  pool_pre_ping  | 布尔 |  true  | 将启用连接池“预 ping”功能，该功能在每次使用时会测试连接的活动性|
+|          |  pool_use_lifo  | 布尔 |  true  | 检索连接时使用 LIFO（后进先出）QueuePool而不是 FIFO（先进先出）|
+|          |  server_custom_set.enable  | 布尔 |  false  | core 中各项服务自定义的数据库链接配置 |
+|          |  server_custom_set.服务名.子配置项  |  |    | core 中各项服务自定义的数据库链接配置.</br>「服务名」的可选值: websocket、sse、snapshot-server、 openapi、management-backend、inner、front-backend、external、core-worker-correlation、core-worker-beat、core-worker </br> 「子配置项」可选值为`database`配置项下的第一层配置项，注意不包含`server_custom_set` |
+| logger   |  filename  | 字符串 |  /logdata/business.log  | 日志文件 |
+|          |  level  | 字符串 |  info | 日志最低级别 |
+|          |  max_bytes  | 数值 |  52428800 | 每个日志文件的最大大小, 单位：字节 |
+|          |  backup_count  | 数值 |  3 | 日志文件滚动的总数量 |
+|          |  output_mode_switch.file  |  |  true | 控制日志输出方式开关, 支持输出到文件 |
+|          |  output_mode_switch.stdout  |  |  true | 控制日志输出方式开关, 支持输出到stdout |
+| g_access_logger   |    |  |    | gunicon日志配置，相关子配置项与 logger 相同 |
+| workspaceLoggingCutSizeSet   |  es  | 数值 |  10240  | 新建工作空间时, 默认的超大日志拆分单位, 单位byte，存储类型为: elasticsearch/OpenSearch |
+|    |  sls  | 数值 |  2048  | 新建工作空间时, 默认的超大日志拆分单位, 单位byte，存储类型为: 阿里云中的SLS存储 |
+|    |  beaver  | 数值 |  2048  | 新建工作空间时, 默认的超大日志拆分单位, 单位byte，存储类型为: 日志易 |
+|    |  doris  | 数值 |  10240  | 新建工作空间时, 默认的超大日志拆分单位, 单位byte，存储类型为: doris |
+|  WorkspaceDefaultStatsConfig.unlimited.durationSet  |    | json |   | 新建工作空间的默认数据保留时长配置 |
+|  |  rp       | 字符串 |  30d  | 指标集的默认数据保留时长 |
+|  |  logging  | 字符串 |  14d  | 日志的默认数据保留时长 |
+|  |  keyevent | 字符串 |  14d  | 事件的默认数据保留时长 |
+|  |  tracing  | 字符串 |  7d  | 链路的默认数据保留时长 |
+|  |  rum      | 字符串 |  7d  | RUM 的默认数据保留时长 |
+|  |  network  | 字符串 |  2d  | 网络的默认数据保留时长 |
+|  |  security  | 字符串 |  90d  | 安全巡检的默认数据保留时长 |
+|  |  backup_log  | 字符串 |  180d  | 备份日志的默认数据保留时长 |
+| WorkspaceDefaultStatsConfig |  isOpenLogMultipleIndex  | 布尔 |  true  | 创建工作空间时, 自定义日志索引是否开启 |
+|  |  logMultipleIndexCount  | 数值 |  6  | 创建工作空间时, 自定义日志索引数量 |
+|  |  loggingCutSize  | 数值 |  6  | 创建工作空间时, 超大日志计数单元10KB |
+|  |  maxSearchResultCount  | 数值 |  0  | 查询数量上限0 |
+| WorkspaceDefaultesIndexSettings |  number_of_shards  | 数值 |  1  | 创建工作空间时, 主分片数, 存储类型为 es 时有效 |
+|  |  number_of_shards  | 数值 |  1  | 创建工作空间时, 主分片数, 存储类型为 es 时有效 |
+|  |  number_of_replicas  | 数值 |  1  | 创建工作空间时, 是否开启副本, 存储类型为 es/doris 时有效 |
+|  |  rollover_max_size  | 数值 |  30  | 创建工作空间时, 分片大小, 存储类型为 es/doris 时有效 |
+|  |  hot_retention  | 数值 |  24  | 创建工作空间时, 热数据时长, 存储类型为 es/doris 时有效 |
+
+
+
+
 
 ### Studio 前端站点
 
