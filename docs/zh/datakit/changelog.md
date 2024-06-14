@@ -1,12 +1,12 @@
 # 更新日志
 
-## 1.30.1(2024/06/12) {#cl-1.31.0}
+## 1.31.0(2024/06/13) {#cl-1.31.0}
 本次发布属于迭代发布，主要有如下更新：
 
 ### 新加功能 {#cl-1.31.0-new}
 
-- 支持通过加密的方式来配置敏感信息（比如数据库密码）（#2249）
-- 新增 Prometheus Push Gateway 指标推送功能（#2260）
+- 支持通过[加密的方式](datakit-conf.md#secrets_management)来配置敏感信息（比如数据库密码）（#2249）
+- 新增 [Prometheus Push Gateway 指标推送](../integrations/pushgateway.md)功能（#2260）
 - 容器对象上支持追加对应的 Kubernetes Labels（#2252）
 - eBPF 链路插件增加 Redis 协议识别（#2248）
 

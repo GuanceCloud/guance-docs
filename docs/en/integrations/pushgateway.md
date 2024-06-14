@@ -23,8 +23,6 @@ The Pushgateway collector will open the corresponding API interface to receive P
 
 ## Configuration  {#config}
 
-After successfully installing DataKit and starting it, the CPU collector will be enabled by default without manual activation.
-
 <!-- markdownlint-disable MD046 -->
 
 === "Host Deployment"
@@ -52,13 +50,13 @@ After successfully installing DataKit and starting it, the CPU collector will be
 
 === "Kubernetes"
 
-    You can enable the collector configuration through the [ConfigMap method injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or by setting [ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
+    You can enable the collector configuration through the [ConfigMap method injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or by setting [`ENV_DATAKIT_INPUTS`](../datakit/datakit-daemonset-deploy.md#env-setting).
 
-    It also supports modifying configuration parameters via environment variables (needs to be added as a default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    It also supports modifying configuration parameters via environment variables (needs to be added as a default collector in `ENV_DEFAULT_ENABLED_INPUTS`):
 
     - **ENV_INPUT_PUSHGATEWAY_ROUTE_PREFIX**
     
-        配置 endpoints 路由前缀
+        Prefix for the internal routes of web endpoints.
     
         **Type**: String
     
@@ -68,7 +66,7 @@ After successfully installing DataKit and starting it, the CPU collector will be
     
     - **ENV_INPUT_PUSHGATEWAY_MEASUREMENT_NAME**
     
-        配置指标集名称
+        Set measurement name.
     
         **Type**: String
     
@@ -76,7 +74,7 @@ After successfully installing DataKit and starting it, the CPU collector will be
     
     - **ENV_INPUT_PUSHGATEWAY_KEEP_EXIST_METRIC_NAME**
     
-        是否保留原始的 Prometheus 字段名，详见 [Kubernetes Prometheus doc](kubernetes-prom.md#measurement-and-tags
+        Whether to keep the raw field names for Prometheus, see [Kubernetes Prometheus doc](kubernetes-prom.md#measurement-and-tags)
     
         **Type**: Boolean
     
