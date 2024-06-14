@@ -105,6 +105,17 @@
 
 保存配置并启用后，由系统自动发现并产生的 Issue 会在**控制台 > [异常追踪](../exception/issue.md#auto)**处显示。
 
+![](img/issue-auto.png)
+
+## 更多阅读
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **巧用 Issue 自动发现功能快捷响应异常**</font>](./issue-auto-generate.md)
+
+</div>
+
+
 <!--
 同时，根据组合维度的不同，基于该来源产生的 Issue 会以新问题、重复问题、回归问题这三种标识进行区分，方便您的辨别。
 

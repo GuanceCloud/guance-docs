@@ -13,7 +13,7 @@ icon: zy/release-notes
 - [BPF 网络日志](../logs/bpf-log.md)：优化 BPF 网络功能，增强 L4/L7 网络联动。
 - APM/RUM：新增 【[Issue 自动发现](../application-performance-monitoring/error.md#issue)】功能。启用该配置后，观测云会将符合配置项规则的错误数据记录自动创建 Issue。
 - 监控
-    - 智能监控：新增 [Kubernetes 智能检测](../monitoring/intelligent-monitoring/k8s.md)：通过智能算法自动检测 Kubernetes 中的异常，检测指标包含 Pod 总数，Pod 重启，Api QPS 等。
+    - 智能监控：新增 [Kubernetes 智能检测](../monitoring/intelligent-monitoring/k8s.md)：通过智能算法自动检测 Kubernetes 中的异常，检测指标包含 Pod 总数，Pod 重启，APIServer QPS 等。
     - 告警策略管理：
         - 新增[过滤](../monitoring/alert-setting.md#filter)功能。在进行告警规则配置时，该功能允许在原有等级基础上增加更细致的过滤条件，仅匹配等级+过滤条件的事件才会发送给对应的通知对象。
         - 支持选择外部邮箱做为通知对象。
@@ -23,9 +23,11 @@ icon: zy/release-notes
     - 桑基图：由原先支持最多 4 个节点配置改为 6 个。
 - Pipeline：列表新增过滤条件显示。
 - 日志 > 索引：列表显示优化。
-- Profile：文件大小由原先的固定 5MB 修改为支持自定义。
 
 
+### 观测云部署版更新
+
+Profile：文件大小由原先的固定 5MB 修改为支持自定义，点击查看[如何配置](../deployment/application-configuration-guide.md#studio-front)。
 
 ## 2024 年 6 月 3 日
 
