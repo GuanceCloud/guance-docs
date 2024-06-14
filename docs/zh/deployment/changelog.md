@@ -2340,7 +2340,7 @@ pubrepo.guance.com/dataflux/1.41.94:launcher-249ba21-1653737335
 - 行协议构造支持自动纠错
 - DataKit 主配置增加示例配置
 - Prometheus Remote Write 支持 tag 重命名
-- 合并社区版 DataKit 已有的功能，主要包含 Sinker 功能以及 filebeat 采集器
+- 合并部署版 DataKit 已有的功能，主要包含 Sinker 功能以及 filebeat 采集器
 - 调整容器日志采集，DataKit 直接支持 containerd 下容器 stdout/stderr 日志采集
 - 调整 DaemonSet 模式下主机名获取策略
 - Trace 采集器支持通过服务名（service）通配来过滤资源（resource）
@@ -2424,8 +2424,6 @@ pubrepo.guance.com/dataflux/1.39.91:launcher-8943ead-1650979666
 ## v1.39.90(2022年4月25日)
 
 pubrepo.guance.com/dataflux/1.39.90:launcher-23f161d-1650898148 
-
-### 观测云社区版上线
 
 ### 观测云更新
 
