@@ -82,37 +82,6 @@ database:
   pool_pre_ping: true
   # 检索连接时使用 LIFO（后进先出）QueuePool而不是 FIFO（先进先出）。使用 LIFO，服务器端超时方案可以减少非高峰使用期间使用的连接数量。规划服务器端超时时，请确保使用回收(pool_recycle)或预 ping(pool_pre_ping) 策略来妥善处理过时的连接。
   pool_use_lifo: true
-  # 各项服务独立配置
-  server_custom_set:
-    # enable 为 true 时, 以下各个服务的配置将覆盖主配置信息. 对数据库链接数有要求的客户可开启此配置针对性的设置各个服务的链接配置
-    enable: false
-    front-backend:
-      pool_size: 10
-      max_overflow: 50
-    inner:
-      pool_size: 10
-      max_overflow: 50
-    management-backend:
-      pool_size: 5
-      max_overflow: 50
-    external-api:
-      pool_size: 5
-      max_overflow: 50
-    open-api:
-      pool_size: 5
-      max_overflow: 50
-    core-worker:
-      pool_size: 10
-      max_overflow: 50
-    core-worker-beat:
-      pool_size: 5
-      max_overflow: 20
-    core-worker-correlation:
-      pool_size: 10
-      max_overflow: 50
-    snapshot-server:
-      pool_size: 5
-      max_overflow: 50
 
 
 # Logger Configuration
@@ -204,8 +173,6 @@ WorkspaceDefaultesIndexSettings:
 |          |  pool_recycle  | 数值 |  3600  | 控制连接池链接的回收时间，链接创建之后在该值指定的时间之后会被回收。单位：秒。一般要与pool_pre_ping、 pool_use_lifo 配合使用，且 pool_use_lifo应为 true. 注意，链接回收机制是在数据库链接被使用时才会触发。|
 |          |  pool_pre_ping  | 布尔 |  true  | 将启用连接池“预 ping”功能，该功能在每次使用时会测试连接的活动性|
 |          |  pool_use_lifo  | 布尔 |  true  | 检索连接时使用 LIFO（后进先出）QueuePool而不是 FIFO（先进先出）|
-|          |  server_custom_set.enable  | 布尔 |  false  | core 中各项服务自定义的数据库链接配置 |
-|          |  server_custom_set.服务名.子配置项  |  |    | core 中各项服务自定义的数据库链接配置.</br>「服务名」的可选值: websocket、sse、snapshot-server、 openapi、management-backend、inner、front-backend、external、core-worker-correlation、core-worker-beat、core-worker </br> 「子配置项」可选值为`database`配置项下的第一层配置项，注意不包含`server_custom_set` |
 | logger   |  filename  | 字符串 |  /logdata/business.log  | 日志文件 |
 |          |  level  | 字符串 |  info | 日志最低级别 |
 |          |  max_bytes  | 数值 |  52428800 | 每个日志文件的最大大小, 单位：字节 |
