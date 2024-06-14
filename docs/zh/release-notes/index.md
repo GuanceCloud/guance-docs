@@ -27,7 +27,7 @@ icon: zy/release-notes
 
 ### 观测云部署版更新
 
-[Profile](../deployment/application-configuration-guide.md#studio-front)：文件大小由原先的固定 5MB 修改为支持自定义。
+Profile：文件大小由原先的固定 5MB 修改为支持自定义，点击查看[如何配置](../deployment/application-configuration-guide.md#studio-front)。
 
 ## 2024 年 6 月 3 日
 
