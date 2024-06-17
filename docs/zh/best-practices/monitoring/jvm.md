@@ -899,9 +899,9 @@ OOM（Out of Memory）异常常见有以下几个原因：
 | gc_old_gen_size | 老年代大小 | int | Byte |
 | gc_metaspace_size | 元空间大小 | int | Byte |
 | gc_major_collection_count | 老年代 GC 次数 | int | count |
-| gc_major_collection_time | 老年代 GC 耗时 | int | 秒 |
+| gc_major_collection_time | 老年代 GC 耗时 | int | ms |
 | gc_minor_collection_count | 新生代 GC 次数 | int | count |
-| gc_minor_collection_time | 新生代 GC 耗时 | int | 秒 |
+| gc_minor_collection_time | 新生代 GC 耗时 | int | ms |
 | heap_memory_committed | 堆内存提交字节数 | int | Byte |
 | heap_memory_init | 堆内存初始字节数 | int | Byte |
 | heap_memory_max | 堆内存最大字节数 | int | Byte |
