@@ -1,5 +1,5 @@
 ---
-title: '火山云 VKE'
+title: '火山引擎 VKE'
 tags: 
   - 火山引擎
 summary: '火山云 VKE 指标采集，包括 Cluster、Container、Node、Pod等。'
@@ -10,7 +10,7 @@ dashboard:
 ---
 
 <!-- markdownlint-disable MD025 -->
-# 火山云 VKE
+# 火山引擎 VKE
 <!-- markdownlint-enable -->
 
 

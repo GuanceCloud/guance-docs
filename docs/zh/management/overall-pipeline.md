@@ -9,7 +9,9 @@ Pipelines 用于数据解析，通过定义解析规则，将各种数据类型�
 - [安装 DataKit](../datakit/datakit-install.md)；
 - DataKit 版本要求 >= 1.5.0。
 
-为了保证 Pipeline 的正常使用，请将 DataKit 升级到 1.5.0 及以上。版本过低会导致部分 Pipeline 功能失效。在 `DataKit<1.5.0` 版本之前：
+为了保证正常使用 Pipeline，请将 DataKit 升级到 1.5.0 及以上。版本过低会导致部分 Pipeline 功能失效。
+
+在 `DataKit<1.5.0` 版本之前：
 
 - 不支持默认 Pipeline 功能；
 
@@ -19,7 +21,7 @@ Pipelines 用于数据解析，通过定义解析规则，将各种数据类型�
 
 ## 新建 Pipeline
 
-在观测云工作空间**管理 > Pipelines**，点击**新建 Pipeline** 即可创建一个新的 Pipeline 文件。或者您可以在指标、日志、用户访问、应用性能、基础设施、安全巡检功能目录快捷入口，点击 **Pipelines** 进行创建。
+在观测云工作空间**管理 > Pipelines**，点击**新建 Pipeline** 即可创建新文件。或者您可以在指标、日志、用户访问、应用性能、基础设施、安全巡检功能目录快捷入口，点击 **Pipelines** 进行创建。
 
 ![](img/1-pipeline-2.png)
 
