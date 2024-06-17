@@ -28,6 +28,7 @@ nav:
       - 'SLS': aliyun_sls.md
       - 'SQLServer': aliyun_rds_sqlserver.md
       - 'Tair': aliyun_tair.md
+      - '站点监控': aliyun_site.md
 
     - 华为云: 
       - 'ASM': huawei_asm.md
@@ -72,6 +73,7 @@ nav:
       - 'S3': aws_s3.md
       - 'Timestream': aws_timestream.md
       - 'RabbitMQ': aws_mq_rabbitmq.md
+      - 'ElastiCache Serverless': aws_elasticache_serverless.md
 
     - 腾讯云:
       - 'CDB': tencent_cdb.md
@@ -91,6 +93,7 @@ nav:
       - 'Mysql': volcengine_mysql.md
       - 'MongoDB  Replica Set': volcengine_mongodb_replica_set.md
       - 'MongoDB Sharded Cluster': volcengine_mongodb_sharded_cluster.md
+      - 'VKE': volcengine_vke.md
 
   - 主机:
     - 默认采集:
@@ -155,6 +158,7 @@ nav:
     - '消息队列':
       - emqx.md
       - 'Kafka': kafka.md
+      - automq.md
       - nsq.md
       - rabbitmq.md
       - rocketmq.md
