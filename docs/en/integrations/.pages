@@ -24,6 +24,7 @@ nav:
       - 'RocketMQ5' : aliyun_rocketmq5.md
       - 'SQLServer': aliyun_rds_sqlserver.md
       - 'Tair': aliyun_tair.md
+      - 'Site Monitor': aliyun_site.md
 
     - Huawei: 
       - 'ASM': huawei_asm.md
@@ -67,6 +68,7 @@ nav:
       - 'S3': aws_s3.md
       - 'Timestream': aws_timestream.md
       - 'RabbitMQ': aws_mq_rabbitmq.md
+      - 'ElastiCache Serverless': aws_elasticache_serverless.md
 
     - Tencent:
       - 'CDB': tencent_cdb.md
@@ -86,6 +88,7 @@ nav:
       - 'Mysql': volcengine_mysql.md
       - 'MongoDB  Replica Set': volcengine_mongodb_replica_set.md
       - 'MongoDB Sharded Cluster': volcengine_mongodb_sharded_cluster.md
+      - 'VKE': volcengine_vke.md
 
   - Host:
     - Default Collection:
@@ -149,6 +152,7 @@ nav:
     - 'Messaging Queue':
       - emqx.md
       - 'Kafka': kafka.md
+      - automq.md
       - nsq.md
       - rabbitmq.md
       - rocketmq.md
