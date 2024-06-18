@@ -198,7 +198,7 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
 | 字段               | 类型   | 描述                                                         |
 | ------------------ | ------ | ------------------------------------------------------------ |
-| `__truncated_id`     | string | 表示日志唯一标识，切分出多条日志，使用相同的__truncated_id，ID 前缀为 LT_xxx。 |
+| `__truncated_id`     | string | 表示日志唯一标识，切分出多条日志，使用相同的 `__truncated_id`，ID 前缀为 LT_xxx。 |
 | `__truncated_count`  | number | 表示切分出的日志总条数。                                       |
 | `__truncated_number` | number | 表示日志的切分顺序，从 0 开始，0 表示日志开始的那一条。        |
 
@@ -207,6 +207,8 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 ![](img/3.log_1.gif)
 
 ### 查看上下文日志 {#up-down}
+
+日志服务的上下文查询功能能帮助您利用时间线索，追溯到某条异常日志发生前后的日志记录。通过观测云对于日志上下文信息的可视化呈现，能有效帮助您故障排查和问题定位，从而及时作出响应。
 
 在日志详情页，您可以直接查看该条数据内容的**上下文日志**；点击 :fontawesome-solid-arrow-up-right-from-square: 即可打开上下文日志新页面。
 
@@ -218,7 +220,7 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
     返回的数据如何查询得到？
 
-    前提：日志是否存在 `log_read_lines` 字段？若存在，则遵循逻辑 a；若不存在，则遵循逻辑 b。
+    **前提**：日志是否存在 `log_read_lines` 字段？若存在，则遵循逻辑 a；若不存在，则遵循逻辑 b。
 
     a. 获取当前日志的 `log_read_lines` 值，并带入筛选 `log_read_lines >= {{log_read_lines.value-30}} and log_read_lines <= {{log_read_lines.value +30}}`
 
