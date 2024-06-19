@@ -3,8 +3,8 @@ title     : 'ElasticSearch'
 summary   : 'Collect ElasticSearch metrics'
 __int_icon      : 'icon/elasticsearch'
 dashboard :
-  - desc  : 'N/A'
-    path  : '-'
+  - desc  : 'ElasticSearch'
+    path  : 'dashboard/en/elasticsearch'
 monitor   :
   - desc  : 'N/A'
     path  : '-'
@@ -220,7 +220,7 @@ PUT _plugins/_security/api/roles/monitor
 
 ## Metric {#metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.elasticsearch.tags]`:
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.elasticsearch.tags]` if needed:
 
 ``` toml
 [inputs.elasticsearch.tags]

@@ -318,6 +318,7 @@ nav:
     - "Prometheus":
       - "Exporter": prom.md
       - "Remote Write": prom_remote_write.md
+      - "Push Gateway": pushgateway.md
     - 'Kafka 订阅': kafkamq.md
     - 'Promtail': promtail.md
     - 'Statsd': statsd.md

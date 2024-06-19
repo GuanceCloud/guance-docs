@@ -125,15 +125,6 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     address = "localhost:11800"
     ```
 
-    以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.skywalking.tags]` 指定其它标签：
-
-    ```toml
-    [inputs.skywalking.tags]
-    # some_tag = "some_value"
-    # more_tag = "some_other_value"
-    # ...
-    ```
-
 === "Kubernetes 内安装"
 
     可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
