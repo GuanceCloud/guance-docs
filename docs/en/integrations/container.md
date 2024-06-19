@@ -274,7 +274,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
     - **ENV_INPUT_CONTAINER_KEEP_EXIST_PROMETHEUS_METRIC_NAME**
     
-        Whether to keep the raw field names for Prometheus, see [Kubernetes Prometheus doc](kubernetes-prom#measurement-and-tags
+        Whether to keep the raw field names for Prometheus, see [Kubernetes Prometheus doc](kubernetes-prom.md#measurement-and-tags
     
         **Type**: Boolean
     
