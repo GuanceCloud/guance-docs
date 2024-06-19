@@ -4,6 +4,12 @@
 ???- quote "更新日志"
 
     === "ft-sdk"
+		**1.5.1**：
+        ``` markdown
+		1. Java Crash 及 ANR 补充其他线程代码堆栈
+		2. Java Crash，Native Crash，ANR 添加附加 logcat 配置功能
+		3. 修复长 session 且无 action 更新场景下，频繁更新 session_id 的问题
+		```
 		**1.5.0**：
         ``` markdown
 		1. RUM resource 网络请求添加 remote ip 地址解析功能
@@ -342,10 +348,10 @@ android{
 | --- | --- | --- | --- |
 | setRumAppId | String | 是 | 设置`Rum AppId`。对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#android-integration) |
 | setSampleRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据 |
-| setEnableTrackAppCrash | Boolean | 否 | 是否上报 App 崩溃日志，默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#retrace-log) |
+| setEnableTrackAppCrash | Boolean | 否 | 是否上报 App 崩溃日志，默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#retrace-log)。<br><br>1.5.1 以上版本，可以通过 `extraLogCatWithJavaCrash`、`extraLogCatWithNativeCrash` 设置在 Java Crash 和 Native Crash 是否显示 logcat|
 | setExtraMonitorTypeWithError | Array| 否 | 设置辅助监控信息，添加附加监控数据到 `Rum` 崩溃数据中，`ErrorMonitorType.BATTERY` 为电池余量，`ErrorMonitorType.MEMORY` 为内存用量，`ErrorMonitorType.CPU` 为 CPU 占有率 |
 | setDeviceMetricsMonitorType | Array | 否 | 设置 View 监控信息，在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.BATTERY` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.MEMORY` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.CPU` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.FPS` 监控屏幕帧率。监控周期，`DetectFrequency.DEFAULT` 500 毫秒，`DetectFrequency.FREQUENT` 100毫秒，`DetectFrequency.RARE` 1 秒 |
-| setEnableTrackAppANR | Boolean | 否 | 是否开启  ANR 检测，默认为 `false` |
+| setEnableTrackAppANR | Boolean | 否 | 是否开启 ANR 检测，默认为 `false`。<br><br>1.5.1 以上版本，可以通过 `extraLogCatWithANR` 设置 ANR 中是否显示 logcat |
 | setEnableTrackAppUIBlock | Boolean | 否 | 是否开启 UI 卡顿检测，默认为 `false` |
 | setEnableTraceUserAction | Boolean | 否 | 是否自动追踪用户操作，目前只支持用户启动和点击操作，默认为 `false` |
 | setEnableTraceUserView | Boolean | 否 | 是否自动追踪用户页面操作，默认为 `false` |
@@ -1964,7 +1970,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	}
 	```
 
-### 无法使用 ft-plugin 情况下如何接入 SDK {#manual-set}
+### 不使用 ft-plugin 情况下如何接入 SDK {#manual-set}
 观测云使用的 Androig Grale Plugin Transformation 实现的代码注入，从而实现数据自动收集。但是由于一些兼容性问题，可能存在无法使用 `ft-plugin` 的问题。受影响包括 **RUM** `Action`，`Resource`，和 `android.util.Log` ，Java 与 Kotlin `println` **控制台日志自动抓取**，以及符号文件的自动上传。
 
 目前针对这种情况，我们有另外一种集成方案，应对方案如下：
