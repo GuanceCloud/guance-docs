@@ -1,3 +1,5 @@
 nav:
-  - index.md
-  - 'SourceMap 配置': set-sourcemap.md
+
+- index.md
+- 'SourceMap 配置': set-sourcemap.md
+- '上传 sourcemap': upload-sourcemaps.md
