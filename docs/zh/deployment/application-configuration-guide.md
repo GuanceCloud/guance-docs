@@ -130,7 +130,15 @@ global:
     tracing_workers: 8
     ...
 
-...
+redis:
+    host: "r-xxx.redis.rds.xxx.com:6379"
+    password: "..."
+    db: 0
+
+asynq_redis:
+    host: "r-xxxx.redis.rds.xxx.com:6379"
+    password: "..."
+    db: 0
 
 dql:
     metric_query_workers: 8 # 时序数据worker数量，默认值为8
@@ -148,6 +156,8 @@ dql:
 | global | workers              | 数值 | 8      | 指标数据的处理 worker 数量                                             |
 |        | log_workers          | 数值 | 8      | 日志数据的处理 worker 数量                                             |
 |        | tracing_workers      | 数值 | 8      | 链路数据的处理 worker 数量，默认使用 log_workers 配置项的值            |
+| redis  | host  | 字符串 | ''  | 用于数据处理的 Redis 地址，支持集群版。 注：所有 kodo 相关组件的 Redis 配置必须一致                                           |
+| asynq_redis | host  | 字符串 | ''  | 用于异步任务的 Redis 地址，默认使用 `redis` 配置，不支持集群版，如果 `redis` 配置的是集群版，必须配置一个非集群版的 asynq_redis   |
 | dql    | metric_query_workers | 布尔 | false  | DQL 指标数据查询 worker 数量                                           |
 |        | log_query_workers    | 布尔 | false  | DQL 日志文本类（日志、链路、RUM 等所有文本类数据）数据查询 worker 数量 |
 
@@ -165,6 +175,16 @@ dql:
 
 ...
 
+redis:
+    host: "r-xxx.redis.rds.xxx.com:6379"
+    password: "..."
+    db: 0
+
+asynq_redis:
+    host: "r-xxxx.redis.rds.xxx.com:6379"
+    password: "..."
+    db: 0
+
 dql:
     metric_query_workers: 8 # 时序数据worker数量，默认值为8
     log_query_workers: 8    # 日志数据worker数量，默认值为8
@@ -178,6 +198,8 @@ dql:
 
 | 配置项 | 子项                 | 类型 | 默认值 | 描述                                                                   |
 | ------ | -------------------- | ---- | ------ | ---------------------------------------------------------------------- |
+| redis  | host  | 字符串 | ''  | 用于数据处理的 Redis 地址，支持集群版。 注：所有 kodo 相关组件的 Redis 配置必须一致                       |
+| asynq_redis | host  | 字符串 | ''  | 用于异步任务的 Redis 地址，默认使用 `redis` 配置，不支持集群版，如果 `redis` 配置的是集群版，必须配置一个非集群版的 asynq_redis   |
 | dql    | metric_query_workers | 布尔 | false  | DQL 指标数据查询 worker 数量                                           |
 |        | log_query_workers    | 布尔 | false  | DQL 日志文本类（日志、链路、RUM 等所有文本类数据）数据查询 worker 数量 |
 
@@ -201,13 +223,19 @@ global:
     tracing_workers: 8
     ...
 
-...
+redis:
+    host: "r-xxx.redis.rds.xxx.com:6379"
+    password: "..."
+    db: 0
+
+asynq_redis:
+    host: "r-xxxx.redis.rds.xxx.com:6379"
+    password: "..."
+    db: 0
 
 doris:
     dial_timeout: 10
     gzip_enable: false
-
-...
 
 dql:
     metric_query_workers: 8 # 时序数据worker数量，默认值为8
@@ -225,7 +253,116 @@ dql:
 | global | workers              | 数值 | 8      | 指标数据的处理 worker 数量                                             |
 |        | log_workers          | 数值 | 8      | 日志数据的处理 worker 数量                                             |
 |        | tracing_workers      | 数值 | 8      | 链路数据的处理 worker 数量，默认使用 log_workers 配置项的值            |
+| redis  | host  | 字符串 | ''  | 用于数据处理的 Redis 地址，支持集群版。 注：所有 kodo 相关组件的 Redis 配置必须一致                                           |
+| asynq_redis | host  | 字符串 | ''  | 用于异步任务的 Redis 地址，默认使用 `redis` 配置，不支持集群版，如果 `redis` 配置的是集群版，必须配置一个非集群版的 asynq_redis   |
 | dql    | metric_query_workers | 布尔 | false  | DQL 指标数据查询 worker 数量                                           |
 |        | log_query_workers    | 布尔 | false  | DQL 日志文本类（日志、链路、RUM 等所有文本类数据）数据查询 worker 数量 |
 | doris  | dial_timeout         | 数值 | 10     | 数据写 Doris 引擎，TCP 连接超时时间，单位：毫秒                        |
 |        | gzip_enable          | 布尔 | false  | 数据写 Doris 引擎，是否开启 gzip 压缩                                  |
+
+### kodo-servicemap 组件 {#kodo-servicemap}
+
+#### 配置文件位置
+
+- Namespace: forethought-kodo
+- Launcher 中的配置名称: kodoServiceMap
+- kubernetes 中的 Configmap 名称: kodo-servicemap
+
+#### 配置文件示例
+
+```YAML
+
+...
+
+redis:
+    host: "r-xxx.redis.rds.xxx.com:6379"
+    password: "..."
+    db: 0
+
+asynq_redis:
+    host: "r-xxxx.redis.rds.xxx.com:6379"
+    password: "..."
+    db: 0
+
+...
+
+```
+
+#### 配置项详细说明
+
+| 配置项 | 子项                 | 类型 | 默认值 | 描述                                                                   |
+| ------ | -------------------- | ---- | ------ | ---------------------------------------------------------------------- |
+| redis  | host  | 字符串 | ''  | 用于数据处理的 Redis 地址，支持集群版。 注：所有 kodo 相关组件的 Redis 配置必须一致                                           |
+| asynq_redis | host  | 字符串 | ''  | 用于异步任务的 Redis 地址，默认使用 `redis` 配置，不支持集群版，如果 `redis` 配置的是集群版，必须配置一个非集群版的 asynq_redis   |
+
+### kodo-x-scan 组件 {#kodo-x-scan}
+
+#### 配置文件位置
+
+- Namespace: forethought-kodo
+- Launcher 中的配置名称: kodoXScan
+- kubernetes 中的 Configmap 名称: kodo-x-scan
+
+#### 配置文件示例
+
+```YAML
+
+...
+
+redis:
+    host: "r-xxx.redis.rds.xxx.com:6379"
+    password: "..."
+    db: 0
+
+asynq_redis:
+    host: "r-xxxx.redis.rds.xxx.com:6379"
+    password: "..."
+    db: 0
+
+...
+
+```
+
+#### 配置项详细说明
+
+| 配置项 | 子项                 | 类型 | 默认值 | 描述                                                                   |
+| ------ | -------------------- | ---- | ------ | ---------------------------------------------------------------------- |
+| redis  | host  | 字符串 | ''  | 用于数据处理的 Redis 地址，支持集群版。 注：所有 kodo 相关组件的 Redis 配置必须一致                                           |
+| asynq_redis | host  | 字符串 | ''  | 用于异步任务的 Redis 地址，默认使用 `redis` 配置，不支持集群版，如果 `redis` 配置的是集群版，必须配置一个非集群版的 asynq_redis   |
+
+
+### kodo-ws 组件 {#kodo-ws}
+
+#### 配置文件位置
+
+- Namespace: forethought-kodo
+- Launcher 中的配置名称: kodoWS
+- kubernetes 中的 Configmap 名称: kodo-ws
+
+#### 配置文件示例
+
+```YAML
+
+...
+
+redis:
+    host: "r-xxx.redis.rds.xxx.com:6379"
+    password: "..."
+    db: 0
+
+asynq_redis:
+    host: "r-xxxx.redis.rds.xxx.com:6379"
+    password: "..."
+    db: 0
+
+...
+
+```
+
+#### 配置项详细说明
+
+| 配置项 | 子项                 | 类型 | 默认值 | 描述                                                                   |
+| ------ | -------------------- | ---- | ------ | ---------------------------------------------------------------------- |
+| redis  | host  | 字符串 | ''  | 用于数据处理的 Redis 地址，支持集群版。 注：所有 kodo 相关组件的 Redis 配置必须一致                                           |
+| asynq_redis | host  | 字符串 | ''  | 用于异步任务的 Redis 地址，默认使用 `redis` 配置，不支持集群版，如果 `redis` 配置的是集群版，必须配置一个非集群版的 asynq_redis   |
+
