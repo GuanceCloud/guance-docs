@@ -51,6 +51,7 @@ nav:
       - 'SYS.AS': huawei_SYS.AS.md
       - 'SYS.CBR': huawei_SYS.CBR.md
       - 'SYS DDMS': huaweiyun_SYS_DDMS.md
+      - 'ROMA': huawei_roma.md
 
     - AWS: 
       - 'CloudFront': aws_cloudfront.md
