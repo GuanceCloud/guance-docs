@@ -19,6 +19,7 @@ nav:
   - 异常追踪: exception
   - 安全巡检: scheck
   - CI 可视化: ci-visibility
+  - Pipeline: pipeline
   - <br/>开放能力: ""
   - DataFlux Func: dataflux-func
   - DCA: dca
