@@ -42,7 +42,7 @@ DataWay 添加完成后，可获取到一个 DataWay 的安装脚本，复制安
 
 #### 注册部署版账号
 
-打开部署版注册网址（[https://boss.guance.com/index.html#/signup?type=community](https://boss.guance.com/index.html#/signup?type=community)），根据提示注册部署版账号。
+打开部署版注册网址（[https://boss.guance.com/index.html#/signup?type=private](https://boss.guance.com/index.html#/signup?type=private），根据提示注册部署版账号。
 
 ![](img/6.deployment_3.png)
 
