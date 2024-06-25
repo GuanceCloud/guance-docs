@@ -30,7 +30,7 @@ icon: zy/logs
 <div class="grid cards" markdown>
 
 - [<font color="coral"> :material-clipboard-text-search: __日志查询与分析__</font>](explorer.md)：统计各个时间点下产生不同等级的日志数量
-- [<font color="coral"> :material-book-arrow-down-outline: __Pipeline__</font>](../management/overall-pipeline.md)：对日志的文本内容进行切割，从而提取出特定的字段作为标签或者日志的时间戳
+- [<font color="coral"> :material-book-arrow-down-outline: __Pipeline__</font>](../pipeline/index.md)：对日志的文本内容进行切割，从而提取出特定的字段作为标签或者日志的时间戳
 - [<font color="coral"> :fontawesome-brands-atlassian: __生成指标__</font>](generate-metrics.md)：基于日志，自定义生成监控指标的规则
 - [<font color="coral"> :material-calendar-text-outline: __日志索引__</font>](multi-index.md)：筛选符合条件的日志保存在不同的日志索引中，并为日志索引选择数据存储策略
 - [<font color="coral"> :material-filter-multiple: __日志黑名单__</font>](../management/overall-blacklist.md)：自定义日志采集的过滤规则，实时过滤日志数据      

@@ -212,13 +212,36 @@ UI 模式下支持选择如下聚合方式返回结果值。
 
 ![](../img/chart022.png)
 
-### 添加数据源
+### 添加数据源 {#func}
 
 即针对存储于数据库内的数据属性作筛选、搜索、聚合分析等操作。
 
+![](../img/func.png)
+
 > 具体配置方法见 [Function 外部函数配置](../../dql/dql-out-func.md)。
 
+若您已发布脚本并在 Function 平台内将脚本同步至对应工作空间，即可直接选择下表的 Func 数据源，观测云会自动获取工作空间 Issue 信息，最终为您进行可视化的数据展示。目前观测云支持针对[状态为 `resolved` 的 Issue](../../exception/issue.md#others) 列出处理时长统计指标类的脚本函数。
 
+| 函数列表    | 说明 |
+| --------- | ----------- |
+| incidents-issue_total_count | 异常追踪-issue 总数 |
+| incidents-open_issue_count | 异常追踪-open issue 数量 |
+| incidents-pending_issue_count | 异常追踪-pending issue 数量 |
+| incidents-resolved_issue_count | 异常追踪-resolved issue 数量 |
+| incidents-average_issue_duration | 异常追踪-issue 平均处理时长 |
+| incidents-max_issue_duration | 异常追踪-issue 最大处理时长 |
+| incidents-issue_count_distribution_by_level | 异常追踪-issue 等级分布 |
+| incidents-issue_count_distribution_by_reference | 异常追踪-issue 来源分布 |
+| incidents-issue_count_by_assignee(top10) | 异常追踪-issue 处理数量 TOP 10 负责人 |
+| incidents-issue_duration_by_assignee(top10) | 异常追踪-issue 处理时长 TOP 10 负责人 |
+| incidents-unresolved_issue_assignee_distribution | 异常追踪-未解决 issue 负责人分布 |
+| incidents-unresolved_issue_list | 异常追踪-未解决 issue 列表 |
+
+
+
+
+
+<!--
 ## 时间分片 {#time-slicing}
 
 ### 开启时间分片
@@ -240,7 +263,7 @@ UI 模式下支持选择如下聚合方式返回结果值。
 在下面的概览图示例中，把最近一小时内活跃的内存取其平均值在图表上展示。
 
 ![](../img/8.chart_9.png)
-
+ -->
 ## 图表千分位 {#thousand}
 
 观测云仪表板图表查询结果支持自动加上数据千分位格式显示。
