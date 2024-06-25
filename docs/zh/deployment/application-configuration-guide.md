@@ -114,6 +114,7 @@ window.DEPLOYCONFIG = {
 | rumApplicationId    |      | 字符串  | 无                                  | RUM 应用 ID，用于上报应用数据                                                                                                                    |
 | rumJsUrl            |      | 字符串  | 无                                  | RUM SDk CDN 地址                                                                                                                                 |
 | rumClientToken      |      | 字符串  | 无                                  | RUM Openway 方式上报数据，在观测云平台生成的 clientToken，和 datakit 上报方式冲突，优先级高于 datakit 上报方式                                   |
+| rumOpenwayUrl       |      | 字符串  | 无                                  | RUM Openway 公网地址                                                                                                                             |
 
 ### kodo 组件 {#kodo}
 
