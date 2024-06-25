@@ -34,7 +34,7 @@ module.exports = ({ mode }) => ({
       server: 'https://console.guance-xxx.cn',
       filepaths: ['dist/'], // 需要搜索的目录，可以是文件或者文件目录
       logLevel: 'verbose', // 日志打印级别，非必填
-      root: 'dist/', // 需要上传的相对目录对应的跟目录，非必填
+      root: 'dist/', // 设置相对路径应计算的目录，非必填
       env: 'production', // 观测云 应用的 env，非必填
       version: '1.0.0', // 观测云应用的 version，非必填
     }),
