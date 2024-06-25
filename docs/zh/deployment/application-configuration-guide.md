@@ -98,17 +98,22 @@ window.DEPLOYCONFIG = {
 
 #### 配置项详细说明
 
-| 配置项              | 子项 | 类型   | 默认值                              | 描述                                                                                                                                             |
-| ------------------- | ---- | ------ | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| rumDatawayUrl       |      | 字符串 | "https://rum-openway.guance.com"    | 用于上报 RUM 数据的专用 DataWay 地址，配置后将显示在 RUM 接入配置页面中                                                                          |
-| datakitScriptUrl    |      | 字符串 | "https://static.guance.com/datakit" | DataKit 安装页面的默认安装脚本下载域名，如使用自建的内部静态资源，请修改此配置                                                                   |
-| datakitHelmUrl      |      | 字符串 | "https://pubrepo.guance.com"        | DataKit Helm 镜像仓库地址，如使用自建镜像仓库，请修改此配置                                                                                      |
-| passPublicNetwork   |      | 数值   | 1                                   | 配置访问 Studio 站点的客户端计算机是否有公网网络，0：无，1：有                                                                                   |
-| isOverseas          |      | 数值   | 0                                   | 配置此观测云站点是否为海外部署，将影响 RUM 中的世界地图、中国地图组件的显示                                                                      |
-| maxTraceSpanLimit   |      | 数值   | 10000                               | 链路的火焰图中最大的 Span 条数，默认值：10000                                                                                                    |
-| maxProfileM         |      | 数值   | 5                                   | 获取 profile 显示火焰图的最大 MB 数,如果不配置，则默认取值: 5                                                                                    |
-| paasCustomLoginInfo |      | 数组   | 无                                  | 部署版观测云控制台登录页面单点登录入口配置 新增 iconUrl, desc 自定义字段, iconUrl 为单点登录图标地址,不配置则为默认 icon desc 为单点登录描述文案 |
-| paasCustomSiteList  |      | 数组   | 无                                  | 部署版观测云控制台登录页面新增多站点选择配置 label 为站点显示文案 url 为站点地址,如果不存在多站点，可以不添加此配置项                            |
+| 配置项              | 子项 | 类型    | 默认值                              | 描述                                                                                                                                             |
+| ------------------- | ---- | ------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| rumDatawayUrl       |      | 字符串  | "https://rum-openway.guance.com"    | 用于上报 RUM 数据的专用 DataWay 地址，配置后将显示在 RUM 接入配置页面中                                                                          |
+| datakitScriptUrl    |      | 字符串  | "https://static.guance.com/datakit" | DataKit 安装页面的默认安装脚本下载域名，如使用自建的内部静态资源，请修改此配置                                                                   |
+| datakitHelmUrl      |      | 字符串  | "https://pubrepo.guance.com"        | DataKit Helm 镜像仓库地址，如使用自建镜像仓库，请修改此配置                                                                                      |
+| passPublicNetwork   |      | 数值    | 1                                   | 配置访问 Studio 站点的客户端计算机是否有公网网络，0：无，1：有                                                                                   |
+| isOverseas          |      | 数值    | 0                                   | 配置此观测云站点是否为海外部署，将影响 RUM 中的世界地图、中国地图组件的显示                                                                      |
+| maxTraceSpanLimit   |      | 数值    | 10000                               | 链路的火焰图中最大的 Span 条数，默认值：10000                                                                                                    |
+| maxProfileM         |      | 数值    | 5                                   | 获取 profile 显示火焰图的最大 MB 数,如果不配置，则默认取值: 5                                                                                    |
+| paasCustomLoginInfo |      | 数组    | 无                                  | 部署版观测云控制台登录页面单点登录入口配置 新增 iconUrl, desc 自定义字段, iconUrl 为单点登录图标地址,不配置则为默认 icon desc 为单点登录描述文案 |
+| paasCustomSiteList  |      | 数组    | 无                                  | 部署版观测云控制台登录页面新增多站点选择配置 label 为站点显示文案 url 为站点地址,如果不存在多站点，可以不添加此配置项                            |
+| rumEnable           |      | Boolean | 无                                  | 是否开启 RUM，1 表示开启，如果不开启，以下的配置值可以为空                                                                                       |
+| rumDatakitUrl       |      | 字符串  | 无                                  | RUM DataKit 的地址 或者 公网 openway 地址                                                                                                        |
+| rumApplicationId    |      | 字符串  | 无                                  | RUM 应用 ID，用于上报应用数据                                                                                                                    |
+| rumJsUrl            |      | 字符串  | 无                                  | RUM SDk CDN 地址                                                                                                                                 |
+| rumClientToken      |      | 字符串  | 无                                  | RUM Openway 方式上报数据，在观测云平台生成的 clientToken，和 datakit 上报方式冲突，优先级高于 datakit 上报方式                                   |
 
 ### kodo 组件 {#kodo}
 
