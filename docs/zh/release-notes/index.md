@@ -26,6 +26,7 @@ icon: zy/release-notes
 - 场景
     - 时序图：折线图、面积图新增[断点连接](../scene/visual-chart/timeseries-chart.md#breakpoint)设置，柱状图新增【显示返回值】按钮。
 - [可用性监测](../usability-monitoring/request-task/index.md#manag)：任务列表新增表头排序。
+- DataFlux Func：支持观测云异常追踪脚本[集成钉钉应用](https://func.guance.com/doc/script-market-guance-issue-dingtalk-integration/)。
 
 ### 观测云部署版更新
 
