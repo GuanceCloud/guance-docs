@@ -129,7 +129,7 @@ grant SELECT ON pg_stat_database to datakit;
 
 ## 指标 {#metric}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[[inputs.postgresql.tags]]` 另择 host 来命名。
+以下所有数据采集，默认会追加全局选举 tag，也可以在配置中通过 `[inputs.postgresql.tags]` 指定其它标签：
 
 
 
@@ -237,6 +237,34 @@ grant SELECT ON pg_stat_database to datakit;
 | ---- |---- | :---:    | :----: |
 |`replication_delay`|The current replication delay in seconds. Only available with `postgresql` 9.1 and newer.|int|s|
 |`replication_delay_bytes`|The current replication delay in bytes. Only available with `postgresql` 9.2 and newer.|int|B|
+
+
+
+### `postgresql_replication_slot`
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`db`|The database name|
+|`server`|The server address|
+|`slot_name`|The replication slot name|
+|`slot_type`|The replication slot type|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`spill_bytes`|Amount of decoded transaction data spilled to disk while performing decoding of changes from WAL for this slot. This and other spill counters can be used to gauge the I/O which occurred during logical decoding and allow tuning `logical_decoding_work_mem`. Only available with PostgreSQL 14 and newer.|int|B|
+|`spill_count`|Number of times transactions were spilled to disk while decoding changes from WAL for this slot. This counter is incremented each time a transaction is spilled, and the same transaction may be spilled multiple times. Only available with PostgreSQL 14 and newer.|int|count|
+|`spill_txns`|Number of transactions spilled to disk once the memory used by logical decoding to decode changes from WAL has exceeded `logical_decoding_work_mem`. The counter gets incremented for both top-level transactions and subtransactions. Only available with PostgreSQL 14 and newer.|int|count|
+|`stream_bytes`|Amount of transaction data decoded for streaming in-progress transactions to the decoding output plugin while decoding changes from WAL for this slot. This and other streaming counters for this slot can be used to tune `logical_decoding_work_mem`. Only available with PostgreSQL 14 and newer.|int|B|
+|`stream_count`|Number of times in-progress transactions were streamed to the decoding output plugin while decoding changes from WAL for this slot. This counter is incremented each time a transaction is streamed, and the same transaction may be streamed multiple times. Only available with PostgreSQL 14 and newer.|int|count|
+|`stream_txns`|Number of in-progress transactions streamed to the decoding output plugin after the memory used by logical decoding to decode changes from WAL for this slot has exceeded `logical_decoding_work_mem`. Streaming only works with top-level transactions (subtransactions can't be streamed independently), so the counter is not incremented for subtransactions. Only available with PostgreSQL 14 and newer.|int|count|
+|`total_bytes`|Amount of transaction data decoded for sending transactions to the decoding output plugin while decoding changes from WAL for this slot. Note that this includes data that is streamed and/or spilled. Only available with PostgreSQL 14 and newer.|int|B|
+|`total_txns`|Number of decoded transactions sent to the decoding output plugin for this slot. This counts top-level transactions only, and is not incremented for subtransactions. Note that this includes the transactions that are streamed and/or spilled. Only available with PostgreSQL 14 and newer.|int|count|
 
 
 

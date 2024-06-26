@@ -344,7 +344,7 @@ group_replication = true
 
 ## Metric {#metric}
 
-All the following data collection will add a global tag named `host` by default (the tag value is the host name of DataKit). You can also specify other tags through `[inputs.mysql.tags]` in the configuration:
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.mysql.tags]` if needed:
 
 ```toml
  [inputs.mysql.tags]

@@ -12,7 +12,6 @@ nav:
     - '权限清单': role-list.md
   - 'API Key 管理': api-key
   - '黑名单': overall-blacklist.md 
-  - 'Pipelines': overall-pipeline.md
   - '数据转发': backup
   - '正则表达式': regex.md
   - '云账号管理': cloud-account-manag.md

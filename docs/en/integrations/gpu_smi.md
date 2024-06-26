@@ -228,7 +228,7 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
 
 ## Metric {#metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.gpu_smi.tags]`:
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.gpu_smi.tags]` if needed:
 
 ``` toml
  [inputs.gpu_smi.tags]

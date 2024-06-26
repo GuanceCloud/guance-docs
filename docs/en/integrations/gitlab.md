@@ -111,9 +111,7 @@ In addition, GitLab CI function does not participate in collector election, and 
 
 ## Metric {#metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit).
-
-You can specify additional labels for **Gitlab metrics data** in the configuration by `[inputs.gitlab.tags]`:
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.gitlab.tags]` if needed:
 
 ``` toml
  [inputs.gitlab.tags]
@@ -122,7 +120,7 @@ You can specify additional labels for **Gitlab metrics data** in the configurati
   # ...
 ```
 
-You can specify additional tags for **Gitlab CI data** in the configuration by `[inputs.gitlab.ci_extra_tags]`:
+We can specify additional tags for **Gitlab CI data** in the configuration by `[inputs.gitlab.ci_extra_tags]`:
 
 ``` toml
  [inputs.gitlab.ci_extra_tags]

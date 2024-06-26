@@ -102,7 +102,7 @@ sudo apachectl restart
 
 ## Metric {#metric}
 
-For all of the following data collections, a global tag named  `host` is appended by default (the tag value is the host name of the DataKit); other tags can be specified in the configuration through `[inputs.apache.tags]`:
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.apache.tags]` if needed:
 
 ``` toml
  [inputs.apache.tags]
