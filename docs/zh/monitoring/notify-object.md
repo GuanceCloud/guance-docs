@@ -222,5 +222,9 @@ Content-Type: application/json
 
 ![](img/notify-1.png)
 
+若通知对象规则未赋予您权限，则无法编辑或删除：
+
+![](img/notify-2.png)
 
 
+<img src="../img/notify-3.png" width="70%" >
