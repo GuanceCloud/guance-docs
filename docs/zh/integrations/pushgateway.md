@@ -36,11 +36,15 @@ Pushgateway 采集器会开启对应的 API 接口，用于接收 Prometheus 指
       route_prefix = ""
     
       ## Measurement name.
-      ## If measurement_name is empty, split metric name by '_', the first field after split as measurement set name, the rest as current metric name.
       ## If measurement_name is not empty, using this as measurement set name.
       # measurement_name = "prom_pushgateway"
     
+      ## If job_as_measurement is true, use the job field for the measurement name.
+      ## The measurement_name configuration takes precedence.
+      job_as_measurement = false
+    
       ## Keep Exist Metric Name.
+      ## Split metric name by '_', the first field after split as measurement set name, the rest as current metric name.
       ## If the keep_exist_metric_name is true, keep the raw value for field names.
       keep_exist_metric_name = true
     
@@ -71,6 +75,16 @@ Pushgateway 采集器会开启对应的 API 接口，用于接收 Prometheus 指
         **Type**: String
     
         **ConfField**: `measurement_name`
+    
+    - **ENV_INPUT_PUSHGATEWAY_JOB_AS_MEASUREMENT**
+    
+        是否使用 job 标签值作为指标集名称
+    
+        **Type**: Boolean
+    
+        **ConfField**: `job_as_measurement`
+    
+        **Default**: false
     
     - **ENV_INPUT_PUSHGATEWAY_KEEP_EXIST_METRIC_NAME**
     
@@ -174,4 +188,5 @@ Pushgateway 采集器不会添加任何 tags。
 指标集的命名有两种情况：
 
 1. 使用配置项 `measurement_name` 指定指标集名称
+1. 使用 job 标签值作为指标集名称
 1. 对数据字段名称以下划线 `_` 进行切割，切割后的第一个字段作为指标集名称，剩下字段作为当前指标名称

@@ -38,8 +38,8 @@ eBPF collector, collecting host network TCP, UDP connection information, Bash ex
     - Application call relationship tracking.
 
 - `bpf-netlog`:
-    - Data category: `Logging`, `Network`
-    - This plugin implements `ebpf-net`’s `netflow/httpflow`
+    - Data categories: `Logging`, `Network`
+    - This plugin implements the collection of network logs `bpf_net_l4_log/bpf_net_l7_log`, and can also replace `ebpf-net`'s `netflow/httpflow` data collection when the kernel does not support eBPF;
 
 ## Configuration {#config}
 
@@ -82,14 +82,6 @@ For SELinux-enabled systems, you need to shut them down (pending subsequent opti
 ```sh
 setenforce 0
 ```
-
-### `eBPF Tracing` using {#ebpf-trace}
-
-`ebpf-trace` uses eBPF technology to obtain network data, and traces the kernel-level threads/user-level threads of the process (such as golang goroutine) to generate link eBPF Span.
-
-If the eBPF collector with link data collection enabled is deployed on multiple nodes, all eBPF link data needs to be sent to the same DataKit ELinker/DataKit with the [`ebpftrace`](./ebpftrace.md#ebpftrace-config) collector plug-in enabled.
-
-For more details, see the [eBPF link document](./ebpftrace.md#ebpf-config)
 
 ### Collector Configuration {#input-config}
 
@@ -279,12 +271,12 @@ Configuration items:
     - Example: `false`
 
 - `trace_name_blacklist`
-    - Description: The process with the specified process name will be **disabled** from collecting trace data
+    - Description: The process with the specified process name will be disabled from collecting trace data
     - Environment variable: `ENV_INPUT_EBPF_TRACE_NAME_BLACKLIST`
     - Example:
 
 - `trace_env_blacklist`
-    - Description: Any process containing any of the specified environment variable names will be **disabled** from collecting trace data
+    - Description: Any process containing any of the specified environment variable names will be disabled from collecting trace data
     - Environment variable: `ENV_INPUT_EBPF_TRACE_ENV_BLACKLIST`
     - Example: `DKE_DISABLE_ETRACE`
 
@@ -335,7 +327,13 @@ Configuration items:
 
 <!-- markdownlint-enable -->
 
-### The blacklist function of the `netlog` plug-in
+## eBPF Tracing function {#ebpf-tracing}
+
+`ebpf-trace` collects and analyzes the network data read and written by the process on the host, and tracks the kernel-level threads/user-level threads (such as golang goroutine) of the process to generate link eBPF Span. This data needs to be collected by `ebpftrace` for further processing.
+
+When using, you need to deploy the eBPF collector with link data collection enabled on multiple nodes, then you need to send all eBPF Span data to the same DataKit ELinker/DataKit with the [`ebpftrace`](./ebpftrace.md#ebpftrace-config) collector plug-in enabled. For more configuration details, see the [eBPF link document](./ebpftrace.md#ebpf-config)
+
+### The blacklist function of the `bpf-netlog` plug-in
 
 Filter rule example:
 
@@ -426,7 +424,7 @@ function:
 
     This rule returns `true` if the pod name is `datakit-kfez321`.
 
-## Metric {#metric}
+## Network aggregation data {#network}
 
 For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.ebpf.tags]`:
 
@@ -439,163 +437,410 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
+
+
 ### `netflow`
 
-- tag
+- tag list
 
 
 | Tag | Description |
 |  ----  | --------|
-|`direction`|Use the source as a frame of reference to identify the connection initiator. (incoming/outgoing)|
-|`dst_domain`|Destination domain.|
-|`dst_ip`|Destination IP address.|
+|`direction`|Use the source (src_ip:src_port) as a frame of reference to identify the connection initiator. (incoming/outgoing)|
+|`dst_domain`|Destination domain|
+|`dst_ip`|Destination IP address|
 |`dst_ip_type`|Destination IP type. (other/private/multicast)|
-|`dst_k8s_deployment_name`|Destination K8s deployment name.|
-|`dst_k8s_namespace`|Destination K8s namespace.|
-|`dst_k8s_pod_name`|Destination K8s pod name.|
-|`dst_k8s_service_name`|Destination K8s service name.|
-|`dst_nat_ip`|For data containing the `outging` tag, this value is the ip after the DNAT operation.|
-|`dst_nat_port`|For data containing the `outging` tag, this value is the port after the DNAT operation.|
-|`dst_port`|Destination port.|
+|`dst_k8s_deployment_name`|Destination K8s deployment name|
+|`dst_k8s_namespace`|Destination K8s namespace|
+|`dst_k8s_pod_name`|Destination K8s pod name|
+|`dst_k8s_service_name`|Destination K8s service name|
+|`dst_nat_ip`|For data containing the `outging` tag, this value is the ip after the DNAT operation|
+|`dst_nat_port`|For data containing the `outging` tag, this value is the port after the DNAT operation|
+|`dst_port`|Destination port|
 |`family`|Network layer protocol. (IPv4/IPv6)|
-|`host`|System hostname.|
-|`pid`|Process identification number.|
-|`process_name`|Process name.|
+|`host`|System hostname|
+|`pid`|Process identification number|
+|`process_name`|Process name|
 |`source`|Fixed value: `netflow`.|
-|`src_ip`|Source IP.|
+|`src_ip`|Source IP|
 |`src_ip_type`|Source IP type. (other/private/multicast)|
-|`src_k8s_deployment_name`|Source K8s deployment name.|
-|`src_k8s_namespace`|Source K8s namespace.|
-|`src_k8s_pod_name`|Source K8s pod name.|
-|`src_k8s_service_name`|Source K8s service name.|
-|`src_port`|Source port.|
-|`sub_source`|Some specific connection classifications, such as the sub_source value for Kubernetes network traffic is K8s.|
+|`src_k8s_deployment_name`|Source K8s deployment name|
+|`src_k8s_namespace`|Source K8s namespace|
+|`src_k8s_pod_name`|Source K8s pod name|
+|`src_k8s_service_name`|Source K8s service name|
+|`src_port`|Source port|
+|`sub_source`|Some specific connection classifications, such as the sub_source value for Kubernetes network traffic is K8s|
 |`transport`|Transport layer protocol. (udp/tcp)|
 
-- metric list
+- field list
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`bytes_read`|The number of bytes read.|int|B|
-|`bytes_written`|The number of bytes written.|int|B|
-|`retransmits`|The number of retransmissions.|int|count|
-|`rtt`|TCP Latency.|int|μs|
-|`rtt_var`|TCP Jitter.|int|μs|
-|`tcp_closed`|The number of TCP connection closed.|int|count|
-|`tcp_established`|The number of TCP connection established.|int|count|
+|`bytes_read`|The number of bytes read|int|B|
+|`bytes_written`|The number of bytes written|int|B|
+|`retransmits`|The number of retransmissions|int|count|
+|`rtt`|TCP Latency|int|μs|
+|`rtt_var`|TCP Jitter|int|μs|
+|`tcp_closed`|The number of TCP connection closed|int|count|
+|`tcp_established`|The number of TCP connection established|int|count|
+
+
+
+
 
 
 
 ### `dnsflow`
 
-- tag
+- tag list
 
 
 | Tag | Description |
 |  ----  | --------|
-|`direction`|Use the source as a frame of reference to identify the connection initiator. (incoming/outgoing)|
-|`dst_domain`|Destination domain.|
-|`dst_ip`|Destination IP address.|
+|`direction`|Use the source (src_ip:src_port) as a frame of reference to identify the connection initiator. (incoming/outgoing)|
+|`dst_domain`|Destination domain|
+|`dst_ip`|Destination IP address|
 |`dst_ip_type`|Destination IP type. (other/private/multicast)|
-|`dst_k8s_deployment_name`|Destination K8s deployment name.|
-|`dst_k8s_namespace`|Destination K8s namespace.|
-|`dst_k8s_pod_name`|Destination K8s pod name.|
-|`dst_k8s_service_name`|Destination K8s service name.|
-|`dst_port`|Destination port.|
+|`dst_k8s_deployment_name`|Destination K8s deployment name|
+|`dst_k8s_namespace`|Destination K8s namespace|
+|`dst_k8s_pod_name`|Destination K8s pod name|
+|`dst_k8s_service_name`|Destination K8s service name|
+|`dst_port`|Destination port|
 |`family`|Network layer protocol. (IPv4/IPv6)|
-|`host`|System hostname.|
+|`host`|System hostname|
 |`source`|Fixed value: `dnsflow`.|
-|`src_ip`|Source IP.|
+|`src_ip`|Source IP|
 |`src_ip_type`|Source IP type. (other/private/multicast)|
-|`src_k8s_deployment_name`|Source K8s deployment name.|
-|`src_k8s_namespace`|Source K8s namespace.|
-|`src_k8s_pod_name`|Source K8s pod name.|
-|`src_k8s_service_name`|Source K8s service name.|
-|`src_port`|Source port.|
-|`sub_source`|Some specific connection classifications, such as the sub_source value for Kubernetes network traffic is K8s.|
+|`src_k8s_deployment_name`|Source K8s deployment name|
+|`src_k8s_namespace`|Source K8s namespace|
+|`src_k8s_pod_name`|Source K8s pod name|
+|`src_k8s_service_name`|Source K8s service name|
+|`src_port`|Source port|
+|`sub_source`|Some specific connection classifications, such as the sub_source value for Kubernetes network traffic is K8s|
 |`transport`|Transport layer protocol. (udp/tcp)|
 
-- metric list
+- field list
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`count`|The number of DNS requests in a collection cycle.|int|-|
-|`latency`|Average response time for DNS requests.|int|ns|
-|`latency_max`|Maximum response time for DNS requests.|int|ns|
-|`rcode`|DNS response code: 0 - `NoError`, 1 - `FormErr`, 2 - `ServFail`, 3 - NXDomain, 4 - NotImp, 5 - Refused, ...; A value of -1 means the request timed out.|int|-|
+|`count`|The number of DNS requests in a collection cycle|int|-|
+|`latency`|Average response time for DNS requests|int|ns|
+|`latency_max`|Maximum response time for DNS requests|int|ns|
+|`rcode`|DNS response code: 0 - `NoError`, 1 - `FormErr`, 2 - `ServFail`, 3 - NXDomain, 4 - NotImp, 5 - Refused, ...; A value of -1 means the request timed out|int|-|
 
 
 
-### `bash`
-
-- tag
 
 
-| Tag | Description |
-|  ----  | --------|
-|`host`|host name|
-|`source`|Fixed value: bash|
-
-- metric list
 
 
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`cmd`|Command.|string|-|
-|`message`|The bash execution record generated by the collector|string|-|
-|`pid`|Process identification number.|string|-|
-|`user`|The user who executes the bash command.|string|-|
+
 
 
 
 ### `httpflow`
 
-- tag
+- tag list
 
 
 | Tag | Description |
 |  ----  | --------|
-|`direction`|Use the source as a frame of reference to identify the connection initiator. (incoming/outgoing)|
-|`dst_domain`|Destination domain.|
-|`dst_ip`|Destination IP address.|
+|`direction`|Use the source (src_ip:src_port) as a frame of reference to identify the connection initiator. (incoming/outgoing)|
+|`dst_domain`|Destination domain|
+|`dst_ip`|Destination IP address|
 |`dst_ip_type`|Destination IP type. (other/private/multicast)|
-|`dst_k8s_deployment_name`|Destination K8s deployment name.|
-|`dst_k8s_namespace`|Destination K8s namespace.|
-|`dst_k8s_pod_name`|Destination K8s pod name.|
-|`dst_k8s_service_name`|Destination K8s service name.|
-|`dst_nat_ip`|For data containing the `outging` tag, this value is the ip after the DNAT operation.|
-|`dst_nat_port`|For data containing the `outging` tag, this value is the port after the DNAT operation.|
-|`dst_port`|Destination port.|
+|`dst_k8s_deployment_name`|Destination K8s deployment name|
+|`dst_k8s_namespace`|Destination K8s namespace|
+|`dst_k8s_pod_name`|Destination K8s pod name|
+|`dst_k8s_service_name`|Destination K8s service name|
+|`dst_nat_ip`|For data containing the `outging` tag, this value is the ip after the DNAT operation|
+|`dst_nat_port`|For data containing the `outging` tag, this value is the port after the DNAT operation|
+|`dst_port`|Destination port|
 |`family`|Network layer protocol. (IPv4/IPv6)|
-|`host`|System hostname.|
-|`pid`|Process identification number.|
-|`process_name`|Process name.|
+|`host`|System hostname|
+|`pid`|Process identification number|
+|`process_name`|Process name|
 |`source`|Fixed value: `httpflow`.|
-|`src_ip`|Source IP.|
+|`src_ip`|Source IP|
 |`src_ip_type`|Source IP type. (other/private/multicast)|
-|`src_k8s_deployment_name`|Source K8s deployment name.|
-|`src_k8s_namespace`|Source K8s namespace.|
-|`src_k8s_pod_name`|Source K8s pod name.|
-|`src_k8s_service_name`|Source K8s service name.|
-|`src_port`|Source port.|
-|`sub_source`|Some specific connection classifications, such as the sub_source value for Kubernetes network traffic is K8s.|
+|`src_k8s_deployment_name`|Source K8s deployment name|
+|`src_k8s_namespace`|Source K8s namespace|
+|`src_k8s_pod_name`|Source K8s pod name|
+|`src_k8s_service_name`|Source K8s service name|
+|`src_port`|Source port|
+|`sub_source`|Some specific connection classifications, such as the sub_source value for Kubernetes network traffic is K8s|
 |`transport`|Transport layer protocol. (udp/tcp)|
 
-- metric list
+- field list
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`bytes_read`|The number of bytes read.|int|B|
-|`bytes_written`|The number of bytes written.|int|B|
-|`count`|The total number of HTTP requests in a collection cycle.|int|-|
+|`bytes_read`|The number of bytes read|int|B|
+|`bytes_written`|The number of bytes written|int|B|
+|`count`|The total number of HTTP requests in a collection cycle|int|-|
 |`http_version`|1.1 / 1.0 ...|string|-|
-|`latency`|TTFB.|int|ns|
+|`latency`|TTFB|int|ns|
 |`method`|GET/POST/...|string|-|
-|`path`|Request path.|string|-|
-|`status_code`|Http status codes.|int|-|
-|`truncated`|The length of the request path has reached the upper limit of the number of bytes collected, and the request path may be truncated.|bool|-|
+|`path`|Request path|string|-|
+|`status_code`|Http status codes|int|-|
+|`truncated`|The length of the request path has reached the upper limit of the number of bytes collected, and the request path may be truncated|bool|-|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Logging {#logging}
+
+
+
+
+
+
+
+
+
+
+
+
+
+### `bash`
+
+- tag list
+
+
+| Tag | Description |
+|  ----  | --------|
+|`host`|host name|
+
+- field list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`cmd`|Command|string|-|
+|`message`|The bash execution record generated by the collector|string|-|
+|`pid`|Process identification number|string|-|
+|`user`|The user who executes the bash command|string|-|
+
+
+
+
+
+
+
+
+
+
+
+### `bpf_net_l4_log`
+
+- tag list
+
+
+| Tag | Description |
+|  ----  | --------|
+|`direction`|Use the source (src_ip:src_port) as a frame of reference to identify the connection initiator. (incoming/outgoing)|
+|`dst_ip`|The IP address of the foreign network interface|
+|`dst_k8s_deployment_name`|Destination K8s deployment name|
+|`dst_k8s_namespace`|Destination K8s namespace|
+|`dst_k8s_pod_name`|Destination K8s pod name|
+|`dst_k8s_service_name`|Destination K8s service name|
+|`dst_port`|Foreign port|
+|`host`|Host name|
+|`host_network`|Whether the network log data is collected on the host network|
+|`inner_traceid`|Correlate the layer 4 and layer 7 network log data of a TCP connection on the collected network interface|
+|`k8s_container_name`|Kubernetes container name|
+|`k8s_namespace`|Kubernetes namespace|
+|`k8s_pod_name`|Kubernetes pod name|
+|`l4_proto`|Transport protocol|
+|`l7_proto`|Application protocol|
+|`netns`|Network namespace, format: `NS(<device id>:<inode number>)`|
+|`nic_mac`|MAC address of the collected network interface|
+|`nic_name`|name of the collected network interface|
+|`src_ip`|The IP address of the collected local network interface|
+|`src_k8s_deployment_name`|Source K8s deployment name|
+|`src_k8s_namespace`|Source K8s namespace|
+|`src_k8s_pod_name`|Source K8s pod name|
+|`src_k8s_service_name`|Source K8s service name|
+|`src_port`|Local port|
+|`sub_source`|Some specific connection classifications, such as the sub_source value for Kubernetes network traffic is K8s|
+|`virtual_nic`|Whether the network log data is collected on the virtual network interface|
+|`vni_id`|Virtual Network Identifier|
+|`vxlan_packet`|Whether it is a VXLAN packet|
+
+- field list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`chunk_id`|A connection may be divided into several chunks for upload based on time interval or TCP segment number|int|-|
+|`rx_bytes`|The number of bytes received by the network interface|int|B|
+|`rx_packets`|The number of packets received by the network interface|int|-|
+|`rx_retrans`|The number of retransmitted packets received by the network interface|int|-|
+|`rx_seq_max`|The maximum value of the TCP sequence number of the data packet received by the network interface, which is a 32-bit unsigned integer|int|-|
+|`rx_seq_min`|The minimum value of the TCP sequence number of the data packet received by the network interface, which is a 32-bit unsigned integer|int|-|
+|`tcp_syn_retrans`|The number of retransmitted SYN packets sent by the network interface|int|-|
+|`tx_bytes`|The number of bytes sent by the network interface|int|B|
+|`tx_packets`|The number of packets sent by the network interface|int|-|
+|`tx_retrans`|The number of retransmitted packets sent by the network interface|int|-|
+|`tx_seq_max`|The maximum value of the TCP sequence number of the data packet sent by the network interface, which is a 32-bit unsigned integer|int|-|
+|`tx_seq_min`|The minimum value of the TCP sequence number of the data packet sent by the network interface, which is a 32-bit unsigned integer|int|-|
+
+
+
+
+
+
+
+### `bpf_net_l7_log`
+
+- tag list
+
+
+| Tag | Description |
+|  ----  | --------|
+|`direction`|Use the source (src_ip:src_port) as a frame of reference to identify the connection initiator. (incoming/outgoing)|
+|`dst_ip`|The IP address of the foreign network interface|
+|`dst_k8s_deployment_name`|Destination K8s deployment name|
+|`dst_k8s_namespace`|Destination K8s namespace|
+|`dst_k8s_pod_name`|Destination K8s pod name|
+|`dst_k8s_service_name`|Destination K8s service name|
+|`dst_port`|Foreign port|
+|`host`|Host name|
+|`host_network`|Whether the network log data is collected on the host network|
+|`inner_traceid`|Correlate the layer 4 and layer 7 network log data of a TCP connection on the collected network interface|
+|`k8s_container_name`|Kubernetes container name|
+|`k8s_namespace`|Kubernetes namespace|
+|`k8s_pod_name`|Kubernetes pod name|
+|`l4_proto`|Transport protocol|
+|`l7_proto`|Application protocol|
+|`l7_traceid`|Correlate the layer 7 network log data of a TCP connection on the all collected network interface|
+|`netns`|Network namespace, format: `NS(<device id>:<inode number>)`|
+|`nic_mac`|MAC address of the collected network interface|
+|`nic_name`|name of the collected network interface|
+|`parent_id`|The span id of the APM span corresponding to this network request|
+|`src_ip`|The IP address of the collected local network interface|
+|`src_k8s_deployment_name`|Source K8s deployment name|
+|`src_k8s_namespace`|Source K8s namespace|
+|`src_k8s_pod_name`|Source K8s pod name|
+|`src_k8s_service_name`|Source K8s service name|
+|`src_port`|Local port|
+|`sub_source`|Some specific connection classifications, such as the sub_source value for Kubernetes network traffic is K8s|
+|`trace_id`|APM trace id|
+|`virtual_nic`|Whether the network log data is collected on the virtual network interface|
+|`vni_id`|Virtual Network Identifier|
+|`vxlan_packet`|Whether it is a VXLAN packet|
+
+- field list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`http_method`|HTTP method|string|-|
+|`http_path`|HTTP path|string|-|
+|`http_status_code`|HTTP status code|int|-|
+|`rx_seq`|The tcp sequence number of the request/response first byte received by the network interface|int|-|
+|`tx_seq`|The tcp sequence number of the request/response first byte sent by the network interface|int|-|
+
+
+
+
+
+
+
+
+
+## Tracing {#tracing}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### `dketrace`
+
+- tag list
+
+
+| Tag | Description |
+|  ----  | --------|
+|`dst_ip`|Destination IP address|
+|`dst_port`|Destination port|
+|`host`|System hostname|
+|`service`|Service name|
+|`src_ip`|Source IP|
+|`src_port`|Source port|
+
+- field list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`app_parent_id`|Parent span id carried by the application in the request|string|-|
+|`app_trace_id`|Trace id carried by the application in the request|string|-|
+|`bytes_read`|Bytes read|int|B|
+|`bytes_written`|Bytes written|int|B|
+|`duration`|Duration|int|μs|
+|`ebpf_parent_id`|eBPF parent span id, generated by the `ebpftrace` collector|string|-|
+|`ebpf_trace_id`|eBPF trace id, generated by the `ebpftrace` collector|string|-|
+|`err_msg`|Redis error message|string|-|
+|`grpc_status_code`|gRPC status code|string|-|
+|`http_method`|HTTP method|string|-|
+|`http_route`|HTTP route|string|-|
+|`http_status_code`|HTTP status code|string|-|
+|`mysql_err_msg`|MySQL error message|string|-|
+|`mysql_status_code`|MySQL request status code|int|-|
+|`operation`|Operation|string|-|
+|`parent_id`|APM parent span id, set by the `ebpftrace` collector|string|-|
+|`pid`|Process identification number|string|-|
+|`process_name`|Process name|string|-|
+|`resource_type`|Redis resource type|string|-|
+|`source_type`|Source type, value is `ebpf`|string|-|
+|`span_id`|APM span id, generated by the `ebpftrace` collector|string|-|
+|`span_type`|Span type|string|-|
+|`start`|Start time|int|usec|
+|`status`|Status|string|-|
+|`status_msg`|Redis status message|string|-|
+|`thread_name`|Thread name|string|-|
+|`trace_id`|APM trace id, can choose between existing app trace id and ebpf generation,set by the `ebpftrace` collector|string|-|
+
 
 
