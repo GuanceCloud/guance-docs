@@ -5,24 +5,24 @@
 
 ---
 
-自 DataKit 1.4.0 起，可通过内置的 Pipeline 功能直接操作 DataKit 采集数据，支持目前[所有的数据类型](../../datakit/apis.md#category)。
+自 DataKit 1.4.0 起，可通过内置的 Pipeline 功能直接操作 DataKit 采集数据，支持目前[所有的数据类型](../../datakit/apis.md#category)
 
 <!-- markdownlint-disable MD046 -->
-???+ warning "注意"
+???+ attention
 
     - Pipeline 应用到所有数据，目前处于实验阶段，不保证后面会对机制或行为做不兼容的调整。
     - 即使是通过 [DataKit API](../../datakit/apis.md) 上报的数据也支持 Pipeline 处理。
-    - 用 Pipeline 对现有采集的数据进行处理（特别是非日志类数据），极有可能破坏已有的数据结构，导致数据在观测云上表现异常。
-    - 应用 Pipeline 之前，请大家务必使用 [Pipeline 调试工具](pipeline-quick-start.md#debug)确认数据处理是否符合预期。
+    - 用 Pipeline 对现有采集的数据进行处理（特别是非日志类数据），极有可能破坏已有的数据结构，导致数据在观测云上表现异常
+    - 应用 Pipeline 之前，请大家务必使用 [Pipeline 调试工具](pipeline-quick-start.md#debug)确认数据处理是否符合预期
 <!-- markdownlint-enable -->
 
 Pipeline 可以对 DataKit 采集的数据执行如下操作：
 
-- 新增、删除、修改 field 和 tag 的值或数据类型；
-- 将 field 变更为 tag；
-- 修改指标集名字；
-- 标记丢弃当前数据（[drop()](pipeline-built-in-function.md#fn-drop)）；
-- 终止 Pipeline 脚本的运行（[exit()](pipeline-built-in-function.md#fn-exit)）；
+- 新增、删除、修改 field 和 tag 的值或数据类型
+- 将 field 变更为 tag
+- 修改指标集名字
+- 标记丢弃当前数据（[drop()](pipeline-built-in-function.md#fn-drop)）
+- 终止 Pipeline 脚本的运行（[exit()](pipeline-built-in-function.md#fn-exit)）
 - ...
 
 ## 输入的数据结构 {#input-data-struct}
@@ -60,7 +60,7 @@ Point {
 
 - 其中 `name` 可以通过函数 `set_measurement()` 修改。
 
-- 在 point 的 tags/fields map，**任意一个 key 不能也不会同时出现在 tags 和 fields 中**。
+- 在 point 的 tags/fields map，**任意一个 key 不能也不会同时出现在 tags 和 fields 中**；
 
 - 可以在 Pipeline 中通过自定义标识符或函数 `get_key()` 读取 point 的 tags/fields map 中的对应键的值；但修改 Tags 或 Fields 中键的值需要通过其他内置函数进行，如 `add_key` 等函数；其中 `_` 可以视为 `message` 这个 key 的别名。
 
@@ -82,7 +82,7 @@ Point {
 | `gitrepo` | *[DataKit 安装目录]/pipeline_gitrepos/[repo-name]*  | CO, E, L, M, N, O, P, R, S, T | Git 管理的脚本                  |
 | `default` | *[DataKit 安装目录]/pipeline*                         | CO, E, L, M, N, O, P, R, S, T | DataKit 生成的脚本或用户编写的    |
 
-**注意**：
+注意：
 
 - 请勿修改 *pipeline* 目录下的自动生成的采集器默认脚本，如果修改，在 DataKit 启动后，脚本将被覆盖；
 - 建议在 *pipeline/[category]/* 目录下添加对应数据类别的本地脚本；
@@ -95,7 +95,7 @@ DataKit 在选择对应的 Pipeline 时，这四个命名空间内的脚本的�
 3. `gitrepo/<repo-name>/metric/cpu.p`
 4. `pipeline/metric/cpu.p`
 
-**注意**：此处 `<repo-name>` 视大家 git 的仓库名而定。
+> 注：此处 `<repo-name>` 视大家 git 的仓库名而定。
 
 我们会为每一个数据类别下的脚本分别创建索引，该功能不会导致 `use()` 函数跨命名空间引用脚本；Pipeline 的脚本存储和脚本索引的实现见下图所示，在建立脚本索引时，高优先级命名空间的脚本将遮盖低优先级的：
 
@@ -145,22 +145,22 @@ DataKit 在选择对应的 Pipeline 时，这四个命名空间内的脚本的�
 以上所有的数据与脚本的匹配策略都依赖于数据的数据特征字符串；对于不同类别的数据，其数据特征字符串的生成策略有所不同：
 
 1. 以特定的 point tag/field 来生成数据特征字符串：
-    - APM 的 Tracing 与 Profiling 类别数据：
-        - 以 **tags/fields 中的 `service`** 的值来生成数据特征字符串。例如，DataKit 采集到一条数据，如果 `service` 值为 `service-a`，则会将生成 `service-a`，对应脚本名 `service-a.p` ，之后将在 *Tracing/Profiling* 类别的脚本索引下进行查找；
-    - Scheck 的 Security 类别数据特征字符串：
-        - 以 **tags/fields 中的 `category`** 的值来生成数据特征字符串。例如，DataKit 接收到一条 Security 数据，如果 `category` 值为 `system`，则会生成 `system`，对应脚本名 `system.p`。
+   - APM 的 Tracing 与 Profiling 类别数据：
+       - 以 **tags/fields 中的 `service`** 的值来生成数据特征字符串。例如，DataKit 采集到一条数据，如果 `service` 值为 `service-a`，则会将生成 `service-a`，对应脚本名 `service-a.p` ，之后将在 *Tracing/Profiling* 类别的脚本索引下进行查找；
+   - Scheck 的 Security 类别数据特征字符串：
+       - 以 **tags/fields 中的 `category`** 的值来生成数据特征字符串。例如，DataKit 接收到一条 Security 数据，如果 `category` 值为 `system`，则会生成 `system`，对应脚本名 `system.p`。
 
 2. 以特定的 point tag/field 和 point name 来生成数据特征字符串：
-    - RUM 的 RUM 类别数据：
-        - 以 **tags/fields 中的 `app_id`** 的值和 **point name** 的值生成数据特征字符串；以 point name 值为 `action` 为例，生成 `<app_id>_action`，对应脚本名 `<app_id>_action.p`;
+   - RUM 的 RUM 类别数据：
+     - 以 **tags/fields 中的 `app_id`** 的值和 **point name** 的值生成数据特征字符串；以 point name 值为 `action` 为例，生成 `<app_id>_action`，对应脚本名 `<app_id>_action.p`;
 
 3. 以 point name 来生成数据特征字符串：
-    - Logging/Metric/Network/Object/... 等其他所有类别：
-        - 均以 **point name** 来生成数据特征字符串。以时序指标集 `cpu` 为例，会生成 `cpu`，对应脚本 `cpu.p`；而对象数据中 class 为 `HOST` 的主机对象而言，会生成 `HOST`，对应脚本 `HOST.p`。
+   - Logging/Metric/Network/Object/... 等其他所有类别：
+     - 均以 **point name** 来生成数据特征字符串。以时序指标集 `cpu` 为例，会生成 `cpu`，对应脚本 `cpu.p`；而对象数据中 class 为 `HOST` 的主机对象而言，会生成 `HOST`，对应脚本 `HOST.p`。
 
 ## Pipeline 处理示例 {#examples}
 
-**注意**：示例脚本仅供参考，具体使用请根据需求编写。
+> 示例脚本仅供参考，具体使用请根据需求编写
 
 ### 处理时序数据 {#M}
 
