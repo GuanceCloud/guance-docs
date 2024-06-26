@@ -192,7 +192,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`exception`|Exception value, 1 is default|int|-|
+|`exception`|Exception value, 1 or 0|int|-|
 |`pid`|The process ID|int|int|
 |`start_duration`|The total time the process has run|int|μs|
 
@@ -219,7 +219,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`exception`|Exception value, 1 is default|int|-|
+|`exception`|Exception value, 1 or 0|int|-|
 
 
 
@@ -244,6 +244,6 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`exception`|Exception value, 1 is default|int|-|
+|`exception`|Exception value, 1 or 0|int|-|
 
 

@@ -36,11 +36,15 @@ The Pushgateway collector will open the corresponding API interface to receive P
       route_prefix = ""
     
       ## Measurement name.
-      ## If measurement_name is empty, split metric name by '_', the first field after split as measurement set name, the rest as current metric name.
       ## If measurement_name is not empty, using this as measurement set name.
       # measurement_name = "prom_pushgateway"
     
+      ## If job_as_measurement is true, use the job field for the measurement name.
+      ## The measurement_name configuration takes precedence.
+      job_as_measurement = false
+    
       ## Keep Exist Metric Name.
+      ## Split metric name by '_', the first field after split as measurement set name, the rest as current metric name.
       ## If the keep_exist_metric_name is true, keep the raw value for field names.
       keep_exist_metric_name = true
     
@@ -71,6 +75,16 @@ The Pushgateway collector will open the corresponding API interface to receive P
         **Type**: String
     
         **ConfField**: `measurement_name`
+    
+    - **ENV_INPUT_PUSHGATEWAY_JOB_AS_MEASUREMENT**
+    
+        Whether to use the job field for the measurement name.
+    
+        **Type**: Boolean
+    
+        **ConfField**: `job_as_measurement`
+    
+        **Default**: false
     
     - **ENV_INPUT_PUSHGATEWAY_KEEP_EXIST_METRIC_NAME**
     
@@ -174,4 +188,5 @@ The Pushgateway collector does not add any tags.
 There are two cases for naming metric sets:
 
 1. Use the configuration option `measurement_name` to specify the metric set name.
+1. Use the job field for the measurement name.
 1. Split the data field names using an underscore `_`, where the first field after splitting becomes the metric set name, and the remaining fields become the current metric name.
