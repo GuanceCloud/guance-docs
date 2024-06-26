@@ -99,13 +99,31 @@
 
 > 更多自定义显示列，可参考 [显示列说明](../getting-started/function-details/explorer-search.md#columns)。
 
+#### JSON 字段返回 {#json-content}
+
+<font size=3>**注意**：该功能仅适用于拥有 DQL 查询权限的用户角色。</font>
+
+观测云 DQL 查询支持从日志数据的 JSON 字段中提取内嵌的值，通过在 DQL 查询语句中添加带有 `@` 符号的字段，系统会识别该配置并将其作为独立字段在查询结果中展示。如：
+
+- 正常查询：
+
+<img src="../img/json.png" width="70%" >
+
+- 期待提取内嵌字段后的查询：
+
+<img src="../img/json-1.png" width="70%" >
+
+在日志查看器，若想直接在数据列表中指定查看从每条日志 `message` 的 JSON 文本中提取出的值，在显示列处添加格式为 `@targer_fieldname` 的字段。如下图，我们在显示列中添加 DQL 查询语句中已配置的 `@fail_reason`：
+
+![](img/json-3.gif)
+
 ### 新建监控器 {#new}
 
 您可以在日志查看器通过该入口，直接跳转至监控器新建页面，为日志数据快速设置异常检测规则。
 
 ![](img/explorer-monitor.png)
 
-> 关于细节操作，可参考 [新建监控器](../monitoring/monitor/index.md#new)。
+> 具体操作，可参考 [新建监控器](../monitoring/monitor/index.md#new)。
 
 ### Copy as cURL
 
@@ -146,7 +164,7 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
 **注意**：仅管理员及以上可进行查看器格式化配置。
 
-![](img/11.log_format_2.png)
+![](img/11.log_format_2.gif)
 
 ### 日志颜色高亮
 
@@ -174,9 +192,9 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
 ### 日志多行浏览
 
-观测云的日志数据列表默认为您展示日志的触发时间和内容。您可以在查看器**显示列**中选择日志显示 “1行”、“3行”、“10行”和全部来查看完整的日志内容。
+观测云的日志数据列表默认为您展示日志的触发时间和内容。您可以在查看器**显示列**中选择日志显示 “1 行”、“3 行”、“10 行”和全部来查看完整的日志内容。
 
-![](img/5.log_explorer_2.png)
+![](img/5.log_explorer_2.gif)
 
 ### 日志数据导出 {#logexport}
 

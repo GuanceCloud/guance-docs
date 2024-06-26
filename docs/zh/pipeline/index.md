@@ -8,20 +8,44 @@ icon: zy/pipeline
 
 Pipelines 用于数据解析，通过定义解析规则，将各种数据类型切割成符合我们要求的结构化数据。如通过 Pipeline 提取日志的时间戳、日志的状态、以及其他特定的字段作为标签。
 
-## 前提条件
+目前，观测云支持配置本地 Pipeline 和中心 Pipeline。
 
-- [安装 DataKit](../datakit/datakit-install.md)；
-- DataKit 版本要求 >= 1.5.0。
+- 本地 Pipeline：在数据采集时运行，要求 DataKit 采集器版本不低于 1.5.0；
+- 中心 Pipeline：在数据上传到控制台中心后运行；
 
-为了保证正常使用 Pipeline，请将 DataKit 升级到 1.5.0 及以上。版本过低会导致部分 Pipeline 功能失效。
+## 使用场景
 
-在 `DataKit<1.5.0` 版本之前：
+| <div style="width: 130px">类型</div> | 场景       |
+| ------ | -------- |
+| 本地 Pipeline  | 在数据转发前处理日志。       |
+| 中心 Pipeline  | 1. 用户访问 (Session) 数据、Profiling 数据；<br />2. 处理应用性能链路中的 RUM 数据，如提取链路 `message` 中的 `session`、`view`、`resource` 等字段。       |
 
-- 不支持默认 Pipeline 功能；
+除上述说明之外的数据，本地/中心 Pipeline 均可处理。
 
-- 数据来源不支持多选，每个 Pipeline 只能选择一个 `source`。所以若您的版本低于 1.5.0，同时又多选了数据来源，则不会生效；
+## 使用前提
 
-- Pipeline 名称为固定生成不支持修改。例如：日志来源选择了 `nginx`，则 Pipeline 名称固定为 `nginx.p`。所以若您的版本低于 1.5.0，Pipeline 名称与数据来源名称不一致，则 Pipeline 不会生效。
+<div class="grid" markdown>
+
+=== "本地 Pipeline"
+
+    - [安装 DataKit](../datakit/datakit-install.md)；
+    - DataKit 版本要求 >= 1.5.0。
+
+    为了保证正常使用 Pipeline，请将 DataKit 升级到 1.5.0 及以上。版本过低会导致部分 Pipeline 功能失效。
+
+    在 `DataKit<1.5.0` 版本之前：
+
+    - 不支持默认 Pipeline 功能；
+
+    - 数据来源不支持多选，每个 Pipeline 只能选择一个 `source`。所以若您的版本低于 1.5.0，同时又多选了数据来源，则不会生效；
+
+    - Pipeline 名称为固定生成不支持修改。例如：日志来源选择了 `nginx`，则 Pipeline 名称固定为 `nginx.p`。所以若您的版本低于 1.5.0，Pipeline 名称与数据来源名称不一致，则 Pipeline 不会生效。
+
+=== "中心 Pipeline"
+
+    该功能需付费使用。
+
+</div>
 
 ## 新建 Pipeline
 
@@ -48,25 +72,13 @@ Pipelines 用于数据解析，通过定义解析规则，将各种数据类型�
 
 - 类型：包含本地 Pipeline 和中心 Pipeline；默认选中前者。
 
-    - 本地 Pipeline：在数据采集时运行，要求 DataKit 采集器版本不低于 1.5.0；
-    - 中心 Pipeline：在数据上传到控制台中心后运行；
-
-???- warning "两种 Pipeline 的使用场景"
-
-    1. 若需在数据转发前处理日志，须使用本地 Pipeline。
-    2. 处理用户访问 (Session) 数据、Profiling 数据时，须使用中心 Pipeline。
-    3. 处理应用性能链路中的 RUM 数据时，须使用中心 Pipeline。（如提取链路 `message` 中的 `session`、`view`、`resource` 等字段）
-    4. 除上述说明之外的数据，本地/中心 Pipeline 均可处理。
-
-
 - 过滤：即过滤出 Pipeline 要解析的数据；数据类型包括日志、指标、用户访问监测、应用性能监测、基础对象、自定义对象、网络、安全巡检；支持多选。  
 - Pipeline 名称：自定义的 Pipeline 文件名。
 
 
-
 **注意**：
 
-1. 自定义 Pipeline 文件不能同名，但可以和官方 Pipeline 同名，此时 DataKit 会优先自动获取自定义 Pipeline 文件配置。若在采集器的 `.conf` 文件中手动配置 Pipeline 文件名，此时 DataKit 会优先获取手动配置的 Pipeline 文件名。
+1. Pipeline 文件命名需避免重名。如必要，需了解 [Pipeline 脚本的存储、索引、匹配的逻辑](./use-pipeline/pipeline-category.md#script-store-index-match)。
 
 2. 每个数据类型只能设置一个默认 Pipeline，新建/导入时出现重复会弹出确认框，询问是否进行替换，已勾选为默认的 Pipeline，名称后会有一个 `default` 标识。
 

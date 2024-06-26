@@ -2,4 +2,5 @@ nav:
   - index.md
   - '创建 Issue': issue.md
   - '管理 Issue': channel.md
+  - 'Issue 分析看板': issue-view.md
   
