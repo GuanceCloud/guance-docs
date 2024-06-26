@@ -484,17 +484,28 @@ For all of the following data collections, the global election tags will added a
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`Auto_Position`|1 if auto-positioning is in use; otherwise 0.|bool|count|
+|`Connect_Retry:`|The number of seconds between connect retries (default 60). This can be set with the CHANGE MASTER TO statement.|int|count|
+|`Exec_Master_Log_Pos`|The position in the current source binary log file to which the SQL thread has read and executed, marking the start of the next transaction or event to be processed.|int|count|
+|`Last_Errno`|These columns are aliases for Last_SQL_Errno|int|count|
+|`Last_IO_Errno`|The error number of the most recent error that caused the I/O thread to stop. An error number of 0 and message of the empty string mean “no error.”|int|count|
+|`Last_SQL_Errno`|The error number of the most recent error that caused the SQL thread to stop. An error number of 0 and message of the empty string mean “no error.”|int|count|
+|`Master_Server_Id`|The server_id value from the source.|int|count|
+|`Relay_Log_Space`|The total combined size of all existing relay log files.|int|count|
 |`Replicas_connected`|Number of replicas connected to a replication source.|int|count|
-|`Seconds_Behind_Master`|The lag in seconds between the master and the slave. Used before MySQL 8.0.22|int|count|
-|`Seconds_Behind_Source`|The lag in seconds between the source and the replica. Used after MySQL 8.0.22|int|count|
-|`count_conflicts_detected`|The number of transactions that have not passed the conflict detection check.|int|count|
-|`count_transactions_checked`|The number of transactions that have been checked for conflicts.|int|count|
-|`count_transactions_in_queue`|The number of transactions in the queue pending conflict detection checks.|int|count|
-|`count_transactions_local_proposed`|The number of transactions which originated on this member and were sent to the group.|int|count|
-|`count_transactions_local_rollback`|The number of transactions which originated on this member and were rolled back by the group.|int|count|
-|`count_transactions_remote_applied`|The number of transactions this member has received from the group and applied.|int|count|
-|`count_transactions_remote_in_applier_queue`|The number of transactions that this member has received from the replication group which are waiting to be applied.|int|count|
-|`count_transactions_rows_validating`|The number of transaction rows which can be used for certification, but have not been garbage collected.|int|count|
+|`SQL_Delay`|The number of seconds that the replica must lag the source.|int|count|
+|`Seconds_Behind_Master`|The lag in seconds between the master and the slave.|int|count|
+|`Skip_Counter`|The current value of the sql_slave_skip_counter system variable.|int|count|
+|`Slave_IO_Running`|Whether the I/O thread is started and has connected successfully to the source. 1 if the state is Yes, 0 if the state is No.|bool|count|
+|`Slave_SQL_Running`|Whether the SQL thread is started. 1 if the state is Yes, 0 if the state is No.|bool|count|
+|`count_conflicts_detected`|The number of transactions that have not passed the conflict detection check. Collected as group replication metric.|int|count|
+|`count_transactions_checked`|The number of transactions that have been checked for conflicts. Collected as group replication metric.|int|count|
+|`count_transactions_in_queue`|The number of transactions in the queue pending conflict detection checks. Collected as group replication metric.|int|count|
+|`count_transactions_local_proposed`|The number of transactions which originated on this member and were sent to the group. Collected as group replication metric.|int|count|
+|`count_transactions_local_rollback`|The number of transactions which originated on this member and were rolled back by the group. Collected as group replication metric.|int|count|
+|`count_transactions_remote_applied`|The number of transactions this member has received from the group and applied. Collected as group replication metric.|int|count|
+|`count_transactions_remote_in_applier_queue`|The number of transactions that this member has received from the replication group which are waiting to be applied. Collected as group replication metric.|int|count|
+|`count_transactions_rows_validating`|The number of transaction rows which can be used for certification, but have not been garbage collected. Collected as group replication metric.|int|count|
 
 
 
@@ -760,6 +771,10 @@ MySQL user information
 
 
 
+
+
+
+
 ## Log {#logging}
 
 [:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)
@@ -931,6 +946,33 @@ Collect the waiting event of the current thread
 |`wait_event`|The name of the wait event|string|-|
 |`wait_timer_end`|The time when the waiting event timing ended|int|ns|
 |`wait_timer_start`|The time when the waiting event timing started|int|ns|
+
+
+
+
+
+### `mysql_replication_log`
+
+Record the replication string information.
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`host`|The server host address|
+|`server`|Server addr|
+
+- Metric list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`Executed_Gtid_Set`|The set of global transaction IDs written in the binary log.|string|-|
+|`Master_Host`|The host name of the master.|string|-|
+|`Master_Log_File`|The name of the binary log file from which the server is reading.|string|-|
+|`Master_Port`|The network port used to connect to the master.|int|count|
+|`Master_User`|The user name used to connect to the master.|string|-|
 
 
 <!-- markdownlint-enable -->
