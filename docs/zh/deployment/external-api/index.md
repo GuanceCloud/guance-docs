@@ -22,7 +22,7 @@ icon: zy/open-api
 
 ## API 文档配置
 
-1. 接口文档地址固定为: \<Endpoint\>/v1/doc <br/>
+1. 接口文档地址固定为: \<Endpoint>/v1/doc <br/>
 例如: http://external-api.dataflux.cn/v1/doc
 
 3. API 文档开关配置位于 launcher 中的 core (命名空间：forethought-core) 配置中。具体配置如下
