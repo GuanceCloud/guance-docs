@@ -9,7 +9,7 @@
 通过 Reference Table 功能，Pipeline 支持导入外部数据进行数据处理。
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning "注意"
 
     该功能内存消耗较高，参考 150 万行磁盘占用约 200MB (JSON 文件) 的不重复数据 (string 类型两列；int, float, bool 各一列) 为例，其内存占用维持在 950MB ～ 1.2GB, 更新时的峰值内存 2.2GB ~ 2.7GB。可以通过配置 `use_sqlite = true`，将数据保存到磁盘上。
 <!-- markdownlint-enable -->
@@ -34,7 +34,7 @@
 <!-- markdownlint-disable MD046 -->
 === "主机安装"
 
-    在配置文件 `datakit.conf` 中配置 reference table url 与拉取间隔(默认间隔为 5 分钟)
+    在配置文件 `datakit.conf` 中配置 reference table url 与拉取间隔(默认间隔为 5 分钟)。
     
     ```toml
     [pipeline]
@@ -46,11 +46,11 @@
 
 === "Kubernetes"
 
-    [参见这里](../../datakit/datakit-daemonset-deploy.md#env-reftab)
+    [Kubernetes](../../datakit/datakit-daemonset-deploy.md#env-reftab)。
 
 ---
 
-???+ attention
+???+ warning "注意"
 
     目前要求 refer_table_url 指定的地址，其 HTTP 返回的 Content-Type 必须为 `Content-Type: application/json`。
 <!-- markdownlint-enable -->
@@ -123,16 +123,16 @@
 当使用 SQLite 保存数据，且上述 `sqlite_mem_mode` 设置为 `true` 时，将使用 SQLite 的内存模式；默认为 SQLite 磁盘模式。
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning "注意"
 
     目前 windows-386 下不支持此功能。
 <!-- markdownlint-enable -->
 
 ## 实践示例 {#example}
 
-将上面的 JSON 文本写成文件 `test.json`，在 Ubuntu18.04+ 使用 `apt` 安装 NGINX 后将文件放置于 */var/www/html* 下
+将上面的 JSON 文本写成文件 `test.json`，在 Ubuntu18.04+ 使用 `apt` 安装 NGINX 后将文件放置于 */var/www/html* 下。
 
-执行 `curl -v localhost/test.json` 测试文件是否能通过 HTTP GET 获取到，输出结果大致为
+执行 `curl -v localhost/test.json` 测试文件是否能通过 HTTP GET 获取到，输出结果大致为：
 
 ```txt
 ...
@@ -162,7 +162,7 @@
   sqlite_mem_mode = false
 ```
 
-进入 Datakit *pipeline/loggging* 目录，并创建测试脚本 `refer_table_for_test.p`，并写入以下内容
+进入 Datakit *pipeline/loggging* 目录，并创建测试脚本 `refer_table_for_test.p`，并写入以下内容：
 
 ```python
 # 从输入中提取 表名，列名，列值

@@ -157,9 +157,9 @@ drop_origin_data()
 ```
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning "注意"
 
-    切割过程中，需避免[可能出现的跟 tag key 重名的问题](datakit-pl-how-to.md#naming)
+    切割过程中，需避免[可能出现的跟 tag key 重名的问题](./use-pipeline/pipeline-quick-start.md#naming)。
 <!-- markdownlint-enable -->
 
 - 配置对应的采集器来使用上面的 Pipeline
@@ -185,17 +185,17 @@ drop_origin_data()
 重启采集器，即可切割对应的日志。
 
 <!-- markdownlint-disable MD046 -->
-???+ info
+???+ abstract
 
-    关于 Pipeline 编写、调试以及注意事项，参见[这里](datakit-pl-how-to.md)。
+    关于 Pipeline 编写、调试以及注意事项，参见[如何编写 Pipeline 脚本](./use-pipeline/pipeline-quick-start.md)。
 <!-- markdownlint-enable -->
 
 ## Grok 模式分类 {#grok}
 
 DataKit 中 grok 模式可以分为两类：
 
-- 全局模式：*pattern* 目录下的模式文件都是全局模式，所有 Pipeline 脚本都可使用
-- 局部模式：在 Pipeline 脚本中通过 [add_pattern()](pipeline.md#fn-add-pattern) 函数新增的模式为局部模式，只针对当前 Pipeline 脚本有效
+- 全局模式：*pattern* 目录下的模式文件都是全局模式，所有 Pipeline 脚本都可使用；
+- 局部模式：在 Pipeline 脚本中通过 [add_pattern()](pipeline.md#fn-add-pattern) 函数新增的模式为局部模式，只针对当前 Pipeline 脚本有效。
 
 以下以 Nginx access-log 为例，说明一下如何编写对应的 grok，原始 nginx access log 如下：
 
@@ -248,7 +248,7 @@ _minute (?:[0-5][0-9])                            # 匹配分钟数，_minute �
 _hour (?:2[0123]|[01]?[0-9])                      # 匹配年份，_hour 为模式名
 ```
 
-基于上面三个内置模式，可以扩展出自己内置模式且命名为 `time`:
+基于上面三个内置模式，可以扩展出自己内置模式且命名为 `time`：
 
 ```python
 # 把 time 加到 pattern 目录下文件中，此模式为全局模式，任何地方都能引用 time
@@ -262,10 +262,10 @@ grok(_, %{time})
 ```
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning "注意"
 
-    - 如果出现同名模式，则以局部模式优先（即局部模式覆盖全局模式）
-    - Pipeline 脚本中，[add_pattern()](pipeline.md#fn-add-pattern) 需在 [grok()](pipeline.md#fn-grok) 函数前面调用，否则会导致第一条数据提取失败
+    - 如果出现同名模式，则以局部模式优先（即局部模式覆盖全局模式）；
+    - Pipeline 脚本中，[add_pattern()](pipeline.md#fn-add-pattern) 需在 [grok()](pipeline.md#fn-grok) 函数前面调用，否则会导致第一条数据提取失败。
 <!-- markdownlint-enable -->
 
 ### 内置的 Pattern 列表 {#builtin-patterns}
@@ -527,7 +527,7 @@ Point {
 
 函数说明：往 point 中增加一个字段
 
-函数参数
+函数参数：
 
 - `key`: 新增的 key 名称
 - `value`：作为 key 的值
@@ -554,7 +554,7 @@ add_key(city, "shanghai")
 
 函数原型：`fn add_pattern(name: str, pattern: str)`
 
-函数说明：创建自定义 grok 模式。grok 模式有作用域限制，如在 if else 语句内将产生新的作用域，该 pattern 仅在此作用域内有效。该函数不可覆盖同一作用域或者上一作用域已经存在的 grok 模式
+函数说明：创建自定义 grok 模式。grok 模式有作用域限制，如在 if else 语句内将产生新的作用域，该 pattern 仅在此作用域内有效。该函数不可覆盖同一作用域或者上一作用域已经存在的 grok 模式。
 
 参数：
 
@@ -610,17 +610,17 @@ if false {
 
 函数原型：`fn adjust_timezone(key: int, minute: int)`
 
-函数参数
+函数参数：
 
-- `key`: 纳秒时间戳，如 `default_time(time)` 函数处理后得到的时间戳
-- `minute`: 返回值允许超出当前时间的分钟数（整数），取值范围 [0, 15], 默认值为 2 分钟
+- `key`: 纳秒时间戳，如 `default_time(time)` 函数处理后得到的时间戳；
+- `minute`: 返回值允许超出当前时间的分钟数（整数），取值范围 [0, 15], 默认值为 2 分钟。
 
 函数说明：使得传入的时间戳减去函数执行时刻的时间戳的差值在（-60+minute, minute] 分钟内；不适用于时间差超出此范围的数据，否则将导致获取到错误的数据。计算流程：
 
-1. 为 key 的值加上数小时使其处于当前小时内
-2. 此时计算两者分钟差，两者分钟数值范围为 [0, 60)，差值范围在 (-60,0] 和 [0, 60)
-3. 差值小于等于 -60 + minute 的加 1 小时，大于 minute 的减 1 小时
-4. minute 默认值为 2，则差的范围允许在 (-58, 2]，若此时为 11:10，日志时间为 3:12:00.001，最终结果为 10:12:00.001；若此时为 11:59:1.000, 日志时间为 3:01:1.000，最终结果为 12:01:1.000
+1. 为 key 的值加上数小时使其处于当前小时内；
+2. 此时计算两者分钟差，两者分钟数值范围为 [0, 60)，差值范围在 (-60,0] 和 [0, 60)；
+3. 差值小于等于 -60 + minute 的加 1 小时，大于 minute 的减 1 小时；
+4. minute 默认值为 2，则差的范围允许在 (-58, 2]，若此时为 11:10，日志时间为 3:12:00.001，最终结果为 10:12:00.001；若此时为 11:59:1.000, 日志时间为 3:01:1.000，最终结果为 12:01:1.000。
 
 示例：
 
@@ -672,15 +672,15 @@ adjust_timezone(time)
 
 函数原型：`fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil)`
 
-函数说明：创建一个用于聚合的指标集，通过 `on_interval` 或 `on_count` 设置时间或次数作为聚合周期，聚合结束后将上传聚合数据，可以选择是否保留上一次聚合的数据
+函数说明：创建一个用于聚合的指标集，通过 `on_interval` 或 `on_count` 设置时间或次数作为聚合周期，聚合结束后将上传聚合数据，可以选择是否保留上一次聚合的数据。
 
 函数参数：
 
-- `bucket`: 字符串类型，作为聚合出的指标的指标集名，如果该 bucket 已经创建，则函数不执行任何操作
+- `bucket`: 字符串类型，作为聚合出的指标的指标集名，如果该 bucket 已经创建，则函数不执行任何操作；
 - `on_interval`：默认值 `60s`, 以时间作为聚合周期，单位 `s`，值大于 `0` 时参数生效；不能同时与 `on_count` 小于等于 0；
-- `on_count`: 默认值 `0`，以处理的点数作为聚合周期，值大于 `0` 时参数生效
-- `keep_value`: 默认值 `false`
-- `const_tags`: 自定义的 tags，默认为空
+- `on_count`: 默认值 `0`，以处理的点数作为聚合周期，值大于 `0` 时参数生效；
+- `keep_value`: 默认值 `false`；
+- `const_tags`: 自定义的 tags，默认为空。
 
 示例：
 
@@ -699,11 +699,11 @@ agg_create("cpu_agg_info", on_interval = "30s")
 
 函数参数：
 
-- `bucket`: 字符串类型，函数 `agg_create` 创建出的对应指标集合的 bucket，如果该 bucket 未被创建，则函数不执行任何操作
-- `new_field`： 聚合出的数据中的指标名，其值的数据类型为 `float`
-- `agg_fn`: 聚合函数，可以是 `"avg"`,`"sum"`,`"min"`,`"max"`,`"set"` 中的一种
+- `bucket`: 字符串类型，函数 `agg_create` 创建出的对应指标集合的 bucket，如果该 bucket 未被创建，则函数不执行任何操作；
+- `new_field`： 聚合出的数据中的指标名，其值的数据类型为 `float`；
+- `agg_fn`: 聚合函数，可以是 `"avg"`,`"sum"`,`"min"`,`"max"`,`"set"` 中的一种；
 - `agg_by`: 输入的数据中的字段的名，将作为聚合出的数据的 tag，这些字段的值只能是字符串类型的数据
-- `agg_field`: 输入的数据中的字段名，自动获取字段值进行聚合
+- `agg_field`: 输入的数据中的字段名，自动获取字段值进行聚合。
 
 示例：
 
@@ -779,9 +779,9 @@ c = append(a, b)
 
 函数原型：`fn b64dec(key: str)`
 
-函数说明：对指定字段上获取的字符串数据进行 base64 解码
+函数说明：对指定字段上获取的字符串数据进行 base64 解码。
 
-函数参数
+函数参数：
 
 - `key`: 待提取字段
 
@@ -803,9 +803,9 @@ b64enc(`str`)
 
 函数原型：`fn b64enc(key: str)`
 
-函数说明：对指定字段上获取的字符串数据进行 base64 编码
+函数说明：对指定字段上获取的字符串数据进行 base64 编码。
 
-函数参数
+函数参数：
 
 - `key`: 待提取字段
 
@@ -827,12 +827,12 @@ b64enc(`str`)
 
 函数原型：`fn cast(key, dst_type: str)`
 
-函数说明：将 key 值转换成指定类型
+函数说明：将 key 值转换成指定类型。
 
-函数参数
+函数参数：
 
-- `key`: 已提取的某字段
-- `type`：转换的目标类型，支持 `\"str\", \"float\", \"int\", \"bool\"` 这几种，目标类型需要用英文状态双引号括起来
+- `key`: 已提取的某字段；
+- `type`：转换的目标类型，支持 `\"str\", \"float\", \"int\", \"bool\"` 这几种，目标类型需要用英文状态双引号括起来。
 
 示例：
 
@@ -854,9 +854,9 @@ cast(first, "str")
 
 函数原型：`fn cidr(ip: str, prefix: str) bool`
 
-函数说明： 判断 IP 是否在某个 CIDR 块
+函数说明： 判断 IP 是否在某个 CIDR 块。
 
-函数参数
+函数参数：
 
 - `ip`: IP 地址
 - `prefix`： IP 前缀，如 `192.0.2.1/24`
@@ -884,12 +884,12 @@ if cidr(ip, "192.0.2.1/24") {
 
 函数原型：`fn cover(key: str, range: list)`
 
-函数说明：对指定字段上获取的字符串数据，按范围进行数据脱敏处理
+函数说明：对指定字段上获取的字符串数据，按范围进行数据脱敏处理。
 
-函数参数
+函数参数：
 
-- `key`: 待提取字段
-- `range`: 脱敏字符串的索引范围（`[start,end]`） start 和 end 均支持负数下标，用来表达从尾部往前追溯的语义。区间合理即可，end 如果大于字符串最大长度会默认成最大长度
+- `key`：待提取字段；
+- `range`：脱敏字符串的索引范围（`[start,end]`） start 和 end 均支持负数下标，用来表达从尾部往前追溯的语义。区间合理即可，end 如果大于字符串最大长度会默认成最大长度。
 
 示例：
 
@@ -910,14 +910,14 @@ cover(abc, [2, 4])
 
 函数原型：`fn datetime(key, precision: str, fmt: str, tz: str = "")`
 
-函数说明：将时间戳转成指定日期格式
+函数说明：将时间戳转成指定日期格式。
 
-函数参数
+函数参数：
 
-- `key`: 已经提取的时间戳
-- `precision`：输入的时间戳精度(s, ms, us, ns)
-- `fmt`：日期格式，提供内置日期格式且支持自定义日期格式
-- `tz`: 时区 (可选参数)，将时间戳转换为指定时区的时间，默认使用主机的时区
+- `key`: 已经提取的时间戳；
+- `precision`：输入的时间戳精度(s, ms, us, ns)；
+- `fmt`：日期格式，提供内置日期格式且支持自定义日期格式；
+- `tz`: 时区 (可选参数)，将时间戳转换为指定时区的时间，默认使用主机的时区。
 
 内置日期格式：
 
@@ -1013,7 +1013,7 @@ datetime(ts, 'ns', '%m/%d/%y  %H:%M:%S %z', "Asia/Tokyo")
 
 函数原型：`fn decode(text: str, text_encode: str)`
 
-函数说明：把 text 变成 UTF8 编码，以处理原始日志为非 UTF8 编码的问题。目前支持的编码为 utf-16le/utf-16be/gbk/gb18030（这些编码名只能小写）
+函数说明：把 text 变成 UTF8 编码，以处理原始日志为非 UTF8 编码的问题。目前支持的编码为 utf-16le/utf-16be/gbk/gb18030（这些编码名只能小写）。
 
 ```python
 decode("wwwwww", "gbk")
@@ -1029,14 +1029,14 @@ decode("wwwwww", "gbk")
 
 函数原型：`fn default_time(key: str, timezone: str = "")`
 
-函数说明：以提取的某个字段作为最终数据的时间戳
+函数说明：以提取的某个字段作为最终数据的时间戳。
 
-函数参数
+函数参数：
 
-- `key`: 指定的 key， key 的数据类型需要为字符串类型
-- `timezone`: 指定待格式化的时间文本所使用的时区，可选参数，默认为当前系统时区，时区示例 `+8/-8/+8:30`
+- `key`: 指定的 key， key 的数据类型需要为字符串类型；
+- `timezone`: 指定待格式化的时间文本所使用的时区，可选参数，默认为当前系统时区，时区示例 `+8/-8/+8:30`。
 
-待处理数据支持以下格式化时间
+待处理数据支持以下格式化时间：
 
 <!-- markdownlint-disable MD038 -->
 | 日期格式                                           | 日期格式                                                | 日期格式                                       | 日期格式                          |
@@ -1112,7 +1112,7 @@ rename("time", log_time)
 
 函数原型：`fn delete(src: map[string]any, key: str)`
 
-函数说明： 删除 JSON map 中的 key
+函数说明： 删除 JSON map 中的 key。
 
 ```python
 
@@ -1139,7 +1139,7 @@ add_key("j_map", j_map)
 
 函数原型：`fn drop()`
 
-函数说明：丢弃整条日志，不进行上传
+函数说明：丢弃整条日志，不进行上传。
 
 ```python
 # in << {"str_a": "2", "str_b": "3"}
@@ -1163,9 +1163,9 @@ json(_, str_b)
 
 函数原型：`fn drop_key(key)`
 
-函数说明：删除已提取字段
+函数说明：删除已提取字段。
 
-函数参数
+函数参数：
 
 - `key`: 待删除字段名
 
@@ -1193,7 +1193,7 @@ drop_key(height)
 
 函数原型：`fn drop_origin_data()`
 
-函数说明：丢弃初始化文本，否则初始文本放在 message 字段中
+函数说明：丢弃初始化文本，否则初始文本放在 message 字段中。
 
 示例：
 
@@ -1230,7 +1230,7 @@ duration_precision(ts, "ms", "ns")
 
 函数原型：`fn exit()`
 
-函数说明：结束当前一条日志的解析，若未调用函数 drop() 仍会输出已经解析的部分
+函数说明：结束当前一条日志的解析，若未调用函数 drop() 仍会输出已经解析的部分。
 
 ```python
 # in << {"str_a": "2", "str_b": "3"}
@@ -1262,7 +1262,7 @@ json(_, str_b)
 
 参数：
 
-- `ip`: 已经提取出来的 IP 字段，支持 IPv4 和 IPv6
+- `ip`: 已经提取出来的 IP 字段，支持 IPv4 和 IPv6。
 
 示例：
 
@@ -1289,11 +1289,11 @@ geoip(ip)
 
 函数原型：`fn get_key(key)`
 
-函数说明：从输入 point 中读取 key 的值，而不是堆栈上的变量的值
+函数说明：从输入 point 中读取 key 的值，而不是堆栈上的变量的值。
 
-函数参数
+函数参数：
 
-- `key_name`: key 的名称
+- `key_name`: key 的名称。
 
 示例：
 
@@ -1335,9 +1335,9 @@ if city != get_key("city") {
 
 参数：
 
-- `input`：待提取文本，可以是原始文本（`_`）或经过初次提取之后的某个 `key`
-- `pattern`: grok 表达式，表达式中支持指定 key 的数据类型：bool, float, int, string(对应 ppl 的 str，亦可写为 str)，默认为 string
-- `trim_space`: 删除提取出的字符中的空白首尾字符，默认值为 true
+- `input`：待提取文本，可以是原始文本（`_`）或经过初次提取之后的某个 `key`；
+- `pattern`: grok 表达式，表达式中支持指定 key 的数据类型：bool, float, int, string(对应 ppl 的 str，亦可写为 str)，默认为 string；
+- `trim_space`: 删除提取出的字符中的空白首尾字符，默认值为 true。
 
 ```python
 grok(_, pattern)    # 直接使用输入的文本作为原始数据
@@ -1385,7 +1385,7 @@ add_key(grok_match_ok)
 
 函数原型：`fn group_between(key: int, between: list, new_value: int|float|bool|str|map|list|nil, new_key)`
 
-函数说明：如果 `key` 值在指定范围 `between` 内（注意：只能是单个区间，如 `[0,100]`），则可创建一个新字段，并赋予新值。若不提供新字段，则覆盖原字段值
+函数说明：如果 `key` 值在指定范围 `between` 内（注意：只能是单个区间，如 `[0,100]`），则可创建一个新字段，并赋予新值。若不提供新字段，则覆盖原字段值。
 
 示例一：
 
@@ -1425,7 +1425,7 @@ group_between(http_status, [200, 300], "OK", status)
 
 函数原型：`fn group_in(key: int|float|bool|str, range: list, new_value: int|float|bool|str|map|list|nil, new-key = "")`
 
-函数说明：如果 `key` 值在列表 `in` 中，则可创建一个新字段，并赋予新值。若不提供新字段，则覆盖原字段值
+函数说明：如果 `key` 值在列表 `in` 中，则可创建一个新字段，并赋予新值。若不提供新字段，则覆盖原字段值。
 
 示例：
 
@@ -1446,11 +1446,11 @@ group_in(log_level, ["error", "panic"], "not-ok", status)
 
 参数：
 
-- `input`: 待提取 JSON，可以是原始文本（`_`）或经过初次提取之后的某个 `key`
-- `json_path`: JSON 路径信息
-- `newkey`：提取后数据写入新 key
-- `trim_space`: 删除提取出的字符中的空白首尾字符，默认值为 `true`
-- `delete_after_extract`: 在提取结束后删除当前对象，在重新序列化后回写待提取对象；只能应用于 map 的 key 与 value 的删除，不能用于删除 list 的元素；默认值为 `false`，不进行任何操作[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
+- `input`: 待提取 JSON，可以是原始文本（`_`）或经过初次提取之后的某个 `key`；
+- `json_path`: JSON 路径信息；
+- `newkey`：提取后数据写入新 key；
+- `trim_space`: 删除提取出的字符中的空白首尾字符，默认值为 `true`；
+- `delete_after_extract`: 在提取结束后删除当前对象，在重新序列化后回写待提取对象；只能应用于 map 的 key 与 value 的删除，不能用于删除 list 的元素；默认值为 `false`，不进行任何操作[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)。
 
 ```python
 # 直接提取原始输入 JSON 中的 x.y 字段，并可将其命名成新字段 abc
@@ -1554,17 +1554,17 @@ json(_, item2.item3[0], item, true, true)
 
 函数原型：`fn kv_split(key, field_split_pattern = " ", value_split_pattern = "=", trim_key = "", trim_value = "", include_keys = [], prefix = "") -> bool`
 
-函数说明：从字符串中提取出所有的键值对
+函数说明：从字符串中提取出所有的键值对。
 
 参数：
 
-- `key`: key 名称
-- `include_keys`: 包含的 key 名称列表，仅提取在该列表内的 key；**默认值为 []，不提取任何 key**
-- `field_split_pattern`: 字符串分割，用于提取出所有键值对的正则表达式；默认值为 `" "`
-- `value_split_pattern`: 用于从键值对字符串分割出键和值，非递归；默认值为 `"="`
-- `trim_key`: 删除提取出的 key 的前导和尾随的所有指定的字符；默认值为 `""`
-- `trim_value`: 删除提取出的 value 的前导和尾随的所有指定的字符；默认值为 `""`
-- `prefix`: 给所有的 key 添加前缀字符串
+- `key`: key 名称；
+- `include_keys`: 包含的 key 名称列表，仅提取在该列表内的 key；**默认值为 []，不提取任何 key**；
+- `field_split_pattern`: 字符串分割，用于提取出所有键值对的正则表达式；默认值为 `" "`；
+- `value_split_pattern`: 用于从键值对字符串分割出键和值，非递归；默认值为 `"="`；
+- `trim_key`: 删除提取出的 key 的前导和尾随的所有指定的字符；默认值为 `""`；
+- `trim_value`: 删除提取出的 value 的前导和尾随的所有指定的字符；默认值为 `""`；
+- `prefix`: 给所有的 key 添加前缀字符串。
 
 示例：
 
@@ -1655,7 +1655,7 @@ kv_split(_, field_split_pattern="\\+", value_split_pattern="[:]{2}",
 
 参数：
 
-- `val`: 可以是 map、list 或 string
+- `val`: 可以是 map、list 或 string。
 
 示例：
 
@@ -1684,7 +1684,7 @@ add_key(abc, len(["abc"]))
 
 参数：
 
-- `val`: 要求是 string 类型的数据
+- `val`: 要求是 string 类型的数据。
 
 示例：
 
@@ -1709,11 +1709,11 @@ add_key(len_abc, len(load_json(abc["a"]["ff"])))
 
 函数原型：`fn lowercase(key: str)`
 
-函数说明：将已提取 key 中内容转换成小写
+函数说明：将已提取 key 中内容转换成小写。
 
-函数参数
+函数参数：
 
-- `key`: 指定已提取的待转换字段名
+- `key`: 指定已提取的待转换字段名。
 
 示例：
 
@@ -1735,12 +1735,12 @@ json(_, first) lowercase(first)
 
 函数原型：`fn match(pattern: str, s: str) bool`
 
-函数说明：使用指定的正则表达式匹配字符串，匹配成功返回 true，否则返回 false
+函数说明：使用指定的正则表达式匹配字符串，匹配成功返回 true，否则返回 false。
 
 参数：
 
-- `pattern`: 正则表达式
-- `s`: 待匹配的字符串
+- `pattern`: 正则表达式；
+- `s`: 待匹配的字符串。
 
 示例：
 
@@ -1769,9 +1769,9 @@ add_key(match_2, match('''\w+\s[,\w]+''', test_2))
 
 参数：
 
-- `table_name`: 待查找的表名
-- `keys`: 多个列名构成的列表
-- `values`: 每个列对应的值
+- `table_name`: 待查找的表名；
+- `keys`: 多个列名构成的列表；
+- `values`: 每个列对应的值。
 
 示例：
 
@@ -1807,12 +1807,12 @@ mquery_refer_table(table, values=[value, false], keys=[key, "col4"])
 
 函数原型：`fn nullif(key, value)`
 
-函数说明：若已提取 `key` 指定的字段内容等于 `value` 值，则删除此字段
+函数说明：若已提取 `key` 指定的字段内容等于 `value` 值，则删除此字段。
 
-函数参数
+函数参数：
 
-- `key`: 指定字段
-- `value`: 目标值
+- `key`: 指定字段；
+- `value`: 目标值。
 
 示例：
 
@@ -1842,9 +1842,9 @@ if first == "1" {
 
 函数原型：`fn parse_date(key: str, yy: str, MM: str, dd: str, hh: str, mm: str, ss: str, ms: str, zone: str)`
 
-函数说明：将传入的日期字段各部分的值转化为时间戳
+函数说明：将传入的日期字段各部分的值转化为时间戳。
 
-函数参数
+函数参数：
 
 - `key`: 新插入的字段
 - `yy` : 年份数字字符串，支持四位或两位数字字符串，为空字符串，则处理时取当前年份
@@ -1875,7 +1875,7 @@ parse_date(aa, "20", "February", "12", "10", "10", "34", "", "+8") 结果 aa=158
 
 函数原型：`fn parse_duration(key: str)`
 
-函数说明：如果 `key` 的值是一个 golang 的 duration 字符串（如 `123ms`），则自动将 `key` 解析成纳秒为单位的整数
+函数说明：如果 `key` 的值是一个 golang 的 duration 字符串（如 `123ms`），则自动将 `key` 解析成纳秒为单位的整数。
 
 目前 golang 中的 duration 单位如下：
 
@@ -1886,7 +1886,7 @@ parse_date(aa, "20", "February", "12", "10", "10", "34", "", "+8") 结果 aa=158
 - `m` 分钟
 - `h` 小时
 
-函数参数
+函数参数：
 
 - `key`: 待解析的字段
 
@@ -1953,7 +1953,7 @@ query_refer_table(table, key, value)
 
 函数原型：`fn rename(new_key, old_key)`
 
-函数说明：将已提取的字段重新命名
+函数说明：将已提取的字段重新命名。
 
 参数：
 
@@ -1994,9 +1994,9 @@ json(_, info.name, "姓名")
 
 函数原型：`fn replace(key: str, regex: str, replace_str: str)`
 
-函数说明：对指定字段上获取的字符串数据按正则进行替换
+函数说明：对指定字段上获取的字符串数据按正则进行替换。
 
-函数参数
+函数参数：
 
 - `key`: 待提取字段
 - `regex`: 正则表达式
@@ -2049,11 +2049,12 @@ if !sample(0.3) { # sample(0.3) 表示采样率为 30%，即以 30% 概率返回
 
 函数原型：`fn set_measurement(name: str, delete_key: bool = false)`
 
-函数说明：改变行协议的 name
+函数说明：改变行协议的 name。
+
 函数参数：
 
-- `name`: 值作为 measurement name，可传入字符串常量或变量
-- `delete_key`: 如果在 point 中存在与变量同名的 tag 或 field 则删除它
+- `name`: 值作为 measurement name，可传入字符串常量或变量；
+- `delete_key`: 如果在 point 中存在与变量同名的 tag 或 field 则删除它。
 
 行协议 name 与各个类型数据存储时的字段映射关系或其他用途：
 
@@ -2075,12 +2076,12 @@ if !sample(0.3) { # sample(0.3) 表示采样率为 30%，即以 30% 概率返回
 
 函数原型：`fn set_tag(key, value: str)`
 
-函数说明：对指定字段标记为 tag 输出，设置为 tag 后，其他函数仍可对该变量操作。如果被置为 tag 的 key 是已经切割出来的 field，那么它将不会在 field 中出现，这样可以避免切割出来的 field key 跟已有数据上的 tag key 重名
+函数说明：对指定字段标记为 tag 输出，设置为 tag 后，其他函数仍可对该变量操作。如果被置为 tag 的 key 是已经切割出来的 field，那么它将不会在 field 中出现，这样可以避免切割出来的 field key 跟已有数据上的 tag key 重名。
 
-函数参数
+函数参数：
 
-- `key`: 待标记为 tag 的字段
-- `value`: 可以为字符串字面量或者变量
+- `key`: 待标记为 tag 的字段；
+- `value`: 可以为字符串字面量或者变量。
 
 ```python
 # in << {"str": "13789123014"}
@@ -2121,7 +2122,7 @@ set_tag(str_a, str_b) # str_a == str_b == "3"
 
 函数原型：`fn sql_cover(sql_test: str)`
 
-函数说明：脱敏 SQL 语句
+函数说明：脱敏 SQL 语句。
 
 ```python
 # in << {"select abc from def where x > 3 and y < 5"}
@@ -2138,13 +2139,13 @@ sql_cover(_)
 
 函数原型：`fn strfmt(key, fmt: str, args ...: int|float|bool|str|list|map|nil)`
 
-函数说明：对已提取 `arg1, arg2, ...` 指定的字段内容根据 `fmt` 进行格式化，并把格式化后的内容写入 `key` 字段中
+函数说明：对已提取 `arg1, arg2, ...` 指定的字段内容根据 `fmt` 进行格式化，并把格式化后的内容写入 `key` 字段中。
 
-函数参数
+函数参数：
 
-- `key`: 指定格式化后数据写入字段名
-- `fmt`: 格式化字符串模板
-- `args`：可变参数，可以是多个已提取的待格式化字段名
+- `key`: 指定格式化后数据写入字段名；
+- `fmt`: 格式化字符串模板；
+- `args`：可变参数，可以是多个已提取的待格式化字段名。
 
 示例：
 
@@ -2164,7 +2165,7 @@ strfmt(bb, "%v %s %v", a.second, a.thrid, a.forth)
 
 函数原型：`fn timestamp(precision: str = "ns") -> int`
 
-函数说明：返回当前 Unix 时间戳，默认精度为 ns
+函数说明：返回当前 Unix 时间戳，默认精度为 ns。
 
 函数参数：
 
@@ -2217,12 +2218,12 @@ add_key(time_now_record, timestamp("ms"))
 
 函数原型：`fn trim(key, cutset: str = "")`
 
-函数说明：删除 `key` 中首尾中指定的字符，`cutset` 为空字符串时默认删除所有空白符
+函数说明：删除 `key` 中首尾中指定的字符，`cutset` 为空字符串时默认删除所有空白符。
 
 函数参数：
 
-- `key`: 已提取的某字段，字符串类型
-- `cutset`: 删除 `key` 中出现在 `cutset` 字符串的中首尾字符
+- `key`: 已提取的某字段，字符串类型；
+- `cutset`: 删除 `key` 中出现在 `cutset` 字符串的中首尾字符。
 
 示例：
 
@@ -2244,11 +2245,11 @@ trim(test_data, "ABC_")
 
 函数原型：`fn uppercase(key: str)`
 
-函数说明：将已提取 key 中内容转换成大写
+函数说明：将已提取 key 中内容转换成大写。
 
-函数参数
+函数参数：
 
-- `key`: 指定已提取的待转换字段名，将 `key` 内容转成大写
+- `key`: 指定已提取的待转换字段名，将 `key` 内容转成大写。
 
 示例：
 
@@ -2270,7 +2271,7 @@ json(_, first) uppercase(first)
 
 函数原型：`fn url_decode(key: str)`
 
-函数说明：将已提取 `key` 中的 URL 解析成明文
+函数说明：将已提取 `key` 中的 URL 解析成明文。
 
 参数：
 
@@ -2298,7 +2299,7 @@ json(_, url) url_decode(url)
 
 函数说明：解析字段名称为 key 的 url。
 
-函数参数
+函数参数：
 
 - `key`: 要解析的 url 的字段名称。
 
@@ -2349,7 +2350,7 @@ add_key(path, m["path"])
 
 - `name`: 脚本名，如 abp.p
 
-函数说明：调用其他脚本，可在被调用的脚本访问当前的所有数据
+函数说明：调用其他脚本，可在被调用的脚本访问当前的所有数据。
 示例：
 
 ```python
@@ -2378,9 +2379,9 @@ geoip(ip)
 
 函数原型：`fn user_agent(key: str)`
 
-函数说明：对指定字段上获取客户端信息
+函数说明：对指定字段上获取客户端信息。
 
-函数参数
+函数参数：
 
 - `key`: 待提取字段
 
@@ -2412,9 +2413,9 @@ json(_, userAgent) user_agent(userAgent)
 
 参数：
 
-- input: 待提取的 XML
-- xpath_expr: xpath 表达式
-- key_name: 提取后数据写入新 key
+- input: 待提取的 XML；
+- xpath_expr: xpath 表达式；
+- key_name: 提取后数据写入新 key。
 
 示例一：
 

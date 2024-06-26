@@ -27,7 +27,7 @@ group_between(status_code, [200, 300], "HTTP_OK", "http_status")
 drop_origin_data()
 ```
 
-- 配置对应的采集器来使用上面的 Pipeline
+- 配置对应的采集器来使用上面的 Pipeline。
 
 以 logging 采集器为例，配置字段 `pipeline_path` 即可，注意，这里配置的是 pipeline 的脚本名称，而不是路径。所有这里引用的 pipeline 脚本，必须存放在 `<DataKit 安装目录/pipeline>` 目录下：
 
@@ -53,9 +53,9 @@ drop_origin_data()
 
 Pipeline 编写较为麻烦，为此，Datakit 中内置了简单的调试工具，用以辅助大家来编写 Pipeline 脚本。
 
-指定 Pipeline 脚本名称，输入一段文本即可判断提取是否成功
+指定 Pipeline 脚本名称，输入一段文本即可判断提取是否成功。
 
-> Pipeline 脚本必须放在 *[Datakit 安装目录]/pipeline* 目录下。
+**注意**：Pipeline 脚本必须放在 *[Datakit 安装目录]/pipeline* 目录下。
 
 ```shell
 $ datakit pipeline -P your_pipeline.p -T '2021-01-11T17:43:51.887+0800  DEBUG io  io/io.go:458  post cost 6.87021ms'
@@ -110,7 +110,7 @@ Bye!
 ```
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning "注意"
 
     Windows 下，请在 Powershell 中执行调试。
 <!-- markdownlint-enable -->
@@ -167,8 +167,8 @@ datakit pipeline -P test.p -T "$(<multi-line.log)"
 
 在所有 Pipeline 切割出来的字段中，它们都是指标（field）而不是标签（tag）。由于[行协议约束](../../datakit/apis.md#point-limitation)，我们不应该切割出任何跟 tag 同名的字段。这些 Tag 包含如下几类：
 
-- Datakit 中的[全局 Tag](../../datakit/datakit-conf.md#set-global-tag)
-- 日志采集器中[自定义的 Tag](../../integrations/logging.md#measurements)
+- Datakit 中的[全局 Tag](../../datakit/datakit-conf.md#set-global-tag)；
+- 日志采集器中[自定义的 Tag](../../integrations/logging.md#measurements)。
 
 另外，所有采集上来的日志，均存在如下多个保留字段。**我们不应该去覆盖这些字段**，否则可能导致数据在查看器页面显示不正常。
 
@@ -181,7 +181,7 @@ datakit pipeline -P test.p -T "$(<multi-line.log)"
 | `time`    | int           | 日志对应的时间戳                                       |
 
 <!-- markdownlint-disable MD046 -->
-???+ tip
+???+ abstract
 
     当然我们可以通过[特定的 Pipeline 函数](pipeline-built-in-function.md#fn-set-tag)覆盖上面这些 tag 的值。
 <!-- markdownlint-enable -->
@@ -210,7 +210,7 @@ drop_origin_data()       # 丢弃原始日志文本(不建议这么做)
 这里引用了几个用户自定义的 pattern，如 `_dklog_date`、`_dklog_level`。我们将这些规则存放 *<Datakit 安装目录>/pipeline/pattern* 下。
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning "注意"
 
     用户自定义 pattern 如果需要全局生效（即在其它 Pipeline 脚本中应用），必须放置在 *[Datakit 安装目录]/pipeline/pattern/>* 目录下：
 
@@ -295,7 +295,7 @@ $ datakit pipeline -P test.p -T "..."
 在日常的日志中，因为业务的不同，日志会呈现出多种形态，此时，需写多个 Grok 切割，为提高 Grok 的运行效率，**可根据日志出现的频率高低，优先匹配出现频率更高的那个 Grok**，这样，大概率日志在前面几个 Grok 中就匹配上了，避免了无效的匹配。
 
 <!-- markdownlint-disable MD046 -->
-???+ tip
+???+ abstract
 
     在日志切割中，Grok 匹配是性能开销最大的部分，故避免重复的 Grok 匹配，能极大的提高 Grok 的切割性能。
 

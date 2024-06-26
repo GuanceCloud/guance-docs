@@ -48,18 +48,22 @@ BPF 网络，即 Berkeley Packet Filter (BPF) 技术，是一种在操作系统�
 
 #### 网络请求拓扑
 
-展示网络请求路径、物理主机和虚拟主机之间的请求过程和耗时，帮助理解网络通信的复杂性。
+展示网络请求路径、物理主机和虚拟主机之间的请求过程和耗时。观测云会为您展示节点间的流向，帮助理解网络通信的复杂性。
 
 - 虚拟网卡：为您展示 `pod_name`、`nic_name`、`dst_port`、`src_port`、`k8s_namespace`、`k8s_container_name`、`host` 等相关信息。
 - 物理网卡：为您展示 `host`、`nic_name`、`dst_port`、`src_port`、`l4_proto`、`l7_proto` 等相关信息。
 
 
-![](img/bpf_net_l7_log-1.png)
+<img src="../img/bpf_net_l7_log-1.png" width="70%" >
 
-**注意**：若存在外部未知网络情况，则显示 N/A。
+若存在外部未知网络情况，则显示 N/A。
 
-![](img/bpf_net_l7_log-2.png)
+<img src="../img/bpf_net_l7_log-2.png" width="70%" >
 
+- hover 在网卡节点的端口上，即可显示 `ip:port`。
+- 若需查看网络数据详情，hover 在网卡节点上，点击右上角 :fontawesome-solid-arrow-up-right-from-square: 按钮即可跳转至对应页面。
+
+![](img/bpf_net_l7_log-4.png)
 
 #### 关联网络日志
 
@@ -73,6 +77,9 @@ BPF 网络，即 Berkeley Packet Filter (BPF) 技术，是一种在操作系统�
 
 ![](img/bpf_net_l7_log-3.png)
 
+- 点击右侧 :material-reorder-horizontal: 可修改网络日志显示列：
+
+![](img/bpf_net_l7_log-5.png)
 
 ## 网络问题排查示例
 
