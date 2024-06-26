@@ -11,21 +11,21 @@ icon: zy/release-notes
 ### 观测云更新
 
 - 付费计划与账单：新增[中心 Pipeline 计费项](../billing/billing-method/index.md#pipeline)，统计所有命中中心 pipeline 处理的原始日志的数据大小。
-- [Pipelines](../pipeline/index.md)：支持选择中心 Pipeline 执行脚本。
+- [Pipelines](../pipeline/index.md#config)：支持选择中心 Pipeline 执行脚本。
 - 异常追踪：新增指标统计和分析看板。
 - 监控
     - 通知对象管理：新增[权限控制](../monitoring/notify-object.md#permission)。配置操作权限后，仅被赋予权限的对象可对此通知对象进行编辑、删除操作。
     - 智能监控 > 日志智能检测：新增追踪历史变化，过滤周期性的异常数据突变。
 - 日志 
     - [数据访问](../logs/logdata-access.md#config)：新增对被授权查看的日志索引做访问权限配置。
-    - BPF 网络日志：
+    - [BPF 网络日志](../logs/bpf-log.md)：
         - 连接展示效果优化；
         - 支持直接跳转至详情页；
         - 支持自定义添加显示列。
     - 日志查看器：显示列拓展，支持添加 json 对象内字段内容到一级返回显示。
 - 场景
     - 时序图：折线图新增[断点连接](../scene/visual-chart/timeseries-chart.md#breakpoint)设置，柱状图新增【显示返回值】按钮。
-- 可用性监测：任务列表新增表头排序。
+- [可用性监测](../usability-monitoring/request-task/index.md#manag)：任务列表新增表头排序。
 
 ### 观测云部署版更新
 
