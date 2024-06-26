@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.31.0）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.32.0）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -244,7 +244,7 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       # HTTP body content type, other candidates are(case insensitive):
       #  - v1: line-protocol
       #  - v2: protobuf
-      content_encoding = "v1"
+      content_encoding = "v2"
     
       # Enable GZip to upload point data.
       #
@@ -519,7 +519,7 @@ DataKit 默认日志等级为 `info`。编辑 `datakit.conf`，可修改日志�
     reserved_capacity = 4096
 ```
 
-同时，[Datakit 配置](datakit-conf.md#dataway-settings)中可以开启 `content_encoding = "v2"` 的传输编码，相比 v1，它的内存和 CPU 开销都更低。
+同时，[Datakit 配置](datakit-conf.md#dataway-settings)中可以开启 `content_encoding = "v2"` 的传输编码（[:octicons-tag-24: Version-1.32.0](changelog.md#cl-1.32.0) 已默认启用 v2），相比 v1，它的内存和 CPU 开销都更低。
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
@@ -693,7 +693,7 @@ ENC 目前支持三种方式：
 
 - AES 加密方式。
 
-    需要在主配置文件 `datakit.conf`  中配置秘钥： crypto_AES_key 或者 crypto_AES_Key_filePath
+    需要在主配置文件 `datakit.conf`  中配置秘钥： crypto_AES_key 或者 crypto_AES_Key_filePath, 秘钥长度是 16 位。
     密码处的填写格式为： `ENC[aes://5w1UiRjWuVk53k96WfqEaGUYJ/Oje7zr8xmBeGa3ugI=]`
 
 
@@ -721,11 +721,12 @@ DK 会从 `/usr/local/datakit/enc4mysql` 中读取密码并替换密码，替换
 首先在 `datakit.conf` 中配置秘钥：
 
 ```toml
-# 配置文件中的一级字段
-# 秘钥 key
-crypto_AES_key = "0123456789abcdef"
-# 或者 秘钥文件：
-crypto_AES_Key_filePath = "/usr/local/datakit/mykey"
+# crypto key or key filePath.
+[crypto]
+  # 配置秘钥
+  aes_key = "0123456789abcdef"
+  # 或者，将秘钥放到文件中并在此配置文件位置。
+  aes_Key_file = "/usr/local/datakit/mykey"
 ```
 
 `mysql.conf` 配置文件：
@@ -843,7 +844,23 @@ pass = "ENC[aes://5w1UiRjWuVk53k96WfqEaGUYJ/Oje7zr8xmBeGa3ugI=]"
     
             return new String(decrypted);
         }
-    }    
+    }
+    public static void main(String[] args) {
+        try {
+            String key = "0123456789abcdef"; // 16, 24, or 32 bytes AES key
+            String plaintext = "HelloAES9*&.";
+            byte[] keyBytes = key.getBytes("UTF-8");
+
+            String encrypted = AESEncrypt(keyBytes, plaintext);
+            System.out.println("Encrypted text: " + encrypted);
+
+            String decrypt = AESDecrypt(keyBytes, encrypted);
+            System.out.println("解码后的是："+decrypt);
+        } catch (Exception e) {
+            System.out.println(e);
+            e.printStackTrace();
+        }
+    }
     ```
 <!-- markdownlint-enable -->
 

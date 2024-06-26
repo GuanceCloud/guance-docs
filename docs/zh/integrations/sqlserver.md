@@ -83,18 +83,30 @@ GO
       ## Instance name. If not specified, a connection to the default instance is made.
       instance_name = ""
     
-      ## (optional) collection interval, default is 10s
-      interval = "10s"
+      ## Database name to query. Default is master.
+      database = "master"
     
       ## by default, support TLS 1.2 and above.
       ## set to true if server side uses TLS 1.0 or TLS 1.1
       allow_tls10 = false
     
+      ## connection timeout default: 30s
+      connect_timeout = "30s"
+    
+      ## parameters to be added to the connection string
+      ## Examples:
+      ##   "encrypt=disable"
+      ##   "certificate=/path/to/cert.pem"
+      ## reference: https://github.com/microsoft/go-mssqldb?tab=readme-ov-file#connection-parameters-and-dsn 
+      #
+      # connection_parameters = "encrypt=disable"
+    
+      ## (optional) collection interval, default is 10s
+      interval = "10s"
+    
+    
       ## Set true to enable election
       election = true
-    
-      ## Database name to query. Default is master.
-      database = "master"
     
       ## configure db_filter to filter out metrics from certain databases according to their database_name tag.
       ## If leave blank, no metric from any database is filtered out.
