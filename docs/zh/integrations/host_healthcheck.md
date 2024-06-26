@@ -190,7 +190,7 @@ monitor   :
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`exception`|Exception value, 1 is default|int|-|
+|`exception`|Exception value, 1 or 0|int|-|
 |`pid`|The process ID|int|int|
 |`start_duration`|The total time the process has run|int|μs|
 
@@ -217,7 +217,7 @@ monitor   :
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`exception`|Exception value, 1 is default|int|-|
+|`exception`|Exception value, 1 or 0|int|-|
 
 
 
@@ -242,6 +242,6 @@ monitor   :
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`exception`|Exception value, 1 is default|int|-|
+|`exception`|Exception value, 1 or 0|int|-|
 
 

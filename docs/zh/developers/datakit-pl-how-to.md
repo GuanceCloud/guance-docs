@@ -1,57 +1,9 @@
-
-# 快速开始
+# 如何编写 Pipeline 脚本
 ---
 
-
-## 第一个脚本 {#fist-script}
-
-- 在 DataKit 中配置 Pipeline，编写如下 Pipeline 文件，假定名为 *nginx.p*。将其存放在 *[Datakit 安装目录]/pipeline* 目录下。
-
-```python
-# 假定输入是一个 Nginx 日志
-# 注意，脚本是可以加注释的
-
-grok(_, "some-grok-patterns")  # 对输入的文本，进行 grok 提取
-rename('client_ip', ip)        # 将 ip 字段改名成 client_ip
-rename("网络协议", protocol)   # 将 protocol 字段改名成 "网络协议"
-
-# 将时间戳(如 1610967131)换成 RFC3339 日期格式：2006-01-02T15:04:05Z07:00
-datetime(access_time, "s", "RFC3339")
-
-url_decode(request_url)      # 将 HTTP 请求路由翻译成明文
-
-# 当 status_code 介于 200 ~ 300 之间，新建一个 http_status = "HTTP_OK" 的字段
-group_between(status_code, [200, 300], "HTTP_OK", "http_status")
-
-# 丢弃原内容
-drop_origin_data()
-```
-
-- 配置对应的采集器来使用上面的 Pipeline
-
-以 logging 采集器为例，配置字段 `pipeline_path` 即可，注意，这里配置的是 pipeline 的脚本名称，而不是路径。所有这里引用的 pipeline 脚本，必须存放在 `<DataKit 安装目录/pipeline>` 目录下：
-
-```python
-[[inputs.logging]]
-    logfiles = ["/path/to/nginx/log"]
-
-    # required
-    source = "nginx"
-
-    # 所有脚本必须放在 /path/to/datakit/pipeline 目录下
-    # 如果开启了 gitrepos 功能，则优先以 gitrepos 中的同名文件为准
-    # 如果 pipeline 未配置，则在 pipeline 目录下寻找跟 source 同名
-    # 的脚本（如 nginx -> nginx.p），作为其默认 pipeline 配置
-    pipeline = "nginx.p"
-
-    ... # 其它配置
-```
-
-重启采集器，即可切割对应的日志。
+Pipeline 编写较为麻烦，为此，Datakit 中内置了简单的调试工具，用以辅助大家来编写 Pipeline 脚本。
 
 ## 调试 Grok 和 Pipeline {#debug}
-
-Pipeline 编写较为麻烦，为此，Datakit 中内置了简单的调试工具，用以辅助大家来编写 Pipeline 脚本。
 
 指定 Pipeline 脚本名称，输入一段文本即可判断提取是否成功
 
@@ -138,7 +90,7 @@ Bye!
 
 ```python
 add_pattern('_dklog_date', '%{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{HOUR}:%{MINUTE}:%{SECOND}%{INT}')
-grok(_, '%{_dklog_date:log_time}\\s+%{LOGLEVEL:Level}\\s+%{NUMBER:Level_value}\\s+---\\s+\\[%{NOTSPACE:thread_name}\\]\\s+%{GREEDYDATA:Logger_name}\\s+(\\n)?(%{GREEDYLINES:stack_trace})')
+grok(_, '%{_dklog_date:log_time}\\s+%{LOGLEVEL:Level}\\s+%{NUMBER:Level_value}\\s+---\\s+\\[%{NOTSPACE:thread_name}\\]\\s+%{GREEDYDATA:Logger_name}\\s+(\\n)?(%{GREEDYLINES:stack_trace})'
 
 # 此处移除 message 字段便于调试
 drop_origin_data()
@@ -165,26 +117,33 @@ datakit pipeline -P test.p -T "$(<multi-line.log)"
 
 ### Pipeline 字段命名注意事项 {#naming}
 
-在所有 Pipeline 切割出来的字段中，它们都是指标（field）而不是标签（tag）。由于[行协议约束](../../datakit/apis.md#point-limitation)，我们不应该切割出任何跟 tag 同名的字段。这些 Tag 包含如下几类：
+在所有 Pipeline 切割出来的字段中，它们都是指标（field）而不是标签（tag）。由于[行协议约束](../datakit/apis.md#lineproto-limitation)，我们不应该切割出任何跟 tag 同名的字段。这些 Tag 包含如下几类：
 
-- Datakit 中的[全局 Tag](../../datakit/datakit-conf.md#set-global-tag)
-- 日志采集器中[自定义的 Tag](../../integrations/logging.md#measurements)
+- Datakit 中的[全局 Tag](../datakit/datakit-conf.md#set-global-tag)
+- 日志采集器中[自定义的 Tag](../datakit/logging.md#measurements)
 
 另外，所有采集上来的日志，均存在如下多个保留字段。**我们不应该去覆盖这些字段**，否则可能导致数据在查看器页面显示不正常。
 
-| 字段名    | 类型          | 说明                                                   |
-| ---       | ----          | ----                                                   |
-| `source`  | string(tag)   | 日志来源                                               |
-| `service` | string(tag)   | 日志对应的服务，默认跟 `source` 一样                   |
-| `status`  | string(tag)   | 日志对应的[等级](../../integrations/logging.md#status) |
-| `message` | string(field) | 原始日志                                               |
-| `time`    | int           | 日志对应的时间戳                                       |
+| 字段名    | 类型          | 说明                                  |
+| ---       | ----          | ----                                  |
+| `source`  | string(tag)   | 日志来源                              |
+| `service` | string(tag)   | 日志对应的服务，默认跟 `service` 一样 |
+| `status`  | string(tag)   | 日志对应的[等级](../datakit/logging.md#status)   |
+| `message` | string(field) | 原始日志                              |
+| `time`    | int           | 日志对应的时间戳                      |
 
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    当然我们可以通过[特定的 Pipeline 函数](pipeline-built-in-function.md#fn-set-tag)覆盖上面这些 tag 的值。
+    当然我们可以通过[特定的 Pipeline 函数](pipeline.md#fn-set-tag)覆盖上面这些 tag 的值。
 <!-- markdownlint-enable -->
+
+一旦 Pipeline 切割出来的字段跟已有 Tag 重名（大小写敏感），都会导致如下数据报错。故建议在 Pipeline 切割中，绕开这些字段命名。
+
+```shell
+# 该错误在 Datakit monitor 中能看到
+same key xxx in tag and field
+```
 
 ### 完整 Pipeline 示例 {#example}
 
@@ -267,13 +226,13 @@ json(_, @timestamp, "time")
 [E] new piepline failed: 4:8 parse error: unexpected character: '@'
 ```
 
-这是因为变量名（此处为 `@timestamp`） 中带有了特殊字符，这种情况下，我们需要使用反引号将其变为一个合法的标识符：
+这是因为变量名（此处为 `@timestamp`） 中带有了特殊字符，这种情况下，我们需要对这个变量做一些转义：
 
 ```python
 json(_, `@timestamp`, "time")
 ```
 
-参见 [Pipeline 的基本语法规则](pipeline-platypus-grammar.md)
+参见 [Pipeline 的基本语法规则](pipeline.md#basic-syntax)
 
 <!-- markdownlint-disable MD013 -->
 ### :material-chat-question: Pipeline 调试时，为什么找不到对应的 Pipeline 脚本？ {#pl404}
