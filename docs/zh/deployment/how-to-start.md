@@ -42,25 +42,26 @@ DataWay 添加完成后，可获取到一个 DataWay 的安装脚本，复制安
 
 #### 注册部署版账号
 
-打开部署版注册网址（[https://boss.guance.com/index.html#/signup?type=community](https://boss.guance.com/index.html#/signup?type=community)），根据提示注册部署版账号。
+打开部署版注册网址（[https://boss.guance.com/index.html#/signup?type=private](https://boss.guance.com/index.html#/signup?type=private），根据提示注册部署版账号。
 
-![](img/12.deployment_4.png)
+![](img/6.deployment_3.png)
 
 注册完成后，进入观测云部署版费用中心。
 
+<!--
 ![](img/12.deployment_5.png)
-
+-->
 #### 获取 AK/SK
 
 在观测云部署版费用中心的“AK 管理”，点击“创建 AK”。
 
-![](img/12.deployment_6.png)
+![](img/6.deployment_6.png)
 
 #### 获取 License
 
 在观测云部署版费用中心的“License 管理”，点击“创建 License”。
 
-![](img/12.deployment_7.png)
+![](img/6.deployment_7.png)
 
 #### 激活部署版
 打开观测云 Launcher，在右上角设置，点击“License 激活及 AK/SK 配置”。

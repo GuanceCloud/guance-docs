@@ -312,8 +312,7 @@ Navigator.of(context).push(
 * 以上三种方法同时在一个项目中混合使用
 
 * 休眠和唤醒事件采集
-
-如果需要采集应用休眠和唤醒行为需要添加如下代码：
+低于 0.5.1-pre.1 版本，如果需要采集应用休眠和唤醒行为需要添加如下代码：
 
 ```dart
 class _HomeState extends State<HomeRoute> {

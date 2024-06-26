@@ -421,7 +421,7 @@ IPMI 采集器支持选举功能，当多台机器运行 DataKit 时，通过选
 
 ## 指标 {#metric}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.ipmi.tags]` 指定其它标签：
+以下所有数据采集，默认会追加全局选举 tag，也可以在配置中通过 `[inputs.ipmi.tags]` 指定其它标签：
 
 ``` toml
  [inputs.ipmi.tags]

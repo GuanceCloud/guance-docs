@@ -51,6 +51,7 @@ nav:
       - 'SYS.AS': huawei_SYS.AS.md
       - 'SYS.CBR': huawei_SYS.CBR.md
       - 'SYS DDMS': huaweiyun_SYS_DDMS.md
+      - 'ROMA': huawei_roma.md
 
     - AWS: 
       - 'CloudFront': aws_cloudfront.md
@@ -318,6 +319,7 @@ nav:
     - "Prometheus":
       - "Exporter": prom.md
       - "Remote Write": prom_remote_write.md
+      - "Push Gateway": pushgateway.md
     - 'Kafka 订阅': kafkamq.md
     - 'Promtail': promtail.md
     - 'Statsd': statsd.md

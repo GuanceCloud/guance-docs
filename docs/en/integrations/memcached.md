@@ -70,7 +70,7 @@ Memcached collector can collect the running status metrics from Memcached instan
 
 ## Metric {#metric}
 
-For all the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.memcached.tags]`:
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.memcached.tags]` if needed:
 
 ``` toml
  [inputs.memcached.tags]
