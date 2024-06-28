@@ -403,7 +403,7 @@ Guance supports setting the current display time zone in the time control, there
 Enter **time control > Change t9ijme settings**:
 
 - The default display is **Browser Time**, that is, the time detected by the local browser;       
-- After Owner or Administrator sets **[Workspace Time Zone](../../management/account-management.md#workspace)**, members can select the configured workspace time zone.
+- After Owner or Administrator sets **[Workspace Time Zone](../../management/index.md#workspace)**, members can select the configured workspace time zone.
 
 <img src="../../img/zone.png" width="70%" >
 
@@ -413,7 +413,7 @@ Enter **time control > Change t9ijme settings**:
 
     - After setting the new time zone, all workspaces where your current account is located will be displayed according to the set time zone.
 
-You can also modify it in **[Account Management](../../management/account-management.md#zone)**.
+You can also modify it in **[Account Management](../../management/index.md#zone)**.
 
 ### Explorer Auto Refresh
 

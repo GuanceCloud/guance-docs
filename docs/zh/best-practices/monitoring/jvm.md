@@ -87,7 +87,7 @@ java  ${JAVA_OPTS} -jar your-app.jar
 -Ddd.trace.health.metrics.statsd.port=8125  自身指标数据采集发送端口，选填   
 -Ddd.service.mapping:应用调用的redis、mysql等别名，选填 
 ```
-如需详细了解 JVM，请参考 [JVM](/datakit/jvm.md) 采集器
+如需详细了解 JVM，请参考 [JVM](../../integrations/jvm.md) 采集器
 ### 1. jar 使用方式
 
 开启 statsd
@@ -916,4 +916,4 @@ OOM（Out of Memory）异常常见有以下几个原因：
 
 ## 更多请关注：
 
-- [如何利用观测云采集JVM指标](/datakit/jvm.md)
+- [如何利用观测云采集JVM指标](/integrations/jvm.md)

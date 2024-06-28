@@ -283,7 +283,7 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
     - 服务管理 > 资源调用：排行榜新增 TOP / Bottom 数量选择。
 - 查看器：显示列设置新增【时间列】开关。
 - 付费计划与账单：
-    - 工作空间锁定弹窗页面新增[新建工作空间](../billing-center/workspace-management.md#lock)入口，优化操作体验；
+    - 工作空间锁定弹窗页面新增[新建工作空间](../billing-center/workspace-management.md#workspace-lock#lock)入口，优化操作体验；
     - AWS 注册流程优化。
 
 ### 观测云部署版更新

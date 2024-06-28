@@ -36,6 +36,6 @@ After "New Node", you need to complete the installation in DataKit before you ca
 
 ![](img/image_3.png)
 
-**Step 2**: Install the node in DataKit and ensure that the server deploying the node detects the target node (country, region, operator). For details, refer to [Network Testing](../integrations/network/dialtesting.md).
+**Step 2**: Install the node in DataKit and ensure that the server deploying the node detects the target node (country, region, operator). For details, refer to [Network Testing](../integrations/dialtesting.md).
 
 After completing the installation of the node, you can select the "Self-built" node when configuring the "Cloud Automated Testing".
