@@ -36,5 +36,5 @@ After creating the task, the task is "started" by default, and you can view the 
 
 ## More Advanced Configurations
 
-Guance supports the rapid establishment of private deployment nodes distributed all over the world through "self-built node management". For operation details, please refer to [self-built node management](../self-node.md), and for specific deployment documents, please refer to [network test](../../integrations/network/dialtesting.md).
+Guance supports the rapid establishment of private deployment nodes distributed all over the world through "self-built node management". For operation details, please refer to [self-built node management](../self-node.md), and for specific deployment documents, please refer to [network test](../../integrations/dialtesting.md).
 

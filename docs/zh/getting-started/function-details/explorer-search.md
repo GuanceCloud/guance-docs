@@ -473,7 +473,7 @@ cmdline:E\:\\software_installer*exe    //检索成功，通配符模糊匹配
 
     - 设置新的时区后，您当前账号所在的所有工作空间均按照设置后的时区进行显示，请谨慎操作。
 
-您也可以在 **[账号管理](../../management/account-management.md#zone)** 进行修改。
+您也可以在 **[账号管理](../../management/index.md#personal#zone)** 进行修改。
 
 
 ### 查看器自动刷新 {#auto-refresh}
