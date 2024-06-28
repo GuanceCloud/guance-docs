@@ -141,7 +141,7 @@ icon: zy/management
     1. 针对普通商业版：账号注销后，被注销的邮箱依旧可以被再次注册。注册后为一个全新的账号，历史账号的数据不会被关联显示。
     2. 针对部署版：可以通过[管理后台 > 添加用户](../deployment/user.md#add)进行创建。
 
-## 个人账号设置
+## 个人账号设置 {#personal}
 
 ### 用户信息
 
@@ -197,7 +197,7 @@ icon: zy/management
 ![](img/3.high_performance_2.gif)
 
 
-### 系统主题
+### 系统主题 {#theme}
 
 观测云支持切换主题颜色。
 
@@ -225,7 +225,7 @@ icon: zy/management
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **工作空间锁定/解锁/解散**</font>](../billing-center/workspace-management.md#lock)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **工作空间锁定/解锁/解散**</font>](../billing-center/workspace-management.md#workspace-lock#lock)
 
 </div>
 

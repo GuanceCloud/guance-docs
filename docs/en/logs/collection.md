@@ -6,7 +6,6 @@ Guance has comprehensive log collection capabilities, mainly divided into <u>hos
 
 This article mainly introduces how to collect logs in **host environment**. 
 
-> For collecting logs in K8S environment, please refer to our best practice [Several Ways to Collect Logs in Kubernetes Cluster](../best-practices/cloud-native/k8s-logs.md).
 
 ## Preconditions
 

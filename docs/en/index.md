@@ -74,7 +74,7 @@ glightbox: false
           <span>Best Practices</span>
         </div>
       </a>
-      <a href="/en/integrations" class="content-item">
+      <a href="/en/integrations/integration-index" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/integrations.png' alt="" />
           <span>Integrations</span>
@@ -86,7 +86,7 @@ glightbox: false
           <span>DataKit</span>
         </div>
       </a>
-      <a href="/en/dataflux-func/quick-start" class="content-item">
+      <a href="/en/dataflux-func" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/func.png' alt="" />
           <span>DataFlux Func</span>

@@ -101,7 +101,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **查看器的强大之处**</font>](../billing-center/workspace-management.md#lock)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **查看器的强大之处**</font>](../../billing-center/workspace-management.md#workspace-lock)
 
 </div>
 

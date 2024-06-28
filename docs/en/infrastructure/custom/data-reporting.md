@@ -55,8 +55,6 @@ III. Restart DataKit: `sudo datakit --restart`
 After DataFlux Func and DataKit are connected, you can write functions in DataFlux Func to report custom object data.
 
 > See [DataKit API](../../datakit/apis.md) for an interface description of the DataFlux Func function call.
->
-> For instructions on how DataFlux Func writes data to DataKit, see [Write Data from DataKit](../../dataflux-func/write-data-via-datakit.md).
 
 ## Example Description
 

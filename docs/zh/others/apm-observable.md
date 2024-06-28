@@ -207,5 +207,5 @@ def after_request(response):
 
 ## 更多参考
 
-### [通过 skywalking 采集应用性能数据](../datakit/skywalking.md)
-### [通过 jaeger 采集应用性能数据](../datakit/jaeger.md)
+### [通过 skywalking 采集应用性能数据](../integrations/skywalking.md)
+### [通过 jaeger 采集应用性能数据](../integrations/jaeger.md)
