@@ -64,7 +64,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} "]
 
 #### 2.3 修改应用 yaml
 
-声明 JAVA_OPTS 环境变量，应用已经能访问到自动注入的 `/datadog-lib/dd-java-agent.jar` 包，启动参数可参考 [javaagent 参数](https://docs.guance.com/datakit/ddtrace-java/#start-options)，这里设置的服务名是 `java-demo-service`。
+声明 JAVA_OPTS 环境变量，应用已经能访问到自动注入的 `/datadog-lib/dd-java-agent.jar` 包，启动参数可参考 [javaagent 参数](../../integrations/ddtrace-java.md#start-options)，这里设置的服务名是 `java-demo-service`。
 
 ```
         - name: JAVA_OPTS

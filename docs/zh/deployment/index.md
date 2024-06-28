@@ -10,6 +10,7 @@ icon: zy/private
 ## 部署版
 
 部署版是通过订阅或购买许可证的方式，获得观测云平台本地安装包和授权许可，来打造您的专属版观测云。在服务期内，观测云将持续提供升级包和在线支持服务，保障您的平台可以升级到最新版本。
+
 ![](/Users/wendy/dataflux-doc/docs/deployment/img/6.deployment_10.png)
 
 ### 按量付费版

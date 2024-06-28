@@ -306,7 +306,7 @@ $ service datakit restart
 
 ### JVM：
 
-详细步骤参见文档 <[jvm DataKit 接入](/datakit/jvm.md)>
+详细步骤参见文档 <[jvm DataKit 接入](/integrations/jvm.md)>
 
 ##### 1、在 Datakit 中修改 jvm 的 inputs
 
