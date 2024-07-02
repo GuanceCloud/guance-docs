@@ -226,7 +226,8 @@ window.DEPLOYCONFIG = {
     "maxTraceSpanLimit": 10000,
     "maxProfileM": 5,
     "paasCustomLoginInfo": [{ "iconUrl":"xxx", "label": "xxx", "url": "xxxx" ,desc:"xxx"}],
-    "paasCustomSiteList": [{"url": "xxxx", "label": "xxx"}]
+    "paasCustomSiteList": [{"url": "xxxx", "label": "xxx"}],
+    "paasCustomLoginUrl": "https://www.xxx"
     ...
 }
 
@@ -251,6 +252,7 @@ window.DEPLOYCONFIG = {
 | rumJsUrl            |      | 字符串  | 无                                  | RUM SDk CDN 地址                                                                                                                                 |
 | rumClientToken      |      | 字符串  | 无                                  | RUM Openway 方式上报数据，在观测云平台生成的 clientToken，和 datakit 上报方式冲突，优先级高于 datakit 上报方式                                   |
 | rumOpenwayUrl       |      | 字符串  | 无                                  | RUM Openway 公网地址                                                                                                                             |
+| paasCustomLoginUrl  |      | 字符串  | 无                                  | 自定义登录 url                                                                                                                                   |
 
 ### kodo 组件 {#kodo}
 
