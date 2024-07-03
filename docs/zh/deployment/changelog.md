@@ -1,5 +1,38 @@
 # 版本历史
 
+## 1.89.169（2024 年 06 月 26 日）
+
+pubrepo.guance.com/dataflux/1.89.169:launcher-efcdb5e-1720014392
+
+### 观测云部署版更新
+
+> **注： 此版本依赖 GuanceDB v1.8.0 版本，升级前请先升级 GuanceDB for metrics 和 GuanceDB for logs 引擎到 [v1.8.0](https://static.guance.com/guancedb/guancedb-cluster-linux-amd64-v1.8.0.tar.gz) 或以上版本。**
+
+Profile：通过配置参数，支持文件存储和对象存储两种方式。 
+Launcher: 支持在部署时直接选择使用 Doris 引擎。
+
+### 观测云更新
+
+- [Pipelines](../pipeline/index.md)：支持选择中心 Pipeline 执行脚本。
+- 付费计划与账单：新增[中心 Pipeline 计费项](../billing/billing-method/index.md#pipeline)，统计所有命中中心 Pipeline 处理的原始日志的数据大小。
+- 监控
+    - 通知对象管理：新增[权限控制](../monitoring/notify-object.md#permission)。配置操作权限后，仅被赋予权限的对象可对此通知对象进行编辑、删除操作。
+    - 智能监控 > 日志智能检测：新增追踪历史变化，过滤周期性的异常数据突变。
+- 日志 
+    - [数据访问](../logs/logdata-access.md#config)：新增对被授权查看的日志索引做访问权限配置。
+    - 日志查看器：显示列拓展，支持[添加 json 对象内字段内容](../logs/explorer.md#json-content)到一级返回显示。
+    - [BPF 网络日志](../logs/bpf-log.md)：
+        - 连接展示效果优化；
+        - 支持直接跳转至详情页；
+        - 支持自定义添加显示列。
+- 场景
+    - 时序图：折线图、面积图新增[断点连接](../scene/visual-chart/timeseries-chart.md#breakpoint)设置，柱状图新增【显示返回值】按钮。
+- [可用性监测](../usability-monitoring/request-task/index.md#manag)：任务列表新增表头排序。
+- DataFlux Func：支持观测云异常追踪脚本[集成钉钉应用](https://func.guance.com/doc/script-market-guance-issue-dingtalk-integration/)。
+
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
 ## 1.88.168（2024 年 06 月 13 日）
 
 pubrepo.guance.com/dataflux/1.88.168:launcher-92bbf83-1718688126
