@@ -67,6 +67,13 @@
         [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-native/CHANGELOG.md)
 
     === "ft-plguin ( AGP >=7.4.2 )"
+		**1.3.0**：
+        ``` markdown
+		1. 添加 asmVersion 配置功能，支持 asm7 - asm9
+		2. 修复了 WebView 自定义方法 loadUrl、loadData、loadDataWithBaseURL 和 postUrl 在 ASM 写入后导致循环调用，从而无法加载 WebView 内容的问题
+		3. IgnoreAOP 支持在类中声明，进行整个类中的方法忽略
+		4. 添加 ignorePackages 配置， 支持通过包路径配置对 ASM 进行忽略
+		```
         **1.3.0**：
         ``` markdown
         1. 支持 datakit source map 自动上传，支持 native symbol 的上传
@@ -80,6 +87,12 @@
         [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-plugin/CHANGELOG.md)
    
     === "ft-plugin-legacy ( AGP <=7.4.2 )"
+		**1.1.7**：
+        ``` markdown
+		1. 修复了 WebView 自定义方法 loadUrl、loadData、loadDataWithBaseURL 和 postUrl 在 ASM 写入后导致循环调用，从而无法加载 WebView 内容的问题
+		2. IgnoreAOP 支持在类中声明，进行整个类中的方法忽略
+		3. 添加 ignorePackages 配置， 支持通过包路径配置对 ASM 进行忽略
+		```
         **1.1.6**：
         ``` markdown
         1. 支持 datakit source map 自动上传，支持 native symbol 的上传
@@ -220,6 +233,10 @@ apply plugin: 'ft-plugin'
 FTExt {
     //是否显示 Plugin 日志，默认为 false
     showLog = true
+    //设置 ASM 版本，支持 asm7 - asm9，默认 asm9
+    //asmVersion='asm7'
+    //ASM 忽略路径配置，路径中 . 和 / 等效
+    //ignorePackages=['com.ft','com/ft']
 }
 android{
 	//...省略部分代码
