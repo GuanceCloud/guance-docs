@@ -151,7 +151,7 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
 - 场景 > 仪表板[图表](../scene/visual-chart/index.md#download)可直接下载为 PNG 图片，表格图还可导出为 CSV 文件。
 - 日志 > 绑定索引：【字段映射】更改为非必填项。
 - 集成/内置视图：模版新增标签管理。
-- Service Map 跨工作空间节点[样式显示调整](../scene/service-manag.md#servicemap)。
+- Service Map 跨工作空间节点[样式显示调整](../application-performance-monitoring/service-manag.md#servicemap)。
 
 ### 观测云部署版更新
 
@@ -224,7 +224,7 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
 ### 观测云更新
 
 - 监控 > 监控器：监控器类型【[组合检测](../monitoring/monitor/composite-detection.md)】上线。支持将多个监控器的结果通过表达式组合成一个监控器，最终基于组合后的结果进行告警。
-- 场景 > 服务：支持[跨工作空间 Service Map 查询](../scene/service-manag.md#servicemap)。
+- 场景 > 服务：支持[跨工作空间 Service Map 查询](../application-performance-monitoring/service-manag.md#servicemap)。
 
 ### 观测云部署版更新
 

@@ -7,7 +7,7 @@ Here's how to configure APM data at a sampling rate of 5%, *using the [DDtrace c
 
 ## Preconditions
 
-- [Register for Guance](https://auth.guance.com/login/pwd);
+- [Register for Guance](https://auth.guance.one/login/pwd);
 - [Install DataKit](../../datakit/datakit-install.md); 
 - [Open DDtrace collector](../../datakit/ddtrace.md). 
 

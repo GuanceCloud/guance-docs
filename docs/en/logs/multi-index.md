@@ -1,4 +1,4 @@
-# Index
+# Indexes
 ---
 
 Guance supports setting log multiple indexes, filtering qualified logs and saving them in different log indexes, thus helping users save log data storage costs by selecting different data storage strategies for log indexes.
