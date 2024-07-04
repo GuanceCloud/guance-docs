@@ -9,6 +9,6 @@
 当前 Open API 所展示的所有接口都只需要提供 API KEY（Header：DF-API-KEY）作为凭证。
 如果凭据存在且有效，则视为认证通过。
 
-获取方式见[API Key 管理](../management/api-key/)
+获取方式见[API Key 管理](../management/api-key/index.md)
 
 

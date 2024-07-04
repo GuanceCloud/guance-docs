@@ -47,7 +47,7 @@ You can click on the following links to view the corresponding application acces
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | [Web](web/app-access.md){ .md-button .md-button--primary } | [Android](android/app-access.md){ .md-button .md-button--primary } | [iOS](ios/app-access.md){ .md-button .md-button--primary } |
 | [Miniapp](miniapp/app-access.md){ .md-button .md-button--primary } | [React Native](react-native/app-access.md){ .md-button .md-button--primary } | [Flutter](flutter/app-access.md){ .md-button .md-button--primary } |
-| [UniApp](uni-app/app-access.md){ .md-button .md-button--primary } | [macOS](macos/app-access.md){ .md-button .md-button--primary } | [C++](cpp/app-access.md){ .md-button .md-button--primary } |
+| [UniApp](uni-app/app-access.md){ .md-button .md-button--primary } | [macOS](macos/app-access.md){ .md-button .md-button--primary } |  |
 
 ???+ warning "Notes"
 
