@@ -26,7 +26,7 @@ node_network_receive_bytes_total{device="eth2"}
 
 ## 指标集 Measurement
 
-在观测云中的所有指标都是归属于指标集的，我们以指标集为单位管理指标的生命周期。而指标集 Measurement 这个概念在 Prometheus 中是不存在的，需要通过 Datakit 上报的时候可以手动配置或者根据前缀来自动生成，详细内容可以查看 [Datakit 的文档](../datakit/prom.md)。
+在观测云中的所有指标都是归属于指标集的，我们以指标集为单位管理指标的生命周期。而指标集 Measurement 这个概念在 Prometheus 中是不存在的，需要通过 Datakit 上报的时候可以手动配置或者根据前缀来自动生成，详细内容可以查看 [Datakit 的文档](../integrations/prom.md)。
 
 我们继续以上面的 `node_network_receive_bytes_total` 指标为例，假设我们通过 Datakit 自动规则来生成，那么这个指标将会拆分为 Measurement 和 Field 两个部分，分别是 `node` 和 `network_receive_bytes_total`。
 
