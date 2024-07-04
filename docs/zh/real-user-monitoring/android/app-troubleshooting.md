@@ -105,11 +105,23 @@ buildscript {
 ``` 
 
 ## 开启 Debug 调试
+### ft-sdk Debug 模式
 您可以通过以下配置，开启 SDK 的 debug 功能，开启之后，控制台 `LogCat` 会输出 SDK 调试日志，您可以过滤 `[FT-SDK]` 字符，定位到观测云 SDK 日志。
 
 ```kotlin
   val config = FTSDKConfig.builder(datakitUrl).setDebug(true)
   FTSdk.install(config)
+```
+> **建议 Release 版本发布时，关闭这个配置**
+
+### ft-plugin Debug 模式
+您可以通过以下配置，开启 Plugin 的 debug 日志，开启之后，你可以在 `Build` 输出日志中，找到 `[FT-Plugin]`的输出日志。通过这个来查看 Plugin ASM 写入情况。
+
+```groovy
+FTExt {
+    //是否显示 Plugin 日志，默认为 false
+    showLog = true
+}
 ```
 > **建议 Release 版本发布时，关闭这个配置**
 
