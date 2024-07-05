@@ -193,6 +193,7 @@ nav:
       - external.md
       - argocd.md
       - langchain.md
+      - issue_dingtalk.md
 
   - CI/CD:
       - 'Jenkins': jenkins.md
