@@ -183,7 +183,7 @@ pubrepo.guance.com/dataflux/1.84.163:launcher-4606a02-1714100180
 - 场景 > 仪表板[图表](../scene/visual-chart/index.md#download)可直接下载为 PNG 图片，表格图还可导出为 CSV 文件。
 - 日志 > 绑定索引：【字段映射】更改为非必填项。
 - 集成/内置视图：模版新增标签管理。
-- Service Map 跨工作空间节点[样式显示调整](../scene/service-manag.md#servicemap)。
+- Service Map 跨工作空间节点[样式显示调整](../application-performance-monitoring/service-manag.md#servicemap)。
 
 ### OpenAPI 更新
 
