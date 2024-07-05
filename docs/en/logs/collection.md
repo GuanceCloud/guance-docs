@@ -9,13 +9,15 @@ This article mainly introduces how to collect logs in **host environment**.
 
 ## Preconditions
 
-[Install DataKit](../datakit/datakit-install.md) 
+[Install DataKit](../datakit/datakit-install.md). 
 
-You can also login to [Guance](https://auth.guance.com/login/pwd), In **Integration > DataKit** and select "Linux", "Windows" and "MacOS" according to the host system, and get the DataKit installation instructions and installation steps.
+You can also login to [Guance](https://auth.guance.one/login/pwd), In **Integrations > DataKit** and select "Linux", "Windows" and "MacOS" according to the host system, and get the DataKit installation instructions and installation steps.
 
 ## Log collection 
 
 After the DataKit installation is completed, you can log collect various log data from system logs and application logs such as Nginx, Redis, Docker and ES by turning on standard log collection or custom log collection.
+
+<div class="grid" markdown>
 
 === "Custom Log Collector" 
  
@@ -25,8 +27,10 @@ After the DataKit installation is completed, you can log collect various log dat
  
     You can turn on log collection with one click by turning on standard log collectors supported by Guance, such as [Nginx](../datakit/nginx.md), [Redis](../datakit/redis.md), [ES](../datakit/elasticsearch.md) and so on. 
 
+</div>
 
-???+ warning
+
+???+ warning "warning"
 
     When configuring the log collector, you need to turn on the Pipeline function of the log and extract the fields of log time `time` and log level `status`: 
  

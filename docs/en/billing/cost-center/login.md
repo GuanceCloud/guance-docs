@@ -13,7 +13,7 @@ If you forget your password, you can log in to the page of [Guance Billing Cente
 
 ### Login Through Guance Studio
 
-1. Open [Guance](https://auth.guance.com/login/pwd), select the login site, and enter the user name and password to log in.
+1. Open [Guance](https://auth.guance.one/login/pwd), select the login site, and enter the user name and password to log in.
 
 2. In the Guance workspace **Billing**, click **Billing Center** to enter the Guance Billing Center for account management.
 
