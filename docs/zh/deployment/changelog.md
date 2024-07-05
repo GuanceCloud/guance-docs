@@ -8,8 +8,8 @@ pubrepo.guance.com/dataflux/1.89.169:launcher-8b975f5-1720014392
 
 > **注： 此版本依赖 GuanceDB v1.8.1 版本，升级前请先升级 GuanceDB for metrics 和 GuanceDB for logs 引擎到 [v1.8.1](https://static.guance.com/guancedb/guancedb-cluster-linux-amd64-v1.8.1.tar.gz) 或以上版本。**
 
-Profile：通过配置参数，支持文件存储和对象存储两种方式。 
-Launcher: 支持在部署时直接选择使用 Doris 引擎。
+- Profile：通过配置参数，支持文件存储和对象存储两种方式。 
+- Launcher: 支持在部署时直接选择使用 Doris 引擎。
 
 ### 观测云更新
 
