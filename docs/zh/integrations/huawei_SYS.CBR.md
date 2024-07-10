@@ -1,26 +1,26 @@
 ---
-title: 'HUAWEI SYS.CBR'
+title: '华为云 CBR'
 tags: 
   - 华为云
-summary: '华为云 SYS.CBR的展示指标包括带宽利用率、延迟、丢包率和网络吞吐量，这些指标反映了CBR在网络传输和带宽管理方面的性能表现和质量保证。'
+summary: '华为云 CBR 的展示指标包括带宽利用率、延迟、丢包率和网络吞吐量，这些指标反映了CBR在网络传输和带宽管理方面的性能表现和质量保证。'
 __int_icon: 'icon/huawei_sys_cbr'
 dashboard:
 
-  - desc: 'HUAWEI SYS.CBR 内置视图'
+  - desc: '华为云 CBR 内置视图'
     path: 'dashboard/zh/huawei_SYS.CBR'
 
 monitor:
-  - desc: 'HUAWEI SYS.CBR 监控器'
+  - desc: '华为云 CBR 监控器'
     path: 'monitor/zh/huawei_SYS.CBR'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# 华为云 SYS.CBR
+# 华为云 CBR
 <!-- markdownlint-enable -->
 
-华为云 SYS.CBR 的展示指标包括带宽利用率、延迟、丢包率和网络吞吐量，这些指标反映了 CBR 在网络传输和带宽管理方面的性能表现和质量保证。
+华为云 CBR（Cloud Backup and Recovery）的展示指标包括带宽利用率、延迟、丢包率和网络吞吐量，这些指标反映了 CBR 在网络传输和带宽管理方面的性能表现和质量保证。
 
 
 ## 配置 {#config}
