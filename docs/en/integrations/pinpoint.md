@@ -251,6 +251,7 @@ Main logical points:
 | Tag | Description |
 |  ----  | --------|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
+|`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
 |`host`|Hostname.|
