@@ -149,8 +149,8 @@ LogUtils.registerInnerLogCacheToFile(cacheFile)
 	//以下是连接错误日志
 	[FT-SDK]SyncTaskManager com.demo   E  Network not available Stop poll
     [FT-SDK]SyncTaskManager com.demo   E  ↵
-						1:Sync Fail-[code:10003,response:failed to connect to 10.0.0.1 (port 9529) from ↵
-						10.0.2.16 (port 47968) after 10000ms,检查本地网络连接是否正常]
+				1:Sync Fail-[code:10003,response:failed to connect to 10.0.0.1 (port 9529) from ↵
+				10.0.2.16 (port 47968) after 10000ms,检查本地网络连接是否正常]
 	
 	//以下是正常同步日志
 	[FT-SDK]SyncTaskManager com.demo   D  Sync Success-[code:200,response:]
@@ -173,7 +173,21 @@ LogUtils.registerInnerLogCacheToFile(cacheFile)
 Resource 自动采集需要借助 Plugin ASM 字节码写入，自动对 OkHttpClient `Interceptor` 和 `EventListener` 进行设置，写入 `FTTraceInterceptor`, `FTResourceInterceptor`, `FTResourceEventListener.FTFactory`。如果不使用 Plugin，请参考[这里](app-access.md#manual-set)
 
 #### OkHttpClient.build() 在 SDK 初始化之前
-Plugin ASM 是在 `OkHttpClient.build()` 调用时自动写入，如果在 SDK 初始化之前，会导致加载空配置，因而丢失 Resource 相关数据。
+Plugin ASM 是在 `OkHttpClient.build()` 调用时自动写入，如果在 SDK 初始化之前，会导致加载空配置，因而丢失 Resource 相关数据。根据 debug 模式下的调试日志进行自检
+
+```java
+//SDK 初始化日志
+[FT-SDK]FTSdk       com.ft  D  initFTConfig complete
+[FT-SDK]FTSdk       com.ft  D  initLogWithConfig complete
+[FT-SDK]FTSdk       com.ft  D  initRUMWithConfig complete
+[FT-SDK]FTSdk       com.ft  D  initTraceWithConfig complete
+
+//SDK OkHttpClient.Builder.build() 调用时，打印的日志
+//（在 SDK 初始化之后调用，才会正常加载 SDK 配置）
+[FT-SDK]AutoTrack  	com.ft  D  trackOkHttpBuilder    
+```
+
+>如果无法调整初始化数据，可以选择[手动方式](app-access.md#manual-set)接入
 
 #### 使用 Interceptor 或 EventListener 对数据进行了二次处理 
 Plugin ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `addInterceptor`，分别加入 `FTTraceInterceptor` 和 `FTResourceInterceptor`,其中会使用 http 请求中 body contentLength 参与唯一 id 计算，`Resource` 数据各个阶段数据通过这个 id 进行上下文串联，所以如果集成方在使用 `Okhttp` 时，也加入 `addInterceptor` 并对数据进行二次处理使其发生大小改变，从而导致 id 各阶段计算不一致，导致数据丢失。
