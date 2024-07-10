@@ -71,7 +71,7 @@ icon: zy/management
     - 不同站点的账号独立不互通，更多站点说明，可参考 [站点说明](../billing/commercial-register.md#site)；
     - 支持选择[单点登录](../management/sso/index.md) 到观测云。
 
-> 您可按需参考文档 [阿里云市场开通观测云专属版](../billing/commercial-aliyun-sls.md) 来创建 SLS 专属版工作空间。
+> 您可按需参考文档 [阿里云市场开通观测云专属版](../plans/commercial-aliyun-sls.md) 来创建 SLS 专属版工作空间。
 
 ### SSO 账号登录 {#sso}
 
