@@ -220,6 +220,7 @@ UI 模式下支持选择如下聚合方式返回结果值。
 
 > 具体配置方法见 [Function 外部函数配置](../../dql/dql-out-func.md)。
 
+<!--
 若您已发布脚本并在 Function 平台内将脚本同步至对应工作空间，即可直接选择下表的 Func 数据源，观测云会自动获取工作空间 Issue 信息，最终为您进行可视化的数据展示。目前观测云支持针对[状态为 `resolved` 的 Issue](../../exception/issue.md#others) 列出处理时长统计指标类的脚本函数。
 
 | 函数列表    | 说明 |
@@ -236,8 +237,7 @@ UI 模式下支持选择如下聚合方式返回结果值。
 | incidents-issue_duration_by_assignee(top10) | 异常追踪-issue 处理时长 TOP 10 负责人 |
 | incidents-unresolved_issue_assignee_distribution | 异常追踪-未解决 issue 负责人分布 |
 | incidents-unresolved_issue_list | 异常追踪-未解决 issue 列表 |
-
-
+-->
 
 
 

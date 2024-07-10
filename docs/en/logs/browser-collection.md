@@ -4,7 +4,7 @@
 
 Send different levels of log data (`corresponding source: browser_log` metric type log data) to [Guance](https://www.guance.com/) through a web browser or javascript client.
 
-## Feature List
+## Features
 
 - Custom log data collection is applied to client through sdk and then collect different log data for different scenarios.   
 - Automatically collect application-side error messages (including network errors, console errors and js errors) and report them to Guance.   

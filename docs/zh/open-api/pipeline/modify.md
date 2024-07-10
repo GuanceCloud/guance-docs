@@ -24,6 +24,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | name | string | Y | Pipeline文件名称，也是其source类型值<br>允许为空: False <br>最大长度: 256 <br>$notSearchRegExp: [^a-zA-Z0-9_\u4e00-\u9fa5-]+ <br> |
+| type | string | Y | Pipeline文件类型<br>允许为空: False <br>可选值: ['local', 'central'] <br> |
 | source | array |  | 选取的source列表<br>允许为空: False <br> |
 | content | string | Y | pipeline文件内容(base64编码)<br>允许为空: False <br> |
 | testData | string |  | 测试数据(base64编码)<br>允许为空: False <br>允许空字符串: True <br> |

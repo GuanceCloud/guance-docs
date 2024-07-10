@@ -45,7 +45,7 @@ glightbox: false
       <a href="/en/real-user-monitoring" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/real-user-monitoring.png' alt="" />
-          <span>Real User Monitoring</span>
+          <span>RUM</span>
         </div>
       </a>
       <a href="/en/scheck" class="content-item">
@@ -68,13 +68,13 @@ glightbox: false
       </a>
     </div>
     <div class="content-bottom">
-      <a href="/en/best-practices" class="content-item">
+      <a href="/en/exception" class="content-item">
         <div class="item-content">
-          <img src='assets/images/homepage/best-practices.png' alt="" />
-          <span>Best Practices</span>
+          <img src='assets/images/homepage/incident.png' alt="" />
+          <span>Incidents</span>
         </div>
       </a>
-      <a href="/en/integrations" class="content-item">
+      <a href="/en/integrations/integration-index" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/integrations.png' alt="" />
           <span>Integrations</span>
@@ -86,7 +86,7 @@ glightbox: false
           <span>DataKit</span>
         </div>
       </a>
-      <a href="/en/dataflux-func/quick-start" class="content-item">
+      <a href="/en/dataflux-func" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/func.png' alt="" />
           <span>DataFlux Func</span>
