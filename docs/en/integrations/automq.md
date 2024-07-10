@@ -26,7 +26,7 @@ Collect AutoMQ related metrics information
 
 ## Installation Configuration{#config}
 
-### Enabled AutoMQ metrics
+### 1. Enabled AutoMQ metrics
 
 Adjusting the AutoMQ startup command
 
@@ -42,11 +42,20 @@ bin/kafka-server-start.sh ...\
 The default Exposure Metric port for AutoMQ is: `8890`. Metric-related information can be viewed through a browser: `http://clientIP:8890/metrics`.
 
 
-### DataKit Collector Configuration
+### 2. DataKit Collector Configuration
+
+#### 2.1 [安装 DataKit](../datakit/datakit-install.md)
+
+#### 2.2 Configuration Collector
 
 Because `AutoMQ` can expose `metrics` URL directly, it can be collected directly through [`prom`](./prom.md) collector.
 
-The adjustments are as follows:
+
+Enter `conf.d/prom` in the [DataKit installation directory](./datakit_dir.md) and copy `prom.conf.sample` to `automq.conf`.
+
+> `cp prom.conf.sample automq.conf`
+
+Adjust the content of `automq.conf` as follows:
 
 ```toml
 
@@ -81,7 +90,7 @@ The adjustments are as follows:
 - Interval: collection interval
 
 <!-- markdownlint-enable -->
-### Restart DataKit
+### 3. Restart DataKit
 
 [Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
