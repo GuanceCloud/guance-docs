@@ -29,7 +29,7 @@ After successfully installing and starting DataKit, the CPU collector will be en
 
 <!-- markdownlint-disable MD046 -->
 
-=== "host installation"
+=== "Host Installation"
 
     Go to the `conf.d/host` directory under the DataKit installation directory, copy `cpu.conf.sample` and name it `cpu.conf`. Examples are as follows:
     

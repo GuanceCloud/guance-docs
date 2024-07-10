@@ -143,6 +143,11 @@ setenforce 0
         # "httpflow-tls"
       ]
     
+    
+      ## datakit-ebpf pprof service
+      pprof_host = "127.0.0.1"
+      pprof_port = "6061"
+    
       ## netlog blacklist
       ##
       # netlog_blacklist = "ip_saddr=='127.0.0.1' || ip_daddr=='127.0.0.1'"
@@ -254,6 +259,16 @@ Configuration items:
     - Description: Ephemeral port start location
     - Environment variable: `ENV_INPUT_EBPF_EPHEMERAL_PORT`
     - Example: `32768`
+
+- `pprof_host`
+    - Description: pprof host
+    - Environment variable: `ENV_INPUT_EBPF_PPROF_HOST`
+    - Example: `127.0.0.1`
+
+- `pprof_port`
+    - Description: pprof port
+    - Environment variable: `ENV_INPUT_EBPF_PPROF_PORT`
+    - Example: `6061`
 
 <!-- - `interval`
     - Description: Data aggregation period

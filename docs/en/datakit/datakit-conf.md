@@ -19,7 +19,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is `datakit.conf`, here is the example sample(1.32.0):
+Datakit main configure is `datakit.conf`, here is the example sample(1.33.0):
 
 <!-- markdownlint-disable MD046 -->
 ??? info "`datakit.conf`"
@@ -169,6 +169,13 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.32.0):
       max_cache_count = 1000
       flush_workers   = 0 # default to (cpu_core * 2 + 1)
       flush_interval  = "10s"
+    
+      # Queue size of feed.
+      feed_chan_size = 1
+    
+      # Set blocking if queue is full.
+      # NOTE: Global blocking mode may consume more memory on large metric points.
+      global_blocking = false
     
       # Disk cache on datakit upload failed
       enable_cache = false
@@ -360,7 +367,9 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.32.0):
         ssh_private_key_path = ""
         ssh_private_key_password = ""
     
+    ################################################
     # crypto key or key filePath.
+    ################################################
     [crypto]
       aes_key = ""
       aes_Key_file = ""

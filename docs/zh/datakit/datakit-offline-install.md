@@ -110,37 +110,37 @@
 === "Windows 32 位"
 
     - [`Installer`](https://static.guance.com/datakit/installer-windows-386.exe){:target="_blank"}
-    - [`DataKit`](https://static.guance.com/datakit/datakit-windows-386-1.32.0.tar.gz){:target="_blank"}
+    - [`DataKit`](https://static.guance.com/datakit/datakit-windows-386-1.33.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-windows-386.tar.gz){:target="_blank"}
 
 === "Windows 64 位"
 
     - [`Installer`](https://static.guance.com/datakit/installer-windows-amd64.exe){:target="_blank"}
-    - [`DataKit`](https://static.guance.com/datakit/datakit-windows-amd64-1.32.0.tar.gz){:target="_blank"}
+    - [`DataKit`](https://static.guance.com/datakit/datakit-windows-amd64-1.33.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-windows-amd64.tar.gz){:target="_blank"}
 
 === "Linux X86 32 位"
 
     - [`Installer`](https://static.guance.com/datakit/installer-linux-386){:target="_blank"}
-    - [`DataKit`](https://static.guance.com/datakit/datakit-linux-386-1.32.0.tar.gz){:target="_blank"}
+    - [`DataKit`](https://static.guance.com/datakit/datakit-linux-386-1.33.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-386.tar.gz){:target="_blank"}
 
 === "Linux X86 64 位"
 
     - [`Installer`](https://static.guance.com/datakit/installer-linux-amd64){:target="_blank"}
-    - [`DataKit`](https://static.guance.com/datakit/datakit-linux-amd64-1.32.0.tar.gz){:target="_blank"}
+    - [`DataKit`](https://static.guance.com/datakit/datakit-linux-amd64-1.33.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-amd64.tar.gz){:target="_blank"}
 
 === "Linux Arm 32 位"
 
     - [`Installer`](https://static.guance.com/datakit/installer-linux-arm){:target="_blank"}
-    - [`DataKit`](https://static.guance.com/datakit/datakit-linux-arm-1.32.0.tar.gz){:target="_blank"}
+    - [`DataKit`](https://static.guance.com/datakit/datakit-linux-arm-1.33.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-arm.tar.gz){:target="_blank"}
 
 === "Linux Arm 64 位"
 
     - [`Installer`](https://static.guance.com/datakit/installer-linux-arm64){:target="_blank"}
-    - [`DataKit`](https://static.guance.com/datakit/datakit-linux-arm64-1.32.0.tar.gz){:target="_blank"}
+    - [`DataKit`](https://static.guance.com/datakit/datakit-linux-arm64-1.33.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-arm64.tar.gz){:target="_blank"}
 <!-- markdownlint-enable -->
 
@@ -162,7 +162,7 @@
 
     ```shell
     chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.32.0.tar.gz,dk_upgrader-linux-amd64.tar.gz,data.tar.gz
+    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.33.0.tar.gz,dk_upgrader-linux-amd64.tar.gz,data.tar.gz
     ```
 
 === "Windows"
@@ -170,7 +170,7 @@
     需以 administrator 权限运行 Powershell 执行：
 
     ```powershell
-    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.32.0.tar.gz,.\dk_upgrader-windows-amd64.tar.gz,.\data.tar.gz
+    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.33.0.tar.gz,.\dk_upgrader-windows-amd64.tar.gz,.\data.tar.gz
     ```
 <!-- markdownlint-enable -->
 
@@ -183,7 +183,7 @@
 
     ```shell
     chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --upgrade --srcs datakit-linux-amd64-1.32.0.tar.gz,data.tar.gz
+    ./installer-linux-amd64 --offline --upgrade --srcs datakit-linux-amd64-1.33.0.tar.gz,data.tar.gz
     ```
 
 === "Windows"
@@ -191,8 +191,20 @@
     需以 administrator 权限运行 Powershell 执行：
 
     ```powershell
-    .\installer-windows-amd64.exe --offline --upgrade --srcs .\datakit-windows-amd64-1.32.0.tar.gz,.\data.tar.gz
+    .\installer-windows-amd64.exe --offline --upgrade --srcs .\datakit-windows-amd64-1.33.0.tar.gz,.\data.tar.gz
     ```
+<!-- markdownlint-enable -->
+
+<!-- markdownlint-disable MD046 -->
+???+ tip "离线安装如何指定更多的配置参数"
+
+    非离线安装时，我们可以通过[环境变量 `DK_XXX=YYY` 的方式](datakit-install.md#extra-envs)来指定一些默认参数，这些默认参数实际上是通过 *install.sh*（Windows 下为 *install.ps1*）来生效的，但是这些环境变量对安装程序 *installer-xxx* 无效，我们只能使用 *installer-xxx* 的命令行参数来额外添加这些选项，通过如下命令，我们可以得知安装程序支持的参数：
+
+    ```shell
+    ./installer-linux-amd64 --help
+    ```
+
+    比如，上面我们指定 Dataway 地址就是通过 `--dataway` 方式来指定的。另外，这些额外的命令行参数设置，只有在安装模式才能生效，（离线）升级模式下，这些是不生效的。
 <!-- markdownlint-enable -->
 
 ### 高级模式 {#offline-advanced}
@@ -242,8 +254,8 @@ mkdir -p /datakit
 wget -P /datakit https://static.guance.com/datakit/install.sh
 wget -P /datakit https://static.guance.com/datakit/version
 wget -P /datakit https://static.guance.com/datakit/data.tar.gz
-wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.32.0
-wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.32.0.tar.gz
+wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.33.0
+wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.33.0.tar.gz
 wget -P /datakit https://static.guance.com/datakit/dk_upgrader-linux-amd64.tar.gz
 
 # 下载其它工具包：sources 是开启 RUM sourcemap 功能使用的安装包，如果未开启此功能，可选择不下载
@@ -277,8 +289,8 @@ done
 <!-- markdownlint-disable MD046 -->
 ???+ Attention
 
-    Windows 下的 `Installer` 程序的下载链接需添加 **.exe** 后缀，如 [*https://static.guance.com/datakit/installer-windows-386-1.32.0.exe*](https://static.guance.com/datakit/installer-windows-386-1.32.0.exe) 和
-    [*https://static.guance.com/datakit/installer-windows-amd64-1.32.0.exe*](https://static.guance.com/datakit/installer-windows-amd64-1.32.0.exe)。
+    Windows 下的 `Installer` 程序的下载链接需添加 **.exe** 后缀，如 [*https://static.guance.com/datakit/installer-windows-386-1.33.0.exe*](https://static.guance.com/datakit/installer-windows-386-1.33.0.exe) 和
+    [*https://static.guance.com/datakit/installer-windows-amd64-1.33.0.exe*](https://static.guance.com/datakit/installer-windows-amd64-1.33.0.exe)。
 <!-- markdownlint-enable -->
 
 #### 安装 {#advance-install}
@@ -456,17 +468,17 @@ wget https://static.guance.com/datakit/datakit.yaml -P /home/guance/
 
 ```shell
 # 拉取 amd 镜像并打包
-docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.32.0
-docker save -o datakit-amd64-1.32.0.tar pubrepo.guance.com/datakit/datakit:1.32.0
-mv datakit-amd64-1.32.0.tar /home/guance
+docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.33.0
+docker save -o datakit-amd64-1.33.0.tar pubrepo.guance.com/datakit/datakit:1.33.0
+mv datakit-amd64-1.33.0.tar /home/guance
 
 # 拉取 arm 镜像并打包
-docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.32.0
-docker save -o datakit-arm64-1.32.0.tar pubrepo.guance.com/datakit/datakit:1.32.0
-mv datakit-arm64-1.32.0.tar /home/guance
+docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.33.0
+docker save -o datakit-arm64-1.33.0.tar pubrepo.guance.com/datakit/datakit:1.33.0
+mv datakit-arm64-1.33.0.tar /home/guance
 
 # 查看镜像架构是否正确
-docker image inspect pubrepo.guance.com/datakit/datakit:1.32.0 |grep Architecture
+docker image inspect pubrepo.guance.com/datakit/datakit:1.33.0 |grep Architecture
 
 ```
 
@@ -593,17 +605,17 @@ docker image inspect pubrepo.guance.com/datakit/datakit:1.32.0 |grep Architectur
 
 ```shell
 wget http://<nginx-server-ip>:8080/datakit.yaml 
-wget http://<nginx-server-ip>:8080/datakit-amd64-1.32.0.tar 
+wget http://<nginx-server-ip>:8080/datakit-amd64-1.33.0.tar 
 ```
 
 5、解压镜像命令
 
 ```shell
 # docker 
-docker load -i /k8sdata/datakit/datakit-amd64-1.32.0.tar
+docker load -i /k8sdata/datakit/datakit-amd64-1.33.0.tar
 
 # containerd
-ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.32.0.tar
+ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.33.0.tar
 
 ```
 
@@ -621,10 +633,10 @@ kubectl apply -f datakit.yaml
 
 ```shell
 # docker 
-docker load -i datakit-amd64-1.32.0.tar
+docker load -i datakit-amd64-1.33.0.tar
 
 # containerd
-ctr -n=k8s.io image import datakit-amd64-1.32.0.tar
+ctr -n=k8s.io image import datakit-amd64-1.33.0.tar
 
 ```
 
