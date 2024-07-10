@@ -271,7 +271,7 @@ $ service datakit restart
 
 ### Redis：
 
-详细步骤参见文档 <[Redis DataKit 接入](../../datakit/redis.md)>
+详细步骤参见文档 <[Redis DataKit 接入](../../integrations/redis.md)>
 
 ##### 1、在 Datakit 中修改 redis 的 inputs
 
