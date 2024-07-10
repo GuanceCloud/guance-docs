@@ -18,6 +18,9 @@
 
 ## 参数补充说明
 
+**返回字段说明**
+forbiddenOperation 字段, True 表示当前用户不允许, 修改/删除等更新操作, False允许操作,  没该字段(老数据返回没有该字段)默认允许操作
+permissionSetInfo字段(permissionSet对应的信息)
 
 
 

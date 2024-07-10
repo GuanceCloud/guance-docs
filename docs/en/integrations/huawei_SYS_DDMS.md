@@ -1,23 +1,25 @@
 ---
-title: 'HUAWEI SYS.DDMS'
-summary: 'The HUAWEI CLOUD SYS.DDMS monitoring view displays metrics including message throughput, latency, concurrent connections, and reliability, which reflect the performance and reliability assurance of DDMS in handling large-scale message delivery and real-time data flow.'
+title: 'HUAWEI DDM'
+tags: 
+  - Huawei Cloud
+summary: 'The HUAWEI CLOUD DDM monitoring view displays metrics including message throughput, latency, concurrent connections, and reliability, which reflect the performance and reliability assurance of DDMS in handling large-scale message delivery and real-time data flow.'
 __int_icon: 'icon/huaweiyun_SYS_DDMS'
 dashboard:
 
-  - desc: 'HUAWEI CLOUD SYS.DDMS Dashboard'  
+  - desc: 'HUAWEI CLOUD DDM Dashboard'  
     path: 'dashboard/zh/HUAWEI_SYS_DDMS'
 
 monitor:
-  - desc: 'HUAWEI CLOUD SYS.DDMS'
+  - desc: 'HUAWEI CLOUD DDM'
     path: 'monitor/zh/HUAWEI_SYS_DDMS'
 
 ---
 
 <!-- markdownlint-disable MD025 -->
-# HUAWEI CLOUD **SYS.DDMS**
+# HUAWEI CLOUD **DDM**
 <!-- markdownlint-enable -->
 
-The HUAWEI CLOUD **SYS.DDMS** monitoring view displays metrics including message throughput, latency, concurrent connections, and reliability, which reflect the performance and reliability assurance of **DDMS** in handling large-scale message delivery and real-time data flow
+The HUAWEI CLOUD **DDM** monitoring view displays metrics including message throughput, latency, concurrent connections, and reliability, which reflect the performance and reliability assurance of **DDM** in handling large-scale message delivery and real-time data flow
 
 ## Config {#config}
 
@@ -32,7 +34,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data **SYS.DDMS**, install the corresponding data collection script: "Guance Integration (HUAWEI CLOUD **SYS.DDMS** Collect)" (ID: `startup__guance_huaweicloud_ddm`).
+To synchronize the monitoring data **DDM**, install the corresponding data collection script: "Guance Integration (HUAWEI CLOUD **SYS.DDMS** Collect)" (ID: `startup__guance_huaweicloud_ddm`).
 
 Click [Install] and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 

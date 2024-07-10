@@ -44,9 +44,9 @@ nav:
       - 'MongoDB': huawei_mongodb.md
       - 'OBS': huawei_obs.md
       - 'RDS(PostgreSQL)': huawei_rds_postgresql.md
-      - 'SYS.AS': huawei_SYS.AS.md
-      - 'SYS.CBR': huawei_SYS.CBR.md
-      - 'SYS DDMS': huaweiyun_SYS_DDMS.md
+      - 'AS': huawei_SYS.AS.md
+      - 'CBR': huawei_SYS.CBR.md
+      - 'DDMS': huawei_SYS_DDMS.md
       - 'ROMA': huawei_roma.md
 
     - AWS: 
@@ -190,6 +190,7 @@ nav:
       - zookeeper.md
       - argocd.md
       - langchain.md
+      - issue_dingtalk.md
 
   - CI/CD:
       - 'Jenkins': jenkins.md

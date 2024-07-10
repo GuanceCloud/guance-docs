@@ -79,7 +79,7 @@ rename("time", log_time) # 将 log_time 重名命名为 time
 default_time(time)       # 将 time 字段作为输出数据的时间戳
 ```
 
-> 更多 Pipeline 解析规则可参考文档 [文本数据处理（Pipeline）](../../use-pipeline/index.md)。
+> 更多 Pipeline 解析规则可参考文档 [文本数据处理（Pipeline）](../pipeline/use-pipeline/index.md)。
 
 #### 日志样本测试
 脚本规则编写完成后，可以输入日志样本数据进行测试，来验证你配置的解析规则是否正确。
@@ -168,7 +168,7 @@ default_time(time)       # 将 time 字段作为输出数据的时间戳
 在观测云工作空间**日志 > Pipelines**，点击 **Pipeline 官方库**，选择查看并克隆 `nginx.p` 的 Pipeline 文件。
 
 - 在**过滤日志**选择 “nginx”；
-- 在**定义解析规则**优化解析规则，更多解析规则可参考文档 [文本数据处理（Pipeline）](../../use-pipeline/index.md)；
+- 在**定义解析规则**优化[解析规则](../pipeline/use-pipeline/index.md)；
 - 在**日志样本测试**输入 nginx 日志数据，根据配置的解析规则进行测试。
 
 **注意**：

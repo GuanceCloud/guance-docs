@@ -19,7 +19,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is `datakit.conf`, here is the example sample(1.31.0):
+Datakit main configure is `datakit.conf`, here is the example sample(1.32.0):
 
 <!-- markdownlint-disable MD046 -->
 ??? info "`datakit.conf`"
@@ -244,7 +244,7 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.31.0):
       # HTTP body content type, other candidates are(case insensitive):
       #  - v1: line-protocol
       #  - v2: protobuf
-      content_encoding = "v1"
+      content_encoding = "v2"
     
       # Enable GZip to upload point data.
       #
@@ -519,7 +519,7 @@ To optimize Datakit's memory usage under high load conditions, we can enable *Po
     reserved_capacity = 4096
 ```
 
-We can also enable `content_encoding = "v2"` under [Dataway configure](datakit-conf.md#dataway-settings), with v2 encoding, it has lower memory and CPU overhead compared to v1.
+We can also enable `content_encoding = "v2"`([:octicons-tag-24: Version-1.32.0](changelog.md#cl-1.32.0) has enabled v2 by default) under [Dataway configure](datakit-conf.md#dataway-settings), with v2 encoding, it has lower memory and CPU overhead compared to v1.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention

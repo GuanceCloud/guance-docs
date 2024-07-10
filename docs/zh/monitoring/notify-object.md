@@ -85,9 +85,9 @@
 <img src="../img/10_inform_06.png" width="70%" >
 
 
-#### Webhook 自定义
+#### Webhook 自定义 {#custom-webhook}
 
-选择 **Webhook 自定义**，输入所需信息。
+选择 **Webhook 自定义**，输入名称、Webhook 地址和成员等信息。
 
 <img src="../img/10_inform_07.png" width="70%" >
 
@@ -111,70 +111,71 @@ Webhook 自定义通知类型为 `HTTPRequest`，会向指定的地址发送纯�
 
 发送的请求会根据所配置的请求类型不同而不同：
 
-1）当 `bodyType` 不指定或为 `text` 时，请求详情如下：
+<div class="grid" markdown>
 
-```http
-POST http://my-system/accept-webhook
-Content-Type: text/plain
+=== "`bodyType` 不指定或为 `text`"
 
-您的 ECS 存在问题
+    ```http
+    POST http://my-system/accept-webhook
+    Content-Type: text/plain
 
-您的 ECS 存在以下问题：
-- CPU 使用率过高（92%）
-- 内存使用率过高（81%）
-```
+    您的 ECS 存在问题
 
-其中，第 1 行为事件标题 `df_title`，第 2 行为空行，之后所有内容为事件内容 `df_message`。
+    您的 ECS 存在以下问题：
+    - CPU 使用率过高（92%）
+    - 内存使用率过高（81%）
+    ```
 
-2）当 `bodyType` 为 `json` 时，请求详情如下：
+    其中，第 1 行为事件标题 `df_title`，第 2 行为空行，之后所有内容为事件内容 `df_message`。
 
-```http
-POST http://my-system/accept-webhook
-Content-Type: application/json
 
-{
-    "timestamp"               : 1625638440,
-    "df_status"               : "warning",
-    "df_event_id"             : "event-xxxxxxxxxx",
-    "df_title"                : "web001存在问题",
-    "df_message"              : "web001存在问题\nCPU使用率大于90\n内存使用率大于90",
-    "df_dimension_tags"       : "{\"host\":\"web001\"}",
-    "df_monitor_id"           : "monitor_xxxxxxxxxx",
-    "df_monitor_name"         : "异常检测名",
-    "df_monitor_checker_id"   : "rul_xxxxxxxxxx",
-    "df_monitor_checker_name" : "异常检测项目名",
-    "df_monitor_checker_value": "99",
-    "df_event_link"           : "https://console.guance.com/keyevents/monitorChart?xxxxxxxxxx"
-    "df_workspace_uuid"       : "wksp_xxxxxxxxxx",
-    "df_workspace_name"       : "我的工作空间",
-    "Result"                  : 99,
-    "...其他更多字段": "略",
+=== "`bodyType` 为 `json`"
 
-    // 以下为旧版字段
-    "date"          : 1625638440,
-    "workspace_uuid": "wksp_xxxxxxxxxx",
-    "workspace_name": "我的工作空间",
-}
-```
+    ```http
+    POST http://my-system/accept-webhook
+    Content-Type: application/json
+
+    {
+        "timestamp"               : 1625638440,
+        "df_status"               : "warning",
+        "df_event_id"             : "event-xxxxxxxxxx",
+        "df_title"                : "web001存在问题",
+        "df_message"              : "web001存在问题\nCPU使用率大于90\n内存使用率大于90",
+        "df_dimension_tags"       : "{\"host\":\"web001\"}",
+        "df_monitor_id"           : "monitor_xxxxxxxxxx",
+        "df_monitor_name"         : "异常检测名",
+        "df_monitor_checker_id"   : "rul_xxxxxxxxxx",
+        "df_monitor_checker_name" : "异常检测项目名",
+        "df_monitor_checker_value": "99",
+        "df_event_link"           : "https://console.guance.com/keyevents/monitorChart?xxxxxxxxxx"
+        "df_workspace_uuid"       : "wksp_xxxxxxxxxx",
+        "df_workspace_name"       : "我的工作空间",
+        "Result"                  : 99,
+        "...其他更多字段": "略",
+
+        // 以下为旧版字段
+        "date"          : 1625638440,
+        "workspace_uuid": "wksp_xxxxxxxxxx",
+        "workspace_name": "我的工作空间",
+    }
+    ```
+
+</div>
 
 **注意**：在 Webhook 对外同步事件信息时，会同步追加工作空间[属性声明](../management/attribute-claims.md)。
+
+在配置 Webhook 通知对象时，可选择配置成员。该条 Webhook 通知对象规则生效后，Webhook 除了会传递事件数据外，还会将当前配置内输入的成员信息一同对外发送，以便利后续第三方接收到后可以根据成员信息做不同的规则操作。
+
+此处可选成员包含当前工作空间内的所有团队和工作空间成员：
+
+
+<img src="../img/10_inform_08.png" width="70%" >
 
 > Webhook 自定义通知发送内容的类型仅支持使用 JSON 格式，各字段的详情可参考 [事件产生](../events/index.md#fields)。
 >
 > 有关 Webhook 自定义更详细的实践文档，可参考 [观测云 Webhook 自定义告警通知集成](https://func.guance.com/doc/practice-guance-alert-webhook-integration/)。
 
-<!--
-### 5、新建邮件组
 
-进入**监控 > 通知对象管理 > 新建通知对象**，选择**邮件组**，输入所需信息。邮件组可同时添加多个成员。
-
-???+ warning
-
-    - 成员需要先在**管理 > 成员管理**中邀请加入到工作空间后才可选择；   
-    - 邮件组告警通知是每分钟合并了发送，并不是产生后立刻发送，会存在约一分钟的延迟。
-
-![](img/10_inform_08.png)
--->
 
 #### 短信
 
@@ -197,15 +198,17 @@ Content-Type: application/json
 
 <img src="../img/permission.png" width="70%" >
 
-新建通知对象时，您可以为当前工作空间内的角色、团队及空间成员配置通知对象操作权限。配置后，只有被赋予权限的对象可对条通知对象设置规则进行编辑、删除操作；若未配置则操作权限，则跟随[【通知对象配置管理】的默认权限](../management/role-list.md)。
+新建通知对象时，您可以为当前工作空间内的角色、团队及空间成员配置通知对象操作权限。配置后，只有被赋予权限的对象可对该条通知对象设置的规则进行编辑、删除操作；若未配置则操作权限，则跟随[【通知对象配置管理】的默认权限](../management/role-list.md)。
 
 若您选择**不开放操作权限**，则表示除 Owner 以及当前通知对象配置规则的创建者（也就是您本身）这两者外，不对外赋予任何权限。
 
+<!--
 
 **注意**：
 
 1. 当前工作空间的 owner 默认拥有此通知对象的新建、编辑以及删除权限；
 2. 当前通知对象配置规则的创建者默认拥有此通知对象的编辑以及删除权限。
+-->
 
 ## 自建通知对象 {#custom}
 

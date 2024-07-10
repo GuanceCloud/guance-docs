@@ -71,7 +71,7 @@ icon: zy/management
     - 不同站点的账号独立不互通，更多站点说明，可参考 [站点说明](../billing/commercial-register.md#site)；
     - 支持选择[单点登录](../management/sso/index.md) 到观测云。
 
-> 您可按需参考文档 [阿里云市场开通观测云专属版](../billing/commercial-aliyun-sls.md) 来创建 SLS 专属版工作空间。
+> 您可按需参考文档 [阿里云市场开通观测云专属版](../plans/commercial-aliyun-sls.md) 来创建 SLS 专属版工作空间。
 
 ### SSO 账号登录 {#sso}
 
@@ -141,7 +141,7 @@ icon: zy/management
     1. 针对普通商业版：账号注销后，被注销的邮箱依旧可以被再次注册。注册后为一个全新的账号，历史账号的数据不会被关联显示。
     2. 针对部署版：可以通过[管理后台 > 添加用户](../deployment/user.md#add)进行创建。
 
-## 个人账号设置
+## 个人账号设置 {#personal}
 
 ### 用户信息
 
@@ -197,7 +197,7 @@ icon: zy/management
 ![](img/3.high_performance_2.gif)
 
 
-### 系统主题
+### 系统主题 {#theme}
 
 观测云支持切换主题颜色。
 
@@ -225,7 +225,7 @@ icon: zy/management
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **工作空间锁定/解锁/解散**</font>](../billing-center/workspace-management.md#lock)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **工作空间锁定/解锁/解散**</font>](../billing-center/workspace-management.md#workspace-lock#lock)
 
 </div>
 

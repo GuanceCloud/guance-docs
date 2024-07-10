@@ -111,7 +111,7 @@ interface Options {
 
 ### 注意事项
 
-### node 版本 `> 16`
+### node 版本 `> 10.13`
 
 ### `filepaths` 与 `root` 配置注意事项：
 
