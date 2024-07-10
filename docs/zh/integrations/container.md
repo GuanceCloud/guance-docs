@@ -1632,6 +1632,7 @@ The logging of the container.
 |`daemonset`|The name of the DaemonSet which the object belongs to.|
 |`deployment`|The name of the Deployment which the object belongs to.|
 |`namespace`|The namespace of the container (label `io.kubernetes.pod.namespace`).|
+|`pod_ip`|The pod ip of the container.|
 |`pod_name`|The pod name of the container (label `io.kubernetes.pod.name`).|
 |`service`|The name of the service, if `service` is empty then use `source`.|
 
