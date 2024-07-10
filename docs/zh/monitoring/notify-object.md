@@ -91,80 +91,44 @@
 
 <img src="../img/10_inform_07.png" width="70%" >
 
-Webhook 自定义通知类型为 `HTTPRequest`，会向指定的地址发送纯文本 POST 请求。 
+最终对外发送的 Webhook 事件通知包含以下内容：
 
-假设用户配置的地址为 `[http://my-system/accept-webhook](http://my-system/accept-webhook)`，产生的告警标题和内容分别为: 
+:material-numeric-1-circle-outline: 事件信息：
 
-标题：
+`bodyType` 为 `json` 文本：
 
+```http
+POST http://my-system/accept-webhook
+Content-Type: application/json
+
+{
+    "timestamp"               : 1625638440,
+    "df_status"               : "warning",
+    "df_event_id"             : "event-xxxxxxxxxx",
+    "df_title"                : "web001存在问题",
+    "df_message"              : "web001存在问题\nCPU使用率大于90\n内存使用率大于90",
+    "df_dimension_tags"       : "{\"host\":\"web001\"}",
+    "df_monitor_id"           : "monitor_xxxxxxxxxx",
+    "df_monitor_name"         : "异常检测名",
+    "df_monitor_checker_id"   : "rul_xxxxxxxxxx",
+    "df_monitor_checker_name" : "异常检测项目名",
+    "df_monitor_checker_value": "99",
+    "df_event_link"           : "https://console.guance.com/keyevents/monitorChart?xxxxxxxxxx"
+    "df_workspace_uuid"       : "wksp_xxxxxxxxxx",
+    "df_workspace_name"       : "我的工作空间",
+    "Result"                  : 99,
+    "...其他更多字段": "略",
+
+    // 以下为旧版字段
+    "date"          : 1625638440,
+    "workspace_uuid": "wksp_xxxxxxxxxx",
+    "workspace_name": "我的工作空间",
+}
 ```
-您的 ECS 存在问题
-```
 
-内容：
+:material-numeric-2-circle-outline: 同步追加工作空间[属性声明](../management/attribute-claims.md)。
 
-```
-您的 ECS 存在以下问题: 
-- CPU 使用率过高(92%) 
-- 内存使用率过高(81%)
-```
-
-发送的请求会根据所配置的请求类型不同而不同：
-
-<div class="grid" markdown>
-
-=== "`bodyType` 不指定或为 `text`"
-
-    ```http
-    POST http://my-system/accept-webhook
-    Content-Type: text/plain
-
-    您的 ECS 存在问题
-
-    您的 ECS 存在以下问题：
-    - CPU 使用率过高（92%）
-    - 内存使用率过高（81%）
-    ```
-
-    其中，第 1 行为事件标题 `df_title`，第 2 行为空行，之后所有内容为事件内容 `df_message`。
-
-
-=== "`bodyType` 为 `json`"
-
-    ```http
-    POST http://my-system/accept-webhook
-    Content-Type: application/json
-
-    {
-        "timestamp"               : 1625638440,
-        "df_status"               : "warning",
-        "df_event_id"             : "event-xxxxxxxxxx",
-        "df_title"                : "web001存在问题",
-        "df_message"              : "web001存在问题\nCPU使用率大于90\n内存使用率大于90",
-        "df_dimension_tags"       : "{\"host\":\"web001\"}",
-        "df_monitor_id"           : "monitor_xxxxxxxxxx",
-        "df_monitor_name"         : "异常检测名",
-        "df_monitor_checker_id"   : "rul_xxxxxxxxxx",
-        "df_monitor_checker_name" : "异常检测项目名",
-        "df_monitor_checker_value": "99",
-        "df_event_link"           : "https://console.guance.com/keyevents/monitorChart?xxxxxxxxxx"
-        "df_workspace_uuid"       : "wksp_xxxxxxxxxx",
-        "df_workspace_name"       : "我的工作空间",
-        "Result"                  : 99,
-        "...其他更多字段": "略",
-
-        // 以下为旧版字段
-        "date"          : 1625638440,
-        "workspace_uuid": "wksp_xxxxxxxxxx",
-        "workspace_name": "我的工作空间",
-    }
-    ```
-
-</div>
-
-**注意**：在 Webhook 对外同步事件信息时，会同步追加工作空间[属性声明](../management/attribute-claims.md)。
-
-在配置 Webhook 通知对象时，可选择配置成员。该条 Webhook 通知对象规则生效后，Webhook 除了会传递事件数据外，还会将当前配置内输入的成员信息一同对外发送，以便利后续第三方接收到后可以根据成员信息做不同的规则操作。
+:material-numeric-3-circle-outline: 在配置 Webhook 通知对象时，可选择配置成员。该条 Webhook 通知对象规则生效后，Webhook 除了会传递上面两种事件信息外，还会将当前配置内输入的成员信息一同对外发送，以便利后续第三方接收到后可以根据成员信息做不同的规则操作。
 
 此处可选成员包含当前工作空间内的所有团队和工作空间成员：
 

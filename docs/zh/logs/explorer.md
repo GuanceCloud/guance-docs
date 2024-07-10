@@ -36,7 +36,7 @@
     
 2. 点击 :octicons-gear-24: 按钮，可选择 1 行、3 行、10 行及全部的方式显示。
     
-3. 点击 material-tray-arrow-up: 按钮，即可导出所有聚类的日志数据。进入
+3. 点击 material-tray-arrow-up: 按钮，即可导出所有聚类的日志数据。
 
 ![](img/manage-cluster.gif)
 
