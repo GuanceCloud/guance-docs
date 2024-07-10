@@ -26,7 +26,7 @@ monitor   :
 
 ## 安装配置 {#config}
 
-### AutoMQ 开启指标
+### 1. AutoMQ 开启指标
 
 调整 AutoMQ 启动命令
 
@@ -41,13 +41,19 @@ bin/kafka-server-start.sh ...\
 
 AutoMQ 暴露指标端口为：`8890`，可通过浏览器查看指标相关信息：`http://clientIP:8890/metrics`。
 
-### DataKit 采集器配置
+### 2. DataKit 采集器配置
+
+#### 2.1 [安装 DataKit](../datakit/datakit-install.md)
+
+#### 2.2 配置采集器
 
 由于`AutoMQ`能够直接暴露`metrics` url，所以可以直接通过[`prom`](./prom.md)采集器进行采集。
 
+进入 [DataKit 安装目录](./datakit_dir.md)下的 `conf.d/prom` ，复制 `prom.conf.sample` 为 `automq.conf`。
 
+> `cp prom.conf.sample automq.conf`
 
-调整内容如下：
+调整`automq.conf`内容如下：
 
 ```toml
 
@@ -82,7 +88,7 @@ AutoMQ 暴露指标端口为：`8890`，可通过浏览器查看指标相关信�
 - interval：采集间隔
 
 <!-- markdownlint-enable -->
-### 重启 DataKit
+### 3. 重启 DataKit
 
 [重启 DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
