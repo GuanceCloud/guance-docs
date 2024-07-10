@@ -6,6 +6,32 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明。
 
+## 2024 年 7 月 10 日
+
+### 观测云更新
+
+- 场景：
+    - [视图变量](../scene/view-variable.md#add)：
+        - 新增配置项开关：包含 * 选项。
+        - 选择隐藏视图变量时，列表新增隐藏标识。
+    - 仪表板：[分组](../scene/dashboard.md#group)组件支持配置颜色。
+    - 图表：别名功能覆盖排行榜、矩形树图、桑基图。
+    - 仪表板/查看器/内置视图：新增[卡片属性](../scene/dashboard.md#metadata)信息，优化编辑配置。
+- 监控：
+    - 通知对象管理：配置 [Webhook 通知对象](../monitoring/notify-object.md#custom-webhook)，支持追加成员信息。
+    - 应用智能检测：新增追踪历史变化，过滤周期性的异常数据突变；新增异常服务关联影响的用户数。
+- 事件 >[ 事件列表查看器](../events/event-explorer/event-list.md)：显示列新增告警通知状态标识。
+- 日志：
+    - 索引：绑定 [SLS 外部索引](../logs/multi-index.md#sls)时，新增访问类型选择，支持自定义公网访问或者内网访问；
+    - 日志查看器：[聚类分析](../logs/explorer.md#cluster)模式下，支持导出显示列数据及关联日志页面数据。
+
+
+
+### 观测云部署版更新
+
+- 新增全局功能[菜单管理配置](../deployment/menu.md)，支持自定义控制台显示菜单范围，并同步至工作空间功能菜单栏。
+- [模版管理](../deployment/integration.md)：自定义模板管理上传逻辑优化。
+
 ## 2024 年 6 月 26 日
 
 ### 观测云更新

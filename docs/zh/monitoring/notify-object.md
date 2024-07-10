@@ -85,48 +85,17 @@
 <img src="../img/10_inform_06.png" width="70%" >
 
 
-#### Webhook 自定义
+#### Webhook 自定义 {#custom-webhook}
 
-选择 **Webhook 自定义**，输入所需信息。
+选择 **Webhook 自定义**，输入名称、Webhook 地址和成员等信息。
 
 <img src="../img/10_inform_07.png" width="70%" >
 
-Webhook 自定义通知类型为 `HTTPRequest`，会向指定的地址发送纯文本 POST 请求。 
+最终对外发送的 Webhook 事件通知包含以下内容：
 
-假设用户配置的地址为 `[http://my-system/accept-webhook](http://my-system/accept-webhook)`，产生的告警标题和内容分别为: 
+:material-numeric-1-circle-outline: 事件信息：
 
-标题：
-
-```
-您的 ECS 存在问题
-```
-
-内容：
-
-```
-您的 ECS 存在以下问题: 
-- CPU 使用率过高(92%) 
-- 内存使用率过高(81%)
-```
-
-发送的请求会根据所配置的请求类型不同而不同：
-
-1）当 `bodyType` 不指定或为 `text` 时，请求详情如下：
-
-```http
-POST http://my-system/accept-webhook
-Content-Type: text/plain
-
-您的 ECS 存在问题
-
-您的 ECS 存在以下问题：
-- CPU 使用率过高（92%）
-- 内存使用率过高（81%）
-```
-
-其中，第 1 行为事件标题 `df_title`，第 2 行为空行，之后所有内容为事件内容 `df_message`。
-
-2）当 `bodyType` 为 `json` 时，请求详情如下：
+`bodyType` 为 `json` 文本：
 
 ```http
 POST http://my-system/accept-webhook
@@ -157,24 +126,20 @@ Content-Type: application/json
 }
 ```
 
-**注意**：在 Webhook 对外同步事件信息时，会同步追加工作空间[属性声明](../management/attribute-claims.md)。
+:material-numeric-2-circle-outline: 同步追加工作空间[属性声明](../management/attribute-claims.md)。
+
+:material-numeric-3-circle-outline: 在配置 Webhook 通知对象时，可选择配置成员。该条 Webhook 通知对象规则生效后，Webhook 除了会传递上面两种事件信息外，还会将当前配置内输入的成员信息一同对外发送，以便利后续第三方接收到后可以根据成员信息做不同的规则操作。
+
+此处可选成员包含当前工作空间内的所有团队和工作空间成员：
+
+
+<img src="../img/10_inform_08.png" width="70%" >
 
 > Webhook 自定义通知发送内容的类型仅支持使用 JSON 格式，各字段的详情可参考 [事件产生](../events/index.md#fields)。
 >
 > 有关 Webhook 自定义更详细的实践文档，可参考 [观测云 Webhook 自定义告警通知集成](https://func.guance.com/doc/practice-guance-alert-webhook-integration/)。
 
-<!--
-### 5、新建邮件组
 
-进入**监控 > 通知对象管理 > 新建通知对象**，选择**邮件组**，输入所需信息。邮件组可同时添加多个成员。
-
-???+ warning
-
-    - 成员需要先在**管理 > 成员管理**中邀请加入到工作空间后才可选择；   
-    - 邮件组告警通知是每分钟合并了发送，并不是产生后立刻发送，会存在约一分钟的延迟。
-
-![](img/10_inform_08.png)
--->
 
 #### 短信
 
