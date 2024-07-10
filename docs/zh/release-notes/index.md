@@ -13,7 +13,6 @@ icon: zy/release-notes
 - 场景：
     - [视图变量](../scene/view-variable.md#add)：
         - 新增配置项开关：包含 * 选项。
-        - 默认值：下拉值与【显示选项】联动。
         - 选择隐藏视图变量时，列表新增隐藏标识。
     - 仪表板：[分组](../scene/dashboard.md#group)组件支持配置颜色。
     - 图表：别名功能覆盖排行榜、矩形树图、桑基图。
@@ -23,7 +22,7 @@ icon: zy/release-notes
     - 应用智能检测：新增追踪历史变化，过滤周期性的异常数据突变；新增异常服务关联影响的用户数。
 - 事件 >[ 事件列表查看器](../events/event-explorer/event-list.md)：显示列新增告警通知状态标识。
 - 日志：
-    - 索引：绑定 [SLS 外部索引](../logs/multi-index.md#sls)时，新增访问类型选择，支持自定义公网访问或者内外访问；
+    - 索引：绑定 [SLS 外部索引](../logs/multi-index.md#sls)时，新增访问类型选择，支持自定义公网访问或者内网访问；
     - 日志查看器：[聚类分析](../logs/explorer.md#cluster)模式下，支持导出显示列数据及关联日志页面数据。
 
 
