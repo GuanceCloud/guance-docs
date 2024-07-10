@@ -66,6 +66,7 @@ nav:
     - '管理后台手册': 
       - "工作空间管理": space.md
       - "用户管理": user.md
+      - "菜单管理": menu.md
       - "模版管理": integration.md
       - "字段管理": field.md
       - "设置管理": setting.md

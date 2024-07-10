@@ -173,6 +173,7 @@
 | `resource_method`         | string   | 资源请求方式             |
 | `resource_status`         | string   | 资源请求返回的状态值     |
 | `resource_status_group`   | string   | 资源请求返回的状态分组值 |
+| `resource_host_ip`   | string   | 资源 URL 访问目标 IP |
 
 #### 指标
 
