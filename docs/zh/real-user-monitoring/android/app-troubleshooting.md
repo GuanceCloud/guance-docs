@@ -173,7 +173,7 @@ LogUtils.registerInnerLogCacheToFile(cacheFile)
 Resource 自动采集需要借助 Plugin ASM 字节码写入，自动对 OkHttpClient `Interceptor` 和 `EventListener` 进行设置，写入 `FTTraceInterceptor`, `FTResourceInterceptor`, `FTResourceEventListener.FTFactory`。如果不使用 Plugin，请参考[这里](app-access.md#manual-set)
 
 #### OkHttpClient.build() 在 SDK 初始化之前
-Plugin ASM 是在 `OkHttpClient.build()` 调用时自动写入，如果在 SDK 初始化之前，会导致加载空配置，因而丢失 Resource 相关数据。根据 debug 模式下的调试日志进行自检
+Plugin ASM 是在 `OkHttpClient.build()` 调用时自动写入，如果在 SDK 初始化之前，会导致加载空配置，因而丢失 Resource 相关数据。上述场景，可以根据 debug 模式下的调试日志进行自检。
 
 ```java
 //SDK 初始化日志
@@ -183,7 +183,7 @@ Plugin ASM 是在 `OkHttpClient.build()` 调用时自动写入，如果在 SDK �
 [FT-SDK]FTSdk       com.ft  D  initTraceWithConfig complete
 
 //SDK OkHttpClient.Builder.build() 调用时，打印的日志
-//（在 SDK 初始化之后调用，才会正常加载 SDK 配置）
+//（需要在 SDK 初始化之后被调用）
 [FT-SDK]AutoTrack  	com.ft  D  trackOkHttpBuilder    
 ```
 
