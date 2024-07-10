@@ -174,6 +174,7 @@ Collect process metrics, including CPU/memory usage, etc.
 
 | Tag | Description |
 |  ----  | --------|
+|`container_id`|Container ID of the process, only supported Linux|
 |`host`|Host name|
 |`pid`|Process ID|
 |`process_name`|Process name|
@@ -217,6 +218,7 @@ Collect data on process objects, including process names, process commands, etc.
 
 | Tag | Description |
 |  ----  | --------|
+|`container_id`|Container ID of the process, only supported Linux|
 |`host`|Host name|
 |`listen_ports`|The port the process is listening onW|
 |`name`|Name field, consisting of `[host-name]_[pid]`|

@@ -837,6 +837,14 @@ spec:
 
     **Default**: 1
 
+- **ENV_IO_FEED_GLOBAL_BLOCKING**
+
+    IO 发送的阻塞模式，目前只针对时序数据和拨测数据，其它类数据默认都是非阻塞的（[:octicons-tag-24: Version-1.33.0](changelog.md#cl-1.33.0)）
+
+    **Type**: Int
+
+    **Default**: -
+
 - **ENV_IO_FLUSH_WORKERS**
 
     IO 发送 worker 数（[:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)）
