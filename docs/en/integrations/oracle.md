@@ -186,7 +186,7 @@ apt-get install -y libaio-dev libaio1
       interval = "10s"
     
       ## connection timeout
-      # connect_timeout = "10s"
+      connect_timeout = "30s"
     
       ## slow query time threshold defined. If larger than this, the executed sql will be reported.
       slow_query_time = "0s"

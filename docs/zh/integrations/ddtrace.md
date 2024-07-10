@@ -485,6 +485,7 @@ DD_TAGS="project:your_project_name,env=test,version=v1" ddtrace-run python app.p
 | Tag | Description |
 |  ----  | --------|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
+|`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
 |`host`|Hostname.|

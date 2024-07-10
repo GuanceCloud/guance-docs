@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.32.0）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.33.0）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -169,6 +169,13 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       max_cache_count = 1000
       flush_workers   = 0 # default to (cpu_core * 2 + 1)
       flush_interval  = "10s"
+    
+      # Queue size of feed.
+      feed_chan_size = 1
+    
+      # Set blocking if queue is full.
+      # NOTE: Global blocking mode may consume more memory on large metric points.
+      global_blocking = false
     
       # Disk cache on datakit upload failed
       enable_cache = false
@@ -360,7 +367,9 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
         ssh_private_key_path = ""
         ssh_private_key_password = ""
     
+    ################################################
     # crypto key or key filePath.
+    ################################################
     [crypto]
       aes_key = ""
       aes_Key_file = ""
