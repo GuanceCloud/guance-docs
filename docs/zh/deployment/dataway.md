@@ -172,28 +172,34 @@ Kubernetes 重启对应的 Pod 即可。
 
 主机安装时，可以在安装命令中注入如下环境变量：
 
-| Env                  | 是否必需 | 说明                                                                                               | 取值 |
-| ---                  | ---      | ---                                                                                                | ---  |
-| DW_BIND              | N        | Dataway HTTP API 绑定地址，默认 `0.0.0.0:9528`                                                     |      |
-| DW_CASCADED          | N        | Dataway 是否级联                                                                                   | `on` |
-| DW_ETCD_HOST         | N        | etcd 地址，目前仅支持指定单个地址，如 `http://1.2.3.4:2379`                                        |      |
-| DW_ETCD_PASSWORD     | N        | etcd 密码                                                                                          |      |
-| DW_ETCD_USERNAME     | N        | etcd 用户名                                                                                        |      |
-| DW_HTTP_CLIENT_TRACE | N        | Dataway 自己作为 HTTP 客户端，可以开启一些相关的指标收集，这些指标最终会在其 Prometheus 指标中输出 | `on` |
-| DW_KODO              | Y        | Kodo 地址，或下一个 Dataway 地址，形如 `http://host:port`                                          |      |
-| DW_SECRET_TOKEN      | N        | 当开启 Sinker 功能时，可设置一下该 Token                                                           |      |
-| DW_TOKEN             | Y        | 一般是系统工作空间的数据 Token                                                                     |      |
-| DW_UPGRADE           | N        | 升级时将其指定为 1                                                                                 |      |
-| DW_UUID              | Y        | Dataway UUID，这个在新建 Dataway 的时候，系统工作空间会生成                                        |      |
-| DW_ENABLE_TLS        | N        | 开启 HTTPS(dataway-changelog.md#cl-1.4.0)                                                                                                    |                                                     |
-| DW_TLS_CRT           | N        | 指定 HTTPS/TLS crt 文件目录（dataway-changelog.md#cl-1.4.0）                                       |      |
-| DW_TLS_KEY           | N        | 指定 HTTPS/TLS key 文件目录（dataway-changelog.md#cl-1.4.0）                                       |      |
+| Env                   | 类型      | 是否必需 | 说明                                                                                                               | 取值示例 |
+| ---                   | ---       | ---      | ---                                                                                                                | ---      |
+| DW_BIND               | string    | N        | Dataway HTTP API 绑定地址，默认 `0.0.0.0:9528`                                                                     |          |
+| DW_CASCADED           | boolean   | N        | Dataway 是否级联                                                                                                   | `true`   |
+| DW_HTTP_CLIENT_TRACE  | boolean   | N        | Dataway 自己作为 HTTP 客户端，可以开启一些相关的指标收集，这些指标最终会在其 Prometheus 指标中输出                 | `true`   |
+| DW_KODO               | string    | Y        | Kodo 地址，或下一个 Dataway 地址，形如 `http://host:port`                                                          |          |
+| DW_SECRET_TOKEN       | string    | N        | 当开启 Sinker 功能时，可设置一下该 Token                                                                           |          |
+| DW_TOKEN              | string    | Y        | 一般是系统工作空间的数据 Token                                                                                     |          |
+| DW_UPGRADE            | boolean   | N        | 升级时将其指定为 1                                                                                                 |          |
+| DW_UUID               | string    | Y        | Dataway UUID，这个在新建 Dataway 的时候，系统工作空间会生成                                                        |          |
+| DW_TLS_CRT            | file-path | N        | 指定 HTTPS/TLS crt 文件目录 [:octicons-tag-24: Version-1.4.1](dataway-changelog.md#cl-1.4.1)                       |          |
+| DW_TLS_KEY            | file-path | N        | 指定 HTTPS/TLS key 文件目录 [:octicons-tag-24: Version-1.4.1](dataway-changelog.md#cl-1.4.1)                       |          |
+| DW_PROM_EXPORTOR_BIND | string    | N        | 指定 Dataway 自身指标暴露的 HTTP 端口（默认 9090）[:octicons-tag-24: Version-1.5.0](dataway-changelog.md#cl-1.5.0) |          |
+| DW_PPROF_BIND         | string    | N        | 指定 Dataway 自身 pprof HTTP 端口（默认 6060）[:octicons-tag-24: Version-1.5.0](dataway-changelog.md#cl-1.5.0)     |          |
+| DW_DISK_CACHE_CAP_MB  | int       | N        | 指定磁盘缓存大小（单位 MB），默认 65535MB [:octicons-tag-24: Version-1.5.0](dataway-changelog.md#cl-1.5.0)         |          |
+
+<!-- markdownlint-disable MD046 -->
+???+ warning
+
+    Sinker 有关的设置，需安装完之后，手动修改。目前不支持在安装过程中指定 Sinker 的配置。 [:octicons-tag-24: Version-1.5.0](dataway-changelog.md#cl-1.5.0-brk) 
+<!-- markdownlint-enable -->
 
 ### 镜像环境变量 {#img-envs}
 
 Dataway 在 Kubernetes 环境中运行时，支持如下环境变量。
 
-??? attention "兼容已有 dataway.yaml"
+<!-- markdownlint-disable MD046 -->
+???+ warning "兼容已有 dataway.yaml"
 
     由于一些老的 Dataway 是通过 ConfigMap 方式来注入配置的（挂到容器中的文件名一般都是 *dataway.yaml*），
     如果 Dataway 镜像启动后，发现安装目录中存在 ConfigMap 挂进来的文件，则下述 `DW_*` 环境变量将不生效。
@@ -201,23 +207,26 @@ Dataway 在 Kubernetes 环境中运行时，支持如下环境变量。
 
     如果环境变量生效，则在 Dataway 安装目录下会有一个隐藏（通过 `ls -a` 查看）的 *.dataway.yaml* 文件，可以 `cat`
     该文件以确认环境变量的生效情况。
+<!-- markdownlint-enable -->
 
-#### API 有关 {#env-apis}
+#### HTTP Server 设置 {#env-apis}
 
-| Env                         | 是否必需 | 说明                                                                                               | 取值 |
-| ---                         | ---      | ---                                                                                                | ---  |
-| DW_REMOTE_HOST              | Y        | Kodo 地址，或下一个 Dataway 地址，形如 `http://host:port`                                          |      |
-| DW_WHITE_LIST               | N        | Dataway 客户端 IP 白名单，以英文 `,` 分割                                                          |      |
-| DW_HTTP_TIMEOUT             | N        | Dataway 请求 Kodo 或下一个 Dataway 的超时设置，默认 30s                                            |      |
-| DW_BIND                     | N        | Dataway HTTP API 绑定地址，默认 `0.0.0.0:9528`                                                     |      |
-| DW_API_LIMIT                | N        | Dataway API 限流设置，如设置为 1000，则每个具体的 API 在 1s 以内只允许请求 1000 次，默认 100K      |      |
-| DW_HEARTBEAT                | N        | Dataway 跟中心的心跳间隔，默认 60s                                                                 |      |
-| DW_MAX_HTTP_BODY_BYTES      | N        | Dataway API 允许的最大 HTTP Body（**单位字节**），默认 64MB                                        |      |
-| DW_TLS_INSECURE_SKIP_VERIFY | N        | 忽略 HTTPS/TLS 证书错误                                                                            | `on` |
-| DW_HTTP_CLIENT_TRACE        | N        | Dataway 自己作为 HTTP 客户端，可以开启一些相关的指标收集，这些指标最终会在其 Prometheus 指标中输出 | `on` |
-| DW_TLS_CRT                  | N        | 指定 HTTPS/TLS crt 文件目录（dataway-changelog.md#cl-1.4.0）                                       |      |
-| DW_TLS_KEY                  | N        | 指定 HTTPS/TLS key 文件目录（dataway-changelog.md#cl-1.4.0）                                       |      |
+| Env                         | 类型      | 是否必需 | 说明                                                                                               | 取值示例 |
+| ---                         | ---       | ---      | ---                                                                                                | ---      |
+| DW_REMOTE_HOST              | string    | Y        | Kodo 地址，或下一个 Dataway 地址，形如 `http://host:port`                                          |          |
+| DW_WHITE_LIST               | string    | N        | Dataway 客户端 IP 白名单，以英文 `,` 分割                                                          |          |
+| DW_HTTP_TIMEOUT             | string    | N        | Dataway 请求 Kodo 或下一个 Dataway 的超时设置，默认 30s                                            |          |
+| DW_BIND                     | string    | N        | Dataway HTTP API 绑定地址，默认 `0.0.0.0:9528`                                                     |          |
+| DW_API_LIMIT                | int       | N        | Dataway API 限流设置，如设置为 1000，则每个具体的 API 在 1s 以内只允许请求 1000 次，默认 100K      |          |
+| DW_HEARTBEAT                | string    | N        | Dataway 跟中心的心跳间隔，默认 60s                                                                 |          |
+| DW_MAX_HTTP_BODY_BYTES      | int       | N        | Dataway API 允许的最大 HTTP Body（**单位字节**），默认 64MB                                        |          |
+| DW_TLS_INSECURE_SKIP_VERIFY | boolean   | N        | 忽略 HTTPS/TLS 证书错误                                                                            | `true`   |
+| DW_HTTP_CLIENT_TRACE        | boolean   | N        | Dataway 自己作为 HTTP 客户端，可以开启一些相关的指标收集，这些指标最终会在其 Prometheus 指标中输出 | `true`   |
+| DW_ENABLE_TLS               | boolean   | N        | 启用 HTTPS [:octicons-tag-24: Version-1.4.1](dataway-changelog.md#cl-1.4.1)                        |          |
+| DW_TLS_CRT                  | file-path | N        | 指定 HTTPS/TLS crt 文件目录 [:octicons-tag-24: Version-1.4.0](dataway-changelog.md#cl-1.4.0)       |          |
+| DW_TLS_KEY                  | file-path | N        | 指定 HTTPS/TLS key 文件目录[:octicons-tag-24: Version-1.4.0](dataway-changelog.md#cl-1.4.0)        |          |
 
+##### HTTP TLS 设置 {#http-tls}
 
 要生成一个有效期为一年的 TLS 证书，您可以使用以下 OpenSSL 命令：
 
@@ -233,8 +242,12 @@ $ openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out tls.crt 
 
 为了使应用程序能够使用这些 TLS 证书，您需要将这两个文件的绝对路径设置到应用程序的环境变量中。以下是设置环境变量的一个示例：
 
+> 必须先开启 `DW_ENABLE_TLS`，另外两个 ENV （`DW_TLS_CRT/DW_TLS_KEY`）才会生效。 [:octicons-tag-24: Version-1.4.1](dataway-changelog.md#cl-1.4.1)
+
 ```yaml
 env:
+- name: DW_ENABLE_TLS 
+  value: "true"
 - name: DW_TLS_CRT
   value: "/path/to/your/tls.crt"
 - name: DW_TLS_KEY
@@ -262,35 +275,35 @@ $ curl -vvv -k http://localhost:9528
 curl: (7) Failed to connect to localhost port 9528 after 6 ms: Couldn't connect to server
 ```
 
-#### 日志有关 {#env-logging}
+#### 日志设置 {#env-logging}
 
-| Env          | 是否必需 | 说明                   | 取值 |
-| ---          | ---      | ---                    | ---  |
-| DW_LOG       | N        | 日志路径，默认为 *log* |      |
-| DW_LOG_LEVEL | N        | 默认为 `info`          |      |
-| DW_GIN_LOG   | N        | 默认为 *gin.log*       |      |
+| Env          | 类型   | 是否必需 | 说明                   | 取值示例 |
+| ---          | ---    | ---      | ---                    | ---      |
+| DW_LOG       | string | N        | 日志路径，默认为 *log* |          |
+| DW_LOG_LEVEL | string | N        | 默认为 `info`          |          |
+| DW_GIN_LOG   | string | N        | 默认为 *gin.log*       |          |
 
 #### Token/UUID 设置 {#env-token-uuid}
 
-| Env                      | 是否必需 | 说明                                                                     | 取值 |
-| ---                      | ---      | ---                                                                      | ---  |
-| DW_UUID                  | Y        | Dataway UUID，这个在新建 Dataway 的时候，系统工作空间会生成              |      |
-| DW_TOKEN                 | Y        | 一般是系统工作空间的数据 Token                                           |      |
-| DW_SECRET_TOKEN          | N        | 当开启 Sinker 功能时，可设置一下该 Token                                 |      |
-| DW_ENABLE_INTERNAL_TOKEN | N        | 允许以 `__internal__` 作为客户端 Token，此时默认使用系统工作空间的 Token |      |
-| DW_ENABLE_EMPTY_TOKEN    | N        | 允许不使用 Token 上传数据，此时默认使用系统工作空间的 Token              |      |
+| Env                      | 类型    | 是否必需 | 说明                                                                     | 取值示例 |
+| ---                      | ---     | ---      | ---                                                                      | ---      |
+| DW_UUID                  | string  | Y        | Dataway UUID，这个在新建 Dataway 的时候，系统工作空间会生成              |          |
+| DW_TOKEN                 | string  | Y        | 一般是系统工作空间的数据上传 Token                                       |          |
+| DW_SECRET_TOKEN          | string  | N        | 当开启 Sinker 功能时，可设置一下该 Token                                 |          |
+| DW_ENABLE_INTERNAL_TOKEN | boolean | N        | 允许以 `__internal__` 作为客户端 Token，此时默认使用系统工作空间的 Token |          |
+| DW_ENABLE_EMPTY_TOKEN    | boolean | N        | 允许不使用 Token 上传数据，此时默认使用系统工作空间的 Token              |          |
 
-#### Sinker 有关设置 {#env-sinker}
+#### Sinker 设置 {#env-sinker}
 
-| Env                         | 是否必需 | 说明                                                                     | 取值 |
-| ---                         | ---      | ---                                                                      | ---  |
-| DW_CASCADED                 | N        | Dataway 是否级联                                                         | `on` |
-| DW_SINKER_ETCD_URLS         | N        | etcd 地址列表，以 `,` 分割，如 `http://1.2.3.4:2379,http://1.2.3.4:2380` |      |
-| DW_SINKER_ETCD_DIAL_TIMEOUT | N        | etcd 连接超时，默认 30s                                                  |      |
-| DW_SINKER_ETCD_KEY_SPACE    | N        | Sinker 配置所在的 etcd key 名称（默认 `/dw_sinker`）                     |      |
-| DW_SINKER_ETCD_USERNAME     | N        | etcd 用户名                                                              |      |
-| DW_SINKER_ETCD_PASSWORD     | N        | etcd 密码                                                                |      |
-| DW_SINKER_FILE_PATH         | N        | 通过本地文件来指定 sinker 规则配置                                       |      |
+| Env                         | 类型      | 是否必需 | 说明                                                                     | 取值示例 |
+| ---                         | ---       | ---      | ---                                                                      | ---      |
+| DW_CASCADED                 | string    | N        | Dataway 是否级联                                                         | `true`   |
+| DW_SINKER_ETCD_URLS         | string    | N        | etcd 地址列表，以 `,` 分割，如 `http://1.2.3.4:2379,http://1.2.3.4:2380` |          |
+| DW_SINKER_ETCD_DIAL_TIMEOUT | string    | N        | etcd 连接超时，默认 30s                                                  |          |
+| DW_SINKER_ETCD_KEY_SPACE    | string    | N        | Sinker 配置所在的 etcd key 名称（默认 `/dw_sinker`）                     |          |
+| DW_SINKER_ETCD_USERNAME     | string    | N        | etcd 用户名                                                              |          |
+| DW_SINKER_ETCD_PASSWORD     | string    | N        | etcd 密码                                                                |          |
+| DW_SINKER_FILE_PATH         | file-path | N        | 通过本地文件来指定 sinker 规则配置                                       |          |
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
@@ -300,20 +313,26 @@ curl: (7) Failed to connect to localhost port 9528 after 6 ms: Couldn't connect 
 
 #### Prometheus 指标暴露 {#env-metrics}
 
-| Env              | 是否必需 | 说明                                             | 取值 |
-| ---              | ---      | ---                                              | ---  |
-| DW_PROM_URL      | N        | Prometheus 指标的 URL Path（默认 `/metrics`）    |      |
-| DW_PROM_LISTEN   | N        | Prometheus 指标暴露地址（默认 `localhost:9090`） |      |
-| DW_PROM_DISABLED | N        | 禁用 Prometheus 指标暴露                         | `on` |
+| Env              | 类型    | 是否必需 | 说明                                             | 取值示例 |
+| ---              | ---     | ---      | ---                                              | ---      |
+| DW_PROM_URL      | string  | N        | Prometheus 指标的 URL Path（默认 `/metrics`）    |          |
+| DW_PROM_LISTEN   | string  | N        | Prometheus 指标暴露地址（默认 `localhost:9090`） |          |
+| DW_PROM_DISABLED | boolean | N        | 禁用 Prometheus 指标暴露                         | `true`   |
 
 #### 磁盘缓存设置 {#env-diskcache}
 
-| Env                          | 是否必需 | 说明                                               | 取值                               |
-| ---                          | ---      | ---                                                | ---                                |
-| DW_DISKCACHE_DIR             | N        | 设置缓存目录，**该目录一般外挂存储**               | *path/to/your/cache*               |
-| DW_DISKCACHE_DISABLE         | N        | 禁用磁盘缓存，**如果不禁用缓存，需删除该环境变量** | `on`                               |
-| DW_DISKCACHE_CLEAN_INTERVAL  | N        | 缓存清理间隔，默认 30s                             | Duration 字符串                    |
-| DW_DISKCACHE_EXPIRE_DURATION | N        | 缓存过期时间，默认 168h（7d）                      | Duration 字符串，如 `72h` 表示三天 |
+| Env                          | 类型      | 是否必需 | 说明                                               | 取值示例                           |
+| ---                          | ---       | ---      | ---                                                | ---                                |
+| DW_DISKCACHE_DIR             | file-path | N        | 设置缓存目录，**该目录一般外挂存储**               | *path/to/your/cache*               |
+| DW_DISKCACHE_DISABLE         | boolean   | N        | 禁用磁盘缓存，**如果不禁用缓存，需删除该环境变量** | `true`                             |
+| DW_DISKCACHE_CLEAN_INTERVAL  | string    | N        | 缓存清理间隔，默认 30s                             | Duration 字符串                    |
+| DW_DISKCACHE_EXPIRE_DURATION | string    | N        | 缓存过期时间，默认 168h（7d）                      | Duration 字符串，如 `72h` 表示三天 |
+
+<!-- markdownlint-disable MD046 -->
+???+ attention
+
+    必须设置 `DW_DISKCACHE_DIR` 后续的几个磁盘缓存相关的配置才会生效。如果要禁用磁盘缓存，需额外再开启 `DW_DISKCACHE_DISABLE`。
+<!-- markdownlint-enable -->
 
 ## Dataway API 列表 {#apis}
 
@@ -480,7 +499,7 @@ Content-Type: application/json
 <!-- markdownlint-disable MD046 -->
 ???+ attention "HTTP client 指标采集"
 
-    如果要采集 Dataway HTTP 请求 Kodo（或者下一跳 Dataway）的指标，需要手动开启 `http_client_trace` 配置。或者指定环境变量 `DW_HTTP_CLIENT_TRACE=on`。
+    如果要采集 Dataway HTTP 请求 Kodo（或者下一跳 Dataway）的指标，需要手动开启 `http_client_trace` 配置。或者指定环境变量 `DW_HTTP_CLIENT_TRACE=true`。
 
 === "主机部署"
 
@@ -598,6 +617,16 @@ watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
 |COUNTER|`diskcache_rotate_total`|`path`|Cache rotate count, mean file rotate from data to data.0000xxx|
 |COUNTER|`diskcache_remove_total`|`path`|Removed file count, if some file read EOF, remove it from un-read list|
 |COUNTER|`diskcache_put_total`|`path`|Cache Put() count|
+
+#### Docker 模式下的指标采集 {#metrics-within-docker}
+
+主机安装有两种模式，一种是宿主机安装，一种是通过 Docker 安装。这里单独说明一下通过 Docker 安装时指标采集的差异。
+
+通过 Docker 安装时，指标暴露的 HTTP 端口会映射到宿主机的 19090 端口（默认情况下），此时其指标采集地址为 `http://localhost:19090/metrics`。
+
+如果单独指定了不同的端口，则 Docker 安装时，会在该端口基础上加上 10000，故此处指定的端口不要超过 45535。
+
+此外，Docker 安装时，还会暴露 profile 采集端口，默认映射到宿主机上的端口为 16060，其机制也是在指定的端口基础上加上 10000。
 
 ### Dataway 自身日志采集和处理 {#logging}
 
