@@ -1,23 +1,23 @@
 ---
-title: '华为云 SYS.DDMS 监控视图'
+title: '华为云 DDM'
 tags: 
   - 华为云
-summary: '华为云 SYS.DDMS 监控视图展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了DDMS在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。'
+summary: '华为云 DDM 监控视图展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了DDMS在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。'
 __int_icon: 'icon/huaweiyun_SYS_DDMS'
 dashboard:
-  - desc: '华为云 SYS.DDMS 监控视图'
+  - desc: '华为云 DDM 监控视图'
     path: 'dashboard/zh/huaweiyun_SYS_DDMS/'
 monitor:
-  - desc: '华为云 SYS.DDMS 监控视图'
+  - desc: '华为云 DDM 监控视图'
     path: 'monitor/zh/huaweiyun_SYS_DDMS/'
 ---
 
 <!-- markdownlint-disable MD025 -->
 
-# 华为云 `SYS.DDMS`
+# 华为云 DDM
 <!-- markdownlint-enable -->
 
-'华为云 SYS.DDMS 监控视图展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了DDMS在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。'
+'华为云 DDM 监控视图展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了DDMS在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。'
 
 
 ## 配置 {#config}
@@ -34,7 +34,7 @@ monitor:
 
 > 提示：请提前准备好符合要求的华为云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步华为云`SYS.DDMS` 的监控数据，我们安装对应的采集脚本：观测云集成（华为云- `SYS.DDMS`采集）」(ID：`startup__guance_huaweicloud_ddm`)
+同步华为云`DDM` 的监控数据，我们安装对应的采集脚本：观测云集成（华为云- `SYS.DDMS`采集）」(ID：`startup__guance_huaweicloud_ddm`)
 
 点击【安装】后，输入相应的参数：华为云 AK、华为云项目ID。
 

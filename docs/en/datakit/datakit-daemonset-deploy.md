@@ -797,6 +797,14 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     **Default**: 1
 
+- **ENV_IO_FEED_GLOBAL_BLOCKING**
+
+    Set blocking mode on busy uploading(especially fot time-series and dial-testing points)
+
+    **Type**: Int
+
+    **Default**: -
+
 - **ENV_IO_FLUSH_WORKERS**
 
     IO flush workers([:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9))
