@@ -14,7 +14,25 @@
 | [DataKit](../../datakit/index.md)       | DataKit 是观测云的实时数据采集 Agent，支持上百种数据采集，DataKit 采集数据后会先发送到 DataWay 数据网关，再经由 DataWay 上报到中心进行存储和分析。DataKit 需部署到用户自己的 IT 环境中，支持多个操作系统。<br/>默认采集频率：5分钟 |
 | [Func](https://func.guance.com/doc/) | Func 即 DataFlux Func，是观测云的扩展编程平台，可用于函数开发、管理和执行。简单易用、只需编写代码并发布，自动为函数生成 HTTP API 接口，官方内置各种开箱即用的脚本库，轻松供观测云调用。 |
 
+## 存储引擎套件 {#storage-suite}
 
+> 存储引擎套件说明
+
+| 组件                                 | 说明                                                         |
+| ------------------------------------ | ------------------------------------------------------------ |
+| GuanceDB | 是指观测云研发的存储引擎套件总称，包含 GuanceDB for metrics、GuanceDB for logs，以及套件中的所有子组件。 |
+| GuanceDB for metrics | 观测云的时序指标引擎，专用于时序指标数据的存储与分析，包括 guance-select、guance-insert 和 guance-storage 三个组件。 |
+| GuanceDB for logs | 观测云的非时序数据存储与分析引擎，适用于日志、APM、RUM 和事件等数据，包括 guance-select、guance-insert 和当前支持的存储引擎 Doris。 |
+| guance-select | 观测云存储套件中的子组件，专门负责可观测数据的查询与分析。 |
+| guance-insert | 观测云存储套件中的子组件，专门负责可观测数据的写入。 |
+| guance-storage | 观测云的时序指标数据存储引擎，负责时序指标数据的存储。 |
+| Doris | 观测云的非时序数据存储引擎，适用于日志、APM、RUM 和事件等数据。 |
+
+> 存储引擎套件关系架构图
+
+<figure markdown>
+  ![](../img/glossary-01.png){ width="700"}
+</figure>
 
 ## 功能
 
