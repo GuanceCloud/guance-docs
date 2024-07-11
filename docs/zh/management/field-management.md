@@ -40,7 +40,7 @@
 
 === "设置"
 
-    点击 :fontawesome-solid-gear: 可对显示列进行设置：
+    点击 :octicons-gear-24: 可对显示列进行设置：
 
     <img src="../img/field-2.png" width="60%" >
 
