@@ -2,7 +2,7 @@
 
 ## 1.89.169（2024 年 06 月 26 日）
 
-pubrepo.guance.com/dataflux/1.89.169:launcher-8b975f5-1720014392
+pubrepo.guance.com/dataflux/1.89.169:launcher-d482589-1720014392
 
 ### 观测云部署版更新
 
