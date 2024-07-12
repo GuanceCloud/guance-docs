@@ -191,6 +191,7 @@ nav:
       - argocd.md
       - langchain.md
       - issue_dingtalk.md
+      - issue_feishu.md
 
   - CI/CD:
       - 'Jenkins': jenkins.md

@@ -189,11 +189,11 @@ nav:
       - 'Zadigx': zadigx.md
       - 'OpenAI': openai.md
       - 'PagerDuty': pagerduty.md
-      - '飞书与异常追踪联动': feishu_im.md
       - external.md
       - argocd.md
       - langchain.md
       - issue_dingtalk.md
+      - issue_feishu.md
 
   - CI/CD:
       - 'Jenkins': jenkins.md
