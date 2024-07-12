@@ -53,42 +53,69 @@ dashboard:
 3. 在观测云平台，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
-配置好火山引擎-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [火山引擎云监控指标详情](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_MySQL){:target="_blank"}
 
-> 注意：需要在 `volcengine` MySQL 控制台安装监控插件
+配置好火山引擎-MySQL,默认的指标集如下, 可以通过配置的方式采集更多的指标 [火山引擎云监控指标详情](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_MySQL){:target="_blank"}
 
-| Metric | Description                          | Unit |
-| ---- |-------------------------------------| :----: |
-|`CpuUtil` |CPU使用率|Percent|
-|`MemUtil` |内存使用率|Percent|
-|`DiskUtil` | 磁盘使用率 |Percent|
-|`IOPS` | IOPS 使用率 |Percent|
-|`ThreadsConnected`|当前打开连接数|Count|
-|`ThreadsRunning`|运行线程数| Count |
-|`ConnUsage`|MySQL连接数利用率|Percent|
-|`NetworkReceiveThroughput`| 网络流入速率 | Bytes/Second(SI) |
-|`NetworkTransmitThroughput`|网络流出速率| Bytes/Second(SI) |
-|`IOPS`|IOPS|Count/Second|
-|`DiskUsageBytes`| 磁盘使用量 | Bytes(SI) |
-|`TPS`| 每秒事务数 |Count/Second|
-|`QPS`| MySQL 每秒请求数 |Count/Second|
-|`OperationUpdate`| 更新数 | Count/Second |
-|`OperationDelete`|删除数| Count/Second |
-|`OperationInsert`| 插入数 | Count/Second |
-|`OperationReplace`| 覆盖数 | Count/Second|
-|`OperationCommit`| 提交数 | Count/Second|
-|`OperationRollback`| 回滚数 | Count/Second|
-|`InnodbBufferPoolReadRequests`| Innodb逻辑读 | Count/Second|
-|`InnodbBpDirtyPct`| InnoDB Buffer Pool 脏页比率 | Percent|
-|`CreatedTmpTables`| 临时表数量 | Count/Second|
-|`SlowQueries`| 慢查询数 | Count/Second|
-|`InnodbDataRead`| Innodb读取量 | Bytes/Second(SI)|
-|`InnodbDataWritten`| Innodb写入量 | Bytes/Second(SI) |
-|`InnodbRowsUpdated`|Innodb 更新数 | Count/Second |
-|`InnodbRowsDeleted`|Innodb 删除数| Count/Second |
-|`InnodbRowsInserted`| Innodb 插入数 | Count/Second |
-|`InnodbDataReadBytes`| Innodb行读取量 | Count/Second|
-|`InnodbOsLogFsyncs`| 平均每秒向日志文件完成的 fsync 写数量 | Count/Second|
+|`MetricName` |`Subnamespace` |指标中文名称 |MetricUnit | Dimension|
+| ---- |-------------------------------------| :----: |:----: |:----: |
+|`ReplicationDelay` |`deploy_monitor_new` |从库复制延迟 |Second | ResourceID,Node|
+|`SlowQueries` |`engine_monitor_new` |慢查询数 |Count/Second | ResourceID,Node|
+|`ThreadsConnected` |`engine_monitor_new` |当前打开连接数 |Count | ResourceID,Node|
+|`ThreadsCreated` |`engine_monitor_new` |已创建线程数 |Count | ResourceID,Node|
+|`ThreadsRunning` |`engine_monitor_new` |运行线程数 |Count | ResourceID,Node|
+|`SelectScan` |`engine_monitor_new` |全表扫描数 |Count/Second | ResourceID,Node|
+|`OperationUpdate` |`engine_monitor_new` |更新数 |Count/Second | ResourceID,Node|
+|`OperationDelete` |`engine_monitor_new` |删除数 |Count/Second | ResourceID,Node|
+|`OperationInsert` |`engine_monitor_new` |插入数 |Count/Second | ResourceID,Node|
+|`OperationReplace` |`engine_monitor_new` |覆盖数 |Count/Second | ResourceID,Node|
+|`OperationCommit` |`engine_monitor_new` |提交数 |Count/Second | ResourceID,Node|
+|`OperationRollback` |`engine_monitor_new` |回滚数 |Count/Second | ResourceID,Node|
+|`CreatedTmpTables` |`engine_monitor_new` |临时表数量 |Count/Second | ResourceID,Node|
+|`TableLocksWaited` |`engine_monitor_new` |等待表锁次数 |Count/Second | ResourceID,Node|
+|`OpenedTables` |`engine_monitor_new` |打开表个数 |Count | ResourceID,Node|
+|`InnodbCacheHitRate` |`engine_monitor_new` |Innodb缓存命中率 |Percent | ResourceID,Node|
+|`InnodbCacheUtil` |`engine_monitor_new` |Innodb缓存使用率 |Percent | ResourceID,Node|
+|`InnodbNumOpenFiles` |`engine_monitor_new` |Innodb当前打开表数量 |Count | ResourceID,Node|
+|`InnodbDataRead` |`engine_monitor_new` |Innodb读取量 |Bytes/Second(SI) | ResourceID,Node|
+|`InnodbDataWritten` |`engine_monitor_new` |Innodb写入量 |Bytes/Second(SI) | ResourceID,Node|
+|`InnodbRowsDeleted` |`engine_monitor_new` |Innodb行删除量 |Count/Second | ResourceID,Node|
+|`InnodbRowsUpdated` |`engine_monitor_new` |Innodb行更新量 |Count/Second | ResourceID,Node|
+|`InnodbRowsInserted` |`engine_monitor_new` |Innodb行插入量 |Count/Second | ResourceID,Node|
+|`InnodbDataReadBytes` |`engine_monitor_new` |Innodb行读取量 |Count/Second | ResourceID,Node|
+|`InnodbRowsLockTimeAvg` |`engine_monitor_new` |Innodb平均获取行锁等待时间 |Millisecond | ResourceID,Node|
+|`InnodbRowLockWaits` |`engine_monitor_new` |Innodb等待行锁次数 |Count/Second | ResourceID,Node|
+|`CreatedTmpFiles` |`engine_monitor_new` |临时文件数量 |Count/Second | ResourceID,Node|
+|`HandlerReadRndNext` |`engine_monitor_new` |读下一行请求数 |Count/Second | ResourceID,Node|
+|`HandlerRollback` |`engine_monitor_new` |内部回滚数 |Count/Second | ResourceID,Node|
+|`HandlerCommit` |`engine_monitor_new` |内部提交数 |Count/Second | ResourceID,Node|
+|`InnodbBufferPoolPagesFree` |`engine_monitor_new` |Innodb空页数 |Count | ResourceID,Node|
+|`TotalInnodbBufferPoolPages` |`engine_monitor_new` |Innodb总页数 |Count | ResourceID,Node|
+|`InnodbBufferPoolReadRequests` |`engine_monitor_new` |Innodb逻辑读 |Count/Second | ResourceID,Node|
+|`InnodbBufferPoolReads` |`engine_monitor_new` |Innodb物理读 |Count/Second | ResourceID,Node|
+|`InnodbDataReadCounts` |`engine_monitor_new` |Innodb读取次数 |Count/Second | ResourceID,Node|
+|`InnodbDataWriteCounts` |`engine_monitor_new` |Innodb写入次数 |Count/Second | ResourceID,Node|
+|`CreatedTmpDiskTables` |`engine_monitor_new` |磁盘临时表数量 |Count/Second | ResourceID,Node|
+|`InnodbBpDirtyPct` |`engine_monitor_new` |InnoDB Buffer Pool 脏页比率 |Percent | ResourceID,Node|
+|`InnodbLogWrites` |`engine_monitor_new` |Innodb平均每秒物理写Redo Log File次数 |Count/Second | ResourceID,Node|
+|`InnodbRowLockTimeMax` |`engine_monitor_new` |InnoDB 表最大等待row locks时间 |Millisecond | ResourceID,Node|
+|`InnodbOsLogFsyncs` |`engine_monitor_new` |平均每秒向日志文件完成的fsync写数量 |Count/Second | ResourceID,Node|
+|`InnodbBufferPoolPagesFlushed` |`engine_monitor_new` |InnoDB Buffer Pool 刷Page请求数量 |Count/Second | ResourceID,Node|
+|`RedologSize` |`engine_monitor_new` |`Redolog`使用量 |Bytes(IEC) | ResourceID,Node|
+|`InnodbDataFsyncs` |`engine_monitor_new` |InnoDB 平均每秒fsync操作次数 |Count/Second | ResourceID,Node|
+|`SlowLogSize` |`engine_monitor_new` |慢日志使用量 |Bytes(IEC) | ResourceID,Node|
+|`QPS` |`engine_monitor_new` |MySQL 每秒请求数 |Count/Second | ResourceID,Node|
+|`TPS` |`engine_monitor_new` |每秒事务数 |Count/Second | ResourceID,Node|
+|`InsertSelect` |`engine_monitor_new` |平均每秒insert select执行次数 |Count/Second | ResourceID,Node|
+|`OpenFiles` |`engine_monitor_new` |打开文件个数 |Count | ResourceID,Node|
+|`ConnUsage` |`engine_monitor_new` |MySQL连接数利用率 |Percent | ResourceID,Node|
+|`CpuUtil` |`resource_monitor_new` |CPU使用率 |Percent | ResourceID,Node|
+|`MemUtil` |`resource_monitor_new` |内存使用率 |Percent | ResourceID,Node|
+|`DiskUtil` |`resource_monitor_new` |磁盘利用率 |Percent | ResourceID,Node|
+|`NetworkReceiveThroughput` |`resource_monitor_new` |网络输入流量 |Bytes/Second(SI) | ResourceID,Node|
+|`NetworkTransmitThroughput` |`resource_monitor_new` |网络输出流量 |Bytes/Second(SI) | ResourceID,Node|
+|`IOPS` |`resource_monitor_new` |IOPS |Count/Second | ResourceID,Node|
+|`DiskUsageBytes` |`resource_monitor_new` |磁盘使用量 |Bytes(SI) | ResourceID,Node|
+
 
 
 
