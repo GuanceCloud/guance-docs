@@ -22,6 +22,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | name | string |  | 视图名称<br>例子: 测试视图1号 <br>允许为空: False <br> |
+| desc | string |  | 描述<br>例子: 描述1 <br>允许为空: False <br>允许空字符串: True <br>最大长度: 2048 <br> |
 | extend | json |  | 视图额外信息<br>例子: {} <br>允许为空: False <br> |
 | mapping | array |  | mapping, 默认为[]<br>例子: [] <br>允许为空: False <br> |
 | tagNames | array |  | tag的name，注意此字段为全量更新<br>允许为空: False <br> |

@@ -34,7 +34,7 @@ icon: zy/open-api
 | 参数名        | 类型      | 说明                                                                 |
 |:-----------|:--------|:-------------------------------------------------------------------|
 | Content-Type | string  | application/json                                                   |
-| DF-API-KEY | string  | 调用者标识, 获取方式见[API Key 管理](../management/api-key/index.md)|
+| DF-API-KEY | string  | 调用者标识, 获取方式见[API Key 管理](../management/api-key/)|
 
 
 ## 认证方式
