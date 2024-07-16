@@ -71,6 +71,18 @@ python test-maile.py
 
   ![](img/faq-mail-6.png)
 
+**1.90.170** 之后的版本需要参考以下配置设置邮件
+
+- 命名空间：func2
+- func2Config（ Function Computation、 Function Computation Inner、 Task Queue Scheduler、 worker 0、 worker 1、 worker 2、 worker 3、 worker 4、 worker 5、 worker 6、 worker 7、 worker 8、 worker 9 )
+- 修改配置
+
+![](img/mail-config-func2.png)
+
+- 保存配置并重启
+
+  ![](img/faq-mail-6.png)
+
 ### 步骤三：测试和排错
 
 你可以创建错误的告警配置手动触发告警设置。
