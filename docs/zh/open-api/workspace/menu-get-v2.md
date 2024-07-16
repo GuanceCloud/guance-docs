@@ -1,8 +1,8 @@
-# 功能菜单获取(old)
+# 功能菜单获取(new, 支持二级菜单)
 
 ---
 
-<br />**GET /api/v1/workspace/menu/get**
+<br />**GET /api/v1/workspace/menu_v2/get**
 
 ## 概述
 获取当前工作空间功能菜单
@@ -18,10 +18,9 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/menu/get' \
+curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/get' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed
 ```
 
 
