@@ -19,6 +19,7 @@
 | exterStoreName | string | Y | 与name互为映射的外部存储的名字<br>允许为空: False <br> |
 | exterStoreProject | string |  | 外部存储索引对应的project<br>允许为空: False <br> |
 | region | string |  | 指定外部资源的地域<br>允许为空: False <br> |
+| isPublicNetworkAccess | boolean |  | 是否公网访问, storeType 为 sls 时生效, 默认为 False(2024-07-10迭代添加)<br>允许为空: True <br> |
 | accessCfg | json | Y | 外部资源访问配置信息<br>允许为空: False <br> |
 | accessCfg.ak | string |  | 密钥Id<br>允许为空: False <br> |
 | accessCfg.sk | string |  | 密钥<br>允许为空: False <br> |
