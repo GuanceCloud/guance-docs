@@ -142,6 +142,11 @@ setenforce 0
         # "httpflow-tls"
       ]
     
+    
+      ## datakit-ebpf pprof service
+      pprof_host = "127.0.0.1"
+      pprof_port = "6061"
+    
       ## netlog blacklist
       ##
       # netlog_blacklist = "ip_saddr=='127.0.0.1' || ip_daddr=='127.0.0.1'"
@@ -253,6 +258,16 @@ setenforce 0
     - 描述：临时端口开始位置
     - 环境变量：`ENV_INPUT_EBPF_EPHEMERAL_PORT`
     - 示例：`32768`
+
+- `pprof_host`
+    - 描述：pprof host
+    - 环境变量：`ENV_INPUT_EBPF_PPROF_HOST`
+    - 示例：`127.0.0.1`
+
+- `pprof_port`
+    - 描述：pprof port
+    - 环境变量：`ENV_INPUT_EBPF_PPROF_PORT`
+    - 示例：`6061`
 
 <!-- - `interval`
     - 描述：数据聚合周期
