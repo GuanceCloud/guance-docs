@@ -101,6 +101,8 @@ nav:
     - '升级观测云': version-upgrade.md
     - '容量规划':  
       - "日志引擎容量规划": logengine-capacity-planning.md
+  - '扩展使用':
+    - "计量数据结构与使用": metering-struct-and-query.md
   - '常见问题':
     - "部署运维 FAQ": faq.md
 
