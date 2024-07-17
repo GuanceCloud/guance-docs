@@ -577,6 +577,47 @@ if cost_time == nil {
 }
 ```
 
+## Dataway Bug Report {#bug-report}
+
+Dataway exposes its own metrics and profiling collection endpoints, allowing us to gather this information for troubleshooting purposes.
+
+> The following information collection should based on actual configured ports and addresses. These listed commands are based on default configurations.
+
+```shell title="dw-bug-report.sh"
+br_dir="dw-br-$(date +%s)"
+mkdir -p $br_dir
+
+echo "Save bug report to ${br_dir}"
+
+# Modify the following configurations according to your actual situation
+dw_ip="localhost" # The IP address where Dataway's metrics/profile is exposed
+metric_port=9090  # The port where metrics are exposed
+profile_port=6060 # The port where profiling information is exposed
+dw_yaml_conf="/usr/local/cloudcare/dataflux/dataway/dataway.yaml"
+
+# Collect runtime metrics
+curl -v "http://${dw_ip}:${metric_port}/metrics" -o $br_dir/metrics
+
+# Collect profiling information
+curl -v "http://${dw_ip}:${profile_port}/debug/pprof/allocs" -o $br_dir/allocs
+curl -v "http://${dw_ip}:${profile_port}/debug/pprof/heap" -o $br_dir/heap
+curl -v "http://${dw_ip}:${profile_port}/debug/pprof/profile" -o $br_dir/profile # This command will take about 30 seconds to run
+
+cp $dw_yaml_conf $br_dir/dataway.yaml.copy
+
+tar czvf ${br_dir}.tar.gz ${br_dir}
+rm -rf ${br_dir}
+```
+
+Run the script:
+
+```shell
+$ sh dw-bug-report.sh
+...
+```
+
+After execution, a file similar to *dw-br-1721188604.tar.gz* will be generated. You can then retrieve this file for further use.
+
 ## FAQ {#faq}
 
 ### Request Entity Too Large Issue {#too-large-request-body}
