@@ -7,7 +7,7 @@ pubrepo.guance.com/dataflux/1.90.170:launcher-3bbe7a1-1721136369
 
 ### 观测云部署版更新
 
-> **注：如正在使用 message-desk 发送邮件服务，请将配置移植到 Func 服务中，查看 [如何配置](../deployment/configuration-mail)，下个版本将从系统中删除 message-desk 相关的服务，请务必在此版本移植相关配置。**
+> **注：如正在使用 message-desk 发送邮件服务，请将配置移植到 Func 服务中，查看 [如何配置](../deployment/configuration-mail.md)，下个版本将从系统中删除 message-desk 相关的服务，请务必在此版本移植相关配置。**
 
 - 新增全局功能[菜单管理配置](../deployment/menu.md)，支持自定义控制台显示菜单范围，并同步至工作空间功能菜单栏。
 - [模版管理](../deployment/integration.md)：自定义模板管理上传逻辑优化。
