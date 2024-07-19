@@ -8,7 +8,7 @@
 
 ## MySQL 集成
 
-[MySQL 集成文档](/datakit/mysql/)
+[MySQL 集成文档](../../integrations/mysql.md)
 
 ## MySQL 监控
 
