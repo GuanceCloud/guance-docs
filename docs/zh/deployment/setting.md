@@ -214,7 +214,7 @@
 
 目前当前支持通过本地账号、LDAP 账号、OIDC 这 3 种登录方式进入观测云控制台。点击**修改**，即可管理用户账号的登录渠道。
 
-- 本地账号：即通过[注册观测云](../billing/commercial-register.md)产生的账号；
+- 本地账号：即通过[注册观测云](../plans/commercial-register.md)产生的账号；
 - [LDAP 账号](./ldap.md)；
 - OIDC：即通过 OpenID Connect 协议进行单点登录，可参考：
     
