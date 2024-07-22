@@ -170,6 +170,7 @@ nav:
       - resin.md
       - dongfangtong_tweb.md
       - apisix.md
+      - haproxy.md
 
     - 'Java':
       - 'JVM': jvm.md
