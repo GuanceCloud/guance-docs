@@ -307,7 +307,7 @@ spec:
 
      1、您的主机上需 [安装 DataKit](https://docs.guance.com/datakit/datakit-install/) 
     
-     2、并在 DataKit 上[开启 ddtrace 采集器](https://docs.guance.com/datakit/ddtrace/#__tabbed_1_2),采用K8S `ConfigMap`的方式注入
+     2、并在 DataKit 上[开启 ddtrace 采集器](../integrations/ddtrace.md),采用K8S `ConfigMap`的方式注入
 
 **开始配置**
 
