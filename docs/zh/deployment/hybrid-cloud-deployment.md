@@ -46,7 +46,7 @@ DataKit 的部署实施都是独立于 “观测云” 中心的架构，数据�
 ### DataKit 基础架构
 ![](img/10.deployment_2.png)
 
-DataKit 支持三大主流平台： Linux、MacOS、WIndows，在被监控主机中安装上 DataKit，安装后默认已开启了主机的各项基础指标的采集，如：CPU、Mem、Disk、DiskIO、System 等，可以开启更多其他数据的采集，具体配置方法与采集源清单可查看文档 [采集源配置](../integrations/index.md)。
+DataKit 支持三大主流平台： Linux、MacOS、WIndows，在被监控主机中安装上 DataKit，安装后默认已开启了主机的各项基础指标的采集，如：CPU、Mem、Disk、DiskIO、System 等，可以开启更多其他数据的采集，具体配置方法与采集源清单可查看文档 [采集源配置](../integrations/integration-index.md)。
 
 DataKit 安装后，默认开启 9529 监听端口（默认监听端口可以在 datakit.conf 文件中进行修改），作为 HTTP 数据接入服务端口，Metric、Log、Tracing、RUM、Security 等各种外部采集源采集的数据，通过 9529 端口的 HTTP 接口地址到 DataKit 后，经过数据的清洗格式化，再上报到 “观测云” 中心。
 

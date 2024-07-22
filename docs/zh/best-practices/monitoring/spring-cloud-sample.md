@@ -223,7 +223,7 @@ $ service datakit restart
 
 ### Mysql：
 
-详细步骤参见文档 <[Mysql DataKit 接入](../../datakit/mysql.md)>
+详细步骤参见文档 <[Mysql DataKit 接入](../../integrations/mysql.md)>
 
 ```shell
 # 登录 mysql 
