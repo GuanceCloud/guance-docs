@@ -44,7 +44,7 @@ The default Exposure Metric port for AutoMQ is: `8890`. Metric-related informati
 
 ### 2. DataKit Collector Configuration
 
-#### 2.1 [安装 DataKit](../datakit/datakit-install.md)
+#### 2.1 [Install DataKit](../datakit/datakit-install.md)
 
 #### 2.2 Configuration Collector
 
