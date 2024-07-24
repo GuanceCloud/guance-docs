@@ -52,7 +52,7 @@ We collected some configurations by default, as described in the Metrics column 
 ## Metric  {#metric}
 Configure `Volcengine` Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [`Volcengine` Cloud Monitor Metrics Details](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_MySQL){:target="_blank"}
 
-|`MetricName` |`Subnamespace` |Indicator Chinese name |MetricUnit | Dimension|
+|`MetricName` |`Subnamespace` |Description |MetricUnit | Dimension|
 | ---- |-------------------------------------| :----: |:----: |:----: |
 |`ReplicationDelay` |`deploy_monitor_new` |Slave replication delay |Second | ResourceID,Node|
 |`SlowQueries` |`engine_monitor_new` |Number of slow queries |Count/Second | ResourceID,Node|
