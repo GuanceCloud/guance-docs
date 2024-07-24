@@ -19,7 +19,7 @@ IFrame 支持您配置 https 或者 http 链接地址。
 
 2、在 IFrame URL 使用模板变量查看。
 
-> 更多配置，可参考[图表链接](chart-link.md)。
+> 更多配置，可参考 [图表链接](chart-link.md)。
 
 ![](../img/7.ifram_2.png)
 
