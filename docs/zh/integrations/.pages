@@ -128,7 +128,9 @@ nav:
   - 中间件:
     - '存储':
       - 'MySQL': mysql.md
+      - cassandra.md
       - clickhousev1.md
+      - cockroachdb.md
       - couchbase.md
       - couchdb.md
       - doris.md
