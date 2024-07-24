@@ -69,51 +69,51 @@ CPU 采集器用于系统 CPU 使用率等指标的采集。
     
         采集器重复间隔时长
     
-        **Type**: TimeDuration
+        **字段类型**: TimeDuration
     
-        **ConfField**: `interval`
+        **采集器配置字段**: `interval`
     
-        **Default**: 10s
+        **默认值**: `10s`
     
     - **ENV_INPUT_CPU_PERCPU**
     
-        采集每一个 cpu 核
+        采集每一个 CPU 核
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `percpu`
+        **采集器配置字段**: `percpu`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_CPU_ENABLE_TEMPERATURE**
     
-        采集 cpu 温度
+        采集 CPU 温度
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_temperature`
+        **采集器配置字段**: `enable_temperature`
     
-        **Default**: true
+        **默认值**: `true`
     
     - **ENV_INPUT_CPU_ENABLE_LOAD5S**
     
         每五秒钟获取一次平均负载信息
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_load5s`
+        **采集器配置字段**: `enable_load5s`
     
-        **Default**: false
+        **默认值**: `false`
     
     - **ENV_INPUT_CPU_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
     
-        **Type**: Map
+        **字段类型**: String
     
-        **ConfField**: `tags`
+        **采集器配置字段**: `tags`
     
-        **Example**: tag1=value1,tag2=value2
+        **示例**: `tag1=value1,tag2=value2`
 
 <!-- markdownlint-enable -->
 

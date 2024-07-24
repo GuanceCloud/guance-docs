@@ -123,343 +123,343 @@ monitor:
     
         追加多个容器运行时的 endpoint
     
-        **Type**: List
+        **字段类型**: List
     
-        **ConfField**: `endpoints`
+        **采集器配置字段**: `endpoints`
     
-        **Example**: "`unix:///var/run/docker.sock,unix:///var/run/containerd/containerd.sock,unix:///var/run/crio/crio.sock`"
+        **示例**: "`unix:///var/run/docker.sock,unix:///var/run/containerd/containerd.sock,unix:///var/run/crio/crio.sock`"
     
     - **ENV_INPUT_CONTAINER_DOCKER_ENDPOINT**
     
         已废弃，指定 Docker Engine 的 endpoint
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `docker_endpoint`
+        **采集器配置字段**: `docker_endpoint`
     
-        **Example**: `unix:///var/run/docker.sock`
+        **示例**: `unix:///var/run/docker.sock`
     
     - **ENV_INPUT_CONTAINER_CONTAINERD_ADDRESS**
     
         已废弃，指定 `Containerd` 的 endpoint
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `containerd_address`
+        **采集器配置字段**: `containerd_address`
     
-        **Example**: `/var/run/containerd/containerd.sock`
+        **示例**: `/var/run/containerd/containerd.sock`
     
     - **ENV_INPUT_CONTAINER_ENABLE_CONTAINER_METRIC**
     
         开启容器指标采集
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_container_metric`
+        **采集器配置字段**: `enable_container_metric`
     
-        **Default**: true
+        **默认值**: true
     
     - **ENV_INPUT_CONTAINER_ENABLE_K8S_METRIC**
     
         开启 k8s 指标采集
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_k8s_metric`
+        **采集器配置字段**: `enable_k8s_metric`
     
-        **Default**: true
+        **默认值**: true
     
     - **ENV_INPUT_CONTAINER_ENABLE_POD_METRIC**
     
         是否开启 Pod 指标采集（CPU 和内存使用情况）
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_pod_metric`
+        **采集器配置字段**: `enable_pod_metric`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_CONTAINER_ENABLE_K8S_EVENT**
     
         是否开启分时间采集模式
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_k8s_event`
+        **采集器配置字段**: `enable_k8s_event`
     
-        **Default**: true
+        **默认值**: true
     
     - **ENV_INPUT_CONTAINER_ENABLE_K8S_NODE_LOCAL**
     
         是否开启分 Node 采集模式，由部署在各个 Node 的 Datakit 独立采集当前 Node 的资源。[:octicons-tag-24: Version-1.19.0](../datakit/changelog.md#cl-1.19.0) 需要额外的 `RABC` 权限，见[此处](#rbac-nodes-stats)
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_k8s_node_local`
+        **采集器配置字段**: `enable_k8s_node_local`
     
-        **Default**: true
+        **默认值**: true
     
     - **ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS**
     
         是否追加资源的 labels 到采集的 tag 中。只有 Pod 指标、对象和 Node 对象会添加，另外容器日志也会添加其所属 Pod 的 labels。如果 label 的 key 有 dot 字符，会将其变为横线
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `extract_k8s_label_as_tags`
+        **采集器配置字段**: `extract_k8s_label_as_tags`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2**
     
         追加资源的 labels 到数据（不包括指标数据）的 tag 中。需指定 label keys，如果只有一个 key 且为空字符串（例如 [""]），会添加所有 labels 到 tag。容器会继承 Pod labels。如果 label 的 key 有 dot 字符，会将其变为横线
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `extract_k8s_label_as_tags_v2`
+        **采集器配置字段**: `extract_k8s_label_as_tags_v2`
     
-        **Example**: ["app","name"]
+        **示例**: ["app","name"]
     
     - **ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2_FOR_METRIC**
     
         追加资源的 labels 到指标数据的 tag 中。需指定 label keys，如果只有一个 key 且为空字符串（例如 [""]），会添加所有 labels 到 tag。容器会继承 Pod labels。如果 label 的 key 有 dot 字符，会将其变为横线
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `extract_k8s_label_as_tags_v2_for_metric`
+        **采集器配置字段**: `extract_k8s_label_as_tags_v2_for_metric`
     
-        **Example**: ["app","name"]
+        **示例**: ["app","name"]
     
     - **ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_POD_ANNOTATIONS**
     
         是否开启自动发现 Prometheus Pod Annotations 并采集指标
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_auto_discovery_of_prometheus_pod_annotations`
+        **采集器配置字段**: `enable_auto_discovery_of_prometheus_pod_annotations`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_ANNOTATIONS**
     
         是否开启自动发现 Prometheus 服务 Annotations 并采集指标
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_auto_discovery_of_prometheus_service_annotations`
+        **采集器配置字段**: `enable_auto_discovery_of_prometheus_service_annotations`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_POD_MONITORS**
     
         是否开启自动发现 Prometheus Pod Monitor CRD 并采集指标，详见[Prometheus-Operator CRD 文档](kubernetes-prometheus-operator-crd.md#config)
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_auto_discovery_of_prometheus_pod_monitors`
+        **采集器配置字段**: `enable_auto_discovery_of_prometheus_pod_monitors`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_MONITORS**
     
         是否开启自动发现 Prometheus ServiceMonitor CRD 并采集指标，详见[Prometheus-Operator CRD 文档](kubernetes-prometheus-operator-crd.md#config)
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_auto_discovery_of_prometheus_service_monitors`
+        **采集器配置字段**: `enable_auto_discovery_of_prometheus_service_monitors`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_CONTAINER_KEEP_EXIST_PROMETHEUS_METRIC_NAME**
     
         是否保留原始的 Prometheus 字段名，详见 [Kubernetes Prometheus doc](kubernetes-prom.md#measurement-and-tags
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `keep_exist_prometheus_metric_name`
+        **采集器配置字段**: `keep_exist_prometheus_metric_name`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_CONTAINER_CONTAINER_INCLUDE_LOG**
     
         容器日志白名单，使用 image 过滤
     
-        **Type**: List
+        **字段类型**: List
     
-        **ConfField**: `container_include_log`
+        **采集器配置字段**: `container_include_log`
     
-        **Example**: "image:pubrepo.jiagouyun.com/datakit/logfwd*"
+        **示例**: "image:pubrepo.jiagouyun.com/datakit/logfwd*"
     
     - **ENV_INPUT_CONTAINER_CONTAINER_EXCLUDE_LOG**
     
         容器日志黑名单，使用 image 过滤
     
-        **Type**: List
+        **字段类型**: List
     
-        **ConfField**: `container_exclude_log`
+        **采集器配置字段**: `container_exclude_log`
     
-        **Example**: "image:pubrepo.jiagouyun.com/datakit/logfwd*"
+        **示例**: "image:pubrepo.jiagouyun.com/datakit/logfwd*"
     
     - **ENV_INPUT_CONTAINER_KUBERNETES_URL**
     
         k8s API 服务访问地址
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `kubernetes_url`
+        **采集器配置字段**: `kubernetes_url`
     
-        **Example**: https://kubernetes.default:443
+        **示例**: https://kubernetes.default:443
     
     - **ENV_INPUT_CONTAINER_BEARER_TOKEN**
     
         访问 k8s 服务所需的 token 文件路径
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `bearer_token`
+        **采集器配置字段**: `bearer_token`
     
-        **Example**: `/run/secrets/kubernetes.io/serviceaccount/token`
+        **示例**: `/run/secrets/kubernetes.io/serviceaccount/token`
     
     - **ENV_INPUT_CONTAINER_BEARER_TOKEN_STRING**
     
         访问 k8s 服务所需的 token 字符串
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `bearer_token_string`
+        **采集器配置字段**: `bearer_token_string`
     
-        **Example**: your-token-string
+        **示例**: your-token-string
     
     - **ENV_INPUT_CONTAINER_LOGGING_SEARCH_INTERVAL**
     
         日志发现的时间间隔，即每隔多久检索一次日志，如果间隔太长，会导致忽略了一些存活较短的日志
     
-        **Type**: TimeDuration
+        **字段类型**: TimeDuration
     
-        **ConfField**: `logging_search_interval`
+        **采集器配置字段**: `logging_search_interval`
     
-        **Default**: 60s
+        **默认值**: 60s
     
     - **ENV_INPUT_CONTAINER_LOGGING_EXTRA_SOURCE_MAP**
     
         日志采集配置额外的 source 匹配，符合正则的 source 会被改名
     
-        **Type**: Map
+        **字段类型**: Map
     
-        **ConfField**: `logging_extra_source_map`
+        **采集器配置字段**: `logging_extra_source_map`
     
-        **Example**: source_regex*=new_source,regex*=new_source2
+        **示例**: source_regex*=new_source,regex*=new_source2
     
     - **ENV_INPUT_CONTAINER_LOGGING_SOURCE_MULTILINE_MAP_JSON**
     
         日志采集配置额外的 source 匹配，符合正则的 source 会被改名
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `logging_source_multiline_map`
+        **采集器配置字段**: `logging_source_multiline_map`
     
-        **Example**: {"source_nginx":"^\\d{4}", "source_redis":"^[A-Za-z_]"}
+        **示例**: {"source_nginx":"^\\d{4}", "source_redis":"^[A-Za-z_]"}
     
     - **ENV_INPUT_CONTAINER_LOGGING_AUTO_MULTILINE_DETECTION**
     
         日志采集是否开启自动多行模式，开启后会在 patterns 列表中匹配适用的多行规则
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `logging_auto_multiline_detection`
+        **采集器配置字段**: `logging_auto_multiline_detection`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_CONTAINER_LOGGING_AUTO_MULTILINE_EXTRA_PATTERNS_JSON**
     
         日志采集的自动多行模式 pattens 列表，支持手动配置多个多行规则
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `logging_auto_multiline_extra_patterns`
+        **采集器配置字段**: `logging_auto_multiline_extra_patterns`
     
-        **Example**: ["^\\d{4}-\\d{2}", "^[A-Za-z_]"]
+        **示例**: ["^\\d{4}-\\d{2}", "^[A-Za-z_]"]
     
-        **Default**: For more default rules, see [doc](logging.md#auto-multiline)
+        **默认值**: For more default rules, see [doc](logging.md#auto-multiline)
     
     - **ENV_INPUT_CONTAINER_LOGGING_MAX_MULTILINE_LIFE_DURATION**
     
         日志采集的单次多行最大生命周期，此周期结束将清空和上传现存的多行数据，避免堆积
     
-        **Type**: TimeDuration
+        **字段类型**: TimeDuration
     
-        **ConfField**: `logging_max_multiline_life_duration`
+        **采集器配置字段**: `logging_max_multiline_life_duration`
     
-        **Default**: 3s
+        **默认值**: 3s
     
     - **ENV_INPUT_CONTAINER_LOGGING_REMOVE_ANSI_ESCAPE_CODES**
     
         日志采集删除包含的颜色字符，详见[日志特殊字符处理说明](logging.md#ansi-decode)
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `logging_remove_ansi_escape_codes`
+        **采集器配置字段**: `logging_remove_ansi_escape_codes`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_CONTAINER_LOGGING_FORCE_FLUSH_LIMIT**
     
         日志采集上传限制，如果连续 N 次都采集为空，会将现有的数据上传，避免数据积攒占用内存
     
-        **Type**: Int
+        **字段类型**: Int
     
-        **ConfField**: `logging_force_flush_limit`
+        **采集器配置字段**: `logging_force_flush_limit`
     
-        **Default**: 5
+        **默认值**: 5
     
     - **ENV_INPUT_CONTAINER_CONTAINER_MAX_CONCURRENT**
     
         采集容器数据时的最大并发数，推荐只在采集延迟较大时开启
     
-        **Type**: Int
+        **字段类型**: Int
     
-        **ConfField**: `container_max_concurrent`
+        **采集器配置字段**: `container_max_concurrent`
     
-        **Default**: cpu cores + 1
-    
-    - **ENV_INPUT_CONTAINER_DISABLE_COLLECT_KUBE_JOB**
-    
-        关闭对 Kubernetes Job 资源的采集（包括指标数据和对象数据）
-    
-        **Type**: Boolean
-    
-        **ConfField**: `disable_collect_kube_job`
-    
-        **Default**: false
+        **默认值**: cpu cores + 1
     
     - **ENV_INPUT_CONTAINER_DISABLE_COLLECT_KUBE_JOB**
     
         关闭对 Kubernetes Job 资源的采集（包括指标数据和对象数据）
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `disable_collect_kube_job`
+        **采集器配置字段**: `disable_collect_kube_job`
     
-        **Default**: false
+        **默认值**: false
+    
+    - **ENV_INPUT_CONTAINER_DISABLE_COLLECT_KUBE_JOB**
+    
+        关闭对 Kubernetes Job 资源的采集（包括指标数据和对象数据）
+    
+        **字段类型**: Boolean
+    
+        **采集器配置字段**: `disable_collect_kube_job`
+    
+        **默认值**: false
     
     - **ENV_INPUT_CONTAINER_ENABLE_K8S_SELF_METRIC_BY_PROM**
     
         开启对 Kubernetes Prometheus 数据的采集，包括 APIServer、Scheduler、Etcd 等（试验中）
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_k8s_self_metric_by_prom`
+        **采集器配置字段**: `enable_k8s_self_metric_by_prom`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_CONTAINER_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
     
-        **Type**: Map
+        **字段类型**: Map
     
-        **ConfField**: `tags`
+        **采集器配置字段**: `tags`
     
-        **Example**: tag1=value1,tag2=value2
+        **示例**: tag1=value1,tag2=value2
 
     环境变量额外说明：
     

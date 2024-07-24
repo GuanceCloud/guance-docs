@@ -211,9 +211,45 @@ nav:
     - kubernetes_audit.md
 
   - APM:
-    - Tracing Overview': datakit-tracing.md
-    - datakit-tracing-struct.md
-
+    - 'DDTrace':
+      - ddtrace.md
+      - 'SDK Integration':
+        - 'Java':
+          - ddtrace-java.md
+          - 'DDTrace Injection': ddtrace-attach.md
+          - 'JMX Fetch Metrics': ddtrace-jmxfetch.md
+          - 'DDTrace Extensions':
+            - ddtrace-ext-java.md
+            - 'Changelog': ddtrace-ext-changelog.md
+            - 'OTEL and DDTrace Trace Correlation': ddtrace-128-trace-id.md
+        - 'Golang': ddtrace-golang.md
+        - 'Python': ddtrace-python.md
+        - 'PHP': ddtrace-php.md
+        - 'NodeJS': ddtrace-nodejs.md
+        - 'C++': ddtrace-cpp.md
+        - 'Ruby': ddtrace-ruby.md
+  
+    - 'SkyWalking': skywalking.md
+  
+    - 'OpenTelemetry':
+      - opentelemetry.md
+      - 'SDK Integration':
+        - 'Golang': opentelemetry-go.md
+        - 'Java': opentelemetry-java.md
+      - 'OpenTelemetry Extensions':
+        - 'Changelog': otel-ext-changelog.md
+        - 'SQL Obfuscation': otel-sql-obfuscation.md
+        - 'Java Exporter': otel-guance-exporter.md
+  
+    - 'Zipkin': zipkin.md
+    - 'Jaeger': jaeger.md
+    - 'CAT': cat.md
+    - 'Pinpoint':
+      - pinpoint.md
+      - 'SDK Integration':
+        - 'Java': pinpoint-java.md
+        - 'Golang': pinpoint-go.md
+    - 'New Relic': newrelic.md
     - 'Profiling':
       - profile.md
       - 'Java': profile-java.md
@@ -221,51 +257,13 @@ nav:
       - 'Go': profile-go.md
       - 'C/C++': profile-cpp.md
       - 'NodeJS': profile-nodejs.md
-      - '.NET': dotnet.md
-      - 'PHP': php.md
-
-    - 'DDTrace':
-      - ddtrace.md
-      - 'SDK Access':
-        - ddtrace-golang.md
-        - ddtrace-java.md
-        - ddtrace-python.md
-        - ddtrace-php.md
-        - ddtrace-nodejs.md
-        - ddtrace-cpp.md
-        - ddtrace-ruby.md
-
-      - 'DDTrace Attach':
-        - ddtrace-attach.md
-
-      - 'DDTrace extend':
-        - ddtrace-ext-changelog.md
-        - ddtrace-ext-java.md
-      - 'jmxfetch metric':
-        - 'jmx metric to DK': ddtrace-jmxfetch.md
-
-    - 'SkyWalking':
-      - skywalking.md
-
-    - 'OpenTelemetry':
-      - opentelemetry.md
-      - opentelemetry-go.md
-      - opentelemetry-java.md
-      - 'guance version':
-        - 'changelog': otel-ext-changelog.md
-        - otel-sql-obfuscation.md
-
-    - 'Zipkin':
-      - zipkin.md
-
-    - 'Jaeger' :
-      - jaeger.md
-
-    - 'CAT' :
-      - cat.md
-
-    - 'Tracing Propagator':
-      - tracing-propagator.md
+      - '.NET': profile-dotnet.md
+      - 'PHP': profile-php.md
+  
+    - 'Tracing Overview':
+      - datakit-tracing.md
+      - 'Tracing Data Structure': datakit-tracing-struct.md
+      - 'Trace Correlation Tools': tracing-propagator.md
 
   - RUM:
     - rum.md

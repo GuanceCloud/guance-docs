@@ -360,6 +360,7 @@ Datakit 可以将执行超过用户自定义时间的 SQL 语句报告给观测�
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster`|Cluster Name|
 |`host`|Hostname.|
 |`oceanbase_server`|The address of the database instance (including port).|
 |`oceanbase_service`|OceanBase service name.|

@@ -99,7 +99,7 @@ The Datakit service needs to be restarted after successful execution.
     
         **Type**: TimeDuration
     
-        **ConfField**: `interval`
+        **input.conf**: `interval`
     
         **Default**: 10s
     
@@ -109,7 +109,7 @@ The Datakit service needs to be restarted after successful execution.
     
         **Type**: List
     
-        **ConfField**: `devices`
+        **input.conf**: `devices`
     
         **Example**: `^sda\d,^sdb\d,vd.*`
     
@@ -119,7 +119,7 @@ The Datakit service needs to be restarted after successful execution.
     
         **Type**: List
     
-        **ConfField**: `device_tags`
+        **input.conf**: `device_tags`
     
         **Example**: ID_FS_TYPE,ID_FS_USAGE
     
@@ -129,7 +129,7 @@ The Datakit service needs to be restarted after successful execution.
     
         **Type**: List
     
-        **ConfField**: `name_templates`
+        **input.conf**: `name_templates`
     
         **Example**: $ID_FS_LABEL,$DM_VG_NAME/$DM_LV_NAME
     
@@ -139,7 +139,7 @@ The Datakit service needs to be restarted after successful execution.
     
         **Type**: Boolean
     
-        **ConfField**: `skip_serial_number`
+        **input.conf**: `skip_serial_number`
     
         **Default**: false
     
@@ -149,7 +149,7 @@ The Datakit service needs to be restarted after successful execution.
     
         **Type**: Map
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 

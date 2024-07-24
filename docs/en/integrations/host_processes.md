@@ -92,7 +92,7 @@ The process collector can monitor various running processes in the system, acqui
     
         **Type**: Boolean
     
-        **ConfField**: `open_metric`
+        **input.conf**: `open_metric`
     
         **Default**: false
     
@@ -102,7 +102,7 @@ The process collector can monitor various running processes in the system, acqui
     
         **Type**: List
     
-        **ConfField**: `process_name`
+        **input.conf**: `process_name`
     
         **Example**: .*datakit.*,guance
     
@@ -112,7 +112,7 @@ The process collector can monitor various running processes in the system, acqui
     
         **Type**: TimeDuration
     
-        **ConfField**: `min_run_time`
+        **input.conf**: `min_run_time`
     
         **Default**: 10m
     
@@ -122,7 +122,7 @@ The process collector can monitor various running processes in the system, acqui
     
         **Type**: Boolean
     
-        **ConfField**: `enable_listen_ports`
+        **input.conf**: `enable_listen_ports`
     
         **Default**: false
     
@@ -132,7 +132,7 @@ The process collector can monitor various running processes in the system, acqui
     
         **Type**: Boolean
     
-        **ConfField**: `enable_open_files`
+        **input.conf**: `enable_open_files`
     
         **Default**: false
     
@@ -142,7 +142,7 @@ The process collector can monitor various running processes in the system, acqui
     
         **Type**: Map
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 

@@ -1143,7 +1143,7 @@ group_in(log_level, ["error", "panic"], "not-ok", status)
 
 ### `http_request()` {#fn-http-request}
 
-函数原型： `fn http_request(method: str, url: str, headers: map) map`
+函数原型： `fn http_request(method: str, url: str, headers: map, body: any) map`
 
 函数说明： 发送 HTTP 请求，接收响应并封装成 map
 
@@ -1152,6 +1152,7 @@ group_in(log_level, ["error", "panic"], "not-ok", status)
 - `method`：GET|POST
 - `url`: 请求路径
 - `headers`：附加的 header，类型为 map[string]string
+- `body`：请求体
 
 返回值类型：map
 
@@ -1169,6 +1170,7 @@ resp_body = load_json(resp["body"])
 add_key(abc, resp["status_code"])
 add_key(abc, resp_body["a"])
 ```
+
 
 ### `json()` {#fn-json}
 

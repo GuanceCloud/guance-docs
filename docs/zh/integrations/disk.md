@@ -78,51 +78,51 @@ monitor   :
     
         采集器重复间隔时长
     
-        **Type**: TimeDuration
+        **字段类型**: TimeDuration
     
-        **ConfField**: `interval`
+        **采集器配置字段**: `interval`
     
-        **Default**: 10s
+        **默认值**: 10s
     
     - **ENV_INPUT_DISK_EXTRA_DEVICE**
     
         额外的设备前缀。（默认收集以 dev 为前缀的所有设备）
     
-        **Type**: List
+        **字段类型**: List
     
-        **ConfField**: `extra_device`
+        **采集器配置字段**: `extra_device`
     
-        **Example**: `/nfsdata,other_data`
+        **示例**: `/nfsdata,other_data`
     
     - **ENV_INPUT_DISK_EXCLUDE_DEVICE**
     
         排除的设备前缀。（默认收集以 dev 为前缀的所有设备）
     
-        **Type**: List
+        **字段类型**: List
     
-        **ConfField**: `exclude_device`
+        **采集器配置字段**: `exclude_device`
     
-        **Example**: /dev/loop0,/dev/loop1
+        **示例**: /dev/loop0,/dev/loop1
     
     - **ENV_INPUT_DISK_ONLY_PHYSICAL_DEVICE**
     
         忽略非物理磁盘（如网盘、NFS 等，只采集本机硬盘/CD ROM/USB 磁盘等）
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `only_physical_device`
+        **采集器配置字段**: `only_physical_device`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_DISK_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
     
-        **Type**: Map
+        **字段类型**: Map
     
-        **ConfField**: `tags`
+        **采集器配置字段**: `tags`
     
-        **Example**: tag1=value1,tag2=value2
+        **示例**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 

@@ -72,7 +72,7 @@ After successfully installing and launching DataKit, the Net Collector is automa
     
         **Type**: TimeDuration
     
-        **ConfField**: `interval`
+        **input.conf**: `interval`
     
         **Default**: 10s
     
@@ -82,7 +82,7 @@ After successfully installing and launching DataKit, the Net Collector is automa
     
         **Type**: Boolean
     
-        **ConfField**: `ignore_protocol_stats`
+        **input.conf**: `ignore_protocol_stats`
     
         **Default**: false
     
@@ -92,7 +92,7 @@ After successfully installing and launching DataKit, the Net Collector is automa
     
         **Type**: Boolean
     
-        **ConfField**: `enable_virtual_interfaces`
+        **input.conf**: `enable_virtual_interfaces`
     
         **Default**: false
     
@@ -102,7 +102,7 @@ After successfully installing and launching DataKit, the Net Collector is automa
     
         **Type**: List
     
-        **ConfField**: `interfaces`
+        **input.conf**: `interfaces`
     
         **Example**: eth[\w-]+,lo
     
@@ -112,7 +112,7 @@ After successfully installing and launching DataKit, the Net Collector is automa
     
         **Type**: Map
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 

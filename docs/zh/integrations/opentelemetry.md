@@ -138,121 +138,121 @@ OTEL 是一组标准和工具的集合，旨在管理观测类数据，如 trace
     
         标签白名单
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `customer_tags`
+        **采集器配置字段**: `customer_tags`
     
-        **Example**: `["sink_project", "custom.tag"]`
+        **示例**: `["sink_project", "custom.tag"]`
     
     - **ENV_INPUT_OTEL_KEEP_RARE_RESOURCE**
     
         保持稀有跟踪资源列表
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `keep_rare_resource`
+        **采集器配置字段**: `keep_rare_resource`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_OTEL_DEL_MESSAGE**
     
         删除 trace 消息
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `del_message`
+        **采集器配置字段**: `del_message`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_OTEL_OMIT_ERR_STATUS**
     
         错误状态白名单
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `omit_err_status`
+        **采集器配置字段**: `omit_err_status`
     
-        **Example**: ["404", "403", "400"]
+        **示例**: ["404", "403", "400"]
     
     - **ENV_INPUT_OTEL_CLOSE_RESOURCE**
     
         忽略指定服务器的 tracing（正则匹配）
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `close_resource`
+        **采集器配置字段**: `close_resource`
     
-        **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
+        **示例**: {"service1":["resource1","other"],"service2":["resource2","other"]}
     
     - **ENV_INPUT_OTEL_SAMPLER**
     
         全局采样率
     
-        **Type**: Float
+        **字段类型**: Float
     
-        **ConfField**: `sampler`
+        **采集器配置字段**: `sampler`
     
-        **Example**: 0.3
+        **示例**: 0.3
     
     - **ENV_INPUT_OTEL_THREADS**
     
         线程和缓存的数量
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `threads`
+        **采集器配置字段**: `threads`
     
-        **Example**: {"buffer":1000, "threads":100}
+        **示例**: {"buffer":1000, "threads":100}
     
     - **ENV_INPUT_OTEL_STORAGE**
     
         本地缓存路径和大小（MB）
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `storage`
+        **采集器配置字段**: `storage`
     
-        **Example**: `{"storage":"./otel_storage", "capacity": 5120}`
+        **示例**: `{"storage":"./otel_storage", "capacity": 5120}`
     
     - **ENV_INPUT_OTEL_HTTP**
     
         代理 HTTP 配置
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `http`
+        **采集器配置字段**: `http`
     
-        **Example**: `{"enable":true, "http_status_ok": 200, "trace_api": "/otel/v1/trace", "metric_api": "/otel/v1/metric"}`
+        **示例**: `{"enable":true, "http_status_ok": 200, "trace_api": "/otel/v1/trace", "metric_api": "/otel/v1/metric"}`
     
     - **ENV_INPUT_OTEL_GRPC**
     
         代理 GRPC 配置
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `grpc`
+        **采集器配置字段**: `grpc`
     
-        **Example**: {"trace_enable": true, "metric_enable": true, "addr": "127.0.0.1:4317"}
+        **示例**: {"trace_enable": true, "metric_enable": true, "addr": "127.0.0.1:4317"}
     
     - **ENV_INPUT_OTEL_EXPECTED_HEADERS**
     
         配置使用客户端的 HTTP 头
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `expected_headers`
+        **采集器配置字段**: `expected_headers`
     
-        **Example**: {"ex_version": "1.2.3", "ex_name": "env_resource_name"}
+        **示例**: {"ex_version": "1.2.3", "ex_name": "env_resource_name"}
     
     - **ENV_INPUT_OTEL_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `tags`
+        **采集器配置字段**: `tags`
     
-        **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
+        **示例**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 
 <!-- markdownlint-enable -->
 

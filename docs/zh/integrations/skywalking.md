@@ -135,111 +135,111 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     
         HTTP 端点
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `endpoints`
+        **采集器配置字段**: `endpoints`
     
-        **Example**: ["/v3/trace", "/v3/metric", "/v3/logging", "/v3/profiling"]
+        **示例**: ["/v3/trace", "/v3/metric", "/v3/logging", "/v3/profiling"]
     
     - **ENV_INPUT_SKYWALKING_GRPC_ENDPOINT**
     
         GRPC 服务器
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `address`
+        **采集器配置字段**: `address`
     
-        **Example**: 127.0.0.1:11800
+        **示例**: 127.0.0.1:11800
     
     - **ENV_INPUT_SKYWALKING_PLUGINS**
     
         插件列表
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `plugins`
+        **采集器配置字段**: `plugins`
     
-        **Example**: ["db.type", "os.call"]
+        **示例**: ["db.type", "os.call"]
     
     - **ENV_INPUT_SKYWALKING_IGNORE_TAGS**
     
         标签黑名单
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `ignore_tags`
+        **采集器配置字段**: `ignore_tags`
     
-        **Example**: ["block1","block2"]
+        **示例**: ["block1","block2"]
     
     - **ENV_INPUT_SKYWALKING_KEEP_RARE_RESOURCE**
     
         保持稀有跟踪资源列表
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `keep_rare_resource`
+        **采集器配置字段**: `keep_rare_resource`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_SKYWALKING_DEL_MESSAGE**
     
         删除 trace 消息
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `del_message`
+        **采集器配置字段**: `del_message`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_SKYWALKING_CLOSE_RESOURCE**
     
         忽略指定服务器的 tracing（正则匹配）
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `close_resource`
+        **采集器配置字段**: `close_resource`
     
-        **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
+        **示例**: {"service1":["resource1","other"],"service2":["resource2","other"]}
     
     - **ENV_INPUT_SKYWALKING_SAMPLER**
     
         全局采样率
     
-        **Type**: Float
+        **字段类型**: Float
     
-        **ConfField**: `sampler`
+        **采集器配置字段**: `sampler`
     
-        **Example**: 0.3
+        **示例**: 0.3
     
     - **ENV_INPUT_SKYWALKING_THREADS**
     
         线程和缓存的数量
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `threads`
+        **采集器配置字段**: `threads`
     
-        **Example**: {"buffer":1000, "threads":100}
+        **示例**: {"buffer":1000, "threads":100}
     
     - **ENV_INPUT_SKYWALKING_STORAGE**
     
         本地缓存路径和大小（MB）
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `storage`
+        **采集器配置字段**: `storage`
     
-        **Example**: {"storage":"./skywalking_storage", "capacity": 5120}
+        **示例**: {"storage":"./skywalking_storage", "capacity": 5120}
     
     - **ENV_INPUT_SKYWALKING_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `tags`
+        **采集器配置字段**: `tags`
     
-        **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
+        **示例**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 
 <!-- markdownlint-enable -->
 
