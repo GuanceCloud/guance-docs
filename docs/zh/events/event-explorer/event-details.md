@@ -4,11 +4,12 @@
 
 在[未恢复事件查看器](./unrecovered-events.md)或者[所有事件查看器](./event-list.md)中，点击任意事件，即可查看事件详情，包括基础属性、扩展字段、告警通知、历史记录、关联事件和关联 SLO 等。
 
-
+<!--
 在事件详情页，您可以：
 
-- 点击右上角的**跳转到监控器**，可查看和调整 [监控器配置](../../monitoring/monitor/index.md)；  
+- 点击右上角的**跳转到监控器**，可查看和调整[监控器配置](../../monitoring/monitor/index.md)；  
 - 点击右上角的**导出**按钮，支持选择**导出 JSON 文件**与**导出 PDF 文件**，从而获取当前事件所对应的所有关键数据。
+-->
 
 ## 基础属性 {#attribute}
 
@@ -16,31 +17,37 @@
 
 ![](../img/5.event_8.png)
 
-:material-numeric-1-circle-outline: 检测维度：观测云支持关联查询所有检测维度。点击即可查看相关检测内容。
+:material-numeric-1-circle-outline: 检测维度：可关联查询所有检测维度；点击即可查看相关检测内容。
 
-<img src="../../img/event-1.png" width="70%" >
+<img src="../../img/event-1.png" width="80%" >
 
-:material-numeric-2-circle-outline: 检测指标：监控器处配置的检测指标查询语句。
+:material-numeric-2-circle-outline: 事件内容：即您在监控器配置页面处定义的[事件内容描述](../../monitoring/monitor/mutation-detection.md#event-content)。
 
-:material-numeric-3-circle-outline: 历史趋势：即当前未恢复事件的检测结果值历史趋势。点击**获取图表查询**即可获得当前查询。
+:material-numeric-3-circle-outline: 检测指标：配置监控器时的检测指标查询语句。
+
+:material-numeric-4-circle-outline: 历史趋势：即当前未恢复事件的检测结果值历史趋势。点击**获取图表查询**即可获得当前查询语句。
+
+<img src="../../img/event-query.png" width="80%" >
 
 ## 扩展字段 {#event-extension}
 
-![](../img/event-extension.png)
+您可通过以下操作来管理本条事件数据包含的属性字段：
 
-:material-numeric-1-circle-outline: 在搜索栏，可输入字段名称或值快速搜索定位；
+![](../img/event-extension-1.gif)
 
-:material-numeric-2-circle-outline: 勾选字段别名后，可在字段名后查看；您可按需选择。
+1. 在搜索栏，可输入字段名称或值快速搜索定位；
 
-:material-numeric-3-circle-outline: 在事件详情页，你可以在**扩展字段**查看当前事件的相关字段属性：
+2. 勾选字段别名后，可在字段名后查看；您可按需选择。
 
-| 字段      | 属性                          |
+3. 在事件详情页，你可以在**扩展字段**查看当前事件的相关字段属性：
+
+| <div style="width: 110px">字段</div>      | 属性                          |
 | ----------- | ------------------------------------ |
-| 筛选字段值      | 即添加该字段至查看器，查看与该字段相关的全部数据，可在链路查看器筛选查看该字段相关的链路列表。见图一。                          |
-| 反向筛选字段值      | 即添加该字段至查看器，查看除了该字段以外的其他数据。                          |
+| 筛选字段值      | 即添加该字段至查看器搜索栏，查看与该字段相关的全部数据，可在[链路查看器](../../application-performance-monitoring/explorer.md)筛选查看该字段相关的链路列表。                         |
+| 反向筛选字段值      | 即添加该字段至查看器搜索栏，查看除了该字段以外的其他数据。                          |
 | 复制      | 即复制该字段至剪贴板。                          |
 
-
+![](../img/event-extension.png)
 
 ## 告警通知 {#alarm}
 
@@ -61,7 +68,7 @@
 
 显示查看事件的状态分布趋势、DQL 函数和窗口函数折线图。
 
-![](img/5.event_9.png)
+
 
 - 状态分布：展示选定时间范围内（默认展示最近6小时）的事件状态 (紧急、重要、警告、无数据)；  
 - DQL 查询语句：基于异常检测规则的自定义查询语句返回的实时指标数据，默认展示最近6小时的实时指标数据；  
@@ -82,6 +89,10 @@
 
 ![](../img/5.event_11.png)
 
+点击某条数据，即可打开该条数据对应的查看器，且自动代入其 `df_fault_id` 进行查询筛选显示。
+
+![](../img/3.event_13.1.png)
+
 <!--
 ### 关联信息 {#relevance}
 
@@ -91,17 +102,20 @@
 
 ![](../img/3.event_13.png)
 
-<u>日志检测配置示例：</u>
-
-![](../img/3.event_13.1.png)
-
 -->
 
 ## 关联事件 {#relevance}
 
-支持通过筛选字段和所选取的时间组件信息，查看关联事件。
+支持基于四种筛选字段查看某一个时间段内的关联事件。
 
-![](../img/5.event_12.png)
+| 筛选字段      | 说明           |
+| :------- | :----------- |
+| 相同故障 ID      | `df_fault_id`；一个特殊的 ID 标记，用于记录某个检测维度从触发异常事件再到正常触发恢复事件的全流程。           |
+| 相同监控器      | `df_monitor_checker_id`           |
+| 相同检测维度      |  `df_dimension_tags`           |
+| 相同等级      | `df_status`           |
+
+![](../img/5.event_12.gif)
 
 ## 关联 SLO {#relevance}
 
@@ -139,3 +153,9 @@
 ![](../img/5.event_17.png)
 
 -->
+
+## 关联查看 {#related-query}
+
+在关联查看，您可以查看所有与当前事件关联的所有查询。
+
+![](../img/5.event_9.png)

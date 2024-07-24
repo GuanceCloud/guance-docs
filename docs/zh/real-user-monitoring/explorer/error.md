@@ -95,3 +95,45 @@
 
 
 ![](../img/extension-1.gif)
+
+## Issue 自动发现 {#issue}
+
+基于观测云对 RUM Error 进行监测而产生的数据，当您启用 **Issue 自动发现**这一配置后，系统会根据不同的分组维度统计对应异常数据，并对后续类似问题的产生进行堆栈跟踪，自动浓缩，最终产生 Issue。通过该入口产生的 Issue 会帮助您获取问题产生的上下文和根因，大量减少解决问题的平均时间。
+
+
+![](../img/auto-issue-rum.png)
+
+:material-numeric-1-circle-outline: 数据来源：即当前配置页面的启用入口。
+
+:material-numeric-2-circle-outline: 组合维度：基于配置字段内容组合进行归类统计，包含 `app_name`、`env`、`version`、`error_type`。
+
+:material-numeric-3-circle-outline: 检测频率：观测云会根据您选择的频率来查询数据的时间范围，包含 5 分钟、10 分钟、15 分钟、30 分钟和 1 小时。
+
+:material-numeric-4-circle-outline: Issue 定义：启用该配置后，Issue 将以此处的定义对外呈现。为避免信息缺失，[需依次填写](../exception/issue.md#concepts)。
+
+其中，在 Issue 的**标题**和**描述**两处，均支持使用以下模版变量：
+
+| 变量 | 含义 |
+| --- | --- |
+| `count` | 统计数量 |
+| `app_name` | 应用名称 |
+| `env` | 环境 |
+| `version` | 版本 |
+| `error_type` | 错误类型 |
+| `error_message` | 错误内容 |
+| `error_stack` | 错误堆栈 |
+
+### 查看 Issue {#display}
+
+保存配置并启用后，由系统自动发现并产生的 Issue 会在**控制台 > [异常追踪](../../exception/issue.md#auto)**处显示。
+
+![](../img/issue-auto.png)
+
+
+## 更多阅读
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **巧用 Issue 自动发现功能快捷响应异常**</font>](../../application-performance-monitoring/issue-auto-generate.md)
+
+</div>

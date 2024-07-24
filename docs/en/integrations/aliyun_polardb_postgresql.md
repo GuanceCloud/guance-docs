@@ -1,5 +1,7 @@
 ---
 title: 'Aliyun PolarDB PostgreSQL'
+tags: 
+  - Alibaba Cloud
 summary: 'Aliyun PolarDB PostgreSQL Metrics Display, including CPU usage, memory usage, network traffic, connection count, IOPS (Input/Output Operations Per Second), TPS (Transactions Per Second), and data disk size.'
 __int_icon: 'icon/aliyun_polardb_postgresql'
 dashboard:

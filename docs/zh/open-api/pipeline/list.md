@@ -15,6 +15,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | search | string |  | 文件名称(source值)<br>允许为空: False <br> |
+| type | string |  | Pipeline文件类型<br>允许为空: False <br>可选值: ['local', 'central'] <br> |
 | categories | commaArray |  | 类别列表，以逗号分隔<br>允许为空: False <br> |
 
 ## 参数补充说明

@@ -65,6 +65,11 @@ At present, DataKit collects profiling data in two ways:
       #   send_timeout = "75s"
       #   send_retry_count = 4
     
+      ## set custom tags for profiling data
+      # [inputs.profile.tags]
+      #   some_tag = "some_value"
+      #   more_tag = "some_other_value"
+    
     ## go pprof config
     ## collect profiling data in pull mode
     #[[inputs.profile.go]]
@@ -138,6 +143,7 @@ For all of the following data collections, a global tag named `host` is appended
 | Tag | Description |
 |  ----  | --------|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
+|`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
 |`host`|Hostname.|

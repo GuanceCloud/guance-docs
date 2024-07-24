@@ -24,6 +24,7 @@ nav:
       - 'RocketMQ5' : aliyun_rocketmq5.md
       - 'SQLServer': aliyun_rds_sqlserver.md
       - 'Tair': aliyun_tair.md
+      - 'Site Monitor': aliyun_site.md
 
     - Huawei: 
       - 'ASM': huawei_asm.md
@@ -43,12 +44,12 @@ nav:
       - 'MongoDB': huawei_mongodb.md
       - 'OBS': huawei_obs.md
       - 'RDS(PostgreSQL)': huawei_rds_postgresql.md
-      - 'SYS.AS': huawei_SYS.AS.md
-      - 'SYS.CBR': huawei_SYS.CBR.md
-      - 'SYS DDMS': huaweiyun_SYS_DDMS.md
+      - 'AS': huawei_SYS.AS.md
+      - 'CBR': huawei_SYS.CBR.md
+      - 'DDMS': huawei_SYS_DDMS.md
+      - 'ROMA': huawei_roma.md
 
     - AWS: 
-      - 'Aurora Serverless V2': aws_aurora_serverless_v2.md
       - 'CloudFront': aws_cloudfront.md
       - 'DynamoDB': aws_dynamodb.md
       - 'DynamoDB(DAX)': aws_dynamodb_DAX.md
@@ -68,6 +69,7 @@ nav:
       - 'S3': aws_s3.md
       - 'Timestream': aws_timestream.md
       - 'RabbitMQ': aws_mq_rabbitmq.md
+      - 'ElastiCache Serverless': aws_elasticache_serverless.md
 
     - Tencent:
       - 'CDB': tencent_cdb.md
@@ -87,6 +89,7 @@ nav:
       - 'Mysql': volcengine_mysql.md
       - 'MongoDB  Replica Set': volcengine_mongodb_replica_set.md
       - 'MongoDB Sharded Cluster': volcengine_mongodb_sharded_cluster.md
+      - 'VKE': volcengine_vke.md
 
   - Host:
     - Default Collection:
@@ -151,6 +154,7 @@ nav:
     - 'Messaging Queue':
       - emqx.md
       - 'Kafka': kafka.md
+      - automq.md
       - nsq.md
       - rabbitmq.md
       - rocketmq.md
@@ -161,6 +165,7 @@ nav:
       - resin.md
       - dongfangtong_tweb.md
       - apisix.md
+      - haproxy.md
 
     - 'Java':
       - 'JVM': jvm.md
@@ -187,6 +192,8 @@ nav:
       - zookeeper.md
       - argocd.md
       - langchain.md
+      - issue_dingtalk.md
+      - issue_feishu.md
 
   - CI/CD:
       - 'Jenkins': jenkins.md
@@ -203,6 +210,7 @@ nav:
       - 'CRD': kubernetes-prometheus-operator-crd.md
     - 'NPD': npd.md
     - kubecost.md
+    - kubernetes_audit.md
 
   - APM:
     - Tracing Overview': datakit-tracing.md
@@ -297,6 +305,7 @@ nav:
     - "Prometheus":
       - "Exportor": prom.md
       - "Remote Write": prom_remote_write.md
+      - "Push Gateway": pushgateway.md
     - 'Kafka Subscribe': kafkamq.md
     - 'Promtail': promtail.md
     - 'Statsd': statsd.md

@@ -1,5 +1,7 @@
 ---
 title: 'Aliyun PolarDB MySQL'
+tags: 
+  - Alibaba Cloud
 summary: 'Aliyun PolarDB MySQL Metrics Display, including CPU usage, memory hit rate, network traffic, connection count, QPS (Queries Per Second), TPS (Transactions Per Second), and read-only node latency.'
 __int_icon: icon/aliyun_polardb_mysql
 dashboard:

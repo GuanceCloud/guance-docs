@@ -87,9 +87,9 @@ If the current trace belongs to a front-end application (such as: browser), you 
 
 The flame graph can clearly show the flow and execution time of each Span in the entire trace. You can view the corresponding service list and response time on the right side of the flame graph. Click on the Span in the flame graph, in the **Trace Details Page** you can view the corresponding Json content, you can view specific Span information by zooming in and out with the mouse wheel.
 
+<!--
 > For more details on the application of the flame graph, see [Use Flame Graph to Analyze Trace Performance](../best-practices/monitoring/trace-glame-graph.md).
 
-<!--
 
 <div class="grid" markdown>
 

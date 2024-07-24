@@ -5,9 +5,11 @@
 ##############################################
 # 专有名词
 ##############################################
+APIServer
 Akka
 Aliyun
 Ansible
+Autodiscovery
 BATIS
 Batis
 Binlog
@@ -34,6 +36,8 @@ DialTesting
 Distro
 Dubbo
 Dubbox
+Errno
+ELinker
 ElasticSearch
 Fastjson
 Filebeat
@@ -45,6 +49,7 @@ Goroutine
 Gson
 Guance
 GuanceCloud
+Guancedb
 HIKARICP
 Hbase
 IPDB
@@ -73,12 +78,13 @@ Nacos
 NetFlow
 Ning
 ODBC
+netlog
 OpenSSL
 OpenTelemetry
 OpenTracing
-PlOffload
 POSTGRESQL
 Paho
+PlOffload
 PostgreSQL
 PromQL
 Prometheus
@@ -86,6 +92,7 @@ Promtail
 Protobuf
 Proxied
 PushGateway
+Pushgateway
 Pyroscope
 Pythond
 RabbitMQ
@@ -106,10 +113,12 @@ Tablespace
 Tencent
 Uprobe
 Vertx
+VXLAN
 Weblogic
 Websphere
 XDAs
 Zipkin
+cAdvisor
 catalina
 cgroup
 clidriver
@@ -133,13 +142,17 @@ gofumpt
 golint
 goyacc
 guance
+hotspots
 inodes
 ipfix
 jemalloc
 kafkamq
 keyevent
+kprobe
 kubedns
 kubelet
+labelselector
+labelselectors
 libc
 lineprotocol
 logfiles
@@ -157,6 +170,7 @@ nginx
 nsec
 nullable
 nvme
+ppid
 pprof
 promremote
 pythond
@@ -167,6 +181,7 @@ schedulability
 sflow
 sharded
 smartmontools
+snmp
 solr
 stderr
 stdout
@@ -175,7 +190,10 @@ tcmalloc
 tdengine
 tdengine
 tdengine
+tempdb
+tracepoint
 unflushed
+uprobe
 usec
 vgroup
 vgroup
@@ -187,7 +205,12 @@ vnode
 vnode
 workarea
 xpack
+zabbix
 zhangsan
+oplog
+getmore
+getmores
+spinlocks
 
 ##############################################
 # 缩写
@@ -277,6 +300,7 @@ mallocs
 mspan
 refactorings
 spid
+subtransactions
 
 ##############################################
 # 连词

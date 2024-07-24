@@ -278,7 +278,29 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
     Once protected mode is disabled, some dangerous configuration parameters can be set, and Datakit will accept any configuration parameters. These parameters may cause some Datakit functions to be abnormal or affect the collection function of the collector. For example, if the HTTP sending body is too small, the data upload function will be affected. And the collection frequency of some collectors set too high, which may affect the entities(for example MySQL) to be collected.
 <!-- markdownlint-enable -->
 
-### Dataway Configuration Related Environments {#env-dataway}
+### Point Pool Environments {#env-pointpool}
+
+[:octicons-tag-24: Version-1.28.0](changelog.md#cl-1.28.0) ·
+[:octicons-beaker-24: Experimental](index.md#experimental)
+
+<!-- markdownlint-disable MD046 -->
+- **ENV_ENABLE_POINT_POOL**
+
+    Enable point pool
+
+    **Type**: Boolean
+
+    **Example**: `on`
+
+- **ENV_POINT_POOL_RESERVED_CAPACITY**
+
+    Specify pool capacity(default 4096)
+
+    **Type**: Int
+<!-- markdownlint-enable -->
+
+
+### Dataway Configuration Environments {#env-dataway}
 
 <!-- markdownlint-disable MD046 -->
 - **ENV_DATAWAY**
@@ -354,9 +376,15 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
     Set the encoding of the point data at upload time (optional list: 'v1' is the line protocol, 'v2' is Protobuf)
 
     **Type**: String
+
+- **ENV_DATAWAY_TLS_INSECURE**
+
+    Enable self-signed TLS certificate on Dataway[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
+
+    **Type**: Boolean
 <!-- markdownlint-enable -->
 
-### Log Configuration Related Environments {#env-log}
+### Log Configuration Environments {#env-log}
 
 <!-- markdownlint-disable MD046 -->
 - **ENV_GIN_LOG**
@@ -470,7 +498,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
     **Default**: default
 <!-- markdownlint-enable -->
 
-### HTTP/API Related Environment Variables {#env-http-api}
+### HTTP/API Environment Variables {#env-http-api}
 
 <!-- markdownlint-disable MD046 -->
 - **ENV_DISABLE_404PAGE**
@@ -511,6 +539,30 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     **Default**: -
 
+- **ENV_HTTP_ENABLE_TLS**
+
+    Enable Datakit 9529 HTTPS[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0).
+
+    **Type**: Boolean
+
+    **Default**: -
+
+- **ENV_HTTP_TLS_CRT**
+
+    Set Datakit HTTP Server's TLS cert path[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0).
+
+    **Type**: String
+
+    **Default**: -
+
+- **ENV_HTTP_TLS_KEY**
+
+    Set Datakit HTTP Server's TLS key path[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0).
+
+    **Type**: String
+
+    **Default**: -
+
 - **ENV_REQUEST_RATE_LIMIT**
 
     Limit 9529 [API requests per second](datakit-conf.md#set-http-api-limit).
@@ -519,7 +571,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_RUM_ORIGIN_IP_HEADER**
 
-    RUM dedicated
+    Set RUM HTTP request(`/v1/write/rum`) real IP forward header key.
 
     **Type**: String
 
@@ -531,7 +583,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     **Type**: String
 
-    **Example**: appid-1,appid-2
+    **Example**: appid-1, appid-2
 <!-- markdownlint-enable -->
 
 ### Confd Environment Variables {#env-confd}
@@ -744,6 +796,14 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
     **Type**: Int
 
     **Default**: 1
+
+- **ENV_IO_FEED_GLOBAL_BLOCKING**
+
+    Set blocking mode on busy uploading(especially fot time-series and dial-testing points)
+
+    **Type**: Int
+
+    **Default**: -
 
 - **ENV_IO_FLUSH_WORKERS**
 
@@ -967,6 +1027,22 @@ For more info about recorder, see [here](datakit-tools-how-to.md#record-and-repl
     **Type**: List
 
     **Example**: `http://aaa:123,http://1.2.3.4:1234`
+
+- **ENV_CRYPTO_AES_KEY**
+
+    The crypto key(len 16)
+
+    **Type**: String
+
+    **Example**: `0123456789abcdef`
+
+- **ENV_CRYPTO_AES_KEY_FILE**
+
+    File path for storing AES encryption and decryption key
+
+    **Type**: String
+
+    **Example**: `/usr/local/datakit/enc4mysql`
 <!-- markdownlint-enable -->
 
 ### Special Environment Variable {#env-special}

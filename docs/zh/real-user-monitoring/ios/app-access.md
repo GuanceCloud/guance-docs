@@ -3,14 +3,44 @@
 ---
 ???- quote "更新日志"
 
+    **1.5.0**
+    ```
+    1. RUM resource 网络请求添加 remote ip 地址解析功能
+    2. 添加行协议 Integer 数据兼容模式，处理 web 数据类型冲突问题
+    3. 日志添加自定义 status 方法
+    4. 日志数据写入优化、数据同步优化
+    5. 对传入 SDK 的 NSDictionary 类型参数进行格式处理防止转换 json 失败造成数据丢失
+    ```
+    **1.4.14**
+    ```
+    1. 修复 `FTSwizzler` 内访问已被销毁的 Class 对象而导致的内存访问错误崩溃
+    2. 修复向 SDK 传递的 NSDictionary 类型参数实际上是可变对象时可能引发的数据一致性和操作冲突问题
+    ```
+    **1.4.13**
+    ```
+    1. RUM LongTask、Anr 采集优化，修复 LongTask 堆栈信息采集不准确问题，新增支持采集致命卡顿
+    2. 修复 `FTSwizzler` 内因多线程同时操作 NSMutableSet 造成的崩溃
+    3. 修复打包 SDK Framework info.plist 中版本信息缺失问题
+    4. 修复自定义 NSURLSession 未设置 delegate 时 Resource 的性能指标采集失败问题
+    5. SDK 内部日志转化为文件功能优化，新增指定文件路径方法
+    ```
+    **1.4.12**
+    ```
+    1. 修复 SDK 调用注销方法 shutDown 产生的内存泄漏问题
+    2. 修复采集 RUM-Resource 时与其他库冲突导致崩溃问题
+    3. 修复崩溃采集 UncaughtExceptionHandler 未传递问题
+    4. 修复多次初始化 SDK 造成的数据异常
+    ```
     **1.4.11**
+    ```
     1. 新增支持数据同步参数配置，请求条目数据，同步间歇时间，以及日志缓存条目数
     2. 新增内部日志转文件方法
     3. 日志关联 RUM 数据获取错误修复
     4. 耗时操作优化
     5. 修复 WebView jsBridge 时产生的崩溃，对 WebView 引用改为弱引用
-    
+    ```
     [更多日志](https://github.com/GuanceCloud/datakit-ios/blob/develop/CHANGELOG.md)
+
 
 观测云应用监测能够通过收集各个 iOS 应用的指标数据，以可视化的方式分析各个 iOS 应用端的性能。
 
@@ -77,6 +107,7 @@
       ```
     
     * [将代码库下载到本地使用](https://guides.cocoapods.org/using/the-podfile.html#using-the-files-from-a-folder-local-to-the-machine)
+      
       **`Podfile` 文件**
       ```
       use_modular_headers!
@@ -226,8 +257,8 @@
 
 | 属性 | **类型** | **必须** | **含义** |
 | --- | --- | --- | --- |
-| datakitUrl | NSString | 是 | Datakit 访问地址，例子：[http://10.0.0.1:9529](http://10.0.0.1:9529/)，端口默认 9529，注意：安装 SDK 设备需能访问这地址.**注意：datakit 和 dataway 配置两者二选一** |
-| datawayUrl | NSString | 是 | 公网 Dataway 访问地址，例子：[http://10.0.0.1:9528](http://10.0.0.1:9528/)，端口默认 9528，注意：安装 SDK 设备需能访问这地址.**注意：datakit 和 dataway 配置两者二选一** |
+| datakitUrl | NSString | 是 | Datakit 访问地址，例子：[http://10.0.0.1:9529](http://10.0.0.1:9529/)，端口默认 9529，安装 SDK 设备需能访问这地址.**注意：datakit 和 dataway 配置两者二选一** |
+| datawayUrl | NSString | 是 | 公网 Dataway 访问地址，例子：[http://10.0.0.1:9528](http://10.0.0.1:9528/)，端口默认 9528，安装 SDK 设备需能访问这地址.**注意：datakit 和 dataway 配置两者二选一** |
 | clientToken | NSString | 是 | 认证 token，需要与 datawayUrl 同时使用                               |
 | enableSDKDebugLog | BOOL | 否 | 设置是否允许打印日志。默认 `NO` |
 | env | NSString | 否 | 设置采集环境。默认 `prod`，支持自定义，也可根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置 |
@@ -237,6 +268,7 @@
 | autoSync | BOOL | 否 | 是否开启自动同步。默认 `YES` |
 | syncPageSize | int | 否 | 设置同步请求条目数。范围 [5,）注意：请求条目数越大，代表数据同步占用更大的计算资源 |
 | syncSleepTime | int | 否 | 设置同步间歇时间。范围 [0,100]，默认不设置 |
+| enableDataIntegerCompatible | BOOL | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题 。 |
 
 ### RUM 配置 {#rum-config}
 
@@ -288,6 +320,7 @@
 | errorMonitorType | FTErrorMonitorType | 否 | 错误事件监控补充类型。在采集的崩溃数据中添加监控的信息。`FTErrorMonitorBattery`为电池余量，`FTErrorMonitorMemory`为内存用量，`FTErrorMonitorCpu`为 CPU 占有率 。 |
 | deviceMetricsMonitorType | FTDeviceMetricsMonitorType | 否 | 视图的性能监控类型。在采集的  **View** 数据中添加对应监控项信息。`FTDeviceMetricsMonitorMemory`监控当前应用使用内存情况，`FTDeviceMetricsMonitorCpu`监控 CPU 跳动次数，`FTDeviceMetricsMonitorFps`监控屏幕帧率。 |
 | monitorFrequency | FTMonitorFrequency | 否 | 视图的性能监控采样周期。配置 `monitorFrequency` 来设置 **View** 监控项信息的采样周期。`FTMonitorFrequencyDefault`500ms (默认)，`FTMonitorFrequencyFrequent`100ms，`FTMonitorFrequencyRare`1000ms。 |
+| enableResourceHostIP | BOOL | 否 | 是否采集请求目标域名地址的 IP。`>= iOS 13` 下支持 |
 | globalContext | NSDictionary | 否 | 添加自定义标签。添加规则请查阅[此处](#user-global-context) |
 
 ### Log 配置 {#log-config}
@@ -831,7 +864,7 @@
 ## Logger 日志打印 {#user-logger}
 
 在 SDK 初始化 [Log 配置](#log-config) 时，配置 `enableCustomLog` 允许自定义添加日志。
-
+> 目前日志内容限制为 30 KB，字符超出部分会进行截断处理
 ### 使用方法
 
 === "Objective-C"
@@ -1579,7 +1612,7 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 
 1. XCode 添加自定义 Run Script Phase：` Build Phases -> + -> New Run Script Phase`
 2. 将脚本复制到 Xcode 项目的构建阶段运行脚本中，脚本中需要设置参数如：＜app_id＞、＜datakit_address＞、＜env＞、<dataway_token>、＜version＞(脚本默认配置的版本格式为 `CFBundleShortVersionString`)。
-3. [脚本](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
+3. [脚本：FTdSYMUpload.sh](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
 
 ```sh
 #脚本中需要配置的参数
@@ -1674,6 +1707,8 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 #### 方法二：终端运行脚本
 
 找到 .dSYM 文件放在一个文件夹内，命令行下输入应用基本信息, .dSYM 文件的父目录路径, 输出文件目录即可
+
+[脚本：FTdSYMUpload.sh](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
 
 `sh FTdSYMUpload.sh <datakit_address> <app_id> <version> <env> <dataway_token> <dSYMBOL_src_dir> <dSYMBOL_dest_dir>`
 

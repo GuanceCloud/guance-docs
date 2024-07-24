@@ -4,6 +4,39 @@
 ???- quote "更新日志"
 
     === "ft-sdk"
+		**1.5.2**：
+        ``` markdown
+		1. Error network_error 添加本地网络错误类型的提示，用于补充说明 Resource 数据中 resource_status=0 场景
+		2. 修复 setEnableTrackAppCrash(false) 时 uncaughtException rethrow 传递问题
+		```
+		**1.5.1**：
+        ``` markdown
+		1. Java Crash 及 ANR 补充其他线程代码堆栈
+		2. Java Crash，Native Crash，ANR 添加附加 logcat 配置功能
+		3. 修复长 session 且无 action 更新场景下，频繁更新 session_id 的问题
+		```
+		**1.5.0**：
+        ``` markdown
+		1. RUM resource 网络请求添加 remote ip 地址解析功能
+		2. 修复开启 RUM SampleRate 后，高并发网路请求引发的数组线程安全问题
+		3. ConnectivityManager.registerDefaultNetworkCallback 方法容错优化
+		4. 添加行协议 Integer 数据兼容模式，处理 web 数据类型冲突问题
+		5. 自动采集 Action click 中控件资源名 id 获取优化
+		6. SDK config 配置读取异常问题容错优化
+        ```
+		**1.4.6**：
+        ``` markdown
+     	1. SDK 初始化容错优化
+		2. 新增日志新增 Status.Debug 类型
+		3. 控制台抓取日志等级对应关系调整： Log.i -> info，Log.d -> debug
+		4. FTLogger 自定义日志支持自定义 status 字段
+        ```
+		**1.4.5**：
+        ``` markdown
+        1. 重复初始化兼容优化处理
+		2. 优化 c/c++ 崩溃采集数据同步逻辑，避免在某些场景下意外中断退出，导致死锁
+		3. 优化 startAction Property 属性写入逻辑，避免发生线程安全访问问题	
+        ```
 		**1.4.4**：
         ``` markdown
         1. 数据库链接容错保护
@@ -25,6 +58,10 @@
         [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/CHANGELOG.md)
 
     === "ft-native"
+		**1.1.0**：
+        ``` markdown
+		1. 添加 Native Crash 和 ANR 中 logcat 配置功能
+		```
         **1.1.0**：
         ``` markdown
         1. 支持捕获 ANR Crash
@@ -35,6 +72,14 @@
         [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-native/CHANGELOG.md)
 
     === "ft-plguin ( AGP >=7.4.2 )"
+		**1.3.1**：
+        ``` markdown
+		1. 添加 asmVersion 配置功能，支持 asm7 - asm9，默认为 asm9
+		2. 修复了 WebView 自定义方法在 ASM 写入后导致循环调用，从而无法加载 WebView 内容的问题
+			(涉及方法 loadUrl、loadData、loadDataWithBaseURL、 postUrl)
+		3. IgnoreAOP 支持在类中声明，进行整个类中的方法忽略
+		4. 添加 ignorePackages 配置， 支持通过包路径配置对 ASM 进行忽略
+		```
         **1.3.0**：
         ``` markdown
         1. 支持 datakit source map 自动上传，支持 native symbol 的上传
@@ -48,6 +93,13 @@
         [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-plugin/CHANGELOG.md)
    
     === "ft-plugin-legacy ( AGP <=7.4.2 )"
+		**1.1.7**：
+        ``` markdown
+		1. 修复了 WebView 子类重写方法在 ASM 写入后导致循环调用，从而无法加载 WebView 内容的问题
+			(涉及方法 loadUrl、loadData、loadDataWithBaseURL、 postUrl)
+		2. IgnoreAOP 支持在类中声明，进行整个类中的方法忽略
+		3. 添加 ignorePackages 配置， 支持通过包路径配置对 ASM 进行忽略
+		```
         **1.1.6**：
         ``` markdown
         1. 支持 datakit source map 自动上传，支持 native symbol 的上传
@@ -188,6 +240,10 @@ apply plugin: 'ft-plugin'
 FTExt {
     //是否显示 Plugin 日志，默认为 false
     showLog = true
+    //设置 ASM 版本，支持 asm7 - asm9，默认 asm9
+    //asmVersion='asm7'
+    //ASM 忽略路径配置，路径中 . 和 / 等效
+    //ignorePackages=['com.ft','com/ft']
 }
 android{
 	//...省略部分代码
@@ -259,12 +315,12 @@ android{
 
 | **方法名** | **类型** | **必须** | **含义** |
 | --- | --- | --- | --- | 
-| datakitUrl | String | 是 | Datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，注意：安装 SDK 设备需能访问这地址。**注意：datakit 和 dataway 配置两者二选一**|
-| datawayUrl | String | 是 | 公网 Dataway 访问 URL 地址，例子：http://10.0.0.1:9528，端口默认 9528，注意：安装 SDK 设备需能访问这地址。**注意：datakit 和 dataway 配置两者二选一** |
+| datakitUrl | String | 是 | Datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，安装 SDK 设备需能访问这地址。**注意：datakit 和 dataway 配置两者二选一**|
+| datawayUrl | String | 是 | 公网 Dataway 访问 URL 地址，例子：http://10.0.0.1:9528，端口默认 9528，安装 SDK 设备需能访问这地址。**注意：datakit 和 dataway 配置两者二选一** |
 | clientToken | String | 是 | 认证 token，需要与 datawayUrl 同时配置  |
 | setDebug | Boolean | 否 | 是否开启调试模式 。默认为 `false`，开启后方可打印 SDK 运行日志 |
 | setEnv | EnvType | 否 | 设置采集环境, 默认为 `EnvType.PROD`， |
-| setEnv | String | 否 | 设置采集环境，默认为 `prod`。注意: String 或 EnvType 类型只需配置一个|
+| setEnv | String | 否 | 设置采集环境，默认为 `prod`。**注意: String 或 EnvType 类型只需配置一个**|
 | setOnlySupportMainProcess | Boolean | 否 | 是否只支持在主进程运行，默认为 `true` ，如果需要在其他进程中执行需要将该字段设置为 `false` |
 | setEnableAccessAndroidID | Boolean | 否 | 开启获取 `Android ID`，默认为 `true`，设置为 `false`，则 `device_uuid` 字段数据将不进行采集,市场隐私审核相关[查看这里](#adpot-to-privacy-audits) |
 | addGlobalContext | Dictionary | 否 | 添加 SDK 全局属性，添加规则请查阅[此处](#key-conflict) |
@@ -273,6 +329,7 @@ android{
 | setSyncPageSize | enum | 否 | 设置同步请求条目数，`SyncPageSize.MINI` 5 条，`SyncPageSize.MEDIUM` 10 条，`SyncPageSize.LARGE` 50 条，默认 `SyncPageSize.MEDIUM`   |
 | setCustomSyncPageSize | enum | 否 | 设置同步请求条目数，范围 [5,)，注意请求条目数越大，代表数据同步占用更大的计算资源   |
 | setSyncSleepTime | Int | 否 | 设置同步间歇时间，范围 [0,100]，默认不设置  |
+| enableDataIntegerCompatible | void | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题  |
 
 ### RUM 配置 {#rum-config}
 
@@ -318,15 +375,16 @@ android{
 | **方法名** | **类型** | **必须** | **含义** |
 | --- | --- | --- | --- |
 | setRumAppId | String | 是 | 设置`Rum AppId`。对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#android-integration) |
-| setSampleRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据 |
-| setEnableTrackAppCrash | Boolean | 否 | 是否上报 App 崩溃日志，默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#retrace-log) |
+| setSamplingRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据 |
+| setEnableTrackAppCrash | Boolean | 否 | 是否上报 App 崩溃日志，默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#retrace-log)。<br><br>1.5.1 以上版本，可以通过 `extraLogCatWithJavaCrash`、`extraLogCatWithNativeCrash` 设置在 Java Crash 和 Native Crash 是否显示 logcat|
 | setExtraMonitorTypeWithError | Array| 否 | 设置辅助监控信息，添加附加监控数据到 `Rum` 崩溃数据中，`ErrorMonitorType.BATTERY` 为电池余量，`ErrorMonitorType.MEMORY` 为内存用量，`ErrorMonitorType.CPU` 为 CPU 占有率 |
 | setDeviceMetricsMonitorType | Array | 否 | 设置 View 监控信息，在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.BATTERY` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.MEMORY` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.CPU` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.FPS` 监控屏幕帧率。监控周期，`DetectFrequency.DEFAULT` 500 毫秒，`DetectFrequency.FREQUENT` 100毫秒，`DetectFrequency.RARE` 1 秒 |
-| setEnableTrackAppANR | Boolean | 否 | 是否开启  ANR 检测，默认为 `false` |
+| setEnableTrackAppANR | Boolean | 否 | 是否开启 ANR 检测，默认为 `false`。<br><br>1.5.1 以上版本，可以通过 `extraLogCatWithANR` 设置 ANR 中是否显示 logcat |
 | setEnableTrackAppUIBlock | Boolean | 否 | 是否开启 UI 卡顿检测，默认为 `false` |
 | setEnableTraceUserAction | Boolean | 否 | 是否自动追踪用户操作，目前只支持用户启动和点击操作，默认为 `false` |
 | setEnableTraceUserView | Boolean | 否 | 是否自动追踪用户页面操作，默认为 `false` |
 | setEnableTraceUserResource | Boolean | 否 | 是否自动追动用户网络请求 ，仅支持 `Okhttp`，默认为 `false` |
+| setEnableResourceHostIP | Boolean | 否 | 是否采集请求目标域名地址的 IP。作用域：只影响 `EnableTraceUserResource`  为 true 的默认采集。自定义 Resource 采集，需要使用 `FTResourceEventListener.FTFactory(true)` 来开启这个功能。另外，单个 Okhttp 对相同域名存在 IP 缓存机制，相同 `OkhttpClient`，在连接服务端 IP 不发生变化的前提下，只会生成一次|
 | setResourceUrlHandler | callback| 否 | 设置需要过滤的 Resource 条件，默认不过滤 |
 | setOkHttpEventListenerHandler | callback| 否 | ASM 设置全局 Okhttp EventListener，默认不设置 |
 | addGlobalContext | Dictionary | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
@@ -459,7 +517,7 @@ android{
 | **方法名** | **类型** | **必须** | **含义** |
 | --- | --- | --- | --- |
 | setSampleRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
-| setEnableConsoleLog | Boolean | 否 | 是否上报控制台日志，日志等级对应关系<br>Log.v -> ok;<br>Log.i、Log.d -> info;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤。注意：Android 控制台量是很大的，为了避免响应应用性能，减少不必要的资源浪费，建议使用 `prefix` 过滤出有价值的日志 |
+| setEnableConsoleLog | Boolean | 否 | 是否上报控制台日志，日志等级对应关系<br>Log.v -> ok;<br>Log.i -> info;<br> Log.d -> debug;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤。注意：Android 控制台量是很大的，为了避免影响应用性能，减少不必要的资源浪费，建议使用 `prefix` 过滤出有价值的日志 |
 | setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联，默认为 `false` |
 | setLogCacheDiscardStrategy| LogCacheDiscard | 否 | 设置频繁日志丢弃规则，默认为 `LogCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据 |
 | setEnableCustomLog | Boolean| 否 | 是否上传自定义日志，默认为 `false` |
@@ -1232,6 +1290,7 @@ android{
 
 ## Logger 日志打印 {#log} 
 使用 `FTLogger` 进行日志输出
+> 目前日志内容限制为 30 KB，字符超出部分会进行截断处理
 
 ### 使用方法
 
@@ -1251,8 +1310,26 @@ android{
 	     *
 	     * @param content 日志内容
 	     * @param status  日志等级
+		 * @param property 附加属性
 	     */
 	    public void logBackground(String content, Status status, HashMap<String, Object> property)
+
+		/**
+	     * 将单条日志数据存入本地同步
+	     *
+	     * @param content 日志内容
+	     * @param status  日志等级
+	     */
+	    public void logBackground(String content, String status)
+
+	    /**
+	     * 将单条日志数据存入本地同步
+	     *
+	     * @param content 日志内容
+	     * @param status  日志等级
+		 * @param property 附加属性
+	     */
+	    public void logBackground(String content, String status, HashMap<String, Object> property)
 
 
 	    /**
@@ -1286,6 +1363,23 @@ android{
 	     */
 	    fun logBackground(content: String, status: Status, property: HashMap<String, Any>)
 
+		/**
+	     * 将单条日志数据存入本地同步
+	     *
+	     * @param content 日志内容
+	     * @param status  日志等级
+	     */
+	    fun logBackground(content: String, status: String)
+
+	    /**
+	     * 将单条日志数据存入本地同步
+	     *
+	     * @param content 日志内容
+	     * @param status  日志等级
+	     * @param property 日志属性
+	     */
+	    fun logBackground(content: String, status: String, property: HashMap<String, Any>)
+
 	    /**
 	     * 将多条日志数据存入本地同步
 	     *
@@ -1299,6 +1393,7 @@ android{
 
 | **方法名** | **含义** |
 | --- | --- |
+| Status.DEBUG | 调试 |
 | Status.INFO | 提示 |
 | Status.WARNING | 警告 |
 | Status.ERROR | 错误 |
@@ -1903,7 +1998,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	}
 	```
 
-### 无法使用 ft-plugin 情况下如何接入 SDK {#manual-set}
+### 不使用 ft-plugin 情况下如何接入 SDK {#manual-set}
 观测云使用的 Androig Grale Plugin Transformation 实现的代码注入，从而实现数据自动收集。但是由于一些兼容性问题，可能存在无法使用 `ft-plugin` 的问题。受影响包括 **RUM** `Action`，`Resource`，和 `android.util.Log` ，Java 与 Kotlin `println` **控制台日志自动抓取**，以及符号文件的自动上传。
 
 目前针对这种情况，我们有另外一种集成方案，应对方案如下：
@@ -1969,6 +2064,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	.addInterceptor(new FTTraceInterceptor())
 	.addInterceptor(new FTResourceInterceptor())
 	.eventListenerFactory(new FTResourceEventListener.FTFactory());
+	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true));
 	OkHttpClient client = builder.build();
 	```
 
@@ -1979,6 +2075,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	.addInterceptor(FTTraceInterceptor())
 	.addInterceptor(FTResourceInterceptor())
 	.eventListenerFactory(FTResourceEventListener.FTFactory())
+	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true))
 	val client = builder.build()
 	```
 

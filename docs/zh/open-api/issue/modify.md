@@ -1,4 +1,4 @@
-# 修改一个Issue信息
+# Issue 修改
 
 ---
 
@@ -34,25 +34,76 @@
 
 |     参数名      | 参数类型 | 是否必填 |                  参数说明                   |
 |:---------------:|:--------:|:--------:|:-------------------------------------------:|
-|      name       |  string  |    Y     |                issue标题名称                |
-|      level      | string  |    Y     |        issue等级 对应配置等级uuid        |
-|   decription    |  string  |    Y     |                issue描述信息                |
-| attachmentUuids |  array   |    N     |              附件上传列表uuid               |
-|     extend      |   json   |    Y     |                  扩展字段，默认传{}                  |
-|  resourceType   |  string  |    N     | event:事件；dashboard:仪表板；viewer:查看器 |
-|  resourceUUID   |  string  |    N     |     资源关联的uuid     |
-|    resource     |  string  |    N     |                对应资源名称                 |
-|  channelUUIDs   |  array   |    N     |           期望issue投递的资源列表，默认投递默认空间默认频道  |
+|      name       |  string  |    N     |                issue标题名称                |
+|      level      | string  |    N    |        issue等级 对应配置等级uuid        |
+|      statusType      | integer  |    N     |        issue状态, 10: Open, 20: Resolved, 30: Pending        |
+|   decription    |  string  |    N     |                issue描述信息                |
+| attachmentUuids |  array   |    N     |              附件上传列表uuid, 需先通过 /api/v1/attachment/upload 接口进行上传          |
+|     extend      |   json   |    N    |                  扩展字段，默认传{}                  |
+
+**level 等级字段说明**
+level 分为系统等级/自定义等级(可在配置管理中进行配置)
+
+|     level      | value |                  参数说明                   |
+|:---------------:|:--------:|:-------------------------------------------:|
+|      P0       |  system_level_0  |      传参 level: system_level_0, 表示系统等级 P0               |
+|      P1       |  system_level_1  |      传参 level: system_level_1, 表示系统等级 P1               |
+|      P2       |  system_level_2  |      传参 level: system_level_2, 表示系统等级 P2               |
+|      P3       |  system_level_3  |      传参 level: system_level_3, 表示系统等级 P3               |
+|      xxx      |  issl_yyyyy      |      传参 level: issl_yyyyy, 表示自定义等级 xxx            |
 
 
 **扩展字段extend说明**
 
-**更新场景中，channels和channelUUIDs的作用会默认的向默认频道和追加的频道中进行关联处理， 如果传[]，默认只会存在空间默认频道中**
-
 |  参数名  | 参数类型 | 是否必填 |        参数说明         |
 |:--------:|:--------:|:--------:|:-----------------------:|
-| channels |  array   |    N     | 期望issue投递的资源列表 |
-| members  |     array     |     N     |       期望issue通知的通知对象成员    |
+| channels |  array   |    N     | 描述内容里的 # : 期望issue投递的资源列表, |
+| linkList |  array   |    N     | 添加issue 链接 |
+| members  |     array     |     N     |       描述内容里的 @ 期望issue通知的通知对象成员    |
+| manager |  array   |    N     |              用户账号uuid, 邮箱, 团队uuid        |
+| extra  |     json     |     N     |      issue更新人/负责人邮箱对应名称等信息, 用于前端回显    |
+
+extend 字段示例:
+```json
+{
+    "members": [
+        {
+            "type": "@",
+            "uuid": "acnt_d72e117f8902419fa1d135d1d781b79d",
+            "exists": true
+        }
+    ],
+    "channels": [
+        {
+            "type": "#",
+            "uuid": "chan_cf4f9aa671ef4dffa5a2b5d1824cd5b7",
+            "exists": true
+        }
+    ],
+    "manager": [
+        "acnt_xxxxx",
+        "111@qq.com",
+        "group_xxx",
+        "222@qq.com"
+    ],
+    "linkList": [
+        {
+            "name": "解决",
+            "link": "https://sd.com",
+        }
+    ],
+    "extra":{
+              "updator": {
+                  "name": "xxx",
+                  "email": "xxx@qq.com",
+              },
+              "managerInfos": {
+                  "111@qq.com": {"name": "111"},
+                  "222@qq.com": {"name": "222"}
+              }
+            }
+}
+```
 
 
 

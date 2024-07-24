@@ -4,7 +4,7 @@
 ## 1 升级安装
 ### 1.1 Launcher 服务升级
 
-升级 观测云，首先第一步是升级 **Launcher** 服务，获取到需要升级的目标版本的 **Launcher** 服务镜像，最新版 Launcher 镜像地址可查看文档  [社区版本部署镜像](changelog.md) ，在**运维操作机**上执行以下命令，升级 **Launcher**：
+升级 观测云，首先第一步是升级 **Launcher** 服务，获取到需要升级的目标版本的 **Launcher** 服务镜像，最新版 Launcher 镜像地址可查看文档  [本部署镜像](changelog.md) ，在**运维操作机**上执行以下命令，升级 **Launcher**：
 ```shell
 $ kubectl patch deployment launcher -p '{"spec": {"template": {"spec": {"containers": [{"image": "{{ Launcher 镜像地址 }}", "name": "launcher"}]}}}}' -n launcher
 ```

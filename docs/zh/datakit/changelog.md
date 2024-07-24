@@ -1,5 +1,240 @@
 # 更新日志
 
+## 1.33.1(2024/07/11) {#cl-1.33.1}
+
+本次发布属于 Hotfix 发布，修复如下问题：
+
+- 修复 Trace 采样无效问题，该问题自 1.26 版本引入。同时，在 root-span 上新增了 `dk_sampling_rate` 字段，以表明该 trace 被采样过。**建议升级**（#2312）
+- 修复 SNMP 采集中 IP 处理的 bug，同时新增一批 SNMP 采集过程中的指标暴露（#3099）
+
+---
+
+## 1.33.0(2024/07/10) {#cl-1.33.0}
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.33.0-new}
+
+- 新增 [OpenTelemetry 日志采集](../integrations/opentelemetry.md#logging)（#2292）
+- 重构 [SNMP 采集器](../integrations/snmp.md)，新增 Zabbix/Prometheus 两种配置支持，同时新增了其对应的内置视图（#2290）
+
+### 问题修复 {#cl-1.33.0-fix}
+
+- 修复 HTTP 拨测问题（#2293）
+    - 响应时间（`response_time`）未包含下载时间（`response_download`）的问题
+    - HTTP 拨测中 IPv6 识别问题
+- 修复 Oracle 采集器崩溃问题以及 max-cursor 问题（#2297）
+- 修复日志采集 position 记录问题，该问题自 1.27 版本引入，**建议升级**（#2301）
+- 修复 DDTrace/OpenTelemetry HTTP API 接收数据时，部分 customer-tags 不生效问题（#2308）
+
+### 功能优化 {#cl-1.33.0-opt}
+
+- Redis big-key 采集增加 4.x 版本支持（#2296）
+- 依据实际限制的 CPU 核心数，优化内部各类 worker 个数，能极大减少一些 buffer 内存开销，**建议升级**（#2275）
+- Datakit API 在接收时序数据时，默认改成阻塞形式，避免数据点丢弃（#2300）
+- 优化 Pipeline 中 `grok()` 函数性能（#2310）
+- [Bug report](why-no-data.md#bug-report) 中增加 eBPF 相关的信息以及 Pipeline 信息（#2289）
+- k8s 自动发现 ServiceMonitor 支持配置 TLS 证书路径（#1866）
+- [主机进程采集器](../integrations/host_processes.md)对象和指标数据采集上，增加对应容器 ID 字段（`container_id`）（#2283）
+- Trace 数据采集上增加 Datakit 指纹字段（`datakit_fingerprint`，值是 Datakit 所在主机名），便于问题排查，同时增加了一些采集过程中的指标暴露（#2295）
+    - 增加采集的 Trace 数量统计
+    - 增加了采样丢弃的 Trace 统计
+
+- 文档优化：
+    - 新增 bug-report 有关的[说明文档](bug-report-how-to.md)
+    - 补充 Datakit [安装和升级之间的差异说明](datakit-update.md#upgrade-vs-install)
+    - 补充[离线安装](datakit-offline-install.md#simple-install)时安装参数设置有关的文档
+    - 优化 [MongoDB 采集器](../integrations/mongodb.md)字段文档（#2278）
+
+---
+
+## 1.32.0(2024/06/26) {#cl-1.32.0}
+
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.32.0-new}
+
+- OpenTelemetry 增加直方图指标 （#2276）
+
+### 问题修复 {#cl-1.32.0-fix}
+
+- 修复计量上报中 localhost 识别问题（#2281）
+- 修复日志采集 `service` 字段赋值问题（#2286）
+- 其它缺陷修复（#2284/#2282）
+
+### 功能优化 {#cl-1.32.0-opt}
+
+- MySQL 完善主从复制相关指标和日志采集（#2279）
+- 优化配置加密相关的文档和安装选项（#2274）
+- 优化 DDTrace 采集过程中的内存消耗（#2272）
+- 健康检查采集器中，优化数据上报策略（#2268）
+- 优化 SQLServer 采集中超时控制和 TLS 设置（#2264）
+- 优化 Prometheus 相关指标采集（Push Gateway/Remote Write）中 `job` 字段的处理（#2271）
+- OceanBase 慢查询字段完善，增加客户端 IP 信息（#2280）
+- 重写 Oracle 采集器（#2186）
+- eBPF 采集中优化网络数据的目标域名取值（#2287）
+- 默认采用 v2（Protobuf）协议上传采集数据（#2269）
+    - [v1 和 v2 对比](pb-vs-lp.md)
+- 其它调整（#2267/#2255/#2237/#2270/#2248）
+
+---
+
+## 1.31.0(2024/06/13) {#cl-1.31.0}
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.31.0-new}
+
+- 支持通过[加密的方式](datakit-conf.md#secrets_management)来配置敏感信息（比如数据库密码）（#2249）
+- 新增 [Prometheus Push Gateway 指标推送](../integrations/pushgateway.md)功能（#2260）
+- 容器对象上支持追加对应的 Kubernetes Labels（#2252）
+- eBPF 链路插件增加 Redis 协议识别（#2248）
+
+### 问题修复 {#cl-1.31.0-fix}
+
+- 修复 SNMP 采集不全的问题（#2262）
+- 修复 Kubernetes Autodiscovery 重复采集 Pod 问题（#2259）
+- 增加保护措施避免容器相关指标重复采集（#2253）
+- 修复 Windows 平台 CPU 指标异常（巨大的无效值）问题（#2028）
+
+### 功能优化 {#cl-1.31.0-opt}
+
+- 优化 PostgreSQL 指标采集（#2263）
+- 优化 bpf-netlog 采集字段（#2247）
+- 完善 OceanBase 数据采集（#2122）
+- 其它调整（#2267/#2255/#2237）
+
+---
+
+## 1.30.0(2024/06/04) {#cl-1.30.0}
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.30.0-new}
+
+- Pipeline
+    - 新增 `gjson()` 函数，提供有序的 JSON 字段提取（#2167）
+    - 新增上下文缓存功能（#2157）
+
+### 问题修复 {#cl-1.30.0-fix}
+
+- 修复 Prometheus Remote Write global-tag 追加问题[^2244]（#2244）
+
+[^2244]: 该问题自 1.25.0 版本引入，如果开启了 Prometheus Remote Write 采集器，建议升级一下。
+
+### 功能优化 {#cl-1.30.0-opt}
+
+- 优化 Datakit [`/v1/write/:category` API](apis.md#api-v1-write)，做了如下调整和功能（#2130）
+    - 增加更多 API 参数（[`echo`](apis.md#preview-post-point)/`dry`），便于调试
+    - 支持更多类型的数据格式
+    - 支持模糊识别数据点中的时间戳精度（#2120）
+- 优化 MySQL/Nginx/Redis/SQLServer 指标采集（#2196）
+    - MySQL 增加主从复制相关指标
+    - Redis 慢日志增加耗时指标
+    - Nginx 增加更多 Nginx Plus 相关指标
+    - SQLServer 优化了 Performance 相关的指标结构
+- MySQL 采集器增加低版本 TLS 支持（#2245）
+- 优化 Kubernetes 自身 etcd 指标采集的 TLS 证书配置（#2032）
+- Prometheus Exporter 指标采集支持配置「保留原始指标名」（#2231）
+- Kubernetes Node 对象增加污点相关信息（#2239）
+- eBPF-Tracing 增加 MySQL 协议识别（#1768）
+- 优化 ebpftrace 采集器性能（#2226）
+- 拨测采集器的运行状态支持在 `datakit monitor` 命令面板上展示（#2243）
+- 其它视图和文档优化（#1976/#1977/#2194/#2195/#2221/#2235）
+
+### 兼容调整 {#cl-1.30.0-brk}
+
+本次版本，扩展了数据协议，老版本的 Datakit 升级上来之后，如果中心底座是私有部署的，可以做如下措施（之一），保持数据兼容：
+
+- 升级中心底座至 [1.87.167](../deployment/changelog.md#1871672024-06-05)，或者
+- 修改 *datakit.conf* 中[上传协议配置 `content_encoding`](datakit-conf.md#dataway-settings)，将其改为 `v2`
+
+#### 对 InfluxDB 部署版的说明 {#cl-1.30.0-brk-influxdb}
+
+如果中心底座的时序存储是 InfluxDB，则 **不要升级 Datakit**，请保持在 1.29.1 这个最高版本。需后续中心升级之后，才能升级到更高的 Datakit 版本。
+
+另外，如果中心升级到了较新的版本（1.87.167+），则低版本的 Datakit 也 **不要采用 `v2` 上传协议**，请改用 `v1` 版本的上传协议。
+
+如果确实要要升级到较新的 Datakit 版本，请替换时序引擎为 guance-storage。
+
+---
+
+## 1.29.1(2024/05/20) {#cl-1.29.1}
+
+本次发布属于 Hotfix 发布，修复如下问题：
+
+- 修复 MongoDB 采集器可能崩溃的问题（#2229）
+
+---
+
+## 1.29.0(2024/05/15) {#cl-1.29.0}
+
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.29.0-new}
+
+- 容器日志采集支持在 Annotation 上配置颜色字符过滤 `remove_ansi_escape_codes`（#2208）
+- [Health Check 采集器](../integrations/host_healthcheck.md)支持命令行参数过滤（#2197）
+- 增加 [Cassandra 采集器](../integrations/cassandra.md)（#1812）
+- 新增[用量统计](datakit-conf.md#dk-usage-count)功能（#2177）
+- eBPF Tracing 新增 HTTP2/gRPC 支持（#2017）
+
+### 问题修复 {#cl-1.29.0-fix}
+
+- 修复 Kubernetes 不采集 Pending Pods 的问题（#2214）
+- 修复 logfwd 存在启动失败的问题（#2216）
+- 修复日志采集在特殊情况下没有执行颜色字符过滤的问题（#2209）
+- 修复 Profile 采集不能追加 Tag 的问题（#2205）
+- 修复 Redis/MongoDB 采集器可能导致的 Goroutine 泄漏问题（#2199/#2215）
+
+### 功能优化 {#cl-1.29.0-opt}
+
+- 支持 Prometheus PodMonitor/ServiceMonitor TLSConfig 的 insecureSkipVerify 配置项（#2211）
+- 拨测调试接口安全加固（#2203）
+- Nginx 采集器支持采集端口范围指定（#2206）
+- 完善 TLS 证书相关的 ENV 设置（#2198）
+- 其它文档等优化（#2210/#2213/#2218/#2223/#2224/#2141/#2080）
+
+### 兼容调整 {#cl-1.29.0-brk}
+
+- 移除 Prometheus PodMonitor/ServiceMonitor TLSConfig 证书文件路径的方式（#2211）
+- DCA 路由参数优化和 reload 逻辑优化（#2220）
+
+---
+
+## 1.28.1(2024/04/22) {#cl-1.28.1}
+
+本次发布属于 Hotfix 发布，修复如下问题：
+
+- 修复部分奔溃导致的无数据问题（#2193）
+
+---
+
+## 1.28.0(2024/04/17) {#cl-1.28.0}
+
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.28.0-new}
+
+- Pipeline 新增 `cache_get()/cache_set()/http_request()` 函数，用于扩展 Pipeline 外部数据源（#2128）
+- 支持采集 Kubernetes 系统资源的 Prometheus 指标，目前处于试验性（#2032）
+    - 某些云托管的 Kubernetes 可能无法采集，因为它们关闭了对应的功能授权
+
+### 问题修复 {#cl-1.28.0-fix}
+
+- 修复容器日志的 filter 逻辑问题（#2188）
+
+### 功能优化 {#cl-1.28.0-opt}
+
+- PrometheusCRD-ServiceMonitor 支持 TLS 路径配置（#2168）
+- 优化 Bond 模式下网卡信息采集（#1877）
+- 进一步优化 Windows Event 采集性能（#2172）
+- 优化 Jaeger APM 数据采集中的字段信息提取（#2174）
+- 移除日志采集的磁盘缓存功能（#2191）
+- 日志采集添加 `log_file_inode` 字段
+- 新增 point-pool 配置，以优化高负载情况下 Datakit 自身的内存占用（#2034）
+    - 重构 Datakit 部分模块以优化 GC 开销，这一优化在低负载情况下会稍微多占用一些内存（多出来的内存主要用于内存池）
+- 其它文档调整和细节优化（#2191/#2189/#2185/#2181/#2180）
+
+---
+
 ## 1.27.0(2024/04/03) {#cl-1.27.0}
 
 ### 新增功能 {#cl-1.27.0-new}
@@ -47,6 +282,7 @@
 - 修复 SQLServer 自定义采集中缺少 tag 的问题（#2144）
 - 修复 Kubernetes Event 重复采集问题（#2145）
 - 修复 Kubernetes 中容器个数采集不准确问题（#2146）
+- 修复 Trace 采样会错误采样部分 Trace 的问题（#2135）
 
 ### 功能优化 {#cl-1.26.0-opt}
 
@@ -410,7 +646,7 @@
 ### 新加功能 {#cl-1.17.1-new}
 
 - 新增通过 [eBPF 构建链路数据](../integrations/ebpftrace.md)，用来表示 Linux 进程/线程的调用关系（#1836）
-- Pipeline 新增函数 [`pt_name`](../developers/pipeline/pipeline-built-in-function.md#fn-pt-name)（#1937）
+- Pipeline 新增函数 [`pt_name`](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-pt-name)（#1937）
 
 ### 功能优化 {#cl-1.17.1-opt}
 
@@ -680,10 +916,10 @@
 ### 问题修复 {#cl-1.12.0-fix}
 
 - 修复拨测采集器缺失 `owner` 字段问题（#1789）
-- 修复 DDTrace 采集器缺失 `host` 问题，同时各类 Trace 的 tag 采集改为黑名单机制[^trace-black-list]（#1776）
+- 修复 DDTrace 采集器缺失 `host` 问题，同时各类 Trace 的 tag 采集改为黑名单机制[^1776]（#1776）
 - 修复 RUM API 跨域问题（#1785）
 
-[^trace-black-list]: 各类 Trace 会在其数据上带上各种业务字段（称之为 Tag、Annotation 或 Attribute 等），Datakit 为了收集更多数据，默认这些字段都予以接收。
+[^1776]: 各类 Trace 会在其数据上带上各种业务字段（称之为 Tag、Annotation 或 Attribute 等），Datakit 为了收集更多数据，默认这些字段都予以接收。
 
 ### 功能优化 {#cl-1.12.0-opt}
 
@@ -790,7 +1026,7 @@
 - 新增 [Chrony 采集器](../integrations/chrony.md)（#1671）
 - 新增 RUM Headless 支持（#1644）
 - Pipeline
-    - 新增 [offload 功能](../developers/pipeline/pipeline-offload.md)（#1634）
+    - 新增 [offload 功能](../pipeline/use-pipeline/pipeline-offload.md)（#1634）
     - 重新调整了已有的文档结构（#1686）
 
 ### 问题修复 {#cl-1.9.2-fix}
@@ -994,8 +1230,8 @@
 
 - 支持自动发现并采集 [Pod 上的 Prometheus 指标](kubernetes-prom.md#auto-discovery-metrics-with-prometheus)(#1564)
 - Pipeline 新增聚合类函数(#1554)
-    - [agg_create()](../developers/pipeline/pipeline-built-in-function.md#fn-agg-create)
-    - [agg_metric()](../developers/pipeline/pipeline-built-in-function.md#fn-agg-metric)
+    - [agg_create()](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-agg-create)
+    - [agg_metric()](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-agg-metric)
 
 ### 功能优化 {#cl-1.5.10-opt}
 
@@ -1062,8 +1298,8 @@
 - 完善 [cgroup v2](datakit-conf.md#resource-limit) 支持(#1494)
 - Kubernetes 安装时增加环境变量（`ENV_CLUSTER_K8S_NAME`）来配置 cluster 名称(#1504)
 - Pipeline
-    - [`kv_split()`](../developers/pipeline/pipeline-built-in-function.md#fn-kv_split) 函数增加强制保护措施，避免数据膨胀(#1510)
-    - 关于 JSON 的处理，优化了 [`json()`](../developers/pipeline/pipeline-built-in-function.md#fn-json) 和 [`delete()`](../developers/pipeline/pipeline-built-in-function.md#fn-delete) 删除 key 的功能。
+    - [`kv_split()`](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-kv_split) 函数增加强制保护措施，避免数据膨胀(#1510)
+    - 关于 JSON 的处理，优化了 [`json()`](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-json) 和 [`delete()`](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-delete) 删除 key 的功能。
 - 其它工程上的优化(#1500)
 
 ### 文档调整 {#cl-1.5.8-doc}
@@ -1081,9 +1317,9 @@
 ### 新加功能 {#cl-1.5.7-new}
 
 - Pipeline
-    - `json` 函数增加 [key 删除](../developers/pipeline/pipeline-built-in-function.md#fn-json) 功能(#1465)
-    - 增加函数 [`kv_split()`](../developers/pipeline/pipeline-built-in-function.md#fn-kv_split)(#1414)
-    - 增加[时间函数](../developers/pipeline/pipeline-built-in-function.md#fn-datetime)(#1411)
+    - `json` 函数增加 [key 删除](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-json) 功能(#1465)
+    - 增加函数 [`kv_split()`](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-kv_split)(#1414)
+    - 增加[时间函数](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-datetime)(#1411)
 - 增加 [IPv6 支持](datakit-conf.md#config-http-server)(#1454)
 - 磁盘 IO 采集支持 [io wait 扩展指标](diskio.md#extend)(#1472)
 - 容器采集支持 [Docker 和 containerd 共存](container.md#requrements)(#1401)
@@ -1099,7 +1335,7 @@
 ### 功能优化 {#cl-1.5.7-opt}
 
 - 优化 Point Checker(#1478)
-- 优化 Pipeline [`replace()`](../developers/pipeline/pipeline-built-in-function.md#fn-replace.md) 性能(#1477)
+- 优化 Pipeline [`replace()`](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-replace.md) 性能(#1477)
 - 优化 Windows 下 Datakit 安装流程(#1404)
 - 优化 [配置中心](confd.md) 的配置处理流程(#1402)
 - 添加 [Filebeat](beats_output.md) 集成测试能力(#1459)
@@ -1323,11 +1559,11 @@
 - 纯容器环境下，支持[通过 label 方式](container-log.md#logging-with-annotation-or-label)配置容器内日志采集(#1187)
 - [SQLServer 采集器](sqlserver.md)增加更多指标集采集(#1216)
 - 新增 Pipeline 函数(#1220/#1224)
-    - [sample()](../developers/pipeline/pipeline-built-in-function.md#fn-sample)：采样函数
-    - [b64enc()](../developers/pipeline/pipeline-built-in-function.md#fn-b64enc)：Base64 编码函数
-    - [b64dec()](../developers/pipeline/pipeline-built-in-function.md#fn-b64dec)：Base64 解码函数
-    - [append()](../developers/pipeline/pipeline-built-in-function.md#fn-append)：列表追加函数
-    - [url_parse()](../developers/pipeline/pipeline-built-in-function.md#fn-url-parse)：HTTP URL 解析函数
+    - [sample()](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-sample)：采样函数
+    - [b64enc()](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-b64enc)：Base64 编码函数
+    - [b64dec()](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-b64dec)：Base64 解码函数
+    - [append()](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-append)：列表追加函数
+    - [url_parse()](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-url-parse)：HTTP URL 解析函数
 
 - 各种文档完善(#1242/#1238/#1247)
 
@@ -1378,9 +1614,9 @@
     - 支持通过正则过滤指标集名称(#1196)
 
 - Pipeline 优化(#1188)
-    - 优化 [grok()](../developers/pipeline/pipeline-built-in-function.md#fn-grok) 等函数，使得其可以用在 `if/else` 语句中，以判定操作是否生效
-    - 增加 [match()](../developers/pipeline/pipeline-built-in-function.md#fn-match) 函数
-    - 增加 [cidr()](../developers/pipeline/pipeline-built-in-function.md#fn-cidr) 函数(#733)
+    - 优化 [grok()](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-grok) 等函数，使得其可以用在 `if/else` 语句中，以判定操作是否生效
+    - 增加 [match()](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-match) 函数
+    - 增加 [cidr()](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-cidr) 函数(#733)
     <!-- - Pipeline 函数增加分类支持，便于用户在 Studio 页面上更快速定位操作函数(#1150) -->
 
 - 进程采集器增加打开的文件列表详情字段(#1173)
@@ -1463,12 +1699,12 @@
 - 支持将 k8s 中各类 yaml 信息采集到对应的[对象数据](container.md#objects)上(#1102)
 - Trace 采集支持自动提取一些关键 meta 信息(#1092)
 - 支持安装过程中指定安装源地址，以简化[离线安装](datakit-offline-install.md)流程(#1065)
-- [Pipeline](../developers/pipeline/index.md) 新增功能：
+- [Pipeline](../pipeline/use-pipeline/index.md) 新增功能：
     - 新增 for 循环/字典/数组支持(#1037/#1093)
     - 新增算数表达式支持(#798)
     - Pipeline 出错信息将在采集的数据上展示(#784/#1091)
     - 如果时间字段切割出错，支持自动修正时间字段(`time`)，以避免控制台页面上时间无法展示(#1091)
-    - 新增 [len()](../developers/pipeline/pipeline-built-in-function.md#fn-len) 函数
+    - 新增 [len()](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-len) 函数
 
 ### 问题修复 {#cl-1.4.16-fix}
 
@@ -1585,7 +1821,7 @@
 
 ### 新功能 {#cl-1.4.11-newfeature}
 
-- Pipeline 中新增 [Ref-Table 功能](../developers/pipeline/pipeline-refer-table/)(#967)
+- Pipeline 中新增 [Ref-Table 功能](../pipeline/use-pipeline/pipeline-refer-table/)(#967)
 - DataKit 9529 HTTP [支持绑定到 domain socket](datakit-conf.md#uds)(#925)
     - 对应的 [eBPF 采集](ebpf.md) 和 [Oracle 采集](oracle.md)，其配置方式也需做对应变更。
 - RUM sourcemap 增加 Android R8 支持(#1040)
@@ -1634,7 +1870,7 @@
 
 - Pipeline 相关更新：
     - 优化 Pipeline 执行步骤(#1007)
-    - [`grok()`](../developers/pipeline/pipeline-built-in-function.md#fn-grok) 和 [`json()`](../developers/pipeline/pipeline-built-in-function.md#fn-json) 函数默认执行 trim-space 操作(#1001)
+    - [`grok()`](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-grok) 和 [`json()`](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-json) 函数默认执行 trim-space 操作(#1001)
 
 - DDTrace 相关更新：
     - 修复潜在的 goroutine 泄露问题(#1008)
@@ -1733,7 +1969,7 @@
 - Redis 调整 [`slowlog` 采集](redis.md#redis_slowlog)，将其数据改为日志存储(#885)
 - 优化 [TDEngine 采集](tdengine.md)(#877)
 - 完善 Containerd 日志采集，支持默认格式的日志自动解析(#869)
-- [Pipeline](../developers/pipeline/index.md) 增加 [Profiling 类数据](profile.md)支持(#866)
+- [Pipeline](../pipeline/use-pipeline/index.md) 增加 [Profiling 类数据](profile.md)支持(#866)
 - 容器/Pod 日志采集支持在 Label/Annotation 上[额外追加 tag](container-log.md#logging-with-annotation-or-label)(#861)
 - 修复 [Jenkins CI](jenkins.md#jenkins_pipeline) 数据采集的时间精度问题(#860)
 - 修复 Tracing resource-type 值不统一的问题(#856)
@@ -2318,8 +2554,8 @@ powershell ./.install.ps1;
 
 ```
 [
-	{"abc": 123},
-	{"def": true}
+    {"abc": 123},
+    {"def": true}
 ]
 ```
 
@@ -2490,12 +2726,6 @@ powershell ./.install.ps1;
     - [Redis](redis)
     - [Solr](solr)
 
-<!--
-- [DCA](dca) 相关功能完善
-	- 独立端口分离(#341)
-	- 远程重启功能调整(#345)
-	- 白名单功能(#244) -->
-
 ---
 
 ## 1.1.8-rc3(2021/09/10)
@@ -2620,15 +2850,15 @@ powershell ./.install.ps1;
   output_file                  = ""    # 输出 io 数据到本地文件，原主配置中 output_file
 
 [http_api]
-	listen          = "localhost:9529" # 原 http_listen
-	disable_404page = false            # 原 disable_404page
+    listen          = "localhost:9529" # 原 http_listen
+    disable_404page = false            # 原 disable_404page
 
 [logging]
-	log           = "/var/log/datakit/log"     # 原 log
-	gin_log       = "/var/log/datakit/gin.log" # 原 gin.log
-	level         = "info"                     # 原 log_level
-	rotate        = 32                         # 原 log_rotate
-	disable_color = false                      # 新增配置
+    log           = "/var/log/datakit/log"     # 原 log
+    gin_log       = "/var/log/datakit/gin.log" # 原 gin.log
+    level         = "info"                     # 原 log_level
+    rotate        = 32                         # 原 log_rotate
+    disable_color = false                      # 新增配置
 ```
 
 ---
@@ -2975,13 +3205,13 @@ powershell ./.install.ps1;
 - 支持在 http://localhost:9529/man 页面浏览 DataKit 文档（只有此次新改的采集器文档集成过来了，其它采集器文档需在原来的帮助中心查看）。默认情况下不支持远程查看 DataKit 文档，可在终端查看（仅 Mac/Linux 支持）：
 
 ```shell
-	# 进入采集器安装目录，输入采集器名字（通过 `Tab` 键选择自动补全）即可查看文档
-	$ ./datakit -cmd -man
-	man > nginx
-	(显示 Nginx 采集文档)
-	man > mysql
-	(显示 MySQL 采集文档)
-	man > Q               # 输入 Q 或 exit 退出
+# 进入采集器安装目录，输入采集器名字（通过 `Tab` 键选择自动补全）即可查看文档
+$ ./datakit -cmd -man
+man > nginx
+(显示 Nginx 采集文档)
+man > mysql
+(显示 MySQL 采集文档)
+man > Q               # 输入 Q 或 exit 退出
 ```
 
 ---
@@ -3139,25 +3369,3 @@ powershell ./.install.ps1;
 - `tailf` 采集器新日志匹配改成正向匹配
 - 其它一些细节问题修复
 - 支持 Mac 平台的 CPU 数据采集
-
-<!--
-[:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
-[:fontawesome-solid-flag-checkered:](index.md#legends "支持选举")
-
-    ```toml
-        
-    ```
-
-# 外链的添加方式
-[some text](http://external-host.com){:target="_blank"}
-
-## x.x.x(YY/MM/DD) {#cl-x.x.x}
-
-本次发布属于迭代发布，主要有如下更新：
-
-### 新加功能 {#cl-x.x.x-new}
-### 问题修复 {#cl-x.x.x-fix}
-### 功能优化 {#cl-x.x.x-opt}
-### 兼容调整 {#cl-x.x.x-brk}
--->
-<!-- markdown-link-check-enable -->

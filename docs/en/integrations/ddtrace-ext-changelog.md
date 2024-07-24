@@ -25,6 +25,47 @@ Currently, DDTrace has added the following extensions to the technology stack：
 <!-- markdownlint-enable -->
 ## changelog {#changelog}
 
+## v1.36.1-guance {#cl-1.36.1-guance}
+
+### fix {#cl-1.36.1-guance-fix}
+
+- Merge DataDog Java Agent tag 1.36.0.
+- Add `dd-guance-version` tag.
+- Using `mybatis plus`, the SQL statements executed by the batch class are not recorded as span information.
+
+## v1.34.2-guance {#cl-1.34.2-guance}
+
+### fix {#cl-1.34.2-guance-fix}
+
+- Due to excessive memory usage, it has been decided to remove the [add response body](ddtrace-ext-java.md#response_body) feature.
+
+## v1.34.0-guance {#cl-1.34.0-guance}
+
+### new {#cl-1.34.0-guance-fix}
+
+- Merge DataDog v1.34.0
+
+## v1.30.5-guance v1.30.6-guance {#cl-1.30.5-guance}
+
+### fix {#cl-1.30.5-guance-fix}
+
+- Fixed `trace_id` extraction problem under `W3C` protocol.
+- Fix `Pulsar OOM` issue.
+- `Lettuce5` obtains `peer_ip` in cluster mode.
+
+## v1.30.4-guance (2024/4/25) {#cl-1.30.4-guance}
+
+### fix {#cl-1.30.4-guance-fix}
+
+- Solve the problem that the link cannot be interrupted due to continuous delivery of `Dubbo` service.
+- Solve the problem of `Pulsar` not releasing memory.
+
+## v1.30.2-guance (2024/4/3) {#cl-1.30.2-guance}
+
+### fix {#cl-1.30.2-guance-fix}
+
+- Redis SDK `Lettuce` supports viewing `Command` parameters.
+
 ## v1.30.1-guance (2024/2/6) {#cl-1.30.1-guance}
 
 ### new {#cl-1.30.1-guance-fix}

@@ -1,4 +1,4 @@
-# 功能菜单设置
+# 功能菜单设置(old)
 
 ---
 
@@ -51,7 +51,11 @@
 | Workspace          | 管理           |
 | Billing            | 付费计划与账单 |
 
-注意：设置菜单项，最好全量修改，确定每个菜单的开启/关闭
+注意：
+<br/>
+1. 如未配置, 前端当新菜单处理, 默认打开
+<br/>
+2. 管理后台存在的菜单配置会影响空间配置显示的最终效果
 
 
 
@@ -63,6 +67,8 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu/set' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 
 --data-raw '{"menu":[{"key":"Scene","value":1},{"key":"Events","value":1},{"key":"ExceptionsTracking","value":1},{"key":"Objectadmin","value":1},{"key":"MetricQuery","value":1},{"key":"LogIndi","value":1},{"key":"Tracing","value":1},{"key":"Rum","value":1},{"key":"CloudDial","value":1},{"key":"Security","value":1},{"key":"GitLabCI","value":1},{"key":"Monitor","value":1},{"key":"Integration","value":1},{"key":"Workspace","value":1},{"key":"Billing","value":1}]}' \
+
+
 ```
 
 

@@ -24,10 +24,10 @@ monitor   :
 
 ## 术语  {#terminology}
 
-- `SNMP` (Simple network management protocol): A network protocol that is used to collect information about bare metal networking gear.
-- `OID` (Object identifier): A unique ID or address on a device that when polled returns the response code of that value. For example, OIDs are CPU or device fan speed.
-- `sysOID` (System object identifier): A specific address that defines the device type. All devices have a unique ID that defines it. For example, the Meraki base sysOID is `1.3.6.1.4.1.29671`.
-- `MIB` (Managed information base): A database or list of all the possible OIDs and their definitions that are related to the MIB. For example, the `IF-MIB` (interface MIB) contains all the OIDs for descriptive information about a device’s interface.
+- `SNMP` (Simple network management protocol): 用于收集有关裸机网络设备信息的网络协议。
+- `OID` (Object identifier): 设备上的唯一 ID 或地址，轮询时返回该值的响应代码。例如，OID 是 CPU 或设备风扇速度。
+- `sysOID` (System object identifier): 定义设备类型的特定地址。所有设备都有一个定义它的唯一 ID。例如，`Meraki` 基础 sysOID 是“1.3.6.1.4.1.29671”。
+- `MIB` (Managed information base): 与 MIB 相关的所有可能的 OID 及其定义的数据库或列表。例如，“IF-MIB”（接口 MIB）包含有关设备接口的描述性信息的所有 OID。
 
 ## 关于 SNMP 协议 {#config-pre}
 
@@ -61,38 +61,52 @@ Datakit 支持以上所有版本。
     ```toml
         
     [[inputs.snmp]]
-      ## Filling in specific device IP address, like ["10.200.10.240", "10.200.10.241"].
+      ## Filling in specific device IP address, example ["10.200.10.240", "10.200.10.241"].
       ## And you can use auto_discovery and specific_devices at the same time.
       ## If you don't want to specific device, you don't need provide this.
-      #
       # specific_devices = ["***"] # SNMP Device IP.
     
-      ## Filling in autodiscovery CIDR subnet, like ["10.200.10.0/24", "10.200.20.0/24"].
+      ## Filling in autodiscovery CIDR subnet, example ["10.200.10.0/24", "10.200.20.0/24"].
       ## If you don't want to enable autodiscovery feature, you don't need provide this.
-      #
       # auto_discovery = ["***"] # Used in autodiscovery mode only, ignore this in other cases.
+    
+      ## Consul server url for consul discovery
+      ## We can discovery snmp instance from consul services
+      # consul_discovery_url = "http://127.0.0.1:8500"
+    
+      ## Consul token, optional.
+      # consul_token = "<consul token>"
+    
+      ## Instance ip key name. ("IP" case sensitive)
+      # instance_ip_key = "IP"
+    
+      ## Witch task will collect, according to consul service filed "Address"
+      ## [] mean collect all, optional, default to []
+      # exporter_ips = ["<ip1>", "<ip2>"...]
+    
+      ## Consul TLS connection config, optional.
+      # ca_certs = ["/opt/tls/ca.crt"]
+      # cert = "/opt/tls/client.crt"
+      # cert_key = "/opt/tls/client.key"
+      # insecure_skip_verify = true
     
       ## SNMP protocol version the devices using, fill in 2 or 3.
       ## If you using the version 1, just fill in 2. Version 2 supported version 1.
       ## This is must be provided.
-      #
       snmp_version = 2
     
       ## SNMP port in the devices. Default is 161. In most cases, you don't need change this.
       ## This is optional.
-      #
       # port = 161
     
       ## Password in SNMP v2, enclose with single quote. Only worked in SNMP v2.
       ## If you are using SNMP v2, this is must be provided.
       ## If you are using SNMP v3, you don't need provide this.
-      #
       # v2_community_string = "***"
     
       ## Authentication stuff in SNMP v3.
       ## If you are using SNMP v2, you don't need provide this.
       ## If you are using SNMP v3, this is must be provided.
-      #
       # v3_user = "***"
       # v3_auth_protocol = "***"
       # v3_auth_key = "***"
@@ -104,31 +118,31 @@ Datakit 支持以上所有版本。
       ## Number of workers used to collect and discovery devices concurrently. Default is 100.
       ## Modifying it based on device's number and network scale.
       ## This is optional.
-      #
       # workers = 100
     
-      ## Interval between each autodiscovery in seconds. Default is "1h".
-      ## Only worked in autodiscovery feature.
+      ## Interval between each auto discovery in seconds. Default is "1h".
+      ## Only worked in auto discovery feature.
       ## This is optional.
-      #
       # discovery_interval = "1h"
     
-      ## Filling in excluded device IP address, like ["10.200.10.220", "10.200.10.221"].
-      ## Only worked in autodiscovery feature.
+      ## Collect metric interval, default is 10s. (optional)
+      # metric_interval = "10s"
+    
+      ## Collect object interval, default is 5m. (optional)
+      # object_interval = "5m"
+    
+      ## Filling in excluded device IP address, example ["10.200.10.220", "10.200.10.221"].
+      ## Only worked in auto discovery feature.
       ## This is optional.
-      #
       # discovery_ignored_ip = []
     
       ## Set true to enable election
-      #
       # election = true
     
       ## Device Namespace. Default is "default".
-      #
       # device_namespace = "default"
     
       ## Picking the metric data only contains the field's names below.
-      #
       # enable_picking_data = true # Default is "false", which means collecting all data.
       # status = ["sysUpTimeInstance", "tcpCurrEstab", "ifAdminStatus", "ifOperStatus", "cswSwitchState"]
       # speed = ["ifHCInOctets", "ifHCInOctetsRate", "ifHCOutOctets", "ifHCOutOctetsRate", "ifHighSpeed", "ifSpeed", "ifBandwidthInUsageRate", "ifBandwidthOutUsageRate"]
@@ -136,15 +150,100 @@ Datakit 支持以上所有版本。
       # mem = ["memoryUsed", "memoryUsage", "memoryFree"]
       # extra = []
     
-      [inputs.snmp.tags]
-      # tag1 = "val1"
-      # tag2 = "val2"
+      ## The matched tags would be dropped.
+      # tags_ignore = ["Key1","key2"]
+    
+      ## The regexp matched tags would be dropped.
+      # tags_ignore_regexp = ["^key1$","^(a|bc|de)$"]
+    
+      ## Zabbix profiles
+      # [[inputs.snmp.zabbix_profiles]]
+        ## Can be full path file name or only file name.
+        ## If only file name, the path is "./conf.d/snmp/userprofiles/
+        ## Suffix can be .yaml .yml .xml
+        # profile_name = "xxx.yaml"
+        ## ip_list is optional
+        # ip_list = ["ip1", "ip2"]
+        ## Device class, Best to use the following words:
+        ## access_point, firewall, load_balancer, pdu, printer, router, sd_wan, sensor, server, storage, switch, ups, wlc, net_device
+        # class = "server"
+    
+      # [[inputs.snmp.zabbix_profiles]]
+        # profile_name = "yyy.xml"
+        # ip_list = ["ip3", "ip4"]
+        # class = "switch"
+    
+      # ...
+    
+      ## Prometheus snmp_exporter profiles, 
+      ## If module mapping different class, can disassemble yml file.
+      # [[inputs.snmp.prom_profiles]]
+        # profile_name = "xxx.yml"
+        ## ip_list useful when xxx.yml have 1 module 
+        # ip_list = ["ip1", "ip2"]
+        # class = "net_device"
+    
+      # ...
+    
+      ## Prometheus consul discovery module mapping.  ("type"/"isp" case sensitive)
+      # [[inputs.snmp.module_regexps]]
+        # module = "vpn5"
+        ## There is an and relationship between step regularization
+        # step_regexps = [["type", "vpn"],["isp", "CT"]]
+    
+      # [[inputs.snmp.module_regexps]]
+        # module = "switch"
+        # step_regexps = [["type", "switch"]]
+    
+      # ...
+        
+      ## Field key or tag key mapping. Do NOT edit.
+      [inputs.snmp.key_mapping]
+        CNTLR_NAME = "unit_name"
+        DISK_NAME = "unit_name"
+        ENT_CLASS = "unit_class"
+        ENT_NAME = "unit_name"
+        FAN_DESCR = "unit_desc"
+        IF_OPERS_TATUS = "unit_status"
+        IFADMINSTATUS = "unit_status"
+        IFALIAS = "unit_alias"
+        IFDESCR = "unit_desc"
+        IFNAME = "unit_name"
+        IFOPERSTATUS = "unit_status"
+        IFTYPE = "unit_type"
+        PSU_DESCR = "unit_desc"
+        SENSOR_LOCALE = "unit_locale"
+        SNMPINDEX = "snmp_index"
+        SNMPVALUE = "snmp_value"
+        TYPE = "unit_type"
+        SENSOR_INFO = "unit_desc"
+        ## We can add more mapping below
+        # dev_fan_speed = "fanSpeed"
+        # dev_disk_size = "diskTotal
+      
+      ## Reserved oid-key mappings. Do NOT edit.
+      [inputs.snmp.oid_keys]
+        "1.3.6.1.2.1.1.3.0" = "netUptime"
+        "1.3.6.1.2.1.25.1.1.0" = "uptime"
+        "1.3.6.1.2.1.2.2.1.13" = "ifInDiscards"
+        "1.3.6.1.2.1.2.2.1.14" = "ifInErrors"
+        "1.3.6.1.2.1.31.1.1.1.6" = "ifHCInOctets"
+        "1.3.6.1.2.1.2.2.1.19" = "ifOutDiscards"
+        "1.3.6.1.2.1.2.2.1.20" = "ifOutErrors"
+        "1.3.6.1.2.1.31.1.1.1.10" = "ifHCOutOctets"
+        "1.3.6.1.2.1.31.1.1.1.15" = "ifHighSpeed"
+        "1.3.6.1.2.1.2.2.1.8" = "ifNetStatus"
+        ## We can add more oid-key mapping below
+    
+      # [inputs.snmp.tags]
+        # tag1 = "val1"
+        # tag2 = "val2"
     
       [inputs.snmp.traps]
-      # enable = true
-      # bind_host = "0.0.0.0"
-      # port = 9162
-      # stop_timeout = 3    # stop timeout in seconds.
+        enable = true
+        bind_host = "0.0.0.0"
+        port = 9162
+        stop_timeout = 3    # stop timeout in seconds.
     
     ```
 
@@ -152,9 +251,95 @@ Datakit 支持以上所有版本。
 
 === "Kubernetes"
 
-    目前可以通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting)来开启采集器。
+    可通过 [ConfigMap 方式注入采集器配置](../datakit/datakit-daemonset-deploy.md#configmap-setting) 或 [配置 ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) 开启采集器。
 
----
+### 多种配置格式 {#configuration-formats}
+
+#### Zabbix 格式 {#format-zabbix}
+
+- 配置
+
+    ```toml
+      [[inputs.snmp.zabbix_profiles]]
+        profile_name = "xxx.yaml"
+        ip_list = ["ip1", "ip2"]
+        class = "server"
+    
+      [[inputs.snmp.zabbix_profiles]]
+        profile_name = "yyy.xml"
+        ip_list = ["ip3", "ip4"]
+        class = "firewall"
+    
+      # ...
+    ```
+  
+    `profile_name` 可以是全路径或只包含文件名，只包含文件名的话，文件要放到 *./conf.d/snmp/userprofiles/* 子目录下。
+
+    您可以去 Zabbix 官方下载对应的的配置，也可以去 [社区](https://github.com/zabbix/community-templates){:target="_blank"} 下载。
+
+    如果您对下载到的 yaml 或 xml 文件不满意，也可以自行修改。
+
+- 自动发现
+    - 自动发现在引入的多个 yaml 配置里面匹配采集规则，进行采集。
+    - 自动发现请尽量按 C 段配置，配置 B 段可能会慢一些。
+    - 万一自动发现匹配不到 yaml ，是因为已有的 yaml 里面没有被采集设备的生产商特征码。
+        - 可以在 yaml 的 items 里面人为加入一条 oid 信息，引导自动匹配过程。
+
+          ```yaml
+          zabbix_export:
+            templates:
+            - items:
+              - snmp_oid: 1.3.6.1.4.1.2011.5.2.1.1.1.1.6.114.97.100.105.117.115.0.0.0.0
+          ```
+
+        - 拟加入的 oid 通过执行以下命令获得，后面加上 .0.0.0.0 是为了防止产生无用的指标。
+
+        ```shell
+        $ snmpwalk -v 2c -c public <ip> 1.3.6.1.2.1.1.2.0
+        iso.3.6.1.2.1.1.2.0 = OID: iso.3.6.1.4.1.2011.2.240.12
+        
+        $ snmpgetnext -v 2c -c public <ip> 1.3.6.1.4.1.2011.2.240.12
+        iso.3.6.1.4.1.2011.5.2.1.1.1.1.6.114.97.100.105.117.115 = STRING: "radius"
+        ```
+
+#### Prometheus 格式 {#format-Prometheus}
+
+- 配置
+
+    ```toml
+      [[inputs.snmp.prom_profiles]]
+        profile_name = "xxx.yml"
+        ip_list = ["ip1", "ip2"]
+        class = "server"
+    
+      [[inputs.snmp.prom_profiles]]
+        profile_name = "yyy.yml"
+        ip_list = ["ip3", "ip4"]
+        class = "firewall"
+    
+      # ...
+    ```
+
+    profile 参考 Prometheus [snmp_exporter](https://github.com/prometheus/snmp_exporter){:target="_blank"} 的 snmp.yml 文件，
+    建议把不同 class 的 [module](https://github.com/prometheus/snmp_exporter?tab=readme-ov-file#prometheus-configuration){:target="_blank"} 拆分成  不同 .yml 配置。
+
+    Prometheus 的 profile 允许为 module 单独配置团体名 community，这个团体名优先于采集器配置的团体名。
+
+    ```yml
+    switch:
+      walk:
+      ...
+      get:
+      ...
+      metrics:
+      ...
+      auth:
+        community: xxxxxxxxxxxx
+    ```
+
+- 自动发现
+
+    SNMP 采集器支持通过 Consul 服务发现来发现被采集对象，服务注入格式参考 [prom 官网](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#consul_sd_config){:target="_blank"}。
 
 ???+ tip
 
@@ -173,16 +358,15 @@ Datakit 支持以上所有版本。
     3. 「指定设备」模式和「自动发现」模式，两种模式可以共存，但设备间的 SNMP 协议的版本号及相对应的鉴权字段必须保持一致
 <!-- markdownlint-enable -->
 
-### 配置 SNMP {#config-snmp}
-
-- 在设备侧，配置 SNMP 协议
+### 配置被采集 SNMP 设备 {#config-snmp}
 
 SNMP 设备在默认情况下，一般 SNMP 协议处于关闭状态，需要进入管理界面手动打开。同时，需要根据实际情况选择协议版本和填写相应信息。
 
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    有些设备为了安全需要额外配置放行 SNMP，具体因设备而异。比如华为系防火墙，需要在 "启用访问管理" 中勾选 SNMP 以放行。可以使用 `snmpwalk` 命令来测试采集侧与设备侧是否配置连通成功（在 Datakit 运行的主机上运行以下命令）：
+    有些设备为了安全需要额外配置放行 SNMP，具体因设备而异。比如华为系防火墙，需要在 "启用访问管理" 中勾选 SNMP 以放行。
+    可以使用 `snmpwalk` 命令来测试采集侧与设备侧是否配置连通成功（在 Datakit 运行的主机上运行以下命令）：
 
     ```shell
     # 适用 v2c 版本
@@ -199,87 +383,9 @@ SNMP 设备在默认情况下，一般 SNMP 协议处于关闭状态，需要进
     ```
 <!-- markdownlint-enable -->
 
-- 在 DataKit 侧，配置采集。
-
-## 高级功能 {#advanced-features}
-
-### 自定义设备的 OID 配置 {#advanced-custom-oid}
-
-如果你发现被采集的设备上报的数据中没有你想要的指标，那么，你可以需要为该设备额外定义一份 Profile。
-
-设备的所有 OID 一般都可以在其官网上下载。Datakit 定义了一些通用的 OID，以及 Cisco/Dell/HP 等部分设备。根据 SNMP 协议，各设备生产商可以自定义 [OID](https://www.dpstele.com/snmp/what-does-oid-network-elements.php){:target="_blank"}，用于标识其内部特殊对象。如果想要标识这些，你需要自定义设备的配置(我们这里称这种配置为 Profile，即 "自定义 Profile")，方法如下。
-
-要增加指标或者自定义配置，需要列出 MIB name, table name, table OID, symbol 和 symbol OID，例如：
-
-```yaml
-- MIB: EXAMPLE-MIB
-    table:
-      # Identification of the table which metrics come from.
-      OID: 1.3.6.1.4.1.10
-      name: exampleTable
-    symbols:
-      # List of symbols ('columns') to retrieve.
-      # Same format as for a single OID.
-      # Each row in the table emits these metrics.
-      - OID: 1.3.6.1.4.1.10.1.1
-        name: exampleColumn1
-```
-
-下面是一个操作示例。
-
-在 Datakit 的安装目录的路径 `conf.d/snmp/profiles` 下，如下所示创建 yml 文件 `cisco-3850.yaml`（这里以 Cisco 3850 为例）：
-
-``` yaml
-# Backward compatibility shim. Prefer the Cisco Catalyst profile directly
-# Profile for Cisco 3850 devices
-
-extends:
-  - _base.yaml
-  - _cisco-generic.yaml
-  - _cisco-catalyst.yaml
-
-sysobjectid: 1.3.6.1.4.1.9.1.1745 # cat38xxstack
-
-device:
-  vendor: "cisco"
-
-# Example sysDescr:
-#   Cisco IOS Software, IOS-XE Software, Catalyst L3 Switch Software (CAT3K_CAA-UNIVERSALK9-M), Version 03.06.06E RELEASE SOFTWARE (fc1) Technical Support: http://www.cisco.com/techsupport Copyright (c) 1986-2016 by Cisco Systems, Inc. Compiled Sat 17-Dec-
-
-metadata:
-  device:
-    fields:
-      serial_number:
-        symbol:
-          MIB: OLD-CISCO-CHASSIS-MIB
-          OID: 1.3.6.1.4.1.9.3.6.3.0
-          name: info
-
-metrics:
-  # iLO controller metrics.
-
-  - # Power state.
-    # NOTE: unknown(1), poweredOff(2), poweredOn(3), insufficientPowerOrPowerOnDenied(4)
-    MIB: CPQSM2-MIB
-    symbol:
-      OID: 1.3.6.1.4.1.232.9.2.2.32
-      name: temperature
-```
-
-如上所示，定义了一个 `sysobjectid` 为 `1.3.6.1.4.1.9.1.1745` 的设备，下次 Datakit 如果采集到 `sysobjectid` 相同的设备时，便会应用该文件，在此情况下：
-
-- 采集到 OID 为 `1.3.6.1.4.1.9.3.6.3.0` 的数据时会把名称为 `serial_number` 的字段加到 `device_meta` 字段（JSON）里面，然后附加到指标集 `snmp_object` 中作为 Object 上报；
-- 采集到 OID 为 `1.3.6.1.4.1.232.9.2.2.32` 的数据时把名称为 `temperature` 的字段附加到指标集 `snmp_metric` 中作为 Metric 上报；
-
-<!-- markdownlint-disable MD046 -->
-???+ attention
-
-    `conf.d/snmp/profiles` 这个文件夹需要 SNMP 采集器运行一次后才会出现。
-<!-- markdownlint-enable -->
-
 ## 指标 {#metric}
 
-以下所有数据采集，默认会追加名为 `host`（值为 SNMP 设备的名称），也可以在配置中通过 `[inputs.snmp.tags]` 指定其它标签：
+以下所有数据采集，默认会追加全局选举 tag，也可以在配置中通过 `[inputs.snmp.tags]` 指定其它标签：
 
 ``` toml
 [inputs.snmp.tags]
@@ -312,6 +418,7 @@ SNMP device metric data.
 | Tag | Description |
 |  ----  | --------|
 |`cpu`|CPU index. Optional.|
+|`device_type`|Device vendor.|
 |`device_vendor`|Device vendor.|
 |`entity_name`|Device entity name. Optional.|
 |`host`|Device host, replace with IP.|
@@ -321,15 +428,27 @@ SNMP device metric data.
 |`mac_addr`|Device MAC address. Optional.|
 |`mem`|Memory index. Optional.|
 |`mem_pool_name`|Memory pool name. Optional.|
-|`name`|Device name, replace with IP.|
+|`name`|Device name and IP.|
+|`oid`|OID.|
 |`power_source`|Power source. Optional.|
 |`power_status_descr`|Power status description. Optional.|
 |`sensor_id`|Sensor ID. Optional.|
 |`sensor_type`|Sensor type. Optional.|
 |`snmp_host`|Device host.|
+|`snmp_index`|Macro value. Optional.|
 |`snmp_profile`|Device SNMP profile file.|
+|`snmp_value`|Macro value. Optional.|
+|`sys_name`|System name.|
+|`sys_object_id`|System object id.|
 |`temp_index`|Temperature index. Optional.|
 |`temp_state`|Temperature state. Optional.|
+|`unit_alias`|Macro value. Optional.|
+|`unit_class`|Macro value. Optional.|
+|`unit_desc`|Macro value. Optional.|
+|`unit_locale`|Macro value. Optional.|
+|`unit_name`|Macro value. Optional.|
+|`unit_status`|Macro value. Optional.|
+|`unit_type`|Macro value. Optional.|
 
 - 字段列表
 
@@ -349,10 +468,20 @@ SNMP device metric data.
 |`ciscoMemoryPoolUsed`|[Cisco only] Indicates the number of bytes from the memory pool that are currently in use by applications on the managed device.|float|count|
 |`cpmCPUTotal1minRev`|[Cisco only] [Shown as percent] The overall CPU busy percentage in the last 1 minute period.|float|percent|
 |`cpmCPUTotalMonIntervalValue`|[Cisco only] (Shown as percent) The overall CPU busy percentage in the last cpmCPUMonInterval period.|float|percent|
+|`cpuStatus`|CPU status.|float|bool|
+|`cpuTemperature`|The Temperature of cpu.|float|C|
 |`cpuUsage`|(Shown as percent) Percentage of CPU currently being used.|float|percent|
 |`cswStackPortOperStatus`|[Cisco only] The state of the stack port.|float|count|
 |`cswSwitchState`|[Cisco only] The current state of a switch.|float|count|
+|`current`|The current of item.|float|unknown|
+|`diskAvailable`|Number of disk available.|float|B|
+|`diskFree`|(Shown as percent) The percentage of disk not being used.|float|percent|
+|`diskTotal`|Total of disk size.|float|B|
+|`diskUsage`|(Shown as percent) The percentage of disk currently being used.|float|percent|
+|`diskUsed`|Number of disk currently being used.|float|B|
 |`entSensorValue`|[Cisco only] The most recent measurement seen by the sensor.|float|count|
+|`fanSpeed`|The fan speed.|float|unknown|
+|`fanStatus`|The fan status.|float|bool|
 |`ifAdminStatus`|The desired state of the interface.|float|-|
 |`ifBandwidthInUsageRate`|(Shown as percent) The percent rate of used received bandwidth.|float|percent|
 |`ifBandwidthOutUsageRate`|(Shown as percent) The percent rate of used sent bandwidth.|float|percent|
@@ -360,17 +489,21 @@ SNMP device metric data.
 |`ifHCInMulticastPkts`|(Shown as packet) The number of packets delivered by this sub-layer to a higher (sub-)layer which were addressed to a multicast address at this sub-layer.|float|count|
 |`ifHCInOctets`|(Shown as byte) The total number of octets received on the interface including framing characters.|float|count|
 |`ifHCInOctetsRate`|(Shown as byte) The total number of octets received on the interface including framing characters.|float|-|
+|`ifHCInPkts`|(Shown as packet) The number of packets delivered by this sub-layer to a higher (sub-)layer that were not addressed to a multicast or broadcast address at this sub-layer.|float|count|
 |`ifHCInUcastPkts`|(Shown as packet) The number of packets delivered by this sub-layer to a higher (sub-)layer that were not addressed to a multicast or broadcast address at this sub-layer.|float|count|
 |`ifHCOutBroadcastPkts`|(Shown as packet) The total number of packets that higher-level protocols requested be transmitted that were addressed to a broadcast address at this sub-layer, including those that were discarded or not sent.|float|count|
 |`ifHCOutMulticastPkts`|(Shown as packet) The total number of packets that higher-level protocols requested be transmitted that were addressed to a multicast address at this sub-layer including those that were discarded or not sent.|float|count|
 |`ifHCOutOctets`|(Shown as byte) The total number of octets transmitted out of the interface including framing characters.|float|count|
 |`ifHCOutOctetsRate`|(Shown as byte) The total number of octets transmitted out of the interface including framing characters.|float|count|
+|`ifHCOutPkts`|(Shown as packet) The total number of packets higher-level protocols requested be transmitted that were not addressed to a multicast or broadcast address at this sub-layer including those that were discarded or not sent.|float|count|
 |`ifHCOutUcastPkts`|(Shown as packet) The total number of packets higher-level protocols requested be transmitted that were not addressed to a multicast or broadcast address at this sub-layer including those that were discarded or not sent.|float|count|
 |`ifHighSpeed`|An estimate of the interface's current bandwidth in units of 1,000,000 bits per second, or the nominal bandwidth.|float|count|
 |`ifInDiscards`|(Shown as packet) The number of inbound packets chosen to be discarded even though no errors had been detected to prevent them being deliverable to a higher-layer protocol.|float|count|
 |`ifInDiscardsRate`|(Shown as packet) The number of inbound packets chosen to be discarded even though no errors had been detected to prevent them being deliverable to a higher-layer protocol.|float|count|
 |`ifInErrors`|(Shown as packet) The number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.|float|count|
 |`ifInErrorsRate`|(Shown as packet) The number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.|float|count|
+|`ifNetConnStatus`|The net connection status.|float|bool|
+|`ifNetStatus`|The net status.|float|bool|
 |`ifNumber`|Number of interface.|float|-|
 |`ifOperStatus`|(Shown as packet) The current operational state of the interface.|float|count|
 |`ifOutDiscards`|(Shown as packet) The number of outbound packets chosen to be discarded even though no errors had been detected to prevent them being transmitted.|float|count|
@@ -378,9 +511,20 @@ SNMP device metric data.
 |`ifOutErrors`|(Shown as packet) The number of outbound packets that could not be transmitted because of errors.|float|count|
 |`ifOutErrorsRate`|(Shown as packet) The number of outbound packets that could not be transmitted because of errors.|float|count|
 |`ifSpeed`|An estimate of the interface's current bandwidth in bits per second, or the nominal bandwidth.|float|count|
+|`ifStatus`|The interface status.|float|bool|
+|`itemAvailable`|Item available.|float|unknown|
+|`itemFree`|(Shown as percent) Item not being used.|float|percent|
+|`itemTotal`|Item total.|float|unknown|
+|`itemUsage`|(Shown as percent) Item being used.|float|percent|
+|`itemUsed`|Item being used.|float|unknown|
+|`memoryAvailable`|(Shown as byte) Number of memory available.|float|B|
 |`memoryFree`|(Shown as percent) The percentage of memory not being used.|float|percent|
+|`memoryTotal`|(Shown as byte) Number of bytes of memory.|float|B|
 |`memoryUsage`|(Shown as percent) The percentage of memory currently being used.|float|percent|
-|`memoryUsed`|(Shown as byte) Number of bytes of memory currently being used.|float|count|
+|`memoryUsed`|(Shown as byte) Number of bytes of memory currently being used.|float|B|
+|`netUptime`|(in second) net uptime.|float|s|
+|`power`|The power of item.|float|unknown|
+|`powerStatus`|The power of item.|float|unknown|
 |`sysUpTimeInstance`|The time (in hundredths of a second) since the network management portion of the system was last re-initialized.|float|count|
 |`tcpActiveOpens`|The number of times that TCP connections have made a direct transition to the SYN-SENT state from the CLOSED state.|float|count|
 |`tcpAttemptFails`|The number of times that TCP connections have made a direct transition to the CLOSED state from either the SYN-SENT state or the SYN-RCVD state, or to the LISTEN state from the SYN-RCVD state.|float|count|
@@ -390,8 +534,13 @@ SNMP device metric data.
 |`tcpOutRsts`|(Shown as segment) The number of TCP segments sent containing the RST flag.|float|count|
 |`tcpPassiveOpens`|(Shown as connection) The number of times TCP connections have made a direct transition to the SYN-RCVD state from the LISTEN state.|float|count|
 |`tcpRetransSegs`|(Shown as segment) The total number of segments retransmitted; that is, the number of TCP segments transmitted containing one or more previously transmitted octets.|float|count|
+|`temperature`|The Temperature of item.|float|C|
 |`udpInErrors`|(Shown as datagram) The number of received UDP datagram that could not be delivered for reasons other than the lack of an application at the destination port.|float|count|
 |`udpNoPorts`|(Shown as datagram) The total number of received UDP datagram for which there was no application at the destination port.|float|count|
+|`uptime`|(in second) uptime.|float|s|
+|`uptimeTimestamp`|uptime timestamp.|float|sec|
+|`voltage`|The Volt of item.|float|volt|
+|`voltageStatus`|The voltage status of item.|float|bool|
 
 
 

@@ -16,11 +16,11 @@ monitor   :
 
 ---
 
-:fontawesome-brands-linux:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-Collecting OceanBase performance metrics. For now supporting [OceanBase Enterprise](https://www.oceanbase.com/softwarecenter-enterprise){:target="_blank"} Oracle and MySQL tenant mode.
+Collecting OceanBase performance metrics through the sys tenant.
 
 Already tested version:
 
@@ -32,28 +32,7 @@ Already tested version:
 
 - Create a monitoring account
 
-Oracle tenant mode:
-
-```sql
--- Create the datakit user. Replace the password placeholder with a secure password.
-CREATE USER datakit IDENTIFIED BY <PASSWORD>;
-
--- Grant access to the datakit user.
-GRANT CONNECT, CREATE SESSION TO datakit;
-GRANT SELECT_CATALOG_ROLE to datakit;
-GRANT SELECT ON GV$LOCK TO datakit;
-GRANT SELECT ON GV$CONCURRENT_LIMIT_SQL TO datakit;
-GRANT SELECT ON GV$INSTANCE TO datakit;
-GRANT SELECT ON GV$MEMORY TO datakit;
-GRANT SELECT ON GV$MEMSTORE TO datakit;
-GRANT SELECT ON GV$OB_SQL_WORKAREA_MEMORY_INFO TO datakit;
-GRANT SELECT ON GV$PLAN_CACHE_STAT TO datakit;
-GRANT SELECT ON GV$PS_STAT TO datakit;
-GRANT SELECT ON GV$SESSION_WAIT TO datakit;
-GRANT SELECT ON GV$SQL_AUDIT TO datakit;
-```
-
-MySQL tenant mode:
+Create a monitoring account using a sys tenant account and grant the following privileges:
 
 ```sql
 CREATE USER 'datakit'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
@@ -61,71 +40,18 @@ CREATE USER 'datakit'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
 -- MySQL 8.0+ create the datakit user with the caching_sha2_password method
 CREATE USER 'datakit'@'localhost' IDENTIFIED WITH caching_sha2_password by '<UNIQUEPASSWORD>';
 
--- 授权
-GRANT PROCESS ON *.* TO 'datakit'@'localhost';
+-- Grant the required permissions 
 GRANT SELECT ON *.* TO 'datakit'@'localhost';
-show databases like 'performance_schema';
-GRANT SELECT ON performance_schema.* TO 'datakit'@'localhost';
-GRANT SELECT ON mysql.user TO 'datakit'@'localhost';
-GRANT replication client on *.*  to 'datakit'@'localhost';
 ```
+
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
     - Note that if you find the collector has the following error when using `localhost` , you need to replace the above `localhost` with `::1` <br/>
     `Error 1045: Access denied for user 'datakit'@'localhost' (using password: YES)`
 
-    - All the above creation and authorization operations limit that the user `datakit` can only access MySQL on MySQL host (`localhost`). If MySQL is collected remotely, it is recommended to replace `localhost` with `%` (indicating that DataKit can access MySQL on any machine), or use a specific DataKit installation machine address.
+    - All the above creation and authorization operations limit that the user `datakit` can only access OceanBase on local host (`localhost`). If OceanBase is collected remotely, it is recommended to replace `localhost` with `%` (indicating that DataKit can access OceanBase on any machine), or use a specific DataKit installation machine address.
 
-- Deploy dependency package
-
-Select the appropriate installation package based on the operating system and OceanBase version. For example：
-
-=== "x86_64 OS"
-
-    Download `libobclient` and `obci`:
-
-    ```sh
-    wget https://static.guance.com/oceanbase/x86/libobclient-2.1.4.1-20230510140123.el7.alios7.x86_64.rpm
-    wget https://static.guance.com/oceanbase/x86/obci-2.0.6.odpi.go-20230510112726.el7.alios7.x86_64.rpm
-
-    MD5 (libobclient-2.1.4.1-20230510140123.el7.alios7.x86_64.rpm) = f27b27224dbe43cd166d9777dd1a249d
-    MD5 (obci-2.0.6.odpi.go-20230510112726.el7.alios7.x86_64.rpm) = fd031c517998ee742dea762bbead853e
-    ```
-
-    Install packages above (needs root privilege):
-
-    ```sh
-    rpm -ivh libobclient-2.1.4.1-20230510140123.el7.alios7.x86_64.rpm
-    rpm -ivh obci-2.0.6.odpi.go-20230510112726.el7.alios7.x86_64.rpm
-    ```
-
-=== "ARM64 OS"
-
-    Download `libobclient` and `obci`:
-
-    ```sh
-    wget https://static.guance.com/oceanbase/arm/libobclient-2.1.4.1-20230510140123.el7.alios7.aarch64.rpm
-    wget https://static.guance.com/oceanbase/arm/obci-2.0.6.odpi.go-20230815181729.el7.alios7.aarch64.rpm
-
-    MD5 (libobclient-2.1.4.1-20230510140123.el7.alios7.aarch64.rpm) = 8d7209447593034a37af395a650fd225
-    MD5 (obci-2.0.6.odpi.go-20230815181729.el7.alios7.aarch64.rpm) = a8727898c2f9a04edfb41d409da1da9c
-    ```
-
-    Install packages above (needs root privilege):
-
-    ```sh
-    rpm -ivh libobclient-2.1.4.1-20230510140123.el7.alios7.aarch64.rpm
-    rpm -ivh obci-2.0.6.odpi.go-20230815181729.el7.alios7.aarch64.rpm
-    ```
-
-After installation, add the installed path `/u01/obclient/lib` to `LD_LIBRARY_PATH` environment variable in the following configuration file.
-
-- For some OS need to install additional dependent libraries:
-
-```shell
-apt-get install -y libaio-dev libaio1
-```
 
 ### Collector Configuration {#input-config}
 
@@ -135,64 +61,60 @@ apt-get install -y libaio-dev libaio1
     
     ```toml
         
-    [[inputs.external]]
-      daemon = true
-      name   = "oceanbase"
-      cmd    = "/usr/local/datakit/externals/oceanbase"
+    [[inputs.oceanbase]]
+      # host name
+      host = "localhost"
+    
+      ## port
+      port = 2883
+    
+      ## tenant name
+      tenant = "sys"
+    
+      ## cluster name
+      cluster = "obcluster"
+    
+      ## user name
+      user = "datakit"
+    
+      ## password
+      password = "<PASS>"
+    
+      ## database name
+      database = "oceanbase"
+    
+      ## mode. mysql only.
+      mode = "mysql"
+    
+      ## @param connect_timeout - number - optional - default: 10s
+      # connect_timeout = "10s"
+    
+      interval = "10s"
+    
+      ## OceanBase slow query time threshold defined. If larger than this, the executed sql will be reported.
+      slow_query_time = "0s"
     
       ## Set true to enable election
       election = true
     
-      ## Modify below if necessary.
-      ## The password use environment variable named "ENV_INPUT_OCEANBASE_PASSWORD".
-      args = [
-        "--interval"        , "1m"                              ,
-        "--host"            , "<your-oceanbase-host>"           ,
-        "--port"            , "2883"                            ,
-        "--tenant"          , "oraclet"                         ,
-        "--cluster"         , "obcluster"                       ,
-        "--username"        , "<oceanbase-user-name>"           ,
-        "--database"        , "oceanbase"                       ,
-        "--mode"            , "oracle"                          ,
-        "--service-name"    , "<oceanbase-service-name>"        ,
-        "--slow-query-time" , "0s"                              ,
-        "--log"             , "/var/log/datakit/oceanbase.log"  ,
-      ]
-      envs = [
-        "ENV_INPUT_OCEANBASE_PASSWORD=<oceanbase-password>",
-        "LD_LIBRARY_PATH=/u01/obclient/lib:$LD_LIBRARY_PATH",
-      ]
+      ## Run a custom SQL query and collect corresponding metrics.
+      # [[inputs.oceanbase.custom_queries]]
+        # sql = '''
+        #   select
+        #     CON_ID tenant_id,
+        #     STAT_ID,
+        #     replace(name, " ", "_") metric_name,
+        #     VALUE
+        #   from
+        #     v$sysstat;
+        # '''
+        # metric = "oceanbase_custom"
+        # tags = ["metric_name", "tenant_id"]
+        # fields = ["VALUE"]
     
-      [inputs.external.tags]
+      [inputs.oceanbase.tags]
         # some_tag = "some_value"
         # more_tag = "some_other_value"
-    
-      ## Run a custom SQL query and collect corresponding metrics.
-      # [[inputs.external.custom_queries]]
-      #   sql = '''
-      #     SELECT
-      #       GROUP_ID, METRIC_NAME, VALUE
-      #     FROM GV$SYSMETRIC
-      #   '''
-      #   metric = "oceanbase_custom"
-      #   tags = ["GROUP_ID", "METRIC_NAME"]
-      #   fields = ["VALUE"]
-    
-      #############################
-      # Parameter Description (Marked with * is mandatory field)
-      #############################
-      # *--interval                      : Collect interval (Default is 1m).
-      # *--host                          : OceanBase instance address (IP).
-      # *--port                          : OceanBase listen port (Default is 2883).
-      # *--tenant                        : OceanBase tenant name (Default is oraclet).
-      # *--cluster                       : OceanBase cluster name (Default is obcluster).
-      # *--username                      : OceanBase username.
-      # *--database                      : OceanBase database name. Generally, fill in 'oceanbase'.
-      # *--mode                          : OceanBase tenant mode, fill in 'oracle' or 'mysql'.
-      # *--service-name                  : OceanBase service name.
-      # *--slow-query-time               : OceanBase slow query time threshold defined. If larger than this, the executed sql will be reported.
-      # *--log                           : Collector log path.
-      # *ENV_INPUT_OCEANBASE_PASSWORD    : OceanBase password.
     
     ```
     
@@ -201,88 +123,6 @@ apt-get install -y libaio-dev libaio1
 === "Kubernetes"
 
     The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
-
-???+ tip
-
-    The configuration above would shows in the process list(including password). If want to hide the password, can use the environment variable `ENV_INPUT_OCEANBASE_PASSWORD`, like below:
-
-    ```toml
-    envs = [
-        "ENV_INPUT_OCEANBASE_PASSWORD=<YOUR-SAFE-PASSWORD>"
-    ]
-    ```
-
-    The environment variable has highest priority, which means if existed that environment variable, the value in the environment variable will always treated as the password.
-<!-- markdownlint-enable -->
-## Metric {#metric}
-
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.external.tags]`:
-
-``` toml
- [inputs.external.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-  # ...
-```
-
-
-
-### `oceanbase`
-
-- tag
-
-
-| Tag | Description |
-|  ----  | --------|
-|`host`|Host name.|
-|`ob_host_name`|Server address where the instance is located.|
-|`ob_version`|The version of the database instance.|
-|`oceanbase_server`|The address of the database instance (including port).|
-|`oceanbase_service`|OceanBase service name.|
-
-- metric list
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`ob_concurrent_limit_sql_count`|Number of throttled SQL.|int|count|
-|`ob_database_status`|The status of the database. 1: Normal (active).|int|count|
-|`ob_lock_count`|The number of database row locks.|int|count|
-|`ob_lock_max_ctime`|Maximum database lock time (seconds).|int|s|
-|`ob_mem_sum_count`|The number of memory units in use by all tenants.|int|count|
-|`ob_mem_sum_used`|The memory value currently used by all tenants.|int|B|
-|`ob_memstore_active_rate`|Memory activity rate of Memtable for all tenants on all servers.|float|percent|
-|`ob_plancache_avg_hit_rate`|The average hit rate of plan_cache across all servers.|float|percent|
-|`ob_plancache_mem_used_rate`|Overall memory usage of plan_cache across all servers (memory used divided by memory held).|float|percent|
-|`ob_plancache_sum_plan_num`|The total number of plans on all servers.|int|count|
-|`ob_ps_hit_rate`|PS (Prepared Statement) Cache hit rate.|float|percent|
-|`ob_session_avg_wait_time`|The average waiting time of the current or last wait event for all Sessions on all servers.|float|μs|
-|`ob_workarea_global_mem_bound`|In auto mode, the global maximum available memory size.|int|B|
-|`ob_workarea_max_auto_workarea_size`|The maximum memory size managed by auto under the current workarea.|int|B|
-|`ob_workarea_mem_target`|The target size of the memory available to the current workarea.|int|B|
-
-
-
-### `oceanbase_log`
-
-- tag
-
-
-| Tag | Description |
-|  ----  | --------|
-|`host`|Hostname.|
-|`oceanbase_server`|The address of the database instance (including port).|
-|`oceanbase_service`|OceanBase service name.|
-
-- metric list
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`message`|The text of the logging.|string|-|
-|`status`|The status of the logging, only supported `info/emerg/alert/critical/error/warning/debug/OK/unknown`.|string|-|
-
-
 
 ## Long Running Queries {#slow}
 
@@ -307,41 +147,250 @@ Change the string value after `--slow-query-time` from `0s` to the threshold tim
     - If the string value after `--slow-query-time` is `0s` or empty or less than 1 millisecond, this function is disabled, which is also the default state.
     - The SQL would not display here when NOT executed completed.
 
-## FAQ {#faq}
-<!-- markdownlint-disable MD013 -->
-### :material-chat-question: How to view the running log of OceanBase Collector? {#faq-logging}
-
-Because the OceanBase collector is an external collector, its logs by default are stored separately in *[Datakit-install-path]/externals/oceanbase.log*.
-
-In addition, the log path could modified by using `--log` parameter in configuration file.
-
-### :material-chat-question: After OceanBase collection is configured, why is there no data displayed in monitor? {#faq-no-data}
 <!-- markdownlint-enable -->
-There are several possible reasons:
+## Metric {#metric}
 
-- OceanBase dynamic library dependencies are problematic
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.oceanbase.tags]` if needed:
 
-Even though you may already have a corresponding OceanBase package on your machine, it is recommended to use the dependency package specified in the above document and ensure that its installation path is consistent with the path specified by `LD_LIBRARY_PATH`.
-
-- There is a problem with the glibc version
-
-As the OceanBase collector is compiled independently and CGO is turned on, its runtime requires glibc dependencies. On Linux, you can check whether there is any problem with the glibc dependencies of the current machine by the following command:
-
-```shell
-$ ldd <Datakit-install-path>/externals/oceanbase
-    linux-vdso.so.1 (0x00007ffed33f9000)
-    libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f70144e1000)
-    libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f70144be000)
-    libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f70142cc000)
-    /lib64/ld-linux-x86-64.so.2 (0x00007f70144fc000)
+``` toml
+ [inputs.oceanbase.tags]
+  # some_tag = "some_value"
+  # more_tag = "some_other_value"
+  # ...
 ```
 
-If the following information is reported, it is basically caused by the low glibc version on the current machine:
 
-```shell
-externals/oceanbase: /lib64/libc.so.6: version  `GLIBC_2.14` not found (required by externals/oceanbase)
-```
 
-- OceanBase Collector is only available on Linux amd64/ARM64 architecture DataKit and is not supported on other platforms.
 
-This means that the OceanBase collector can only run on amd64/ARM64 Linux, and no other platform can run the current OceanBase collector.
+
+### `oceanbase_stat`
+
+
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`cluster`|Cluster Name|
+|`host`|The server address or the host Name|
+|`metric_name`|The name of the statistical event.|
+|`stat_id`|The ID of the statistical event.|
+|`svr_ip`|The IP address of the server where the information is located.|
+|`tenant_id`|Tenant id|
+|`tenant_name`|Tenant Name|
+
+- Metric list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`metric_value`|The value of the statistical item.|int|-|
+
+
+
+
+
+
+
+
+
+
+### `oceanbase_cache_block`
+
+
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`cache_name`|The cache name.|
+|`cluster`|Cluster Name|
+|`host`|The server address or the host Name|
+|`svr_ip`|The IP address of the server where the information is located.|
+|`svr_port`|The port of the server where the information is located.|
+|`tenant_id`|Tenant id|
+|`tenant_name`|Tenant Name|
+
+- Metric list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`cache_size`|The block cache size in the specified statistical range.|int|MB|
+
+
+
+
+
+
+### `oceanbase_cache_plan`
+
+
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`cluster`|Cluster Name|
+|`host`|The server address or the host Name|
+|`svr_ip`|The IP address of the server where the information is located.|
+|`svr_port`|The port of the server where the information is located.|
+|`tenant_id`|Tenant id|
+|`tenant_name`|Tenant Name|
+
+- Metric list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`access_count`|The number of times that the query accesses the plan cache.|int|count|
+|`hit_count`|The number of plan cache hits.|int|count|
+
+
+
+
+
+
+### `oceanbase_event`
+
+
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`cluster`|Cluster Name|
+|`event_group`|The group of the event.|
+|`host`|The server address or the host Name|
+|`svr_ip`|The IP address of the server where the information is located.|
+|`tenant_id`|Tenant id|
+|`tenant_name`|Tenant Name|
+
+- Metric list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`time_waited`|The total wait time for the event in seconds.|int|s|
+|`total_waits`|The total number of waits for the event.|int|count|
+
+
+
+
+
+
+### `oceanbase_session`
+
+
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`cluster`|Cluster Name|
+|`host`|The server address or the host Name|
+|`svr_ip`|The IP address of the server where the information is located.|
+|`svr_port`|The port of the server where the information is located.|
+|`tenant_id`|Tenant id|
+|`tenant_name`|Tenant Name|
+
+- Metric list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`active_cnt`|The number of active sessions within a tenant.|int|count|
+|`all_cnt`|The total number of sessions within a tenant.|int|count|
+
+
+
+
+
+
+### `oceanbase_clog`
+
+
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`cluster`|Cluster Name|
+|`host`|The server address or the host Name|
+|`replica_type`|The type of the replica|
+|`svr_ip`|The IP address of the server where the information is located.|
+|`svr_port`|The port of the server where the information is located.|
+|`tenant_id`|Tenant id|
+|`tenant_name`|Tenant Name|
+
+- Metric list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`max_clog_sync_delay_seconds`|The max clog synchronization delay of an tenant.|int|s|
+
+
+
+
+## Log {#logging}
+
+
+
+
+
+
+
+
+
+### `oceanbase_log`
+
+
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`host`|Hostname.|
+|`oceanbase_server`|The address of the database instance (including port).|
+|`oceanbase_service`|OceanBase service name.|
+|`tenant_id`|Tenant id|
+|`tenant_name`|Tenant Name|
+
+- Metric list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`message`|The text of the logging.|string|-|
+|`status`|The status of the logging, only supported `info/emerg/alert/critical/error/warning/debug/OK/unknown`.|string|-|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

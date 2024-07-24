@@ -223,7 +223,7 @@ $ service datakit restart
 
 ### Mysql：
 
-详细步骤参见文档 <[Mysql DataKit 接入](../../datakit/mysql.md)>
+详细步骤参见文档 <[Mysql DataKit 接入](../../integrations/mysql.md)>
 
 ```shell
 # 登录 mysql 
@@ -271,7 +271,7 @@ $ service datakit restart
 
 ### Redis：
 
-详细步骤参见文档 <[Redis DataKit 接入](../../datakit/redis.md)>
+详细步骤参见文档 <[Redis DataKit 接入](../../integrations/redis.md)>
 
 ##### 1、在 Datakit 中修改 redis 的 inputs
 
@@ -306,7 +306,7 @@ $ service datakit restart
 
 ### JVM：
 
-详细步骤参见文档 <[jvm DataKit 接入](/datakit/jvm.md)>
+详细步骤参见文档 <[jvm DataKit 接入](/integrations/jvm.md)>
 
 ##### 1、在 Datakit 中修改 jvm 的 inputs
 

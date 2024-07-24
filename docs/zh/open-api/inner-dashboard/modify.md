@@ -22,6 +22,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | name | string |  | 视图名称<br>例子: 测试视图1号 <br>允许为空: False <br>最大长度: 256 <br> |
+| desc | string |  | 描述<br>例子: 描述1 <br>允许为空: False <br>最大长度: 2048 <br> |
 | dashboardBidding | json |  | mapping, 默认为{}<br>例子: {} <br>允许为空: False <br> |
 
 ## 参数补充说明
@@ -30,8 +31,44 @@
 
 |  参数名                |   type  |          说明          |
 |-----------------------|----------|------------------------|
-|name         |list |  视图名称 |
+|name         |string |  视图名称 |
+|desc         |string |  描述 |
 |dashboardBidding         |dict |   仪表板绑定的信息|
+
+
+**绑定内置视图字段 dashboardBidding 说明**
+
+内部支持 op 值 in/wildcard
+
+**dashboardBidding 字段示例:**
+```
+{
+    "service": [
+        {
+            "value": [
+                "*"
+            ],
+            "op": "in"
+        }
+    ],
+    "app_id": [
+        {
+            "value": [
+                "test0"
+            ],
+            "op": "wildcard"
+        }
+    ],
+    "label": [
+        {
+            "value": [
+                "勿删"
+            ],
+            "op": "in"
+        }
+    ]
+}
+```
 
 
 

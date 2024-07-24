@@ -1,4 +1,4 @@
-# 功能菜单获取
+# 功能菜单获取(old)
 
 ---
 
@@ -21,6 +21,7 @@
 curl 'https://openapi.guance.com/api/v1/workspace/menu/get' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
+--compressed
 ```
 
 

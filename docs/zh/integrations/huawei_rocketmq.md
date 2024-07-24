@@ -1,5 +1,7 @@
 ---
-title: '华为云 RocketMQ'
+title: '华为云 DMS RocketMQ'
+tags: 
+  - 华为云
 summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。'
 __int_icon: 'icon/huawei_rocketmq'
 dashboard:
@@ -13,7 +15,7 @@ monitor:
 
 
 <!-- markdownlint-disable MD025 -->
-# 华为云 RocketMQ
+# 华为云 DMS RocketMQ
 <!-- markdownlint-enable -->
 
 使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。

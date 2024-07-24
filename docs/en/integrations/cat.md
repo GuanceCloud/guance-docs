@@ -80,9 +80,9 @@ client config：
 
 > Note: The 9529 port in the configuration is the HTTP port of the Datakit. 2280 is the 2280 port opened by the cat input.
 
-Datakit config：
-
 <!-- markdownlint-disable MD046 -->
+
+=== "Host Installation"
 
     Go to the `conf.d/cat` directory under the DataKit installation directory, copy `cat.conf.sample` and name it `cat.conf`. Examples are as follows:
     
@@ -111,18 +111,18 @@ Datakit config：
     
     ```
 
-
 === "Kubernetes"
 
     The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-disable MD046 -->
 
+---
 
 Notes on configuration files:
 
-1. `startTransactionTypes` `MatchTransactionTypes` `block` `routers` `sample`  is the data returned to the client end.
-2. `routers` is Datakit IP or Domain.
-3. `tcp_port`  client config `servers ip` address
+1. `startTransactionTypes` `MatchTransactionTypes` `block` `routers` `sample`  is the data returned to the client end
+1. `routers` is Datakit IP or Domain
+1. `tcp_port`  client config `servers ip` address
 
 ---
 
@@ -205,5 +205,46 @@ Effect display:
 |`thread_peek_count`|Thread peek.|float|count|
 |`thread_pigeon_thread_count`|The number of pigeon threads.|float|count|
 |`thread_total_started_count`|Total number of started threads.|float|count|
+
+
+
+### ``
+
+
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
+|`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
+|`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
+|`env`|Application environment info. Available in Jaeger. Optional.|
+|`host`|Hostname.|
+|`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
+|`http_route`|HTTP route. Optional.|
+|`http_status_code`|HTTP response code. Available in DDTrace, OpenTelemetry. Optional.|
+|`http_url`|HTTP URL. Optional.|
+|`operation`|Span name|
+|`project`|Project name. Available in Jaeger. Optional.|
+|`service`|Service name. Optional.|
+|`source_type`|Tracing source type|
+|`span_type`|Span type|
+|`status`|Span status|
+|`version`|Application version info. Available in Jaeger. Optional.|
+
+- fields
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`duration`|Duration of span|int|μs|
+|`message`|Origin content of span|string|-|
+|`parent_id`|Parent span ID of current span|string|-|
+|`resource`|Resource name produce current span|string|-|
+|`span_id`|Span id|string|-|
+|`start`|start time of span.|int|usec|
+|`trace_id`|Trace id|string|-|
 
 

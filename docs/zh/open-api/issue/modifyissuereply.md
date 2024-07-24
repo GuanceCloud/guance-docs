@@ -1,4 +1,4 @@
-# 修改issue评论
+# Issue-回复 修改
 
 ---
 
@@ -33,9 +33,8 @@
 |     参数名      | 参数类型 | 是否必填 |                  参数说明                   |
 |:---------------:|:--------:|:--------:|:-------------------------------------------:|
 |   issueUUID       |  string  |    Y     |                对应回复issue的UUID                |
-|   attachmentUuids      | array  |    N     |        对应回复issue的附件列表uuid        |
+|   attachmentUuids      | array  |    N     |        对应回复issue的附件列表uuid,需先通过 /api/v1/attachment/upload 接口进行上传             |
 |   content    |  string  |    N     |                回复的内容                      |
-| attachmentUuids |  array   |    N     |              附件上传列表uuid               |
 |     extend      |   json   |    Y     |                  扩展字段，默认传{}                  |
 
 
@@ -47,6 +46,33 @@
 |:--------:|:--------:|:--------:|:-----------------------:|
 | channels |  array   |    N     | 期望issue投递的资源列表 |
 | members  |     array     |     N     |       期望issue通知的通知对象成员    |
+| extra  |     json     |     N     |       回复更新人相关名称等信息, 用于前端回显    |
+
+extend 字段示例:
+```json
+{
+    "members": [
+        {
+            "type": "@",
+            "uuid": "acnt_d72e117f8902419fa1d135d1d781b79d",
+            "exists": true
+        }
+    ],
+    "channels": [
+        {
+            "type": "#",
+            "uuid": "chan_cf4f9aa671ef4dffa5a2b5d1824cd5b7",
+            "exists": true
+        }
+    ],
+    "extra": {
+                "updator": {
+                  "name": "yyy",
+                  "email": "yyy@qq.com",
+                }
+            }
+}
+```
 
 
 

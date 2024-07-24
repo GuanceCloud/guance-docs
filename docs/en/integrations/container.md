@@ -212,23 +212,23 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Default**: false
     
-    - **ENV_INPUT_CONTAINER_ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2**
+    - **ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2**
     
         Append the labels of the resource to the tag of the non-metric (like object and logging) data. Label keys should be specified, if there is only one key and it is an empty string (e.g. [""]), all labels will be added to the tag. The container will inherit the Pod labels. If the key of the label has the dot character, it will be changed to a horizontal line
     
         **Type**: JSON
     
-        **ConfField**: `env_input_container_extract_k8s_label_as_tags_v2`
+        **ConfField**: `extract_k8s_label_as_tags_v2`
     
         **Example**: ["app","name"]
     
-    - **ENV_INPUT_CONTAINER_ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2_FOR_METRIC**
+    - **ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2_FOR_METRIC**
     
         Append the labels of the resource to the tag of the metric data. Label keys should be specified, if there is only one key and it is an empty string (e.g. [""]), all labels will be added to the tag. The container will inherit the Pod labels. If the key of the label has the dot character, it will be changed to a horizontal line
     
         **Type**: JSON
     
-        **ConfField**: `env_input_container_extract_k8s_label_as_tags_v2_for_metric`
+        **ConfField**: `extract_k8s_label_as_tags_v2_for_metric`
     
         **Example**: ["app","name"]
     
@@ -269,6 +269,16 @@ Collect indicators, objects and log data of container and Kubernetes and report 
         **Type**: Boolean
     
         **ConfField**: `enable_auto_discovery_of_prometheus_service_monitors`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_CONTAINER_KEEP_EXIST_PROMETHEUS_METRIC_NAME**
+    
+        Whether to keep the raw field names for Prometheus, see [Kubernetes Prometheus doc](kubernetes-prom.md#measurement-and-tags
+    
+        **Type**: Boolean
+    
+        **ConfField**: `keep_exist_prometheus_metric_name`
     
         **Default**: false
     
@@ -421,6 +431,26 @@ Collect indicators, objects and log data of container and Kubernetes and report 
         **Type**: Boolean
     
         **ConfField**: `disable_collect_kube_job`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_CONTAINER_DISABLE_COLLECT_KUBE_JOB**
+    
+        Turn off collection of Kubernetes Job resources (including metrics data and object data)
+    
+        **Type**: Boolean
+    
+        **ConfField**: `disable_collect_kube_job`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_CONTAINER_ENABLE_K8S_SELF_METRIC_BY_PROM**
+    
+        Enable collection of Kubernetes Prometheus data, including APIServer, Scheduler, Etcd, etc.(Experimental)
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_k8s_self_metric_by_prom`
     
         **Default**: false
     
@@ -1327,10 +1357,11 @@ The object of the Kubernetes Node.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`age`|Age (seconds)|int|s|
+|`age`|Age (seconds).|int|s|
 |`kubelet_version`|Kubelet Version reported by the node.|string|-|
-|`message`|Object details|string|-|
-|`node_ready`|NodeReady means kubelet is healthy and ready to accept pods (true/false/unknown)|string|-|
+|`message`|Object details.|string|-|
+|`node_ready`|NodeReady means kubelet is healthy and ready to accept pods (true/false/unknown).|string|-|
+|`taints`|Node's taints.|string|-|
 |`unschedulable`|Unschedulable controls node schedulability of new pods (yes/no).|string|-|
 
 
@@ -1594,6 +1625,7 @@ The logging of the container.
 |`daemonset`|The name of the DaemonSet which the object belongs to.|
 |`deployment`|The name of the Deployment which the object belongs to.|
 |`namespace`|The namespace of the container (label `io.kubernetes.pod.namespace`).|
+|`pod_ip`|The pod ip of the container.|
 |`pod_name`|The pod name of the container (label `io.kubernetes.pod.name`).|
 |`service`|The name of the service, if `service` is empty then use `source`.|
 

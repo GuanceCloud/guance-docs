@@ -16,6 +16,7 @@ theme:
     - search.suggest
     - toc.follow
     - content.tabs.link
+    - content.code.copy
 
 markdown_extensions:
   tables: {}

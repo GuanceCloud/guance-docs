@@ -332,3 +332,47 @@ jvm metrics collected by SkyWalking language agent.
 
 
 
+
+
+
+### ``
+
+
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
+|`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
+|`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
+|`env`|Application environment info. Available in Jaeger. Optional.|
+|`host`|Hostname.|
+|`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
+|`http_route`|HTTP route. Optional.|
+|`http_status_code`|HTTP response code. Available in DDTrace, OpenTelemetry. Optional.|
+|`http_url`|HTTP URL. Optional.|
+|`operation`|Span name|
+|`project`|Project name. Available in Jaeger. Optional.|
+|`service`|Service name. Optional.|
+|`source_type`|Tracing source type|
+|`span_type`|Span type|
+|`status`|Span status|
+|`version`|Application version info. Available in Jaeger. Optional.|
+
+- metric list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`duration`|Duration of span|int|μs|
+|`message`|Origin content of span|string|-|
+|`parent_id`|Parent span ID of current span|string|-|
+|`resource`|Resource name produce current span|string|-|
+|`span_id`|Span id|string|-|
+|`start`|start time of span.|int|usec|
+|`trace_id`|Trace id|string|-|
+
+
+

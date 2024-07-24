@@ -1,0 +1,7 @@
+nav:
+  - '列出': list.md
+  - '获取': get.md
+  - '新建': add.md
+  - '修改': modify.md
+  - '启用/禁用': set-disable.md
+  - '删除': delete.md

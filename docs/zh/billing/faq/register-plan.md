@@ -3,17 +3,17 @@
 
 ## 阿里云用户如何开通观测云？
 
-阿里云用户可以通过选择“中国区1（杭州）“站点来 [注册观测云](../../billing/commercial-register.md) ，或者您也可以通过在 [阿里云市场购买观测云商品](../../billing/commercial-aliyun.md) 来开通观测云。
+阿里云用户可以通过选择“中国区1（杭州）“站点来 [注册观测云](../../plans/commercial-register.md) ，或者您也可以通过在 [阿里云市场购买观测云商品](../../billing/commercial-aliyun.md) 来开通观测云。
 
-若您想要在观测云使用阿里云 SLS 日志服务来存储数据，您可以通过在 [阿里云市场购买观测云专属版商品](../../billing/commercial-aliyun-sls.md) 来开通观测云。
+若您想要在观测云使用阿里云 SLS 日志服务来存储数据，您可以通过在 [阿里云市场购买观测云专属版商品](../../plans/commercial-aliyun-sls.md) 来开通观测云。
 
 ## AWS 用户如何开通观测云？
 
-AWS 用户可以通过选择“中国区2（宁夏）”、“海外区1（俄勒冈）”站点来 [注册观测云](../../billing/commercial-register.md) ，注册以后您可以[用 AWS 中国区账号进行结算](./billing-account/aws-account.md)。
+AWS 用户可以通过选择“中国区2（宁夏）”、“海外区1（俄勒冈）”站点来 [注册观测云](../../plans/commercial-register.md) ，注册以后您可以[用 AWS 中国区账号进行结算](./billing-account/aws-account.md)。
 
 ## 华为云用户如何开通观测云？
 
-华为云用户可以通过选择“中国区4（广州）”站点来 [注册观测云](../../billing/commercial-register.md)。注册以后您可以[用华为云云账号进行结算](../billing-account/huawei-account.md)。
+华为云用户可以通过选择“中国区4（广州）”站点来 [注册观测云](../../plans/commercial-register.md)。注册以后您可以[用华为云云账号进行结算](../billing-account/huawei-account.md)。
 
 ## 若在开通观测云时流程中断，该如何操作？
 
@@ -29,7 +29,7 @@ AWS 用户可以通过选择“中国区2（宁夏）”、“海外区1（俄�
 
 **注意**：仅支持通过在阿里云云市场购买观测云专属版来开通 SLS 存储，已开通默认存储的观测云工作空间不支持切换成 SLS 存储。
 
-> 更多详情，可参考 [阿里云市场购买观测云专属版商品](../../billing/commercial-aliyun-sls.md)。
+> 更多详情，可参考 [阿里云市场购买观测云专属版商品](../../plans/commercial-aliyun-sls.md)。
 
 
 
@@ -43,4 +43,4 @@ AWS 用户可以通过选择“中国区2（宁夏）”、“海外区1（俄�
 
 ## 若以上常见问题无法解决，如何获得在线支持？
 
-观测云提供在线工单[支持](../../billing/cost-center/support-center.md)。
+观测云提供在线工单[支持](../../billing-center/support-center.md)。

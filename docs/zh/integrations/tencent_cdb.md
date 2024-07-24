@@ -1,5 +1,7 @@
 ---
 title: '腾讯云 CDB'
+tags: 
+  - 腾讯云
 summary: '使用脚本市场中「官方脚本市场」系列脚本包把云监控 云资产的数据同步到观测云'
 __int_icon: 'icon/tencent_cdb'
 dashboard:
