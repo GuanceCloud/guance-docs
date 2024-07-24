@@ -54,7 +54,7 @@ We collected some configurations by default, as described in the Metrics column 
 ## Metric  {#metric}
 Configure `Volcengine` Cloud - MongoDB Replica monitoring. The default metric set is as follows. You can collect more metrics by configuring them [`Volcengine` MongoDB Replica Monitor Metrics Details](https://console.volcengine.com/cloud_monitor/metric?namespace=VCM_MongoDB_Replica){:target="_blank"}
 
-|`MetricName` |`Subnamespace` |Indicator Chinese name |MetricUnit | Dimension|
+|`MetricName` |`Subnamespace` |Description |MetricUnit | Dimension|
 | ---- |-------------------------------------| :----: |:----: |:----: |
 |`AggregatedCpuUtil` |`instance` |CPU usage |Percent | ResourceID|
 |`AggregatedMemUtil` |`instance` |Memory usage |Percent | ResourceID|

@@ -252,5 +252,10 @@
 ![](img/1.dashboard_player_3.png)
 
 
+### 历史快照 {#historial-snapshot}
 
+在页面右上方**历史快照**处可查看当前工作空间保存的所有仪表板快照。
 
+![](img/snapshot-14.png)
+
+> 关于历史快照更多详情，可参考 [查看](../getting-started/function-details/snapshot.md#check)。

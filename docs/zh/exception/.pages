@@ -2,4 +2,7 @@ nav:
   - index.md
   - '创建 Issue': issue.md
   - '管理 Issue': channel.md
+  - '分析看板': issue-view.md
+  - '日程': calendar.md
+  - '配置管理': config-manag.md
   
