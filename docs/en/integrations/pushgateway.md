@@ -64,7 +64,7 @@ The Pushgateway collector will open the corresponding API interface to receive P
     
         **Type**: String
     
-        **ConfField**: `route_prefix`
+        **input.conf**: `route_prefix`
     
         **Example**: `/v1/pushgateway`
     
@@ -74,7 +74,7 @@ The Pushgateway collector will open the corresponding API interface to receive P
     
         **Type**: String
     
-        **ConfField**: `measurement_name`
+        **input.conf**: `measurement_name`
     
     - **ENV_INPUT_PUSHGATEWAY_JOB_AS_MEASUREMENT**
     
@@ -82,7 +82,7 @@ The Pushgateway collector will open the corresponding API interface to receive P
     
         **Type**: Boolean
     
-        **ConfField**: `job_as_measurement`
+        **input.conf**: `job_as_measurement`
     
         **Default**: false
     
@@ -92,7 +92,7 @@ The Pushgateway collector will open the corresponding API interface to receive P
     
         **Type**: Boolean
     
-        **ConfField**: `keep_exist_metric_name`
+        **input.conf**: `keep_exist_metric_name`
     
         **Default**: true
 

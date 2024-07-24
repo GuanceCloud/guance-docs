@@ -40,8 +40,8 @@ Only metric data in Prometheus form can be accessed.
       urls = ["http://127.0.0.1:9100/metrics", "http://127.0.0.1:9200/metrics"]
     
       ## Stream Size. 
-      ## The source stream segmentation size.
-      ## Default 1, source stream undivided. 
+      ## The source stream segmentation size, (defaults to 1).
+      ## 0 source stream undivided. 
       # stream_size = 1
     
       ## Unix Domain Socket URL. Using socket to request data when not empty.

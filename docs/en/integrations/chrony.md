@@ -111,7 +111,7 @@ Leap status     : Normal
     
         **Type**: TimeDuration
     
-        **ConfField**: `interval`
+        **input.conf**: `interval`
     
         **Default**: 10s
     
@@ -121,7 +121,7 @@ Leap status     : Normal
     
         **Type**: TimeDuration
     
-        **ConfField**: `timeout`
+        **input.conf**: `timeout`
     
         **Default**: 8s
     
@@ -131,7 +131,7 @@ Leap status     : Normal
     
         **Type**: String
     
-        **ConfField**: `bin_path`
+        **input.conf**: `bin_path`
     
         **Default**: `chronyc`
     
@@ -141,7 +141,7 @@ Leap status     : Normal
     
         **Type**: JSON
     
-        **ConfField**: `remote_addrs`
+        **input.conf**: `remote_addrs`
     
         **Example**: ["192.168.1.1:22","192.168.1.2:22"]
     
@@ -151,7 +151,7 @@ Leap status     : Normal
     
         **Type**: JSON
     
-        **ConfField**: `remote_users`
+        **input.conf**: `remote_users`
     
         **Example**: ["user_1","user_2"]
     
@@ -161,7 +161,7 @@ Leap status     : Normal
     
         **Type**: JSON
     
-        **ConfField**: `remote_passwords`
+        **input.conf**: `remote_passwords`
     
         **Example**: ["pass_1","pass_2"]
     
@@ -171,7 +171,7 @@ Leap status     : Normal
     
         **Type**: JSON
     
-        **ConfField**: `remote_rsa_paths`
+        **input.conf**: `remote_rsa_paths`
     
         **Example**: ["/home/your_name/.ssh/id_rsa"]
     
@@ -181,7 +181,7 @@ Leap status     : Normal
     
         **Type**: String
     
-        **ConfField**: `remote_command`
+        **input.conf**: `remote_command`
     
         **Example**: "`chronyc -n tracking`"
     
@@ -191,7 +191,7 @@ Leap status     : Normal
     
         **Type**: Boolean
     
-        **ConfField**: `election`
+        **input.conf**: `election`
     
         **Default**: true
     
@@ -201,7 +201,7 @@ Leap status     : Normal
     
         **Type**: Map
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 

@@ -1028,6 +1028,14 @@ For more info about recorder, see [here](datakit-tools-how-to.md#record-and-repl
 
     **Example**: `http://aaa:123,http://1.2.3.4:1234`
 
+- **ENV_PIPELINE_DISABLE_APPEND_RUN_INFO**
+
+    Disable appending the Pipeline run info
+
+    **Type**: Boolean
+
+    **Default**: `false`
+
 - **ENV_CRYPTO_AES_KEY**
 
     The crypto key(len 16)
