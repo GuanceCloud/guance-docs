@@ -101,29 +101,35 @@ these metrics.
     
         **Type**: Boolean
     
-        **ConfField**: `none`
+        **input.conf**: ``-``
     
-        **Example**: any_string
+        **Example**: true
+    
+        **Default**: `-`
     
     - **ENV_INPUT_DK_ADD_METRICS**
     
         Additional metrics, Available metrics list [here](../datakit/datakit-metrics.md)
     
-        **Type**: JSON
+        **Type**: List
     
-        **ConfField**: `none`
+        **input.conf**: ``-``
     
-        **Example**: ["datakit_io_.*", "datakit_pipeline_.*"]
+        **Example**: `["datakit_io_.*", "datakit_pipeline_.*"]`
+    
+        **Default**: `-`
     
     - **ENV_INPUT_DK_ONLY_METRICS**
     
         Only enable metrics
     
-        **Type**: JSON
+        **Type**: List
     
-        **ConfField**: `none`
+        **input.conf**: ``-``
     
-        **Example**: ["datakit_io_.*", "datakit_pipeline_.*"]
+        **Example**: `["datakit_io_.*", "datakit_pipeline_.*"]`
+    
+        **Default**: `-`
 
 <!-- markdownlint-enable -->
 

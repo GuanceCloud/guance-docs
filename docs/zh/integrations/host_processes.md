@@ -90,61 +90,61 @@ monitor   :
     
         采集处理器指标
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `open_metric`
+        **采集器配置字段**: `open_metric`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_HOST_PROCESSES_PROCESS_NAME**
     
         处理器白名单
     
-        **Type**: List
+        **字段类型**: List
     
-        **ConfField**: `process_name`
+        **采集器配置字段**: `process_name`
     
-        **Example**: .*datakit.*,guance
+        **示例**: .*datakit.*,guance
     
     - **ENV_INPUT_HOST_PROCESSES_MIN_RUN_TIME**
     
         处理最短运行时间
     
-        **Type**: TimeDuration
+        **字段类型**: TimeDuration
     
-        **ConfField**: `min_run_time`
+        **采集器配置字段**: `min_run_time`
     
-        **Default**: 10m
+        **默认值**: 10m
     
     - **ENV_INPUT_HOST_PROCESSES_ENABLE_LISTEN_PORTS**
     
         启用监听端口标签
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_listen_ports`
+        **采集器配置字段**: `enable_listen_ports`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_HOST_PROCESSES_ENABLE_OPEN_FILES**
     
         启用打开文件字段
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_open_files`
+        **采集器配置字段**: `enable_open_files`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_HOST_PROCESSES_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
     
-        **Type**: Map
+        **字段类型**: Map
     
-        **ConfField**: `tags`
+        **采集器配置字段**: `tags`
     
-        **Example**: tag1=value1,tag2=value2
+        **示例**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 

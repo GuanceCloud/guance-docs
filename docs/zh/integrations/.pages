@@ -214,9 +214,45 @@ nav:
     - kubernetes_audit.md
 
   - 应用性能监测（APM）:
-    - 'Tracing 综述': datakit-tracing.md
-    - datakit-tracing-struct.md
+    - 'DDTrace':
+      - ddtrace.md
+      - 'SDK 接入':
+        - 'Java':
+          - ddtrace-java.md
+          - 'DDTrace 注入': ddtrace-attach.md
+          - 'JMX Fetch 指标': ddtrace-jmxfetch.md
+          - 'DDTrace 扩展':
+            - ddtrace-ext-java.md
+            - '更新历史': ddtrace-ext-changelog.md
+            - 'OTEL 和 DDTrace 链路串联': ddtrace-128-trace-id.md
+        - 'Golang': ddtrace-golang.md
+        - 'Python': ddtrace-python.md
+        - 'PHP': ddtrace-php.md
+        - 'NodeJS': ddtrace-nodejs.md
+        - 'C++': ddtrace-cpp.md
+        - 'Ruby': ddtrace-ruby.md
 
+    - 'SkyWalking': skywalking.md
+
+    - 'OpenTelemetry':
+      - opentelemetry.md
+      - 'SDK 接入':
+        - 'Golang': opentelemetry-go.md
+        - 'Java': opentelemetry-java.md
+      - 'OpenTelemetry 扩展':
+        - '更新历史': otel-ext-changelog.md
+        - 'SQL 脱敏': otel-sql-obfuscation.md
+        - 'Java Exporter': otel-guance-exporter.md
+
+    - 'Zipkin': zipkin.md
+    - 'Jaeger': jaeger.md
+    - 'CAT': cat.md
+    - 'Pinpoint':
+      - pinpoint.md
+      - 'SDK 接入':
+        - 'Java': pinpoint-java.md
+        - 'Golang': pinpoint-go.md
+    - 'New Relic': newrelic.md
     - 'Profiling':
       - profile.md
       - 'Java': profile-java.md
@@ -227,60 +263,10 @@ nav:
       - '.NET': profile-dotnet.md
       - 'PHP': profile-php.md
 
-    - 'DDTrace':
-      - ddtrace.md
-      - 'SDK 接入':
-        - 'Java': ddtrace-java.md
-        - ddtrace-golang.md
-        - ddtrace-python.md
-        - ddtrace-php.md
-        - ddtrace-nodejs.md
-        - ddtrace-cpp.md
-        - ddtrace-ruby.md
-
-      - 'DDTrace 注入':
-        - 'Java': ddtrace-attach.md
-
-      - 'DDTrace 扩展':
-        - '更新历史': ddtrace-ext-changelog.md
-        - '扩展功能列表': ddtrace-ext-java.md
-        - 'OTEL 和 DDTrace 链路串联': ddtrace-128-trace-id.md
-      - 'jmxfetch 指标':
-        - '指标暴露和自定义指标': ddtrace-jmxfetch.md
-      - nginx_tracing.md
-
-    - 'SkyWalking':
-      - skywalking.md
-
-    - 'OpenTelemetry':
-      - opentelemetry.md
-      - opentelemetry-go.md
-      - opentelemetry-java.md
-
-      - '观测云二次开发':
-        - '更新历史': otel-ext-changelog.md
-        - 'DB语句脱敏': otel-sql-obfuscation.md
-        - 'guance-java-exporter': otel-guance-exporter.md
-
-    - 'Zipkin':
-      - zipkin.md
-
-    - 'Jaeger':
-      - jaeger.md
-
-    - 'CAT':
-      - cat.md
-
-    - 'Pinpoint':
-      - pinpoint.md
-      - pinpoint-java.md
-      - pinpoint-go.md
-
-    - 'New Relic':
-      - newrelic.md
-
-    - '链路工具及串联':
-      - tracing-propagator.md
+    - 'Tracing 综述':
+      - datakit-tracing.md
+      - 'Tracing 数据结构': datakit-tracing-struct.md
+      - '链路工具及串联': tracing-propagator.md
 
   - '语言':
     - 'Java': 

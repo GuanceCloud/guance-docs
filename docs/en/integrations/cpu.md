@@ -71,9 +71,9 @@ After successfully installing and starting DataKit, the CPU collector will be en
     
         **Type**: TimeDuration
     
-        **ConfField**: `interval`
+        **input.conf**: `interval`
     
-        **Default**: 10s
+        **Default**: `10s`
     
     - **ENV_INPUT_CPU_PERCPU**
     
@@ -81,7 +81,7 @@ After successfully installing and starting DataKit, the CPU collector will be en
     
         **Type**: Boolean
     
-        **ConfField**: `percpu`
+        **input.conf**: `percpu`
     
         **Default**: false
     
@@ -91,9 +91,9 @@ After successfully installing and starting DataKit, the CPU collector will be en
     
         **Type**: Boolean
     
-        **ConfField**: `enable_temperature`
+        **input.conf**: `enable_temperature`
     
-        **Default**: true
+        **Default**: `true`
     
     - **ENV_INPUT_CPU_ENABLE_LOAD5S**
     
@@ -101,19 +101,19 @@ After successfully installing and starting DataKit, the CPU collector will be en
     
         **Type**: Boolean
     
-        **ConfField**: `enable_load5s`
+        **input.conf**: `enable_load5s`
     
-        **Default**: false
+        **Default**: `false`
     
     - **ENV_INPUT_CPU_TAGS**
     
         Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
     
-        **Type**: Map
+        **Type**: String
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
-        **Example**: tag1=value1,tag2=value2
+        **Example**: `tag1=value1,tag2=value2`
 
 <!-- markdownlint-enable -->
 

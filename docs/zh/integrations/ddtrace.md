@@ -182,121 +182,121 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
     
         代理端点
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `endpoints`
+        **采集器配置字段**: `endpoints`
     
-        **Example**: ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
+        **示例**: ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
     
     - **ENV_INPUT_DDTRACE_CUSTOMER_TAGS**
     
         标签白名单
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `customer_tags`
+        **采集器配置字段**: `customer_tags`
     
-        **Example**: `["sink_project", "custom_dd_tag"]`
+        **示例**: `["sink_project", "custom_dd_tag"]`
     
     - **ENV_INPUT_DDTRACE_KEEP_RARE_RESOURCE**
     
         保持稀有跟踪资源列表
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `keep_rare_resource`
+        **采集器配置字段**: `keep_rare_resource`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_DDTRACE_COMPATIBLE_OTEL**
     
         将 `otel Trace` 与 `DDTrace Trace` 兼容
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `compatible_otel`
+        **采集器配置字段**: `compatible_otel`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_DDTRACE_TRACE_ID_64_BIT_HEX**
     
         将 `B3/B3Multi-TraceID` 与 `DDTrace` 兼容
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `trace_id_64_bit_hex`
+        **采集器配置字段**: `trace_id_64_bit_hex`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_DDTRACE_DEL_MESSAGE**
     
         删除 trace 消息
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `del_message`
+        **采集器配置字段**: `del_message`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_DDTRACE_OMIT_ERR_STATUS**
     
         错误状态白名单
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `omit_err_status`
+        **采集器配置字段**: `omit_err_status`
     
-        **Example**: ["404", "403", "400"]
+        **示例**: ["404", "403", "400"]
     
     - **ENV_INPUT_DDTRACE_CLOSE_RESOURCE**
     
         忽略指定服务器的 tracing（正则匹配）
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `close_resource`
+        **采集器配置字段**: `close_resource`
     
-        **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
+        **示例**: {"service1":["resource1","other"],"service2":["resource2","other"]}
     
     - **ENV_INPUT_DDTRACE_SAMPLER**
     
         全局采样率
     
-        **Type**: Float
+        **字段类型**: Float
     
-        **ConfField**: `sampler`
+        **采集器配置字段**: `sampler`
     
-        **Example**: 0.3
+        **示例**: 0.3
     
     - **ENV_INPUT_DDTRACE_THREADS**
     
         线程和缓存的数量
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `threads`
+        **采集器配置字段**: `threads`
     
-        **Example**: {"buffer":1000, "threads":100}
+        **示例**: {"buffer":1000, "threads":100}
     
     - **ENV_INPUT_DDTRACE_STORAGE**
     
         本地缓存路径和大小（MB）
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `storage`
+        **采集器配置字段**: `storage`
     
-        **Example**: {"storage":"./ddtrace_storage", "capacity": 5120}
+        **示例**: {"storage":"./ddtrace_storage", "capacity": 5120}
     
     - **ENV_INPUT_DDTRACE_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `tags`
+        **采集器配置字段**: `tags`
     
-        **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
+        **示例**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 
 ### 多线路工具串联注意事项 {#trace_propagator}
 
