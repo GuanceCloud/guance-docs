@@ -119,6 +119,7 @@ nav:
   - Middleware:
     - 'Storage':
       - 'MySQL': mysql.md
+      - cassandra.md
       - clickhousev1.md
       - couchbase.md
       - couchdb.md
