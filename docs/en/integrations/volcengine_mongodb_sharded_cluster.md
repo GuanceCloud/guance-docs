@@ -58,7 +58,7 @@ We collected some configurations by default, as described in the Metrics column 
 ## Metric  {#metric}
 Configure `Volcengine` - MongoDB Sharded Cluster monitoring. The default metric set is as follows. You can collect more metrics by configuring them [`Volcengine` MongoDB Replica Monitor Metrics Details](https://console.volcengine.com/cloud_monitor/metric?namespace=VCM_MongoDB_Sharded_Cluster){:target="_blank"}
 
-|`MetricName` |`Subnamespace` |Indicator Chinese name |MetricUnit | Dimension|
+|`MetricName` |`Subnamespace` |Description |MetricUnit | Dimension|
 | ---- |-------------------------------------| :----: |:----: |:----: |
 |`LogDiskUsage` |`config` |Log disk usage |Bytes(SI) | ResourceID|
 |`RunningConcurrentWriteRequest` |`config` |Current number of concurrent write requests |Count | ResourceID|
