@@ -125,6 +125,7 @@ nav:
   - 中间件:
     - '存储':
       - 'MySQL': mysql.md
+      - cassandra.md
       - clickhousev1.md
       - couchbase.md
       - couchdb.md
