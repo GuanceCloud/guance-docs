@@ -1,5 +1,7 @@
 ---
-title: 'HUAWEI RocketMQ'
+title: 'HUAWEI DMS RocketMQ'
+tags: 
+  - Huawei Cloud
 summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
 __int_icon: 'icon/huawei_rocketmq'
 dashboard:
@@ -13,7 +15,7 @@ monitor:
 
 
 <!-- markdownlint-disable MD025 -->
-# HUAWEI CLOUD RocketMQ
+# HUAWEI CLOUD DMS RocketMQ
 <!-- markdownlint-enable -->
 
 Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.

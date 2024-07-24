@@ -34,18 +34,33 @@ Currently, Datakit supports Prometheus-Operator CRD resources —— `PodMonitor
         any
         matchNames
 - ServiceMonitor:
+    - bearerTokenFile
     - targetLabels
     - podTargetLabels
     - endpoints:
         - interval
           port
           path
+          tlsConfig
+              caFile
+              certFile
+              keyFile
+              insecureSkipVerify
       params
     - namespaceSelector:
         any
         matchNames
 ```
 
+Note: The `tlsConfig` only supports configuring insecureSkipVerify, it does not support getting certificates from Kubernetes Secret/ConfigMap.
+
+Use `params` to specify `measurement`, for example:
+
+```yaml
+params:
+    measurement:
+    - new-measurement
+```
 
 ## Examples {#example}
 
@@ -136,7 +151,7 @@ Several important configuration items should be consistent with Nacos:
 - port: client
 - path: `/nacos/actuator/prometheus`
 
-Configuration parameters [document](https://doc.crds.dev/github.com/prometheus-operator/kube-prometheus/monitoring.coreos.com/PodMonitor/v1@v0.7.0){:target="_blank"}. Currently, Datakit only supports the requirement part, and does not support authentication configurations such as `baseAuth`, `bearerToeknSecret` and `tlsConfig`.
+Configuration parameters [document](https://doc.crds.dev/github.com/prometheus-operator/kube-prometheus/monitoring.coreos.com/PodMonitor/v1@v0.7.0){:target="_blank"}. Currently, Datakit only supports the requirement part, and does not support authentication configurations such as `baseAuth`, `bearerTokenSecret` and `tlsConfig`.
 
 ### Measurements and Tags {#measurement-and-tags}
 

@@ -3,7 +3,7 @@
 
 ## 第一步：注册并登录帐号 {#step-1}
 
-进入[观测云官网](https://www.guance.com/)，点击[注册](../../billing/commercial-register.md)，即可开通观测云用户。
+进入[观测云官网](https://www.guance.com/)，点击[注册](../../plans/commercial-register.md)，即可开通观测云用户。
 
 ## 第二步：安装 DataKit {#step-2}
 
@@ -152,7 +152,7 @@
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; DataKit 采集器：中间件、APM、LOG 等</font>](../../datakit/datakit-input-conf.md)
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 集成文档：丰富的数据接入操作指引</font>](../../integrations/index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 集成文档：丰富的数据接入操作指引</font>](../../integrations/integration-index.md)
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; DQL：贯穿观测云的查询语言</font>](../../dql/query.md)
 

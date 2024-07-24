@@ -1,21 +1,23 @@
 ---
-title: 'HUAWEI SYS.AS'
+title: 'HUAWEI AS'
+tags: 
+  - Huawei Cloud
 summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
 __int_icon: 'icon/huawei_SYS.AS'
 dashboard:
 
-  - desc: 'HUAWEI CLOUD SYS.AS Dashboard'
+  - desc: 'HUAWEI CLOUD AS Dashboard'
     path: 'dashboard/zh/huawei_SYS.AS'
 
 monitor:
-  - desc: 'HUAWEI CLOUD SYS.AS Monitor'
+  - desc: 'HUAWEI CLOUD AS Monitor'
     path: 'monitor/zh/huawei_SYS.AS'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# HUAWEI CLOUD SYS.AS
+# HUAWEI CLOUD AS
 <!-- markdownlint-enable -->
 
 Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.

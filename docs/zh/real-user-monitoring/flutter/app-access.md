@@ -84,19 +84,20 @@ void main() async {
 
     //使用公网 DataWay
     await FTMobileFlutter.sdkConfig(
-      datakitUrl: datakitUrl
+      datawayUrl: datawayUrl,
+      cliToken: cliToken,
     );
 }  
 ```
 
 | **字段** | **类型** | **必须** | **说明** |
 | --- | --- | --- | --- |
-| datakitUrl | String | 是 | datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。<br/>:warning: 安装 SDK 设备需能访问该地址。**注意：datakit 和 dataway 配置两者二选一**|
-| datawayUrl | String | 是 | dataway 访问 URL 地址，例子：http://10.0.0.1:9528，端口默认 9528，**注意：安装 SDK 设备需能访问这地址。注意：datakit 和 dataway 配置两者二选一** |
-| clientToken | String | 是 | 认证 token, 需要与 datawayUrl 同时配置  |
+| datakitUrl | String | 是 | datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529，安装 SDK 设备需能访问该地址。**注意：datakit 和 dataway 配置两者二选一**|
+| datawayUrl | String | 是 | dataway 访问 URL 地址，例子：http://10.0.0.1:9528，端口默认 9528，安装 SDK 设备需能访问这地址。**注意：datakit 和 dataway 配置两者二选一** |
+| cliToken | String | 是 | 认证 token, 需要与 datawayUrl 同时配置  |
 | debug | bool | 否 | 设置是否允许打印日志，默认 `false` |
 | env | String | 否 | 环境配置，默认 `prod`，任意字符，建议使用单个单词，例如 `test` 等|
-| envType | enum EnvType | 否 | 环境配置，默认 `EnvType.prod`。注：env 与 envType 只需配置一个 |
+| envType | enum EnvType | 否 | 环境配置，默认 `EnvType.prod`。**注：env 与 envType 只需配置一个** |
 | serviceName | String | 否 | 服务名 |
 
 ### RUM 配置 {#rum-config}
@@ -136,7 +137,7 @@ void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     //初始化 SDK
     await FTMobileFlutter.sdkConfig(
-      serverUrl: serverUrl,
+      datakitUrl: serverUrl,
       debug: true,
     );
     await FTRUMManager().setConfig(
@@ -224,7 +225,8 @@ await FTTracer().setConfig(
   /// [actionName] action 名称
   /// [actionType] action 类型
   /// [property] 附加属性参数(可选)
-  Future<void> startAction(String actionName, String actionType, {Map<String, String>? property})
+  Future<void> startAction(String actionName, String actionType, 
+  {Map<String, String>? property})
 ```
 #### 代码示例
 ```dart
@@ -232,8 +234,7 @@ FTRUMManager().startAction("action name", "action type");
 ```
 
 ### View {#rum-view}
-#### 自动采集
-
+#### 自动采集 {#view-auto-track-config}
 * **方法 1**:  `MaterialApp.navigatorObservers` 添加 `FTRouteObserver `，设置 `MaterialApp.routes` 需要跳转的页面，`routes` 中 `key` 即为页面名称(`view_name`)。
 
 ```dart
@@ -280,14 +281,38 @@ class MyApp extends StatelessWidget {
 }
 
 //此处“页面名称”为 NoRouteNamePage
-Navigator.of(context).push(FTMaterialPageRoute(builder: (context) => new NoRouteNamePage()
+Navigator.of(context).push(FTMaterialPageRoute(builder: (context) => 
+	new NoRouteNamePage()
 ```
 
-* 以上两种方法同时在一个项目中混合使用
+* **方法 3**: `MaterialApp.navigatorObservers` 添加 `FTRouteObserver `,在 `Route` 类型页面中自定义 `RouteSettings.name` 属性，`FTRouteObserver ` 的采集逻辑会优先获取 `RouteSettings.name` 的赋值，这个方法同样适用 Dialog 类型页面，例如 `showDialog()`,`showTimePicker()` 等。
+
+```dart
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomeRoute(),
+      navigatorObservers: [
+        //RUM View： 使用路由跳转时，监控页面生命周期
+        FTRouteObserver(),
+      ],
+    );
+  }
+}
+
+//此处“页面名称”为 "RouteSettingName"
+Navigator.of(context).push(
+          MaterialPageRoute(
+              builder: (context) => new NoRouteNamePage(),
+              settings: RouteSettings(name: "RouteSettingName"))
+```
+
+* 以上三种方法同时在一个项目中混合使用
 
 * 休眠和唤醒事件采集
-
-如果需要采集应用休眠和唤醒行为需要添加如下代码：
+低于 0.5.1-pre.1 版本，如果需要采集应用休眠和唤醒行为需要添加如下代码：
 
 ```dart
 class _HomeState extends State<HomeRoute> {
@@ -308,6 +333,52 @@ class _HomeState extends State<HomeRoute> {
 }
 
 ```
+
+#### 自动采集过滤  {#view-auto-track-route-filter}
+仅支持 0.5.0-pre.1 以上的版本
+
+**FTRouteObserver**
+
+```dart
+MaterialApp(
+  navigatorObservers: [
+        // RUM View： routeFilter 过滤不需要参与监听的页面
+         FTRouteObserver(routeFilter: (Route? route, Route? previousRoute) {
+          if (filterConfig) {
+            //不采集
+            return true;
+           }
+           return false;
+        }),
+])
+
+```
+
+| **字段** | **类型** | **必须** | **说明** |
+| --- | --- | --- | --- |
+| routeFilter | RouteFilter | 否 | 页面方法回调，可以根据进入和上一个 route 具体情况进行判断，返回 true 代表过滤符合条件的数据 ，反之则不过滤  |
+
+**FTDialogRouteFilterObserver**
+
+针对 `DialogRoute` 类型页面进行过滤，例如 `showDialog()`,`showTimePicker()` 等。
+
+```dart
+MaterialApp(
+  navigatorObservers: [
+    //RUM View 过滤 DialogRoute 类型的组件
+    FTDialogRouteFilterObserver(filterOnlyNoSettingName: true)
+])
+
+// 这里的 Dialog 在 filterOnlyNoSettingName 为 true 的前提下会被采集。
+// view_name 为 “About”
+showAboutDialog(
+            context: context, routeSettings: RouteSettings(name: "About"));
+```
+
+| **字段** | **类型** | **必须** | **说明** |
+| --- | --- | --- | --- |
+| filterOnlyNoSettingName | bool | 否 | 仅过滤 `RouteSettings.name` 为 null 的 Route 页面  |
+
 #### 自定义 View
 ##### 使用方法
 
@@ -346,7 +417,7 @@ void main() async {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     await FTMobileFlutter.sdkConfig(
-      serverUrl: serverUrl,
+      datakitUrl: serverUrl,
       debug: true,
     );
     await FTRUMManager().setConfig(
@@ -373,7 +444,8 @@ void main() async {
   /// [appState] 应用状态
   /// [errorType] 自定义 errorType
   /// [property] 附加属性参数(可选)
-  Future<void> addCustomError(String stack, String message, {Map<String, String>? property, String? errorType}) 
+  Future<void> addCustomError(String stack, String message,
+   {Map<String, String>? property, String? errorType}) 
 ```
 
 ##### 代码示例
@@ -467,6 +539,8 @@ void httpClientGetHttp(String url) async {
 
 ## Logger 日志打印 
 ### 自定义日志
+> 目前日志内容限制为 30 KB，字符超出部分会进行截断处理
+
 #### 使用方法
 ```dart
 

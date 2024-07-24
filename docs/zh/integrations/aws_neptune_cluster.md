@@ -1,5 +1,7 @@
 ---
 title: 'AWS Neptune Cluster'
+tags: 
+  - AWS
 summary: 'AWS Neptune Cluster的展示指标包括冷启动时间、执行时间、并发执行数和内存使用量，这些指标反映了Neptune Cluster函数的响应速度、可扩展性和资源利用情况。'
 __int_icon: 'icon/aws_neptune_cluster'
 
@@ -73,9 +75,7 @@ AWS Neptune Cluster的展示指标包括冷启动时间、执行时间、并发�
 | `EngineUptime`                           | 实例运行时间长度 (以秒为单位)。 |
 | `FreeableMemory`                           | 随机存取内存的可用量 (以字节为单位)。 |
 | `GlobalDbDataTransferBytes`                           | 从主服务器传输的重做日志数据的字节数AWS 区域到中学AWS 区域在海王星全球数据库中。 |
-| `GlobalDbReplicatedWriteIO`                           | 从主服务器复制的写入 I/O 操作的数量AWS 区域在全局数据库中存储到辅助数据库中的群集卷AWS 区域。
-
-Neptune 全局数据库中每个数据库集群的账单计算使用VolumeWriteIOPS衡量在该集群内执行的写入操作的指标。对于主数据库集群，账单计算使用GlobalDbReplicatedWriteIO以考虑到辅助数据库集群的跨区域复制。 |
+| `GlobalDbReplicatedWriteIO`                           | 从主服务器复制的写入 I/O 操作的数量，AWS 区域在全局数据库中存储到辅助数据库中的群集卷AWS 区域。<br/> Neptune 全局数据库中每个数据库集群的账单计算使用VolumeWriteIOPS衡量在该集群内执行的写入操作的指标。对于主数据库集群，账单计算使用GlobalDbReplicatedWriteIO以考虑到辅助数据库集群的跨区域复制。 |
 | `GlobalDbProgressLag`                           | 对于用户事务和系统事务，辅助群集落后于主群集的毫秒数。 |
 | `GremlinRequestsPerSec`                           | 每秒对 Gremlin 引擎的请求数。 |
 | `GremlinWebSocketOpenConnections`                           | 打开的次数WebSocket与海王星的连接。 |
@@ -101,7 +101,7 @@ Neptune 全局数据库中每个数据库集群的账单计算使用VolumeWriteI
     "PackageType"       :"Zip",
     "RegionId"          :"cn-northwest-1",
     "RevisionId"        :"5e52ff51-615a-4ecb-96b7-40083a7b4b62",
-    "Role"              :"arn:aws-cn:iam::294654068288:role/service-role/s3--guance-role-3w34zo42",
+    "Role"              :"arn:aws-cn:iam::XXXX:role/service-role/s3--guance-role-3w34zo42",
     "Runtime"           :"python3.7",
     "Version"           :"$LATEST"
   },

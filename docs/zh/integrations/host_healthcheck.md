@@ -45,8 +45,14 @@ monitor   :
         # Process filtering based on process name
         names = ["nginx", "mysql"]
     
-        ## Process filtering based on regular expression 
+        # Process filtering based on regular expression 
         # names_regex = [ "my_process_.*" ]
+    
+        # Process filtering based on cmd line
+        # cmd_lines = ["nginx", "mysql"]
+    
+        # Process filtering based on regular expression 
+        # cmd_lines_regex = [ "my_args_.*" ]
     
         ## Process minimal run time
         # Only check the process when the running time of the process is greater than min_run_time
@@ -63,7 +69,7 @@ monitor   :
       ## Check HTTP
       # [[inputs.host_healthcheck.http]]
           ## HTTP urls
-          # http_urls = [ "http://local-ip:port/path/to/api?arg1=x&arg2=y" ]
+          # http_urls = [ "http://127.0.0.1:8000/path/to/api?arg1=x&arg2=y" ]
     
           ## HTTP method
           # method = "GET"
@@ -174,6 +180,7 @@ monitor   :
 
 | Tag | Description |
 |  ----  | --------|
+|`cmd_line`|The command line of the process|
 |`host`|System hostname|
 |`process`|The name of the process|
 |`type`|The type of the exception|
@@ -183,7 +190,7 @@ monitor   :
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`exception`|Exception value|int|-|
+|`exception`|Exception value, 1 or 0|int|-|
 |`pid`|The process ID|int|int|
 |`start_duration`|The total time the process has run|int|μs|
 
@@ -210,7 +217,7 @@ monitor   :
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`exception`|Exception value|int|-|
+|`exception`|Exception value, 1 or 0|int|-|
 
 
 
@@ -235,6 +242,6 @@ monitor   :
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`exception`|Exception value|int|-|
+|`exception`|Exception value, 1 or 0|int|-|
 
 

@@ -214,7 +214,7 @@ yum install -y  redis
 
 ## 指标 {#metric}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.redis.tags]` 指定其它标签：
+以下所有数据采集，默认会追加全局选举 tag，也可以在配置中通过 `[inputs.redis.tags]` 指定其它标签：
 
 ``` toml
  [inputs.redis.tags]
@@ -747,7 +747,11 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`command`|Slow command|int|μs|
+|`slowlog_95percentile`|Slow 95th percentile duration|int|μs|
+|`slowlog_avg`|Slow average duration|float|μs|
 |`slowlog_id`|Slow log unique id|int|-|
+|`slowlog_max`|Slow maximum duration|int|μs|
+|`slowlog_median`|Slow median duration|int|μs|
 |`slowlog_micros`|Cost time|int|μs|
 
 

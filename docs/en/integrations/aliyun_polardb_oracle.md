@@ -1,5 +1,7 @@
 ---
 title: 'Aliyun PolarDB Oracle'
+tags: 
+  - Alibaba Cloud
 summary: 'Aliyun PolarDB Oracle Metrics Display, including CPU usage, memory usage, network traffic, connection count, IOPS (Input/Output Operations Per Second), TPS (Transactions Per Second), and data disk size.'
 __int_icon: icon/aliyun_polardb_oracle
 dashboard:

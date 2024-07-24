@@ -1,18 +1,20 @@
 ---
-title: '火山云 MongoDB 副本集'
-summary: '火山云 MongoDB 副本集指标展示，包括 CPU 使用率、内存使用率、 连接数、延迟、OPS等。'
+title: '火山引擎 MongoDB 副本集'
+tags: 
+  - 火山引擎
+summary: '火山引擎 MongoDB 副本集指标展示，包括 CPU 使用率、内存使用率、 连接数、延迟、OPS等。'
 __int_icon: 'icon/volcengine_mongodb'
 dashboard:
-  - desc: '火山云 MongoDB'
+  - desc: '火山引擎 MongoDB'
     path: 'dashboard/zh/volcengine_mongodb_replica_set/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# 火山云 MongoDB 副本集
+# 火山引擎 MongoDB 副本集
 <!-- markdownlint-enable -->
 
 
-火山云 MongoDB 副本集指标展示，包括 CPU 使用率、内存使用率、 连接数、延迟、OPS等。。
+火山引擎 MongoDB 副本集指标展示，包括 CPU 使用率、内存使用率、 连接数、延迟、OPS等。。
 
 ## 配置 {#config}
 
@@ -26,11 +28,11 @@ dashboard:
 
 ### 安装脚本
 
-> 提示：请提前准备好符合要求的火山云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
+> 提示：请提前准备好符合要求的火山引擎 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步 MongoDB 云资源的监控数据，我们安装对应的采集脚本：「观测云集成（火山云-MongoDB采集）」(ID：`guance_volcengine_mongodb_replica_set`)
+同步 MongoDB 云资源的监控数据，我们安装对应的采集脚本：「观测云集成（火山引擎-MongoDB采集）」(ID：`guance_volcengine_mongodb_replica_set`)
 
-点击【安装】后，输入相应的参数：火山云 AK、火山云账户名。
+点击【安装】后，输入相应的参数：火山引擎 AK、火山引擎账户名。
 
 点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
 
@@ -51,30 +53,51 @@ dashboard:
 3. 在观测云平台，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
-配置好火山云-MongoDB 副本集监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [火山云 MongoDB 监控指标详情](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_MongoDB_Replica){:target="_blank"}
+配置好火山引擎-MongoDB 副本集监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [火山引擎 MongoDB 监控指标详情](https://console.volcengine.com/cloud_monitor/metric?namespace=VCM_MongoDB_Replica){:target="_blank"}
 
-> 注意：需要在 `volcengine` MongoDB 控制台安装监控插件
+|`MetricName` |`Subnamespace` |指标中文名称 |MetricUnit | Dimension|
+| ---- |-------------------------------------| :----: |:----: |:----: |
+|`AggregatedCpuUtil` |`instance` |CPU使用率 |Percent | ResourceID|
+|`AggregatedMemUtil` |`instance` |内存使用率 |Percent | ResourceID|
+|`AggregatedTotalDiskUtil` |`instance` |磁盘总空间使用率 |Percent | ResourceID|
+|`NetworkReceiveThroughput` |`replica` |网络输入速率 |Bytes/Second(SI) | ResourceID,Node|
+|`RunningConcurrentWriteRequest` |`replica` |当前写并发请求数 |Count | ResourceID,Node|
+|`LogDiskUsage` |`replica` |日志磁盘使用量 |Bytes(SI) | ResourceID,Node|
+|`RunningConcurrentReadRequest` |`replica` |当前读并发请求数 |Count | ResourceID,Node|
+|`CommandOperationPerSec` |`replica` |每秒COMMAND操作数 |Count/Second | ResourceID,Node|
+|`ReplicationDelay` |`replica` |主备延时 |Second | ResourceID,Node|
+|`CurrConn` |`replica` |当前连接数 |Count | ResourceID,Node|
+|`TotalDiskUsage` |`replica` |磁盘总使用量 |Bytes(SI) | ResourceID,Node|
+|`UpdateOperationPerSec` |`replica` |每秒UPDATE操作数 |Count/Second | ResourceID,Node|
+|`MaxDiskConfigured` |`replica` |配置最大可用磁盘空间 |Bytes(SI) | ResourceID,Node|
+|`TimeOutCursor` |`replica` |cursor超时数 |Count | ResourceID,Node|
+|`NetworkTransmitThroughput` |`replica` |网络输出速率 |Bytes/Second(SI) | ResourceID,Node|
+|`GlobalWaitReadLockQueue` |`replica` |全局读锁的等待队列长度 |Count | ResourceID,Node|
+|`AvailConcurrentReadRequest` |`replica` |可用读并发请求数 |Count | ResourceID,Node|
+|`DataDiskUsage` |`replica` |数据磁盘使用量 |Bytes(SI) | ResourceID,Node|
+|`ReadIntoCachePerSec` |`replica` |每秒读入cache的数据量 |Bytes/Second(SI) | ResourceID,Node|
+|`TotalDiskUtil` |`replica` |磁盘总使用率 |Percent | ResourceID,Node|
+|`GlobalWaitWriteLockQueue` |`replica` |全局写锁的等待队列长度 |Count | ResourceID,Node|
+|`TotalOpenCursor` |`replica` |cursor打开总数 |Count | ResourceID,Node|
+|`GetmoreOperationPerSec` |`replica` |每秒`GETMORE`操作数 |Count/Second | ResourceID,Node|
+|`MemUtil` |`replica` |内存使用率 |Percent | ResourceID,Node|
+|`GlobalWaitTotalLockQueue` |`replica` |全局锁的等待队列总长度 |Count | ResourceID,Node|
+|`CpuUtil` |`replica` |CPU使用率 |Percent | ResourceID,Node|
+|`QueryOperationPerSec` |`replica` |每秒QUERY操作数 |Count/Second | ResourceID,Node|
+|`DeleteOperationPerSec` |`replica` |每秒DELETE操作数 |Count/Second | ResourceID,Node|
+|`AvailConcurrentWriteRequest` |`replica` |可用写并发请求数 |Count | ResourceID,Node|
+|`InsertOperationPerSec` |`replica` |每秒INSERT操作数 |Count/Second | ResourceID,Node|
+|`WrittenFromCachePerSec` |`replica` |每秒从cache写到磁盘的数据量 |Bytes/Second(SI) | ResourceID,Node|
+|`NetworkRequestPerSec` |`replica` |网络处理请求数 |Count/Second | ResourceID,Node|
+|`SlowOpCount` |`replica` |慢查询数统计 |Count | ResourceID,Node|
+|`OplogAvailTime` |`replica` |`Oplog`可用时间 |Second | ResourceID,Node|
 
-| Metric | Description                          | Unit |
-| ---- |-------------------------------------| :----: |
-|`CpuUtil` |CPU使用率|Percent|
-|`MemUtil` |内存使用率|Percent|
-|`TotalDiskUtil` | 磁盘使用率 |Percent|
-|`CurrConn` | 当前连接数 |Count|
-|`DataDiskUsage`|数据磁盘使用量|Bytes(SI)|
-|`ReplicationDelay`|主备延时| Second |
-|`GetmoreOperationPerSec`| 每秒 `GETMORE` 操作数 | Count/Second |
-|`QueryOperationPerSec`|每秒 QUERY 操作数| Count/Second |
-|`DeleteOperationPerSec`| 每秒 DELETE 操作数 | Count/Second |
-|`InsertOperationPerSec`| 每秒 INSERT 操作数 | Count/Second|
-|`UpdateOperationPerSec`| 每秒 UPDATE 操作数 | Count/Second|
-|`CommandOperationPerSec`| 每秒 COMMAND 操作数 | Count/Second|
 
 
 
 ## 对象 {#object}
 
-采集到的火山云 MongoDB 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
+采集到的火山引擎 MongoDB 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
 
 ``` json
   {

@@ -29,13 +29,15 @@
         "title": "外部事件监控器测试1",
         "message": "你好，这是外部事件监控器的message",
         "dimension_tags": {"heros": "caiwenji"},
-        "check_data": 20
+        "check_value": 20
     },
     "extraData": {
         "name": "xxxxxxxx"
     }
 }
 ```
+
+> 更多详情，可参考 [外部事件监控器事件接受](../../open-api/checker/receive.md)。
 
 ### 步骤二：通知 & 异常追踪
 

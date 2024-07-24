@@ -319,6 +319,27 @@ spec:
     保护模式一旦被禁用，即可以设置一些危险的配置参数，Datakit 将接受任何配置参数。这些参数可能会导致 Datakit 一些功能异常，或者影响采集器的采集功能。比如 HTTP 发送 Body 设置太小，会影响数据上传功能；某些采集器的采集频率过高，可能影响被采集的实体。
 <!-- markdownlint-enable -->
 
+### Point Pool 配置相关环境变量 {#env-pointpool}
+
+[:octicons-tag-24: Version-1.28.0](changelog.md#cl-1.28.0) ·
+[:octicons-beaker-24: Experimental](index.md#experimental)
+
+<!-- markdownlint-disable MD046 -->
+- **ENV_ENABLE_POINT_POOL**
+
+    开启 point pool
+
+    **Type**: Boolean
+
+    **Example**: `on`
+
+- **ENV_POINT_POOL_RESERVED_CAPACITY**
+
+    指定 point pool 大小（默认 4096）
+
+    **Type**: Int
+<!-- markdownlint-enable -->
+
 ### Dataway 配置相关环境变量 {#env-dataway}
 
 <!-- markdownlint-disable MD046 -->
@@ -395,6 +416,12 @@ spec:
     设置上传时的 point 数据编码（可选列表：`v1` 即行协议，`v2` 即 Protobuf）
 
     **Type**: String
+
+- **ENV_DATAWAY_TLS_INSECURE**
+
+    允许对应的 Dataway 上的证书是自签证书[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
+
+    **Type**: Boolean
 <!-- markdownlint-enable -->
 
 ### 日志配置相关环境变量 {#env-log}
@@ -449,7 +476,7 @@ spec:
     **Default**: 32
 <!-- markdownlint-enable -->
 
-### Datakit pprof 相关 {#env-pprof}
+### Pprof 相关 {#env-pprof}
 
 <!-- markdownlint-disable MD046 -->
 - **ENV_ENABLE_PPROF :fontawesome-solid-x:**
@@ -516,7 +543,7 @@ spec:
 <!-- markdownlint-disable MD046 -->
 - **ENV_DISABLE_404PAGE**
 
-    禁用 Datakit 404 页面（公网部署 Datakit RUM 时常用）
+    禁用 Datakit 404 页面（公网部署 Datakit RUM 时常用）。
 
     **Type**: Boolean
 
@@ -524,7 +551,7 @@ spec:
 
 - **ENV_HTTP_LISTEN**
 
-    可修改地址，使得外部可以调用 [Datakit 接口](apis.md)
+    可修改地址，使得外部可以调用 [Datakit 接口](apis.md)。
 
     **Type**: String
 
@@ -532,13 +559,13 @@ spec:
 
 - **ENV_HTTP_PUBLIC_APIS**
 
-    允许外部访问的 Datakit [API 列表](apis.md)，多个 API 之间以英文逗号分割。当 Datakit 部署在公网时，用来禁用部分 API
+    允许外部访问的 Datakit [API 列表](apis.md)，多个 API 之间以英文逗号分割。当 Datakit 部署在公网时，用来禁用部分 API。
 
     **Type**: List
 
 - **ENV_HTTP_TIMEOUT**
 
-    设置 9529 HTTP API 服务端超时时间 [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
+    设置 9529 HTTP API 服务端超时时间 [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)。
 
     **Type**: TimeDuration
 
@@ -546,21 +573,45 @@ spec:
 
 - **ENV_HTTP_CLOSE_IDLE_CONNECTION**
 
-    如果开启，则 9529 HTTP server 会主动关闭闲置连接（闲置时间等同于 `ENV_HTTP_TIMEOUT`） [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
+    如果开启，则 9529 HTTP server 会主动关闭闲置连接（闲置时间等同于 `ENV_HTTP_TIMEOUT`） [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)。
 
     **Type**: Boolean
 
     **Default**: -
 
+- **ENV_HTTP_ENABLE_TLS**
+
+    开启 Datakit 9529 HTTPS[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)。
+
+    **Type**: Boolean
+
+    **Default**: -
+
+- **ENV_HTTP_TLS_CRT**
+
+    配置 Datakit HTTP Server 上的 TLS cert 路径[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)。
+
+    **Type**: String
+
+    **Default**: -
+
+- **ENV_HTTP_TLS_KEY**
+
+    配置 Datakit HTTP Server 上的 TLS key 路径[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)。
+
+    **Type**: String
+
+    **Default**: -
+
 - **ENV_REQUEST_RATE_LIMIT**
 
-    限制 9529 [API 每秒请求数](datakit-conf.md#set-http-api-limit)
+    限制 9529 [API 每秒请求数](datakit-conf.md#set-http-api-limit)。
 
     **Type**: Float
 
 - **ENV_RUM_ORIGIN_IP_HEADER**
 
-    RUM 专用
+    设置 RUM 请求中真实 IP forward 对应的 HTTP header key。Datakit 将从该 Header 上获取端上用户的真实 IP，否则拿到可能是网关 IP。
 
     **Type**: String
 
@@ -568,11 +619,11 @@ spec:
 
 - **ENV_RUM_APP_ID_WHITE_LIST**
 
-    RUM app-id 白名单列表，以 `,` 分割
+    RUM app-id 白名单列表，以 `,` 分割。
 
     **Type**: String
 
-    **Example**: appid-1,appid-2
+    **Example**: appid-1, appid-2
 <!-- markdownlint-enable -->
 
 ### Confd 配置相关环境变量 {#env-confd}
@@ -785,6 +836,14 @@ spec:
     **Type**: Int
 
     **Default**: 1
+
+- **ENV_IO_FEED_GLOBAL_BLOCKING**
+
+    IO 发送的阻塞模式，目前只针对时序数据和拨测数据，其它类数据默认都是非阻塞的（[:octicons-tag-24: Version-1.33.0](changelog.md#cl-1.33.0)）
+
+    **Type**: Int
+
+    **Default**: -
 
 - **ENV_IO_FLUSH_WORKERS**
 
@@ -1008,6 +1067,22 @@ spec:
     **Type**: List
 
     **Example**: `http://aaa:123,http://1.2.3.4:1234`
+
+- **ENV_CRYPTO_AES_KEY**
+
+    AES 加解密的 key 长度是 16
+
+    **Type**: String
+
+    **Example**: `0123456789abcdef`
+
+- **ENV_CRYPTO_AES_KEY_FILE**
+
+    AES 加解密的 key 存放的文件路径
+
+    **Type**: String
+
+    **Example**: `/usr/local/datakit/enc4mysql`
 <!-- markdownlint-enable -->
 
 ### 特殊环境变量 {#env-special}

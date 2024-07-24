@@ -74,22 +74,59 @@
 
 精简版 DataKit 只包含以下采集器：
 
-| 采集器名称                                                        | 说明                                                                         |
-| ---                                                               | ---                                                                          |
-| [CPU（`cpu`）](../integrations/cpu.md)                            | 采集主机的 CPU 使用情况                                                        |
-| [Disk（`disk`）](../integrations/disk.md)                         | 采集磁盘占用情况                                                             |
-| [磁盘 IO（`diskio`）](../integrations/diskio.md)                  | 采集主机的磁盘 IO 情况                                                         |
-| [内存（`mem`）](../integrations/mem.md)                           | 采集主机的内存使用情况                                                       |
-| [Swap（`swap`）](../integrations/swap.md)                         | 采集 Swap 内存使用情况                                                         |
-| [System（`system`）](../integrations/system.md)                   | 采集主机操作系统负载                                                         |
-| [Net（`net`）](../integrations/net.md)                            | 采集主机网络流量情况                                                         |
-| [主机进程（`host_processes`）](../integrations/host_processes.md) | 采集主机上常驻（存活 10min 以上）进程列表                                      |
-| [主机对象（`hostobject`）](../integrations/hostobject.md)         | 采集主机基础信息（如操作系统信息、硬件信息等）                               |
-| [Datakit（`dk`）](../integrations/dk.md)                          | 采集 Datakit 自身运行指标收集                                                |
-| [用户访问监测 (`rum`)](../integrations/rum.md)                    | 用于收集用户访问监测数据                                                |
-| [网络拨测 (`dialtesting`)](../integrations/dialtesting.md)        | 采集网络拨测数据                                                |
-| [Prom 采集 (`prom`)](../integrations/prom.md)                     | 采集 Prometheus Exporters 暴露出来的指标数据                          |
-| [日志采集 (`logging`)](../integrations/logging.md)                 | 采集文件日志数据                          |
+| 采集器名称                                                        | 说明                                           |
+| ----------------------------------------------------------------- | ---------------------------------------------- |
+| [CPU（`cpu`）](../integrations/cpu.md)                            | 采集主机的 CPU 使用情况                        |
+| [Disk（`disk`）](../integrations/disk.md)                         | 采集磁盘占用情况                               |
+| [磁盘 IO（`diskio`）](../integrations/diskio.md)                  | 采集主机的磁盘 IO 情况                         |
+| [内存（`mem`）](../integrations/mem.md)                           | 采集主机的内存使用情况                         |
+| [Swap（`swap`）](../integrations/swap.md)                         | 采集 Swap 内存使用情况                         |
+| [System（`system`）](../integrations/system.md)                   | 采集主机操作系统负载                           |
+| [Net（`net`）](../integrations/net.md)                            | 采集主机网络流量情况                           |
+| [主机进程（`host_processes`）](../integrations/host_processes.md) | 采集主机上常驻（存活 10min 以上）进程列表      |
+| [主机对象（`hostobject`）](../integrations/hostobject.md)         | 采集主机基础信息（如操作系统信息、硬件信息等） |
+| [Datakit（`dk`）](../integrations/dk.md)                          | 采集 Datakit 自身运行指标收集                  |
+| [用户访问监测 (`rum`)](../integrations/rum.md)                    | 用于收集用户访问监测数据                       |
+| [网络拨测 (`dialtesting`)](../integrations/dialtesting.md)        | 采集网络拨测数据                               |
+| [Prom 采集 (`prom`)](../integrations/prom.md)                     | 采集 Prometheus Exporters 暴露出来的指标数据   |
+| [日志采集 (`logging`)](../integrations/logging.md)                | 采集文件日志数据                               |
+
+### 安装 DataKit 的 eBPF Trace Linker 版本 {#elinker-install}
+
+可以通过在安装命令中添加 `DK_ELINKER` 环境变量来安装用于 eBPF Span 的连接和 eBPF Trace 生成的 DataKit ELinker 版本（[:octicons-tag-24: Version-1.30.0](changelog.md#cl-1.30.0)）:
+
+<!-- markdownlint-disable MD046 -->
+=== "Linux/macOS"
+
+    ```shell
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_ELINKER=1 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    ```
+
+=== "Windows"
+
+    ```powershell
+    Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
+    $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
+    $env:DK_ELINKER="1";
+    Set-ExecutionPolicy Bypass -scope Process -Force;
+    Import-Module bitstransfer;
+    start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
+    powershell ./.install.ps1;
+    ```
+<!-- markdownlint-enable -->
+DataKit ELinker 只包含以下采集器：
+
+| 采集器名称                                                       | 说明                                                        |
+| ---------------------------------------------------------        | ----------------------------------------------------------- |
+| [CPU（`cpu`）](../integrations/cpu.md)                           | 采集主机的 CPU 使用情况                                     |
+| [Disk（`disk`）](../integrations/disk.md)                        | 采集磁盘占用情况                                            |
+| [磁盘 IO（`diskio`）](../integrations/diskio.md)                 | 采集主机的磁盘 IO 情况                                      |
+| [eBPF Trace Linker（`ebpftrace`）](../integrations/ebpftrace.md) | 接收 eBPF 链路 span 并连接这些 spans 来生成 trace id 等信息 |
+| [Swap（`swap`）](../integrations/swap.md)                        | 采集 Swap 内存使用情况                                      |
+| [System（`system`）](../integrations/system.md)                  | 采集主机操作系统负载                                        |
+| [Net（`net`）](../integrations/net.md)                           | 采集主机网络流量情况                                        |
+| [主机对象（`hostobject`）](../integrations/hostobject.md)        | 采集主机基础信息（如操作系统信息、硬件信息等）              |
+| [DataKit（`dk`）](../integrations/dk.md)                         | 采集 DataKit 自身运行指标收集                               |
 
 ### 安装指定版本的 DataKit {#version-install}
 
@@ -149,7 +186,8 @@ NAME1="value1" NAME2="value2"
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    [全离线安装](datakit-offline-install.md#offline)不支持这些环境变量设置。但可以通过[代理](datakit-offline-install.md#with-datakit)以及[设置本地安装地址](datakit-offline-install.md#with-nginx)方式来设置这些环境变量。
+    1. [全离线安装](datakit-offline-install.md#offline)不支持这些环境变量设置。但可以通过[代理](datakit-offline-install.md#with-datakit)以及[设置本地安装地址](datakit-offline-install.md#with-nginx)方式来设置这些环境变量。
+    1. 这些环境变量只有在安装模式才能生效，升级模式下，这些环境变量都是不生效的。
 <!-- markdownlint-enable -->
 
 ### 最常用环境变量 {#common-envs}
@@ -281,7 +319,7 @@ NAME1="value1" NAME2="value2"
 ### Confd 配置相关 {#env-connfd}
 
 | 环境变量名              | 类型   | 适用场景                        | 说明       | 样例值                                         |
-| ----                    | ----   | ----                            | ----       | ----                                           |
+| ----------------------- | ------ | ------------------------------- | ---------- | ---------------------------------------------- |
 | DK_CONFD_BACKEND        | string | 全部                            | 后端源类型 | `etcdv3` 或 `zookeeper` 或 `redis` 或 `consul` |
 | DK_CONFD_BASIC_AUTH     | string | `etcdv3` 或 `consul`            | 可选       |                                                |
 | DK_CONFD_CLIENT_CA_KEYS | string | `etcdv3` 或 `consul`            | 可选       |                                                |
@@ -336,23 +374,27 @@ NAME1="value1" NAME2="value2"
 
 ### 其它安装选项 {#env-others}
 
-| 环境变量名                    | 取值示例           | 说明                                                                                                                             |
-| ----                          | ---                | ----                                                                                                                             |
-| `DK_INSTALL_ONLY`             | `on`               | 仅安装，不运行                                                                                                                   |
-| `DK_HOSTNAME`                 | `some-host-name`   | 支持安装阶段自定义配置主机名                                                                                                     |
-| `DK_UPGRADE`                  | `1`                | 升级到最新版本（注：一旦开启该选项，除 `DK_UPGRADE_MANAGER` 外其它选项均无效）                                                   |
-| `DK_UPGRADE_MANAGER`          | `on`               | 升级 Datakit 同时是否升级 **远程升级服务**，需要和 `DK_UPGRADE` 配合使用， 从 [1.5.9](changelog.md#cl-1.5.9) 版本开始支持        |
-| `DK_INSTALLER_BASE_URL`       | `https://your-url` | 可选择不同环境的安装脚本，默认为 `https://static.guance.com/datakit`                                                             |
-| `DK_PROXY_TYPE`               | -                  | 代理类型。选项有：`datakit` 或 `nginx`，均为小写                                                                                 |
-| `DK_NGINX_IP`                 | -                  | 代理服务器 IP 地址（只需要填 IP 不需要填端口）。这个与上面的 "HTTP_PROXY" 和 "HTTPS_PROXY" 互斥，而且优先级最高，会覆盖以上两者  |
-| `DK_INSTALL_LOG`              | -                  | 设置安装程序日志路径，默认为当前目录下的 *install.log*，如果设置为 `stdout` 则输出到命令行终端                                   |
-| `HTTPS_PROXY`                 | `IP:Port`          | 通过 Datakit 代理安装                                                                                                            |
-| `DK_INSTALL_RUM_SYMBOL_TOOLS` | `on`               | 是否安装 RUM source map 工具集，从 Datakit [1.9.2](changelog.md#cl-1.9.2) 开始支持                                               |
-| `DK_VERBOSE`                  | `on`               | 打开安装过程中的 verbose 选项（仅 Linux/Mac 支持），将输出更多调试信息[:octicons-tag-24: Version-1.19.0](changelog.md#cl-1.19.0) |
+| 环境变量名                         | 取值示例                        | 说明                                                                                                      |
+|-------------------------------|-----------------------------|---------------------------------------------------------------------------------------------------------|
+| `DK_INSTALL_ONLY`             | `on`                        | 仅安装，不运行                                                                                                 |
+| `DK_HOSTNAME`                 | `some-host-name`            | 支持安装阶段自定义配置主机名                                                                                          |
+| `DK_UPGRADE`                  | `1`                         | 升级到最新版本（注：一旦开启该选项，除 `DK_UPGRADE_MANAGER` 外其它选项均无效）                                                      |
+| `DK_UPGRADE_MANAGER`          | `on`                        | 升级 Datakit 同时是否升级 **远程升级服务**，需要和 `DK_UPGRADE` 配合使用， 从 [1.5.9](changelog.md#cl-1.5.9) 版本开始支持             |
+| `DK_INSTALLER_BASE_URL`       | `https://your-url`          | 可选择不同环境的安装脚本，默认为 `https://static.guance.com/datakit`                                                    |
+| `DK_PROXY_TYPE`               | -                           | 代理类型。选项有：`datakit` 或 `nginx`，均为小写                                                                       |
+| `DK_NGINX_IP`                 | -                           | 代理服务器 IP 地址（只需要填 IP 不需要填端口）。这个与上面的 "HTTP_PROXY" 和 "HTTPS_PROXY" 互斥，而且优先级最高，会覆盖以上两者                      |
+| `DK_INSTALL_LOG`              | -                           | 设置安装程序日志路径，默认为当前目录下的 *install.log*，如果设置为 `stdout` 则输出到命令行终端                                             |
+| `HTTPS_PROXY`                 | `IP:Port`                   | 通过 Datakit 代理安装                                                                                         |
+| `DK_INSTALL_RUM_SYMBOL_TOOLS` | `on`                        | 是否安装 RUM source map 工具集，从 Datakit [1.9.2](changelog.md#cl-1.9.2) 开始支持                                   |
+| `DK_VERBOSE`                  | `on`                        | 打开安装过程中的 verbose 选项（仅 Linux/Mac 支持），将输出更多调试信息[:octicons-tag-24: Version-1.19.0](changelog.md#cl-1.19.0) |
+| `DK_CRYPTO_AES_KEY`           | `0123456789abcdfg`          | 使用加密后的密码解密秘钥，用于采集器中明文密码的保护 [:octicons-tag-24: Version-1.31.0](changelog.md#cl-1.31.0)                  |
+| `DK_CRYPTO_AES_KEY_FILE`      | `/usr/local/datakit/enc4dk` | 秘钥的另一种配置方式，优先于上一种。将秘钥放到该文件中，并将配置文件路径通过环境变量方式配置即可。                                                       |
 
 ## FAQ {#faq}
 
+<!-- markdownlint-disable MD013 -->
 ### :material-chat-question: 如何应付不友好的主机名 {#bad-hostname}
+<!-- markdownlint-enable -->
 
 由于 DataKit 使用主机名（Hostname）作为数据串联的依据，某些情况下，一些主机名取得不是很友好，比如 `iZbp141ahn....`，但由于某些原因，又不能修改这些主机名，这给使用带来一定的困扰。在 DataKit 中，可在主配置中覆盖这个不友好的主机名。
 
@@ -369,7 +411,9 @@ NAME1="value1" NAME2="value2"
     如果之前某个主机已经采集了一段时间的数据，更改主机名后，这些历史数据将不再跟新的主机名关联。更改主机名，相当于新增了一台全新的主机。
 <!-- markdownlint-enable -->
 
+<!-- markdownlint-disable MD013 -->
 ### :material-chat-question: Mac 安装问题 {#mac-failed}
+<!-- markdownlint-enable -->
 
 Mac 上安装时，如果安装/升级过程中出现
 
@@ -392,6 +436,52 @@ sudo launchctl load -w /Library/LaunchDaemons/cn.dataflux.datakit.plist
 # 或者
 sudo launchctl load -w /Library/LaunchDaemons/com.guance.datakit.plist
 ```
+
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: Datakit 是否有文件以及数据的高危操作？ {#danger-ops}
+<!-- markdownlint-enable -->
+
+Datakit 在运行过程中，根据采集配置不同，会读取很多系统信息，比如进程列表、软硬件信息（比如操作系统信息、CPU、内存、磁盘、网卡等）。但它不会主动执行删除、修改其自身之外的其它数据。关于文件读写，分成两个部分，一个是和数据采集有关的读文件/端口操作，一个是 Datakit 自身运行过程中一些必要的文件读写操作。
+
+采集需要读取的主机文件：
+
+- 在进程信息采集、软硬件信息采集的过程中，Linux 下会读取 */proc* 目录下的相关信息；Windows 下主要通过 WMI 以及 Golang Windows SDK 来获取这些信息
+
+- 如果配置了相关的日志采集，根据采集的配置，会扫描并且读取符合配置的日志（比如 syslog，用户应用日志等）
+
+- 端口占用：Datakit 为了对接一些其它系统，会单独开启一些端口服务来接收外部数据。[这些端口](datakit-port.md)根据采集器不同，按需开启
+
+- eBPF 采集：eBPF 由于其特殊性，需要更多 Linux 内核以及进程的二进制信息，会有如下一些动作：
+
+    - 分析所有（或指定的）在运行的程序（动态库、容器内进程）的二进制文件内包含的符号地址
+    - 读写内核 DebugFS 挂在点下的文件或 PMU（Performance Monitoring Unit）以放置 kprobe/uprobe/tracepoint eBPF 探针
+    - uprobe 探针会修改用户进程的 CPU 指令，以读取相关数据
+
+除了采集之外，Datakit 自身会有如下文件读写操作：
+
+- 自身日志文件
+
+Linux 安装时位于 */var/log/datakit/* 目录下；Windows 位于 *C:\Program Files\datakit* 目录下。
+
+日记文件到达指定大小（默认 32MB）后会自动 Rotate，并且有最大 Rotate 个数上限（默认最大 5 + 1 个分片）。
+
+- 磁盘缓存
+
+部分数据采集需要用到磁盘缓存功能（需手动开启），这部分缓存会在生成和消费过程中有文件增删。磁盘缓存也有最大 capacity 设置，数据满了之后，会自动执行 FIFO 删除操作，避免写满磁盘。
+
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: Datakit 如何控制自身资源消耗？ {#resource-limit}
+<!-- markdownlint-enable -->
+
+可以通过 cgroup 等机制来限制 Datakit 自身资源使用，参见[这里](datakit-conf.md#resource-limit)。如果 Datakit 部署在 Kubernetes 中，参见[这里](datakit-daemonset-deploy.md#requests-limits)。
+
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: Datakit 自身可观测性？ {#self-obs}
+<!-- markdownlint-enable -->
+
+Datakit 在运行过程中，暴露了很多[自身的指标](datakit-metrics.md)。默认情况下，Datakit 通过[内置采集器](../integrations/dk.md)会采集这些指标并上报到用户的工作空间。
+
+除此之外，Datakit 自身还带有一个 [monitor 命令行](datakit-monitor.md)工具，通过该工具，能查看当前的运行状态以及采集、上报情况。
 
 ## 扩展阅读 {#more-reading}
 

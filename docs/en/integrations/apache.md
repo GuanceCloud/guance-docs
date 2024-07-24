@@ -102,7 +102,7 @@ sudo apachectl restart
 
 ## Metric {#metric}
 
-For all of the following data collections, a global tag named  `host` is appended by default (the tag value is the host name of the DataKit); other tags can be specified in the configuration through `[inputs.apache.tags]`:
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.apache.tags]` if needed:
 
 ``` toml
  [inputs.apache.tags]
@@ -139,12 +139,14 @@ The collected metrics are affected by the environment in which Apache is install
 |`conns_async_writing`|The number of asynchronous writes connections,windows not support|int|count|
 |`conns_total`|The total number of requests performed,windows not support|int|count|
 |`cpu_load`|The percent of CPU used,windows not support. Optional.|float|percent|
+|`disabled`|These slots will never be able to handle any requests, indicates a misconfiguration.|int|count|
 |`dns_lookup`|The workers waiting on a DNS lookup|int|count|
 |`gracefully_finishing`|The number of workers finishing their request|int|count|
 |`idle_cleanup`|These workers were idle and their process is being stopped|int|count|
 |`idle_workers`|The number of idle workers|int|count|
 |`keepalive`|The workers intended for a new request from the same client, because it asked to keep the connection alive|int|count|
 |`logging`|The workers writing something to the Apache logs|int|count|
+|`max_workers`|The maximum number of workers apache can start.|int|count|
 |`net_bytes`|The total number of bytes served.|int|B|
 |`net_hits`|The total number of requests performed|int|count|
 |`open_slot`|The amount of workers that Apache can still start before hitting the maximum number of workers|int|count|

@@ -13,7 +13,7 @@
 
 4、[开通成功](../commercial-register.md#success)。
 
-> 更多详情，可参考文档 [注册商业版](../../billing/commercial-register.md)。
+> 更多详情，可参考文档 [注册商业版](../../plans/commercial-register.md)。
 
 ## 在[费用中心](https://boss.guance.com/#/signin)更换华为云账号结算
 
@@ -95,8 +95,10 @@
 
 ![](../img/huaweicloud-0803.png)
 
+<!--
 ## 如何获取订单编号 {#order-id}
 
 在 [华为云市场](https://marketplace.huaweicloud.com/contents/181f3d92-f40b-48d7-8ad5-420df0a682d2) 购买观测云预购卡后，您可以在我的订单查看购买的预购卡订单号，如下图所示。复制该订单号，填入观测云费用中购买预购卡对话框的**订单编号**。
 
 ![](../img/1.huaweicloud_5.png)
+-->

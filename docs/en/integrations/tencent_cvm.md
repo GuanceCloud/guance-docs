@@ -1,5 +1,7 @@
 ---
 title: 'Tencent Cloud CVM'
+tags: 
+  - Tencent Cloud
 summary: 'Use the "Watch Cloud Sync" script package in the script market to synchronize the data of the cloud monitoring cloud assets to the watch cloud'
 __int_icon: 'icon/tencent_cvm'
 dashboard:

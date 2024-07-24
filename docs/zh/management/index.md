@@ -14,7 +14,7 @@ icon: zy/management
 
 您可以通过创建或者被邀请的方式加入一个或多个工作空间。
 
-在以任何方式加入工作空间之前，需要先[注册观测云账号](https://auth.guance.com/businessRegister)。[注册完成](../billing/trail.md#register-trail)后，您可以通过 [观测云官网](https://www.guance.com/)，点击**登录**，选择注册站点，输入登录账号和密码，登录到观测云控制台。系统会默认为您创建一个工作空间，并赋予**拥有者**权限。
+在以任何方式加入工作空间之前，需要先[注册观测云账号](https://auth.guance.com/businessRegister)。[注册完成](../plans/trail.md#register-trail)后，您可以通过 [观测云官网](https://www.guance.com/)，点击**登录**，选择注册站点，输入登录账号和密码，登录到观测云控制台。系统会默认为您创建一个工作空间，并赋予**拥有者**权限。
 
 <img src="img/7.login_site_1.png" width="60%" >
 
@@ -68,10 +68,10 @@ icon: zy/management
 
     - 工作空间语言该配置影响工作空间内事件、告警、短信等模板。切换到英文后，上述对应模板将默认使用英文模板，请知悉； 
     - 单个观测云站点下，仅支持绑定一个手机号码、一个邮箱，暂不支持港澳台和国外手机号码；
-    - 不同站点的账号独立不互通，更多站点说明，可参考 [站点说明](../billing/commercial-register.md#site)；
+    - 不同站点的账号独立不互通，更多站点说明，可参考 [站点说明](../plans/commercial-register.md#site)；
     - 支持选择[单点登录](../management/sso/index.md) 到观测云。
 
-> 您可按需参考文档 [阿里云市场开通观测云专属版](../billing/commercial-aliyun-sls.md) 来创建 SLS 专属版工作空间。
+> 您可按需参考文档 [阿里云市场开通观测云专属版](../plans/commercial-aliyun-sls.md) 来创建 SLS 专属版工作空间。
 
 ### SSO 账号登录 {#sso}
 
@@ -79,6 +79,11 @@ icon: zy/management
 
 通过 SSO 登录的账号，默认使用 SSO 配置的登录保持时间，在账号管理修改后，使用修改后的登录保持时间。
 
+### 快速搜索 {#quick-entry}
+
+在左侧导航栏 > 快速搜索，可快速查看当前工作空间内最近访问的页面和其他各功能相关页面：
+
+![](img/quick-entry.png)
 
 ## 账号安全设置
 
@@ -94,8 +99,8 @@ icon: zy/management
 
 注册账号可在工作空间，点击左下角**账号 > 账号管理**，在登录保持时间，点击修改默认的登录会话保持时间，包括无操作登录会话保持时间和登录会话最大保持时间。设置以后，超时登录会话会失效。
 
-- 无操作登录会话保持时间：支持设置范围 180 ～ 1440 分钟，默认为 180 分钟；
-- 登录会话最大保持时间：支持设置范围 0 ～ 7 天，其中 0 表示永不超时，默认为 7 天。
+- 无操作登录会话保持时间：支持设置范围 30 ~ 10080 分钟，默认为 10080 分钟；
+- 登录会话最大保持时间：支持设置范围 1 ~ 30 天，默认为 30 天。
 
 <img src="img/6.mfa_2.1.png" width="60%" >
 
@@ -136,7 +141,7 @@ icon: zy/management
     1. 针对普通商业版：账号注销后，被注销的邮箱依旧可以被再次注册。注册后为一个全新的账号，历史账号的数据不会被关联显示。
     2. 针对部署版：可以通过[管理后台 > 添加用户](../deployment/user.md#add)进行创建。
 
-## 个人账号设置
+## 个人账号设置 {#personal}
 
 ### 用户信息
 
@@ -192,7 +197,7 @@ icon: zy/management
 ![](img/3.high_performance_2.gif)
 
 
-### 系统主题
+### 系统主题 {#theme}
 
 观测云支持切换主题颜色。
 
@@ -220,7 +225,7 @@ icon: zy/management
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **工作空间锁定/解锁/解散**</font>](../billing/cost-center/workspace-management.md#lock)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **工作空间锁定/解锁/解散**</font>](../billing-center/workspace-management.md#workspace-lock#lock)
 
 </div>
 

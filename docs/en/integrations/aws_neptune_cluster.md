@@ -1,5 +1,7 @@
 ---
 title: 'AWS Neptune Cluster'
+tags: 
+  - AWS
 summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance'
 __int_icon: 'icon/aws_neptune_cluster'
 
@@ -67,8 +69,7 @@ After configuring Amazon CloudWatch - cloud monitoring, the default set of metri
 | `EngineUptime`                           | The length of the instance runtime in seconds.|
 | `FreeableMemory`                           | The available amount of random access memory in bytes. |
 | `GlobalDbDataTransferBytes`                           | The number of bytes of redo log data transmitted from the primary server in the AWS region to the secondary AWS region in the Neptune global data library. |
-| `GlobalDbReplicatedWriteIO`                           | The number of write I/O operations replicated from the primary server is stored in the global data library in the cluster volume AWS area in the secondary data library.|
-| `Neptune` | The billing calculation for each data repository cluster in the global data repository uses VolumeWriteIOPS to measure the metric of write operations performed within that cluster. For the primary data repository cluster, the billing calculation uses GlobalDbReplicatedWriteIO to consider cross regional replication of the secondary data repository cluster.|
+| `GlobalDbReplicatedWriteIO`                           | The number of write I/O operations replicated from the primary server is stored in the global data library in the cluster volume AWS area in the secondary data library. <br/>`Neptune` ,The billing calculation for each data repository cluster in the global data repository uses VolumeWriteIOPS to measure the metric of write operations performed within that cluster. For the primary data repository cluster, the billing calculation uses GlobalDbReplicatedWriteIO to consider cross regional replication of the secondary data repository cluster.|
 | `GlobalDbProgressLag`                           | For user and system transactions, the secondary cluster lags behind the primary cluster in milliseconds. |
 | `GremlinRequestsPerSec`                           | The number of requests to the Gremlin engine per second. |
 | `GremlinWebSocketOpenConnections`                           | The number of times WebSocket is connected to Neptune. |
@@ -94,7 +95,7 @@ The collected AWS Neptune Cluster object data structure can be viewed in "Infras
     "PackageType"       :"Zip",
     "RegionId"          :"cn-northwest-1",
     "RevisionId"        :"5e52ff51-615a-4ecb-96b7-40083a7b4b62",
-    "Role"              :"arn:aws-cn:iam::294654068288:role/service-role/s3--guance-role-3w34zo42",
+    "Role"              :"arn:aws-cn:iam::xxxxx:role/service-role/s3--guance-role-3wxxxx2",
     "Runtime"           :"python3.7",
     "Version"           :"$LATEST"
   },

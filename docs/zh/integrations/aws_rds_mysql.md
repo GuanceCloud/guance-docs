@@ -1,5 +1,7 @@
 ---
 title: 'AWS RDS MySQL'
+tags: 
+  - AWS
 summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
 __int_icon: 'icon/aws_rds_mysql'
 dashboard:
@@ -11,6 +13,9 @@ monitor:
   - desc: 'AWS RDS MySQL 监控器'
     path: 'monitor/zh/aws_rds_mysql'
 
+cloudCollector:
+  desc: '云采集器'
+  path: 'cloud-collector/zh/aws_rds_mysql'
 ---
 
 

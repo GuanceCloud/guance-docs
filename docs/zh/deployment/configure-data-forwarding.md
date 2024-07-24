@@ -137,7 +137,7 @@ backup_log:
 
 
 ### 步骤三：数据转发配置
-当上述步骤都完成后需要登录到观测云中，进行数据转发的配置，配置完成后，可以参考 [数据转发](../management/backup.md) 进行验证
+当上述步骤都完成后需要登录到观测云中，进行数据转发的配置，配置完成后，可以参考 [数据转发](../management/backup/index.md) 进行验证
 ![config-1](img/config-1.jpg)
 
 

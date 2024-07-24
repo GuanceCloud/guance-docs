@@ -80,18 +80,30 @@ GO
       ## Instance name. If not specified, a connection to the default instance is made.
       instance_name = ""
     
-      ## (optional) collection interval, default is 10s
-      interval = "10s"
+      ## Database name to query. Default is master.
+      database = "master"
     
       ## by default, support TLS 1.2 and above.
       ## set to true if server side uses TLS 1.0 or TLS 1.1
       allow_tls10 = false
     
+      ## connection timeout default: 30s
+      connect_timeout = "30s"
+    
+      ## parameters to be added to the connection string
+      ## Examples:
+      ##   "encrypt=disable"
+      ##   "certificate=/path/to/cert.pem"
+      ## reference: https://github.com/microsoft/go-mssqldb?tab=readme-ov-file#connection-parameters-and-dsn 
+      #
+      # connection_parameters = "encrypt=disable"
+    
+      ## (optional) collection interval, default is 10s
+      interval = "10s"
+    
+    
       ## Set true to enable election
       election = true
-    
-      ## Database name to query. Default is master.
-      database = "master"
     
       ## configure db_filter to filter out metrics from certain databases according to their database_name tag.
       ## If leave blank, no metric from any database is filtered out.
@@ -148,7 +160,7 @@ When log collection is turned on, a log with a log (aka *source*) of`sqlserver` 
 
 ## Metrics {#measurements}
 
-For all of the following data collections, a global tag name `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.sqlserver.tags]`:
+For all of the following data collections, the global election tags will be added automatically, we can add extra tags in `[inputs.sqlserver.tags]` if needed:
 
 ``` toml
  [inputs.sqlserver.tags]
@@ -211,7 +223,51 @@ For all of the following data collections, a global tag name `host` is appended 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`cntr_value`|Current value of the counter|float|count|
+|`active_transactions`|Number of active transactions across all databases on the SQL Server instance.|int|count|
+|`auto_param_attempts`|Number of auto-parameterization attempts per second.|int|count|
+|`backup_restore_throughput`|Read/write throughput for backup and restore operations of a database per second.|int|count|
+|`batch_requests`|The number of batch requests per second.|int|count|
+|`buffer_cache_hit_ratio`|The ratio of data pages found and read from the buffer cache over all data page requests.|float|percent|
+|`cache_object_counts`|Number of cache objects in the cache.|int|count|
+|`cache_pages`|Number of 8-kilobyte (KB) pages used by cache objects.|int|count|
+|`checkpoint_pages`|The number of pages flushed to disk per second by a checkpoint or other operation that require all dirty pages to be flushed.|int|count|
+|`cntr_value`|Current value of the counter|int|count|
+|`connection_memory`|Specifies the total amount of dynamic memory the server is using for maintaining connections.|int|KB|
+|`database_cache_memory`|Specifies the amount of memory the server is currently using for the database pages cache.|int|KB|
+|`deadlocks`|Number of lock requests per second that resulted in a deadlock.|int|count|
+|`failed_auto_params`|Number of failed auto-parameterization attempts per second.|int|count|
+|`flow_control`|Number of times flow-control initiated in the last second. Flow Control Time (ms/sec) divided by Flow Control/sec is the average time per wait.|int|count|
+|`full_scans`|Number of unrestricted full scans per second. These can be either base-table or full-index scans.|int|count|
+|`granted_workspace_memory`|Specifies the total amount of memory currently granted to executing processes, such as hash, sort, bulk copy, and index creation operations.|int|KB|
+|`latch_waits`|Number of latch requests that could not be granted immediately.|int|count|
+|`lock_memory`|Specifies the total amount of dynamic memory the server is using for locks.|int|KB|
+|`lock_waits`|The number of times per second that SQL Server is unable to retain a lock right away for a resource.|int|count|
+|`log_bytes_flushed`|Total number of log bytes flushed.|int|B|
+|`log_flush_wait_time`|Total wait time (in milliseconds) to flush the log. On an Always On secondary database, this value indicates the wait time for log records to be hardened to disk.|int|ms|
+|`log_flushes`|Number of log flushes per second.|int|count|
+|`log_pool_memory`|Total amount of dynamic memory the server is using for Log Pool.|int|KB|
+|`longest_transaction_running_time`|The time (in seconds) that the oldest active transaction has been running. Only works if database is under read committed snapshot isolation level.|int|ms|
+|`memory_grants_outstanding`|Specifies the total number of processes that have successfully acquired a workspace memory grant.|int|count|
+|`memory_grants_pending`|Specifies the total number of processes waiting for a workspace memory grant.|int|count|
+|`optimizer_memory`|Specifies the total amount of dynamic memory the server is using for query optimization.|int|KB|
+|`page_life_expectancy`|Duration that a page resides in the buffer pool.|int|ms|
+|`page_reads`|Indicates the number of physical database page reads that are issued per second. This statistic displays the total number of physical page reads across all databases.|int|count|
+|`page_splits`|The number of page splits per second.|int|count|
+|`page_writes`|Indicates the number of physical database page writes that are issued per second.|int|count|
+|`processes_blocked`|The number of processes blocked.|int|count|
+|`safe_auto_params`|Number of safe auto-parameterization attempts per second.|int|count|
+|`sql_cache_memory`|Specifies the amount of memory the server is using for the dynamic SQL cache.|int|KB|
+|`sql_compilations`|The number of SQL compilations per second.|int|count|
+|`sql_re_compilations`|The number of SQL re-compilations per second.|int|count|
+|`stolen_server_memory`|Specifies the amount of memory the server is using for purposes other than database pages.|int|KB|
+|`total_server_memory`|Specifies the amount of memory the server has committed using the memory manager.|int|KB|
+|`transaction_delay`|Total delay in waiting for unterminated commit acknowledgment for all the current transactions, in milliseconds.|int|count|
+|`transactions`|Number of transactions started for the SQL Server instance per second.|int|count|
+|`user_connections`|Number of user connections.|int|count|
+|`version_cleanup_rate`|The cleanup rate of the version store in tempdb.|int|KB|
+|`version_generation_rate`|The generation rate of the version store in tempdb.|int|KB|
+|`version_store_size`|The size of the version store in tempdb.|int|KB|
+|`write_transactions`|Number of transactions that wrote to all databases on the SQL Server instance and committed, in the last second.|int|count|
 
 
 

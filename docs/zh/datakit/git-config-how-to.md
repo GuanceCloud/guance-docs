@@ -82,6 +82,8 @@ git push origin --all
     # ssh_private_key_password = "<YOUR-PASSSWORD>"
 ```
 
+如果密码中带有特殊字符串，参见[此处](datakit-input-conf.md#password-encode)。
+
 ### 重启 DataKit {#restart}
 
 配置完成后，[重启 Datakit](datakit-service-how-to.md#manage-service) 即可。稍等片刻后，通过 [Datakit Monitor](datakit-monitor.md) 即可查看采集器的开启和运行情况。
@@ -130,7 +132,7 @@ Git 仓库中必须以如下目录结构来存放各种配置：
 其中
 
 - *conf.d* 专门存放采集器配置，其下的子目录可以任意规划（可以有子目录），任何采集器配置文件，只需要以 `.conf` 结尾即可
-- *pipeline* 用来放 Pipeline 脚本，Pipeline 脚本建议以[数据类型来做规划](../developers/pipeline/pipeline-category.md#store-and-index)
+- *pipeline* 用来放 Pipeline 脚本，Pipeline 脚本建议以[数据类型来做规划](../pipeline/use-pipeline/pipeline-category.md#store-and-index)
 - *python.d* 用来放 python 脚本
 
 以下是开启 Git 同步后 DataKit 目录结构示例：

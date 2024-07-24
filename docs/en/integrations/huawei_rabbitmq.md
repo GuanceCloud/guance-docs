@@ -1,5 +1,7 @@
 ---
-title: 'HUAWEI RabbitMQ'
+title: 'HUAWEI DMS RabbitMQ'
+tags: 
+  - Huawei Cloud
 summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
 __int_icon: 'icon/huawei_rabbitmq'
 dashboard:
@@ -13,7 +15,7 @@ monitor:
 
 
 <!-- markdownlint-disable MD025 -->
-# HUAWEI CLOUD RabbitMQ
+# HUAWEI CLOUD DMS RabbitMQ
 <!-- markdownlint-enable -->
 
 Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.

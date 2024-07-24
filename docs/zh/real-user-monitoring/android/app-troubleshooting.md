@@ -105,6 +105,7 @@ buildscript {
 ``` 
 
 ## 开启 Debug 调试
+### ft-sdk Debug 模式
 您可以通过以下配置，开启 SDK 的 debug 功能，开启之后，控制台 `LogCat` 会输出 SDK 调试日志，您可以过滤 `[FT-SDK]` 字符，定位到观测云 SDK 日志。
 
 ```kotlin
@@ -113,8 +114,24 @@ buildscript {
 ```
 > **建议 Release 版本发布时，关闭这个配置**
 
+### ft-plugin Debug 模式
+您可以通过以下配置，开启 Plugin 的 debug 日志，开启之后，你可以在 `Build` 输出日志中，找到 `[FT-Plugin]`的输出日志。通过这个来查看 Plugin ASM 写入情况。
+
+```groovy
+FTExt {
+    //是否显示 Plugin 日志，默认为 false
+    showLog = true
+}
+```
+> **建议 Release 版本发布时，关闭这个配置**
+
 ## SDK 内部日志转化为缓存文件
 ```kotlin
+// >= 1.4.6
+// 默认路径：/data/data/{package_name}/files/LogInner.log
+LogUtils.registerInnerLogCacheToFile()
+
+// >= 1.4.5+ 
 val cacheFile = File(filesDir, "LogCache.log")
 LogUtils.registerInnerLogCacheToFile(cacheFile)
 ```
@@ -131,8 +148,9 @@ LogUtils.registerInnerLogCacheToFile(cacheFile)
                                     	Datakit Url:http://10.0.0.1:9529
 	//以下是连接错误日志
 	[FT-SDK]SyncTaskManager com.demo   E  Network not available Stop poll
-   
-    [FT-SDK]SyncTaskManager com.demo   E 1:Sync Fail-[code:10003,response:failed to connect to /10.0.0.1 (port 9529) from /10.0.2.16 (port 47968) after 10000ms,检查本地网络连接是否正常]
+    [FT-SDK]SyncTaskManager com.demo   E  ↵
+				1:Sync Fail-[code:10003,response:failed to connect to 10.0.0.1 (port 9529) from ↵
+				10.0.2.16 (port 47968) after 10000ms,检查本地网络连接是否正常]
 	
 	//以下是正常同步日志
 	[FT-SDK]SyncTaskManager com.demo   D  Sync Success-[code:200,response:]
@@ -148,14 +166,31 @@ LogUtils.registerInnerLogCacheToFile(cacheFile)
 ### 丢失部份数据
 * 如果丢失 RUM 某一个 Session 数据或 Log，Trace 中的几条数据时，首先需要排除是否在 [FTRUMConfig](app-access.md#rum-config), [FTLoggerConfig](app-access.md#log-config), [FTTraceConfig](app-access.md#trace-config) 设置了 `sampleRate <  1` 
 * 排查上传数据设备网络与安装 datakit 设备网路与负载问题
-* 确认正确调用 `FTSdk.shutDown `，这个方法会释放 SDK 数据处理对象，包括缓存的数据。
+* 确认正确调用 `FTSdk.shutDown`，这个方法会释放 SDK 数据处理对象，包括缓存的数据。
 
 ### Resource 数据丢失 {#resource_missing}
+#### 自动采集，未正确接入 ft-plugin
+Resource 自动采集需要借助 Plugin ASM 字节码写入，自动对 OkHttpClient `Interceptor` 和 `EventListener` 进行设置，写入 `FTTraceInterceptor`, `FTResourceInterceptor`, `FTResourceEventListener.FTFactory`。如果不使用 Plugin，请参考[这里](app-access.md#manual-set)
+
 #### OkHttpClient.build() 在 SDK 初始化之前
-Plugin AOP ASM 写入是在 `OkHttpClient.build()` 调用时自动写入 `FTTraceInterceptor` ,`FTResourceInterceptor`,`FTResourceEventListener.FTFactory`，如果在 SDK 初始化之前，会导致加载空配置，因而丢失 Resource 相关数据。
+Plugin ASM 是在 `OkHttpClient.build()` 调用时自动写入，如果在 SDK 初始化之前，会导致加载空配置，因而丢失 Resource 相关数据。上述场景，可以根据 debug 模式下的调试日志进行自检。
+
+```java
+//SDK 初始化日志
+[FT-SDK]FTSdk       com.ft  D  initFTConfig complete
+[FT-SDK]FTSdk       com.ft  D  initLogWithConfig complete
+[FT-SDK]FTSdk       com.ft  D  initRUMWithConfig complete
+[FT-SDK]FTSdk       com.ft  D  initTraceWithConfig complete
+
+//SDK OkHttpClient.Builder.build() 调用时，打印的日志
+//（需要在 SDK 初始化之后被调用）
+[FT-SDK]AutoTrack  	com.ft  D  trackOkHttpBuilder    
+```
+
+>如果无法调整初始化数据，可以选择[手动方式](app-access.md#manual-set)接入
 
 #### 使用 Interceptor 或 EventListener 对数据进行了二次处理 
-Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `addInterceptor`，分别加入 `FTTraceInterceptor` 和 `FTResourceInterceptor`,其中会使用 http 请求中 body contentLength 参与唯一 id 计算，`Resource` 数据各个阶段数据通过这个 id 进行上下文串联，所以如果集成方在使用 `Okhttp` 时，也加入 `addInterceptor` 并对数据进行二次处理使其发生大小改变，从而导致 id 各阶段计算不一致，导致数据丢失。
+Plugin ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `addInterceptor`，分别加入 `FTTraceInterceptor` 和 `FTResourceInterceptor`,其中会使用 http 请求中 body contentLength 参与唯一 id 计算，`Resource` 数据各个阶段数据通过这个 id 进行上下文串联，所以如果集成方在使用 `Okhttp` 时，也加入 `addInterceptor` 并对数据进行二次处理使其发生大小改变，从而导致 id 各阶段计算不一致，导致数据丢失。
 
 **处理方式：**
 
@@ -166,6 +201,9 @@ Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpCli
 * **ft-sdk >= 1.4.1** 
 
 	SDK 自行适配兼容这个问题
+
+### Error 数据丢失 Crash 类型数据
+* 确认是否同时使用了其他第三方具有捕获 Crash 功能的 SDK，如果是，需要将观测 SDK 初始化方法放置到其他 SDK 后面。
 
 ## 数据丢失某个字段信息
 ### 用户数据字段

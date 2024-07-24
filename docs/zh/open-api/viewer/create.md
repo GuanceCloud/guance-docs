@@ -18,6 +18,7 @@
 | templateUUID | string |  | 视图模板UUID<br>允许为空: False <br>允许空字符串: True <br>最大长度: 128 <br> |
 | sourceDashboardUUID | string |  | 源视图ID<br>允许为空: False <br>允许空字符串: True <br>最大长度: 128 <br> |
 | name | string | Y | 查看器名称<br>允许为空: False <br>最大长度: 64 <br> |
+| desc | string |  | 描述<br>例子: 描述1 <br>允许为空: False <br>允许空字符串: True <br>最大长度: 2048 <br> |
 | type | string |  | 类型, 默认为 CUSTOM<br>例子: CUSTOM <br>允许为空: False <br>最大长度: 32 <br> |
 | extend | json |  | 查看器的额外数据, 默认为{}<br>例子: {} <br>允许为空: False <br> |
 | templateInfos | json |  | 自定义模板数据<br>例子: {} <br>允许为空: False <br>允许空字符串: False <br> |

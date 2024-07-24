@@ -1,19 +1,21 @@
 ---
-title: '火山云 ECS'
-summary: '火山云ECS的展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS，这些指标反映了ECS实例的计算、内存、网络和存储性能表现。'
+title: '火山引擎 ECS'
+tags: 
+  - 火山引擎
+summary: '火山引擎 ECS 的展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS，这些指标反映了ECS实例的计算、内存、网络和存储性能表现。'
 __int_icon: 'icon/volcengine_ecs'
 dashboard:
-  - desc: '火山云 ECS 视图'
+  - desc: '火山引擎 ECS 视图'
     path: 'dashboard/zh/volcengine_ecs/'
 
 ---
 
 <!-- markdownlint-disable MD025 -->
-# 火山云 ECS
+# 火山引擎 ECS
 <!-- markdownlint-enable -->
 
 
-火山云ECS的展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS，这些指标反映了ECS实例的计算、内存、网络和存储性能表现。
+火山引擎ECS的展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS，这些指标反映了ECS实例的计算、内存、网络和存储性能表现。
 
 ## 配置 {#config}
 
@@ -27,11 +29,11 @@ dashboard:
 
 ### 安装脚本
 
-> 提示：请提前准备好符合要求的火山云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
+> 提示：请提前准备好符合要求的火山引擎 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步 ECS 云资源的监控数据，我们安装对应的采集脚本：「观测云集成（火山云-ECS采集）」(ID：`guance_volcengine_ecs`)
+同步 ECS 云资源的监控数据，我们安装对应的采集脚本：「观测云集成（火山引擎-ECS采集）」(ID：`guance_volcengine_ecs`)
 
-点击【安装】后，输入相应的参数：火山云 AK、火山云账户名。
+点击【安装】后，输入相应的参数：火山引擎 AK、火山引擎账户名。
 
 点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
 
@@ -52,38 +54,37 @@ dashboard:
 3. 在观测云平台，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
-配置好火山云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [火山云云监控指标详情](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_ECS){:target="_blank"}
+配置好火山引擎-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [火山引擎云监控指标详情](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_ECS){:target="_blank"}
 
 > 注意：需要在 `volcengine` ECS 控制台安装监控插件
 
-| Metric | Description                          | Unit |
-| ---- |-------------------------------------| :----: |
-|`LoadPerCore1m` | 实例单核1分钟平均负载 | None |
-|`LoadPerCore5m` | 实例单核5分钟平均负载 | None |
-|`LoadPerCore15m` | 实例单核15分钟平均负载 | None |
-|`CpuTotal` |CPU使用率|Percent|
-|`CPUIowait` |CPU使用率（IoWait）|Percent|
-|`CPUUser` |CPU使用率（user）|Percent|
-|`CpuSystem` |CPU使用率（System）|Percent|
-|`MemoryFreeSpace`|内存剩余容量|Bytes(IEC)|
-|`MemoryTotalSpace`|内存总量|Bytes(IEC)|
-|`MemoryUsedUtilization`|内存使用率|Percent|
-|`DiskUsageUtilization`|磁盘使用率|Percent|
-|`DiskInodesUsedPercent`| inode使用率 | Percent |
-|`DiskReadIOPS`| 磁盘读IOPS |Count/Second|
-|`DiskWriteIOPS`| 磁盘写IOPS |Count/Second|
-|`DiskReadBytes`| 磁盘读带宽 | Bytes/Second(SI) |
-|`DiskWriteBytes`|磁盘写带宽| Bytes/Second(SI) |
-|`NetworkInRate`| 网络流入速率 | Bits/Second(IEC) |
-|`NetworkOutRate`|网络流出速率|Bits/Second(IEC) |
-|`NetworkInPackages`| 网络流入包速率 | Packet/Second |
-|`NetworkOutPackages`| 网络发送包速率 | Packet/Second|
-|`NetTcpConnectionStatus`| TCP总连接数 | Count|
-|`NetTcpConnectionStatusESTABLISHED`| ESTABLISHED | Count|
-|`NetTcpConnectionStatusNONESTABLISHED`| `NONESTABLISHED` | Count|
+|`MetricName` |`Subnamespace` |指标中文名称 |MetricUnit | Dimension|
+| ---- |-------------------------------------| :----: |:----: |:----: |
+|`MetricName` |`SubNamespace` |指标名称 |MetricUnit | Dimension|
+|`Instance_CpuBusy` |`Instance` |带外CPU利用率 |Percent | ResourceID|
+|`Instance_DiskReadBytes` |`Instance` |带外磁盘读带宽 |Bytes/Second(IEC) | ResourceID|
+|`Instance_DiskWriteBytes` |`Instance` |带外磁盘写带宽 |Bytes/Second(IEC) | ResourceID|
+|`Instance_DiskReadIOPS` |`Instance` |带外磁盘读IOPS |Count/Second | ResourceID|
+|`Instance_DiskWriteIOPS` |`Instance` |带外磁盘写IOPS |Count/Second | ResourceID|
+|`Instance_NetTxBits` |`Instance` |带外网络流出速率 |Bits/Second(IEC) | ResourceID|
+|`Instance_NetRxBits` |`Instance` |带外网络流入速率 |Bits/Second(IEC) | ResourceID|
+|`Instance_NetTxPackets` |`Instance` |带外网络发送包速率 |Packet/Second | ResourceID|
+|`Instance_NetRxPackets` |`Instance` |带外网络接收包速率 |Packet/Second | ResourceID|
+|`CpuTotal` |`Instance` |CPU使用率 |Percent | ResourceID|
+|`MemoryUsedSpace` |`Instance` |已用内存量 |Bytes(IEC) | ResourceID|
+|`MemoryUsedUtilization` |`Instance` |内存使用率 |Percent | ResourceID|
+|`LoadPerCore1m` |`Instance` |vCPU负载（1分钟平均） |None | ResourceID|
+|`LoadPerCore5m` |`Instance` |vCPU负载（5分钟平均） |None | ResourceID|
+|`LoadPerCore15m` |`Instance` |vCPU负载（15分钟平均） |None | ResourceID|
+|`NetworkInPackages` |`Instance` |网络流入包速率 |Packet/Second | ResourceID|
+|`NetworkOutPackages` |`Instance` |网络发送包速率 |Packet/Second | ResourceID|
+|`NetTcpConnection` |`Instance` |TOTAL |Count | ResourceID|
+|`NetworkInRate` |`Instance` |网络流入速率 |Bits/Second(IEC) | ResourceID|
+|`NetworkOutRate` |`Instance` |网络流出速率 |Bits/Second(IEC) | ResourceID|
+
 
 ## 对象 {#object}
-采集到的火山云 ECS 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
+采集到的火山引擎 ECS 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
 
 ``` json
 [

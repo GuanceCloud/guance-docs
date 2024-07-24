@@ -32,6 +32,7 @@
 | repeatExpireTime | string |  | 重复结束时间 %Y/%m/%d %H:%M:%S<br>例子: 0 <br>允许为空: False <br>允许空字符串: True <br> |
 | timezone | str | Y | 静默规则时区<br>例子: Asia/Shanghai <br>允许为空: False <br> |
 | type | str | Y | 静默规则类型<br>例子: custom <br>允许为空: False <br>可选值: ['checker', 'alertPolicy', 'tag', 'custom'] <br> |
+| declaration | json |  | 自定义声明信息<br>允许为空: False <br> |
 
 ## 参数补充说明
 
@@ -59,7 +60,7 @@
 | start            | int  | 静默开始时间  （2023-08-24下架）                  |
 | end              | int  | 静默结束时间  （2023-08-24下架）                  ｜
 | notifyTime       | int  | 通知时间, 时间点对应的秒级时间戳, -1代表立即通知 （2023-08-24下架） |
-
+| declaration             | dict  | 自定义声明信息 |
 --------------
 
 **2.静默范围说明**
@@ -69,6 +70,20 @@
 | type          |  string  |  Y | 对应静默规则类型 监控器:checker, 告警策略:monitor, 监控器标签:tag, 自定义:custom                  |
 | muteRanges         |  list  |  Y | 静默范围, [] 代表选择 全部                |
 | tags       |  dict  |  Y | 高级配置, 事件属性                |
+
+tags 配置支持反选配置, 示例:
+```json
+{
+    "tags": {
+        "-host": [
+            "cn-hangzhou"
+        ]
+    },
+    "muteRanges": [],
+    "type": "checker"
+}
+```
+
 
 type 为checker, 监控器类型, 示例:
 ```json
@@ -148,6 +163,10 @@ type 为 custom, 自定义类型, 示例:
         {
             "name": "0306",
             "tagUUID": "tag_2963499b3f6244ac88xxxxxxx",
+        },
+        {
+            "name": "slo_test",
+            "sloUUID": "monitor_2963499b3f6244ac88xxxxxxx",
         }
     ],
     "type": "custom",

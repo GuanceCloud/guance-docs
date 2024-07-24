@@ -209,23 +209,23 @@ monitor:
     
         **Default**: false
     
-    - **ENV_INPUT_CONTAINER_ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2**
+    - **ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2**
     
         追加资源的 labels 到数据（不包括指标数据）的 tag 中。需指定 label keys，如果只有一个 key 且为空字符串（例如 [""]），会添加所有 labels 到 tag。容器会继承 Pod labels。如果 label 的 key 有 dot 字符，会将其变为横线
     
         **Type**: JSON
     
-        **ConfField**: `env_input_container_extract_k8s_label_as_tags_v2`
+        **ConfField**: `extract_k8s_label_as_tags_v2`
     
         **Example**: ["app","name"]
     
-    - **ENV_INPUT_CONTAINER_ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2_FOR_METRIC**
+    - **ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2_FOR_METRIC**
     
         追加资源的 labels 到指标数据的 tag 中。需指定 label keys，如果只有一个 key 且为空字符串（例如 [""]），会添加所有 labels 到 tag。容器会继承 Pod labels。如果 label 的 key 有 dot 字符，会将其变为横线
     
         **Type**: JSON
     
-        **ConfField**: `env_input_container_extract_k8s_label_as_tags_v2_for_metric`
+        **ConfField**: `extract_k8s_label_as_tags_v2_for_metric`
     
         **Example**: ["app","name"]
     
@@ -266,6 +266,16 @@ monitor:
         **Type**: Boolean
     
         **ConfField**: `enable_auto_discovery_of_prometheus_service_monitors`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_CONTAINER_KEEP_EXIST_PROMETHEUS_METRIC_NAME**
+    
+        是否保留原始的 Prometheus 字段名，详见 [Kubernetes Prometheus doc](kubernetes-prom.md#measurement-and-tags
+    
+        **Type**: Boolean
+    
+        **ConfField**: `keep_exist_prometheus_metric_name`
     
         **Default**: false
     
@@ -418,6 +428,26 @@ monitor:
         **Type**: Boolean
     
         **ConfField**: `disable_collect_kube_job`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_CONTAINER_DISABLE_COLLECT_KUBE_JOB**
+    
+        关闭对 Kubernetes Job 资源的采集（包括指标数据和对象数据）
+    
+        **Type**: Boolean
+    
+        **ConfField**: `disable_collect_kube_job`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_CONTAINER_ENABLE_K8S_SELF_METRIC_BY_PROM**
+    
+        开启对 Kubernetes Prometheus 数据的采集，包括 APIServer、Scheduler、Etcd 等（试验中）
+    
+        **Type**: Boolean
+    
+        **ConfField**: `enable_k8s_self_metric_by_prom`
     
         **Default**: false
     
@@ -1334,10 +1364,11 @@ The object of the Kubernetes Node.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`age`|Age (seconds)|int|s|
+|`age`|Age (seconds).|int|s|
 |`kubelet_version`|Kubelet Version reported by the node.|string|-|
-|`message`|Object details|string|-|
-|`node_ready`|NodeReady means kubelet is healthy and ready to accept pods (true/false/unknown)|string|-|
+|`message`|Object details.|string|-|
+|`node_ready`|NodeReady means kubelet is healthy and ready to accept pods (true/false/unknown).|string|-|
+|`taints`|Node's taints.|string|-|
 |`unschedulable`|Unschedulable controls node schedulability of new pods (yes/no).|string|-|
 
 
@@ -1601,6 +1632,7 @@ The logging of the container.
 |`daemonset`|The name of the DaemonSet which the object belongs to.|
 |`deployment`|The name of the Deployment which the object belongs to.|
 |`namespace`|The namespace of the container (label `io.kubernetes.pod.namespace`).|
+|`pod_ip`|The pod ip of the container.|
 |`pod_name`|The pod name of the container (label `io.kubernetes.pod.name`).|
 |`service`|The name of the service, if `service` is empty then use `source`.|
 

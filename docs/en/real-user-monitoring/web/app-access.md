@@ -25,7 +25,7 @@ Guance Real User Monitoring can analyze the performance of each Web application 
 
 ## Precondition
 
-- Installing DataKit ([DataKit Installation Documentation](... /... /datakit/datakit-install.md))
+- Installing DataKit ([DataKit Installation Documentation](.../.../datakit/datakit-install.md))
 
   
 ## Web Application Access
