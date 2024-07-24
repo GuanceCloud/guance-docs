@@ -1,7 +1,7 @@
 ---
 title: 'Volcengine ECS'
 tags: 
-  - `Volcengine`
+  - Volcengine
 summary: 'The display metrics of Voltage ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS, which reflect the computing, memory, network, and storage performance of ECS instances.'
 __int_icon: 'icon/volcengine_ecs'
 dashboard:
@@ -51,33 +51,30 @@ We collected some configurations by default, as described in the Metrics column 
 
 
 ## Metric  {#metric}
-Configure `Volcenine` Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [`Volcenine` Cloud Monitor Metrics Details](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_ECS){:target="_blank"}
+Configure `Volcenine` Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [`Volcenine` Cloud Monitor Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_ECS){:target="_blank"}
 
-| Metric | Description                          | Unit |
-| ---- |-------------------------------------| :----: |
-|`LoadPerCore1m` | Average load per minute for a single instance core | None |
-|`LoadPerCore5m` | Average 5-minute load of a single instance core | None |
-|`LoadPerCore15m` | Average 15-minute load of a single instance core | None |
-|`CpuTotal` |CPU usage rate|Percent|
-|`CPUIowait` |CPU usage rate（IoWait）|Percent|
-|`CPUUser` |CPU usage rate（user）|Percent|
-|`CpuSystem` |CPU usage rate（System）|Percent|
-|`MemoryFreeSpace`|Remaining memory capacity|Bytes(IEC)|
-|`MemoryTotalSpace`|Total Memory|Bytes(IEC)|
-|`MemoryUsedUtilization`|Memory usage rate|Percent|
-|`DiskUsageUtilization`|Disk usage rate|Percent|
-|`DiskInodesUsedPercent`| inode usage rate | Percent |
-|`DiskReadIOPS`| Disk read IOPS |Count/Second|
-|`DiskWriteIOPS`| Disk write IOPS |Count/Second|
-|`DiskReadBytes`| Disk read bandwidth | Bytes/Second(SI) |
-|`DiskWriteBytes`|Disk write bandwidth| Bytes/Second(SI) |
-|`NetworkInRate`| Network inflow rate | Bits/Second(IEC) |
-|`NetworkOutRate`|Network outflow rate|Bits/Second(IEC) |
-|`NetworkInPackages`| Network packet inflow rate | Packet/Second |
-|`NetworkOutPackages`| Network packet sending rate | Packet/Second|
-|`NetTcpConnectionStatus`| Total TCP connections | Count|
-|`NetTcpConnectionStatusESTABLISHED`| ESTABLISHED | Count|
-|`NetTcpConnectionStatusNONESTABLISHED`| `NONESTABLISHED` | Count|
+| `MetricName` | `Subnamespace` | Description | MetricUnit | Dimension |
+|-------------|---------------|-----------------------|------------|-----------|
+| `Instance_CpuBusy` | Instance | Out-of-band CPU Utilization | Percent | ResourceID |
+| `Instance_DiskReadBytes` | Instance | Out-of-band Disk Read Bandwidth | Bytes/Second(IEC) | ResourceID |
+| `Instance_DiskWriteBytes` | Instance | Out-of-band Disk Write Bandwidth | Bytes/Second(IEC) | ResourceID |
+| `Instance_DiskReadIOPS` | Instance | Out-of-band Disk Read IOPS | Count/Second | ResourceID |
+| `Instance_DiskWriteIOPS` | Instance | Out-of-band Disk Write IOPS | Count/Second | ResourceID |
+| `Instance_NetTxBits` | Instance | Out-of-band Network Egress Rate | Bits/Second(IEC) | ResourceID |
+| `Instance_NetRxBits` | Instance | Out-of-band Network Ingress Rate | Bits/Second(IEC) | ResourceID |
+| `Instance_NetTxPackets` | Instance | Out-of-band Network Packets Sent Rate | Packet/Second | ResourceID |
+| `Instance_NetRxPackets` | Instance | Out-of-band Network Packets Received Rate | Packet/Second | ResourceID |
+| `CpuTotal` | Instance | CPU Utilization | Percent | ResourceID |
+| `MemoryUsedSpace` | Instance | Used Memory Amount | Bytes(IEC) | ResourceID |
+| `MemoryUsedUtilization` | Instance | Memory Utilization Rate | Percent | ResourceID |
+| `LoadPerCore1m` | Instance | vCPU Load (1-minute Average) | None | ResourceID |
+| `LoadPerCore5m` | Instance | vCPU Load (5-minute Average) | None | ResourceID |
+| `LoadPerCore15m` | Instance | vCPU Load (15-minute Average) | None | ResourceID |
+| `NetworkInPackages` | Instance | Network Ingress Packet Rate | Packet/Second | `ResourceID` |
+| `NetworkOutPackages` | Instance | Network Egress Packet Rate | Packet/Second | ResourceID |
+| `NetTcpConnection` | Instance | Total TCP Connections | Count | ResourceID |
+| `NetworkInRate` | Instance | Network Ingress Rate | Bits/Second(IEC) | ResourceID |
+| `NetworkOutRate` | Instance | Network Egress Rate | Bits/Second(IEC) | ResourceID |
 
 ## Object  {#object}
 The collected `Volcenine` Cloud **ECS** object data structure can see the object data from 「Infrastructure-Custom」
