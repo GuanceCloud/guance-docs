@@ -19,7 +19,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is `datakit.conf`, here is the example sample(1.33.1):
+Datakit main configure is `datakit.conf`, here is the example sample(1.34.0):
 
 <!-- markdownlint-disable MD046 -->
 ??? info "`datakit.conf`"
@@ -115,6 +115,9 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.33.1):
       use_sqlite = false
       # or use pure memory to cache the reftab data
       sqlite_mem_mode = false
+    
+      # append run info
+      disable_append_run_info = false
     
       # Offload data processing tasks to post-level data processors.
       [pipeline.offload]

@@ -146,7 +146,7 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
     
         **Type**: JSON
     
-        **ConfField**: `customer_tags`
+        **input.conf**: `customer_tags`
     
         **Example**: `["sink_project", "custom.tag"]`
     
@@ -156,7 +156,7 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
     
         **Type**: Boolean
     
-        **ConfField**: `keep_rare_resource`
+        **input.conf**: `keep_rare_resource`
     
         **Default**: false
     
@@ -166,7 +166,7 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
     
         **Type**: Boolean
     
-        **ConfField**: `del_message`
+        **input.conf**: `del_message`
     
         **Default**: false
     
@@ -176,7 +176,7 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
     
         **Type**: JSON
     
-        **ConfField**: `omit_err_status`
+        **input.conf**: `omit_err_status`
     
         **Example**: ["404", "403", "400"]
     
@@ -186,7 +186,7 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
     
         **Type**: JSON
     
-        **ConfField**: `close_resource`
+        **input.conf**: `close_resource`
     
         **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
     
@@ -196,7 +196,7 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
     
         **Type**: Float
     
-        **ConfField**: `sampler`
+        **input.conf**: `sampler`
     
         **Example**: 0.3
     
@@ -206,7 +206,7 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
     
         **Type**: JSON
     
-        **ConfField**: `threads`
+        **input.conf**: `threads`
     
         **Example**: {"buffer":1000, "threads":100}
     
@@ -216,7 +216,7 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
     
         **Type**: JSON
     
-        **ConfField**: `storage`
+        **input.conf**: `storage`
     
         **Example**: `{"storage":"./otel_storage", "capacity": 5120}`
     
@@ -226,7 +226,7 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
     
         **Type**: JSON
     
-        **ConfField**: `http`
+        **input.conf**: `http`
     
         **Example**: `{"enable":true, "http_status_ok": 200, "trace_api": "/otel/v1/trace", "metric_api": "/otel/v1/metric"}`
     
@@ -236,7 +236,7 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
     
         **Type**: JSON
     
-        **ConfField**: `grpc`
+        **input.conf**: `grpc`
     
         **Example**: {"trace_enable": true, "metric_enable": true, "addr": "127.0.0.1:4317"}
     
@@ -246,7 +246,7 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
     
         **Type**: JSON
     
-        **ConfField**: `expected_headers`
+        **input.conf**: `expected_headers`
     
         **Example**: {"ex_version": "1.2.3", "ex_name": "env_resource_name"}
     
@@ -256,7 +256,7 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
     
         **Type**: JSON
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 

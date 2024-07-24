@@ -108,51 +108,51 @@ monitor   :
     
         采集器重复间隔时长
     
-        **Type**: TimeDuration
+        **字段类型**: TimeDuration
     
-        **ConfField**: `interval`
+        **采集器配置字段**: `interval`
     
-        **Default**: 10s
+        **默认值**: 10s
     
     - **ENV_INPUT_HEALTHCHECK_PROCESS**
     
         检查处理器
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `process`
+        **采集器配置字段**: `process`
     
-        **Example**: [{"names":["nginx","mysql"],"min_run_time":"10m"}]
+        **示例**: [{"names":["nginx","mysql"],"min_run_time":"10m"}]
     
     - **ENV_INPUT_HEALTHCHECK_TCP**
     
         检查 TCP
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `tcp`
+        **采集器配置字段**: `tcp`
     
-        **Example**: [{"host_ports":["10.100.1.2:3369","192.168.1.2:6379"],"connection_timeout":"3s"}]
+        **示例**: [{"host_ports":["10.100.1.2:3369","192.168.1.2:6379"],"connection_timeout":"3s"}]
     
     - **ENV_INPUT_HEALTHCHECK_HTTP**
     
         检查 HTTP
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `http`
+        **采集器配置字段**: `http`
     
-        **Example**: [{"http_urls":["http://local-ip:port/path/to/api?arg1=x&arg2=y"],"method":"GET","expect_status":200,"timeout":"30s","ignore_insecure_tls":false,"headers":{"Header1":"header-value-1","Hedaer2":"header-value-2"}}]
+        **示例**: [{"http_urls":["http://local-ip:port/path/to/api?arg1=x&arg2=y"],"method":"GET","expect_status":200,"timeout":"30s","ignore_insecure_tls":false,"headers":{"Header1":"header-value-1","Hedaer2":"header-value-2"}}]
     
     - **ENV_INPUT_HEALTHCHECK_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `tags`
+        **采集器配置字段**: `tags`
     
-        **Example**: {"some_tag":"some_value","more_tag":"some_other_value"}
+        **示例**: {"some_tag":"some_value","more_tag":"some_other_value"}
 
 <!-- markdownlint-enable -->
 

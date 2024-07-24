@@ -151,7 +151,7 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     
         **Type**: JSON
     
-        **ConfField**: `endpoints`
+        **input.conf**: `endpoints`
     
         **Example**: ["/v3/trace", "/v3/metric", "/v3/logging", "/v3/profiling"]
     
@@ -161,7 +161,7 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     
         **Type**: String
     
-        **ConfField**: `address`
+        **input.conf**: `address`
     
         **Example**: 127.0.0.1:11800
     
@@ -171,7 +171,7 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     
         **Type**: JSON
     
-        **ConfField**: `plugins`
+        **input.conf**: `plugins`
     
         **Example**: ["db.type", "os.call"]
     
@@ -181,7 +181,7 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     
         **Type**: JSON
     
-        **ConfField**: `ignore_tags`
+        **input.conf**: `ignore_tags`
     
         **Example**: ["block1","block2"]
     
@@ -191,7 +191,7 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     
         **Type**: Boolean
     
-        **ConfField**: `keep_rare_resource`
+        **input.conf**: `keep_rare_resource`
     
         **Default**: false
     
@@ -201,7 +201,7 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     
         **Type**: Boolean
     
-        **ConfField**: `del_message`
+        **input.conf**: `del_message`
     
         **Default**: false
     
@@ -211,7 +211,7 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     
         **Type**: JSON
     
-        **ConfField**: `close_resource`
+        **input.conf**: `close_resource`
     
         **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
     
@@ -221,7 +221,7 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     
         **Type**: Float
     
-        **ConfField**: `sampler`
+        **input.conf**: `sampler`
     
         **Example**: 0.3
     
@@ -231,7 +231,7 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     
         **Type**: JSON
     
-        **ConfField**: `threads`
+        **input.conf**: `threads`
     
         **Example**: {"buffer":1000, "threads":100}
     
@@ -241,7 +241,7 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     
         **Type**: JSON
     
-        **ConfField**: `storage`
+        **input.conf**: `storage`
     
         **Example**: {"storage":"./skywalking_storage", "capacity": 5120}
     
@@ -251,7 +251,7 @@ collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:<datakit-ip:skyw
     
         **Type**: JSON
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 

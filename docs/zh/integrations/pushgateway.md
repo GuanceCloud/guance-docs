@@ -62,39 +62,39 @@ Pushgateway 采集器会开启对应的 API 接口，用于接收 Prometheus 指
     
         配置 endpoints 路由前缀
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `route_prefix`
+        **采集器配置字段**: `route_prefix`
     
-        **Example**: `/v1/pushgateway`
+        **示例**: `/v1/pushgateway`
     
     - **ENV_INPUT_PUSHGATEWAY_MEASUREMENT_NAME**
     
         配置指标集名称
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `measurement_name`
+        **采集器配置字段**: `measurement_name`
     
     - **ENV_INPUT_PUSHGATEWAY_JOB_AS_MEASUREMENT**
     
         是否使用 job 标签值作为指标集名称
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `job_as_measurement`
+        **采集器配置字段**: `job_as_measurement`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_PUSHGATEWAY_KEEP_EXIST_METRIC_NAME**
     
         是否保留原始的 Prometheus 字段名，详见 [Kubernetes Prometheus doc](kubernetes-prom.md#measurement-and-tags)
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `keep_exist_metric_name`
+        **采集器配置字段**: `keep_exist_metric_name`
     
-        **Default**: true
+        **默认值**: true
 
 <!-- markdownlint-enable -->
 

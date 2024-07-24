@@ -187,7 +187,7 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
     
         **Type**: JSON
     
-        **ConfField**: `endpoints`
+        **input.conf**: `endpoints`
     
         **Example**: ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
     
@@ -197,7 +197,7 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
     
         **Type**: JSON
     
-        **ConfField**: `customer_tags`
+        **input.conf**: `customer_tags`
     
         **Example**: `["sink_project", "custom_dd_tag"]`
     
@@ -207,7 +207,7 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
     
         **Type**: Boolean
     
-        **ConfField**: `keep_rare_resource`
+        **input.conf**: `keep_rare_resource`
     
         **Default**: false
     
@@ -217,7 +217,7 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
     
         **Type**: Boolean
     
-        **ConfField**: `compatible_otel`
+        **input.conf**: `compatible_otel`
     
         **Default**: false
     
@@ -227,7 +227,7 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
     
         **Type**: Boolean
     
-        **ConfField**: `trace_id_64_bit_hex`
+        **input.conf**: `trace_id_64_bit_hex`
     
         **Default**: false
     
@@ -237,7 +237,7 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
     
         **Type**: Boolean
     
-        **ConfField**: `del_message`
+        **input.conf**: `del_message`
     
         **Default**: false
     
@@ -247,7 +247,7 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
     
         **Type**: JSON
     
-        **ConfField**: `omit_err_status`
+        **input.conf**: `omit_err_status`
     
         **Example**: ["404", "403", "400"]
     
@@ -257,7 +257,7 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
     
         **Type**: JSON
     
-        **ConfField**: `close_resource`
+        **input.conf**: `close_resource`
     
         **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
     
@@ -267,7 +267,7 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
     
         **Type**: Float
     
-        **ConfField**: `sampler`
+        **input.conf**: `sampler`
     
         **Example**: 0.3
     
@@ -277,7 +277,7 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
     
         **Type**: JSON
     
-        **ConfField**: `threads`
+        **input.conf**: `threads`
     
         **Example**: {"buffer":1000, "threads":100}
     
@@ -287,7 +287,7 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
     
         **Type**: JSON
     
-        **ConfField**: `storage`
+        **input.conf**: `storage`
     
         **Example**: {"storage":"./ddtrace_storage", "capacity": 5120}
     
@@ -297,7 +297,7 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
     
         **Type**: JSON
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 

@@ -100,7 +100,7 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
     
         **Type**: TimeDuration
     
-        **ConfField**: `interval`
+        **input.conf**: `interval`
     
         **Default**: 10s
     
@@ -110,7 +110,7 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
     
         **Type**: TimeDuration
     
-        **ConfField**: `timeout`
+        **input.conf**: `timeout`
     
         **Default**: 5s
     
@@ -120,7 +120,7 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
     
         **Type**: JSON
     
-        **ConfField**: `bin_path`
+        **input.conf**: `bin_path`
     
         **Example**: `["/usr/bin/nvidia-smi"]`
     
@@ -130,7 +130,7 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
     
         **Type**: Int
     
-        **ConfField**: `process_info_max_len`
+        **input.conf**: `process_info_max_len`
     
         **Default**: 10
     
@@ -140,7 +140,7 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
     
         **Type**: TimeDuration
     
-        **ConfField**: `gpu_drop_warning_delay`
+        **input.conf**: `gpu_drop_warning_delay`
     
         **Default**: 5m
     
@@ -150,7 +150,7 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
     
         **Type**: JSON
     
-        **ConfField**: `envs`
+        **input.conf**: `envs`
     
         **Example**: ["LD_LIBRARY_PATH=/usr/local/corex/lib/:$LD_LIBRARY_PATH"]
     
@@ -160,7 +160,7 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
     
         **Type**: JSON
     
-        **ConfField**: `remote_addrs`
+        **input.conf**: `remote_addrs`
     
         **Example**: ["192.168.1.1:22","192.168.1.2:22"]
     
@@ -170,7 +170,7 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
     
         **Type**: JSON
     
-        **ConfField**: `remote_users`
+        **input.conf**: `remote_users`
     
         **Example**: ["user_1","user_2"]
     
@@ -180,7 +180,7 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
     
         **Type**: JSON
     
-        **ConfField**: `remote_passwords`
+        **input.conf**: `remote_passwords`
     
         **Example**: ["pass_1","pass_2"]
     
@@ -190,7 +190,7 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
     
         **Type**: JSON
     
-        **ConfField**: `remote_rsa_paths`
+        **input.conf**: `remote_rsa_paths`
     
         **Example**: ["/home/your_name/.ssh/id_rsa"]
     
@@ -200,7 +200,7 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
     
         **Type**: String
     
-        **ConfField**: `remote_command`
+        **input.conf**: `remote_command`
     
         **Example**: "`nvidia-smi -x -q`"
     
@@ -210,7 +210,7 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
     
         **Type**: Boolean
     
-        **ConfField**: `election`
+        **input.conf**: `election`
     
         **Default**: true
     
@@ -220,7 +220,7 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
     
         **Type**: Map
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 
