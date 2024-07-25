@@ -59,7 +59,7 @@ The swap collector is used to collect the usage of the host swap memory.
     
         **Type**: TimeDuration
     
-        **ConfField**: `interval`
+        **input.conf**: `interval`
     
         **Default**: 10s
     
@@ -69,7 +69,7 @@ The swap collector is used to collect the usage of the host swap memory.
     
         **Type**: Map
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 

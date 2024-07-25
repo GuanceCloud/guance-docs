@@ -98,61 +98,61 @@ $ diskperf -Y
     
         采集器重复间隔时长
     
-        **Type**: TimeDuration
+        **字段类型**: TimeDuration
     
-        **ConfField**: `interval`
+        **采集器配置字段**: `interval`
     
-        **Default**: 10s
+        **默认值**: 10s
     
     - **ENV_INPUT_DISKIO_DEVICES**
     
         使用正则表达式设置接口将收集这些预期的设备
     
-        **Type**: List
+        **字段类型**: List
     
-        **ConfField**: `devices`
+        **采集器配置字段**: `devices`
     
-        **Example**: `^sda\d,^sdb\d,vd.*`
+        **示例**: `^sda\d,^sdb\d,vd.*`
     
     - **ENV_INPUT_DISKIO_DEVICE_TAGS**
     
         设备附加标签
     
-        **Type**: List
+        **字段类型**: List
     
-        **ConfField**: `device_tags`
+        **采集器配置字段**: `device_tags`
     
-        **Example**: ID_FS_TYPE,ID_FS_USAGE
+        **示例**: ID_FS_TYPE,ID_FS_USAGE
     
     - **ENV_INPUT_DISKIO_NAME_TEMPLATES**
     
         使用与 device_ tags 相同的元数据源
     
-        **Type**: List
+        **字段类型**: List
     
-        **ConfField**: `name_templates`
+        **采集器配置字段**: `name_templates`
     
-        **Example**: $ID_FS_LABEL,$DM_VG_NAME/$DM_LV_NAME
+        **示例**: $ID_FS_LABEL,$DM_VG_NAME/$DM_LV_NAME
     
     - **ENV_INPUT_DISKIO_SKIP_SERIAL_NUMBER**
     
         不需要磁盘序列号
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `skip_serial_number`
+        **采集器配置字段**: `skip_serial_number`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_DISKIO_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
     
-        **Type**: Map
+        **字段类型**: Map
     
-        **ConfField**: `tags`
+        **采集器配置字段**: `tags`
     
-        **Example**: tag1=value1,tag2=value2
+        **示例**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 

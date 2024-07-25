@@ -358,6 +358,7 @@ For all of the following data collections, the global election tags will added a
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster`|Cluster Name|
 |`host`|Hostname.|
 |`oceanbase_server`|The address of the database instance (including port).|
 |`oceanbase_service`|OceanBase service name.|

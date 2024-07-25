@@ -128,7 +128,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: List
     
-        **ConfField**: `endpoints`
+        **input.conf**: `endpoints`
     
         **Example**: "`unix:///var/run/docker.sock,unix:///var/run/containerd/containerd.sock,unix:///var/run/crio/crio.sock`"
     
@@ -138,7 +138,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: String
     
-        **ConfField**: `docker_endpoint`
+        **input.conf**: `docker_endpoint`
     
         **Example**: `unix:///var/run/docker.sock`
     
@@ -148,7 +148,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: String
     
-        **ConfField**: `containerd_address`
+        **input.conf**: `containerd_address`
     
         **Example**: `/var/run/containerd/containerd.sock`
     
@@ -158,7 +158,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Boolean
     
-        **ConfField**: `enable_container_metric`
+        **input.conf**: `enable_container_metric`
     
         **Default**: true
     
@@ -168,7 +168,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Boolean
     
-        **ConfField**: `enable_k8s_metric`
+        **input.conf**: `enable_k8s_metric`
     
         **Default**: true
     
@@ -178,7 +178,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Boolean
     
-        **ConfField**: `enable_pod_metric`
+        **input.conf**: `enable_pod_metric`
     
         **Default**: false
     
@@ -188,7 +188,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Boolean
     
-        **ConfField**: `enable_k8s_event`
+        **input.conf**: `enable_k8s_event`
     
         **Default**: true
     
@@ -198,7 +198,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Boolean
     
-        **ConfField**: `enable_k8s_node_local`
+        **input.conf**: `enable_k8s_node_local`
     
         **Default**: true
     
@@ -208,7 +208,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Boolean
     
-        **ConfField**: `extract_k8s_label_as_tags`
+        **input.conf**: `extract_k8s_label_as_tags`
     
         **Default**: false
     
@@ -218,7 +218,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: JSON
     
-        **ConfField**: `extract_k8s_label_as_tags_v2`
+        **input.conf**: `extract_k8s_label_as_tags_v2`
     
         **Example**: ["app","name"]
     
@@ -228,7 +228,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: JSON
     
-        **ConfField**: `extract_k8s_label_as_tags_v2_for_metric`
+        **input.conf**: `extract_k8s_label_as_tags_v2_for_metric`
     
         **Example**: ["app","name"]
     
@@ -238,7 +238,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Boolean
     
-        **ConfField**: `enable_auto_discovery_of_prometheus_pod_annotations`
+        **input.conf**: `enable_auto_discovery_of_prometheus_pod_annotations`
     
         **Default**: false
     
@@ -248,7 +248,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Boolean
     
-        **ConfField**: `enable_auto_discovery_of_prometheus_service_annotations`
+        **input.conf**: `enable_auto_discovery_of_prometheus_service_annotations`
     
         **Default**: false
     
@@ -258,7 +258,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Boolean
     
-        **ConfField**: `enable_auto_discovery_of_prometheus_pod_monitors`
+        **input.conf**: `enable_auto_discovery_of_prometheus_pod_monitors`
     
         **Default**: false
     
@@ -268,7 +268,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Boolean
     
-        **ConfField**: `enable_auto_discovery_of_prometheus_service_monitors`
+        **input.conf**: `enable_auto_discovery_of_prometheus_service_monitors`
     
         **Default**: false
     
@@ -278,7 +278,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Boolean
     
-        **ConfField**: `keep_exist_prometheus_metric_name`
+        **input.conf**: `keep_exist_prometheus_metric_name`
     
         **Default**: false
     
@@ -288,7 +288,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: List
     
-        **ConfField**: `container_include_log`
+        **input.conf**: `container_include_log`
     
         **Example**: "image:pubrepo.jiagouyun.com/datakit/logfwd*"
     
@@ -298,7 +298,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: List
     
-        **ConfField**: `container_exclude_log`
+        **input.conf**: `container_exclude_log`
     
         **Example**: "image:pubrepo.jiagouyun.com/datakit/logfwd*"
     
@@ -308,7 +308,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: String
     
-        **ConfField**: `kubernetes_url`
+        **input.conf**: `kubernetes_url`
     
         **Example**: https://kubernetes.default:443
     
@@ -318,7 +318,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: String
     
-        **ConfField**: `bearer_token`
+        **input.conf**: `bearer_token`
     
         **Example**: `/run/secrets/kubernetes.io/serviceaccount/token`
     
@@ -328,7 +328,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: String
     
-        **ConfField**: `bearer_token_string`
+        **input.conf**: `bearer_token_string`
     
         **Example**: your-token-string
     
@@ -338,7 +338,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: TimeDuration
     
-        **ConfField**: `logging_search_interval`
+        **input.conf**: `logging_search_interval`
     
         **Default**: 60s
     
@@ -348,7 +348,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Map
     
-        **ConfField**: `logging_extra_source_map`
+        **input.conf**: `logging_extra_source_map`
     
         **Example**: source_regex*=new_source,regex*=new_source2
     
@@ -358,7 +358,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: JSON
     
-        **ConfField**: `logging_source_multiline_map`
+        **input.conf**: `logging_source_multiline_map`
     
         **Example**: {"source_nginx":"^\\d{4}", "source_redis":"^[A-Za-z_]"}
     
@@ -368,7 +368,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Boolean
     
-        **ConfField**: `logging_auto_multiline_detection`
+        **input.conf**: `logging_auto_multiline_detection`
     
         **Default**: false
     
@@ -378,7 +378,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: JSON
     
-        **ConfField**: `logging_auto_multiline_extra_patterns`
+        **input.conf**: `logging_auto_multiline_extra_patterns`
     
         **Example**: ["^\\d{4}-\\d{2}", "^[A-Za-z_]"]
     
@@ -390,7 +390,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: TimeDuration
     
-        **ConfField**: `logging_max_multiline_life_duration`
+        **input.conf**: `logging_max_multiline_life_duration`
     
         **Default**: 3s
     
@@ -400,7 +400,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Boolean
     
-        **ConfField**: `logging_remove_ansi_escape_codes`
+        **input.conf**: `logging_remove_ansi_escape_codes`
     
         **Default**: false
     
@@ -410,7 +410,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Int
     
-        **ConfField**: `logging_force_flush_limit`
+        **input.conf**: `logging_force_flush_limit`
     
         **Default**: 5
     
@@ -420,7 +420,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Int
     
-        **ConfField**: `container_max_concurrent`
+        **input.conf**: `container_max_concurrent`
     
         **Default**: cpu cores + 1
     
@@ -430,7 +430,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Boolean
     
-        **ConfField**: `disable_collect_kube_job`
+        **input.conf**: `disable_collect_kube_job`
     
         **Default**: false
     
@@ -440,7 +440,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Boolean
     
-        **ConfField**: `disable_collect_kube_job`
+        **input.conf**: `disable_collect_kube_job`
     
         **Default**: false
     
@@ -450,7 +450,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Boolean
     
-        **ConfField**: `enable_k8s_self_metric_by_prom`
+        **input.conf**: `enable_k8s_self_metric_by_prom`
     
         **Default**: false
     
@@ -460,7 +460,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Type**: Map
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 

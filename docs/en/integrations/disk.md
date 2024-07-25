@@ -84,7 +84,7 @@ After successfully installing and starting DataKit, the disk collector will be e
     
         **Type**: TimeDuration
     
-        **ConfField**: `interval`
+        **input.conf**: `interval`
     
         **Default**: 10s
     
@@ -94,7 +94,7 @@ After successfully installing and starting DataKit, the disk collector will be e
     
         **Type**: List
     
-        **ConfField**: `extra_device`
+        **input.conf**: `extra_device`
     
         **Example**: `/nfsdata,other_data`
     
@@ -104,7 +104,7 @@ After successfully installing and starting DataKit, the disk collector will be e
     
         **Type**: List
     
-        **ConfField**: `exclude_device`
+        **input.conf**: `exclude_device`
     
         **Example**: /dev/loop0,/dev/loop1
     
@@ -114,7 +114,7 @@ After successfully installing and starting DataKit, the disk collector will be e
     
         **Type**: Boolean
     
-        **ConfField**: `only_physical_device`
+        **input.conf**: `only_physical_device`
     
         **Default**: false
     
@@ -124,7 +124,7 @@ After successfully installing and starting DataKit, the disk collector will be e
     
         **Type**: Map
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 

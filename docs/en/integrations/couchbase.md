@@ -117,7 +117,7 @@ Already tested version:
     
         **Type**: TimeDuration
     
-        **ConfField**: `interval`
+        **input.conf**: `interval`
     
         **Default**: 30s
     
@@ -127,7 +127,7 @@ Already tested version:
     
         **Type**: TimeDuration
     
-        **ConfField**: `timeout`
+        **input.conf**: `timeout`
     
         **Default**: 5s
     
@@ -137,7 +137,7 @@ Already tested version:
     
         **Type**: String
     
-        **ConfField**: `scheme`
+        **input.conf**: `scheme`
     
         **Example**: http or https
     
@@ -147,7 +147,7 @@ Already tested version:
     
         **Type**: String
     
-        **ConfField**: `host`
+        **input.conf**: `host`
     
         **Example**: 127.0.0.1
     
@@ -157,7 +157,7 @@ Already tested version:
     
         **Type**: Int
     
-        **ConfField**: `port`
+        **input.conf**: `port`
     
         **Example**: 8091 or 18091
     
@@ -167,7 +167,7 @@ Already tested version:
     
         **Type**: Int
     
-        **ConfField**: `additional_port`
+        **input.conf**: `additional_port`
     
         **Example**: 9102 or 19102
     
@@ -177,7 +177,7 @@ Already tested version:
     
         **Type**: String
     
-        **ConfField**: `user`
+        **input.conf**: `user`
     
         **Example**: Administrator
     
@@ -187,7 +187,7 @@ Already tested version:
     
         **Type**: String
     
-        **ConfField**: `password`
+        **input.conf**: `password`
     
         **Example**: 123456
     
@@ -197,7 +197,7 @@ Already tested version:
     
         **Type**: Boolean
     
-        **ConfField**: `tls_open`
+        **input.conf**: `tls_open`
     
         **Default**: false
     
@@ -207,7 +207,7 @@ Already tested version:
     
         **Type**: String
     
-        **ConfField**: `tls_ca`
+        **input.conf**: `tls_ca`
     
         **Example**: /opt/ca.crt
     
@@ -217,7 +217,7 @@ Already tested version:
     
         **Type**: String
     
-        **ConfField**: `tls_cert`
+        **input.conf**: `tls_cert`
     
         **Example**: /opt/peer.crt
     
@@ -227,7 +227,7 @@ Already tested version:
     
         **Type**: String
     
-        **ConfField**: `tls_key`
+        **input.conf**: `tls_key`
     
         **Example**: /opt/peer.key
     
@@ -237,7 +237,7 @@ Already tested version:
     
         **Type**: Boolean
     
-        **ConfField**: `election`
+        **input.conf**: `election`
     
         **Default**: true
     
@@ -247,7 +247,7 @@ Already tested version:
     
         **Type**: Map
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 

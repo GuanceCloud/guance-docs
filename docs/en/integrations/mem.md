@@ -62,7 +62,7 @@ After successfully installing and starting DataKit, the Mem collector will be en
     
         **Type**: TimeDuration
     
-        **ConfField**: `interval`
+        **input.conf**: `interval`
     
         **Default**: 10s
     
@@ -72,7 +72,7 @@ After successfully installing and starting DataKit, the Mem collector will be en
     
         **Type**: Map
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 
