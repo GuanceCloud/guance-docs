@@ -91,7 +91,7 @@ In general, the host object is turned on by default and does not need to be conf
     
         **Type**: Boolean
     
-        **ConfField**: `enable_net_virtual_interfaces`
+        **input.conf**: `enable_net_virtual_interfaces`
     
         **Default**: false
     
@@ -101,7 +101,7 @@ In general, the host object is turned on by default and does not need to be conf
     
         **Type**: Boolean
     
-        **ConfField**: `ignore_zero_bytes_disk`
+        **input.conf**: `ignore_zero_bytes_disk`
     
         **Default**: false
     
@@ -111,7 +111,7 @@ In general, the host object is turned on by default and does not need to be conf
     
         **Type**: Boolean
     
-        **ConfField**: `only_physical_device`
+        **input.conf**: `only_physical_device`
     
         **Default**: false
     
@@ -121,7 +121,7 @@ In general, the host object is turned on by default and does not need to be conf
     
         **Type**: List
     
-        **ConfField**: `exclude_device`
+        **input.conf**: `exclude_device`
     
         **Example**: /dev/loop0,/dev/loop1
     
@@ -131,7 +131,7 @@ In general, the host object is turned on by default and does not need to be conf
     
         **Type**: List
     
-        **ConfField**: `extra_device`
+        **input.conf**: `extra_device`
     
         **Example**: `/nfsdata,other`
     
@@ -141,7 +141,7 @@ In general, the host object is turned on by default and does not need to be conf
     
         **Type**: Boolean
     
-        **ConfField**: `enable_cloud_host_tags_global_election`
+        **input.conf**: `enable_cloud_host_tags_global_election`
     
         **Default**: true
     
@@ -151,7 +151,7 @@ In general, the host object is turned on by default and does not need to be conf
     
         **Type**: Boolean
     
-        **ConfField**: `enable_cloud_host_tags_global_host`
+        **input.conf**: `enable_cloud_host_tags_global_host`
     
         **Default**: true
     
@@ -161,7 +161,7 @@ In general, the host object is turned on by default and does not need to be conf
     
         **Type**: Map
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
     
@@ -171,7 +171,7 @@ In general, the host object is turned on by default and does not need to be conf
     
         **Type**: String
     
-        **ConfField**: `none`
+        **input.conf**: `none`
     
         **Example**: `aliyun/aws/tencent/hwcloud/azure`
 

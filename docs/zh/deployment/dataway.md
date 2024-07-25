@@ -710,6 +710,47 @@ if cost_time == nil {
 }
 ```
 
+## Dataway bug report {#bug-report}
+
+Dataway 自身暴露指标和 profiling 收集入口，我们可以收集这些信息以便于问题排查。
+
+> 以下信息收集，以实际配置的端口和地址为准，已有命令按照默认参数来列举。
+
+```shell title="dw-bug-report.sh"
+br_dir="dw-br-$(date +%s)"
+mkdir -p $br_dir
+
+echo "save bug report to ${br_dir}"
+
+# 依据实际情况，修改这里的配置
+dw_ip="localhost" # dataway 指标/profile 暴露的 IP 地址
+metric_port=9090  # 指标暴露的端口
+profile_port=6060 # profile 暴露的端口
+dw_yaml_conf="/usr/local/cloudcare/dataflux/dataway/dataway.yaml"
+
+# 收集运行时指标
+curl -v "http://${dw_ip}:${metric_port}/metrics" -o $br_dir/metrics
+
+# 收集 profiling 信息
+curl -v "http://${dw_ip}:${profile_port}/debug/pprof/allocs" -o $br_dir/allocs
+curl -v "http://${dw_ip}:${profile_port}/debug/pprof/heap" -o $br_dir/heap
+curl -v "http://${dw_ip}:${profile_port}/debug/pprof/profile" -o $br_dir/profile # 此命令会运行 30s 左右
+
+cp $dw_yaml_conf $br_dir/dataway.yaml.copy
+
+tar czvf ${br_dir}.tar.gz ${br_dir}
+rm -rf ${br_dir}
+```
+
+运行脚本：
+
+```shell
+$ sh dw-bug-report.sh
+...
+```
+
+执行完后，会生成类似 *dw-br-1721188604.tar.gz* 的文件，将该文件拿出来即可。
+
 ## FAQ {#faq}
 
 ### 请求体太大问题 {#too-large-request-body}

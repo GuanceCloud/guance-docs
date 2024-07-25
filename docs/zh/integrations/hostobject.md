@@ -88,91 +88,91 @@ monitor   :
     
         允许采集虚拟网卡
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_net_virtual_interfaces`
+        **采集器配置字段**: `enable_net_virtual_interfaces`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_HOSTOBJECT_IGNORE_ZERO_BYTES_DISK**
     
         忽略大小为 0 的磁盘
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `ignore_zero_bytes_disk`
+        **采集器配置字段**: `ignore_zero_bytes_disk`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_HOSTOBJECT_ONLY_PHYSICAL_DEVICE**
     
         忽略非物理磁盘（如网盘、NFS），任意非空字符串
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `only_physical_device`
+        **采集器配置字段**: `only_physical_device`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_HOSTOBJECT_EXCLUDE_DEVICE**
     
         忽略的 device
     
-        **Type**: List
+        **字段类型**: List
     
-        **ConfField**: `exclude_device`
+        **采集器配置字段**: `exclude_device`
     
-        **Example**: /dev/loop0,/dev/loop1
+        **示例**: /dev/loop0,/dev/loop1
     
     - **ENV_INPUT_HOSTOBJECT_EXTRA_DEVICE**
     
         额外增加的 device
     
-        **Type**: List
+        **字段类型**: List
     
-        **ConfField**: `extra_device`
+        **采集器配置字段**: `extra_device`
     
-        **Example**: `/nfsdata,other`
+        **示例**: `/nfsdata,other`
     
     - **ENV_ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_ELECTION_TAGS**
     
         将云服务商 region/zone_id 信息放入全局选举标签
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_cloud_host_tags_global_election`
+        **采集器配置字段**: `enable_cloud_host_tags_global_election`
     
-        **Default**: true
+        **默认值**: true
     
     - **ENV_ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_HOST_TAGS**
     
         将云服务商 region/zone_id 信息放入全局主机标签
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_cloud_host_tags_global_host`
+        **采集器配置字段**: `enable_cloud_host_tags_global_host`
     
-        **Default**: true
+        **默认值**: true
     
     - **ENV_INPUT_HOSTOBJECT_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
     
-        **Type**: Map
+        **字段类型**: Map
     
-        **ConfField**: `tags`
+        **采集器配置字段**: `tags`
     
-        **Example**: tag1=value1,tag2=value2
+        **示例**: tag1=value1,tag2=value2
     
     - **ENV_CLOUD_PROVIDER**
     
         指定云服务商
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `none`
+        **采集器配置字段**: `none`
     
-        **Example**: `aliyun/aws/tencent/hwcloud/azure`
+        **示例**: `aliyun/aws/tencent/hwcloud/azure`
 
 <!-- markdownlint-enable -->
 

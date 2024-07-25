@@ -264,45 +264,45 @@ spec:
 
     禁用「配置保护」模式
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 
 - **ENV_DATAWAY**
 
     配置 DataWay 地址
 
-    **Type**: URL
+    **字段类型**: URL
 
-    **Example**: `https://openway.guance.com?token=xxx`
+    **示例**: `https://openway.guance.com?token=xxx`
 
-    **Required**: Yes
+    **必填**: Yes
 
 - **ENV_DEFAULT_ENABLED_INPUTS**
 
     默认开启[采集器列表](datakit-input-conf.md#default-enabled-inputs)，以英文逗号分割，如 `cpu,mem,disk`
 
-    **Type**: List
+    **字段类型**: List
 
-    **Example**: cpu,mem,disk
+    **示例**: cpu,mem,disk
 
 - **ENV_ENABLE_INPUTS :fontawesome-solid-x:**
 
     同 ENV_DEFAULT_ENABLED_INPUTS，将废弃
 
-    **Type**: List
+    **字段类型**: List
 
 - **ENV_GLOBAL_HOST_TAGS**
 
     全局 tag，多个 tag 之间以英文逗号分割
 
-    **Type**: List
+    **字段类型**: List
 
-    **Example**: tag1=val,tag2=val2
+    **示例**: tag1=val,tag2=val2
 
 - **ENV_GLOBAL_TAGS :fontawesome-solid-x:**
 
     同 ENV_GLOBAL_HOST_TAGS，将废弃
 
-    **Type**: List
+    **字段类型**: List
 <!-- markdownlint-enable -->
 
 <!-- markdownlint-disable MD046 -->
@@ -329,15 +329,15 @@ spec:
 
     开启 point pool
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 
-    **Example**: `on`
+    **示例**: `on`
 
 - **ENV_POINT_POOL_RESERVED_CAPACITY**
 
     指定 point pool 大小（默认 4096）
 
-    **Type**: Int
+    **字段类型**: Int
 <!-- markdownlint-enable -->
 
 ### Dataway 配置相关环境变量 {#env-dataway}
@@ -347,81 +347,81 @@ spec:
 
     配置 DataWay 地址
 
-    **Type**: URL
+    **字段类型**: URL
 
-    **Example**: `https://openway.guance.com?token=xxx`
+    **示例**: `https://openway.guance.com?token=xxx`
 
-    **Required**: Yes
+    **必填**: Yes
 
 - **ENV_DATAWAY_TIMEOUT**
 
     配置 DataWay 请求超时
 
-    **Type**: TimeDuration
+    **字段类型**: TimeDuration
 
-    **Default**: 30s
+    **默认值**: 30s
 
 - **ENV_DATAWAY_ENABLE_HTTPTRACE**
 
     开启 DataWay 请求时 HTTP 层面的指标暴露
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 
 - **ENV_DATAWAY_HTTP_PROXY**
 
     设置 DataWay HTTP 代理
 
-    **Type**: URL
+    **字段类型**: URL
 
 - **ENV_DATAWAY_MAX_IDLE_CONNS**
 
     设置 DataWay HTTP 连接池大小（[:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0)）
 
-    **Type**: Int
+    **字段类型**: Int
 
 - **ENV_DATAWAY_IDLE_TIMEOUT**
 
     设置 DataWay HTTP Keep-Alive 时长（[:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0)）
 
-    **Type**: TimeDuration
+    **字段类型**: TimeDuration
 
-    **Default**: 90s
+    **默认值**: 90s
 
 - **ENV_DATAWAY_MAX_RETRY_COUNT**
 
     指定当把数据发送到观测云中心时，最多可以发送的次数，最小值为 1（失败后不重试），最大值为 10([:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0))
 
-    **Type**: Int
+    **字段类型**: Int
 
-    **Default**: 4
+    **默认值**: 4
 
 - **ENV_DATAWAY_RETRY_DELAY**
 
     数据发送失败时，两次重试之间的时间间隔（[:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0)）
 
-    **Type**: TimeDuration
+    **字段类型**: TimeDuration
 
-    **Default**: 200ms
+    **默认值**: 200ms
 
 - **ENV_DATAWAY_MAX_RAW_BODY_SIZE**
 
     数据上传时单包（未压缩）大小
 
-    **Type**: Int
+    **字段类型**: Int
 
-    **Default**: 10MB
+    **默认值**: 10MB
 
 - **ENV_DATAWAY_CONTENT_ENCODING**
 
     设置上传时的 point 数据编码（可选列表：`v1` 即行协议，`v2` 即 Protobuf）
 
-    **Type**: String
+    **字段类型**: String
 
 - **ENV_DATAWAY_TLS_INSECURE**
 
     允许对应的 Dataway 上的证书是自签证书[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 <!-- markdownlint-enable -->
 
 ### 日志配置相关环境变量 {#env-log}
@@ -431,49 +431,49 @@ spec:
 
     如果改成 `stdout`，Datakit 自身 gin 日志将不写文件，而是终端输出
 
-    **Type**: String
+    **字段类型**: String
 
-    **Default**: */var/log/datakit/gin.log*
+    **默认值**: */var/log/datakit/gin.log*
 
 - **ENV_LOG**
 
     如果改成 `stdout`，Datakit 自身日志将不写文件，而是终端输出
 
-    **Type**: String
+    **字段类型**: String
 
-    **Default**: */var/log/datakit/log*
+    **默认值**: */var/log/datakit/log*
 
 - **ENV_LOG_LEVEL**
 
     设置 Datakit 自身日志等级，可选 `info/debug`（不区分大小写）
 
-    **Type**: String
+    **字段类型**: String
 
-    **Default**: info
+    **默认值**: info
 
 - **ENV_DISABLE_LOG_COLOR**
 
     关闭日志颜色
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 
-    **Default**: -
+    **默认值**: -
 
 - **ENV_LOG_ROTATE_BACKUP**
 
     设置最多保留日志分片的个数
 
-    **Type**: Int
+    **字段类型**: Int
 
-    **Default**: 5
+    **默认值**: 5
 
 - **ENV_LOG_ROTATE_SIZE_MB**
 
     日志自动切割的阈值（单位：MB），当日志文件大小达到设置的值时，自动切换新的文件
 
-    **Type**: Int
+    **字段类型**: Int
 
-    **Default**: 32
+    **默认值**: 32
 <!-- markdownlint-enable -->
 
 ### Pprof 相关 {#env-pprof}
@@ -483,13 +483,13 @@ spec:
 
     是否开启 `pprof`
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 
 - **ENV_PPROF_LISTEN**
 
     `pprof` 服务监听地址
 
-    **Type**: String
+    **字段类型**: String
 <!-- markdownlint-enable -->
 
 > `ENV_ENABLE_PPROF`：[:octicons-tag-24: Version-1.9.2](changelog.md#cl-1.9.2) 已默认开启 pprof。
@@ -501,41 +501,41 @@ spec:
 
     开启[选举](election.md)，默认不开启，如需开启，给该环境变量任意一个非空字符串值即可
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 
-    **Default**: -
+    **默认值**: -
 
 - **ENV_NAMESPACE**
 
     Datakit 所在的命名空间，默认为空表示不区分命名空间，接收任意非空字符串，如 `dk-namespace-example`。如果开启了选举，可以通过此环境变量指定工作空间。
 
-    **Type**: String
+    **字段类型**: String
 
-    **Default**: default
+    **默认值**: default
 
 - **ENV_ENABLE_ELECTION_NAMESPACE_TAG**
 
     开启该选项后，所有选举类的采集均会带上 `election_namespace=<your-election-namespace>` 的额外 tag，这可能会导致一些时间线的增长（[:octicons-tag-24: Version-1.4.7](changelog.md#cl-1.4.7)）
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 
-    **Default**: -
+    **默认值**: -
 
 - **ENV_GLOBAL_ELECTION_TAGS**
 
     全局选举 tag，多个 tag 之间以英文逗号分割。ENV_GLOBAL_ENV_TAGS 将被弃用
 
-    **Type**: List
+    **字段类型**: List
 
-    **Example**: tag1=val,tag2=val2
+    **示例**: tag1=val,tag2=val2
 
 - **ENV_CLUSTER_NAME_K8S**
 
     Datakit 所在的 cluster，如果非空，会在 [Global Election Tags](election.md#global-tags) 中添加一个指定 tag，key 是 `cluster_name_k8s`，value 是环境变量的值。（[:octicons-tag-24: Version-1.5.8](changelog.md#cl-1.5.8)）
 
-    **Type**: String
+    **字段类型**: String
 
-    **Default**: default
+    **默认值**: default
 <!-- markdownlint-enable -->
 
 ### HTTP/API 相关环境变量 {#env-http-api}
@@ -545,85 +545,85 @@ spec:
 
     禁用 Datakit 404 页面（公网部署 Datakit RUM 时常用）。
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 
-    **Default**: -
+    **默认值**: -
 
 - **ENV_HTTP_LISTEN**
 
     可修改地址，使得外部可以调用 [Datakit 接口](apis.md)。
 
-    **Type**: String
+    **字段类型**: String
 
-    **Default**: localhost:9529
+    **默认值**: localhost:9529
 
 - **ENV_HTTP_PUBLIC_APIS**
 
     允许外部访问的 Datakit [API 列表](apis.md)，多个 API 之间以英文逗号分割。当 Datakit 部署在公网时，用来禁用部分 API。
 
-    **Type**: List
+    **字段类型**: List
 
 - **ENV_HTTP_TIMEOUT**
 
     设置 9529 HTTP API 服务端超时时间 [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)。
 
-    **Type**: TimeDuration
+    **字段类型**: TimeDuration
 
-    **Default**: 30s
+    **默认值**: 30s
 
 - **ENV_HTTP_CLOSE_IDLE_CONNECTION**
 
     如果开启，则 9529 HTTP server 会主动关闭闲置连接（闲置时间等同于 `ENV_HTTP_TIMEOUT`） [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)。
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 
-    **Default**: -
+    **默认值**: -
 
 - **ENV_HTTP_ENABLE_TLS**
 
     开启 Datakit 9529 HTTPS[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)。
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 
-    **Default**: -
+    **默认值**: -
 
 - **ENV_HTTP_TLS_CRT**
 
     配置 Datakit HTTP Server 上的 TLS cert 路径[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)。
 
-    **Type**: String
+    **字段类型**: String
 
-    **Default**: -
+    **默认值**: -
 
 - **ENV_HTTP_TLS_KEY**
 
     配置 Datakit HTTP Server 上的 TLS key 路径[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)。
 
-    **Type**: String
+    **字段类型**: String
 
-    **Default**: -
+    **默认值**: -
 
 - **ENV_REQUEST_RATE_LIMIT**
 
     限制 9529 [API 每秒请求数](datakit-conf.md#set-http-api-limit)。
 
-    **Type**: Float
+    **字段类型**: Float
 
 - **ENV_RUM_ORIGIN_IP_HEADER**
 
     设置 RUM 请求中真实 IP forward 对应的 HTTP header key。Datakit 将从该 Header 上获取端上用户的真实 IP，否则拿到可能是网关 IP。
 
-    **Type**: String
+    **字段类型**: String
 
-    **Default**: `X-Forwarded-For`
+    **默认值**: `X-Forwarded-For`
 
 - **ENV_RUM_APP_ID_WHITE_LIST**
 
     RUM app-id 白名单列表，以 `,` 分割。
 
-    **Type**: String
+    **字段类型**: String
 
-    **Example**: appid-1, appid-2
+    **示例**: appid-1, appid-2
 <!-- markdownlint-enable -->
 
 ### Confd 配置相关环境变量 {#env-confd}
@@ -633,121 +633,121 @@ spec:
 
     要使用的后端
 
-    **Type**: String
+    **字段类型**: String
 
-    **Example**: `etcdv3`
+    **示例**: `etcdv3`
 
 - **ENV_CONFD_BASIC_AUTH**
 
     使用 Basic Auth 进行身份验证（适用于 `etcdv3`/consul）
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 
-    **Default**: false
+    **默认值**: false
 
 - **ENV_CONFD_CLIENT_CA_KEYS**
 
     客户端 CA 密钥文件
 
-    **Type**: String
+    **字段类型**: String
 
-    **Example**: `/opt/ca.crt`
+    **示例**: `/opt/ca.crt`
 
 - **ENV_CONFD_CLIENT_CERT**
 
     客户端证书文件
 
-    **Type**: String
+    **字段类型**: String
 
-    **Example**: `/opt/client.crt`
+    **示例**: `/opt/client.crt`
 
 - **ENV_CONFD_CLIENT_KEY**
 
     客户端密钥文件
 
-    **Type**: String
+    **字段类型**: String
 
-    **Example**: `/opt/client.key`
+    **示例**: `/opt/client.key`
 
 - **ENV_CONFD_BACKEND_NODES**
 
     后端源地址
 
-    **Type**: JSON
+    **字段类型**: JSON
 
-    **Example**: `["http://aaa:2379","1.2.3.4:2379"]` (`Nacos must prefix http:// or https://`)
+    **示例**: `["http://aaa:2379","1.2.3.4:2379"]` (`Nacos must prefix http:// or https://`)
 
 - **ENV_CONFD_USERNAME**
 
     身份验证的用户名（适用于 `etcdv3/consul/nacos`）
 
-    **Type**: String
+    **字段类型**: String
 
 - **ENV_CONFD_PASSWORD**
 
     身份验证的密码（适用于 `etcdv3/consul/nacos`）
 
-    **Type**: String
+    **字段类型**: String
 
 - **ENV_CONFD_SCHEME**
 
     后端 URI 方案
 
-    **Type**: String
+    **字段类型**: String
 
-    **Example**: http/https
+    **示例**: http/https
 
 - **ENV_CONFD_SEPARATOR**
 
     在后端查找键时替换'/'的分隔符，前缀'/'也将被删除（适用于 redis）
 
-    **Type**: String
+    **字段类型**: String
 
-    **Default**: /
+    **默认值**: /
 
 - **ENV_CONFD_ACCESS_KEY**
 
     客户端身份 ID（适用于 `nacos/aws`）
 
-    **Type**: String
+    **字段类型**: String
 
 - **ENV_CONFD_SECRET_KEY**
 
     认证密钥（适用于 `nacos/aws`）
 
-    **Type**: String
+    **字段类型**: String
 
 - **ENV_CONFD_CIRCLE_INTERVAL**
 
     循环检测间隔秒数（适用于 `nacos/aws`）
 
-    **Type**: Int
+    **字段类型**: Int
 
-    **Default**: 60
+    **默认值**: 60
 
 - **ENV_CONFD_CONFD_NAMESPACE**
 
     配置信息的空间 ID（适用于 `nacos`）
 
-    **Type**: String
+    **字段类型**: String
 
-    **Example**: `6aa36e0e-bd57-4483-9937-e7c0ccf59599`
+    **示例**: `6aa36e0e-bd57-4483-9937-e7c0ccf59599`
 
 - **ENV_CONFD_PIPELINE_NAMESPACE**
 
     `pipeline` 的信息空间 ID（适用于 `nacos`）
 
-    **Type**: String
+    **字段类型**: String
 
-    **Example**: `d10757e6-aa0a-416f-9abf-e1e1e8423497`
+    **示例**: `d10757e6-aa0a-416f-9abf-e1e1e8423497`
 
 - **ENV_CONFD_REGION**
 
     AWS 服务区（适用于 aws）
 
-    **Type**: String
+    **字段类型**: String
 
-    **Example**: `cn-north-1`
+    **示例**: `cn-north-1`
 <!-- markdownlint-enable -->
 
 ### Git 配置相关环境变量 {#env-git}
@@ -757,41 +757,41 @@ spec:
 
     指定拉取的分支。**为空则是默认**，默认是远程指定的主分支，一般是 `master`
 
-    **Type**: String
+    **字段类型**: String
 
-    **Example**: master
+    **示例**: master
 
 - **ENV_GIT_INTERVAL**
 
     定时拉取的间隔
 
-    **Type**: TimeDuration
+    **字段类型**: TimeDuration
 
-    **Example**: 1m
+    **示例**: 1m
 
 - **ENV_GIT_KEY_PATH**
 
     本地 PrivateKey 的全路径
 
-    **Type**: String
+    **字段类型**: String
 
-    **Example**: /Users/username/.ssh/id_rsa
+    **示例**: /Users/username/.ssh/id_rsa
 
 - **ENV_GIT_KEY_PW**
 
     本地 PrivateKey 的使用密码
 
-    **Type**: String
+    **字段类型**: String
 
-    **Example**: passwd
+    **示例**: passwd
 
 - **ENV_GIT_URL**
 
     管理配置文件的远程 git repo 地址
 
-    **Type**: URL
+    **字段类型**: URL
 
-    **Example**: `http://username:password@github.com/username/repository.git`
+    **示例**: `http://username:password@github.com/username/repository.git`
 <!-- markdownlint-enable -->
 
 ### Sinker 配置相关环境变量 {#env-sinker}
@@ -801,15 +801,15 @@ spec:
 
     指定 Sinker 分流的自定义字段列表，各个 Key 之间以英文逗号分割
 
-    **Type**: String
+    **字段类型**: String
 
 - **ENV_DATAWAY_ENABLE_SINKER**
 
     开启 DataWay 发送数据时的 Sinker 功能（[:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0)），该功能需新版本 Dataway 才能生效
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 
-    **Default**: -
+    **默认值**: -
 <!-- markdownlint-enable -->
 
 ### IO 模块配置相关环境变量 {#env-io}
@@ -819,79 +819,79 @@ spec:
 
     添加[行协议过滤器](datakit-filter.md)
 
-    **Type**: JSON
+    **字段类型**: JSON
 
 - **ENV_IO_FLUSH_INTERVAL**
 
     IO 发送时间频率
 
-    **Type**: TimeDuration
+    **字段类型**: TimeDuration
 
-    **Default**: 10s
+    **默认值**: 10s
 
 - **ENV_IO_FEED_CHAN_SIZE**
 
     IO 发送队列长度（[:octicons-tag-24: Version-1.22.0](changelog.md#cl-1.22.0)）
 
-    **Type**: Int
+    **字段类型**: Int
 
-    **Default**: 1
+    **默认值**: 1
 
 - **ENV_IO_FEED_GLOBAL_BLOCKING**
 
     IO 发送的阻塞模式，目前只针对时序数据和拨测数据，其它类数据默认都是非阻塞的（[:octicons-tag-24: Version-1.33.0](changelog.md#cl-1.33.0)）
 
-    **Type**: Int
+    **字段类型**: Int
 
-    **Default**: -
+    **默认值**: -
 
 - **ENV_IO_FLUSH_WORKERS**
 
     IO 发送 worker 数（[:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)）
 
-    **Type**: Int
+    **字段类型**: Int
 
-    **Default**: `cpu_core * 2 + 1`
+    **默认值**: `cpu_core * 2 + 1`
 
 - **ENV_IO_MAX_CACHE_COUNT**
 
     发送 buffer（点数）大小
 
-    **Type**: Int
+    **字段类型**: Int
 
-    **Default**: 1000
+    **默认值**: 1000
 
 - **ENV_IO_ENABLE_CACHE**
 
     是否开启发送失败的磁盘缓存
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 
-    **Default**: false
+    **默认值**: false
 
 - **ENV_IO_CACHE_ALL**
 
     是否 cache 所有发送失败的数据
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 
-    **Default**: false
+    **默认值**: false
 
 - **ENV_IO_CACHE_MAX_SIZE_GB**
 
     发送失败缓存的磁盘大小（单位 GB）
 
-    **Type**: Int
+    **字段类型**: Int
 
-    **Default**: 10
+    **默认值**: 10
 
 - **ENV_IO_CACHE_CLEAN_INTERVAL**
 
     定期发送缓存在磁盘内的失败任务
 
-    **Type**: TimeDuration
+    **字段类型**: TimeDuration
 
-    **Default**: 5s
+    **默认值**: 5s
 <!-- markdownlint-enable -->
 
 <!-- markdownlint-disable MD046 -->
@@ -922,15 +922,15 @@ spec:
 
     可修改改地址，使得 [DCA](dca.md) 客户端能管理该 Datakit，一旦开启 ENV_DCA_LISTEN 即默认启用 DCA 功能
 
-    **Type**: URL
+    **字段类型**: URL
 
-    **Default**: localhost:9531
+    **默认值**: localhost:9531
 
 - **ENV_DCA_WHITE_LIST**
 
     配置 DCA 白名单，以英文逗号分隔
 
-    **Type**: List
+    **字段类型**: List
 <!-- markdownlint-enable -->
 
 ### Refer Table 有关环境变量 {#env-reftab}
@@ -940,31 +940,31 @@ spec:
 
     设置数据源 URL
 
-    **Type**: String
+    **字段类型**: String
 
 - **ENV_REFER_TABLE_PULL_INTERVAL**
 
     设置数据源 URL 的请求时间间隔
 
-    **Type**: String
+    **字段类型**: String
 
-    **Default**: 5m
+    **默认值**: 5m
 
 - **ENV_REFER_TABLE_USE_SQLITE**
 
     设置是否使用 SQLite 保存数据
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 
-    **Default**: false
+    **默认值**: false
 
 - **ENV_REFER_TABLE_SQLITE_MEM_MODE**
 
     当使用 SQLite 保存数据时，使用 SQLite 内存模式/磁盘模式
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 
-    **Default**: false
+    **默认值**: false
 <!-- markdownlint-enable -->
 
 ### 数据录制有关环境变量 {#env-recorder}
@@ -978,49 +978,49 @@ spec:
 
     设置是否开启数据录制
 
-    **Type**: Boolean
+    **字段类型**: Boolean
 
-    **Default**: false
+    **默认值**: false
 
 - **ENV_RECORDER_PATH**
 
     设置数据录制的存放目录
 
-    **Type**: String
+    **字段类型**: String
 
-    **Default**: *Datakit 安装目录/recorder*
+    **默认值**: *Datakit 安装目录/recorder*
 
 - **ENV_RECORDER_ENCODING**
 
     设置数据录制的存放格式，v1 为行协议格式，v2 为 JSON 格式
 
-    **Type**: String
+    **字段类型**: String
 
-    **Default**: v2
+    **默认值**: v2
 
 - **ENV_RECORDER_DURATION**
 
     设置数据录制时长（自 Datakit 启动以后），一旦超过该时长，则不再录制
 
-    **Type**: TimeDuration
+    **字段类型**: TimeDuration
 
-    **Default**: 30m
+    **默认值**: 30m
 
 - **ENV_RECORDER_INPUTS**
 
     设置录制的采集器名称列表，以英文逗号分割
 
-    **Type**: List
+    **字段类型**: List
 
-    **Example**: cpu,mem,disk
+    **示例**: cpu,mem,disk
 
 - **ENV_RECORDER_CATEGORIES**
 
     设置录制的数据分类列表，以英文逗号分割，完整的 Category 列表参见[这里](apis.md#category)
 
-    **Type**: List
+    **字段类型**: List
 
-    **Example**: metric,logging,object
+    **示例**: metric,logging,object
 <!-- markdownlint-enable -->
 
 ### 其它杂项 {#env-others}
@@ -1030,59 +1030,67 @@ spec:
 
     支持安装阶段填写云厂商
 
-    **Type**: String
+    **字段类型**: String
 
-    **Example**: `aliyun/aws/tencent/hwcloud/azure`
+    **示例**: `aliyun/aws/tencent/hwcloud/azure`
 
 - **ENV_HOSTNAME**
 
     默认为本地主机名，可安装时指定，如， `dk-your-hostname`
 
-    **Type**: String
+    **字段类型**: String
 
 - **ENV_IPDB**
 
     指定 IP 信息库类型，目前只支持 `iploc/geolite2` 两种
 
-    **Type**: String
+    **字段类型**: String
 
 - **ENV_ULIMIT**
 
     指定 Datakit 最大的可打开文件数
 
-    **Type**: Int
+    **字段类型**: Int
 
 - **ENV_PIPELINE_OFFLOAD_RECEIVER**
 
     设置 Offload 目标接收器的类型
 
-    **Type**: String
+    **字段类型**: String
 
-    **Default**: `datakit-http`
+    **默认值**: `datakit-http`
 
 - **ENV_PIPELINE_OFFLOAD_ADDRESSES**
 
     设置 Offload 目标地址
 
-    **Type**: List
+    **字段类型**: List
 
-    **Example**: `http://aaa:123,http://1.2.3.4:1234`
+    **示例**: `http://aaa:123,http://1.2.3.4:1234`
+
+- **ENV_PIPELINE_DISABLE_APPEND_RUN_INFO**
+
+    禁用追加 Pipeline 运行信息
+
+    **字段类型**: Boolean
+
+    **默认值**: `false`
 
 - **ENV_CRYPTO_AES_KEY**
 
     AES 加解密的 key 长度是 16
 
-    **Type**: String
+    **字段类型**: String
 
-    **Example**: `0123456789abcdef`
+    **示例**: `0123456789abcdef`
 
 - **ENV_CRYPTO_AES_KEY_FILE**
 
     AES 加解密的 key 存放的文件路径
 
-    **Type**: String
+    **字段类型**: String
 
-    **Example**: `/usr/local/datakit/enc4mysql`
+    **示例**: `/usr/local/datakit/enc4mysql`
 <!-- markdownlint-enable -->
 
 ### 特殊环境变量 {#env-special}

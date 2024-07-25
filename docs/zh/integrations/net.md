@@ -68,51 +68,51 @@ Net 采集器用于采集主机网络信息，如各网络接口的流量信息�
     
         采集器重复间隔时长
     
-        **Type**: TimeDuration
+        **字段类型**: TimeDuration
     
-        **ConfField**: `interval`
+        **采集器配置字段**: `interval`
     
-        **Default**: 10s
+        **默认值**: 10s
     
     - **ENV_INPUT_NET_IGNORE_PROTOCOL_STATS**
     
         跳过协议度量的报告
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `ignore_protocol_stats`
+        **采集器配置字段**: `ignore_protocol_stats`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_NET_ENABLE_VIRTUAL_INTERFACES**
     
         采集 Linux 的虚拟网卡
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `enable_virtual_interfaces`
+        **采集器配置字段**: `enable_virtual_interfaces`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_NET_INTERFACES**
     
         期望采集的网卡（正则）
     
-        **Type**: List
+        **字段类型**: List
     
-        **ConfField**: `interfaces`
+        **采集器配置字段**: `interfaces`
     
-        **Example**: eth[\w-]+,lo
+        **示例**: eth[\w-]+,lo
     
     - **ENV_INPUT_NET_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
     
-        **Type**: Map
+        **字段类型**: Map
     
-        **ConfField**: `tags`
+        **采集器配置字段**: `tags`
     
-        **Example**: tag1=value1,tag2=value2
+        **示例**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 

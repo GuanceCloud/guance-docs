@@ -110,101 +110,101 @@ Leap status     : Normal
     
         采集器重复间隔时长
     
-        **Type**: TimeDuration
+        **字段类型**: TimeDuration
     
-        **ConfField**: `interval`
+        **采集器配置字段**: `interval`
     
-        **Default**: 10s
+        **默认值**: 10s
     
     - **ENV_INPUT_CHRONY_TIMEOUT**
     
         超时时长
     
-        **Type**: TimeDuration
+        **字段类型**: TimeDuration
     
-        **ConfField**: `timeout`
+        **采集器配置字段**: `timeout`
     
-        **Default**: 8s
+        **默认值**: 8s
     
     - **ENV_INPUT_CHRONY_BIN_PATH**
     
         Chrony 的路径
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `bin_path`
+        **采集器配置字段**: `bin_path`
     
-        **Default**: `chronyc`
+        **默认值**: `chronyc`
     
     - **ENV_INPUT_CHRONY_REMOTE_ADDRS**
     
         可以使用远程 Chrony 服务器
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `remote_addrs`
+        **采集器配置字段**: `remote_addrs`
     
-        **Example**: ["192.168.1.1:22","192.168.1.2:22"]
+        **示例**: ["192.168.1.1:22","192.168.1.2:22"]
     
     - **ENV_INPUT_CHRONY_REMOTE_USERS**
     
         远程登录名
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `remote_users`
+        **采集器配置字段**: `remote_users`
     
-        **Example**: ["user_1","user_2"]
+        **示例**: ["user_1","user_2"]
     
     - **ENV_INPUT_CHRONY_REMOTE_PASSWORDS**
     
         远程登录密码
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `remote_passwords`
+        **采集器配置字段**: `remote_passwords`
     
-        **Example**: ["pass_1","pass_2"]
+        **示例**: ["pass_1","pass_2"]
     
     - **ENV_INPUT_CHRONY_REMOTE_RSA_PATHS**
     
         秘钥文件路径
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `remote_rsa_paths`
+        **采集器配置字段**: `remote_rsa_paths`
     
-        **Example**: ["/home/your_name/.ssh/id_rsa"]
+        **示例**: ["/home/your_name/.ssh/id_rsa"]
     
     - **ENV_INPUT_CHRONY_REMOTE_COMMAND**
     
         执行指令
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `remote_command`
+        **采集器配置字段**: `remote_command`
     
-        **Example**: "`chronyc -n tracking`"
+        **示例**: "`chronyc -n tracking`"
     
     - **ENV_INPUT_CHRONY_ELECTION**
     
         开启选举
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `election`
+        **采集器配置字段**: `election`
     
-        **Default**: true
+        **默认值**: true
     
     - **ENV_INPUT_CHRONY_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
     
-        **Type**: Map
+        **字段类型**: Map
     
-        **ConfField**: `tags`
+        **采集器配置字段**: `tags`
     
-        **Example**: tag1=value1,tag2=value2
+        **示例**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 

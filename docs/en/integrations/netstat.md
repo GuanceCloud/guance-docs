@@ -115,7 +115,7 @@ Netstat metrics collection, including TCP/UDP connections, waiting for connectio
     
         **Type**: TimeDuration
     
-        **ConfField**: `interval`
+        **input.conf**: `interval`
     
         **Default**: 10s
     
@@ -125,7 +125,7 @@ Netstat metrics collection, including TCP/UDP connections, waiting for connectio
     
         **Type**: JSON
     
-        **ConfField**: `addr_ports`
+        **input.conf**: `addr_ports`
     
         **Example**: ["1.1.1.1:80","443"]
     
@@ -135,7 +135,7 @@ Netstat metrics collection, including TCP/UDP connections, waiting for connectio
     
         **Type**: Map
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 

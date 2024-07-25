@@ -194,7 +194,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: TimeDuration
     
-        **ConfField**: `interval`
+        **input.conf**: `interval`
     
         **Default**: 10s
     
@@ -204,7 +204,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: TimeDuration
     
-        **ConfField**: `timeout`
+        **input.conf**: `timeout`
     
         **Default**: 5s
     
@@ -214,7 +214,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: TimeDuration
     
-        **ConfField**: `drop_warning_delay`
+        **input.conf**: `drop_warning_delay`
     
         **Default**: 5m
     
@@ -224,7 +224,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: String
     
-        **ConfField**: `bin_path`
+        **input.conf**: `bin_path`
     
         **Example**: `/usr/bin/ipmitool`
     
@@ -234,7 +234,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: JSON
     
-        **ConfField**: `envs`
+        **input.conf**: `envs`
     
         **Example**: ["LD_LIBRARY_PATH=XXXX:$LD_LIBRARY_PATH"]
     
@@ -244,7 +244,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: JSON
     
-        **ConfField**: `ipmi_servers`
+        **input.conf**: `ipmi_servers`
     
         **Example**: ["192.168.1.1","192.168.1.2"]
     
@@ -254,7 +254,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: JSON
     
-        **ConfField**: `ipmi_interfaces`
+        **input.conf**: `ipmi_interfaces`
     
         **Example**: ["`lanplus`"]
     
@@ -264,7 +264,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: JSON
     
-        **ConfField**: `ipmi_users`
+        **input.conf**: `ipmi_users`
     
         **Example**: ["root"]
     
@@ -274,7 +274,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: JSON
     
-        **ConfField**: `ipmi_passwords`
+        **input.conf**: `ipmi_passwords`
     
         **Example**: ["Calvin"]
     
@@ -284,7 +284,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: JSON
     
-        **ConfField**: `hex_keys`
+        **input.conf**: `hex_keys`
     
         **Example**: ["50415353574F5244"]
     
@@ -294,7 +294,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: JSON
     
-        **ConfField**: `metric_versions`
+        **input.conf**: `metric_versions`
     
         **Example**: [2] or [3]
     
@@ -304,7 +304,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: JSON
     
-        **ConfField**: `regexp_current`
+        **input.conf**: `regexp_current`
     
         **Example**: ["current"]
     
@@ -314,7 +314,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: JSON
     
-        **ConfField**: `regexp_voltage`
+        **input.conf**: `regexp_voltage`
     
         **Example**: ["voltage"]
     
@@ -324,7 +324,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: JSON
     
-        **ConfField**: `regexp_power`
+        **input.conf**: `regexp_power`
     
         **Example**: ["pwr","power"]
     
@@ -334,7 +334,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: JSON
     
-        **ConfField**: `regexp_temp`
+        **input.conf**: `regexp_temp`
     
         **Example**: ["temp"]
     
@@ -344,7 +344,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: JSON
     
-        **ConfField**: `regexp_fan_speed`
+        **input.conf**: `regexp_fan_speed`
     
         **Example**: ["fan"]
     
@@ -354,7 +354,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: JSON
     
-        **ConfField**: `regexp_usage`
+        **input.conf**: `regexp_usage`
     
         **Example**: ["usage"]
     
@@ -364,7 +364,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: JSON
     
-        **ConfField**: `regexp_count`
+        **input.conf**: `regexp_count`
     
         **Example**: []
     
@@ -374,7 +374,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: JSON
     
-        **ConfField**: `regexp_status`
+        **input.conf**: `regexp_status`
     
         **Example**: ["fan"]
     
@@ -384,7 +384,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         **Type**: Map
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 
