@@ -18,9 +18,12 @@
 
 ## 参数补充说明
 
-**返回字段说明**
-forbiddenOperation 字段, True 表示当前用户不允许, 修改/删除等更新操作, False允许操作,  没该字段(老数据返回没有该字段)默认允许操作
-permissionSetInfo字段(permissionSet对应的信息)
+**响应体参数说明**
+
+| 参数名           | type | 说明                                                 |
+| ---------------- | ---- | ---------------------------------------------------- |
+| allow_operation       | boolean/None | True: 表示允许当前用户 修改/删除等更新操作, False: 不允许, None: 表示将遵循接口操作权限 |
+| permissionSetInfo    | dict | 自定义操作配置相关信息                          |
 
 
 
