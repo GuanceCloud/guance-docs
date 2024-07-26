@@ -3,10 +3,31 @@
 
 ## 开通商业版
 
-- [在观测云直接注册商业版](commercial-register.md)
-- [在华为云云商店开通观测云商业版](commercial-huaweiyun.md)
-- [在阿里云云市场开通观测云商业版](commercial-aliyun.md)
-- [在 AWS 云市场开通观测云商业版](commercial-aws.md)
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 在观测云直接注册商业版</font>](commercial-register.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 在华为云云商店开通观测云商业版</font>](commercial-huaweiyun.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 在阿里云云市场开通观测云商业版</font>](commercial-aliyun.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 在 AWS 云市场开通观测云商业版</font>](commercial-aws.md)
+
+</div>
+
+
 
 ## 计费与结算前提
 
@@ -31,6 +52,7 @@
 
 </div>
 
+<!--
 ## 付费计划与账单
 
 观测云工作空间的拥有者查看费用情况的方法：
@@ -98,7 +120,7 @@
 
 
 
-<!--
+
 ### 消费分析 {#consume}
 
 在**消费分析**中，可查看昨日支出、累计支出，您也可以根据所选时间范围查看统计消费分析。
