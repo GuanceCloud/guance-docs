@@ -205,6 +205,7 @@ nav:
       - 'Sidecar Log Collection': logfwd.md
     - 'CRD': kubernetes-crd.md
     - 'Prometheus':
+      - 'Discovery': kubernetesprometheus.md
       - 'Exportor': kubernetes-prom.md
       - 'CRD': kubernetes-prometheus-operator-crd.md
     - 'NPD': npd.md
