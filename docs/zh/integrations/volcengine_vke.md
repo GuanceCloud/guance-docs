@@ -53,34 +53,72 @@ dashboard:
 3. 在观测云平台，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
-配置好火山云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [火山云云监控指标详情](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_VKE){:target="_blank"}
+配置好火山云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [火山云云监控指标详情](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_VKE){:target="_blank"}
 
 > 注意：需要在 `volcengine` VKE 控制台安装监控插件
 
-| Metric | Description                          | Unit |
-| ---- |-------------------------------------| :----: |
-|`Cluster_NodeCount` |集群 Node 数量|Count|
-|`Cluster_CPUUsage` |集群 CPU 使用率|Percent|
-|`Cluster_MemoryUsage` |集群内存使用率|Percent|
-|`Cluster_CPUUsed` |集群 CPU 用量|Core|
-|`Cluster_MemoryUsed` |集群内存用量|Bytes(SI)|
-|`Namespace_CPUUsed` | 命名空间 CPU 用量|Core|
-|`Namespace_MemoryUsed` |命名空间内存用量|Bytes(SI)|
-|`Node_PodCount` | Node 的 Pod 数量|Count|
-|`Node_CPUUsage` |节点 CPU 使用率|Percent|
-|`Node_MemoryUsage` |节点内存使用率|Percent|
-|`Node_CPURequestUsage` |节点 CPU 分配率（request）|Percent|
-|`Node_CPULimitUsage` |节点 CPU 分配率（limit）|Percent|
-|`Node_MemoryRequestUsage` |节点内存分配率（request）|Percent|
-|`Node_MemoryLimitUsage` |节点内存分配率（limit）|Percent|
-|`Pod_CPUUsage` |容器组 CPU 使用率（占limit）|Percent|
-|`Pod_CPUUsed` |容器组 CPU 用量|Count|
-|`Pod_MemoryUsage` |容器组内存使用率（占limit）|Percent|
-|`Pod_MemoryUsed` |容器组内存用量|Bytes(SI)|
-|`Pod_NetworkReceiveBytesRate` |容器组网络流入流量速率|Bytes/Second(SI)|
-|`Pod_NetworkReceiveLossPacketRate` |容器组网络流入丢包率|Percent|
-|`Pod_NetworkTransmitBytesRate` |容器组网络流出流量速率|Bytes/Second(SI)|
-|`Pod_NetworkTransmitLossPacketRate` |容器组网络流入流量速率|Percent|
+|`MetricName` |`SubNamespace` |指标名称 |MetricUnit | Dimension|
+| ---- |-------------------------------------| :----: |:----: |:----: |
+|`Cluster_MemoryUsed` |`Cluster` |集群内存用量 |Bytes(SI) | Cluster|
+|`Cluster_CPUUsage` |`Cluster` |集群 CPU 使用率 |Percent | Cluster|
+|`Cluster_MemoryUsage` |`Cluster` |集群内存使用率 |Percent | Cluster|
+|`Cluster_NodeCount` |`Cluster` |集群节点数量 |Count | Cluster|
+|`Cluster_CPUUsed` |`Cluster` |集群 CPU 用量 |Core | Cluster|
+|`Container_MemoryUsed` |`Container` |容器内存用量 |Bytes(SI) | Cluster,Namespace,Deployment,StatefulSet,DaemonSet,CronJob,Job,Pod,Container|
+|`Container_CPUUsage` |`Container` |容器 CPU 使用率（占limit） |Percent | Cluster,Namespace,Deployment,StatefulSet,DaemonSet,CronJob,Job,Pod,Container|
+|`Container_MemoryUsage` |`Container` |容器内存使用率（占limit） |Percent | Cluster,Namespace,Deployment,StatefulSet,DaemonSet,CronJob,Job,Pod,Container|
+|`Container_CPUUsed` |`Container` |容器 CPU 用量 |Core | Cluster,Namespace,Deployment,StatefulSet,DaemonSet,CronJob,Job,Pod,Container|
+|`Container_GPU_Memory_Free` |`Container` |容器GPU显存未使用量 |Megabytes | Cluster,Namespace,Deployment,StatefulSet,DaemonSet,CronJob,Job,Pod,Container,GPU|
+|`Container_GPU_Memory_Used` |`Container` |容器GPU显存用量 |Megabytes | Cluster,Namespace,Deployment,StatefulSet,DaemonSet,CronJob,Job,Pod,Container,GPU|
+|`Container_GPU_Usage` |`Container` |容器GPU使用率 |Percent | Cluster,Namespace,Deployment,StatefulSet,DaemonSet,CronJob,Job,Pod,Container,GPU|
+|`Container_GPU_Count` |`Container` |容器GPU卡数 |Count | Cluster,Namespace,Deployment,StatefulSet,DaemonSet,CronJob,Job,Pod,Container,GPU|
+|`Container_GPU_Memory_Usage` |`Container` |容器GPU显存使用率 |Percent | Cluster,Namespace,Deployment,StatefulSet,DaemonSet,CronJob,Job,Pod,Container,GPU|
+|`CronJob_MemoryUsed` |`CronJob` |定时任务内存用量 |Bytes(SI) | Cluster,Namespace,CronJob|
+|`CronJob_CPUUsage` |`CronJob` |定时任务 CPU 使用率（占limit） |Percent | Cluster,Namespace,CronJob|
+|`CronJob_MemoryUsage` |`CronJob` |定时任务内存使用率（占limit） |Percent | Cluster,Namespace,CronJob|
+|`CronJob_CPUUsed` |`CronJob` |定时任务 CPU 用量 |Core | Cluster,Namespace,CronJob|
+|`CronJob_GPU_Memory_Free` |`CronJob` |定时任务GPU显存未使用量 |Megabytes | Cluster,Namespace,CronJob,GPU|
+|`CronJob_GPU_Memory_Used` |`CronJob` |定时任务GPU显存用量 |Megabytes | Cluster,Namespace,CronJob,GPU|
+|`CronJob_GPU_Usage` |`CronJob` |定时任务GPU使用率 |Percent | Cluster,Namespace,CronJob,GPU|
+|`CronJob_GPU_Count` |`CronJob` |定时任务GPU卡数 |Count | Cluster,Namespace,CronJob,GPU|
+|`CronJob_GPU_Memory_Usage` |`CronJob` |定时任务GPU显存使用率 |Percent | Cluster,Namespace,CronJob,GPU|
+|`DaemonSet_MemoryUsed` |`DaemonSet` |守护进程内存用量 |Bytes(SI) | Cluster,Namespace,DaemonSet|
+|`DaemonSet_CPUUsage` |`DaemonSet` |守护进程 CPU 使用率（占limit） |Percent | Cluster,Namespace,DaemonSet|
+|`DaemonSet_MemoryUsage` |`DaemonSet` |守护进程内存使用率（占limit） |Percent | Cluster,Namespace,DaemonSet|
+|`DaemonSet_CPUUsed` |`DaemonSet` |守护进程 CPU 用量 |Core | Cluster,Namespace,DaemonSet|
+|`DaemonSet_GPU_Memory_Free` |`DaemonSet` |守护进程GPU显存未使用量 |Megabytes | Cluster,Namespace,DaemonSet,GPU|
+|`DaemonSet_GPU_Memory_Used` |`DaemonSet` |守护进程GPU显存用量 |Megabytes | Cluster,Namespace,DaemonSet,GPU|
+|`DaemonSet_GPU_Usage` |`DaemonSet` |守护进程GPU使用率 |Percent | Cluster,Namespace,DaemonSet,GPU|
+|`DaemonSet_GPU_Count` |`DaemonSet` |守护进程GPU卡数 |Count | Cluster,Namespace,DaemonSet,GPU|
+|`DaemonSet_GPU_Memory_Usage` |`DaemonSet` |守护进程GPU显存使用率 |Percent | Cluster,Namespace,DaemonSet,GPU|
+|`Deployment_MemoryUsed` |`Deployment` |无状态负载内存用量 |Bytes(SI) | Cluster,Namespace,Deployment|
+|`Deployment_CPUUsage` |`Deployment` |无状态负载 CPU 使用率（占limit） |Percent | Cluster,Namespace,Deployment|
+|`Deployment_MemoryUsage` |`Deployment` |无状态负载内存使用率（占limit） |Percent | Cluster,Namespace,Deployment|
+|`Deployment_CPUUsed` |`Deployment` |无状态负载 CPU 用量 |Core | Cluster,Namespace,Deployment|
+|`Deployment_GPU_Memory_Free` |`Deployment` |无状态负载GPU显存未使用量 |Megabytes | Cluster,Namespace,Deployment,GPU|
+|`Deployment_GPU_Memory_Used` |`Deployment` |无状态负载GPU显存用量 |Megabytes | Cluster,Namespace,Deployment,GPU|
+|`Deployment_GPU_Usage` |`Deployment` |无状态负载GPU使用率 |Percent | Cluster,Namespace,Deployment,GPU|
+|`Deployment_GPU_Count` |`Deployment` |无状态负载GPU卡数 |Count | Cluster,Namespace,Deployment,GPU|
+|`Deployment_GPU_Memory_Usage` |`Deployment` |无状态负载GPU显存使用率 |Percent | Cluster,Namespace,Deployment,GPU|
+|`Job_CPUUsed` |`Job` |任务 CPU 用量 |Core | Cluster,Namespace,Job|
+|`Job_MemoryUsed` |`Job` |任务内存用量 |Bytes(SI) | Cluster,Namespace,Job|
+|`Job_CPUUsage` |`Job` |任务 CPU 使用率（占limit） |Percent | Cluster,Namespace,Job|
+|`Job_MemoryUsage` |`Job` |任务内存使用率（占limit） |Percent | Cluster,Namespace,Job|
+|`Job_GPU_Memory_Free` |`Job` |任务GPU显存未使用量 |Megabytes | Cluster,Namespace,Job,GPU|
+|`Job_GPU_Memory_Used` |`Job` |任务GPU显存用量 |Megabytes | Cluster,Namespace,Job,GPU|
+|`Job_GPU_Usage` |`Job` |任务GPU使用率 |Percent | Cluster,Namespace,Job,GPU|
+|`Job_GPU_Count` |`Job` |任务GPU卡数 |Count | Cluster,Namespace,Job,GPU|
+|`Job_GPU_Memory_Usage` |`Job` |任务GPU显存使用率 |Percent | Cluster,Namespace,Job,GPU|
+|`Namespace_CPUUsed` |`Namespace` |命名空间 CPU 用量 |Core | Cluster,Namespace|
+|`Namespace_MemoryUsed` |`Namespace` |命名空间内存用量 |Bytes(SI) | Cluster,Namespace|
+|`Node_PodCount` |`Node` |容器组个数 |Count | Cluster,Node|
+|`Node_CPURequestUsage` |`Node` |节点 CPU 分配率（request） |Percent | Cluster,Node|
+|`Node_MemoryRequestUsage` |`Node` |节点内存分配率（request） |Percent | Cluster,Node|
+|`Node_CPULimitUsage` |`Node` |节点 CPU 分配率（limit） |Percent | Cluster,Node|
+|`Node_MemoryLimitUsage` |`Node` |节点内存分配率（limit） |Percent | Cluster,Node|
+|`Node_CPUUsage` |`Node` |节点 CPU 使用率 |Percent | Cluster,Node|
+|`Node_MemoryUsage` |`Node` |节点内存使用率 |Percent | Cluster,Node|
+|`PersistentVolumeClaim_VolumeUsage` |`PersistentVolumeClaim` |存储卷声明容量使用率 |Percent | Cluster,Namespace,PersistentVolumeClaim|
 
 
 
