@@ -18,15 +18,20 @@
 * doris-fe：CPU 内存 1:2，一块 20GB 以上数据盘存元数据，可使用其中第一台部署Doris Manager
 * doris-be：CPU 内存 1:8，以最大化磁盘吞吐为目标调整磁盘配置（个数）
 * guancedb-logs-doris：CPU 内存 1:2，可以主机或者容器部署；其中第一台需要一块数据盘部署VictoriaMetrics，用于存储一些Doris 元数据指标
+* CPU 需要支持 AVX2 指令集
+* 不能被其它机器抢占资源（CPU steal 不能过高）
 
 ### 网络说明
 * Doris Manager通常部署在doris-fe-01服务器上部署，其所在机器需要能ssh与全部oris机器通信，需要访问其8004端口的网页
 * guancedb-logs-doris机器需要通过系统包管理工具（APT）安装supervisor
 * 需要通过MySQL协议访问FE机器9030端口，通常是在Doris Manager所在机器安装mysql-client
 * guancedb-logs-doris机器需要访问: doris-fe机器的8030和9030端口;doris-be机器的8040和9060端口;guancedb-logs-doris第一台的8428端口
+* 提供的账号需要拥有s3存储桶的全部权限
 
 ### 部署说明
-Doris通过 **主机** 部署
+* s3 存储桶一旦配置不可修改。如需修改，只能清空数据，重新安装Doris集群
+* Doris通过 **主机** 部署。无论是否有网络，都需要先将物料包放置到指定位置
+
 
 | 类别           | 说明                                                  |
 |--------------|-----------------------------------------------------| 
@@ -120,10 +125,27 @@ Doris通过 **主机** 部署
 ## Doris 部署
 
 ### 前置准备
-#### 下载安装物料包
+#### 下载物料包
+安装工具包。安装包放置在fe-01机器上
 ```shell
 https://static.guance.com/guancedb/guancedb-doris-deploy-latest.tar.gz
 ```
+
+SelectDB + manager 安装包。安装包放置在fe-01机器上，文件夹位置同inventory/doris-manager.vars.yaml中配置的路径
+```shell
+https://static.guance.com/guancedb/selectdb-latest.tar.gz
+```
+
+GuanceDB安装包。 安装包放置在logs-doris所有机器上，文件位置同inventory/guancedb-logs-doris.vars.yaml中配置的路径
+```shell
+https://static.guance.com/guancedb/guancedb-cluster-linux-amd64-latest.tar.gz
+```
+
+victoria-metrics + vmutils 安装包。安装包放置在logs-doris所有机器上，文件位置同inventory/guancedb-logs-doris.vars.yaml中配置的路径
+```shell
+https://static.guance.com/guancedb/vmutils-latest.tar.gz
+```
+
 #### 配置机器间免密登录
 跳板机上(一般是在fe-01上)查看当前用户~/.ssh是否已存在公钥。如果没有生成过公钥，可通过执行下列命令生成并远程发送到其他角色的机器上
 ```shell
@@ -179,9 +201,9 @@ clusters:
 clusters:
   - name: xxx
     vars:
-      # 如需离线部署，这里填机器上的 Doris 安装包路径；有外网情况下可不填写
+      # 填机器上的 Doris 安装包路径；如 /root/packages/xxx.tar.gz
       doris_local_path: 
-      # 如需离线部署，这里填机器上的 Doris Manager 安装包路径；有外网情况下可不填写
+      # 填机器上的 Doris Manager 安装包路径；如 /root/packages/xxx.tar.gz
       manager_local_path:
 
       # 不使用冷存可以不填以下部分
@@ -192,7 +214,7 @@ clusters:
       # 使用云厂商对象存储时，通常不用填；使用自建的对象存储、endpoint 是 IP 时，需要填「path」 
       addressing_style:
 ```
-修改 inventory/doris-manager.vars.yaml文件
+修改 inventory/doris.vars.yaml文件
 ```shell
 clusters:
   - name: xxx
@@ -220,13 +242,9 @@ clusters:
 ```shell
   - name: xxx
     vars:
-      # 查看 GuanceDB 最新的版本号查看地址：https://docs.guance.com/deployment/changelog/
-      # 在线部署，填版本号
-      version: v1.5.17
-      # 离线部署，填机器上安装包所在目录，需要有以下 3 个安装包
-      # https://static.guance.com/guancedb/guancedb-cluster-linux-amd64-latest.tar.gz
-      # https://static.guance.com/dataflux/middleware/victoria-metrics-linux-amd64-v1.93.7.tar.gz
-      # https://static.guance.com/dataflux/middleware/vmutils-linux-amd64-v1.93.7.tar.gz
+      # 版本号不在使用,置空
+      version: ""
+      # 填机器上安装包所在目录；如 /root/packages
       local_dir:
 ```
 修改 inventory/secrets.yaml文件
@@ -234,13 +252,13 @@ clusters:
 clusters:
   - name: xxx
     vars:
-      # zyadmin 操作系统用户密码，只有私有化部署时需要
+      # 操作系统zyadmin用户密码，为符合安全要求，建议使用高强度密码
       os_zyadmin_password:
-      # doris 操作系统用户密码
+      # 操作系统doris用户密码，为符合安全要求，建议使用高强度密码
       os_doris_password:
-      # root 数据库用户密码
+      # root 数据库用户密码，建议使用高强度密码
       doris_root_password:
-      # user_read 数据库用户密码
+      # user_read 数据库用户密码，建议使用高强度密码
       doris_user_read_password:
       # 对象存储 access key，不使用冷存可以不填
       oss_ak:
@@ -259,17 +277,17 @@ pip3 install -r requirements.txt
 ### 部署Doris Manager
 初始化机器，完成后需要检查磁盘挂载
 ```shell
-python deployer.py -l clusrer_name -i 'inventory/doris-?e.*.yaml' -p playbooks/doris/initialize-machine.yaml
+python3 deployer.py -l clusrer_name -i 'inventory/doris-?e.*.yaml' -p playbooks/doris/initialize-machine.yaml
 ```
 
 更新 Datakit 配置，用于上报自观测数据
 ```shell
-python deployer.py -l cluster_name -i 'inventory/doris-?e.*.yaml' -p playbooks/doris/update-datakit.yaml
+python3 deployer.py -l cluster_name -i 'inventory/doris-?e.*.yaml' -p playbooks/doris/update-datakit.yaml
 ```
 
 下载并启动 Doris Manager
 ```shell
-python deployer.py -l cluster_name -i 'inventory/doris-manager.*.yaml' -p playbooks/doris/initialize-manager.yaml
+python3 deployer.py -l cluster_name -i 'inventory/doris-manager.*.yaml' -p playbooks/doris/initialize-manager.yaml
 ```
 
 ### 部署Doris FE和BE
@@ -279,9 +297,11 @@ python deployer.py -l cluster_name -i 'inventory/doris-manager.*.yaml' -p playbo
 **创建 Doris Manager 管理员账号**
 ![](img/doris-manager-1.png)
 **服务配置**
+
 - 关闭监控告警服务
 - Doris 本地安装包路径：/data1/doris/manager/downloads/doris
 - Doris Manager 本地安装包路径：/data1/doris/manager/downloads/manager
+
 
 ![](img/doris-manager-2.png)
 
@@ -322,11 +342,11 @@ python deployer.py -l cluster_name -i 'inventory/doris-manager.*.yaml' -p playbo
 
 修改分词配置，参数需要修改为集群名称
 ```shell
-python deployer.py -l cluster_name -i 'inventory/doris-be.*.yaml' -p playbooks/doris/update-be.yaml
+python3 deployer.py -l cluster_name -i 'inventory/doris-be.*.yaml' -p playbooks/doris/update-be.yaml
 ```
-在conf目录渲染 Doris 配置，检查conf文件夹下是否有be.conf和fe.conf生成
+在doris-conf目录渲染 Doris 配置，检查doris-conf文件夹下是否有cluster_name-be.conf和cluster_name-fe.conf生成
 ```shell
-python deployer.py -l cluster_name -i 'inventory/doris.vars.yaml' -p playbooks/doris/render-config.yaml
+python3 deployer.py -l cluster_name -i 'inventory/doris.vars.yaml' -p playbooks/doris/render-config.yaml
 ```
 
 修改 BE 配置：Doris Manager 集群页右上角「…」按钮 -> 「参数配置」 -> 全选 BE 节点 -> 右上角「编辑配置」 -> 粘贴刚生成的 be.conf -> 勾选「请确认……」 -> 「确定」
@@ -340,21 +360,40 @@ python deployer.py -l cluster_name -i 'inventory/doris.vars.yaml' -p playbooks/d
 
 修改数据库配置
 ```shell
-deployer.py -l cluster_name -i 'inventory/doris-manager.*.yaml' -p playbooks/doris/exec-init-sql.yaml
+python3 deployer.py -l cluster_name -i 'inventory/doris-manager.*.yaml' -p playbooks/doris/exec-init-sql.yaml
+```
+
+本步骤中会配置s3存储桶，通过下列方式可以验证是否可上传文件到存储桶
+
+fe机器上切换到root用户，登陆到集群中
+```shell
+mysql -uroot -h127.0.0.1 -P 9030
+```
+执行下方sql后在s3桶中查看default_resource/test文件夹中是否有前缀为result_的文件生成，如果没有文件生成，请检查权限
+```shell
+SELECT * FROM tbl
+INTO OUTFILE "s3://default_resource/test/result_"
+FORMAT AS ORC
+PROPERTIES(
+    "s3.endpoint" = "https://xxx",
+    "s3.region" = "ap-beijing",
+    "s3.access_key"= "your-ak",
+    "s3.secret_key" = "your-sk"
+);
 ```
 
 ### 部署guance-insert、guance-select和VictoriaMetrics
 初始化机器
 ```shell
-python3 deployer.py -l solution_doris01 -i 'inventory/guancedb-logs-doris.*.yaml' -p playbooks/guancedb/initialize-machine.yaml 
+python3 deployer.py -l cluster_name -i 'inventory/guancedb-logs-doris.*.yaml' -p playbooks/guancedb/initialize-machine.yaml 
 ```
 部署VictoriaMetrics
 ```shell
- python3 deployer.py -l solution_doris01 -i 'inventory/guancedb-logs-doris-vm.*.yaml' -p playbooks/doris/init-victoria-metrics.yaml
+ python3 deployer.py -l cluster_name -i 'inventory/guancedb-logs-doris-vm.*.yaml' -p playbooks/doris/init-victoria-metrics.yaml
 ```
 部署 guance-insert 和 guance-select
 ```shell
-python3 deployer.py -l solution_doris01 -i 'inventory/guancedb-logs-doris.*.yaml' -p playbooks/guancedb/update-config.yaml
+python3 deployer.py -l cluster_name -i 'inventory/guancedb-logs-doris.*.yaml' -p playbooks/guancedb/update-config.yaml
 ```
 
 
@@ -372,7 +411,4 @@ supervisorctl
 #查看日志
 /var/log/supervisor/guance-select-stderr.log 
 ```
-
-### 自观测仪表盘
-控制台上导入 **GuanceDB X Doris.json** 仪表盘
 
