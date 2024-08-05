@@ -57,6 +57,7 @@
 | jsonScript.checkerOpt.threshold.value | float | Y | 突变检测, 触发前提条件检测值<br>例子: 90 <br>允许为空: True <br> |
 | jsonScript.checkerOpt.combineExpr | string |  | 组合监控, 组合方式<br>例子: A && B <br>允许空字符串: False <br> |
 | jsonScript.checkerOpt.ignoreNodata | boolean |  | 组合监控, 是否忽略无数据结果（true 表示需要忽略）,<br>例子: True <br> |
+| jsonScript.checkerOpt.confidenceInterval | integer |  | 区间检测V2新增参数, 置信区间范围取值1-100,<br>例子: 10 <br> |
 | jsonScript.channels | array |  | 频道UUID列表<br>例子: ['名称1', '名称2'] <br>允许为空: False <br> |
 | jsonScript.atAccounts | array |  | 正常检测下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
 | jsonScript.atNoDataAccounts | array |  | 无数据情况下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
@@ -77,6 +78,7 @@
 |simpleCheck| 阈值检测|
 |seniorMutationsCheck| 突变检测|
 |seniorRangeCheck| 区间检测|
+|seniorRangeV2Check| 区间检测V2|
 |outlierCheck| 离群检测|
 |loggingCheck| 日志检测|
 |processCheck| 进程异常检测|
@@ -250,6 +252,14 @@
 | 安全巡检 | S |  |
 
 所有 写入模式为 覆盖 的 需要指定 disableCheckEndTime 为 true
+
+--------------
+
+**11. 区间检测V2版本 相关参数字段说明**
+
+|  参数名        |   type  | 必选  |          说明          |
+|---------------|----------|----|------------------------|
+| jsonScript.checkerOpt.confidenceInterval        |  integer  |  Y | 置信区间范围，取值为1-100%  |
 
 --------------
 

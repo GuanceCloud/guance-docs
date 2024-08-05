@@ -22,10 +22,9 @@
 |:-----------|:-------|:-----|:----------------|
 | interval | string |  | 检测频率<br>允许为空: False <br>可选值: ['5m', '10m'] <br>例子: 5m <br> |
 | sliUUIDs | array |  | SLI 的 UUID 列表<br>允许为空: False <br>例子: ['rul-aaaaaa', 'rul-bbbbbb'] <br> |
-| alertOpt | json |  | 告警设置<br>允许为空: False <br> |
-| alertOpt.silentTimeout | integer | Y | 通知沉默<br>允许为空: False <br>可选值: [900, 1800, 3600, 21600, 43200, 86400] <br>例子: 900 <br> |
-| alertOpt.alertTarget | array | Y | 告警通知对象<br>允许为空: False <br>例子: ['notify_aaaaaa', 'notify_bbbbbb'] <br> |
 | describe | string |  | SLO 描述信息<br>例子: 这是一个例子 <br>允许为空: False <br>允许空字符串: True <br>最大长度: 3000 <br> |
+| alertPolicyUUIDs | array |  | 告警策略UUID<br>允许为空: False <br> |
+| tags | array |  | 用于筛选的标签名称<br>允许为空: False <br>例子: ['xx', 'yy'] <br> |
 
 ## 参数补充说明
 
@@ -46,12 +45,7 @@ curl 'https://openapi.guance.com/api/v1/slo/monitor_3b7557f9bdf749139fee94a7ecb4
   "sliUUIDs": [
     "rul_47e2befd33fa4ece8ae65866feeb897f"
   ],
-  "alertOpt": {
-    "silentTimeout": 900,
-    "alertTarget": [
-      "notify_7887598b08ca4f42909342d9950af234"
-    ]
-  },
+  "alertPolicyUUIDs": ["xxxx"],
   "describe": "这是暂新的一个例子"
 }'
 ```

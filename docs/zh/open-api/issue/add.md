@@ -14,7 +14,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | name | string | Y | 标题名称<br>例子: name <br>允许为空: False <br>最大长度: 256 <br> |
-| level | string | Y | 等级,对应等级配置的uuid<br>例子: level <br>允许为空: False <br> |
+| level | string | Y | 等级,对应等级配置的uuid<br>例子: level <br>允许为空: False <br>允许空字符串: True <br> |
 | description | string | Y | 描述<br>例子: description <br>允许为空: False <br> |
 | attachmentUuids | array |  | 附件上传列表uuid<br>例子: [] <br>允许为空: True <br> |
 | extend | json | Y | 额外拓展信息<br>例子: {} <br>允许为空: True <br> |

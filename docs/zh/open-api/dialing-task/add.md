@@ -30,6 +30,7 @@
 | task.port | string |  | type=tcp时，必填参数<br>允许为空: False <br> |
 | task.timeout | string |  | type=tcp/icmp时，选填参数<br>允许为空: False <br> |
 | task.message | string |  | type=websocket，必填参数<br>允许为空: False <br> |
+| tags | array |  | 标签名称列表<br>允许为空: False <br>例子: ['xx', 'yy'] <br> |
 
 ## 参数补充说明
 
@@ -55,6 +56,7 @@
 | task.port  | string  |  N  |  type=tcp时，此参数必填  ｜
 | task.timeout  | string  | N  | type=tcp/icmp时，此参数选填  |
 | task.message  | string  | Y/N  | type=websocket时，此参数必填  ｜
+| tags          |  array  |  N | 标签列表  |
 
 * 注意 *: 拨测任务 task 参数内部的具体细节可参考 [自定义拨测](../../integrations/dialtesting_json.md)
 --------------
@@ -134,7 +136,8 @@
                 "AND_another_assert":"..."
             }
         ]
-    }
+    },
+    "tags": ["标签名称"]
 }
 ```
 
@@ -149,7 +152,7 @@
 curl 'https://openapi.guance.com/api/v1/dialing_task/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"type":"http","regions":["reg_chvefvc4c5rlp90lb1tg"],"task":{"frequency":"1m","method":"GET","url":"https://www.baidu.com","name":"test","advance_options":{"request_options":{"follow_redirect":false,"headers":{},"cookies":"","auth":{"username":"","password":""}},"request_body":{"body_type":"","body":""},"secret":{"not_save":false}},"success_when":[{"body":[{"contains":"200"}]}],"success_when_logic":"and"}}' \
+--data-raw '{"type":"http","regions":["reg_chvefvc4c5rlp90lb1tg"],"task":{"frequency":"1m","method":"GET","url":"https://www.baidu.com","name":"test","advance_options":{"request_options":{"follow_redirect":false,"headers":{},"cookies":"","auth":{"username":"","password":""}},"request_body":{"body_type":"","body":""},"secret":{"not_save":false}},"success_when":[{"body":[{"contains":"200"}]}],"success_when_logic":"and"},"tags":["test"]}' \
 --compressed
 ```
 
@@ -169,6 +172,12 @@ curl 'https://openapi.guance.com/api/v1/dialing_task/add' \
             "reg_chvefvc4c5rlp90lb1tg"
         ],
         "status": 0,
+        "tagInfo": [
+            {
+                "id": "tag_fe3f95c0a3da488dba492a093e0ff64b",
+                "name": "test"
+            }
+        ],
         "task": {
             "advance_options": {
                 "request_body": {
@@ -195,6 +204,7 @@ curl 'https://openapi.guance.com/api/v1/dialing_task/add' \
             "owner_external_id": "wksp_ed134a6485c8484dbd0e58ce9a9c6115",
             "post_url": "http://testing-openway.cloudcare.cn?token=tkn_xxxxx",
             "status": "ok",
+            "tagInfo": [],
             "success_when": [
                 {
                     "body": [
