@@ -30,7 +30,7 @@ curl 'https://openapi.guance.com/api/v1/role/add' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---data-raw '{"name":"test_temp_role1","desc":"test","keys":["workspace.readMember","label.labelCfgManage","log.externalIndexManage"]}' \
+--data-raw '{"name":"自定义管理","desc":"test","keys":["workspace.readMember","label.labelCfgManage","log.externalIndexManage"]}' \
 --compressed
 
 ```
@@ -42,11 +42,31 @@ curl 'https://openapi.guance.com/api/v1/role/add' \
 ```shell
 {
     "code": 200,
-    "content": true,
+    "content": {
+        "createAt": 1722827399,
+        "creator": "wsak_d19aaf8a1faa42cc9f788ce86b5f81a1",
+        "declaration": {
+            "asd": "aa,bb,cc,1,True",
+            "asdasd": "dawdawd",
+            "business": "aaa",
+            "fawf": "afawf",
+            "organization": "64fe7b4062f74d0007b46676"
+        },
+        "deleteAt": -1,
+        "desc": "test",
+        "id": null,
+        "isSystem": 0,
+        "name": "自定义管理",
+        "status": 0,
+        "updateAt": 1722827399,
+        "updator": "wsak_d19aaf8a1faa42cc9f788ce86b5f81a1",
+        "uuid": "role_01c7f2ef0f164d609c65006d3db9e602",
+        "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+    },
     "errorCode": "",
     "message": "",
     "success": true,
-    "traceId": "TRACE-5CF2E74E-42E8-4E1C-95F0-EF7D00538F26"
+    "traceId": "9008386843384026938"
 } 
 ```
 
