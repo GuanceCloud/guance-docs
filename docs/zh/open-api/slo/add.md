@@ -18,10 +18,9 @@
 | goal | float | Y | SLO 预期⽬标<br>允许为空: False <br>$greaterThanValue: 0 <br>$lessThanValue: 100 <br>例子: 90.0 <br> |
 | minGoal | float | Y | SLO 最低⽬标<br>允许为空: False <br>$greaterThanValue: 0 <br>$lessThanValue: 100 <br>例子: 85.0 <br> |
 | sliUUIDs | array | Y | SLI 的 UUID 列表<br>允许为空: False <br>例子: ['rul-aaaaaa', 'rul-bbbbbb'] <br> |
-| alertOpt | json | Y | 告警设置<br>允许为空: False <br> |
-| alertOpt.silentTimeout | integer | Y | 通知沉默<br>允许为空: False <br>可选值: [900, 1800, 3600, 21600, 43200, 86400] <br>例子: 900 <br> |
-| alertOpt.alertTarget | array | Y | 告警通知对象<br>允许为空: False <br>例子: ['notify_aaaaaa', 'notify_bbbbbb'] <br> |
 | describe | string |  | slo分组描述信息<br>例子: 这是一个例子 <br>允许为空: False <br>允许空字符串: True <br>最大长度: 3000 <br> |
+| alertPolicyUUIDs | array |  | 告警策略UUID<br>允许为空: False <br> |
+| tags | array |  | 用于筛选的标签名称<br>允许为空: False <br>例子: ['xx', 'yy'] <br> |
 
 ## 参数补充说明
 
@@ -60,12 +59,7 @@ curl 'https://openapi.guance.com/api/v1/slo/add' \
   "sliUUIDs": [
     "rul_47e2befd33fa4ece8ae65866feeb897f"
   ],
-  "alertOpt": {
-    "silentTimeout": 900,
-    "alertTarget": [
-      "notify_7887598b08ca4f42909342d9950af234"
-    ]
-  },
+  "alertPolicyUUIDs": ["xxxx"],
   "describe": "这是一个例子"
 }'
 ```

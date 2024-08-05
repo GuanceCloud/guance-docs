@@ -41,7 +41,7 @@ nav:
   - '管理 - API Key管理': workspace-ak
   - '工作空间': workspace
   - '工作空间属性声明': workspace-declaration
-  - '敏感数据脱敏规则': workspace-data-mask
+  - '管理 - 敏感数据脱敏': workspace-data-mask
   - '快照管理': snapshot
   - 'DQL数据查询': query-data
   - '日志聚类查询': logmine
