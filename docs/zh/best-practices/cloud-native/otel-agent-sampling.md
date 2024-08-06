@@ -9,7 +9,7 @@
 
 > 采样是指接受数据并准备导出或者存储的数据。有时候 采样被误解，认为是被舍弃的数据，这是不对的。
 
-上一篇 [OpenTelemetry 采样最佳实践](opentelemetry-simpling) 主要介绍 `opentelemetry-collector` 的采样策略，这篇文章主要介绍 Java Agent 端的采样。
+上一篇 [OpenTelemetry 采样最佳实践](./opentelemetry-simpling.md) 主要介绍 `opentelemetry-collector` 的采样策略，这篇文章主要介绍 Java Agent 端的采样。
 
 ## 采样策略 {#sampling}
 

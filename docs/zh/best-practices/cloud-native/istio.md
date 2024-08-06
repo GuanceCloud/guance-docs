@@ -940,7 +940,7 @@ DataKit 默认采集输出到 `/dev/stdout` 的日志，如果需要使用更深
 
 #### log 文件
 
-本示例未涉及到日志文件的采集，如需要请参考<[Kubernetes 应用的 RUM-APM-LOG 联动分析](./k8s-rum-apm-log)>
+本示例未涉及到日志文件的采集，如需要请参考<[Kubernetes 应用的 RUM-APM-LOG 联动分析](./k8s-rum-apm-log.md)>
 
 ### 链路超时分析
 

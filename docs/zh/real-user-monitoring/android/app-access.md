@@ -58,7 +58,7 @@
         [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/CHANGELOG.md)
 
     === "ft-native"
-		**1.1.0**：
+		**1.1.1**：
         ``` markdown
 		1. 添加 Native Crash 和 ANR 中 logcat 配置功能
 		```
