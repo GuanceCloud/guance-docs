@@ -24,7 +24,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/slo/monitor_7e6dc134b827404f9ef31f890d53636f/get' \
+curl 'https://openapi.guance.com/api/v1/slo/monitor_5ebbxxxx/get' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 ```
@@ -37,74 +37,66 @@ curl 'https://openapi.guance.com/api/v1/slo/monitor_7e6dc134b827404f9ef31f890d53
 {
     "code": 200,
     "content": {
-        "alertOpt": {
-            "alertTarget": [
-                {
-                    "status": [
-                        "critical",
-                        "error",
-                        "warning"
-                    ],
-                    "to": [
-                        "notify_7887598b08ca4f42909342d9950af234"
-                    ]
-                }
-            ],
-            "silentTimeout": 900
-        },
+        "alertPolicyInfos": [
+            {
+                "name": "lwc SLO 转告警策略测试",
+                "uuid": "altpl_xxx"
+            }
+        ],
         "config": {
             "checkRange": 604800,
-            "describe": "这是暂新的一个例子",
-            "goal": 90,
-            "interval": "5m",
-            "minGoal": 85,
+            "describe": "LWC测试OpenAPI",
+            "goal": 90.0,
+            "interval": "10m",
+            "minGoal": 60.0,
             "sli_infos": [
                 {
-                    "id": "rul_47e2befd33fa4ece8ae65866feeb897f",
-                    "name": "易触发监控器",
+                    "id": "rul_xxxx",
+                    "name": "whytest-反馈问题验证",
+                    "status": 2
+                },
+                {
+                    "id": "rul_xxxxx",
+                    "name": "lml-tes",
                     "status": 0
                 }
             ]
         },
-        "createAt": 1705638012,
+        "createAt": 1722913524,
         "creator": "wsak_xxxxx",
         "creatorInfo": {
             "acntWsNickname": "",
             "email": "wsak_xxxxx",
             "iconUrl": "",
-            "name": "test_api",
-            "username": "wsak_xxxxx"
+            "name": "LWC测试",
+            "status": 0,
+            "username": "wsak_xxxxx",
+            "uuid": "wsak_xxxxx"
         },
         "declaration": {
-            "b": [
-                "asfawfgajfasfafgafwba",
-                "asfgahjfaf"
-            ],
+            "asd": "aa,bb,cc,1,True",
+            "asdasd": "dawdawd",
             "business": "aaa",
-            "organization": "6540c09e4243b300077a9675"
+            "fawf": "afawf",
+            "organization": "64fe7b4062f74d0007b46676"
         },
         "deleteAt": -1,
-        "id": 4142,
-        "name": "slo-test2",
+        "id": 4901,
+        "name": "LWC-Test-2024-08-06-002",
         "score": 0,
-        "status": 2,
+        "status": 0,
+        "tagInfo": [],
         "type": "slo",
-        "updateAt": 1705916069,
-        "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-        "updatorInfo": {
-            "acntWsNickname": "",
-            "email": "88@qq.com",
-            "iconUrl": "http://testing-static-res.cloudcare.cn/icon/acnt_349ee5f70a89442fa94b4f754b5acbfe.png",
-            "name": "88测试",
-            "username": "测试"
-        },
-        "uuid": "monitor_7e6dc134b827404f9ef31f890d53636f",
-        "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+        "updateAt": -1,
+        "updator": "",
+        "updatorInfo": {},
+        "uuid": "monitor_xxxxxxxx4",
+        "workspaceUUID": "wksp_xxxxxxxxx"
     },
     "errorCode": "",
     "message": "",
     "success": true,
-    "traceId": "TRACE-6CE86137-AA49-4284-8D9B-248C97E0045F"
+    "traceId": "2309539005843156069"
 } 
 ```
 

@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| shareConfigUUIDs | commaArray | Y | 分享配置UUID<br>允许为空: False <br>允许空字符串: False <br> |
+| shareConfigUUIDs | commaArray | Y | 分享配置UUID<br>允许为空: False <br>允许为空字符串: False <br> |
 
 ## 参数补充说明
 

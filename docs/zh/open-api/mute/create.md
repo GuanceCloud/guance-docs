@@ -18,9 +18,9 @@
 | tags | json |  | 标签集<br>允许为空: False <br> |
 | notifyTargets | array |  | 通知目标<br>允许为空: False <br> |
 | notifyMessage | string |  | 通知信息<br>允许为空: False <br>最大长度: 3000 <br> |
-| notifyTimeStr | string |  | 通知时间, %Y/%m/%d %H:%M:%S<br>例子: 2023/08/21 19:19:00 <br>允许为空: False <br>允许空字符串: True <br> |
+| notifyTimeStr | string |  | 通知时间, %Y/%m/%d %H:%M:%S<br>例子: 2023/08/21 19:19:00 <br>允许为空: False <br>允许为空字符串: True <br> |
 | startTime | string |  | 开始时间 %Y/%m/%d %H:%M:%S<br>例子: 2023/08/21 19:19:00 <br>允许为空: False <br> |
-| endTime | string |  | 结束时间 %Y/%m/%d %H:%M:%S<br>例子: 2023/08/21 19:19:00 <br>允许为空: False <br>允许空字符串: True <br> |
+| endTime | string |  | 结束时间 %Y/%m/%d %H:%M:%S<br>例子: 2023/08/21 19:19:00 <br>允许为空: False <br>允许为空字符串: True <br> |
 | repeatTimeSet | int | Y | 重复配置值传 1, 静默时间为单次传 0<br>例子: 0 <br>允许为空: False <br> |
 | repeatCrontabSet | None |  | 重复crontab配置<br>允许为空: False <br> |
 | repeatCrontabSet.min | string |  | 分钟<br>例子: 10 <br>允许为空: False <br> |
@@ -29,7 +29,7 @@
 | repeatCrontabSet.month | string |  | 月<br>例子: * <br>允许为空: False <br> |
 | repeatCrontabSet.week | string |  | 周<br>例子: 1,3 <br>允许为空: False <br> |
 | crontabDuration | int |  | 结束时间减去开始时间, 正整数,单位为 s<br>例子: 3600 <br>允许为空: False <br> |
-| repeatExpireTime | string |  | 重复结束时间 %Y/%m/%d %H:%M:%S<br>例子: 0 <br>允许为空: False <br>允许空字符串: True <br> |
+| repeatExpireTime | string |  | 重复结束时间 %Y/%m/%d %H:%M:%S<br>例子: 0 <br>允许为空: False <br>允许为空字符串: True <br> |
 | timezone | str | Y | 静默规则时区<br>例子: Asia/Shanghai <br>允许为空: False <br> |
 | type | str | Y | 静默规则类型<br>例子: custom <br>允许为空: False <br>可选值: ['checker', 'alertPolicy', 'tag', 'custom'] <br> |
 | declaration | json |  | 自定义声明信息<br>允许为空: False <br> |
