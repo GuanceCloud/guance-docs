@@ -14,7 +14,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | uploadId | string | Y | 分片上传事件Id<br>允许为空: False <br> |
-| chunkIndexs | array |  | 分片列表<br>允许为空: False <br>允许空字符串: False <br> |
+| chunkIndexs | array |  | 分片列表<br>允许为空: False <br>允许为空字符串: False <br> |
 
 ## 参数补充说明
 

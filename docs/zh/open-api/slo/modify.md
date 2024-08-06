@@ -22,31 +22,27 @@
 |:-----------|:-------|:-----|:----------------|
 | interval | string |  | 检测频率<br>允许为空: False <br>可选值: ['5m', '10m'] <br>例子: 5m <br> |
 | sliUUIDs | array |  | SLI 的 UUID 列表<br>允许为空: False <br>例子: ['rul-aaaaaa', 'rul-bbbbbb'] <br> |
-| describe | string |  | SLO 描述信息<br>例子: 这是一个例子 <br>允许为空: False <br>允许空字符串: True <br>最大长度: 3000 <br> |
+| describe | string |  | SLO 描述信息<br>例子: 这是一个例子 <br>允许为空: False <br>允许为空字符串: True <br>最大长度: 3000 <br> |
 | alertPolicyUUIDs | array |  | 告警策略UUID<br>允许为空: False <br> |
 | tags | array |  | 用于筛选的标签名称<br>允许为空: False <br>例子: ['xx', 'yy'] <br> |
 
 ## 参数补充说明
 
-**参数说明**
-
-`alertOpt` 是非必选参数，但如果需要修改 `alertOpt` 必须同时设置 `alertOpt.silentTimeout`、`alertOpt.alertTarget`
 
 
 
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/slo/monitor_3b7557f9bdf749139fee94a7ecb4da12/modify' \
+curl 'https://openapi.guance.com/api/v1/slo/monitor_5ebbd15c2a7148fa97668bf1535e6914/modify' \
 -H 'DF-API-KEY:  <DF-API-KEY>' \
 -H 'Content-Type: application/json' \
 --data '{
-  "interval": "5m",
-  "sliUUIDs": [
-    "rul_47e2befd33fa4ece8ae65866feeb897f"
-  ],
-  "alertPolicyUUIDs": ["xxxx"],
-  "describe": "这是暂新的一个例子"
+  "describe": "这是一个例子",
+  "alertPolicyUUIDs": ["altpl_xxxx"],
+  "tags": [
+    "Test"
+  ]
 }'
 ```
 
@@ -58,60 +54,49 @@ curl 'https://openapi.guance.com/api/v1/slo/monitor_3b7557f9bdf749139fee94a7ecb4
 {
     "code": 200,
     "content": {
-        "alertOpt": {
-            "alertTarget": [
-                {
-                    "status": [
-                        "critical",
-                        "error",
-                        "warning"
-                    ],
-                    "to": [
-                        "notify_7887598b08ca4f42909342d9950af234"
-                    ]
-                }
-            ],
-            "silentTimeout": 900
-        },
         "config": {
             "checkRange": 604800,
-            "describe": "这是暂新的一个例子",
+            "describe": "这是一个例子",
             "goal": 90.0,
-            "interval": "5m",
-            "minGoal": 85.0,
+            "interval": "10m",
+            "minGoal": 60.0,
             "sli_infos": [
                 {
-                    "id": "rul_47e2befd33fa4ece8ae65866feeb897f",
-                    "name": "易触发监控器",
+                    "id": "rul_7a88b8xxxx",
+                    "name": "lml-tes",
                     "status": 0
+                },
+                {
+                    "id": "rul_9eb74xxxx",
+                    "name": "whytest-反馈问题验证",
+                    "status": 2
                 }
             ]
         },
-        "createAt": 1706610143,
-        "creator": "wsak_xxxxx",
+        "createAt": 1722913524,
+        "creator": "wsak_a2d55c91bxxxxx",
         "declaration": {
-            "b": [
-                "asfawfgajfasfafgafwba",
-                "asfgahjfaf"
-            ],
+            "asd": "aa,bb,cc,1,True",
+            "asdasd": "dawdawd",
             "business": "aaa",
-            "organization": "6540c09e4243b300077a9675"
+            "fawf": "afawf",
+            "organization": "64fe7b4062f74d0007b46676"
         },
         "deleteAt": -1,
-        "id": 4226,
-        "name": "slo-test8",
+        "id": 4901,
+        "name": "LWC-Test-2024-08-06-002",
         "score": 0,
         "status": 0,
         "type": "slo",
-        "updateAt": 1706610272.8664992,
-        "updator": "wsak_xxxxx",
-        "uuid": "monitor_3b7557f9bdf749139fee94a7ecb4da12",
-        "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+        "updateAt": 1722914612.4453554,
+        "updator": "wsak_a2d55c91bxxxxx",
+        "uuid": "monitor_5ebbd15cxxxxxx",
+        "workspaceUUID": "wksp_4b57c7bab3xxxxxx"
     },
     "errorCode": "",
     "message": "",
     "success": true,
-    "traceId": "TRACE-0DB0A032-56DE-4CA7-BF2E-6CF6936BD1C4"
+    "traceId": "12244323272853598406"
 } 
 ```
 
