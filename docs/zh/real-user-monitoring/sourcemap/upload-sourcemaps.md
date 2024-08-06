@@ -82,6 +82,15 @@ interface Options {
   dryRun?: boolean
 
   /**
+   * 上传后删除所有找到的源映射文件。
+   */
+  deleteAfterUpload?: boolean
+  /**
+   * 如果源映射无法通过其 sourceMappingURL 与生成的文件匹配，尝试通过本地磁盘上的文件名进行匹配
+   */
+  matchSourcemapsByFilename: ?boolean
+
+  /**
    * 寻找目录下的文件后缀列表
    * 默认 [".js", ".map"].
    */
