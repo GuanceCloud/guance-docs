@@ -95,6 +95,7 @@ nav:
       - 'MongoDB  Replica Set': volcengine_mongodb_replica_set.md
       - 'MongoDB Sharded Cluster': volcengine_mongodb_sharded_cluster.md
       - 'VKE': volcengine_vke.md
+      - 'Redis': volcengine_redis.md
 
   - 主机:
     - 默认采集:

@@ -1,5 +1,25 @@
 # 版本历史
 
+## 1.91.171（2024 年 07 月 24 日） {#1.91.171}
+
+pubrepo.guance.com/dataflux/1.91.171:launcher-c365f0b-1721884985
+
+### 观测云更新
+
+- 异常追踪：
+    - 新增[分析看板](../exception/issue-view.md)：可视化展示不同指标数据。
+    - 新增[日程](../exception/calendar.md)管理和[通知策略](../exception/config-manag.md#notify-strategy)：对 Issue 的内容范围做进一步通知分配。
+- 场景：
+    - 图表：新增[时间偏移](../scene/visual-chart/timeseries-chart.md#advanced-setting)设置。启用时间偏移后，当查询相对时间区间时，实际查询时间范围向前偏移 1 分钟，以防止入库延迟导致数据获取为空。
+    - 仪表板：新增[历史快照](../scene/dashboard.md#historial-snapshot)入口。
+    - 快照：保存快照时自动获取当前页面上选取的时间范围；分享快照时，可选择允许查看者更改时间范围。
+- 监控：
+    - 基础设施存活检测 V2：新增[附加信息](../monitoring/monitor/infrastructure-detection.md#config)。选定字段后，系统会做额外查询，但不会用于触发条件的判断。
+    - 通知对象管理：新增【操作权限】选项配置，由开关控制通知对象的操作（编辑、删除）权限。
+
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
 
 ## 1.90.170（2024 年 07 月 10 日） {#1.90.170}
 
@@ -2720,4 +2740,3 @@ pubrepo.guance.com/dataflux/1.35.84:launcher-191ef71-1645780061
     - 图表查询文案、按钮样式以及文字提示优化；
     - 工作空间操作按钮图标化，如编辑、删除等等。
     - 其他 UI 显示优化
-
