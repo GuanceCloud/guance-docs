@@ -65,16 +65,23 @@ In general, the host object is turned on by default and does not need to be conf
     disable_cloud_provider_sync = false
     
     ## Enable put cloud provider region/zone_id information into global election tags, (default to true).
-    # enable_cloud_host_tags_as_global_election = true
+    # enable_cloud_host_tags_as_global_election_tags = true
     
     ## Enable put cloud provider region/zone_id information into global host tags, (default to true).
-    # enable_cloud_host_tags_as_global_host = true
+    # enable_cloud_host_tags_as_global_host_tags = true
     
     ## [inputs.hostobject.tags] # (optional) custom tags
       # cloud_provider = "aliyun" # aliyun/tencent/aws/hwcloud/azure, probe automatically if not set
       # some_tag = "some_value"
       # more_tag = "some_other_value"
       # ...
+    
+    ## [inputs.hostobject.cloud_meta_url]
+      # tencent = "xxx"  # URL for Tencent Cloud metadata
+      # aliyun = "yyy"   # URL for Alibaba Cloud metadata
+      # aws = "zzz"
+      # azure = ""
+      # Hwcloud = ""
     
     ```
     
@@ -141,7 +148,7 @@ In general, the host object is turned on by default and does not need to be conf
     
         **Type**: Boolean
     
-        **input.conf**: `enable_cloud_host_tags_global_election`
+        **input.conf**: `enable_cloud_host_tags_global_election_tags`
     
         **Default**: true
     
@@ -151,7 +158,7 @@ In general, the host object is turned on by default and does not need to be conf
     
         **Type**: Boolean
     
-        **input.conf**: `enable_cloud_host_tags_global_host`
+        **input.conf**: `enable_cloud_host_tags_global_host_tags`
     
         **Default**: true
     
@@ -174,6 +181,16 @@ In general, the host object is turned on by default and does not need to be conf
         **input.conf**: `none`
     
         **Example**: `aliyun/aws/tencent/hwcloud/azure`
+    
+    - **ENV_CLOUD_META_URL**
+    
+        Cloud metadata URL mapping
+    
+        **Type**: Map
+    
+        **input.conf**: `cloud_meta_url`
+    
+        **Example**: `{"tencent":"xxx", "aliyun":"yyy"}`
 
 <!-- markdownlint-enable -->
 

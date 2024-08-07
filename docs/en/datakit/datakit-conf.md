@@ -19,7 +19,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is `datakit.conf`, here is the example sample(1.34.0):
+Datakit main configure is `datakit.conf`, here is the example sample(1.35.0):
 
 <!-- markdownlint-disable MD046 -->
 ??? info "`datakit.conf`"
@@ -308,10 +308,14 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.34.0):
       # Enable election
       enable = false
     
+      # Election whitelist
+      # NOTE: Empty to disable whitelist
+      node_whitelist = []
+    
       # Election namespace.
       # NOTE: for single workspace, there can be multiple election namespace.
       namespace = "default"
-    
+      
       # If enabled, every data point will add a tag with election_namespace = <your-election-namespace>
       enable_namespace_tag = false
     
