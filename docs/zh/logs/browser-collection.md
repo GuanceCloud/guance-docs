@@ -87,18 +87,20 @@ datafluxLogs.init({
 
 ### 初始化参数
 
-| **参数**              | **类型**    | **是否必须** | **默认值** | **描述**                                                                                                                                |
-| --------------------- | ----------- | ------------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `datakitOrigin`       | String      | 是           |            | DataKit 数据上报 Origin 注释：`协议（包括：//），域名（或 IP 地址）[和端口号] `例如：https://www.datakit.com, http://100.20.34.3:8088。 |
-| `clientToken`         | String      | 是           |            | 以 openway 方式上报数据令牌，从观测云控制台获取，必填（公共 openway 方式接入）。                                                        |
-| `site`                | String      | 是           |            | 以 公共 openway 方式上报数据地址，从观测云控制台获取，必填（公共 openway 方式接入）。                                                   |
-| `service`             | String      | 否           | `browser`  | 日志 Service 名称                                                                                                                       |
-| `env`                 | String      | 否           |            | Web 应用当前环境， 如 Prod：线上环境；Gray：灰度环境；Pre：预发布环境 Common：日常环境；Local：本地环境；                               |
-| `version`             | String      | 否           |            | Web 应用的版本号                                                                                                                        |
-| `sampleRate`          | Number      | 否           | `100`      | 指标数据收集百分比：`100` 表示全收集，`0` 表示不收集                                                                                    |
-| `forwardErrorsToLogs` | Boolean     | 否           | `true`     | 设置为 `false` 表示停止采集 console.error、 js、以及网络错误上报到观测云日志数据中                                                      |
-| `silentMultipleInit`  | Boolean     | 否           | `false`    | 不允许有多个日志对象被初始化                                                                                                            |
-| `forwardConsoleLogs`  | 字符串/数组 |              |            | 需要采集浏览器 console 日志类型，可选值：`error`, `log`, `info`, `warn`, `error`                                                        |
+| **参数**               | **类型**    | **是否必须** | **默认值** | **描述**                                                                                                                                 |
+| ---------------------- | ----------- | ------------ | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `datakitOrigin`        | String      | 是           |            | DataKit 数据上报 Origin 注释：`协议（包括：//），域名（或 IP 地址）[和端口号] `例如：https://www.datakit.com, http://100.20.34.3:8088。  |
+| `clientToken`          | String      | 是           |            | 以 openway 方式上报数据令牌，从观测云控制台获取，必填（公共 openway 方式接入）。                                                         |
+| `site`                 | String      | 是           |            | 以 公共 openway 方式上报数据地址，从观测云控制台获取，必填（公共 openway 方式接入）。                                                    |
+| `service`              | String      | 否           | `browser`  | 日志 Service 名称                                                                                                                        |
+| `env`                  | String      | 否           |            | Web 应用当前环境， 如 Prod：线上环境；Gray：灰度环境；Pre：预发布环境 Common：日常环境；Local：本地环境；                                |
+| `version`              | String      | 否           |            | Web 应用的版本号                                                                                                                         |
+| `sampleRate`           | Number      | 否           | `100`      | 指标数据收集百分比：`100` 表示全收集，`0` 表示不收集                                                                                     |
+| `forwardErrorsToLogs`  | Boolean     | 否           | `true`     | 设置为 `false` 表示停止采集 console.error、 js、以及网络错误上报到观测云日志数据中                                                       |
+| `silentMultipleInit`   | Boolean     | 否           | `false`    | 不允许有多个日志对象被初始化                                                                                                             |
+| `forwardConsoleLogs`   | 字符串/数组 |              |            | 需要采集浏览器 console 日志类型，可选值：`error`, `log`, `info`, `warn`, `error`                                                         |
+| `storeContextsToLocal` | Boolean     | 否           |            | 版本要求:`>3.1.2`。是否把用户自定义数据缓存到本地 localstorage，例如： `setUser`, `addGlobalContext` api 添加的自定义数据。              |
+| `storeContextsKey`     | String      | 否           |            | 版本要求:`>3.1.18`。定义存储到 localstorage 的 key ，默认不填，自动生成, 该参数主要是为了区分在同一个域名下，不同子路径共用 store 的问题 |
 
 ## 使用
 
