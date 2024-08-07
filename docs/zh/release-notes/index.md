@@ -11,7 +11,7 @@ icon: zy/release-notes
 
 ### 新增功能 {#new}
 
-- 用户访问检测：新增[热图](../real-user-monitoring/heatmap.md)。以视觉方式呈现访客与网站的互动情况，获取页面元素的点击数据和点击位置，了解用户的关注点。
+- 用户访问监测（RUM）：新增[热图](../real-user-monitoring/heatmap.md)。以视觉方式呈现访客与网站的互动情况，获取页面元素的点击数据和点击位置，了解用户的关注点。
 
 - 应用性能监测（APM） > 链路：新增[安装引导](../application-performance-monitoring/explorer/index.md)页面。
 
