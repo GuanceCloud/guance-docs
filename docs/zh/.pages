@@ -31,6 +31,7 @@ nav:
   - 费用中心: billing-center
   - <br/>私有化部署: ""
   - 私有化部署: deployment
+  - ExternalAPI: external-api
   - <br/>其他: ""
   - DQL: dql
   - 最佳实践: best-practices
