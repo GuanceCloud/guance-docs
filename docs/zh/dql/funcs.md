@@ -12,8 +12,8 @@
 | `BL`    | 备份日志数据，以字段 `source` 作为逻辑意义上的分类。 |
 | `O`      | 对象数据，以字段 `class` 作为逻辑意义上的分类。                          |
 | `OH`      | 对象历史数据，以字段 `class` 作为逻辑意义上的分类。                          |
-| `CO`      | 自定义对象数据，以字段 `class` 作为逻辑意义上的分类。                          |
-| `COH`      | 自定义对象历史数据，以字段 `class` 作为逻辑意义上的分类。                          |
+| `CO`      | 资源目录数据，以字段 `class` 作为逻辑意义上的分类。                          |
+| `COH`      | 资源目录历史数据，以字段 `class` 作为逻辑意义上的分类。                          |
 | `E`      | 事件数据，以字段 `source` 作为逻辑意义上的分类。                          |
 | `T`      | 追踪数据，以字段 `service` 作为逻辑意义上的分类。                          |
 | `P`      | Profile 数据，以字段 `service` 作为逻辑意义上的分类。                          |
@@ -257,7 +257,7 @@ show_backup_log_field()
 
 - 示例：`show_rum_field('js_error')`, 返回结构同 `show_object_field()`
 
-## 用户自定义对象（custom object）数据
+## 用户资源目录（custom object）数据
 
 ### show_cobject_source() 
 

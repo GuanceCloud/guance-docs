@@ -28,7 +28,7 @@ icon: zy/events
 
 |                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**了解更多**</font>                         |                                                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [未恢复事件查看器](unrecovered-events.md){ .md-button .md-button--primary } | [所有事件查看器](./event-explorer/event-list.md){ .md-button .md-button--primary } |
+| [未恢复事件查看器](./event-explorer/unrecovered-events.md){ .md-button .md-button--primary } | [所有事件查看器](./event-explorer/event-list.md){ .md-button .md-button--primary } |
 | [智能监控](inte-monitoring-event.md){ .md-button .md-button--primary } | [监控器配置触发事件](../monitoring/monitor/index.md){ .md-button .md-button--primary } |
 
 
