@@ -46,6 +46,7 @@ curl 'https://openapi.guance.com/api/v1/dialing_task/dial_011172d3ce454f5582a49e
             "reg_c8k45js4c5rgnqh709v0"
         ],
         "status": 0,
+        "tagInfo": [],
         "task": {
             "advance_options": {
                 "auth": {

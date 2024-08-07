@@ -21,12 +21,12 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | title | string | Y | 定时报告名称<br>允许为空: True <br>最大长度: 200 <br> |
-| content | string |  | 定时报告内容<br>允许为空: True <br>最大长度: 1000 <br>允许空字符串: True <br> |
+| content | string |  | 定时报告内容<br>允许为空: True <br>最大长度: 1000 <br>允许为空字符串: True <br> |
 | dashboardUUID | string | Y | 仪表板uuid<br>允许为空: False <br> |
 | recipient | array | Y | 收件人信息<br>例子: [acnt_xxxx, 22@qq.com, acnt_yyy] <br>允许为空: False <br> |
 | variables | json |  | 视图变量信息<br>允许为空: True <br> |
 | timeRange | string | Y | 查询时间范围<br>例子: 1d <br>允许为空: True <br> |
-| crontab | string |  | 定时任务的crontab<br>例子: 1 2 * * * <br>允许为空: True <br>允许空字符串: True <br> |
+| crontab | string |  | 定时任务的crontab<br>例子: 1 2 * * * <br>允许为空: True <br>允许为空字符串: True <br> |
 | singleExecuteTime | int |  | 单次执行的时间戳<br>允许为空: True <br> |
 | extend | json |  | 额外信息<br>允许为空: True <br> |
 | timezone | string | Y | 定时报告时区<br>例子: Asia/Shanghai <br>允许为空: True <br> |

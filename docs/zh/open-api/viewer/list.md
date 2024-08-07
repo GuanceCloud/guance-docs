@@ -14,8 +14,8 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| sortKey | string |  | 排序字段, 默认按照 updateAt 排序， 如果不存在当前值时，按照默认排序<br>允许为空: False <br>允许空字符串: True <br>可选值: ['name', 'updateAt'] <br> |
-| sortMethod | string |  | 排序方法, 默认按照 desc 排序<br>允许为空: False <br>允许空字符串: True <br>可选值: ['desc', 'asc'] <br> |
+| sortKey | string |  | 排序字段, 默认按照 updateAt 排序， 如果不存在当前值时，按照默认排序<br>允许为空: False <br>允许为空字符串: True <br>可选值: ['name', 'updateAt'] <br> |
+| sortMethod | string |  | 排序方法, 默认按照 desc 排序<br>允许为空: False <br>允许为空字符串: True <br>可选值: ['desc', 'asc'] <br> |
 | search | string |  | 查看器名称搜索<br>允许为空: False <br> |
 | pageIndex | integer |  | 页码<br>允许为空: False <br>例子: 10 <br>$minValue: 1 <br> |
 | pageSize | integer |  | 每页返回数量<br>允许为空: False <br>例子: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |

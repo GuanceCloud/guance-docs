@@ -15,7 +15,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | checkers | array | Y | 规则配置列表<br>允许为空: False <br> |
-| type | string |  | 智能监控导入传参 smartMonitor<br>允许为空: False <br>允许空字符串: False <br>可选值: ['smartMonitor'] <br> |
+| type | string |  | 智能监控导入传参 smartMonitor<br>允许为空: False <br>允许为空字符串: False <br>可选值: ['smartMonitor'] <br> |
 | skipRepeatNameCheck | boolean |  | 是否跳过重名检测, false进行重名检测, true为跳过重名检测<br>例子: False <br>允许为空: False <br> |
 | skipRepeatNameCreate | boolean |  | true同名跳过创建, 不同名的直接创建, false创建所有导入信息<br>例子: False <br>允许为空: False <br> |
 

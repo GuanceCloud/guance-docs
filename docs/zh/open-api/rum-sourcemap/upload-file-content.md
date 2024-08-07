@@ -14,10 +14,10 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | appId | string | Y | appId<br>允许为空: False <br> |
-| version | string |  | 版本<br>允许为空: False <br>允许空字符串: True <br> |
-| env | string |  | 环境<br>允许为空: False <br>允许空字符串: True <br> |
-| filename | string | Y | 包含完整相对路径的文件名<br>允许为空: False <br>允许空字符串: True <br> |
-| content | string |  | 文件内容<br>允许为空: False <br>允许空字符串: True <br> |
+| version | string |  | 版本<br>允许为空: False <br>允许为空字符串: True <br> |
+| env | string |  | 环境<br>允许为空: False <br>允许为空字符串: True <br> |
+| filename | string | Y | 包含完整相对路径的文件名<br>允许为空: False <br>允许为空字符串: True <br> |
+| content | string |  | 文件内容<br>允许为空: False <br>允许为空字符串: True <br> |
 
 ## 参数补充说明
 

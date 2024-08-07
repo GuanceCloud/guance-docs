@@ -16,7 +16,7 @@
 |:-----------|:-------|:-----|:----------------|
 | start | integer | Y | 时间 开始 单位 ms<br> |
 | end | integer | Y | 时间 结束 单位 ms<br> |
-| serviceName | string | Y | 服务名称<br>允许为空: False <br>允许空字符串: False <br> |
+| serviceName | string | Y | 服务名称<br>允许为空: False <br>允许为空字符串: False <br> |
 
 ## 参数补充说明
 
