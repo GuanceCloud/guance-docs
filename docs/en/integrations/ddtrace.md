@@ -436,6 +436,68 @@ DD_TAGS="project:your_project_name,env=test,version=v1" ddtrace-run python app.p
   more_tag = "some_other_value"
 ```
 
+## APMTelemetry {#apm_telemetry}
+
+[:octicons-tag-24: Version-1.35.0](../datakit/changelog.md#cl-1.35.0) · [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
+
+This information can be viewed in the Guance Cloud central infrastructure, and the presented data is helpful for troubleshooting issues related to startup commands and referenced third-party library versions.
+It also includes host information, service information, and the number of spans created and ended.
+
+There may be significant differences in data due to different languages and versions.
+
+
+
+
+
+
+
+
+
+### `DdTrace APM Telemetry`
+
+Collect service,host,process APM Telemetry message.
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`architecture`|Architecture|
+|`env`|Service ENV|
+|`hostname`|Host name|
+|`kernel_name`|Kernel name|
+|`kernel_release`|Kernel release|
+|`kernel_version`|Kernel version|
+|`language_name`|Language name|
+|`language_version`|Language version|
+|`name`|same as service name|
+|`os`|os|
+|`os_version`|os version|
+|`runtime_id`|RuntimeID|
+|`runtime_name`|Runtime name|
+|`runtime_patches`|Runtime patches|
+|`runtime_version`|Runtime_version|
+|`service`|Service|
+|`service_version`|Service version|
+|`tracer_version`|DdTrace version|
+
+- metric list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`app-client-configuration-change`|App client configuration change config|string|-|
+|`app-closing`|App close|string|-|
+|`app-dependencies-loaded`|App dependencies loaded|string|-|
+|`app-integrations-change`|App Integrations change|string|-|
+|`app-product-change`|App product change|string|-|
+|`app-started`|App Started config|string|-|
+|`spans_created`|Create span count|float|count|
+|`spans_finished`|Finish span count|float|count|
+
+
+
+
 ### Add a Business Tag to your Code {#add-tags}
 
 Starting from DataKit version [1.21.0](../datakit/changelog.md#cl-1.21.0), do not include All in Span.Mate are advanced to the first level label and only select following list labels:
@@ -514,6 +576,10 @@ If the configured whitelist label is in the native `message.meta`, Will convert 
 |`span_id`|Span id|string|-|
 |`start`|start time of span.|int|usec|
 |`trace_id`|Trace id|string|-|
+
+
+
+
 
 
 
