@@ -17,7 +17,7 @@
 | query | string |  | dql查询语句, 如果存在该值，则 namespace 和 conditions 参数将实效 【格式要求】:L::`*`:(`__docid`, analysis_field){}<br> |
 | namespace | string |  | dql查询语句中的命名空间全写, 默认值为 logging<br>可选值: ['object', 'object_history', 'custom_object', 'logging', 'keyevent', 'unrecovered_event', 'tracing', 'rum', 'network', 'security', 'backup_log', 'profiling'] <br> |
 | highlight | boolean |  | 是否需要高亮查询字符串<br> |
-| conditions | string |  | dql查询过滤条件<br>例子:  `source` IN ['kube-controller']  <br>允许为空: False <br>允许空字符串: True <br> |
+| conditions | string |  | dql查询过滤条件<br>例子:  `source` IN ['kube-controller']  <br>允许为空: False <br>允许为空字符串: True <br> |
 | timeRange | array |  | 数据时间范围, 两个元素,<br>例子: [1573646935000, 1573646960000] <br>允许为空: False <br> |
 | analysisField | string | Y | 近似文本分析-字段<br>例子: message <br>允许为空: True <br> |
 

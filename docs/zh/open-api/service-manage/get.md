@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| service_uuid | string | Y | 服务对应的uuid<br>例子: xxxx <br>允许空字符串: False <br> |
+| service_uuid | string | Y | 服务对应的uuid<br>例子: xxxx <br>允许为空字符串: False <br> |
 
 
 ## Query 请求参数

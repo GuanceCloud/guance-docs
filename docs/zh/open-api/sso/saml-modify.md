@@ -26,9 +26,9 @@
 | config | json |  | 访问配置表(oidc 类型必填)<br>例子:  <br>允许为空: False <br> |
 | emailDomains | array | Y | 邮箱域名<br>例子: ['jiagouyun.com', 'guance.com'] <br> |
 | role | string | Y | 角色<br>允许为空: False <br>可选值: ['general', 'readOnly'] <br> |
-| remark | string |  | 备注<br>允许为空: False <br>允许空字符串: True <br> |
-| tokenHoldTime | integer |  | token 保持时长, 秒级时间戳，默认值 14400<br>允许为空: False <br>允许空字符串: False <br>$minValue: 1800 <br>$maxValue: 86400 <br> |
-| tokenMaxValidDuration | integer |  | token 最长的有效期, 秒级时间戳， 默认值 604800<br>允许为空: False <br>允许空字符串: False <br>$minValue: 86400 <br>$maxValue: 604800 <br> |
+| remark | string |  | 备注<br>允许为空: False <br>允许为空字符串: True <br> |
+| tokenHoldTime | integer |  | token 保持时长, 秒级时间戳，默认值 14400<br>允许为空: False <br>允许为空字符串: False <br>$minValue: 1800 <br>$maxValue: 86400 <br> |
+| tokenMaxValidDuration | integer |  | token 最长的有效期, 秒级时间戳， 默认值 604800<br>允许为空: False <br>允许为空字符串: False <br>$minValue: 86400 <br>$maxValue: 604800 <br> |
 
 ## 参数补充说明
 

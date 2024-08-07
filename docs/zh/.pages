@@ -8,15 +8,15 @@ nav:
   - 集成: integrations
   - <br/>产品功能: ""
   - 场景: scene
-  - 基础设施: infrastructure
-  - 应用性能监测: application-performance-monitoring
-  - 用户访问监测: real-user-monitoring
-  - 日志: logs
-  - 可用性监测: usability-monitoring
-  - 指标: metrics
   - 监控: monitoring
   - 事件: events
   - 异常追踪: exception
+  - 基础设施: infrastructure
+  - 指标: metrics
+  - 日志: logs
+  - 应用性能监测: application-performance-monitoring
+  - 用户访问监测: real-user-monitoring
+  - 可用性监测: usability-monitoring
   - 安全巡检: scheck
   - CI 可视化: ci-visibility
   - Pipeline: pipeline

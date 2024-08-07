@@ -22,7 +22,7 @@
 |:-----------|:-------|:-----|:----------------|
 | issueUUID | string | Y | issue的UUID<br>例子: issueUUID <br>允许为空: False <br> |
 | attachmentUuids | array |  | 回复附件上传列表uuids<br>例子: [] <br>允许为空: True <br> |
-| content | string |  | 回复内容<br>例子: answer_xxx <br>允许为空: True <br>允许空字符串: True <br> |
+| content | string |  | 回复内容<br>例子: answer_xxx <br>允许为空: True <br>允许为空字符串: True <br> |
 | extend | json | Y | 额外拓展信息，没有内容默认{}<br>例子: {} <br>允许为空: True <br> |
 
 ## 参数补充说明

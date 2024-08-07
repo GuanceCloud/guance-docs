@@ -26,7 +26,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/slo/list' \
+curl 'https://openapi.guance.com/api/v1/slo/list?pageIndex=1&pageSize=2' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 ```
@@ -41,99 +41,82 @@ curl 'https://openapi.guance.com/api/v1/slo/list' \
     "content": {
         "data": [
             {
-                "alertOpt": {
-                    "alertTarget": [
-                        {
-                            "status": [
-                                "critical",
-                                "error",
-                                "warning"
-                            ],
-                            "to": [
-                                "notify_fbfb8b0920c34837ac3d3c24017004a0"
-                            ]
-                        }
-                    ],
-                    "silentTimeout": 3600
-                },
+                "alertPolicyInfos": [
+                    {
+                        "name": "lwc SLO 转告警策略测试",
+                        "uuid": "altpl_xxxx"
+                    }
+                ],
                 "config": {
                     "checkRange": 604800,
-                    "describe": "1",
+                    "describe": "LWC测试OpenAPI",
                     "goal": 90.0,
-                    "interval": "5m",
+                    "interval": "10m",
                     "minGoal": 60.0,
                     "sli_infos": [
                         {
-                            "id": "rul_c74d7ca2d1334cae997e1fa17fd1e6ee",
-                            "name": "突变-带触发前提条件 检测值 result: {{Result}}",
+                            "id": "rul_9eb74xxxxx",
+                            "name": "whytest-反馈问题验证",
+                            "status": 2
+                        },
+                        {
+                            "id": "rul_7a88xxxxx",
+                            "name": "lml-tes",
                             "status": 0
                         }
                     ]
                 },
-                "createAt": 1706357265,
-                "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+                "createAt": 1722913524,
+                "creator": "wsak_a2d55c91bxxxxx",
                 "deleteAt": -1,
-                "id": 4184,
-                "name": "slo-demo",
+                "id": 4901,
+                "name": "LWC-Test-2024-08-06-002",
                 "score": 0,
                 "status": 0,
+                "tagInfo": [],
                 "type": "slo",
-                "updateAt": 1706357265,
-                "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-                "uuid": "monitor_9c8874be22a74c35b88c9cc9c01181cb",
-                "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+                "updateAt": -1,
+                "updator": "",
+                "uuid": "monitor_5ebbxxxxxx",
+                "workspaceUUID": "wksp_4b57c7babxxxxxx"
             },
             {
-                "alertOpt": {
-                    "alertTarget": [
-                        {
-                            "status": [
-                                "critical",
-                                "error",
-                                "warning"
-                            ],
-                            "to": [
-                                "notify_70377542c47c455f8fe2791c2f32a3f7"
-                            ]
-                        }
-                    ],
-                    "silentTimeout": 3600
-                },
+                "alertPolicyInfos": [],
                 "config": {
                     "checkRange": 604800,
                     "describe": "",
-                    "goal": 90.0,
+                    "goal": 99.0,
                     "interval": "5m",
-                    "minGoal": 80.0,
+                    "minGoal": 90.0,
                     "sli_infos": [
                         {
-                            "id": "rul_27ec98d3251d485c8656059e619d926b",
-                            "name": "20240118",
-                            "status": 2
+                            "id": "rul_7a88xxxxx",
+                            "name": "lml-tes",
+                            "status": 0
                         }
                     ]
                 },
-                "createAt": 1706166301,
-                "creator": "acnt_27f0489732c344beb2d5b3078bbe3dc0",
+                "createAt": 1722913303,
+                "creator": "acnt_35be770xxxxxx",
                 "deleteAt": -1,
-                "id": 4178,
-                "name": "slo-demo2",
+                "id": 4899,
+                "name": "lml-test3",
                 "score": 0,
-                "status": 2,
+                "status": 0,
+                "tagInfo": [],
                 "type": "slo",
-                "updateAt": 1706176602,
-                "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-                "uuid": "monitor_aa01439d20b9447e9874e5882966df01",
-                "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+                "updateAt": 1722913478,
+                "updator": "acnt_35be770xxxxxx",
+                "uuid": "monitor_7d0662bexxxxx",
+                "workspaceUUID": "wksp_4b57c7babxxxxxx"
             }
         ],
         "declaration": {
-            "b": [
-                "asfawfgajfasfafgafwba",
-                "asfgahjfaf"
-            ],
+            "asd": "aa,bb,cc,1,True",
+            "asdasd": "dawdawd",
             "business": "aaa",
-            "organization": "6540c09e4243b300077a9675"
+            "fawf": "afawf",
+            "organization": "xxxxxx"
         }
     },
     "errorCode": "",
@@ -141,11 +124,11 @@ curl 'https://openapi.guance.com/api/v1/slo/list' \
     "pageInfo": {
         "count": 2,
         "pageIndex": 1,
-        "pageSize": 100,
-        "totalCount": 2
+        "pageSize": 2,
+        "totalCount": 43
     },
     "success": true,
-    "traceId": "TRACE-7990B78C-6F35-4A99-AF41-4BCD9AFBDF9D"
+    "traceId": "10111844508613776745"
 } 
 ```
 

@@ -20,7 +20,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| newAppId | string |  | 新的AppId<br>允许为空: False <br>允许空字符串: True <br>$maxCharacterLength: 48 <br> |
+| newAppId | string |  | 新的AppId<br>允许为空: False <br>允许为空字符串: True <br>$maxCharacterLength: 48 <br> |
 | dashboardUuids | array |  | 内置视图uuids<br>允许为空: False <br> |
 | jsonContent | json |  | JSON格式内容<br> |
 | jsonContent.name | string |  | 应用名称<br>允许为空: False <br>最大长度: 256 <br> |
