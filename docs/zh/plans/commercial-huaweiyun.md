@@ -1,21 +1,21 @@
 # 华为云云商店开通观测云商业版
 ---
 
-本文将介绍<u>在华为云云商店订阅观测云服务以后，如何开通观测云商业版并使用华为云账号进行费用结算</u>。
+在华为云商店订购观测云服务，您主要需要进行两个步骤：[购买观测云服务](#purchase)、[关联对应组织](#team)。
 
 > 关于直接注册商业版，可参考 [注册商业版](commercial-register.md)。
 
-## 第一步：[在云商店购买云服务](./billing-account/huawei-account.md#market)
+## 第一步：[在云商店购买云服务](./billing-account/huawei-account.md#market) {#purchase}
 
 ## 第二步：关联组织 {#team}
 
-联营服务是华为云云商店联营 SaaS 类商品购买后需要绑定的服务。
+在华为云云商店购买联营 SaaS 类商品后，需要操作绑定联营服务。
 
-因此，购买完观测云 SaaS 服务以后，您需要<u>先关联组织</u>。
+因此，购买完观测云 SaaS 服务以后，您需要**先关联组织**。
 
-您可以通过以下步骤完成联营服务组织的关联绑定，或者直接参考华为云文档 [联营SaaS类商品使用指导](https://support.huaweicloud.com/ug-marketplace/sp_topic_0000212.html)。
+> 您可以通过以下四个步骤完成联营服务组织的关联绑定，或者直接参考华为云文档 [联营 SaaS 类商品使用指导](https://support.huaweicloud.com/ug-marketplace/sp_topic_0000212.html)。
 
-1）创建组织
+:material-numeric-1-circle: 创建组织
 
 在我的云商店，点击**联营服务 > 组织管理 > 新建组织**，在弹出的对话框，填写组织的相关信息。
 
@@ -25,7 +25,7 @@
 
 ![](./img/13.huaweicloud_8.png)
 
-2）添加成员
+:material-numeric-2-circle: 添加成员
 
 在**联营服务 > 组织管理 > 我管理的 > 添加成员**，在弹出的对话框，填写成员的相关信息。
 
@@ -33,7 +33,7 @@
 
 ![](./img/13.huaweicloud_7.1.png)
 
-3）应用绑定
+:material-numeric-3-circle: 应用绑定
 
 在**联营服务 > 应用绑定 > 普通应用**，在购买的商品右侧点击绑定组织，并在弹出的对话框中选择上一步创建的组织进行绑定。
 
@@ -45,7 +45,7 @@
 
 ![](./img/13.huaweicloud_10.png)
 
-4）应用授权
+:material-numeric-4-circle: 应用授权
 
 在**联营服务 > 应用授权**，在购买商品的右侧点击授权，在弹出的对话框中，选择组织成员后点击**确定**，即完成关联组织。
 

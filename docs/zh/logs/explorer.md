@@ -55,7 +55,7 @@
 3. 针对显示的聚类数据，时序图模式下，可选择 `slimit` 为 5/10/20/50/100；排行榜/饼图/矩形树图模式下，可选择 `limit to` 最大或最小为 5/10/20/50/100；
 4. 点击右侧 :material-list-box: 按钮，可选择隐藏、底部、右侧图例；
 5. 点击 :art: 按钮，可自定义图例展示的颜色样式；
-6. 点击 :material-tray-arrow-up: 按钮，可选择导出当前图表到笔记、仪表板或直接复制该图表。
+6. 点击 :material-tray-arrow-up: 按钮，可选择导出当前图表为 CSV 文件、导出到笔记、仪表板或直接复制该图表。
     
 ![](img/5.log_analysis.gif)
     
@@ -363,7 +363,7 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
     通过详情页下方的**链路**，您可以查看当前日志相关的链路（关联字段：`trace_id`）火焰图和 Span 列表，点击右上角的跳转按钮可直接对应的链路详情。
     
-    > 更多关于链路火焰图和 Span 列表的介绍，可参考 [链路分析](../application-performance-monitoring/explorer.md)。
+    > 更多关于链路火焰图和 Span 列表的介绍，可参考 [链路分析](../application-performance-monitoring/explorer/explorer-analysis.md)。
     
     - 火焰图：
     

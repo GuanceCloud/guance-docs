@@ -51,7 +51,7 @@ Profile 支持采集使用 Java，Python 和 Go 等不同语言环境下应用�
 
 ## 如何通过错误链路来快速发现问题？
 
-观测云支持在 [链路查看器](../application-performance-monitoring/explorer.md) 快速筛选错误链路，或者直接在 [错误追踪查看器](../application-performance-monitoring/error.md) 快速查看链路中的类似错误的产生历史趋势及其分布情况，帮助快速定位性能问题。
+观测云支持在 [链路查看器](../application-performance-monitoring/explorer/explorer-analysis.md) 快速筛选错误链路，或者直接在 [错误追踪查看器](../application-performance-monitoring/error.md) 快速查看链路中的类似错误的产生历史趋势及其分布情况，帮助快速定位性能问题。
 
 ## 若以上常见问题无法解决您的问题，如何获得在线支持？
 

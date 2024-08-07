@@ -142,9 +142,11 @@
 
 ![](../img/rule-update-2.png)
 
-> 关于查看器具体操作，可参考 [查看器的强大之处](../getting-started/function-details/explorer-search.md)。
+> 关于查看器具体操作，可参考 [查看器的强大之处](../../getting-started/function-details/explorer-search.md)。
 
 ## 更多阅读
+
+<font size=3>
 
 <div class="grid cards" markdown>
 
@@ -158,3 +160,5 @@
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 日志数据转发到 OSS 最佳实践</font>](../../best-practices/partner/log-backup-to-oss-by-func.md)
 
 </div>
+
+</font>

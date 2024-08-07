@@ -563,7 +563,7 @@ $ vim scheck.conf
 
 ### 日志：
 
-详细步骤参见文档 [日志采集](../../datakit/logging.md)
+详细步骤参见文档 [日志采集](../../integrations/logging.md)
 
 ##### 1、标准日志采集（Nginx、Mysql、Redis 等）
 
