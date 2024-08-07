@@ -536,6 +536,14 @@ spec:
     **字段类型**: String
 
     **默认值**: default
+
+- **ENV_ELECTION_NODE_WHITELIST**
+
+    允许参加选举的节点名称列表。
+
+    **字段类型**: List
+
+    **默认值**: []
 <!-- markdownlint-enable -->
 
 ### HTTP/API 相关环境变量 {#env-http-api}
