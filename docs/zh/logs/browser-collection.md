@@ -1,4 +1,5 @@
 # 浏览器日志采集
+
 ---
 
 ## 简介
@@ -23,19 +24,19 @@
 - **支持的浏览器**：支持所有 PC 端、移动端的浏览器。
 
 ### 您可以从下面几种方式中选择一种接入到 Web 应用中
+
 | 接入方式     | 简介                                                                                                                                                             |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | NPM          | 通过把 SDK 代码一起打包到你的前端项目中，此方式可以确保对前端页面的性能不会有任何影响，不过可能会错过 SDK 初始化之前的的请求、错误的收集。                       |
 | CDN 异步加载 | 通过 CDN 加速缓存，以异步脚本引入的方式，引入 SDK 脚本，此方式可以确保 SDK 脚本的下载不会影响页面的加载性能，不过可能会错过 SDK 初始化之前的的请求、错误的收集。 |
 | CDN 同步加载 | 通过 CDN 加速缓存，以同步脚本引入的方式，引入 SDK 脚本，此方式可以确保能够收集到所有的错误，资源，请求，性能指标。不过可能会影响页面的加载性能。                 |
 
-
 ### NPM
 
 ```javascript
 import { datafluxLogs } from '@cloudcare/browser-logs'
 datafluxLogs.init({
-  datakitOrigin: '<DATAKIT ORIGIN>'
+  datakitOrigin: '<DATAKIT ORIGIN>',
   //service: 'browser',
   //forwardErrorsToLogs:true
 })
@@ -50,23 +51,17 @@ datafluxLogs.init({
       q: [],
       onReady: function (c) {
         h.q.push(c)
-      }
+      },
     }
     d = o.createElement(u)
     d.async = 1
     d.src = n
     n = o.getElementsByTagName(u)[0]
     n.parentNode.insertBefore(d, n)
-  })(
-    window,
-    document,
-    'script',
-    'https://static.guance.com/browser-sdk/v3/dataflux-logs.js',
-    'DATAFLUX_LOGS'
-  )
+  })(window, document, 'script', 'https://static.guance.com/browser-sdk/v3/dataflux-logs.js', 'DATAFLUX_LOGS')
   DATAFLUX_LOGS.onReady(function () {
     DATAFLUX_LOGS.init({
-      datakitOrigin: '<DATAKIT ORIGIN>'
+      datakitOrigin: '<DATAKIT ORIGIN>',
       //service: 'browser',
       //forwardErrorsToLogs:true
     })
@@ -77,14 +72,11 @@ datafluxLogs.init({
 ### CDN 同步加载
 
 ```html
-<script
-  src="https://static.guance.com/browser-sdk/v3/dataflux-logs.js" 
-  type="text/javascript"
-></script>
+<script src="https://static.guance.com/browser-sdk/v3/dataflux-logs.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_LOGS &&
     window.DATAFLUX_LOGS.init({
-      datakitOrigin: '<DATAKIT ORIGIN>'
+      datakitOrigin: '<DATAKIT ORIGIN>',
       //service: 'browser',
       //forwardErrorsToLogs:true
     })
@@ -95,21 +87,24 @@ datafluxLogs.init({
 
 ### 初始化参数
 
-| **参数**              | **类型** | **是否必须** | **默认值** | **描述**                                                     |
-| --------------------- | -------- | ------------ | ---------- | ------------------------------------------------------------ |
-| `datakitOrigin`       | String   | 是           |            | DataKit 数据上报 Origin 注释：`协议（包括：//），域名（或 IP 地址）[和端口号] `例如：https://www.datakit.com, http://100.20.34.3:8088。 |
-| `service`             | String   | 否           | `browser`  | 日志 Service 名称                                              |
-| `env`                 | String   | 否           |            | Web 应用当前环境， 如 Prod：线上环境；Gray：灰度环境；Pre：预发布环境 Common：日常环境；Local：本地环境； |
-| `version`             | String   | 否           |            | Web 应用的版本号                                             |
-| `sampleRate`          | Number   | 否           | `100`      | 指标数据收集百分比：`100` 表示全收集，`0` 表示不收集            |
-| `forwardErrorsToLogs` | Boolean  | 否           | `true`     | 设置为 `false` 表示停止采集 console.error、 js、以及网络错误上报到观测云日志数据中 |
-| `silentMultipleInit`  | Boolean  | 否           | `false`    | 不允许有多个日志对象被初始化                                 |
-| `forwardConsoleLogs`             | 字符串/数组 |  |  | 需要采集浏览器 console 日志类型，可选值：`error`, `log`, `info`, `warn`, `error`             |
-
+| **参数**               | **类型**    | **是否必须** | **默认值** | **描述**                                                                                                                                 |
+| ---------------------- | ----------- | ------------ | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `datakitOrigin`        | String      | 是           |            | DataKit 数据上报 Origin 注释：`协议（包括：//），域名（或 IP 地址）[和端口号] `例如：https://www.datakit.com, http://100.20.34.3:8088。  |
+| `clientToken`          | String      | 是           |            | 以 openway 方式上报数据令牌，从观测云控制台获取，必填（公共 openway 方式接入）。                                                         |
+| `site`                 | String      | 是           |            | 以 公共 openway 方式上报数据地址，从观测云控制台获取，必填（公共 openway 方式接入）。                                                    |
+| `service`              | String      | 否           | `browser`  | 日志 Service 名称                                                                                                                        |
+| `env`                  | String      | 否           |            | Web 应用当前环境， 如 Prod：线上环境；Gray：灰度环境；Pre：预发布环境 Common：日常环境；Local：本地环境；                                |
+| `version`              | String      | 否           |            | Web 应用的版本号                                                                                                                         |
+| `sampleRate`           | Number      | 否           | `100`      | 指标数据收集百分比：`100` 表示全收集，`0` 表示不收集                                                                                     |
+| `forwardErrorsToLogs`  | Boolean     | 否           | `true`     | 设置为 `false` 表示停止采集 console.error、 js、以及网络错误上报到观测云日志数据中                                                       |
+| `silentMultipleInit`   | Boolean     | 否           | `false`    | 不允许有多个日志对象被初始化                                                                                                             |
+| `forwardConsoleLogs`   | 字符串/数组 |              |            | 需要采集浏览器 console 日志类型，可选值：`error`, `log`, `info`, `warn`, `error`                                                         |
+| `storeContextsToLocal` | Boolean     | 否           |            | 版本要求:`>3.1.2`。是否把用户自定义数据缓存到本地 localstorage，例如： `setUser`, `addGlobalContext` api 添加的自定义数据。              |
+| `storeContextsKey`     | String      | 否           |            | 版本要求:`>3.1.18`。定义存储到 localstorage 的 key ，默认不填，自动生成, 该参数主要是为了区分在同一个域名下，不同子路径共用 store 的问题 |
 
 ## 使用
 
-SDK在应用中初始化后，通过暴露的 JS API 可以自定义配置日志数据。
+SDK 在应用中初始化后，通过暴露的 JS API 可以自定义配置日志数据。
 
 ```javascript
 logger.debug | info | warn | error | critical (message: string, messageContext = Context)
@@ -141,58 +136,58 @@ window.DATAFLUX_LOGS && DATAFLUX_LOGS.logger.info('Button clicked', { name: 'but
 
 ```json
 {
-    "service": "browser",
-    "session": {
-        "id": "c549c2b8-4955-4f74-b7f8-a5f42fc6e79b"
-    },
-    "type": "logger",
-    "_dd": {
-        "sdk_name": "Web LOG SDK",
-        "sdk_version": "1.0.0",
-        "env": "",
-        "version": ""
-    },
-    "device": {
-        "os": "Mac OS",
-        "os_version": "10.14.6",
-        "os_version_major": "10",
-        "browser": "Chrome",
-        "browser_version": "90.0.4430.85",
-        "browser_version_major": "90",
-        "screen_size": "2560*1440",
-        "network_type": "3g",
-        "divice": "PC"
-    },
-    "user": {},
-    "date": 1621321916756,
-    "view": {
-        "referrer": "",
-        "url": "http://localhost:8080/",
-        "host": "localhost:8080",
-        "path": "/",
-        "path_group": "/",
-        "url_query": "{}",
-        "id": "5dce64f4-8d6d-411a-af84-c41653ccd94a"
-    },
-    "application": {
-        "id": "app_idxxxxxx"
-    },
-    "message": "XHR error get http://testing-ft2x-api.cloudcare.cn/api/v1/workspace/xxx",
-    "status": "error",
-    "tags": {},
-    "error": {
-        "source": "network",
-        "stack": "Failed to load"
-    },
-    "resource": {
-        "method": "get",
-        "status": 0,
-        "status_group": 0,
-        "url": "http://testing-ft2x-api.cloudcare.cn/api/v1/workspace/xxx",
-        "url_host": "testing-ft2x-api.cloudcare.cn",
-        "url_path": "/api/v1/workspace/xxx",
-        "url_path_group": "/api/?/workspace/xxx"
-    }
+  "service": "browser",
+  "session": {
+    "id": "c549c2b8-4955-4f74-b7f8-a5f42fc6e79b"
+  },
+  "type": "logger",
+  "_dd": {
+    "sdk_name": "Web LOG SDK",
+    "sdk_version": "1.0.0",
+    "env": "",
+    "version": ""
+  },
+  "device": {
+    "os": "Mac OS",
+    "os_version": "10.14.6",
+    "os_version_major": "10",
+    "browser": "Chrome",
+    "browser_version": "90.0.4430.85",
+    "browser_version_major": "90",
+    "screen_size": "2560*1440",
+    "network_type": "3g",
+    "divice": "PC"
+  },
+  "user": {},
+  "date": 1621321916756,
+  "view": {
+    "referrer": "",
+    "url": "http://localhost:8080/",
+    "host": "localhost:8080",
+    "path": "/",
+    "path_group": "/",
+    "url_query": "{}",
+    "id": "5dce64f4-8d6d-411a-af84-c41653ccd94a"
+  },
+  "application": {
+    "id": "app_idxxxxxx"
+  },
+  "message": "XHR error get http://testing-ft2x-api.cloudcare.cn/api/v1/workspace/xxx",
+  "status": "error",
+  "tags": {},
+  "error": {
+    "source": "network",
+    "stack": "Failed to load"
+  },
+  "resource": {
+    "method": "get",
+    "status": 0,
+    "status_group": 0,
+    "url": "http://testing-ft2x-api.cloudcare.cn/api/v1/workspace/xxx",
+    "url_host": "testing-ft2x-api.cloudcare.cn",
+    "url_path": "/api/v1/workspace/xxx",
+    "url_path_group": "/api/?/workspace/xxx"
+  }
 }
 ```
 
@@ -227,8 +222,9 @@ window.DATAFLUX_LOGS && DATAFLUX_LOGS.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<ST
 ```
 
 ## 参数说明
-| **参数**            | **描述**                                                   |
-| ------------------- | ---------------------------------------------------------- |
-| `<MESSAGE>`         | 观测云日志中的 Message 字段                                |
-| `<JSON_ATTRIBUTES>` | 描述 Message 的额外数据，是一个 Json 对象                      |
+
+| **参数**            | **描述**                                                    |
+| ------------------- | ----------------------------------------------------------- |
+| `<MESSAGE>`         | 观测云日志中的 Message 字段                                 |
+| `<JSON_ATTRIBUTES>` | 描述 Message 的额外数据，是一个 Json 对象                   |
 | `<STATUS>`          | 日志的等级，可选值 `debug`,`info`,`warn`,`error`,`critical` |

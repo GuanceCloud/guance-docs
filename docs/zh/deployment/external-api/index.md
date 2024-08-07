@@ -1,6 +1,3 @@
----
-icon: zy/open-api
----
 
 # 概述
 

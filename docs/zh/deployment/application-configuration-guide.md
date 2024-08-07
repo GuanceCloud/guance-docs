@@ -292,26 +292,26 @@ dql:
 
 #### 配置项详细说明
 
-| 配置项      | 子项                 | 类型   | 默认值 | 描述                                                                                                                            |
-| ----------- | -------------------- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| log       | log_file                 | 字符串 | '/logdata/log'     | 运行日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                            |
-|        | level                 | 字符串 | 'info'     | 运行日志最低等级                                             |
-|        | gin_log_file                 | 字符串 | '/logdata/log'      | gin日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                             |
-| database       | db_dialect                 | 字符串 | 'mysql'     | 数据库类型，默认为  mysql                                             |
-|        | addr                 | 字符串 | 'testsql.com:3306'     | 数据库连接地址                                             |
-|        | username                 | 字符串 | ' test_user'     | 用户名                                             |
-|        | password                 | 字符串 | 'test_password'     | 密码                                            |
-|        | network                 | 字符串 | 'tcp'     | 连接协议                                             |
-|        | db_name                 | 字符串 | 'test_db_name'     | 数据库名称                                             |
-|  nsq      | lookupd                 | 字符串 | 'testnsq.com:4161'     | nsq lookupd 地址                                             |
-|        | discard_expire_interval                 | 数值 |  5     | 时序数据最大冗余时间， 单位是分钟，默认时序指标数据超过 5 分钟延迟，不会写入                                             |
-| redis       | host                 | 字符串 | 'testredis.com:6379'     | 用于数据处理的 Redis 地址，支持集群版。 注：所有 kodo 相关组件的 Redis 配置必须一致                                             |
-|        | password                 | 字符串 | 'test_password'     | 密码                                            |
-|             | db    | 数值   | 0  | redis db 值                                                         |
-|        | is_cluster                 | 布尔 | false     | 当 redis 集为集群，且连不支持 proxy 连接，需要设置为 true                                            |
-| asynq_redis | host                 | 字符串 | ''     | 用于异步任务的 Redis 地址，默认使用 `redis` 配置，不支持集群版，如果 `redis` 配置的是集群版，必须配置一个非集群版的 asynq_redis |
-|        | password                 | 字符串 | 'test_password'     | 密码                                            |
-|             | db    | 数值   | 0  | redis db 值                                                         |
+| 配置项      | 子项                    | 类型   | 默认值               | 描述                                                                                                                            |
+| ----------- | ----------------------- | ------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| log         | log_file                | 字符串 | '/logdata/log'       | 运行日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                                                 |
+|             | level                   | 字符串 | 'info'               | 运行日志最低等级                                                                                                                |
+|             | gin_log_file            | 字符串 | '/logdata/log'       | gin 日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                                                 |
+| database    | db_dialect              | 字符串 | 'mysql'              | 数据库类型，默认为 mysql                                                                                                        |
+|             | addr                    | 字符串 | 'testsql.com:3306'   | 数据库连接地址                                                                                                                  |
+|             | username                | 字符串 | ' test_user'         | 用户名                                                                                                                          |
+|             | password                | 字符串 | 'test_password'      | 密码                                                                                                                            |
+|             | network                 | 字符串 | 'tcp'                | 连接协议                                                                                                                        |
+|             | db_name                 | 字符串 | 'test_db_name'       | 数据库名称                                                                                                                      |
+| nsq         | lookupd                 | 字符串 | 'testnsq.com:4161'   | nsq lookupd 地址                                                                                                                |
+|             | discard_expire_interval | 数值   | 5                    | 时序数据最大冗余时间， 单位是分钟，默认时序指标数据超过 5 分钟延迟，不会写入                                                    |
+| redis       | host                    | 字符串 | 'testredis.com:6379' | 用于数据处理的 Redis 地址，支持集群版。 注：所有 kodo 相关组件的 Redis 配置必须一致                                             |
+|             | password                | 字符串 | 'test_password'      | 密码                                                                                                                            |
+|             | db                      | 数值   | 0                    | redis db 值                                                                                                                     |
+|             | is_cluster              | 布尔   | false                | 当 redis 集为集群，且连不支持 proxy 连接，需要设置为 true                                                                       |
+| asynq_redis | host                    | 字符串 | ''                   | 用于异步任务的 Redis 地址，默认使用 `redis` 配置，不支持集群版，如果 `redis` 配置的是集群版，必须配置一个非集群版的 asynq_redis |
+|             | password                | 字符串 | 'test_password'      | 密码                                                                                                                            |
+|             | db                      | 数值   | 0                    | redis db 值                                                                                                                     |
 
 ### kodo-inner 组件 {#kodo-inner}
 
@@ -348,37 +348,37 @@ dql:
 
 #### 配置项详细说明
 
-| 配置项      | 子项                 | 类型   | 默认值 | 描述                                                                                                                            |
-| ----------- | -------------------- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| log       | log_file                 | 字符串 | '/logdata/log'     | 运行日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                            |
-|        | level                 | 字符串 | 'info'     | 运行日志最低等级                                             |
-|        | gin_log_file                 | 字符串 | '/logdata/log'      | gin日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                             |
-| database       | db_dialect                 | 字符串 | 'mysql'     | 数据库类型，默认为  mysql                                             |
-|        | addr                 | 字符串 | 'testsql.com:3306'     | 数据库连接地址                                             |
-|        | username                 | 字符串 | ' test_user'     | 用户名                                             |
-|        | password                 | 字符串 | 'test_password'     | 密码                                            |
-|        | network                 | 字符串 | 'tcp'     | 连接协议                                             |
-|        | db_name                 | 字符串 | 'test_db_name'     | 数据库名称                                             |
-|  nsq      | lookupd                 | 字符串 | 'testnsq.com:4161'     | nsq lookupd 地址                                             |
-|        | discard_expire_interval                 | 数值 |  5     | 时序数据最大冗余时间， 单位是分钟，默认时序指标数据超过 5 分钟延迟，不会写入                                             |
-| redis       | host                 | 字符串 | 'testredis.com:6379'     | 用于数据处理的 Redis 地址，支持集群版。 注：所有 kodo 相关组件的 Redis 配置必须一致                                             |
-|        | password                 | 字符串 | 'test_password'     | 密码                                            |
-|             | db    | 数值   | 0  | redis db 值                                                         |
-|        | is_cluster                 | 布尔 | false     | 当 redis 集为集群，且连不支持 proxy 连接，需要设置为 true                                            |
-| asynq_redis | host                 | 字符串 | ''     | 用于异步任务的 Redis 地址，默认使用 `redis` 配置，不支持集群版，如果 `redis` 配置的是集群版，必须配置一个非集群版的 asynq_redis |
-|        | password                 | 字符串 | 'test_password'     | 密码                                            |
-|             | db    | 数值   | 0  | redis db 值                                                         |
-| dql         | metric_query_workers | 数值   | 32  | DQL 指标数据查询 worker 数量                                                                                                    |
-|             | query_metric_channel_size    | 数值   | 32  | 每个 metric_query_worker 中请求队列大小                                                         |
-|             | log_query_workers    | 数值   | 32  | DQL 日志文本类（日志、链路、RUM 等所有文本类数据）数据查询 worker 数量                                                          |
-|             | query_log_channel_size    | 数值   | 32  | 每个log_query_worker 中请求队列大小                                                         |
-|             | general_query_workers    | 数值   | 32  | 非 metric 或者 log 查询 worker 数量                                                          |
-|             | query_general_channel_size    | 数值   | 32  | 每个general_query_worker 中请求队列大小                                                         |
-|             | profiling_parse    |  布尔  | true  | DQL 查询是否开启指标，统计查询各个阶段的耗时                                                          |
-|   influxdb          | read_timeout    |  数值  | 60  | 查询时序指标数据，查询超时时间，单位是 s，即默认超时时间为 60s                                                          |
-|             | dial_timeout    |  数值  | 30  | 查询时序指标数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                          |
-|   doris          | read_timeout    |  数值  | 60  |   查询日志类数据，查询超时时间，单位是 s，即默认超时时间为 60s                                                          |
-|             | dial_timeout    |  数值  | 30  | 查询日志类数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                          |
+| 配置项      | 子项                       | 类型   | 默认值               | 描述                                                                                                                            |
+| ----------- | -------------------------- | ------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| log         | log_file                   | 字符串 | '/logdata/log'       | 运行日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                                                 |
+|             | level                      | 字符串 | 'info'               | 运行日志最低等级                                                                                                                |
+|             | gin_log_file               | 字符串 | '/logdata/log'       | gin 日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                                                 |
+| database    | db_dialect                 | 字符串 | 'mysql'              | 数据库类型，默认为 mysql                                                                                                        |
+|             | addr                       | 字符串 | 'testsql.com:3306'   | 数据库连接地址                                                                                                                  |
+|             | username                   | 字符串 | ' test_user'         | 用户名                                                                                                                          |
+|             | password                   | 字符串 | 'test_password'      | 密码                                                                                                                            |
+|             | network                    | 字符串 | 'tcp'                | 连接协议                                                                                                                        |
+|             | db_name                    | 字符串 | 'test_db_name'       | 数据库名称                                                                                                                      |
+| nsq         | lookupd                    | 字符串 | 'testnsq.com:4161'   | nsq lookupd 地址                                                                                                                |
+|             | discard_expire_interval    | 数值   | 5                    | 时序数据最大冗余时间， 单位是分钟，默认时序指标数据超过 5 分钟延迟，不会写入                                                    |
+| redis       | host                       | 字符串 | 'testredis.com:6379' | 用于数据处理的 Redis 地址，支持集群版。 注：所有 kodo 相关组件的 Redis 配置必须一致                                             |
+|             | password                   | 字符串 | 'test_password'      | 密码                                                                                                                            |
+|             | db                         | 数值   | 0                    | redis db 值                                                                                                                     |
+|             | is_cluster                 | 布尔   | false                | 当 redis 集为集群，且连不支持 proxy 连接，需要设置为 true                                                                       |
+| asynq_redis | host                       | 字符串 | ''                   | 用于异步任务的 Redis 地址，默认使用 `redis` 配置，不支持集群版，如果 `redis` 配置的是集群版，必须配置一个非集群版的 asynq_redis |
+|             | password                   | 字符串 | 'test_password'      | 密码                                                                                                                            |
+|             | db                         | 数值   | 0                    | redis db 值                                                                                                                     |
+| dql         | metric_query_workers       | 数值   | 32                   | DQL 指标数据查询 worker 数量                                                                                                    |
+|             | query_metric_channel_size  | 数值   | 32                   | 每个 metric_query_worker 中请求队列大小                                                                                         |
+|             | log_query_workers          | 数值   | 32                   | DQL 日志文本类（日志、链路、RUM 等所有文本类数据）数据查询 worker 数量                                                          |
+|             | query_log_channel_size     | 数值   | 32                   | 每个 log_query_worker 中请求队列大小                                                                                            |
+|             | general_query_workers      | 数值   | 32                   | 非 metric 或者 log 查询 worker 数量                                                                                             |
+|             | query_general_channel_size | 数值   | 32                   | 每个 general_query_worker 中请求队列大小                                                                                        |
+|             | profiling_parse            | 布尔   | true                 | DQL 查询是否开启指标，统计查询各个阶段的耗时                                                                                    |
+| influxdb    | read_timeout               | 数值   | 60                   | 查询时序指标数据，查询超时时间，单位是 s，即默认超时时间为 60s                                                                  |
+|             | dial_timeout               | 数值   | 30                   | 查询时序指标数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                    |
+| doris       | read_timeout               | 数值   | 60                   | 查询日志类数据，查询超时时间，单位是 s，即默认超时时间为 60s                                                                    |
+|             | dial_timeout               | 数值   | 30                   | 查询日志类数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                      |
 
 ### kodo-x 组件 {#kodo-x}
 
@@ -425,42 +425,41 @@ dql:
 
 #### 配置项详细说明
 
-| 配置项      | 子项                 | 类型   | 默认值 | 描述                                                                                                                            |
-| ----------- | -------------------- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| log       | log_file                 | 字符串 | '/logdata/log'     | 运行日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                            |
-|        | level                 | 字符串 | 'info'     | 运行日志最低等级                                             |
-|        | gin_log_file                 | 字符串 | '/logdata/log'      | gin日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                             |
-| database       | db_dialect                 | 字符串 | 'mysql'     | 数据库类型，默认为  mysql                                             |
-|        | addr                 | 字符串 | 'testsql.com:3306'     | 数据库连接地址                                             |
-|        | username                 | 字符串 | ' test_user'     | 用户名                                             |
-|        | password                 | 字符串 | 'test_password'     | 密码                                            |
-|        | network                 | 字符串 | 'tcp'     | 连接协议                                             |
-|        | db_name                 | 字符串 | 'test_db_name'     | 数据库名称                                             |
-|  nsq      | lookupd                 | 字符串 | 'testnsq.com:4161'     | nsq lookupd 地址                                             |
-|        | discard_expire_interval                 | 数值 |  5     | 时序数据最大冗余时间， 单位是分钟，默认时序指标数据超过 5 分钟延迟，不会写入                                             |
-| redis       | host                 | 字符串 | 'testredis.com:6379'     | 用于数据处理的 Redis 地址，支持集群版。 注：所有 kodo 相关组件的 Redis 配置必须一致                                             |
-|        | password                 | 字符串 | 'test_password'     | 密码                                            |
-|             | db    | 数值   | 0  | redis db 值                                                         |
-|        | is_cluster                 | 布尔 | false     | 当 redis 集为集群，且连不支持 proxy 连接，需要设置为 true                                            |
-| asynq_redis | host                 | 字符串 | ''     | 用于异步任务的 Redis 地址，默认使用 `redis` 配置，不支持集群版，如果 `redis` 配置的是集群版，必须配置一个非集群版的 asynq_redis |
-|        | password                 | 字符串 | 'test_password'     | 密码                                            |
-|             | db    | 数值   | 0  | redis db 值                                                         |
-| global      | workers              | 数值   | 8      | 各种数据的默认处理 worker 数量                                                                                                      |
-|             | metric_workers          | 数值   | 8      | 时序指标数据的处理 worker 数量                                                                                                      |
-|             | log_workers          | 数值   | 8      | 日志数据的处理 worker 数量                                                                                                      |
-|             | tracing_workers      | 数值   | 8      | 链路数据的处理 worker 数量，默认使用 log_workers 配置项的值                                                                     |
-|   influxdb          | read_timeout    |  数值  | 60  | 查询时序指标数据，查询超时时间，单位是 s，即默认超时时间为 60s                                                          |
-|             | write_timeout    |  数值  | 300  | 写入时序指标数据超时时间，单位是 s，即默认写入超时时间为 5 min                                                         |
-|             | enable_gz    |  布尔  | false  | 写入数据是否开启 gzip 压缩                                                         |
-|             | dial_timeout    |  数值  | 30  | 查询时序指标数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                          |
-|   doris          | read_timeout    |  数值  | 60  |   查询日志类数据，查询超时时间，单位是 s，即默认超时时间为 60s                                                          |
-|             | write_timeout    |  数值  | 300  | 写入日志类数据超时时间，单位是 s，即默认写入超时时间为 5 min                                                         |
-|             | gzip_enable    |  布尔  | false  | 写入数据是否开启 gzip 压缩                                                         |
-|             | dial_timeout    |  数值  | 30  | 查询日志类数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                          |
-|   backup_kafka          | async    |  布尔  | false  |   数据转发到 kafka，写入方式，默认是同步写入                                                         |
-|             | write_timeout    |  数值  | 30  | 写入kafka 超时时间，单位是 s，即默认写入超时时间为 30s                                                         |
-|             | max_bulk_docs    |  数值  |  0  | 是否将多条日志，写入到一个 kafka message 中，发送到 kafka，默认一条日志组成一个 kafka message                                                          |
-
+| 配置项       | 子项                    | 类型   | 默认值               | 描述                                                                                                                            |
+| ------------ | ----------------------- | ------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| log          | log_file                | 字符串 | '/logdata/log'       | 运行日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                                                 |
+|              | level                   | 字符串 | 'info'               | 运行日志最低等级                                                                                                                |
+|              | gin_log_file            | 字符串 | '/logdata/log'       | gin 日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                                                 |
+| database     | db_dialect              | 字符串 | 'mysql'              | 数据库类型，默认为 mysql                                                                                                        |
+|              | addr                    | 字符串 | 'testsql.com:3306'   | 数据库连接地址                                                                                                                  |
+|              | username                | 字符串 | ' test_user'         | 用户名                                                                                                                          |
+|              | password                | 字符串 | 'test_password'      | 密码                                                                                                                            |
+|              | network                 | 字符串 | 'tcp'                | 连接协议                                                                                                                        |
+|              | db_name                 | 字符串 | 'test_db_name'       | 数据库名称                                                                                                                      |
+| nsq          | lookupd                 | 字符串 | 'testnsq.com:4161'   | nsq lookupd 地址                                                                                                                |
+|              | discard_expire_interval | 数值   | 5                    | 时序数据最大冗余时间， 单位是分钟，默认时序指标数据超过 5 分钟延迟，不会写入                                                    |
+| redis        | host                    | 字符串 | 'testredis.com:6379' | 用于数据处理的 Redis 地址，支持集群版。 注：所有 kodo 相关组件的 Redis 配置必须一致                                             |
+|              | password                | 字符串 | 'test_password'      | 密码                                                                                                                            |
+|              | db                      | 数值   | 0                    | redis db 值                                                                                                                     |
+|              | is_cluster              | 布尔   | false                | 当 redis 集为集群，且连不支持 proxy 连接，需要设置为 true                                                                       |
+| asynq_redis  | host                    | 字符串 | ''                   | 用于异步任务的 Redis 地址，默认使用 `redis` 配置，不支持集群版，如果 `redis` 配置的是集群版，必须配置一个非集群版的 asynq_redis |
+|              | password                | 字符串 | 'test_password'      | 密码                                                                                                                            |
+|              | db                      | 数值   | 0                    | redis db 值                                                                                                                     |
+| global       | workers                 | 数值   | 8                    | 各种数据的默认处理 worker 数量                                                                                                  |
+|              | metric_workers          | 数值   | 8                    | 时序指标数据的处理 worker 数量                                                                                                  |
+|              | log_workers             | 数值   | 8                    | 日志数据的处理 worker 数量                                                                                                      |
+|              | tracing_workers         | 数值   | 8                    | 链路数据的处理 worker 数量，默认使用 log_workers 配置项的值                                                                     |
+| influxdb     | read_timeout            | 数值   | 60                   | 查询时序指标数据，查询超时时间，单位是 s，即默认超时时间为 60s                                                                  |
+|              | write_timeout           | 数值   | 300                  | 写入时序指标数据超时时间，单位是 s，即默认写入超时时间为 5 min                                                                  |
+|              | enable_gz               | 布尔   | false                | 写入数据是否开启 gzip 压缩                                                                                                      |
+|              | dial_timeout            | 数值   | 30                   | 查询时序指标数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                    |
+| doris        | read_timeout            | 数值   | 60                   | 查询日志类数据，查询超时时间，单位是 s，即默认超时时间为 60s                                                                    |
+|              | write_timeout           | 数值   | 300                  | 写入日志类数据超时时间，单位是 s，即默认写入超时时间为 5 min                                                                    |
+|              | gzip_enable             | 布尔   | false                | 写入数据是否开启 gzip 压缩                                                                                                      |
+|              | dial_timeout            | 数值   | 30                   | 查询日志类数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                      |
+| backup_kafka | async                   | 布尔   | false                | 数据转发到 kafka，写入方式，默认是同步写入                                                                                      |
+|              | write_timeout           | 数值   | 30                   | 写入 kafka 超时时间，单位是 s，即默认写入超时时间为 30s                                                                         |
+|              | max_bulk_docs           | 数值   | 0                    | 是否将多条日志，写入到一个 kafka message 中，发送到 kafka，默认一条日志组成一个 kafka message                                   |
 
 ### kodo-servicemap 组件 {#kodo-servicemap}
 

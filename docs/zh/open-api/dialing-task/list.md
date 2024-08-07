@@ -17,6 +17,10 @@
 | pageSize | integer |  | 每页返回数量<br>允许为空: False <br>例子: 10 <br>$minValue: 1 <br> |
 | type | string |  | 拨测的类型<br>允许为空: False <br>可选值: ['http', 'browser', 'tcp', 'icmp', 'websocket'] <br> |
 | search | string |  | 拨测名称<br>允许为空: False <br> |
+| dialingTypes | commaArray |  | 拨测类型(http, browser, tcp, icmp, websocket)<br>允许为空: False <br> |
+| dialingStatus | commaArray |  | 拨测状态(ok, stop)<br>允许为空: False <br> |
+| tagsUUID | commaArray |  | 标签UUID<br>允许为空: False <br> |
+| frequency | commaArray |  | 拨测频率(1m, 5m, 15m, 30m, 1h, 6h, 12h, 24h)<br>允许为空: False <br> |
 
 ## 参数补充说明
 
@@ -49,6 +53,7 @@ curl 'https://openapi.guance.com/api/v1/dialing_task/list' \
                 "reg_c8k45js4c5rgnqh709v0"
             ],
             "status": 0,
+            "tagInfo": [],
             "task": {
                 "advance_options": {
                     "auth": {
