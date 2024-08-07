@@ -208,6 +208,7 @@ nav:
       - 'Sidecar 日志采集': logfwd.md
     - 'CRD': kubernetes-crd.md
     - 'Prometheus':
+      - 'Discovery': kubernetesprometheus.md
       - 'Exporter': kubernetes-prom.md
       - 'CRD': kubernetes-prometheus-operator-crd.md
     - 'NPD': npd.md
