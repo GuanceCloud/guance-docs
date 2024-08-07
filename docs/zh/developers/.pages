@@ -4,4 +4,4 @@ nav:
  - '自定义 Scheck':
    - '检查敏感文件的变动实现': scheck-filechange.md
    - '监视系统用户变动': scheck-userchange.md
- - '自定义对象': custom-object.md
+ - '资源目录': custom-object.md

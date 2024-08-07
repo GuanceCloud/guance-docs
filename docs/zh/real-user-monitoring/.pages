@@ -13,6 +13,7 @@ nav:
   - '查看器': explorer
   - '分析看板': app-analysis.md
   - '会话重放': session-replay
+  - '热图': heatmap.md
   - '生成指标': generate-metrics.md
   - '自建追踪': self-tracking.md
   - 'SourceMap': sourcemap

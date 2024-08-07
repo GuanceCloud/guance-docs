@@ -60,14 +60,14 @@
 
 **注意**：进程采集器默认开启，但是默认不采集进程指标数据，如需采集指标相关数据，可在 `host_processes.conf` 中 将 `open_metric` 设置为 `true`。
 
-> 更多详情，可参考[进程](../datakit/host_processes.md)。
+> 更多详情，可参考[进程](../integrations/host_processes.md)。
 
-### 自定义对象
+### 资源目录
 
-观测云支持您上报自定义对象数据到工作空间，并同步对象数据到指定的对象分类。
+观测云支持您上报资源目录数据到工作空间，并同步对象数据到指定的对象分类。
 
-- 通过**基础设施 > 自定义**，您可以创建新的对象分类并自定义对象字段；
+- 通过**基础设施 > 自定义**，您可以创建新的对象分类并资源目录字段；
 
-- 上报自定义对象数据时，您需要先安装并连通 DataKIt 和 DataFlux Function，再通过 DataFlux Function 上报数据到 DataKit，最终由 DataKit 上报对象数据到观测云工作空间。
+- 上报资源目录数据时，您需要先安装并连通 DataKIt 和 DataFlux Function，再通过 DataFlux Function 上报数据到 DataKit，最终由 DataKit 上报对象数据到观测云工作空间。
 
-> 具体操作过程，可参考[自定义对象数据上报](custom/data-reporting.md)。 
+> 具体操作过程，可参考[资源目录数据上报](custom/data-reporting.md)。 

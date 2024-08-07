@@ -6,6 +6,42 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明。
 
+## 2024 年 8 月 7 日
+
+
+### 新增功能 {#new}
+
+- 用户访问监测（RUM）：新增[热图](../real-user-monitoring/heatmap.md)。以视觉方式呈现访客与网站的互动情况，获取页面元素的点击数据和点击位置，了解用户的关注点。
+
+- 应用性能监测（APM） > 链路：新增[安装引导](../application-performance-monitoring/explorer/index.md)页面。
+
+- 监控：新增检测类型——[区间检测 V2](../monitoring/monitor/interval-detection-v2.md)，以检测指标的的历史数据建立的置信区间来预测正常波动范围。
+
+### 持续优化 {#consistent}
+
+- 异常追踪:
+    - 配置管理 > 通知策略：新增[操作审计和执行日志](../exception/config-manag.md#check-events)查看入口。在接收 Issue 通知时，有时会遇到通知未正常发送或针对通知策略有疑议，此时可查看当前通知策略的操作审计事件和执行日志数据来进行判断。
+    - APM / RUM [Issue 自动发现](../application-performance-monitoring/error.md#issue)支持添加筛选条件；
+    - 针对部署版，新增[统一管理异常追踪等级](../deployment/setting.md#global-settings)入口；
+    - 日程：
+        - 在日程编辑页面，不同的通知对象会自动生成颜色；
+        - 日程管理：【我的日程】与【所有日程】新增统计数量；
+
+
+### 常规更新 {#usual}
+
+- 监控 > [SLO](../monitoring/slo.md#slo)：
+    - 新增标签配置，最终作用到产生的事件数据信息内；
+    - 配置优化：通过设置【目标】和【最低目标】的 7 天达标率范围，判断生成警告或紧急事件；
+    - 支持通过关联【告警策略】实现告警通知发送。
+- 可用性监测：
+    - 拨测任务新增标签配置；
+    - 配置拨测任务页面的[测试模块](../usability-monitoring/request-task/http.md#test)优化；
+    - 列表新增[快捷筛选](../usability-monitoring/request-task/index.md#manag)模块；
+- 查看器：分析模式下支持导出 CSV 文件。
+- 基础设施 > 容器：新增进程关联页面展示。
+
+
 ## 2024 年 7 月 24 日
 
 ### 观测云更新
@@ -236,7 +272,7 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
     - 监控器 > 事件内容：新增[自定义高级配置](../monitoring/monitor/threshold-detection.md#advanced-settings)，支持添加关联日志和错误堆栈；
     - 主机智能监控：将当前突变展示更改为基于周期以预测的方式进行异常告警，趋势图会展示当前指标及置信区间上下界，超出置信区间的异常会标红展示。
 - 场景 > 图表：新增[拓扑图](../scene/visual-chart/topology-map.md)。
-- APM > 链路详情页 > [服务调用关系](../application-performance-monitoring/explorer.md#call)：调整为服务拓扑展示，并展示服务与服务之间的调用次数。
+- APM > 链路详情页 > [服务调用关系](../application-performance-monitoring/explorer/explorer-analysis.md#call)：调整为服务拓扑展示，并展示服务与服务之间的调用次数。
 - 数据保存策略：Session Replay 的数据保存策略与 RUM 的保存策略保持联动一致，即 RUM 数据保存 3 天，Session Replay 的数据也保存 3 天。
 - 查看器：
     - 事件查看器 > 基础属性：新增检测指标是否显示配置，缓存到本地，全局适配；
@@ -285,7 +321,7 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
     - 突变检测：新增【最近 1 分钟】、【最近 5 分钟】的检测区间；
     - 静默管理：选择静默范围时“事件属性”为非必填项，可根据需要自行配置更细颗粒度的匹配规则。
 - DataFlux Func：新增 [Function 外部函数](../dql/dql-out-func.md)。允许第三方用户充分利用 Function 的本地缓存和本地文件管理服务接口编写函数，在工作空间内执行数据分析查询。
-- APM > [链路](../application-performance-monitoring/explorer.md)：
+- APM > [链路](../application-performance-monitoring/explorer/explorer-analysis.md)：
     - Title 区域 UI 显示优化；
     - 针对火焰图、瀑布图、Span 列表超过 1 万的 Span 结果，支持通过**偏移**设置查看未展示 Span；
     - 新增 **Error Span** 筛选入口；支持输入 Span 对应的资源名称或 Span ID 进行搜索匹配。

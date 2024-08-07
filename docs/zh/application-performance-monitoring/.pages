@@ -3,7 +3,7 @@ nav:
   - '数据采集': collection
   - '服务管理': service-manag.md
   - '概览': overview.md
-  - '链路': explorer.md
+  - '链路': explorer
   - '错误追踪': error.md
   - 'Profiling': profile.md
   - '生成指标': generate-metrics.md
