@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.34.0）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.35.0）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -308,10 +308,14 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       # Enable election
       enable = false
     
+      # Election whitelist
+      # NOTE: Empty to disable whitelist
+      node_whitelist = []
+    
       # Election namespace.
       # NOTE: for single workspace, there can be multiple election namespace.
       namespace = "default"
-    
+      
       # If enabled, every data point will add a tag with election_namespace = <your-election-namespace>
       enable_namespace_tag = false
     

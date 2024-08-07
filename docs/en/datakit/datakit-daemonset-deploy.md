@@ -496,6 +496,14 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
     **Type**: String
 
     **Default**: default
+
+- **ENV_ELECTION_NODE_WHITELIST**
+
+    List of node names that are allowed to participate in elections.
+
+    **Type**: List
+
+    **Default**: []
 <!-- markdownlint-enable -->
 
 ### HTTP/API Environment Variables {#env-http-api}

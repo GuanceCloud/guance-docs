@@ -63,16 +63,23 @@ monitor   :
     disable_cloud_provider_sync = false
     
     ## Enable put cloud provider region/zone_id information into global election tags, (default to true).
-    # enable_cloud_host_tags_as_global_election = true
+    # enable_cloud_host_tags_as_global_election_tags = true
     
     ## Enable put cloud provider region/zone_id information into global host tags, (default to true).
-    # enable_cloud_host_tags_as_global_host = true
+    # enable_cloud_host_tags_as_global_host_tags = true
     
     ## [inputs.hostobject.tags] # (optional) custom tags
       # cloud_provider = "aliyun" # aliyun/tencent/aws/hwcloud/azure, probe automatically if not set
       # some_tag = "some_value"
       # more_tag = "some_other_value"
       # ...
+    
+    ## [inputs.hostobject.cloud_meta_url]
+      # tencent = "xxx"  # URL for Tencent Cloud metadata
+      # aliyun = "yyy"   # URL for Alibaba Cloud metadata
+      # aws = "zzz"
+      # azure = ""
+      # Hwcloud = ""
     
     ```
 
@@ -140,7 +147,7 @@ monitor   :
     
         **字段类型**: Boolean
     
-        **采集器配置字段**: `enable_cloud_host_tags_global_election`
+        **采集器配置字段**: `enable_cloud_host_tags_global_election_tags`
     
         **默认值**: true
     
@@ -150,7 +157,7 @@ monitor   :
     
         **字段类型**: Boolean
     
-        **采集器配置字段**: `enable_cloud_host_tags_global_host`
+        **采集器配置字段**: `enable_cloud_host_tags_global_host_tags`
     
         **默认值**: true
     
@@ -173,6 +180,16 @@ monitor   :
         **采集器配置字段**: `none`
     
         **示例**: `aliyun/aws/tencent/hwcloud/azure`
+    
+    - **ENV_CLOUD_META_URL**
+    
+        云服务商元数据 URL 映射
+    
+        **字段类型**: Map
+    
+        **采集器配置字段**: `cloud_meta_url`
+    
+        **示例**: `{"tencent":"xxx", "aliyun":"yyy"}`
 
 <!-- markdownlint-enable -->
 

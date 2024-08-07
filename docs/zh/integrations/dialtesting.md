@@ -187,6 +187,7 @@ graph TD
 |`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
 |`method`|HTTP method, such as `GET`|
 |`name`|The name of the task|
+|`node_name`|The name of the node|
 |`owner`|The owner name|
 |`proto`|The protocol of the HTTP, such as 'HTTP/1.1'|
 |`province`|The name of the province|
@@ -231,6 +232,7 @@ graph TD
 |`internal`|The boolean value, true for domestic and false for overseas|
 |`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
 |`name`|The name of the task|
+|`node_name`|The name of the node|
 |`owner`|The owner name|
 |`proto`|The protocol of the task|
 |`province`|The name of the province|
@@ -265,6 +267,7 @@ graph TD
 |`internal`|The boolean value, true for domestic and false for overseas|
 |`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
 |`name`|The name of the task|
+|`node_name`|The name of the node|
 |`owner`|The owner name|
 |`proto`|The protocol of the task|
 |`province`|The name of the province|
@@ -307,6 +310,7 @@ graph TD
 |`internal`|The boolean value, true for domestic and false for overseas|
 |`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
 |`name`|The name of the task|
+|`node_name`|The name of the node|
 |`owner`|The owner name|
 |`proto`|The protocol of the task|
 |`province`|The name of the province|
