@@ -184,7 +184,7 @@ O::`docker_containers` {`host`=`xxx`} limit 10
 
 - M/metric - 时序指标数据
 - O/object - 对象数据
-- CO/custom_object - 用户自定义对象数据
+- CO/custom_object - 用户资源目录数据
 - L/logging - 日志数据
 - E/event - 事件数据
 - T/tracing - 追踪数据
@@ -401,7 +401,7 @@ M::cpu:() by host limit 3 slimit 3
 
 - `SHOW_MEASUREMENT()` - 查看指标集列表，支持`filter-clause`、`limit`和`offset`语句
 - `SHOW_OBJECT_CLASS()` - 查看对象分类列表
-- `SHOW_CUSTOM_OBJECT_SOURCE()` - 查看自定义对象数据类型列表
+- `SHOW_CUSTOM_OBJECT_SOURCE()` - 查看资源目录数据类型列表
 - `SHOW_EVENT_SOURCE()` - 查看事件来源列表
 - `SHOW_LOGGING_SOURCE()` - 查看日志来源列表
 - `SHOW_TRACING_SERVICE()` - 查看 tracing 来源列表

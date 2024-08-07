@@ -1,8 +1,0 @@
-nav:
-  - index.md
-  - '搭建个人观测平台': getting-guance.md
-  - '标准日志查看器使用': generate-explorer.md
-  - '标准应用性能监测 (APM) 查看器使用': explorer-apm.md
-  - '标准用户访问监测 (RUM) 查看器使用': explorer-rum.md
-  - '标准仪表板使用': generate-dashboard.md
-  - '快照及分享': generate-snapshot.md

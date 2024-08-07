@@ -12,9 +12,8 @@
 1. 输入日程名称；
 2. 选择该日程所在时区；
 3. 选择该日程覆盖的时间段，通过设置生效时间（包含开始时间和结束时间），精确化当前日程的有效期；
-4. 选择[通知对象](../monitoring/notify-object.md)。若需设置多个通知对象，可开启通知轮换，从而根据轮换周期和通知对象列表生成对应的通知发送时间和通知发送目标。
-
-点击保存，日程即可创建成功。
+4. 选择[通知对象](../monitoring/notify-object.md)。若需设置多个通知对象，可开启通知轮换，从而根据轮换周期和通知对象列表生成对应的通知发送时间和通知发送目标；
+5. 点击保存，日程即可创建成功。
 
 ### 通知轮换 {#in-turn}
 
@@ -32,7 +31,7 @@
 
 在通知对象右侧，可按需拖拽从而改变通知顺序或删除：
 
-![](img/calendar-2.png)
+<img src="../img/calendar-2.png" width="40%" >
 
 ## 日程日历 {#overall-calendar}
 
@@ -53,7 +52,7 @@
 
 :material-numeric-1-circle-outline: 筛选
 
-![](img/calendar-3.png)
+<img src="../img/calendar-3.png" width="60%" >
 
 - 通过日程范围进行区分：
     
@@ -63,18 +62,19 @@
 - 快捷筛选：根据右侧日程、通知策略与通知对象，按需勾选从而筛选列出右侧对应日程。
 
 
-:material-numeric-2-circle-outline: 搜索：输入日程名称，直接搜索定位。
+:material-numeric-2-circle-outline: 搜索：在搜索栏输入日程名称，直接搜索定位。
 
-![](img/calendar-4.png)
+:material-numeric-3-circle-outline: 点击页面右侧的具体日程，可对该日程进行编辑或删除。
 
-:material-numeric-3-circle-outline: 在**日程管理**页面下，点击具体日程，可对该日程进行编辑或删除。
-
-
-![](img/calendar-4.gif)
 
 :material-numeric-4-circle-outline: 点击批量按钮，可选中多个日程进行批量导出或删除：
 
+
+![](img/calendar-4.png)
+
+
+<!-- 
+![](img/calendar-4.gif)
+
 ![](img/calendar-5.gif)
- 
-
-
+-->

@@ -85,6 +85,11 @@
 
 :material-numeric-2-circle-outline: 组合维度：基于配置字段内容组合进行归类统计，包含 `service`、`version`、`resource`、`error_type`。
 
+基于组合维度，可添加筛选条件，观测云会针对符合条件的数据进一步作查询归类。
+
+
+<img src="../img/issue-filter.png" width="70%" >
+
 :material-numeric-3-circle-outline: 检测频率：观测云会根据您选择的频率来查询数据的时间范围，包含 5 分钟、10 分钟、15 分钟、30 分钟和 1 小时。
 
 :material-numeric-4-circle-outline: Issue 定义：启用该配置后，Issue 将以此处的定义对外呈现。为避免信息缺失，[需依次填写](../exception/issue.md#concepts)。

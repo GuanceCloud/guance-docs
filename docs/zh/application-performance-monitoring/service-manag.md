@@ -235,7 +235,7 @@
 
 |                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**点击前往 Tab 页其他查看器**</font>                         |                                                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | 
-| [日志查看器](../logs/explorer.md){ .md-button .md-button--primary } | [链路查看器](../application-performance-monitoring/explorer.md){ .md-button .md-button--primary } | 
+| [日志查看器](../logs/explorer.md){ .md-button .md-button--primary } | [链路查看器](../application-performance-monitoring/explorer/index.md){ .md-button .md-button--primary } | 
 | [错误追踪查看器](../application-performance-monitoring/error.md){ .md-button .md-button--primary } | [事件查看器](../events/event-explorer/unrecovered-events.md){ .md-button .md-button--primary } |
 
 <!--
