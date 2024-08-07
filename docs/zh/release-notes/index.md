@@ -8,13 +8,6 @@ icon: zy/release-notes
 
 ## 2024 年 8 月 7 日
 
-### 持续优化 {#consistent}
-
-- 异常追踪:
-    - 配置管理 > 通知策略：新增操作审计和执行日志查看入口，支持展示审计事件与执行日志事件；
-    - APM / RUM [Issue 自动发现](../application-performance-monitoring/error.md#issue)支持添加筛选条件；
-    - 针对部署版，新增[统一管理异常追踪等级](../deployment/setting.md#global-settings)入口；
-    - 日程：交互优化。
 
 ### 新增功能 {#new}
 
@@ -24,12 +17,23 @@ icon: zy/release-notes
 
 - 监控：新增检测类型——[区间检测 V2](../monitoring/monitor/interval-detection-v2.md)，以检测指标的的历史数据建立的置信区间来预测正常波动范围。
 
+### 持续优化 {#consistent}
+
+- 异常追踪:
+    - 配置管理 > 通知策略：新增[操作审计和执行日志](../exception/config-manag.md#check-events)查看入口。在接收 Issue 通知时，有时会遇到通知未正常发送或针对通知策略有疑议，此时可查看当前通知策略的操作审计事件和执行日志数据来进行判断。
+    - APM / RUM [Issue 自动发现](../application-performance-monitoring/error.md#issue)支持添加筛选条件；
+    - 针对部署版，新增[统一管理异常追踪等级](../deployment/setting.md#global-settings)入口；
+    - 日程：
+        - 在日程编辑页面，不同的通知对象会自动生成颜色；
+        - 日程管理：【我的日程】与【所有日程】新增统计数量；
+
+
 ### 常规更新 {#usual}
 
 - 监控 > [SLO](../monitoring/slo.md#slo)：
-    - 新增标签配置；
-    - 配置优化：原【目标】改为【达标率】配置，根据阈值配置触发对应等级事件；
-    - 支持通过关联【告警策略】实现告警通知发送，关联多个告警通知。
+    - 新增标签配置，最终作用到产生的事件数据信息内；
+    - 配置优化：通过设置【目标】和【最低目标】的 7 天达标率范围，判断生成警告或紧急事件；
+    - 支持通过关联【告警策略】实现告警通知发送。
 - 可用性监测：
     - 拨测任务新增标签配置；
     - 配置拨测任务页面的[测试模块](../usability-monitoring/request-task/http.md#test)优化；

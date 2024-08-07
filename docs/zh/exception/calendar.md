@@ -31,7 +31,7 @@
 
 在通知对象右侧，可按需拖拽从而改变通知顺序或删除：
 
-<img src="../img/calendar-2.png" width="40%" >
+<img src="../img/calendar-2.png" width="30%" >
 
 ## 日程日历 {#overall-calendar}
 
