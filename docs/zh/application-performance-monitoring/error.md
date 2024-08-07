@@ -85,8 +85,7 @@
 
 :material-numeric-2-circle-outline: 组合维度：基于配置字段内容组合进行归类统计，包含 `service`、`version`、`resource`、`error_type`。
 
-基于组合维度，可添加筛选条件，观测云会针对符合条件的数据进一步作查询归类。
-
+针对数据来源，您可以添加筛选条件来过滤数据，观测云会针对符合条件的数据进一步作查询，缩小可用数据的范围。
 
 <img src="../img/issue-filter.png" width="70%" >
 
