@@ -335,13 +335,13 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_DATAWAY_MAX_IDLE_CONNS**
 
-    Set DataWay HTTP connection pool size([:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0))
+    Set DataWay HTTP connection pool size [:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0)
 
     **Type**: Int
 
 - **ENV_DATAWAY_IDLE_TIMEOUT**
 
-    Set DataWay HTTP Keep-Alive timeout([:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0))
+    Set DataWay HTTP Keep-Alive timeout [:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0)
 
     **Type**: TimeDuration
 
@@ -349,7 +349,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_DATAWAY_MAX_RETRY_COUNT**
 
-    Specify at most how many times the data sending operation will be performed when encounter failures([:octicons-tag-24: Version-1.18.0](changelog.md#cl-1.18.0))
+    Specify at most how many times the data sending operation will be performed when encounter failures [:octicons-tag-24: Version-1.18.0](changelog.md#cl-1.18.0)
 
     **Type**: Int
 
@@ -357,7 +357,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_DATAWAY_RETRY_DELAY**
 
-    The interval between two data sending retry, valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h"([:octicons-tag-24: Version-1.18.0](changelog.md#cl-1.18.0))
+    The interval between two data sending retry, valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h" [:octicons-tag-24: Version-1.18.0](changelog.md#cl-1.18.0)
 
     **Type**: TimeDuration
 
@@ -379,7 +379,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_DATAWAY_TLS_INSECURE**
 
-    Enable self-signed TLS certificate on Dataway[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
+    Enable self-signed TLS certificate on Dataway [:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
 
     **Type**: Boolean
 <!-- markdownlint-enable -->
@@ -475,7 +475,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_ENABLE_ELECTION_NAMESPACE_TAG**
 
-    When this option is turned on, all election classes are collected with an extra tag of `election_namespace=<your-election-namespace>`, which may result in some timeline growth. ([:octicons-tag-24: Version-1.4.7](changelog.md#cl-1.4.7))
+    When this option is turned on, all election classes are collected with an extra tag of `election_namespace=<your-election-namespace>`, which may result in some timeline growth [:octicons-tag-24: Version-1.4.7](changelog.md#cl-1.4.7)
 
     **Type**: Boolean
 
@@ -491,7 +491,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_CLUSTER_NAME_K8S**
 
-    The cluster name in which the Datakit residers, if the cluster is not empty, a specified tag will be added to [global election tags](election.md#global-tags), the key is `cluster_name_k8s` and the value is the environment variable. ([:octicons-tag-24: Version-1.5.8](changelog.md#cl-1.5.8))
+    The cluster name in which the Datakit residers, if the cluster is not empty, a specified tag will be added to [global election tags](election.md#global-tags), the key is `cluster_name_k8s` and the value is the environment variable [:octicons-tag-24: Version-1.5.8](changelog.md#cl-1.5.8)
 
     **Type**: String
 
@@ -499,7 +499,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_ELECTION_NODE_WHITELIST**
 
-    List of node names that are allowed to participate in elections.
+    List of node names that are allowed to participate in elections [:octicons-tag-24: Version-1.35.0](changelog.md#cl-1.35.0)
 
     **Type**: List
 
@@ -533,7 +533,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_HTTP_TIMEOUT**
 
-    Setting the 9529 HTTP API Server Timeout [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental).
+    Setting the 9529 HTTP API Server Timeout [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
 
     **Type**: TimeDuration
 
@@ -541,7 +541,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_HTTP_CLOSE_IDLE_CONNECTION**
 
-    If turned on, the 9529 HTTP server actively closes idle connections (idle time equal to `ENV_HTTP_TIMEOUT`） [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental).
+    If turned on, the 9529 HTTP server actively closes idle connections(idle time equal to `ENV_HTTP_TIMEOUT`) [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
 
     **Type**: Boolean
 
@@ -549,7 +549,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_HTTP_ENABLE_TLS**
 
-    Enable Datakit 9529 HTTPS[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0).
+    Enable Datakit 9529 HTTPS [:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
 
     **Type**: Boolean
 
@@ -557,7 +557,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_HTTP_TLS_CRT**
 
-    Set Datakit HTTP Server's TLS cert path[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0).
+    Set Datakit HTTP Server's TLS cert path [:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
 
     **Type**: String
 
@@ -565,7 +565,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_HTTP_TLS_KEY**
 
-    Set Datakit HTTP Server's TLS key path[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0).
+    Set Datakit HTTP Server's TLS key path [:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
 
     **Type**: String
 
@@ -773,7 +773,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_DATAWAY_ENABLE_SINKER**
 
-    Enable DataWay Sinker ([:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0)).
+    Enable DataWay Sinker [:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0)
 
     **Type**: Boolean
 
@@ -791,7 +791,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_IO_FLUSH_INTERVAL**
 
-    IO channel capacity([:octicons-tag-24: Version-1.22.0](changelog.md#cl-1.22.0))
+    IO channel capacity [:octicons-tag-24: Version-1.22.0](changelog.md#cl-1.22.0)
 
     **Type**: TimeDuration
 
@@ -799,7 +799,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_IO_FEED_CHAN_SIZE**
 
-    IO transmission time frequency
+    IO transmission time frequency [:octicons-tag-24: Version-1.22.0](changelog.md#cl-1.22.0)
 
     **Type**: Int
 
@@ -807,7 +807,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_IO_FEED_GLOBAL_BLOCKING**
 
-    Set blocking mode on busy uploading(especially fot time-series and dial-testing points)
+    Set blocking mode on busy uploading(especially fot time-series and dial-testing points) [:octicons-tag-24: Version-1.33.0](changelog.md#cl-1.33.0)
 
     **Type**: Int
 
@@ -815,7 +815,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_IO_FLUSH_WORKERS**
 
-    IO flush workers([:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9))
+    IO flush workers [:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)
 
     **Type**: Int
 
