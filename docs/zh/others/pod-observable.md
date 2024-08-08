@@ -119,5 +119,5 @@ datakit 运行状态正常，即可在观测云工作空间「基础设施」-�
 
 ## 其他
 
-Pod 对象数据采集上来以后，指标数据采集默认关闭，采集 Pod 指标数据，可查看 [容器](../datakit/container.md)。
+Pod 对象数据采集上来以后，指标数据采集默认关闭，采集 Pod 指标数据，可查看 [容器](../integrations/container.md)。
 

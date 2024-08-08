@@ -5,6 +5,7 @@ nav:
   - '阈值检测': threshold-detection.md
   - '突变检测': mutation-detection.md
   - '区间检测': interval-detection.md
+  - '区间检测 V2': interval-detection-v2.md
   - '离群检测': outlier-detection.md
   - '日志检测': log-detection.md
   - '进程异常检测': processes-detection.md

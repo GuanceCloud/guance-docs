@@ -18,11 +18,11 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | name | string | Y | 名称<br>例子: supper_workspace <br>允许为空: False <br>最大长度: 256 <br> |
-| desc | string |  | 描述<br>例子: 工作空间描述 <br>允许为空: True <br>允许空字符串: True <br> |
-| menuStyle | string |  | 工作空间菜单栏风格, 运维/测试/研发<br>例子: 运维 <br>允许为空: False <br>允许空字符串: True <br> |
+| desc | string |  | 描述<br>例子: 工作空间描述 <br>允许为空: True <br>允许为空字符串: True <br> |
+| menuStyle | string |  | 工作空间菜单栏风格, 运维/测试/研发<br>例子: 运维 <br>允许为空: False <br>允许为空字符串: True <br> |
 | needCreateAk | boolean |  | 是否创建工作空间AK<br>例子: True <br>允许为空: False <br> |
 | akName | string |  | 工作空间AK名字<br>例子: True <br>允许为空: False <br> |
-| language | string |  | 工作空间语言<br>允许为空: True <br>允许空字符串: True <br>可选值: ['zh', 'en'] <br> |
+| language | string |  | 工作空间语言<br>允许为空: True <br>允许为空字符串: True <br>可选值: ['zh', 'en'] <br> |
 
 ## 参数补充说明
 

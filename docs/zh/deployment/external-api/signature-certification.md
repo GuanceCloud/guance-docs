@@ -25,9 +25,12 @@
 
 ### python 版签名和接口请求示例
 ```python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import json
 import time
 import hmac
+import traceback
 import uuid
 import hashlib
 from urllib.parse import urlencode
@@ -56,7 +59,7 @@ class DFExternalAPI(object):
         sign = h.hexdigest()
         return sign
 
-    def get_auth_header(self, method, full_path, body):
+    def get_auth_header(self, method, full_path, body, filepath):
         """ 生成请求头相关信息 """
         # 当前时间点的时间戳
         timestamp = str(int(time.time()))
@@ -73,9 +76,13 @@ class DFExternalAPI(object):
             'X-Df-SVersion': "v20240417",
             'X-Df-Signature': sign,
         }
+        if filepath:
+            # 注意，文件上传都是通过 form 表单上传，因此此处不指定 Content-Type, 而是由内部生成请求时产生
+            auth_headers.pop("Content-Type", "")
+            # = "multipart/form-data"
         return auth_headers
 
-    def run(self, method, path, query=None, body=None, headers=None, **kwargs):
+    def run(self, method, path, query=None, body=None, headers=None, filepath=None, **kwargs):
         """ 执行请求并提取响应信息 """
         # 格式化请求方法
         method = method.upper()
@@ -90,7 +97,7 @@ class DFExternalAPI(object):
             body = ""
         # 合并 请求头信息
         headers = headers or {}
-        new_headers = self.get_auth_header(method, path, body)
+        new_headers = self.get_auth_header(method, path, body, filepath)
         new_headers.update(headers)
         # 完整的请求url
         url = self.server + path
@@ -103,11 +110,23 @@ class DFExternalAPI(object):
             print(json.dumps(body, indent=4, ensure_ascii=False))
             print("==============================")
         # 执行请求
-        resp = requests.__getattribute__(method.lower())(
-            url,
-            data=body.encode(encoding='utf-8'),
-            headers=new_headers
-        )
+        files = None
+        if filepath:
+            files = {'file': open(filepath, 'rb')}
+        try:
+            resp = requests.__getattribute__(method.lower())(
+                url,
+                data=body.encode(encoding='utf-8'),
+                headers=new_headers,
+                files=files
+            )
+        except Exception as e:
+            print(traceback.format_exc())
+            raise e
+        finally:
+            if files:
+                files["file"].close()
+
         # 获取响应状态
         resp_status_code = resp.status_code
         # 响应内容
@@ -146,6 +165,23 @@ class DFExternalAPI(object):
         path = f"/api/v1/df/{workspace_uuid}/query_data"
         return self.post(path, body=body)
 
+    def upload_logo_image(self, workspace_uuid, filename, filepath, **kwargs):
+        path = f"/api/v1/workspace/{workspace_uuid}/upload_logo_image"
+        query = {
+            "filename": filename,
+            "language": "zh",
+        }
+
+        return self.post(path, query=query, filepath=filepath)
+
+    def get_logo_url(self, workspace_uuid, filename, **kwargs):
+        path = f"/api/v1/workspace/{workspace_uuid}/get_logo_url"
+        query = {
+            "filename": filename,
+            "language": "zh",
+        }
+        return self.post(path, query=query)
+
 def test_get(server, access_key, secret_key):
 
     dfapi = DFExternalAPI(server, access_key, secret_key)
@@ -181,6 +217,27 @@ def test_post(server, access_key, secret_key):
     print(f"status_code: {status_code}")
     print(f"resp: {resp}")
 
+def test_upload_logo_image(server, access_key, secret_key):
+    dfapi = DFExternalAPI(server, access_key, secret_key, True)
+    workspace_uuid = "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+    filename = "logo.png"
+    filepath = "/Users/luwenchang/Downloads/logo/鹦鹉1.jpeg"
+    filename = "favicon.ico"
+    filepath = "/Users/luwenchang/Downloads/logo/兔子4.jpeg"
+    status_code, resp = dfapi.upload_logo_image(workspace_uuid, filename, filepath)
+    print(f"======={__name__}====")
+    print(f"status_code: {status_code}")
+    print(f"resp: {resp}")
+
+def test_get_logo_url(server, access_key, secret_key):
+    dfapi = DFExternalAPI(server, access_key, secret_key, True)
+    workspace_uuid = "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+    filename = "logo.png"
+    status_code, resp = dfapi.get_logo_url(workspace_uuid, filename)
+    print(f"======={__name__}====")
+    print(f"status_code: {status_code}")
+    print(f"resp: {resp}")
+
 
 if __name__ == '__main__':
     # external api 服务域名地址
@@ -189,8 +246,12 @@ if __name__ == '__main__':
     access_key = "abcd"
     # 配置的密钥 sk
     secret_key = "Admin123"
-    test_get(server, access_key, secret_key)
-    test_post(server, access_key, secret_key)
+    # test_get(server, access_key, secret_key)
+    # test_post(server, access_key, secret_key)
+    test_upload_logo_image(server, access_key, secret_key)
+    # test_get_logo_url(server, access_key, secret_key)
+
+
 ```
 
 ### go 版签名和接口请求示例

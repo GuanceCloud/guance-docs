@@ -15,7 +15,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | search | string |  | tag名称搜索<br>允许为空: False <br> |
-| filter | string |  | 过滤条件<br>允许为空: False <br>可选值: ['BoardRefTagObject', 'ViewerRefTagObject', 'CheckerRefTagObject'] <br> |
+| filter | string |  | 过滤条件<br>允许为空: False <br>可选值: ['BoardRefTagObject', 'ViewerRefTagObject', 'CheckerRefTagObject', 'DialingRefTagObject'] <br> |
 | pageIndex | integer |  | 页码<br>允许为空: False <br>例子: 10 <br>$minValue: 1 <br> |
 | pageSize | integer |  | 每页返回数量<br>允许为空: False <br>例子: 10 <br>$minValue: 1 <br>$maxValue: 10000 <br> |
 

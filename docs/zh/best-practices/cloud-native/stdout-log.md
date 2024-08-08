@@ -33,7 +33,7 @@ Datakit 部署完成后，按需采集指定的业务 Pod 日志、K8s 集群组
 ### 方式一 使用 container_include_log = []
 
 只采集集群组件 coredns 和 nginx 日志，`container_include_log` 用正则语法编写 image 的名称。
-> 具体见<[根据容器 image 配置指标和日志采集](../../datakit/container.md)>
+> 具体见<[根据容器 image 配置指标和日志采集](../../integrations/container.md)>
 
 ```toml
       [inputs.container]
