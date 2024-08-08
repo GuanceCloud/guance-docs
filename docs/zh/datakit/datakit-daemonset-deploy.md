@@ -375,13 +375,13 @@ spec:
 
 - **ENV_DATAWAY_MAX_IDLE_CONNS**
 
-    设置 DataWay HTTP 连接池大小（[:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0)）
+    设置 DataWay HTTP 连接池大小 [:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0)
 
     **字段类型**: Int
 
 - **ENV_DATAWAY_IDLE_TIMEOUT**
 
-    设置 DataWay HTTP Keep-Alive 时长（[:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0)）
+    设置 DataWay HTTP Keep-Alive 时长 [:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0)
 
     **字段类型**: TimeDuration
 
@@ -389,7 +389,7 @@ spec:
 
 - **ENV_DATAWAY_MAX_RETRY_COUNT**
 
-    指定当把数据发送到观测云中心时，最多可以发送的次数，最小值为 1（失败后不重试），最大值为 10([:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0))
+    指定当把数据发送到观测云中心时，最多可以发送的次数，最小值为 1（失败后不重试），最大值为 10 [:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0)
 
     **字段类型**: Int
 
@@ -397,7 +397,7 @@ spec:
 
 - **ENV_DATAWAY_RETRY_DELAY**
 
-    数据发送失败时，两次重试之间的时间间隔（[:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0)）
+    数据发送失败时，两次重试之间的时间间隔 [:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0)
 
     **字段类型**: TimeDuration
 
@@ -419,7 +419,7 @@ spec:
 
 - **ENV_DATAWAY_TLS_INSECURE**
 
-    允许对应的 Dataway 上的证书是自签证书[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
+    允许对应的 Dataway 上的证书是自签证书 [:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
 
     **字段类型**: Boolean
 <!-- markdownlint-enable -->
@@ -515,7 +515,7 @@ spec:
 
 - **ENV_ENABLE_ELECTION_NAMESPACE_TAG**
 
-    开启该选项后，所有选举类的采集均会带上 `election_namespace=<your-election-namespace>` 的额外 tag，这可能会导致一些时间线的增长（[:octicons-tag-24: Version-1.4.7](changelog.md#cl-1.4.7)）
+    开启该选项后，所有选举类的采集均会带上 `election_namespace=<your-election-namespace>` 的额外 tag，这可能会导致一些时间线的增长 [:octicons-tag-24: Version-1.4.7](changelog.md#cl-1.4.7)
 
     **字段类型**: Boolean
 
@@ -531,7 +531,7 @@ spec:
 
 - **ENV_CLUSTER_NAME_K8S**
 
-    Datakit 所在的 cluster，如果非空，会在 [Global Election Tags](election.md#global-tags) 中添加一个指定 tag，key 是 `cluster_name_k8s`，value 是环境变量的值。（[:octicons-tag-24: Version-1.5.8](changelog.md#cl-1.5.8)）
+    Datakit 所在的 cluster，如果非空，会在 [Global Election Tags](election.md#global-tags) 中添加一个指定 tag，key 是 `cluster_name_k8s`，value 是环境变量的值 [:octicons-tag-24: Version-1.5.8](changelog.md#cl-1.5.8)
 
     **字段类型**: String
 
@@ -539,7 +539,7 @@ spec:
 
 - **ENV_ELECTION_NODE_WHITELIST**
 
-    允许参加选举的节点名称列表。
+    允许参加选举的节点名称列表 [:octicons-tag-24: Version-1.35.0](changelog.md#cl-1.35.0)
 
     **字段类型**: List
 
@@ -573,7 +573,7 @@ spec:
 
 - **ENV_HTTP_TIMEOUT**
 
-    设置 9529 HTTP API 服务端超时时间 [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)。
+    设置 9529 HTTP API 服务端超时时间 [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
 
     **字段类型**: TimeDuration
 
@@ -581,7 +581,7 @@ spec:
 
 - **ENV_HTTP_CLOSE_IDLE_CONNECTION**
 
-    如果开启，则 9529 HTTP server 会主动关闭闲置连接（闲置时间等同于 `ENV_HTTP_TIMEOUT`） [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)。
+    如果开启，则 9529 HTTP server 会主动关闭闲置连接（闲置时间等同于 `ENV_HTTP_TIMEOUT`） [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
 
     **字段类型**: Boolean
 
@@ -589,7 +589,7 @@ spec:
 
 - **ENV_HTTP_ENABLE_TLS**
 
-    开启 Datakit 9529 HTTPS[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)。
+    开启 Datakit 9529 HTTPS [:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
 
     **字段类型**: Boolean
 
@@ -597,7 +597,7 @@ spec:
 
 - **ENV_HTTP_TLS_CRT**
 
-    配置 Datakit HTTP Server 上的 TLS cert 路径[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)。
+    配置 Datakit HTTP Server 上的 TLS cert 路径 [:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
 
     **字段类型**: String
 
@@ -605,7 +605,7 @@ spec:
 
 - **ENV_HTTP_TLS_KEY**
 
-    配置 Datakit HTTP Server 上的 TLS key 路径[:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)。
+    配置 Datakit HTTP Server 上的 TLS key 路径 [:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
 
     **字段类型**: String
 
@@ -813,7 +813,7 @@ spec:
 
 - **ENV_DATAWAY_ENABLE_SINKER**
 
-    开启 DataWay 发送数据时的 Sinker 功能（[:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0)），该功能需新版本 Dataway 才能生效
+    开启 DataWay 发送数据时的 Sinker 功能。该功能需新版本 Dataway 才能生效 [:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0)
 
     **字段类型**: Boolean
 
@@ -831,7 +831,7 @@ spec:
 
 - **ENV_IO_FLUSH_INTERVAL**
 
-    IO 发送时间频率
+    IO 发送时间频率 [:octicons-tag-24: Version-1.22.0](changelog.md#cl-1.22.0)
 
     **字段类型**: TimeDuration
 
@@ -839,7 +839,7 @@ spec:
 
 - **ENV_IO_FEED_CHAN_SIZE**
 
-    IO 发送队列长度（[:octicons-tag-24: Version-1.22.0](changelog.md#cl-1.22.0)）
+    IO 发送队列长度 [:octicons-tag-24: Version-1.22.0](changelog.md#cl-1.22.0)
 
     **字段类型**: Int
 
@@ -847,7 +847,7 @@ spec:
 
 - **ENV_IO_FEED_GLOBAL_BLOCKING**
 
-    IO 发送的阻塞模式，目前只针对时序数据和拨测数据，其它类数据默认都是非阻塞的（[:octicons-tag-24: Version-1.33.0](changelog.md#cl-1.33.0)）
+    IO 发送的阻塞模式，目前只针对时序数据和拨测数据，其它类数据默认都是非阻塞的 [:octicons-tag-24: Version-1.33.0](changelog.md#cl-1.33.0)
 
     **字段类型**: Int
 
@@ -855,7 +855,7 @@ spec:
 
 - **ENV_IO_FLUSH_WORKERS**
 
-    IO 发送 worker 数（[:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)）
+    IO 发送 worker 数 [:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)
 
     **字段类型**: Int
 
