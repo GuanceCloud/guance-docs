@@ -587,6 +587,6 @@ No data extracted from pipeline
 
 [调试 Pipeline](../../datakit/datakit-pl-how-to.md)<br />
 
-[日志](../../datakit/logging.md)
+[日志](../../integrations/logging.md)
 
 [第三方日志接入](../../integrations/logstreaming.md)

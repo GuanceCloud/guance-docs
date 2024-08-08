@@ -108,6 +108,10 @@
   
     **注意**：为了更流畅的用户查询体验，观测云默认即时保存用户在**日志**的浏览设置（包括“最大显示行数”、“显示列”），以使**关联日志**与**日志**保持一致。然而，在**关联日志**进行的自定义调整，在退出页面后不做保存。
 
+=== "进程"
+
+    您可以查看相关进程（关联字段：`container_id`）的基本信息和<u>在选定时间组件范围内</u>的性能指标状态。
+
 === "关联 Pods"
 
     您可以查看相关 Pods（关联字段：`pod_name`）的基本信息和<u>在选定时间组件范围内</u>的性能指标状态。
@@ -427,6 +431,8 @@ Kubernetes 日志/事件：点击 Kubernetes 日志/事件可查看 `namespace`�
 
 ## 更多阅读
 
+<font size=3>
+
 <div class="grid cards" markdown>
 
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 视图</font>](../scene/built-in-view/index.md)
@@ -439,3 +445,5 @@ Kubernetes 日志/事件：点击 Kubernetes 日志/事件可查看 `namespace`�
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 仪表板</font>](../scene/dashboard.md)
 
 </div>
+
+</font>

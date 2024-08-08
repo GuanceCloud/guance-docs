@@ -17,7 +17,7 @@
 | filters | array |  | 筛选条件<br>例子: [{key: xxxx, value: xxx, equal: true}...] <br>允许为空: False <br> |
 | startTime | integer |  | 开始时间<br>例子: xxxxx <br>允许为空: False <br> |
 | endTime | integer |  | 结束时间<br>例子: xxxxx <br>允许为空: False <br> |
-| search | string |  | 普通搜索字段<br>例子: xxxxx_text <br>允许为空: False <br>允许空字符串: True <br> |
+| search | string |  | 普通搜索字段<br>例子: xxxxx_text <br>允许为空: False <br>允许为空字符串: True <br> |
 | pageSize | integer |  | 每页返回数量<br>允许为空: False <br>例子: 10 <br> |
 | pageIndex | integer |  | 页码<br>允许为空: False <br>例子: 10 <br> |
 

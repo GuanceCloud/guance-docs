@@ -29,7 +29,7 @@
 | fields | array |  | 待更新的字段映射配置列表<br>允许为空: False <br> |
 | fields[*] | None |  | <br> |
 | fields[*].field | string | Y | 字段名<br>例子: message <br>允许为空: False <br> |
-| fields[*].originalField | string | Y | 原始字段名<br>例子: content <br>允许为空: False <br>允许空字符串: True <br> |
+| fields[*].originalField | string | Y | 原始字段名<br>例子: content <br>允许为空: False <br>允许为空字符串: True <br> |
 
 ## 参数补充说明
 
