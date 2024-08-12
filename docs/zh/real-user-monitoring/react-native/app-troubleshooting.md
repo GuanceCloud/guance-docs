@@ -110,17 +110,13 @@ SDK 的调试日志是以  **[FTLog]** 作为前缀标识。
 
 * 排查上传数据设备网络与安装 datakit 设备网路与负载问题。
 
+
+## 兼容问题
+### react-native-navigation 运行兼容问题
+####  ReactTextShadowNode.UNSET 找不到符号 
+这是由于 react-native-navigation 版本兼容问题导致，相关 issue [查看这里](https://github.com/wix/react-native-navigation/issues/7881#issuecomment-2164213896)。通过更改或[下载](https://static.guance.com/ft-sdk-package/react_nagation_fix/ReactTypefaceUtils.java)替换 `ReactTypefaceUtils.java` 来修正这个问题。
+
+
 ## 更多相关内容
 * [Android 故障排查](../android/app-troubleshooting.md)
 * [iOS 故障排查](../ios/app-troubleshooting.md)
-
-
-
-
-
-
-
-
-
-
-

@@ -42,7 +42,8 @@ npm install @cloudcare/react-native-mobile
 }
 ```
 
-> Android 需要在 app/android 目录下 build.gradle 安装 ft-plugin 配合使用，详细配置请见 [Android SDK](../android/app-access.md#gradle-setting) 配置，或参考 demo
+**Android 集成额外配置**
+* 配置 Gradle Plugin [ft-plugin](../android/app-access.md#gradle-setting)，采集 App 启动事件和网络请求数据，以及 Android Native 原生相关事件（页面跳转、点击事件、Native 网络请求）
 
 
 现在在您的代码中，您可以使用：
@@ -94,7 +95,11 @@ FTMobileReactNative.sdkConfig(config)
 | env | string | 否 | 环境配置，默认`prod`，任意字符，建议使用单个单词，例如 `test` 等 |
 | envType | enum EnvType | 否 | 环境配置，默认`EnvType.prod`。注：env 与 envType 只需配置一个|
 | service | string | 否 | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios`、`df_rum_android` |
-| globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context ) |
+| autoSync | boolean | 否 | 是否开启自动同步。默认 `true` |
+| syncPageSize | number | 否 | 设置同步请求条目数。范围 [5,）注意：请求条目数越大，代表数据同步占用更大的计算资源 |
+| syncSleepTime | number | 否 | 设置同步间歇时间。范围 [0,100]，默认不设置 |
+| enableDataIntegerCompatible | boolean | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题 。 |
+| globalContext | object | 否 | [添加自定义标签](#user-global-context ) |
 
 ### RUM 配置 {#rum-config}
 
@@ -122,14 +127,14 @@ FTReactNativeRUM.setConfig(rumConfig);
 | sampleRate | number | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据|
 | enableAutoTrackUserAction | boolean | 否 | 是否自动采集 `React Native` 控件点击事件，开启后可配合  `accessibilityLabel`设置actionName |
 | enableAutoTrackError | boolean | 否 | 是否自动采集 `React Native` Error |
-| enableNativeUserAction | boolean | 否 | 是否进行 `Native Action` 追踪，`Button` 点击事件，纯 `React Native` 应用建议关闭，默认为 `false` |
+| enableNativeUserAction | boolean | 否 | 是否进行 `Native Action` 追踪，原生 `Button` 点击事件，应用启动事件，默认为 `false` |
 | enableNativeUserView | boolean | 否 | 是否进行 `Native View` 自动追踪，纯 `React Native` 应用建议关闭，，默认为 `false` |
 | enableNativeUserResource | boolean | 否 | 是否开始 `Native Resource`自动追踪，由于 React-Native 的网络请求在 iOS、Android 端是使用系统 API 实现的，所以开启 enableNativeUserResource 后，所有 resource 数据能够一并采集。 |
 | errorMonitorType |enum ErrorMonitorType | 否 | 错误事件监控补充类型 |
 | deviceMonitorType | enum DeviceMetricsMonitorType | 否 | 视图的性能监控类型                                           |
 | detectFrequency | enum DetectFrequency | 否 | 视图的性能监控采样周期 |
+| enableResourceHostIP | boolean | 否 | 是否采集请求目标域名地址的 IP。作用域：只影响 `enableNativeUserResource`  为 true 的默认采集。iOS：`>= iOS 13` 下支持。Android：单个 Okhttp 对相同域名存在 IP 缓存机制，相同 `OkhttpClient`，在连接服务端 IP 不发生变化的前提下，只会生成一次。 |
 | globalContext | object | 否 | [添加自定义标签](#user-global-context) |
-
 
 ### Log 配置 {#log-config}
 
@@ -149,6 +154,7 @@ FTReactNativeLog.logConfig(logConfig);
 | discardStrategy | enum FTLogCacheDiscard | 否 | 日志丢弃策略，默认`FTLogCacheDiscard.discard` |
 | logLevelFilters | Array<FTLogStatus> | 否 | 日志等级过滤 |
 | globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context) |
+| logCacheLimitCount | number | 否 | 获取最大日志条目数量限制 [1000,)，日志越大，代表磁盘缓存压力越大，默认 5000 |
 
 ### Trace 配置 {#trace-config}
 
@@ -310,7 +316,17 @@ async getHttp(url:string){
 ##  Logger 日志打印 
 > 目前日志内容限制为 30 KB，字符超出部分会进行截断处理
 ```typescript
+/**
+FTReactNativeLogWrapper.logging(content: String, logStatus: FTLogStatus | String, property?: object): Promise<void>
+输出日志。
+@param content — 日志内容
+@param logStatus — 日志状态
+@param property — 日志上下文(可选)
+*/
+// logStatus:FTLogStatus
 FTReactNativeLog.logging("info log content",FTLogStatus.info);
+// logStatus:string
+FTReactNativeLog.logging("info log content","info");
 ```
 
 ### 日志等级
@@ -330,8 +346,7 @@ SDK 初始化 [Trace 配置](#trace-config) 时可以开启自动网络链路追
 ```typescript
   async getHttp(url:string){
     const key = Utils.getUUID();
-    const traceHeader =await FTReactNativeTrace.getTraceHeader(key,url);
-    
+    var traceHeader = await FTReactNativeTrace.getTraceHeaderFields(url);
     const fetchOptions = {
       method: 'GET',
       headers:Object.assign({
@@ -351,6 +366,16 @@ SDK 初始化 [Trace 配置](#trace-config) 时可以开启自动网络链路追
 FTMobileReactNative.bindRUMUserData('react-native-user','uesr_name')
 
 FTMobileReactNative.unbindRUMUserData()
+```
+
+## 主动同步数据
+
+当配置 `FTMobileConfig.autoSync` 为 `true` 时，无需做额外的操作，SDK 会进行自动同步。
+
+当配置 `FTMobileConfig.autoSync` 为 `false` 时，需要主动触发数据同步方法，进行数据同步。
+
+```typescript
+FTMobileReactNative.flushSyncData();
 ```
 
 ## 添加自定义标签 {#user-global-context}

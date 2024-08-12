@@ -50,7 +50,9 @@ dependencies:
 import 'package:ft_mobile_agent_flutter/ft_mobile_agent_flutter.dart';
 ```
 
-> Android 需要在 app/android 目录下 build.gradle 安装 ft-plugin 配合使用，并在创建自定义 Application，并且 AndroidMainifest.xml  中声明使用，代码如下，详细配置可参考 [Android SDK](../android/app-access.md#gradle-setting) 配置，或参考 demo。
+**Android 集成额外配置**
+* 配置 Gradle Plugin [ft-plugin](../android/app-access.md#gradle-setting)，采集 App 启动事件，以及 Android Native 原生相关事件（页面跳转、点击事件、Native 网络请求）
+* 自定义 `Application`，并`AndroidMainifest.xml` 中声明使用，代码如下.
 
 ```kotlin
 import io.flutter.app.FlutterApplication
@@ -116,7 +118,7 @@ void main() async {
 | iOSAppId | String | 是 | appId，监测中申请 |
 | sampleRate | double | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据     |
 | enableUserResource | bool | 否 | 是否开启  http `Resource` 数据自动抓取，默认为 `false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面需求需要继承 `FTHttpOverrides`，并设置 enableAutoTrace  为 `false` |
-| enableNativeUserAction | bool | 否 | 是否进行 `Native Action` 追踪，`Button` 点击事件，纯 `Flutter` 应用建议关闭，默认为 `false` |
+| enableNativeUserAction | bool | 否 | 是否进行 `Native Action` 追踪，原生系统 `Button` 点击事件，应用启动事件，默认为 `false` |
 | enableNativeUserView | bool | 否 | 是否进行 `Native View` 自动追踪，纯 `Flutter` 应用建议关闭，，默认为 `false` |
 | enableNativeUserResource | bool | 否 | 是否进行 `Native Resource` 自动追踪，纯 `Flutter` 应用建议关闭，默认为 `false` |
 | errorMonitorType | enum ErrorMonitorType | 否 | 设置辅助监控信息，添加附加监控数据到 `RUM` Error 数据中，`ErrorMonitorType.battery` 为电池余量，`ErrorMonitorType.memory` 为内存用量，`ErrorMonitorType.cpu` 为 CPU 占有率 |

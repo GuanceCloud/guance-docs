@@ -325,7 +325,7 @@ android{
 | setEnableAccessAndroidID | Boolean | 否 | 开启获取 `Android ID`，默认为 `true`，设置为 `false`，则 `device_uuid` 字段数据将不进行采集,市场隐私审核相关[查看这里](#adpot-to-privacy-audits) |
 | addGlobalContext | Dictionary | 否 | 添加 SDK 全局属性，添加规则请查阅[此处](#key-conflict) |
 | setServiceName | String | 否 | 设置服务名，影响 Log 和 RUM 中 service 字段数据，默认为 `df_rum_android` |
-| setAutoSync | Boolean | 否 | 是否开启自动同步，默认为 `true` |  
+| setAutoSync | Boolean | 否 | 是否开启自动同步，默认为 `true`。当为 false 时使用 `FTSdk.flushSyncData()` 自行管理数据同步 |  
 | setSyncPageSize | enum | 否 | 设置同步请求条目数，`SyncPageSize.MINI` 5 条，`SyncPageSize.MEDIUM` 10 条，`SyncPageSize.LARGE` 50 条，默认 `SyncPageSize.MEDIUM`   |
 | setCustomSyncPageSize | enum | 否 | 设置同步请求条目数，范围 [5,)，注意请求条目数越大，代表数据同步占用更大的计算资源   |
 | setSyncSleepTime | Int | 否 | 设置同步间歇时间，范围 [0,100]，默认不设置  |
@@ -1741,8 +1741,48 @@ android{
 	FTSdk.shutDown()
 	```
 
+## 主动同步数据
+使用 `FTSdk` 主动同步数据。
+>FTSdk.setAutoSync(false) 时, 才需要自行进行数据同步
+
+### 使用方法
+
+=== "Java"
+
+	```java
+	   /**
+	     * 主动数据同步
+	     */
+	    public static void flushSyncData()
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	   /**
+	     * 主动数据同步
+	     */
+	    fun flushSyncData()
+	```
+
+### 代码示例
+
+=== "Java"
+
+	```java
+	FTSdk.flushSyncData()
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	FTSdk.flushSyncData()
+	```
+
+
+
 ## 动态开启和关闭获取 AndroidID
-使用  `FTSdk` 设置是否在 SDK中获取 android ID
+使用  `FTSdk` 设置是否在 SDK中获取 Android ID
 
 ### 使用方法
 
@@ -1772,7 +1812,7 @@ android{
 
 === "Java"
 
-	```
+	```java
 	// 开启获取 Android ID
 	FTSdk.setEnableAccessAndroidID(true);
 
