@@ -130,7 +130,7 @@ $ java -agentpath:async-profiler-2.8.3/build/libasyncProfiler.so=start,event=all
 
 观测云对 async-profiler 做了深度集成，可以将数据发送至 DataKit，并借助观测云强大的 UI 及分析能力，方便用户在不同维度上进行分析。
 
-可参考相关[集成文档](../../datakit/profile-java-async-profiler.md)
+可参考相关[集成文档](../../integrations/profile-java.md)
 
 ## 案例分析
 

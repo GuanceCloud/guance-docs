@@ -212,9 +212,33 @@ default_time(time)       # 将 time 字段作为输出数据的时间戳
 
 ## 更多阅读
 
+<font size=3>
+
 以上观测云工作空间日志 Pipeline 使用手册，更多关于 Pipeline 和 日志采集切割的内容，可参考如下文档：
 
-- [文本数据处理（Pipeline）](../pipeline/index.md)
-- [如何编写 Pipeline 脚本](../../zh/pipeline/use-pipeline/pipeline-quick-start.md)
-- [日志](../integrations/logging.md)
-- [第三方日志接入](../integrations/logstreaming.md)
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **文本数据处理（Pipeline）**</font>](../pipeline/index.md)
+- 
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **如何编写 Pipeline 脚本**</font>](../pipeline/use-pipeline/pipeline-quick-start.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **日志**</font>](../integrations/logging.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **第三方日志接入**</font>](../integrations/logstreaming.md)
+
+</div>
+
+
+</font>
