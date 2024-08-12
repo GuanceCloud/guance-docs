@@ -1,4 +1,4 @@
-# 【工作空间AK】获取指定AK
+# 【工作空间 API Key】获取指定 API Key
 
 ---
 
@@ -13,7 +13,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| ak_uuid | string | Y | ak 的 UUID<br> |
+| ak_uuid | string | Y | API Key 的 UUID<br> |
 
 
 ## 参数补充说明
