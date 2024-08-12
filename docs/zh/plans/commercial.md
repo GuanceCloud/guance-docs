@@ -3,10 +3,31 @@
 
 ## 开通商业版
 
-- [在观测云直接注册商业版](commercial-register.md)
-- [在华为云云商店开通观测云商业版](commercial-huaweiyun.md)
-- [在阿里云云市场开通观测云商业版](commercial-aliyun.md)
-- [在 AWS 云市场开通观测云商业版](commercial-aws.md)
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 在观测云直接注册商业版</font>](commercial-register.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 在华为云云商店开通观测云商业版</font>](commercial-huaweiyun.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 在阿里云云市场开通观测云商业版</font>](commercial-aliyun.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 在 AWS 云市场开通观测云商业版</font>](commercial-aws.md)
+
+</div>
+
+
 
 ## 计费与结算前提
 
@@ -31,6 +52,7 @@
 
 </div>
 
+<!--
 ## 付费计划与账单
 
 观测云工作空间的拥有者查看费用情况的方法：
@@ -67,7 +89,9 @@
 
 ### 使用统计
 
-在**使用统计**中，可查看计费项 DataKit、网络（主机）、时间线、日志类数据、备份日志数据容量、应用性能 Trace、应用性能 Profile、用户访问 PV、拨测次数、任务调度以及短信截止当前和截止昨日的统计数据。
+可查看计费项截止当前和截止昨日的统计数据，包含： DataKit、网络（主机）、时间线、日志类数据、备份日志数据容量、应用性能 Trace、应用性能 Profile、用户访问 PV、拨测次数、任务调度、短信以及中心 Pipeline 处理流量。
+
+![](img/consumption.png)
 
 ### 账单详情
 
@@ -81,7 +105,7 @@
 
 在**使用量分析**中，可通过可视化的方式查看各个计费项目的使用情况。
 
-![](img/consumption-1.png)
+![](img/consumption-1.gif)
 
 ### 数据转发使用分析 {#transmit}
 
@@ -96,7 +120,7 @@
 
 
 
-<!--
+
 ### 消费分析 {#consume}
 
 在**消费分析**中，可查看昨日支出、累计支出，您也可以根据所选时间范围查看统计消费分析。

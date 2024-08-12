@@ -109,7 +109,7 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
     
         **Type**: String
     
-        **ConfField**: `endpoint`
+        **input.conf**: `endpoint`
     
         **Example**: /apis/traces
     
@@ -119,7 +119,7 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
     
         **Type**: String
     
-        **ConfField**: `address`
+        **input.conf**: `address`
     
         **Example**: 127.0.0.1:6831
     
@@ -129,7 +129,7 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
     
         **Type**: JSON
     
-        **ConfField**: `ignore_tags`
+        **input.conf**: `ignore_tags`
     
         **Example**: ["block1","block2"]
     
@@ -139,7 +139,7 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
     
         **Type**: Boolean
     
-        **ConfField**: `keep_rare_resource`
+        **input.conf**: `keep_rare_resource`
     
         **Default**: false
     
@@ -149,7 +149,7 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
     
         **Type**: Boolean
     
-        **ConfField**: `del_message`
+        **input.conf**: `del_message`
     
         **Default**: false
     
@@ -159,7 +159,7 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
     
         **Type**: JSON
     
-        **ConfField**: `close_resource`
+        **input.conf**: `close_resource`
     
         **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
     
@@ -169,7 +169,7 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
     
         **Type**: Float
     
-        **ConfField**: `sampler`
+        **input.conf**: `sampler`
     
         **Example**: 0.3
     
@@ -179,7 +179,7 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
     
         **Type**: JSON
     
-        **ConfField**: `threads`
+        **input.conf**: `threads`
     
         **Example**: {"buffer":1000, "threads":100}
     
@@ -189,7 +189,7 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
     
         **Type**: JSON
     
-        **ConfField**: `storage`
+        **input.conf**: `storage`
     
         **Example**: {"storage":"./jaeger_storage", "capacity": 5120}
     
@@ -199,7 +199,7 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
     
         **Type**: JSON
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 
@@ -409,6 +409,7 @@ func foo() {
 | Tag | Description |
 |  ----  | --------|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
+|`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
 |`host`|Hostname.|

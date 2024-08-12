@@ -19,6 +19,7 @@
 | exterStoreName | string | Y | 与name互为映射的外部存储的名字<br>允许为空: False <br> |
 | exterStoreProject | string |  | 外部存储索引对应的project<br>允许为空: False <br> |
 | region | string |  | 指定外部资源的地域<br>允许为空: False <br> |
+| isPublicNetworkAccess | boolean |  | 是否公网访问, storeType 为 sls 时生效, 默认为 False(2024-07-10迭代添加)<br>允许为空: True <br> |
 | accessCfg | json | Y | 外部资源访问配置信息<br>允许为空: False <br> |
 | accessCfg.ak | string |  | 密钥Id<br>允许为空: False <br> |
 | accessCfg.sk | string |  | 密钥<br>允许为空: False <br> |
@@ -28,7 +29,7 @@
 | fields | array |  | 待更新的字段映射配置列表<br>允许为空: False <br> |
 | fields[*] | None |  | <br> |
 | fields[*].field | string | Y | 字段名<br>例子: message <br>允许为空: False <br> |
-| fields[*].originalField | string | Y | 原始字段名<br>例子: content <br>允许为空: False <br>允许空字符串: True <br> |
+| fields[*].originalField | string | Y | 原始字段名<br>例子: content <br>允许为空: False <br>允许为空字符串: True <br> |
 
 ## 参数补充说明
 

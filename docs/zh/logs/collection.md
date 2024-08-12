@@ -26,7 +26,7 @@ DataKit 安装完成后，您可以通过开启标准日志采集或者自定义
 
     通过开启观测云支持的标准日志采集器，如 [Nginx](../integrations/nginx.md)、[Redis](../integrations/redis.md)、[ES](../integrations/elasticsearch.md) 等，您可以一键开启日志采集。
 
-???+ warning
+???+ warning "注意"
 
     配置日志采集器时，需开通日志的 Pipeline 功能，提取日志时间 `time` 和日志等级 `status` 的字段：
     
@@ -42,5 +42,5 @@ DataKit 安装完成后，您可以通过开启标准日志采集或者自定义
 日志采集器配置完成后，重启 DataKit，日志数据就可以统一上报到观测云工作空间。
 
 - 对于日志数据量比较多的用户来说，我们可以通过配置 [日志索引](multi-index.md) 或者 [日志黑名单](../getting-started/function-details/logs-blacklist.md) 来节约数据存储费用；
-- 对于需要日志长久存储的用户来说，我们可以通过 [日志备份](backup.md) 来保存日志数据。
+- 对于需要日志长久存储的用户来说，我们可以通过 [日志备份](../management/backup/index.md)来保存日志数据。
 

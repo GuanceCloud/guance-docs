@@ -66,10 +66,10 @@ nav:
     - '管理后台手册': 
       - "工作空间管理": space.md
       - "用户管理": user.md
+      - "菜单管理": menu.md
       - "模版管理": integration.md
       - "字段管理": field.md
       - "设置管理": setting.md
-  - 'ExternalAPI': external-api 
   - '运维手册':
     - '部署配置手册':
       - '开启自身的可观测': self-monitoring.md
@@ -87,6 +87,7 @@ nav:
       - '通过 iframe 实现页面嵌套': iframe.md
       - '观测云集群备份和恢复': velero-install.md
       - '应用服务配置指南': application-configuration-guide.md
+      - '可靠性验证': proof-of-reliability.md
     - '故障排查':
       - '查看器报“视图模板不存在”': noscenes.md
       - '日志引擎存储空间不足': es-disk-full.md
@@ -99,6 +100,8 @@ nav:
     - '升级观测云': version-upgrade.md
     - '容量规划':  
       - "日志引擎容量规划": logengine-capacity-planning.md
+  - '扩展使用':
+    - "计量数据结构与使用": metering-struct-and-query.md
   - '常见问题':
     - "部署运维 FAQ": faq.md
 

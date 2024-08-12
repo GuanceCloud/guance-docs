@@ -18,7 +18,9 @@
 
 <img src="../../img/chart-relate.png" width="70%" >
 
-> 此处同样支持 [Service Map 跨工作空间查询](../service-manag.md#servicemap)。
+> 此处同样支持 [Service Map 跨工作空间查询](../../application-performance-monitoring/service-manag.md#servicemap)。
+
+
 
 ### 资源关系图
 
@@ -34,6 +36,13 @@
 点击资源图标，即可查看当前资源相关的日志、用户访问、事件等信息。
 
 <img src="../../img/chart-relate-1.png" width="70%" >
+
+
+## 图表链接 {#link}
+
+链接可以帮助实现从当前图表跳转至目标页面。您可以添加平台内部链接或外部链接，能通过模板变量修改链接中对应的变量值将数据信息传送过去，实现数据联动。
+
+> 更多相关设置说明，可参考 [图表链接](chart-link.md)。
 
 ## 常用配置
 

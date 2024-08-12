@@ -24,6 +24,7 @@ nav:
       - 'RocketMQ5' : aliyun_rocketmq5.md
       - 'SQLServer': aliyun_rds_sqlserver.md
       - 'Tair': aliyun_tair.md
+      - 'Site Monitor': aliyun_site.md
 
     - Huawei: 
       - 'ASM': huawei_asm.md
@@ -43,9 +44,10 @@ nav:
       - 'MongoDB': huawei_mongodb.md
       - 'OBS': huawei_obs.md
       - 'RDS(PostgreSQL)': huawei_rds_postgresql.md
-      - 'SYS.AS': huawei_SYS.AS.md
-      - 'SYS.CBR': huawei_SYS.CBR.md
-      - 'SYS DDMS': huaweiyun_SYS_DDMS.md
+      - 'AS': huawei_SYS.AS.md
+      - 'CBR': huawei_SYS.CBR.md
+      - 'DDMS': huawei_SYS_DDMS.md
+      - 'ROMA': huawei_roma.md
 
     - AWS: 
       - 'CloudFront': aws_cloudfront.md
@@ -67,6 +69,7 @@ nav:
       - 'S3': aws_s3.md
       - 'Timestream': aws_timestream.md
       - 'RabbitMQ': aws_mq_rabbitmq.md
+      - 'ElastiCache Serverless': aws_elasticache_serverless.md
 
     - Tencent:
       - 'CDB': tencent_cdb.md
@@ -86,6 +89,8 @@ nav:
       - 'Mysql': volcengine_mysql.md
       - 'MongoDB  Replica Set': volcengine_mongodb_replica_set.md
       - 'MongoDB Sharded Cluster': volcengine_mongodb_sharded_cluster.md
+      - 'VKE': volcengine_vke.md
+      - 'Redis': volcengine_redis.md
 
   - Host:
     - Default Collection:
@@ -118,7 +123,9 @@ nav:
   - Middleware:
     - 'Storage':
       - 'MySQL': mysql.md
+      - cassandra.md
       - clickhousev1.md
+      - cockroachdb.md
       - couchbase.md
       - couchdb.md
       - doris.md
@@ -149,6 +156,7 @@ nav:
     - 'Messaging Queue':
       - emqx.md
       - 'Kafka': kafka.md
+      - automq.md
       - nsq.md
       - rabbitmq.md
       - rocketmq.md
@@ -159,6 +167,7 @@ nav:
       - resin.md
       - dongfangtong_tweb.md
       - apisix.md
+      - haproxy.md
 
     - 'Java':
       - 'JVM': jvm.md
@@ -185,6 +194,8 @@ nav:
       - zookeeper.md
       - argocd.md
       - langchain.md
+      - issue_dingtalk.md
+      - issue_feishu.md
 
   - CI/CD:
       - 'Jenkins': jenkins.md
@@ -204,9 +215,45 @@ nav:
     - kubernetes_audit.md
 
   - APM:
-    - Tracing Overview': datakit-tracing.md
-    - datakit-tracing-struct.md
-
+    - 'DDTrace':
+      - ddtrace.md
+      - 'SDK Integration':
+        - 'Java':
+          - ddtrace-java.md
+          - 'DDTrace Injection': ddtrace-attach.md
+          - 'JMX Fetch Metrics': ddtrace-jmxfetch.md
+          - 'DDTrace Extensions':
+            - ddtrace-ext-java.md
+            - 'Changelog': ddtrace-ext-changelog.md
+            - 'OTEL and DDTrace Trace Correlation': ddtrace-128-trace-id.md
+        - 'Golang': ddtrace-golang.md
+        - 'Python': ddtrace-python.md
+        - 'PHP': ddtrace-php.md
+        - 'NodeJS': ddtrace-nodejs.md
+        - 'C++': ddtrace-cpp.md
+        - 'Ruby': ddtrace-ruby.md
+  
+    - 'SkyWalking': skywalking.md
+  
+    - 'OpenTelemetry':
+      - opentelemetry.md
+      - 'SDK Integration':
+        - 'Golang': opentelemetry-go.md
+        - 'Java': opentelemetry-java.md
+      - 'OpenTelemetry Extensions':
+        - 'Changelog': otel-ext-changelog.md
+        - 'SQL Obfuscation': otel-sql-obfuscation.md
+        - 'Java Exporter': otel-guance-exporter.md
+  
+    - 'Zipkin': zipkin.md
+    - 'Jaeger': jaeger.md
+    - 'CAT': cat.md
+    - 'Pinpoint':
+      - pinpoint.md
+      - 'SDK Integration':
+        - 'Java': pinpoint-java.md
+        - 'Golang': pinpoint-go.md
+    - 'New Relic': newrelic.md
     - 'Profiling':
       - profile.md
       - 'Java': profile-java.md
@@ -214,51 +261,13 @@ nav:
       - 'Go': profile-go.md
       - 'C/C++': profile-cpp.md
       - 'NodeJS': profile-nodejs.md
-      - '.NET': dotnet.md
-      - 'PHP': php.md
-
-    - 'DDTrace':
-      - ddtrace.md
-      - 'SDK Access':
-        - ddtrace-golang.md
-        - ddtrace-java.md
-        - ddtrace-python.md
-        - ddtrace-php.md
-        - ddtrace-nodejs.md
-        - ddtrace-cpp.md
-        - ddtrace-ruby.md
-
-      - 'DDTrace Attach':
-        - ddtrace-attach.md
-
-      - 'DDTrace extend':
-        - ddtrace-ext-changelog.md
-        - ddtrace-ext-java.md
-      - 'jmxfetch metric':
-        - 'jmx metric to DK': ddtrace-jmxfetch.md
-
-    - 'SkyWalking':
-      - skywalking.md
-
-    - 'OpenTelemetry':
-      - opentelemetry.md
-      - opentelemetry-go.md
-      - opentelemetry-java.md
-      - 'guance version':
-        - 'changelog': otel-ext-changelog.md
-        - otel-sql-obfuscation.md
-
-    - 'Zipkin':
-      - zipkin.md
-
-    - 'Jaeger' :
-      - jaeger.md
-
-    - 'CAT' :
-      - cat.md
-
-    - 'Tracing Propagator':
-      - tracing-propagator.md
+      - '.NET': profile-dotnet.md
+      - 'PHP': profile-php.md
+  
+    - 'Tracing Overview':
+      - datakit-tracing.md
+      - 'Tracing Data Structure': datakit-tracing-struct.md
+      - 'Trace Correlation Tools': tracing-propagator.md
 
   - RUM:
     - rum.md
@@ -296,6 +305,7 @@ nav:
     - "Prometheus":
       - "Exportor": prom.md
       - "Remote Write": prom_remote_write.md
+      - "Push Gateway": pushgateway.md
     - 'Kafka Subscribe': kafkamq.md
     - 'Promtail': promtail.md
     - 'Statsd': statsd.md

@@ -1,7 +1,7 @@
 ---
 title: 'Volcengine MySQL'
 tags: 
-  - `Volcengine`
+  - Volcengine
 summary: 'Volcengine MySQL indicators display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.'
 __int_icon: 'icon/volcengine_mysql'
 dashboard:
@@ -52,38 +52,65 @@ We collected some configurations by default, as described in the Metrics column 
 ## Metric  {#metric}
 Configure `Volcengine` Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [`Volcengine` Cloud Monitor Metrics Details](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_MySQL){:target="_blank"}
 
-| Metric | Description                          | Unit |
-| ---- |-------------------------------------| :----: |
-|`CpuUtil` |CPU usage rate|Percent|
-|`MemUtil` |Memory usage rate|Percent|
-|`DiskUtil` | Disk usage rate |Percent|
-|`IOPS` | IOPS usage rate |Percent|
-|`ThreadsConnected`| Current number of open connections |Count|
-|`ThreadsRunning`| Number of running threads | Count |
-|`ConnUsage`|MySQL connection utilization rate|Percent|
-|`NetworkReceiveThroughput`| Network inflow rate | Bytes/Second(SI) |
-|`NetworkTransmitThroughput`|Network outflow rate| Bytes/Second(SI) |
-|`IOPS`|IOPS|Count/Second|
-|`DiskUsageBytes`| Disk usage | Bytes(SI) |
-|`TPS`| Transactions per Second |Count/Second|
-|`QPS`| MySQL requests per second |Count/Second|
-|`OperationUpdate`| Update | Count/Second |
-|`OperationDelete`| Delete | Count/Second |
-|`OperationInsert`| Insert | Count/Second |
-|`OperationReplace`| Replace | Count/Second|
-|`OperationCommit`| Commit | Count/Second|
-|`OperationRollback`| Rollback | Count/Second|
-|`InnodbBufferPoolReadRequests`| Innodb logical read | Count/Second|
-|`InnodbBpDirtyPct`| InnoDB Buffer Pool dirty page ratio | Percent|
-|`CreatedTmpTables`| Temporary Table Quantity | Count/Second|
-|`SlowQueries`| Slow queries | Count/Second|
-|`InnodbDataRead`| Innodb read volume | Bytes/Second(SI)|
-|`InnodbDataWritten`| Innodb write volume | Bytes/Second(SI) |
-|`InnodbRowsUpdated`|Innodb Update | Count/Second |
-|`InnodbRowsDeleted`|Innodb Delete| Count/Second |
-|`InnodbRowsInserted`| Innodb Insert | Count/Second |
-|`InnodbDataReadBytes`| Innodb row read volume | Count/Second|
-|`InnodbOsLogFsyncs`| The average number of fsync writes completed to the log file per second | Count/Second|
+|`MetricName` |`Subnamespace` |Description |MetricUnit | Dimension|
+| ---- |-------------------------------------| :----: |:----: |:----: |
+|`ReplicationDelay` |`deploy_monitor_new` |Slave replication delay |Second | ResourceID,Node|
+|`SlowQueries` |`engine_monitor_new` |Number of slow queries |Count/Second | ResourceID,Node|
+|`ThreadsConnected` |`engine_monitor_new` |Current number of open connections |Count | ResourceID,Node|
+|`ThreadsCreated` |`engine_monitor_new` |Number of threads created |Count | ResourceID,Node|
+|`ThreadsRunning` |`engine_monitor_new` |Number of running threads |Count | ResourceID,Node|
+|`SelectScan` |`engine_monitor_new` |Number of full table scans |Count/Second | ResourceID,Node|
+|`OperationUpdate` |`engine_monitor_new` |Number of updates |Count/Second | ResourceID,Node|
+|`OperationDelete` |`engine_monitor_new` |Delete number |Count/Second | ResourceID,Node|
+|`OperationInsert` |`engine_monitor_new` |Number of insertions |Count/Second | ResourceID,Node|
+|`OperationReplace` |`engine_monitor_new` |Coverage |Count/Second | ResourceID,Node|
+|`OperationCommit` |`engine_monitor_new` |Number of submissions |Count/Second | ResourceID,Node|
+|`OperationRollback` |`engine_monitor_new` |Rollback number |Count/Second | ResourceID,Node|
+|`CreatedTmpTables` |`engine_monitor_new` |Number of temporary tables |Count/Second | ResourceID,Node|
+|`TableLocksWaited` |`engine_monitor_new` |Number of waits for table locks |Count/Second | ResourceID,Node|
+|`OpenedTables` |`engine_monitor_new` |Number of open tables |Count | ResourceID,Node|
+|`InnodbCacheHitRate` |`engine_monitor_new` |Innodb cache hit rate |Percent | ResourceID,Node|
+|`InnodbCacheUtil` |`engine_monitor_new` |Innodb cache usage |Percent | ResourceID,Node|
+|`InnodbNumOpenFiles` |`engine_monitor_new` |Number of Innodb currently open tables |Count | ResourceID,Node|
+|`InnodbDataRead` |`engine_monitor_new` |Innodb read volume |Bytes/Second(SI) | ResourceID,Node|
+|`InnodbDataWritten` |`engine_monitor_new` |Innodb write volume |Bytes/Second(SI) | ResourceID,Node|
+|`InnodbRowsDeleted` |`engine_monitor_new` |Innodb row deletion amount |Count/Second | ResourceID,Node|
+|`InnodbRowsUpdated` |`engine_monitor_new` |Innodb row update amount |Count/Second | ResourceID,Node|
+|`InnodbRowsInserted` |`engine_monitor_new` |Innodb row insert amount |Count/Second | ResourceID,Node|
+|`InnodbDataReadBytes` |`engine_monitor_new` |Innodb row reads |Count/Second | ResourceID,Node|
+|`InnodbRowsLockTimeAvg` |`engine_monitor_new` |Innodb average waiting time for acquiring row locks |Millisecond | ResourceID,Node|
+|`InnodbRowLockWaits` |`engine_monitor_new` |Innodb wait times for row locks |Count/Second | ResourceID,Node|
+|`CreatedTmpFiles` |`engine_monitor_new` |Number of temporary files |Count/Second | ResourceID,Node|
+|`HandlerReadRndNext` |`engine_monitor_new` |Number of read next line requests |Count/Second | ResourceID,Node|
+|`HandlerRollback` |`engine_monitor_new` |Internal rollback number |Count/Second | ResourceID,Node|
+|`HandlerCommit` |`engine_monitor_new` |Internal submissions |Count/Second | ResourceID,Node|
+|`InnodbBufferPoolPagesFree` |`engine_monitor_new` |Innodb empty pages |Count | ResourceID,Node|
+|`TotalInnodbBufferPoolPages` |`engine_monitor_new` |Innodb total pages |Count | ResourceID,Node|
+|`InnodbBufferPoolReadRequests` |`engine_monitor_new` |Innodb logical read |Count/Second | ResourceID,Node|
+|`InnodbBufferPoolReads` |`engine_monitor_new` |Innodb physical read |Count/Second | ResourceID,Node|
+|`InnodbDataReadCounts` |`engine_monitor_new` |Innodb read count |Count/Second | ResourceID,Node|
+|`InnodbDataWriteCounts` |`engine_monitor_new` |Innodb write count |Count/Second | ResourceID,Node|
+|`CreatedTmpDiskTables` |`engine_monitor_new` |Number of temporary disk tables |Count/Second | ResourceID,Node|
+|`InnodbBpDirtyPct` |`engine_monitor_new` |InnoDB Buffer Pool Dirty Page Ratio |Percent | ResourceID,Node|
+|`InnodbLogWrites` |`engine_monitor_new` |Innodb average number of physical writes to Redo Log File per second |Count/Second | ResourceID,Node|
+|`InnodbRowLockTimeMax` |`engine_monitor_new` |InnoDB table maximum waiting time for row locks |Millisecond | ResourceID,Node|
+|`InnodbOsLogFsyncs` |`engine_monitor_new` |The average number of fsync writes completed to the log file per second |Count/Second | ResourceID,Node|
+|`InnodbBufferPoolPagesFlushed` |`engine_monitor_new` |InnoDB Buffer Pool Page flush request number |Count/Second | ResourceID,Node|
+|`RedologSize` |`engine_monitor_new` |`Redolog` usage |Bytes(IEC) | ResourceID,Node|
+|`InnodbDataFsyncs` |`engine_monitor_new` |InnoDB average number of fsync operations per second |Count/Second | ResourceID,Node|
+|`SlowLogSize` |`engine_monitor_new` |Slow log usage |Bytes(IEC) | ResourceID,Node|
+|`SWC` |`engine_monitor_new` |MySQL requests per second |Count/Second | ResourceID,Node|
+|`TPS` |`engine_monitor_new` |Transactions per second |Count/Second | ResourceID,Node|
+|`InsertSelect` |`engine_monitor_new` |Average number of insert select executions per second |Count/Second | ResourceID,Node|
+|`OpenFiles` |`engine_monitor_new` |Number of open files |Count | ResourceID,Node|
+|`ConNuSage` |`engine_monitor_new` |MySQL connection utilization |Percent | ResourceID,Node|
+|`CpuUtil` |`resource_monitor_new` |CPU usage |Percent | ResourceID,Node|
+|`MemUtil` |`resource_monitor_new` |Memory usage |Percent | ResourceID,Node|
+|`DiskUtil` |`resource_monitor_new` |Disk Utilization |Percent | ResourceID,Node|
+|`NetworkReceiveThroughput` |`resource_monitor_new` |Network input traffic |Bytes/Second(SI) | ResourceID,Node|
+|`NetworkTransmitThroughput` |`resource_monitor_new` |Network output traffic |Bytes/Second(SI) | ResourceID,Node|
+|`IOPS` |`resource_monitor_new` |IOPS |Count/Second | ResourceID,Node|
+|`DiskUsageBytes` |`resource_monitor_new` |Disk usage |Bytes(SI) | ResourceID,Node|
 
 
 

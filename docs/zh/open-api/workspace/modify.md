@@ -15,7 +15,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | name | string |  | 名称<br>例子: supper_workspace <br>允许为空: False <br>最大长度: 256 <br> |
-| desc | string |  | 备注<br>例子: ccc <br>允许为空: False <br>允许空字符串: True <br> |
+| desc | string |  | 备注<br>例子: ccc <br>允许为空: False <br>允许为空字符串: True <br> |
 
 ## 参数补充说明
 

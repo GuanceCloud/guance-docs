@@ -22,7 +22,7 @@ Guance provides multiple registration sites, and you can select corresponding si
 
 | Site    | Login Address URL    |  Operator |Default Settlement Method           |
 | ----------------- | ---------------- | ------------------ |--- |
-| China 1 (Hangzhou)   | [https://auth.guance.com/](https://auth.guance.com/login/pwd) |Alibaba Cloud (Hangzhou, China) | [Alibaba Cloud account settlement](#aliyun)    |
+| China 1 (Hangzhou)   | [https://auth.guance.com/](https://auth.guance.one/login/pwd) |Alibaba Cloud (Hangzhou, China) | [Alibaba Cloud account settlement](#aliyun)    |
 | China 2 (Ningxia)   | [https://aws-auth.guance.com/](https://aws-auth.guance.com/login/pwd) |AWS (Ningxia, China) | [AWS account settlement](#aws)        |
 | China 4 (Guangzhou)   | [https://cn4-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | Huawei Cloud (Guangzhou, China) |[Guance account settlement](#guanceyun) |
 | Overseas Region 1 (Oregon) | [https://us1-auth.guance.com/](https://us1-auth.guance.com/) | AWS (Oregon, USA) |[AWS account settlement](#aws)      |

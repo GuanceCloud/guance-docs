@@ -23,19 +23,6 @@ The collector collects the data of network dialing test results, and all the dat
 
 ## Configuration {#config}
 
-### Environment Variables {#env}
-
-By default, the dialtesting service can dial up any network, which may pose certain security risks. If you need to prohibit to connect to certain network, you can restrict it by setting the following environmental variables:
-
-
-|  Environment variable name     |  Parameter example | Description |
-| :----------------------------- | ------------------ | ------------ |
-| `ENV_INPUT_DIALTESTING_DISABLE_INTERNAL_NETWORK_TASK`      |  `true`             | Enable or disable internal network dialing test. Default is `false`|
-| `ENV_INPUT_DIALTESTING_DISABLED_INTERNAL_NETWORK_CIDR_LIST`      |  `["192.168.0.0/16"]`             | List of network CIDRs that prohibit testing, which supports multiple entries. If left empty, all private networks will be disabled. |
-| `ENV_INPUT_DIALTESTING_ENABLE_DEBUG_API`      |  `false`             | Enable or disable the debug API. |
-
-### Private Test Node Deployment {#private-deploy}
-
 <!-- markdownlint-disable MD046 -->
 === "host installation"
 
@@ -71,6 +58,9 @@ By default, the dialtesting service can dial up any network, which may pose cert
       # Stop the task when the task failed to send data to dataway over max_send_fail_count.
       max_send_fail_count = 16
     
+      # The max sleep time when send data to dataway failed.
+      max_send_fail_sleep_time = "30m"
+    
       # The max number of jobs sending data to dataway in parallel. Default 10.
       max_job_number = 10
     
@@ -94,40 +84,87 @@ By default, the dialtesting service can dial up any network, which may pose cert
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    
+    - **ENV_INPUT_DIALTESTING_ENV_INPUT_DIALTESTING_DISABLE_INTERNAL_NETWORK_TASK**
+    
+        Enable or disable internal IP/service testing
+    
+        **Type**: Boolean
+    
+        **input.conf**: `disable_internal_network_task`
+    
+        **Example**: `true`
+    
+        **Default**: `false`
+    
+    - **ENV_INPUT_DIALTESTING_ENV_INPUT_DIALTESTING_DISABLED_INTERNAL_NETWORK_CIDR_LIST**
+    
+        Disable testing on specific internal CIDR IP ranges
+    
+        **Type**: List
+    
+        **input.conf**: `disabled_internal_network_cidr_list`
+    
+        **Example**: `["192.168.0.0/16"]`
+    
+        **Default**: `-`
+    
+    - **ENV_INPUT_DIALTESTING_ENV_INPUT_DIALTESTING_ENABLE_DEBUG_API**
+    
+        Disable debug API on dial-testing(Default disabled)
+    
+        **Type**: Boolean
+    
+        **input.conf**: `env_input_dialtesting_enable_debug_api`
+    
+        **Example**: `false`
+    
+        **Default**: `false`
 
 ---
 
 ???+ attention
 
-    Currently, only Linux dial-up nodes support, and the tracing data is stored in the [traceroute](#fields) field of the relevant metrics.
+    Currently, only Linux dial-up nodes support, and the tracing data is stored in the [traceroute](#traceroute) field of the relevant metrics.
 <!-- markdownlint-enable -->
 
-### Dial Test Deployment Map {#arch}
+### Dialtesting Node Deployment {#arch}
 
-<figure markdown>
-  ![dialtesting-net-arch](https://static.guance.com/images/datakit/dialtesting-net-arch.png){ width="800" }
-</figure>
+The following is a network deployment topology for dialtesting nodes, which includes two deployment methods for dialtesting nodes:
 
-## Metric {#metric}
+- Public Network Nodes: Directly use the nodes deployed globally to check the healthy of **public network** services.
+- Private Network Nodes: If you need to check **private network** services, you need to deploy **private** nodes. Of course, if the network allows, these private nodes can also check services deployed on the public network.
 
-Dialtesting collector could expose some [Prometheus metrics](../datakit/datakit-metrics.md). You can upload these metrics to Guance Cloud through [Datakit collector](dk.md). The relevant configuration is as follows:
+Whether it is a public or private node, they can both create probe tasks through the Web page.
 
-```toml
-[[inputs.dk]]
-  ......
+```mermaid
+graph TD
+  %% node definitions
+  dt_web(Probe Web UI)
+  dt_db(Public Task Storage)
+  dt_pub(Public Datakit Node)
+  dt_pri(Private Datakit Node)
+  site_inner(Private Site)
+  site_pub(Public Site)
+  dw_inner(Private Dataway)
+  dw_pub(Public Dataway)
+  guance(GuanceCloud)
 
-  metric_name_filter = [
-  
-  ### others...
-  
-  ### dialtesting
-  "datakit_dialtesting_.*",
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  dt_web -->|Create Task| dt_db;
+  dt_db -->|Pull Tasks| dt_pub -->|Results| dw_pub --> guance;
+  dt_db -->|Pull Tasks| dt_pri;
+  dt_pub <-->|Checking...| site_pub;
 
-  ]
-
-  ......
-
+  dt_pri <-.->|Checking...| site_pub;
+  dw_inner --> guance;
+  subgraph "User's Private Network"
+  dt_pri <-->|Checking...| site_inner;
+  dt_pri -->|Results| dw_inner;
+  end
 ```
 
 ## Log {#logging}
@@ -294,9 +331,9 @@ All of the following data collections are appended with a global tag named `host
 
 
 
-### `traceroute` Field Description {#fields}
+### `traceroute` {#traceroute}
 
-traceroute is the JSON text of the "route trace" data, and the entire data is an array object in which each array element records a route probe, as shown in the following example:
+`traceroute` is the JSON text of the "route trace" data, and the entire data is an array object in which each array element records a route probe, as shown in the following example:
 
 ```json
 [
@@ -352,12 +389,32 @@ traceroute is the JSON text of the "route trace" data, and the entire data is an
 | `min_cost` | number        | Minimum time consumption (μs) |
 | `max_cost` | number        | Maximum time consumption(μs) |
 | `std_cost` | number        | Standard deviation of time consumption(μs) |
-| `items`    | Array of items | Per probe information ([see](dialtesting.md#item)) |
+| `items`    | Array of items | Per probe information (see following items) |
 
-### Item {#item}
+**`items`**
 
 | Field           | Type   | Description                             |
 | :-------------- | ------ | --------------------------------------- |
 | `ip`            | string | IP address, if it fails, the value is * |
 | `response_time` | number | Response time (μs)                      |
 
+## Metric {#metric}
+
+Dialtesting collector could expose some [Prometheus metrics](../datakit/datakit-metrics.md). You can upload these metrics to Guance Cloud through [Datakit collector](dk.md). The relevant configuration is as follows:
+
+```toml
+[[inputs.dk]]
+  ......
+
+  metric_name_filter = [
+  
+  ### others...
+  
+  ### dialtesting
+  "datakit_dialtesting_.*",
+
+  ]
+
+  ......
+
+```

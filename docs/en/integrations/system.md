@@ -61,7 +61,7 @@ None
     
         **Type**: TimeDuration
     
-        **ConfField**: `interval`
+        **input.conf**: `interval`
     
         **Default**: 10s
     
@@ -71,7 +71,7 @@ None
     
         **Type**: Map
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 

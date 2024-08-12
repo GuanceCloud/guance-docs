@@ -22,12 +22,13 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | name | string |  | 查看器名称<br>例子: 查看器1号 <br>允许为空: False <br>最大长度: 64 <br> |
+| desc | string |  | 描述<br>例子: 描述1 <br>允许为空: False <br>允许为空字符串: True <br>最大长度: 2048 <br> |
 | type | string |  | 类型, 默认为 CUSTOM<br>例子: CUSTOM <br>允许为空: False <br>最大长度: 32 <br> |
 | extend | json |  | 查看器的额外数据, 默认为{}<br>例子: {} <br>允许为空: False <br> |
 | pathName | string |  | explorer 路径名<br>例子: tracing__profile <br>允许为空: False <br>最大长度: 32 <br> |
 | tagNames | array |  | tag的name<br>允许为空: False <br> |
 | tagNames[*] | string |  | tag名<br>允许为空: False <br>最大长度: 128 <br> |
-| dashboardBindSet | array |  | 查看器绑定的视图信息<br>例子: [] <br>允许为空: False <br>允许空字符串: False <br> |
+| dashboardBindSet | array |  | 查看器绑定的视图信息<br>例子: [] <br>允许为空: False <br>允许为空字符串: False <br> |
 
 ## 参数补充说明
 

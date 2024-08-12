@@ -13,8 +13,8 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| customIdentity | string |  | 自定义标识(按字符长度最大19个字符)<br>允许为空: False <br>允许空字符串: True <br>$maxCharacterLength: 19 <br> |
-| appId | string |  | 自定义appId(按字符长度最大48个字符)<br>允许为空: False <br>允许空字符串: True <br>$maxCharacterLength: 48 <br> |
+| customIdentity | string |  | 自定义标识(按字符长度最大19个字符)<br>允许为空: False <br>允许为空字符串: True <br>$maxCharacterLength: 19 <br> |
+| appId | string |  | 自定义appId(按字符长度最大48个字符)<br>允许为空: False <br>允许为空字符串: True <br>$maxCharacterLength: 48 <br> |
 | dashboardUuids | array |  | 内置视图uuids<br>允许为空: False <br> |
 | jsonContent | json | Y | JSON格式内容<br>允许为空: False <br> |
 | jsonContent.name | string | Y | 应用名称<br>允许为空: False <br>最大长度: 256 <br> |

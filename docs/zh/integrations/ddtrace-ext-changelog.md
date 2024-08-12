@@ -41,6 +41,47 @@
 
 --->
 
+## v1.36.1-guance {#cl-1.36.1-guance}
+
+### 修复 {#cl-1.36.1-guance-fix}
+
+- 合并最新 DataDog Java Agent 分支 1.36.0
+- 增加 `dd-guance-version` tag, 方便快速定位版本。
+- `mybatis-plus batch` 类执行的 `sql` 语句都没有被记录为 `span` 信息。
+
+## v1.34.2-guance {#cl-1.34.2-guance}
+
+### 修复 {#cl-1.34.2-guance-fix}
+
+- 由于太占用内存，决定移除 [添加 response_body](ddtrace-ext-java.md#response_body) 功能。
+
+## v1.34.0-guance {#cl-1.34.0-guance}
+
+### 更新 {#cl-1.34.0-guance-fix}
+
+- 合并最新 `v1.34.0` 代码。
+
+## v1.30.5-guance v1.30.6-guance {#cl-1.30.5-guance}
+
+### 更新 {#cl-1.30.5-guance-fix}
+
+- 修复 `W3C` 协议下 `trace_id` 提取问题。
+- 修复 `Pulsar OOM` 问题。
+- `Lettuce5` 集群模式下获取 `peer_ip`.
+
+## v1.30.4-guance (2024/4/25) {#cl-1.30.4-guance}
+
+### 更新 {#cl-1.30.4-guance-fix}
+
+- 解决 `Dubbo` 服务连续传递导致的链路无法中断问题。
+- 解决 `Pulsar` 没有释放内存问题。
+
+## v1.30.2-guance (2024/4/3) {#cl-1.30.2-guance}
+
+### 更新 {#cl-1.30.2-guance-fix}
+
+- Redis SDK `Lettuce` 支持查看 `Command` 参数。
+
 ## v1.30.1-guance (2024/2/6) {#cl-1.30.1-guance}
 
 ### 更新 {#cl-1.30.1-guance-fix}

@@ -104,7 +104,7 @@ DD_AGENT_HOST=localhost DATADOG_TRACE_AGENT_PORT=9529 ddtrace-run python your_ap
 
 ![](img/5.apm_8.png)
 
-链路相关名词解释如下。更多链路介绍可参考文档 [链路分析](../application-performance-monitoring/explorer.md)。
+链路相关名词解释如下。更多链路介绍可参考文档 [链路分析](../application-performance-monitoring/explorer/explorer-analysis.md)。
 
 | 关键词 | 释义 |
 | --- | --- |
@@ -118,7 +118,7 @@ DD_AGENT_HOST=localhost DATADOG_TRACE_AGENT_PORT=9529 ddtrace-run python your_ap
 
 ### 配置关联日志
 
-1）进入主机 DataKit 安装目录`/usr/local/datakit`下的`conf.d/log`目录，复制`logging.conf.sample`并命名为`logging.conf`。编辑`logging.conf`文件，在`logfiles`填入您应用的服务日志存储路径，在`source`填入日志来源名，保存后重启 DataKit 。更多日志采集器详情和日志 pipeline 切割可参考文档 [日志](../datakit/logging.md)。
+1）进入主机 DataKit 安装目录`/usr/local/datakit`下的`conf.d/log`目录，复制`logging.conf.sample`并命名为`logging.conf`。编辑`logging.conf`文件，在`logfiles`填入您应用的服务日志存储路径，在`source`填入日志来源名，保存后重启 DataKit 。更多日志采集器详情和日志 pipeline 切割可参考文档 [日志](../integrations/logging.md)。
 
 ```
 ## 进入log目录
@@ -207,5 +207,5 @@ def after_request(response):
 
 ## 更多参考
 
-### [通过 skywalking 采集应用性能数据](../datakit/skywalking.md)
-### [通过 jaeger 采集应用性能数据](../datakit/jaeger.md)
+### [通过 skywalking 采集应用性能数据](../integrations/skywalking.md)
+### [通过 jaeger 采集应用性能数据](../integrations/jaeger.md)

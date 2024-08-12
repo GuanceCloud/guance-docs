@@ -1,26 +1,26 @@
 ---
-title: 'HUAWEI SYS.CBR'
+title: 'HUAWEI CBR'
 tags: 
   - Huawei Cloud
 summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
 __int_icon: 'icon/huawei_SYS.CBR'
 dashboard:
 
-  - desc: 'HUAWEI CLOUD SYS.CBR Monitoring View'
+  - desc: 'HUAWEI CLOUD CBR Monitoring View'
     path: 'dashboard/zh/huawei_SYS.CBR'
 
 monitor:
-  - desc: 'HUAWEI CLOUD SYS.CBR Monitor'
+  - desc: 'HUAWEI CLOUD CBR Monitor'
     path: 'monitor/zh/huawei_SYS.CBR'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# HUAWEI CLOUD SYS.CBR
+# HUAWEI CLOUD CBR
 <!-- markdownlint-enable -->
 
-HUAWEI CLOUD SYS.CBR includes metrics such as repository usage and repository utilization.
+HUAWEI CLOUD CBR includes metrics such as repository usage and repository utilization.
 
 
 ## Config {#config}

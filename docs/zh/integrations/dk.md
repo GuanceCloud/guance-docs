@@ -96,31 +96,37 @@ Datakit 启动后。默认会暴露一些 [Prometheus 指标](../datakit/datakit
     
         采集所有指标，任意非空字符串
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `none`
+        **采集器配置字段**: ``-``
     
-        **Example**: any_string
+        **示例**: true
+    
+        **默认值**: `-`
     
     - **ENV_INPUT_DK_ADD_METRICS**
     
         追加指标列表，可用的指标名参见[这里](../datakit/datakit-metrics.md)
     
-        **Type**: JSON
+        **字段类型**: List
     
-        **ConfField**: `none`
+        **采集器配置字段**: ``-``
     
-        **Example**: ["datakit_io_.*", "datakit_pipeline_.*"]
+        **示例**: `["datakit_io_.*", "datakit_pipeline_.*"]`
+    
+        **默认值**: `-`
     
     - **ENV_INPUT_DK_ONLY_METRICS**
     
         只开启指定指标
     
-        **Type**: JSON
+        **字段类型**: List
     
-        **ConfField**: `none`
+        **采集器配置字段**: ``-``
     
-        **Example**: ["datakit_io_.*", "datakit_pipeline_.*"]
+        **示例**: `["datakit_io_.*", "datakit_pipeline_.*"]`
+    
+        **默认值**: `-`
 
 <!-- markdownlint-enable -->
 

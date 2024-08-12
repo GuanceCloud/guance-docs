@@ -797,6 +797,14 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     **Default**: 1
 
+- **ENV_IO_FEED_GLOBAL_BLOCKING**
+
+    Set blocking mode on busy uploading(especially fot time-series and dial-testing points)
+
+    **Type**: Int
+
+    **Default**: -
+
 - **ENV_IO_FLUSH_WORKERS**
 
     IO flush workers([:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9))
@@ -1019,6 +1027,30 @@ For more info about recorder, see [here](datakit-tools-how-to.md#record-and-repl
     **Type**: List
 
     **Example**: `http://aaa:123,http://1.2.3.4:1234`
+
+- **ENV_PIPELINE_DISABLE_APPEND_RUN_INFO**
+
+    Disable appending the Pipeline run info
+
+    **Type**: Boolean
+
+    **Default**: `false`
+
+- **ENV_CRYPTO_AES_KEY**
+
+    The crypto key(len 16)
+
+    **Type**: String
+
+    **Example**: `0123456789abcdef`
+
+- **ENV_CRYPTO_AES_KEY_FILE**
+
+    File path for storing AES encryption and decryption key
+
+    **Type**: String
+
+    **Example**: `/usr/local/datakit/enc4mysql`
 <!-- markdownlint-enable -->
 
 ### Special Environment Variable {#env-special}

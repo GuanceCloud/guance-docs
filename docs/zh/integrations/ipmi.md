@@ -192,201 +192,201 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         采集器重复间隔时长
     
-        **Type**: TimeDuration
+        **字段类型**: TimeDuration
     
-        **ConfField**: `interval`
+        **采集器配置字段**: `interval`
     
-        **Default**: 10s
+        **默认值**: 10s
     
     - **ENV_INPUT_IPMI_TIMEOUT**
     
         超时时长
     
-        **Type**: TimeDuration
+        **字段类型**: TimeDuration
     
-        **ConfField**: `timeout`
+        **采集器配置字段**: `timeout`
     
-        **Default**: 5s
+        **默认值**: 5s
     
     - **ENV_INPUT_IPMI_DROP_WARNING_DELAY**
     
         退服告警延迟
     
-        **Type**: TimeDuration
+        **字段类型**: TimeDuration
     
-        **ConfField**: `drop_warning_delay`
+        **采集器配置字段**: `drop_warning_delay`
     
-        **Default**: 5m
+        **默认值**: 5m
     
     - **ENV_INPUT_IPMI_BIN_PATH**
     
         执行文件路径
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `bin_path`
+        **采集器配置字段**: `bin_path`
     
-        **Example**: `/usr/bin/ipmitool`
+        **示例**: `/usr/bin/ipmitool`
     
     - **ENV_INPUT_IPMI_ENVS**
     
         执行依赖库的路径
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `envs`
+        **采集器配置字段**: `envs`
     
-        **Example**: ["LD_LIBRARY_PATH=XXXX:$LD_LIBRARY_PATH"]
+        **示例**: ["LD_LIBRARY_PATH=XXXX:$LD_LIBRARY_PATH"]
     
     - **ENV_INPUT_IPMI_SERVERS**
     
         IPMI 服务器 URL
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `ipmi_servers`
+        **采集器配置字段**: `ipmi_servers`
     
-        **Example**: ["192.168.1.1","192.168.1.2"]
+        **示例**: ["192.168.1.1","192.168.1.2"]
     
     - **ENV_INPUT_IPMI_INTERFACES**
     
         IPMI 服务器接口协议
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `ipmi_interfaces`
+        **采集器配置字段**: `ipmi_interfaces`
     
-        **Example**: ["`lanplus`"]
+        **示例**: ["`lanplus`"]
     
     - **ENV_INPUT_IPMI_USERS**
     
         登录名
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `ipmi_users`
+        **采集器配置字段**: `ipmi_users`
     
-        **Example**: ["root"]
+        **示例**: ["root"]
     
     - **ENV_INPUT_IPMI_PASSWORDS**
     
         登录密码
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `ipmi_passwords`
+        **采集器配置字段**: `ipmi_passwords`
     
-        **Example**: ["Calvin"]
+        **示例**: ["Calvin"]
     
     - **ENV_INPUT_IPMI_HEX_KEYS**
     
         十六进制连接秘钥
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `hex_keys`
+        **采集器配置字段**: `hex_keys`
     
-        **Example**: ["50415353574F5244"]
+        **示例**: ["50415353574F5244"]
     
     - **ENV_INPUT_IPMI_METRIC_VERSIONS**
     
         指标版本
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `metric_versions`
+        **采集器配置字段**: `metric_versions`
     
-        **Example**: [2] or [3]
+        **示例**: [2] or [3]
     
     - **ENV_INPUT_IPMI_REGEXP_CURRENT**
     
         电流指标正则
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `regexp_current`
+        **采集器配置字段**: `regexp_current`
     
-        **Example**: ["current"]
+        **示例**: ["current"]
     
     - **ENV_INPUT_IPMI_REGEXP_VOLTAGE**
     
         电压指标正则
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `regexp_voltage`
+        **采集器配置字段**: `regexp_voltage`
     
-        **Example**: ["voltage"]
+        **示例**: ["voltage"]
     
     - **ENV_INPUT_IPMI_REGEXP_POWER**
     
         功率指标正则
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `regexp_power`
+        **采集器配置字段**: `regexp_power`
     
-        **Example**: ["pwr","power"]
+        **示例**: ["pwr","power"]
     
     - **ENV_INPUT_IPMI_REGEXP_TEMP**
     
         温度电流指标正则
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `regexp_temp`
+        **采集器配置字段**: `regexp_temp`
     
-        **Example**: ["temp"]
+        **示例**: ["temp"]
     
     - **ENV_INPUT_IPMI_REGEXP_FAN_SPEED**
     
         风扇转速指标正则
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `regexp_fan_speed`
+        **采集器配置字段**: `regexp_fan_speed`
     
-        **Example**: ["fan"]
+        **示例**: ["fan"]
     
     - **ENV_INPUT_IPMI_REGEXP_USAGE**
     
         使用率指标正则
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `regexp_usage`
+        **采集器配置字段**: `regexp_usage`
     
-        **Example**: ["usage"]
+        **示例**: ["usage"]
     
     - **ENV_INPUT_IPMI_REGEXP_COUNT**
     
         统计指标正则
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `regexp_count`
+        **采集器配置字段**: `regexp_count`
     
-        **Example**: []
+        **示例**: []
     
     - **ENV_INPUT_IPMI_REGEXP_STATUS**
     
         状态指标正则
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `regexp_status`
+        **采集器配置字段**: `regexp_status`
     
-        **Example**: ["fan"]
+        **示例**: ["fan"]
     
     - **ENV_INPUT_IPMI_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
     
-        **Type**: Map
+        **字段类型**: Map
     
-        **ConfField**: `tags`
+        **采集器配置字段**: `tags`
     
-        **Example**: tag1=value1,tag2=value2
+        **示例**: tag1=value1,tag2=value2
 
 ???+ tip "配置提示"
 
@@ -421,7 +421,7 @@ IPMI 采集器支持选举功能，当多台机器运行 DataKit 时，通过选
 
 ## 指标 {#metric}
 
-以下所有数据采集，默认会追加名为 `host` 的全局 tag（tag 值为 DataKit 所在主机名），也可以在配置中通过 `[inputs.ipmi.tags]` 指定其它标签：
+以下所有数据采集，默认会追加全局选举 tag，也可以在配置中通过 `[inputs.ipmi.tags]` 指定其它标签：
 
 ``` toml
  [inputs.ipmi.tags]

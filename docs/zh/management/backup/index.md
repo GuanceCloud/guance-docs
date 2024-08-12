@@ -21,7 +21,7 @@
 
 ## 前提条件
 
-观测云商业版用户可使用数据转发功能，[体验版](../billing/trail.md)用户需先[升级商业版](../billing/commercial-version.md)。
+观测云商业版用户可使用数据转发功能，[体验版](../../plans/trail.md)用户需先[升级商业版](../../plans/trail.md#upgrade-commercial)。
 
 ## 新建规则
 
@@ -142,19 +142,23 @@
 
 ![](../img/rule-update-2.png)
 
-> 关于查看器具体操作，可参考 [查看器的强大之处](../getting-started/function-details/explorer-search.md)。
+> 关于查看器具体操作，可参考 [查看器的强大之处](../../getting-started/function-details/explorer-search.md)。
 
 ## 更多阅读
 
+<font size=3>
+
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 数据转发计费逻辑</font>](../billing/billing-method/billing-item.md#backup)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 数据转发计费逻辑</font>](../../billing/billing-method/billing-item.md#backup)
 
 
 </div>
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 日志数据转发到 OSS 最佳实践</font>](../best-practices/partner/log-backup-to-oss-by-func.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 日志数据转发到 OSS 最佳实践</font>](../../best-practices/partner/log-backup-to-oss-by-func.md)
 
 </div>
+
+</font>

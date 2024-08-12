@@ -22,7 +22,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | name | string | Y | 角色名<br>例子: 角色1号 <br>允许为空: False <br>最大长度: 256 <br> |
-| desc | string |  | 角色的描述信息<br>例子: CUSTOM <br>允许为空: False <br>允许空字符串: True <br>最大长度: 3000 <br> |
+| desc | string |  | 角色的描述信息<br>例子: CUSTOM <br>允许为空: False <br>允许为空字符串: True <br>最大长度: 3000 <br> |
 | keys | array |  | 选中的权限列表,必须至少要有一个权限<br>例子: [] <br>允许为空: False <br> |
 
 ## 参数补充说明

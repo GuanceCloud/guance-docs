@@ -34,6 +34,7 @@ Prometheus 有一套完善的 Kubernetes 应用指标采集方案，流程简述
         any
         matchNames
 - ServiceMonitor:
+    - bearerTokenFile
     - targetLabels
     - podTargetLabels
     - endpoints:
@@ -42,13 +43,24 @@ Prometheus 有一套完善的 Kubernetes 应用指标采集方案，流程简述
           path
           params
           tlsConfig
+              caFile
+              certFile
+              keyFile
               insecureSkipVerify
     - namespaceSelector:
         any
         matchNames
 ```
 
-注意：`tlsConfig` 目前只支持配置 insecureSkipVerify，暂不支持从 Kubernetes Secret/ConfigMap 获取证书。
+注意：`tlsConfig` 暂不支持从 Kubernetes Secret/ConfigMap 获取证书。
+
+`params` 支持以 `measurement` 字段来指定数据的指标集，例如：
+
+```yaml
+params:
+    measurement:
+    - new-measurement
+```
 
 ## 示例 {#example}
 
@@ -144,7 +156,7 @@ $ kubectl apply -f pod-monitor.yaml
 - port: client
 - path: `/nacos/actuator/prometheus`
 
-配置参数[文档](https://doc.crds.dev/github.com/prometheus-operator/kube-prometheus/monitoring.coreos.com/PodMonitor/v1@v0.7.0){:target="_blank"}，目前 Datakit 只支持 require 部分，暂不支持诸如 `baseAuth` `bearerToeknSecret` 和 `tlsConfig` 等认证配置。
+配置参数[文档](https://doc.crds.dev/github.com/prometheus-operator/kube-prometheus/monitoring.coreos.com/PodMonitor/v1@v0.7.0){:target="_blank"}，目前 Datakit 只支持 require 部分，暂不支持诸如 `baseAuth` `bearerTokenSecret` 和 `tlsConfig` 等认证配置。
 
 ### 指标集和 tags {#measurement-and-tags}
 

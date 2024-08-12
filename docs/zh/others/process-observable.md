@@ -60,7 +60,7 @@
 
 4. 配置完成后， 使用命令 datakit --restart，重启datakit 即可生效。
 
-若您通过 [K8S daemonset 安装 DataKit](../datakit/datakit-daemonset-deploy) ，支持以环境变量的方式修改进程采集器的配置参数。更多详情可参考文档 [进程采集器](../datakit/host_processes.md)。
+若您通过 [K8S daemonset 安装 DataKit](../datakit/datakit-daemonset-deploy) ，支持以环境变量的方式修改进程采集器的配置参数。更多详情可参考文档 [进程采集器](../integrations/host_processes.md)。
 
 | 环境变量名                              | 对应的配置参数项 | 参数示例                                                     |
 | --------------------------------------- | :--------------- | :----------------------------------------------------------- |

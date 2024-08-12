@@ -53,24 +53,45 @@ dashboard:
 3. 在观测云平台，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
-配置好火山引擎-MongoDB 副本集监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [火山引擎 MongoDB 监控指标详情](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_MongoDB_Replica){:target="_blank"}
+配置好火山引擎-MongoDB 副本集监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [火山引擎 MongoDB 监控指标详情](https://console.volcengine.com/cloud_monitor/metric?namespace=VCM_MongoDB_Replica){:target="_blank"}
 
-> 注意：需要在 `volcengine` MongoDB 控制台安装监控插件
+|`MetricName` |`Subnamespace` |指标中文名称 |MetricUnit | Dimension|
+| ---- |-------------------------------------| :----: |:----: |:----: |
+|`AggregatedCpuUtil` |`instance` |CPU使用率 |Percent | ResourceID|
+|`AggregatedMemUtil` |`instance` |内存使用率 |Percent | ResourceID|
+|`AggregatedTotalDiskUtil` |`instance` |磁盘总空间使用率 |Percent | ResourceID|
+|`NetworkReceiveThroughput` |`replica` |网络输入速率 |Bytes/Second(SI) | ResourceID,Node|
+|`RunningConcurrentWriteRequest` |`replica` |当前写并发请求数 |Count | ResourceID,Node|
+|`LogDiskUsage` |`replica` |日志磁盘使用量 |Bytes(SI) | ResourceID,Node|
+|`RunningConcurrentReadRequest` |`replica` |当前读并发请求数 |Count | ResourceID,Node|
+|`CommandOperationPerSec` |`replica` |每秒COMMAND操作数 |Count/Second | ResourceID,Node|
+|`ReplicationDelay` |`replica` |主备延时 |Second | ResourceID,Node|
+|`CurrConn` |`replica` |当前连接数 |Count | ResourceID,Node|
+|`TotalDiskUsage` |`replica` |磁盘总使用量 |Bytes(SI) | ResourceID,Node|
+|`UpdateOperationPerSec` |`replica` |每秒UPDATE操作数 |Count/Second | ResourceID,Node|
+|`MaxDiskConfigured` |`replica` |配置最大可用磁盘空间 |Bytes(SI) | ResourceID,Node|
+|`TimeOutCursor` |`replica` |cursor超时数 |Count | ResourceID,Node|
+|`NetworkTransmitThroughput` |`replica` |网络输出速率 |Bytes/Second(SI) | ResourceID,Node|
+|`GlobalWaitReadLockQueue` |`replica` |全局读锁的等待队列长度 |Count | ResourceID,Node|
+|`AvailConcurrentReadRequest` |`replica` |可用读并发请求数 |Count | ResourceID,Node|
+|`DataDiskUsage` |`replica` |数据磁盘使用量 |Bytes(SI) | ResourceID,Node|
+|`ReadIntoCachePerSec` |`replica` |每秒读入cache的数据量 |Bytes/Second(SI) | ResourceID,Node|
+|`TotalDiskUtil` |`replica` |磁盘总使用率 |Percent | ResourceID,Node|
+|`GlobalWaitWriteLockQueue` |`replica` |全局写锁的等待队列长度 |Count | ResourceID,Node|
+|`TotalOpenCursor` |`replica` |cursor打开总数 |Count | ResourceID,Node|
+|`GetmoreOperationPerSec` |`replica` |每秒`GETMORE`操作数 |Count/Second | ResourceID,Node|
+|`MemUtil` |`replica` |内存使用率 |Percent | ResourceID,Node|
+|`GlobalWaitTotalLockQueue` |`replica` |全局锁的等待队列总长度 |Count | ResourceID,Node|
+|`CpuUtil` |`replica` |CPU使用率 |Percent | ResourceID,Node|
+|`QueryOperationPerSec` |`replica` |每秒QUERY操作数 |Count/Second | ResourceID,Node|
+|`DeleteOperationPerSec` |`replica` |每秒DELETE操作数 |Count/Second | ResourceID,Node|
+|`AvailConcurrentWriteRequest` |`replica` |可用写并发请求数 |Count | ResourceID,Node|
+|`InsertOperationPerSec` |`replica` |每秒INSERT操作数 |Count/Second | ResourceID,Node|
+|`WrittenFromCachePerSec` |`replica` |每秒从cache写到磁盘的数据量 |Bytes/Second(SI) | ResourceID,Node|
+|`NetworkRequestPerSec` |`replica` |网络处理请求数 |Count/Second | ResourceID,Node|
+|`SlowOpCount` |`replica` |慢查询数统计 |Count | ResourceID,Node|
+|`OplogAvailTime` |`replica` |`Oplog`可用时间 |Second | ResourceID,Node|
 
-| Metric | Description                          | Unit |
-| ---- |-------------------------------------| :----: |
-|`CpuUtil` |CPU使用率|Percent|
-|`MemUtil` |内存使用率|Percent|
-|`TotalDiskUtil` | 磁盘使用率 |Percent|
-|`CurrConn` | 当前连接数 |Count|
-|`DataDiskUsage`|数据磁盘使用量|Bytes(SI)|
-|`ReplicationDelay`|主备延时| Second |
-|`GetmoreOperationPerSec`| 每秒 `GETMORE` 操作数 | Count/Second |
-|`QueryOperationPerSec`|每秒 QUERY 操作数| Count/Second |
-|`DeleteOperationPerSec`| 每秒 DELETE 操作数 | Count/Second |
-|`InsertOperationPerSec`| 每秒 INSERT 操作数 | Count/Second|
-|`UpdateOperationPerSec`| 每秒 UPDATE 操作数 | Count/Second|
-|`CommandOperationPerSec`| 每秒 COMMAND 操作数 | Count/Second|
 
 
 

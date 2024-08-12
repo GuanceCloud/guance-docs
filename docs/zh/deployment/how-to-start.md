@@ -1,11 +1,11 @@
 # 如何开始
 ---
 
-观测云社区版部署完成以后，需要进行配置并激活社区版才能开始使用。
+观测云部署完成以后，需要进行配置并激活才能开始使用。
 
 ## 前提条件
 
-您可以参考文档 [云上部署](cloud-deployment-manual.md) 或者 [线下环境部署](offline-deployment-manual.md)  或者 [阿里云计算巢部署](https://help.aliyun.com/document_detail/416711.html?spm=5176.26884182.J_4028621810.1.3a4b7bbbT89v0m)，进行线上或者线下部署。部署完成后，您可以获得以下观测云社区版相关平台的登录方式。
+您可以参考文档 [云上部署](cloud-deployment-manual.md) 或者 [线下环境部署](offline-deployment-manual.md)  或者 [阿里云计算巢部署](https://help.aliyun.com/document_detail/416711.html?spm=5176.26884182.J_4028621810.1.3a4b7bbbT89v0m)，进行线上或者线下部署。部署完成后，您可以获得以下观测云相关平台的登录方式。
 
 - dataflux 【**用户前台（观测云）**】
 - df-management 【**管理后台**】
@@ -15,7 +15,7 @@
 
 ### Step1：部署 DataWay
 
-观测云社区版部署完成后，需要先部署 DataWay，才能通过 DataWay 来上报数据到观测云社区版工作空间。在这期间我们会有一个 DataWay 数据网关地址，用于激活社区版。
+观测云部署完成后，需要先部署 DataWay，才能通过 DataWay 来上报数据到观测云工作空间。在这期间我们会有一个 DataWay 数据网关地址，用于激活部署版。
 
 #### 新建 DataWay
 使用管理员账号，进入“**观测云管理后台**”的“**数据网关**”菜单，点击“新建 DataWay”，添加一个数据网关 DataWay 。
@@ -38,35 +38,37 @@ DataWay 添加完成后，可获取到一个 DataWay 的安装脚本，复制安
 
 ![](img/12.deployment_3.png)
 
-### Step2：激活社区版
+### Step2：激活部署版
 
-#### 注册社区版账号
-打开社区版注册网址（[https://boss.guance.com/index.html#/signup?type=community](https://boss.guance.com/index.html#/signup?type=community)），根据提示注册社区版账号。
+#### 注册部署版账号
 
-![](img/12.deployment_4.png)
+打开部署版注册网址（[https://boss.guance.com/index.html#/signup?type=private](https://boss.guance.com/index.html#/signup?type=private），根据提示注册部署版账号。
 
-注册完成后，进入观测云社区版费用中心。
+![](img/6.deployment_3.png)
 
+注册完成后，进入观测云部署版费用中心。
+
+<!--
 ![](img/12.deployment_5.png)
-
+-->
 #### 获取 AK/SK
 
-在观测云社区版费用中心的“AK 管理”，点击“创建 AK”。
+在观测云部署版费用中心的“AK 管理”，点击“创建 AK”。
 
-![](img/12.deployment_6.png)
+![](img/6.deployment_6.png)
 
 #### 获取 License
 
-在观测云社区版费用中心的“License 管理”，点击“创建 License”。
+在观测云部署版费用中心的“License 管理”，点击“创建 License”。
 
-![](img/12.deployment_7.png)
+![](img/6.deployment_7.png)
 
-#### 激活社区版
+#### 激活部署版
 打开观测云 Launcher，在右上角设置，点击“License 激活及 AK/SK 配置”。
 
 ![](img/12.deployment_8.png)
 
-在观测云 Launcher 的“观测云激活”对话框中，填入 AK/SK、License 和 数据网关地址，完成社区版激活。
+在观测云 Launcher 的“观测云激活”对话框中，填入 AK/SK、License 和 数据网关地址，完成部署版激活。
 注意：您可以扫码关注观测云服务号，获取更多观测云的官方信息。
 
 ![](img/12.deployment_9.png)
@@ -91,7 +93,7 @@ DataWay 添加完成后，可获取到一个 DataWay 的安装脚本，复制安
 
 ![](img/12.deployment_13.png)
 #### 登录观测云
-打开观测云社区版访问地址，即可使用以上创建的用户登录到对应的工作空间开始使用观测云的所有功能。详细功能使用介绍可参考 [观测云帮助手册](https://docs.guance.com/)。
+打开观测云部署版访问地址，即可使用以上创建的用户登录到对应的工作空间开始使用观测云的所有功能。详细功能使用介绍可参考 [观测云帮助手册](https://docs.guance.com/)。
 
 ![](img/12.deployment_14.png)
 

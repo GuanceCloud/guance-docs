@@ -1,5 +1,5 @@
 ---
-title: '华为云 RabbitMQ'
+title: '华为云 DMS RabbitMQ'
 tags: 
   - 华为云
 summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。'
@@ -15,7 +15,7 @@ monitor:
 
 
 <!-- markdownlint-disable MD025 -->
-# 华为云 RabbitMQ
+# 华为云 DMS RabbitMQ
 <!-- markdownlint-enable -->
 
 使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。

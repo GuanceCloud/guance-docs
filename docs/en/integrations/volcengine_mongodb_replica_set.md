@@ -1,7 +1,7 @@
 ---
 title: 'Volcengine MongoDB Replica Set'
 tags: 
-  - `Volcengine`
+  - Volcengine
 summary: 'Volcengine MongoDB replica set metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc.'
 __int_icon: 'icon/volcengine_mongodb'
 dashboard:
@@ -52,23 +52,45 @@ We collected some configurations by default, as described in the Metrics column 
 
 
 ## Metric  {#metric}
-Configure `Volcengine` Cloud - MongoDB Replica monitoring. The default metric set is as follows. You can collect more metrics by configuring them [`Volcengine` MongoDB Replica Monitor Metrics Details](https://console.volcengine.com/cloud_monitor/metricDoc?tabKey=metric&namespace=VCM_MongoDB_Replica){:target="_blank"}
+Configure `Volcengine` Cloud - MongoDB Replica monitoring. The default metric set is as follows. You can collect more metrics by configuring them [`Volcengine` MongoDB Replica Monitor Metrics Details](https://console.volcengine.com/cloud_monitor/metric?namespace=VCM_MongoDB_Replica){:target="_blank"}
 
+|`MetricName` |`Subnamespace` |Description |MetricUnit | Dimension|
+| ---- |-------------------------------------| :----: |:----: |:----: |
+|`AggregatedCpuUtil` |`instance` |CPU usage |Percent | ResourceID|
+|`AggregatedMemUtil` |`instance` |Memory usage |Percent | ResourceID|
+|`AggregatedTotalDiskUtil` |`instance` |Total disk space usage |Percent | ResourceID|
+|`NetworkReceiveThroughput` |`replica` |Network input rate |Bytes/Second(SI) | ResourceID,Node|
+|`RunningConcurrentWriteRequest` |`replica` |Current number of concurrent write requests |Count | ResourceID,Node|
+|`LogDiskUsage` |`replica` |Log disk usage |Bytes(SI) | ResourceID,Node|
+|`RunningConcurrentReadRequest` |`replica` |Current number of concurrent read requests |Count | ResourceID,Node|
+|`CommandOperationPerSec` |`replica` |COMMAND operations per second |Count/Second | ResourceID,Node|
+|`ReplicationDelay` |`replica` |Master/slave delay |Second | ResourceID,Node|
+|`CurrConn` |`replica` |Current number of connections |Count | ResourceID,Node|
+|`TotalDiskUsage` |`replica` |Total disk usage |Bytes(SI) | ResourceID,Node|
+|`UpdateOperationPerSec` |`replica` |Number of UPDATE operations per second |Count/Second | ResourceID,Node|
+|`MaxDiskConfigured` |`replica` |Configure the maximum available disk space |Bytes(SI) | ResourceID,Node|
+|`TimeOutCursor` |`replica` |Cursor timeout count |Count | ResourceID,Node|
+|`NetworkTransmitThroughput` |`replica` |Network output rate |Bytes/Second(SI) | ResourceID,Node|
+|`GlobalWaitReadLockQueue` |`replica` |The length of the waiting queue for the global read lock |Count | ResourceID,Node|
+|`AvailConcurrentReadRequest` |`replica` |Available concurrent read requests |Count | ResourceID,Node|
+|`DataDiskUsage` |`replica` |Data disk usage |Bytes(SI) | ResourceID,Node|
+|`ReadIntoCachePerSec` |`replica` |The amount of data read into the cache per second |Bytes/Second(SI) | ResourceID,Node|
+|`TotalDiskUtil` |`replica` |Total disk usage |Percent | ResourceID,Node|
+|`GlobalWaitWriteLockQueue` |`replica` |The length of the waiting queue for the global write lock |Count | ResourceID,Node|
+|`TotalOpenCursor` |`replica` |Total number of cursors opened |Count | ResourceID,Node|
+|`GetmoreOperationPerSec` |`replica` |`GETMORE` operations per second |Count/Second | ResourceID,Node|
+|`MemUtil` |`replica` |Memory usage |Percent | ResourceID,Node|
+|`GlobalWaitTotalLockQueue` |`replica` |Total length of the waiting queue for the global lock |Count | ResourceID,Node|
+|`CpuUtil` |`replica` |CPU usage |Percent | ResourceID,Node|
+|`QueryOperationPerSec` |`replica` |QUERY operations per second |Count/Second | ResourceID,Node|
+|`DeleteOperationPerSec` |`replica` |Number of DELETE operations per second |Count/Second | ResourceID,Node|
+|`AvailConcurrentWriteRequest` |`replica` |Available concurrent write requests |Count | ResourceID,Node|
+|`InsertOperationPerSec` |`replica` |Number of INSERT operations per second |Count/Second | ResourceID,Node|
+|`WrittenFromCachePerSec` |`replica` |The amount of data written from cache to disk per second |Bytes/Second(SI) | ResourceID,Node|
+|`NetworkRequestPerSec` |`replica` |Number of network processing requests |Count/Second | ResourceID,Node|
+|`SlowOpCount` |`replica` |Slow query statistics |Count | ResourceID,Node|
+|`OplogAvailTime` |`replica` |`Oplog` availability time |Second | ResourceID,Node|
 
-| Metric | Description                          | Unit |
-| ---- |-------------------------------------| :----: |
-|`CpuUtil` |CPU Usage|Percent|
-|`MemUtil` |Mem Usage|Percent|
-|`TotalDiskUtil` | Disk Usage |Percent|
-|`CurrConn` | Current connections |Count|
-|`DataDiskUsage`|Data disk usage|Bytes(SI)|
-|`ReplicationDelay`|Main backup delay| Second |
-|`GetmoreOperationPerSec`| GetMORE operations per second | Count/Second |
-|`QueryOperationPerSec`|Query operations per second| Count/Second |
-|`DeleteOperationPerSec`| Delete operations per second | Count/Second |
-|`InsertOperationPerSec`| Insert operations per second | Count/Second|
-|`UpdateOperationPerSec`| Update operations per second | Count/Second|
-|`CommandOperationPerSec`|Command operations per second| Count/Second|
 
 ## Object  {#object}
 The collected `Volcengine` Cloud **MongoDB** object data structure can see the object data from 「Infrastructure-Custom」

@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.29.1）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.34.0）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -116,6 +116,9 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       # or use pure memory to cache the reftab data
       sqlite_mem_mode = false
     
+      # append run info
+      disable_append_run_info = false
+    
       # Offload data processing tasks to post-level data processors.
       [pipeline.offload]
         receiver = "datakit-http"
@@ -169,6 +172,13 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       max_cache_count = 1000
       flush_workers   = 0 # default to (cpu_core * 2 + 1)
       flush_interval  = "10s"
+    
+      # Queue size of feed.
+      feed_chan_size = 1
+    
+      # Set blocking if queue is full.
+      # NOTE: Global blocking mode may consume more memory on large metric points.
+      global_blocking = false
     
       # Disk cache on datakit upload failed
       enable_cache = false
@@ -244,7 +254,7 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       # HTTP body content type, other candidates are(case insensitive):
       #  - v1: line-protocol
       #  - v2: protobuf
-      content_encoding = "v1"
+      content_encoding = "v2"
     
       # Enable GZip to upload point data.
       #
@@ -360,6 +370,13 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
         ssh_private_key_path = ""
         ssh_private_key_password = ""
     
+    ################################################
+    # crypto key or key filePath.
+    ################################################
+    [crypto]
+      aes_key = ""
+      aes_Key_file = ""
+    
     ```
 <!-- markdownlint-enable -->
 
@@ -424,27 +441,39 @@ Datakit 允许给其采集的所有数据配置全局标签，全局标签分为
 - 选举类全局标签：采集的数据来自某个公共（远程）实体，比如 MySQL/Redis 等，这些采集一般都参与选举，故这些数据上不会带上当前主机相关的标签
 
 ```toml
-[global_host_tags]
+[global_host_tags] # 这里面的我们称之为「全局主机标签」：GHT
   ip   = "__datakit_ip"
   host = "__datakit_hostname"
 
 [election]
-  [election.tags]
+  [election.tags] # 这里面的我们称之为「全局选举标签」：GET
     project = "my-project"
     cluster = "my-cluster"
 ```
 
-加全局 Tag 时，有几个地方要注意：
+加全局标签时，有几个地方要注意：
 
-- 这些全局 Tag 的值可以用 DataKit 目前已经支持的几个变量（双下划线（`__`）前缀和 `$` 都是可以的）：
+1. 这些全局标签的值可以用 Datakit 目前已经支持的几个通配（双下划线（`__`）前缀和 `$` 都是可以的）：
 
-    - `__datakit_ip/$datakit_ip`：标签值会设置成 DataKit 获取到的第一个主网卡 IP
-    - `__datakit_hostname/$datakit_hostname`：标签值会设置成 DataKit 的主机名
+    1. `__datakit_ip/$datakit_ip`：标签值会设置成 DataKit 获取到的第一个主网卡 IP
+    1. `__datakit_hostname/$datakit_hostname`：标签值会设置成 DataKit 的主机名
 
-- 由于 [DataKit 数据传输协议限制](apis.md#lineproto-limitation)，不要在全局标签（Tag）中出现任何指标（Field）字段，否则会因为违反协议导致数据处理失败。具体参见具体采集器的字段列表。当然，也不要加太多 Tag，而且每个 Tag 的 Key 以及 Value 长度都有限制。
-- 如果被采集上来的数据中，本来就带有同名的 Tag，那么 DataKit 不会再追加这里配置的全局 Tag
-- 即使 `global_host_tags` 不配置任何全局 Tag，DataKit 仍然会在所有数据上尝试添加一个 `host=$HOSTNAME` 的全局 Tag
-- 这俩类全局标签是可以有交集的，比如都可以在其中设置一个 `project = "my-project"` 的标签
+1. 由于 [DataKit 数据传输协议限制](apis.md#lineproto-limitation)，不要在全局标签（Tag）中出现任何指标（Field）字段，否则会因为违反协议导致数据处理失败。具体参见具体采集器的字段列表。当然，也不要加太多标签，而且每个标签的 Key 以及 Value 长度都有限制。
+1. 如果被采集上来的数据中，本来就带有同名的标签，那么 DataKit 不会再追加这里配置的全局标签
+1. 即使 GET 中没有任何配置，DataKit 仍然会在所有数据上尝试添加一个 `host=__datakit_hostname` 的标签
+1. 这俩类全局标签（GHT/GET）是可以有交集的，比如都可以在其中设置一个 `project = "my-project"` 的标签
+1. 当没有开启选举的情况下，GET 沿用 GHT（它至少有一个 `host` 的标签）中的所有标签
+1. 选举类采集器默认追加 GET，非选举类采集器默认追加 GHT。
+
+<!-- markdownlint-disable MD046 -->
+???+ tip "如何区分选举和非选举采集器？"
+
+    在采集器文档中，在顶部有类似如下标识，它们表示当前采集器的平台适配情况以及采集特性：
+
+    :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · :fontawesome-solid-flag-checkered:
+
+    若带有 :fontawesome-solid-flag-checkered: 则表示当前采集器是选举类采集器。
+<!-- markdownlint-enable -->
 
 ### 全局 Tag 在远程采集时的设置 {#notice-global-tags}
 
@@ -466,7 +495,7 @@ Datakit 允许给其采集的所有数据配置全局标签，全局标签分为
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    自 [1.4.20](changelog.md#cl-1.4.20) 之后，DataKit 默认会以被采集服务的 IP/Host 等字段为 `host` 字段，故这一问题升级之后将得到改善。建议大家升级到该版本来避免这一问题。
+    自 [1.4.20](changelog.md#cl-1.4.20) 之后，DataKit 默认会以被采集服务连接地址中的的 IP/Host 作为 `host` 的标签值。
 <!-- markdownlint-enable -->
 
 ## DataKit 自身运行日志配置 {#logging-config}
@@ -502,7 +531,7 @@ DataKit 默认日志等级为 `info`。编辑 `datakit.conf`，可修改日志�
     reserved_capacity = 4096
 ```
 
-同时，[Datakit 配置](datakit-conf.md#dataway-settings)中可以开启 `content_encoding = "v2"` 的传输编码，相比 v1，它的内存和 CPU 开销都更低。
+同时，[Datakit 配置](datakit-conf.md#dataway-settings)中可以开启 `content_encoding = "v2"` 的传输编码（[:octicons-tag-24: Version-1.32.0](changelog.md#cl-1.32.0) 已默认启用 v2），相比 v1，它的内存和 CPU 开销都更低。
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
@@ -658,6 +687,197 @@ ulimit 默认配置为 64000。在 Kubernetes 中，通过[设置 `ENV_ULIMIT`](
 ### :material-chat-question: 资源限制 CPU 使用率说明 {#cgroup-how}
 
 CPU 使用率是百分比制（最大值 100.0），以一个 8 核心的 CPU 为例，如果限额 `cpu_max` 为 20.0（即 20%），则 DataKit 最大的 CPU 消耗，在 top 命令上将显示为 160% 左右。
+
+### 采集器密码保护 {#secrets_management}
+
+[:octicons-tag-24: Version-1.31.0](changelog.md#cl-1.31.0)
+
+
+如果您希望避免在配置文件中以明文存储密码，则可以使用该功能。
+
+DataKit 在启动加载采集器配置文件时遇到 `ENC[]` 时会在文件、env、或者 AES 加密得到密码后替换文本并重新加载到内存中，以得到正确的密码。
+
+ENC 目前支持三种方式：
+
+- 文件形式（推荐）：
+
+    配置文件中密码格式： ENC[file:///path/to/enc4dk] ，在对应的文件中填写正确的密码即可。
+
+- AES 加密方式。
+
+    需要在主配置文件 `datakit.conf`  中配置秘钥： crypto_AES_key 或者 crypto_AES_Key_filePath, 秘钥长度是 16 位。
+    密码处的填写格式为： `ENC[aes://5w1UiRjWuVk53k96WfqEaGUYJ/Oje7zr8xmBeGa3ugI=]`
+
+
+接下来以 `mysql` 为例，说明两种方式如何配置使用：
+
+1 文件形式
+
+首先，将明文密码放到文件 `/usr/local/datakit/enc4mysql` 中，然后修改配置文件 mysql.conf:
+
+```toml
+# 部分配置
+[[inputs.mysql]]
+  host = "localhost"
+  user = "datakit"
+  pass = "ENC[file:///usr/local/datakit/enc4mysql]"
+  port = 3306
+  # sock = "<SOCK>"
+  # charset = "utf8"
+```
+
+DK 会从 `/usr/local/datakit/enc4mysql` 中读取密码并替换密码，替换后为 `pass = "Hello*******"`
+
+2 AES 加密方式
+
+首先在 `datakit.conf` 中配置秘钥：
+
+```toml
+# crypto key or key filePath.
+[crypto]
+  # 配置秘钥
+  aes_key = "0123456789abcdef"
+  # 或者，将秘钥放到文件中并在此配置文件位置。
+  aes_Key_file = "/usr/local/datakit/mykey"
+```
+
+`mysql.conf` 配置文件：
+
+```toml
+pass = "ENC[aes://5w1UiRjWuVk53k96WfqEaGUYJ/Oje7zr8xmBeGa3ugI=]"
+```
+
+注意，通过 `AES` 加密得到的密文需要完整的填入。以下是代码示例：
+<!-- markdownlint-disable MD046 -->
+=== "Golang"
+
+    ```go
+    // AESEncrypt  加密。
+    func AESEncrypt(key []byte, plaintext string) (string, error) {
+        block, err := aes.NewCipher(key)
+        if err != nil {
+            return "", err
+        }
+    
+        // PKCS7 padding
+        padding := aes.BlockSize - len(plaintext)%aes.BlockSize
+        padtext := bytes.Repeat([]byte{byte(padding)}, padding)
+        plaintext += string(padtext)
+        ciphertext := make([]byte, aes.BlockSize+len(plaintext))
+        iv := ciphertext[:aes.BlockSize]
+        if _, err := io.ReadFull(rand.Reader, iv); err != nil {
+            return "", err
+        }
+        mode := cipher.NewCBCEncrypter(block, iv)
+        mode.CryptBlocks(ciphertext[aes.BlockSize:], []byte(plaintext))
+    
+        return base64.StdEncoding.EncodeToString(ciphertext), nil
+    }
+    
+    // AESDecrypt AES  解密。
+    func AESDecrypt(key []byte, cryptoText string) (string, error) {
+        ciphertext, err := base64.StdEncoding.DecodeString(cryptoText)
+        if err != nil {
+            return "", err
+        }
+    
+        block, err := aes.NewCipher(key)
+        if err != nil {
+            return "", err
+        }
+    
+        if len(ciphertext) < aes.BlockSize {
+            return "", fmt.Errorf("ciphertext too short")
+        }
+    
+        iv := ciphertext[:aes.BlockSize]
+        ciphertext = ciphertext[aes.BlockSize:]
+    
+        mode := cipher.NewCBCDecrypter(block, iv)
+        mode.CryptBlocks(ciphertext, ciphertext)
+    
+        // Remove PKCS7 padding
+        padding := int(ciphertext[len(ciphertext)-1])
+        if padding > aes.BlockSize {
+            return "", fmt.Errorf("invalid padding")
+        }
+        ciphertext = ciphertext[:len(ciphertext)-padding]
+    
+        return string(ciphertext), nil
+    }
+    ```
+
+=== "Java"
+
+    ```java
+    import javax.crypto.Cipher;
+    import javax.crypto.spec.IvParameterSpec;
+    import javax.crypto.spec.SecretKeySpec;
+    import java.security.SecureRandom;
+    import java.util.Base64;
+    
+    public class AESUtils {
+        public static String AESEncrypt(byte[] key, String plaintext) throws Exception {
+            javax.crypto.Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
+    
+            SecureRandom random = new SecureRandom();
+            byte[] iv = new byte[16];
+            random.nextBytes(iv);
+            IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
+            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivParameterSpec);
+            byte[] encrypted = cipher.doFinal(plaintext.getBytes());
+            byte[] ivAndEncrypted = new byte[iv.length + encrypted.length];
+            System.arraycopy(iv, 0, ivAndEncrypted, 0, iv.length);
+            System.arraycopy(encrypted, 0, ivAndEncrypted, iv.length, encrypted.length);
+    
+            return Base64.getEncoder().encodeToString(ivAndEncrypted);
+        }
+    
+        public static String AESDecrypt(byte[] key, String cryptoText) throws Exception {
+            byte[] ciphertext = Base64.getDecoder().decode(cryptoText);
+    
+            SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
+    
+            if (ciphertext.length < 16) {
+                throw new Exception("ciphertext too short");
+            }
+    
+            byte[] iv = new byte[16];
+            System.arraycopy(ciphertext, 0, iv, 0, 16);
+            byte[] encrypted = new byte[ciphertext.length - 16];
+            System.arraycopy(ciphertext, 16, encrypted, 0, ciphertext.length - 16);
+    
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
+            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivParameterSpec);
+    
+            byte[] decrypted = cipher.doFinal(encrypted);
+    
+            return new String(decrypted);
+        }
+    }
+    public static void main(String[] args) {
+        try {
+            String key = "0123456789abcdef"; // 16, 24, or 32 bytes AES key
+            String plaintext = "HelloAES9*&.";
+            byte[] keyBytes = key.getBytes("UTF-8");
+
+            String encrypted = AESEncrypt(keyBytes, plaintext);
+            System.out.println("Encrypted text: " + encrypted);
+
+            String decrypt = AESDecrypt(keyBytes, encrypted);
+            System.out.println("解码后的是："+decrypt);
+        } catch (Exception e) {
+            System.out.println(e);
+            e.printStackTrace();
+        }
+    }
+    ```
+<!-- markdownlint-enable -->
+
+K8S 环境下可以通过环境变量方式添加私钥：`ENV_CRYPTO_AES_KEY` 和 `ENV_CRYPTO_AES_KEY_FILEPATH` 可以参考：[DaemonSet 安装-其他](datakit-daemonset-deploy.md#env-others)
+
 
 ## 延伸阅读 {#more-reading}
 

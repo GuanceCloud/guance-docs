@@ -1,26 +1,26 @@
 ---
-title: 'HUAWEI SYS.AS'
+title: 'HUAWEI AS'
 tags: 
   - 华为云
-summary: '华为云 SYS.AS的核心性能指标包括CPU利用率、内存使用率、磁盘I/O、网络吞吐量和系统负载等，这些都是评估和优化自动缩放系统性能的关键指标。'
+summary: '华为云 AS 的核心性能指标包括CPU利用率、内存使用率、磁盘I/O、网络吞吐量和系统负载等，这些都是评估和优化自动缩放系统性能的关键指标。'
 __int_icon: 'icon/huawei_sys_as'
 dashboard:
 
-  - desc: 'HUAWEI SYS.AS 内置视图'
+  - desc: 'HUAWEI AS 内置视图'
     path: 'dashboard/zh/huawei_SYS.AS'
 
 monitor:
-  - desc: 'HUAWEI SYS.AS 监控器'
+  - desc: 'HUAWEI AS 监控器'
     path: 'monitor/zh/huawei_SYS.AS'
 
 ---
 
 <!-- markdownlint-disable MD025 -->
 
-# 华为云 SYS.AS
+# 华为云 AS
 <!-- markdownlint-enable -->
 
-华为云 SYS.AS 的核心性能指标包括 CPU 利用率、内存使用率、磁盘I/O、网络吞吐量和系统负载等，这些都是评估和优化自动缩放系统性能的关键指标。
+华为云 AS（Auto Scaling） 的核心性能指标包括 CPU 利用率、内存使用率、磁盘I/O、网络吞吐量和系统负载等，这些都是评估和优化自动缩放系统性能的关键指标。
 
 
 ## 配置 {#config}

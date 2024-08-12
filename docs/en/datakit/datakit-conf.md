@@ -19,7 +19,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is `datakit.conf`, here is the example sample(1.29.1):
+Datakit main configure is `datakit.conf`, here is the example sample(1.34.0):
 
 <!-- markdownlint-disable MD046 -->
 ??? info "`datakit.conf`"
@@ -116,6 +116,9 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.29.1):
       # or use pure memory to cache the reftab data
       sqlite_mem_mode = false
     
+      # append run info
+      disable_append_run_info = false
+    
       # Offload data processing tasks to post-level data processors.
       [pipeline.offload]
         receiver = "datakit-http"
@@ -169,6 +172,13 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.29.1):
       max_cache_count = 1000
       flush_workers   = 0 # default to (cpu_core * 2 + 1)
       flush_interval  = "10s"
+    
+      # Queue size of feed.
+      feed_chan_size = 1
+    
+      # Set blocking if queue is full.
+      # NOTE: Global blocking mode may consume more memory on large metric points.
+      global_blocking = false
     
       # Disk cache on datakit upload failed
       enable_cache = false
@@ -244,7 +254,7 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.29.1):
       # HTTP body content type, other candidates are(case insensitive):
       #  - v1: line-protocol
       #  - v2: protobuf
-      content_encoding = "v1"
+      content_encoding = "v2"
     
       # Enable GZip to upload point data.
       #
@@ -360,6 +370,13 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.29.1):
         ssh_private_key_path = ""
         ssh_private_key_password = ""
     
+    ################################################
+    # crypto key or key filePath.
+    ################################################
+    [crypto]
+      aes_key = ""
+      aes_Key_file = ""
+    
     ```
 <!-- markdownlint-enable -->
 
@@ -414,36 +431,49 @@ DataKit opens an HTTP service to receive external data or provide basic data ser
     See [here](datakit-daemonset-deploy.md#env-http-api).
 <!-- markdownlint-enable -->
 
-## Global Tag Modification  {#set-global-tag}
+## Global Tag Modification {#set-global-tag}
 
 [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6)
 
-DataKit allows you to configure global labels for all the data it collects. Global labels fall into two categories:
+Datakit allows you to configure global tags for all collected data. Global tags are divided into two categories:
 
-- Host class global variable: The collected data is closely related to the current host, such as CPU/memory and other metric data.
-- Environment class global variable: The collected data comes from a public entity, such as MySQL/Redis. These collections are generally elected, so the host-related global tag will not be carried on these data.
+- Host-based Global Tags: Collected data is bound to the current host, such as CPU/memory metrics.
+- Election-based Global Tags: Collected data comes from a common (remote) entity, such as MySQL/Redis, which generally participates in elections. Therefore, these data will not carry tags related to the current host.
 
 ```toml
-[global_host_tags]
-  ip         = "__datakit_ip"
-  host       = "__datakit_hostname"
+[global_host_tags] # These are referred to as 'Global Host Tags': GHT
+  ip   = "__datakit_ip"
+  host = "__datakit_hostname"
 
 [election]
-  [election.tags]
+  [election.tags] # These are referred to as 'Global Election Tags': GET
     project = "my-project"
     cluster = "my-cluster"
 ```
 
-When adding a global Tag, there are several places to pay attention to:
+When adding global tags, there are several points to note:
 
-- These global Tag values are available using several variables currently supported by DataKit (both the double underscore（`__`）prefix and `$` are available):
-    - `__datakit_ip/$datakit_ip`: The tag value is set to the first master network card IP that the DataKit obtains.
-    - `__datakit_hostname/$datakit_hostname`: Tag value is set to the hostname of the DataKit.
+1. The values of these global tags can use several wildcards currently supported by Datakit (both the double underscore (`__`) prefix and `$` are acceptable):
 
-- Do not have any metric Field in the global Tag because of the [DataKit data transmission protocol restrictions](apis.md#lineproto-limitation), otherwise the data processing will fail due to protocol violation. See the field list of specific collectors for details. Of course, don't add too many tags, and there are limits to the length of Key and Value of each Tag.
-- If the collected data has a Tag with the same name, the DataKit will not append the global Tag configured here.
-- Even if `global_host_tags` does not configure any global tags, DataKit will still try to add a global Tag with `host=$HOSTNAME` on all the data.
-- We can set same tags to both global tags, for example, set `project = "my-project"` to both `global_host_tags` and `[election.tags]`
+    1. `__datakit_ip/$datakit_ip`: The tag value will be set to the first primary network card IP obtained by DataKit.
+    1. `__datakit_hostname/$datakit_hostname`: The tag value will be set to the hostname of DataKit.
+
+2. Due to [DataKit Data Transmission Protocol restrictions](apis.md#lineproto-limitation), do not include any metrics (Field) fields in the global tags, as this will lead to data processing failure due to protocol violation. For specific details, refer to the field list of the specific collector. Of course, do not add too many tags, and there are also restrictions on the length of each tag's Key and Value.
+3. If the collected data already contains a tag with the same name, DataKit will not append the configured global tag.
+4. Even if there is no configuration in GET, DataKit will still attempt to add a tag of `host=__datakit_hostname` to all data.
+5. These two types of global tags (GHT/GET) can intersect, such as setting a tag of `project = "my-project"` in both.
+6. When no election is enabled, GET follows all tags in GHT (which has at least a `host` tag).
+7. Election-based collectors default to appending GET, and non-election-based collectors default to appending GHT.
+
+<!-- markdownlint-disable MD046 -->
+???+ tip "How to distinguish between election and non-election collectors?"
+
+    In the collector documentation, there is an identifier similar to the following at the top, which indicates the platform adaptation and collection characteristics of the current collector:
+
+    :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · :fontawesome-solid-flag-checkered:
+
+    If it has :fontawesome-solid-flag-checkered:, it means that the current collector is an election-based collector.
+<!-- markdownlint-enable -->
 
 ### Settings of Global Tag in Remote Collection {#notice-global-tags}
 
@@ -465,7 +495,7 @@ In this case, we can bypass the global tag on DataKit in two ways:
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    Since [1.4.20](changelog.md#cl-1.4.20), DataKit defaults to fields such as IP/host of the collected service as `host`, so this problem will be improved after upgrading. It is recommended that you upgrade to this version to avoid this problem.
+    Starting from version [1.4.20](changelog.md#cl-1.4.20), DataKit defaults to using the IP/Host from the connection address of the collected service as the value for the `host` tag.
 <!-- markdownlint-enable -->
 
 ## DataKit Own Running Log Configuration {#logging-config}
@@ -501,7 +531,7 @@ To optimize Datakit's memory usage under high load conditions, we can enable *Po
     reserved_capacity = 4096
 ```
 
-We can also enable `content_encoding = "v2"` under [Dataway configure](datakit-conf.md#dataway-settings), with v2 encoding, it has lower memory and CPU overhead compared to v1.
+We can also enable `content_encoding = "v2"`([:octicons-tag-24: Version-1.32.0](changelog.md#cl-1.32.0) has enabled v2 by default) under [Dataway configure](datakit-conf.md#dataway-settings), with v2 encoding, it has lower memory and CPU overhead compared to v1.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
@@ -740,6 +770,179 @@ ulimit is configured to 64000 by default.
 <!-- markdownlint-enable -->
 
 CPU utilization is on a percentage basis (maximum 100.0). For an 8-core CPU, if the limit `cpu_max` is 20.0 (that is, 20%), the maximum CPU consumption of DataKit, will be displayed as about 160% on the top command.
+
+### Collector Password Protection {#secrets_management}
+
+[:octicons-tag-24: Version-1.31.0](changelog.md#cl-1.31.0)
+
+If you wish to avoid storing passwords in plain text in configuration files, you can utilize this feature.
+
+When DataKit loads the collector configuration file during startup and encounters `ENC[]`, it will replace the text with the password obtained from a file, environment variable, or AES encryption and reload it into memory to obtain the correct password.
+
+ENC currently supports three methods:
+
+- File Format (Recommended):
+
+  Password format in the configuration file: `ENC[file:///path/to/enc4dk]`. Simply enter the correct password in the corresponding file.
+
+- AES Encryption Method:
+
+  You need to configure the secret key in the main configuration file `datakit.conf`: `crypto_AES_key` or `crypto_AES_Key_filePath`.
+  The password should be formatted as: `ENC[aes://5w1UiRjWuVk53k96WfqEaGUYJ/Oje7zr8xmBeGa3ugI=]`
+
+Here's an example using `mysql` to illustrate how to configure and use these methods:
+
+1 File Format:
+
+First, save the password in the file `/usr/local/datakit/enc4mysql`, then modify the configuration file mysql.conf:
+
+```toml
+# Partial configuration
+[[inputs.mysql]]
+  host = "localhost"
+  user = "datakit"
+  pass = "ENC[file:///usr/local/datakit/enc4mysql]"
+  port = 3306
+  # sock = "<SOCK>"
+  # charset = "utf8"
+```
+
+DK will read the password from `/usr/local/datakit/enc4mysql` and replace it, resulting in `pass = "Hello*******"`
+
+2 AES Encryption Method
+
+First, configure the secret key in `datakit.conf`:
+
+```toml
+# Top-level field in the configuration file
+# Secret key
+crypto_AES_key = "0123456789abcdef"
+# Or secret key file:
+crypto_AES_Key_filePath = "/usr/local/datakit/mykey"
+```
+
+`mysql.conf` file:
+
+```toml
+pass = "ENC[aes://5w1UiRjWuVk53k96WfqEaGUYJ/Oje7zr8xmBeGa3ugI=]"
+```
+
+Note that the cipherText obtained through AES encryption needs to be filled in completely. Here is a code example：
+<!-- markdownlint-disable MD046 -->
+=== "Golang"
+
+    ```go
+    // AESEncrypt.
+    func AESEncrypt(key []byte, plaintext string) (string, error) {
+        block, err := aes.NewCipher(key)
+        if err != nil {
+            return "", err
+        }
+    
+        // PKCS7 padding
+        padding := aes.BlockSize - len(plaintext)%aes.BlockSize
+        padtext := bytes.Repeat([]byte{byte(padding)}, padding)
+        plaintext += string(padtext)
+        ciphertext := make([]byte, aes.BlockSize+len(plaintext))
+        iv := ciphertext[:aes.BlockSize]
+        if _, err := io.ReadFull(rand.Reader, iv); err != nil {
+            return "", err
+        }
+        mode := cipher.NewCBCEncrypter(block, iv)
+        mode.CryptBlocks(ciphertext[aes.BlockSize:], []byte(plaintext))
+    
+        return base64.StdEncoding.EncodeToString(ciphertext), nil
+    }
+    
+    // AESDecrypt AES.
+    func AESDecrypt(key []byte, cryptoText string) (string, error) {
+        ciphertext, err := base64.StdEncoding.DecodeString(cryptoText)
+        if err != nil {
+            return "", err
+        }
+    
+        block, err := aes.NewCipher(key)
+        if err != nil {
+            return "", err
+        }
+    
+        if len(ciphertext) < aes.BlockSize {
+            return "", fmt.Errorf("ciphertext too short")
+        }
+    
+        iv := ciphertext[:aes.BlockSize]
+        ciphertext = ciphertext[aes.BlockSize:]
+    
+        mode := cipher.NewCBCDecrypter(block, iv)
+        mode.CryptBlocks(ciphertext, ciphertext)
+    
+        // Remove PKCS7 padding
+        padding := int(ciphertext[len(ciphertext)-1])
+        if padding > aes.BlockSize {
+            return "", fmt.Errorf("invalid padding")
+        }
+        ciphertext = ciphertext[:len(ciphertext)-padding]
+    
+        return string(ciphertext), nil
+    }
+    ```
+
+=== "Java"
+
+    ```java
+    import javax.crypto.Cipher;
+    import javax.crypto.spec.IvParameterSpec;
+    import javax.crypto.spec.SecretKeySpec;
+    import java.security.SecureRandom;
+    import java.util.Base64;
+    
+    public class AESUtils {
+        public static String AESEncrypt(byte[] key, String plaintext) throws Exception {
+            javax.crypto.Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
+    
+            SecureRandom random = new SecureRandom();
+            byte[] iv = new byte[16];
+            random.nextBytes(iv);
+            IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
+            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivParameterSpec);
+            byte[] encrypted = cipher.doFinal(plaintext.getBytes());
+            byte[] ivAndEncrypted = new byte[iv.length + encrypted.length];
+            System.arraycopy(iv, 0, ivAndEncrypted, 0, iv.length);
+            System.arraycopy(encrypted, 0, ivAndEncrypted, iv.length, encrypted.length);
+    
+            return Base64.getEncoder().encodeToString(ivAndEncrypted);
+        }
+    
+        public static String AESDecrypt(byte[] key, String cryptoText) throws Exception {
+            byte[] cipherText = Base64.getDecoder().decode(cryptoText);
+    
+            SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
+    
+            if (cipherText.length < 16) {
+                throw new Exception("cipherText too short");
+            }
+    
+            byte[] iv = new byte[16];
+            System.arraycopy(cipherText, 0, iv, 0, 16);
+            byte[] encrypted = new byte[cipherText.length - 16];
+            System.arraycopy(cipherText, 16, encrypted, 0, cipherText.length - 16);
+    
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
+            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivParameterSpec);
+    
+            byte[] decrypted = cipher.doFinal(encrypted);
+    
+            return new String(decrypted);
+        }
+    }    
+    ```
+<!-- markdownlint-enable -->
+
+In a K8S (Kubernetes) environment, private keys can be added through environment variables.
+The environment variables ENV_CRYPTO_AES_KEY and ENV_CRYPTO_AES_KEY_FILEPATH can be referenced for this purpose:[DaemonSet 安装-其他](datakit-daemonset-deploy.md#env-others)
+
 
 ## Extended Readings {#more-reading}
 

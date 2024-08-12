@@ -20,4 +20,4 @@ Custom object data reporting needs to install and connect DataKit and DataFlux F
 After DataFlux Func and DataKit are connected, you can write functions in DataFlux Func to report custom object data.
 
 - Refer to the doc [DataKit API](../datakit/apis.md) for an interface description of the DataFlux Func function call.
-- For instructions on how DataFlux Func writes data to DataKit, refer to [write data from DataKit](../dataflux-func/write-data-via-datakit.md).
+

@@ -36,7 +36,7 @@
 
 ### 创建 API Key
 
-API Key 可参考文档 [API Key](/management/api-key/)
+API Key 可参考文档 [API Key](/management/api-key/index.md)
 
 其中 key name 设置为 `Jira 系统`，有利于区分该评论信息来源于观测云或者是 Jira，且 key name 会作为 user 展示在观测云 `issue` 当中。
 

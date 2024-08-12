@@ -40,8 +40,8 @@ Only metric data in Prometheus form can be accessed.
       urls = ["http://127.0.0.1:9100/metrics", "http://127.0.0.1:9200/metrics"]
     
       ## Stream Size. 
-      ## The source stream segmentation size.
-      ## Default 1, source stream undivided. 
+      ## The source stream segmentation size, (defaults to 1).
+      ## 0 source stream undivided. 
       # stream_size = 1
     
       ## Unix Domain Socket URL. Using socket to request data when not empty.
@@ -90,6 +90,10 @@ Only metric data in Prometheus form can be accessed.
       ## If measurement_name is not empty, using this as measurement set name.
       ## Always add 'measurement_prefix' prefix at last.
       # measurement_name = "prom"
+    
+      ## Keep Exist Metric Name
+      ## If the keep_exist_metric_name is true, keep the raw value for field names.
+      keep_exist_metric_name = false
     
       ## TLS configuration.
       tls_open = false

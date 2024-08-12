@@ -47,11 +47,11 @@ Profile 支持采集使用 Java，Python 和 Go 等不同语言环境下应用�
 
 服务清单支持您配置不同服务的所有权、依赖关系、关联分析、帮助文档等，帮助团队高效地构建及管理大规模的端到端的分布式应用。您可以在**应用性能监测 > 服务**，选择任意**服务**右侧操作按钮，即可打开服务清单进行配置。
 
-> 更多详情，可参考 [服务清单](../application-performance-monitoring/service-catalog.md)。
+> 更多详情，可参考 [服务清单](./service-manag.md#list-deatils)。
 
 ## 如何通过错误链路来快速发现问题？
 
-观测云支持在 [链路查看器](../application-performance-monitoring/explorer.md) 快速筛选错误链路，或者直接在 [错误追踪查看器](../application-performance-monitoring/error.md) 快速查看链路中的类似错误的产生历史趋势及其分布情况，帮助快速定位性能问题。
+观测云支持在 [链路查看器](../application-performance-monitoring/explorer/explorer-analysis.md) 快速筛选错误链路，或者直接在 [错误追踪查看器](../application-performance-monitoring/error.md) 快速查看链路中的类似错误的产生历史趋势及其分布情况，帮助快速定位性能问题。
 
 ## 若以上常见问题无法解决您的问题，如何获得在线支持？
 

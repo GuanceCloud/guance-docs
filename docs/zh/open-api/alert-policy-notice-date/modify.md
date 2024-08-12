@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| notice_date_uuid | string | Y | 告警策略-自定义通知日期配置的唯一UUID<br>允许空字符串: False <br> |
+| notice_date_uuid | string | Y | 告警策略-自定义通知日期配置的唯一UUID<br>允许为空字符串: False <br> |
 
 
 ## Body 请求参数

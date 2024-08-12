@@ -1,5 +1,162 @@
 # 版本历史
 
+## 1.91.171（2024 年 07 月 24 日） {#1.91.171}
+
+pubrepo.guance.com/dataflux/1.91.171:launcher-c365f0b-1721884985
+
+### 观测云更新
+
+- 异常追踪：
+    - 新增[分析看板](../exception/issue-view.md)：可视化展示不同指标数据。
+    - 新增[日程](../exception/calendar.md)管理和[通知策略](../exception/config-manag.md#notify-strategy)：对 Issue 的内容范围做进一步通知分配。
+- 场景：
+    - 图表：新增[时间偏移](../scene/visual-chart/timeseries-chart.md#advanced-setting)设置。启用时间偏移后，当查询相对时间区间时，实际查询时间范围向前偏移 1 分钟，以防止入库延迟导致数据获取为空。
+    - 仪表板：新增[历史快照](../scene/dashboard.md#historial-snapshot)入口。
+    - 快照：保存快照时自动获取当前页面上选取的时间范围；分享快照时，可选择允许查看者更改时间范围。
+- 监控：
+    - 基础设施存活检测 V2：新增[附加信息](../monitoring/monitor/infrastructure-detection.md#config)。选定字段后，系统会做额外查询，但不会用于触发条件的判断。
+    - 通知对象管理：新增【操作权限】选项配置，由开关控制通知对象的操作（编辑、删除）权限。
+
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+
+## 1.90.170（2024 年 07 月 10 日） {#1.90.170}
+
+pubrepo.guance.com/dataflux/1.90.170:launcher-3bbe7a1-1721136369
+
+### 观测云部署版更新
+
+> **注：如正在使用 message-desk 发送邮件服务，请将配置移植到 Func 服务中，查看 [如何配置](../deployment/configuration-mail.md)，下个版本将从系统中删除 message-desk 相关的服务，请务必在此版本移植相关配置。**
+
+- 新增全局功能[菜单管理配置](../deployment/menu.md)，支持自定义控制台显示菜单范围，并同步至工作空间功能菜单栏。
+- [模版管理](../deployment/integration.md)：自定义模板管理上传逻辑优化。
+- 移除了对 message-desk（邮件、钉钉、企微、短信等通知发送）服务的依赖，功能已全部移植到 Func 服务中
+
+### 观测云更新
+
+- 场景：
+    - [视图变量](../scene/view-variable.md#add)：
+        - 新增配置项开关：包含 * 选项。
+        - 选择隐藏视图变量时，列表新增隐藏标识。
+    - 仪表板：[分组](../scene/dashboard.md#group)组件支持配置颜色。
+    - 图表：别名功能覆盖排行榜、矩形树图、桑基图。
+    - 仪表板/查看器/内置视图：新增[卡片属性](../scene/dashboard.md#metadata)信息，优化编辑配置。
+- 监控：
+    - 通知对象管理：配置 [Webhook 通知对象](../monitoring/notify-object.md#custom-webhook)，支持追加成员信息。
+    - 应用智能检测：新增追踪历史变化，过滤周期性的异常数据突变；新增异常服务关联影响的用户数。
+- 事件 >[ 事件列表查看器](../events/event-explorer/event-list.md)：显示列新增告警通知状态标识。
+- 日志：
+    - 索引：绑定 [SLS 外部索引](../logs/multi-index.md#sls)时，新增访问类型选择，支持自定义公网访问或者内网访问；
+    - 日志查看器：[聚类分析](../logs/explorer.md#cluster)模式下，支持导出显示列数据及关联日志页面数据。
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+## 1.89.169（2024 年 06 月 26 日） {#6.26}
+
+pubrepo.guance.com/dataflux/1.89.169:launcher-d482589-1720014392
+
+### 观测云部署版更新
+
+> **注： 此版本依赖 GuanceDB v1.8.1 版本，升级前请先升级 GuanceDB for metrics 和 GuanceDB for logs 引擎到 [v1.8.1](https://static.guance.com/guancedb/guancedb-cluster-linux-amd64-v1.8.1.tar.gz) 或以上版本。**
+
+- Profile：通过配置参数，支持文件存储和对象存储两种方式。 
+- Launcher: 支持在部署时直接选择使用 Doris 引擎。
+
+### 观测云更新
+
+- [Pipelines](../pipeline/index.md)：支持选择中心 Pipeline 执行脚本。
+- 付费计划与账单：新增[中心 Pipeline 计费项](../billing/billing-method/index.md#pipeline)，统计所有命中中心 Pipeline 处理的原始日志的数据大小。
+- 监控
+    - 通知对象管理：新增[权限控制](../monitoring/notify-object.md#permission)。配置操作权限后，仅被赋予权限的对象可对此通知对象进行编辑、删除操作。
+    - 智能监控 > 日志智能检测：新增追踪历史变化，过滤周期性的异常数据突变。
+- 日志 
+    - [数据访问](../logs/logdata-access.md#config)：新增对被授权查看的日志索引做访问权限配置。
+    - 日志查看器：显示列拓展，支持[添加 json 对象内字段内容](../logs/explorer.md#json-content)到一级返回显示。
+    - [BPF 网络日志](../logs/bpf-log.md)：
+        - 连接展示效果优化；
+        - 支持直接跳转至详情页；
+        - 支持自定义添加显示列。
+- 场景
+    - 时序图：折线图、面积图新增[断点连接](../scene/visual-chart/timeseries-chart.md#breakpoint)设置，柱状图新增【显示返回值】按钮。
+- [可用性监测](../usability-monitoring/request-task/index.md#manag)：任务列表新增表头排序。
+- DataFlux Func：支持观测云异常追踪脚本[集成钉钉应用](https://func.guance.com/doc/script-market-guance-issue-dingtalk-integration/)。
+
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+## 1.88.168（2024 年 06 月 13 日） {#1.88.168}
+
+pubrepo.guance.com/dataflux/1.88.168:launcher-92bbf83-1718688126
+
+### 观测云部署版更新
+
+Profile：文件大小由原先的固定 5MB 修改为支持自定义，点击查看[如何配置](../deployment/application-configuration-guide.md#studio-front)。
+
+### 观测云更新
+
+- [BPF 网络日志](../logs/bpf-log.md)：优化 BPF 网络功能，增强 L4/L7 网络联动。
+- APM/RUM：新增 【[Issue 自动发现](../application-performance-monitoring/error.md#issue)】功能。启用该配置后，观测云会将符合配置项规则的错误数据记录自动创建 Issue。
+- 监控
+    - 智能监控：新增 [Kubernetes 智能检测](../monitoring/intelligent-monitoring/k8s.md)：通过智能算法自动检测 Kubernetes 中的异常，检测指标包含 Pod 总数，Pod 重启，APIServer QPS 等。
+    - 告警策略管理：
+        - 新增[过滤](../monitoring/alert-setting.md#filter)功能。在进行告警规则配置时，该功能允许在原有等级基础上增加更细致的过滤条件，仅匹配等级+过滤条件的事件才会发送给对应的通知对象。
+        - 支持选择外部邮箱做为通知对象。
+    - 监控器 > 事件内容：支持自定义输入外部邮箱。
+- 场景
+    - 拓扑图：新增链接配置。
+    - 桑基图：由原先支持最多 4 个节点配置改为 6 个。
+- Pipeline：列表新增过滤条件显示。
+- 日志 > 索引：列表显示优化。
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+## 1.87.167（2024 年 06 月 05 日） {#1.87.167}
+
+pubrepo.guance.com/dataflux/1.87.167:launcher-135ba54-1718086022
+
+### 观测云更新
+
+- **管理 > [跨工作空间授权](../management/data-authorization.md#site)**：添加页面新增【数据范围】，支持多选数据类型。
+- **日志 > 日志查看器**：支持[跨工作空间索引查询](../logs/cross-workspace-index.md)，快速获取其它空间的日志数据，从而突破日志数据存储位置的限制，大幅度提升数据分析和故障定位的效率。
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+## 1.86.166（2024 年 05 月 29 日）
+
+pubrepo.guance.com/dataflux/1.86.166:launcher-edb908f-1717137436
+
+### 观测云部署版更新
+
+- [模版管理](../deployment/integration.md)：新增导入模版入口，模版范围包括视图模板、监控器模板、自定义查看器模板、Pipeline。支持部署版用户将自定义模板变更为平台级别模板供其他工作空间使用。
+- 用户管理：批量操作交互优化。
+- 支持部署时开启内部服务的 HTTPS（Beta 版）
+
+### 观测云更新
+
+- [DCA](../dca/index.md)
+    - 支持私有化部署，可直接通过工作空间页面按钮前往 DCA 控制台。
+    - 支持批量管理功能。
+- 异常追踪：
+    - Webhook 接收通道：支持 Issue 回复的新增、修改通知；
+    - 支持选择团队或添加外部邮箱为 Issue 负责人。
+- 日志 > [上下文日志](../logs/explorer.md#up-down)：查询逻辑修改；支持通过日志上下文详情页对相关数据作进一步查询管理。
+- 场景
+    - 视图变量：分组标题/图表标题支持配置 `#{视图变量}` 显示。
+    - 时序图 > 分析模式：支持调整时间间隔 interval。
+    - 仪表板/自定义查看器：当标签数量超过 20 个时，显示搜索框；标签名前显示颜色。
+- 监控
+    - 监控器/智能监控/静默管理 > 快捷筛选：当值超过 20 个时，出现搜索框，支持搜索定位。
+    - 监控器：针对 PromQL 查询检测，事件通知中自动列出可使用的模板变量。
+- 基础设施 > 网络：网络详情页 > 网络分析支持 `ip:端口` 和 `ip` 两种维度统计列出展示。
+- 应用性能监测 > 服务 > 新建/修改服务清单：填写仓库链接、文档链接时增加格式校验。
+
+#### Breaking Changes
+
+- 管理 > 属性声明：自定义属性字段值调整为字符串类型进行存储。
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
 ## 1.85.165（2024 年 05 月 24 日）
 
 pubrepo.guance.com/dataflux/1.85.165:launcher-6462e65-1716477657
@@ -16,6 +173,8 @@ pubrepo.guance.com/dataflux/1.85.165:launcher-6462e65-1716477657
 pubrepo.guance.com/dataflux/1.85.164:launcher-0f0b2bb-1716275675
 
 ### 观测云部署版更新
+
+> **注： 此版本依赖 GuanceDB-Logs v1.6.1 版本，升级前请先升级 GuanceDB-Logs 引擎到 [v1.6.1](https://static.guance.com/guancedb/guancedb-cluster-linux-amd64-v1.6.1.tar.gz) 或以上版本。**
 
 - 新增 [DataKit 清单管理](../deployment/setting.md#datakit)页面。
 - 部署版配置单点登录对接时，支持自定义登录[显示标题、描述和 logo](../deployment/azure-ad-pass.md#config)。
@@ -76,7 +235,7 @@ pubrepo.guance.com/dataflux/1.84.163:launcher-4606a02-1714100180
 - 场景 > 仪表板[图表](../scene/visual-chart/index.md#download)可直接下载为 PNG 图片，表格图还可导出为 CSV 文件。
 - 日志 > 绑定索引：【字段映射】更改为非必填项。
 - 集成/内置视图：模版新增标签管理。
-- Service Map 跨工作空间节点[样式显示调整](../scene/service-manag.md#servicemap)。
+- Service Map 跨工作空间节点[样式显示调整](../application-performance-monitoring/service-manag.md#servicemap)。
 
 ### OpenAPI 更新
 
@@ -154,7 +313,7 @@ pubrepo.guance.com/dataflux/1.82.158:launcher-c90f955-1711689089
     - 监控器 > 事件内容：新增[自定义高级配置](../monitoring/monitor/threshold-detection.md#advanced-settings)，支持添加关联日志和错误堆栈；
     - 主机智能监控：将当前突变展示更改为基于周期以预测的方式进行异常告警，趋势图会展示当前指标及置信区间上下界，超出置信区间的异常会标红展示。
 - 场景 > 图表：新增[拓扑图](../scene/visual-chart/topology-map.md)。
-- APM > 链路详情页 > [服务调用关系](../application-performance-monitoring/explorer.md#call)：调整为服务拓扑展示，并展示服务与服务之间的调用次数。
+- APM > 链路详情页 > [服务调用关系](../../application-performance-monitoring/exp)：调整为服务拓扑展示，并展示服务与服务之间的调用次数。
 - 数据保存策略：Session Reply 的数据保存策略与 RUM 的保存策略保持联动一致，即 RUM 数据保存 3 天，Session Reply 的数据也保存 3 天。
 - 查看器：
     - 事件查看器 > 基础属性：新增检测指标是否显示配置，缓存到本地，全局适配；
@@ -815,7 +974,7 @@ pubrepo.guance.com/dataflux/1.71.137:launcher-ee43f34-1695727144
     - 绑定索引：日志易新增标签绑定，从而实现更细颗粒度的数据范围查询授权能力。
     - 基础设施 > 自定义：
     - 【默认属性】这一概念更改为【必有属性】：上报的数据中必须包含该属性字段，否则将会上报失败；
-    - 支持将自定义对象添加至二级菜单，便于查看。
+    - 支持将资源目录添加至二级菜单，便于查看。
     - 自定义查看器新增快捷筛选。
 - 场景：
     - 定时报告：新增【钉钉】【企业微信】【飞书】三种通知方式；
@@ -2207,7 +2366,7 @@ pubrepo.guance.com/dataflux/1.42.95:launcher-8478e83-1654839989
 - 新增 Jenkins CI 可观测
 - 新增自定义查看器图表同步搜索
 - 新增网络拓扑和服务拓扑下钻分析
-- 新增删除自定义对象的数据及索引
+- 新增删除资源目录的数据及索引
 - 新增查看器快照查看入口
 - 新增查看器筛选条件编辑功能
 - 优化用户访问 View 查看器关联链路为 Fetch/XHR
@@ -2292,7 +2451,7 @@ pubrepo.guance.com/dataflux/1.41.94:launcher-249ba21-1653737335
 - 行协议构造支持自动纠错
 - DataKit 主配置增加示例配置
 - Prometheus Remote Write 支持 tag 重命名
-- 合并社区版 DataKit 已有的功能，主要包含 Sinker 功能以及 filebeat 采集器
+- 合并部署版 DataKit 已有的功能，主要包含 Sinker 功能以及 filebeat 采集器
 - 调整容器日志采集，DataKit 直接支持 containerd 下容器 stdout/stderr 日志采集
 - 调整 DaemonSet 模式下主机名获取策略
 - Trace 采集器支持通过服务名（service）通配来过滤资源（resource）
@@ -2376,8 +2535,6 @@ pubrepo.guance.com/dataflux/1.39.91:launcher-8943ead-1650979666
 ## v1.39.90(2022年4月25日)
 
 pubrepo.guance.com/dataflux/1.39.90:launcher-23f161d-1650898148 
-
-### 观测云社区版上线
 
 ### 观测云更新
 
@@ -2499,7 +2656,7 @@ pubrepo.guance.com/dataflux/1.37.86:launcher-bd2650e-1648456839
 
 - 新增工作空间数据授权
 - 新增保存在线 Pipeline 样本测试数据
-- 优化自定义对象查看器
+- 优化资源目录查看器
 - 优化快照分享支持永久有效的链接
 - 优化图表时间间隔
 - 优化进程、应用性能、用户访问检测无数据触发策略
@@ -2583,4 +2740,3 @@ pubrepo.guance.com/dataflux/1.35.84:launcher-191ef71-1645780061
     - 图表查询文案、按钮样式以及文字提示优化；
     - 工作空间操作按钮图标化，如编辑、删除等等。
     - 其他 UI 显示优化
-
