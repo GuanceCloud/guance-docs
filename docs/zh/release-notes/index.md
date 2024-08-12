@@ -41,6 +41,18 @@ icon: zy/release-notes
 - 查看器：分析模式下支持导出 CSV 文件。
 - 基础设施 > 容器：新增进程关联页面展示。
 
+### BUG 修复 {#bugs}
+
+- 解决【任务调用】计费统计次数未显示的问题；
+- 解决图表查询时【左 * 匹配】问题；
+- 解决 BPF 网络日志返回数据未包含容器等相关信息的问题；
+- 解决中心 Pipeline 失效问题。 
+
+### OpenAPI {#openapi}
+
+- SLO 创建/修改接口新增 `tags`、`alertPolicyUUIDs` 并弃用 `alertOpt` 参数；
+- SLO 获取详情和列表接口返回结果中新增 `tagInfo`、`alertPolicyInfos` 字段，丢弃了 `alertOpt` 字段。
+
 
 ## 2024 年 7 月 24 日
 
