@@ -272,7 +272,7 @@
 | service | NSString | 否 | 设置所属业务或服务的名称。影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios` |
 | globalContext | NSDictionary |     否 | 添加自定义标签。添加规则请查阅[此处](#user-global-context) |
 | groupIdentifiers | NSArray | 否 | 需要采集的 Widget Extensions 对应的 AppGroups Identifier 数组。若开启 Widget Extensions 数据采集，则必须设置 [App Groups](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups)，并将 Identifier 配置到该属性中 |
-| autoSync | BOOL | 否 | 是否开启自动同步。默认 `YES` |
+| autoSync | BOOL | 否 | 是否开启自动同步。默认 `YES`。当为 `NO` 时使用 `[[FTMobileAgent sharedInstance] flushSyncData]` 自行管理数据同步 |
 | syncPageSize | int | 否 | 设置同步请求条目数。范围 [5,）注意：请求条目数越大，代表数据同步占用更大的计算资源 |
 | syncSleepTime | int | 否 | 设置同步间歇时间。范围 [0,100]，默认不设置 |
 | enableDataIntegerCompatible | BOOL | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题 。 |
@@ -1509,7 +1509,7 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
 ## 主动同步数据
 
 使用 `FTMobileAgent` 主动同步数据。
-
+>FTMobileConfig.autoSync = NO 时, 才需要自行进行数据同步
 ### 使用方法
 
 === "Objective-C"
