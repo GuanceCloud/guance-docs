@@ -63,9 +63,9 @@
 
 观测云提供两种日志 Pipeline 文本处理方式：
 
-- [Pipelines](../logs/pipelines/manual.md)：支持在观测云工作空间手动配置和查看日志 pipeline 文件，无需登录 DataKit 服务器进行操作，帮助您方便的使用在线日志Pipeline功能来切割您的日志；
+- [Pipelines](../pipeline/index.md)：支持在观测云工作空间手动配置和查看日志 pipeline 文件，无需登录 DataKit 服务器进行操作，帮助您方便的使用在线日志Pipeline功能来切割您的日志；
 
-- [DataKit](../logs/pipelines/datakit-manual.md)：在服务器安装DataKit以后，在终端工具中配置DataKit的日志采集器及其对应的 pipeline 文件，对文本数据进行处理。
+- DataKit：在服务器安装DataKit以后，在终端工具中配置DataKit的日志采集器及其对应的 pipeline 文件，对文本数据进行处理。
 
 
 ### 生成指标
@@ -110,6 +110,6 @@
 
 ![](img/13.log_6.png)
 
-设置日志备份规则以后，在日志「备份日志」页面，默认数据为空，需要先选择查看备份日志的时间范围。更多详情可参考文档 [日志备份](../logs/backup.md)。
+设置日志备份规则以后，在日志「备份日志」页面，默认数据为空，需要先选择查看备份日志的时间范围。更多详情可参考文档 [日志备份](../management/backup/index.md)。
 
 ![](img/13.log_10.1.png)

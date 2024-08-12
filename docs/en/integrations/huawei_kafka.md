@@ -1,5 +1,5 @@
 ---
-title: 'HUAWEI Kafka'
+title: 'HUAWEI DMS Kafka'
 tags: 
   - Huawei Cloud
 summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
@@ -16,7 +16,7 @@ monitor:
 
 
 <!-- markdownlint-disable MD025 -->
-# HUAWEI CLOUD Kafka
+# HUAWEI CLOUD DMS Kafka
 <!-- markdownlint-enable -->
 
 Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.

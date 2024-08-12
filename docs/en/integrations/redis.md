@@ -219,7 +219,7 @@ To collect Redis logs, you need to open the log file `redis.config` output confi
 
 ## Metrics {#metric}
 <!-- markdownlint-disable MD009 -->
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.redis.tags]`:
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.redis.tags]` if needed:
 
 ``` toml
  [inputs.redis.tags]
@@ -744,7 +744,11 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`command`|Slow command|int|μs|
+|`slowlog_95percentile`|Slow 95th percentile duration|int|μs|
+|`slowlog_avg`|Slow average duration|float|μs|
 |`slowlog_id`|Slow log unique id|int|-|
+|`slowlog_max`|Slow maximum duration|int|μs|
+|`slowlog_median`|Slow median duration|int|μs|
 |`slowlog_micros`|Cost time|int|μs| 
 
 

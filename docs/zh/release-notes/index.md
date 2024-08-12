@@ -6,6 +6,153 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明。
 
+## 2024 年 8 月 7 日
+
+
+### 新增功能 {#new}
+
+- 用户访问监测（RUM）：新增[热图](../real-user-monitoring/heatmap.md)。以视觉方式呈现访客与网站的互动情况，获取页面元素的点击数据和点击位置，了解用户的关注点。
+
+- 应用性能监测（APM） > 链路：新增[安装引导](../application-performance-monitoring/explorer/index.md)页面。
+
+- 监控：新增检测类型——[区间检测 V2](../monitoring/monitor/interval-detection-v2.md)，以检测指标的的历史数据建立的置信区间来预测正常波动范围。
+
+### 持续优化 {#consistent}
+
+- 异常追踪:
+    - 配置管理 > 通知策略：新增[操作审计和执行日志](../exception/config-manag.md#check-events)查看入口。在接收 Issue 通知时，有时会遇到通知未正常发送或针对通知策略有疑议，此时可查看当前通知策略的操作审计事件和执行日志数据来进行判断。
+    - APM / RUM [Issue 自动发现](../application-performance-monitoring/error.md#issue)支持添加筛选条件；
+    - 针对部署版，新增[统一管理异常追踪等级](../deployment/setting.md#global-settings)入口；
+    - 日程：
+        - 在日程编辑页面，不同的通知对象会自动生成颜色；
+        - 日程管理：【我的日程】与【所有日程】新增统计数量；
+
+
+### 常规更新 {#usual}
+
+- 监控 > [SLO](../monitoring/slo.md#slo)：
+    - 新增标签配置，最终作用到产生的事件数据信息内；
+    - 配置优化：通过设置【目标】和【最低目标】的 7 天达标率范围，判断生成警告或紧急事件；
+    - 支持通过关联【告警策略】实现告警通知发送。
+- 可用性监测：
+    - 拨测任务新增标签配置；
+    - 配置拨测任务页面的[测试模块](../usability-monitoring/request-task/http.md#test)优化；
+    - 列表新增[快捷筛选](../usability-monitoring/request-task/index.md#manag)模块；
+- 查看器：分析模式下支持导出 CSV 文件。
+- 基础设施 > 容器：新增进程关联页面展示。
+
+### BUG 修复 {#bugs}
+
+- 解决【任务调用】计费统计次数未显示的问题；
+- 解决图表查询时【左 * 匹配】问题；
+- 解决 BPF 网络日志返回数据未包含容器等相关信息的问题；
+- 解决中心 Pipeline 失效问题。 
+
+### OpenAPI {#openapi}
+
+- SLO 创建/修改接口新增 `tags`、`alertPolicyUUIDs` 并弃用 `alertOpt` 参数；
+- SLO 获取详情和列表接口返回结果中新增 `tagInfo`、`alertPolicyInfos` 字段，丢弃了 `alertOpt` 字段。
+
+
+## 2024 年 7 月 24 日
+
+### 观测云更新
+
+- 异常追踪：
+    - 新增[分析看板](../exception/issue-view.md)：可视化展示不同指标数据。
+    - 新增[日程](../exception/calendar.md)管理和[通知策略](../exception/config-manag.md#notify-strategy)：对 Issue 的内容范围做进一步通知分配。
+- 场景：
+    - 图表：新增[时间偏移](../scene/visual-chart/timeseries-chart.md#advanced-setting)设置。启用时间偏移后，当查询相对时间区间时，实际查询时间范围向前偏移 1 分钟，以防止入库延迟导致数据获取为空。
+    - 仪表板：新增[历史快照](../scene/dashboard.md#historial-snapshot)入口。
+    - 快照：保存快照时自动获取当前页面上选取的时间范围；分享快照时，可选择允许查看者更改时间范围。
+- 监控：
+    - 基础设施存活检测 V2：新增[附加信息](../monitoring/monitor/infrastructure-detection.md#config)。选定字段后，系统会做额外查询，但不会用于触发条件的判断。
+    - 通知对象管理：新增【操作权限】选项配置，由开关控制通知对象的操作（编辑、删除）权限。
+
+
+
+## 2024 年 7 月 10 日
+
+### 观测云更新
+
+- 场景：
+    - [视图变量](../scene/view-variable.md#add)：
+        - 新增配置项开关：包含 * 选项。
+        - 选择隐藏视图变量时，列表新增隐藏标识。
+    - 仪表板：[分组](../scene/dashboard.md#group)组件支持配置颜色。
+    - 图表：别名功能覆盖排行榜、矩形树图、桑基图。
+    - 仪表板/查看器/内置视图：新增[卡片属性](../scene/dashboard.md#metadata)信息，优化编辑配置。
+- 监控：
+    - 通知对象管理：配置 [Webhook 通知对象](../monitoring/notify-object.md#custom-webhook)，支持追加成员信息。
+    - 应用智能检测：新增追踪历史变化，过滤周期性的异常数据突变；新增异常服务关联影响的用户数。
+- 事件 >[ 事件列表查看器](../events/event-explorer/event-list.md)：显示列新增告警通知状态标识。
+- 日志：
+    - 索引：绑定 [SLS 外部索引](../logs/multi-index.md#sls)时，新增访问类型选择，支持自定义公网访问或者内网访问；
+    - 日志查看器：[聚类分析](../logs/explorer.md#cluster)模式下，支持导出显示列数据及关联日志页面数据。
+
+
+
+### 观测云部署版更新
+
+- 新增全局功能[菜单管理配置](../deployment/menu.md)，支持自定义控制台显示菜单范围，并同步至工作空间功能菜单栏。
+- [模版管理](../deployment/integration.md)：自定义模板管理上传逻辑优化。
+
+## 2024 年 6 月 26 日
+
+### 观测云更新
+
+- [Pipelines](../pipeline/index.md)：支持选择中心 Pipeline 执行脚本。
+- 付费计划与账单：新增[中心 Pipeline 计费项](../billing/billing-method/index.md#pipeline)，统计所有命中中心 Pipeline 处理的原始日志的数据大小。
+- 监控
+    - 通知对象管理：新增[权限控制](../monitoring/notify-object.md#permission)。配置操作权限后，仅被赋予权限的对象可对此通知对象进行编辑、删除操作。
+    - 智能监控 > 日志智能检测：新增追踪历史变化，过滤周期性的异常数据突变。
+- 日志 
+    - [数据访问](../logs/logdata-access.md#config)：新增对被授权查看的日志索引做访问权限配置。
+    - 日志查看器：显示列拓展，支持[添加 json 对象内字段内容](../logs/explorer.md#json-content)到一级返回显示。
+    - [BPF 网络日志](../logs/bpf-log.md)：
+        - 连接展示效果优化；
+        - 支持直接跳转至详情页；
+        - 支持自定义添加显示列。
+- 场景
+    - 时序图：折线图、面积图新增[断点连接](../scene/visual-chart/timeseries-chart.md#breakpoint)设置，柱状图新增【显示返回值】按钮。
+- [可用性监测](../usability-monitoring/request-task/index.md#manag)：任务列表新增表头排序。
+- DataFlux Func：支持观测云异常追踪脚本[集成钉钉应用](https://func.guance.com/doc/script-market-guance-issue-dingtalk-integration/)。
+
+### 观测云部署版更新
+
+Profile：通过配置参数，支持文件存储和对象存储两种方式。 
+
+## 2024 年 6 月 13 日
+
+### 观测云更新
+
+- [BPF 网络日志](../logs/bpf-log.md)：优化 BPF 网络功能，增强 L4/L7 网络联动。
+- APM/RUM：新增 【[Issue 自动发现](../application-performance-monitoring/error.md#issue)】功能。启用该配置后，观测云会将符合配置项规则的错误数据记录自动创建 Issue。
+- 监控
+    - 智能监控：新增 [Kubernetes 智能检测](../monitoring/intelligent-monitoring/k8s.md)：通过智能算法自动检测 Kubernetes 中的异常，检测指标包含 Pod 总数，Pod 重启，APIServer QPS 等。
+    - 告警策略管理：
+        - 新增[过滤](../monitoring/alert-setting.md#filter)功能。在进行告警规则配置时，该功能允许在原有等级基础上增加更细致的过滤条件，仅匹配等级+过滤条件的事件才会发送给对应的通知对象。
+        - 支持选择外部邮箱做为通知对象。
+    - 监控器 > 事件内容：支持自定义输入外部邮箱。
+- 场景
+    - 拓扑图：新增链接配置。
+    - 桑基图：由原先支持最多 4 个节点配置改为 6 个。
+- Pipeline：列表新增过滤条件显示。
+- 日志 > 索引：列表显示优化。
+
+
+### 观测云部署版更新
+
+Profile：文件大小由原先的固定 5MB 修改为支持自定义，点击查看[如何配置](../deployment/application-configuration-guide.md#studio-front)。
+
+## 2024 年 6 月 3 日
+
+### 观测云更新
+
+- **管理 > [跨工作空间授权](../management/data-authorization.md#site)**：添加页面新增【数据范围】，支持多选数据类型。
+- **日志 > 日志查看器**：支持[跨工作空间索引查询](../logs/cross-workspace-index.md)，快速获取其它空间的日志数据，从而突破日志数据存储位置的限制，大幅度提升数据分析和故障定位的效率。
+
+
 ## 2024 年 5 月 29 日
 
 ### 观测云更新
@@ -95,7 +242,7 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
 - 场景 > 仪表板[图表](../scene/visual-chart/index.md#download)可直接下载为 PNG 图片，表格图还可导出为 CSV 文件。
 - 日志 > 绑定索引：【字段映射】更改为非必填项。
 - 集成/内置视图：模版新增标签管理。
-- Service Map 跨工作空间节点[样式显示调整](../scene/service-manag.md#servicemap)。
+- Service Map 跨工作空间节点[样式显示调整](../application-performance-monitoring/service-manag.md#servicemap)。
 
 ### 观测云部署版更新
 
@@ -137,7 +284,7 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
     - 监控器 > 事件内容：新增[自定义高级配置](../monitoring/monitor/threshold-detection.md#advanced-settings)，支持添加关联日志和错误堆栈；
     - 主机智能监控：将当前突变展示更改为基于周期以预测的方式进行异常告警，趋势图会展示当前指标及置信区间上下界，超出置信区间的异常会标红展示。
 - 场景 > 图表：新增[拓扑图](../scene/visual-chart/topology-map.md)。
-- APM > 链路详情页 > [服务调用关系](../application-performance-monitoring/explorer.md#call)：调整为服务拓扑展示，并展示服务与服务之间的调用次数。
+- APM > 链路详情页 > [服务调用关系](../application-performance-monitoring/explorer/explorer-analysis.md#call)：调整为服务拓扑展示，并展示服务与服务之间的调用次数。
 - 数据保存策略：Session Replay 的数据保存策略与 RUM 的保存策略保持联动一致，即 RUM 数据保存 3 天，Session Replay 的数据也保存 3 天。
 - 查看器：
     - 事件查看器 > 基础属性：新增检测指标是否显示配置，缓存到本地，全局适配；
@@ -168,7 +315,7 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
 ### 观测云更新
 
 - 监控 > 监控器：监控器类型【[组合检测](../monitoring/monitor/composite-detection.md)】上线。支持将多个监控器的结果通过表达式组合成一个监控器，最终基于组合后的结果进行告警。
-- 场景 > 服务：支持[跨工作空间 Service Map 查询](../scene/service-manag.md#servicemap)。
+- 场景 > 服务：支持[跨工作空间 Service Map 查询](../application-performance-monitoring/service-manag.md#servicemap)。
 
 ### 观测云部署版更新
 
@@ -186,7 +333,7 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
     - 突变检测：新增【最近 1 分钟】、【最近 5 分钟】的检测区间；
     - 静默管理：选择静默范围时“事件属性”为非必填项，可根据需要自行配置更细颗粒度的匹配规则。
 - DataFlux Func：新增 [Function 外部函数](../dql/dql-out-func.md)。允许第三方用户充分利用 Function 的本地缓存和本地文件管理服务接口编写函数，在工作空间内执行数据分析查询。
-- APM > [链路](../application-performance-monitoring/explorer.md)：
+- APM > [链路](../application-performance-monitoring/explorer/explorer-analysis.md)：
     - Title 区域 UI 显示优化；
     - 针对火焰图、瀑布图、Span 列表超过 1 万的 Span 结果，支持通过**偏移**设置查看未展示 Span；
     - 新增 **Error Span** 筛选入口；支持输入 Span 对应的资源名称或 Span ID 进行搜索匹配。
@@ -227,7 +374,7 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
     - 服务管理 > 资源调用：排行榜新增 TOP / Bottom 数量选择。
 - 查看器：显示列设置新增【时间列】开关。
 - 付费计划与账单：
-    - 工作空间锁定弹窗页面新增[新建工作空间](../billing-center/workspace-management.md#lock)入口，优化操作体验；
+    - 工作空间锁定弹窗页面新增[新建工作空间](../billing-center/workspace-management.md#workspace-lock#lock)入口，优化操作体验；
     - AWS 注册流程优化。
 
 ### 观测云部署版更新

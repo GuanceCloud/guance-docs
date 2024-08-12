@@ -111,31 +111,31 @@ NetStat 指标展示，包括 Tcp 连接数、等待连接、等待处理请求�
     
         采集器重复间隔时长
     
-        **Type**: TimeDuration
+        **字段类型**: TimeDuration
     
-        **ConfField**: `interval`
+        **采集器配置字段**: `interval`
     
-        **Default**: 10s
+        **默认值**: 10s
     
     - **ENV_INPUT_NETSTAT_ADDR_PORTS**
     
         端口分组并添加不同的标签以便于统计
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `addr_ports`
+        **采集器配置字段**: `addr_ports`
     
-        **Example**: ["1.1.1.1:80","443"]
+        **示例**: ["1.1.1.1:80","443"]
     
     - **ENV_INPUT_NETSTAT_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
     
-        **Type**: Map
+        **字段类型**: Map
     
-        **ConfField**: `tags`
+        **采集器配置字段**: `tags`
     
-        **Example**: tag1=value1,tag2=value2
+        **示例**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 ---

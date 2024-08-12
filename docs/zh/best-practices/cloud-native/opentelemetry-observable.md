@@ -52,7 +52,7 @@ logging.pattern.level = trace_id=%mdc{trace_id} span_id=%mdc{span_id} trace_flag
 
 ### [3、基于观测云-商业可观测性产品](./opentelemetry-guance.md)
 
-[观测云](https://www.guance.com)是一个集指标数据、日志数据、APM 、RUM、基础设施、容器、中间件、网络性能等多种数据统一收集管理平台。使用观测云可以为我们全方位观测应用，而不仅仅是日志链路之间的观测。更多观测云信息请跳转到[产品优势](/getting-started/product-introduction/advantages)阅读。
+[观测云](https://www.guance.com)是一个集指标数据、日志数据、APM 、RUM、基础设施、容器、中间件、网络性能等多种数据统一收集管理平台。使用观测云可以为我们全方位观测应用，而不仅仅是日志链路之间的观测。
 
 ![image.png](../images/opentelemetry_observable_guance.png)
 

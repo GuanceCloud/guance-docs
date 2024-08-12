@@ -26,14 +26,14 @@ Datakit 部署完成后，按需采集指定的业务 Pod 日志、K8s 集群组
 
 本文通过观测云采集器 Datakit 不同的日志过滤方法来实现，使用给日志加 Annotation 标注（包括过滤 Pod 内部其他容器产生的日志）和 `container.conf` 中的 `container_include_log = []`组合来实现。
 
-> 更详细日志处理原理，可参考<[Datakit 日志处理综述](../../datakit/datakit-logging-how.md)>
+> 更详细日志处理原理，可参考<[Datakit 日志处理综述](../../integrations/datakit-logging-how.md)>
 
 ## 实现方式
 
 ### 方式一 使用 container_include_log = []
 
 只采集集群组件 coredns 和 nginx 日志，`container_include_log` 用正则语法编写 image 的名称。
-> 具体见<[根据容器 image 配置指标和日志采集](../../datakit/container.md)>
+> 具体见<[根据容器 image 配置指标和日志采集](../../integrations/container.md)>
 
 ```toml
       [inputs.container]
@@ -78,7 +78,7 @@ Datakit 部署完成后，按需采集指定的业务 Pod 日志、K8s 集群组
 
 只采集集群组件 coredns 和 nginx 日志，同时通过 Annotation 对 nginx 标记，当然未在 `container_include_log` 中开启的白名单，比如另外的镜像 busybox，也可以通过 Annotation 方式标记后采集上来。这是由于 Annotation 标记的方式优先级高。
 
-> 更详细日志处理原理，可参考<[Datakit 日志处理综述](../../datakit/datakit-logging-how.md)>
+> 更详细日志处理原理，可参考<[Datakit 日志处理综述](../../integrations/datakit-logging-how.md)>
 
 Nginx 的 Annotation 标记
 

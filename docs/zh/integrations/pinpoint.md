@@ -104,71 +104,71 @@ Datakit 内置的 Pinpoint Agent 用于接收，运算，分析 Pinpoint Tracing
     
         代理 URL
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `address`
+        **采集器配置字段**: `address`
     
-        **Example**: 127.0.0.1:9991
+        **示例**: 127.0.0.1:9991
     
     - **ENV_INPUT_PINPOINT_KEEP_RARE_RESOURCE**
     
         保持稀有跟踪资源列表
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `keep_rare_resource`
+        **采集器配置字段**: `keep_rare_resource`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_PINPOINT_DEL_MESSAGE**
     
         删除 trace 消息
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `del_message`
+        **采集器配置字段**: `del_message`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_PINPOINT_CLOSE_RESOURCE**
     
         忽略指定服务器的 tracing（正则匹配）
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `close_resource`
+        **采集器配置字段**: `close_resource`
     
-        **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
+        **示例**: {"service1":["resource1","other"],"service2":["resource2","other"]}
     
     - **ENV_INPUT_PINPOINT_SAMPLER**
     
         全局采样率
     
-        **Type**: Float
+        **字段类型**: Float
     
-        **ConfField**: `sampler`
+        **采集器配置字段**: `sampler`
     
-        **Example**: 0.3
+        **示例**: 0.3
     
     - **ENV_INPUT_PINPOINT_STORAGE**
     
         本地缓存路径和大小（MB）
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `storage`
+        **采集器配置字段**: `storage`
     
-        **Example**: {"storage":"./pinpoint_storage", "capacity": 5120}
+        **示例**: {"storage":"./pinpoint_storage", "capacity": 5120}
     
     - **ENV_INPUT_PINPOINT_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `tags`
+        **采集器配置字段**: `tags`
     
-        **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}                             |
+        **示例**: {"k1":"v1", "k2":"v2", "k3":"v3"}                             |
 
 ???+ warning "Datakit 中的 Pinpoint Agent 存在以下限制"
 
@@ -251,6 +251,7 @@ Pinpoint APM 链路数据较为复杂：
 | Tag | Description |
 |  ----  | --------|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
+|`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
 |`host`|Hostname.|

@@ -15,20 +15,20 @@ icon: zy/events
 - 基于配置的 [智能监控](../monitoring/intelligent-monitoring/index.md) 触发的全部告警事件；
 - 基于配置的 [智能巡检](../monitoring/bot-obs/index.md) 触发的全部告警事件；
 - 基于配置的 [SLO](../monitoring/slo.md) 触发的全部告警事件；
-- 基于系统操作触发的[审计事件](../management/settings/operation-audit.md)；
+- 基于系统操作触发的[审计事件](../management/operation-audit.md)；
 - 支持通过事件的 [OpenAPI 写入自定义事件](../open-api/keyevent/create.md)。
 
 ## 应用场景
 
-- 事件统一管理
-- 事件可视化查询与分析
-- 关联事件查询
+- 事件统一管理；
+- 事件可视化查询与分析；
+- 关联事件查询。
 
 ## 功能介绍
 
 |                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**了解更多**</font>                         |                                                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [未恢复事件查看器](unrecovered-events.md){ .md-button .md-button--primary } | [所有事件查看器](event-list.md){ .md-button .md-button--primary } |
+| [未恢复事件查看器](./event-explorer/unrecovered-events.md){ .md-button .md-button--primary } | [所有事件查看器](./event-explorer/event-list.md){ .md-button .md-button--primary } |
 | [智能监控](inte-monitoring-event.md){ .md-button .md-button--primary } | [监控器配置触发事件](../monitoring/monitor/index.md){ .md-button .md-button--primary } |
 
 

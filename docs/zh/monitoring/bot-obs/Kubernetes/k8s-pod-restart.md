@@ -12,7 +12,7 @@ Kubernetes 帮助用户自动调度和扩展容器化应用程序，但现代 Ku
 2. 自建 [DataFlux Func 观测云特别版](https://func.guance.com/#/) ，或者开通 [DataFlux Func 托管版](../../../dataflux-func/index.md)
 4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../../management/api-key/open-api.md)
 
-> **注意**：如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../billing/commercial-register.md#site)。
+> **注意**：如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../plans/commercial-register.md#site)。
 
 ## 开启巡检
 

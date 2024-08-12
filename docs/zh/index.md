@@ -74,7 +74,7 @@ glightbox: false
           <span>最佳实践</span>
         </div>
       </a>
-      <a href="/integrations" class="content-item">
+      <a href="/integrations/integration-index" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/integrations.png' alt="" />
           <span>集成</span>
@@ -86,7 +86,7 @@ glightbox: false
           <span>DataKit</span>
         </div>
       </a>
-      <a href="/dataflux-func/quick-start" class="content-item">
+      <a href="/dataflux-func" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/func.png' alt="" />
           <span>DataFlux Func</span>

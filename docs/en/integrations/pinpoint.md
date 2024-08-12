@@ -106,7 +106,7 @@ The built-in Pinpoint Agent in Datakit is used to receive, calculate, and analyz
     
         **Type**: String
     
-        **ConfField**: `address`
+        **input.conf**: `address`
     
         **Example**: 127.0.0.1:9991
     
@@ -116,7 +116,7 @@ The built-in Pinpoint Agent in Datakit is used to receive, calculate, and analyz
     
         **Type**: Boolean
     
-        **ConfField**: `keep_rare_resource`
+        **input.conf**: `keep_rare_resource`
     
         **Default**: false
     
@@ -126,7 +126,7 @@ The built-in Pinpoint Agent in Datakit is used to receive, calculate, and analyz
     
         **Type**: Boolean
     
-        **ConfField**: `del_message`
+        **input.conf**: `del_message`
     
         **Default**: false
     
@@ -136,7 +136,7 @@ The built-in Pinpoint Agent in Datakit is used to receive, calculate, and analyz
     
         **Type**: JSON
     
-        **ConfField**: `close_resource`
+        **input.conf**: `close_resource`
     
         **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
     
@@ -146,7 +146,7 @@ The built-in Pinpoint Agent in Datakit is used to receive, calculate, and analyz
     
         **Type**: Float
     
-        **ConfField**: `sampler`
+        **input.conf**: `sampler`
     
         **Example**: 0.3
     
@@ -156,7 +156,7 @@ The built-in Pinpoint Agent in Datakit is used to receive, calculate, and analyz
     
         **Type**: JSON
     
-        **ConfField**: `storage`
+        **input.conf**: `storage`
     
         **Example**: {"storage":"./pinpoint_storage", "capacity": 5120}
     
@@ -166,7 +166,7 @@ The built-in Pinpoint Agent in Datakit is used to receive, calculate, and analyz
     
         **Type**: JSON
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 
@@ -251,6 +251,7 @@ Main logical points:
 | Tag | Description |
 |  ----  | --------|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
+|`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
 |`host`|Hostname.|

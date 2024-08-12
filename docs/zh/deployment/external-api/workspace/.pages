@@ -1,8 +1,0 @@
-nav:
-  - '【工作空间】列出': list.md
-  - '【工作空间】创建': create.md
-  - '【工作空间】获取详情': get.md
-  - '【工作空间】修改': modify.md
-  - '【工作空间】删除': delete.md
-  - '【工作空间】使用量限制查询': usage-limit-get.md
-  - '【工作空间】使用量限制更新': update-usage-limit.md

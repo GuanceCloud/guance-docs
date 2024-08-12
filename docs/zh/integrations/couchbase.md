@@ -117,141 +117,141 @@ Couchbase 采集器支持远程采集，可以运行在多种操作系统中。
     
         采集器重复间隔时长
     
-        **Type**: TimeDuration
+        **字段类型**: TimeDuration
     
-        **ConfField**: `interval`
+        **采集器配置字段**: `interval`
     
-        **Default**: 30s
+        **默认值**: 30s
     
     - **ENV_INPUT_COUCHBASE_TIMEOUT**
     
         超时时长
     
-        **Type**: TimeDuration
+        **字段类型**: TimeDuration
     
-        **ConfField**: `timeout`
+        **采集器配置字段**: `timeout`
     
-        **Default**: 5s
+        **默认值**: 5s
     
     - **ENV_INPUT_COUCHBASE_SCHEME**
     
         网络协议
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `scheme`
+        **采集器配置字段**: `scheme`
     
-        **Example**: http or https
+        **示例**: http or https
     
     - **ENV_INPUT_COUCHBASE_HOST**
     
         服务器网址
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `host`
+        **采集器配置字段**: `host`
     
-        **Example**: 127.0.0.1
+        **示例**: 127.0.0.1
     
     - **ENV_INPUT_COUCHBASE_PORT**
     
         端口号，https 用 18091
     
-        **Type**: Int
+        **字段类型**: Int
     
-        **ConfField**: `port`
+        **采集器配置字段**: `port`
     
-        **Example**: 8091 or 18091
+        **示例**: 8091 or 18091
     
     - **ENV_INPUT_COUCHBASE_ADDITIONAL_PORT**
     
         附加的端口号，https 用 19102
     
-        **Type**: Int
+        **字段类型**: Int
     
-        **ConfField**: `additional_port`
+        **采集器配置字段**: `additional_port`
     
-        **Example**: 9102 or 19102
+        **示例**: 9102 or 19102
     
     - **ENV_INPUT_COUCHBASE_USER**
     
         登录名
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `user`
+        **采集器配置字段**: `user`
     
-        **Example**: Administrator
+        **示例**: Administrator
     
     - **ENV_INPUT_COUCHBASE_PASSWORD**
     
         登录密码
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `password`
+        **采集器配置字段**: `password`
     
-        **Example**: 123456
+        **示例**: 123456
     
     - **ENV_INPUT_COUCHBASE_TLS_OPEN**
     
         TLS open
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `tls_open`
+        **采集器配置字段**: `tls_open`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_COUCHBASE_TLS_CA**
     
         TLS configuration
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `tls_ca`
+        **采集器配置字段**: `tls_ca`
     
-        **Example**: /opt/ca.crt
+        **示例**: /opt/ca.crt
     
     - **ENV_INPUT_COUCHBASE_TLS_CERT**
     
         TLS configuration
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `tls_cert`
+        **采集器配置字段**: `tls_cert`
     
-        **Example**: /opt/peer.crt
+        **示例**: /opt/peer.crt
     
     - **ENV_INPUT_COUCHBASE_TLS_KEY**
     
         TLS configuration
     
-        **Type**: String
+        **字段类型**: String
     
-        **ConfField**: `tls_key`
+        **采集器配置字段**: `tls_key`
     
-        **Example**: /opt/peer.key
+        **示例**: /opt/peer.key
     
     - **ENV_INPUT_COUCHBASE_ELECTION**
     
         开启选举
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `election`
+        **采集器配置字段**: `election`
     
-        **Default**: true
+        **默认值**: true
     
     - **ENV_INPUT_COUCHBASE_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
     
-        **Type**: Map
+        **字段类型**: Map
     
-        **ConfField**: `tags`
+        **采集器配置字段**: `tags`
     
-        **Example**: tag1=value1,tag2=value2
+        **示例**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 

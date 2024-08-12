@@ -14,13 +14,13 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | name | string | Y | 标题名称<br>例子: name <br>允许为空: False <br>最大长度: 256 <br> |
-| level | string | Y | 等级,对应等级配置的uuid<br>例子: level <br>允许为空: False <br> |
+| level | string | Y | 等级,对应等级配置的uuid<br>例子: level <br>允许为空: False <br>允许为空字符串: True <br> |
 | description | string | Y | 描述<br>例子: description <br>允许为空: False <br> |
 | attachmentUuids | array |  | 附件上传列表uuid<br>例子: [] <br>允许为空: True <br> |
 | extend | json | Y | 额外拓展信息<br>例子: {} <br>允许为空: True <br> |
 | resourceType | string |  | 来源类型,没有场景就不需要传<br>例子: resourceType <br>允许为空: False <br>可选值: ['event', 'dashboard', 'viewer'] <br> |
-| resourceUUID | string |  | 对应来源的uuid分别 docid,dashboardUUID,dashboardUUID<br>例子: resourceUuid <br>允许为空: False <br>允许空字符串: True <br> |
-| resource | string |  | 对应来源带入的来源名称<br>例子: resource <br>允许为空: False <br>允许空字符串: True <br> |
+| resourceUUID | string |  | 对应来源的uuid分别 docid,dashboardUUID,dashboardUUID<br>例子: resourceUuid <br>允许为空: False <br>允许为空字符串: True <br> |
+| resource | string |  | 对应来源带入的来源名称<br>例子: resource <br>允许为空: False <br>允许为空字符串: True <br> |
 | channelUUIDs | array |  | issue投递追踪频道uuids<br>例子: [] <br>允许为空: True <br> |
 
 ## 参数补充说明

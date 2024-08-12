@@ -1,8 +1,8 @@
-# 自定义对象数据上报
+# 资源目录数据上报
 ---
 
 
-自定义对象数据上报需要先安装并连通 DataKit 和 DataFlux Func，再通过 DataFlux Func 上报数据到 DataKit，最终 DataKit 上报数据到观测云工作空间。
+资源目录数据上报需要先安装并连通 DataKit 和 DataFlux Func，再通过 DataFlux Func 上报数据到 DataKit，最终 DataKit 上报数据到观测云工作空间。
 
 ![](../img/object.png)
 
@@ -54,9 +54,9 @@ sudo datakit --restart
 
 > 更多详情，可参考[连接并操作 DataKit](https://func.guance.com/doc/practice-connect-to-datakit/)。
 
-## 上报自定义对象数据
+## 上报资源目录数据
 
-DataFlux Func 和 DataKit 连通以后，可以在 DataFlux Func 中撰写函数来完成上报自定义对象数据。
+DataFlux Func 和 DataKit 连通以后，可以在 DataFlux Func 中撰写函数来完成上报资源目录数据。
 
 > 关于 DataFlux Func 函数调用的接口说明，可参考 [DataKit API](../../datakit/apis.md)；   
 > 
@@ -64,7 +64,7 @@ DataFlux Func 和 DataKit 连通以后，可以在 DataFlux Func 中撰写函数
 
 ## 示例说明
 
-下面的示例主要以阿里云产品为例，说明如何通过 DataFlux Func 上报自定义对象数据。
+下面的示例主要以阿里云产品为例，说明如何通过 DataFlux Func 上报资源目录数据。
 
 **前提条件**：已经完成 DataKit 和 DataFlux Func 安装及连通。
 

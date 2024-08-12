@@ -6,6 +6,7 @@ nav:
   - '使用限制': api-limit.md
   - '请求示例': example.md
   - '公共错误定义': error-definition.md
+  - '更新日志': open-api-change-log.md
   - '场景 - 仪表板': board
   - '场景 - 笔记': notes
   - '场景 - 查看器': viewer
@@ -41,9 +42,11 @@ nav:
   - '管理 - API Key管理': workspace-ak
   - '工作空间': workspace
   - '工作空间属性声明': workspace-declaration
+  - '管理 - 敏感数据脱敏': workspace-data-mask
   - '快照管理': snapshot
   - 'DQL数据查询': query-data
   - '日志聚类查询': logmine
   - 'Func 函数': outer-function
   - '账单分析': billing
   - '免登录Token': offline-token
+  - '工作空间内sql信息查询': sql-query

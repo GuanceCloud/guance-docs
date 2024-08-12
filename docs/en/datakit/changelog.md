@@ -1,5 +1,195 @@
 # Changelog
 
+## 1.34.0(2024/07/24) {#cl-1.34.0}
+
+This release is an iterative update with the following main changes:
+
+### New Features {#cl-1.34.0-new}
+
+- Added custom object collection for mainstream collectors, such as Oracle/MySQL/Apache (#2207)
+- Added `up` metric to remote collectors (#2304)
+- Statsd collector exposes its own metrics (#2326)
+- Added [CockroachDB Collector](../integrations/cockroachdb.md) (#2187)
+- Added [AWS Lambda Collector](../integrations/awslambda.md) (#2258)
+- Added [Kubernetes Prometheus Collector](../integrations/kubernetesprometheus.md), enabling automatic discovery of Prometheus collection (#2246)
+
+### Bug Fixes {#cl-1.34.0-fix}
+
+- Fixed issues on certain versions of Windows where bug reports and the dk collector might consume too much memory; temporarily removed some metric exposure to work around this (#2317)
+- Fixed the issue where `datakit monitor` did not display collectors sourced from Confd (#2160)
+- Fixed the problem where container logs would not be collected if manually specified as stdout in the Annotation (#2327)
+- Fixed abnormal behavior in the eBPF network log collector when fetching K8s labels (#2325)
+- Fixed concurrent read/write errors in the RUM collector (#2319)
+
+### Feature Enhancements {#cl-1.34.0-opt}
+
+- Optimized the OceanBase collector's dashboard template, and added `cluster` tag to the `oceanbase_log` metric (#2265)
+- Improved the issue with too many task failure counts causing the probe collector task to exit (#2314)
+- Pipeline now supports adding script execution information to data, and the `http_request` function supports body parameters (#2313/#2298)
+- Optimized memory usage in the eBPF collector (#2328)
+- Various documentation improvements (#2320)
+
+---
+
+## 1.33.1 (July 11, 2024) {#cl-1.33.1}
+
+This release is a hotfix update that addresses the following issues:
+
+- Fixed bug on trace sampling, which was introduced in version 1.26.0. We also added a new filed(`dk_sampling_rate`) on root span to indicate that the trace has been sampled. **An upgrade is recommended** (#2312)
+- Fixed bug on SNMP collector related to IP handling, and additionally exposed a set of new metrics during the SNMP collection process (#3099)
+
+---
+
+## 1.33.0 (July 10, 2024) {#cl-1.33.0}
+
+This release is an iterative update with the following main changes:
+
+### New Features {#cl-1.33.0-new}
+
+- Added [OpenTelemetry Logging Collection](../integrations/opentelemetry.md#logging) (#2292)
+- New [SNMP Collector](../integrations/snmp.md), added support for Zabbix/Prometheus configurations, and added related dashboards (#2290)
+
+### Bug Fixes {#cl-1.33.0-fix}
+
+- Fixed HTTP dial-testing issues (#2293)
+    - The bug that response time (`response_time`) did not include the download time (`response_download`).
+    - Issues with IPv6 recognition in HTTP request.
+- Fixed Oracle Collector crash issues and max-cursor problems (#2297)
+- Fixed log collection position recording issues that were introduced in version 1.27, **an upgrade is recommended** (#2301)
+- Fixed issues where some customer-tags were not effective when receiving data through DDTrace/OpenTelemetry HTTP API (#2308)
+
+### Feature Enhancements {#cl-1.33.0-opt}
+
+- Added big-key collection for Redis 4.x (#2296)
+- Optimized the number of internal workers based on the actual limited number of CPU cores, which can greatly reduce some buffer memory overhead, **an upgrade is recommended** (#2275)
+- On API `/v1/write/metric`, the behavior has been switched to *blocking mode* by default to avoid data point loss (#2300)
+- Optimized the performance of the `grok()` function in Pipeline (#2310)
+- Added eBPF-related information and Pipeline information to the [bug report](why-no-data.md#bug-report) (#2289)
+- k8s Auto-discovery ServiceMonitor now supports configuring TLS certificate paths (#1866)
+- In the [host process](../integrations/host_processes.md) collector, added corresponding container ID fields (`container_id`) for object and metrics data collection (#2283)
+- In Trace data collection, added a Datakit fingerprint field (`datakit_fingerprint`, which is the hostname where Datakit installed) to facilitate problem investigation, and exposed some additional collection process metrics (#2295)
+    - Added statistics on the number of collected traces
+    - Added statistics on sampled and discarded traces
+
+- Documentation improvements:
+    - Added [documentation on bug reporting](bug-report-how-to.md)
+    - Explained the differences between [Datakit installation and upgrade](datakit-update.md#upgrade-vs-install)
+    - Add documentation on add extra parameters during [offline installation](datakit-offline-install.md#simple-install)
+    - Optimized the MongoDB collector field documentation (#2278)
+
+---
+
+## 1.32.0 (June 26, 2024) {#cl-1.32.0}
+
+This release is an iterative update with the following main changes:
+
+### New Features {#cl-1.32.0-new}
+
+- OpenTelemetry add Histogram  Metrics（#2276）
+
+### Bug Fixes {#cl-1.32.0-fix}
+
+- Fixed an issue with the identification of `localhost` in Datakit usage reporting (#2281).
+- Resolved a problem with the assignment of the `service` field in log collection (#2286).
+- Other bug fixes (#2284/#2282).
+
+### Feature Enhancements {#cl-1.32.0-opt}
+
+- MySQL now includes more comprehensive metrics and log collection for master-slave replication (#2279).
+- Improved documentation and installation options related to configuration encryption (#2274).
+- Reduced memory consumption for DDTrace collector(#2272).
+- Optimized data reporting strategy in health check collector (#2268).
+- Improved timeout control and TLS settings in SQLServer collector (#2264).
+- Optimized handling of the `job` field in Prometheus-related metric collection (Push Gateway/Remote Write) (#2271).
+- Enhanced slow query fields in OceanBase, adding client IP information (#2280).
+- Rewrote the Oracle collector (#2186).
+- In eBPF collector, optimized the value acquisition of the target domain name for network data (#2287).
+- By default, use the v2 (Protobuf) protocol to upload collected data (#2269).
+    - [Comparison between v1 and v2](pb-vs-lp.md)
+- Other adjustments (#2267/#2255/#2237/#2270/#2248).
+
+---
+
+## 1.31.0 (June 13, 2024) {#cl-1.31.0}
+
+This release is an iterative update with the following main changes:
+
+### New Features {#cl-1.31.0-new}
+
+- Added support for [configuring sensitive information](datakit-conf.md#secrets_management) (such as database passwords) through encryption (#2249).
+- Introduced Prometheus [Push Gateway metric pushing](../integrations/pushgateway.md) functionality (#2260).
+- Added the ability to append corresponding Kubernetes Labels to container objects (#2252).
+- Enhanced eBPF tracing plugin with Redis protocol recognition (#2248).
+
+### Bug Fixes {#cl-1.31.0-fix}
+
+- Fixed an issue where SNMP collection was incomplete (#2262).
+- Addressed a problem with Kubernetes Autodiscovery that caused duplicate Pod collection (#2259).
+- Implemented protective measures to prevent duplicate collection of container-related metrics (#2253).
+- Resolved an issue with abnormal CPU metrics on the Windows platform (extremely large invalid values) (#2028).
+
+### Feature Enhancements {#cl-1.31.0-opt}
+
+- Improved PostgreSQL metric collection (#2263).
+- Optimized bpf-netlog collection fields (#2247).
+- Enhanced data collection for OceanBase (#2122).
+- Other adjustments (#2267/#2255/#2237).
+
+---
+
+## 1.30.0 (June 4, 2024) {#cl-1.30.0}
+
+This release is an iterative update with the following main changes:
+
+### New Features {#cl-1.30.0-new}
+
+- Pipeline
+    - Added `gjson()` function to provide ordered JSON field extraction (#2167)
+    - Added context caching feature (#2157)
+
+### Bug Fixes {#cl-1.30.0-fix}
+
+- Fixed the issue with appending global-tags in Prometheus Remote Write[^2244] (#2244)
+
+[^2244]: This issue was introduced in version 1.25.0. If the Prometheus Remote Write collector is enabled, it is recommended to upgrade.
+
+### Feature Enhancements {#cl-1.30.0-opt}
+
+- Optimized Datakit [`/v1/write/:category` API](apis.md#api-v1-write) with the following adjustments and features (#2130)
+    - Added more API parameters (`echo`/`dry`) for easier debugging
+    - Support for more types of data formats
+    - Support for fuzzy recognition of timestamp precision in data points (#2120)
+- Optimization of MySQL/Nginx/Redis/SQLServer metrics collection (#2196)
+    - Added master-slave replication related metrics for MySQL
+    - Added duration metrics for Redis slow logs
+    - Added more Nginx Plus related metrics for Nginx
+    - Optimized the structure of Performance-related metrics for SQLServer
+- Added support for low version TLS in MySQL collector (#2245)
+- Optimized TLS certificate configuration for Kubernetes self-etcd metrics collection (#2032)
+- Prometheus Exporter metrics collection supports configuration to preserve original metric names (#2231)
+- Added taint-related information to Kubernetes Node objects (#2239)
+- eBPF-Tracing added MySQL protocol recognition (#1768)
+- Optimized the performance of the ebpftrace collector (#2226)
+- The operational status of the dialing collector is supported to be displayed on the `datakit monitor` command panel (#2243)
+- Other view and documentation optimizations (#1976/#1977/#2194/#2195/#2221/#2235)
+
+### Compatibility Adjustments {#cl-1.30.0-brk}
+
+In this version, the data protocol has been extended. After upgrading from an older version of Datakit, if the center base is privately deployed, the following measures can be taken to maintain data compatibility:
+
+- Upgrade the center base to [1.87.167](../deployment/changelog.md#1871672024-06-05) or
+- Modify the [upload protocol configuration `content_encoding`](datakit-conf.md#dataway-settings) in *datakit.conf* to `v2`
+
+#### For InfluxDB {#cl-1.30.0-brk-influxdb}
+
+If your time series storage is InfluxDB, then **do not upgrade Datakit**. Please maintain the highest version at 1.29.1. We'll upgraded the central latter to make it compatible with InfluxDB.
+
+Additionally, if the central has been upgraded to a newer version (1.87.167+), then lower versions of Datakit should also **use the `v1` upload protocol**. Please switch from `v2` to `v1` if you have set `v2` before.
+
+If you do indeed want to upgrade to a newer version of Datakit, please replace the time series engine with guance-storage.
+
+---
+
 ## 1.29.1 (May 20, 2024) {#cl-1.29.1}
 
 This release is a hotfix that addresses the following issue:
@@ -125,6 +315,8 @@ This release is a hotfix release that addresses the following issues:
 - Fixed an problem with missing tags in SQLServer custom collection (#2144)
 - Resolved duplicate collection issue with Kubernetes Events (#2145)
 - Corrected inaccurate container count collection in Kubernetes (#2146)
+- Fixed an issue where sampler would incorrectly delete some traces (#2135)
+
 
 ### Enhancements {#cl-1.26.0-opt}
 
@@ -489,7 +681,7 @@ This release is a Hotfix release, which fixes the following issues:
 ### New features {#cl-1.17.1-new}
 
 - eBPF can also [build APM data](../integrations/ebpftrace.md) to trace process/thread relationship under Linux(#1835)
-- Pipeline add new function [`pt_name`](../developers/pipeline/pipeline-built-in-function.md#fn-pt-name)(#1937)
+- Pipeline add new function [`pt_name`](../pipeline/pipeline/pipeline-built-in-function.md#fn-pt-name)(#1937)
 
 ### Features Optimizations {#cl-1.17.1-opt}
 
@@ -869,7 +1061,7 @@ This release is an iterative mid-term release, adding some functions for docking
 - Added [Chrony collector](../integrations/chrony.md) (#1671)
 - Added RUM Headless support (#1644)
 -Pipeline
-    - Added [offload function](../developers/pipeline/pipeline-offload.md) (#1634)
+    - Added [offload function](../pipeline/pipeline/pipeline-offload.md) (#1634)
     - Restructured existing documentation (#1686)
 
 ### Bug fixes {#cl-1.9.2-fix}
@@ -1069,8 +1261,8 @@ This release is an emergency release and includes the following updates:
 
 - Add support to [auto-discovery Prometheus metrics](kubernetes-prom.md#auto-discovery-metrics-with-prometheus) on Kubernetes Pods(#1564)
 - Add new aggregation function in Pipeline(#1554)
-    - [agg_create()](../developers/pipeline/pipeline-built-in-function.md#fn-agg-create)
-    - [agg_metric()](../developers/pipeline/pipeline-built-in-function.md#fn-agg-metric)
+    - [agg_create()](../pipeline/pipeline/pipeline-built-in-function.md#fn-agg-create)
+    - [agg_metric()](../pipeline/pipeline/pipeline-built-in-function.md#fn-agg-metric)
 
 ### Feature Optimization {#cl-1.5.10-opt}
 
@@ -1139,8 +1331,8 @@ This release is an iterative release, mainly for bug fixes and feature improveme
 - Improve support for [cgroup v2](datakit-conf.md#resource-limit) (#1494)
 - Add an environment variable (`ENV_CLUSTER_K8S_NAME`) to configure the cluster name during Kubernetes installation (#1504)
 - Pipeline
-    - Add protective measures to the [`kv_split()`](../developers/pipeline/pipeline-built-in-function.md#fn-kv_split) function to prevent data inflation (#1510)
-    - Optimize the functionality of [`json()`](../developers/pipeline/pipeline-built-in-function.md#fn-json) and [`delete()`](../developers/pipeline/pipeline-built-in-function.md#fn-delete) for processing JSON keys.
+    - Add protective measures to the [`kv_split()`](../pipeline/pipeline/pipeline-built-in-function.md#fn-kv_split) function to prevent data inflation (#1510)
+    - Optimize the functionality of [`json()`](../pipeline/pipeline/pipeline-built-in-function.md#fn-json) and [`delete()`](../pipeline/pipeline/pipeline-built-in-function.md#fn-delete) for processing JSON keys.
 - Other engineering optimizations (#1500)
 
 ### Documentation Adjustments {#cl-1.5.8-doc}
@@ -1160,9 +1352,9 @@ This release is an iterative release with the following updates:
 ### New Features {#cl-1.5.7-new}
 
 - Pipeline
-    - Add [key deletion](../developers/pipeline/pipeline-built-in-function.md#fn-json) for `json` function (#1465)
-    - Add new function [`kv_split()`](../developers/pipeline/pipeline-built-in-function.md#fn-kv_split)(#1414)
-    - Add new function[`datatime()`](../developers/pipeline/pipeline-built-in-function.md#fn-datetime)(#1411)
+    - Add [key deletion](../pipeline/pipeline/pipeline-built-in-function.md#fn-json) for `json` function (#1465)
+    - Add new function [`kv_split()`](../pipeline/pipeline/pipeline-built-in-function.md#fn-kv_split)(#1414)
+    - Add new function[`datatime()`](../pipeline/pipeline/pipeline-built-in-function.md#fn-datetime)(#1411)
 - Add [IPv6 support](datakit-conf.md#config-http-server)(#1454)
 - Disk io add extended metrics on [io wait](diskio.md#extend)(#1472)
 - Container support [Docker Containerd co-exist](container.md#requrements)(#1401)
@@ -1178,7 +1370,7 @@ This release is an iterative release with the following updates:
 ### Features Optimizations {#cl-1.5.7-opt}
 
 - Optimize Point Checker(#1478)
-- Optimize Pipeline function [`replace()`](../developers/pipeline/pipeline-built-in-function.md#fn-replace) performance (#1477)
+- Optimize Pipeline function [`replace()`](../pipeline/pipeline/pipeline-built-in-function.md#fn-replace) performance (#1477)
 - Optimize Datakit installation under Windows(#1406)
 - Optimize [Confd](confd.md) configuration($1402)
 - Add more testing on [Filebeat](beats_output.md)(#1459)

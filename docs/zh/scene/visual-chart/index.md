@@ -3,6 +3,169 @@
 
 观测云配备了 20 余种标准化的可视化图表，您可以轻松根据业务需求定制仪表板。同时，利用视图变量等高级功能，可实现图表间的数据联动，确保数据展示的个性化与专业度。
 
+<!--
+
+<font size=2>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **时序图**</font>](timeseries-chart.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **概览图**</font>](overview-chart.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **表格图**</font>](table-chart.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **矩形树图**</font>](treemap.md)
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **漏斗图**</font>](funnel-chart.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **饼图**</font>](pie-chart.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **柱状图**</font>](bar-chart.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **直方图**</font>](histogram.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **SLO**</font>](slo-chart.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **排行榜**</font>](leaderboard.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **仪表盘**</font>](dashboard.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **散点图**</font>](scatter-plot.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **气泡图**</font>](bubble-chart.md)
+
+</div>
+
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **中国地图**</font>](china-map.md)
+
+</div>
+
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **世界地图**</font>](world-map.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **蜂窝图**</font>](cellular-map.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **桑基图**</font>](sankey.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **图片**</font>](picture.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **文本**</font>](text.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **视频**</font>](video.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **命令面板**</font>](command-panel.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **IFrame**</font>](iframe.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **日志流图**</font>](log-stream.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **对象列表图**</font>](object-list.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **告警统计图**</font>](alert-statistics.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **拓扑图**</font>](topology-map.md)
+
+</div>
+
+</font>
+-->
 
 |                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**图表详情**</font>                 |                |                |   |   |
 | :-------------------: | :--------------------: | :--------------------: | :--------------------: | :--------------------: |
@@ -44,7 +207,7 @@
 
 ### 修改
 
-在图表中，点击 :fontawesome-solid-gear: 按钮，选择**修改**，即可编辑图表配置。
+在图表中，点击 :octicons-gear-24: 按钮，选择**修改**，即可编辑图表配置。
 
 在编辑图表时，可添加或者调整[图表查询](chart-query.md)，查看和复制[图表 JSON](chart-json.md) 代码，添加[图表链接](chart-link.md)，查看事件关联，调整图表样式和设置等内容。
 
@@ -76,17 +239,17 @@
 
 ### 组合图表
 
-在图表中，点击 :fontawesome-solid-gear: 按钮，选择**组合图表**即可添加其他图表组合为新的组合图表。组合图表一般用于组合一个指标不同结果值的多个图表，帮助用户了解指标的对比结果，同时可以随意组合不同类型的图表。
+在图表中，点击 :octicons-gear-24: 按钮，选择**组合图表**即可添加其他图表组合为新的组合图表。组合图表一般用于组合一个指标不同结果值的多个图表，帮助用户了解指标的对比结果，同时可以随意组合不同类型的图表。
 
 ![](../img/chart012.png)
 
-在组合图表中，点击 :fontawesome-solid-gear: 按钮，选择**修改**，即可对组合的图表进行编辑；选择**修改主标题**，即可对组合图表的标题进行编辑，支持隐藏主标题。
+在组合图表中，点击 :octicons-gear-24: 按钮，选择**修改**，即可对组合的图表进行编辑；选择**修改主标题**，即可对组合图表的标题进行编辑，支持隐藏主标题。
 
 ![](../img/chart013.png)
 
 ### 分享
 
-在 :fontawesome-solid-gear: 按钮下，可**分享**当前图表。分享后的图表统一存储在**管理 > 分享管理 > 分享图表**。
+在 :octicons-gear-24: 按钮下，可**分享**当前图表。分享后的图表统一存储在**管理 > 分享管理 > 分享图表**。
 
 **注意**：图表分享功能仅支持空间拥有者、管理员和标准成员操作，只读成员无法查看到分享图表的功能。
 
@@ -94,7 +257,7 @@
 
 ### 复制、克隆、删除
 
-在 :fontawesome-solid-gear: 按钮下，您可以复制、克隆或删除图表。
+在 :octicons-gear-24: 按钮下，您可以复制、克隆或删除图表。
 
 **注意**：
 

@@ -1,6 +1,9 @@
 nav:
   - '工作空间-创建': create.md
   - '修改工作空间': modify.md
-  - '功能菜单获取': menu-get.md
-  - '功能菜单设置': menu-set.md
+  - '功能菜单获取(old)': menu-get.md
+  - '功能菜单设置(old)': menu-set.md
+  - '功能菜单获取(new, 支持二级菜单)': menu-get-v2.md
+  - '功能菜单设置(new, 支持二级菜单)': menu-set-v2.md
+  - '上传空间图片相关资源': upload-logo-image.md
   - '获取当前工作空间信息': current.md

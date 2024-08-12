@@ -110,7 +110,7 @@ The health check collector can regularly monitor the health of processes and net
     
         **Type**: TimeDuration
     
-        **ConfField**: `interval`
+        **input.conf**: `interval`
     
         **Default**: 10s
     
@@ -120,7 +120,7 @@ The health check collector can regularly monitor the health of processes and net
     
         **Type**: JSON
     
-        **ConfField**: `process`
+        **input.conf**: `process`
     
         **Example**: [{"names":["nginx","mysql"],"min_run_time":"10m"}]
     
@@ -130,7 +130,7 @@ The health check collector can regularly monitor the health of processes and net
     
         **Type**: JSON
     
-        **ConfField**: `tcp`
+        **input.conf**: `tcp`
     
         **Example**: [{"host_ports":["10.100.1.2:3369","192.168.1.2:6379"],"connection_timeout":"3s"}]
     
@@ -140,7 +140,7 @@ The health check collector can regularly monitor the health of processes and net
     
         **Type**: JSON
     
-        **ConfField**: `http`
+        **input.conf**: `http`
     
         **Example**: [{"http_urls":["http://local-ip:port/path/to/api?arg1=x&arg2=y"],"method":"GET","expect_status":200,"timeout":"30s","ignore_insecure_tls":false,"headers":{"Header1":"header-value-1","Hedaer2":"header-value-2"}}]
     
@@ -150,7 +150,7 @@ The health check collector can regularly monitor the health of processes and net
     
         **Type**: JSON
     
-        **ConfField**: `tags`
+        **input.conf**: `tags`
     
         **Example**: {"some_tag":"some_value","more_tag":"some_other_value"}
 
@@ -192,7 +192,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`exception`|Exception value, 1 is default|int|-|
+|`exception`|Exception value, 1 or 0|int|-|
 |`pid`|The process ID|int|int|
 |`start_duration`|The total time the process has run|int|μs|
 
@@ -219,7 +219,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`exception`|Exception value, 1 is default|int|-|
+|`exception`|Exception value, 1 or 0|int|-|
 
 
 
@@ -244,6 +244,6 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`exception`|Exception value, 1 is default|int|-|
+|`exception`|Exception value, 1 or 0|int|-|
 
 

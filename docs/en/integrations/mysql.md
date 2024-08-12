@@ -94,6 +94,11 @@ GRANT replication client on *.*  to 'datakit'@'localhost';
       ## user
       users = []
     
+      ## Set replication to true to collect replication metrics
+      # replication = false
+      ## Set group_replication to true to collect group replication metrics
+      # group_replication = false
+    
       ## Set dbm to true to collect database activity 
       # dbm = false
     
@@ -148,6 +153,9 @@ GRANT replication client on *.*  to 'datakit'@'localhost';
         # tls_key = "/etc/mysql/key.pem"
         ## Use TLS but skip chain & host verification
         insecure_skip_verify = true
+        ## by default, support TLS 1.2 and above.
+        ## set to true if server side uses TLS 1.0 or TLS 1.1
+        allow_tls10 = false
     
       [inputs.mysql.tags]
         # some_tag = "some_value"
@@ -301,9 +309,42 @@ UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name LIKE 'eve
 UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events_waits_current';
 ```
 
+### Replication Metrics Collection {#replication_metrics}
+
+To collect replication metrics `mysql_replication`, you need to start MySQL replication. `mysql_replication` metrics are collected from the replication database, so you can confirm that the MySQL replication environment is working properly by entering them in the slave database:
+
+```sql
+SHOW SLAVE STATUS;
+```
+
+If the `Slave_IO_Running` and `Slave_SQL_Running` fields are `Yes`, the replication environment is working properly.
+
+To capture group replication metrics such as `count_transactions_in_queue`, you need to add the group_replication plugin to the list of plugins loaded by the server at startup (group_replication has been supported since MySQL version 5.7.17). In the configuration file `/etc/my.cnf` for the replication database, add the line:
+
+```toml
+plugin_load_add ='group_replication.so'
+```
+
+You can confirm that the group replication plugin is installed by `showing plugins;`.
+
+To turn it on, you need to perform the following steps.
+
+- Modify the configuration file and start monitoring and collection
+
+```toml
+[[inputs.mysql]]
+
+## Set replication to true to collect replication metrics
+replication = true
+## Set group_replication to true to collect group replication metrics
+group_replication = true  
+...
+
+```
+
 ## Metric {#metric}
 
-All the following data collection will add a global tag named `host` by default (the tag value is the host name of DataKit). You can also specify other tags through `[inputs.mysql.tags]` in the configuration:
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.mysql.tags]` if needed:
 
 ```toml
  [inputs.mysql.tags]
@@ -378,6 +419,7 @@ All the following data collection will add a global tag named `host` by default 
 |`Key_write_requests`|The number of requests to write a key block to the MyISAM key cache.|int|count|
 |`Key_writes`|The number of physical writes of a key block from the MyISAM key cache to disk.|int|count|
 |`Max_used_connections`|The maximum number of connections that have been in use simultaneously since the server started.|int|count|
+|`Mysqlx_ssl_ctx_verify_depth`||int|-|
 |`Open_files`|The number of open files.|int|count|
 |`Open_tables`|The number of of tables that are open.|int|count|
 |`Opened_tables`|The number of tables that have been opened. If Opened_tables is big, your table_open_cache value is probably too small.|int|count|
@@ -401,16 +443,69 @@ All the following data collection will add a global tag named `host` by default 
 |`Sort_range`|The number of sorts that were done using ranges.|int|count|
 |`Sort_rows`|The number of sorted rows.|int|count|
 |`Sort_scan`|The number of sorts that were done by scanning the table.|int|count|
+|`Ssl_ctx_verify_depth`||int|-|
 |`Table_locks_immediate`|The number of times that a request for a table lock could be granted immediately.|int|count|
 |`Table_locks_waited`|The total number of times that a request for a table lock could not be granted immediately and a wait was needed.|int|count|
 |`Threads_cached`|The number of threads in the thread cache.|int|count|
 |`Threads_connected`|The number of currently open connections.|int|count|
 |`Threads_created`|The number of threads created to handle connections. If Threads_created is big, you may want to increase the thread_cache_size value.|int|count|
 |`Threads_running`|The number of threads that are not sleeping.|int|count|
+|`connection_memory_limit`||int|B|
+|`global_connection_memory_limit`||int|B|
 |`max_connections`|The maximum number of connections that have been in use simultaneously since the server started.|int|count|
+|`max_join_size`||int|count|
+|`max_seeks_for_key`||int|count|
+|`max_write_lock_count`||int|-|
+|`myisam_mmap_size`||int|B|
+|`parser_max_mem_size`||int|B|
 |`query_cache_size`|The amount of memory allocated for caching query results.|int|B|
+|`sql_select_limit`||int|-|
 |`table_open_cache`|The number of open tables for all threads. Increasing this value increases the number of file descriptors that mysqld requires.|int|count|
 |`thread_cache_size`|How many threads the server should cache for reuse. When a client disconnects, the client's threads are put in the cache if there are fewer than thread_cache_size threads there.|int|B|
+
+
+
+
+
+### `mysql_replication`
+
+
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`host`|The server host address|
+|`server`|Server addr|
+
+- metric list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`Auto_Position`|1 if auto-positioning is in use; otherwise 0.|bool|count|
+|`Connect_Retry:`|The number of seconds between connect retries (default 60). This can be set with the CHANGE MASTER TO statement.|int|count|
+|`Exec_Master_Log_Pos`|The position in the current source binary log file to which the SQL thread has read and executed, marking the start of the next transaction or event to be processed.|int|count|
+|`Last_Errno`|These columns are aliases for Last_SQL_Errno|int|count|
+|`Last_IO_Errno`|The error number of the most recent error that caused the I/O thread to stop. An error number of 0 and message of the empty string mean “no error.”|int|count|
+|`Last_SQL_Errno`|The error number of the most recent error that caused the SQL thread to stop. An error number of 0 and message of the empty string mean “no error.”|int|count|
+|`Master_Server_Id`|The server_id value from the source.|int|count|
+|`Relay_Log_Space`|The total combined size of all existing relay log files.|int|count|
+|`Replicas_connected`|Number of replicas connected to a replication source.|int|count|
+|`SQL_Delay`|The number of seconds that the replica must lag the source.|int|count|
+|`Seconds_Behind_Master`|The lag in seconds between the master and the slave.|int|count|
+|`Skip_Counter`|The current value of the sql_slave_skip_counter system variable.|int|count|
+|`Slave_IO_Running`|Whether the I/O thread is started and has connected successfully to the source. 1 if the state is Yes, 0 if the state is No.|bool|count|
+|`Slave_SQL_Running`|Whether the SQL thread is started. 1 if the state is Yes, 0 if the state is No.|bool|count|
+|`count_conflicts_detected`|The number of transactions that have not passed the conflict detection check. Collected as group replication metric.|int|count|
+|`count_transactions_checked`|The number of transactions that have been checked for conflicts. Collected as group replication metric.|int|count|
+|`count_transactions_in_queue`|The number of transactions in the queue pending conflict detection checks. Collected as group replication metric.|int|count|
+|`count_transactions_local_proposed`|The number of transactions which originated on this member and were sent to the group. Collected as group replication metric.|int|count|
+|`count_transactions_local_rollback`|The number of transactions which originated on this member and were rolled back by the group. Collected as group replication metric.|int|count|
+|`count_transactions_remote_applied`|The number of transactions this member has received from the group and applied. Collected as group replication metric.|int|count|
+|`count_transactions_remote_in_applier_queue`|The number of transactions that this member has received from the replication group which are waiting to be applied. Collected as group replication metric.|int|count|
+|`count_transactions_rows_validating`|The number of transaction rows which can be used for certification, but have not been garbage collected. Collected as group replication metric.|int|count|
 
 
 
@@ -676,9 +771,17 @@ MySQL user information
 
 
 
+
+
+
+
 ## Log {#logging}
 
 [:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)
+
+
+
+
 
 
 
@@ -843,6 +946,33 @@ Collect the waiting event of the current thread
 |`wait_event`|The name of the wait event|string|-|
 |`wait_timer_end`|The time when the waiting event timing ended|int|ns|
 |`wait_timer_start`|The time when the waiting event timing started|int|ns|
+
+
+
+
+
+### `mysql_replication_log`
+
+Record the replication string information.
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`host`|The server host address|
+|`server`|Server addr|
+
+- Metric list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`Executed_Gtid_Set`|The set of global transaction IDs written in the binary log.|string|-|
+|`Master_Host`|The host name of the master.|string|-|
+|`Master_Log_File`|The name of the binary log file from which the server is reading.|string|-|
+|`Master_Port`|The network port used to connect to the master.|int|count|
+|`Master_User`|The user name used to connect to the master.|string|-|
 
 
 <!-- markdownlint-enable -->

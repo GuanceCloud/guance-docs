@@ -182,121 +182,121 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
     
         代理端点
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `endpoints`
+        **采集器配置字段**: `endpoints`
     
-        **Example**: ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
+        **示例**: ["/v0.3/traces", "/v0.4/traces", "/v0.5/traces"]
     
     - **ENV_INPUT_DDTRACE_CUSTOMER_TAGS**
     
         标签白名单
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `customer_tags`
+        **采集器配置字段**: `customer_tags`
     
-        **Example**: `["sink_project", "custom_dd_tag"]`
+        **示例**: `["sink_project", "custom_dd_tag"]`
     
     - **ENV_INPUT_DDTRACE_KEEP_RARE_RESOURCE**
     
         保持稀有跟踪资源列表
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `keep_rare_resource`
+        **采集器配置字段**: `keep_rare_resource`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_DDTRACE_COMPATIBLE_OTEL**
     
         将 `otel Trace` 与 `DDTrace Trace` 兼容
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `compatible_otel`
+        **采集器配置字段**: `compatible_otel`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_DDTRACE_TRACE_ID_64_BIT_HEX**
     
         将 `B3/B3Multi-TraceID` 与 `DDTrace` 兼容
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `trace_id_64_bit_hex`
+        **采集器配置字段**: `trace_id_64_bit_hex`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_DDTRACE_DEL_MESSAGE**
     
         删除 trace 消息
     
-        **Type**: Boolean
+        **字段类型**: Boolean
     
-        **ConfField**: `del_message`
+        **采集器配置字段**: `del_message`
     
-        **Default**: false
+        **默认值**: false
     
     - **ENV_INPUT_DDTRACE_OMIT_ERR_STATUS**
     
         错误状态白名单
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `omit_err_status`
+        **采集器配置字段**: `omit_err_status`
     
-        **Example**: ["404", "403", "400"]
+        **示例**: ["404", "403", "400"]
     
     - **ENV_INPUT_DDTRACE_CLOSE_RESOURCE**
     
         忽略指定服务器的 tracing（正则匹配）
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `close_resource`
+        **采集器配置字段**: `close_resource`
     
-        **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
+        **示例**: {"service1":["resource1","other"],"service2":["resource2","other"]}
     
     - **ENV_INPUT_DDTRACE_SAMPLER**
     
         全局采样率
     
-        **Type**: Float
+        **字段类型**: Float
     
-        **ConfField**: `sampler`
+        **采集器配置字段**: `sampler`
     
-        **Example**: 0.3
+        **示例**: 0.3
     
     - **ENV_INPUT_DDTRACE_THREADS**
     
         线程和缓存的数量
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `threads`
+        **采集器配置字段**: `threads`
     
-        **Example**: {"buffer":1000, "threads":100}
+        **示例**: {"buffer":1000, "threads":100}
     
     - **ENV_INPUT_DDTRACE_STORAGE**
     
         本地缓存路径和大小（MB）
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `storage`
+        **采集器配置字段**: `storage`
     
-        **Example**: {"storage":"./ddtrace_storage", "capacity": 5120}
+        **示例**: {"storage":"./ddtrace_storage", "capacity": 5120}
     
     - **ENV_INPUT_DDTRACE_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
     
-        **Type**: JSON
+        **字段类型**: JSON
     
-        **ConfField**: `tags`
+        **采集器配置字段**: `tags`
     
-        **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
+        **示例**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 
 ### 多线路工具串联注意事项 {#trace_propagator}
 
@@ -440,29 +440,29 @@ DD_TAGS="project:your_project_name,env=test,version=v1" ddtrace-run python app.p
 
 以下是可能会提取出的标签列表：
 
-| Mete              | tag               | 说明             |
-|:------------------|:------------------|:---------------|
-| http.url          | http_url          | HTTP 请求完整路径    |
-| http.hostname     | http_hostname     | hostname       |
-| http.route        | http_route        | 路由             |
-| http.status_code  | http_status_code  | 状态码            |
-| http.method       | http_method       | 请求方法           |
-| http.client_ip    | http_client_ip    | 客户端 IP         |
-| sampling.priority | sampling_priority | 采样             |
-| span.kind         | span_kind         | span 类型        |
-| error             | error             | 是否错误           |
-| dd.version        | dd_version        | agent 版本       |
-| error.message     | error_message     | 错误信息           |
-| error.stack       | error_stack       | 堆栈信息           |
-| error.type        | error_type        | 错误类型           |
-| system.pid        | pid               | pid            |
-| error.msg         | error_message     | 错误信息           |
-| project           | project           | project        |
-| version           | version           | 版本             |
-| env               | env               | 环境             |
-| host              | host              | tag 中的主机名      |
-| pod_name          | pod_name          | tag 中的 pod 名称  |
-| _dd.base_service  | _dd_base_service  | 上级服务           |
+| 原始 Meta 字段      | 提取出来的字段名    | 说明              |
+| :------------------ | :------------------ | :---------------  |
+| `http.url`          | `http_url`          | HTTP 请求完整路径 |
+| `http.hostname`     | `http_hostname`     | hostname          |
+| `http.route`        | `http_route`        | 路由              |
+| `http.status_code`  | `http_status_code`  | 状态码            |
+| `http.method`       | `http_method`       | 请求方法          |
+| `http.client_ip`    | `http_client_ip`    | 客户端 IP         |
+| `sampling.priority` | `sampling_priority` | 采样              |
+| `span.kind`         | `span_kind`         | span 类型         |
+| `error`             | `error`             | 是否错误          |
+| `dd.version`        | `dd_version`        | agent 版本        |
+| `error.message`     | `error_message`     | 错误信息          |
+| `error.stack`       | `error_stack`       | 堆栈信息          |
+| `error.type`        | `error_type`        | 错误类型          |
+| `system.pid`        | `pid`               | pid               |
+| `error.msg`         | `error_message`     | 错误信息          |
+| `project`           | `project`           | project           |
+| `version`           | `version`           | 版本              |
+| `env`               | `env`               | 环境              |
+| `host`              | `host`              | tag 中的主机名    |
+| `pod_name`          | `pod_name`          | tag 中的 pod 名称 |
+| `_dd.base_service`  | `_dd_base_service`  | 上级服务          |
 
 在观测云中的链路界面，不在列表中的标签也可以进行筛选。
 
@@ -485,6 +485,7 @@ DD_TAGS="project:your_project_name,env=test,version=v1" ddtrace-run python app.p
 | Tag | Description |
 |  ----  | --------|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
+|`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
 |`env`|Application environment info. Available in Jaeger. Optional.|
 |`host`|Hostname.|
