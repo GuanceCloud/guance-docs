@@ -478,4 +478,4 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
 观测云支持设置绑定或者删除内置视图（用户视图）到日志详情页面。点击绑定内置视图，即可为当前日志详情页添加新的视图。
 
-![](img/log-view.png)
+<img src="../img/log-view.png" width="70%" >
