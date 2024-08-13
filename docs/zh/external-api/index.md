@@ -1,5 +1,5 @@
 ---
-icon: zy/private
+icon: zy/external-api
 ---
 # 概述
 

@@ -32,15 +32,15 @@
 
 ### 示例 {#example}
 
-在日志索引，配置索引过滤条件为 `source` 为 `http_dial_testing`。
+在日志索引，配置索引过滤条件为 `container_name` 为 `dataflux`。索引新建成功后，匹配这一筛选条件的日志数据上报时，会匹配流入第一个索引 `test_1`。
 
-![](img/5.log_4.png)
+<img src="../img/5.log_4.png" width="60%" >
 
-索引新建成功后，`source` 为 `tcp_dial_testing` 的日志数据上报时，会匹配流入第一个索引 `tcp_dial_testing`。
-
+<!--
 ![](img/5.log_6.png)
+-->
 
-点击索引，即可跳转到日志查看器，查看对应的日志数据。
+在索引列表，点击该索引即可跳转到日志查看器，查看对应的日志数据。
 
 ![](img/5.log_5.png)
 
