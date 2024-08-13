@@ -43,7 +43,7 @@ npm install @cloudcare/react-native-mobile
 ```
 
 **Android 集成额外配置**
-* 配置 Gradle Plugin [ft-plugin](../android/app-access.md#gradle-setting)，采集 App 启动事件和网络请求数据，以及 Android Native 原生相关事件（页面跳转、点击事件、Native 网络请求）
+* 配置 Gradle Plugin [ft-plugin](../android/app-access.md#gradle-setting)，采集 App 启动事件和网络请求数据，以及 Android Native 原生相关事件（页面跳转、点击事件、Native 网络请求、WebView 数据）
 
 
 现在在您的代码中，您可以使用：
@@ -449,6 +449,8 @@ AsyncStorage.setItem("track_id",valueString,(error)=>{
 - 特殊 key : track_id (在 RUM 中配置，用于追踪功能) ；  
 - 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
 
+## WebView 数据监测
+WebView 数据监测，需要在 WebView 访问页面集成[Web 监测 SDK](../web/app-access.md)
 
 ## Publish Package 相关配置
 ### Android

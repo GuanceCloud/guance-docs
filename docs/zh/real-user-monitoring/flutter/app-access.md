@@ -51,7 +51,7 @@ import 'package:ft_mobile_agent_flutter/ft_mobile_agent_flutter.dart';
 ```
 
 **Android 集成额外配置**
-* 配置 Gradle Plugin [ft-plugin](../android/app-access.md#gradle-setting)，采集 App 启动事件，以及 Android Native 原生相关事件（页面跳转、点击事件、Native 网络请求）
+* 配置 Gradle Plugin [ft-plugin](../android/app-access.md#gradle-setting)，采集 App 启动事件，以及 Android Native 原生相关事件（页面跳转、点击事件、Native 网络网络请求、WebView 数据）
 * 自定义 `Application`，并`AndroidMainifest.xml` 中声明使用，代码如下.
 
 ```kotlin
@@ -643,6 +643,10 @@ void httpClientGetHttp() async {
 
  FTMobileFlutter.unbindUser();
 ```
+
+## WebView 数据监测
+WebView 数据监测，需要在 WebView 访问页面集成[Web 监测 SDK](../web/app-access.md)
+
 
 ## Publish Package 相关配置
 ### Android

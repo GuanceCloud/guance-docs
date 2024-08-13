@@ -1826,6 +1826,9 @@ Widget Extension SDK 中仅实现数据的采集，数据上传逻辑交给主�
     }
     ```
 
+## WebView 数据监测
+WebView 数据监测，需要在 WebView 访问页面集成[Web 监测 SDK](../web/app-access.md)
+
 ## 常见问题 {#FAQ}
 
 ### 关于崩溃日志分析 {#crash-log-analysis}

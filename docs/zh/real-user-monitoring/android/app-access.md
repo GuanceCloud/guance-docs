@@ -72,6 +72,10 @@
         [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-native/CHANGELOG.md)
 
     === "ft-plguin ( AGP >=7.4.2 )"
+		**1.3.2**：
+        ``` markdown
+		1. 支持 React Native WebView 事件自动捕获
+		```
 		**1.3.1**：
         ``` markdown
 		1. 添加 asmVersion 配置功能，支持 asm7 - asm9，默认为 asm9
@@ -93,6 +97,10 @@
         [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-plugin/CHANGELOG.md)
    
     === "ft-plugin-legacy ( AGP <=7.4.2 )"
+		**1.1.8**：
+        ``` markdown
+		1. 支持 React Native WebView 事件自动捕获
+		```
 		**1.1.7**：
         ``` markdown
 		1. 修复了 WebView 子类重写方法在 ASM 写入后导致循环调用，从而无法加载 WebView 内容的问题
@@ -1916,6 +1924,9 @@ FTExt {
 
         }
 	```
+
+## WebView 数据监测
+WebView 数据监测，需要在 WebView 访问页面集成[Web 监测 SDK](../web/app-access.md)
 
 ## 常见问题 {#FAQ}
 ### 添加局变量避免冲突字段 {#key-conflict}
