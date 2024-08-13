@@ -22,15 +22,6 @@ icon: zy/getting-started
     [**:octicons-arrow-right-24: 更多**](./product-introduction/index.md)
 
 
--   :fontawesome-solid-magnifying-glass-chart:{ .lg .middle } __开始观测__
-
-    ---
-
-    指导您快速观测系统。
-
-    <br/>
-    [**:octicons-arrow-right-24: 更多**](./getting-guance/getting-guance.md)
-
 -   :material-compass:{ .lg .middle } __功能指南__
 
     ---
