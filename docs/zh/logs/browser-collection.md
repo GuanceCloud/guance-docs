@@ -2,7 +2,7 @@
 
 ---
 
-## 简介
+
 
 通过 Web 浏览器或者 Javascript 客户端主动发送不同等级的日志数据(`对应的 source:browser_log` 指标类型日志数据)到[观测云](https://www.guance.com/)。
 

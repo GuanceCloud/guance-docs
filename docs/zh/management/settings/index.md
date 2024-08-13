@@ -1,6 +1,6 @@
 # 设置
 
-加入到工作空间并被分配权限后，您可以看到一系列关于<u>当前工作空间</u>的设置。
+加入到工作空间并被分配权限后，您可以看到一系列关于**当前工作空间**的设置。
  
 <img src="../img/3.space_management_6.png" width="90%" >
 
@@ -44,9 +44,9 @@
 
 ???+ warning
 
-    - 更换 Token 会触发 **[操作审计](../settings/operation-audit.md)** 和 **[通知](../system-notification.md)**；
+    - 更换 Token 会触发 **[操作审计](../operation-audit.md)** 和 **[通知](../index.md#system-notice)**；
     - 更换 Token 后，原有 Token 会在指定时间内失效。失效时间包括：立即失效、10分钟、6小时、12小时、24小时。立即失效一般用于 Token 泄露，选择立即失效后，原有 Token 将立刻停止数据上报，若设置了异常检测，则无法触发事件及告警通知，直至在 DataKit 采集器的 `datakit.conf` 中把原有 Token 修改成新生成的 Token。
-    > 关于 `datakit.conf` 文件的存储目录，可参考 [DataKit 使用入门](../datakit/datakit-conf.md)。
+    > 关于 `datakit.conf` 文件的存储目录，可参考 [DataKit 使用入门](../../datakit/datakit-conf.md)。
 
 ### 配置迁移 {#export-import}
 
