@@ -114,6 +114,44 @@ interface Options {
 }
 ```
 
+### Sourcemap 在生产环境的是否可见
+
+在生产环境中，出于安全考虑，我们通常不会保留 sourcemap 文件。这些文件允许开发者将压缩或编译后的代码映射回原始源代码，但若被公开，可能会暴露应用程序的内部逻辑，增加安全风险。
+
+为了安全地处理 sourcemap，您可以在配置 GuanceSourceMapUploadWebpackPlugin 时启用 deleteAfterUpload: true 选项。这样，一旦 sourcemap 被上传到服务器，就会立即从本地文件系统中删除，确保它们不会在生产环境中遗留。
+
+此外，通过设置 Webpack 的 devtool 为 "hidden-source-map"，您可以生成 sourcemap 而不在 JavaScript 文件中包含任何指向它们的引用。这可以防止浏览器尝试下载和查看源代码。
+
+如果启用了 "hidden-source-map"，您还应该在 GuanceSourceMapUploadWebpackPlugin 插件中设置 matchSourcemapsByFilename: true。这个配置确保插件能够根据 JavaScript 文件的名称来识别并上传相应的 sourcemap 文件，即使它们在生成的代码中没有显式的引用。
+
+通过这些措施，您可以在保持应用程序调试便利性的同时，有效保护源代码的安全。
+
+```js
+ const { GuanceSourceMapUploadWebpackPlugin } = require('@cloudcare/webpack-plugin')
+ = require('@cloudcare/webpack-plugin')
+
+module.exports = {
+  // Ensure that Webpack has been configured to output sourcemaps,
+  // but without the `sourceMappingURL` references in buidl artifacts.
+  devtool: 'hidden-source-map',
+  // ...
+  plugins: [
+    // Enable our plugin to upload the sourcemaps once the build has completed.
+    // This assumes NODE_ENV is how you distinguish production builds. If that
+    // is not the case for you, you will have to tweak this logic.
+    process.env.NODE_ENV === 'production'
+      ? [
+          new GuanceSourceMapUploadWebpackPlugin({
+            ...
+            deleteAfterUpload: true,
+            matchSourcemapsByFilename: true,
+          }),
+        ]
+      : [],
+  ],
+}
+```
+
 ### 如何 DEBUG
 
 如果在运行过程中，没有找到对应的 sourcemap，可以通过设置环境变量 `DEBUG=guance:sourcemap-upload` 或者配置 `logLevel: verbose` 运行 build 命令，查看具体运行日志
