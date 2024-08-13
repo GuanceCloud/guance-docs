@@ -1,7 +1,7 @@
 nav:
-  - '【工作空间AK】新建AK': add.md
-  - '【工作空间AK】获取指定AK': get.md
-  - '【工作空间AK】修改指定AK对应的名称': modify.md
-  - '【工作空间AK】列出': list.md
-  - '【工作空间AK】删除': delete.md
-  - '【工作空间AK】批量删除': batch-delete.md
+  - '【工作空间 API Key】新建': add.md
+  - '【工作空间 API Key】获取指定 API Key': get.md
+  - '【工作空间 API Key】修改指定 API Key 对应的名称': modify.md
+  - '【工作空间 API Key】列出': list.md
+  - '【工作空间 API Key】删除': delete.md
+  - '【工作空间 API Key】批量删除': batch-delete.md
