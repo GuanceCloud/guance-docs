@@ -7,7 +7,7 @@ nav:
   - '管理后台账号': manage-account
   - '工作空间成员': workspace-account
   - '工作空间': workspace
-  - '工作空间AK': workspace-ak
+  - '工作空间 API Key': workspace-ak
   - '数据查询': query-data
   - '登录映射规则': login-mapping
   - '链路追踪': tracing

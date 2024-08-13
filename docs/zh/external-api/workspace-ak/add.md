@@ -1,4 +1,4 @@
-# 【工作空间AK】新建AK
+# 【工作空间 API Key】新建
 
 ---
 
@@ -13,7 +13,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| name | string | Y | AK名称信息<br>例子: xxx <br>允许为空: False <br>最大长度: 256 <br> |
+| name | string | Y | API Key 名称信息<br>例子: xxx <br>允许为空: False <br>最大长度: 256 <br> |
 | workspaceUUID | string | Y | 指定工作空间UUID<br>例子: wksp_xxxxx <br>允许为空: False <br> |
 
 ## 参数补充说明
