@@ -2,9 +2,6 @@
 # Guance SaaS Service Level Agreement
 ---
 
-**Update Note: Guance SaaS Service Level Agreement was revised on August 15, 2024 and will take effect on August 20, 2024, when [the existing Service Level Agreement](sla-original.md) will expire.**
-
-Effective : August 20, 2024
 
 This Service Level Agreement (hereinafter referred to as "SLA") stipulates the service availability level indicators and compensation scheme of the Guance SaaS Service (referred to as "Guance SaaS Service") provided by Guance to users.
 
@@ -16,7 +13,7 @@ This Service Level Agreement (hereinafter referred to as "SLA") stipulates the s
 
 1.3 Service instance: The "workspace" created by the user in the Guance SaaS site.
 
-1.4 Minutes of service unavailability: If a user is unable to establish a connection with a specified Guance SaaS service instance for a continuous period of 5 minutes (or longer), a single service for 15 minutes, or if multiple services are simultaneously unavailable for a period exceeding 15 minutes, this duration is considered as the time when the Guance SaaS service instance is unavailable. The cumulative sum of the minutes in which a single Guance SaaS service instance is unavailable within a service period is referred to as the service's downtime minutes.
+1.4 Minutes of service unavailability: If all attempts by a user to establish a connection with a specified Guance SaaS Service instance fail for 5 consecutive minutes (or more), the Guance SaaS Service instance will be deemed unavailable during this period of time. The sum of the unavailable minutes of a single Guance SaaS Service instance in a service cycle is the service unavailable minutes.
 
 1.5 Monthly service fee: The cash payment part of the billing fee incurred by users for a single Guance SaaS Service instance in a natural month (excluding gift vouchers, discount vouchers, etc.).
 
@@ -46,13 +43,11 @@ The availability of Guance SaaS Service is not less than 99.90%, that is, the mo
 
 (5) The data reported by the DataKit data collector compiled and published by the Guance officer due to the user's network or equipment is received and returned with 5xx errors for more than 10 consecutive minutes;
 
-(6)After logging into Guance normally and querying the saved content in a standardized manner, the content cannot be returned normally within 5 minutes, including but not limited to: incomplete content display, irregular, overtime error reporting, other error reporting, etc.;
-
 3.2 Exceptions
 
 The length of service unavailability due to the following reasons is not included in the service unavailability time:
 
-(1) Guance, when performing scheduled system maintenance that affects availability, will provide users with a notice 12 hours in advance during working hours. This maintenance includes, but is not limited to, the inspection, maintenance, and optimization of equipment, systems, and software services, as well as planned availability fluctuations such as cutovers, maintenance, and simulation drills. (For maintenance during working days, the allowed downtime is up to 120 minutes, and for non-working days, it is up to 240 minutes. Any downtime exceeding these limits will be supplemented with a separate explanation and will require user confirmation.)
+(1) Guance notifies the user 12 hours in advance during the working hours, which is caused by the system maintenance, including but not limited to the overhaul, maintenance and optimization of equipment, systems and software services, as well as the planned applicability fluctuations such as cutover, maintenance and simulation exercises;
 
 (2) Any failure or configuration adjustment other than the network or equipment on which the normal operation of the Guance service depends;
 
