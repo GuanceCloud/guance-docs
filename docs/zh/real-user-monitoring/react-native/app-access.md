@@ -1,6 +1,19 @@
 # React Native 应用接入
----
 
+---
+???- quote "更新日志"
+
+    **0.3.0**
+    ```
+    * 新增支持数据同步参数配置，请求条目数据，同步间歇时间，以及日志缓存条目数
+    * RUM resource 网络请求添加 remote ip 地址解析功能
+    * 添加行协议 Integer 数据兼容模式，处理 web 数据类型冲突问题
+    * 日志添加自定义 status 方法
+    * react-native 采集 action 方法修改，适配 React 17 无法从 React.createElement 拦截点击事件问题
+    * 在 Debug 场景下，RUM Resource 采集过滤掉指向本地主机（localhost）的热更新连接
+    * 修正 Android 底层 Double 适配问题
+    ```
+    [更多日志](https://github.com/GuanceCloud/datakit-react-native/blob/dev/CHANGELOG.md)
 ## 前置条件
 
 **注意**：若您开通了 [RUM Headless](../../dataflux-func/headless.md) 服务，前置条件已自动帮您配置完成，直接接入应用即可。
@@ -21,6 +34,7 @@
 ![](../img/image_13.png)
 
 ## 安装
+
 ![](https://img.shields.io/badge/dynamic/json?label=npm-package&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/react-native/version.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=react-native&color=green&query=$.react_native&uri=https://static.guance.com/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-react-native)
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-react-native](https://github.com/GuanceCloud/datakit-react-native)
@@ -81,7 +95,7 @@ let config: FTMobileConfig = {
     datawayUrl: datawayUrl,
     clientToken: clientToken
   };
-FTMobileReactNative.sdkConfig(config)
+await FTMobileReactNative.sdkConfig(config);
 
 ```
 
@@ -116,7 +130,7 @@ let rumConfig: FTRUMConfig = {
     detectFrequency:DetectFrequency.rare
   };
 
-FTReactNativeRUM.setConfig(rumConfig);
+await FTReactNativeRUM.setConfig(rumConfig);
 ```
 
 | 字段 | 类型 | 必须 | 说明 |
@@ -142,7 +156,7 @@ let logConfig: FTLogConfig = {
       enableCustomLog: true,
       enableLinkRumData: true,
     };
-FTReactNativeLog.logConfig(logConfig);
+await FTReactNativeLog.logConfig(logConfig);
 ```
 
 | 字段 | 类型 | 必须 | 说明 |
@@ -161,8 +175,7 @@ FTReactNativeLog.logConfig(logConfig);
  let traceConfig: FTTractConfig = {
       enableNativeAutoTrace: true, 
     };
-
- FTReactNativeTrace.setConfig(traceConfig);
+await FTReactNativeTrace.setConfig(traceConfig);
 ```
 
 | 字段 | 类型 | 必须 | 说明 |
@@ -174,112 +187,157 @@ FTReactNativeLog.logConfig(logConfig);
 
 ## RUM 用户数据追踪
 
-SDK 提供**自动采集**和**用户自定义采集**两种采集方式追踪 **View**、**Action**、**Error**、**Resource** 四种类型的用户数据。
+### View
 
-### 自动采集
+在 SDK 初始化 [RUM 配置](#rum-config) 时可配置 `enableNativeUserView` 开启自动采集 `Native View`，`React Native View` 由于 React Native 提供了广泛的库来创建屏幕导航，所以默认情况下只支持手动采集 ，您可以使用下面方法手动启动和停止视图。
 
-在 SDK 初始化 [RUM 配置](#rum-config) 时可开启自动采集 **Error**、**Resource**、**Action**（`React Native` 控件、`Native`控件）、**View**（`Native View`）。
+```typescript
+import {FTReactNativeRUM} from '@cloudcare/react-native-mobile';
+/**
+ * view加载时长。(可选)
+ * @param viewName view 名称
+ * @param loadTime view 加载时长
+*/
+FTReactNativeRUM.onCreateView('viewName', duration);
+/**
+ * view 开始。
+ * @param viewName 界面名称
+ * @param property 事件上下文(可选)
+*/
+FTReactNativeRUM.startView(
+  'viewName',
+  { 'custom.foo': 'something' },
+);
+/**
+ * view 结束。
+ * @param property 事件上下文(可选)
+ */
+FTReactNativeRUM.stopView(
+ { 'custom.foo': 'something' },
+);
+```
 
-如果您在 React Native 中使用 `react-native-navigation ` 或 `react-navigation ` 导航组件，可以参考下面方式进行 `React Native View`  的自动采集：
+**如果您在 React Native 中使用 `react-native-navigation ` 、`react-navigation ` 或 `Expo Router `  导航组件，可以参考下面方式进行 `React Native View`  的自动采集**：
 
-* **react-native-navigation**
+#### react-native-navigation
 
-  将 example 中 [FTRumReactNavigationTracking.tsx](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/src/FTRumReactNativeNavigationTracking.tsx) 文件添加到您的工程；
+将 example 中 [FTRumReactNavigationTracking.tsx](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/src/FTRumReactNativeNavigationTracking.tsx) 文件添加到您的工程；
 
-  调用 `FTRumReactNativeNavigationTracking.startTracking()` 方法，开启采集。
+调用 `FTRumReactNativeNavigationTracking.startTracking()` 方法，开启采集。
+
+```typescript
+import { FTRumReactNativeNavigationTracking } from './FTRumReactNativeNavigationTracking';
+
+function startReactNativeNavigation() {
+  FTRumReactNativeNavigationTracking.startTracking();
+  registerScreens();//Navigation registerComponent
+  Navigation.events().registerAppLaunchedListener( async () => {
+    await Navigation.setRoot({
+      root: {
+        stack: {
+          children: [
+            { component: { name: 'Home' } },
+          ],
+        },
+      },
+    });
+  });
+}
+```
+
+#### react-navigation
+
+将 example 中 [FTRumReactNavigationTracking.tsx](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/src/FTRumReactNavigationTracking.tsx) 文件添加到您的工程；
+
+* 方法一：
+
+  如果您使用 `createNativeStackNavigator();` 创建原生导航堆栈，建议采用添加 `screenListeners` 方式开启采集， 这样可以统计到页面的加载时长，具体使用如下：
 
   ```typescript
-  import { FTRumReactNativeNavigationTracking } from './FTRumReactNativeNavigationTracking';
-
-  function startReactNativeNavigation() {
-    FTRumReactNativeNavigationTracking.startTracking();
-    registerScreens();//Navigation registerComponent
-    Navigation.events().registerAppLaunchedListener( async () => {
-      await Navigation.setRoot({
-        root: {
-          stack: {
-            children: [
-              { component: { name: 'Home' } },
-            ],
-          },
-        },
-      });
-    });
-  }
+  import {FTRumReactNavigationTracking} from './FTRumReactNavigationTracking';
+  import { createNativeStackNavigator } from '@react-navigation/native-stack';
+  const Stack = createNativeStackNavigator();
+  
+  <Stack.Navigator  screenListeners={FTRumReactNavigationTracking.StackListener} initialRouteName='Home'>
+          <Stack.Screen name='Home' component={Home}  options={{ headerShown: false }} />
+          ......
+          <Stack.Screen name="Mine" component={Mine} options={{ title: 'Mine' }}/>
+  </Stack.Navigator>
   ```
 
-* **react-navigation**
+* 方法二：
 
-  将 example 中 [FTRumReactNavigationTracking.tsx](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/src/FTRumReactNavigationTracking.tsx) 文件添加到您的工程；
+  如果没有使用 `createNativeStackNavigator();` 需要在 `NavigationContainer` 组件中添加自动采集方法，如下
 
-  * 方法一：
-
-    如果您使用 `createNativeStackNavigator();` 创建原生导航堆栈，建议采用添加 `screenListeners` 方式开启采集， 这样可以统计到页面的加载时长，具体使用如下：
-
-    ```typescript
-    import {FTRumReactNavigationTracking} from './FTRumReactNavigationTracking';
-    import { createNativeStackNavigator } from '@react-navigation/native-stack';
-    const Stack = createNativeStackNavigator();
-    
-    <Stack.Navigator   screenListeners={FTRumReactNavigationTracking.StackListener} initialRouteName='Home'>
-            <Stack.Screen name='Home' component={Home}  options={{ headerShown: false }} />
-            ......
-            <Stack.Screen name="Mine" component={Mine} options={{ title: 'Mine' }}/>
-     </Stack.Navigator>
-    ```
-    
-  * 方法二：
-
-    如果没有使用 `createNativeStackNavigator();` 需要在 `NavigationContainer` 组件中添加自动采集方法，如下
-
-    ```typescript
-    import {FTRumReactNavigationTracking} from './FTRumReactNavigationTracking';
-    import type { NavigationContainerRef } from '@react-navigation/native';
-    
-    const navigationRef: React.RefObject<NavigationContainerRef<ReactNavigation.RootParamList>> = React.createRef();
-    <NavigationContainer ref={navigationRef} onReady={() => {
-          FTRumReactNavigationTracking.startTrackingViews(navigationRef.current);
-        }}>
-          <Stack.Navigator initialRouteName='Home'>
-            <Stack.Screen name='Home' component={Home}  options={{ headerShown: false }} />
-            .....
-            <Stack.Screen name="Mine" component={Mine} options={{ title: 'Mine' }}/>
-          </Stack.Navigator>
-     </NavigationContainer>
-    ```
+  ```typescript
+  import {FTRumReactNavigationTracking} from './FTRumReactNavigationTracking';
+  import type { NavigationContainerRef } from '@react-navigation/native';
+  
+  const navigationRef: React.RefObject<NavigationContainerRef<ReactNavigation.RootParamList>> = React.createRef();
+  <NavigationContainer ref={navigationRef} onReady={() => {
+        FTRumReactNavigationTracking.startTrackingViews(navigationRef.current);
+      }}>
+        <Stack.Navigator initialRouteName='Home'>
+          <Stack.Screen name='Home' component={Home}  options={{ headerShown: false }} />
+          .....
+          <Stack.Screen name="Mine" component={Mine} options={{ title: 'Mine' }}/>
+        </Stack.Navigator>
+   </NavigationContainer>
+  ```
 
 具体使用示例可以参考 [example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)。
 
-### 用户自定义采集
+#### Expo Router
 
-通过 `FTReactNativeRUM` 类，进行添加，相关 API 如下。
+如果您使用的是 [Expo Router](https://expo.github.io/router/docs/)，在 app/_layout.js 文件中添加如下方法进行数据采集。
 
-#### View 
+```js
+import { useEffect } from 'react';
+import { useSegments, Slot } from 'expo-router';
+import {
+  FTReactNativeRUM,
+} from '@cloudcare/react-native-mobile';
 
-```typescript
-FTReactNativeRUM.onCreateView("RUM",duration);
+export default function Layout() {
+    const segments = useSegments();
+    const viewKey = segments.join('/');
 
-FTReactNativeRUM.startView("RUM");
+    useEffect(() => {
+       FTReactNativeRUM.startView(viewKey);
+    }, [viewKey, pathname]);
 
-FTReactNativeRUM.stopView();
+    // Export all the children routes in the most basic way.
+    return <Slot />;
+}
 ```
 
-#### Action
+### Action
+
+在 SDK 初始化 [RUM 配置](#rum-config) 时配置 `enableAutoTrackUserAction` 和 `enableNativeUserAction`开启自动采集，也可通过下面方法进行手动添加。
 
 ```typescript
+import {FTReactNativeRUM} from '@cloudcare/react-native-mobile';
+
 FTReactNativeRUM.startAction('actionName','actionType');
 ```
 
-#### Error
+### Error
+
+在 SDK 初始化 [RUM 配置](#rum-config) 时配置 `enableAutoTrackError`开启自动采集，也可通过下面方法进行手动添加。
 
 ```typescript
+import {FTReactNativeRUM} from '@cloudcare/react-native-mobile';
+
 FTReactNativeRUM.addError("error stack","error message");
 ```
 
-#### Resource
+### Resource
+
+在 SDK 初始化 [RUM 配置](#rum-config) 时配置 `enableNativeUserResource` 开启自动采集，也可通过下面方法进行手动添加。
 
 ```typescript
-//自己采集 
+import {FTReactNativeRUM} from '@cloudcare/react-native-mobile';
+
 async getHttp(url:string){
             const key = Utils.getUUID();
             FTReactNativeRUM.startResource(key);
@@ -362,8 +420,19 @@ SDK 初始化 [Trace 配置](#trace-config) 时可以开启自动网络链路追
 ## 用户信息绑定与解绑
 
 ```typescript
+/**
+ * 绑定用户。
+ * @param userId 用户ID。
+ * @param userName 用户姓名。
+ * @param userEmail 用户邮箱
+ * @param extra  用户的额外信息
+ * @returns a Promise.
+*/
 FTMobileReactNative.bindRUMUserData('react-native-user','uesr_name')
-
+/**
+ * 解绑用户。
+ * @returns a Promise.
+*/
 FTMobileReactNative.unbindRUMUserData()
 ```
 
@@ -396,9 +465,7 @@ let rumConfig: FTRUMConfig = {
       globalContext:{"track_id":Config.TRACK_ID}, //.env.dubug、.env.release 等配置的环境文件中设置
     };
 
-  
-   FTReactNativeRUM.setConfig(rumConfig); 
-});
+ await FTReactNativeRUM.setConfig(rumConfig); 
 ```
 
 ### 动态使用
@@ -416,17 +483,19 @@ let rumConfig: FTRUMConfig = {
       enableNativeUserResource: false,
       enableNativeUserView: false,
     };
- AsyncStorage.getItem("track_id",(error,result)=>{
+ await new Promise(function(resolve) {
+       AsyncStorage.getItem("track_id",(error,result)=>{
         if (result === null){
           console.log('获取失败' + error);
         }else {
           console.log('获取成功' + result);
           if( result != undefined){
             rumConfig.globalContext = {"track_id":result};
-          }    
+          }
         }
-        FTReactNativeRUM.setConfig(rumConfig); 
+        resolve(FTReactNativeRUM.setConfig(rumConfig));
       })
+     });
 ```
 
 2、在任意处添加或改变自定义标签到文件。
