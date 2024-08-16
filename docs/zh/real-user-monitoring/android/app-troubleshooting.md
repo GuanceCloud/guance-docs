@@ -104,7 +104,7 @@ buildscript {
 [FT-SDK] com.demo E 请先安装SDK(在应用启动时调用 FTSdk.install(FTSDKConfig ftSdkConfig))
 ``` 
 
-## 开启 Debug 调试
+## 开启 Debug 调试 {#debug_mode}
 ### ft-sdk Debug 模式
 您可以通过以下配置，开启 SDK 的 debug 功能，开启之后，控制台 `LogCat` 会输出 SDK 调试日志，您可以过滤 `[FT-SDK]` 字符，定位到观测云 SDK 日志。
 
@@ -112,6 +112,25 @@ buildscript {
   val config = FTSDKConfig.builder(datakitUrl).setDebug(true)
   FTSdk.install(config)
 ```
+
+#### 日志示例 {#log_sample}
+##### 数据同步 {#data_sync}
+```java
+//检查上传地址是否正确进入 SDK 配置
+[FT-SDK]FTHttpConfigManager com.demo D  serverUrl ==>
+									Datakit Url:http://10.0.0.1:9529
+//以下是连接错误日志
+[FT-SDK]SyncTaskManager com.demo   E  Network not available Stop poll
+[FT-SDK]SyncTaskManager com.demo   E  ↵
+			1:Sync Fail-[code:10003,response:failed to connect to 10.0.0.1 (port 9529) from ↵
+			10.0.2.16 (port 47968) after 10000ms,检查本地网络连接是否正常]
+
+//以下是正常同步日志
+[FT-SDK]SyncTaskManager com.demo   D  Sync Success-[code:200,response:]
+[FT-SDK]SyncTaskManager com.demo   D  <<<******************* Sync Poll Finish *******************
+
+```
+
 > **建议 Release 版本发布时，关闭这个配置**
 
 ### ft-plugin Debug 模式
@@ -140,23 +159,7 @@ LogUtils.registerInnerLogCacheToFile(cacheFile)
 ## SDK 正常运行但是没有数据
 * [排查 Datakit](../../datakit/why-no-data.md) 是否正常运行
 
-* 确认 SDK 上传地址 `datakitUrl` 或 `datawayUrl` [配置正确](app-access.md#base-setting)，并正确初始化。debug 模式下，可以下列日志来判断上传地址配置问题。
-
-	```java
-	//检查上传地址是否正确进入 SDK 配置
-	[FT-SDK]FTHttpConfigManager com.demo D  serverUrl ==>
-                                    	Datakit Url:http://10.0.0.1:9529
-	//以下是连接错误日志
-	[FT-SDK]SyncTaskManager com.demo   E  Network not available Stop poll
-    [FT-SDK]SyncTaskManager com.demo   E  ↵
-				1:Sync Fail-[code:10003,response:failed to connect to 10.0.0.1 (port 9529) from ↵
-				10.0.2.16 (port 47968) after 10000ms,检查本地网络连接是否正常]
-	
-	//以下是正常同步日志
-	[FT-SDK]SyncTaskManager com.demo   D  Sync Success-[code:200,response:]
-    [FT-SDK]SyncTaskManager com.demo   D  <<<******************* Sync Poll Finish *******************
-	
-	```
+* 确认 SDK 上传地址 `datakitUrl` 或 `datawayUrl` [配置正确](app-access.md#base-setting)，并正确初始化。[debug 模式](#debug-mode)下，查看[日志](#data_sync)来判断上传问题。
 	
 * datakit 是否往对应工作空间上传数据，是否处于离线状态。这个可以通过登录观测云，查看「基础设施」来确认这个问题。
 
