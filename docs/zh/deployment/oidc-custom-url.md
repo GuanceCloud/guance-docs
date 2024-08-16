@@ -65,69 +65,69 @@ OIDCClientSet:
 
   如果在整个 OIDC 流程中存在非标的 redirect_uri 变更，则应在外部函数中进行格式化。 确保 login 和 callback 请求时， oidc client 中的 redirect_uri 是一致的，否则在客户端验证 state 和 code 将失败。
 
-  ```
-  请求方法: post
-  请求体内容如下:
-    {
-      "type": "login", # 表示变更对应的时 login 还是 callback 流程
-      "redirect_uri": "原始的 redirect_uri 地址",
-      "args": {
-        # oidc/login 请求接收到的 查询参数
-      },
-      "headers": {
-        # oidc/login 请求接收到的 请求头数据
-      }
+  ```python
+  # 请求方法: post
+  # 请求体内容如下:
+  {
+    "type": "login", # 表示变更对应的时 login 还是 callback 流程
+    "redirect_uri": "原始的 redirect_uri 地址",
+    "args": {
+      # oidc/login 请求接收到的 查询参数
+    },
+    "headers": {
+      # oidc/login 请求接收到的 请求头数据
     }
-  响应内容如下:
-    {
-      "redirect_uri": "变更后的 redirect_uri",
-    }
+  }
+  # 响应内容如下:
+  {
+    "redirect_uri": "变更后的 redirect_uri",
+  }
 ```
 
 #### 2、 login_auth_url_format 函数说明
 
   将 oidc/login 的跳转地址转发给 外部函数重新包装后再进行 地址跳转
 
-  ```
-  请求方法: post
-  请求体内容如下:
-    {
-      "type": "login", # 这是登录类型, login 表示来自登录, callback 表示来自回调的请求
-      "url": "原始的 OIDC 登录地址",
-      "args": {
-        # oidc/login 请求接收到的 查询参数
-      },
-      "headers": {
-        # oidc/login 请求接收到的 请求头数据
-      }
+  ```python
+  # 请求方法: post
+  # 请求体内容如下:
+  {
+    "type": "login", # 这是登录类型, login 表示来自登录, callback 表示来自回调的请求
+    "url": "原始的 OIDC 登录地址",
+    "args": {
+      # oidc/login 请求接收到的 查询参数
+    },
+    "headers": {
+      # oidc/login 请求接收到的 请求头数据
     }
-  响应内容如下:
-    {
-      "url": "格式化之后的 auth_url",
-    }
+  }
+  # 响应内容如下:
+  {
+    "url": "格式化之后的 auth_url",
+  }
 ```
 
 #### 3、 callback_url_format 函数说明
 
    将 oidc/callback 的跳转地址转发给 外部函数重新包装后再进行 地址跳转
 
-  ```
-  请求方法: post
-  请求体内容如下:
-    {
-      "type": "callback", # 这是登录类型，表示来自 callback 的流程请求
-      "url": "原始生成的 跳转地址",
-      "args": {
-        # oidc/login 请求接收到的 查询参数
-      },
-      "headers": {
-        # oidc/login 请求接收到的 请求头数据
-      }
+  ```python
+  # 请求方法: post
+  # 请求体内容如下:
+  {
+    "type": "callback", # 这是登录类型，表示来自 callback 的流程请求
+    "url": "原始生成的 跳转地址",
+    "args": {
+      # oidc/login 请求接收到的 查询参数
+    },
+    "headers": {
+      # oidc/login 请求接收到的 请求头数据
     }
-  响应内容如下:
-    {
-      "url": "格式化之后的 url",
-    }
+  }
+  # 响应内容如下:
+  {
+    "url": "格式化之后的 url",
+  }
 ```
 
 
