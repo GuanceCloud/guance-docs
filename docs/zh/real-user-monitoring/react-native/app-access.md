@@ -185,6 +185,23 @@ await FTReactNativeTrace.setConfig(traceConfig);
 | enableLinkRUMData | boolean | 否 | 是否与 `RUM` 数据关联，默认`false` |
 | enableNativeAutoTrace | boolean | 否 | 是否开启原生网络网络自动追踪 iOS NSURLSession ,Android OKhttp(由于 `React Native`的网络请求在 iOS、Android 端是使用系统 API 实现的，所以开启 `enableNativeAutoTrace` 后，所有 `React Native` 数据能够一并追踪。） |
 
+> **注意：**
+>
+> * 请在您的顶层 `index.js` 文件中注册 App 之前完成 SDK 的初始化，以确保在调用 SDK 的其他任何方法之前，SDK 已经完全准备就绪。
+> * 在完成基础配置之后再进行 RUM 、Log 、Trace 配置。
+>
+> ```javascript
+> import App from './App';
+> 
+> async function sdkInit() {
+>   await FTMobileReactNative.sdkConfig(config);
+>   await FTReactNativeRUM.setConfig(rumConfig);
+>   ....
+> }
+> initSDK();
+> AppRegistry.registerComponent('main', () => App);
+> ```
+
 ## RUM 用户数据追踪
 
 ### View
