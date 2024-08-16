@@ -63,7 +63,7 @@ nav:
       - "Azure AD 单点登录（部署版）":  azure-ad-pass.md
       - "自定义映射": custom-mapping.md
       - "LDAP 单点登录": ldap.md
-      - "OIDC 单点登录自定义域名替换操作步骤（部署版 url 地址替换方案）": oidc/custom-url.md
+      - "OIDC 单点登录自定义域名替换操作步骤（部署版 url 地址替换方案）": oidc-custom-url.md
     - '管理后台手册': 
       - "工作空间管理": space.md
       - "用户管理": user.md
