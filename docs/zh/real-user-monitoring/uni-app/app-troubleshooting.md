@@ -1,4 +1,4 @@
-# 故障排查
+    # 故障排查
 
 ## SDK 初始化异常校验
 
@@ -20,7 +20,7 @@ SDK 内部会使用**断言**检查多项配置的正确性，在配置错误时
 
 >**建议只在调试基座中配置**，正常的打包发行时使用默认配置。
 
-如果没有进行上述配置，也可以 [开启 Debug 调试]({#debug-mode}) ，查看 「控制台」 中的调试日志，根据日志内容判断 SDK 是否初始化成功。
+如果没有进行上述配置，也可以 [开启 Debug 调试](#debug-mode) ，查看 「控制台」 中的调试日志，根据日志内容判断 SDK 是否初始化成功。
 
 ## 开启 Debug 调试 {#debug-mode}
 
@@ -52,44 +52,14 @@ SDK 内部会使用**断言**检查多项配置的正确性，在配置错误时
 
 ![console_app_use](../img/console_app_use.png)
 
+> [Android Logcat](../android/app-troubleshooting.md#log_sample) 和 [iOS Xcode Console](../ios/app-troubleshooting.md#log_sample) 日志示例
+
 ## SDK 正常运行但是没有数据
 
 * [排查 Datakit](../../datakit/why-no-data.md) 是否正常运行
 
-* 确认 SDK 上传地址 `serverUrl` [配置正确](app-access.md#base-setting)，并正确初始化。debug 模式下，可以下列日志来判断上传地址配置问题。
+* 确认 SDK 上传地址 `serverUrl` [配置正确](app-access.md#base-setting)，并正确初始化。[debug 模式](#debug-mode)下, 查看 [Android Logcat](../android/app-troubleshooting.md#data_sync) 或 [iOS Xcode Console](../ios/app-troubleshooting.md#data_sync) 的同步日志。
 
-=== "Android"
-
-    ```java
-    	//检查上传地址是否正确进入 SDK 配置
-    	[FT-SDK]FTHttpConfigManager com.demo D serverUrl:http://10.0.0.1:9529
-
-    	//以下是连接错误日志
-    	[FT-SDK]OkHttpEngine  com.demo E failed to connect to /10.0.0.1.166 (port 9529) from /10.0.0.2 (port 48254) after 10000ms,检查本地网络连接是否正常
-        [FT-SDK]SyncTaskManager com.demo E 同步数据失败-[code:2,response:failed to connect to /10.0.0.1 (port 9529) from /10.100.0.2 (port 48254) after 10000ms,检查本地网络连接是否正常]
-
-    	//以下是正常同步日志
-    	[FT-SDK]NetProxy com.demo D HTTP-response:[code:200,response:]
-        [FT-SDK]SyncTaskManager com.demo  D  **********************同步数据成功**********************
-
-    ```
-	
-=== "iOS"
-
-    ```objc
-    //以下是正常同步日志
-    [FTLog][INFO] -[FTTrackDataManger flushWithEvents:type:] [line 143] 开始上报事件(本次上报事件数:2)
-    [FTLog][INFO] -[FTRequestLineBody getRequestBodyWithEventArray:] [line 149]
-    Upload Datas Type:RUM
-    Line RequestDatas:
-    ...... datas ......
-    [FTLog][INFO] -[FTTrackDataManger flushWithEvents:type:]_block_invoke [line 157] Upload Response statusCode : 200
-
-    //在 1.3.10 版本之前并不会打印 Upload Response statusCode : 200  ，可以查看控制台是否有错误日志，没有错误日志即上传成功。
-    //错误日志:
-    //Network failure: .....` 或 服务器异常 稍后再试 ......
-
-    ```
 
 * datakit 是否往对应工作空间上传数据，是否处于离线状态。这个可以通过登录观测云，查看「基础设施」来确认这个问题。
 
