@@ -62,15 +62,15 @@ SDK 内部会使用**断言**检查多项配置的正确性，在配置错误时
 
     ```java
     	//检查上传地址是否正确进入 SDK 配置
-    	11:15:38.137 [FT-SDK]FTHttpConfigManager com.demo D serverUrl:http://10.0.0.1:9529
+    	[FT-SDK]FTHttpConfigManager com.demo D serverUrl:http://10.0.0.1:9529
 
     	//以下是连接错误日志
-    	10:51:48.879 [FT-SDK]OkHttpEngine  com.demo E failed to connect to /10.0.0.1.166 (port 9529) from /10.0.0.2 (port 48254) after 10000ms,检查本地网络连接是否正常
-        10:51:48.880 [FT-SDK]SyncTaskManager com.demo E 同步数据失败-[code:2,response:failed to connect to /10.0.0.1 (port 9529) from /10.100.0.2 (port 48254) after 10000ms,检查本地网络连接是否正常]
+    	[FT-SDK]OkHttpEngine  com.demo E failed to connect to /10.0.0.1.166 (port 9529) from /10.0.0.2 (port 48254) after 10000ms,检查本地网络连接是否正常
+        [FT-SDK]SyncTaskManager com.demo E 同步数据失败-[code:2,response:failed to connect to /10.0.0.1 (port 9529) from /10.100.0.2 (port 48254) after 10000ms,检查本地网络连接是否正常]
 
     	//以下是正常同步日志
-    	10:51:48.996 [FT-SDK]NetProxy com.demo D HTTP-response:[code:200,response:]
-        10:51:48.996 [FT-SDK]SyncTaskManager com.demo  D  **********************同步数据成功**********************
+    	[FT-SDK]NetProxy com.demo D HTTP-response:[code:200,response:]
+        [FT-SDK]SyncTaskManager com.demo  D  **********************同步数据成功**********************
 
     ```
 	
