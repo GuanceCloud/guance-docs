@@ -63,33 +63,38 @@ SDK 的调试日志是以  **[FTLog]** 作为前缀标识。
 === "Android"
 
     ```java
-    	//检查上传地址是否正确进入 SDK 配置
-    	11:15:38.137 [FT-SDK]FTHttpConfigManager com.demo D serverUrl:http://10.0.0.1:9529
-
-    	//以下是连接错误日志
-    	10:51:48.879 [FT-SDK]OkHttpEngine  com.demo E failed to connect to /10.0.0.1.166 (port 9529) from /10.0.0.2 (port 48254) after 10000ms,检查本地网络连接是否正常
-        10:51:48.880 [FT-SDK]SyncTaskManager com.demo E 同步数据失败-[code:2,response:failed to connect to /10.0.0.1 (port 9529) from /10.100.0.2 (port 48254) after 10000ms,检查本地网络连接是否正常]
-
-    	//以下是正常同步日志
-    	10:51:48.996 [FT-SDK]NetProxy com.demo D HTTP-response:[code:200,response:]
-        10:51:48.996 [FT-SDK]SyncTaskManager com.demo D **********************同步数据成功**********************
-
+    //检查上传地址是否正确进入 SDK 配置
+    [FT-SDK]FTHttpConfigManager com.demo D  serverUrl ==>
+                                        Datakit Url:http://10.0.0.1:9529
+    //以下是连接错误日志
+    [FT-SDK]SyncTaskManager com.demo   E  Network not available Stop poll
+    [FT-SDK]SyncTaskManager com.demo   E  ↵
+        1:Sync Fail-[code:10003,response:failed to connect to 10.0.0.1 (port 9529) from ↵
+        10.0.2.16 (port 47968) after 10000ms,检查本地网络连接是否正常]
+    
+    //以下是正常同步日志
+    [FT-SDK]SyncTaskManager com.demo   D  Sync Success-[code:200,response:]
+    [FT-SDK]SyncTaskManager com.demo   D  <<<******************* Sync Poll Finish *******************
+    
     ```
-	
+
 === "iOS"
 
-    ```objc
-    	//以下是正常同步日志
-    	  [FTLog][INFO] -[FTTrackDataManger flushWithEvents:type:] [line 143] 开始上报事件(本次上报事件数:2)
-    	  [FTLog][INFO] -[FTRequestLineBody getRequestBodyWithEventArray:] [line 149]
-    	  Upload Datas Type:RUM
-    	  Line RequestDatas:
-    	  ...... datas ......
-    	  [FTLog][INFO] -[FTTrackDataManger flushWithEvents:type:]_block_invoke [line 157] Upload Response statusCode : 200
+    ```objective-c
+    //以下是正常同步日志
+    [FTLog][INFO] -[FTTrackDataManger flushWithEvents:type:] [line 143] ↵
+                                                    开始上报事件(本次上报事件数:2)
+    [FTLog][INFO] -[FTRequestLineBody getRequestBodyWithEventArray:] [line 149]
+    Upload Datas Type:RUM
+    Line RequestDatas:
+    ...... datas ......
+    [FTLog][INFO] -[FTTrackDataManger flushWithEvents:type:]_block_invoke [line 157] ↵
+                                                    Upload Response statusCode : 200
 
-          //在 1.3.10 版本之前并不会打印 Upload Response statusCode : 200  ，可以查看控制台是否有错误日志，没有错误日志即上传成功。
-          //错误日志:
-          //Network failure: .....` 或 服务器异常 稍后再试 ......
+    //在 1.3.10 版本之前并不会打印 Upload Response statusCode : 200，
+    //可以查看控制台是否有错误日志，没有错误日志即上传成功。
+    //错误日志:
+    //Network failure: .....` 或 服务器异常 稍后再试 ......
 
     ```
 
