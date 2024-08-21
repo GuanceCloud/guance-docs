@@ -11,6 +11,7 @@ nav:
     - role-management.md
     - '权限清单': role-list.md
   - 'API Key 管理': api-key
+  - 'Client Token 管理': client-token.md
   - '黑名单': overall-blacklist.md 
   - '数据转发': backup
   - '正则表达式': regex.md
