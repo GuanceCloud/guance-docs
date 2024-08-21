@@ -664,6 +664,9 @@ ipnet_contains("127.0.0.0/8", ip_saddr); ipv6
 
 | Tag | Description |
 |  ----  | --------|
+|`client_ip`|The IP address of the client|
+|`client_port`|Client port|
+|`conn_side`|The side of the connection: client/server/unknown|
 |`direction`|Use the source (src_ip:src_port) as a frame of reference to identify the connection initiator. (incoming/outgoing)|
 |`dst_ip`|The IP address of the foreign network interface|
 |`dst_k8s_deployment_name`|Destination K8s deployment name|
@@ -682,6 +685,8 @@ ipnet_contains("127.0.0.0/8", ip_saddr); ipv6
 |`netns`|Network namespace, format: `NS(<device id>:<inode number>)`|
 |`nic_mac`|MAC address of the collected network interface|
 |`nic_name`|name of the collected network interface|
+|`server_ip`|The IP address of the server|
+|`server_port`|Server port|
 |`src_ip`|The IP address of the collected local network interface|
 |`src_k8s_deployment_name`|Source K8s deployment name|
 |`src_k8s_namespace`|Source K8s namespace|
@@ -723,6 +728,9 @@ ipnet_contains("127.0.0.0/8", ip_saddr); ipv6
 
 | Tag | Description |
 |  ----  | --------|
+|`client_ip`|The IP address of the client|
+|`client_port`|Client port|
+|`conn_side`|The side of the connection: client/server/unknown|
 |`direction`|Use the source (src_ip:src_port) as a frame of reference to identify the connection initiator. (incoming/outgoing)|
 |`dst_ip`|The IP address of the foreign network interface|
 |`dst_k8s_deployment_name`|Destination K8s deployment name|
@@ -743,6 +751,8 @@ ipnet_contains("127.0.0.0/8", ip_saddr); ipv6
 |`nic_mac`|MAC address of the collected network interface|
 |`nic_name`|name of the collected network interface|
 |`parent_id`|The span id of the APM span corresponding to this network request|
+|`server_ip`|The IP address of the server|
+|`server_port`|Server port|
 |`src_ip`|The IP address of the collected local network interface|
 |`src_k8s_deployment_name`|Source K8s deployment name|
 |`src_k8s_namespace`|Source K8s namespace|
