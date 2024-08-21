@@ -287,8 +287,10 @@ function startReactNativeNavigation() {
 
 * 方法二：
 
-  如果没有使用 `createNativeStackNavigator();` 需要在 `NavigationContainer` 组件中添加自动采集方法，如下
+  如果没有使用 `createNativeStackNavigator();` 需要在 `NavigationContainer` 组件中添加自动采集方法，如下：
 
+  **注意：此方法无法采集页面加载时长**
+  
   ```typescript
   import {FTRumReactNavigationTracking} from './FTRumReactNavigationTracking';
   import type { NavigationContainerRef } from '@react-navigation/native';
