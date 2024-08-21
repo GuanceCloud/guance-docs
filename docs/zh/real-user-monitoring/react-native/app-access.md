@@ -3,6 +3,13 @@
 ---
 ???- quote "更新日志"
 
+    **0.3.1**
+    ```
+    * 适配 iOS SDK 1.5.2
+    * 兼容修复 React 版本低于 16.14.0 时使用 `react/jsx-runtime` 报错
+    * Android 兼容 react native 0.63 低版本
+    * 修改过滤指向本地主机（localhost）URL 的正则表达式，增加匹配范围
+    ```
     **0.3.0**
     ```
     * 新增支持数据同步参数配置，请求条目数据，同步间歇时间，以及日志缓存条目数
@@ -287,8 +294,10 @@ function startReactNativeNavigation() {
 
 * 方法二：
 
-  如果没有使用 `createNativeStackNavigator();` 需要在 `NavigationContainer` 组件中添加自动采集方法，如下
+  如果没有使用 `createNativeStackNavigator();` 需要在 `NavigationContainer` 组件中添加自动采集方法，如下：
 
+  **注意：此方法无法采集页面加载时长**
+  
   ```typescript
   import {FTRumReactNavigationTracking} from './FTRumReactNavigationTracking';
   import type { NavigationContainerRef } from '@react-navigation/native';
