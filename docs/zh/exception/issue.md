@@ -130,7 +130,6 @@ Hover 即可显示该条 Issue 来源。点可自动跳转至对应查看器。�
 ![](img/issue-des.png)
 
 
-
 ## Issue 自动发现 {#auto}
 
 若在 APM/RUM 处启用了 **Issue 自动发现**的配置，系统将自动按照配置的检测频率进行错误发现并生成 Issue，生成的 Issue 会投递到配置的频道下，并带上相关标识。
@@ -151,6 +150,4 @@ Hover 即可显示该条 Issue 来源。点可自动跳转至对应查看器。�
 ![](img/auto-issue-1.png)
 
 ![](img/auto-issue-2.png)
-
      
-## 更多阅读
