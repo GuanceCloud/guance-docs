@@ -84,6 +84,17 @@ SDK 的调试日志是以  **[FTLog]** 作为前缀标识。
 ####  ReactTextShadowNode.UNSET 找不到符号 
 这是由于 react-native-navigation 版本兼容问题导致，相关 issue [查看这里](https://github.com/wix/react-native-navigation/issues/7881#issuecomment-2164213896)。通过更改或[下载](https://static.guance.com/ft-sdk-package/react_nagation_fix/ReactTypefaceUtils.java)替换 `ReactTypefaceUtils.java` 来修正这个问题。
 
+### 找不到模块 `react/jsx-runtime`
+
+**影响范围：SDK 版本 0.3.0 && React 版本 < 16.14.0**
+
+**原因**：SDK 内部使用到 `react/jsx-runtime` 在 React >= 16.14.0 才支持。
+
+**修复建议**：
+
+* 升级 SDK 版本 >= 0.3.1 
+
+  **注意：**不建议采用本地路径方式添加 `@cloudcare/react-native-mobile` 依赖库，可能导致错误无法修复。
 
 ## 更多相关内容
 * [Android 故障排查](../android/app-troubleshooting.md)
