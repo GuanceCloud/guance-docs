@@ -262,6 +262,12 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
     Same as ENV_GLOBAL_HOST-TAGS, to be scrapped
 
     **Type**: List
+
+- **ENV_K8S_CLUSTER_NODE_NAME**
+
+    If we got same node-name among multiple k8s cluster, we can add a prefix based on origin node-name via this ENV
+
+    **Type**: String
 <!-- markdownlint-enable -->
 
 <!-- markdownlint-disable MD046 -->
@@ -805,14 +811,6 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     **Default**: 1
 
-- **ENV_IO_FEED_GLOBAL_BLOCKING**
-
-    Set blocking mode on busy uploading(especially fot time-series and dial-testing points) [:octicons-tag-24: Version-1.33.0](changelog.md#cl-1.33.0)
-
-    **Type**: Int
-
-    **Default**: -
-
 - **ENV_IO_FLUSH_WORKERS**
 
     IO flush workers [:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)
@@ -1077,6 +1075,20 @@ When the k8s node name is different from its corresponding host name, the k8s no
                 apiVersion: v1
                 fieldPath: spec.nodeName
 ```
+
+#### ENV_K8s_CLUSTER_NODE_NAME {#env-rename-node}
+
+[:octicons-tag-24: Version-1.36.0](changelog.md#1.36.0)
+
+When multiple clusters share a workspace and contain nodes with identical names, the `ENV_K8S_CLUSTER_NODE_NAME` environment variable can be used to manually customize the collected node name. During deployment, add a new configuration section **after** the `ENV_K8S_NODE_NAME` section in your `datakit.yaml` file:
+
+```yaml
+- name: ENV_K8S_CLUSTER_NODE_NAME
+  value: cluster_a_$(ENV_K8S_NODE_NAME) # Ensure that ENV_K8S_NODE_NAME is defined beforehand
+```
+
+This configuration appends `cluster_a_` to the original hostname, effectively creating a unique identifier for nodes in this cluster. As a result, the `host` tag associated with metrics such as logs, processes, CPU usage, and memory will also be prefixed with `cluster_a_`, enabling better data organization and filtering.
+
 <!-- markdownlint-disable MD013 -->
 ### Individual Collector-specific Environment Variable {#inputs-envs}
 <!-- markdownlint-enable -->

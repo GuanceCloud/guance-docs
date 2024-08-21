@@ -11,13 +11,12 @@ monitor   :
 ---
 
 <!-- markdownlint-disable MD025 -->
-
 # AWSLambda
 <!-- markdownlint-enable -->
 
 ---
 
-
+:fontawesome-brands-linux: :material-kubernetes: :material-docker:
 
 ---
 
@@ -55,24 +54,63 @@ AWS Lambda 采集器是通过 `aws-extension` 的方式采集 AWS Lambda 的指�
 
 ## 指标 {#metric}
 
-以下所有数据采集，默认会追加全局选举 tag，也可以在配置中通过 `[inputs..tags]` 指定其它标签：
-
-``` toml
- [inputs..tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-  # ...
-```
 
 
+### `awslambda-metric`
 
-## 日志 {#logging}
+- 标签
 
-| 字段名  | 字段值   | 说明                                     |
-| ------- | -------- | ---------------------------------------- |
-| message | 日志内容 | 根据 AWS 配置，可能为 JSON 或者 string。 |
 
-### 采集器支持
+| Tag | Description |
+|  ----  | --------|
+|`aws_account_id`|AWS Account ID.|
+|`aws_lambda_function_memory_size`|Configured memory size for the Lambda function.|
+|`aws_lambda_function_name`|Lambda function name.|
+|`aws_lambda_function_version`|Lambda function version.|
+|`aws_lambda_initialization_type`|Initialization type of the Lambda function.|
+|`aws_region`|AWS region where the function is executed.|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`billed_duration_ms`|Billed duration in milliseconds.|int|ms|
+|`duration_ms`|Total duration in milliseconds.|int|ms|
+|`errors`|Errors count.|int|count|
+|`init_duration_ms`|Initialization duration in milliseconds.|int|ms|
+|`invocations`|Invocation count.|int|count|
+|`max_memory_used_mb`|Maximum memory used in MB.|int|Mb|
+|`memory_size_mb`|Memory size configured for the Lambda function in MB.|int|Mb|
+|`out_of_memory`|Out of memory errors count.|int|count|
+|`post_runtime_duration`|Duration of the post-runtime phase in milliseconds.|int|ms|
+|`produced_bytes`|Bytes produced.|int|B|
+|`response_duration_ms`|Response duration in milliseconds.|int|ms|
+|`response_latency`|Response latency in milliseconds.|int|ms|
+|`runtime_duration_ms`|Duration of the runtime in milliseconds.|int|ms|
+|`timeouts`|Timeouts count.|int|count|
+
+
+
+### `awslambda-logging`
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`aws_log_from`|log sources, currently only function are supported|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`message`|Log message.|string|-|
+
+
+
+### 采集器支持 {#input}
 
 - OpenTelemetry
 - statsd

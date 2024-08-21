@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.35.0）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.36.0）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -441,16 +441,16 @@ DataKit 会开启 HTTP 服务，用来接收外部数据，或者对外提供基
 
 Datakit 允许给其采集的所有数据配置全局标签，全局标签分为两类：
 
-- 主机类全局标签：采集的数据跟当前主机绑定，比如 CPU/内存等指标数据
-- 选举类全局标签：采集的数据来自某个公共（远程）实体，比如 MySQL/Redis 等，这些采集一般都参与选举，故这些数据上不会带上当前主机相关的标签
+- 主机类全局标签（GHT）：采集的数据跟当前主机绑定，比如 CPU/内存等指标数据
+- 选举类全局标签（GET）：采集的数据来自某个公共（远程）实体，比如 MySQL/Redis 等，这些采集一般都参与选举，故这些数据上不会带上当前主机相关的标签
 
 ```toml
-[global_host_tags] # 这里面的我们称之为「全局主机标签」：GHT
+[global_host_tags] # 这里面的我们称之为「全局主机标签」
   ip   = "__datakit_ip"
   host = "__datakit_hostname"
 
 [election]
-  [election.tags] # 这里面的我们称之为「全局选举标签」：GET
+  [election.tags] # 这里面的我们称之为「全局选举标签」
     project = "my-project"
     cluster = "my-cluster"
 ```
@@ -464,7 +464,7 @@ Datakit 允许给其采集的所有数据配置全局标签，全局标签分为
 
 1. 由于 [DataKit 数据传输协议限制](apis.md#lineproto-limitation)，不要在全局标签（Tag）中出现任何指标（Field）字段，否则会因为违反协议导致数据处理失败。具体参见具体采集器的字段列表。当然，也不要加太多标签，而且每个标签的 Key 以及 Value 长度都有限制。
 1. 如果被采集上来的数据中，本来就带有同名的标签，那么 DataKit 不会再追加这里配置的全局标签
-1. 即使 GET 中没有任何配置，DataKit 仍然会在所有数据上尝试添加一个 `host=__datakit_hostname` 的标签
+1. 即使 GHT 中没有任何配置，DataKit 仍然会在其中添加一个 `host=__datakit_hostname` 的标签。因为 hostname 是目前观测云平台数据关联的默认字段，故日志/CPU/内存等采集上，都会带上 `host` 这个 tag。
 1. 这俩类全局标签（GHT/GET）是可以有交集的，比如都可以在其中设置一个 `project = "my-project"` 的标签
 1. 当没有开启选举的情况下，GET 沿用 GHT（它至少有一个 `host` 的标签）中的所有标签
 1. 选举类采集器默认追加 GET，非选举类采集器默认追加 GHT。
@@ -629,6 +629,7 @@ $ systemctl status datakit
     - 只支持 CPU 使用率和内存使用量（mem+swap）控制，且只支持 Linux 和 windows ([:octicons-tag-24: Version-1.15.0](changelog.md#cl-1.15.0)) 操作系统。
     - CPU 使用率控制目前不支持这些 windows 操作系统： Windows 7, Windows Server 2008 R2, Windows Server 2008, Windows Vista, Windows Server 2003 和 Windows XP。
     - 非 root 用户改资源限制配置时，必须重装 service。
+    - CPU 核心数限制会影响 Datakit 部分子模块的 worker 数配置（一般是 CPU 核心数的整数倍）。比如数据上传 worker 就是 CPU 核心数 * 2。而单个上传 worker 会占用默认 10MB 的内存用于数据发送，故 CPU 核心数如果开放较多，会影响 Datakit 整体内存的占用
 
 ???+ tip
 

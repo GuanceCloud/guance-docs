@@ -286,7 +286,7 @@ grant SELECT ON pg_stat_database to datakit;
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`index_size`|The total disk space used by indexes attached to the specified table.|int|B|
-|`table_size`|The total disk space used by the specified table. Includes TOAST, free space map, and visibility map. Excludes indexes.|int|B|
+|`table_size`|The total disk space used by the specified table with TOAST data. Free space map and visibility map are not included.|int|B|
 |`total_size`|The total disk space used by the table, including indexes and TOAST data.|int|B|
 
 
