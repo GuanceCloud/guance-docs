@@ -4,7 +4,7 @@
 
 ???+ attention
 
-    **当前案例使用 ddtrace 版本`0.114.0`（最新版本）进行测试**
+    **当前案例使用 ddtrace 对应的版本进行测试**
 
 ## 前置条件
 
@@ -13,7 +13,7 @@
 - 准备 Shell
 
   ```shell
-  java -javaagent:D:/ddtrace/dd-java-agent-0.114.0.jar \
+  java -javaagent:dd-java-agent-v1.34.0-guance.jar \
   -Ddd.service.name=ddtrace-server \
   -Ddd.agent.port=9529 \
   -jar springboot-ddtrace-server.jar
@@ -21,13 +21,13 @@
 
 ## 安装部署
 
-### 1 添加 maven pom 依赖
+### 添加 maven pom 依赖
 
 ```xml
 	<dependency>
 		<groupId>com.datadoghq</groupId>
 		<artifactId>dd-trace-api</artifactId>
-		<version>0.114.0</version>
+		<version>1.34.0</version>
 	</dependency>
 
 	<dependency>
@@ -48,7 +48,30 @@
 
 ```
 
-### 2 函数级别埋点
+### 获取 Tracer
+
+通过 `GlobalTracer` 获取 Tracer 对象
+
+> Tracer tracer = GlobalTracer.get();
+
+通过 Tracer 可以获取到当前 span 信息
+
+> Span span = tracer.activeSpan();
+
+```java
+    // 获取 tracer 对象
+    Tracer tracer = GlobalTracer.get();
+    // 获取当前 span 对象
+    Span span = tracer.activeSpan();
+    if (span!=null) {
+        // 获取 traceId
+        String traceId = span.context().toTraceId();
+        // 获取 spanId
+        String spanId = span.context().toSpanId();
+    }
+```
+
+### 函数级别埋点
 
 除了`dd.trace.methods` 方式可以对方法进行主动埋点外，ddtrace 提供了 api 方式能够对业务进行更灵活的埋点。
 
@@ -88,7 +111,7 @@ testService.apiTrace();
 
 ![image.png](../images/ddtrace-skill-10.png)
 
-### 3 使用 Baggage 让业务关键 tag 在后端链路进行传递
+### 使用 Baggage 让业务关键 tag 在后端链路进行传递
 
 ddtrace 提供了`Baggage` 方式，准确的说，应该是 ddtrace 使用 OpenTracing 提供的`Baggage` 功能，让指定的 tag 在链路上进行传递。比如用户名、岗位等信息，方便分析用户行为。
 
@@ -96,7 +119,7 @@ ddtrace 提供了`Baggage` 方式，准确的说，应该是 ddtrace 使用 Open
 span.setBaggageItem("username","liurui");
 ```
 
-#### 3.1 编写 TraceBaggageFilter
+#### 1 编写 TraceBaggageFilter
 
 通过 `TraceBaggageFilter` 方式拦截请求，并将 `request header` 相关参数通过 `Baggage` 方式进行传递。
 
@@ -148,7 +171,7 @@ public class TraceBaggageFilter implements Filter {
 }
 ```
 
-#### 3.2 DataKit 配置
+#### 2 DataKit 配置
 
 这里需要配合 DataKit 的 ddtrace 采集器配置一起使用，需要通过`customer_tags`方式新增自定义 tag ，否则这部分数据只存在`meta`里面。
 
@@ -156,15 +179,16 @@ public class TraceBaggageFilter implements Filter {
 customer_tags = ["username", "job"]
 ```
 
-#### 3.3 发起一个请求
+#### 3 发起一个请求
 
 发起一个 gateway 请求，携带两个 header ：`dd-username` 和 `dd-job`，系统会识别`dd`开头的 header 参数并在当前所有的链路 span 进行传递。
 
 ![](../images/ddtrace-skill-14.png)
 
-### 4 效果展示
+### 效果展示
 
 ![](../images/ddtrace-skill-13.gif)
+
 
 ## 自定义
 
