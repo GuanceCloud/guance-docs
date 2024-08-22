@@ -40,7 +40,7 @@ If the default query is 【last one hour】 (3/2 10:00 - 3/2 11:00) CPU usage tr
 
 If the default query is 【today】 (3/2 00:00 - 3/2 11:00) CPU usage trend of host A, then the comparison query is (3/1 00:00 - 3/1 11:00) CPU usage trend of host A for the same period
 
-???+ attention
+???+ warning
 
     When the comparison dimension selects 【Month】, if the default query 【3d】 (3/28 10:00 - 3/31 10:00) the CPU usage trend of host A, then the comparison query for the same period is (2/28 10:00:00 - 2/28 23:59:59) data, because there is no 29, 30, 31 in February
 
