@@ -108,7 +108,7 @@ After Dataway is successfully connected to the observation cloud center, log in 
 On the "Data Gateway" page of the observation cloud management background, select the DataWay to be deleted, click "Configure", and click the "Delete" button in the lower left corner of the pop-up Edit DataWay dialog box.
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning
 
     After deleting DataWay, you also need to log in to the server where the DataWay gateway is deployed to stop the operation of DataWay, and then delete the installation directory to completely delete the DataWay.
 <!-- markdownlint-enable -->
@@ -291,7 +291,7 @@ Ensure that the paths to the TLS certificate and key are correctly specified and
 | DW_SINKER_FILE_PATH         | file-path | N        | Specify the sinker rule configuration via a local file                                    |       |
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning
 
     If both local files and etcd are specified, the sinker rule in the local file takes precedence.
 <!-- markdownlint-enable -->
@@ -370,7 +370,7 @@ Ensure that the paths to the TLS certificate and key are correctly specified and
 ## Dataway metrics collection {#collect-metrics}
 
 <!-- markdownlint-disable MD046 -->
-???+ attention "HTTP client metrics collection"
+???+ warning "HTTP client metrics collection"
 
     If you want to collect metrics for Dataway HTTP requests to Kodo (or Dataway next hop), you need to manually enable the `http_client_trace` configuration. You can also specify `DW_HTTP_CLIENT_TRACE=true` during the installation phase.
 
@@ -635,7 +635,7 @@ If there is a request that is too large during runtime, it is reflected in both 
 - Search the Dataway logs with `cat log | grep 'drop too large request'`. The logs will output the details of the HTTP request Header, which is helpful for further understanding the client situation
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning
 
     In the disk cache module, there is also a maximum data block write limit (default 64MB). If you increase the maximum request body configuration, you should also adjust this configuration accordingly ([`ENV_DISKCACHE_MAX_DATA_SIZE`](https://github.com/GuanceCloud/cliutils/tree/main/diskcache#%E9%80%9A%E8%BF%87-env-%E6%8E%A7%E5%88%B6%E7%BC%93%E5%AD%98-option){:target="_blank"}), to ensure that large requests can be correctly written to the disk cache.
 <!-- markdownlint-enable -->

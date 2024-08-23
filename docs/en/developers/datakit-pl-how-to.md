@@ -62,7 +62,7 @@ grokq > Q                              # Q or exit
 Bye!
 ```
 
-???+ attention
+???+ warning
 
     In Windows environment, debug in Powershell.
 
@@ -241,7 +241,7 @@ A: Pipeline scripts for debugging. Place them in *<Datakit 安装目录>/pipelin
 
 In daily logs, because of different services, logs will take on various forms. At this time, multiple Grok cuts need to be written. In order to improve the running efficiency of Grok, you can give priority to matching the Grok with higher frequency according to the frequency of logs, so that high probability logs can be matched in the previous Groks, avoiding invalid matching.
 
-???+ attention
+???+ warning
 
     In log cutting, Grok matching is the most expensive part, so avoiding repeated Grok matching can greatly improve the cutting performance of Grok.
 
