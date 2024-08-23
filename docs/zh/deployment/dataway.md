@@ -124,7 +124,7 @@ Dataway 成功与观测云中心连接后，登录观测云控制台，在「集
 在观测云管理后台「数据网关」页面，选择需要删除的 DataWay ，点击「配置」，在弹出的编辑 DataWay 对话框，点击左下角「删除」按钮即可。
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning
 
     删除 DataWay 后，还需登录部署 DataWay 网关的服务器中停止 DataWay 的运行，然后删除安装目录才可彻底删除 DataWay。
 <!-- markdownlint-enable -->
@@ -306,7 +306,7 @@ curl: (7) Failed to connect to localhost port 9528 after 6 ms: Couldn't connect 
 | DW_SINKER_FILE_PATH         | file-path | N        | 通过本地文件来指定 sinker 规则配置                                       |          |
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning
 
     如果同时指定本地文件和 etcd 两种方式，则优先采用本地文件中的 Sinker 规则。
 <!-- markdownlint-enable -->
@@ -329,7 +329,7 @@ curl: (7) Failed to connect to localhost port 9528 after 6 ms: Couldn't connect 
 | DW_DISKCACHE_EXPIRE_DURATION | string    | N        | 缓存过期时间，默认 168h（7d）                      | Duration 字符串，如 `72h` 表示三天 |
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning
 
     必须设置 `DW_DISKCACHE_DIR` 后续的几个磁盘缓存相关的配置才会生效。如果要禁用磁盘缓存，需额外再开启 `DW_DISKCACHE_DISABLE`。
 <!-- markdownlint-enable -->
@@ -497,7 +497,7 @@ Content-Type: application/json
 ## Dataway 指标采集 {#collect-metrics}
 
 <!-- markdownlint-disable MD046 -->
-???+ attention "HTTP client 指标采集"
+???+ warning "HTTP client 指标采集"
 
     如果要采集 Dataway HTTP 请求 Kodo（或者下一跳 Dataway）的指标，需要手动开启 `http_client_trace` 配置。或者指定环境变量 `DW_HTTP_CLIENT_TRACE=true`。
 
@@ -768,7 +768,7 @@ Dataway 对请求体大小有默认设置（默认 64MB），但请求体太大�
 - 搜索 Dataway 日志 `cat log | grep 'drop too large request'`，日志会输出 HTTP 请求的 Header 详情，便于进一步了解客户端情况
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning
 
     在磁盘缓存模块，也有一个最大的数据块写入限制（默认 64MB）。如果增加最大请求体配置，也要一并调整该配置（[`ENV_DISKCACHE_MAX_DATA_SIZE`](https://github.com/GuanceCloud/cliutils/tree/main/diskcache#%E9%80%9A%E8%BF%87-env-%E6%8E%A7%E5%88%B6%E7%BC%93%E5%AD%98-option){:target="_blank"}），以确保大请求能正确写入磁盘缓存。
 <!-- markdownlint-enable -->

@@ -24,7 +24,7 @@ Guance supports the one-click opening service of DataFlux Func (Automata). After
 
 click to enter the opening process:
 
-???+ attention "Permission and Charge"
+???+ warning "Permission and Charge"
 
     - Only one Automata can be opened on one workspace, and only **Owner** has installation and configuration permission;
     - Automata <u>charges monthly</u>, deducting one month's fee once it is successfully opened, and automatically deducting the next month's fee one day before the expiration date (for example, if it is opened on 04/13, it will be deducted on 04/12, 05/12 and so on...).

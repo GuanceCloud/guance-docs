@@ -22,7 +22,7 @@
 
 ### 操作步骤
 
-???+ attention
+???+ warning
 
     **当前案例使用 DataKit 版本`1.4.9`，Spring Cloud `3.1.1`，Spring Boot `2.6.6`，Dubbo `2.7.15` ，Zookeeper `3.7.1` ，JDK `1.8` ，Tomcat `9.0.48` 进行测试**
 
