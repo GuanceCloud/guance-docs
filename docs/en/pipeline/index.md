@@ -1,5 +1,5 @@
 ---
-Icon: zy/pipeline
+icon: zy/pipeline
 ---
 
 # Pipelines
