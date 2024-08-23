@@ -365,7 +365,7 @@ The dynamic time can be linked with the content of the input box in real time, a
 
 In addition to the preset time range, you can click **Custom Time** in the time control to select a time range, including date and specific time, and click **Apply** to filter data according to the customized time range.
 
-???+ attention 
+???+ warning 
 
     - The start and end times of the custom time range should be entered in the format `Hours:Minutes:Seconds`, such as `15:01:09`.
     - The start time of the custom time range cannot be later than the end time.
@@ -379,7 +379,7 @@ In addition to the time range selection provided by the time control, Guance als
 
 As shown in the following figure, modify `time=2h` in the browser, and the explorer displays the data of the last 2 hours.
 
-???+ attention 
+???+ warning 
 
     - Each unit can only be used independently, not in combination.
     - When selected or entered in the browser for a time range greater than or equal to 1d, the explorer automatically stops playing mode.
@@ -407,7 +407,7 @@ Enter **time control > Change t9ijme settings**:
 
 <img src="../../img/zone.png" width="70%" >
 
-???+ attention
+???+ warning
 
     - Only Owner and Administrator of the current workspace have **Workspace Time Zone** configuration permissions;
 
