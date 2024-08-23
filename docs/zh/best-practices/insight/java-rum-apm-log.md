@@ -221,7 +221,7 @@ $     pipeline = "nginx.p"
 如：应用日志、业务日志等
 
 **示例：应用日志**
-Pipeline（日志 grok 切割）[**官方文档**](../../datakit/pipeline.md)
+Pipeline（日志 grok 切割）[**官方文档**](../../pipeline/use-pipeline/pipeline-quick-start.md)
 
 ```shell
 $ cd /usr/local/datakit/conf.d/log/

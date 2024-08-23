@@ -26,7 +26,7 @@ The data storage duration change steps are as follows:
 
 ![](../img/2.data_storage_2.png)
 
-???+ attention "Notes You Must Know"
+???+ warning "Notes You Must Know"
 
     1. Only commercial workspace owners are allowed to do this.
     2. After the metric Data Storage Strategy is changed, the data in the old storage policy will be deleted. Please choose carefully. You can [set custom](../../metrics/dictionary.md#storage) data storage policies for measurements.
@@ -68,7 +68,7 @@ If you need to change the Data Storage Strategy, you can make changes by [upgrad
 | Quantity of task calls           | 100,000 times per day  | /                |                                                              |
 | Quantity of short messages sent           | /             | /                | Experience Plan does not support SMS notification                                         |
 
-???+ attention "Notes You Must Know"
+???+ warning "Notes You Must Know"
 
     - If the data quota is fully used for different billing items in the Experience Plan, the data will stop being reported and updated; Infrastructure and event data still support reporting and updating, and you can still see infrastructure list data and event data.
     - The Experience Plan supports online upgrade to the Commercial Plan, and there is no charge if it is not upgraded. Once it is upgraded to the paid plan, it cannot be refunded.
