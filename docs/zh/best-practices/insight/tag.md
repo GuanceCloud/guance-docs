@@ -44,7 +44,7 @@ $  site = ""
 
 背景：DataKit 会默认采集主机层面的 hostname，然后将识别到的 hostname 作为全局 tag，将所有的指标、链路、日志、对象等数据进行关联，但是，在很多企业内部实际环境中，hostname 是无规则的字符串，没有实际意义，而又因为 hostname 可能被用于连接应用或管理数据库等其他作用，企业内部无法评估更改 hostname（将 hostname 变更为可识别的字符串）会带来怎样的隐患，所以不愿意变更 hostname，为了避免风险，datakit 内置的 `ENV_HOSTNAME` 就可以应对这种情况。
 
-???+ attention
+???+ warning
     **注意：**此方法生效后，新的 hostname 所在的主机数据会重新进行上传，原有 hostname 的主机数据将不再更新。<br/>
     **建议：**如有更改 hostname 需要，最好在初次安装 datakit 时进行修改。
 

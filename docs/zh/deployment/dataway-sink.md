@@ -52,7 +52,7 @@ end
 对于 SaaS 用户而言，可以在自己本地（k8s Cluster）部署一个 Dataway，专用于分流，然后再将数据转发给 Openway：
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning
 
     串联模式下，集群内的 Dataway 需开启级联（cascaded）选项。参见安装文档中的[环境变量说明](dataway.md#dw-envs)
 <!-- markdownlint-enable -->
@@ -114,7 +114,7 @@ sinker:
 ```
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning
 
     如果不设置 `secret_token`，则任何 Datakit 发送过来的请求都能通过，这不会造成数据问题。但如果 Dataway 部署在公网，还是建议设置一下 `secret_token`。
 <!-- markdownlint-enable -->
@@ -159,7 +159,7 @@ $ etcdctl role grant-permission sinker readwrite /ping       # 用于检测连�
 
     角色用来控制对应用户在某些 key 上的权限，此处我们使用的可能是用户已有的 etcd 服务，有必要限制一下 Dataway 这个用户的数据权限。
 
-???+ attention
+???+ warning
 
     如果 etcd 开启了[认证模式](https://etcd.io/docs/v3.5/op-guide/authentication/rbac/#enabling-authentication){:target="_blank"}，执行 `etcdctl` 命令式，需带上对应的用户名和密码：
 
@@ -710,7 +710,7 @@ sinker ping: etcdserver: permission denied, retrying(97th)
 Datakit 内置了以下几个可用的自定义 Key，它们一般不会出现在采集的数据中，但 Datakit 可以以这些 Key 来对数据进行分组。如果在这些 Key 的维度有分流的需求，可以将它们添加到「全局自定义 Key」列表中（这些 Key 默认都不配置）。我们可以使用如下内置一些自定义 Key 来实现数据分流。
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning
 
     添加的「全局自定义 Key」会导致数据发送时进行分包，如果粒度太细，会导致 Datakit 上传效率急速降低。一般情况下，「全局自定义 Key」不建议超过 3 个。
 <!-- markdownlint-enable -->
@@ -791,7 +791,7 @@ Datakit 内置了以下几个可用的自定义 Key，它们一般不会出现�
 ```
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning
 
     即使 URL（`__dataway_api`） 匹配了多个 Sink 规则，一些 API 请求只会分流一次。这些 API URL 如下：
         

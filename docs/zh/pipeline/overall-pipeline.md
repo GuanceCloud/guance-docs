@@ -39,16 +39,12 @@
 
 在观测云工作空间**日志 > Pipelines**，点击 **Pipeline 官方库**即可查看内置标准的 Pipeline 官网文件库，包括 nginx、apache、redis、elasticsearch、mysql 等。
 
-![](img/2.pipeline_1.png)
 
-选择打开任意一个 Pipeline 文件，如 `apache.p`，可以看到内置的解析规则。
+选择打开任意一个 Pipeline 文件，如 `apache.p`，可以看到内置的解析规则。如果需要自定义修改，可以点击右上角的 :heavy_plus_sign: 克隆按钮。
 
 
 ![](img/2.pipeline_2.png)
 
-如果需要自定义修改，可以点击右上角的 :heavy_plus_sign: 克隆按钮。
-
-![](img/2.pipeline_3.png)
 
 ???+ warning "注意"
 
