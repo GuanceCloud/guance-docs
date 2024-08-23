@@ -1,30 +1,29 @@
 # Settlement Methods
 ---
 
-Guance supports various settlement methods such as <u>Guance Billing Center account and cloud account. Cloud account settlement includes Alibaba Cloud account, AWS account settlement and Huawei cloud account settlement</u>. In the cloud account settlement mode, cloud bills from multiple sites are supported to be merged into one cloud account for settlement.
+Guance supports various billing methods including the Guance Billing Center account and cloud account settlement, the latter including Alibaba Cloud, AWS, and Huawei Cloud account settlements. Under the cloud account settlement model, it supports the consolidation of cloud bills from multiple sites into a single cloud account for settlement.
 
 
 ![](../img/billing-index-1.png)
 
-???+ attention "Account Settlement Deduction Order"
+???+ warning "Account Settlement Deduction Order"
 
-    - **Guance Billing Center account settlement**: the deduction order of the Guance payment bill by volume is: <u>ordinary vouchers, full reduction vouchers, stored-value cards, cash, stored-value card balance (negative arrears)</u>; SMS and dial-based consumption can only be paid by cash and stored-value card or stored-value card balance.
-    - **Cloud account settlement**: the deduction order of Guance pay-by-volume bills is as follows: <u>ordinary vouchers, full reduction vouchers, stored-value cards and cash balance of cloud account</u>; SMS and dial-up consumption can only be paid by using stored-value cards and cash balances of cloud accounts.
-    - Once the workspace settlement method is selected as cloud account settlement, it <u>cannot be changed to other settlement methods</u> (such as changing from "Alibaba Cloud Account A" to "Alibaba Cloud Account B" or changing from "AWS Account" to "Alibaba Cloud Account", etc.) unless the bound cloud account is unsubscribed or released.
+    1. If you choose to settle with the Guance Billing Center account, the deduction order for Guance pay-as-you-go bills is: regular vouchers, discount vouchers, prepaid cards, cash, and prepaid card balance (negative value for arrears); the pay-as-you-go consumption for SMS and dial testing can only be paid with cash and prepaid cards or prepaid card balance.
+    2. If you choose to settle with a cloud account, the deduction order for Guance pay-as-you-go bills is: regular vouchers, discount vouchers, prepaid cards, and cash balance of the cloud account. The pay-as-you-go consumption for SMS and dial testing can only be paid with prepaid cards and the cash balance of the cloud account.
+    3. Once the settlement method for a workspace is set to cloud account settlement, it cannot be changed to other settlement methods (such as from `Alibaba Cloud Account A` to `Alibaba Cloud Account B` or from `AWS Account` to `Alibaba Cloud Account`, etc.) unless the bound cloud account cancels the subscription or is released.
 
 ## Guance Billing Center account Settlement
 
-You can recharge and settle directly through the [Guance Billing Center account settlement](../../billing/billing-account/enterprise-account.md) in [Billing Center](../../billing/cost-center/index.md), and one Billing Center account can be associated with multiple workspaces for expense settlement.
+You can directly settle by recharging at the Guance [Billing Center](../../billing-center/index.md) through [the Guance Billing Center account](enterprise-account.md), and a single Billing Center account can be associated with multiple workspaces for cost settlement.
 
 <!--
 In Guance Billing Center, you can recharge the Billing Center account in cash, manage vouchers, stored-value cards and change settlement methods. At the same time, you can also manage the account through the Billing Center, and view the bill details, account balance, tied workspace and other related information.
 -->
 
-## Cloud Account Settlement
+## Cloud Account Settlement {#cloud-account}
 
-You can recharge and settle through the cloud account, and one cloud account supports expense settlement associated with multiple workspaces and workspaces of multiple sites.
+You can settle by recharging through a cloud account, and a single cloud account supports the association of multiple workspaces, and workspaces from multiple sites for cost settlement.
 
-Guance currently supports three cloud account settlement methods, namely [Huawei Cloud account](../../billing/billing-account/huaweicloud-account.md), [Alibaba Cloud account](../../billing/billing-account/aliyun-account.md) and [AWS account](../../billing/billing-account/aws-account.md).
+Guance currently supports three types of cloud account settlement methods, namely [Huawei Cloud account](huawei-account.md), [Alibaba Cloud account](aliyun-account.md), and [AWS account](aws-account.md).
 
-
-<font color=coral>**Note:**</font> Cloud account settlement supports preferential use of vouchers or stored-value cards provided by Guance for deduction. After the fees in vouchers or stored-value cards are empty, the fees in cloud accounts will continue to be deducted.
+**Note**: Cloud account settlement supports the priority use of vouchers or prepaid cards provided by Guance for deduction. After the fees in the vouchers or prepaid cards are exhausted, then continue to deduct the fees from the cloud account.
