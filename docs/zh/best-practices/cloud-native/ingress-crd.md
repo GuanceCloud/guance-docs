@@ -17,7 +17,7 @@ CRD 全称是 Custom Resource Definition，是 Kubernetes 的一种内置资源�
 
 ## 操作步骤
 
-???+ attention
+???+ warning
 
     本次示例使用版本为 DataKit `1.4.11` 、 Nginx Ingress Controller  `1.1.1`
 

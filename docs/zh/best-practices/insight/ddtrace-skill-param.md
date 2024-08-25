@@ -191,7 +191,7 @@ ddtrace 支持给方法注入 Trace ，默认情况下，ddtrace 会对所有的
 -Ddatadog.slf4j.simpleLogger.logFile=<NEW_LOG_FILE_PATH> 
 ```
 
-???+ attention "注意"
+???+ warning "注意"
     `-Ddd.trace.debug=true` 是用来开启 ddtrace 的 debug 日志，而不是开启应用的 debug 日志。
     
 

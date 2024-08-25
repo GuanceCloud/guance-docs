@@ -6,7 +6,15 @@ icon: zy/pipeline
 
 ---
 
-Pipelines 用于数据解析，通过定义解析规则，将各种数据类型切割成符合我们要求的结构化数据。如通过 Pipeline 提取日志的时间戳、日志的状态、以及其他特定的字段作为标签。
+Pipelines 是一种运行在 DataKit 上的轻量级脚本语言，用于对采集到的数据进行自定义解析和修改。通过定义解析规则，它们能够将不同种类的数据细粒度地切割并转换为结构化的格式，以满足具体的数据管理需求。例如，用户可以通过 Pipelines 提取日志中的时间戳、状态和其他关键字段，并将这些信息作为标签使用。
+
+DataKit 利用 Pipelines 的强大功能，使得用户能够在观测云工作空间页面上直接编写和调试 Pipeline 脚本，从而实现对数据的更细粒度的结构化处理。这种处理不仅提高了数据的可管理性，而且通过 Pipeline 提供的丰富函数库，支持对常见数据进行标准化操作，如解析时间字符串和补全 IP 地址的地理信息等。
+
+Pipeline 的主要特点包括：
+- 作为一种轻量化脚本语言，Pipeline 提供了高效的数据处理能力；
+- 它拥有丰富的函数库，支持对多种常见数据类型的标准化操作；
+- 用户可以在观测云工作空间页面直接编写和调试 Pipeline 脚本，使得脚本的创建和批量生效变得更加便捷。
+
 
 目前，观测云支持配置本地 Pipeline 和中心 Pipeline。
 
@@ -154,9 +162,12 @@ Pipelines 用于数据解析，通过定义解析规则，将各种数据类型�
 
 ## 更多阅读
 
+<font size=3>
 
 <div class="grid cards" markdown>
 
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **日志 Pipeline 使用手册**</font>](../logs/manual.md)
 
 </div>
+
+</font>
