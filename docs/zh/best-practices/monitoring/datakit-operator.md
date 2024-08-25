@@ -16,7 +16,7 @@ Kubernetes 环境在接入 Java 应用 APM 时，需要使用到 `dd-java-agent.
 
 ## 操作步骤
 
-???+ attention
+???+ warning
 
     本文示例所使用版本信息为：DataKit `1.5.2`、 Kubernetes `1.24`
 

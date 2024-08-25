@@ -19,7 +19,7 @@ Rancher 是一款开源的企业级管理 Kubernetes 集群的平台，为了简
 
 ## 操作步骤
 
-???+ attention
+???+ warning
 
     本文示例所使用的版本信息如下：DataKit `1.4.5`、Kubernetes `1.22.6`、Rancher `2.6.3`、Gitlab `14.9.4`
 

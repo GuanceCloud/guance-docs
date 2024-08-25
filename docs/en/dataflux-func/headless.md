@@ -10,7 +10,7 @@ In **Integrations > RUM Headless**, or **Integrations > Extension > RUM Headless
 
 ![](img/headless-1.png)
 
-???+ attention "Permission and Charge"
+???+ warning "Permission and Charge"
 
     - Only one RUM Headless can be opened on one workspace, and only **Owner** has installation and configuration permission;
     - RUM Headless <u>charges monthly</u>, deducting one month's fee once it is successfully opened, and automatically deducting the next month's fee one day before the expiration date (for example, if it is opened on 04/13, it will be deducted on 04/12, 05/12 and so on...).
@@ -56,7 +56,7 @@ When uploading files, select the application type, [configure and pack Sourcemap
 
 Under the 🔍 column, you can view the uploaded file name and application type, and you can enter the file name to search; Click :fontawesome-regular-trash-can: to delete the current file.
 
-???+ attention "Instructions for Uploading"
+???+ warning "Instructions for Uploading"
 
     - The file size cannot exceed 500M and the file format must be zip;
     - The file name format is < app_id >-< env >-< version >, where `app_id` is required; Make sure that the unzipped file path of the zipped package matches the path of the URL in `error_stack`;
