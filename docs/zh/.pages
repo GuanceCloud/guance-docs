@@ -19,7 +19,7 @@ nav:
   - 可用性监测: usability-monitoring
   - 安全巡检: scheck
   - CI 可视化: ci-visibility
-  - Pipeline: pipeline
+  - Pipelines: pipeline
   - <br/>开放能力: ""
   - DataFlux Func: dataflux-func
   - DCA: dca

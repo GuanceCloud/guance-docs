@@ -7,7 +7,7 @@
 
 观测云支持基于当前空间内的现有数据生成新的指标数据，以便于您依据需求设计并实现新的技术指标。
 
-???+ attention 
+???+ warning 
 
     - 生成指标需有“生成指标配置管理”操作权限的角色可创建编辑，更多详情可参考 [权限清单](../management/role-list.md)。
     - 指标生成以后会按照当前默认的 [数据存储策略](../billing/billing-method/data-storage.md) 进行指标数据存储，并根据产生的 [时间线数量](../billing/billing-method/index.md#time-example) 进行收费。

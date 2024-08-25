@@ -11,7 +11,7 @@
 
 需要在 `datakit.conf` 主配置文件中进行配置开启，配置见下，当前支持的目标 `receiver` 有 `datakit-http` 和 `ploffload`，允许配置多个 `DataKit` 地址以实现负载均衡。
 
-注意：
+**注意**：
 
 - 当前只支持卸载**日志（`Logging`）类别**数据的处理任务；
 - **在 `addresses` 配置项中不能填写当前 `DataKit` 的地址**，否则将形成循环，导致数据永远在当前 `DataKit` 中；

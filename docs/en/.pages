@@ -17,6 +17,7 @@ nav:
   - RUM: real-user-monitoring
   - Synthetic Tests: usability-monitoring
   - CI Visibility: ci-visibility
+  - Pipelines: pipeline
   - <br/>Openess: ""
   - DataFlux Func: dataflux-func
   - Developers: developers

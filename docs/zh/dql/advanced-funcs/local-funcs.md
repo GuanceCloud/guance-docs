@@ -63,7 +63,7 @@
 @DFF.API('用户自定义函数名称', category='guance.dqlFunc')
 ```
 
-???+ attention
+???+ warning
 
     代码编写完成后，不要忘记发布!!!
 
