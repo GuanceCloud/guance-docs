@@ -132,7 +132,7 @@ In addition, all collected logs have the following reserved fields. We should no
 | `time`     | int           | Timestamp corresponding to log                                               |
 
 
-???+ tip
+???+ abstract
 
     Of course, we can override the values of these tags by [specific Pipeline function](pipeline.md#fn-set-tag).
 

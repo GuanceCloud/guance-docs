@@ -34,7 +34,7 @@ DQL 查询示例写法：
 DBSCAN(`M::cpu:(usage_idle)`, 0.5)
 ```
 
-???+ attention
+???+ warning
 
     在进行查询时:
 

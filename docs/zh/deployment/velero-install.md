@@ -1,6 +1,6 @@
 # 观测云集群备份和恢复
 
-???+ attention "注意事项"
+???+ warning "注意事项"
 
      本文介绍的 Velero 备份的是 Kubernetes 配置（YAML 文件），不包含 PVC 卷的数据。
 

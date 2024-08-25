@@ -175,7 +175,7 @@ In addition, all collected logs have the following reserved fields. We should no
 | `time`     | int           | Timestamp corresponding to log                                              |
 
 <!-- markdownlint-disable MD046 -->
-???+ tip
+???+ abstract
 
     Of course, we can override the values of these tags by [specific Pipeline function](pipeline-built-in-function.md#fn-set-tag).
 <!-- markdownlint-enable -->
