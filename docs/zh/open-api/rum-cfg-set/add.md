@@ -20,6 +20,7 @@
 | jsonContent.name | string | Y | 应用名称<br>允许为空: False <br>最大长度: 256 <br> |
 | jsonContent.type | string | Y | 应用类型<br>允许为空: False <br>可选值: ['web', 'miniapp', 'android', 'ios', 'custom'] <br> |
 | jsonContent.extend | json |  | 其他设置(如需增加同级字段请告知)<br>允许为空: False <br> |
+| clientToken | string |  | clientToken<br>允许为空: False <br>允许为空字符串: True <br> |
 
 ## 参数补充说明
 
@@ -32,7 +33,7 @@
 curl 'https://openapi.guance.com/api/v1/rum_cfg/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"appId":"fe52be60_2fac_11ee_8ee7_0ffb4a4ef591","jsonContent":{"name":"ass","type":"ios"}}' \
+--data-raw '{"appId":"fe52be60_2fac_11ee_8ee7_0ffb4a4ef591","jsonContent":{"name":"ass","type":"ios"},"clientToken":"3aa8c360ac6a4a2abc985e7b49c1ac5a"}' \
 --compressed
 ```
 
@@ -57,7 +58,8 @@ curl 'https://openapi.guance.com/api/v1/rum_cfg/add' \
         "updateAt": 1690813059,
         "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
         "uuid": "fe52be60_2fac_11ee_8ee7_0ffb4a4ef591",
-        "workspaceUUID": "wksp_a7baa18031fb4a2db2ad467d384fd804"
+        "workspaceUUID": "wksp_a7baa18031fb4a2db2ad467d384fd804",
+        "clientToken": "3aa8c360ac6a4a2abc985e7b49c1ac5a"
     },
     "errorCode": "",
     "message": "",
