@@ -22,7 +22,7 @@ Amazon Elastic Kubernetes Service (Amazon EKS) 是 Amazon 提供的一项 Kubern
 
 ## 操作步骤
 
-???+ attention
+???+ warning
 
     本文示例所使用版本信息为：DataKit `1.5.2`、Kubernetes `1.24`、kubectl `v1.23.6`、Helm `v3.8.2`
 

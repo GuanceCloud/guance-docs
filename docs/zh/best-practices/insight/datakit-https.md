@@ -16,7 +16,7 @@ HTTPS 是以安全为目标的 HTTP 通道，在 HTTP 的基础上通过传输�
 
 ## 操作步骤
 
-???+ attention
+???+ warning
 
     **当前案例使用 DataKit 版本`1.4.20`（最新版本），Nginx 版本是 `1.22.1` 进行测试**
 ### 1 安装 Nginx
