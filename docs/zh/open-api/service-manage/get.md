@@ -46,7 +46,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/service_manage/sman_eb3e3c7acaef4d53acab866b83410edb/get?originStr=0' \
+curl 'https://openapi.guance.com/api/v1/service_manage/sman_xxxx32/get?originStr=0' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed
@@ -86,8 +86,8 @@ curl 'https://openapi.guance.com/api/v1/service_manage/sman_eb3e3c7acaef4d53acab
             "Related": {
                 "AppId": "a138bcb0_47ef_11ee_9d75_31ea50b9d85a",
                 "DashboardUUIDs": [
-                    "dsbd_b7ded4391b5e497ba7112d81a922d14d",
-                    "dsbd_3e7194379a2a42f0b7b61c822108bbd6"
+                    "dsbd_xxxx32",
+                    "dsbd_xxxx32"
                 ],
                 "Tags": [
                     "mysql",
@@ -132,7 +132,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/sman_eb3e3c7acaef4d53acab
                     }
                 ],
                 "service": "jinlei_1",
-                "team": "group_a8caea614b2644549557b476cf2d946c",
+                "team": "group_xxxx32",
                 "type": "db"
             }
         },
@@ -145,7 +145,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/sman_eb3e3c7acaef4d53acab
             "name": "阿里云监控数据源",
             "username": "xxx"
         },
-        "uuid": "sman_eb3e3c7acaef4d53acab866b83410edb"
+        "uuid": "sman_xxxx32"
     },
     "errorCode": "",
     "message": "",

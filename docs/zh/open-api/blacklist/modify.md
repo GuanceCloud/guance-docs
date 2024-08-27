@@ -33,7 +33,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/blacklist/blist_58770f806d104f63bdee9bc1941bed36/modify' \
+curl 'https://openapi.guance.com/api/v1/blacklist/blist_xxxx32/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"type":"logging","source":"kodo-log","filters":[{"name":"hostname","value":["127.0.0.1"],"operation":"in","condition":"and"}]}' \
@@ -50,7 +50,7 @@ curl 'https://openapi.guance.com/api/v1/blacklist/blist_58770f806d104f63bdee9bc1
     "content": {
         "conditions": "{ source =  'kodo-log'  and ( hostname in [ '127.0.0.1' ] )}",
         "createAt": 1677653414,
-        "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+        "creator": "acnt_xxxx32",
         "deleteAt": -1,
         "filters": [
             {
@@ -68,8 +68,8 @@ curl 'https://openapi.guance.com/api/v1/blacklist/blist_58770f806d104f63bdee9bc1
         "type": "logging",
         "updateAt": 1678029845.282458,
         "updator": "xxxx",
-        "uuid": "blist_58770f806d104f63bdee9bc1941bed36",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "blist_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

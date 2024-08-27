@@ -44,7 +44,7 @@ curl 'https://openapi.guance.com/api/v1/channel/add' \
     "code": 200,
     "content": {
         "createAt": 1686396907,
-        "creator": "acnt_861cf6dd440348648861247ae42909c3",
+        "creator": "acnt_xxxx32",
         "deleteAt": -1,
         "description": "",
         "id": null,
@@ -52,9 +52,9 @@ curl 'https://openapi.guance.com/api/v1/channel/add' \
         "notifyTarget": [],
         "status": 0,
         "updateAt": 1686396907,
-        "updator": "acnt_861cf6dd440348648861247ae42909c3",
-        "uuid": "chan_6e83ecb9978648518f2f7a9a764baeb0",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "updator": "acnt_xxxx32",
+        "uuid": "chan_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

@@ -3,7 +3,6 @@ nav:
   - '公共请求参数': public-request-params.md
   - '公共响应结构': public-response-params.md
   - '签名认证': signature-certification.md
-  - '其他说明': ../studio-backend
   - '前台账号': account
   - '管理后台账号': manage-account
   - '工作空间成员': workspace-account

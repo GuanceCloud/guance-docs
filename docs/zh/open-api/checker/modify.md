@@ -81,7 +81,7 @@
 curl 'https://openapi.guance.com/api/v1/checker/rul_xxxxxx/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"extend":{"querylist":[{"datasource":"dataflux","qtype":"dql","query":{"code":"Result","type":"simple","namespace":"metric","dataSource":"ssh","field":"ssh_check","fieldType":"float","alias":"","fieldFunc":"count","groupByTime":"","groupBy":["host"],"q":"M::`ssh`:(count(`ssh_check`)) BY `host`","funcList":[]},"uuid":"aada629a-672e-46f9-9503-8fd61065c382"}],"funcName":"","rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["90"],"operator":">="}],"status":"critical"},{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["0"],"operator":">="}],"status":"error"}],"issueLevelUUID":"system_level_3","isNeedCreateIssue":false,"needRecoverIssue":false},"jsonScript":{"title":"主机 {{ host }} SSH 服务异常","message":">等级：{{status}}  \n>主机：{{host}}  \n>内容：主机 SSH 状态 {{ Result |  to_fixed(2) }}%  \n>建议：检查主机 SSH 服务状态","noDataTitle":"","noDataMessage":"","type":"simpleCheck","every":"1m","groupBy":["host"],"interval":300,"targets":[{"dql":"M::`ssh`:(count(`ssh_check`)) BY `host`","alias":"Result","qtype":"dql"}],"checkerOpt":{"rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["90"],"operator":">="}],"status":"critical"},{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["0"],"operator":">="}],"status":"error"}],"infoEvent":false},"recoverNeedPeriodCount":2,"channels":[],"atAccounts":[],"atNoDataAccounts":[],"disableCheckEndTime":false},"alertPolicyUUIDs":["altpl_cb3f68c1562940e3991c4af73e5c96b9"],"tags":["本地测试组合检测"]}' \
+--data-raw '{"extend":{"querylist":[{"datasource":"dataflux","qtype":"dql","query":{"code":"Result","type":"simple","namespace":"metric","dataSource":"ssh","field":"ssh_check","fieldType":"float","alias":"","fieldFunc":"count","groupByTime":"","groupBy":["host"],"q":"M::`ssh`:(count(`ssh_check`)) BY `host`","funcList":[]},"uuid":"aada629a-672e-46f9-9503-8fd61065c382"}],"funcName":"","rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["90"],"operator":">="}],"status":"critical"},{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["0"],"operator":">="}],"status":"error"}],"issueLevelUUID":"system_level_3","isNeedCreateIssue":false,"needRecoverIssue":false},"jsonScript":{"title":"主机 {{ host }} SSH 服务异常","message":">等级：{{status}}  \n>主机：{{host}}  \n>内容：主机 SSH 状态 {{ Result |  to_fixed(2) }}%  \n>建议：检查主机 SSH 服务状态","noDataTitle":"","noDataMessage":"","type":"simpleCheck","every":"1m","groupBy":["host"],"interval":300,"targets":[{"dql":"M::`ssh`:(count(`ssh_check`)) BY `host`","alias":"Result","qtype":"dql"}],"checkerOpt":{"rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["90"],"operator":">="}],"status":"critical"},{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["0"],"operator":">="}],"status":"error"}],"infoEvent":false},"recoverNeedPeriodCount":2,"channels":[],"atAccounts":[],"atNoDataAccounts":[],"disableCheckEndTime":false},"alertPolicyUUIDs":["altpl_xxxx32"],"tags":["本地测试组合检测"]}' \
 --compressed 
 ```
 
@@ -95,7 +95,7 @@ curl 'https://openapi.guance.com/api/v1/checker/rul_xxxxxx/modify' \
     "content": {
         "createAt": 1710827935,
         "createdWay": "manual",
-        "creator": "acnt_e52a5a7b6418464cb2acbeaa199e7fd1",
+        "creator": "acnt_xxxx32",
         "crontabInfo": {
             "crontab": "*/1 * * * *",
             "id": "cron-pwiThsuE9gtQ"
@@ -224,21 +224,21 @@ curl 'https://openapi.guance.com/api/v1/checker/rul_xxxxxx/modify' \
             "title": "主机 {{ host }} SSH 服务异常",
             "type": "simpleCheck"
         },
-        "monitorUUID": "monitor_f83dd203f3c24fe7b605e0eb09852a63",
+        "monitorUUID": "monitor_xxxx32",
         "refKey": "",
         "secret": "",
         "status": 0,
         "tagInfo": [
             {
-                "id": "tag_27ff715fe6f44650a1dfdbedb8cf84b2",
+                "id": "tag_xxxx32",
                 "name": "本地测试组合检测"
             }
         ],
         "type": "trigger",
         "updateAt": 1710831784,
         "updator": "wsak_xxxxx",
-        "uuid": "rul_8e33996045754736aeecd34b6a5f846a",
-        "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+        "uuid": "rul_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

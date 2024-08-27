@@ -51,7 +51,7 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
             },
             "crontab": "10 10 03,14,13 * *",
             "dashboardName": "whytest",
-            "dashboardUUID": "dsbd_28a1718f1b5547a58a40f2167948bdc6",
+            "dashboardUUID": "dsbd_xxxx32",
             "deleteAt": -1,
             "executed": 0,
             "extend": {
@@ -64,7 +64,7 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
             "isLocked": 0,
             "notifyType": "dingTalkRobot",
             "recipient": [
-                "notify_b1f535d0b52a4788a6343778fab64ba0"
+                "notify_xxxx32"
             ],
             "recipientInfo": [
                 "fj"
@@ -83,9 +83,9 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
                 "name": "a",
                 "username": "wsak_xxxxx"
             },
-            "uuid": "cron_cf1be3e00408416b9a1f1b8a7e233223",
+            "uuid": "cron_xxxx32",
             "variables": {},
-            "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+            "workspaceUUID": "wksp_xxxx32"
         },
         {
             "content": "",
@@ -100,7 +100,7 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
             },
             "crontab": "",
             "dashboardName": "whytest",
-            "dashboardUUID": "dsbd_28a1718f1b5547a58a40f2167948bdc6",
+            "dashboardUUID": "dsbd_xxxx32",
             "deleteAt": -1,
             "executed": 0,
             "extend": {
@@ -113,7 +113,7 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
             "isLocked": 0,
             "notifyType": "dingTalkRobot",
             "recipient": [
-                "notify_b1f535d0b52a4788a6343778fab64ba0"
+                "notify_xxxx32"
             ],
             "recipientInfo": [
                 "fj"
@@ -124,44 +124,44 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
             "timezone": "Asia/Shanghai",
             "title": "ceshi2",
             "updateAt": 1698666614,
-            "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+            "updator": "acnt_xxxx32",
             "updatorInfo": {
                 "acntWsNickname": "",
                 "email": "88@qq.com",
-                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_349ee5f70a89442fa94b4f754b5acbfe.png",
+                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试"
             },
-            "uuid": "cron_3a819c6c1d4e4fcea690b18e678b174f",
+            "uuid": "cron_xxxx32",
             "variables": {
                 "host": {
                     "name": "host",
                     "value": "1698666252261"
                 }
             },
-            "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+            "workspaceUUID": "wksp_xxxx32"
         },
         {
             "content": "",
             "createAt": 1698665649,
-            "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+            "creator": "acnt_xxxx32",
             "creatorInfo": {
                 "acntWsNickname": "",
                 "email": "88@qq.com",
-                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_349ee5f70a89442fa94b4f754b5acbfe.png",
+                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试"
             },
             "crontab": "",
             "dashboardName": "whytest",
-            "dashboardUUID": "dsbd_28a1718f1b5547a58a40f2167948bdc6",
+            "dashboardUUID": "dsbd_xxxx32",
             "deleteAt": -1,
             "executed": 0,
             "extend": {
                 "cycleTimeType": "once",
                 "dashboardInfo": {
                     "label": "whytest",
-                    "value": "dsbd_28a1718f1b5547a58a40f2167948bdc6"
+                    "value": "dsbd_xxxx32"
                 },
                 "hour": "10",
                 "minutes": "20"
@@ -170,13 +170,13 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
             "isLocked": 0,
             "notifyType": "email",
             "recipient": [
-                "acnt_e85847e7fe894ea9938dd29c22bc1f9b"
+                "acnt_xxxx32"
             ],
             "recipientInfo": {
-                "acnt_e85847e7fe894ea9938dd29c22bc1f9b": {
+                "acnt_xxxx32": {
                     "acntWsNickname": "",
                     "email": "66@qq.com",
-                    "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_e85847e7fe894ea9938dd29c22bc1f9b.png",
+                    "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                     "name": "我是66吖",
                     "username": "66"
                 }
@@ -187,39 +187,39 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
             "timezone": "Asia/Shanghai",
             "title": "ceshi1",
             "updateAt": 1698665649,
-            "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+            "updator": "acnt_xxxx32",
             "updatorInfo": {
                 "acntWsNickname": "",
                 "email": "88@qq.com",
-                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_349ee5f70a89442fa94b4f754b5acbfe.png",
+                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试"
             },
-            "uuid": "cron_86b8d54abcbe4f4f96cb1f273f6657c4",
+            "uuid": "cron_xxxx32",
             "variables": {},
-            "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+            "workspaceUUID": "wksp_xxxx32"
         },
         {
             "content": "kkkk",
             "createAt": 1698652026,
-            "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+            "creator": "acnt_xxxx32",
             "creatorInfo": {
                 "acntWsNickname": "",
                 "email": "88@qq.com",
-                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_349ee5f70a89442fa94b4f754b5acbfe.png",
+                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试"
             },
             "crontab": "50 15 01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31 * *",
             "dashboardName": "11-02",
-            "dashboardUUID": "dsbd_df7bc3bc159249d9a0ce434b9a642c93",
+            "dashboardUUID": "dsbd_xxxx32",
             "deleteAt": -1,
             "executed": 0,
             "extend": {
                 "cycleTimeType": "day",
                 "dashboardInfo": {
                     "label": "11-02",
-                    "value": "dsbd_df7bc3bc159249d9a0ce434b9a642c93"
+                    "value": "dsbd_xxxx32"
                 },
                 "hour": "15",
                 "minutes": "50"
@@ -228,10 +228,10 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
             "isLocked": 0,
             "notifyType": "email",
             "recipient": [
-                "acnt_738591af12c64de3b87cbd2bc51d4bbe"
+                "acnt_xxxx32"
             ],
             "recipientInfo": {
-                "acnt_738591af12c64de3b87cbd2bc51d4bbe": {
+                "acnt_xxxx32": {
                     "acntWsNickname": "",
                     "email": "sunhui@jiagouyun.com",
                     "iconUrl": "",
@@ -245,17 +245,17 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
             "timezone": "Asia/Shanghai",
             "title": "mmmm",
             "updateAt": 1698652026,
-            "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+            "updator": "acnt_xxxx32",
             "updatorInfo": {
                 "acntWsNickname": "",
                 "email": "88@qq.com",
-                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_349ee5f70a89442fa94b4f754b5acbfe.png",
+                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试"
             },
-            "uuid": "cron_4af7e3d523bd4a9e92006b9983607cb7",
+            "uuid": "cron_xxxx32",
             "variables": {},
-            "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+            "workspaceUUID": "wksp_xxxx32"
         }
     ],
     "errorCode": "",

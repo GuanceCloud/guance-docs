@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/blacklist/blist_d2dddce67cdc434db6a792a56984d20b/get' \
+curl 'https://openapi.guance.com/api/v1/blacklist/blist_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -40,7 +40,7 @@ curl 'https://openapi.guance.com/api/v1/blacklist/blist_d2dddce67cdc434db6a792a5
     "content": {
         "conditions": "{ `source` =  'coredns'  and ( `source` in [ 'coredns' ] )}",
         "createAt": 1698121193,
-        "creator": "acnt_2974fb8d385e4192aa66d65c5714b96d",
+        "creator": "acnt_xxxx32",
         "deleteAt": -1,
         "filters": [
             {
@@ -57,9 +57,9 @@ curl 'https://openapi.guance.com/api/v1/blacklist/blist_d2dddce67cdc434db6a792a5
         "status": 0,
         "type": "logging",
         "updateAt": 1698121193,
-        "updator": "acnt_2974fb8d385e4192aa66d65c5714b96d",
-        "uuid": "blist_d2dddce67cdc434db6a792a56984d20b",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "updator": "acnt_xxxx32",
+        "uuid": "blist_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

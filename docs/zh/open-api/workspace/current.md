@@ -122,7 +122,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/get' \
         "esInstanceUUID": "es_nCyRaJjUeWR6uDoris",
         "expensiveCfg": {},
         "exterId": "",
-        "faviconUrl": "https://testing-static-res.dataflux.cn/logo/wksp_4b57c7bab38e4a2d9630f675dc20015d_favicon.ico",
+        "faviconUrl": "https://testing-static-res.dataflux.cn/logo/wksp_xxxx32_favicon.ico",
         "id": 2928,
         "indexDashboardInfo": {},
         "inviteAudit": 0,

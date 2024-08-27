@@ -19,7 +19,7 @@
 | desc | string |  | 描述<br>例子: 描述1 <br>允许为空: False <br>最大长度: 2048 <br> |
 | templateInfos | json |  | 自定义模板数据<br>例子: {} <br>允许为空: False <br>允许为空字符串: False <br> |
 | dashboardBidding | json |  | mapping, 默认为{}<br>例子: {} <br>允许为空: False <br> |
-| specifyDashboardUUID | string |  | 指定新建仪表板的uuid, 必须以`dsbd_custom_`为前缀后接 32 位长度的小写字母数字<br>例子: dsbd_custom_a70974b902424baea1ddeead2db87278 <br>允许为空: False <br>允许为空字符串: False <br>$matchRegExp: ^dsbd_custom_[a-z0-9]{32}$ <br> |
+| specifyDashboardUUID | string |  | 指定新建仪表板的uuid, 必须以`dsbd_custom_`为前缀后接 32 位长度的小写字母数字<br>例子: dsbd_custom_xxxx32 <br>允许为空: False <br>允许为空字符串: False <br>$matchRegExp: ^dsbd_custom_[a-z0-9]{32}$ <br> |
 
 ## 参数补充说明
 
@@ -93,7 +93,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/add' \
         "chartPos": [],
         "createAt": 1713513331,
         "createdWay": "manual",
-        "creator": "wsak_a7c3e790436d448cb6bb10f884ce2217",
+        "creator": "wsak_xxxx32",
         "dashboardBidding": {
             "app_id": [
                 {
@@ -140,9 +140,9 @@ curl 'https://openapi.guance.com/api/v1/dashboard/add' \
         "status": 0,
         "type": "CUSTOM",
         "updateAt": 1713513331,
-        "updator": "wsak_a7c3e790436d448cb6bb10f884ce2217",
-        "uuid": "dsbd_0512f5e6305f4ea0a69909f5e7bef772",
-        "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+        "updator": "wsak_xxxx32",
+        "uuid": "dsbd_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

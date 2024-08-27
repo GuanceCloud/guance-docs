@@ -76,8 +76,8 @@ curl 'https://openapi.guance.com/api/v1/notice/date/add' \
         "status": 0,
         "updateAt": 1705566710,
         "updator": "xxx",
-        "uuid": "ndate_302cd65724974557aa25f45dade30f00",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "ndate_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

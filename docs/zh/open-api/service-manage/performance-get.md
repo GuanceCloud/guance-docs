@@ -47,17 +47,17 @@ curl 'https://openapi.guance.com/api/v1/service_manage/performance/get?end=16938
             {
                 "name": "测试{{host}}",
                 "type": "simpleCheck",
-                "uuid": "rul_f07808dfb0884296ba4876af7570d3f4"
+                "uuid": "rul_xxxx32"
             },
             {
                 "name": "主机{{host}}高",
                 "type": "simpleCheck",
-                "uuid": "rul_5366700e646b493cb523d7b9813ab3f5"
+                "uuid": "rul_xxxx32"
             },
             {
                 "name": "dcl test",
                 "type": "simpleCheck",
-                "uuid": "rul_8e5a7bc8ab9942748a51a678c5a58399"
+                "uuid": "rul_xxxx32"
             }
         ],
         "dfStatus": "critical",
@@ -77,7 +77,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/performance/get?end=16938
         "sum_resp_time": 12844860598,
         "total_count": 66578,
         "type": "web",
-        "uuid": "sman_fa14c62310c941ce99c4c3d027673fb2",
+        "uuid": "sman_xxxx32",
         "version": "gin1.1"
     },
     "errorCode": "",
