@@ -1,2 +1,4 @@
 nav:
+  - index.md
   - '关于内置角色的说明': role.md
+  - '未恢复事件查询': unrecovered-event-query.md
