@@ -1,4 +1,6 @@
 nav:
+
+  - index.md
   - '应用接入': app-access.md
   - '应用数据采集': app-data-collection.md
   - '自定义用户访问监测 SDK 采集数据内容': custom-sdk

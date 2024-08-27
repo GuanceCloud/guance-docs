@@ -48,7 +48,7 @@
 
 ## 环境版本
 
-???+ attention
+???+ warning
 
     本次示例使用版本如下：DataKit `1.4.9`、Nginx `1.22.0`、Spring Cloud `3.1.1`、Spring Boot `2.6.6`、Dubbo `2.7.15`、Zookeeper `3.7.1`、Vue `3.2`、 JDK `1.8`
 

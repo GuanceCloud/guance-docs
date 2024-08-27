@@ -105,7 +105,7 @@ grokq > Q                              # Q or exit
 Bye!
 ```
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning
 
     In Windows environment, debug in Powershell.
 <!-- markdownlint-enable -->
@@ -175,7 +175,7 @@ In addition, all collected logs have the following reserved fields. We should no
 | `time`     | int           | Timestamp corresponding to log                                              |
 
 <!-- markdownlint-disable MD046 -->
-???+ tip
+???+ abstract
 
     Of course, we can override the values of these tags by [specific Pipeline function](pipeline-built-in-function.md#fn-set-tag).
 <!-- markdownlint-enable -->
@@ -285,7 +285,7 @@ A: Pipeline scripts for debugging. Place them in *[Datakit installation path]/pi
 <!-- markdownlint-enable -->
 In daily logs, because of different services, logs will take on various forms. At this time, multiple Grok cuts need to be written. In order to improve the running efficiency of Grok, you can give priority to matching the Grok with higher frequency according to the frequency of logs, so that high probability logs can be matched in the previous Groks, avoiding invalid matching.
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning
 
     In log cutting, Grok matching is the most expensive part, so avoiding repeated Grok matching can greatly improve the cutting performance of Grok.
 

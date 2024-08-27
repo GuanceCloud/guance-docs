@@ -19,6 +19,31 @@ eg：当配置 SDK 时，未设置  datakit metrics 写入地址，程序会崩�
 
 > **建议 Release 版本发布时，关闭 Debug 调试**
 
+### 日志示例 {#log_sample}
+#### 数据同步 {#data_sync}
+```objective-c
+//以下是正常同步日志
+[FTLog][INFO] -[FTTrackDataManger flushWithEvents:type:] [line 143] ↵
+                                                开始上报事件(本次上报事件数:2)
+[FTLog][INFO] -[FTRequestLineBody getRequestBodyWithEventArray:] [line 149]
+Upload Datas Type:RUM
+Line RequestDatas:
+...... datas ......
+[FTLog][INFO] -[FTTrackDataManger flushWithEvents:type:]_block_invoke [line 157] ↵
+                                                Upload Response statusCode : 200
+
+//在 1.3.10 版本之前并不会打印 Upload Response statusCode : 200，
+//可以查看控制台是否有错误日志，没有错误日志即上传成功。
+//错误日志:
+//Network failure: .....` 或 服务器异常 稍后再试 ......
+
+```
+
+  在 1.3.10 版本之前并不会打印 `Upload Response statusCode : 200 ` ，可以查看控制台是否有错误日志，没有错误日志即上传成功。
+
+  错误日志:  `Network failure: ......` 或`服务器异常 稍后再试 ...... `
+
+
 ## SDK 内部日志转化为缓存文件
 
 ```objective-c
@@ -43,29 +68,7 @@ stringByAppendingPathComponent:@"ExampleName.log"];
 
 * [排查 Datakit](../../datakit/why-no-data.md) 是否正常运行
 
-* 确认 SDK 上传地址 `metricsUrl` [配置正确](app-access.md#base-setting) ，并正确初始化。debug 模式下，可以下列日志来判断上传问题
-
-```objective-c
-//以下是正常同步日志
-[FTLog][INFO] -[FTTrackDataManger flushWithEvents:type:] [line 143] ↵
-                                                开始上报事件(本次上报事件数:2)
-[FTLog][INFO] -[FTRequestLineBody getRequestBodyWithEventArray:] [line 149]
-Upload Datas Type:RUM
-Line RequestDatas:
-...... datas ......
-[FTLog][INFO] -[FTTrackDataManger flushWithEvents:type:]_block_invoke [line 157] ↵
-                                                Upload Response statusCode : 200
-
-//在 1.3.10 版本之前并不会打印 Upload Response statusCode : 200，
-//可以查看控制台是否有错误日志，没有错误日志即上传成功。
-//错误日志:
-//Network failure: .....` 或 服务器异常 稍后再试 ......
-
-```
-
-  在 1.3.10 版本之前并不会打印 `Upload Response statusCode : 200 ` ，可以查看控制台是否有错误日志，没有错误日志即上传成功。
-
-  错误日志:  `Network failure: ......` 或`服务器异常 稍后再试 ...... `
+* 确认 SDK 上传地址 `datakitUrl` 或 `datawayUrl` [配置正确](app-access.md#base-setting) ，并正确初始化。[debug 模式](#debug-mode)下，查看[日志](#data_sync)来判断上传问题
 
 * datakit 是否往对应工作空间上传数据，是否处于离线状态。这个可以通过登录观测云，查看「基础设施」来确认这个问题。
 

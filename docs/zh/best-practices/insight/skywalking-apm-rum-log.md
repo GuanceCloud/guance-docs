@@ -16,7 +16,7 @@
 
 ## 操作步骤
 
-???+ attention
+???+ warning
 
     本文示例所使用的版本信息如下：DataKit `1.4.15`、SkyWalking `8.7.0`、Nginx `1.20.2`、JDK `1.8`、Vue `3.2`
 

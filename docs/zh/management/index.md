@@ -35,10 +35,11 @@ icon: zy/management
 ![](img/3.space_management_1.png)
 
 
-在**创建工作空间**窗口，输入工作空间名称，选择该工作空间语言。您还可以根据角色来选择不同的工作空间目录风格属性。
+在**创建工作空间**窗口，输入工作空间名称，选择该工作空间语言，并为该工作空间添加描述。
 
 <img src="img/9.space_management_1.png" width="60%" >
 
+<!--
 - 不同角色下的工作空间目录默认展示如下：
 
 <div class="grid" markdown>
@@ -62,7 +63,7 @@ icon: zy/management
 </div>
 
 
-若您需要进一步设置菜单，可前往**管理 > 高级设置 > [功能菜单管理](./settings/customized-menu.md)** 进行修改。
+若您需要进一步设置当前工作空间左侧导航栏的菜单，可前往**管理 > 高级设置 > [功能菜单管理](./settings/customized-menu.md)** 进行修改。
 
 ???+ warning "注意"
 
@@ -72,6 +73,7 @@ icon: zy/management
     - 支持选择[单点登录](../management/sso/index.md) 到观测云。
 
 > 您可按需参考文档 [阿里云市场开通观测云专属版](../plans/commercial-aliyun-sls.md) 来创建 SLS 专属版工作空间。
+-->
 
 ### SSO 账号登录 {#sso}
 
@@ -223,6 +225,8 @@ icon: zy/management
 
 ## 更多阅读
 
+<font size=3>
+
 <div class="grid cards" markdown>
 
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **工作空间锁定/解锁/解散**</font>](../billing-center/workspace-management.md#workspace-lock#lock)
@@ -230,3 +234,4 @@ icon: zy/management
 </div>
 
 
+</font>
