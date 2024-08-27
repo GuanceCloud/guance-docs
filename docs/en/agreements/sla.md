@@ -2,8 +2,6 @@
 # Guance SaaS Service Level Agreement
 ---
 
-**Update Note: Guance SaaS Service Level Agreement was revised on August 15, 2024 and will take effect on August 20, 2024, when [the existing Service Level Agreement](sla-original.md) will expire.**
-
 Effective : August 20, 2024
 
 This Service Level Agreement (hereinafter referred to as "SLA") stipulates the service availability level indicators and compensation scheme of the Guance SaaS Service (referred to as "Guance SaaS Service") provided by Guance to users.

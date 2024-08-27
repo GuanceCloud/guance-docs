@@ -26,7 +26,7 @@
 
 ## 操作步骤
 
-???+ attention
+???+ warning
 
     本次示例使用版本信息如下：DataKit `1.4.0`、Kubernetes 1`.22.6`、Rancher `2.6.3`、Gitlab `14.9.4`、Istio `1.13.2`。版本不同，配置可能存在差异。
 

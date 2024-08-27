@@ -11,7 +11,7 @@ icon: zy/release-notes
 
 ### Breaking Changes {#breakingchanges}
 
-- OpenAPI：【事件】未恢复事件数据源从 `UE` 变更为 `E`。
+- OpenAPI / 全局 API：【事件】未恢复事件数据源从 `UE` 变更为 `E`。
 
 
 ### 新增功能 {#new}
