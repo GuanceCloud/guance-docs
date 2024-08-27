@@ -303,6 +303,12 @@ spec:
     同 ENV_GLOBAL_HOST_TAGS，将废弃
 
     **字段类型**: List
+
+- **ENV_K8S_CLUSTER_NODE_NAME**
+
+    如果多个 k8s cluster 中存在同名的 node-name，可以通过该环境变量在原 node-name 上加一个前缀来区分
+
+    **字段类型**: String
 <!-- markdownlint-enable -->
 
 <!-- markdownlint-disable MD046 -->
@@ -845,14 +851,6 @@ spec:
 
     **默认值**: 1
 
-- **ENV_IO_FEED_GLOBAL_BLOCKING**
-
-    IO 发送的阻塞模式，目前只针对时序数据和拨测数据，其它类数据默认都是非阻塞的 [:octicons-tag-24: Version-1.33.0](changelog.md#cl-1.33.0)
-
-    **字段类型**: Int
-
-    **默认值**: -
-
 - **ENV_IO_FLUSH_WORKERS**
 
     IO 发送 worker 数 [:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)
@@ -1117,6 +1115,19 @@ spec:
                 apiVersion: v1
                 fieldPath: spec.nodeName
 ```
+
+#### ENV_K8S_CLUSTER_NODE_NAME {#env-rename-node}
+
+[:octicons-tag-24: Version-1.36.0](changelog.md#1.36.0)
+
+如果不同集群存在同名 Node，且这些集群的数据都打到**同一个工作空间**，可以通过 `ENV_K8S_CLUSTER_NODE_NAME` 来手动修改**采集到的 Node 名称**。在部署时，*datakit.yaml* 中位于 `ENV_K8S_NODE_NAME` **后面**新增一个配置段：
+
+```yaml
+- name: ENV_K8S_CLUSTER_NODE_NAME
+  value: cluster_a_$(ENV_K8S_NODE_NAME) # 注意，此处引用的 ENV_K8S_NODE_NAME 必须在前面已有定义
+```
+
+这样之后，该集群获取到的主机名（主机对象列表）会多一个 `cluster_a_` 的前缀，除此之外，主机日志/进程/CPU/Mem 等指标集上，`host` 这个 tag 的值也都多了这个前缀。
 
 ### 各个采集器专用环境变量 {#inputs-envs}
 
