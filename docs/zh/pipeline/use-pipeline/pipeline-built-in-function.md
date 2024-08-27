@@ -1141,6 +1141,24 @@ group_in(log_level, ["error", "panic"], "not-ok", status)
 ```
 
 
+### `hash()` {#fn_hash}
+
+函数原型： `fn hash(text: str, method: str) -> str`
+
+函数说明： 计算文本的 hash
+
+函数参数：
+
+- `text`: 输入文本
+- `method`: hash 算法，允许的值包含 `md5`，`sha1`，`sha256`，`sha512`
+
+示例：
+
+```python
+pt_kvs_set("md5sum", hash("abc", "sha1"))
+```
+
+
 ### `http_request()` {#fn-http-request}
 
 函数原型： `fn http_request(method: str, url: str, headers: map, body: any) map`
@@ -1594,13 +1612,13 @@ if first == "1" {
 示例：
 
 ```python
-parse_date(aa, "2021", "May", "12", "10", "10", "34", "", "Asia/Shanghai") # 结果 aa=1620785434000000000
+parse_date(aa, "2021", "May", "12", "10", "10", "34", zone="Asia/Shanghai") # 结果 aa=1620785434000000000
 
-parse_date(aa, "2021", "12", "12", "10", "10", "34", "", "Asia/Shanghai") # 结果 aa=1639275034000000000
+parse_date(aa, "2021", "12", "12", "10", "10", "34", zone="Asia/Shanghai") # 结果 aa=1639275034000000000
 
-parse_date(aa, "2021", "12", "12", "10", "10", "34", "100", "Asia/Shanghai") # 结果 aa=1639275034000000100
+parse_date(aa, "2021", "12", "12", "10", "10", "34", "100", zone="Asia/Shanghai") # 结果 aa=1639275034000000100
 
-parse_date(aa, "20", "February", "12", "10", "10", "34", "", "+8") 结果 aa=1581473434000000000
+parse_date(aa, "20", "February", "12", "10", "10", "34", zone="+8") 结果 aa=1581473434000000000
 ```
 
 
@@ -1710,7 +1728,7 @@ if b != 7665324064912355185 {
 ```
 
 
-### `point_window` {fn-point-window}
+### `point_window()` {fn-point-window}
 
 函数原型： `fn point_window(before: int, after: int, stream_tags = ["filepath", "host"])`
 
@@ -1742,6 +1760,93 @@ if grok(_, "abc.go:25 panic: xxxxxx") {
 #
 if service == "test_app" {
     drop()
+}
+```
+
+
+### `pt_kvs_del()` {#fn_pt_kvs_del}
+
+函数原型：`fn pt_kvs_del(name: str)`
+
+函数说明：删除 Point 中指定的 key
+
+函数参数：
+
+- `name`: 待删除的 key
+
+示例：
+
+```python
+key_blacklist = ["k1", "k2", "k3"]
+for k in pt_kvs_keys() {
+    if k in key_blacklist {
+        pt_kvs_del(k)
+    }
+}
+```
+
+
+### `pt_kvs_get()` {#fn_pt_kvs_get}
+
+函数原型：`fn pt_kvs_get(name: str) -> any`
+
+函数说明：返回 Point 中指定 key 的值
+
+函数参数：
+
+- `name`: Key 名
+
+示例：
+
+```python
+host = pt_kvs_get("host")
+```
+
+
+### `pt_kvs_keys()` {#fn_pt_kvs_keys}
+
+函数原型：`fn pt_kvs_keys(tags: bool = true, fields: bool = true) -> list`
+
+函数说明：返回 Point 中的 key 列表
+
+函数参数：
+
+- `tags`: 是否包含所有标签的名
+- `fields`: 是否包含所有字段的名
+
+示例：
+
+```python
+for k in pt_kvs_keys() {
+    if match("^prefix_", k) {
+        pt_kvs_del(k)
+    }
+}
+```
+
+
+### `pt_kvs_set()` {#fn_pt_kvs_set}
+
+函数原型：`fn pt_kvs_set(name: str, value: any, as_tag: bool = false) -> bool`
+
+函数说明：往 Point 中添加 key 或修改 Point 中 key 的值
+
+函数参数：
+
+- `name`: 待添加或修改的字段或标签的名
+- `value`: 字段或者标签的值
+- `as_tag`: 是否设置为标签
+
+示例：
+
+```python
+kvs = {
+    "a": 1,
+    "b": 2
+}
+
+for k in kvs {
+    pt_kvs_set(k, kvs[k])
 }
 ```
 
@@ -2359,7 +2464,7 @@ if value_type(d) == "map" && "a" in d  {
 ```
 
 
-### `window_hit` {fn-window-hit}
+### `window_hit()` {fn-window-hit}
 
 函数原型： `fn window_hit()`
 
