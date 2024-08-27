@@ -14,11 +14,9 @@
 
 <img src="../img/black-3.png" width="70%" >
 
-1、在观测云工作空间，点击**管理 > 黑名单 > 新建黑名单**。
+1. 在观测云工作空间，点击**管理 > 黑名单 > 新建黑名单**。
 
-**注意**：若只需要为日志数据创建黑名单，还可前往**日志 > 黑名单**。
-
-2、在**数据来源**，选择数据类型，并在**过滤**添加一条或多条过滤规则，点击**确定**即可开启数据黑名单过滤规则。
+2. 在**数据来源**，选择数据类型，并在**过滤**添加一条或多条过滤规则，点击**确定**即可开启数据黑名单过滤规则。
 
 :material-numeric-1-circle-outline: 数据来源：黑名单名称根据数据来源自动生成，包含日志、基础对象、资源目录、网络、应用性能监测、用户访问监测、安全巡检、事件、指标、Profile。
 
@@ -45,15 +43,16 @@
 
 - 操作符：支持 `in / not in / match / not match` 4 种模式，`in / not in` 为精准匹配，`match / not match` 为正则匹配。
 
-| 操作符              | 支持数值类型   | 说明                                                   | 示例              |
+| <div style="width: 150px">操作符</div>              | <div style="width: 140px">支持数值类型</div>   | 说明                                                   | 示例              |
 | :------------------ | :------------- | :----------------------------------------------------- | :---------------- |
-| `in / not in`       | 数值列表       | 指定的字段是否在列表中，列表中支持多类型混杂           | `1,2,"foo",3.5`   |
-| `match / not match` | 正则表达式列表 | 指定的字段是否匹配列表中的正则，该列表只支持字符串类型 | `"foo.*","bar.*"` |
+| `in / not in`       | 数值       | 指定的字段是否在列表中，列表中支持多类型混杂           | `1,2,"foo",3.5`   |
+| `match / not match` | 正则表达式 | 指定的字段是否匹配列表中的正则，该列表只支持字符串类型 | `"foo.*","bar.*"` |
 
 **注意**：
 
+- 若只需要为日志数据创建黑名单，还可前往**日志 > 黑名单**。
 - 数据类型支持字符串、整数、浮点三种类型；   
-- 若选择的**数据来源**是**日志**，则在功能菜单**日志 > 黑名单**下同步创建一条日志过滤规则，反之亦然。
+- 若数据来源是日志，则在功能菜单**日志 > 黑名单**下会同步创建一条日志过滤规则，反之亦然。
 
 
 ### 示例
@@ -72,17 +71,17 @@
 
 === "筛选 & 搜索"
 
-    :material-numeric-1-circle-outline: 在列表，可根据不同的数据类型进行筛选；
+    1. 在列表，可根据不同的数据类型进行筛选；
 
-    :material-numeric-2-circle-outline: 在搜索框，可输入黑名单名称进行搜索定位。
+    2. 在搜索框，可输入黑名单名称进行搜索定位。
 
     ![](img/black-1.png)
 
 === "编辑 & 删除"
 
-    :material-numeric-1-circle-outline:点击**编辑**图标，即可编辑已经创建的数据过滤规则；
+    1. 点击**编辑**图标，即可编辑已经创建的数据过滤规则；
 
-    :material-numeric-2-circle-outline: 点击 :fontawesome-regular-trash-can: ，即可删除已有的过滤规则。删除后，数据将正常上报到工作空间。
+    2. 点击 :fontawesome-regular-trash-can: ，即可删除已有的过滤规则。删除后，数据将正常上报到工作空间。
 
     ![](img/black-2.png)
 
@@ -103,8 +102,20 @@
 
 ## 注意事项
 
-:material-numeric-1-circle: 若在安装配置 DataKit 时，在 `datakit.conf` 文件中配置了[黑名单过滤](../datakit/datakit-filter.md#manual)，则观测云中配置的黑名单规则不会对其生效；    
+1. 若在安装配置 DataKit 时，在 `datakit.conf` 文件中配置了[黑名单过滤](../datakit/datakit-filter.md#manual)，则观测云中配置的黑名单规则不会对其生效；    
 
-:material-numeric-2-circle: DataKit 每 10 秒会拉取一次数据，黑名单配置后不会立即生效，需要等待至少 10 秒时间；
+2. DataKit 每 10 秒会拉取一次数据，黑名单配置后不会立即生效，需要等待至少 10 秒时间；
 
-:material-numeric-3-circle: 黑名单配置完成后，统一保存在 DataKit 的目录 `/usr/local/datakit/data` 下的 `.pull` 文件中，更多详情，可参考 [查看黑名单](../datakit/dca.md)。
+3. 黑名单配置完成后，统一保存在 DataKit 的目录 `/usr/local/datakit/data` 下的 `.pull` 文件中。
+
+## 更多阅读
+
+<font size=3>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **查看黑名单**</font>](../datakit/dca.md)
+
+</div>
+
+</font>

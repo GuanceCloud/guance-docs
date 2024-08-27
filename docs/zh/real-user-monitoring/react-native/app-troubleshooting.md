@@ -29,7 +29,7 @@ eg：当配置 SDK 时，未设置  datakit metrics 写入地址，程序会崩�
  let config: FTMobileConfig = {
     serverUrl: Config.SERVER_URL,
     debug: true
-    };
+ };
  FTMobileReactNative.sdkConfig(config);
 ```
 
@@ -54,45 +54,13 @@ SDK 的调试日志是以  **[FTLog]** 作为前缀标识。
 
   ![console_app_use](../img/console_app_use.png)
 
+> [Android Logcat](../android/app-troubleshooting.md#log_sample) 和 [iOS Xcode Console](../ios/app-troubleshooting.md#log_sample) 日志示例
+
 ## SDK 正常运行但是没有数据
 
 * [排查 Datakit](../../datakit/why-no-data.md) 是否正常运行
 
-* 确认 SDK 上传地址 `serverUrl` [配置正确](app-access.md#base-setting)，并正确初始化。debug 模式下，可以下列日志来判断上传地址配置问题。
-
-=== "Android"
-
-    ```java
-    	//检查上传地址是否正确进入 SDK 配置
-    	11:15:38.137 [FT-SDK]FTHttpConfigManager com.demo D serverUrl:http://10.0.0.1:9529
-
-    	//以下是连接错误日志
-    	10:51:48.879 [FT-SDK]OkHttpEngine  com.demo E failed to connect to /10.0.0.1.166 (port 9529) from /10.0.0.2 (port 48254) after 10000ms,检查本地网络连接是否正常
-        10:51:48.880 [FT-SDK]SyncTaskManager com.demo E 同步数据失败-[code:2,response:failed to connect to /10.0.0.1 (port 9529) from /10.100.0.2 (port 48254) after 10000ms,检查本地网络连接是否正常]
-
-    	//以下是正常同步日志
-    	10:51:48.996 [FT-SDK]NetProxy com.demo D HTTP-response:[code:200,response:]
-        10:51:48.996 [FT-SDK]SyncTaskManager com.demo D **********************同步数据成功**********************
-
-    ```
-	
-=== "iOS"
-
-    ```objc
-    	//以下是正常同步日志
-    	  [FTLog][INFO] -[FTTrackDataManger flushWithEvents:type:] [line 143] 开始上报事件(本次上报事件数:2)
-    	  [FTLog][INFO] -[FTRequestLineBody getRequestBodyWithEventArray:] [line 149]
-    	  Upload Datas Type:RUM
-    	  Line RequestDatas:
-    	  ...... datas ......
-    	  [FTLog][INFO] -[FTTrackDataManger flushWithEvents:type:]_block_invoke [line 157] Upload Response statusCode : 200
-
-          //在 1.3.10 版本之前并不会打印 Upload Response statusCode : 200  ，可以查看控制台是否有错误日志，没有错误日志即上传成功。
-          //错误日志:
-          //Network failure: .....` 或 服务器异常 稍后再试 ......
-
-    ```
-
+* 确认 SDK 上传地址`datakitUrl` 或 `datawayUrl`[配置正确](app-access.md#base-setting)，并正确初始化。[debug 模式](#debug-mode)下, 查看 [Android Logcat](../android/app-troubleshooting.md#data_sync) 或 [iOS Xcode Console](../ios/app-troubleshooting.md#data_sync) 的同步日志。
 	
 * datakit 是否往对应工作空间上传数据，是否处于离线状态。这个可以通过登录观测云，查看「基础设施」来确认这个问题。
 
@@ -116,6 +84,17 @@ SDK 的调试日志是以  **[FTLog]** 作为前缀标识。
 ####  ReactTextShadowNode.UNSET 找不到符号 
 这是由于 react-native-navigation 版本兼容问题导致，相关 issue [查看这里](https://github.com/wix/react-native-navigation/issues/7881#issuecomment-2164213896)。通过更改或[下载](https://static.guance.com/ft-sdk-package/react_nagation_fix/ReactTypefaceUtils.java)替换 `ReactTypefaceUtils.java` 来修正这个问题。
 
+### 找不到模块 `react/jsx-runtime`
+
+**影响范围：SDK 版本 0.3.0 && React 版本 < 16.14.0**
+
+**原因**：SDK 内部使用到 `react/jsx-runtime` 在 React >= 16.14.0 才支持。
+
+**修复建议**：
+
+* 升级 SDK 版本 >= 0.3.1 
+
+  **注意：**不建议采用本地路径方式添加 `@cloudcare/react-native-mobile` 依赖库，可能导致错误无法修复。
 
 ## 更多相关内容
 * [Android 故障排查](../android/app-troubleshooting.md)
