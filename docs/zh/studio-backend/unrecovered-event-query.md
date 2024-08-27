@@ -1,18 +1,23 @@
 
 
-查询前请关注[事件相关字段说明](../events/#fields) 中的`df_monitor_checker_event_ref`、`df_fault_id`、`df_status`、`df_fault_status` 字段说明
+
 # DQL 查询
+
+查询前请关注[事件相关字段说明](../../events/#fields) 中的`df_monitor_checker_event_ref`、`df_fault_id`、`df_status`、`df_fault_status` 字段说明
 
 ## 1. 查询入口
 
-- [ OpenAPI  「DQL数据查询」](../open-api/query-data/query-data-v1/)
-- [ExternalAPI 「# 【数据查询】DQL数据查询」](../external-api/query-data/query-data/)
+- [ OpenAPI  「DQL数据查询」](../../open-api/query-data/query-data-v1/)
+
+- [ExternalAPI 「# 【数据查询】DQL数据查询」](../../external-api/query-data/query-data/)
+
+
 
 ## 2. 查询语句
 
 ### 方式一：having 方式查询（适用于 doris 引擎）可直接得到结果
 
- #### 查询结构
+#### 查询结构
 
 ```
 {
@@ -70,7 +75,8 @@
 
 
 2、对 dql 查询结果进行过滤
-  对查询结果中的 df_fault_status 状态进行过滤，过滤出 df_fault_status=fault 的事件。此时这些数据就是未恢复事件列表
+
+对查询结果中的 df_fault_status 状态进行过滤，过滤出 df_fault_status=fault 的事件。此时这些数据就是未恢复事件列表
 
 3、根据 time 字段对数据进行降序排列 得出最终的未恢复事件列表
 
@@ -78,9 +84,13 @@
 # 如何确认当前工作空间 事件 的存储引擎类型
 
 1、通过接口获取工作空间存储信息
-- [OpenAPI  「获取当前工作空间信息」](../open-api/workspace/current/)
-- [ExternalAPI 「【工作空间】获取详情」](../external-api/workspace/get/)
+
+- [OpenAPI  「获取当前工作空间信息」](../../open-api/workspace/current/)
+
+- [ExternalAPI 「【工作空间】获取详情」](../../external-api/workspace/get/)
+
 接口响应结果中 `datastore` 存储了当前工作空间内所有基础数据的存储引擎类型（不包括外部索引）。 `datastore` 中 `keyevent` 的值为 `doris` 就表明事件数据是 `doris` 存储引擎。
+
 ```
 
 
