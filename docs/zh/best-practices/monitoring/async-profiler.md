@@ -85,7 +85,7 @@ async-profiler 是基于 JVMTI(JVM tool interface) 开发的 Agent，支持两�
 
 ### 1 启动时载入
 
-???+ attention "注意"
+???+ warning "注意"
 
     启动时载入只适合应用在启动时候进行分析，而无法在运行时对应用进行实时分析。
 
@@ -122,7 +122,7 @@ $ java -agentpath:async-profiler-2.8.3/build/libasyncProfiler.so=start,event=all
 
 ![image.png](../images/profiling-5.png)
 
-???+ attention "注意"
+???+ warning "注意"
 
     html 格式只支持单事件，jfr 格式支持多种事件输出。
 
