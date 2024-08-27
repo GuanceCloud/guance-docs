@@ -194,6 +194,7 @@ graph TD
 |`status`|The status of the task, either 'OK' or 'FAIL'|
 |`status_code_class`|The class of the status code, such as '2xx'|
 |`status_code_string`|The status string, such as '200 OK'|
+|`tags_info`|The tags of the task|
 |`url`|The URL of the endpoint to be monitored|
 
 - 指标列表
@@ -237,6 +238,7 @@ graph TD
 |`proto`|The protocol of the task|
 |`province`|The name of the province|
 |`status`|The status of the task, either 'OK' or 'FAIL'|
+|`tags_info`|The tags of the task|
 
 - 指标列表
 
@@ -272,6 +274,7 @@ graph TD
 |`proto`|The protocol of the task|
 |`province`|The name of the province|
 |`status`|The status of the task, either 'OK' or 'FAIL'|
+|`tags_info`|The tags of the task|
 
 - 指标列表
 
@@ -315,6 +318,7 @@ graph TD
 |`proto`|The protocol of the task|
 |`province`|The name of the province|
 |`status`|The status of the task, either 'OK' or 'FAIL'|
+|`tags_info`|The tags of the task|
 |`url`|The URL string, such as `ws://www.abc.com`|
 
 - 指标列表
