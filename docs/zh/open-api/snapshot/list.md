@@ -58,7 +58,7 @@ curl 'https://openapi.guance.com/api/v1/snapshots/list?pageIndex=1&pageSize=2' \
     "code": 200,
     "content": [
         {
-            "accountUUID": "acnt_d69cb12e694211eb8464ea24b4040175",
+            "accountUUID": "acnt_xxxx32",
             "content": {
                 "routeName": "Log",
                 "routeParams": {
@@ -70,16 +70,16 @@ curl 'https://openapi.guance.com/api/v1/snapshots/list?pageIndex=1&pageSize=2' \
                 }
             },
             "createAt": 1629714466,
-            "creator": "acnt_d69cb12e694211eb8464ea24b4040175",
+            "creator": "acnt_xxxx32",
             "deleteAt": -1,
             "id": 435,
             "name": "fa",
             "status": 0,
             "type": "logging",
             "updateAt": 1629714466,
-            "updator": "acnt_d69cb12e694211eb8464ea24b4040175",
-            "uuid": "snap_783467fbefc240ed8a33cfb964a78065",
-            "workspaceUUID": "wksp_2dc431d6693711eb8ff97aeee04b54af"
+            "updator": "acnt_xxxx32",
+            "uuid": "snap_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         }
     ],
     "errorCode": "",

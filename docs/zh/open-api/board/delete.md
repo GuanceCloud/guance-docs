@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboards/dsbd_501b8277ba88479b82020dbfc92e110c/delete' \
+curl 'https://openapi.guance.com/api/v1/dashboards/dsbd_xxxx32/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw 'null' \
@@ -40,7 +40,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/dsbd_501b8277ba88479b82020dbf
 {
     "code": 200,
     "content": {
-        "dsbd_541083cc19ec4d27ad597839a0477a97": "test"
+        "dsbd_xxxx32": "test"
     },
     "errorCode": "",
     "message": "",

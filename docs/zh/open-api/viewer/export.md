@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/viewer/dsbd_e493a3c17d3c456bb1febfcbbe4148d2/export' \
+curl 'https://openapi.guance.com/api/v1/viewer/dsbd_xxxx32/export' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
@@ -72,7 +72,7 @@ curl 'https://openapi.guance.com/api/v1/viewer/dsbd_e493a3c17d3c456bb1febfcbbe41
         "summary": "",
         "tagInfo": [
             {
-                "id": "tag_740834b7b7e94d1dbe1e764ee78039a3",
+                "id": "tag_xxxx32",
                 "name": "应用性能"
             }
         ],

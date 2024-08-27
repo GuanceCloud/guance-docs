@@ -30,8 +30,8 @@ curl 'https://openapi.guance.com/api/v1/slo/batch_set_disable' \
 --data '{
   "isDisable": false,
   "sloUUIDs": [
-    "monitor_3953537fddac4227a669e4712bd95181",
-    "monitor_0d001b9cf7f34f879177ddc5e4c4b3a9"
+    "monitor_xxxx32",
+    "monitor_xxxx32"
   ]
 }'
 ```

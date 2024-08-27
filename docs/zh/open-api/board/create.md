@@ -22,7 +22,7 @@
 | mapping | array |  | 视图变量的字段映射信息，默认为 []<br>例子: [{'class': 'host_processes', 'field': 'create_time', 'mapping': 'username', 'datasource': 'object'}] <br>允许为空: False <br> |
 | tagNames | array |  | 关联的 tag 列表<br>允许为空: False <br> |
 | templateInfo | json |  | 仪表板模板数据<br>例子: {} <br>允许为空: False <br>允许为空字符串: False <br> |
-| specifyDashboardUUID | string |  | 指定新建仪表板的uuid, 必须以`dsbd_custom_`为前缀后接 32 位长度的小写字母数字<br>例子: dsbd_custom_a70974b902424baea1ddeead2db87278 <br>允许为空: False <br>允许为空字符串: False <br>$matchRegExp: ^dsbd_custom_[a-z0-9]{32}$ <br> |
+| specifyDashboardUUID | string |  | 指定新建仪表板的uuid, 必须以`dsbd_custom_`为前缀后接 32 位长度的小写字母数字<br>例子: dsbd_custom_xxxx32 <br>允许为空: False <br>允许为空字符串: False <br>$matchRegExp: ^dsbd_custom_[a-z0-9]{32}$ <br> |
 
 ## 参数补充说明
 
@@ -115,7 +115,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/create' \
         "chartGroupPos": [],
         "chartPos": [
             {
-                "chartUUID": "chrt_57e4b4a3f18c4d5ea705c893adeaaf49",
+                "chartUUID": "chrt_xxxx32",
                 "pos": {
                     "h": 9,
                     "i": 0,
@@ -125,7 +125,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/create' \
                 }
             },
             {
-                "chartUUID": "chrt_bc6448e0e8bd4931abc24dfeb4ebde44",
+                "chartUUID": "chrt_xxxx32",
                 "pos": {
                     "h": 9,
                     "i": 1,
@@ -135,7 +135,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/create' \
                 }
             },
             {
-                "chartUUID": "chrt_b32f5173a6f6490dad2a94bb396dfc09",
+                "chartUUID": "chrt_xxxx32",
                 "pos": {
                     "h": 9,
                     "i": 2,
@@ -145,7 +145,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/create' \
                 }
             },
             {
-                "chartUUID": "chrt_87c97cfc44374f398fe57ec6c440835b",
+                "chartUUID": "chrt_xxxx32",
                 "pos": {
                     "h": 9,
                     "i": 3,
@@ -155,7 +155,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/create' \
                 }
             },
             {
-                "chartUUID": "chrt_e03caef30cd8475e88f9453fff165381",
+                "chartUUID": "chrt_xxxx32",
                 "pos": {
                     "h": 9,
                     "i": 4,
@@ -165,7 +165,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/create' \
                 }
             },
             {
-                "chartUUID": "chrt_280a547f6f6b4ec3832bb7c3e769249b",
+                "chartUUID": "chrt_xxxx32",
                 "pos": {
                     "h": 9,
                     "i": 5,
@@ -177,7 +177,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/create' \
         ],
         "createAt": 1641953280.0015242,
         "createdWay": "manual",
-        "creator": "acnt_a5d6130c19524a6b9fe91d421eaf8603",
+        "creator": "acnt_xxxx32",
         "dashboardBindSet": [],
         "deleteAt": -1,
         "extend": {},
@@ -192,15 +192,15 @@ curl 'https://openapi.guance.com/api/v1/dashboards/create' \
         "status": 0,
         "tag_info": [
             {
-                "id": "tag_e48c1d03a3d044808ab0e074086c0c72",
+                "id": "tag_xxxx32",
                 "name": "测试"
             }
         ],
         "type": "CUSTOM",
         "updateAt": 1641953280.0015464,
-        "updator": "acnt_a5d6130c19524a6b9fe91d421eaf8603",
-        "uuid": "dsbd_9285271961be40069ddfa27af07a3538",
-        "workspaceUUID": "wksp_2dc431d6693711eb8ff97aeee04b54af"
+        "updator": "acnt_xxxx32",
+        "uuid": "dsbd_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

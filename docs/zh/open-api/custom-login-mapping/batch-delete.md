@@ -26,7 +26,7 @@
 curl 'https://openapi.guance.com/api/v1/login_mapping/field/batch_delete' \
   -H 'Content-Type: application/json;charset=UTF-8' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
-  --data-raw '{"lgmpUUIDs": ["lgmp_dbc32e896c004e0098199561247152d7"]}' \
+  --data-raw '{"lgmpUUIDs": ["lgmp_xxxx32"]}' \
   --compressed
 ```
 

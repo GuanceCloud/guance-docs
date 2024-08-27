@@ -36,7 +36,7 @@
 
 --------------
 
-1.queries 数组元素字段说明
+1、 queries 数组元素字段说明
 
 |  参数名        |   type  | 必选  |          说明          |
 |---------------|----------|----|------------------------|
@@ -44,9 +44,9 @@
 | dashboardUUID |  string  |  Y | 视图UUID |
 | queries[*]    |  string  |  Y | 查询列表 |
 
-2. DQL JSON结构参数说明(queries[\*]元素)
+2、 DQL JSON结构参数说明(queries[\*]元素)
 
-* 基础字段*
+* 基础字段 *
 
 | 参数名  | type  | 必选  | 说明  |
 | :------------ | :------------ | :------------ | :------------ |
@@ -86,6 +86,10 @@
 
 * 注意点密度参数的优先级，最大密度`density[high]` *
 maxPointCount > interval > density > dql语句中的控制参数
+
+3、 常见查询说明
+
+  - [未恢复事件查询](../../studio-backend/unrecovered-event-query/)
 
 
 

@@ -28,7 +28,7 @@ curl 'https://openapi.guance.com/api/v1/logging_query_rule/delete' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---data-raw $'{"loggingQueryRuleUuids":["lqrl_6215235e83dd47b0972e03ca0fd315c2", "lqrl_d88d355edba04bf3bbaf760eeb697454"]}' \
+--data-raw $'{"loggingQueryRuleUuids":["lqrl_xxxx32", "lqrl_xxxx32"]}' \
 --compressed
 ```
 

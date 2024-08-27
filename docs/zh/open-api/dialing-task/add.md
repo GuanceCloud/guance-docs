@@ -152,7 +152,7 @@
 curl 'https://openapi.guance.com/api/v1/dialing_task/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"type":"http","regions":["reg_chvefvc4c5rlp90lb1tg"],"task":{"frequency":"1m","method":"GET","url":"https://www.baidu.com","name":"test","advance_options":{"request_options":{"follow_redirect":false,"headers":{},"cookies":"","auth":{"username":"","password":""}},"request_body":{"body_type":"","body":""},"secret":{"not_save":false}},"success_when":[{"body":[{"contains":"200"}]}],"success_when_logic":"and"},"tags":["test"]}' \
+--data-raw '{"type":"http","regions":["reg_xxxx20"],"task":{"frequency":"1m","method":"GET","url":"https://www.baidu.com","name":"test","advance_options":{"request_options":{"follow_redirect":false,"headers":{},"cookies":"","auth":{"username":"","password":""}},"request_body":{"body_type":"","body":""},"secret":{"not_save":false}},"success_when":[{"body":[{"contains":"200"}]}],"success_when_logic":"and"},"tags":["test"]}' \
 --compressed
 ```
 
@@ -165,16 +165,16 @@ curl 'https://openapi.guance.com/api/v1/dialing_task/add' \
     "code": 200,
     "content": {
         "createAt": 1686193610,
-        "creator": "acnt_861cf6dd440348648861247ae42909c3",
+        "creator": "acnt_xxxx32",
         "deleteAt": -1,
         "id": null,
         "regions": [
-            "reg_chvefvc4c5rlp90lb1tg"
+            "reg_xxxx20"
         ],
         "status": 0,
         "tagInfo": [
             {
-                "id": "tag_fe3f95c0a3da488dba492a093e0ff64b",
+                "id": "tag_xxxx32",
                 "name": "test"
             }
         ],
@@ -197,11 +197,11 @@ curl 'https://openapi.guance.com/api/v1/dialing_task/add' \
                     "not_save": false
                 }
             },
-            "external_id": "dial_408e8fafe88a49a5ba1cfd73910edfdb",
+            "external_id": "dial_xxxx32",
             "frequency": "1m",
             "method": "GET",
             "name": "test",
-            "owner_external_id": "wksp_ed134a6485c8484dbd0e58ce9a9c6115",
+            "owner_external_id": "wksp_xxxx32",
             "post_url": "http://testing-openway.cloudcare.cn?token=tkn_xxxxx",
             "status": "ok",
             "tagInfo": [],
@@ -219,9 +219,9 @@ curl 'https://openapi.guance.com/api/v1/dialing_task/add' \
         },
         "type": "http",
         "updateAt": 1686193610,
-        "updator": "acnt_861cf6dd440348648861247ae42909c3",
-        "uuid": "dial_408e8fafe88a49a5ba1cfd73910edfdb",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "updator": "acnt_xxxx32",
+        "uuid": "dial_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

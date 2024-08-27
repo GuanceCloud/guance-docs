@@ -28,8 +28,8 @@ curl 'https://openapi.guance.com/api/v1/slo/batch_delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data '{
     "sloUUIDs": [
-          "monitor_3953537fddac4227a669e4712bd95181",
-          "monitor_0d001b9cf7f34f879177ddc5e4c4b3a9"
+          "monitor_xxxx32",
+          "monitor_xxxx32"
       ]
   }'
 ```

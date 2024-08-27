@@ -68,71 +68,71 @@ curl 'https://openapi.guance.com/api/v1/viewer/add' \
         "status": 0,
         "tag_info": [
             {
-                "id": "tag_b43ad380619c46e0b9dd944d123ff377",
+                "id": "tag_xxxx32",
                 "name": "Function"
             },
             {
-                "id": "tag_7393bfabb4384fbb88e02c31bcdbc2bd",
+                "id": "tag_xxxx32",
                 "name": "Host"
             },
             {
-                "id": "tag_881a0f78253a451095b9394797954392",
+                "id": "tag_xxxx32",
                 "name": "Profile"
             },
             {
-                "id": "tag_8855190c400c443b92722ec3d477bec3",
+                "id": "tag_xxxx32",
                 "name": "data"
             },
             {
-                "id": "tag_9ba52e9e578d48afbb087d45a639e593",
+                "id": "tag_xxxx32",
                 "name": "ok"
             },
             {
-                "id": "tag_946e249609744288b126325a5c336015",
+                "id": "tag_xxxx32",
                 "name": "ui"
             },
             {
-                "id": "tag_35c1c83547144575abaf7ee1bf08738b",
+                "id": "tag_xxxx32",
                 "name": "个人"
             },
             {
-                "id": "tag_bc2b120ab9a5424298953d6211473fab",
+                "id": "tag_xxxx32",
                 "name": "为"
             },
             {
-                "id": "tag_484b5e1b6cd44868a9b1a15f3b059fb9",
+                "id": "tag_xxxx32",
                 "name": "内置"
             },
             {
-                "id": "tag_03db665b2a5a46bf809c59d1f7d025d8",
+                "id": "tag_xxxx32",
                 "name": "安全巡检"
             },
             {
-                "id": "tag_740834b7b7e94d1dbe1e764ee78039a3",
+                "id": "tag_xxxx32",
                 "name": "应用性能"
             },
             {
-                "id": "tag_70a4d7b7084e439f91d83480d356a737",
+                "id": "tag_xxxx32",
                 "name": "日志"
             },
             {
-                "id": "tag_a5cfed07d1a64f299aa4568ba53c09ce",
+                "id": "tag_xxxx32",
                 "name": "用户访问"
             },
             {
-                "id": "tag_9eec90bebbdc4bad9e9273e222d2d939",
+                "id": "tag_xxxx32",
                 "name": "阿里"
             },
             {
-                "id": "tag_16ecc5d334ef4408a988e2768d7c5316",
+                "id": "tag_xxxx32",
                 "name": "阿里云监控"
             }
         ],
         "type": "CUSTOM",
         "updateAt": 1677661673,
         "updator": "wsak_xxxxx",
-        "uuid": "dsbd_e493a3c17d3c456bb1febfcbbe4148d2",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "dsbd_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

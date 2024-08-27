@@ -31,7 +31,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/sso/sso_7de25e969a714d7ab851a4cbf1263d50/set_disable' \
+curl 'https://openapi.guance.com/api/v1/sso/sso_xxxx32/set_disable' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw '{"isDisable":true}' \

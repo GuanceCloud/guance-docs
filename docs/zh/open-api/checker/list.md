@@ -46,7 +46,7 @@ curl 'https://openapi.guance.com/api/v1/checker/list?pageIndex=1&pageSize=2' \
     "content": [
         {
             "createAt": 1642412816,
-            "creator": "acnt_a5d6130c19524a6b9fe91d421eaf8603",
+            "creator": "acnt_xxxx32",
             "crontabInfo": {
                 "crontab": "*/1 * * * *",
                 "id": "cron-h0vvCCHAQMij"
@@ -173,13 +173,13 @@ curl 'https://openapi.guance.com/api/v1/checker/list?pageIndex=1&pageSize=2' \
                 "type": "simpleCheck"
             },
             "monitorName": "阿里云 RDS Mysql 检测库",
-            "monitorUUID": "monitor_84cbb7c18f964771b8153fbca1013615",
+            "monitorUUID": "monitor_xxxx32",
             "status": 0,
             "type": "trigger",
             "updateAt": 1642412816,
             "updator": "",
-            "uuid": "rul_f9f6fbbf41844671b7e5c37791c8cca4",
-            "workspaceUUID": "wksp_2dc431d6693711eb8ff97aeee04b54af"
+            "uuid": "rul_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         }
     ],
     "errorCode": "",

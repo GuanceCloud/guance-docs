@@ -100,7 +100,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/performance/list?end=1693
             "dfStatus": "ok",
             "__docid": "",
             "isFavorite": 0,
-            "uuid": "sman_a75eb5ebcf0a4236af82b3ccd07b22c5"
+            "uuid": "sman_xxxx32"
         },
         {
             "key": "anypath",
@@ -124,24 +124,24 @@ curl 'https://openapi.guance.com/api/v1/service_manage/performance/list?end=1693
             "checkerInfo": [
                 {
                     "name": "测试{{host}}",
-                    "uuid": "rul_f07808dfb0884296ba4876af7570d3f4",
+                    "uuid": "rul_xxxx32",
                     "type": "simpleCheck"
                 },
                 {
                     "name": "主机{{host}}高",
-                    "uuid": "rul_5366700e646b493cb523d7b9813ab3f5",
+                    "uuid": "rul_xxxx32",
                     "type": "simpleCheck"
                 },
                 {
                     "name": "dcl test",
-                    "uuid": "rul_8e5a7bc8ab9942748a51a678c5a58399",
+                    "uuid": "rul_xxxx32",
                     "type": "simpleCheck"
                 }
             ],
             "dfStatus": "critical",
             "__docid": "a3d7f56895c1476a411986f1bf59c6d0",
             "isFavorite": 0,
-            "uuid": "sman_fa14c62310c941ce99c4c3d027673fb2"
+            "uuid": "sman_xxxx32"
         },
         {
             "key": "a",
@@ -166,7 +166,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/performance/list?end=1693
             "dfStatus": "critical",
             "__docid": "c2b6b30677c4930c3fb2494bd96f309f",
             "isFavorite": 0,
-            "uuid": "sman_01d0e238f3e446a68c2720c386831f61"
+            "uuid": "sman_xxxx32"
         },
         {
             "key": "b",
@@ -191,7 +191,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/performance/list?end=1693
             "dfStatus": "critical",
             "__docid": "7fcd9d572b590cd3c8ef0a24f2f63a54",
             "isFavorite": 0,
-            "uuid": "sman_348b0cf209c74a9b8d09ee2640e8622e"
+            "uuid": "sman_xxxx32"
         },
         {
             "key": "c",
@@ -216,7 +216,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/performance/list?end=1693
             "dfStatus": "critical",
             "__docid": "575104c1b8c0bff66707738e631e5fdf",
             "isFavorite": 0,
-            "uuid": "sman_a0813976528e410984e67f3173f0c309"
+            "uuid": "sman_xxxx32"
         },
         {
             "key": "any",
@@ -241,7 +241,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/performance/list?end=1693
             "dfStatus": "critical",
             "__docid": "809baa4e3455d1c5b4967d9c54d9d777",
             "isFavorite": 0,
-            "uuid": "sman_44c645cdd9ff4101b2f746cc8726442c"
+            "uuid": "sman_xxxx32"
         },
         {
             "key": "r",
@@ -266,7 +266,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/performance/list?end=1693
             "dfStatus": "critical",
             "__docid": "5bf8e12a7e1ddf2e8435bc7269761997",
             "isFavorite": 0,
-            "uuid": "sman_a41d28fe798f4aadacc21dece624a4a8"
+            "uuid": "sman_xxxx32"
         },
         {
             "key": "s",
@@ -291,7 +291,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/performance/list?end=1693
             "dfStatus": "critical",
             "__docid": "7326b8bc9cfcc1576535138437371180",
             "isFavorite": 0,
-            "uuid": "sman_4d9bccb2dc224bcc92596dddba0f70c2"
+            "uuid": "sman_xxxx32"
         },
         {
             "key": "t",
@@ -316,7 +316,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/performance/list?end=1693
             "dfStatus": "critical",
             "__docid": "e691689bc8f07465b0009fa70f3072d0",
             "isFavorite": 0,
-            "uuid": "sman_9bc3ca0cc1d74373b55669f12892c12e"
+            "uuid": "sman_xxxx32"
         }
     ],
     "pageInfo": {

@@ -43,7 +43,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/notice/date/ndate_302cd65724974557aa25f45dade30f00/modify' \
+curl 'https://openapi.guance.com/api/v1/notice/date/ndate_xxxx32/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name": "test002", "noticeDates": ["2025/01/01","2025/10/01"]}' \
@@ -83,8 +83,8 @@ curl 'https://openapi.guance.com/api/v1/notice/date/ndate_302cd65724974557aa25f4
         "status": 0,
         "updateAt": 1705567170.109928,
         "updator": "xxxx",
-        "uuid": "ndate_302cd65724974557aa25f45dade30f00",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "ndate_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

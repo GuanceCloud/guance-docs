@@ -47,43 +47,43 @@ curl 'https://openapi.guance.com/api/v1/pipeline/list' \
                 "name": "openapi_test",
                 "status": 0,
                 "updateAt": 1678026470,
-                "uuid": "pl_d221f03ac39d468d8d7fb262b5792607"
+                "uuid": "pl_xxxx32"
             },
             {
                 "asDefault": 0,
                 "category": "logging",
-                "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+                "creator": "acnt_xxxx32",
                 "name": "eee",
                 "status": 0,
                 "updateAt": 1677814027,
-                "uuid": "pl_820594c9ba5a48fa930952946ca778f1"
+                "uuid": "pl_xxxx32"
             },
             {
                 "asDefault": 0,
                 "category": "logging",
-                "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+                "creator": "acnt_xxxx32",
                 "name": "JMauto_logging1",
                 "status": 0,
                 "updateAt": 1677640634,
-                "uuid": "pl_b1d5fe7e4c854998b78244f1903e307f"
+                "uuid": "pl_xxxx32"
             },
             {
                 "asDefault": 0,
                 "category": "logging",
-                "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+                "creator": "acnt_xxxx32",
                 "name": "1",
                 "status": 0,
                 "updateAt": 1677637485,
-                "uuid": "pl_f69f03d5dea44fe4951f63e93a35996f"
+                "uuid": "pl_xxxx32"
             },
             {
                 "asDefault": 0,
                 "category": "logging",
-                "creator": "acnt_4e8a5d1ba8434e4dbb3cdcd240483151",
+                "creator": "acnt_xxxx32",
                 "name": "kodolog",
                 "status": 2,
                 "updateAt": 1677636474,
-                "uuid": "pl_7d2866db086b4850a5acbd44660d3877"
+                "uuid": "pl_xxxx32"
             }
         ]
     },
