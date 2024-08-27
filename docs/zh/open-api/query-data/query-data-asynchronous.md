@@ -22,7 +22,7 @@
 
 --------------
 
-1. 参数说明
+1、 参数说明
 
 | 参数名  | type  | 必选  | 说明  |
 | :------------ | :------------ | :------------ | :------------ |
@@ -30,7 +30,7 @@
 |  fieldTagDescNeeded  | boolean |   | 是否需要field 或者tag描述信息 |
 
 
-3. queries[\*]成员参数结构说明
+2、 queries[\*]成员参数结构说明
 *** 注意, 在「DQL数据查询」接口基础上添加了`async_id`参数 ***
 
 | 参数名  | type  | 必选  | 说明  |
@@ -62,7 +62,7 @@
 |  query.disable_sampling  | bool  |   | 采样禁用开关, 默认值为 false |
 
 
-4. 响应点密度`density` 参数值说明
+3、  响应点密度`density` 参数值说明
 
 | 可选值  | 说明  |
 | :------------ | :------------ |
@@ -71,12 +71,12 @@
 |  medium|   中等，360个点 |
 |  high  |  低，720个点 |
 
-* 注意点密度参数的优先级，最大密度`density[high]` *
+* 注意点密度参数的优先级，最大密度`density[high]` * </br>
 maxPointCount > interval > density > dql语句中的控制参数   
 
-5、常见查询说明
+4、 常见查询说明
 
-  - [未恢复事件查询](../../studio-backend/unrecovered-event-query/)
+  - [未恢复事件查询](../../../studio-backend/unrecovered-event-query/)
 
 
 

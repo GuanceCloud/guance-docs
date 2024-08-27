@@ -84,12 +84,12 @@
 |  medium|   中等，360个点 |
 |  high  |  低，720个点 |
 
-* 注意点密度参数的优先级，最大密度`density[high]` *
+* 注意点密度参数的优先级，最大密度`density[high]` * </br>
 maxPointCount > interval > density > dql语句中的控制参数
 
 3、 常见查询说明
 
-  - [未恢复事件查询](../../studio-backend/unrecovered-event-query/)
+  - [未恢复事件查询](../../../studio-backend/unrecovered-event-query/)
 
 
 
