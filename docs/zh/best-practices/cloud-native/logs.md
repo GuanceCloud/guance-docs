@@ -583,7 +583,7 @@ No data extracted from pipeline
 以采集 Fluentd 日志为例，可以在`<match> </match>`中进行日志聚合来对日志进行压缩，或者在`<match> </match>`使用中来进行事件的过滤只将错误或告警日志上报至观测云来降低使用成本。
 
 ## 更多内容
-[文本数据处理（ Pipeline ）](../../datakit/pipeline.md#d29b7088)<br />
+[文本数据处理（ Pipeline ）](../../pipeline/use-pipeline/pipeline-quick-start.md#d29b7088)<br />
 
 [调试 Pipeline](../../datakit/datakit-pl-how-to.md)<br />
 
