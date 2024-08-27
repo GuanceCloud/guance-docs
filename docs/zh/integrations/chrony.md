@@ -230,13 +230,13 @@ Leap status     : Normal
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`frequency`|This is the rate by which the system clock would be wrong if *chronyd* was not correcting it.|float|PPM|
-|`last_offset`|This is the estimated local offset on the last clock update.|float|sec|
+|`last_offset`|This is the estimated local offset on the last clock update.|float|s|
 |`residual_freq`|This shows the residual frequency for the currently selected reference source.|float|PPM|
-|`rms_offset`|This is a long-term average of the offset value.|float|sec|
-|`root_delay`|This is the total of the network path delays to the stratum-1 computer from which the computer is ultimately synchronized.|float|sec|
-|`root_dispersion`|This is the total dispersion accumulated through all the computers back to the stratum-1 computer from which the computer is ultimately synchronized.|float|sec|
+|`rms_offset`|This is a long-term average of the offset value.|float|s|
+|`root_delay`|This is the total of the network path delays to the stratum-1 computer from which the computer is ultimately synchronized.|float|s|
+|`root_dispersion`|This is the total dispersion accumulated through all the computers back to the stratum-1 computer from which the computer is ultimately synchronized.|float|s|
 |`skew`|This is the estimated error bound on the frequency.|float|PPM|
-|`system_time`|This is the current offset between the NTP clock and system clock.|float|sec|
-|`update_interval`|This is the interval between the last two clock updates.|float|sec|
+|`system_time`|This is the current offset between the NTP clock and system clock.|float|s|
+|`update_interval`|This is the interval between the last two clock updates.|float|s|
 
 
