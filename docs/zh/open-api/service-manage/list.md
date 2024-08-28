@@ -71,7 +71,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/list?originStr=0' \
     "automaticFoundTime": "1693807201",
     "data": [
         {
-            "uuid": "sman_eb3e3c7acaef4d53acab866b83410edb",
+            "uuid": "sman_xxxx32",
             "createAt": 1693798688,
             "updateAt": 1693805504,
             "creatorInfo": {
@@ -98,7 +98,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/list?originStr=0' \
                 "Team": {
                     "service": "test_02",
                     "type": "db",
-                    "team": "group_a8caea614b2644549557b476cf2d946c",
+                    "team": "group_xxxx32",
                     "colour": "#40C922",
                     "oncall": [
                         {
@@ -154,13 +154,13 @@ curl 'https://openapi.guance.com/api/v1/service_manage/list?originStr=0' \
                         "test"
                     ],
                     "DashboardUUIDs": [
-                        "dsbd_b7ded4391b5e497ba7112d81a922d14d"
+                        "dsbd_xxxx32"
                     ]
                 }
             }
         },
         {
-            "uuid": "sman_cb24ea0f1c694db08bfa6ee8afb05914",
+            "uuid": "sman_xxxx32",
             "createAt": 1693728357,
             "updateAt": 1693728357,
             "creatorInfo": {

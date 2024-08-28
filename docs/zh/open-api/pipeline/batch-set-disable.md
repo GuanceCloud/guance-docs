@@ -30,7 +30,7 @@ curl 'https://openapi.guance.com/api/v1/pipeline/batch_set_disable' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Accept-Language: zh' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"plUUIDs":["pl_d610c5b0ed6b47b5b9e281544675fa4d","pl_d62bd617a1fd4ea09eafbc835a13f6f9"],"isDisable":false}' \
+--data-raw '{"plUUIDs":["pl_xxxx32","pl_xxxx32"],"isDisable":false}' \
 --compressed
 ```
 

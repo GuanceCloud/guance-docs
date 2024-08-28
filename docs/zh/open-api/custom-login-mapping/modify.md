@@ -32,7 +32,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/login_mapping/field/lgmp_dbc32e896c004e0098199561247152d7/modify' \
+curl 'https://openapi.guance.com/api/v1/login_mapping/field/lgmp_xxxx32/modify' \
   -H 'Content-Type: application/json;charset=UTF-8' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --data-raw '{"sourceField":"name","sourceValue":"lisa-new","targetValues":["wsAdmin"]}' \

@@ -27,7 +27,7 @@
 curl 'https://openapi.guance.com/api/v1/service_manage/delete' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
-  --data-binary '{"serviceUUIDs":["sman_d4d1a628710240548bef465b8ca2613e", "sman_e8d40b472407428896f2c769af41fcfd"]}' \
+  --data-binary '{"serviceUUIDs":["sman_xxxx32", "sman_xxxx32"]}' \
   --compressed
 ```
 

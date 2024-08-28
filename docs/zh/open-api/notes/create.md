@@ -29,7 +29,7 @@
 curl 'https://openapi.guance.com/api/v1/notes/create' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"name":"openapi_note","chartUUIDs":["chrt_2f5ed3d1f82f47aca57e2bd6a1dc7179","chrt_4e078c1343b0448889909335faab9b99"],"extend":{"fixedTime":"15m"}}' \
+--data-raw '{"name":"openapi_note","chartUUIDs":["chrt_xxxx32","chrt_xxxx32"],"extend":{"fixedTime":"15m"}}' \
 --compressed 
 ```
 
@@ -52,17 +52,17 @@ curl 'https://openapi.guance.com/api/v1/notes/create' \
         "name": "jinlei_openapi",
         "pos": [
             {
-                "chartUUID": "chrt_2f5ed3d1f82f47aca57e2bd6a1dc7179"
+                "chartUUID": "chrt_xxxx32"
             },
             {
-                "chartUUID": "chrt_4e078c1343b0448889909335faab9b99"
+                "chartUUID": "chrt_xxxx32"
             }
         ],
         "status": 0,
         "updateAt": 1677656782,
         "updator": "wsak_xxxxx",
-        "uuid": "notes_7f074ca6505543e39020826d84ad6687",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "notes_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

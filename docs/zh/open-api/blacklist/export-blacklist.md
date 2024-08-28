@@ -27,7 +27,7 @@
 curl 'https://openapi.guance.com/api/v1/blacklist/export' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"blacklistUUIDs":["blist_820594c9ba5a48fa930952946ca778f1"]}' \
+--data-raw '{"blacklistUUIDs":["blist_xxxx32"]}' \
 --compressed
 ```
 

@@ -182,13 +182,13 @@ curl 'https://openapi.guance.com/api/v1/checker/import' \
                     "title": "阿里云 RDS Mysql 实例 ID 为 {{instanceId}} 每秒慢查询数过高",
                     "type": "simpleCheck"
                 },
-                "monitorUUID": "monitor_84cbb7c18f964771b8153fbca1013615",
+                "monitorUUID": "monitor_xxxx32",
                 "status": 0,
                 "type": "trigger",
                 "updateAt": 1642581539.6647239,
                 "updator": "",
-                "uuid": "rul_f630a344df6c44a0a6f61b22752c6cd9",
-                "workspaceUUID": "wksp_2dc431d6693711eb8ff97aeee04b54af"
+                "uuid": "rul_xxxx32",
+                "workspaceUUID": "wksp_xxxx32"
             }
         ]
     },

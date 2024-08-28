@@ -65,7 +65,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/tag/tag_1e2950a080c949039285a5edfce12cd4/get' \
+curl 'https://openapi.guance.com/api/v1/tag/tag_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -80,16 +80,16 @@ curl 'https://openapi.guance.com/api/v1/tag/tag_1e2950a080c949039285a5edfce12cd4
     "content": {
         "colour": "style_key3",
         "createAt": 1698754516,
-        "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+        "creator": "acnt_xxxx32",
         "deleteAt": -1,
         "description": "temp_test",
         "id": 357,
         "name": "test_ha",
         "status": 0,
         "updateAt": 1698754516,
-        "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-        "uuid": "tag_1e2950a080c949039285a5edfce12cd4",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "updator": "acnt_xxxx32",
+        "uuid": "tag_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

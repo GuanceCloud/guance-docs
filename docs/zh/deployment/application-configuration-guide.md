@@ -38,8 +38,27 @@ hostname: "console.cloudcare.cn"
 # 管理后台站点访问地址
 managementHostname: "management.cloudcare.cn"
 
+# 当前站点名称
+envName: 观测云部署版
+
+# 系统是否开启debug 模式，一般不开启
+debug: false
 # 系统默认语言
 defaultLanguage: "zh"
+
+# 前端访问地址前缀, 前两个花括号会被 protocol 和 hostname 占据，如需配置统一的二级地址，可直接调整此配置
+frontServerUrlPrefixFormat: "{}://{}"
+
+# ExternalAPI 服务配置。
+external:
+  # 每次请求签名的有效期, 单位秒
+  timeliness: 60
+  # 接口签名所用的 ak/sk 配置, 可设置对随机字符串作为 ak/sk
+  accessKey: ""
+  secretKey: ""
+  # 当系统在 debug 模式下运行时，允许无限制自动通过的签名字符串, 默认无值
+  debugPassSignature: ""
+
 
 # Token 默认过期时间设置
 token_exp_set:
@@ -156,6 +175,13 @@ WorkspaceDefaultesIndexSettings:
 | protocol                                          |                           | 字符串 | http                    | 观测云控制台地址访问协议                                                                                                                                                                                      |
 | hostname                                          |                           | 字符串 | console.cloudcare.cn    | 观测云控制台地址                                                                                                                                                                                              |
 | managementHostname                                |                           | 字符串 | management.cloudcare.cn | 管理后台站点访问地址                                                                                                                                                                                          |
+| envName                                |                           | 字符串 | 观测云 | 当前站点名称  |
+| debug                                |                           | 布尔 | false | debug 模式开关  |
+| frontServerUrlPrefixFormat           |                           | 字符串 | {}://{} | 前端访问地址前缀, 前两个花括号会被 protocol 和 hostname 占据，如需配置统一的二级地址，可直接调整此配置  |
+| external                                |     timeliness           | 数值 | 60 | 每次请求签名的有效期, 单位秒  |
+|                                         |     accessKey           | 字符串 |  | 接口签名所用的 ak 配置, 可设置为随机字符串  |
+|                                         |     secretKey           | 字符串 |  | 接口签名所用的 sk 配置, 可设置为随机字符串  |
+|                                         |     debugPassSignature  | 字符串 |  | 当系统在 debug 模式下运行时，允许无限制自动通过的签名字符串, 默认无值  |
 | defaultLanguage                                   |                           | 字符串 | zh                      | 系统默认语言, 新建的工作空间如果未指定语言，则默认使用此配置值                                                                                                                                                |
 | token_exp_set                                     | front_web                 | 数值   | 14400                   | Studio 浏览端用户登录的有效时长，单位：秒                                                                                                                                                                     |
 |                                                   | manage                    | 数值   | 7200                    | 管理后台浏览端用户登录的有效时长，单位：秒                                                                                                                                                                    |

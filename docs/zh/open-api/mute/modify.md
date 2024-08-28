@@ -77,7 +77,7 @@
 curl 'https://openapi.guance.com/api/v1/monitor/mute/<obj_uuid>/modify' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   -H 'Content-Type: application/json;charset=UTF-8' \
-  --data-raw '{"startTime":"2023/08/22 16:27:27","notifyTargets":[{"to":["notify_eb55c59a4344441f876fea052ba36f99"],"type":"notifyObject"}],"tags":{},"muteRanges":[{"name":"多个点{{version}}","checkerUUID":"rul_8c1ab15426b04c3b94f9cb17a5b73a02","type":"监控器"}],"type":"checker","timezone":"Asia/Shanghai","repeatTimeSet":1,"repeatCrontabSet":{"min":"0","hour":"1","day":"*","month":"*","week":"0,5,6,4"},"crontabDuration":10800,"repeatExpireTime":"2023/09/09 00:00:00","notifyTimeStr":"","notifyMessage":"dcscsadcsdacasdcsdacsdac"}' \
+  --data-raw '{"startTime":"2023/08/22 16:27:27","notifyTargets":[{"to":["notify_xxxx32"],"type":"notifyObject"}],"tags":{},"muteRanges":[{"name":"多个点{{version}}","checkerUUID":"rul_xxxx32","type":"监控器"}],"type":"checker","timezone":"Asia/Shanghai","repeatTimeSet":1,"repeatCrontabSet":{"min":"0","hour":"1","day":"*","month":"*","week":"0,5,6,4"},"crontabDuration":10800,"repeatExpireTime":"2023/09/09 00:00:00","notifyTimeStr":"","notifyMessage":"dcscsadcsdacasdcsdacsdac"}' \
   --compressed \
   --insecure
 ```
@@ -91,7 +91,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/<obj_uuid>/modify' \
     "code": 200,
     "content": {
         "createAt": 1692771116,
-        "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+        "creator": "acnt_xxxx32",
         "crontab": "",
         "crontabDuration": 0,
         "deleteAt": -1,
@@ -100,7 +100,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/<obj_uuid>/modify' \
         "id": 643,
         "muteRanges": [
             {
-                "checkerUUID": "rul_222bfe2ef8604f7291b23618eaf8fbdf",
+                "checkerUUID": "rul_xxxx32",
                 "name": "Aerospike 集群【{{cluster_name}}】空间【{{ ns }}】 的 Memory 使用率过高",
                 "type": "监控器"
             }
@@ -109,7 +109,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/<obj_uuid>/modify' \
         "notifyTargets": [
             {
                 "to": [
-                    "acnt_861cf6dd440348648861247ae42909c3"
+                    "acnt_xxxx32"
                 ],
                 "type": "mail"
             }
@@ -125,9 +125,9 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/<obj_uuid>/modify' \
         "timezone": "Asia/Shanghai",
         "type": "checker",
         "updateAt": 1692771117,
-        "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-        "uuid": "mute_bbced316fa284362aed50395a63d2e72",
-        "workspaceUUID": "wksp_63107158c47c47f78ec222f51e3defef"
+        "updator": "acnt_xxxx32",
+        "uuid": "mute_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

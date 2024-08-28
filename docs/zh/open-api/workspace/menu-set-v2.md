@@ -522,7 +522,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/set' \
             }
         ],
         "createAt": 1719899295,
-        "creator": "wsak_7dbd9e3f1df8454ebabdf7ef5fe49c5f",
+        "creator": "wsak_xxxx32",
         "declaration": {
             "business": "",
             "organization": "default_private_organization"
@@ -532,9 +532,9 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/set' \
         "keyCode": "WsMenuCfg",
         "status": 0,
         "updateAt": 1719899295,
-        "updator": "wsak_7dbd9e3f1df8454ebabdf7ef5fe49c5f",
-        "uuid": "ctcf_1feaaf89a830486b9e9918175f990791",
-        "workspaceUUID": "wksp_2f75cdfa67634f1e95565f283cdff14f"
+        "updator": "wsak_xxxx32",
+        "uuid": "ctcf_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

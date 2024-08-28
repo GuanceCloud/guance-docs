@@ -46,8 +46,8 @@ curl 'https://openapi.guance.com/api/v1/rum_cfg/quick_list?appId=appid_xxx1,appi
                 "name": "lwctest",
                 "type": "web"
             },
-            "uuid": "appid_86ce52ac74d111ebabf8f6c28ac44173",
-            "workspaceUUID": "wksp_b42af47c6a9e11eba162ea24b4040175"
+            "uuid": "appid_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         },
         {
             "appId": "appid_xxx2",
@@ -55,8 +55,8 @@ curl 'https://openapi.guance.com/api/v1/rum_cfg/quick_list?appId=appid_xxx1,appi
                 "name": "DataFlux Web",
                 "type": "web"
             },
-            "uuid": "appid_f25ca8c4770c11eba40656b78e812212",
-            "workspaceUUID": "wksp_2dc431d6693711eb8ff97aeee04b54af"
+            "uuid": "appid_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         }
     ],
     "errorCode": "",

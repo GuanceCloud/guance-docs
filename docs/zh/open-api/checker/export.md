@@ -30,7 +30,7 @@
 curl 'https://openapi.guance.com/api/v1/checker/export' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"checkers": ["rul_f61a4470adf34d6789184979dab61147", "rul_6b1427d9c3a8430fbcd691b79381cbe9"]}' \
+--data-raw '{"checkers": ["rul_xxxx32", "rul_xxxx32"]}' \
 --compressed 
 ```
 
