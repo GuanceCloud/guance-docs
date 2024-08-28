@@ -27,7 +27,7 @@
 curl 'https://openapi.guance.com/api/v1/checker/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"ruleUUIDs": ["rul_692741d674ac4aea9980979721591b35", "rul_79f1adceb3c8418d943f38767d05f981"]}' \
+--data-raw '{"ruleUUIDs": ["rul_xxxx32", "rul_xxxx32"]}' \
 --compressed 
 ```
 

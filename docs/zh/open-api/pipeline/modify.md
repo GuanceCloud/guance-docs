@@ -43,7 +43,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/pipeline/pl_d221f03ac39d468d8d7fb262b5792607/modify' \
+curl 'https://openapi.guance.com/api/v1/pipeline/pl_xxxx32/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"test_modify","category":"logging","asDefault":0,"content":"YWRkX2tleShjaXR5LCAic2hhbmdoYWkiKQ==","testData":"W10=","source":["nsqlookupd"]}' \
@@ -73,8 +73,8 @@ curl 'https://openapi.guance.com/api/v1/pipeline/pl_d221f03ac39d468d8d7fb262b579
         "testData": "W10=\n",
         "updateAt": 1678026808.95266,
         "updator": "xx",
-        "uuid": "pl_d221f03ac39d468d8d7fb262b5792607",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "pl_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

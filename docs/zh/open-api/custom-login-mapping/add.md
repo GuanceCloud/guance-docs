@@ -28,7 +28,7 @@
 curl 'https://openapi.guance.com/api/v1/login_mapping/field/add' \
   -H 'Content-Type: application/json;charset=UTF-8' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
-  --data-raw '{"sourceField":"name","sourceValue":"lisa","targetValues":["wsAdmin","role_5608f6a479264afb9daf34812feeba15"]}' \
+  --data-raw '{"sourceField":"name","sourceValue":"lisa","targetValues":["wsAdmin","role_xxxx32"]}' \
   --compressed
 ```
 
@@ -41,7 +41,7 @@ curl 'https://openapi.guance.com/api/v1/login_mapping/field/add' \
     "code": 200,
     "content": {
         "createAt": 1697427020,
-        "creator": "mact_738b7d961dfa464dxxxxxx",
+        "creator": "mact_xxxx22",
         "deleteAt": -1,
         "id": null,
         "isSystem": true,

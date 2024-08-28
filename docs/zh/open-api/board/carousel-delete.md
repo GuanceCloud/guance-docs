@@ -24,7 +24,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboard/carousel/csel_eb66b0d038b24dc79c86306fbe0899fd/delete' \
+curl 'https://openapi.guance.com/api/v1/dashboard/carousel/csel_xxxx32/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Accept-Language: zh' \
 -H 'Content-Type: application/json;charset=UTF-8' \

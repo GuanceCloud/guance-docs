@@ -93,8 +93,8 @@ curl 'https://openapi.guance.com/api/v1/tag/create' \
         "status": 0,
         "updateAt": 1698754975,
         "updator": "xxx",
-        "uuid": "tag_769821ae7f2c435d8ffe6c510cc3d38c",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "tag_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

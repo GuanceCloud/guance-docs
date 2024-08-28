@@ -66,7 +66,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
             "Related": {
                 "AppId": "a138bcb0_47ef_11ee_9d75_31ea50b9d85a",
                 "DashboardUUIDs": [
-                    "dsbd_b7ded4391b5e497ba7112d81a922d14d"
+                    "dsbd_xxxx32"
                 ],
                 "Tags": [
                     "test"
@@ -110,7 +110,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
                     }
                 ],
                 "service": "test_02",
-                "team": "group_a8caea614b2644549557b476cf2d946c",
+                "team": "group_xxxx32",
                 "type": "db"
             }
         },
@@ -123,7 +123,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
             "name": "阿里云监控数据源",
             "username": "xxx"
         },
-        "uuid": "sman_eb3e3c7acaef4d53acab866b83410edb"
+        "uuid": "sman_xxxx32"
     },
     {
         "colour": "",
@@ -157,7 +157,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
             "name": "test",
             "username": "test@jiagouyun.com"
         },
-        "uuid": "sman_cb24ea0f1c694db08bfa6ee8afb05914"
+        "uuid": "sman_xxxx32"
     }
 ] 
 ```

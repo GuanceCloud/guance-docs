@@ -73,7 +73,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/tag/tag_1e2950a080c949039285a5edfce12cd4/modify' \
+curl 'https://openapi.guance.com/api/v1/tag/tag_xxxx32/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Accept-Language: zh' \
@@ -92,7 +92,7 @@ curl 'https://openapi.guance.com/api/v1/tag/tag_1e2950a080c949039285a5edfce12cd4
     "content": {
         "colour": "style_key3",
         "createAt": 1698754516,
-        "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+        "creator": "acnt_xxxx32",
         "deleteAt": -1,
         "description": "temp_test_modify",
         "id": 357,
@@ -100,8 +100,8 @@ curl 'https://openapi.guance.com/api/v1/tag/tag_1e2950a080c949039285a5edfce12cd4
         "status": 0,
         "updateAt": 1698755100.0688698,
         "updator": "xxxx",
-        "uuid": "tag_1e2950a080c949039285a5edfce12cd4",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "tag_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

@@ -32,7 +32,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue/reply/issue_db6629a4e2cd4f92a95dae0d6d5b44ec/list?ordering=-createAt' \
+curl 'https://openapi.guance.com/api/v1/issue/reply/issue_xxxx32/list?ordering=-createAt' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -49,11 +49,11 @@ curl 'https://openapi.guance.com/api/v1/issue/reply/issue_db6629a4e2cd4f92a95dae
             "attachmentsList": [],
             "content": "成员创建了Issue。",
             "createAt": 1690278285,
-            "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+            "creator": "acnt_xxxx32",
             "creatorInfo": {
                 "acntWsNickname": "",
                 "email": "88@qq.com",
-                "iconUrl": "http://testing-static-res.cloudcare.cn/icon/acnt_349ee5f70a89442fa94b4f754b5acbfe.png",
+                "iconUrl": "http://testing-static-res.cloudcare.cn/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试"
             },
@@ -61,21 +61,21 @@ curl 'https://openapi.guance.com/api/v1/issue/reply/issue_db6629a4e2cd4f92a95dae
             "extend": {},
             "id": 313186,
             "is_modify": false,
-            "issueUUID": "issue_db6629a4e2cd4f92a95dae0d6d5b44ec",
+            "issueUUID": "issue_xxxx32",
             "latest_modify_time": 1690278285,
             "status": 0,
             "type": "change",
             "updateAt": 1690278285,
-            "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+            "updator": "acnt_xxxx32",
             "updatorInfo": {
                 "acntWsNickname": "",
                 "email": "88@qq.com",
-                "iconUrl": "http://testing-static-res.cloudcare.cn/icon/acnt_349ee5f70a89442fa94b4f754b5acbfe.png",
+                "iconUrl": "http://testing-static-res.cloudcare.cn/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试"
             },
-            "uuid": "repim_1c64c840aaa84535aad95a73c9d7c0fd",
-            "workspaceUUID": "wksp_63107158c47c47f78ec222f51e3defef"
+            "uuid": "repim_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         }
     ],
     "errorCode": "",

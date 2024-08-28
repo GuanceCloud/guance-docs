@@ -44,10 +44,10 @@ curl 'https://openapi.guance.com/api/v1/dashboards/list?pageIndex=1&pageSize=10'
             "chartGroupPos": [],
             "chartPos": [
                 {
-                    "chartUUID": "chrt_1cbdbf10c1494c80b36b91b4e0e1ab90",
+                    "chartUUID": "chrt_xxxx32",
                     "pos": {
                         "h": 11,
-                        "i": "chrt_2e650ef84b1a4eb389011fd95f7db11e",
+                        "i": "chrt_xxxx32",
                         "w": 11,
                         "x": 0,
                         "y": 0
@@ -56,7 +56,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/list?pageIndex=1&pageSize=10'
             ],
             "createAt": 1642587228,
             "createdWay": "import",
-            "creator": "acnt_5fc5bb139e474911b6d3d300863f0c8b",
+            "creator": "acnt_xxxx32",
             "dashboardBindSet": [],
             "deleteAt": -1,
             "extend": {},
@@ -71,25 +71,25 @@ curl 'https://openapi.guance.com/api/v1/dashboards/list?pageIndex=1&pageSize=10'
                 "sceneInfo": [],
                 "tagInfo": [
                     {
-                        "id": "tag_07a3a85d01474c1585add18bfb1b5cde",
+                        "id": "tag_xxxx32",
                         "name": "openapi"
                     },
                     {
-                        "id": "tag_977d40b3f40c4d3f8e90956698b57c48",
+                        "id": "tag_xxxx32",
                         "name": "test"
                     }
                 ]
             },
             "type": "CUSTOM",
             "updateAt": 1642587228,
-            "updator": "acnt_5fc5bb139e474911b6d3d300863f0c8b",
+            "updator": "acnt_xxxx32",
             "updatorInfo": {
-                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_5fc5bb139e474911b6d3d300863f0c8b.png",
+                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "66",
                 "username": "66@qq.com"
             },
-            "uuid": "dsbd_541083cc19ec4d27ad597839a0477a97",
-            "workspaceUUID": "wksp_c4201f4ef30c4a86b01a998e7544f822"
+            "uuid": "dsbd_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         }
     ],
     "errorCode": "",

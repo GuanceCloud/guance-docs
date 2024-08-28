@@ -24,7 +24,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/member_group/get?groupUUID=group_1d6860295f6b4c5abd1f7b3e48a7ffbc' \
+curl 'https://openapi.guance.com/api/v1/workspace/member_group/get?groupUUID=group_xxxx32' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
@@ -41,7 +41,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/member_group/get?groupUUID=gro
             {
                 "email": "88@qq.com",
                 "name": "88测试",
-                "uuid": "acnt_349ee5f70a89442fa94b4f754b5acbfe"
+                "uuid": "acnt_xxxx32"
             }
         ],
         "membersNotInGroup": []

@@ -54,14 +54,14 @@ extend 字段示例:
     "members": [
         {
             "type": "@",
-            "uuid": "acnt_d72e117f8902419fa1d135d1d781b79d",
+            "uuid": "acnt_xxxx32",
             "exists": true
         }
     ],
     "channels": [
         {
             "type": "#",
-            "uuid": "chan_cf4f9aa671ef4dffa5a2b5d1824cd5b7",
+            "uuid": "chan_xxxx32",
             "exists": true
         }
     ],
@@ -79,10 +79,10 @@ extend 字段示例:
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue/reply/repim_73265eb9e69449de8d0b98e3b789a174/modify' \
+curl 'https://openapi.guance.com/api/v1/issue/reply/repim_xxxx32/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"issueUUID":"issue_a3c3f3850d914a0d8ad5dee4f8ac6040","content":"aaaaas","attachmentUuids":[],"extend":{"channels":[],"linkList":[],"members":[],"text":"aaaaas"}}'\
+--data-raw '{"issueUUID":"issue_xxxx32","content":"aaaaas","attachmentUuids":[],"extend":{"channels":[],"linkList":[],"members":[],"text":"aaaaas"}}'\
 --compressed
 ```
 
@@ -96,7 +96,7 @@ curl 'https://openapi.guance.com/api/v1/issue/reply/repim_73265eb9e69449de8d0b98
     "content": {
         "content": "aaaaas",
         "createAt": 1690810887,
-        "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+        "creator": "acnt_xxxx32",
         "deleteAt": -1,
         "extend": {
             "channels": [],
@@ -105,13 +105,13 @@ curl 'https://openapi.guance.com/api/v1/issue/reply/repim_73265eb9e69449de8d0b98
             "text": "aaaaas"
         },
         "id": 319430,
-        "issueUUID": "issue_a3c3f3850d914a0d8ad5dee4f8ac6040",
+        "issueUUID": "issue_xxxx32",
         "status": 0,
         "type": "reply",
         "updateAt": 1690811215,
-        "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-        "uuid": "repim_73265eb9e69449de8d0b98e3b789a174",
-        "workspaceUUID": "wksp_a7baa18031fb4a2db2ad467d384fd804"
+        "updator": "acnt_xxxx32",
+        "uuid": "repim_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

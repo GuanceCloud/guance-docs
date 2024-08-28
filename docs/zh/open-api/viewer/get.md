@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/viewer/dsbd_e493a3c17d3c456bb1febfcbbe4148d2/get' \
+curl 'https://openapi.guance.com/api/v1/viewer/dsbd_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
@@ -73,9 +73,9 @@ curl 'https://openapi.guance.com/api/v1/viewer/dsbd_e493a3c17d3c456bb1febfcbbe41
         "ownerType": "viewer",
         "status": 0,
         "tag_info": {
-            "dsbd_e493a3c17d3c456bb1febfcbbe4148d2": [
+            "dsbd_xxxx32": [
                 {
-                    "id": "tag_740834b7b7e94d1dbe1e764ee78039a3",
+                    "id": "tag_xxxx32",
                     "name": "应用性能"
                 }
             ]
@@ -83,8 +83,8 @@ curl 'https://openapi.guance.com/api/v1/viewer/dsbd_e493a3c17d3c456bb1febfcbbe41
         "type": "CUSTOM",
         "updateAt": 1677662058,
         "updator": "wsak_xxxxx",
-        "uuid": "dsbd_e493a3c17d3c456bb1febfcbbe4148d2",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "dsbd_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

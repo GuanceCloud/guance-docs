@@ -44,7 +44,7 @@ curl 'https://openapi.guance.com/api/v1/role/add' \
     "code": 200,
     "content": {
         "createAt": 1722827399,
-        "creator": "wsak_d19aaf8a1faa42cc9f788ce86b5f81a1",
+        "creator": "wsak_xxxx32",
         "declaration": {
             "asd": "aa,bb,cc,1,True",
             "asdasd": "dawdawd",
@@ -59,9 +59,9 @@ curl 'https://openapi.guance.com/api/v1/role/add' \
         "name": "自定义管理",
         "status": 0,
         "updateAt": 1722827399,
-        "updator": "wsak_d19aaf8a1faa42cc9f788ce86b5f81a1",
-        "uuid": "role_01c7f2ef0f164d609c65006d3db9e602",
-        "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+        "updator": "wsak_xxxx32",
+        "uuid": "role_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

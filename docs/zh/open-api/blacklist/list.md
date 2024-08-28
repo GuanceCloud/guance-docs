@@ -61,13 +61,13 @@ curl 'https://openapi.guance.com/api/v1/blacklist/list?type=all&pageIndex=1&page
             "type": "logging",
             "updateAt": 1678029404,
             "updator": "xxx",
-            "uuid": "blist_92c88afa154f44ca851e8465c8408481",
-            "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+            "uuid": "blist_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         },
         {
             "conditions": "{ source =  'kodo-log'  and ( name in [ 'a' ] )}",
             "createAt": 1677653414,
-            "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+            "creator": "acnt_xxxx32",
             "deleteAt": -1,
             "filters": [
                 {
@@ -84,14 +84,14 @@ curl 'https://openapi.guance.com/api/v1/blacklist/list?type=all&pageIndex=1&page
             "status": 0,
             "type": "logging",
             "updateAt": 1678027698,
-            "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-            "uuid": "blist_58770f806d104f63bdee9bc1941bed36",
-            "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+            "updator": "acnt_xxxx32",
+            "uuid": "blist_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         },
         {
             "conditions": "{ source =  'datakit'  and ( status in [ 'ok' ,  'info' ]  and  host in [ 'cc-testing-cluster-001' ]  and  message in [ 'kodo' ] )}",
             "createAt": 1677565045,
-            "creator": "acnt_7df07453091748b08f5ea2514f6a22f2",
+            "creator": "acnt_xxxx32",
             "deleteAt": -1,
             "filters": [
                 {
@@ -125,9 +125,9 @@ curl 'https://openapi.guance.com/api/v1/blacklist/list?type=all&pageIndex=1&page
             "status": 0,
             "type": "logging",
             "updateAt": 1677565045,
-            "updator": "acnt_7df07453091748b08f5ea2514f6a22f2",
-            "uuid": "blist_ae7363822a164625bb6a85abdee4b6b5",
-            "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+            "updator": "acnt_xxxx32",
+            "uuid": "blist_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         }
     ],
     "errorCode": "",

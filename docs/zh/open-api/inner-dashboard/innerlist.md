@@ -51,7 +51,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/inner_list' \
                 "chartPos": [],
                 "createAt": 1698723059,
                 "createdWay": "manual",
-                "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+                "creator": "acnt_xxxx32",
                 "dashboardBindSet": [],
                 "deleteAt": -1,
                 "extend": {},
@@ -65,15 +65,15 @@ curl 'https://openapi.guance.com/api/v1/dashboard/inner_list' \
                 "status": 0,
                 "type": "CUSTOM",
                 "updateAt": 1698723059,
-                "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-                "uuid": "dsbd_39787c304c0b4b7b84045a7884166a3b",
-                "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+                "updator": "acnt_xxxx32",
+                "uuid": "dsbd_xxxx32",
+                "workspaceUUID": "wksp_xxxx32"
             },
             {
                 "chartGroupPos": [],
                 "chartPos": [
                     {
-                        "chartUUID": "chrt_95b106d7e61a4a8489c408feb076a154",
+                        "chartUUID": "chrt_xxxx32",
                         "pos": {
                             "h": 8,
                             "w": 6,
@@ -82,7 +82,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/inner_list' \
                         }
                     },
                     {
-                        "chartUUID": "chrt_ebb3ce372aa04fab908d011698f2b397",
+                        "chartUUID": "chrt_xxxx32",
                         "pos": {
                             "h": 17,
                             "w": 12,
@@ -91,7 +91,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/inner_list' \
                         }
                     },
                     {
-                        "chartUUID": "chrt_ba9c2e72e3a84be2818c71917a4e22d4",
+                        "chartUUID": "chrt_xxxx32",
                         "pos": {
                             "h": 17,
                             "w": 12,
@@ -100,7 +100,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/inner_list' \
                         }
                     },
                     {
-                        "chartUUID": "chrt_f728133ec7634dc6ab52139184b1ce30",
+                        "chartUUID": "chrt_xxxx32",
                         "pos": {
                             "h": 16,
                             "w": 6,
@@ -109,7 +109,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/inner_list' \
                         }
                     },
                     {
-                        "chartUUID": "chrt_9de35a098ed74cc29dcb65399c3e9739",
+                        "chartUUID": "chrt_xxxx32",
                         "pos": {
                             "h": 16,
                             "w": 6,
@@ -118,7 +118,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/inner_list' \
                         }
                     },
                     {
-                        "chartUUID": "chrt_4fac6f35524e46628722c3e8d3d0b7dd",
+                        "chartUUID": "chrt_xxxx32",
                         "pos": {
                             "h": 29,
                             "w": 24,
@@ -127,7 +127,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/inner_list' \
                         }
                     },
                     {
-                        "chartUUID": "chrt_95466fd5417241e3826c5f1ed02b2fef",
+                        "chartUUID": "chrt_xxxx32",
                         "pos": {
                             "h": 16,
                             "w": 6,
@@ -136,7 +136,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/inner_list' \
                         }
                     },
                     {
-                        "chartUUID": "chrt_e702747430eb4fd8ab560de4cb078b86",
+                        "chartUUID": "chrt_xxxx32",
                         "pos": {
                             "h": 8,
                             "w": 6,
@@ -147,7 +147,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/inner_list' \
                 ],
                 "createAt": 1695633499,
                 "createdWay": "manual",
-                "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+                "creator": "acnt_xxxx32",
                 "dashboardBindSet": [],
                 "deleteAt": -1,
                 "extend": {},
@@ -164,9 +164,9 @@ curl 'https://openapi.guance.com/api/v1/dashboard/inner_list' \
                 "status": 0,
                 "type": "CUSTOM",
                 "updateAt": 1697626939,
-                "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-                "uuid": "dsbd_2b394e38e6b84bf0ac6d124a29734f4d",
-                "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+                "updator": "acnt_xxxx32",
+                "uuid": "dsbd_xxxx32",
+                "workspaceUUID": "wksp_xxxx32"
             }
         ]
     },

@@ -24,7 +24,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/share_config/delete?shareConfigUUIDs=share_85e87c16cf9c40d099d67f51e624c3ad,share_fff2ffaf6f6046b69905716218c17007' \
+curl 'https://openapi.guance.com/api/v1/share_config/delete?shareConfigUUIDs=share_xxxx32,share_xxxx32' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```

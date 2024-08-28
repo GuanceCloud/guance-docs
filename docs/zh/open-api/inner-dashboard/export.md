@@ -40,7 +40,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_2b394e38e6b84bf0ac6d124a29734f4d/export' \
+curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/export' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```

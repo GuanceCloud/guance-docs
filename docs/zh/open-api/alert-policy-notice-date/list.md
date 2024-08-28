@@ -53,8 +53,8 @@ curl 'https://openapi.guance.com/api/v1/notice/date/list?pageIndex=1&pageSize=10
                 "status": 0,
                 "updateAt": 1705567043,
                 "updator": "xxx",
-                "uuid": "ndate_7d88f0caf6d14510a84607ba56b0ca81",
-                "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+                "uuid": "ndate_xxxx32",
+                "workspaceUUID": "wksp_xxxx32"
             },
             {
                 "createAt": 1705566710,
@@ -69,12 +69,12 @@ curl 'https://openapi.guance.com/api/v1/notice/date/list?pageIndex=1&pageSize=10
                 "status": 0,
                 "updateAt": 1705567170,
                 "updator": "xx",
-                "uuid": "ndate_302cd65724974557aa25f45dade30f00",
-                "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+                "uuid": "ndate_xxxx32",
+                "workspaceUUID": "wksp_xxxx32"
             },
             {
                 "createAt": 1705560344,
-                "creator": "acnt_10ab950c69e211eba162ea24b4040175",
+                "creator": "acnt_xxxx32",
                 "dates": [
                     "2025-03-04",
                     "2026.04.09"
@@ -84,9 +84,9 @@ curl 'https://openapi.guance.com/api/v1/notice/date/list?pageIndex=1&pageSize=10
                 "name": "jinlei_03",
                 "status": 0,
                 "updateAt": 1705562459,
-                "updator": "acnt_10ab950c69e211eba162ea24b4040175",
-                "uuid": "ndate_b3549fb38f0f4df3a0f3a78121be379f",
-                "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+                "updator": "acnt_xxxx32",
+                "uuid": "ndate_xxxx32",
+                "workspaceUUID": "wksp_xxxx32"
             }
         ],
         "declaration": {

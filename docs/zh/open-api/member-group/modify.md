@@ -32,10 +32,10 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/member_group/group_1d6860295f6b4c5abd1f7b3e48a7ffbc/modify' \
+curl 'https://openapi.guance.com/api/v1/workspace/member_group/group_xxxx32/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"name": "测试222","accountUUIDs": ["acnt_349ee5f70a89442fa94b4f754b5acbfe"]}' \
+--data-raw '{"name": "测试222","accountUUIDs": ["acnt_xxxx32"]}' \
 --compressed 
 ```
 
