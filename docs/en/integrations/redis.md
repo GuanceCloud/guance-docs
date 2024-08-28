@@ -42,7 +42,7 @@ Already tested version:
 
 - Redis version v5.0+
 
-When collecting data under the master-slave architecture, please configure the host information of the slave node for data collection, and you can get the metric information related to the master-slave.
+When collecting data under the master-slave architecture, please configure the host information of the slave node or master node for data collection, and you can get the different metric information related to the master-slave.
 
 Create Monitor User (**optional**)
 
@@ -614,6 +614,38 @@ For all of the following data collections, the global election tags will added a
 
 
 
+### `redis_replica`
+
+
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`host`|Hostname.|
+|`master_addr`|Master addr, only collected for slave redis.|
+|`server`|Server addr.|
+|`service_name`|Service name.|
+|`slave_addr`|Slave addr, only collected for master redis.|
+|`slave_id`|Slave ID, only collected for master redis.|
+|`slave_state`|Slave state, only collected for master redis.|
+
+- field list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`master_link_down_since_seconds`|Number of seconds since the link is down when the link between master and replica is down, only collected for slave redis.|int|-|
+|`master_link_status`|Status of the link (up/down), `1` for up, `0` for down, only collected for slave redis.|int|-|
+|`master_repl_offset`|The server's current replication offset.|int|-|
+|`slave_lag`|Slave lag, only collected for master redis.|int|-|
+|`slave_offset`|Slave offset, only collected for master redis.|int|-| 
+
+
+
+
+
 
 
 
@@ -677,6 +709,10 @@ For all of the following data collections, the global election tags will added a
 | ---- |---- | :---:    | :----: |
 |`key_count`|Key count times.|int|-|
 |`keys_sampled`|Sampled keys in the key space.|int|-| 
+
+
+
+
 
 
 
