@@ -1,12 +1,12 @@
 ---
 title     : 'AWS Lambda Extention'
-summary   : '通过 awslambda 扩展采集数据'
+summary   : 'Extend data collection through awslambda'
 __int_icon      : 'icon/awslambda'
 dashboard :
-  - desc  : '暂无'
+  - desc  : 'None'
     path  : '-'
 monitor   :
-  - desc  : '暂无'
+  - desc  : 'None'
     path  : '-'
 ---
 
@@ -22,43 +22,43 @@ monitor   :
 
 [:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.34.0) · [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
 
-AWS Lambda 采集器是通过 AWS Lambda Extension 的方式采集 AWS Lambda 的指标与日志。
+The AWS Lambda collector collects AWS Lambda metrics and logs through the Lambda extension.
 
-## 安装 {#installation}
+## Installation {#installation}
 
-### 添加 Datakit 层 {#layer}
+### Adding a Datakit Layer {#layer}
 
-- [通过 Zip 创建层](https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/creating-deleting-layers.html#layers-create){:target="_blank"}
+- [Create a Layer via Zip](https://docs.aws.amazon.com/lambda/latest/dg/creating-deleting-layers.html#layers-create){:target="_blank"}
 
-    - zip 下载地址：
-        - amd64： <https://static.guance.com/datakit/datakit_aws_extension-linux-amd64.zip>
-        - arm64：<https://static.guance.com/datakit/datakit_aws_extension-linux-arm64.zip>
+    - Zip download links:
+        - amd64: <https://static.guance.com/datakit/datakit_aws_extension-linux-amd64.zip>
+        - arm64: <https://static.guance.com/datakit/datakit_aws_extension-linux-arm64.zip>
 
-    - 打开 Lambda 控制台的 [Layers page](https://console.amazonaws.cn/lambda/home#/layers){:target="_blank"}（层页面）。
-    - 选择 **Create layer**（创建层）。
-    - 在 **Layer configuration**（层配置）下，在 **Name**（名称）中，输入层的名称。
-    - 请选择 **Upload a .zip file**（上传 .zip 文件）。然后，选择 **Upload**（上载）以选择本地 .zip 文件。
-    - 选择 **Create**（创建）。
+    - Open the Lambda console [Layers page](https://console.aws.amazon.com/lambda/home#/layers){:target="_blank"}.
+    - Select **Create layer**.
+    - Under **Layer configuration**, enter the layer name in **Name**.
+    - Choose **Upload a .zip file**. Then, select **Upload** to choose the local .zip file.
+    - Select **Create**.
 
-- [通过 ARN 添加层](https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/adding-layers.html){:target="_blank"}
+- [Add a Layer via ARN](https://docs.aws.amazon.com/lambda/latest/dg/adding-layers.html){:target="_blank"}
 
-    - 打开 Lambda 控制台的[函数页面](https://console.amazonaws.cn/lambda/home#/functions){:target="_blank"}。
-    - 选择要配置的函数。
-    - 在**层**下，选择**添加层**。
-    - 在**选择层**下，选择 **ARN** 层源。
-    - 请在文本框中输入 ARN 并选择**验证**。然后，选择**添加**。
+    - Open the Lambda console [Functions page](https://console.aws.amazon.com/lambda/home#/functions){:target="_blank"}.
+    - Select the function you want to configure.
+    - Under **Layers**, select **Add Layer**.
+    - Under **Select a layer**, choose **ARN** as the layer source.
+    - Enter the ARN in the text box, select **Verify**, and then choose **Add**.
 
-### 配置所需的环境变量
+### Configure the Required Environment Variables
 
 - ENV_DATAWAY=`https://openway.guance.com?token=<your-token>`
 
-## 指标 {#metric}
+## Metrics {#metric}
 
 
 
 ### `awslambda-metric`
 
-- 标签
+- Tags
 
 
 | Tag | Description |
@@ -70,7 +70,7 @@ AWS Lambda 采集器是通过 AWS Lambda Extension 的方式采集 AWS Lambda �
 |`aws_lambda_initialization_type`|Initialization type of the Lambda function.|
 |`aws_region`|AWS region where the function is executed.|
 
-- 指标列表
+- List of Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -94,14 +94,14 @@ AWS Lambda 采集器是通过 AWS Lambda Extension 的方式采集 AWS Lambda �
 
 ### `awslambda-logging`
 
-- 标签
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`aws_log_from`|log sources, currently only function are supported|
 
-- 指标列表
+- List of Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -110,8 +110,8 @@ AWS Lambda 采集器是通过 AWS Lambda Extension 的方式采集 AWS Lambda �
 
 
 
-### 采集器支持 {#input}
+### Collector Support {#input}
 
 - OpenTelemetry
 - statsd
-- ddtrace # 目前只支持 golang。由于 ddtrace 在 lambda 环境下会有特殊操作，需要添加 `tracer.WithLambdaMode(false)`。
+- ddtrace # Currently, only Go is supported. Due to special operations required by ddtrace in the lambda environment, you need to add `tracer.WithLambdaMode(false)`.

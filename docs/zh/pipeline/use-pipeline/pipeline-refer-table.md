@@ -9,7 +9,7 @@
 通过 Reference Table 功能，Pipeline 支持导入外部数据进行数据处理。
 
 <!-- markdownlint-disable MD046 -->
-???+ warning
+???+ attention
 
     该功能内存消耗较高，参考 150 万行磁盘占用约 200MB (JSON 文件) 的不重复数据 (string 类型两列；int, float, bool 各一列) 为例，其内存占用维持在 950MB ～ 1.2GB, 更新时的峰值内存 2.2GB ~ 2.7GB。可以通过配置 `use_sqlite = true`，将数据保存到磁盘上。
 <!-- markdownlint-enable -->
@@ -50,7 +50,7 @@
 
 ---
 
-???+ warning
+???+ attention
 
     目前要求 refer_table_url 指定的地址，其 HTTP 返回的 Content-Type 必须为 `Content-Type: application/json`。
 <!-- markdownlint-enable -->
@@ -123,7 +123,7 @@
 当使用 SQLite 保存数据，且上述 `sqlite_mem_mode` 设置为 `true` 时，将使用 SQLite 的内存模式；默认为 SQLite 磁盘模式。
 
 <!-- markdownlint-disable MD046 -->
-???+ warning
+???+ attention
 
     目前 windows-386 下不支持此功能。
 <!-- markdownlint-enable -->
