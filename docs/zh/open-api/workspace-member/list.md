@@ -45,7 +45,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/members/list?pageIndex=1&pageS
             "deleteAt": -1,
             "email": "88@qq.com",
             "extend": {
-                "user_icon": "acnt_6f2fd4c0766d11ebb56ef2b2c21faf74.png"
+                "user_icon": "acnt_xxxx32.png"
             },
             "exterId": "acnt-gtxSK4UrogwM3N2guGNGim",
             "id": 19,
@@ -56,10 +56,10 @@ curl 'https://openapi.guance.com/api/v1/workspace/members/list?pageIndex=1&pageS
             "status": 0,
             "updateAt": 1614149795,
             "updator": "external",
-            "userIconUrl": "http://static.cloudcare.cn:10561/icon/acnt_6f2fd4c0766d11ebb56ef2b2c21faf74.png",
+            "userIconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
             "userType": "common",
             "username": "88@qq.com",
-            "uuid": "acnt_6f2fd4c0766d11ebb56ef2b2c21faf74",
+            "uuid": "acnt_xxxx32",
             "waitAudit": 0
         }
     ],

@@ -24,7 +24,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/crontab_report/cron_cf1be3e00408416b9a1f1b8a7e233223/get' \
+curl 'https://openapi.guance.com/api/v1/crontab_report/cron_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -41,7 +41,7 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/cron_cf1be3e00408416b9a1f
         "createAt": 1698666812,
         "creator": "wsak_xxxxx",
         "crontab": "10 10 03,14,13 * *",
-        "dashboardUUID": "dsbd_28a1718f1b5547a58a40f2167948bdc6",
+        "dashboardUUID": "dsbd_xxxx32",
         "deleteAt": -1,
         "executed": 0,
         "extend": {
@@ -54,7 +54,7 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/cron_cf1be3e00408416b9a1f
         "isLocked": 0,
         "notifyType": "dingTalkRobot",
         "recipient": [
-            "notify_b1f535d0b52a4788a6343778fab64ba0"
+            "notify_xxxx32"
         ],
         "singleExecuteTime": -1,
         "status": 0,
@@ -63,9 +63,9 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/cron_cf1be3e00408416b9a1f
         "title": "ceshi3",
         "updateAt": 1698667256,
         "updator": "wsak_xxxxx",
-        "uuid": "cron_cf1be3e00408416b9a1f1b8a7e233223",
+        "uuid": "cron_xxxx32",
         "variables": {},
-        "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

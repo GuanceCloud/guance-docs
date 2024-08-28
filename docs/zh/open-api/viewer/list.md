@@ -48,7 +48,7 @@ curl 'https://openapi.guance.com/api/v1/viewer/list' \
             "chartPos": [],
             "createAt": 1677659952,
             "createdWay": "import",
-            "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+            "creator": "acnt_xxxx32",
             "creatorInfo": {
                 "email": "88@qq.com",
                 "iconUrl": "",
@@ -168,15 +168,15 @@ curl 'https://openapi.guance.com/api/v1/viewer/list' \
             },
             "type": "CUSTOM",
             "updateAt": 1677662452,
-            "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+            "updator": "acnt_xxxx32",
             "updatorInfo": {
                 "email": "88@qq.com",
                 "iconUrl": "",
                 "name": "88测试",
                 "username": "测试"
             },
-            "uuid": "dsbd_5639d32340954d5592c24bd62baaa01e",
-            "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+            "uuid": "dsbd_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         }
     ]
 } 

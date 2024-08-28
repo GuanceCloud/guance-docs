@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/monitor/mute/mute_71e719ee94f84d65a3fa68fb3054a815/disable' \
+curl 'https://openapi.guance.com/api/v1/monitor/mute/mute_xxxx32/disable' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw 'null' \

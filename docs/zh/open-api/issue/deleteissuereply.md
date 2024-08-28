@@ -24,7 +24,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue/reply/repim_73265eb9e69449de8d0b98e3b789a174/delete' \
+curl 'https://openapi.guance.com/api/v1/issue/reply/repim_xxxx32/delete' \
 -X 'DELETE' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \

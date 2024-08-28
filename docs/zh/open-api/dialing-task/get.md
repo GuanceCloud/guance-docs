@@ -24,7 +24,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/dialing_task/dial_011172d3ce454f5582a49e3ec84e82b5/get' \
+curl 'https://openapi.guance.com/api/v1/dialing_task/dial_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --compressed
@@ -39,11 +39,11 @@ curl 'https://openapi.guance.com/api/v1/dialing_task/dial_011172d3ce454f5582a49e
     "code": 200,
     "content": {
         "createAt": 1677723540,
-        "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+        "creator": "acnt_xxxx32",
         "deleteAt": -1,
         "id": 19,
         "regions": [
-            "reg_c8k45js4c5rgnqh709v0"
+            "reg_xxxx20"
         ],
         "status": 0,
         "tagInfo": [],
@@ -76,9 +76,9 @@ curl 'https://openapi.guance.com/api/v1/dialing_task/dial_011172d3ce454f5582a49e
         },
         "type": "websocket",
         "updateAt": 1686035083,
-        "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-        "uuid": "dial_011172d3ce454f5582a49e3ec84e82b5",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "updator": "acnt_xxxx32",
+        "uuid": "dial_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

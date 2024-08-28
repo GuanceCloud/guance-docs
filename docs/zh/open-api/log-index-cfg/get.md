@@ -40,7 +40,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/log_index_cfg/lgim_1145381480dd4a4f95bccdb1f0889141/get' \
+curl 'https://openapi.guance.com/api/v1/log_index_cfg/lgim_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -61,7 +61,7 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/lgim_1145381480dd4a4f95bcc
         "extend": {},
         "exterStoreName": "aa_uuid",
         "exterStoreProject": "",
-        "externalResourceAccessCfgUUID": "erac_155b376bfdaf4c529e8567bb818058c5",
+        "externalResourceAccessCfgUUID": "erac_xxxx32",
         "id": 12,
         "isBindCustomStore": 1,
         "isPublicNetworkAccess": 1,
@@ -75,8 +75,8 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/lgim_1145381480dd4a4f95bcc
         "storeType": "es",
         "updateAt": 1677665779,
         "updator": "xxx",
-        "uuid": "lgim_1145381480dd4a4f95bccdb1f0889141",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "lgim_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

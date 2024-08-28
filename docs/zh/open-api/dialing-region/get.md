@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/dialing_region/reg_cg2britepb7e977fpm8g/info' \
+curl 'https://openapi.guance.com/api/v1/dialing_region/reg_xxxx20/info' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -39,11 +39,11 @@ curl 'https://openapi.guance.com/api/v1/dialing_region/reg_cg2britepb7e977fpm8g/
     "code": 200,
     "content": {
         "ak": {
-            "ak": "4jwIcxedYwSdTsn9rZ0f",
-            "external_id": "wksp_ed134a6485c8484dbd0e58ce9a9c6115",
+            "ak": "xxxxx",
+            "external_id": "wksp_xxxx32",
             "owner": "",
-            "parent_ak": "ak_c1imts73q2c335d71cn0",
-            "sk": "utiGZCqZkEe6ZzKyW30xczv96joMrmvGAfxuJ7Fr",
+            "parent_ak": "ak_xxxx20",
+            "sk": "xxxx",
             "status": "",
             "update_at": 0
         },
@@ -52,18 +52,18 @@ curl 'https://openapi.guance.com/api/v1/dialing_region/reg_cg2britepb7e977fpm8g/
             "company": "",
             "country": "Afghanistan",
             "create_at": 0,
-            "external_id": "wksp_ed134a6485c8484dbd0e58ce9a9c6115",
+            "external_id": "wksp_xxxx32",
             "heartbeat": -1,
             "internal": false,
             "isp": "telecom",
             "keycode": "Afghanistan-Shahrak-telecom",
             "name": "test",
             "owner": "custom",
-            "parent_ak": "ak_c1imts73q2c335d71cn0",
+            "parent_ak": "ak_xxxx20",
             "province": "",
             "region": "Afghanistan-Shahrak-telecom",
             "status": "",
-            "uuid": "reg_cg2britepb7e977fpm8g"
+            "uuid": "reg_xxxx20"
         }
     },
     "errorCode": "",

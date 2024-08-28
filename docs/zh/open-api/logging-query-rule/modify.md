@@ -51,11 +51,11 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_6215235e83dd47b0972e03ca0fd315c2/modify' \
+curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_xxxx32/modify' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---data-raw $'{"roleUUIDs":["role_44dbdc6ad4b848f0a570072c10d9e29a"],"indexes":["default"],"extend":{"container_id":["eefdb964e3eb5e822f12e5663449bebb37738daed0841c6c9cec44f11d073f05"]},"logic":"and","conditions":"`container_id` IN [\'eefdb964e3eb5e822f12e5663449bebb37738daed0841c6c9cec44f11d073f05\']"}' \
+--data-raw $'{"roleUUIDs":["role_xxxx32"],"indexes":["default"],"extend":{"container_id":["eefdb964e3eb5e822f12e5663449bebb37738daed0841c6c9cec44f11d073f05"]},"logic":"and","conditions":"`container_id` IN [\'eefdb964e3eb5e822f12e5663449bebb37738daed0841c6c9cec44f11d073f05\']"}' \
 --compressed
 ```
 

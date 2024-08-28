@@ -123,8 +123,8 @@ curl 'https://openapi.guance.com/api/v1/blacklist/add' \
         "type": "logging",
         "updateAt": 1678029404,
         "updator": "xxxx",
-        "uuid": "blist_92c88afa154f44ca851e8465c8408481",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "blist_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",
