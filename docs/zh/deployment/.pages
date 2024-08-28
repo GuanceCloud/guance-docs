@@ -102,7 +102,6 @@ nav:
       - '数据写入延迟如何处理': data-write-delay.md
       - '可用性监测故障排查': clouddial-troubleshooting.md
       - '创建了Dataway前台看不到': no-dataway.md
-      - '为什么不能使用拨测服务': no-dialtesting.md
       - '创建拨测节点报错': create-dial-error.md
       - '指标查询报错': query-metrics-error.md
       #- '为什么不能使用拨测服务': no-boce.md 
