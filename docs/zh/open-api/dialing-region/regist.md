@@ -47,11 +47,11 @@ curl 'https://openapi.guance.com/api/v1/dialing_region/regist' \
     "code": 200,
     "content": {
         "ak": {
-            "ak": "4jwIcxedYwSdTsn9rZ0f",
-            "external_id": "wksp_ed134a6485c8484dbd0e58ce9a9c6115",
+            "ak": "xxxx",
+            "external_id": "wksp_xxxx32",
             "owner": "",
-            "parent_ak": "ak_c1imts73q2c335d71cn0",
-            "sk": "utiGZCqZkEe6ZzKyW30xczv96joMrmvGAfxuJ7Fr",
+            "parent_ak": "ak_xxxx20",
+            "sk": "xxxxxxx",
             "status": "",
             "update_at": 0
         },
@@ -60,7 +60,7 @@ curl 'https://openapi.guance.com/api/v1/dialing_region/regist' \
             "company": "",
             "country": "Afghanistan",
             "create_at": 0,
-            "external_id": "ak_c1imts73q2c335d71cn0-wksp_ed134a6485c8484dbd0e58ce9a9c6115",
+            "external_id": "ak_xxxx20-wksp_xxxx32",
             "heartbeat": 0,
             "internal": false,
             "isp": "telecom",
@@ -71,7 +71,7 @@ curl 'https://openapi.guance.com/api/v1/dialing_region/regist' \
             "province": "",
             "region": "",
             "status": "",
-            "uuid": "reg_cg2britepb7e977fpm8g"
+            "uuid": "reg_xxxx20"
         }
     },
     "errorCode": "",

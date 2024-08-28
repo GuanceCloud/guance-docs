@@ -26,7 +26,7 @@
 curl 'https://openapi.guance.com/api/v1/dialing_task/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"taskUUIDs":["dial_408e8fafe88a49a5ba1cfd73910edfdb"]}' \
+--data-raw '{"taskUUIDs":["dial_xxxx32"]}' \
 --compressed
 ```
 

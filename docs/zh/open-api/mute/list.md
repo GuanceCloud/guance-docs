@@ -67,8 +67,8 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/list?pageIndex=1&pageSize=2
                 "name": "frasgreager",
                 "username": "xxxx"
             },
-            "uuid": "mute_9cfc0c557a5b4df6924c0f9648be8890",
-            "workspaceUUID": "wksp_2dc431d6693711eb8ff97aeee04b54af"
+            "uuid": "mute_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         }
     ],
     "errorCode": "",

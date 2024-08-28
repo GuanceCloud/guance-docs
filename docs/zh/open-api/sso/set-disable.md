@@ -28,7 +28,7 @@
 curl 'https://openapi.guance.com/api/v1/saml/mapping/set_disable' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---data-raw '{"ssoUUID":"sso_7de25e969a714d7ab851a4cbf1263d50","isDisable":false}' \
+--data-raw '{"ssoUUID":"sso_xxxx32","isDisable":false}' \
 --compressed
 ```
 

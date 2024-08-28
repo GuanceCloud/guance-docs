@@ -30,7 +30,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/carousel/add' \
 -H 'Accept-Language: zh' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---data-raw '{"name":"test1","dashboardUUIDs":["dsbd_e4ce57f12e2145fa9c5994195906a5fe"],"intervalTime":"30s"}' \
+--data-raw '{"name":"test1","dashboardUUIDs":["dsbd_xxxx32"],"intervalTime":"30s"}' \
 --compressed
 ```
 
@@ -46,7 +46,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/carousel/add' \
         "createAt": 1698663461,
         "creator": "wsak_xxxxx",
         "dashboardUUIDs": [
-            "dsbd_e4ce57f12e2145fa9c5994195906a5fe"
+            "dsbd_xxxx32"
         ],
         "deleteAt": -1,
         "id": 29,
@@ -55,8 +55,8 @@ curl 'https://openapi.guance.com/api/v1/dashboard/carousel/add' \
         "status": 0,
         "updateAt": 1698663461,
         "updator": "wsak_xxxxx",
-        "uuid": "csel_58b3ec27b9244ecc8e39f39c0d5c673d",
-        "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+        "uuid": "csel_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

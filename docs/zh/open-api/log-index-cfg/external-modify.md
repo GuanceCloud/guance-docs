@@ -47,7 +47,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/external_log_index_cfg/lgim_1145381480dd4a4f95bccdb1f0889141/modify' \
+curl 'https://openapi.guance.com/api/v1/external_log_index_cfg/lgim_xxxx32/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"accessCfg":{"url":"aabb.com","username":"test33"},"exterStoreName":"aa_uuid","fields":[{"field":"time","originalField":"time"},{"field":"__docid","originalField":"__docid"},{"field":"message","originalField":"message"}]}' \

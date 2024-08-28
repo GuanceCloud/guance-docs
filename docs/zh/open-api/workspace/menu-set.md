@@ -142,15 +142,15 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu/set' \
             }
         ],
         "createAt": 1697627382,
-        "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+        "creator": "acnt_xxxx32",
         "deleteAt": -1,
         "id": 763,
         "keyCode": "WsMenuCfg",
         "status": 0,
         "updateAt": 1697627382,
-        "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-        "uuid": "ctcf_98daec54e21e42549be04fe4807574a3",
-        "workspaceUUID": "wksp_4b57c7baxxxxxxxxxxxx"
+        "updator": "acnt_xxxx32",
+        "uuid": "ctcf_xxxx32",
+        "workspaceUUID": "wksp_xxxx20"
     },
     "errorCode": "",
     "message": "",

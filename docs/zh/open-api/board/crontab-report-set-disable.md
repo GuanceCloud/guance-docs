@@ -29,7 +29,7 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/set_disable' \
 -H 'Accept-Language: zh' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'Accept: application/json, text/plain, */*' \
---data-raw '{"isDisable":true,"reportUUIDs":["cron_cf1be3e00408416b9a1f1b8a7e233223"]}' \
+--data-raw '{"isDisable":true,"reportUUIDs":["cron_xxxx32"]}' \
 --compressed
 ```
 

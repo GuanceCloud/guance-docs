@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/role/role_3552e414acc0415fa584c2caf0acf3fc/get' \
+curl 'https://openapi.guance.com/api/v1/role/role_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -39,7 +39,7 @@ curl 'https://openapi.guance.com/api/v1/role/role_3552e414acc0415fa584c2caf0acf3
     "code": 200,
     "content": {
         "createAt": 1677140944,
-        "creator": "acnt_e52a5a7b6418464cb2acbeaa199e7fd1",
+        "creator": "acnt_xxxx32",
         "creatorInfo": {
             "acntWsNickname": "",
             "email": "lwc@qq.com",
@@ -75,7 +75,7 @@ curl 'https://openapi.guance.com/api/v1/role/role_3552e414acc0415fa584c2caf0acf3
         ],
         "status": 0,
         "updateAt": 1677140944,
-        "updator": "acnt_e52a5a7b6418464cb2acbeaa199e7fd1",
+        "updator": "acnt_xxxx32",
         "updatorInfo": {
             "acntWsNickname": "",
             "email": "lwc@qq.com",
@@ -83,8 +83,8 @@ curl 'https://openapi.guance.com/api/v1/role/role_3552e414acc0415fa584c2caf0acf3
             "name": "lwc@qq.com",
             "username": "lwc@qq.com"
         },
-        "uuid": "role_3552e414acc0415fa584c2caf0acf3fc",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "role_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

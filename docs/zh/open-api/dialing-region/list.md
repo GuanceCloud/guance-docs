@@ -53,7 +53,7 @@ curl 'https://openapi.guance.com/api/v1/dialing_region/list' \
             "province": "",
             "region": "Afghanistan-Shahrak-telecom",
             "status": "OK",
-            "uuid": "reg_cg2britepb7e977fpm8g"
+            "uuid": "reg_xxxx20"
         }
     ],
     "errorCode": "",
