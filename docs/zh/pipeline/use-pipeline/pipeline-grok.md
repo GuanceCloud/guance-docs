@@ -1,7 +1,7 @@
 # Grok 模式
 ---
 
-## 什么是Grok 模式 {#grok-pattern}
+## Grok 模式简介 {#grok-pattern}
 
 DataKit Pipeline 提供 [grok()](pipeline-built-in-function.md#fn-grok) 函数实现对执行 Grok 模式的支持（实现上，grok() 函数会将 Grok 模式翻译为正则表达式），并提供 [add_pattern()](pipeline-built-in-function.md#fn-add-pattern) 函数来添加自定义命名模式。
 
@@ -94,7 +94,7 @@ grok(_, "%{time}")
 ```
 
 <!-- markdownlint-disable MD046 -->
-???+ warning
+???+ attention
 
     - 如果出现同名模式，则以局部模式优先（即局部模式覆盖全局模式）
     - Pipeline 脚本中，[add_pattern()](pipeline-built-in-function.md#fn-add-pattern) 需在 [grok()](pipeline-built-in-function.md#fn-grok) 函数前面调用，否则会导致第一条数据提取失败

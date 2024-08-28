@@ -177,10 +177,12 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name`|RabbitMQ cluster name|
 |`host`|Hostname of RabbitMQ running on.|
 |`node_name`|RabbitMQ node name|
 |`queue_name`|RabbitMQ queue name|
 |`url`|RabbitMQ host URL|
+|`vhost`|RabbitMQ queue virtual hosts|
 
 - 指标列表
 
@@ -219,6 +221,7 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 | Tag | Description |
 |  ----  | --------|
 |`auto_delete`|If set, the exchange is deleted when all queues have finished using it|
+|`cluster_name`|RabbitMQ cluster name|
 |`durable`|If set when creating a new exchange, the exchange will be marked as durable. Durable exchanges remain active when a server restarts. Non-durable exchanges (transient exchanges) are purged if/when a server restarts.|
 |`exchange_name`|RabbitMQ exchange name|
 |`host`|Hostname of RabbitMQ running on.|
@@ -258,6 +261,7 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name`|RabbitMQ cluster name|
 |`host`|Hostname of RabbitMQ running on.|
 |`node_name`|RabbitMQ node name|
 |`url`|RabbitMQ url|

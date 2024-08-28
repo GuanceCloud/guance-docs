@@ -88,7 +88,7 @@ monitor   :
 
     - **ENV_INPUT_HOST_PROCESSES_OPEN_METRIC**
     
-        采集处理器指标
+        开启进程指标采集
     
         **字段类型**: Boolean
     
@@ -98,17 +98,17 @@ monitor   :
     
     - **ENV_INPUT_HOST_PROCESSES_PROCESS_NAME**
     
-        处理器白名单
+        进程名白名单
     
         **字段类型**: List
     
         **采集器配置字段**: `process_name`
     
-        **示例**: .*datakit.*,guance
+        **示例**: `.*datakit.*,guance`
     
     - **ENV_INPUT_HOST_PROCESSES_MIN_RUN_TIME**
     
-        处理最短运行时间
+        进程最短运行时间
     
         **字段类型**: TimeDuration
     
@@ -123,16 +123,6 @@ monitor   :
         **字段类型**: Boolean
     
         **采集器配置字段**: `enable_listen_ports`
-    
-        **默认值**: false
-    
-    - **ENV_INPUT_HOST_PROCESSES_ENABLE_OPEN_FILES**
-    
-        启用打开文件字段
-    
-        **字段类型**: Boolean
-    
-        **采集器配置字段**: `enable_open_files`
     
         **默认值**: false
     
