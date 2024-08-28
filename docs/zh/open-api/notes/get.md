@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/notes/notes_7f074ca6505543e39020826d84ad6687/get' \
+curl 'https://openapi.guance.com/api/v1/notes/notes_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
@@ -42,7 +42,7 @@ curl 'https://openapi.guance.com/api/v1/notes/notes_7f074ca6505543e39020826d84ad
             {
                 "chartGroupUUID": "",
                 "createAt": 1677652479,
-                "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+                "creator": "acnt_xxxx32",
                 "dashboardUUID": "",
                 "deleteAt": -1,
                 "extend": {
@@ -103,14 +103,14 @@ curl 'https://openapi.guance.com/api/v1/notes/notes_7f074ca6505543e39020826d84ad
                 "status": 0,
                 "type": "bar",
                 "updateAt": 1677652479,
-                "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-                "uuid": "chrt_2f5ed3d1f82f47aca57e2bd6a1dc7179",
-                "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+                "updator": "acnt_xxxx32",
+                "uuid": "chrt_xxxx32",
+                "workspaceUUID": "wksp_xxxx32"
             },
             {
                 "chartGroupUUID": "",
                 "createAt": 1677652487,
-                "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+                "creator": "acnt_xxxx32",
                 "dashboardUUID": "",
                 "deleteAt": -1,
                 "extend": {
@@ -141,10 +141,10 @@ curl 'https://openapi.guance.com/api/v1/notes/notes_7f074ca6505543e39020826d84ad
                         "qtype": "dql",
                         "query": {
                             "funcList": [],
-                            "q": "M::slo:(SUM(`slo_cost`)) { `slo_id` = 'monitor_88fdeb353ec148b0af63a74a4d75bccf' }",
+                            "q": "M::slo:(SUM(`slo_cost`)) { `slo_id` = 'monitor_xxxx32' }",
                             "slo": {
                                 "goal": 99.99,
-                                "id": "monitor_88fdeb353ec148b0af63a74a4d75bccf",
+                                "id": "monitor_xxxx32",
                                 "minGoal": 95,
                                 "name": "dav",
                                 "workspaceUUID": ""
@@ -157,9 +157,9 @@ curl 'https://openapi.guance.com/api/v1/notes/notes_7f074ca6505543e39020826d84ad
                 "status": 0,
                 "type": "slo",
                 "updateAt": 1677652487,
-                "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-                "uuid": "chrt_4e078c1343b0448889909335faab9b99",
-                "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+                "updator": "acnt_xxxx32",
+                "uuid": "chrt_xxxx32",
+                "workspaceUUID": "wksp_xxxx32"
             }
         ],
         "createAt": 1677656782,
@@ -186,8 +186,8 @@ curl 'https://openapi.guance.com/api/v1/notes/notes_7f074ca6505543e39020826d84ad
             "name": "智能巡检测试",
             "username": "wsak_xxxxx"
         },
-        "uuid": "notes_7f074ca6505543e39020826d84ad6687",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "notes_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

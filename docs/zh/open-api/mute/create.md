@@ -96,11 +96,11 @@ type 为checker, 监控器类型, 示例:
     "muteRanges": [
         {
             "name": "基础设施存活检测-类型为ReplicaSet- {{Result}}",
-            "checkerUUID": "rul_fdd041ec53a6497e9cxxxx",
+            "checkerUUID": "rul_xxxx22",
         },
         {
             "name": "hhh",
-            "checkerUUID": "rul_22929a982b634bbbxxxxx",
+            "checkerUUID": "rul_xxxx21",
         }
     ],
     "type": "checker"
@@ -118,7 +118,7 @@ type 为alertPolicy, 告警策略类型, 示例:
     "muteRanges": [
         {
             "name": "gary-test1234",
-            "alertPolicyUUID": "altpl_fcf8c799352846018539xxxxxx",
+            "alertPolicyUUID": "altpl_xxxx26",
         }
     ],
     "type": "alertPolicy",
@@ -136,11 +136,11 @@ type 为 tag, 监控器标签, 示例:
     "muteRanges": [
         {
             "name": "zyl_test",
-            "tagUUID": "tag_cf2962d1ea9f4bf79xxxxxx",
+            "tagUUID": "tag_xxxx23",
         },
         {
             "name": "0306",
-            "tagUUID": "tag_2963499b3f6244ac88bcxxxxxxxx",
+            "tagUUID": "tag_xxxx28",
         }
     ],
     "type": "tag"
@@ -158,15 +158,15 @@ type 为 custom, 自定义类型, 示例:
     "muteRanges": [
         {
             "name": "监控器优化验证-更新2",
-            "checkerUUID": "rul_fa52887259714d51xxxxxx",
+            "checkerUUID": "rul_xxxx22",
         },
         {
             "name": "0306",
-            "tagUUID": "tag_2963499b3f6244ac88xxxxxxx",
+            "tagUUID": "tag_xxxx25",
         },
         {
             "name": "slo_test",
-            "sloUUID": "monitor_2963499b3f6244ac88xxxxxxx",
+            "sloUUID": "monitor_xxxx25",
         }
     ],
     "type": "custom",
@@ -238,7 +238,7 @@ repeatTimeSet 为 1, 重复静默, 示例:
 curl 'https://openapi.guance.com/api/v1/monitor/mute/create' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   -H 'Content-Type: application/json;charset=UTF-8' \
-  --data-raw '{"startTime":"2023/08/23 14:00:07","endTime":"2023/08/23 14:31:07","notifyTargets":[{"to":["acnt_861cf6dd440348648861247ae42909c3"],"type":"mail"}],"tags":{},"muteRanges":[{"name":"Aerospike 集群【{{cluster_name}}】空间【{{ ns }}】 的 Memory 使用率过高","checkerUUID":"rul_222bfe2ef8604f7291b23618eaf8fbdf","type":"监控器"}],"type":"checker","timezone":"Asia/Shanghai","notifyMessage":"cjkackcnkjcklasc","notifyTimeStr":"2023/08/23 13:45:07","repeatTimeSet":0}' \
+  --data-raw '{"startTime":"2023/08/23 14:00:07","endTime":"2023/08/23 14:31:07","notifyTargets":[{"to":["acnt_xxxx32"],"type":"mail"}],"tags":{},"muteRanges":[{"name":"Aerospike 集群【{{cluster_name}}】空间【{{ ns }}】 的 Memory 使用率过高","checkerUUID":"rul_xxxx32","type":"监控器"}],"type":"checker","timezone":"Asia/Shanghai","notifyMessage":"cjkackcnkjcklasc","notifyTimeStr":"2023/08/23 13:45:07","repeatTimeSet":0}' \
   --compressed \
   --insecure
 ```
@@ -252,7 +252,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/create' \
     "code": 200,
     "content": {
         "createAt": 1692771116,
-        "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+        "creator": "acnt_xxxx32",
         "crontab": "",
         "crontabDuration": 0,
         "deleteAt": -1,
@@ -261,7 +261,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/create' \
         "id": 643,
         "muteRanges": [
             {
-                "checkerUUID": "rul_222bfe2ef8604f7291b23618eaf8fbdf",
+                "checkerUUID": "rul_xxxx32",
                 "name": "Aerospike 集群【{{cluster_name}}】空间【{{ ns }}】 的 Memory 使用率过高",
                 "type": "监控器"
             }
@@ -270,7 +270,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/create' \
         "notifyTargets": [
             {
                 "to": [
-                    "acnt_861cf6dd440348648861247ae42909c3"
+                    "acnt_xxxx32"
                 ],
                 "type": "mail"
             }
@@ -286,9 +286,9 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/create' \
         "timezone": "Asia/Shanghai",
         "type": "checker",
         "updateAt": 1692771117,
-        "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-        "uuid": "mute_bbced316fa284362aed50395a63d2e72",
-        "workspaceUUID": "wksp_63107158c47c47f78ec222f51e3defef"
+        "updator": "acnt_xxxx32",
+        "uuid": "mute_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

@@ -39,7 +39,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/accesskey/list' \
     "content": [
         {
             "createAt": 1677808718,
-            "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+            "creator": "acnt_xxxx32",
             "creatorInfo": {
                 "email": "88@qq.com",
                 "iconUrl": "",
@@ -49,12 +49,12 @@ curl 'https://openapi.guance.com/api/v1/workspace/accesskey/list' \
             "deleteAt": -1,
             "id": 4,
             "name": "test",
-            "sk": "aD8ewPWSu07NcdoG92KnXlvk6FHOBCfQ",
+            "sk": "xxx",
             "status": 0,
             "updateAt": 1677808718,
-            "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+            "updator": "acnt_xxxx32",
             "uuid": "xxx",
-            "workspaceUUID": "wksp_8ea5c78a71e64298bffd4d3ec03f1a5f"
+            "workspaceUUID": "wksp_xxxx32"
         }
     ],
     "errorCode": "",

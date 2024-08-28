@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_3ca770bfc3354becb13d9f667b071cd2/get' \
+curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -40,7 +40,7 @@ curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_3ca770bfc3354bec
     "content": {
         "conditions": "`host` = wildcard('cvsdbvjk')",
         "createAt": 1695293435,
-        "creator": "acnt_c05ef27fe2dd483ca04131a19df7370f",
+        "creator": "acnt_xxxx32",
         "deleteAt": -1,
         "extend": {
             "*host": [
@@ -57,9 +57,9 @@ curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_3ca770bfc3354bec
         ],
         "status": 0,
         "updateAt": 1695293435,
-        "updator": "acnt_c05ef27fe2dd483ca04131a19df7370f",
-        "uuid": "lqrl_3ca770bfc3354becb13d9f667b071cd2",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "updator": "acnt_xxxx32",
+        "uuid": "lqrl_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

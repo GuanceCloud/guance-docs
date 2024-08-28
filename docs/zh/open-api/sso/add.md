@@ -30,7 +30,7 @@
 curl 'https://openapi.guance.com/api/v1/saml/mapping/field/add' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   -H 'Content-Type: application/json;charset=UTF-8' \
-  --data-raw '{"ssoUUID":"sso_98e73764a5144f41a2f5621120bff5b4","sourceField":"sd1","sourceValue":"sd1_value1","targetValues":["general"]}' \
+  --data-raw '{"ssoUUID":"sso_xxxx32","sourceField":"sd1","sourceValue":"sd1_value1","targetValues":["general"]}' \
   --compressed
 ```
 

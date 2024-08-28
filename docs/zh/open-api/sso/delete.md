@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/saml/mapping/field/fdmp_2f8f0085af2641928e8388da7d1318f5/delete' \
+curl 'https://openapi.guance.com/api/v1/saml/mapping/field/fdmp_xxxx32/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```

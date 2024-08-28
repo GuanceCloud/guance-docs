@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/alert_policy/altpl_a293c3584b8143778d4fed7a54315c11/get' \
+curl 'https://openapi.guance.com/api/v1/alert_policy/altpl_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -49,7 +49,7 @@ curl 'https://openapi.guance.com/api/v1/alert_policy/altpl_a293c3584b8143778d4fe
                         {
                             "status": "warning",
                             "to": [
-                                "notify_9fddc9eb5eb24b8cb1323a8417e0299e"
+                                "notify_xxxx32"
                             ]
                         }
                     ]
@@ -64,15 +64,15 @@ curl 'https://openapi.guance.com/api/v1/alert_policy/altpl_a293c3584b8143778d4fe
         "id": 4100,
         "name": "jj_modify",
         "notifyObjectName": {
-            "notify_9fddc9eb5eb24b8cb1323a8417e0299e": "金磊测试无密钥"
+            "notify_xxxx32": "金磊测试无密钥"
         },
         "ruleTimezone": "Asia/Shanghai",
         "score": 0,
         "status": 0,
         "updateAt": 1706152340,
         "updator": "xx",
-        "uuid": "altpl_a293c3584b8143778d4fed7a54315c11",
-        "workspaceUUID": "wksp_be64f5691e7a46c38f92ac5c05035a4b"
+        "uuid": "altpl_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",
