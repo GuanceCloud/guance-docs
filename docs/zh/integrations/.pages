@@ -61,7 +61,9 @@ nav:
       - 'ECS': aws_ecs.md
       - 'ELB': aws_elb.md
       - 'EventBridge': aws_eventbridge.md
-      - 'Lambda': aws_lambda.md
+      - 'Lambda':
+        - aws_lambda.md
+        - 'Lambda 扩展': awslambda.md
       - 'MediaConvert': aws_mediaconvert.md
       - 'MemoryDB': aws_memorydb.md
       - 'MSK': aws_msk.md
@@ -313,6 +315,7 @@ nav:
       - "Remote Write": prom_remote_write.md
       - "Push Gateway": pushgateway.md
     - 'Kafka 订阅': kafkamq.md
+    - 'Zabbix': zabbix_exporter.md
     - 'Promtail': promtail.md
     - 'Statsd': statsd.md
     - 'Filebeat': beats_output.md
