@@ -44,7 +44,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/modify' \
     "content": {
         "billingState": "normal",
         "createAt": 1676979022,
-        "creator": "mact_738b7d961dfa464da4deb7b69f1bbca6",
+        "creator": "mact_xxxx32",
         "dashboardUUID": null,
         "datastore": {
             "backup_log": "es",
@@ -59,7 +59,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/modify' \
             "security": "es",
             "tracing": "es"
         },
-        "dbUUID": "ifdb_c448231fe67e4e4cb6994377840a126c",
+        "dbUUID": "ifdb_xxxx32",
         "deleteAt": -1,
         "desc": "",
         "durationSet": {
@@ -88,7 +88,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/modify' \
         "supportJsonMessage": 1,
         "updateAt": 1677670046.184892,
         "updator": "wsak_xxxxx",
-        "uuid": "wksp_ed134a6485c8484dbd0e58ce9a9c6115",
+        "uuid": "wksp_xxxx32",
         "versionType": "pay"
     },
     "errorCode": "",

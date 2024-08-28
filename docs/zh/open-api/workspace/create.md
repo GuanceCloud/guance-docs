@@ -105,7 +105,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/create' \
                 "security": "es",
                 "tracing": "es"
             },
-            "dbUUID": "ifdb_683a9d68ce8042289a0fb51eeb85d43f",
+            "dbUUID": "ifdb_xxxx32",
             "deleteAt": -1,
             "desc": "test",
             "durationSet": {
@@ -119,7 +119,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/create' \
             "enablePublicDataway": 1,
             "esIndexMerged": 1,
             "esIndexSettings": {},
-            "esInstanceUUID": "es_1f32b130567411ec9cfbacde48001122",
+            "esInstanceUUID": "es_xxxx32",
             "exterId": "",
             "id": null,
             "isLocked": 0,
@@ -133,7 +133,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/create' \
             "supportJsonMessage": 1,
             "updateAt": 1672802266,
             "updator": "wsak_xxxxx",
-            "uuid": "wksp_320a93deda9a47549ffb95ce26fc6bb4",
+            "uuid": "wksp_xxxx32",
             "versionType": "free"
         }
     },

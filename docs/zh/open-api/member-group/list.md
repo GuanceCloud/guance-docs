@@ -43,7 +43,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/member_group/list' \
                 "88测试"
             ],
             "name": "测试",
-            "uuid": "group_1d6860295f6b4c5abd1f7b3e48a7ffbc"
+            "uuid": "group_xxxx32"
         }
     ],
     "errorCode": "",

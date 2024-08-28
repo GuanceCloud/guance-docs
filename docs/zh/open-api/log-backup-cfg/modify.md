@@ -49,7 +49,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/log_backup_cfg/lgbp_20454675957b4337b9d953b089b2b06c/modify' \
+curl 'https://openapi.guance.com/api/v1/log_backup_cfg/lgbp_xxxx32/modify' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
@@ -74,7 +74,7 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/lgbp_20454675957b4337b9d9
             "filterLogic": "and",
             "filters": []
         },
-        "externalResourceAccessCfgUUID": "erac_d22a3f47c12d4ae5bb37518702f4878a",
+        "externalResourceAccessCfgUUID": "erac_xxxx32",
         "id": 686,
         "name": "temp_test",
         "status": 0,
@@ -84,8 +84,8 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/lgbp_20454675957b4337b9d9
         "taskStatusCode": -1,
         "updateAt": 1697613856.5497322,
         "updator": "wsak_xxxxx",
-        "uuid": "lgbp_20454675957b4337b9d953b089b2b06c",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "lgbp_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

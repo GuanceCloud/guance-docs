@@ -30,7 +30,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/slo/monitor_3b7557f9bdf749139fee94a7ecb4da12/set_disable' \
+curl 'https://openapi.guance.com/api/v1/slo/monitor_xxxx32/set_disable' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data '{

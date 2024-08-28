@@ -41,9 +41,9 @@ curl 'https://openapi.guance.com/api/v1/notes/list' \
         "data": [
             {
                 "createAt": 1642588739,
-                "creator": "acnt_5fc5bb139e474911b6d3d300863f0c8b",
+                "creator": "acnt_xxxx32",
                 "creatorInfo": {
-                    "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_5fc5bb139e474911b6d3d300863f0c8b.png",
+                    "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                     "name": "66",
                     "username": "66@qq.com"
                 },
@@ -53,19 +53,19 @@ curl 'https://openapi.guance.com/api/v1/notes/list' \
                 "name": "我的笔记",
                 "pos": [
                     {
-                        "chartUUID": "chrt_dc6c1f939f5541bf8302c6d79f5f9800"
+                        "chartUUID": "chrt_xxxx32"
                     }
                 ],
                 "status": 0,
                 "updateAt": 1642588739,
-                "updator": "acnt_5fc5bb139e474911b6d3d300863f0c8b",
+                "updator": "acnt_xxxx32",
                 "updatorInfo": {
-                    "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_5fc5bb139e474911b6d3d300863f0c8b.png",
+                    "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                     "name": "66",
                     "username": "66@qq.com"
                 },
-                "uuid": "notes_35018053b8864ec190b3a6dbd5b44ab0",
-                "workspaceUUID": "wksp_c4201f4ef30c4a86b01a998e7544f822"
+                "uuid": "notes_xxxx32",
+                "workspaceUUID": "wksp_xxxx32"
             }
         ]
     },

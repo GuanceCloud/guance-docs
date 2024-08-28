@@ -28,7 +28,7 @@
 curl 'https://openapi.guance.com/api/v1/checker/set_disable' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"ruleUUIDs":["rul_0cc7449fdfc5496ba4e687d57d1af99e"],"isDisable":true}' \
+--data-raw '{"ruleUUIDs":["rul_xxxx32"],"isDisable":true}' \
 --compressed 
 ```
 
