@@ -4,6 +4,12 @@
 ???- quote "更新日志"
 
     === "ft-sdk"
+		**1.6.0**
+		```markdown
+		1. 优化数据存储和同步性能
+		（旧版本升级至 1.6.0 需要配置 FTSDKConfig.setNeedTransformOldCache 进行旧数据兼容同步）
+		2. 修复在使用 ft-plugin 时，调用 Log.w(String,Throwable) 引发异常的问题
+		```
 		**1.5.2**：
         ``` markdown
 		1. Error network_error 添加本地网络错误类型的提示，用于补充说明 Resource 数据中 resource_status=0 场景
@@ -338,6 +344,7 @@ android{
 | setCustomSyncPageSize | enum | 否 | 设置同步请求条目数，范围 [5,)，注意请求条目数越大，代表数据同步占用更大的计算资源   |
 | setSyncSleepTime | Int | 否 | 设置同步间歇时间，范围 [0,100]，默认不设置  |
 | enableDataIntegerCompatible | void | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题  |
+| setNeedTransformOldCache | void | 否 |  是否需要兼容同步 1.6.0 以下的版本，默认为 false |
 
 ### RUM 配置 {#rum-config}
 
