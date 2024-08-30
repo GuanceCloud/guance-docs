@@ -559,7 +559,7 @@ WebView 数据监测，需要在 WebView 访问页面集成[Web 监测 SDK](../w
 
 
 ## 常见问题
-
-- [iOS 相关](../ios/app-access.md#FAQ)
-- [Android 相关](../android/app-access.md#FAQ)
+- [Android 隐私审核](../android/app-access.md#third-party)
+- [iOS 其他相关](../ios/app-access.md#FAQ)
+- [Android 其他相关](../android/app-access.md#FAQ)
 
