@@ -12,13 +12,6 @@
 
 ![](img/management-data-1.png)
 
-<!--
-:material-numeric-1-circle-outline: 选择站点：
-
-默认提供以下站点选项：中国区1（杭州）、中国区2（宁夏）、中国区3（张家口）、中国区4（广州）、中国区5（世纪互联）、中国区6（香港）、海外区1（俄勒冈）、欧洲区1（法兰克福）、亚太区1（新加坡）。
-
-您也可以支持手动输入配置（仅支持 SaaS 版），格式为对应站点的域名地址，示例：https://cn3-auth.guance.com/。为保证授权生效，请输入可公网访问的站点网址。
--->
 
 :material-numeric-1-circle-outline: 输入工作空间 ID：
 
