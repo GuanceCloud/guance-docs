@@ -344,7 +344,7 @@ android{
 | setCustomSyncPageSize | enum | 否 | 设置同步请求条目数，范围 [5,)，注意请求条目数越大，代表数据同步占用更大的计算资源   |
 | setSyncSleepTime | Int | 否 | 设置同步间歇时间，范围 [0,100]，默认不设置  |
 | enableDataIntegerCompatible | void | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题  |
-| setNeedTransformOldCache | void | 否 |  是否需要兼容同步 1.6.0 以下的版本，默认为 false |
+| setNeedTransformOldCache | void | 否 |  是否需要兼容同步 1.6.0 以下的版本的旧缓存数据，默认为 false |
 
 ### RUM 配置 {#rum-config}
 
@@ -2003,7 +2003,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 		public void onCreate() {
 		    //如果已经同意协议，在 Application 中初始化
 			if(agreeProtocol){
-				FTSdk.init();
+				FTSdk.init(); //SDK 初始化伪代码
 			}
 		}
 	}
@@ -2019,7 +2019,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	
 			    //如果同意隐私声明
 				if( agreeProtocol ){
-					FTSdk.init();
+					FTSdk.init(); //SDK 初始化伪代码
 				}
 			}
 		}
@@ -2034,7 +2034,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	    override fun onCreate() {
 	        // 如果已经同意协议，在 Application 中初始化
 	        if (agreeProtocol) {
-	            FTSdk.init()
+	            FTSdk.init() //SDK 初始化伪代码
 	        }
 	    }
 	}
@@ -2049,12 +2049,14 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	
 	            // 如果同意隐私声明
 	            if (agreeProtocol) {
-	                FTSdk.init()
+	                FTSdk.init() //SDK 初始化伪代码
 	            }
 	        }
 	    }
 	}
 	```
+#### 第三方框架 {#third-party}
+`flutter`、`react-native`、`unity` 可以采用与以上原生 Android 相似延迟初始化方式，来应对应用市场隐私审核。
 
 ### 不使用 ft-plugin 情况下如何接入 SDK {#manual-set}
 观测云使用的 Androig Grale Plugin Transformation 实现的代码注入，从而实现数据自动收集。但是由于一些兼容性问题，可能存在无法使用 `ft-plugin` 的问题。受影响包括 **RUM** `Action`，`Resource`，和 `android.util.Log` ，Java 与 Kotlin `println` **控制台日志自动抓取**，以及符号文件的自动上传。
