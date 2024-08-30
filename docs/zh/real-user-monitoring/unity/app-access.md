@@ -510,5 +510,9 @@ FTUnityBridge.DeInit()
 
 为了避免自定义字段与 SDK 数据冲突，建议标签命名添加 **项目缩写** 的前缀，例如 `df_tag_name`，项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。SDK 全局变量中出现与 RUM、Log 相同变量时，RUM、Log 会覆盖 SDK 中的全局变量。
 
+### 其他
+- [iOS 其他相关](../ios/app-access.md#FAQ)
+- [Android 隐私审核](../android/app-access.md#third-party)
+- [Android 其他相关](../android/app-access.md#FAQ)
 
 
