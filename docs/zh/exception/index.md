@@ -1,5 +1,5 @@
 ---
-icon: zy/agreements
+icon: zy/incidents
 ---
 # 异常追踪
 ---
@@ -24,7 +24,7 @@ icon: zy/agreements
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 在创建完 Issue 后，如何运用频道来管理 Issue？</font>](../exception/channel.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 如何运用频道来管理已创建的 Issue？</font>](../exception/channel.md)
 
 
 </div>
@@ -32,7 +32,7 @@ icon: zy/agreements
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 利用视图直观分析 Issue</font>](../exception/issue-view.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 利用视图可视化分析 Issue</font>](../exception/issue-view.md)
 
 
 </div>

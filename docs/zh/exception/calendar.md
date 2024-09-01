@@ -7,7 +7,6 @@
 
 ## 新建日程 {#create}
 
-![](img/calendar.png)
 
 1. 输入日程名称；
 2. 选择该日程所在时区；
@@ -52,7 +51,6 @@
 
 :material-numeric-1-circle-outline: 筛选
 
-<img src="../img/calendar-3.png" width="60%" >
 
 - 通过日程范围进行区分：
     
@@ -70,11 +68,5 @@
 :material-numeric-4-circle-outline: 点击批量按钮，可选中多个日程进行批量导出或删除：
 
 
-![](img/calendar-4.png)
 
 
-<!-- 
-![](img/calendar-4.gif)
-
-![](img/calendar-5.gif)
--->

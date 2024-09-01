@@ -26,7 +26,6 @@
 | 中国区1（杭州）   | [https://auth.guance.com/](https://auth.guance.com/login/pwd) |阿里云（中国杭州） |
 | 中国区2（宁夏）   | [https://aws-auth.guance.com/](https://aws-auth.guance.com/login/pwd) |AWS（中国宁夏） |
 | 中国区4（广州）   | [https://cn4-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | 华为云（中国广州） |
-| 中国区5（世纪互联）   | [https://cn5-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) |  |
 | 中国区6（香港）   | [https://cn6-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | 阿里云（国际站） |
 | 海外区1（俄勒冈） | [https://us1-auth.guance.com/](https://us1-auth.guance.com/) | AWS（美国俄勒冈） |
 | 欧洲区1（法兰克福）   | [https://eu1-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | AWS（法兰克福） |

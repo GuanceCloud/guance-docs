@@ -21,7 +21,6 @@ icon: zy/open-api
 | SaaS 部署 | 中国区1（杭州）  | https://openapi.guance.com     |
 | SaaS 部署 | 中国区2（宁夏）  | https://aws-openapi.guance.com |
 | SaaS 部署 | 中国区4（广州）  | https://cn4-openapi.guance.com |
-| SaaS 部署 | 中国区5（世纪互联）  | https://cn5-openapi.guance.com |
 | SaaS 部署 | 中国区6（香港）  | https://cn6-openapi.guance.one |
 | SaaS 部署 | 海外区1（俄勒冈） | https://us1-openapi.guance.com |
 | SaaS 部署 | 欧洲区1（法兰克福） | https://eu1-openapi.guance.one |

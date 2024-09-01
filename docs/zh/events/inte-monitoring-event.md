@@ -20,7 +20,7 @@
 
 - [搜索与筛选](../getting-started/function-details/explorer-search.md)
 
-- 在智能监控事件查看器分析栏，支持基于标签字段进行多维度分析，以反映不同分析维度下的聚合事件统计，点击聚合事件可查看[聚合事件详情](event-details.md)。
+- 在智能监控事件查看器分析栏，支持基于标签字段进行多维度分析，以反映不同分析维度下的聚合事件统计，点击聚合事件可查看[聚合事件详情](./event-explorer/event-details.md)。
 
 - 可编辑左侧的[快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter)或添加新的筛选字段。
 
