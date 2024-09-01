@@ -1,0 +1,5 @@
+nav:
+  - '等级定义': level-definition.md
+  - 'Issue 发现': issue-discovery.md
+  - '通知策略': strategy.md
+  
