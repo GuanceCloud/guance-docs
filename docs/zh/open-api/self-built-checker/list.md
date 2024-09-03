@@ -49,15 +49,15 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/list?refKey=zyAy2l9v,
                 "alertPolicyInfos": [
                     {
                         "name": "0131",
-                        "uuid": "altpl_4a2747627adf4f3ebc886f71f0bc6e62"
+                        "uuid": "altpl_xxxx32"
                     },
                     {
                         "name": "xxx的告警策略-自定义测试",
-                        "uuid": "altpl_ac988631d29247e8851b15a8b51153b8"
+                        "uuid": "altpl_xxxx32"
                     },
                     {
                         "name": "ll-告警策略-勿动",
-                        "uuid": "altpl_dd6910be2bf14862a855533680a6d400"
+                        "uuid": "altpl_xxxx32"
                     }
                 ],
                 "createAt": 1706174074,
@@ -95,9 +95,9 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/list?refKey=zyAy2l9v,
                 "status": 0,
                 "type": "self_built_trigger",
                 "updateAt": 1710760853,
-                "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-                "uuid": "rul_062c120c9e764e6c9de7e9a3d2617f2e",
-                "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+                "updator": "acnt_xxxx32",
+                "uuid": "rul_xxxx32",
+                "workspaceUUID": "wksp_xxxx32"
             }
         ],
         "declaration": {

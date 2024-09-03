@@ -42,7 +42,7 @@ curl 'https://openapi.guance.com/api/v1/login_mapping/field/list?pageIndex=1&pag
         "data": [
             {
                 "createAt": 1697427020,
-                "creator": "mact_738b7d961dfa464da4dexxxx",
+                "creator": "mact_xxxx24",
                 "deleteAt": -1,
                 "id": 115,
                 "isSystem": 1,
@@ -62,7 +62,7 @@ curl 'https://openapi.guance.com/api/v1/login_mapping/field/list?pageIndex=1&pag
                 "updator": "mact_738b7d961dfaxxxxx",
                 "uuid": "lgmp_dbc32e896c004xxxx",
                 "workspaceName": "LWC-SSO-2023-09-25测试",
-                "workspaceUUID": "wksp_bb191037aa7e4482axxxxx"
+                "workspaceUUID": "wksp_xxxx22"
             }
         ],
         "pageInfo": {

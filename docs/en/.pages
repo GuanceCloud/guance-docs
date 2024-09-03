@@ -2,20 +2,22 @@ nav:
   - Release Notes: release-notes
   - <br/>Getting Started: ""
   - Getting Started: getting-started
+  - About Guance: plans
   - DataKit: datakit
   - Integrations: integrations
   - <br/>Product Functions: ""
   - Scenes: scene
-  - Infrastructure: infrastructure
-  - APM: application-performance-monitoring
-  - RUM: real-user-monitoring
-  - Logs: logs
-  - Synthetic Tests: usability-monitoring
-  - Metrics: metrics
   - Monitoring: monitoring
   - Events: events
   - Incidents: exception
+  - Infrastructure: infrastructure
+  - Metrics: metrics
+  - Logs: logs
+  - APM: application-performance-monitoring
+  - RUM: real-user-monitoring
+  - Synthetic Tests: usability-monitoring
   - CI Visibility: ci-visibility
+  - Pipelines: pipeline
   - <br/>Openess: ""
   - DataFlux Func: dataflux-func
   - Developers: developers
@@ -23,6 +25,7 @@ nav:
   - <br/>Management: ""
   - Workspace Management: management
   - Billing: billing
+  - Billing Center: billing-center
   - <br/>Deployment: ""
   - Deployment: deployment
   - <br/>Others: ""

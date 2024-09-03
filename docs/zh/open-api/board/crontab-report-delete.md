@@ -28,7 +28,7 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/delete' \
 -H 'Accept-Language: zh' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'Accept: application/json, text/plain, */*' \
---data-raw '{"reportUUIDs":["cron_3a819c6c1d4e4fcea690b18e678b174f"]}' \
+--data-raw '{"reportUUIDs":["cron_xxxx32"]}' \
 --compressed
 ```
 

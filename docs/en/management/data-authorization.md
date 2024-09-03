@@ -15,7 +15,7 @@ Enter **Management > Data Authorization > Shared**, click on **Add**:
 
 :material-numeric-1-circle-outline: Select the site:
 
-The following site options are provided by default: CN1 (Hangzhou), CN2 (Ningxia), CN3 (Zhangjiakou), CN4 (Guangzhou), CN5 (Century Interconnect), CN6 (Hong Kong), US1 (Oregon), EU1 (Frankfurt), AP1 (Singapore).
+The following site options are provided by default: CN1 (Hangzhou), CN2 (Ningxia), CN3 (Zhangjiakou), CN4 (Guangzhou), CN6 (Hong Kong), US1 (Oregon), EU1 (Frankfurt), AP1 (Singapore).
 
 You can also support manual input configuration (SaaS version only), in the format of the corresponding site's domain name address, for example: https://cn3-auth.guance.com/. To ensure the authorization takes effect, please enter a site URL that can be accessed publicly.
 

@@ -48,7 +48,7 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/list' \
         {
             "conditions": "{  source in [ 'mysql' ] }",
             "createAt": 1677571213,
-            "creator": "acnt_e85847e7fe894ea9938dd29c22bc1f9b",
+            "creator": "acnt_xxxx32",
             "deleteAt": -1,
             "duration": "14d",
             "extend": {
@@ -77,14 +77,14 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/list' \
             "status": 0,
             "storeType": "",
             "updateAt": 1677571213,
-            "updator": "acnt_e85847e7fe894ea9938dd29c22bc1f9b",
-            "uuid": "lgim_4a5bff2aa04c4cfdbfa75895e0ca5d2e",
-            "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+            "updator": "acnt_xxxx32",
+            "uuid": "lgim_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         },
         {
             "conditions": "{  source in [ 'df_diagnose' ] }",
             "createAt": 1677566168,
-            "creator": "acnt_7df07453091748b08f5ea2514f6a22f2",
+            "creator": "acnt_xxxx32",
             "deleteAt": -1,
             "duration": "7d",
             "extend": {
@@ -113,20 +113,20 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/list' \
             "status": 0,
             "storeType": "",
             "updateAt": 1677566168,
-            "updator": "acnt_7df07453091748b08f5ea2514f6a22f2",
-            "uuid": "lgim_cb0c5c8e408846ab80facf226b93ee03",
-            "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+            "updator": "acnt_xxxx32",
+            "uuid": "lgim_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         },
         {
             "conditions": "",
             "createAt": 1677489543,
-            "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+            "creator": "acnt_xxxx32",
             "deleteAt": -1,
             "duration": "",
             "extend": {},
             "exterStoreName": "s",
             "exterStoreProject": "",
-            "externalResourceAccessCfgUUID": "erac_c70e86d8d52849e2af05fe60fcf1d1ed",
+            "externalResourceAccessCfgUUID": "erac_xxxx32",
             "id": 1,
             "isBindCustomStore": 1,
             "isPublicNetworkAccess": 1,
@@ -138,9 +138,9 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/list' \
             "status": 0,
             "storeType": "es",
             "updateAt": 1677489543,
-            "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-            "uuid": "lgim_21c3c9ed091046398e9b4a53a62fddaf",
-            "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+            "updator": "acnt_xxxx32",
+            "uuid": "lgim_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         },
         {
             "conditions": "",
@@ -151,7 +151,7 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/list' \
             "extend": {},
             "exterStoreName": "aa_uuid",
             "exterStoreProject": "",
-            "externalResourceAccessCfgUUID": "erac_155b376bfdaf4c529e8567bb818058c5",
+            "externalResourceAccessCfgUUID": "erac_xxxx32",
             "id": 12,
             "isBindCustomStore": 1,
             "isPublicNetworkAccess": 1,
@@ -164,8 +164,8 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/list' \
             "storeType": "es",
             "updateAt": 1677665779,
             "updator": "xx",
-            "uuid": "lgim_1145381480dd4a4f95bccdb1f0889141",
-            "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+            "uuid": "lgim_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         },
         {
             "conditions": "",
@@ -176,7 +176,7 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/list' \
             "queryType": "logging",
             "sortNo": -1,
             "uuid": "default",
-            "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+            "workspaceUUID": "wksp_xxxx32"
         }
     ],
     "errorCode": "",

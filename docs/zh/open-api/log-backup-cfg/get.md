@@ -38,7 +38,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/log_backup_cfg/lgbp_4eb51e43647a4a7c8bbac69bec088275/get' \
+curl 'https://openapi.guance.com/api/v1/log_backup_cfg/lgbp_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -61,14 +61,14 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/lgbp_4eb51e43647a4a7c8bba
         },
         "conditions": "",
         "createAt": 1697543205,
-        "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+        "creator": "acnt_xxxx32",
         "dataType": "logging",
         "deleteAt": -1,
         "extend": {
             "filterLogic": "and",
             "filters": []
         },
-        "externalResourceAccessCfgUUID": "erac_4451d3bad15a4c298d6cf593e4d83212",
+        "externalResourceAccessCfgUUID": "erac_xxxx32",
         "id": 684,
         "name": "ssfda***",
         "status": 0,
@@ -77,9 +77,9 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/lgbp_4eb51e43647a4a7c8bba
         "taskErrorCode": "NoSuchBucket",
         "taskStatusCode": 404,
         "updateAt": 1697610912,
-        "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-        "uuid": "lgbp_4eb51e43647a4a7c8bbac69bec088275",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "updator": "acnt_xxxx32",
+        "uuid": "lgbp_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

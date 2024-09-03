@@ -164,6 +164,14 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
 ![](../img/9.apm_explorer_9.gif)
 
+若您在用户视图配置了 `service` 的[绑定](../../scene/built-in-view/bind-view.md#bind)关系，如 `service:mysql`。在此处点击服务的卡片，即可快速查看与该服务关联的相关用户视图。
+
+点击某一视图即可跳转至其详情页。
+
+![](../img/apm_explorer_view.png)
+
+
+
 ### 快捷操作 {#icon}
 
 | <div style="width: 140px">操作</div>      | 说明                          |
@@ -186,7 +194,7 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
 | <div style="width: 120px">字段</div>      | 属性                          |
 | ----------- | ------------------------------------ |
-| 筛选字段值      | 即添加该字段至查看器，查看与该字段相关的全部数据，可在链路查看器筛选查看该字段相关的链路列表。*见图一。*                          |
+| 筛选字段值      | 即添加该字段至查看器，查看与该字段相关的全部数据，可在链路查看器筛选查看该字段相关的链路列表。<br />*见图一。*                          |
 | 反向筛选字段值      | 即添加该字段至查看器，查看除了该字段以外的其他数据。                          |
 | 添加到显示列      | 即添加该字段到查看器列表进行查看。                          |
 | 复制      | 即复制该字段至剪贴板。                          |
@@ -324,3 +332,28 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
     - 若未查询到关联字段，则排在末端显示为灰色，点击提示**未匹配到网络视图**。
 
 </div>
+
+## 开始阅读
+
+<font size=3>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **开始采集链路数据**</font>](./index.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **查看器的强大之处**</font>](../../getting-started/function-details/explorer-search.md)
+
+</div>
+
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **绑定内置视图**</font>](../../scene/built-in-view/bind-view.md#bind)
+
+</div>
+
+</font>

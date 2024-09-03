@@ -2,7 +2,7 @@
 
 在使用Elasticsearch/OpenSearch作为观测云日志/链路存储后端之前，请先评估存储容量和集群规格。本文根据社区内容和实际测试给出一个评估算法。
 
-???+ attention
+???+ warning
     - 因为Elasticsearch开源协议变更，所以优先推荐使用OpenSearch；
     - 建议先用较小规格的Elasticsearch/OpenSearch测试一下监控数据的产生速率，根据测试结果进行集群规划。
 

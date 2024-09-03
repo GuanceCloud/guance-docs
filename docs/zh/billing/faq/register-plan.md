@@ -3,13 +3,13 @@
 
 ## 阿里云用户如何开通观测云？
 
-阿里云用户可以通过选择“中国区1（杭州）“站点来 [注册观测云](../../plans/commercial-register.md) ，或者您也可以通过在 [阿里云市场购买观测云商品](../../billing/commercial-aliyun.md) 来开通观测云。
+阿里云用户可以通过选择“中国区1（杭州）“站点来 [注册观测云](../../plans/commercial-register.md) ，或者您也可以通过在 [阿里云市场购买观测云商品](../../plans/commercial-aliyun.md) 来开通观测云。
 
 若您想要在观测云使用阿里云 SLS 日志服务来存储数据，您可以通过在 [阿里云市场购买观测云专属版商品](../../plans/commercial-aliyun-sls.md) 来开通观测云。
 
 ## AWS 用户如何开通观测云？
 
-AWS 用户可以通过选择“中国区2（宁夏）”、“海外区1（俄勒冈）”站点来 [注册观测云](../../plans/commercial-register.md) ，注册以后您可以[用 AWS 中国区账号进行结算](./billing-account/aws-account.md)。
+AWS 用户可以通过选择“中国区2（宁夏）”、“海外区1（俄勒冈）”站点来 [注册观测云](../../plans/commercial-register.md) ，注册以后您可以[用 AWS 中国区账号进行结算](../billing-account/aws-account.md)。
 
 ## 华为云用户如何开通观测云？
 

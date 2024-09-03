@@ -191,7 +191,7 @@ ddtrace 支持给方法注入 Trace ，默认情况下，ddtrace 会对所有的
 -Ddatadog.slf4j.simpleLogger.logFile=<NEW_LOG_FILE_PATH> 
 ```
 
-???+ attention "注意"
+???+ warning "注意"
     `-Ddd.trace.debug=true` 是用来开启 ddtrace 的 debug 日志，而不是开启应用的 debug 日志。
     
 
@@ -305,6 +305,29 @@ ddtrace 1.9.0 之前使用
 :point_right: 目前支持 Servlet3 和 Netty4
 
 :heavy_check_mark: version >= 1.25.2-guance
+
+### Request body Tag :loudspeaker:
+
+把请求体添加到链路 tag 上，目前只支持 `POST` 请求，且 `Context-Type` 为 `application/json` 或 `application/json;charset=UTF-8`
+- 启动命令
+
+`-Ddd.trace.request.body.enabled`：默认值为 `false`，即不开启。
+
+- 环境变量
+
+`DD_TRACE_REQUEST_BODY_ENABLED`
+
+如执行以下请求
+
+> curl -X POST -H 'Content-Type: application/json' -d '{"username":"joy","age":18}' http://localhost:8090/jsonStr
+
+![Img](../images/ddtrace-param-request-body.png)
+
+
+:point_right: 目前支持 Servlet3
+
+:heavy_check_mark: version >= 1.25.2-guance
+
 
 
 ## 参考文档

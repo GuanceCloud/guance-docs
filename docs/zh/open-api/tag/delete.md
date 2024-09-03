@@ -29,7 +29,7 @@ curl 'https://openapi.guance.com/api/v1/tag/delete' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Accept-Language: zh' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"tagUUIDs":["tag_769821ae7f2c435d8ffe6c510cc3d38c", "tag_1e2950a080c949039285a5edfce12cd4"]}' \
+--data-raw '{"tagUUIDs":["tag_xxxx32", "tag_xxxx32"]}' \
 --compressed
 ```
 

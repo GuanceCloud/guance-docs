@@ -40,7 +40,7 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/get?refKey=zyAy2l9v' 
     "code": 200,
     "content": {
         "createAt": 1662539061,
-        "creator": "acnt_4c47698da848440b8d1ca92e9f296ac1",
+        "creator": "acnt_xxxx32",
         "crontabInfo": {},
         "deleteAt": -1,
         "extend": {},
@@ -49,14 +49,14 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/get?refKey=zyAy2l9v' 
             "name": "自建巡检-20220907T162421bymvlx",
             "type": "selfBuiltCheck"
         },
-        "monitorUUID": "monitor_c0d21959e3724dccbf50aead796cee39",
+        "monitorUUID": "monitor_xxxx32",
         "refKey": "zyAy2l9v",
         "status": 0,
         "type": "self_built_trigger",
         "updateAt": 1662539061,
         "updator": "",
-        "uuid": "rul_ef77a9eccbcc4171a017c65c1b827f89",
-        "workspaceUUID": "wksp_ff0e31161a1a47faabc36b5ff66c160a"
+        "uuid": "rul_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

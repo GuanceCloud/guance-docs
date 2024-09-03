@@ -50,7 +50,7 @@ curl 'https://openapi.guance.com/api/v1/issue-level/<issue_level_uuid>/modify' \
     "content": {
         "color": "#E94444",
         "createAt": 1694593524,
-        "creator": "acnt_861cf6dd440348648861247ae42909c3",
+        "creator": "acnt_xxxx32",
         "deleteAt": -1,
         "description": "自定义等级描述2",
         "extend": {},
@@ -58,9 +58,9 @@ curl 'https://openapi.guance.com/api/v1/issue-level/<issue_level_uuid>/modify' \
         "name": "custom-1",
         "status": 0,
         "updateAt": 1694593524,
-        "updator": "acnt_861cf6dd440348648861247ae42909c3",
-        "uuid": "issl_bb535e6616ac47de88fd9ec08787c4c0",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "updator": "acnt_xxxx32",
+        "uuid": "issl_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

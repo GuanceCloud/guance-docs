@@ -19,12 +19,13 @@ nav:
   - 可用性监测: usability-monitoring
   - 安全巡检: scheck
   - CI 可视化: ci-visibility
-  - Pipeline: pipeline
+  - Pipelines: pipeline
   - <br/>开放能力: ""
   - DataFlux Func: dataflux-func
   - DCA: dca
   - 自定义开发: developers
   - OpenAPI: open-api
+  - OpenAPI拓展说明: studio-backend
   - <br/>管理: ""
   - 工作空间管理: management
   - 付费计划与账单: billing

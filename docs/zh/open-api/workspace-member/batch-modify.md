@@ -45,7 +45,7 @@
 curl 'https://openapi.guance.com/api/v1/workspace/member/batch_modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"accountUUIDs": ["acnt_2387056f5aaa4043b61eb3a47e81933a"], "onlyModifyRoles": true, "roleUUIDs": ["general","wsAdmin"]}' \
+--data-raw '{"accountUUIDs": ["acnt_xxxx32"], "onlyModifyRoles": true, "roleUUIDs": ["general","wsAdmin"]}' \
 --compressed 
 ```
 
