@@ -23,6 +23,7 @@ nav:
   - '中国地图': china-map.md
   - '世界地图': world-map.md
   - '蜂窝图': cellular-map.md
+  - '热力图': heatmap_scene.md
   - '拓扑图': topology-map.md
   - '桑基图': sankey.md
   - '文本': text.md
