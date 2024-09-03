@@ -40,7 +40,7 @@ Amazon Elastic Container Service (Amazon ECS) 是一项高度可扩展的快速�
 
 ## 操作步骤
 
-???+ attention
+???+ warning
 
     示例所使用的版本为 DataKit 1.4.18
 
@@ -223,7 +223,7 @@ Amazon Elastic Container Service (Amazon ECS) 是一项高度可扩展的快速�
                 print(status_code, result)
     ```
 
-???+ attention
+???+ warning
 
     - 上述内容第4行的 `ecs_log` ，需要确保同一个 Func 中唯一，可以改成其它字母。<br/>
     - 第6行的 `awc_ecs` 即是刚才添加的脚本集 ID<br/>

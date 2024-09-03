@@ -14,8 +14,8 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| accountUUIDs | array | Y | 账号列表<br>例子: ['acnt_6796a73f2ed941c4bd93479e04c1e0ad'] <br>允许为空: False <br> |
-| roleUUIDs | array | Y | 用户角色uuid列表<br>例子: ['general', 'readOnly', 'role_6b5afff485fa44ea8400abfd4d23123e'] <br>允许为空: False <br> |
+| accountUUIDs | array | Y | 账号列表<br>例子: ['acnt_xxxx32'] <br>允许为空: False <br> |
+| roleUUIDs | array | Y | 用户角色uuid列表<br>例子: ['general', 'readOnly', 'role_xxxx32'] <br>允许为空: False <br> |
 
 ## 参数补充说明
 
@@ -43,7 +43,7 @@
 curl 'https://openapi.guance.com/api/v1/workspace/member/batch_add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"accountUUIDs": ["acnt_6796a73f2ed941c4bd93479e04c1e0ad"], "roleUUIDs": ["general","role_6b5afff485fa44ea8400abfd4d23123e"]}' \
+--data-raw '{"accountUUIDs": ["acnt_xxxx32"], "roleUUIDs": ["general","role_xxxx32"]}' \
 --compressed
 ```
 

@@ -24,7 +24,15 @@ icon: zy/billing
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 公有云商业版</font>](../plans/commercial.md)
 
+</div>
+
+<div class="grid cards" markdown>
+
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 公有云体验版</font>](../plans/trail.md)
+
+</div>
+
+<div class="grid cards" markdown>
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 私有云部署版</font>](../deployment/deployment-description.md#_4)
 
@@ -43,7 +51,6 @@ icon: zy/billing
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 费用中心</font>](./cost-center/index.md)
 
-<br/>
 
 </div>
 

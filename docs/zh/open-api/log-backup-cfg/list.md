@@ -56,7 +56,7 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/list?pageIndex=1&pageSize
         {
             "conditions": "",
             "createAt": 1697543205,
-            "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+            "creator": "acnt_xxxx32",
             "dataType": "logging",
             "deleteAt": -1,
             "duration": "180d",
@@ -64,7 +64,7 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/list?pageIndex=1&pageSize
                 "filterLogic": "and",
                 "filters": []
             },
-            "externalResourceAccessCfgUUID": "erac_4451d3bad15a4c298d6cf593e4d83212",
+            "externalResourceAccessCfgUUID": "erac_xxxx32",
             "id": 684,
             "name": "ssfda***",
             "status": 0,
@@ -73,14 +73,14 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/list?pageIndex=1&pageSize
             "taskErrorCode": "NoSuchBucket",
             "taskStatusCode": 404,
             "updateAt": 1697610912,
-            "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-            "uuid": "lgbp_4eb51e43647a4a7c8bbac69bec088275",
-            "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+            "updator": "acnt_xxxx32",
+            "uuid": "lgbp_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         },
         {
             "conditions": "",
             "createAt": 1694588429,
-            "creator": "acnt_8775d346f997436c8918e9a5c8a3dffc",
+            "creator": "acnt_xxxx32",
             "dataType": "logging",
             "deleteAt": -1,
             "duration": "180d",
@@ -88,7 +88,7 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/list?pageIndex=1&pageSize
                 "filterLogic": "and",
                 "filters": []
             },
-            "externalResourceAccessCfgUUID": "erac_79258ec856d344179fb01855a4801fca",
+            "externalResourceAccessCfgUUID": "erac_xxxx32",
             "id": 669,
             "name": "test-21-02",
             "status": 0,
@@ -97,14 +97,14 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/list?pageIndex=1&pageSize
             "taskErrorCode": "AccessDenied",
             "taskStatusCode": 403,
             "updateAt": 1695290409,
-            "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-            "uuid": "lgbp_c4241d62a1fb4e0dabe26ca6643d3f0a",
-            "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+            "updator": "acnt_xxxx32",
+            "uuid": "lgbp_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         },
         {
             "conditions": "{  `source` in [ 'mysql' ] }",
             "createAt": 1692686192,
-            "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+            "creator": "acnt_xxxx32",
             "dataType": "logging",
             "deleteAt": -1,
             "duration": "180d",
@@ -121,7 +121,7 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/list?pageIndex=1&pageSize
                     }
                 ]
             },
-            "externalResourceAccessCfgUUID": "erac_e766355a7130427faffe766b015286d1",
+            "externalResourceAccessCfgUUID": "erac_xxxx32",
             "id": 518,
             "name": "osstest-xjp",
             "status": 0,
@@ -130,9 +130,9 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/list?pageIndex=1&pageSize
             "taskErrorCode": "",
             "taskStatusCode": -1,
             "updateAt": 1695286731,
-            "updator": "acnt_a71564d3390f486dba9f7c1580b9e02a",
-            "uuid": "lgbp_42cca273b6594533936c072c1c85a5ae",
-            "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+            "updator": "acnt_xxxx32",
+            "uuid": "lgbp_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         }
     ],
     "errorCode": "",

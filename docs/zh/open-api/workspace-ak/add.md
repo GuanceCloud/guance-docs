@@ -45,12 +45,12 @@ curl 'https://openapi.guance.com/api/v1/workspace/accesskey/add' \
         "deleteAt": -1,
         "id": null,
         "name": "88",
-        "sk": "QxbCoajsN6m41c3PD0YypBKUGtXSugIF",
+        "sk": "xxx",
         "status": 0,
         "updateAt": 1678024319,
         "updator": "xxx",
         "uuid": "xxx",
-        "workspaceUUID": "wksp_8ea5c78a71e64298bffd4d3ec03f1a5f"
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

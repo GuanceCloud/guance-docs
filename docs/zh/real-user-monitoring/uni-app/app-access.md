@@ -572,6 +572,7 @@ $(PROJECT_DIR)
 
 Android 云打包与离线打包使用了两种不同的集成逻辑。离线打包集成方式与观测云 `Android SDK` 集成方式相同，使用 `Android Studio Gradle Plugin` 的方式，云打包无法使用 `Android Studio Gradle Plugin` ，所以只能通过观测云 `UniApp Native Plugin` 中内部代码实现部分功能。所以离线打包版本配置可选项要比云打包版本更多，SDK 配置中 `offlinePakcage`[参数](#base-config)就是为了区分两种情况。
 
-### [iOS 相关](../ios/app-access.md#FAQ)
-
-### [Android 相关](../android/app-access.md#FAQ)
+### 其他
+- [Android 隐私审核](../android/app-access.md#third-party)
+- [iOS 其他相关](../ios/app-access.md#FAQ)
+- [Android 其他相关](../android/app-access.md#FAQ)

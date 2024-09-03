@@ -27,7 +27,7 @@
 curl 'https://openapi.guance.com/api/v1/rum_cfg/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"rumcfgUUIDs":["fe52be60_2fac_11ee_8ee7_0ffb4a4ef591"]}' \
+--data-raw '{"rumcfgUUIDs":["fe52be60_xx_0ffb4a4ef591"]}' \
 --compressed
 ```
 
@@ -39,7 +39,7 @@ curl 'https://openapi.guance.com/api/v1/rum_cfg/delete' \
 {
     "code": 200,
     "content": {
-        "fe52be60_2fac_11ee_8ee7_0ffb4a4ef591": "assddd"
+        "fe52be60_xxx_0ffb4a4ef591": "assddd"
     },
     "errorCode": "",
     "message": "",

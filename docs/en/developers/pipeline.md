@@ -54,7 +54,7 @@ group_between(status_code, [200, 300], "HTTP_OK", "http_status")
 drop_origin_data()
 ```
 
-???+ attention
+???+ warning
 
     During cutting, avoid [possible duplicate name with tag key](datakit-pl-how-to.md#naming)
 
@@ -155,7 +155,7 @@ add_pattern(time, "([^0-9]?)%{HOUR:hour}:%{MINUTE:minute}(?::%{SECOND:second})([
 grok(_, %{time})
 ```
 
-???+ attention
+???+ warning
 
     - If a pattern with the same name occurs, the local pattern takes precedence (that is, the local pattern overrides the global pattern).
     - In the pipeline script, [add_pattern()](#fn-add-pattern) needs to be called before the [grok()](#fn-grok) function, otherwise the first data fetch will fail.

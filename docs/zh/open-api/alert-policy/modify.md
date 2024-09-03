@@ -25,7 +25,7 @@
 | ruleTimezone | str | Y | 告警策略 时区<br>例子: Asia/Shanghai <br>允许为空: False <br> |
 | alertOpt | json |  | 告警设置<br>允许为空: False <br> |
 | alertOpt.silentTimeout | integer |  | 告警设置<br>允许为空: False <br> |
-| alertOpt.alertTarget | array |  | 触发动作, 注意触发时间的, 参数处理<br>例子: [{'name': '通知配置1', 'targets': [{'to': ['acnt_37ca16a6bf54413090d5e8396fc859cd'], 'status': 'critical', 'tags': {'pod_name': ['coredns-7769b554cf-w95fk']}, 'upgradeTargets': [{'to': ['acnt_37ca16a6bf54413090d5e8396fc859cd'], 'duration': 600}, {'to': ['group_b85d201fd5244be6842e0d20d35c37dd'], 'duration': 6000}]}], 'crontabDuration': 600, 'crontab': '0 9 * * 0,1,2,3,4'}, {'name': '通知配置2', 'targets': [{'status': 'error', 'to': ['group_b85d201fd5244be6842e0d20d35c37dd'], 'upgradeTargets': [{'to': ['acnt_37ca16a6bf54413090d5e8396fc859cd'], 'duration': 600}, {'to': ['group_b85d201fd5244be6842e0d20d35c37dd'], 'duration': 6000}]}], 'customDateUUIDs': ['ndate_0b020405d122444489db5391b3fa2443'], 'customStartTime': '09:30:10', 'crontabDuration': 600}] <br>允许为空: False <br> |
+| alertOpt.alertTarget | array |  | 触发动作, 注意触发时间的, 参数处理<br>例子: [{'name': '通知配置1', 'targets': [{'to': ['acnt_xxxx32'], 'status': 'critical', 'tags': {'pod_name': ['coredns-7769b554cf-w95fk']}, 'upgradeTargets': [{'to': ['acnt_xxxx32'], 'duration': 600}, {'to': ['group_xxxx32'], 'duration': 6000}]}], 'crontabDuration': 600, 'crontab': '0 9 * * 0,1,2,3,4'}, {'name': '通知配置2', 'targets': [{'status': 'error', 'to': ['group_xxxx32'], 'upgradeTargets': [{'to': ['acnt_xxxx32'], 'duration': 600}, {'to': ['group_xxxx32'], 'duration': 6000}]}], 'customDateUUIDs': ['ndate_xxxx32'], 'customStartTime': '09:30:10', 'crontabDuration': 600}] <br>允许为空: False <br> |
 | alertOpt.aggInterval | integer | Y | 告警聚合间隔，单位秒, 0代表不聚合<br>允许为空: False <br>$minValue: 0 <br>$maxValue: 1800 <br> |
 | alertOpt.aggFields | array |  | 聚合字段列表，保持空列表[]表示「聚合规则：全部」,  df_monitor_checker_id：监控器/智能巡检/SLO,   df_dimension_tags：检测维度,   df_label：标签,  CLUSTER：智能聚合<br>例子: ['CLUSTER'] <br>允许为空: False <br> |
 | alertOpt.aggLabels | array |  | 按标签聚合时的标签值列表，需要在aggFields中指定有df_label才会生效<br>允许为空: False <br> |
@@ -39,10 +39,10 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/alert_policy/altpl_a293c3584b8143778d4fed7a54315c11/modify' \
+curl 'https://openapi.guance.com/api/v1/alert_policy/altpl_xxxx32/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"name":"jj_modify","ruleTimezone":"Asia/Shanghai","alertOpt":{"alertTarget":[{"targets":[{"status":"warning","to":["notify_9fddc9eb5eb24b8cb1323a8417e0299e"]}]}],"silentTimeout":21600,"aggInterval":120,"aggFields":["df_monitor_checker_id"]}}' \
+--data-raw '{"name":"jj_modify","ruleTimezone":"Asia/Shanghai","alertOpt":{"alertTarget":[{"targets":[{"status":"warning","to":["notify_xxxx32"]}]}],"silentTimeout":21600,"aggInterval":120,"aggFields":["df_monitor_checker_id"]}}' \
 --compressed
 ```
 
@@ -65,7 +65,7 @@ curl 'https://openapi.guance.com/api/v1/alert_policy/altpl_a293c3584b8143778d4fe
                         {
                             "status": "warning",
                             "to": [
-                                "notify_9fddc9eb5eb24b8cb1323a8417e0299e"
+                                "notify_xxxx32"
                             ]
                         }
                     ]
@@ -84,8 +84,8 @@ curl 'https://openapi.guance.com/api/v1/alert_policy/altpl_a293c3584b8143778d4fe
         "status": 0,
         "updateAt": 1706152339.7920609,
         "updator": "xxx",
-        "uuid": "altpl_a293c3584b8143778d4fed7a54315c11",
-        "workspaceUUID": "wksp_be64f5691e7a46c38f92ac5c05035a4b"
+        "uuid": "altpl_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

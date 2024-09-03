@@ -91,13 +91,13 @@ curl 'https://openapi.guance.com/api/v1/tag/list?pageIndex=1&pageSize=2' \
         {
             "colour": "style_key3",
             "description": "temp_test",
-            "id": "tag_1e2950a080c949039285a5edfce12cd4",
+            "id": "tag_xxxx32",
             "name": "test_ha"
         },
         {
             "colour": "default",
             "description": "",
-            "id": "tag_8576f3cb07c1449f8b7a9dc6146300dd",
+            "id": "tag_xxxx32",
             "name": "ssssooooo"
         }
     ],

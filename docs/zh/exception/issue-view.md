@@ -22,4 +22,5 @@
 
 ![](img/issue-analysis.png)
 
+
 > 关于图表相关操作，可参考 [可视化图表](../scene/visual-chart/index.md)。

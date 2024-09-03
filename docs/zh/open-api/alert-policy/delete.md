@@ -27,7 +27,7 @@
 curl 'https://openapi.guance.com/api/v1/alert_policy/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"alertPolicyUUIDs": ["altpl_a293c3584b8143778d4fed7a54315c11"]}' \
+--data-raw '{"alertPolicyUUIDs": ["altpl_xxxx32"]}' \
 --compressed
 ```
 

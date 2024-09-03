@@ -72,19 +72,19 @@ extend 字段示例:
     "members": [
         {
             "type": "@",
-            "uuid": "acnt_d72e117f8902419fa1d135d1d781b79d",
+            "uuid": "acnt_xxxx32",
             "exists": true
         }
     ],
     "channels": [
         {
             "type": "#",
-            "uuid": "chan_cf4f9aa671ef4dffa5a2b5d1824cd5b7",
+            "uuid": "chan_xxxx32",
             "exists": true
         }
     ],
     "manager": [
-        "acnt_ae92a25fa44f47d5adbb0fe86452c4e6",
+        "acnt_xxxx32",
         "abc@11.com",
         "group_xxx"
     ],
@@ -116,7 +116,7 @@ extend 字段示例:
 curl 'https://openapi.guance.com/api/v1/issue/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"name":"dcacscsc","level":"system_level_2","description":"<span>cdscascas</span>","extend":{"channels":[{"type":"#","uuid":"chan_d5054276d1a74b518bf1b16f59c26e95"}],"view_isuue_url":"/exceptions/exceptionsTracking?leftActiveKey=ExceptionsTracking&activeName=ExceptionsTracking&w=wksp_ed134a6485c8484dbd0e58ce9a9c6115&classic=exceptions_tracing&issueName=SYS&activeChannel=%7BdefaultChannelUUID%7D&sourceType=exceptions_tracing&__docid=%7BissueUUID%7D"},"attachmentUuids":[]}'\
+--data-raw '{"name":"dcacscsc","level":"system_level_2","description":"<span>cdscascas</span>","extend":{"channels":[{"type":"#","uuid":"chan_xxxx32"}],"view_isuue_url":"/exceptions/exceptionsTracking?leftActiveKey=ExceptionsTracking&activeName=ExceptionsTracking&w=wksp_xxxx32&classic=exceptions_tracing&issueName=SYS&activeChannel=%7BdefaultChannelUUID%7D&sourceType=exceptions_tracing&__docid=%7BissueUUID%7D"},"attachmentUuids":[]}'\
 --compressed
 ```
 
@@ -129,7 +129,7 @@ curl 'https://openapi.guance.com/api/v1/issue/add' \
     "code": 200,
     "content": {
         "createAt": 1686398344,
-        "creator": "acnt_861cf6dd440348648861247ae42909c3",
+        "creator": "acnt_xxxx32",
         "creatorInfo": {
             "acntWsNickname": "",
             "email": "1061379682@qq.com",
@@ -144,7 +144,7 @@ curl 'https://openapi.guance.com/api/v1/issue/add' \
                 {
                     "exists": true,
                     "type": "#",
-                    "uuid": "chan_d5054276d1a74b518bf1b16f59c26e95"
+                    "uuid": "chan_xxxx32"
                 }
             ],
             "view_isuue_url": ""
@@ -159,7 +159,7 @@ curl 'https://openapi.guance.com/api/v1/issue/add' \
         "statusType": 20,
         "subIdentify": "",
         "updateAt": 1686400483,
-        "updator": "acnt_861cf6dd440348648861247ae42909c3",
+        "updator": "acnt_xxxx32",
         "updatorInfo": {
             "acntWsNickname": "",
             "email": "1061379682@qq.com",
@@ -167,8 +167,8 @@ curl 'https://openapi.guance.com/api/v1/issue/add' \
             "name": "wanglei-testing",
             "username": "1061379682@qq.com"
         },
-        "uuid": "issue_7b1f8986a7b44d7a987976fb5c7876fc",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "issue_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

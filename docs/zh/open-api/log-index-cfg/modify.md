@@ -32,7 +32,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/log_index_cfg/lgim_6351251e2103441abb96a0b43bdabc02/modify' \
+curl 'https://openapi.guance.com/api/v1/log_index_cfg/lgim_xxxx32/modify' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Accept-Language: zh' \
 -H 'Content-Type: application/json;charset=UTF-8' \
@@ -81,8 +81,8 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/lgim_6351251e2103441abb96a
         "storeType": "",
         "updateAt": 1698752013.27368,
         "updator": "xx",
-        "uuid": "lgim_e5ef2a328d084732a6bbcbac33fc2d67",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "lgim_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

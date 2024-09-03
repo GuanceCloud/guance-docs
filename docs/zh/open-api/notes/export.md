@@ -54,7 +54,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/notes/notes_dec0b0bc6e6d4b41aa627132887de4dc/export' \
+curl 'https://openapi.guance.com/api/v1/notes/notes_xxxx32/export' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```

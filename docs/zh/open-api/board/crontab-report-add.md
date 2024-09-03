@@ -64,7 +64,7 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/add' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---data-raw '{"title":"ceshi2","content":"","dashboardUUID":"dsbd_28a1718f1b5547a58a40f2167948bdc6","recipient":["acnt_e85847e7fe894ea9938dd29c22bc1f9b"],"timeRange":"1d","singleExecuteTime":1698718800,"crontab":"","extend":{"cycleTimeType":"once","hour":"10","minutes":"20","dashboardInfo":{"value":"dsbd_28a1718f1b5547a58a40f2167948bdc6","label":"whytest"}},"timezone":"Asia/Shanghai","notifyType":"email"}' \
+--data-raw '{"title":"ceshi2","content":"","dashboardUUID":"dsbd_xxxx32","recipient":["acnt_xxxx32"],"timeRange":"1d","singleExecuteTime":1698718800,"crontab":"","extend":{"cycleTimeType":"once","hour":"10","minutes":"20","dashboardInfo":{"value":"dsbd_xxxx32","label":"whytest"}},"timezone":"Asia/Shanghai","notifyType":"email"}' \
 --compressed
 ```
 
@@ -80,14 +80,14 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/add' \
         "createAt": 1698665760,
         "creator": "wsak_xxxxx",
         "crontab": "",
-        "dashboardUUID": "dsbd_28a1718f1b5547a58a40f2167948bdc6",
+        "dashboardUUID": "dsbd_xxxx32",
         "deleteAt": -1,
         "executed": 0,
         "extend": {
             "cycleTimeType": "once",
             "dashboardInfo": {
                 "label": "whytest",
-                "value": "dsbd_28a1718f1b5547a58a40f2167948bdc6"
+                "value": "dsbd_xxxx32"
             },
             "hour": "10",
             "minutes": "20"
@@ -96,7 +96,7 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/add' \
         "isLocked": 0,
         "notifyType": "email",
         "recipient": [
-            "acnt_e85847e7fe894ea9938dd29c22bc1f9b"
+            "acnt_xxxx32"
         ],
         "singleExecuteTime": 1698718800,
         "status": 0,
@@ -105,9 +105,9 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/add' \
         "title": "ceshi2",
         "updateAt": 1698665760,
         "updator": "wsak_xxxxx",
-        "uuid": "cron_3a819c6c1d4e4fcea690b18e678b174f",
+        "uuid": "cron_xxxx32",
         "variables": {},
-        "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

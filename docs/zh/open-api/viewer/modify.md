@@ -38,7 +38,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/viewer/dsbd_e493a3c17d3c456bb1febfcbbe4148d2/modify' \
+curl 'https://openapi.guance.com/api/v1/viewer/dsbd_xxxx32/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"modify_viewer","tagNames":["应用性能"]}' \
@@ -92,7 +92,7 @@ curl 'https://openapi.guance.com/api/v1/viewer/dsbd_e493a3c17d3c456bb1febfcbbe41
         "tag_info": {
             "tagInfo": [
                 {
-                    "id": "tag_740834b7b7e94d1dbe1e764ee78039a3",
+                    "id": "tag_xxxx32",
                     "name": "应用性能"
                 }
             ]
@@ -106,8 +106,8 @@ curl 'https://openapi.guance.com/api/v1/viewer/dsbd_e493a3c17d3c456bb1febfcbbe41
             "name": "智能巡检测试",
             "username": "xxxx"
         },
-        "uuid": "dsbd_e493a3c17d3c456bb1febfcbbe4148d2",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "dsbd_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

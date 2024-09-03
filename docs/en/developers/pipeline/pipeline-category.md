@@ -7,7 +7,7 @@
 
 Since DataKit 1.4.0, you can directly operate DataKit to collect data through the built-in Pipeline function, supporting current [all data types](../../datakit/apis.md#category)
 
-???+ attention
+???+ warning
     - Pipeline is applied to all data and is currently in the experimental stage, so there is no guarantee that incompatible adjustments will be made to the mechanism or behavior later.
     - Even data reported through the [DataKit API](../../datakit/apis.md) supports Pipeline processing.
     - Using Pipeline to process the existing data (especially non-logging data) may destroy the existing data structure and lead to abnormal performance of the data on Guance Cloud.

@@ -34,10 +34,10 @@
 | jsonScript.message | string |  | event内容<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
 | jsonScript.recoverTitle | string |  | 输出恢复事件标题模板<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许为空字符串: True <br> |
 | jsonScript.recoverMessage | string |  | 输出恢复事件信息模板<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
-| jsonScript.noDataTitle | string |  | 输出无数据事件标题模板<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许为空字符串: True <br> |
-| jsonScript.noDataMessage | string |  | 输出无数据事件信息模板<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
-| jsonScript.noDataRecoverTitle | string |  | 输出无数据恢复上传事件标题模板<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许为空字符串: True <br> |
-| jsonScript.noDataRecoverMessage | string |  | 输出无数据恢复上传事件信息模板<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
+| jsonScript.noDataTitle | string |  | 输出数据断档事件标题模板<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许为空字符串: True <br> |
+| jsonScript.noDataMessage | string |  | 输出数据断档事件信息模板<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
+| jsonScript.noDataRecoverTitle | string |  | 输出数据断档恢复上传事件标题模板<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许为空字符串: True <br> |
+| jsonScript.noDataRecoverMessage | string |  | 输出数据断档恢复上传事件信息模板<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
 | jsonScript.every | string |  | 检查频率<br>例子: 1m <br>允许为空: False <br> |
 | jsonScript.customCrontab | string |  | 自定义检测频率<br>例子: 0 */12 * * * <br>允许为空: False <br> |
 | jsonScript.interval | integer |  | 查询区间，即一次查询的时间范围时差<br>例子: 60 <br>允许为空: False <br> |
@@ -45,8 +45,8 @@
 | jsonScript.range_2 | integer |  | 针对高级检测,突变检测的range_2参数,单位s,特殊说明 (-1代表环比,  0代表使用 periodBefore字段)<br>例子: 600 <br>允许为空: False <br> |
 | jsonScript.periodBefore | integer |  | 针对高级检测,突变检测的(昨日/一小时前)参数,单位s<br>例子: 600 <br>允许为空: False <br> |
 | jsonScript.recoverNeedPeriodCount | integer |  | 指定异常在几个检查周期之后生成恢复事件, 如果 检测频率为 自定义customCrontab, 该字段表示为时间长度, 单位s, 否则,表示几个检测频率<br>例子: 60 <br>允许为空: False <br> |
-| jsonScript.noDataInterval | integer |  | 多长时间内无数据则产生无数据事件<br>例子: 60 <br>允许为空: False <br> |
-| jsonScript.noDataAction | string |  | 无数据处理操作<br>允许为空: False <br>可选值: ['none', 'checkAs0', 'noDataEvent', 'criticalEvent', 'errorEvent', 'warningEvent', 'okEvent', 'noData', 'recover'] <br> |
+| jsonScript.noDataInterval | integer |  | 多长时间内数据断档则产生数据断档事件<br>例子: 60 <br>允许为空: False <br> |
+| jsonScript.noDataAction | string |  | 数据断档处理操作<br>允许为空: False <br>可选值: ['none', 'checkAs0', 'noDataEvent', 'criticalEvent', 'errorEvent', 'warningEvent', 'okEvent', 'noData', 'recover'] <br> |
 | jsonScript.checkFuncs | array |  | 检查函数信息列表<br>例子: [{'funcId': 'xxx', 'kwargs': {}}] <br>允许为空: False <br> |
 | jsonScript.groupBy | array |  | 触发维度<br>例子: ['医院'] <br>允许为空: False <br> |
 | jsonScript.targets | array |  | 检查目标<br>例子: [{'dql': 'M::`士兵信息`:(AVG(`潜力值`))  [::auto] by `性别`', 'alias': 'M1'}] <br>允许为空: False <br> |
@@ -62,11 +62,11 @@
 | jsonScript.checkerOpt.threshold.operator | string | Y | 突变检测, 触发前提条件操作符<br>例子:  <br> |
 | jsonScript.checkerOpt.threshold.value | float | Y | 突变检测, 触发前提条件检测值<br>例子: 90 <br>允许为空: True <br> |
 | jsonScript.checkerOpt.combineExpr | string |  | 组合监控, 组合方式<br>例子: A && B <br>允许为空字符串: False <br> |
-| jsonScript.checkerOpt.ignoreNodata | boolean |  | 组合监控, 是否忽略无数据结果（true 表示需要忽略）,<br>例子: True <br> |
+| jsonScript.checkerOpt.ignoreNodata | boolean |  | 组合监控, 是否忽略数据断档结果（true 表示需要忽略）,<br>例子: True <br> |
 | jsonScript.checkerOpt.confidenceInterval | integer |  | 区间检测V2新增参数, 置信区间范围取值1-100,<br>例子: 10 <br> |
 | jsonScript.channels | array |  | 频道UUID列表<br>例子: ['名称1', '名称2'] <br>允许为空: False <br> |
 | jsonScript.atAccounts | array |  | 正常检测下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
-| jsonScript.atNoDataAccounts | array |  | 无数据情况下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
+| jsonScript.atNoDataAccounts | array |  | 数据断档情况下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
 | jsonScript.subUri | string |  | 表示Webhook地址的地址后缀<br>例子: datakit/push <br>允许为空: False <br> |
 | jsonScript.disableCheckEndTime | boolean |  | 是否禁用结束时间限制, https://confluence.jiagouyun.com/pages/viewpage.action?pageId=177405958<br>例子: True <br>允许为空: False <br> |
 
@@ -81,7 +81,7 @@
 curl 'https://openapi.guance.com/api/v1/checker/rul_xxxxxx/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"extend":{"querylist":[{"datasource":"dataflux","qtype":"dql","query":{"code":"Result","type":"simple","namespace":"metric","dataSource":"ssh","field":"ssh_check","fieldType":"float","alias":"","fieldFunc":"count","groupByTime":"","groupBy":["host"],"q":"M::`ssh`:(count(`ssh_check`)) BY `host`","funcList":[]},"uuid":"aada629a-672e-46f9-9503-8fd61065c382"}],"funcName":"","rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["90"],"operator":">="}],"status":"critical"},{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["0"],"operator":">="}],"status":"error"}],"issueLevelUUID":"system_level_3","isNeedCreateIssue":false,"needRecoverIssue":false},"jsonScript":{"title":"主机 {{ host }} SSH 服务异常","message":">等级：{{status}}  \n>主机：{{host}}  \n>内容：主机 SSH 状态 {{ Result |  to_fixed(2) }}%  \n>建议：检查主机 SSH 服务状态","noDataTitle":"","noDataMessage":"","type":"simpleCheck","every":"1m","groupBy":["host"],"interval":300,"targets":[{"dql":"M::`ssh`:(count(`ssh_check`)) BY `host`","alias":"Result","qtype":"dql"}],"checkerOpt":{"rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["90"],"operator":">="}],"status":"critical"},{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["0"],"operator":">="}],"status":"error"}],"infoEvent":false},"recoverNeedPeriodCount":2,"channels":[],"atAccounts":[],"atNoDataAccounts":[],"disableCheckEndTime":false},"alertPolicyUUIDs":["altpl_cb3f68c1562940e3991c4af73e5c96b9"],"tags":["本地测试组合检测"]}' \
+--data-raw '{"extend":{"querylist":[{"datasource":"dataflux","qtype":"dql","query":{"code":"Result","type":"simple","namespace":"metric","dataSource":"ssh","field":"ssh_check","fieldType":"float","alias":"","fieldFunc":"count","groupByTime":"","groupBy":["host"],"q":"M::`ssh`:(count(`ssh_check`)) BY `host`","funcList":[]},"uuid":"aada629a-672e-46f9-9503-8fd61065c382"}],"funcName":"","rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["90"],"operator":">="}],"status":"critical"},{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["0"],"operator":">="}],"status":"error"}],"issueLevelUUID":"system_level_3","isNeedCreateIssue":false,"needRecoverIssue":false},"jsonScript":{"title":"主机 {{ host }} SSH 服务异常","message":">等级：{{status}}  \n>主机：{{host}}  \n>内容：主机 SSH 状态 {{ Result |  to_fixed(2) }}%  \n>建议：检查主机 SSH 服务状态","noDataTitle":"","noDataMessage":"","type":"simpleCheck","every":"1m","groupBy":["host"],"interval":300,"targets":[{"dql":"M::`ssh`:(count(`ssh_check`)) BY `host`","alias":"Result","qtype":"dql"}],"checkerOpt":{"rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["90"],"operator":">="}],"status":"critical"},{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["0"],"operator":">="}],"status":"error"}],"infoEvent":false},"recoverNeedPeriodCount":2,"channels":[],"atAccounts":[],"atNoDataAccounts":[],"disableCheckEndTime":false},"alertPolicyUUIDs":["altpl_xxxx32"],"tags":["本地测试组合检测"]}' \
 --compressed 
 ```
 
@@ -95,7 +95,7 @@ curl 'https://openapi.guance.com/api/v1/checker/rul_xxxxxx/modify' \
     "content": {
         "createAt": 1710827935,
         "createdWay": "manual",
-        "creator": "acnt_e52a5a7b6418464cb2acbeaa199e7fd1",
+        "creator": "acnt_xxxx32",
         "crontabInfo": {
             "crontab": "*/1 * * * *",
             "id": "cron-pwiThsuE9gtQ"
@@ -224,21 +224,21 @@ curl 'https://openapi.guance.com/api/v1/checker/rul_xxxxxx/modify' \
             "title": "主机 {{ host }} SSH 服务异常",
             "type": "simpleCheck"
         },
-        "monitorUUID": "monitor_f83dd203f3c24fe7b605e0eb09852a63",
+        "monitorUUID": "monitor_xxxx32",
         "refKey": "",
         "secret": "",
         "status": 0,
         "tagInfo": [
             {
-                "id": "tag_27ff715fe6f44650a1dfdbedb8cf84b2",
+                "id": "tag_xxxx32",
                 "name": "本地测试组合检测"
             }
         ],
         "type": "trigger",
         "updateAt": 1710831784,
         "updator": "wsak_xxxxx",
-        "uuid": "rul_8e33996045754736aeecd34b6a5f846a",
-        "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+        "uuid": "rul_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

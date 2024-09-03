@@ -7,4 +7,4 @@ nav:
   - '【工作空间】使用量限制查询': usage-limit-get.md
   - '【工作空间】使用量限制更新': update-usage-limit.md
   - '【工作空间】上传空间图片相关资源': upload-logo-image.md
-  - '【工作空间】上传空间图片相关资源': get-logo-url.md
+  - '【工作空间】获取空间图片相关资源': get-logo-url.md

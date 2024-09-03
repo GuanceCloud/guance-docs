@@ -17,7 +17,7 @@ Histograms of guances are used to show the direction of the data distribution of
 
 Chart query supports 「simple query」, 「expression query」 and 「DQL query」. Please click [chart-query.md](chart-query.md) for detailed explanation of chart query conditions.
 
-???+ attention
+???+ warning
 
     The histogram only supports log type data, which can be used to represent the distribution of ES storage `number` type data, including "log", "base object", "custom object", "event", "application performance", "user access", "security patrol", "network", "profile" data query; if the workspace is SLS storage, the data query will report an error. For more storage instructions, please refer to the document [Data Storage Policy](../../billing/billing-method/data-storage.md#options).
 

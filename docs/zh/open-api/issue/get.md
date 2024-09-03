@@ -41,44 +41,44 @@ curl 'https://openapi.guance.com/api/v1/issue/<issue_uuid>/get' \
             {
                 "fileName": "特殊字符。  集?image (3)::&*.png",
                 "fileSuffix": "png",
-                "uuid": "att_fe0db0e6c2204b99bdd481359cb0cfcb"
+                "uuid": "att_xxxx32"
             },
             {
                 "fileName": "\\图标\\1.png",
                 "fileSuffix": "png",
-                "uuid": "att_a8973199dcdc4a1b9a62117f1943d4a3"
+                "uuid": "att_xxxx32"
             },
             {
                 "fileName": "观测云图标2.png",
                 "fileSuffix": "png",
-                "uuid": "att_ca7d54e9d34a470597ffefd50bef8f26"
+                "uuid": "att_xxxx32"
             },
             {
                 "fileName": "im:age.png",
                 "fileSuffix": "png",
-                "uuid": "att_eaf3e026589a4cb7941e496288800fdf"
+                "uuid": "att_xxxx32"
             },
             {
                 "fileName": "im:age.png",
                 "fileSuffix": "png",
-                "uuid": "att_f4e129f9baa24ddaad5280dd348bbfcf"
+                "uuid": "att_xxxx32"
             }
         ],
         "bindChannels": [
             {
                 "name": "default",
-                "uuid": "chan_44555c0071654f21918fbbb576dd4860"
+                "uuid": "chan_xxxx32"
             }
         ],
         "createAt": 1714113844,
-        "creator": "wsak_736968854c44472688307662695ae591",
+        "creator": "wsak_xxxx32",
         "creatorInfo": {
             "acntWsNickname": "",
-            "email": "wsak_736968854c44472688307662695ae591",
+            "email": "wsak_xxxx32",
             "iconUrl": "",
             "name": "接口测试",
-            "username": "wsak_736968854c44472688307662695ae591",
-            "uuid": "wsak_736968854c44472688307662695ae591"
+            "username": "wsak_xxxx32",
+            "uuid": "wsak_xxxx32"
         },
         "declaration": {
             "business": "",
@@ -88,8 +88,8 @@ curl 'https://openapi.guance.com/api/v1/issue/<issue_uuid>/get' \
         "description": "kong",
         "extend": {
             "manager": [
-                "group_d8b27efcf7214e95a70585b532fe730f",
-                "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+                "group_xxxx32",
+                "acnt_xxxx32",
                 "jj@qq.com"
             ]
         },
@@ -102,15 +102,15 @@ curl 'https://openapi.guance.com/api/v1/issue/<issue_uuid>/get' \
         "managerInfos": [
             {
                 "name": "team-pass",
-                "uuid": "group_d8b27efcf7214e95a70585b532fe730f"
+                "uuid": "group_xxxx32"
             },
             {
                 "acntWsNickname": "",
                 "email": "88@qq.com",
-                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_349ee5f70a89442fa94b4f754b5acbfe.png",
+                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试",
-                "uuid": "acnt_349ee5f70a89442fa94b4f754b5acbfe"
+                "uuid": "acnt_xxxx32"
             },
             {
                 "email": "jj@qq.com",
@@ -125,17 +125,17 @@ curl 'https://openapi.guance.com/api/v1/issue/<issue_uuid>/get' \
         "statusType": 10,
         "subIdentify": "",
         "updateAt": 1716888575,
-        "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+        "updator": "acnt_xxxx32",
         "updatorInfo": {
             "acntWsNickname": "",
             "email": "88@qq.com",
-            "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_349ee5f70a89442fa94b4f754b5acbfe.png",
+            "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
             "name": "88测试",
             "username": "测试",
-            "uuid": "acnt_349ee5f70a89442fa94b4f754b5acbfe"
+            "uuid": "acnt_xxxx32"
         },
-        "uuid": "issue_7572b4f7aea4473697e0f0949f4c9035",
-        "workspaceUUID": "wksp_1776556484b7412db06d6c428d3aaa6e"
+        "uuid": "issue_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

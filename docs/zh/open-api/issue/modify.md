@@ -69,14 +69,14 @@ extend 字段示例:
     "members": [
         {
             "type": "@",
-            "uuid": "acnt_d72e117f8902419fa1d135d1d781b79d",
+            "uuid": "acnt_xxxx32",
             "exists": true
         }
     ],
     "channels": [
         {
             "type": "#",
-            "uuid": "chan_cf4f9aa671ef4dffa5a2b5d1824cd5b7",
+            "uuid": "chan_xxxx32",
             "exists": true
         }
     ],
@@ -110,7 +110,7 @@ extend 字段示例:
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue/issue_7b1f8986a7b44d7a987976fb5c7876fc/modify' \
+curl 'https://openapi.guance.com/api/v1/issue/issue_xxxx32/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"statusType":20}'\
@@ -126,7 +126,7 @@ curl 'https://openapi.guance.com/api/v1/issue/issue_7b1f8986a7b44d7a987976fb5c78
     "code": 200,
     "content": {
         "createAt": 1686398344,
-        "creator": "acnt_861cf6dd440348648861247ae42909c3",
+        "creator": "acnt_xxxx32",
         "creatorInfo": {
             "acntWsNickname": "",
             "email": "1061379682@qq.com",
@@ -141,7 +141,7 @@ curl 'https://openapi.guance.com/api/v1/issue/issue_7b1f8986a7b44d7a987976fb5c78
                 {
                     "exists": true,
                     "type": "#",
-                    "uuid": "chan_d5054276d1a74b518bf1b16f59c26e95"
+                    "uuid": "chan_xxxx32"
                 }
             ],
             "view_isuue_url": ""
@@ -156,7 +156,7 @@ curl 'https://openapi.guance.com/api/v1/issue/issue_7b1f8986a7b44d7a987976fb5c78
         "statusType": 20,
         "subIdentify": "",
         "updateAt": 1686400483,
-        "updator": "acnt_861cf6dd440348648861247ae42909c3",
+        "updator": "acnt_xxxx32",
         "updatorInfo": {
             "acntWsNickname": "",
             "email": "1061379682@qq.com",
@@ -164,8 +164,8 @@ curl 'https://openapi.guance.com/api/v1/issue/issue_7b1f8986a7b44d7a987976fb5c78
             "name": "wanglei-testing",
             "username": "1061379682@qq.com"
         },
-        "uuid": "issue_7b1f8986a7b44d7a987976fb5c7876fc",
-        "workspaceUUID": "wksp_ed134a6485c8484dbd0e58ce9a9c6115"
+        "uuid": "issue_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

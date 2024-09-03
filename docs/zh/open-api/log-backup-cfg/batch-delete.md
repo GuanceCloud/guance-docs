@@ -28,7 +28,7 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/batch_delete' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---data-raw '{"cfgUUIDs":["lgbp_20454675957b4337b9d953b089b2b06c"]}' \
+--data-raw '{"cfgUUIDs":["lgbp_xxxx32"]}' \
 --compressed
 
 

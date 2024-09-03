@@ -42,7 +42,7 @@ curl 'https://openapi.guance.com/api/v1/saml/mapping/field/list' \
     "content": [
         {
             "createAt": 1677826771,
-            "creator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
+            "creator": "acnt_xxxx32",
             "deleteAt": -1,
             "id": 66,
             "roleInfo": {
@@ -54,9 +54,9 @@ curl 'https://openapi.guance.com/api/v1/saml/mapping/field/list' \
             "status": 0,
             "targetValue": "wsAdmin",
             "updateAt": 1677827772,
-            "updator": "acnt_349ee5f70a89442fa94b4f754b5acbfe",
-            "uuid": "fdmp_e299ab38486a417291477c4bd90c254e",
-            "workspaceUUID": "wksp_8ea5c78a71e64298bffd4d3ec03f1a5f"
+            "updator": "acnt_xxxx32",
+            "uuid": "fdmp_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         }
     ],
     "errorCode": "",

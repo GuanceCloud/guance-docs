@@ -43,10 +43,10 @@
         "chartGroupPos": [],
         "chartPos": [
             {
-                "chartUUID": "chrt_1cbdbf10c1494c80b36b91b4e0e1ab90",
+                "chartUUID": "chrt_xxxx32",
                 "pos": {
                     "h": 11,
-                    "i": "chrt_2e650ef84b1a4eb389011fd95f7db11e",
+                    "i": "chrt_xxxx32",
                     "w": 11,
                     "x": 0,
                     "y": 0
@@ -55,7 +55,7 @@
         ],
         "createAt": 1642587228,
         "createdWay": "import",
-        "creator": "acnt_5fc5bb139e474911b6d3d300863f0c8b",
+        "creator": "acnt_xxxx32",
         "dashboardBidding": {},
         "dashboardBindSet": [],
         "deleteAt": -1,
@@ -79,8 +79,8 @@
             "name": "第一个key",
             "username": "AK(wsak_xxxxx)"
         },
-        "uuid": "dsbd_541083cc19ec4d27ad597839a0477a97",
-        "workspaceUUID": "wksp_c4201f4ef30c4a86b01a998e7544f822"
+        "uuid": "dsbd_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",

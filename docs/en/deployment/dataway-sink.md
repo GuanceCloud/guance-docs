@@ -52,7 +52,7 @@ end
 For SaaS users, you can deploy a Dataway on your own premises (k8s cluster) dedicated to offloading, and then forward the data to Openway:
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning
 
     In cascaded mode, the Dataway in the cluster needs to enable the `cascaded` option. See [Environment Variable Description](dataway.md#dw-envs) in the installation documentation. 
 <!-- markdownlint-enable -->
@@ -114,7 +114,7 @@ sinker:
 ```
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning
 
     If you do not set `secret_token`, any request sent by Datakit will go through without causing data problems. However, if Dataway is deployed on the public network, it is recommended to set `secret_token`.
 
@@ -164,7 +164,7 @@ Actually, the JSON from local file or etcd are the same string, we only cover ho
 
     Roles are used to control the permissions of the corresponding user on certain keys, here we may use the user's existing etcd service, it is necessary to restrict the data permissions of Dataway this user.
 
-???+ attention
+???+ warning
 
     If etcd has [authentication mode](https://etcd.io/docs/v3.5/op-guide/authentication/rbac/#enabling-authentication){:target="_blank"} enabled, execute the `etcdctl` command, and bring the corresponding username and password:
 
@@ -207,7 +207,7 @@ OK
 ```
 
 <!-- markdownlint-disable MD046 -->
-???+ tip "Comment URL Token Info"
+???+ abstract "Comment URL Token Info"
 
     Because we can't add comments on JSON file *sinker.json*, we can add extra field for commenting:
 
@@ -662,7 +662,7 @@ If there is a key with the same name between the Global Host Tag and the Global 
 Datakit has several built-in custom keys that are not typically present in the collected data, but Datakit can use these keys to group data. If there is a need to split the dimensions of these keys, you can add them to the "Global Custom Key" list (none of these keys are configured by default). We can use some built-in custom keys as follows to achieve data offloading.
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning
 
     The addition of a "global custom key" will cause data to be subpackaged when it is sent, and if the granularity is too fine, the Datakit upload efficiency will be rapidly reduced. In general, it is not recommended to have more than 3 global custom keys.
 <!-- markdownlint-enable -->
@@ -743,7 +743,7 @@ Datakit has several built-in custom keys that are not typically present in the c
 ```
 
 <!-- markdownlint-disable MD046 -->
-???+ attention
+???+ warning
 
     Even if a URL (`__dataway_api`) matches multiple sinking rules, some API requests will **only be routed once**. The following API URLs are subject to this behavior:
 
