@@ -500,7 +500,7 @@ android{
 	        }
 	```
 
-3.最后重启应用，详细细节请见 [SDK Demo](#setup)
+3.最后重启应用，详细细节请见 [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
 
 ### Log 配置 {#log-config}
 
@@ -1863,7 +1863,7 @@ android{
 
 ## 符号文件上传 {#source_map}
 ### plugin 上传
-`ft-plugin` 版本需要 `1.3.0` 以上版本支持最新的符号文件上传规则，支持 `productFlavor` 多版本区分管理，plugin 会在 `gradle task assembleRelease` 之后执行上传符号文件，详细配置可以参考 [SDK Demo](#setup)
+`ft-plugin` 版本需要 `1.3.0` 以上版本支持最新的符号文件上传规则，支持 `productFlavor` 多版本区分管理，plugin 会在 `gradle task assembleRelease` 之后执行上传符号文件，详细配置可以参考 [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/build.gradle#L59)
 
 ``` groovy
 FTExt {
