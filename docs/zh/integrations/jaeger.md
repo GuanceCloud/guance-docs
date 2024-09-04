@@ -42,6 +42,7 @@ Datakit 内嵌的 Jaeger Agent 用于接收，运算，分析 Jaeger Tracing 协
     
       # Jaeger agent host:port address for UDP transport.
       # address = "127.0.0.1:6831"
+      # binary_address = "127.0.0.1:6832"
     
       ## ignore_tags will work as a blacklist to prevent tags send to data center.
       ## Every value in this list is a valid string of regular expression.
@@ -202,6 +203,9 @@ Datakit 内嵌的 Jaeger Agent 用于接收，运算，分析 Jaeger Tracing 协
         **示例**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 
 <!-- markdownlint-enable -->
+
+在使用 UDP 协议的时候，注意协议中的数据格式，默认情况下使用 6831 端口使用的是 `thrift CompactProtocol` 格式，使用 6832 端口时的协议为 `thrift BinaryProtocol` 。
+Jaeger 默认情况下使用的是 6831 端口中的协议，所以 当您不使用 6832 端口时，请不要打开注释。
 
 ### 配置 Jaeger HTTP Agent {#config-http-agent}
 

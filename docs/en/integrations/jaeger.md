@@ -44,6 +44,7 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
     
       # Jaeger agent host:port address for UDP transport.
       # address = "127.0.0.1:6831"
+      # binary_address = "127.0.0.1:6832"
     
       ## ignore_tags will work as a blacklist to prevent tags send to data center.
       ## Every value in this list is a valid string of regular expression.
@@ -204,6 +205,9 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
         **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 
 <!-- markdownlint-enable -->
+
+When using UDP protocol, pay attention to the data format in the protocol. By default, the protocol used for port 6831 is `Thrift CompactProtocol` format, while the protocol used for port 6832 is `Thrift Binary Protocol`.
+Jaeger uses the protocol from port 6831 by default.
 
 ### Configure Jaeger HTTP Agent {#config-http-agent}
 
