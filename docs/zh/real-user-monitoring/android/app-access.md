@@ -78,6 +78,10 @@
         [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-native/CHANGELOG.md)
 
     === "ft-plguin ( AGP >=7.4.2 )"
+		**1.3.3**：
+        ``` markdown
+		1. 优化 native symbol so 自动获取上传，支持自定义指定 nativeLibPath
+		```
 		**1.3.2**：
         ``` markdown
 		1. 支持 React Native WebView 事件自动捕获
@@ -254,10 +258,22 @@ apply plugin: 'ft-plugin'
 FTExt {
     //是否显示 Plugin 日志，默认为 false
     showLog = true
+	
     //设置 ASM 版本，支持 asm7 - asm9，默认 asm9
     //asmVersion='asm7'
+
     //ASM 忽略路径配置，路径中 . 和 / 等效
     //ignorePackages=['com.ft','com/ft']
+
+	// native so 指定路径，徐只要指定到 abi 文件的上层目录
+	// |-stripped_native_libs
+	// 		|-release
+	// 			|-out
+	//			|-lib
+	//				|-arm64-v8a
+	//				|-armeabi-v7a
+	//				|-...
+    //nativeLibPath='/build/intermediates/merged_native_libs/release/out/lib'
 }
 android{
 	//...省略部分代码
@@ -500,7 +516,7 @@ android{
 	        }
 	```
 
-3.最后重启应用，详细细节请见 [SDK Demo](#setup)
+3.最后重启应用，详细细节请见 [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
 
 ### Log 配置 {#log-config}
 
@@ -1863,7 +1879,7 @@ android{
 
 ## 符号文件上传 {#source_map}
 ### plugin 上传
-`ft-plugin` 版本需要 `1.3.0` 以上版本支持最新的符号文件上传规则，支持 `productFlavor` 多版本区分管理，plugin 会在 `gradle task assembleRelease` 之后执行上传符号文件，详细配置可以参考 [SDK Demo](#setup)
+`ft-plugin` 版本需要 `1.3.0` 以上版本支持最新的符号文件上传规则，支持 `productFlavor` 多版本区分管理，plugin 会在 `gradle task assembleRelease` 之后执行上传符号文件，详细配置可以参考 [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/build.gradle#L59)
 
 ``` groovy
 FTExt {
