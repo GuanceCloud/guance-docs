@@ -28,10 +28,10 @@
 | jsonScript.message | string |  | event内容<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
 | jsonScript.recoverTitle | string |  | 输出恢复事件标题模板<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许为空字符串: True <br> |
 | jsonScript.recoverMessage | string |  | 输出恢复事件信息模板<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
-| jsonScript.noDataTitle | string |  | 输出无数据事件标题模板<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许为空字符串: True <br> |
-| jsonScript.noDataMessage | string |  | 输出无数据事件信息模板<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
-| jsonScript.noDataRecoverTitle | string |  | 输出无数据恢复上传事件标题模板<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许为空字符串: True <br> |
-| jsonScript.noDataRecoverMessage | string |  | 输出无数据恢复上传事件信息模板<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
+| jsonScript.noDataTitle | string |  | 输出数据断档事件标题模板<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许为空字符串: True <br> |
+| jsonScript.noDataMessage | string |  | 输出数据断档事件信息模板<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
+| jsonScript.noDataRecoverTitle | string |  | 输出数据断档恢复上传事件标题模板<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许为空字符串: True <br> |
+| jsonScript.noDataRecoverMessage | string |  | 输出数据断档恢复上传事件信息模板<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
 | jsonScript.every | string |  | 检查频率<br>例子: 1m <br>允许为空: False <br> |
 | jsonScript.customCrontab | string |  | 自定义检测频率<br>例子: 0 */12 * * * <br>允许为空: False <br> |
 | jsonScript.interval | integer |  | 查询区间，即一次查询的时间范围时差<br>例子: 60 <br>允许为空: False <br> |
@@ -39,8 +39,8 @@
 | jsonScript.range_2 | integer |  | 针对高级检测,突变检测的range_2参数,单位s,特殊说明 (-1代表环比,  0代表使用 periodBefore字段)<br>例子: 600 <br>允许为空: False <br> |
 | jsonScript.periodBefore | integer |  | 针对高级检测,突变检测的(昨日/一小时前)参数,单位s<br>例子: 600 <br>允许为空: False <br> |
 | jsonScript.recoverNeedPeriodCount | integer |  | 指定异常在几个检查周期之后生成恢复事件,如果 检测频率为 自定义customCrontab, 该字段表示为时间长度, 单位s, 否则,表示几个检测频率<br>例子: 60 <br>允许为空: False <br> |
-| jsonScript.noDataInterval | integer |  | 多长时间内无数据则产生无数据事件<br>例子: 60 <br>允许为空: False <br> |
-| jsonScript.noDataAction | string |  | 无数据处理操作<br>允许为空: False <br>可选值: ['none', 'checkAs0', 'noDataEvent', 'criticalEvent', 'errorEvent', 'warningEvent', 'okEvent', 'noData', 'recover'] <br> |
+| jsonScript.noDataInterval | integer |  | 多长时间内数据断档则产生数据断档事件<br>例子: 60 <br>允许为空: False <br> |
+| jsonScript.noDataAction | string |  | 数据断档处理操作<br>允许为空: False <br>可选值: ['none', 'checkAs0', 'noDataEvent', 'criticalEvent', 'errorEvent', 'warningEvent', 'okEvent', 'noData', 'recover'] <br> |
 | jsonScript.checkFuncs | array |  | 检查函数信息列表<br>例子: [{'funcId': 'xxx', 'kwargs': {}}] <br>允许为空: False <br> |
 | jsonScript.groupBy | array |  | 触发维度<br>例子: ['性别'] <br>允许为空: False <br> |
 | jsonScript.targets | array |  | 检查目标<br>例子: [{'dql': 'M::`士兵信息`:(AVG(`潜力值`))  [::auto] by `性别`', 'alias': 'M1'}] <br>允许为空: False <br> |
@@ -56,11 +56,11 @@
 | jsonScript.checkerOpt.threshold.operator | string | Y | 突变检测, 触发前提条件操作符<br>例子:  <br> |
 | jsonScript.checkerOpt.threshold.value | float | Y | 突变检测, 触发前提条件检测值<br>例子: 90 <br>允许为空: True <br> |
 | jsonScript.checkerOpt.combineExpr | string |  | 组合监控, 组合方式<br>例子: A && B <br>允许为空字符串: False <br> |
-| jsonScript.checkerOpt.ignoreNodata | boolean |  | 组合监控, 是否忽略无数据结果（true 表示需要忽略）,<br>例子: True <br> |
+| jsonScript.checkerOpt.ignoreNodata | boolean |  | 组合监控, 是否忽略数据断档结果（true 表示需要忽略）,<br>例子: True <br> |
 | jsonScript.checkerOpt.confidenceInterval | integer |  | 区间检测V2新增参数, 置信区间范围取值1-100,<br>例子: 10 <br> |
 | jsonScript.channels | array |  | 频道UUID列表<br>例子: ['名称1', '名称2'] <br>允许为空: False <br> |
 | jsonScript.atAccounts | array |  | 正常检测下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
-| jsonScript.atNoDataAccounts | array |  | 无数据情况下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
+| jsonScript.atNoDataAccounts | array |  | 数据断档情况下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
 | jsonScript.subUri | string |  | 表示Webhook地址的地址后缀(根据用户业务侧需求可选设置，无特殊限制)<br>例子: datakit/push <br>允许为空: False <br> |
 | jsonScript.disableCheckEndTime | boolean |  | 是否禁用结束时间限制, https://confluence.jiagouyun.com/pages/viewpage.action?pageId=177405958<br>例子: True <br>允许为空: False <br> |
 
@@ -133,18 +133,18 @@
 | message       |  string  |  N | 输出故障事件信息模板      |
 | recoverTitle  |  string  |  N | 输出恢复事件标题模板      |
 | recoverMessage |  string  |  N | 输出恢复事件信息模板     |
-| noDataTitle   |  string  |  N | 输出无数据事件标题模板     |
-| noDataMessage |  string  |  N | 输出无数据事件信息模板     |
-| noDataRecoverTitle |  string  |  N | 输出无数据恢复上传事件标题模板 |
-| noDataRecoverMessage |  string  |  N | 输出无数据恢复上传事件信息模板 |
+| noDataTitle   |  string  |  N | 输出数据断档事件标题模板     |
+| noDataMessage |  string  |  N | 输出数据断档事件信息模板     |
+| noDataRecoverTitle |  string  |  N | 输出数据断档恢复上传事件标题模板 |
+| noDataRecoverMessage |  string  |  N | 输出数据断档恢复上传事件信息模板 |
 | name          |  string  |  Y | 规则名     |
 | type          |  string  |  Y | 规则类型   |
 | every         |  string  |  Y | 检查频率, 单位是 (1m/1h/1d)  |
 | customCrontab         |  string  |  N | 自定义检查频率的crontab  |
 | interval      |  integer |  Y | 数据时间范围的时差，即time_range的时差, 单位：秒  |
 | recoverNeedPeriodCount |  integer |  Y | 超过指定检查周期次数之后生成恢复事件,如果 检测频率为 自定义customCrontab, 该字段表示为时间长度, 单位s, 否则,表示几个检测频率 |
-| noDataInterval|  integer | N |  多长时间内无数据则产生无数据事件
-| noDataAction|  string | N |  无数据处理操作
+| noDataInterval|  integer | N |  多长时间内数据断档则产生数据断档事件
+| noDataAction|  string | N |  数据断档处理操作
 | targets       |  array   |  Y | 简单检查中的检查目标列表|
 | targets[*].dql|  string  |  Y | DQL查询语句|
 | targets[*].alias| string |  Y | 别名|
@@ -160,14 +160,14 @@
 
 |  参数名        |   说明  |
 |---------------|----------|
-| none          |  无动作（即与[关闭无数据相关处理]相同）  |
+| none          |  无动作（即与[关闭数据断档相关处理]相同）  |
 | checkAs0      |  查询结果视为0                       |
 | noDataEvent   |  触发恢复事件(noData)                |
 | criticalEvent |  触发紧急事件(crtical)               |
 | errorEvent    |  触发重要事件(error)                 |
 | warningEvent  |  触发警告事件(warning)               |
 | okEvent       |  触发恢复事件(ok)                    |
-| noData        |  产生无数据事件, 该参数于 2024-04-10 日下架,  其功能逻辑等同于`noDataEvent`，可直接替换为`noDataEvent`  |
+| noData        |  产生数据断档事件, 该参数于 2024-04-10 日下架,  其功能逻辑等同于`noDataEvent`，可直接替换为`noDataEvent`  |
 | recover       |  触发恢复事件, 该参数于 2024-04-10 日下架,  其功能逻辑等同于`okEvent`，可直接替换为`okEvent`  |
 
 --------------
@@ -180,10 +180,10 @@
 | message       |  string  |  N | 输出故障事件信息模板      |
 | recoverTitle  |  string  |  N | 输出恢复事件标题模板      |
 | recoverMessage |  string  |  N | 输出恢复事件信息模板     |
-| noDataTitle   |  string  |  N | 输出无数据事件标题模板     |
-| noDataMessage |  string  |  N | 输出无数据事件信息模板     |
-| noDataRecoverTitle |  string  |  N | 输出无数据恢复上传事件标题模板 |
-| noDataRecoverMessage |  string  |  N | 输出无数据恢复上传事件信息模板 |
+| noDataTitle   |  string  |  N | 输出数据断档事件标题模板     |
+| noDataMessage |  string  |  N | 输出数据断档事件信息模板     |
+| noDataRecoverTitle |  string  |  N | 输出数据断档恢复上传事件标题模板 |
+| noDataRecoverMessage |  string  |  N | 输出数据断档恢复上传事件信息模板 |
 | type          |  string  |  Y | 规则类型  |
 | every         |  string  |  Y | 检查频率, 单位是 (1m/1h/1d)  |
 | customCrontab         |  string  |  N |自定义检查频率的crontab  |
@@ -212,7 +212,7 @@
 |  参数名        |   type  | 必选  |          说明          |
 |---------------|----------|----|------------------------|
 | jsonScript.checkerOpt.combineExpr        |  string  |  Y | 组合方式，如：A && B  |
-| jsonScript.checkerOpt.ignoreNodata        |  boolean  |  N | 是否忽略无数据结果（true 表示需要忽略）  |
+| jsonScript.checkerOpt.ignoreNodata        |  boolean  |  N | 是否忽略数据断档结果（true 表示需要忽略）  |
 
 --------------
 
