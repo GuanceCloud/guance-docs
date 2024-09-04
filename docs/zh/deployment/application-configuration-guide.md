@@ -405,6 +405,8 @@ dql:
 |             | dial_timeout               | 数值   | 30                   | 查询时序指标数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                    |
 | doris       | read_timeout               | 数值   | 60                   | 查询日志类数据，查询超时时间，单位是 s，即默认超时时间为 60s                                                                    |
 |             | dial_timeout               | 数值   | 30                   | 查询日志类数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                      |
+| global      | datakit_usage_check_enabled| 布尔   | false                | 日志查询时候，是否检测 datakit 数量是否超过 license 限制，默认不检测                                                      |
+
 
 ### kodo-x 组件 {#kodo-x}
 
