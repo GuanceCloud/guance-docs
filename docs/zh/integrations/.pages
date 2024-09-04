@@ -314,6 +314,7 @@ nav:
       - "Exporter": prom.md
       - "Remote Write": prom_remote_write.md
       - "Push Gateway": pushgateway.md
+    - 'Graphite': graphite.md
     - 'Kafka 订阅': kafkamq.md
     - 'Zabbix': zabbix_exporter.md
     - 'Promtail': promtail.md
