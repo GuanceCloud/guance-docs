@@ -178,7 +178,6 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
 观测云为状态值已经设置了系统默认颜色。如您需要修改不同的状态下，对应数据在查看器中显示的颜色，可通过点击**设置状态颜色**进行修改。
 
-**注意**：仅 Owner 和 Administrator 可更改颜色。
 
 <img src="../img/status-color.png" width="70%" >
 

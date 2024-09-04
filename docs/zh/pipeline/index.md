@@ -26,7 +26,7 @@ Pipeline 的主要特点包括：
 | <div style="width: 130px">类型</div> | 场景       |
 | ------ | -------- |
 | 本地 Pipeline  | 在数据转发前处理日志。       |
-| 中心 Pipeline  | 1. 用户访问 (Session) 数据、Profiling 数据；<br />2. 处理应用性能链路中的 RUM 数据，如提取链路 `message` 中的 `session`、`view`、`resource` 等字段。       |
+| 中心 Pipeline  | 1. 用户访问 (Session) 数据、Profiling 数据、可用性监测数据；<br />2. 处理应用性能链路中的 RUM 数据，如提取链路 `message` 中的 `session`、`view`、`resource` 等字段。       |
 
 除上述说明之外的数据，本地/中心 Pipeline 均可处理。
 
