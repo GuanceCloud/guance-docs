@@ -78,6 +78,10 @@
         [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-native/CHANGELOG.md)
 
     === "ft-plguin ( AGP >=7.4.2 )"
+		**1.3.3**：
+        ``` markdown
+		1. 优化 native symbol so 自动获取上传，支持自定义指定 nativeLibPath
+		```
 		**1.3.2**：
         ``` markdown
 		1. 支持 React Native WebView 事件自动捕获
@@ -254,10 +258,22 @@ apply plugin: 'ft-plugin'
 FTExt {
     //是否显示 Plugin 日志，默认为 false
     showLog = true
+	
     //设置 ASM 版本，支持 asm7 - asm9，默认 asm9
     //asmVersion='asm7'
+
     //ASM 忽略路径配置，路径中 . 和 / 等效
     //ignorePackages=['com.ft','com/ft']
+
+	// native so 指定路径，徐只要指定到 abi 文件的上层目录
+	// |-stripped_native_libs
+	// 		|-release
+	// 			|-out
+	//			|-lib
+	//				|-arm64-v8a
+	//				|-armeabi-v7a
+	//				|-...
+    //nativeLibPath='/build/intermediates/merged_native_libs/release/out/lib'
 }
 android{
 	//...省略部分代码
