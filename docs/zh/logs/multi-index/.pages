@@ -1,0 +1,7 @@
+nav:
+  - index.md
+  - 'SLS Logstore': sls.md
+  - 'Elasticsearch': elasticsearch.md
+  - 'OpenSearch': opensearch.md
+  - '日志易': logease.md
+  - '火山引擎 TLS': tls.md
