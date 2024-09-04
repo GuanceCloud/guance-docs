@@ -98,7 +98,7 @@ nav:
       - '查看器报“视图模板不存在”': noscenes.md
       - '日志引擎存储空间不足': es-disk-full.md
       - "监控器问题排查": troubleshooting-monitor.md
-      - '无数据问题排查': troubleshooting-log-nodata.md
+      - '数据断档问题排查': troubleshooting-log-nodata.md
       - '集成中的 DataWay 列表为空': not-see-dataway.md
       - '数据写入延迟如何处理': data-write-delay.md
       - '可用性监测故障排查': clouddial-troubleshooting.md

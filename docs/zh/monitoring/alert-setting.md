@@ -34,7 +34,7 @@
     - 恢复通知：当历史发送的异常告警事件恢复后，观测云会发送恢复通知到对应通知对象。例如：给某个群发送过相关事件的`紧急`通知，当这一状态开始恢复时，会向此群发送恢复通知。  
     - 通知延迟：告警通知并非产生后立即发送，会因为数据入库等问题存在最多 1 分钟的延迟。
 
-:material-numeric-1-circle-outline: [事件等级](monitor/event-level-description.md)：包括**紧急、重要、警告、无数据、信息、全部<font size=2>（该等级表示针对所有等级的事件配置统一的告警通知对象）</font>**。
+:material-numeric-1-circle-outline: [事件等级](monitor/event-level-description.md)：包括**紧急、重要、警告、数据断档、信息、全部<font size=2>（该等级表示针对所有等级的事件配置统一的告警通知对象）</font>**。
 
 - 一种事件等级可选择多次，如： 
 
