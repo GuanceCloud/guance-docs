@@ -59,7 +59,7 @@ icon: zy/release-notes
 3. 账号管理显示调整：单点登录用户【账号管理】菜单下不显示密码项。
 
 
-### Bug 修复
+### Bug 修复 {#bugs0904}
 
 1. 解决了本地 Function 函数做为数据源 查询时时间范围未联动时间控件问题。
 2. 解决了 PromQL 数据查询结果 展示顺序不正确的问题。
@@ -85,26 +85,26 @@ icon: zy/release-notes
 ## 2024 年 8 月 21 日
 
 
-### Breaking Changes {#breakingchanges}
+### Breaking Changes {#breakingchanges0821}
 
 - OpenAPI / 全局 API：【事件】未恢复事件数据源从 `UE` 变更为 `E`。
 
 
-### 新增功能 {#new}
+### 新增功能 {#new0821}
 
 - 管理：新增 [Client Token](../management/client-token.md) 统一管理入口，用户使用公网 DataWay 接入 RUM 应用时，可更换系统默认生成的 Token，使用自定义创建的 Token。
 
 ![](img/overall-token.png)
 
 
-### 持续优化 {#consistent}
+### 持续优化 {#consistent0821}
 
 - 异常追踪：
     - 新增 [Issue 发现](../exception/config-manag.md#auto-issue)页面。通过这一功能，您可以定制 Issue 发现的具体规则，对监控器检测规则触发的异常事件和相关数据进行统一管理和筛选。将一系列事件视为由单一原因引起，并为这些事件设置筛选条件，然后选择聚合维度来进一步细化数据。细化后，数据会根据您设定的检测频率进行聚合。最终，系统会根据您预设的 Issue 标题和描述，自动将这些信息推送到指定的频道，确保所有相关方都能及时接收并有效处理这些 Issue。
     - 配置管理 > 通知策略：通知策略列表新增创建/更新的信息显示。
 
 
-### 常规更新 {#usual}
+### 常规更新 {#usual0821}
 
 - 数据保存策略：
     - 原【应用性能】项拆分为【应用性能-链路】、【应用性能-Profile】，支持用户分别配置 Trace 数据和 Profile 数据的保存策略；
@@ -135,7 +135,7 @@ icon: zy/release-notes
     - 原【应用性能】项拆分为【应用性能-链路】、【应用性能-Profile】，支持用户分别配置 Trace 数据和 Profile 数据的保存策略；
 - 支持火山引擎 TLS 做为底层数据存储引擎。
 
-### BUG 修复 {#bugs}
+### BUG 修复 {#bugs0821}
 
 - 解决异常追踪的通知策略未生效的问题；
 - 解决应用性能监测链路追踪导出异常的问题；
@@ -151,7 +151,7 @@ icon: zy/release-notes
 ## 2024 年 8 月 7 日
 
 
-### 新增功能 {#new}
+### 新增功能 {#new0807}
 
 - 用户访问监测（RUM）：新增[热图](../real-user-monitoring/heatmap.md)。以视觉方式呈现访客与网站的互动情况，获取页面元素的点击数据和点击位置，了解用户的关注点。
 
@@ -159,7 +159,7 @@ icon: zy/release-notes
 
 - 监控：新增检测类型——[区间检测 V2](../monitoring/monitor/interval-detection-v2.md)，以检测指标的的历史数据建立的置信区间来预测正常波动范围。
 
-### 持续优化 {#consistent}
+### 持续优化 {#consistent0807}
 
 - 异常追踪:
     - 配置管理 > 通知策略：新增[操作审计和执行日志](../exception/config-manag.md#check-events)查看入口。在接收 Issue 通知时，有时会遇到通知未正常发送或针对通知策略有疑议，此时可查看当前通知策略的操作审计事件和执行日志数据来进行判断。
@@ -170,7 +170,7 @@ icon: zy/release-notes
         - 日程管理：【我的日程】与【所有日程】新增统计数量；
 
 
-### 常规更新 {#usual}
+### 常规更新 {#usual0807}
 
 - 监控 > [SLO](../monitoring/slo.md#slo)：
     - 新增标签配置，最终作用到产生的事件数据信息内；
@@ -183,14 +183,14 @@ icon: zy/release-notes
 - 查看器：分析模式下支持导出 CSV 文件。
 - 基础设施 > 容器：新增进程关联页面展示。
 
-### BUG 修复 {#bugs}
+### BUG 修复 {#bugs0807}
 
 - 解决【任务调用】计费统计次数未显示的问题；
 - 解决图表查询时【左 * 匹配】问题；
 - 解决 BPF 网络日志返回数据未包含容器等相关信息的问题；
 - 解决中心 Pipeline 失效问题。 
 
-### Breaking Changes {#breakingchanges}
+### Breaking Changes {#breakingchanges0807}
 
 - OpenAPI：
     - SLO 创建/修改接口新增 `tags`、`alertPolicyUUIDs` 并弃用 `alertOpt` 参数；
