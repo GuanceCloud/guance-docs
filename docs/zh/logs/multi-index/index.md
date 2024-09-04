@@ -59,9 +59,11 @@
 :material-numeric-1-circle: [SLS Logstore](./sls.md)   
 :material-numeric-2-circle: [Elasticsearch](./elasticsearch.md)  
 :material-numeric-3-circle: [OpenSearch](./opensearch.md)    
-:material-numeric-4-circle: [日志易](./logease.md)       
-:material-numeric-5-circle: [火山引擎 TLS](./tls.md)    
+:material-numeric-4-circle: [日志易](./logease.md) 
 
+<!--
+:material-numeric-5-circle: [火山引擎 TLS](./tls.md)    
+-->
 **注意**：
 
 - 绑定的索引仅支持删除（删除即为取消绑定），取消绑定后则无法查询该索引下的日志；
@@ -156,11 +158,7 @@
 
 </div>
 
-<div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **绑定火山引擎 TLS 索引**</font>](./tls.md)
-
-</div>
 
 
 <div class="grid cards" markdown>
@@ -172,4 +170,11 @@
 </font>
 
 
+<!--
+<div class="grid cards" markdown>
 
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **绑定火山引擎 TLS 索引**</font>](./tls.md)
+
+</div>
+
+-->
