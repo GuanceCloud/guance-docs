@@ -1553,15 +1553,15 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
 
 可采用创建多 Configurations ，使用预编译指令进行设置值
 
-1. 创建多 Configurations ：
+1.创建多 Configurations
 
 ![](../img/image_9.png)
 
-2. 设置预设属性来区分不同 Configurations:
+2.设置预设属性来区分不同 Configurations
 
 ![](../img/image_10.png)
 
-3. 使用预编译指令：
+3.使用预编译指令
 
 ```objectivec
 //Target -> Build Settings -> GCC_PREPROCESSOR_DEFINITIONS 进行配置预设定义
@@ -1582,11 +1582,13 @@ rumConfig.globalContext = @{@"track_id":Track_id,@"static_tag":STATIC_TAG};
 [[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
 ```
 
+也可参考 [多环境配置参数](#multi_env_param) 方法进行配置。
+
 ### 动态使用
 
 因 RUM 启动后设置的 globalContext 不会生效，用户可自行本地保存，在下次应用启动时进行设置生效。
 
-1. 通过存文件本地保存，例如`NSUserDefaults`，配置使用 `SDK`，在配置处添加获取标签数据的代码。
+1.通过存文件本地保存，例如`NSUserDefaults`，配置使用 `SDK`，在配置处添加获取标签数据的代码。
 
 ```objectivec
 NSString *dynamicTag = [[NSUserDefaults standardUserDefaults] valueForKey:@"DYNAMIC_TAG"]?:@"NO_VALUE";
@@ -1597,35 +1599,35 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 [[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
 ```
 
-2. 在任意处添加改变文件数据的方法。
+2.在任意处添加改变文件数据的方法。
 
 ```objectivec
  [[NSUserDefaults standardUserDefaults] setValue:@"dynamic_tags" forKey:@"DYNAMIC_TAG"];
 ```
 
-3. 最后重启应用生效。
+3.最后重启应用生效。
 
 ### 注意
 
-1. 特殊 key : track_id (在 RUM 中配置，用于追踪功能)  
+1.特殊 key : track_id (在 RUM 中配置，用于追踪功能)  
 
-2. 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。
+2.当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。
 
-3. 在调用 -startRumWithConfigOptions 方法启动 RUM 前设置 globalContext 才能生效。
+3.在调用 -startRumWithConfigOptions 方法启动 RUM 前设置 globalContext 才能生效。
 
-4. `FTMobileConfig` 中配置的自定义标签将添加在所有类型的数据中。
+4.`FTMobileConfig` 中配置的自定义标签将添加在所有类型的数据中。
 
 详细细节请见 [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/ios/demo)。
 
-## 崩溃日志符号化 {#source_map}
+## 符号文件上传 {#source_map}
 
-### 上传符号表
+### Xcode 添加 Run Script 脚本
 
-#### 方法一：脚本集成到 Xcode 工程的 Target
+1.XCode 添加自定义 Run Script Phase：` Build Phases -> + -> New Run Script Phase`
 
-1. XCode 添加自定义 Run Script Phase：` Build Phases -> + -> New Run Script Phase`
-2. 将脚本复制到 Xcode 项目的构建阶段运行脚本中，脚本中需要设置参数如：＜app_id＞、＜datakit_address＞、＜env＞、<dataway_token>、＜version＞(脚本默认配置的版本格式为 `CFBundleShortVersionString`)。
-3. [脚本：FTdSYMUpload.sh](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
+2.将脚本复制到 Xcode 项目的构建阶段运行脚本中，脚本中需要设置参数如：＜app_id＞、＜datakit_address＞、＜env＞、＜dataway_token＞、＜version＞(脚本默认配置的版本格式为 `CFBundleShortVersionString`)。
+
+3.脚本：FTdSYMUpload.sh](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
 
 ```sh
 #脚本中需要配置的参数
@@ -1633,7 +1635,7 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 FT_APP_ID="YOUR_APP_ID"
 #<datakit_address>
 FT_DATAKIT_ADDRESS="YOUR_DATAKIT_ADDRESS"
-#<dev> 环境字段。属性值：prod/gray/pre/common/local。需要与 SDK 设置一致
+#<env> 环境字段。属性值：prod/gray/pre/common/local。需要与 SDK 设置一致
 FT_ENV="common"
 #<dataway_token> 配置文件 datakit.conf 中 dataway 的 token
 FT_TOKEN="YOUR_DATAWAY_TOKEN"
@@ -1642,46 +1644,33 @@ FT_TOKEN="YOUR_DATAWAY_TOKEN"
 # FT_VERSION=""
 ```
 
-##### 多环境便捷的配置参数
+如果您需要使用多个环境上传不同环境的符号文件，可参考下面方式。
 
-示例：使用预设宏和 .xcconfig 配置文件
+#### 多环境配置参数 {#multi_env_param}
 
-1. 添加预设宏：`Target —> Build Settings -> + -> Add User-Defined Setting` 
+示例：使用 .xcconfig 配置文件配置多环境
 
-![](../img/multi-environment-configuration1.png)
+**1.创建 xcconfig 配置文件，在 .xcconfig 文件中配置变量**。
 
-![](../img/multi-environment-configuration2.png)
-
-
-2. 使用多 Xcconfig 来实现多环境，新建 Xcconfig
-
-![](../img/multi-environment-configuration3.png)
-
-
-.xcconfig 文件中配置预设宏：
+创建 xcconfig 配置文件方法可参考：[向项目中添加构建配置文件](https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project)
 
 ```sh
 //如果有使用 cocoapods ，需要将 pods 的.xcconfig 路径添加到您的 .xcconfig 文件中
-#include "Pods/Target Support Files/Pods-testDemo/Pods-testDemo.debug.xcconfig"
+//导入 pod 对应的 .xcconfig
+#include "Pods/Target Support Files/Pods-GuanceDemo/Pods-GuanceDemo.pre.xcconfig"
 
 SDK_APP_ID = app_id_common
 SDK_ENV = common
-SDK_DATAKIT_ADDRESS = http:\$()\xxxxxxxx:9529
+// URL // 中需要添加 $()
+SDK_DATAKIT_ADDRESS = http:/$()/xxxxxxxx:9529
 SDK_DATAWAY_TOKEN = token
 ```
 
-3. 配置自定义编译环境
+此时用户自定义参数已经自动添加好，可以通过`Target —> Build Settings -> + -> Add User-Defined Setting`进行查看
 
-![](../img/multi-environment-configuration4.png)
+![](../img/multi-environment-configuration2.png)
 
-
-
-![](../img/multi-environment-configuration5.png)
-
-
-4. 使用
-
-**脚本中**
+**2.配置脚本中的参数**
 
 ```sh
 #脚本中需要配置的参数
@@ -1695,13 +1684,13 @@ FT_ENV=${SDK_ENV}
 FT_TOKEN=${SDK_DATAWAY_TOKEN}
 ```
 
-**项目文件中** 
+**3.配置 SDK**
 
-映射到  `Info.plist` 文件中
+在  `Info.plist` 文件中做参数映射
 
 ![](../img/multi-environment-configuration8.png)
 
-在文件中可以使用
+获取 `Info.plist` 中参数，进行配置 SDK
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -1709,23 +1698,35 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
         let appid:String = info["SDK_APP_ID"] as! String
         let env:String  = info["SDK_ENV"] as! String
 
-        print("SDK_APP_ID:\(appid)")
-        print("SDK_ENV:\(env)")
+        let config = FTMobileConfig.init(datakitUrl: UserDefaults.datakitURL)
+        config.enableSDKDebugLog = true
+        config.autoSync = false
+        config.env = env
+        .....
 }
 ```
 
 
-详细细节请见 [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/ios/demo)。
+详细细节可参考 [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/ios/demo) 中的多环境使用。
 
-#### 方法二：终端运行脚本
-
-找到 .dSYM 文件放在一个文件夹内，命令行下输入应用基本信息, .dSYM 文件的父目录路径, 输出文件目录即可
+### 终端运行脚本
 
 [脚本：FTdSYMUpload.sh](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
 
-`sh FTdSYMUpload.sh <datakit_address> <app_id> <version> <env> <dataway_token> <dSYMBOL_src_dir> <dSYMBOL_dest_dir>`
+**命令格式：**
 
-#### 方法三：手动上传
+`sh FTdSYMUpload.sh <datakit_address> <app_id> <version> <env> <dataway_token> <dSYMBOL_src_dir>`
+
+**参数说明：**
+
+- `<datakit_address>`：DataKit 服务的地址，如 `http://localhost:9529`
+- `<app_id>`： 对应 RUM 的 `applicationId`
+- `<env>`： 对应 RUM 的 `env`
+- `<version>`：对应 RUM 的 `version`
+- `<dataway_token>`：配置文件 `datakit.conf` 中 `dataway` 的 token
+- `<dSYMBOL_src_dir>`： 包含所有 `.dSYM` 文件的目录路径。
+
+### 手动上传
 
 [Sourcemap 上传](../../integrations/rum.md#sourcemap)
 

@@ -66,7 +66,7 @@ icon: zy/events
 | `df_monitor_name`              | 告警策略名                                                   |
 | `df_monitor_type`              | 所属类型：自定义监控事件为 `custom`，SLO 事件为 `slo`，智能巡检事件固定为 `bot_obs` |
 | `df_monitor_checker`           | 执行函数名，如：`custom_metric` 等                           |
-| `df_monitor_checker_sub`       | 检测阶段：在无数据检测阶段产生的为 `nodata`，在正常检测阶段产生的为 `check` |
+| `df_monitor_checker_sub`       | 检测阶段：在数据断档检测阶段产生的为 `nodata`，在正常检测阶段产生的为 `check` |
 | `df_monitor_checker_id`        | 监控器 ID                                                    |
 | `df_monitor_checker_name`      | 监控器名称                                                   |
 | `df_monitor_checker_value`     | 事件产生时的异常值                                           |
