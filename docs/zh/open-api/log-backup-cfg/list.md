@@ -56,7 +56,16 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/list?pageIndex=1&pageSize
         {
             "conditions": "",
             "createAt": 1697543205,
-            "creator": "acnt_xxxx32",
+            "creator": "xx",
+            "creatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
             "dataType": "logging",
             "deleteAt": -1,
             "duration": "180d",
@@ -64,7 +73,7 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/list?pageIndex=1&pageSize
                 "filterLogic": "and",
                 "filters": []
             },
-            "externalResourceAccessCfgUUID": "erac_xxxx32",
+            "externalResourceAccessCfgUUID": "erac_xxx212",
             "id": 684,
             "name": "ssfda***",
             "status": 0,
@@ -73,14 +82,32 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/list?pageIndex=1&pageSize
             "taskErrorCode": "NoSuchBucket",
             "taskStatusCode": 404,
             "updateAt": 1697610912,
-            "updator": "acnt_xxxx32",
-            "uuid": "lgbp_xxxx32",
-            "workspaceUUID": "wksp_xxxx32"
+            "updator": "xx",
+            "updatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
+            "uuid": "lgbp_xxx275",
+            "workspaceUUID": "wksp_xxx115"
         },
         {
             "conditions": "",
             "createAt": 1694588429,
-            "creator": "acnt_xxxx32",
+            "creator": "xx",
+            "creatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
             "dataType": "logging",
             "deleteAt": -1,
             "duration": "180d",
@@ -88,7 +115,7 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/list?pageIndex=1&pageSize
                 "filterLogic": "and",
                 "filters": []
             },
-            "externalResourceAccessCfgUUID": "erac_xxxx32",
+            "externalResourceAccessCfgUUID": "erac_xxxfca",
             "id": 669,
             "name": "test-21-02",
             "status": 0,
@@ -97,14 +124,32 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/list?pageIndex=1&pageSize
             "taskErrorCode": "AccessDenied",
             "taskStatusCode": 403,
             "updateAt": 1695290409,
-            "updator": "acnt_xxxx32",
-            "uuid": "lgbp_xxxx32",
-            "workspaceUUID": "wksp_xxxx32"
+            "updator": "xx",
+            "updatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
+            "uuid": "lgbp_xxxf0a",
+            "workspaceUUID": "wksp_xxx115"
         },
         {
             "conditions": "{  `source` in [ 'mysql' ] }",
             "createAt": 1692686192,
-            "creator": "acnt_xxxx32",
+            "creator": "xx",
+            "creatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
             "dataType": "logging",
             "deleteAt": -1,
             "duration": "180d",
@@ -121,7 +166,7 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/list?pageIndex=1&pageSize
                     }
                 ]
             },
-            "externalResourceAccessCfgUUID": "erac_xxxx32",
+            "externalResourceAccessCfgUUID": "erac_xxx6d1",
             "id": 518,
             "name": "osstest-xjp",
             "status": 0,
@@ -130,9 +175,18 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/list?pageIndex=1&pageSize
             "taskErrorCode": "",
             "taskStatusCode": -1,
             "updateAt": 1695286731,
-            "updator": "acnt_xxxx32",
-            "uuid": "lgbp_xxxx32",
-            "workspaceUUID": "wksp_xxxx32"
+            "updator": "xx",
+            "updatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
+            "uuid": "lgbp_xxx5ae",
+            "workspaceUUID": "wksp_xxx115"
         }
     ],
     "errorCode": "",

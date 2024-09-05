@@ -49,20 +49,29 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/list?refKey=zyAy2l9v,
                 "alertPolicyInfos": [
                     {
                         "name": "0131",
-                        "uuid": "altpl_xxxx32"
+                        "uuid": "altpl_xxxe62"
                     },
                     {
                         "name": "xxx的告警策略-自定义测试",
-                        "uuid": "altpl_xxxx32"
+                        "uuid": "altpl_xxx3b8"
                     },
                     {
                         "name": "ll-告警策略-勿动",
-                        "uuid": "altpl_xxxx32"
+                        "uuid": "altpl_xxx400"
                     }
                 ],
                 "createAt": 1706174074,
                 "createdWay": "manual",
-                "creator": "wsak_xxxxx",
+                "creator": "xx",
+                "creatorInfo": {
+                    "uuid": "xx",
+                    "status": 0,
+                    "username": "xx",
+                    "name": "xx",
+                    "iconUrl": "",
+                    "email": "xx",
+                    "acntWsNickname": "xx"
+                },
                 "crontabInfo": {},
                 "deleteAt": -1,
                 "extend": {},
@@ -90,14 +99,23 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/list?refKey=zyAy2l9v,
                 },
                 "monitorName": "",
                 "monitorUUID": "",
-                "refKey": "d519e0bd69d1e0d17de7c536fc58babe",
+                "refKey": "xxxx",
                 "secret": "",
                 "status": 0,
                 "type": "self_built_trigger",
                 "updateAt": 1710760853,
-                "updator": "acnt_xxxx32",
-                "uuid": "rul_xxxx32",
-                "workspaceUUID": "wksp_xxxx32"
+                "updator": "xx",
+                "updatorInfo": {
+                    "uuid": "xx",
+                    "status": 0,
+                    "username": "xx",
+                    "name": "xx",
+                    "iconUrl": "",
+                    "email": "xx",
+                    "acntWsNickname": "xx"
+                },
+                "uuid": "rul_xxxf2e",
+                "workspaceUUID": "wksp_xxx15d"
             }
         ],
         "declaration": {

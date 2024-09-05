@@ -43,6 +43,15 @@ curl 'https://openapi.guance.com/api/v1/data_mask_rule/list' \
             {
                 "createAt": 1715571687,
                 "creator": "acnt_xxxxxe",
+                "creatorInfo": {
+                    "uuid": "xx",
+                    "status": 0,
+                    "username": "xx",
+                    "name": "xx",
+                    "iconUrl": "",
+                    "email": "xx",
+                    "acntWsNickname": "xx"
+                },
                 "deleteAt": -1,
                 "field": "aaabbb",
                 "id": 150,
@@ -61,6 +70,15 @@ curl 'https://openapi.guance.com/api/v1/data_mask_rule/list' \
                 "type": "logging",
                 "updateAt": 1715910622,
                 "updator": "acnt_xxxxx1",
+                "updatorInfo": {
+                    "uuid": "xx",
+                    "status": 0,
+                    "username": "xx",
+                    "name": "xx",
+                    "iconUrl": "",
+                    "email": "xx",
+                    "acntWsNickname": "xx"
+                },
                 "uuid": "wdmk_xxxx6",
                 "workspaceUUID": "wksp_xxxx015d"
             }

@@ -6,4 +6,5 @@ nav:
   - '功能菜单获取(new, 支持二级菜单)': menu-get-v2.md
   - '功能菜单设置(new, 支持二级菜单)': menu-set-v2.md
   - '上传空间图片相关资源': upload-logo-image.md
+  - '设置工作空间自定义绑定信息': set-bind-info.md
   - '获取当前工作空间信息': current.md
