@@ -51,9 +51,9 @@ curl 'https://openapi.guance.com/api/v1/slo/add' \
         "config": {
             "checkRange": 604800,
             "describe": "LWC测试OpenAPI",
-            "goal": 90.0,
+            "goal": 90,
             "interval": "10m",
-            "minGoal": 60.0,
+            "minGoal": 60,
             "sli_infos": [
                 {
                     "id": "rul_7xxxx",
@@ -69,6 +69,15 @@ curl 'https://openapi.guance.com/api/v1/slo/add' \
         },
         "createAt": 1722913524,
         "creator": "wsak_a2d5xxx",
+        "creatorInfo": {
+            "uuid": "xx",
+            "status": 0,
+            "username": "xx",
+            "name": "xx",
+            "iconUrl": "",
+            "email": "xx",
+            "acntWsNickname": "xx"
+        },
         "declaration": {
             "asd": "aa,bb,cc,1,True",
             "asdasd": "dawdawd",
@@ -82,8 +91,17 @@ curl 'https://openapi.guance.com/api/v1/slo/add' \
         "score": 0,
         "status": 0,
         "type": "slo",
-        "updateAt": null,
-        "updator": null,
+        "updateAt": 1706152340,
+        "updator": "xx",
+        "updatorInfo": {
+            "uuid": "xx",
+            "status": 0,
+            "username": "xx",
+            "name": "xx",
+            "iconUrl": "",
+            "email": "xx",
+            "acntWsNickname": "xx"
+        },
         "uuid": "monitor_5exxxxx",
         "workspaceUUID": "wksp_4b57cxxxx"
     },

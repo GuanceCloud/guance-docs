@@ -21,6 +21,8 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
+| name | string |  | 名称 (2024-09-04 迭代新增, 默认名称, 创建人_创建时间)<br>允许为空: False <br>允许为空字符串: False <br>最大长度: 64 <br> |
+| desc | string |  | 描述 (2024-09-04 迭代新增)<br>例子: 描述1 <br>允许为空: False <br>允许为空字符串: True <br>最大长度: 256 <br> |
 | indexes | array | Y | 索引uuid, ["*"]表示全部<br>例子: ['*'] <br>允许为空: False <br> |
 | roleUUIDs | array | Y | 角色的列表<br>例子: [] <br>允许为空: False <br> |
 | conditions | string | Y | 筛选搜索<br>例子: search <br>允许为空: False <br> |
@@ -40,6 +42,8 @@
 
 | 参数名           | type | 说明                                                 |
 | ---------------- | ---- | ---------------------------------------------------- |
+| name       | string | 名称 |
+| desc       | string | 描述 |
 | indexes       | array | 索引uuid列表 |
 | roleUUIDS             | array | 角色UUID列表                                                 |
 | conditions       | string  |  dql删选格式条件     |
@@ -51,11 +55,11 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_xxxx32/modify' \
+curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_xxx/modify' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---data-raw $'{"roleUUIDs":["role_xxxx32"],"indexes":["default"],"extend":{"container_id":["eefdb964e3eb5e822f12e5663449bebb37738daed0841c6c9cec44f11d073f05"]},"logic":"and","conditions":"`container_id` IN [\'eefdb964e3eb5e822f12e5663449bebb37738daed0841c6c9cec44f11d073f05\']"}' \
+--data-raw $'{"name": "test_modify_name", "desc": "", "roleUUIDs":["role_xxx"],"indexes":["default"],"extend":{"container_id":["xxx"]},"logic":"and","conditions":"`container_id` IN [\'xxxx\']"}' \
 --compressed
 ```
 
@@ -66,11 +70,46 @@ curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_xxxx32/modify' \
 ```shell
 {
     "code": 200,
-    "content": true,
+    "content": {
+        "conditions": "`container_id` IN ['eefdb964e3eb5e822f12e5663449bebb37738daed0841c6c9cec44f11d073f05']",
+        "createAt": 1724400669,
+        "creator": "wsak_f2ed3d24cfa641e891b0975b3338ecdb",
+        "declaration": {
+            "asd": "aa,bb,cc,1,True",
+            "asdasd": "dawdawd",
+            "business": "aaa",
+            "dd": "dd",
+            "fawf": "afawf",
+            "organization": "64fe7b4062f74d0007b46676"
+        },
+        "deleteAt": -1,
+        "desc": "",
+        "extend": {
+            "container_id": [
+                "eefdb964e3eb5e822f12e5663449bebb37738daed0841c6c9cec44f11d073f05"
+            ]
+        },
+        "id": 254,
+        "indexes": [
+            "default"
+        ],
+        "logic": "and",
+        "maskFields": "",
+        "name": "test_modify_name",
+        "reExprs": [],
+        "roleUUIDs": [
+            "role_44dbdc6ad4b848f0a570072c10d9e29a"
+        ],
+        "status": 0,
+        "updateAt": 1724400877.2740228,
+        "updator": "wsak_f2ed3d24cfa641e891b0975b3338ecdb",
+        "uuid": "lqrl_8213238cd36a44bfb6cbc04734b4104c",
+        "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
+    },
     "errorCode": "",
     "message": "",
     "success": true,
-    "traceId": "TRACE-CC4D1F41-C84A-4C4F-8925-53C9B274BF8E"
+    "traceId": "TRACE-B62DB077-683D-4DEA-8B1E-E4D13CF663D1"
 } 
 ```
 

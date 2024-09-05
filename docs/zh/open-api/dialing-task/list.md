@@ -46,11 +46,20 @@ curl 'https://openapi.guance.com/api/v1/dialing_task/list' \
     "content": [
         {
             "createAt": 1677723540,
-            "creator": "acnt_xxxx32",
+            "creator": "xx",
+            "creatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
             "deleteAt": -1,
             "id": 19,
             "regions": [
-                "reg_xxxx20"
+                "reg_xxx9v0"
             ],
             "status": 0,
             "tagInfo": [],
@@ -83,9 +92,18 @@ curl 'https://openapi.guance.com/api/v1/dialing_task/list' \
             },
             "type": "websocket",
             "updateAt": 1686035083,
-            "updator": "acnt_xxxx32",
-            "uuid": "dial_xxxx32",
-            "workspaceUUID": "wksp_xxxx32"
+            "updator": "xx",
+            "updatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
+            "uuid": "dial_xxx2b5",
+            "workspaceUUID": "wksp_xxx115"
         }
     ],
     "errorCode": "",
