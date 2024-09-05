@@ -44,6 +44,15 @@ curl 'https://openapi.guance.com/api/v1/blacklist/list?type=all&pageIndex=1&page
             "conditions": "{ source =  'kodo-log'  and ( host in [ '127.0.0.1' ] )}",
             "createAt": 1678029404,
             "creator": "xxx",
+            "creatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
             "deleteAt": -1,
             "filters": [
                 {
@@ -61,13 +70,31 @@ curl 'https://openapi.guance.com/api/v1/blacklist/list?type=all&pageIndex=1&page
             "type": "logging",
             "updateAt": 1678029404,
             "updator": "xxx",
-            "uuid": "blist_xxxx32",
-            "workspaceUUID": "wksp_xxxx32"
+            "updatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
+            "uuid": "blist_xxx481",
+            "workspaceUUID": "wksp_xxx115"
         },
         {
             "conditions": "{ source =  'kodo-log'  and ( name in [ 'a' ] )}",
             "createAt": 1677653414,
-            "creator": "acnt_xxxx32",
+            "creator": "xx",
+            "creatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
             "deleteAt": -1,
             "filters": [
                 {
@@ -84,14 +111,32 @@ curl 'https://openapi.guance.com/api/v1/blacklist/list?type=all&pageIndex=1&page
             "status": 0,
             "type": "logging",
             "updateAt": 1678027698,
-            "updator": "acnt_xxxx32",
-            "uuid": "blist_xxxx32",
-            "workspaceUUID": "wksp_xxxx32"
+            "updator": "xx",
+            "updatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
+            "uuid": "blist_xxxd36",
+            "workspaceUUID": "wksp_xxx115"
         },
         {
             "conditions": "{ source =  'datakit'  and ( status in [ 'ok' ,  'info' ]  and  host in [ 'cc-testing-cluster-001' ]  and  message in [ 'kodo' ] )}",
             "createAt": 1677565045,
-            "creator": "acnt_xxxx32",
+            "creator": "xx",
+            "creatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
             "deleteAt": -1,
             "filters": [
                 {
@@ -125,9 +170,18 @@ curl 'https://openapi.guance.com/api/v1/blacklist/list?type=all&pageIndex=1&page
             "status": 0,
             "type": "logging",
             "updateAt": 1677565045,
-            "updator": "acnt_xxxx32",
-            "uuid": "blist_xxxx32",
-            "workspaceUUID": "wksp_xxxx32"
+            "updator": "xx",
+            "updatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
+            "uuid": "blist_xxx6b5",
+            "workspaceUUID": "wksp_xxx115"
         }
     ],
     "errorCode": "",
