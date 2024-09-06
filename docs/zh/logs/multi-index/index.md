@@ -60,10 +60,8 @@
 :material-numeric-2-circle: [Elasticsearch](./elasticsearch.md)  
 :material-numeric-3-circle: [OpenSearch](./opensearch.md)    
 :material-numeric-4-circle: [日志易](./logease.md) 
-
-<!--
 :material-numeric-5-circle: [火山引擎 TLS](./tls.md)    
--->
+
 **注意**：
 
 - 绑定的索引仅支持删除（删除即为取消绑定），取消绑定后则无法查询该索引下的日志；
@@ -75,8 +73,8 @@
 
 为了在观测云快捷查看和分析外部索引的日志数据，观测云提供字段映射的功能，在绑定外部索引时可直接为日志的字段进行映射。
 
-1. `time`：日志的上报时间，SLS Logstore 默认映射 `date` 字段为 `time` ，Elasticsearch、OpenSearch 可按照实际日志数据自行填写；若没有此字段，在日志查看器中数据将乱序展示。
-2. `_docid`：日志的唯一 ID ，映射后您可以查看绑定的日志详情，例如：您可以将原字段 `logid` 映射为 `_docid`。如果在这部分日志中，`logid` 的 `value` 不唯一，此时若不刷新详情页，则不会产生任何影响；若刷新了详情页，则取时间最早的一条日志展示。若没有此字段，日志详情页会有部分内容缺失。若映射字段不唯一，打开详情页时会取该 ID 对应的时间最早的一条日志进行展示。
+1. `time`：日志的上报时间，SLS Logstore 默认映射 `date` 字段为 `time`，Elasticsearch、OpenSearch 可按照实际日志数据自行填写；若没有此字段，在日志查看器中数据将乱序展示。
+2. `_docid`：日志的唯一 ID，映射后您可以查看绑定的日志详情，例如：您可以将原字段 `logid` 映射为 `_docid`。如果在这部分日志中，`logid` 的 `value` 不唯一，此时若不刷新详情页，则不会产生任何影响；若刷新了详情页，则取时间最早的一条日志展示。若没有此字段，日志详情页会有部分内容缺失。若映射字段不唯一，打开详情页时会取该 ID 对应的时间最早的一条日志进行展示。
 
 3. `message`：日志的内容，映射后您可以查看绑定的日志内容，并且通过 `message` 字段聚类分析日志数据。
 
@@ -95,7 +93,7 @@
 
 :material-numeric-1-circle: 禁用/启用
 
-- 禁用索引后，后续日志不会再进入该索引，会继续匹配流入其他索引进行保存，若无匹配其他索引，则保存在默认 default 索引中；
+- 禁用索引后，后续日志不会再进入该索引，会继续匹配流入其他索引进行保存，若无匹配其他索引，则保存在默认 `default` 索引中；
     
 - 启用索引后，后续日志会重新进入该索引进行保存。
 
@@ -160,6 +158,12 @@
 
 
 
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **绑定火山引擎 TLS 索引**</font>](./tls.md)
+
+</div>
+
 
 <div class="grid cards" markdown>
 
@@ -167,14 +171,6 @@
 
 </div>
 
+
+
 </font>
-
-
-<!--
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **绑定火山引擎 TLS 索引**</font>](./tls.md)
-
-</div>
-
--->
