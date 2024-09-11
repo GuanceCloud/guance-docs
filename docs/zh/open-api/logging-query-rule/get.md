@@ -38,33 +38,60 @@ curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_xxxx32/get' \
 {
     "code": 200,
     "content": {
-        "conditions": "`host` = wildcard('cvsdbvjk')",
-        "createAt": 1695293435,
-        "creator": "acnt_xxxx32",
+        "conditions": "`container_id` IN ['xxxx']",
+        "createAt": 1724400669,
+        "creator": "wsak_xxx",
+        "declaration": {
+            "asd": "aa,bb,cc,1,True",
+            "asdasd": "dawdawd",
+            "business": "aaa",
+            "dd": "dd",
+            "fawf": "afawf",
+            "organization": "xxx"
+        },
         "deleteAt": -1,
+        "desc": "",
         "extend": {
-            "*host": [
-                "cvsdbvjk"
+            "container_id": [
+                "xxxx"
             ]
         },
-        "id": 127,
+        "id": 254,
+        "indexWsInfo": {
+            "default": {
+                "indexInfo": {
+                    "name": "default",
+                    "status": 0
+                },
+                "wsInfo": {
+                    "name": "【Doris】开发测试一起用_",
+                    "status": 0
+                }
+            }
+        },
         "indexes": [
             "default"
         ],
         "logic": "and",
+        "maskFields": "",
+        "name": "test_modify_name",
+        "reExprs": [],
+        "relRoleInfos": [
+            {}
+        ],
         "roleUUIDs": [
-            "general"
+            "role_xxxx"
         ],
         "status": 0,
-        "updateAt": 1695293435,
-        "updator": "acnt_xxxx32",
-        "uuid": "lqrl_xxxx32",
-        "workspaceUUID": "wksp_xxxx32"
+        "updateAt": 1724400877,
+        "updator": "wsak_xxxx",
+        "uuid": "lqrl_xxx",
+        "workspaceUUID": "wksp_xxxxx"
     },
     "errorCode": "",
     "message": "",
     "success": true,
-    "traceId": "TRACE-22837C00-0EC4-4B08-9ECB-F131459A8E24"
+    "traceId": "TRACE-3D4B9E8E-CCB6-486F-81E8-16B3FE2E7519"
 } 
 ```
 

@@ -87,7 +87,7 @@
 
 > 更多详情，可参考 [日志索引](multi-index.md)。
 
-![](img/5.log_3.1.png)
+<img src="../img/5.log_3.1.png" width="70%" >
 
 ### 搜索与筛选
 
@@ -95,7 +95,7 @@
 
 输入搜索或筛选条件后，可查看查询的预览效果。您可以复制该条件，直接用于图表或查询工具。
 
-<img src="../img/bar-preview.png" width="60%" >
+<img src="../img/bar-preview.png" width="70%" >
 
 
 ### DQL 搜索 {#dql}
@@ -173,6 +173,14 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
 除该导出路径外，您还可采用[其他日志数据导出](#logexport)方式。
 
+
+### 设置状态颜色 {#status-color}
+
+观测云为状态值已经设置了系统默认颜色。如您需要修改不同的状态下，对应数据在查看器中显示的颜色，可通过点击**设置状态颜色**进行修改。
+
+
+<img src="../img/status-color.png" width="70%" >
+
 ### 格式化配置
 
 格式化配置可以让您隐藏敏感日志数据内容或者突出需要查看的日志数据内容，还可以通过替换原有日志内容进行快速筛选。
@@ -187,6 +195,17 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 **注意**：仅管理员及以上可进行查看器格式化配置。
 
 ![](img/11.log_format_2.gif)
+
+### 日志数据导出 {#logexport}
+
+在**日志**中，您可以先筛选出想要的日志数据，再通过 :octicons-gear-24: 导出后进行查看和分析，支持导出到 CSV 文件或者仪表板和笔记。
+
+![](img/5.log_explorer_3.png)
+
+如果需要导出某条日志数据，打开该条日志详情页，点击右上角 :material-tray-arrow-up: 图标即可。
+
+![](img/export-log-0808.png)
+
 
 ### 日志颜色高亮
 
@@ -218,15 +237,7 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
 ![](img/5.log_explorer_2.gif)
 
-### 日志数据导出 {#logexport}
 
-在**日志**中，您可以先筛选出想要的日志数据，再通过 :octicons-gear-24: 导出后进行查看和分析，支持导出到 CSV 文件或者仪表板和笔记。
-
-![](img/5.log_explorer_3.png)
-
-如果需要导出某条日志数据，打开该条日志详情页，点击右上角 :material-tray-arrow-up: 图标即可。
-
-![](img/export-log-0808.png)
 
 ## 日志详情
 

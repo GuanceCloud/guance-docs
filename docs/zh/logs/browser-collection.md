@@ -2,8 +2,6 @@
 
 ---
 
-
-
 通过 Web 浏览器或者 Javascript 客户端主动发送不同等级的日志数据(`对应的 source:browser_log` 指标类型日志数据)到[观测云](https://www.guance.com/)。
 
 ## 功能简介
@@ -36,7 +34,9 @@
 ```javascript
 import { datafluxLogs } from '@cloudcare/browser-logs'
 datafluxLogs.init({
-  datakitOrigin: '<DATAKIT ORIGIN>',
+  datakitOrigin: '<DataKit的域名或IP>', // DK方式接入时需要配置
+  clientToken: 'clientToken', // 公网 OpenWay 接入时,需要填写
+  site: '公网 OpenWay 地址', // 公网 OpenWay 接入时,需要填写
   //service: 'browser',
   //forwardErrorsToLogs:true
 })
@@ -61,7 +61,9 @@ datafluxLogs.init({
   })(window, document, 'script', 'https://static.guance.com/browser-sdk/v3/dataflux-logs.js', 'DATAFLUX_LOGS')
   DATAFLUX_LOGS.onReady(function () {
     DATAFLUX_LOGS.init({
-      datakitOrigin: '<DATAKIT ORIGIN>',
+      datakitOrigin: '<DataKit的域名或IP>', // DK方式接入时需要配置
+      clientToken: 'clientToken', // 公网 OpenWay 接入时,需要填写
+      site: '公网 OpenWay 地址', // 公网 OpenWay 接入时,需要填写
       //service: 'browser',
       //forwardErrorsToLogs:true
     })
@@ -76,7 +78,9 @@ datafluxLogs.init({
 <script>
   window.DATAFLUX_LOGS &&
     window.DATAFLUX_LOGS.init({
-      datakitOrigin: '<DATAKIT ORIGIN>',
+      datakitOrigin: '<DataKit的域名或IP>', // DK方式接入时需要配置
+      clientToken: 'clientToken', // 公网 OpenWay 接入时,需要填写
+      site: '公网 OpenWay 地址', // 公网 OpenWay 接入时,需要填写
       //service: 'browser',
       //forwardErrorsToLogs:true
     })
@@ -95,7 +99,7 @@ datafluxLogs.init({
 | `service`              | String      | 否           | `browser`  | 日志 Service 名称                                                                                                                        |
 | `env`                  | String      | 否           |            | Web 应用当前环境， 如 Prod：线上环境；Gray：灰度环境；Pre：预发布环境 Common：日常环境；Local：本地环境；                                |
 | `version`              | String      | 否           |            | Web 应用的版本号                                                                                                                         |
-| `sampleRate`           | Number      | 否           | `100`      | 指标数据收集百分比：`100` 表示全收集，`0` 表示不收集                                                                                     |
+| `sessionSampleRate`    | Number      | 否           | `100`      | 指标数据收集百分比：`100` 表示全收集，`0` 表示不收集                                                                                     |
 | `forwardErrorsToLogs`  | Boolean     | 否           | `true`     | 设置为 `false` 表示停止采集 console.error、 js、以及网络错误上报到观测云日志数据中                                                       |
 | `silentMultipleInit`   | Boolean     | 否           | `false`    | 不允许有多个日志对象被初始化                                                                                                             |
 | `forwardConsoleLogs`   | 字符串/数组 |              |            | 需要采集浏览器 console 日志类型，可选值：`error`, `log`, `info`, `warn`, `error`                                                         |
@@ -228,3 +232,249 @@ window.DATAFLUX_LOGS && DATAFLUX_LOGS.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<ST
 | `<MESSAGE>`         | 观测云日志中的 Message 字段                                 |
 | `<JSON_ATTRIBUTES>` | 描述 Message 的额外数据，是一个 Json 对象                   |
 | `<STATUS>`          | 日志的等级，可选值 `debug`,`info`,`warn`,`error`,`critical` |
+
+## 自定义添加额外的数据 TAG
+
+---
+
+初始化 LOG 后，使用 `setGlobalContextProperty(key:string，value:any)` API 向从应用程序收集的所有 LOG 事件添加额外的 TAG。
+
+### 添加 TAG
+
+=== "CDN 同步"
+
+    ``` javascript
+    window.DATAFLUX_LOGS && window.DATAFLUX_LOGS.setGlobalContextProperty('<CONTEXT_KEY>', '<CONTEXT_VALUE>');
+
+    // Code example
+    window.DATAFLUX_LOGS && window.DATAFLUX_LOGS.setGlobalContextProperty('isvip', 'xxxx');
+    window.DATAFLUX_LOGS && window.DATAFLUX_LOGS.setGlobalContextProperty('activity', {
+        hasPaid: true,
+        amount: 23.42
+    });
+    ```
+
+=== "CDN 异步"
+
+    ``` javascript
+    DATAFLUX_LOGS.onReady(function() {
+        DATAFLUX_LOGS.setGlobalContextProperty('<CONTEXT_KEY>', '<CONTEXT_VALUE>');
+    })
+
+    // Code example
+    DATAFLUX_LOGS.onReady(function() {
+        DATAFLUX_LOGS.setGlobalContextProperty('isvip', 'xxxx');
+    })
+    DATAFLUX_LOGS.onReady(function() {
+        DATAFLUX_LOGS.setGlobalContextProperty('activity', {
+            hasPaid: true,
+            amount: 23.42
+        });
+    })
+
+    ```
+
+=== "NPM"
+
+    ``` javascript
+    import { datafluxLogs } from '@cloudcare/browser-logs'
+    datafluxLogs.setGlobalContextProperty('<CONTEXT_KEY>', <CONTEXT_VALUE>);
+
+    // Code example
+    datafluxLogs && datafluxLogs.setGlobalContextProperty('isvip', 'xxxx');
+    datafluxLogs.setGlobalContextProperty('activity', {
+        hasPaid: true,
+        amount: 23.42
+    });
+    ```
+
+### 替换 TAG（覆盖）
+
+=== "CDN 同步"
+
+    ```javascript
+    window.DATAFLUX_LOGS &&
+         window.DATAFLUX_LOGS.setGlobalContext({ '<CONTEXT_KEY>': '<CONTEXT_VALUE>' });
+
+    // Code example
+    window.DATAFLUX_LOGS &&
+         window.DATAFLUX_LOGS.setGlobalContext({
+            codeVersion: 34,
+        });
+    ```
+
+=== "CDN 异步"
+
+    ```javascript
+     window.DATAFLUX_LOGS.onReady(function() {
+         window.DATAFLUX_LOGS.setGlobalContext({ '<CONTEXT_KEY>': '<CONTEXT_VALUE>' });
+    })
+
+    // Code example
+     window.DATAFLUX_LOGS.onReady(function() {
+         window.DATAFLUX_LOGS.setGlobalContext({
+            codeVersion: 34,
+        })
+    })
+    ```
+
+=== "NPM"
+
+    ```javascript
+    import { datafluxLogs } from '@cloudcare/browser-logs'
+
+    datafluxLogs.setGlobalContext({ '<CONTEXT_KEY>': '<CONTEXT_VALUE>' });
+
+    // Code example
+    datafluxLogs.setGlobalContext({
+        codeVersion: 34,
+    });
+    ```
+
+### 获取所有设置的自定义 TAG
+
+=== "CDN 同步"
+
+    ```javascript
+    var context = window.DATAFLUX_LOGS &&  window.DATAFLUX_LOGS.getGlobalContext();
+
+    ```
+
+=== "CDN 异步"
+
+    ```javascript
+     window.DATAFLUX_LOGS.onReady(function() {
+        var context =  window.DATAFLUX_LOGS.getGlobalContext();
+    });
+    ```
+
+=== "NPM"
+
+    ```javascript
+    import { datafluxLogs } from '@cloudcare/browser-logs'
+
+    const context = datafluxLogs.getGlobalContext();
+
+    ```
+
+### 移除特定 key 对应的自定义 TAG
+
+=== "CDN 同步"
+
+    ```javascript
+    var context = window.DATAFLUX_LOGS &&  window.DATAFLUX_LOGS.removeGlobalContextProperty('<CONTEXT_KEY>');
+
+    ```
+
+=== "CDN 异步"
+
+    ```javascript
+     window.DATAFLUX_LOGS.onReady(function() {
+        var context =  window.DATAFLUX_LOGS.removeGlobalContextProperty('<CONTEXT_KEY>');
+    });
+    ```
+
+=== "NPM"
+
+    ```javascript
+    import { datafluxLogs } from '@cloudcare/browser-logs'
+
+    const context = datafluxLogs.removeGlobalContextProperty('<CONTEXT_KEY>');
+    ```
+
+### 移除所有的自定义 TAG
+
+=== "CDN 同步"
+
+    ```javascript
+    var context = window.DATAFLUX_LOGS &&  window.DATAFLUX_LOGS.clearGlobalContext();
+
+    ```
+
+=== "CDN 异步"
+
+    ```javascript
+     window.DATAFLUX_LOGS.onReady(function() {
+        var context =  window.DATAFLUX_LOGS.clearGlobalContext();
+    });
+    ```
+
+=== "NPM"
+
+    ```javascript
+    import { datafluxLogs } from '@cloudcare/browser-logs'
+
+    const context = datafluxLogs.clearGlobalContext();
+    ```
+
+## 自定义用户标识
+
+---
+
+SDK 默认情况下，自动会给用户生成一个唯一标识 ID。这个 ID 不带任何标识属性，只能区别出不同用户属性。为此我们提供了额外的 API 去给当前用户添加不同的标识属性。
+
+| 属性       | 类型   | 描述               |
+| ---------- | ------ | ------------------ |
+| user.id    | string | 用户 ID            |
+| user.name  | string | 用户昵称或者用户名 |
+| user.email | string | 用户邮箱           |
+
+**注意**：以下属性是可选的，但建议至少提供其中一个。
+
+### 添加用户标识
+
+=== "CDN 同步"
+
+    ```javascript
+    window.DATAFLUX_LOGS && window.DATAFLUX_LOGS.setUser({
+        id: '1234',
+        name: 'John Doe',
+        email: 'john@doe.com',
+    })
+    ```
+
+=== "CDN 异步"
+
+    ```javascript
+    window.DATAFLUX_LOGS.onReady(function() {
+        window.DATAFLUX_LOGS.setUser({
+            id: '1234',
+            name: 'John Doe',
+            email: 'john@doe.com',
+        })
+    })
+    ```
+
+=== "NPM"
+
+    ```javascript
+    import { datafluxLogs } from '@cloudcare/browser-logs'
+    datafluxLogs.setUser({
+        id: '1234',
+        name: 'John Doe',
+        email: 'john@doe.com',
+    })
+    ```
+
+### 移除用户标识
+
+=== "CDN 同步"
+
+    ```javascript
+    window.DATAFLUX_LOGS && window.DATAFLUX_LOGS.clearUser()
+    ```
+
+=== "CDN 异步"
+
+    ```javascript
+    window.DATAFLUX_LOGS.onReady(function() {
+        window.DATAFLUX_LOGS.clearUser()
+    })
+    ```
+
+=== "NPM"
+
+    ```javascript
+    import { datafluxLogs } from '@cloudcare/browser-logs'
+    datafluxLogs.clearUser()
+    ```

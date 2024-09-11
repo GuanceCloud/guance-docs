@@ -13,7 +13,7 @@ kubectl delete pod -n forethought-kodo
 ```
 
 ## 2 指标管理里 kodo报错 query error: db config pwd is null:ro
-指标管理里无数据，通过f12查看到kodo接口Response返回'query error: db config pwd is null:ro'
+指标管理里数据断档，通过f12查看到kodo接口Response返回'query error: db config pwd is null:ro'
 解决方案：
 通过下列sql检查存储引擎实例，如果是切换后了doris，**注意datastore字段中，metric值应该为guancedb**。
 ```sql

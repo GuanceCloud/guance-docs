@@ -1,21 +1,20 @@
-# Basics and Principles
+# Pipeline Basics and Principles
 ---
 
-The following describes the module design and working principles of DataKit Pipeline, which can help you better understand the features of Pipeline. However, you may choose to skip this section and start using it directly.
+The following is the module design and working principle of the DataKit Pipeline, which can help you better understand the Pipeline function, but you can choose to skip the following content and start using it directly.
 
 ## Data Flow in DataKit {#data-flow}
 
-After various collector plugins of DataKit or the DataKit API collect or receive data, the data will go through the Pipeline feature for data manipulation before being uploaded.
+After various DataKit collector plug-ins or DataKit API collect or receive data, the data will be processed by the Pipeline function and then uploaded.
 
-DataKit Pipeline includes a programmable data processor (Pipeline) and a programmable [Data Filter](../../datakit/datakit-filter.md) (Filter). The data processor is used for data processing and filtering, while the data filter focuses on the data filtering function.
+DataKit Pipeline includes a programmable data processor (Pipeline) and a programmable [data filter](../../datakit/datakit-filter.md) (Filter), the data processor is used for data processing, filtering, etc., and the data Filters focus on data filtering functionality.
 
-The simplified data flow in DataKit is shown in the figure below:
+The data flow in the simplified DataKit is shown in the figure below:
 
 ![data-flow](img/pipeline-data-flow.drawio.png)
 
 ## Data Processor Workflow {#data-processor}
 
-The workflow of the Pipeline data processor is shown in the data flowchart:
-
+The workflow of the Pipeline data processor is shown in the data flow chart:
 
 ![data-processor](img/pipeline-data-processor.drawio.png)
