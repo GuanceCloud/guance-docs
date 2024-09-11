@@ -19,7 +19,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is `datakit.conf`, here is the example sample(1.38.0):
+Datakit main configure is `datakit.conf`, here is the example sample(1.38.1):
 
 <!-- markdownlint-disable MD046 -->
 ??? info "`datakit.conf`"
@@ -244,7 +244,8 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.38.0):
       # The interval between two retry operation, valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h"
       retry_delay = "1s"
     
-      # HTTP Proxy(IP:Port)
+      # HTTP Proxy
+      # Format: "http(s)://IP:Port"
       http_proxy = ""
     
       max_idle_conns   = 0       # limit idle TCP connections for HTTP request to Dataway
