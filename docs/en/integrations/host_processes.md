@@ -104,7 +104,7 @@ The process collector can monitor various running processes in the system, acqui
     
         **input.conf**: `process_name`
     
-        **Example**: .*datakit.*,guance
+        **Example**: `.*datakit.*,guance`
     
     - **ENV_INPUT_HOST_PROCESSES_MIN_RUN_TIME**
     
@@ -123,16 +123,6 @@ The process collector can monitor various running processes in the system, acqui
         **Type**: Boolean
     
         **input.conf**: `enable_listen_ports`
-    
-        **Default**: false
-    
-    - **ENV_INPUT_HOST_PROCESSES_ENABLE_OPEN_FILES**
-    
-        Enable open files field
-    
-        **Type**: Boolean
-    
-        **input.conf**: `enable_open_files`
     
         **Default**: false
     
