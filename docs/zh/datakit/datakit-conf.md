@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.38.0）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.38.1）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -244,7 +244,8 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       # The interval between two retry operation, valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h"
       retry_delay = "1s"
     
-      # HTTP Proxy(IP:Port)
+      # HTTP Proxy
+      # Format: "http(s)://IP:Port"
       http_proxy = ""
     
       max_idle_conns   = 0       # limit idle TCP connections for HTTP request to Dataway
