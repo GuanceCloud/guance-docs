@@ -26,7 +26,7 @@ Pipeline 的主要特点包括：
 | <div style="width: 130px">类型</div> | 场景       |
 | ------ | -------- |
 | 本地 Pipeline  | 在数据转发前处理日志。       |
-| 中心 Pipeline  | 1. 用户访问 (Session) 数据、Profiling 数据；<br />2. 处理应用性能链路中的 RUM 数据，如提取链路 `message` 中的 `session`、`view`、`resource` 等字段。       |
+| 中心 Pipeline  | 1. 用户访问 (Session) 数据、Profiling 数据、可用性监测数据；<br />2. 处理应用性能链路中的 RUM 数据，如提取链路 `message` 中的 `session`、`view`、`resource` 等字段。       |
 
 除上述说明之外的数据，本地/中心 Pipeline 均可处理。
 
@@ -78,17 +78,19 @@ Pipeline 的主要特点包括：
 
 :material-numeric-1-circle: 基础设置
 
-- 类型：包含本地 Pipeline 和中心 Pipeline；默认选中前者。
+1. 过滤：即过滤出 Pipeline 要解析的数据；数据类型包括日志、指标、用户访问监测、应用性能监测、基础对象、资源目录、网络、安全巡检；支持多选。  
+2. 类型：包含本地 Pipeline 和中心 Pipeline；默认选中前者。
+3. Pipeline 名称：自定义的 Pipeline 文件名。
 
-- 过滤：即过滤出 Pipeline 要解析的数据；数据类型包括日志、指标、用户访问监测、应用性能监测、基础对象、资源目录、网络、安全巡检；支持多选。  
-- Pipeline 名称：自定义的 Pipeline 文件名。
+
+???+ warning "注意事项"
+
+    1. 若您选择了过滤对象为日志时，观测云会自动为您过滤掉拨测数据，当“设置为默认 Pipeline” 时，也不会应用在拨测数据中。
+    2. 当您选择过滤对象为“可用性拨测”时，类型自动选中“中心 Pipeline”，且无法选择本地 Pipeline。
+    3. Pipeline 文件命名需避免重名。如必要，需了解 [Pipeline 脚本的存储、索引、匹配的逻辑](./use-pipeline/pipeline-category.md#script-store-index-match)。
+    4. 每个数据类型只能设置一个默认 Pipeline，新建/导入时出现重复会弹出确认框，询问是否进行替换，已勾选为默认的 Pipeline，名称后会有一个 `default` 标识。
 
 
-**注意**：
-
-1. Pipeline 文件命名需避免重名。如必要，需了解 [Pipeline 脚本的存储、索引、匹配的逻辑](./use-pipeline/pipeline-category.md#script-store-index-match)。
-
-2. 每个数据类型只能设置一个默认 Pipeline，新建/导入时出现重复会弹出确认框，询问是否进行替换，已勾选为默认的 Pipeline，名称后会有一个 `default` 标识。
 
 :material-numeric-2-circle: 定义解析规则
 
@@ -116,7 +118,7 @@ Pipeline 的主要特点包括：
 
 #### 一键获取样本测试
 
-观测云支持一键获取样本测试数据，在创建/编辑 Pipeline 时，点击**样本解析测试 > 一键获取样本**，系统会自动从已采集上报到工作空间的数据中，按照筛选的数据范围选取最新的一条数据，作为样本填入测试样本框内进行测试。一键获取样本数据时，每次**只会查询最近 6 小时内的数据**，若最近 6 小时无数据上报，则无法自动获取到。
+观测云支持一键获取样本测试数据，在创建/编辑 Pipeline 时，点击**样本解析测试 > 一键获取样本**，系统会自动从已采集上报到工作空间的数据中，按照筛选的数据范围选取最新的一条数据，作为样本填入测试样本框内进行测试。一键获取样本数据时，每次**只会查询最近 6 小时内的数据**，若最近 6 小时数据断档上报，则无法自动获取到。
 
 *调试示例：*
 

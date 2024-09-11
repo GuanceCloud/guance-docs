@@ -56,7 +56,9 @@ Web 应用接入的有三种方式：NPM 接入、同步载入和异步载入。
 
     datafluxRum.init({
       applicationId: 'guance',
-      datakitOrigin: '<DATAKIT ORIGIN>', // 协议（包括：//），域名（或IP地址）[和端口号]
+      datakitOrigin: '<DataKit的域名或IP>', // DK方式接入时需要配置
+      clientToken: 'clientToken', // 公网 OpenWay 接入时,需要填写
+      site: '公网 OpenWay 地址', // 公网 OpenWay 接入时,需要填写
       env: 'production',
       version: '1.0.0',
       sessionSampleRate: 100,
@@ -93,7 +95,9 @@ Web 应用接入的有三种方式：NPM 接入、同步载入和异步载入。
       DATAFLUX_RUM.onReady(function () {
         DATAFLUX_RUM.init({
           applicationId: 'guance',
-          datakitOrigin: '<DATAKIT ORIGIN>', // 协议（包括：//），域名（或IP地址）[和端口号]
+          datakitOrigin: '<DataKit的域名或IP>', // DK方式接入时需要配置
+          clientToken: 'clientToken', // 公网 OpenWay 接入时,需要填写
+          site: '公网 OpenWay 地址', // 公网 OpenWay 接入时,需要填写
           env: 'production',
           version: '1.0.0',
           sessionSampleRate: 100,
@@ -114,7 +118,9 @@ Web 应用接入的有三种方式：NPM 接入、同步载入和异步载入。
       window.DATAFLUX_RUM &&
         window.DATAFLUX_RUM.init({
           applicationId: 'guance',
-          datakitOrigin: '<DATAKIT ORIGIN>', //协议（包括：//），域名（或IP地址）[和端口号]
+          datakitOrigin: '<DataKit的域名或IP>', // DK方式接入时需要配置
+          clientToken: 'clientToken', // 公网 OpenWay 接入时,需要填写
+          site: '公网 OpenWay 地址', // 公网 OpenWay 接入时,需要填写
           env: 'production',
           version: '1.0.0',
           sessionSampleRate: 100,

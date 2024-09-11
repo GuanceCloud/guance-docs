@@ -4,6 +4,12 @@
 ???- quote "更新日志"
 
     === "ft-sdk"
+		**1.6.0**
+		```markdown
+		1. 优化数据存储和同步性能
+		（旧版本升级至 1.6.0 需要配置 FTSDKConfig.setNeedTransformOldCache 进行旧数据兼容同步）
+		2. 修复在使用 ft-plugin 时，调用 Log.w(String,Throwable) 引发异常的问题
+		```
 		**1.5.2**：
         ``` markdown
 		1. Error network_error 添加本地网络错误类型的提示，用于补充说明 Resource 数据中 resource_status=0 场景
@@ -72,6 +78,10 @@
         [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-native/CHANGELOG.md)
 
     === "ft-plguin ( AGP >=7.4.2 )"
+		**1.3.3**：
+        ``` markdown
+		1. 优化 native symbol so 自动获取上传，支持自定义指定 nativeLibPath
+		```
 		**1.3.2**：
         ``` markdown
 		1. 支持 React Native WebView 事件自动捕获
@@ -248,10 +258,22 @@ apply plugin: 'ft-plugin'
 FTExt {
     //是否显示 Plugin 日志，默认为 false
     showLog = true
+	
     //设置 ASM 版本，支持 asm7 - asm9，默认 asm9
     //asmVersion='asm7'
+
     //ASM 忽略路径配置，路径中 . 和 / 等效
     //ignorePackages=['com.ft','com/ft']
+
+	// native so 指定路径，徐只要指定到 abi 文件的上层目录
+	// |-stripped_native_libs
+	// 		|-release
+	// 			|-out
+	//			|-lib
+	//				|-arm64-v8a
+	//				|-armeabi-v7a
+	//				|-...
+    //nativeLibPath='/build/intermediates/merged_native_libs/release/out/lib'
 }
 android{
 	//...省略部分代码
@@ -338,6 +360,7 @@ android{
 | setCustomSyncPageSize | enum | 否 | 设置同步请求条目数，范围 [5,)，注意请求条目数越大，代表数据同步占用更大的计算资源   |
 | setSyncSleepTime | Int | 否 | 设置同步间歇时间，范围 [0,100]，默认不设置  |
 | enableDataIntegerCompatible | void | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题  |
+| setNeedTransformOldCache | void | 否 |  是否需要兼容同步 1.6.0 以下的版本的旧缓存数据，默认为 false |
 
 ### RUM 配置 {#rum-config}
 
@@ -493,7 +516,7 @@ android{
 	        }
 	```
 
-3.最后重启应用，详细细节请见 [SDK Demo](#setup)
+3.最后重启应用，详细细节请见 [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
 
 ### Log 配置 {#log-config}
 
@@ -1856,7 +1879,7 @@ android{
 
 ## 符号文件上传 {#source_map}
 ### plugin 上传
-`ft-plugin` 版本需要 `1.3.0` 以上版本支持最新的符号文件上传规则，支持 `productFlavor` 多版本区分管理，plugin 会在 `gradle task assembleRelease` 之后执行上传符号文件，详细配置可以参考 [SDK Demo](#setup)
+`ft-plugin` 版本需要 `1.3.0` 以上版本支持最新的符号文件上传规则，支持 `productFlavor` 多版本区分管理，plugin 会在 `gradle task assembleRelease` 之后执行上传符号文件，详细配置可以参考 [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/build.gradle#L59)
 
 ``` groovy
 FTExt {
@@ -1996,7 +2019,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 		public void onCreate() {
 		    //如果已经同意协议，在 Application 中初始化
 			if(agreeProtocol){
-				FTSdk.init();
+				FTSdk.init(); //SDK 初始化伪代码
 			}
 		}
 	}
@@ -2012,7 +2035,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	
 			    //如果同意隐私声明
 				if( agreeProtocol ){
-					FTSdk.init();
+					FTSdk.init(); //SDK 初始化伪代码
 				}
 			}
 		}
@@ -2027,7 +2050,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	    override fun onCreate() {
 	        // 如果已经同意协议，在 Application 中初始化
 	        if (agreeProtocol) {
-	            FTSdk.init()
+	            FTSdk.init() //SDK 初始化伪代码
 	        }
 	    }
 	}
@@ -2042,12 +2065,14 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	
 	            // 如果同意隐私声明
 	            if (agreeProtocol) {
-	                FTSdk.init()
+	                FTSdk.init() //SDK 初始化伪代码
 	            }
 	        }
 	    }
 	}
 	```
+#### 第三方框架 {#third-party}
+`flutter`、`react-native`、`unity` 可以采用与以上原生 Android 相似延迟初始化方式，来应对应用市场隐私审核。
 
 ### 不使用 ft-plugin 情况下如何接入 SDK {#manual-set}
 观测云使用的 Androig Grale Plugin Transformation 实现的代码注入，从而实现数据自动收集。但是由于一些兼容性问题，可能存在无法使用 `ft-plugin` 的问题。受影响包括 **RUM** `Action`，`Resource`，和 `android.util.Log` ，Java 与 Kotlin `println` **控制台日志自动抓取**，以及符号文件的自动上传。

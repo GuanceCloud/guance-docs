@@ -73,8 +73,8 @@ datafluxRum.startSessionReplayRecording()
     n.parentNode.insertBefore(d, n)
   })(window, document, 'script', 'https://static.guance.com/browser-sdk/v3/dataflux-rum.js', 'DATAFLUX_RUM')
 
-  DATAFLUX_RUM.onReady(function () {
-    DATAFLUX_RUM.init({
+  window.DATAFLUX_RUM.onReady(function () {
+    window.DATAFLUX_RUM.init({
       applicationId: '您的应用ID',
       datakitOrigin: '<DataKit的域名或IP>', // DK方式接入时需要配置
       clientToken: 'clientToken', // 公网 OpenWay 接入时,需要填写
@@ -87,7 +87,7 @@ datafluxRum.startSessionReplayRecording()
       // 其他配置...
     })
     // 开启会话重放录制
-    DATAFLUX_RUM.startSessionReplayRecording()
+    window.DATAFLUX_RUM.startSessionReplayRecording()
   })
 </script>
 ```
@@ -125,13 +125,14 @@ datafluxRum.startSessionReplayRecording()
 
 ```javascript
 // 使用setGlobalContextProperty添加单个TAG
-DATAFLUX_RUM.setGlobalContextProperty('userName', '张三')
+window.DATAFLUX_RUM && window.DATAFLUX_RUM.setGlobalContextProperty('userName', '张三')
 
 // 使用setGlobalContext添加多个TAG
-DATAFLUX_RUM.setGlobalContext({
-  userAge: 28,
-  userGender: '男',
-})
+window.DATAFLUX_RUM &&
+  window.DATAFLUX_RUM.setGlobalContext({
+    userAge: 28,
+    userGender: '男',
+  })
 ```
 
 通过以上代码，您可以为所有 RUM 事件添加`userName`、`userAge`和`userGender`这三个 TAG，
@@ -158,8 +159,8 @@ window.DATAFLUX_RUM &&
   })
 
 // CDN 异步加载
-DATAFLUX_RUM.onReady(function () {
-  DATAFLUX_RUM.addAction('cart', {
+window.DATAFLUX_RUM.onReady(function () {
+  window.DATAFLUX_RUM.addAction('cart', {
     amount: 42,
     nb_items: 2,
     items: ['socks', 't-shirt'],
@@ -186,9 +187,9 @@ const error = new Error('Something wrong occurred.')
 window.DATAFLUX_RUM && DATAFLUX_RUM.addError(error, { pageStatus: 'beta' })
 
 // CDN 异步加载
-DATAFLUX_RUM.onReady(function () {
+window.DATAFLUX_RUM.onReady(function () {
   const error = new Error('Something wrong occurred.')
-  DATAFLUX_RUM.addError(error, { pageStatus: 'beta' })
+  window.DATAFLUX_RUM.addError(error, { pageStatus: 'beta' })
 })
 
 // NPM
@@ -211,8 +212,8 @@ window.DATAFLUX_RUM &&
   })
 
 // CDN 异步加载
-DATAFLUX_RUM.onReady(function () {
-  DATAFLUX_RUM.setUser({ id: '1234', name: 'John Doe', email: 'john@doe.com' })
+window.DATAFLUX_RUM.onReady(function () {
+  window.DATAFLUX_RUM.setUser({ id: '1234', name: 'John Doe', email: 'john@doe.com' })
 })
 
 // NPM

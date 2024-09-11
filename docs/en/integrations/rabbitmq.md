@@ -177,10 +177,12 @@ For all of the following data collections, the global election tags will added a
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name`|RabbitMQ cluster name|
 |`host`|Hostname of RabbitMQ running on.|
 |`node_name`|RabbitMQ node name|
 |`queue_name`|RabbitMQ queue name|
 |`url`|RabbitMQ host URL|
+|`vhost`|RabbitMQ queue virtual hosts|
 
 - metric list
 
@@ -219,6 +221,7 @@ For all of the following data collections, the global election tags will added a
 | Tag | Description |
 |  ----  | --------|
 |`auto_delete`|If set, the exchange is deleted when all queues have finished using it|
+|`cluster_name`|RabbitMQ cluster name|
 |`durable`|If set when creating a new exchange, the exchange will be marked as durable. Durable exchanges remain active when a server restarts. Non-durable exchanges (transient exchanges) are purged if/when a server restarts.|
 |`exchange_name`|RabbitMQ exchange name|
 |`host`|Hostname of RabbitMQ running on.|
@@ -258,6 +261,7 @@ For all of the following data collections, the global election tags will added a
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name`|RabbitMQ cluster name|
 |`host`|Hostname of RabbitMQ running on.|
 |`node_name`|RabbitMQ node name|
 |`url`|RabbitMQ url|

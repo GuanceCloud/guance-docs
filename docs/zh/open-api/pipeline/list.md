@@ -43,47 +43,147 @@ curl 'https://openapi.guance.com/api/v1/pipeline/list' \
             {
                 "asDefault": 0,
                 "category": "logging",
+                "createAt": 1706152082,
                 "creator": "xxx",
+                "creatorInfo": {
+                    "uuid": "xx",
+                    "status": 0,
+                    "username": "xx",
+                    "name": "xx",
+                    "iconUrl": "",
+                    "email": "xx",
+                    "acntWsNickname": "xx"
+                },
                 "name": "openapi_test",
                 "status": 0,
                 "updateAt": 1678026470,
-                "uuid": "pl_xxxx32"
+                "updator": "xx",
+                "updatorInfo": {
+                    "uuid": "xx",
+                    "status": 0,
+                    "username": "xx",
+                    "name": "xx",
+                    "iconUrl": "",
+                    "email": "xx",
+                    "acntWsNickname": "xx"
+                },
+                "uuid": "pl_xxx607"
             },
             {
                 "asDefault": 0,
                 "category": "logging",
-                "creator": "acnt_xxxx32",
+                "createAt": 1706152082,
+                "creator": "xx",
+                "creatorInfo": {
+                    "uuid": "xx",
+                    "status": 0,
+                    "username": "xx",
+                    "name": "xx",
+                    "iconUrl": "",
+                    "email": "xx",
+                    "acntWsNickname": "xx"
+                },
                 "name": "eee",
                 "status": 0,
                 "updateAt": 1677814027,
-                "uuid": "pl_xxxx32"
+                "updator": "xx",
+                "updatorInfo": {
+                    "uuid": "xx",
+                    "status": 0,
+                    "username": "xx",
+                    "name": "xx",
+                    "iconUrl": "",
+                    "email": "xx",
+                    "acntWsNickname": "xx"
+                },
+                "uuid": "pl_xxx8f1"
             },
             {
                 "asDefault": 0,
                 "category": "logging",
-                "creator": "acnt_xxxx32",
+                "createAt": 1706152082,
+                "creator": "xx",
+                "creatorInfo": {
+                    "uuid": "xx",
+                    "status": 0,
+                    "username": "xx",
+                    "name": "xx",
+                    "iconUrl": "",
+                    "email": "xx",
+                    "acntWsNickname": "xx"
+                },
                 "name": "JMauto_logging1",
                 "status": 0,
                 "updateAt": 1677640634,
-                "uuid": "pl_xxxx32"
+                "updator": "xx",
+                "updatorInfo": {
+                    "uuid": "xx",
+                    "status": 0,
+                    "username": "xx",
+                    "name": "xx",
+                    "iconUrl": "",
+                    "email": "xx",
+                    "acntWsNickname": "xx"
+                },
+                "uuid": "pl_xxx07f"
             },
             {
                 "asDefault": 0,
                 "category": "logging",
-                "creator": "acnt_xxxx32",
+                "createAt": 1706152082,
+                "creator": "xx",
+                "creatorInfo": {
+                    "uuid": "xx",
+                    "status": 0,
+                    "username": "xx",
+                    "name": "xx",
+                    "iconUrl": "",
+                    "email": "xx",
+                    "acntWsNickname": "xx"
+                },
                 "name": "1",
                 "status": 0,
                 "updateAt": 1677637485,
-                "uuid": "pl_xxxx32"
+                "updator": "xx",
+                "updatorInfo": {
+                    "uuid": "xx",
+                    "status": 0,
+                    "username": "xx",
+                    "name": "xx",
+                    "iconUrl": "",
+                    "email": "xx",
+                    "acntWsNickname": "xx"
+                },
+                "uuid": "pl_xxx96f"
             },
             {
                 "asDefault": 0,
                 "category": "logging",
-                "creator": "acnt_xxxx32",
+                "createAt": 1706152082,
+                "creator": "xx",
+                "creatorInfo": {
+                    "uuid": "xx",
+                    "status": 0,
+                    "username": "xx",
+                    "name": "xx",
+                    "iconUrl": "",
+                    "email": "xx",
+                    "acntWsNickname": "xx"
+                },
                 "name": "kodolog",
                 "status": 2,
                 "updateAt": 1677636474,
-                "uuid": "pl_xxxx32"
+                "updator": "xx",
+                "updatorInfo": {
+                    "uuid": "xx",
+                    "status": 0,
+                    "username": "xx",
+                    "name": "xx",
+                    "iconUrl": "",
+                    "email": "xx",
+                    "acntWsNickname": "xx"
+                },
+                "uuid": "pl_xxx877"
             }
         ]
     },
