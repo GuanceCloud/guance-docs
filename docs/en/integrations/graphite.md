@@ -37,6 +37,9 @@ The Graphite collector can receive metrics data in Graphite plaintext protocol f
       ## Address to open UDP/TCP, default 9109
       address = ":9109"
     
+      # Whether to open StrictMatch
+      # strict_match = false
+    
       ## Example Mapping Configuration
       #[inputs.graphite.metric_mapper]
       # name = "test"
@@ -57,20 +60,17 @@ The Graphite collector can receive metrics data in Graphite plaintext protocol f
       # [inputs.graphite.metric_mapper.mappings.labels]
       # job = "${1}_server"
       # outcome = "$3"
-      #provider = "$2"
+      # provider = "$2"
     
       # Regex Mapping Example
-      # [[inputs.graphite_metric_mapper.mappings]]
-      # match = "servers\.(.*)\.networking\.subnetworks\.transmissions\.([a-z0-9-]+)\.(.*)"
+      # [[inputs.graphite.metric_mapper.mappings]]
+      # match = '''servers\.(.*)\.networking\.subnetworks\.transmissions\.([a-z0-9-]+)\.(.*)'''
       # match_type = "regex"
       # name = "servers_networking_transmissions_${3}"
     
       # [inputs.graphite.metric_mapper.mappings.labels]
       # hostname = "${1}"
       # device = "${2}"
-    
-      Whether to open StrictMatch
-      # strict_match = false
     
     ```
 
