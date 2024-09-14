@@ -3,18 +3,18 @@
 ![](https://img.shields.io/badge/dynamic/json?label=ft-sdk&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/android/agent/feature/session_replay/version.json&link=https://github.com/GuanceCloud/datakit-android) ![](https://img.shields.io/badge/dynamic/json?label=ft-session-replay&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/android/session_replay/version.json&link=https://github.com/GuanceCloud/datakit-android) ![](https://img.shields.io/badge/dynamic/json?label=ft-session-replay-material&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/android/session_replay_material/version.json&link=https://github.com/GuanceCloud/datakit-android)
 
 ## 前置条件
-* 确保您已[设置并初始化 FTSdk RUM 配置](../../../ios/app-access.md)，并开启 View 的监控采集。
+* 确保您已[设置并初始化 FTSdk RUM 配置](../../../android/app-access.md)，并开启 View 的监控采集。
 * Android Session Replay 目前为 alpha 功能，需要使用 `ft-sdk:1.7.0` 以上的版本
 
 ## 配置
 
 ```gradle
-    //添加 SDK 的依赖
-    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:[latest_version]
-	//需要开启 session replay 功能
-    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-session-replay:[latest_version]'
-	//需要支持 session replay 需要支持 material 组件
-    implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-session-replay-material:[latest_version]'
+//添加 SDK 的依赖
+implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:[latest_version]
+//需要开启 session replay 功能
+implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-session-replay:[latest_version]'
+//需要支持 session replay 需要支持 material 组件
+implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-session-replay-material:[latest_version]'
 
 ```
 

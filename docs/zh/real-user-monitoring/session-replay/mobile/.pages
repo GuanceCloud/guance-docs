@@ -1,4 +1,5 @@
 nav:
+  - index.md
   - 'Android 会话重放': android
   - 'iOS 会话重放': ios
 
