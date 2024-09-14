@@ -1,7 +1,7 @@
 # RUM Headless
 
 
-RUM is used to collect user access monitoring data reported by web pages or mobile terminals. The observation cloud provides RUM one-click service. After opening, it can be automatically installed and deployed in the cloud host of the observation cloud, and automatically complete a series of operations such as DataKit installation and RUM collector deployment.
+RUM is used to collect user access monitoring data reported by web pages or mobile terminals. Guance provides RUM one-click service. After opening, it can be automatically installed and deployed in the cloud host of Guance, and automatically complete a series of operations such as DataKit installation and RUM collector deployment.
 
 
 ## One-click Opening {#steps}

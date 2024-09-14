@@ -6,6 +6,6 @@ nav:
   - 'Log Explorer': explorer.md
   - 'BPF Network Logs': bpf-log.md
   - 'Generate Metrics': generate-metrics.md
-  - 'Indexes': multi-index.md
+  - 'Indexes': multi-index
   - 'Cross-Workspace Index Query': cross-workspace-index.md
   - 'Data Access': logdata-access.md

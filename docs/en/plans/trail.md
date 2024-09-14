@@ -10,7 +10,7 @@ There are limitations on the amount of data that can be accessed in the Experien
 ???+ warning "Instructions for Using Experience Plan"
 
     - There is no charge if the Experience Plan is not upgraded. <u>Once upgraded to the Commercial Plan, it cannot be refunded</u>;
-    - If the Experience Plan is upgraded to the Commercial Plan, the collected data will continue to be reported to the observation cloud workspace, but the data collected during the <u>Experience Plan will not be viewed</u>;
+    - If the Experience Plan is upgraded to the Commercial Plan, the collected data will continue to be reported to Guance workspace, but the data collected during the <u>Experience Plan will not be viewed</u>;
     - The upgraded Commercial Plan only supports the current workspace owner to view and operate;
     - Timeseries and backup log statistics are full data, and other billing items are incremental data; Incremental data statistics reset the free quota at 0 o'clock every day, which is valid on the same day;
     - If the data quota is fully used for different billing items in the Experience Plan, the data will stop being reported and updated; Infrastructure and event data still support reporting updates, and you can still see infrastructure list data and event data.

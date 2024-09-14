@@ -56,11 +56,11 @@
 
 目前支持的外部索引包括：
 
-:material-numeric-1-circle: [SLS Logstore](./sls.md)   
-:material-numeric-2-circle: [Elasticsearch](./elasticsearch.md)  
-:material-numeric-3-circle: [OpenSearch](./opensearch.md)    
-:material-numeric-4-circle: [日志易](./logease.md) 
-:material-numeric-5-circle: [火山引擎 TLS](./tls.md)    
+:material-numeric-1-circle: [SLS Logstore](./sls.md)    
+:material-numeric-2-circle: [Elasticsearch](./elasticsearch.md)          
+:material-numeric-3-circle: [OpenSearch](./opensearch.md)          
+:material-numeric-4-circle: [日志易](./logease.md)      
+:material-numeric-5-circle: [火山引擎 TLS](./tls.md)          
 
 **注意**：
 
@@ -80,7 +80,7 @@
 
 > 更多详情，可参考 [日志查看器聚类分析](../explorer.md)。
 
-您也可以在**绑定外部索引 > 其他索引**，选择需要修改字段映射的索引，点击**编辑**，修改该索引的映射字段。
+您也可以在外部索引列表，点击**修改**进入需要修改字段映射的索引，修改该索引的映射字段。
 
 ???+ warning "注意"
 
@@ -99,15 +99,17 @@
 
 :material-numeric-2-circle: 编辑
 
-在日志索引右侧**操作**菜单下，点击**编辑**图标，即可编辑已经创建的日志索引。在下图中，当前索引 `index.da` 新建成功后，`source` 为 `datakit` 的日志数据上报时，会匹配流入到第一个符合的索引进行保存。
+点击**编辑**图标，即可编辑已经创建的日志索引。在下图中，当前索引 `index.da` 新建成功后，`source` 为 `datakit` 的日志数据上报时，会匹配流入到第一个符合的索引进行保存。
 
 **注意**：变更存储策略会删除索引中的数据，请谨慎操作。
 
 <img src="../img/6.index_3.png" width="60%" >
 
-:material-numeric-3-circle: 删除
+:material-numeric-3-circle: 操作审计：点击即可前往查看针对该索引的所有操作日志。
 
-在日志索引右侧**操作**菜单下，点击 :fontawesome-regular-trash-can: 图标，即可删除已经创建的日志索引。
+:material-numeric-4-circle: 删除
+
+点击 :fontawesome-regular-trash-can: 图标，即可删除已经创建的日志索引。
 
 **注意**：删除索引会同时删除该索引中的日志数据，若无其他匹配索引，后续上报的日志数据会保存在默认索引 `default` 中。
 
@@ -119,9 +121,11 @@
 
 删除日志索引后，您可按需创建同名索引。
 
-:material-numeric-4-circle: 拖拽
 
-在日志索引右侧**操作**菜单下，点击 :fontawesome-solid-grip-vertical: 图标，即可上下拖拽已经创建的日志索引。
+
+:material-numeric-5-circle: 拖拽
+
+点击 :fontawesome-solid-grip-vertical: 图标，即可上下拖拽已经创建的日志索引。
 
 **注意**：日志会流入第一个匹配到的索引中，改变索引顺序可能会导致日志更改流向。
 

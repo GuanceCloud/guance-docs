@@ -1,11 +1,12 @@
-# Guance ES Multi-tenant Lifecycle Management Practice
+# Guance ES Multi-tenant Lifecycle Management Practices
 ---
 
 
-## I. Life Cycle Management(ilm) 
+## Life Cycle Management(ilm) 
 
 
-### 1.1 Data Stage
+### Data Stage
+
 | **Stage Name** | **Description** | **Write in** | **Query** |
 | --- | --- | --- | --- |
 | hot | Thermal data stage | Frequent writing | Frequent query |
@@ -15,22 +16,22 @@
 | delete | Delete data stage | Unable to write | Unable to query |
 
 
-### 1.2 Index Operation
+### Index Operation
 
-Note:
+**Note**:
 
-（1）In the hot data phase, the starting point of rolling time is the index creation time
+1. In the hot data phase, the starting point of rolling time is the index creation time
 
-（2）For other data stages (except hot data stage), the starting point of time calculation is the rolling end time
+2. For other data stages (except hot data stage), the starting point of time calculation is the rolling end time
 
-### 1.3 Example
+### Example
 
 ![](../img/es-1.png)
 
-## II Practical application of Guance
+## Use Case
 
 
-| **Storage Policy** | **Description** | **Thermal Data Stage** | **Temperature Data Stage** | **Delete Data Stage** |
+| **Storage Strategy** | **Description** | **Thermal Data Stage** | **Temperature Data Stage** | **Delete Data Stage** |
 | --- | --- | --- | --- | --- |
 | es_rp0 | Save data for 1 day | min_age = 0<br />rollover {30gb, 1d}  | min_age = 6h<br />forcemerge {1}<br />shrink {1} | min_age = 1d <br />delete |
 | es_rp2d | Save data for 2 days | min_age = 0<br />rollover {30gb, 2d} | min_age = 1d<br />forcemerge {1}<br />shrink {1} | min_age = 2d <br />delete |
@@ -45,25 +46,50 @@ Note:
 | es_rp7 | Save data for 1095 days (3 years) | min_age = 0<br />rollover {30gb, 1095d} | min_age = 1d<br />forcemerge {1}<br />shrink {1} | min_age=1095d <br />delete |
 
 
-## III. FAQ
+## FAQ
 
-### 3.1 Reduced Data Storage Time
+### Reduced Data Storage Time
 
-After modifying the saving policy, a new index will be scrolled out. The previous index data will not be deleted until the deletion date condition is met, that is, the previous index data will be measured and charged all the time.
+After modifying the saving strategy, a new index will be scrolled out. The previous index data will not be deleted until the deletion date condition is met, that is, the previous index data will be measured and charged all the time.
 
 ![](../img/image.png)
 
-### 3.2 Longer Data saving Time
+### Longer Data saving Time
 
-After modifying the saving policy, a new index will be scrolled out. Before that, the saving time of index data will not be longer, and the new index saving time will use the new configuration.
+After modifying the saving strategy, a new index will be scrolled out. Before that, the saving time of index data will not be longer, and the new index saving time will use the new configuration.
 
 ![](../img/image_0.png)
 
-## IV. More Reading
+## More Reading
 
-[ILM: Manage the index lifecycleedit](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-lifecycle-management.html)
+<font size=3>
 
-[Using index lifecycle management to implement hot-Warm-Cold architecture](https://www.elastic.co/cn/blog/implementing-hot-warm-cold-in-elasticsearch-with-index-lifecycle-management)
+<div class="grid cards" markdown>
 
-[【Latest】Elasticsearch 6.6 index lifecycle management taste](https://elasticsearch.cn/article/6358)
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **ILM: Manage the index lifecycleedit**</font>](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-lifecycle-management.html))
+
+</div>
+
+
+
+<div class="grid cards" markdown>
+
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Using index lifecycle management to implement hot-Warm-Cold architecture**</font>](https://www.elastic.co/cn/blog/implementing-hot-warm-cold-in-elasticsearch-with-index-lifecycle-management)
+
+</div>
+
+
+
+<div class="grid cards" markdown>
+
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Elasticsearch 6.6 index lifecycle management**</font>](https://elasticsearch.cn/article/6358)
+
+</div>
+
+</font>
+
+
 

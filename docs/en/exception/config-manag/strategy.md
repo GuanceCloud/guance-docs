@@ -1,6 +1,6 @@
 # Strategy {#notify-strategy}
 
-Based on the created Issues and the current workspace [schedule](../calendar.md), unified management can be carried out in **Incident > Configuration > Strategy** to further allocate the scope of Issue notifications and associated schedules.
+Based on the created Issues and the current workspace [schedule](../calendar.md), unified management can be carried out in **Incidents > Configuration > Strategy** to further allocate the scope of Issue notifications and associated schedules.
 
 ## Create a New Strategy {#create}
 
@@ -32,11 +32,11 @@ In the strategy list, you can perform the following operations:
 2. Click the edit button to modify the configuration of that strategy;
 3. Click the delete button to delete that strategy.
 
-### Audition {#check-events}
+### Audit {#check-events}
 
-When receiving Issue notifications, sometimes you may encounter notifications not being sent normally or have doubts about the notification strategy. In this case, you can check the **Audition** event data of the current notification strategy to determine the relevant movements of that strategy.
+When receiving Issue notifications, sometimes you may encounter notifications not being sent normally or have doubts about the notification strategy. In this case, you can check the **Audit** event data of the current notification strategy to determine the relevant movements of that strategy.
 
-Click the audition button to jump to the audit page, which directly displays the operation audit of the current notification strategy. The time is set to the most recent 1 day by default, and you can change the time range as needed to view.
+Click the button to jump to the audit page, which directly displays the operation audit of the current notification strategy. The time is set to the most recent 1 day by default, and you can change the time range as needed to view.
 
 ### Execution Log
 
