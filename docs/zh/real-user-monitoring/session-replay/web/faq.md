@@ -11,22 +11,22 @@
 
 存在：
 
-![](../img/console.jpg)
+![](../../img/console.jpg)
 
 不存在：
 
-![](../img/console-2.jpg)
+![](../../img/console-2.jpg)
 
 3、执行`DATAFLUX_RUM.getInternalContext()`检查对象是否初始化成功：
 
-![](../img/console-1.jpg)
+![](../../img/console-1.jpg)
 
 如果初始化成功，则可以获取到当前应用页面对应的 `session`，`application`，`view` 等对象信息。
 
 ## 初始化失败
 
 1. 如果是以 CDN 的方式接入，确定当前应用是否为 `https` 站点；
-2. 确定[配置](../web/app-access.md#config)是否正确, (包括配置参数的格式，以及名称)。
+2. 确定[配置](../../web/app-access.md#config)是否正确, (包括配置参数的格式，以及名称)。
 
 ## 初始化成功，数据不上报、或者上报数据不全
 
@@ -63,7 +63,7 @@ datafluxRum.init({
 ## 如何确认 APM 和 前端 XHR/FETCH 关联成功
 
 1. 打开浏览器控制台；
-2. 确认 XHR/FETCH 请求的 Request Headers，是否包含对应[请求头关键字](../../application-performance-monitoring/collection/connect-web-app.md)信息， 如下图为 ddtrace 相关请求头：
+2. 确认 XHR/FETCH 请求的 Request Headers，是否包含对应[请求头关键字](../../../application-performance-monitoring/collection/connect-web-app.md)信息， 如下图为 ddtrace 相关请求头：
    
-![](../img/console-4.jpg)
+![](../../img/console-4.jpg)
    
