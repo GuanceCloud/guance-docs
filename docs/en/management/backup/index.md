@@ -21,9 +21,9 @@ On the data forwarding page, you can quickly query stored data (including Guance
 
 ## Precondition
 
-Only Guance Commercial Plan users can use the data forwarding function, [Experience Plan](../billing/trail.md) users need to [upgrade to the Commercial Plan](../billing/commercial-version.md).
+Only Guance Commercial Plan users can use the data forwarding function, [Experience Plan](../../plans/trail.md) users need to [upgrade to the Commercial Plan](../../plans/trail.md#upgrade-commercial).
 
-## Create Rules
+## Create
 
 On the **Data Forward** page, click **Forward rules > Create**. 
  

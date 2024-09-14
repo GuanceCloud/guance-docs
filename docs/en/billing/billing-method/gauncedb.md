@@ -19,7 +19,6 @@ GuanceDB's query is based on the volcano model, supporting stream batch computat
 
 In addition to supporting the multi-mode query language DQL syntax developed by Guance, GuanceDB also supports compatibility with Prometheus's PromQL. After writing the data, users can freely choose the syntax they prefer to query.
 
-> Guance console is expected to support PromQL syntax query entry in May.
 
 **High Performance Metric Engine**
 
