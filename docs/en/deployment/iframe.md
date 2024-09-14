@@ -13,7 +13,7 @@ After deployment, find the ` DEPLOYCONFIG ` configuration file and add ` cookieS
 
 # # How do I get an iframe link
 
-Directly find the observation cloud target page that you want to nest, and copy the page URL. Support to hide the "Create Issue" button in the left menu bar and the lower right corner through parameter control. Just append the parameter configuration to the page URL, for example: `<iframe src="https://console.guance.com/logIndi/log/all?hideWidget=true&hideTopNav=true&hideLeftNav=true"></iframe>`
+Directly find Guance target page that you want to nest, and copy the page URL. Support to hide the "Create Issue" button in the left menu bar and the lower right corner through parameter control. Just append the parameter configuration to the page URL, for example: `<iframe src="https://console.guance.com/logIndi/log/all?hideWidget=true&hideTopNav=true&hideLeftNav=true"></iframe>`
 
 | Parameter    | Required | Type     |  Description |
 | ------------ | ------- | -------- | ---------------------------------------------- |
