@@ -52,11 +52,11 @@ For example, if a piece of log data A needs to be scanned, and the three fields 
     | -------- | ---------- |
     | China Sites   | ￥ 0.1 |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong, China and overseas sites | ￥ 0.2 |
+    |  Hong Kong(China) & overseas sites | ￥ 0.2 |
 
 <font color=coral>**Settled in USD**: </font>
 
@@ -66,11 +66,11 @@ For example, if a piece of log data A needs to be scanned, and the three fields 
     | -------- | ---------- |
     | China Sites   | $ 0.014 |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong, China and overseas sites |  $ 0.028 |
+    |  Hong Kong(China) & overseas sites |  $ 0.028 |
 ---
 
 ### Regular Report {#report}
@@ -85,11 +85,11 @@ Number of times a report is sent per day in the workspace (each time/day).
     | -------- | ---------- |
     | China Sites   | ￥ 1 |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong, China and overseas sites | ￥ 2 |
+    |  Hong Kong(China) & overseas sites | ￥ 2 |
 ---
 
 <font color=coral>**Settled in USD**: </font>
@@ -100,11 +100,11 @@ Number of times a report is sent per day in the workspace (each time/day).
     | -------- | ---------- |
     | China Sites   | $ 0.14 |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong, China and overseas sites |  $ 0.28 |
+    |  Hong Kong(China) & overseas sites |  $ 0.28 |
 ---
 
 <!--
@@ -118,30 +118,30 @@ The amount of original ingested log reported by users (per GB/day).
 
 === "China Sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  | 30 days |    60 days   |
+    | Storage Strategy |3 days         | 7 days   | 14 days  | 30 days |    60 days   |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
     | China Sites   | ￥ 0.6     | ￥ 0.85 | ￥ 1 |  ￥ 1.2  |    ￥ 1.5    |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  | 30 days |    60 days   |
+    | Storage Strategy |3 days         | 7 days   | 14 days  | 30 days |    60 days   |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  Hong Kong, China and overseas sites | ￥ 1.4     | ￥ 2.1 | ￥ 2.8  |  ￥ 3.08  |    ￥ 3.36    |
+    |  Hong Kong(China) & overseas sites | ￥ 1.4     | ￥ 2.1 | ￥ 2.8  |  ￥ 3.08  |    ￥ 3.36    |
 ---
 
 <font color=coral>**Settled in USD**: </font>
 
 === "China Sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  | 30 days |    60 days   |
+    | Storage Strategy |3 days         | 7 days   | 14 days  | 30 days |    60 days   |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
     | China Sites   | $ 0.1        | $ 0.15 | $ 0.2  |  $ 0.22  |    $ 0.24   |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  | 30 days |    60 days   |
+    | Storage Strategy |3 days         | 7 days   | 14 days  | 30 days |    60 days   |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  Hong Kong, China and overseas sites | $ 0.2        | $ 0.3 | $ 0.4  |  $ 0.44  |    $ 0.48   |
+    |  Hong Kong(China) & overseas sites | $ 0.2        | $ 0.3 | $ 0.4  |  $ 0.44  |    $ 0.48   |
 ---
 
 -->
@@ -153,30 +153,30 @@ It is used to count the number of tag combinations corresponding to all metric i
 
 === "China Sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
+    | Storage Strategy |3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- |
     | China Sites   | ￥ 0.6     | ￥ 0.7 | ￥ 0.8  |  ￥ 1  |    ￥ 4    |    ￥ 7    |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
+    | Storage Strategy |3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  Hong Kong, China and overseas sites | ￥ 1.6     | ￥ 1.8 | ￥ 2.2  |  ￥ 2.4  |    ￥ 8    |    ￥ 14    |
+    |  Hong Kong(China) & overseas sites | ￥ 1.6     | ￥ 1.8 | ￥ 2.2  |  ￥ 2.4  |    ￥ 8    |    ￥ 14    |
 ---
 
 <font color=coral>**Settled in USD**: </font>
 
 === "China Sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
+    | Storage Strategy |3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- |
     | China Sites   | $ 0.09        | $ 0.1 | $ 0.12  |  $ 0.14  |    $ 0.58   |    $ 1   |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
+    | Storage Strategy |3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  Hong Kong, China and overseas sites | $ 0.23        | $ 0.26 | $ 0.32  |  $ 0.35  |    $ 1.2   |    $ 2   |
+    |  Hong Kong(China) & overseas sites | $ 0.23        | $ 0.26 | $ 0.32  |  $ 0.35  |    $ 1.2   |    $ 2   |
 ---
 
 
@@ -184,7 +184,6 @@ It is used to count the number of tag combinations corresponding to all metric i
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Billing Logic of Timeseries</font>](../billing-method/billing-item.md#timeline)
 
-<br/>
 
 </div>
 
@@ -207,36 +206,35 @@ The data generated by the use of functions such as logs, events, security check,
 
 === "China Sites"
 
-    | Data Storage Strategy |3 Days         | 7 Days   | 14 Days  | 30 Days | 60 Days  |
+    | Storage Strategy |3 Days         | 7 Days   | 14 Days  | 30 Days | 60 Days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
     | China Sites   | ￥ 1        |   ￥ 1.2 | ￥ 1.5  | ￥ 2  | ￥ 2.5   |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
-    | Data Storage Strategy |3 Days         | 7 Days   | 14 Days  | 30 Days | 60 Days  |
+    | Storage Strategy |3 Days         | 7 Days   | 14 Days  | 30 Days | 60 Days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  Hong Kong, China and overseas sites | ￥ 2        |   ￥ 2.4 | ￥ 3 | ￥ 4  | ￥ 5   |
+    |  Hong Kong(China) & overseas sites | ￥ 2        |   ￥ 2.4 | ￥ 3 | ￥ 4  | ￥ 5   |
 
 <font color=coral>**Settled in USD**: </font>
 
 === "China Sites"
 
-    | Data Storage Strategy |3 Days         | 7 Days   | 14 Days  | 30 Days | 60 Days  |
+    | Storage Strategy |3 Days         | 7 Days   | 14 Days  | 30 Days | 60 Days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
     | China Sites   | $ 0.15       |   $ 0.17 | $ 0.22  | $ 0.28  | $ 0.36   |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
-    | Data Storage Strategy |3 Days         | 7 Days   | 14 Days  | 30 Days | 60 Days  |
+    | Storage Strategy |3 Days         | 7 Days   | 14 Days  | 30 Days | 60 Days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  Hong Kong, China and overseas sites | $ 0.3        |   $ 0.4 | $ 0.5  | $ 0.6  | $ 0.8   |
+    |  Hong Kong(China) & overseas sites | $ 0.3        |   $ 0.4 | $ 0.5  | $ 0.6  | $ 0.8   |
 ---
 
 <div class="grid cards" markdown>
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Billing Logic of Logs</font>](../billing-method/billing-item.md#logs)
 
-<br/>
 
 </div>
 
@@ -252,29 +250,29 @@ The original log writing traffic size reported by users (per GB/Days).
 
 === "China Sites"
 
-    | Data Storage Strategy |3 Days         | 7 Days   | 14 Days  | 30 Days |    60 Days   |
+    | Storage Strategy |3 Days         | 7 Days   | 14 Days  | 30 Days |    60 Days   |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
     | China Sites   | ￥ 0.6     | ￥ 0.85 | ￥ 1 |  ￥ 1.2  |    ￥ 1.5    |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
-    | Data Storage Strategy |3 Days         | 7 Days   | 14 Days  | 30 Days |    60 Days   |
+    | Storage Strategy |3 Days         | 7 Days   | 14 Days  | 30 Days |    60 Days   |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  Hong Kong, China and overseas sites | ￥ 1.4     | ￥ 2.1 | ￥ 2.8  |  ￥ 3.08  |    ￥ 3.36    |
+    |  Hong Kong(China) & overseas sites | ￥ 1.4     | ￥ 2.1 | ￥ 2.8  |  ￥ 3.08  |    ￥ 3.36    |
 
 <font color=coral>**Settled in USD**: </font>
 
 === "China Sites"
 
-    | Data Storage Strategy |3 Days         | 7 Days   | 14 Days  | 30 Days |    60 Days   |
+    | Storage Strategy |3 Days         | 7 Days   | 14 Days  | 30 Days |    60 Days   |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
     | China Sites   | $ 0.1        | $ 0.15 | $ 0.2  |  $ 0.22  |    $ 0.24   |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
-    | Data Storage Strategy |3 Days         | 7 Days   | 14 Days  | 30 Days |    60 Days   |
+    | Storage Strategy |3 Days         | 7 Days   | 14 Days  | 30 Days |    60 Days   |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  Hong Kong, China and overseas sites | $ 0.2        | $ 0.3 | $ 0.4  |  $ 0.44  |    $ 0.48   |
+    |  Hong Kong(China) & overseas sites | $ 0.2        | $ 0.3 | $ 0.4  |  $ 0.44  |    $ 0.48   |
 ---
 -->
 
@@ -291,11 +289,11 @@ Based on the different types of external archives of backup logs in the current 
     | -------- | ---------- |
     | China Sites   | ￥ 0.35        |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
     | <font size=2>Details</font>   |     |
     | -------- | ---------- |
-    | Hong Kong, China and overseas sites   | ￥ 0.7        |
+    | Hong Kong(China) & overseas sites   | ￥ 0.7        |
 
 <font color=coral>**Settled in USD**：</font>
 
@@ -305,11 +303,11 @@ Based on the different types of external archives of backup logs in the current 
     | -------- | ---------- |
     | China Sites   |  $ 0.05 |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong, China and overseas sites |  $ 0.1 |
+    |  Hong Kong(China) & overseas sites |  $ 0.1 |
 ---
 
 
@@ -318,7 +316,6 @@ Based on the different types of external archives of backup logs in the current 
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Billing Logic of Data Forward</font>](../billing-method/billing-item.md#backup)
 
-<br/>
 
 </div>
 
@@ -335,11 +332,11 @@ The number of hosts statistically reported by network data uploaded by eBPF in t
     | -------- | ---------- |
     | China Sites   | ￥ 2 |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong, China and overseas sites |  ￥ 4 |
+    |  Hong Kong(China) & overseas sites |  ￥ 4 |
 ---
 
 <font color=coral>**Settled in USD**: </font>
@@ -350,11 +347,11 @@ The number of hosts statistically reported by network data uploaded by eBPF in t
     | -------- | ---------- |
     | China Sites   |  $ 0.29 |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong, China and overseas sites |  $ 0.6 |
+    |  Hong Kong(China) & overseas sites |  $ 0.6 |
 ---
 
 
@@ -363,7 +360,6 @@ The number of hosts statistically reported by network data uploaded by eBPF in t
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Billing Logic of report network data host</font>](../billing-method/billing-item.md#network)
 
-<br/>
 
 </div>
 
@@ -376,29 +372,29 @@ The number of traces in the uploaded link data is statistically counted. In gene
 
 === "China Sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
+    | Storage Strategy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
     | China Sites   | ￥ 2 |  ￥ 3  |  ￥ 6  |  ￥ 18  |  ￥ 60  |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
+    | Storage Strategy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  Hong Kong, China and overseas sites |￥ 6 |  ￥ 10  |  ￥ 20  |  ￥ 60  |  ￥ 200  |
+    |  Hong Kong(China) & overseas sites |￥ 6 |  ￥ 10  |  ￥ 20  |  ￥ 60  |  ￥ 200  |
 
-<font color=coral>**当采用美元结算**：</font>
+<font color=coral>**Settled in USD**：</font>
 
 === "China Sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
+    | Storage Strategy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
     | China Sites   | $ 0.29 |  $ 0.43 |  $ 0.86 |  $ 2.58 |  $ 8.58 |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
+    | Storage Strategy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  Hong Kong, China and overseas sites | $ 0.9 |  $ 1.4 |  $ 2.8 |   $ 8.4 |  $ 28 |
+    |  Hong Kong(China) & overseas sites | $ 0.9 |  $ 1.4 |  $ 2.8 |   $ 8.4 |  $ 28 |
 ---
 
 
@@ -406,7 +402,6 @@ The number of traces in the uploaded link data is statistically counted. In gene
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Billing Logic of APM Traces</font>](../billing-method/billing-item.md#trace)
 
-<br/>
 
 </div>
 
@@ -419,30 +414,30 @@ The number of application performance profile data uploaded is statistically cou
 
 === "China Sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  |
+    | Storage Strategy |3 days         | 7 days   | 14 days  |
     | -------- | ---------- | ---------- | ---------- |
     | China Sites   |￥0.2 |  ￥ 0.3  |  ￥ 0.5|
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  |
+    | Storage Strategy |3 days         | 7 days   | 14 days  |
     | -------- | ---------- | ---------- | ---------- |
-    |  Hong Kong, China and overseas sites |￥0.4 |  ￥ 0.6  |  ￥ 1|
+    |  Hong Kong(China) & overseas sites |￥0.4 |  ￥ 0.6  |  ￥ 1|
 
 
 <font color=coral>**Settled in USD**: </font>
 
 === "China Sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  |
+    | Storage Strategy |3 days         | 7 days   | 14 days  |
     | -------- | ---------- | ---------- | ---------- |
     | China Sites   |$ 0.03 |  $ 0.04  |  $ 0.07|
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  |
+    | Storage Strategy |3 days         | 7 days   | 14 days  |
     | -------- | ---------- | ---------- | ---------- |
-    |  Hong Kong, China and overseas sites |$ 0.06 |  $ 0.09  |  $ 0.14|
+    |  Hong Kong(China) & overseas sites |$ 0.06 |  $ 0.09  |  $ 0.14|
 ---
 
 
@@ -450,7 +445,6 @@ The number of application performance profile data uploaded is statistically cou
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Billing Logic of APM Profiles</font>](../billing-method/billing-item.md#profile)
 
-<br/>
 
 </div>
 
@@ -466,29 +460,29 @@ Statistical number of page views accessed by users that is reported. Generally, 
 
 === "China Sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
+    | Storage Strategy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
     | China Sites   | ￥ 0.7 | ￥ 1  |  ￥ 2| ￥ 6  |  ￥ 20|
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
+    | Storage Strategy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  Hong Kong, China and overseas sites | ￥ 2 | ￥ 3  |  ￥ 5| ￥ 15  |  ￥ 50 |
+    |  Hong Kong(China) & overseas sites | ￥ 2 | ￥ 3  |  ￥ 5| ￥ 15  |  ￥ 50 |
 
 <font color=coral>**Settled in USD**：</font>
 
 === "China Sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
+    | Storage Strategy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
     | China Sites   | $ 0.1 | $ 0.14  |  $ 0.29| $ 0.87  |  $ 2.9|
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
-    | Data Storage Strategy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
+    | Storage Strategy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  Hong Kong, China and overseas sites | $ 0.29 | $ 0.43  |  $ 0.71|  $ 2.13|  $ 7.1|
+    |  Hong Kong(China) & overseas sites | $ 0.29 | $ 0.43  |  $ 0.71|  $ 2.13|  $ 7.1|
 ---
 
 
@@ -496,7 +490,6 @@ Statistical number of page views accessed by users that is reported. Generally, 
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Billing Logic of RUM PV </font>](../billing-method/billing-item.md#pv)
 
-<br/>
 
 </div>
 
@@ -513,11 +506,11 @@ Statistical number of Sessions that actually generated session replay data. Gene
     | -------- | ---------- |
     | China Sites   | ￥ 10 |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong, China and overseas sites |  ￥ 15.4 |
+    |  Hong Kong(China) & overseas sites |  ￥ 15.4 |
 ---
 
 <font color=coral>**Settled in USD**: </font>
@@ -528,11 +521,11 @@ Statistical number of Sessions that actually generated session replay data. Gene
     | -------- | ---------- |
     | China Sites   | $ 1.43 |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong, China and overseas sites | $ 2.2 |
+    |  Hong Kong(China) & overseas sites | $ 2.2 |
 ---
 
 
@@ -540,7 +533,6 @@ Statistical number of Sessions that actually generated session replay data. Gene
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Billing Logic of Session Replay</font>](../billing-method/billing-item.md#session)
 
-<br/>
 
 </div>
 
@@ -558,11 +550,11 @@ Enable synthetic test tasks and return test results through the provided testing
     | -------- | ---------- |
     | China Sites   | ￥ 1 |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong, China and overseas sites | ￥ 10 |
+    |  Hong Kong(China) & overseas sites | ￥ 10 |
 ---
 
 <font color=coral>**Settled in USD**: </font>
@@ -573,11 +565,11 @@ Enable synthetic test tasks and return test results through the provided testing
     | -------- | ---------- |
     | China Sites   | $ 0.143 |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong, China and overseas sites |  $ 1.43 |
+    |  Hong Kong(China) & overseas sites |  $ 1.43 |
 ---
 
 
@@ -585,7 +577,6 @@ Enable synthetic test tasks and return test results through the provided testing
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Billing Logic of Synthetic Monitoring</font>](../billing-method/billing-item.md#st)
 
-<br/>
 
 </div>
 
@@ -601,11 +592,11 @@ The cost incurred by using functions such as anomaly detection and generate metr
     | -------- | ---------- |
     | China Sites   | ￥ 1 |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong, China and overseas sites |  ￥ 2 |
+    |  Hong Kong(China) & overseas sites |  ￥ 2 |
 ---
 
 <font color=coral>**Settled in USD**: </font>
@@ -616,11 +607,11 @@ The cost incurred by using functions such as anomaly detection and generate metr
     | -------- | ---------- |
     | China Sites   |  $ 0.14 |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong, China and overseas sites |  $ 0.3 |
+    |  Hong Kong(China) & overseas sites |  $ 0.3 |
 ---
 
 
@@ -629,7 +620,6 @@ The cost incurred by using functions such as anomaly detection and generate metr
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Billing Logic of Triggers</font>](../billing-method/billing-item.md#trigger)
 
-<br/>
 
 </div>
 
@@ -647,7 +637,6 @@ Count the number of short messages sent on the same day(every 10 times / days).
 
 - [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Billing Logic of SMS</font>](../billing-method/billing-item.md#sms)
 
-<br/>
 
 </div>
 
@@ -663,11 +652,11 @@ Count the size of the original log data processed by the central pipeline (per G
     | -------- | ---------- |
     | China Sites   | ￥ 0.1 |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong, China and overseas sites |  ￥ 0.2 |
+    |  Hong Kong(China) & overseas sites |  ￥ 0.2 |
 
 <font color=coral>**Settled in USD**：</font>
 
@@ -677,11 +666,11 @@ Count the size of the original log data processed by the central pipeline (per G
     | -------- | ---------- |
     | China Sites   |  $ 0.014 |
 
-=== "Hong Kong, China and overseas sites"
+=== "Hong Kong(China) & overseas sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong, China and overseas sites |  $ 0.028 |
+    |  Hong Kong(China) & overseas sites |  $ 0.028 |
 ---
 
 ## FAQ
