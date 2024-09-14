@@ -7,6 +7,11 @@
 
 **注意**：会话重放功能需要升级 DataKit 版本至 1.5.5 及以上。
 
+## 集成
+<div class="grid cards" markdown>
+- [Android](./android/index.md)
+- [iOS](./ios/index.md)
+</div>
 
 ## 查看会话重放
 移动端上的会话重放与 web 查看方式相同，可以参考 [web 会话重放访问方式](../web/index.md#view_replay)
