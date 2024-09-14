@@ -3,13 +3,13 @@
 
 ## Introduction {#intro}
 
-DataWay is the data gateway of the observation cloud, and the collector needs to pass through the DataWay gateway to report data to the observation cloud
+DataWay is the data gateway of Guance, and the collector needs to pass through the DataWay gateway to report data to Guance
 
 ## Dataway Installation {#install}
 
 - **New Dataway**
 
-On the Data Gateways page in the observation cloud management console, click Create Dataway. Enter a name and binding address, and then click Create.
+On the Data Gateways page in Guance management console, click Create Dataway. Enter a name and binding address, and then click Create.
 
 After the creation is successful, a new Dataway is automatically created and the installation script for the Dataway is generated.
 
@@ -97,15 +97,15 @@ After the creation is successful, a new Dataway is automatically created and the
 
 - **Verify Dataway installation**
 
-After installation, wait for a while to refresh the "Data Gateway" page, if you see the version number in the "Version Information" column of the data gateway you just added, it means that the Dataway has been successfully connected to the observation cloud center, and front-end users can access data through it.
+After installation, wait for a while to refresh the "Data Gateway" page, if you see the version number in the "Version Information" column of the data gateway you just added, it means that the Dataway has been successfully connected to Guance center, and front-end users can access data through it.
 
-After Dataway is successfully connected to the observation cloud center, log in to the observation cloud console, view all Dataway addresses on the "Integration" / DataKit page, select the required Dataway gateway address, and obtain the DataKit installation command to execute on the server to start collecting data.
+After Dataway is successfully connected to Guance center, log in to Guance console, view all Dataway addresses on the "Integration" / DataKit page, select the required Dataway gateway address, and obtain the DataKit installation command to execute on the server to start collecting data.
 
 ## Manage DataWay {#manage}
 
 ### Delete DataWay {#delete}
 
-On the "Data Gateway" page of the observation cloud management background, select the DataWay to be deleted, click "Configure", and click the "Delete" button in the lower left corner of the pop-up Edit DataWay dialog box.
+On the "Data Gateway" page of Guance management background, select the DataWay to be deleted, click "Configure", and click the "Delete" button in the lower left corner of the pop-up Edit DataWay dialog box.
 
 <!-- markdownlint-disable MD046 -->
 ???+ warning
@@ -115,7 +115,7 @@ On the "Data Gateway" page of the observation cloud management background, selec
 
 ### Upgrade DataWay {#upgrade}
 
-On the Data Gateways page in the observation cloud management background, if an upgradeable version exists for DataWay, an upgrade prompt appears in the version information.
+On the Data Gateways page in Guance management background, if an upgradeable version exists for DataWay, an upgrade prompt appears in the version information.
 
 <!-- markdownlint-disable MD046 -->
 === "Host Upgrade"
@@ -411,7 +411,7 @@ Ensure that the paths to the TLS certificate and key are correctly specified and
     ```
 <!-- markdownlint-enable -->
 
-If the collection is successful, search for `dataway` in the "Scene"/"Built-in View" of the observation cloud to see the corresponding monitoring view.
+If the collection is successful, search for `dataway` in the "Scene"/"Built-in View" of Guance to see the corresponding monitoring view.
 
 ### Dataway Metric List {#metrics}
 

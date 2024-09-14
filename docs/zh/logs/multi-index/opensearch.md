@@ -20,9 +20,9 @@
 
 :material-numeric-4-circle-outline: 点击**确定**，即可完成索引绑定，您可以在**查看器**通过切换索引进行查看。
 
-## Elasticsearch / OpenSearch 绑定外部索引配置说明 {#add-up}
+## Elasticsearch/OpenSearch 绑定外部索引配置说明 {#add-up}
 
-由于 Elasticsearch / OpenSearch 的 `index` 存在因滚动策略导致某个 `index` 产生多个索引规则或名称，本配置说明**主要介绍当您需要查询当前 `index` 下所有数据或查询当前 `index` 下某个索引对应数据，如何在观测云进行配置**。
+由于 Elasticsearch/OpenSearch 的 `index` 存在因滚动策略导致某个 `index` 产生多个索引规则或名称，本配置说明**主要介绍当您需要查询当前 `index` 下所有数据或查询当前 `index` 下某个索引对应数据，如何在观测云进行配置**。
 
 ### 索引、别名和分片
 

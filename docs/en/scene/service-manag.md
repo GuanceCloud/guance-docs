@@ -1,6 +1,6 @@
 # Service Management
 
-???- quote "Release Note"
+???- quote "Release Notes"
 
     **November 16, 2023**: Pod Page Offline.
 
