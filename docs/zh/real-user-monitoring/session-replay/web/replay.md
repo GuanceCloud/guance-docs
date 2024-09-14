@@ -102,7 +102,7 @@ Session Replay 不是视频，而是基于 DOM 快照重建的 iframe。因此�
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Session Replay 如何保证您的数据安全？</font>](../../security/index.md#session-replay)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Session Replay 如何保证您的数据安全？</font>](../../../security/index.md#session-replay)
 
 
 </div>
