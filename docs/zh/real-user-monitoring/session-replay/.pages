@@ -1,5 +1,4 @@
 nav:
-  - index.md
-  - '如何接入会话重放': replay.md
-  - '故障排除': faq.md
+  - 'Web': web
+  - '移动端': mobile
 
