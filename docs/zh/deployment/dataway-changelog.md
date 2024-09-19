@@ -1,4 +1,19 @@
+<!-- 不要在 dataflux-doc 仓库直接修改本文件，该文件由 Dataway 项目自动导出 -->
 # 更新历史 {#changelog}
+
+## 1.6.0(2024/09/19) {#cl-1.6.0}
+
+### 功能优化 {#cl-1.6.0-opt}
+
+- 优化磁盘缓存相关的[环境变量配置](dataway.md#env-diskcache)
+- 增加更多自身指标暴露，同时优化了一些 HTTP 转发层面内存的使用（#39）
+- Dataway 支持[配置自身 SNI](dataway.md#env-apis)（#42）
+- 新增对时接口，便于 Datakit 获取较为准确的 Unix 时间戳（#40）
+- Sinker：
+    - 过滤条件支持 [`nil` 判断](../datakit/datakit-filter.md#nil)，即判定某个具体的字段是否存在（#41）
+    - 增加[默认规则设置](dataway-sink.md#default-rule)，即不符合已有分流规则的请求，都会引流到该默认规则对应的工作空间（#30）
+
+---
 
 ## 1.5.0(2024/07/05) {#cl-1.5.0}
 
@@ -66,7 +81,7 @@
 ## 1.3.4(2023/09/01) {#cl-1.3.4}
 
 - 升级 Golang 到 1.9
-- 修复 inner token 数据断档问题
+- 修复 inner token 无数据问题
 - 默认配置中调整如下配置：
     - 默认 API 限流增加到 100K
     - 默认最大 Body 增加到 64MB
