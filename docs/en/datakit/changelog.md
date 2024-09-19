@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.38.2 (2024/09/19) {#cl-1.38.2}
+
+This release is a Hotfix release addressing the following issues:
+
+- Fixed an issue where the global-tag was incorrectly added during Nginx collection (#2406).
+- Resolved a CPU core collection error in the host object collector on Windows (#2398).
+- The Chrony collector now integrates with the Dataway time synchronization mechanism to prevent data collection from being affected by Datakit's local time discrepancies (#2351).
+    - This feature requires Dataway version 1.6.0 or higher.
+- Fixed a crash issue in Datakit's HTTP API that could occur under timeout conditions (#2091).
+
+---
+
 ## 1.38.1 (2024/09/11) {#cl-1.38.1}
 
 This release is a hotfix release, fixed the following issues:
