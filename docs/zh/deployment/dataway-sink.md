@@ -1,3 +1,4 @@
+<!-- 不要在 dataflux-doc 仓库直接修改本文件，该文件由 Dataway 项目自动导出 -->
 
 # Dataway Sink
 ---
@@ -20,8 +21,9 @@ etcd[(etcd)];
 sinker(分流);
 wksp1(工作空间 1);
 wksp2(工作空间 2);
+wkspx(兜底工作空间);
 rules(分流规则);
-check_token{token ok?};
+as_default{存在兜底规则?};
 drop(丢弃数据/请求);
 
 subgraph "Datakit 集群"
@@ -32,13 +34,12 @@ dk -.-> |HTTP: X-Global-Tags/Secret-Token|dw
 
 subgraph "Dataway 集群(Nginx)"
 %%direction LR
-rules -->  dw
-dw --> check_token -->|No| drop
-check_token -->|OK| sinker
+rules -->  dw --> sinker
 
 sinker --> |规则 1 匹配|wksp1;
 sinker --> |规则 2 匹配|wksp2;
-sinker --> |规则均不匹配|drop;
+sinker --> |规则均不匹配|as_default -->|No|drop;
+as_default -->|Yes|wkspx;
 end
 
 subgraph "工作空间变动"
@@ -47,14 +48,14 @@ etcd -.-> |key 变动通知|rules
 end
 ```
 
-### Dataway 串联模式 {#cascaded}
+### Dataway 级连模式 {#cascaded}
 
 对于 SaaS 用户而言，可以在自己本地（k8s Cluster）部署一个 Dataway，专用于分流，然后再将数据转发给 Openway：
 
 <!-- markdownlint-disable MD046 -->
 ???+ warning
 
-    串联模式下，集群内的 Dataway 需开启级联（cascaded）选项。参见安装文档中的[环境变量说明](dataway.md#dw-envs)
+    级连模式下，集群内的 Dataway 需开启级联（cascaded）选项。参见安装文档中的[环境变量说明](dataway.md#dw-envs)
 <!-- markdownlint-enable -->
 
 ```mermaid
@@ -204,9 +205,9 @@ OK
 <!-- markdownlint-disable MD046 -->
 ???+ tip "标识工作空间信息"
 
-    由于 *sinker.json* 中不支持注释，我们可以在 JSON 中添加一些字段来作为备忘，以达到注释的效果：
+    由于 *sinker.json* 中不支持注释，我们可以在 JSON 中添加 `info` 字段来作为备忘，以达到注释的效果：
 
-    ``` json
+    ``` json hl_lines="5"
     {
         "rules": [
             "{ host = 'my-host' OR cluster = 'cluster-A' }"
@@ -216,6 +217,22 @@ OK
     }
     ```
 <!-- markdownlint-enable -->
+
+#### 默认规则 {#default-rule}
+
+[:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0)
+
+在某个具体规则入口中，增加 `as_default` 标识，即可将该规则设置为默认的兜底规则，兜底规则可以不设置任何匹配条件（不配置 `rules` 字段）；同时，它不应该参与常规的规则匹配，一个建议的兜底规则如下：
+
+``` json hl_lines="2"
+{
+    "as_default": true,
+    "info": "这是默认的兜底工作空间",
+    "url": "https://kodo.guance.com?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+}
+```
+
+> 注意：兜底规则应该只设置一个，如果 sinker 配置中存在多个兜底规则，以最后一个为准。
 
 ### Token 规则 {#spec-on-secret-token}
 

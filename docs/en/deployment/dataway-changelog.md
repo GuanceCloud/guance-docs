@@ -1,5 +1,21 @@
+<!-- 不要在 dataflux-doc 仓库直接修改本文件，该文件由 Dataway 项目自动导出 -->
 
 # Update History {#changelog}
+
+## 1.6.0 (2024/09/19) {#cl-1.6.0}
+
+### Feature Enhancements {#cl-1.6.0-opt}
+
+- Optimized environment variable configurations [related to disk caching](dataway.md#env-diskcache).
+- Increased exposure of more internal metrics and optimized memory usage at the HTTP forwarding layer (#39).
+- Dataway now supports [configuring its own SNI](dataway.md#env-apis) (#42).
+- Add NTP API for Datakit to get correct Unix timestamp (#40)
+- Sinker:
+    - Filtering conditions now support [`nil` checks](../datakit/datakit-filter.md#nil), which means determining whether a specific field exists (#41).
+    - Added [default rule settings](dataway-sink.md#default-rule), meaning that requests not matching any existing sinker rules will be directed to the workspace corresponding to this default rule (#30).
+
+
+---
 
 ## 1.5.0(2024/07/05) {#cl-1.5.0}
 
