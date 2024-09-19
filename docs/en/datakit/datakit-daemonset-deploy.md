@@ -388,6 +388,18 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
     Enable self-signed TLS certificate on Dataway [:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
 
     **Type**: Boolean
+
+- **ENV_DATAWAY_NTP_INTERVAL**
+
+    Set NTP sync interval [:octicons-tag-24: Version-1.39.0](changelog.md#cl-1.38.2)
+
+    **Type**: String
+
+- **ENV_DATAWAY_NTP_DIFF**
+
+    Set NTP sync difference [:octicons-tag-24: Version-1.39.0](changelog.md#cl-1.38.2)
+
+    **Type**: String
 <!-- markdownlint-enable -->
 
 ### Log Configuration Environments {#env-log}
