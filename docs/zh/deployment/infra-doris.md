@@ -401,7 +401,9 @@ PROPERTIES(
 ```
 ???+ warning "部署 check 点"
 
-     确定 s3 存储是否可以使用，且配置后无法更改。
+     确定 s3 存储是否可以使用，且配置后无法更改；
+
+     s3 endpoint地址必须为内网地址。
 
 ### 部署guance-insert、guance-select和VictoriaMetrics
 初始化机器

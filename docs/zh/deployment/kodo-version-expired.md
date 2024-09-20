@@ -18,10 +18,6 @@ kubectl -n forethought-kodo edit deploy kodo-inner
 ```yaml
           ...
           env:
-            - name: KODO_INFLUX_WRITE_TIMEOUT_MS
-              value: '500'
-            - name: KODO_WORKERS
-              value: '8'
             # 添加以下内容
             - name: KODO_DISABLE_EXPIRED_VESION_CHECKING
               value: "true"
