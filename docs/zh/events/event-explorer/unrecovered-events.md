@@ -56,7 +56,7 @@
 
 ## 管理事件卡片
 
-1. 时间控件：未恢复事件查看器默认查询最近 48 小时数据，可自定义数据展示的[时间范围](../../getting-started/function-details/explorer-search.md#time)。
+1. 时间控件：未恢复事件查看器默认固定查询最近 48 小时的数据，不可自定义数据展示的时间范围。
 
 2. 搜索与筛选：在未恢复事件查看器搜索栏，支持[多种搜索方式和筛选方式](../../getting-started/function-details/explorer-search.md)。
 

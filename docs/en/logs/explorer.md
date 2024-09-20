@@ -5,9 +5,9 @@ After log data is collected into Guance, you can view all the log content in the
 
 **Note**: If the current logged-in account role has set **[Only display rules related to me](logdata-access.md#list)** in **Logs > [Data Access](logdata-access.md#list)**, the queried log content will be affected accordingly.
 
-## Log Explorer Modes
+## Modes
 
-The Guance Log Explorer supports three viewing modes, including:
+The Log Explorer supports three viewing modes, including:
 
 - [All Logs](#all);
 - [Pattern](#cluster);
@@ -15,19 +15,20 @@ The Guance Log Explorer supports three viewing modes, including:
 
 ### All Logs {#all}
 
-**All Logs**: View and analyze based on the collected raw log data.
+View and analyze based on the collected raw log data.
 
 ![](img/5.log_1.png)
 
 ### Pattern {#cluster}
 
-The Log Explorer provides an efficient pattern feature, which performs similarity calculation and analysis on raw log data.
+Provide an efficient pattern feature, which performs similarity calculation and analysis on raw log data.
 
-The system defaults to performing log clustering based on the `message` field, automatically displaying the latest 50 log entries. You can also customize the clustering fields according to your business needs. After selecting the time range in the top right [Time Widget](../getting-started/function-details/explorer-search.md#time), the system will filter and analyze 10,000 log entries from that period, automatically aggregate similar log entries, extract, count, and finally display common features.
+The system defaults to clustering logs by the `message` field, showing the latest 50 entries. Custom clustering is available for business needs. After setting a [time range](../getting-started/function-details/explorer-search.md#time), it analyzes 10,000 logs, groups similar entries, and displays common features.
+
 
 ![](img/4.log_2.png)
 
-In the pattern list, you can manage the data through the following operations:
+In the pattern list, the following operations are supported:
 
 1. Click the icons :octicons-triangle-up-16: & :octicons-triangle-down-16: to sort the document quantity, with a default reverse order.
 
@@ -38,17 +39,17 @@ In the pattern list, you can manage the data through the following operations:
 
 ### Chart Analysis {#charts}
 
-In the **Analysis** mode of the explorer, the system groups and statistically analyzes the original log data based on <u>1-3 tags</u>, reflecting the distribution characteristics and trends of log data under different groups and different times.
+Under the mode, the system groups and statistically analyzes the original log data based on **1 or 3 tags**, reflecting the distribution characteristics and trends of log data under different groups and times.
 
 ![](img/manage-charts.png)
 
-After entering the analysis mode, four types of charts are available: time series charts, leaderboards, pie charts, and tree maps.
+Four types of charts are available: time series charts, leaderboards, pie charts, and tree maps.
 
 You can manage the chart analysis mode through the following operations:
 
-1. Below the chart, support filtering queries based on various fields.
+1. Below the chart, filter queries based on various fields.
 
-2. In the time series chart mode, support selecting area charts, line charts, and bar charts for display styles.
+2. In the time series chart mode, select area charts, line charts and bar charts for display styles.
 
 3. For the displayed clustered data, in the time series chart mode, you can choose `slimit` as 5/10/20/50/100; in the leaderboard/pie chart/tree map mode, you can choose `limit to` the maximum or minimum as 5/10/20/50/100.
 
@@ -59,70 +60,74 @@ You can manage the chart analysis mode through the following operations:
 6. Click the :material-tray-arrow-up: button to choose to export the current chart as a CSV file, export to notes, dashboard, or directly copy the chart.
 
 
-## Log Query and Analysis
-
-Guance supports querying and analyzing log data through various operations.
+## Query and Analysis
 
 ### Log Statistics
 
 Guance automatically divides several time points based on the selected time range and displays the number of different log statuses through a stacked bar chart, helping with statistical analysis. If logs have been filtered, the bar chart displays the results after filtering.
 
-- The log statistics chart supports hovering the mouse over the chart and clicking the export button to export to a dashboard, notes, or clipboard.
+1. Hover the mouse over the chart and click the export button to export to a dashboard, notes, or clipboard.
 
-- The log statistics chart supports custom selection of time intervals.
+2. Custom selection of time intervals.
 
 ![](img/10.export_pic.png)
 
 ### Time Widget
 
-The Guance explorer defaults to displaying log data from the last 15 minutes, and you can also customize the [time range](../getting-started/function-details/explorer-search.md#time) for data display.
+Log explorers default to displaying log data from the last 15 minutes, and you can also customize the [time range](../getting-started/function-details/explorer-search.md#time) for data display.
 
 ### Log Indexes
 
-Guance supports setting up multiple log indexes, filtering logs that meet the conditions and saving them in different log indexes, and helping users save on log data storage costs by choosing different data storage strategies for log indexes.
+Exolorers can filter logs that meet the conditions and saving them in different log indexes, thus helping you save on log data storage costs by choosing different data storage strategies for log indexes.
 
-After setting the index in **Logs > Index**, you can select different indexes in the explorer to view the corresponding log content.
+After setting the index in **Logs > Indexes**, you can select different indexes in the explorer to view the corresponding log content.
 
-> For more details, see [Log Indexes](multi-index.md).
+> For more details, see [Log Indexes](./multi-index/index.md).
 
 
 ### Search and Filtering
 
-In the log explorer search bar, support for [multiple search methods and filtering methods](../getting-started/function-details/explorer-search.md).
+[Multiple search methods and filtering methods](../getting-started/function-details/explorer-search.md) are supported.
 
-After entering the search or filter conditions, you can view the preview effect of the query. You can copy the condition and use it directly for charts or query tools.
+After entering the search or filter conditions, you can view the preview effect of the query. You can also copy the condition and use it directly for charts or query tools.
 
 <img src="../img/bar-preview.png" width="70%" >
 
 ### DQL Search {#dql}
 
-**Prerequisite**: The DQL search feature is currently only available for use in the log explorer.
+???+ abstract "Prerequisite"
+
+    The feature is currently only available for use in the log explorer.
 
 In the log explorer, you can switch to the DQL manual input query mode by clicking the switch button :fontawesome-solid-code: in the search box, and customize the input filter and search conditions.
 
-- Filter conditions: Support any combination of `and / or`, support using `()` parentheses to indicate the priority of executing the search, support operators such as `=`, `!=`.
+- Filter conditions: Support any combination of `and / or`, using `()` parentheses to indicate the priority of executing the search and operators such as `=`, `!=`.
 
-- Search conditions: Support using DQL functions `query_string()` for string queries, such as entering `message = query_string()` to search log content.
+- Search conditions: Use DQL functions `query_string()` for string queries, such as entering `message = query_string()` to search log content.
 
 > For more DQL syntax, see [DQL Definition](../dql/define.md).
 
 ### Quick Filters {#filter}
 
-In the log explorer quick filters, support editing [quick filters](../getting-started/function-details/explorer-search.md#quick-filter) and adding new filter fields.
+Support editing [quick filters](../getting-started/function-details/explorer-search.md#quick-filter) and adding new filter fields.
 
 **Note**: If the values displayed in the quick filters are affected by sampling, the sampling rate is displayed, and users can temporarily turn off sampling.
 
 ### Customize Display Columns
 
-The log explorer defaults to displaying the `time` and `message` fields, among which the `time` field is a fixed field and cannot be deleted. Hovering over a display column reveals the Settings button, which allows you to perform various column operations including sorting, moving columns, adding or removing columns, and applying filters and groupings.
+Explorers default to displaying the `time` and `message` fields, among which the `time` field is a fixed field and cannot be deleted. Hovering over a display column reveals the Settings button, which allows you to perform various column operations including sorting, moving columns, adding or removing columns and applying filters and groupings.
 
 > For more customization of display columns, see [Display Column Description](../getting-started/function-details/explorer-search.md#columns).
 
 #### JSON Field Return {#json-content}
 
-<font size=3>**Note**: This feature is only available for user roles with DQL query permissions.</font>
+???+ abstract "Prerequisite"
 
-Guance DQL query supports extracting embedded values from the JSON fields of log data. By adding a field with the `@` symbol in the DQL query statement, the system will recognize the configuration and display it as an independent field in the query results. For example:
+    This feature is only available for user roles with DQL query permissions.
+
+Guance DQL query supports extracting embedded values from the JSON fields of log data. By adding a field with the `@` symbol in the DQL query statement, the system will recognize the configuration and display it as an independent field in the query results. 
+
+For example:
 
 - Normal query:
 
@@ -132,13 +137,13 @@ Guance DQL query supports extracting embedded values from the JSON fields of log
 
 <img src="../img/json-1.png" width="70%" >
 
-In the log explorer, if you want to directly specify the value extracted from the `message` JSON text of each log in the data list, add a field in the display column in the format of `@target_fieldname`. In the figure below, we have added the `@fail_reason` that has been configured in the DQL query statement to the display column:
+If you want to directly specify the value extracted from the `message` JSON text of each log in the data list, add a field in the display column in the format of `@target_fieldname`. In the figure below, we have added the `@fail_reason` that has been configured in the DQL query statement to the display column:
 
 ![](img/json-3.gif)
 
 ### Create a Monitor {#new}
 
-You can directly jump to the monitor creation page from the log explorer entry to quickly set up exception detection rules for log data.
+You can directly jump to the monitor creation page from the entry to quickly set up incident detection rules for log data.
 
 ![](img/explorer-monitor.png)
 
@@ -146,7 +151,9 @@ You can directly jump to the monitor creation page from the log explorer entry t
 
 ### Copy as cURL
 
-The log explorer supports obtaining log data in the form of command lines. On the right side of the log data list **Settings**, click **Copy as cURL** to copy the cURL command line, go to the host terminal to execute the command, and obtain the log data related to the current time period under the current filter and search conditions.
+<font size=2>**Note**: Only **Standard members and above** can perform copy command line operations.</font>
+
+Support obtaining log data in the form of command lines. Click **Copy as cURL** to copy the cURL command line, go to the host terminal to execute the command, and obtain the log data related to the current time period under the current filter and search conditions.
 
 ![](img/logexport-1.png)
 
@@ -167,11 +174,11 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 ```
 
 
-**Note**: Only **Standard Members and above** can perform copy command line operations.
-
 In addition to this export path, you can also use [other log data export](#logexport) methods.
 
 ### Status Colors {#status-color}
+
+<font size=2>**Note**: Only **Administrator members and above** can change status colors.</font>
 
 Guance has set default system colors for status values. You can modify the colors displayed in the explorer for corresponding data under different status.
 
@@ -179,22 +186,23 @@ Guance has set default system colors for status values. You can modify the color
 
 ### Format
 
-Format allows you to hide sensitive log data content or highlight the log data content you need to view, and you can also quickly filter by replacing the original log content.
+<font size=2>**Note**: Only **Administrator members and above** can perform format for explorers.</font>
 
-Click on **Settings** in the upper right corner of the explorer list, and then click on **Format** to add a mapping. Enter the following content and click save to replace the original log content containing "DEBUG" with the format you want to display.
+Hide sensitive log data content or highlight the log data content you need to view, and quickly filter by replacing the original log content.
+
+Click on **Format** to add a mapping. Enter the following content and click save to replace the original log content containing "DEBUG" with the format you want to display.
 
 - Field: such as content;
 - Matching method: such as match (currently supports `=`, `!=`, `match`, `not match`);
 - Matching content: such as DEBUG;
 - Display as content: such as `******`.
 
-**Note**: Only administrators and above can perform format for explorers.
 
 ![](img/11.log_format_2.gif)
 
 ### Export {#logexport}
 
-In **Logs**, you can first filter the log data you want, and then export it for viewing and analysis through :octicons-gear-24:. It supports exporting to CSV files or dashboards and notes.
+Filter the log data you want, and then export it for viewing and analysis through :octicons-gear-24:. You can export to CSV files or dashboards and notes.
 
 ![](img/5.log_explorer_3.png)
 
@@ -239,7 +247,7 @@ Click on the log list to pull out the current log's detail page to view detailed
 
 When logs are reported to Guance, if the data exceeds 1M in size, they will be split according to the 1M standard. For example, a 2.5M log will be divided into 3 pieces (1M/1M/0.5M). You can view the integrity of the split logs based on the following fields:
 
-| <div style="width: 140px">Field</div> | Type | Description |
+| <div style="width: 150px">Field</div> | Type | Description |
 | ------------------ | ------ | ------------------------------------------------------------ |
 | `__truncated_id`     | string | Represents the unique identifier of the log. Multiple split logs use the same `__truncated_id`, with the ID prefix being LT_xxx. |
 | `__truncated_count`  | number | Indicates the total number of split logs. |
@@ -249,7 +257,7 @@ On the log detail page, if the current log is split into multiple pieces, the **
 
 
 
-### View Context Logs {#up-down}
+### Log Context {#up-down}
 
 The context query feature of the log service can help you use the timeline to trace the log records before and after a specific exception log. Through the visualization of log context information in Guance, it can effectively assist you in troubleshooting and problem localization, allowing for timely response.
 
@@ -257,11 +265,11 @@ On the log detail page, you can directly view the **context logs** of the data c
 
 ![](img/2.log_updown_1.png)
 
-???- warning "Additional Understanding of Related Logic"
+???- warning "Logic Behind"
 
     According to the returned data, load 50 pieces of data each time by scrolling.
 
-    How to query the returned data?
+    :material-chat-question: How to query the returned data?
 
     **Prerequisite**: Does the log have a `log_read_lines` field? If it exists, follow logic a; if it does not exist, follow logic b.
 
@@ -276,12 +284,13 @@ On the log detail page, you can directly view the **context logs** of the data c
     ```
 
     b. Obtain the current log time, and push forward/backward to determine the query's **start time** and **end time**
+
     - Start time: Push 5 minutes forward from the current log time;
     - End time: Take the time (time) of the 50th piece of data pushed backward from the current log, if time = current log time, then use `time+1 microsecond` as the end time, if time ≠ current log time, then use `time` as the end time.
 
 #### Detail Page
 
-After clicking :fontawesome-solid-arrow-up-right-from-square:, you will be redirected to the detail page:
+Click :fontawesome-solid-arrow-up-right-from-square: to be redirected to the detail page:
 
 ![](img/context-1.png)
 
@@ -296,16 +305,16 @@ You can manage all current data with the following operations:
 
 When you click on the attribute fields for quick filtering and viewing, you can view the host, process, link, and container data related to the log.
 
-| Field | Description |
+| <div style="width: 180px">Field</div>  | Description |
 | ----------- | ------------------- |
-| Filter Field Value | That is, add the field to the log explorer to view all log data related to the field. |
-| Inverse Filter Field Value | That is, add the field to the log explorer to view other related log data except for the field. |
+| Filter Field Value | Add the field to the log explorer to view all log data related to the field. |
+| Inverse Filter Field Value | Add the field to the log explorer to view other related log data except for the field. |
 | Add to Display Columns | Add the field to the explorer list for viewing. |
-| Copy | That is, copy the field to the clipboard. |
-| View Related Containers | That is, view all containers related to the host. |
-| View Related Processes | That is, view all processes related to the host. |
-| View Related Links | That is, view all links related to the host. |
-| View Related Inspections | That is, view all inspection data related to the host. |
+| Copy | Copy the field to the clipboard. |
+| View Related Containers | View all containers related to the host. |
+| View Related Processes | View all processes related to the host. |
+| View Related Links | View all links related to the host. |
+| View Related Security Check | View all inspection data related to the host. |
 
 ![](img/17.explorer_5.png)
 
@@ -317,7 +326,7 @@ When you click on the attribute fields for quick filtering and viewing, you can 
 
 ![](img/explorer_001.png)
 
-### Extended Fields
+### Attributes
 
 - In the search bar, you can quickly search and locate by entering the field name or value.
 
@@ -327,31 +336,33 @@ When you click on the attribute fields for quick filtering and viewing, you can 
 
 - Hover over an extended field and click the dropdown icon to choose to **filter field values**, **inverse filter field values**, **add to display columns**, and **copy** for that field.
 
-<img src="../img/17.explorer_4.png" width="60%" >
+<img src="../img/17.explorer_4.png" width="50%" >
 
 ### Associated Analysis
 
+<div class="grid" markdown>
+
 === "Host"
 
-    Guance supports you to view the metric view and attribute view of the related host (associated field: `host`) through the **Host** at the bottom of the detail page.
+    View the metric view and attribute view of the related host (associated field: `host`).
     
-    - Metric View: You can view the performance metric status of the related host **within 30 minutes before the log ends to 30 minutes after the log ends**, including performance metric views such as CPU and memory of the related host.
+    - Metric View: View the performance metric status of the related host **within 30 minutes before the log ends to 30 minutes after the log ends**, including performance metric views such as CPU and memory of the related host.
     
     ![](img/1.log_4.png)
     
-    - Attribute View: Helps you trace back the real situation of the host object when the log was generated, supporting viewing the **latest object data produced by the related host within the corresponding time**, including basic information and integration operation status of the host. If cloud host collection is enabled, you can also view information from cloud vendors.
+    - Attribute View: Trace back the real situation of the host when the log was generated, supporting viewing the **latest data produced by the related host within the corresponding time**, including basic information and integration operation status of the host. If cloud host collection is enabled, you can also view information from cloud vendors.
     
     ![](img/1.log_4.1.png)
 
-    **Note**: Guance defaults to saving the historical data of the host object for the last 48 hours. If you cannot find the historical data of the host corresponding to the current log time, you will not be able to view the attribute view of the associated host.
+    **Note**: Guance defaults to saving the historical data of the host for the last 48 hours. If you cannot find the historical data of the host corresponding to the current log time, you will not be able to view the attribute view of the associated host.
 
     
 
 === "Trace"
 
-    Through the **Trace** at the bottom of the detail page, you can view the flame graph and Span list of the current log-related trace (associated field: `trace_id`). Click the transfer button in the upper right corner to directly view the corresponding trace details.
+    View the flame graph and Span list of the current log-related trace (associated field: `trace_id`). Click the transfer button in the upper right corner to directly view the corresponding trace details.
 
-    > For more information on the flame graph and Span list of the trace, please see [Trace Analysis](../application-performance-monitoring/explorer/explorer-analysis.md).
+    > For more information on the flame graph and Span list of the trace, see [Trace Analysis](../application-performance-monitoring/explorer/explorer-analysis.md).
     
     - Flame Graph:
     
@@ -363,25 +374,25 @@ When you click on the attribute fields for quick filtering and viewing, you can 
 
 === "Container"
 
-    Guance supports you to view the basic information and performance metric status **within the selected time component range** of the related container (associated field: `container_name`) through the **Container** at the bottom of the detail page.
+    View the basic information and performance metric status **within the selected time component range** of the related container (associated field: `container_name`).
     
-    - Attribute View: Help you trace back the real situation of the container object when the log was generated, supporting viewing the **latest object data produced by the related container within the corresponding time**, including basic and attribute information of the container.
+    - Attribute View: Trace back the real situation of the container when the log was generated, supporting viewing the **latest object data produced by the related container within the corresponding time**, including basic and attribute information of the container.
     
     ![](img/6.log_5.png)
     
-    - Metric View: Support viewing the performance metric status of the related container **within 30 minutes before the log ends to 30 minutes after the log ends**, including performance metric views such as container CPU and memory.
+    - Metric View: View the performance metric status of the related container **within 30 minutes before the log ends to 30 minutes after the log ends**, including performance metric views such as container CPU and memory.
     
     ![](img/6.log_6.png)
 
 === "Pod"
 
-    Guance supports you to view the attribute view and metric view of the related Pod (associated field: `pod_name`) through the **Pod** at the bottom of the detail page.
+    View the attribute view and metric view of the related Pod (associated field: `pod_name`).
     
-    - Attribute View: Help you trace back the real situation of the container Pod object when the log was generated, supporting viewing the **latest object data produced by the related container Pod within the corresponding time**, including basic and attribute information of the Pod.
+    - Attribute View: Trace back the real situation of the container Pod when the log was generated, supporting viewing the **latest data produced by the related container Pod within the corresponding time**, including basic and attribute information of the Pod.
     
     ![](img/6.log_pod_1.png)
     
-    - Metric View: Support viewing the performance metric status of the related container Pod **within 30 minutes before the log ends to 30 minutes after the log ends**, including performance metric views such as Pod CPU and memory.
+    - Metric View: View the performance metric status of the related container Pod **within 30 minutes before the log ends to 30 minutes after the log ends**, including performance metric views such as Pod CPU and memory.
     
     ![](img/6.log_pod_2.png)
 
@@ -403,9 +414,9 @@ When you click on the attribute fields for quick filtering and viewing, you can 
 
 === "Network"
 
-    Guance supports you to view the network data connection status within 48 hours through the **Network** at the bottom of the detail page. This includes Host, Pod, Deployment, and Service.
+    View the network data connection status within 48 hours through the **Network** at the bottom of the detail page. This includes Host, Pod, Deployment, and Service.
 
-    > For more details, please see [Network](../infrastructure/network.md).
+    > For more details, see [Network](../infrastructure/network.md).
     
     ![](img/7.host_network_2.png)
 
@@ -415,20 +426,20 @@ When you click on the attribute fields for quick filtering and viewing, you can 
     
     To view related networks on the detail page, you need to match the corresponding associated fields, which means configuring the corresponding field tags during data collection; otherwise, you will not be able to match and view the associated network views on the detail page.
 
-    - Host: Match the field `host`, and support copying the associated field and its value by clicking the **Copy** button on the right.
+    - Host: Match the field `host`, and support copying the associated field and its value.
 
-    - Pod: Match the fields below, and support copying the associated field and its value by clicking the **Copy** button on the right.
+    - Pod: Match the fields below, and support copying the associated field and its value.
 
-    | **Matching Field Priority**  |
+    | **Priority**  |
     | ------------------- |
     | namespace, pod_name |
     | namespace, pod      |
     | pod_name            |
     | pod                 |
 
-    - Deployment: Match the fields below, and support copying the associated field and its value by clicking the **Copy** button on the right.
+    - Deployment: Match the fields below, and support copying the associated field and its value.
 
-    | **Matching Field Priority**  |
+    | **Priority**  |
     | ------------------- |
     | namespace, deployment_name |
     | namespace, deployment      |
@@ -451,19 +462,22 @@ When you click on the attribute fields for quick filtering and viewing, you can 
 
         :material-numeric-2-circle-outline: `deployment` matches the `src_k8s_deployment_name` field, displaying the deployment inner view.
 
-    - Service: Match the fields below, and support copying the associated field and its value by clicking the **Copy** button on the right.
+    - Service: Match the fields below, and support copying the associated field and its value.
 
-    | **Matching Field Priority**  |
+    | **Priority**  |
     | ------------------- |
     | namespace, service_name |
     | namespace, service      |
 
     **Note**:    
-    - If associated fields for Host, Pod, Deployment, and Services are queried at the same time, the detail page will display the network data in this order;  
-    - If no associated fields are queried, they will be displayed at the end in gray, and clicking will prompt **No Network View Matched**.
+
+    1. If associated fields for Host, Pod, Deployment, and Services are queried at the same time, the detail page will display the network data in this order;  
+    2. If no associated fields are queried, they will be displayed at the end in gray, and clicking will prompt **No Network View Matched**.
+
+</div>
 
 ### Bind Inner Views
 
-Guance supports setting up the binding or removing of inner views (user views) to the log detail page. Click on Bind Inner View to add a new view to the current log detail page.
+Guance supports setting up the binding or removing of inner views (user views) to the log detail page.
 
 <img src="../img/log-view.png" width="70%" >

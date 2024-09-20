@@ -34,7 +34,7 @@ Data sources include a combination of data from metrics, logs, base objects, cus
 | Metrics | You need to select 「Metrics Set」 and 「Metrics」. A metrics set can contain multiple metrics, and the base function checks 「Last by」 by default. Combine with the chart type, select the metric you want to display for query. |
 | Logs/Basic Objects/Custom Objects/Events/Application Performance/User Access/Security Patrol/Network/ Profile | System Objects, Custom Objects and Security Patrol need to select 「Category」 and 「Attribute/Label」, Logs/Events/Application Performance/User Access need to select 「Source」 and 「Attribute/Label」, and 「Count by」 is selected by default for the base function. |
 
-Note: If you set the index in 「Log」 - 「Index」, when you select "Log" as the data source of the chart query, you can select different indexes corresponding to the log content, the default is index `default`. For more details, please refer to the document [Log Index](.../.../logs/multi-index.md).
+Note: If you set the index in 「Log」 - 「Index」, when you select "Log" as the data source of the chart query, you can select different indexes corresponding to the log content, the default is index `default`. For more details, please refer to the document [Log Index](.../.../logs/multi-index/index.md).
 
 ![](../img/5.log_7.png)
 
