@@ -73,11 +73,6 @@ extra:
 plugins:
   awesome-pages: {}
   section-index: {}
-  tags:
-    tags_allowed:
-      - HTML5
-      - JavaScript
-      - CSS
   git-revision-date-localized:
     type: custom
     custom_format: '%Y-%m-%d'

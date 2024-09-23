@@ -78,11 +78,6 @@ plugins:
     fallback_to_build_date: true
   search:
     lang: en
-  tags:
-    tags_allowed:
-      - HTML5
-      - JavaScript
-      - CSS
 
 extra_css:
   - assets/stylesheets/extra.css
