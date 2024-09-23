@@ -69,6 +69,7 @@ icon: zy/integrations
   		}
   		.fth-integration-list-content .fth-integration-list-item {
   			border: 1px solid #e1e4e8;
+            text-decoration: none;
   		}
   		.fth-integration-list-content .fth-integration-list-item:hover .fth-integration-list-card {
   			box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.07);
@@ -135,9 +136,9 @@ icon: zy/integrations
   		<!-- 集成list -->
   		<div class="fth-integration-list-content">
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../active_directory"
+  				href="../active_directory"
   				data-tags=""
   				data-name="Active Directory"
   				data-summary="采集 Active Directory 相关指标信息"
@@ -159,11 +160,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aerospike"
+  				href="../aerospike"
   				data-tags=""
   				data-name="Aerospike"
   				data-summary="采集 Aerospike 相关指标信息"
@@ -185,11 +186,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_analyticdb_postgresql"
+  				href="../aliyun_analyticdb_postgresql"
   				data-tags="阿里云"
   				data-name="阿里云 AnalyticDB PostgreSQL"
   				data-summary="阿里云 AnalyticDB PostgreSQL 指标展示，包括cpu、内存、磁盘、协调节点、实例查询等。"
@@ -211,11 +212,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_cdn"
+  				href="../aliyun_cdn"
   				data-tags="阿里云"
   				data-name="阿里云 CDN"
   				data-summary="阿里云 CDN 性能指标展示，包括每秒访问次数、下行流量、边缘带宽、响应时间、回源带宽、状态码等。"
@@ -237,11 +238,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_clickhouse_community"
+  				href="../aliyun_clickhouse_community"
   				data-tags="阿里云"
   				data-name="阿里云 ClickHouse 社区兼容版"
   				data-summary="阿里云 ClickHouse 指标展示，包括服务状态、日志流量、操作次数、总体 QPS 等。"
@@ -263,11 +264,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_ecs"
+  				href="../aliyun_ecs"
   				data-tags="阿里云"
   				data-name="阿里云 ECS"
   				data-summary="阿里云ECS的展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS，这些指标反映了ECS实例的计算、内存、网络和存储性能表现。"
@@ -289,11 +290,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_edas"
+  				href="../aliyun_edas"
   				data-tags="阿里云"
   				data-name="阿里云 EDAS"
   				data-summary=""
@@ -315,11 +316,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_eip"
+  				href="../aliyun_eip"
   				data-tags="阿里云"
   				data-name="阿里云 EIP"
   				data-summary="阿里云 EIP 指标展示，包括网络带宽、网络数据包、限速丢包率、带宽利用率等。"
@@ -341,11 +342,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_es"
+  				href="../aliyun_es"
   				data-tags="阿里云"
   				data-name="阿里云 ElasticSearch"
   				data-summary="阿里云 ElasticSearch 指标展示，包括集群状态、索引 QPS、 节点 CPU/内存/磁盘使用率等。"
@@ -367,11 +368,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_kafka"
+  				href="../aliyun_kafka"
   				data-tags="阿里云"
   				data-name="阿里云 KafKa"
   				data-summary="阿里云 KafKa 包括实例磁盘使用率、实例何topic 消息生产量、消息生产次数、消息消费量、消息消费次数等，这些指标反映了 Kafka 在处理大规模消息传递和实时数据流时的可靠性保证。 "
@@ -393,11 +394,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_lindorm"
+  				href="../aliyun_lindorm"
   				data-tags="阿里云"
   				data-name="阿里云 Lindorm"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。"
@@ -419,11 +420,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_mongodb"
+  				href="../aliyun_mongodb"
   				data-tags="阿里云"
   				data-name="阿里云 MongoDB"
   				data-summary="阿里云 MongoDB 副本集指标展示，包括 CPU 使用率、内存使用率、磁盘使用率、数据占用磁盘空间量、日志占用磁盘空间、每秒语句执行次数、请求数、连接数、网络流量、复制延迟、QPS 等。
@@ -447,11 +448,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_nat"
+  				href="../aliyun_nat"
   				data-tags="阿里云"
   				data-name="阿里云 NAT"
   				data-summary="阿里云 NAT 指标展示，包括并发连接数、新建连接数、 VPC 流量、 VPC 数据包等。"
@@ -473,11 +474,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_newbgp_ddos"
+  				href="../aliyun_newbgp_ddos"
   				data-tags="阿里云"
   				data-name="阿里云 DDoS 新BGP高防"
   				data-summary="阿里云DDoS新BGP高防的展示指标包括攻击防护能力、清洗能力、响应时间和可靠性，这些指标反映了新BGP高防服务在应对大规模DDoS攻击时的性能表现和可信度。"
@@ -499,11 +500,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_oss"
+  				href="../aliyun_oss"
   				data-tags="阿里云"
   				data-name="阿里云 OSS"
   				data-summary="阿里云 OSS 指标展示，包括请求数、可用性、网络流量、请求占比等。"
@@ -525,11 +526,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_polardb_1.0"
+  				href="../aliyun_polardb_1.0"
   				data-tags="阿里云"
   				data-name="阿里云 PolarDB 分布式1.0"
   				data-summary="阿里云 PolarDB 分布式1.0展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS。"
@@ -551,11 +552,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_polardb_2.0"
+  				href="../aliyun_polardb_2.0"
   				data-tags="阿里云"
   				data-name="阿里云 PolarDB 分布式 2.0"
   				data-summary="阿里云 PolarDB 分布式 2.0 展示计算层和存储节点的指标，包括CPU利用率、连接使用率、磁盘使用量、磁盘使用率、内存利用率、网络带宽等。"
@@ -577,11 +578,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_polardb_mysql"
+  				href="../aliyun_polardb_mysql"
   				data-tags="阿里云"
   				data-name="阿里云 PolarDB MySQL"
   				data-summary="阿里云 PolarDB MySQL 指标展示，包括 CPU 使用率、内存命中率、网络流量、连接数、QPS、 TPS、 只读节点延迟等。"
@@ -603,11 +604,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_polardb_oracle"
+  				href="../aliyun_polardb_oracle"
   				data-tags="阿里云"
   				data-name="阿里云 PolarDB Oracle"
   				data-summary="阿里云 PolarDB Oracle 指标展示，包括 CPU 使用率、内存使用率、网络流量、连接数、IOPS、 TPS、 数据盘大小等。"
@@ -629,11 +630,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_polardb_postgresql"
+  				href="../aliyun_polardb_postgresql"
   				data-tags="阿里云"
   				data-name="阿里云 PolarDB PostgreSQL"
   				data-summary="阿里云 PolarDB PostgreSQL 指标展示，包括 CPU 使用率、内存使用率、网络流量、连接数、 IOPS、 TPS、 数据盘大小等。"
@@ -655,11 +656,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_rds_mariadb"
+  				href="../aliyun_rds_mariadb"
   				data-tags="阿里云"
   				data-name="阿里云 RDS MariaDB"
   				data-summary="阿里云 RDS MariaDB 的展示指标包括响应时间、并发连接数、QPS 和 TPS 等。"
@@ -681,11 +682,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_rds_mysql"
+  				href="../aliyun_rds_mysql"
   				data-tags="阿里云"
   				data-name="阿里云 RDS MySQL"
   				data-summary="阿里云 RDS MySQL 指标展示，包括 CPU 使用率、内存使用率、 IOPS、网络带宽、 InnoDB、 TPS、 QPS 等。"
@@ -707,11 +708,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_rds_postgresql"
+  				href="../aliyun_rds_postgresql"
   				data-tags="阿里云"
   				data-name="阿里云 RDS PostgreSQL"
   				data-summary="阿里云 RDS PostgreSQL 指标展示，包括 CPU 使用率、内存使用率等。"
@@ -733,11 +734,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_rds_sqlserver"
+  				href="../aliyun_rds_sqlserver"
   				data-tags="阿里云"
   				data-name="阿里云 RDS SQLServer"
   				data-summary="阿里云 RDS SQLServer 指标展示，包括 CPU 使用率、内存使用率、 IOPS、网络带宽、 InnoDB、 TPS、 QPS 等。"
@@ -759,11 +760,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_redis"
+  				href="../aliyun_redis"
   				data-tags="阿里云"
   				data-name="阿里云 Redis 标准版"
   				data-summary="阿里云 Redis 标准版指标展示，包括 CPU 使用率、内存使用率、磁盘读写、网络流量、每秒访问次数等。"
@@ -785,11 +786,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_redis_shard"
+  				href="../aliyun_redis_shard"
   				data-tags="阿里云"
   				data-name="阿里云 Redis 集群版"
   				data-summary="阿里云 Redis 集群版指标展示，包括 CPU 使用率、内存使用率、磁盘读写、网络流量、每秒访问次数等。"
@@ -811,11 +812,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_rocketmq4"
+  				href="../aliyun_rocketmq4"
   				data-tags="阿里云"
   				data-name="阿里云 RocketMQ4"
   				data-summary="阿里云 RocketMQ 4.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。"
@@ -837,11 +838,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_rocketmq5"
+  				href="../aliyun_rocketmq5"
   				data-tags="阿里云"
   				data-name="阿里云 RocketMQ5"
   				data-summary="阿里云 RocketMQ 5.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。"
@@ -863,11 +864,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_site"
+  				href="../aliyun_site"
   				data-tags="阿里云"
   				data-name="阿里云 站点监控"
   				data-summary="阿里云 站点监控主要获取站点拨测信息"
@@ -889,11 +890,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_slb"
+  				href="../aliyun_slb"
   				data-tags="阿里云"
   				data-name="阿里云 SLB"
   				data-summary="阿里云 SLB 指标展示，包括后端 ECS 实例状态、端口连接数、 QPS、网络流量、状态码等。"
@@ -915,11 +916,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_sls"
+  				href="../aliyun_sls"
   				data-tags="阿里云"
   				data-name="阿里云 SLS"
   				data-summary="阿里云 SLS 指标展示，包括服务状态、日志流量、操作次数、总体 QPS 等。"
@@ -941,11 +942,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aliyun_tair"
+  				href="../aliyun_tair"
   				data-tags="阿里云"
   				data-name="阿里云 Tair 社区版"
   				data-summary="阿里云 Tair 社区版指标展示，包括 CPU 使用率、内存使用率、代理总QPS、网络流量、命中率等。"
@@ -967,11 +968,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../apache"
+  				href="../apache"
   				data-tags="中间件,WEB SERVER"
   				data-name="Apache"
   				data-summary="Apache 采集器可以从 Apache 服务中采集请求数、连接数等"
@@ -993,11 +994,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../apisix"
+  				href="../apisix"
   				data-tags=""
   				data-name="APISIX"
   				data-summary="采集 APISIX 相关指标信息"
@@ -1019,11 +1020,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../apollo"
+  				href="../apollo"
   				data-tags=""
   				data-name="Apollo"
   				data-summary="采集 Apollo 相关指标信息"
@@ -1045,11 +1046,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../argocd"
+  				href="../argocd"
   				data-tags=""
   				data-name="ArgoCD"
   				data-summary="采集 Argo CD 服务状态和应用状态及日志、链路信息"
@@ -1071,11 +1072,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../automq"
+  				href="../automq"
   				data-tags=""
   				data-name="AutoMQ"
   				data-summary="采集 AutoMQ 相关指标信息"
@@ -1097,11 +1098,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_api_gateway"
+  				href="../aws_api_gateway"
   				data-tags="AWS"
   				data-name="AWS API Gateway"
   				data-summary="AWS API Gateway的展示指标包括请求响应时间、吞吐量、并发连接数和错误率，这些指标反映了API Gateway在处理API请求和流量管理时的性能表现和可靠性。"
@@ -1123,11 +1124,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_auto_scaling"
+  				href="../aws_auto_scaling"
   				data-tags="AWS"
   				data-name="AWS Auto Scaling"
   				data-summary="AWS Auto Scaling，包括实例数、容量单位、暖池等。"
@@ -1149,11 +1150,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_cloudfront"
+  				href="../aws_cloudfront"
   				data-tags="AWS"
   				data-name="AWS CloudFront"
   				data-summary="AWS CloudFront的核心性能指标包括请求总数、数据传输量、HTTP 错误率、缓存命中率和延迟，这些可以帮助用户评估和优化内容分发网络的性能。"
@@ -1175,11 +1176,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_dms"
+  				href="../aws_dms"
   				data-tags="AWS"
   				data-name="AWS DMS"
   				data-summary="AWS DMS的展示指标包括数据迁移速度、延迟、数据一致性和迁移成功率，这些指标反映了DMS在进行数据库迁移和复制时的性能表现和可靠性。"
@@ -1201,11 +1202,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_documentdb"
+  				href="../aws_documentdb"
   				data-tags="AWS"
   				data-name="AWS DocumentDB"
   				data-summary="AWS DocumentDB 的展示指标包括读取和写入吞吐量、查询延迟和可扩展性等。"
@@ -1227,11 +1228,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_dynamodb"
+  				href="../aws_dynamodb"
   				data-tags="AWS"
   				data-name="AWS DynamoDB"
   				data-summary="AWS DynamoDB的展示指标包括吞吐量容量单位、延迟、并发连接数和读写吞吐量等，这些指标反映了 DynamoDB 在处理大规模数据存储和访问时的性能表现和可扩展性。"
@@ -1253,11 +1254,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_dynamodb_DAX"
+  				href="../aws_dynamodb_DAX"
   				data-tags="AWS"
   				data-name="AWS DynamoDB DAX"
   				data-summary="AWS DynamoDB DAX 的展示指标包括节点或集群的 CPU 使用率、在所有网络接口上收到或发出的字节数、数据包的数量等，这些指标反映了 DynamoDB DAX 的运行状态。"
@@ -1279,11 +1280,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_ec2"
+  				href="../aws_ec2"
   				data-tags="AWS"
   				data-name="AWS EC2"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -1305,11 +1306,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_ec2_spot"
+  				href="../aws_ec2_spot"
   				data-tags="AWS"
   				data-name="Amazon EC2 Spot"
   				data-summary=" Amazon EC2 Spot，包括请求容量池、目标容量池、中止容量等。"
@@ -1331,11 +1332,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_ecs"
+  				href="../aws_ecs"
   				data-tags="AWS"
   				data-name="AWS ECS"
   				data-summary="Amazon ECS 功能与 亚马逊云科技 Fargate 无服务器计算引擎集成，使用观测云监控其服务运行态。"
@@ -1357,11 +1358,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_elasticache_redis"
+  				href="../aws_elasticache_redis"
   				data-tags="AWS"
   				data-name="AWS ElastiCache Redis"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -1383,11 +1384,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_elasticache_serverless"
+  				href="../aws_elasticache_serverless"
   				data-tags="AWS"
   				data-name="AWS ElastiCache Serverless"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -1409,11 +1410,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_elb"
+  				href="../aws_elb"
   				data-tags="AWS"
   				data-name="AWS ELB"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -1435,11 +1436,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_emr"
+  				href="../aws_emr"
   				data-tags="AWS"
   				data-name="AWS EMR"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -1461,11 +1462,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_eventbridge"
+  				href="../aws_eventbridge"
   				data-tags="AWS"
   				data-name="AWS EventBridge"
   				data-summary="AWS EventBridge 的展示指标包括事件传递延迟、吞吐量、事件规模和可伸缩性，这些指标反映了 EventBridge 在处理大规模事件流和实时数据传递时的性能表现和可靠性。"
@@ -1487,11 +1488,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_kinesis"
+  				href="../aws_kinesis"
   				data-tags="AWS"
   				data-name="AWS Kinesis"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -1513,11 +1514,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_kinesis_analytics"
+  				href="../aws_kinesis_analytics"
   				data-tags="AWS"
   				data-name="AWS KinesisAnalytics"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -1539,11 +1540,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_lambda"
+  				href="../aws_lambda"
   				data-tags="AWS"
   				data-name="AWS Lambda"
   				data-summary="AWS Lambda的展示指标包括冷启动时间、执行时间、并发执行数和内存使用量，这些指标反映了Lambda函数的响应速度、可扩展性和资源利用情况。"
@@ -1565,11 +1566,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_mediaconvert"
+  				href="../aws_mediaconvert"
   				data-tags="AWS"
   				data-name="AWS MediaConvert"
   				data-summary=" AWS MediaConvert，包括数据传输、视频报错、作业数、填充等。"
@@ -1591,11 +1592,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_memorydb"
+  				href="../aws_memorydb"
   				data-tags="AWS"
   				data-name="AWS MemoryDB"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -1617,11 +1618,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_mq_rabbitmq"
+  				href="../aws_mq_rabbitmq"
   				data-tags="AWS"
   				data-name="Amazon MQ for RabbitMQ"
   				data-summary="Amazon MQ 支持行业标准 API 和协议，对消息代理的管理和维护进行管理，并自动为高可用性提供基础设施。"
@@ -1643,11 +1644,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_msk"
+  				href="../aws_msk"
   				data-tags="AWS"
   				data-name="AWS MSK"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -1669,11 +1670,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_neptune_cluster"
+  				href="../aws_neptune_cluster"
   				data-tags="AWS"
   				data-name="AWS Neptune Cluster"
   				data-summary="AWS Neptune Cluster的展示指标包括冷启动时间、执行时间、并发执行数和内存使用量，这些指标反映了Neptune Cluster函数的响应速度、可扩展性和资源利用情况。"
@@ -1695,11 +1696,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_opensearch"
+  				href="../aws_opensearch"
   				data-tags="AWS"
   				data-name="AWS OpenSearch"
   				data-summary="AWS OpenSearch，包括连接数、请求数、时延、慢查询等。"
@@ -1721,11 +1722,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_rds_mysql"
+  				href="../aws_rds_mysql"
   				data-tags="AWS"
   				data-name="AWS RDS MySQL"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -1747,11 +1748,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_redshift"
+  				href="../aws_redshift"
   				data-tags="AWS"
   				data-name="AWS Redshift"
   				data-summary="AWS Redshift的核心性能指标包括查询性能、磁盘空间使用率、CPU利用率、数据库连接数和磁盘 I/O 操作，这些都是评估和优化数据仓库性能的关键指标。"
@@ -1773,11 +1774,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_s3"
+  				href="../aws_s3"
   				data-tags="AWS"
   				data-name="AWS S3"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -1799,11 +1800,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_sqs"
+  				href="../aws_sqs"
   				data-tags="AWS"
   				data-name="AWS Simple Queue Service"
   				data-summary="AWS Simple Queue Service 的展示指标包括队列中最旧的未删除消息的大约存在时间、延迟且无法立即读取的消息数量、处于空中状态的消息的数量、可从队列取回的消息数量等。"
@@ -1825,11 +1826,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../aws_timestream"
+  				href="../aws_timestream"
   				data-tags="AWS"
   				data-name="AWS Timestream"
   				data-summary="AWS Timestream 的展示指标包括系统错误数（内部服务错误数）、当前 AWS 区域和当前 AWS 帐户的无效请求的总和、成功请求经过的时间和样本数量、存储在内存中的数据量，以及存储在磁存储器中的数据量等。"
@@ -1851,11 +1852,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../awslambda"
+  				href="../awslambda"
   				data-tags="AWS"
   				data-name="AWS Lambda 扩展"
   				data-summary="通过 AWS Lambda 扩展采集数据"
@@ -1877,11 +1878,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../beats_output"
+  				href="../beats_output"
   				data-tags="日志"
   				data-name="Filebeat"
   				data-summary="接收 Filebeat 采集的日志数据"
@@ -1903,11 +1904,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../cassandra"
+  				href="../cassandra"
   				data-tags="数据库"
   				data-name="Cassandra"
   				data-summary="采集 Cassandra 的指标数据"
@@ -1929,11 +1930,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../cat"
+  				href="../cat"
   				data-tags="链路追踪"
   				data-name="点评 CAT"
   				data-summary="美团点评的性能、容量和业务指标监控系统"
@@ -1955,11 +1956,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../chrony"
+  				href="../chrony"
   				data-tags=""
   				data-name="Chrony"
   				data-summary="采集 Chrony 服务器相关的指标数据"
@@ -1981,11 +1982,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../clickhousev1"
+  				href="../clickhousev1"
   				data-tags="数据库"
   				data-name="ClickHouse"
   				data-summary="采集 ClickHouse 的指标数据"
@@ -2007,11 +2008,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../cloud-charges"
+  				href="../cloud-charges"
   				data-tags=""
   				data-name="云账单费用查询"
   				data-summary="云账单费用查询，可以查询 AWS 、华为云、阿里云、腾讯云等公有云账单信息"
@@ -2033,11 +2034,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../cloudprober"
+  				href="../cloudprober"
   				data-tags=""
   				data-name="Cloudprober"
   				data-summary="接收 Cloudprober 数据"
@@ -2059,11 +2060,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../cockroachdb"
+  				href="../cockroachdb"
   				data-tags="数据库"
   				data-name="CockroachDB"
   				data-summary="采集 CockroachDB 的指标数据"
@@ -2085,11 +2086,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../consul"
+  				href="../consul"
   				data-tags="中间件"
   				data-name="Consul"
   				data-summary="采集 Consul 的指标数据"
@@ -2111,11 +2112,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../container-log"
+  				href="../container-log"
   				data-tags="日志,容器,KUBERNETES"
   				data-name="容器日志"
   				data-summary="采集 Container 和 Kubernetes 日志数据"
@@ -2137,11 +2138,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../container"
+  				href="../container"
   				data-tags="KUBERNETES,容器"
   				data-name="容器基础采集"
   				data-summary="采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到观测云。"
@@ -2163,11 +2164,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../coredns"
+  				href="../coredns"
   				data-tags="中间件"
   				data-name="CoreDNS"
   				data-summary="采集 CoreDNS 的指标数据"
@@ -2189,11 +2190,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../couchbase-prom"
+  				href="../couchbase-prom"
   				data-tags=""
   				data-name="CouchBase Exporter"
   				data-summary="采集器可以从 CouchBase 实例中采取很多指标，比如数据使用的内存和磁盘、当前连接数等多种指标，并将指标采集到观测云，帮助监控分析 CouchBase 各种异常情况。"
@@ -2215,11 +2216,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../couchbase"
+  				href="../couchbase"
   				data-tags="数据库"
   				data-name="Couchbase"
   				data-summary="采集 Couchbase 服务器相关的指标数据"
@@ -2241,11 +2242,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../couchdb"
+  				href="../couchdb"
   				data-tags="数据库"
   				data-name="CouchDB"
   				data-summary="采集 CouchDB 的指标数据"
@@ -2267,11 +2268,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../cpu"
+  				href="../cpu"
   				data-tags="HOST"
   				data-name="CPU"
   				data-summary="采集 CPU 指标数据"
@@ -2293,11 +2294,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../db2"
+  				href="../db2"
   				data-tags="数据库"
   				data-name="DB2"
   				data-summary="采集 IBM DB2 的指标数据"
@@ -2319,11 +2320,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ddtrace-attach"
+  				href="../ddtrace-attach"
   				data-tags="链路追踪,JAVA"
   				data-name="自动注入 DDTrace-Java Agent"
   				data-summary="DDTrace Java 集成"
@@ -2345,11 +2346,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ddtrace-cpp"
+  				href="../ddtrace-cpp"
   				data-tags="链路追踪,C/C++"
   				data-name="DDTrace C++"
   				data-summary="DDTrace C++ 集成"
@@ -2371,11 +2372,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ddtrace-ext-java"
+  				href="../ddtrace-ext-java"
   				data-tags="DDTRACE,链路追踪"
   				data-name="DDTrace 扩展"
   				data-summary="观测云扩展了 DDTrace 对组建的支持"
@@ -2397,11 +2398,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ddtrace-golang"
+  				href="../ddtrace-golang"
   				data-tags="DDTRACE,GOLANG,链路追踪"
   				data-name="DDTrace Golang"
   				data-summary="DDTrace Golang 集成"
@@ -2423,11 +2424,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ddtrace-java"
+  				href="../ddtrace-java"
   				data-tags="DDTRACE,JAVA,链路追踪"
   				data-name="DDTrace Java"
   				data-summary="DDTrace Java 集成"
@@ -2449,11 +2450,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ddtrace-jmxfetch"
+  				href="../ddtrace-jmxfetch"
   				data-tags="DDTRACE,JAVA,链路追踪"
   				data-name="DDTrace JMX"
   				data-summary="DDTrace JMX 集成"
@@ -2475,11 +2476,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ddtrace-nodejs"
+  				href="../ddtrace-nodejs"
   				data-tags="DDTRACE,NODEJS,链路追踪"
   				data-name="DDTrace NodeJS"
   				data-summary="DDTrace NodeJS 集成"
@@ -2501,11 +2502,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ddtrace-php"
+  				href="../ddtrace-php"
   				data-tags="DDTRACE,PHP,链路追踪"
   				data-name="DDTrace PHP"
   				data-summary="DDTrace PHP 集成"
@@ -2527,11 +2528,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ddtrace-python"
+  				href="../ddtrace-python"
   				data-tags="DDTRACE,PYTHON,链路追踪"
   				data-name="DDTrace Phthon"
   				data-summary="DDTrace Python 集成"
@@ -2553,11 +2554,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ddtrace-ruby"
+  				href="../ddtrace-ruby"
   				data-tags="DDTRACE,RUBY,链路追踪"
   				data-name="DDTrace Ruby"
   				data-summary="DDTrace Ruby 集成"
@@ -2579,11 +2580,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ddtrace"
+  				href="../ddtrace"
   				data-tags="DDTRACE,链路追踪"
   				data-name="DDTrace"
   				data-summary="接收 DDTrace 的 APM 数据"
@@ -2605,11 +2606,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../dialtesting"
+  				href="../dialtesting"
   				data-tags="拨测,网络"
   				data-name="网络拨测"
   				data-summary="通过网络拨测来获取网络性能表现"
@@ -2631,11 +2632,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../dialtesting_json"
+  				href="../dialtesting_json"
   				data-tags="拨测,网络"
   				data-name="自定义拨测任务"
   				data-summary="自定义拨测采集器来定制拨测任务"
@@ -2657,11 +2658,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../disk"
+  				href="../disk"
   				data-tags="主机"
   				data-name="磁盘"
   				data-summary="采集磁盘的指标数据"
@@ -2683,11 +2684,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../diskio"
+  				href="../diskio"
   				data-tags="主机"
   				data-name="磁盘 IO"
   				data-summary="采集磁盘 IO 指标数据"
@@ -2709,11 +2710,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../dk"
+  				href="../dk"
   				data-tags="主机"
   				data-name="DataKit 自身指标采集"
   				data-summary="采集 Datakit 自身运行指标"
@@ -2735,11 +2736,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../dm_v8"
+  				href="../dm_v8"
   				data-tags=""
   				data-name="达梦数据库（DM8）"
   				data-summary="采集达梦数据库运行指标信息"
@@ -2761,11 +2762,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../dongfangtong_ths"
+  				href="../dongfangtong_ths"
   				data-tags=""
   				data-name="东方通 THS（TongHttpServer）"
   				data-summary="采集东方通 THS（TongHttpServer）运行指标信息"
@@ -2787,11 +2788,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../dongfangtong_tweb"
+  				href="../dongfangtong_tweb"
   				data-tags=""
   				data-name="东方通 TWeb（TongWeb）"
   				data-summary="采集东方通 TWeb（TongWeb）运行指标及链路信息"
@@ -2813,11 +2814,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../doris"
+  				href="../doris"
   				data-tags="数据库"
   				data-name="Doris"
   				data-summary="采集 Doris 的指标数据"
@@ -2839,11 +2840,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../dotnet"
+  				href="../dotnet"
   				data-tags=""
   				data-name=".NET"
   				data-summary="采集 .NET 应用相关 Metrics、Tracing、Logging 和 Profiling 信息。"
@@ -2865,11 +2866,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ebpf"
+  				href="../ebpf"
   				data-tags="EBPF,NETWORK"
   				data-name="eBPF"
   				data-summary="通过 eBPF 采集 Linux 网络数据"
@@ -2891,11 +2892,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ebpftrace"
+  				href="../ebpftrace"
   				data-tags="链路追踪,EBPF"
   				data-name="eBPF Tracing"
   				data-summary="关联 eBPF 采集的链路 span，生成链路"
@@ -2917,11 +2918,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../elasticsearch"
+  				href="../elasticsearch"
   				data-tags="数据库"
   				data-name="ElasticSearch"
   				data-summary="采集 ElasticSearch 的指标数据"
@@ -2943,11 +2944,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../emqx"
+  				href="../emqx"
   				data-tags=""
   				data-name="EMQX"
   				data-summary="采集 EMQX collection、topics、subscriptions、message、packet 相关指标信息"
@@ -2969,11 +2970,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../etcd"
+  				href="../etcd"
   				data-tags="中间件"
   				data-name="etcd"
   				data-summary="采集 etcd 的指标数据"
@@ -2995,11 +2996,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../exchang"
+  				href="../exchang"
   				data-tags=""
   				data-name="Exchange"
   				data-summary="采集 Exchange 相关指标信息"
@@ -3021,11 +3022,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../exchange"
+  				href="../exchange"
   				data-tags=""
   				data-name="Exchange"
   				data-summary="采集 Exchange 相关指标信息"
@@ -3047,11 +3048,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../external"
+  				href="../external"
   				data-tags=""
   				data-name="External"
   				data-summary="启动外部程序进行采集"
@@ -3073,11 +3074,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../flinkv1"
+  				href="../flinkv1"
   				data-tags="中间件"
   				data-name="Flink"
   				data-summary="采集 Flink 的指标数据"
@@ -3099,11 +3100,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../fluentd"
+  				href="../fluentd"
   				data-tags=""
   				data-name="Fluentd"
   				data-summary="采集 Fluentd 的日志"
@@ -3125,11 +3126,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../gitlab"
+  				href="../gitlab"
   				data-tags="GITLAB,CI/CD"
   				data-name="GitLab"
   				data-summary="采集 GitLab 的指标数据"
@@ -3151,11 +3152,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../golang"
+  				href="../golang"
   				data-tags=""
   				data-name="Golang"
   				data-summary="获取 Golang 应用的指标、链路追踪和日志信息"
@@ -3177,11 +3178,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../gpu_smi"
+  				href="../gpu_smi"
   				data-tags="主机"
   				data-name="GPU"
   				data-summary="采集 NVIDIA GPU 指标数据"
@@ -3203,11 +3204,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../graphite"
+  				href="../graphite"
   				data-tags="外部数据接入"
   				data-name="Graphite"
   				data-summary="采集 Graphite Exporter 暴露的指标数据"
@@ -3229,11 +3230,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../haproxy"
+  				href="../haproxy"
   				data-tags=""
   				data-name="Haproxy"
   				data-summary="采集 Haproxy 指标信息"
@@ -3255,11 +3256,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../host_healthcheck"
+  				href="../host_healthcheck"
   				data-tags="主机"
   				data-name="主机健康检查"
   				data-summary="定期检查主机进程和网络健康状况"
@@ -3281,11 +3282,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../host_processes"
+  				href="../host_processes"
   				data-tags="主机"
   				data-name="进程"
   				data-summary="采集进程的指标和对象数据"
@@ -3307,11 +3308,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../hostdir"
+  				href="../hostdir"
   				data-tags="主机"
   				data-name="文件目录"
   				data-summary="采集文件目录的指标数据"
@@ -3333,11 +3334,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../hostobject"
+  				href="../hostobject"
   				data-tags="主机"
   				data-name="主机对象"
   				data-summary="采集主机基本信息"
@@ -3359,11 +3360,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_FunctionGraph"
+  				href="../huawei_FunctionGraph"
   				data-tags="华为云"
   				data-name="华为云 FunctionGraph"
   				data-summary="华为云 FunctionGraph的展示指标包括调用次数,错误次数,被拒绝次数,并发数,预留实例个数，运行时间（包括最大运行时间、最小运行时间、平均运行时间）等，这些指标反映了FunctionGraph函数运行情况。"
@@ -3385,11 +3386,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_SYS.AS"
+  				href="../huawei_SYS.AS"
   				data-tags="华为云"
   				data-name="HUAWEI AS"
   				data-summary="华为云 AS 的核心性能指标包括CPU利用率、内存使用率、磁盘I/O、网络吞吐量和系统负载等，这些都是评估和优化自动缩放系统性能的关键指标。"
@@ -3411,11 +3412,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_SYS.CBR"
+  				href="../huawei_SYS.CBR"
   				data-tags="华为云"
   				data-name="华为云 CBR"
   				data-summary="华为云 CBR 的展示指标包括带宽利用率、延迟、丢包率和网络吞吐量，这些指标反映了CBR在网络传输和带宽管理方面的性能表现和质量保证。"
@@ -3437,11 +3438,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_SYS_DDMS"
+  				href="../huawei_SYS_DDMS"
   				data-tags="华为云"
   				data-name="华为云 DDM"
   				data-summary="华为云 DDM 监控视图展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了DDMS在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。"
@@ -3463,11 +3464,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_apic"
+  				href="../huawei_apic"
   				data-tags="华为云"
   				data-name="华为云 API"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -3489,11 +3490,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_asm"
+  				href="../huawei_asm"
   				data-tags="华为云"
   				data-name="华为云ASM链路追踪 TO 观测云"
   				data-summary="华为云的ASM的链路追踪数据输出到观测云，进行查看、分析。"
@@ -3515,11 +3516,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_cce"
+  				href="../huawei_cce"
   				data-tags="华为云"
   				data-name="使用观测云采集华为云CCE指标数据"
   				data-summary="观测云支持对 CCE 中各类资源的运行状态和服务能力进行监测，包括 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等。"
@@ -3541,11 +3542,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_css_es"
+  				href="../huawei_css_es"
   				data-tags="华为云"
   				data-name="华为云搜索服务 CSS for Elasticsearch"
   				data-summary="华为云搜索服务 CSS for Elasticsearch 的核心性能指标包括查询延迟、索引速度、搜索速度、磁盘使用率和 CPU 使用率，这些都是评估和优化 Elasticsearch 性能的关键指标。"
@@ -3567,11 +3568,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_dcs"
+  				href="../huawei_dcs"
   				data-tags="华为云"
   				data-name="华为云 DCS"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -3593,11 +3594,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_dis"
+  				href="../huawei_dis"
   				data-tags="华为云"
   				data-name="华为云 DIS"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -3619,11 +3620,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_ecs"
+  				href="../huawei_ecs"
   				data-tags="华为云"
   				data-name="华为云 ECS"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -3645,11 +3646,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_elb"
+  				href="../huawei_elb"
   				data-tags="华为云"
   				data-name="华为云 ELB"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -3671,11 +3672,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_gaussdb_cassandra"
+  				href="../huawei_gaussdb_cassandra"
   				data-tags="华为云"
   				data-name="华为云 GaussDB-Cassandra"
   				data-summary="华为云GaussDB-Cassandra的展示指标包括读写吞吐量、延迟、数据一致性和可扩展性，这些指标反映了GaussDB-Cassandra在处理大规模分布式数据存储和访问时的性能表现和可靠性。"
@@ -3697,11 +3698,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_gaussdb_for_mysql"
+  				href="../huawei_gaussdb_for_mysql"
   				data-tags="华为云"
   				data-name="华为云 GaussDB for MySQL"
   				data-summary="GaussDB for MySQL，包括cpu、内存、网络、缓冲池、存储、慢日志、`innoDB`等相关指标。"
@@ -3723,11 +3724,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_gaussdb_influx"
+  				href="../huawei_gaussdb_influx"
   				data-tags="华为云"
   				data-name="华为云 GaussDB-Influx"
   				data-summary="华为云GaussDB-Influx的展示指标包括写入吞吐量、查询延迟、数据保留策略和可扩展性，这些指标反映了GaussDB-Influx在处理大规模时序数据存储和查询时的性能表现和可靠性。"
@@ -3749,11 +3750,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_gaussdb_redis"
+  				href="../huawei_gaussdb_redis"
   				data-tags="华为云"
   				data-name="华为云 GaussDB-Redis"
   				data-summary="华为云GaussDB-Redis的展示指标包括读写吞吐量、响应时间、并发连接数和数据持久性，这些指标反映了GaussDB-Redis在处理高并发数据存储和缓存时的性能表现和可靠性。"
@@ -3775,11 +3776,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_gaussdb_sys.gaussdbv5"
+  				href="../huawei_gaussdb_sys.gaussdbv5"
   				data-tags="华为云"
   				data-name="华为云 GaussDB SYS.GAUSSDBV5"
   				data-summary="华为云 GaussDB SYS.GAUSSDBV5，提供cpu、内存、磁盘、死锁、SQL 响应时间指标等数据。"
@@ -3801,11 +3802,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_kafka"
+  				href="../huawei_kafka"
   				data-tags="华为云"
   				data-name="华为云 DMS Kafka"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -3827,11 +3828,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_mongodb"
+  				href="../huawei_mongodb"
   				data-tags="华为云"
   				data-name="华为云 MongoDB"
   				data-summary="华为云MongoDB的展示指标包括读写吞吐量、延迟、并发连接数和数据可靠性，这些指标反映了MongoDB在处理大规模文档存储和查询时的性能表现和可扩展性。"
@@ -3853,11 +3854,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_obs"
+  				href="../huawei_obs"
   				data-tags="华为云"
   				data-name="华为云 OBS"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -3879,11 +3880,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_rabbitmq"
+  				href="../huawei_rabbitmq"
   				data-tags="华为云"
   				data-name="华为云 DMS RabbitMQ"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。"
@@ -3905,11 +3906,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_rds_mysql"
+  				href="../huawei_rds_mysql"
   				data-tags="华为云"
   				data-name="华为云 RDS MYSQL"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -3931,11 +3932,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_rds_postgresql"
+  				href="../huawei_rds_postgresql"
   				data-tags="华为云"
   				data-name="华为云 RDS PostgreSQL"
   				data-summary="华为云 RDS PostgreSQL 的展示指标包括查询性能、事务吞吐量、并发连接数和数据可靠性，这些指标反映了RDS PostgreSQL 在处理大规模关系型数据存储和事务处理时的性能表现和可靠性。"
@@ -3957,11 +3958,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_rocketmq"
+  				href="../huawei_rocketmq"
   				data-tags="华为云"
   				data-name="华为云 DMS RocketMQ"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。"
@@ -3983,11 +3984,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../huawei_roma"
+  				href="../huawei_roma"
   				data-tags="华为云"
   				data-name="华为云 ROMA"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -4009,11 +4010,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../iis"
+  				href="../iis"
   				data-tags="WINDOWS,IIS,WEB SERVER"
   				data-name="IIS"
   				data-summary="采集 IIS 指标数据"
@@ -4035,11 +4036,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ilogtail"
+  				href="../ilogtail"
   				data-tags=""
   				data-name="iLogtail"
   				data-summary="iLogtail 采集日志信息"
@@ -4061,11 +4062,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../influxdb"
+  				href="../influxdb"
   				data-tags="数据库"
   				data-name="InfluxDB"
   				data-summary="采集 InfluxDB 指标数据"
@@ -4087,11 +4088,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ingress-nginx-prom"
+  				href="../ingress-nginx-prom"
   				data-tags=""
   				data-name="Ingress Nginx (Prometheus)"
   				data-summary="采集 Ingress Nginx (Prometheus) 相关指标信息"
@@ -4113,11 +4114,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ipmi"
+  				href="../ipmi"
   				data-tags="IPMI"
   				data-name="IPMI"
   				data-summary="IPMI 指标展示被监测设备的电流、电压、功耗、占用率、风扇转速、温度以及设备状态等信息"
@@ -4139,11 +4140,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../issue_dingtalk"
+  				href="../issue_dingtalk"
   				data-tags=""
   				data-name="异常追踪 - 钉钉"
   				data-summary="观测云异常追踪与钉钉深度集成，方便将异常追踪信息发送给钉钉，通过钉钉进行回复并回传到观测云"
@@ -4165,11 +4166,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../issue_feishu"
+  				href="../issue_feishu"
   				data-tags=""
   				data-name="异常追踪 - 飞书"
   				data-summary="观测云异常追踪与飞书深度集成，方便将异常追踪信息发送给飞书，通过飞书进行回复并回传到观测云"
@@ -4191,11 +4192,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../istio"
+  				href="../istio"
   				data-tags=""
   				data-name="Istio"
   				data-summary="Istio 性能指标展示，包括 Incoming Request Volume、Incoming Success Rate、Incoming Requests By Source And Response Code、Outgoing Requests By Destination And Response Code 等"
@@ -4217,11 +4218,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../jaeger"
+  				href="../jaeger"
   				data-tags="JAEGER,链路追踪"
   				data-name="Jaeger"
   				data-summary="接收 Jaeger APM 数据"
@@ -4243,11 +4244,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../java"
+  				href="../java"
   				data-tags=""
   				data-name="JAVA"
   				data-summary="获取 JAVA 应用的指标、链路追踪和日志信息"
@@ -4269,11 +4270,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../javascript"
+  				href="../javascript"
   				data-tags=""
   				data-name="JavaScript"
   				data-summary="通过 JavaScript (Web) 方式监测浏览器用户的使用行为"
@@ -4295,11 +4296,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../jenkins"
+  				href="../jenkins"
   				data-tags="JENKINS,CI/CD"
   				data-name="Jenkins"
   				data-summary="采集 Jenkins 的指标和日志"
@@ -4321,11 +4322,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../jmx"
+  				href="../jmx"
   				data-tags=""
   				data-name="JMX"
   				data-summary="JVM 性能指标展示：堆与非堆内存、线程、类加载数等。"
@@ -4347,11 +4348,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../juicefs"
+  				href="../juicefs"
   				data-tags=""
   				data-name="JuiceFS"
   				data-summary="采集 JuiceFS 数据大小、IO、事物、对象、客户端等相关组件指标信息"
@@ -4373,11 +4374,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../jvm"
+  				href="../jvm"
   				data-tags="JAVA"
   				data-name="JVM"
   				data-summary="采集 JVM 的指标数据"
@@ -4399,11 +4400,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../jvm_jmx_exporter"
+  				href="../jvm_jmx_exporter"
   				data-tags=""
   				data-name="JMX Exporter"
   				data-summary="JVM 性能指标展示：堆与非堆内存、线程、类加载数等。"
@@ -4425,11 +4426,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../jvm_jolokia"
+  				href="../jvm_jolokia"
   				data-tags=""
   				data-name="JMX Jolokia"
   				data-summary="JVM 性能指标展示：堆与非堆内存、线程、类加载数等。"
@@ -4451,11 +4452,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../jvm_micrometer"
+  				href="../jvm_micrometer"
   				data-tags=""
   				data-name="JMX Micrometer"
   				data-summary="JVM 性能指标展示：堆与非堆内存、线程、类加载数等。"
@@ -4477,11 +4478,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../jvm_statsd"
+  				href="../jvm_statsd"
   				data-tags=""
   				data-name="JMX StatsD"
   				data-summary="JVM 性能指标展示：堆与非堆内存、线程、类加载数等。"
@@ -4503,11 +4504,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../kafka"
+  				href="../kafka"
   				data-tags="中间件,消息队列"
   				data-name="Kafka"
   				data-summary="采集 Kafka 的指标数据"
@@ -4529,11 +4530,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../kafkamq"
+  				href="../kafkamq"
   				data-tags="消息队列,日志"
   				data-name="KafkaMQ"
   				data-summary="通过 Kafka 收集已有的指标和日志数据"
@@ -4555,11 +4556,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../kubecost"
+  				href="../kubecost"
   				data-tags=""
   				data-name="KubeCost"
   				data-summary="采集 KubeCost 指标信息"
@@ -4581,11 +4582,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../kubernetes-api-server"
+  				href="../kubernetes-api-server"
   				data-tags=""
   				data-name="Kubernetes API Server"
   				data-summary="采集 Kubernetes API Server 相关指标信息"
@@ -4607,11 +4608,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../kubernetes-crd"
+  				href="../kubernetes-crd"
   				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="Kubernetes CRD"
   				data-summary="Create Datakit CRD to collect"
@@ -4633,11 +4634,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../kubernetes-prom"
+  				href="../kubernetes-prom"
   				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="Kubernetes Prometheus Exporter"
   				data-summary="采集 Kubernetes 集群中自定义 Pod 暴露出来的 Prometheus 指标"
@@ -4659,11 +4660,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../kubernetes-prometheus-operator-crd"
+  				href="../kubernetes-prometheus-operator-crd"
   				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="Prometheus CRD"
   				data-summary="支持 Prometheus-Operator CRD 并采集对应指标"
@@ -4685,11 +4686,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../kubernetes_audit"
+  				href="../kubernetes_audit"
   				data-tags=""
   				data-name="Kubernetes 审计日志采集"
   				data-summary="Kubernetes 审计日志采集"
@@ -4711,11 +4712,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../kubernetesprometheus"
+  				href="../kubernetesprometheus"
   				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="Kubernetes Prometheus Discovery"
   				data-summary="支持发现 Kubernetes 中的 Prometheus 指标暴露并采集"
@@ -4737,11 +4738,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../langchain"
+  				href="../langchain"
   				data-tags=""
   				data-name="LangChain"
   				data-summary="优化 LangChain 的使用：及时采样以及性能和成本指标。"
@@ -4763,11 +4764,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../logfwd"
+  				href="../logfwd"
   				data-tags="KUBERNETES,日志,容器"
   				data-name="Log Sidecar"
   				data-summary="Sidecar 形式的日志采集"
@@ -4789,11 +4790,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../logfwdserver"
+  				href="../logfwdserver"
   				data-tags="KUBERNETES,日志,容器"
   				data-name="Log Forward"
   				data-summary="通过 sidecar 方式收集 Pod 内日志数据"
@@ -4815,11 +4816,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../logging"
+  				href="../logging"
   				data-tags="日志"
   				data-name="日志采集"
   				data-summary="采集主机上的日志数据"
@@ -4841,11 +4842,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../logging_socket"
+  				href="../logging_socket"
   				data-tags="日志"
   				data-name="Socket Logging"
   				data-summary="主要用于 Java/Go/Python 日志框架如何配置 Socket，将日志发送给 Datakit 日志采集器中。"
@@ -4867,11 +4868,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../logstash"
+  				href="../logstash"
   				data-tags=""
   				data-name="Logstash"
   				data-summary="通过 Logstash 采集日志信息"
@@ -4893,11 +4894,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../logstreaming"
+  				href="../logstreaming"
   				data-tags="日志"
   				data-name="Log Streaming"
   				data-summary="通过 HTTP 上报日志数据"
@@ -4919,11 +4920,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../mem"
+  				href="../mem"
   				data-tags="主机"
   				data-name="内存"
   				data-summary="采集主机内存的指标数据"
@@ -4945,11 +4946,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../memcached"
+  				href="../memcached"
   				data-tags="缓存,中间件"
   				data-name="Memcached"
   				data-summary="采集 Memcached 的指标数据"
@@ -4971,11 +4972,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../minio"
+  				href="../minio"
   				data-tags=""
   				data-name="MinIO"
   				data-summary="采集 MinIO 相关指标信息"
@@ -4997,11 +4998,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../mongodb"
+  				href="../mongodb"
   				data-tags="数据库"
   				data-name="MongoDB"
   				data-summary="采集 MongoDB 的指标数据"
@@ -5023,11 +5024,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../monitor_jira"
+  				href="../monitor_jira"
   				data-tags=""
   				data-name="异常事件与 Jira 联动"
   				data-summary="当我们的应用程序或系统出现异常时，通常需要及时处理以保证系统的正常运行。为了更好地管理和跟踪异常事件，我们可以将这些事件发送到 Jira 中创建事件，这样我们就可以在 Jira 中进行跟踪、分析和解决这些问题，通过快速地将异常事件发送到 Jira 中创建事件，为我们提供更好的管理和跟踪异常事件的能力，从而更好地保证系统的正常运行。同时，这种方法也可以帮助我们更好地分析和解决问题，提高系统的稳定性和可靠性。"
@@ -5049,11 +5050,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../mysql"
+  				href="../mysql"
   				data-tags="数据库"
   				data-name="MySQL"
   				data-summary="采集 MySQL 的指标数据"
@@ -5075,11 +5076,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../nacos"
+  				href="../nacos"
   				data-tags=""
   				data-name="Nacos"
   				data-summary="采集 Nacos 相关指标信息"
@@ -5101,11 +5102,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../neo4j"
+  				href="../neo4j"
   				data-tags="数据库"
   				data-name="Neo4j"
   				data-summary="采集 Neo4j 的指标数据"
@@ -5127,11 +5128,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../net"
+  				href="../net"
   				data-tags="主机,网络"
   				data-name="Net"
   				data-summary="采集网卡的指标数据"
@@ -5153,11 +5154,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../netflow"
+  				href="../netflow"
   				data-tags="网络"
   				data-name="NetFlow"
   				data-summary="NetFlow 采集器可以用来可视化和监控已开启 NetFlow 的设备"
@@ -5179,11 +5180,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../netstat"
+  				href="../netstat"
   				data-tags="网络,主机"
   				data-name="NetStat"
   				data-summary="采集网卡流量指标数据"
@@ -5205,11 +5206,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../newrelic"
+  				href="../newrelic"
   				data-tags="NEWRELIC,链路追踪"
   				data-name="New Relic"
   				data-summary="接收来自 New Relic Agent 的数据"
@@ -5231,11 +5232,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../nginx"
+  				href="../nginx"
   				data-tags="WEB SERVER,中间件"
   				data-name="Nginx"
   				data-summary="采集 Nginx 的指标数据"
@@ -5257,11 +5258,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../nginx_tracing"
+  				href="../nginx_tracing"
   				data-tags=""
   				data-name="Nginx Tracing"
   				data-summary="采集 Nginx 链路信息"
@@ -5283,11 +5284,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../nodejs"
+  				href="../nodejs"
   				data-tags=""
   				data-name="NodeJs"
   				data-summary="获取 NodeJs 应用的指标、链路追踪和日志信息"
@@ -5309,11 +5310,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../npd"
+  				href="../npd"
   				data-tags=""
   				data-name="Node Problem Detector"
   				data-summary="通过 NPD 采集集群节点指标、事件"
@@ -5335,11 +5336,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../nsq"
+  				href="../nsq"
   				data-tags="消息队列,中间件"
   				data-name="NSQ"
   				data-summary="采集 NSQ 的指标数据"
@@ -5361,11 +5362,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../oceanbase"
+  				href="../oceanbase"
   				data-tags="数据库"
   				data-name="OceanBase"
   				data-summary="采集 OceanBase 的指标数据"
@@ -5387,11 +5388,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../openai"
+  				href="../openai"
   				data-tags=""
   				data-name="OpenAI"
   				data-summary="OpenAI的展示指标包括请求总数，响应时间，，请求数量，请求错误数和消耗token数。"
@@ -5413,11 +5414,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../opengauss"
+  				href="../opengauss"
   				data-tags=""
   				data-name="OpenGauss"
   				data-summary="采集 OpenGauss 指标信息"
@@ -5439,11 +5440,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../opentelemetry-go"
+  				href="../opentelemetry-go"
   				data-tags="GOLANG,OTEL,链路追踪"
   				data-name="OpenTelemetry Golang"
   				data-summary="OpenTelemetry Golang 集成"
@@ -5465,11 +5466,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../opentelemetry-java"
+  				href="../opentelemetry-java"
   				data-tags="JAVA,OTEL,链路追踪"
   				data-name="OpenTelemetry Java"
   				data-summary="OpenTelemetry Java 集成"
@@ -5491,11 +5492,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../opentelemetry"
+  				href="../opentelemetry"
   				data-tags="OTEL,链路追踪"
   				data-name="OpenTelemetry"
   				data-summary="接收 OpenTelemetry 指标、日志、APM 数据"
@@ -5517,11 +5518,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../oracle"
+  				href="../oracle"
   				data-tags="数据库"
   				data-name="Oracle"
   				data-summary="采集 Oracle 的指标数据"
@@ -5543,11 +5544,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../otel-ext-java"
+  				href="../otel-ext-java"
   				data-tags="OTEL,链路追踪"
   				data-name="OpenTelemetry 扩展"
   				data-summary="观测云对 OpenTelemetry 插件做了额外的扩展"
@@ -5569,11 +5570,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../otel-guance-exporter"
+  				href="../otel-guance-exporter"
   				data-tags="OTEL"
   				data-name="观测云 OpenTelemetry Exportor"
   				data-summary="直接将 OpenTelemetry 的数据输出给观测云"
@@ -5595,11 +5596,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../pagerduty"
+  				href="../pagerduty"
   				data-tags=""
   				data-name="异常事件与 PagerDuty 联动"
   				data-summary="当我们的应用程序或系统出现异常时，通常需要及时处理以保证系统的正常运行。为了更好地管理和跟踪异常事件，我们可以将这些事件发送到 PagerDuty 中创建事件，这样我们就可以在 PagerDuty 中进行跟踪、分析和解决这些问题，通过快速地将异常事件发送到 PagerDuty 中创建事件，为我们提供更好的管理和跟踪异常事件的能力，从而更好地保证系统的正常运行。同时，这种方法也可以帮助我们更好地分析和解决问题，提高系统的稳定性和可靠性。"
@@ -5621,11 +5622,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../php"
+  				href="../php"
   				data-tags=""
   				data-name="PHP"
   				data-summary="获取 PHP 应用的指标、链路追踪和日志信息"
@@ -5647,11 +5648,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../pinpoint-go"
+  				href="../pinpoint-go"
   				data-tags="PINPOINT,GOLANG,链路追踪"
   				data-name="PinPoint Golang"
   				data-summary="PinPoint Golang 集成"
@@ -5673,11 +5674,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../pinpoint-java"
+  				href="../pinpoint-java"
   				data-tags="PINPOINT,JAVA,链路追踪"
   				data-name="PinPoint Java"
   				data-summary="PinPoint Java 集成"
@@ -5699,11 +5700,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../pinpoint"
+  				href="../pinpoint"
   				data-tags="PINPOINT,链路追踪"
   				data-name="Pinpoint"
   				data-summary="Pinpoint Tracing 数据接入"
@@ -5725,11 +5726,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ploffload"
+  				href="../ploffload"
   				data-tags="PIPELINE"
   				data-name="Pipeline Offload"
   				data-summary="接收来自 Datakit Pipeline 卸载的待处理数据"
@@ -5751,11 +5752,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../postgresql"
+  				href="../postgresql"
   				data-tags="数据库"
   				data-name="PostgreSQL"
   				data-summary="采集 PostgreSQL 的指标数据"
@@ -5777,11 +5778,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../profile-cpp"
+  				href="../profile-cpp"
   				data-tags="C/C++,PROFILE"
   				data-name="Profiling C++"
   				data-summary="C++ Profiling 集成"
@@ -5803,11 +5804,37 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../profile-go"
+  				href="../profile-dotnet"
+  				data-tags=".Net,PROFILE"
+  				data-name="Profiling Golang"
+  				data-summary=".Net Profiling 集成"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/profiling/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<span class="fth-integration-name">Profiling Golang</span>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</a>
+  		
+  			<a
+  				class="fth-integration-list-item"
+  				href="../profile-go"
   				data-tags="GOLANG,PROFILE"
   				data-name="Profiling Golang"
   				data-summary="Golang Profiling 集成"
@@ -5829,11 +5856,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../profile-java"
+  				href="../profile-java"
   				data-tags="JAVA,PROFILE"
   				data-name="Profiling Java"
   				data-summary="Java Profiling 集成"
@@ -5855,11 +5882,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../profile-nodejs"
+  				href="../profile-nodejs"
   				data-tags="NODEJS,PROFILE"
   				data-name="Profiling NodeJS"
   				data-summary="NodeJS Profiling 集成"
@@ -5881,11 +5908,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../profile-php"
+  				href="../profile-php"
   				data-tags="PHP,PROFILE"
   				data-name="Profiling PHP"
   				data-summary="PHP Profiling 集成"
@@ -5907,11 +5934,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../profile-python"
+  				href="../profile-python"
   				data-tags="PYTHON,PROFILE"
   				data-name="Profiling Python"
   				data-summary="Python Profiling 集成"
@@ -5933,11 +5960,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../profile"
+  				href="../profile"
   				data-tags="PROFILE"
   				data-name="Profiling"
   				data-summary="采集应用程序的运行时性能数据"
@@ -5959,11 +5986,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../prom"
+  				href="../prom"
   				data-tags="外部数据接入,PROMETHEUS"
   				data-name="Prometheus Exporter"
   				data-summary="采集 Prometheus Exporter 暴露的指标数据"
@@ -5985,11 +6012,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../prom_remote_write"
+  				href="../prom_remote_write"
   				data-tags="外部数据接入,PROMETHEUS"
   				data-name="Prometheus Remote Write"
   				data-summary="通过 Prometheus Remote Write 汇集指标数据"
@@ -6011,11 +6038,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../promtail"
+  				href="../promtail"
   				data-tags="外部数据接入"
   				data-name="Promtail"
   				data-summary="采集 Promtail 上报的日志数据"
@@ -6037,11 +6064,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../proxy"
+  				href="../proxy"
   				data-tags="PROXY"
   				data-name="Proxy"
   				data-summary="代理 Datakit 的 HTTP 请求"
@@ -6063,11 +6090,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../pushgateway"
+  				href="../pushgateway"
   				data-tags="外部数据接入,PROMETHEUS"
   				data-name="Prometheus Push Gateway"
   				data-summary="开启 Pushgateway API，接收 Prometheus 指标数据"
@@ -6089,11 +6116,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../pythond"
+  				href="../pythond"
   				data-tags="PYTHON"
   				data-name="Pythond"
   				data-summary="通过 Python 扩展采集数据"
@@ -6115,11 +6142,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../rabbitmq"
+  				href="../rabbitmq"
   				data-tags="消息队列,中间件"
   				data-name="RabbitMQ"
   				data-summary="采集 RabbitMQ 的指标数据"
@@ -6141,11 +6168,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../redis-sentinel"
+  				href="../redis-sentinel"
   				data-tags=""
   				data-name="Redis Sentinel"
   				data-summary="采集 Redis Sentinel 集群指标、日志信息"
@@ -6167,11 +6194,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../redis"
+  				href="../redis"
   				data-tags="缓存,中间件"
   				data-name="Redis"
   				data-summary="Redis 指标和日志采集"
@@ -6193,11 +6220,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../resin"
+  				href="../resin"
   				data-tags=""
   				data-name="Resin"
   				data-summary="Resin 性能指标展示，包括启动时间、堆内存、非堆内存、类、线程等。"
@@ -6219,11 +6246,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../rocketmq"
+  				href="../rocketmq"
   				data-tags=""
   				data-name="RocketMQ"
   				data-summary="采集 RocketMQ 相关指标信息"
@@ -6245,11 +6272,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../rum"
+  				href="../rum"
   				data-tags="RUM"
   				data-name="RUM"
   				data-summary="采集用户行为数据"
@@ -6271,11 +6298,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../seata"
+  				href="../seata"
   				data-tags=""
   				data-name="Seata"
   				data-summary="采集 Seata 相关指标信息"
@@ -6297,11 +6324,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../sec-checker"
+  				href="../sec-checker"
   				data-tags="安全"
   				data-name="SCheck"
   				data-summary="接收 SCheck 采集的数据"
@@ -6323,11 +6350,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../sensors"
+  				href="../sensors"
   				data-tags="主机"
   				data-name="硬件 Sensors 数据采集"
   				data-summary="通过 Sensors 命令采集硬件温度指标"
@@ -6349,11 +6376,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../skywalking"
+  				href="../skywalking"
   				data-tags="链路追踪,SKYWALKING"
   				data-name="SkyWalking"
   				data-summary="SkyWalking Tracing 数据接入"
@@ -6375,11 +6402,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../smart"
+  				href="../smart"
   				data-tags="主机"
   				data-name="磁盘 S.M.A.R.T"
   				data-summary="通过 `smartctl` 采集磁盘指标"
@@ -6401,11 +6428,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../snmp"
+  				href="../snmp"
   				data-tags="SNMP"
   				data-name="SNMP"
   				data-summary="采集 SNMP 设备的指标和对象数据"
@@ -6427,11 +6454,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../socket"
+  				href="../socket"
   				data-tags="网络"
   				data-name="Socket"
   				data-summary="采集 TCP/UDP 端口的指标数据"
@@ -6453,11 +6480,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../solr"
+  				href="../solr"
   				data-tags="数据库"
   				data-name="Solr"
   				data-summary="采集 Solr 的指标数据"
@@ -6479,11 +6506,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../sqlserver"
+  				href="../sqlserver"
   				data-tags="数据库"
   				data-name="SQLServer"
   				data-summary="采集 SQLServer 的指标数据"
@@ -6505,11 +6532,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../ssh"
+  				href="../ssh"
   				data-tags="主机"
   				data-name="SSH"
   				data-summary="采集 SSH 的指标数据"
@@ -6531,11 +6558,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../statsd"
+  				href="../statsd"
   				data-tags="外部数据接入"
   				data-name="StatsD"
   				data-summary="收集 StatsD 上报的指标数据"
@@ -6557,11 +6584,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../swap"
+  				href="../swap"
   				data-tags="主机"
   				data-name="Swap"
   				data-summary="采集主机 swap 的指标数据"
@@ -6583,11 +6610,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../system"
+  				href="../system"
   				data-tags="主机"
   				data-name="System"
   				data-summary="采集主机系统相关的指标数据"
@@ -6609,11 +6636,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tdengine"
+  				href="../tdengine"
   				data-tags="数据库"
   				data-name="TDengine"
   				data-summary="采集 TDengine 的指标数据"
@@ -6635,11 +6662,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../telegraf"
+  				href="../telegraf"
   				data-tags="外部数据接入"
   				data-name="Telegraf"
   				data-summary="接收 Telegraf 采集的数据"
@@ -6661,11 +6688,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tencent_cdb"
+  				href="../tencent_cdb"
   				data-tags="腾讯云"
   				data-name="腾讯云 CDB"
   				data-summary="使用脚本市场中「官方脚本市场」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -6687,11 +6714,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tencent_ckafka"
+  				href="../tencent_ckafka"
   				data-tags="腾讯云"
   				data-name="腾讯云 CKafka"
   				data-summary="腾讯云CKafka的展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了CKafka在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。"
@@ -6713,11 +6740,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tencent_clb_private"
+  				href="../tencent_clb_private"
   				data-tags="腾讯云"
   				data-name="腾讯云 CLB Private"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -6739,11 +6766,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tencent_clb_public"
+  				href="../tencent_clb_public"
   				data-tags="腾讯云"
   				data-name="腾讯云 CLB Public"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -6765,11 +6792,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tencent_cos"
+  				href="../tencent_cos"
   				data-tags="腾讯云"
   				data-name="腾讯云 COS"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -6791,11 +6818,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tencent_cvm"
+  				href="../tencent_cvm"
   				data-tags="腾讯云"
   				data-name="腾讯云 CVM"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -6817,11 +6844,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tencent_keewidb"
+  				href="../tencent_keewidb"
   				data-tags="腾讯云"
   				data-name="腾讯云 KeeWiDB"
   				data-summary="腾讯云 KeeWiDB 指标展示，包括连接数、请求、缓存、key、慢查询等"
@@ -6843,11 +6870,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tencent_mariadb"
+  				href="../tencent_mariadb"
   				data-tags="腾讯云"
   				data-name="腾讯云 MariaDB"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -6869,11 +6896,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tencent_memcached"
+  				href="../tencent_memcached"
   				data-tags="腾讯云"
   				data-name="腾讯云 Memcached"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -6895,11 +6922,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tencent_mongodb"
+  				href="../tencent_mongodb"
   				data-tags="腾讯云"
   				data-name="腾讯云 MongoDB"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -6921,11 +6948,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tencent_postgresql"
+  				href="../tencent_postgresql"
   				data-tags="腾讯云"
   				data-name="腾讯云 PostgreSQL"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -6947,11 +6974,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tencent_redis_mem"
+  				href="../tencent_redis_mem"
   				data-tags="腾讯云"
   				data-name="腾讯云 Redis"
   				data-summary="腾讯云 Redis 指标展示，包括连接数、请求数、时延、慢查询等。"
@@ -6973,11 +7000,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tencent_sqlserver"
+  				href="../tencent_sqlserver"
   				data-tags="腾讯云"
   				data-name="腾讯云 SQLServer"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -6999,11 +7026,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tencent_tdsql_c_mysql"
+  				href="../tencent_tdsql_c_mysql"
   				data-tags="腾讯云"
   				data-name="腾讯云 TDSQL_C_MySQL"
   				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
@@ -7025,11 +7052,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tidb"
+  				href="../tidb"
   				data-tags=""
   				data-name="TiDB"
   				data-summary="采集 TiDB cluster、TiDB、Etcd、Region 等相关组件指标信息"
@@ -7051,11 +7078,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tomcat"
+  				href="../tomcat"
   				data-tags="WEB SERVER,中间件"
   				data-name="Tomcat"
   				data-summary="采集 Tomcat 的指标数据"
@@ -7077,11 +7104,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../tracing-propagator"
+  				href="../tracing-propagator"
   				data-tags="链路追踪"
   				data-name="Tracing Propagator"
   				data-summary="多链路中的信息传播机制及使用"
@@ -7103,11 +7130,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../trino"
+  				href="../trino"
   				data-tags=""
   				data-name="Trino"
   				data-summary="采集 Trino 指标信息"
@@ -7129,11 +7156,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../vmware"
+  				href="../vmware"
   				data-tags=""
   				data-name="VMware"
   				data-summary="VMware 展示集群状态、宿主机状态、VM状态等指标。"
@@ -7155,11 +7182,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../volcengine_ecs"
+  				href="../volcengine_ecs"
   				data-tags="火山引擎"
   				data-name="火山引擎 ECS"
   				data-summary="火山引擎 ECS 的展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS，这些指标反映了ECS实例的计算、内存、网络和存储性能表现。"
@@ -7181,11 +7208,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../volcengine_mongodb_replica_set"
+  				href="../volcengine_mongodb_replica_set"
   				data-tags="火山引擎"
   				data-name="火山引擎 MongoDB 副本集"
   				data-summary="火山引擎 MongoDB 副本集指标展示，包括 CPU 使用率、内存使用率、 连接数、延迟、OPS等。"
@@ -7207,11 +7234,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../volcengine_mongodb_sharded_cluster"
+  				href="../volcengine_mongodb_sharded_cluster"
   				data-tags="火山引擎"
   				data-name="火山引擎 MongoDB 分片集"
   				data-summary="火山引擎 MongoDB 分片集指标展示，包括 CPU 使用率、内存使用率、 连接数、延迟、OPS等。"
@@ -7233,11 +7260,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../volcengine_mysql"
+  				href="../volcengine_mysql"
   				data-tags="火山引擎"
   				data-name="火山引擎 MySQL"
   				data-summary="火山引擎 MySQL 指标展示，包括 CPU 使用率、内存使用率、 IOPS、网络带宽、 InnoDB、 TPS、 QPS 等。"
@@ -7259,11 +7286,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../volcengine_redis"
+  				href="../volcengine_redis"
   				data-tags="火山引擎"
   				data-name="火山引擎 Redis"
   				data-summary="火山引擎 Redis 指标采集"
@@ -7285,11 +7312,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../volcengine_vke"
+  				href="../volcengine_vke"
   				data-tags="火山引擎"
   				data-name="火山引擎 VKE"
   				data-summary="火山云 VKE 指标采集，包括 Cluster、Container、Node、Pod等。"
@@ -7311,11 +7338,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../windows_event"
+  				href="../windows_event"
   				data-tags="WINDOWS"
   				data-name="Windows 事件"
   				data-summary="采集 Windows 中的事件日志"
@@ -7337,11 +7364,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../zabbix_exporter"
+  				href="../zabbix_exporter"
   				data-tags="外部数据接入"
   				data-name="Zabbix 数据接入"
   				data-summary="Zabbix realTime data 数据接入"
@@ -7363,11 +7390,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../zadigx"
+  				href="../zadigx"
   				data-tags=""
   				data-name="Zadigx"
   				data-summary="Zadigx 展示包括概览、自动化构建、自动化部署、自动化测试等指标。"
@@ -7389,11 +7416,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../zipkin"
+  				href="../zipkin"
   				data-tags="ZIPKIN,链路追踪"
   				data-name="Zipkin"
   				data-summary="Zipkin Tracing 数据接入"
@@ -7415,11 +7442,11 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
-  			<div
+  			<a
   				class="fth-integration-list-item"
-  				data-href="../zookeeper"
+  				href="../zookeeper"
   				data-tags=""
   				data-name="ZooKeeper"
   				data-summary="采集 zookeeper 相关指标信息"
@@ -7441,7 +7468,7 @@ icon: zy/integrations
   						</svg>
   					</div>
   				</div>
-  			</div>
+  			</a>
   		
   		</div>
   		<!-- end-集成list -->
@@ -7478,7 +7505,6 @@ icon: zy/integrations
   			const container = document.querySelector('.integration-doc-container');
   			const search = container.querySelector('.integration-search-intput');
   			const header = container.querySelector('.fth-integration-list-header');
-  			const content = container.querySelector('.fth-integration-list-content');
   			let originList = [];
   			const debounceSearchFn = debounce(searchIntegration, 300);
   			let searchValue = '';
@@ -7565,19 +7591,6 @@ icon: zy/integrations
   			}
   			header.querySelector('.integration-search-input').addEventListener('input', inputChange);
   			header.addEventListener('click', tagChange);
-  			content.addEventListener('click', e => {
-  				let ele = e.target;
-  				let i = 0;
-  				while (i < 5) {
-  					if (ele.classList.contains('fth-integration-list-item')) {
-  						const href = ele.dataset.href;
-  						href && (window.location.href = href);
-  						break;
-  					}
-  					i++;
-  					ele = ele.parentNode;
-  				}
-  			});
   			function init() {
   				const list = container.querySelectorAll('.fth-integration-list-item');
   				list.forEach(item => {
