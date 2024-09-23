@@ -20,7 +20,7 @@
       {% for nav_item in page.ancestors | reverse %}
         {% if loop.index == 1 %}
           <li class="md-path__item">
-            <a href="/" class="md-path__link">
+            <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" title="{{ config.site_name | e }}">
               {% set title = "首页" %}
               {% if config.theme.language == 'en' %}
                 {% set title = "Home" %}
