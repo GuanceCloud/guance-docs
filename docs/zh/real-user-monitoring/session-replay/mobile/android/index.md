@@ -18,7 +18,7 @@ implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-session-replay-mate
 
 ```
 
-## 代码调用
+## 代码调用 {#code_sample}
 
 === "Java"
 
