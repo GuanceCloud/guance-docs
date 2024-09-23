@@ -1,6 +1,6 @@
 ---
 title     : 'EMQX'
-summary   : '采集 EMQX collection、topics、subsriptions、message、packet 相关指标信息'
+summary   : '采集 EMQX collection、topics、subscriptions、message、packet 相关指标信息'
 __int_icon: 'icon/emqx'
 dashboard :
   - desc  : 'EMQX 监控视图'

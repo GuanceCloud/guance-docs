@@ -1,19 +1,16 @@
 ---
 title     : 'SkyWalking'
 summary   : 'SkyWalking Tracing 数据接入'
-__int_icon      : 'icon/skywalking'
+tags:
+  - '链路追踪'
+  - 'SKYWALKING'
+__int_icon: 'icon/skywalking'
 dashboard :
   - desc  : 'Skywalking JVM 监控视图'
     path  : 'dashboard/zh/skywalking'
 monitor   :
   - desc  : '暂无'
     path  : '-'
----
-
-<!-- markdownlint-disable MD025 -->
-# SkyWalking
-<!-- markdownlint-enable -->
-
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:

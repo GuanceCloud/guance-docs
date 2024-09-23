@@ -1,6 +1,8 @@
 ---
 title     : 'Profiling'
 summary   : 'Collect application runtime performance data'
+tags:
+  - 'PROFILE'
 __int_icon: 'icon/profiling'
 dashboard :
   - desc  : 'N/A'
@@ -10,11 +12,6 @@ monitor   :
     path  : '-'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# Profiling
-<!-- markdownlint-enable -->
-
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 

@@ -109,8 +109,9 @@ The `nginx_ingress_controller_requests` metric on the observation cloud is the `
 | nginx_ingress_controller_response_size_sum                   |The response length (including request line, header, and request body)| int      | count |
 | nginx_ingress_controller_ssl_expire_time_seconds             |Number of seconds since 1970 to the SSL Certificate expire| int      | count |
 
+<!-- TODO: following BP 404
 ## Doc {#doc}
 
 <[Nginx Ingress best practices](../best-practices/cloud-native/ingress-nginx.md)>
 
-
+-->

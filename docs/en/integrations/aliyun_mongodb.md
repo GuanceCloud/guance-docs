@@ -1,13 +1,10 @@
 ---
 title: 'Alibaba Cloud MongoDB'
 tags: 
-  - Alibaba Cloud
+  - aliyun
+  - mongodb
 summary: 'Alibaba Cloud MongoDB replica set metrics display, including CPU usage, memory usage, disk usage, data disk space, log disk space, statement execution times per second, requests, connections, network traffic, replication latency, QPS, etc.'
 __int_icon: 'icon/aliyun_mongodb'
-Alibaba Cloud MongoDB shard cluster metrics display, including CPU usage, memory usage, disk usage, data disk space, log disk space, statement execution times per second, requests, connections, network traffic, replication latency, QPS, 
-
-Alibaba Cloud MongoDB single node example metrics display, including CPU usage, memory usage, disk usage, disk space occupied by data, statement execution times per second, requests, connections, network traffic, QPS, etc.
-__int_icon: 'icon/aliyun_mongodb_replicaset'
 
 dashboard:
 - desc: 'Alibaba Cloud MongoDB replicaset built-in view'

@@ -1,6 +1,9 @@
 ---
 title     : 'RabbitMQ'
 summary   : 'Collect RabbitMQ metrics'
+tags:
+  - 'MESSAGE QUEUES'
+  - 'MIDDLEWARE'
 __int_icon      : 'icon/rabbitmq'
 dashboard :
   - desc  : 'RabbitMQ'
@@ -10,11 +13,6 @@ monitor   :
     path  : 'monitor/en/rabbitmq'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# RabbitMQ
-<!-- markdownlint-enable -->
-
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 

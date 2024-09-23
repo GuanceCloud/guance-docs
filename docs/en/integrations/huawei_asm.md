@@ -1,8 +1,8 @@
 ---
 title: 'HUAWEI ASM'
 tags: 
-  - Huawei Cloud
-summary: 'The link tracking data from HUAWEI CLOUD's ASM is exported to Guance for viewing and analysis.'
+  - 'Huawei Cloud'
+summary: 'The link tracking data from HUAWEI CLOUD ASM is exported to Guance for viewing and analysis'
 __int_icon: 'icon/huawei_asm'
 ---
 

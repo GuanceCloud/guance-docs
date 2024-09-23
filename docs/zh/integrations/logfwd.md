@@ -1,6 +1,10 @@
 ---
-title     : 'Sidecar'
+title     : 'Log Sidecar'
 summary   : 'Sidecar 形式的日志采集'
+tags:
+  - 'KUBERNETES'
+  - '日志'
+  - '容器'
 __int_icon      : 'icon/kubernetes'
 dashboard :
   - desc  : '暂无'
@@ -10,11 +14,6 @@ monitor   :
     path  : '-'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# 通过 Sidecar 方式采集 Pod 日志
-<!-- markdownlint-enable -->
-
----
 
 :material-kubernetes:
 
@@ -141,7 +140,7 @@ spec:
           fieldPath: metadata.namespace
     - name: LOGFWD_GLOBAL_SOURCE
       value: nginx-souce-test
-    image: pubrepo.guance.com/datakit/logfwd:1.38.1
+    image: pubrepo.guance.com/datakit/logfwd:1.38.2
     imagePullPolicy: Always
     resources:
       requests:
@@ -243,7 +242,7 @@ spec:
         fieldRef:
           apiVersion: v1
           fieldPath: metadata.namespace
-    image: pubrepo.guance.com/datakit/logfwd:1.38.1
+    image: pubrepo.guance.com/datakit/logfwd:1.38.2
     imagePullPolicy: Always
     resources:
       requests:

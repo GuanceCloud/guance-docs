@@ -1,6 +1,10 @@
 ---
 title     : 'Pinpoint'
 summary   : 'Receive Pinpoint Tracing data'
+tags      :
+  - 'PINPOINT'
+  - 'APM'
+  - 'TRACING'
 __int_icon      : 'icon/pinpoint'
 dashboard :
   - desc  : 'N/A'
@@ -10,11 +14,6 @@ monitor   :
     path  : '-'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# Pinpoint
-<!-- markdownlint-enable -->
-
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 

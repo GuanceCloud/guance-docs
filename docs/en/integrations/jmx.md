@@ -101,7 +101,8 @@ The above solutions do not support defining business metric exposure. Business m
 
 **The APM Agent** is based on APM and introduces Metric as an observable part. Taking SkyWalking as an example, metric information is exposed through docking with JMX.
 
+<!-- TODO: page 404
 [SkyWalking collects JVM observable best practices](../best-practices/monitoring/skywalking-jvm.md)
-
+-->
 
 [OpenTelemetry metrics collect](opentelemetry.md#opentelemetry_1)

@@ -15,7 +15,10 @@ if [ -z $doc_dir ]; then
 	doc_dir="./docs" # default
 fi
 
-files=($(find $doc_dir -name '*.md'))
+# NOTE: # links within integration-index.md will not pass 404 check for it's
+#   <img src="../icon/xxx/icon.png" />
+# the path '../icon' within docs/{en,zh}/integrations/icon, so the check always failed.
+files=($(find $doc_dir -name '*.md' -not -name "integration-index.md"))
 
 TOTAL=${#files[@]}
 

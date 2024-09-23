@@ -1,6 +1,6 @@
 // NOTE: comment in this json is accepted.
 {
-    "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+    //"$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
     "version": "0.2",
     "caseSensitive": true,
     "dictionaryDefinitions": [
@@ -25,21 +25,38 @@
         {
             "languageId": "markdown",
 
-						//"ignorePaths": "*.pages",
-
             "ignoreRegExpList": [
+
+								// ignore code blocks
                 "/^\\s*```[\\s\\S]*?^\\s*```/gm",
+
+								// ignore inline code
                 "/`.*`/gm",
 
 							  // ignore markdown header meta data
                 "/'.*'/gm",
 
-                "/:.*:/gm",
+                // some markdown emoji use the forms like :fontawesome-brands-linux:, we should ignore them
+                "/:.*:/gm", 
+
+								// italic fonts
                 "/_.*_/gm",
+								// italic or bold fonts
                 "/\\*.*\\*/gm",
+
+								// permalink after sections like(notice the space between section text and permalink)
+								//  ## This is a section {#sample-section}
                 "/ {#[-a-z0-9.]*}/gm",
-                "/{{[^{}]*}}/gm",
-                "^icon: .*"
+
+								// page icon like:
+								//  ---
+								//  icon: path/to/icon
+								//  ---
+                "^icon: .*",
+
+								// ignore specific HTML text in integration-index.md
+								"src=\"\.\.\/icon/.*\"",
+								"data-href=.*"
             ]
         }
     ]

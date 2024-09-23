@@ -1,6 +1,7 @@
 ################################################################
 # 专有名词
 ################################################################
+APISIX
 Aerospike
 Akka
 Aliyun
@@ -19,6 +20,8 @@ ConfigMag
 Corefile # CoreDNS
 Couchbase
 DBCP
+DDM
+DDMS
 DDTrace
 DIMM
 DKProto
@@ -32,12 +35,14 @@ DialTesting
 Distro
 Dubbo
 Dubbox
+EDAS
 ElasticSearch
 Fargate
 Fastjson
 Filebeat
 Flink
 Fluentd
+GAUSSDBV5
 Gaussdb
 GitLab
 Goroutine
@@ -59,6 +64,7 @@ Jolokia
 KafkaMQ
 Kodo
 Kubernetes
+Lindorm
 Log4j
 Logback
 Loki
@@ -98,8 +104,12 @@ Sinker
 SkyWalking
 Solr
 Stddev
+TDSQL
 Tablespace
+Tair
 Tencent
+Timestream
+Trino
 Uprobe
 Vertx
 Wakeup
@@ -123,6 +133,7 @@ filesystems
 fsyncs
 gRPC
 guance
+iLogtail
 jemalloc
 keyevent
 kubedns
@@ -133,6 +144,7 @@ logfwdserver
 logstreaming
 macOS
 mcache
+minmax
 mysqld
 netflow
 nginx
@@ -142,6 +154,7 @@ pprof
 promremote
 quantile
 replicasets
+rgba
 rwlock
 schedulability
 sharded

@@ -1,6 +1,8 @@
 ---
 title     : 'TDengine'
 summary   : 'Collect TDengine metrics'
+tags:
+  - 'DATA STORES'
 __int_icon      : 'icon/tdengine'
 dashboard :
   - desc  : 'TDengine'
@@ -10,11 +12,6 @@ monitor   :
     path  : '-'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# TDengine
-<!-- markdownlint-enable -->
-
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
