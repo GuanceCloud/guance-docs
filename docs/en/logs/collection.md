@@ -45,6 +45,6 @@ After the log collector is configured, restart the DataKit, and the log data can
 
 Once the configuration of the log collector is completed, restart DataKit, and the log data will be uniformly reported to the Guance workspace.
 
-- For users with a large amount of log data, you can use [log index](multi-index.md) or [log blacklist](../getting-started/function-details/logs-blacklist.md) to save data storage costs; 
+- For users with a large amount of log data, you can use [log index](./multi-index/index.md) or [log blacklist](../getting-started/function-details/logs-blacklist.md) to save data storage costs; 
 - For users who need long-term log storage, you can use [data forward](backup.md) to save log data. 
 

@@ -16,7 +16,7 @@ The custom explorer applies a new unified layout, responsive configuration mode 
 
 Go to **Scene > Explorer** page, click **New Explorer** to create a new custom explorer. As shown in the following figure.
 
-Note: If after setting the index in **Log > Index**, it supports to select different indexes corresponding to the log content in the custom explorer. For more details, please refer to the document [log index](../../logs/multi-index.md).
+Note: If after setting the index in **Log > Index**, it supports to select different indexes corresponding to the log content in the custom explorer. For more details, please refer to the document [log index](../../logs/multi-index/index.md).
 
 ![](../img/1111.gif)
 

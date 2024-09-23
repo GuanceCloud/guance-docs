@@ -7,8 +7,8 @@ Guance utilizes BPF for advanced Linux network packet processing, collecting, di
 
 ## Classification
 
-- [Four-layer BPF Network Logs](#l4) (`bpf_net_l4_log`): The fourth layer refers to the transport layer, which is mainly responsible for end-to-end data transmission. This module records network traffic information based on transport layer protocols (such as TCP, UDP);  
-- [Seven-layer BPF Network Logs](#l7) (`bpf_net_l7_log`): The seventh layer refers to the application layer, involving specific application protocols, such as HTTP, FTP, etc. This module records network traffic information based on application layer protocols.
+:material-numeric-1-circle: [Four-layer BPF Network Logs](#l4) (`bpf_net_l4_log`): The fourth layer refers to the transport layer, which is mainly responsible for end-to-end data transmission. This module records network traffic information based on transport layer protocols (such as TCP, UDP);  
+:material-numeric-2-circle: [Seven-layer BPF Network Logs](#l7) (`bpf_net_l7_log`): The seventh layer refers to the application layer, involving specific application protocols, such as HTTP, FTP, etc. This module records network traffic information based on application layer protocols.
 
 ### L4 BPF Network Logs {#l4}
 
@@ -17,8 +17,8 @@ In the log explorer, filter for data with `source:bpf_net_l4_log` to enter the d
 
 ![](img/bpf_net_l4_log-1.png)
 
-* Message: View the detailed message content of each network flow, intuitively displaying different time points and packet directions.  
-* Packet Interaction: Analyze the exchange of packets between the client and the server.    
+* Message: View the detailed message content of each network flow, intuitively displaying different time points and packet directions.    
+* Packet Interaction: Analyze the exchange of packets between the client and the server.      
 * Time Difference(TD): Record the time difference in packet transmission.
   
 
@@ -28,11 +28,11 @@ Based on the direction of network transmission, the client and server are displa
 
 ![](img/bpf_net_l4_log-2.png)
 
-outgoing: The source address `(src_ip)` is the client, and the destination address `(dst_ip)` is the server.
-incoming: The source address `(src_ip)` is the server, and the destination address `(dst_ip)` is the client.
-unknown: The source address `(src_ip)` is marked as Local, and the destination address `(dst_ip)` is marked as Remote.
+- outgoing: The source address `(src_ip)` is the client, and the destination address `(dst_ip)` is the server.  
+- incoming: The source address `(src_ip)` is the server, and the destination address `(dst_ip)` is the client.    
+- unknown: The source address `(src_ip)` is marked as Local, and the destination address `(dst_ip)` is marked as Remote.
 
-#### Network Correlation Analysis
+#### Network Correlation
 
 When a message is associated with the seven-layer network, display the HTTP method (`http_method`) and path (`http_path`).
 
@@ -82,7 +82,7 @@ Guance displays related log data based on three dimensions: single connection re
 
 ![](img/bpf_net_l7_log-3.png)
 
-- Click the :material-reorder-horizontal: on the right to modify the display columns of the network logs:
+Click the :material-reorder-horizontal: on the right to modify the display columns of the network logs:
 
 ![](img/bpf_net_l7_log-5.png)
 

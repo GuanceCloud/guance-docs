@@ -198,7 +198,7 @@ Note: Only the central Pipeline supports the "Synthetic Tests" data type, and th
     - Application Intelligent Detection: Added tracking of historical changes, filtering periodic abnormal data mutations; added the number of users affected by abnormal service associations.
 - Events > [Event List Explorer](../events/event-explorer/event-list.md): Added alert notification status identifiers to the display columns.
 - Logs:
-    - Indexes: When binding [SLS External Indexes](../logs/multi-index.md#sls), added access type selection, supporting custom public or internal network access;
+    - Indexes: When binding [SLS External Indexes](../logs/multi-index/index.md#sls), added access type selection, supporting custom public or internal network access;
     - Log Explorers: [Cluster Analysis](../logs/explorer.md#cluster) mode supports exporting displayed column data and associated log page data.
 
 ### Guance Deployment Plan Updates
