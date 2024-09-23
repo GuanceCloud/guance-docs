@@ -15,7 +15,7 @@
 | [CocoaPods](https://cocoapods.org/)                          | 添加 `pod 'FTMobileSDK/FTSessionReplay'` 到您的 `Podfile`。 |
 | [Swift Package Manager](https://www.swift.org/package-manager/) | 添加  `FTSessionReplay`  为您的应用目标的依赖项。           |
 
-## 代码调用
+## 代码调用 {#code_sample}
 
 === "Objective-C"
 
