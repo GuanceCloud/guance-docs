@@ -17,15 +17,15 @@
 
 * doris-fe：CPU 内存 1:2，一块 20GB 以上数据盘存元数据，可使用其中第一台部署Doris Manager
 * doris-be：CPU 内存 1:8，以最大化磁盘吞吐为目标调整磁盘配置（个数）
-* guancedb-logs-doris：CPU 内存 1:2，可以主机或者容器部署；其中第一台需要一块数据盘部署VictoriaMetrics，用于存储一些Doris 元数据指标
+* guancedb-logs：CPU 内存 1:2，可以主机或者容器部署；其中第一台需要一块数据盘部署VictoriaMetrics，用于存储一些Doris 元数据指标
 * CPU 需要支持 AVX2 指令集
 * 不能被其它机器抢占资源（CPU steal 不能过高）
 
 ### 网络说明
 * Doris Manager通常部署在doris-fe-01服务器上部署，其所在机器需要能ssh与全部oris机器通信，需要访问其8004端口的网页
-* guancedb-logs-doris机器需要通过系统包管理工具（APT）安装supervisor
+* guancedb-logs机器需要通过系统包管理工具（APT）安装supervisor
 * 需要通过MySQL协议访问FE机器9030端口，通常是在Doris Manager所在机器安装mysql-client
-* guancedb-logs-doris机器需要访问: doris-fe机器的8030和9030端口;doris-be机器的8040和9060端口;guancedb-logs-doris第一台的8428端口
+* guancedb-logs机器需要访问: doris-fe机器的8030和9030端口;doris-be机器的8040和9060端口;guancedb-logs第一台的8428端口
 * 提供的账号需要拥有s3存储桶的全部权限
 
 ### 部署说明
@@ -33,9 +33,9 @@
 * Doris通过 **主机** 部署。无论是否有网络，都需要先将物料包放置到指定位置
 
 
-| 类别           | 说明                                                  |
-|--------------|-----------------------------------------------------| 
-| **主机上部署组件**  | be + fe + manager + guancedb-logs-doris             | | 
+| 类别           | 说明                                           |
+|--------------|----------------------------------------------| 
+| **主机上部署组件**  | be + fe + manager + guancedb-logs            | | 
 | **部署前提条件**   | 1. 提供root密码并支持通过root ssh免密登录<br/>2. CPU架构支持 AVX2指令集 |
 
 ## 部署默认配置信息
@@ -45,11 +45,11 @@
 
 ???+ warning "主机部署说明"
 
-    guancedb-logs-doris只有单台，提供给观测云业务服务使用的地址为主机ip:8480/8481；
+    guancedb-logs机器只有单台，提供给观测云业务服务使用的地址为主机ip:8480/8481；
 
-    guancedb-logs-doris有多台：
+    guancedb-logs机器有多台：
 
-    a. 能提供ELB能力，使用ELB监听多台logs-doris 8480/8481端口，业务服务使用地址为ELB ip:8480/8481；
+    a. 能提供ELB能力，使用ELB监听多台guancedb-logs 8480/8481端口，业务服务使用地址为ELB ip:8480/8481；
 
     b. 无法提供ELB能力，可以在业务集群中创建service的方式，业务服务使用地址为：
 
@@ -81,7 +81,7 @@
       name: internal-doris-insert
       namespace: middleware
     subsets:
-      # 有几台logs-doris机器就写几台
+      # 有几台guancedb-logs机器就写几台
       - addresses:
           - ip: 10.7.17.250
         ports:
@@ -110,7 +110,7 @@
       name: internal-doris-select
       namespace: middleware
     subsets:
-      # 有几台logs-doris机器就写几台
+      # 有几台guancedb-logs机器就写几台
       - addresses:
           - ip: 10.7.17.250
         ports:
@@ -131,17 +131,17 @@
 https://static.guance.com/guancedb/guancedb-doris-deploy-latest.tar.gz
 ```
 
-SelectDB + manager 安装包。安装包放置在fe-01机器上，文件夹位置同inventory/doris-manager.vars.yaml中配置的路径
+下载包解压后是SelectDB + manager 安装包。安装包放置在fe-01机器上，文件夹位置同inventory/doris-manager.vars.yaml中配置的路径
 ```shell
 https://static.guance.com/guancedb/selectdb-latest.tar.gz
 ```
 
-GuanceDB安装包。 安装包放置在logs-doris所有机器上，文件位置同inventory/guancedb-logs-doris.vars.yaml中配置的路径
+下载包解压后是GuanceDB安装包。 安装包放置在guancedb-logs所有机器上，文件位置同inventory/guancedb-logs-doris.vars.yaml中配置的路径
 ```shell
 https://static.guance.com/guancedb/guancedb-cluster-linux-amd64-latest.tar.gz
 ```
 
-victoria-metrics + vmutils 安装包。安装包放置在logs-doris所有机器上，文件位置同inventory/guancedb-logs-doris.vars.yaml中配置的路径
+下载包解压后是victoria-metrics + vmutils 安装包。安装包放置在guancedb-logs所有机器上，文件位置同inventory/guancedb-logs-doris.vars.yaml中配置的路径
 ```shell
 https://static.guance.com/guancedb/vmutils-latest.tar.gz
 ```
@@ -152,6 +152,13 @@ https://static.guance.com/guancedb/vmutils-latest.tar.gz
 ssh-keygen -t rsa
 ssh-copy-id -i ~/.ssh/id_rsa.pub  root@192.168.xxx.xxx
 ```
+???+ warning "部署 check 点"
+     
+     校验 be 、fe 机器配置是否同一规格;
+
+     be、fe 机器间网络互 ping 不超过 1ms;
+
+     服务器提供的数据盘是否为裸盘（未进行分区格式化）。
 
 ### hosts文件准备
 inventory 目录下需要 5 个 hosts 文件，分别为：
@@ -173,7 +180,6 @@ clusters:
         user: xxx
         vars:
           default_ipv4: xxx
-  - name: xxx
     hosts:
       - name: xxx-doris-be-02
         port: xxx
@@ -279,6 +285,13 @@ pip3 install -r requirements.txt
 ```shell
 python3 deployer.py -l clusrer_name -i 'inventory/doris-?e.*.yaml' -p playbooks/doris/initialize-machine.yaml
 ```
+???+ warning "部署 check 点"
+     
+     服务器磁盘挂载是否正确;
+
+     服务器 swap 是否永久关闭;
+
+     服务器vm.max_map_count参数是否调整到2000000。
 
 更新 Datakit 配置，用于上报自观测数据
 ```shell
@@ -311,14 +324,14 @@ python3 deployer.py -l cluster_name -i 'inventory/doris-manager.*.yaml' -p playb
 **新建集群**
 
 - 集群名称：客户简写_test/prd  例子：guance_prd
-- 数据库 root 用户密码：填写 inventory/secrets.yasml 中的 doris_root_password
+- 数据库 root 用户密码：填写 inventory/secrets.yaml 中的 doris_root_password
 
 ![](img/doris-manager-4.png)
 
 **节点配置**
 
 - 节点用户名：doris
-- 节点密码：填写 inventory/secrets.yasml 中的 os_doris_password
+- 节点密码：填写 inventory/secrets.yaml 中的 os_doris_password
 
 ![](img/doris-1.png)
 
@@ -348,6 +361,11 @@ python3 deployer.py -l cluster_name -i 'inventory/doris-be.*.yaml' -p playbooks/
 ```shell
 python3 deployer.py -l cluster_name -i 'inventory/doris.vars.yaml' -p playbooks/doris/render-config.yaml
 ```
+???+ warning "部署 check 点"
+
+     配置文件中storage_path是否配置正确；
+
+     配置文件中priority_networks配置是否正确。
 
 修改 BE 配置：Doris Manager 集群页右上角「…」按钮 -> 「参数配置」 -> 全选 BE 节点 -> 右上角「编辑配置」 -> 粘贴刚生成的 be.conf -> 勾选「请确认……」 -> 「确定」
 
@@ -369,18 +387,23 @@ fe机器上切换到root用户，登陆到集群中
 ```shell
 mysql -uroot -h127.0.0.1 -P 9030
 ```
-执行下方sql后在s3桶中查看default_resource/test文件夹中是否有前缀为result_的文件生成，如果没有文件生成，请检查权限
+执行下方sql后在s3桶中查看default_resource文件夹中是否有前缀为result_的文件生成，如果没有文件生成，请检查权限
 ```shell
-SELECT * FROM tbl
-INTO OUTFILE "s3://default_resource/test/result_"
+use information_schema;
+SELECT * FROM files
+INTO OUTFILE "s3://bucket_name/default_resource/result_"
 FORMAT AS ORC
 PROPERTIES(
     "s3.endpoint" = "https://xxx",
-    "s3.region" = "ap-beijing",
     "s3.access_key"= "your-ak",
     "s3.secret_key" = "your-sk"
 );
 ```
+???+ warning "部署 check 点"
+
+     确定 s3 存储是否可以使用，且配置后无法更改；
+
+     s3 endpoint地址必须为内网地址。
 
 ### 部署guance-insert、guance-select和VictoriaMetrics
 初始化机器
