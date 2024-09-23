@@ -1,6 +1,9 @@
 ---
 title     : 'Redis'
 summary   : 'Redis 指标和日志采集'
+tags:
+  - '缓存'
+  - '中间件'
 __int_icon      : 'icon/redis'
 dashboard :
   - desc  : 'Redis'
@@ -8,12 +11,6 @@ dashboard :
 monitor:
   - desc: 'Redis'
     path: 'monitor/zh/redis'
----
-
-<!-- markdownlint-disable MD025 -->
-# Redis
-<!-- markdownlint-enable -->
-
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
@@ -40,7 +37,7 @@ Redis 指标采集器，采集以下数据：
 
 ### 前置条件 {#reqirement}
 
-- 在采集主从架构下数据时，请配置从节点的主机信息进行数据采集，可以得到主从相关的指标信息。
+- 在采集主从架构下数据时，配置从节点或主节点的主机信息进行数据采集，可以得到不同的主从相关的指标信息。
 - 创建监控用户（**可选**）：redis 6.0+ 进入 `redis-cli` 命令行，创建用户并且授权：
 
 ```sql
@@ -614,6 +611,39 @@ yum install -y  redis
 
 
 
+### `redis_replica`
+
+
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`host`|Hostname.|
+|`master_addr`|Master addr, only collected for slave redis.|
+|`server`|Server addr.|
+|`service_name`|Service name.|
+|`slave_addr`|Slave addr, only collected for master redis.|
+|`slave_id`|Slave ID, only collected for master redis.|
+|`slave_state`|Slave state, only collected for master redis.|
+
+- 字段列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`master_link_down_since_seconds`|Number of seconds since the link is down when the link between master and replica is down, only collected for slave redis.|int|-|
+|`master_link_status`|Status of the link (up/down), `1` for up, `0` for down, only collected for slave redis.|int|-|
+|`master_repl_offset`|The server's current replication offset.|int|-|
+|`slave_lag`|Slave lag, only collected for master redis.|int|-|
+|`slave_offset`|Slave offset, only collected for master redis.|int|-|
+
+
+
+
+
+
 
 
 
@@ -678,6 +708,10 @@ yum install -y  redis
 | ---- |---- | :---:    | :----: |
 |`key_count`|Key count times.|int|-|
 |`keys_sampled`|Sampled keys in the key space.|int|-|
+
+
+
+
 
 
 

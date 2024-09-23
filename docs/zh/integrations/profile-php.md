@@ -1,6 +1,12 @@
-# PHP profiling
-
 ---
+title     : 'Profiling PHP'
+summary   : 'PHP Profiling 集成'
+tags:
+  - 'PHP'
+  - 'PROFILE'
+__int_icon: 'icon/profiling'
+---
+
 
 从 Datakit [:octicons-tag-24: Version-1.13.0](../datakit/changelog.md#cl-1.13.0){:target="_blank"} 开始支持使用 [`dd-trace-php`](https://github.com/DataDog/dd-trace-php){:target="_blank"} 作为 `PHP` 项目的应用性能监测工具。
 

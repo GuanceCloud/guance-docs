@@ -1,6 +1,10 @@
 ---
 title     : 'New Relic'
 summary   : 'Receive data from New Relic Agent'
+tags:
+  - 'APM'
+  - 'NEWRELIC'
+  - 'TRACING'
 __int_icon      : ''
 dashboard :
   - desc  : 'N/A'
@@ -8,12 +12,6 @@ dashboard :
 monitor   :
   - desc  : 'N/A'
     path  : '-'
----
-
-<!-- markdownlint-disable MD025 -->
-# New Relic For .Net
-<!-- markdownlint-enable -->
-
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:

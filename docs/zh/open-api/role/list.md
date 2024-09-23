@@ -43,6 +43,15 @@ curl 'https://openapi.guance.com/api/v1/role/list?pageIndex=1&pageSize=3&statMem
         {
             "createAt": -1,
             "creator": "SYS",
+            "creatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
             "deleteAt": -1,
             "desc": "拥有者",
             "id": 1,
@@ -52,12 +61,30 @@ curl 'https://openapi.guance.com/api/v1/role/list?pageIndex=1&pageSize=3&statMem
             "status": 0,
             "updateAt": -1,
             "updator": "SYS",
+            "updatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
             "uuid": "owner",
             "workspaceUUID": ""
         },
         {
             "createAt": -1,
             "creator": "SYS",
+            "creatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
             "deleteAt": -1,
             "desc": "管理员",
             "id": 2,
@@ -67,12 +94,30 @@ curl 'https://openapi.guance.com/api/v1/role/list?pageIndex=1&pageSize=3&statMem
             "status": 0,
             "updateAt": -1,
             "updator": "SYS",
+            "updatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
             "uuid": "wsAdmin",
             "workspaceUUID": ""
         },
         {
             "createAt": -1,
             "creator": "SYS",
+            "creatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
             "deleteAt": -1,
             "desc": "标准成员",
             "id": 3,
@@ -82,6 +127,15 @@ curl 'https://openapi.guance.com/api/v1/role/list?pageIndex=1&pageSize=3&statMem
             "status": 0,
             "updateAt": -1,
             "updator": "SYS",
+            "updatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
             "uuid": "general",
             "workspaceUUID": ""
         }

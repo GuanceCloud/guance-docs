@@ -48,7 +48,16 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/list' \
         {
             "conditions": "{  source in [ 'mysql' ] }",
             "createAt": 1677571213,
-            "creator": "acnt_xxxx32",
+            "creator": "xx",
+            "creatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
             "deleteAt": -1,
             "duration": "14d",
             "extend": {
@@ -77,14 +86,32 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/list' \
             "status": 0,
             "storeType": "",
             "updateAt": 1677571213,
-            "updator": "acnt_xxxx32",
-            "uuid": "lgim_xxxx32",
-            "workspaceUUID": "wksp_xxxx32"
+            "updator": "xx",
+            "updatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
+            "uuid": "lgim_xxxd2e",
+            "workspaceUUID": "wksp_xxx115"
         },
         {
             "conditions": "{  source in [ 'df_diagnose' ] }",
             "createAt": 1677566168,
-            "creator": "acnt_xxxx32",
+            "creator": "xx",
+            "creatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
             "deleteAt": -1,
             "duration": "7d",
             "extend": {
@@ -113,20 +140,38 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/list' \
             "status": 0,
             "storeType": "",
             "updateAt": 1677566168,
-            "updator": "acnt_xxxx32",
-            "uuid": "lgim_xxxx32",
-            "workspaceUUID": "wksp_xxxx32"
+            "updator": "xx",
+            "updatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
+            "uuid": "lgim_xxxe03",
+            "workspaceUUID": "wksp_xxx115"
         },
         {
             "conditions": "",
             "createAt": 1677489543,
-            "creator": "acnt_xxxx32",
+            "creator": "xx",
+            "creatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
             "deleteAt": -1,
             "duration": "",
             "extend": {},
             "exterStoreName": "s",
             "exterStoreProject": "",
-            "externalResourceAccessCfgUUID": "erac_xxxx32",
+            "externalResourceAccessCfgUUID": "erac_xxx1ed",
             "id": 1,
             "isBindCustomStore": 1,
             "isPublicNetworkAccess": 1,
@@ -138,20 +183,38 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/list' \
             "status": 0,
             "storeType": "es",
             "updateAt": 1677489543,
-            "updator": "acnt_xxxx32",
-            "uuid": "lgim_xxxx32",
-            "workspaceUUID": "wksp_xxxx32"
+            "updator": "xx",
+            "updatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
+            "uuid": "lgim_xxxdaf",
+            "workspaceUUID": "wksp_xxx115"
         },
         {
             "conditions": "",
             "createAt": 1677665779,
             "creator": "xxx",
+            "creatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
             "deleteAt": -1,
             "duration": "",
             "extend": {},
             "exterStoreName": "aa_uuid",
             "exterStoreProject": "",
-            "externalResourceAccessCfgUUID": "erac_xxxx32",
+            "externalResourceAccessCfgUUID": "erac_xxx8c5",
             "id": 12,
             "isBindCustomStore": 1,
             "isPublicNetworkAccess": 1,
@@ -164,8 +227,17 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/list' \
             "storeType": "es",
             "updateAt": 1677665779,
             "updator": "xx",
-            "uuid": "lgim_xxxx32",
-            "workspaceUUID": "wksp_xxxx32"
+            "updatorInfo": {
+                "uuid": "xx",
+                "status": 0,
+                "username": "xx",
+                "name": "xx",
+                "iconUrl": "",
+                "email": "xx",
+                "acntWsNickname": "xx"
+            },
+            "uuid": "lgim_xxx141",
+            "workspaceUUID": "wksp_xxx115"
         },
         {
             "conditions": "",
@@ -176,7 +248,7 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/list' \
             "queryType": "logging",
             "sortNo": -1,
             "uuid": "default",
-            "workspaceUUID": "wksp_xxxx32"
+            "workspaceUUID": "wksp_xxx115"
         }
     ],
     "errorCode": "",

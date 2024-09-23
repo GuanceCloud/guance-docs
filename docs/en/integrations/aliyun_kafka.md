@@ -1,14 +1,12 @@
 ---
-title: 'aliyun Kafka'
+title: 'Aliyun Kafka'
 tags: 
-  - Alibaba Cloud
-summary: 'AliCloud Kafka's presentation metrics include message throughput, latency, number of concurrent connections, and reliability, which reflect Kafka's performance performance and reliability guarantees when dealing with large-scale messaging and real-time data streams.'
+  - "Alibaba Cloud"
+summary: "AliCloud Kafka's presentation metrics include message throughput, latency, number of concurrent connections, and reliability, which reflect Kafka's performance performance and reliability guarantees when dealing with large-scale messaging and real-time data streams."
 __int_icon: 'icon/aliyun_kafka'
 dashboard:
-
   - desc: 'aliyun Kafka Dashboard'  
     path: 'dashboard/zh/aliyun_kafka'
-
 monitor:
   - desc: 'aliyun Kafka Monitor'
     path: 'monitor/zh/aliyun_kafka/'

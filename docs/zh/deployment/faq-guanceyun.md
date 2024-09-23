@@ -47,5 +47,8 @@ user: 用户名
 tenant: 租户名
 cluster_name: 集群名，可以省略
 ```
-
-
+观测云应用在使用 OceanBase 时，需要设置 OceanBase 的 open_cursors 参数，执行以下命令
+```sql
+# 该参数是全局参数，如果客户提供 PaaS OceanBase 是多租户共用，请确定该参数调整是否对其他租户有影响。
+ALTER SYSTEM SET open_cursors = 200;
+```

@@ -1,6 +1,9 @@
 ---
 title     : 'Prometheus Push Gateway'
 summary   : 'Enable Pushgateway API to receive Prometheus metric data'
+tags:
+  - 'THIRD PARTY'
+  - 'PROMETHEUS'
 __int_icon      : 'icon/pushgateway'
 dashboard :
   - desc  : 'N/A'
@@ -10,10 +13,6 @@ monitor   :
     path  : '-'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# Pushgateway
-<!-- markdownlint-enable -->
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker: · [:octicons-tag-24: Version-1.31.0](../datakit/changelog.md#cl-1.31.0) · [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
 
@@ -179,7 +178,7 @@ spec:
           done
 ```
 
-- The metric set seen on the Observability Cloud page is `pushgateway`, with the field being `count`.
+- The metric set seen on the Guance Cloud page is `pushgateway`, with the field being `count`.
 
 ## Metric Sets and Tags {#measurement-and-tags}
 

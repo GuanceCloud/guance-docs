@@ -1,6 +1,8 @@
 ---
 title     : '主机对象'
 summary   : '采集主机基本信息'
+tags:
+  - '主机'
 __int_icon      : 'icon/hostobject'
 dashboard :
   - desc  : '暂无'
@@ -8,12 +10,6 @@ dashboard :
 monitor   :
   - desc  : '暂无'
     path  : '-'
----
-
-<!-- markdownlint-disable MD025 -->
-# 主机对象
-<!-- markdownlint-enable -->
-
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -227,9 +223,11 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 
 | Tag | Description |
 |  ----  | --------|
+|`arch`|Host OS Arch|
 |`host`|Hostname. Required.|
 |`name`|Hostname|
 |`os`|Host OS type|
+|`unicast_ip`|Host unicast ip|
 
 - 指标列表
 
@@ -238,6 +236,7 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 | ---- |---- | :---:    | :----: |
 |`cpu_usage`|CPU usage|float|percent|
 |`datakit_ver`|Collector version|string|-|
+|`disk_total`|Disk total|int|B|
 |`disk_used_percent`|Disk usage|float|percent|
 |`diskio_read_bytes_per_sec`|Disk read rate|int|B/S|
 |`diskio_write_bytes_per_sec`|Disk write rate|int|B/S|
@@ -249,6 +248,7 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 |`message`|Summary of all host information|string|-|
 |`net_recv_bytes_per_sec`|Network receive rate|int|B/S|
 |`net_send_bytes_per_sec`|Network send rate|int|B/S|
+|`num_cpu`|CPU numbers|int|count|
 |`start_time`|Host startup time (Unix timestamp)|int|ms|
 
 

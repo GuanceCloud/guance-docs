@@ -1,10 +1,10 @@
 ---
 title     : 'JavaScript'
-summary   : 'Monitoring browser users' usage behavior through JavaScript (Web)'
+summary   : 'Monitoring browser usage behavior through JavaScript (Web)'
 __int_icon: 'icon/javascript'
 dashboard :
   - desc  : 'No'
-    path  : -
+    path  : '-'
 monitor   :
   - desc  : 'No'
     path  : '-'

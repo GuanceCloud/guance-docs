@@ -1,6 +1,8 @@
 ---
 title     : 'Host Object'
 summary   : 'Collect Basic Host Information'
+tags:
+  - 'HOST'
 __int_icon      : 'icon/hostobject'
 dashboard :
   - desc  : 'N/A'
@@ -8,12 +10,6 @@ dashboard :
 monitor   :
   - desc  : 'N/A'
     path  : '-'
----
-
-<!-- markdownlint-disable MD025 -->
-# Host Object
-<!-- markdownlint-enable -->
-
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -228,9 +224,11 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Description |
 |  ----  | --------|
+|`arch`|Host OS Arch|
 |`host`|Hostname. Required.|
 |`name`|Hostname|
 |`os`|Host OS type|
+|`unicast_ip`|Host unicast ip|
 
 - metric list
 
@@ -239,6 +237,7 @@ For all of the following data collections, a global tag named `host` is appended
 | ---- |---- | :---:    | :----: |
 |`cpu_usage`|CPU usage|float|percent|
 |`datakit_ver`|Collector version|string|-|
+|`disk_total`|Disk total|int|B|
 |`disk_used_percent`|Disk usage|float|percent|
 |`diskio_read_bytes_per_sec`|Disk read rate|int|B/S|
 |`diskio_write_bytes_per_sec`|Disk write rate|int|B/S|
@@ -250,6 +249,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`message`|Summary of all host information|string|-|
 |`net_recv_bytes_per_sec`|Network receive rate|int|B/S|
 |`net_send_bytes_per_sec`|Network send rate|int|B/S|
+|`num_cpu`|CPU numbers|int|count|
 |`start_time`|Host startup time (Unix timestamp)|int|ms|
 
 

@@ -1,5 +1,76 @@
 # 更新日志
 
+## 1.38.1(2024/09/11) {#cl-1.38.1}
+
+本次发布属于 Hotfix 发布，修复如下问题：
+
+- 修复容器日志采集的 `inside_filepath` 和 `host_filepath` 标签错误问题（#2403）
+- 修复 Kubernetes-Prometheus 采集器在特殊情况下采集异常的问题（#2396）
+- 修复升级程序诸多问题（2372）：
+    - 离线安装目录错误问题
+    - 安装/升级时 `dk_upgrader` 自身的配置能跟随 Datakit 配置联动（不用再手动配置），DCA 无需再关注是离线升级还是在线升级。
+    - 安装阶段能注入一些跟 `dk_upgrader` 有关的 ENV，不用额外再手动配置
+    - `dk_upgrader` HTTP API 增加新的参数，允许指定版本号和强制升级（DCA 端暂时不支持本功能）
+
+---
+
+## 1.38.0(2024/09/04) {#cl-1.38.0}
+
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.38.0-new}
+
+- 新增 Graphite 数据接入（#2337）
+<!-- - Profiling 采集支持从 profiling 文件中实时指标提取（#2335） -->
+
+### 问题修复 {#cl-1.38.0-fix}
+
+- 修复 eBPF 网络数据聚合异常问题（#2395）
+- 修复 DDTrace telemetry 接口崩溃问题（#2387）
+- 修复 Jaeger UDP binary 格式数据采集问题（#2375）
+- 修复拨测采集器数据发送地址格式问题（#2374）
+
+### 功能优化 {#cl-1.38.0-opt}
+
+- 主机对象中，增加多个字段（`num_cpu/unicast_ip/disk_total/arch`）采集（#2362）
+- 其它优化和修复（#2376/#2354/#2393）
+
+### 兼容调整 {#cl-1.38.0-brk}
+
+- 调整 Pipeline 执行优先级（#2386）
+
+    在之前的版本中，对于特定的某个 `source`，比如 `nginx`：
+
+    1. 如果用户在页面上指定了匹配 *nginx.p*
+    1. 如果此时用户还设置了默认 Pipeline（*default.p*）
+
+    那么 Nginx 日志不会通过 *nginx.p* 来切割，而是用 *default.p* 来切割。这个设置是不合理的，调整之后的优先级如下（优先级递减）：
+
+    1. 观测云页面上指定 `source` 对应的 Pipeline
+    1. 在采集器中指定 `source` 对应的 Pipeline
+    1. `source` 取值能找到对应的 Pipeline（比如 `source` 为 `my-app` 的日志，在 Pipeline 对应的存放目录中能找到一个 *my-app.p*）
+    1. 最后再使用 *default.p*
+
+    这样调整之后，能保证所有数据都能被 Pipeline 切割，至少有 *default.p* 来兜底。
+
+---
+
+## 1.37.0(2024/08/28) {#cl-1.37.0}
+本次发布属于迭代发布，主要有如下更新：
+
+### 新加功能 {#cl-1.37.0-new}
+
+- 新增采集器支持 [Zabbix 数据导入](../integrations/zabbix_exporter.md)(#2340)
+
+### 功能优化 {#cl-1.37.0-opt}
+
+- 优化进程采集器，默认支持打开 fd 个数采集(#2384)
+- 补全 RabbitMQ tag(#2380)
+- 优化 Kubernetes-Prometheus 采集器性能(#2373)
+- Redis 采集增加更多指标(#2358)
+
+---
+
 ## 1.36.0(2024/08/21) {#cl-1.36.0}
 本次发布属于迭代发布，主要有如下更新：
 
@@ -852,7 +923,7 @@
     - 数据聚合函数 `agg_create()` 和 `agg_metric()` 支持输出任意类别的数据（#1865）
 - 优化 Datakit 镜像大小（#1869）
 - 文档
-    - 增加[Datakit 指标性能测试报告](../integrations/datakit-metric-performance.md)（#1867）
+    - 增加Datakit 指标性能测试报告](../integrations/datakit-metric-performance.md)（#1867）
     - 增加[external 采集器的使用文档](../integrations/external.md)（#1851）
     - 增加不同 Trace 传递说明的[文档](../integrations/tracing-propagator.md)（#1824）
 

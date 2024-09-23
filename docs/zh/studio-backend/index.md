@@ -1,5 +1,5 @@
 ---
-icon: zy/open-api
+icon: zy/studio-backend
 ---
 
 # 概述

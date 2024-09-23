@@ -50,7 +50,7 @@ FTMobileFlutter.sdkConfig(
 
     ```
 
-* Check if Datakit is uploading data to the corresponding workspace and whether it's in an offline state. You can confirm this by logging into Observability Cloud and checking the "Infrastructure" section.
+* Check if Datakit is uploading data to the corresponding workspace and whether it's in an offline state. You can confirm this by logging into Guance and checking the "Infrastructure" section.
 
 	![](../img/17.trouble_shooting_android_datakit_check.png)
 

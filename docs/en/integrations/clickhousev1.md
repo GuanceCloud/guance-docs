@@ -1,7 +1,9 @@
 ---
-title     : 'ClickHouse'
-summary   : 'Collect metrics of ClickHouse'
-__int_icon      : 'icon/clickhouse'
+title      : 'ClickHouse'
+summary    : 'Collect metrics of ClickHouse'
+__int_icon : 'icon/clickhouse'
+tags:
+  - 'DATA STORES'
 dashboard :
   - desc  : 'ClickHouse'
     path  : 'dashboard/en/clickhouse'
@@ -10,10 +12,6 @@ monitor   :
     path  : '-'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# ClickHouse
-<!-- markdownlint-enable -->
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 

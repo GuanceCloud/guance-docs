@@ -1,4 +1,10 @@
-# OpenTelemetry guance-exporter
+---
+title      : '观测云 OpenTelemetry Exportor'
+summary    : '直接将 OpenTelemetry 的数据输出给观测云'
+__int_icon : 'icon/opentelemetry'
+tags       :
+  - 'OTEL'
+---
 
 > *作者： 宋龙奇*
 
