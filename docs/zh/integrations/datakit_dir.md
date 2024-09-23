@@ -1,3 +1,7 @@
+---
+skip: 'not-searchable-on-index-page'
+---
+
 # DataKit 目录
 
 ## Windows

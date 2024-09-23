@@ -29,3 +29,5 @@ docs/zh/datakit/demo.md
 docs/zh/datakit/developers-index.md
 docs/zh/datakit/dql-logql-promql.md
 docs/zh/datakit/pythond.md
+idg/integrationdoc*
+log.idg

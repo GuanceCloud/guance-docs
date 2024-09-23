@@ -1,6 +1,8 @@
 ---
 title     : 'Doris'
 summary   : 'Collect metrics of Doris'
+tags:
+  - 'DATA STORES'
 __int_icon      : 'icon/doris'
 dashboard :
   - desc  : 'Doris'
@@ -10,10 +12,6 @@ monitor   :
     path  : 'monitor/en/doris'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# Doris
-<!-- markdownlint-enable -->
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 

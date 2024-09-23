@@ -1,6 +1,8 @@
 ---
 title     : 'CouchDB'
 summary   : '采集 CouchDB 的指标数据'
+tags:
+  - '数据库'
 __int_icon      : 'icon/couchdb'
 dashboard :
   - desc  : 'CouchDB'
@@ -10,10 +12,6 @@ monitor   :
     path  : 'monitor/zh/couchdb'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# CouchDB
-<!-- markdownlint-enable -->
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 

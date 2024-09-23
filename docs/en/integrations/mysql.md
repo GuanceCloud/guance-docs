@@ -1,6 +1,8 @@
 ---
 title     : 'MySQL'
 summary   : 'Collect MySQL metrics and logs'
+tags:
+  - 'DATA STORES'
 __int_icon      : 'icon/mysql'
 dashboard :
   - desc  : 'MySQL'
@@ -10,11 +12,6 @@ monitor   :
     path  : '-'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# MySQL
-<!-- markdownlint-enable -->
-
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 

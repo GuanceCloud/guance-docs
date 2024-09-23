@@ -1,6 +1,9 @@
 ---
 title     : 'Redis'
 summary   : 'Collect Redis metrics and logs'
+tags:
+  - 'CACHING'
+  - 'MIDDLEWARE'
 __int_icon      : 'icon/redis'
 dashboard :
   - desc  : 'Redis'
@@ -10,11 +13,6 @@ monitor:
     path: 'monitor/en/redis'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# Redis
-<!-- markdownlint-enable -->
-
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 

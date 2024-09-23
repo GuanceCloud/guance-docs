@@ -7,44 +7,45 @@
 
 本文介绍 Scheck 的基本安装。
 
-## 安装/更新
+## 安装 {#install}
 
-## *安装*： 
-### Linux 平台
+<!-- markdownlint-disable MD046 -->
+=== "Linux"
 
-```Shell
-sudo -- bash -c "$(curl -L https://static.guance.com/security-checker/install.sh)"
-```
+    ```Shell
+    sudo -- bash -c "$(curl -L https://static.guance.com/security-checker/install.sh)"
+    ```
 
-### Windows 平台
-```powershell
-Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://static.guance.com/security-checker/install.ps1 -destination .install.ps1; powershell .install.ps1;
-```
+=== "Windows"
 
+    ```powershell
+    Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://static.guance.com/security-checker/install.ps1 -destination .install.ps1; powershell .install.ps1;
+    ```
+<!-- markdownlint-enable MD046 -->
 
-## *更新*：  
-### Linux 平台
-```Shell
-SC_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/security-checker/install.sh)"
-```
-### Windows 平台
-```powershell
-$env:SC_UPGRADE;Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://static.guance.com/security-checker/install.ps1 -destination .install.ps1; powershell .install.ps1;
-```
+## 更新 {#upgrade}
 
+<!-- markdownlint-disable MD046 -->
+=== Linux
+
+    ```Shell
+    SC_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/security-checker/install.sh)"
+    ```
+
+=== Windows
+
+    ```powershell
+    $env:SC_UPGRADE;Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://static.guance.com/security-checker/install.ps1 -destination .install.ps1; powershell .install.ps1;
+    ```
+<!-- markdownlint-enable MD046 -->
 
 安装完成后即以服务的方式运行，服务名为`scheck`，使用服务管理工具来控制程序的启动/停止：  
 
-```
+```shell
 systemctl start/stop/restart scheck
-```
-
-或
-
-```
+# Or
 service scheck start/stop/restart
 ```
-
 
 其它相关链接：
 

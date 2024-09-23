@@ -1,0 +1,315 @@
+---
+icon: zy/integrations
+---
+
+# 集成
+
+---
+
+观测云具有全栈数据采集能力，现已支持 {{.NIDocs}} 多种采集集成。
+
+<!-- markdownlint-disable MD046 MD037 MD009 MD010 -->
+<html lang="en">
+  <div>
+  	<style>
+  		* {
+  			box-sizing: border-box;
+  		}
+  		.integration-doc-container {
+  			/* width: 720px; */
+  			/* border: 1px solid #ccc; */
+  			font-size: 12px;
+  			/* border-style: none; */
+  		}
+  		.fth-integration-list-header {
+  			margin-bottom: 8px;
+            position: relative;
+  		}
+        .fth-integration-list-header img {
+            height: 14px;
+            width: 14px;
+            position: absolute;
+            top: 7px;
+            left: 8px;
+        }
+  		.fth-integration-list-header .integration-search-input {
+  			border: 1px solid #ccc;
+  			padding: 2px 10px 2px 26px;
+  			width: 100%;
+  			height: 30px;
+  		}
+  		.fth-integration-list-header .integration-tags-group {
+  			margin: 12px 0;
+  			display: flex;
+  			grid-gap: 10px;
+				flex-wrap: wrap;
+  		}
+  		.fth-integration-list-header .integration-tags-group .integration-tags-group-item {
+  			line-height: 12px;
+  			border-radius: 2px;
+  			padding: 8px 10px;
+  			cursor: pointer;
+  			background-color: #f4f5f6;
+  			color: #222;
+  		}
+  		.fth-integration-list-header .integration-tags-group .integration-tags-group-item.tag-active {
+  			background-color: #e9effe;
+  			color: #2f61cc;
+  		}
+  		.fth-integration-list-header .integration-tags-group .integration-tags-group-item:hover {
+  			background-color: #e9effe;
+  		}
+  		.fth-integration-list-content {
+  			display: grid;
+  			grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
+  			grid-gap: 14px;
+  			-webkit-box-pack: center;
+  			-ms-flex-pack: center;
+  			justify-content: center;
+  		}
+  		.fth-integration-list-content .fth-integration-list-item {
+  			border: 1px solid #e1e4e8;
+  		}
+  		.fth-integration-list-content .fth-integration-list-item:hover .fth-integration-list-card {
+  			box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.07);
+  			-webkit-box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.07);
+  		}
+  		.fth-integration-list-content .fth-integration-list-item .fth-integration-list-card {
+  			cursor: pointer;
+  			height: 72px;
+  			border-radius: 2px;
+  			position: relative;
+  			display: flex;
+  			justify-content: space-between;
+  			align-items: center;
+  			padding-left: 20px;
+  		}
+  		.fth-integration-list-content .fth-integration-list-item .integration-list-item-left {
+  			flex: 1;
+  			display: flex;
+  			align-items: center;
+  		}
+  		.fth-integration-list-content .fth-integration-list-item .integration-list-item-left img {
+  			width: 32px;
+  			height: 32px;
+  			border-style: none;
+  		}
+  		.fth-integration-list-content .fth-integration-list-item .integration-list-item-left .fth-integration-name {
+  			max-width: 184px;
+  			font-size: 14px;
+  			font-weight: 500;
+  			line-height: 20px;
+  			height: 20px;
+  			text-overflow: ellipsis;
+  			overflow: hidden;
+  			white-space: nowrap;
+  			margin-left: 10px;
+  			color: #222;
+  		}
+  		.fth-integration-list-content .fth-integration-list-card:hover .integration-list-item-right {
+  			display: inline-block;
+  		}
+  		.fth-integration-list-content .fth-integration-list-item .integration-list-item-right {
+  			display: none;
+  			flex: 0 0 34px;
+  			height: 100%;
+  			text-align: center;
+  			line-height: 72px;
+  			background: #f5f8ff;
+  		}
+  		.fth-integration-list-content .fth-integration-list-item .integration-list-item-right svg {
+  			fill: #2f61cc;
+  			height: 14px;
+  			width: 14px;
+  		}
+  	</style>
+  	<div class="integration-doc-container">
+  		<div class="fth-integration-list-header">
+  			<input placeholder="{{.SearchPrompt}}" class="integration-search-input" type="text" />
+            <img src="/assets/images/search.png" alt="">
+  			<div class="integration-tags-group">
+  				<!-- tags名称（数量） 内容前端根据dom计算自动生成 -->
+  			</div>
+  		</div>
+  
+  		<!-- 集成list -->
+  		<div class="fth-integration-list-content">
+  		{{ range $i, $idoc := .IDocs }}
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="{{$idoc.HRef}}"
+  				data-tags="{{$idoc.Tags}}"
+  				data-name="{{$idoc.Name}}"
+  				data-summary="{{$idoc.Summary}}"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="{{$idoc.Logo}}"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<span class="fth-integration-name">{{$idoc.Name}}</span>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		{{ end }}
+  		</div>
+  		<!-- end-集成list -->
+  	</div>
+  	<script>
+  		!(function () {
+            const limitTags = ['阿里云', '腾讯云', '华为云', '谷歌云', 'AWS', 'AZURE', '中间件', '主机', 'IPMI', 'KUBERNETES', '容器', '网络', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', '缓存', '消息队列', '数据库', '语言', '链路追踪', 'PROFILE', '日志', '拨测', 'WEB', '移动端', 'CI/CD', 'JENKINS', 'GITLAB', '会话重放'];
+            const tagAll = { label: '全部', value: '' };
+  			const debounce = (fn, delay, immediate) => {
+  				let timeout = null;
+  				let result = undefined;
+  				const that = this;
+  				const debounced = function (that, ...args) {
+  					if (timeout) clearTimeout(timeout);
+  					if (immediate) {
+  						const canNow = !timeout;
+  						timeout = setTimeout(() => {
+  							timeout = null;
+  						}, delay);
+  						if (canNow) result = fn.apply(this, args);
+  					} else {
+  						timeout = setTimeout(() => {
+  							result = fn.apply(this, args);
+  						}, delay);
+  					}
+  					return result;
+  				};
+  				debounced.cancel = () => {
+  					clearTimeout(timeout);
+  					timeout = null;
+  				};
+  				return debounced;
+  			};
+  			const container = document.querySelector('.integration-doc-container');
+  			const search = container.querySelector('.integration-search-intput');
+  			const header = container.querySelector('.fth-integration-list-header');
+  			const content = container.querySelector('.fth-integration-list-content');
+  			let originList = [];
+  			const debounceSearchFn = debounce(searchIntegration, 300);
+  			let searchValue = '';
+  			let tagValue = '';
+  			const inputChange = function (e) {
+  				const value = this.value;
+  				searchValue = value && value.toLowerCase();
+  				tagValue = '';
+  				debounceSearchFn();
+  			};
+  			const tagChange = function (e) {
+  				if (e.target.classList.contains('integration-tags-group-item')) {
+  					const curTag = e.target;
+  					const activeTag = header.querySelector('.integration-tags-group-item.tag-active');
+                    const tagAllContainer = header.querySelector('.integration-tags-group-item');
+  					if (curTag !== activeTag) {
+  						tagValue = curTag.dataset.tag;
+  						curTag.classList.add('tag-active');
+  					} else {
+                        if (activeTag === tagAllContainer) {
+                            return;
+                        }
+  						tagValue = tagAll.value;
+                       tagAllContainer && tagAllContainer.classList.add('tag-active');
+  					}
+  					if (activeTag) {
+  						activeTag.classList.remove('tag-active');
+  					}
+  					searchIntegration('tag');
+  				}
+  			};
+  
+  			//   根据 tag 和 search 搜索内容
+  			function searchIntegration(type) {
+  				// type 两种类型 'tag' 'search'
+  				const search = searchValue;
+  				const tag = tagValue;
+  				const tagObj = {};
+  				const isSearch = type !== 'tag';
+  				originList.forEach(item => {
+  					const { tags, name, summary, dom } = item;
+  					const show =
+  						((!tags && !tag) || tags.includes(tag)) && (!name || name.includes(search) || summary.includes(search));
+  					dom.style.display = show ? 'block' : 'none';
+  					// 如果是搜索触发 需重新计算tags
+  					if (isSearch && show && tags) {
+  						const tagsArr = tags.split(',');
+  						tagsArr.forEach(v => {
+  							if (tagObj[v]) {
+  								tagObj[v] += 1;
+  							} else {
+  								tagObj[v] = 1;
+  							}
+  						});
+  					}
+  				});
+  				if (isSearch) {
+  					tagValue = '';
+  					const tagContainer = header.querySelector('.integration-tags-group');
+  					if (Object.keys(tagObj).length) {
+  						const tags = Object.entries(tagObj).reduce(
+                                (acc, cur) => {
+                                    const [key, value] = cur;
+                                    const keyIndex = limitTags.indexOf(key);
+                                    if (keyIndex > -1) {
+                                        acc.push({ label: `${key} (${value})`, value: key, index: keyIndex });
+                                    }
+                                    return acc;
+                                },
+                                [{ ...tagAll, index: -1 }]
+                            )
+                            .sort((a, b) => a.index - b.index)
+  
+  						tagContainer.innerHTML = tags.map(
+                            (tag) =>
+                                `<div class="integration-tags-group-item ${
+                                tag.label === tagAll.label ? 'tag-active' : ''
+                                }" data-tag="${tag.value}">${tag.label}</div>`
+                            ).join('');
+  					} else {
+  						tagContainer.innerHTML = '';
+  					}
+  				}
+  			}
+  			header.querySelector('.integration-search-input').addEventListener('input', inputChange);
+  			header.addEventListener('click', tagChange);
+  			content.addEventListener('click', e => {
+  				let ele = e.target;
+  				let i = 0;
+  				while (i < 5) {
+  					if (ele.classList.contains('fth-integration-list-item')) {
+  						const href = ele.dataset.href;
+  						href && (window.location.href = href);
+  						break;
+  					}
+  					i++;
+  					ele = ele.parentNode;
+  				}
+  			});
+  			function init() {
+  				const list = container.querySelectorAll('.fth-integration-list-item');
+  				list.forEach(item => {
+  					const { tags: tagsStr, name: nameStr, summary: summaryStr } = item.dataset || {};
+  					const tags = tagsStr || '';
+  					const name = (nameStr && nameStr.toLowerCase()) || '';
+  					const summary = summaryStr ? summaryStr.toLowerCase() : '';
+  					originList.push({ tags, name, summary, dom: item });
+  				});
+  				searchIntegration();
+  			}
+  			init();
+  		})();
+  	</script>
+  </div>
+</html>
+<!-- markdownlint-enable -->

@@ -4,7 +4,7 @@ summary   : 'Obtain metrics, link tracking, and log information for Golang appli
 __int_icon: 'icon/go'
 dashboard :
   - desc  : 'No'
-    path  : -
+    path  : '-'
 monitor   :
   - desc  : 'No'
     path  : '-'

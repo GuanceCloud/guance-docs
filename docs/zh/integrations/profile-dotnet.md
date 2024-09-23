@@ -1,5 +1,10 @@
-# .NET profiling
-
+---
+title     : 'Profiling Golang'
+summary   : '.Net Profiling 集成'
+tags:
+  - '.Net'
+  - 'PROFILE'
+__int_icon: 'icon/profiling'
 ---
 
 从 Datakit [:octicons-tag-24: Version-1.12.0](../datakit/changelog.md#cl-1.12.0){:target="_blank"} 开始支持使用 [`dd-trace-dotnet`](https://github.com/DataDog/dd-trace-dotnet){:target="_blank"} 作为 `.NET` 平台的应用性能监测工具。

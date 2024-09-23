@@ -1,6 +1,8 @@
 ---
 title     : 'Solr'
 summary   : '采集 Solr 的指标数据'
+tags:
+  - '数据库'
 __int_icon      : 'icon/solr'
 dashboard :
   - desc  : 'Solr'
@@ -8,12 +10,6 @@ dashboard :
 monitor   :
   - desc  : 'Solr'
     path  : 'monitor/zh/solr'
----
-
-<!-- markdownlint-disable MD025 -->
-# Solr
-<!-- markdownlint-enable -->
-
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")

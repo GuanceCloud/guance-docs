@@ -1,6 +1,8 @@
 ---
 title     : 'MongoDB'
 summary   : '采集 MongoDB 的指标数据'
+tags:
+  - '数据库'
 __int_icon      : 'icon/mongodb'
 dashboard :
   - desc  : 'Mongodb 监控视图'
@@ -10,11 +12,6 @@ monitor   :
     path  : '-'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# MongoDB
-<!-- markdownlint-enable -->
-
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 

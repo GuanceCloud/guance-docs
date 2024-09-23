@@ -1,6 +1,8 @@
 ---
 title     : 'OceanBase'
 summary   : 'Collect OceanBase metrics'
+tags:
+  - 'DATA STORES'
 __int_icon      : 'icon/oceanbase'
 dashboard :
   - desc  : 'OceanBase'
@@ -10,11 +12,6 @@ monitor   :
     path  : '-'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# OceanBase
-<!-- markdownlint-enable -->
-
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 

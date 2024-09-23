@@ -1,6 +1,8 @@
 ---
 title     : 'Solr'
 summary   : 'Collect Solr metrics'
+tags:
+  - 'DATA STORES'
 __int_icon      : 'icon/solr'
 dashboard :
   - desc  : 'Solr'
@@ -10,11 +12,6 @@ monitor   :
     path  : 'monitor/en/solr'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# Solr
-<!-- markdownlint-enable -->
-
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 

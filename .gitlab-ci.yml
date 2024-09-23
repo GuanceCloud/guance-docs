@@ -18,8 +18,8 @@ lint:
     - nvm use v16.14.0
     - make lint DOC_DIR=docs/zh/integrations
     - make lint DOC_DIR=docs/zh/datakit
-    #- make lint DOC_DIR=docs/en/integrations
-    #- make lint DOC_DIR=docs/en/datakit
+    - make lint DOC_DIR=docs/en/integrations
+    - make lint DOC_DIR=docs/en/datakit
   tags:
     - cloudcare-ft
 
