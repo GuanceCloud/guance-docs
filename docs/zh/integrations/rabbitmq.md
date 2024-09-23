@@ -1,6 +1,9 @@
 ---
 title     : 'RabbitMQ'
 summary   : '采集 RabbitMQ 的指标数据'
+tags:
+  - '消息队列'
+  - '中间件'
 __int_icon      : 'icon/rabbitmq'
 dashboard :
   - desc  : 'RabbitMQ'
@@ -8,12 +11,6 @@ dashboard :
 monitor   :
   - desc  : 'RabbitMQ'
     path  : 'monitor/zh/rabbitmq'
----
-
-<!-- markdownlint-disable MD025 -->
-# RabbitMQ
-<!-- markdownlint-enable -->
-
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
@@ -177,10 +174,12 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name`|RabbitMQ cluster name|
 |`host`|Hostname of RabbitMQ running on.|
 |`node_name`|RabbitMQ node name|
 |`queue_name`|RabbitMQ queue name|
 |`url`|RabbitMQ host URL|
+|`vhost`|RabbitMQ queue virtual hosts|
 
 - 指标列表
 
@@ -219,6 +218,7 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 | Tag | Description |
 |  ----  | --------|
 |`auto_delete`|If set, the exchange is deleted when all queues have finished using it|
+|`cluster_name`|RabbitMQ cluster name|
 |`durable`|If set when creating a new exchange, the exchange will be marked as durable. Durable exchanges remain active when a server restarts. Non-durable exchanges (transient exchanges) are purged if/when a server restarts.|
 |`exchange_name`|RabbitMQ exchange name|
 |`host`|Hostname of RabbitMQ running on.|
@@ -258,6 +258,7 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 | Tag | Description |
 |  ----  | --------|
+|`cluster_name`|RabbitMQ cluster name|
 |`host`|Hostname of RabbitMQ running on.|
 |`node_name`|RabbitMQ node name|
 |`url`|RabbitMQ url|

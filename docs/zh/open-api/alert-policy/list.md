@@ -52,7 +52,7 @@ curl 'https://openapi.guance.com/api/v1/alert_policy/list?pageIndex=1&pageSize=1
                                 {
                                     "status": "warning",
                                     "to": [
-                                        "notify_xxxx32"
+                                        "notify_xxx99e"
                                     ]
                                 }
                             ]
@@ -62,6 +62,15 @@ curl 'https://openapi.guance.com/api/v1/alert_policy/list?pageIndex=1&pageSize=1
                 },
                 "createAt": 1706152082,
                 "creator": "xx",
+                "creatorInfo": {
+                    "uuid": "xx",
+                    "status": 0,
+                    "username": "xx",
+                    "name": "xx",
+                    "iconUrl": "",
+                    "email": "xx",
+                    "acntWsNickname": "xx"
+                },
                 "deleteAt": -1,
                 "id": 4100,
                 "name": "jj_modify",
@@ -72,8 +81,17 @@ curl 'https://openapi.guance.com/api/v1/alert_policy/list?pageIndex=1&pageSize=1
                 "status": 0,
                 "updateAt": 1706152340,
                 "updator": "xx",
-                "uuid": "altpl_xxxx32",
-                "workspaceUUID": "wksp_xxxx32"
+                "updatorInfo": {
+                    "uuid": "xx",
+                    "status": 0,
+                    "username": "xx",
+                    "name": "xx",
+                    "iconUrl": "",
+                    "email": "xx",
+                    "acntWsNickname": "xx"
+                },
+                "uuid": "altpl_xxxc11",
+                "workspaceUUID": "wksp_xxxa4b"
             }
         ],
         "declaration": {}

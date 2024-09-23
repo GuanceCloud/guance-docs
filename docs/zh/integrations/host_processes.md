@@ -1,6 +1,8 @@
 ---
 title     : '进程'
 summary   : '采集进程的指标和对象数据'
+tags:
+  - '主机'
 __int_icon      : 'icon/process'
 dashboard :
   - desc  : '进程'
@@ -10,11 +12,6 @@ monitor   :
     path  : '-'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# 进程
-<!-- markdownlint-enable -->
-
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
@@ -28,7 +25,7 @@ monitor   :
 
     进程采集器（不管是对象还是指标），在 macOS 上可能消耗比较大，导致 CPU 飙升，可以手动将其关闭。目前默认采集器仍然开启进程对象采集器（默认 5min 运行一次）。
 
-<!-- markdownlint-enable -->
+<!-- markdownlint-enable MD046 -->
 
 ## 配置 {#config}
 
@@ -88,7 +85,7 @@ monitor   :
 
     - **ENV_INPUT_HOST_PROCESSES_OPEN_METRIC**
     
-        采集处理器指标
+        开启进程指标采集
     
         **字段类型**: Boolean
     
@@ -98,17 +95,17 @@ monitor   :
     
     - **ENV_INPUT_HOST_PROCESSES_PROCESS_NAME**
     
-        处理器白名单
+        进程名白名单
     
         **字段类型**: List
     
         **采集器配置字段**: `process_name`
     
-        **示例**: .*datakit.*,guance
+        **示例**: `.*datakit.*,guance`
     
     - **ENV_INPUT_HOST_PROCESSES_MIN_RUN_TIME**
     
-        处理最短运行时间
+        进程最短运行时间
     
         **字段类型**: TimeDuration
     
@@ -123,16 +120,6 @@ monitor   :
         **字段类型**: Boolean
     
         **采集器配置字段**: `enable_listen_ports`
-    
-        **默认值**: false
-    
-    - **ENV_INPUT_HOST_PROCESSES_ENABLE_OPEN_FILES**
-    
-        启用打开文件字段
-    
-        **字段类型**: Boolean
-    
-        **采集器配置字段**: `enable_open_files`
     
         **默认值**: false
     

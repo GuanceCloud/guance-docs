@@ -19,7 +19,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is `datakit.conf`, here is the example sample(1.36.0):
+Datakit main configure is `datakit.conf`, here is the example sample(1.38.2):
 
 <!-- markdownlint-disable MD046 -->
 ??? info "`datakit.conf`"
@@ -244,7 +244,8 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.36.0):
       # The interval between two retry operation, valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h"
       retry_delay = "1s"
     
-      # HTTP Proxy(IP:Port)
+      # HTTP Proxy
+      # Format: "http(s)://IP:Port"
       http_proxy = ""
     
       max_idle_conns   = 0       # limit idle TCP connections for HTTP request to Dataway
@@ -645,7 +646,7 @@ To standardize the statistical measurement of Datakit usage, the following clari
 
 - If none of the following collectors are enabled, then the logical measurement count for Datakit is 1.
 - If the runtime of Datakit (with no more than a 30-minute interruption) exceeds 12 hours, it is counted for metering; otherwise, it is not counted.
-- For the following enabled collectors, the measurement is based on the [current configured number of CPU cores](datakit-cond.md#resource-limit) of Datakit, with a minimum value of 1 and a maximum value equal to the number of physical CPU cores [^1], rounding up any fractional part according to the rounding rules:
+- For the following enabled collectors, the measurement is based on the [current configured number of CPU cores](datakit-conf.md#resource-limit) of Datakit, with a minimum value of 1 and a maximum value equal to the number of physical CPU cores [^1], rounding up any fractional part according to the rounding rules:
     - [RUM Collector](../integrations/rum.md)
     - Collectors that receive log data via [TCP/UDP](../integrations/logging.md##socket)
     - Collectors that synchronize logs/metrics/RUM, etc., data via [kafkamq Collector](../integrations/kafkamq.md)
@@ -714,7 +715,7 @@ Note: After Git synchronization is turned on, the collector configuration in the
 
 #### Applying Git-managed Pipeline Sample {#gitrepo-example}
 
-We can add Pipeline to the collector configuration to cut the logs of related services. When Git synchronization is turned on, both **the Pipeline that comes with DataKit and the Pipeline synchronized by Git can be used**. In the configuration of [Nginx collector](nginx.md), a configuration example of Pipeline.
+We can add Pipeline to the collector configuration to cut the logs of related services. When Git synchronization is turned on, both **the Pipeline that comes with DataKit and the Pipeline synchronized by Git can be used**. In the configuration of [Nginx collector](../integrations/nginx.md), a configuration example of Pipeline.
 
 ```toml
 [[inputs.nginx]]

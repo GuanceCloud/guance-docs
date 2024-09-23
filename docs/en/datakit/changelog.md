@@ -1,5 +1,77 @@
 # Changelog
 
+## 1.38.1 (2024/09/11) {#cl-1.38.1}
+
+This release is a hotfix release, fixed the following issues:
+
+- Fixed the tag errors for `inside_filepath` and `host_filepath` in container log collection (#2403).
+- Resolved an issue where the Kubernetes-Prometheus collector would malfunction under specific circumstances (#2396).
+- Various `dk_upgrader` issues were fixed (#2372):
+    - Fixed incorrect offline installation directory.
+    - During installation/upgrade, `dk_upgrader`'s own configuration now automatically aligns with Datakit's configuration (manual reconfiguration is no longer necessary), and DCA does not need to differentiate between offline and online upgrades.
+    - The installation phase can now inject ENV variables related to `dk_upgrader` without the need for additional manual configuration.
+    - The `dk_upgrader` HTTP API has been enhanced with new parameters to specify version numbers and enforce upgrades (this feature is not yet supported on the DCA side).
+
+---
+
+## 1.38.0 (September 4, 2024) {#cl-1.38.0}
+
+This release is an iterative update with the following main changes:
+
+### New Features {#cl-1.38.0-new}
+
+- Added Graphite data ingestion (#2337)
+<!-- - Profiling collector now supports real-time metric extraction from profiling files (#2335) -->
+
+### Bug Fixes {#cl-1.38.0-fix}
+
+- Fixed an issue with eBPF network data aggregation (#2395)
+- Resolved a crash issue with the DDTrace telemetry interface (#2387)
+- Addressed a data collection issue with Jaeger UDP binary format (#2375)
+- Resolved an issue with the URL format for data sent by the dial-testing collector (#2374)
+
+### Feature Enhancements {#cl-1.38.0-opt}
+
+- Added collection of multiple fields (`num_cpu/unicast_ip/disk_total/arch`) in the host object (#2362)
+- Other optimizations and fixes (#2376/#2354/#2393)
+
+### Compatibility Adjustments {#cl-1.38.0-brk}
+
+- Adjusted the execution priority of Pipelines (#2386)
+
+    In previous versions, for a specific `source`, such as `nginx`:
+
+    1. If users specified a matching *nginx.p* on the page
+    1. And if users also set a default Pipeline (*default.p*) at the same time
+
+    Then the Nginx logs would **not** be processed by *nginx.p* but by *default.p*. This setting was not reasonable. The adjusted priority is as follows (priority decreasing):
+
+    1. The Pipeline specified for `source` on the Guance Cloud page
+    1. The Pipeline specified for `source` in the collector
+    1. The `source` value can find the corresponding Pipeline (for example, if the `source` is the log of `my-app`, a *my-app.p* can be found in the Pipeline's storage directory)
+    1. Finally, use *default.p*
+
+    This adjustment ensures that all data can be processed by Pipelines, at least processed by *default.p*.
+
+---
+
+## 1.37.0 (2024/08/28) {#cl-1.37.0}
+
+This is an iterative release with the following updates:
+
+### New Features {#cl-1.37.0-new}
+
+- **Zabbix Data Integration:** Added a [new collector](../integrations/zabbix_exporter.md) to support importing data from Zabbix, enabling unified management and analysis of multiple data sources.
+
+### Improvements {#cl-1.37.0-opt}
+
+- **Process Collector Optimization:** The process collector now supports collecting open file descriptor counts by default, providing more comprehensive data for system performance monitoring.
+- **RabbitMQ Tag Completion:** Completed the RabbitMQ tag to ensure more accurate and complete data collection.
+- **Kubernetes-Prometheus Performance Optimization:** Optimized the performance of Kubernetes-Prometheus to improve data collection efficiency.
+- **Redis Metric Enrichment:** Added more metrics for Redis collection to help users gain deeper insights into Redis's operating status.
+
+---
+
 ## 1.36.0 (2024/08/21) {#cl-1.36.0}
 
 This release is an iterative update with the following main changes:
@@ -236,7 +308,7 @@ This release is an iterative update with the following main changes:
 
 In this version, the data protocol has been extended. After upgrading from an older version of Datakit, if the center base is privately deployed, the following measures can be taken to maintain data compatibility:
 
-- Upgrade the center base to [1.87.167](../deployment/changelog.md#1871672024-06-05) or
+- Upgrade the center base to 1.87.167 or
 - Modify the [upload protocol configuration `content_encoding`](datakit-conf.md#dataway-settings) in *datakit.conf* to `v2`
 
 #### For InfluxDB {#cl-1.30.0-brk-influxdb}
@@ -584,7 +656,7 @@ This release is an iterative release with the following updates:
 ### New addition {#cl-1.20.0-new}
 
 - [Redis](../integrations/redis.md) collector added `hotkey` info(#2019)
-- Command `datakit monitor` add playing support for metrics from [Bug Report](why-no-data.m#bug-report)(#2001)
+- Command `datakit monitor` add playing support for metrics from [Bug Report](why-no-data.md#bug-report)(#2001)
 - [Oracle](../integrations/oracle.md) collector added custom queries(#1929)
 - [Container](../integrations/container.md) logging files support wildcard match(#2004)
 - Kubernetes Pod add `network` and `storage` info(#2022)
@@ -637,7 +709,7 @@ This release is an iterative release with the following updates:
 
 ### New addition {#cl-1.19.0-new}
 
-- Add [OceanBase](../integrations/oceanbase.Md) for MySQL(#1952)
+- Add [OceanBase](../integrations/oceanbase.md) for MySQL(#1952)
 - Add [record/play](datakit-tools-how-to.md#record-and-replay) feature(#1738)
 
 ### Fix {#cl-1.19.0-fix}
@@ -682,7 +754,7 @@ This release is an iterative release with the following updates:
 - Fixed compatibility of large Tag values in Tracing data, now adjusted to 32MB(#1932)
 - Fix RUM session replay dirty data issue(#1958)
 - Fixed indicator information export issue(#1953)
-- Fix the [v2 version protocol](Datakit-conf.m#datawawe-Settings) build error
+- Fix the [v2 version protocol](datakit-conf.md#dataway-settings) build error
 
 ### Function optimization {#cl-1.18.0-opt}
 
@@ -740,7 +812,7 @@ This release is a Hotfix release, which fixes the following issues:
 ### New features {#cl-1.17.1-new}
 
 - eBPF can also [build APM data](../integrations/ebpftrace.md) to trace process/thread relationship under Linux(#1835)
-- Pipeline add new function [`pt_name`](../pipeline/pipeline/pipeline-built-in-function.md#fn-pt-name)(#1937)
+- Pipeline add new function [`pt_name`](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-pt-name)(#1937)
 
 ### Features Optimizations {#cl-1.17.1-opt}
 
@@ -856,7 +928,7 @@ This release is an iterative release, mainly including the following updates:
 - Optimize Datakit image size (#1869)
 - Docs:
     - Add [documentation](../integrations/tracing-propagator.md) for different Trace delivery instructions (#1824)
-    - Add [Datakit Metric Performance Test Report](../integrations/datakit-metric-performance.md) (#1867)
+    - Add Datakit Metric Performance Test Report (#1867)
     - Add [documentation of external collector](../integrations/external.md) (#1851)
 - Pipeline
     - Added functions `parse_int()` and `format_int()` (#1824)
@@ -906,7 +978,7 @@ This release is an iterative release, mainly including the following updates:
 - Remove [open_files_list](../integrations/host_processes.md#object) field in Process collector (#1838)
 - Added the handling case of index loss in the collector document of [host object](../integrations/hostobject.md#faq) (#1838)
 - Optimize the Datakit view and improve the Datakit Prometheus indicator documentation
-- Optimize the mount method of [Pod/container log collection](../integration/container-log.md#logging-with-inside-config) (#1844)
+- Optimize the mount method of [Pod/container log collection](../integrations/container-log.md#logging-with-inside-config) (#1844)
 - Add Process and System collector integration tests (#1841/#1842)
 - Optimize etcd integration tests (#1847)
 - Upgrade Golang 1.19.12 (#1516)

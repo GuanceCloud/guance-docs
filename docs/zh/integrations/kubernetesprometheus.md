@@ -1,4 +1,11 @@
-# Datakit KubernetesPrometheus 采集器文档
+---
+title     : 'Kubernetes Prometheus Discovery'
+summary   : '支持发现 Kubernetes 中的 Prometheus 指标暴露并采集'
+tags      :
+  - 'PROMETHEUS'
+  - 'KUBERNETES'
+__int_icon: 'icon/kubernetes'
+---
 
 [:octicons-tag-24: Version-1.34.0](../datakit/changelog.md#cl-1.34.0) · [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
 
@@ -113,6 +120,16 @@ KubernetesPrometheus 是一个只能应用在 Kubernetes 的采集器，它根�
       ca_certs = ["/opt/nginx/ca.crt"]
       cert     = "/opt/nginx/peer.crt"
       cert_key = "/opt/nginx/peer.key"
+```
+
+此外还有一类全局配置，它是最顶层的配置，主要负责一些功能开启或关闭，例如此处的 `node_local`：
+
+```yaml
+[inputs.kubernetesprometheus]
+  node_local = true  # 是否开启 NodeLocal 模式，将采集分散到各个节点
+ 
+  [[inputs.kubernetesprometheus.instances]]
+  # ..other
 ```
 
 <!-- markdownlint-disable MD046 -->

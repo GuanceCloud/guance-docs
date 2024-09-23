@@ -176,7 +176,9 @@ kubectl apply -f datakit.yaml
 
 [Why no data](../datakit/why-no-data.md)
 
+<!-- TODO: page 404
 ## Extended reading {#more-reading}
 
 - [TAG best practices](../best-practices/insight/tag.md)
 - [Multiple Kubernetes cluster metric best practices](../best-practices/cloud-native/multi-cluster.md)
+-->

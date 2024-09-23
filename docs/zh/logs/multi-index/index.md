@@ -56,11 +56,11 @@
 
 目前支持的外部索引包括：
 
-:material-numeric-1-circle: [SLS Logstore](./sls.md)   
-:material-numeric-2-circle: [Elasticsearch](./elasticsearch.md)  
-:material-numeric-3-circle: [OpenSearch](./opensearch.md)    
-:material-numeric-4-circle: [日志易](./logease.md)       
-:material-numeric-5-circle: [火山引擎 TLS](./tls.md)    
+:material-numeric-1-circle: [SLS Logstore](./sls.md)    
+:material-numeric-2-circle: [Elasticsearch](./elasticsearch.md)          
+:material-numeric-3-circle: [OpenSearch](./opensearch.md)          
+:material-numeric-4-circle: [日志易](./logease.md)      
+:material-numeric-5-circle: [火山引擎 TLS](./tls.md)          
 
 **注意**：
 
@@ -73,14 +73,14 @@
 
 为了在观测云快捷查看和分析外部索引的日志数据，观测云提供字段映射的功能，在绑定外部索引时可直接为日志的字段进行映射。
 
-1. `time`：日志的上报时间，SLS Logstore 默认映射 `date` 字段为 `time` ，Elasticsearch、OpenSearch 可按照实际日志数据自行填写；若没有此字段，在日志查看器中数据将乱序展示。
-2. `_docid`：日志的唯一 ID ，映射后您可以查看绑定的日志详情，例如：您可以将原字段 `logid` 映射为 `_docid`。如果在这部分日志中，`logid` 的 `value` 不唯一，此时若不刷新详情页，则不会产生任何影响；若刷新了详情页，则取时间最早的一条日志展示。若没有此字段，日志详情页会有部分内容缺失。若映射字段不唯一，打开详情页时会取该 ID 对应的时间最早的一条日志进行展示。
+1. `time`：日志的上报时间，SLS Logstore 默认映射 `date` 字段为 `time`，Elasticsearch、OpenSearch 可按照实际日志数据自行填写；若没有此字段，在日志查看器中数据将乱序展示。
+2. `_docid`：日志的唯一 ID，映射后您可以查看绑定的日志详情，例如：您可以将原字段 `logid` 映射为 `_docid`。如果在这部分日志中，`logid` 的 `value` 不唯一，此时若不刷新详情页，则不会产生任何影响；若刷新了详情页，则取时间最早的一条日志展示。若没有此字段，日志详情页会有部分内容缺失。若映射字段不唯一，打开详情页时会取该 ID 对应的时间最早的一条日志进行展示。
 
 3. `message`：日志的内容，映射后您可以查看绑定的日志内容，并且通过 `message` 字段聚类分析日志数据。
 
 > 更多详情，可参考 [日志查看器聚类分析](../explorer.md)。
 
-您也可以在**绑定外部索引 > 其他索引**，选择需要修改字段映射的索引，点击**编辑**，修改该索引的映射字段。
+您也可以在外部索引列表，点击**修改**进入需要修改字段映射的索引，修改该索引的映射字段。
 
 ???+ warning "注意"
 
@@ -93,21 +93,23 @@
 
 :material-numeric-1-circle: 禁用/启用
 
-- 禁用索引后，后续日志不会再进入该索引，会继续匹配流入其他索引进行保存，若无匹配其他索引，则保存在默认 default 索引中；
+- 禁用索引后，后续日志不会再进入该索引，会继续匹配流入其他索引进行保存，若无匹配其他索引，则保存在默认 `default` 索引中；
     
 - 启用索引后，后续日志会重新进入该索引进行保存。
 
 :material-numeric-2-circle: 编辑
 
-在日志索引右侧**操作**菜单下，点击**编辑**图标，即可编辑已经创建的日志索引。在下图中，当前索引 `index.da` 新建成功后，`source` 为 `datakit` 的日志数据上报时，会匹配流入到第一个符合的索引进行保存。
+点击**编辑**图标，即可编辑已经创建的日志索引。在下图中，当前索引 `index.da` 新建成功后，`source` 为 `datakit` 的日志数据上报时，会匹配流入到第一个符合的索引进行保存。
 
 **注意**：变更存储策略会删除索引中的数据，请谨慎操作。
 
 <img src="../img/6.index_3.png" width="60%" >
 
-:material-numeric-3-circle: 删除
+:material-numeric-3-circle: 操作审计：点击即可前往查看针对该索引的所有操作日志。
 
-在日志索引右侧**操作**菜单下，点击 :fontawesome-regular-trash-can: 图标，即可删除已经创建的日志索引。
+:material-numeric-4-circle: 删除
+
+点击 :fontawesome-regular-trash-can: 图标，即可删除已经创建的日志索引。
 
 **注意**：删除索引会同时删除该索引中的日志数据，若无其他匹配索引，后续上报的日志数据会保存在默认索引 `default` 中。
 
@@ -119,9 +121,11 @@
 
 删除日志索引后，您可按需创建同名索引。
 
-:material-numeric-4-circle: 拖拽
 
-在日志索引右侧**操作**菜单下，点击 :fontawesome-solid-grip-vertical: 图标，即可上下拖拽已经创建的日志索引。
+
+:material-numeric-5-circle: 拖拽
+
+点击 :fontawesome-solid-grip-vertical: 图标，即可上下拖拽已经创建的日志索引。
 
 **注意**：日志会流入第一个匹配到的索引中，改变索引顺序可能会导致日志更改流向。
 
@@ -156,6 +160,8 @@
 
 </div>
 
+
+
 <div class="grid cards" markdown>
 
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **绑定火山引擎 TLS 索引**</font>](./tls.md)
@@ -169,7 +175,6 @@
 
 </div>
 
+
+
 </font>
-
-
-

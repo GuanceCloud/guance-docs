@@ -1,6 +1,8 @@
 ---
 title     : 'InfluxDB'
 summary   : '采集 InfluxDB 指标数据'
+tags:
+  - '数据库'
 __int_icon      : 'icon/influxdb'
 dashboard :
   - desc  : 'InfluxDB'
@@ -10,11 +12,6 @@ monitor   :
     path  : '-'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# InfluxDB
-<!-- markdownlint-enable -->
-
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 

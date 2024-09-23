@@ -1,21 +1,15 @@
 ---
-title     : 'Mem'
+title     : 'Memory'
 summary   : 'Collect metrics of host memory'
+tags:
+  - 'HOST'
 __int_icon      : 'icon/mem'
 dashboard :
   - desc  : 'memory'
     path  : 'dashboard/en/mem'
 monitor   :
   - desc  : 'host detection library'
-    path  : 'monitor/en/host'  
----
-
-<!-- markdownlint-disable MD025 -->
-# Memory
-<!-- markdownlint-enable -->
-
-<!-- markdownlint-enable -->
-
+    path  : 'monitor/en/host'
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -24,7 +18,6 @@ monitor   :
 
 Mem collector is used to collect system memory information, some general metrics such as total memory, used memory and so on.
 
-
 ## Configuration {#config}
 
 After successfully installing and starting DataKit, the Mem collector will be enabled by default without the need for manual activation.
@@ -32,11 +25,10 @@ After successfully installing and starting DataKit, the Mem collector will be en
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-
 === "Host Installation"
 
     Go to the `conf.d/host` directory under the DataKit installation directory, copy `mem.conf.sample` and name it `mem.conf`. Examples are as follows:
-    
+
     ```toml
         
     [[inputs.mem]]
@@ -47,7 +39,7 @@ After successfully installing and starting DataKit, the Mem collector will be en
       # some_tag = "some_value"
       # more_tag = "some_other_value"
     ```
-    
+
     Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
@@ -55,7 +47,7 @@ After successfully installing and starting DataKit, the Mem collector will be en
     Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
     Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
-    
+
     - **ENV_INPUT_MEM_INTERVAL**
     
         Collect interval
@@ -75,7 +67,6 @@ After successfully installing and starting DataKit, the Mem collector will be en
         **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
-
 <!-- markdownlint-enable -->
 
 ## Metric {#metric}

@@ -1,7 +1,7 @@
 # Notification Targets
 ---
 
-???- quote "Release Note"
+???- quote "Release Notes"
 
     **September 21, 2023**: The **Email Group** type has been officially discontinued, but existing ones are not affected. The **Team** function under **Management > Member Management** can be used as a replacement.
 

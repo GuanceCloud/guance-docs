@@ -97,4 +97,4 @@ add_key(filepath, tags["log.file.path"])
 
 Starting the `JAVA` application to generate logs will automatically trigger the `iLogtail` log collection.
 
-Entering the [Guance Console](www.guance.com), you can see that the logs have been collected and the `pipeline` is also taking effect normally.
+Entering the Guance Console, you can see that the logs have been collected and the `pipeline` is also taking effect normally.

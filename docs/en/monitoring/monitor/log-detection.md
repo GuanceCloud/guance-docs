@@ -30,7 +30,7 @@ Most of them are suitable for code anomaly or task scheduling detection in IT mo
 
 | Field | Description |
 | --- | --- |
-| Index | The index to which the current detection belongs.<br />**Note:**If the index is set in [**Log > Index**](../../logs/multi-index.md), when "Log" is selected in the data source of chart query, the log contents corresponding to different indexes can be selected, and the default index is `default`.  |
+| Index | The index to which the current detection belongs.<br />**Note:**If the index is set in [**Log > Index**](../../logs/multi-index/index.md), when "Log" is selected in the data source of chart query, the log contents corresponding to different indexes can be selected, and the default index is `default`.  |
 | Source | The data source of the current detection metric is supported by selecting all (`*`) or specifying a single data source. |
 | Keyword Search  | Keyword search is supported. |
 | Filtering | Metric-based labels filter the data of detecting metrics, limit the range of detected data, support adding one or more labels to filter, fuzzy matching and fuzzy mismatching screening conditions. |

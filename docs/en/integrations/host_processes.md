@@ -1,6 +1,8 @@
 ---
 title     : 'Process'
-summary   : 'Collect host process and it's metrics'
+summary   : 'Collect host process metrics'
+tags:
+  - 'HOST'
 __int_icon      : 'icon/process'
 dashboard :
   - desc  : 'process'
@@ -10,11 +12,6 @@ monitor   :
     path  : '-'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# Process
-<!-- markdownlint-enable -->
-
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
@@ -23,12 +20,10 @@ monitor   :
 The process collector can monitor various running processes in the system, acquire and analyze various metrics when the process is running, Including memory utilization rate, CPU time occupied, current state of the process, port of process monitoring, etc. According to various index information of process running, users can configure relevant alarms in Guance Cloud, so that users can know the state of the process, and maintain the failed process in time when the process fails.
 
 <!-- markdownlint-disable MD046 -->
-
 ???+ attention
 
     Process collectors (whether objects or metrics) may consume a lot on macOS, causing CPU to soar, so you can turn them off manually. At present, the default collector still turns on the process object collector (it runs once every 5min by default).
-
-<!-- markdownlint-enable -->
+<!-- markdownlint-enable MD046 -->
 
 ## Configuration {#config}
 
@@ -45,11 +40,10 @@ The process collector can monitor various running processes in the system, acqui
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-
 === "Host Installation"
 
     Go to the `conf.d/host` directory under the DataKit installation directory, copy `host_processes.conf.sample` and name it `host_processes.conf`. Examples are as follows:
-    
+
     ```toml
         
     [[inputs.host_processes]]
@@ -77,7 +71,7 @@ The process collector can monitor various running processes in the system, acqui
       # ...
     
     ```
-    
+
     Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
@@ -85,7 +79,7 @@ The process collector can monitor various running processes in the system, acqui
     Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
     Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
-    
+
     - **ENV_INPUT_HOST_PROCESSES_OPEN_METRIC**
     
         Enable process metric collecting
@@ -104,7 +98,7 @@ The process collector can monitor various running processes in the system, acqui
     
         **input.conf**: `process_name`
     
-        **Example**: .*datakit.*,guance
+        **Example**: `.*datakit.*,guance`
     
     - **ENV_INPUT_HOST_PROCESSES_MIN_RUN_TIME**
     
@@ -126,16 +120,6 @@ The process collector can monitor various running processes in the system, acqui
     
         **Default**: false
     
-    - **ENV_INPUT_HOST_PROCESSES_ENABLE_OPEN_FILES**
-    
-        Enable open files field
-    
-        **Type**: Boolean
-    
-        **input.conf**: `enable_open_files`
-    
-        **Default**: false
-    
     - **ENV_INPUT_HOST_PROCESSES_TAGS**
     
         Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
@@ -145,8 +129,7 @@ The process collector can monitor various running processes in the system, acqui
         **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
-
-<!-- markdownlint-enable -->
+<!-- markdownlint-enable MD046 -->
 
 ## Metric {#metric}
 

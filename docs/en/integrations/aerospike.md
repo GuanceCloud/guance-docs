@@ -1,15 +1,15 @@
 ---
-Title:'Aerospike'
-summary:'Collecting Aerospike-related metric information'
+title: 'Aerospike'
+summary: 'Collecting Aerospike-related metric information'
 __int_icon: 'icon/aerospike'
 dashboard:
-  - Desc:'Aerospike Namespace Overview Monitoring View'
-    path:'dashboard/zh/aerospike_namespace'
-  - Desc:'Aerospike Monitoring Stack Node Monitoring View'
-    path:'dashboard/zh/aerospike_stack_node'
+  - desc: 'Aerospike Namespace Overview Monitoring View'
+    path: 'dashboard/zh/aerospike_namespace'
+  - desc: 'Aerospike Monitoring Stack Node Monitoring View'
+    path: 'dashboard/zh/aerospike_stack_node'
 monitor   :
-  - Desc:'Aerospike Detection Library'
-    path:'monitor/zh/aerospike'
+  - desc: 'Aerospike Detection Library'
+    path: 'monitor/zh/aerospike'
 ---
 
 <!-- markdownlint-disable MD025 -->

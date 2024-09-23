@@ -3,7 +3,7 @@ title     : 'TiDB'
 summary   : 'Collect TiDB cluster, TiDB, Etcd, Region and other related component metric information'
 __int_icon: 'icon/tidb'
 dashboard :
-  - desc  : 'TiDB Monitoring View
+  - desc  : 'TiDB Monitoring View'
     path  : 'dashboard/zh/tidb'
 monitor   :
   - desc  : 'No'
