@@ -152,7 +152,7 @@ kubectl apply -f datakit.yaml
 
      1. 您的主机上需 [安装 DataKit](https://docs.guance.com/datakit/datakit-install/) 
     
-     2. 如果您不懂相关的Pipeline知识，请查看[日志Pipeline使用手册](https://docs.guance.com/logs/pipelines/manual/)
+     2. 如果您不懂相关的 Pipeline 知识，请查看[日志 Pipeline 使用手册](../logs/manual.md)
 
 #### 配置日志和指标采集
 

@@ -99,7 +99,7 @@ icon: zy/release-notes
 ### 持续优化 {#consistent0821}
 
 - 异常追踪：
-    - 新增 [Issue 发现](../exception/config-manag.md#auto-issue)页面。通过这一功能，您可以定制 Issue 发现的具体规则，对监控器检测规则触发的异常事件和相关数据进行统一管理和筛选。将一系列事件视为由单一原因引起，并为这些事件设置筛选条件，然后选择聚合维度来进一步细化数据。细化后，数据会根据您设定的检测频率进行聚合。最终，系统会根据您预设的 Issue 标题和描述，自动将这些信息推送到指定的频道，确保所有相关方都能及时接收并有效处理这些 Issue。
+    - 新增 [Issue 发现](../exception/config-manag/issue-discovery.md)页面。通过这一功能，您可以定制 Issue 发现的具体规则，对监控器检测规则触发的异常事件和相关数据进行统一管理和筛选。将一系列事件视为由单一原因引起，并为这些事件设置筛选条件，然后选择聚合维度来进一步细化数据。细化后，数据会根据您设定的检测频率进行聚合。最终，系统会根据您预设的 Issue 标题和描述，自动将这些信息推送到指定的频道，确保所有相关方都能及时接收并有效处理这些 Issue。
     - 配置管理 > 通知策略：通知策略列表新增创建/更新的信息显示。
 
 
@@ -112,7 +112,7 @@ icon: zy/release-notes
 - [未恢复事件查看器](../events/event-explorer/unrecovered-events.md)：
     - 数据源变更为查询事件数据，以 `df_fault_id` 作为唯一标识进行聚合，获取最近一条数据结果返回展示。
     - 页面整体 UI 改造。
-- 应用性能监测（APM） > 链路：[服务调用关系图](../application-performance-monitoring/explorer/explorer-analysis.md#call)新增绑定内置视图能力，点击服务的卡片，即可快速查看与该服务关联的相关用户视图。
+- 应用性能监测（APM）> 链路：[服务调用关系图](../application-performance-monitoring/explorer/explorer-analysis.md#call)新增绑定内置视图能力，点击服务的卡片，即可快速查看与该服务关联的相关用户视图。
 - 管理：
     - 新增【工作空间描述】；
     - 编辑模式下，交互变更为打开新窗口；

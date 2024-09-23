@@ -167,7 +167,7 @@ After registration, you can watch the introduction video of Guance, or you can c
 
 #### Synchronize SLS Data
 
-Guance enables you to view other sls data under Alibaba Cloud account synchronously through binding log index. For more details, please refer to the doc [Binding Index](../logs/multi-index.md#sls).
+Guance enables you to view other sls data under Alibaba Cloud account synchronously through binding log index. For more details, please refer to the doc [Binding Index](../logs/multi-index/index.md#sls).
 
 ## FAQ on Guance Exclusive Plan 
 
@@ -205,7 +205,7 @@ You can judge by the name of the project. If the name of the project is in the f
 
 **4.Can the free workspace created when registering be upgraded to the Exclusive Plan of Guance?**
 
-The user's own SLS stored data can be viewed and analyzed in the workspace of Guance. At present, it only supports viewing and analyzing the bound index data, and does not support association analysis with other functional module data for the time being. Refer to the doc [Binding Index](../logs/multi-index.md#sls) for information on how to bind indexes.
+The user's own SLS stored data can be viewed and analyzed in the workspace of Guance. At present, it only supports viewing and analyzing the bound index data, and does not support association analysis with other functional module data for the time being. Refer to the doc [Binding Index](../logs/multi-index/index.md#sls) for information on how to bind indexes.
 
 ### Guance Exclusive Plan Data Storage
 
@@ -234,7 +234,7 @@ The log data collected through DataKit is charged according to Guance log chargi
 
 **2.If the log data in SLS, how to charge the log data viewed, searched and filtered in Guance studio through the binding log index function provided by Guance?**
 
-SLS log data obtained through index binding, the cost is still charged according to sls. For how to bind indexes, please refer to the doc [Binding Index](../logs/multi-index.md#sls).
+SLS log data obtained through index binding, the cost is still charged according to sls. For how to bind indexes, please refer to the doc [Binding Index](../logs/multi-index/index.md#sls).
 
 If you want to perform data processing, delivery and streaming reading operations from external network access points, the log service charges processing calculation fees, data delivery fees and external network reading traffic fees. For details, please refer to the doc [Billing Items](https://help.aliyun.com/document_detail/107745.htm?spm=a2c4g.11186623.0.0.1d086860NWfUQP#concept-xzl-hjg-vgb).
 
@@ -288,7 +288,7 @@ The current SLS field index will have a delay time of 1 minute. For example, it 
 
 **4. Does the SLS Exclusive Workspace support index merging?**
 
-Not supported. SLS Exclusive Workspace has multiple indexes on by default. For multiple indexes, refer to the doc [Log Index](../logs/multi-index.md). By default, index merging is turned on in the commercial workspace to reduce the generation of indexes.
+Not supported. SLS Exclusive Workspace has multiple indexes on by default. For multiple indexes, refer to the doc [Log Index](../logs/multi-index/index.md). By default, index merging is turned on in the commercial workspace to reduce the generation of indexes.
 
 **5. Why is the SLS Exclusive Workspace Log Time Sequence out of order?**
 
