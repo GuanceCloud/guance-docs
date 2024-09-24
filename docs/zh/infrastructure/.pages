@@ -5,4 +5,4 @@ nav:
   - '容器': container.md
   - '进程': process.md
   - '网络': network.md
-  - '自定义': custom
+  - '资源目录': custom

@@ -442,7 +442,7 @@ Kubernetes 日志/事件：点击 Kubernetes 日志/事件可查看 `namespace`�
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 仪表板</font>](../scene/dashboard.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 仪表板</font>](../scene/dashboard/index.md)
 
 </div>
 

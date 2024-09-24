@@ -208,7 +208,7 @@ pubrepo.guance.com/dataflux/1.91.171:launcher-c365f0b-1721884985
     - 新增[日程](../exception/calendar.md)管理和[通知策略](../exception/config-manag.md#notify-strategy)：对 Issue 的内容范围做进一步通知分配。
 - 场景：
     - 图表：新增[时间偏移](../scene/visual-chart/timeseries-chart.md#advanced-setting)设置。启用时间偏移后，当查询相对时间区间时，实际查询时间范围向前偏移 1 分钟，以防止入库延迟导致数据获取为空。
-    - 仪表板：新增[历史快照](../scene/dashboard.md#historial-snapshot)入口。
+    - 仪表板：新增[历史快照](../scene/dashboard/config_list.md#history)入口。
     - 快照：保存快照时自动获取当前页面上选取的时间范围；分享快照时，可选择允许查看者更改时间范围。
 - 监控：
     - 基础设施存活检测 V2：新增[附加信息](../monitoring/monitor/infrastructure-detection.md#config)。选定字段后，系统会做额外查询，但不会用于触发条件的判断。
@@ -236,9 +236,9 @@ pubrepo.guance.com/dataflux/1.90.170:launcher-3bbe7a1-1721136369
     - [视图变量](../scene/view-variable.md#add)：
         - 新增配置项开关：包含 * 选项。
         - 选择隐藏视图变量时，列表新增隐藏标识。
-    - 仪表板：[分组](../scene/dashboard.md#group)组件支持配置颜色。
+    - 仪表板：[分组](../scene/dashboard/config_list.md#group)组件支持配置颜色。
     - 图表：别名功能覆盖排行榜、矩形树图、桑基图。
-    - 仪表板/查看器/内置视图：新增[卡片属性](../scene/dashboard.md#metadata)信息，优化编辑配置。
+    - 仪表板/查看器/内置视图：新增[卡片属性](../scene/)信息，优化编辑配置。
 - 监控：
     - 通知对象管理：配置 [Webhook 通知对象](../monitoring/notify-object.md#custom-webhook)，支持追加成员信息。
     - 应用智能检测：新增追踪历史变化，过滤周期性的异常数据突变；新增异常服务关联影响的用户数。
@@ -432,7 +432,7 @@ pubrepo.guance.com/dataflux/1.84.163:launcher-4606a02-1714100180
 - 场景 > 仪表板[图表](../scene/visual-chart/index.md#download)可直接下载为 PNG 图片，表格图还可导出为 CSV 文件。
 - 日志 > 绑定索引：【字段映射】更改为非必填项。
 - 集成/内置视图：模版新增标签管理。
-- Service Map 跨工作空间节点[样式显示调整](../application-performance-monitoring/service-manag.md#servicemap)。
+- Service Map 跨工作空间节点[样式显示调整](../application-performance-monitoring/service-manag/)。
 
 ### OpenAPI 更新
 
@@ -470,7 +470,7 @@ pubrepo.guance.com/dataflux/1.83.161:launcher-a44ccb3-1713091048
 - 管理：新增[系统通知](../management/index.md#system-notice)页面，可查看当前账号下的工作空间所有配置的异常状态消息。
 - 场景：
     - 图表查询：新增 [Rollup 函数](../dql/rollup-func.md)，该函数同样适用于【指标分析】与【查询工具】；
-    - 仪表板/用户视图：新增 [pin 钉住](../scene/dashboard.md#pin)功能。在当前访问工作空间被授权查看若干其他工作空间数据的前提下，支持将查询其他工作空间数据设为默认选项。  
+    - 仪表板/用户视图：新增 [pin 钉住](../scene/dashboard/config_list.md#pin)功能。在当前访问工作空间被授权查看若干其他工作空间数据的前提下，支持将查询其他工作空间数据设为默认选项。  
     - 系统视图：支持克隆创建为仪表板或者用户视图；
     - 自定义查看器：优化搜索模式；非编辑模式下，hover 在【数据范围】即可查看所有筛选条件。
 - 查看器 > [快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter)：

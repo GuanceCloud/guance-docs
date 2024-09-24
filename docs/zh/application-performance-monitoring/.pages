@@ -1,7 +1,7 @@
 nav:
   - index.md
   - '数据采集': collection
-  - '服务管理': service-manag.md
+  - '服务管理': service-manag
   - '概览': overview.md
   - '链路': explorer
   - '错误追踪': error.md
