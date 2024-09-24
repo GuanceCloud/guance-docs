@@ -69,7 +69,6 @@ Guance has the ability of full stack data collection, and now supports about {{.
   		}
   		.fth-integration-list-content .fth-integration-list-item {
   			border: 1px solid #e1e4e8;
-            text-decoration: none;
   		}
   		.fth-integration-list-content .fth-integration-list-item:hover .fth-integration-list-card {
   			box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.07);
@@ -136,9 +135,9 @@ Guance has the ability of full stack data collection, and now supports about {{.
   		<!-- 集成list -->
   		<div class="fth-integration-list-content">
   		{{ range $i, $idoc := .IDocs }}
-  			<a
+  			<div
   				class="fth-integration-list-item"
-  				href="{{$idoc.HRef}}"
+  				data-href="{{$idoc.HRef}}"
   				data-tags="{{$idoc.Tags}}"
   				data-name="{{$idoc.Name}}"
   				data-summary="{{$idoc.Summary}}"
@@ -160,7 +159,7 @@ Guance has the ability of full stack data collection, and now supports about {{.
   						</svg>
   					</div>
   				</div>
-  			</a>
+  			</div>
   		{{ end }}
   		</div>
   		<!-- end-集成list -->
@@ -197,6 +196,7 @@ Guance has the ability of full stack data collection, and now supports about {{.
   			const container = document.querySelector('.integration-doc-container');
   			const search = container.querySelector('.integration-search-intput');
   			const header = container.querySelector('.fth-integration-list-header');
+  			const content = container.querySelector('.fth-integration-list-content');
   			let originList = [];
   			const debounceSearchFn = debounce(searchIntegration, 300);
   			let searchValue = '';
@@ -283,6 +283,19 @@ Guance has the ability of full stack data collection, and now supports about {{.
   			}
   			header.querySelector('.integration-search-input').addEventListener('input', inputChange);
   			header.addEventListener('click', tagChange);
+  			content.addEventListener('click', e => {
+  				let ele = e.target;
+  				let i = 0;
+  				while (i < 5) {
+  					if (ele.classList.contains('fth-integration-list-item')) {
+  						const href = ele.dataset.href;
+  						href && (window.location.href = href);
+  						break;
+  					}
+  					i++;
+  					ele = ele.parentNode;
+  				}
+  			});
   			function init() {
   				const list = container.querySelectorAll('.fth-integration-list-item');
   				list.forEach(item => {
