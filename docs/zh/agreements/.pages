@@ -5,6 +5,7 @@ nav:
   - '观测云 SaaS 服务等级协议': sla.md
   - '法律声明': legal-declaration.md
   - '数据安全保密协议': confidentiality.md
+  - '数据安全协议': security.md
   - '观测云费用中心用户充值协议': center-charge.md
   - '观测云费用中心服务协议': center-service.md
   - '观测云移动应用隐私政策': app-privacy-policy.md
@@ -12,3 +13,4 @@ nav:
   - '数据处理协议（DPA）': data-access.md
   - '观测云账号注销须知': account-cancellation.md
   - '观测云费用中心账号注销须知': boss-account-cancellation.md
+  - '2024协议变更公告': 2024

@@ -127,9 +127,9 @@
 
 **标签逻辑补充**：
 
-:material-numeric-1-circle-outline: 标签值格式不限，可以是 `value` 的格式，例如 `aaa`，或是`key:value`，例如 `test:123`；  
+1. 标签值格式不限，可以是 `value` 的格式，例如 `aaa`，或是`key:value`，例如 `test:123`；  
 
-:material-numeric-2-circle-outline: 若您自定义的标签 key 与其他事件属性重复，则做丢弃操作（tags 除外）。例如：当设置监控器 by `host`，最终生成的事件属性有 `host:guance_01`。若您为监控器添加了标签 `host:000`，则丢弃自定义标签 `host:000`，不写入到事件属性中。
+2. 若您自定义的标签 key 与其他事件属性重复，则做丢弃操作（tags 除外）。例如：当设置监控器 by `host`，最终生成的事件属性有 `host:guance_01`。若您为监控器添加了标签 `host:000`，则丢弃自定义标签 `host:000`，不写入到事件属性中。
 
 
 ### SLO 联动
