@@ -3,7 +3,7 @@
 
 ## 什么是场景？
 
-观测云场景支持用户根据不同的视角创建洞察场景，从而满足不同业务的数据分析和洞察需求。场景包括[仪表板](../scene/dashboard.md)、[笔记](../scene/note.md)、[自定义日志查看器](../scene/explorer/index.md)。
+观测云场景支持用户根据不同的视角创建洞察场景，从而满足不同业务的数据分析和洞察需求。场景包括[仪表板](../scene/dashboard/index.md)、[笔记](../scene/note.md)、[自定义日志查看器](../scene/explorer/index.md)。
 
 ## 观测云适用于哪些应用场景？
 
@@ -11,7 +11,7 @@
 
 ## 观测云场景支持多少种可视化图表？
 
-观测云内置20余种标准的可视化图表：包括 [时序图](../scene/visual-chart/timeseries-chart.md)、[概览图](../scene/visual-chart/overview-chart.md)、[表格图](../scene/visual-chart/table-chart.md)、[矩形树图](../scene/visual-chart/treemap.md)、[漏斗图](../scene/visual-chart/funnel-chart.md)、[饼图](../scene/visual-chart/pie-chart.md)、[柱状图](../scene/visual-chart/bar-chart.md)、[SLO](../scene/visual-chart/slo-chart.md)、[排行榜](../scene/visual-chart/leaderboard.md)、[仪表盘](../scene/visual-chart/dashboard.md)、[散点图](../scene/visual-chart/scatter-plot.md)、[气泡图](../scene/visual-chart/bubble-chart.md)、[中国地图](../scene/visual-chart/china-map.md)、[世界地图](../scene/visual-chart/world-map.md)、[蜂窝图](../scene/visual-chart/cellular-map.md)、[文本](../scene/visual-chart/text.md)、[图片](../scene/visual-chart/picture.md)、[视频](../scene/visual-chart/video.md)、[命令面板](../scene/visual-chart/command-panel.md)、[IFrame](../scene/visual-chart/iframe.md)、[日志流图](../scene/visual-chart/log-stream.md)、[对象列表图](../scene/visual-chart/object-list.md)、[告警统计图](../scene/visual-chart/alert-statistics.md) 等，可快速根据不同业务需求快速创建不同的仪表板，满足对数据个性化、全面的展示需求。
+观测云内置20余种标准的可视化图表：包括 [时序图](../scene/visual-chart/timeseries-chart.md)、[概览图](../scene/visual-chart/overview-chart.md)、[表格图](../scene/visual-chart/table-chart.md)、[矩形树图](../scene/visual-chart/treemap.md)、[漏斗图](../scene/visual-chart/funnel-chart.md)、[饼图](../scene/visual-chart/pie-chart.md)、[柱状图](../scene/visual-chart/bar-chart.md)、[SLO](../scene/visual-chart/slo-chart.md)、[排行榜](../scene/visual-chart/leaderboard.md)、[仪表盘](../scene/visual-chart/dashboard/index.md)、[散点图](../scene/visual-chart/scatter-plot.md)、[气泡图](../scene/visual-chart/bubble-chart.md)、[中国地图](../scene/visual-chart/china-map.md)、[世界地图](../scene/visual-chart/world-map.md)、[蜂窝图](../scene/visual-chart/cellular-map.md)、[文本](../scene/visual-chart/text.md)、[图片](../scene/visual-chart/picture.md)、[视频](../scene/visual-chart/video.md)、[命令面板](../scene/visual-chart/command-panel.md)、[IFrame](../scene/visual-chart/iframe.md)、[日志流图](../scene/visual-chart/log-stream.md)、[对象列表图](../scene/visual-chart/object-list.md)、[告警统计图](../scene/visual-chart/alert-statistics.md) 等，可快速根据不同业务需求快速创建不同的仪表板，满足对数据个性化、全面的展示需求。
 
 ## 图表可自由调整布局及大小吗？
 

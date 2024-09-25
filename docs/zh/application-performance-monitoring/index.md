@@ -32,7 +32,7 @@ icon: zy/application-performance-monitoring
 
 <div class="grid cards" markdown>
 
-- :material-format-list-text: __[服务相关](./service-manag.md)__：查看服务清单、性能指标及服务间的调用关系拓扑图
+- :material-format-list-text: __[服务相关](./service-manag/index.md)__：查看服务清单、性能指标及服务间的调用关系拓扑图
 - :fontawesome-solid-globe: __[概览](overview.md)__：查看在线服务数量、P90 服务响应耗时、服务最大影响耗时等指标
 - :material-vector-line: __[链路](./explorer/index.md)__：基于火焰图等工具对采集上报的所有链路数据进行查询和分析
 - :material-weather-lightning-rainy: __[错误追踪](error.md)__：支持查看链路中类似错误的产生历史趋势及其分布情况，快速定位错误

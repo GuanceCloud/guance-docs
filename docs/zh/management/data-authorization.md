@@ -46,7 +46,7 @@
 
 ## 数据联动
 
-工作空间 B（如：Guance）获得数据授权后，可以打开**场景 > [仪表板](../scene/dashboard.md)** 或者 **[笔记](../scene/note.md)**，选择图表组件，在**高级设置 > 空间授权**选择被授权查看的工作空间 A（如下图），然后就可以通过 **[图表查询](../scene/visual-chart/chart-query.md)** 查看和分析被授权工作空间 A（如下图）的数据。
+工作空间 B（如：Guance）获得数据授权后，可以打开**场景 > [仪表板](../scene/dashboard/index.md)** 或者 **[笔记](../scene/note.md)**，选择图表组件，在**高级设置 > 空间授权**选择被授权查看的工作空间 A（如下图），然后就可以通过 **[图表查询](../scene/visual-chart/chart-query.md)** 查看和分析被授权工作空间 A（如下图）的数据。
 
 ![](img/9.dataauth_7.png)
 

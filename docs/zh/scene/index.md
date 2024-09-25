@@ -12,7 +12,7 @@ icon: zy/scene
 
 <div class="grid cards" markdown>
 
--   [<font color=coral> :material-billboard:{ .lg .middle } __仪表板__</font>](dashboard.md) 
+-   [<font color=coral> :material-billboard:{ .lg .middle } __仪表板__</font>](dashboard/index.md) 
 
     ---
 
@@ -57,10 +57,3 @@ icon: zy/scene
 
 
 
-## 更多阅读
-
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **视图变量**</font>](./view-variable.md)
-
-</div>

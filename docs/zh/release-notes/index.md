@@ -6,10 +6,77 @@ icon: zy/release-notes
 
 本文档记录观测云每次上线发布的更新内容说明。
 
+<div class="grid cards" markdown>
+
+-   :material-view-quilt:{ .lg .middle } __[DataKit](../datakit/changelog.md)__
+
+    ---
+
+    包括迭代发布、Hotfix 等内容。
+
+
+</div>
+
+## 2024 年 9 月 25 日
+
+### 功能更新 {#feature0925}
+
+#### 场景
+
+1. 仪表板新增[历史版本记录](../scene/dashboard/history-version.md)：可查看此仪表板三个月内保存的版本记录，选中某版本后，可查看此版本图表详情，并以 json 格式、通过不同颜色标记选中版本的变更内容。
+    - 支持将当前仪表板还原至选中的历史版本；
+    - 支持克隆仪表板某个版本。
+2. [自定义查看器](../scene/explorer/custom-explorer.md)支持变更显示列顺序：自定义查看器编辑配置时，可拖拽所选字段变更字段展示顺序。
+
+#### 监控
+
+1. 监控器新增自定义操作权限：配置操作权限后，仅被赋予权限的对象可对此监控器进行启用/禁用、编辑、删除操作。
+    - 注意：若未配置操作权限，则监控器权限跟随“监控器配置管理”默认权限。
+
+#### 用户访问监测
+
+1. 会话重放增强：移动端上线会话重放功能，支持移动端应用通过会话重放的方式回溯用户行为轨迹、定位使用问题。
+2. 数据访问增强：用户访问新增[数据访问](../real-user-monitoring/rumdata_access.md)功能，支持针对应用级别配置数据查看范围，精细化管理成员数据查询边界。
+
+#### 管理
+
+1. 跨空间授权优化：将登录空间的定义更新为“当前空间”，以简化用户在不同空间间的操作。
+2. [数据转发规则](../management/backup/index.md)支持指定存储目录：存档类型为 AWS S3、华为云 OBS、阿里云 OSS时，支持将数据转发到存储桶下的对应目录中，帮助更好地管理转发数据。
+    - 注意：请谨慎变更存储路径，由于更新配置存在 5分钟左右的延迟，变更后可能会有部分数据依然转发到原目录下。
+3. 数据转发查看器优化：
+    - 时间控件调整：调整为查看器通用时间控件，可获取精确到分钟的转发数据。
+    - SLS query logstore 数据存储位置调整：“数据转发”不再保留 SLS query logstore 的数据，可在“日志查看器”中查询。
+
+#### 可用性监测
+
+拨测标签字段名由 `tags.info` 调整为 `df_label`，与工作空间内标签字段名保持一致。
+
+#### 基础设施
+
+1. [资源目录](../infrastructure/custom/index.md)功能增强：优化了资源目录架构，支持用户自定义资源查看器模板，并提供列表和蜂窝图两种视图模式，以提升资源数据的查看和分析体验。
+2. 容器交互优化：容器及 K8s 基础设施查看器切换查看时，筛选、搜索条件保留不重置。
+
+### Bug 修复 {#bug0925}
+
+1. 解决了拨测标签为 `key:value` 格式时，拨测结果中 key 值未提到一级字段的问题。
+2. 调整日志上下文的显示顺序，解决了自动换行模式下的缩进丢失问题。
+
+
+
+### 部署版更新 {#deployment0925}
+
+1. [Datakit 管理](../deployment/setting.md#datakit)支持筛选在线主机：支持筛选最近 10 分钟、最近 15 分钟、最近 30 分钟、最近 1 小时、最近 3 小时内有数据上报的主机。
+2. 管理后台：
+    - 空间存储类型为“火山引擎”时，支持配置热数据保留时长。
+    - 新建工作空间文案和交互优化，默认主引擎只有一个选项时用户无需额外指定。
+
+### 帮助中心 {#helpcenter0925}
+
+整合了帮助中心页面，允许用户通过统一入口访问所有[集成列表](https://docs.guance.com/integrations/integration-index/)，并支持搜索及标签过滤功能，以提高查找效率。
+
 ## 2024 年 9 月 4 日
 
-
-### 功能更新
+### 功能更新 {#feature0904}
 
 #### 日志
 
@@ -205,7 +272,7 @@ icon: zy/release-notes
     - 新增[日程](../exception/calendar.md)管理和[通知策略](../exception/config-manag.md#notify-strategy)：对 Issue 的内容范围做进一步通知分配。
 - 场景：
     - 图表：新增[时间偏移](../scene/visual-chart/timeseries-chart.md#advanced-setting)设置。启用时间偏移后，当查询相对时间区间时，实际查询时间范围向前偏移 1 分钟，以防止入库延迟导致数据获取为空。
-    - 仪表板：新增[历史快照](../scene/dashboard.md#historial-snapshot)入口。
+    - 仪表板：新增[历史快照](../scene/dashboard/config_list.md#history)入口。
     - 快照：保存快照时自动获取当前页面上选取的时间范围；分享快照时，可选择允许查看者更改时间范围。
 - 监控：
     - 基础设施存活检测 V2：新增[附加信息](../monitoring/monitor/infrastructure-detection.md#config)。选定字段后，系统会做额外查询，但不会用于触发条件的判断。
@@ -221,9 +288,9 @@ icon: zy/release-notes
     - [视图变量](../scene/view-variable.md#add)：
         - 新增配置项开关：包含 * 选项。
         - 选择隐藏视图变量时，列表新增隐藏标识。
-    - 仪表板：[分组](../scene/dashboard.md#group)组件支持配置颜色。
+    - 仪表板：[分组](../scene/dashboard/config_list.md#group)组件支持配置颜色。
     - 图表：别名功能覆盖排行榜、矩形树图、桑基图。
-    - 仪表板/查看器/内置视图：新增[卡片属性](../scene/dashboard.md#metadata)信息，优化编辑配置。
+    - 仪表板/查看器/内置视图：新增[卡片属性](../scene/dashboard/config_page.md#metadata)信息，优化编辑配置。
 - 监控：
     - 通知对象管理：配置 [Webhook 通知对象](../monitoring/notify-object.md#custom-webhook)，支持追加成员信息。
     - 应用智能检测：新增追踪历史变化，过滤周期性的异常数据突变；新增异常服务关联影响的用户数。
@@ -384,7 +451,7 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
 - 场景 > 仪表板[图表](../scene/visual-chart/index.md#download)可直接下载为 PNG 图片，表格图还可导出为 CSV 文件。
 - 日志 > 绑定索引：【字段映射】更改为非必填项。
 - 集成/内置视图：模版新增标签管理。
-- Service Map 跨工作空间节点[样式显示调整](../application-performance-monitoring/service-manag.md#servicemap)。
+- Service Map 跨工作空间节点[样式显示调整](../application-performance-monitoring/service-manag/service-map.md#servicemap)。
 
 ### 观测云部署版更新
 
@@ -404,7 +471,7 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
 - 管理：新增[系统通知](../management/index.md#system-notice)页面，可查看当前账号下的工作空间所有配置的异常状态消息。
 - 场景：
     - 图表查询：新增 [Rollup 函数](../dql/rollup-func.md)，该函数同样适用于【指标分析】与【查询工具】；
-    - 仪表板/用户视图：新增 [pin 钉住](../scene/dashboard.md#pin)功能。在当前访问工作空间被授权查看若干其他工作空间数据的前提下，支持将查询其他工作空间数据设为默认选项。  
+    - 仪表板/用户视图：新增 [pin 钉住](../scene/dashboard/config_list.md#pin)功能。在当前访问工作空间被授权查看若干其他工作空间数据的前提下，支持将查询其他工作空间数据设为默认选项。  
     - 系统视图：支持克隆创建为仪表板或者用户视图；
     - 自定义查看器：优化搜索模式；非编辑模式下，hover 在【数据范围】即可查看所有筛选条件。
 - 查看器 > [快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter)：
@@ -457,7 +524,7 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
 ### 观测云更新
 
 - 监控 > 监控器：监控器类型【[组合检测](../monitoring/monitor/composite-detection.md)】上线。支持将多个监控器的结果通过表达式组合成一个监控器，最终基于组合后的结果进行告警。
-- 场景 > 服务：支持[跨工作空间 Service Map 查询](../application-performance-monitoring/service-manag.md#servicemap)。
+- 场景 > 服务：支持[跨工作空间 Service Map 查询](../application-performance-monitoring/service-manag/service-map.md#servicemap)。
 
 ### 观测云部署版更新
 
