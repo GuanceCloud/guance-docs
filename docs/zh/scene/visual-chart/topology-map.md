@@ -18,7 +18,7 @@
 
 <img src="../../img/chart-relate.png" width="70%" >
 
-> 此处同样支持 [Service Map 跨工作空间查询](../../application-performance-monitoring/service-manag.md#servicemap)。
+> 此处同样支持 [Service Map 跨工作空间查询](../../application-performance-monitoring/service-manag/service-map.md##servicemap)。
 
 
 

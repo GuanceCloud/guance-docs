@@ -68,7 +68,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **仪表盘**</font>](dashboard.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **仪表盘**</font>](dashboard/index.md)
 
 </div>
 
@@ -171,7 +171,7 @@
 | :-------------------: | :--------------------: | :--------------------: | :--------------------: | :--------------------: |
 | [时序图](timeseries-chart.md){ .md-button .md-button--primary } | [概览图](overview-chart.md){ .md-button .md-button--primary } | [表格图](table-chart.md){ .md-button .md-button--primary } |[矩形树图](treemap.md){ .md-button .md-button--primary } |[漏斗图](funnel-chart.md){ .md-button .md-button--primary } |
 | [饼图](pie-chart.md){ .md-button .md-button--primary } | [柱状图](bar-chart.md){ .md-button .md-button--primary } | [直方图](histogram.md){ .md-button .md-button--primary } |[SLO](slo-chart.md){ .md-button .md-button--primary } |[排行榜](leaderboard.md){ .md-button .md-button--primary } |
-| [仪表盘](dashboard.md){ .md-button .md-button--primary } | [散点图](scatter-plot.md){ .md-button .md-button--primary } | [气泡图](bubble-chart.md){ .md-button .md-button--primary } |[中国地图](china-map.md){ .md-button .md-button--primary } |[世界地图](world-map.md){ .md-button .md-button--primary } |
+| [仪表盘](dashboard/index.md){ .md-button .md-button--primary } | [散点图](scatter-plot.md){ .md-button .md-button--primary } | [气泡图](bubble-chart.md){ .md-button .md-button--primary } |[中国地图](china-map.md){ .md-button .md-button--primary } |[世界地图](world-map.md){ .md-button .md-button--primary } |
 | [蜂窝图](cellular-map.md){ .md-button .md-button--primary } | [桑基图](sankey.md){ .md-button .md-button--primary } | [文本](text.md){ .md-button .md-button--primary } |[图片](picture.md){ .md-button .md-button--primary } |[视频](video.md){ .md-button .md-button--primary } |
 | [命令面板](command-panel.md){ .md-button .md-button--primary } | [IFrame](iframe.md){ .md-button .md-button--primary } | [日志流图](log-stream.md){ .md-button .md-button--primary } |[对象列表图](object-list.md){ .md-button .md-button--primary } |[告警统计图](alert-statistics.md){ .md-button .md-button--primary } | 
 | [拓扑图](topology-map.md){ .md-button .md-button--primary } |  |  |  |  |
@@ -192,7 +192,7 @@
 ![](../img/variables_1.png)
 
 <!--
-> 该图表联动显示功能适用于[时序图](timeseries-chart.md)、[概览图](overview-chart.md)、[表格图](table-chart.md)、[矩形树图](treemap.md)、[漏斗图](funnel-chart.md)、[饼图](pie-chart.md)、[柱状图](bar-chart.md)、[直方图](histogram.md)、[SLO](slo-chart.md)、[排行榜](leaderboard.md)、[仪表盘](dashboard.md)、[散点图](scatter-plot.md)、[气泡图](bubble-chart.md)、[中国地图](china-map.md)、[世界地图](world-map.md)、[蜂窝图](cellular-map.md)、[桑基图](sankey.md)、[命令面板](command-panel.md)、[IFrame](iframe.md)、[日志流图](log-stream.md)、[对象列表图](object-list.md)、[告警统计图](alert-statistics.md)。
+> 该图表联动显示功能适用于[时序图](timeseries-chart.md)、[概览图](overview-chart.md)、[表格图](table-chart.md)、[矩形树图](treemap.md)、[漏斗图](funnel-chart.md)、[饼图](pie-chart.md)、[柱状图](bar-chart.md)、[直方图](histogram.md)、[SLO](slo-chart.md)、[排行榜](leaderboard.md)、[仪表盘](dashboard/index.md)、[散点图](scatter-plot.md)、[气泡图](bubble-chart.md)、[中国地图](china-map.md)、[世界地图](world-map.md)、[蜂窝图](cellular-map.md)、[桑基图](sankey.md)、[命令面板](command-panel.md)、[IFrame](iframe.md)、[日志流图](log-stream.md)、[对象列表图](object-list.md)、[告警统计图](alert-statistics.md)。
 -->
 
 ## 相关设置 {#settings}

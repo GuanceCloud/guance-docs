@@ -26,7 +26,7 @@ icon: zy/getting-started
 
     ---
 
-    介绍更多功能操作技巧，如包括[查看器](./function-details/explorer-search.md)、[仪表板](./function-details/dashboard.md)、[快照](./function-details/snapshot.md) 等内容。
+    介绍更多功能操作技巧，如包括[查看器](./function-details/explorer-search.md)、[仪表板](./function-details/dashboard/index.md)、[快照](./function-details/snapshot.md) 等内容。
 
     <br/>
     [**:octicons-arrow-right-24: 更多**](./function-details/explorer-search.md)
