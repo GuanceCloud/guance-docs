@@ -1,3 +1,7 @@
+.md-grid {
+	/*max-width: 80%; */
+}
+
 .md-header__title {
   margin-left: 0 !important;
 }

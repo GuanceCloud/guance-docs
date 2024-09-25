@@ -1,13 +1,13 @@
 ---
-Title:'APISIX'
-summary:'Collecting APISIX metric information'
+title: 'APISIX'
+summary: 'Collecting APISIX metric information'
 __int_icon: 'icon/apisix'
 dashboard:
-  - Desc:'APISIX Monitoring View'
-    path:'dashboard/en/apisix'
+  - desc: 'APISIX Monitoring View'
+    path: 'dashboard/en/apisix'
 monitor   :
-  - Desc:'No'
-    path:'-'
+  - Desc: 'No'
+    path: '-'
 ---
 
 

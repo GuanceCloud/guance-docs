@@ -1,6 +1,8 @@
 ---
 title     : 'Consul'
 summary   : 'Collect metrics of Consul'
+tags:
+  - 'MIDDLEWARE'
 __int_icon      : 'icon/consul'
 dashboard :
   - desc  : 'Consul'
@@ -10,10 +12,6 @@ monitor   :
     path  : 'monitor/en/consul'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# Consul
-<!-- markdownlint-enable -->
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 

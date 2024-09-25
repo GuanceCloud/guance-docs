@@ -46,6 +46,8 @@
 
 ## 更多阅读
 
+<font size=3>
+
 <div class="grid cards" markdown>
 
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 通过自定义日志查看器定制化您的查看需求</font>](./index.md)
@@ -61,3 +63,4 @@
 </div>
 
 
+</font>

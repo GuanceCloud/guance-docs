@@ -1,6 +1,8 @@
 ---
 title     : 'GPU'
 summary   : 'Collect NVIDIA GPU metrics and logs'
+tags:
+  - 'HOST'
 __int_icon      : 'icon/gpu_smi'
 dashboard :
   - desc  : 'N/A'
@@ -10,10 +12,6 @@ monitor   :
     path  : '-'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# GPU
-<!-- markdownlint-enable -->
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 

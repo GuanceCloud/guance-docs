@@ -537,7 +537,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_HTTP_LISTEN**
 
-    The address can be modified so that the [DataKit interface](apis) can be called externally.
+    The address can be modified so that the [DataKit interface](apis.md) can be called externally.
 
     **Type**: String
 
@@ -545,7 +545,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_HTTP_PUBLIC_APIS**
 
-    [API list](apis) that allow external access, separated by English commas between multiple APIs. When DataKit is deployed on the public network, it is used to disable some APIs.
+    [API list](apis.md) that allow external access, separated by English commas between multiple APIs. When DataKit is deployed on the public network, it is used to disable some APIs.
 
     **Type**: List
 
@@ -803,7 +803,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 <!-- markdownlint-disable MD046 -->
 - **ENV_IO_FILTERS**
 
-    Add [row protocol filter](datakit-filter)
+    Add [line protocol filter](datakit-filter.md)
 
     **Type**: JSON
 

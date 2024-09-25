@@ -2,6 +2,8 @@
 title     : 'CockroachDB'
 summary   : '采集 CockroachDB 的指标数据'
 __int_icon      : 'icon/cockroachdb'
+tags:
+  - '数据库'
 dashboard :
   - desc  : 'CockroachDB'
     path  : 'dashboard/zh/cockroachdb'
@@ -10,10 +12,6 @@ monitor   :
     path  : 'monitor/zh/cockroachdb'
 ---
 
-<!-- markdownlint-disable MD025 -->
-# CockroachDB
-<!-- markdownlint-enable -->
----
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 

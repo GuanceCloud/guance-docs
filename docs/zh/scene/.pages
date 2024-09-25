@@ -1,6 +1,6 @@
 nav:
   - index.md
-  - '仪表板': dashboard.md
+  - '仪表板': dashboard
   - '定时报告': report.md
   - '笔记': note.md
   - '查看器': explorer

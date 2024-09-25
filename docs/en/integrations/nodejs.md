@@ -4,7 +4,7 @@ summary   : 'Obtain metrics, link tracking, and log information for NodeJs appli
 __int_icon: 'icon/nodejs'
 dashboard :
   - desc  : 'No'
-    path  : -
+    path  : '-'
 monitor   :
   - desc  : 'No'
     path  : '-'

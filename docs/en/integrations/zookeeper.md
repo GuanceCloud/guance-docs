@@ -3,7 +3,7 @@ title     : 'ZooKeeper'
 summary   : 'Collect zookeeper related index information'
 __int_icon: 'icon/zookeeper'
 dashboard :
-  - desc  : 'ZooKeeper Monitoring View
+  - desc  : 'ZooKeeper Monitoring View'
     path  : 'dashboard/zh/tidb'
 monitor   :
   - desc  : 'Zookeeper Detection Library'

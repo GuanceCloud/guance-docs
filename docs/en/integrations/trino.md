@@ -77,8 +77,7 @@ Adjust the content of `trino.conf` as follows:
 
 ```
 
-<font color="red">*Note that the marker needs to be adjusted*</font>
-
+> *Note that the marker needs to be adjusted*
 
 Description of main parameters:
 

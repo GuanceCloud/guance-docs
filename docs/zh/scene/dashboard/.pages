@@ -1,0 +1,6 @@
+nav:
+  - index.md
+  - '列表管理': config_list.md
+  - '页面管理': config_page.md
+  - '历史版本': history-version.md
+

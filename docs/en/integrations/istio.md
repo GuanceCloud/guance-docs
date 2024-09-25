@@ -272,16 +272,17 @@ Once deployed, you can use `zipkin.istio-system.svc.cluster.local:9411` to push 
 
 DataKit default configuration, collection container output to `/dev/stdout` log. <br />
 
+<!-- TODO: page 404
 Refer to for more log collection
 
 <[Pod logging collector best practices](../best-practices/cloud-native/pod-log.md)>
 
-<[Kubernetes Several `gameplay` for log collection in clusters](../best-practices/cloud-native/k8s-logs.md)>
-
-
+<[Kubernetes Several `gameplay` for log collection in clusters](../best-practices/cloud-native/k8s-logs.md)> -->
 
 ---
 
+<!-- TODO: page 404
 ## Best Practices
 
 Best practices include Istio installation, Istio built-in project deployment, RUM/APM associations, and other extensions, as detailed in [Best practices for observable microservices based on Istio](../best-practices/cloud-native/istio.md)
+-->

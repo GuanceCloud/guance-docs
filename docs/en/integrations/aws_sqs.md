@@ -33,7 +33,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip: Please prepare AWS AK that meets the requirements in advance (For simplicity's sake, you can directly grant the global read-only permission for CloudWatch `CloudWatchReadOnlyAccess`)
 
-To synchronize the monitoring data of AWS Simple Queue Service cloud resources, we install the corresponding collection [Guance Integration（AWS-Simple Queue Service Collect](ID：`guance_aws_sqs`)
+To synchronize the monitoring data of AWS Simple Queue Service cloud resources, we install the corresponding Guance Integration **AWS-Simple Queue Service Collect**(ID: `guance_aws_sqs`)
 
 Click [Install] and enter the corresponding parameters: Alibaba Cloud AK ID, Alibaba Cloud AK SECRET and Account Name.
 

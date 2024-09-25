@@ -47,7 +47,7 @@ Session Replay Record 功能集成在 RUM SDK 中, 所以不需要额外引入�
 
 ![](../../img/16.session_replay_1.png)
 
-### 在详情页查看
+### 在详情页查看 {#view_replay_in_rum_detail}
 
 - 在 Session、View、Error 查看器详情页，通过点击右上角的**查看重放**，即可查看当前用户会话的操作重放。
 - 在 View、Error、Resource、Action、Long Task 查看器详情页的**来源**部分，即可查看当前用户会话的操作重放。
@@ -56,7 +56,7 @@ Session Replay Record 功能集成在 RUM SDK 中, 所以不需要额外引入�
 
 ![](../../img/16.session_replay_8.png)
 
-## 查看会话重放效果
+## 查看会话重放效果 {#view_display_effect_of_replay}
 
 在会话重放页面，您可以查看用户整个会话的过程，包括访问的页面、操作记录、发生的错误数据，点击即可播放用户的操作过程。
 

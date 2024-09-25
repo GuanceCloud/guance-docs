@@ -1,6 +1,9 @@
 ---
 title     : 'Memcached'
 summary   : '采集 Memcached 的指标数据'
+tags:
+  - '缓存'
+  - '中间件'
 __int_icon      : 'icon/memcached'
 dashboard :
   - desc  : 'Memcached'
@@ -8,12 +11,6 @@ dashboard :
 monitor   :
   - desc  : '暂无'            # 缺少监控视图示例
     path  : '-' 
----
-
-<!-- markdownlint-disable MD025 -->
-# Memcached
-<!-- markdownlint-enable -->
-
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
