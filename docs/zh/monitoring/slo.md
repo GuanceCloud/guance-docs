@@ -90,16 +90,16 @@
 
     异常时间参考如下查询：
 
-    `slo_cost` 表示**扣除分钟数**，将值相加即为**异常时间**，`slo_id` 对应替换即可：
+    `df_slo_cost` 表示**扣除分钟数**，将值相加即为**异常时间**，`df_slo_id` 对应替换即可：
 
     ```
-    M::`slo`:(sum(`slo_cost`)) { `slo_id` = 'monitor_c36bb56f274b4242866fe7259f1859c0' }
+    E::`slo`:(sum(`df_slo_costslo_cost`)) { `df_slo_id` = 'monitor_c36bb56f274b4242866fe7259f1859c0' }
     ```
 
     若查询 7 天的 SLO 值，DQL 表达式如下：
 
     ```
-    eval((10080-A)/10080 *100, A="M::`slo`:(sum(`slo_cost`)) { `slo_id` = 'monitor_c36bb56f274b4242866fe7259f1859c0'}")
+    eval((10080-A)/10080 *100, A="E::`slo`:(sum(`df_slo_cost`)) { `df_slo_id` = 'monitor_c36bb56f274b4242866fe7259f1859c0'}")
     ```
 
     <u>示例：</u>

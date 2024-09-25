@@ -6,7 +6,6 @@ icon: zy/integrations
 
 ---
 
-观测云具有全栈数据采集能力，现已支持 280 多种采集集成。
 
 <!-- markdownlint-disable MD046 MD037 MD009 MD010 -->
 <html lang="en">
@@ -138,7 +137,7 @@ icon: zy/integrations
   			<div
   				class="fth-integration-list-item"
   				data-href="../active_directory"
-  				data-tags=""
+  				data-tags="WINDOWS"
   				data-name="Active Directory"
   				data-summary="采集 Active Directory 相关指标信息"
   			>
@@ -7474,7 +7473,7 @@ icon: zy/integrations
   	</div>
   	<script>
   		!(function () {
-            const limitTags = ['阿里云', '腾讯云', '华为云', '谷歌云', 'AWS', 'AZURE', '中间件', '主机', 'IPMI', 'KUBERNETES', '容器', '网络', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', '缓存', '消息队列', '数据库', '语言', '链路追踪', 'PROFILE', '日志', '拨测', 'WEB', '移动端', 'CI/CD', 'JENKINS', 'GITLAB', '会话重放'];
+            const limitTags = ['阿里云', '腾讯云', '华为云', '谷歌云', 'AWS', 'AZURE', '中间件', '主机', 'IPMI', 'KUBERNETES', '容器', '网络', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', '缓存', '消息队列', '数据库', '语言', '链路追踪', 'PROFILE', '日志', '拨测', 'WEB', '移动端', 'CI/CD', 'JENKINS', 'GITLAB', '会话重放', 'WINDOWS'];
             const tagAll = { label: '全部', value: '' };
   			const debounce = (fn, delay, immediate) => {
   				let timeout = null;
