@@ -142,7 +142,7 @@ Filter 的主要功能就是数据筛选，其筛选依据是通过一定的筛�
 - 内置常量
 
     - `true/false`
-    - `nil/null`: 空值，见下文说明。
+    - `nil/null`: 空值，见下文说明
 
 - 匹配和列表操作
 
@@ -180,8 +180,6 @@ Filter 的主要功能就是数据筛选，其筛选依据是通过一定的筛�
 <!-- markdownlint-enable -->
 
 ### nil/null 用法 {#nil}
-
-<!-- TODO: 此处需添加DK/DW版本标识 -->
 
 `nil/null` 用于表示某些字段不存在，我们可以在 `=/!=/IN/NOTIN` 操作中使用：
 

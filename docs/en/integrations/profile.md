@@ -47,6 +47,9 @@ At present, DataKit collects profiling data in two ways:
       ## the max allowed size of http request body (of MB), 32MB by default.
       body_size_limit_mb = 32 # MB
     
+      ## set false to stop generating apm metrics from ddtrace output.
+      generate_metrics = true
+    
       ## io_config is used to control profiling uploading behavior.
       ## cache_path set the disk directory where temporarily cache profiling data.
       ## cache_capacity_mb specify the max storage space (in MiB) that profiling cache can use.
