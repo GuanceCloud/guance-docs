@@ -35,7 +35,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	os="darwin"
 
 	# NOTE: under darwin, for arm64 and amd64, both use amd64
-	arch="amd64"
+	arch="arm64"
 fi
 
 # NOTE: windows not support
