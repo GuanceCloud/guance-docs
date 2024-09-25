@@ -19,7 +19,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is `datakit.conf`, here is the example sample(1.38.2):
+Datakit main configure is `datakit.conf`, here is the example sample(1.39.0):
 
 <!-- markdownlint-disable MD046 -->
 ??? info "`datakit.conf`"
@@ -268,6 +268,15 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.38.2):
       # to build the X-Global-Tags HTTP header value.
       global_customer_keys = []
       enable_sinker        = false # disable sinker
+    
+      # use dataway as NTP server
+      [dataway.ntp]
+        interval = "5m"  # sync dataway time each 5min
+    
+        # if datakit local time and dataway time's ABS value reach the diff,
+        # datakit's soft time will update to the dataway time.
+        # NOTE: diff MUST larger than "1s"
+        diff     = "30s" 
     
     ################################################
     # Datakit logging configure
