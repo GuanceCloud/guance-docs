@@ -1919,9 +1919,9 @@ FTExt {
 
 ## 权限配置说明
 
-| **名称** | **使用原因** |
-| --- | --- |
-| `READ_PHONE_STATE` | 用于获取手机的设备信息，便于精准分析数据信息 |
+| **名称** | **必须** | **使用原因** |
+| --- | --- | --- |
+| `READ_PHONE_STATE` | 否 |用于获取手机的设备信息，便于精准分析数据信息，在 SDK 中影响手机蜂窝网络信息的获取 |
 
 > 关于如何申请动态权限，具体详情参考 [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
 
