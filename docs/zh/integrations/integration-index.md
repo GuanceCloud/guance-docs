@@ -6,7 +6,6 @@ icon: zy/integrations
 
 ---
 
-
 <!-- markdownlint-disable MD046 MD037 MD009 MD010 -->
 <html lang="en">
   <div>
@@ -30,6 +29,7 @@ icon: zy/integrations
             position: absolute;
             top: 7px;
             left: 8px;
+            border: 0;
         }
   		.fth-integration-list-header .integration-search-input {
   			border: 1px solid #ccc;
