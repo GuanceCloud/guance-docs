@@ -2,6 +2,8 @@
 # Data Security Confidentiality Agreement 
 ---
 
+[Chinese Version](confidentiality-zh.md)
+
 Data Security Confidentiality Agreement (the “Confidentiality Agreement”)
 
 This Confidentiality Agreement is a binding and effective contract concluded by Guance Information Technology Co., Limited (hereinafter referred to as "Guance"), the operator of Guance, and the user (hereinafter referred to as “You”). Guance provides users with the products and services displayed on this website (hereinafter referred to as the “Service”/the “Product”), and will constantly update the service contents. The latest services are subject to the page display and the actual provision to users of relevant products and services on this website.
