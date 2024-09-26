@@ -110,6 +110,10 @@ yum install -y  redis
       ## @param interval - number - optional - default: 15
       interval = "15s"
     
+      ## @param redis_cli_path - string - optional - default: "redis-cli"
+      ## If you want to use a custom redis-cli path for bigkey or hotkey, set this to the path of the redis-cli binary.
+      # redis_cli_path = "/usr/bin/redis-cli"
+    
       ## @param hotkey - boolean - optional - default: false
       ## If you collet hotkey, set this to true
       # hotkey = false
@@ -411,8 +415,15 @@ For all of the following data collections, the global election tags will added a
 |`command_type`|Command type.|
 |`error_type`|Error type.|
 |`host`|Hostname.|
+|`maxmemory_policy`|The value of the maxmemory-policy configuration directive.|
+|`os`|Operating system of the Redis server.|
+|`process_id`|Process ID of the Redis server.|
 |`quantile`|Histogram `quantile`.|
+|`redis_build_id`|Build ID of the Redis server.|
+|`redis_mode`|Mode of the Redis server.|
 |`redis_version`|Version of the Redis server.|
+|`role`|Value is `master` if the instance is replica of no one, or `slave` if the instance is a replica of some master instance.|
+|`run_id`|Random value identifying the Redis server (to be used by Sentinel and Cluster).|
 |`server`|Server addr.|
 |`service_name`|Service name.|
 

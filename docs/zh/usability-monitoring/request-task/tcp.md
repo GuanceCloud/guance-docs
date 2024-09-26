@@ -46,7 +46,3 @@ TCP 拨测允许您监测主机端口的 TCP 连接，确保 SSH（22）、SMTP�
 
 <img src="../../img/4.dailtesting_http_5.png" width="70%" >
 
-
-
-
-

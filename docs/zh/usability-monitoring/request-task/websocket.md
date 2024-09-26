@@ -48,5 +48,3 @@ WEBSOCKET 拨测允许您的客户端向服务端发起 HTTP 请求，建立 WEB
 
 <img src="../../img/4.dailtesting_http_5.png" width="70%" >
 
-
-

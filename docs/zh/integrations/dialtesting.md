@@ -182,6 +182,7 @@ graph TD
 |`country`|The name of the country|
 |`datakit_version`|The DataKit version|
 |`dest_ip`|The IP address of the destination|
+|`df_label`|The label of the task|
 |`internal`|The boolean value, true for domestic and false for overseas|
 |`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
 |`method`|HTTP method, such as `GET`|
@@ -193,7 +194,6 @@ graph TD
 |`status`|The status of the task, either 'OK' or 'FAIL'|
 |`status_code_class`|The class of the status code, such as '2xx'|
 |`status_code_string`|The status string, such as '200 OK'|
-|`tags_info`|The tags of the task|
 |`url`|The URL of the endpoint to be monitored|
 
 - 指标列表
@@ -229,6 +229,7 @@ graph TD
 |`dest_host`|The name of the host to be monitored|
 |`dest_ip`|The IP address|
 |`dest_port`|The port of the TCP connection|
+|`df_label`|The label of the task|
 |`internal`|The boolean value, true for domestic and false for overseas|
 |`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
 |`name`|The name of the task|
@@ -237,7 +238,6 @@ graph TD
 |`proto`|The protocol of the task|
 |`province`|The name of the province|
 |`status`|The status of the task, either 'OK' or 'FAIL'|
-|`tags_info`|The tags of the task|
 
 - 指标列表
 
@@ -265,6 +265,7 @@ graph TD
 |`country`|The name of the country|
 |`datakit_version`|The DataKit version|
 |`dest_host`|The name of the host to be monitored|
+|`df_label`|The label of the task|
 |`internal`|The boolean value, true for domestic and false for overseas|
 |`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
 |`name`|The name of the task|
@@ -273,7 +274,6 @@ graph TD
 |`proto`|The protocol of the task|
 |`province`|The name of the province|
 |`status`|The status of the task, either 'OK' or 'FAIL'|
-|`tags_info`|The tags of the task|
 
 - 指标列表
 
@@ -309,6 +309,7 @@ graph TD
 |`city`|The name of the city|
 |`country`|The name of the country|
 |`datakit_version`|The DataKit version|
+|`df_label`|The label of the task|
 |`internal`|The boolean value, true for domestic and false for overseas|
 |`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
 |`name`|The name of the task|
@@ -317,7 +318,6 @@ graph TD
 |`proto`|The protocol of the task|
 |`province`|The name of the province|
 |`status`|The status of the task, either 'OK' or 'FAIL'|
-|`tags_info`|The tags of the task|
 |`url`|The URL string, such as `ws://www.abc.com`|
 
 - 指标列表

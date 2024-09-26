@@ -1,5 +1,41 @@
 # Changelog
 
+## 1.39.0 (2024/09/25) {#cl-1.39.0}
+
+This release is an iterative update with the following changes:
+
+### New Features {#cl-1.39.0-new}
+
+- Added vSphere Collector (#2322)
+- Support extracting basic metrics from Profile files in profiling collection (#2335)
+
+### Bug Fixes {#cl-1.39.0-fix}
+
+- Fixed unnecessary collection by KubernetesPrometheus collector during startup (#2412)
+- Fixed potential crash issues with Redis Collector (#2411)
+- Fixed RabbitMQ crash issue (#2410)
+- Fixed the issue where up metrics did not accurately reflect the collector's running status (#2409)
+
+### Feature Optimizations {#cl-1.39.0-opt}
+
+- Improved compatibility for Redis big-key collection (#2404)
+- Dial-testing supports custom tags extraction (#2402)
+- Other documentation optimizations (#2401)
+
+---
+
+## 1.38.2 (2024/09/19) {#cl-1.38.2}
+
+This release is a Hotfix release addressing the following issues:
+
+- Fixed an issue where the global-tag was incorrectly added during Nginx collection (#2406).
+- Resolved a CPU core collection error in the host object collector on Windows (#2398).
+- The Chrony collector now integrates with the Dataway time synchronization mechanism to prevent data collection from being affected by Datakit's local time discrepancies (#2351).
+    - This feature requires Dataway version 1.6.0 or higher.
+- Fixed a crash issue in Datakit's HTTP API that could occur under timeout conditions (#2091).
+
+---
+
 ## 1.38.1 (2024/09/11) {#cl-1.38.1}
 
 This release is a hotfix release, fixed the following issues:
@@ -317,7 +353,7 @@ If your time series storage is InfluxDB, then **do not upgrade Datakit**. Please
 
 Additionally, if the central has been upgraded to a newer version (1.87.167+), then lower versions of Datakit should also **use the `v1` upload protocol**. Please switch from `v2` to `v1` if you have set `v2` before.
 
-If you do indeed want to upgrade to a newer version of Datakit, please replace the time series engine with guance-storage.
+If you do indeed want to upgrade to a newer version of Datakit, please replace the time series engine with GuanceDB for metrics.
 
 ---
 

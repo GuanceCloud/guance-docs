@@ -1,3 +1,5 @@
+<!-- 不要在 dataflux-doc 仓库直接修改本文件，该文件由 Dataway 项目自动导出 -->
+
 # Dataway
 ---
 
@@ -38,42 +40,95 @@ DataWay 是观测云的数据网关，采集器上报数据到观测云都需要
     ??? info "*dataway.yaml*（单击点开）"
 
         ```yaml
-        uuid                  : not-set
-        token                 : tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        secret_token          : ""
-        enable_internal_token : false
-        enable_empty_token    : false
-        http_timeout          : 30s
-        insecure_skip_verify  : false
-        remote_host           : https://kodo.guance.com:443
-        cascaded              : false
-        bind                  : 0.0.0.0:9528
-        api_limit_rate        : 100000
-        max_http_body_bytes   : 67108864
-        heartbeat_second      : 60
-        http_client_trace     : true
-        white_list            : []
+        # ============= DATAWAY CONFIG =============
 
-        log       : log
-        log_level : debug
-        gin_log   : gin.log
+        # Dataway UUID, we can get it on during create a new dataway
+        uuid:
+
+        # It's the workspace token, most of the time, it's
+        # system worker space's token.
+        token:
+
+        # secret_token used under sinker mode, and to check if incomming datakit
+        # requests are valid.
+        secret_token:
+
+        # If __internal__ token allowed? If ok, the data/request will direct to
+        # the workspace with the token above
+        enable_internal_token: false
+
+        # is empty token allowed? If ok, the data/request will direct to
+        # the workspace with the token above
+        enable_empty_token: false
+
+        # Is dataway cascaded? For cascaded Dataway, it's remote_host is
+        # another Dataway and not Kodo.
+        cascaded: false
+
+        # kodo(next dataway) related configures
+        remote_host:
+        http_timeout: 30s
+        insecure_skip_verify: false
+        http_client_trace: false
+        sni: ""
+
+        # dataway API configures
+        bind: 0.0.0.0:9528
+
+        # dataway TLS file path
+        tls_crt:
+        tls_key:
+
+        # enable pprof
+        pprof_bind: localhost:6060
+
+        api_limit_rate : 100000          # 100K
+        max_http_body_bytes : 67108864   # 64MB
+        copy_buffer_drop_size : 8388608  # 8MB, if copy buffer memory larger than this, this memory released
+        reserved_pool_size: 4096         # reserved pool size for better GC
+
+        within_docker: false
+
+        log_level: info
+        log: log
+        gin_log: gin.log
 
         cache_cfg:
-          disabled            : false
-          max_disk_size       : 20480
-          max_data_size       : 67108864
-          batch_size          : 67108864
-          dir                 : disk_cache
-          clean_interval      : 30s
-          expire_duration     : 24h
+          # cache disk path
+          dir: "disk_cache"
 
-        sinker: null
+          # disable cache
+          disabled: false
+
+          clean_interval: "10s"
+
+          # in MB, max single data package size in disk cache, such as HTTP body
+          max_data_size: 100
+
+          # in MB, single disk-batch(single file) size
+          batch_size: 128
+
+          # in MB, max disk size allowed to cache data
+          max_disk_size: 65535
+
+          # expire duration, default 7 days
+          expire_duration: "168h"
 
         prometheus:
-          url                 : /metrics
-          listen              : 0.0.0.0:9091
-          enable              : true
-          disablegometrics    : false
+          listen: "localhost:9090"
+          url: "/metrics"
+          enable: true
+
+        #sinker:
+        #  etcd:
+        #    urls:
+        #    - http://localhost:2379 # one or multiple etcd host
+        #    dial_timeout: 30s
+        #    key_space: "/dw_sinker" # subscribe to the etcd key
+        #    username: "dataway"
+        #    password: "<PASSWORD>"
+        #  #file:
+        #  #  path: /path/to/sinker.json
         ```
 
 === "Kubernetes"
@@ -170,6 +225,8 @@ Kubernetes 重启对应的 Pod 即可。
 
 ### 主机安装支持环境变量 {#install-envs}
 
+> 主机安装的方式我们已经不再推荐，新增的配置项也不再支持通过命令行参数方式来配置。如果无法更改部署方式，建议安装（升级）完后手动修改对应配置。默认配置，参见上面的默认配置示例。
+
 主机安装时，可以在安装命令中注入如下环境变量：
 
 | Env                   | 类型      | 是否必需 | 说明                                                                                                               | 取值示例 |
@@ -178,7 +235,6 @@ Kubernetes 重启对应的 Pod 即可。
 | DW_CASCADED           | boolean   | N        | Dataway 是否级联                                                                                                   | `true`   |
 | DW_HTTP_CLIENT_TRACE  | boolean   | N        | Dataway 自己作为 HTTP 客户端，可以开启一些相关的指标收集，这些指标最终会在其 Prometheus 指标中输出                 | `true`   |
 | DW_KODO               | string    | Y        | Kodo 地址，或下一个 Dataway 地址，形如 `http://host:port`                                                          |          |
-| DW_SECRET_TOKEN       | string    | N        | 当开启 Sinker 功能时，可设置一下该 Token                                                                           |          |
 | DW_TOKEN              | string    | Y        | 一般是系统工作空间的数据 Token                                                                                     |          |
 | DW_UPGRADE            | boolean   | N        | 升级时将其指定为 1                                                                                                 |          |
 | DW_UUID               | string    | Y        | Dataway UUID，这个在新建 Dataway 的时候，系统工作空间会生成                                                        |          |
@@ -191,7 +247,7 @@ Kubernetes 重启对应的 Pod 即可。
 <!-- markdownlint-disable MD046 -->
 ???+ warning
 
-    Sinker 有关的设置，需安装完之后，手动修改。目前不支持在安装过程中指定 Sinker 的配置。 [:octicons-tag-24: Version-1.5.0](dataway-changelog.md#cl-1.5.0-brk) 
+    Sinker 有关的设置，需安装完之后，手动修改。目前不支持在安装过程中指定 Sinker 的配置。 [:octicons-tag-24: Version-1.5.0](dataway-changelog.md#cl-1.5.0-brk)
 <!-- markdownlint-enable -->
 
 ### 镜像环境变量 {#img-envs}
@@ -225,6 +281,7 @@ Dataway 在 Kubernetes 环境中运行时，支持如下环境变量。
 | DW_ENABLE_TLS               | boolean   | N        | 启用 HTTPS [:octicons-tag-24: Version-1.4.1](dataway-changelog.md#cl-1.4.1)                        |          |
 | DW_TLS_CRT                  | file-path | N        | 指定 HTTPS/TLS crt 文件目录 [:octicons-tag-24: Version-1.4.0](dataway-changelog.md#cl-1.4.0)       |          |
 | DW_TLS_KEY                  | file-path | N        | 指定 HTTPS/TLS key 文件目录[:octicons-tag-24: Version-1.4.0](dataway-changelog.md#cl-1.4.0)        |          |
+| DW_SNI                      | string    | N        | 指定当前 Dataway SNI 信息[:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0)          |          |
 
 ##### HTTP TLS 设置 {#http-tls}
 
@@ -246,7 +303,7 @@ $ openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out tls.crt 
 
 ```yaml
 env:
-- name: DW_ENABLE_TLS 
+- name: DW_ENABLE_TLS
   value: "true"
 - name: DW_TLS_CRT
   value: "/path/to/your/tls.crt"
@@ -297,6 +354,7 @@ curl: (7) Failed to connect to localhost port 9528 after 6 ms: Couldn't connect 
 
 | Env                         | 类型      | 是否必需 | 说明                                                                     | 取值示例 |
 | ---                         | ---       | ---      | ---                                                                      | ---      |
+| DW_SECRET_TOKEN             | string    | N        | 开启 Sinker 功能时，可设置一下该 Token                                   |          |
 | DW_CASCADED                 | string    | N        | Dataway 是否级联                                                         | `true`   |
 | DW_SINKER_ETCD_URLS         | string    | N        | etcd 地址列表，以 `,` 分割，如 `http://1.2.3.4:2379,http://1.2.3.4:2380` |          |
 | DW_SINKER_ETCD_DIAL_TIMEOUT | string    | N        | etcd 连接超时，默认 30s                                                  |          |
@@ -321,22 +379,40 @@ curl: (7) Failed to connect to localhost port 9528 after 6 ms: Couldn't connect 
 
 #### 磁盘缓存设置 {#env-diskcache}
 
-| Env                          | 类型      | 是否必需 | 说明                                               | 取值示例                           |
-| ---                          | ---       | ---      | ---                                                | ---                                |
-| DW_DISKCACHE_DIR             | file-path | N        | 设置缓存目录，**该目录一般外挂存储**               | *path/to/your/cache*               |
-| DW_DISKCACHE_DISABLE         | boolean   | N        | 禁用磁盘缓存，**如果不禁用缓存，需删除该环境变量** | `true`                             |
-| DW_DISKCACHE_CLEAN_INTERVAL  | string    | N        | 缓存清理间隔，默认 30s                             | Duration 字符串                    |
-| DW_DISKCACHE_EXPIRE_DURATION | string    | N        | 缓存过期时间，默认 168h（7d）                      | Duration 字符串，如 `72h` 表示三天 |
+| Env                           | 类型      | 是否必需 | 说明                                                                                                                                                                  | 取值示例                           |
+| ---                           | ---       | ---      | ---                                                                                                                                                                   | ---                                |
+| DW_DISKCACHE_DIR              | file-path | N        | 设置缓存目录，**该目录一般外挂存储**                                                                                                                                  | *path/to/your/cache*               |
+| DW_DISKCACHE_DISABLE          | boolean   | N        | 禁用磁盘缓存，**如果不禁用缓存，需删除该环境变量**                                                                                                                    | `true`                             |
+| DW_DISKCACHE_CLEAN_INTERVAL   | string    | N        | 缓存清理间隔，默认 30s                                                                                                                                                | Duration 字符串                    |
+| DW_DISKCACHE_EXPIRE_DURATION  | string    | N        | 缓存过期时间，默认 168h（7d）                                                                                                                                         | Duration 字符串，如 `72h` 表示三天 |
+| DW_DISKCACHE_CAPACITY_MB      | int       | N        | [:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0) 设置可用的磁盘空间大小，单位 MB，默认 20GB                                                           | 指定 `1024` 即 1GB                 |
+| DW_DISKCACHE_BATCH_SIZE_MB    | int       | N        | [:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0) 设置单个磁盘缓存文件最大大小，单位 MB，默认 64MB                                                     | 指定 `1024` 即 1GB                 |
+| DW_DISKCACHE_MAX_DATA_SIZE_MB | int       | N        | [:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0) 设置单个缓存内容（比如单个 HTTP body）最大大小，单位 MB，默认 64MB，超过该大小的单个数据包，会被丢弃 | 指定 `1024` 即 1GB                 |
 
 <!-- markdownlint-disable MD046 -->
-???+ warning
+???+ tips
 
-    必须设置 `DW_DISKCACHE_DIR` 后续的几个磁盘缓存相关的配置才会生效。如果要禁用磁盘缓存，需额外再开启 `DW_DISKCACHE_DISABLE`。
+    设置 `DW_DISKCACHE_DISABLE` 即可禁用磁盘缓存。
 <!-- markdownlint-enable -->
+
+#### 性能相关设置 {#env-perfmance}
+
+[:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0)
+
+| Env                         | 类型 | 是否必需 | 说明                                                                           | 取值示例 |
+| ---                         | ---  | ---      | ---                                                                            | ---      |
+| DW_DW_COPY_BUFFER_DROP_SIZE | int  | N        | 单个超过指定大小（单位字节）的 buffer 会立即清除，避免消耗太多内存。默认值 8MB | 8388608  |
+| DW_RESERVED_POOL_SIZE       | int  | N        | 内存池基础大小，默认 4096                                                      | 4096     |
 
 ## Dataway API 列表 {#apis}
 
 > 以下各个 API 详情待补充。
+
+### `GET /v1/ntp/` {#v1-ntp}
+
+[:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0)
+
+- API 说明：获取 Dataway 当前的 Unix 时间戳（单位秒）
 
 ### `POST /v1/write/:category` {#v1-write-category}
 
@@ -558,11 +634,14 @@ watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
 
 |TYPE|NAME|LABELS|HELP|
 |---|---|---|---|
+|SUMMARY|`dataway_http_api_body_buffer_utilization`|`api`|API body buffer utillization(Len/Cap)|
+|SUMMARY|`dataway_http_api_body_copy`|`api`|API body copy|
 |SUMMARY|`dataway_http_api_req_size_bytes`|`api,method,status`|API request size|
-|COUNTER|`dataway_http_api_total`|`api,method,status`|API request count|
+|COUNTER|`dataway_http_api_total`|`api,status`|API request count|
 |COUNTER|`dataway_http_api_body_too_large_dropped_total`|`api,method`|API request too large dropped|
 |COUNTER|`dataway_http_api_with_inner_token`|`api,method`|API request with inner token|
 |COUNTER|`dataway_http_api_dropped_total`|`api,method`|API request dropped when sinker rule match failed|
+|COUNTER|`dataway_http_api_copy_body_failed_total`|`api`|API copy body failed count|
 |COUNTER|`dataway_http_api_signed_total`|`api,method`|API signature count|
 |SUMMARY|`dataway_http_api_cached_bytes`|`api,cache_type,method,reason`|API cached body bytes|
 |SUMMARY|`dataway_http_api_reusable_body_read_bytes`|`api,method`|API re-read body on forking request|
@@ -574,14 +653,16 @@ watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
 |GAUGE|`dataway_http_info`|`cascaded,docker,http_client_trace,listen,max_body,release_date,remote,version`|Dataway API basic info|
 |GAUGE|`dataway_last_heartbeat_time`|`N/A`|Dataway last heartbeat with Kodo timestamp|
 |GAUGE|`dataway_cpu_usage`|`N/A`|Dataway CPU usage(%)|
+|GAUGE|`dataway_mem_stat`|`type`|Dataway memory usage stats|
 |GAUGE|`dataway_open_files`|`N/A`|Dataway open files|
 |GAUGE|`dataway_cpu_cores`|`N/A`|Dataway CPU cores|
+|GAUGE|`dataway_uptime`|`N/A`|Dataway uptime|
 |COUNTER|`dataway_process_ctx_switch_total`|`type`|Dataway process context switch count(Linux only)|
 |COUNTER|`dataway_process_io_count_total`|`type`|Dataway process IO count count|
 |COUNTER|`dataway_process_io_bytes_total`|`type`|Dataway process IO bytes count|
+|COUNTER|`dataway_http_api_copy_buffer_drop_total`|`N/A`|API copy buffer dropped(too large cached buffer) count|
 |SUMMARY|`dataway_http_api_dropped_expired_cache`|`api,method`|Dropped expired cache data|
 |SUMMARY|`dataway_http_api_elapsed_seconds`|`api,method,status`|API request latency|
-|SUMMARY|`dataway_http_api_body_buffer_utilization`|`api`|API body buffer utillization(Len/Cap)|
 |SUMMARY|`dataway_httpcli_http_connect_cost_seconds`|`server`|HTTP connect cost|
 |SUMMARY|`dataway_httpcli_got_first_resp_byte_cost_seconds`|`server`|Got first response byte cost|
 |COUNTER|`dataway_httpcli_tcp_conn_total`|`server,remote,type`|HTTP TCP connection count|
@@ -668,7 +749,7 @@ if cost_time != nil {
 
   parse_duration(cost_time)
   duration_precision(cost_time, "ns", "ms")
-  
+
   set_measurement('gin', true)
   set_tag(service,"dataway")
   exit()
@@ -695,16 +776,16 @@ if cost_time == nil {
       set_tag(sample_rate, "0.1")
     }
   }
-  
+
   group_in(status, ["error", "panic", "dpanic", "fatal","err","fat"], "error", status) # mark them as 'error'
-  
+
   if msg != nil {
     grok(msg, "%{TOKEN:token}")
     cover(token, [5, 15])
     replace(message, "tkn_\\w{0,5}\\w{6}", "****************$4")
     replace(msg, "tkn_\\w{0,5}\\w{6}", "****************$4")
   }
-  
+
   set_measurement("dataway-log", true)
   set_tag(service,"dataway")
 }
@@ -727,6 +808,7 @@ dw_ip="localhost" # dataway 指标/profile 暴露的 IP 地址
 metric_port=9090  # 指标暴露的端口
 profile_port=6060 # profile 暴露的端口
 dw_yaml_conf="/usr/local/cloudcare/dataflux/dataway/dataway.yaml"
+dw_dot_yaml_conf="/usr/local/cloudcare/dataflux/dataway/.dataway.yaml" # 容器安装时有该文件
 
 # 收集运行时指标
 curl -v "http://${dw_ip}:${metric_port}/metrics" -o $br_dir/metrics
@@ -737,6 +819,7 @@ curl -v "http://${dw_ip}:${profile_port}/debug/pprof/heap" -o $br_dir/heap
 curl -v "http://${dw_ip}:${profile_port}/debug/pprof/profile" -o $br_dir/profile # 此命令会运行 30s 左右
 
 cp $dw_yaml_conf $br_dir/dataway.yaml.copy
+cp $dw_dot_yaml_conf $br_dir/.dataway.yaml.copy
 
 tar czvf ${br_dir}.tar.gz ${br_dir}
 rm -rf ${br_dir}

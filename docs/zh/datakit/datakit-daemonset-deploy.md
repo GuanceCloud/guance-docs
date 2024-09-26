@@ -428,6 +428,18 @@ spec:
     允许对应的 Dataway 上的证书是自签证书 [:octicons-tag-24: Version-1.29.0](changelog.md#cl-1.29.0)
 
     **字段类型**: Boolean
+
+- **ENV_DATAWAY_NTP_INTERVAL**
+
+    设置 NTP 时间同步间隔 [:octicons-tag-24: Version-1.39.0](changelog.md#cl-1.38.2)
+
+    **字段类型**: String
+
+- **ENV_DATAWAY_NTP_DIFF**
+
+    设置 NTP 时间同步的误差[:octicons-tag-24: Version-1.39.0](changelog.md#cl-1.38.2)
+
+    **字段类型**: String
 <!-- markdownlint-enable -->
 
 ### 日志配置相关环境变量 {#env-log}

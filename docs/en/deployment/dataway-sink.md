@@ -1,3 +1,4 @@
+<!-- 不要在 dataflux-doc 仓库直接修改本文件，该文件由 Dataway 项目自动导出 -->
 
 # Dataway Sink
 ---
