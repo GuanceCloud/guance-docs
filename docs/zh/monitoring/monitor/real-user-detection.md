@@ -410,7 +410,7 @@ eval(A/B, alias='页面错误率',A="R::view:(count(`view_name`)) {`view_error_c
 
 设置监控器的操作权限后，您当前工作空间的角色、团队成员以及空间用户将根据分配的权限，对监控器执行相应的操作。这确保了不同用户根据其角色和权限级别进行符合配置的操作。
  
-<img src="../img/monitor_permission.png" width="70%" >
+<img src="../../img/monitor_permission.png" width="70%" >
 
 
 - 不开启该配置：跟随【监控器配置管理】的[默认权限](../management/role-list.md)；
