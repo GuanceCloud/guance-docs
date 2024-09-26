@@ -31,6 +31,7 @@ Guance has the ability of full stack data collection, and now supports about 270
             position: absolute;
             top: 7px;
             left: 8px;
+            border: 0;
         }
   		.fth-integration-list-header .integration-search-input {
   			border: 1px solid #ccc;
