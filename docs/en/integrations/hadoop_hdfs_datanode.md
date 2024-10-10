@@ -44,9 +44,9 @@ Add startup parameters to the datanode
 
 #### 2.2 Configure collector
 
-By using jmx exporter, the 'metrics' URL can be directly exposed, so it can be collected directly through the [prom'] (./pro. md) collector.
+By using jmx exporter, the `metrics` URL can be directly exposed, so it can be collected directly through the [`prom`](./prom.md) collector.
 
-Go to the installation directory of [DataKit] (./datakit-dir. md) and copy ` prom.d/prom.sample ` to ` datanode. conf `.
+Go to the installation directory of [DataKit](./datakit_dir.md) and copy `prom.d/prom.sample` to `datanode.conf`.
 
 > `cp prom.conf.sample datanode.conf`
 
@@ -67,9 +67,9 @@ Adjust the content of 'datanode. conf' as follows:
 ，parameter adjustment instructions ：
 
 <!-- markdownlint-disable MD004 -->
-- urls：`Jmx exporter 'indicator address, fill in the URL of the indicator exposed by the corresponding component here
+- urls：`jmx-exporter` metric address, fill in the URL of the metric exposed by the corresponding component here
 - source：Collector alias, it is recommended to make a distinction
-- keep_exist_metric_name: Maintain indicator name
+- keep_exist_metric_name: Maintain metric name
 - interval：Collection interval
 - inputs.prom.tags: Add additional tags
 <!-- markdownlint-enable -->
@@ -78,9 +78,9 @@ Adjust the content of 'datanode. conf' as follows:
 
 [Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
-## Target {#metric}
+## Metric {#metric}
 
-### Hadoop Indicator set
+### Hadoop Metric Set
 
 The DataNode metric is located under the Hadoop metric set, and here we mainly introduce the description of DataNode related metrics
 
