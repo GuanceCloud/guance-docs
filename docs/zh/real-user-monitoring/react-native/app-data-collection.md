@@ -55,7 +55,7 @@ React Native  数据采集依赖于 Android iOS Native 框架，为了与 Androi
 | --- | --- | --- |
 | `device` | string | 移动设备厂商 |
 | `model` | string | 移动设备型号 |
-| `device_uuid` | string | 移动设备唯一 ID |
+| `device_uuid` | string | 移动设备唯一 ID, 使用 Android:[ANDROID_ID](https://developer.android.com/reference/android/provider/Settings.Secure.html#ANDROID_ID)、 iOS:[UIDevice.identifierForVendor](https://developer.apple.com/documentation/uikit/uidevice/1620059-identifierforvendor) 生成 |
 | `os` | string | 操作系统信息 |
 | `os_version` | string | 操作系统版本 |
 | `os_version_major` | string | 操作系统主要版本 |
