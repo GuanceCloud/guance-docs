@@ -1,10 +1,13 @@
 ---
-title     : 'Hadoop HDFS NameNode'
-summary   : '采集 HDFS namenode 指标信息'
+title     : 'Hadoop HDFS DataNode'
+summary   : '采集 HDFS datanode 指标信息'
 __int_icon: 'icon/hadoop-hdfs'
 dashboard :
-  - desc  : 'HDFS NameNode'
-    path  : 'dashboard/zh/hadoop-hdfs-namenode'
+  - desc  : 'HDFS DataNode'
+    path  : 'dashboard/zh/hadoop-hdfs-datanode'
+monitor   :
+  - desc  : 'HDFS DataNode'
+    path  : 'monitor/zh/hadoop_hdfs_datanode'
 ---
 
 <!-- markdownlint-disable MD025 -->

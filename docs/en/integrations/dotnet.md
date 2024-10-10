@@ -117,6 +117,10 @@ For information about the different methods for setting environment variables, s
 
 To attach automatic detection to a service, you must set the required environment variables before starting the application. Refer to the [Open tracer for application](dotnet.md#tracer) section to determine the environment variables to be set based on the .NET tracer installation method, and follow the example below to set the environment variables correctly based on the service's environment for the insert instructions.
 
+Regardless of which method is used, corresponding variable information needs to be added.
+
+> DD_TRACE_AGENT_PORT=9529
+
 #### Windows
 
 === "Windows Services"

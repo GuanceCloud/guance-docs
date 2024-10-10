@@ -5,6 +5,9 @@ __int_icon: 'icon/hadoop-hdfs'
 dashboard :
   - desc  : 'HDFS NameNode'
     path  : 'dashboard/zh/hadoop-hdfs-namenode'
+monitor   :
+  - desc  : 'HDFS NameNode'
+    path  : 'monitor/zh/hadoop_hdfs_namenode'
 ---
 
 <!-- markdownlint-disable MD025 -->
