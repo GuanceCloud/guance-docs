@@ -6,6 +6,7 @@ icon: zy/integrations
 
 ---
 
+
 <!-- markdownlint-disable MD046 MD037 MD009 MD010 -->
 <html lang="en">
   <div>
@@ -137,7 +138,7 @@ icon: zy/integrations
   			<div
   				class="fth-integration-list-item"
   				data-href="../active_directory"
-  				data-tags="WINDOWS"
+  				data-tags=""
   				data-name="Active Directory"
   				data-summary="采集 Active Directory 相关指标信息"
   			>
@@ -3102,6 +3103,32 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../fluent_bit"
+  				data-tags=""
+  				data-name="Fluent Bit"
+  				data-summary="通过 Fluent Bit 采集日志"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/fluentbit/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<span class="fth-integration-name">Fluent Bit</span>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../fluentd"
   				data-tags=""
   				data-name="Fluentd"
@@ -3219,6 +3246,110 @@ icon: zy/integrations
 									alt=""
   						/>
   						<span class="fth-integration-name">Graphite</span>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../hadoop_hdfs_datanode"
+  				data-tags=""
+  				data-name="Hadoop HDFS DataNode"
+  				data-summary="采集 HDFS datanode 指标信息"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/hadoop-hdfs/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<span class="fth-integration-name">Hadoop HDFS DataNode</span>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../hadoop_hdfs_namenode"
+  				data-tags=""
+  				data-name="Hadoop HDFS NameNode"
+  				data-summary="采集 HDFS namenode 指标信息"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/hadoop-hdfs/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<span class="fth-integration-name">Hadoop HDFS NameNode</span>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../hadoop_yarn_nodemanager"
+  				data-tags=""
+  				data-name="Hadoop Yarn NodeManager"
+  				data-summary="采集 Yarn NodeManager 指标信息"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/hadoop-yarn/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<span class="fth-integration-name">Hadoop Yarn NodeManager</span>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../hadoop_yarn_resourcemanager"
+  				data-tags=""
+  				data-name="Hadoop Yarn ResourceManager"
+  				data-summary="采集 Yarn ResourceManager 指标信息"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/hadoop-yarn/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<span class="fth-integration-name">Hadoop Yarn ResourceManager</span>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

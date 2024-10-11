@@ -35,9 +35,9 @@ nav:
   - ExternalAPI: external-api
   - <br/>其他: ""
   - DQL: dql
+  - 常见问题: faq
   - 最佳实践: best-practices
   - 第三方接入: third-party
   - 数据安全: security
   - 移动端: mobile
-  - 常见问题: faq
   - 相关协议: agreements
