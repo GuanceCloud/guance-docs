@@ -10,3 +10,4 @@ nav:
   - '告警聚合通知模板': alert-template.md
   - '自定义事件通知模板': event-template.md
   - '监控器内部原理': monitor-internal.md
+  - '常见问题': faq.md

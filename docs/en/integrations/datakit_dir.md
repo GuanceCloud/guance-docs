@@ -1,3 +1,6 @@
+---
+skip: 'reason: 不属于集成文档'
+---
 # DataKit directory
 
 ## Windows

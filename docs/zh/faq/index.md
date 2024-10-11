@@ -21,11 +21,11 @@ icon: zy/faq
 
     ---
 
-    [__工作空间__](../billing-center/faq.md)：作为功能操作介质而相关的普遍疑问
+    [__工作空间__](../management/faq.md)：作为功能操作介质而相关的普遍疑问
 
     ---
 
-    [__场景__](../logs/faq.md)：在可视化分析过程中遇到的一系列问题
+    [__场景__](../scene/faq.md)：在可视化分析过程中遇到的一系列问题
 
     ---
 
@@ -37,6 +37,6 @@ icon: zy/faq
 
     ---
 
-    [__监控__](../application-performance-monitoring/faq.md)：使用监控功能使遇到的问题总结
+    [__监控__](../monitoring/faq.md)：使用监控功能使遇到的问题总结
 
     </div>
