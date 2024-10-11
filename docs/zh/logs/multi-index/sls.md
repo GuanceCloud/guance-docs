@@ -73,25 +73,6 @@
 
     2. 在验证过程中，如果验证的是被授权的子账号，会自动定位到该子账号所属的主账号，拉取主账号下的 Project 和 Logstore。
 
-## FAQ {#FAQ}
-
-:material-chat-question: 如何确认在阿里云市场授权成功？
-
-您可以在请求授权页面，点击前往 **RAM 控制台**；
-
-![](../img/index-4.png)
-
-在**角色**可查看已被授权的角色；在**授权**可查看已授权的主体和权限策略。
-
-![](../img/index-role.png)
-
-![](../img/index-auth.png)
-
-:material-chat-question: 为何输入阿里云账号 ID 后，无法自动获取 Project 和 Logstore？
-
-**只有您的阿里云账号开通了 SLS 日志服务并完成授权**，才会自动获取 Project 和 Logstore。
-
-**注意**：以 `/guance-wksp-` 为前缀的 Project 会被自动过滤，不会列出；如果您的 Project 下没有所属 Logstore，将不会自动获取。
 
 
 
@@ -99,6 +80,12 @@
 
 
 <font size=3>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **绑定时如何确认在阿里云市场授权成功？**</font>](../faq.md)
+
+</div>
 
 
 <div class="grid cards" markdown>

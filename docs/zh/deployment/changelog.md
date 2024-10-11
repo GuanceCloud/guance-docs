@@ -2,7 +2,7 @@
 
 ## 1.95.176（2024 年 09 月 25 日） {#1.95.176}
 
-pubrepo.guance.com/dataflux/1.95.176:launcher-78d48e7-1727582952
+pubrepo.guance.com/dataflux/1.95.176:launcher-b57597e-1727582952
 
 ### Breaking Changes {#breakingchanges0925}
 

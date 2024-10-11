@@ -1,9 +1,2 @@
 nav:
   - index.md
-  - '数据采集相关': data-collection.md
-  - '工作空间相关': workspace.md
-  - '场景相关': scene.md
-  - '查看器相关': explorer.md
-  - '监控器相关': monitor.md
-  - '账户安全相关': account-security.md
-  - '部署版相关': deployment.md
