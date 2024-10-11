@@ -28,4 +28,4 @@ nav:
     - '帮助': help.md
     - 'Status Page': status-page.md
     - '工单管理': work-order-management.md
-
+  - '常见问题': faq.md
