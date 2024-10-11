@@ -1,5 +1,20 @@
 # 版本历史
 
+## 1.95.177（2024 年 10 月 11 日） {#1.95.177}
+
+pubrepo.guance.com/dataflux/1.95.177:launcher-0251748-1728623509
+
+此版本是 fix 版本，主要有如下更新:
+
+### 观测云部署版更新
+
+- 彻底移除 MessageDesk 组件，所有消息通过 Func 组件发送。升级此版本时注意将邮件服务信息配置到 Func 服务中，参考文档 [配置邮件服务](https://docs.guance.com/deployment/configuration-mail/)。
+
+### BUG 修复 {#bugs.1.95.177}
+
+- 修复一些安全问题。
+
+
 ## 1.95.176（2024 年 09 月 25 日） {#1.95.176}
 
 pubrepo.guance.com/dataflux/1.95.176:launcher-b57597e-1727582952
