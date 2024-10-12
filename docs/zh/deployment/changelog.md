@@ -8,7 +8,7 @@ pubrepo.guance.com/dataflux/1.95.177:launcher-0251748-1728623509
 
 ### 观测云部署版更新
 
-- 彻底移除 MessageDesk 组件，所有消息通过 Func 组件发送。升级此版本时注意将邮件服务信息配置到 Func 服务中，参考文档 [配置邮件服务](https://docs.guance.com/deployment/configuration-mail/)。
+- 彻底移除 MessageDesk 组件，所有消息通过 Func 组件发送。升级此版本时注意将邮件服务信息配置到 Func 服务中，参考文档 [配置邮件服务](../deployment/configuration-mail/)。
 
 ### BUG 修复 {#bugs.1.95.177}
 
@@ -74,7 +74,7 @@ pubrepo.guance.com/dataflux/1.95.176:launcher-b57597e-1727582952
 
 ### 帮助中心 {#helpcenter0925}
 
-整合了帮助中心页面，允许用户通过统一入口访问所有[集成列表](https://docs.guance.com/integrations/integration-index/)，并支持搜索及标签过滤功能，以提高查找效率。
+整合了帮助中心页面，允许用户通过统一入口访问所有[集成列表](../integrations/integration-index/)，并支持搜索及标签过滤功能，以提高查找效率。
 
 ### Bug 修复 {#bug0925}
 
