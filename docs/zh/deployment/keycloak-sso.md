@@ -34,6 +34,7 @@ Keycloak 是一个开源的、面向现代应用和分布式服务的身份认�
 
 ![](img/05_keycloak_02.png)
 
+
 2）在 **Add realm** 页面，在 **Name** 处输入领域名称，如 “gcy”，点击 **Create**，即可创建一个新的领域。
 
 ![](img/05_keycloak_03.png)
@@ -101,18 +102,29 @@ OIDCClientSet:
 
 参考示例图：
 
-![](img/1.keycloak_16.png)
+![](img/1.keycloak_3_2_3.png)
 
-以上示例图中的 “clientSecret:”，可在 **Client > Client ID（如 Guance） > Credentials** 中获取。
+
+
+以上示例图中的 “wellKnowURL:”，可在 **Realm Settings > General > Endpoints** 中获取。
+
+![](img/1.keycloak_3_2_0.png)
+或者 
+![](img/1.keycloak_3_2_1.png)
+
+
+示例图中的 “clientSecret:”，可在 **Client > Client ID（如 Guance） > Credentials** 中获取。
 
 ![](img/1.keycloak_3.2.png)
+
 
 2）在观测云 Launcher **命名空间：forethought-webclient > frontNginx** 中配置跳转信息。
 
 ```
-        # =========KeyCloak 跳转相关配置开始=========
+        # =========OIDC协议 跳转相关配置开始=========
         # 请求直接跳转至 Inner API 的接口 =========开始=========
-        location /keycloak/login {
+        # 这个地址是用于 第三方登录时的访问地址；可视情况自行变更，但 proxy_pass 对应的路由地址不可改
+        location /oidc/login {
             proxy_connect_timeout 5;
             proxy_send_timeout 5;
             proxy_read_timeout 300;
@@ -121,10 +133,11 @@ OIDCClientSet:
             add_header Access-Control-Allow-Origin *;
             add_header Access-Control-Allow-Headers X-Requested-With;
             add_header Access-Control-Allow-Methods GET,POST,OPTIONS;
-            proxy_pass http://inner.forethought-core:5000/api/v1/inner/keycloak/login;
+            proxy_pass http://inner.forethought-core:5000/api/v1/inner/oidc/login;
         }
          
-        location /keycloak/login_callback {
+        # 这个地址是用于 第三方服务通过 OIDC 协议认证通过之后，回调本服务的当前地址；该地址与 【3.2.1】配置中 OIDCClientSet 配置项下的 innerUrl 配置直接关联；该地址变更时应与 innerUrl 同步变更； proxy_pass 对应值不可改
+        location /oidc/callback {
             proxy_connect_timeout 5;
             proxy_send_timeout 5;
             proxy_read_timeout 300;
@@ -133,14 +146,14 @@ OIDCClientSet:
             add_header Access-Control-Allow-Origin *;
             add_header Access-Control-Allow-Headers X-Requested-With;
             add_header Access-Control-Allow-Methods GET,POST,OPTIONS;
-            proxy_pass http://inner.forethought-core:5000/api/v1/inner/keycloak/login_callback;
+            proxy_pass http://inner.forethought-core:5000/api/v1/inner/oidc/callback;
        }
-       # =========KeyCloak 跳转相关配置结束=========
+       # =========OIDC协议 跳转相关配置结束=========
 ```
 
 参考示例图：
 
-![](img/1.keycloak_4.png)
+![](img/1.keycloak_4.1.png)
 
 3）在观测云 Launcher **命名空间：forethought-webclient > frontWeb** 中配置 Keycloak 用户登录观测云部署版的入口地址。
 
@@ -148,9 +161,12 @@ OIDCClientSet:
 window.DEPLOYCONFIG = {
  
     ......
+
     paasCustomLoginInfo:[
-        {url:"http://<观测云的部署域名>/keycloak/login",label:"Keycloak 登录"}
-    ]
+        {url:"http://<观测云的部署域名>/oidc/login",label:"Keycloak 登录"}
+    ],
+    paasCustomLoginUrl: "https://<客户提供的注销登录地址>?redirect_url=https://<观测云Web端登录域名地址>/oidc/login"
+     
      
     ......
  
@@ -159,7 +175,7 @@ window.DEPLOYCONFIG = {
 
 参考示例图：
 
-![](img/1.keycloak_5.png)
+![](img/1.keycloak_5.1.png)
 
 4) 配置完成后，勾选更新的**修改配置**，并确认重启。
 
