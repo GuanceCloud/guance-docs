@@ -1,134 +1,74 @@
-# Access to Global Guance Commercial Plan in Amazon Web Services(AWS)
+# Subscribe Guance.one from AWS Marketplace
+
 ---
 
-This article will introduce how to use AWS account for fee settlement after subscribing to Guance.one Service in AWS Cloud Market. 
+This article will introduce how to subscribe Guance from AWS marketplace and associate AWS Cloud account with Guance workspaces.
 
-> If you want to register Commercial Plan directly, see [Register Commercial Plan](commercial-register.md).
+## On Guance Side
 
-## Subscribe to Guance in AWS Marketplace {#subscribe}
+1. Register an account in https://guance.one;
+2. Click Login;
+3. Fill in Basic Info and click Continue;
+4. Input your Company Info and click Register;
+5. Input a workspace name and click Create;
+6. Click the Link to go to AWS Marketplace.
 
-Enter Guance commercial page in [AWS Marketplace](https://awsmarketplace.amazonaws.cn/marketplace/pp/prodview-4rki5nfjxktmy?locale=en) and click **Continue Subscription**.
+![](img/aws-gl.png)
 
-![](img/8.space_4.png)
+![](img/aws-gl-1.png)
 
-Enter an account, user name and password to log in.
+## On AWS Side
 
-![](img/8.space_5.png)
+- Subscribe Guance from AWS marketplace. Then you should get here: 
+https://aws.amazon.com/marketplace/pp/prodview-puxf6opnidvds?sr=0-2&ref_=beagle&applicationId=AWSMPContessa
 
-After logging in, click **Subscribe** on the page to which Guance belongs.
+![](img/aws-gl-2.png)
 
-![](img/8.space_8.png)
 
-In the pop-up dialog box, click **Set up your Account**.
+- Click View Purchase Options;
+- Enter your AWS account, username and password to log in;
+- After logging in, click Subscribe on the page of AWS to which Guance belongs;
+- On the next page, click Set up Your Account.
 
+![](img/aws-gl-3.png)
 
-## Open Guance Commercial Plan
+- Click I have Billing Center account and click Continue.
 
-After clicking **Set up your Account** in AWS Marketplace, jump back to Guance to open. Prompt **Register Guance Commercial Plan Immediately** and **Exist Billing Center account, bind it**.
+![](img/aws-gl-4.png)
 
-<font color=coral>**Note:**</font> Billing Center account is an independent account used by the Guance Billing Center to manage the billing related to the Commercial Plan of Guance, and one Billing Center account can be associated with multiple workspace billing.
+- On this page, input the following information:
+    - Username: 
+    - Email: 
+    - Click Get Code. Please note that the verification code may expire in a few minutes, so please input it in time. After inputting the code, please click Add.
 
-![](img/15.aws_market_1.png)
 
-The overall process is as follows:
+![](img/aws-gl-5.png)
 
-![](img/17.process_1.png)
 
-### Register Guance Commercial Plan
+- Next on the Binding Guance workspace page, click Add button next to the workspace you want to bind to, and click Confirm twice to continue. 
 
-If you don't have a Guance account yet, you can click **Register Guance Commercial Plan Now** to enter the account registration process.
+![](img/aws-gl-6.png)
 
-=== "Step 1: Basic Info"
+Click Confirm when you see this page
 
-    On the **Basic Info** page, select the "**China 2 (Ningxia)**" or "**Overseas 1 (Oregon)**" site, enter the registration information, and click **Continue**.
+![](img/aws-gl-7.png)
 
-    ![](img/15.aws_market_register_1.png)
+Click Confirm, and you're all set.
 
-=== "Step 2: Company Info"
+![](img/aws-gl-8.png)
 
-    On the **Company Info** page, enter relevant information and click **Continue**.
 
-    ![](img/11.account_center_4.png)
+## Back to Guance Workspace
 
-=== "Step 3: Select the opening method"
+1. verify workspace status;
 
-    In **Select Opening Method**, fill in **Workspace Name**, select **Workspace Language**, and click **Confirm** to complete the registration.
+2. Login your workspace, from Billing menu, click Billing Center;
 
-    <font color=coral>**Note:**</font> Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
-    
-    ![](img/inter-create-workspace.png)
+3. Click Workspace Management on the upper-right corner;
 
-=== "Step 4: Successful opening"
+4. You should be able to see the AWS Cloud account association with the Guance workspace.
 
-    After successfully selecting the opening method, it will be prompted to successfully open the Commercial Plan of Guance.
-    
-    <font color=coral>**Note:**</font> After successful opening, the expenses incurred by the bound workspace will be settled directly from the AWS account where the product was purchased.
+![](img/aws-gl-9.png)
 
-    ![](img/inter-1.sls_8.png)
-
-    You can log in to [Guance Billing Center](https://boss.guance.com/#/signin) with the account you just registered, and view the opened settlement methods in **Workspace Management**.
-
-    ![](img/15.aws_market_register_10.png)
-
-### Bind Guance Workspace
-
-If you already have a Guance account, you can click **Exist Billing Center account, bind it** and prompt **How to quickly bind AWS account for settlement**.
-
-Click **Got it** to start binding the Guance workspace. Before binding the workspace, you need to bind the Billing Center account of Guance.
-
-#### Bind Guance Billing Center account
-
-If you already have a Guance Billing Center account, enter the **User Name** of Guance Billing Center account and bind it through email verification.
-
-![](img/15.aws_market_3.png)
-
-
-#### Bind Workspace
-
-=== "Bind Existing Workspace"
-
-    If you have a workspace that can be bound under the Guance Billing Center account, click **Add** directly.
-
-    ![](img/15.aws_market_register_11.png)
-
-    In the pop-up confirmation dialog box, click **Confirm**.
-
-    ![](img/inter-15.aws_market_register_13.png)
-    
-    You can check the open billing methods in **[Guance Billing Center](https://boss.guance.com/#/signin) > Workspace Management**.
-
-
-=== "Create a Workspace"
-
-    If you have registered your Guance account but have not yet created a workspace, please click **Create Workspace** first.
-
-    ![](img/1-1-commercial-aliyun.png)
-
-    Enter the workspace name, select the workspace language, enter the mailbox used when registering the Guance account, and create it through mailbox verification.
-
-    <font color=coral>**Note:**</font> Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
-
-    ![](img/inter-10.aws_create_space.png)
-
-    Fill in all necessary information, click **Create**.
-
-
-=== "Register Guance Account"
-
-    If you have not used Guance service before, please register Guance account and create a workspace first.
-
-    ![](img/inter-1-2-commercial-aliyun.png)
-
-    Click **Register Guance Account**, enter relevant information, and register through email verification.
-
-    <font color=coral>**Note:**</font> Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
-
-    ![](img/inter-10.aws_register.png)
-
-## Start Using Guance
-
-After registration, get started with the first DataKit.
-
-![](img/1-free-start-1109.png)
-
+![](img/aws-gl-10.png)
 
