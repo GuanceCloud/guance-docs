@@ -81,7 +81,7 @@
 | url      | String | 必须 | HTTP 调⽤地址 |
 
 **permissionSet, openPermissionSet 字段说明(2024-06-26迭代新增字段): **
-通知对象配置 openPermissionSet 开启后,  只有属于 permissionSet 配置中的 角色, 团队, 成员才能进行编辑/删除
+通知对象配置 openPermissionSet 开启后,  只有空间拥有者 和属于 permissionSet 配置中的 角色, 团队, 成员才能进行编辑/删除
 通知对象配置 openPermissionSet 关闭后(默认), 则删除/编辑权限 遵循 原有接口编辑/删除权限
 
 permissionSet 字段可配置, 角色 UUID(wsAdmin,general, readOnly, role_xxxxx ), 团队 UUID(group_yyyy), 成员 UUID(acnt_xxx)

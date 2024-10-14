@@ -78,8 +78,12 @@ LDAPClientSet:
   baseDN: "dc=demo1,dc=freeipa,dc=org"
   bindDN: "uid=admin,cn=users,cn=accounts,dc=demo1,dc=freeipa,dc=org"
   bindPassword: "Secret123"
-  # 搜索账号所用到的属性
-  searchAttribute: uid
+  # 搜索账号所用到的属性; 方式一: `searchAttribute: uid` 只标记属性字段名; 方式二: `searchAttribute: "(uid={username})"` 自定义过滤语句, 此方式下括号和花括号中的 username 是必须的。
+  # 注意，如果是 AD 用户，则一般设置为 sAMAccountName
+  searchAttribute: "uid"
+  # 搜索账号时，账号信息对应的类名。注意，如果对接方为 微软AD 上的 LDAP 则此处应为 persion;
+  # 确认方式，安装`ldapsearch`(第三方 ldap 链接工具)，执行命令 `ldapsearch -x -H ldap://xxx.cn:389 -D "bindDN信息" -w "bindPassword信息" -b "baseDN内容" "(cn=目标用户)"` 返回结果中的 objectClass 即为可选列表
+  personObjectClass: "inetOrgPerson"
   mapping:
     # 认证服务中，登录账号的用户名字段名，必填，如果值不存在，则取 email
     username: uid
@@ -107,12 +111,15 @@ LDAPClientSet:
     get_info: "ALL"
   # 基础 DN信息
   baseDN: "<基础DN>"
-  # 客户端建立连接时帮的的DN
-  bindDN: "<客户端建立连接时帮的的DN>"
+  # 客户端建立连接时绑定的的DN
+  bindDN: "<客户端建立连接时绑定的DN>"
   # 与 bindDN 对应的密码
   bindPassword: "<与 bindDN 对应的密码>"
   # 搜索账号所用到的属性
   searchAttribute: cn
+  # 搜索账号时，账号信息对应的类名。注意，如果对接方为 微软AD 上的 LDAP 则此处应为 persion;
+  # 确认方式，安装`ldapsearch`(第三方 ldap 链接工具)，执行命令 `ldapsearch -x -H ldap://xxx.cn:389 -D "bindDN信息" -w "bindPassword信息" -b "baseDN内容" "(cn=目标用户)"` 返回结果中的 objectClass 即为可选列表
+  personObjectClass: "inetOrgPerson"
   # 如果账号属性与下表不一致，则需要调整
   mapping:
     # 认证服务中，登录账号的用户名字段名，必填，如果值不存在，则取 email

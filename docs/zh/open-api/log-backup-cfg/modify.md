@@ -40,6 +40,7 @@
 | accessCfg.username | string |  | 用户名<br>允许为空: False <br>允许为空字符串: True <br> |
 | accessCfg.password | string |  | 密码<br>允许为空: False <br>允许为空字符串: True <br> |
 | accessCfg.region | string |  | 地域(可选值，如果不输入则默认取与当前站点相匹配的对应厂商地域)<br>允许为空: False <br> |
+| accessCfg.bucketPath | string |  | 存储桶路径<br>允许为空: False <br> |
 
 ## 参数补充说明
 
