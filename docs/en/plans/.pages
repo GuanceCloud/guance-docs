@@ -6,6 +6,7 @@ nav:
     - 'Access to Commercial Plan in Alibaba Cloud': commercial-aliyun.md
     - 'Access to Exclusive Plan in Alibaba Cloud': commercial-aliyun-sls.md
     - 'Access to Commercial Plan in AWS Cloud': commercial-aws.md
+    - 'Access to Global Guance Commercial Plan in Amazon Web Services(AWS)': commercial-aws-gl.md
     - 'Access to Commercial Plan in Huawei Cloud': commercial-huaweiyun.md
   - Public Cloud Experience Plan: trail.md
   - Private Cloud Deployment Plan: deployment.md

@@ -63,6 +63,8 @@
 | jsonScript.atNoDataAccounts | array |  | 无数据情况下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
 | jsonScript.subUri | string |  | 表示Webhook地址的地址后缀(根据用户业务侧需求可选设置，无特殊限制)<br>例子: datakit/push <br>允许为空: False <br> |
 | jsonScript.disableCheckEndTime | boolean |  | 是否禁用结束时间限制, https://confluence.jiagouyun.com/pages/viewpage.action?pageId=177405958<br>例子: True <br>允许为空: False <br> |
+| openPermissionSet | boolean |  | 开启 自定义权限配置, (默认 false:不开启), 开启后 该规则的操作权限根据 permissionSet<br>允许为空: False <br> |
+| permissionSet | array |  | 操作权限配置, 可配置(角色(除拥有者), 成员uuid, 团队uuid)<br>例子: ['wsAdmin', 'acnt_xxxx', 'group_yyyy'] <br>允许为空: False <br> |
 
 ## 参数补充说明
 
@@ -94,6 +96,8 @@
 |smartLogCheck| 智能监控, 日志智能检测|
 |smartApmCheck| 智能监控, 应用智能检测|
 |smartRumCheck| 智能监控, 用户访问智能检测|
+|smartKubeCheck| 智能监控, Kubernetes 智能检测|
+|smartCloudBillingCheck| 智能监控, 云账单智能检测|
 |combinedCheck| 组合监控|
 
 **2. 已下线的检查类型`jsonScript.type` 说明**
@@ -262,6 +266,24 @@
 | jsonScript.checkerOpt.confidenceInterval        |  integer  |  Y | 置信区间范围，取值为1-100%  |
 
 --------------
+
+**12. 监控器操作权限配置参数说明**
+
+|  参数名        |   type   |          说明          |
+|---------------|----------|------------------------|
+| openPermissionSet   | boolean | 是否开启自定义权限配置, 默认 false |
+| permissionSet       | array   | 操作权限配置      |
+
+**permissionSet, openPermissionSet 字段说明(2024-06-26迭代新增字段): **
+配置 openPermissionSet 开启后,  只有空间拥有者 和 属于 permissionSet 配置中的 角色, 团队, 成员才能进行编辑/启用/禁用/删除
+配置 openPermissionSet 关闭后(默认), 则删除/启用/禁用/编辑权限 遵循 原有接口编辑/启用/禁用/删除权限
+
+permissionSet 字段可配置, 角色 UUID(wsAdmin,general, readOnly, role_xxxxx ), 团队 UUID(group_yyyy), 成员 UUID(acnt_xxx)
+permissionSet 字段示例:
+```
+  ["wsAdmin", "general", "group_yyyy", "acnt_xxxx"]
+
+```
 
 
 
