@@ -7,10 +7,10 @@ pubrepo.guance.com/dataflux/1.95.177:launcher-0251748-1728623509
 ### 离线镜像包下载
 
 - AMD64 架构下载: https://static.guance.com/dataflux/package/guance-amd64-1.95.177.tar.gz
-  - MD5: `a288172615e91267406fcda748f38e12`
+    - MD5: `a288172615e91267406fcda748f38e12`
 
 - ARM64 架构下载: https://static.guance.com/dataflux/package/guance-arm64-1.95.177.tar.gz
-  - MD5: `fe8e78f55b5749abe2cf033d425f6586`
+    - MD5: `fe8e78f55b5749abe2cf033d425f6586`
 
 此版本是 fix 版本，主要有如下更新:
 
