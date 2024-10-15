@@ -83,7 +83,6 @@ LDAPClientSet:
   searchAttribute: "uid"
   # 搜索账号时，账号信息对应的类名。注意，如果对接方为 微软AD 上的 LDAP 则此处应为 persion;
   # 确认方式，安装`ldapsearch`(第三方 ldap 链接工具)，执行命令 `ldapsearch -x -H ldap://xxx.cn:389 -D "bindDN信息" -w "bindPassword信息" -b "baseDN内容" "(cn=目标用户)"` 返回结果中的 objectClass 即为可选列表
-  # 参见文档：https://confluence.jiagouyun.com/pages/viewpage.action?pageId=194281507
   personObjectClass: "inetOrgPerson"
   mapping:
     # 认证服务中，登录账号的用户名字段名，必填，如果值不存在，则取 email
@@ -120,7 +119,6 @@ LDAPClientSet:
   searchAttribute: cn
   # 搜索账号时，账号信息对应的类名。注意，如果对接方为 微软AD 上的 LDAP 则此处应为 persion;
   # 确认方式，安装`ldapsearch`(第三方 ldap 链接工具)，执行命令 `ldapsearch -x -H ldap://xxx.cn:389 -D "bindDN信息" -w "bindPassword信息" -b "baseDN内容" "(cn=目标用户)"` 返回结果中的 objectClass 即为可选列表
-  # 参见文档：https://confluence.jiagouyun.com/pages/viewpage.action?pageId=194281507
   personObjectClass: "inetOrgPerson"
   # 如果账号属性与下表不一致，则需要调整
   mapping:

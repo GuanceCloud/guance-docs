@@ -145,7 +145,10 @@ workspaceVersionSet:
       logging: 14d
       keyevent: 14d
       tracing: 7d
+      profiling: 7d
       rum: 7d
+      # 只有 部署版 才会存在 session_replay 的单独配置
+      session_replay: 7d
       network: 2d
       security: 90d
       backup_log: 180d
