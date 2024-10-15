@@ -3,7 +3,10 @@ nav:
   - '日志采集': collection.md
   - '浏览器日志采集': browser-collection.md
   - '小程序日志采集': miniapp-collection.md
-  - '日志查看器': explorer.md
+  - '日志查看器':
+    - explorer.md
+    - 管理日志: manag-explorer.md
+    - 日志详情: explorer-details.md
   - 'BPF 网络日志': bpf-log.md
   - '生成指标': generate-metrics.md
   - '日志索引': multi-index
