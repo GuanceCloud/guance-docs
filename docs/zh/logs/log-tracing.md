@@ -7,7 +7,7 @@
 
 在错误追踪列表中，您可以检视特定时间范围内的错误信息。您也可以利用左侧的快速筛选根据业务需求筛选数据，或者在搜索栏中输入筛选条件来快速定位所需数据。
 
-<img src="../../img/log-tracing-1.png" width="80%" >
+<img src="../img/log-tracing-1.png" width="80%" >
 
 > 关于列表更多相关操作，可参考 [日志列表](./manag-explorer.md)。
 
@@ -20,7 +20,7 @@
 - 查看与该条数据关联的扩展字段信息；
 - 浏览与该条数据相关的上下文日志，以获取更多背景信息。
 
-<img src="../../img/log-tracing.png" width="80%" >
+<img src="../img/log-tracing.png" width="80%" >
 
 ## 更多阅读
 

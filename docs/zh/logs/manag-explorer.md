@@ -24,7 +24,7 @@
 设置索引后，即可在查看器选择切换不同的索引查看对应的日志内容。
 
 
-<img src="../../img/5.log_3.1.png" width="70%" >
+<img src="../img/5.log_3.1.png" width="70%" >
 
 ## 搜索与筛选
 
@@ -32,7 +32,7 @@
 
 输入搜索或筛选条件后，可查看查询的预览效果。您可以复制该条件，直接用于图表或查询工具。
 
-<img src="../../img/bar-preview.png" width="70%" >
+<img src="../img/bar-preview.png" width="70%" >
 
 
 ## DQL 搜索 {#dql}
@@ -66,11 +66,11 @@
 
 - 正常查询：
 
-<img src="../../img/json.png" width="70%" >
+<img src="../img/json.png" width="70%" >
 
 - 期待提取内嵌字段后的查询：
 
-<img src="../../img/json-1.png" width="70%" >
+<img src="../img/json-1.png" width="70%" >
 
 在日志查看器，若想直接在数据列表中指定查看从每条日志 `message` 的 JSON 文本中提取出的值，在显示列处添加格式为 `@targer_fieldname` 的字段。如下图，我们在显示列中添加 DQL 查询语句中已配置的 `@fail_reason`：
 
@@ -115,7 +115,7 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 观测云为状态值已经设置了系统默认颜色。如您需要修改不同的状态下，对应数据在查看器中显示的颜色，可通过点击**设置状态颜色**进行修改。
 
 
-<img src="../../img/status-color.png" width="70%" >
+<img src="../img/status-color.png" width="70%" >
 
 ## 格式化配置
 

@@ -7,7 +7,7 @@
 
 <font size=3>
 
-| <div style="width: 120px">规则名称</div> | <div style="width: 120px">数据范围</div> | 基本描述 |
+| <div style="width: 170px">规则名称</div> | <div style="width: 120px">数据范围</div> | 基本描述 |
 | --- | --- | --- |
 | [阈值检测](./threshold-detection.md) | 全部 | 基于设置的阈值对指标数据进行异常检测。 |
 | [突变检测](./mutation-detection.md) | 指标(M) | 基于历史数据对指标的突发反常表现进行异常检测，多适用于业务数据、时问窗短的场景。 |
@@ -45,7 +45,9 @@
 
 写入事件通知内容，满足触发条件时系统会对外发送该部分内容。可输入 Markdown 格式文本信息并预览效果；可使用[关联链接](#links)、[模板变量](../event-template.md)。
 
-在您未开启自定义写入通知内容的情况下，系统会默认使用事件内容作为告警通知，如需自定义，启用即可。
+#### 自定义通知内容 {#custom}
+
+默认情况下，观测云会使用[事件内容](#content)作为告警通知内容。如果您需要自定义实际对外发送的通知，可以选择在此处启用开关，填入通知信息。
 
 <img src="../../img/custom-enable.png" width="70%" >
 
@@ -164,4 +166,4 @@
 
 点击上一版本监控器右上角的**恢复此版本**，在弹出的对话框中，确认恢复，即可恢复到上一版本的监控器配置进行编辑和保存。
 
-<img src="../img/8.monitor_recover_1.2.png" width="60%" >
+<img src="../../img/8.monitor_recover_1.2.png" width="60%" >
