@@ -9,9 +9,6 @@
 
 工作空间的智能监控器可通过观测云平台的**智能监控**进行查看和管理。
 
-![](../img/intelligent-detection01.png)
-
-
 ## 使用须知
 
 :material-numeric-1-circle: 数据存储
