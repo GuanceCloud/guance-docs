@@ -4,42 +4,44 @@ icon: zy/events
 # 事件
 ---
 
+观测云提供了一个全面的事件管理和审计平台，允许实时监控和统一查询来自各种来源的事件数据。通过聚合和关联事件，您可以迅速定位异常，并进行高效的数据分析。
 
-观测云支持一站式查看和审计全部事件数据。您可以对所有来源触发的事件进行实时监控、统一查询；还可以通过聚合相关事件和匹配关联事件，快速定位异常并高效对异常数据进行分析。
+在**事件**这一功能模块下，您可以通过监控器、智能巡检、SLO 等功能模块监控系统异常和服务质量下降等问题。**所有监控活动的结果都会生成事件记录**，并将这些事件汇集到事件分析模块中，以便进行深入分析和处理。这种一站式的方法确保了您能够全面掌握系统的健康状况，并及时响应可能出现的任何问题。
 
-![](img/4.event_3.gif)
 
-## 事件来源
+## 事件从何而来？
 
-- 基于配置的 [监控器](../monitoring/monitor/index.md) 触发的全部告警事件；
-- 基于配置的 [智能监控](../monitoring/intelligent-monitoring/index.md) 触发的全部告警事件；
-- 基于配置的 [智能巡检](../monitoring/bot-obs/index.md) 触发的全部告警事件；
+- 满足[监控器](../monitoring/monitor/monitor-rule.md#content)和[智能监控](../monitoring/intelligent-monitoring/index.md)配置规则而触发的告警事件；
+- 基于配置的[智能巡检](../monitoring/bot-obs/index.md) 触发的全部告警事件；
 - 基于配置的 [SLO](../monitoring/slo.md) 触发的全部告警事件；
 - 基于系统操作触发的[审计事件](../management/operation-audit.md)；
-- 支持通过事件的 [OpenAPI 写入自定义事件](../open-api/keyevent/create.md)。
-
-## 应用场景
-
-- 事件统一管理；
-- 事件可视化查询与分析；
-- 关联事件查询。
-
-## 功能介绍
-
-|                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**了解更多**</font>                         |                                                              |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [未恢复事件查看器](./event-explorer/unrecovered-events.md){ .md-button .md-button--primary } | [所有事件查看器](./event-explorer/event-list.md){ .md-button .md-button--primary } |
-| [智能监控](inte-monitoring-event.md){ .md-button .md-button--primary } | [监控器配置触发事件](../monitoring/monitor/index.md){ .md-button .md-button--primary } |
+- 通过 [OpenAPI](../open-api/keyevent/create.md) 写入的自定义事件。
 
 
-<!--
-- [查看器 > 未恢复事件查看器](unrecovered-events.md)：支持查看工作空间最近 48 小时内持续被触发的全部未恢复事件，包括所有当前状态为不正常（`df_status !=ok`）的事件。您可以基于未恢复事件的详情信息，快速查看和解决故障问题；
-- [查看器 > 所有事件查看器](event-list.md)：包括监控器、智能巡检、SLO、审计事件、OpenAPI 写入自定义事件来源下的所有事件，如触发**监控器**检测规则的每一条告警记录即为一个事件数据。您可以通过选择时间范围、搜索与筛选、分组聚合等对事件进行查询和分析；
-- [智能监控](inte-monitoring-event.md)：包括所有智能监控触发的所有事件，如触发**智能监控**检测规则的每一条告警记录即为一个事件数据。您可以通过选择时间范围、搜索与筛选、分组聚合等对事件进行查询和分析；
-- [监控器配置触发事件](../monitoring/monitor/index.md)：支持基于配置监控器的触发条件产生不同的事件进行管理和分析。
--->
+## 查看事件记录
 
-## 字段说明 {#fields}
+
+- [查看器 > 未恢复事件查看器](./event-explorer/unrecovered-events.md)：当前工作空间最近 48 小时内持续被触发的全部未恢复事件，即状态为不正常（`df_status !=ok`）的事件。
+- [查看器 > 所有事件查看器](./event-explorer/event-list.md)：包括监控器、智能巡检、SLO、审计事件、OpenAPI 写入自定义事件来源下的所有事件，如触发**监控器**检测规则的每一条告警记录即为一个事件数据。
+- [智能监控](./inte-monitoring-event.md)：包括所有满足智能监控配置规则而触发的所有事件，触发后产生的每一条告警记录即为一个事件数据。
+
+
+## 事件包含内容
+
+以触发配置的监控器规则所产生的事件为例，最终事件内容主要包含我们在[新建规则 > 事件通知](../monitoring/monitor/monitor-rule.md#notice)处所填入的内容。
+
+如下图，将事件标题定义为 `日志检测-多索引`，在事件内容中填入 DQL 查询语句，并填入变量，观测云将根据实际监测到的数据，自动生成并展示事件记录的最终结果。
+
+![](img/event-monitor.png)
+
+当该条规则监测到异常，您可以前往事件 > 事件详情查看到相关的事件内容。
+
+![](img/event-monitor-1.png)
+
+
+### 事件字段说明 {#fields}
+
+最终的事件记录会包含以下字段：
 
 | 字段                   | 说明                                                         |
 | :--------------------- | :----------------------------------------------------------- |
@@ -48,10 +50,10 @@ icon: zy/events
 | `df_check_range_start` | 检测范围开始时间。单位秒                                     |
 | `df_check_range_end`   | 检测范围结束时间。单位秒                                     |
 | `df_issue_start_time`  | 本轮首次故障发生的时间。单位秒                               |
-| `df_issue_duration`    | 本轮故障的持续时间，单位秒 （从`df_issue_start_time`开始到本事件） |
+| `df_issue_duration`    | 本轮故障的持续时间，单位秒（从 `df_issue_start_time` 开始到本事件） |
 | `df_source`            | 事件来源。包括 monitor, user, system, custom, audit          |
 | `df_status`            | 事件状态。包括 ok, info, warning, error, critical, nodata, nodata_ok, nodata_as_ok, manual_ok |
-| `df_sub_status`        | 事件细节状态（作为`df_status`的补充）                        |
+| `df_sub_status`        | 事件细节状态（作为 `df_status` 的补充）                        |
 | `df_event_id`          | 事件唯一 ID                                                  |
 | `df_title`             | 标题                                                         |
 | `df_message`           | 描述                                                         |
@@ -97,8 +99,4 @@ icon: zy/events
 | `df_user_email` | 创建者用户邮箱                   |
 | {其他字段}      | 根据用户操作而产生事件的其他字段 |
 
-## 存储策略
 
-观测云为事件数据提供 14 天、30 天、60 天三种数据存储时长选择，若您选择 30 天的数据存储时长，不同来源产生的事件统一按照 30 天进行存储。您可以在**管理 > 基本设置 > 变更数据存储策略**中调整。
-
-> 更多数据存储策略，可参考 [数据存储策略](../billing/billing-method/data-storage.md)。

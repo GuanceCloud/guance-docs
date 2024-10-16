@@ -18,7 +18,7 @@
 
 <img src="../../img/1111.png" width="60%" >
 
-> 更多详情，可参考 [日志索引](../../logs/multi-index.md)。
+> 更多详情，可参考 [日志索引](../../logs/multi-index/index.md)。
 
 2、配置图表：
 
