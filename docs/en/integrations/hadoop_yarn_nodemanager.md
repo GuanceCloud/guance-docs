@@ -4,10 +4,10 @@ summary   : 'Collect Yarn NodeManager metric information'
 __int_icon: 'icon/hadoop-yarn'
 dashboard :
   - desc  : 'Yarn NodeManager'
-  - path  : 'dashboard/en/hadoop-yarn-nodemanager'
+    path  : 'dashboard/en/hadoop_yarn_nodemanager'
 monitor   :
   - desc  : 'Yarn NodeManager'
-  - path  : 'monitor/en/hadoop-yarn-nodemanager'
+    path  : 'monitor/en/hadoop_yarn_nodemanager'
 ---
 
 <!-- markdownlint-disable MD025 -->

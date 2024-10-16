@@ -4,10 +4,10 @@ summary   : '采集 Yarn ResourceManager 指标信息'
 __int_icon: 'icon/hadoop-yarn'
 dashboard :
   - desc  : 'Yarn ResourceManager'
-  - path  : 'dashboard/zh/hadoop-yarn-resourcemanager'
+    path  : 'dashboard/zh/hadoop_yarn_resourcemanager'
 monitor   :
   - desc  : 'Yarn ResourceManager'
-  - path  : 'monitor/zh/hadoop-yarn-resourcemanager'
+    path  : 'monitor/zh/hadoop_yarn_resourcemanager'
 ---
 
 <!-- markdownlint-disable MD025 -->
