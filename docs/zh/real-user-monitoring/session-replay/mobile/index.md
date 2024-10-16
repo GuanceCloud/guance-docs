@@ -11,6 +11,7 @@
 <div class="grid cards" markdown>
 - [Android](./android/index.md)
 - [iOS](./ios/index.md)
+- [React Native](./react-native/index.md)  
 </div>
 
 ## 查看会话重放
@@ -20,3 +21,4 @@
 ## 第三方库支持
 * [dd-sdk-android-session-replay](https://github.com/DataDog/dd-sdk-android/tree/develop/features/dd-sdk-android-session-replay)
 * [dd-sdk-ios/DatadogSessionReplay](https://github.com/DataDog/dd-sdk-ios/tree/develop/DatadogSessionReplay)
+* [@datadog/mobile-react-native-session-replay](https://github.com/DataDog/dd-sdk-reactnative/tree/develop/packages/react-native-session-replay)
