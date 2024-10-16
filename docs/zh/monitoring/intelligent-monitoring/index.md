@@ -42,7 +42,7 @@
 
 目前观测云支持多种智能检测规则，不同的规则覆盖不同的数据范围。
 
-| <div style="width: 130px">规则名称</div> | <div style="width: 120px">数据范围</div> | 基本描述 |
+| <div style="width: 170px">规则名称</div> | <div style="width: 120px">数据范围</div> | 基本描述 |
 | --- | --- | --- |
 | [主机智能检测](./host-intelligent-detection.md) | 指标(M)  | 通过智能算法自动检测主机，发现主机 CPU、内存异常情况。 |
 | [日志智能检测](./log-intelligent-monitoring.md) | 日志(L) | 通过智能算法自动检测日志中的异常，检测指标包含日志数量，错误日志数。 |
