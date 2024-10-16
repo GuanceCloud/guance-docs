@@ -19,6 +19,16 @@ icon: zy/release-notes
 
 ## 2024 年 10 月 16 日
 
+### 新增集成 {#inte1016}
+
+- [Hadoop hdfs datanode](../integrations/hadoop_hdfs_datanode.md)；
+- [Hadoop hdfs namenode](../integrations/hadoop_hdfs_namenode.md)；
+- [Hadoop yarn nodemanager](../integrations/hadoop_yarn_nodemanager.md)；
+- [Hadoop yarn resourceManager](../integrations/hadoop_yarn_resourcemanager.md)；
+- [Fluent Bit](../integrations/fluent_bit.md)；
+- [Azure VM](../integrations/azure_vm.md)；
+- [NPD](../integrations/npd.md)：新增事件模式采集&介绍。
+
 ### 功能更新 {#feature1016}
 
 #### AI 智能助手
