@@ -3,11 +3,11 @@ title     : 'Hadoop Yarn NodeManager'
 summary   : '采集 Yarn NodeManager 指标信息'
 __int_icon: 'icon/hadoop-yarn'
 dashboard :
-  - desc  : 'HDFS NodeManager'
-  - path  : 'dashboard/zh/hadoop-yarn-nodemanager'
+  - desc  : 'Yarn NodeManager'
+    path  : 'dashboard/zh/hadoop_yarn_nodemanager'
 monitor   :
   - desc  : 'Yarn NodeManager'
-  - path  : 'monitor/zh/hadoop-yarn-nodemanager'
+    path  : 'monitor/zh/hadoop_yarn_nodemanager'
 ---
 
 <!-- markdownlint-disable MD025 -->
