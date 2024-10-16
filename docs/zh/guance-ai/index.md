@@ -10,11 +10,11 @@ icon: zy/guance-ai
 进入观测云控制台，点击 AI 智能助手图标，即可展开聊天框开启对话。
 
 
-<img src="../img/guance-ai.png" width="70%" />
+<img src="img/guance-ai.png" width="70%" />
 
 
 输入您想了解的问题，AI 智能助手会竭力为您解答：
 
-<img src="../img/guance-ai-1.png" width="60%" />
+<img src="img/guance-ai-1.png" width="60%" />
 
 如果您不满意这次回答，点击**重新生成**按钮即可。

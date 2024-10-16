@@ -8,6 +8,7 @@ nav:
     - 日志列表: manag-explorer.md
     - 日志详情: explorer-details.md
   - 'BPF 网络日志': bpf-log.md
+  - '错误追踪': log-tracing.md
   - '生成指标': generate-metrics.md
   - '日志索引': multi-index
   - '跨工作空间索引查询': cross-workspace-index.md
