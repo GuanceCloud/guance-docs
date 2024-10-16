@@ -16,10 +16,13 @@
     ```
     **0.3.1**
     ```
-    * 适配 iOS SDK 1.5.2
     * 兼容修复 React 版本低于 16.14.0 时使用 `react/jsx-runtime` 报错
     * Android 兼容 react native 0.63 低版本
     * 修改过滤指向本地主机（localhost）URL 的正则表达式，增加匹配范围
+    * 适配 iOS SDK 1.5.2
+      * 修复 Xcode 16 编译缺少 `#include <arm/_mcontext.h>` 头文件问题
+      * 自动采集 RUM-Resource 时，过滤掉直接从本地缓存获取或获取类型未知的 Resource，防止采集重复
+      * 修复 UITabBarController 子视图 loadingTime 计算逻辑
     ```
     **0.3.0**
     ```
