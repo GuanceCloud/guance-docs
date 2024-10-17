@@ -357,8 +357,8 @@ android{
 | setServiceName | String | 否 | 设置服务名，影响 Log 和 RUM 中 service 字段数据，默认为 `df_rum_android` |
 | setAutoSync | Boolean | 否 | 是否开启自动同步，默认为 `true`。当为 false 时使用 `FTSdk.flushSyncData()` 自行管理数据同步 |  
 | setSyncPageSize | enum | 否 | 设置同步请求条目数，`SyncPageSize.MINI` 5 条，`SyncPageSize.MEDIUM` 10 条，`SyncPageSize.LARGE` 50 条，默认 `SyncPageSize.MEDIUM`   |
-| setCustomSyncPageSize | enum | 否 | 设置同步请求条目数，范围 [5,)，注意请求条目数越大，代表数据同步占用更大的计算资源   |
-| setSyncSleepTime | Int | 否 | 设置同步间歇时间，范围 [0,100]，默认不设置  |
+| setCustomSyncPageSize | enum | 否 | 设置同步请求条目数，范围 [5,)，注意请求条目数越大，代表数据同步占用更大的计算资源，默认为 10   |
+| setSyncSleepTime | Int | 否 | 设置同步间歇时间，范围 [0,5000]，默认不设置  |
 | enableDataIntegerCompatible | void | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题  |
 | setNeedTransformOldCache | void | 否 |  是否需要兼容同步 1.6.0 以下的版本的旧缓存数据，默认为 false |
 
@@ -419,104 +419,6 @@ android{
 | setResourceUrlHandler | callback| 否 | 设置需要过滤的 Resource 条件，默认不过滤 |
 | setOkHttpEventListenerHandler | callback| 否 | ASM 设置全局 Okhttp EventListener，默认不设置 |
 | addGlobalContext | Dictionary | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
-
-
-#### 添加自定义标签 {#track}
-
-##### 静态使用
-
-1.在 `build.gradle` 中创建多个 `productFlavors` 来做区分区分标签
-
-```groovy
-android{
-    //…
-	productFlavors {
-        prodTest {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Test Value\""
- 			//…
-        }
-        prodPublish {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Publish Value\""
- 			//…
-        }
-    }
-}
-```
-
-2.在 `RUM` 配置中添加对应 `BuildConfig` 常量
-
-=== "Java"
-
-	```java
-	FTSdk.initRUMWithConfig(
-	        new FTRUMConfig()
-	            .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	            //... 添加其他配置
-	);
-
-	```
-=== "Kotlin"
-
-	```kotlin
-	FTSdk.initRUMWithConfig(
-	            FTRUMConfig()
-	                .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	                //… 添加其他配置
-	        )
-	```
-
-##### 动态使用
-
-1.通过存文件类型数据，例如 `SharedPreferences`，配置使用 `SDK`，在配置处添加获取标签数据的代码。
-
-=== "Java"
-
-	```java
-	SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	String customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set");
-
-	// 配置 RUM
-	FTSdk.initRUMWithConfig(
-	     new FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue)
-	     //… 添加其他配置
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	val customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set")
-
-	//配置 RUM
-	FTSdk.initRUMWithConfig(
-	     FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue!!)
-	     //… 添加其他配置
-	)
-	```
-
-2.在任意处添加改变文件数据的方法。
-
-=== "Java"
-
-	```java
-	public void setDynamicParams(Context context, String value) {
-	    SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply();
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	fun setDynamicParams(context: Context, value: String) {
-	            val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	            sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply()
-
-	        }
-	```
-
-3.最后重启应用，详细细节请见 [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
 
 ### Log 配置 {#log-config}
 
@@ -1772,6 +1674,44 @@ android{
 	FTSdk.shutDown()
 	```
 
+## 清理 SDK 缓存数据
+使用  `FTSdk` 清理未上报的缓存数据 
+
+### 使用方法
+=== "Java"
+
+	```java
+	    /**
+		 * 清理未上报的缓存数据
+		 */
+	    public static void clearAllData()
+
+	```
+
+=== "Kotlin"
+
+
+	``` kotlin
+	     /**
+		  * 清理未上报的缓存数据
+		  */
+	    fun clearAllData()
+	```
+
+### 代码示例
+    
+=== "Java"
+
+	```java
+	FTSdk.clearAllData();
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	FTSdk.clearAllData()
+	```
+
 ## 主动同步数据
 使用 `FTSdk` 主动同步数据。
 >FTSdk.setAutoSync(false) 时, 才需要自行进行数据同步
@@ -1859,6 +1799,95 @@ android{
 
 	//关闭获取 Android ID
 	FTSdk.setEnableAccessAndroidID(false)
+	```
+
+## 添加自定义标签
+
+使用  `FTSdk` 在 SDK运行时，动态添加标签
+
+### 使用方法
+
+=== "Java"
+
+	```java
+	/**
+	 * 动态设置全局 tag
+	 * @param globalContext
+	 */
+	public static void appendGlobalContext(HashMap<String,Object> globalContext)
+
+	/**
+	 * 动态设置 RUM 全局 tag
+	 * @param globalContext
+	 */
+	public static void appendRUMGlobalContext(HashMap<String,Object> globalContext)
+
+	/**
+	 * 动态设置 log 全局 tag
+	 * @param globalContext
+	 */
+	public static void appendLogGlobalContext(HashMap<String,Object> globalContext)
+
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	/**
+	 * 动态设置全局 tag
+	 * @param globalContext
+	 */
+	fun appendGlobalContext(globalContext: HashMap<String, Any>) 
+
+	/**
+	 * 动态设置 RUM 全局 tag
+	 * @param globalContext
+	 */
+	fun appendRUMGlobalContext(globalContext: HashMap<String, Any>) 
+
+	/**
+	 * 动态设置 log 全局 tag
+	 * @param globalContext
+	 */
+	fun appendLogGlobalContext(globalContext: HashMap<String, Any>)
+
+	```
+
+### 代码示例
+
+=== "Java"
+
+	```java
+	HashMap<String, Object> globalContext = new HashMap<>();
+	globalContext.put("global_key", "global_value");
+	FTSdk.appendGlobalContext(globalContext);
+
+	HashMap<String, Object> rumGlobalContext = new HashMap<>();
+	rumGlobalContext.put("rum_key", "rum_value");
+	FTSdk.appendRUMGlobalContext(rumGlobalContext);
+
+	HashMap<String, Object> logGlobalContext = new HashMap<>();
+	logGlobalContext.put("log_key", "log_value");
+	FTSdk.appendLogGlobalContext(logGlobalContext);
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	val globalContext = hashMapOf<String, Any>(
+		"global_key" to "global_value"
+	)
+	FTSdk.appendGlobalContext(globalContext)
+
+	val rumGlobalContext = hashMapOf<String, Any>(
+		"rum_key" to "rum_value"
+	)
+	FTSdk.appendRUMGlobalContext(rumGlobalContext)
+
+	val logGlobalContext = hashMapOf<String, Any>(
+		"log_key" to "log_value"
+	)
+	FTSdk.appendLogGlobalContext(logGlobalContext)
 	```
 
 ## R8 / Proguard 混淆配置 {#r8_proguard}
@@ -1950,6 +1979,120 @@ FTExt {
 
 ## WebView 数据监测
 WebView 数据监测，需要在 WebView 访问页面集成[Web 监测 SDK](../web/app-access.md)
+
+## 自定义标签使用示例 {#track}
+
+### 编译配置方式
+
+1. 在 `build.gradle` 中创建多个 `productFlavors` 来做区分区分标签
+
+```groovy
+android{
+    //…
+	productFlavors {
+        prodTest {
+            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Test Value\""
+ 			//…
+        }
+        prodPublish {
+            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Publish Value\""
+ 			//…
+        }
+    }
+}
+```
+
+2. 在 `RUM` 配置中添加对应 `BuildConfig` 常量
+
+=== "Java"
+
+	```java
+	FTSdk.initRUMWithConfig(
+	        new FTRUMConfig()
+	            .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
+	            //... 添加其他配置
+	);
+
+	```
+=== "Kotlin"
+
+	```kotlin
+	FTSdk.initRUMWithConfig(
+	            FTRUMConfig()
+	                .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
+	                //… 添加其他配置
+	        )
+	```
+### 运行时读写文件方式
+
+1. 通过存文件类型数据，例如 `SharedPreferences`，配置使用 `SDK`，在配置处添加获取标签数据的代码。
+
+=== "Java"
+
+	```java
+	SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
+	String customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set");
+
+	// 配置 RUM
+	FTSdk.initRUMWithConfig(
+	     new FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue)
+	     //… 添加其他配置
+	);
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
+	val customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set")
+
+	//配置 RUM
+	FTSdk.initRUMWithConfig(
+	     FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue!!)
+	     //… 添加其他配置
+	)
+	```
+
+2. 在任意处添加改变文件数据的方法。
+
+=== "Java"
+
+	```java
+	public void setDynamicParams(Context context, String value) {
+	    SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
+	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply();
+	}
+	```
+
+=== "Kotlin"
+
+	```kotlin
+	fun setDynamicParams(context: Context, value: String) {
+	            val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
+	            sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply()
+
+	        }
+	```
+
+3.最后重启应用，详细细节请见 [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
+
+### SDK 运行时添加
+
+ 在 SDK 初始化完毕之后，使用`FTSdk.appendGlobalContext(globalContext)`、`FTSdk.appendRUMGlobalContext(globalContext)`、`FTSdk.appendLogGlobalContext(globalContext)`，可以动态添加标签，设置完毕，会立即生效。随后，RUM 或 Log 后续上报的数据会自动添加标签数据。这种使用方式适合延迟获取数据的场景，例如标签数据需要网络请求获取。
+
+```java
+//SDK 初始化伪代码，获取
+
+FTSdk.init() 
+
+getInfoFromNet(info){
+	HashMap<String, Object> globalContext = new HashMap<>();
+	globalContext.put("delay_key", info.value);
+	FTSdk.appendGlobalContext(globalContext)
+}
+
+```
+
 
 ## 常见问题 {#FAQ}
 ### 添加局变量避免冲突字段 {#key-conflict}
@@ -2156,8 +2299,3 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	```
 
 * 其他网络框架需要自行实现使用 `FTRUMGlobalManager` 中 `startResource` ,`stopResource`,`addResource`, `FTTraceManager.getTraceHeader` 。具体实现方式，请参考源码示例 [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt)
-
-
-
- 
-
