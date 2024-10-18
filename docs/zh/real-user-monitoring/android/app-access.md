@@ -2081,7 +2081,7 @@ android{
  在 SDK 初始化完毕之后，使用`FTSdk.appendGlobalContext(globalContext)`、`FTSdk.appendRUMGlobalContext(globalContext)`、`FTSdk.appendLogGlobalContext(globalContext)`，可以动态添加标签，设置完毕，会立即生效。随后，RUM 或 Log 后续上报的数据会自动添加标签数据。这种使用方式适合延迟获取数据的场景，例如标签数据需要网络请求获取。
 
 ```java
-//SDK 初始化伪代码，获取
+//SDK 初始化伪代码，从网络获取到参数后，再进行标签设置
 
 FTSdk.init() 
 
