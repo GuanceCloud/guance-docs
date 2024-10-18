@@ -42,7 +42,7 @@ Content-Security-Policy: connect-src http://example.com/;
     connect-src https://*.dk.com
 ```
 
-### web worker{#webwork}
+### web worker {#webwork}
 
 如果你开启了 RUM SDK [Session Replay](../real-user-monitoring/session-replay/web/index.md)功能或者 RUM 初始化配置中添加了[compressIntakeRequests](../real-user-monitoring/web/app-access.md#config)配置,请确保通过添加以下 worker-src 条目:
 

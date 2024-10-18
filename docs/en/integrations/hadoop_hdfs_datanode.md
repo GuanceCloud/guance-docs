@@ -4,7 +4,7 @@ summary   : 'Collect HDFS datanode metric information'
 __int_icon: 'icon/hadoop-hdfs'
 dashboard :
   - desc  : 'HDFS DataNode'
-    path  : 'dashboard/en/hadoop-hdfs-datanode'
+    path  : 'dashboard/en/hadoop_hdfs_datanode'
 monitor   :
   - desc: 'HDFS DataNode'
     path: 'monitor/en/hadoop_hdfs_datanode'

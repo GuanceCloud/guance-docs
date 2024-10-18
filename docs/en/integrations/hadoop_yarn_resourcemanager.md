@@ -4,10 +4,10 @@ summary   : 'Collect Yarn ResourceManager metric information'
 __int_icon: 'icon/hadoop-yarn'
 dashboard :
   - desc  : 'Yarn ResourceManager'
-  - path  : 'dashboard/en/hadoop-yarn-resourcemanager'
+    path  : 'dashboard/en/hadoop_yarn_resourcemanager'
 monitor   :
   - desc  : 'Yarn ResourceManager'
-  - path  : 'monitor/en/hadoop-yarn-resourcemanager'
+    path  : 'monitor/en/hadoop_yarn_resourcemanager'
 ---
 
 <!-- markdownlint-disable MD025 -->
