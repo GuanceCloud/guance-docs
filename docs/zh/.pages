@@ -20,6 +20,7 @@ nav:
   - 安全巡检: scheck
   - CI 可视化: ci-visibility
   - Pipelines: pipeline
+  - 云账单分析: cloud-billing
   - <br/>开放能力: ""
   - DataFlux Func: dataflux-func
   - DCA: dca
