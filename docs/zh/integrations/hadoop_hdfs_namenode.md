@@ -4,7 +4,7 @@ summary   : '采集 HDFS namenode 指标信息'
 __int_icon: 'icon/hadoop-hdfs'
 dashboard :
   - desc  : 'HDFS NameNode'
-    path  : 'dashboard/zh/hadoop-hdfs-namenode'
+    path  : 'dashboard/zh/hadoop_hdfs_namenode'
 monitor   :
   - desc  : 'HDFS NameNode'
     path  : 'monitor/zh/hadoop_hdfs_namenode'
