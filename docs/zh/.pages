@@ -30,14 +30,15 @@ nav:
   - 工作空间管理: management
   - 付费计划与账单: billing
   - 费用中心: billing-center
+  - AI 智能助手: guance-ai
   - <br/>私有化部署: ""
   - 私有化部署: deployment
   - ExternalAPI: external-api
   - <br/>其他: ""
   - DQL: dql
+  - 常见问题: faq
   - 最佳实践: best-practices
   - 第三方接入: third-party
   - 数据安全: security
   - 移动端: mobile
-  - 常见问题: faq
   - 相关协议: agreements

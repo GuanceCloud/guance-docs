@@ -320,7 +320,7 @@ SLS 存储使用的语言是 promql，存在部分函数无法使用的情况。
 
 不支持，SLS 专属版工作空间默认开启多索引。商业版工作空间默认开启索引合并来减少索引的产生。
 
-> 关于多索引，可参考 [日志索引](../logs/multi-index.md)。
+> 关于多索引，可参考 [日志索引](../logs/multi-index/index.md)。
 
 :material-chat-question: SLS 专属版工作空间日志时间顺序为什么会乱序？
 

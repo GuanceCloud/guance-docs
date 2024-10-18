@@ -30,6 +30,7 @@ icon: zy/integrations
             position: absolute;
             top: 7px;
             left: 8px;
+            border: 0;
         }
   		.fth-integration-list-header .integration-search-input {
   			border: 1px solid #ccc;

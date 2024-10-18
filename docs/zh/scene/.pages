@@ -7,3 +7,4 @@ nav:
   - '内置视图': built-in-view
   - '视图变量': view-variable.md
   - '可视化图表': visual-chart
+  - '常见问题': faq.md

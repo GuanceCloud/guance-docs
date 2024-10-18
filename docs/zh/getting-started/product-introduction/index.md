@@ -59,17 +59,3 @@
     ![](../img/product-index-6.png)
 
 </div>
-
-
-## 更多阅读
-
-<font size=3>
-
-
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **名词解释**</font>](./glossary.md)
-
-</div>
-
-</font>

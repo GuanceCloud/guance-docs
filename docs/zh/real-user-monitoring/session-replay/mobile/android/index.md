@@ -42,4 +42,8 @@ implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-session-replay-mate
 | setPrivacy | SessionReplayPrivacy | 否 |`SessionReplayPrivacy.ALLOW` 不进行遮蔽隐私数据, `SessionReplayPrivacy.MASK` 遮蔽隐私数据，包括文字、CheckBox，RadioButton，Switch； `SessionReplayPrivacy.USER_INPUT`（推荐）遮蔽用户输入的部份数据,包括输入框中文字、CheckBox，RadioButton，Switch, 默认，为 `SessionReplayPrivacy.MASK` |
 | addExtensionSupport | ExtensionSupport | 否 |添加额外自定义支持。使用 `ft-session-replay-material` 可以使用 `MaterialExtensionSupport` 提供额外 Material 组件采集支持  |
 
+## 代码和配置参考
+ * [Android Demo Gradle 配置](https://github.com/GuanceDemo/guance-app-demo/blob/session_replay/src/android/demo/app/build.gradle#L159)
+ * [Android Demo 代码调用](https://github.com/GuanceDemo/guance-app-demo/blob/session_replay/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L90)
+
 
