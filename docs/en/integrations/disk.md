@@ -77,7 +77,7 @@ After successfully installing and starting DataKit, the disk collector will be e
     
         Collect interval
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `interval`
     

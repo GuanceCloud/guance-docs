@@ -285,6 +285,26 @@ For all of the following data collections, the global election tags will added a
 
 
 
+## Custom Object {#object}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Log Collection {#logging}
 <!-- markdownlint-disable MD046 -->
 ???+ attention

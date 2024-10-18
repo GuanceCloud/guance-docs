@@ -67,7 +67,7 @@ After successfully installing and starting DataKit, the CPU collector will be en
     
         Collect interval
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `interval`
     

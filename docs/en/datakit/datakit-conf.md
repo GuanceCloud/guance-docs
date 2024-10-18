@@ -19,7 +19,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is `datakit.conf`, here is the example sample(1.39.0):
+Datakit main configure is `datakit.conf`, here is the example sample(1.60.0):
 
 <!-- markdownlint-disable MD046 -->
 ??? info "`datakit.conf`"
@@ -62,10 +62,10 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.39.0):
     ulimit = 64000
     
     ################################################
-    # point_pool: use point pool for better memory usage(Experimental)
+    # point_pool: use point pool for better memory usage
     ################################################
     [point_pool]
-      enable = false
+      enable = true
       reserved_capacity = 4096
     
     ################################################
@@ -143,6 +143,9 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.39.0):
       # Datakit server-side timeout
       timeout = "30s"
       close_idle_connection = false
+    
+      # API rate limit(QPS)
+      request_rate_limit = 20.0
     
       #
       # RUM related: we should port these configures to RUM inputs(TODO)
@@ -232,14 +235,16 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.39.0):
     [dataway]
       # urls: Dataway URL list
       # NOTE: do not configure multiple URLs here, it's a deprecated feature.
-      urls = ["https://openway.guance.com?token=tkn_xxxxxxxxxxx"]
+      urls = [
+        # "https://openway.guance.com?token=<YOUR-WORKSPACE-TOKEN>"
+      ]
     
       # Dataway HTTP timeout
       timeout_v2 = "30s"
     
       # max_retry_count specifies at most how many times the data sending operation will be tried when it fails,
       # valid minimum value is 1 (NOT 0) and maximum value is 10.
-      max_retry_count = 4
+      max_retry_count = 1
     
       # The interval between two retry operation, valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h"
       retry_delay = "1s"
@@ -262,7 +267,7 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.39.0):
       # do NOT disable gzip or your get large network payload.
       gzip = true
     
-      max_raw_body_size = 10485760 # max body size(before gizp) in bytes
+      max_raw_body_size = 1048576 # max body size(before gizp) in bytes
     
       # Customer tag or field keys that will extract from exist points
       # to build the X-Global-Tags HTTP header value.
@@ -277,6 +282,14 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.39.0):
         # datakit's soft time will update to the dataway time.
         # NOTE: diff MUST larger than "1s"
         diff     = "30s" 
+    
+      # WAL queue for uploading points
+      [dataway.wal]
+        max_capacity_gb = 2.0 # 2GB reserved disk space for each category(M/L/O/T/...)
+        #workers = 4          # flush workers on WAL(default to CPU limited cores)
+        #mem_cap = 4          # in-memory queue capacity(default to CPU limited cores)
+        #fail_cache_clean_interval = "30s" # duration for clean fail uploaded data
+    
     
     ################################################
     # Datakit logging configure
@@ -424,12 +437,14 @@ DataKit opens an HTTP service to receive external data or provide basic data ser
     After the configuration is complete, you can use the `curl` command to test whether the configuration is successful: `sudo curl --no-buffer -XGET --unix-socket /tmp/datakit.sock http:/localhost/v1/ping`. For more information on the test commands for `curl`, see [here](https://superuser.com/a/925610){:target="_blank"}.
     
     ### HTTP Request Frequency Control {#set-http-api-limit}
+
+    > [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0) default enabled this limit.
     
     As DataKit needs to receive a large number of external data writes, in order to avoid causing huge overhead to the host node, the following HTTP configuration can be modified (it is not turned on by default):
     
     ```toml
     [http_api]
-      request_rate_limit = 1000.0 # Limit ingeach HTTP API to receive only 1000 requests per second
+      request_rate_limit = 20.0 # Limit HTTP request(client IP + route) QPS
     ```
     
     ### Other Settings {#http-other-settings}
