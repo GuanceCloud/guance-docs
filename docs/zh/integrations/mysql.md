@@ -777,6 +777,50 @@ MySQL user information
 
 
 
+## 自定义对象 {#object}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 日志 {#logging}
 
 [:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)
