@@ -466,6 +466,62 @@ grant SELECT ON pg_stat_database to datakit;
 
 
 
+## 自定义对象 {#object}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 日志 {#logging}
 
 - PostgreSQL 日志默认是输出至 `stderr`，如需开启文件日志，可在 PostgreSQL 的配置文件 `/etc/postgresql/<VERSION>/main/postgresql.conf` ， 进行如下配置：

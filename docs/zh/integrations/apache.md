@@ -158,6 +158,14 @@ The collected metrics are affected by the environment in which Apache is install
 
 
 
+## 自定义对象 {#object}
+
+
+
+
+
+
+
 ## 日志采集 {#logging}
 
 如需采集 Apache 的日志，可在 apache.conf 中 将 `files` 打开，并写入 Apache 日志文件的绝对路径。比如：

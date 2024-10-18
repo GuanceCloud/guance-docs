@@ -66,7 +66,7 @@ After successfully installing and launching DataKit, the Net Collector is automa
     
         Collect interval
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `interval`
     

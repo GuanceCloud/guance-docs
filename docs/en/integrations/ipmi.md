@@ -189,7 +189,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         Collect interval
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `interval`
     
@@ -199,7 +199,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         Timeout
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `timeout`
     
@@ -209,7 +209,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         Ipmi server drop warning delay
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `drop_warning_delay`
     

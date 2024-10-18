@@ -107,7 +107,7 @@ monitor   :
     
         进程最短运行时间
     
-        **字段类型**: TimeDuration
+        **字段类型**: Duration
     
         **采集器配置字段**: `min_run_time`
     

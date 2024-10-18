@@ -96,7 +96,7 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
     
         Collect interval
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `interval`
     
@@ -106,7 +106,7 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
     
         Timeout
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `timeout`
     
@@ -136,7 +136,7 @@ See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Downlo
     
         GPU card drop warning delay
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `gpu_drop_warning_delay`
     

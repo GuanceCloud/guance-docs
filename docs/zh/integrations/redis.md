@@ -661,6 +661,50 @@ yum install -y  redis
 
 
 
+## 自定义对象 {#object}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 日志 {#logging}
 
 <!-- markdownlint-disable MD024 -->

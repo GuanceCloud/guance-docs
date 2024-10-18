@@ -143,3 +143,14 @@ Metrics of all nodes in the NSQ cluster.
 |`message_count`|Total number of messages processed by the current node.|int|count|
 
 
+
+## Custom Object {#object}
+
+
+
+
+
+
+
+
+
