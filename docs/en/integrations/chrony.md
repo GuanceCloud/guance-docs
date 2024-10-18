@@ -105,7 +105,7 @@ Leap status     : Normal
     
         Collect interval
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `interval`
     
@@ -115,7 +115,7 @@ Leap status     : Normal
     
         Timeout
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `timeout`
     

@@ -94,7 +94,7 @@ The Datakit service needs to be restarted after successful execution.
     
         Collect interval
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `interval`
     

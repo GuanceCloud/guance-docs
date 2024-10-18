@@ -52,7 +52,7 @@ After successfully installing and starting DataKit, the Mem collector will be en
     
         Collect interval
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `interval`
     

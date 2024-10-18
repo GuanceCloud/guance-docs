@@ -95,7 +95,7 @@ $ diskperf -Y
     
         采集器重复间隔时长
     
-        **字段类型**: TimeDuration
+        **字段类型**: Duration
     
         **采集器配置字段**: `interval`
     

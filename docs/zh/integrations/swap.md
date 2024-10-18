@@ -54,7 +54,7 @@ swap 采集器用于采集主机 swap 内存的使用情况。
     
         采集器重复间隔时长
     
-        **字段类型**: TimeDuration
+        **字段类型**: Duration
     
         **采集器配置字段**: `interval`
     

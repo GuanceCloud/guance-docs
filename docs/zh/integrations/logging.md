@@ -440,10 +440,7 @@ Use the `source` of the config，if empty then use `default`
 |`date_ns`|Built-in extension fields added by server. The `date_ns` field is set to the millisecond part of the time when the log is collected by the collector by default. Its maximum value is 1.0E+6 and its unit is nanoseconds. It is typically used for sorting.|int|ns|
 |`df_metering_size`|Built-in extension fields added by server. The `df_metering_size` field is used for logging cost statistics.|int|-|
 |`log_read_lines`|The lines of the read file.|int|count|
-|`log_read_offset`|The offset of the read file.|int|-|
-|`log_read_time`|The timestamp of the read file.|s|-|
 |`message`|The text of the logging.|string|-|
-|`message_length`|The length of the message content.|B|count|
 |`status`|The status of the logging, default is `unknown`[^1].|string|-|
 
 
