@@ -3,6 +3,12 @@
 ---
 ???- quote "更新日志"
 
+    **1.5.4**
+    ```
+    1. 添加全局、log、RUM globalContext 属性动态设置方式
+    2. 添加清除数据方法，支持删除所有尚未上传至服务器的数据
+    3. 调整同步间歇支持的最大时间间隔至 5000 毫秒
+    ```
     **1.5.3**
     ```
     1. 修复 LongTask、Anr 采集时因属性修饰符使用错误而导致的内存访问错误崩溃
@@ -282,11 +288,11 @@
 | enableSDKDebugLog | BOOL | 否 | 设置是否允许打印日志。默认 `NO` |
 | env | NSString | 否 | 设置采集环境。默认 `prod`，支持自定义，也可根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置 |
 | service | NSString | 否 | 设置所属业务或服务的名称。影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios` |
-| globalContext | NSDictionary |     否 | 添加自定义标签。添加规则请查阅[此处](#user-global-context) |
+| globalContext | NSDictionary |     否 | 添加自定义标签。添加规则请查阅[此处](#key-conflict) |
 | groupIdentifiers | NSArray | 否 | 需要采集的 Widget Extensions 对应的 AppGroups Identifier 数组。若开启 Widget Extensions 数据采集，则必须设置 [App Groups](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups)，并将 Identifier 配置到该属性中 |
 | autoSync | BOOL | 否 | 是否开启自动同步。默认 `YES`。当为 `NO` 时使用 `[[FTMobileAgent sharedInstance] flushSyncData]` 自行管理数据同步 |
-| syncPageSize | int | 否 | 设置同步请求条目数。范围 [5,）注意：请求条目数越大，代表数据同步占用更大的计算资源 |
-| syncSleepTime | int | 否 | 设置同步间歇时间。范围 [0,100]，默认不设置 |
+| syncPageSize | int | 否 | 设置同步请求条目数。范围 [5,）注意：请求条目数越大，代表数据同步占用更大的计算资源，默认为 10 |
+| syncSleepTime | int | 否 | 设置同步间歇时间。范围 [0,5000]，默认不设置 |
 | enableDataIntegerCompatible | BOOL | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题 。 |
 
 ### RUM 配置 {#rum-config}
@@ -340,7 +346,7 @@
 | deviceMetricsMonitorType | FTDeviceMetricsMonitorType | 否 | 视图的性能监控类型。在采集的  **View** 数据中添加对应监控项信息。`FTDeviceMetricsMonitorMemory`监控当前应用使用内存情况，`FTDeviceMetricsMonitorCpu`监控 CPU 跳动次数，`FTDeviceMetricsMonitorFps`监控屏幕帧率。 |
 | monitorFrequency | FTMonitorFrequency | 否 | 视图的性能监控采样周期。配置 `monitorFrequency` 来设置 **View** 监控项信息的采样周期。`FTMonitorFrequencyDefault`500ms (默认)，`FTMonitorFrequencyFrequent`100ms，`FTMonitorFrequencyRare`1000ms。 |
 | enableResourceHostIP | BOOL | 否 | 是否采集请求目标域名地址的 IP。`>= iOS 13` 下支持 |
-| globalContext | NSDictionary | 否 | 添加自定义标签。添加规则请查阅[此处](#user-global-context) |
+| globalContext | NSDictionary | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
 
 ### Log 配置 {#log-config}
 
@@ -375,7 +381,7 @@
 | logLevelFilter | NSArray | 否 | 设置要采集的自定义 log 的状态数组。默认全采集 |
 | enableLinkRumData | BOOL | 否 | 是否与 RUM 数据关联。默认`NO` |
 | discardType | FTLogCacheDiscard | 否 | 设置频繁日志丢弃规则。默认 `FTDiscard` <br/>`FTDiscard`当日志数据数量大于最大值（5000）时，丢弃追加数据。`FTDiscardOldest`当日志数据大于最大值时,丢弃老数据。 |
-| globalContext | NSDictionary |     否 | 添加自定义标签。添加规则请查阅[此处](#user-global-context) |
+| globalContext | NSDictionary |     否 | 添加 log 自定义标签。添加规则请查阅[此处](#key-conflict) |
 | logCacheLimitCount | int | 否 | 获取最大日志条目数量。限制 [1000,)，默认 5000 |
 
 ### Trace 配置 {#trace-config}
@@ -1493,14 +1499,14 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
 
     ```objective-c
     /// 关闭 SDK 内正在运行对象
-    - (void)shutDown;
+    + (void)shutDown;
     ```
 
 === "Swift"
 
     ```swift
     /// 关闭 SDK 内正在运行对象
-    func shutDown()
+    open class func shutDown()
     ```
 ### 代码示例
 
@@ -1508,15 +1514,50 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
 
     ```objective-c
     //如果动态改变 SDK 配置，需要先关闭，以避免错误数据的产生
-    [[FTMobileAgent sharedInstance] shutDown];
+    [FTMobileAgent  shutDown];
     ```  
 
 === "Swift"
 
     ```swift
     //如果动态改变 SDK 配置，需要先关闭，以避免错误数据的产生
-    FTMobileAgent.sharedInstance().shutDown()
+    FTMobileAgent.shutDown()
     ```
+
+## 清理 SDK 缓存数据
+
+使用  `FTMobileAgent` 清理未上报的缓存数据 
+
+### 使用方法
+
+=== "Objective-C"
+
+	```objective-c
+	/// 清除所有尚未上传至服务器的数据
+	+ (void)clearAllData;
+	```
+
+=== "Swift"
+
+
+	``` swift
+	/// 清除所有尚未上传至服务器的数据
+	open class func clearAllData()
+	```
+
+### 代码示例
+
+=== "Objective-C"
+
+	```objective-c
+	[FTMobileAgent clearAllData];
+	```
+
+=== "Swift"
+
+	```swift
+	FTMobileAgent.clearAllData()
+	```
 
 ## 主动同步数据
 
@@ -1553,77 +1594,64 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
     FTMobileAgent.sharedInstance().flushSyncData()
     ```
 
-## 添加自定义标签 {#user-global-context}
+## 添加自定义标签 
 
-### 静态使用
+使用  `FTMobileAgent` 在 SDK运行时，动态添加标签
 
-可采用创建多 Configurations ，使用预编译指令进行设置值
+### 使用方法
 
-1.创建多 Configurations
+=== "Objective-C"
 
-![](../img/image_9.png)
+    ```objective-c
+    /// 添加 SDK 全局 tag，作用于 RUM、Log 数据
+    /// - Parameter context: 自定义数据
+    + (void)appendGlobalContext:(NSDictionary <NSString*,id>*)context;
+    
+    /// 添加 RUM 自定义 tag，作用于 RUM 数据
+    /// - Parameter context: 自定义数据
+    + (void)appendRUMGlobalContext:(NSDictionary <NSString*,id>*)context;
+    
+    /// 添加 Log 全局 tag，作用于 Log 数据
+    /// - Parameter context: 自定义数据
+    + (void)appendLogGlobalContext:(NSDictionary <NSString*,id>*)context;
+    ```
 
-2.设置预设属性来区分不同 Configurations
+=== "Swift"
 
-![](../img/image_10.png)
+    ```swift
+    /// 添加 SDK 全局 tag，作用于 RUM、Log 数据
+    /// - Parameter context: 自定义数据
+    open class func appendGlobalContext(_ context: [String : Any])
+    
+    /// 添加 RUM 自定义 tag，作用于 RUM 数据
+    /// - Parameter context: 自定义数据
+    open class func appendRUMGlobalContext(_ context: [String : Any])
+    
+    /// 添加 Log 全局 tag，作用于 Log 数据
+    /// - Parameter context: 自定义数据
+    open class func appendLogGlobalContext(_ context: [String : Any])
+    ```
 
-3.使用预编译指令
+### 代码示例
 
-```objectivec
-//Target -> Build Settings -> GCC_PREPROCESSOR_DEFINITIONS 进行配置预设定义
-#if PRE
-#define Track_id       @"0000000001"
-#define STATIC_TAG     @"preprod"
-#elif  DEVELOP
-#define Track_id       @"0000000002"
-#define STATIC_TAG     @"common"
-#else
-#define Track_id       @"0000000003"
-#define STATIC_TAG     @"prod"
-#endif
-   
-FTRumConfig *rumConfig = [[FTRumConfig alloc]init]; 
-rumConfig.globalContext = @{@"track_id":Track_id,@"static_tag":STATIC_TAG};
-... //其他设置操作
-[[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
-```
+=== "Objective-C"
 
-也可参考 [多环境配置参数](#multi_env_param) 方法进行配置。
+    ```objective-c
+    [FTMobileAgent  appendGlobalContext:@{@"global_key":@"global_value"}];
+    [FTMobileAgent  appendLogGlobalContext:@{@"log_key":@"log_value"}];
+    [FTMobileAgent  appendRUMGlobalContext:@{@"rum_key":@"rum_value"}];
+    ```  
 
-### 动态使用
+=== "Swift"
 
-因 RUM 启动后设置的 globalContext 不会生效，用户可自行本地保存，在下次应用启动时进行设置生效。
-
-1.通过存文件本地保存，例如`NSUserDefaults`，配置使用 `SDK`，在配置处添加获取标签数据的代码。
-
-```objectivec
-NSString *dynamicTag = [[NSUserDefaults standardUserDefaults] valueForKey:@"DYNAMIC_TAG"]?:@"NO_VALUE";
-
-FTRumConfig *rumConfig = [[FTRumConfig alloc]init];
-rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
-... //其他设置操作
-[[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
-```
-
-2.在任意处添加改变文件数据的方法。
-
-```objectivec
- [[NSUserDefaults standardUserDefaults] setValue:@"dynamic_tags" forKey:@"DYNAMIC_TAG"];
-```
-
-3.最后重启应用生效。
-
-### 注意
-
-1.特殊 key : track_id (在 RUM 中配置，用于追踪功能)  
-
-2.当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。
-
-3.在调用 -startRumWithConfigOptions 方法启动 RUM 前设置 globalContext 才能生效。
-
-4.`FTMobileConfig` 中配置的自定义标签将添加在所有类型的数据中。
-
-详细细节请见 [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/ios/demo)。
+    ```swift
+    let globalContext = ["global_key":"global_value"]
+    FTMobileAgent.appendGlobalContext(globalContext)
+    let rumGlobalContext = = ["rum_key":"rum_value"]
+    FTMobileAgent.appendRUMGlobalContext(rumGlobalContext)
+    let logGlobalContext = = ["log_key":"log_value"]
+    FTMobileAgent.appendLogGlobalContext(logGlobalContext)
+    ```
 
 ## 符号文件上传 {#source_map}
 
@@ -1631,7 +1659,7 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 
 1.XCode 添加自定义 Run Script Phase：` Build Phases -> + -> New Run Script Phase`
 
-2.将脚本复制到 Xcode 项目的构建阶段运行脚本中，脚本中需要设置参数如：＜app_id＞、＜datakit_address＞、＜env＞、＜dataway_token＞、＜version＞(脚本默认配置的版本格式为 `CFBundleShortVersionString`)。
+2.将脚本复制到 Xcode 项目的构建阶段运行脚本中，脚本中需要设置参数如：＜app_id＞、＜datakit_address＞、＜env＞、＜dataway_token＞。
 
 3.脚本：FTdSYMUpload.sh](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
 
@@ -1645,9 +1673,6 @@ FT_DATAKIT_ADDRESS="YOUR_DATAKIT_ADDRESS"
 FT_ENV="common"
 #<dataway_token> 配置文件 datakit.conf 中 dataway 的 token
 FT_TOKEN="YOUR_DATAWAY_TOKEN"
-#
-#＜version＞ 脚本默认配置的版本格式为CFBundleShortVersionString,如果您修改默认的版本格式, 请设置此变量。注意：需要确保在此填写的与SDK设置的一致。
-# FT_VERSION=""
 ```
 
 如果您需要使用多个环境上传不同环境的符号文件，可参考下面方式。
@@ -1723,12 +1748,16 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 `sh FTdSYMUpload.sh <datakit_address> <app_id> <version> <env> <dataway_token> <dSYMBOL_src_dir>`
 
+> 示例：
+>
+> sh FTdSYMUploader.sh  http://10.0.0.1:9529 appid_mock 1.0.6 prod tkn_mock /Users/mock/Desktop/dSYMs
+
 **参数说明：**
 
 - `<datakit_address>`：DataKit 服务的地址，如 `http://localhost:9529`
 - `<app_id>`： 对应 RUM 的 `applicationId`
 - `<env>`： 对应 RUM 的 `env`
-- `<version>`：对应 RUM 的 `version`
+- `<version>`：应用的 `version` ，`CFBundleShortVersionString` 值
 - `<dataway_token>`：配置文件 `datakit.conf` 中 `dataway` 的 token
 - `<dSYMBOL_src_dir>`： 包含所有 `.dSYM` 文件的目录路径。
 
@@ -1842,6 +1871,80 @@ Widget Extension SDK 中仅实现数据的采集，数据上传逻辑交给主�
 ## WebView 数据监测
 WebView 数据监测，需要在 WebView 访问页面集成[Web 监测 SDK](../web/app-access.md)
 
+## 自定义标签使用示例 {#user-global-context}
+
+### 编译配置方式
+
+可采用创建多 Configurations ，使用预编译指令进行设置值
+
+1.创建多 Configurations
+
+![](../img/image_9.png)
+
+2.设置预设属性来区分不同 Configurations
+
+![](../img/image_10.png)
+
+3.使用预编译指令
+
+```objectivec
+//Target -> Build Settings -> GCC_PREPROCESSOR_DEFINITIONS 进行配置预设定义
+#if PRE
+#define Track_id       @"0000000001"
+#define STATIC_TAG     @"preprod"
+#elif  DEVELOP
+#define Track_id       @"0000000002"
+#define STATIC_TAG     @"common"
+#else
+#define Track_id       @"0000000003"
+#define STATIC_TAG     @"prod"
+#endif
+   
+FTRumConfig *rumConfig = [[FTRumConfig alloc]init]; 
+rumConfig.globalContext = @{@"track_id":Track_id,@"static_tag":STATIC_TAG};
+... //其他设置操作
+[[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
+```
+
+也可参考 [多环境配置参数](#multi_env_param) 方法进行配置。
+
+### 运行时读写文件方式
+
+因 RUM 启动后设置的 globalContext 不会生效，用户可自行本地保存，在下次应用启动时进行设置生效。
+
+1.通过存文件本地保存，例如`NSUserDefaults`，配置使用 `SDK`，在配置处添加获取标签数据的代码。
+
+```objectivec
+NSString *dynamicTag = [[NSUserDefaults standardUserDefaults] valueForKey:@"DYNAMIC_TAG"]?:@"NO_VALUE";
+
+FTRumConfig *rumConfig = [[FTRumConfig alloc]init];
+rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
+... //其他设置操作
+[[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
+```
+
+2.在任意处添加改变文件数据的方法。
+
+```objectivec
+ [[NSUserDefaults standardUserDefaults] setValue:@"dynamic_tags" forKey:@"DYNAMIC_TAG"];
+```
+
+3.最后重启应用生效。
+
+### SDK 运行时添加
+
+在 SDK 初始化完毕之后，使用`[FTMobileAgent appendGlobalContext:globalContext]`、`[FTMobileAgent appendRUMGlobalContext:globalContext]`、`[FTMobileAgent appendLogGlobalContext:globalContext]`，可以动态添加标签，设置完毕，会立即生效。随后，RUM 或 Log 后续上报的数据会自动添加标签数据。这种使用方式适合延迟获取数据的场景，例如标签数据需要网络请求获取。
+
+```objective-c
+//SDK 初始化伪代码，获取
+[FTMobileAgent startWithConfigOptions:config];
+
+-(void)getInfoFromNet:(Info *)info{
+	NSDictionary *globalContext = @{@"delay_key", info.value}
+	[FTMobileAgent appendGlobalContext:globalContext];
+}
+```
+
 ## 常见问题 {#FAQ}
 
 ### 关于崩溃日志分析 {#crash-log-analysis}
@@ -1922,5 +2025,6 @@ XCode Release 编译默认会生成 dSYM 文件，而 Debug 编译默认不会�
 
 `xcrun dsymutil -symbol-map <BCSymbolMaps_path> <.dSYM_path>`
 
+### 添加全局变量避免冲突字段 {#key-conflict}
 
-
+为了避免自定义字段与 SDK 数据冲突，建议标签命名添加 **项目缩写** 的前缀，例如 `df_tag_name`，项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTMobileSDK/FTSDKCore/BaseUtils/Base/FTConstants.m)。SDK 全局变量中出现与 RUM、Log 相同变量时，RUM、Log 会覆盖 SDK 中的全局变量。
