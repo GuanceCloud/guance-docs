@@ -330,6 +330,30 @@ For all of the following data collections, the global election tags will added a
 
 
 
+## Custom Object {#object}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Log {#logging}
 
 To collect NGINX logs, open `files` in nginx.conf and write to the absolute path of the NGINX log file. For example:

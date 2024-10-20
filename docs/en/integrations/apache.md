@@ -154,6 +154,15 @@ The collected metrics are affected by the environment in which Apache is install
 |`uptime`|The amount of time the server has been running|int|s|
 |`waiting_for_connection`|The number of workers that can immediately process an incoming request|int|count|
 
+
+## Custom Object {#object}
+
+
+
+
+
+
+
 ## Log Collection {#logging}
 
 To collect the Apache log, open  `files` in apache.conf and write to the absolute path of the Apache log file. For example:

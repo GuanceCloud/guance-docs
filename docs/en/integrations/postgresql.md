@@ -467,6 +467,62 @@ For all of the following data collections, the global election tags will added a
 
 
 
+## Custom Object {#object}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Log Collection {#logging}
 
 - PostgreSQL logs are output to `stderr` by default. To open file logs, configure them in postgresql's configuration file `/etc/postgresql/<VERSION>/main/postgresql.conf` as follows:

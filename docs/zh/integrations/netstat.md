@@ -109,7 +109,7 @@ NetStat 指标展示，包括 Tcp 连接数、等待连接、等待处理请求�
     
         采集器重复间隔时长
     
-        **字段类型**: TimeDuration
+        **字段类型**: Duration
     
         **采集器配置字段**: `interval`
     

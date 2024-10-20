@@ -39,6 +39,7 @@ Taking Kubernetes `1.24` as an example, enable the audit log strategy
 
 ???- info "audit-policy.yml"
     ```yaml
+        
     # Copyright © 2022 sealos.
     #
     # Licensed under the Apache License, Version 2.0 (the "License");
@@ -263,7 +264,7 @@ spec:
       name: datakit-vol-opt
   volumes:
   - name: datakit-vol-opt
-    hostPath:
+    hostPath: 
       path: /var/log/kubernetes
   nodeSelector:
      kubernetes.io/hostname: k8s-master
@@ -274,9 +275,10 @@ spec:
   - key: "node-role.kubernetes.io/control-plane"
     operator: "Exists"
     effect: "NoSchedule"
+
 ```
 
-> Please note that the current pod can only run on the master node.
+❗Please note that the current pod can only run on the master node.
 
 - Run
 
@@ -284,37 +286,41 @@ spec:
 
 - View
 
+
 After a few minutes, you can view the corresponding logs on the observation cloud. Due to its `JSON` format, Observation Cloud supports searching through `@+JSON` field names, such as `@verb: update`.
+
+
 
 ### Audit log field extraction
 
-After the audit logs are collected, by Guance Pipeline, key fields of the audit logs can be extracted for further data analysis
+After the audit logs are collected, by Guance `pipeline`, key fields of the audit logs can be extracted for further data analysis
 
-- Login Guance console, **Logs** -> **Pipelines** - **Create Pipeline**
+- Login Guance console, `log` - `pipeline` - `Created`
 - Select the corresponding log source `k8s-audit`
-- Pipeline name：`kubelet-audit`
-- Define following rules:
+- `Pipeline` name：`kubelet-audit`
+- Define parsing rules
 
-    ```python
-    abc = load_json(_)
-    
-    add_key(kind, abc["kind"])
-    add_key(level, abc["level"])
-    add_key(stage, abc["stage"])
-    add_key(verb, abc["verb"])
-    add_key(auditID, abc["auditID"])
-    add_key(username, abc["user"]["username"])
-    add_key(responseCode, abc["responseStatus"]["code"])
-    if abc["responseStatus"]["code"]==200 {
-      add_key(status, "OK")
-    }else{
-      add_key(status, "FAIL")
-    }
-    add_key(sourceIP_0,abc["sourceIPs"][0])
-    
-    add_key(namespace,abc["objectRef"]["namespace"])
-    add_key(node,abc["objectRef"]["name"])
-    ```
+```python
+abc = load_json(_)
 
-- Click **Get a sample**
+add_key(kind, abc["kind"])
+add_key(level, abc["level"])
+add_key(stage, abc["stage"])
+add_key(verb, abc["verb"])
+add_key(auditID, abc["auditID"])
+add_key(username, abc["user"]["username"])
+add_key(responseCode, abc["responseStatus"]["code"])
+if abc["responseStatus"]["code"]==200 {
+  add_key(status, "OK")
+}else{
+  add_key(status, "FAIL")
+}
+add_key(sourceIP_0,abc["sourceIPs"][0])
+  
+add_key(namespace,abc["objectRef"]["namespace"])
+add_key(node,abc["objectRef"]["name"])
+
+```
+
+- Click to obtain script test
 - Save

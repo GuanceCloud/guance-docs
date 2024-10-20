@@ -112,7 +112,7 @@ Already tested version:
     
         Collect interval
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `interval`
     
@@ -122,7 +122,7 @@ Already tested version:
     
         Timeout
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `timeout`
     

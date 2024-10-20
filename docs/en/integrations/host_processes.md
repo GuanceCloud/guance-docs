@@ -104,7 +104,7 @@ The process collector can monitor various running processes in the system, acqui
     
         Process minimal run time
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `min_run_time`
     

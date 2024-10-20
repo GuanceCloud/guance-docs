@@ -110,7 +110,7 @@ Netstat metrics collection, including TCP/UDP connections, waiting for connectio
     
         Collect interval
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `interval`
     
