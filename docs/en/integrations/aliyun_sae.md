@@ -30,7 +30,8 @@ If you want to deploy Func on your own, please refer to [Deploy Func on Your Own
 
 > Note: Please prepare Aliyun Access Key (AK) that meets the requirements in advance (For simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize monitoring data from Aliyun SAE , we will install the corresponding collection script: 
+To synchronize monitoring data from Aliyun SAE , we will install the corresponding collection script:
+
 - ID：`guance_aliyun_sae_app`
 - ID：`guance_aliyun_sae_app_instance`
 
