@@ -237,15 +237,15 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_DEFAULT_ENABLED_INPUTS**
 
-    [The list of collectors](datakit-input-conf.md#default-enabled-inputs) is opened by default, divided by English commas, the old  `ENV_ENABLE_INPUTS` will be discarded
+    [The list of collectors](datakit-input-conf.md#default-enabled-inputs) is opened by default, divided by commas
 
     **Type**: List
 
     **Example**: cpu,mem,disk
 
-- **ENV_ENABLE_INPUTS :fontawesome-solid-x:**
+- **~~ENV_ENABLE_INPUTS~~**
 
-    Same as ENV_DEFAULT_ENABLED_INPUTS, to be scrapped
+    Same as ENV_DEFAULT_ENABLED_INPUTS(Deprecated)
 
     **Type**: List
 
@@ -257,9 +257,9 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     **Example**: tag1=val,tag2=val2
 
-- **ENV_GLOBAL_TAGS :fontawesome-solid-x:**
+- **~~ENV_GLOBAL_TAGS~~**
 
-    Same as ENV_GLOBAL_HOST-TAGS, to be scrapped
+    Same as ENV_GLOBAL_HOST-TAGS(Deprecated)
 
     **Type**: List
 
@@ -290,9 +290,17 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 [:octicons-beaker-24: Experimental](index.md#experimental)
 
 <!-- markdownlint-disable MD046 -->
-- **ENV_ENABLE_POINT_POOL**
+- **~~ENV_ENABLE_POINT_POOL~~**
 
-    Enable point pool
+    Enable point pool [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0) default enabled
+
+    **Type**: Boolean
+
+    **Example**: `on`
+
+- **ENV_DISABLE_POINT_POOL**
+
+    Disable point pool [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
 
     **Type**: Boolean
 
@@ -323,7 +331,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     Set DataWay request timeout
 
-    **Type**: TimeDuration
+    **Type**: Duration
 
     **Default**: 30s
 
@@ -349,7 +357,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     Set DataWay HTTP Keep-Alive timeout [:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0)
 
-    **Type**: TimeDuration
+    **Type**: Duration
 
     **Default**: 90s
 
@@ -365,7 +373,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     The interval between two data sending retry, valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h" [:octicons-tag-24: Version-1.18.0](changelog.md#cl-1.18.0)
 
-    **Type**: TimeDuration
+    **Type**: Duration
 
     **Default**: 200ms
 
@@ -391,15 +399,45 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_DATAWAY_NTP_INTERVAL**
 
-    Set NTP sync interval [:octicons-tag-24: Version-1.39.0](changelog.md#cl-1.38.2)
+    Set NTP sync interval [:octicons-tag-24: Version-1.38.2](changelog.md#cl-1.38.2)
 
     **Type**: String
 
 - **ENV_DATAWAY_NTP_DIFF**
 
-    Set NTP sync difference [:octicons-tag-24: Version-1.39.0](changelog.md#cl-1.38.2)
+    Set NTP sync difference [:octicons-tag-24: Version-1.38.2](changelog.md#cl-1.38.2)
 
     **Type**: String
+
+- **ENV_DATAWAY_WAL_CAPACITY**
+
+    Set WAL disk cache capacity [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+
+    **Type**: Float
+
+- **ENV_DATAWAY_WAL_WORKERS**
+
+    Set WAL workers, default to limited CPU cores [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+
+    **Type**: Int
+
+- **ENV_DATAWAY_WAL_MEM_CAPACITY**
+
+    Set WAL memory queue length, default to limited CPU cores [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+
+    **Type**: Int
+
+- **ENV_DATAWAY_WAL_PATH**
+
+    Set WAL disk path, default path is *data/dw-wal* under Datakit install path[:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+
+    **Type**: String
+
+- **ENV_DATAWAY_WAL_FAIL_CACHE_CLEAN_INTERVAL**
+
+    Set WAL fail-cache clean interval, default `30s`[:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+
+    **Type**: Duration
 <!-- markdownlint-enable -->
 
 ### Log Configuration Environments {#env-log}
@@ -457,9 +495,9 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 ### Something about DataKit pprof {#env-pprof}
 
 <!-- markdownlint-disable MD046 -->
-- **ENV_ENABLE_PPROF :fontawesome-solid-x:**
+- **~~ENV_ENABLE_PPROF~~**
 
-    Whether to start `pprof`
+    Whether to start port on for profiling(Deprecated: Default enabled)
 
     **Type**: Boolean
 
@@ -553,7 +591,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     Setting the 9529 HTTP API Server Timeout [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
 
-    **Type**: TimeDuration
+    **Type**: Duration
 
     **Default**: 30s
 
@@ -594,6 +632,8 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
     Limit 9529 [API requests per second](datakit-conf.md#set-http-api-limit).
 
     **Type**: Float
+
+    **Default**: 20.0
 
 - **ENV_RUM_ORIGIN_IP_HEADER**
 
@@ -751,7 +791,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     The interval of timed pull.
 
-    **Type**: TimeDuration
+    **Type**: Duration
 
     **Example**: 1m
 
@@ -809,15 +849,15 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_IO_FLUSH_INTERVAL**
 
-    IO channel capacity [:octicons-tag-24: Version-1.22.0](changelog.md#cl-1.22.0)
+    Set compact interval [:octicons-tag-24: Version-1.22.0](changelog.md#cl-1.22.0)
 
-    **Type**: TimeDuration
+    **Type**: Duration
 
     **Default**: 10s
 
 - **ENV_IO_FEED_CHAN_SIZE**
 
-    IO transmission time frequency [:octicons-tag-24: Version-1.22.0](changelog.md#cl-1.22.0)
+    Set compact queue size [:octicons-tag-24: Version-1.22.0](changelog.md#cl-1.22.0)
 
     **Type**: Int
 
@@ -825,49 +865,47 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_IO_FLUSH_WORKERS**
 
-    IO flush workers [:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)
+    Set compact workers, default to limited CPU cores x 2 [:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)
 
     **Type**: Int
-
-    **Default**: `cpu_core * 2 + 1`
 
 - **ENV_IO_MAX_CACHE_COUNT**
 
-    Send buffer size
+    Compact buffer size
 
     **Type**: Int
 
-    **Default**: 1000
+    **Default**: 1024
 
-- **ENV_IO_ENABLE_CACHE**
+- **~~ENV_IO_ENABLE_CACHE~~**
 
-    Whether to open the disk cache that failed to send
-
-    **Type**: Boolean
-
-    **Default**: false
-
-- **ENV_IO_CACHE_ALL**
-
-    Cache failed data points of all categories
+    Whether to open the disk cache that failed to send. Removed in [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
 
     **Type**: Boolean
 
     **Default**: false
 
-- **ENV_IO_CACHE_MAX_SIZE_GB**
+- **~~ENV_IO_CACHE_ALL~~**
 
-    Disk size of send failure cache (in GB)
+    Cache failed data points of all categories. Removed in [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+
+    **Type**: Boolean
+
+    **Default**: false
+
+- **~~ENV_IO_CACHE_MAX_SIZE_GB~~**
+
+    Disk size of send failure cache (in GB). Removed in [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
 
     **Type**: Int
 
     **Default**: 10
 
-- **ENV_IO_CACHE_CLEAN_INTERVAL**
+- **~~ENV_IO_CACHE_CLEAN_INTERVAL~~**
 
-    Periodically send failed tasks cached on disk
+    Periodically send failed tasks cached on disk. Removed in [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
 
-    **Type**: TimeDuration
+    **Type**: Duration
 
     **Default**: 5s
 <!-- markdownlint-enable -->
@@ -980,7 +1018,7 @@ For more info about recorder, see [here](datakit-tools-how-to.md#record-and-repl
 
     Set recorder duration(since Datakit start). After the duration, the recorder will stop to write data to file
 
-    **Type**: TimeDuration
+    **Type**: Duration
 
     **Default**: 30m
 

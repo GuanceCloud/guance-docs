@@ -284,7 +284,7 @@ spec:
 
     **示例**: cpu,mem,disk
 
-- **ENV_ENABLE_INPUTS :fontawesome-solid-x:**
+- **~~ENV_ENABLE_INPUTS~~**
 
     同 ENV_DEFAULT_ENABLED_INPUTS，将废弃
 
@@ -298,7 +298,7 @@ spec:
 
     **示例**: tag1=val,tag2=val2
 
-- **ENV_GLOBAL_TAGS :fontawesome-solid-x:**
+- **~~ENV_GLOBAL_TAGS~~**
 
     同 ENV_GLOBAL_HOST_TAGS，将废弃
 
@@ -331,9 +331,17 @@ spec:
 [:octicons-beaker-24: Experimental](index.md#experimental)
 
 <!-- markdownlint-disable MD046 -->
-- **ENV_ENABLE_POINT_POOL**
+- **~~ENV_ENABLE_POINT_POOL~~**
 
-    开启 point pool
+    开启 point pool [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0) 版本已默认开启
+
+    **字段类型**: Boolean
+
+    **示例**: `on`
+
+- **ENV_DISABLE_POINT_POOL**
+
+    禁用 point pool [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
 
     **字段类型**: Boolean
 
@@ -363,7 +371,7 @@ spec:
 
     配置 DataWay 请求超时
 
-    **字段类型**: TimeDuration
+    **字段类型**: Duration
 
     **默认值**: 30s
 
@@ -389,7 +397,7 @@ spec:
 
     设置 DataWay HTTP Keep-Alive 时长 [:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0)
 
-    **字段类型**: TimeDuration
+    **字段类型**: Duration
 
     **默认值**: 90s
 
@@ -405,7 +413,7 @@ spec:
 
     数据发送失败时，两次重试之间的时间间隔 [:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0)
 
-    **字段类型**: TimeDuration
+    **字段类型**: Duration
 
     **默认值**: 200ms
 
@@ -431,15 +439,45 @@ spec:
 
 - **ENV_DATAWAY_NTP_INTERVAL**
 
-    设置 NTP 时间同步间隔 [:octicons-tag-24: Version-1.39.0](changelog.md#cl-1.38.2)
+    设置 NTP 时间同步间隔 [:octicons-tag-24: Version-1.38.2](changelog.md#cl-1.38.2)
 
     **字段类型**: String
 
 - **ENV_DATAWAY_NTP_DIFF**
 
-    设置 NTP 时间同步的误差[:octicons-tag-24: Version-1.39.0](changelog.md#cl-1.38.2)
+    设置 NTP 时间同步的误差[:octicons-tag-24: Version-1.38.2](changelog.md#cl-1.38.2)
 
     **字段类型**: String
+
+- **ENV_DATAWAY_WAL_CAPACITY**
+
+    设置 WAL 占用的磁盘大小 [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+
+    **字段类型**: Float
+
+- **ENV_DATAWAY_WAL_WORKERS**
+
+    设置 WAL worker 个数，默认为 CPU 配额核心数 X 2 [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+
+    **字段类型**: Int
+
+- **ENV_DATAWAY_WAL_MEM_CAPACITY**
+
+    设置 WAL 内存队列长度，默认为 CPU 配额核心数 [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+
+    **字段类型**: Int
+
+- **ENV_DATAWAY_WAL_PATH**
+
+    设置 WAL 磁盘目录，默认为 Datakit 安装目录下的 *data/dw-wal* [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+
+    **字段类型**: String
+
+- **ENV_DATAWAY_WAL_FAIL_CACHE_CLEAN_INTERVAL**
+
+    设置 WAL 失败队列的重试间隔，默认 `30s` [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+
+    **字段类型**: Duration
 <!-- markdownlint-enable -->
 
 ### 日志配置相关环境变量 {#env-log}
@@ -497,9 +535,9 @@ spec:
 ### Pprof 相关 {#env-pprof}
 
 <!-- markdownlint-disable MD046 -->
-- **ENV_ENABLE_PPROF :fontawesome-solid-x:**
+- **~~ENV_ENABLE_PPROF~~**
 
-    是否开启 `pprof`
+    是否开启 profiling 端口（已默认启用）
 
     **字段类型**: Boolean
 
@@ -593,7 +631,7 @@ spec:
 
     设置 9529 HTTP API 服务端超时时间 [:octicons-tag-24: Version-1.4.6](changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](index.md#experimental)
 
-    **字段类型**: TimeDuration
+    **字段类型**: Duration
 
     **默认值**: 30s
 
@@ -634,6 +672,8 @@ spec:
     限制 9529 [API 每秒请求数](datakit-conf.md#set-http-api-limit)。
 
     **字段类型**: Float
+
+    **默认值**: 20.0
 
 - **ENV_RUM_ORIGIN_IP_HEADER**
 
@@ -791,7 +831,7 @@ spec:
 
     定时拉取的间隔
 
-    **字段类型**: TimeDuration
+    **字段类型**: Duration
 
     **示例**: 1m
 
@@ -849,15 +889,15 @@ spec:
 
 - **ENV_IO_FLUSH_INTERVAL**
 
-    IO 发送时间频率 [:octicons-tag-24: Version-1.22.0](changelog.md#cl-1.22.0)
+    设置 compact 执行间隔 [:octicons-tag-24: Version-1.22.0](changelog.md#cl-1.22.0)
 
-    **字段类型**: TimeDuration
+    **字段类型**: Duration
 
     **默认值**: 10s
 
 - **ENV_IO_FEED_CHAN_SIZE**
 
-    IO 发送队列长度 [:octicons-tag-24: Version-1.22.0](changelog.md#cl-1.22.0)
+    设置 compact 队列长度 [:octicons-tag-24: Version-1.22.0](changelog.md#cl-1.22.0)
 
     **字段类型**: Int
 
@@ -865,49 +905,47 @@ spec:
 
 - **ENV_IO_FLUSH_WORKERS**
 
-    IO 发送 worker 数 [:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)
+    设置 compactor worker 数，默认为 CPU 配额核心数 x 2 [:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)
 
     **字段类型**: Int
-
-    **默认值**: `cpu_core * 2 + 1`
 
 - **ENV_IO_MAX_CACHE_COUNT**
 
-    发送 buffer（点数）大小
+    Compact 缓存的点数
 
     **字段类型**: Int
 
-    **默认值**: 1000
+    **默认值**: 1024
 
-- **ENV_IO_ENABLE_CACHE**
+- **~~ENV_IO_ENABLE_CACHE~~**
 
-    是否开启发送失败的磁盘缓存
-
-    **字段类型**: Boolean
-
-    **默认值**: false
-
-- **ENV_IO_CACHE_ALL**
-
-    是否 cache 所有发送失败的数据
+    是否开启发送失败的磁盘缓存。[:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0) 版本已移除
 
     **字段类型**: Boolean
 
     **默认值**: false
 
-- **ENV_IO_CACHE_MAX_SIZE_GB**
+- **~~ENV_IO_CACHE_ALL~~**
 
-    发送失败缓存的磁盘大小（单位 GB）
+    是否 cache 所有发送失败的数据。[:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0) 版本已移除
+
+    **字段类型**: Boolean
+
+    **默认值**: false
+
+- **~~ENV_IO_CACHE_MAX_SIZE_GB~~**
+
+    发送失败缓存的磁盘大小（单位 GB）。[:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0) 版本已移除
 
     **字段类型**: Int
 
     **默认值**: 10
 
-- **ENV_IO_CACHE_CLEAN_INTERVAL**
+- **~~ENV_IO_CACHE_CLEAN_INTERVAL~~**
 
-    定期发送缓存在磁盘内的失败任务
+    定期发送缓存在磁盘内的失败任务。[:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0) 版本已移除
 
-    **字段类型**: TimeDuration
+    **字段类型**: Duration
 
     **默认值**: 5s
 <!-- markdownlint-enable -->
@@ -1020,7 +1058,7 @@ spec:
 
     设置数据录制时长（自 Datakit 启动以后），一旦超过该时长，则不再录制
 
-    **字段类型**: TimeDuration
+    **字段类型**: Duration
 
     **默认值**: 30m
 

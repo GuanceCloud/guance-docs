@@ -33,7 +33,7 @@ monitor   :
 
 ### 安装 NPD
 
-可以[安装文档](https://github.com/kubernetes/node-problem-detector#installation)，这里采用 `yaml` 的方式进行安装。
+可以参考[安装文档](https://github.com/kubernetes/node-problem-detector#installation)，这里采用 `yaml` 的方式进行安装。
 
 - 下载相关 yaml
 
@@ -171,7 +171,7 @@ kubectl apply -f npd-server-monitor.yaml
 | type="ProcessD" | 节点存在 D 进程 |
 | type="ProcessZ" | 节点存在 Z 进程 |
 
-## 日志{#logging}
+## 日志 {#logging}
 
 以下列表包含但不限于默认配置下 NPD 能够检测的事件，事件写入至数据来源为`Kubernetes_events`的日志中：
 

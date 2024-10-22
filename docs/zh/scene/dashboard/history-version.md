@@ -22,7 +22,6 @@
 
 <img src="../../img/history-1.png" width="60%" >
 
-
 ## 视图详情
 
 历史版本模式下，您可以：

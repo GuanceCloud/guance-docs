@@ -408,6 +408,26 @@ PUT _plugins/_security/api/roles/monitor
 
 
 
+## 自定义对象 {#object}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 日志 {#logging}
 
 <!-- markdownlint-disable MD046 -->

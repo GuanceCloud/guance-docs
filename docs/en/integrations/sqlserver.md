@@ -460,6 +460,66 @@ For all of the following data collections, the global election tags will be adde
 
 
 
+## Custom Object {#object}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Logging {#logging}
 
 Following measurements are collected as logs with the level of `info`.

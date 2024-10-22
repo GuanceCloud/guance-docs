@@ -106,7 +106,7 @@ The health check collector can regularly monitor the health of processes and net
     
         Collect interval
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `interval`
     

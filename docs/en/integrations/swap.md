@@ -54,7 +54,7 @@ The swap collector is used to collect the usage of the host swap memory.
     
         Collect interval
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `interval`
     
