@@ -91,6 +91,7 @@ nav:
       - '可靠性验证': proof-of-reliability.md
       - '自定义前端配色': customize-frontend-color.md
       - '后台管理忘记admin用户密码': reset-admin-password.md
+      - 'Kodo-X 拆分': kodo-x-split.md
     - '运维FAQ':
       - 'kubernetes集群': faq-k8s.md
       - '观测云底座': faq-guanceyun.md
