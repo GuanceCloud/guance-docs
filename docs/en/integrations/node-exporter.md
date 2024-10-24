@@ -17,9 +17,9 @@ monitor   :
 This article introduces deploying the Node Exporter component on a host, collecting host metrics and storing them through Datakit, and finally visualizing the data through observation cloud.
 Node Exporter can collect various system performance indicators, including CPU usage, memory usage, disk I/O, network traffic, etc. of the host.
 
-## Config{#config}
+## Config {#config}
 
-### Preconditions{#requirement}
+### Preconditions {#requirement}
 
 - [x] Installed datakit
 
