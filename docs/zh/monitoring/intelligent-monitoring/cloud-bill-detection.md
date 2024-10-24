@@ -10,7 +10,7 @@
 
 ## 开启前提
 
-在开始使用云账单分析功能前，并最终实现采集数据进行上报，需先前往 DataFlux Func [开启采集器](../../cloud-billing/index.md#precondition)。
+使用云账单分析功能前，采集并上报数据，需先前往 DataFlux Func [开启采集器](../../cloud-billing/index.md#precondition)。
 
 ## 检测配置 {#config}
 
