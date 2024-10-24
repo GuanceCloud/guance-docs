@@ -171,6 +171,7 @@ kubectl apply -f npd-server-monitor.yaml
 | type="ProcessD" | 节点存在 D 进程 |
 | type="ProcessZ" | 节点存在 Z 进程 |
 
+
 ## 日志 {#logging}
 
 以下列表包含但不限于默认配置下 NPD 能够检测的事件，事件写入至数据来源为`Kubernetes_events`的日志中：
