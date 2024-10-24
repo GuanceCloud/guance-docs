@@ -76,8 +76,9 @@ Adjust the content of `trino.conf` as follows:
   interval = "10s"
 
 ```
-
-> *Note that the marker needs to be adjusted*
+<!-- markdownlint-disable MD033 -->
+<font color="red">*Note that the marker needs to be adjusted*</font>
+<!-- markdownlint-enable -->
 
 Description of main parameters:
 

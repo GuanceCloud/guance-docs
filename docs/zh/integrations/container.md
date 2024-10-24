@@ -332,7 +332,7 @@ monitor:
     
         日志发现的时间间隔，即每隔多久检索一次日志，如果间隔太长，会导致忽略了一些存活较短的日志
     
-        **字段类型**: TimeDuration
+        **字段类型**: Duration
     
         **采集器配置字段**: `logging_search_interval`
     
@@ -384,7 +384,7 @@ monitor:
     
         日志采集的单次多行最大生命周期，此周期结束将清空和上传现存的多行数据，避免堆积
     
-        **字段类型**: TimeDuration
+        **字段类型**: Duration
     
         **采集器配置字段**: `logging_max_multiline_life_duration`
     
@@ -1641,10 +1641,7 @@ The logging of the container.
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`log_read_lines`|The lines of the read file ([:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)).|int|count|
-|`log_read_offset`|The offset of the read file ([:octicons-tag-24: Version-1.4.8](../datakit/changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)).|int|-|
-|`log_read_time`|The timestamp of the read file.|s|-|
 |`message`|The text of the logging.|string|-|
-|`message_length`|The length of the message content.|B|count|
 |`status`|The status of the logging, only supported `info/emerg/alert/critical/error/warning/debug/OK/unknown`.|string|-|
 
 

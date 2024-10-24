@@ -56,7 +56,7 @@ None
     
         Collect interval
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `interval`
     

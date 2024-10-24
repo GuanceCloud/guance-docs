@@ -333,7 +333,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         The time interval of log discovery, that is, how often logs are retrieved. If the interval is too long, some logs with short survival will be ignored
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `logging_search_interval`
     
@@ -385,7 +385,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         Maximum single multi-row life cycle of log collection. At the end of this cycle, existing multi-row data will be emptied and uploaded to avoid accumulation
     
-        **Type**: TimeDuration
+        **Type**: Duration
     
         **input.conf**: `logging_max_multiline_life_duration`
     
@@ -1632,10 +1632,7 @@ The logging of the container.
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`log_read_lines`|The lines of the read file ([:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)).|int|count|
-|`log_read_offset`|The offset of the read file ([:octicons-tag-24: Version-1.4.8](../datakit/changelog.md#cl-1.4.8) · [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)).|int|-|
-|`log_read_time`|The timestamp of the read file.|s|-|
 |`message`|The text of the logging.|string|-|
-|`message_length`|The length of the message content.|B|count|
 |`status`|The status of the logging, only supported `info/emerg/alert/critical/error/warning/debug/OK/unknown`.|string|-|
 
 
