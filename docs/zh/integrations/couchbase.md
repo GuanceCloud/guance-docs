@@ -115,7 +115,7 @@ Couchbase 采集器支持远程采集，可以运行在多种操作系统中。
     
         采集器重复间隔时长
     
-        **字段类型**: TimeDuration
+        **字段类型**: Duration
     
         **采集器配置字段**: `interval`
     
@@ -125,7 +125,7 @@ Couchbase 采集器支持远程采集，可以运行在多种操作系统中。
     
         超时时长
     
-        **字段类型**: TimeDuration
+        **字段类型**: Duration
     
         **采集器配置字段**: `timeout`
     

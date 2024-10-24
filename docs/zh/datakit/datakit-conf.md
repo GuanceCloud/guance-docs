@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.39.0）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.60.0）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -62,10 +62,10 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
     ulimit = 64000
     
     ################################################
-    # point_pool: use point pool for better memory usage(Experimental)
+    # point_pool: use point pool for better memory usage
     ################################################
     [point_pool]
-      enable = false
+      enable = true
       reserved_capacity = 4096
     
     ################################################
@@ -143,6 +143,9 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       # Datakit server-side timeout
       timeout = "30s"
       close_idle_connection = false
+    
+      # API rate limit(QPS)
+      request_rate_limit = 20.0
     
       #
       # RUM related: we should port these configures to RUM inputs(TODO)
@@ -232,14 +235,16 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
     [dataway]
       # urls: Dataway URL list
       # NOTE: do not configure multiple URLs here, it's a deprecated feature.
-      urls = ["https://openway.guance.com?token=tkn_xxxxxxxxxxx"]
+      urls = [
+        # "https://openway.guance.com?token=<YOUR-WORKSPACE-TOKEN>"
+      ]
     
       # Dataway HTTP timeout
       timeout_v2 = "30s"
     
       # max_retry_count specifies at most how many times the data sending operation will be tried when it fails,
       # valid minimum value is 1 (NOT 0) and maximum value is 10.
-      max_retry_count = 4
+      max_retry_count = 1
     
       # The interval between two retry operation, valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h"
       retry_delay = "1s"
@@ -262,7 +267,7 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       # do NOT disable gzip or your get large network payload.
       gzip = true
     
-      max_raw_body_size = 10485760 # max body size(before gizp) in bytes
+      max_raw_body_size = 1048576 # max body size(before gizp) in bytes
     
       # Customer tag or field keys that will extract from exist points
       # to build the X-Global-Tags HTTP header value.
@@ -277,6 +282,14 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
         # datakit's soft time will update to the dataway time.
         # NOTE: diff MUST larger than "1s"
         diff     = "30s" 
+    
+      # WAL queue for uploading points
+      [dataway.wal]
+        max_capacity_gb = 2.0 # 2GB reserved disk space for each category(M/L/O/T/...)
+        #workers = 4          # flush workers on WAL(default to CPU limited cores)
+        #mem_cap = 4          # in-memory queue capacity(default to CPU limited cores)
+        #fail_cache_clean_interval = "30s" # duration for clean fail uploaded data
+    
     
     ################################################
     # Datakit logging configure
@@ -424,12 +437,14 @@ DataKit 会开启 HTTP 服务，用来接收外部数据，或者对外提供基
     配置完成后可以使用 `curl` 命令测试是否配置成功：`sudo curl --no-buffer -XGET --unix-socket /tmp/datakit.sock http:/localhost/v1/ping`。更多关于 `curl` 的测试命令的信息可以参阅[这里](https://superuser.com/a/925610){:target="_blank"}。
     
     ### HTTP 请求频率控制 {#set-http-api-limit}
+
+    > [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0) 已经默认开启该功能。
     
     由于 DataKit 需要大量接收外部数据写入，为了避免给所在节点造成巨大开销，可修改如下 HTTP 配置（默认不开启）：
     
     ```toml
     [http_api]
-      request_rate_limit = 1000.0 # 限制每个 HTTP API 每秒只接收 1000 次请求
+      request_rate_limit = 20.0 # 限制每个客户端（IP + API 路由）发起请求的 QPS 限制
     ```
 
     ### 其它设置 {#http-other-settings}
@@ -680,6 +695,57 @@ Dataway 部分有如下几个配置可以配置，其它部分不建议改动：
     - v2 即 Protobuf 协议，相比 v1，它各方面的性能都更优越。运行稳定后，后续将默认采用 v2
 
 Kubernetes 下部署相关配置参见[这里](datakit-daemonset-deploy.md#env-dataway)。
+
+#### WAL 队列配置 {#dataway-wal}
+
+[:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+
+在 `[dataway.wal]` 中，我们可以调整 WAL 队列的配置：
+
+```toml
+  [dataway.wal]
+     max_capacity_gb = 2.0             # 2GB reserved disk space for each category(M/L/O/T/...)
+     workers = 0                       # flush workers on WAL(default to CPU limited cores)
+     mem_cap = 0                       # in-memory queue capacity(default to CPU limited cores)
+     fail_cache_clean_interval = "30s" # duration for clean fail uploaded data
+```
+
+磁盘文件位于 Datakit 安装目录的 *data/dw-wal* 目录下：
+
+```shell
+/usr/local/datakit/data/dw-wal/
+├── custom_object
+│   └── data
+├── dialtesting
+│   └── data
+├── dynamic_dw
+│   └── data
+├── fc
+│   └── data
+├── keyevent
+│   └── data
+├── logging
+│   ├── data
+│   └── data.00000000000000000000000000000000
+├── metric
+│   └── data
+├── network
+│   └── data
+├── object
+│   └── data
+├── profiling
+│   └── data
+├── rum
+│   └── data
+├── security
+│   └── data
+└── tracing
+    └── data
+
+13 directories, 14 files
+```
+
+此处，除了 *fc* 是失败重传队列，其它目录分别对应一种数据类型。
 
 ### Sinker 配置 {#dataway-sink}
 

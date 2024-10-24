@@ -189,7 +189,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         采集器重复间隔时长
     
-        **字段类型**: TimeDuration
+        **字段类型**: Duration
     
         **采集器配置字段**: `interval`
     
@@ -199,7 +199,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         超时时长
     
-        **字段类型**: TimeDuration
+        **字段类型**: Duration
     
         **采集器配置字段**: `timeout`
     
@@ -209,7 +209,7 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         退服告警延迟
     
-        **字段类型**: TimeDuration
+        **字段类型**: Duration
     
         **采集器配置字段**: `drop_warning_delay`
     

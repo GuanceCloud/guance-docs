@@ -96,7 +96,7 @@ monitor   :
     
         采集器重复间隔时长
     
-        **字段类型**: TimeDuration
+        **字段类型**: Duration
     
         **采集器配置字段**: `interval`
     
@@ -106,7 +106,7 @@ monitor   :
     
         超时时长
     
-        **字段类型**: TimeDuration
+        **字段类型**: Duration
     
         **采集器配置字段**: `timeout`
     
@@ -136,7 +136,7 @@ monitor   :
     
         掉卡告警延迟
     
-        **字段类型**: TimeDuration
+        **字段类型**: Duration
     
         **采集器配置字段**: `gpu_drop_warning_delay`
     

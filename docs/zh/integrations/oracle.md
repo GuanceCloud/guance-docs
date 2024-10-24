@@ -406,6 +406,22 @@ apt-get install -y libaio-dev libaio1
 
 
 
+## 自定义对象 {#object}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 慢查询支持 {#slow}
 
 Datakit 可以将执行超过用户自定义时间的 SQL 语句报告给观测云，在日志中显示，来源名是 `oracle_log`。

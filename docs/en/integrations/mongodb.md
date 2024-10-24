@@ -640,6 +640,30 @@ MongoDB top measurement. Some metrics may not appear depending on the MongoDB ve
 
 
 
+## Custom Object {#object}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Mongod Log Collection {#logging}
 
 Annotate the configuration file `# enable_mongod_log = false` and change `false` to `true`. Other configuration options for mongod log are in `[inputs.mongodb.log]`, and the commented configuration is very default. If the path correspondence is correct, no configuration is needed. After starting Datakit, you will see a collection measurement named `mongod_log`.
