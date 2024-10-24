@@ -53,6 +53,7 @@ kubectl get cm -n forethought-kodo kodo-x -o yaml > kodo-x-metric-cm.yaml
 
 
 修改以下信息：
+
 - 修改 `name` 为 kodo-x-metric
 - 删除 `resourceVersion` 和 `uid` 字段
 
@@ -67,6 +68,7 @@ kubectl get deploy -n forethought-kodo  kodo-x -o yaml  > kodo-x-deploy.yaml
 ```
 
 修改以下信息：
+
 - 修改 「metadata」-「name」 为 kodo-x-metric
 - 删除 「metadata」 下的`resourceVersion` 和 `uid` 字段
 - 修改 「volumeMounts」 和 「volumes」下的 `name` 改为  kodo-x-metric
