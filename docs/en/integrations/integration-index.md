@@ -7804,7 +7804,7 @@ Guance has the ability of full stack data collection, and now supports about 290
   				while (i < 5) {
   					if (ele.classList.contains('fth-integration-list-item')) {
   						const href = ele.dataset.href;
-  						href && (window.location.href = href);
+  						href && window.open(href);
   						break;
   					}
   					i++;

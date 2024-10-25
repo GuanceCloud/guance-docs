@@ -6,7 +6,6 @@ icon: zy/integrations
 
 ---
 
-
 <!-- markdownlint-disable MD046 MD037 MD009 MD010 -->
 <html lang="en">
   <div>
@@ -7909,7 +7908,7 @@ icon: zy/integrations
   				while (i < 5) {
   					if (ele.classList.contains('fth-integration-list-item')) {
   						const href = ele.dataset.href;
-  						href && (window.location.href = href);
+  						href && window.open(href);
   						break;
   					}
   					i++;
