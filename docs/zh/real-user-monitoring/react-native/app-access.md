@@ -382,7 +382,7 @@ export default function Layout() {
 }
 ```
 
-### Action(#rum-action)
+### Action {#rum-action}
 
 在 SDK 初始化 [RUM 配置](#rum-config) 时配置 `enableAutoTrackUserAction` 和 `enableNativeUserAction`开启自动采集，也可通过下面方法进行手动添加。
 
