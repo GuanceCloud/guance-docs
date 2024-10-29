@@ -46,7 +46,7 @@ nav:
         - "应用中间件":
           - "MySQL": Mysql-deployment.md
           - "Redis": Redis-deployment.md
-          - "TDengine": Tdengine-deployment.md
+          # - "TDengine": Tdengine-deployment.md
           - "OpenSearch": Opensearch-deployment.md
         - "业务组件":
           - "Launcher": Launcher-deployment.md
@@ -84,7 +84,7 @@ nav:
       - '华为云更改 OpenSearch 磁盘类型': hw-change-disk-type.md
       - '配置数据转发': configure-data-forwarding.md
       - '离线环境模版更新': update-template.md
-      - '开启中心Pipeline': center-pl.md
+      # - '开启中心Pipeline': center-pl.md
       - '管理空间索引配置': manage-index-config.md
       - '通过 iframe 实现页面嵌套': iframe.md
       - '观测云集群备份和恢复': velero-install.md

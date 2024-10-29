@@ -307,49 +307,66 @@ pubrepo.guance.com/dataflux/1.93.173:launcher-d71b2c4-1724400267
 
 - 优化了 Launcher 安装引导工具，在安装结束时，显示存储引擎与系统工作空间的初始化状态。
 
-### 新增功能 {#new}
+### Breaking Changes {#breakingchanges0821}
 
-- 用户访问监测（RUM）：新增[热图](../real-user-monitoring/heatmap.md)。以视觉方式呈现访客与网站的互动情况，获取页面元素的点击数据和点击位置，了解用户的关注点。
+- OpenAPI / 全局 API：【事件】未恢复事件数据源从 `UE` 变更为 `E`。
 
-- 应用性能监测（APM） > 链路：新增[安装引导](../application-performance-monitoring/explorer/index.md)页面。
 
-- 监控：新增检测类型——[区间检测 V2](../monitoring/monitor/interval-detection-v2.md)，以检测指标的的历史数据建立的置信区间来预测正常波动范围。
+### 新增功能 {#new0821}
 
-### 持续优化 {#consistent}
+- 管理：新增 [Client Token](../management/client-token.md) 统一管理入口，用户使用公网 DataWay 接入 RUM 应用时，可更换系统默认生成的 Token，使用自定义创建的 Token。
 
-- 异常追踪:
-    - 配置管理 > 通知策略：新增[操作审计和执行日志](../exception/config-manag.md#check-events)查看入口。在接收 Issue 通知时，有时会遇到通知未正常发送或针对通知策略有疑议，此时可查看当前通知策略的操作审计事件和执行日志数据来进行判断。
-    - APM / RUM [Issue 自动发现](../application-performance-monitoring/error.md#issue)支持添加筛选条件；
-    - 针对部署版，新增[统一管理异常追踪等级](../deployment/setting.md#global-settings)入口；
-    - 日程：
-        - 在日程编辑页面，不同的通知对象会自动生成颜色；
-        - 日程管理：【我的日程】与【所有日程】新增统计数量；
+![](img/overall-token.png)
 
-### 常规更新 {#usual}
 
-- 监控 > [SLO](../monitoring/slo.md#slo)：
-    - 新增标签配置，最终作用到产生的事件数据信息内；
-    - 配置优化：通过设置【目标】和【最低目标】的 7 天达标率范围，判断生成警告或紧急事件；
-    - 支持通过关联【告警策略】实现告警通知发送。
-- 可用性监测：
-    - 拨测任务新增标签配置；
-    - 配置拨测任务页面的[测试模块](../usability-monitoring/request-task/http.md#test)优化；
-    - 列表新增[快捷筛选](../usability-monitoring/request-task/index.md#manag)模块；
-- 查看器：分析模式下支持导出 CSV 文件。
-- 基础设施 > 容器：新增进程关联页面展示。
+### 持续优化 {#consistent0821}
 
-### BUG 修复 {#bugs}
+- 异常追踪：
+    - 新增 [Issue 发现](../exception/config-manag/issue-discovery.md)页面。通过这一功能，您可以定制 Issue 发现的具体规则，对监控器检测规则触发的异常事件和相关数据进行统一管理和筛选。将一系列事件视为由单一原因引起，并为这些事件设置筛选条件，然后选择聚合维度来进一步细化数据。细化后，数据会根据您设定的检测频率进行聚合。最终，系统会根据您预设的 Issue 标题和描述，自动将这些信息推送到指定的频道，确保所有相关方都能及时接收并有效处理这些 Issue。
+    - 配置管理 > 通知策略：通知策略列表新增创建/更新的信息显示。
 
-- 解决【任务调用】计费统计次数未显示的问题；
-- 解决图表查询时【左 * 匹配】问题；
-- 解决 BPF 网络日志返回数据未包含容器等相关信息的问题；
-- 解决中心 Pipeline 失效问题。 
 
-### Breaking Changes {#breakingchanges}
+### 常规更新 {#usual0821}
 
-- OpenAPI：
-    - SLO 创建/修改接口新增 `tags`、`alertPolicyUUIDs` 并弃用 `alertOpt` 参数；
-    - SLO 获取详情和列表接口返回结果中新增 `tagInfo`、`alertPolicyInfos` 字段，丢弃了 `alertOpt` 字段。
+- 数据保存策略：
+    - 原【应用性能】项拆分为【应用性能-链路】、【应用性能-Profile】，支持用户分别配置 Trace 数据和 Profile 数据的保存策略；
+    - 原【数据转发】名称修改为【数据转发-观测云】。
+- 监控 > 通知对象管理：连续一天发送失败会发系统通知；连续两天发送失败会发系统通知且自动禁用。
+- [未恢复事件查看器](../events/event-explorer/unrecovered-events.md)：
+    - 数据源变更为查询事件数据，以 `df_fault_id` 作为唯一标识进行聚合，获取最近一条数据结果返回展示。
+    - 页面整体 UI 改造。
+- 应用性能监测（APM）> 链路：[服务调用关系图](../application-performance-monitoring/explorer/explorer-analysis.md#call)新增绑定内置视图能力，点击服务的卡片，即可快速查看与该服务关联的相关用户视图。
+- 管理：
+    - 新增【工作空间描述】；
+    - 编辑模式下，交互变更为打开新窗口；
+    - 工作空间列表下支持通过工作空间的名称或描述来搜索定位。
+- 日志 > BPF 日志 > 七层 BPF 网络日志：网络请求拓扑图 UI 优化，突出了服务端与客户端的区分。
+- 可用性监测 > HTTP 监测 > 高级设置 > 请求设置默认添加 `Accept-Encoding:identity`。
+  
+### 部署版更新
+
+- 新增[拨测节点管理](../deployment/task.md)入口，支持创建平台级别拨测节点，并通过节点列表统一管理所有节点。通过此入口创建的拨测节点支持配置中英文节点名，从而适配观测云的国内外站点显示和上报数据结果内容。
+
+![](img/task.png)
+
+- 数据保存策略：
+
+    - 考虑到用户处于存储成本等因素的考量，需要自定义这些数据的保存时长，部署版管理后台新增【会话重放】配置项。
+    - 原【数据转发】名称修改为【数据转发-默认存储】；
+    - 原【应用性能】项拆分为【应用性能-链路】、【应用性能-Profile】，支持用户分别配置 Trace 数据和 Profile 数据的保存策略；
+- 支持火山引擎 TLS 做为底层数据存储引擎。
+
+### BUG 修复 {#bugs0821}
+
+- 解决异常追踪的通知策略未生效的问题；
+- 解决应用性能监测链路追踪导出异常的问题；
+- 解决通过 OpenAPI 修改通知对象报错无权限配置显示的问题；
+- 解决日志查看器重新设置时间范围后不能自动获取 `source` 筛选的问题；
+- 解决查看器搜索栏已添加 `source` 筛选条件范围，但在“快捷筛选”中依旧显示过滤条件外的全部 `source` 的问题；
+- 解决突变检测报错的问题；
+- 解决通过 OpenAPI 写入数据访问规则后，UI 页面打开无法查看角色信息的问题；
+- 解决图表设置的数据格式对图例中数据不生效的问题；
+- 解决自建拨测节点下，关联的拨测任务删除后，实际拨测还在运行的问题。
 
 更多详情可参考帮助文档：https://docs.guance.com/release-notes/
 
