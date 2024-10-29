@@ -450,6 +450,10 @@ dql:
     log_query_workers: 8 # 日志数据worker数量，默认值为8
     ...
 
+pipeline:
+    enable: false
+    pull_duration: "1m"
+
 ...
 
 ```
@@ -491,6 +495,9 @@ dql:
 | backup_kafka | async                   | 布尔   | false                | 数据转发到 kafka，写入方式，默认是同步写入                                                                                      |
 |              | write_timeout           | 数值   | 30                   | 写入 kafka 超时时间，单位是 s，即默认写入超时时间为 30s                                                                         |
 |              | max_bulk_docs           | 数值   | 0                    | 是否将多条日志，写入到一个 kafka message 中，发送到 kafka，默认一条日志组成一个 kafka message                                   |
+| pipeline     | enable                  | 布尔   | false                | 配置为 `true` 启用中心 Pipeline 功能                                                                   |
+|              | pull_duration           | 字符串 | 1m                   | 中心 Pipeline 脚本的同步的时间间隔，默认值 `1m` 表示每 1 分钟同步一次，支持 `s`、`m`、`h` 等的时间间隔表示法，如 `1m30s` 表示每隔 1分 30 秒同步一次中心 Pipeline 脚本 |
+
 
 ### kodo-servicemap 组件 {#kodo-servicemap}
 
