@@ -74,20 +74,25 @@
 
 在日志查看器，若想直接在数据列表中指定查看从每条日志 `message` 的 JSON 文本中提取出的值，在显示列处添加格式为 `@targer_fieldname` 的字段。如下图，我们在显示列中添加 DQL 查询语句中已配置的 `@fail_reason`：
 
-![](../img//json-3.gif)
+![](../img/json-3.gif)
 
 ## 新建监控器 {#new}
 
-您可以在日志查看器通过该入口，直接跳转至监控器[新建](../monitoring/monitor/index.md#new)页面，为日志数据快速设置异常检测规则。
+在进行日志数据筛选时，若您希望对系统过滤出的数据实施进一步的告警监控，可以通过一键设置监控器来实现。观测云将自动应用您选定的索引、数据来源和搜索条件，简化配置流程。
 
-![](../img//explorer-monitor.png)
+
+**注意**：若查看器左上角选择了其它工作空间，搜索条件不会被同步，监控器配置页为默认置空状态。
+
+![](../img/explorer-monitor.png)
+
+![](../img/explorer-monitor-1.png)
 
 
 ## Copy as cURL
 
 日志查看器支持通过命令行形式来获取日志数据。在日志数据列表右侧**设置**，点击 **Copy as cURL** 即可复制 cURL 命令行，前往主机终端执行该命令，从可获取当前时间段内相关筛选及搜索条件下的日志数据。
 
-![](../img//logexport-1.png)
+![](../img/logexport-1.png)
 
 <u>**示例**</u>
 
@@ -132,17 +137,17 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
 
 
-![](../img//11.log_format_2.gif)
+![](../img/11.log_format_2.gif)
 
 ## 日志数据导出 {#logexport}
 
 在**日志**中，您可以先筛选出想要的日志数据，再通过 :octicons-gear-24: 导出后进行查看和分析，支持导出到 CSV 文件或者仪表板和笔记。
 
-![](../img//5.log_explorer_3.png)
+![](../img/5.log_explorer_3.png)
 
 如果需要导出某条日志数据，打开该条日志详情页，点击右上角 :material-tray-arrow-up: 图标即可。
 
-![](../img//export-log-0808.png)
+![](../img/export-log-0808.png)
 
 
 ## 日志颜色高亮
@@ -159,7 +164,7 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 | 默认（无任何标示的文本） | 黑色 | 灰色 |
 | 数字（日志状态码等，如404） | 紫色 | 浅紫色 |
 
-![](../img//2.log_1.png)
+![](../img/2.log_1.png)
 
 ## 日志单行展开复制
 
@@ -167,11 +172,11 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
 点击 :octicons-copy-16: 按钮可复制整条日志内容。日志内容展开时，若支持 JSON 展示，会将该条日志以 JSON 格式展示，若不支持则正常展示该日志内容。
 
-![](../img//5.log_explorer_1.png)
+![](../img/5.log_explorer_1.png)
 
 ## 日志多行浏览
 
 观测云的日志数据列表默认为您展示日志的触发时间和内容。您可以在查看器**显示列**中选择日志显示 “1 行”、“3 行”、“10 行”和全部来查看完整的日志内容。
 
-![](../img//5.log_explorer_2.gif)
+![](../img/5.log_explorer_2.gif)
 

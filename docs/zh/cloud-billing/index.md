@@ -23,11 +23,11 @@ icon: zy/cloud-billing
 - 采集器——[AWS-账单（实例维度）](https://func.guance.com/doc/script-market-guance-aws-billing-by-instance/)
 
 
-## 云账单查看器
+## 查看器
 
 ![](img/bill-intelligent-detection-2.png)
 
-## 云账单系统视图
+## 云账单分析
 
 ![](img/bill-intelligent-detection-3.png)
 
