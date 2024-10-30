@@ -1,7 +1,7 @@
 ---
 title: 'Azure Virtual Machines'
-tags: 
-  - Azure
+tags:
+  - 'Azure'
 summary: 'Collect Azure Virtual Machines metric data'
 __int_icon: 'icon/azure_vm'
 dashboard:

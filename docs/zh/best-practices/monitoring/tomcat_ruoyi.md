@@ -271,7 +271,7 @@ default_time(time,"Asia/Shanghai")
 
 ## 创建 RUM
 
-1. 登陆[观测云](www.guance.com)
+1. 登陆[观测云](https://www.guance.com)
 2. 选择`用户访问检测`，选择`应用列表`，点击`新建应用`
 3. `应用名称`填写`ruoyi-admin`，`应用 ID`可以自定义，也可以点击`随机生成`按钮
 4. `应用类型` 选择 `web`，右边 `SDK 配置`有几个类型，这里我们选择 `CDN 同步载入`，***复制对应的脚本内容，后续会用到***。
