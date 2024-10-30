@@ -66,3 +66,14 @@
 ![](img/2.audit_1.png)
 
 
+## 更多阅读
+
+<font size=2>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **审计事件逻辑详解**</font>](./audit-event.md)
+
+</div>
+
+</font>
