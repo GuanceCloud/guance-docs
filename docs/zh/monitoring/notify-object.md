@@ -200,8 +200,6 @@ Content-Type: application/json
 4. 通过左侧快捷筛选，选定筛选条件后快速定位通知规则；
 5. 若通知对象规则未赋予您权限，则无法启用/禁用、编辑或删除。
 
-![](img/notify-2.png)
-
 
 <img src="../img/notify-3.png" width="70%" >
 

@@ -17,10 +17,10 @@ icon: zy/cloud-billing
 
 在开始使用云账单分析功能前，并最终实现采集数据进行上报，需先前往 DataFlux Func 开启如下采集器：
 
-- 采集器——[阿里云-账单（实例维度）](https://func.guance.com/doc/script-market-guance-aliyun-billing-by-instance/)
-- 采集器——[腾讯云-账单（实例维度）](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/)
+- 采集器——[阿里云-云账单（实例维度）](https://func.guance.com/doc/script-market-guance-aliyun-billing-by-instance/)
+- 采集器——[腾讯云-云账单（实例维度）](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/)
 - 采集器——[华为云-云账单（实例维度）](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/)
-- 采集器——[AWS-账单（实例维度）](https://func.guance.com/doc/script-market-guance-aws-billing-by-instance/)
+- 采集器——[AWS-云账单（实例维度）](https://func.guance.com/doc/script-market-guance-aws-billing-by-instance/)
 
 
 ## 查看器

@@ -19,6 +19,16 @@ icon: zy/release-notes
 
 ## 2024 年 10 月 30 日
 
+### 新增集成 {#inte1030}
+
+- [阿里云 SAE](../integrations/aliyun_sae.md)；
+- [Node Exporter](../integrations/node-exporter.md)；
+- [Azure Public IP](../integrations/azure_public_ip.md)；
+- [Grafana Guance Datasource](../integrations/grafana-guance-data-source.md)；
+- [Grafana Dashboard](../integrations/quick-guide.md)；
+- [Greenplum](../integrations/greenplum.md)。
+
+
 ### 功能更新 {#feature1030}
 
 #### 云账单
@@ -32,8 +42,10 @@ icon: zy/release-notes
 1. [主机智能监控](../monitoring/intelligent-monitoring/host-intelligent-detection.md)新增网络检测扩展：基于主机的网络监控提供了高效的网络性能监测，帮助用户实时监控主机的网络流量，识别异常流量和潜在的连接问题并及时预警，避免影响业务正常运行。系统支持多维度可视化功能，帮助用户深入分析和理解主机的网络使用情况，优化带宽分配和资源利用率，为未来的容量规划提供数据支持，从而确保网络资源的合理配置。
 2. 监控器功能增强： 
     - 支持在监控器列表中[批量设置](../monitoring/monitor/monitor-list.md#options)关联告警策略。
-    - 日志查看器可针对当前筛选和搜索条件[一键配置](../logs/explorer.md)【日志检测】类型监控器。
-    - 注意：所有监控器不支持 `左*` 匹配，若日志查看器配置 `左*` 查询，跳转配置监控器会查询报错。
+    
+    - 日志查看器可针对当前筛选和搜索条件[一键配置](../logs/manag-explorer.md)【日志检测】类型监控器。
+    
+    - 注意：只有在站点和工作空间级别都开启了 `左*` 查询的前提下，监控器才支持 `左*` 查询。否则日志查看器若配置 `左*` 查询，跳转到监控器会查询报错。
 
 3. [通知对象](../monitoring/notify-object.md)列表：
     - 新增搜索、快捷筛选功能，支持快速检索通知对象；
@@ -45,14 +57,15 @@ icon: zy/release-notes
     - 优化列表显示效果，支持自定义显示列，提升用户界面的个性化体验。
 
 5. [告警策略](../monitoring/alert-setting.md)：
+    - 通知规则内标签匹配逻辑支持不同字段自由组合 AND 和 OR 的关系，交互体验同查看器筛选搜索组件一致；
     - 新增自定义操作权限配置；
     - 新增告警策略描述填写。
 
 #### 场景
 
-1. 新增主机网络监控系统视图：通过对主机的网络使用情况，带宽分配和资源利用率等指标的汇聚，为未来的容量规划提供数据支持，从而确保网络资源的合理配置。
+1. 新增主机 NET 分析视图：通过对主机的网络使用情况，带宽分配和资源利用率等指标的汇聚，为未来的容量规划提供数据支持，从而确保网络资源的合理配置。
 2. 图表查询优化：
-    - index 不支持做 by 分组查询，优化 DQL 查询交互体验；
+    - `index` 不支持做 `by` 分组查询，优化 DQL 查询交互体验；
     - By 标签范围 / 筛选标签范围列出精确到指标级别；
     - DQL 查询新增获取日志索引的查询函数：`show_logging_index()`，可在仪表板视图变量处应用，同时图表查询索引配置支持视图变量填充；
     - 图表的表达式查询功能现已支持跨空间查询；
