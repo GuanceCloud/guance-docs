@@ -4,6 +4,10 @@
 ???- quote "更新日志"
 
     === "ft-sdk"
+		**1.6.2**
+		```markdown
+		1. RUM 新增 addAction 方法，支持 property 扩展属性与频繁连续数据上报
+		```
 		**1.6.1**
 		```markdown
 		1. 修复 RUM 单独调用自定义 startView，导致监控指标 FTMetricsMTR 线程未被回收的问题
@@ -174,7 +178,7 @@
 
 ### Gradle 配置 {#gradle-setting}
 
-在项目的根目录的 `build.gradle` 文件中添加 `SDK` 的远程仓库地址
+* 在项目的根目录的 `build.gradle` 文件中添加 `SDK` 的远程仓库地址
 
 === "buildscript"
 
@@ -248,7 +252,7 @@
 	```
 
 
-在项目主模块 `app` 的 `build.gradle` 文件中添加 `SDK` 的依赖及 `Plugin` 的使用 和 Java 8 的支持
+* 在项目主模块 `app` 的 `build.gradle` 文件中添加 `SDK` 的依赖及 `Plugin` 的使用 和 Java 8 的支持
 
 ```groovy
 dependencies {
@@ -301,7 +305,7 @@ android{
 }
 ```
 
-> 最新的版本请看上方的 Agent 和 Plugin 的版本名
+> 最新的版本请看上方的 ft-sdk 、ft-plugin 、ft-native 的版本名
 
 ## Application 配置 {#application-setting}
 理论上最佳初始化 SDK 的位置在 `Application` 的 `onCreate` 方法中，如果您的应用还没有创建 `Application`，您需要创建一个，并且在 `AndroidManifest.xml` 中 `Application` 中声明，示例请参考[这里](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/AndroidManifest.xml)。
@@ -508,7 +512,7 @@ android{
 
 	```java
 		/**
-	     *  添加 action
+	     *  添加 Action
 	     *
 	     * @param actionName action 名称
 	     * @param actionType action 类型
@@ -517,13 +521,42 @@ android{
 
 
 	    /**
-	     * 添加 action
+	     * 添加 Action
 	     *
 	     * @param actionName action 名称
 	     * @param actionType action 类型
 	     * @param property   附加属性参数
 	     */
 	    public void startAction(String actionName, String actionType, HashMap<String, Object> property)
+
+
+		/**
+		 * 添加 Action，此类数据无法关联 Error，Resource，LongTask 数据
+		 *
+		 * @param actionName action 名称
+		 * @param actionType action 类型
+		 */
+		public void addAction(String actionName, String actionType)
+
+		/**
+		 * 添加 Action，此类数据无法关联 Error，Resource，LongTask 数据
+		 *
+		 * @param actionName action 名称
+		 * @param actionType action 类型
+		 * @param property 扩展属性
+		 */
+		public void addAction(String actionName, String actionType, HashMap<String, Object> property)
+
+		 /**
+		 * 添加 Action， 此类数据无法关联 Error，Resource，LongTask 数据
+		 *
+		 * @param actionName action 名称
+		 * @param actionType action 类型
+		 * @param duration   纳秒，持续时间
+		 * @param property 扩展属性
+		 */
+		public void addAction(String actionName, String actionType, long duration, HashMap<String, Object> property) 
+    
 
 	```
 
@@ -548,7 +581,36 @@ android{
 	     */
 	    fun startAction(actionName: String, actionType: String, property: HashMap<String, Any>)
 
+		/**
+		 * 添加 Action，此类数据无法关联 Error，Resource，LongTask 数据
+		 *
+		 * @param actionName action 名称
+		 * @param actionType action 类型
+		 */
+		fun addAction(actionName: String, actionType: String)
+
+		/**
+		 * 添加 Action，此类数据无法关联 Error，Resource，LongTask 数据
+		 *
+		 * @param actionName action 名称
+		 * @param actionType action 类型
+		 * @param property 扩展属性
+		 */
+		fun addAction(actionName: String, actionType: String, property: HashMap<String, Any>)
+
+		/**
+		 * 添加 Action
+		 *
+		 * @param actionName action 名称
+		 * @param actionType action 类型
+		 * @param duration   纳秒，持续时间
+		 * @param property 扩展属性
+		 */
+		fun addAction(actionName: String, actionType: String, duration: Long, property: HashMap<String, Any>)
+
 	```
+> startAction 内部有计算耗时算法，计算期间会尽量与附近发生的 Resource，LongTask，Error 数据做数据关联，会有 100 ms 频繁触发保护，建议使用于用户操作类型的数据。如果有频繁调用的需求请使用 addAction，这个数据不会于 startAction 发生冲突，并且不与当下 Resource，LongTask，Error 进行数据关联
+
 
 #### 代码示例
 
@@ -562,11 +624,29 @@ android{
 	HashMap<String, Object> map = new HashMap<>();
 	map.put("ft_key", "ft_value");
 	FTRUMGlobalManager.get().startAction("login", "action_type", map);
+
+
+	// 场景1
+	FTRUMGlobalManager.get().addAction("login", "action_type");
+
+	// 场景2: 动态参数
+	HashMap<String, Object> map = new HashMap<>();
+	map.put("ft_key", "ft_value");
+	FTRUMGlobalManager.get().addAction("login", "action_type", map);
 	```
 
 === "Kotlin"
 
 	```kotlin
+
+	// 场景1
+	FTRUMGlobalManager.get().startAction("login", "action_type")
+
+	// 场景2: 动态参数
+	val map = HashMap<String,Any>()
+	map["ft_key"]="ft_value"
+	FTRUMGlobalManager.get().startAction("login","action_type",map)
+
 
 	// 场景1
 	FTRUMGlobalManager.get().startAction("login", "action_type")
