@@ -19,9 +19,9 @@ For version records, you can perform the following operations:
 1. Click the :material-dots-vertical: icon on the right side of a version, and you can choose to restore this version or clone the dashboard.
 2. Click :material-text-search:, and you can view the change details of that version.
 
-<img src="../../img/history.png" width="60%" >
+<img src="../img/history.png" width="60%" >
 
-<img src="../../img/history-1.png" width="60%" >
+<img src="../img/history-1.png" width="60%" >
 
 ## View Details
 

@@ -6,7 +6,7 @@ After entering a specific dashboard page, you can manage the dashboard through t
 
 Upon entering a specific dashboard, you can view the diagram information at the top `metadata` section of the page.
 
-<img src="../../img/dashboard-metadata.png" width="70%" >
+<img src="../img/dashboard-metadata.png" width="70%" >
 
 In addition to viewing the current dashboard's ID, creator, creation time, updater, and update time, you can also directly click here to modify the current dashboard's name, description, tags, and visibility range.
 
@@ -48,7 +48,7 @@ If a workspace is granted to another workspace, you can switch workspaces on the
 
 On the premise that the current workspace is authorized to view data from several other workspaces, you can choose to pin the authorized workspace A, which will set workspace A as the default workspace for querying data.
 
-<img src="../../img/pin.png" width="60%" >
+<img src="../img/pin.png" width="60%" >
 
 **Note**:
 
