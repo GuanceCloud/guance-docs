@@ -1,6 +1,6 @@
 nav:
   - index.md
-  - 'Dashboards': dashboard.md
+  - 'Dashboards': dashboard
   - 'Service Management': service-manag.md
   - 'Regular Reports': report.md
   - 'Notes': note.md

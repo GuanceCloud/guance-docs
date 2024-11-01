@@ -10,7 +10,7 @@
 2. 输入规则名称；
 3. 按需输入针对该规则的描述；
 4. 选择应用 ID（仅能选择当前工作空间的应用），您可以直接运用全部应用或选择单个/多个应用，覆盖 Web、iOS、Android 等；
-5. 定义当前规则下，RUM 数据的[访问范围](../logs/logdata-access.md#scope)；
+5. 定义当前规则下，RUM 数据的[访问范围](../management/logdata-access.md#scope)；
 
 6. 添加需要脱敏的单个或多个字段；
 
@@ -25,13 +25,13 @@
 
 在配置数据访问规则时，需注意三大逻辑：
 
-- [数据访问范围](../logs/logdata-access.md#scope)：即在访问规则内的成员只能访问与筛选条件匹配的数据。
-- [正则表达式脱敏](../logs/logdata-access.md#regex)：如果您需要在已框定数据范围的情况下再叠加一层数据保护，可设置正则表达式或脱敏字段向外屏蔽敏感数据；
-- [角色场景与查询权限](../logs/logdata-access.md#role_permission)：不同角色与不同规则的单个或叠加均会对数据访问规则的最终呈现效果产生不同结果。
+- [数据访问范围](../management/logdata-access.md#scope)：即在访问规则内的成员只能访问与筛选条件匹配的数据。
+- [正则表达式脱敏](../management/logdata-access.md#regex)：如果您需要在已框定数据范围的情况下再叠加一层数据保护，可设置正则表达式或脱敏字段向外屏蔽敏感数据；
+- [角色场景与查询权限](../management/logdata-access.md#role_permission)：不同角色与不同规则的单个或叠加均会对数据访问规则的最终呈现效果产生不同结果。
 
 ## 管理列表
 
-> 更多详情，可参考 [列表操作](../logs/logdata-access.md#list)。
+> 更多详情，可参考 [列表操作](../management/logdata-access.md#list)。
 
 ## 注意事项
 
@@ -62,7 +62,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **日志数据访问权限控制**</font>](../logs/logdata-access.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **日志数据访问权限控制**</font>](../management/logdata-access.md)
 
 </div>
 

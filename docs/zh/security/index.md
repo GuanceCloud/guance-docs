@@ -58,7 +58,7 @@ SELECT name from class where name = ?
 
 数据访问权限控制是降低日志数据安全风险的另一个关键方法。通过为不同角色配置对应的日志数据访问查询范围从而隔离数据，达到综合管理和过滤敏感数据的目的。
 
-> 更多详情，可参考 [多角色数据访问权限控制](../logs/logdata-access.md)。
+> 更多详情，可参考 [多角色数据访问权限控制](../management/logdata-access.md)。
 
 ### 快照
 
