@@ -60,7 +60,7 @@ icon: zy/logs
 
     将日志、链路和用户访问数据保存到观测云的对象存储或转发到外部存储，灵活管理数据转发数据
 
-- [:material-database-check:{ .lg .middle } __数据访问__](../logs/logdata-access.md)
+- [:material-database-check:{ .lg .middle } __数据访问__](../management/logdata-access.md)
 
     ---
 

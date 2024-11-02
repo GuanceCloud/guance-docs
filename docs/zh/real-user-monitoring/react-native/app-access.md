@@ -3,6 +3,31 @@
 ---
 ???- quote "更新日志"
 
+    **0.3.5**
+    ```
+    * 支持采集 Native Error、ANR、Freeze
+    * 修改 react-native 自动采集 error 的默认错误类型
+    * 对拥有 `onPress` 属性的组件，新增支持在开启 `enableAutoTrackUserAction` 后通过添加自定义属性 
+      `ft-enable-track` 定义是否采集该组件的点击事件、通过 `ft-extra-property` 添加 Action 额外属性
+    ```
+    **0.3.4**
+    ```
+    * 支持全局动态添加 globalContext 属性
+    * 支持通过 `FTReactNativeRUM.addErrorWithType()` 自定错误类型
+    * 支持通过 `FTMobileReactNative.shutDown()` 关闭 SDK
+    * 支持通过 `FTMobileReactNative.clearAllData()` 清理未上报缓存数据
+    * 修复自动采集 react-native Error 时，参数 `stack` 与 `message` 赋值相反问题
+    * 适配 Android SDK ft-sdk 1.6.1
+      * 修复 RUM 单独调用自定义 startView，导致监控指标 FTMetricsMTR 线程未被回收的问题
+      * 支持通过 FTSdk.appendGlobalContext(globalContext)、FTSdk.appendRUMGlobalContext(globalContext)、
+       		 FTSdk.appendLogGlobalContext(globalContext)添加动态属性
+      *	支持通过 FTSdk.clearAllData() 清理未上报缓存数据
+      * SDK setSyncSleepTime 最大限制延长为 5000 ms
+    * 适配 iOS SDK 1.5.4
+      * 添加全局、log、RUM globalContext 属性动态设置方式
+      * 添加清除数据方法，支持删除所有尚未上传至服务器的数据
+      * 调整同步间歇支持的最大时间间隔至 5000 毫秒
+    ```
     **0.3.3**
     ```
     * 适配 iOS SDK 1.5.3
@@ -134,9 +159,9 @@ await FTMobileReactNative.sdkConfig(config);
 | service | string | 否 | 设置所属业务或服务的名称，影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios`、`df_rum_android` |
 | autoSync | boolean | 否 | 是否开启自动同步。默认 `true` |
 | syncPageSize | number | 否 | 设置同步请求条目数。范围 [5,）注意：请求条目数越大，代表数据同步占用更大的计算资源 |
-| syncSleepTime | number | 否 | 设置同步间歇时间。范围 [0,100]，默认不设置 |
+| syncSleepTime | number | 否 | 设置同步间歇时间。范围 [0,5000]，默认不设置 |
 | enableDataIntegerCompatible | boolean | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题 。 |
-| globalContext | object | 否 | [添加自定义标签](#user-global-context ) |
+| globalContext | object | 否 | 添加自定义标签。添加规则请查阅[此处](../android/app-access.md#key-conflict) |
 
 ### RUM 配置 {#rum-config}
 
@@ -162,7 +187,7 @@ await FTReactNativeRUM.setConfig(rumConfig);
 | androidAppId | string | 是 | app_id，应用访问监测控制台申请 |
 | iOSAppId | string | 是 | app_id，应用访问监测控制台申请 |
 | sampleRate | number | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据|
-| enableAutoTrackUserAction | boolean | 否 | 是否自动采集 `React Native` 控件点击事件，开启后可配合  `accessibilityLabel`设置actionName |
+| enableAutoTrackUserAction | boolean | 否 | 是否自动采集 `React Native` 组件点击事件，开启后可配合  `accessibilityLabel`设置actionName，更多自定义操作请参考[此处](#rum-action) |
 | enableAutoTrackError | boolean | 否 | 是否自动采集 `React Native` Error |
 | enableNativeUserAction | boolean | 否 | 是否进行 `Native Action` 追踪，原生 `Button` 点击事件，应用启动事件，默认为 `false` |
 | enableNativeUserView | boolean | 否 | 是否进行 `Native View` 自动追踪，纯 `React Native` 应用建议关闭，，默认为 `false` |
@@ -171,7 +196,10 @@ await FTReactNativeRUM.setConfig(rumConfig);
 | deviceMonitorType | enum DeviceMetricsMonitorType | 否 | 视图的性能监控类型                                           |
 | detectFrequency | enum DetectFrequency | 否 | 视图的性能监控采样周期 |
 | enableResourceHostIP | boolean | 否 | 是否采集请求目标域名地址的 IP。作用域：只影响 `enableNativeUserResource`  为 true 的默认采集。iOS：`>= iOS 13` 下支持。Android：单个 Okhttp 对相同域名存在 IP 缓存机制，相同 `OkhttpClient`，在连接服务端 IP 不发生变化的前提下，只会生成一次。 |
-| globalContext | object | 否 | [添加自定义标签](#user-global-context) |
+| globalContext | object | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](../android/app-access.md#key-conflict) |
+| enableTrackNativeCrash | boolean | 否 | 是否采集 `Native Error` |
+| enableTrackNativeAppANR | boolean | 否 | 是否采集 `Native ANR`                                        |
+| enableTrackNativeFreeze | boolean | 否 | 是否采集 `Native Freeze` |
 
 ### Log 配置 {#log-config}
 
@@ -190,7 +218,7 @@ await FTReactNativeLog.logConfig(logConfig);
 | enableCustomLog | boolean | 否 | 是否开启自定义日志 |
 | discardStrategy | enum FTLogCacheDiscard | 否 | 日志丢弃策略，默认`FTLogCacheDiscard.discard` |
 | logLevelFilters | Array<FTLogStatus> | 否 | 日志等级过滤 |
-| globalContext | NSDictionary | 否 | [添加自定义标签](#user-global-context) |
+| globalContext | NSDictionary | 否 | 添加 log 自定义标签，添加规则请查阅[此处](../android/app-access.md#key-conflict) |
 | logCacheLimitCount | number | 否 | 获取最大日志条目数量限制 [1000,)，日志越大，代表磁盘缓存压力越大，默认 5000 |
 
 ### Trace 配置 {#trace-config}
@@ -354,7 +382,7 @@ export default function Layout() {
 }
 ```
 
-### Action
+### Action {#rum-action}
 
 在 SDK 初始化 [RUM 配置](#rum-config) 时配置 `enableAutoTrackUserAction` 和 `enableNativeUserAction`开启自动采集，也可通过下面方法进行手动添加。
 
@@ -362,6 +390,49 @@ export default function Layout() {
 import {FTReactNativeRUM} from '@cloudcare/react-native-mobile';
 
 FTReactNativeRUM.startAction('actionName','actionType');
+```
+
+**更多自定义采集操作**
+
+开启 `enableAutoTrackUserAction` 后，SDK 会自动采集拥有 `onPress` 属性的组件的点击操作。若您希望在自动追踪的基础上执行一些自定义操作，SDK 支持如下操作：
+
+* 自定义某一组件点击事件的 `actionName`
+
+  通过 `accessibilityLabel` 属性进行设置
+
+```typescript
+  <Button title="Custom Action Name"
+          accessibilityLabel="custom_action_name"
+          onPress={()=>{
+                console.log("btn click")
+          }}
+   />
+```
+
+* 不采集某一组件的点击事件
+
+  可以通过添加 `ft-enable-track` 自定义参数进行设置，设置值为 `false ` 
+
+```typescript
+  <Button title="Action Click" 
+          ft-enable-track="false"
+          onPress={()=>{
+                console.log('btn click');
+          }}
+  />
+```
+
+* 对某一组件的点击事件添加额外属性
+
+  可以通过添加 `ft-extra-property` 自定义参数进行设置，要求**值为 Json 字符串**
+
+```typescript
+  <Button title="Action 添加额外属性"
+          ft-extra-property='{"e_name": "John Doe", "e_age": 30, "e_city": "New York"}'
+          onPress={()=>{
+                 console.log("btn click")
+          }}
+  />
 ```
 
 ### Error
@@ -479,6 +550,28 @@ FTMobileReactNative.bindRUMUserData('react-native-user','uesr_name')
 FTMobileReactNative.unbindRUMUserData()
 ```
 
+## 关闭 SDK
+
+使用 `FTMobileReactNative` 关闭 SDK。
+
+```typescript
+/**
+ * 关闭 SDK 内正在运行对象
+*/
+FTMobileReactNative.shutDown();
+```
+
+## 清理 SDK 缓存数据
+
+使用  `FTMobileReactNative` 清理未上报的缓存数据 
+
+```typescript
+/**
+ * 清除所有尚未上传至服务器的数据。
+*/
+FTMobileReactNative.clearAllData();
+```
+
 ## 主动同步数据
 
 当配置 `FTMobileConfig.autoSync` 为 `true` 时，无需做额外的操作，SDK 会进行自动同步。
@@ -491,7 +584,34 @@ FTMobileReactNative.flushSyncData();
 
 ## 添加自定义标签 {#user-global-context}
 
-### 静态使用
+```typescript
+/**
+ * 添加自定义全局参数。作用于 RUM、Log 数据
+ * @param context 自定义全局参数。
+ * @returns a Promise.
+*/
+FTMobileReactNative.appendGlobalContext({'global_key':'global_value'});
+/**
+ * 添加自定义 RUM 全局参数。作用于 RUM 数据
+ * @param context 自定义 RUM 全局参数。
+ * @returns a Promise.
+*/
+FTMobileReactNative.appendRUMGlobalContext({'rum_key':'rum_value'});
+/**
+ * 添加自定义 RUM、Log 全局参数。作用于 Log 数据
+ * @param context 自定义 Log 全局参数。
+ * @returns a Promise.
+*/
+FTMobileReactNative.appendLogGlobalContext({'log_key':'log_value'});
+```
+
+## WebView 数据监测
+
+WebView 数据监测，需要在 WebView 访问页面集成[Web 监测 SDK](../web/app-access.md)
+
+## 自定义标签使用示例
+
+### 编译配置方式
 
 1. 使用 `react-native-config` 配置多环境，在不同的环境中设置对应的自定义标签值。
 
@@ -511,7 +631,7 @@ let rumConfig: FTRUMConfig = {
  await FTReactNativeRUM.setConfig(rumConfig); 
 ```
 
-### 动态使用
+### 运行时读写文件方式
 
 1、通过数据持久化方式，如 `AsyncStorage` 等，在初始化 SDK 时，获取存储的自定义标签。
 
@@ -553,15 +673,21 @@ AsyncStorage.setItem("track_id",valueString,(error)=>{
 })
 ```
 
-3、最后重启应用。
+3、最后重启应用后生效。
 
-**注意**：
+### SDK 运行时添加
 
-- 特殊 key : track_id (在 RUM 中配置，用于追踪功能) ；  
-- 当用户通过 globalContext 添加自定义标签与 SDK 自有标签相同时，SDK 的标签会覆盖用户设置的，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。项目中使用 `key` 值可[查询源码](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java)。
+在 SDK 初始化完毕之后，使用`FTReactNativeRUM.appendGlobalContext(globalContext)`、`FTReactNativeRUM.appendRUMGlobalContext(globalContext)`、`FTReactNativeRUM.appendLogGlobalContext(globalContext)`，可以动态添加标签，设置完毕，会立即生效。随后，RUM 或 Log 后续上报的数据会自动添加标签数据。这种使用方式适合延迟获取数据的场景，例如标签数据需要网络请求获取。
 
-## WebView 数据监测
-WebView 数据监测，需要在 WebView 访问页面集成[Web 监测 SDK](../web/app-access.md)
+```typescript
+//SDK 初始化伪代码，获取
+FTMobileReactNative.sdkConfig(config);
+
+function getInfoFromNet(info:Info){
+	let  globalContext = {"delay_key":info.value}
+	FTMobileReactNative.appendGlobalContext(globalContext);
+}
+```
 
 ## Publish Package 相关配置
 ### Android

@@ -14,6 +14,7 @@ nav:
   - 'Client Token 管理': client-token.md
   - '黑名单': overall-blacklist.md 
   - '数据转发': backup
+  - '数据访问': logdata-access.md
   - '正则表达式': regex.md
   - '云账号管理': cloud-account-manag.md
   - '审计事件': operation-audit.md

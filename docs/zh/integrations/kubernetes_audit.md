@@ -292,31 +292,31 @@ kubectl apply -f k8s-audit-log.yaml
 
 审计日志采集上来后，通过观测云 `pipeline` 的能力，可以对审计日志关键字段进行提取，从而对审计日志进行进一步数据分析
 
-- 在观测云，**日志** -> **Pipelines** -> **新建Pipeline**
+- 在观测云，`日志` - `pipeline` - `新建`
 - 选择对应的日志来源 `k8s-audit`
 - `Pipeline` 名称：`kubelet-audit`
-- 定义规则
+- 定义解析规则
 
-    ```python
-    abc = load_json(_)
-    
-    add_key(kind, abc["kind"])
-    add_key(level, abc["level"])
-    add_key(stage, abc["stage"])
-    add_key(verb, abc["verb"])
-    add_key(auditID, abc["auditID"])
-    add_key(username, abc["user"]["username"])
-    add_key(responseCode, abc["responseStatus"]["code"])
-    if abc["responseStatus"]["code"]==200 {
-      add_key(status, "OK")
-    }else{
-      add_key(status, "FAIL")
-    }
-    add_key(sourceIP_0,abc["sourceIPs"][0])
-      
-    add_key(namespace,abc["objectRef"]["namespace"])
-    add_key(node,abc["objectRef"]["name"])
-    ```
+```python
+abc = load_json(_)
 
-- 点击 **获取样本**
+add_key(kind, abc["kind"])
+add_key(level, abc["level"])
+add_key(stage, abc["stage"])
+add_key(verb, abc["verb"])
+add_key(auditID, abc["auditID"])
+add_key(username, abc["user"]["username"])
+add_key(responseCode, abc["responseStatus"]["code"])
+if abc["responseStatus"]["code"]==200 {
+  add_key(status, "OK")
+}else{
+  add_key(status, "FAIL")
+}
+add_key(sourceIP_0,abc["sourceIPs"][0])
+  
+add_key(namespace,abc["objectRef"]["namespace"])
+add_key(node,abc["objectRef"]["name"])
+```
+
+- 点击获取脚本测试
 - 保存

@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9506b76819261cf9ef3ed67ecf74ab6ddce8a7a615e243761395b7713824b3f7
-size 963
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>场景</title>
+    <g id="页面-1" stroke="none" stroke-width="1">
+        <g id="切图" transform="translate(-81.000000, -233.000000)">
+            <g id="编组-5" transform="translate(61.000000, 32.000000)">
+                <g id="洞察-highlight" transform="translate(20.000000, 201.000000)">
+                    <path d="M16,2 C16.5522847,2 17,2.44771525 17,3 L17,12 C17,12.5522847 16.5522847,13 16,13 L2,13 C1.44771525,13 1,12.5522847 1,12 L1,3 C1,2.44771525 1.44771525,2 2,2 L16,2 Z M9.5,6 L8.5,6 L8.5,10 L9.5,10 L9.5,6 Z M6,7 L5,7 L5,10 L6,10 L6,7 Z M13,8 L12,8 L12,10 L13,10 L13,8 Z" id="形状结合"></path>
+                    <rect id="矩形" x="5" y="15" width="8" height="1"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

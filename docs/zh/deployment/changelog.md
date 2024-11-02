@@ -1,5 +1,114 @@
 # 版本历史
 
+## 1.96.178（2024 年 10 月 16 日） {#1.96.178}
+
+pubrepo.guance.com/dataflux/1.96.178:launcher-8f2b0c4-1729223560
+
+### 离线镜像包下载
+
+- AMD64 架构下载: https://static.guance.com/dataflux/package/guance-amd64-1.96.178.tar.gz
+    - MD5: `e7fb67ced822ca02ba4ede7220659d72`
+
+- ARM64 架构下载: https://static.guance.com/dataflux/package/guance-arm64-1.96.178.tar.gz
+    - MD5: `7a0c55b6a013d1ce1867478088ba588e`
+
+### 部署版更新
+
+1. 仪表板视图变量下拉框列出值取消 `limit 50` 的限制，以满足不同的数据查询需求。
+2. 管理后台更新：管理[菜单](../deployment/menu.md)隐藏项新增“帮助”、“头像”、“系统通知”和“快捷入口”选项，以提高管理效率。
+
+### 新增集成 {#inte1016}
+
+- [Hadoop hdfs datanode](../integrations/hadoop_hdfs_datanode.md)；
+- [Hadoop hdfs namenode](../integrations/hadoop_hdfs_namenode.md)；
+- [Hadoop yarn nodemanager](../integrations/hadoop_yarn_nodemanager.md)；
+- [Hadoop yarn resourceManager](../integrations/hadoop_yarn_resourcemanager.md)；
+- [Fluent Bit](../integrations/fluent_bit.md)；
+- [Azure VM](../integrations/azure_vm.md)；
+- [NPD](../integrations/npd.md)：新增事件模式采集&介绍。
+
+### 功能更新 {#feature1016}
+
+#### AI 智能助手
+
+观测云引入 [AI 智能助手](../guance-ai/index.md)，提供快速响应，解答观测云相关的问题。
+
+#### 云账单智能监控
+
+1. 新增云账单查看器：当账单数据收集到观测云后，可以通过云账单查看器模版创建云账单查看器查看到云账单的全部数据
+2. 新增云账单系统视图：通过对云账单的产品、地域、实例级别的消费分析，帮助用户快速分析和了解当前云资源的消费趋势，为未来云资源费用规划提供参考
+3. 新增[云账单智能监控](../monitoring/intelligent-monitoring/index.md)：云账单智能监控提供高效的云成本管理工具，帮助用户实时监控云服务消费，识别异常费用并预警，避免不必要支出。它支持多维度可视化功能，帮助用户分析和理解云资源的消费模式，为未来预算规划提供依据，从而优化云资源配置，确保费用物尽其用。
+
+#### 监控
+
+1. [监控器配置](../monitoring/monitor/monitor-rule.md)交互优化：
+    - 支持针对选中等级事件配置[异常追踪 Issue 关联](../monitoring/monitor/monitor-rule.md#issue)创建；
+    - 优化 Crontab 自定义检测频率和检测区间配置交互；
+    - 新增[通知内容自定义](../monitoring/monitor/monitor-rule.md#content)。
+2. 告警策略配置优化：
+    - 规则内针对事件过滤条件新增[正则匹配](../monitoring/alert-setting.md#filter)；
+    - 优化过滤条件配置显示。
+3. 数据采样优化：在监控器配置页面和指标分析页面，当图表因数据量过大自动触发数据采样时，用户可以手动关闭数据采样功能。
+
+#### 日志
+
+1. 日志新增[错误追踪](../logs/log-tracing.md)：支持错误日志追踪查看分析。
+
+
+#### 场景
+
+1. 仪表板[可见范围](../scene/dashboard/index.md#range)优化：仪表板可见范围在公开的基础上，支持自定义配置可见成员，同时支持批量设置仪表板可见范围，以提高仪表板管理效率。
+2. [模板变量](../scene/visual-chart/chart-link.md#time)调整：新增 `#{startTime}`、`#{endTime}` 两个时间变量，支持获取到当前图表实际查询时间，可在图表查询、图表链接中应用此变量。
+3. 日志流图显示列优化：日志流图的显示列若为 `@json` 格式切出字段，可对此字段设置单位，以统一图表数据的查看和分析体验。
+4. 平台图表配色升级：平台图表配色得到升级，提供更佳的视觉效果。
+5. 跨工作空间查询：所有图表内的表达式查询功能现已支持跨工作空间查询。
+
+#### 管理
+
+1. 黑名单功能增强：支持对所有数据类型的数据来源进行全选、单选、多选配置。
+2. 自建索引/敏感数据扫描/数据转发：为优化数据处理和写入性能，涉及功能规则配置过滤条件去掉 ”match“ 和 ”not match“ 匹配模式。
+
+
+#### 事件
+
+1. [未恢复事件查看器](../events/event-explorer/unrecovered-events.md)优化：
+    - 优化批量操作交互，新增**一键勾选当前页**和**一键勾选全部**选项，支持快速恢复当前选中的异常事件；
+    - 手动恢复产生恢复后，OK 事件标题显示优化。
+
+#### 基础设施
+
+1. 资源目录优化：资源目录支持自定义资源分类图标，提供丰富的图标选择，以提升用户体验。
+
+### Bug 修复 {#bug1016}
+
+1. 解决了英文版集成无法搜索的问题。
+2. 解决了 RUM 快照分享无法访问的问题。
+3. 解决了组合监测 A&&B 不生效，A||B 生成的 Result 只有 A 的值，没有B的值的问题。
+4. 解决了视图设置主从时匹配空值失败的问题。
+5. 解决了排行榜图表展示的数据中只能保留 2 位小数，实际数值较小的数据直接被四舍五入丢弃的问题。
+6. 解决了定时报告仪表板邮件显示不全的问题。
+7. 解决了开启连续触发判断次数大于 10 次时无法保存的问题。
+8. 解决了 APM 和日志迁入底座后数据无法聚合的问题。
+9. 解决了管理后台同时开启本地和 LDAP 登录方式，前台只显示本地登录的问题。
+10. 解决了可用性监测无数据的问题。
+11. 解决了日志导出没有 `message` 内容这一列的问题。
+12. 解决了日志排序异常的问题。
+13. 解决了日志查看器中选择多索引就不显示上下文日志的问题。
+14. 解决了 Grafana 图表转换工具转化效率兼容性低的问题。
+15. 解决了可用性检测 > 数量统计配置时，添加的字段在输入框外的问题。
+16. 解决了存储日志监控器获取不到检测维度的问题。
+17. 解决了异常追踪配置 Issue 发现后在产生异常事件后没有产生 Issue 的问题。
+18. 解决了仪表板视图变量下拉列表不支持关键字查询的问题。
+19. 解决了文本无法正常写入 Doris 排查的问题。
+20. 解决了同一时间段事件状态数量会变的问题。
+21. 调整角色查询逻辑，解决了角色数量超出 100 时搜索不到的问题。
+
+
+
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+
 ## 1.95.177（2024 年 10 月 11 日） {#1.95.177}
 
 pubrepo.guance.com/dataflux/1.95.177:launcher-0251748-1728623509
@@ -125,7 +234,7 @@ pubrepo.guance.com/dataflux/1.94.174:launcher-923b174-1725591807
 
 1. 日志查看器新增交互：长按 Ctrl 可针对查看器列表文本分词进行 “添加到查询”、“从查询中排除”、“复制” 操作，便捷目标数据的快速查询追加。同理日志详情页内容区域也支持此交互。
 2. 日志支持绑定[火山引擎 TLS 外部索引](../logs/multi-index/tls.md)：可绑定外部索引，在观测云平台直接查看及分析火山引擎日志数据。
-3. 日志 > [数据访问](../logs/logdata-access.md)优化：
+3. 日志 > [数据访问](../management/logdata-access.md)优化：
     - 新增数据访问导航页，页面右上角新增帮助文档跳转链接；
     - 数据访问规则新增【名称】字段为唯一性 ID，新增规则【描述】字段，可自定义名称及描述以区分规则使用场景。
 4. 日志查看器筛选项优化：日志查看器列表【日志索引】筛选项支持搜索，可关键字搜索索引并进行勾选。
@@ -198,49 +307,66 @@ pubrepo.guance.com/dataflux/1.93.173:launcher-d71b2c4-1724400267
 
 - 优化了 Launcher 安装引导工具，在安装结束时，显示存储引擎与系统工作空间的初始化状态。
 
-### 新增功能 {#new}
+### Breaking Changes {#breakingchanges0821}
 
-- 用户访问监测（RUM）：新增[热图](../real-user-monitoring/heatmap.md)。以视觉方式呈现访客与网站的互动情况，获取页面元素的点击数据和点击位置，了解用户的关注点。
+- OpenAPI / 全局 API：【事件】未恢复事件数据源从 `UE` 变更为 `E`。
 
-- 应用性能监测（APM） > 链路：新增[安装引导](../application-performance-monitoring/explorer/index.md)页面。
 
-- 监控：新增检测类型——[区间检测 V2](../monitoring/monitor/interval-detection-v2.md)，以检测指标的的历史数据建立的置信区间来预测正常波动范围。
+### 新增功能 {#new0821}
 
-### 持续优化 {#consistent}
+- 管理：新增 [Client Token](../management/client-token.md) 统一管理入口，用户使用公网 DataWay 接入 RUM 应用时，可更换系统默认生成的 Token，使用自定义创建的 Token。
 
-- 异常追踪:
-    - 配置管理 > 通知策略：新增[操作审计和执行日志](../exception/config-manag.md#check-events)查看入口。在接收 Issue 通知时，有时会遇到通知未正常发送或针对通知策略有疑议，此时可查看当前通知策略的操作审计事件和执行日志数据来进行判断。
-    - APM / RUM [Issue 自动发现](../application-performance-monitoring/error.md#issue)支持添加筛选条件；
-    - 针对部署版，新增[统一管理异常追踪等级](../deployment/setting.md#global-settings)入口；
-    - 日程：
-        - 在日程编辑页面，不同的通知对象会自动生成颜色；
-        - 日程管理：【我的日程】与【所有日程】新增统计数量；
+![](img/overall-token.png)
 
-### 常规更新 {#usual}
 
-- 监控 > [SLO](../monitoring/slo.md#slo)：
-    - 新增标签配置，最终作用到产生的事件数据信息内；
-    - 配置优化：通过设置【目标】和【最低目标】的 7 天达标率范围，判断生成警告或紧急事件；
-    - 支持通过关联【告警策略】实现告警通知发送。
-- 可用性监测：
-    - 拨测任务新增标签配置；
-    - 配置拨测任务页面的[测试模块](../usability-monitoring/request-task/http.md#test)优化；
-    - 列表新增[快捷筛选](../usability-monitoring/request-task/index.md#manag)模块；
-- 查看器：分析模式下支持导出 CSV 文件。
-- 基础设施 > 容器：新增进程关联页面展示。
+### 持续优化 {#consistent0821}
 
-### BUG 修复 {#bugs}
+- 异常追踪：
+    - 新增 [Issue 发现](../exception/config-manag/issue-discovery.md)页面。通过这一功能，您可以定制 Issue 发现的具体规则，对监控器检测规则触发的异常事件和相关数据进行统一管理和筛选。将一系列事件视为由单一原因引起，并为这些事件设置筛选条件，然后选择聚合维度来进一步细化数据。细化后，数据会根据您设定的检测频率进行聚合。最终，系统会根据您预设的 Issue 标题和描述，自动将这些信息推送到指定的频道，确保所有相关方都能及时接收并有效处理这些 Issue。
+    - 配置管理 > 通知策略：通知策略列表新增创建/更新的信息显示。
 
-- 解决【任务调用】计费统计次数未显示的问题；
-- 解决图表查询时【左 * 匹配】问题；
-- 解决 BPF 网络日志返回数据未包含容器等相关信息的问题；
-- 解决中心 Pipeline 失效问题。 
 
-### Breaking Changes {#breakingchanges}
+### 常规更新 {#usual0821}
 
-- OpenAPI：
-    - SLO 创建/修改接口新增 `tags`、`alertPolicyUUIDs` 并弃用 `alertOpt` 参数；
-    - SLO 获取详情和列表接口返回结果中新增 `tagInfo`、`alertPolicyInfos` 字段，丢弃了 `alertOpt` 字段。
+- 数据保存策略：
+    - 原【应用性能】项拆分为【应用性能-链路】、【应用性能-Profile】，支持用户分别配置 Trace 数据和 Profile 数据的保存策略；
+    - 原【数据转发】名称修改为【数据转发-观测云】。
+- 监控 > 通知对象管理：连续一天发送失败会发系统通知；连续两天发送失败会发系统通知且自动禁用。
+- [未恢复事件查看器](../events/event-explorer/unrecovered-events.md)：
+    - 数据源变更为查询事件数据，以 `df_fault_id` 作为唯一标识进行聚合，获取最近一条数据结果返回展示。
+    - 页面整体 UI 改造。
+- 应用性能监测（APM）> 链路：[服务调用关系图](../application-performance-monitoring/explorer/explorer-analysis.md#call)新增绑定内置视图能力，点击服务的卡片，即可快速查看与该服务关联的相关用户视图。
+- 管理：
+    - 新增【工作空间描述】；
+    - 编辑模式下，交互变更为打开新窗口；
+    - 工作空间列表下支持通过工作空间的名称或描述来搜索定位。
+- 日志 > BPF 日志 > 七层 BPF 网络日志：网络请求拓扑图 UI 优化，突出了服务端与客户端的区分。
+- 可用性监测 > HTTP 监测 > 高级设置 > 请求设置默认添加 `Accept-Encoding:identity`。
+  
+### 部署版更新
+
+- 新增[拨测节点管理](../deployment/task.md)入口，支持创建平台级别拨测节点，并通过节点列表统一管理所有节点。通过此入口创建的拨测节点支持配置中英文节点名，从而适配观测云的国内外站点显示和上报数据结果内容。
+
+![](img/task.png)
+
+- 数据保存策略：
+
+    - 考虑到用户处于存储成本等因素的考量，需要自定义这些数据的保存时长，部署版管理后台新增【会话重放】配置项。
+    - 原【数据转发】名称修改为【数据转发-默认存储】；
+    - 原【应用性能】项拆分为【应用性能-链路】、【应用性能-Profile】，支持用户分别配置 Trace 数据和 Profile 数据的保存策略；
+- 支持火山引擎 TLS 做为底层数据存储引擎。
+
+### BUG 修复 {#bugs0821}
+
+- 解决异常追踪的通知策略未生效的问题；
+- 解决应用性能监测链路追踪导出异常的问题；
+- 解决通过 OpenAPI 修改通知对象报错无权限配置显示的问题；
+- 解决日志查看器重新设置时间范围后不能自动获取 `source` 筛选的问题；
+- 解决查看器搜索栏已添加 `source` 筛选条件范围，但在“快捷筛选”中依旧显示过滤条件外的全部 `source` 的问题；
+- 解决突变检测报错的问题；
+- 解决通过 OpenAPI 写入数据访问规则后，UI 页面打开无法查看角色信息的问题；
+- 解决图表设置的数据格式对图例中数据不生效的问题；
+- 解决自建拨测节点下，关联的拨测任务删除后，实际拨测还在运行的问题。
 
 更多详情可参考帮助文档：https://docs.guance.com/release-notes/
 
@@ -368,7 +494,7 @@ pubrepo.guance.com/dataflux/1.89.169:launcher-d482589-1720014392
     - 通知对象管理：新增[权限控制](../monitoring/notify-object.md#permission)。配置操作权限后，仅被赋予权限的对象可对此通知对象进行编辑、删除操作。
     - 智能监控 > 日志智能检测：新增追踪历史变化，过滤周期性的异常数据突变。
 - 日志 
-    - [数据访问](../logs/logdata-access.md#config)：新增对被授权查看的日志索引做访问权限配置。
+    - [数据访问](../management/logdata-access.md#config)：新增对被授权查看的日志索引做访问权限配置。
     - 日志查看器：显示列拓展，支持[添加 json 对象内字段内容](../logs/manag-explorer.md#json-content)到一级返回显示。
     - [BPF 网络日志](../logs/bpf-log.md)：
         - 连接展示效果优化；
