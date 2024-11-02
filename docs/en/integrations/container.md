@@ -1,5 +1,5 @@
 ---
-title: 'Basic Collection Of Containers'
+title: 'Kubernetes'
 summary: 'Collect metrics, objects, and log data for Container and Kubernetes, and report them to the guance cloud.'
 tags:
   - 'KUBERNETES'
@@ -90,11 +90,15 @@ Collect indicators, objects and log data of container and Kubernetes and report 
       ## Set true to enable election for k8s metric collection
       election = true
     
+      logging_enable_multiline = true
       logging_auto_multiline_detection = true
       logging_auto_multiline_extra_patterns = []
     
       ## Removes ANSI escape codes from text strings.
       logging_remove_ansi_escape_codes = false
+    
+      ## Whether to collect logs from the begin of the file.
+      logging_file_from_beginning = false
     
       ## Search logging interval, default "60s"
       #logging_search_interval = ""
@@ -398,6 +402,26 @@ Collect indicators, objects and log data of container and Kubernetes and report 
         **Type**: Boolean
     
         **input.conf**: `logging_remove_ansi_escape_codes`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_CONTAINER_LOGGING_FILE_FROM_BEGINNING_THRESHOLD_SIZE**
+    
+        Decide whether or not to from_beginning based on the file size, if the file size is smaller than this value when the file is found, start the collection from the begin
+    
+        **Type**: Int
+    
+        **input.conf**: `logging_file_from_beginning_threshold_size`
+    
+        **Default**: 20,000,000
+    
+    - **ENV_INPUT_CONTAINER_LOGGING_FILE_FROM_BEGINNING**
+    
+        Whether to collect logs from the begin of the file
+    
+        **Type**: Boolean
+    
+        **input.conf**: `logging_file_from_beginning`
     
         **Default**: false
     
