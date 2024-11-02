@@ -257,6 +257,14 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     **Example**: tag1=val,tag2=val2
 
+- **ENV_PIPELINE_DEFAULT_PIPELINE**
+
+    Set the default Pipeline script for the specified data category. This setting takes precedence when it conflicts with the remote setting.
+
+    **Type**: Map
+
+    **Example**: `{"logging":"abc.p","metric":"xyz.p"}`
+
 - **~~ENV_GLOBAL_TAGS~~**
 
     Same as ENV_GLOBAL_HOST-TAGS(Deprecated)
@@ -308,9 +316,11 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_POINT_POOL_RESERVED_CAPACITY**
 
-    Specify pool capacity(default 4096)
+    Specify the pool size that is immune to GC. if Datakit got too many data to collect, we can increase this reserved pool size(such as 40960) to decrease GC payload.
 
     **Type**: Int
+
+    **Default**: 4096
 <!-- markdownlint-enable -->
 
 
@@ -417,19 +427,19 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_DATAWAY_WAL_WORKERS**
 
-    Set WAL workers, default to limited CPU cores [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    Set WAL workers, default to limited CPU cores X 2 [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
 
     **Type**: Int
 
 - **ENV_DATAWAY_WAL_MEM_CAPACITY**
 
-    Set WAL memory queue length, default to limited CPU cores [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    Set WAL memory queue length, default to limited CPU cores X 2 [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
 
     **Type**: Int
 
 - **ENV_DATAWAY_WAL_PATH**
 
-    Set WAL disk path, default path is *data/dw-wal* under Datakit install path[:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    Set WAL disk path, default path is *cache/dw-wal* under Datakit install path[:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
 
     **Type**: String
 
@@ -650,6 +660,16 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
     **Type**: String
 
     **Example**: appid-1, appid-2
+
+- **ENV_HTTP_ALLOWED_CORS_ORIGINS**
+
+    Setup CORS on Datakit HTTP APIs(split by `,`) [:octicons-tag-24: Version-1.61.0](changelog.md#cl-1.61.0)
+
+    **Type**: List
+
+    **Example**: Origin,Access-Control-Allow-Origin,Access-Control-Allow-Methods
+
+    **Default**: -
 <!-- markdownlint-enable -->
 
 ### Confd Environment Variables {#env-confd}
@@ -1107,6 +1127,14 @@ For more info about recorder, see [here](datakit-tools-how-to.md#record-and-repl
     **Type**: String
 
     **Example**: `/usr/local/datakit/enc4mysql`
+
+- **ENV_LOGGING_MAX_OPEN_FILES**
+
+    Specify the maximum number of open files for logging collection, if the value is -1 then there is no limit, default 500
+
+    **Type**: Int
+
+    **Example**: `1000`
 <!-- markdownlint-enable -->
 
 ### Special Environment Variable {#env-special}
