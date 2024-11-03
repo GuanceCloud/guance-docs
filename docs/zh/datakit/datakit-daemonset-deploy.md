@@ -298,6 +298,14 @@ spec:
 
     **示例**: tag1=val,tag2=val2
 
+- **ENV_PIPELINE_DEFAULT_PIPELINE**
+
+    为指定数据类别设置默认 Pipeline 脚本；与远程设置冲突时，此设置优先
+
+    **字段类型**: Map
+
+    **示例**: `{"logging":"abc.p","metric":"xyz.p"}`
+
 - **~~ENV_GLOBAL_TAGS~~**
 
     同 ENV_GLOBAL_HOST_TAGS，将废弃
@@ -349,9 +357,11 @@ spec:
 
 - **ENV_POINT_POOL_RESERVED_CAPACITY**
 
-    指定 point pool 大小（默认 4096）
+    指定 point pool 常驻大小，即不会被 GC 回收的 point 保有数，如果所在 Datakit 的采集量非常大，可以酌情将该数值调大一点
 
     **字段类型**: Int
+
+    **默认值**: 4096
 <!-- markdownlint-enable -->
 
 ### Dataway 配置相关环境变量 {#env-dataway}
@@ -463,13 +473,13 @@ spec:
 
 - **ENV_DATAWAY_WAL_MEM_CAPACITY**
 
-    设置 WAL 内存队列长度，默认为 CPU 配额核心数 [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    设置 WAL 内存队列长度，默认为 CPU 配额核心数 X 2 [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
 
     **字段类型**: Int
 
 - **ENV_DATAWAY_WAL_PATH**
 
-    设置 WAL 磁盘目录，默认为 Datakit 安装目录下的 *data/dw-wal* [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    设置 WAL 磁盘目录，默认为 Datakit 安装目录下的 *cache/dw-wal* [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
 
     **字段类型**: String
 
@@ -690,6 +700,16 @@ spec:
     **字段类型**: String
 
     **示例**: appid-1, appid-2
+
+- **ENV_HTTP_ALLOWED_CORS_ORIGINS**
+
+    设置 Datakit API CORS 属性（英文逗号分割）[:octicons-tag-24: Version-1.61.0](changelog.md#cl-1.61.0)
+
+    **字段类型**: List
+
+    **示例**: Origin,Access-Control-Allow-Origin,Access-Control-Allow-Methods
+
+    **默认值**: -
 <!-- markdownlint-enable -->
 
 ### Confd 配置相关环境变量 {#env-confd}
@@ -1147,6 +1167,14 @@ spec:
     **字段类型**: String
 
     **示例**: `/usr/local/datakit/enc4mysql`
+
+- **ENV_LOGGING_MAX_OPEN_FILES**
+
+    指定日志采集的最大文件个数，如果值是 -1 则没有限制，默认值 500
+
+    **字段类型**: Int
+
+    **示例**: `1000`
 <!-- markdownlint-enable -->
 
 ### 特殊环境变量 {#env-special}
