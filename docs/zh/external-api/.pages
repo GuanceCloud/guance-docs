@@ -11,3 +11,4 @@ nav:
   - '数据查询': query-data
   - '登录映射规则': login-mapping
   - '链路追踪': tracing
+  - 'DataKit清单': datakit

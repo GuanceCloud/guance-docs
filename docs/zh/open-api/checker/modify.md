@@ -36,6 +36,10 @@
 | jsonScript.recoverMessage | string |  | 输出恢复事件信息模板<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
 | jsonScript.noDataTitle | string |  | 输出无数据事件标题模板<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许为空字符串: True <br> |
 | jsonScript.noDataMessage | string |  | 输出无数据事件信息模板<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
+| jsonScript.openNotificationMessage | boolean |  | 是否开启, 事件 通知内容, 默认 不开启(使用事件内容作为通知内容)<br>例子: False <br>允许为空: False <br> |
+| jsonScript.notificationMessage | string |  | 事件 通知内容<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许为空字符串: True <br> |
+| jsonScript.openNoDataNotificationMessage | boolean |  | 是否开启, 数据断档事件 通知内容, 默认 不开启(使用数据断档事件内容作为通知内容)<br>例子: False <br>允许为空: False <br> |
+| jsonScript.noDataNotificationMessage | string |  | 数据断档事件 通知内容<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
 | jsonScript.noDataRecoverTitle | string |  | 输出无数据恢复上传事件标题模板<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许为空字符串: True <br> |
 | jsonScript.noDataRecoverMessage | string |  | 输出无数据恢复上传事件信息模板<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
 | jsonScript.every | string |  | 检查频率<br>例子: 1m <br>允许为空: False <br> |
