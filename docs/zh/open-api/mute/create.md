@@ -15,7 +15,10 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | muteRanges | array |  | 沉默范围<br>允许为空: False <br> |
+| name | string |  | 规则名称<br>例子: 名称A <br>允许为空: False <br> |
+| description | string |  | 描述<br>例子: 描述A <br>允许为空: False <br>允许为空字符串: True <br> |
 | tags | json |  | 标签集<br>允许为空: False <br> |
+| filterString | string |  | 事件属性<br>允许为空: False <br>允许为空字符串: True <br>最大长度: 2048 <br> |
 | notifyTargets | array |  | 通知目标<br>允许为空: False <br> |
 | notifyMessage | string |  | 通知信息<br>允许为空: False <br>最大长度: 3000 <br> |
 | notifyTimeStr | string |  | 通知时间, %Y/%m/%d %H:%M:%S<br>例子: 2023/08/21 19:19:00 <br>允许为空: False <br>允许为空字符串: True <br> |
@@ -45,7 +48,10 @@
 | ---------------- | ---- | ---------------------------------------------------- |
 | type          |  string  | 对应静默规则类型 监控器:checker, 告警策略:monitor, 监控器标签:tag, 自定义:custom                  |
 | muteRanges       | list | 静默范围, 包含监控器,智能巡检,自建巡检,SLO,告警策略 |
+| name             | str  | 规则名称           |
+| description      | str  | 描述            |
 | tags             | dict | 高级配置, 事件属性                                                 |
+| filterString     | str  | 事件属性(表达式形式入参)            |
 | notifyTargets    | list | to: 列表为通知对象,type为其通知类型                  |
 | repeatTimeSet    | int  | 是否重复静默, 1代表开启重复静默, 0代表仅一次         |
 | repeatCrontabSet | dict | 重复静默规则的时间配置                               |
@@ -70,6 +76,7 @@
 | type          |  string  |  Y | 对应静默规则类型 监控器:checker, 告警策略:monitor, 监控器标签:tag, 自定义:custom                  |
 | muteRanges         |  list  |  Y | 静默范围, [] 代表选择 全部                |
 | tags       |  dict  |  Y | 高级配置, 事件属性                |
+| filterString     | str  | 事件属性(表达式形式入参)            |
 
 tags 配置支持反选配置, 示例:
 ```json
@@ -173,6 +180,15 @@ type 为 custom, 自定义类型, 示例:
 }
 ```
 
+filterString为新版事件属性，语法沿用查看器语法，目前接口也兼容tags为旧版事件属性，优先取filterString的值，例如:
+```json
+{
+    "filterString": "df_status:ok OR host:web001",
+    "muteRanges": [],
+    "type": "checker"
+}
+```
+
 --------------
 
 **3.静默时间说明**
@@ -238,7 +254,7 @@ repeatTimeSet 为 1, 重复静默, 示例:
 curl 'https://openapi.guance.com/api/v1/monitor/mute/create' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   -H 'Content-Type: application/json;charset=UTF-8' \
-  --data-raw '{"startTime":"2023/08/23 14:00:07","endTime":"2023/08/23 14:31:07","notifyTargets":[{"to":["acnt_xxxx32"],"type":"mail"}],"tags":{},"muteRanges":[{"name":"Aerospike 集群【{{cluster_name}}】空间【{{ ns }}】 的 Memory 使用率过高","checkerUUID":"rul_xxxx32","type":"监控器"}],"type":"checker","timezone":"Asia/Shanghai","notifyMessage":"cjkackcnkjcklasc","notifyTimeStr":"2023/08/23 13:45:07","repeatTimeSet":0}' \
+  --data-raw '{"name":"名称A","description":"描述A","startTime":"2023/08/23 14:00:07","endTime":"2023/08/23 14:31:07","notifyTargets":[{"to":["acnt_xxxx32"],"type":"mail"}],"tags":{},"muteRanges":[{"name":"Aerospike 集群【{{cluster_name}}】空间【{{ ns }}】 的 Memory 使用率过高","checkerUUID":"rul_xxxx32","type":"监控器"}],"type":"checker","timezone":"Asia/Shanghai","notifyMessage":"cjkackcnkjcklasc","notifyTimeStr":"2023/08/23 13:45:07","repeatTimeSet":0}' \
   --compressed \
   --insecure
 ```
@@ -256,6 +272,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/create' \
         "crontab": "",
         "crontabDuration": 0,
         "deleteAt": -1,
+        "description": "描述A",
         "end": 1692772267,
         "endTime": "2023/08/23 14:31:07",
         "id": 643,
@@ -266,6 +283,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/create' \
                 "type": "监控器"
             }
         ],
+        "name": "名称A",
         "notifyMessage": "cjkackcnkjcklasc",
         "notifyTargets": [
             {
