@@ -17,6 +17,23 @@ icon: zy/release-notes
 
 </div>
 
+## 2024 年 11 月 6 日
+
+### 功能更新 {#feature1106}
+
+#### 应用性能监测
+
+Java 应用支持创建[内存快照](../application-performance-monitoring/service-manag/service-list.md#jvm)。
+
+
+#### 监控
+
+告警策略支持[按成员配置](../monitoring/alert-setting.md#member)通知规则。
+
+#### 场景
+
+[Rollup 函数](../scene/visual-chart/chart-query.md#rollup)仅支持指标数据查询，图表简单模式下其他数据查询不支持选择 rollup 函数。
+
 ## 2024 年 10 月 30 日
 
 ### 新增集成 {#inte1030}
