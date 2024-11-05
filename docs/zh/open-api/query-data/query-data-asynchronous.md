@@ -56,7 +56,8 @@
 |  query.interval  | integer  |   | 单位是秒，时间分片间隔，用于计算响应点数；计算出的点数小于等于density=high时的点数，则有效，否则无效|
 |  query.search_after  | array  |   | 分页查询标记。相同参数上次请求响应结果中的 search_after 值作为本次请求的参数。|
 |  query.maxPointCount  | integer  |   | 最大点数 |
-|  query.workspaceUUID  | string  |   | 要查询工作空间的uuid |
+|  query.workspaceUUID  | string  |   | 要查询工作空间的uuid|
+|  query.workspaceUUIDs  | array  |   | 要查询工作空间的uuids, 优先级 高于 query.workspaceUUID.|
 |  query.output_format  | string  |   | lineprotocol: 行协议输出，默认不填的话，默认保持现有输出格式不变 |
 |  query.cursor_time  | integer  |   | 分段查询阀值: 第一次分段查询时，需要把 cursor_time 设置为 end_time；之后的分段查询，需要把 cursor_time 设置为响应中的 next_cursor_time |
 |  query.disable_sampling  | bool  |   | 采样禁用开关, 默认值为 false |
