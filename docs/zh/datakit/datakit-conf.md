@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.60.0）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.61.0）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -119,6 +119,12 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       # append run info
       disable_append_run_info = false
     
+      # default pipeline
+      [pipeline.default_pipeline]
+        # logging = "<your_script.p>"
+        # metric  = "<your_script.p>"
+        # tracing = "<your_script.p>"
+    
       # Offload data processing tasks to post-level data processors.
       [pipeline.offload]
         receiver = "datakit-http"
@@ -173,7 +179,7 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       # Datakit will upload data points if cached(in memory) points
       #  reached(>=) the max_cache_count or the flush_interval triggered.
       max_cache_count = 1000
-      flush_workers   = 0 # default to (cpu_core * 2 + 1)
+      flush_workers   = 0 # default to (cpu_core * 2)
       flush_interval  = "10s"
     
       # Queue size of feed.
@@ -548,8 +554,7 @@ DataKit 默认日志等级为 `info`。编辑 `datakit.conf`，可修改日志�
 
 ### Point 缓存 {#point-pool}
 
-[:octicons-tag-24: Version-1.28.0](changelog.md#cl-1.28.0) ·
-[:octicons-beaker-24: Experimental](index.md#experimental)
+[:octicons-tag-24: Version-1.28.0](changelog.md#cl-1.28.0)
 
 为了优化 Datakit 高负载情况下的内存占用，可以开启 Point Pool 来缓解：
 
@@ -565,7 +570,9 @@ DataKit 默认日志等级为 `info`。编辑 `datakit.conf`，可修改日志�
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    在低负载（Datakit 内存占用 100MB 左右）的情况下，开启 Point-Pool 会增加 Datakit 自身的内存占用，但也不至于太多。所谓的高负载，一般指占用内存在 2GB+ 的场景。同时开启后也能改善 Datakit 自身的 CPU 消耗。
+    - 在低负载（Datakit 内存占用 100MB 左右）的情况下，开启 point pool 会增加 Datakit 自身的内存占用。所谓的高负载，一般指占用内存在 2GB+ 的场景。同时开启后也能改善 Datakit 自身的 CPU 消耗
+
+    - [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0) 已经默认开启了该功能。如果要禁用 point pool，可以将上面的 `enable` 置为 `false`
 <!-- markdownlint-enable -->
 
 ### IO 模块调参 {#io-tuning}
@@ -580,10 +587,10 @@ DataKit 默认日志等级为 `info`。编辑 `datakit.conf`，可修改日志�
 
     ```toml
     [io]
-      feed_chan_size  = 4096  # 数据处理队列（一个 job 一般都有多个 point）长度
-      max_cache_count = 512   # 数据批量发送点数的阈值，缓存中超过该值即触发发送
+      feed_chan_size  = 1     # 数据处理队列长度
+      max_cache_count = 1000  # 数据批量发送点数的阈值，缓存中超过该值即触发发送
       flush_interval  = "10s" # 数据发送的间隔阈值，每隔 10s 至少发送一次
-      flush_workers   = 8     # 数据上传 worker 数（默认 CPU-core * 2 + 1）
+      flush_workers   = 0     # 数据上传 worker 数（默认配额 CPU 核心 * 2）
     ```
 
     阻塞模式参见 [k8s 中的对应说明](datakit-daemonset-deploy.md#env-io)
@@ -591,33 +598,6 @@ DataKit 默认日志等级为 `info`。编辑 `datakit.conf`，可修改日志�
 === "Kubernetes"
 
     参见[这里](datakit-daemonset-deploy.md#env-io)
-<!-- markdownlint-enable -->
-
-#### IO 磁盘缓存 {#io-disk-cache}
-
-[:octicons-tag-24: Version-1.5.8](changelog.md#cl-1.5.8) · [:octicons-beaker-24: Experimental](index.md#experimental)
-
-当 DataKit 发送数据失败后，为了不丢失关键数据，可以开启磁盘缓存。磁盘缓存的目的在于将发送失败的数据暂时存入磁盘，待条件允许时，再将数据发送出去。
-
-<!-- markdownlint-disable MD046 -->
-=== "*datakit.conf*"
-
-    ```toml
-    [io]
-      enable_cache      = true   # 开启磁盘缓存
-      cache_all         = false  # 是否全类缓存（默认情况下，指标/对象/拨测数据不缓存）
-      cache_max_size_gb = 5      # 指定每个分类磁盘大小为 5GB
-    ```
-
-=== "Kubernetes"
-
-    参见[这里](datakit-daemonset-deploy.md#env-io)
-
----
-
-???+ attention
-
-    这里的 `cache_max_size_gb` 指每个分类（Category）的缓存大小，总共 10 个分类的话，如果每个指定 5GB，理论上会占用 50GB 左右的空间。
 <!-- markdownlint-enable -->
 
 ### 资源限制  {#resource-limit}
@@ -710,10 +690,10 @@ Kubernetes 下部署相关配置参见[这里](datakit-daemonset-deploy.md#env-d
      fail_cache_clean_interval = "30s" # duration for clean fail uploaded data
 ```
 
-磁盘文件位于 Datakit 安装目录的 *data/dw-wal* 目录下：
+磁盘文件位于 Datakit 安装目录的 *cache/dw-wal* 目录下：
 
 ```shell
-/usr/local/datakit/data/dw-wal/
+/usr/local/datakit/cache/dw-wal/
 ├── custom_object
 │   └── data
 ├── dialtesting
@@ -745,7 +725,7 @@ Kubernetes 下部署相关配置参见[这里](datakit-daemonset-deploy.md#env-d
 13 directories, 14 files
 ```
 
-此处，除了 *fc* 是失败重传队列，其它目录分别对应一种数据类型。
+此处，除了 *fc* 是失败重传队列，其它目录分别对应一种数据类型。当数据上传失败，这些数据会缓存到 *fc* 目录下，后续 Datakit 会间歇性将它们上传上去。
 
 ### Sinker 配置 {#dataway-sink}
 
@@ -754,6 +734,26 @@ Kubernetes 下部署相关配置参见[这里](datakit-daemonset-deploy.md#env-d
 ### 使用 Git 管理 DataKit 配置 {#using-gitrepo}
 
 参见[这里](git-config-how-to.md)
+
+### 本地设置 Pipeline 默认脚本 {#pipeline-settings}
+
+[:octicons-tag-24: Version-1.61.0](changelog.md#cl-1.61.0)
+
+支持通过本地设置默认 Pipeline 脚本，如果与远程设置的默认脚本冲突，则倾向本地设置。
+
+可通过两种方式配置：
+
+- 主机方式部署，可在 DataKit 主配置文件中指定各类别的默认脚本，如下：
+
+    ```toml
+    # default pipeline
+    [pipeline.default_pipeline]
+        # logging = "<your_script.p>"
+        # metric  = "<your_script.p>"
+        # tracing = "<your_script.p>"
+    ```
+
+- 容器方式部署，可使用环境变量，`ENV_PIPELINE_DEFAULT_PIPELINE`，其值例如 `{"logging":"abc.p","metric":"xyz.p"}`
 
 ### 设置打开的文件描述符的最大值 {#enable-max-fd}
 

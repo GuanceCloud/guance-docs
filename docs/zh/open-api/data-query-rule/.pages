@@ -3,5 +3,5 @@ nav:
   - '获取单个数据访问规则': get.md
   - '新建单个数据访问规则': add.md
   - '修改单个数据访问规则': modify.md
-  - '修改单个数据访问规则': set-disable.md
   - '删除数据访问规则': delete.md
+  - '禁用/启用数据访问规则': set-disable.md
