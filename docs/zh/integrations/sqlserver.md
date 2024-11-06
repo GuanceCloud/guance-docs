@@ -8,8 +8,8 @@ dashboard :
   - desc  : 'SQLServer'
     path  : 'dashboard/zh/sqlserver'
 monitor   :
-  - desc  : '暂无'
-    path  : '-'
+  - desc  : 'SQLServer 监控器'
+    path  : 'monitor/zh/sqlserver'
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
