@@ -110,43 +110,43 @@
 === "Windows 32 位"
 
     - [`Installer`](https://static.guance.com/datakit/installer-windows-386.exe){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-windows-386-1.60.0.tar.gz){:target="_blank"}
-    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-windows-386-1.60.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-windows-386-1.61.0.tar.gz){:target="_blank"}
+    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-windows-386-1.61.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-windows-386.tar.gz){:target="_blank"}
 
 === "Windows 64 位"
 
     - [`Installer`](https://static.guance.com/datakit/installer-windows-amd64.exe){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-windows-amd64-1.60.0.tar.gz){:target="_blank"}
-    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-windows-amd64-1.60.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-windows-amd64-1.61.0.tar.gz){:target="_blank"}
+    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-windows-amd64-1.61.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-windows-amd64.tar.gz){:target="_blank"}
 
 === "Linux X86 32 位"
 
     - [`Installer`](https://static.guance.com/datakit/installer-linux-386){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-386-1.60.0.tar.gz){:target="_blank"}
-    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-linux-386-1.60.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-386-1.61.0.tar.gz){:target="_blank"}
+    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-linux-386-1.61.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-386.tar.gz){:target="_blank"}
 
 === "Linux X86 64 位"
 
     - [`Installer`](https://static.guance.com/datakit/installer-linux-amd64){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-amd64-1.60.0.tar.gz){:target="_blank"}
-    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-linux-amd64-1.60.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-amd64-1.61.0.tar.gz){:target="_blank"}
+    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-linux-amd64-1.61.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-amd64.tar.gz){:target="_blank"}
 
 === "Linux Arm 32 位"
 
     - [`Installer`](https://static.guance.com/datakit/installer-linux-arm){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-arm-1.60.0.tar.gz){:target="_blank"}
-    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-linux-arm-1.60.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-arm-1.61.0.tar.gz){:target="_blank"}
+    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-linux-arm-1.61.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-arm.tar.gz){:target="_blank"}
 
 === "Linux Arm 64 位"
 
     - [`Installer`](https://static.guance.com/datakit/installer-linux-arm64){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-arm64-1.60.0.tar.gz){:target="_blank"}
-    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-linux-arm64-1.60.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-arm64-1.61.0.tar.gz){:target="_blank"}
+    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-linux-arm64-1.61.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-arm64.tar.gz){:target="_blank"}
 <!-- markdownlint-enable -->
 
@@ -157,11 +157,17 @@
 - `installer-<OS-ARCH>` 或 `installer-<OS-ARCH>.exe`
 - `data.tar.gz`
 
-将这些文件拷贝到对应机器上（通过 U 盘或 scp 等命令）。
+将这些文件拷贝到对应机器上（通过 U 盘或 `scp` 等命令）。
+
+<!-- markdownlint-disable MD046 -->
+???+ Attention
+
+    这些文件务必每个都完整下载，在各个版本之间，它们不一定能复用，比如 installer 程序在不同的 Datakit 版本之间，其行为也不同，因为 installer 可能会调整 Datakit 的默认配置，而不同 Datakit 的配置是有不同程度的增删的。最好 1.2.3 版本的 Datakit 就用 1.2.3 版本对应的 installer 程序来安装或升级。
+<!-- markdownlint-enable -->
 
 #### 安装 {#simple-install}
 
-> 如果是离线安装 lite 版本的 Datakit，需指定带 `_lite` 后缀的安装包，比如 `datakit_lite-linux-amd64-1.60.0.tar.gz`。
+> 如果是离线安装 lite 版本的 Datakit，需指定带 `_lite` 后缀的安装包，比如 `datakit_lite-linux-amd64-1.61.0.tar.gz`。
 
 <!-- markdownlint-disable MD046 -->
 === "Linux"
@@ -170,7 +176,7 @@
 
     ```shell
     chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.60.0.tar.gz,dk_upgrader-linux-amd64.tar.gz,data.tar.gz
+    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.61.0.tar.gz,dk_upgrader-linux-amd64.tar.gz,data.tar.gz
     ```
 
 === "Windows"
@@ -178,13 +184,13 @@
     需以 administrator 权限运行 Powershell 执行：
 
     ```powershell
-    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.60.0.tar.gz,.\dk_upgrader-windows-amd64.tar.gz,.\data.tar.gz
+    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.61.0.tar.gz,.\dk_upgrader-windows-amd64.tar.gz,.\data.tar.gz
     ```
 <!-- markdownlint-enable -->
 
 #### 升级 {#simple-upgrade}
 
-> 如果是离线升级 lite 版本的 Datakit，需指定带 `_lite` 后缀的安装包，比如 `datakit_lite-linux-amd64-1.60.0.tar.gz`。
+> 如果是离线升级 lite 版本的 Datakit，需指定带 `_lite` 后缀的安装包，比如 `datakit_lite-linux-amd64-1.61.0.tar.gz`。
 
 <!-- markdownlint-disable MD046 -->
 === "Linux"
@@ -193,7 +199,7 @@
 
     ```shell
     chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --upgrade --srcs datakit-linux-amd64-1.60.0.tar.gz,data.tar.gz
+    ./installer-linux-amd64 --offline --upgrade --srcs datakit-linux-amd64-1.61.0.tar.gz,data.tar.gz
     ```
 
 === "Windows"
@@ -201,7 +207,7 @@
     需以 administrator 权限运行 Powershell 执行：
 
     ```powershell
-    .\installer-windows-amd64.exe --offline --upgrade --srcs .\datakit-windows-amd64-1.60.0.tar.gz,.\data.tar.gz
+    .\installer-windows-amd64.exe --offline --upgrade --srcs .\datakit-windows-amd64-1.61.0.tar.gz,.\data.tar.gz
     ```
 <!-- markdownlint-enable -->
 
@@ -214,7 +220,7 @@
     ./installer-linux-amd64 --help
     ```
 
-    比如，上面我们指定 Dataway 地址就是通过 `--dataway` 方式来指定的。另外，这些额外的命令行参数设置，只有在安装模式才能生效，（离线）升级模式下，这些是不生效的。
+    比如，上面我们指定 Dataway 地址就是通过 `--dataway` 方式来指定的。另外，这些额外的命令行参数设置，只有在安装模式才能生效，（离线）模式下，这些是不生效的。
 <!-- markdownlint-enable -->
 
 ### 高级模式 {#offline-advanced}
@@ -264,9 +270,9 @@ mkdir -p /datakit
 wget -P /datakit https://static.guance.com/datakit/install.sh
 wget -P /datakit https://static.guance.com/datakit/version
 wget -P /datakit https://static.guance.com/datakit/data.tar.gz
-wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.60.0
-wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.60.0.tar.gz
-wget -P /datakit https://static.guance.com/datakit/datakit_lite-linux-amd64-1.60.0.tar.gz
+wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.61.0
+wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.61.0.tar.gz
+wget -P /datakit https://static.guance.com/datakit/datakit_lite-linux-amd64-1.61.0.tar.gz
 wget -P /datakit https://static.guance.com/datakit/dk_upgrader-linux-amd64.tar.gz
 
 # 下载其它工具包：sources 是开启 RUM sourcemap 功能使用的安装包，如果未开启此功能，可选择不下载
@@ -300,8 +306,8 @@ done
 <!-- markdownlint-disable MD046 -->
 ???+ Attention
 
-    Windows 下的 `Installer` 程序的下载链接需添加 **.exe** 后缀，如 [*https://static.guance.com/datakit/installer-windows-386-1.60.0.exe*](https://static.guance.com/datakit/installer-windows-386-1.60.0.exe) 和
-    [*https://static.guance.com/datakit/installer-windows-amd64-1.60.0.exe*](https://static.guance.com/datakit/installer-windows-amd64-1.60.0.exe)。
+    Windows 下的 `Installer` 程序的下载链接需添加 **.exe** 后缀，如 [*https://static.guance.com/datakit/installer-windows-386-1.61.0.exe*](https://static.guance.com/datakit/installer-windows-386-1.61.0.exe) 和
+    [*https://static.guance.com/datakit/installer-windows-amd64-1.61.0.exe*](https://static.guance.com/datakit/installer-windows-amd64-1.61.0.exe)。
 <!-- markdownlint-enable -->
 
 #### 安装 {#advance-install}
@@ -479,17 +485,17 @@ wget https://static.guance.com/datakit/datakit.yaml -P /home/guance/
 
 ```shell
 # 拉取 amd 镜像并打包
-docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.60.0
-docker save -o datakit-amd64-1.60.0.tar pubrepo.guance.com/datakit/datakit:1.60.0
-mv datakit-amd64-1.60.0.tar /home/guance
+docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.61.0
+docker save -o datakit-amd64-1.61.0.tar pubrepo.guance.com/datakit/datakit:1.61.0
+mv datakit-amd64-1.61.0.tar /home/guance
 
 # 拉取 arm 镜像并打包
-docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.60.0
-docker save -o datakit-arm64-1.60.0.tar pubrepo.guance.com/datakit/datakit:1.60.0
-mv datakit-arm64-1.60.0.tar /home/guance
+docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.61.0
+docker save -o datakit-arm64-1.61.0.tar pubrepo.guance.com/datakit/datakit:1.61.0
+mv datakit-arm64-1.61.0.tar /home/guance
 
 # 查看镜像架构是否正确
-docker image inspect pubrepo.guance.com/datakit/datakit:1.60.0 |grep Architecture
+docker image inspect pubrepo.guance.com/datakit/datakit:1.61.0 |grep Architecture
 
 ```
 
@@ -616,17 +622,17 @@ docker image inspect pubrepo.guance.com/datakit/datakit:1.60.0 |grep Architectur
 
 ```shell
 wget http://<nginx-server-ip>:8080/datakit.yaml 
-wget http://<nginx-server-ip>:8080/datakit-amd64-1.60.0.tar 
+wget http://<nginx-server-ip>:8080/datakit-amd64-1.61.0.tar 
 ```
 
 5、解压镜像命令
 
 ```shell
 # docker 
-docker load -i /k8sdata/datakit/datakit-amd64-1.60.0.tar
+docker load -i /k8sdata/datakit/datakit-amd64-1.61.0.tar
 
 # containerd
-ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.60.0.tar
+ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.61.0.tar
 
 ```
 
@@ -644,10 +650,10 @@ kubectl apply -f datakit.yaml
 
 ```shell
 # docker 
-docker load -i datakit-amd64-1.60.0.tar
+docker load -i datakit-amd64-1.61.0.tar
 
 # containerd
-ctr -n=k8s.io image import datakit-amd64-1.60.0.tar
+ctr -n=k8s.io image import datakit-amd64-1.61.0.tar
 
 ```
 

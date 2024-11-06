@@ -507,7 +507,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
                     "isSupportOwner": 1,
                     "isSupportReadOnly": 0,
                     "isSupportWsAdmin": 1,
-                    "key": "log.logQueryRule",
+                    "key": "dataProcessing.dataQueryRule",
                     "name": "日志数据访问配置管理"
                 }
             ]

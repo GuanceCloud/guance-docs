@@ -131,40 +131,46 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
       ## delete trace message
       # del_message = true
     
+      ## max spans limit on each trace. default 100000 or set to -1 to remove this limit.
+      # trace_max_spans = 100000
+    
+      ## max trace body(Content-Length) limit. default 32MiB or set to -1 to remove this limit.
+      # max_trace_body_mb = 32
+    
       ## Ignore tracing resources map like service:[resources...].
       ## The service name is the full service name in current application.
       ## The resource list is regular expressions uses to block resource names.
       ## If you want to block some resources universally under all services, you can set the
       ## service name as "*". Note: double quotes "" cannot be omitted.
       # [inputs.ddtrace.close_resource]
-        # service1 = ["resource1", "resource2", ...]
-        # service2 = ["resource1", "resource2", ...]
-        # "*" = ["close_resource_under_all_services"]
-        # ...
+      #   service1 = ["resource1", "resource2", ...]
+      #   service2 = ["resource1", "resource2", ...]
+      #   "*" = ["close_resource_under_all_services"]
+      #   ...
     
       ## Sampler config uses to set global sampling strategy.
       ## sampling_rate used to set global sampling rate.
       # [inputs.ddtrace.sampler]
-        # sampling_rate = 1.0
+      #   sampling_rate = 1.0
     
       # [inputs.ddtrace.tags]
-        # key1 = "value1"
-        # key2 = "value2"
-        # ...
+      #   key1 = "value1"
+      #   key2 = "value2"
+      #   ...
     
       ## Threads config controls how many goroutines an agent cloud start to handle HTTP request.
       ## buffer is the size of jobs' buffering of worker channel.
       ## threads is the total number fo goroutines at running time.
       # [inputs.ddtrace.threads]
-        # buffer = 100
-        # threads = 8
+      #   buffer = 100
+      #   threads = 8
     
       ## Storage config a local storage space in hard dirver to cache trace data.
       ## path is the local file path used to cache data.
       ## capacity is total space size(MB) used to store data.
       # [inputs.ddtrace.storage]
-        # path = "./ddtrace_storage"
-        # capacity = 5120
+      #   path = "./ddtrace_storage"
+      #   capacity = 5120
     
     ```
 
@@ -295,6 +301,30 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
         **采集器配置字段**: `tags`
     
         **示例**: {"k1":"v1", "k2":"v2", "k3":"v3"}
+    
+    - **ENV_INPUT_DDTRACE_ENV_INPUT_DDTRACE_MAX_SPANS**
+    
+        单个 trace 最大 span 个数，如果超过该限制，多余的 span 将截断，置为 -1 可关闭该限制
+    
+        **字段类型**: Int
+    
+        **采集器配置字段**: `env_input_ddtrace_max_spans`
+    
+        **示例**: 1000
+    
+        **默认值**: 100000
+    
+    - **ENV_INPUT_DDTRACE_ENV_INPUT_DDTRACE_MAX_BODY_MB**
+    
+        单个 trace API 请求最大 body 字节数（单位 MiB），置为 -1 可关闭该限制
+    
+        **字段类型**: JSON
+    
+        **采集器配置字段**: `env_input_ddtrace_max_body_mb`
+    
+        **示例**: 32
+    
+        **默认值**: 10
 
 ### 多线路工具串联注意事项 {#trace_propagator}
 

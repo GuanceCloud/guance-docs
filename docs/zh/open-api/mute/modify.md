@@ -21,7 +21,10 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
+| name | string |  | 规则名称<br>例子: 名称A <br>允许为空: False <br> |
+| description | string |  | 描述<br>例子: 描述A <br>允许为空: False <br>允许为空字符串: True <br> |
 | tags | json |  | 标签集<br>允许为空: False <br> |
+| filterString | string |  | 事件属性<br>允许为空: False <br>允许为空字符串: True <br>最大长度: 2048 <br> |
 | muteRanges | array |  | 沉默范围<br>例子: 监控器A <br>允许为空: False <br> |
 | notifyTargets | array |  | 通知目标<br>允许为空: False <br> |
 | notifyMessage | string |  | 通知信息<br>允许为空: False <br>最大长度: 3000 <br> |
@@ -51,7 +54,10 @@
 | 参数名           | type | 说明                                                 |
 | ---------------- | ---- | ---------------------------------------------------- |
 | muteRanges       | list | 静默范围, 包含监控器,智能巡检,自建巡检, SLO,告警策略 |
+| name             | str  | 规则名称           |
+| description      | str  | 描述            |
 | tags             | dict | 标签                                                 |
+| filterString     | str  | 事件属性(表达式形式入参)            |
 | notifyTargets    | list | to: 列表为通知对象,type为其通知类型                  |
 | repeatTimeSet    | int  | 是否重复静默, 1代表开启重复静默, 0代表仅一次         |
 | repeatCrontabSet | dict | 重复静默规则的时间配置                               |
@@ -77,7 +83,7 @@
 curl 'https://openapi.guance.com/api/v1/monitor/mute/<obj_uuid>/modify' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   -H 'Content-Type: application/json;charset=UTF-8' \
-  --data-raw '{"startTime":"2023/08/22 16:27:27","notifyTargets":[{"to":["notify_xxxx32"],"type":"notifyObject"}],"tags":{},"muteRanges":[{"name":"多个点{{version}}","checkerUUID":"rul_xxxx32","type":"监控器"}],"type":"checker","timezone":"Asia/Shanghai","repeatTimeSet":1,"repeatCrontabSet":{"min":"0","hour":"1","day":"*","month":"*","week":"0,5,6,4"},"crontabDuration":10800,"repeatExpireTime":"2023/09/09 00:00:00","notifyTimeStr":"","notifyMessage":"dcscsadcsdacasdcsdacsdac"}' \
+  --data-raw '{"name":"名称A","description":"描述A","startTime":"2023/08/22 16:27:27","notifyTargets":[{"to":["notify_xxxx32"],"type":"notifyObject"}],"tags":{},"muteRanges":[{"name":"多个点{{version}}","checkerUUID":"rul_xxxx32","type":"监控器"}],"type":"checker","timezone":"Asia/Shanghai","repeatTimeSet":1,"repeatCrontabSet":{"min":"0","hour":"1","day":"*","month":"*","week":"0,5,6,4"},"crontabDuration":10800,"repeatExpireTime":"2023/09/09 00:00:00","notifyTimeStr":"","notifyMessage":"dcscsadcsdacasdcsdacsdac"}' \
   --compressed \
   --insecure
 ```
@@ -95,6 +101,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/<obj_uuid>/modify' \
         "crontab": "",
         "crontabDuration": 0,
         "deleteAt": -1,
+        "description": "描述A",
         "end": 1692772267,
         "endTime": "2023/08/23 14:31:07",
         "id": 643,
@@ -105,6 +112,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/<obj_uuid>/modify' \
                 "type": "监控器"
             }
         ],
+        "name": "名称A",
         "notifyMessage": "cjkackcnkjcklasc",
         "notifyTargets": [
             {

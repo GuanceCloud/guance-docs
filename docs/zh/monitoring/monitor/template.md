@@ -4,7 +4,7 @@
 
 观测云内置多种开箱即用的监控模板，支持通过 **+ 从模板新建**一键创建主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控等数十种模版。成功新建模板后，即自动添加对应的官方监控器至当前工作空间。
 
-**注意**：新建模板前需在主机上 [安装 DataKit](../datakit/datakit-install.md) ，并开启配置相关采集器，否则模板对应的监控器无法产生告警事件。
+**注意**：新建模板前需在主机上 [安装 DataKit](../../datakit/datakit-install.md) ，并开启配置相关采集器，否则模板对应的监控器无法产生告警事件。
 
 ## 新建模板 {#create}
 

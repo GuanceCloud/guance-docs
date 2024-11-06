@@ -2195,7 +2195,7 @@ icon: zy/integrations
   				class="fth-integration-list-item"
   				data-href="../container-log"
   				data-tags="日志,容器,KUBERNETES"
-  				data-name="容器日志"
+  				data-name="Kubernetes 日志"
   				data-summary="采集 Container 和 Kubernetes 日志数据"
   			>
   				<div class="fth-integration-list-card">
@@ -2205,7 +2205,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<span class="fth-integration-name">容器日志</span>
+  						<span class="fth-integration-name">Kubernetes 日志</span>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -2221,7 +2221,7 @@ icon: zy/integrations
   				class="fth-integration-list-item"
   				data-href="../container"
   				data-tags="KUBERNETES,容器"
-  				data-name="容器基础采集"
+  				data-name="Kubernetes"
   				data-summary="采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到观测云。"
   			>
   				<div class="fth-integration-list-card">
@@ -2231,7 +2231,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<span class="fth-integration-name">容器基础采集</span>
+  						<span class="fth-integration-name">Kubernetes</span>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -7935,7 +7935,7 @@ icon: zy/integrations
   				while (i < 5) {
   					if (ele.classList.contains('fth-integration-list-item')) {
   						const href = ele.dataset.href;
-  						href && (window.location.href = href);
+  						href && window.open(href);
   						break;
   					}
   					i++;

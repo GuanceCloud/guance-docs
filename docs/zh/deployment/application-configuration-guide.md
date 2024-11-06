@@ -178,13 +178,13 @@ WorkspaceDefaultesIndexSettings:
 | protocol                                          |                           | 字符串 | http                    | 观测云控制台地址访问协议                                                                                                                                                                                      |
 | hostname                                          |                           | 字符串 | console.cloudcare.cn    | 观测云控制台地址                                                                                                                                                                                              |
 | managementHostname                                |                           | 字符串 | management.cloudcare.cn | 管理后台站点访问地址                                                                                                                                                                                          |
-| envName                                |                           | 字符串 | 观测云 | 当前站点名称  |
-| debug                                |                           | 布尔 | false | debug 模式开关  |
-| frontServerUrlPrefixFormat           |                           | 字符串 | {}://{} | 前端访问地址前缀, 前两个花括号会被 protocol 和 hostname 占据，如需配置统一的二级地址，可直接调整此配置  |
-| external                                |     timeliness           | 数值 | 60 | 每次请求签名的有效期, 单位秒  |
-|                                         |     accessKey           | 字符串 |  | 接口签名所用的 ak 配置, 可设置为随机字符串  |
-|                                         |     secretKey           | 字符串 |  | 接口签名所用的 sk 配置, 可设置为随机字符串  |
-|                                         |     debugPassSignature  | 字符串 |  | 当系统在 debug 模式下运行时，允许无限制自动通过的签名字符串, 默认无值  |
+| envName                                           |                           | 字符串 | 观测云                  | 当前站点名称                                                                                                                                                                                                  |
+| debug                                             |                           | 布尔   | false                   | debug 模式开关                                                                                                                                                                                                |
+| frontServerUrlPrefixFormat                        |                           | 字符串 | {}://{}                 | 前端访问地址前缀, 前两个花括号会被 protocol 和 hostname 占据，如需配置统一的二级地址，可直接调整此配置                                                                                                        |
+| external                                          | timeliness                | 数值   | 60                      | 每次请求签名的有效期, 单位秒                                                                                                                                                                                  |
+|                                                   | accessKey                 | 字符串 |                         | 接口签名所用的 ak 配置, 可设置为随机字符串                                                                                                                                                                    |
+|                                                   | secretKey                 | 字符串 |                         | 接口签名所用的 sk 配置, 可设置为随机字符串                                                                                                                                                                    |
+|                                                   | debugPassSignature        | 字符串 |                         | 当系统在 debug 模式下运行时，允许无限制自动通过的签名字符串, 默认无值                                                                                                                                         |
 | defaultLanguage                                   |                           | 字符串 | zh                      | 系统默认语言, 新建的工作空间如果未指定语言，则默认使用此配置值                                                                                                                                                |
 | token_exp_set                                     | front_web                 | 数值   | 14400                   | Studio 浏览端用户登录的有效时长，单位：秒                                                                                                                                                                     |
 |                                                   | manage                    | 数值   | 7200                    | 管理后台浏览端用户登录的有效时长，单位：秒                                                                                                                                                                    |
@@ -253,7 +253,9 @@ window.DEPLOYCONFIG = {
     "maxProfileM": 5,
     "paasCustomLoginInfo": [{ "iconUrl":"xxx", "label": "xxx", "url": "xxxx" ,desc:"xxx"}],
     "paasCustomSiteList": [{"url": "xxxx", "label": "xxx"}],
-    "paasCustomLoginUrl": "https://www.xxx"
+    "paasCustomLoginUrl": "https://www.xxx",
+    "maxMessageByte": 10 * 1024,
+    "webRumSdkUrl": "https://static.guance.com/browser-sdk/v3/dataflux-rum.js"
     ...
 }
 
@@ -279,6 +281,8 @@ window.DEPLOYCONFIG = {
 | rumClientToken `自观测`   |      | 字符串  | 无                                  | RUM Openway 方式上报数据(需要与 `rumOpenwayUrl` 配合使用)，在观测云平台生成的 clientToken 和 datakit 上报方式冲突，优先级高于 datakit 上报方式   |
 | rumOpenwayUrl `自观测`    |      | 字符串  | 无                                  | RUM Openway 公网地址(需要与 `rumClientToken` 配合使用)，用于 Studio 前端站点数据自观测上报                                                       |
 | paasCustomLoginUrl        |      | 字符串  | 无                                  | 自定义登录 url                                                                                                                                   |
+| maxMessageByte            |      | 字符串  | 无                                  | 日志查看器列表 message 最大显示字节数， 不填默认为 10 \* 1024                                                                                    |
+| paasCustomLoginUrl        |      | 字符串  | 无                                  | Rum web SDK CDN 地址，不填默认 https://static.guance.com/browser-sdk/v3/dataflux-rum.js                                                          |
 
 ### kodo 组件 {#kodo}
 
@@ -377,39 +381,38 @@ dql:
 
 #### 配置项详细说明
 
-| 配置项      | 子项                       | 类型   | 默认值               | 描述                                                                                                                            |
-| ----------- | -------------------------- | ------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| log         | log_file                   | 字符串 | '/logdata/log'       | 运行日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                                                 |
-|             | level                      | 字符串 | 'info'               | 运行日志最低等级                                                                                                                |
-|             | gin_log_file               | 字符串 | '/logdata/log'       | gin 日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                                                 |
-| database    | db_dialect                 | 字符串 | 'mysql'              | 数据库类型，默认为 mysql                                                                                                        |
-|             | addr                       | 字符串 | 'testsql.com:3306'   | 数据库连接地址                                                                                                                  |
-|             | username                   | 字符串 | ' test_user'         | 用户名                                                                                                                          |
-|             | password                   | 字符串 | 'test_password'      | 密码                                                                                                                            |
-|             | network                    | 字符串 | 'tcp'                | 连接协议                                                                                                                        |
-|             | db_name                    | 字符串 | 'test_db_name'       | 数据库名称                                                                                                                      |
-| nsq         | lookupd                    | 字符串 | 'testnsq.com:4161'   | nsq lookupd 地址                                                                                                                |
-|             | discard_expire_interval    | 数值   | 5                    | 时序数据最大冗余时间， 单位是分钟，默认时序指标数据超过 5 分钟延迟，不会写入                                                    |
-| redis       | host                       | 字符串 | 'testredis.com:6379' | 用于数据处理的 Redis 地址，支持集群版。 注：所有 kodo 相关组件的 Redis 配置必须一致                                             |
-|             | password                   | 字符串 | 'test_password'      | 密码                                                                                                                            |
-|             | db                         | 数值   | 0                    | redis db 值                                                                                                                     |
-|             | is_cluster                 | 布尔   | false                | 当 redis 集为集群，且连不支持 proxy 连接，需要设置为 true                                                                       |
-| asynq_redis | host                       | 字符串 | ''                   | 用于异步任务的 Redis 地址，默认使用 `redis` 配置，不支持集群版，如果 `redis` 配置的是集群版，必须配置一个非集群版的 asynq_redis |
-|             | password                   | 字符串 | 'test_password'      | 密码                                                                                                                            |
-|             | db                         | 数值   | 0                    | redis db 值                                                                                                                     |
-| dql         | metric_query_workers       | 数值   | 32                   | DQL 指标数据查询 worker 数量                                                                                                    |
-|             | query_metric_channel_size  | 数值   | 32                   | 每个 metric_query_worker 中请求队列大小                                                                                         |
-|             | log_query_workers          | 数值   | 32                   | DQL 日志文本类（日志、链路、RUM 等所有文本类数据）数据查询 worker 数量                                                          |
-|             | query_log_channel_size     | 数值   | 32                   | 每个 log_query_worker 中请求队列大小                                                                                            |
-|             | general_query_workers      | 数值   | 32                   | 非 metric 或者 log 查询 worker 数量                                                                                             |
-|             | query_general_channel_size | 数值   | 32                   | 每个 general_query_worker 中请求队列大小                                                                                        |
-|             | profiling_parse            | 布尔   | true                 | DQL 查询是否开启指标，统计查询各个阶段的耗时                                                                                    |
-| influxdb    | read_timeout               | 数值   | 60                   | 查询时序指标数据，查询超时时间，单位是 s，即默认超时时间为 60s                                                                  |
-|             | dial_timeout               | 数值   | 30                   | 查询时序指标数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                    |
-| doris       | read_timeout               | 数值   | 60                   | 查询日志类数据，查询超时时间，单位是 s，即默认超时时间为 60s                                                                    |
-|             | dial_timeout               | 数值   | 30                   | 查询日志类数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                      |
-| global      | datakit_usage_check_enabled| 布尔   | false                | 日志查询时候，是否检测 datakit 数量是否超过 license 限制，默认不检测                                                      |
-
+| 配置项      | 子项                        | 类型   | 默认值               | 描述                                                                                                                            |
+| ----------- | --------------------------- | ------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| log         | log_file                    | 字符串 | '/logdata/log'       | 运行日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                                                 |
+|             | level                       | 字符串 | 'info'               | 运行日志最低等级                                                                                                                |
+|             | gin_log_file                | 字符串 | '/logdata/log'       | gin 日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                                                 |
+| database    | db_dialect                  | 字符串 | 'mysql'              | 数据库类型，默认为 mysql                                                                                                        |
+|             | addr                        | 字符串 | 'testsql.com:3306'   | 数据库连接地址                                                                                                                  |
+|             | username                    | 字符串 | ' test_user'         | 用户名                                                                                                                          |
+|             | password                    | 字符串 | 'test_password'      | 密码                                                                                                                            |
+|             | network                     | 字符串 | 'tcp'                | 连接协议                                                                                                                        |
+|             | db_name                     | 字符串 | 'test_db_name'       | 数据库名称                                                                                                                      |
+| nsq         | lookupd                     | 字符串 | 'testnsq.com:4161'   | nsq lookupd 地址                                                                                                                |
+|             | discard_expire_interval     | 数值   | 5                    | 时序数据最大冗余时间， 单位是分钟，默认时序指标数据超过 5 分钟延迟，不会写入                                                    |
+| redis       | host                        | 字符串 | 'testredis.com:6379' | 用于数据处理的 Redis 地址，支持集群版。 注：所有 kodo 相关组件的 Redis 配置必须一致                                             |
+|             | password                    | 字符串 | 'test_password'      | 密码                                                                                                                            |
+|             | db                          | 数值   | 0                    | redis db 值                                                                                                                     |
+|             | is_cluster                  | 布尔   | false                | 当 redis 集为集群，且连不支持 proxy 连接，需要设置为 true                                                                       |
+| asynq_redis | host                        | 字符串 | ''                   | 用于异步任务的 Redis 地址，默认使用 `redis` 配置，不支持集群版，如果 `redis` 配置的是集群版，必须配置一个非集群版的 asynq_redis |
+|             | password                    | 字符串 | 'test_password'      | 密码                                                                                                                            |
+|             | db                          | 数值   | 0                    | redis db 值                                                                                                                     |
+| dql         | metric_query_workers        | 数值   | 32                   | DQL 指标数据查询 worker 数量                                                                                                    |
+|             | query_metric_channel_size   | 数值   | 32                   | 每个 metric_query_worker 中请求队列大小                                                                                         |
+|             | log_query_workers           | 数值   | 32                   | DQL 日志文本类（日志、链路、RUM 等所有文本类数据）数据查询 worker 数量                                                          |
+|             | query_log_channel_size      | 数值   | 32                   | 每个 log_query_worker 中请求队列大小                                                                                            |
+|             | general_query_workers       | 数值   | 32                   | 非 metric 或者 log 查询 worker 数量                                                                                             |
+|             | query_general_channel_size  | 数值   | 32                   | 每个 general_query_worker 中请求队列大小                                                                                        |
+|             | profiling_parse             | 布尔   | true                 | DQL 查询是否开启指标，统计查询各个阶段的耗时                                                                                    |
+| influxdb    | read_timeout                | 数值   | 60                   | 查询时序指标数据，查询超时时间，单位是 s，即默认超时时间为 60s                                                                  |
+|             | dial_timeout                | 数值   | 30                   | 查询时序指标数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                    |
+| doris       | read_timeout                | 数值   | 60                   | 查询日志类数据，查询超时时间，单位是 s，即默认超时时间为 60s                                                                    |
+|             | dial_timeout                | 数值   | 30                   | 查询日志类数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                      |
+| global      | datakit_usage_check_enabled | 布尔   | false                | 日志查询时候，是否检测 datakit 数量是否超过 license 限制，默认不检测                                                            |
 
 ### kodo-x 组件 {#kodo-x}
 
@@ -449,6 +452,10 @@ dql:
     metric_query_workers: 8 # 时序数据worker数量，默认值为8
     log_query_workers: 8 # 日志数据worker数量，默认值为8
     ...
+
+pipeline:
+    enable: false
+    pull_duration: "1m"
 
 ...
 
@@ -491,6 +498,9 @@ dql:
 | backup_kafka | async                   | 布尔   | false                | 数据转发到 kafka，写入方式，默认是同步写入                                                                                      |
 |              | write_timeout           | 数值   | 30                   | 写入 kafka 超时时间，单位是 s，即默认写入超时时间为 30s                                                                         |
 |              | max_bulk_docs           | 数值   | 0                    | 是否将多条日志，写入到一个 kafka message 中，发送到 kafka，默认一条日志组成一个 kafka message                                   |
+| pipeline     | enable                  | 布尔   | false                | 配置为 `true` 启用中心 Pipeline 功能                                                                   |
+|              | pull_duration           | 字符串 | 1m                   | 中心 Pipeline 脚本的同步的时间间隔，默认值 `1m` 表示每 1 分钟同步一次，支持 `s`、`m`、`h` 等的时间间隔表示法，如 `1m30s` 表示每隔 1分 30 秒同步一次中心 Pipeline 脚本 |
+
 
 ### kodo-servicemap 组件 {#kodo-servicemap}
 

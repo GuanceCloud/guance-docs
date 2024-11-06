@@ -15,17 +15,24 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | type | string | Y | 黑名单类型,枚举值类型有('object', 'custom_object', 'logging', 'keyevent', 'tracing', 'rum', 'network', 'security', 'profiling', 'metric')<br>允许为空: False <br> |
-| source | string | Y | 数据来源, type 字段为 logging支持全部来源,  tracing支持全部服务, 此时source为 re(`.*`)<br>允许为空: True <br>允许为空字符串: False <br>$maxCharacterLength: 128 <br> |
+| source | string | Y | 数据来源, 全部来源时候, 此时source为 re(`.*`)<br>允许为空: True <br>允许为空字符串: False <br>$maxCharacterLength: 128 <br> |
+| sources | array | Y | 数据来源, 多个来源时使用该字段,非全部来源时(全部来源使用 source 字段 re(`.*`))<br>允许为空: True <br> |
 | filters | array | Y | 过滤条件<br>允许为空: True <br> |
 
 
 ## 参数补充说明
 
-*查询说明*
-
 --------------
+**1.请求体字段说明**
 
-**1.source 字段说明
+|  参数名        |   type  | 必选  |          说明          |
+|---------------|----------|----|------------------------|
+| type    |  string  |  Y | 枚举值类型('object', 'custom_object', 'logging', 'keyevent', 'tracing', 'rum', 'network', 'security', 'profiling', 'metric') |
+| source  |  string  |  N | 数据来源, 全部来源, 此时source为 re(`.*`)|
+| sources  |  array  |  N | 数据来源, 2024-10-16迭代新增字段, 支持多个来源选择, 当来源非 全部来源时,可使用该字段, sources 优先于 source 字段使用|
+| filter    |  array  |  N | 过滤条件 |
+
+**2.source 字段说明**
 
 黑名单的过滤条件生成时 会根据 type 类型, 对参数 source 字段的 key 进行替换
 |  type        |   生成过滤条件时,source字段对应的key  |
@@ -42,7 +49,7 @@
 | metric    |  measurement  |
 
 
-**2.filters 数组元素字段说明
+**3.filters 数组元素字段说明**
 
 |  参数名        |   type  | 必选  |          说明          |
 |---------------|----------|----|------------------------|
@@ -51,7 +58,7 @@
 | condition    |  string  |  N | dql格式的过滤条件 |
 | values    |  array  |  N | 查询条件具体数值 |
 
-**3. operation 说明**
+**4. operation 说明**
 参考 行协议过滤器https://docs.guance.com/datakit/datakit-filter/
 
 |key|说明|
@@ -63,25 +70,25 @@
 
 
 **filters 示例如下
-        ```filters:[
-               {
-                   "name":"host",
-                   "value":[
-                       "host1", "host2"
-                   ],
-                   "operation":"in",
-                   "condition":"and"
-               },
-               {
-                   "name":"status",
-                   "value":[
-                       "a*"
-                   ],
-                   "operation":"match",
-                   "condition":"and"
-               }
-           ]
-        ```
+    ```filters:[
+           {
+               "name":"host",
+               "value":[
+                   "host1", "host2"
+               ],
+               "operation":"in",
+               "condition":"and"
+           },
+           {
+               "name":"status",
+               "value":[
+                   "a*"
+               ],
+               "operation":"match",
+               "condition":"and"
+           }
+       ]
+    ```
 
 
 

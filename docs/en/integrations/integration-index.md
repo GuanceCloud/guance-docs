@@ -2064,7 +2064,7 @@ Guance has the ability of full stack data collection, and now supports about 290
   				class="fth-integration-list-item"
   				data-href="../container-log"
   				data-tags="LOG,CONTAINER,KUBERNETES"
-  				data-name="Container Logs"
+  				data-name="Kubernetes Logs"
   				data-summary="Collect container and Kubernetes log"
   			>
   				<div class="fth-integration-list-card">
@@ -2074,7 +2074,7 @@ Guance has the ability of full stack data collection, and now supports about 290
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<span class="fth-integration-name">Container Logs</span>
+  						<span class="fth-integration-name">Kubernetes Logs</span>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -2090,7 +2090,7 @@ Guance has the ability of full stack data collection, and now supports about 290
   				class="fth-integration-list-item"
   				data-href="../container"
   				data-tags="KUBERNETES,CONTAINER"
-  				data-name="Basic Collection Of Containers"
+  				data-name="Kubernetes"
   				data-summary="Collect metrics, objects, and log data for Container and Kubernetes, and report them to the guance cloud."
   			>
   				<div class="fth-integration-list-card">
@@ -2100,7 +2100,7 @@ Guance has the ability of full stack data collection, and now supports about 290
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<span class="fth-integration-name">Basic Collection Of Containers</span>
+  						<span class="fth-integration-name">Kubernetes</span>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -7830,7 +7830,7 @@ Guance has the ability of full stack data collection, and now supports about 290
   				while (i < 5) {
   					if (ele.classList.contains('fth-integration-list-item')) {
   						const href = ele.dataset.href;
-  						href && (window.location.href = href);
+  						href && window.open(href);
   						break;
   					}
   					i++;
