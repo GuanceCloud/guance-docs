@@ -195,20 +195,16 @@
 
 #### 指标
 
-| 字段                                                                                                           | 类型         | 描述                                                                   |
-| -------------------------------------------------------------------------------------------------------------- | ------------ | ---------------------------------------------------------------------- |
-| `resource_size`                                                                                                | number       | 资源大小，默认单位：byte                                               |
-| `resource_dns`                                                                                                 | number（ns） | 资源加载 DNS 解析时间<br>计算方式：domainLookupEnd - domainLookupStart |
-| `resource_tcp`                                                                                                 | number（ns） | 资源加载 TCP 连接时间<br>计算方式：connectEnd - connectStart           |
-| `resource_ssl`                                                                                                 | number（ns） | 资源加载 SSL 连接时间<br>计算方式：connectEnd - secureConnectStart     |
-| `resource_ttfb`                                                                                                | number（ns） | 资源加载请求响应时间<br>计算方式：responseStart - requestStart         |
-| `resource_trans`                                                                                               | number（ns） | 资源加载内容传输时间<br>计算方式：responseEnd - responseStart          |
-| `resource_first_byte`                                                                                          | number（ns） | 资源加载首包时间<br>计算方式：responseStart - domainLookupStart        |
-| `duration`                                                                                                     | number（ns） | 资源加载时间<br>计算方式：duration(responseEnd-startTime)              |
-| `resource_response_body_text` [(BETA 版本独有)](https://static.guance.com/browser-sdk/v3/BETA/dataflux-rum.js) |              |                                                                        |
-| `resource_response_headers` [(BETA 版本独有)](https://static.guance.com/browser-sdk/v3/BETA/dataflux-rum.js)   |              |                                                                        |
-| `resource_request_body_text` [(BETA 版本独有)](https://static.guance.com/browser-sdk/v3/BETA/dataflux-rum.js)  |              |                                                                        |
-| `resource_request_headers` [(BETA 版本独有)](https://static.guance.com/browser-sdk/v3/BETA/dataflux-rum.js)    |              |                                                                        |
+| 字段                  | 类型         | 描述                                                                   |
+| --------------------- | ------------ | ---------------------------------------------------------------------- |
+| `resource_size`       | number       | 资源大小，默认单位：byte                                               |
+| `resource_dns`        | number（ns） | 资源加载 DNS 解析时间<br>计算方式：domainLookupEnd - domainLookupStart |
+| `resource_tcp`        | number（ns） | 资源加载 TCP 连接时间<br>计算方式：connectEnd - connectStart           |
+| `resource_ssl`        | number（ns） | 资源加载 SSL 连接时间<br>计算方式：connectEnd - secureConnectStart     |
+| `resource_ttfb`       | number（ns） | 资源加载请求响应时间<br>计算方式：responseStart - requestStart         |
+| `resource_trans`      | number（ns） | 资源加载内容传输时间<br>计算方式：responseEnd - responseStart          |
+| `resource_first_byte` | number（ns） | 资源加载首包时间<br>计算方式：responseStart - domainLookupStart        |
+| `duration`            | number（ns） | 资源加载时间<br>计算方式：duration(responseEnd-startTime)              |
 
 ### Error
 
