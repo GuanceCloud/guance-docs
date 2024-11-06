@@ -1,7 +1,7 @@
 ---
 title: 'Azure Virtual Machines'
 tags: 
-  - 'Azure'
+  - 'AZURE'
 summary: '采集 Azure Virtual Machines 指标数据'
 __int_icon: 'icon/azure_vm'
 dashboard:

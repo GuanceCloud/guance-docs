@@ -3,6 +3,11 @@
 ---
 ???- quote "更新日志"
 
+    **0.3.6**
+    ```
+    * 适配 iOS SDK 1.5.5
+      * 修复 `FTResourceMetricsModel` 中数组越界导致的崩溃问题
+    ```
     **0.3.5**
     ```
     * 支持采集 Native Error、ANR、Freeze
