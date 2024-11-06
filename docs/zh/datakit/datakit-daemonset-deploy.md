@@ -333,36 +333,12 @@ spec:
     保护模式一旦被禁用，即可以设置一些危险的配置参数，Datakit 将接受任何配置参数。这些参数可能会导致 Datakit 一些功能异常，或者影响采集器的采集功能。比如 HTTP 发送 Body 设置太小，会影响数据上传功能；某些采集器的采集频率过高，可能影响被采集的实体。
 <!-- markdownlint-enable -->
 
+<!--
 ### Point Pool 配置相关环境变量 {#env-pointpool}
 
 [:octicons-tag-24: Version-1.28.0](changelog.md#cl-1.28.0) ·
 [:octicons-beaker-24: Experimental](index.md#experimental)
-
-<!-- markdownlint-disable MD046 -->
-- **~~ENV_ENABLE_POINT_POOL~~**
-
-    开启 point pool [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0) 版本已默认开启
-
-    **字段类型**: Boolean
-
-    **示例**: `on`
-
-- **ENV_DISABLE_POINT_POOL**
-
-    禁用 point pool [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
-
-    **字段类型**: Boolean
-
-    **示例**: `on`
-
-- **ENV_POINT_POOL_RESERVED_CAPACITY**
-
-    指定 point pool 常驻大小，即不会被 GC 回收的 point 保有数，如果所在 Datakit 的采集量非常大，可以酌情将该数值调大一点
-
-    **字段类型**: Int
-
-    **默认值**: 4096
-<!-- markdownlint-enable -->
+-->
 
 ### Dataway 配置相关环境变量 {#env-dataway}
 
@@ -461,31 +437,31 @@ spec:
 
 - **ENV_DATAWAY_WAL_CAPACITY**
 
-    设置 WAL 占用的磁盘大小 [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    设置 WAL 占用的磁盘大小 [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **字段类型**: Float
 
 - **ENV_DATAWAY_WAL_WORKERS**
 
-    设置 WAL worker 个数，默认为 CPU 配额核心数 X 2 [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    设置 WAL worker 个数，默认为 CPU 配额核心数 X 2 [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **字段类型**: Int
 
 - **ENV_DATAWAY_WAL_MEM_CAPACITY**
 
-    设置 WAL 内存队列长度，默认为 CPU 配额核心数 X 2 [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    设置 WAL 内存队列长度，默认为 CPU 配额核心数 X 2 [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **字段类型**: Int
 
 - **ENV_DATAWAY_WAL_PATH**
 
-    设置 WAL 磁盘目录，默认为 Datakit 安装目录下的 *cache/dw-wal* [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    设置 WAL 磁盘目录，默认为 Datakit 安装目录下的 *cache/dw-wal* [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **字段类型**: String
 
 - **ENV_DATAWAY_WAL_FAIL_CACHE_CLEAN_INTERVAL**
 
-    设置 WAL 失败队列的重试间隔，默认 `30s` [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    设置 WAL 失败队列的重试间隔，默认 `30s` [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **字段类型**: Duration
 <!-- markdownlint-enable -->
@@ -703,7 +679,7 @@ spec:
 
 - **ENV_HTTP_ALLOWED_CORS_ORIGINS**
 
-    设置 Datakit API CORS 属性（英文逗号分割）[:octicons-tag-24: Version-1.61.0](changelog.md#cl-1.61.0)
+    设置 Datakit API CORS 属性（英文逗号分割）[:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **字段类型**: List
 
@@ -939,7 +915,7 @@ spec:
 
 - **~~ENV_IO_ENABLE_CACHE~~**
 
-    是否开启发送失败的磁盘缓存。[:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0) 版本已移除
+    是否开启发送失败的磁盘缓存。[:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0) 版本已移除
 
     **字段类型**: Boolean
 
@@ -947,7 +923,7 @@ spec:
 
 - **~~ENV_IO_CACHE_ALL~~**
 
-    是否 cache 所有发送失败的数据。[:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0) 版本已移除
+    是否 cache 所有发送失败的数据。[:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0) 版本已移除
 
     **字段类型**: Boolean
 
@@ -955,7 +931,7 @@ spec:
 
 - **~~ENV_IO_CACHE_MAX_SIZE_GB~~**
 
-    发送失败缓存的磁盘大小（单位 GB）。[:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0) 版本已移除
+    发送失败缓存的磁盘大小（单位 GB）。[:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0) 版本已移除
 
     **字段类型**: Int
 
@@ -963,7 +939,7 @@ spec:
 
 - **~~ENV_IO_CACHE_CLEAN_INTERVAL~~**
 
-    定期发送缓存在磁盘内的失败任务。[:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0) 版本已移除
+    定期发送缓存在磁盘内的失败任务。[:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0) 版本已移除
 
     **字段类型**: Duration
 
