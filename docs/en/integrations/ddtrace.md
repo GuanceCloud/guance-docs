@@ -136,40 +136,46 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
       ## delete trace message
       # del_message = true
     
+      ## max spans limit on each trace. default 100000 or set to -1 to remove this limit.
+      # trace_max_spans = 100000
+    
+      ## max trace body(Content-Length) limit. default 32MiB or set to -1 to remove this limit.
+      # max_trace_body_mb = 32
+    
       ## Ignore tracing resources map like service:[resources...].
       ## The service name is the full service name in current application.
       ## The resource list is regular expressions uses to block resource names.
       ## If you want to block some resources universally under all services, you can set the
       ## service name as "*". Note: double quotes "" cannot be omitted.
       # [inputs.ddtrace.close_resource]
-        # service1 = ["resource1", "resource2", ...]
-        # service2 = ["resource1", "resource2", ...]
-        # "*" = ["close_resource_under_all_services"]
-        # ...
+      #   service1 = ["resource1", "resource2", ...]
+      #   service2 = ["resource1", "resource2", ...]
+      #   "*" = ["close_resource_under_all_services"]
+      #   ...
     
       ## Sampler config uses to set global sampling strategy.
       ## sampling_rate used to set global sampling rate.
       # [inputs.ddtrace.sampler]
-        # sampling_rate = 1.0
+      #   sampling_rate = 1.0
     
       # [inputs.ddtrace.tags]
-        # key1 = "value1"
-        # key2 = "value2"
-        # ...
+      #   key1 = "value1"
+      #   key2 = "value2"
+      #   ...
     
       ## Threads config controls how many goroutines an agent cloud start to handle HTTP request.
       ## buffer is the size of jobs' buffering of worker channel.
       ## threads is the total number fo goroutines at running time.
       # [inputs.ddtrace.threads]
-        # buffer = 100
-        # threads = 8
+      #   buffer = 100
+      #   threads = 8
     
       ## Storage config a local storage space in hard dirver to cache trace data.
       ## path is the local file path used to cache data.
       ## capacity is total space size(MB) used to store data.
       # [inputs.ddtrace.storage]
-        # path = "./ddtrace_storage"
-        # capacity = 5120
+      #   path = "./ddtrace_storage"
+      #   capacity = 5120
     
     ```
 
@@ -300,6 +306,30 @@ DDTrace Agent embedded in Datakit is used to receive, calculate and analyze Data
         **input.conf**: `tags`
     
         **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
+    
+    - **ENV_INPUT_DDTRACE_ENV_INPUT_DDTRACE_MAX_SPANS**
+    
+        Max spans of single trace. Set to -1 to remove this limit
+    
+        **Type**: Int
+    
+        **input.conf**: `env_input_ddtrace_max_spans`
+    
+        **Example**: 1000
+    
+        **Default**: 100000
+    
+    - **ENV_INPUT_DDTRACE_ENV_INPUT_DDTRACE_MAX_BODY_MB**
+    
+        Max body(in MiB) of single trace POST. Set to -1 to remove this limit
+    
+        **Type**: JSON
+    
+        **input.conf**: `env_input_ddtrace_max_body_mb`
+    
+        **Example**: 32
+    
+        **Default**: 10
 
 ### Notes on Linking Multiple Line Tools {#trace_propagator}
 DDTrace currently supports the following propagation protocols: `datadog/b3multi/tracecontext`. There are two things to note:

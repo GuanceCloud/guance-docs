@@ -1908,7 +1908,7 @@ icon: zy/integrations
   			<div
   				class="fth-integration-list-item"
   				data-href="../azure_public_ip"
-  				data-tags="Azure,Network"
+  				data-tags="AZURE,网络"
   				data-name="Azure Public Ip Address"
   				data-summary="采集 Azure Public Ip Address 指标数据"
   			>
@@ -1933,8 +1933,34 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../azure_sqlserver"
+  				data-tags="AZURE"
+  				data-name="Azure SQL Servers"
+  				data-summary="采集 Azure SQL Servers 指标数据"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/azure_sqlserver/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<span class="fth-integration-name">Azure SQL Servers</span>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../azure_vm"
-  				data-tags="Azure"
+  				data-tags="AZURE"
   				data-name="Azure Virtual Machines"
   				data-summary="采集 Azure Virtual Machines 指标数据"
   			>
@@ -2195,7 +2221,7 @@ icon: zy/integrations
   				class="fth-integration-list-item"
   				data-href="../container-log"
   				data-tags="日志,容器,KUBERNETES"
-  				data-name="容器日志"
+  				data-name="Kubernetes 日志"
   				data-summary="采集 Container 和 Kubernetes 日志数据"
   			>
   				<div class="fth-integration-list-card">
@@ -2205,7 +2231,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<span class="fth-integration-name">容器日志</span>
+  						<span class="fth-integration-name">Kubernetes 日志</span>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -2221,7 +2247,7 @@ icon: zy/integrations
   				class="fth-integration-list-item"
   				data-href="../container"
   				data-tags="KUBERNETES,容器"
-  				data-name="容器基础采集"
+  				data-name="Kubernetes"
   				data-summary="采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到观测云。"
   			>
   				<div class="fth-integration-list-card">
@@ -2231,7 +2257,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<span class="fth-integration-name">容器基础采集</span>
+  						<span class="fth-integration-name">Kubernetes</span>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -7935,7 +7961,7 @@ icon: zy/integrations
   				while (i < 5) {
   					if (ele.classList.contains('fth-integration-list-item')) {
   						const href = ele.dataset.href;
-  						href && (window.location.href = href);
+  						href && window.open(href);
   						break;
   					}
   					i++;

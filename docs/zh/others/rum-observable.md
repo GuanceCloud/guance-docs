@@ -42,7 +42,7 @@ c.  修改完成后保存退出
 - 配置 [Web 应用接入](../real-user-monitoring/web/app-access.md)
 - 配置 [Android 应用接入](../real-user-monitoring/android/app-access.md)
 - 配置 [iOS 应用接入](../real-user-monitoring/ios/app-access.md)
-- 配置 [小程序应用接入](../real-user-monitoring/miniapp/index.md)
+- 配置 [小程序应用接入](../real-user-monitoring/miniapp/app-access.md)
 
 ### Step3: 查看用户访问数据
 
