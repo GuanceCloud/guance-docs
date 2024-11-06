@@ -19,7 +19,7 @@ $ watch -n 3 'curl -s http://localhost:9529/metrics | grep -a datakit_cpu_usage'
 datakit_cpu_usage 4.9920266849857144
 ```
 
-We can also playing other metrics too(change the `grep` string), all available metrics list below(current Datakit version is 1.61.0):
+We can also playing other metrics too(change the `grep` string), all available metrics list below(current Datakit version is 1.62.0):
 
 <!-- we can run `make show_metrics` go export all these metrics -->
 |POSITION|TYPE|NAME|LABELS|HELP|
@@ -51,7 +51,7 @@ We can also playing other metrics too(change the `grep` string), all available m
 |*internal/httpcli*|SUMMARY|`datakit_httpcli_dns_cost_seconds`|`from`|HTTP DNS cost|
 |*internal/httpcli*|SUMMARY|`datakit_httpcli_tls_handshake_seconds`|`from`|HTTP TLS handshake cost|
 |*internal/httpcli*|SUMMARY|`datakit_httpcli_http_connect_cost_seconds`|`from`|HTTP connect cost|
-|*internal/io/dataway*|COUNTER|`datakit_io_dataway_skipped_point_total`|`category`|Skipped point count during encoding(protobuf) point|
+|*internal/io/dataway*|COUNTER|`datakit_io_dataway_skipped_point_total`|`category`|Skipped point count during encoding(Protobuf) point|
 |*internal/io/dataway*|GAUGE|`datakit_io_dataway_wal_mem_len`|`category`|Dataway WAL's memory queue length|
 |*internal/io/dataway*|SUMMARY|`datakit_io_flush_failcache_bytes`|`category`|IO flush fail-cache bytes(in gzip) summary|
 |*internal/io/dataway*|SUMMARY|`datakit_io_build_body_cost_seconds`|`category,encoding,stage`|Build point HTTP body cost|
