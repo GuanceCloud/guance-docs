@@ -62,6 +62,7 @@ DQL数据查询
 |  query.search_after  | array  |   | 分页标记, 由当前接口返回的分页标记，用于下一次请求时传入 |
 |  query.maxPointCount  | integer  |   | 最大点数 |
 |  query.workspaceUUID  | string  |   | 要查询工作空间的uuid |
+|  query.workspaceUUIDs  | array  |   | 要查询工作空间的uuids, 优先级 高于 query.workspaceUUID. |
 |  query.output_format  | string  |   | lineprotocol: 行协议输出，默认不填的话，默认保持现有输出格式不变 |
 |  query.cursor_time  | integer  |   | 分段查询阀值: 第一次分段查询时，需要把 cursor_time 设置为 end_time；之后的分段查询，需要把 cursor_time 设置为响应中的 next_cursor_time |
 |  query.disable_sampling  | bool  |   | 采样禁用开关, 默认值为 false |

@@ -50,9 +50,9 @@
 | alertOpt[#].aggLabels | array | | 按标签聚合时的标签值列表，需要在aggFields中指定有df_label才会生效|
 | alertOpt[#].aggClusterFields | array | | 智能聚合时的字段列表，需要在aggFields中指定有CLUSTER才会生效, 可选值 "df_title"：标题, "df_message"：内容|
 | alertOpt[#].alertTarget       | Array[Dict] | | 告警动作|
-| alertOpt[#].alertType       | string | | 告警策略通知类型, 等级(status)/成员(member), 默认为 等级, 2024-10-30 迭代新增|
-| openPermissionSet   | boolean | | 是否开启自定义权限配置, 默认 false , 2024-10-30 迭代新增|
-| permissionSet       | array   | |操作权限配置      , 2024-10-30 迭代新增|
+| alertOpt[#].alertType       | string | | 告警策略通知类型, 等级(status)/成员(member), 默认为 等级, 2024-11-06 迭代新增|
+| openPermissionSet   | boolean | | 是否开启自定义权限配置, 默认 false , 2024-11-06 迭代新增|
+| permissionSet       | array   | |操作权限配置      , 2024-11-06 迭代新增|
 
 --------------
 
@@ -67,9 +67,9 @@
 | customDateUUIDs | Array[String] |  | 选择自定义时间时，自定义通知日期的UUID列表 , 例: ['ndate_xxxx32', 'ndate_xxxx32'], 自定义通知日期参考(监控 - 告警策略 - 自定义通知日期, 接口)|
 | customStartTime | String |  | 选择自定义时间时，每日开始时间，格式为：HH:mm:ss |
 | customDuration | integer |  | 选择自定义时间段时，从 customStartTime 自定义开始时间，持续时间（秒) |
-| openCustomNotifyTime | boolean |  | 当 alertType 为 member 时, 使用该字段. 表示 是否开启自定义通知时间, 2024-10-30 迭代新增|
-| filterString  | string |  | 当 alertType 为 member 时, 使用该字段, 过滤条件原始字符串 ,2024-10-30 迭代新增|
-| memberInfo | array |  | 当 alertType 为 member 时, 使用该字段(团队UUID 成员UUID), 例: [`group_xxxx`,`acnt_xxxx`], 2024-10-30 迭代新增|
+| openCustomNotifyTime | boolean |  | 当 alertType 为 member 时, 使用该字段. 表示 是否开启自定义通知时间, 2024-11-06 迭代新增|
+| filterString  | string |  | 当 alertType 为 member 时, 使用该字段, 过滤条件原始字符串 ,2024-11-06 迭代新增|
+| memberInfo | array |  | 当 alertType 为 member 时, 使用该字段(团队UUID 成员UUID), 例: [`group_xxxx`,`acnt_xxxx`], 2024-11-06 迭代新增|
 
 
 如果 选择 重复时间段, crontab, crontabDuration 字段为必传参数
@@ -87,11 +87,11 @@ targets 为list, 内部元素为dict, 内部字段说明如下
 
 | key | 类型 | 是否必须 | 说明 |
 | :---- | :--- | :---- | :---- |
-| to | Array[String] | 必须 | 通知对象/成员/团队, 示例: [`group_xxxx`,`acnt_xxxx`,`notify_xxxx`]. (当 alertType 为 member 时, 只可以选择通知对象和固定字段email, sms(saas版本支持sms), 示例: [`email`,`notify_xxxx`], 2024-10-30 迭代新增) |
+| to | Array[String] | 必须 | 通知对象/成员/团队, 示例: [`group_xxxx`,`acnt_xxxx`,`notify_xxxx`]. (当 alertType 为 member 时, 只可以选择通知对象和固定字段email, sms(saas版本支持sms), 示例: [`email`,`notify_xxxx`], 2024-11-06 迭代新增) |
 | status | Enum | 必须 | 需要发送告警的 event 的 status 值,多个status 可使用,号隔开, `critical`,`error`,`warning`,`nodata`,`info` |
 | upgradeTargets | Array | | 每个告警配置的状态的 升级通知 |
 | tags | dict | | 过滤条件 |
-| filterString | dict | | 过滤条件原始字符串 可替换 tags, filterString 使用优先级大于 tags, 2024-10-30 迭代新增 |
+| filterString | dict | | 过滤条件原始字符串 可替换 tags, filterString 使用优先级大于 tags, 2024-11-06 迭代新增 |
 
 --------------
 
@@ -100,9 +100,11 @@ upgradeTargets 为list, 内部元素为dict, 内部字段说明如下
 
 | key | 类型 | 是否必须 | 说明 |
 | :---- | :--- | :---- | :---- |
-| to | Array[String] | 必须 | 通知对象/成员/团队,示例: [`group_xxxx`,`acnt_xxxx`,`notify_xxxx`]. (当 alertType 为 member 时, 只可以选择成员和团队, 2024-10-30 迭代新增)|
+| to | Array[String] | 必须 | 通知对象/成员/团队,示例: [`group_xxxx`,`acnt_xxxx`,`notify_xxxx`]. (当 alertType 为 member 时, 只可以选择成员和团队, 2024-11-06 迭代新增)|
 | status | Enum | 必须 | 需要发送告警的 event 的 status 值, `critical`,`error`,`warning`,`nodata`,`info` |
 | duration | integer | | 持续时间, 持续产生该等级状态的事件触发升级通知 |
+| toWay | Array[String] | | 当 alertType 为 成员(member)类型时 使用, 只可以选择通知对象和固定字段email, sms(saas版本支持sms), 示例: [`email`,`notify_xxxx`], 2024-11-06 迭代新增 |
+
 
 --------------
 
