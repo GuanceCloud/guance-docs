@@ -292,36 +292,12 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
     Once protected mode is disabled, some dangerous configuration parameters can be set, and Datakit will accept any configuration parameters. These parameters may cause some Datakit functions to be abnormal or affect the collection function of the collector. For example, if the HTTP sending body is too small, the data upload function will be affected. And the collection frequency of some collectors set too high, which may affect the entities(for example MySQL) to be collected.
 <!-- markdownlint-enable -->
 
+<!--
 ### Point Pool Environments {#env-pointpool}
 
 [:octicons-tag-24: Version-1.28.0](changelog.md#cl-1.28.0) ·
 [:octicons-beaker-24: Experimental](index.md#experimental)
-
-<!-- markdownlint-disable MD046 -->
-- **~~ENV_ENABLE_POINT_POOL~~**
-
-    Enable point pool [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0) default enabled
-
-    **Type**: Boolean
-
-    **Example**: `on`
-
-- **ENV_DISABLE_POINT_POOL**
-
-    Disable point pool [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
-
-    **Type**: Boolean
-
-    **Example**: `on`
-
-- **ENV_POINT_POOL_RESERVED_CAPACITY**
-
-    Specify the pool size that is immune to GC. if Datakit got too many data to collect, we can increase this reserved pool size(such as 40960) to decrease GC payload.
-
-    **Type**: Int
-
-    **Default**: 4096
-<!-- markdownlint-enable -->
+-->
 
 
 ### Dataway Configuration Environments {#env-dataway}
@@ -421,31 +397,31 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_DATAWAY_WAL_CAPACITY**
 
-    Set WAL disk cache capacity [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    Set WAL disk cache capacity [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **Type**: Float
 
 - **ENV_DATAWAY_WAL_WORKERS**
 
-    Set WAL workers, default to limited CPU cores X 2 [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    Set WAL workers, default to limited CPU cores X 2 [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **Type**: Int
 
 - **ENV_DATAWAY_WAL_MEM_CAPACITY**
 
-    Set WAL memory queue length, default to limited CPU cores X 2 [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    Set WAL memory queue length, default to limited CPU cores X 2 [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **Type**: Int
 
 - **ENV_DATAWAY_WAL_PATH**
 
-    Set WAL disk path, default path is *cache/dw-wal* under Datakit install path[:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    Set WAL disk path, default path is *cache/dw-wal* under Datakit install path[:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **Type**: String
 
 - **ENV_DATAWAY_WAL_FAIL_CACHE_CLEAN_INTERVAL**
 
-    Set WAL fail-cache clean interval, default `30s`[:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    Set WAL fail-cache clean interval, default `30s`[:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **Type**: Duration
 <!-- markdownlint-enable -->
@@ -663,7 +639,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_HTTP_ALLOWED_CORS_ORIGINS**
 
-    Setup CORS on Datakit HTTP APIs(split by `,`) [:octicons-tag-24: Version-1.61.0](changelog.md#cl-1.61.0)
+    Setup CORS on Datakit HTTP APIs(split by `,`) [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **Type**: List
 
@@ -899,7 +875,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **~~ENV_IO_ENABLE_CACHE~~**
 
-    Whether to open the disk cache that failed to send. Removed in [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    Whether to open the disk cache that failed to send. Removed in [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **Type**: Boolean
 
@@ -907,7 +883,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **~~ENV_IO_CACHE_ALL~~**
 
-    Cache failed data points of all categories. Removed in [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    Cache failed data points of all categories. Removed in [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **Type**: Boolean
 
@@ -915,7 +891,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **~~ENV_IO_CACHE_MAX_SIZE_GB~~**
 
-    Disk size of send failure cache (in GB). Removed in [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    Disk size of send failure cache (in GB). Removed in [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **Type**: Int
 
@@ -923,7 +899,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **~~ENV_IO_CACHE_CLEAN_INTERVAL~~**
 
-    Periodically send failed tasks cached on disk. Removed in [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+    Periodically send failed tasks cached on disk. Removed in [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **Type**: Duration
 
