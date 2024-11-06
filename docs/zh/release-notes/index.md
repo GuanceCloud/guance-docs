@@ -23,7 +23,7 @@ icon: zy/release-notes
 
 #### [价格调整](../billing/billing-method/index.md)
 
-<img src="../img/new-billing.png" width="60%" >
+<img src="img/new-billing.png" width="60%" >
 
 1. [用户访问 PV](../billing/billing-method/index.md#pv) 30 天、60 天梯度价格调整；
 2. [应用性能 Trace](../billing/billing-method/index.md#trace) 30 天、60 天梯度价格调整；
