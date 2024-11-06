@@ -23,14 +23,17 @@ icon: zy/release-notes
 
 #### [价格调整](../billing/billing-method/index.md)
 
+<img src="../img/new-billing.png" width="60%" >
+
 1. [用户访问 PV](../billing/billing-method/index.md#pv) 30 天、60 天梯度价格调整；
 2. [应用性能 Trace](../billing/billing-method/index.md#trace) 30 天、60 天梯度价格调整；
 3. [会话重放](../billing/billing-method/index.md#session)价格调整。
 
+<!--
 #### 应用性能监测
 
 Java 应用支持创建[内存快照](../application-performance-monitoring/service-manag/service-list.md#jvm)，帮助开发者可以快速分析和优化应用性能。
-
+-->
 
 #### 监控
 
@@ -38,7 +41,7 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 
 #### 场景
 
-[Rollup 函数](../scene/visual-chart/chart-query.md#rollup)仅适用于指标数据查询，在图表简单模式下对其他数据类型的查询选择将做下线处理。
+[Rollup 函数](../scene/visual-chart/chart-query.md#rollup)仅适用于指标数据查询，在图表简单模式下，对其他数据类型的查询选择将做下线处理。
 
 
 ### Bug 修复 {#bug1106}
