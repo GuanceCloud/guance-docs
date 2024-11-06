@@ -23,16 +23,16 @@ icon: zy/release-notes
 
 #### 应用性能监测
 
-Java 应用支持创建[内存快照](../application-performance-monitoring/service-manag/service-list.md#jvm)。
+Java 应用支持创建[内存快照](../application-performance-monitoring/service-manag/service-list.md#jvm)，帮助开发者可以快速分析和优化应用性能。
 
 
 #### 监控
 
-告警策略支持[按成员配置](../monitoring/alert-setting.md#member)通知规则。
+告警策略新增根据[成员范围](../monitoring/alert-setting.md#member)定义通知规则，帮助用户更好的管理告警通知和问题处理边界。
 
 #### 场景
 
-[Rollup 函数](../scene/visual-chart/chart-query.md#rollup)仅支持指标数据查询，图表简单模式下其他数据查询不支持选择 rollup 函数。
+[Rollup 函数](../scene/visual-chart/chart-query.md#rollup)仅适用于指标数据查询，在图表简单模式下对其他数据类型的查询选择将做下线处理。
 
 ## 2024 年 10 月 30 日
 
