@@ -13,7 +13,7 @@ This release is an iterative update, with the following main changes:
 - During the Datakit upgrade process, similar to the installation process, it now supports modifying its main configuration through command-line environment variables (#2418).
 - Added a new prom v2 collector, which significantly optimizes parsing performance compared to the v1 version (#2427).
 - [APM Automatic Instrumentation](datakit-install.md#apm-instrumentation): During the Datakit installation process, by setting specific switches, you can automatically inject APM into the corresponding applications (Java/Python) by restarting them (#2139).
-- RUM Session Replay data now supports联动 with the center's configured blacklist rules (#2424).
+- RUM Session Replay data now supports with the center's configured blacklist rules (#2424).
 - The Datakit [`/v1/write/:category` interface](apis.md#api-v1-write) now supports multiple compression formats (HTTP `Content-Encoding`) (#2368).
 
 ### Bug Fixes {#cl-1.62.0-fix}
@@ -40,10 +40,10 @@ This release is an iterative update, with the following main changes:
     - Refined Datakit's own memory usage metrics, adding memory occupation across multiple dimensions.
     - Added WAL panel display in the `datakit monitor -V` command.
     - Improved KubernetesPrometheus collection performance (#2426).
-    - Improved container log collection performance by replace Golang json with gjson (#2425).
+    - Improved container log collection performance by replace Golang JSON with `gjson` (#2425).
     - Removed logging debug-related fields to optimize network traffic and storage.
 - Other optimizations:
-    - Optimized datakit.yaml, changed image pull policy to `IfNotPresent` (!3264).
+    - Optimized *datakit.yaml*, changed image pull policy to `IfNotPresent` (!3264).
     - Optimized documentation for metrics generated based on Profiling (!3224).
     - Updated Kafka dashboard and monitors (!3248).
     - Updated Redis dashboard and monitors (!3263).
