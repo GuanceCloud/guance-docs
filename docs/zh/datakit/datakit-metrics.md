@@ -19,7 +19,7 @@ $ watch -n 3 'curl -s http://localhost:9529/metrics | grep -a datakit_cpu_usage'
 datakit_cpu_usage 4.9920266849857144
 ```
 
-其它指标也能通过类似方式来观察，目前已有的指标如下（当前版本 1.62.0）：
+其它指标也能通过类似方式来观察，目前已有的指标如下（当前版本 1.62.1）：
 
 <!-- 以下这些指标，通过执行 make show_metrics 方式能获取 -->
 
