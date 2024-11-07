@@ -38,29 +38,29 @@ curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_xxxx32/get' \
 {
     "code": 200,
     "content": {
-        "conditions": "`container_id` IN ['xxxx']",
-        "createAt": 1724400669,
-        "creator": "wsak_xxx",
+        "conditions": "`source` IN ['http_dial_testing']",
+        "createAt": 1730529443,
+        "creator": "wsak_cd83804176e24ac18a8a683260ab0746",
         "declaration": {
             "asd": "aa,bb,cc,1,True",
             "asdasd": "dawdawd",
             "business": "aaa",
             "dd": "dd",
             "fawf": "afawf",
-            "organization": "xxx"
+            "organization": "64fe7b4062f74d0007b46676"
         },
         "deleteAt": -1,
-        "desc": "",
+        "desc": "test openapi modify",
         "extend": {
-            "container_id": [
-                "xxxx"
+            "source": [
+                "http_dial_testing"
             ]
         },
-        "id": 254,
+        "id": 348,
         "indexWsInfo": {
-            "default": {
+            "wksp_4b57c7bab38e4a2d9630f675dc20015d:lgim_f2a50518520b467a920103a19133fa8b": {
                 "indexInfo": {
-                    "name": "default",
+                    "name": "keyongxing",
                     "status": 0
                 },
                 "wsInfo": {
@@ -70,28 +70,40 @@ curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_xxxx32/get' \
             }
         },
         "indexes": [
-            "default"
+            "wksp_4b57c7bab38e4a2d9630f675dc20015d:lgim_f2a50518520b467a920103a19133fa8b"
         ],
         "logic": "and",
-        "maskFields": "",
-        "name": "test_modify_name",
-        "reExprs": [],
+        "maskFields": "host,message",
+        "name": "temp_test",
+        "reExprs": [
+            {
+                "enable": true,
+                "name": "对qq邮箱进行脱敏",
+                "reExpr": "[a-zA-Z0-9_]+@qq.com"
+            }
+        ],
         "relRoleInfos": [
-            {}
+            {
+                "name": "Standard",
+                "status": 0,
+                "uuid": "general"
+            }
         ],
         "roleUUIDs": [
-            "role_xxxx"
+            "general"
         ],
+        "sources": [],
         "status": 0,
-        "updateAt": 1724400877,
-        "updator": "wsak_xxxx",
-        "uuid": "lqrl_xxx",
-        "workspaceUUID": "wksp_xxxxx"
+        "type": "logging",
+        "updateAt": 1730529851,
+        "updator": "wsak_cd83804176e24ac18a8a683260ab0746",
+        "uuid": "lqrl_9f1de1d1440f4af5917a534299d0ad09",
+        "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
     },
     "errorCode": "",
     "message": "",
     "success": true,
-    "traceId": "TRACE-3D4B9E8E-CCB6-486F-81E8-16B3FE2E7519"
+    "traceId": "TRACE-A88B73EE-C5EC-472F-8F2C-4755A9335A2D"
 } 
 ```
 

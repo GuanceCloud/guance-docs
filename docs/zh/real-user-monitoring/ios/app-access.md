@@ -3,6 +3,10 @@
 ---
 ???- quote "更新日志"
 
+    **1.5.5**
+    ```
+    1. 修复 `FTResourceMetricsModel` 中数组越界导致的崩溃问题
+    ```
     **1.5.4**
     ```
     1. 添加全局、log、RUM globalContext 属性动态设置方式
