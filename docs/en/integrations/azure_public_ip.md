@@ -1,7 +1,7 @@
 ---
 title: 'Azure Public Ip Address'
 tags:
-  - 'Azure'
+  - 'AZURE'
 summary: 'Collect Azure Public Ip Address metric data'
 __int_icon: 'icon/azure_public_ip'
 dashboard:
