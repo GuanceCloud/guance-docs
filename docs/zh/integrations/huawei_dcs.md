@@ -2,7 +2,7 @@
 title: '华为云 DCS'
 tags: 
   - 华为云
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+summary: '采集华为云 DCS 指标数据'
 __int_icon: 'icon/huawei_dcs'
 dashboard:
 
@@ -15,13 +15,7 @@ monitor:
 
 ---
 
-
-<!-- markdownlint-disable MD025 -->
-# 华为云 DCS
-<!-- markdownlint-enable -->
-
-使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云
-
+采集华为云 DCS 指标数据
 
 ## 配置 {#config}
 
@@ -31,31 +25,33 @@ monitor:
 
 如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-
-
 ### 安装脚本
 
 > 提示：请提前准备好符合要求的华为云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步华为云 DCS 的监控数据，我们安装对应的采集脚本：「观测云集成（华为云-DCS采集）」(ID：`guance_huaweicloud_dcs`)
+同步华为云 DCS 的监控数据，我们安装对应的采集脚本:
+
+- **guance_huaweicloud_dcs**: 采集华为云 DCS 指标数据
+- **guance_huaweicloud_dcs_slowlog**：采集华为云 DCS 慢日志数据
 
 点击【安装】后，输入相应的参数：华为云 AK、华为云账户名。
 
 点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
 
+脚本安装完后，在 Func 中「开发」里找到脚本「观测云集成（华为云-DCS采集）」/「观测云集成 (华为云-DCS慢查询日志采集) 」，展开修改脚本，找 collector_configs 和 monitor_configs 分别编辑下面 region_projects 中的内容，将地域和 Project ID,更改为实际的地域和 Project ID，再点击保存发布。
+
 此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
-
-我们默认采集了一些配置, 具体见指标一栏 [配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
-
 
 ### 验证
 
 1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
 2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
 3. 在观测云平台，「指标」查看是否有对应监控数据
+4. 在观测云平台，「日志」查看是否有对应日志数据
 
 ## 指标 {#metric}
-配置好华为云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [华为云云监控指标详情](https://support.huaweicloud.com/usermanual-dcs/dcs-ug-0713011.html){:target="_blank"}
+
+配置华为云 DCS 监控指标，可以通过配置的方式采集更多的指标 [华为云 DCS 指标详情](https://support.huaweicloud.com/usermanual-dcs/dcs-ug-0713011.html){:target="_blank"}
 
 ### Redis 3.0实例监控指标
 
@@ -303,16 +299,6 @@ monitor:
 | `mc_command_max_delay`         | 命令最大时延             | 统计命令最大时延。单位：ms。                                 | >=0ms                      | Memcached实例 | 1分钟                |
 | `mc_is_slow_log_exist`         | 是否存在慢日志           | 统计实例是否存在慢日志。![img](https://res-static.hc-cdn.cn/aem/content/dam/cloudbu-site/archive/hk/en-us/support/resource/framework/v3/images/support-doc-en-note.png){:target="_blank"}**说明：**该监控不统计由**migrate**、**slaveof**、**config**、**bgsave**、**bgrewriteaof**命令导致的慢日志。 | 1：表示存在0：表示不存在。 | Memcached实例 | 1分钟                |
 | `mc_keyspace_hits_perc`        | 访问命中率               | 统计实例的访问码命中率。单位：%。                            | 0-100%                     | Memcached实例 | 1分钟                |
-
-### 维度
-
-| Key                         | Value                                               |
-| --------------------------- | --------------------------------------------------- |
-| `dcs_instance_id`           | Redis实例                                           |
-| `dcs_cluster_redis_node`    | 数据节点                                            |
-| `dcs_cluster_proxy_node`    | Redis 3.0 Proxy集群实例Proxy节点                    |
-| `dcs_cluster_proxy2_node`   | Redis 4.0/Redis5.0 Proxy集群和读写分离实例Proxy节点 |
-| `dcs_memcached_instance_id` | Memcached实例                                       |
 
 ## 对象 {#object}
 
