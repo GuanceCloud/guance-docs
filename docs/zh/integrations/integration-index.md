@@ -3054,7 +3054,7 @@ icon: zy/integrations
   				data-href="../emqx"
   				data-tags=""
   				data-name="EMQX"
-  				data-summary="采集 EMQX collection、topics、subscriptions、message、packet 相关指标信息"
+  				data-summary="采集 EMQX collection、topics、subsriptions、message、packet 相关指标信息"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3860,7 +3860,7 @@ icon: zy/integrations
   				data-href="../huawei_dcs"
   				data-tags="华为云"
   				data-name="华为云 DCS"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="采集华为云 DCS 指标数据"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3870,6 +3870,32 @@ icon: zy/integrations
 									alt=""
   						/>
   						<span class="fth-integration-name">华为云 DCS</span>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../huawei_dds"
+  				data-tags="华为云"
+  				data-name="华为云 DDS"
+  				data-summary="采集华为云 DDS 指标数据"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/huawei_dds/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<span class="fth-integration-name">华为云 DDS</span>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -4120,7 +4146,7 @@ icon: zy/integrations
   				data-href="../huawei_mongodb"
   				data-tags="华为云"
   				data-name="华为云 MongoDB"
-  				data-summary="华为云MongoDB的展示指标包括读写吞吐量、延迟、并发连接数和数据可靠性，这些指标反映了MongoDB在处理大规模文档存储和查询时的性能表现和可扩展性。"
+  				data-summary="采集华为云 MongoDB 指标数据"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4198,7 +4224,7 @@ icon: zy/integrations
   				data-href="../huawei_rds_mysql"
   				data-tags="华为云"
   				data-name="华为云 RDS MYSQL"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="采集华为云 RDS MYSQL数据"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4234,6 +4260,32 @@ icon: zy/integrations
 									alt=""
   						/>
   						<span class="fth-integration-name">华为云 RDS PostgreSQL</span>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../huawei_rds_sqlserver"
+  				data-tags="华为云"
+  				data-name="华为云 RDS SQLServer"
+  				data-summary="采集华为云 RDS SQLServer 指标数据"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/huawei_rds_sqlserver/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<span class="fth-integration-name">华为云 RDS SQLServer</span>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
