@@ -17,6 +17,24 @@ icon: zy/release-notes
 
 </div>
 
+## 2024 年 11 月 13 日
+
+### 新增集成 {#inte1113}
+
+
+- 新增 [Azure SQL Servers](../integrations/azure_sqlserver.md)；
+- 新增 [华为云 RDS SQLServer](../integrations/huawei_rds_sqlserver.md)；
+- 新增 [华为云 DDS](../integrations/huawei_dds.md) 集成；
+- [华为云 DCS（redis）](../integrations/huawei_dcs.md) 新增慢日志采集流程；
+- [华为云 MongoDB](../integrations/huawei_mongodb.md) 慢日志采集流程；
+- [华为云 RDS MYSQL](../integrations/huawei_rds_mysql.md) 慢日志采集流程；
+- 优化 [Node Exporter](../integrations/node-exporter.md) 视图、文档；
+- 优化 [EMQX](../integrations/emqx.md) 视图、文档，添加监控器；
+- 优化 [Kubernates](../integrations/container.md) 视图；
+- 优化 [sqlserver](../integrations/sqlserver.md) 视图和监控器；
+- 优化 [redis](../integrations/redis.md) 视图和监控器；
+- 优化 [kafka](../integrations/kafka.md) 视图和监控器。
+
 ## 2024 年 11 月 6 日
 
 ### 功能更新 {#feature1106}
