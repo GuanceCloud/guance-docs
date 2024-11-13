@@ -593,18 +593,18 @@
 === "Objective-C"
 
     ```objective-c
-    // 场景1
-    [[FTExternalDataManager sharedManager] addActionName:@"UITableViewCell click" actionType:@"click"];
-    // 场景2: 动态参数
-    [[FTExternalDataManager sharedManager]  addActionName:@"UITableViewCell click" actionType:@"click" property:@{@"custom_key":@"custom_value"}];
+    // startAction
+    [[FTExternalDataManager sharedManager] startAction:@"action" actionType:@"click" property:@{@"action_property":@"testActionProperty1"}];
+    // addAction
+    [[FTExternalDataManager sharedManager] addAction:@"action" actionType:@"click" property:@{@"action_property":@"testActionProperty1"}];
     ```
 === "Swift"
 
     ```swift
-    // 场景1
-    FTExternalDataManager.shared().addActionName("custom_action", actionType: "click")
-    // 场景2: 动态参数
-    FTExternalDataManager.shared().addActionName("custom_action", actionType: "click",property: ["custom_key":"custom_value"])
+    // startAction
+    FTExternalDataManager.shared().startAction("custom_action", actionType: "click",property: nil)
+    // addAction
+    FTExternalDataManager.shared().addAction("custom_action", actionType: "click",property: nil)
     ```
 
 ### Error
