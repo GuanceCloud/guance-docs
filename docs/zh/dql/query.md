@@ -1,9 +1,7 @@
 # DQL 查询
 ---
 
-## 简介
-
-在观测云工作空间，点击菜单栏的**快捷入口 > 查询工具**即可打开查询查看器，或者您可以通过快捷键 `Alt+Q` 或 `option+Q` 直接打开查询工具。
+击观测云控制台的**快捷入口 > 查询工具**即可打开查询查看器，或者您可以通过快捷键 `Alt+Q` 或 `option+Q` 直接打开查询工具。
 
 ![](img/3.dql_6.png)
 
@@ -16,7 +14,7 @@
 
 在 DQL 查询窗口输入 DQL 查询语句，点击**执行**，即可在**返回结果**查看查询结果。**返回结果**以表格形式返回查询结果，默认返回 1000 条数据，您可以将返回数据导出为 CSV 文件。
 
-<font color=coral>**注意：**</font>在使用 DQL 查询语句时，支持使用 [limit](define.md#limit) 或 [slimit](define.md#slimit) 来控制返回查询结果数量。
+**注意：**在使用 DQL 查询语句时，支持使用 [limit](define.md#limit) 或 [slimit](define.md#slimit) 来控制返回查询结果数量。
 
 ![](img/3.dql_1.png)
 
@@ -110,5 +108,37 @@ SHOW 函数用于展示各类数据。若对通过 DataKit 采集的数据来源
 展示指定 `source` 下的所有 fileds 列表。
 
 ![](img/3.dql_13.png)
+
+
+## 时间查询 {#query_time}
+
+在 DQL 查询语句中可以指定 `[today]`、`[yesterday]`、`[this week]`、`[last week]`、`[this month]`、`[last month]` 时间参数。
+
+today：今日 0 点到当前时间；
+
+yesterday：昨日 0 点到今日 0 点；
+
+this week：本周一 0 点到当前时间；
+
+last week：上周一 0 点到本周一 0 点；
+
+this month：本月 1 号 0 点到当前时间；
+
+last month：上月 1 号 0 点到本月 1 号 0 点；
+
+### 写法示例
+
+查询今天 0 点截止到现在的数据，没有时间间隔:
+
+```
+M::cpu:(avg(`useage`)) [today]
+```
+
+表达式计算内还可以支持查询两个不同时间段的数据做最终的结果计算。如：查询今天 0 点截止到现在的数据，以 5 分钟时间间隔返回聚合数据点：
+
+```
+M::cpu:(avg(`usage`)) [today:5m]：
+```
+
 
 

@@ -7,7 +7,7 @@
 
 ### 选择语言
 
-### Java
+#### Java
 
 安装依赖：
 
@@ -39,7 +39,7 @@ java \
 
 > 更多参数配置，参考 [这里](../../integrations/ddtrace-java.md#start-options)。
 
-### Python
+#### Python
 
 安装依赖：
 
@@ -69,7 +69,7 @@ ddtrace-run python my_app.py
 
 > 更多参数配置，参考 [这里](../../integrations/ddtrace-java.md#start-options)。
 
-### Golang
+#### Golang
 
 安装依赖：
 
@@ -119,7 +119,7 @@ func main() {
 
 > 更多参数配置，参考 [这里](../../integrations/ddtrace-java.md#start-options)。
 
-### Node.JS
+#### Node.JS
 
 <font size=2>
 
@@ -131,7 +131,7 @@ func main() {
 
 </font>
 
-### C++
+#### C++
 
 <font size=2>
 
@@ -143,7 +143,7 @@ func main() {
 
 </font>
 
-### PHP
+#### PHP
 
 <font size=2>
 

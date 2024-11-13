@@ -8,7 +8,7 @@
 ### 选择语言
 
 
-### Java
+#### Java
 
 安装依赖：
 
@@ -44,7 +44,7 @@ spec:
 
 > 更多参数配置，参考 [这里](../../integrations/ddtrace-java.md#start-options)。
 
-### Python
+#### Python
 
 安装依赖：
 
@@ -80,7 +80,7 @@ spec:
 
 > 更多参数配置，参考 [这里](../../integrations/ddtrace-java.md#start-options)。
 
-### Golang
+#### Golang
 
 安装依赖：
 
@@ -146,7 +146,7 @@ metadata.labels['tags.datadoghq.com/version']
 
 > 更多参数配置，参考 [这里](../../integrations/ddtrace-java.md#start-options)。
 
-### Node.JS
+#### Node.JS
 
 运行应用：
 
@@ -200,7 +200,7 @@ metadata.labels['tags.datadoghq.com/version']
 4. 自定义 DataKit，若不设置则跟随默认地址；
 5. 设置采样率：开启后，可降低实际产生的数据量；数字范围从 0.0(0%) ~ 1.0(100%)。
 
-### C++
+#### C++
 
 <font size=2>
 
@@ -212,7 +212,7 @@ metadata.labels['tags.datadoghq.com/version']
 
 </font>
 
-### PHP
+#### PHP
 
 运行应用：
 
