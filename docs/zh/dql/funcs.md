@@ -62,7 +62,7 @@ show_object_source()
 
 - 说明：展示 object 数据的指标集合，该函数不需要参数,
 
-<font color=coral>**注意：**</font>该函数将遗弃，使用 `show_object_source()` 代替
+**注意：**该函数将遗弃，使用 `show_object_source()` 代替
 
 ### show_object_field()
 
@@ -114,7 +114,7 @@ show_object_field('servers')
 | `class` | 对象来源类型 | `string`   | 是       |        | `HOST`              |
 | `names` | 对象名称列表 | `[]string` | 否       |        | `['aws', 'aliyun']` |
 
-<font color=coral>**注意：**</font>
+**注意：**
 
 - `names` 参数可选，如果不传，表示展示所有 `class='source_class'` 的标签；
 - 最多展示 1000 个对象的标签信息。

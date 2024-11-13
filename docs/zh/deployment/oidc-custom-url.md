@@ -133,7 +133,7 @@ OIDCClientSet:
 
 ### 2、在内置 Func 中添加脚本。
 
-<font color=coral>**注意：**</font> 可以直接复制这个脚本
+**注意：** 可以直接复制这个脚本
 
 ```python
 import json

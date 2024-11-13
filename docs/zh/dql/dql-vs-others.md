@@ -8,7 +8,7 @@ DQL 是观测云统一的查询语言，为便于大家学习这种语言，下�
 
 这里我们选择 [PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/) 、[LogQL](https://grafana.com/docs/loki/latest/logql/) 以及大家较为熟知的 SQL 语句作为对比，对各个查询语言的基本使用做一个对比。
 
-<font color=coral>**注意：**</font>SQL 有强大的增、删、查、改能力，此处只摘取其查询功能作为对比。
+**注意：**SQL 有强大的增、删、查、改能力，此处只摘取其查询功能作为对比。
 
 
 PromQL 是 [Prometheus](https://prometheus.io/) 中用于查询其时序数据的一种查询语言；LogQL 是用于 [Grafana Loki](https://grafana.com/oss/loki/) 的一种日志查询语言，它借鉴了 PromQL 的语法结构设计，跟 PromQL 的写法很相近。SQL 则是我们日常使用最多的一种通用查询语言，其语法结构跟前两者差异很大（各个不同数据库大同小异，此处以 MySQL 为例）。
@@ -44,7 +44,7 @@ http_requests_total{environment="prometheus", method!="GET"}
 
 此处即查找指标 `http_requests_total`，通过指定其 label 限制条件（`environment` 和 `method`）来过滤数据。
 
-<font color=coral>**注意：**</font>PromeQL 称这里的 label 限制条件为 Label Matchers。可简单将其理解为一种 where 条件过滤。
+**注意：**PromeQL 称这里的 label 限制条件为 Label Matchers。可简单将其理解为一种 where 条件过滤。
 
 
 <a name="LogQL"></a>

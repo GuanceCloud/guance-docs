@@ -1,15 +1,27 @@
-# AWS 云市场开通观测云商业版
+# 微软云市场开通观测云商业版
 ---
 
-本文将介绍<u>在 AWS 云市场订阅观测云服务以后，如何开通观测云商业版并使用 AWS 账号进行费用结算</u>。
+本文将介绍<u>在微软云市场订阅观测云服务以后，如何开通观测云商业版并使用微软账号进行费用结算</u>。
 
 
 ## 订阅观测云 {#subscribe}
 
-登录进入 [AWS 云市场](https://awsmarketplace.amazonaws.cn/marketplace/pp/prodview-duyx7ds3f3cq2)的观测云商品页，点击**继续订阅**。
+1. 登录进入[微软云市场](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/ceinformationtechnologycompanylimited1715838939322.guance_saas?tab=Overview)的观测云商品页；
+2. 点击 **Get It Now**；
+3. 在弹出的窗口中勾选同意协议，点击 **Continue**；
+4. 点击 **Subscribe**；
+5. 在新页确认您的订阅信息，按需选择或创建分组、定义名称、选择订阅时长及是否续订；
+6. 点击右下角 **Review + Subscribe**；
+7. 确认信息无误后，点击 **Subscribe**；
+8. 即可订阅成功。
 
-![](img/8.space_4.png)
+![](img/azure.png)
 
+![](img/azure-1.png)
+
+![](img/azure-2.png)
+
+![](img/azure-3.png)
 
 成功订阅后，点击**设置您的账户**。
 
@@ -40,7 +52,7 @@
 
 1. 填写基本信息；
 2. 填写企业信息；
-3. 选择开通方式：输入工作空间名称，选择工作空间语言与工作空间风格，点击**开通**即可完成注册。
+3. 选择开通方式：输入工作空间名称，选择工作空间语言，点击**开通**即可完成注册。
 
 ![](img/aws.png)
 

@@ -19,6 +19,11 @@ icon: zy/release-notes
 
 ## 2024 年 11 月 13 日
 
+### Breaking Changes {#breakingchanges1113}
+
+1. 快照：支持日志查看器以 OpenAPI 方式创建快照。
+2. 数据访问：OpenAPI 支持获取数据访问列表，支持获取/新建/修改单个数据访问规则。
+
 ### 新增集成 {#inte1113}
 
 
@@ -34,6 +39,57 @@ icon: zy/release-notes
 - 优化 [sqlserver](../integrations/sqlserver.md) 视图和监控器；
 - 优化 [redis](../integrations/redis.md) 视图和监控器；
 - 优化 [kafka](../integrations/kafka.md) 视图和监控器。
+
+### 功能更新 {#feature1113}
+
+#### 微软云市场上架
+
+观测云已在[海外微软云市场](../plans/commercial-azure.md)上架，同时商业版工作空间新增“微软云”结算方式。
+
+#### 付费计划与账单
+
+1. [高消费预警](../billing/index.md#billing)优化：高消费预警新增总消费预警功能，支持针对工作空间内所有计费项设置预警金额。
+
+#### 应用性能监测
+
+- Java 应用支持[创建内存快照](../application-performance-monitoring/service-manag/service-list.md#jvm)，帮助开发者可以快速分析和优化应用性能。
+- 安装引导优化：新增 K8S 部署[安装引导](../application-performance-monitoring/explorer/deploy_on_k8s.md)。
+
+#### DQL 查询
+
+支持直接指定 `[today]`、`[yesterday]`、`[this week]`、`[last week]`、`[this month]`、`[last month]` [时间参数](../dql/query.md#query_time)。
+
+#### 管理
+
+1. 邀请成员：新增换行分隔功能，多个邮箱之间可通过换行识别。
+2. 数据转发规则拓展：数据转发到华为云 OBS [支持 AK、SK 方式访问](../management/backup/backup-huawei.md#ak)，提供更丰富的 OBS 访问方式。
+3. 工作空间：
+    - 工作空间删除或解散新增 7 天暂存逻辑，7 天后工作空间内数据再进行最终清除；
+    - 支持配置个人账号级别的默认空间和置顶空间。
+
+#### 监控
+
+1. 监控器功能增强：检测指标选择日志时，支持搜索日志索引进行选取。
+2. 监控器：监控器阈值触发判断配置追加到事件中做记录，关联事件字段：`df_monitor_checker_value_with_unit`，事件内容内可通过 `{{ Result_with_unit }}` 渲染附带单位的检测值。
+3. 智能监控事件支持双语切换：当切换工作空间语言的时，智能监控事件支持随着工作空间语言更改。
+4. 云账单监控视图：云账单视图支持更多实例视角的账单分析
+
+#### 场景
+
+1. 柱状图新增Y轴上下限设置，可以更精确地控制图表的显示效果；
+2. 在进行跨工作空间查询时，支持选择“全部空间”，以便用户一次性获取全部信息。
+
+#### 指标
+
+
+指标管理优化：针对指标标签值的分页逻辑进行了优化，可以更高效地管理和检索大量的标签数据。
+
+
+
+### 部署版更新 {#deployment1113}
+
+1. 忘记密码：当忘记登陆密码时，支持以账号关联的邮箱验证码的方式找回密码。注意：若账号未关联邮箱，则无法通过此方式找回密码。
+2. [全局 DCA 配置](../deployment/setting.md#dca)：新增全局 DCA 地址配置，可一键配置所有工作空间的 DCA 地址。
 
 ## 2024 年 11 月 6 日
 
@@ -226,7 +282,7 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 1. 资源目录优化：资源目录支持自定义资源分类图标，提供丰富的图标选择，以提升用户体验。
 
 
-### 部署版更新
+### 部署版更新 {#deployment1016}
 
 1. 仪表板视图变量下拉框列出值取消 `limit 50` 的限制，以满足不同的数据查询需求。
 2. 管理后台更新：管理[菜单](../deployment/menu.md)隐藏项新增“帮助”、“头像”、“系统通知”和“快捷入口”选项，以提高管理效率。
