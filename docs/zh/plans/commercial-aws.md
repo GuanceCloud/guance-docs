@@ -3,23 +3,14 @@
 
 本文将介绍<u>在 AWS 云市场订阅观测云服务以后，如何开通观测云商业版并使用 AWS 账号进行费用结算</u>。
 
-> 关于直接注册商业版，可参考 [注册商业版](commercial-register.md)。
 
 ## 订阅观测云 {#subscribe}
 
-登录进入 [AWS 云市场](https://awsmarketplace.amazonaws.cn/marketplace/pp/prodview-4rki5nfjxktmy?locale=zh)观测云商品页，点击**继续订阅**。
+登录进入 [AWS 云市场](https://awsmarketplace.amazonaws.cn/marketplace/pp/prodview-duyx7ds3f3cq2)的观测云商品页，点击**继续订阅**。
 
 ![](img/8.space_4.png)
 
-<!--
-输入账户、用户名和密码进行登录。
 
-![](img/8.space_5.png)
-
-登录后在观测云所属的页面点击**订阅**。
-
-![](img/8.space_8.png)
--->
 成功订阅后，点击**设置您的账户**。
 
 ![](img/8.space_9.png)
@@ -47,8 +38,8 @@
 
 若还未有费用中心账号，点击下一步，即可自动跳转至注册页面，[完成注册流程](./commercial-register.md)后，<u>获取观测云账号和费用中心账号</u>。
 
-1. 填写[**基本信息**](./commercial-register.md#info)；
-2. 填写[**企业信息**](./commercial-register.md#corporate)；
+1. 填写基本信息；
+2. 填写企业信息；
 3. 选择开通方式：输入工作空间名称，选择工作空间语言与工作空间风格，点击**开通**即可完成注册。
 
 ![](img/aws.png)
@@ -57,9 +48,10 @@
 
 若您已有费用中心账号，点击下一步，直接进入绑定页面：
 
+**注意**：此处页面右上角的站点与费用中心绑定流程无关，仅影响后续创建工作空间时的站点，且后续无法在创建的页面无法更改站点。
+
 ![](img/aws-1.png)
 
-**注意**：此处页面右上角的站点与费用中心绑定流程无关，仅影响后续[创建工作空间](#create-workspace)时的站点，且后续无法在创建的页面无法更改站点。
 
 #### :material-numeric-1-circle: 绑定费用中心账号
 
@@ -67,8 +59,63 @@
 
 ![](img/aws-2.png)
 
-#### :material-numeric-2-circle: [绑定工作空间](./commercial-aliyun.md#bind-workspace)
+#### :material-numeric-2-circle: 绑定观测云工作空间
 
+<div class="grid" markdown>
+
+=== "绑定已有工作空间"
+
+    如果您在该观测云费用中心账号下存在可绑定的工作空间，则直接点击**绑定**。
+
+    ![](img/15.aws_market_register_11.png)
+
+    
+    跳转至**绑定观测云工作空间**页面，提示已绑定。
+
+    ![](img/15.aws_market_register_14.png)
+
+    点击**确认**，显示开通成功。
+
+    ![](img/15.aws_market_register_15.png)
+
+    您可以在 [观测云费用中心](https://boss.guance.com/#/signin)，**工作空间管理**查看已开通的结算方式。
+
+    ![](img/15.aws_market_register_16.png)
+
+
+=== "创建工作空间"
+
+    如果您已经注册过观测云账号，但还未创建工作空间，请先点击**创建工作空间**。
+
+    ![](img/1-1-commercial-aliyun.png)
+
+    输入工作空间名称、选择工作空间语言、输入注册观测云账号时使用的邮箱，通过邮箱验证进行创建。
+
+    **注意**：工作空间是观测云数据洞察的协作空间，工作空间语言选项会影响工作空间内事件、告警、短信等模板。若选择英文，上述对应模板将默认使用英文模板，一旦创建，此工作空间的模版语言不可修改，请谨慎选择。
+
+    ![](img/10.aws_create_space.png)
+
+    工作空间创建成功后，自动跳转至**绑定观测云工作空间**页面
+
+    ![](img/15.aws_market_10.png)
+
+    点击**确认**，跳转至**成功绑定以下观测云工作空间**页面。
+
+    ![](img/15.aws_market_11.png)
+
+=== "注册观测云账号"
+
+    如果您之前未使用过观测云服务，请先注册观测云账号并创建工作空间。
+
+    ![](img/1-2-commercial-aliyun.png)
+
+    点击**注册观测云账号**，输入相关信息，通过邮箱验证进行注册。
+
+    **注意**：工作空间是观测云数据洞察的协作空间，工作空间语言选项会影响工作空间内事件、告警、短信等模板。若选择英文，上述对应模板将默认使用英文模板，一旦创建，此工作空间的模版语言不可修改，请谨慎选择。
+
+    ![](img/10.aws_register.png)
+
+</div>
 
 <!--
 ### 注册观测云商业版

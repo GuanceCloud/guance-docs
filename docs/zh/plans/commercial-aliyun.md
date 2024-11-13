@@ -3,13 +3,11 @@
 
 本文将介绍<u>在阿里云云市场购买观测云服务以后，如何开通观测云商业版</u>。
 
-> 关于直接注册商业版，可参考 [注册商业版](./commercial-register.md)。
-> 
 > 若您需要在观测云开通 SLS 存储，可前往 [阿里云云市场开通观测云专属版](./commercial-aliyun-sls.md)。
 
 ## 购买观测云 
 
-打开 [阿里云云市场观测云](https://market.aliyun.com/products/56838014/cmgj00053362.html?spm=5176.19720258.J_3207526240.210.62c176f4i6AFbF)，点击**立即开通**。
+登录进入[阿里云云市场观测云](https://market.aliyun.com/products/56838014/cmgj00053362.html?spm=5176.19720258.J_3207526240.210.62c176f4i6AFbF)，点击**立即开通**。
 
 ![](img/2-commercial-1107.png)
 
@@ -29,9 +27,6 @@
 
 在**云市场 > 已购买的服务**可以查看到开通订阅的观测云实例，点击该实例右侧的**免登**直接前往观测云。
 
-<!--
-![](img/12.aliyun_2.png)
--->
 
 在观测云侧，如果当前阿里云账号 ID 未绑定观测云费用中心账号，会出现两种情况：
 
@@ -54,8 +49,8 @@
 
 若还未有费用中心账号，点击下一步，即可自动跳转至注册页面，[完成注册流程](./commercial-register.md)后，<u>获取观测云账号和费用中心账号</u>。
 
-1. 填写[**基本信息**](./commercial-register.md#info)；
-2. 填写[**企业信息**](./commercial-register.md#corporate)；
+1. 填写基本信息；
+2. 填写企业信息；
 3. 选择开通方式：输入工作空间名称，选择工作空间语言与工作空间风格，输入[**账号 ID**](../billing/billing-account/aliyun-account.md#uid)、[**商品实例 ID**](../billing/billing-account/aliyun-account.md#entity-id)，点击**开通**即可完成注册。
 
 ![](img/10.aliyun_market_3.png)
@@ -125,7 +120,5 @@
 
 以上步骤走完，即可成功开通观测云商业版。
 
-![](img/1-free-start-1109.png)
 
-点击确定后，自动跳转至[观测云登录页](https://auth.guance.com/login/pwd)。
 

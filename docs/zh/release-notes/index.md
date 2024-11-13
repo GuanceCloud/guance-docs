@@ -17,6 +17,92 @@ icon: zy/release-notes
 
 </div>
 
+## 2024 年 11 月 13 日
+
+### OpenAPI 更新 {#breakingchanges1113}
+
+1. 快照：支持日志查看器以 OpenAPI 方式[创建快照](../open-api/snapshot/generate.md)。
+2. 数据访问：OpenAPI 支持获取数据访问列表，支持[获取](../open-api/data-query-rule/get.md)/[新建](../open-api/data-query-rule/add.md)/[修改](../open-api/data-query-rule/modify.md)单个数据访问规则。
+
+
+### 功能更新 {#feature1113}
+
+<!--
+#### 微软云市场上架
+
+观测云已在[海外微软云市场](../plans/commercial-azure.md)上架，同时商业版工作空间新增“微软云”结算方式。
+-->
+#### 付费计划与账单
+
+1. [高消费预警](../billing/index.md#billing)优化：高消费预警新增总消费预警功能，支持针对工作空间总消费设置预警金额。
+
+#### 应用性能监测
+
+- Java 应用支持[创建内存快照](../application-performance-monitoring/service-manag/service-list.md#jvm)，帮助开发者可以快速分析和优化应用性能。
+- 安装引导优化：新增 K8S 部署[安装引导](../application-performance-monitoring/explorer/deploy_on_k8s.md)。
+
+#### DQL 查询
+
+支持直接指定 `[today]`、`[yesterday]`、`[this week]`、`[last week]`、`[this month]`、`[last month]` [时间参数](../dql/query.md#query_time)。
+
+#### 管理
+
+1. 邀请成员：新增换行分隔功能，多个邮箱之间可通过换行识别。
+2. 数据转发规则拓展：数据转发到华为云 OBS [支持 AK、SK 方式访问](../management/backup/backup-huawei.md#ak)，提供更丰富的 OBS 访问方式。
+3. 工作空间：
+    - 工作空间删除或解散新增 7 天暂存逻辑，7 天后工作空间内数据再进行最终清除；
+    - 支持配置个人账号级别的默认空间和置顶空间。
+
+#### 监控
+
+1. 监控器功能增强：检测指标选择日志时，支持搜索日志索引进行选取。
+2. 监控器：监控器阈值触发判断配置追加到事件中做记录，关联事件字段：`df_monitor_checker_value_with_unit`，事件内容内可通过 `{{ Result_with_unit }}` 渲染附带单位的检测值。
+3. 智能监控事件支持双语切换：当切换工作空间语言的时，智能监控事件支持随着工作空间语言更改。
+4. 云账单监控视图：云账单视图支持更多实例视角的账单分析
+
+#### 场景
+
+1. 柱状图新增Y轴上下限设置，可以更精确地控制图表的显示效果；
+2. 在进行跨工作空间查询时，支持选择“全部空间”，以便用户一次性获取全部信息。
+
+
+### 部署版更新 {#deployment1113}
+
+1. 忘记密码：当忘记登录密码时，支持以账号关联的邮箱验证码的方式找回密码。注意：若账号未关联邮箱，则无法通过此方式找回密码。
+2. [全局 DCA 配置](../deployment/setting.md#dca)：新增全局 DCA 地址配置，可一键配置所有工作空间的 DCA 地址。
+
+
+### 新增集成 {#inte1113}
+
+
+- 新增 [Azure SQL Servers](../integrations/azure_sqlserver.md)；
+- 新增 [华为云 RDS SQLServer](../integrations/huawei_rds_sqlserver.md)；
+- 新增 [华为云 DDS](../integrations/huawei_dds.md) 集成；
+- [华为云 DCS（redis）](../integrations/huawei_dcs.md) 新增慢日志采集流程；
+- [华为云 MongoDB](../integrations/huawei_mongodb.md) 慢日志采集流程；
+- [华为云 RDS MYSQL](../integrations/huawei_rds_mysql.md) 慢日志采集流程；
+- 优化 [Node Exporter](../integrations/node-exporter.md) 视图、文档；
+- 优化 [EMQX](../integrations/emqx.md) 视图、文档，添加监控器；
+- 优化 [Kubernates](../integrations/container.md) 视图；
+- 优化 [SQLServer](../integrations/sqlserver.md) 视图和监控器；
+- 优化 [Redis](../integrations/redis.md) 视图和监控器；
+- 优化 [Kafka](../integrations/kafka.md) 视图和监控器。
+
+### Bug 修复 {#bug1113}
+
+1. 解决了告警策略设置过滤条件，使用事件信息中的扩展字段进行过滤，无法发送告警的问题。
+2. 解决了告警策略里面的过滤条件未展示所有内容的问题。
+3. 解决了配置告警投递到异常追踪，并通过异常追踪通知到指定 Webhook，但检查通知结果发现 `issue.add` 类型的创建通知未能正常发送的问题。 
+4. 解决了告警策略正则匹配导致监控器无法发出告警的问题。
+5. 解决了资源目录 > 添加资源分类到二级菜单后，资源分类删除而二级菜单还在的问题。
+6. 解决了资源目录的二级菜单数据不稳定的问题。
+7. 解决了资源目录的 JSON 在保存后，下次打开会清空掉配置的问题。
+8. 解决了资源目录中，通过标签为资源关联仪表板，未命中标签的资源错误关联上该仪表板的问题。
+9. 解决了选择资源目录，加载显示列不连贯，中间有明显的过渡显示列的问题。
+10. 解决了版本升级后，日志流图中筛选条件丢失，视图无法正常加载的问题。
+11. 解决了日志查看器 "添加筛选" 功能无法完整识别 `trace_id` 字串的问题。
+12. 解决了 `-bpf_net_l7_log` 日志的关联网络日志不准确的问题。
+
 ## 2024 年 11 月 6 日
 
 ### 功能更新 {#feature1106}
@@ -208,7 +294,7 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 1. 资源目录优化：资源目录支持自定义资源分类图标，提供丰富的图标选择，以提升用户体验。
 
 
-### 部署版更新
+### 部署版更新 {#deployment1016}
 
 1. 仪表板视图变量下拉框列出值取消 `limit 50` 的限制，以满足不同的数据查询需求。
 2. 管理后台更新：管理[菜单](../deployment/menu.md)隐藏项新增“帮助”、“头像”、“系统通知”和“快捷入口”选项，以提高管理效率。
