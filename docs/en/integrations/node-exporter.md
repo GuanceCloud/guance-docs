@@ -49,7 +49,7 @@ spec:
       hostNetwork: true    # Use the host's network
       containers:
       - name: node-exporter
-        image: quay.io/prometheus/node-exporter:v0.18.1
+        image: quay.io/prometheus/node-exporter:v1.8.2
         ports:
         - containerPort: 9100
         resources:
@@ -146,13 +146,14 @@ data:
             interval   = "30s"
 
             [inputs.kubernetesprometheus.instances.custom]
-              measurement        = ""
+              measurement        = "kube_nodeexporter"
               job_as_measurement = false
               [inputs.kubernetesprometheus.instances.custom.tags]
                 instance         = "__kubernetes_mate_instance"    #Optional metric tag
                 host             = "__kubernetes_mate_host"        #Optional metric tag
                 pod_name         = "__kubernetes_pod_name"         #Optional metric tag
                 pod_namespace    = "__kubernetes_pod_namespace"   #Optional metric tag
+                cluster          = "cluster01"                    #Optional
 ```
 
 - Mount`kubernetesprometheus.conf`
@@ -181,88 +182,87 @@ The Node Exporter metric is located under the node metric set. Here are the rele
 
 | Metrics | description | unit |
 |:--------|:-----|:--|
-|`arp_entries`|`The number of entries in the ARP table`| count |
-|`boot_time_seconds`|`Time since system startup`| s |
-|`context_switches_total`|`The total number of context switches`| count |
-|`cpu_guest_seconds_total`|`The total amount of time CPU spends running other operating systems on virtual machines or containers`| s |
-|`cpu_seconds_total`|`The total time spent by the CPU in user mode, system mode, and idle mode`| s |
-|`disk_io_now`|`The number of disk I/O operations currently being executed`| count |
-|`disk_io_time_seconds_total`|`The total time spent on disk I/O operations`| s |
-|`disk_io_time_weighted_seconds_total`|`Weighted total waiting time for I/O operations`| s |
-|`disk_read_bytes_total`|`The total number of bytes read from the disk`| byte |
-|`disk_read_time_seconds_total`|`The total time spent reading the disk`| s |
-|`disk_reads_completed_total`|`The total number of disk read operations completed`| count |
-|`disk_reads_merged_total`|`The total number of merged disk read operations`| count |
-|`disk_write_time_seconds_total`|`The total time spent writing to the disk`| count |
-|`disk_writes_completed_total`|`The total number of disk write operations completed`| count |
-|`disk_writes_merged_total`|`The total number of merged disk write operations`| count |
-|`disk_written_bytes_total`|`The total number of bytes written to the disk`| byte |
-|`entropy_available_bits`|`Available entropy quantity (for encryption operations)`| count |
-|`filefd_allocated`|`Number of allocated file descriptors`| count |
-|`filefd_maximum`|`Maximum number of file descriptors`| count |
-|`filesystem_avail_bytes`|`The number of bytes of available space in the file system`| byte |
-|`filesystem_device_error`|`File system device error count`| count |
-|`filesystem_files`|`The number of files in the file system`| count |
-|`filesystem_files_free`|`The number of idle files in the file system`| count |
-|`filesystem_free_bytes`|`The number of bytes of free space in the file system`| byte |
-|`filesystem_size_bytes`|`The total size of the file system`| byte |
-|`forks_total`|`The total number of system calls to fork()`| count |
-|`intr_total`|`Total number of interruptions`| count |
-|`ipvs_backend_connections_active`|`Number of active IP virtual servers`| count |
-|`ipvs_backend_connections_inactive`|`Number of inactive IPVS backend connections`| count |
-|`ipvs_connections_total`|`The total number of connections in IPVS`| count |
-|`ipvs_incoming_bytes_total`|`The total number of bytes received through IPVS`| byte |
-|`ipvs_incoming_packets_total`|`The total number of data packets received through IPVS`| count |
-|`ipvs_outgoing_bytes_total`|`The total number of bytes sent through IPVS`| byte |
-|`load1`|`Average load in the past minute`| count |
-|`load15`|`Average load in the past 15 minutes`| count |
-|`load5`|`Average load in the past 5 minutes`| count |
-|`memory_Active_anon_bytes`|`The number of bytes used by active anonymous memory`| byte |
-|`memory_Active_bytes`|`The number of bytes used by active memory`| byte |
-|`memory_Active_file_bytes`|`The number of bytes used by active file memory`| byte |
-|`memory_AnonHugePages_bytes`|`The number of bytes used for anonymous large page memory`| byte |
-|`memory_Bounce_bytes`|`The number of bytes used by the memory bounce buffer`| byte |
-|`memory_Buffers_bytes`|`The number of bytes used by cache memory`| byte |
-|`memory_Cached_bytes`|`The number of bytes used for caching`| byte |
-|`memory_CmaFree_bytes`|`The number of idle bytes in CMAs (reserved kernel memory)`| byte |
-|`memory_CmaTotal_bytes`|`The total number of bytes in CMAs`| byte |
-|`memory_CommitLimit_bytes`|`The number of bytes of memory that the system can allocate`| byte |
-|`memory_Committed_AS_bytes`|`The number of bytes used by the submitted memory`| byte |
-|`memory_DirectMap1G_bytes`|`The number of bytes directly mapped to a 1GB memory area`| byte |
-|`memory_DirectMap2M_bytes`|`The number of bytes directly mapped to a 2M memory area`| byte |
-|`memory_DirectMap4k_bytes`|`The number of bytes in the 4k memory area directly mapped`| byte |
-|`memory_Dirty_bytes`|`The number of bytes of dirty memory (memory that needs to be written back to disk)`| byte |
-|`memory_HardwareCorrupted_bytes`|`Number of memory bytes damaged by hardware`| byte |
-|`memory_HugePages_Free`|`The amount of idle large page memory`| count |
-|`memory_HugePages_Rsvd`|`The amount of reserved large page memory`| count |
-|`memory_HugePages_Surp`|`The surplus quantity of large page memory`| count |
-|`memory_HugePages_Total`|`The total amount of large page memory`| byte |
-|`memory_Hugepagesize_bytes`|`The size of each large page`| byte |
-|`memory_Inactive_anon_bytes`|`The number of bytes used by inactive anonymous memory`| byte |
-|`memory_Inactive_bytes`|`The number of bytes used by inactive file memory`| byte |
-|`memory_SReclaimable_bytes`|`The number of bytes used by recyclable slow memory`| byte |
-|`memory_SUnreclaim_bytes`|`The number of bytes used by non recyclable slow memory`| byte |
-|`memory_Shmem_bytes`|`The number of bytes used for shared memory`| byte |
-|`memory_Slab_bytes`|`The number of memory bytes used by slab`| byte |
-|`memory_SwapCached_bytes`|`The number of bytes used for cache swap space`| byte |
-|`memory_SwapFree_bytes`|`The number of bytes of idle swap space`| byte |
-|`memory_SwapTotal_bytes`|`The total number of bytes in the swap space`| byte |
-|`memory_Unevictable_bytes`|`The number of bytes used by non evicted memory`| byte |
-|`memory_VmallocChunk_bytes`|`The number of bytes used by vmalloc memory blocks`| byte |
-|`memory_VmallocTotal_bytes`|`The total number of bytes in vmalloc memory`| byte |
-|`memory_VmallocUsed_bytes`|`The number of bytes of vmalloc memory used`| byte |
-|`memory_WritebackTmp_bytes`|`The number of bytes used for temporary memory for write back operations`| byte |
-|`memory_VmallocTotal_bytes`|`The total number of bytes in vmalloc memory`| byte |
-|`netstat_Icmp6_InErrors`|`Number of received IPv6 ICMP error messages`| count |
-|`netstat_Icmp6_InMsgs`|`Number of received IPv6 ICMP messages`| count |
-|`netstat_Icmp6_OutMsgs`|`Number of IPv6 ICMP messages sent`| count |
-|`netstat_Icmp_InErrors`|`The number of ICMP error messages received`| count |
-|`netstat_Icmp_InMsgs`|`The number of ICMP messages received`| count |
-|`netstat_Icmp_OutMsgs`|`The number of ICMP messages sent`| count |
-|`netstat_Ip6_InOctets`|`Number of received IPv6 data bytes`| byte |
-|`netstat_Ip6_OutOctets`|`Number of bytes of IPv6 data sent`| byte |
-|`netstat_IpExt_InOctets`|`Expand the byte count of IPv4 received data`| byte |
-|`netstat_IpExt_OutOctets`|`Expand the number of bytes of IPv4 data sent`| byte |
-|`netstat_TcpExt_ListenDrops`|`TCP listening queue overflow times`| count |
-|`netstat_TcpExt_ListenOverflows`|`TCP listening queue overflow times`| count |
-|`netstat_TcpExt_SyncookiesFailed`|`SYN cookies failed times`| count |
+|`node_arp_entries`|`The number of entries in the ARP table`| count |
+|`node_boot_time_seconds`|`Time since system startup`| s |
+|`node_context_switches_total`|`The total number of context switches`| count |
+|`node_cpu_guest_seconds_total`|`The total amount of time CPU spends running other operating systems on virtual machines or containers`| s |
+|`node_cpu_seconds_total`|`The total time spent by the CPU in user mode, system mode, and idle mode`| s |
+|`node_disk_io_now`|`The number of disk I/O operations currently being executed`| count |
+|`node_disk_io_time_seconds_total`|`The total time spent on disk I/O operations`| s |
+|`node_disk_io_time_weighted_seconds_total`|`Weighted total waiting time for I/O operations`| s |
+|`node_disk_read_bytes_total`|`The total number of bytes read from the disk`| byte |
+|`node_disk_read_time_seconds_total`|`The total time spent reading the disk`| s |
+|`node_disk_reads_completed_total`|`The total number of disk read operations completed`| count |
+|`node_disk_reads_merged_total`|`The total number of merged disk read operations`| count |
+|`node_disk_write_time_seconds_total`|`The total time spent writing to the disk`| count |
+|`node_disk_writes_completed_total`|`The total number of disk write operations completed`| count |
+|`node_disk_writes_merged_total`|`The total number of merged disk write operations`| count |
+|`node_disk_written_bytes_total`|`The total number of bytes written to the disk`| byte |
+|`node_entropy_available_bits`|`Available entropy quantity (for encryption operations)`| count |
+|`node_filefd_allocated`|`Number of allocated file descriptors`| count |
+|`node_filesystem_avail_bytes`|`The number of bytes of available space in the file system`| byte |
+|`node_filesystem_device_error`|`File system device error count`| count |
+|`node_filesystem_files`|`The number of files in the file system`| count |
+|`node_filesystem_files_free`|`The number of idle files in the file system`| count |
+|`node_filesystem_free_bytes`|`The number of bytes of free space in the file system`| byte |
+|`node_filesystem_size_bytes`|`The total size of the file system`| byte |
+|`node_forks_total`|`The total number of system calls to fork()`| count |
+|`node_intr_total`|`Total number of interruptions`| count |
+|`node_ipvs_backend_connections_active`|`Number of active IP virtual servers`| count |
+|`node_ipvs_backend_connections_inactive`|`Number of inactive IPVS backend connections`| count |
+|`node_ipvs_connections_total`|`The total number of connections in IPVS`| count |
+|`node_ipvs_incoming_bytes_total`|`The total number of bytes received through IPVS`| byte |
+|`node_ipvs_incoming_packets_total`|`The total number of data packets received through IPVS`| count |
+|`node_ipvs_outgoing_bytes_total`|`The total number of bytes sent through IPVS`| byte |
+|`node_load1`|`Average load in the past minute`| count |
+|`node_load15`|`Average load in the past 15 minutes`| count |
+|`node_load5`|`Average load in the past 5 minutes`| count |
+|`node_memory_Active_anon_bytes`|`The number of bytes used by active anonymous memory`| byte |
+|`node_memory_Active_bytes`|`The number of bytes used by active memory`| byte |
+|`node_memory_Active_file_bytes`|`The number of bytes used by active file memory`| byte |
+|`node_memory_AnonHugePages_bytes`|`The number of bytes used for anonymous large page memory`| byte |
+|`node_memory_Bounce_bytes`|`The number of bytes used by the memory bounce buffer`| byte |
+|`node_memory_Buffers_bytes`|`The number of bytes used by cache memory`| byte |
+|`node_memory_Cached_bytes`|`The number of bytes used for caching`| byte |
+|`node_memory_CmaFree_bytes`|`The number of idle bytes in CMAs (reserved kernel memory)`| byte |
+|`node_memory_CmaTotal_bytes`|`The total number of bytes in CMAs`| byte |
+|`node_memory_CommitLimit_bytes`|`The number of bytes of memory that the system can allocate`| byte |
+|`node_memory_Committed_AS_bytes`|`The number of bytes used by the submitted memory`| byte |
+|`node_memory_DirectMap1G_bytes`|`The number of bytes directly mapped to a 1GB memory area`| byte |
+|`node_memory_DirectMap2M_bytes`|`The number of bytes directly mapped to a 2M memory area`| byte |
+|`node_memory_DirectMap4k_bytes`|`The number of bytes in the 4k memory area directly mapped`| byte |
+|`node_memory_Dirty_bytes`|`The number of bytes of dirty memory (memory that needs to be written back to disk)`| byte |
+|`node_memory_HardwareCorrupted_bytes`|`Number of memory bytes damaged by hardware`| byte |
+|`node_memory_HugePages_Free`|`The amount of idle large page memory`| count |
+|`node_memory_HugePages_Rsvd`|`The amount of reserved large page memory`| count |
+|`node_memory_HugePages_Surp`|`The surplus quantity of large page memory`| count |
+|`node_memory_HugePages_Total`|`The total amount of large page memory`| byte |
+|`node_memory_Hugepagesize_bytes`|`The size of each large page`| byte |
+|`node_memory_Inactive_anon_bytes`|`The number of bytes used by inactive anonymous memory`| byte |
+|`node_memory_Inactive_bytes`|`The number of bytes used by inactive file memory`| byte |
+|`node_memory_SReclaimable_bytes`|`The number of bytes used by recyclable slow memory`| byte |
+|`node_memory_SUnreclaim_bytes`|`The number of bytes used by non recyclable slow memory`| byte |
+|`node_memory_Shmem_bytes`|`The number of bytes used for shared memory`| byte |
+|`node_memory_Slab_bytes`|`The number of memory bytes used by slab`| byte |
+|`node_memory_SwapCached_bytes`|`The number of bytes used for cache swap space`| byte |
+|`node_memory_SwapFree_bytes`|`The number of bytes of idle swap space`| byte |
+|`node_memory_SwapTotal_bytes`|`The total number of bytes in the swap space`| byte |
+|`node_memory_Unevictable_bytes`|`The number of bytes used by non evicted memory`| byte |
+|`node_memory_VmallocChunk_bytes`|`The number of bytes used by vmalloc memory blocks`| byte |
+|`node_memory_VmallocTotal_bytes`|`The total number of bytes in vmalloc memory`| byte |
+|`node_memory_VmallocUsed_bytes`|`The number of bytes of vmalloc memory used`| byte |
+|`node_memory_WritebackTmp_bytes`|`The number of bytes used for temporary memory for write back operations`| byte |
+|`node_memory_VmallocTotal_bytes`|`The total number of bytes in vmalloc memory`| byte |
+|`node_netstat_Icmp6_InErrors`|`Number of received IPv6 ICMP error messages`| count |
+|`node_netstat_Icmp6_InMsgs`|`Number of received IPv6 ICMP messages`| count |
+|`node_netstat_Icmp6_OutMsgs`|`Number of IPv6 ICMP messages sent`| count |
+|`node_netstat_Icmp_InErrors`|`The number of ICMP error messages received`| count |
+|`node_netstat_Icmp_InMsgs`|`The number of ICMP messages received`| count |
+|`node_netstat_Icmp_OutMsgs`|`The number of ICMP messages sent`| count |
+|`node_netstat_Ip6_InOctets`|`Number of received IPv6 data bytes`| byte |
+|`node_netstat_Ip6_OutOctets`|`Number of bytes of IPv6 data sent`| byte |
+|`node_netstat_IpExt_InOctets`|`Expand the byte count of IPv4 received data`| byte |
+|`node_netstat_IpExt_OutOctets`|`Expand the number of bytes of IPv4 data sent`| byte |
+|`node_netstat_TcpExt_ListenDrops`|`TCP listening queue overflow times`| count |
+|`node_netstat_TcpExt_ListenOverflows`|`TCP listening queue overflow times`| count |
+|`node_netstat_TcpExt_SyncookiesFailed`|`SYN cookies failed times`| count |
