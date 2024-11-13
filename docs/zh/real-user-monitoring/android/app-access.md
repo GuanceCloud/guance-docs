@@ -4,6 +4,11 @@
 ???- quote "更新日志"
 
     === "ft-sdk"
+		**1.6.3**
+		```markdown
+		1. 优化自定义 addAction 在高频率调用时的性能表现
+		2. 支持使用  FTSDKConfig.setCompressIntakeRequests 对同步数据进行 deflate 压缩配置
+		```
 		**1.6.2**
 		```markdown
 		1. RUM 新增 addAction 方法，支持 property 扩展属性与频繁连续数据上报
@@ -170,7 +175,7 @@
 ## 安装 {#setup}
 
 ![](https://img.shields.io/badge/dynamic/json?label=ft-sdk&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/android/agent/version.json&link=https://github.com/GuanceCloud/datakit-android) ![](https://img.shields.io/badge/dynamic/json?label=ft-native&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/android/native/version.json&link=https://github.com/GuanceCloud/datakit-android
-) ![](https://img.shields.io/badge/dynamic/json?label=ft-plugin&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/android/plugin/version.json&link=https://github.com/GuanceCloud/datakit-android) ![](https://img.shields.io/badge/dynamic/json?label=ft-plugin-legacy&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/android/plugin_legacy/version.json&link=https://github.com/GuanceCloud/datakit-android)
+) ![](https://img.shields.io/badge/dynamic/json?label=ft-plugin&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/android/plugin/version.json&link=https://github.com/GuanceCloud/datakit-android) ![](https://img.shields.io/badge/dynamic/json?label=ft-plugin-legacy&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/android/plugin_legacy/version.json&link=https://github.com/GuanceCloud/datakit-android) ![](https://img.shields.io/badge/dynamic/json?label=mini.sdk&color=green&query=$.android_mini_sdk&uri=https://static.guance.com/ft-sdk-package/badge/android/agent/info.json&link=https://github.com/GuanceCloud/datakit-android) 
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-android](https://github.com/GuanceCloud/datakit-android)
 
@@ -368,11 +373,12 @@ android{
 | addGlobalContext | Dictionary | 否 | 添加 SDK 全局属性，添加规则请查阅[此处](#key-conflict) |
 | setServiceName | String | 否 | 设置服务名，影响 Log 和 RUM 中 service 字段数据，默认为 `df_rum_android` |
 | setAutoSync | Boolean | 否 | 是否开启自动同步，默认为 `true`。当为 false 时使用 `FTSdk.flushSyncData()` 自行管理数据同步 |  
-| setSyncPageSize | enum | 否 | 设置同步请求条目数，`SyncPageSize.MINI` 5 条，`SyncPageSize.MEDIUM` 10 条，`SyncPageSize.LARGE` 50 条，默认 `SyncPageSize.MEDIUM`   |
-| setCustomSyncPageSize | enum | 否 | 设置同步请求条目数，范围 [5,)，注意请求条目数越大，代表数据同步占用更大的计算资源，默认为 10   |
+| setSyncPageSize | Int | 否 | 设置同步请求条目数，`SyncPageSize.MINI` 5 条，`SyncPageSize.MEDIUM` 10 条，`SyncPageSize.LARGE` 50 条，默认 `SyncPageSize.MEDIUM`   |
+| setCustomSyncPageSize | Enum | 否 | 设置同步请求条目数，范围 [5,)，注意请求条目数越大，代表数据同步占用更大的计算资源，默认为 10 **注意：setSyncPageSize 和 setCustomSyncPageSize 只需要配置一个**   |
 | setSyncSleepTime | Int | 否 | 设置同步间歇时间，范围 [0,5000]，默认不设置  |
-| enableDataIntegerCompatible | void | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题  |
-| setNeedTransformOldCache | void | 否 |  是否需要兼容同步 1.6.0 以下的版本的旧缓存数据，默认为 false |
+| enableDataIntegerCompatible | Void | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题  |
+| setNeedTransformOldCache | Boolean | 否 | 是否需要兼容同步 ft-sdk 1.6.0 以下的版本的旧缓存数据，默认为 false |
+| setCompressIntakeRequests | Void | 否 | 对同步数据进行压缩，ft-sdk 1.6.3 以上版本支持这个参数 |
 
 ### RUM 配置 {#rum-config}
 
@@ -428,8 +434,8 @@ android{
 | setEnableTraceUserView | Boolean | 否 | 是否自动追踪用户页面操作，默认为 `false` |
 | setEnableTraceUserResource | Boolean | 否 | 是否自动追动用户网络请求 ，仅支持 `Okhttp`，默认为 `false` |
 | setEnableResourceHostIP | Boolean | 否 | 是否采集请求目标域名地址的 IP。作用域：只影响 `EnableTraceUserResource`  为 true 的默认采集。自定义 Resource 采集，需要使用 `FTResourceEventListener.FTFactory(true)` 来开启这个功能。另外，单个 Okhttp 对相同域名存在 IP 缓存机制，相同 `OkhttpClient`，在连接服务端 IP 不发生变化的前提下，只会生成一次|
-| setResourceUrlHandler | callback| 否 | 设置需要过滤的 Resource 条件，默认不过滤 |
-| setOkHttpEventListenerHandler | callback| 否 | ASM 设置全局 Okhttp EventListener，默认不设置 |
+| setResourceUrlHandler | Callback| 否 | 设置需要过滤的 Resource 条件，默认不过滤 |
+| setOkHttpEventListenerHandler | Callback| 否 | ASM 设置全局 Okhttp EventListener，默认不设置 |
 | addGlobalContext | Dictionary | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
 
 ### Log 配置 {#log-config}

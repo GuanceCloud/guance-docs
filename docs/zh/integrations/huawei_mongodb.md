@@ -2,7 +2,7 @@
 title: '华为云 MongoDB'
 tags: 
   - 华为云
-summary: '华为云MongoDB的展示指标包括读写吞吐量、延迟、并发连接数和数据可靠性，这些指标反映了MongoDB在处理大规模文档存储和查询时的性能表现和可扩展性。'
+summary: '采集华为云 MongoDB 指标数据'
 __int_icon: 'icon/huawei_mongodb'
 dashboard:
   - desc: '华为云 MongoDB 内置视图'
@@ -14,11 +14,7 @@ monitor:
 ---
 
 
-<!-- markdownlint-disable MD025 -->
-# 华为云 MongoDB
-<!-- markdownlint-enable -->
-
-华为云MongoDB的展示指标包括读写吞吐量、延迟、并发连接数和数据可靠性，这些指标反映了MongoDB在处理大规模文档存储和查询时的性能表现和可扩展性。
+采集 华为云 MongoDB 指标数据
 
 ## 配置 {#config}
 
@@ -34,18 +30,15 @@ monitor:
 
 > 提示：请提前准备好符合要求的华为云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步 MongoDB 云资源的监控数据，我们安装对应的采集脚本：「观测云集成（华为云-MongoDB）」(ID：guance_huaweicloud_gaussdb_mongo)
+同步华为云 MongoDB 监控数据，我们安装对应的采集脚本：「观测云集成（华为云-GaussDB-Mongo）」(ID：`guance_huaweicloud_gaussdb_mongo`)
 
 点击【安装】后，输入相应的参数：华为云 AK、华为云账户名。
 
 点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
 
+脚本安装完后，在 Func 中「开发」里找到脚本「观测云集成（华为云-GaussDB-Mongo 采集）」，展开修改此脚本，找 collector_configs 和 monitor_configs 分别编辑下面 region_projects 中的内容，将地域和 Project ID,更改为实际的地域和 Project ID，再点击保存发布。
+
 此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
-
-我们默认采集了一些配置, 具体见指标一栏
-
-[配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-huaweicloud-gaussdb-nosql/){:target="_blank"}
-
 
 ### 验证
 
@@ -54,38 +47,38 @@ monitor:
 3. 在观测云平台，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
-配置好华为云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [华为云云监控指标详情](https://support.huaweicloud.com/mongoug-nosql/nosql_08_0106.html){:target="_blank"}
+
+配置华为云 MongoDB 指标, 可以通过配置的方式采集更多的指标 [华为云 MongoDB 指标详情](https://support.huaweicloud.com/mongoug-nosql/nosql_08_0106.html){:target="_blank"}
 
 | **指标ID**            |          **指标名称**   | **指标含义** | **取值范围**      | **测量对象** | **监控周期（原始指标）** |
 | ---- | :----: | ------ | ------ | ---- | ---- |
-| `nosql001_cpu_usage`            |      CPU利用率       | 该指标为从系统层面采集的CPU使用率。单位：%                   | 0~100 %      | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `nosql002_mem_usage`              |      内存利用率      | 该指标为从系统层面采集的内存使用率。单位：%                  | 0~100 %      | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `nosql003_bytes_out`            |    网络输出吞吐量    | 统计平均每秒从测量对象的所有网络适配器输出的流量。单位：bytes/s | ≥ 0 bytes/s  | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `nosql004_bytes_in`             |    网络输入吞吐量    | 统计平均每秒从测量对象的所有网络适配器输入的流量。单位：bytes/s | ≥ 0 bytes/s  | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `nosql005_disk_usage`           |      磁盘利用率      | 该指标用于统计测量对象的磁盘利用率。单位：%                  | 0~100 %      | GaussDB(for Mongo)实例       | 1分钟                    |
-| `nosql006_disk_total_size`      |      磁盘总大小      | 该指标用于统计测量对象的磁盘总大小。单位：GB                 | ≥ 0 GB       | GaussDB(for Mongo)实例       | 1分钟                    |
-| `nosql007_disk_used_size`       |      磁盘使用量      | 该指标用于统计测量对象的磁盘已使用总大小。单位：GB           | ≥ 0 GB       | GaussDB(for Mongo)实例       | 1分钟                    |
-| `mongodb001_command_ps`         |   command执行频率    | 该指标用于统计平均每秒command语句在节点上执行次数。单位：Counts/s | ≥ 0 Counts/s | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb002_delete_ps`          |  delete语句执行频率  | 该指标用于统计平均每秒delete语句在节点上执行次数。单位：Counts/s | ≥ 0 Counts/s | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb003_insert_ps`          |  insert语句执行频率  | 该指标用于统计平均每秒insert语句在节点上执行次数。单位：Counts/s | ≥ 0 Counts/s | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb004_query_ps`           |  query语句执行频率   | 该指标用于统计平均每秒query语句在节点上执行次数。单位：Counts/s | ≥ 0 Counts/s | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb005_update_ps`          |  update语句执行频率  | 该指标用于统计平均每秒update语句执行次数。单位：Counts/s     | ≥ 0 Counts/s | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb006_getmore_ps`         | **getmore**语句执行频率  | 该指标用于统计平均每秒**getmore**语句在节点上执行次数。单位：Counts/s | ≥ 0 Counts/s | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb007_connections`        |    当前活动连接数    | 该指标用于统计试图连接到实例节点的连接数。单位：Counts       | ≥ 0 Counts   | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb007_connections_usage`  | 当前活动连接数百分比 | 该指标用于统计试图连接到实例节点的连接数占可用连接数百分比。单位：% | 0~100 %      | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb008_mem_resident`       |       驻留内存       | 该指标用于统计当前驻留内存的大小。单位：MB                   | ≥ 0 MB       | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb009_mem_virtual`        |       虚拟内存       | 该指标用于统计当前虚拟内存的大小。单位：MB                   | ≥ 0 MB       | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb010_regular_asserts_ps` |     常规断言频率     | 该指标用于统计常规断言频率。单位：Counts/s                   | ≥ 0 Counts/s | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb011_warning_asserts_ps` |       警告频率       | 该指标用于统计警告频率。单位：Counts/s                       | ≥ 0 Counts/s | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb012_msg_asserts_ps`     |     消息断言频率     | 该指标用于统计消息断言频率。单位：Counts/s                   | ≥ 0 Counts/s | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb013_user_asserts_ps`    |     用户断言频率     | 该指标用于统计用户断言频率。单位：Counts/s                   | ≥ 0 Counts/s | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb014_queues_total`       |    等待锁的操作数    | 该指标用于统计当前等待锁的操作数。单位：Counts               | ≥ 0 Counts   | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb015_queues_readers`     |   等待读锁的操作数   | 该指标用于统计当前等待读锁的操作数。单位：Counts             | ≥ 0 Counts   | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb016_queues_writers`     |   等待写锁的操作数   | 该指标用于统计当前等待写锁的操作数。单位：Counts             | ≥ 0 Counts   | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb017_page_faults`        |      缺页错误数      | 该指标用于统计当前节点上的缺页错误数。单位：Counts           | ≥ 0 Counts   | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb018_porfling_num`       |       慢查询数       | 该指标用于统计当前节点上的慢查询数。单位：Counts             | ≥ 0 Counts   | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb019_cursors_open`       |    当前维护游标数    | 该指标用于统计当前节点上的维护游标数。单位：Counts           | ≥ 0 Counts   | GaussDB(for Mongo)实例的节点 | 1分钟                    |
-| `mongodb020_cursors_timeout`    |    服务超时游标数    | 该指标用于统计当前节点上的服务超时游标数。单位：Counts       | ≥ 0 Counts   | GaussDB(for Mongo)实例的节点 | 1分钟                    |
+| `nosql001_cpu_usage`            |   CPU利用率    |该指标为从系统层面采集的CPU使用率。单位：%   | 0~100 %  | GeminiDB Mongo实例的节点 | 1分钟             |
+| `nosql002_mem_usage`            |   内存利用率   | 该指标为从系统层面采集的内存使用率。单位：%  | 0~100 %  | GeminiDB Mongo实例的节点 | 1分钟             |
+| `nosql003_bytes_out`            |  网络输出吞吐量 | 统计平均每秒从测量对象的所有网络适配器输出的流量。单位：bytes/s | ≥ 0 bytes/s    | GeminiDB Mongo实例的节点 | 1分钟       |
+| `nosql004_bytes_in`             |  网络输入吞吐量 | 统计平均每秒从测量对象的所有网络适配器输入的流量。单位：bytes/s | ≥ 0 bytes/s  | GeminiDB Mongo实例的节点 | 1分钟            |
+| `nosql005_disk_usage`           |  存储容量使用率 | 该指标为存储容量使用率。单位：%   |   0~100 %    | GeminiDB Mongo实例的节点       | 1分钟                |
+| `nosql006_disk_total_size`      |  存储容量总容量 | 该指标为实例的存储容量总容量。单位：GB   | ≥ 0 GB | GeminiDB Mongo实例的节点       | 1分钟                |
+| `nosql007_disk_used_size`       |  存储容量使用量 | 该指标为实例的存储容量使用量。单位：GB   | ≥ 0 GB | GeminiDB Mongo实例的节点       | 1分钟                |
+| `mongodb001_command_ps`         |  command执行频率 | 该指标用于统计平均每秒command语句在节点上执行次数。 单位：Counts/s           | ≥ 0 Counts/s | GeminiDB Mongo实例的节点 | 1分钟         |
+| `mongodb002_delete_ps`          |  delete语句执行频率  | 该指标用于统计平均每秒delete语句在节点上执行次数。 单位：Counts/s           | ≥ 0 Counts/s | GeminiDB Mongo实例的节点 | 1分钟        |
+| `mongodb003_insert_ps`          |  insert语句执行频率  | 该指标用于统计平均每秒inster语句在节点上执行次数。 单位：Counts/s          | ≥ 0 Counts/s | GeminiDB Mongo实例的节点 | 1分钟          |
+| `mongodb004_query_ps`           |  query语句执行频率   | 该指标用于统计平均每秒query语句在节点上执行次数。 单位：Counts/s          | ≥ 0 Counts/s   | GeminiDB Mongo实例的节点 | 1分钟        |
+| `mongodb005_update_ps`          |  update语句执行频率  | 该指标用于统计平均每秒update语句在节点上执行次数。 单位：Counts/s          | ≥ 0 Counts/s | GeminiDB Mongo实例的节点 | 1分钟          |
+| `mongodb006_getmore_ps`         | getmore语句执行频率  | 该指标用于统计平均每秒getmore语句在节点上执行次数。 单位：Counts/s          | ≥ 0 Counts/s | GeminiDB Mongo实例的节点 | 1分钟          |
+| `mongodb007_connections_usage`  |  当前活动连接数百分比 | 该指标用于统计试图连接到实例节点的连接数占可用连接数百分比。 单位：%          | 0~100 %      | GeminiDB Mongo实例的节点 | 1分钟          |
+| `mongodb008_mem_resident`       |  驻留内存           | 该指标用于统计当前驻留内存的大小。单位：MB            | ≥ 0 MB      | GeminiDB Mongo实例的节点 | 1分钟               |
+| `mongodb009_mem_virtual`       |   虚拟内存           | 该指标用于统计当前虚拟内存的大小。单位：MB           | ≥ 0 MB       | GeminiDB Mongo实例的节点 | 1分钟              |
+| `mongodb010_regular_asserts_ps` |  常规断言频率        | 该指标用于统计常规断言频率。单位：Counts/s          | ≥ 0 Counts/s       | GeminiDB Mongo实例的节点 | 1分钟         |
+| `mongodb011_warning_asserts_ps` |   警告频率           | 该指标用于统计警告频率。单位：Counts/s             | ≥ 0 Counts/s | GeminiDB Mongo实例的节点      | 1分钟                 |
+| `mongodb012_msg_asserts_ps` |       消息断言频率       | 该指标用于统计消息断言频率。单位：Counts/s          | ≥ 0 Counts/s | GeminiDB Mongo实例的节点 | 1分钟              |
+| `mongodb013_user_asserts_ps`     |     用户断言频率    | 该指标用于统计用户断言频率。单位：Counts/s          | ≥ 0 Counts/s | GeminiDB Mongo实例的节点的节点 | 1分钟        |
+| `mongodb014_queues_total`    |     等待锁的操作数     | 该指标用于统计当前等待锁的操作数。单位：Counts         |   ≥ 0 Counts |  GeminiDB Mongo实例的节点       | 1分钟                |
+| `mongodb015_queues_readers`       |    等待读锁的操作数    | 该指标用于统计当前等待读锁的操作数。单位：Counts               | ≥ 0 Counts   | GeminiDB Mongo实例的节点  | 1分钟      |
+| `mongodb016_queues_writers`     |   等待写锁的操作数        | 该指标用于统计当前等待写锁的操作数。单位：Counts                   | ≥ 0 Counts   | GeminiDB Mongo实例的节点 | 1分钟                    |
+| `mongodb017_page_faults`     |   缺页错误数   | 该指标用于统计当前节点上的缺页错误数。单位：Counts             | ≥ 0 Counts   | GeminiDB Mongo实例的节点 | 1分钟                    |
+| `mongodb018_porfling_num`        |      慢查询数      | 该指标用于统计当前节点上的慢查询数。单位：Counts          | ≥ 0 Counts   | GeminiDB Mongo实例的节点 | 1分钟                    |
+| `mongodb019_cursors_open`       |       当前维护游标数       | 该指标用于统计当前节点上的维护游标数。单位：Counts             | ≥ 0 Counts   | GeminiDB Mongo实例的节点   | 1分钟                    |
+| `mongodb020_cursors_timeout`       |    服务超时游标数    | 该指标用于统计当前节点上的服务超时游标数。单位：Counts           | ≥ 0 Counts       | GeminiDB Mongo实例的节点 | 1分钟                    |
 
 ## 对象 {#object}
 
@@ -93,17 +86,17 @@ monitor:
 
 ```json
 {
-  "measurement": "huaweicloud_gaussdb_nosql",
+  "measurement": "huaweicloud_gaussdb_mongo",
   "tags": {
-    "RegionId"          : "cn-north-4",
+    "RegionId"          : "cn-south-1",
     "db_user_name"      : "rwuser",
     "engine"            : "rocksDB",
-    "instance_id"       : "1236a915462940xxxxxx879882200in02",
-    "instance_name"     : "nosql-efa7",
-    "name"              : "1236a915462940xxxxxx879882200in02",
+    "instance_id"       : "16b35ebaba1c44c39d9c24bae742ca97in02",
+    "instance_name"     : "dds-3ed3",
+    "name"              : "16b35ebaba1c44c39d9c24bae742ca97in02",
     "pay_mode"          : "0",
     "port"              : "8635",
-    "project_id"        : "15c6ce1c12dxxxx0xxxx2076643ac2b9",
+    "project_id"        : "756ada1aa17e4049b2a16ea41912e52d",
     "security_group_id" : "7aa51dbf-xxxx-xxxx-xxxx-dad3c4828b58",
     "status"            : "normal",
     "subnet_id"         : "f1df08c5-xxxx-xxxx-xxxx-de435a51007b",
@@ -111,8 +104,8 @@ monitor:
   },
   "fields": {
     "actions"         : "[]",
-    "create_time"     : "2023-08-01T14:17:40+0800",
-    "update_time"     : "2023-08-01T14:17:42+0800",
+    "create_time"     : "2024-11-09T15:28:46",
+    "update_time"     : "2024-11-08T13:21:35",
     "backup_strategy" : "{实例 JSON 数据}",
     "datastore"       : "{实例 JSON 数据}",
     "groups"          : "[{实例 JSON 数据}]",
@@ -133,4 +126,3 @@ monitor:
 > - `fields.datastore`
 > - `fields.groups`
 > - `fields.actions`
-
