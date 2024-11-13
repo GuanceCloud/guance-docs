@@ -1035,6 +1035,43 @@ For more info about recorder, see [here](datakit-tools-how-to.md#record-and-repl
     **Example**: metric,logging,object
 <!-- markdownlint-enable -->
 
+### Remote Job {#remote_job}
+
+[:octicons-tag-24: Version-1.63.0](changelog.md#cl-1.63.0)
+
+<!-- markdownlint-disable MD046 -->
+- **ENV_REMOTE_JOB_ENABLE**
+
+    开启 remote job 功能
+
+    **字段类型**: Boolean
+
+    **示例**: `true`
+
+    **默认值**: false
+
+- **ENV_REMOTE_JOB_ENVS**
+
+    主要作用于将生成的文件发送到 OSS.
+
+    **字段类型**: String
+
+    **示例**: `true`
+
+    **默认值**: false
+
+- **ENV_REMOTE_JOB_INTERVAL**
+
+    定时请求服务端获取任务，默认 10 秒
+
+    **字段类型**: String
+
+    **示例**: 10s
+
+    **默认值**: 10s
+<!-- markdownlint-enable -->
+
+
 ### Others {#env-others}
 
 <!-- markdownlint-disable MD046 -->

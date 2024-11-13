@@ -199,6 +199,9 @@ setenforce 0
     
       # interval = "60s"
     
+      # sampling_rate = "0.50"
+      # sampling_rate_pts_per_min = "1500"
+    
       [inputs.ebpf.tags]
         # some_tag = "some_value"
         # more_tag = "some_other_value"
@@ -340,6 +343,16 @@ setenforce 0
     - 描述：网络带宽（任意网卡）限制
     - 环境变量：`ENV_INPUT_EBPF_NET_LIMIT`
     - 示例：`"100MiB/s"`
+
+- `sampling_rate`
+    - 描述：设置 eBPF 采集器上报数据时的采样率，范围 `0.01 ~ 1.00`；与设置 `samping_rate_pts_per_min` 互斥
+    - 环境变量：`ENV_INPUT_EBPF_SAMPLING_RATE`
+    - 示例：`0.50`
+
+- `samping_rate_pts_per_min`
+    - 描述：设置 eBPF 采集器上报数据时的每分钟数据量阈值，动态调整采样率
+    - 环境变量：`ENV_INPUT_EBPF_SAMPLING_RATE_PTSPERMIN`
+    - 示例：`1500`
 
 <!-- markdownlint-enable -->
 
