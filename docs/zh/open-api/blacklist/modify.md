@@ -22,7 +22,8 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | type | string | Y | 黑名单类型,枚举值类型有('object', 'custom_object', 'logging', 'keyevent', 'tracing', 'rum', 'network', 'security', 'profiling', 'metric')<br>允许为空: False <br> |
-| source | string | Y | 数据来源, type 字段为 logging支持全部来源,  tracing支持全部服务, 此时source为 re(`.*`)<br>允许为空: True <br>允许为空字符串: False <br>$maxCharacterLength: 128 <br> |
+| source | string |  | 数据来源, 全部来源时候, 此时source为 re(`.*`)<br>允许为空: True <br>允许为空字符串: False <br>$maxCharacterLength: 128 <br> |
+| sources | array |  | 数据来源, 多个来源时使用该字段,非全部来源时(全部来源使用 source 字段 re(`.*`))<br>允许为空: True <br> |
 | filters | array |  | 过滤条件<br>允许为空: True <br> |
 
 ## 参数补充说明

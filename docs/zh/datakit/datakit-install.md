@@ -147,7 +147,7 @@ start-bitstransfer  -source https://static.guance.com/datakit/install-1.2.3.ps1 
 powershell ./.install.ps1;
 ```
 
-## 额外支持的安装变量 {#extra-envs}
+## 额外支持的环境变量 {#extra-envs}
 
 如果需要在安装阶段定义一些 DataKit 配置，可在安装命令中增加环境变量，在 `DK_DATAWAY` 前面追加即可。如追加 `DK_NAMESPACE` 设置：
 
@@ -186,8 +186,7 @@ NAME1="value1" NAME2="value2"
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    1. [全离线安装](datakit-offline-install.md#offline)不支持这些环境变量设置。但可以通过[代理](datakit-offline-install.md#with-datakit)以及[设置本地安装地址](datakit-offline-install.md#with-nginx)方式来设置这些环境变量。
-    1. 这些环境变量只有在安装模式才能生效，升级模式下，这些环境变量都是不生效的。
+    [全离线安装](datakit-offline-install.md#offline)不支持这些环境变量设置。但可以通过[代理](datakit-offline-install.md#with-datakit)以及[设置本地安装地址](datakit-offline-install.md#with-nginx)方式来设置这些环境变量。
 <!-- markdownlint-enable -->
 
 ### 最常用环境变量 {#common-envs}
@@ -373,13 +372,42 @@ NAME1="value1" NAME2="value2"
 - `DK_LIMIT_CPUMAX`：支持 CPU 的最大功率，默认 30.0
 - `DK_LIMIT_MEMMAX`：限制内存（含 swap）最大用量，默认 4096（4GB）
 
+### APM Instrumentation {#apm-instrumentation}
+
+[:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0) · [:octicons-beaker-24: Experimental](index.md#experimental)
+
+在安装命令中，指定 `DK_APM_INSTRUMENTATION_ENABLED=host` 即可针对 Java/Python 等应用自动注入 APM：
+
+```shell
+DK_APM_INSTRUMENTATION_ENABLED=host \
+  DK_DATAWAY=https://openway.guance.com?token=<TOKEN> \
+  bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+```
+
+Datakit 安装完成后，重新开启一个 shell，并重启对应的 Java/Python 应用即可。
+
+开启和关闭该功能，修改 `datakit.conf` 文件中 `[apm_inject]` 下的 `instrumentation_enabled` 配置的值：
+
+- 值 `"host"`，开启
+- 值 `""` 或者 `"disable"`，关闭
+
+运行环境要求：
+
+- Linux 系统
+    - CPU 架构：x86_64 或 arm64
+    - C 标准库：glibc 2.4 及以上版本，或 musl
+    - Java 8 及以上版本
+    - Python 3.7 及以上版本
+
+在 Kubernetes 中，可以通过 [Datakit Operator 来注入 APM](datakit-operator.md#datakit-operator-inject-lib)。
+
 ### 其它安装选项 {#env-others}
 
 | 环境变量名                       | 取值示例                    | 说明                                                                                                                             |
 | -------------------------------- | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | `DK_INSTALL_ONLY`                | `on`                        | 仅安装，不运行                                                                                                                   |
 | `DK_HOSTNAME`                    | `some-host-name`            | 支持安装阶段自定义配置主机名                                                                                                     |
-| `DK_UPGRADE`                     | `1`                         | 升级到最新版本（注：一旦开启该选项，除 `DK_UPGRADE_MANAGER` 外其它选项均无效）                                                   |
+| `DK_UPGRADE`                     | `1`                         | 升级到最新版本                                                   |
 | `DK_UPGRADE_MANAGER`             | `on`                        | 升级 Datakit 同时是否升级 **远程升级服务**，需要和 `DK_UPGRADE` 配合使用， 从 [1.5.9](changelog.md#cl-1.5.9) 版本开始支持        |
 | `DK_INSTALLER_BASE_URL`          | `https://your-url`          | 可选择不同环境的安装脚本，默认为 `https://static.guance.com/datakit`                                                             |
 | `DK_PROXY_TYPE`                  | -                           | 代理类型。选项有：`datakit` 或 `nginx`，均为小写                                                                                 |
@@ -390,7 +418,6 @@ NAME1="value1" NAME2="value2"
 | `DK_VERBOSE`                     | `on`                        | 打开安装过程中的 verbose 选项（仅 Linux/Mac 支持），将输出更多调试信息[:octicons-tag-24: Version-1.19.0](changelog.md#cl-1.19.0) |
 | `DK_CRYPTO_AES_KEY`              | `0123456789abcdfg`          | 使用加密后的密码解密秘钥，用于采集器中明文密码的保护 [:octicons-tag-24: Version-1.31.0](changelog.md#cl-1.31.0)                  |
 | `DK_CRYPTO_AES_KEY_FILE`         | `/usr/local/datakit/enc4dk` | 秘钥的另一种配置方式，优先于上一种。将秘钥放到该文件中，并将配置文件路径通过环境变量方式配置即可。                               |
-| `DK_APM_INSTRUMENTATION_ENABLED` | `host`, `disable`           | 对主机上的新启动的 Java 和 Python 应用开启 APM 自动注入功能                                                                      |
 
 ## FAQ {#faq}
 

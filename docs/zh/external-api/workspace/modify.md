@@ -37,6 +37,7 @@
 | durationSet.tracing | string |  | tracing的duration<br>例子: 7d <br>允许为空: False <br> |
 | durationSet.rum | string |  | rum的duration<br>例子: 7d <br>允许为空: False <br> |
 | durationSet.apm | string |  | apm的duration(合并索引情况下有效)<br>例子: 7d <br>允许为空: False <br> |
+| disableQueryAcceleration | integer |  | 禁用查询加速<br>允许为空: True <br>可选值: [0, 1] <br> |
 
 ## 参数补充说明
 

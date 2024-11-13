@@ -1,5 +1,143 @@
 # 版本历史
 
+## 1.97.180（2024 年 11 月 08 日） {#1.97.180}
+
+pubrepo.guance.com/dataflux/1.97.180:launcher-972c327-1731042264
+
+### 离线镜像包下载
+
+- AMD64 架构下载: https://static.guance.com/dataflux/package/guance-amd64-1.97.180.tar.gz
+    - MD5: `0a6a2bf00fbef5fb29fd2b6bbf544880`
+
+- ARM64 架构下载: https://static.guance.com/dataflux/package/guance-arm64-1.97.180.tar.gz
+    - MD5: `cf961aa69c6e6d1635893b9813a7216b`
+
+### 功能更新 {#feature1106}
+
+#### 监控
+
+告警策略新增根据[成员范围](../monitoring/alert-setting.md#member)定义通知规则，帮助用户更好的管理告警通知和问题处理边界。
+
+#### 场景
+
+[Rollup 函数](../scene/visual-chart/chart-query.md#rollup)仅适用于指标数据查询，在图表简单模式下，对其他数据类型的查询选择将做下线处理。
+
+
+### Bug 修复 {#bug1106}
+
+1. 解决了基础设施蜂窝图不显示具体的使用率的问题。
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+## 1.97.179（2024 年 10 月 30 日） {#1.97.179}
+
+pubrepo.guance.com/dataflux/1.97.179:launcher-743e11c-1730431656
+
+### 离线镜像包下载
+
+- AMD64 架构下载: https://static.guance.com/dataflux/package/guance-amd64-1.97.179.tar.gz
+    - MD5: `160fe9a8e9566221149a4a52ff4b0c2b`
+
+- ARM64 架构下载: https://static.guance.com/dataflux/package/guance-arm64-1.97.179.tar.gz
+    - MD5: `7f52fa4bbf4342ebc052adf079dfcbf8`
+
+???+ attention
+
+    此版本依赖 v1.9.3 版本的 GuanceDB for logs 引擎，请同步升级 GuanceDB for logs 引擎的 guance-select、guance-insert 组件到至少 v1.9.3 版本
+
+### 部署版更新
+
+1. 管理后台新增监控器菜单：列出所有工作空间的监控器，支持搜索、筛选监控器；支持修改监控器的启用/禁用状态、删除、导出监控器等操作，同时支持克隆单个/批量监控器到选中工作空间。
+    - 注意：组合检测监控器不支持跨工作空间克隆。
+2. MFA 安全认证优化：新增隐藏 7 天自动登录选项的开关，支持配置免认证登陆选项是否开启。
+3. CDN 域名配置： 可以在配置文件中配置 CDN 域名，RUM 应用接入页面将自动获取并显示
+
+### 新增集成 {#inte1030}
+
+- [阿里云 SAE](../integrations/aliyun_sae.md)；
+- [Node Exporter](../integrations/node-exporter.md)；
+- [Azure Public IP](../integrations/azure_public_ip.md)；
+- [Grafana Guance Datasource](../integrations/grafana-guance-data-source.md)；
+- [Grafana Dashboard](../integrations/quick-guide.md)；
+- [Greenplum](../integrations/greenplum.md)。
+
+### 功能更新 {#feature1030}
+
+#### 云账单
+
+新增[一级导航](../cloud-billing/index.md)菜单，针对云账单数据预置查看器和账单分析视图，优化用户查看体验。
+
+注意：体验版暂不支持。
+
+#### 监控
+
+1. [主机智能监控](../monitoring/intelligent-monitoring/host-intelligent-detection.md)新增网络检测扩展：基于主机的网络监控提供了高效的网络性能监测，帮助用户实时监控主机的网络流量，识别异常流量和潜在的连接问题并及时预警，避免影响业务正常运行。系统支持多维度可视化功能，帮助用户深入分析和理解主机的网络使用情况，优化带宽分配和资源利用率，为未来的容量规划提供数据支持，从而确保网络资源的合理配置。
+2. 监控器功能增强： 
+    - 支持在监控器列表中[批量设置](../monitoring/monitor/monitor-list.md#options)关联告警策略。
+    
+    - 日志查看器可针对当前筛选和搜索条件[一键配置](../logs/manag-explorer.md)【日志检测】类型监控器。
+    
+    - 注意：只有在站点和工作空间级别都开启了 `左*` 查询的前提下，监控器才支持 `左*` 查询。否则日志查看器若配置 `左*` 查询，跳转到监控器会查询报错。
+
+3. [通知对象](../monitoring/notify-object.md)列表：
+    - 新增搜索、快捷筛选功能，支持快速检索通知对象；
+    - 针对连续两天发送失败被系统禁用的通知对象，名称后展示标记。
+
+4. [静默规则](../monitoring/silent-management.md)优化：
+    - 新增规则名称和描述配置功能，提升规则管理的便捷性；
+    - 事件属性支持不同字段的逻辑组合关系（AND 和 OR）；
+    - 优化列表显示效果，支持自定义显示列，提升用户界面的个性化体验。
+
+5. [告警策略](../monitoring/alert-setting.md)：
+    - 通知规则内标签匹配逻辑支持不同字段自由组合 AND 和 OR 的关系，交互体验同查看器筛选搜索组件一致；
+    - 新增自定义操作权限配置；
+    - 新增告警策略描述填写。
+
+#### 场景
+
+1. 新增主机 NET 分析视图：通过对主机的网络使用情况，带宽分配和资源利用率等指标的汇聚，为未来的容量规划提供数据支持，从而确保网络资源的合理配置。
+2. 图表查询优化：
+    - `index` 不支持做 `by` 分组查询，优化 DQL 查询交互体验；
+    - By 标签范围 / 筛选标签范围列出精确到指标级别；
+    - DQL 查询新增获取日志索引的查询函数：`show_logging_index()`，可在仪表板视图变量处应用，同时图表查询索引配置支持视图变量填充；
+    - 图表的表达式查询功能现已支持跨空间查询；
+    - 优化组合图表的时间锁定显示，提供更加直观的用户体验。
+3. 查看器页面优化：查看器详情页中绑定主机的 Tab 页追加 `host_ip` 显示。
+
+#### Pipeline
+
+[Pipeline](../pipeline/index.md) 文本处理优化：隔离“本地 Pipeline” 和“中心 Pipeline”，允许不同类型添加同一个数据源的处理脚本。并新增提示信息，帮助用户更直观地了解处理差异。
+
+#### 管理
+
+[数据访问](../management/logdata-access.md)功能整合：    
+
+- 应用性能和指标新增数据访问功能；
+- 管理中新增「数据访问」功能模块，整合所有数据类型，支持用户快速查询与过滤。
+
+#### 可用性监测
+
+拨测任务优化：Websocket 拨测内容框输入限制提升到 128k；拨测任务页面整体优化。
+
+### Bug 修复 {#bug1030}
+
+1. 解决了饼图的 0% 值显示歧义的问题，已优化 0% 值在画图时的占比和视觉效果。
+2. 解决了查看“事件”菜单的默认页面加载报错的问题。
+3. 解决了日志索引选择多索引时出现的问题。
+4. 解决了通过“外部事件监控器”传入第三方工具的 Event 时 `extra_data` 字段缺失的问题。
+5. 解决了日志查看器中通过快捷筛选方式切换主机，右侧数据不刷新的问题。
+6. 解决了表格图中空值显示优化的需求。
+7. 解决了 API 导入数据访问规则的查询条件在页面上不显示的问题。
+8. 解决了拨测日志在日志功能中可以查看到，但在进行 PL 处理时找不到相关数据源的问题。
+9. 解决了应用性能监测服务拓扑报错的问题。
+10. 解决了 GuanceDB 升级到最新版本后 DQL 不支持 tag 计算的问题。
+11. 解决了通过日志上下文点进来无法定位到当前日志的问题。
+12. 调整应用智能监控灵敏度，减少请求数异常突降过多问题。
+13. 改善突变检测监控器对高频 tags 的不适配问题。
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+
 ## 1.96.178（2024 年 10 月 16 日） {#1.96.178}
 
 pubrepo.guance.com/dataflux/1.96.178:launcher-8f2b0c4-1729223560
@@ -102,8 +240,6 @@ pubrepo.guance.com/dataflux/1.96.178:launcher-8f2b0c4-1729223560
 19. 解决了文本无法正常写入 Doris 排查的问题。
 20. 解决了同一时间段事件状态数量会变的问题。
 21. 调整角色查询逻辑，解决了角色数量超出 100 时搜索不到的问题。
-
-
 
 
 更多详情可参考帮助文档：https://docs.guance.com/release-notes/
@@ -234,7 +370,7 @@ pubrepo.guance.com/dataflux/1.94.174:launcher-923b174-1725591807
 
 1. 日志查看器新增交互：长按 Ctrl 可针对查看器列表文本分词进行 “添加到查询”、“从查询中排除”、“复制” 操作，便捷目标数据的快速查询追加。同理日志详情页内容区域也支持此交互。
 2. 日志支持绑定[火山引擎 TLS 外部索引](../logs/multi-index/tls.md)：可绑定外部索引，在观测云平台直接查看及分析火山引擎日志数据。
-3. 日志 > [数据访问](../logs/logdata-access.md)优化：
+3. 日志 > [数据访问](../management/logdata-access.md)优化：
     - 新增数据访问导航页，页面右上角新增帮助文档跳转链接；
     - 数据访问规则新增【名称】字段为唯一性 ID，新增规则【描述】字段，可自定义名称及描述以区分规则使用场景。
 4. 日志查看器筛选项优化：日志查看器列表【日志索引】筛选项支持搜索，可关键字搜索索引并进行勾选。
@@ -307,49 +443,66 @@ pubrepo.guance.com/dataflux/1.93.173:launcher-d71b2c4-1724400267
 
 - 优化了 Launcher 安装引导工具，在安装结束时，显示存储引擎与系统工作空间的初始化状态。
 
-### 新增功能 {#new}
+### Breaking Changes {#breakingchanges0821}
 
-- 用户访问监测（RUM）：新增[热图](../real-user-monitoring/heatmap.md)。以视觉方式呈现访客与网站的互动情况，获取页面元素的点击数据和点击位置，了解用户的关注点。
+- OpenAPI / 全局 API：【事件】未恢复事件数据源从 `UE` 变更为 `E`。
 
-- 应用性能监测（APM） > 链路：新增[安装引导](../application-performance-monitoring/explorer/index.md)页面。
 
-- 监控：新增检测类型——[区间检测 V2](../monitoring/monitor/interval-detection-v2.md)，以检测指标的的历史数据建立的置信区间来预测正常波动范围。
+### 新增功能 {#new0821}
 
-### 持续优化 {#consistent}
+- 管理：新增 [Client Token](../management/client-token.md) 统一管理入口，用户使用公网 DataWay 接入 RUM 应用时，可更换系统默认生成的 Token，使用自定义创建的 Token。
 
-- 异常追踪:
-    - 配置管理 > 通知策略：新增[操作审计和执行日志](../exception/config-manag.md#check-events)查看入口。在接收 Issue 通知时，有时会遇到通知未正常发送或针对通知策略有疑议，此时可查看当前通知策略的操作审计事件和执行日志数据来进行判断。
-    - APM / RUM [Issue 自动发现](../application-performance-monitoring/error.md#issue)支持添加筛选条件；
-    - 针对部署版，新增[统一管理异常追踪等级](../deployment/setting.md#global-settings)入口；
-    - 日程：
-        - 在日程编辑页面，不同的通知对象会自动生成颜色；
-        - 日程管理：【我的日程】与【所有日程】新增统计数量；
+![](img/overall-token.png)
 
-### 常规更新 {#usual}
 
-- 监控 > [SLO](../monitoring/slo.md#slo)：
-    - 新增标签配置，最终作用到产生的事件数据信息内；
-    - 配置优化：通过设置【目标】和【最低目标】的 7 天达标率范围，判断生成警告或紧急事件；
-    - 支持通过关联【告警策略】实现告警通知发送。
-- 可用性监测：
-    - 拨测任务新增标签配置；
-    - 配置拨测任务页面的[测试模块](../usability-monitoring/request-task/http.md#test)优化；
-    - 列表新增[快捷筛选](../usability-monitoring/request-task/index.md#manag)模块；
-- 查看器：分析模式下支持导出 CSV 文件。
-- 基础设施 > 容器：新增进程关联页面展示。
+### 持续优化 {#consistent0821}
 
-### BUG 修复 {#bugs}
+- 异常追踪：
+    - 新增 [Issue 发现](../exception/config-manag/issue-discovery.md)页面。通过这一功能，您可以定制 Issue 发现的具体规则，对监控器检测规则触发的异常事件和相关数据进行统一管理和筛选。将一系列事件视为由单一原因引起，并为这些事件设置筛选条件，然后选择聚合维度来进一步细化数据。细化后，数据会根据您设定的检测频率进行聚合。最终，系统会根据您预设的 Issue 标题和描述，自动将这些信息推送到指定的频道，确保所有相关方都能及时接收并有效处理这些 Issue。
+    - 配置管理 > 通知策略：通知策略列表新增创建/更新的信息显示。
 
-- 解决【任务调用】计费统计次数未显示的问题；
-- 解决图表查询时【左 * 匹配】问题；
-- 解决 BPF 网络日志返回数据未包含容器等相关信息的问题；
-- 解决中心 Pipeline 失效问题。 
 
-### Breaking Changes {#breakingchanges}
+### 常规更新 {#usual0821}
 
-- OpenAPI：
-    - SLO 创建/修改接口新增 `tags`、`alertPolicyUUIDs` 并弃用 `alertOpt` 参数；
-    - SLO 获取详情和列表接口返回结果中新增 `tagInfo`、`alertPolicyInfos` 字段，丢弃了 `alertOpt` 字段。
+- 数据保存策略：
+    - 原【应用性能】项拆分为【应用性能-链路】、【应用性能-Profile】，支持用户分别配置 Trace 数据和 Profile 数据的保存策略；
+    - 原【数据转发】名称修改为【数据转发-观测云】。
+- 监控 > 通知对象管理：连续一天发送失败会发系统通知；连续两天发送失败会发系统通知且自动禁用。
+- [未恢复事件查看器](../events/event-explorer/unrecovered-events.md)：
+    - 数据源变更为查询事件数据，以 `df_fault_id` 作为唯一标识进行聚合，获取最近一条数据结果返回展示。
+    - 页面整体 UI 改造。
+- 应用性能监测（APM）> 链路：[服务调用关系图](../application-performance-monitoring/explorer/explorer-analysis.md#call)新增绑定内置视图能力，点击服务的卡片，即可快速查看与该服务关联的相关用户视图。
+- 管理：
+    - 新增【工作空间描述】；
+    - 编辑模式下，交互变更为打开新窗口；
+    - 工作空间列表下支持通过工作空间的名称或描述来搜索定位。
+- 日志 > BPF 日志 > 七层 BPF 网络日志：网络请求拓扑图 UI 优化，突出了服务端与客户端的区分。
+- 可用性监测 > HTTP 监测 > 高级设置 > 请求设置默认添加 `Accept-Encoding:identity`。
+  
+### 部署版更新
+
+- 新增[拨测节点管理](../deployment/task.md)入口，支持创建平台级别拨测节点，并通过节点列表统一管理所有节点。通过此入口创建的拨测节点支持配置中英文节点名，从而适配观测云的国内外站点显示和上报数据结果内容。
+
+![](img/task.png)
+
+- 数据保存策略：
+
+    - 考虑到用户处于存储成本等因素的考量，需要自定义这些数据的保存时长，部署版管理后台新增【会话重放】配置项。
+    - 原【数据转发】名称修改为【数据转发-默认存储】；
+    - 原【应用性能】项拆分为【应用性能-链路】、【应用性能-Profile】，支持用户分别配置 Trace 数据和 Profile 数据的保存策略；
+- 支持火山引擎 TLS 做为底层数据存储引擎。
+
+### BUG 修复 {#bugs0821}
+
+- 解决异常追踪的通知策略未生效的问题；
+- 解决应用性能监测链路追踪导出异常的问题；
+- 解决通过 OpenAPI 修改通知对象报错无权限配置显示的问题；
+- 解决日志查看器重新设置时间范围后不能自动获取 `source` 筛选的问题；
+- 解决查看器搜索栏已添加 `source` 筛选条件范围，但在“快捷筛选”中依旧显示过滤条件外的全部 `source` 的问题；
+- 解决突变检测报错的问题；
+- 解决通过 OpenAPI 写入数据访问规则后，UI 页面打开无法查看角色信息的问题；
+- 解决图表设置的数据格式对图例中数据不生效的问题；
+- 解决自建拨测节点下，关联的拨测任务删除后，实际拨测还在运行的问题。
 
 更多详情可参考帮助文档：https://docs.guance.com/release-notes/
 
@@ -477,7 +630,7 @@ pubrepo.guance.com/dataflux/1.89.169:launcher-d482589-1720014392
     - 通知对象管理：新增[权限控制](../monitoring/notify-object.md#permission)。配置操作权限后，仅被赋予权限的对象可对此通知对象进行编辑、删除操作。
     - 智能监控 > 日志智能检测：新增追踪历史变化，过滤周期性的异常数据突变。
 - 日志 
-    - [数据访问](../logs/logdata-access.md#config)：新增对被授权查看的日志索引做访问权限配置。
+    - [数据访问](../management/logdata-access.md#config)：新增对被授权查看的日志索引做访问权限配置。
     - 日志查看器：显示列拓展，支持[添加 json 对象内字段内容](../logs/manag-explorer.md#json-content)到一级返回显示。
     - [BPF 网络日志](../logs/bpf-log.md)：
         - 连接展示效果优化；

@@ -1803,7 +1803,7 @@ Guance has the ability of full stack data collection, and now supports about 290
   			<div
   				class="fth-integration-list-item"
   				data-href="../azure_public_ip"
-  				data-tags="Azure"
+  				data-tags="AZURE"
   				data-name="Azure Public Ip Address"
   				data-summary="Collect Azure Public Ip Address metric data"
   			>
@@ -1828,8 +1828,34 @@ Guance has the ability of full stack data collection, and now supports about 290
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../azure_sqlserver"
+  				data-tags="AZURE"
+  				data-name="Azure SQL Servers"
+  				data-summary="Collect Azure SQL Servers metric data"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/azure_sqlserver/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<span class="fth-integration-name">Azure SQL Servers</span>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../azure_vm"
-  				data-tags="Azure"
+  				data-tags="AZURE"
   				data-name="Azure Virtual Machines"
   				data-summary="Collect Azure Virtual Machines metric data"
   			>
@@ -2064,7 +2090,7 @@ Guance has the ability of full stack data collection, and now supports about 290
   				class="fth-integration-list-item"
   				data-href="../container-log"
   				data-tags="LOG,CONTAINER,KUBERNETES"
-  				data-name="Container Logs"
+  				data-name="Kubernetes Logs"
   				data-summary="Collect container and Kubernetes log"
   			>
   				<div class="fth-integration-list-card">
@@ -2074,7 +2100,7 @@ Guance has the ability of full stack data collection, and now supports about 290
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<span class="fth-integration-name">Container Logs</span>
+  						<span class="fth-integration-name">Kubernetes Logs</span>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -2090,7 +2116,7 @@ Guance has the ability of full stack data collection, and now supports about 290
   				class="fth-integration-list-item"
   				data-href="../container"
   				data-tags="KUBERNETES,CONTAINER"
-  				data-name="Basic Collection Of Containers"
+  				data-name="Kubernetes"
   				data-summary="Collect metrics, objects, and log data for Container and Kubernetes, and report them to the guance cloud."
   			>
   				<div class="fth-integration-list-card">
@@ -2100,7 +2126,7 @@ Guance has the ability of full stack data collection, and now supports about 290
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<span class="fth-integration-name">Basic Collection Of Containers</span>
+  						<span class="fth-integration-name">Kubernetes</span>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -3232,6 +3258,32 @@ Guance has the ability of full stack data collection, and now supports about 290
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../greenplum"
+  				data-tags=""
+  				data-name="GreenPlum"
+  				data-summary="Collect information on greenplum metrics"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/greenplum/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<span class="fth-integration-name">GreenPlum</span>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../hadoop_hdfs_datanode"
   				data-tags=""
   				data-name="Hadoop HDFS DataNode"
@@ -3677,7 +3729,7 @@ Guance has the ability of full stack data collection, and now supports about 290
   				data-href="../huawei_dcs"
   				data-tags="Huawei Cloud"
   				data-name="HUAWEI DCS"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-summary="Collect Huawei Cloud DCS metric data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3687,6 +3739,32 @@ Guance has the ability of full stack data collection, and now supports about 290
 									alt=""
   						/>
   						<span class="fth-integration-name">HUAWEI DCS</span>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../huawei_dds"
+  				data-tags="Huawei Cloud"
+  				data-name="HUAWEI CLOUD DDS"
+  				data-summary="Collect Huawei Cloud DDS metric data"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/huawei_dds/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<span class="fth-integration-name">HUAWEI CLOUD DDS</span>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -3936,8 +4014,8 @@ Guance has the ability of full stack data collection, and now supports about 290
   				class="fth-integration-list-item"
   				data-href="../huawei_mongodb"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI MongoDB"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-name="Huawei Cloud MongoDB"
+  				data-summary="Collect Huawei Cloud MongoDB metric data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3946,7 +4024,7 @@ Guance has the ability of full stack data collection, and now supports about 290
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<span class="fth-integration-name">HUAWEI MongoDB</span>
+  						<span class="fth-integration-name">Huawei Cloud MongoDB</span>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -4015,7 +4093,7 @@ Guance has the ability of full stack data collection, and now supports about 290
   				data-href="../huawei_rds_mysql"
   				data-tags="Huawei Cloud"
   				data-name="HUAWEI RDS MYSQL"
-  				data-summary="Use the「Guanc Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance."
+  				data-summary="Collect Huawei Cloud RDS MYSQL metric data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4051,6 +4129,32 @@ Guance has the ability of full stack data collection, and now supports about 290
 									alt=""
   						/>
   						<span class="fth-integration-name">HUAWEI RDS PostgreSQL</span>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../huawei_rds_sqlserver"
+  				data-tags="Huawei Cloud"
+  				data-name="Huawei Cloud RDS SQLServer"
+  				data-summary="Collect Huawei Cloud RDS SQLServer metric data"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/huawei_rds_sqlserver/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<span class="fth-integration-name">Huawei Cloud RDS SQLServer</span>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -7804,7 +7908,7 @@ Guance has the ability of full stack data collection, and now supports about 290
   				while (i < 5) {
   					if (ele.classList.contains('fth-integration-list-item')) {
   						const href = ele.dataset.href;
-  						href && (window.location.href = href);
+  						href && window.open(href);
   						break;
   					}
   					i++;

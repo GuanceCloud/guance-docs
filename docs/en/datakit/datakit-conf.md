@@ -19,7 +19,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is `datakit.conf`, here is the example sample(1.60.0):
+Datakit main configure is `datakit.conf`, here is the example sample(1.62.0):
 
 <!-- markdownlint-disable MD046 -->
 ??? info "`datakit.conf`"
@@ -65,7 +65,7 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.60.0):
     # point_pool: use point pool for better memory usage
     ################################################
     [point_pool]
-      enable = true
+      enable = false
       reserved_capacity = 4096
     
     ################################################
@@ -118,6 +118,12 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.60.0):
     
       # append run info
       disable_append_run_info = false
+    
+      # default pipeline
+      [pipeline.default_pipeline]
+        # logging = "<your_script.p>"
+        # metric  = "<your_script.p>"
+        # tracing = "<your_script.p>"
     
       # Offload data processing tasks to post-level data processors.
       [pipeline.offload]
@@ -173,7 +179,7 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.60.0):
       # Datakit will upload data points if cached(in memory) points
       #  reached(>=) the max_cache_count or the flush_interval triggered.
       max_cache_count = 1000
-      flush_workers   = 0 # default to (cpu_core * 2 + 1)
+      flush_workers   = 0 # default to (cpu_core * 2)
       flush_interval  = "10s"
     
       # Queue size of feed.
@@ -438,7 +444,7 @@ DataKit opens an HTTP service to receive external data or provide basic data ser
     
     ### HTTP Request Frequency Control {#set-http-api-limit}
 
-    > [:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0) default enabled this limit.
+    > [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0) default enabled this limit.
     
     As DataKit needs to receive a large number of external data writes, in order to avoid causing huge overhead to the host node, the following HTTP configuration can be modified (it is not turned on by default):
     
@@ -551,6 +557,8 @@ The following content involves some advanced configuration. If you are not sure 
 [:octicons-tag-24: Version-1.28.0](changelog.md#cl-1.28.0) ·
 [:octicons-beaker-24: Experimental](index.md#experimental)
 
+> Point pool proved to be slow performance, do not enable it for production.
+
 To optimize Datakit's memory usage under high load conditions, we can enable *Point Pool* to alleviate the pressure:
 
 ```toml
@@ -580,10 +588,10 @@ We can also enable `content_encoding = "v2"`([:octicons-tag-24: Version-1.32.0](
     
     ```toml
     [io]
-      feed_chan_size  = 4096  # length of data processing queue (a job typically has multiple points)
-      max_cache_count = 512   # data bulk sending points, beyond which sending is triggered in the cache
+      feed_chan_size  = 1     # length of compact queue
+      max_cache_count = 1000  # data bulk sending points, beyond which sending is triggered in the cache
       flush_interval  = "10s" # threshold for sending data at least once every 10s
-      flush_workers   = 8     # upload workers, default CPU-core * 2 + 1
+      flush_workers   = 0     # upload workers, default is the limited CPU-core * 2
     ```
     
     See [corresponding description in k8s](datakit-daemonset-deploy.md#env-io) for blocking mode
@@ -591,34 +599,6 @@ We can also enable `content_encoding = "v2"`([:octicons-tag-24: Version-1.32.0](
 === "Kubernetes"
 
     See [here](datakit-daemonset-deploy.md#env-io)
-<!-- markdownlint-enable -->
-
-#### IO Disk Cache {#io-disk-cache}
-
-[:octicons-tag-24: Version-1.5.8](changelog.md#cl-1.5.8) · [:octicons-beaker-24: Experimental](index.md#experimental)
-
-When DataKit fails to send data, disk cache can be turned on in order not to lose critical data. The purpose of disk cache is to temporarily store the data on disk when upload Dataway failed, and then fetch data from disk and upload again later.
-
-<!-- markdownlint-disable MD046 -->
-=== "`datakit.conf`"
-
-    ```toml
-    [io]
-      enable_cache      = true   # turn on disk caching
-      cache_all         = false  # cache all categories(default metric,object and dial-testing data point not cached)
-      cache_max_size_gb = 5 # specify a disk size of 5GB
-    ```
-
-=== "Kubernetes"
-
-    See [here](datakit-daemonset-deploy.md#env-io)
-<!-- markdownlint-enable -->
-
----
-<!-- markdownlint-disable MD046 -->
-???+ attention
-
-    The `cache_max_size_gb` used to control max disk capacity of each data category. For there are 10 categories, if each on configured with 5GB, the max disk usage may reach to 50GB.
 <!-- markdownlint-enable -->
 
 ### Resource Limit  {#resource-limit}
@@ -696,6 +676,57 @@ Dataway got following settings to be configured:
     - v2 is the Protobuf protocol. Compared with v1, it has better performance in all aspects
 
 See [here](datakit-daemonset-deploy.md#env-dataway) for configuration under Kubernetes.
+
+#### WAL Queue Configuration {#dataway-wal}
+
+[:octicons-tag-24: Version-1.60.0](changelog.md#cl-1.60.0)
+
+In the `[dataway.wal]` section, we can adjust the configuration of the WAL queue:
+
+```toml
+  [dataway.wal]
+     max_capacity_gb = 2.0             # 2GB reserved disk space for each category (M/L/O/T/...)
+     workers = 0                       # flush workers on WAL (default to CPU limited cores)
+     mem_cap = 0                       # in-memory queue capacity (default to CPU limited cores)
+     fail_cache_clean_interval = "30s" # duration for cleaning failed uploaded data
+```
+
+The disk files are located in the *cache/dw-wal* directory under the Datakit installation directory:
+
+```shell
+/usr/local/datakit/cache/dw-wal/
+├── custom_object
+│   └── data
+├── dialtesting
+│   └── data
+├── dynamic_dw
+│   └── data
+├── fc
+│   └── data
+├── keyevent
+│   └── data
+├── logging
+│   ├── data
+│   └── data.00000000000000000000000000000000
+├── metric
+│   └── data
+├── network
+│   └── data
+├── object
+│   └── data
+├── profiling
+│   └── data
+├── rum
+│   └── data
+├── security
+│   └── data
+└── tracing
+    └── data
+
+13 directories, 14 files
+```
+
+Here, except for the *fc* directory, which is the failure retry queue, the other directories correspond to different data types. When data upload fails, these data will be cached in the *fc* directory, and Datakit will periodically upload them later.
 
 ### Dataway Sinker {#dataway-sink}
 
@@ -784,6 +815,26 @@ The lookup priority is defined as follows:
 1. Find the specified file names one by one in the *git_repos* order configured in `datakit.conf` (it is an array that can configure multiple Git repositories), and return the first one if found. For example, look for *my-nginx.p*. If it is found under *pipeline* in the first repository directory, it will prevail. **Even if there is *my-nginx.p* with the same name in the second repository, it will not be selected.**。
 
 2. If not found in *git_repos* , go to the *<Datakit Installation Directory\>/pipeline* directory for the Pipeline script, or go to the *<Datakit Installation Directory\>/python.d* directory for the Python script.
+
+### Locally set Pipeline default script {#pipeline-settings}
+
+[:octicons-tag-24: Version-1.61.0](changelog.md#cl-1.61.0)
+
+Supports setting the default Pipeline script locally. If it conflicts with the default script set remotely, the local setting is preferred.
+
+It can be configured in two ways:
+
+- Host deployment, you can specify the default scripts for each category in the DataKit main configuration file, as follows:
+
+    ```toml
+    # default pipeline
+    [pipeline.default_pipeline]
+    # logging = "<your_script.p>"
+    # metric = "<your_script.p>"
+    # tracing = "<your_script.p>"
+    ```
+
+- Container deployment, you can use the environment variable, `ENV_PIPELINE_DEFAULT_PIPELINE`, its value is, for example, `{"logging":"abc.p","metric":"xyz.p"}`
 
 ### Set the Maximum Value of Open File Descriptor {#enable-max-fd}
 

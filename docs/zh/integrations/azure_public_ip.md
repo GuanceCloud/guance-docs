@@ -1,8 +1,8 @@
 ---
 title: 'Azure Public Ip Address'
-tags: 
-  - Azure
-  - Network
+tags:
+  - 'AZURE'
+  - '网络'
 summary: '采集 Azure Public Ip Address 指标数据'
 __int_icon: 'icon/azure_public_ip'
 dashboard:

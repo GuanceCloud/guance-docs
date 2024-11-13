@@ -28,27 +28,33 @@
 | conditions | string | Y | 筛选搜索<br>例子: search <br>允许为空: False <br> |
 | extend | json |  | 自定义<br>例子: xxx <br>允许为空: False <br> |
 | logic | string |  | 逻辑字段<br>例子: or <br>允许为空: False <br> |
+| maskFields | string |  | 脱敏字段, 多个字段用,号分隔<br>例子: message,host <br>允许为空: False <br>允许为空字符串: True <br> |
+| reExprs | array |  | 正则表达式<br>例子: [{'name': 'jjj', 'reExpr': 'ss', 'enable': 0}, {'name': 'lll', 'reExpr': 'ss', 'enable': 1}] <br>允许为空: False <br> |
 
 ## 参数补充说明
 
 数据说明.*
 
-- 角色授权访问说明
+*1. 角色授权访问说明*
 1. 指定角色只能查询 指定查询范围内的数据
-2. 如果用户存在多个角色的情况下, 该用户有角色不在该规则角色中, 则该日志数据访问规则不会对该用户生效, 即不限制日志查询范围
+2. 如果用户存在多个角色的情况下, 该用户有角色不在该规则角色中, 则该条 数据访问规则不会对该用户生效, 即不限制查询范围
 3. 一个空间中的多条日志数据访问规则之间的逻辑为 or 关系
 
-- 请求参数说明
+*2. 请求参数说明*
 
-| 参数名           | type | 说明                                                 |
-| ---------------- | ---- | ---------------------------------------------------- |
-| name       | string | 名称 |
-| desc       | string | 描述 |
-| indexes       | array | 索引uuid列表 |
-| roleUUIDS             | array | 角色UUID列表                                                 |
-| conditions       | string  |  dql删选格式条件     |
-| extend |  dict  |  N | 前端自定义扩展字段 |
-| logic  |  string  |  N | 用于前端展示逻辑字段 |
+|  参数名                |   type  | 必选  |          说明          |
+|-----------------------|----------|----|------------------------|
+|name             |string|Y| 名称|
+|desc   |String     |N| 描述|
+|indexes |array     |Y| 日志索引信息, 如果是非本空间(必须经过空间授权)的索引授权, 使用 空间UUID:索引UUID, 例: ["wksp_111:lgim_222", "wksp_333:lgim_444"]|
+|roleUUIDs         |array     |Y| 角色UUID 列表|
+|conditions         |string     |N| 实际使用的数据范围的过滤条件, 例: "`device` IN ['PC'] and `session_has_replay` IN ['1']"|
+|extend         |dict     |Y| 扩展字段, 存放 conditions 的结构内容, 用于前端页面显示, 例: {"device": [ "PC"], "session_has_replay": [1]}|
+|logic         |string     |N| 逻辑字段, and/or, 用于 连接 过滤条件|
+|maskFields         |string     |N| 脱敏字段, 多个字段用,号分隔|
+|reExprs         |array     |N| 正则表达式, 例: [{"name":"1111","enable":true,"reExpr":"tkn_[\\da-z]*"},{"name":"liuyltest","enable":true,"reExpr":"test"}]|
+
+--------------
 
 
 
@@ -59,7 +65,7 @@ curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_xxx/modify' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---data-raw $'{"name": "test_modify_name", "desc": "", "roleUUIDs":["role_xxx"],"indexes":["default"],"extend":{"container_id":["xxx"]},"logic":"and","conditions":"`container_id` IN [\'xxxx\']"}' \
+--data-raw $'{"name":"temp_test","desc":"test openapi modify","roleUUIDs":["general"],"indexes":["wksp_4b57c7bab38e4a2d9630f675dc20015d:lgim_f2a50518520b467a920103a19133fa8b"],"extend":{"source":["http_dial_testing"]},"maskFields":"host,message","logic":"and","conditions":"`source` IN [\'http_dial_testing\']","reExprs":[{"name":"对qq邮箱进行脱敏","enable":true,"reExpr":"[a-zA-Z0-9_]+@qq.com"}]}' \
 --compressed
 ```
 
@@ -71,9 +77,9 @@ curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_xxx/modify' \
 {
     "code": 200,
     "content": {
-        "conditions": "`container_id` IN ['eefdb964e3eb5e822f12e5663449bebb37738daed0841c6c9cec44f11d073f05']",
-        "createAt": 1724400669,
-        "creator": "wsak_f2ed3d24cfa641e891b0975b3338ecdb",
+        "conditions": "`source` IN ['http_dial_testing']",
+        "createAt": 1730529443,
+        "creator": "wsak_cd83804176e24ac18a8a683260ab0746",
         "declaration": {
             "asd": "aa,bb,cc,1,True",
             "asdasd": "dawdawd",
@@ -83,33 +89,41 @@ curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_xxx/modify' \
             "organization": "64fe7b4062f74d0007b46676"
         },
         "deleteAt": -1,
-        "desc": "",
+        "desc": "test openapi modify",
         "extend": {
-            "container_id": [
-                "eefdb964e3eb5e822f12e5663449bebb37738daed0841c6c9cec44f11d073f05"
+            "source": [
+                "http_dial_testing"
             ]
         },
-        "id": 254,
+        "id": 348,
         "indexes": [
-            "default"
+            "wksp_4b57c7bab38e4a2d9630f675dc20015d:lgim_f2a50518520b467a920103a19133fa8b"
         ],
         "logic": "and",
-        "maskFields": "",
-        "name": "test_modify_name",
-        "reExprs": [],
-        "roleUUIDs": [
-            "role_44dbdc6ad4b848f0a570072c10d9e29a"
+        "maskFields": "host,message",
+        "name": "temp_test",
+        "reExprs": [
+            {
+                "enable": true,
+                "name": "对qq邮箱进行脱敏",
+                "reExpr": "[a-zA-Z0-9_]+@qq.com"
+            }
         ],
+        "roleUUIDs": [
+            "general"
+        ],
+        "sources": [],
         "status": 0,
-        "updateAt": 1724400877.2740228,
-        "updator": "wsak_f2ed3d24cfa641e891b0975b3338ecdb",
-        "uuid": "lqrl_8213238cd36a44bfb6cbc04734b4104c",
+        "type": "logging",
+        "updateAt": 1730529850.881453,
+        "updator": "wsak_cd83804176e24ac18a8a683260ab0746",
+        "uuid": "lqrl_9f1de1d1440f4af5917a534299d0ad09",
         "workspaceUUID": "wksp_4b57c7bab38e4a2d9630f675dc20015d"
     },
     "errorCode": "",
     "message": "",
     "success": true,
-    "traceId": "TRACE-B62DB077-683D-4DEA-8B1E-E4D13CF663D1"
+    "traceId": "TRACE-BA54F258-15AD-4752-88C9-CA2B96070625"
 } 
 ```
 

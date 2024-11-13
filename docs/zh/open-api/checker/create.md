@@ -30,6 +30,10 @@
 | jsonScript.recoverMessage | string |  | 输出恢复事件信息模板<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
 | jsonScript.noDataTitle | string |  | 输出无数据事件标题模板<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许为空字符串: True <br> |
 | jsonScript.noDataMessage | string |  | 输出无数据事件信息模板<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
+| jsonScript.openNotificationMessage | boolean |  | 是否开启, 事件 通知内容, 默认 不开启(使用事件内容作为通知内容)<br>例子: False <br>允许为空: False <br> |
+| jsonScript.notificationMessage | string |  | 事件 通知内容<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许为空字符串: True <br> |
+| jsonScript.openNoDataNotificationMessage | boolean |  | 是否开启, 数据断档事件 通知内容, 默认 不开启(使用数据断档事件内容作为通知内容)<br>例子: False <br>允许为空: False <br> |
+| jsonScript.noDataNotificationMessage | string |  | 数据断档事件 通知内容<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
 | jsonScript.noDataRecoverTitle | string |  | 输出无数据恢复上传事件标题模板<br>例子: 监视器: `{{monitor_name}}` 检查器:`{{monitor_checker_name}}` 触发值:`{{M1}}` <br>允许为空: False <br>允许为空字符串: True <br> |
 | jsonScript.noDataRecoverMessage | string |  | 输出无数据恢复上传事件信息模板<br>例子: status: {{status}}, title:`{{title}}` <br>允许为空: False <br>允许为空字符串: True <br> |
 | jsonScript.every | string |  | 检查频率<br>例子: 1m <br>允许为空: False <br> |
@@ -141,6 +145,10 @@
 | noDataMessage |  string  |  N | 输出无数据事件信息模板     |
 | noDataRecoverTitle |  string  |  N | 输出无数据恢复上传事件标题模板 |
 | noDataRecoverMessage |  string  |  N | 输出无数据恢复上传事件信息模板 |
+| openNotificationMessage |  boolean  |  N | 是否开启, 事件 通知内容 |
+| notificationMessage |  string  |  N | 事件 通知内容 |
+| openNoDataNotificationMessage |  string  |  N | 是否开启, 数据断档事件 通知内容 |
+| noDataNotificationMessage |  string  |  N | 数据断档事件 通知内容 |
 | name          |  string  |  Y | 规则名     |
 | type          |  string  |  Y | 规则类型   |
 | every         |  string  |  Y | 检查频率, 单位是 (1m/1h/1d)  |
@@ -284,6 +292,20 @@ permissionSet 字段示例:
   ["wsAdmin", "general", "group_yyyy", "acnt_xxxx"]
 
 ```
+
+--------------
+
+**13. 关联异常追踪 配置说明**
+|  参数名        |   type   |          说明          |
+|---------------|----------|------------------------|
+| extend.isNeedCreateIssue   | boolean | 是否关联异常追踪, 默认不关联 |
+| extend.issueDfStatus       | array   | 可选4中类型(critical, error, warning, nodata),  issueDfStatus 存在时: 监控器产生的事件 df_status 在 issueDfStatus 中 才会创建 Issue ,issueDfStatus不存在, 都会创建Issue |
+| extend.issueLevelUUID       | string   | issue 等级UUID      |
+| extend.manager       | array   | 创建Issue 时的负责人信息(邮箱/空间成员/团队) , 示列: ["xx@qq.com","acnt_yyyy", "group_"]   |
+| extend.needRecoverIssue       | boolean   | 事件恢复是否需要 同步关闭 issue, 默认 false |
+| jsonScript.channels       | string   | isNeedCreateIssue 为true 时,该字段必传.  issue 频道信息, 示列: ["chan_xxx", "chan_yyy"]   |
+
+--------------
 
 
 

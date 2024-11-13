@@ -3,6 +3,18 @@
 ---
 ???- quote "更新日志"
 
+    **0.3.6**
+    ```
+    * 适配 iOS SDK 1.5.5
+      * 修复 `FTResourceMetricsModel` 中数组越界导致的崩溃问题
+    ```
+    **0.3.5**
+    ```
+    * 支持采集 Native Error、ANR、Freeze
+    * 修改 react-native 自动采集 error 的默认错误类型
+    * 对拥有 `onPress` 属性的组件，新增支持在开启 `enableAutoTrackUserAction` 后通过添加自定义属性 
+      `ft-enable-track` 定义是否采集该组件的点击事件、通过 `ft-extra-property` 添加 Action 额外属性
+    ```
     **0.3.4**
     ```
     * 支持全局动态添加 globalContext 属性
@@ -180,7 +192,7 @@ await FTReactNativeRUM.setConfig(rumConfig);
 | androidAppId | string | 是 | app_id，应用访问监测控制台申请 |
 | iOSAppId | string | 是 | app_id，应用访问监测控制台申请 |
 | sampleRate | number | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据|
-| enableAutoTrackUserAction | boolean | 否 | 是否自动采集 `React Native` 控件点击事件，开启后可配合  `accessibilityLabel`设置actionName |
+| enableAutoTrackUserAction | boolean | 否 | 是否自动采集 `React Native` 组件点击事件，开启后可配合  `accessibilityLabel`设置actionName，更多自定义操作请参考[此处](#rum-action) |
 | enableAutoTrackError | boolean | 否 | 是否自动采集 `React Native` Error |
 | enableNativeUserAction | boolean | 否 | 是否进行 `Native Action` 追踪，原生 `Button` 点击事件，应用启动事件，默认为 `false` |
 | enableNativeUserView | boolean | 否 | 是否进行 `Native View` 自动追踪，纯 `React Native` 应用建议关闭，，默认为 `false` |
@@ -190,6 +202,9 @@ await FTReactNativeRUM.setConfig(rumConfig);
 | detectFrequency | enum DetectFrequency | 否 | 视图的性能监控采样周期 |
 | enableResourceHostIP | boolean | 否 | 是否采集请求目标域名地址的 IP。作用域：只影响 `enableNativeUserResource`  为 true 的默认采集。iOS：`>= iOS 13` 下支持。Android：单个 Okhttp 对相同域名存在 IP 缓存机制，相同 `OkhttpClient`，在连接服务端 IP 不发生变化的前提下，只会生成一次。 |
 | globalContext | object | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](../android/app-access.md#key-conflict) |
+| enableTrackNativeCrash | boolean | 否 | 是否采集 `Native Error` |
+| enableTrackNativeAppANR | boolean | 否 | 是否采集 `Native ANR`                                        |
+| enableTrackNativeFreeze | boolean | 否 | 是否采集 `Native Freeze` |
 
 ### Log 配置 {#log-config}
 
@@ -372,7 +387,7 @@ export default function Layout() {
 }
 ```
 
-### Action
+### Action {#rum-action}
 
 在 SDK 初始化 [RUM 配置](#rum-config) 时配置 `enableAutoTrackUserAction` 和 `enableNativeUserAction`开启自动采集，也可通过下面方法进行手动添加。
 
@@ -380,6 +395,49 @@ export default function Layout() {
 import {FTReactNativeRUM} from '@cloudcare/react-native-mobile';
 
 FTReactNativeRUM.startAction('actionName','actionType');
+```
+
+**更多自定义采集操作**
+
+开启 `enableAutoTrackUserAction` 后，SDK 会自动采集拥有 `onPress` 属性的组件的点击操作。若您希望在自动追踪的基础上执行一些自定义操作，SDK 支持如下操作：
+
+* 自定义某一组件点击事件的 `actionName`
+
+  通过 `accessibilityLabel` 属性进行设置
+
+```typescript
+  <Button title="Custom Action Name"
+          accessibilityLabel="custom_action_name"
+          onPress={()=>{
+                console.log("btn click")
+          }}
+   />
+```
+
+* 不采集某一组件的点击事件
+
+  可以通过添加 `ft-enable-track` 自定义参数进行设置，设置值为 `false ` 
+
+```typescript
+  <Button title="Action Click" 
+          ft-enable-track="false"
+          onPress={()=>{
+                console.log('btn click');
+          }}
+  />
+```
+
+* 对某一组件的点击事件添加额外属性
+
+  可以通过添加 `ft-extra-property` 自定义参数进行设置，要求**值为 Json 字符串**
+
+```typescript
+  <Button title="Action 添加额外属性"
+          ft-extra-property='{"e_name": "John Doe", "e_age": 30, "e_city": "New York"}'
+          onPress={()=>{
+                 console.log("btn click")
+          }}
+  />
 ```
 
 ### Error

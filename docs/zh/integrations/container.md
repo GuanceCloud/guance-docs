@@ -1,5 +1,5 @@
 ---
-title: '容器基础采集'
+title: 'Kubernetes'
 summary: '采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到观测云。'
 __int_icon:    'icon/kubernetes/'  
 tags:
@@ -91,11 +91,15 @@ monitor:
       ## Set true to enable election for k8s metric collection
       election = true
     
+      logging_enable_multiline = true
       logging_auto_multiline_detection = true
       logging_auto_multiline_extra_patterns = []
     
       ## Removes ANSI escape codes from text strings.
       logging_remove_ansi_escape_codes = false
+    
+      ## Whether to collect logs from the begin of the file.
+      logging_file_from_beginning = false
     
       ## Search logging interval, default "60s"
       #logging_search_interval = ""
@@ -397,6 +401,26 @@ monitor:
         **字段类型**: Boolean
     
         **采集器配置字段**: `logging_remove_ansi_escape_codes`
+    
+        **默认值**: false
+    
+    - **ENV_INPUT_CONTAINER_LOGGING_FILE_FROM_BEGINNING_THRESHOLD_SIZE**
+    
+        根据文件 size 决定是否 from_beginning，如果发现该文件时，文件 size 小于这个值，就使用 from_beginning 从头部开始采集
+    
+        **字段类型**: Int
+    
+        **采集器配置字段**: `logging_file_from_beginning_threshold_size`
+    
+        **默认值**: 20,000,000
+    
+    - **ENV_INPUT_CONTAINER_LOGGING_FILE_FROM_BEGINNING**
+    
+        是否从文件首部采集日志
+    
+        **字段类型**: Boolean
+    
+        **采集器配置字段**: `logging_file_from_beginning`
     
         **默认值**: false
     

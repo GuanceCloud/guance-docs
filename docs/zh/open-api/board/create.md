@@ -23,6 +23,9 @@
 | tagNames | array |  | 关联的 tag 列表<br>允许为空: False <br> |
 | templateInfo | json |  | 仪表板模板数据<br>例子: {} <br>允许为空: False <br>允许为空字符串: False <br> |
 | specifyDashboardUUID | string |  | 指定新建仪表板的uuid, 必须以`dsbd_custom_`为前缀后接 32 位长度的小写字母数字<br>例子: dsbd_custom_xxxx32 <br>允许为空: False <br>允许为空字符串: False <br>$matchRegExp: ^dsbd_custom_[a-z0-9]{32}$ <br> |
+| isPublic | int |  | 是否公开展示, 默认为1<br>例子: 1 <br>允许为空: False <br> |
+| openPermissionSet | boolean |  | 公开展示情况下, 开启 自定义权限配置, (默认 false:不开启), 开启后 该规则的操作权限根据 permissionSet<br>允许为空: False <br> |
+| permissionSet | array |  | 操作权限配置, 可配置(角色(除拥有者), 成员uuid, 团队uuid)<br>例子: ['wsAdmin', 'acnt_xxxx', 'group_yyyy'] <br>允许为空: False <br> |
 
 ## 参数补充说明
 
