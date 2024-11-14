@@ -106,6 +106,17 @@ icon: zy/integrations
   			margin-left: 10px;
   			color: #222;
   		}
+         .fth-integration-list-content .fth-integration-list-item .integration-list-item-left .fth-integration-desc {
+            color: #666;
+            font-size: 12px;
+            max-width: 184px;
+            line-height: 20px;
+            height: 20px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-left: 10px;
+        }
   		.fth-integration-list-content .fth-integration-list-card:hover .integration-list-item-right {
   			display: inline-block;
   		}
@@ -149,7 +160,10 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<span class="fth-integration-name">{{$idoc.Name}}</span>
+  						<div>
+                            <span class="fth-integration-name">{{$idoc.Name}}</span>
+                            <span title="{{$idoc.Summary}}" class="fth-integration-desc">{{$idoc.Summary}}</span>
+                        </div>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
