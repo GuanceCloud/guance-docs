@@ -34,7 +34,7 @@ icon: zy/release-notes
 -->
 #### 付费计划与账单
 
-1. [高消费预警](../billing/index.md#billing)优化：高消费预警新增总消费预警功能，支持针对工作空间内所有计费项设置预警金额。
+1. [高消费预警](../billing/index.md#billing)优化：高消费预警新增总消费预警功能，支持针对工作空间总消费设置预警金额。
 
 #### 应用性能监测
 
@@ -65,12 +65,6 @@ icon: zy/release-notes
 1. 柱状图新增 Y 轴上下限设置，可以更精确地控制图表的显示效果；
 2. 在进行跨工作空间查询时，支持选择“全部空间”，以便用户一次性获取全部信息。
 
-#### 指标
-
-
-指标管理优化：针对指标标签值的分页逻辑进行了优化，可以更高效地管理和检索大量的标签数据。
-
-
 
 ### 部署版更新 {#deployment1113}
 
@@ -90,9 +84,9 @@ icon: zy/release-notes
 - 优化 [Node Exporter](../integrations/node-exporter.md) 视图、文档；
 - 优化 [EMQX](../integrations/emqx.md) 视图、文档，添加监控器；
 - 优化 [Kubernates](../integrations/container.md) 视图；
-- 优化 [sqlserver](../integrations/sqlserver.md) 视图和监控器；
-- 优化 [redis](../integrations/redis.md) 视图和监控器；
-- 优化 [kafka](../integrations/kafka.md) 视图和监控器。
+- 优化 [SQLServer](../integrations/sqlserver.md) 视图和监控器；
+- 优化 [Redis](../integrations/redis.md) 视图和监控器；
+- 优化 [Kafka](../integrations/kafka.md) 视图和监控器。
 
 ### Bug 修复 {#bug1113}
 
