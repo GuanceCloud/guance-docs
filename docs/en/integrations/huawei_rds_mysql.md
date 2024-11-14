@@ -2,7 +2,7 @@
 title: 'HUAWEI RDS MYSQL'
 tags: 
   - Huawei Cloud
-summary: 'Use the「Guanc Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance.'
+summary: 'Collect Huawei Cloud RDS MYSQL metric data'
 __int_icon: 'icon/huawei_rds_mysql'
 dashboard:
 
@@ -15,13 +15,7 @@ monitor:
 
 ---
 
-
-<!-- markdownlint-disable MD025 -->
-# HUAWEI CLOUD RDS MYSQL
-<!-- markdownlint-enable -->
-
-Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance.
-
+Collect Huawei Cloud RDS MYSQL metric data.
 
 ## Config {#config}
 
@@ -31,33 +25,34 @@ Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All
 
 If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-
-
 ### Installation script
 
 > Tip: Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of  HUAWEI CLOUD RDS cloud resources, we install the corresponding collection script: 「Guance Integration（HUAWEI CLOUD-RDSCollect）」(ID：`guance_huaweicloud_rds`)
+To synchronize the monitoring data of  HUAWEI CLOUD RDS cloud resources, we install the corresponding collection script:
+
+- **guance_huaweicloud_rds**: Collect monitoring indicator data
+- **guance_huaweicloud_rds_slowlog_detail**: Collect slow query detailed log data
+- **guance_huaweicloud_rds_slowlog**: Collect slow query statistical log data
 
 Click  [Install] and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 
 Tap [Deploy startup Script],The system automatically creates Startup script sets,And automatically configure the corresponding startup script.
 
-After the script is installed,Find the script in「Development」in Func「Guance Integration（HUAWEI CLOUD-RDSCollect）」,Expand to modify this script,find collector_configsandmonitor_configsEdit the content inregion_projects,Change the locale and Project ID to the actual locale and Project ID,Click Save Publish again.
+After the script is installed,Find the script in「Development」in Func「Guance Integration（HUAWEI CLOUD-RDS Collect）」/「Guance Integration（HUAWEI CLOUD-RDS slow query detailed log collection）」/「Guance Integration（Huawei Cloud RDS Slow Query Statistics Log Collection）」,Expand to modify this script,find collector_configs and monitor_configs. Edit the content in region_projects,Change the locale and Project ID to the actual locale and Project ID, Click Save Publish again.
 
-In addition, the corresponding automatic trigger configuration is displayed in「Management / Crontab Config」. Tap [Run],It can be executed immediately once,without waiting for a periodic time.After a while,you can view task execution records and corresponding logs.
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
-
+In addition, in「Management / Automatic Trigger Configuration」 you can see the corresponding automatic trigger configuration. Click 【Execute】 to run it immediately, without waiting for the scheduled time. After a short moment, you can check the execution task records and corresponding logs.
 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist.
 2. On Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists.
 3. On Guance platform, press 「Metrics」 to check whether monitoring data exists.
+4. On Guance platform, check the 「Logs」 to see if there is corresponding slow log data
 
 ## Metric {#metric}
-Configure HUAWEI CLOUD - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/usermanual-rds/rds_06_0001.html){:target="_blank"}
+
+Configure HUAWEI CLOUD RDS MYSQL metric data. You can collect more metrics by configuring them [HUAWEI CLOUD RDS MYSQL Metrics Details](https://support.huaweicloud.com/usermanual-rds/rds_06_0001.html){:target="_blank"}
 
 ### Instance monitoring metric
 

@@ -2,7 +2,7 @@
 title: 'HUAWEI DCS'
 tags: 
   - Huawei Cloud
-summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Collect Huawei Cloud DCS metric data'
 __int_icon: 'icon/huawei_dcs'
 dashboard:
 
@@ -15,13 +15,7 @@ monitor:
 
 ---
 
-
-<!-- markdownlint-disable MD025 -->
-# HUAWEI CLOUD DCS
-<!-- markdownlint-enable -->
-
-Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud.
-
+Collect Huawei Cloud DCS metric data.
 
 ## Config {#config}
 
@@ -31,31 +25,33 @@ Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All
 
 If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-
-
 ### Installation script
 
 > Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,,You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of  HUAWEI CLOUD DCS cloud resources, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD-DCSCollect）」(ID：`guance_huaweicloud_dcs`)
+To synchronize the monitoring data of  HUAWEI CLOUD DCS cloud resources, we install the corresponding collection script：
 
-After clicking "Install," enter the corresponding parameters: HUAWEI CLOUD AK (Access Key) and HUAWEI CLOUD account name.
+- **guance_huaweicloud_dcs**: Collect Huawei Cloud DCS indicator data
+- **guance_huaweicloud_dcs_slowlog**：Collect slow log data from Huawei Cloud DCS
 
-Click "Deploy and Start Script," and the system will automatically create a `Startup` script set and configure the corresponding startup script.
+Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
 
-In addition, in "Management / Automatic Trigger Configuration," you can see the corresponding automatic trigger configuration. Click "Execute" to run it immediately, without waiting for the scheduled time. After a short moment, you can check the execution task records and corresponding logs.
+Tap【Deploy startup Script】, the system automatically creates `Startup` script sets, and automatically configure the corresponding startup script.
 
-We have collected some default configurations. For details, please refer to the "Metrics" section: [Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}.
+After installing the script, find the script 「Guance Cloud Integration (Huawei Cloud DCS data collection)」/「Guance Cloud Integration (Huawei Cloud DCS slow logs collection)」 in the 「Development」 section of Func. Expand and modify the script, find collector_configs and monitor_configs, and edit the content in region_projects below. Change the region and Project ID to the actual region and Project ID, and then click save and publish.
 
+In addition, in「Management / Automatic Trigger Configuration」 you can see the corresponding automatic trigger configuration. Click 【Execute】 to run it immediately, without waiting for the scheduled time. After a short moment, you can check the execution task records and corresponding logs.
 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
 2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
 3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+4. On the Guance platform, check if there is corresponding log data in the 「logs」 section
 
 ## Metric {#metric}
-Configure HUAWEI CLOUD - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/usermanual-dcs/dcs-ug-0713011.html){:target="_blank"}
+
+Configure HUAWEI CLOUD DCS metric. You can collect more metrics by configuring them [HUAWEI CLOUD DCS Metrics Details](https://support.huaweicloud.com/usermanual-dcs/dcs-ug-0713011.html){:target="_blank"}
 
 ### Redis 3.0 Instance Monitoring Metrics
 

@@ -1,5 +1,34 @@
 # 版本历史
 
+## 1.97.180（2024 年 11 月 08 日） {#1.97.180}
+
+pubrepo.guance.com/dataflux/1.97.180:launcher-972c327-1731042264
+
+### 离线镜像包下载
+
+- AMD64 架构下载: https://static.guance.com/dataflux/package/guance-amd64-1.97.180.tar.gz
+    - MD5: `0a6a2bf00fbef5fb29fd2b6bbf544880`
+
+- ARM64 架构下载: https://static.guance.com/dataflux/package/guance-arm64-1.97.180.tar.gz
+    - MD5: `cf961aa69c6e6d1635893b9813a7216b`
+
+### 功能更新 {#feature1106}
+
+#### 监控
+
+告警策略新增根据[成员范围](../monitoring/alert-setting.md#member)定义通知规则，帮助用户更好的管理告警通知和问题处理边界。
+
+#### 场景
+
+[Rollup 函数](../scene/visual-chart/chart-query.md#rollup)仅适用于指标数据查询，在图表简单模式下，对其他数据类型的查询选择将做下线处理。
+
+
+### Bug 修复 {#bug1106}
+
+1. 解决了基础设施蜂窝图不显示具体的使用率的问题。
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
 ## 1.97.179（2024 年 10 月 30 日） {#1.97.179}
 
 pubrepo.guance.com/dataflux/1.97.179:launcher-743e11c-1730431656
