@@ -90,11 +90,23 @@ Guance has the ability of full stack data collection, and now supports about {{.
   			display: flex;
   			align-items: center;
   		}
+        .fth-integration-list-content .fth-integration-list-item .integration-list-item-left .glightbox {
+            flex: 1;
+        }
   		.fth-integration-list-content .fth-integration-list-item .integration-list-item-left img {
   			width: 32px;
   			height: 32px;
   			border-style: none;
   		}
+        .fth-integration-list-content .fth-integration-list-item .integration-list-item-left .fth-integration-mask-image {
+            position: absolute;
+            width: 32px;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+            background-color: transparent;
+        }
   		.fth-integration-list-content .fth-integration-list-item .integration-list-item-left .fth-integration-name {
   			max-width: 184px;
   			font-size: 14px;
@@ -111,12 +123,15 @@ Guance has the ability of full stack data collection, and now supports about {{.
             color: #666;
             font-size: 12px;
             max-width: 184px;
-            line-height: 20px;
-            height: 20px;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
+            line-height: 14px;
             margin-left: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 2.4em;
+            line-height: 1.2em;
         }
   		.fth-integration-list-content .fth-integration-list-card:hover .integration-list-item-right {
   			display: inline-block;
@@ -162,9 +177,10 @@ Guance has the ability of full stack data collection, and now supports about {{.
 									alt=""
   						/>
   						<div>
-                            <span class="fth-integration-name">{{$idoc.Name}}</span>
-                            <span title="{{$idoc.Summary}}" class="fth-integration-desc">{{$idoc.Summary}}</span>
+                            <div class="fth-integration-name">{{$idoc.Name}}</div>
+                            <div title="{{$idoc.Summary}}" class="fth-integration-desc">{{$idoc.Summary}}</div>
                         </div>
+                        <div class="fth-integration-mask-image"></div>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
