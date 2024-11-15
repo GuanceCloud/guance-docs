@@ -6,7 +6,6 @@ icon: zy/integrations
 
 ---
 
-
 <!-- markdownlint-disable MD046 MD037 MD009 MD010 -->
 <html lang="en">
   <div>
@@ -113,7 +112,7 @@ icon: zy/integrations
   		}
   		.fth-integration-list-content .fth-integration-list-item .integration-list-item-left .fth-integration-name {
   			font-size: 14px;
-  			font-weight: 500;
+  			font-weight: 600;
   			line-height: 20px;
   			height: 20px;
   			text-overflow: ellipsis;
@@ -123,7 +122,7 @@ icon: zy/integrations
   			color: #222;
   		}
          .fth-integration-list-content .fth-integration-list-item .integration-list-item-left .fth-integration-desc {
-            margin-top:2px
+            margin-top:2px;
             color: #666;
             font-size: 12px;
             margin-left: 10px;

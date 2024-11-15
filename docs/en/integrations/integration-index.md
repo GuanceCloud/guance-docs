@@ -114,7 +114,7 @@ Guance has the ability of full stack data collection, and now supports about 290
   		}
   		.fth-integration-list-content .fth-integration-list-item .integration-list-item-left .fth-integration-name {
   			font-size: 14px;
-  			font-weight: 500;
+  			font-weight: 600;
   			line-height: 20px;
   			height: 20px;
   			text-overflow: ellipsis;
@@ -124,7 +124,7 @@ Guance has the ability of full stack data collection, and now supports about 290
   			color: #222;
   		}
          .fth-integration-list-content .fth-integration-list-item .integration-list-item-left .fth-integration-desc {
-            margin-top:2px
+            margin-top:2px;
             color: #666;
             font-size: 12px;
             margin-left: 10px;
