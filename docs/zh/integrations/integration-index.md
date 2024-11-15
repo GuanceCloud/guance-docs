@@ -123,6 +123,7 @@ icon: zy/integrations
   			color: #222;
   		}
          .fth-integration-list-content .fth-integration-list-item .integration-list-item-left .fth-integration-desc {
+            margin-top:2px
             color: #666;
             font-size: 12px;
             margin-left: 10px;
@@ -131,8 +132,8 @@ icon: zy/integrations
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-height: 2.4em;
-            line-height: 1.2em;
+            max-height: 2.8em;
+            line-height: 1.4em;
         }
   		.fth-integration-list-content .fth-integration-list-card:hover .integration-list-item-right {
   			display: inline-block;
