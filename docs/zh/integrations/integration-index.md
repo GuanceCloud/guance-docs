@@ -91,10 +91,11 @@ icon: zy/integrations
             position: relative;
   		}
         .fth-integration-list-content .fth-integration-list-item .integration-list-item-left .glightbox {
-            flex: 1;
+           display: flex;
         }
   		.fth-integration-list-content .fth-integration-list-item .integration-list-item-left img {
   			width: 32px;
+  			min-width: 32px;
   			height: 32px;
   			border-style: none;
   		}
@@ -107,8 +108,10 @@ icon: zy/integrations
             z-index: 1;
             background-color: transparent;
         }
+        .fth-integration-list-content .fth-integration-list-item .integration-list-item-left .fth-integration-description {
+  			padding-right:10px
+  		}
   		.fth-integration-list-content .fth-integration-list-item .integration-list-item-left .fth-integration-name {
-  			max-width: 184px;
   			font-size: 14px;
   			font-weight: 500;
   			line-height: 20px;
@@ -122,8 +125,6 @@ icon: zy/integrations
          .fth-integration-list-content .fth-integration-list-item .integration-list-item-left .fth-integration-desc {
             color: #666;
             font-size: 12px;
-            max-width: 184px;
-            line-height: 14px;
             margin-left: 10px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -176,7 +177,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Active Directory</div>
                             <div title="采集 Active Directory 相关指标信息" class="fth-integration-desc">采集 Active Directory 相关指标信息</div>
                         </div>
@@ -206,7 +207,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Aerospike</div>
                             <div title="采集 Aerospike 相关指标信息" class="fth-integration-desc">采集 Aerospike 相关指标信息</div>
                         </div>
@@ -236,7 +237,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 AnalyticDB PostgreSQL</div>
                             <div title="阿里云 AnalyticDB PostgreSQL 指标展示，包括cpu、内存、磁盘、协调节点、实例查询等。" class="fth-integration-desc">阿里云 AnalyticDB PostgreSQL 指标展示，包括cpu、内存、磁盘、协调节点、实例查询等。</div>
                         </div>
@@ -266,7 +267,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 CDN</div>
                             <div title="阿里云 CDN 性能指标展示，包括每秒访问次数、下行流量、边缘带宽、响应时间、回源带宽、状态码等。" class="fth-integration-desc">阿里云 CDN 性能指标展示，包括每秒访问次数、下行流量、边缘带宽、响应时间、回源带宽、状态码等。</div>
                         </div>
@@ -296,7 +297,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 ClickHouse 社区兼容版</div>
                             <div title="阿里云 ClickHouse 指标展示，包括服务状态、日志流量、操作次数、总体 QPS 等。" class="fth-integration-desc">阿里云 ClickHouse 指标展示，包括服务状态、日志流量、操作次数、总体 QPS 等。</div>
                         </div>
@@ -326,7 +327,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 ECS</div>
                             <div title="阿里云ECS的展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS，这些指标反映了ECS实例的计算、内存、网络和存储性能表现。" class="fth-integration-desc">阿里云ECS的展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS，这些指标反映了ECS实例的计算、内存、网络和存储性能表现。</div>
                         </div>
@@ -356,7 +357,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 EDAS</div>
                             <div title="" class="fth-integration-desc"></div>
                         </div>
@@ -386,7 +387,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 EIP</div>
                             <div title="阿里云 EIP 指标展示，包括网络带宽、网络数据包、限速丢包率、带宽利用率等。" class="fth-integration-desc">阿里云 EIP 指标展示，包括网络带宽、网络数据包、限速丢包率、带宽利用率等。</div>
                         </div>
@@ -416,7 +417,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 ElasticSearch</div>
                             <div title="阿里云 ElasticSearch 指标展示，包括集群状态、索引 QPS、 节点 CPU/内存/磁盘使用率等。" class="fth-integration-desc">阿里云 ElasticSearch 指标展示，包括集群状态、索引 QPS、 节点 CPU/内存/磁盘使用率等。</div>
                         </div>
@@ -446,7 +447,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 KafKa</div>
                             <div title="阿里云 KafKa 包括实例磁盘使用率、实例何topic 消息生产量、消息生产次数、消息消费量、消息消费次数等，这些指标反映了 Kafka 在处理大规模消息传递和实时数据流时的可靠性保证。 " class="fth-integration-desc">阿里云 KafKa 包括实例磁盘使用率、实例何topic 消息生产量、消息生产次数、消息消费量、消息消费次数等，这些指标反映了 Kafka 在处理大规模消息传递和实时数据流时的可靠性保证。 </div>
                         </div>
@@ -476,7 +477,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 Lindorm</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。</div>
                         </div>
@@ -508,7 +509,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 MongoDB</div>
                             <div title="阿里云 MongoDB 副本集指标展示，包括 CPU 使用率、内存使用率、磁盘使用率、数据占用磁盘空间量、日志占用磁盘空间、每秒语句执行次数、请求数、连接数、网络流量、复制延迟、QPS 等。
 阿里云 MongoDB 分片集群指标展示，包括 CPU 使用率、内存使用率、磁盘使用率、数据占用磁盘空间量、日志占用磁盘空间、每秒语句执行次数、请求数、连接数、网络流量、复制延迟、QPS 等。
@@ -542,7 +543,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 NAT</div>
                             <div title="阿里云 NAT 指标展示，包括并发连接数、新建连接数、 VPC 流量、 VPC 数据包等。" class="fth-integration-desc">阿里云 NAT 指标展示，包括并发连接数、新建连接数、 VPC 流量、 VPC 数据包等。</div>
                         </div>
@@ -572,7 +573,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 DDoS 新BGP高防</div>
                             <div title="阿里云DDoS新BGP高防的展示指标包括攻击防护能力、清洗能力、响应时间和可靠性，这些指标反映了新BGP高防服务在应对大规模DDoS攻击时的性能表现和可信度。" class="fth-integration-desc">阿里云DDoS新BGP高防的展示指标包括攻击防护能力、清洗能力、响应时间和可靠性，这些指标反映了新BGP高防服务在应对大规模DDoS攻击时的性能表现和可信度。</div>
                         </div>
@@ -602,7 +603,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 OSS</div>
                             <div title="阿里云 OSS 指标展示，包括请求数、可用性、网络流量、请求占比等。" class="fth-integration-desc">阿里云 OSS 指标展示，包括请求数、可用性、网络流量、请求占比等。</div>
                         </div>
@@ -632,7 +633,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 PolarDB 分布式1.0</div>
                             <div title="阿里云 PolarDB 分布式1.0展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS。" class="fth-integration-desc">阿里云 PolarDB 分布式1.0展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS。</div>
                         </div>
@@ -662,7 +663,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 PolarDB 分布式 2.0</div>
                             <div title="阿里云 PolarDB 分布式 2.0 展示计算层和存储节点的指标，包括CPU利用率、连接使用率、磁盘使用量、磁盘使用率、内存利用率、网络带宽等。" class="fth-integration-desc">阿里云 PolarDB 分布式 2.0 展示计算层和存储节点的指标，包括CPU利用率、连接使用率、磁盘使用量、磁盘使用率、内存利用率、网络带宽等。</div>
                         </div>
@@ -692,7 +693,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 PolarDB MySQL</div>
                             <div title="阿里云 PolarDB MySQL 指标展示，包括 CPU 使用率、内存命中率、网络流量、连接数、QPS、 TPS、 只读节点延迟等。" class="fth-integration-desc">阿里云 PolarDB MySQL 指标展示，包括 CPU 使用率、内存命中率、网络流量、连接数、QPS、 TPS、 只读节点延迟等。</div>
                         </div>
@@ -722,7 +723,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 PolarDB Oracle</div>
                             <div title="阿里云 PolarDB Oracle 指标展示，包括 CPU 使用率、内存使用率、网络流量、连接数、IOPS、 TPS、 数据盘大小等。" class="fth-integration-desc">阿里云 PolarDB Oracle 指标展示，包括 CPU 使用率、内存使用率、网络流量、连接数、IOPS、 TPS、 数据盘大小等。</div>
                         </div>
@@ -752,7 +753,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 PolarDB PostgreSQL</div>
                             <div title="阿里云 PolarDB PostgreSQL 指标展示，包括 CPU 使用率、内存使用率、网络流量、连接数、 IOPS、 TPS、 数据盘大小等。" class="fth-integration-desc">阿里云 PolarDB PostgreSQL 指标展示，包括 CPU 使用率、内存使用率、网络流量、连接数、 IOPS、 TPS、 数据盘大小等。</div>
                         </div>
@@ -782,7 +783,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 RDS MariaDB</div>
                             <div title="阿里云 RDS MariaDB 的展示指标包括响应时间、并发连接数、QPS 和 TPS 等。" class="fth-integration-desc">阿里云 RDS MariaDB 的展示指标包括响应时间、并发连接数、QPS 和 TPS 等。</div>
                         </div>
@@ -812,7 +813,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 RDS MySQL</div>
                             <div title="阿里云 RDS MySQL 指标展示，包括 CPU 使用率、内存使用率、 IOPS、网络带宽、 InnoDB、 TPS、 QPS 等。" class="fth-integration-desc">阿里云 RDS MySQL 指标展示，包括 CPU 使用率、内存使用率、 IOPS、网络带宽、 InnoDB、 TPS、 QPS 等。</div>
                         </div>
@@ -842,7 +843,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 RDS PostgreSQL</div>
                             <div title="阿里云 RDS PostgreSQL 指标展示，包括 CPU 使用率、内存使用率等。" class="fth-integration-desc">阿里云 RDS PostgreSQL 指标展示，包括 CPU 使用率、内存使用率等。</div>
                         </div>
@@ -872,7 +873,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 RDS SQLServer</div>
                             <div title="阿里云 RDS SQLServer 指标展示，包括 CPU 使用率、内存使用率、 IOPS、网络带宽、 InnoDB、 TPS、 QPS 等。" class="fth-integration-desc">阿里云 RDS SQLServer 指标展示，包括 CPU 使用率、内存使用率、 IOPS、网络带宽、 InnoDB、 TPS、 QPS 等。</div>
                         </div>
@@ -902,7 +903,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 Redis 标准版</div>
                             <div title="阿里云 Redis 标准版指标展示，包括 CPU 使用率、内存使用率、磁盘读写、网络流量、每秒访问次数等。" class="fth-integration-desc">阿里云 Redis 标准版指标展示，包括 CPU 使用率、内存使用率、磁盘读写、网络流量、每秒访问次数等。</div>
                         </div>
@@ -932,7 +933,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 Redis 集群版</div>
                             <div title="阿里云 Redis 集群版指标展示，包括 CPU 使用率、内存使用率、磁盘读写、网络流量、每秒访问次数等。" class="fth-integration-desc">阿里云 Redis 集群版指标展示，包括 CPU 使用率、内存使用率、磁盘读写、网络流量、每秒访问次数等。</div>
                         </div>
@@ -962,7 +963,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 RocketMQ4</div>
                             <div title="阿里云 RocketMQ 4.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。" class="fth-integration-desc">阿里云 RocketMQ 4.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。</div>
                         </div>
@@ -992,7 +993,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 RocketMQ5</div>
                             <div title="阿里云 RocketMQ 5.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。" class="fth-integration-desc">阿里云 RocketMQ 5.0 的展示指标包括消息吞吐量、延迟、可靠性和水平扩展能力等。</div>
                         </div>
@@ -1022,7 +1023,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 SAE</div>
                             <div title="采集阿里云 SAE 的指标信息" class="fth-integration-desc">采集阿里云 SAE 的指标信息</div>
                         </div>
@@ -1052,7 +1053,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 站点监控</div>
                             <div title="阿里云 站点监控主要获取站点拨测信息" class="fth-integration-desc">阿里云 站点监控主要获取站点拨测信息</div>
                         </div>
@@ -1082,7 +1083,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 SLB</div>
                             <div title="阿里云 SLB 指标展示，包括后端 ECS 实例状态、端口连接数、 QPS、网络流量、状态码等。" class="fth-integration-desc">阿里云 SLB 指标展示，包括后端 ECS 实例状态、端口连接数、 QPS、网络流量、状态码等。</div>
                         </div>
@@ -1112,7 +1113,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 SLS</div>
                             <div title="阿里云 SLS 指标展示，包括服务状态、日志流量、操作次数、总体 QPS 等。" class="fth-integration-desc">阿里云 SLS 指标展示，包括服务状态、日志流量、操作次数、总体 QPS 等。</div>
                         </div>
@@ -1142,7 +1143,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 Tair 社区版</div>
                             <div title="阿里云 Tair 社区版指标展示，包括 CPU 使用率、内存使用率、代理总QPS、网络流量、命中率等。" class="fth-integration-desc">阿里云 Tair 社区版指标展示，包括 CPU 使用率、内存使用率、代理总QPS、网络流量、命中率等。</div>
                         </div>
@@ -1172,7 +1173,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Apache</div>
                             <div title="Apache 采集器可以从 Apache 服务中采集请求数、连接数等" class="fth-integration-desc">Apache 采集器可以从 Apache 服务中采集请求数、连接数等</div>
                         </div>
@@ -1202,7 +1203,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">APISIX</div>
                             <div title="采集 APISIX 相关指标信息" class="fth-integration-desc">采集 APISIX 相关指标信息</div>
                         </div>
@@ -1232,7 +1233,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Apollo</div>
                             <div title="采集 Apollo 相关指标信息" class="fth-integration-desc">采集 Apollo 相关指标信息</div>
                         </div>
@@ -1262,7 +1263,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">ArgoCD</div>
                             <div title="采集 Argo CD 服务状态和应用状态及日志、链路信息" class="fth-integration-desc">采集 Argo CD 服务状态和应用状态及日志、链路信息</div>
                         </div>
@@ -1292,7 +1293,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AutoMQ</div>
                             <div title="采集 AutoMQ 相关指标信息" class="fth-integration-desc">采集 AutoMQ 相关指标信息</div>
                         </div>
@@ -1322,7 +1323,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS API Gateway</div>
                             <div title="AWS API Gateway的展示指标包括请求响应时间、吞吐量、并发连接数和错误率，这些指标反映了API Gateway在处理API请求和流量管理时的性能表现和可靠性。" class="fth-integration-desc">AWS API Gateway的展示指标包括请求响应时间、吞吐量、并发连接数和错误率，这些指标反映了API Gateway在处理API请求和流量管理时的性能表现和可靠性。</div>
                         </div>
@@ -1352,7 +1353,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Auto Scaling</div>
                             <div title="AWS Auto Scaling，包括实例数、容量单位、暖池等。" class="fth-integration-desc">AWS Auto Scaling，包括实例数、容量单位、暖池等。</div>
                         </div>
@@ -1382,7 +1383,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS CloudFront</div>
                             <div title="AWS CloudFront的核心性能指标包括请求总数、数据传输量、HTTP 错误率、缓存命中率和延迟，这些可以帮助用户评估和优化内容分发网络的性能。" class="fth-integration-desc">AWS CloudFront的核心性能指标包括请求总数、数据传输量、HTTP 错误率、缓存命中率和延迟，这些可以帮助用户评估和优化内容分发网络的性能。</div>
                         </div>
@@ -1412,7 +1413,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS DMS</div>
                             <div title="AWS DMS的展示指标包括数据迁移速度、延迟、数据一致性和迁移成功率，这些指标反映了DMS在进行数据库迁移和复制时的性能表现和可靠性。" class="fth-integration-desc">AWS DMS的展示指标包括数据迁移速度、延迟、数据一致性和迁移成功率，这些指标反映了DMS在进行数据库迁移和复制时的性能表现和可靠性。</div>
                         </div>
@@ -1442,7 +1443,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS DocumentDB</div>
                             <div title="AWS DocumentDB 的展示指标包括读取和写入吞吐量、查询延迟和可扩展性等。" class="fth-integration-desc">AWS DocumentDB 的展示指标包括读取和写入吞吐量、查询延迟和可扩展性等。</div>
                         </div>
@@ -1472,7 +1473,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS DynamoDB</div>
                             <div title="AWS DynamoDB的展示指标包括吞吐量容量单位、延迟、并发连接数和读写吞吐量等，这些指标反映了 DynamoDB 在处理大规模数据存储和访问时的性能表现和可扩展性。" class="fth-integration-desc">AWS DynamoDB的展示指标包括吞吐量容量单位、延迟、并发连接数和读写吞吐量等，这些指标反映了 DynamoDB 在处理大规模数据存储和访问时的性能表现和可扩展性。</div>
                         </div>
@@ -1502,7 +1503,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS DynamoDB DAX</div>
                             <div title="AWS DynamoDB DAX 的展示指标包括节点或集群的 CPU 使用率、在所有网络接口上收到或发出的字节数、数据包的数量等，这些指标反映了 DynamoDB DAX 的运行状态。" class="fth-integration-desc">AWS DynamoDB DAX 的展示指标包括节点或集群的 CPU 使用率、在所有网络接口上收到或发出的字节数、数据包的数量等，这些指标反映了 DynamoDB DAX 的运行状态。</div>
                         </div>
@@ -1532,7 +1533,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS EC2</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -1562,7 +1563,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Amazon EC2 Spot</div>
                             <div title=" Amazon EC2 Spot，包括请求容量池、目标容量池、中止容量等。" class="fth-integration-desc"> Amazon EC2 Spot，包括请求容量池、目标容量池、中止容量等。</div>
                         </div>
@@ -1592,7 +1593,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS ECS</div>
                             <div title="Amazon ECS 功能与 亚马逊云科技 Fargate 无服务器计算引擎集成，使用观测云监控其服务运行态。" class="fth-integration-desc">Amazon ECS 功能与 亚马逊云科技 Fargate 无服务器计算引擎集成，使用观测云监控其服务运行态。</div>
                         </div>
@@ -1622,7 +1623,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS ElastiCache Redis</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -1652,7 +1653,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS ElastiCache Serverless</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -1682,7 +1683,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS ELB</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -1712,7 +1713,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS EMR</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -1742,7 +1743,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS EventBridge</div>
                             <div title="AWS EventBridge 的展示指标包括事件传递延迟、吞吐量、事件规模和可伸缩性，这些指标反映了 EventBridge 在处理大规模事件流和实时数据传递时的性能表现和可靠性。" class="fth-integration-desc">AWS EventBridge 的展示指标包括事件传递延迟、吞吐量、事件规模和可伸缩性，这些指标反映了 EventBridge 在处理大规模事件流和实时数据传递时的性能表现和可靠性。</div>
                         </div>
@@ -1772,7 +1773,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Kinesis</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -1802,7 +1803,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS KinesisAnalytics</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -1832,7 +1833,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Lambda</div>
                             <div title="AWS Lambda的展示指标包括冷启动时间、执行时间、并发执行数和内存使用量，这些指标反映了Lambda函数的响应速度、可扩展性和资源利用情况。" class="fth-integration-desc">AWS Lambda的展示指标包括冷启动时间、执行时间、并发执行数和内存使用量，这些指标反映了Lambda函数的响应速度、可扩展性和资源利用情况。</div>
                         </div>
@@ -1862,7 +1863,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS MediaConvert</div>
                             <div title=" AWS MediaConvert，包括数据传输、视频报错、作业数、填充等。" class="fth-integration-desc"> AWS MediaConvert，包括数据传输、视频报错、作业数、填充等。</div>
                         </div>
@@ -1892,7 +1893,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS MemoryDB</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -1922,7 +1923,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Amazon MQ for RabbitMQ</div>
                             <div title="Amazon MQ 支持行业标准 API 和协议，对消息代理的管理和维护进行管理，并自动为高可用性提供基础设施。" class="fth-integration-desc">Amazon MQ 支持行业标准 API 和协议，对消息代理的管理和维护进行管理，并自动为高可用性提供基础设施。</div>
                         </div>
@@ -1952,7 +1953,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS MSK</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -1982,7 +1983,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Neptune Cluster</div>
                             <div title="AWS Neptune Cluster的展示指标包括冷启动时间、执行时间、并发执行数和内存使用量，这些指标反映了Neptune Cluster函数的响应速度、可扩展性和资源利用情况。" class="fth-integration-desc">AWS Neptune Cluster的展示指标包括冷启动时间、执行时间、并发执行数和内存使用量，这些指标反映了Neptune Cluster函数的响应速度、可扩展性和资源利用情况。</div>
                         </div>
@@ -2012,7 +2013,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS OpenSearch</div>
                             <div title="AWS OpenSearch，包括连接数、请求数、时延、慢查询等。" class="fth-integration-desc">AWS OpenSearch，包括连接数、请求数、时延、慢查询等。</div>
                         </div>
@@ -2042,7 +2043,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS RDS MySQL</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -2072,7 +2073,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Redshift</div>
                             <div title="AWS Redshift的核心性能指标包括查询性能、磁盘空间使用率、CPU利用率、数据库连接数和磁盘 I/O 操作，这些都是评估和优化数据仓库性能的关键指标。" class="fth-integration-desc">AWS Redshift的核心性能指标包括查询性能、磁盘空间使用率、CPU利用率、数据库连接数和磁盘 I/O 操作，这些都是评估和优化数据仓库性能的关键指标。</div>
                         </div>
@@ -2102,7 +2103,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS S3</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -2132,7 +2133,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Simple Queue Service</div>
                             <div title="AWS Simple Queue Service 的展示指标包括队列中最旧的未删除消息的大约存在时间、延迟且无法立即读取的消息数量、处于空中状态的消息的数量、可从队列取回的消息数量等。" class="fth-integration-desc">AWS Simple Queue Service 的展示指标包括队列中最旧的未删除消息的大约存在时间、延迟且无法立即读取的消息数量、处于空中状态的消息的数量、可从队列取回的消息数量等。</div>
                         </div>
@@ -2162,7 +2163,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Timestream</div>
                             <div title="AWS Timestream 的展示指标包括系统错误数（内部服务错误数）、当前 AWS 区域和当前 AWS 帐户的无效请求的总和、成功请求经过的时间和样本数量、存储在内存中的数据量，以及存储在磁存储器中的数据量等。" class="fth-integration-desc">AWS Timestream 的展示指标包括系统错误数（内部服务错误数）、当前 AWS 区域和当前 AWS 帐户的无效请求的总和、成功请求经过的时间和样本数量、存储在内存中的数据量，以及存储在磁存储器中的数据量等。</div>
                         </div>
@@ -2192,7 +2193,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Lambda 扩展</div>
                             <div title="通过 AWS Lambda 扩展采集数据" class="fth-integration-desc">通过 AWS Lambda 扩展采集数据</div>
                         </div>
@@ -2222,7 +2223,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Azure Public Ip Address</div>
                             <div title="采集 Azure Public Ip Address 指标数据" class="fth-integration-desc">采集 Azure Public Ip Address 指标数据</div>
                         </div>
@@ -2252,7 +2253,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Azure SQL Servers</div>
                             <div title="采集 Azure SQL Servers 指标数据" class="fth-integration-desc">采集 Azure SQL Servers 指标数据</div>
                         </div>
@@ -2282,7 +2283,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Azure Virtual Machines</div>
                             <div title="采集 Azure Virtual Machines 指标数据" class="fth-integration-desc">采集 Azure Virtual Machines 指标数据</div>
                         </div>
@@ -2312,7 +2313,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Filebeat</div>
                             <div title="接收 Filebeat 采集的日志数据" class="fth-integration-desc">接收 Filebeat 采集的日志数据</div>
                         </div>
@@ -2342,7 +2343,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Cassandra</div>
                             <div title="采集 Cassandra 的指标数据" class="fth-integration-desc">采集 Cassandra 的指标数据</div>
                         </div>
@@ -2372,7 +2373,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">点评 CAT</div>
                             <div title="美团点评的性能、容量和业务指标监控系统" class="fth-integration-desc">美团点评的性能、容量和业务指标监控系统</div>
                         </div>
@@ -2402,7 +2403,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Chrony</div>
                             <div title="采集 Chrony 服务器相关的指标数据" class="fth-integration-desc">采集 Chrony 服务器相关的指标数据</div>
                         </div>
@@ -2432,7 +2433,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">ClickHouse</div>
                             <div title="采集 ClickHouse 的指标数据" class="fth-integration-desc">采集 ClickHouse 的指标数据</div>
                         </div>
@@ -2462,7 +2463,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">云账单费用查询</div>
                             <div title="云账单费用查询，可以查询 AWS 、华为云、阿里云、腾讯云等公有云账单信息" class="fth-integration-desc">云账单费用查询，可以查询 AWS 、华为云、阿里云、腾讯云等公有云账单信息</div>
                         </div>
@@ -2492,7 +2493,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Cloudprober</div>
                             <div title="接收 Cloudprober 数据" class="fth-integration-desc">接收 Cloudprober 数据</div>
                         </div>
@@ -2522,7 +2523,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">CockroachDB</div>
                             <div title="采集 CockroachDB 的指标数据" class="fth-integration-desc">采集 CockroachDB 的指标数据</div>
                         </div>
@@ -2552,7 +2553,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Consul</div>
                             <div title="采集 Consul 的指标数据" class="fth-integration-desc">采集 Consul 的指标数据</div>
                         </div>
@@ -2582,7 +2583,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Kubernetes 日志</div>
                             <div title="采集 Container 和 Kubernetes 日志数据" class="fth-integration-desc">采集 Container 和 Kubernetes 日志数据</div>
                         </div>
@@ -2612,7 +2613,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Kubernetes</div>
                             <div title="采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到观测云。" class="fth-integration-desc">采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到观测云。</div>
                         </div>
@@ -2642,7 +2643,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">CoreDNS</div>
                             <div title="采集 CoreDNS 的指标数据" class="fth-integration-desc">采集 CoreDNS 的指标数据</div>
                         </div>
@@ -2672,7 +2673,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">CouchBase Exporter</div>
                             <div title="采集器可以从 CouchBase 实例中采取很多指标，比如数据使用的内存和磁盘、当前连接数等多种指标，并将指标采集到观测云，帮助监控分析 CouchBase 各种异常情况。" class="fth-integration-desc">采集器可以从 CouchBase 实例中采取很多指标，比如数据使用的内存和磁盘、当前连接数等多种指标，并将指标采集到观测云，帮助监控分析 CouchBase 各种异常情况。</div>
                         </div>
@@ -2702,7 +2703,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Couchbase</div>
                             <div title="采集 Couchbase 服务器相关的指标数据" class="fth-integration-desc">采集 Couchbase 服务器相关的指标数据</div>
                         </div>
@@ -2732,7 +2733,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">CouchDB</div>
                             <div title="采集 CouchDB 的指标数据" class="fth-integration-desc">采集 CouchDB 的指标数据</div>
                         </div>
@@ -2762,7 +2763,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">CPU</div>
                             <div title="采集 CPU 指标数据" class="fth-integration-desc">采集 CPU 指标数据</div>
                         </div>
@@ -2792,7 +2793,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">DB2</div>
                             <div title="采集 IBM DB2 的指标数据" class="fth-integration-desc">采集 IBM DB2 的指标数据</div>
                         </div>
@@ -2822,7 +2823,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">自动注入 DDTrace-Java Agent</div>
                             <div title="DDTrace Java 集成" class="fth-integration-desc">DDTrace Java 集成</div>
                         </div>
@@ -2852,7 +2853,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace C++</div>
                             <div title="DDTrace C++ 集成" class="fth-integration-desc">DDTrace C++ 集成</div>
                         </div>
@@ -2882,7 +2883,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace 扩展</div>
                             <div title="观测云扩展了 DDTrace 对组建的支持" class="fth-integration-desc">观测云扩展了 DDTrace 对组建的支持</div>
                         </div>
@@ -2912,7 +2913,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace Golang</div>
                             <div title="DDTrace Golang 集成" class="fth-integration-desc">DDTrace Golang 集成</div>
                         </div>
@@ -2942,7 +2943,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace Java</div>
                             <div title="DDTrace Java 集成" class="fth-integration-desc">DDTrace Java 集成</div>
                         </div>
@@ -2972,7 +2973,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace JMX</div>
                             <div title="DDTrace JMX 集成" class="fth-integration-desc">DDTrace JMX 集成</div>
                         </div>
@@ -3002,7 +3003,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace NodeJS</div>
                             <div title="DDTrace NodeJS 集成" class="fth-integration-desc">DDTrace NodeJS 集成</div>
                         </div>
@@ -3032,7 +3033,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace PHP</div>
                             <div title="DDTrace PHP 集成" class="fth-integration-desc">DDTrace PHP 集成</div>
                         </div>
@@ -3062,7 +3063,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace Phthon</div>
                             <div title="DDTrace Python 集成" class="fth-integration-desc">DDTrace Python 集成</div>
                         </div>
@@ -3092,7 +3093,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace Ruby</div>
                             <div title="DDTrace Ruby 集成" class="fth-integration-desc">DDTrace Ruby 集成</div>
                         </div>
@@ -3122,7 +3123,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace</div>
                             <div title="接收 DDTrace 的 APM 数据" class="fth-integration-desc">接收 DDTrace 的 APM 数据</div>
                         </div>
@@ -3152,7 +3153,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">网络拨测</div>
                             <div title="通过网络拨测来获取网络性能表现" class="fth-integration-desc">通过网络拨测来获取网络性能表现</div>
                         </div>
@@ -3182,7 +3183,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">自定义拨测任务</div>
                             <div title="自定义拨测采集器来定制拨测任务" class="fth-integration-desc">自定义拨测采集器来定制拨测任务</div>
                         </div>
@@ -3212,7 +3213,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">磁盘</div>
                             <div title="采集磁盘的指标数据" class="fth-integration-desc">采集磁盘的指标数据</div>
                         </div>
@@ -3242,7 +3243,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">磁盘 IO</div>
                             <div title="采集磁盘 IO 指标数据" class="fth-integration-desc">采集磁盘 IO 指标数据</div>
                         </div>
@@ -3272,7 +3273,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">DataKit 自身指标采集</div>
                             <div title="采集 Datakit 自身运行指标" class="fth-integration-desc">采集 Datakit 自身运行指标</div>
                         </div>
@@ -3302,7 +3303,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">达梦数据库（DM8）</div>
                             <div title="采集达梦数据库运行指标信息" class="fth-integration-desc">采集达梦数据库运行指标信息</div>
                         </div>
@@ -3332,7 +3333,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">东方通 THS（TongHttpServer）</div>
                             <div title="采集东方通 THS（TongHttpServer）运行指标信息" class="fth-integration-desc">采集东方通 THS（TongHttpServer）运行指标信息</div>
                         </div>
@@ -3362,7 +3363,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">东方通 TWeb（TongWeb）</div>
                             <div title="采集东方通 TWeb（TongWeb）运行指标及链路信息" class="fth-integration-desc">采集东方通 TWeb（TongWeb）运行指标及链路信息</div>
                         </div>
@@ -3392,7 +3393,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Doris</div>
                             <div title="采集 Doris 的指标数据" class="fth-integration-desc">采集 Doris 的指标数据</div>
                         </div>
@@ -3422,7 +3423,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">.NET</div>
                             <div title="采集 .NET 应用相关 Metrics、Tracing、Logging 和 Profiling 信息。" class="fth-integration-desc">采集 .NET 应用相关 Metrics、Tracing、Logging 和 Profiling 信息。</div>
                         </div>
@@ -3452,7 +3453,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">eBPF</div>
                             <div title="通过 eBPF 采集 Linux 网络数据" class="fth-integration-desc">通过 eBPF 采集 Linux 网络数据</div>
                         </div>
@@ -3482,7 +3483,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">eBPF Tracing</div>
                             <div title="关联 eBPF 采集的链路 span，生成链路" class="fth-integration-desc">关联 eBPF 采集的链路 span，生成链路</div>
                         </div>
@@ -3512,7 +3513,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">ElasticSearch</div>
                             <div title="采集 ElasticSearch 的指标数据" class="fth-integration-desc">采集 ElasticSearch 的指标数据</div>
                         </div>
@@ -3542,7 +3543,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">EMQX</div>
                             <div title="采集 EMQX collection、topics、subsriptions、message、packet 相关指标信息" class="fth-integration-desc">采集 EMQX collection、topics、subsriptions、message、packet 相关指标信息</div>
                         </div>
@@ -3572,7 +3573,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">etcd</div>
                             <div title="采集 etcd 的指标数据" class="fth-integration-desc">采集 etcd 的指标数据</div>
                         </div>
@@ -3602,7 +3603,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Exchange</div>
                             <div title="采集 Exchange 相关指标信息" class="fth-integration-desc">采集 Exchange 相关指标信息</div>
                         </div>
@@ -3632,7 +3633,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Exchange</div>
                             <div title="采集 Exchange 相关指标信息" class="fth-integration-desc">采集 Exchange 相关指标信息</div>
                         </div>
@@ -3662,7 +3663,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">External</div>
                             <div title="启动外部程序进行采集" class="fth-integration-desc">启动外部程序进行采集</div>
                         </div>
@@ -3692,7 +3693,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Flink</div>
                             <div title="采集 Flink 的指标数据" class="fth-integration-desc">采集 Flink 的指标数据</div>
                         </div>
@@ -3722,7 +3723,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Fluent Bit</div>
                             <div title="通过 Fluent Bit 采集日志" class="fth-integration-desc">通过 Fluent Bit 采集日志</div>
                         </div>
@@ -3752,7 +3753,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Fluentd</div>
                             <div title="采集 Fluentd 的日志" class="fth-integration-desc">采集 Fluentd 的日志</div>
                         </div>
@@ -3782,7 +3783,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">GitLab</div>
                             <div title="采集 GitLab 的指标数据" class="fth-integration-desc">采集 GitLab 的指标数据</div>
                         </div>
@@ -3812,7 +3813,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Golang</div>
                             <div title="获取 Golang 应用的指标、链路追踪和日志信息" class="fth-integration-desc">获取 Golang 应用的指标、链路追踪和日志信息</div>
                         </div>
@@ -3842,7 +3843,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">GPU</div>
                             <div title="采集 NVIDIA GPU 指标数据" class="fth-integration-desc">采集 NVIDIA GPU 指标数据</div>
                         </div>
@@ -3872,7 +3873,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Grafana Guance Datasource</div>
                             <div title="Grafana 接入观测云数据提供的 Datasource 源" class="fth-integration-desc">Grafana 接入观测云数据提供的 Datasource 源</div>
                         </div>
@@ -3902,7 +3903,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Graphite</div>
                             <div title="采集 Graphite Exporter 暴露的指标数据" class="fth-integration-desc">采集 Graphite Exporter 暴露的指标数据</div>
                         </div>
@@ -3932,7 +3933,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">GreenPlum</div>
                             <div title="采集 greenplum 指标信息" class="fth-integration-desc">采集 greenplum 指标信息</div>
                         </div>
@@ -3962,7 +3963,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Hadoop HDFS DataNode</div>
                             <div title="采集 HDFS datanode 指标信息" class="fth-integration-desc">采集 HDFS datanode 指标信息</div>
                         </div>
@@ -3992,7 +3993,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Hadoop HDFS NameNode</div>
                             <div title="采集 HDFS namenode 指标信息" class="fth-integration-desc">采集 HDFS namenode 指标信息</div>
                         </div>
@@ -4022,7 +4023,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Hadoop Yarn NodeManager</div>
                             <div title="采集 Yarn NodeManager 指标信息" class="fth-integration-desc">采集 Yarn NodeManager 指标信息</div>
                         </div>
@@ -4052,7 +4053,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Hadoop Yarn ResourceManager</div>
                             <div title="采集 Yarn ResourceManager 指标信息" class="fth-integration-desc">采集 Yarn ResourceManager 指标信息</div>
                         </div>
@@ -4082,7 +4083,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Haproxy</div>
                             <div title="采集 Haproxy 指标信息" class="fth-integration-desc">采集 Haproxy 指标信息</div>
                         </div>
@@ -4112,7 +4113,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">主机健康检查</div>
                             <div title="定期检查主机进程和网络健康状况" class="fth-integration-desc">定期检查主机进程和网络健康状况</div>
                         </div>
@@ -4142,7 +4143,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">进程</div>
                             <div title="采集进程的指标和对象数据" class="fth-integration-desc">采集进程的指标和对象数据</div>
                         </div>
@@ -4172,7 +4173,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">文件目录</div>
                             <div title="采集文件目录的指标数据" class="fth-integration-desc">采集文件目录的指标数据</div>
                         </div>
@@ -4202,7 +4203,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">主机对象</div>
                             <div title="采集主机基本信息" class="fth-integration-desc">采集主机基本信息</div>
                         </div>
@@ -4232,7 +4233,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 FunctionGraph</div>
                             <div title="华为云 FunctionGraph的展示指标包括调用次数,错误次数,被拒绝次数,并发数,预留实例个数，运行时间（包括最大运行时间、最小运行时间、平均运行时间）等，这些指标反映了FunctionGraph函数运行情况。" class="fth-integration-desc">华为云 FunctionGraph的展示指标包括调用次数,错误次数,被拒绝次数,并发数,预留实例个数，运行时间（包括最大运行时间、最小运行时间、平均运行时间）等，这些指标反映了FunctionGraph函数运行情况。</div>
                         </div>
@@ -4262,7 +4263,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">HUAWEI AS</div>
                             <div title="华为云 AS 的核心性能指标包括CPU利用率、内存使用率、磁盘I/O、网络吞吐量和系统负载等，这些都是评估和优化自动缩放系统性能的关键指标。" class="fth-integration-desc">华为云 AS 的核心性能指标包括CPU利用率、内存使用率、磁盘I/O、网络吞吐量和系统负载等，这些都是评估和优化自动缩放系统性能的关键指标。</div>
                         </div>
@@ -4292,7 +4293,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 CBR</div>
                             <div title="华为云 CBR 的展示指标包括带宽利用率、延迟、丢包率和网络吞吐量，这些指标反映了CBR在网络传输和带宽管理方面的性能表现和质量保证。" class="fth-integration-desc">华为云 CBR 的展示指标包括带宽利用率、延迟、丢包率和网络吞吐量，这些指标反映了CBR在网络传输和带宽管理方面的性能表现和质量保证。</div>
                         </div>
@@ -4322,7 +4323,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 DDM</div>
                             <div title="华为云 DDM 监控视图展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了DDMS在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。" class="fth-integration-desc">华为云 DDM 监控视图展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了DDMS在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。</div>
                         </div>
@@ -4352,7 +4353,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 API</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -4382,7 +4383,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云ASM链路追踪 TO 观测云</div>
                             <div title="华为云的ASM的链路追踪数据输出到观测云，进行查看、分析。" class="fth-integration-desc">华为云的ASM的链路追踪数据输出到观测云，进行查看、分析。</div>
                         </div>
@@ -4412,7 +4413,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">使用观测云采集华为云CCE指标数据</div>
                             <div title="观测云支持对 CCE 中各类资源的运行状态和服务能力进行监测，包括 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等。" class="fth-integration-desc">观测云支持对 CCE 中各类资源的运行状态和服务能力进行监测，包括 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等。</div>
                         </div>
@@ -4442,7 +4443,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云搜索服务 CSS for Elasticsearch</div>
                             <div title="华为云搜索服务 CSS for Elasticsearch 的核心性能指标包括查询延迟、索引速度、搜索速度、磁盘使用率和 CPU 使用率，这些都是评估和优化 Elasticsearch 性能的关键指标。" class="fth-integration-desc">华为云搜索服务 CSS for Elasticsearch 的核心性能指标包括查询延迟、索引速度、搜索速度、磁盘使用率和 CPU 使用率，这些都是评估和优化 Elasticsearch 性能的关键指标。</div>
                         </div>
@@ -4472,7 +4473,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 DCS</div>
                             <div title="采集华为云 DCS 指标数据" class="fth-integration-desc">采集华为云 DCS 指标数据</div>
                         </div>
@@ -4502,7 +4503,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 DDS</div>
                             <div title="采集华为云 DDS 指标数据" class="fth-integration-desc">采集华为云 DDS 指标数据</div>
                         </div>
@@ -4532,7 +4533,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 DIS</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -4562,7 +4563,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 ECS</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -4592,7 +4593,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 ELB</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -4622,7 +4623,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 GaussDB-Cassandra</div>
                             <div title="华为云GaussDB-Cassandra的展示指标包括读写吞吐量、延迟、数据一致性和可扩展性，这些指标反映了GaussDB-Cassandra在处理大规模分布式数据存储和访问时的性能表现和可靠性。" class="fth-integration-desc">华为云GaussDB-Cassandra的展示指标包括读写吞吐量、延迟、数据一致性和可扩展性，这些指标反映了GaussDB-Cassandra在处理大规模分布式数据存储和访问时的性能表现和可靠性。</div>
                         </div>
@@ -4652,7 +4653,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 GaussDB for MySQL</div>
                             <div title="GaussDB for MySQL，包括cpu、内存、网络、缓冲池、存储、慢日志、`innoDB`等相关指标。" class="fth-integration-desc">GaussDB for MySQL，包括cpu、内存、网络、缓冲池、存储、慢日志、`innoDB`等相关指标。</div>
                         </div>
@@ -4682,7 +4683,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 GaussDB-Influx</div>
                             <div title="华为云GaussDB-Influx的展示指标包括写入吞吐量、查询延迟、数据保留策略和可扩展性，这些指标反映了GaussDB-Influx在处理大规模时序数据存储和查询时的性能表现和可靠性。" class="fth-integration-desc">华为云GaussDB-Influx的展示指标包括写入吞吐量、查询延迟、数据保留策略和可扩展性，这些指标反映了GaussDB-Influx在处理大规模时序数据存储和查询时的性能表现和可靠性。</div>
                         </div>
@@ -4712,7 +4713,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 GaussDB-Redis</div>
                             <div title="华为云GaussDB-Redis的展示指标包括读写吞吐量、响应时间、并发连接数和数据持久性，这些指标反映了GaussDB-Redis在处理高并发数据存储和缓存时的性能表现和可靠性。" class="fth-integration-desc">华为云GaussDB-Redis的展示指标包括读写吞吐量、响应时间、并发连接数和数据持久性，这些指标反映了GaussDB-Redis在处理高并发数据存储和缓存时的性能表现和可靠性。</div>
                         </div>
@@ -4742,7 +4743,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 GaussDB SYS.GAUSSDBV5</div>
                             <div title="华为云 GaussDB SYS.GAUSSDBV5，提供cpu、内存、磁盘、死锁、SQL 响应时间指标等数据。" class="fth-integration-desc">华为云 GaussDB SYS.GAUSSDBV5，提供cpu、内存、磁盘、死锁、SQL 响应时间指标等数据。</div>
                         </div>
@@ -4772,7 +4773,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 DMS Kafka</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -4802,7 +4803,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 MongoDB</div>
                             <div title="采集华为云 MongoDB 指标数据" class="fth-integration-desc">采集华为云 MongoDB 指标数据</div>
                         </div>
@@ -4832,7 +4833,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 OBS</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -4862,7 +4863,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 DMS RabbitMQ</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。</div>
                         </div>
@@ -4892,7 +4893,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 RDS MYSQL</div>
                             <div title="采集华为云 RDS MYSQL数据" class="fth-integration-desc">采集华为云 RDS MYSQL数据</div>
                         </div>
@@ -4922,7 +4923,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 RDS PostgreSQL</div>
                             <div title="华为云 RDS PostgreSQL 的展示指标包括查询性能、事务吞吐量、并发连接数和数据可靠性，这些指标反映了RDS PostgreSQL 在处理大规模关系型数据存储和事务处理时的性能表现和可靠性。" class="fth-integration-desc">华为云 RDS PostgreSQL 的展示指标包括查询性能、事务吞吐量、并发连接数和数据可靠性，这些指标反映了RDS PostgreSQL 在处理大规模关系型数据存储和事务处理时的性能表现和可靠性。</div>
                         </div>
@@ -4952,7 +4953,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 RDS SQLServer</div>
                             <div title="采集华为云 RDS SQLServer 指标数据" class="fth-integration-desc">采集华为云 RDS SQLServer 指标数据</div>
                         </div>
@@ -4982,7 +4983,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 DMS RocketMQ</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。</div>
                         </div>
@@ -5012,7 +5013,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 ROMA</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -5042,7 +5043,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">IIS</div>
                             <div title="采集 IIS 指标数据" class="fth-integration-desc">采集 IIS 指标数据</div>
                         </div>
@@ -5072,7 +5073,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">iLogtail</div>
                             <div title="iLogtail 采集日志信息" class="fth-integration-desc">iLogtail 采集日志信息</div>
                         </div>
@@ -5102,7 +5103,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">InfluxDB</div>
                             <div title="采集 InfluxDB 指标数据" class="fth-integration-desc">采集 InfluxDB 指标数据</div>
                         </div>
@@ -5132,7 +5133,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Ingress Nginx (Prometheus)</div>
                             <div title="采集 Ingress Nginx (Prometheus) 相关指标信息" class="fth-integration-desc">采集 Ingress Nginx (Prometheus) 相关指标信息</div>
                         </div>
@@ -5162,7 +5163,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">IPMI</div>
                             <div title="IPMI 指标展示被监测设备的电流、电压、功耗、占用率、风扇转速、温度以及设备状态等信息" class="fth-integration-desc">IPMI 指标展示被监测设备的电流、电压、功耗、占用率、风扇转速、温度以及设备状态等信息</div>
                         </div>
@@ -5192,7 +5193,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">异常追踪 - 钉钉</div>
                             <div title="观测云异常追踪与钉钉深度集成，方便将异常追踪信息发送给钉钉，通过钉钉进行回复并回传到观测云" class="fth-integration-desc">观测云异常追踪与钉钉深度集成，方便将异常追踪信息发送给钉钉，通过钉钉进行回复并回传到观测云</div>
                         </div>
@@ -5222,7 +5223,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">异常追踪 - 飞书</div>
                             <div title="观测云异常追踪与飞书深度集成，方便将异常追踪信息发送给飞书，通过飞书进行回复并回传到观测云" class="fth-integration-desc">观测云异常追踪与飞书深度集成，方便将异常追踪信息发送给飞书，通过飞书进行回复并回传到观测云</div>
                         </div>
@@ -5252,7 +5253,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Istio</div>
                             <div title="Istio 性能指标展示，包括 Incoming Request Volume、Incoming Success Rate、Incoming Requests By Source And Response Code、Outgoing Requests By Destination And Response Code 等" class="fth-integration-desc">Istio 性能指标展示，包括 Incoming Request Volume、Incoming Success Rate、Incoming Requests By Source And Response Code、Outgoing Requests By Destination And Response Code 等</div>
                         </div>
@@ -5282,7 +5283,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Jaeger</div>
                             <div title="接收 Jaeger APM 数据" class="fth-integration-desc">接收 Jaeger APM 数据</div>
                         </div>
@@ -5312,7 +5313,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">JAVA</div>
                             <div title="获取 JAVA 应用的指标、链路追踪和日志信息" class="fth-integration-desc">获取 JAVA 应用的指标、链路追踪和日志信息</div>
                         </div>
@@ -5342,7 +5343,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">JavaScript</div>
                             <div title="通过 JavaScript (Web) 方式监测浏览器用户的使用行为" class="fth-integration-desc">通过 JavaScript (Web) 方式监测浏览器用户的使用行为</div>
                         </div>
@@ -5372,7 +5373,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Jenkins</div>
                             <div title="采集 Jenkins 的指标和日志" class="fth-integration-desc">采集 Jenkins 的指标和日志</div>
                         </div>
@@ -5402,7 +5403,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">JMX</div>
                             <div title="JVM 性能指标展示：堆与非堆内存、线程、类加载数等。" class="fth-integration-desc">JVM 性能指标展示：堆与非堆内存、线程、类加载数等。</div>
                         </div>
@@ -5432,7 +5433,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">JuiceFS</div>
                             <div title="采集 JuiceFS 数据大小、IO、事物、对象、客户端等相关组件指标信息" class="fth-integration-desc">采集 JuiceFS 数据大小、IO、事物、对象、客户端等相关组件指标信息</div>
                         </div>
@@ -5462,7 +5463,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">JVM</div>
                             <div title="采集 JVM 的指标数据" class="fth-integration-desc">采集 JVM 的指标数据</div>
                         </div>
@@ -5492,7 +5493,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">JMX Exporter</div>
                             <div title="JVM 性能指标展示：堆与非堆内存、线程、类加载数等。" class="fth-integration-desc">JVM 性能指标展示：堆与非堆内存、线程、类加载数等。</div>
                         </div>
@@ -5522,7 +5523,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">JMX Jolokia</div>
                             <div title="JVM 性能指标展示：堆与非堆内存、线程、类加载数等。" class="fth-integration-desc">JVM 性能指标展示：堆与非堆内存、线程、类加载数等。</div>
                         </div>
@@ -5552,7 +5553,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">JMX Micrometer</div>
                             <div title="JVM 性能指标展示：堆与非堆内存、线程、类加载数等。" class="fth-integration-desc">JVM 性能指标展示：堆与非堆内存、线程、类加载数等。</div>
                         </div>
@@ -5582,7 +5583,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">JMX StatsD</div>
                             <div title="JVM 性能指标展示：堆与非堆内存、线程、类加载数等。" class="fth-integration-desc">JVM 性能指标展示：堆与非堆内存、线程、类加载数等。</div>
                         </div>
@@ -5612,7 +5613,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Kafka</div>
                             <div title="采集 Kafka 的指标数据" class="fth-integration-desc">采集 Kafka 的指标数据</div>
                         </div>
@@ -5642,7 +5643,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">KafkaMQ</div>
                             <div title="通过 Kafka 收集已有的指标和日志数据" class="fth-integration-desc">通过 Kafka 收集已有的指标和日志数据</div>
                         </div>
@@ -5672,7 +5673,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">KubeCost</div>
                             <div title="采集 KubeCost 指标信息" class="fth-integration-desc">采集 KubeCost 指标信息</div>
                         </div>
@@ -5702,7 +5703,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Kubernetes API Server</div>
                             <div title="采集 Kubernetes API Server 相关指标信息" class="fth-integration-desc">采集 Kubernetes API Server 相关指标信息</div>
                         </div>
@@ -5732,7 +5733,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Kubernetes CRD</div>
                             <div title="Create Datakit CRD to collect" class="fth-integration-desc">Create Datakit CRD to collect</div>
                         </div>
@@ -5762,7 +5763,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Kubernetes Prometheus Exporter</div>
                             <div title="采集 Kubernetes 集群中自定义 Pod 暴露出来的 Prometheus 指标" class="fth-integration-desc">采集 Kubernetes 集群中自定义 Pod 暴露出来的 Prometheus 指标</div>
                         </div>
@@ -5792,7 +5793,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Prometheus CRD</div>
                             <div title="支持 Prometheus-Operator CRD 并采集对应指标" class="fth-integration-desc">支持 Prometheus-Operator CRD 并采集对应指标</div>
                         </div>
@@ -5822,7 +5823,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Kubernetes 审计日志采集</div>
                             <div title="Kubernetes 审计日志采集" class="fth-integration-desc">Kubernetes 审计日志采集</div>
                         </div>
@@ -5852,7 +5853,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Kubernetes Prometheus Discovery</div>
                             <div title="支持发现 Kubernetes 中的 Prometheus 指标暴露并采集" class="fth-integration-desc">支持发现 Kubernetes 中的 Prometheus 指标暴露并采集</div>
                         </div>
@@ -5882,7 +5883,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">LangChain</div>
                             <div title="优化 LangChain 的使用：及时采样以及性能和成本指标。" class="fth-integration-desc">优化 LangChain 的使用：及时采样以及性能和成本指标。</div>
                         </div>
@@ -5912,7 +5913,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Log Sidecar</div>
                             <div title="Sidecar 形式的日志采集" class="fth-integration-desc">Sidecar 形式的日志采集</div>
                         </div>
@@ -5942,7 +5943,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Log Forward</div>
                             <div title="通过 sidecar 方式收集 Pod 内日志数据" class="fth-integration-desc">通过 sidecar 方式收集 Pod 内日志数据</div>
                         </div>
@@ -5972,7 +5973,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">日志采集</div>
                             <div title="采集主机上的日志数据" class="fth-integration-desc">采集主机上的日志数据</div>
                         </div>
@@ -6002,7 +6003,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Socket Logging</div>
                             <div title="主要用于 Java/Go/Python 日志框架如何配置 Socket，将日志发送给 Datakit 日志采集器中。" class="fth-integration-desc">主要用于 Java/Go/Python 日志框架如何配置 Socket，将日志发送给 Datakit 日志采集器中。</div>
                         </div>
@@ -6032,7 +6033,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Logstash</div>
                             <div title="通过 Logstash 采集日志信息" class="fth-integration-desc">通过 Logstash 采集日志信息</div>
                         </div>
@@ -6062,7 +6063,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Log Streaming</div>
                             <div title="通过 HTTP 上报日志数据" class="fth-integration-desc">通过 HTTP 上报日志数据</div>
                         </div>
@@ -6092,7 +6093,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">内存</div>
                             <div title="采集主机内存的指标数据" class="fth-integration-desc">采集主机内存的指标数据</div>
                         </div>
@@ -6122,7 +6123,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Memcached</div>
                             <div title="采集 Memcached 的指标数据" class="fth-integration-desc">采集 Memcached 的指标数据</div>
                         </div>
@@ -6152,7 +6153,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">MinIO</div>
                             <div title="采集 MinIO 相关指标信息" class="fth-integration-desc">采集 MinIO 相关指标信息</div>
                         </div>
@@ -6182,7 +6183,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">MongoDB</div>
                             <div title="采集 MongoDB 的指标数据" class="fth-integration-desc">采集 MongoDB 的指标数据</div>
                         </div>
@@ -6212,7 +6213,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">异常事件与 Jira 联动</div>
                             <div title="当我们的应用程序或系统出现异常时，通常需要及时处理以保证系统的正常运行。为了更好地管理和跟踪异常事件，我们可以将这些事件发送到 Jira 中创建事件，这样我们就可以在 Jira 中进行跟踪、分析和解决这些问题，通过快速地将异常事件发送到 Jira 中创建事件，为我们提供更好的管理和跟踪异常事件的能力，从而更好地保证系统的正常运行。同时，这种方法也可以帮助我们更好地分析和解决问题，提高系统的稳定性和可靠性。" class="fth-integration-desc">当我们的应用程序或系统出现异常时，通常需要及时处理以保证系统的正常运行。为了更好地管理和跟踪异常事件，我们可以将这些事件发送到 Jira 中创建事件，这样我们就可以在 Jira 中进行跟踪、分析和解决这些问题，通过快速地将异常事件发送到 Jira 中创建事件，为我们提供更好的管理和跟踪异常事件的能力，从而更好地保证系统的正常运行。同时，这种方法也可以帮助我们更好地分析和解决问题，提高系统的稳定性和可靠性。</div>
                         </div>
@@ -6242,7 +6243,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">MySQL</div>
                             <div title="采集 MySQL 的指标数据" class="fth-integration-desc">采集 MySQL 的指标数据</div>
                         </div>
@@ -6272,7 +6273,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Nacos</div>
                             <div title="采集 Nacos 相关指标信息" class="fth-integration-desc">采集 Nacos 相关指标信息</div>
                         </div>
@@ -6302,7 +6303,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Neo4j</div>
                             <div title="采集 Neo4j 的指标数据" class="fth-integration-desc">采集 Neo4j 的指标数据</div>
                         </div>
@@ -6332,7 +6333,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Net</div>
                             <div title="采集网卡的指标数据" class="fth-integration-desc">采集网卡的指标数据</div>
                         </div>
@@ -6362,7 +6363,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">NetFlow</div>
                             <div title="NetFlow 采集器可以用来可视化和监控已开启 NetFlow 的设备" class="fth-integration-desc">NetFlow 采集器可以用来可视化和监控已开启 NetFlow 的设备</div>
                         </div>
@@ -6392,7 +6393,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">NetStat</div>
                             <div title="采集网卡流量指标数据" class="fth-integration-desc">采集网卡流量指标数据</div>
                         </div>
@@ -6422,7 +6423,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">New Relic</div>
                             <div title="接收来自 New Relic Agent 的数据" class="fth-integration-desc">接收来自 New Relic Agent 的数据</div>
                         </div>
@@ -6452,7 +6453,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Nginx</div>
                             <div title="采集 Nginx 的指标数据" class="fth-integration-desc">采集 Nginx 的指标数据</div>
                         </div>
@@ -6482,7 +6483,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Nginx Tracing</div>
                             <div title="采集 Nginx 链路信息" class="fth-integration-desc">采集 Nginx 链路信息</div>
                         </div>
@@ -6512,7 +6513,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Node Exporter</div>
                             <div title="通过 Node Exporter 采集主机指标信息" class="fth-integration-desc">通过 Node Exporter 采集主机指标信息</div>
                         </div>
@@ -6542,7 +6543,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">NodeJs</div>
                             <div title="获取 NodeJs 应用的指标、链路追踪和日志信息" class="fth-integration-desc">获取 NodeJs 应用的指标、链路追踪和日志信息</div>
                         </div>
@@ -6572,7 +6573,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Node Problem Detector</div>
                             <div title="通过 NPD 采集集群节点指标、事件" class="fth-integration-desc">通过 NPD 采集集群节点指标、事件</div>
                         </div>
@@ -6602,7 +6603,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">NSQ</div>
                             <div title="采集 NSQ 的指标数据" class="fth-integration-desc">采集 NSQ 的指标数据</div>
                         </div>
@@ -6632,7 +6633,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">OceanBase</div>
                             <div title="采集 OceanBase 的指标数据" class="fth-integration-desc">采集 OceanBase 的指标数据</div>
                         </div>
@@ -6662,7 +6663,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">OpenAI</div>
                             <div title="OpenAI的展示指标包括请求总数，响应时间，，请求数量，请求错误数和消耗token数。" class="fth-integration-desc">OpenAI的展示指标包括请求总数，响应时间，，请求数量，请求错误数和消耗token数。</div>
                         </div>
@@ -6692,7 +6693,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">OpenGauss</div>
                             <div title="采集 OpenGauss 指标信息" class="fth-integration-desc">采集 OpenGauss 指标信息</div>
                         </div>
@@ -6722,7 +6723,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">OpenTelemetry Golang</div>
                             <div title="OpenTelemetry Golang 集成" class="fth-integration-desc">OpenTelemetry Golang 集成</div>
                         </div>
@@ -6752,7 +6753,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">OpenTelemetry Java</div>
                             <div title="OpenTelemetry Java 集成" class="fth-integration-desc">OpenTelemetry Java 集成</div>
                         </div>
@@ -6782,7 +6783,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">OpenTelemetry</div>
                             <div title="接收 OpenTelemetry 指标、日志、APM 数据" class="fth-integration-desc">接收 OpenTelemetry 指标、日志、APM 数据</div>
                         </div>
@@ -6812,7 +6813,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Oracle</div>
                             <div title="采集 Oracle 的指标数据" class="fth-integration-desc">采集 Oracle 的指标数据</div>
                         </div>
@@ -6842,7 +6843,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">OpenTelemetry 扩展</div>
                             <div title="观测云对 OpenTelemetry 插件做了额外的扩展" class="fth-integration-desc">观测云对 OpenTelemetry 插件做了额外的扩展</div>
                         </div>
@@ -6872,7 +6873,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">观测云 OpenTelemetry Exportor</div>
                             <div title="直接将 OpenTelemetry 的数据输出给观测云" class="fth-integration-desc">直接将 OpenTelemetry 的数据输出给观测云</div>
                         </div>
@@ -6902,7 +6903,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">异常事件与 PagerDuty 联动</div>
                             <div title="当我们的应用程序或系统出现异常时，通常需要及时处理以保证系统的正常运行。为了更好地管理和跟踪异常事件，我们可以将这些事件发送到 PagerDuty 中创建事件，这样我们就可以在 PagerDuty 中进行跟踪、分析和解决这些问题，通过快速地将异常事件发送到 PagerDuty 中创建事件，为我们提供更好的管理和跟踪异常事件的能力，从而更好地保证系统的正常运行。同时，这种方法也可以帮助我们更好地分析和解决问题，提高系统的稳定性和可靠性。" class="fth-integration-desc">当我们的应用程序或系统出现异常时，通常需要及时处理以保证系统的正常运行。为了更好地管理和跟踪异常事件，我们可以将这些事件发送到 PagerDuty 中创建事件，这样我们就可以在 PagerDuty 中进行跟踪、分析和解决这些问题，通过快速地将异常事件发送到 PagerDuty 中创建事件，为我们提供更好的管理和跟踪异常事件的能力，从而更好地保证系统的正常运行。同时，这种方法也可以帮助我们更好地分析和解决问题，提高系统的稳定性和可靠性。</div>
                         </div>
@@ -6932,7 +6933,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">PHP</div>
                             <div title="获取 PHP 应用的指标、链路追踪和日志信息" class="fth-integration-desc">获取 PHP 应用的指标、链路追踪和日志信息</div>
                         </div>
@@ -6962,7 +6963,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">PinPoint Golang</div>
                             <div title="PinPoint Golang 集成" class="fth-integration-desc">PinPoint Golang 集成</div>
                         </div>
@@ -6992,7 +6993,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">PinPoint Java</div>
                             <div title="PinPoint Java 集成" class="fth-integration-desc">PinPoint Java 集成</div>
                         </div>
@@ -7022,7 +7023,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Pinpoint</div>
                             <div title="Pinpoint Tracing 数据接入" class="fth-integration-desc">Pinpoint Tracing 数据接入</div>
                         </div>
@@ -7052,7 +7053,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Pipeline Offload</div>
                             <div title="接收来自 Datakit Pipeline 卸载的待处理数据" class="fth-integration-desc">接收来自 Datakit Pipeline 卸载的待处理数据</div>
                         </div>
@@ -7082,7 +7083,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">PostgreSQL</div>
                             <div title="采集 PostgreSQL 的指标数据" class="fth-integration-desc">采集 PostgreSQL 的指标数据</div>
                         </div>
@@ -7112,7 +7113,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Profiling C++</div>
                             <div title="C++ Profiling 集成" class="fth-integration-desc">C++ Profiling 集成</div>
                         </div>
@@ -7142,7 +7143,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Profiling .Net</div>
                             <div title=".Net Profiling 集成" class="fth-integration-desc">.Net Profiling 集成</div>
                         </div>
@@ -7172,7 +7173,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Profiling Golang</div>
                             <div title="Golang Profiling 集成" class="fth-integration-desc">Golang Profiling 集成</div>
                         </div>
@@ -7202,7 +7203,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Profiling Java</div>
                             <div title="Java Profiling 集成" class="fth-integration-desc">Java Profiling 集成</div>
                         </div>
@@ -7232,7 +7233,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Profiling NodeJS</div>
                             <div title="NodeJS Profiling 集成" class="fth-integration-desc">NodeJS Profiling 集成</div>
                         </div>
@@ -7262,7 +7263,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Profiling PHP</div>
                             <div title="PHP Profiling 集成" class="fth-integration-desc">PHP Profiling 集成</div>
                         </div>
@@ -7292,7 +7293,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Profiling Python</div>
                             <div title="Python Profiling 集成" class="fth-integration-desc">Python Profiling 集成</div>
                         </div>
@@ -7322,7 +7323,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Profiling</div>
                             <div title="采集应用程序的运行时性能数据" class="fth-integration-desc">采集应用程序的运行时性能数据</div>
                         </div>
@@ -7352,7 +7353,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Prometheus Exporter</div>
                             <div title="采集 Prometheus Exporter 暴露的指标数据" class="fth-integration-desc">采集 Prometheus Exporter 暴露的指标数据</div>
                         </div>
@@ -7382,7 +7383,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Prometheus Remote Write</div>
                             <div title="通过 Prometheus Remote Write 汇集指标数据" class="fth-integration-desc">通过 Prometheus Remote Write 汇集指标数据</div>
                         </div>
@@ -7412,7 +7413,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Promtail</div>
                             <div title="采集 Promtail 上报的日志数据" class="fth-integration-desc">采集 Promtail 上报的日志数据</div>
                         </div>
@@ -7442,7 +7443,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Proxy</div>
                             <div title="代理 Datakit 的 HTTP 请求" class="fth-integration-desc">代理 Datakit 的 HTTP 请求</div>
                         </div>
@@ -7472,7 +7473,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Prometheus Push Gateway</div>
                             <div title="开启 Pushgateway API，接收 Prometheus 指标数据" class="fth-integration-desc">开启 Pushgateway API，接收 Prometheus 指标数据</div>
                         </div>
@@ -7502,7 +7503,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Pythond</div>
                             <div title="通过 Python 扩展采集数据" class="fth-integration-desc">通过 Python 扩展采集数据</div>
                         </div>
@@ -7532,7 +7533,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Grafana Dashboard Import</div>
                             <div title="Grafana Dashboard 模版导入观测云工具" class="fth-integration-desc">Grafana Dashboard 模版导入观测云工具</div>
                         </div>
@@ -7562,7 +7563,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">RabbitMQ</div>
                             <div title="采集 RabbitMQ 的指标数据" class="fth-integration-desc">采集 RabbitMQ 的指标数据</div>
                         </div>
@@ -7592,7 +7593,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Redis Sentinel</div>
                             <div title="采集 Redis Sentinel 集群指标、日志信息" class="fth-integration-desc">采集 Redis Sentinel 集群指标、日志信息</div>
                         </div>
@@ -7622,7 +7623,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Redis</div>
                             <div title="Redis 指标和日志采集" class="fth-integration-desc">Redis 指标和日志采集</div>
                         </div>
@@ -7652,7 +7653,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Resin</div>
                             <div title="Resin 性能指标展示，包括启动时间、堆内存、非堆内存、类、线程等。" class="fth-integration-desc">Resin 性能指标展示，包括启动时间、堆内存、非堆内存、类、线程等。</div>
                         </div>
@@ -7682,7 +7683,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">RocketMQ</div>
                             <div title="采集 RocketMQ 相关指标信息" class="fth-integration-desc">采集 RocketMQ 相关指标信息</div>
                         </div>
@@ -7712,7 +7713,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">RUM</div>
                             <div title="采集用户行为数据" class="fth-integration-desc">采集用户行为数据</div>
                         </div>
@@ -7742,7 +7743,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Seata</div>
                             <div title="采集 Seata 相关指标信息" class="fth-integration-desc">采集 Seata 相关指标信息</div>
                         </div>
@@ -7772,7 +7773,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">SCheck</div>
                             <div title="接收 SCheck 采集的数据" class="fth-integration-desc">接收 SCheck 采集的数据</div>
                         </div>
@@ -7802,7 +7803,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">硬件 Sensors 数据采集</div>
                             <div title="通过 Sensors 命令采集硬件温度指标" class="fth-integration-desc">通过 Sensors 命令采集硬件温度指标</div>
                         </div>
@@ -7832,7 +7833,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">SkyWalking</div>
                             <div title="SkyWalking Tracing 数据接入" class="fth-integration-desc">SkyWalking Tracing 数据接入</div>
                         </div>
@@ -7862,7 +7863,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">磁盘 S.M.A.R.T</div>
                             <div title="通过 `smartctl` 采集磁盘指标" class="fth-integration-desc">通过 `smartctl` 采集磁盘指标</div>
                         </div>
@@ -7892,7 +7893,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">SNMP</div>
                             <div title="采集 SNMP 设备的指标和对象数据" class="fth-integration-desc">采集 SNMP 设备的指标和对象数据</div>
                         </div>
@@ -7922,7 +7923,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Socket</div>
                             <div title="采集 TCP/UDP 端口的指标数据" class="fth-integration-desc">采集 TCP/UDP 端口的指标数据</div>
                         </div>
@@ -7952,7 +7953,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Solr</div>
                             <div title="采集 Solr 的指标数据" class="fth-integration-desc">采集 Solr 的指标数据</div>
                         </div>
@@ -7982,7 +7983,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">SQLServer</div>
                             <div title="采集 SQLServer 的指标数据" class="fth-integration-desc">采集 SQLServer 的指标数据</div>
                         </div>
@@ -8012,7 +8013,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">SSH</div>
                             <div title="采集 SSH 的指标数据" class="fth-integration-desc">采集 SSH 的指标数据</div>
                         </div>
@@ -8042,7 +8043,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">StatsD</div>
                             <div title="收集 StatsD 上报的指标数据" class="fth-integration-desc">收集 StatsD 上报的指标数据</div>
                         </div>
@@ -8072,7 +8073,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Swap</div>
                             <div title="采集主机 swap 的指标数据" class="fth-integration-desc">采集主机 swap 的指标数据</div>
                         </div>
@@ -8102,7 +8103,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">System</div>
                             <div title="采集主机系统相关的指标数据" class="fth-integration-desc">采集主机系统相关的指标数据</div>
                         </div>
@@ -8132,7 +8133,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">TDengine</div>
                             <div title="采集 TDengine 的指标数据" class="fth-integration-desc">采集 TDengine 的指标数据</div>
                         </div>
@@ -8162,7 +8163,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Telegraf</div>
                             <div title="接收 Telegraf 采集的数据" class="fth-integration-desc">接收 Telegraf 采集的数据</div>
                         </div>
@@ -8192,7 +8193,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">腾讯云 CDB</div>
                             <div title="使用脚本市场中「官方脚本市场」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「官方脚本市场」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -8222,7 +8223,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">腾讯云 CKafka</div>
                             <div title="腾讯云CKafka的展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了CKafka在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。" class="fth-integration-desc">腾讯云CKafka的展示指标包括消息吞吐量、延迟、并发连接数和可靠性，这些指标反映了CKafka在处理大规模消息传递和实时数据流时的性能表现和可靠性保证。</div>
                         </div>
@@ -8252,7 +8253,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">腾讯云 CLB Private</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -8282,7 +8283,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">腾讯云 CLB Public</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -8312,7 +8313,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">腾讯云 COS</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -8342,7 +8343,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">腾讯云 CVM</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -8372,7 +8373,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">腾讯云 KeeWiDB</div>
                             <div title="腾讯云 KeeWiDB 指标展示，包括连接数、请求、缓存、key、慢查询等" class="fth-integration-desc">腾讯云 KeeWiDB 指标展示，包括连接数、请求、缓存、key、慢查询等</div>
                         </div>
@@ -8402,7 +8403,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">腾讯云 MariaDB</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -8432,7 +8433,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">腾讯云 Memcached</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -8462,7 +8463,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">腾讯云 MongoDB</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -8492,7 +8493,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">腾讯云 PostgreSQL</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -8522,7 +8523,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">腾讯云 Redis</div>
                             <div title="腾讯云 Redis 指标展示，包括连接数、请求数、时延、慢查询等。" class="fth-integration-desc">腾讯云 Redis 指标展示，包括连接数、请求数、时延、慢查询等。</div>
                         </div>
@@ -8552,7 +8553,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">腾讯云 SQLServer</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -8582,7 +8583,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">腾讯云 TDSQL_C_MySQL</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
                         </div>
@@ -8612,7 +8613,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">TiDB</div>
                             <div title="采集 TiDB cluster、TiDB、Etcd、Region 等相关组件指标信息" class="fth-integration-desc">采集 TiDB cluster、TiDB、Etcd、Region 等相关组件指标信息</div>
                         </div>
@@ -8642,7 +8643,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Tomcat</div>
                             <div title="采集 Tomcat 的指标数据" class="fth-integration-desc">采集 Tomcat 的指标数据</div>
                         </div>
@@ -8672,7 +8673,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Tracing Propagator</div>
                             <div title="多链路中的信息传播机制及使用" class="fth-integration-desc">多链路中的信息传播机制及使用</div>
                         </div>
@@ -8702,7 +8703,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Trino</div>
                             <div title="采集 Trino 指标信息" class="fth-integration-desc">采集 Trino 指标信息</div>
                         </div>
@@ -8732,7 +8733,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">VMware</div>
                             <div title="VMware 展示集群状态、宿主机状态、VM状态等指标。" class="fth-integration-desc">VMware 展示集群状态、宿主机状态、VM状态等指标。</div>
                         </div>
@@ -8762,7 +8763,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">火山引擎 ECS</div>
                             <div title="火山引擎 ECS 的展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS，这些指标反映了ECS实例的计算、内存、网络和存储性能表现。" class="fth-integration-desc">火山引擎 ECS 的展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS，这些指标反映了ECS实例的计算、内存、网络和存储性能表现。</div>
                         </div>
@@ -8792,7 +8793,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">火山引擎 MongoDB 副本集</div>
                             <div title="火山引擎 MongoDB 副本集指标展示，包括 CPU 使用率、内存使用率、 连接数、延迟、OPS等。" class="fth-integration-desc">火山引擎 MongoDB 副本集指标展示，包括 CPU 使用率、内存使用率、 连接数、延迟、OPS等。</div>
                         </div>
@@ -8822,7 +8823,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">火山引擎 MongoDB 分片集</div>
                             <div title="火山引擎 MongoDB 分片集指标展示，包括 CPU 使用率、内存使用率、 连接数、延迟、OPS等。" class="fth-integration-desc">火山引擎 MongoDB 分片集指标展示，包括 CPU 使用率、内存使用率、 连接数、延迟、OPS等。</div>
                         </div>
@@ -8852,7 +8853,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">火山引擎 MySQL</div>
                             <div title="火山引擎 MySQL 指标展示，包括 CPU 使用率、内存使用率、 IOPS、网络带宽、 InnoDB、 TPS、 QPS 等。" class="fth-integration-desc">火山引擎 MySQL 指标展示，包括 CPU 使用率、内存使用率、 IOPS、网络带宽、 InnoDB、 TPS、 QPS 等。</div>
                         </div>
@@ -8882,7 +8883,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">火山引擎 Redis</div>
                             <div title="火山引擎 Redis 指标采集" class="fth-integration-desc">火山引擎 Redis 指标采集</div>
                         </div>
@@ -8912,7 +8913,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">火山引擎 VKE</div>
                             <div title="火山云 VKE 指标采集，包括 Cluster、Container、Node、Pod等。" class="fth-integration-desc">火山云 VKE 指标采集，包括 Cluster、Container、Node、Pod等。</div>
                         </div>
@@ -8942,7 +8943,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">vSphere</div>
                             <div title="采集 vSphere 的指标数据" class="fth-integration-desc">采集 vSphere 的指标数据</div>
                         </div>
@@ -8972,7 +8973,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Windows 事件</div>
                             <div title="采集 Windows 中的事件日志" class="fth-integration-desc">采集 Windows 中的事件日志</div>
                         </div>
@@ -9002,7 +9003,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Zabbix 数据接入</div>
                             <div title="Zabbix realTime data 数据接入" class="fth-integration-desc">Zabbix realTime data 数据接入</div>
                         </div>
@@ -9032,7 +9033,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Zadigx</div>
                             <div title="Zadigx 展示包括概览、自动化构建、自动化部署、自动化测试等指标。" class="fth-integration-desc">Zadigx 展示包括概览、自动化构建、自动化部署、自动化测试等指标。</div>
                         </div>
@@ -9062,7 +9063,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">Zipkin</div>
                             <div title="Zipkin Tracing 数据接入" class="fth-integration-desc">Zipkin Tracing 数据接入</div>
                         </div>
@@ -9092,7 +9093,7 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<div>
+  						<div class="fth-integration-description">
                             <div class="fth-integration-name">ZooKeeper</div>
                             <div title="采集 zookeeper 相关指标信息" class="fth-integration-desc">采集 zookeeper 相关指标信息</div>
                         </div>
