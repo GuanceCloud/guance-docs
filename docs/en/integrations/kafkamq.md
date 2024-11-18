@@ -46,10 +46,14 @@ Datakit supports subscribing messages from kafka to gather link, metric, and log
     
       ## kafka tls config
       # tls_enable = true
+      ## PLAINTEXT/SASL_SSL/SASL_PLAINTEXT
       # tls_security_protocol = "SASL_PLAINTEXT"
+      ## PLAIN/SCRAM-SHA-256/SCRAM-SHA-512/OAUTHBEARER,default is PLAIN.
       # tls_sasl_mechanism = "PLAIN"
       # tls_sasl_plain_username = "user"
       # tls_sasl_plain_password = "pw"
+      ## If tls_security_protocol is SASL_SSL, then ssl_cert must be configured.
+      # ssl_cert = "/path/to/host.cert"
     
       ## -1:Offset Newest, -2:Offset Oldest
       offsets=-1
@@ -136,7 +140,8 @@ Notes on configuration files:
 1. `kafka_version`: The version length is 3, such as 1.0.0, 1.2.1, and so on.
 2. `offsets`: note: Newest or Oldest.
 3. `SASL`: If security authentication is enabled, please configure the user and password correctly.
-4. Starting from v1.23.0, it supports multi-threaded mode.
+4. When using SSL, configure the certificate path into `ssl_cert`.
+5. Starting from v1.23.0, it supports multi-threaded mode.
 
 ### Consumer group mode {#consumer_group}
 

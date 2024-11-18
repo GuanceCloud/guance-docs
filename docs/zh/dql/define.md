@@ -113,7 +113,7 @@ O::human:(height, age) { age > 100, sex = "直男" } ORDER BY height desc LIMIT 
 M::cpu,mem:(time_active, time_guest_nice, host) { host = "host-name", cpu = "cpu0" } [5m] BY host,cpu
 ```
 
-<font color=coral>**注意：**</font>：`::` 和 `:` 两边都是可以添加空白字符的，如下语句是等价的：
+**注意：**：`::` 和 `:` 两边都是可以添加空白字符的，如下语句是等价的：
 
 ```python
 M::cpu:(time_active, time_guest_nice)
@@ -245,7 +245,7 @@ O::human:(height) { age in [30, 40, 50], weight > 70}
 - 线性填充：如 `cpu:(fill(f1, LINEAR))`
 - 前值填充：如 `cpu:(fill(f1, PREVIOUS))`
 
-<font color=coral>**注意：**</font>多个过滤条件之间。默认是 `AND` 的关系，但如果要表达 `OR` 的关系，就用 `||` 操作符即可。如下两个语句的意思是相等的：
+**注意：**多个过滤条件之间。默认是 `AND` 的关系，但如果要表达 `OR` 的关系，就用 `||` 操作符即可。如下两个语句的意思是相等的：
 
 ```python
 O::human:(height) { age > 31, sex != re("男") }
@@ -271,7 +271,7 @@ DataFlux 数据特点均有时间属性，故将时间的表达用单独的子�
 | 3    | `interval`   | 否       | 时间聚合周期，一般需要配合聚合或滚动聚合使用，支持 `s`、`m`、`h`、`d` 等时间单位，可以组合使用      | `1s`/`1m`/`1h` 等              |
 | 4    | `rollup`     | 否       | 滚动聚合函数名，当前支持的聚合函数有 `avg`、`sum`、`min`、`max`、`count`、`first`、`last`、`stddev` | `last`                         |
 
-<font color=coral>**注意：**</font>
+**注意：**
 
 `start_time`, `end_time` 支持 3 种格式：
 
@@ -334,7 +334,7 @@ M::cpu:(max(`usage_total`) as `max_usage`) by host having max_usage > 80
 
 `ORDER BY` 子句会对结果进行排序，类似 MySQL 中的 `ORDER BY`。
 
-<font color=coral>**注意：**</font> 1.「指标数据」只支持对 time 字段排序; 2. 当查询中 by 了分组，order-by 将不生效，请使用 sorder-by 排序。
+**注意：** 1.「指标数据」只支持对 time 字段排序; 2. 当查询中 by 了分组，order-by 将不生效，请使用 sorder-by 排序。
 
 ```python
 # 获取所有的主机CPU 使用率，按照时间逆序
@@ -369,7 +369,7 @@ M::cpu:(`usage_total`) sorder by usage_total
 
 用于指定返回行数，
 
-<font color=coral>**注意：**</font>
+**注意：**
 
 对于时序数据，如果dql语句中同时包含了by短语和limit短语，limit约束的是每个聚合组中的返回条数
 

@@ -202,6 +202,9 @@ setenforce 0
     
       # interval = "60s"
     
+      # sampling_rate = "0.50"
+      # sampling_rate_pts_per_min = "1500"
+    
       [inputs.ebpf.tags]
         # some_tag = "some_value"
         # more_tag = "some_other_value"
@@ -344,6 +347,15 @@ Configuration items:
     - Environment variable: `ENV_INPUT_EBPF_NET_LIMIT`
     - Example: `"100MiB/s"`
 
+- `sampling_rate`
+    - Description: The sampling rate when the eBPF collector reports data, ranging from `0.01 to 1.00`; Mutually exclusive with the `samping_rate_pts_per_min` setting
+    - Environment variable: `ENV_INPUT_EBPF_SAMPLING_RATE`
+    - Example: `0.50`
+
+- `sampling_rate_pts_per_min`
+    - Description: Set the data volume threshold per minute when the eBPF collector reports data, and dynamically adjust the sampling rate
+    - Environment variable: `ENV_INPUT_EBPF_SAMPLING_RATE_PTSPERMIN`
+    - Example: `1500`
 <!-- markdownlint-enable -->
 
 ## eBPF Tracing function {#ebpf-tracing}
