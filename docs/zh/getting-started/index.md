@@ -8,6 +8,9 @@ icon: zy/getting-started
 
 观测云是一款旨在解决云计算，以及云原生时代系统为每一个完整的应用构建**全链路的可观测性**的云服务平台。本章节将带您快速了解观测云产品，并指导您快速开启您自己的可观测平台。
 
+
+<!--
+
 <br/>
 
 <div class="grid cards" markdown>
@@ -33,3 +36,5 @@ icon: zy/getting-started
 
 
 </div>
+
+-->
