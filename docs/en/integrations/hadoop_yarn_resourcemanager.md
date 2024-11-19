@@ -18,7 +18,7 @@ Collect Yarn ResourceManager metric information.
 
 ## Installation and deployment {#config}
 
-Since ResourceManager is developed in Java language, it can collect metric information using jmx exporter.
+Since ResourceManager is developed in Java language, it can collect metric information using jmx-exporter.
 
 ### 1. ResourceManager Configuration
 
