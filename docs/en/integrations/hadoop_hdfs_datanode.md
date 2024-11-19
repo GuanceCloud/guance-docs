@@ -18,7 +18,7 @@ Collect HDFS datanode metric information.
 
 ## Installation and deployment {#config}
 
-Since DataNode is developed in Java language, it can collect metric information using jmx exporter.
+Since DataNode is developed in Java language, it can collect metric information using jmx-exporter.
 
 ### 1. DataNode configuration
 
@@ -50,7 +50,7 @@ Go to the installation directory of [DataKit](./datakit_dir.md) and copy `prom.d
 
 > `cp prom.conf.sample datanode.conf`
 
-Adjust the content of 'datanode. conf' as follows:
+Adjust the content of `datanode.conf` as follows:
 
 ```toml
 

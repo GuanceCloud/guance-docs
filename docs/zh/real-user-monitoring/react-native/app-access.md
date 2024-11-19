@@ -265,35 +265,55 @@ await FTReactNativeTrace.setConfig(traceConfig);
 
 在 SDK 初始化 [RUM 配置](#rum-config) 时可配置 `enableNativeUserView` 开启自动采集 `Native View`，`React Native View` 由于 React Native 提供了广泛的库来创建屏幕导航，所以默认情况下只支持手动采集 ，您可以使用下面方法手动启动和停止视图。
 
+#### 自定义 View
+
+##### 使用方法
+
 ```typescript
-import {FTReactNativeRUM} from '@cloudcare/react-native-mobile';
 /**
- * view加载时长。(可选)
+ * view加载时长。
  * @param viewName view 名称
  * @param loadTime view 加载时长
-*/
-FTReactNativeRUM.onCreateView('viewName', duration);
+ * @returns a Promise.
+ */
+onCreateView(viewName:string,loadTime:number): Promise<void>;
 /**
  * view 开始。
  * @param viewName 界面名称
  * @param property 事件上下文(可选)
-*/
+ * @returns a Promise.
+ */
+startView(viewName: string, property?: object): Promise<void>;
+/**
+ * view 结束。
+ * @param property 事件上下文(可选)
+ * @returns a Promise.
+ */
+stopView(property?:object): Promise<void>;
+```
+
+##### 使用示例
+
+```typescript
+import {FTReactNativeRUM} from '@cloudcare/react-native-mobile';
+
+FTReactNativeRUM.onCreateView('viewName', duration);
+
 FTReactNativeRUM.startView(
   'viewName',
   { 'custom.foo': 'something' },
 );
-/**
- * view 结束。
- * @param property 事件上下文(可选)
- */
+
 FTReactNativeRUM.stopView(
  { 'custom.foo': 'something' },
 );
 ```
 
+#### 自动采集 React Native View
+
 **如果您在 React Native 中使用 `react-native-navigation ` 、`react-navigation ` 或 `Expo Router `  导航组件，可以参考下面方式进行 `React Native View`  的自动采集**：
 
-#### react-native-navigation
+##### react-native-navigation
 
 将 example 中 [FTRumReactNavigationTracking.tsx](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/src/FTRumReactNativeNavigationTracking.tsx) 文件添加到您的工程；
 
@@ -319,7 +339,7 @@ function startReactNativeNavigation() {
 }
 ```
 
-#### react-navigation
+##### react-navigation
 
 将 example 中 [FTRumReactNavigationTracking.tsx](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/src/FTRumReactNavigationTracking.tsx) 文件添加到您的工程；
 
@@ -327,7 +347,7 @@ function startReactNativeNavigation() {
 
   如果您使用 `createNativeStackNavigator();` 创建原生导航堆栈，建议采用添加 `screenListeners` 方式开启采集， 这样可以统计到页面的加载时长，具体使用如下：
 
-  ```typescript
+```typescript
   import {FTRumReactNavigationTracking} from './FTRumReactNavigationTracking';
   import { createNativeStackNavigator } from '@react-navigation/native-stack';
   const Stack = createNativeStackNavigator();
@@ -337,7 +357,7 @@ function startReactNativeNavigation() {
           ......
           <Stack.Screen name="Mine" component={Mine} options={{ title: 'Mine' }}/>
   </Stack.Navigator>
-  ```
+```
 
 * 方法二：
 
@@ -345,7 +365,7 @@ function startReactNativeNavigation() {
 
   **注意：此方法无法采集页面加载时长**
   
-  ```typescript
+```typescript
   import {FTRumReactNavigationTracking} from './FTRumReactNavigationTracking';
   import type { NavigationContainerRef } from '@react-navigation/native';
   
@@ -359,11 +379,11 @@ function startReactNativeNavigation() {
           <Stack.Screen name="Mine" component={Mine} options={{ title: 'Mine' }}/>
         </Stack.Navigator>
    </NavigationContainer>
-  ```
+```
 
 具体使用示例可以参考 [example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)。
 
-#### Expo Router
+##### Expo Router
 
 如果您使用的是 [Expo Router](https://expo.github.io/router/docs/)，在 app/_layout.js 文件中添加如下方法进行数据采集。
 
@@ -391,10 +411,25 @@ export default function Layout() {
 
 在 SDK 初始化 [RUM 配置](#rum-config) 时配置 `enableAutoTrackUserAction` 和 `enableNativeUserAction`开启自动采集，也可通过下面方法进行手动添加。
 
+#### 使用方法
+
+```typescript
+/**
+ * 执行 action 。
+ * @param actionName action 名称
+ * @param actionType action 类型
+ * @param property 事件上下文(可选)
+ * @returns a Promise.
+ */
+startAction(actionName:string,actionType:string,property?:object): Promise<void>;
+```
+
+####  代码示例
+
 ```typescript
 import {FTReactNativeRUM} from '@cloudcare/react-native-mobile';
 
-FTReactNativeRUM.startAction('actionName','actionType');
+FTReactNativeRUM.startAction('actionName','actionType',{'custom.foo': 'something'});
 ```
 
 **更多自定义采集操作**
@@ -444,15 +479,72 @@ FTReactNativeRUM.startAction('actionName','actionType');
 
 在 SDK 初始化 [RUM 配置](#rum-config) 时配置 `enableAutoTrackError`开启自动采集，也可通过下面方法进行手动添加。
 
+#### 使用方法
+
+```typescript
+/**
+ * 异常捕获与日志收集。
+ * @param stack 堆栈日志
+ * @param message 错误信息
+ * @param property 事件上下文(可选)
+ * @returns a Promise.
+ */
+addError(stack: string, message: string,property?:object): Promise<void>;
+/**
+ * 异常捕获与日志收集。
+ * @param type 错误类型
+ * @param stack 堆栈日志
+ * @param message 错误信息
+ * @param property 事件上下文(可选)
+ * @returns a Promise.
+ */
+addErrorWithType(type:string,stack: string, message: string,property?:object): Promise<void>;
+```
+
+#### 使用示例
+
 ```typescript
 import {FTReactNativeRUM} from '@cloudcare/react-native-mobile';
 
-FTReactNativeRUM.addError("error stack","error message");
+FTReactNativeRUM.addError("error stack","error message",{'custom.foo': 'something'});
+
+FTReactNativeRUM.addErrorWithType("custom_error", "error stack", "error message",{'custom.foo': 'something'});
 ```
+
+
 
 ### Resource
 
 在 SDK 初始化 [RUM 配置](#rum-config) 时配置 `enableNativeUserResource` 开启自动采集，也可通过下面方法进行手动添加。
+
+#### 使用方法
+
+```typescript
+/**
+ * 开始资源请求。
+ * @param key 唯一 id
+ * @param property 事件上下文(可选)
+ * @returns a Promise.
+ */
+startResource(key: string,property?:object): Promise<void>;
+/**
+ * 结束资源请求。  
+ * @param key 唯一 id
+ * @param property 事件上下文(可选)
+ * @returns a Promise.
+ */
+stopResource(key: string,property?:object): Promise<void>;
+/**
+ * 发送资源数据指标。
+ * @param key 唯一 id
+ * @param resource 资源数据
+ * @param metrics  资源性能数据
+ * @returns a Promise.
+ */
+addResource(key:string, resource:FTRUMResource,metrics?:FTRUMResourceMetrics):Promise<void>;
+```
+
+#### 使用示例
 
 ```typescript
 import {FTReactNativeRUM} from '@cloudcare/react-native-mobile';
@@ -489,16 +581,25 @@ async getHttp(url:string){
 
 
 
-##  Logger 日志打印 
+##  Logger 日志打印
+
 > 目前日志内容限制为 30 KB，字符超出部分会进行截断处理
+### 使用方法
+
 ```typescript
 /**
-FTReactNativeLogWrapper.logging(content: String, logStatus: FTLogStatus | String, property?: object): Promise<void>
-输出日志。
-@param content — 日志内容
-@param logStatus — 日志状态
-@param property — 日志上下文(可选)
-*/
+ * 输出日志。
+ * @param content 日志内容
+ * @param status  日志状态
+ * @param property 日志上下文(可选)
+ */
+logging(content:String,logStatus:FTLogStatus|String,property?:object): Promise<void>;
+```
+
+### 使用示例
+
+```typescript
+import { FTReactNativeLog, FTLogStatus } from '@cloudcare/react-native-mobile';
 // logStatus:FTLogStatus
 FTReactNativeLog.logging("info log content",FTLogStatus.info);
 // logStatus:string
@@ -517,10 +618,32 @@ FTReactNativeLog.logging("info log content","info");
 
 ## Tracer 网络链路追踪
 
-SDK 初始化 [Trace 配置](#trace-config) 时可以开启自动网络链路追踪，也支持用户自定义采集，自定义采集使用示例如下：
+SDK 初始化 [Trace 配置](#trace-config) 时可以开启自动网络链路追踪，也支持用户自定义采集，自定义采集使用方法及示例如下：
+
+### 使用方法
 
 ```typescript
-  async getHttp(url:string){
+/**
+ * 获取 trace http 请求头数据。
+ * @param url 请求地址
+ * @returns trace 添加的请求头参数  
+ * @deprecated use getTraceHeaderFields() replace.
+ */
+getTraceHeader(key:String, url: String): Promise<object>;
+/**
+ * 获取 trace http 请求头数据。
+ * @param url 请求地址
+ * @returns trace 添加的请求头参数  
+ */
+getTraceHeaderFields(url: String,key?:String): Promise<object>;
+```
+
+### 使用示例
+
+```typescript
+import {FTReactNativeTrace} from '@cloudcare/react-native-mobile';
+ 
+async getHttp(url:string){
     const key = Utils.getUUID();
     var traceHeader = await FTReactNativeTrace.getTraceHeaderFields(url);
     const fetchOptions = {
@@ -538,7 +661,30 @@ SDK 初始化 [Trace 配置](#trace-config) 时可以开启自动网络链路追
 
 ## 用户信息绑定与解绑
 
+### 使用方法
+
 ```typescript
+/**
+ * 绑定用户。
+ * @param userId 用户ID。
+ * @param userName 用户姓名。
+ * @param userEmail 用户邮箱
+ * @param extra  用户的额外信息
+ * @returns a Promise.
+ */
+bindRUMUserData(userId: string,userName?:string,userEmail?:string,extra?:object): Promise<void>;
+/**
+ * 解绑用户。
+ * @returns a Promise.
+ */
+unbindRUMUserData(): Promise<void>;
+```
+
+### 使用示例
+
+```typescript
+import {FTMobileReactNative} from '@cloudcare/react-native-mobile';
+
 /**
  * 绑定用户。
  * @param userId 用户ID。
@@ -559,16 +705,35 @@ FTMobileReactNative.unbindRUMUserData()
 
 使用 `FTMobileReactNative` 关闭 SDK。
 
+### 使用方法
+
 ```typescript
 /**
  * 关闭 SDK 内正在运行对象
-*/
+ */
+shutDown():Promise<void>
+```
+
+### 使用示例
+
+```typescript
 FTMobileReactNative.shutDown();
 ```
 
 ## 清理 SDK 缓存数据
 
 使用  `FTMobileReactNative` 清理未上报的缓存数据 
+
+### 使用方法
+
+```typescript
+/**
+ * 清除所有尚未上传至服务器的数据。
+ */
+clearAllData():Promise<void>
+```
+
+### 使用示例
 
 ```typescript
 /**
@@ -583,30 +748,54 @@ FTMobileReactNative.clearAllData();
 
 当配置 `FTMobileConfig.autoSync` 为 `false` 时，需要主动触发数据同步方法，进行数据同步。
 
+### 使用方法
+
+```typescript
+/**
+ * 主动同步数据，当配置 `FTMobileConfig.autoSync=false` 时,需要主动触发本方法，进行数据同步。
+ * @returns a Promise.
+ */
+flushSyncData():Promise<void>;
+```
+
+### 使用示例
+
 ```typescript
 FTMobileReactNative.flushSyncData();
 ```
 
 ## 添加自定义标签 {#user-global-context}
 
+### 使用方法
+
 ```typescript
 /**
  * 添加自定义全局参数。作用于 RUM、Log 数据
  * @param context 自定义全局参数。
  * @returns a Promise.
-*/
-FTMobileReactNative.appendGlobalContext({'global_key':'global_value'});
+ */
+appendGlobalContext(context:object):Promise<void>;
 /**
  * 添加自定义 RUM 全局参数。作用于 RUM 数据
  * @param context 自定义 RUM 全局参数。
  * @returns a Promise.
-*/
-FTMobileReactNative.appendRUMGlobalContext({'rum_key':'rum_value'});
+ */
+appendRUMGlobalContext(context:object):Promise<void>;
 /**
  * 添加自定义 RUM、Log 全局参数。作用于 Log 数据
  * @param context 自定义 Log 全局参数。
  * @returns a Promise.
-*/
+ */
+appendLogGlobalContext(context:object):Promise<void>;
+```
+
+### 使用示例
+
+```typescript
+FTMobileReactNative.appendGlobalContext({'global_key':'global_value'});
+
+FTMobileReactNative.appendRUMGlobalContext({'rum_key':'rum_value'});
+
 FTMobileReactNative.appendLogGlobalContext({'log_key':'log_value'});
 ```
 
