@@ -14,7 +14,7 @@ Grafana Tempo和 Loki 结合，能够让我们直观的看到日志链路情况�
 
 [观测云](https://www.guance.com)
 
-是一个集指标数据、日志数据、APM 、RUM、基础设施、容器、中间件、网络性能等多种数据统一收集管理平台。使用观测云可以为我们全方位观测应用，而不仅仅是日志链路之间的观测。更多观测云信息请跳转到[产品优势](../../getting-started/product-introduction/index.md)阅读。
+是一个集指标数据、日志数据、APM 、RUM、基础设施、容器、中间件、网络性能等多种数据统一收集管理平台。使用观测云可以为我们全方位观测应用，而不仅仅是日志链路之间的观测。更多观测云信息请跳转到[产品优势](../../product-introduction/index.md)阅读。
 
 DataKit 是观测云的前置 gateway, 若要把数据打给观测云, 需要正确的配置 DataKit , 而且利用 DataKit 有以下优势:
 
