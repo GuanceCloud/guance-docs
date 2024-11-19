@@ -2,6 +2,14 @@
 
 # Update History {#changelog}
 
+## 1.6.1(2024/11/19) {#cl-1.6.1}
+
+### Feature Enhancements {#cl-1.6.1-opt}
+
+- Add option to disable 404 page(#44)
+
+---
+
 ## 1.6.0 (2024/09/19) {#cl-1.6.0}
 
 ### Feature Enhancements {#cl-1.6.0-opt}

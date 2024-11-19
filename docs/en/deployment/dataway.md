@@ -267,6 +267,7 @@ When Dataway runs in a Kubernetes environment, it supports the following environ
 | DW_TLS_CRT                  | file-path | No       | Specify the directory of the HTTPS/TLS crt file [:octicons-tag-24: Version-1.4.0](dataway-changelog.md#cl-1.4.0)                                           |               |
 | DW_TLS_KEY                  | file-path | No       | Specify the directory of the HTTPS/TLS key file [:octicons-tag-24: Version-1.4.0](dataway-changelog.md#cl-1.4.0)                                           |               |
 | DW_SNI                      | string    | N        | Specify current Dataway's SNI [:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0)                                                             |               |
+| DW_DISABLE_404PAGE          | boolean   | N        | Disable 404 page[:octicons-tag-24: Version-1.6.1](dataway-changelog.md#cl-1.6.1)                                                                           |               |
 
 ##### HTTP TLS Settings {#http-tls}
 
