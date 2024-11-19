@@ -282,6 +282,7 @@ Dataway 在 Kubernetes 环境中运行时，支持如下环境变量。
 | DW_TLS_CRT                  | file-path | N        | 指定 HTTPS/TLS crt 文件目录 [:octicons-tag-24: Version-1.4.0](dataway-changelog.md#cl-1.4.0)       |          |
 | DW_TLS_KEY                  | file-path | N        | 指定 HTTPS/TLS key 文件目录[:octicons-tag-24: Version-1.4.0](dataway-changelog.md#cl-1.4.0)        |          |
 | DW_SNI                      | string    | N        | 指定当前 Dataway SNI 信息[:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0)          |          |
+| DW_DISABLE_404PAGE          | boolean   | N        | 禁用 404 页面[:octicons-tag-24: Version-1.6.1](dataway-changelog.md#cl-1.6.1)                      |          |
 
 ##### HTTP TLS 设置 {#http-tls}
 
