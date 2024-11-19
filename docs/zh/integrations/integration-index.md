@@ -1014,7 +1014,7 @@ icon: zy/integrations
   				data-href="../aliyun_sae"
   				data-tags="阿里云"
   				data-name="阿里云 SAE"
-  				data-summary="采集阿里云 SAE 的指标信息"
+  				data-summary="采集阿里云 SAE（Serverless App Engine）的指标、日志、链路信息"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2528,6 +2528,32 @@ icon: zy/integrations
                             <div title="采集 CockroachDB 的指标数据" class="fth-integration-desc">采集 CockroachDB 的指标数据</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../confluent_cloud"
+  				data-tags="中间件"
+  				data-name="Confluent Cloud"
+  				data-summary="从 Confluent Cloud 采集 Kafka 指标数据"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/confluent/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<span class="fth-integration-name">Confluent Cloud</span>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -4868,6 +4894,32 @@ icon: zy/integrations
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../huawei_rds_mariadb"
+  				data-tags="华为云"
+  				data-name="华为云 RDS MariaDB"
+  				data-summary="采集华为云 RDS MariaDB 指标数据"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/huawei_rds_mariadb/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<span class="fth-integration-name">华为云 RDS MariaDB</span>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
