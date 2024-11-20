@@ -68,12 +68,6 @@ Collect indicators, objects and log data of container and Kubernetes and report 
       # extract_k8s_label_as_tags_v2 = []
       # extract_k8s_label_as_tags_v2_for_metric = []
     
-      ## Auto-Discovery of PrometheusMonitoring Annotations/CRDs
-      enable_auto_discovery_of_prometheus_pod_annotations = false
-      enable_auto_discovery_of_prometheus_service_annotations = false
-      enable_auto_discovery_of_prometheus_pod_monitors = false
-      enable_auto_discovery_of_prometheus_service_monitors = false
-    
       ## Containers logs to include and exclude, default collect all containers. Globs accepted.
       container_include_log = []
       container_exclude_log = ["image:*logfwd*", "image:*datakit*"]

@@ -2,10 +2,11 @@ nav:
 
   - 更新日志: release-notes
   - <br/>开始使用: ""
-  - 快速入门: getting-started
-  - 开始观测: plans
+  - 产品介绍: product-introduction
+  - 开始注册: plans
   - DataKit: datakit
   - 集成: integrations
+  - 快速入门: getting-started
   - <br/>产品功能: ""
   - 场景: scene
   - 监控: monitoring

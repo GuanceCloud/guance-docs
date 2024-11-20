@@ -18,7 +18,7 @@ Collect HDFS namenode metric information.
 
 ## Installation and deployment {#config}
 
-Since NameNode is developed in Java language, it can collect metric information using jmx exporter.
+Since NameNode is developed in Java language, it can collect metric information using jmx-exporter.
 
 ### 1. NameNode configuration
 
@@ -50,7 +50,7 @@ Go to the installation directory of [DataKit](./datakit_dir.md) and copy `prom.d
 
 > `cp prom.conf.sample namenode.conf`
 
-Adjust the content of 'namenode. conf' as follows:
+Adjust the content of `namenode.conf` as follows:
 
 ```toml
 
