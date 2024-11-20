@@ -29,7 +29,7 @@
 
 关系架构图：
 
-![](img/group.png)
+![](img/glossary.png)
 
 ## 功能
 
