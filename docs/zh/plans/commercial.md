@@ -2,7 +2,7 @@
 ---
 
 
-## 使用前提
+## 使用须知
 
 观测云工作空间的商业版用户，需要成功注册**观测云控制台、观测云费用中心两个账号**，才可进行后续的用量计费与费用结算流程。
 
@@ -35,7 +35,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **从阿里云市场（海外版）开通**</font>](./commercial-aliyun-sls.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **从阿里云市场（海外版）开通**</font>](./en-alicloud.md)
 
 </div>
 

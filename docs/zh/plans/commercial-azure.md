@@ -78,7 +78,7 @@
 
 由于观测云控制台和费用中心是两个独立的平台，此时需要确认您是否注册过观测云、拥有观测云账号。
 
-![](img/azure-8.png)
+<img src="../img/azure-8.png" width="70%" >
 
 :material-numeric-1-circle-outline: 有观测云账号
 
@@ -89,7 +89,7 @@
 5. 同意协议；
 6. 点击创建，工作空间即可创建成功。
 
-![](img/azure-9.png)
+<img src="../img/azure-9.png" width="60%" >
 
 :material-numeric-1-circle-outline: 没有观测云账号
 
@@ -104,7 +104,7 @@
 6. 同意协议；
 7. 点击注册并创建工作空间。
    
-![](img/azure-10.png)
+<img src="../img/azure-10.png" width="60%" >
 
 ##### 绑定已有工作空间
 
@@ -119,7 +119,12 @@
 ![](img/azure-12.png)
 
 
+## 开始使用观测云
+
+成功绑定工作空间后，点击确定，跳转至登录页面，输入用户名和密码进入即可该工作空间，开始使用观测云。
 
 
+![](img/azure-13.png)
 
+![](img/azure-14.png)
 
