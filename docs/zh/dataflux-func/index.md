@@ -10,7 +10,7 @@ icon: zy/dataflux-func
 
     **2023.9.21**：DataFlux Func 托管版和 RUM Headless 现支持海外站点：俄勒冈，法兰克福，新加坡。
 -->
-DataFlux Func 是一个基于 Python 的脚本开发、管理、执行平台。是[观测云](https://guance.com/) 下属的一个函数计算组件，目前已成为可独立运行的系统。
+DataFlux Func 是一个基于 Python 的脚本开发、管理、执行平台。是[观测云](https://guance.com/)下属的一个函数计算组件，目前已成为可独立运行的系统。
 
 主要分为 2 个部分：
 
