@@ -89,16 +89,32 @@ Guance has the ability of full stack data collection, and now supports about {{.
   			flex: 1;
   			display: flex;
   			align-items: center;
+            position: relative;
   		}
+        .fth-integration-list-content .fth-integration-list-item .integration-list-item-left .glightbox {
+            display: flex;
+        }
   		.fth-integration-list-content .fth-integration-list-item .integration-list-item-left img {
   			width: 32px;
+            min-width: 32px;
   			height: 32px;
   			border-style: none;
   		}
+        .fth-integration-list-content .fth-integration-list-item .integration-list-item-left .fth-integration-mask-image {
+            position: absolute;
+            width: 32px;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+            background-color: transparent;
+        }
+        .fth-integration-list-content .fth-integration-list-item .integration-list-item-left .fth-integration-description {
+  			padding-right:10px
+  		}
   		.fth-integration-list-content .fth-integration-list-item .integration-list-item-left .fth-integration-name {
-  			max-width: 184px;
   			font-size: 14px;
-  			font-weight: 500;
+  			font-weight: 600;
   			line-height: 20px;
   			height: 20px;
   			text-overflow: ellipsis;
@@ -107,6 +123,19 @@ Guance has the ability of full stack data collection, and now supports about {{.
   			margin-left: 10px;
   			color: #222;
   		}
+         .fth-integration-list-content .fth-integration-list-item .integration-list-item-left .fth-integration-desc {
+            margin-top:2px;
+            color: #666;
+            font-size: 12px;
+            margin-left: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 2.8em;
+            line-height: 1.4em;
+        }
   		.fth-integration-list-content .fth-integration-list-card:hover .integration-list-item-right {
   			display: inline-block;
   		}
@@ -150,7 +179,11 @@ Guance has the ability of full stack data collection, and now supports about {{.
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<span class="fth-integration-name">{{$idoc.Name}}</span>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">{{$idoc.Name}}</div>
+                            <div title="{{$idoc.Summary}}" class="fth-integration-desc">{{$idoc.Summary}}</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

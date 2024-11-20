@@ -3,6 +3,13 @@
 ---
 ???- quote "更新日志"
 
+    **1.5.6**
+    ```
+    1. 支持使用 `FTMobileConfig.compressIntakeRequests` 对同步数据进行 deflate 压缩配置
+    2. RUM 添加 `addAction:actionType:property` 与 `startAction:actionType:property:` 方法，
+       优化 RUM Action 采集逻辑
+    3. 修复使用 NSFileHandle 废弃 api 导致的崩溃问题
+    ```
     **1.5.5**
     ```
     1. 修复 `FTResourceMetricsModel` 中数组越界导致的崩溃问题
@@ -298,6 +305,7 @@
 | syncPageSize | int | 否 | 设置同步请求条目数。范围 [5,）注意：请求条目数越大，代表数据同步占用更大的计算资源，默认为 10 |
 | syncSleepTime | int | 否 | 设置同步间歇时间。范围 [0,5000]，默认不设置 |
 | enableDataIntegerCompatible | BOOL | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题 。 |
+| compressIntakeRequests | BOOL | 否 | 对同步数据进行压缩，SDK 1.5.6 以上版本支持这个参数 |
 
 ### RUM 配置 {#rum-config}
 
@@ -536,78 +544,67 @@
 === "Objective-C"
 
     ```objectivec
-    /// 添加 Click Action 事件
+    /// 启动 RUM Action。
     ///
-    /// - Parameters:
-    ///   - actionName: 事件名称
-    - (void)addClickActionWithName:(NSString *)actionName;
-    
-    /// 添加 Click Action 事件
-    /// - Parameters:
-    ///   - actionName: 事件名称
-    ///   - property: 事件自定义属性(可选)
-    - (void)addClickActionWithName:(NSString *)actionName property:(nullable NSDictionary *)property;
-    
-    /// 添加 Action 事件
+    /// RUM 会绑定该 Action 可能触发的 Resource、Error、LongTask 事件。避免在 0.1 s 内多次添加，同一个 View 在同一时间只会关联一个 Action，在上一个 Action 未结束时，新增的 Action 会被丢弃。
+    /// 与 `addAction:actionType:property` 方法添加 Action 互不影响。
     ///
     /// - Parameters:
     ///   - actionName: 事件名称
     ///   - actionType: 事件类型
-    - (void)addActionName:(NSString *)actionName actionType:(NSString *)actionType;
-    /// 添加 Action 事件
+    ///   - property: 事件自定义属性(可选)
+    - (void)startAction:(NSString *)actionName actionType:(NSString *)actionType property:(nullable NSDictionary *)property;
+    
+    /// 添加 Action 事件.无 duration，无丢弃逻辑
+    ///
+    /// 与 `startAction:actionType:property:` 启动的 RUM Action 互不影响。
     /// - Parameters:
     ///   - actionName: 事件名称
     ///   - actionType: 事件类型
     ///   - property: 事件自定义属性(可选)
-    - (void)addActionName:(NSString *)actionName actionType:(NSString *)actionType property:(nullable NSDictionary *)property;
+    - (void)addAction:(NSString *)actionName actionType:(NSString *)actionType property:(nullable NSDictionary *)property;
     ```
 
 === "Swift"
 
     ```swift
-    /// 添加 Click Action 事件
+    /// 启动 RUM Action。
     ///
-    /// - Parameters:
-    ///   - actionName: 事件名称
-    func addClickAction(withName: String)
-    
-    /// 添加 Click Action 事件
-    /// - Parameters:
-    ///   - actionName: 事件名称
-    ///   - property: 事件自定义属性(可选)
-    func addClickAction(withName: String, property: [AnyHashable : Any]?)
-    
-    /// 添加 Action 事件
+    /// RUM 会绑定该 Action 可能触发的 Resource、Error、LongTask 事件。避免在 0.1 s 内多次添加，同一个 View 在同一时间只会关联一个 Action，在上一个 Action 未结束时，新增的 Action 会被丢弃。
+    /// 与 `addAction:actionType:property` 方法添加 Action 互不影响。
     ///
     /// - Parameters:
     ///   - actionName: 事件名称
     ///   - actionType: 事件类型
-    func addActionName(String, actionType: String)
+    ///   - property: 事件自定义属性(可选)
+    open func startAction(_ actionName: String, actionType: String, property: [AnyHashable : Any]?)
     
-    /// 添加 Action 事件
+    /// 添加 Action 事件.无 duration，无丢弃逻辑
+    ///
+    /// 与 `startAction:actionType:property:` 启动的 RUM Action 互不影响。
     /// - Parameters:
     ///   - actionName: 事件名称
     ///   - actionType: 事件类型
     ///   - property: 事件自定义属性(可选)
-    func addActionName(String, actionType: String, property: [AnyHashable : Any]?)
+    open func addAction(_ actionName: String, actionType: String, property: [AnyHashable : Any]?)
     ```
 #### 代码示例
 
 === "Objective-C"
 
     ```objective-c
-    // 场景1
-    [[FTExternalDataManager sharedManager] addActionName:@"UITableViewCell click" actionType:@"click"];
-    // 场景2: 动态参数
-    [[FTExternalDataManager sharedManager]  addActionName:@"UITableViewCell click" actionType:@"click" property:@{@"custom_key":@"custom_value"}];
+    // startAction
+    [[FTExternalDataManager sharedManager] startAction:@"action" actionType:@"click" property:@{@"action_property":@"testActionProperty1"}];
+    // addAction
+    [[FTExternalDataManager sharedManager] addAction:@"action" actionType:@"click" property:@{@"action_property":@"testActionProperty1"}];
     ```
 === "Swift"
 
     ```swift
-    // 场景1
-    FTExternalDataManager.shared().addActionName("custom_action", actionType: "click")
-    // 场景2: 动态参数
-    FTExternalDataManager.shared().addActionName("custom_action", actionType: "click",property: ["custom_key":"custom_value"])
+    // startAction
+    FTExternalDataManager.shared().startAction("custom_action", actionType: "click",property: nil)
+    // addAction
+    FTExternalDataManager.shared().addAction("custom_action", actionType: "click",property: nil)
     ```
 
 ### Error
