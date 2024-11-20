@@ -1,7 +1,7 @@
 # 华为云云商店开通观测云商业版
 ---
 
-在华为云商店订购观测云服务，主要需要两个步骤：[购买观测云服务](#purchase)、[关联对应组织](#team)。
+在华为云商店订购观测云服务，主要需要两个步骤：[购买观测云服务](#purchase)、[绑定联营服务](#team)。订阅成功后，通过华为云侧提供的链接登录进入观测云。
 
 
 
@@ -40,7 +40,7 @@
 :material-numeric-1-circle: 新建企业：填写企业名称与企业域名；
 
 
-<img src="../../img/13.huaweicloud_7.png" width="60%" >
+<img src="../img/13.huaweicloud_7.png" width="60%" >
 
 **注意**：
 
@@ -50,7 +50,7 @@
 
 :material-numeric-2-circle: 添加成员：填写员工姓名、部门、联系方式等信息；
 
-<img src="../../img/13.huaweicloud_8.png" width="60%" >
+<img src="../img/13.huaweicloud_8.png" width="60%" >
 
 **注意**：
 
@@ -62,7 +62,7 @@
 
 :material-numeric-3-circle: 应用授权成员：单击勾选成员列表，勾选“协议许可”，并单击“确认授权”；
 
-<img src="../../img/13.huaweicloud_7.1.png" width="60%" >
+<img src="../img/13.huaweicloud_7.1.png" width="60%" >
 
 授权完成后，请将该登录地址、企业账号名称、账号密码传递给使用观测云产品的企业员工。
 
@@ -74,15 +74,15 @@
 3. 修改密码成功后，跳转到观测云产品页面。
 
 
-<img src="../../img/13.huaweicloud_9.png" width="60%" >
+<img src="../img/13.huaweicloud_9.png" width="60%" >
 
 
-<img src="../../img/13.huaweicloud_10.png" width="60%" >
+<img src="../img/13.huaweicloud_10.png" width="60%" >
 
 
-<img src="../../img/13.huaweicloud_12.png" width="60%" >
+<img src="../img/13.huaweicloud_12.png" width="60%" >
 
-## 开始使用观测云服务
+## 第三步：开始使用观测云
 
 如果当前华为云账号已绑定观测云费用中心账号，点击链接，直接免登即可。
 
@@ -120,7 +120,7 @@
 
 ![](../img/huawei-register-2.png)
 
-**注意**：此处页面右上角的站点与费用中心绑定流程无关，仅影响后续[创建工作空间](#create-workspace)时的站点，且后续无法在创建的页面无法更改站点。
+**注意**：此处页面右上角的站点与费用中心绑定流程无关，仅影响后续创建工作空间时的站点，且后续无法在创建的页面无法更改站点。
     
 
 

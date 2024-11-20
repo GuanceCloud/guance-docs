@@ -107,8 +107,6 @@ DataFlux Func 托管版采用按月收费的模式，在费用到期前，您仍
 - 恢复数据：将之前保留的数据备份到新开通的 Func 中；  
 - 不恢复数据：放弃之前的所有数据，[重新开通应用](#steps)。
 
-<img src="../img/automata-7.png" width="60%" >
-
 ## DataFlux Func 部署版
 
 > 关于 DataFlux Func 部署版，可参考：
