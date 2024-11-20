@@ -72,23 +72,13 @@
 
 #### :material-numeric-2-circle: 绑定工作空间 {#bind-workspace}
 
-##### 绑定已有工作空间
 
-:material-numeric-1-circle-outline: 如果您在该观测云费用中心账号下存在可绑定的工作空间，直接点击**绑定**。
-
-![](img/15.aliyun_register_6.1.png)
-
-跳转至**绑定观测云工作空间**页面，提示已绑定。点击**确定**，显示开通成功。
-
-
-:material-numeric-2-circle-outline: 如果您在该观测云费用中心账号下还未有可绑定的工作空间，选择[立即创建工作空间](#create-workspace)即可。
-
-![](img/no-workspace.png)
 
 ##### 创建工作空间 {#create-workspace}
 
 如果当前费用中心账号下尚未关联工作空间，需先创建工作空间。由于观测云控制台和费用中心是两个独立的平台，此时需要确认您是否注册过观测云、拥有观测云账号。
 
+![](img/no-workspace.png)
 
 :material-numeric-1-circle-outline: 如果您已经注册过观测云账号，且还需要创建工作空间，进入**创建工作空间 > 有观测云账号**。
 
@@ -125,6 +115,18 @@
 <img src="../img/15.aliyun_register_3.png" width="65%" >
 
 工作空间创建成功后，自动回到**绑定观测云工作空间**页面，显示**已绑定**。
+
+
+
+##### 绑定已有工作空间
+
+如果您在该观测云费用中心账号下存在可绑定的工作空间，则直接点击**绑定**。
+
+1. 选择需要绑定的工作空间，点击绑定；
+2. 在新页面中点击确定；
+3. 此时显示已绑定。
+
+![](img/15.aliyun_register_6.1.png)
 
 ## 第三步：开通成功
 

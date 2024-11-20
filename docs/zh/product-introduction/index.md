@@ -30,19 +30,19 @@ icon: zy/product-introduction
 
 === "可观测性的数据流动"
 
-    ![](../img/product-index-1.png)
+    ![](img/product-index-1.png)
 
 === "DataKit"
 
-    ![](../img/product-index-2.png)
+    ![](img/product-index-2.png)
 
 === "DataFlux Func"
 
-    ![](../img/product-index-3.png)
+    ![](img/product-index-3.png)
 
 === "观测云控制台"
 
-    ![](../img/product-index-4.png)
+    ![](img/product-index-4.png)
     
 
 </div>
@@ -56,10 +56,10 @@ icon: zy/product-introduction
 
 === "产品功能竞争优势"
 
-    ![](../img/product-index-5.png)
+    ![](img/product-index-5.png)
 
 === "按量付费商业模式"
 
-    ![](../img/product-index-6.png)
+    ![](img/product-index-6.png)
 
 </div>
