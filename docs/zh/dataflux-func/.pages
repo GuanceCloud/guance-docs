@@ -1,3 +1,4 @@
 nav:
 
   - index.md
+  - '外部数据源': external_data.md

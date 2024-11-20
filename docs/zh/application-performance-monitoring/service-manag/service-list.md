@@ -85,7 +85,7 @@
 
 JVM（Java Virtual Machine，Java 虚拟机）内存快照是一种在特定时间点捕获 JVM 内存状态的完整记录。您可以通过快照内的日志信息查看相关应用占用内存的详细信息，及时排查应用出现内存泄漏、性能问题等异常情况，在了解内存使用情况的基础上进一步优化数据结构。
 
-> 更多采集器侧的配置，可参考 [采集](https://docs.guance.com/datakit/datakit-conf/#remote-job)。
+> 更多采集器侧的配置，可参考 [采集](../../datakit/datakit-conf.md#remote-job)。
 
 #### 开始创建
 
