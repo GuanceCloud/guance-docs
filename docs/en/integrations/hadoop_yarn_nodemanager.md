@@ -18,7 +18,7 @@ Collect Yarn NodeManager metric information.
 
 ## Installation and deployment {#config}
 
-Since NodeManager is developed in Java language, it is possible to collect metric information using jmx exporter.
+Since NodeManager is developed in Java language, it is possible to collect metric information using jmx-exporter.
 
 ### 1. NodeManager Configuration
 
@@ -50,7 +50,7 @@ Go to the installation directory of [DataKit](./datakit_dir.md) and copy `prom.c
 
 > `cp prom.conf.sample nodemanager.conf`
 
-Adjust the content of 'nodemanager. conf' as follows：
+Adjust the content of `nodemanager.conf` as follows：
 
 ```toml
   urls = ["http://localhost:17108/metrics"]
@@ -66,7 +66,7 @@ Adjust the content of 'nodemanager. conf' as follows：
 ，parameter adjustment instructions ：
 
 <!-- markdownlint-disable MD004 -->
-- Urls: `jmx exporter` metric address, fill in the corresponding metric URL exposed by the component here
+- Urls: `jmx-exporter` metric address, fill in the corresponding metric URL exposed by the component here
 - Source: Collector alias, it is recommended to distinguish it
 - Keep.exe ist_stricic_name: Keep indicator name
 - Interval: collection interval
