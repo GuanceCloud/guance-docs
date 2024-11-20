@@ -51,7 +51,7 @@ interval = "10s"
 - Urls: `prometheus` Metric address, where you fill in the metric URL exposed by the corresponding component
 - Source: Collector alias, recommended to distinguish
 - Interval: collection interval
-- Measurement_ Prefix: index prefix
+- Measurement_Prefix: index prefix
 
 ### Restart DataKit
 
