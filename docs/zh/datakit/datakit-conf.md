@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.63.0）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.63.1）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -371,7 +371,7 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       path = "/datakit"
     
       # set max CPU usage(%, max 100.0, no matter how many CPU cores here)
-      cpu_max = 20.0
+      cpu_max = 30.0
     
       # set max memory usage(MB)
       mem_max_mb = 4096

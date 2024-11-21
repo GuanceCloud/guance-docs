@@ -19,7 +19,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is `datakit.conf`, here is the example sample(1.63.0):
+Datakit main configure is `datakit.conf`, here is the example sample(1.63.1):
 
 <!-- markdownlint-disable MD046 -->
 ??? info "`datakit.conf`"
@@ -371,7 +371,7 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.63.0):
       path = "/datakit"
     
       # set max CPU usage(%, max 100.0, no matter how many CPU cores here)
-      cpu_max = 20.0
+      cpu_max = 30.0
     
       # set max memory usage(MB)
       mem_max_mb = 4096
