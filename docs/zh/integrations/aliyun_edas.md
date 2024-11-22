@@ -2,8 +2,8 @@
 title: '阿里云 EDAS'
 tags: 
   - 阿里云
-summary: ''
-__int_icon: icon/aliyun_redis
+summary: '采集阿里云 EDAS 指标、链路数据'
+__int_icon: icon/aliyun_edas
 ---
 
 <!-- markdownlint-disable MD025 -->
