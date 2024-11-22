@@ -43,7 +43,7 @@ icon: zy/release-notes
 
 ### Bug 修复 {#bug1120}
 
-1. 解决了数据转发到 kafka，消耗了过多 kafka 出网流量的问题
+1. 解决了数据转发到 Kafka，消耗了过多 Kafka 出网流量的问题
 
 ## 2024 年 11 月 13 日
 

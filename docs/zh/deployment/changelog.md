@@ -1,7 +1,38 @@
 # 版本历史
 
+## 2024 年 11 月 20 日 {#1.98.182}
 
-## 2024 年 11 月 13 日
+pubrepo.guance.com/dataflux/1.98.182:launcher-a1381c3-1732173851
+
+### 离线镜像包下载
+
+- AMD64 架构下载: https://static.guance.com/dataflux/package/guance-amd64-1.98.182.tar.gz
+    - MD5: `93a3c271e6395318b98aafc14f668289`
+
+- ARM64 架构下载: https://static.guance.com/dataflux/package/guance-arm64-1.98.182.tar.gz
+    - MD5: `5a34bb3b9810dfa5774e5b2eb1b48026`
+
+### 功能更新 {#feature1120}
+
+#### 微软云市场上架
+
+观测云已在[海外微软云市场](../plans/commercial-azure.md)上架，同时商业版工作空间新增“微软云”结算方式。
+
+#### 集成 -> 扩展
+
+- Func 平台联动优化：可以在扩展中查看所有接入的 DataFlux Func列表，方便用户管理和监控所有已接入的外部数据源
+
+### 部署版更新 {#deployment1120}
+
+- 火山云 TLS 支持 JSON 索引和搜索
+
+### Bug 修复 {#bug1120}
+
+1. 解决了数据转发到 Kafka，消耗了过多 Kafka 出网流量的问题
+
+更多详情可参考帮助文档：https://docs.guance.com/release-notes/
+
+## 2024 年 11 月 13 日 {#1.98.181}
 
 pubrepo.guance.com/dataflux/1.98.181:launcher-475455f-1731916153
 
