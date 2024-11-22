@@ -8,7 +8,7 @@
 
 :material-numeric-1-circle-outline: 账号授权：
 
-1. [获取 SLS 授权文件](../../billing/billing-method/sls-grant.md).
+1. [获取 SLS 授权文件](../../plans/sls-grant.md).
 2. 填写 AccessKey ID / AccessKey Secret （简称 AK / AKS）。
 
 :material-numeric-2-circle-outline: 资源授权：
@@ -26,9 +26,9 @@
 
 ???- warning "针对商业版与专属版"
 
-    - 若您是观测云商业版用户，您可以参考文档 [RAM 账号授权](../../billing/billing-method/sls-grant.md)，获取 AK / AKS 进行索引绑定；       
+    - 若您是观测云商业版用户，您可以参考文档 [RAM 账号授权](../../plans/sls-grant.md)，获取 AK / AKS 进行索引绑定；       
     - 若您是观测云专属版用户，您可以直接使用开通专属版时的 AK / AKS 进行索引绑定，关于如何开通专属版，可参考 [阿里云市场开通观测云专属版](../../plans/commercial-aliyun-sls.md)；     
-    - 若您是观测云专属版用户，且希望绑定其他阿里云账号下的 SLS 日志索引，可参考 [RAM 账号授权](../../billing/billing-method/sls-grant.md)，获取 AK / AKS 进行索引绑定。
+    - 若您是观测云专属版用户，且希望绑定其他阿里云账号下的 SLS 日志索引，可参考 [RAM 账号授权](../../plans/sls-grant.md)，获取 AK / AKS 进行索引绑定。
 
 
 ## 第三方快捷授权 {#third-party}
@@ -90,7 +90,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **获取 SLS 授权文件**</font>](../../billing/billing-method/sls-grant.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **获取 SLS 授权文件**</font>](../../plans/sls-grant.md)
 
 </div>
 

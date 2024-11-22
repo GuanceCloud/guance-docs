@@ -153,9 +153,9 @@ DataKit 安装完成后，**开启 [RUM 采集器](../integrations/rum.md)**，�
 
 观测云为用户访问数据提供 <u>3 天、7 天、14 天</u>三种数据存储时长选择，您可以按照需求在**管理 > 基本设置 > 变更数据存储策略**中调整。
 
-> 更多数据存储策略，可参考 [数据存储策略](../billing/billing-method/data-storage.md)。
+> 更多数据存储策略，可参考 [数据存储策略](../billing-method/data-storage.md)。
 
 基于<u>按需购买，按量付费</u>的计费方式，用户访问监测计费统计当前空间下一天内所有页面浏览产生的 PV 数量，采用梯度计费模式。
 
-> 更多计费规则，可参考 [计费方式](../billing/billing-method/index.md#pv)。
+> 更多计费规则，可参考 [计费方式](../billing-method/index.md#pv)。
 

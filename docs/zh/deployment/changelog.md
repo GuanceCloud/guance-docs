@@ -625,7 +625,7 @@ pubrepo.guance.com/dataflux/1.89.169:launcher-d482589-1720014392
 ### 观测云更新
 
 - [Pipelines](../pipeline/index.md)：支持选择中心 Pipeline 执行脚本。
-- 付费计划与账单：新增[中心 Pipeline 计费项](../billing/billing-method/index.md#pipeline)，统计所有命中中心 Pipeline 处理的原始日志的数据大小。
+- 付费计划与账单：新增[中心 Pipeline 计费项](../billing-method/index.md#pipeline)，统计所有命中中心 Pipeline 处理的原始日志的数据大小。
 - 监控
     - 通知对象管理：新增[权限控制](../monitoring/notify-object.md#permission)。配置操作权限后，仅被赋予权限的对象可对此通知对象进行编辑、删除操作。
     - 智能监控 > 日志智能检测：新增追踪历史变化，过滤周期性的异常数据突变。
