@@ -23,7 +23,7 @@
 
 在**套餐升级**页面，点击**升级**。观测云支持按需购买，按量付费。
 
-> 更多版本计费逻辑可参考文档 [计费方式](../billing/billing-method/index.md)。
+> 更多版本计费逻辑可参考文档 [计费方式](../billing-method/index.md)。
 
 ![](img/9.upgrade_2.png)
 

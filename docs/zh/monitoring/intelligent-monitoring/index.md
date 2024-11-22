@@ -61,4 +61,4 @@
 
 主机、日志、应用智能检测频率每 10 分钟执行一次，每执行一次检测计算为 10 次调用费用；用户访问智能检测每执行一次检测计算为 100 次调用费用。
 
-> 更多详情，可查看 [任务调用](../../billing/billing-method/billing-item.md#trigger)。
+> 更多详情，可查看 [任务调用](../../billing-method/billing-item.md#trigger)。
