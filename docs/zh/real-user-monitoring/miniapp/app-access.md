@@ -1,22 +1,6 @@
 # 微信小程序应用接入
 ---
 
-???- quote "更新日志"
-
-    **2023.5.22**：
-
-    - 新增启动小程序的 query 参数：`app_launch_query`；
-    - 新增自定义添加 Error。
-
-    **2022.9.29**：
-
-    - 初始化参数新增 `isIntakeUrl` 配置，用于根据请求资源 url 判断是否需要采集对应资源数据，默认都采集。 
-
-    **2022.3.29**：
-
-    - 新增 `traceType` 配置，配置链路追踪工具类型，如果不配置默认为 `ddtrace`。目前支持 `ddtrace`、`zipkin`、`skywalking_v3`、`jaeger`、`zipkin_single_header`、`w3c_traceparent` 6 种数据类型。
-    - 新增 `allowedTracingOrigins` 允许注入 trace 采集器所需header头部的所有请求列表。可以是请求的 origin，也可以是正则。
-
 
 观测云应用监测能够收集各个小程序应用的指标数据，通过引入 SDK 文件，监控小程序性能指标、错误 Log 以及资源请求情况数据，上报到观测云平台后，以可视化的方式分析各个小程序应用端的性能。
 

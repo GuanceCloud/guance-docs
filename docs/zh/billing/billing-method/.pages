@@ -1,4 +1,0 @@
-nav:
-  - index.md
-  - '计费产生逻辑': billing-item.md
-  - '数据存储策略': data-storage.md

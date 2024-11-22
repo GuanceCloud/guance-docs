@@ -255,7 +255,10 @@ window.DEPLOYCONFIG = {
     "paasCustomSiteList": [{"url": "xxxx", "label": "xxx"}],
     "paasCustomLoginUrl": "https://www.xxx",
     "maxMessageByte": 10 * 1024,
-    "webRumSdkUrl": "https://static.guance.com/browser-sdk/v3/dataflux-rum.js"
+    "webRumSdkUrl": "https://static.guance.com/browser-sdk/v3/dataflux-rum.js",
+    "defaultTimeMap": {
+        'log': [1732254771701,1732255671701],// 或者相对时间 5m
+    }
     ...
 }
 
@@ -263,26 +266,27 @@ window.DEPLOYCONFIG = {
 
 #### 配置项详细说明
 
-| 配置项                    | 子项 | 类型    | 默认值                              | 描述                                                                                                                                             |
-| ------------------------- | ---- | ------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| rumDatawayUrl             |      | 字符串  | "https://rum-openway.guance.com"    | 用于上报 RUM 数据的专用 DataWay 地址，配置后将显示在 RUM 接入配置页面中                                                                          |
-| datakitScriptUrl          |      | 字符串  | "https://static.guance.com/datakit" | DataKit 安装页面的默认安装脚本下载域名，如使用自建的内部静态资源，请修改此配置                                                                   |
-| datakitHelmUrl            |      | 字符串  | "https://pubrepo.guance.com"        | DataKit Helm 镜像仓库地址，如使用自建镜像仓库，请修改此配置                                                                                      |
-| passPublicNetwork         |      | 数值    | 1                                   | 配置访问 Studio 站点的客户端计算机是否有公网网络，0：无，1：有                                                                                   |
-| isOverseas                |      | 数值    | 0                                   | 配置此观测云站点是否为海外部署，将影响 RUM 中的世界地图、中国地图组件的显示                                                                      |
-| maxTraceSpanLimit         |      | 数值    | 10000                               | 链路的火焰图中最大的 Span 条数，默认值：10000                                                                                                    |
-| maxProfileM               |      | 数值    | 5                                   | 获取 profile 显示火焰图的最大 MB 数,如果不配置，则默认取值: 5                                                                                    |
-| paasCustomLoginInfo       |      | 数组    | 无                                  | 部署版观测云控制台登录页面单点登录入口配置 新增 iconUrl, desc 自定义字段, iconUrl 为单点登录图标地址,不配置则为默认 icon desc 为单点登录描述文案 |
-| paasCustomSiteList        |      | 数组    | 无                                  | 部署版观测云控制台登录页面新增多站点选择配置 label 为站点显示文案 url 为站点地址,如果不存在多站点，可以不添加此配置项                            |
-| rumEnable `自观测`        |      | Boolean | 无                                  | 是否开启 RUM，1 表示开启，如果不开启，以下的配置值可以为空                                                                                       |
-| rumDatakitUrl `自观测`    |      | 字符串  | 无                                  | RUM DataKit 的地址 或者 公网 openway 地址                                                                                                        |
-| rumApplicationId `自观测` |      | 字符串  | 无                                  | RUM 应用 ID，用于上报应用数据                                                                                                                    |
-| rumJsUrl `自观测`         |      | 字符串  | 无                                  | RUM SDk CDN 地址                                                                                                                                 |
-| rumClientToken `自观测`   |      | 字符串  | 无                                  | RUM Openway 方式上报数据(需要与 `rumOpenwayUrl` 配合使用)，在观测云平台生成的 clientToken 和 datakit 上报方式冲突，优先级高于 datakit 上报方式   |
-| rumOpenwayUrl `自观测`    |      | 字符串  | 无                                  | RUM Openway 公网地址(需要与 `rumClientToken` 配合使用)，用于 Studio 前端站点数据自观测上报                                                       |
-| paasCustomLoginUrl        |      | 字符串  | 无                                  | 自定义登录 url                                                                                                                                   |
-| maxMessageByte            |      | 字符串  | 无                                  | 日志查看器列表 message 最大显示字节数， 不填默认为 10 \* 1024                                                                                    |
-| paasCustomLoginUrl        |      | 字符串  | 无                                  | Rum web SDK CDN 地址，不填默认 https://static.guance.com/browser-sdk/v3/dataflux-rum.js                                                          |
+| 配置项                    | 子项 | 类型                | 默认值                              | 描述                                                                                                                                                            |
+| ------------------------- | ---- | ------------------- | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| rumDatawayUrl             |      | 字符串              | "https://rum-openway.guance.com"    | 用于上报 RUM 数据的专用 DataWay 地址，配置后将显示在 RUM 接入配置页面中                                                                                         |
+| datakitScriptUrl          |      | 字符串              | "https://static.guance.com/datakit" | DataKit 安装页面的默认安装脚本下载域名，如使用自建的内部静态资源，请修改此配置                                                                                  |
+| datakitHelmUrl            |      | 字符串              | "https://pubrepo.guance.com"        | DataKit Helm 镜像仓库地址，如使用自建镜像仓库，请修改此配置                                                                                                     |
+| passPublicNetwork         |      | 数值                | 1                                   | 配置访问 Studio 站点的客户端计算机是否有公网网络，0：无，1：有                                                                                                  |
+| isOverseas                |      | 数值                | 0                                   | 配置此观测云站点是否为海外部署，将影响 RUM 中的世界地图、中国地图组件的显示                                                                                     |
+| maxTraceSpanLimit         |      | 数值                | 10000                               | 链路的火焰图中最大的 Span 条数，默认值：10000                                                                                                                   |
+| maxProfileM               |      | 数值                | 5                                   | 获取 profile 显示火焰图的最大 MB 数,如果不配置，则默认取值: 5                                                                                                   |
+| paasCustomLoginInfo       |      | 数组                | 无                                  | 部署版观测云控制台登录页面单点登录入口配置 新增 iconUrl, desc 自定义字段, iconUrl 为单点登录图标地址,不配置则为默认 icon desc 为单点登录描述文案                |
+| paasCustomSiteList        |      | 数组                | 无                                  | 部署版观测云控制台登录页面新增多站点选择配置 label 为站点显示文案 url 为站点地址,如果不存在多站点，可以不添加此配置项                                           |
+| rumEnable `自观测`        |      | Boolean             | 无                                  | 是否开启 RUM，1 表示开启，如果不开启，以下的配置值可以为空                                                                                                      |
+| rumDatakitUrl `自观测`    |      | 字符串              | 无                                  | RUM DataKit 的地址 或者 公网 openway 地址                                                                                                                       |
+| rumApplicationId `自观测` |      | 字符串              | 无                                  | RUM 应用 ID，用于上报应用数据                                                                                                                                   |
+| rumJsUrl `自观测`         |      | 字符串              | 无                                  | RUM SDk CDN 地址                                                                                                                                                |
+| rumClientToken `自观测`   |      | 字符串              | 无                                  | RUM Openway 方式上报数据(需要与 `rumOpenwayUrl` 配合使用)，在观测云平台生成的 clientToken 和 datakit 上报方式冲突，优先级高于 datakit 上报方式                  |
+| rumOpenwayUrl `自观测`    |      | 字符串              | 无                                  | RUM Openway 公网地址(需要与 `rumClientToken` 配合使用)，用于 Studio 前端站点数据自观测上报                                                                      |
+| paasCustomLoginUrl        |      | 字符串              | 无                                  | 自定义登录 url                                                                                                                                                  |
+| maxMessageByte            |      | 字符串              | 无                                  | 日志查看器列表 message 最大显示字节数， 不填默认为 10 \* 1024                                                                                                   |
+| paasCustomLoginUrl        |      | 字符串              | 无                                  | Rum web SDK CDN 地址，不填默认 https://static.guance.com/browser-sdk/v3/dataflux-rum.js                                                                         |
+| defaultTimeMap            |      | 字符串或者 对象结构 | 无                                  | 查看器默认初始化时间配置， 格式为 `{'log': '5m'}` 或者 `{'log': [1732254771701,1732255671701]}` 对象 key 为固定字符串，日志查看器为 `log`,安全巡检为 `security` |
 
 ### kodo 组件 {#kodo}
 
@@ -463,44 +467,43 @@ pipeline:
 
 #### 配置项详细说明
 
-| 配置项       | 子项                    | 类型   | 默认值               | 描述                                                                                                                            |
-| ------------ | ----------------------- | ------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| log          | log_file                | 字符串 | '/logdata/log'       | 运行日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                                                 |
-|              | level                   | 字符串 | 'info'               | 运行日志最低等级                                                                                                                |
-|              | gin_log_file            | 字符串 | '/logdata/log'       | gin 日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                                                 |
-| database     | db_dialect              | 字符串 | 'mysql'              | 数据库类型，默认为 mysql                                                                                                        |
-|              | addr                    | 字符串 | 'testsql.com:3306'   | 数据库连接地址                                                                                                                  |
-|              | username                | 字符串 | ' test_user'         | 用户名                                                                                                                          |
-|              | password                | 字符串 | 'test_password'      | 密码                                                                                                                            |
-|              | network                 | 字符串 | 'tcp'                | 连接协议                                                                                                                        |
-|              | db_name                 | 字符串 | 'test_db_name'       | 数据库名称                                                                                                                      |
-| nsq          | lookupd                 | 字符串 | 'testnsq.com:4161'   | nsq lookupd 地址                                                                                                                |
-|              | discard_expire_interval | 数值   | 5                    | 时序数据最大冗余时间， 单位是分钟，默认时序指标数据超过 5 分钟延迟，不会写入                                                    |
-| redis        | host                    | 字符串 | 'testredis.com:6379' | 用于数据处理的 Redis 地址，支持集群版。 注：所有 kodo 相关组件的 Redis 配置必须一致                                             |
-|              | password                | 字符串 | 'test_password'      | 密码                                                                                                                            |
-|              | db                      | 数值   | 0                    | redis db 值                                                                                                                     |
-|              | is_cluster              | 布尔   | false                | 当 redis 集为集群，且连不支持 proxy 连接，需要设置为 true                                                                       |
-| asynq_redis  | host                    | 字符串 | ''                   | 用于异步任务的 Redis 地址，默认使用 `redis` 配置，不支持集群版，如果 `redis` 配置的是集群版，必须配置一个非集群版的 asynq_redis |
-|              | password                | 字符串 | 'test_password'      | 密码                                                                                                                            |
-|              | db                      | 数值   | 0                    | redis db 值                                                                                                                     |
-| global       | workers                 | 数值   | 8                    | 各种数据的默认处理 worker 数量                                                                                                  |
-|              | metric_workers          | 数值   | 8                    | 时序指标数据的处理 worker 数量                                                                                                  |
-|              | log_workers             | 数值   | 8                    | 日志数据的处理 worker 数量                                                                                                      |
-|              | tracing_workers         | 数值   | 8                    | 链路数据的处理 worker 数量，默认使用 log_workers 配置项的值                                                                     |
-| influxdb     | read_timeout            | 数值   | 60                   | 查询时序指标数据，查询超时时间，单位是 s，即默认超时时间为 60s                                                                  |
-|              | write_timeout           | 数值   | 300                  | 写入时序指标数据超时时间，单位是 s，即默认写入超时时间为 5 min                                                                  |
-|              | enable_gz               | 布尔   | false                | 写入数据是否开启 gzip 压缩                                                                                                      |
-|              | dial_timeout            | 数值   | 30                   | 查询时序指标数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                    |
-| doris        | read_timeout            | 数值   | 60                   | 查询日志类数据，查询超时时间，单位是 s，即默认超时时间为 60s                                                                    |
-|              | write_timeout           | 数值   | 300                  | 写入日志类数据超时时间，单位是 s，即默认写入超时时间为 5 min                                                                    |
-|              | gzip_enable             | 布尔   | false                | 写入数据是否开启 gzip 压缩                                                                                                      |
-|              | dial_timeout            | 数值   | 30                   | 查询日志类数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                      |
-| backup_kafka | async                   | 布尔   | false                | 数据转发到 kafka，写入方式，默认是同步写入                                                                                      |
-|              | write_timeout           | 数值   | 30                   | 写入 kafka 超时时间，单位是 s，即默认写入超时时间为 30s                                                                         |
-|              | max_bulk_docs           | 数值   | 0                    | 是否将多条日志，写入到一个 kafka message 中，发送到 kafka，默认一条日志组成一个 kafka message                                   |
-| pipeline     | enable                  | 布尔   | false                | 配置为 `true` 启用中心 Pipeline 功能                                                                   |
-|              | pull_duration           | 字符串 | 1m                   | 中心 Pipeline 脚本的同步的时间间隔，默认值 `1m` 表示每 1 分钟同步一次，支持 `s`、`m`、`h` 等的时间间隔表示法，如 `1m30s` 表示每隔 1分 30 秒同步一次中心 Pipeline 脚本 |
-
+| 配置项       | 子项                    | 类型   | 默认值               | 描述                                                                                                                                                                   |
+| ------------ | ----------------------- | ------ | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| log          | log_file                | 字符串 | '/logdata/log'       | 运行日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                                                                                        |
+|              | level                   | 字符串 | 'info'               | 运行日志最低等级                                                                                                                                                       |
+|              | gin_log_file            | 字符串 | '/logdata/log'       | gin 日志，存储地址，可选值有 stdout, 表示标准输出，不保存到文件                                                                                                        |
+| database     | db_dialect              | 字符串 | 'mysql'              | 数据库类型，默认为 mysql                                                                                                                                               |
+|              | addr                    | 字符串 | 'testsql.com:3306'   | 数据库连接地址                                                                                                                                                         |
+|              | username                | 字符串 | ' test_user'         | 用户名                                                                                                                                                                 |
+|              | password                | 字符串 | 'test_password'      | 密码                                                                                                                                                                   |
+|              | network                 | 字符串 | 'tcp'                | 连接协议                                                                                                                                                               |
+|              | db_name                 | 字符串 | 'test_db_name'       | 数据库名称                                                                                                                                                             |
+| nsq          | lookupd                 | 字符串 | 'testnsq.com:4161'   | nsq lookupd 地址                                                                                                                                                       |
+|              | discard_expire_interval | 数值   | 5                    | 时序数据最大冗余时间， 单位是分钟，默认时序指标数据超过 5 分钟延迟，不会写入                                                                                           |
+| redis        | host                    | 字符串 | 'testredis.com:6379' | 用于数据处理的 Redis 地址，支持集群版。 注：所有 kodo 相关组件的 Redis 配置必须一致                                                                                    |
+|              | password                | 字符串 | 'test_password'      | 密码                                                                                                                                                                   |
+|              | db                      | 数值   | 0                    | redis db 值                                                                                                                                                            |
+|              | is_cluster              | 布尔   | false                | 当 redis 集为集群，且连不支持 proxy 连接，需要设置为 true                                                                                                              |
+| asynq_redis  | host                    | 字符串 | ''                   | 用于异步任务的 Redis 地址，默认使用 `redis` 配置，不支持集群版，如果 `redis` 配置的是集群版，必须配置一个非集群版的 asynq_redis                                        |
+|              | password                | 字符串 | 'test_password'      | 密码                                                                                                                                                                   |
+|              | db                      | 数值   | 0                    | redis db 值                                                                                                                                                            |
+| global       | workers                 | 数值   | 8                    | 各种数据的默认处理 worker 数量                                                                                                                                         |
+|              | metric_workers          | 数值   | 8                    | 时序指标数据的处理 worker 数量                                                                                                                                         |
+|              | log_workers             | 数值   | 8                    | 日志数据的处理 worker 数量                                                                                                                                             |
+|              | tracing_workers         | 数值   | 8                    | 链路数据的处理 worker 数量，默认使用 log_workers 配置项的值                                                                                                            |
+| influxdb     | read_timeout            | 数值   | 60                   | 查询时序指标数据，查询超时时间，单位是 s，即默认超时时间为 60s                                                                                                         |
+|              | write_timeout           | 数值   | 300                  | 写入时序指标数据超时时间，单位是 s，即默认写入超时时间为 5 min                                                                                                         |
+|              | enable_gz               | 布尔   | false                | 写入数据是否开启 gzip 压缩                                                                                                                                             |
+|              | dial_timeout            | 数值   | 30                   | 查询时序指标数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                                                           |
+| doris        | read_timeout            | 数值   | 60                   | 查询日志类数据，查询超时时间，单位是 s，即默认超时时间为 60s                                                                                                           |
+|              | write_timeout           | 数值   | 300                  | 写入日志类数据超时时间，单位是 s，即默认写入超时时间为 5 min                                                                                                           |
+|              | gzip_enable             | 布尔   | false                | 写入数据是否开启 gzip 压缩                                                                                                                                             |
+|              | dial_timeout            | 数值   | 30                   | 查询日志类数据，建立连接超时时间，单位是 ms，即默认创建连接超时时间为 30ms                                                                                             |
+| backup_kafka | async                   | 布尔   | false                | 数据转发到 kafka，写入方式，默认是同步写入                                                                                                                             |
+|              | write_timeout           | 数值   | 30                   | 写入 kafka 超时时间，单位是 s，即默认写入超时时间为 30s                                                                                                                |
+|              | max_bulk_docs           | 数值   | 0                    | 是否将多条日志，写入到一个 kafka message 中，发送到 kafka，默认一条日志组成一个 kafka message                                                                          |
+| pipeline     | enable                  | 布尔   | false                | 配置为 `true` 启用中心 Pipeline 功能                                                                                                                                   |
+|              | pull_duration           | 字符串 | 1m                   | 中心 Pipeline 脚本的同步的时间间隔，默认值 `1m` 表示每 1 分钟同步一次，支持 `s`、`m`、`h` 等的时间间隔表示法，如 `1m30s` 表示每隔 1 分 30 秒同步一次中心 Pipeline 脚本 |
 
 ### kodo-servicemap 组件 {#kodo-servicemap}
 

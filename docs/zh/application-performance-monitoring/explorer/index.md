@@ -8,9 +8,9 @@
 ## 立即开始
 
 
-<img src="../../img/explorer-config.png" width="70%" >
+<img src="../img/explorer-config.png" width="70%" >
 
-<img src="../../img/explorer-config-1.png" width="70%" >
+<img src="../img/explorer-config-1.png" width="70%" >
 
 
 进入链路，立即开始配置。

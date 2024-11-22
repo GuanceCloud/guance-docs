@@ -1,4 +1,5 @@
 nav:
+  - '更新日志': sdk-changelog.md
   - '应用接入': app-access.md
   - '基于 Uniapp 开发框架的小程序接入': uniapp-dev-framework.md
   - '应用数据采集': app-data-collection.md
