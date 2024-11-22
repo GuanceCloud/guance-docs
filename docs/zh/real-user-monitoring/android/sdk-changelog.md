@@ -1,6 +1,13 @@
 # 更新日志
 ---
-## **ft-sdk**
+<div class="grid cards" markdown>
+- [__ft-sdk__](#ft-sdk)
+- [__ft-plugin__](#ft-plugin)
+- [__ft-native__](#ft-native)  
+- [__ft-plugin-legacy__](#ft-plugin-legacy)  
+</div>
+
+## **ft-sdk** {#ft-sdk}
 ### **1.6.3 (2024/11/18)**
 1. 优化自定义 `addAction` 在高频率调用时的性能表现
 2. 支持使用  `FTSDKConfig.setCompressIntakeRequests` 对同步数据进行 `deflate` 压缩配置
@@ -56,7 +63,7 @@
 
 [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/CHANGELOG.md)
 
-## **ft-native**
+## **ft-native** {#ft-native}
 ### **1.1.1 (2024/06/22)**：
 1. 添加 Native Crash 和 ANR 中 logcat 配置功能
 ### **1.1.0 (2024/03/22)**：
@@ -67,7 +74,7 @@
 
 [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-native/CHANGELOG.md)
 
-## **ft-plguin ( AGP >=7.4.2 )**
+## **ft-plguin ( AGP >=7.4.2 )** {#ft-plugin}
 ### **1.3.3 (2024/09/04)**：
 1. 优化 native symbol so 自动获取上传，支持自定义指定 nativeLibPath
 ### **1.3.2 (2024/08/13)**：
@@ -89,7 +96,7 @@
 
 [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-plugin/CHANGELOG.md)
    
-## **ft-plugin-legacy ( AGP <=7.4.2 )**
+## **ft-plugin-legacy ( AGP <=7.4.2 )** {#ft-plugin-legacy}
 ### **1.1.8 (2024/08/13)**：
 1. 支持 React Native WebView 事件自动捕获
 ### **1.1.7 (2024/07/04)**：
