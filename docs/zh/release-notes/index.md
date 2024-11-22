@@ -8,12 +8,22 @@ icon: zy/release-notes
 
 <div class="grid cards" markdown>
 
--   :footprints:{ .lg .middle } __[DataKit](../datakit/changelog.md)__
+-   :fontawesome-regular-clipboard:{ .lg .middle } 
 
     ---
 
-    包括迭代发布、Hotfix 等内容。
+    __[DataKit](../datakit/changelog.md)__
 
+ 
+    ---
+
+    __RUM__
+
+
+
+    |   SDK        |       |          |        |       |
+    | :-------: | :--------: | :----------: | :-----------: | :---------: |
+    |   [Web](../real-user-monitoring/web/sdk-changelog.md)        |   [小程序](../real-user-monitoring/miniapp/sdk-changelog.md)    |    [Android](../real-user-monitoring/android/sdk-changelog.md)      |    [iOS](../real-user-monitoring/ios/sdk-changelog.md)    |  [React Native](../real-user-monitoring/react-native/sdk-changelog.md)     |
 
 </div>
 
@@ -33,9 +43,9 @@ icon: zy/release-notes
 
 观测云已在[海外微软云市场](../plans/commercial-azure.md)上架，同时商业版工作空间新增“微软云”结算方式。
 
-#### 集成 -> 扩展
+#### 集成 > 扩展
 
-- Func 平台联动优化：可以在扩展中查看所有接入的 DataFlux Func列表，方便用户管理和监控所有已接入的外部数据源
+- Func 平台联动优化：可以在扩展中查看所有接入的 DataFlux Func 列表，方便用户管理和监控所有已接入的外部数据源
 
 ### 部署版更新 {#deployment1120}
 
@@ -43,7 +53,7 @@ icon: zy/release-notes
 
 ### Bug 修复 {#bug1120}
 
-1. 解决了数据转发到 kafka，消耗了过多 kafka 出网流量的问题
+1. 解决了数据转发到 Kafka，消耗了过多 Kafka 出网流量的问题
 
 ## 2024 年 11 月 13 日
 

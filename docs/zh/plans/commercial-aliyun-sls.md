@@ -1,11 +1,10 @@
 # 阿里云云市场开通观测云专属版
 ---
 
-本文将介绍<u>在阿里云云市场购买观测云专属版的相关开通使用操作</u>。
+本文将介绍在阿里云云市场购买观测云专属版的相关开通使用操作。
 
-> 关于注册商业版，可参考 [注册商业版](./commercial-register.md)。
 
-## 购买观测云专属版
+## 第一步：购买观测云专属版
 
 1、登录到阿里云，进入 [阿里云云市场观测云专属版](https://market.aliyun.com/products/56838014/cmgj00060481.html)，点击**立即开通**。
 
@@ -14,16 +13,15 @@
 
 2、提示**开通按量服务**，同意协议后，点击**开通**。
 
-<img src="../img/6.aliyun_9.png" width="65%" >
+<img src="../img/6.aliyun_9.png" width="45%" >
 
 3、开通后前往控制台。
 
-<img src="../img/6.aliyun_10.png" width="65%" >
+<img src="../img/6.aliyun_10.png" width="45%" >
 
-## 免登进入观测云
+## 第二步：免登进入观测云
 
 确认开通申请后，直接跳转到阿里云已购买的服务列表查看购买的观测云专属版实例。
-
 
 ![](img/7.aliyun_sls_1.png)
 
@@ -31,22 +29,35 @@
 
 ![](img/7.aliyun_sls_2.png)
 
-提示**没有费用中心账号**和**有费用中心账号**。
+在观测云侧，如果当前阿里云账号 ID 未绑定观测云费用中心账号，会出现两种情况：
 
-**注意**：费用中心账号是观测云费用中心平台内用于管理商业版计费的独立账户，它允许单个账号关联多个工作空间，以便于统一处理这些工作空间的计费。
+:material-numeric-1-circle-outline: [没有费用中心账号](#method)：需要注册观测云账号和费用中心账号，再实现云账号绑定结算；
+
+:material-numeric-2-circle-outline: [有费用中心账号](#bond)：可以直接绑定费用中心账号，实现云账号结算。
 
 ![](img/10.aliyun_market_2.png)
 
-整体流程参考如下：
 
-![](img/17.process_1.png)
+???+ warning "什么是费用中心账号？"
+
+    费用中心账号是观测云费用中心平台内用于管理商业版计费的独立账户，它允许单个账号关联多个工作空间，以便于统一处理这些工作空间的计费。
+
+    整体流程参考如下：
+
+    <img src="../img/17.process_1.png" width="60%" >
 
 
 ### 注册观测云商业版 {#method}
 
-若您从未有过观测云账号，您可以点击**注册观测云商业版**进行注册。
+若还未有费用中心账号，点击下一步，即可自动跳转至注册页面，完成注册流程后，即可获得观测云账号和费用中心账号。
 
-:material-numeric-1-circle: 填写[**基本信息**](./commercial-register.md#info)；
+1. 填写基本信息；
+2. 填写企业信息；
+3. 选择开通方式：输入工作空间名称，选择工作空间语言，输入[账号 ID](#uid)、[商品实例 ID](#entity-id)；
+4. 点击**确定**；
+5. 查看并同意观测云平台用户服务协议，点击**下一步**。
+
+![](img/4.register_language_1.png)
 
 ???+ warning
 
@@ -54,61 +65,51 @@
     - 输入的**用户名**同时用来注册观测云费用中心的账号，费用中心的用户名账号会检查唯一性，一旦注册不能修改；
 
 
-:material-numeric-1-circle: 填写[**企业信息**](./commercial-register.md#corporate)；
+#### 绑定阿里云账号
 
-:material-numeric-3-circle: 选择开通方式 
-
-1、在**选择开通方式**，填写**工作空间名称**，选择**工作空间语言**即可，观测云会自动获取阿里**账号 ID**和**商品实例 ID**。
-
-![](img/4.register_language_1.png)
-
-2、点击**确定**，查看并同意观测云平台用户服务协议，点击**下一步**。
-
-![](img/1.sls_7.png)
-
-3、在**绑定阿里云账号**页面，观测云提供两种授权方式来保证您的数据安全：**RAM 账号授权**、**第三方快捷授权**。
+在**绑定阿里云账号**页面，观测云提供两种授权方式来保证您的数据安全：**RAM 账号授权**、**第三方快捷授权**。
 
 ![](img/billing-6.png)
 
-=== "RAM 账号授权"
+##### RAM 账号授权
 
-    选择 **RAM 账号授权**，下载获取 SLS 授权文件，在 [阿里云控制台](https://www.aliyun.com/) 创建阿里云 RAM 账号，获取该账号的 AccessKey ID、AccessKey Secret 信息。
+选择 **RAM 账号授权**，下载获取 SLS 授权文件，在 [阿里云控制台](https://www.aliyun.com/) 创建阿里云 RAM 账号，获取该账号的 AccessKey ID、AccessKey Secret 信息。
 
-    > 关于使用 SLS 授权文件给 RAM 账号授权的具体操作，可参考 [RAM 账号授权](../billing/billing-method/sls-grant.md)。
+> 关于使用 SLS 授权文件给 RAM 账号授权的具体操作，可参考 [RAM 账号授权](../plans/sls-grant.md)。
 
-    ![](img/1.sls_4.jpeg)
+![](img/1.sls_4.jpeg)
 
-    填写 AccessKey ID、AccessKey Secret 并进行验证，若验证通过，可以进行下一步。
+填写 AccessKey ID、AccessKey Secret 并进行验证，若验证通过，可以进行下一步。
 
-    ![](img/1.sls_6.jpeg)
+![](img/1.sls_6.jpeg)
 
-=== "第三方快捷授权"
+##### 第三方快捷授权
 
-    选择**第三方快捷授权**，点击**立即前往授权**。即可跳转至阿里云，登录后进行授权操作；   
+选择**第三方快捷授权**，点击**立即前往授权**。即可跳转至阿里云，登录后进行授权操作；   
 
-    ![](img/billing-auth.png)
+![](img/billing-auth.png)
 
-    点击**同意授权**，弹出**服务商 UID 校验**窗口，UID 获取可点击**服务商权限说明页面**查看。
+点击**同意授权**，弹出**服务商 UID 校验**窗口，UID 获取可点击**服务商权限说明页面**查看。
 
-    ![](img/index-2.png)
+![](img/index-2.png)
 
-    输入 UID 后点击确定，自动跳转前往**阿里云云市场 > 已购买的服务**，此时已授权完成。
+输入 UID 后点击确定，自动跳转前往**阿里云云市场 > 已购买的服务**，此时已授权完成。
 
-    回到观测云**绑定阿里云账号**页面，点击**验证**。验证通过后即可点击**确认开通**。
+回到观测云**绑定阿里云账号**页面，点击**验证**。验证通过后即可点击**确认开通**。
 
-    ???+ warning "一些您可能遇到的问题"
+???+ warning "一些您可能遇到的问题"
     
-        - 观测云专属版采用 SLS 存储方式，如果您的云账号<u>未开通阿里云日志服务 SLS</u>，将无法正常使用日志存储服务；
+    - 观测云专属版采用 SLS 存储方式，如果您的云账号<u>未开通阿里云日志服务 SLS</u>，将无法正常使用日志存储服务；
   
-        - 操作跨账号角色授权需使用<u>阿里云主账号</u>或<u>授权了 RAM 访问控制 GetRole、GetPolicy、CreatePolicy、CreatePolicyVersion、CreateRole、UpdateRole、AttachPolicyToRole 权限</u>的子账号；
+    - 操作跨账号角色授权需使用<u>阿里云主账号</u>或<u>授权了 RAM 访问控制 GetRole、GetPolicy、CreatePolicy、CreatePolicyVersion、CreateRole、UpdateRole、AttachPolicyToRole 权限</u>的子账号；
 
-        - 在验证过程中，如果验证的是被授权的子账号，会自动定位到该子账号所属的主账号，拉取主账号下的 project 和 Logstore；  
+    - 在验证过程中，如果验证的是被授权的子账号，会自动定位到该子账号所属的主账号，拉取主账号下的 project 和 Logstore；  
     
-        - 如果验证失败，请检查是否已完成云资源访问授权。可前往**阿里云 RAM 控制台 > RAM 访问控制 > 角色/授权**查看；
+    - 如果验证失败，请检查是否已完成云资源访问授权。可前往**阿里云 RAM 控制台 > RAM 访问控制 > 角色/授权**查看；
 
-        ![](img/ex.png)
+    ![](img/ex.png)
 
-        ![](img/ex-1.png)
+    ![](img/ex-1.png)
 
 
 第四步：开通成功
@@ -196,6 +197,29 @@
 
 观测云支持您通过[绑定日志索引](../logs/multi-index.md#sls)同步查看所属阿里云账号下的其他 SLS 数据。
 
+## 如何获取账号 ID {#uid}
+
+### 阿里云主账号
+
+通过主账号登录[阿里云](https://www.aliyun.com)，进入阿里云控制台，点击右上角账号头像，即可找到账号 ID。
+
+![](../img/6.aliyun_2.png)
+
+<!--
+
+### 阿里云 RAM 子账号
+
+通过 RAM 方式登录[阿里云](https://www.aliyun.com)，进入阿里云控制台，点击右上角账号头像，即可找到 RAM 账号中@后面的主账号 UID。
+
+![](../img/20.aliyun_3.png)
+-->
+
+## 如何获取商品实例 ID {#entity-id}
+
+观测云在阿里云心选确认开通申请后，直接跳转到阿里云已购买的服务列表，在已购买的观测云服务下方，可以查看到商品的**实例 ID**，复制此**实例 ID**，填入到更改结算方式对话框的**商品实例 ID**。
+
+![](../img/10.aliyun_market_5.png)
+
 
 ## FAQ
 
@@ -256,7 +280,7 @@ Default 索引必须有日志，即观测云 DataKit 采集的日志，观测云
 
 :material-chat-question: 开通观测云专属版以后，使用观测云采集器 DataKit 采集的日志数据如何计费？
 
-通过 DataKit 采集的日志数据按照观测云日志[计费方式](../billing/billing-method/index.md)进行收费。
+通过 DataKit 采集的日志数据按照观测云日志[计费方式](../billing-method/index.md)进行收费。
 
 :material-chat-question: 若在 SLS 中的日志数据，通过观测云提供的绑定日志索引功能，在观测云控制台进行查看、搜索和筛选的日志数据如何计费？
 

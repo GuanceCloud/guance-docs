@@ -95,7 +95,7 @@
 
 在观测云工作空间**管理 > 设置 > 危险操作**，可查看指标工作空间的全局数据存储策略，默认指标数据为 7 天，包括 3 天、7 天、14 天、30 天、180 天和 360 天。
 
-> 更多详情，可参考 [数据存储策略](../billing/billing-method/data-storage.md)。
+> 更多详情，可参考 [数据存储策略](../billing-method/data-storage.md)。
 
 <img src="../img/2.data_storage_3.png" width="70%" >
 

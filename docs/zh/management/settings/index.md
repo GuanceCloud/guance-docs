@@ -121,7 +121,7 @@ IP 白名单书写规范如下：
 
 ### 变更数据存储策略 {#change}
 
-观测云支持拥有者变更工作空间内的[数据存储策略](../../billing/billing-method/data-storage.md)。
+观测云支持拥有者变更工作空间内的[数据存储策略](../../billing-method/data-storage.md)。
 
 1. 进入**管理 > 空间设置**；
 2. 点击更换；

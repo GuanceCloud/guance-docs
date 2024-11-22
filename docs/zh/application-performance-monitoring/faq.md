@@ -35,13 +35,13 @@ Profile 支持采集使用 Java，Python 和 Go 等不同语言环境下应用�
 
 观测云为应用性能数据提供 3 天、7 天、14 天三种数据存储时长选择，您可以按照需求在**管理 > 设置 > 变更数据存储策略**中调整。
 
-> 更多数据存储策略，可参考 [数据存储策略](../billing/billing-method/data-storage.md)。
+> 更多数据存储策略，可参考 [数据存储策略](../billing-method/data-storage.md)。
 
 ## 如何计算应用性能监测的费用？
 
 观测云支持按需购买，按量付费的计费方式。应用性能监测计费统计当前空间下，`trace_id` 的数量，采用梯度计费模式。
 
-> 更多计费规则，可参考 [计费方式](../billing/billing-method/index.md)。
+> 更多计费规则，可参考 [计费方式](../billing-method/index.md)。
 
 ## 如何配置服务清单？
 

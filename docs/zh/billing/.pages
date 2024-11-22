@@ -1,5 +1,4 @@
 nav:
   - index.md 
-  - '用量计费方式': billing-method
   - '费用结算方式': billing-account
   - 常见问题: faq
