@@ -42,6 +42,7 @@ curl 'https://openapi.guance.com/api/v1/blacklist/blist_xxxx32/get' \
         "createAt": 1698121193,
         "creator": "acnt_xxxx32",
         "deleteAt": -1,
+        "desc": "",
         "filters": [
             {
                 "condition": "and",
@@ -53,6 +54,7 @@ curl 'https://openapi.guance.com/api/v1/blacklist/blist_xxxx32/get' \
             }
         ],
         "id": 518,
+        "name": "规则1",
         "source": "coredns",
         "status": 0,
         "type": "logging",
