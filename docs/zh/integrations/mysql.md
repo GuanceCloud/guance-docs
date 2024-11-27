@@ -8,8 +8,8 @@ dashboard :
   - desc  : 'MySQL'
     path  : 'dashboard/zh/mysql'
 monitor   :
-  - desc  : '暂无'
-    path  : '-'
+  - desc  : 'MySQL'
+    path  : 'monitor/zh/mysql'
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
