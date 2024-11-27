@@ -29,7 +29,7 @@ icon: zy/release-notes
 
 ### Breaking Changes {#breakingchanges1127}
 
-1. OpenAPI：若通过 API 配置告警策略按成员配置通知规则模式，则需要注意 xxx(联系金磊给一下说明)
+1. OpenAPI：若通过 API 配置告警策略按成员配置通知规则模式，需注意通过 OpenAPI 方式[新增/修改](../open-api/alert-policy/add.md)成员类型的告警策略的参数结构调整。
 
 2. 仪表板 > [可见范围](../scene/dashboard/index.md#range)：新增“自定义”选项，支持配置此仪表板的操作、查看权限成员。
     - 注意：若您先前在可见范围处添加了“团队”，团队配置将失效，需重新配置。
@@ -94,6 +94,17 @@ icon: zy/release-notes
 
 1. 支持修改配置文件以自定义查看器默认时间范围；
 2. 管理后台成员信息支持输入国际手机号码。
+
+### 新增集成 {#inte1127}
+
+- 新增 [Azure MySQL](../integrations/azure_mysql.md)；
+- 新增 [华为云 Mariadb](../integrations/huawei_rds_mariadb.md) 集成；
+- 新增 [华为云 EIP](../integrations/huawei_eip.md) 集成；
+- 新增 [华为云 WAF](../integrations/huawei_waf.md) 集成；
+- 新增 [Confluent cloud](../integrations/confluent_cloud.md) 集成；
+- 更新 [阿里云 SAE](../integrations/aliyun_sae.md) 集成，添加 链路、日志部分的集成；
+- 更新 [SQLSERVER](../integrations/sqlserver.md) 监控器。
+
 
 ### Bug 修复 {#bug1127}
 
