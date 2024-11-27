@@ -106,46 +106,46 @@ The address of the following files can be downloaded through wget and other down
 === "Windows 32 bit"
 
     - [`Installer`](https://static.guance.com/datakit/installer-windows-386.exe){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-windows-386-1.63.1.tar.gz){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-windows-386-1.63.1.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-windows-386-1.64.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-windows-386-1.64.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-windows-386.tar.gz){:target="_blank"}
 
 === "Windows 64 bit"
 
     - [`Installer`](https://static.guance.com/datakit/installer-windows-amd64.exe){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-windows-amd64-1.63.1.tar.gz){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-windows-amd64-1.63.1.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-windows-amd64-1.64.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-windows-amd64-1.64.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-windows-amd64.tar.gz){:target="_blank"}
 
 === "Linux X86 32 bit"
 
     - [`Installer`](https://static.guance.com/datakit/installer-linux-386){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-386-1.63.1.tar.gz){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-linux-386-1.63.1.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-386-1.64.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-linux-386-1.64.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-386.tar.gz){:target="_blank"}
 
 === "Linux X86 64 bit"
 
     - [`Installer`](https://static.guance.com/datakit/installer-linux-amd64){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-amd64-1.63.1.tar.gz){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-linux-amd64-1.63.1.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-amd64-1.64.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-linux-amd64-1.64.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-amd64.tar.gz){:target="_blank"}
-    - [`APM Auto Instrumentation`](https://static.guance.com/datakit/datakit-apm-inject-linux-amd64-1.63.1.tar.gz){:target="_blank"}
+    - [`APM Auto Instrumentation`](https://static.guance.com/datakit/datakit-apm-inject-linux-amd64-1.64.0.tar.gz){:target="_blank"}
 
 === "Linux Arm 32 bit"
 
     - [`Installer`](https://static.guance.com/datakit/installer-linux-arm){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-arm-1.63.1.tar.gz){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-linux-arm-1.63.1.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-arm-1.64.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-linux-arm-1.64.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-arm.tar.gz){:target="_blank"}
 
 === "Linux Arm 64 bit"
 
     - [`Installer`](https://static.guance.com/datakit/installer-linux-arm64){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-arm64-1.63.1.tar.gz){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-linux-arm64-1.63.1.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-arm64-1.64.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-linux-arm64-1.64.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-arm64.tar.gz){:target="_blank"}
-    - [`APM Auto Instrumentation`](https://static.guance.com/datakit/datakit-apm-inject-linux-arm64-1.63.1.tar.gz){:target="_blank"}
+    - [`APM Auto Instrumentation`](https://static.guance.com/datakit/datakit-apm-inject-linux-arm64-1.64.0.tar.gz){:target="_blank"}
 <!-- markdownlint-enable -->
 After downloading, you should have a few files as below (`<OS-ARCH>` here refers to the platform-specific installation package):
 
@@ -165,7 +165,7 @@ Copy these files to the corresponding machine (via USB flash drive or `scp` and 
 
 #### Installation {#simple-install}
 
-> If you are performing an offline install of the lite version of Datakit, you need to specify the installation package with a `_lite` suffix, such as `datakit_lite-linux-amd64-1.63.1.tar.gz`.
+> If you are performing an offline install of the lite version of Datakit, you need to specify the installation package with a `_lite` suffix, such as `datakit_lite-linux-amd64-1.64.0.tar.gz`.
 
 
 <!-- markdownlint-disable MD046 -->
@@ -175,7 +175,7 @@ Copy these files to the corresponding machine (via USB flash drive or `scp` and 
     
     ```shell
     chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.63.1.tar.gz,dk_upgrader-linux-amd64.tar.gz,data.tar.gz
+    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.64.0.tar.gz,dk_upgrader-linux-amd64.tar.gz,data.tar.gz
     ```
 
 === "Windows"
@@ -183,12 +183,12 @@ Copy these files to the corresponding machine (via USB flash drive or `scp` and 
     You need to run the Powershell with administrator privileges to execute:
     
     ```powershell
-    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.63.1.tar.gz,.\dk_upgrader-windows-amd64.tar.gz,.\data.tar.gz
+    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.64.0.tar.gz,.\dk_upgrader-windows-amd64.tar.gz,.\data.tar.gz
     ```
 <!-- markdownlint-enable -->
 #### Upgrade {#simple-upgrade}
 
-> If you are performing an offline upgrade of the lite version of Datakit, you need to specify the installation package with a `_lite` suffix, such as `datakit_lite-linux-amd64-1.63.1.tar.gz`.
+> If you are performing an offline upgrade of the lite version of Datakit, you need to specify the installation package with a `_lite` suffix, such as `datakit_lite-linux-amd64-1.64.0.tar.gz`.
 
 <!-- markdownlint-disable MD046 -->
 === "Linux"
@@ -197,7 +197,7 @@ Copy these files to the corresponding machine (via USB flash drive or `scp` and 
 
     ```shell
     chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --upgrade --srcs datakit-linux-amd64-1.63.1.tar.gz,data.tar.gz
+    ./installer-linux-amd64 --offline --upgrade --srcs datakit-linux-amd64-1.64.0.tar.gz,data.tar.gz
     ```
 
 === "Windows"
@@ -205,7 +205,7 @@ Copy these files to the corresponding machine (via USB flash drive or `scp` and 
     You need to run the Powershell with administrator privileges to execute:
 
     ```powershell
-    .\installer-windows-amd64.exe --offline --upgrade --srcs .\datakit-windows-amd64-1.63.1.tar.gz,.\data.tar.gz
+    .\installer-windows-amd64.exe --offline --upgrade --srcs .\datakit-windows-amd64-1.64.0.tar.gz,.\data.tar.gz
     ```
 <!-- markdownlint-enable -->
 
@@ -270,11 +270,11 @@ mkdir -p /datakit/apm_lib
 wget -P /datakit https://static.guance.com/datakit/install.sh
 wget -P /datakit https://static.guance.com/datakit/version
 wget -P /datakit https://static.guance.com/datakit/data.tar.gz
-wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.63.1
-wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.63.1.tar.gz
-wget -P /datakit https://static.guance.com/datakit/datakit_lite-linux-amd64-1.63.1.tar.gz
+wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.64.0
+wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.64.0.tar.gz
+wget -P /datakit https://static.guance.com/datakit/datakit_lite-linux-amd64-1.64.0.tar.gz
 wget -P /datakit https://static.guance.com/datakit/dk_upgrader-linux-amd64.tar.gz
-wget -P /datakit https://static.guance.com/datakit/datakit-apm-inject-linux-amd64-1.63.1.tar.gz
+wget -P /datakit https://static.guance.com/datakit/datakit-apm-inject-linux-amd64-1.64.0.tar.gz
 wget -P /datakit/apm_lib https://static.guance.com/dd-image/dd-java-agent.jar
 
 # Download other toolkits: sources is the installation package used to turn on the RUM sourcemap function. If this function is not turned on, you can choose not to download it.
@@ -308,8 +308,8 @@ done
 <!-- markdownlint-disable MD046 -->
 ???+ Attention
 
-    You must append suffix **.exe** to the download link of `Installer` on Windows, for example: [*https://static.guance.com/datakit/installer-windows-386-1.63.1.exe*](https://static.guance.com/datakit/installer-windows-386-1.63.1.exe) for Windows 32bit and
-    [*https://static.guance.com/datakit/installer-windows-amd64-1.63.1.exe*](https://static.guance.com/datakit/installer-windows-amd64-1.63.1.exe) for Windows 64bit.
+    You must append suffix **.exe** to the download link of `Installer` on Windows, for example: [*https://static.guance.com/datakit/installer-windows-386-1.64.0.exe*](https://static.guance.com/datakit/installer-windows-386-1.64.0.exe) for Windows 32bit and
+    [*https://static.guance.com/datakit/installer-windows-amd64-1.64.0.exe*](https://static.guance.com/datakit/installer-windows-amd64-1.64.0.exe) for Windows 64bit.
 <!-- markdownlint-enable -->
 
 #### Install {#advance-install}
@@ -482,17 +482,17 @@ wget https://static.guance.com/datakit/datakit.yaml -P /home/guance/
 
 ```shell
 # Pull the image of the amd64 architecture and make it into an image package
-docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.63.1
-docker save -o datakit-amd64-1.63.1.tar pubrepo.guance.com/datakit/datakit:1.63.1
-mv datakit-amd64-1.63.1.tar /home/guance
+docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.64.0
+docker save -o datakit-amd64-1.64.0.tar pubrepo.guance.com/datakit/datakit:1.64.0
+mv datakit-amd64-1.64.0.tar /home/guance
 
 # Pull the image of the arm64 architecture and make it into an image package
-docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.63.1
-docker save -o datakit-arm64-1.63.1.tar pubrepo.guance.com/datakit/datakit:1.63.1
-mv datakit-arm64-1.63.1.tar /home/guance
+docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.64.0
+docker save -o datakit-arm64-1.64.0.tar pubrepo.guance.com/datakit/datakit:1.64.0
+mv datakit-arm64-1.64.0.tar /home/guance
 
 # Check whether the image architecture is correct
-docker image inspect pubrepo.guance.com/datakit/datakit:1.63.1 |grep Architecture
+docker image inspect pubrepo.guance.com/datakit/datakit:1.64.0 |grep Architecture
 
 ```
 
@@ -616,17 +616,17 @@ docker image inspect pubrepo.guance.com/datakit/datakit:1.63.1 |grep Architectur
 
 ```shell
 wget http://<nginx-server-ip>:8080/datakit.yaml 
-wget http://<nginx-server-ip>:8080/datakit-amd64-1.63.1.tar 
+wget http://<nginx-server-ip>:8080/datakit-amd64-1.64.0.tar 
 ```
 
 - Unzip image command
 
 ```shell
 # docker 
-docker load -i /k8sdata/datakit/datakit-amd64-1.63.1.tar
+docker load -i /k8sdata/datakit/datakit-amd64-1.64.0.tar
 
 # containerd
-ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.63.1.tar
+ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.64.0.tar
 
 ```
 
@@ -644,10 +644,10 @@ When there is no external network in the environment, the installation package n
 
 ```shell
 # docker 
-docker load -i datakit-amd64-1.63.1.tar
+docker load -i datakit-amd64-1.64.0.tar
 
 # containerd
-ctr -n=k8s.io image import datakit-amd64-1.63.1.tar
+ctr -n=k8s.io image import datakit-amd64-1.64.0.tar
 
 ```
 

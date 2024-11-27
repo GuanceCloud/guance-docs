@@ -110,6 +110,16 @@ monitor   :
     
         **默认值**: false
     
+    - **ENV_INPUT_DISK_ENABLE_L_V_M_MAPPER_PATH**
+    
+        查看设备映射器对应的软链接（如/dev/dm-0 -> /dev/mapper/vg/lv）
+    
+        **字段类型**: Boolean
+    
+        **采集器配置字段**: `enable_l_v_m_mapper_path`
+    
+        **默认值**: false
+    
     - **ENV_INPUT_DISK_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
@@ -143,6 +153,7 @@ monitor   :
 | Tag | Description |
 |  ----  | --------|
 |`device`|Disk device name. (on /dev/mapper return symbolic link, like `readlink /dev/mapper/*` result)|
+|`disk_name`|Disk name.|
 |`fstype`|File system name.|
 |`host`|System hostname.|
 |`mount_point`|Mount point.|
