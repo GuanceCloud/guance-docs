@@ -21,7 +21,8 @@ icon: zy/cloud-billing
 - 采集器——[腾讯云-云账单（实例维度）](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/)
 - 采集器——[华为云-云账单（实例维度）](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/)
 - 采集器——[AWS-云账单（实例维度）](https://func.guance.com/doc/script-market-guance-aws-billing-by-instance/)
-
+- 采集器——[微软云-云账单（实例维度）](https://func.guance.com/doc/script-market-guance-Azure-billing-by-instance/)
+- 采集器——[火山引擎-云账单（实例维度）](https://func.guance.com/doc/script-market-guance-volcengine-billing-by-instance/)
 
 ## 查看器
 
