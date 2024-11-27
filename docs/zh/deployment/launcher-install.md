@@ -46,7 +46,7 @@
            --create-namespace  \
            --set ingress.hostName="launcher.dataflux.cn",storageClassName=df-nfs-storage        
         ```
-   
+       
     - Launcher 卸载
     
     ```shell
@@ -120,21 +120,22 @@
 
 ![](img/launcher-mysql.png)
 
-### 3.2 Redis 配置
-- Redis 连接地址必须使用内网地址
+### 3.2 缓存服务 配置
+- 可以不开启，不开启的话会使用默认的缓存服务
+- 开启的话填写Redis连接地址,支持单机版或代理模式与主从模式的集群版Redis
 
-![](img/launcher-redis.png)
+![image-20241127150228783](img/image-20241127150228783.png)
 
 ### 3.3 时序引擎配置
 
 === "GuanceDB"
      - 输入 GuanceDB 的 insert 和 select
-     ![](img/launcher-guancedb.png)
+          ![](img/launcher-guancedb.png)
 
 === "InfluxDB"
      - InfluxDB 链接地址必须使用内网地址
-     - 账号必须使用管理员账号，因为需要使用此账号去初始化 DB 以及 RP 待信息
-     ![](img/launcher-influxdb.png)
+          - 账号必须使用管理员账号，因为需要使用此账号去初始化 DB 以及 RP 待信息
+          ![](img/launcher-influxdb.png)
 
 
 
