@@ -1,7 +1,7 @@
 # 外部数据源
 ---
 
-使用 DataFlux Func，可以将 MySQL、Prometheus 等多种数据源集成至观测云，实现数据查询和可视化的无缝对接。
+使用 DataFlux Func，可以将 MySQL 等多种数据源集成至观测云，实现数据查询和可视化的无缝对接。
 
 ## 功能特点
 
