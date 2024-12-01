@@ -45,16 +45,16 @@ icon: zy/plans
 
 :material-numeric-1-circle: 进入[费用中心](https://boss.guance.com/)，直接使用费用中心帐号进行结算。您只需在费用中心账号中进行充值、购买预购卡等，就可以完成账单支付。
 
-:material-numeric-1-circle: 支持云厂商帐号结算，目前支持华为云、阿里云、亚马逊三大云平台。
+:material-numeric-1-circle: 支持云厂商帐号结算，目前支持华为云、阿里云、亚马逊、微软云四大云平台。
 
 
 ## 如何开通观测云？
 
-| 账号注册入口 |  |  |
-| --- | --- | --- |
+| 账号注册入口 |  |  |  |
+| --- | --- | --- | --- |
 | [观测云官网注册](./commercial-register.md) |  |  |
-| 云厂商注册 | [华为云云商店开通](./commercial-huaweiyun.md) | [AWS 云市场开通](./commercial-aws.md) |
-|  | [阿里云云市场开通](./commercial-aliyun.md) | [阿里云海外云市场开通](./en-alicloud.md) |
+| 云厂商注册 | [华为云云商店开通](./commercial-huaweiyun.md) | [AWS 云市场开通](./commercial-aws.md) |  [微软云市场开通](./commercial-azure.md)   |
+|  | [阿里云云市场开通](./commercial-aliyun.md) | [阿里云海外云市场开通](./en-alicloud.md) | |
 
 ## 常见问题
 
