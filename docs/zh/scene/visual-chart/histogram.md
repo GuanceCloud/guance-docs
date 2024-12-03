@@ -23,7 +23,7 @@
 
 **注意**：直方图仅支持日志类数据，可用于表示 ES 存储 `number` 类型数据的分布情况，包括"日志"、"基础对象"、"资源目录"、"事件"、"应用性能"、"用户访问"、"安全巡检"、"网络"、"profile"的数据查询；若工作空间为 SLS 存储，则数据查询报错。
 
-> 更多存储说明，可参考 [数据存储策略](../../billing/billing-method/data-storage.md#options)。
+> 更多存储说明，可参考 [数据存储策略](../../billing-method/data-storage.md#options)。
 
 ## 图表链接
 

@@ -2087,6 +2087,36 @@ Guance has the ability of full stack data collection, and now supports about 290
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../azure_mysql"
+  				data-tags="AZURE"
+  				data-name="Azure MySQL"
+  				data-summary="Collect Azure MySQL metric data"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/azure_mysql/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Azure MySQL</div>
+                            <div title="Collect Azure MySQL metric data" class="fth-integration-desc">Collect Azure MySQL metric data</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../azure_public_ip"
   				data-tags="AZURE"
   				data-name="Azure Public Ip Address"
@@ -2399,7 +2429,11 @@ Guance has the ability of full stack data collection, and now supports about 290
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<span class="fth-integration-name">Confluent Cloud</span>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Confluent Cloud</div>
+                            <div title="Collecting Kafka metric data from Confluent Cloud" class="fth-integration-desc">Collecting Kafka metric data from Confluent Cloud</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -2925,7 +2959,7 @@ Guance has the ability of full stack data collection, and now supports about 290
   				class="fth-integration-list-item"
   				data-href="../ddtrace-python"
   				data-tags="DDTRACE,PYTHON,APM,TRACING"
-  				data-name="DDTrace Phthon"
+  				data-name="DDTrace Python"
   				data-summary="Tracing Python applications with DDTrace"
   			>
   				<div class="fth-integration-list-card">
@@ -2936,7 +2970,7 @@ Guance has the ability of full stack data collection, and now supports about 290
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">DDTrace Phthon</div>
+                            <div class="fth-integration-name">DDTrace Python</div>
                             <div title="Tracing Python applications with DDTrace" class="fth-integration-desc">Tracing Python applications with DDTrace</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
@@ -4453,6 +4487,36 @@ Guance has the ability of full stack data collection, and now supports about 290
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../huawei_eip"
+  				data-tags="Huawei Cloud"
+  				data-name="Huawei Cloud EIP"
+  				data-summary="Collect Huawei Cloud EIP metric data"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/huawei_eip/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Huawei Cloud EIP</div>
+                            <div title="Collect Huawei Cloud EIP metric data" class="fth-integration-desc">Collect Huawei Cloud EIP metric data</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../huawei_elb"
   				data-tags="Huawei Cloud"
   				data-name="HUAWEI ELB"
@@ -4765,7 +4829,11 @@ Guance has the ability of full stack data collection, and now supports about 290
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<span class="fth-integration-name">Huawei Cloud RDS MariaDB</span>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Huawei Cloud RDS MariaDB</div>
+                            <div title="Collect Huawei Cloud RDS MariaDB metric data" class="fth-integration-desc">Collect Huawei Cloud RDS MariaDB metric data</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -4914,6 +4982,36 @@ Guance has the ability of full stack data collection, and now supports about 290
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">HUAWEI ROMA</div>
                             <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../huawei_waf"
+  				data-tags="Huawei Cloud"
+  				data-name="Huawei Cloud WAF Web Application Firewall"
+  				data-summary="Collect Huawei Cloud WAF metric data"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/huawei_waf/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Huawei Cloud WAF Web Application Firewall</div>
+                            <div title="Collect Huawei Cloud WAF metric data" class="fth-integration-desc">Collect Huawei Cloud WAF metric data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>

@@ -46,9 +46,9 @@ icon: zy/application-performance-monitoring
 
 观测云为应用性能数据提供 3 天、7 天、14 天三种数据存储时长选择，您可以按照需求在**管理 > 设置 > 变更数据存储策略**中调整。
 
-> 更多数据存储策略，可参考 [数据存储策略](../billing/billing-method/data-storage.md)。
+> 更多数据存储策略，可参考 [数据存储策略](../billing-method/data-storage.md)。
 
 
 基于<u>按需购买，按量付费</u>的计费方式，应用性能监测计费统计当前空间下，`trace_id` 的数量，采用梯度计费模式。
 
-> 更多计费规则，可参考 [计费方式](../billing/billing-method/index.md)。
+> 更多计费规则，可参考 [计费方式](../billing-method/index.md)。

@@ -56,21 +56,46 @@
 
 --------------
 
-**2. 监控器触发动作参数说明`alertOpt.alertTarget` 说明**
+**2. 当告警策略为 等级 类型时 `alertOpt.alertTarget` 参数说明**
 
 | key | 类型 | 是否必须 | 说明 |
 | :---- | :--- | :---- | :---- |
 | name | string |  | 配置名称 |
-| targets | Array[dict] | 必须 | 通知对象配置 |
+| targets | Array[dict] | 必须 | 通知对象配置 (注意 告警策略 等级/成员 类型 时候该字段的 的位置) |
 | crontab | String |  | 选择重复时间段时，开始 Crontab（Crontab 语法） |
 | crontabDuration | integer |  | 选择重复时间，从 Crontab 开始，持续时间（秒) |
 | customDateUUIDs | Array[String] |  | 选择自定义时间时，自定义通知日期的UUID列表 , 例: ['ndate_xxxx32', 'ndate_xxxx32'], 自定义通知日期参考(监控 - 告警策略 - 自定义通知日期, 接口)|
 | customStartTime | String |  | 选择自定义时间时，每日开始时间，格式为：HH:mm:ss |
 | customDuration | integer |  | 选择自定义时间段时，从 customStartTime 自定义开始时间，持续时间（秒) |
-| openCustomNotifyTime | boolean |  | 当 alertType 为 member 时, 使用该字段. 表示 是否开启自定义通知时间, 2024-11-06 迭代新增|
-| filterString  | string |  | 当 alertType 为 member 时, 使用该字段, 过滤条件原始字符串 ,2024-11-06 迭代新增|
-| memberInfo | array |  | 当 alertType 为 member 时, 使用该字段(团队UUID 成员UUID), 例: [`group_xxxx`,`acnt_xxxx`], 2024-11-06 迭代新增|
 
+-------------- 
+
+**3. 当告警策略为 成员 类型时 `alertOpt.alertTarget` 参数说明**
+
+| key | 类型 | 是否必须 | 说明 |
+| :---- | :--- | :---- | :---- |
+| name | string |  | 配置名称 |
+| crontab | String |  | 选择重复时间段时，开始 Crontab（Crontab 语法） |
+| crontabDuration | integer |  | 选择重复时间，从 Crontab 开始，持续时间（秒) |
+| customDateUUIDs | Array[String] |  | 选择自定义时间时，自定义通知日期的UUID列表 , 例: ['ndate_xxxx32', 'ndate_xxxx32'], 自定义通知日期参考(监控 - 告警策略 - 自定义通知日期, 接口)|
+| customStartTime | String |  | 选择自定义时间时，每日开始时间，格式为：HH:mm:ss |
+| customDuration | integer |  | 选择自定义时间段时，从 customStartTime 自定义开始时间，持续时间（秒) |
+| alertInfo | Array[dict] | 必须 | 当 成员类型的 告警策略 通知相关信息配置 2024-11-27 迭代新增|
+
+-------------- 
+
+**4. 当告警策略为 成员 类型时 `alertOpt.alertTarget.alertInfo` 参数说明**
+
+| key | 类型 | 是否必须 | 说明 |
+| :---- | :--- | :---- | :---- |
+| name | string |  | 配置名称 |
+| targets | Array[dict] | 必须 | 通知对象配置 (注意 当告警策略 等级/成员 类型 时候该字段的 的位置) |
+| filterString  | string |  | 当 alertType 为 member 时, 使用该字段, 过滤条件原始字符串 ,2024-11-27 迭代新增|
+| memberInfo | array |  | 当 alertType 为 member 时, 使用该字段(团队UUID 成员UUID), 例: [`group_xxxx`,`acnt_xxxx`], 2024-11-27 迭代新增|
+
+-------------- 
+
+**5. 时间配置 相关说明**
 
 如果 选择 重复时间段, crontab, crontabDuration 字段为必传参数
 <br/>
@@ -78,11 +103,15 @@
 <br/>
 如果 选择 其他时刻, crontab, crontabDuration, customDateUUIDs, customStartTime, customDuration 都不需要传
 <br/>
-注意: 每个告警策略会存在一个其他时刻的通知规则, 为兜底的通知对象, 示例:  alertOpt.alertTarget.targets 列表中最后一个值只会存在 status, to 字段 [{"status":"critical","to":["acnt_xxxx32"]}]
+注意: 每个告警策略会存在一个其他时刻的通知规则, 即没有时间配置的 为兜底的通知对象
 
 --------------
 
-**3. 通知对象字段 `alertOpt.alertTarget.targets` 说明**
+**6. 通知对象字段 `targets` 说明**
+当 alertType 为 status 时, targets 位置 alertOpt.alertTarget.targets
+<br/>
+当 alertType 为 member 时, targets 位置 alertOpt.alertTarget.alertInfo.targets
+<br/>
 targets 为list, 内部元素为dict, 内部字段说明如下
 
 | key | 类型 | 是否必须 | 说明 |
@@ -91,11 +120,15 @@ targets 为list, 内部元素为dict, 内部字段说明如下
 | status | Enum | 必须 | 需要发送告警的 event 的 status 值,多个status 可使用,号隔开, `critical`,`error`,`warning`,`nodata`,`info` |
 | upgradeTargets | Array | | 每个告警配置的状态的 升级通知 |
 | tags | dict | | 过滤条件 |
-| filterString | dict | | 过滤条件原始字符串 可替换 tags, filterString 使用优先级大于 tags, 2024-11-06 迭代新增 |
+| filterString | dict | | 过滤条件原始字符串 可替换 tags, filterString 使用优先级大于 tags, 2024-11-27 迭代新增 |
 
 --------------
 
-**4. 通知对象字段 `alertOpt.alertTarget.targets.upgradeTargets` 说明**
+**7. 通知对象字段 `upgradeTargets` 说明**
+当 alertType 为 status 时, targets 位置 alertOpt.alertTarget.targets.upgradeTargets
+<br/>
+当 alertType 为 member 时, targets 位置 alertOpt.alertTarget.alertInfo.targets.upgradeTargets
+<br/>
 upgradeTargets 为list, 内部元素为dict, 内部字段说明如下
 
 | key | 类型 | 是否必须 | 说明 |
@@ -105,10 +138,9 @@ upgradeTargets 为list, 内部元素为dict, 内部字段说明如下
 | duration | integer | | 持续时间, 持续产生该等级状态的事件触发升级通知 |
 | toWay | Array[String] | | 当 alertType 为 成员(member)类型时 使用, 只可以选择通知对象和固定字段email, sms(saas版本支持sms), 示例: [`email`,`notify_xxxx`], 2024-11-06 迭代新增 |
 
-
 --------------
 
-**5. 操作权限配置参数说明**
+**8. 操作权限配置参数说明**
 
 |  参数名        |   type   |          说明          |
 |---------------|----------|------------------------|
@@ -116,8 +148,11 @@ upgradeTargets 为list, 内部元素为dict, 内部字段说明如下
 | permissionSet       | array   | 操作权限配置      |
 
 **permissionSet, openPermissionSet 字段说明(2024-06-26迭代新增字段): **
+
 配置 openPermissionSet 开启后,  只有空间拥有者 和 属于 permissionSet 配置中的 角色, 团队, 成员才能进行编辑/启用/禁用/删除
+<br/>
 配置 openPermissionSet 关闭后(默认), 则删除/启用/禁用/编辑权限 遵循 原有接口编辑/启用/禁用/删除权限
+<br/>
 
 permissionSet 字段可配置, 角色 UUID(wsAdmin,general, readOnly, role_xxxxx ), 团队 UUID(group_yyyy), 成员 UUID(acnt_xxx)
 permissionSet 字段示例:
@@ -125,6 +160,8 @@ permissionSet 字段示例:
   ["wsAdmin", "general", "group_yyyy", "acnt_xxxx"]
 
 ```
+      
+--------------
 
 
 

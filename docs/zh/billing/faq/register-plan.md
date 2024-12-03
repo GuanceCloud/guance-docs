@@ -25,7 +25,7 @@ AWS 用户可以通过选择“中国区2（宁夏）”、“海外区1（俄�
 
 不能相互切换。观测云商业版采用默认的 ES 存储方式，观测云专属版采用 SLS 存储方式。
 
-> 更多详情，可参考 [数据存储方式](../../billing/billing-method/data-storage.md#options)。
+> 更多详情，可参考 [数据存储方式](../../billing-method/data-storage.md#options)。
 
 **注意**：仅支持通过在阿里云云市场购买观测云专属版来开通 SLS 存储，已开通默认存储的观测云工作空间不支持切换成 SLS 存储。
 

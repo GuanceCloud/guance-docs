@@ -6,6 +6,7 @@ icon: zy/integrations
 
 ---
 
+
 <!-- markdownlint-disable MD046 MD037 MD009 MD010 -->
 <html lang="en">
   <div>
@@ -348,18 +349,18 @@ icon: zy/integrations
   				data-href="../aliyun_edas"
   				data-tags="阿里云"
   				data-name="阿里云 EDAS"
-  				data-summary=""
+  				data-summary="采集阿里云 EDAS 指标、链路数据"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/aliyun_redis/icon.png"
+									src="../icon/aliyun_edas/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 EDAS</div>
-                            <div title="" class="fth-integration-desc"></div>
+                            <div title="采集阿里云 EDAS 指标、链路数据" class="fth-integration-desc">采集阿里云 EDAS 指标、链路数据</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1025,7 +1026,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">阿里云 SAE</div>
-                            <div title="采集阿里云 SAE 的指标信息" class="fth-integration-desc">采集阿里云 SAE 的指标信息</div>
+                            <div title="采集阿里云 SAE（Serverless App Engine）的指标、日志、链路信息" class="fth-integration-desc">采集阿里云 SAE（Serverless App Engine）的指标、日志、链路信息</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2211,6 +2212,36 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../azure_mysql"
+  				data-tags="AZURE"
+  				data-name="Azure MySQL"
+  				data-summary="采集 Azure MySQL 指标数据"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/azure_mysql/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Azure MySQL</div>
+                            <div title="采集 Azure MySQL 指标数据" class="fth-integration-desc">采集 Azure MySQL 指标数据</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../azure_public_ip"
   				data-tags="AZURE,网络"
   				data-name="Azure Public Ip Address"
@@ -2553,7 +2584,11 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<span class="fth-integration-name">Confluent Cloud</span>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Confluent Cloud</div>
+                            <div title="从 Confluent Cloud 采集 Kafka 指标数据" class="fth-integration-desc">从 Confluent Cloud 采集 Kafka 指标数据</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -3079,7 +3114,7 @@ icon: zy/integrations
   				class="fth-integration-list-item"
   				data-href="../ddtrace-python"
   				data-tags="DDTRACE,PYTHON,链路追踪"
-  				data-name="DDTrace Phthon"
+  				data-name="DDTrace Python"
   				data-summary="DDTrace Python 集成"
   			>
   				<div class="fth-integration-list-card">
@@ -3090,7 +3125,7 @@ icon: zy/integrations
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">DDTrace Phthon</div>
+                            <div class="fth-integration-name">DDTrace Python</div>
                             <div title="DDTrace Python 集成" class="fth-integration-desc">DDTrace Python 集成</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
@@ -4607,6 +4642,36 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../huawei_eip"
+  				data-tags="华为云"
+  				data-name="华为云 EIP"
+  				data-summary="采集华为云 EIP 指标数据"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/huawei_eip/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">华为云 EIP</div>
+                            <div title="采集华为云 EIP 指标数据" class="fth-integration-desc">采集华为云 EIP 指标数据</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../huawei_elb"
   				data-tags="华为云"
   				data-name="华为云 ELB"
@@ -4919,7 +4984,11 @@ icon: zy/integrations
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
-  						<span class="fth-integration-name">华为云 RDS MariaDB</span>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">华为云 RDS MariaDB</div>
+                            <div title="采集华为云 RDS MariaDB 指标数据" class="fth-integration-desc">采集华为云 RDS MariaDB 指标数据</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
   					</div>
   					<div class="integration-list-item-right">
   						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -5068,6 +5137,36 @@ icon: zy/integrations
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">华为云 ROMA</div>
                             <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../huawei_waf"
+  				data-tags="华为云"
+  				data-name="华为云 WAF Web应用防火墙"
+  				data-summary="采集华为云 WAF 指标数据"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/huawei_waf/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">华为云 WAF Web应用防火墙</div>
+                            <div title="采集华为云 WAF 指标数据" class="fth-integration-desc">采集华为云 WAF 指标数据</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
