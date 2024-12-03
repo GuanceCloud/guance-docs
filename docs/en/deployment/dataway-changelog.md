@@ -2,6 +2,14 @@
 
 # Update History {#changelog}
 
+## 1.6.2(2024/12/03) {#cl-1.6.2}
+
+### Feature Enhancements {#cl-1.6.2-opt}
+
+- Add configures for HTTP connection(#46)
+
+---
+
 ## 1.6.1(2024/11/19) {#cl-1.6.1}
 
 ### Feature Enhancements {#cl-1.6.1-opt}
