@@ -9,7 +9,7 @@
 
 ## **ft-sdk** {#ft-sdk}
 ### **1.6.4 (2024/12/03)**
-1. 优化 App 启动时间在 API 24 以上统计时间
+1. 优化 App 启动时间在 API 24 以上的统计
 2. 支持通过 `FTRUMConfig.setEnableTrackAppUIBlock(true, blockDurationMs)` 设置检测时间范围
 ### **1.6.3 (2024/11/18)**
 1. 优化自定义 `addAction` 在高频率调用时的性能表现
