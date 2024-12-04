@@ -14,7 +14,7 @@ icon: zy/billing-method
 
 具体计费项及其对应的统计范围和计费类型如下所示：
 
-<img src="../img/billing-1.png" width="70%" >
+<img src="img/billing-1.png" width="50%" >
 
 **注意**：观测云**按天出账**，您可以在工作空间**付费计划与账单**模块查看前一天的各计费项的统计数据、历史账单、使用统计趋势等信息。
 
