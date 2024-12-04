@@ -8,52 +8,52 @@
 </div>
 
 ## **ft-sdk** {#ft-sdk}
-### **1.6.4 (2024/12/03)**
+### **1.6.4 (2024/12/03)** {#ft-sdk-1-6-4}
 1. 优化 App 启动时间在 API 24 以上的统计
 2. 支持通过 `FTRUMConfig.setEnableTrackAppUIBlock(true, blockDurationMs)` 设置检测时间范围
-### **1.6.3 (2024/11/18)**
+### **1.6.3 (2024/11/18)** {#ft-sdk-1-6-3}
 1. 优化自定义 `addAction` 在高频率调用时的性能表现
 2. 支持使用  `FTSDKConfig.setCompressIntakeRequests` 对同步数据进行 `deflate` 压缩配置
-### **1.6.2 (2024/10/24)**
+### **1.6.2 (2024/10/24)** {#ft-sdk-1-6-2}
 1. RUM 新增 `addAction` 方法，支持 property 扩展属性与频繁连续数据上报
-### **1.6.1 (2024/10/18)**
+### **1.6.1 (2024/10/18)** {#ft-sdk-1-6-1}
 1. 修复 RUM 单独调用自定义 `startView`，导致监控指标 `FTMetricsMTR` 线程未被回收的问题
 2. 支持通过 `FTSdk.appendGlobalContext(globalContext)`、`FTSdk.appendRUMGlobalContext(globalContext)`、
     `FTSdk.appendLogGlobalContext(globalContext)`添加动态属性
 3. 支持通过 `FTSdk.clearAllData()` 清理未上报缓存数据
 4. SDK `setSyncSleepTime` 最大限制延长为 5000 ms
-### **1.6.0 (2024/08/18)**
+### **1.6.0 (2024/08/18)** {#ft-sdk-1-6-0}
 1. 优化数据存储和同步性能
 （旧版本升级至 1.6.0 需要配置 `FTSDKConfig.setNeedTransformOldCache` 进行旧数据兼容同步）
 2. 修复在使用 ft-plugin 时，调用 `Log.w(String,Throwable)` 引发异常的问题
-### **1.5.2 (2024/07/10)**：
+### **1.5.2 (2024/07/10)** {#ft-sdk-1-5-2}
 1. Error network_error 添加本地网络错误类型的提示，用于补充说明 Resource 数据中 resource_status=0 场景
 2. 修复 `setEnableTrackAppCrash(false)` 时 uncaughtException rethrow 传递问题
-### **1.5.1 (2024/06/19)**：
+### **1.5.1 (2024/06/19)** {#ft-sdk-1-5-1}
 1. Java Crash 及 ANR 补充其他线程代码堆栈
 2. Java Crash，Native Crash，ANR 添加附加 logcat 配置功能
 3. 修复长 session 且无 action 更新场景下，频繁更新 session_id 的问题
-### **1.5.0 (2024/06/03)**：
+### **1.5.0 (2024/06/03)** {#ft-sdk-1-5-0}
 1. RUM resource 网络请求添加 remote ip 地址解析功能
 2. 修复开启 RUM SampleRate 后，高并发网路请求引发的数组线程安全问题
 3. `ConnectivityManager.registerDefaultNetworkCallback` 方法容错优化
 4. 添加行协议 Integer 数据兼容模式，处理 web 数据类型冲突问题
 5. 自动采集 Action click 中控件资源名 id 获取优化
 6. SDK config 配置读取异常问题容错优化
-### **1.4.6 (2024/05/15)**：
+### **1.4.6 (2024/05/15)** {#ft-sdk-1-4-6}
 1. SDK 初始化容错优化
 2. 新增日志新增 Status.Debug 类型
 3. 控制台抓取日志等级对应关系调整： `Log.i` -> `info`，`Log.d` -> `debug`
 4. FTLogger 自定义日志支持自定义 status 字段
-### **1.4.5 (2024/04/26)**：
+### **1.4.5 (2024/04/26)** {#ft-sdk-1-4-5}
 1. 重复初始化兼容优化处理
 2. 优化 c/c++ 崩溃采集数据同步逻辑，避免在某些场景下意外中断退出，导致死锁
 3. 优化 startAction Property 属性写入逻辑，避免发生线程安全访问问题	
-### **1.4.4 (2024/04/01)**：
+### **1.4.4 (2024/04/01)** {#ft-sdk-1-4-4}
 1. 数据库链接容错保护
 2. 修正 `setOnlySupportMainProcess` true 时，子进程配置部份不起效问题
 3. 修正 RUM 不开启 View 采集, Crash 不会 rethrow 的问题
-### **1.4.3 (2024/03/22)**：
+### **1.4.3 (2024/03/22)** {#ft-sdk-1-4-3}
 1. 支持 Dataway 与 Datakit 的地址上传
 2. 支持发送 Action，View，Resource，LongTask，Error 类型的 RUM 数据。
     - View，Action 页面跳转，控件点击操作自动采集，需要使用 ft-plugin
@@ -67,9 +67,9 @@
 [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/CHANGELOG.md)
 
 ## **ft-native** {#ft-native}
-### **1.1.1 (2024/06/22)**：
+### **1.1.1 (2024/06/22)** {#ft-native-1-1-1}
 1. 添加 Native Crash 和 ANR 中 logcat 配置功能
-### **1.1.0 (2024/03/22)**：
+### **1.1.0 (2024/03/22)** {#ft-native-1-1-0}
 1. 支持捕获 ANR Crash
 2. 支持捕获 C/C++ Native Crash
 3. 支持崩溃时采集应用运行状态
