@@ -26,9 +26,9 @@
 | extend | json |  | 视图额外信息<br>例子: {} <br>允许为空: False <br> |
 | mapping | array |  | mapping, 默认为[]<br>例子: [] <br>允许为空: False <br> |
 | tagNames | array |  | tag的name，注意此字段为全量更新<br>允许为空: False <br> |
-| isPublic | int |  | 是否公开展示<br>例子: 1 <br>允许为空: False <br> |
-| openPermissionSet | boolean |  | 公开展示情况下, 开启 自定义权限配置, (默认 false:不开启), 开启后 该规则的操作权限根据 permissionSet<br>允许为空: False <br> |
-| permissionSet | array |  | 操作权限配置, 可配置(角色(除拥有者), 成员uuid, 团队uuid)<br>例子: ['wsAdmin', 'acnt_xxxx', 'group_yyyy'] <br>允许为空: False <br> |
+| isPublic | int |  | 是否公开展示, 1为公开, 0为非公开, -1表示自定义<br>例子: 1 <br>允许为空: False <br> |
+| permissionSet | array |  | 自定义时 isPublic 为-1时候的 操作权限配置, 可配置(角色(除拥有者), 成员uuid, 团队uuid)<br>例子: ['wsAdmin', 'acnt_xxxx', 'group_yyyy'] <br>允许为空: False <br> |
+| readPermissionSet | array |  | 自定义时 isPublic 为-1时候的 读取权限配置, 可配置(角色(除拥有者), 成员uuid, 团队uuid)<br>例子: ['wsAdmin', 'acnt_xxxx', 'group_yyyy'] <br>允许为空: False <br> |
 
 ## 参数补充说明
 

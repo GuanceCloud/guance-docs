@@ -17,27 +17,110 @@ icon: zy/release-notes
  
     ---
 
-    __RUM__
+    __SDK__
 
-
-
-    |   SDK        |       |          |        |       |
+    [Web](../real-user-monitoring/web/sdk-changelog.md)        |   [小程序](../real-user-monitoring/miniapp/sdk-changelog.md)    |    [Android](../real-user-monitoring/android/sdk-changelog.md)      |    [iOS](../real-user-monitoring/ios/sdk-changelog.md)    |  [React Native](../real-user-monitoring/react-native/sdk-changelog.md)     |
     | :-------: | :--------: | :----------: | :-----------: | :---------: |
-    |   [Web](../real-user-monitoring/web/sdk-changelog.md)        |   [小程序](../real-user-monitoring/miniapp/sdk-changelog.md)    |    [Android](../real-user-monitoring/android/sdk-changelog.md)      |    [iOS](../real-user-monitoring/ios/sdk-changelog.md)    |  [React Native](../real-user-monitoring/react-native/sdk-changelog.md)     |
+    
 
 </div>
 
-## 2024 年 11 月 20 日
+## 2024 年 11 月 27 日
 
-### 功能更新 {#feature1120}
+### Breaking Changes {#breakingchanges1127}
 
-<!-- #### [外部数据源接入](../dataflux-func/external_data.md)
+1. OpenAPI：若通过 API 配置告警策略按成员配置通知规则模式，需注意通过 OpenAPI 方式[新增/修改](../open-api/alert-policy/add.md)成员类型的告警策略的参数结构调整。
+
+2. 仪表板 > [可见范围](../scene/dashboard/index.md#range)：新增“自定义”选项，支持配置此仪表板的操作、查看权限成员。
+    - 注意：若您先前在可见范围处添加了“团队”，团队配置将失效，需重新配置。
+
+### 功能更新 {#feature1127}
+
+#### 云账单
+
+1. 新增功能引导页：提供简洁明了的步骤及说明，让用户能够迅速上手；
+2. 新增支持[火山引擎、微软云数据接入](../cloud-billing/index.md#precondition)。
+
+
+#### [外部数据源接入](../dataflux-func/external_data.md)
 
 1. MySQL 数据存储系统支持：平台现已支持接入 MySQL 数据存储系统，用户可以利用此功能实现数据的实时查询和分析。
 
 2. 原生查询语句直接使用：用户可以直接在图表中使用数据源的原生查询语句进行数据查询和展示，无需进行任何转换或适配。
 
-3. 数据安全与隐私保护：为了保护用户的数据安全和隐私，平台不会存储任何添加的数据源信息。所有数据源配置将直接保存在用户的本地 Func 中，确保数据源信息的安全，避免数据泄漏风险。 -->
+3. 数据安全与隐私保护：为了保护用户的数据安全和隐私，平台不会存储任何添加的数据源信息。所有数据源配置将直接保存在用户的本地 Func 中，确保数据源信息的安全，避免数据泄漏风险。 
+
+#### 监控 
+
+1. 告警策略 > [按成员配置通知规则](../monitoring/alert-setting.md#member)：
+
+    - 支持配置多组成员通知规则并行生效；
+    - 成员配置通知规则支持定义生效的时间范围，若存在多组时间范围则按照序号顺序匹配，多组时间范围最终只会取第一个匹配到的时间范围内通知规则做告警发送。
+
+2. 监控器：配置关联告警策略时支持搜索。
+
+3. [静默时间](../monitoring/silent-management.md)：定义“重复”静默时间时，支持自定义静默开始时间、静默持续时长，支持配置“按天”、“按周”、“按月”的静默周期，帮助更灵活地定义静默时间。同时新增静默计划预览功能，可以查看当前定义的静默时间。
+
+#### 付费计划与账单
+
+[高消费预警](../billing/index.md#alert)：
+
+- 支持自定义配置预警通知成员，当计费项超出设定阈值时，会向 Owner 和对应的通知成员发送邮件预警；    
+- 支持在每一个计费项下设置此计费项的专属通知成员；    
+- 支持回车创建外部邮箱作为通知成员。
+
+#### 应用性能监测
+
+1. RUM > [分析看板](../real-user-monitoring/app-analysis.md)、容器 > 分析看板：视图切换显示优化，用户在切换视图时能获得更流畅的体验。
+2. 日志内置页面：在选择日志索引时支持搜索，优化操作体验。
+
+#### 事件
+
+1. 未恢复事件查看器支持通过时间控件调整查询事件范围；
+2. 事件查看器支持自定义配置显示列。
+
+#### 场景
+
+图表优化：支持配置图表数据展示是否使用科学计数法进位。
+
+#### 管理
+
+[黑名单](../management/overall-blacklist.md)：新增名称和描述项，支持区分用途和其它关联场景。
+
+
+#### 帮助中心
+
+帮助文档优化：[集成](../integrations/integration-index.md)页面新增描述信息，帮助直观查看集成信息。
+
+### 部署版更新 {#deployment1127}
+
+1. 支持修改配置文件以自定义查看器默认时间范围；
+2. 管理后台成员信息支持输入国际手机号码。
+
+### 新增集成 {#inte1127}
+
+- 新增 [Azure MySQL](../integrations/azure_mysql.md)；
+- 新增 [华为云 Mariadb](../integrations/huawei_rds_mariadb.md) 集成；
+- 新增 [华为云 EIP](../integrations/huawei_eip.md) 集成；
+- 新增 [华为云 WAF](../integrations/huawei_waf.md) 集成；
+- 新增 [Confluent cloud](../integrations/confluent_cloud.md) 集成；
+- 更新 [阿里云 SAE](../integrations/aliyun_sae.md) 集成，添加 链路、日志部分的集成；
+- 更新 [SQLSERVER](../integrations/sqlserver.md) 监控器。
+
+
+### Bug 修复 {#bug1127}
+
+1. 修复部分查看器列表列名无法通过 “显示列” 入口进行别名定义的问题；
+2. 修复了 RUM 生成指标时，所列出应用未受数据访问规则影响的问题；
+3. 修复了应用性能监控 > 错误追踪 > Issue 自动发现前端样式适配的问题；
+4. 修复了仪表板 > 图表内资源目录查询时间的问题；  
+5. 修复了账单分析账期列宽度无法调整的问题。
+
+## 2024 年 11 月 20 日
+
+### 功能更新 {#feature1120}
+
+
 
 #### 微软云市场上架
 

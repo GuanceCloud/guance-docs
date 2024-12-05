@@ -176,7 +176,7 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
 ### 快捷操作 {#icon}
 
-| <div style="width: 140px">操作</div>      | 说明                          |
+| <div style="width: 160px">操作</div>      | 说明                          |
 | ----------- | ------------------------------------ |
 | 全屏查看/恢复默认大小      | 您可以点击链路详情右上角全屏查看图标 :material-arrow-expand-all:，横向展开查看链路火焰图；点击恢复默认大小图标 :material-arrow-collapse-all:，即可恢复详情页。                          |
 | 展开/收起小地图      | 您可以点击链路详情左侧展开/收起小地图图标 :material-format-indent-increase:，通过在小地图上选择区间、拖拽、滚动来快捷查看火焰图。                          |
