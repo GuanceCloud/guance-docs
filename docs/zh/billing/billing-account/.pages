@@ -2,5 +2,5 @@ nav:
   - index.md
   - '费用中心账号结算': enterprise-account.md
   - '阿里云账号结算': aliyun-account.md
-  - 'AWS 账号结算': aws-account.md
+  - '亚马逊云账号结算': aws-account.md
   - '华为云账号结算': huawei-account.md
