@@ -37,7 +37,7 @@ Add startup parameters in HBase Region
 
 By using jmx exporter, the `metrics` URL can be directly exposed, so it can be collected directly through the [prom](./prom.md) collector.
 
-Go to the `conf.d/prom` directory under the [DataKit installation directory](./datakit-dir.md), and copy `prom.conf.sample` to `region.conf`.
+Go to the `conf.d/prom` directory under the [DataKit installation directory](./datakit_dir.md), and copy `prom.conf.sample` to `region.conf`.
 
 > `cp prom.conf.sample region.conf`
 
