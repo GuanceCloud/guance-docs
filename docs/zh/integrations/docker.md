@@ -59,7 +59,7 @@ Docker 环境的 DataKit 只能安装在宿主机上。
   # ...
 ```
 
-### `docker_containers`
+`docker_containers`
 
 The metric of containers, only supported Running status.
 
@@ -112,7 +112,7 @@ The metric of containers, only supported Running status.
 
 ## 对象 {#object}
 
-### `docker_containers`
+`docker_containers`
 
 The object of containers, only supported Running status.
 
