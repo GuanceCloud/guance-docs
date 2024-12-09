@@ -1,6 +1,6 @@
 # 版本历史
 
-## 2024 年 12 月 05 日 {#1.99.184}
+## 1.99.184（2024 年 12 月 05 日） {#1.99.184}
 
 pubrepo.guance.com/dataflux/1.99.184:launcher-71d4565-1733376363
 
@@ -19,7 +19,7 @@ pubrepo.guance.com/dataflux/1.99.184:launcher-71d4565-1733376363
 - 修复升级过程中，可能发生数据库结构升级失败的情况。
 
 
-## 2024 年 11 月 27 日 {#1.99.183}
+## 1.99.183（2024 年 11 月 27 日） {#1.99.183}
 
 pubrepo.guance.com/dataflux/1.99.183:launcher-a0f6329-1733131478
 
@@ -122,7 +122,7 @@ pubrepo.guance.com/dataflux/1.99.183:launcher-a0f6329-1733131478
 
 更多详情可参考帮助文档：https://docs.guance.com/release-notes/
 
-## 2024 年 11 月 20 日 {#1.98.182}
+## 1.98.182（2024 年 11 月 20 日） {#1.98.182}
 
 pubrepo.guance.com/dataflux/1.98.182:launcher-a1381c3-1732173851
 
@@ -154,7 +154,7 @@ pubrepo.guance.com/dataflux/1.98.182:launcher-a1381c3-1732173851
 
 更多详情可参考帮助文档：https://docs.guance.com/release-notes/
 
-## 2024 年 11 月 13 日 {#1.98.181}
+## 1.98.181（2024 年 11 月 13 日） {#1.98.181}
 
 pubrepo.guance.com/dataflux/1.98.181:launcher-475455f-1731916153
 
