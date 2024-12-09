@@ -6,7 +6,7 @@ icon: zy/integrations
 
 ---
 
-Guance has the ability of full stack data collection, and now supports about 290 integrations.
+Guance has the ability of full stack data collection, and now supports about 300 integrations.
 
 <!-- markdownlint-disable MD046 MD037 MD009 MD010 -->
 <html lang="en">
@@ -4007,6 +4007,66 @@ Guance has the ability of full stack data collection, and now supports about 290
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../hbase_master"
+  				data-tags=""
+  				data-name="HBase Master"
+  				data-summary="Collect HBase Master metric information"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/hbase/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">HBase Master</div>
+                            <div title="Collect HBase Master metric information" class="fth-integration-desc">Collect HBase Master metric information</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../hbase_region"
+  				data-tags=""
+  				data-name="HBase Region"
+  				data-summary="Collect HBase Region Metric Information"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/hbase/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">HBase Region</div>
+                            <div title="Collect HBase Region Metric Information" class="fth-integration-desc">Collect HBase Region Metric Information</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../host_healthcheck"
   				data-tags="HOST"
   				data-name="Health Check"
@@ -4352,6 +4412,36 @@ Guance has the ability of full stack data collection, and now supports about 290
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">HUAWEI CSS for Elasticsearch</div>
                             <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../huawei_dcaas"
+  				data-tags="Huawei Cloud"
+  				data-name="Huawei Cloud DCAAS Cloud Dedicated Line"
+  				data-summary="Collect Huawei Cloud DCAAS metric data"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/huawei_dcaas/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Huawei Cloud DCAAS Cloud Dedicated Line</div>
+                            <div title="Collect Huawei Cloud DCAAS metric data" class="fth-integration-desc">Collect Huawei Cloud DCAAS metric data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
