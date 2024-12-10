@@ -306,6 +306,12 @@ spec:
 
     **示例**: `{"logging":"abc.p","metric":"xyz.p"}`
 
+- **ENV_PIPELINE_DISABLE_HTTP_REQUEST_FUNC**
+
+    禁用 Pipeline `http_request` 函数
+
+    **字段类型**: Boolean
+
 - **~~ENV_GLOBAL_TAGS~~**
 
     同 ENV_GLOBAL_HOST_TAGS，将废弃

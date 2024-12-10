@@ -265,6 +265,12 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     **Example**: `{"logging":"abc.p","metric":"xyz.p"}`
 
+- **ENV_PIPELINE_DISABLE_HTTP_REQUEST_FUNC**
+
+    Disable Pipeline `http_request` function
+
+    **Type**: Boolean
+
 - **~~ENV_GLOBAL_TAGS~~**
 
     Same as ENV_GLOBAL_HOST-TAGS(Deprecated)
