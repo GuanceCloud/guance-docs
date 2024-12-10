@@ -1,14 +1,15 @@
-# 在项目构建过程中上传 sourcemaps
+# 在项目构建过程中上传 SourceMap
 
-我们目前提供了 webpack 插件，能够轻松的在 Web 项目构建的过程中，上传对应目录的 sourcemaps 文件。解决在繁杂的手动上传过程。
-! （目前支持 web 应用的上传）
+观测云目前提供 `webpack` 插件，能够轻松的在 Web 项目构建的过程中，上传对应目录的 SourceMap 文件。解决在繁杂的手动上传过程。
+
+**注意**：目前支持 Web 应用的上传。
 
 ## 准备工作
 
-1. 获取对应站点的 `OpenApi` 域名地址 ([如何获取](../../open-api/index.md))
-2. 在观测云获取对应的 `OpenApi`所需的 `API KEY` （[获取方式](../../open-api/signature-certification.md)）。
-3. 在观测云平台上获取 web 应用的`applicationId`、`env`、`version`信息,如果没有应用，可以[创建一个新应用](../web/app-access.md)
-4. 准备完毕
+1. [获取](../../open-api/index.md)对应站点的 `OpenApi` 域名地址；
+2. 在观测云[获取](../../open-api/signature-certification.md)对应的 `OpenApi` 所需的 `API KEY`；
+3. 在观测云平台上获取 Web 应用的 `applicationId`、`env`、`version` 信息。如果没有应用，需[创建一个新应用](../web/app-access.md)；
+4. 准备完毕。
 
 ## Webpack
 
@@ -42,7 +43,7 @@ module.exports = ({ mode }) => ({
 })
 ```
 
-### Sourcemap WebpackPlugin 配置说明
+### SourceMap WebpackPlugin 配置说明
 
 ```typescript
 interface Options {
@@ -114,15 +115,15 @@ interface Options {
 }
 ```
 
-### Sourcemap 在生产环境的是否可见
+### SourceMap 在生产环境的是否可见
 
-在生产环境中，出于安全考虑，我们通常不会保留 sourcemap 文件。这些文件允许开发者将压缩或编译后的代码映射回原始源代码，但若被公开，可能会暴露应用程序的内部逻辑，增加安全风险。
+在生产环境中，出于安全考虑，我们通常不会保留 SourceMap 文件。这些文件允许开发者将压缩或编译后的代码映射回原始源代码，但若被公开，可能会暴露应用程序的内部逻辑，增加安全风险。
 
-为了安全地处理 sourcemap，您可以在配置 GuanceSourceMapUploadWebpackPlugin 时启用 deleteAfterUpload: true 选项。这样，一旦 sourcemap 被上传到服务器，就会立即从本地文件系统中删除，确保它们不会在生产环境中遗留。
+为了安全地处理 SourceMap，您可以在配置 GuanceSourceMapUploadWebpackPlugin 时启用 deleteAfterUpload: true 选项。这样，一旦 SourceMap 被上传到服务器，就会立即从本地文件系统中删除，确保它们不会在生产环境中遗留。
 
-此外，通过设置 Webpack 的 devtool 为 "hidden-source-map"，您可以生成 sourcemap 而不在 JavaScript 文件中包含任何指向它们的引用。这可以防止浏览器尝试下载和查看源代码。
+此外，通过设置 Webpack 的 devtool 为 "hidden-source-map"，您可以生成 SourceMap 而不在 JavaScript 文件中包含任何指向它们的引用。这可以防止浏览器尝试下载和查看源代码。
 
-如果启用了 "hidden-source-map"，您还应该在 GuanceSourceMapUploadWebpackPlugin 插件中设置 matchSourcemapsByFilename: true。这个配置确保插件能够根据 JavaScript 文件的名称来识别并上传相应的 sourcemap 文件，即使它们在生成的代码中没有显式的引用。
+如果启用了 "hidden-source-map"，您还应该在 GuanceSourceMapUploadWebpackPlugin 插件中设置 matchSourcemapsByFilename: true。这个配置确保插件能够根据 JavaScript 文件的名称来识别并上传相应的 SourceMap 文件，即使它们在生成的代码中没有显式的引用。
 
 通过这些措施，您可以在保持应用程序调试便利性的同时，有效保护源代码的安全。
 
@@ -154,7 +155,7 @@ module.exports = {
 
 ### 如何 DEBUG
 
-如果在运行过程中，没有找到对应的 sourcemap，可以通过设置环境变量 `DEBUG=guance:sourcemap-upload` 或者配置 `logLevel: verbose` 运行 build 命令，查看具体运行日志
+如果在运行过程中，没有找到对应的 SourceMap，可以通过设置环境变量 `DEBUG=guance:sourcemap-upload` 或者配置 `logLevel: verbose` 运行 build 命令，查看具体运行日志。
 
 ### 注意事项
 
@@ -170,6 +171,6 @@ module.exports = {
 
 4. 插件配置 `filepaths: ['dist']`
 
-5. 如果在不配置 `root` 的情况下，默认上传到观测云服务端的 sourcemap 文件路径 `dist/js/**.js.map`
+5. 如果在不配置 `root` 的情况下，默认上传到观测云服务端的 SourceMap 文件路径 `dist/js/**.js.map`
 
-6. 这种情况下，就会出现**上传文件的目录路径** 与**产生错误的路径**不匹配的情况，所以这时候应该添加配置 `root:'dist/'`, 保证上传的目录路径为 `js/**.js.map`。
+6. 这种情况下，就会出现**上传文件的目录路径** 与**产生错误的路径**不匹配的情况，所以这时候应该添加配置 `root:'dist/'`，保证上传的目录路径为 `js/**.js.map`。

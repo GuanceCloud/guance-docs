@@ -25,6 +25,61 @@ icon: zy/release-notes
 
 </div>
 
+## 2024 年 12 月 11 日
+
+### 功能更新 {#feature1211}
+
+#### 场景
+
+1. [拓扑图](../scene/visual-chart/topology-map.md)新增外部数据查询：允许用户通过 DataFlux Func 实现外部数据绘制拓扑图。用户只需按照图表结构接入数据，即可轻松实现外部数据的可视化展示。
+2. 图表优化
+    - 图表显示效果优化：对图表的显示效果进行优化，调整为侧滑列出，分类展示，使图表的查找和使用更加便捷。
+    - 图表描述及适用场景显示：图表列表中增加了图表描述及适用场景的显示，可以帮助用户更好地理解和选择合适的图表类型。
+3. 视图变量优化
+    - 视图变量支持配置值列出上限，避免数据列出过多导致页面加载性能问题。
+    - 部署版默认列出上限为 50，支持自定义默认列出数量，注意：页面配置限制优先全局限制。
+
+#### 基础设施
+
+1. 资源目录优化：
+  - 新增分组功能：为了提高资源管理的效率，新增资源分组功能。用户可以将具有共性的资源分类进行分组，便于管理和查看，从而优化资源的组织结构。
+  - 查看器蜂窝图模式优化：支持配置“颜色填充”和“分组分析”的字段列表，用户可以根据需要自定义可选的字段。
+2. 容器、资源目录查看器搜索优化：容器查看器新增 `container_name` 搜索，资源目录新增 `name` 搜索。
+
+#### 监控
+
+告警策略配置优化
+    - 支持通过告警策略入口一键创建关联监控器，新增以告警策略为中心的统一告警通知管理模式。
+    - 优化告警策略列表关联显示交互。
+
+#### RUM
+
+RUM 新增 React Native 应用类型选择，并支持页面上传 SourceMap 做解析数据还原。
+  
+**注意**：
+
+- 若您先前已在 Android / iOS 类型下创建过针对 React Native 的应用，可复制应用 ID 后，在 React Native 类型下重新创建，原先采集到的 React Native 数据将会保留；
+- 若您创建过应用类型为 Android / iOS 的、针对 React Native 的“用户访问指标监测监控器”，则需要重新创建应用类型为“ React Native ”的监控器。
+
+#### APM
+
+APM 安装引导新增[自动注入方式](../application-performance-monitoring/explorer/auto_wire/apm_datakit_operator.md)：在 APM（应用性能监测）的安装引导中，新增了 Kubernetes Operator 自动注入的安装方式。这种方式简化了 APM 的部署流程，使得用户可以更快捷地在 Kubernetes 环境中安装和使用。
+
+#### 外部数据源接入
+
+平台新增对 Prometheus 和 SLS（阿里云日志服务）数据类型的支持。可以更广泛地接入不同类型的外部数据源。
+
+### 新增集成 {#inte1211}
+
+- 新增 [HBASE region](../integrations/hbase_region.md) 集成；
+- 新增 [HBASE master](../integrations/hbase_master.md) 集成；
+- 优化 [NodeExporter](../integrations/node-exporter.md) 集成视图；
+- 新增 [华为云 DCAAS 云专线](../integrations/huawei_dcaas.md) 集成；
+- K8S dashboard 调整；
+- 更新 [memcached](../integrations/memcached.md) 视图和监控器；
+- 更新 [rabbitmq](../integrations/rabbitmq.md) 视图和监控器。
+
+
 ## 2024 年 11 月 27 日
 
 ### Breaking Changes {#breakingchanges1127}

@@ -16,11 +16,11 @@
 
 登录进入[亚马逊云市场](https://awsmarketplace.amazonaws.cn/marketplace/pp/prodview-duyx7ds3f3cq2)的观测云商品页，点击**继续订阅**。
 
-![](img/8.space_4.png)
+![](../img/8.space_4.png)
 
 成功订阅后，点击**设置您的账户**。
 
-![](img/8.space_9.png)
+![](../img/8.space_9.png)
 
 ## 在费用中心平台更改结算
 
@@ -41,11 +41,6 @@
 ![](../img/15.aws_register_10.1.png)
 
 
-
-![](../img/15.aws_register_11.png)
-
-
-![](../img/15.aws_register_12.png)
 
 
 ### 绑定多个亚马逊云账号结算工作空间
@@ -81,7 +76,7 @@
 ![](../img/8.space_15.png)
 
 
-<img src="../img/8.space_16.png" width="60%" >
+<img src="../../img/8.space_16.png" width="60%" >
 
 
 **注意**：在亚马逊云取消订阅观测云服务后，在观测云费用中心绑定该账号结算的所有工作空间，将删除关联的云账号，并对所有关联工作空间进行[锁定](../../billing-center/workspace-management.md#workspace-lock)操作，您可以在**费用中心 > 工作空间管理**解锁工作空间。
