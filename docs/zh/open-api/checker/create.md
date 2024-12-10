@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| type | string |  | 监控器类型, 默认trigger, trigger:普通监控器, (outer_event_checker:普通监控器中的外部事件监控器), smartMonitor 为智能监控<br>允许为空: False <br>例子: smartMonitor <br> |
+| type | string |  | 监控器类型, 默认trigger, trigger:普通监控器, smartMonitor 为智能监控<br>允许为空: False <br>例子: smartMonitor <br> |
 | extend | json |  | 额外信息<br>允许为空: True <br> |
 | monitorUUID | string |  | 分组id<br>允许为空: True <br>允许为空字符串: True <br> |
 | alertPolicyUUIDs | array |  | 告警策略UUID<br>允许为空: False <br> |
