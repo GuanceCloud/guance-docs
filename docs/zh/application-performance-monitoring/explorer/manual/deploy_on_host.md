@@ -3,7 +3,7 @@
 
 ## 安装 DataKit 采集器
 
-进行系统和应用程序的链路数据分析之前，需要在每个目标主机上[部署观测云 DataKit 采集器](../../datakit/datakit-install.md)，以收集必要的链路数据。
+进行系统和应用程序的链路数据分析之前，需要在每个目标主机上[部署观测云 DataKit 采集器](../../../datakit/datakit-install.md)，以收集必要的链路数据。
 
 ### 选择语言
 
@@ -37,7 +37,7 @@ java \
 5. 收集 Profiling 数据：开启后可以看到更多应用程序运行时的信息；
 6. 开启 JVM 指标采集：需要同步开启 [statsd 采集器](../../integrations/statsd.md)。
 
-> 更多参数配置，参考 [这里](../../integrations/ddtrace-java.md#start-options)。
+> 更多参数配置，参考 [这里](../../../integrations/ddtrace-java.md#start-options)。
 
 #### Python
 
@@ -67,7 +67,7 @@ ddtrace-run python my_app.py
 5. 收集 Profiling 数据：开启后可以看到更多应用程序运行时的信息；
 6. 开启 Python 指标采集：需要同步开启 [statsd 采集器](../../integrations/statsd.md)。
 
-> 更多参数配置，参考 [这里](../../integrations/ddtrace-java.md#start-options)。
+> 更多参数配置，参考 [这里](../../../integrations/ddtrace-java.md#start-options)。
 
 #### Golang
 
@@ -117,7 +117,7 @@ func main() {
 4. 设置采样率：开启后，可降低实际产生的数据量；数字范围从 0.0(0%) ~ 1.0(100%)；
 5. 收集 Profiling 数据：开启后可以看到更多应用程序运行时的信息。
 
-> 更多参数配置，参考 [这里](../../integrations/ddtrace-java.md#start-options)。
+> 更多参数配置，参考 [这里](../../../integrations/ddtrace-java.md#start-options)。
 
 #### Node.JS
 
@@ -125,7 +125,7 @@ func main() {
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 请参考</font>](../../integrations/ddtrace-nodejs.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 请参考</font>](../../../integrations/ddtrace-nodejs.md)
 
 </div>
 
@@ -137,7 +137,7 @@ func main() {
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 请参考</font>](../../integrations/ddtrace-cpp.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 请参考</font>](../../../integrations/ddtrace-cpp.md)
 
 </div>
 
@@ -149,7 +149,7 @@ func main() {
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 请参考</font>](../../integrations/ddtrace-php.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 请参考</font>](../../../integrations/ddtrace-php.md)
 
 </div>
 
