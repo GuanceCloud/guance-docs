@@ -1,0 +1,3 @@
+nav:
+  - '安装 Datakit Operator': apm_datakit_operator.md
+  - '安装 Helm': helm.md

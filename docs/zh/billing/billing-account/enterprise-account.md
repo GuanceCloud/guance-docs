@@ -6,7 +6,7 @@
 
 在注册观测云商业版的步骤中，可以直接选择采用费用中心账号结算。
 
-<img src="img/bill-by-center.png" width="70%" >
+<img src="../img/bill-by-center.png" width="70%" >
 
 1. [进入注册流程](../../plans/commercial-register.md)；
 2. 在第三步，选择开通方式时，选定观测云直接开通；

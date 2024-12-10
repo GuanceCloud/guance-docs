@@ -17,7 +17,7 @@ nav:
   - '直方图': histogram.md
   - 'SLO': slo-chart.md
   - '排行榜': leaderboard.md
-  - '仪表盘': dashboard/index.md
+  - '仪表盘': dashboard.md
   - '散点图': scatter-plot.md
   - '气泡图': bubble-chart.md
   - '中国地图': china-map.md
