@@ -132,7 +132,7 @@ hover 在左侧热图页面，点击色块可直接查看该区的点击数与�
 
 ## 更多阅读
 
-<font size=3>
+<font size=2>
 
 <div class="grid cards" markdown>
 
@@ -142,7 +142,7 @@ hover 在左侧热图页面，点击色块可直接查看该区的点击数与�
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **如何接入会话重放?**</font>](./session-replay/replay.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **如何接入会话重放?**</font>](./session-replay/web/replay.md)
 
 </div>
 

@@ -1,24 +1,24 @@
 # SourceMap
 ---
 
-## 对 SourceMap 的需求
+## 为什么需要 SourceMap？
 
 过去，我们只使用 HTML、CSS 和 JavaScript 构建 Web 应用，并将相同的文件部署到网络中。
 
-由于现在我们正在构建更复杂的 Web 应用，您的开发工作流可能会涉及使用各种工具。例如:
+由于现在我们正在构建更复杂的 Web 应用，您的开发工作流可能会涉及使用各种工具。例如：
 
-- 模板语言和 HTML 预处理器：[Pug](https://pugjs.org/)、[Nunjucks](https://mozilla.github.io/nunjucks/)、[Markdown](https://daringFreball.net/projects/markdown/)。
+- 模板语言和 HTML 预处理器：[Pug](https://pugjs.org/)、[Nunjucks](https://mozilla.github.io/nunjucks/)、[Markdown](https://daringFreball.net/projects/markdown/)
 
-- CSS 预处理器：[SCSS](https://sass-lang.com/)、[LESS](https://lesscss.org/)、[PostCSS](https://postcss.org/)。
+- CSS 预处理器：[SCSS](https://sass-lang.com/)、[LESS](https://lesscss.org/)、[PostCSS](https://postcss.org/)
 
-- JavaScript 框架：Angular、React、Vue、Svelte。
+- JavaScript 框架：Angular、React、Vue、Svelte
 
-- JavaScript 元框架：[Next.js](https://nextjs.org/)、[Nuxt](https://nuxt.com/)、[Astro](https://astro.build/)。
+- JavaScript 元框架：[Next.js](https://nextjs.org/)、[Nuxt](https://nuxt.com/)、[Astro](https://astro.build/)
 
 - 高级编程语言：[TypeScript](https://www.typescriptlang.org/)、[Dart](https://dart.dev/tools/dart2js)、
-[CoffeeScript](https://coffeescript.org/)。
+[CoffeeScript](https://coffeescript.org/)
 
-- 等等。
+- ...
 
 
 ![](../img/sourcemap_05.png)
@@ -44,7 +44,7 @@
 ```
 不过，这项优化会增加调试难度。如果压缩代码将所有内容放在一行，并且变量名称较短，则很难确定问题的根源。这正是源映射的用武之地 - 源映射会将您编译的代码映射回原始代码。
 
-## 生成 SourceMap
+## 如何生成 SourceMap？
 
 源映射是名称以 .map 结尾的文件(例如 example.min.js.map 和 styles.css.map)。大多数构 建工具均可生成源映射，例如 [Vite](https://vitejs.dev/)、[webpack](https://webpack.js.org/)、[Rollup](https://rollupjs.org/)、[Parcel](https://parceljs.org/)、[esbuild](https://esbuild.github.io/) 等。 一些工具默认包含源映射，而其他工具可能需要额外配置才能生成。
 
@@ -81,6 +81,7 @@
 源映射的最关键要素是 `mappings` 字段。它使用 [VLQ base 64 编码](https://developer.chrome.com/blog/sourcemaps/?hl=zh-cn#base64-vlq-and-keeping-the-source-map-small)字符串，将已编译文件中的行和位置映射到对应的原始文件。您可以使用 [source-map-visualization](https://sokra.github.io/source-map-visualization/) 和[来源映射可视化](https://evanw.github.io/source-map-visualization/)等来源映射可视化工具直观呈现此映射，验证文件可用性。
 
 例如：由可视化工具 **source-map-visualization** 生成的代码示例的可视化图表。
+
 
 ![](../img/sourcemap_03.png)
 

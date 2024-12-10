@@ -44,7 +44,7 @@ Content-Security-Policy: connect-src http://example.com/;
 
 ### web worker {#webwork}
 
-如果你开启了 RUM SDK [Session Replay](../real-user-monitoring/session-replay/web/index.md)功能或者 RUM 初始化配置中添加了[compressIntakeRequests](../real-user-monitoring/web/app-access.md#config)配置,请确保通过添加以下 worker-src 条目:
+如果你开启了 RUM SDK [Session Replay](../real-user-monitoring/session-replay/index.md)功能或者 RUM 初始化配置中添加了[compressIntakeRequests](../real-user-monitoring/web/app-access.md#config)配置,请确保通过添加以下 worker-src 条目:
 
 ```json
  worker-src blob:;
