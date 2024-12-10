@@ -750,8 +750,8 @@ WebView 数据监测，需要在 WebView 访问页面集成[Web 监测 SDK](../w
 
 ```typescript
 let rumConfig: FTRUMConfig = {
-      iOSAppId: iosRumid,
-      androidAppId: androidRumid,
+      iOSAppId: iOSAppId,
+      androidAppId: androidAppId,
       monitorType: MonitorType.all,
       enableTrackUserAction:true,
       enableTrackUserResource:true,
@@ -771,8 +771,8 @@ let rumConfig: FTRUMConfig = {
 
 ```typescript
  let rumConfig: FTRUMConfig = {
-      iOSAppId: iosRumid,
-      androidAppId: androidRumid,
+      iOSAppId: iOSAppId,
+      androidAppId: androidAppId,
       monitorType: MonitorType.all,
       enableTrackUserAction:true,
       enableTrackUserResource:true,
