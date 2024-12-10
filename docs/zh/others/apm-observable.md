@@ -64,7 +64,7 @@ tracer.configure(
 ddtrace-run python your_app.py
 ```
 
-详见文档 [Python 示例](../datakit/ddtrace-python.md)。
+详见文档 [Python 示例](../integrations/ddtrace-python.md)。
 
 #### 方法二：直接在启动脚本文件中配置 DataKit 服务地址
 

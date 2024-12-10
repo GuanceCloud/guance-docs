@@ -87,7 +87,7 @@ DataKit 安装完成后，**开启 [RUM 采集器](../integrations/rum.md)**，�
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 会话重放配置说明</font>](./session-replay/index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 会话重放配置说明</font>](./session-replay/web/index.md)
 
 <br/>
 

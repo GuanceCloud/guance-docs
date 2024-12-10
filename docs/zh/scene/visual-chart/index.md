@@ -165,7 +165,7 @@
 </div>
 
 </font>
--->
+
 
 |                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**图表详情**</font>                 |                |                |   |   |
 | :-------------------: | :--------------------: | :--------------------: | :--------------------: | :--------------------: |
@@ -175,6 +175,84 @@
 | [蜂窝图](cellular-map.md){ .md-button .md-button--primary } | [桑基图](sankey.md){ .md-button .md-button--primary } | [文本](text.md){ .md-button .md-button--primary } |[图片](picture.md){ .md-button .md-button--primary } |[视频](video.md){ .md-button .md-button--primary } |
 | [命令面板](command-panel.md){ .md-button .md-button--primary } | [IFrame](iframe.md){ .md-button .md-button--primary } | [日志流图](log-stream.md){ .md-button .md-button--primary } |[对象列表图](object-list.md){ .md-button .md-button--primary } |[告警统计图](alert-statistics.md){ .md-button .md-button--primary } | 
 | [拓扑图](topology-map.md){ .md-button .md-button--primary } |  |  |  |  |
+
+-->
+
+## 图表类型
+
+:material-numeric-1-circle: 常见图表
+
+- [时序图](./timeseries-chart.md)：用于展示数据随时间的趋势变化
+    - 时序折线图
+    - 时序柱状图
+    - 时序面积图
+
+- [分组柱状图](./bar-chart.md)：用于显示各项之间的对比情况
+    - 分组柱状图
+    - 分组条形图
+
+- [饼图](./pie-chart.md)：用于展示数据的占比关系
+    - 饼图
+    - 环形图
+    - 玫瑰图
+
+- [概览图](./overview-chart.md)：用于展示一个关键的数值或指标
+
+
+:material-numeric-2-circle: 分组
+
+- [分组](./chart-group.md)：将相同特性的图表划分到一个组别
+
+
+:material-numeric-3-circle: 排序图表
+
+- [排行榜](./leaderboard.md)：用于展示一段时间内分组数据的排名情况
+- [表格图](./table-chart.md)：数据以行和列的形式展示所有信息
+
+
+:material-numeric-4-circle: 地图
+
+- [中国地图](./china-map.md)：用于在不同地理位置上的分布，通过颜色深浅表示数据大小
+- [世界地图](./world-map.md)：用于展示数据在不同地理位置上的分布，通过颜色来表现数据大小
+
+:material-numeric-5-circle: 散点图
+
+- [散点图](./scatter-plot.md)：将数据以点的形式展现，用于展示两个变量之间的关系及影响程度
+- [气泡图](./bubble-chart.md)：用于展示三个变量之间的关系以及影响程度，以气泡的大小表示第三个变量
+
+
+:material-numeric-6-circle: 分布图
+
+- [蜂窝图](./cellular-map.md)：用于展示多组数据的分布，通过色块颜色深浅表示数据大小
+- [拓扑图](./topology-map.md)：用于展示不同事物之间的关系和相对位置
+- [矩形树图](./treemap.md)：用于展示不同类别的占比情况，有效利用空间，相比饼图可以显示更多数据
+- [直方图](./histogram.md)：又称质量分布图，由一系列高低不等的柱体表示数据分布情况
+- [热力图](./heatmap_scene.md)：通过颜色的深浅变化来表示数据的密度或强度，通常使用渐变色来表示不同的数值范围
+
+
+
+:material-numeric-7-circle: 其他图表
+
+- [SLO](./slo-chart.md)：需直接选择已经设置好的 SLO 监控，以展示相关的性能数据
+- [仪表盘](./dashboard.md)：用于展示指标的进度或完成情况
+- [漏斗图](./funnel-chart.md)：用于展示业务流程中的转化情况
+- [桑基图](./sankey.md)：是一种特殊的流程图，用于显示数据或能量的流动
+
+:material-numeric-8-circle: 高级图表
+
+- [日志流图](./log-stream.md)：以时序表格图的形式展示日志数据，可以自定义显示的日志范围及显示列
+- [对象列表图](./object-list.md)：以表格图的形式展示基础设施数据，包含“基础对象”和“资源目录”
+- [告警统计图](./alert-statistics.md)：以列表的形式展示未恢复的告警事件，快速识别和响应系统中的紧急问题
+- [文本](./text.md)：用于在 Markdown 格式的文档中添加提示、说明以及各种内容，如文字、图像和超链接
+- [视频](./video.md)：仪表板中可以通过添加视频地址来展示视频内容，增强信息的传达效果
+- [图片](./picture.md)：在仪表板中展示图片，支持通过添加图片地址来实现，并提供多种图片显示选项，如填充、适应、拉伸和居中
+- [命令面板](./command-panel.md)：由命令按钮组成，允许用户通过点击执行特定命令或跳转到指定链接，实现交互式操作
+- [IFrame](./iframe.md)：用于在仪表板中嵌入外部页面，支持 https 和 http 链接
+
+
+
+
+
 
 
 ## 添加图表

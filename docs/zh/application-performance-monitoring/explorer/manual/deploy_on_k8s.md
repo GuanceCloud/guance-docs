@@ -3,7 +3,7 @@
 
 ## 安装 DataKit 采集器
 
-进行系统和应用程序的链路数据分析之前，需要在每个目标主机上[部署观测云 DataKit 采集器](../../datakit/datakit-install.md)，以收集必要的链路数据。
+进行系统和应用程序的链路数据分析之前，需要在每个目标主机上[部署观测云 DataKit 采集器](../../../datakit/datakit-install.md)，以收集必要的链路数据。
 
 ### 选择语言
 
@@ -37,12 +37,12 @@ spec:
 1. `service.name`：服务名；
 2. `env`：应用服务的环境信息；
 3. `version`：版本号；
-4. 自定义 DataKit，若不设置则跟随默认地址；
+4. 自定义 DataKit 监听地址，若不设置则跟随默认地址；
 5. 设置采样率：开启后，可降低实际产生的数据量；数字范围从 0.0(0%) ~ 1.0(100%)；
 6. 收集 Profiling 数据：开启后可以看到更多应用程序运行时的信息；
-7. 开启 JVM 指标采集：需要同步开启 [statsd 采集器](../../integrations/statsd.md)。
+7. 开启 JVM 指标采集：需要同步开启 [statsd 采集器](../../../integrations/statsd.md)。
 
-> 更多参数配置，参考 [这里](../../integrations/ddtrace-java.md#start-options)。
+> 更多参数配置，参考 [这里](../../../integrations/ddtrace-java.md#start-options)。
 
 #### Python
 
@@ -73,12 +73,12 @@ spec:
 1. `service.name`：服务名；
 2. `env`：应用服务的环境信息；
 3. `version`：版本号；
-4. 自定义 DataKit，若不设置则跟随默认地址；
+4. 自定义 DataKit 监听地址，若不设置则跟随默认地址；
 5. 为服务设置采样率：开启后，可降低实际产生的数据量；数字范围从 0.0(0%) ~ 1.0(100%)；
 6. 收集 Profiling 数据：开启后可以看到更多应用程序运行时的信息；
-7. 开启 Python 指标采集：需要同步开启 [statsd 采集器](../../integrations/statsd.md)。
+7. 开启 Python 指标采集：需要同步开启 [statsd 采集器](../../../integrations/statsd.md)。
 
-> 更多参数配置，参考 [这里](../../integrations/ddtrace-java.md#start-options)。
+> 更多参数配置，参考 [这里](../../../integrations/ddtrace-java.md#start-options)。
 
 #### Golang
 
@@ -141,10 +141,10 @@ metadata.labels['tags.datadoghq.com/version']
 1. `service.name`：服务名；
 2. `env`：应用服务的环境信息；
 3. `version`：版本号；
-4. 自定义 DataKit，若不设置则跟随默认地址；
+4. 自定义 DataKit 监听地址，若不设置则跟随默认地址；
 5. 设置采样率：开启后，可降低实际产生的数据量；数字范围从 0.0(0%) ~ 1.0(100%)。
 
-> 更多参数配置，参考 [这里](../../integrations/ddtrace-java.md#start-options)。
+> 更多参数配置，参考 [这里](../../../integrations/ddtrace-java.md#start-options)。
 
 #### Node.JS
 
@@ -197,7 +197,7 @@ metadata.labels['tags.datadoghq.com/version']
 1. `service.name`：服务名；
 2. `env`：应用服务的环境信息；
 3. `version`：版本号；
-4. 自定义 DataKit，若不设置则跟随默认地址；
+4. 自定义 DataKit 监听地址，若不设置则跟随默认地址；
 5. 设置采样率：开启后，可降低实际产生的数据量；数字范围从 0.0(0%) ~ 1.0(100%)。
 
 #### C++
@@ -206,7 +206,7 @@ metadata.labels['tags.datadoghq.com/version']
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 请参考</font>](../../integrations/ddtrace-cpp.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 请参考</font>](../../../integrations/ddtrace-cpp.md)
 
 </div>
 
@@ -266,6 +266,6 @@ metadata.labels['tags.datadoghq.com/version']
 1. `service.name`：服务名；
 2. `env`：应用服务的环境信息；
 3. `version`：版本号；
-4. 自定义 DataKit，若不设置则跟随默认地址；
+4. 自定义 DataKit 监听地址，若不设置则跟随默认地址；
 5. 为服务设置采样率：开启后，可降低实际产生的数据量；数字范围从 0.0(0%) ~ 1.0(100%)；
 6. 收集 Profiling 数据：开启后可以看到更多应用程序运行时的信息。
