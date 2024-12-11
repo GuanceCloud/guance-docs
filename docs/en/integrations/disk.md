@@ -113,6 +113,16 @@ After successfully installing and starting DataKit, the disk collector will be e
     
         **Default**: false
     
+    - **ENV_INPUT_DISK_ENABLE_L_V_M_MAPPER_PATH**
+    
+        View the soft link corresponding to the device mapper (e.g. /dev/dm-0 -> /dev/mapper/vg/lv)
+    
+        **Type**: Boolean
+    
+        **input.conf**: `enable_l_v_m_mapper_path`
+    
+        **Default**: false
+    
     - **ENV_INPUT_DISK_TAGS**
     
         Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
@@ -146,6 +156,7 @@ For all of the following data collections, a global tag named `host` is appended
 | Tag | Description |
 |  ----  | --------|
 |`device`|Disk device name. (on /dev/mapper return symbolic link, like `readlink /dev/mapper/*` result)|
+|`disk_name`|Disk name.|
 |`fstype`|File system name.|
 |`host`|System hostname.|
 |`mount_point`|Mount point.|

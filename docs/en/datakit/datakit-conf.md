@@ -19,7 +19,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is `datakit.conf`, here is the example sample(1.63.0):
+Datakit main configure is `datakit.conf`, here is the example sample(1.64.2):
 
 <!-- markdownlint-disable MD046 -->
 ??? info "`datakit.conf`"
@@ -75,12 +75,8 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.63.0):
       # Enable or disable DCA
       enable = false
     
-      # set DCA HTTP api server
-      listen = "0.0.0.0:9531"
-    
-      # DCA client white list(raw IP or CIDR ip format)
-      # Example: [ "1.2.3.4", "192.168.1.0/24" ]
-      white_list = []
+      # DCA websocket server address
+      websocket_server = "ws://localhost:8000/ws"
     
     ################################################
     # Upgrader 
@@ -371,7 +367,7 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.63.0):
       path = "/datakit"
     
       # set max CPU usage(%, max 100.0, no matter how many CPU cores here)
-      cpu_max = 20.0
+      cpu_max = 30.0
     
       # set max memory usage(MB)
       mem_max_mb = 4096
@@ -471,6 +467,23 @@ DataKit opens an HTTP service to receive external data or provide basic data ser
 
     See [here](datakit-daemonset-deploy.md#env-http-api).
 <!-- markdownlint-enable -->
+
+
+### HTTP API Whitelist {#public-apis}
+
+[:octicons-tag-24: Version-1.64.0](changelog.md#cl-1.64.0)
+
+For security reasons, Datakit defaults to restricting access to some of its own APIs, which can only be accessed via localhost. If Datakit is deployed in a public network environment and there is a need to request these APIs over the public network (or from other machines in the local LAN), you can modify the following `public_apis` field configuration in the *datakit.conf*:
+
+```toml
+[http_api]
+  public_apis = [
+    # Allow access to the /metrics endpoint
+    "/metrics",
+  ]
+```
+
+By default, only the Ping interface and basic data upload interfaces are accessible from external sources, while all other interfaces are prohibited from external access. For collector-specific interfaces, such as those for trace collectors, they are accessible externally by default once the collector is enabled. For instructions on adding API whitelists in Kubernetes, refer to [this section](datakit-daemonset-deploy.md#env-http-api).
 
 ## Global Tag Modification {#set-global-tag}
 

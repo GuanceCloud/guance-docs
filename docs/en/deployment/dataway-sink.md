@@ -727,32 +727,57 @@ Datakit has several built-in custom keys that are not typically present in the c
 }
 ```
 
-- `__dataway_api` can be routed for a specific API, and the specified rule can be applied to that request. For example, a synchronous request and an election request for Pipeline (the election function involves two API calls):
+### Special Sink Behavior {#special-sink-rule}
+
+Some requests initiated by Datakit are aimed at pulling resources from the center or performing self-identification. These behaviors are atomic and indivisible, and these requests cannot be distributed to multiple workspaces (because Datakit needs to process the return of these API requests and decide its subsequent actions). Therefore, these APIs can only be diverted to one workspace at most.
+
+If multiple conditions are met in the diversion rules, these APIs will also **only be diverted to the workspace pointed to by the first rule that meets the condition**.
+
+Here is an example of such a diversion rule:
+
+> We recommend adding the following rule to the Sinker rules to ensure that these existing API requests from Datakit can be implemented in a specific workspace.
 
 ``` json
 {
     "strict": true,
+    "info": "Some Special workspace only used for pulling APIs",
     "rules": [
         {
             "rules": [
-                "{ __dataway_api in ['/v1/datakit/pull', '/v1/election', '/v1/election/heartbeat'] }",
+                "{ __dataway_api in ['/v1/datakit/pull', '/v1/election', '/v1/election/heartbeat', '/v1/query/raw', '/v1/workspace', '/v1/object/labels', '/v1/check/token'] }",
             ],
-            "url": "https://openway.guance.com?token=<YOUR-TOKEN>",
+            "url": "https://openway.guance.com?token=<SOME-SPECIAL-WORKSPACE-TOKEN>"
         }
     ]
 }
 ```
 
 <!-- markdownlint-disable MD046 -->
-???+ warning
+???+ info
 
-    Even if a URL (`__dataway_api`) matches multiple sinking rules, some API requests will **only be routed once**. The following API URLs are subject to this behavior:
+    The descriptions of these API URLs are as follows:
 
     - `/v1/election`: Election request
     - `/v1/election/heartbeat`: Election heartbeat request
-    - `/v1/datakit/pull`: Pulling central configuration for Pipelines and blacklists
+    - `/v1/datakit/pull`: Pull central configuration of Pipeline and blacklist
     - `/v1/query/raw`: DQL query
-    - `/v1/workspace`: Retrieve workspace information
+    - `/v1/workspace`: Get workspace information
     - `/v1/object/labels`: Update/delete object data
     - `/v1/check/token`: Check workspace Token information
 <!-- markdownlint-enable -->
+
+The key `__dataway_api` does not need to be configured in the `global_customer_keys` of the *datakit.conf*. Dataway will default to using this as a diversion Key, and use the current request's API route as its value. That is to say, for a certain API:
+
+```text
+POST /v1/write/metrics
+X-Global-Tags: cluster=cluster_A,app=math
+```
+
+The final diversion effect it participates in is the same as the following:
+
+```text
+POST /v1/write/metrics
+X-Global-Tags: cluster=cluster_A,app=math,__dataway_api=/v1/write/metrics
+```
+
+So, we can directly use the `__dataway_api` KV pair in the Sink rules for matching. This also reminds us that in this special rule, **do not include other important data upload APIs**, such as the `/v1/write/...` API routes, otherwise, which workspace the data will ultimately fall into is undefined.

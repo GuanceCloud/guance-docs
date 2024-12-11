@@ -68,12 +68,19 @@ DataWay 是观测云的数据网关，采集器上报数据到观测云都需要
         # kodo(next dataway) related configures
         remote_host:
         http_timeout: 30s
+
+        http_max_idle_conn_perhost: 0 # default to CPU cores
+        http_max_conn_perhost: 0      # default no limit
+
         insecure_skip_verify: false
         http_client_trace: false
         sni: ""
 
         # dataway API configures
         bind: 0.0.0.0:9528
+
+        # disable 404 page
+        disable_404page: false
 
         # dataway TLS file path
         tls_crt:
@@ -82,10 +89,10 @@ DataWay 是观测云的数据网关，采集器上报数据到观测云都需要
         # enable pprof
         pprof_bind: localhost:6060
 
-        api_limit_rate : 100000          # 100K
-        max_http_body_bytes : 67108864   # 64MB
-        copy_buffer_drop_size : 8388608  # 8MB, if copy buffer memory larger than this, this memory released
-        reserved_pool_size: 4096         # reserved pool size for better GC
+        api_limit_rate : 100000         # 100K
+        max_http_body_bytes : 67108864  # 64MB
+        copy_buffer_drop_size : 8388608 # 8MB, if copy buffer memory larger than this, this memory released
+        reserved_pool_size: 4096        # reserved pool size for better GC
 
         within_docker: false
 
@@ -267,21 +274,24 @@ Dataway 在 Kubernetes 环境中运行时，支持如下环境变量。
 
 #### HTTP Server 设置 {#env-apis}
 
-| Env                         | 类型      | 是否必需 | 说明                                                                                               | 取值示例 |
-| ---                         | ---       | ---      | ---                                                                                                | ---      |
-| DW_REMOTE_HOST              | string    | Y        | Kodo 地址，或下一个 Dataway 地址，形如 `http://host:port`                                          |          |
-| DW_WHITE_LIST               | string    | N        | Dataway 客户端 IP 白名单，以英文 `,` 分割                                                          |          |
-| DW_HTTP_TIMEOUT             | string    | N        | Dataway 请求 Kodo 或下一个 Dataway 的超时设置，默认 30s                                            |          |
-| DW_BIND                     | string    | N        | Dataway HTTP API 绑定地址，默认 `0.0.0.0:9528`                                                     |          |
-| DW_API_LIMIT                | int       | N        | Dataway API 限流设置，如设置为 1000，则每个具体的 API 在 1s 以内只允许请求 1000 次，默认 100K      |          |
-| DW_HEARTBEAT                | string    | N        | Dataway 跟中心的心跳间隔，默认 60s                                                                 |          |
-| DW_MAX_HTTP_BODY_BYTES      | int       | N        | Dataway API 允许的最大 HTTP Body（**单位字节**），默认 64MB                                        |          |
-| DW_TLS_INSECURE_SKIP_VERIFY | boolean   | N        | 忽略 HTTPS/TLS 证书错误                                                                            | `true`   |
-| DW_HTTP_CLIENT_TRACE        | boolean   | N        | Dataway 自己作为 HTTP 客户端，可以开启一些相关的指标收集，这些指标最终会在其 Prometheus 指标中输出 | `true`   |
-| DW_ENABLE_TLS               | boolean   | N        | 启用 HTTPS [:octicons-tag-24: Version-1.4.1](dataway-changelog.md#cl-1.4.1)                        |          |
-| DW_TLS_CRT                  | file-path | N        | 指定 HTTPS/TLS crt 文件目录 [:octicons-tag-24: Version-1.4.0](dataway-changelog.md#cl-1.4.0)       |          |
-| DW_TLS_KEY                  | file-path | N        | 指定 HTTPS/TLS key 文件目录[:octicons-tag-24: Version-1.4.0](dataway-changelog.md#cl-1.4.0)        |          |
-| DW_SNI                      | string    | N        | 指定当前 Dataway SNI 信息[:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0)          |          |
+| Env                           | 类型      | 是否必需 | 说明                                                                                                                            | 取值示例 |
+| ---                           | ---       | ---      | ---                                                                                                                             | ---      |
+| DW_REMOTE_HOST                | string    | Y        | Kodo 地址，或下一个 Dataway 地址，形如 `http://host:port`                                                                       |          |
+| DW_WHITE_LIST                 | string    | N        | Dataway 客户端 IP 白名单，以英文 `,` 分割                                                                                       |          |
+| DW_HTTP_TIMEOUT               | string    | N        | Dataway 请求 Kodo 或下一个 Dataway 的超时设置，默认 30s                                                                         |          |
+| DW_HTTP_MAX_IDLE_CONN_PERHOST | int       | N        | Dataway 请求 Kodo 最大 idle connection 设置，默认值为 CPU cores[:octicons-tag-24: Version-1.6.2](dataway-changelog.md#cl-1.6.2) |          |
+| DW_HTTP_MAX_CONN_PERHOST      | int       | N        | Dataway 请求 Kodo 最大连接数设置，默认不限制[:octicons-tag-24: Version-1.6.2](dataway-changelog.md#cl-1.6.2)                    |          |
+| DW_BIND                       | string    | N        | Dataway HTTP API 绑定地址，默认 `0.0.0.0:9528`                                                                                  |          |
+| DW_API_LIMIT                  | int       | N        | Dataway API 限流设置，如设置为 1000，则每个具体的 API 在 1s 以内只允许请求 1000 次，默认 100K                                   |          |
+| DW_HEARTBEAT                  | string    | N        | Dataway 跟中心的心跳间隔，默认 60s                                                                                              |          |
+| DW_MAX_HTTP_BODY_BYTES        | int       | N        | Dataway API 允许的最大 HTTP Body（**单位字节**），默认 64MB                                                                     |          |
+| DW_TLS_INSECURE_SKIP_VERIFY   | boolean   | N        | 忽略 HTTPS/TLS 证书错误                                                                                                         | `true`   |
+| DW_HTTP_CLIENT_TRACE          | boolean   | N        | Dataway 自己作为 HTTP 客户端，可以开启一些相关的指标收集，这些指标最终会在其 Prometheus 指标中输出                              | `true`   |
+| DW_ENABLE_TLS                 | boolean   | N        | 启用 HTTPS [:octicons-tag-24: Version-1.4.1](dataway-changelog.md#cl-1.4.1)                                                     |          |
+| DW_TLS_CRT                    | file-path | N        | 指定 HTTPS/TLS crt 文件目录 [:octicons-tag-24: Version-1.4.0](dataway-changelog.md#cl-1.4.0)                                    |          |
+| DW_TLS_KEY                    | file-path | N        | 指定 HTTPS/TLS key 文件目录[:octicons-tag-24: Version-1.4.0](dataway-changelog.md#cl-1.4.0)                                     |          |
+| DW_SNI                        | string    | N        | 指定当前 Dataway SNI 信息[:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0)                                       |          |
+| DW_DISABLE_404PAGE            | boolean   | N        | 禁用 404 页面[:octicons-tag-24: Version-1.6.1](dataway-changelog.md#cl-1.6.1)                                                   |          |
 
 ##### HTTP TLS 设置 {#http-tls}
 
@@ -634,6 +644,7 @@ watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
 
 |TYPE|NAME|LABELS|HELP|
 |---|---|---|---|
+|SUMMARY|`dataway_http_api_elapsed_seconds`|`api,method,status`|API request latency|
 |SUMMARY|`dataway_http_api_body_buffer_utilization`|`api`|API body buffer utillization(Len/Cap)|
 |SUMMARY|`dataway_http_api_body_copy`|`api`|API body copy|
 |SUMMARY|`dataway_http_api_req_size_bytes`|`api,method,status`|API request size|
@@ -658,18 +669,18 @@ watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
 |GAUGE|`dataway_cpu_cores`|`N/A`|Dataway CPU cores|
 |GAUGE|`dataway_uptime`|`N/A`|Dataway uptime|
 |COUNTER|`dataway_process_ctx_switch_total`|`type`|Dataway process context switch count(Linux only)|
-|COUNTER|`dataway_process_io_count_total`|`type`|Dataway process IO count count|
+|COUNTER|`dataway_process_io_count_total`|`type`|Dataway process IO count|
+|SUMMARY|`dataway_http_api_copy_buffer_drop_total`|`max`|API copy buffer dropped(too large cached buffer) count|
 |COUNTER|`dataway_process_io_bytes_total`|`type`|Dataway process IO bytes count|
-|COUNTER|`dataway_http_api_copy_buffer_drop_total`|`N/A`|API copy buffer dropped(too large cached buffer) count|
 |SUMMARY|`dataway_http_api_dropped_expired_cache`|`api,method`|Dropped expired cache data|
-|SUMMARY|`dataway_http_api_elapsed_seconds`|`api,method,status`|API request latency|
+|SUMMARY|`dataway_httpcli_tls_handshake_seconds`|`server`|HTTP TLS handshake cost|
 |SUMMARY|`dataway_httpcli_http_connect_cost_seconds`|`server`|HTTP connect cost|
 |SUMMARY|`dataway_httpcli_got_first_resp_byte_cost_seconds`|`server`|Got first response byte cost|
 |COUNTER|`dataway_httpcli_tcp_conn_total`|`server,remote,type`|HTTP TCP connection count|
 |COUNTER|`dataway_httpcli_conn_reused_from_idle_total`|`server`|HTTP connection reused from idle count|
 |SUMMARY|`dataway_httpcli_conn_idle_time_seconds`|`server`|HTTP connection idle time|
 |SUMMARY|`dataway_httpcli_dns_cost_seconds`|`server`|HTTP DNS cost|
-|SUMMARY|`dataway_httpcli_tls_handshake_seconds`|`server`|HTTP TLS handshake cost|
+|SUMMARY|`dataway_sinker_rule_cost_seconds`|`N/A`|Rule cost time seconds|
 |SUMMARY|`dataway_sinker_cache_key_len`|`N/A`|cache key length(bytes)|
 |SUMMARY|`dataway_sinker_cache_val_len`|`N/A`|cache value length(bytes)|
 |COUNTER|`dataway_sinker_pull_total`|`event,source`|Sinker pulled or pushed counter|
@@ -677,8 +688,8 @@ watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
 |GAUGE|`dataway_sinker_rule_cache_hit`|`N/A`|Sinker rule cache hit|
 |GAUGE|`dataway_sinker_rule_cache_size`|`N/A`|Sinker rule cache size|
 |GAUGE|`dataway_sinker_rule_error`|`error`|Rule errors|
+|GAUGE|`dataway_sinker_default_rule_hit`|`info`|Default sinker rule hit count|
 |GAUGE|`dataway_sinker_rule_last_applied_time`|`source`|Rule last applied time(Unix timestamp)|
-|SUMMARY|`dataway_sinker_rule_cost_seconds`|`N/A`|Rule cost time seconds|
 |COUNTER|`diskcache_put_bytes_total`|`path`|Cache Put() bytes count|
 |COUNTER|`diskcache_get_total`|`path`|Cache Get() count|
 |COUNTER|`diskcache_wakeup_total`|`path`|Wakeup count on sleeping write file|

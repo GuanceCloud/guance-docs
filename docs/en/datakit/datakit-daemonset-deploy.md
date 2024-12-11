@@ -265,6 +265,12 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     **Example**: `{"logging":"abc.p","metric":"xyz.p"}`
 
+- **ENV_PIPELINE_DISABLE_HTTP_REQUEST_FUNC**
+
+    Disable Pipeline `http_request` function
+
+    **Type**: Boolean
+
 - **~~ENV_GLOBAL_TAGS~~**
 
     Same as ENV_GLOBAL_HOST-TAGS(Deprecated)
@@ -635,7 +641,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     **Type**: String
 
-    **Example**: appid-1, appid-2
+    **Example**: /appid-1,/appid-2
 
 - **ENV_HTTP_ALLOWED_CORS_ORIGINS**
 
@@ -930,19 +936,11 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 ### DCA {#env-dca}
 
 <!-- markdownlint-disable MD046 -->
-- **ENV_DCA_LISTEN**
+- **ENV_DCA_WEBSOCKET_SERVER**
 
-    The address can be modified so that the [DCA](dca.md) client can manage the DataKit. Once `ENV_DCA_LISTEN` is turned on, the DCA function is enabled by default
+    The server address that the the DataKit can connect to. Once `ENV_DCA_WEBSOCKET_SERVER` is set, the DCA function is enabled by default
 
     **Type**: URL
-
-    **Default**: localhost:9531
-
-- **ENV_DCA_WHITE_LIST**
-
-    Configure DCA white list, separated by English commas
-
-    **Type**: List
 <!-- markdownlint-enable -->
 
 ### Refer Table About Environment Variables {#env-reftab}

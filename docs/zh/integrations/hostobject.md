@@ -36,6 +36,9 @@ monitor   :
     ## Setting enable_net_virtual_interfaces to true will collect network virtual interfaces stats for linux.
     # enable_net_virtual_interfaces = true
     
+    ## absolute path to the configuration file
+    # config_path = ["/usr/local/datakit/conf.d/datakit.conf"]
+    
     ##############################
     # Disk related options
     ##############################
@@ -65,7 +68,7 @@ monitor   :
     # enable_cloud_host_tags_as_global_host_tags = true
     
     ## [inputs.hostobject.tags] # (optional) custom tags
-      # cloud_provider = "aliyun" # aliyun/tencent/aws/hwcloud/azure, probe automatically if not set
+      # cloud_provider = "aliyun" # aliyun/tencent/aws/hwcloud/azure/volcengine, probe automatically if not set
       # some_tag = "some_value"
       # more_tag = "some_other_value"
       # ...
@@ -76,6 +79,7 @@ monitor   :
       # aws = "zzz"
       # azure = ""
       # Hwcloud = ""
+      # volcengine = ""
     
     ```
 
@@ -191,7 +195,7 @@ monitor   :
 
 ### 开启云同步 {#cloudinfo}
 
-Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/微软云。可以通过设置 cloud_provider tag 显式指定云厂商，也可以由 Datakit 自动进行探测：
+Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/微软云/火山引擎。可以通过设置 cloud_provider tag 显式指定云厂商，也可以由 Datakit 自动进行探测：
 
 ```toml
 [inputs.hostobject.tags]
@@ -285,6 +289,7 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
     "conntrack": ...,
     "filefd": ...,
     "election": ...,
+    "config_file": ...,
   },
 
   "collectors": [ # 各个采集器的运行情况
@@ -393,6 +398,15 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 | `allocated`    | 已分配文件句柄的数目                                 |  int  |
 | `maximum`      | 文件句柄的最大数目（已弃用，用 `maximum_mega` 替代） |  int  |
 | `maximum_mega` | 文件句柄的最大数目，单位 M(10^6)                     | float |
+
+#### `host.config_file` {#host-config-file}
+
+config_file 是一个 `file-path`: `file-content` 的 map，每个字段的含义如下：
+
+| 字段名         | 描述                                                 | 类型  |
+| -------------- | ---------------------------------------------------- | :---: |
+| `file-path`    | 配置文件的绝对路径                                   |  string  |
+| `file-content` | 配置文件的内容                                    |  string  |
 
 #### 采集器运行情况字段列表 {#inputs-stats}
 

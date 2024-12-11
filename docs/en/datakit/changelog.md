@@ -1,5 +1,67 @@
 # Changelog
 
+## 1.64.2(2024/12/09) {#cl-1.64.2}
+
+This release is a hotfix update, with the following changes:
+
+- Fix known security issue (#2502).
+- Removed unnecessary event listening on inotify, this may cause extra CPU waste (#2500).
+
+---
+
+## 1.64.1 (2024/12/05) {#cl-1.64.1}
+
+This release is a hotfix update, with the following changes:
+
+- Fixed known security issues (#2497).
+- Fix Pipeline performance issue on `valid_json()` (#2494).
+- Fix issues with Windows installation script for PowerShell 4 (#2491).
+- Fixed high CPU consumption issue in log collection since version 1.64.0 (#2498).
+
+---
+
+## 1.64.0 (2024/11/27) {#cl-1.64.0}
+
+This release is an iterative update, with the following main changes:
+
+### New Features {#cl-1.64.0-new}
+
+- Added disk information collection based on lsblk (#2408).
+- The host object collection has increased the configuration file information collection, supporting the collection of text file contents not exceeding 4KiB in size (#2453).
+- Log collection has added a field whitelist mechanism, allowing us to choose to retain only fields of interest, reducing network and storage overhead (#2469).
+- Refactored the existing DCA implementation, changing from HTTP (Datakit as the server) to WebSocket (Datakit as the client) (#2333).
+- Added support for Volcano Cloud meta in the host object (#2472).
+
+### Bug Fixes {#cl-1.64.0-fix}
+
+- Fixed issue where the host object collection could terminated due to errors in some information collection (#2478).
+- Other bug fixes (#2474).
+
+### Performance Improvements {#cl-1.64.0-opt}
+
+- Optimized the Zabbix data importing, improved the full update logic, adjusted metric naming, and synchronized some tags read from MySQL to Zabbix data points (#2455).
+- Optimized Pipeline processing performance (memory consumption reduced by over 30%), where the `load_json()` function, due to the replacement of more efficient library, has improved JSON processing performance by about 16% (#2459).
+- Optimized the file discovery strategy in log collection, adding the inotify mechanism for more efficient handling of new file discoveries, avoiding delayed collection (#2462).
+- Optimized the timestamp alignment mechanism for mainstream metric collection to improve time series storage efficiency (#2445).
+
+### Compatibility Adjustments {#cl-1.64.0-brk}
+
+Due to the update of API whitelist controls, some APIs that were enabled by default in older versions may longer working and need to be manually enabled(#2479).
+
+---
+
+## 1.63.1 (2024/11/21) {#cl-1.63.1}
+
+This release includes critical fixes addressing the following issues:
+
+- **Socket Logging Bug Fix:** Resolved an issue where multi-line logs were not being logged correctly (#2461).
+- **Datakit Restart Issue:** Fixed a problem preventing Datakit from restarting on Windows when encountering Out-Of-Memory (OOM) conditions (#2465).
+- **Oracle Metric Issue:** Resolved a missing metric issue for Oracle (#2464).
+- **APM Automatic Instrumentation:** add offline install support (#2466)
+- **Prometheus Metric Scraping Restoration:** Restored the feature for scraping Prometheus metrics from Kubernetes Pod annotations, which was inadvertently removed in version 1.63.0. This restoration is essential for legacy services deployed under Kubernetes (#2471).
+
+---
+
 ## 1.63.0 (2024/11/13) {#cl-1.63.0}
 
 This release is an iterative update, with the following main changes:
@@ -8,7 +70,7 @@ This release is an iterative update, with the following main changes:
 
 - Added support for Datakit [remote job running](datakit-conf.md#remote-job) (currently this feature needs to be manually enabled, and Guance Cloud needs to be upgraded to version 1.98.181 or higher). Currently supports obtaining JVM Dump from Datakit via commands issued from the workspace web page (#2367).
 
-Under Kubernetes, we need to update the new *datakit.yaml* with new RBAC added.
+    Under Kubernetes, we need to update the new *datakit.yaml* with new RBAC added.
 
 - Pipeline added a new [string extraction function](../pipeline/use-pipeline/pipeline-built-in-function.md#fn_slice_string) (#2436).
 
@@ -21,7 +83,7 @@ Under Kubernetes, we need to update the new *datakit.yaml* with new RBAC added.
 
 - The eBPF collector added data sampling rate configuration to reduce the amount of data it generates (#2394).
 - The KafkaMQ collector added SSL support (#2421).
-- Graphite add suport on specify measurement (#2448).
+- Graphite add support on specify measurement (#2448).
 - Adjusted the granularity of Service Monitor collection in CRD, changing the finest granularity from Pod to [Endpoint](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints){:target="_blank"}.
 
 ### Compatibility Adjustments {#cl-1.63.0-brk}
@@ -358,7 +420,7 @@ This release is an iterative update with the following main changes:
 
 - The `up` measurement now supports the automatic addition of custom tags from collector's configure (#2334)
 - The cloud-meta synchronization for host object collection supports specifying a meta address, facilitating private cloud deployment environments (#2331)
-- The DDTrace collector now supports collecting basic information of traced services and upload them to the resource object(`CO::`) with `class:traceing_service` (#2307)
+- The DDTrace collector now supports collecting basic information of traced services and upload them to the resource object(`CO::`) with `class:tracing_service` (#2307)
 - In the dial-testing collection data, the dial-node's name `node_name` has been added (#2324)
 - In the Kubernetes-Prometheus metrics collection, add tag placeholder `__kubernetes_mate_instance` and `__kubernetes_mate_host` (#2341)[^2341]
 - Optimized TLS configurations for multiple collectors (#2225/#2204/#2192/#2342)

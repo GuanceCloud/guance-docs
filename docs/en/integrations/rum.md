@@ -144,25 +144,7 @@ It is recommended that RUM be deployed separately on the public network, not wit
 <!-- markdownlint-enable -->
 ### Security Restrictions {#security-setting}
 
-Because RUM DataKit is generally deployed in a public network environment, but only uses a specific [DataKit API](../datakit/apis.md) interface, other interfaces cannot be opened. API access control can be tightened by modifying the following *public_apis* field configuration in *datakit.conf*:
-
-```toml
-[http_api]
-  rum_origin_ip_header = "X-Forwarded-For"
-  listen = "0.0.0.0:9529"
-  disable_404page = true
-  rum_app_id_white_list = []
-
-  public_apis = [  # If the list is empty, all APIs do not do access control
-    "/v1/write/rum",
-    "/some/other/apis/..."
-
-    # Other APIs can only be accessed by localhost, for example, datakit-M needs to access the/stats interface.
-    # In addition, DCA is not affected by this because it is a stand-alone HTTP server.
-  ]
-```
-
-Other interfaces are still available, but can only be accessed natively through the DataKit, such as [query DQL](../datakit/datakit-dql-how-to.md) or view [DataKit running status](../datakit/datakit-tools-how-to.md#using-monitor).
+See [Datakit API access control](../datakit/datakit-conf.md#public-apis).
 
 ### Disable DataKit 404 Page {#disable-404}
 
@@ -188,6 +170,14 @@ The RUM collector collects the following metric sets by default:
 Usually, js files in production environment or App code on mobile side will be confused and compressed to reduce the size of application. The call stack when an error occurs is quite different from the source code at development time, which is inconvenient for debugging (`troubleshoot`). If you need to locate errors in the source code, you have to rely on the `sourcemap` file.
 
 DataKit supports this mapping of source code file information by zipping the corresponding symbol table file, named *<app_id\>-<env\>-<version\>.zip* and uploading it to *<DataKit Installation Directory\>/data/rum/<platform\>* so that the reported `error` measurement data can be automatically converted and the `error_stack_source` field appended to the metric set.
+
+
+<!-- markdownlint-disable MD046 -->
+???+ attention "Limits on Sourcemap files"
+
+    All Sourcemap files must with extension *.map*, and single *.map* file(after unzip) should not exceed 4GiB.
+<!-- markdownlint-enable -->
+
 <!-- markdownlint-disable MD025 -->
 ### Install the sourcemap tools {#install-tools}
 <!-- markdownlint-enable -->
