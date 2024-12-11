@@ -16,7 +16,7 @@
 
 在该步骤中，系统会同步为您创建费用中心账号，即表示当前账号将使用该创建的费用中心账号进行结算。
 
-![](img/bill-by-center-1.png)
+<img src="../../img/bill-by-center-1.png" width="70%" >
 
 ## 在费用中心平台更改结算
 
@@ -26,8 +26,8 @@
 4. 选择**费用中心结算**；
 5. 点击确定。
 
-<img src="img/bill-by-center-2.png" width="70%" >
+<img src="../../img/bill-by-center-2.png" width="70%" >
 
-<img src="img/bill-by-center-3.png" width="70%" >
+<img src="../../img/bill-by-center-3.png" width="70%" >
 
 

@@ -6,7 +6,7 @@
 
 ## 首次购买观测云商业版时选择
 
-<img src="../img/bill-by-ali.png" width="70%" >
+<img src="../../img/bill-by-ali.png" width="70%" >
 
 1. [进入注册流程](../../plans/commercial-register.md)；
 2. 在第三步，选择开通方式时，选定[阿里云市场开通](#purchase)；
@@ -21,19 +21,19 @@
 
 登录[阿里云心选平台](https://market.aliyun.com/products/56838014/cmgj00053362.html?spm=5176.19720258.J_3207526240.210.62c176f4i6AFbF)，点击**立即开通**。
 
-![](img/market-guance.png)
+<img src="../../img/market-guance.png" width="60%" >
 
 提示**开通按量服务**，同意协议，点击**开通**。
 
-![](img/market-guance-1.png)
+<img src="../../img/market-guance-1.png" width="60%" >
 
 显示**开通申请已提交**。
 
-![](img/market-guance-2.png)
+<img src="../../img/market-guance-2.png" width="60%" >
 
 点击**确认**即跳转至云市场页面，可以查看到开通订阅的观测云实例。
 
-![](img/10.aliyun_market_1.png)
+<img src="../../img/10.aliyun_market_1.png" width="70%" >
 
 点击**立即开通**。
 
@@ -51,9 +51,9 @@
 6. 购买完成后获取[账号 ID](#id) 和[商品实例 ID](#entity-id)；
 7. 点击确定。
 
-<img src="../img/bill-by-center-2.png" width="70%" >
+<img src="../../img/bill-by-center-2.png" width="70%" >
 
-<img src="../img/bill-by-center-3.png" width="70%" >
+<img src="../../img/bill-by-center-3.png" width="70%" >
 
 
 
@@ -99,4 +99,5 @@
 
 ![](../img/1.aliyun_cancel_3.png)
 
-**注意**：在阿里云取消订阅观测云服务后，在观测云费用中心绑定该账号结算的所有工作空间，将删除关联的云账号，修改当前云账号结算为观测云费用中心账号结算，并通过邮件的方式通知到用户。
+**注意**：取消订阅观测云服务后，观测云费用中心将解除与该账号绑定的所有工作空间的关联，并修改为采用观测云费用中心账号的结算方式。同时，您会收到关于这一变更的邮件通知。
+
