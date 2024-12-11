@@ -212,7 +212,7 @@
 | **字段** | **类型** | **描述** |
 | --- | --- | --- |
 | `error_source` | string | 错误来源，参考值：logger & network |
-| `error_type` | string | 错误类型<br>logger error type: java_crash & native_crash & abort & ios_crash<br>network error type： |
+| `error_type` | string | 错误类型<br>logger error type:  anr_error &#124; ios_crash<br>network error type：network_error |
 | `error_situation` | string | 错误发生的时机，参考值：startup (启动时)和 run (运行时) |
 
 **type=network时，新增以下Network Error属性。**
