@@ -1864,6 +1864,7 @@ FTExt {
     datawayToken = 'dataway_token'
     appId = "appid_xxxxx"// appid
     env = 'common'
+	generateSourceMapOnly //仅生成 sourcemap，路径示例：/app/build/tmp/ft{flavor}SourceMapMerge-release.zip，ft-plugin:1.3.4 以上版本支持
 
     prodFlavors { //prodFlavors 配置会覆盖外层设置
         prodTest {
