@@ -738,6 +738,80 @@ FTMobileReactNative.appendRUMGlobalContext({'rum_key':'rum_value'});
 FTMobileReactNative.appendLogGlobalContext({'log_key':'log_value'});
 ```
 
+## 符号文件上传 {#source_map}
+
+### 自动打包符号文件
+
+#### 添加符号文件自动打包脚本
+
+脚本工具：[cloudcare-react-native-mobile-cli](https://github.com/GuanceCloud/datakit-react-native/blob/dev/cloudcare-react-native-mobile-cli-v1.0.0.tgz)
+
+`cloudcare-react-native-mobile-cli` 是帮助配置发布构建时自动获取 React Native 和 Native sourcemaps，并将它们打包为 zip 文件的脚本工具。
+
+使用本地文件方式添加添加到 `package.json` 开发依赖中 
+
+例如：将 `cloudcare-react-native-mobile-cli.tgz` 放在React Native工程目录时
+
+```json
+ "devDependencies": {
+    "@cloudcare/react-native-mobile-cli":"file:./cloudcare-react-native-mobile-cli-v1.0.0.tgz",
+  }
+```
+
+添加后执行 `yarn install` 
+
+**注意：安卓环境需要添加配置 Gradle Plugin [ft-plugin](../android/app-access.md#gradle-setting)  版本要求 >=1.3.4 **
+
+在项目主模块 `app` 的 `build.gradle` 文件中添加 `Plugin` 的使用，与参数设置
+
+```java
+apply plugin: 'ft-plugin'
+FTExt {
+    //showLog = true
+    autoUploadMap = true
+    autoUploadNativeDebugSymbol = true
+	  generateSourceMapOnly = true
+}
+```
+
+#### 执行配置命令
+
+在 React Native 项目目录下执行终端执行 `yarn ft-cli setup`  命令，使其能够在发布构建时自动获取 React Native 和 Native sourcemaps，并将它们打包为 zip 文件。出现如下日志即表示设置成功。
+
+```sh
+➜  example git:(test-cli) ✗ yarn ft-cli setup
+yarn run v1.22.22
+$ /Users/xxx/example/node_modules/.bin/ft-cli setup
+Starting command: Setup to automatically get react-native and native sourcemap in release build and package them as zip files.
+Running task: Add a Gradle Script to automatically zip js sourcemap and Android symbols
+Running task: Enable react-native sourcemap generation on iOS
+Running task: Setup a new build phase in XCode to automatically zip dSYMs files and js sourcemap
+
+
+Finished running command Setup to automatically get react-native and native sourcemap in release build and package them as zip files.
+
+✅ Successfully executed: Add a Gradle Script to automatically zip js sourcemap and Android symbols.
+✅ Successfully executed: Enable react-native sourcemap generation on iOS.
+✅ Successfully executed: Setup a new build phase in XCode to automatically zip dSYMs files and js sourcemap.
+✨  Done in 1.00s.
+```
+
+**进行 release build 后打包的 zip 文件地址：**
+
+iOS：iOS 文件夹下（./ios/sourcemap.zip）
+
+Android : RN 项目目录下 (./sourcemap.zip) 
+
+### 手动打包符号文件
+
+[React Native Zip 包打包说明](../sourcemap/set-sourcemap.md/#sourcemap-zip)
+
+### 上传
+
+获取或配置打包完成后，用户可直接在前台页面进行文件上传和删除操作。
+
+<img src="../../img/sourcemap_01.png" width="60%" >
+
 ## WebView 数据监测
 
 WebView 数据监测，需要在 WebView 访问页面集成[Web 监测 SDK](../web/app-access.md)
@@ -832,8 +906,8 @@ function getInfoFromNet(info:Info){
 ### iOS
 * [iOS 符号文件上传](../ios/app-access.md#source_map)
 
-
 ## 常见问题
+
 - [Android 隐私审核](../android/app-access.md#third-party)
 - [iOS 其他相关](../ios/app-access.md#FAQ)
 - [Android 其他相关](../android/app-access.md#FAQ)
