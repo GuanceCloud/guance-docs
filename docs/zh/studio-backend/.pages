@@ -2,3 +2,4 @@ nav:
   - index.md
   - '关于内置角色的说明': role.md
   - '未恢复事件查询': unrecovered-event-query.md
+  - '拓扑图图表相关接口响应数据说明': tracing-service-map.md
