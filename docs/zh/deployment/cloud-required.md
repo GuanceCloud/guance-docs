@@ -19,10 +19,9 @@
 | ECS | 4C8G（单系统盘80GB） | 8C16G（单系统盘120GB） | 4 | 部署阿里云ACK托管版集群                         |
 |  | 2C4G（单系统盘80GB） | 4C8G（单系统盘120GB） | 2 | 部署 Dataway                            |
 | RDS | 1C2G 50GB | 2C4G 100GB（三节点企业版） | 1 | MySQL 8.0                             |
-| Redis | 2G | 4G（标准主从版双副本） | 1 | 版本：6.0                                |
-| InfluxDB | 4C16G 300GB | 8C32G 500GB | 1 | InfluxDB 版本：1.7.x                     |
-| Elasticsearch | 4C16G 1T（2节点） | 16C64G 2T（3节点） | 1 | 版本：7.4+（**推荐7.10**）                   |
+| InfluxDB | 4C16G 300GB | 8C32G 500GB | 1 | InfluxDB 版本：1.7.x |
+| OpenSearch | 4C16G 1T（2节点） | 16C64G 2T（3节点） | 1 | 版本：2.3.0              |
 | 云通信 | - | - | 1 | 开通邮件服务、短信服务                           |
 | 域名 | - | - | 1 | 主域名需备案，一个主域名下的8个子域名                   |
 | SSL 证书 | 通配符域名证书 | 通配符域名证书 | 1 | -                                     |
-| OSS | 标准存储、本地冗余存储 | 标准存储、本地冗余存储 | 2 | profiling、session-apply 和 backuplog使用 | 
+| OSS | 标准存储、本地冗余存储 | 标准存储、本地冗余存储 | 2 | profiling、session-apply 和 backuplog使用 |
