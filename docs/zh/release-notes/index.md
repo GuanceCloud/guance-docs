@@ -25,6 +25,74 @@ icon: zy/release-notes
 
 </div>
 
+## 2024 年 12 月 11 日
+
+### 功能更新 {#feature1211}
+
+#### 场景
+
+1. [拓扑图](../scene/visual-chart/topology-map.md)新增外部数据查询：允许用户通过 DataFlux Func 实现外部数据绘制拓扑图。用户只需按照图表结构接入数据，即可轻松实现外部数据的可视化展示。
+2. [图表](../scene/visual-chart/index.md#type)优化
+    - 图表显示效果优化：对图表的显示效果进行优化，调整为侧滑列出，分类展示，使图表的查找和使用更加便捷。
+    - 图表描述及适用场景显示：图表列表中增加了图表描述及适用场景的显示，可以帮助用户更好地理解和选择合适的图表类型。
+3. 视图变量优化
+    - 视图变量支持配置值列出上限，避免数据列出过多导致页面加载性能问题。
+    - 部署版默认列出上限为 50，支持自定义默认列出数量，注意：页面配置限制优先全局限制。
+
+#### 基础设施
+
+1. 资源目录优化：
+    - 新增分组功能：为了提高资源管理的效率，新增资源分组功能。用户可以将具有共性的资源分类进行分组，便于管理和查看，从而优化资源的组织结构。
+    - 查看器蜂窝图模式优化：支持配置“颜色填充”和“分组分析”的字段列表，用户可以根据需要自定义可选的字段。
+2. 容器、资源目录查看器搜索优化：容器查看器新增 `container_name` 搜索，资源目录新增 `name` 搜索。
+
+#### 监控
+
+告警策略配置优化
+
+- 支持通过告警策略入口[一键创建关联监控器](../monitoring/alert-setting.md#with_monitor)，新增以告警策略为中心的统一告警通知管理模式。
+- 优化告警策略列表关联显示交互。
+
+#### RUM
+
+RUM 新增了对 React Native 应用类型的支持，并允许上传 SourceMap 以进行数据解析和还原。如果您需要为原本在 Android / iOS 类型下创建的 React Native 应用上传 SourceMap，请注意：
+
+1. 在创建新应用时，选择 “React Native” 应用类型。在创建中，您可直接复制 Android / iOS 类型下已有的 React Native 应用的名称和应用 ID，然后点击“创建”按钮。完成创建后，您便可以在该应用下配置 SourceMap。这一变更仅涉及 React Native 应用的创建方式，不会对数据采集产生影响。
+
+2. 如果您原先在 Android / iOS 类型下的 React Native 应用有关联的监控器，并且尚未在 “React Native” 类型下重新创建相同 ID 的 React Native 应用，原有的监控器可以继续正常工作。但如果您已经重新创建了 “React Native” 类型的应用，原有的监控器在“应用名称”项将无法获取数据，显示为空。在这种情况下，您需要选择应用类型为 “React Native” 并重新保存此监控器。
+
+#### APM
+
+APM 安装引导新增[自动注入方式](../application-performance-monitoring/explorer/auto_wire/apm_datakit_operator.md)：在 APM（应用性能监测）的安装引导中，新增了 Kubernetes Operator 自动注入的安装方式。这种方式简化了 APM 的部署流程，使得用户可以更快捷地在 Kubernetes 环境中安装和使用。
+
+
+### 新增集成 {#inte1211}
+
+- 新增 [HBASE region](../integrations/hbase_region.md) 集成；
+- 新增 [HBASE master](../integrations/hbase_master.md) 集成；
+- 优化 [NodeExporter](../integrations/node-exporter.md) 集成视图；
+- 新增 [华为云 DCAAS 云专线](../integrations/huawei_dcaas.md) 集成；
+- K8S dashboard 调整；
+- 更新 [memcached](../integrations/memcached.md) 视图和监控器；
+- 更新 [rabbitmq](../integrations/rabbitmq.md) 视图和监控器。
+
+### Bug 修复 {#bug1211}
+
+1. 解决了表达式查询数值异常的问题；
+2. 解决了在图表用 PromQL 查询某一段时刻启动的 `pod` 的 cpu 使用率时，用时序图在时间范围内可以看到数据，但在转换为图表查询时数据查询不出来的问题。
+3. 解决了告警事件不恢复的问题。
+4. 解决了 PromQL 查询结果异常的问题。
+5. 解决了私有化部署 > 管理后台修改热存储时长时报错 `warmretention` 字段缺少的问题。
+6. 解决了部署版日志搜索结果和火山引擎 TLS 上搜索不一致的问题。
+7. 解决了仪表板大屏在嵌入用户的 IFrame 页面时会出现随机缩放的问题。
+8. 解决了用户管理新建分组将其加入多个空间后页面卡顿的问题。
+9. 解决了首次进入观测云控制台 > 事件时报错 `df_fault_id` 的问题。
+10. 解决了打开事件菜单时会提示超出内存限制的问题。
+11. 解决了概览图表达式计算错误的问题。
+12. 解决了监控器触发告警后未产生事件的问题。
+13. 解决了部署版火山引擎底座日志查询功能异常的问题。
+
+
 ## 2024 年 11 月 27 日
 
 ### Breaking Changes {#breakingchanges1127}

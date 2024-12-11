@@ -40,19 +40,19 @@
 
 在使用 DataFlux Func 向 DataKit 写入数据之前，首先要确保连通性。因此，在 DataKit 安装完成后，需要调整配置，允许 DataFlux Func 连接。
 
-1、打开 DataKit 配置：`sudo vim /usr/local/datakit/conf.d/datakit.conf`；
+1. 打开 DataKit 配置：`sudo vim /usr/local/datakit/conf.d/datakit.conf`；
 
-2、将 `http_listen = "localhost:9529"` 修改为 `http_listen = "0.0.0.0:9529"`；
+2. 将 `http_listen = "localhost:9529"` 修改为 `http_listen = "0.0.0.0:9529"`；
 
-![](../img/21.lab_rum_3.png)
-
-3、重启 DataKit；
+3. 重启 DataKit。
 
 ```
 sudo datakit --restart
 ```
 
-> 更多详情，可参考[连接并操作 DataKit](https://func.guance.com/doc/practice-connect-to-datakit/)。
+![](../img/21.lab_rum_3.png)
+
+> 更多详情，可参考 [连接并操作 DataKit](https://func.guance.com/doc/practice-connect-to-datakit/)。
 
 ## 上报资源目录数据
 
@@ -60,7 +60,7 @@ DataFlux Func 和 DataKit 连通以后，可以在 DataFlux Func 中撰写函数
 
 > 关于 DataFlux Func 函数调用的接口说明，可参考 [DataKit API](../../datakit/apis.md)；   
 > 
-> 关于 DataFlux Func 如何写入数据到 DataKit 的说明，可参考[通过 DataKit 写入数据](https://func.guance.com/doc/practice-write-data-via-datakit/)。
+> 关于 DataFlux Func 如何写入数据到 DataKit 的说明，可参考 [通过 DataKit 写入数据](https://func.guance.com/doc/practice-write-data-via-datakit/)。
 
 ## 示例说明
 
