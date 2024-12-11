@@ -40,11 +40,13 @@
 
 ### 外部数据查询
 
-可从默认查询方式切换为外部数据查询方式。
+通过外部数据查询方式，您可以使用任意数据来绘制拓扑图。只需按照系统规定的数据结构上报数据，既可通过 DataFlux Func 内的函数实现最终图表的生成与展示。
 
 <img src="../../img/chart-relate-2.png" width="70%" >
 
-> 更多详情，可查看 [相关接口响应数据说明](../../studio-backend/tracing-service-map.md)。
+> 关于如何通过函数处理数据，可查看 [Func 函数详细使用说明与示例](../../studio-backend/tracing-service-map.md)。
+> 
+> 关于对接数据所需的拓扑图数据结构，可查看 [相关接口响应数据说明](../../studio-backend/tracing-service-map.md)。
 
 ## 图表链接 {#link}
 
