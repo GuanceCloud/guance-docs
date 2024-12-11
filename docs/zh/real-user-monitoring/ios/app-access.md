@@ -273,7 +273,8 @@
 | samplerate | int | 否 | 采样率。取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据 |
 | enableTrackAppCrash | BOOL | 否 | 设置是否需要采集崩溃日志。默认 `NO` |
 | enableTrackAppANR | BOOL | 否 | 采集ANR卡顿无响应事件。默认`NO` |
-| enableTrackAppFreeze | BOOL | 否 | 采集UI卡顿事件。默认`NO` |
+| enableTrackAppFreeze | BOOL | 否 | 采集UI卡顿事件。默认`NO`<br>可通过`-setEnableTrackAppFreeze:freezeDurationMs:`方法开启采集卡顿并设置卡顿的阈值 |
+| freezeDurationMs | long | 否 | 设置UI卡顿的阈值，取值范围 [100,)，单位毫秒，默认 250ms。SDK 1.5.7 以上版本支持 |
 | enableTraceUserView | BOOL | 否 | 设置是否追踪用户 View 操作。默认`NO` |
 | enableTraceUserAction | BOOL | 否 | 设置是否追踪用户 Action 操作。默认`NO` |
 | enableTraceUserResource | BOOL | 否 | 设置是否追踪用户网络请求。默认`NO`，仅作用于 native http <br/>注意：不支持采集使用 **Swift URLSession async/await APIs** 和 `[NSURLSession sharedSession]`发起的请求. |

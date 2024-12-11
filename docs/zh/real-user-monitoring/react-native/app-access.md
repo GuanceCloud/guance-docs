@@ -104,6 +104,7 @@ await FTMobileReactNative.sdkConfig(config);
 | syncSleepTime | number | 否 | 设置同步间歇时间。范围 [0,5000]，默认不设置 |
 | enableDataIntegerCompatible | boolean | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题 。 |
 | globalContext | object | 否 | 添加自定义标签。添加规则请查阅[此处](../android/app-access.md#key-conflict) |
+| compressIntakeRequests | boolean | 否 | 设置是否对同步数据进行压缩 |
 
 ### RUM 配置 {#rum-config}
 
@@ -142,6 +143,7 @@ await FTReactNativeRUM.setConfig(rumConfig);
 | enableTrackNativeCrash | boolean | 否 | 是否采集 `Native Error` |
 | enableTrackNativeAppANR | boolean | 否 | 是否采集 `Native ANR`                                        |
 | enableTrackNativeFreeze | boolean | 否 | 是否采集 `Native Freeze` |
+| nativeFreezeDurationMs | number | 否 | 设置采集 `Native Freeze`卡顿的阈值，取值范围 [100,)，单位毫秒。iOS 默认 250ms，Android 默认 1000ms |
 
 ### Log 配置 {#log-config}
 
