@@ -49,17 +49,17 @@ icon: zy/release-notes
 #### 监控
 
 告警策略配置优化
-    - 支持通过告警策略入口[一键创建关联监控器](../monitoring/alert-setting.md#with_monitor)，新增以告警策略为中心的统一告警通知管理模式。
-    - 优化告警策略列表关联显示交互。
+
+- 支持通过告警策略入口[一键创建关联监控器](../monitoring/alert-setting.md#with_monitor)，新增以告警策略为中心的统一告警通知管理模式。
+- 优化告警策略列表关联显示交互。
 
 #### RUM
 
-RUM 新增 React Native 应用类型选择，并支持页面上传 SourceMap 做解析数据还原。
-  
-**注意**：
+RUM 新增了对 React Native 应用类型的支持，并允许上传 SourceMap 以进行数据解析和还原。如果您需要为原本在 Android / iOS 类型下创建的 React Native 应用上传 SourceMap，请注意：
 
-- 若您先前已在 Android / iOS 类型下创建过针对 React Native 的应用，可复制应用 ID 后，在 React Native 类型下重新创建，原先采集到的 React Native 数据将会保留；
-- 若您创建过应用类型为 Android / iOS 的、针对 React Native 的“用户访问指标监测监控器”，则需要重新创建应用类型为“ React Native ”的监控器。
+1. 在创建新应用时，选择 “React Native” 应用类型。在创建中，您可直接复制 Android / iOS 类型下已有的 React Native 应用的名称和应用 ID，然后点击“创建”按钮。完成创建后，您便可以在该应用下配置 SourceMap。这一变更仅涉及 React Native 应用的创建方式，不会对数据采集产生影响。
+
+2. 如果您原先在 Android / iOS 类型下的 React Native 应用有关联的监控器，并且尚未在 “React Native” 类型下重新创建相同 ID 的 React Native 应用，原有的监控器可以继续正常工作。但如果您已经重新创建了 “React Native” 类型的应用，原有的监控器在“应用名称”项将无法获取数据，显示为空。在这种情况下，您需要选择应用类型为 “React Native” 并重新保存此监控器。
 
 #### APM
 
@@ -83,12 +83,14 @@ APM 安装引导新增[自动注入方式](../application-performance-monitoring
 3. 解决了告警事件不恢复的问题。
 4. 解决了 PromQL 查询结果异常的问题。
 5. 解决了私有化部署 > 管理后台修改热存储时长时报错 `warmretention` 字段缺少的问题。
-6. 解决了日志搜索结果和 TLS 上搜索不一致的问题。
-7. 解决了嵌入用户的 IFrame 页面时会出现随机缩放的问题。
+6. 解决了部署版日志搜索结果和火山引擎 TLS 上搜索不一致的问题。
+7. 解决了仪表板大屏在嵌入用户的 IFrame 页面时会出现随机缩放的问题。
 8. 解决了用户管理新建分组将其加入多个空间后页面卡顿的问题。
 9. 解决了首次进入观测云控制台 > 事件时报错 `df_fault_id` 的问题。
 10. 解决了打开事件菜单时会提示超出内存限制的问题。
 11. 解决了概览图表达式计算错误的问题。
+12. 解决了监控器触发告警后未产生事件的问题。
+13. 解决了部署版火山引擎底座日志查询功能异常的问题。
 
 
 ## 2024 年 11 月 27 日
