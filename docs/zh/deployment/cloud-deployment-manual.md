@@ -30,7 +30,7 @@
 
 ### 3.1 部署说明
 
-**RDS、Redis、InfluxDB、Elasticsearch、NAS 存储** 按配置要求创建，创建到同一地域的同一个 **VPC** 网络下。
+**RDS、InfluxDB、OpenSearch、NAS 存储** 按配置要求创建，创建到同一地域的同一个 **VPC** 网络下。
 ECS、SLB、NAT 网关，由ACK 来自动创建，不需要单独创建，也就是[部署步骤图](#install-step-image)中的1、2、3 步骤不需要单独创建。
 
 ### 3.2 步骤一、二、三  ACK 服务创建
@@ -67,7 +67,7 @@ ECS、SLB、NAT 网关，由ACK 来自动创建，不需要单独创建，也就
 === "CSI"
 
     阿里云容器服务ACK的容器存储功能基于Kubernetes容器存储接口（CSI），深度融合阿里云存储服务云盘EBS，文件存储NAS和CPFS，以及对象存储OSS，本地盘等，并完全兼容Kubernetes原生的存储服务，例如EmptyDir、HostPath、Secret、ConfigMap等存储。本文介绍ACK存储CSI的概览、ACK存储CSI支持的功能、CSI使用授权、CSI使用限制等。控制台将**默认安装**CSI-Plugin和CSI-Provisioner组件。
-
+    
     - 验证插件
       - 执行以下命令，查看CSI-Plugin组件是否成功部署。
         ```shell
@@ -80,7 +80,7 @@ ECS、SLB、NAT 网关，由ACK 来自动创建，不需要单独创建，也就
     - 创建 StorageClass
        
       创建并复制以下内容到 alicloud-nas-subpath.yaml 文件中。
-
+    
     ???+ note "alicloud-nas-subpath.yaml"
           ```yaml
           apiVersion: storage.k8s.io/v1
@@ -96,35 +96,35 @@ ECS、SLB、NAT 网关，由ACK 来自动创建，不需要单独创建，也就
           provisioner: nasplugin.csi.alibabacloud.com
           reclaimPolicy: Retain
           ```
-
+    
       **{{ nas_server_url }}** 替换为前面创建的 NAS 存储的 Server URL，在**运维操作机**上执行命令：  
-
+    
       ```shell
       kubectl apply -f ./alicloud-nas-subpath.yaml
       ```
 === "flexvolume(官方已废弃)"
 
     创建阿里云Kubernetes 1.16之前版本的集群时，若存储插件选择为Flexvolume，则控制台默认安装Flexvolume与Disk-Controller组件，但不会默认安装alicloud-nas-controller组件。
-
+    
     - 安装alicloud-nas-controller组件
-
+    
       下载 [nas_controller.yaml](nas_controller.yaml)
       在**运维操作机**上执行命令： 
       ```shell
       kubectl apply -f nas_controller.yaml
       ```
-
+    
     - 验证插件
-
+    
       执行以下命令，查看Disk-Controller组件是否成功部署。
       ```shell
       kubectl get pod -nkube-system | grep alicloud-nas-controller
       ```
-
+    
     - 创建 StorageClass
-
+    
       创建并复制以下内容到 storage_class.yaml 文件中。
-
+    
     ???+ note "storage_class.yaml"
           ```yaml
           apiVersion: storage.k8s.io/v1
@@ -144,7 +144,7 @@ ECS、SLB、NAT 网关，由ACK 来自动创建，不需要单独创建，也就
           reclaimPolicy: Delete
           ```
       **{{ nas_server_url }}** 替换为前面创建的 NAS 存储的 Server URL，在**运维操作机**上执行命令：  
-
+    
       ```shell
       kubectl apply -f ./storage_class.yaml
       ```
@@ -180,23 +180,24 @@ cfs-pvc001       Bound    pvc-a17a0e50-04d2-4ee0-908d-bacd8d53aaa4   1Gi        
 
 >`Bound` 为部署成功标准
 
-### 3.4 步骤六 Redis
+### 3.4 步骤六 缓存服务
 
-- 版本：6.0，标准主从版双副本，主要不能创建集群版
-
-- 设置 Redis 密码
-- 将 ACK 自动创建的 ECS 内网 IP，添加到 Redis 白名单
+- 可使用默认的内置缓存服务。
+- 若不使用默认内置缓存服务，请按照以下要求配置 Redis：
+  - Redis 版本：6.0，支持单机模式、代理模式以及主从模式的 Redis 集群。
+  - 配置 Redis 密码。
+  - 将自动创建的 ECS 内网 IP 添加至 Redis 白名单中。
 
 ### 3.5 步骤七 InfluxDB
 
 - 创建管理员账号（必须是**管理员账号**，后续安装初始化需要用此账号去创建和初始化 DB 及 RP等信息）
 - 将 ACK 自动创建的 ECS 内网 IP，添加到 InfluxDB 白名单
 
-### 3.6 步骤八 Elasticsearch
+### 3.6 步骤八 OpenSearch
 
 - 创建管理员账号
 - 安装中文分词插件
-- 将 ACK 自动创建的 ECS 内网 IP，添加到 Elasticsearch 白名单
+- 将 ACK 自动创建的 ECS 内网 IP，添加到 OpenSearch 白名单
 
 ### 3.7 步骤九 RDS
 
