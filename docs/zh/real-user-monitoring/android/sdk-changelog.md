@@ -78,6 +78,10 @@
 [更多日志](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-native/CHANGELOG.md)
 
 ## **ft-plguin ( AGP >=7.4.2 )** {#ft-plugin}
+### **1.3.4 (2024/12/11)**：
+1. 优化错误日志输出
+2. 修改 minifyEnabled 未开启，导致 sourcemap symbol 文件未生成的问题
+3. 支持通过 generateSourceMapOnly true，生成 sourcemap 但是不主动上传
 ### **1.3.3 (2024/09/04)**：
 1. 优化 native symbol so 自动获取上传，支持自定义指定 nativeLibPath
 ### **1.3.2 (2024/08/13)**：
