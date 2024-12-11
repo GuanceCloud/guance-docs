@@ -5,7 +5,7 @@
 Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回原始的源代码。RUM 支持这种源代码文件信息的映射，方法是将对应符号表文件进行 zip 压缩打包、上传，这样就可以对上报的 error 指标集数据自动进行转换。
 
 
-## Zip 包打包说明
+## Zip 包打包说明 {#sourcemap-zip}
 
 
 <!-- markdownlint-disable MD046 -->
