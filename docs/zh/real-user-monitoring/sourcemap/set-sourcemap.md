@@ -171,7 +171,6 @@ Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回�
     ```
 === "React Native"
 
-    ```
     React Native 的 `sourcemap` 包括原生 iOS 、Android 和 js 部分，一共有三种 source map。
     原生 iOS 和 Android 的 `sourcemap` 获取参考对应的打包说明中的获取方法。
     js 部分的 sourcemap 的获取如下所示：
@@ -181,12 +180,15 @@ Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回�
       在 iOS 环境，要启用源映射生成需要做一些额外配置。
       * 打开 Xcode 并编辑 build phase 中 "Bundle React Native code and images"。
       * 在其他导出上方，添加 SOURCEMAP_FILE 具有所需输出路径的条目。  
+    
     ```shell
     set -e
     #  output source maps
     export SOURCEMAP_FILE="./main.jsbundle.map";
     ```
+    
     **With Hermes,React Native <0.71**
+    
     ```shell
     set -e
     #  output source maps
@@ -210,45 +212,45 @@ Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回�
     "$NODE_BINARY" "$REACT_NATIVE_DIR/scripts/compose-source-maps.js" "$CONFIGURATION_BUILD_DIR/main.jsbundle.map" "$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/main.jsbundle.map" -o "../$SOURCEMAP_FILE"
     ```
     
-    获取到 js 的 sourcemap 文件后与其构建平台对应的 native soucemap 一起按照下面格式进行 zip 打包。 
+    获取到 js 的 sourcemap 文件后与其构建平台对应的 native soucemap 一起按照下面格式进行 zip 打包。
+    
+    
     ```
-
-```
-// Android
-<app_id>-<env>-<version>/
-├── js
-	├── main.jsbundle.map 
-├── android
-	├── mapping.txt
-	├── armeabi-v7a/
-	│   ├── libgameengine.so
-	│   ├── libothercode.so
-	│   └── libvideocodec.so
-	├── arm64-v8a/
-	    ├── libgameengine.so
-	    ├── libothercode.so
-	    └── libvideocodec.so	
-```
-
-```
-// iOS
-<app_id>-<env>-<version>/
-├── js
-	├── main.jsbundle.map 
-├── ios
-	├── AFNetworking.framework.dSYM
-  │   └── Contents
-  │       ├── Info.plist
-  │       └── Resources
-  │           └── DWARF
-  │               └── AFNetworking
-  └── App.app.dSYM
-      └── Contents
-          ├── Info.plist
-          └── Resources
-              └── DWARF
-                  └── App
-```
+    // Android
+    <app_id>-<env>-<version>/
+    ├── js
+    	├── main.jsbundle.map 
+    ├── android
+      ├── mapping.txt
+    	├── armeabi-v7a/
+    	│   ├── libgameengine.so
+    	│   ├── libothercode.so
+    	│   └── libvideocodec.so
+    	├── arm64-v8a/
+    	    ├── libgameengine.so
+    	    ├── libothercode.so
+    	    └── libvideocodec.so	
+    ```
+    
+    ```
+    // iOS
+    <app_id>-<env>-<version>/
+    ├── js
+    	├── main.jsbundle.map 
+    ├── ios
+    	├── AFNetworking.framework.dSYM
+      │   └── Contents
+      │       ├── Info.plist
+      │       └── Resources
+      │           └── DWARF
+      │               └── AFNetworking
+      └── App.app.dSYM
+          └── Contents
+              ├── Info.plist
+              └── Resources
+                  └── DWARF
+                      └── App
+    ```
 
 <!-- markdownlint-enable -->
 
