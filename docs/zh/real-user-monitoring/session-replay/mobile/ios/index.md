@@ -4,16 +4,16 @@
 
 ## 前置条件
 * 确保您已[设置并初始化 FTMobileSDK RUM 配置](../../../ios/app-access.md)，并开启 View 的监控采集。
-* iOS Session Replay 目前为 alpha 功能，版本支持：SDK.Version >= 1.6.0
+* iOS Session Replay 目前为 alpha 功能，**版本支持：SDK.Version >= 1.6.0**
 
 ## 配置
 
 根据您的包管理器将 `FTMobileSDK` 库中 `FTSessionReplay` 功能组件链接到您的项目：
 
-| 包管理器                                                     | 安装步骤                                                    |
-| ------------------------------------------------------------ | ----------------------------------------------------------- |
-| [CocoaPods](https://cocoapods.org/)                          | 添加 `pod 'FTMobileSDK/FTSessionReplay'` 到您的 `Podfile`。 |
-| [Swift Package Manager](https://www.swift.org/package-manager/) | 添加  `FTSessionReplay`  为您的应用目标的依赖项。           |
+| 包管理器                                                     | 安装步骤                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [CocoaPods](https://cocoapods.org/)                          | 添加 `pod 'FTMobileSDK/FTSessionReplay','latest_version'` 到您的 `Podfile`。需要指定 SDK 版本号。 |
+| [Swift Package Manager](https://www.swift.org/package-manager/) | 添加  `FTSessionReplay`  为您的应用目标的依赖项。            |
 
 ## 代码调用 {#code_sample}
 
