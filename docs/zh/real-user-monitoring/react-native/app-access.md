@@ -760,9 +760,9 @@ FTMobileReactNative.appendLogGlobalContext({'log_key':'log_value'});
 
 添加后执行 `yarn install` 
 
-**注意：安卓环境需要添加配置 Gradle Plugin [ft-plugin](../android/app-access.md#gradle-setting)  版本要求 >=1.3.4**
+**注意：安卓环境需要添加配置 Gradle Plugin [ft-plugin](../android/app-access.md#gradle-setting)，版本要求： >=1.3.4**
 
-在项目主模块 `app` 的 `build.gradle` 文件中添加 `Plugin` 的使用，与参数设置
+在项目主模块 `app` 的 `build.gradle` 文件中添加 `Plugin` 的使用与参数设置
 
 ```java
 apply plugin: 'ft-plugin'
