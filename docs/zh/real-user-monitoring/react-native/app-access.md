@@ -759,7 +759,7 @@ FTMobileReactNative.appendLogGlobalContext({'log_key':'log_value'});
 
 添加后执行 `yarn install` 
 
-**注意：安卓环境需要添加配置 Gradle Plugin [ft-plugin](../android/app-access.md#gradle-setting)  版本要求 >=1.3.4 **
+**注意：安卓环境需要添加配置 Gradle Plugin [ft-plugin](../android/app-access.md#gradle-setting)  版本要求 >=1.3.4**
 
 在项目主模块 `app` 的 `build.gradle` 文件中添加 `Plugin` 的使用，与参数设置
 
@@ -769,7 +769,7 @@ FTExt {
     //showLog = true
     autoUploadMap = true
     autoUploadNativeDebugSymbol = true
-	  generateSourceMapOnly = true
+    generateSourceMapOnly = true
 }
 ```
 
@@ -807,9 +807,7 @@ Android : RN 项目目录下 (./sourcemap.zip)
 
 ### 上传
 
-获取或配置打包完成后，用户可直接在前台页面进行文件上传和删除操作。
-
-<img src="../../img/sourcemap_01.png" width="60%" >
+[文件上传和删除](../sourcemap/set-sourcemap.md/#upload)
 
 ## WebView 数据监测
 
