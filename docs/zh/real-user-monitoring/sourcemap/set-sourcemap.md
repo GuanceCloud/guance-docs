@@ -172,14 +172,18 @@ Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回�
 === "React Native"
 
     React Native 的 `sourcemap` 包括原生 iOS 、Android 和 js 部分，一共有三种 source map。
+    
     原生 iOS 和 Android 的 `sourcemap` 获取参考对应的打包说明中的获取方法。
+
     js 部分的 sourcemap 的获取如下所示：
-    * Android 
-      源映射是默认启用的。源映射文件位于`android/app/build/generated/sourcemaps/react/release/index.android.bundle.map`
-    * iOS
-      在 iOS 环境，要启用源映射生成需要做一些额外配置。
-      * 打开 Xcode 并编辑 build phase 中 "Bundle React Native code and images"。
-      * 在其他导出上方，添加 SOURCEMAP_FILE 具有所需输出路径的条目。  
+    
+    **Android** 
+    源映射是默认启用的。源映射文件位于`android/app/build/generated/sourcemaps/react/release/index.android.bundle.map`
+    **iOS**
+    在 iOS 环境，要启用源映射生成需要做一些额外配置。
+    * 打开 Xcode 并编辑 build phase 中 "Bundle React Native code and images"。
+    * 在其他导出项之上，添加一个具有所需输出路径的 `SOURCEMAP_FILE` 条目。
+
     
     ```shell
     set -e
@@ -259,7 +263,7 @@ Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回�
 您可以使用 [**source-map-visualization**](https://evanw.github.io/source-map-visualization/) 等来源映射可视化工具，验证文件可用性。
 
 
-## 文件上传和删除
+## 文件上传和删除 {#upload}
 
 配置打包完成后，用户可直接在前台页面进行文件上传和删除操作。
 
