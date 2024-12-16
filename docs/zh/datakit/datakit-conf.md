@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.64.2）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.64.3）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -170,7 +170,6 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
     # io configures
     ################################################
     [io]
-    
       # How often Datakit flush data to dataway.
       # Datakit will upload data points if cached(in memory) points
       #  reached(>=) the max_cache_count or the flush_interval triggered.
@@ -184,17 +183,6 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       # Set blocking if queue is full.
       # NOTE: Global blocking mode may consume more memory on large metric points.
       global_blocking = false
-    
-      # Disk cache on datakit upload failed
-      enable_cache = false
-      # Cache all categories data point into disk
-      cache_all = false
-      # Max disk cache size(in GB), if cache size reached
-      # the limit, old data dropped(FIFO).
-      cache_max_size_gb = 10
-      # Cache clean interval: Datakit will try to clean these
-      # failed-data-point at specified interval.
-      cache_clean_interval = "5s"
     
       # Data point filter configures.
       # NOTE: Most of the time, you should use web-side filter, it's a debug helper for developers.
@@ -244,11 +232,13 @@ Datakit 主配置示例如下，我们可以根据该示例来开启各种功能
       # Dataway HTTP timeout
       timeout_v2 = "30s"
     
-      # max_retry_count specifies at most how many times the data sending operation will be tried when it fails,
-      # valid minimum value is 1 (NOT 0) and maximum value is 10.
+      # max_retry_count specifies at most how many times will be tried when dataway API fails(not 4xx),
+      # default value(and minimal) is 1 and maximum value is 10.
+      #
+      # The default set to 1 to makes the API fails ASAP to release memroy.
       max_retry_count = 1
     
-      # The interval between two retry operation, valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h"
+      # The interval between two retry operation, valid time units are "ns", "us", "ms", "s", "m", "h"
       retry_delay = "1s"
     
       # HTTP Proxy
@@ -687,7 +677,7 @@ $ systemctl status datakit
 Dataway 部分有如下几个配置可以配置，其它部分不建议改动：
 
 - `timeout`：上传观测云的超时时间，默认 30s
-- `max_retry_count`：设置 Dataway 发送的重试次数（默认 4 次）[:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0)
+- `max_retry_count`：设置 Dataway 发送的重试次数（默认 1 次，最大 10 次）[:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0)
 - `retry_delay`：设置重试间隔基础步长，默认 200ms。所谓基础步长，即第一次 200ms，第二次 400ms，第三次 800ms，以此类推（以 $2^n$ 递增）[:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0)
 - `max_raw_body_size`：控制单个上传包的最大大小（压缩前），单位字节 [:octicons-tag-24: Version-1.17.1](changelog.md#cl-1.17.1)
 - `content_encoding`：可选择 v1 或 v2 [:octicons-tag-24: Version-1.17.1](changelog.md#cl-1.17.1)
