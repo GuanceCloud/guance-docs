@@ -5,7 +5,7 @@
 Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回原始的源代码。RUM 支持这种源代码文件信息的映射，方法是将对应符号表文件进行 zip 压缩打包、上传，这样就可以对上报的 `error` 指标集数据自动进行转换。
 
 
-## Zip 包打包说明
+## Zip 包打包说明 {#sourcemap-zip}
 
 
 <!-- markdownlint-disable MD046 -->
@@ -169,6 +169,89 @@ Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回�
                     └── App
     
     ```
+=== "React Native"
+
+    React Native 的 `sourcemap` 包括原生 iOS 、Android 和 js 部分，一共有三种 source map。
+    
+    原生 iOS 和 Android 的 `sourcemap` 获取参考对应的打包说明中的获取方法。
+
+    js 部分的 sourcemap 的获取如下所示：
+    
+    **Android**源映射是默认启用的。源映射文件位于`android/app/build/generated/sourcemaps/react/release/index.android.bundle.map`
+   
+    **iOS**要启用源映射生成需要做一些额外配置。打开 Xcode 并编辑 build phase 中 "Bundle React Native code and images"。在其他导出项之上，添加一个具有所需输出路径的 `SOURCEMAP_FILE` 条目。
+    
+    ```shell
+    set -e
+    #  output source maps
+    export SOURCEMAP_FILE="./main.jsbundle.map";
+    ```
+    
+    **With Hermes,React Native <0.71**
+    
+    ```shell
+    set -e
+    #  output source maps
+    export SOURCEMAP_FILE="./main.jsbundle.map";
+    #  React Native 0.70,you need to set USE_HERMES to true if Hermes is used, otherwise the source maps won't be generated.
+    export USE_HERMES=true 
+    
+    # keep the rest of the script unchanged
+    
+    # When React Native (0.69,0.71) and using Hermes
+    # add these lines to compose the packager and compiler source maps into one file
+    REACT_NATIVE_DIR=../node_modules/react-native
+    
+    if [ -f "$REACT_NATIVE_DIR/scripts/find-node-for-xcode.sh" ]; then
+        source "$REACT_NATIVE_DIR/scripts/find-node-for-xcode.sh"
+    else
+        # Before RN 0.70, the script was named find-node.sh
+        source "$REACT_NATIVE_DIR/scripts/find-node.sh"
+    fi
+    source "$REACT_NATIVE_DIR/scripts/node-binary.sh"
+    "$NODE_BINARY" "$REACT_NATIVE_DIR/scripts/compose-source-maps.js" "$CONFIGURATION_BUILD_DIR/main.jsbundle.map" "$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/main.jsbundle.map" -o "../$SOURCEMAP_FILE"
+    ```
+    
+    获取到 js 的 sourcemap 文件后与其构建平台对应的 native soucemap 一起按照下面格式进行 zip 打包。
+    
+    
+    ```
+    // Android
+    <app_id>-<env>-<version>/
+    ├── js/
+        ├── main.jsbundle.map 
+    └── android/
+        ├── mapping.txt
+        ├── armeabi-v7a/
+        │   ├── libgameengine.so
+        │   ├── libothercode.so
+        │   └── libvideocodec.so
+        └── arm64-v8a/
+            ├── libgameengine.so
+            ├── libothercode.so
+            └── libvideocodec.so	
+    ```
+    
+    ```
+    // iOS
+    <app_id>-<env>-<version>/
+    ├── js/
+        ├── main.jsbundle.map 
+    └── ios/
+        ├── AFNetworking.framework.dSYM
+        │   └── Contents
+        │       ├── Info.plist
+        │       └── Resources
+        │           └── DWARF
+        │               └── AFNetworking
+        └── App.app.dSYM
+            └── Contents
+                ├── Info.plist
+                └── Resources
+                    └── DWARF
+                        └── App
+    ```
+
 <!-- markdownlint-enable -->
 
 ---
@@ -176,7 +259,7 @@ Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回�
 您可以使用 [**source-map-visualization**](https://evanw.github.io/source-map-visualization/) 等来源映射可视化工具，验证文件可用性。
 
 
-## 文件上传和删除
+## 文件上传和删除 {#upload}
 
 配置打包完成后，用户可直接在前台页面进行文件上传和删除操作。
 
