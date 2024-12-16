@@ -60,28 +60,28 @@ Datakit supports subscribing messages from kafka to gather link, metric, and log
     
       ## skywalking custom
       #[inputs.kafkamq.skywalking]
-        ## Required！send to datakit skywalking input.
-        #dk_endpoint="http://localhost:9529"
-        #thread = 8 
-        #topics = [
-        #  "skywalking-metrics",
-        #  "skywalking-profilings",
-        #  "skywalking-segments",
-        #  "skywalking-managements",
-        #  "skywalking-meters",
-        #  "skywalking-logging",
-        #]
-        #namespace = ""
+      ## Required: send to datakit skywalking input.
+      #  dk_endpoint="http://localhost:9529"
+      #  thread = 8 
+      #  topics = [
+      #    "skywalking-metrics",
+      #    "skywalking-profilings",
+      #    "skywalking-segments",
+      #    "skywalking-managements",
+      #    "skywalking-meters",
+      #    "skywalking-logging",
+      #  ]
+      #  namespace = ""
     
-      ## Jaeger from kafka. Please make sure your Datakit Jaeger collector is open ！！！
+      ## Jaeger from kafka. Please make sure your Datakit Jaeger collector is open!
       #[inputs.kafkamq.jaeger]
-        ## Required！ ipv6 is "[::1]:9529"
-        #dk_endpoint="http://localhost:9529"
-        #thread = 8 
-        #source: agent,otel,others...
-        #source = "agent"
-        ## Required！ topics
-        #topics=["jaeger-spans","jaeger-my-spans"]
+      ## Required: ipv6 is "[::1]:9529"
+      #  dk_endpoint="http://localhost:9529"
+      #  thread = 8 
+      #  source: agent,otel,others...
+      #  source = "agent"
+      #  # Required: topics
+      #  topics=["jaeger-spans","jaeger-my-spans"]
     
       ## user custom message with PL script.
       #[inputs.kafkamq.custom]
@@ -102,9 +102,9 @@ Datakit supports subscribing messages from kafka to gather link, metric, and log
         #  "rum_02"="rum_02.p"
     
       #[inputs.kafkamq.remote_handle]
-        ## Required！
+        ## Required
         #endpoint="http://localhost:8080"
-        ## Required！ topics
+        ## Required topics
         #topics=["spans","my-spans"]
         # send_message_count = 100
         # debug = false

@@ -19,7 +19,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is `datakit.conf`, here is the example sample(1.64.2):
+Datakit main configure is `datakit.conf`, here is the example sample(1.64.3):
 
 <!-- markdownlint-disable MD046 -->
 ??? info "`datakit.conf`"
@@ -170,7 +170,6 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.64.2):
     # io configures
     ################################################
     [io]
-    
       # How often Datakit flush data to dataway.
       # Datakit will upload data points if cached(in memory) points
       #  reached(>=) the max_cache_count or the flush_interval triggered.
@@ -184,17 +183,6 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.64.2):
       # Set blocking if queue is full.
       # NOTE: Global blocking mode may consume more memory on large metric points.
       global_blocking = false
-    
-      # Disk cache on datakit upload failed
-      enable_cache = false
-      # Cache all categories data point into disk
-      cache_all = false
-      # Max disk cache size(in GB), if cache size reached
-      # the limit, old data dropped(FIFO).
-      cache_max_size_gb = 10
-      # Cache clean interval: Datakit will try to clean these
-      # failed-data-point at specified interval.
-      cache_clean_interval = "5s"
     
       # Data point filter configures.
       # NOTE: Most of the time, you should use web-side filter, it's a debug helper for developers.
@@ -244,11 +232,13 @@ Datakit main configure is `datakit.conf`, here is the example sample(1.64.2):
       # Dataway HTTP timeout
       timeout_v2 = "30s"
     
-      # max_retry_count specifies at most how many times the data sending operation will be tried when it fails,
-      # valid minimum value is 1 (NOT 0) and maximum value is 10.
+      # max_retry_count specifies at most how many times will be tried when dataway API fails(not 4xx),
+      # default value(and minimal) is 1 and maximum value is 10.
+      #
+      # The default set to 1 to makes the API fails ASAP to release memroy.
       max_retry_count = 1
     
-      # The interval between two retry operation, valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h"
+      # The interval between two retry operation, valid time units are "ns", "us", "ms", "s", "m", "h"
       retry_delay = "1s"
     
       # HTTP Proxy
@@ -687,7 +677,7 @@ See [here](election.md#config)
 Dataway got following settings to be configured:
 
 - `timeout`: The timeout for request data to Dataway. The default value is 30s
-- `max_retry_count`: Sets the number of retries to request Dataway (4 by default) [:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0)
+- `max_retry_count`: Sets the number of retries to request Dataway (1 by default, max retry is 10) [:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0)
 - `retry_delay` : Set the basic step of the retry interval. The default value is 200ms. The so-called basic step is 200ms for the first time, 400ms for the second time, 800ms for the third time, and so on (in increments of $2^n$) [:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0)
 - `max_raw_body_size`: Set the maximum size of a single uploaded package (before compression), in bytes [:octicons-tag-24: Version-1.17.1](changelog.md#cl-1.17.1)
 - `content_encoding` : v1 or v2 can be selected [:octicons-tag-24: Version-1.17.1](Changelog.md #cl-1.17.1)
