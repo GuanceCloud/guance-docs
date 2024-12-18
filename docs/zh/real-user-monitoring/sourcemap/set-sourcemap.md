@@ -177,9 +177,9 @@ Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回�
 
     js 部分的 sourcemap 的获取如下所示：
     
-    **Android** 源映射是默认启用的。源映射文件位于`android/app/build/generated/sourcemaps/react/release/index.android.bundle.map`
+    **Android**源映射是默认启用的。源映射文件位于`android/app/build/generated/sourcemaps/react/release/index.android.bundle.map`
    
-    **iOS** 要启用源映射生成需要做一些额外配置。打开 Xcode 并编辑 build phase 中 "Bundle React Native code and images"。在其他导出项之上，添加一个具有所需输出路径的 `SOURCEMAP_FILE` 条目。
+    **iOS**要启用源映射生成需要做一些额外配置。打开 Xcode 并编辑 build phase 中 "Bundle React Native code and images"。在其他导出项之上，添加一个具有所需输出路径的 `SOURCEMAP_FILE` 条目。
     
     ```shell
     set -e
