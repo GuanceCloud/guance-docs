@@ -146,7 +146,7 @@ Only metric data in Prometheus form can be accessed.
     
       ## Add HTTP headers to data pulling (Example basic authentication).
       # [inputs.prom.http_headers]
-        # Authorization = “Basic bXl0b21jYXQ="
+        # Authorization = "Basic bXl0b21jYXQ="
     
       ## Rename tag key in prom data.
       [inputs.prom.tags_rename]

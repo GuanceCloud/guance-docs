@@ -49,7 +49,7 @@ Memcached collector can collect the running status metrics from Memcached instan
       # extra_stats = ["slabs", "items"]
     
       ## Collect interval.
-      # 单位 "ns", "us" (or "µs"), "ms", "s", "m", "h"
+      # units: "ns", "us", "ms", "s", "m", "h"
       interval = "10s"
     
     [inputs.memcached.tags]
