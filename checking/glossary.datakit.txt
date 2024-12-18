@@ -60,6 +60,7 @@ Informix
 InnoDB
 Inode
 Inodes
+inotify
 JTDS
 JVM
 JXMFetch
@@ -149,6 +150,7 @@ goyacc
 guance
 hotspots
 inodes
+inotify
 ipfix
 jemalloc
 kafkamq

@@ -1,0 +1,3 @@
+nav:
+  - '在主机上部署': deploy_on_host.md
+  - '在 Kubernetes 上部署': deploy_on_k8s.md

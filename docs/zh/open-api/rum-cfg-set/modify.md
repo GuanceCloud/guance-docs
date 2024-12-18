@@ -24,7 +24,7 @@
 | dashboardUuids | array |  | 内置视图uuids<br>允许为空: False <br> |
 | jsonContent | json |  | JSON格式内容<br> |
 | jsonContent.name | string |  | 应用名称<br>允许为空: False <br>最大长度: 256 <br> |
-| jsonContent.type | string |  | 应用类型,针对现有的业务场景，不支持修改类型<br>允许为空: False <br>可选值: ['web', 'miniapp', 'android', 'ios', 'custom'] <br> |
+| jsonContent.type | string |  | 应用类型,针对现有的业务场景，不支持修改类型<br>允许为空: False <br>可选值: ['web', 'miniapp', 'android', 'ios', 'custom', 'reactnative'] <br> |
 | jsonContent.extend | json |  | 其他设置(如需增加同级字段请告知)<br>允许为空: False <br> |
 | clientToken | string |  | clientToken<br>允许为空: False <br>允许为空字符串: True <br> |
 

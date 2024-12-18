@@ -1587,7 +1587,7 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
 
 2.将脚本复制到 Xcode 项目的构建阶段运行脚本中，脚本中需要设置参数如：＜app_id＞、＜datakit_address＞、＜env＞、＜dataway_token＞。
 
-3.脚本：FTdSYMUpload.sh](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
+3.脚本：[FTdSYMUpload.sh](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
 
 ```sh
 #脚本中需要配置的参数
@@ -1877,6 +1877,11 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 
 在开发时的 **Debug** 和 **Release** 模式下， **Crash** 时捕获的线程回溯是被符号化的。
 而发布包没带符号表，异常线程的关键回溯，会显示镜像的名字，不会转化为有效的代码符号，获取到的 **crash log** 中的相关信息都是 16 进制的内存地址，并不能定位崩溃的代码，所以需要将 16 进制的内存地址解析为对应的类及方法。
+
+#### 编译或打包后如何找到 dSYM 文件
+
+* 在 Xcode 中，dSYM 文件通常与编译后的 .app 文件一起生成，并位于同一目录下。
+* 如果对项目进行了归档，可以在 Xcode 的  `Window` 菜单中选择 `Organizer`，然后选择对应的归档文件。右键点击归档文件，选择`Show in Finder”`，在 Finder 中找到对应的 `.xcarchive` 文件。右键点击 `.xcarchive`文件，选择 `Show Package Contents`，然后进入 `dSYMs` 文件夹，即可找到对应的 dSYM 文件。
 
 #### XCode 编译后没有生成 dSYM 文件？
 

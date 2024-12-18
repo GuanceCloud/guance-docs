@@ -98,6 +98,7 @@ nav:
       - '观测云底座': faq-guanceyun.md
       - 'Doris': faq-doris.md
       - 'GuanceDB': faq-guancedb.md
+      - 'OpenSearch': faq-opensearch.md
     - '使用FAQ':
       - '查看器报“视图模板不存在”': noscenes.md
       - '日志引擎存储空间不足': es-disk-full.md

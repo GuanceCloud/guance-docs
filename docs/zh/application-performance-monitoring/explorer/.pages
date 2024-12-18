@@ -1,5 +1,5 @@
 nav:
   - index.md
-  - '在主机上部署': deploy_on_host.md
-  - '在 Kubernetes 上部署': deploy_on_k8s.md
+  - '手动安装': manual
+  - '自动注入': auto_wire
   - '链路查看器': explorer-analysis.md
