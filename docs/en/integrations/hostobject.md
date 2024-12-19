@@ -142,7 +142,7 @@ In general, the host object is turned on by default and does not need to be conf
     
         **Example**: `/nfsdata,other`
     
-    - **ENV_ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_ELECTION_TAGS**
+    - **ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_ELECTION_TAGS**
     
         Enable put cloud provider region/zone_id information into global election tags
     
@@ -152,7 +152,7 @@ In general, the host object is turned on by default and does not need to be conf
     
         **Default**: true
     
-    - **ENV_ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_HOST_TAGS**
+    - **ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_HOST_TAGS**
     
         Enable put cloud provider region/zone_id information into global host tags
     

@@ -141,7 +141,7 @@ monitor   :
     
         **示例**: `/nfsdata,other`
     
-    - **ENV_ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_ELECTION_TAGS**
+    - **ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_ELECTION_TAGS**
     
         将云服务商 region/zone_id 信息放入全局选举标签
     
@@ -151,7 +151,7 @@ monitor   :
     
         **默认值**: true
     
-    - **ENV_ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_HOST_TAGS**
+    - **ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_HOST_TAGS**
     
         将云服务商 region/zone_id 信息放入全局主机标签
     
