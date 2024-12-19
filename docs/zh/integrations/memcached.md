@@ -9,8 +9,8 @@ dashboard :
   - desc  : 'Memcached'
     path  : 'dashboard/zh/memcached'
 monitor   :
-  - desc  : '暂无'            # 缺少监控视图示例
-    path  : '-' 
+  - desc  : 'Memcached'
+    path  : 'monitor/zh/memcached' 
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
@@ -46,7 +46,7 @@ Memcached 采集器可以从 Memcached 实例中采集实例运行状态指标�
       # extra_stats = ["slabs", "items"]
     
       ## Collect interval.
-      # 单位 "ns", "us" (or "µs"), "ms", "s", "m", "h"
+      # units: "ns", "us", "ms", "s", "m", "h"
       interval = "10s"
     
     [inputs.memcached.tags]

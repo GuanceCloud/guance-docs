@@ -159,10 +159,10 @@ await FTReactNativeLog.logConfig(logConfig);
 | sampleRate | number | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。   |
 | enableLinkRumData | boolean | 否 | 是否与 `RUM` 关联 |
 | enableCustomLog | boolean | 否 | 是否开启自定义日志 |
-| discardStrategy | enum FTLogCacheDiscard | 否 | 日志丢弃策略，默认`FTLogCacheDiscard.discard` |
 | logLevelFilters | Array<FTLogStatus> | 否 | 日志等级过滤 |
 | globalContext | NSDictionary | 否 | 添加 log 自定义标签，添加规则请查阅[此处](../android/app-access.md#key-conflict) |
-| logCacheLimitCount | number | 否 | 获取最大日志条目数量限制 [1000,)，日志越大，代表磁盘缓存压力越大，默认 5000 |
+| logCacheLimitCount | number | 否 | 本地缓存最大日志条目数量限制 [1000,)，日志越大，代表磁盘缓存压力越大，默认 5000  |
+| discardStrategy | enum FTLogCacheDiscard | 否 | 设置日志达到限制上限以后的日志丢弃规则，默认`FTLogCacheDiscard.discard` |
 
 ### Trace 配置 {#trace-config}
 

@@ -321,11 +321,11 @@ android{
 | setSampleRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
 | setEnableConsoleLog | Boolean | 否 | 是否上报控制台日志，日志等级对应关系<br>Log.v -> ok;<br>Log.i -> info;<br> Log.d -> debug;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤。注意：Android 控制台量是很大的，为了避免影响应用性能，减少不必要的资源浪费，建议使用 `prefix` 过滤出有价值的日志 |
 | setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联，默认为 `false` |
-| setLogCacheDiscardStrategy| LogCacheDiscard | 否 | 设置频繁日志丢弃规则，默认为 `LogCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据 |
 | setEnableCustomLog | Boolean| 否 | 是否上传自定义日志，默认为 `false` |
 | setLogLevelFilters | Array | 否 | 设置等级日志过滤，默认不设置 |
 | addGlobalContext | Dictionary | 否 | 添加 log 全局属性，添加规则请查阅[此处](#key-conflict) |
-| setLogCacheLimitCount | Int | 否 | 获取最大日志条目数量限制 [1000,)，日志越大，代表磁盘缓存压力越大，默认 5000   |
+| setLogCacheLimitCount | Int | 否 | 本地缓存最大日志条目数量限制 [1000,)，日志越大，代表磁盘缓存压力越大，默认 5000   |
+| setLogCacheDiscardStrategy| LogCacheDiscard | 否 | 设置日志达到限制上限以后的日志丢弃规则，默认为 `LogCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据 |
 
 ### Trace 配置 {#trace-config}
 

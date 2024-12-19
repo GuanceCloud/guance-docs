@@ -38,6 +38,9 @@ In general, the host object is turned on by default and does not need to be conf
     ## Setting enable_net_virtual_interfaces to true will collect network virtual interfaces stats for linux.
     # enable_net_virtual_interfaces = true
     
+    ## absolute path to the configuration file
+    # config_path = ["/usr/local/datakit/conf.d/datakit.conf"]
+    
     ##############################
     # Disk related options
     ##############################
@@ -67,7 +70,7 @@ In general, the host object is turned on by default and does not need to be conf
     # enable_cloud_host_tags_as_global_host_tags = true
     
     ## [inputs.hostobject.tags] # (optional) custom tags
-      # cloud_provider = "aliyun" # aliyun/tencent/aws/hwcloud/azure, probe automatically if not set
+      # cloud_provider = "aliyun" # aliyun/tencent/aws/hwcloud/azure/volcengine, probe automatically if not set
       # some_tag = "some_value"
       # more_tag = "some_other_value"
       # ...
@@ -78,6 +81,7 @@ In general, the host object is turned on by default and does not need to be conf
       # aws = "zzz"
       # azure = ""
       # Hwcloud = ""
+      # volcengine = ""
     
     ```
     
@@ -192,7 +196,7 @@ In general, the host object is turned on by default and does not need to be conf
 
 ### Turn on Cloud Synchronization {#cloudinfo}
 
-Datakit turns on cloud synchronization by default, and currently supports Alibaba Cloud/Tencent Cloud/AWS/Huawei Cloud/Microsoft Cloud. You can specify the cloud vendor explicitly by setting the cloud_provider tag, or you can detect it automatically by Datakit:
+Datakit turns on cloud synchronization by default, and currently supports Alibaba Cloud/Tencent Cloud/AWS/Huawei Cloud/Microsoft Cloud/Volcano Engine. You can specify the cloud vendor explicitly by setting the cloud_provider tag, or you can detect it automatically by Datakit:
 
 ```toml
 [inputs.hostobject.tags]
@@ -286,6 +290,7 @@ The basic structure of the `message` field is as follows:
     "conntrack": ...,
     "filefd": ...,
     "election": ...,
+    "config_file": ...,
   },
 
   "collectors": [ # Operation of each collector
@@ -394,6 +399,15 @@ The basic structure of the `message` field is as follows:
 | `allocated`    | Number of allocated file handles                                 | int   |
 | `maximum`      | Maximum number of file handles (deprecated, replaced by `maximum_mega`) | int   |
 | `maximum_mega` | Maximum number of file handles in M(10^6)                     | float |
+
+#### `host.config_file` {#host-config-file}
+
+config_file is a map of `file-path`: `file-content`, with the following meaning for each field:
+
+| 字段名         | 描述                                                 | 类型  |
+| -------------- | ---------------------------------------------------- | :---: |
+| `file-path`    | The absolute path of the configuration file           |  string  |
+| `file-content` | The contents of the configuration file                |  string  |
 
 #### Collector Performance Field List {#inputs-stats}
 

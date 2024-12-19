@@ -306,6 +306,12 @@ spec:
 
     **示例**: `{"logging":"abc.p","metric":"xyz.p"}`
 
+- **ENV_PIPELINE_DISABLE_HTTP_REQUEST_FUNC**
+
+    禁用 Pipeline `http_request` 函数
+
+    **字段类型**: Boolean
+
 - **~~ENV_GLOBAL_TAGS~~**
 
     同 ENV_GLOBAL_HOST_TAGS，将废弃
@@ -675,7 +681,7 @@ spec:
 
     **字段类型**: String
 
-    **示例**: appid-1, appid-2
+    **示例**: /appid-1,/appid-2
 
 - **ENV_HTTP_ALLOWED_CORS_ORIGINS**
 
@@ -970,19 +976,11 @@ spec:
 ### DCA 相关环境变量 {#env-dca}
 
 <!-- markdownlint-disable MD046 -->
-- **ENV_DCA_LISTEN**
+- **ENV_DCA_WEBSOCKET_SERVER**
 
-    可修改改地址，使得 [DCA](dca.md) 客户端能管理该 Datakit，一旦开启 ENV_DCA_LISTEN 即默认启用 DCA 功能
+    DataKit 可以连接该地址，使得 DCA 可以进行管理该 DataKit，一旦开启 ENV_DCA_WEBSOCKET_SERVER 即默认启用 DCA 功能
 
     **字段类型**: URL
-
-    **默认值**: localhost:9531
-
-- **ENV_DCA_WHITE_LIST**
-
-    配置 DCA 白名单，以英文逗号分隔
-
-    **字段类型**: List
 <!-- markdownlint-enable -->
 
 ### Refer Table 有关环境变量 {#env-reftab}
