@@ -18,6 +18,7 @@
 |:-----------|:-------|:-----|:----------------|
 | name | string | Y | 仪表板名称<br>允许为空: False <br>最大长度: 128 <br> |
 | desc | string |  | 描述<br>例子: 描述1 <br>允许为空: False <br>允许为空字符串: True <br>最大长度: 2048 <br> |
+| customIdentityId | string |  | 标识id   --2024.12.25 新增标识id<br>例子: xxxx <br>允许为空: False <br>允许为空字符串: True <br>最大长度: 128 <br> |
 | extend | json |  | 仪表板的额外数据, 默认为{}<br>例子: {} <br>允许为空: False <br> |
 | mapping | array |  | 视图变量的字段映射信息，默认为 []<br>例子: [{'class': 'host_processes', 'field': 'create_time', 'mapping': 'username', 'datasource': 'object'}] <br>允许为空: False <br> |
 | tagNames | array |  | 关联的 tag 列表<br>允许为空: False <br> |
@@ -40,6 +41,7 @@
 |-----------------------|----------|----|------------------------|
 |title             |string | 必须 |  视图标题名称 |
 |summary             |string |  |  模板的摘要信息 |
+|customIdentityId    |string |  |  模版标识id  --2024.12.25 新增标识id |
 |dashboardType       |string |  |  已废弃，默认为`CUSTOM` |
 |dashboardExtend     |json |  |  视图额外数据信息 |
 |dashboardMapping    |array[json] |  |  视图变量的字段映射配置列表 |
