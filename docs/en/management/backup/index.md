@@ -345,7 +345,7 @@ After the rule is created, it will automatically enter the forwarding rule list:
 
 Go back to the Data Forward page, which defaults to the **Forward Rules** tab. First, select a rule from the dropdown menu. You can customize the time range for the query, selecting multiple dates and defining a start and end time. The time will be accurate to the hour:
 
-![](img/rule-update-3.png)
+![](img/rule-update-3-1.png)
 
 **Note**:
 
