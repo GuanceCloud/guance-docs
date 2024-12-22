@@ -58,14 +58,14 @@ Collect indicators, objects and log data of container and Kubernetes and report 
       ]
     
       enable_container_metric = true
-      enable_k8s_metric = true
-      enable_pod_metric = false
-      enable_k8s_event = true
-      enable_k8s_node_local = true
+      enable_k8s_metric       = true
+      enable_pod_metric       = false
+      enable_k8s_event        = true
+      enable_k8s_node_local   = true
     
       ## Add resource Label as Tags (container use Pod Label), need to specify Label keys.
       ## e.g. ["app", "name"]
-      # extract_k8s_label_as_tags_v2 = []
+      # extract_k8s_label_as_tags_v2            = []
       # extract_k8s_label_as_tags_v2_for_metric = []
     
       ## Containers logs to include and exclude, default collect all containers. Globs accepted.
@@ -84,15 +84,21 @@ Collect indicators, objects and log data of container and Kubernetes and report 
       ## Set true to enable election for k8s metric collection
       election = true
     
-      logging_enable_multiline = true
-      logging_auto_multiline_detection = true
+      logging_enable_multiline             = true
+      logging_auto_multiline_detection     = true
       logging_auto_multiline_extra_patterns = []
+    
+      ## Only retain the fields specified in the whitelist.
+      logging_field_white_list = []
     
       ## Removes ANSI escape codes from text strings.
       logging_remove_ansi_escape_codes = false
     
       ## Whether to collect logs from the begin of the file.
       logging_file_from_beginning = false
+    
+      ## The maximum allowed number of open files, default is 500. If it is -1, it means no limit.
+      # logging_max_open_files = 500
     
       ## Search logging interval, default "60s"
       #logging_search_interval = ""
@@ -419,15 +425,25 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Default**: false
     
-    - **ENV_INPUT_CONTAINER_LOGGING_FORCE_FLUSH_LIMIT**
+    - **ENV_INPUT_CONTAINER_LOGGING_MAX_OPEN_FILES**
     
-        If there are consecutive N empty collections, the existing data will be uploaded to prevent memory occupation caused by accumulated
+        The maximum allowed number of open files. If it is set to -1, it means there is no limit.
     
         **Type**: Int
     
-        **input.conf**: `logging_force_flush_limit`
+        **input.conf**: `logging_max_open_files`
     
-        **Default**: 5
+        **Default**: 500
+    
+    - **ENV_INPUT_CONTAINER_LOGGING_FIELD_WHITE_LIST**
+    
+        "Only retain the fields specified in the whitelist."
+    
+        **Type**: List
+    
+        **input.conf**: `logging_field_white_list`
+    
+        **Example**: '["service","container_id"]'
     
     - **ENV_INPUT_CONTAINER_CONTAINER_MAX_CONCURRENT**
     
@@ -1122,6 +1138,7 @@ The object of containers, only supported Running status.
 |`mem_usage`|The usage of the memory.|int|B|
 |`mem_used_percent`|The percentage usage of the memory is calculated based on the capacity of host machine.|float|percent|
 |`mem_used_percent_base_limit`|The percentage usage of the memory is calculated based on the limit.|float|percent|
+|`message`|Object details|string|-|
 |`network_bytes_rcvd`|Total number of bytes received from the network (only count the usage of the main process in the container, excluding loopback).|int|B|
 |`network_bytes_sent`|Total number of bytes send to the network (only count the usage of the main process in the container, excluding loopback).|int|B|
 
@@ -1186,6 +1203,7 @@ The object of the Kubernetes DaemonSet.
 
 | Tag | Description |
 |  ----  | --------|
+|`<all_selector_matchlabels>`|Represents the selector.matchLabels for Kubernetes resources|
 |`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`daemonset_name`|Name must be unique within a namespace.|
 |`name`|The UID of DaemonSet.|
@@ -1225,6 +1243,7 @@ The object of the Kubernetes Deployment.
 
 | Tag | Description |
 |  ----  | --------|
+|`<all_selector_matchlabels>`|Represents the selector.matchLabels for Kubernetes resources|
 |`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`deployment_name`|Name must be unique within a namespace.|
 |`name`|The UID of Deployment.|
@@ -1320,6 +1339,7 @@ The object of the Kubernetes Job.
 
 | Tag | Description |
 |  ----  | --------|
+|`<all_selector_matchlabels>`|Represents the selector.matchLabels for Kubernetes resources|
 |`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`job_name`|Name must be unique within a namespace.|
 |`name`|The UID of Job.|
@@ -1422,6 +1442,7 @@ The object of the Kubernetes PersistentVolumeClaim.
 
 | Tag | Description |
 |  ----  | --------|
+|`<all_selector_matchlabels>`|Represents the selector.matchLabels for Kubernetes resources|
 |`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`name`|The UID of PersistentVolume.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -1511,6 +1532,7 @@ The object of the Kubernetes ReplicaSet.
 
 | Tag | Description |
 |  ----  | --------|
+|`<all_selector_matchlabels>`|Represents the selector.matchLabels for Kubernetes resources|
 |`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`deployment`|The name of the Deployment which the object belongs to.|
 |`name`|The UID of ReplicaSet.|
@@ -1551,6 +1573,7 @@ The object of the Kubernetes Service.
 
 | Tag | Description |
 |  ----  | --------|
+|`<all_selector>`|Represents the selector for Kubernetes resources|
 |`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`name`|The UID of Service|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -1589,6 +1612,7 @@ The object of the Kubernetes StatefulSet.
 
 | Tag | Description |
 |  ----  | --------|
+|`<all_selector_matchlabels>`|Represents the selector.matchLabels for Kubernetes resources|
 |`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`name`|The UID of StatefulSet.|
 |`namespace`|Namespace defines the space within each name must be unique.|
