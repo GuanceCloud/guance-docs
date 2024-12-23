@@ -6,7 +6,7 @@ icon: zy/integrations
 
 ---
 
-Guance has the ability of full stack data collection, and now supports about 300 integrations.
+Guance has the ability of full stack data collection, and now supports about 310 integrations.
 
 <!-- markdownlint-disable MD046 MD037 MD009 MD010 -->
 <html lang="en">
@@ -9017,6 +9017,66 @@ Guance has the ability of full stack data collection, and now supports about 300
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../volcengine_alb"
+  				data-tags="Volcengine"
+  				data-name="Volcengine ALB"
+  				data-summary="Collect ALB metrics data of Volcengine"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/volcengine_alb/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Volcengine ALB</div>
+                            <div title="Collect ALB metrics data of Volcengine" class="fth-integration-desc">Collect ALB metrics data of Volcengine</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../volcengine_clb"
+  				data-tags="Volcengine"
+  				data-name="Volcengine CLB"
+  				data-summary="Collect CLB metrics data of Volcengine"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/volcengine_clb/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Volcengine CLB</div>
+                            <div title="Collect CLB metrics data of Volcengine" class="fth-integration-desc">Collect CLB metrics data of Volcengine</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../volcengine_ecs"
   				data-tags="Volcengine"
   				data-name="Volcengine ECS"
@@ -9122,6 +9182,36 @@ Guance has the ability of full stack data collection, and now supports about 300
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Volcengine MySQL</div>
                             <div title="Volcengine MySQL indicators display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc." class="fth-integration-desc">Volcengine MySQL indicators display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../volcengine_nas"
+  				data-tags="Volcengine"
+  				data-name="Volcengine NAS File Storage"
+  				data-summary="Collect Volcengine NAS metric data"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/volcengine_nas/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Volcengine NAS File Storage</div>
+                            <div title="Collect Volcengine NAS metric data" class="fth-integration-desc">Collect Volcengine NAS metric data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>

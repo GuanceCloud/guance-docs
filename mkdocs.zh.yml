@@ -72,7 +72,7 @@ extra:
 
 plugins:
   awesome-pages: {}
-  section-index: {}
+  # section-index: {}
   git-revision-date-localized:
     type: custom
     custom_format: '%Y-%m-%d'
