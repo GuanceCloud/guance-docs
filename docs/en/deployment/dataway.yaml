@@ -51,7 +51,7 @@ spec:
               topologyKey: kubernetes.io/hostname
 
       containers:
-      - image: pubrepo.jiagouyun.com/dataflux/dataway:1.6.2
+      - image: pubrepo.jiagouyun.com/dataflux/dataway:1.7.0
         imagePullPolicy: IfNotPresent
         name: dataway
         env:
@@ -88,6 +88,7 @@ spec:
       volumes:
       - hostPath:
           path: /root/dataway_cache
+          type: DirectoryOrCreate
         name: dataway-cache
 ---
 

@@ -41,91 +41,92 @@ DataWay 是观测云的数据网关，采集器上报数据到观测云都需要
 
         ```yaml
         # ============= DATAWAY CONFIG =============
-
+        
         # Dataway UUID, we can get it on during create a new dataway
         uuid:
-
+        
         # It's the workspace token, most of the time, it's
         # system worker space's token.
         token:
-
+        
         # secret_token used under sinker mode, and to check if incomming datakit
         # requests are valid.
         secret_token:
-
+        
         # If __internal__ token allowed? If ok, the data/request will direct to
         # the workspace with the token above
         enable_internal_token: false
-
+        
         # is empty token allowed? If ok, the data/request will direct to
         # the workspace with the token above
         enable_empty_token: false
-
+        
         # Is dataway cascaded? For cascaded Dataway, it's remote_host is
         # another Dataway and not Kodo.
         cascaded: false
-
+        
         # kodo(next dataway) related configures
         remote_host:
         http_timeout: 30s
-
+        
         http_max_idle_conn_perhost: 0 # default to CPU cores
         http_max_conn_perhost: 0      # default no limit
-
+        
         insecure_skip_verify: false
         http_client_trace: false
+        max_conns_per_host: 0
         sni: ""
-
+        
         # dataway API configures
         bind: 0.0.0.0:9528
-
+        
         # disable 404 page
         disable_404page: false
-
+        
         # dataway TLS file path
         tls_crt:
         tls_key:
-
+        
         # enable pprof
         pprof_bind: localhost:6060
-
+        
         api_limit_rate : 100000         # 100K
         max_http_body_bytes : 67108864  # 64MB
-        copy_buffer_drop_size : 8388608 # 8MB, if copy buffer memory larger than this, this memory released
+        copy_buffer_drop_size : 262144  # 256KB, if copy buffer memory larger than this, this memory released
         reserved_pool_size: 4096        # reserved pool size for better GC
-
+        
         within_docker: false
-
+        
         log_level: info
         log: log
         gin_log: gin.log
-
+        
         cache_cfg:
           # cache disk path
           dir: "disk_cache"
-
+        
           # disable cache
           disabled: false
-
+        
           clean_interval: "10s"
-
+        
           # in MB, max single data package size in disk cache, such as HTTP body
           max_data_size: 100
-
+        
           # in MB, single disk-batch(single file) size
           batch_size: 128
-
+        
           # in MB, max disk size allowed to cache data
           max_disk_size: 65535
-
+        
           # expire duration, default 7 days
           expire_duration: "168h"
-
+        
         prometheus:
           listen: "localhost:9090"
           url: "/metrics"
           enable: true
-
+        
         #sinker:
         #  etcd:
         #    urls:
@@ -293,6 +294,8 @@ Dataway 在 Kubernetes 环境中运行时，支持如下环境变量。
 | DW_SNI                        | string    | N        | 指定当前 Dataway SNI 信息[:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0)                                       |          |
 | DW_DISABLE_404PAGE            | boolean   | N        | 禁用 404 页面[:octicons-tag-24: Version-1.6.1](dataway-changelog.md#cl-1.6.1)                                                   |          |
 
+[^1]: 该限制用来避免 Dataway 容器/Pod 运行时，受系统限制，只能使用大约 20000 个连接。增加限制后，会影响 Dataway 数据上传的效率。在 Dataway 流量大的时候，可以考虑增加单个 Dataway 的 CPU 数量，或者水平扩容 Dataway 实例。
+
 ##### HTTP TLS 设置 {#http-tls}
 
 要生成一个有效期为一年的 TLS 证书，您可以使用以下 OpenSSL 命令：
@@ -409,10 +412,9 @@ curl: (7) Failed to connect to localhost port 9528 after 6 ms: Couldn't connect 
 
 [:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0)
 
-| Env                         | 类型 | 是否必需 | 说明                                                                           | 取值示例 |
-| ---                         | ---  | ---      | ---                                                                            | ---      |
-| DW_DW_COPY_BUFFER_DROP_SIZE | int  | N        | 单个超过指定大小（单位字节）的 buffer 会立即清除，避免消耗太多内存。默认值 8MB | 8388608  |
-| DW_RESERVED_POOL_SIZE       | int  | N        | 内存池基础大小，默认 4096                                                      | 4096     |
+| Env                      | 类型 | 是否必需 | 说明                                                                                       | 取值示例 |
+| ---                      | ---  | ---      | ---                                                                                        | ---      |
+| DW_COPY_BUFFER_DROP_SIZE | int  | N        | 单个超过指定大小（单位字节）的 HTTP body buffer 会立即清除，避免消耗太多内存。默认值 256KB | 524288   |
 
 ## Dataway API 列表 {#apis}
 
@@ -647,11 +649,13 @@ watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
 |SUMMARY|`dataway_http_api_elapsed_seconds`|`api,method,status`|API request latency|
 |SUMMARY|`dataway_http_api_body_buffer_utilization`|`api`|API body buffer utillization(Len/Cap)|
 |SUMMARY|`dataway_http_api_body_copy`|`api`|API body copy|
+|SUMMARY|`dataway_http_api_resp_size_bytes`|`api,method,status`|API response size|
 |SUMMARY|`dataway_http_api_req_size_bytes`|`api,method,status`|API request size|
 |COUNTER|`dataway_http_api_total`|`api,status`|API request count|
 |COUNTER|`dataway_http_api_body_too_large_dropped_total`|`api,method`|API request too large dropped|
 |COUNTER|`dataway_http_api_with_inner_token`|`api,method`|API request with inner token|
 |COUNTER|`dataway_http_api_dropped_total`|`api,method`|API request dropped when sinker rule match failed|
+|COUNTER|`dataway_syncpool_stats`|`name,type`|sync.Pool usage stats|
 |COUNTER|`dataway_http_api_copy_body_failed_total`|`api`|API copy body failed count|
 |COUNTER|`dataway_http_api_signed_total`|`api,method`|API signature count|
 |SUMMARY|`dataway_http_api_cached_bytes`|`api,cache_type,method,reason`|API cached body bytes|
@@ -665,6 +669,7 @@ watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
 |GAUGE|`dataway_last_heartbeat_time`|`N/A`|Dataway last heartbeat with Kodo timestamp|
 |GAUGE|`dataway_cpu_usage`|`N/A`|Dataway CPU usage(%)|
 |GAUGE|`dataway_mem_stat`|`type`|Dataway memory usage stats|
+|SUMMARY|`dataway_http_api_copy_buffer_drop_total`|`max`|API copy buffer dropped(too large cached buffer) count|
 |GAUGE|`dataway_open_files`|`N/A`|Dataway open files|
 |GAUGE|`dataway_cpu_cores`|`N/A`|Dataway CPU cores|
 |GAUGE|`dataway_uptime`|`N/A`|Dataway uptime|
@@ -676,6 +681,7 @@ watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
 |SUMMARY|`dataway_httpcli_tls_handshake_seconds`|`server`|HTTP TLS handshake cost|
 |SUMMARY|`dataway_httpcli_http_connect_cost_seconds`|`server`|HTTP connect cost|
 |SUMMARY|`dataway_httpcli_got_first_resp_byte_cost_seconds`|`server`|Got first response byte cost|
+|SUMMARY|`http_latency`|`api,server`|HTTP latency|
 |COUNTER|`dataway_httpcli_tcp_conn_total`|`server,remote,type`|HTTP TCP connection count|
 |COUNTER|`dataway_httpcli_conn_reused_from_idle_total`|`server`|HTTP connection reused from idle count|
 |SUMMARY|`dataway_httpcli_conn_idle_time_seconds`|`server`|HTTP connection idle time|
