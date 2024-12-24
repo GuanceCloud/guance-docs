@@ -8,7 +8,7 @@
 
 ### 服务关系图
 
-![](../img/resource-chart.png)
+<img src="../../img/resource-chart.png" width="70%" >
 
 1. 服务名：可选择所有相关的视图变量或具体的值；
 2. 颜色填充：包含请求数、P50 响应时间、P75 响应时间、P99 响应时间和错误率；
@@ -24,7 +24,7 @@
 
 ### 资源关系图
 
-![](../img/service-chart.png)
+<img src="../../img/service-chart.png" width="70%" >
 
 1. 服务名：可选择所有相关的视图变量或具体的值；
 2. 资源名：可选择所有相关的视图变量或具体的值；
