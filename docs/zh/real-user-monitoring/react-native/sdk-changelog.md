@@ -1,5 +1,5 @@
 # 更新日志
-## **0.3.8 (2024/12/24)**
+## **0.3.9 (2024/12/24)**
 
 * 为提升 React Android 兼容性，更改 Android React Native Bridge 部分由 Kotlin 语言为 Java
 * 适配 Android SDK ft-sdk [1.6.5](../android/sdk-changelog.md/#ft-sdk-1-6-5)
