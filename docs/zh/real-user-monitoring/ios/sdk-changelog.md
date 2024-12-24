@@ -11,7 +11,6 @@
    `FTLoggerConfig.logCacheLimitCount` 及 `FTRUMConfig.rumCacheLimitCount` 将失效，
    支持通过 `FTMobileConfig.dbDiscardType` 设置 db 丢弃策略、
    通过 `FTMobileConfig.dbCacheLimit` 设置 db 缓存限制大小
-4. 添加配置信息调试日志输出
 
 ## **1.5.7 (2024/12/04)** {#1-5-7}
 
