@@ -2,6 +2,16 @@
 
 ---
 
+## **1.5.8 (2024/12/23)** {#1-5-8}
+
+1. 增加 tvOS 支持
+2. 支持通过 `FTRUMConfig.rumCacheLimitCount` 来限制 RUM 最大缓存条目数，
+   支持通过 `FTRUMConfig.rumDiscardType` 设置丢弃策略
+3. 支持通过 `FTMobileConfig.enableLimitWithDbSize` 限制总缓存大小功能，开启之后
+   `FTLoggerConfig.logCacheLimitCount` 及 `FTRUMConfig.rumCacheLimitCount` 将失效，
+   支持通过 `FTMobileConfig.dbDiscardType` 设置 db 丢弃策略、
+   通过 `FTMobileConfig.dbCacheLimit` 设置 db 缓存限制大小
+
 ## **1.5.7 (2024/12/04)** {#1-5-7}
 
 1. 支持通过 `FTRUMConfig.freezeDurationMs` 设置卡顿检测阀值
