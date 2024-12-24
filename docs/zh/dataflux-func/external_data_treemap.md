@@ -1,32 +1,6 @@
-# 外部函数响应结构例子
+# 拓扑图数据结构说明
 
-```python
-
-@DFF.API('函数名', category='guance.dataQueryFunc')
-def whytest_topology_test():
-    now = int(time.time()) * 1000
-    # 此处的 data 就是下文中「ServiceMap 服务关系图,ResourceMap 资源关系图 」的完整结构
-    data = {}
-    return {
-    "content": [
-      {
-        "series": [
-          {
-            "columns": ["time", "data"],
-            "values": [
-              now, json.dumps(data)
-            ],
-            "total_hits": 1
-          }
-        ]
-      }
-    ]
-  }
-
-
-```
-
-# 拓扑图数据返回结构
+字段说明
 
 | 参数                   | 类型 | 是否必须 | 说明                                                                                    |
 | ---------------------- | ---- | -------- | --------------------------------------------------------------------------------------- |
@@ -43,7 +17,42 @@ def whytest_topology_test():
 
 ## ServiceMap 服务关系图
 
-- 拓扑图以圆形节点的形式展示，节点名称作为唯一标识，用于展示节点信息及节点连接关系。
+拓扑图以圆形节点的形式展示，节点名称作为唯一标识，用于展示节点信息及节点连接关系。
+
+```json
+{
+  "services": [
+    {
+      "data": {
+        "__size": 10,
+        "__fill": 10,
+        "fieldA": "1.0",
+        "fieldB": "test"
+      },
+      "name": "demo_web",
+      "type": "web"
+    },
+    {
+      "data": {
+        "__size": 10,
+        "__fill": 10,
+        "fieldA": "1.0",
+        "fieldB": "test"
+      },
+      "name": "demo_framework",
+      "type": "framework"
+    }
+  ],
+  "maps": [
+    {
+      "source": "demo_web",
+      "target": "demo_framework"
+    }
+  ]
+}
+```
+
+字段说明
 
 | 参数                      | 类型          | 是否必须 | 说明                                                                                                                                    |
 | ------------------------- | ------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -62,7 +71,52 @@ def whytest_topology_test():
 
 ## ResourceMap 资源关系图
 
-- 拓扑图以卡片节点的形式展示，连接关系应满足有且只有一个中心节点，`serviceResource` 是卡片节点详情列表（`service:resource` 应保持唯一性，其作为卡片节点的唯一标识），`maps` 是中心节点和其他点的连接关系，中心节点指向的位于中心节点右侧，指向中心节点的，位于中心节点左侧。
+拓扑图以卡片节点的形式展示，连接关系应满足有且只有一个中心节点，`serviceResource` 是卡片节点详情列表（`service:resource` 应保持唯一性，其作为卡片节点的唯一标识），`maps` 是中心节点和其他点的连接关系，中心节点指向的位于中心节点右侧，指向中心节点的，位于中心节点左侧。
+
+```json
+{
+  "serviceResource": [
+    {
+      "data": {
+        "__fill": 10,
+        "avg_per_second_title": "AAA",
+        "avg_per_second": 1,
+        "p99_title": "AAA",
+        "p99": 1,
+        "error_rate_title": "AAA",
+        "error_rate": 1
+      },
+      "service": "demo_web",
+      "resource": "demo_web_resource",
+      "source_type": "web"
+    },
+    {
+      "data": {
+        "__fill": 10,
+        "avg_per_second_title": "AAA",
+        "avg_per_second": 1,
+        "p99_title": "AAA",
+        "p99": 1,
+        "error_rate_title": "AAA",
+        "error_rate": 1
+      },
+      "service": "demo_framework",
+      "resource": "demo_framework_resource",
+      "source_type": "framework"
+    }
+  ],
+  "maps": [
+    {
+      "source": "demo_web",
+      "source_resource": "demo_web_resource",
+      "target": "demo_framework",
+      "target_resource": "demo_framework_resource"
+    }
+  ]
+}
+```
+
+字段说明
 
 | 参数                                         | 类型   | 是否必须 | 说明                                                                                                                            |
 | -------------------------------------------- | ------ | -------- | ------------------------------------------------------------------------------------------------------------------------------- |
@@ -84,3 +138,31 @@ def whytest_topology_test():
 | maps[#].source_resource                      | string | 必须     | 同 serviceResource[#].resource                                                                                                  |
 | maps[#].target                               | string | 必须     | 同 serviceResource[#].service                                                                                                   |
 | maps[#].target_resource                      | string | 必须     | 同 serviceResource[#].resource                                                                                                  |
+
+# 外部函数响应结构例子
+
+```python
+
+@DFF.API('函数名', category='guance.dataQueryFunc')
+def whytest_topology_test():
+    now = int(time.time()) * 1000
+    # 此处的 data 就是上文中「ServiceMap 服务关系图,ResourceMap 资源关系图 」的完整结构
+    data = {}
+    return {
+    "content": [
+      {
+        "series": [
+          {
+            "columns": ["time", "data"],
+            "values": [
+              now, json.dumps(data)
+            ],
+            "total_hits": 1
+          }
+        ]
+      }
+    ]
+  }
+
+
+```
