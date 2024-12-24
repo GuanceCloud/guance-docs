@@ -20,7 +20,7 @@
 
 ## 安装
 
-![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/ios/version.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=iOS&color=brightgreen&query=$.ios_api_support&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) 
+![Platform](https://img.shields.io/badge/platform-ios%7Ctvos-lightgrey?link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/ios/version.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=iOS&color=brightgreen&query=$.ios_api_support&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![tvOS](https://img.shields.io/badge/tvOS-api%3E%3D%20tvOS%2012.0-brightgreen?link=https://github.com/GuanceCloud/datakit-ios)
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-ios](https://github.com/GuanceCloud/datakit-ios)
 
@@ -230,9 +230,9 @@
 | syncSleepTime | int | 否 | 设置同步间歇时间。范围 [0,5000]，默认不设置 |
 | enableDataIntegerCompatible | BOOL | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题 。 |
 | compressIntakeRequests | BOOL | 否 | 对同步数据进行压缩，SDK 1.5.6 以上版本支持这个参数 |
-| enableLimitWithDbSize       | BOOL             | 否       | 开启使用 DB 限制总缓存大小功能。<br>**注意：**开启之后 `FTLoggerConfig.logCacheLimitCount` 及 `FTRUMConfig.rumCacheLimitCount` 将失效。 |
-| dbCacheLimit                | long             | 否       | DB 缓存限制大小。范围 [30MB,)，默认 100MB，单位 byte                    |
-| dbDiscardType               | FTDBCacheDiscard | 否       | 设置数据库中数据丢弃规则。默认 `FTDBDiscard` <br/>`FTDBDiscard`当数据数量大于最大值时，丢弃追加数据。`FTDBDiscardOldest`当数据大于最大值时，丢弃老数据。 |
+| enableLimitWithDbSize       | BOOL             | 否       | 开启使用 DB 限制总缓存大小功能。<br>**注意：**开启之后 `FTLoggerConfig.logCacheLimitCount` 及 `FTRUMConfig.rumCacheLimitCount` 将失效。SDK 1.5.8 以上版本支持该参数 |
+| dbCacheLimit                | long             | 否       | DB 缓存限制大小。范围 [30MB,)，默认 100MB，单位 byte，SDK 1.5.8 以上版本支持该参数 |
+| dbDiscardType               | FTDBCacheDiscard | 否       | 设置数据库中数据丢弃规则。默认 `FTDBDiscard` <br/>`FTDBDiscard`当数据数量大于最大值时，丢弃追加数据。`FTDBDiscardOldest`当数据大于最大值时，丢弃老数据。SDK 1.5.8 以上版本支持该参数 |
 
 ### RUM 配置 {#rum-config}
 
@@ -287,8 +287,8 @@
 | monitorFrequency | FTMonitorFrequency | 否 | 视图的性能监控采样周期。配置 `monitorFrequency` 来设置 **View** 监控项信息的采样周期。`FTMonitorFrequencyDefault`500ms (默认)，`FTMonitorFrequencyFrequent`100ms，`FTMonitorFrequencyRare`1000ms。 |
 | enableResourceHostIP | BOOL | 否 | 是否采集请求目标域名地址的 IP。`>= iOS 13` 下支持 |
 | globalContext | NSDictionary | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
-| rumCacheLimitCount | int                        | 否 | RUM 最大缓存量。 默认 100_000 |
-| rumDiscardType | FTRUMCacheDiscard          | 否 | 设置 RUM 丢弃规则。默认 `FTRUMCacheDiscard` <br/>`FTRUMCacheDiscard`当 RUM 数据数量大于最大值时，丢弃追加数据。`FTRUMDiscardOldest`当 RUM 数据大于最大值时，丢弃老数据。 |
+| rumCacheLimitCount | int                        | 否 | RUM 最大缓存量。 默认 100_000，SDK 1.5.8 以上版本支持该参数 |
+| rumDiscardType | FTRUMCacheDiscard          | 否 | 设置 RUM 丢弃规则。默认 `FTRUMCacheDiscard` <br/>`FTRUMCacheDiscard`当 RUM 数据数量大于最大值时，丢弃追加数据。`FTRUMDiscardOldest`当 RUM 数据大于最大值时，丢弃老数据。SDK 1.5.8 以上版本支持该参数 |
 
 ### Log 配置 {#log-config}
 
