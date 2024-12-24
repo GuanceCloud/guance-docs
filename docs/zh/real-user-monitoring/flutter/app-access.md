@@ -199,8 +199,9 @@ String customDynamicValue = prefs.getString("customDynamicValue")?? "not set";
 | enableLinkRumData | bool | 否 | 是否与 `RUM` 关联 |
 | enableCustomLog | bool | 否 | 是否开启自定义日志 |
 | logLevelFilters | List<FTLogStatus> | 否 | 日志等级过滤 |
-| logCacheLimitCount | List<FTLogStatus> | 否 | 本地缓存最大日志条目数量限制 [1000,)，日志越大，代表磁盘缓存压力越大，默认 5000。 0.5.0 以上版本支持 |
-| discardStrategy | enum FTLogCacheDiscard | 否 | 设置日志达到限制上限以后的日志丢弃规则，默认`FTLogCacheDiscard.discard`，`FTLogCacheDiscard.discard` 为丢弃追加数据，`FTLogCacheDiscard.discardOldest` 丢弃老数据 |
+| logCacheLimitCount | int | 否 | 本地缓存最大日志条目数量限制 [1000,)，日志越大，代表磁盘缓存压力越大，默认 5000 |
+| discardStrategy | enum FTLogCacheDiscard | 否 | 设置日志达到限制上限以后的日志丢弃规则。默认`FTLogCacheDiscard.discard`，`discard` 丢弃追加数据, `discardOldest` 丢弃老数据 |
+
 
 ### Trace 配置 {#trace-config}
 

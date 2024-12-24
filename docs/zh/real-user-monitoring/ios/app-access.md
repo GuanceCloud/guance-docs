@@ -322,8 +322,8 @@
 | printCustomLogToConsole | BOOL | 否 | 设置是否将自定义日志输出到控制台。默认`NO`，自定义日志[输出格式](#printCustomLogToConsole) |
 | logLevelFilter | NSArray | 否 | 设置要采集的自定义 log 的状态数组。默认全采集 |
 | enableLinkRumData | BOOL | 否 | 是否与 RUM 数据关联。默认`NO` |
-| globalContext | NSDictionary | 否 | 添加 log 自定义标签。添加规则请查阅[此处](#key-conflict) |
-| logCacheLimitCount | int | 否 | 本地缓存最大日志条目数量限制 [1000,)，日志越大，代表磁盘缓存压力越大，默认 5000  |
+| globalContext | NSDictionary |     否 | 添加 log 自定义标签。添加规则请查阅[此处](#key-conflict) |
+| logCacheLimitCount | int | 否 | 本地缓存最大日志条目数量限制 [1000,)，日志越大，代表磁盘缓存压力越大，默认 5000 |
 | discardType | FTLogCacheDiscard | 否 | 设置日志达到限制上限以后的日志丢弃规则。默认 `FTDiscard` <br/>`FTDiscard`当日志数据数量大于最大值（5000）时，丢弃追加数据。`FTDiscardOldest`当日志数据大于最大值时,丢弃老数据。 |
 
 ### Trace 配置 {#trace-config}

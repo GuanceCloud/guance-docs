@@ -8,6 +8,9 @@
 </div>
 
 ## **ft-sdk** {#ft-sdk}
+### **1.6.5 (2024/12/24)** {#ft-sdk-1-6-5}
+1. 弱化 Webview 在 AOP 过程中参数为 null 的提示
+2. 优化应用在后台长 Session 更新的机制
 ### **1.6.4 (2024/12/03)** {#ft-sdk-1-6-4}
 1. 优化 App 启动时间在 API 24 以上的统计
 2. 支持通过 `FTRUMConfig.setEnableTrackAppUIBlock(true, blockDurationMs)` 设置检测时间范围
