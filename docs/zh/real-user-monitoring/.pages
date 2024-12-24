@@ -3,7 +3,7 @@ nav:
   - 'Web 监测': web
   - '小程序监测': miniapp
   - 'Android 监测': android
-  - 'iOS 监测': ios
+  - 'iOS/tvOS 监测': ios
   - 'React Native 监测': react-native
   - 'Flutter 监测': flutter
   - 'UniApp 监测': uni-app
