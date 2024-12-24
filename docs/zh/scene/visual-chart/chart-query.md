@@ -28,8 +28,6 @@
 对不同[数据来源](#source)的数据进行查询，并通过选择聚合函数、分组标签、Label、筛选条件等进行图表展示。
 
 
-<img src="../../img/chart016.png" width="70%" >
-
 #### 数据来源 {#source}
 
 包括来自指标、日志、基础对象、资源目录、事件、应用性能、用户访问、安全巡检、网络、Profile、云账单的一系列数据组合。
@@ -199,7 +197,7 @@ UI 模式下支持选择聚合方式返回结果值。
 
 观测云支持切换到 DQL 模式，手动输入 DQL 语句进行图表查询。
 
-> DQL 是专为观测云开发的语言，一个图表同时支持多条 DQL 查询。更多详情，可参考 [DQL 查询](../../dql/query.md)。
+> 一个图表同时支持多条 DQL 查询。更多详情，可参考 [DQL 查询](../../dql/query.md)。
 
 <img src="../../img/chart021.png" width="80%" >
 
@@ -209,7 +207,7 @@ UI 模式下支持选择聚合方式返回结果值。
 
 PromQL 添加后默认形式为文本框输入。在此输入框，既可以输入 PromQL 简单查询也可以输入表达式查询。
 
-> 关于 PromQL，您也许想了解 [DQL 与其它几种查询语言的对比](../../dql/dql-vs-others.md#promql)；或前往 [PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/)了解更多相关知识。
+> 点击了解 [DQL 与其它几种查询语言的对比](../../dql/dql-vs-others.md#promql)；或前往 [PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/)。
 
 
 ### 添加数据源 {#func}

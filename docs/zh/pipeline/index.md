@@ -64,7 +64,7 @@ Pipeline 的主要特点包括：
 
 ![](img/1-pipeline-2.png)
 
-**注意**：Pipeline 文件创建以后，需要安装 DataKit 才会生效，DataKit 会定时从工作空间获取配置的 Pipeline 文件，默认时间为 1 分钟，可在 `conf.d/datakit.conf` 中修改。
+**注意**：Pipeline 文件创建以后，需要安装 DataKit 才会生效。DataKit 会定时从工作空间获取配置的 Pipeline 文件，默认时间为 1 分钟，可在 `conf.d/datakit.conf` 中修改。
 
 ```
 [pipeline]
@@ -75,8 +75,8 @@ Pipeline 的主要特点包括：
 1. 选择 Pipeline 类型；
 2. 选择数据类型，并添加过滤条件；
 3. 输入 Pipeline 名称，即自定义 Pipeline 文件名；
-4. 输入函数脚本，配置[解析规则](#config)；
-5. 进行样本解析测试；
+4. 提供测试样本；
+5. 输入函数脚本，配置[解析规则](#config)；
 6. 点击保存。
 
 
@@ -87,14 +87,8 @@ Pipeline 的主要特点包括：
 3. Pipeline 文件命名需避免重名。如必要，需了解 [Pipeline 脚本的存储、索引、匹配的逻辑](./use-pipeline/pipeline-category.md#script-store-index-match)。
 4. 每个数据类型只能设置一个默认 Pipeline，新建/导入时出现重复会弹出确认框，询问是否进行替换，已勾选为默认的 Pipeline，名称后会有一个 `default` 标识。
 
-### 定义解析规则 {#config}
 
-
-定义不同来源数据的解析规则，支持多种脚本函数，可通过右侧观测云提供的脚本函数列表直接查看其语法格式，如 `add_pattern()` 等。
-
-> 关于如何定义解析规则，可参考 [Pipeline 手册](./use-pipeline/index.md)。
-
-### 样本解析测试
+### 测试样本
 
 根据选择的数据类型，输入对应的数据，基于配置的解析规则进行测试。
 
@@ -106,11 +100,6 @@ Pipeline 的主要特点包括：
 
 > 更多详情，可参考 [Pipeline 各类别数据处理](./use-pipeline/pipeline-category.md)。
 
-
-
-### 开始测试 {#test}
-
-在 Pipeline 编辑页面，您可对已填写的解析规则进行测试，只需要在**样本解析测试**中输入数据进行测试，若解析规则不符合，则返回错误提示的结果。样本解析测试为非必填项，样本解析测试后，测试的数据同步保存。
 
 #### 一键获取样本
 
@@ -151,8 +140,25 @@ Pipeline 的主要特点包括：
     output_file = "/path/to/file"
   ```
 
+### 定义解析规则 {#config}
 
-#### 终端命令行调试
+
+定义不同来源数据的解析规则，支持多种脚本函数，可通过右侧观测云提供的脚本函数列表直接查看其语法格式，如 `add_pattern()` 等。
+
+> 关于如何定义解析规则，可参考 [Pipeline 手册](./use-pipeline/index.md)。
+
+
+
+
+#### 开始测试 {#test}
+
+在 Pipeline 编辑页面，您可对已填写的解析规则进行测试，只需要在**样本解析测试**中输入数据进行测试，若解析规则不符合，则返回错误提示的结果。样本解析测试为非必填项，样本解析测试后，测试的数据同步保存。
+
+
+
+
+
+## 终端命令行调试
 
 除了在观测云控制台调试 Pipeline 以外，您也可以通过终端命令行来调试 Pipeline。
 

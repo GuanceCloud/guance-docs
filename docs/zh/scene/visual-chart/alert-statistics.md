@@ -23,26 +23,19 @@
 
 ### 显示设置
 
-1. 显示项：即选择当前图表需要展示的部分，包括：
+:material-numeric-1-circle: 显示项：即选择当前图表需要展示的部分，包括：
 
-    - 全部
-    - 仅统计图
-    - 仅告警列表
+- 全部
+- 仅统计图
+- 仅告警列表
 
-2. 分页数量：即左侧图告警列表中显示的未恢复事件数量，可选范围包含 10 条、20 条、50 条、100 条；系统默认 50 条分页。
+:material-numeric-2-circle: 分页数量：即左侧图告警列表中显示的未恢复事件数量，可选范围包含 10 条、20 条、50 条、100 条；系统默认 50 条分页。
 
 
 
 ## 更多阅读
 
 <font size=2>
-
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 图表配置</font>](./chart-config.md)
-
-</div>
-
 
 
 
