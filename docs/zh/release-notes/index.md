@@ -30,8 +30,8 @@ icon: zy/release-notes
 
 ### OpenAPI 更新 {#openapi1225}
 
-1. 资源目录：支持获取资源目录列表，支持创建/修改/删除/导出资源查看器。
-2. 生成指标：支持列出指标列表，支持新建/修改/启用/禁用/删除指标。
+1. 资源目录：支持获取资源目录列表，支持[创建](../open-api/objc-set/create.md)/[修改](../open-api/objc-set/modify.md)/[删除](../open-api/objc-set/delete.md)/[导出](../open-api/objc-set/export.md)资源查看器。
+2. 生成指标：支持列出指标列表，支持[新建](../open-api/aggs-to-metric/add.md)/[修改](../open-api/aggs-to-metric/modify.md)/[启用/禁用](../open-api/aggs-to-metric/set-disable.md)/[删除](../open-api/aggs-to-metric/delete.md)指标。
 
 ### 功能更新 {#feature1225}
 
@@ -39,29 +39,31 @@ icon: zy/release-notes
 
 自动编写 [Pipeline](../pipeline/index.md)：传统的日志解析方式往往依赖于对规则的熟悉进行手动编写脚本，这不仅消耗大量时间，也容易出错，导致编写 Pipeline 的效率低下，无法及时响应和解决问题。为了提高效率并降低人工成本，本功能利用大模型的自然语言处理能力，辅助自动化解析日志内容，帮助开发人员在编写 Pipeline 时更加高效，精准地从大量日志中提取有价值的信息，简化数据流和处理过程。
 
-#### 云账单分析
-
-云账单场景视图、查看器新增消费货币类别展示。
 
 #### 监控
 
 AI 告警压缩合并：通过大模型对监控告警事件进行压缩合并，减少告警事件的冗余，特别是当系统在短时间内产生大量告警时。通过对告警事件的整合，确保运维人员在指定的时间周期内（如 10 分钟）仅接收到一条综合的告警信息，而非多条重复的告警信息。
 
+#### 云账单分析
+
+云账单场景视图、查看器新增消费货币类别展示。
+
+
 #### 场景
 
-1. 仪表板、内置视图新增标识 ID：仪表板、用户视图可通过标识 ID 确定唯一，图表内配置跳转链接时可通过标识 ID 定位仪表板或者用户视图。
+1. 仪表板、内置视图新增[标识 ID](../scene/dashboard/index.md#id)：仪表板、用户视图可通过标识 ID 确定唯一，图表内配置跳转链接时可通过标识 ID 定位仪表板或者用户视图。
 2. 查看器[自动刷新](../getting-started/function-details/explorer-search.md#refresh)逻辑调整：在时间组件中去除“暂停”按钮，刷新频率选项里新增 “off”，用户可按需关闭自动刷新功能，操作更简洁直观。同时取消个人设置中的“查看器自动刷新”开关，避免功能冗余，优化用户设置体验。
-3. 查看器新增函数：MD5() ，支持在查看器中查询脱敏方式为 MD5 加密的日志数据。
+3. 查看器新增函数：`MD5()`，支持在查看器中查询脱敏方式为 MD5 加密的日志数据。
 4. 图表优化：图表内支持获取 PromQL 指标名称做图例，可使用 `{{__name__}}` 配置指标名称做别名展示。
 
-<!--
+
 #### 指标
 
 [生成指标](../metrics/generate-metrics.md)优化：
 
 1. 将所有类型的生成指标整合至指标目录下，方便用户统一查看与管理。
 2. 支持对已有指标数据进行再聚合操作，以此生成全新指标，为数据分析提供更多维度。
--->
+
 #### 管理
 
 数据访问和敏感数据查看脱敏规则应用优化：优化多规则多角色组合叠加数据查看范围，若成员拥有多个角色最终数据访问的范围取规则内定义的范围合集，敏感数据查看脱敏规则同理。
@@ -79,17 +81,17 @@ AI 告警压缩合并：通过大模型对监控告警事件进行压缩合并�
     - 新增“登录类型”列，支持区分默认登录成员和 SSO 登录成员，并支持以登录类型进行筛选；
     - 针对 SSO 登录成员，支持编辑“其他属性”字段，可自定义属性信息。此类信息在发送告警时，会同步到 Webhook 对外以及对应的事件内容区域。
 
-3. 数据存储策略调整：主存储引擎为火山引擎的工作空间，索引配置存储策略调整为：标准存储、低频存储、归档存储三项，可分别配置热数据、低频数据、归档数据存储时长。同时，若主存储引擎为火山引擎，在观测云控制台新增索引时，存储策略同步调整为：标准存储、低频存储、归档存储三项。
+3. 主存储引擎为火山引擎的工作空间，链路、日志和自定义日志索引的存储策略调整为：标准存储、低频存储、归档存储三项，可分别配置热数据、低频数据、归档数据存储时长。同时，若主存储引擎为火山引擎，在观测云控制台新增索引时，存储策略同步调整为：标准存储、低频存储、归档存储。
 
 ### 新增集成 {#inte1225}
 
 - 新增 [火山引擎 ALB](../integrations/volcengine_alb.md) 集成；
-- 新增 [火山引擎 CLB](../integrations/volcengine_clb.md)集成；
-- 新增 [火山引擎 NAS](../integrations/volcengine_nas.md)集成；
-- 新增 [Kube State Metrics](../integrations/kube_state_metrics.md)集成；
-- 新增 [Ranger admin](../integrations/ranger_admin.md)集成；
-- 新增 [Ranger tagsync](../integrations/ranger_tagsync.md)集成；
-- 新增 [Ranger usersync](../integrations/ranger_usersync.md)集成；
+- 新增 [火山引擎 CLB](../integrations/volcengine_clb.md) 集成；
+- 新增 [火山引擎 NAS](../integrations/volcengine_nas.md) 集成；
+- 新增 [Kube State Metrics](../integrations/kube_state_metrics.md) 集成；
+- 新增 [Ranger admin](../integrations/ranger_admin.md) 集成；
+- 新增 [Ranger tagsync](../integrations/ranger_tagsync.md) 集成；
+- 新增 [Ranger usersync](../integrations/ranger_usersync.md) 集成；
 - 更新 Redis 仪表板和监控器；
 - 更新 [nginx](../integrations/nginx.md) 集成&仪表板；
 - 更新 RabbitMQ 仪表板和监控器。
