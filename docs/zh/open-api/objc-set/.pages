@@ -1,0 +1,6 @@
+nav:
+  - '【对象分类配置】列出': list.md
+  - '【对象分类配置】创建': create.md
+  - '【对象分类配置】修改': modify.md
+  - '【对象分类配置】删除': delete.md
+  - '【对象分类配置】导出': export.md

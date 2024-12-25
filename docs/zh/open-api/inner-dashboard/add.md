@@ -17,6 +17,7 @@
 | sourceDashboardUUID | string |  | 源视图ID<br>允许为空: False <br>允许为空字符串: True <br>最大长度: 128 <br> |
 | name | string | Y | 视图名称<br>允许为空: False <br>最大长度: 256 <br> |
 | desc | string |  | 描述<br>例子: 描述1 <br>允许为空: False <br>最大长度: 2048 <br> |
+| customIdentityId | string |  | 标识id   --2024.12.25 新增标识id<br>例子: xxxx <br>允许为空: False <br>允许为空字符串: True <br>最大长度: 128 <br> |
 | templateInfos | json |  | 自定义模板数据<br>例子: {} <br>允许为空: False <br>允许为空字符串: False <br> |
 | dashboardBidding | json |  | mapping, 默认为{}<br>例子: {} <br>允许为空: False <br> |
 | specifyDashboardUUID | string |  | 指定新建仪表板的uuid, 必须以`dsbd_custom_`为前缀后接 32 位长度的小写字母数字<br>例子: dsbd_custom_xxxx32 <br>允许为空: False <br>允许为空字符串: False <br>$matchRegExp: ^dsbd_custom_[a-z0-9]{32}$ <br> |
@@ -29,6 +30,7 @@
 |-----------------------|----------|------------------------|
 |name         |string |  名称 |
 |desc         |string |  描述 |
+|customIdentityId         |string |  标识id  --2024.12.25新增 |
 |dashboardBidding         |dict |   仪表板绑定的信息|
 |sourceDashboardUUID         |string |  克隆 仪表板 或者 内置用户视图 的UUID|
 |templateInfos         |dict |  克隆 内置系统视图 的模板信息 |
@@ -94,6 +96,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/add' \
         "createAt": 1713513331,
         "createdWay": "manual",
         "creator": "wsak_xxxx32",
+        "customIdentityId": "",
         "dashboardBidding": {
             "app_id": [
                 {
@@ -130,6 +133,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/add' \
             "organization": "64fe7b4062f74d0007b46676"
         },
         "deleteAt": -1,
+        "desc": "",
         "extend": {},
         "iconSet": {},
         "id": 5091,

@@ -6,7 +6,6 @@ nav:
   - '使用限制': api-limit.md
   - '请求示例': example.md
   - '公共错误定义': error-definition.md
-  - '更新日志': open-api-change-log.md
   - '场景 - 仪表板': board
   - '场景 - 笔记': notes
   - '场景 - 查看器': viewer
@@ -16,9 +15,11 @@ nav:
   - '异常追踪 - 频道': channel
   - '异常追踪 - Issue': issue
   - '基础设施': objects
+  - '基础设施 - 资源目录': objc-set
   - '日志 - 索引': log-index-cfg
   - '日志 - 数据转发': log-backup-cfg
   - '日志 - 数据访问': logging-query-rule
+  - '指标 - 聚合生成指标': aggs-to-metric
   - '用户访问监测 - 应用': rum-cfg-set
   - '用户访问监测 - SourceMap': rum-sourcemap
   - '可用性监测 - 拨测任务': dialing-task
