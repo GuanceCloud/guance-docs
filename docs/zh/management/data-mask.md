@@ -39,3 +39,15 @@
 3. 删除：如无需当前规则，点击删除即可；
 4. 批量操作：在规则列表，您可以批量启用、禁用或删除特定规则。
 
+## 更多阅读
+
+
+<font size=2>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **数据访问与敏感数据脱敏规则结合下的权限应用场景**</font>](./access_mask_combine.md)
+
+</div>
+
+</font>
