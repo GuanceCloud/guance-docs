@@ -90,8 +90,8 @@
 |-----------------------|----------|----|------------------------|
 |filters                   |Array[dict]|| 非日志类型时 的过滤条件列表|
 |groupBy                   |Array[str]| 分组信息|
-|funcName                   |string|必须| 聚合函数, 枚举值("count", "avg", "max", "sum", "min", "count_distinct", "p75", "p95", "p99") |
-|fieldKey                   |string|必须| 聚合字段|
+|funcName                   |string|必须| 聚合函数(qmode为选择框模式时必传, 用于前端回显), 枚举值("count", "avg", "max", "sum", "min", "count_distinct", "p75", "p95", "p99") |
+|fieldKey                   |string|必须| 聚合字段(qmode为选择框模式时必传, 用于前端回显)|
 |index                   |string|| 日志类型时 的索引名|
 |source                   |string|| 该字段在不同类型代表不同含义: 日志类型: 来源 source, 应用性能类型: 服务 service, 用户访问类型: 应用 app_id, 指标类型: 指标集, 安全巡检:类别 category|
 |filterString                   |string|| 日志类型时 的过滤条件, 原始过滤字符串, 示列: 'host:hangzhou123 -service:coredns internal:true'|

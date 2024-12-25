@@ -14,6 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
+| targetWorkspaceUUIDs | commaArray |  | 授权工作空间, 多个 空间, 号隔开<br>允许为空: False <br>允许为空字符串: False <br> |
 | objcGroupUUID | string |  | 业务分组UUID<br>允许为空: False <br>例子: objcg_xxxx <br>允许为空字符串: True <br>最大长度: 64 <br> |
 | sourceType | string | Y | 来源类型<br>允许为空: False <br>例子: custom_object <br>可选值: ['object', 'custom_object'] <br> |
 | search | string |  | 搜索对象分类名<br>允许为空: False <br>例子: xxx <br> |

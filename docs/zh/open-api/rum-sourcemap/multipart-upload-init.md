@@ -20,8 +20,10 @@
 
 ## 参数补充说明
 
-注：同一个应用下只能存在一个相同 `version`、`env` 的 sourcemap，您可以通过 `needCover` 参数覆盖已存在的 sourcemap。
+注1：同一个应用下只能存在一个相同 `version`、`env` 的 sourcemap，您可以通过 `needCover` 参数覆盖已存在的 sourcemap。
 如果不覆盖，返回 `uploadId` 为空字符串
+
+注2：[SourceMap分片上传关联接口使用说明](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
 
