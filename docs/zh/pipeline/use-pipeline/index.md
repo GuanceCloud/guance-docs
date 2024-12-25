@@ -1,6 +1,5 @@
 # Pipeline 手册
 
-## 简介
 
 自 DataKit v1.4.0 起，可通过内置的 Pipeline 的数据处理器功能对 DataKit 采集或接收到数据进行修改、提取、过滤、聚合等操作，支持目前所有的数据类别（如 Logging、Metric、Tracing、Network 和 Object 等）。
 
