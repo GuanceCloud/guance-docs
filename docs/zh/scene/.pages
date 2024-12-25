@@ -1,10 +1,10 @@
 nav:
   - index.md
   - '仪表板': dashboard
+  - '可视化图表': visual-chart
+  - '视图变量': view-variable.md
   - '定时报告': report.md
   - '笔记': note.md
   - '查看器': explorer
   - '内置视图': built-in-view
-  - '视图变量': view-variable.md
-  - '可视化图表': visual-chart
   - '常见问题': faq.md
