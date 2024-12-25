@@ -80,8 +80,9 @@
 
 ### 角色场景与查询权限 {#role_permission}
 
+<!--
 ![](img/data-access-map.png)
-
+-->
 
 #### 简单情况
 
@@ -103,7 +104,7 @@
 如果某成员**拥有多个角色**，且这些角色的查询权限覆盖范围各不相同（如下图所示），那么该成员最终的数据查询权限将是**所有角色数据访问查看范围的总和**。
 
 
-<img src="../img/logdata_8.png" width="60%" >
+<img src="../img/logdata_8.png" width="70%" >
     
 
 #### 多规则权限控制
@@ -166,3 +167,15 @@
 8. 可批量启用、禁用和删除多条规则。
 
 
+## 更多阅读
+
+
+<font size=2>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **数据访问与敏感数据脱敏规则结合下的权限应用场景**</font>](./access_mask_combine.md)
+
+</div>
+
+</font>
