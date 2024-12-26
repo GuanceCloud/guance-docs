@@ -5,3 +5,4 @@ nav:
   - '未恢复事件查询说明': unrecovered-event-query.md
   - '拓扑图图表接口说明': tracing-service-map.md
   - '单位说明': unit.md
+  - 'SourceMap分片上传关联接口使用说明': sourcemap-multipart-upload-init.md

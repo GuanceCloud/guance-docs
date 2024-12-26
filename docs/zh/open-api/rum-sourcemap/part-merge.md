@@ -18,6 +18,7 @@
 
 ## 参数补充说明
 
+注：[SourceMap分片上传关联接口使用说明](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
 
