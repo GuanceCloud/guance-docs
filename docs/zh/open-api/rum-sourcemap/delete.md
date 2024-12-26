@@ -5,6 +5,7 @@
 <br />**POST /api/v1/rum_sourcemap/delete**
 
 ## 概述
+删除指定应用下已存在的 sourcemap
 
 
 

@@ -5,15 +5,15 @@
 <br />**POST /api/v1/rum_sourcemap/upload_part**
 
 ## 概述
+sourcemap 压缩文件上传(分片上传)操作中的第二步操作。上传一个分片。
+详情参考: [SourceMap分片上传关联接口使用说明](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
 
 
 ## 参数补充说明
 
-
 注1：单片文件大小控制在 10MB 以内
-注2：[SourceMap分片上传关联接口使用说明](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
 
