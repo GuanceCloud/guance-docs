@@ -13,7 +13,13 @@ sourcemap 压缩文件上传(分片上传)操作中的第二步操作。上传�
 
 ## 参数补充说明
 
+<<<<<<< HEAD
 注1：单片文件大小控制在 10MB 以内
+=======
+
+注1：单片文件大小控制在 10MB 以内
+注2：[SourceMap分片上传关联接口使用说明](../../../studio-backend/sourcemap-multipart-upload-init/)
+>>>>>>> release
 
 
 
