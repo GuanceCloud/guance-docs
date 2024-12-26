@@ -5,6 +5,8 @@
 <br />**POST /api/v1/rum_sourcemap/upload_cancel**
 
 ## 概述
+sourcemap 压缩文件上传(分片上传)操作中的第三步可选操作。取消一个已上传的分片。一般用于断点续传或者重新上传分片。
+详情参考: [SourceMap分片上传关联接口使用说明](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
 
@@ -17,7 +19,6 @@
 
 ## 参数补充说明
 
-注：[SourceMap分片上传关联接口使用说明](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
 

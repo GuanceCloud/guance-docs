@@ -5,6 +5,9 @@
 <br />**POST /api/v1/rum_sourcemap/multipart_upload_init**
 
 ## 概述
+sourcemap 压缩文件上传(分片上传)操作中的第一步操作。初始化一个分片上传事件。
+后续分片上传和文件合并将会使用到该事件标志ID(uploadId)
+详情参考: [SourceMap分片上传关联接口使用说明](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
 
@@ -22,8 +25,6 @@
 
 注1：同一个应用下只能存在一个相同 `version`、`env` 的 sourcemap，您可以通过 `needCover` 参数覆盖已存在的 sourcemap。
 如果不覆盖，返回 `uploadId` 为空字符串
-
-注2：[SourceMap分片上传关联接口使用说明](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
 
