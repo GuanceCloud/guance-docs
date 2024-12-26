@@ -3,19 +3,12 @@
 # SourceMap分片上传关联接口使用说明
 
 ## 涉及接口
-<<<<<<< HEAD
 1. [分片上传事件初始化](../../open-api/rum-sourcemap/multipart-upload-init/)
 2. [上传单个分片](../../open-api/rum-sourcemap/upload-part/)
 3. [取消一个分片上传事件](../../open-api/rum-sourcemap/upload-cancel/)
 4. [列出一个分片上传事件所对应的已上传的分片列表](../../open-api/rum-sourcemap/part-list/)
 5. [合并各分片生成文件](../../open-api/rum-sourcemap/part-merge/)
-=======
-[分片上传事件初始化](../../open-api/rum-sourcemap/multipart-upload-init/)
-[上传单个分片](../../open-api/rum-sourcemap/upload-part/)
-[取消一个分片上传事件](../../open-api/rum-sourcemap/upload-cancel/)
-[列出一个分片上传事件所对应的已上传的分片列表](../../open-api/rum-sourcemap/part-list/)
-[合并各分片生成文件](../../open-api/rum-sourcemap/part-merge/)
->>>>>>> release
+
 
 ## 分片上传接口操作步骤
 
