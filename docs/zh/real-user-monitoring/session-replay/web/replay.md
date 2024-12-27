@@ -13,6 +13,8 @@ if (user.isLogin()) {
 }
 ```
 
+如果需要停止 Session Replay 数据采集，可以调用 `stopSessionReplayRecording()` 关闭。
+
 ### NPM {#npm}
 
 引入 @cloudcare/browser-rum 包，并且保证 [@cloudcare/browser-rum](https://www.npmjs.com/package/@cloudcare/browser-rum) 的版本 `> 3.0.0`，如果要开始录制，在初始化后，请执行 `datafluxRum.startSessionReplayRecording()`。

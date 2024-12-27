@@ -178,6 +178,7 @@
 
 :material-numeric-3-circle-outline: 智能聚合：在该模式下，聚合周期内产生的事件将根据选中的`标题`或`内容`聚类分组，每个分组产生一条告警通知。
 
+:material-numeric-4-circle-outline: AI 聚合：使用观测云的大模型合并监控告警，减少冗余，避免短时间内产生大量重复告警。
 
 #### 聚合周期 {#cycle}
 
