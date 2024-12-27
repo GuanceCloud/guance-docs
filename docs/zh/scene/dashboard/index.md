@@ -27,9 +27,30 @@
 
 #### 标识 ID
 
-用于确定仪表板或视图的唯一性。
+观测云定义该 ID 为 `identifier`，用于确定仪表板或视图的唯一性。
+
+##### 应用场景
 
 可用于配置图表的[跳转链接](../visual-chart/chart-link.md)，从而实现唯一确定性定位。
+
+场景 :material-numeric-1-circle-outline:：定义仪表板的标识 ID 为 `abc`。在最终导出的 [JSON 文件](./config_list.md#options)中，参数为：`"identifier": "abc"`
+
+<img src="../img/identifier.png" width="60%" >
+
+场景 :material-numeric-2-circle-outline:：为图表配置跳转链接时，添加标识 ID 为 `abc` 的仪表板链接为：
+
+```
+/scene/dashboard/dashboardDetail?identifier=abc
+```
+
+除仪表板外，视图同样适用：
+
+```
+// type 字段可选值: inner(用户视图)，sys(系统视图)。不传时默认为 inner:
+/scene/builtinview/detail?identifier=abc&type=sys // 系统视图
+/scene/builtinview/detail?identifier=abc&type=inner // 用户视图
+/scene/builtinview/detail?identifier=abc // 用户视图
+```
 
 
 #### 可见范围 {#range}
