@@ -229,7 +229,8 @@ android{
 | setSyncSleepTime | Int | 否 | 设置同步间歇时间，范围 [0,5000]，默认不设置  |
 | enableDataIntegerCompatible | Void | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题  |
 | setNeedTransformOldCache | Boolean | 否 | 是否需要兼容同步 ft-sdk 1.6.0 以下的版本的旧缓存数据，默认为 false |
-| setCompressIntakeRequests | Void | 否 | 对同步数据进行压缩，ft-sdk 1.6.3 以上版本支持这个参数 |
+| setCompressIntakeRequests | Boolean | 否 | 对同步数据进行压缩，ft-sdk 1.6.3 以上版本支持这个方法 |
+| enableLimitWithDbSize | Void | 否 | 开启使用 db 限制数据大小，默认 100MB，单位 byte，数据库越大，磁盘压力越大。ft-sdk 1.6.6 以上版本支持这个方法 |
 
 ### RUM 配置 {#rum-config}
 
@@ -276,11 +277,11 @@ android{
 | --- | --- | --- | --- |
 | setRumAppId | String | 是 | 设置`Rum AppId`。对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#android-integration) |
 | setSamplingRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据 |
-| setEnableTrackAppCrash | Boolean | 否 | 是否上报 App 崩溃日志，默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#retrace-log)。<br><br>1.5.1 以上版本，可以通过 `extraLogCatWithJavaCrash`、`extraLogCatWithNativeCrash` 设置在 Java Crash 和 Native Crash 是否显示 logcat|
+| setEnableTrackAppCrash | Boolean | 否 | 是否上报 App 崩溃日志，默认为 `false`，开启后会在错误分析中显示错误堆栈数据。<br> [关于崩溃日志中混淆内容转换的问题](#retrace-log)。<br><br>ft-sdk 1.5.1 以上版本，可以通过 `extraLogCatWithJavaCrash`、`extraLogCatWithNativeCrash` 设置在 Java Crash 和 Native Crash 是否显示 logcat|
 | setExtraMonitorTypeWithError | Array| 否 | 设置辅助监控信息，添加附加监控数据到 `Rum` 崩溃数据中，`ErrorMonitorType.BATTERY` 为电池余量，`ErrorMonitorType.MEMORY` 为内存用量，`ErrorMonitorType.CPU` 为 CPU 占有率 |
 | setDeviceMetricsMonitorType | Array | 否 | 设置 View 监控信息，在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.BATTERY` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.MEMORY` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.CPU` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.FPS` 监控屏幕帧率。监控周期，`DetectFrequency.DEFAULT` 500 毫秒，`DetectFrequency.FREQUENT` 100毫秒，`DetectFrequency.RARE` 1 秒 |
-| setEnableTrackAppANR | Boolean | 否 | 是否开启 ANR 检测，默认为 `false`。<br><br>1.5.1 以上版本，可以通过 `extraLogCatWithANR` 设置 ANR 中是否显示 logcat |
-| setEnableTrackAppUIBlock | Boolean, Boolean  | 否 | 是否开启 UI 卡顿检测，默认为 `false`, 1.6.4 以上版本可以通过 `blockDurationMs`控制检测时间范围  |
+| setEnableTrackAppANR | Boolean | 否 | 是否开启 ANR 检测，默认为 `false`。<br><br>ft-sdk 1.5.1 以上版本，可以通过 `extraLogCatWithANR` 设置 ANR 中是否显示 logcat |
+| setEnableTrackAppUIBlock | Boolean, long  | 否 | 是否开启 UI 卡顿检测，默认为 `false`,ft-sdk 1.6.4 以上版本可以通过 `blockDurationMs`控制检测时间范围 [100,)，单位毫秒, 默认是 1 秒  |
 | setEnableTraceUserAction | Boolean | 否 | 是否自动追踪用户操作，目前只支持用户启动和点击操作，默认为 `false` |
 | setEnableTraceUserView | Boolean | 否 | 是否自动追踪用户页面操作，默认为 `false` |
 | setEnableTraceUserResource | Boolean | 否 | 是否自动追动用户网络请求 ，仅支持 `Okhttp`，默认为 `false` |
@@ -288,6 +289,8 @@ android{
 | setResourceUrlHandler | Callback| 否 | 设置需要过滤的 Resource 条件，默认不过滤 |
 | setOkHttpEventListenerHandler | Callback| 否 | ASM 设置全局 Okhttp EventListener，默认不设置 |
 | addGlobalContext | Dictionary | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
+| setRumCacheLimitCount | int | 否 | 本地缓存 RUM 限制数量 [10000,),默认是 100_000。ft-sdk 1.6.6 以上版本支持这个方法 |
+| setRumCacheDiscardStrategy | RUMCacheDiscard | 否 | 设置 RUM 达到限制上限以后的数据的丢弃规则，默认为 `RUMCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据，ft-sdk 1.6.6 以上版本支持这个方法  |
 
 ### Log 配置 {#log-config}
 
