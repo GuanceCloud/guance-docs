@@ -5,6 +5,7 @@
 <br />**GET /api/v1/rum_sourcemap/list**
 
 ## 概述
+列出指定应用下已存在的所有 sourcemap 信息
 
 
 

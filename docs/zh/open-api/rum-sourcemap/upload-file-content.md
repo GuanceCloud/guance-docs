@@ -5,6 +5,7 @@
 <br />**POST /api/v1/rum_sourcemap/upload_file_content**
 
 ## 概述
+用于上传单个 sourcemap 源文件内容（SourceMap 解压后的单个源文件）
 
 
 
