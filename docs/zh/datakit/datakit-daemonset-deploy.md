@@ -312,6 +312,24 @@ spec:
 
     **字段类型**: Boolean
 
+- **ENV_PIPELINE_HTTP_REQUEST_HOST_WHITELIST**
+
+    为 `http_request` 函数设置 HOST 白名单
+
+    **字段类型**: List
+
+- **ENV_PIPELINE_HTTP_REQUEST_CIDR_WHITELIST**
+
+    为 `http_request` 函数设置 CIDR 白名单
+
+    **字段类型**: List
+
+- **ENV_PIPELINE_HTTP_REQUEST_DISABLE_INTERNAL_NET**
+
+    使 `http_request` 函数禁止访问内部网络
+
+    **字段类型**: List
+
 - **~~ENV_GLOBAL_TAGS~~**
 
     同 ENV_GLOBAL_HOST_TAGS，将废弃

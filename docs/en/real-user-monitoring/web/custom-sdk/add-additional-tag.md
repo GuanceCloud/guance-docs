@@ -1,49 +1,53 @@
 # Customize to Add Additional Data TAG
+
 ---
 
-After initializing RUM, use the `addRumGlobalContext(key:string, value:any)` API to add additional TAGs to all RUM events collected from the application.
+After initializing RUM, use the `setGlobalContextProperty(key:string, value:any)` API to add additional TAGs to all RUM events collected from the application.
 
 ### Add TAG
+
 === "CDN Sync"
 
     ``` javascript
-    window.DATAFLUX_RUM && window.DATAFLUX_RUM.addRumGlobalContext('<CONTEXT_KEY>', '<CONTEXT_VALUE>');
-    
+    window.DATAFLUX_RUM && window.DATAFLUX_RUM.setGlobalContextProperty('<CONTEXT_KEY>', '<CONTEXT_VALUE>');
+
     // Code example
-    window.DATAFLUX_RUM && window.DATAFLUX_RUM.addRumGlobalContext('isvip', 'xxxx');
-    window.DATAFLUX_RUM && window.DATAFLUX_RUM.addRumGlobalContext('activity', {
+    window.DATAFLUX_RUM && window.DATAFLUX_RUM.setGlobalContextProperty('isvip', 'xxxx');
+    window.DATAFLUX_RUM && window.DATAFLUX_RUM.setGlobalContextProperty('activity', {
         hasPaid: true,
         amount: 23.42
     });
     ```
+
 === "CDN Async"
 
     ``` javascript
     DATAFLUX_RUM.onReady(function() {
-        DATAFLUX_RUM.addRumGlobalContext('<CONTEXT_KEY>', '<CONTEXT_VALUE>');
+        DATAFLUX_RUM.setGlobalContextProperty('<CONTEXT_KEY>', '<CONTEXT_VALUE>');
     })
-    
+
     // Code example
     DATAFLUX_RUM.onReady(function() {
-        DATAFLUX_RUM.addRumGlobalContext('isvip', 'xxxx');
+        DATAFLUX_RUM.setGlobalContextProperty('isvip', 'xxxx');
     })
     DATAFLUX_RUM.onReady(function() {
-        DATAFLUX_RUM.addRumGlobalContext('activity', {
+        DATAFLUX_RUM.setGlobalContextProperty('activity', {
             hasPaid: true,
             amount: 23.42
         });
     })
-    
+
     ```
+
 === "NPM"
 
     ``` javascript
     import { datafluxRum } from '@cloudcare/browser-rum'
-    datafluxRum.addRumGlobalContext('<CONTEXT_KEY>', <CONTEXT_VALUE>);
-    
+    datafluxRum.setGlobalContextProperty('<CONTEXT_KEY>', <CONTEXT_VALUE>);
+
     // Code example
-    datafluxRum && datafluxRum.addRumGlobalContext('isvip', 'xxxx');                     
-    datafluxRum.addRumGlobalContext('activity', {
+    datafluxRum && datafluxRum.setGlobalContextProperty('isvip', 'xxxx');
+    datafluxRum.setGlobalContextProperty('activity', {
         hasPaid: true,
         amount: 23.42
     });
@@ -55,37 +59,39 @@ After initializing RUM, use the `addRumGlobalContext(key:string, value:any)` API
 
     ```javascript
     window.DATAFLUX_RUM &&
-        DATAFLUX_RUM.setRumGlobalContext({ '<CONTEXT_KEY>': '<CONTEXT_VALUE>' });
-    
+        DATAFLUX_RUM.setGlobalContext({ '<CONTEXT_KEY>': '<CONTEXT_VALUE>' });
+
     // Code example
     window.DATAFLUX_RUM &&
-        DATAFLUX_RUM.setRumGlobalContext({
+        DATAFLUX_RUM.setGlobalContext({
             codeVersion: 34,
         });
     ```
+
 === "CDN Async"
 
     ```javascript
     DATAFLUX_RUM.onReady(function() {
-        DATAFLUX_RUM.setRumGlobalContext({ '<CONTEXT_KEY>': '<CONTEXT_VALUE>' });
+        DATAFLUX_RUM.setGlobalContext({ '<CONTEXT_KEY>': '<CONTEXT_VALUE>' });
     })
-    
+
     // Code example
     DATAFLUX_RUM.onReady(function() {
-        DATAFLUX_RUM.setRumGlobalContext({
+        DATAFLUX_RUM.setGlobalContext({
             codeVersion: 34,
         })
     })
     ```
+
 === "NPM"
 
     ```javascript
     import { datafluxRum } from '@cloudcare/browser-rum'
-    
-    datafluxRum.setRumGlobalContext({ '<CONTEXT_KEY>': '<CONTEXT_VALUE>' });
-    
+
+    datafluxRum.setGlobalContext({ '<CONTEXT_KEY>': '<CONTEXT_VALUE>' });
+
     // Code example
-    datafluxRum.setRumGlobalContext({
+    datafluxRum.setGlobalContext({
         codeVersion: 34,
     });
     ```
@@ -95,23 +101,25 @@ After initializing RUM, use the `addRumGlobalContext(key:string, value:any)` API
 === "CDN Sync"
 
     ```javascript
-    var context = window.DATAFLUX_RUM && DATAFLUX_RUM.getRumGlobalContext();
-    
+    var context = window.DATAFLUX_RUM && DATAFLUX_RUM.getGlobalContext();
+
     ```
+
 === "CDN Async"
 
     ```javascript
     DATAFLUX_RUM.onReady(function() {
-        var context = DATAFLUX_RUM.getRumGlobalContext();
+        var context = DATAFLUX_RUM.getGlobalContext();
     });
     ```
+
 === "NPM"
 
     ```javascript
     import { datafluxRum } from '@cloudcare/browser-rum'
-    
-    const context = datafluxRum.getRumGlobalContext();
-    
+
+    const context = datafluxRum.getGlobalContext();
+
     ```
 
 ### Remove the Custom TAG Corresponding to Specific Key
@@ -119,21 +127,47 @@ After initializing RUM, use the `addRumGlobalContext(key:string, value:any)` API
 === "CDN Sync"
 
     ```javascript
-    var context = window.DATAFLUX_RUM && DATAFLUX_RUM.removeRumGlobalContext('<CONTEXT_KEY>');
-    
+    var context = window.DATAFLUX_RUM && DATAFLUX_RUM.removeGlobalContextProperty('<CONTEXT_KEY>');
+
     ```
+
 === "CDN Async"
 
     ```javascript
     DATAFLUX_RUM.onReady(function() {
-        var context = DATAFLUX_RUM.removeRumGlobalContext('<CONTEXT_KEY>');
+        var context = DATAFLUX_RUM.removeGlobalContextProperty('<CONTEXT_KEY>');
     });
     ```
+
 === "NPM"
 
     ```javascript
     import { datafluxRum } from '@cloudcare/browser-rum'
-    
-    const context = datafluxRum.removeRumGlobalContext('<CONTEXT_KEY>');
+
+    const context = datafluxRum.removeGlobalContextProperty('<CONTEXT_KEY>');
     ```
 
+### Clear all the Custom TAG
+
+=== "CDN Sync"
+
+    ```javascript
+    var context = window.DATAFLUX_RUM && DATAFLUX_RUM.clearGlobalContext();
+
+    ```
+
+=== "CDN Async"
+
+    ```javascript
+    DATAFLUX_RUM.onReady(function() {
+        var context = DATAFLUX_RUM.clearGlobalContext();
+    });
+    ```
+
+=== "NPM"
+
+    ```javascript
+    import { datafluxRum } from '@cloudcare/browser-rum'
+
+    const context = datafluxRum.clearGlobalContext();
+    ```

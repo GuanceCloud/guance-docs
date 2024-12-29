@@ -1,29 +1,111 @@
 ---
 icon: zy/release-notes
 ---
+
 # 更新日志（2024 年）
+
 ---
 
 本文档记录观测云每次上线发布的更新内容说明。
 
 <div class="grid cards" markdown>
 
--   :fontawesome-regular-clipboard:{ .lg .middle } 
+- :fontawesome-regular-clipboard:{ .lg .middle }
 
-    ---
+  ***
 
-    __[DataKit](../datakit/changelog.md)__
+  **[DataKit](../datakit/changelog.md)**
 
- 
-    ---
+  ***
 
-    __SDK__
+  **SDK**
 
-    [Web](../real-user-monitoring/web/sdk-changelog.md)        |   [小程序](../real-user-monitoring/miniapp/sdk-changelog.md)    |    [Android](../real-user-monitoring/android/sdk-changelog.md)      |    [iOS](../real-user-monitoring/ios/sdk-changelog.md)    |  [React Native](../real-user-monitoring/react-native/sdk-changelog.md)     |
-    | :-------: | :--------: | :----------: | :-----------: | :---------: |
-    
+  | [Web](../real-user-monitoring/web/sdk-changelog.md) | [小程序](../real-user-monitoring/miniapp/sdk-changelog.md) | [Android](../real-user-monitoring/android/sdk-changelog.md) | [iOS](../real-user-monitoring/ios/sdk-changelog.md) | [React Native](../real-user-monitoring/react-native/sdk-changelog.md) |
+  | :-------------------------------------------------: | :--------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------: | :-------------------------------------------------------------------: |
 
 </div>
+
+## 2024 年 12 月 25 日
+
+### OpenAPI 更新 {#openapi1225}
+
+1. 资源目录：支持获取资源目录列表，支持[创建](../open-api/objc-set/create.md)/[修改](../open-api/objc-set/modify.md)/[删除](../open-api/objc-set/delete.md)/[导出](../open-api/objc-set/export.md)资源查看器。
+2. 生成指标：支持列出指标列表，支持[新建](../open-api/aggs-to-metric/add.md)/[修改](../open-api/aggs-to-metric/modify.md)/[启用/禁用](../open-api/aggs-to-metric/set-disable.md)/[删除](../open-api/aggs-to-metric/delete.md)指标。
+
+### 功能更新 {#feature1225}
+
+#### Pipeline
+
+自动编写 [Pipeline](../pipeline/index.md)：传统的日志解析方式往往依赖于对规则的熟悉进行手动编写脚本，这不仅消耗大量时间，也容易出错，导致编写 Pipeline 的效率低下，无法及时响应和解决问题。为了提高效率并降低人工成本，本功能利用大模型的自然语言处理能力，辅助自动化解析日志内容，帮助开发人员在编写 Pipeline 时更加高效，精准地从大量日志中提取有价值的信息，简化数据流和处理过程。
+
+#### 监控
+
+AI 告警压缩合并：通过大模型对监控告警事件进行压缩合并，减少告警事件的冗余，特别是当系统在短时间内产生大量告警时。通过对告警事件的整合，确保运维人员在指定的时间周期内（如 10 分钟）仅接收到一条综合的告警信息，而非多条重复的告警信息。
+
+#### 云账单分析
+
+云账单场景视图、查看器新增消费货币类别展示。
+
+#### 场景
+
+1. 仪表板、内置视图新增[标识 ID](../scene/dashboard/index.md#id)：仪表板、用户视图可通过标识 ID 确定唯一，图表内配置跳转链接时可通过标识 ID 定位仪表板或者用户视图。
+2. 查看器[自动刷新](../getting-started/function-details/explorer-search.md#refresh)逻辑调整：在时间组件中去除“暂停”按钮，刷新频率选项里新增 “off”，用户可按需关闭自动刷新功能，操作更简洁直观。同时取消个人设置中的“查看器自动刷新”开关，避免功能冗余，优化用户设置体验。
+3. 查看器新增函数：`MD5()`，支持在查看器中查询脱敏方式为 MD5 加密的日志数据。
+4. 图表优化：图表内支持获取 PromQL 指标名称做图例，可使用 `{{__name__}}` 配置指标名称做别名展示。
+5. PromQL 编辑器新增语法高亮以及语法提示
+
+#### 指标
+
+[生成指标](../metrics/generate-metrics.md)优化：
+
+1. 将所有类型的生成指标整合至指标目录下，方便用户统一查看与管理。
+2. 支持对已有指标数据进行再聚合操作，以此生成全新指标，为数据分析提供更多维度。
+
+#### 管理
+
+数据访问和敏感数据查看脱敏规则应用优化：优化多规则多角色组合叠加数据查看范围，若成员拥有多个角色最终数据访问的范围取规则内定义的范围合集，敏感数据查看脱敏规则同理。
+
+#### 基础设施
+
+资源目录[跨工作空间查询](../infrastructure/custom/index.md#cross_workspace)：在资源目录菜单中，实现支持跨工作空间查询资源列表数据。
+
+### 部署版更新 {#deployment1225}
+
+1. 部署版支持[自定义导航栏和操作按钮显示文案](../deployment/customize-frontend-languge.md)。
+
+2. 管理后台成员菜单优化：
+
+   - 新增“登录类型”列，支持区分默认登录成员和 SSO 登录成员，并支持以登录类型进行筛选；
+   - 针对 SSO 登录成员，支持编辑“其他属性”字段，可自定义属性信息。此类信息在发送告警时，会同步到 Webhook 对外以及对应的事件内容区域。
+
+3. 主存储引擎为火山引擎的工作空间，链路、日志和自定义日志索引的存储策略调整为：标准存储、低频存储、归档存储三项，可分别配置热数据、低频数据、归档数据存储时长。同时，若主存储引擎为火山引擎，在观测云控制台新增索引时，存储策略同步调整为：标准存储、低频存储、归档存储。
+
+### 新增集成 {#inte1225}
+
+- 新增 [火山引擎 ALB](../integrations/volcengine_alb.md) 集成；
+- 新增 [火山引擎 CLB](../integrations/volcengine_clb.md) 集成；
+- 新增 [火山引擎 NAS](../integrations/volcengine_nas.md) 集成；
+- 新增 [Kube State Metrics](../integrations/kube_state_metrics.md) 集成；
+- 新增 [Ranger admin](../integrations/ranger_admin.md) 集成；
+- 新增 [Ranger tagsync](../integrations/ranger_tagsync.md) 集成；
+- 新增 [Ranger usersync](../integrations/ranger_usersync.md) 集成；
+- 更新 Redis 仪表板和监控器；
+- 更新 [nginx](../integrations/nginx.md) 集成&仪表板；
+- 更新 RabbitMQ 仪表板和监控器。
+
+### Bug 修复 {#bug1225}
+
+1. 解决了主机标签不生效的问题；
+2. 解决了控制台更新 token 失败的问题；
+3. 解决了组合看板中排序因刷新操作而丢失的问题；
+4. 解决了共享看板中表格图在编辑模式下无数据显示的问题；
+5. 解决了在跨空间授权查询看板中组合图表切换不同图表没有发出后端请求的问题；
+6. 解决了 RUM 视图中 `version` 数据异常的问题；
+7. 解决了监控器内置 Func 提示找不到账号并报 404 错误且未产生事件的问题；
+8. 解决了用户访问监测列表数据展示为 0 的问题；
+9. 解决了 AI 智能助理页面下方 UI 显示的问题；
+10. 解决了资源目录中的某个资源分类删除成功后依然存在的问题。
+11. 解决了数据断档误告警的问题。
 
 ## 2024 年 12 月 11 日
 
@@ -33,17 +115,17 @@ icon: zy/release-notes
 
 1. [拓扑图](../scene/visual-chart/topology-map.md)新增外部数据查询：允许用户通过 DataFlux Func 实现外部数据绘制拓扑图。用户只需按照图表结构接入数据，即可轻松实现外部数据的可视化展示。
 2. [图表](../scene/visual-chart/index.md#type)优化
-    - 图表显示效果优化：对图表的显示效果进行优化，调整为侧滑列出，分类展示，使图表的查找和使用更加便捷。
-    - 图表描述及适用场景显示：图表列表中增加了图表描述及适用场景的显示，可以帮助用户更好地理解和选择合适的图表类型。
+   - 图表显示效果优化：对图表的显示效果进行优化，调整为侧滑列出，分类展示，使图表的查找和使用更加便捷。
+   - 图表描述及适用场景显示：图表列表中增加了图表描述及适用场景的显示，可以帮助用户更好地理解和选择合适的图表类型。
 3. 视图变量优化
-    - 视图变量支持配置值列出上限，避免数据列出过多导致页面加载性能问题。
-    - 部署版默认列出上限为 50，支持自定义默认列出数量，注意：页面配置限制优先全局限制。
+   - 视图变量支持配置值列出上限，避免数据列出过多导致页面加载性能问题。
+   - 部署版默认列出上限为 50，支持自定义默认列出数量，注意：页面配置限制优先全局限制。
 
 #### 基础设施
 
 1. 资源目录优化：
-    - 新增分组功能：为了提高资源管理的效率，新增资源分组功能。用户可以将具有共性的资源分类进行分组，便于管理和查看，从而优化资源的组织结构。
-    - 查看器蜂窝图模式优化：支持配置“颜色填充”和“分组分析”的字段列表，用户可以根据需要自定义可选的字段。
+   - 新增分组功能：为了提高资源管理的效率，新增资源分组功能。用户可以将具有共性的资源分类进行分组，便于管理和查看，从而优化资源的组织结构。
+   - 查看器蜂窝图模式优化：支持配置“颜色填充”和“分组分析”的字段列表，用户可以根据需要自定义可选的字段。
 2. 容器、资源目录查看器搜索优化：容器查看器新增 `container_name` 搜索，资源目录新增 `name` 搜索。
 
 #### 监控
@@ -64,7 +146,6 @@ RUM 新增了对 React Native 应用类型的支持，并允许上传 SourceMap 
 #### APM
 
 APM 安装引导新增[自动注入方式](../application-performance-monitoring/explorer/auto_wire/apm_datakit_operator.md)：在 APM（应用性能监测）的安装引导中，新增了 Kubernetes Operator 自动注入的安装方式。这种方式简化了 APM 的部署流程，使得用户可以更快捷地在 Kubernetes 环境中安装和使用。
-
 
 ### 新增集成 {#inte1211}
 
@@ -92,7 +173,6 @@ APM 安装引导新增[自动注入方式](../application-performance-monitoring
 12. 解决了监控器触发告警后未产生事件的问题。
 13. 解决了部署版火山引擎底座日志查询功能异常的问题。
 
-
 ## 2024 年 11 月 27 日
 
 ### Breaking Changes {#breakingchanges1127}
@@ -100,7 +180,7 @@ APM 安装引导新增[自动注入方式](../application-performance-monitoring
 1. OpenAPI：若通过 API 配置告警策略按成员配置通知规则模式，需注意通过 OpenAPI 方式[新增/修改](../open-api/alert-policy/add.md)成员类型的告警策略的参数结构调整。
 
 2. 仪表板 > [可见范围](../scene/dashboard/index.md#range)：新增“自定义”选项，支持配置此仪表板的操作、查看权限成员。
-    - 注意：若您先前在可见范围处添加了“团队”，团队配置将失效，需重新配置。
+   - 注意：若您先前在可见范围处添加了“团队”，团队配置将失效，需重新配置。
 
 ### 功能更新 {#feature1127}
 
@@ -109,21 +189,20 @@ APM 安装引导新增[自动注入方式](../application-performance-monitoring
 1. 新增功能引导页：提供简洁明了的步骤及说明，让用户能够迅速上手；
 2. 新增支持[火山引擎、微软云数据接入](../cloud-billing/index.md#precondition)。
 
-
 #### [外部数据源接入](../dataflux-func/external_data.md)
 
 1. MySQL 数据存储系统支持：平台现已支持接入 MySQL 数据存储系统，用户可以利用此功能实现数据的实时查询和分析。
 
 2. 原生查询语句直接使用：用户可以直接在图表中使用数据源的原生查询语句进行数据查询和展示，无需进行任何转换或适配。
 
-3. 数据安全与隐私保护：为了保护用户的数据安全和隐私，平台不会存储任何添加的数据源信息。所有数据源配置将直接保存在用户的本地 Func 中，确保数据源信息的安全，避免数据泄漏风险。 
+3. 数据安全与隐私保护：为了保护用户的数据安全和隐私，平台不会存储任何添加的数据源信息。所有数据源配置将直接保存在用户的本地 Func 中，确保数据源信息的安全，避免数据泄漏风险。
 
-#### 监控 
+#### 监控
 
 1. 告警策略 > [按成员配置通知规则](../monitoring/alert-setting.md#member)：
 
-    - 支持配置多组成员通知规则并行生效；
-    - 成员配置通知规则支持定义生效的时间范围，若存在多组时间范围则按照序号顺序匹配，多组时间范围最终只会取第一个匹配到的时间范围内通知规则做告警发送。
+   - 支持配置多组成员通知规则并行生效；
+   - 成员配置通知规则支持定义生效的时间范围，若存在多组时间范围则按照序号顺序匹配，多组时间范围最终只会取第一个匹配到的时间范围内通知规则做告警发送。
 
 2. 监控器：配置关联告警策略时支持搜索。
 
@@ -133,8 +212,8 @@ APM 安装引导新增[自动注入方式](../application-performance-monitoring
 
 [高消费预警](../billing/index.md#alert)：
 
-- 支持自定义配置预警通知成员，当计费项超出设定阈值时，会向 Owner 和对应的通知成员发送邮件预警；    
-- 支持在每一个计费项下设置此计费项的专属通知成员；    
+- 支持自定义配置预警通知成员，当计费项超出设定阈值时，会向 Owner 和对应的通知成员发送邮件预警；
+- 支持在每一个计费项下设置此计费项的专属通知成员；
 - 支持回车创建外部邮箱作为通知成员。
 
 #### 应用性能监测
@@ -155,7 +234,6 @@ APM 安装引导新增[自动注入方式](../application-performance-monitoring
 
 [黑名单](../management/overall-blacklist.md)：新增名称和描述项，支持区分用途和其它关联场景。
 
-
 #### 帮助中心
 
 帮助文档优化：[集成](../integrations/integration-index.md)页面新增描述信息，帮助直观查看集成信息。
@@ -175,20 +253,17 @@ APM 安装引导新增[自动注入方式](../application-performance-monitoring
 - 更新 [阿里云 SAE](../integrations/aliyun_sae.md) 集成，添加 链路、日志部分的集成；
 - 更新 [SQLSERVER](../integrations/sqlserver.md) 监控器。
 
-
 ### Bug 修复 {#bug1127}
 
 1. 修复部分查看器列表列名无法通过 “显示列” 入口进行别名定义的问题；
 2. 修复了 RUM 生成指标时，所列出应用未受数据访问规则影响的问题；
 3. 修复了应用性能监控 > 错误追踪 > Issue 自动发现前端样式适配的问题；
-4. 修复了仪表板 > 图表内资源目录查询时间的问题；  
+4. 修复了仪表板 > 图表内资源目录查询时间的问题；
 5. 修复了账单分析账期列宽度无法调整的问题。
 
 ## 2024 年 11 月 20 日
 
 ### 功能更新 {#feature1120}
-
-
 
 #### 微软云市场上架
 
@@ -213,7 +288,6 @@ APM 安装引导新增[自动注入方式](../application-performance-monitoring
 1. 快照：支持日志查看器以 OpenAPI 方式[创建快照](../open-api/snapshot/generate.md)。
 2. 数据访问：OpenAPI 支持获取数据访问列表，支持[获取](../open-api/data-query-rule/get.md)/[新建](../open-api/data-query-rule/add.md)/[修改](../open-api/data-query-rule/modify.md)单个数据访问规则。
 
-
 ### 功能更新 {#feature1113}
 
 #### 付费计划与账单
@@ -234,8 +308,8 @@ APM 安装引导新增[自动注入方式](../application-performance-monitoring
 1. 邀请成员：新增换行分隔功能，多个邮箱之间可通过换行识别。
 2. 数据转发规则拓展：数据转发到华为云 OBS [支持 AK、SK 方式访问](../management/backup/backup-huawei.md#ak)，提供更丰富的 OBS 访问方式。
 3. 工作空间：
-    - 工作空间删除或解散新增 7 天暂存逻辑，7 天后工作空间内数据再进行最终清除；
-    - 支持配置个人账号级别的默认空间和置顶空间。
+   - 工作空间删除或解散新增 7 天暂存逻辑，7 天后工作空间内数据再进行最终清除；
+   - 支持配置个人账号级别的默认空间和置顶空间。
 
 #### 监控
 
@@ -249,15 +323,12 @@ APM 安装引导新增[自动注入方式](../application-performance-monitoring
 1. 柱状图新增 Y 轴上下限设置，可以更精确地控制图表的显示效果；
 2. 在进行跨工作空间查询时，支持选择“全部空间”，以便用户一次性获取全部信息。
 
-
 ### 部署版更新 {#deployment1113}
 
 1. 忘记密码：当忘记登录密码时，支持以账号关联的邮箱验证码的方式找回密码。注意：若账号未关联邮箱，则无法通过此方式找回密码。
 2. [全局 DCA 配置](../deployment/setting.md#dca)：新增全局 DCA 地址配置，可一键配置所有工作空间的 DCA 地址。
 
-
 ### 新增集成 {#inte1113}
-
 
 - 新增 [Azure SQL Servers](../integrations/azure_sqlserver.md)；
 - 新增 [华为云 RDS SQLServer](../integrations/huawei_rds_sqlserver.md)；
@@ -274,7 +345,7 @@ APM 安装引导新增[自动注入方式](../application-performance-monitoring
 
 ### Bug 修复 {#bug1113}
 
-1. 解决了告警策略设置过滤条件，使用事件信息中的扩展字段进行过滤，无法发送告警的问题。 
+1. 解决了告警策略设置过滤条件，使用事件信息中的扩展字段进行过滤，无法发送告警的问题。
 
 2. 解决了告警策略里面的过滤条件未展示所有内容的问题。
 
@@ -297,7 +368,6 @@ APM 安装引导新增[自动注入方式](../application-performance-monitoring
 11. 解决了日志查看器 "添加筛选" 功能无法完整识别 `trace_id` 字串的问题。
 
 12. 解决了 `-bpf_net_l7_log` 日志的关联网络日志不准确的问题。
-
 
 ## 2024 年 11 月 6 日
 
@@ -325,11 +395,9 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 
 [Rollup 函数](../scene/visual-chart/chart-query.md#rollup)仅适用于指标数据查询，在图表简单模式下，对其他数据类型的查询选择将做下线处理。
 
-
 ### Bug 修复 {#bug1106}
 
 1. 解决了基础设施蜂窝图不显示具体的使用率的问题。
-
 
 ## 2024 年 10 月 30 日
 
@@ -342,7 +410,6 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 - [Grafana Dashboard](../integrations/quick-guide.md)；
 - [Greenplum](../integrations/greenplum.md)。
 
-
 ### 功能更新 {#feature1030}
 
 #### 云账单
@@ -354,36 +421,39 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 #### 监控
 
 1. [主机智能监控](../monitoring/intelligent-monitoring/host-intelligent-detection.md)新增网络检测扩展：基于主机的网络监控提供了高效的网络性能监测，帮助用户实时监控主机的网络流量，识别异常流量和潜在的连接问题并及时预警，避免影响业务正常运行。系统支持多维度可视化功能，帮助用户深入分析和理解主机的网络使用情况，优化带宽分配和资源利用率，为未来的容量规划提供数据支持，从而确保网络资源的合理配置。
-2. 监控器功能增强： 
-    - 支持在监控器列表中[批量设置](../monitoring/monitor/monitor-list.md#options)关联告警策略。
-    
-    - 日志查看器可针对当前筛选和搜索条件[一键配置](../logs/manag-explorer.md)【日志检测】类型监控器。
-    
-    - 注意：只有在站点和工作空间级别都开启了 `左*` 查询的前提下，监控器才支持 `左*` 查询。否则日志查看器若配置 `左*` 查询，跳转到监控器会查询报错。
+2. 监控器功能增强：
+
+   - 支持在监控器列表中[批量设置](../monitoring/monitor/monitor-list.md#options)关联告警策略。
+
+   - 日志查看器可针对当前筛选和搜索条件[一键配置](../logs/manag-explorer.md)【日志检测】类型监控器。
+
+   - 注意：只有在站点和工作空间级别都开启了 `左*` 查询的前提下，监控器才支持 `左*` 查询。否则日志查看器若配置 `左*` 查询，跳转到监控器会查询报错。
 
 3. [通知对象](../monitoring/notify-object.md)列表：
-    - 新增搜索、快捷筛选功能，支持快速检索通知对象；
-    - 针对连续两天发送失败被系统禁用的通知对象，名称后展示标记。
+
+   - 新增搜索、快捷筛选功能，支持快速检索通知对象；
+   - 针对连续两天发送失败被系统禁用的通知对象，名称后展示标记。
 
 4. [静默规则](../monitoring/silent-management.md)优化：
-    - 新增规则名称和描述配置功能，提升规则管理的便捷性；
-    - 事件属性支持不同字段的逻辑组合关系（AND 和 OR）；
-    - 优化列表显示效果，支持自定义显示列，提升用户界面的个性化体验。
+
+   - 新增规则名称和描述配置功能，提升规则管理的便捷性；
+   - 事件属性支持不同字段的逻辑组合关系（AND 和 OR）；
+   - 优化列表显示效果，支持自定义显示列，提升用户界面的个性化体验。
 
 5. [告警策略](../monitoring/alert-setting.md)：
-    - 通知规则内标签匹配逻辑支持不同字段自由组合 AND 和 OR 的关系，交互体验同查看器筛选搜索组件一致；
-    - 新增自定义操作权限配置；
-    - 新增告警策略描述填写。
+   - 通知规则内标签匹配逻辑支持不同字段自由组合 AND 和 OR 的关系，交互体验同查看器筛选搜索组件一致；
+   - 新增自定义操作权限配置；
+   - 新增告警策略描述填写。
 
 #### 场景
 
 1. 新增主机 NET 分析视图：通过对主机的网络使用情况，带宽分配和资源利用率等指标的汇聚，为未来的容量规划提供数据支持，从而确保网络资源的合理配置。
 2. 图表查询优化：
-    - `index` 不支持做 `by` 分组查询，优化 DQL 查询交互体验；
-    - By 标签范围 / 筛选标签范围列出精确到指标级别；
-    - DQL 查询新增获取日志索引的查询函数：`show_logging_index()`，可在仪表板视图变量处应用，同时图表查询索引配置支持视图变量填充；
-    - 图表的表达式查询功能现已支持跨空间查询；
-    - 优化组合图表的时间锁定显示，提供更加直观的用户体验。
+   - `index` 不支持做 `by` 分组查询，优化 DQL 查询交互体验；
+   - By 标签范围 / 筛选标签范围列出精确到指标级别；
+   - DQL 查询新增获取日志索引的查询函数：`show_logging_index()`，可在仪表板视图变量处应用，同时图表查询索引配置支持视图变量填充；
+   - 图表的表达式查询功能现已支持跨空间查询；
+   - 优化组合图表的时间锁定显示，提供更加直观的用户体验。
 3. 查看器页面优化：查看器详情页中绑定主机的 Tab 页追加 `host_ip` 显示。
 
 #### Pipeline
@@ -392,7 +462,7 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 
 #### 管理
 
-[数据访问](../management/logdata-access.md)功能整合：    
+[数据访问](../management/logdata-access.md)功能整合：
 
 - 应用性能和指标新增数据访问功能；
 - 管理中新增「数据访问」功能模块，整合所有数据类型，支持用户快速查询与过滤。
@@ -404,7 +474,7 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 ### 部署版更新
 
 1. 管理后台新增监控器菜单：列出所有工作空间的监控器，支持搜索、筛选监控器；支持修改监控器的启用/禁用状态、删除、导出监控器等操作，同时支持克隆单个/批量监控器到选中工作空间。
-    - 注意：组合检测监控器不支持跨工作空间克隆。
+   - 注意：组合检测监控器不支持跨工作空间克隆。
 2. MFA 安全认证优化：新增隐藏 7 天自动登录选项的开关，支持配置免认证登陆选项是否开启。
 3. CDN 域名配置： 可以在配置文件中配置 CDN 域名，RUM 应用接入页面将自动获取并显示
 
@@ -423,7 +493,6 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 11. 解决了通过日志上下文点进来无法定位到当前日志的问题。
 12. 调整应用智能监控灵敏度，减少请求数异常突降过多问题。
 13. 改善突变检测监控器对高频 tags 的不适配问题。
-
 
 ## 2024 年 10 月 16 日
 
@@ -452,18 +521,17 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 #### 监控
 
 1. [监控器配置](../monitoring/monitor/monitor-rule.md)交互优化：
-    - 支持针对选中等级事件配置[异常追踪 Issue 关联](../monitoring/monitor/monitor-rule.md#issue)创建；
-    - 优化 Crontab 自定义检测频率和检测区间配置交互；
-    - 新增[通知内容自定义](../monitoring/monitor/monitor-rule.md#content)。
+   - 支持针对选中等级事件配置[异常追踪 Issue 关联](../monitoring/monitor/monitor-rule.md#issue)创建；
+   - 优化 Crontab 自定义检测频率和检测区间配置交互；
+   - 新增[通知内容自定义](../monitoring/monitor/monitor-rule.md#content)。
 2. 告警策略配置优化：
-    - 规则内针对事件过滤条件新增[正则匹配](../monitoring/alert-setting.md#filter)；
-    - 优化过滤条件配置显示。
+   - 规则内针对事件过滤条件新增[正则匹配](../monitoring/alert-setting.md#filter)；
+   - 优化过滤条件配置显示。
 3. 数据采样优化：在监控器配置页面和指标分析页面，当图表因数据量过大自动触发数据采样时，用户可以手动关闭数据采样功能。
 
 #### 日志
 
 1. 日志新增[错误追踪](../logs/log-tracing.md)：支持错误日志追踪查看分析。
-
 
 #### 场景
 
@@ -478,17 +546,15 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 1. 黑名单功能增强：支持对所有数据类型的数据来源进行全选、单选、多选配置。
 2. 自建索引/敏感数据扫描/数据转发：为优化数据处理和写入性能，涉及功能规则配置过滤条件去掉 ”match“ 和 ”not match“ 匹配模式。
 
-
 #### 事件
 
 1. [未恢复事件查看器](../events/event-explorer/unrecovered-events.md)优化：
-    - 优化批量操作交互，新增**一键勾选当前页**和**一键勾选全部**选项，支持快速恢复当前选中的异常事件；
-    - 手动恢复产生恢复后，OK 事件标题显示优化。
+   - 优化批量操作交互，新增**一键勾选当前页**和**一键勾选全部**选项，支持快速恢复当前选中的异常事件；
+   - 手动恢复产生恢复后，OK 事件标题显示优化。
 
 #### 基础设施
 
 1. 资源目录优化：资源目录支持自定义资源分类图标，提供丰富的图标选择，以提升用户体验。
-
 
 ### 部署版更新 {#deployment1016}
 
@@ -519,8 +585,6 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 20. 解决了同一时间段事件状态数量会变的问题。
 21. 调整角色查询逻辑，解决了角色数量超出 100 时搜索不到的问题。
 
-
-
 ## 2024 年 9 月 25 日
 
 ### Breaking Changes {#breakingchanges0925}
@@ -532,8 +596,8 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 #### 场景
 
 1. 仪表板新增[历史版本记录](../scene/dashboard/history-version.md)：可查看此仪表板三个月内保存的版本记录，选中某版本后，可查看此版本图表详情，并以 JSON 格式、通过不同颜色标记选中版本的变更内容。
-    - 支持将当前仪表板还原至选中的历史版本；
-    - 支持克隆仪表板某个版本。
+   - 支持将当前仪表板还原至选中的历史版本；
+   - 支持克隆仪表板某个版本。
 2. [自定义查看器](../scene/explorer/custom-explorer.md)支持变更显示列顺序：自定义查看器编辑配置时，可拖拽所选字段变更字段展示顺序。
 
 #### 监控
@@ -551,10 +615,10 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 
 1. 跨空间授权优化：将登录空间的定义更新为“当前空间”，以简化用户在不同空间间的操作。
 2. [数据转发规则](../management/backup/index.md)支持指定存储目录：存档类型为 AWS S3、华为云 OBS、阿里云 OSS 时，支持将数据转发到存储桶下的对应目录中，帮助更好地管理转发数据。
-    - 注意：请谨慎变更存储路径，由于更新配置存在 5 分钟左右的延迟，变更后可能会有部分数据依然转发到原目录下。
+   - 注意：请谨慎变更存储路径，由于更新配置存在 5 分钟左右的延迟，变更后可能会有部分数据依然转发到原目录下。
 3. 数据转发查看器优化：
-    - 时间控件调整：调整为查看器通用时间控件，可获取精确到分钟的转发数据。
-    - SLS query logstore 数据存储位置调整：“数据转发”不再保留 SLS query logstore 的数据，可在“日志查看器”中查询。
+   - 时间控件调整：调整为查看器通用时间控件，可获取精确到分钟的转发数据。
+   - SLS query logstore 数据存储位置调整：“数据转发”不再保留 SLS query logstore 的数据，可在“日志查看器”中查询。
 
 #### 可用性监测
 
@@ -589,8 +653,8 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 
 1. [Datakit 管理](../deployment/setting.md#datakit)支持筛选在线主机：支持筛选最近 10 分钟、最近 15 分钟、最近 30 分钟、最近 1 小时、最近 3 小时内有数据上报的主机。
 2. 管理后台：
-    - 空间存储类型为“火山引擎”时，支持配置热数据保留时长。
-    - 新建工作空间文案和交互优化，默认主引擎只有一个选项时用户无需额外指定。
+   - 空间存储类型为“火山引擎”时，支持配置热数据保留时长。
+   - 新建工作空间文案和交互优化，默认主引擎只有一个选项时用户无需额外指定。
 3. 平台配色模板增强：支持定义导航栏及导航文字显示颜色配置。
 4. License 使用和过期提醒：针对 License 即将到期、已过期和使用超量等状态新增控制台全局提示；针对平台组件版本升级新增控制台全局提示。
 
@@ -603,19 +667,17 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 1. 日志查看器新增交互：长按 Ctrl 可针对查看器列表文本分词进行 “添加到查询”、“从查询中排除”、“复制” 操作，便捷目标数据的快速查询追加。同理日志详情页内容区域也支持此交互。
 2. 日志支持绑定[火山引擎 TLS 外部索引](../logs/multi-index/tls.md)：可绑定外部索引，在观测云平台直接查看及分析火山引擎日志数据。
 3. 日志 > [数据访问](../management/logdata-access.md)优化：
-    - 新增数据访问导航页，页面右上角新增帮助文档跳转链接；
-    - 数据访问规则新增【名称】字段为唯一性 ID，新增规则【描述】字段，可自定义名称及描述以区分规则使用场景。
+   - 新增数据访问导航页，页面右上角新增帮助文档跳转链接；
+   - 数据访问规则新增【名称】字段为唯一性 ID，新增规则【描述】字段，可自定义名称及描述以区分规则使用场景。
 4. 日志查看器筛选项优化：日志查看器列表【日志索引】筛选项支持搜索，可关键字搜索索引并进行勾选。
 5. 日志[状态自定义](../logs/manag-explorer.md#status-color)：支持自定义日志状态值，并在控制台中为每个状态值设置颜色，适应不同的日志接入场景，同时使日志的状态显示更加个性化和直观。
-
-
 
 #### 场景
 
 1. 新增图表类型[热力图](../scene/visual-chart/heatmap_scene.md)：用户可以通过颜色深浅直观地查看数据的分布和趋势，帮助更好地理解数据。
-2. [图表链接重定向跳转](https://www.guance.com/learn/articles/Chart-Links)：联动 Function 函数结合仪表板数据实现链接重定向跳转。  
-3. [告警统计图表](../scene/visual-chart/alert-statistics.md)组件升级：更换列出逻辑，新版本的告警统计图列出效果同未恢复事件查看器一致，统一用户查看体验。      
-    - 注意：跨工作空间列出情况下不支持 “创建 Issue” 和 “手动恢复” 操作。   
+2. [图表链接重定向跳转](https://www.guance.com/learn/articles/Chart-Links)：联动 Function 函数结合仪表板数据实现链接重定向跳转。
+3. [告警统计图表](../scene/visual-chart/alert-statistics.md)组件升级：更换列出逻辑，新版本的告警统计图列出效果同未恢复事件查看器一致，统一用户查看体验。
+   - 注意：跨工作空间列出情况下不支持 “创建 Issue” 和 “手动恢复” 操作。
 4. 分组表格图自定义显示列：在分组表格图中，新增自定义显示列功能，支持对返回的列设置显示或隐藏，提供更灵活的数据展示方式。
 5. 图表跨空间授权查询交互优化：开启空间授权功能后，可以直接在查询上方选择被授权的空间列表，操作更加直观和便捷。
 
@@ -623,13 +685,12 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 
 异常追踪 Issue 和监控器事件：内容若存在 `@ 成员`配置，则通过 Webhook 对外传递时 Issue 或事件会同步携带 `@成员`的账号属性信息。
 
-
 #### 监控
 
 1. 外部事件检测：支持自定义事件发生时间和标签属性追加。注意：
-    - 字段值统一使用字符串类型；
-    - 字段名称不支持以 `_` 下划线和 `df_` 前缀开头且不能与当前事件默认字段重名；
-    - 自定义标签字段名不能与 `dimension_tags` 内定义字段名重名。
+   - 字段值统一使用字符串类型；
+   - 字段名称不支持以 `_` 下划线和 `df_` 前缀开头且不能与当前事件默认字段重名；
+   - 自定义标签字段名不能与 `dimension_tags` 内定义字段名重名。
 2. 名词调整：“无数据” 正式更新为 “数据断档”，保证页面配置查看体验统一。
 
 #### Pipeline
@@ -643,7 +704,6 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 1. 工作空间列表显示优化：针对列表操作栏，新增显示创建人头像鼠标悬浮提示创建人、创建时间、更新人、更新时间；同时对操作项整体显示进行优化。
 2. 列表新增跳转审计事件：列表操作栏新增审计事件跳转链接，点击可跳转查看对应审计事件。
 3. 账号管理显示调整：单点登录用户【账号管理】菜单下不显示密码项。
-
 
 ### Bug 修复 {#bugs0904}
 
@@ -665,16 +725,11 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 1. 图表自定义返回数量：时序图、饼图、表格图、排行榜、矩形树图和地图支持自定义返回数据的数量，无最大限制，以满足不同的数据展示需求。
 2. 管理后台 > Datakit 管理，支持导出 Datakit 清单。
 
-
-
-
 ## 2024 年 8 月 21 日
-
 
 ### Breaking Changes {#breakingchanges0821}
 
 - OpenAPI / 全局 API：【事件】未恢复事件数据源从 `UE` 变更为 `E`。
-
 
 ### 新增功能 {#new0821}
 
@@ -682,31 +737,28 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 
 ![](img/overall-token.png)
 
-
 ### 持续优化 {#consistent0821}
 
 - 异常追踪：
-    - 新增 [Issue 发现](../exception/config-manag/issue-discovery.md)页面。通过这一功能，您可以定制 Issue 发现的具体规则，对监控器检测规则触发的异常事件和相关数据进行统一管理和筛选。将一系列事件视为由单一原因引起，并为这些事件设置筛选条件，然后选择聚合维度来进一步细化数据。细化后，数据会根据您设定的检测频率进行聚合。最终，系统会根据您预设的 Issue 标题和描述，自动将这些信息推送到指定的频道，确保所有相关方都能及时接收并有效处理这些 Issue。
-    - 配置管理 > 通知策略：通知策略列表新增创建/更新的信息显示。
-
+  - 新增 [Issue 发现](../exception/config-manag/issue-discovery.md)页面。通过这一功能，您可以定制 Issue 发现的具体规则，对监控器检测规则触发的异常事件和相关数据进行统一管理和筛选。将一系列事件视为由单一原因引起，并为这些事件设置筛选条件，然后选择聚合维度来进一步细化数据。细化后，数据会根据您设定的检测频率进行聚合。最终，系统会根据您预设的 Issue 标题和描述，自动将这些信息推送到指定的频道，确保所有相关方都能及时接收并有效处理这些 Issue。
+  - 配置管理 > 通知策略：通知策略列表新增创建/更新的信息显示。
 
 ### 常规更新 {#usual0821}
 
 - 数据保存策略：
-    - 原【应用性能】项拆分为【应用性能-链路】、【应用性能-Profile】，支持用户分别配置 Trace 数据和 Profile 数据的保存策略；
-    - 原【数据转发】名称修改为【数据转发-观测云】。
+  - 原【应用性能】项拆分为【应用性能-链路】、【应用性能-Profile】，支持用户分别配置 Trace 数据和 Profile 数据的保存策略；
+  - 原【数据转发】名称修改为【数据转发-观测云】。
 - 监控 > 通知对象管理：连续一天发送失败会发系统通知；连续两天发送失败会发系统通知且自动禁用。
 - [未恢复事件查看器](../events/event-explorer/unrecovered-events.md)：
-    - 数据源变更为查询事件数据，以 `df_fault_id` 作为唯一标识进行聚合，获取最近一条数据结果返回展示。
-    - 页面整体 UI 改造。
+  - 数据源变更为查询事件数据，以 `df_fault_id` 作为唯一标识进行聚合，获取最近一条数据结果返回展示。
+  - 页面整体 UI 改造。
 - 应用性能监测（APM）> 链路：[服务调用关系图](../application-performance-monitoring/explorer/explorer-analysis.md#call)新增绑定内置视图能力，点击服务的卡片，即可快速查看与该服务关联的相关用户视图。
 - 管理：
-    - 新增【工作空间描述】；
-    - 编辑模式下，交互变更为打开新窗口；
-    - 工作空间列表下支持通过工作空间的名称或描述来搜索定位。
+  - 新增【工作空间描述】；
+  - 编辑模式下，交互变更为打开新窗口；
+  - 工作空间列表下支持通过工作空间的名称或描述来搜索定位。
 - 日志 > BPF 日志 > 七层 BPF 网络日志：网络请求拓扑图 UI 优化，突出了服务端与客户端的区分。
 - 可用性监测 > HTTP 监测 > 高级设置 > 请求设置默认添加 `Accept-Encoding:identity`。
-  
 
 ### 部署版更新
 
@@ -716,9 +768,10 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 
 - 数据保存策略：
 
-    - 考虑到用户处于存储成本等因素的考量，需要自定义这些数据的保存时长，部署版管理后台新增【会话重放】配置项。
-    - 原【数据转发】名称修改为【数据转发-默认存储】；
-    - 原【应用性能】项拆分为【应用性能-链路】、【应用性能-Profile】，支持用户分别配置 Trace 数据和 Profile 数据的保存策略；
+  - 考虑到用户处于存储成本等因素的考量，需要自定义这些数据的保存时长，部署版管理后台新增【会话重放】配置项。
+  - 原【数据转发】名称修改为【数据转发-默认存储】；
+  - 原【应用性能】项拆分为【应用性能-链路】、【应用性能-Profile】，支持用户分别配置 Trace 数据和 Profile 数据的保存策略；
+
 - 支持火山引擎 TLS 做为底层数据存储引擎。
 
 ### BUG 修复 {#bugs0821}
@@ -733,9 +786,7 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 - 解决图表设置的数据格式对图例中数据不生效的问题；
 - 解决自建拨测节点下，关联的拨测任务删除后，实际拨测还在运行的问题。
 
-
 ## 2024 年 8 月 7 日
-
 
 ### 新增功能 {#new0807}
 
@@ -748,78 +799,72 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 ### 持续优化 {#consistent0807}
 
 - 异常追踪:
-    - 配置管理 > 通知策略：新增[操作审计和执行日志](../exception/config-manag.md#check-events)查看入口。在接收 Issue 通知时，有时会遇到通知未正常发送或针对通知策略有疑议，此时可查看当前通知策略的操作审计事件和执行日志数据来进行判断。
-    - APM / RUM [Issue 自动发现](../application-performance-monitoring/error.md#issue)支持添加筛选条件；
-    - 针对部署版，新增[统一管理异常追踪等级](../deployment/setting.md#global-settings)入口；
-    - 日程：
-        - 在日程编辑页面，不同的通知对象会自动生成颜色；
-        - 日程管理：【我的日程】与【所有日程】新增统计数量；
-
+  - 配置管理 > 通知策略：新增[操作审计和执行日志](../exception/config-manag.md#check-events)查看入口。在接收 Issue 通知时，有时会遇到通知未正常发送或针对通知策略有疑议，此时可查看当前通知策略的操作审计事件和执行日志数据来进行判断。
+  - APM / RUM [Issue 自动发现](../application-performance-monitoring/error.md#issue)支持添加筛选条件；
+  - 针对部署版，新增[统一管理异常追踪等级](../deployment/setting.md#global-settings)入口；
+  - 日程：
+    - 在日程编辑页面，不同的通知对象会自动生成颜色；
+    - 日程管理：【我的日程】与【所有日程】新增统计数量；
 
 ### 常规更新 {#usual0807}
 
 - 监控 > [SLO](../monitoring/slo.md#slo)：
-    - 新增标签配置，最终作用到产生的事件数据信息内；
-    - 配置优化：通过设置【目标】和【最低目标】的 7 天达标率范围，判断生成警告或紧急事件；
-    - 支持通过关联【告警策略】实现告警通知发送。
+  - 新增标签配置，最终作用到产生的事件数据信息内；
+  - 配置优化：通过设置【目标】和【最低目标】的 7 天达标率范围，判断生成警告或紧急事件；
+  - 支持通过关联【告警策略】实现告警通知发送。
 - 可用性监测：
-    - 拨测任务新增标签配置；
-    - 配置拨测任务页面的[测试模块](../usability-monitoring/request-task/http.md#test)优化；
-    - 列表新增[快捷筛选](../usability-monitoring/request-task/index.md#manag)模块；
+  - 拨测任务新增标签配置；
+  - 配置拨测任务页面的[测试模块](../usability-monitoring/request-task/http.md#test)优化；
+  - 列表新增[快捷筛选](../usability-monitoring/request-task/index.md#manag)模块；
 - 查看器：分析模式下支持导出 CSV 文件。
 - 基础设施 > 容器：新增进程关联页面展示。
 
 ### BUG 修复 {#bugs0807}
 
 - 解决【任务调用】计费统计次数未显示的问题；
-- 解决图表查询时【左 * 匹配】问题；
+- 解决图表查询时【左 \* 匹配】问题；
 - 解决 BPF 网络日志返回数据未包含容器等相关信息的问题；
-- 解决中心 Pipeline 失效问题。 
+- 解决中心 Pipeline 失效问题。
 
 ### Breaking Changes {#breakingchanges0807}
 
 - OpenAPI：
-    - SLO 创建/修改接口新增 `tags`、`alertPolicyUUIDs` 并弃用 `alertOpt` 参数；
-    - SLO 获取详情和列表接口返回结果中新增 `tagInfo`、`alertPolicyInfos` 字段，丢弃了 `alertOpt` 字段。
-
+  - SLO 创建/修改接口新增 `tags`、`alertPolicyUUIDs` 并弃用 `alertOpt` 参数；
+  - SLO 获取详情和列表接口返回结果中新增 `tagInfo`、`alertPolicyInfos` 字段，丢弃了 `alertOpt` 字段。
 
 ## 2024 年 7 月 24 日
 
 ### 观测云更新
 
 - 异常追踪：
-    - 新增[分析看板](../exception/issue-view.md)：可视化展示不同指标数据。
-    - 新增[日程](../exception/calendar.md)管理和[通知策略](../exception/config-manag.md#notify-strategy)：对 Issue 的内容范围做进一步通知分配。
+  - 新增[分析看板](../exception/issue-view.md)：可视化展示不同指标数据。
+  - 新增[日程](../exception/calendar.md)管理和[通知策略](../exception/config-manag.md#notify-strategy)：对 Issue 的内容范围做进一步通知分配。
 - 场景：
-    - 图表：新增[时间偏移](../scene/visual-chart/timeseries-chart.md#advanced-setting)设置。启用时间偏移后，当查询相对时间区间时，实际查询时间范围向前偏移 1 分钟，以防止入库延迟导致数据获取为空。
-    - 仪表板：新增[历史快照](../scene/dashboard/config_list.md#history)入口。
-    - 快照：保存快照时自动获取当前页面上选取的时间范围；分享快照时，可选择允许查看者更改时间范围。
+  - 图表：新增[时间偏移](../scene/visual-chart/timeseries-chart.md#advanced-setting)设置。启用时间偏移后，当查询相对时间区间时，实际查询时间范围向前偏移 1 分钟，以防止入库延迟导致数据获取为空。
+  - 仪表板：新增[历史快照](../scene/dashboard/config_list.md#history)入口。
+  - 快照：保存快照时自动获取当前页面上选取的时间范围；分享快照时，可选择允许查看者更改时间范围。
 - 监控：
-    - 基础设施存活检测 V2：新增[附加信息](../monitoring/monitor/infrastructure-detection.md#config)。选定字段后，系统会做额外查询，但不会用于触发条件的判断。
-    - 通知对象管理：新增【操作权限】选项配置，由开关控制通知对象的操作（编辑、删除）权限。
-
-
+  - 基础设施存活检测 V2：新增[附加信息](../monitoring/monitor/infrastructure-detection.md#config)。选定字段后，系统会做额外查询，但不会用于触发条件的判断。
+  - 通知对象管理：新增【操作权限】选项配置，由开关控制通知对象的操作（编辑、删除）权限。
 
 ## 2024 年 7 月 10 日
 
 ### 观测云更新
 
 - 场景：
-    - [视图变量](../scene/view-variable.md#add)：
-        - 新增配置项开关：包含 * 选项。
-        - 选择隐藏视图变量时，列表新增隐藏标识。
-    - 仪表板：[分组](../scene/dashboard/config_list.md#group)组件支持配置颜色。
-    - 图表：别名功能覆盖排行榜、矩形树图、桑基图。
-    - 仪表板/查看器/内置视图：新增[卡片属性](../scene/dashboard/config_page.md#metadata)信息，优化编辑配置。
+  - [视图变量](../scene/view-variable.md#add)：
+    - 新增配置项开关：包含 \* 选项。
+    - 选择隐藏视图变量时，列表新增隐藏标识。
+  - 仪表板：[分组](../scene/dashboard/config_list.md#group)组件支持配置颜色。
+  - 图表：别名功能覆盖排行榜、矩形树图、桑基图。
+  - 仪表板/查看器/内置视图：新增[卡片属性](../scene/dashboard/config_page.md#metadata)信息，优化编辑配置。
 - 监控：
-    - 通知对象管理：配置 [Webhook 通知对象](../monitoring/notify-object.md#custom-webhook)，支持追加成员信息。
-    - 应用智能检测：新增追踪历史变化，过滤周期性的异常数据突变；新增异常服务关联影响的用户数。
+  - 通知对象管理：配置 [Webhook 通知对象](../monitoring/notify-object.md#custom-webhook)，支持追加成员信息。
+  - 应用智能检测：新增追踪历史变化，过滤周期性的异常数据突变；新增异常服务关联影响的用户数。
 - 事件 >[ 事件列表查看器](../events/event-explorer/event-list.md)：显示列新增告警通知状态标识。
 - 日志：
-    - 索引：绑定 [SLS 外部索引](../logs/multi-index.md#sls)时，新增访问类型选择，支持自定义公网访问或者内网访问；
-    - 日志查看器：[聚类分析](../logs/explorer.md#cluster)模式下，支持导出显示列数据及关联日志页面数据。
-
-
+  - 索引：绑定 [SLS 外部索引](../logs/multi-index.md#sls)时，新增访问类型选择，支持自定义公网访问或者内网访问；
+  - 日志查看器：[聚类分析](../logs/explorer.md#cluster)模式下，支持导出显示列数据及关联日志页面数据。
 
 ### 观测云部署版更新
 
@@ -833,23 +878,23 @@ Java 应用支持创建[内存快照](../application-performance-monitoring/serv
 - [Pipelines](../pipeline/index.md)：支持选择中心 Pipeline 执行脚本。
 - 付费计划与账单：新增[中心 Pipeline 计费项](../billing/billing-method/index.md#pipeline)，统计所有命中中心 Pipeline 处理的原始日志的数据大小。
 - 监控
-    - 通知对象管理：新增[权限控制](../monitoring/notify-object.md#permission)。配置操作权限后，仅被赋予权限的对象可对此通知对象进行编辑、删除操作。
-    - 智能监控 > 日志智能检测：新增追踪历史变化，过滤周期性的异常数据突变。
-- 日志 
-    - [数据访问](../management/logdata-access.md#config)：新增对被授权查看的日志索引做访问权限配置。
-    - 日志查看器：显示列拓展，支持[添加 json 对象内字段内容](../logs/manag-explorer.md#json-content)到一级返回显示。
-    - [BPF 网络日志](../logs/bpf-log.md)：
-        - 连接展示效果优化；
-        - 支持直接跳转至详情页；
-        - 支持自定义添加显示列。
+  - 通知对象管理：新增[权限控制](../monitoring/notify-object.md#permission)。配置操作权限后，仅被赋予权限的对象可对此通知对象进行编辑、删除操作。
+  - 智能监控 > 日志智能检测：新增追踪历史变化，过滤周期性的异常数据突变。
+- 日志
+  - [数据访问](../management/logdata-access.md#config)：新增对被授权查看的日志索引做访问权限配置。
+  - 日志查看器：显示列拓展，支持[添加 json 对象内字段内容](../logs/manag-explorer.md#json-content)到一级返回显示。
+  - [BPF 网络日志](../logs/bpf-log.md)：
+    - 连接展示效果优化；
+    - 支持直接跳转至详情页；
+    - 支持自定义添加显示列。
 - 场景
-    - 时序图：折线图、面积图新增[断点连接](../scene/visual-chart/timeseries-chart.md#breakpoint)设置，柱状图新增【显示返回值】按钮。
+  - 时序图：折线图、面积图新增[断点连接](../scene/visual-chart/timeseries-chart.md#breakpoint)设置，柱状图新增【显示返回值】按钮。
 - [可用性监测](../usability-monitoring/request-task/index.md#manag)：任务列表新增表头排序。
 - DataFlux Func：支持观测云异常追踪脚本[集成钉钉应用](https://func.guance.com/doc/script-market-guance-issue-dingtalk-integration/)。
 
 ### 观测云部署版更新
 
-Profile：通过配置参数，支持文件存储和对象存储两种方式。 
+Profile：通过配置参数，支持文件存储和对象存储两种方式。
 
 ## 2024 年 6 月 13 日
 
@@ -858,17 +903,16 @@ Profile：通过配置参数，支持文件存储和对象存储两种方式。
 - [BPF 网络日志](../logs/bpf-log.md)：优化 BPF 网络功能，增强 L4/L7 网络联动。
 - APM/RUM：新增 【[Issue 自动发现](../application-performance-monitoring/error.md#issue)】功能。启用该配置后，观测云会将符合配置项规则的错误数据记录自动创建 Issue。
 - 监控
-    - 智能监控：新增 [Kubernetes 智能检测](../monitoring/intelligent-monitoring/k8s.md)：通过智能算法自动检测 Kubernetes 中的异常，检测指标包含 Pod 总数，Pod 重启，APIServer QPS 等。
-    - 告警策略管理：
-        - 新增[过滤](../monitoring/alert-setting.md#filter)功能。在进行告警规则配置时，该功能允许在原有等级基础上增加更细致的过滤条件，仅匹配等级+过滤条件的事件才会发送给对应的通知对象。
-        - 支持选择外部邮箱做为通知对象。
-    - 监控器 > 事件内容：支持自定义输入外部邮箱。
+  - 智能监控：新增 [Kubernetes 智能检测](../monitoring/intelligent-monitoring/k8s.md)：通过智能算法自动检测 Kubernetes 中的异常，检测指标包含 Pod 总数，Pod 重启，APIServer QPS 等。
+  - 告警策略管理：
+    - 新增[过滤](../monitoring/alert-setting.md#filter)功能。在进行告警规则配置时，该功能允许在原有等级基础上增加更细致的过滤条件，仅匹配等级+过滤条件的事件才会发送给对应的通知对象。
+    - 支持选择外部邮箱做为通知对象。
+  - 监控器 > 事件内容：支持自定义输入外部邮箱。
 - 场景
-    - 拓扑图：新增链接配置。
-    - 桑基图：由原先支持最多 4 个节点配置改为 6 个。
+  - 拓扑图：新增链接配置。
+  - 桑基图：由原先支持最多 4 个节点配置改为 6 个。
 - Pipeline：列表新增过滤条件显示。
 - 日志 > 索引：列表显示优化。
-
 
 ### 观测云部署版更新
 
@@ -881,32 +925,30 @@ Profile：文件大小由原先的固定 5MB 修改为支持自定义，点击�
 - **管理 > [跨工作空间授权](../management/data-authorization.md#site)**：添加页面新增【数据范围】，支持多选数据类型。
 - **日志 > 日志查看器**：支持[跨工作空间索引查询](../logs/cross-workspace-index.md)，快速获取其它空间的日志数据，从而突破日志数据存储位置的限制，大幅度提升数据分析和故障定位的效率。
 
-
 ## 2024 年 5 月 29 日
 
 ### 观测云更新
 
 - [DCA](../dca/index.md)
-    - 支持私有化部署，可直接通过工作空间页面按钮前往 DCA 控制台。
-    - 支持批量管理功能。
+  - 支持私有化部署，可直接通过工作空间页面按钮前往 DCA 控制台。
+  - 支持批量管理功能。
 - 异常追踪：
-    - Webhook 接收通道：支持 Issue 回复的新增、修改通知；
-    - 支持选择团队或添加外部邮箱为 Issue 负责人。
+  - Webhook 接收通道：支持 Issue 回复的新增、修改通知；
+  - 支持选择团队或添加外部邮箱为 Issue 负责人。
 - 日志 > [上下文日志](../logs/explorer-details.md#up-down)：查询逻辑修改；支持通过日志上下文详情页对相关数据作进一步查询管理。
 - 场景
-    - 视图变量：分组标题/图表标题支持配置 `#{视图变量}` 显示。
-    - 时序图 > 分析模式：支持调整时间间隔 interval。
-    - 仪表板/自定义查看器：当标签数量超过 20 个时，显示搜索框；标签名前显示颜色。
+  - 视图变量：分组标题/图表标题支持配置 `#{视图变量}` 显示。
+  - 时序图 > 分析模式：支持调整时间间隔 interval。
+  - 仪表板/自定义查看器：当标签数量超过 20 个时，显示搜索框；标签名前显示颜色。
 - 监控
-    - 监控器/智能监控/静默管理 > 快捷筛选：当值超过 20 个时，出现搜索框，支持搜索定位。
-    - 监控器：针对 PromQL 查询检测，事件通知中自动列出可使用的模板变量。
+  - 监控器/智能监控/静默管理 > 快捷筛选：当值超过 20 个时，出现搜索框，支持搜索定位。
+  - 监控器：针对 PromQL 查询检测，事件通知中自动列出可使用的模板变量。
 - 基础设施 > 网络：网络详情页 > 网络分析支持 `ip:端口` 和 `ip` 两种维度统计列出展示。
 - 应用性能监测 > 服务 > 新建/修改服务清单：填写仓库链接、文档链接时增加格式校验。
 
 #### Breaking Changes
 
 - 管理 > 属性声明：自定义属性字段值调整为字符串类型进行存储。
-
 
 ### 观测云部署版更新
 
@@ -917,20 +959,22 @@ Profile：文件大小由原先的固定 5MB 修改为支持自定义，点击�
 
 ### 观测云更新
 
-- 监控 
-    - 监控器 > [突变检测](../monitoring/monitor/mutation-detection.md) > 检测指标：支持【环比上期】选项，从而实现某个固定时间段内的数据进行最终比较。
-    - [静默管理](../monitoring/silent-management.md)：新增【附加信息】功能，支持针对静默规则添加解释说明，从而标识静默的原因或者来源等信息。
-    - 智能监控 > 主机智能监控：新增网络流量、磁盘 IO 两项检测维度。
+- 监控
+  - 监控器 > [突变检测](../monitoring/monitor/mutation-detection.md) > 检测指标：支持【环比上期】选项，从而实现某个固定时间段内的数据进行最终比较。
+  - [静默管理](../monitoring/silent-management.md)：新增【附加信息】功能，支持针对静默规则添加解释说明，从而标识静默的原因或者来源等信息。
+  - 智能监控 > 主机智能监控：新增网络流量、磁盘 IO 两项检测维度。
 - 场景 > 仪表板：
-    - [视图变量](../scene/view-variable.md)：编辑页面样式优化，支持定义下拉单选、多选。
-    - 分组表格图、指标分析 > 表格图支持多列查询结果显示适配，如 
+  - [视图变量](../scene/view-variable.md)：编辑页面样式优化，支持定义下拉单选、多选。
+  - 分组表格图、指标分析 > 表格图支持多列查询结果显示适配，如
+
 ```
 L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY source,service
 ```
+
 - 查看器：
-    - 日志查看器 > [上下文日志](../logs/explorer-details.md#up-down)支持微秒级的数据查询过滤，解决出现同一时刻（毫秒）有多条数据，导致不能命中定位显示某条日志上下文的问题。
-    - 所有查看器支持选择[导出](../getting-started/function-details/explorer-search.md#csv)数据量为 CSV 文件。
-    - 新增查看器搜索查询审计事件，即由用户手动发起的查询操作会计入审计事件记录。
+  - 日志查看器 > [上下文日志](../logs/explorer-details.md#up-down)支持微秒级的数据查询过滤，解决出现同一时刻（毫秒）有多条数据，导致不能命中定位显示某条日志上下文的问题。
+  - 所有查看器支持选择[导出](../getting-started/function-details/explorer-search.md#csv)数据量为 CSV 文件。
+  - 新增查看器搜索查询审计事件，即由用户手动发起的查询操作会计入审计事件记录。
 - 服务管理：由原来所属的路径【场景】迁移至【应用性能监测】，优化使用体验。
 - 生成指标：支持配置多个 by 分组，不做数量限制。
 - DQL 查询：表达式查询支持指定值填充，支持针对子查询做结果填充和最终值填充。
@@ -942,32 +986,32 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
 - 新增 [DataKit 清单管理](../deployment/setting.md#datakit)页面。
 - 部署版配置单点登录对接时，支持自定义登录[显示标题、描述和 logo](../deployment/azure-ad-pass.md#config)。
 - [用户](../deployment/user.md#edit)：新增扩展属性配置。
-    - 支持本地用户直接在编辑页面配置属性。
-    - 支持单点登录时默认自动将第三方用户属性配置通过 userinfo 接口追加到观测云。
+  - 支持本地用户直接在编辑页面配置属性。
+  - 支持单点登录时默认自动将第三方用户属性配置通过 userinfo 接口追加到观测云。
 
 ## 2024 年 4 月 24 日
 
 ### 观测云更新
 
 - 管理：
-    - 新增[云账号管理](../management/cloud-account-manag.md)：将企业所有的云服务账号集中起来进行统一管理，并借由账号下某些配置的唯一性来进行区分。通过配置集成采集器，针对每个账号下的云服务进行独立管理，从而实现对业务数据的精细化控制。
-    - 账号管理：[账号登录过期时间](../management/index.md#login-hold-time)调整。
+  - 新增[云账号管理](../management/cloud-account-manag.md)：将企业所有的云服务账号集中起来进行统一管理，并借由账号下某些配置的唯一性来进行区分。通过配置集成采集器，针对每个账号下的云服务进行独立管理，从而实现对业务数据的精细化控制。
+  - 账号管理：[账号登录过期时间](../management/index.md#login-hold-time)调整。
 - 新增[快速搜索](../management/index.md#quick-entry)弹窗，可快速查看当前工作空间内最近访问的页面和其他各功能相关页面。
 - 基础设施 > 容器：新增 [Statefulset](../infrastructure/container.md#statefulset)、[Persistent Volumes](../infrastructure/container.md#persistent-volumes) 两种对象查看器。
 - 异常追踪：
-    - 新增 Issue 负责人配置，观测云会为负责人发送邮件通知。
-    - 频道管理：支持[升级配置](../exception/channel.md#upgrade)。即，设置新 Issue 超过某特定分钟数时，若未指定负责人，则发送升级通知给对应的通知对象。
-- 监控 
-    - 监控器：检测配置：支持在【触发条件】配置连续多次判断触发条件生效后，再次触发生成事件。
-    - [静默管理](../monitoring/silent-management.md)：
-        - 静默规则列表页展示优化：支持列出当前工作空间所有静默规则，可通过快捷筛选快速过滤列出目标规则。
-        - 事件属性匹配支持反选，筛选条件格式如下：`attribute:value`、`attribute:*value*`、`-attribute:value`、`-attribute:*value*`，不同字段组合关系为 AND，相同字段的多个值为 OR。
+  - 新增 Issue 负责人配置，观测云会为负责人发送邮件通知。
+  - 频道管理：支持[升级配置](../exception/channel.md#upgrade)。即，设置新 Issue 超过某特定分钟数时，若未指定负责人，则发送升级通知给对应的通知对象。
+- 监控
+  - 监控器：检测配置：支持在【触发条件】配置连续多次判断触发条件生效后，再次触发生成事件。
+  - [静默管理](../monitoring/silent-management.md)：
+    - 静默规则列表页展示优化：支持列出当前工作空间所有静默规则，可通过快捷筛选快速过滤列出目标规则。
+    - 事件属性匹配支持反选，筛选条件格式如下：`attribute:value`、`attribute:*value*`、`-attribute:value`、`-attribute:*value*`，不同字段组合关系为 AND，相同字段的多个值为 OR。
 - DQL `match` 函数的含义变更为`完全匹配`。此变更仅针对新引擎，分别应用查看器、监控器这两个场景。
-    - 查看器场景示例：`host:~cn_hangzhou`。
-    - 监控器场景示例：
-    ```
-    window("M::`cpu`:(avg(`load5s`)) { `host` = match('cn-hangzhou.172.16.***') } BY `host`", '1m')
-    ```
+  - 查看器场景示例：`host:~cn_hangzhou`。
+  - 监控器场景示例：
+  ```
+  window("M::`cpu`:(avg(`load5s`)) { `host` = match('cn-hangzhou.172.16.***') } BY `host`", '1m')
+  ```
 - 场景 > 仪表板[图表](../scene/visual-chart/index.md#download)可直接下载为 PNG 图片，表格图还可导出为 CSV 文件。
 - 日志 > 绑定索引：【字段映射】更改为非必填项。
 - 集成/内置视图：模版新增标签管理。
@@ -990,13 +1034,13 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
 - 监控 > 监控器 > 新建：新增【数据断档】、【信息生成】配置区域，以便更好地区分异常数据和数据断档情况。
 - 管理：新增[系统通知](../management/index.md#system-notice)页面，可查看当前账号下的工作空间所有配置的异常状态消息。
 - 场景：
-    - 图表查询：新增 [Rollup 函数](../dql/rollup-func.md)，该函数同样适用于【指标分析】与【查询工具】；
-    - 仪表板/用户视图：新增 [pin 钉住](../scene/dashboard/config_list.md#pin)功能。在当前访问工作空间被授权查看若干其他工作空间数据的前提下，支持将查询其他工作空间数据设为默认选项。  
-    - 系统视图：支持克隆创建为仪表板或者用户视图；
-    - 自定义查看器：优化搜索模式；非编辑模式下，hover 在【数据范围】即可查看所有筛选条件。
+  - 图表查询：新增 [Rollup 函数](../dql/rollup-func.md)，该函数同样适用于【指标分析】与【查询工具】；
+  - 仪表板/用户视图：新增 [pin 钉住](../scene/dashboard/config_list.md#pin)功能。在当前访问工作空间被授权查看若干其他工作空间数据的前提下，支持将查询其他工作空间数据设为默认选项。
+  - 系统视图：支持克隆创建为仪表板或者用户视图；
+  - 自定义查看器：优化搜索模式；非编辑模式下，hover 在【数据范围】即可查看所有筛选条件。
 - 查看器 > [快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter)：
-    - 新增【维度分析】按钮，点击后可快速切换到查看器分析模式；
-    - 支持通过点击外部按钮直接将当前字段添加到显示列/从显示列移除。
+  - 新增【维度分析】按钮，点击后可快速切换到查看器分析模式；
+  - 支持通过点击外部按钮直接将当前字段添加到显示列/从显示列移除。
 - [体验版工作空间](../plans/trail.md#upgrade-entry) > 导航栏：新增【立即升级】按钮。
 - 基础设施 > 容器 > 蜂窝图：新增 CPU 使用率（标准化）和 MEM 使用率（标准化）两种指标填充方式。
 
@@ -1009,35 +1053,34 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
 ### 观测云更新
 
 - 监控：
-    - 告警策略管理：每条通知规则（包含默认通知和自定义通知）配置新增[支持升级通知条件](../monitoring/alert-setting.md#upgrade)。
-    - 监控器 > 事件内容：新增[自定义高级配置](../monitoring/monitor/threshold-detection.md#advanced-settings)，支持添加关联日志和错误堆栈；
-    - 主机智能监控：将当前突变展示更改为基于周期以预测的方式进行异常告警，趋势图会展示当前指标及置信区间上下界，超出置信区间的异常会标红展示。
+  - 告警策略管理：每条通知规则（包含默认通知和自定义通知）配置新增[支持升级通知条件](../monitoring/alert-setting.md#upgrade)。
+  - 监控器 > 事件内容：新增[自定义高级配置](../monitoring/monitor/threshold-detection.md#advanced-settings)，支持添加关联日志和错误堆栈；
+  - 主机智能监控：将当前突变展示更改为基于周期以预测的方式进行异常告警，趋势图会展示当前指标及置信区间上下界，超出置信区间的异常会标红展示。
 - 场景 > 图表：新增[拓扑图](../scene/visual-chart/topology-map.md)。
 - APM > 链路详情页 > [服务调用关系](../application-performance-monitoring/explorer/explorer-analysis.md#call)：调整为服务拓扑展示，并展示服务与服务之间的调用次数。
 - 数据保存策略：Session Replay 的数据保存策略与 RUM 的保存策略保持联动一致，即 RUM 数据保存 3 天，Session Replay 的数据也保存 3 天。
 - 查看器：
-    - 事件查看器 > 基础属性：新增检测指标是否显示配置，缓存到本地，全局适配；
-    - APM > 错误追踪 > 聚类分析 > 详情页：支持创建异常追踪 Issue；
-    - RUM > Error > 聚类分析 > 详情页：支持创建异常追踪 Issue；
-    - RUM > View > 详情页：
-        - 性能：新增【所有条目】选项，列出当前 View 下所有关联数据；
-        - Fetch/XHR：点击数据行，支持打开对应链路详情页或 Resource 详情页。
-    - 时间控件：获取 “当前时间” 时，精确到毫秒。
+  - 事件查看器 > 基础属性：新增检测指标是否显示配置，缓存到本地，全局适配；
+  - APM > 错误追踪 > 聚类分析 > 详情页：支持创建异常追踪 Issue；
+  - RUM > Error > 聚类分析 > 详情页：支持创建异常追踪 Issue；
+  - RUM > View > 详情页：
+    - 性能：新增【所有条目】选项，列出当前 View 下所有关联数据；
+    - Fetch/XHR：点击数据行，支持打开对应链路详情页或 Resource 详情页。
+  - 时间控件：获取 “当前时间” 时，精确到毫秒。
 - 管理 > [工单管理](../management/work-order-management.md)：
-    - 新增评星和评价；
-    - 已反馈的工单需要调整为 7 天内无客户反馈则自动关单；
-    - 支持工单列表导出；
-    - 状态为【已完成】【已撤销】的工单可以进行重启操作；
-    - 账号注销后其下提交的未关闭状态工单支持自动关闭处理。
+  - 新增评星和评价；
+  - 已反馈的工单需要调整为 7 天内无客户反馈则自动关单；
+  - 支持工单列表导出；
+  - 状态为【已完成】【已撤销】的工单可以进行重启操作；
+  - 账号注销后其下提交的未关闭状态工单支持自动关闭处理。
 - 云市场开通流程整体优化。
 
 ### 观测云部署版更新
 
 - 数据保存策略：支持工作空间拥有者配置数据保存策略，且支持自定义输入保存时长。应用场景：
-    - 指标管理 > 指标集；
-    - 日志 > 索引 > 新建。
+  - 指标管理 > 指标集；
+  - 日志 > 索引 > 新建。
 - 用户：支持[通过邮箱账号](../deployment/user.md#via-email)邀请成员。
-
 
 ## 2024 年 3 月 13 日
 
@@ -1051,31 +1094,28 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
 - 管理 > 基本信息：新增 “已用 DK 数量” 显示；
 - 管理 > 用户：新增[分组](../deployment/user.md#team)页面，基于组可配置关联工作空间及角色，用户可通过组获得对应工作空间的访问权限。
 
-
-
 ## 2024 年 3 月 6 日
 
 ### 观测云更新
 
 - 监控
-    - 监控器 > 检测频率：新增 **[Crontab 自定义输入](../monitoring/monitor/detection-frequency.md)**，满足仅需在特定的时间段执行检测的需求；
-    - 突变检测：新增【最近 1 分钟】、【最近 5 分钟】的检测区间；
-    - 静默管理：选择静默范围时“事件属性”为非必填项，可根据需要自行配置更细颗粒度的匹配规则。
+  - 监控器 > 检测频率：新增 **[Crontab 自定义输入](../monitoring/monitor/detection-frequency.md)**，满足仅需在特定的时间段执行检测的需求；
+  - 突变检测：新增【最近 1 分钟】、【最近 5 分钟】的检测区间；
+  - 静默管理：选择静默范围时“事件属性”为非必填项，可根据需要自行配置更细颗粒度的匹配规则。
 - DataFlux Func：新增 [Function 外部函数](../dql/dql-out-func.md)。允许第三方用户充分利用 Function 的本地缓存和本地文件管理服务接口编写函数，在工作空间内执行数据分析查询。
 - APM > [链路](../application-performance-monitoring/explorer/explorer-analysis.md)：
-    - Title 区域 UI 显示优化；
-    - 针对火焰图、瀑布图、Span 列表超过 1 万的 Span 结果，支持通过**偏移**设置查看未展示 Span；
-    - 新增 **Error Span** 筛选入口；支持输入 Span 对应的资源名称或 Span ID 进行搜索匹配。
+  - Title 区域 UI 显示优化；
+  - 针对火焰图、瀑布图、Span 列表超过 1 万的 Span 结果，支持通过**偏移**设置查看未展示 Span；
+  - 新增 **Error Span** 筛选入口；支持输入 Span 对应的资源名称或 Span ID 进行搜索匹配。
 - 场景
-    - 图表：新增[桑基图](../scene/visual-chart/sankey.md)；
-    - 视图变量：新增**选中**按钮，勾选后默认全选当前所有值，可按需再反选。
+  - 图表：新增[桑基图](../scene/visual-chart/sankey.md)；
+  - 视图变量：新增**选中**按钮，勾选后默认全选当前所有值，可按需再反选。
 - 账号管理：新增[注销](../management/index.md#cancel)入口。
 - 查看器：
-    - UI 显示优化；
-    - 筛选新增正则匹配 / 反向正则匹配模式；
-    - Wildcard 筛选和搜索支持左 * 匹配。
+  - UI 显示优化；
+  - 筛选新增正则匹配 / 反向正则匹配模式；
+  - Wildcard 筛选和搜索支持左 \* 匹配。
 - 事件 > 详情页：【告警通知】tab 页 UI 显示优化。
-
 
 ### 观测云部署版更新
 
@@ -1087,49 +1127,47 @@ L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY 
 ### 观测云更新
 
 - 监控：
-    - [智能监控](../monitoring/intelligent-monitoring/index.md)：
-        - 主机、日志、应用智能检测频率调整为每 10 分钟执行一次，每执行一次检测计算为 10 次调用费用；
-        - 为提升算法精度，日志、应用智能检测采用数据转存的方式，开启一个智能监控后，会生成对应的指标集及指标数据。这一调整会产生额外的时间线，具体数量为当前监控配置的过滤条件所过滤的检测维度数量(service、source) * 检测指标数量，由于没有对监控器的过滤条件进行存储，如果发生监控器过滤条件配置修改的情况，会生成新的等量时间线，所以在修改监控器过滤条件配置当日会有时间线重复计费的情况，修改后次日恢复正常。
-    - 告警策略管理：
-        - [新增自定义通知时间配置](../monitoring/alert-setting.md#custom)，按周期、时间区间细化告警通知配置；
-        - 重复告警新增【永久】这一事件选项。
-    - 监控器 
-        - 告警配置：支持配置多组告警策略；若配置多个，则 `df_monitor_name` 与 `df_monitor_id` 会以多个的形式呈现，并由 `;` 分隔开；
-        - 联动异常追踪 Issue 改造：新增【事件恢复同步关闭 Issue】开关，当异常事件恢复时，则同步恢复异常追踪 Issue；
-        - 监控器列表[新增克隆按钮](../monitoring/monitor/index.md#options)。
-    - 通知对象管理：新增[简单 HTTP 通知类型](../monitoring/notify-object.md#http)，直接通过 Webhook 地址接收告警通知；       
+  - [智能监控](../monitoring/intelligent-monitoring/index.md)：
+    - 主机、日志、应用智能检测频率调整为每 10 分钟执行一次，每执行一次检测计算为 10 次调用费用；
+    - 为提升算法精度，日志、应用智能检测采用数据转存的方式，开启一个智能监控后，会生成对应的指标集及指标数据。这一调整会产生额外的时间线，具体数量为当前监控配置的过滤条件所过滤的检测维度数量(service、source) \* 检测指标数量，由于没有对监控器的过滤条件进行存储，如果发生监控器过滤条件配置修改的情况，会生成新的等量时间线，所以在修改监控器过滤条件配置当日会有时间线重复计费的情况，修改后次日恢复正常。
+  - 告警策略管理：
+    - [新增自定义通知时间配置](../monitoring/alert-setting.md#custom)，按周期、时间区间细化告警通知配置；
+    - 重复告警新增【永久】这一事件选项。
+  - 监控器
+    - 告警配置：支持配置多组告警策略；若配置多个，则 `df_monitor_name` 与 `df_monitor_id` 会以多个的形式呈现，并由 `;` 分隔开；
+    - 联动异常追踪 Issue 改造：新增【事件恢复同步关闭 Issue】开关，当异常事件恢复时，则同步恢复异常追踪 Issue；
+    - 监控器列表[新增克隆按钮](../monitoring/monitor/index.md#options)。
+  - 通知对象管理：新增[简单 HTTP 通知类型](../monitoring/notify-object.md#http)，直接通过 Webhook 地址接收告警通知；
 - 场景：
-    - 图表：单位新增【货币】选项；高级配置 > 同期对比更改为【同环比】；
-    - 服务管理 > 资源调用：排行榜新增 TOP / Bottom 数量选择。
+  - 图表：单位新增【货币】选项；高级配置 > 同期对比更改为【同环比】；
+  - 服务管理 > 资源调用：排行榜新增 TOP / Bottom 数量选择。
 - 查看器：显示列设置新增【时间列】开关。
 - 付费计划与账单：
-    - 工作空间锁定弹窗页面新增[新建工作空间](../billing-center/workspace-management.md#workspace-lock#lock)入口，优化操作体验；
-    - AWS 注册流程优化。
+  - 工作空间锁定弹窗页面新增[新建工作空间](../billing-center/workspace-management.md#workspace-lock#lock)入口，优化操作体验；
+  - AWS 注册流程优化。
 
 ### 观测云部署版更新
 
 - 支持 [LDAP 单点登录](../deployment/ldap.md)；
 - 工作空间管理 > 数据存储策略新增自定义选项，范围为<= 1800 天（ 5 年）；其中，指标新增可选项 720 天、1080 天等保存时长；在控制台中设置 > 编辑数据存储策略，修改保存后即可同步更新后台数据存储；
 - 用户：支持为用户账号一键配置分配工作空间以及角色；
-- 新增控制台审计事件查看入口，可快速查看所有工作空间相关操作审计；  
+- 新增控制台审计事件查看入口，可快速查看所有工作空间相关操作审计；
 - 新增【管理后台 MFA 认证】。
-
 
 ## 2024 年 1 月 11 日
 
 ### 观测云更新
 
 - 日志：
-    - 新增 BPF 网络日志采集及日志详情页，支持 JSON 格式转化；详情页新增可读的展示模式；
-    - 新增绑定【关联网络日志】；
-    - 数据访问：新增批量操作。
+  - 新增 BPF 网络日志采集及日志详情页，支持 JSON 格式转化；详情页新增可读的展示模式；
+  - 新增绑定【关联网络日志】；
+  - 数据访问：新增批量操作。
 - 定时报告：新增可选分享方式【公开分享】或【加密分享】。
 - 仪表板：
-    - 视图变量新增【所有变量值】传参选项；
-    - 时序图：新增排序逻辑（仅限新引擎），支持针对返回结果进行排序。
+  - 视图变量新增【所有变量值】传参选项；
+  - 时序图：新增排序逻辑（仅限新引擎），支持针对返回结果进行排序。
 - 生成指标：支持批量操作；标准及以上权限成员支持克隆。
 - 监控器：
-    - 通知对象管理：适配新的钉钉机器人，创建时「密钥」选项非必填，快速关联钉钉机器人。
-    - SLO 扣分逻辑优化。
+  - 通知对象管理：适配新的钉钉机器人，创建时「密钥」选项非必填，快速关联钉钉机器人。
+  - SLO 扣分逻辑优化。
 - 用户访问监测（RUM）：公网 Dataway 支持 ip 转换成地理位置信息。
-

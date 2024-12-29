@@ -21,6 +21,7 @@
 | checkerUUIDs | array |  | 监控器/智能监控器/智能巡检/slo uuid (2024-12-11 迭代新增)<br>例子: ['rule_xxx', 'monitor_xxx'] <br>允许为空: False <br> |
 | ruleTimezone | str | Y | 告警策略 时区<br>例子: Asia/Shanghai <br>允许为空: False <br> |
 | alertOpt | json |  | 告警设置<br>允许为空: False <br> |
+| alertOpt.aggType | string |  | 告警聚合类型, 不传递该字段默认老版本逻辑 2024-12-25 迭代新增<br>允许为空: True <br>可选值: ['byFields', 'byCluster', 'byAI'] <br> |
 | alertOpt.alertType | string |  | 告警策略通知类型, 等级(status)/成员(member), 默认为 等级<br>允许为空: False <br>可选值: ['status', 'member'] <br> |
 | alertOpt.alertTarget | array |  | 触发动作, 注意触发时间的, 参数处理<br>例子: [{'name': '通知配置1', 'targets': [{'to': ['acnt_xxxx32'], 'status': 'critical', 'tags': {'pod_name': ['coredns-7769b554cf-w95fk']}, 'upgradeTargets': [{'to': ['acnt_xxxx32'], 'duration': 600}, {'to': ['group_xxxx32'], 'duration': 6000}]}], 'crontabDuration': 600, 'crontab': '0 9 * * 0,1,2,3,4'}, {'name': '通知配置2', 'targets': [{'status': 'error', 'to': ['group_xxxx32'], 'upgradeTargets': [{'to': ['acnt_xxxx32'], 'duration': 600}, {'to': ['group_xxxx32'], 'duration': 6000}]}], 'customDateUUIDs': ['ndate_xxxx32'], 'customStartTime': '09:30:10', 'crontabDuration': 600}] <br>允许为空: False <br> |
 | alertOpt.silentTimeout | integer | Y | 告警设置<br>允许为空: False <br> |
@@ -52,9 +53,38 @@
 | alertOpt[#].aggClusterFields | array | | 智能聚合时的字段列表，需要在aggFields中指定有CLUSTER才会生效, 可选值 "df_title"：标题, "df_message"：内容|
 | alertOpt[#].alertTarget       | Array[Dict] | | 告警动作|
 | alertOpt[#].alertType       | string | | 告警策略通知类型, 等级(status)/成员(member), 默认为 等级, 2024-11-06 迭代新增|
+| alertOpt[#].aggType       | string | | 默认不传递走旧版本逻辑, byFields: 规则聚合, byCluster: 智能聚合, byAI: AI 聚合,  2024-12-25 新增字段|
 | openPermissionSet   | boolean | | 是否开启自定义权限配置, 默认 false , 2024-11-06 迭代新增|
 | permissionSet       | array   | |操作权限配置      , 2024-11-06 迭代新增|
 | checkerUUIDs       | array   | |关联的监控器/智能监控器/智能巡检/slo UUID      , 2024-12-11 迭代新增|
+
+--------------
+**1.1 alertOpt.aggType 参数说明**
+2024-12-25
+告警聚合类型
+　null：不聚合
+　"byFields"：规则聚合
+　"byCluster"：智能聚合
+　"byAI"：AI 聚合
+<br/>
+由于在旧版数据结构中由于不存在 aggType 字段，而是通过 aggFields 内容判断聚合类型，因此在增加 aggType 字段后会按照如下方式进行兼容处理：
+<br/>
+指定了 aggType 时，按照 aggType 指定的聚合方式聚合
+<br/>
+未指定 aggType 或 aggType=None 时（按照旧版逻辑）
+<br/>
+aggFields 中包含 "CLUSTER" 时，按照智能聚合方式聚合
+<br/>
+aggFields 中不包含 "CLUSTER" 时，按照规则聚合方式聚合
+<br/>
+衍生规则：
+
+指定 aggInterval=0 或 aggInterval=null 依然表示「不聚合」
+<br/>
+指定 aggType="byCluster" 时，aggFields 中可以不再传递 "CLUSTER" （是否传递都不影响）
+<br/>
+指定 aggType="byFields"，但 aggFields 中又包含 "CLUSTER" 时，会忽略 "CLUSTER"（即 aggType 优先级较高）
+<br/>
 
 --------------
 

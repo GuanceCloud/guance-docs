@@ -6,5 +6,4 @@ nav:
   - '链路': explorer
   - '错误追踪': error.md
   - 'Profiling': profile.md
-  - '生成指标': generate-metrics.md
   - '常见问题': faq.md

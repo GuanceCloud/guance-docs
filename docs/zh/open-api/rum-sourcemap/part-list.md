@@ -5,6 +5,8 @@
 <br />**POST /api/v1/rum_sourcemap/part_list**
 
 ## 概述
+sourcemap 压缩文件上传(分片上传)操作中的第四步可选操作。列出已上传的分片列表。一般用于断点续传或者分片检查。
+详情参考: [SourceMap分片上传关联接口使用说明](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
 
@@ -17,6 +19,7 @@
 
 ## 参数补充说明
 
+注：[SourceMap分片上传关联接口使用说明](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
 

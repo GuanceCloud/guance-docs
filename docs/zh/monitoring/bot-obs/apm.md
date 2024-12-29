@@ -8,7 +8,7 @@
 
 ## 前置条件
 
-1. 观测云「[应用性能监测](../../application-performance-monitoring/collection/index)」已经存在接入的应用
+1. 观测云「[应用性能监测](../../application-performance-monitoring/collection/index.md)」已经存在接入的应用
 2. 自建 [DataFlux Func 观测云特别版](https://func.guance.com/#/) ，或者开通 [DataFlux Func 托管版](../../dataflux-func/index.md)
 4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 

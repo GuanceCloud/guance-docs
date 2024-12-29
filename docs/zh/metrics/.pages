@@ -3,3 +3,4 @@ nav:
   - '指标采集': collection.md
   - '指标分析': explorer.md
   - '指标管理': dictionary.md
+  - '生成指标': generate-metrics.md
