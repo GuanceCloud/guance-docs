@@ -5,6 +5,8 @@
 <br />**POST /api/v1/rum_sourcemap/part_merge**
 
 ## 概述
+sourcemap 压缩文件上传(分片上传)操作中的第五步操作。合并已上传分片，将分片合并为 sourcemap 压缩文件。
+详情参考: [SourceMap分片上传关联接口使用说明](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
 
