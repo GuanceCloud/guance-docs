@@ -1,25 +1,26 @@
 # iOS Application Access
----
 
-## Overview
+---
 
 Guance Real User Monitoring can analyze the performance of each iOS application in a visual way by collecting the metrics data of each iOS application.
 
 ## Precondition
 
-- Installing DataKit ([DataKit Installation Documentation](... /... /datakit/datakit-install.md))
+**Note**: If you have activated the [RUM Headless](../../dataflux-func/headless.md) service, the prerequisites have been automatically configured for you, and you can directly access the application. 
 
-## iOS Application Access {#iOS-integration}
+- Install [DataKit](../../datakit/datakit-install.md);
+- Configure [RUM Collector](../../integrations/rum.md); 
+- DataKit is configured to be [accessible to the public network and install the IP geographic information database](../../datakit/datakit-tools-how-to.md#install-ipdb).    
 
-Login to Guance Console, enter "Real User Monitoring" page, click "New Application" in the upper right corner, enter "Application Name" and customize "Application ID" in the new window, and click "Create" to select the application type to get access.
+## Application Access {#iOS-integration}
 
-- Application Name (required): The name of the application used to identify the current implementation of user access monitoring.
-- Application ID (required): The unique identification of the application in the current workspace, which is used for SDK data collection and upload matching, and corresponds to the field: app_id after data entry. This field only supports English, numeric, underscore input, up to 48 characters.
+Login to Guance Console, enter **Real User Monitoring** page,  click **[New Application](../index.md#create)** in the upper left corner to start creating a new application. 
 
-![](../img/13.rum_access_3.png)
+![](../img/6.rum_ios.png)
+
 ## Installation
 
-![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/ios/version.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=iOS&color=brightgreen&query=$.ios_api_support&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) 
+![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/ios/version.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=iOS&color=brightgreen&query=$.ios_api_support&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![tvOS](https://img.shields.io/badge/dynamic/json?label=tvOS&color=brightgreen&query=$.tvos_api_support&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios)
 
 **Source Code Address**：[https://github.com/GuanceCloud/datakit-ios](https://github.com/GuanceCloud/datakit-ios)
 
@@ -177,7 +178,7 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
 
 ## SDK Initialization
 
-### Basic Configuration
+### Basic Configuration {#base-setting}
 === "Objective-C"
 
     ```objective-c
@@ -211,18 +212,26 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
     ```
 
 
-| **Fields** | **Type** | **Required** | **Meaning** | Attention |
-| --- | --- | --- | --- | --- |
-| datakitUrl | NSString | Yes | Datakit Address | The url of the Datakit address, example: http://10.0.0.1:9529, port 9529. Datakit url address needs to be accessible by the device where the SDK is installed. |
-| datawayUrl | NSString | Yes | Dataway Address | The url of the Dataway address，example：http://10.0.0.1:9528，port 9528，Note: The installed SDK device must be able to access this address. Note: choose either DataKit or DataWay configuration, not both. |
-| clientToken | NSString | Yes | Authentication token | It needs to be configured simultaneously with the datawayUrl |
-| enableSDKDebugLog | BOOL | No | Whether to turn on debug mode | Default is `NO`, enable to print SDK run log |
-| env | NSString | No | Set the acquisition environment | Default `prod`, support for custom. It can also be set using the `-setEnvWithType:` method based on the 'FTEnv' enumeration.<br/>`FTEnv`<br/>`FTEnvProd`： prod<br/>`FTEnvGray`： gray<br/>`FTEnvPre` ：pre <br/>`FTEnvCommon` ：common <br/>`FTEnvLocal`： local |
-| service | NSString | No | Set Service Name | Impact the service field data in Log and RUM, which is set to `df_rum_ios` by default. |
-| globalContext | NSDictionary |    No | Add SDK global properties                                    | Adding rules can be found [here](#user-global-context) |
-| groupIdentifiers | NSArray      | No | An array of AppGroups identifiers corresponding to the Widget Extensions to be collected | If Widget Extensions data collection is enabled, You must set [App Groups](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups), And configure the Identifier to this property |
+| **Fields** | **Type** | **Required** | **Meaning** |
+| --- | --- | --- | --- |
+| datakitUrl | NSString | Yes | Datakit Access address, example: [http://10.0.0.1:9529](http://10.0.0.1:9529/), the default port is 9529, the SDK device must be able to access this address. **Note: choose either DataKit or DataWay configuration, not both** |
+| datawayUrl | NSString | Yes | The url of the Dataway address，example：http://10.0.0.1:9528，port 9528，Note: The installed SDK device must be able to access this address. **Note: choose either DataKit or DataWay configuration, not both**. |
+| clientToken | NSString | Yes | Authentication token.It needs to be configured simultaneously with the datawayUrl |
+| enableSDKDebugLog | BOOL | No | Whether to turn on debug mode.Default is `NO`, enable to print SDK run log |
+| env | NSString | No | Set the acquisition environment.Default `prod`, support for custom. It can also be set using the `-setEnvWithType:` method based on the 'FTEnv' enumeration.<br/>`FTEnv`<br/>`FTEnvProd`： prod<br/>`FTEnvGray`： gray<br/>`FTEnvPre` ：pre <br/>`FTEnvCommon` ：common <br/>`FTEnvLocal`： local |
+| service | NSString | No | Set Service Name.Impact the service field data in Log and RUM, which is set to `df_rum_ios` by default. |
+| globalContext | NSDictionary |    No | Add SDK global properties.Adding rules can be found [here](#key-conflict) |
+| groupIdentifiers | NSArray      | No | An array of AppGroups identifiers corresponding to the Widget Extensions to be collected.If Widget Extensions data collection is enabled, You must set [App Groups](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups), And configure the Identifier to this property |
+| autoSync | BOOL | No | Whether to enable automatic synchronization. Default `YES`. When it is `NO`, use `[[FTMobileAgent sharedInstance] flushSyncData]` to manage data synchronization by yourself |
+| syncPageSize | int | No | Set the number of synchronization request entries. Range [5,) Note: The larger the number of request entries, the more computing resources data synchronization occupies. The default value is 10 |
+| syncSleepTime | int | No | Set the synchronization interval. Range [0,5000], not set by default |
+| enableDataIntegerCompatible | BOOL | No | It is recommended to enable it when it needs to coexist with web data. This configuration is used to handle web data type storage compatibility issues. |
+| compressIntakeRequests | BOOL | No | Compress the synchronized data. SDK 1.5.6 and above versions support this parameter |
+| enableLimitWithDbSize | BOOL | No | Enable the function of using DB to limit the total cache size. <br>**Note:**After enabling, `FTLoggerConfig.logCacheLimitCount` and `FTRUMConfig.rumCacheLimitCount` will become invalid. SDK 1.5.8 and above versions support this parameter |
+| dbCacheLimit | long | No | DB cache limit size. Range [30MB,), default 100MB, unit byte, SDK 1.5.8 and above support this parameter |
+| dbDiscardType | FTDBCacheDiscard | No | Set the data discard rule in the database. Default `FTDBDiscard` <br/> `FTDBDiscard` discards additional data when the amount of data is greater than the maximum value. `FTDBDiscardOldest` discards old data when the amount of data is greater than the maximum value. SDK 1.5.8 or above supports this parameter |
 
-### RUM Configuration
+### RUM Configuration {#rum-config}
 
 === "Objective-C"
 
@@ -258,23 +267,27 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
         FTMobileAgent.sharedInstance().startRum(withConfigOptions: rumConfig)
     ```
 
-| **Fields**               | **Type**     | **Required**                                | **Meaning**                                   | Attention |
-| --- | --- | --- | --- | --- |
-| appid | NSString | No | Set `Rum AppId` | Corresponding to setting RUM `appid` to enable `RUM` collection, [get appid method](#iOS-integration) |
-| samplerate | int | No | Set acquisition rate | The collection rate ranges from >= 0 to <= 100. The default value is 100 |
-| enableTrackAppCrash | BOOL | No | Set whether crash need to be collected | Default `NO` |
-| enableTrackAppANR | BOOL | No | Collect ANR stuck unresponsive events | Default `NO` |
-| enableTrackAppFreeze | BOOL | No | Collect UI jamming events | Default `NO` |
-| enableTraceUserView | BOOL | No | Set whether to track user View actions | Default `NO` |
-| enableTraceUserAction | BOOL | No | Set whether to track user Action actions | Default `NO` |
-| enableTraceUserResource | BOOL | No | Set whether to track user network requests | Default `NO` |
-| resourceUrlHandler | FTResourceUrlHandler | No | Configure Reousrce filter | No filtering by default. Return :NO for no filtering and YES for filtering. |
-| errorMonitorType | FTErrorMonitorType | No | Error Event Monitoring Supplementary Type                    | Add monitoring information to the collected crash data.<br/>`FTErrorMonitorType`<br/>`FTErrorMonitorAll`：all<br/>`FTErrorMonitorBattery`：battery power<br/>`FTErrorMonitorMemory`：total memory, memory usage<br/>`FTErrorMonitorCpu`：CPU usage |
-| deviceMetricsMonitorType | FTDeviceMetricsMonitorType | No | The performance monitoring type of the view | Add the monitoring item information to the collected **View** data。<br/>`FTDeviceMetricsMonitorType`<br/>`FTDeviceMetricsMonitorAll`:all<br/>`FTDeviceMetricsMonitorMemory`:average memory, maximum memory<br/>`FTDeviceMetricsMonitorCpu`：The maximum and average number of CPU ticks<br/>`FTDeviceMetricsMonitorFps`：fps minimum frame rate, average frame rate |
-| monitorFrequency | FTMonitorFrequency | No | View's Performance Monitoring Sampling Period | Configure 'monitorFrequency' to set the sampling period for **View** monitor information.<br/>`FTMonitorFrequency`<br/>`FTMonitorFrequencyDefault`：500ms (default)<br/>`FTMonitorFrequencyFrequent`：100ms<br/>`FTMonitorFrequencyRare`：1000ms |
-| globalContext | NSDictionary |    No | Add Rum global properties | Adding rules can be found [here](#user-global-context) |
+| **Fields**               | **Type**     | **Required**                                | **Meaning**                                   |
+| --- | --- | --- | --- |
+| appid | NSString | No | Set `Rum AppId`.Corresponding to setting RUM `appid` to enable `RUM` collection, [get appid method]( |
+| samplerate | int | No | Set acquisition rate.The collection rate ranges from >= 0 to <= 100. The default value is 100 |
+| enableTrackAppCrash | BOOL | No | Set whether crash need to be collected.Default `NO` |
+| enableTrackAppANR | BOOL | No | Collect ANR stuck unresponsive events.Default `NO` |
+| enableTrackAppFreeze | BOOL | No | Collect UI jamming events.Default `NO` |
+| freezeDurationMs | long | No | Set UI freeze threshold, value range [100,), unit is milliseconds, default is 250ms. SDK 1.5.7 and above versions support |
+| enableTraceUserView | BOOL | No | Set whether to track user View actions.Default `NO` |
+| enableTraceUserAction | BOOL | No | Set whether to track user Action actions.Default `NO` |
+| enableTraceUserResource | BOOL | No | Set whether to track user network requests.Default `NO` |
+| resourceUrlHandler | FTResourceUrlHandler | No | Configure Reousrce filter.No filtering by default. Return :NO for no filtering and YES for filtering. |
+| errorMonitorType | FTErrorMonitorType | No | Error Event Monitoring Supplementary Type.Add monitoring information to the collected crash data.<br/>`FTErrorMonitorType`<br/>`FTErrorMonitorAll`：all<br/>`FTErrorMonitorBattery`：battery power<br/>`FTErrorMonitorMemory`：total memory, memory usage<br/>`FTErrorMonitorCpu`：CPU usage |
+| deviceMetricsMonitorType | FTDeviceMetricsMonitorType | No | The performance monitoring type of the view.Add the monitoring item information to the collected **View** data.<br/>`FTDeviceMetricsMonitorType`<br/>`FTDeviceMetricsMonitorAll`:all<br/>`FTDeviceMetricsMonitorMemory`:average memory, maximum memory<br/>`FTDeviceMetricsMonitorCpu`：The maximum and average number of CPU ticks<br/>`FTDeviceMetricsMonitorFps`：fps minimum frame rate, average frame rate |
+| monitorFrequency | FTMonitorFrequency | No | View's Performance Monitoring Sampling Period.Configure 'monitorFrequency' to set the sampling period for **View** monitor information.<br/>`FTMonitorFrequency`<br/>`FTMonitorFrequencyDefault`：500ms (default)<br/>`FTMonitorFrequencyFrequent`：100ms<br/>`FTMonitorFrequencyRare`：1000ms |
+| enableResourceHostIP | BOOL | No | Whether to collect the IP address of the request target domain name address. Supported  `iOS >= 13.0` |
+| globalContext | NSDictionary |    No | Add Rum global properties.Adding rules can be found [here](#key-conflict) |
+| rumCacheLimitCount | int | No | Maximum RUM cache size. The default value is 100_000. SDK 1.5.8 and above support this parameter |
+| rumDiscardType | FTRUMCacheDiscard | No | Set RUM discard rules. Default `FTRUMCacheDiscard` <br/> `FTRUMCacheDiscard` discards additional data when the amount of RUM data is greater than the maximum value. `FTRUMDiscardOldest` discards old data when the amount of RUM data is greater than the maximum value. SDK 1.5.8 or above supports this parameter |
 
-### Log Configuration
+### Log Configuration {#log-config}
 
 === "Objective-C"
 
@@ -298,17 +311,17 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
         FTMobileAgent.sharedInstance().startLogger(withConfigOptions: loggerConfig)
     ``` 
 
-| **Fields**        | **Type**          | **Required**                                 | **Meaning**                                       | Attention |
-| --- | --- | --- | --- | --- |
-| samplerate | int | No | Set acquisition rate | The collection rate ranges from >= 0 to <= 100. The default value is 100 |
-| enableCustomLog | BOOL | No | Whether to upload custom logs | Default `NO` |
-| printCustomLogToConsole | BOOL | No | Sets whether to output custom logs to the console | Default `NO`<br/>Custom log [print format](#printCustomLogToConsole) |
-| logLevelFilter | NSArray | No | Set the state array of the custom logs to be collected | Default full collection |
-| enableLinkRumData | BOOL | No | Whether to associate logger data with rum | Default `NO` |
-| discardType | FTLogCacheDiscard | No (the latest data is discarded by default) | Setting the log deprecation policy | Default `FTDiscard` <br/>`FTLogCacheDiscard`:<br/>`FTDiscard`：Default，When the number of log data exceeds the maximum value (5000), the appended data is discarded<br/>`FTDiscardOldest`：When the log data exceeds the maximum value, the old data is discarded |
-| globalContext | NSDictionary |   No | Add log global properties | Adding rules can be found [here](#user-global-context) |
+| **Fields**        | **Type**          | **Required**                                 | **Meaning**                                       |
+| --- | --- | --- | --- |
+| samplerate | int | No | Set acquisition rate.The collection rate ranges from >= 0 to <= 100. The default value is 100 |
+| enableCustomLog | BOOL | No | Whether to upload custom logs.Default `NO` |
+| printCustomLogToConsole | BOOL | No | Sets whether to output custom logs to the console.Default `NO`<br/>Custom log [print format](#printCustomLogToConsole) |
+| logLevelFilter | NSArray | No | Set the state array of the custom logs to be collected.Default full collection |
+| enableLinkRumData | BOOL | No | Whether to associate logger data with rum.Default `NO` |
+| discardType | FTLogCacheDiscard | No (the latest data is discarded by default) | Setting the log deprecation policy.Default `FTDiscard` <br/>`FTLogCacheDiscard`:<br/>`FTDiscard`：Default，When the number of log data exceeds the maximum value (5000), the appended data is discarded<br/>`FTDiscardOldest`：When the log data exceeds the maximum value, the old data is discarded |
+| globalContext | NSDictionary |   No | Add log global properties.Adding rules can be found [here](#key-conflict) |
 
-### Trace Configuration
+### Trace Configuration {#trace-config}
 
 === "Objective-C"
 
@@ -330,12 +343,12 @@ Login to Guance Console, enter "Real User Monitoring" page, click "New Applicati
        FTMobileAgent.sharedInstance().startTrace(withConfigOptions: traceConfig)
     ```
 
-| **Fields**        | **Type** | **Required**         | **Meaning**                                       | Attention |
-| --- | --- | --- | --- | --- |
-| samplerate | int | No | Set acquisition rate                       | The collection rate ranges from >= 0 to <= 100. The default value is 100 |
-| networkTraceType | NS_ENUM | No | Set the type of tracing | Default is `DDTrace`, currently support `Zipkin`, `Jaeger`, `DDTrace`, `Skywalking` (8.0+), `TraceParent` (W3C), if you access OpenTelemetry to choose the corresponding trace type, please pay attention to check the supported types and agent-related configuration |
-| enableAutoTrace | BOOL | No | Set whether to enable automatic http trace | Default `NO`,currently only NSURLSession is supported |
-| enableLinkRumData | BOOL | No | Whether to associate Trace data with rum | Default `NO` |
+| **Fields**        | **Type** | **Required**         | **Meaning**                                       |
+| --- | --- | --- | --- |
+| samplerate | int | No | Set acquisition rate.The collection rate ranges from >= 0 to <= 100. The default value is 100 |
+| networkTraceType | NS_ENUM | No | Set the type of tracing.Default is `DDTrace`, currently support `Zipkin`, `Jaeger`, `DDTrace`, `Skywalking` (8.0+), `TraceParent` (W3C), if you access OpenTelemetry to choose the corresponding trace type, please pay attention to check the supported types and agent-related configuration |
+| enableAutoTrace | BOOL | No | Set whether to enable automatic http trace.Default `NO`,currently only NSURLSession is supported |
+| enableLinkRumData | BOOL | No | Whether to associate Trace data with rum.Default `NO` |
 
 ## RUM {#rum}
 
@@ -1426,14 +1439,14 @@ Using `FTMobileAgent`  to close SDK
 
     ```objective-c
     /// Close the running object inside the SDK
-    - (void)shutDown;
+    + (void)shutDown;
     ```
 
 === "Swift"
 
     ```swift
     /// Close the running object inside the SDK
-    func shutDown()
+    open class func shutDown()
     ```
 
 ### Code Example
@@ -1442,95 +1455,152 @@ Using `FTMobileAgent`  to close SDK
 
     ```objective-c
     //If you dynamically change the SDK configuration, you need to close it first to avoid the generation of wrong data
-    [[FTMobileAgent sharedInstance] shutDown];
+    [FTMobileAgent  shutDown];
     ```  
 
 === "Swift"
 
     ```swift
     //If you dynamically change the SDK configuration, you need to close it first to avoid the generation of wrong data
-    FTMobileAgent.sharedInstance().shutDown()
+    FTMobileAgent.shutDown()
     ```
+
+## Clear All Data
+
+Use `FTMobileAgent.clearAllData` to clear all data that has not been uploaded to the server 
+
+### Usage
+
+=== "Objective-C" 
+
+	```objective-c 
+	/// Clear all data that has not been uploaded to the server 
+	+ (void)clearAllData; 
+	``` 
+
+=== "Swift" 
+
+
+	``` swift 
+	/// Clear all data that has not been uploaded to the server 
+	open class func clearAllData() 
+	```
+
+### Code Example 
+
+=== "Objective-C" 
+
+	```objective-c 
+	[FTMobileAgent clearAllData]; 
+	``` 
+
+=== "Swift" 
+
+	```swift 
+	FTMobileAgent.clearAllData() 
+	``` 
+
+## Actively Sync Data
+
+Use `FTMobileAgent` to actively sync data. 
+>When FTMobileConfig.autoSync = NO, you need to synchronize data yourself 
+### Usage 
+
+=== "Objective-C" 
+
+    ```objective-c 
+    /// Actively synchronize data 
+    - (void)flushSyncData; 
+    ``` 
+
+=== "Swift" 
+
+    ```swift 
+    /// Actively synchronize data 
+    func flushSyncData() 
+    ``` 
+
+### Code example 
+
+=== "Objective-C" 
+
+    ```objective-c 
+    [[FTMobileAgent sharedInstance] flushSyncData]; 
+    ```   
+
+=== "Swift" 
+
+    ```swift 
+    //If you change the SDK configuration dynamically, you need to close it first to avoid the generation of incorrect data 
+    FTMobileAgent.sharedInstance().flushSyncData() 
+    ``` 
 
 ## Add Custom Tags {#user-global-context}
 
-### Static Use
+Use `FTMobileAgent` to dynamically add tags when the SDK is running 
+### Usage 
+=== "Objective-C" 
 
-You can create multiple Configurations to set values using pre-compiled instructions
+    ```objective-c 
+    /// Add SDK global tags, which act on RUM and Log data 
+    /// - Parameter context: custom data 
+    + (void)appendGlobalContext:(NSDictionary <NSString*,id>*)context; 
+    
+    /// Add RUM custom tag, acting on RUM data 
+    /// - Parameter context: custom data 
+    + (void)appendRUMGlobalContext:(NSDictionary <NSString*,id>*)context; 
+    
+    /// Add Log global tag, acting on Log data 
+    /// - Parameter context: custom data 
+    + (void)appendLogGlobalContext:(NSDictionary <NSString*,id>*)context; 
+    ``` 
 
-1. Create multiple configurations.
+=== "Swift" 
 
-![](../img/image_9.png)
+    ```swift 
+    /// Add SDK global tag, acting on RUM and Log data 
+    /// - Parameter context: custom dataopen 
+    class func appendGlobalContext(_ context: [String : Any]) 
+    
+    /// Add RUM custom tag, acting on RUM data 
+    /// - Parameter context: custom dataopen 
+    class func appendRUMGlobalContext(_ context: [String : Any]) 
+    
+    /// Add Log Global tag, applied to Log data 
+    /// - Parameter context: custom data 
+    open class func appendLogGlobalContext(_ context: [String : Any]) 
+    ``` 
 
-2. Set preset properties to distinguish between Configurations.
+### Code Example 
 
-![](../img/image_10.png)
+=== "Objective-C" 
 
-3. Use the pre-compile command.
+    ```objective-c 
+    [FTMobileAgent appendGlobalContext:@{@"global_key":@"global_value"}]; 
+    [FTMobileAgent appendLogGlobalContext:@{@"log_key":@"log_value"}]; 
+    [FTMobileAgent appendRUMGlobalContext:@{@"rum_key":@"rum_value"}]; 
+    ```   
 
-```objectivec
-//Target -> Build Settings -> GCC_PREPROCESSOR_DEFINITIONS 
-#if PRE
-#define Track_id       @"0000000001"
-#define STATIC_TAG     @"preprod"
-#elif  DEVELOP
-#define Track_id       @"0000000002"
-#define STATIC_TAG     @"common"
-#else
-#define Track_id       @"0000000003"
-#define STATIC_TAG     @"prod"
-#endif
-   
-FTRumConfig *rumConfig = [[FTRumConfig alloc]init]; 
-rumConfig.globalContext = @{@"track_id":Track_id,@"static_tag":STATIC_TAG};
-... //other set
-[[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
-```
+=== "Swift" 
 
-### Dynamic Use
+    ```swift 
+    let globalContext = ["global_key":"global_value"] 
+    FTMobileAgent.appendGlobalContext(globalContext) 
+    let rumGlobalContext = = ["rum_key":"rum_value"]
+    FTMobileAgent.appendRUMGlobalContext(rumGlobalContext) 
+    let logGlobalContext = = ["log_key":"log_value"] 
+    FTMobileAgent.appendLogGlobalContext(logGlobalContext) 
+    ``` 
 
-Since the globalContext set after RUM is started will not take effect, users can save it locally and set it to take effect the next time the application is started.
+## Symbol Table Upload {#source_map}
 
-1. Save it locally by saving a file, e.g. `NSUserDefaults`, configure it using `SDK` and add the code to get the tag data in the configuration.
+###  Script integration into the Xcode project's Target
 
-```objectivec
-NSString *dynamicTag = [[NSUserDefaults standardUserDefaults] valueForKey:@"DYNAMIC_TAG"]?:@"NO_VALUE";
+1.XCode add custom Run Script Phase：` Build Phases -> + -> New Run Script Phase`
 
-FTRumConfig *rumConfig = [[FTRumConfig alloc]init];
-rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
-... //other set
-[[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
-```
+2.Copy the script into the build-phase run script of the Xcode project, where you need to set parameters such as < app_id >, < datakit_address >, < env >, <dataway_token> .
 
-2. Add a way to change the file data anywhere.
-
-```objectivec
- [[NSUserDefaults standardUserDefaults] setValue:@"dynamic_tags" forKey:@"DYNAMIC_TAG"];
-```
-
-3. Finally restart the application to take effect.
-
-### Attention
-
-1. Special key : track_id (configured in RUM for tracking function)  
-
-2. When the user adds a custom tag through globalContext and the SDK has the same tag, the SDK tag will override the user's settings, it is recommended that the tag name add the prefix of the project abbreviation, such as `df_tag_name`.
-
-3. Set the globalContext before calling the -startRumWithConfigOptions method to start RUM to take effect.
-
-4. Custom tags configured in `FTMobileConfig` will be added to all types of data.
-
-For more details, please see [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/ios/demo).
-
-## Crash Log Symbolization
-
-### Upload Symbol Table
-
-#### Method 1: Script integration into the Xcode project's Target
-
-1. XCode add custom Run Script Phase：` Build Phases -> + -> New Run Script Phase`
-2. Copy the script into the build-phase run script of the Xcode project, where you need to set parameters such as < app_id >, < datakit_address >, < env >, <dataway_token>,< version > (the default configured version format of the script is ` CFBundleShortVersionString `).
-3. [Script](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
+3.[Script](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
 
 ```sh
 #Parameters that need to be configured
@@ -1547,23 +1617,13 @@ FT_TOKEN="YOUR_DATAWAY_TOKEN"
 # FT_VERSION=""
 ```
 
-##### Convenient Configuration Parameters for Multiple Environments
+#### Convenient Configuration Parameters for Multiple Environments
 
 Example: Using preset macros and .xcconfig configuration files
 
-1. Add preset macros: `Target —> Build Settings -> + -> Add User-Defined Setting` 
+**1. Create an xcconfig configuration file and configure variables in the .xcconfig file**.  
 
-![](../img/multi-environment-configuration1.png)
-
-![](../img/multi-environment-configuration2.png)
-
-
-2. Use multiple Xcconfig to implement multiple environments, new Xcconfig
-
-![](../img/multi-environment-configuration3.png)
-
-
-Configure the preset macros in the .xcconfig file.
+For the method of creating an xcconfig configuration file, please refer to: [Add a build configuration file to your project](https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project) .
 
 ```sh
 //If you use cocoapods, you need to add the .xcconfig path of pods to your .xcconfig file. If you don’t know what the path is, you can use the terminal to enter the project folder, execute pod install, the terminal will prompt the path, and set the path After copying, you can use it as follows.
@@ -1576,18 +1636,11 @@ SDK_DATAKIT_ADDRESS = http:\$()\xxxxxxxx:9529
 SDK_DATAWAY_TOKEN = token
 ```
 
-3. Configuring a custom build environment
+At this time, the user-defined parameters have been automatically added, and you can go to `Target —> Build Settings -> + -> Add User-Defined Setting` to view 
 
-![](../img/multi-environment-configuration4.png)
+![](multi-environment-configuration2.png)
 
-
-
-![](../img/multi-environment-configuration5.png)
-
-
-4. Use
-
-**In the script**
+**2. Parameters in the configuration script**
 
 ```sh
 #Parameters that need to be configured
@@ -1601,13 +1654,13 @@ FT_ENV=${SDK_ENV}
 FT_TOKEN=${SDK_DATAWAY_TOKEN}
 ```
 
-**In a document for a project** 
+**3.Configure SDK** 
 
- Mapping to the `Info.plist` file
+Map parameters in the `Info.plist` file .
 
 ![](../img/multi-environment-configuration8.png)
 
-In the file you can use
+Get the parameters in `Info.plist` and configure the SDK .
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -1620,16 +1673,28 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
+For detailed details, please refer to the multi-environment usage in [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/ios/demo). 
 
-For more details, please see [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/ios/demo).
+### Run the script in the terminal 
 
-#### Method 2: Terminal run script
+[Script: FTdSYMUpload.sh](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh) 
 
-Find the .dSYM file in a folder, enter the basic application information, the parent directory path of the .dSYM file, and the output file directory at the command line.
+`sh FTdSYMUpload.sh <datakit_address> <app_id> <version> <env> <dataway_token> <dSYMBOL_src_dir>`
 
-`sh FTdSYMUpload.sh <datakit_address> <app_id> <version> <env> <dataway_token> <dSYMBOL_src_dir> <dSYMBOL_dest_dir>`
+> Example: 
+>
+> sh FTdSYMUploader.sh http://10.0.0.1:9529 appid_mock 1.0.6 prod tkn_mock /Users/mock/Desktop/dSYMs 
 
-#### Method 3: Manual upload
+**Parameter Description:** 
+
+- `<datakit_address>`: DataKit service address, such as `http://localhost:9529` 
+- `<app_id>`: Corresponding to RUM's `applicationId` 
+- `<env>`: Corresponding to RUM's `env` 
+- `<version>`: application's `version`, `CFBundleShortVersionString` value 
+- `<dataway_token>`: token of `dataway` in the configuration file `datakit.conf` 
+- `<dSYMBOL_src_dir>`: directory path containing all `.dSYM` files. 
+
+### Manual upload
 
 [Sourcemap Upload](../../datakit/rum.md#sourcemap)
 
@@ -1737,6 +1802,95 @@ The Widget Extension SDK only implements data collection, and the data upload lo
     }
     ```
 
+## WebView data monitoring 
+WebView data monitoring requires integration of [Web Monitoring SDK](../web/app-access.md) in the WebView access page 
+
+## Example of using custom tags {#user-global-context} 
+
+### Compile configuration method 
+
+You can create multiple Configurations and use pre-compiled instructions to set values 
+
+1. Create multiple Configurations 
+
+![](image_9.png) 
+
+2.Set preset properties to distinguish different Configurations
+
+![](image_10.png) 
+
+3.Use precompilation instruction 
+
+```objectivec 
+//Target -> Build Settings -> GCC_PREPROCESSOR_DEFINITIONS to configure preset definition 
+#if PRE 
+#define Track_id @"0000000001" 
+#define STATIC_TAG @"preprod" 
+#elif DEVELOP 
+#define Track_id @"0000000002" 
+#define STATIC_TAG @"common" 
+#else 
+#define Track_id @"0000000003" 
+#define STATIC_TAG @"prod" 
+#endif 
+   
+FTRumConfig *rumConfig = [[FTRumConfig alloc]init]; 
+rumConfig.globalContext = @{@"track_id":Track_id,@"static_tag":STATIC_TAG}; 
+... //Other setting operations 
+[[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig]; 
+```
+
+You can also refer to the [Multi-environment Configuration Parameters](#multi_env_param) method for configuration. 
+
+### Runtime Read and Write File Methods 
+
+Because the globalContext set after RUM is started will not take effect, users can save it locally and set it to take effect the next time the application is started. 
+
+1.Save the data locally by storing it in a file, such as NSUserDefaults. Configure the use of the SDK, and add code to obtain tag data in the configuration section.
+
+```objectivec 
+NSString *dynamicTag = [[NSUserDefaults standardUserDefaults] valueForKey:@"DYNAMIC_TAG"]?:@"NO_VALUE"; 
+
+FTRumConfig *rumConfig = [[FTRumConfig alloc]init]; 
+rumConfig.globalContext = @{@"dynamic_tag":dynamicTag}; 
+... //Other setting operations 
+[[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig]; 
+```
+
+2.Perform a method for adding or modifying file data at any location.
+
+```objectivec 
+ [[NSUserDefaults standardUserDefaults] setValue:@"dynamic_tags" forKey:@"DYNAMIC_TAG"]; 
+```
+
+3.Finally, restart the app to take effect. 
+
+### SDK runtime addition
+
+After the SDK is initialized, use `[FTMobileAgent appendGlobalContext:globalContext]`, `[FTMobileAgent appendRUMGlobalContext:globalContext]`, `[FTMobileAgent appendLogGlobalContext:globalContext]` to dynamically add tags. Once set, they will take effect immediately. Subsequently, the data reported by RUM or Log will automatically add tag data. This usage method is suitable for scenarios where data acquisition is delayed, such as when tag data requires network requests. 
+
+```objective-c 
+// SDK initialization pseudo code, get 
+[FTMobileAgent startWithConfigOptions:config]; 
+
+-(void)getInfoFromNet:(Info *)info{ 
+	NSDictionary *globalContext = @{@"delay_key", info.value} 
+	[FTMobileAgent appendGlobalContext:globalContext]; 
+} 
+```
+
+## tvOS Data Collection
+
+> api >= tvOS 12.0 
+
+SDK initialization and usage are consistent with the iOS side. 
+
+**Note that tvOS does not support**: 
+
+* `WebView` data detection 
+
+* `FTRumConfig.errorMonitorType` device battery monitoring 
+
 ## Frequently Asked Questions {#FAQ}
 
 ### About Crash Log Analysis
@@ -1818,5 +1972,7 @@ Open a terminal and use the following command to de-obfuscate
 
 `xcrun dsymutil -symbol-map <BCSymbolMaps_path> <.dSYM_path>`
 
+### Avoid conflicts when adding custom tags {#key-conflict}
 
+To avoid conflicts between custom fields and SDK data, it is recommended to add a prefix of the project abbreviation to the tag name, such as `df_tag_name`. The `key` value used in the project can be found in the [source code](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTMobileSDK/FTSDKCore/BaseUtils/Base/FTConstants.m). When the same variables as RUM and Log appear in the SDK global variables, RUM and Log will overwrite the global variables in the SDK.
 
