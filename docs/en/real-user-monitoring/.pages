@@ -2,7 +2,7 @@ nav:
   - index.md
   - 'Web': web
   - 'Android': android
-  - 'iOS': ios
+  - 'iOS/tvOS': ios
   - 'Miniapp': miniapp
   - 'React Native': react-native
   - 'Flutter': flutter
