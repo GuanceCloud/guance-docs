@@ -12,16 +12,16 @@ icon: zy/release-notes
 
 - :fontawesome-regular-clipboard:{ .lg .middle }
 
-  ***
+    ***
 
-  **[DataKit](../datakit/changelog.md)**
+    **[DataKit](../datakit/changelog.md)**
 
-  ***
+    ***
 
-  **SDK**
+    **SDK**
 
-  | [Web](../real-user-monitoring/web/sdk-changelog.md) | [小程序](../real-user-monitoring/miniapp/sdk-changelog.md) | [Android](../real-user-monitoring/android/sdk-changelog.md) | [iOS](../real-user-monitoring/ios/sdk-changelog.md) | [React Native](../real-user-monitoring/react-native/sdk-changelog.md) |
-  | :-------------------------------------------------: | :--------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------: | :-------------------------------------------------------------------: |
+    | [Web](../real-user-monitoring/web/sdk-changelog.md) | [小程序](../real-user-monitoring/miniapp/sdk-changelog.md) | [Android](../real-user-monitoring/android/sdk-changelog.md) | [iOS](../real-user-monitoring/ios/sdk-changelog.md) | [React Native](../real-user-monitoring/react-native/sdk-changelog.md) |
+    | :-------------------------------------------------: | :--------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------: | :-------------------------------------------------------------------: |
 
 </div>
 
