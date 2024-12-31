@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.65.2(2024/12/31) {#cl-1.65.2}
+
+This release is a hotfix update, which includes several minor feature enhancements. The details are as follows:
+
+### New Features {#cl-1.65.2-new}
+
+- OpenTelemetry default split sub-service name (#2522)
+- OpenTelemetry add `ENV_INPUT_OTEL_COMPATIBLE_DDTRACE` for Kubernetes (!3368)
+
+### Bug Fixes {#cl-1.65.2-fix}
+
+- In Kubernetes, automatic discovery for Prometheus collection no longer forcibly add the `pod_name` and `namespace` tags (#2524).
+- Fix bug that `plugins` config not working under SkyWalking (!3368)
+
+---
+
 ## 1.65.1 (2024/12/25) {#cl-1.65.1}
 
 This release is a hotfix update, which includes several minor feature enhancements. The details are as follows:
@@ -699,7 +715,7 @@ This release is an iterative update with the following main changes:
 - Container log collection now supports configuring color character filtering `remove_ansi_escape_codes` in Annotation (#2208).
 - The [Health Check Collector](../integrations/host_healthcheck.md) now supports command-line argument filtering (#2197).
 - Added new [Collector Cassandra](../integrations/cassandra.md) (#1812).
-- Added [Usage Statistics](datakit-conf.md#dk-usage-count) (#2177).
+- Added usage statistics (#2177).
 - eBPF Tracing add support for HTTP2/gRPC (#2017).
 
 ### Bug Fixes {#cl-1.29.0-fix}
