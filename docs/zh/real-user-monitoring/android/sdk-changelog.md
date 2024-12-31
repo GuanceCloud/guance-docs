@@ -8,6 +8,18 @@
 </div>
 
 ## **ft-sdk** {#ft-sdk}
+### **1.6.6 (2024/12/25)** {#ft-sdk-1-6-6}
+1. 网络状态及类型获取优化，支持 ethernet 类型的网络类型显示
+2. 优化无网络状态下，数据写入频繁关闭数据库的问题
+3. 修复丢弃日志与 RUM 丢弃旧数据时，数据条目数与设置条目数偏差的问题
+4. TV 设备按键事件适配，剔除非 TV 设备 tag 
+5. 支持通过 `FTRUMConfig.setRumCacheLimitCount(int)`限制 RUM 数据条目数上限，默认 100_000
+6. 支持通过 `FTSDKConfig enableLimitWithDbSize(long dbSize)` 限制总缓存大小功能，开启之后
+   `FTLoggerConfig.setLogCacheLimitCount(int)` 及 `FTRUMConfig.setRumCacheLimitCount(int)` 将失效
+7. 优化设备无操作场景下 Session 刷新规则
+### **1.6.5 (2024/12/24)** {#ft-sdk-1-6-5}
+1. 弱化 Webview 在 AOP 过程中参数为 null 的提示
+2. 优化应用在后台长 Session 更新的机制
 ### **1.6.4 (2024/12/03)** {#ft-sdk-1-6-4}
 1. 优化 App 启动时间在 API 24 以上的统计
 2. 支持通过 `FTRUMConfig.setEnableTrackAppUIBlock(true, blockDurationMs)` 设置检测时间范围

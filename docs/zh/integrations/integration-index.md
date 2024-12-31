@@ -1879,7 +1879,35 @@ icon: zy/integrations
   					</div>
   				</div>
   			</div>
-  		
+  		  	<div
+  				class="fth-integration-list-item"
+  				data-href="../aws_firehose_http_endpoint"
+  				data-tags="Amazon Firehose,HTTP Endpoint,Kinesis Data Stream"
+  				data-name="AWS Firehose HTTP Endpoint"
+  				data-summary="将 Firehose 的日志或者指标发送到观测云"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="..//icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">AWS Firehose HTTP Endpoint</div>
+                            <div title="将 Firehose 的日志或者指标发送到观测云" class="fth-integration-desc">将 Firehose 的日志或者指标发送到观测云</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
   			<div
   				class="fth-integration-list-item"
   				data-href="../aws_memorydb"
@@ -9625,7 +9653,7 @@ icon: zy/integrations
   	</div>
   	<script>
   		!(function () {
-            const limitTags = ['阿里云', '腾讯云', '华为云', '谷歌云', 'AWS', 'AZURE', '中间件', '主机', 'IPMI', 'KUBERNETES', '容器', '网络', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', '缓存', '消息队列', '数据库', '语言', '链路追踪', 'PROFILE', '日志', '拨测', 'WEB', '移动端', 'CI/CD', 'JENKINS', 'GITLAB', '会话重放', 'WINDOWS'];
+            const limitTags = ['阿里云', '腾讯云', '华为云', '火山引擎','谷歌云', 'AWS', 'AZURE', '中间件', '主机', 'IPMI', 'KUBERNETES', '容器', '网络', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', '缓存', '消息队列', '数据库', '语言', '链路追踪', 'PROFILE', '日志', '拨测', 'WEB', '移动端', 'CI/CD', 'JENKINS', 'GITLAB', '会话重放', 'WINDOWS'];
             const tagAll = { label: '全部', value: '' };
   			const debounce = (fn, delay, immediate) => {
   				let timeout = null;

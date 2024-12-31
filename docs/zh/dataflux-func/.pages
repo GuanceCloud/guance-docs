@@ -1,4 +1,7 @@
 nav:
 
   - index.md
-  - '外部数据源': external_data.md
+  - '外部数据源': 
+    - external_data.md
+    - '正常图表数据返回': external_data_normal.md
+    - '拓扑图数据返回': external_data_treemap.md

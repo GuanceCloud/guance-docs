@@ -1,142 +1,119 @@
-# 拓扑图图表接口说明
+# 拓扑图图表数据结构说明
 
-## 【链路追踪】service map 接口
-
-接口其他相关说明请查阅[【链路追踪】service map （有拓扑关系和统计数据）](../../external-api/tracing/tracing-service-map-v2/)
-
-### 响应结构
+## 【服务关系图】数据结构说明
 
 ```
 {
-    "code": 200,
-    "content": {
-        "services": [
-            {
-                "data": {
-                    "key": "demo:test:1.0.1",
-                    "version": "1.0.1",
-                    "env": "test",
-                    "service": "demo",
-                    "source_type": "front",
-                    "total_count": 6,
-                    "avg_per_second": 0.00010100159919198721,
-                    "avg_resp_time": 2683676.8333333335,
-                    "sum_resp_time": 16102061,
-                    "max_duration": 15583923,
-                    "p50": 35965,
-                    "p75": 99741,
-                    "p90": 324608,
-                    "p95": 324608,
-                    "p99": 324608,
-                    "error_count": 0,
-                    "error_rate": 0
-                },
-                "name": "demo:test:1.0.1",
-                "type": "front",
-                "workspace_uuid": "wksp_xxxx",
-                "workspace_name": "测试空间"
-            }
-        ],
-        "maps": []
+  "services": [
+    {
+      "data": {
+        "__size": 10,
+        "__fill": 10,
+        "fieldA": "1.0",
+        "fieldB": "test"
+      },
+      "name": "demo_web",
+      "type": "web"
     },
-    "errorCode": "",
-    "message": "",
-    "success": true,
-    "traceId": "159xxxx"
+    {
+      "data": {
+        "__size": 10,
+        "__fill": 10,
+        "fieldA": "1.0",
+        "fieldB": "test"
+      },
+      "name": "demo_framework",
+      "type": "framework"
+    }
+  ],
+  "maps": [
+    {
+      "source": "demo_web",
+      "target": "demo_framework"
+    }
+  ]
 }
 ```
 
-`data`内字段说明：
+字段说明：
 
-| 参数名            | 类型      | 说明                           |
-| -------------- | ------- | ---------------------------- |
-| key            | string  | 唯一键值，按照service:env:version拼接 |
-| version        | string  | 版本号                          |
-| env            | string  | 环境                           |
-| service        | string  | 服务名称                         |
-| source_type    | string  | 服务类型                         |
-| total_count    | integer | 总请求数                         |
-| avg_per_second | double  | 平均每秒请求数，单位req/s              |
-| avg_resp_time  | double  | 平均响应时间，单位μs                  |
-| sum_resp_time  | double  | 总响应时间，单位μs                   |
-| max_duration   | integer | 最大响应时间                       |
-| p50            | integer | P50响应时间，单位μs                 |
-| p75            | integer | P75响应时间，单位μs                 |
-| p90            | integer | P90响应时间，单位μs                 |
-| p95            | integer | P95响应时间，单位μs                 |
-| p99            | integer | P99响应时间，单位μs                 |
-| error_count    | integer | 错误请求数                        |
-| error_rate     | double  | 错误率                          |
+| 参数名 | 类型  | 说明  |
+| --- | --- | --- |
+| maps | arrary | 拓扑图的有向边列表 |
+| maps.source | string | 源服务名称 |
+| maps.target | string | 目标服务名称 |
+| services | arrary | 拓扑图服务节点列表 |
+| services.name | string | 服务名称 |
+| services.type | string | 服务类型，目前有的服务类型为<br/>["app", "framework", "cache", "message_queue", "custom", "db", "web", "aws_lambda"]<br/>也可填入自定义类型 |
+| services.data | json | 服务节点数据 |
+| services.data.__size | double | 圆圈大小字段的值，该值无范围<br/>按照设置的大小自适应显示 |
+| services.data.__fill | double | 填充颜色字段的值，该值的范围为<br/>设置的**渐变色系**的最大和最小值 |
+| services.data.fieldA | string | 显示在 tooltip 的字段 |
+| services.data.fieldB | string | 显示在 tooltip 的字段 |
 
-## 【服务-性能指标】获取资源调用接口
-
-### 响应结构
+## 【资源关系图】数据结构说明
 
 ```
 {
-    "maps": [
-    ],
-    "serviceResource": [
-        {
-            "service": "demo",
-            "resource": "demo.resource",
-            "appId": "",
-            "checkerInfo": [],
-            "status": "ok",
-            "__docid": "",
-            "data": {
-                "total_count": 2,
-                "p99": 270.64,
-                "error_count": 0,
-                "error_rate": 0,
-                "avg_per_second": 0.0022222222222222222
-            },
-            "source_type": "custom"
-        }
-    ]
+  "serviceResource": [
+    {
+      "data": {
+        "__fill": 10,
+        "avg_per_second_title": "AAA",
+        "avg_per_second": 1,
+        "p99_title": "AAA",
+        "p99": 1,
+        "error_rate_title": "AAA",
+        "error_rate": 1
+      },
+      "service": "demo_web",
+      "resource": "demo_web_resource",
+      "source_type": "web"
+    },
+    {
+      "data": {
+        "__fill": 10,
+        "avg_per_second_title": "AAA",
+        "avg_per_second": 1,
+        "p99_title": "AAA",
+        "p99": 1,
+        "error_rate_title": "AAA",
+        "error_rate": 1
+      },
+      "service": "demo_framework",
+      "resource": "demo_framework_resource",
+      "source_type": "framework"
+    }
+  ],
+  "maps": [
+    {
+      "source": "demo_web",
+      "source_resource": "demo_web_resource",
+      "target": "demo_framework",
+      "target_resource": "demo_framework_resource"
+    }
+  ]
 }
 ```
 
-`data`内字段说明
+字段说明：
 
-| 参数名            | 类型      | 说明              |
-| -------------- | ------- | --------------- |
-| total_count    | integer | 总请求数            |
-| p99            | double  | P99响应时间，单位μs    |
-| error_count    | integer | 错误请求数           |
-| error_rate     | double  | 错误率             |
-| avg_per_second | double  | 平均每秒请求数，单位req/s |
-
-## 相关字段查询DQL
-
-* 总请求数查询DQL：
-
-  ```
-  T::(T::re(`.*`):(`trace_id`){ `source` NOT IN ['service_map', 'tracing_stat', 'service_list_1m', 'service_list_1d', 'service_list_1h', 'profile'] and `service` = 'front-api' } by `trace_id`):(count(`trace_id`))
-  ```
-
-* 错误请求数查询DQL：
-  
-  ```
-  T::(T::re(`.*`):(LAST(`status`) as `status`){ `source` NOT IN ['service_map', 'tracing_stat', 'service_list_1m', 'service_list_1d', 'service_list_1h', 'profile'] and `service` = 'front-api' and `status` = 'error' } by `trace_id`):(count(`status`))
-  ```
-
-* 总响应时间查询DQL：
-  
-  ```
-  T::(T::re(`.*`):(max(`duration`) as `duration`){ `source` NOT IN ['service_map', 'tracing_stat', 'service_list_1m', 'service_list_1d', 'service_list_1h', 'profile'] and `service` = 'front-api' } by trace_id):(sum(`duration`))
-  ```
-
-* 最大响应时间查询DQL：
-  
-  ```
-  T::(T::re(`.*`):(max(`duration`) as `duration`){ `source` NOT IN ['service_map', 'tracing_stat', 'service_list_1m', 'service_list_1d', 'service_list_1h', 'profile'] and `service` = 'front-api' } by trace_id):(max(`duration`))
-  ```
-
-* P99响应时间查询DQL：
-  
-  ```
-  T::(T::re(`.*`):(max(`duration`) as `duration`){ `source` NOT IN ['service_map', 'tracing_stat', 'service_list_1m', 'service_list_1d', 'service_list_1h', 'profile'] and `service` = 'front-api' } by trace_id):(percentile(`duration`, 99) as `P99`)
-  ```
-  
-  
+| 参数名 | 类型  | 说明  |
+| --- | --- | --- |
+| maps | arrary | 拓扑图的有向边列表 |
+| maps.source | string | 源服务名称 |
+| maps.source_resource | string | 源资源名称 |
+| maps.target | string | 目标服务名称 |
+| maps.target_resource | string | 目标资源名称 |
+| serviceResource | arrary | 拓扑图资源节点列表 |
+| serviceResource.service | string | 服务名称 |
+| serviceResource.resource | string | 资源名称 |
+| serviceResource.source_type | string | 资源类型，目前有的资源类型为<br/>["app", "framework", "cache", "message_queue", "custom", "db", "web", "aws_lambda"]<br/>也可填入自定义类型 |
+| serviceResource.data | json | 资源节点数据 |
+| serviceResource.data.__fill | double | 填充颜色字段的值，该值的范围为<br/>设置的**渐变色系**的最大和最小值 |
+| serviceResource.data.avg_per_second_title | string | 左边字段的标题 |
+| serviceResource.data.avg_per_second | double | 左边字段的值 |
+| serviceResource.data.p99_title | string | 中间字段的标题 |
+| serviceResource.data.p99 | double | 中间字段的值 |
+| serviceResource.data.error_rate_title | string | 右边字段的标题 |
+| serviceResource.data.error_rate | double | 右边字段的值 |

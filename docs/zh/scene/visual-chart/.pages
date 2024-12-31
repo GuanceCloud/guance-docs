@@ -1,36 +1,35 @@
 nav:
   - index.md
+  - 图表类型:
+    - '时序图': timeseries-chart.md
+    - '柱状图': bar-chart.md
+    - '饼图': pie-chart.md
+    - '概览图': overview-chart.md
+    - '排行榜': leaderboard.md
+    - '表格图': table-chart.md
+    - '中国地图': china-map.md
+    - '世界地图': world-map.md
+    - '散点图': scatter-plot.md
+    - '气泡图': bubble-chart.md
+    - '直方图': histogram.md 
+    - '矩形树图': treemap.md
+    - '蜂窝图': cellular-map.md
+    - '热力图': heatmap_scene.md
+    - '拓扑图': topology-map.md
+    - 'SLO': slo-chart.md
+    - '仪表盘': dashboard.md
+    - '漏斗图': funnel-chart.md
+    - '桑基图': sankey.md
+    - '日志流图': log-stream.md
+    - '对象列表图': object-list.md
+    - '告警统计图': alert-statistics.md
+    - '文本': text.md
+    - '视频': video.md
+    - '图片': picture.md
+    - '命令面板': command-panel.md
+    - 'IFrame': iframe.md
+  - '图表配置': chart-config.md
   - '图表查询': chart-query.md
   - '图表 JSON': chart-json.md
   - '图表链接': chart-link.md
   - '事件关联': events-relative.md
-  - '图表分享': chart-share.md
-  - '图表分组': chart-group.md
-  - '同期对比': time-comparison.md
-  - '时序图': timeseries-chart.md
-  - '概览图': overview-chart.md
-  - '表格图': table-chart.md
-  - '矩形树图': treemap.md
-  - '漏斗图': funnel-chart.md
-  - '饼图': pie-chart.md
-  - '柱状图': bar-chart.md
-  - '直方图': histogram.md
-  - 'SLO': slo-chart.md
-  - '排行榜': leaderboard.md
-  - '仪表盘': dashboard.md
-  - '散点图': scatter-plot.md
-  - '气泡图': bubble-chart.md
-  - '中国地图': china-map.md
-  - '世界地图': world-map.md
-  - '蜂窝图': cellular-map.md
-  - '热力图': heatmap_scene.md
-  - '拓扑图': topology-map.md
-  - '桑基图': sankey.md
-  - '文本': text.md
-  - '图片': picture.md
-  - '视频': video.md
-  - '命令面板': command-panel.md
-  - 'IFrame': iframe.md
-  - '日志流图': log-stream.md
-  - '对象列表图': object-list.md
-  - '告警统计图': alert-statistics.md

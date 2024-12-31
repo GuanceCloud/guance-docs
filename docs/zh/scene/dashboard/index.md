@@ -19,10 +19,39 @@
 ![](../img/8.dashboard_1.png)
 
 1. 定义当前仪表板的名称；
-2. 按需输入针对该仪表板的描述内容；
-3. 选择[标签](../../management/global-label.md)，便于后续分组管理；
-4. 选择当前仪表板的[可见范围](#range)；
-5. 点击确定，即可创建成功。
+2. 定义该仪表板的标识 ID；
+3. 按需输入针对该仪表板的描述内容；
+4. 选择[标签](../../management/global-label.md)，便于后续分组管理；
+5. 选择当前仪表板的[可见范围](#range)；
+6. 点击确定，即可创建成功。
+
+#### 标识 ID
+
+观测云定义该 ID 为 `identifier`，用于确定仪表板或视图的唯一性。
+
+##### 应用场景
+
+可用于配置图表的[跳转链接](../visual-chart/chart-link.md)，从而实现唯一确定性定位。
+
+场景 :material-numeric-1-circle-outline:：定义仪表板的标识 ID 为 `abc`。在最终导出的 [JSON 文件](./config_list.md#options)中，参数为：`"identifier": "abc"`
+
+<img src="../img/identifier.png" width="60%" >
+
+场景 :material-numeric-2-circle-outline:：为图表配置跳转链接时，添加标识 ID 为 `abc` 的仪表板链接为：
+
+```
+/scene/dashboard/dashboardDetail?identifier=abc
+```
+
+除仪表板外，视图同样适用：
+
+```
+// type 字段可选值: inner(用户视图)，sys(系统视图)。不传时默认为 inner:
+/scene/builtinview/detail?identifier=abc&type=sys // 系统视图
+/scene/builtinview/detail?identifier=abc&type=inner // 用户视图
+/scene/builtinview/detail?identifier=abc // 用户视图
+```
+
 
 #### 可见范围 {#range}
 
@@ -45,11 +74,12 @@
 ![](../img/1.dashboard_2.png)
 
 1. 定义当前仪表板的名称；
-2. 按需输入针对该仪表板的描述内容；
-3. 上传自定义的视图模板 JSON 文件；
-4. 选择[标签](../../management/global-label.md)，便于后续分组管理；
-5. 选择当前仪表板的[可见范围](#range)；
-6. 点击确定，即可创建成功。
+2. 定义该仪表板的标识 ID；
+3. 按需输入针对该仪表板的描述内容；
+4. 上传自定义的视图模板 JSON 文件；
+5. 选择[标签](../../management/global-label.md)，便于后续分组管理；
+6. 选择当前仪表板的[可见范围](#range)；
+7. 点击确定，即可创建成功。
 
 ### 内置模版库 {#view}
 
@@ -58,10 +88,11 @@
 即选即用，包括[系统视图](../built-in-view/index.md#system)和[用户视图](../built-in-view/index.md#user)。
 
 1. 仪表板名称默认为当前选中视图的名称，可按需更改；
-2. 按需输入针对该仪表板的描述内容；
-3. 选择[标签](../management/global-label.md)，便于后续分组管理；
-4. 选择当前仪表板的[可见范围](#range)；
-5. 点击确定，即可创建成功。
+2. 定义该仪表板的标识 ID；
+3. 按需输入针对该仪表板的描述内容；
+4. 选择[标签](../management/global-label.md)，便于后续分组管理；
+5. 选择当前仪表板的[可见范围](#range)；
+6. 点击确定，即可创建成功。
 
 
 

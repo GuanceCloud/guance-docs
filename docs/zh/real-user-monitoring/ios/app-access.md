@@ -20,7 +20,7 @@
 
 ## 安装
 
-![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/ios/version.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=iOS&color=brightgreen&query=$.ios_api_support&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) 
+![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/ios/version.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=iOS&color=brightgreen&query=$.ios_api_support&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![tvOS](https://img.shields.io/badge/dynamic/json?label=tvOS&color=brightgreen&query=$.tvos_api_support&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios)
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-ios](https://github.com/GuanceCloud/datakit-ios)
 
@@ -230,6 +230,9 @@
 | syncSleepTime | int | 否 | 设置同步间歇时间。范围 [0,5000]，默认不设置 |
 | enableDataIntegerCompatible | BOOL | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题 。 |
 | compressIntakeRequests | BOOL | 否 | 对同步数据进行压缩，SDK 1.5.6 以上版本支持这个参数 |
+| enableLimitWithDbSize       | BOOL             | 否       | 开启使用 DB 限制总缓存大小功能。<br>**注意：**开启之后 `FTLoggerConfig.logCacheLimitCount` 及 `FTRUMConfig.rumCacheLimitCount` 将失效。SDK 1.5.8 以上版本支持该参数 |
+| dbCacheLimit                | long             | 否       | DB 缓存限制大小。范围 [30MB,)，默认 100MB，单位 byte，SDK 1.5.8 以上版本支持该参数 |
+| dbDiscardType               | FTDBCacheDiscard | 否       | 设置数据库中数据丢弃规则。默认 `FTDBDiscard` <br/>`FTDBDiscard`当数据数量大于最大值时，丢弃追加数据。`FTDBDiscardOldest`当数据大于最大值时，丢弃老数据。SDK 1.5.8 以上版本支持该参数 |
 
 ### RUM 配置 {#rum-config}
 
@@ -284,6 +287,8 @@
 | monitorFrequency | FTMonitorFrequency | 否 | 视图的性能监控采样周期。配置 `monitorFrequency` 来设置 **View** 监控项信息的采样周期。`FTMonitorFrequencyDefault`500ms (默认)，`FTMonitorFrequencyFrequent`100ms，`FTMonitorFrequencyRare`1000ms。 |
 | enableResourceHostIP | BOOL | 否 | 是否采集请求目标域名地址的 IP。`>= iOS 13` 下支持 |
 | globalContext | NSDictionary | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
+| rumCacheLimitCount | int                        | 否 | RUM 最大缓存量。 默认 100_000，SDK 1.5.8 以上版本支持该参数 |
+| rumDiscardType | FTRUMCacheDiscard          | 否 | 设置 RUM 丢弃规则。默认 `FTRUMCacheDiscard` <br/>`FTRUMCacheDiscard`当 RUM 数据数量大于最大值时，丢弃追加数据。`FTRUMDiscardOldest`当 RUM 数据大于最大值时，丢弃老数据。SDK 1.5.8 以上版本支持该参数 |
 
 ### Log 配置 {#log-config}
 
@@ -317,9 +322,9 @@
 | printCustomLogToConsole | BOOL | 否 | 设置是否将自定义日志输出到控制台。默认`NO`，自定义日志[输出格式](#printCustomLogToConsole) |
 | logLevelFilter | NSArray | 否 | 设置要采集的自定义 log 的状态数组。默认全采集 |
 | enableLinkRumData | BOOL | 否 | 是否与 RUM 数据关联。默认`NO` |
-| discardType | FTLogCacheDiscard | 否 | 设置频繁日志丢弃规则。默认 `FTDiscard` <br/>`FTDiscard`当日志数据数量大于最大值（5000）时，丢弃追加数据。`FTDiscardOldest`当日志数据大于最大值时,丢弃老数据。 |
 | globalContext | NSDictionary |     否 | 添加 log 自定义标签。添加规则请查阅[此处](#key-conflict) |
-| logCacheLimitCount | int | 否 | 获取最大日志条目数量。限制 [1000,)，默认 5000 |
+| logCacheLimitCount | int | 否 | 本地缓存最大日志条目数量限制 [1000,)，日志越大，代表磁盘缓存压力越大，默认 5000 |
+| discardType | FTLogCacheDiscard | 否 | 设置日志达到限制上限以后的日志丢弃规则。默认 `FTDiscard` <br/>`FTDiscard`当日志数据数量大于最大值（5000）时，丢弃追加数据。`FTDiscardOldest`当日志数据大于最大值时,丢弃老数据。 |
 
 ### Trace 配置 {#trace-config}
 
@@ -1870,6 +1875,18 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 	[FTMobileAgent appendGlobalContext:globalContext];
 }
 ```
+
+## tvOS 数据采集
+
+>  api >= tvOS 12.0
+
+SDK 的初始化与使用与 iOS 端一致。
+
+**需注意 tvOS 不支持**：
+
+* `WebView` 数据检测
+
+* `FTRumConfig.errorMonitorType` 中设备的电池监控
 
 ## 常见问题 {#FAQ}
 

@@ -3,7 +3,7 @@ nav:
   - 'Web 监测': web
   - '小程序监测': miniapp
   - 'Android 监测': android
-  - 'iOS 监测': ios
+  - 'iOS/tvOS 监测': ios
   - 'React Native 监测': react-native
   - 'Flutter 监测': flutter
   - 'UniApp 监测': uni-app
@@ -14,7 +14,6 @@ nav:
   - '分析看板': app-analysis.md
   - '会话重放': session-replay
   - '热图': heatmap.md
-  - '生成指标': generate-metrics.md
   - '数据访问': rumdata_access.md
   - '自建追踪': self-tracking.md
   - 'SourceMap': sourcemap
