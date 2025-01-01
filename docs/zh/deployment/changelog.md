@@ -18,30 +18,30 @@ pubrepo.guance.com/dataflux/1.101.187:launcher-bd04e6c-1735636678
 
 1. Kubernetes 操作历史记录
 
-- 所有对 Kubernetes 的变更操作均已支持版本历史记录，便于追溯和管理。
+    - 所有对 Kubernetes 的变更操作均已支持版本历史记录，便于追溯和管理。
 
 2. 新增 Workload 管理功能
 
-- 支持调整 Workload 副本数。
-- 支持修改 Workload 镜像地址。
-- 支持配置 Workload 的资源限制（Limit）、污点（Taint）、亲和性（Affinity）等设置。
-- 支持一键回滚 Workload 到历史版本，以及版本之间的差异对比。
+    - 支持调整 Workload 副本数。
+    - 支持修改 Workload 镜像地址。
+    - 支持配置 Workload 的资源限制（Limit）、污点（Taint）、亲和性（Affinity）等设置。
+    - 支持一键回滚 Workload 到历史版本，以及版本之间的差异对比。
 
 3. Launcher 服务管理
 
-- 新增在 Launcher 界面中直接关闭 Launcher 服务的功能。
+    - 新增在 Launcher 界面中直接关闭 Launcher 服务的功能。
 
 4. Registry Key 配置同步
 
-- 修改 Registry Key 配置后，将自动同步更新 Kubernetes 中由服务预置的 `registry-key` Secret。
+    - 修改 Registry Key 配置后，将自动同步更新 Kubernetes 中由服务预置的 `registry-key` Secret。
 
 5. 部署安全增强
 
-- 在全新部署时，后台管理员账号的密码需在安装信息收集阶段手动输入，确保安全性。
+    - 在全新部署时，后台管理员账号的密码需在安装信息收集阶段手动输入，确保安全性。
 
 6. UI 优化
 
-- 所有功能菜单增加 Icon 标识，增强可视化效果，提升用户体验。
+    - 所有功能菜单增加 Icon 标识，增强可视化效果，提升用户体验。
 
 #### 功能更新
 
