@@ -61,6 +61,10 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
       ## compatible ddtrace: It is possible to compatible OTEL Trace with DDTrace trace
       # compatible_ddtrace=false
     
+      ## spilt service.name form xx.system.
+      ## see: https://github.com/open-telemetry/semantic-conventions/blob/main/docs/database/database-spans.md
+      spilt_service_name = true
+    
       ## delete trace message
       # del_message = true
     
@@ -157,6 +161,26 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
         **Type**: Boolean
     
         **input.conf**: `keep_rare_resource`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_OTEL_COMPATIBLE_D_D_TRACE**
+    
+        Convert trace_id to decimal, compatible with DDTrace
+    
+        **Type**: Boolean
+    
+        **input.conf**: `compatible_d_d_trace`
+    
+        **Default**: false
+    
+    - **ENV_INPUT_OTEL_SPILT_SERVICE_NAME**
+    
+        Get xx.system from span.Attributes to replace service name
+    
+        **Type**: Boolean
+    
+        **input.conf**: `spilt_service_name`
     
         **Default**: false
     
@@ -269,6 +293,15 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
 3. When data of type `float` `double` is involved, a maximum of two decimal places are reserved.
 4. Both http and grpc support the gzip compression format. You can configure the environment variable in exporter to turn it on: `OTEL_EXPORTER_OTLP_COMPRESSION = gzip`; gzip is not turned on by default.
 5. The http protocol request format supports both JSON and Protobuf serialization formats. But grpc only supports Protobuf.
+
+<!-- markdownlint-disable MD046 -->
+???+ tips
+
+    The service name in the DDTrace is named based on the service name or the referenced third-party library, while the service name of the OTEL collector is defined according to `otel.service.name`.
+    To display service names separately, a field configuration has been added: spilt_service_name = true.
+    The service name is extracted from the label of the link data. For example, if the label of the DB type is `db.system=mysql`, then the service name is Mysql. If it is the MQ type: `messaging.system=kafka`, then the service name is Kafka.
+    By default, the following three tags are extracted: "db.system", "rpc.system", and "messaging.system".
+<!-- markdownlint-enable -->
 
 Pay attention to the configuration of environment variables when using OTEL HTTP exporter. Since the default configuration of Datakit is `/otel/v1/trace` and `/otel/v1/metric`,
 if you want to use the HTTP protocol, you need to configure `trace` and `trace` separately `metric`,
