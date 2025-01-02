@@ -1,0 +1,6 @@
+nav:
+  - '通知策略 列出': list.md
+  - '通知策略 获取': get.md
+  - '通知策略 新增': add.md
+  - '通知策略 修改': modify.md
+  - '删除日程': delete.md
