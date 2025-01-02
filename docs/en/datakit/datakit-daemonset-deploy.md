@@ -271,6 +271,24 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     **Type**: Boolean
 
+- **ENV_PIPELINE_HTTP_REQUEST_HOST_WHITELIST**
+
+    Set HOST whitelist for `http_request` function
+
+    **Type**: List
+
+- **ENV_PIPELINE_HTTP_REQUEST_CIDR_WHITELIST**
+
+    Set CIDR whitelist for `http_request` function
+
+    **Type**: List
+
+- **ENV_PIPELINE_HTTP_REQUEST_DISABLE_INTERNAL_NET**
+
+    Disable `http_request` function to access internal network
+
+    **Type**: List
+
 - **~~ENV_GLOBAL_TAGS~~**
 
     Same as ENV_GLOBAL_HOST-TAGS(Deprecated)

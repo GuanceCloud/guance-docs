@@ -101,12 +101,14 @@ monitor:
       ## The maximum allowed number of open files, default is 500. If it is -1, it means no limit.
       # logging_max_open_files = 500
     
-      ## Search logging interval, default "60s"
+      ## Search logging interval, default "60s".
       #logging_search_interval = ""
     
+      ## Log collection configures additional source matching, and the regular source will be renamed.
       [inputs.container.logging_extra_source_map]
         # source_regexp = "new_source"
     
+      ## Log collection with multiline configuration as specified by the source.
       [inputs.container.logging_source_multiline_map]
         # source = '''^\d{4}'''
     
@@ -354,7 +356,7 @@ monitor:
     
     - **ENV_INPUT_CONTAINER_LOGGING_SOURCE_MULTILINE_MAP_JSON**
     
-        日志采集配置额外的 source 匹配，符合正则的 source 会被改名
+        日志采集根据 source 指定多行配置
     
         **字段类型**: JSON
     

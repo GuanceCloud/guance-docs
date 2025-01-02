@@ -94,6 +94,7 @@ nav:
       - '后台管理忘记admin用户密码': reset-admin-password.md
       - '使用阿里云 ECI 弹性伸缩 kodo-x': aliyun-eci.md
       - 'Kodo-X 拆分': kodo-x-split.md
+      - '切换 HTTPS 访问': switch-https.md
     - '运维FAQ':
       - 'kubernetes集群': faq-k8s.md
       - '观测云底座': faq-guanceyun.md

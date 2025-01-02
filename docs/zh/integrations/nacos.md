@@ -6,8 +6,8 @@ dashboard :
   - desc  : 'Nacos'
     path  : 'dashboard/zh/nacos'
 monitor   :
-  - desc  : '暂无'
-    path  : '-'
+  - desc  : 'Nacos'
+    path  : 'monitor/zh/nacos'
 ---
 
 <!-- markdownlint-disable MD025 -->

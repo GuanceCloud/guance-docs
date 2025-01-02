@@ -14,6 +14,9 @@ nav:
   - '事件': keyevent
   - '异常追踪 - 频道': channel
   - '异常追踪 - Issue': issue
+  - '异常追踪 - 日程': notification-schedule
+  - '异常追踪 - 配置管理 - 通知策略': issue-notification-policy
+  - '异常追踪 - 配置管理 - Issue 发现': issue-auto-discovery
   - '基础设施': objects
   - '基础设施 - 资源目录': objc-set
   - '日志 - 索引': log-index-cfg
@@ -31,17 +34,18 @@ nav:
   - '监控 - 告警策略': alert-policy
   - '监控 - 告警策略 - 自定义通知日期': alert-policy-notice-date
   - '监控 - 通知对象管理': notify-object
-  - '管理 - 成员管理 - 角色权限': permission
+  - '管理 - 字段管理': field-cfg
+  - '管理 - 全局标签': tag
   - '管理 - 成员管理': workspace-member
+  - '管理 - 成员管理 - 角色权限': permission
   - '管理 - 成员管理 - 团队管理': member-group
-  - '管理 - 成员管理 - 角色管理': role
   - '管理 - 成员管理 - SSO管理': sso
-  - '管理 - SSO管理 - 自定义映射规则(部署版)': custom-login-mapping
+  - '管理 - 成员管理 - SSO管理-自定义映射规则(部署版)': custom-login-mapping
+  - '管理 - 角色管理': role
+  - '管理 - API Key管理': workspace-ak
+  - '管理 - 黑名单': blacklist
   - '管理 - Pipeline': pipeline
   - '管理 - 数据访问': data-query-rule
-  - '管理 - 全局标签': tag
-  - '管理 - 黑名单': blacklist
-  - '管理 - API Key管理': workspace-ak
   - '管理 - 敏感数据脱敏': workspace-data-mask
   - '工作空间': workspace
   - '工作空间属性声明': workspace-declaration
