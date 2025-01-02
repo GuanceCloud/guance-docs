@@ -4,7 +4,7 @@
 
 为了在使用 APM（应用性能监控）工具时实现前端到后端的完整跟踪（通常称为 RUM，即真实用户监控），你需要在前端和后端进行相应的配置。以下是主要步骤和注意事项：
 
-### 前端配置
+#### 前端配置
 
 1. **安装并配置 RUM SDK**：
 
@@ -14,7 +14,7 @@
 2. **发送跟踪信息**：
    - RUM SDK 会自动在前端发起的请求头中添加必要的跟踪信息，如`x-datadog-parent-id`, `x-datadog-origin`, `x-datadog-sampling-priority`, `x-datadog-trace-id`等。
 
-### 后端配置
+#### 后端配置
 
 1. **设置 CORS 策略**：
 
@@ -40,7 +40,7 @@
 2. **处理请求**：
    - 确保后端服务能够接收并正确处理这些跟踪信息头部。这些信息通常用于在后端服务中关联和追踪请求。
 
-### 验证与测试
+#### 验证与测试
 
 - **测试配置**：
 
@@ -50,7 +50,7 @@
 - **调试与修正**：
   - 如果遇到任何问题（如 CORS 错误、头部未发送等），请检查前端和后端的配置，并根据需要调整。
 
-### 注意事项
+#### 注意事项
 
 - **安全性**：确保`allowedTracingOrigins`仅包含受信任的源，以防止潜在的跨站请求伪造（CSRF）攻击。
 - **性能**：虽然跟踪信息对于性能监控至关重要，但请确保它们不会对你的应用性能造成负面影响。
@@ -131,7 +131,7 @@ Access-Control-Allow-Origin: *
 
 ---
 
-### 如何解决跨域资源导致的数据缺失
+#### 如何解决跨域资源导致的数据缺失
 
 **1. 资源文件存放在服务器**  
 在服务器上为资源文件添加以下 HTTP Header：
@@ -147,7 +147,7 @@ Timing-Allow-Origin: *
 Timing-Allow-Origin: *
 ```
 
----
+[参考文档](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/transferSize)
 
 ### Resource `resource_status` 数据未采集
 
@@ -161,7 +161,7 @@ Timing-Allow-Origin: *
 
 ---
 
-### 如何解决跨域资源导致的 `resource_status` 数据缺失
+#### 如何解决跨域资源导致的 `resource_status` 数据缺失
 
 **1. 资源文件存放在服务器**  
 在服务器配置中为资源文件添加以下 HTTP Header：
@@ -178,6 +178,7 @@ Access-Control-Allow-Origin: *
 ```
 
 通过以上配置，可以有效解决跨域资源导致的数据采集问题，并确保浏览器能够正确获取性能数据。
+[参考文档](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseStatus)。
 
 ### 识别搜索引擎机器人 {#bot}
 
@@ -200,7 +201,7 @@ DATAFLUX_RUM.init({
 });
 ```
 
-## 更多阅读
+### 更多阅读
 
 <div class="grid cards" markdown>
 
