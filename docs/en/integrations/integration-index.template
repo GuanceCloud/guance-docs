@@ -200,7 +200,7 @@ Guance has the ability of full stack data collection, and now supports about {{.
   	</div>
   	<script>
   		!(function () {
-            const limitTags = ['Alibaba Cloud', 'Tencent Cloud', 'Huawei Cloud', 'GCP', 'AWS', 'AZURE', 'MIDDLEWARE', 'HOST', 'IPMI', 'KUBERNETES', 'CONTAINERS', 'NETWORK', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', 'CACHING', 'MESSAGE QUEUES', 'DATA STORES', 'LANGUAGE', 'TRACING、APM', 'PROFILE', 'LOG', 'TESTING', 'WEB', 'MOBILE', 'CI/CD', 'JENKINS', 'GITLAB', 'SESSION REPLAY'];
+            const limitTags = ['Alibaba Cloud', 'Tencent Cloud', 'Huawei Cloud', 'Volcengine' ,'GCP', 'AWS', 'AZURE', 'MIDDLEWARE', 'HOST', 'IPMI', 'KUBERNETES', 'CONTAINERS', 'NETWORK', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', 'CACHING', 'MESSAGE QUEUES', 'DATA STORES', 'LANGUAGE', 'TRACING、APM', 'PROFILE', 'LOG', 'TESTING', 'WEB', 'MOBILE', 'CI/CD', 'JENKINS', 'GITLAB', 'SESSION REPLAY'];
             const tagAll = { label: 'All', value: '' };
   			const debounce = (fn, delay, immediate) => {
   				let timeout = null;

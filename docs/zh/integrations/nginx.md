@@ -331,30 +331,6 @@ server {
 
 
 
-## 自定义对象 {#object}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## 日志 {#logging}
 
 如需采集 NGINX 的日志，可在 nginx.conf 中 将 `files` 打开，并写入 NGINX 日志文件的绝对路径。比如：
