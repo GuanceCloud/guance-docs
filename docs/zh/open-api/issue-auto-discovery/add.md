@@ -24,9 +24,7 @@
 | config.level | string |  | 等级<br>例子: level <br>允许为空: False <br>允许为空字符串: True <br> |
 | config.channelUUIDs | array |  | 频道UUID列表<br>例子: ['chan_xxx1', 'chan_xxx2'] <br>允许为空: False <br> |
 | config.description | string |  | 描述<br>例子: description <br>允许为空: False <br> |
-| config.extend | json |  | 额外拓展信息<br>例子: {} <br>允许为空: True <br> |
-| config.extend.manager | array | Y | 这是 issue 负责人UUID列表(账号UUID、团队UUID、邮箱等)<br>例子: ['acnt_xxx1', 'acnt_xxx2'] <br>允许为空: True <br> |
-| config.extend.members | array |  | issue描述中关联的被@的字符串信息<br>例子: description <br>允许为空: False <br> |
+| config.extend | json |  | 额外拓展信息,可参考 issue 新建中的 extend 字段，一般不建议OpenAPI侧进行设置<br>例子: {} <br>允许为空: True <br> |
 
 ## 参数补充说明
 
@@ -34,11 +32,21 @@
 
 
 
+## 请求例子
+```shell
+curl 'https://openapi.guance.com/api/v1/issue_auto_discovery/add' \
+-H 'Content-Type: application/json' \
+-H 'DF-API-KEY: <DF-API-KEY>' \
+--data-raw '{"name":"test-core-worker","description":"这是一个新建issue自动发现规则测试例子","every":300,"dqlNamespace":"keyevent","conditions":"`source` = \"lwctest\"","dimensions":["name"],"config":{"name":"这是issue定义中的标题","description":"这是issue定义中的描述信息","level":"system_level_0","extend":{"manager":["acnt_e52a5a7b6418464cb2acbeaa199e7fd1"]},"channelUUIDs":["chan_61367ab1e38744738eb0a219dbf8bac1"]}}' \
+--insecure
+```
+
+
 
 
 ## 响应
 ```shell
- 
+{"code":200,"content":{"conditions":"`source` = \\"lwctest\\"","config":{"channelUUIDs":["chan_xxx"],"description":"这是issue定义中的描述信息","extend":{"manager":["acnt_xxx"]},"level":"system_level_0","name":"这是issue定义中的标题"},"createAt":1735893173,"creator":"wsak_xxxx","declaration":{"asd":"aa,bb,cc,1,True","asdasd":"dawdawd","business":"aaa","dd":"dd","fawf":"afawf","organization":"64fe7b4062f74d0007b46676"},"deleteAt":-1,"description":"这是一个新建issue自动发现规则测试例子","dimensions":["name"],"dqlNamespace":"keyevent","every":300,"id":null,"name":"test-core-worker","status":0,"updateAt":null,"updator":null,"uuid":"iatdc_xxxx","workspaceUUID":"wksp_xxxx"},"errorCode":"","message":"","success":true,"traceId":"4483644685680847012"} 
 ```
 
 

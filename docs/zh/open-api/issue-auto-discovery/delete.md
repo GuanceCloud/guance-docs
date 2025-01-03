@@ -22,11 +22,27 @@
 
 
 
+## 请求例子
+```shell
+curl 'https://openapi.guance.com/api/v1/issue_auto_discovery/iatdc_xxxxxx/delete' \
+-H 'Content-Type: application/json' \
+-H 'DF-API-KEY: <DF-API-KEY>' \
+--insecure
+```
+
+
 
 
 ## 响应
 ```shell
- 
+{
+    "code": 200,
+    "content": true,
+    "errorCode": "",
+    "message": "",
+    "success": true,
+    "traceId": "17964357676421089304"
+} 
 ```
 
 
