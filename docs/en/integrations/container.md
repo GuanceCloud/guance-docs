@@ -100,12 +100,14 @@ Collect indicators, objects and log data of container and Kubernetes and report 
       ## The maximum allowed number of open files, default is 500. If it is -1, it means no limit.
       # logging_max_open_files = 500
     
-      ## Search logging interval, default "60s"
+      ## Search logging interval, default "60s".
       #logging_search_interval = ""
     
+      ## Log collection configures additional source matching, and the regular source will be renamed.
       [inputs.container.logging_extra_source_map]
         # source_regexp = "new_source"
     
+      ## Log collection with multiline configuration as specified by the source.
       [inputs.container.logging_source_multiline_map]
         # source = '''^\d{4}'''
     
@@ -355,7 +357,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
     - **ENV_INPUT_CONTAINER_LOGGING_SOURCE_MULTILINE_MAP_JSON**
     
-        Log collection configures additional source matching, and the regular source will be renamed
+        Log collection with multiline configuration as specified by the source
     
         **Type**: JSON
     
