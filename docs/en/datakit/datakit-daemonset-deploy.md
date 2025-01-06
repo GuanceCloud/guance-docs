@@ -77,6 +77,66 @@ This document describes how to install DataKit in K8s via DaemonSet.
     ```shell
     $ helm uninstall datakit -n datakit
     ```
+
+=== "Docker"
+
+    The container startup command is as follows:
+    
+    ```shell
+    sudo docker run \
+        --hostname "$(hostname)" \
+        --workdir /usr/local/datakit \
+        -v "/host/conf/dir":"/usr/local/datakit/conf.d/host-inputs-conf" \
+        -v "/":"/rootfs" \
+        -v /var/run/docker.sock:/var/run/docker.sock \
+        -e ENV_DATAWAY="https://openway.guance.com?token=<YOUR-WORKSPACE-TOKEN>"  \
+        -e ENV_DEFAULT_ENABLED_INPUTS='cpu,disk,diskio,mem,swap,system,net,host_processes,hostobject,container,dk' \
+        -e ENV_GLOBAL_HOST_TAGS="tag1=a1,tag2=a2" \
+        -e ENV_HTTP_LISTEN="0.0.0.0:9529" \
+        -e HOST_PROC="/rootfs/proc" \
+        -e HOST_SYS="/rootfs/sys" \
+        -e HOST_ETC="/rootfs/etc" \
+        -e HOST_VAR="/rootfs/var" \
+        -e HOST_RUN="/rootfs/run" \
+        -e HOST_DEV="/rootfs/dev" \
+        -e HOST_ROOT="/rootfs" \
+        --cpus 2 \
+        --memory 1g \
+        --privileged \
+        --publish 19529:9529 \
+        -d \
+        pubrepo.guance.com/datakit/datakit:1.65.2
+    ```
+    
+    Parameter explanations:
+    
+    - **`--hostname`**: Sets the hostname of the host machine as the hostname for Datakit container. If you need to run multiple Datakits on the same host, you can add appropriate suffixes, such as `--hostname "$(hostname)-dk1"`.
+    - **`--workdir`**: Sets the working directory of the container.
+    - **`-v`**: Various host file mounts:
+        - Datakit has many configuration files, which can be prepared on the host machine and mounted into the container in via `-v` (the path in the container is under *conf.d/host-inputs-conf*).
+        - Mounting the host's root directory into Datakit container allows access to various host information (e.g., files in the `/proc` directory) to facilitate data collection by the default enabled collectors.
+        - Mounting the *docker.sock* file into the Datakit container enables the `container` collector to collect data(collect object/metric/logging). The directory of this file may vary on different hosts and should be configured according to the actual path.
+    - **`-e`**: Various environment variable configurations for Datakit during runtime, which function similarly to those in Kubernetes DaemonSet.
+    - **`--publish`**: Facilitates external sending of Trace and other data to the Datakit container.
+    
+    Suppose we have configured the following collectors in the */host/conf/dir* directory:
+    
+    - **APM**: Collectors such as [DDTrace](../integrations/ddtrace.md) and [OpenTelemetry](../integrations/opentelemetry.md).
+    - **Prometheus exporter**: In the current Docker environment, if some application containers expose their own metrics (typically in the form of `http://ip:9100/metrics`), we can expose their ports and then write a [*prom.conf*](../integrations/prom.md) to collect these metrics.
+    - **Log collection**: If some Docker containers write logs to a specific directory on the host machine, we can write a separate [log collection configuration](../integrations/logging.md#config) to collect these files. However, we need to mount these host directories into the Datakit container using `-v` beforehand. Additionally, the default enabled `container` collector will automatically collect the stdout logs of all containers.
+    
+    After the container is started, you can directly execute the following command on the host machine to check the status of Datakit:
+    
+    ```shell
+    $ docker exec -it <container name or container ID> datakit monitor
+    ```
+    
+    You can also enter the container to view more information:
+    
+    ```shell
+    $ docker exec -it <container name or container ID> /bin/bash
+    ```
+
 <!-- markdownlint-enable -->
 
 ## Kubernetes Tolerance Configuration {#toleration}
