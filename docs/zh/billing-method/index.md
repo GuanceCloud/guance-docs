@@ -12,9 +12,275 @@ icon: zy/billing-method
 
 观测云的所有计费项都是**单独计费**，例如您上报的日志数据会产生日志存储的费用，您上报的应用性能链路追踪数据会产生应用性能 Trace 相关费用。
 
+<img src="img/billing-1.png" width="70%" >
 
-<img src="img/billing-1.png" width="50%" >
+<!--
+## 价格模型
 
+**注意：**
+
+1. `CN` 表示中国区站点；
+2. `Intl(incl HK)` 表示中国香港及海外站点。
+
+### 以人民币结算
+
+<table>
+
+<tr >
+<th colspan="9">基础计费</th>
+</tr>
+
+<tr >
+<th width="40%" > 计费项 </th> 
+<th> 站点 </th>
+<th> 价格 </th> 
+<th>  </th> 
+<th>  </th> 
+<th>  </th> 
+<th>  </th> 
+<th> </th> 
+<th>  </th> 
+</tr>
+
+<tr >
+<td width="40%" rowspan="2">敏感数据扫描流量</td>
+<td>CN</td>
+<td>￥0.1</td>
+
+</tr>
+
+<tr >
+<td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
+<td>￥0.2</td>
+</tr>
+
+<tr >
+<td width="40%" rowspan="2">定时报告</td>
+<td>CN</td>
+<td>￥1</td>
+</tr>
+
+<tr >
+<td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
+<td  bgcolor=#FBFBF9 >￥2</td>
+</tr>
+
+<tr >
+<td width="40%" rowspan="2">数据转发</td>
+<td>CN</td>
+<td>￥0.35</td>
+</tr>
+
+<tr >
+<td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
+<td  bgcolor=#FBFBF9 >￥0.7</td>
+</tr>
+
+<tr >
+<td width="40%" rowspan="2">网络</td>
+<td>CN</td>
+<td>￥2</td>
+</tr>
+
+<tr >
+<td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
+<td  bgcolor=#FBFBF9 >￥4</td>
+</tr>
+
+<tr >
+<td width="40%" rowspan="2">会话重放</td>
+<td>CN</td>
+<td>￥2.5</td>
+</tr>
+
+<tr >
+<td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
+<td  bgcolor=#FBFBF9 >￥2.5</td>
+</tr>
+
+<tr >
+<td width="40%" rowspan="2">可用性监测</td>
+<td>CN</td>
+<td>￥1</td>
+</tr>
+
+<tr >
+<td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
+<td  bgcolor=#FBFBF9 >￥10</td>
+</tr>
+
+<tr >
+<td width="40%" rowspan="2">任务调用</td>
+<td>CN</td>
+<td>￥1</td>
+</tr>
+
+<tr >
+<td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
+<td  bgcolor=#FBFBF9 >￥2</td>
+</tr>
+
+<tr >
+<td width="40%" rowspan="2">短信</td>
+<td>CN</td>
+<td>￥1</td>
+</tr>
+
+<tr >
+<td  bgcolor=#FBFBF9 >-</td> 
+<td  bgcolor=#FBFBF9 >-</td>
+</tr>
+
+<tr >
+<td width="40%" rowspan="2">中心 Pipeline</td>
+<td>CN</td>
+<td>￥0.1</td>
+</tr>
+
+<tr >
+<td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
+<td  bgcolor=#FBFBF9 >￥0.2</td>
+</tr>
+
+<tr >
+<th colspan="9">梯度计费</th>
+</tr>
+
+<tr >
+<th> </th> 
+<th>  </th> 
+<th>3d</th>
+<th>7d</th>
+<th>14d</th>
+<th>30d</th>
+<th>60d</th>
+<th>180d</th>
+<th>360d</th>
+</tr>
+
+<tr >
+<td rowspan="2">时间线</td>
+<td>CN</td>
+<td>￥0.6</td>
+<td>￥0.7</td>
+<td>￥0.8</td>
+<td>￥1</td>
+<td>-</td>
+<td>￥4</td>
+<td>￥7</td>
+</tr>
+
+<tr >
+<td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
+<td  bgcolor=#FBFBF9 >￥1.6</td>
+<td  bgcolor=#FBFBF9 >￥1.8</td>
+<td  bgcolor=#FBFBF9 >￥2.2</td>
+<td  bgcolor=#FBFBF9 >￥2.4</td>
+<td  bgcolor=#FBFBF9 >-</td>
+<td  bgcolor=#FBFBF9 >￥8</td>
+<td  bgcolor=#FBFBF9 >￥14</td>
+</tr>
+
+<tr >
+<td rowspan="2" >日志</td>
+<td>CN</td>
+<td>￥1</td>
+<td>￥1.2</td>
+<td>￥1.5</td>
+<td>￥2</td>
+<td>￥2.5</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr >
+<td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
+<td  bgcolor=#FBFBF9 >￥2</td>
+<td  bgcolor=#FBFBF9 >￥2.4</td>
+<td  bgcolor=#FBFBF9 >￥3</td>
+<td  bgcolor=#FBFBF9 >￥4</td>
+<td  bgcolor=#FBFBF9 >￥5</td>
+<td  bgcolor=#FBFBF9 >-</td>
+<td  bgcolor=#FBFBF9 >-</td>
+</tr>
+
+<tr >
+<td rowspan="2" width="30%" >应用性能 Trace</td>
+<td>CN</td>
+<td>￥2</td>
+<td>￥3</td>
+<td>￥6</td>
+<td>￥10.8</td>
+<td>￥19.44</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr >
+<td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
+<td  bgcolor=#FBFBF9 >￥6</td>
+<td  bgcolor=#FBFBF9 >￥10</td>
+<td  bgcolor=#FBFBF9 >￥20</td>
+<td  bgcolor=#FBFBF9 >￥36</td>
+<td  bgcolor=#FBFBF9 >￥64.8</td>
+<td  bgcolor=#FBFBF9 >-</td>
+<td  bgcolor=#FBFBF9 >-</td>
+</tr>
+
+<tr >
+<td rowspan="2" width="30%" >应用性能 Profile</td>
+<td>CN</td>
+<td>￥0.2</td>
+<td>￥0.3</td>
+<td>￥0.5</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr >
+<td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
+<td  bgcolor=#FBFBF9 >￥0.4</td>
+<td  bgcolor=#FBFBF9 >￥0.6</td>
+<td  bgcolor=#FBFBF9 >￥1</td>
+<td  bgcolor=#FBFBF9 >-</td>
+<td  bgcolor=#FBFBF9 >-</td>
+<td  bgcolor=#FBFBF9 >-</td>
+<td  bgcolor=#FBFBF9 >-</td>
+</tr>
+
+<tr >
+<td rowspan="2">用户访问 PV</td>
+<td>CN</td>
+<td>￥0.7</td>
+<td>￥1</td>
+<td>￥2</td>
+<td>￥3.6</td>
+<td>￥6.48</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr >
+<td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
+<td  bgcolor=#FBFBF9 >￥2</td>
+<td  bgcolor=#FBFBF9 >￥3</td>
+<td  bgcolor=#FBFBF9 >￥5</td>
+<td  bgcolor=#FBFBF9 >￥9</td>
+<td  bgcolor=#FBFBF9 >￥16.2</td>
+<td  bgcolor=#FBFBF9 >-</td>
+<td  bgcolor=#FBFBF9 >-</td>
+</tr>
+
+</table>
+
+
+
+
+
+### 采用美元结算
+-->
 
 ### 敏感数据扫描流量 {#scanned-data}
 
@@ -28,13 +294,13 @@ icon: zy/billing-method
 
     | <font size=2>明细</font>  |  |
     | -------- | ---------- |
-    | 中国站点   | ￥ 0.1 |
+    | 中国站点   | ￥0.1 |
 
 === "中国香港及海外站点"
 
     | <font size=2>明细</font>  |  |
     | -------- | ---------- |
-    |  中国香港及海外站点 | ￥ 0.2 |
+    |  中国香港及海外站点 | ￥0.2 |
 
 <font color=coral>**当采用美元结算**：</font>
 
@@ -62,13 +328,13 @@ icon: zy/billing-method
 
     | <font size=2>明细</font>  |  |
     | -------- | ---------- |
-    | 中国站点   | ￥ 1 |
+    | 中国站点   | ￥1 |
 
 === "中国香港及海外站点"
 
     | <font size=2>明细</font>  |  |
     | -------- | ---------- |
-    |  中国香港及海外站点 | ￥ 2 |
+    |  中国香港及海外站点 | ￥2 |
 
 <font color=coral>**当采用美元结算**：</font>
 
@@ -96,13 +362,13 @@ icon: zy/billing-method
 
     | 数据存储策略 |3 天         | 7 天   | 14 天  | 30 天 |     180 天   |    360 天     |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    | 中国站点   | ￥ 0.6     | ￥ 0.7 | ￥ 0.8  |  ￥ 1  |    ￥ 4    |    ￥ 7    |
+    | 中国站点   | ￥0.6     | ￥0.7 | ￥0.8  |  ￥1  |    ￥4    |    ￥7    |
 
 === "中国香港及海外站点"
 
     | 数据存储策略 |3 天         | 7 天   | 14 天  | 30 天 |     180 天   |    360 天     |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  中国香港及海外站点 | ￥ 1.6     | ￥ 1.8 | ￥ 2.2  |  ￥ 2.4  |    ￥ 8    |    ￥ 14    |
+    |  中国香港及海外站点 | ￥1.6     | ￥1.8 | ￥2.2  |  ￥2.4  |    ￥8    |    ￥14    |
 
 <font color=coral>**当采用美元结算**：</font>
 
@@ -149,13 +415,13 @@ icon: zy/billing-method
 
     | 数据存储策略 |3 天         | 7 天   | 14 天  | 30 天 | 60 天  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    | 中国站点   | ￥ 1        |   ￥ 1.2 | ￥ 1.5  | ￥ 2  | ￥ 2.5   |
+    | 中国站点   | ￥1        |   ￥1.2 | ￥1.5  | ￥2  | ￥2.5   |
 
 === "中国香港及海外站点"
 
     | 数据存储策略 |3 天         | 7 天   | 14 天  | 30 天 | 60 天  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  中国香港及海外站点 | ￥ 2        |   ￥ 2.4 | ￥ 3 | ￥ 4  | ￥ 5   |
+    |  中国香港及海外站点 | ￥2        |   ￥2.4 | ￥3 | ￥4  | ￥5   |
 
 <font color=coral>**当采用美元结算**：</font>
 
@@ -193,13 +459,13 @@ icon: zy/billing-method
 
     | 数据存储策略 |3 天         | 7 天   | 14 天  | 30 天 |    60 天   |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    | 中国站点   | ￥ 0.6     | ￥ 0.85 | ￥ 1 |  ￥ 1.2  |    ￥ 1.5    |
+    | 中国站点   | ￥0.6     | ￥0.85 | ￥1 |  ￥1.2  |    ￥1.5    |
 
 === "中国香港及海外站点"
 
     | 数据存储策略 |3 天         | 7 天   | 14 天  | 30 天 |    60 天   |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  中国香港及海外站点 | ￥ 1.4     | ￥ 2.1 | ￥ 2.8  |  ￥ 3.08  |    ￥ 3.36    |
+    |  中国香港及海外站点 | ￥1.4     | ￥2.1 | ￥2.8  |  ￥3.08  |    ￥3.36    |
 
 <font color=coral>**当采用美元结算**：</font>
 
@@ -228,13 +494,13 @@ icon: zy/billing-method
 
     | <font size=2>明细</font>   |     |
     | -------- | ---------- |
-    | 中国站点   | ￥ 0.35        |
+    | 中国站点   | ￥0.35        |
 
 === "中国香港及海外站点"
 
     | <font size=2>明细</font>   |     |
     | -------- | ---------- |
-    | 中国香港及海外站点   | ￥ 0.7        |
+    | 中国香港及海外站点   | ￥0.7        |
 
 <font color=coral>**当采用美元结算**：</font>
 
@@ -259,13 +525,13 @@ icon: zy/billing-method
 
     | <font size=2>明细</font>  |  |
     | -------- | ---------- |
-    | 中国站点   | ￥ 0.007 |
+    | 中国站点   | ￥0.007 |
 
 === "中国香港及海外站点"
 
     | <font size=2>明细</font>  |  |
     | -------- | ---------- |
-    |  中国香港及海外站点 |  ￥ 0.014 |
+    |  中国香港及海外站点 |  ￥0.014 |
 
 <font color=coral>**当采用美元结算**：</font>
 
@@ -302,13 +568,13 @@ icon: zy/billing-method
 
     | <font size=2>明细</font>  |  |
     | -------- | ---------- |
-    | 中国站点   | ￥ 2 |
+    | 中国站点   | ￥2 |
 
 === "中国香港及海外站点"
 
     | <font size=2>明细</font>  |  |
     | -------- | ---------- |
-    |  中国香港及海外站点 |  ￥ 4 |
+    |  中国香港及海外站点 |  ￥4 |
 
 <font color=coral>**当采用美元结算**：</font>
 
@@ -346,13 +612,13 @@ icon: zy/billing-method
 
     | 数据存储策略 |3 天         | 7 天   | 14 天  | 30 天   | 60 天  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    | 中国站点   | ￥ 2 |  ￥ 3  |  ￥ 6  |  ￥ 10.8  |  ￥ 19.44  |
+    | 中国站点   | ￥2 |  ￥3  |  ￥6  |  ￥10.8  |  ￥19.44  |
 
 === "中国香港及海外站点"
 
     | 数据存储策略 |3 天         | 7 天   | 14 天  | 30 天   | 60 天  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  中国香港及海外站点 | ￥ 6 |  ￥ 10  |  ￥ 20  |  ￥ 36  |  ￥ 64.8  |
+    |  中国香港及海外站点 | ￥6 |  ￥10  |  ￥20  |  ￥36  |  ￥64.8  |
 
 <font color=coral>**当采用美元结算**：</font>
 
@@ -389,13 +655,13 @@ icon: zy/billing-method
 
     | 数据存储策略 |3 天         | 7 天   | 14 天  |
     | -------- | ---------- | ---------- | ---------- |
-    | 中国站点   |￥0.2 |  ￥ 0.3  |  ￥ 0.5|
+    | 中国站点   |￥0.2 |  ￥0.3  |  ￥0.5|
 
 === "中国香港及海外站点"
 
     | 数据存储策略 |3 天         | 7 天   | 14 天  |
     | -------- | ---------- | ---------- | ---------- |
-    |  中国香港及海外站点 |￥0.4 |  ￥ 0.6  |  ￥ 1|
+    |  中国香港及海外站点 |￥0.4 |  ￥0.6  |  ￥1|
 
 <font color=coral>**当采用美元结算**：</font>
 
@@ -433,13 +699,13 @@ icon: zy/billing-method
 
     | 数据存储策略 |3 天         | 7 天   | 14 天  | 30 天   | 60 天  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    | 中国站点   | ￥ 0.7 | ￥ 1  |  ￥ 2| ￥ 3.6  |  ￥ 6.48|
+    | 中国站点   | ￥0.7 | ￥1  |  ￥2| ￥3.6  |  ￥6.48|
 
 === "中国香港及海外站点"
 
     | 数据存储策略 |3 天         | 7 天   | 14 天  | 30 天   | 60 天  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  中国香港及海外站点 | ￥ 2 | ￥ 3  |  ￥ 5| ￥ 9  |  ￥ 16.2 |
+    |  中国香港及海外站点 | ￥2 | ￥3  |  ￥5| ￥9  |  ￥16.2 |
 
 <font color=coral>**当采用美元结算**：</font>
 
@@ -477,13 +743,13 @@ true` 的 `session_id` 数量得出（每千个 Sessions / 天）。
 
     | <font size=2>明细</font>  |  |
     | -------- | ---------- |
-    | 中国站点   | ￥ 2.5 |
+    | 中国站点   | ￥2.5 |
 
 === "中国香港及海外站点"
 
     | <font size=2>明细</font>  |  |
     | -------- | ---------- |
-    |  中国香港及海外站点 |  ￥ 2.5 |
+    |  中国香港及海外站点 |  ￥2.5 |
 
 <font color=coral>**当采用美元结算**：</font>
 
@@ -521,13 +787,13 @@ true` 的 `session_id` 数量得出（每千个 Sessions / 天）。
 
     | <font size=2>明细</font>  |  |
     | -------- | ---------- |
-    | 中国站点   | ￥ 1 |
+    | 中国站点   | ￥1 |
 
 === "中国香港及海外站点"
 
     | <font size=2>明细</font>  |  |
     | -------- | ---------- |
-    |  中国香港及海外站点 | ￥ 10 |
+    |  中国香港及海外站点 | ￥10 |
 
 <font color=coral>**当采用美元结算**：</font>
 
@@ -563,13 +829,13 @@ true` 的 `session_id` 数量得出（每千个 Sessions / 天）。
 
     | <font size=2>明细</font>  |  |
     | -------- | ---------- |
-    | 中国站点   | ￥ 1 |
+    | 中国站点   | ￥1 |
 
 === "中国香港及海外站点"
 
     | <font size=2>明细</font>  |  |
     | -------- | ---------- |
-    |  中国香港及海外站点 |  ￥ 2 |
+    |  中国香港及海外站点 |  ￥2 |
 
 <font color=coral>**当采用美元结算**：</font>
 
@@ -604,7 +870,7 @@ true` 的 `session_id` 数量得出（每千个 Sessions / 天）。
 
 | <font size=2>明细</font>  |    |   |
 |-------- | ---------- |---------- |
-| 中国站点  | 人民币   |  ￥ 1 |
+| 中国站点  | 人民币   |  ￥1 |
 
 <div class="grid cards" markdown>
 
@@ -624,13 +890,13 @@ true` 的 `session_id` 数量得出（每千个 Sessions / 天）。
 
     | <font size=2>明细</font>  |  |
     | -------- | ---------- |
-    | 中国站点   | ￥ 0.1 |
+    | 中国站点   | ￥0.1 |
 
 === "中国香港及海外站点"
 
     | <font size=2>明细</font>  |  |
     | -------- | ---------- |
-    |  中国香港及海外站点 |  ￥ 0.2 |
+    |  中国香港及海外站点 |  ￥0.2 |
 
 <font color=coral>**当采用美元结算**：</font>
 
