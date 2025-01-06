@@ -468,82 +468,71 @@ You can configure `FTRUMConfig` to enable automatic mode or add it manually. Rum
 
 === "Objective-C"
 
-    ```objectivec
-    /// add action
+    ```objective-c
+    /// Start RUM Action.
+    ///
+    /// RUM will bind the Resource, Error, and LongTask events that may be triggered by the Action. Avoid adding multiple times within 0.1 seconds. The same View will only be associated with one Action at the same time. If the previous Action is not completed, the newly added Action will be discarded.
+    /// This method has no effect on adding Actions with the `addAction:actionType:property` method.
     ///
     /// - Parameters:
-    ///   - actionName: action name
-    - (void)addClickActionWithName:(NSString *)actionName;
+    /// - actionName: action name
+    /// - actionType: action type
+    /// - property: extra property (optional)
+    - (void)startAction:(NSString *)actionName actionType:(NSString *)actionType property:(nullable NSDictionary *)property;
     
-    /// add action
-    /// - Parameters:
-    ///   - actionName: action name
-    ///   - property: extra property (optional)
-    - (void)addClickActionWithName:(NSString *)actionName property:(nullable NSDictionary *)property;
-    
-    /// add action
+    /// Add Action event. No duration, no discard logic
     ///
+    /// Does not affect the RUM Action started by `startAction:actionType:property:`.
     /// - Parameters:
-    ///   - actionName: action name
-    ///   - actionType: action type
-    - (void)addActionName:(NSString *)actionName actionType:(NSString *)actionType;
-    
-    /// add action
-    /// - Parameters:
-    ///   - actionName: action name
-    ///   - actionType: action type
-    ///   - property: extra property (optional)
-    - (void)addActionName:(NSString *)actionName actionType:(NSString *)actionType property:(nullable NSDictionary *)property;
+    /// - actionName: action name
+    /// - actionType: action type
+    /// - property: extra property (optional)
+    - (void)addAction:(NSString *)actionName actionType:(NSString *)actionType property:(nullable NSDictionary *)property;
     ```
 
 === "Swift"
 
     ```swift
-    /// add action
+    /// Start RUM Action.
+    ///
+    /// RUM will bind the Resource, Error, and LongTask events that may be triggered by the Action. Avoid adding multiple times within 0.1 seconds. The same View will only be associated with one Action at the same time. If the previous Action is not completed, the newly added Action will be discarded.
+    /// This method has no effect on adding Actions with the `addAction:actionType:property` method.
     ///
     /// - Parameters:
-    ///   - actionName: action name
-    func addClickAction(withName: String)
+    /// - actionName: action name
+    /// - actionType: action type
+    /// - property: extra property (optional)
+    open func startAction(_ actionName: String, actionType: String, property: [AnyHashable : Any]?)
     
-    /// add action
-    /// - Parameters:
-    ///   - actionName: action name
-    ///   - property: extra property (optional)
-    func addClickAction(withName: String, property: [AnyHashable : Any]?)
-    
-    /// add action
+    /// Add Action event. No duration, no discard logic
     ///
+    /// Does not affect the RUM Action started by `startAction:actionType:property:`.
     /// - Parameters:
-    ///   - actionName: action name
-    ///   - actionType: action type
-    func addActionName(String, actionType: String)
-    
-    /// add action
-    /// - Parameters:
-    ///   - actionName: action name
-    ///   - actionType: action type
-    ///   - property: extra property (optional)
-    func addActionName(String, actionType: String, property: [AnyHashable : Any]?)
+    /// - actionName: action name
+    /// - actionType: action type
+    /// - property: extra property (optional)
+    open func addAction(_ actionName: String, actionType: String, property: [AnyHashable : Any]?)
     ```
-
 #### Code Example
 
 === "Objective-C"
 
     ```objective-c
-    // Secne 1：  
-    [[FTExternalDataManager sharedManager] addActionName:@"UITableViewCell click" actionType:@"click"];
-    // Secne 2：  extra property
-    [[FTExternalDataManager sharedManager]  addActionName:@"UITableViewCell click" actionType:@"click" property:@{@"custom_key":@"custom_value"}];
+    // startAction
+    [[FTExternalDataManager sharedManager] startAction:@"action" actionType:@"click" property:@{@"action_property":@"testActionProperty1"}];
+    // addAction
+    [[FTExternalDataManager sharedManager] addAction:@"action" actionType:@"click" property:@{@"action_property":@"testActionProperty1"}];
     ```
 === "Swift"
 
     ```swift
-    // Secne 1：  
-    FTExternalDataManager.shared().addActionName("custom_action", actionType: "click")
-    // Secne 2：  extra property
-    FTExternalDataManager.shared().addActionName("custom_action", actionType: "click",property: ["custom_key":"custom_value"])
+    // startAction
+    FTExternalDataManager.shared().startAction("custom_action", actionType: "click",property: nil)
+    // addAction
+    FTExternalDataManager.shared().addAction("custom_action", actionType: "click",property: nil)
     ```
+
+
 
 ### Error
 
@@ -1469,7 +1458,7 @@ Using `FTMobileAgent`  to close SDK
 
 Use `FTMobileAgent.clearAllData` to clear all data that has not been uploaded to the server 
 
-### Usage
+### Method
 
 === "Objective-C" 
 
@@ -1503,8 +1492,8 @@ Use `FTMobileAgent.clearAllData` to clear all data that has not been uploaded to
 ## Actively Sync Data
 
 Use `FTMobileAgent` to actively sync data. 
->When FTMobileConfig.autoSync = NO, you need to synchronize data yourself 
-### Usage 
+>When FTMobileConfig.autoSync = NO, you need to synchronize data yourself
+### Method
 
 === "Objective-C" 
 
@@ -1537,8 +1526,8 @@ Use `FTMobileAgent` to actively sync data.
 
 ## Add Custom Tags {#user-global-context}
 
-Use `FTMobileAgent` to dynamically add tags when the SDK is running 
-### Usage 
+Use `FTMobileAgent` to dynamically add tags when the SDK is running
+### Method
 === "Objective-C" 
 
     ```objective-c 
@@ -1598,7 +1587,7 @@ Use `FTMobileAgent` to dynamically add tags when the SDK is running
 
 1.XCode add custom Run Script Phase：` Build Phases -> + -> New Run Script Phase`
 
-2.Copy the script into the build-phase run script of the Xcode project, where you need to set parameters such as < app_id >, < datakit_address >, < env >, <dataway_token> .
+2.Copy the script into the build-phase run script of the Xcode project, where you need to set parameters such as < app_id >, < datakit_address >, < env >, < dataway_token > .
 
 3.[Script](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
 
@@ -1811,13 +1800,13 @@ WebView data monitoring requires integration of [Web Monitoring SDK](../web/app-
 
 You can create multiple Configurations and use pre-compiled instructions to set values 
 
-1. Create multiple Configurations 
+1.Create multiple Configurations 
 
-![](image_9.png) 
+![](../img/image_9.png) 
 
 2.Set preset properties to distinguish different Configurations
 
-![](image_10.png) 
+![](../img/image_10.png)
 
 3.Use precompilation instruction 
 
@@ -1933,27 +1922,24 @@ When you upload your bitcode App to the App Store, check the generation of the d
 
 ##### Retrieve via Xcode
 
-1. `Xcode -> Window -> Organizer ` 
+1.`Xcode -> Window -> Organizer ` 
 
-2. Select the `Archives` tab
+2.Select the `Archives` tab
 
-   ![](../img/xcode_find_dsym2.png)
-   
-3. Find the published archive package, right-click on the corresponding archive package, and select `Show in Finder` operation
+![](../img/xcode_find_dsym2.png)
 
-   ![](../img/xcode_find_dsym3.png)
-   
-   
-   
-4. Right-click on the located archive file and select the `Show Package Contents` action 
+3.Find the published archive package, right-click on the corresponding archive package, and select `Show in Finder` operation
 
-   ![](../img/xcode_find_dsym4.png)
-   
-   
-   
-4. Select the `dSYMs` directory, which contains the downloaded dSYM files
+![](../img/xcode_find_dsym3.png)
 
-   ![](../img/xcode_find_dsym5.png)
+4.Right-click on the located archive file and select the `Show Package Contents` action 
+
+![](../img/xcode_find_dsym4.png)
+
+
+5.Select the `dSYMs` directory, which contains the downloaded dSYM files
+
+![](../img/xcode_find_dsym5.png)
 
 ##### Retrieve via iTunes Connect
 

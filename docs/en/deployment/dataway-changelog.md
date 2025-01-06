@@ -2,6 +2,21 @@
 
 # Update History {#changelog}
 
+## 1.7.0 (2024/12/18) {#cl-1.7.0}
+
+### New Features {#cl-1.7.0-new}
+
+- Added AWS Firehose integration entry point (#47).
+- Supported HTTP header token via `X-Token` (#43).
+
+### Performance Improvements {#cl-1.7.0-opt}
+
+- Update the default configure parameters for buffer usage to optimize memory usage (#49).
+- Optimized the default yaml in Kubernetes deployment, update cache disk mount configuration (#48).
+- Update and added some internal metrics, updated the default Dataway dashboards.
+
+---
+
 ## 1.6.2(2024/12/03) {#cl-1.6.2}
 
 ### Feature Enhancements {#cl-1.6.2-opt}

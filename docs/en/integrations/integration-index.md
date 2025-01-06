@@ -1637,6 +1637,36 @@ Guance has the ability of full stack data collection, and now supports about 310
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../aws_firehose_http_endpoint"
+  				data-tags="Amazon Firehose,HTTP Endpoint,Kinesis Data Stream"
+  				data-name="AWS Firehose HTTP Endpoint"
+  				data-summary="AWS Kinesis Firehose Logging and Metrics Data Reception Guide"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="..//icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">AWS Firehose HTTP Endpoint</div>
+                            <div title="AWS Kinesis Firehose Logging and Metrics Data Reception Guide" class="fth-integration-desc">AWS Kinesis Firehose Logging and Metrics Data Reception Guide</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../aws_kinesis"
   				data-tags="AWS"
   				data-name="AWS Kinesis"
@@ -9470,7 +9500,7 @@ Guance has the ability of full stack data collection, and now supports about 310
   	</div>
   	<script>
   		!(function () {
-            const limitTags = ['Alibaba Cloud', 'Tencent Cloud', 'Huawei Cloud', 'GCP', 'AWS', 'AZURE', 'MIDDLEWARE', 'HOST', 'IPMI', 'KUBERNETES', 'CONTAINERS', 'NETWORK', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', 'CACHING', 'MESSAGE QUEUES', 'DATA STORES', 'LANGUAGE', 'TRACING、APM', 'PROFILE', 'LOG', 'TESTING', 'WEB', 'MOBILE', 'CI/CD', 'JENKINS', 'GITLAB', 'SESSION REPLAY'];
+            const limitTags = ['Alibaba Cloud', 'Tencent Cloud', 'Huawei Cloud', 'Volcengine' ,'GCP', 'AWS', 'AZURE', 'MIDDLEWARE', 'HOST', 'IPMI', 'KUBERNETES', 'CONTAINERS', 'NETWORK', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', 'CACHING', 'MESSAGE QUEUES', 'DATA STORES', 'LANGUAGE', 'TRACING、APM', 'PROFILE', 'LOG', 'TESTING', 'WEB', 'MOBILE', 'CI/CD', 'JENKINS', 'GITLAB', 'SESSION REPLAY'];
             const tagAll = { label: 'All', value: '' };
   			const debounce = (fn, delay, immediate) => {
   				let timeout = null;
@@ -9543,7 +9573,7 @@ Guance has the ability of full stack data collection, and now supports about 310
   				originList.forEach(item => {
   					const { tags, name, summary, dom } = item;
   					const show =
-  						((!tags && !tag) || tags.includes(tag)) && (!name || name.includes(search) || summary.includes(search));
+  						((!tags && !tag) || tags.includes(tag)) && (!name || name.includes(search) || summary.includes(search) || tags.includes(search));
   					dom.style.display = show ? 'block' : 'none';
   					// 如果是搜索触发 需重新计算tags
   					if (isSearch && show && tags) {

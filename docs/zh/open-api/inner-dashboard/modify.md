@@ -23,7 +23,7 @@
 |:-----------|:-------|:-----|:----------------|
 | name | string |  | 视图名称<br>例子: 测试视图1号 <br>允许为空: False <br>最大长度: 256 <br> |
 | desc | string |  | 描述<br>例子: 描述1 <br>允许为空: False <br>最大长度: 2048 <br> |
-| customIdentityId | string |  | 标识id   --2024.12.25 新增标识id<br>例子: xxxx <br>允许为空: False <br>允许为空字符串: True <br>最大长度: 128 <br> |
+| identifier | string |  | 标识id   --2024.12.25 新增标识id<br>例子: xxxx <br>允许为空: False <br>允许为空字符串: True <br>最大长度: 128 <br> |
 | dashboardBidding | json |  | mapping, 默认为{}<br>例子: {} <br>允许为空: False <br> |
 
 ## 参数补充说明
@@ -34,7 +34,7 @@
 |-----------------------|----------|------------------------|
 |name         |string |  视图名称 |
 |desc         |string |  描述 |
-|customIdentityId         |string |  标识id  --2024.12.25新增 |
+|identifier         |string |  标识id  --2024.12.25新增 |
 |dashboardBidding         |dict |   仪表板绑定的信息|
 
 

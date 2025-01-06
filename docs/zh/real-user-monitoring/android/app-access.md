@@ -358,7 +358,6 @@ android{
 | setTraceType | TraceType | 否 | 设置链路追踪的类型，默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
 | setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联，默认为 `false` |
 | setEnableAutoTrace | Boolean | 否 | 设置是否开启自动 http trace，目前只支持 OKhttp 的自动追踪，默认为 `false` |
-| setEnableWebTrace | Boolean | 否 | 设置 webview 是否开启链路追踪，alpha 功能，有一部分场景可能会有部分 js 加载问题，默认为 `false` |
 
 ## RUM 用户数据追踪 {#rum-trace}
 
