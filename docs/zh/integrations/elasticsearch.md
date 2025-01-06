@@ -9,7 +9,7 @@ dashboard :
     path  : 'dashboard/zh/elasticsearch'
 monitor   :
   - desc  : 'ElasticSearch'
-    path  : 'monitor/monitor/elasticsearch'
+    path  : 'monitor/zh/elasticsearch'
 ---
 
 
