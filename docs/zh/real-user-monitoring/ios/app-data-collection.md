@@ -1,4 +1,4 @@
-# iOS 应用数据采集
+# iOS/tvOS 应用数据采集
 ---
 
 
@@ -233,7 +233,7 @@
 | `memory_total` | string   | 可选，内存总量           |
 | `memory_use`   | number   | 可选，内存使用率         |
 | `cpu_use`      | number   | 可选，CPU 使用率         |
-| `battery_use`  | number   | 可选，当前电手机的电池量 |
+| `battery_use`  | number   | 可选，当前电手机的电池量 （tvOS 不支持） |
 | `locale`       | string   | 当前系统语言         |
 
 #### 指标

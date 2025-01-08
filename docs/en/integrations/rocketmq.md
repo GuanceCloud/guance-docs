@@ -124,7 +124,7 @@ Restart DataKit
 | `rocketmq_consumer_get_size`| topic consume message bytes | int |
 | `rocketmq_consumer_offset`| topic consume message offset | int |
 | `rocketmq_group_get_latency_by_storetime`| The consumption delay time of a certain consumption group | int |
-| `rocketmq_message_accumulati`| Message Stacking Volume | int |
+| `rocketmq_group_diff`| Message Stacking Volume | int |
 
 
 ## Doc {#doc}
