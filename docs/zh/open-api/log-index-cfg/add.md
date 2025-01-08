@@ -18,7 +18,7 @@
 | extend | json |  | 前端自定义数据<br>允许为空: True <br> |
 | duration | string |  | 数据保留时长<br>允许为空: False <br>例子: 7d <br> |
 | setting | json |  | 相关配置信息<br>允许为空: False <br> |
-| setting.hot_retention | int | Y | 火山引擎存储, 标准存储-热存储<br>允许为空: False <br> |
+| setting.hot_retention | int |  | 火山引擎存储, 标准存储-热存储<br>允许为空: False <br> |
 | setting.cold_retention | int |  | 火山引擎存储, 低频存储-冷数据<br>允许为空: False <br> |
 | setting.archive_retention | int |  | 火山引擎存储, 归档存储-归档数据<br>允许为空: False <br> |
 

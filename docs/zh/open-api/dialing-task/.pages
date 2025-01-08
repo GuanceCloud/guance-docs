@@ -1,5 +1,6 @@
 nav:
   - '创建一个拨测任务': add.md
   - '删除一个拨测任务': delete.md
+  - '修改一个拨测任务': modify.md
   - '获取拨测任务列表': list.md
   - '获取拨测任务详情': get.md
