@@ -16,13 +16,14 @@
     **2023.9.7**：原【备份日志】正式更名为【数据转发】。
 -->
 
-观测云提供日志、链路和用户访问数据保存到观测云的对象存储及转发到外部存储的功能，您可以自由选择存储对象，灵活管理数据转发数据。
+观测云支持将日志、应用性能、用户访问和事件数据保存到其对象存储，或转发到外部存储系统。您可以自由选择存储目标并灵活管理数据转发。
 
-在数据转发页面，您可以通过设置查询时间和数据转发规则快速查询存储数据（包含观测云备份日志、AWS S3、华为云 OBS、阿里云 OSS 和 Kafka 消息队列）。
+规则生效后，在数据转发页面，您可以通过设置查询时间和数据转发规则，快速检索存储的数据，包括观测云备份日志、AWS S3、华为云 OBS、阿里云 OSS 和 Kafka 消息队列等.
+
 
 ## 前提条件
 
-观测云商业版用户可使用数据转发功能，[体验版](../../plans/trail.md)用户需先[升级商业版](../../plans/trail.md#upgrade-commercial)。
+观测云商业版用户可使用数据转发功能，体验版用户需先[升级至商业版](../../plans/trail.md#upgrade-commercial)。
 
 ## 新建规则
 
@@ -34,8 +35,7 @@
 
 
 
-
-### 输入规则名称
+### :material-numeric-1-circle: 输入规则名称
 
 1. 规则名称：即当前数据转发规则的名称，限制最多输入 30 个字符。   
 2. 包含扩展字段：默认情况下仅转发符合条件日志的 `message` 字段内容信息。若勾选 “包含扩展字段”，符合条件的整条日志数据都会被转发。应用性能和用户访问数据默认转发整条数据，不受此选项影响。
@@ -43,10 +43,10 @@
 **注意**：若创建多个数据转发规则，则优先匹配勾选包含扩展字段的规则，即若不同的规则命中同一条数据，则优先按照同步包含扩展字段的逻辑展示整条日志数据。     
 
 
-### 定义过滤条件
+### :material-numeric-2-circle: 定义过滤条件
 
 
-1. 数据源：包含日志、链路、用户访问数据。
+1. 数据源：包含日志、应用性能、用户访问、事件数据。
 
 2. 过滤条件：支持自定义条件间的运算逻辑，您可以选择**所有条件**、**任意条件**：
 
@@ -56,7 +56,7 @@
 
 **注意**：不添加过滤条件即表示保存全部日志数据；您可以添加多条过滤条件。
 
-条件运算符见下表：
+**条件运算符见下表：**
 
 | 条件运算符      | 匹配类型     | 
 | ------------- | -------------- | 
@@ -64,26 +64,26 @@
 | match、not match | 模糊匹配，支持输入正则语法 | 
 
 
-### 选择存档类型
+### :material-numeric-3-circle: 选择存档类型
 
-<font size=2>**注意**：五种存档类型全站点开放。</font>
+???+ warning "注意"
+
+    五种存档类型全站点开放。
 
 
 为提供更加全面的数据转发存储方式，观测云支持五种存储路径。
 
-:material-numeric-1-circle: 观测云：当选择数据转发存储对象为观测云，匹配到的日志数据将被保存到**观测云侧的 OSS、S3、OBS 对象存储**中。
+:material-numeric-1-circle-outline: 观测云：当选择数据转发存储对象为观测云，匹配到的日志数据将被保存到**观测云侧的 OSS、S3、OBS 对象存储**中。
 
-该规则下的日志数据最低存储默认为 180 天，规则一旦创建无法取消，存储期间会每天收取费用；您可以前往**管理 > 设置 > 变更数据存储策略**中修改数据转发存储策略。
+:material-numeric-2-circle-outline: [AWS S3](./backup-aws.md)；
 
-:material-numeric-2-circle: [AWS S3](./backup-aws.md)；
+:material-numeric-3-circle-outline: [华为云 OBS](./backup-huawei.md)；
 
-:material-numeric-3-circle: [华为云 OBS](./backup-huawei.md)；
+:material-numeric-4-circle-outline: [阿里云 OSS](./backup-ali.md)；
 
-:material-numeric-4-circle: [阿里云 OSS](./backup-ali.md)；
+:material-numeric-5-circle-outline: [Kafka 消息队列](./backup-kafka.md)。
 
-:material-numeric-5-circle: [Kafka 消息队列](./backup-kafka.md)。
-
-
+**注意**：当选择数据转发存储对象为观测云，日志数据最低存储默认为 180 天，规则一旦创建无法取消，存储期间会每天收取费用；您可以前往**管理 > 设置 > 变更数据存储策略**中修改数据转发存储策略。
 
 
 ## 查看转发规则
@@ -110,7 +110,7 @@
 
 回到**数据转发**页面，默认进入**转发数据** tab 页。您可以在时间控件自定义时间范围查询。
 
-![](../img/rule-update-3-1.png)
+![](../img/back_data_explorer.png)
 
 观测云会根据选中的时间按批次获取文件搜索匹配数据，每批返回 50 条数据。**首次查询若未查到数据，或返回的数据未满足每页 50 条的要求**，您可以手动点击**继续查询**直至扫描完成。
 
@@ -118,7 +118,7 @@
 
 ## 更多阅读
 
-<font size=3>
+<font size=2>
 
 <div class="grid cards" markdown>
 
@@ -136,7 +136,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 查看器的强大之处</font>](../../getting-started/function-details/explorer-search.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 查看器</font>](../../getting-started/function-details/explorer-search.md)
 
 
 </div>

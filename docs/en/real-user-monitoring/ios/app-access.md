@@ -1492,7 +1492,7 @@ Use `FTMobileAgent.clearAllData` to clear all data that has not been uploaded to
 ## Actively Sync Data
 
 Use `FTMobileAgent` to actively sync data. 
->When FTMobileConfig.autoSync = NO, you need to synchronize data yourself 
+>When FTMobileConfig.autoSync = NO, you need to synchronize data yourself
 ### Method
 
 === "Objective-C" 
@@ -1526,7 +1526,7 @@ Use `FTMobileAgent` to actively sync data.
 
 ## Add Custom Tags {#user-global-context}
 
-Use `FTMobileAgent` to dynamically add tags when the SDK is running 
+Use `FTMobileAgent` to dynamically add tags when the SDK is running
 ### Method
 === "Objective-C" 
 
@@ -1806,7 +1806,7 @@ You can create multiple Configurations and use pre-compiled instructions to set 
 
 2.Set preset properties to distinguish different Configurations
 
-![](../img/image_10.png) 
+![](../img/image_10.png)
 
 3.Use precompilation instruction 
 

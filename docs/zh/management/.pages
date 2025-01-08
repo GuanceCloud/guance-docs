@@ -4,6 +4,7 @@ nav:
   - '属性声明': attribute-claims.md
   - '字段管理': field-management.md
   - '全局标签': global-label.md
+  - '环境变量': env_variable.md
   - '成员管理':
     - member-management.md
     - '邀请成员': invite-member.md
