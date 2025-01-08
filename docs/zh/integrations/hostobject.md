@@ -55,6 +55,9 @@ monitor   :
     # and ignore all others (e.g. memory partitions such as /dev/shm)
     only_physical_device = false
     
+    # merge disks that with the same device name(default false)
+    # merge_on_device = false
+    
     ## Ignore the disk which space is zero
     ignore_zero_bytes_disk = true
     
@@ -343,6 +346,8 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 | `ip6_all` | 所有 IPv6 地址     | []string |
 
 #### `host.disk` {#host-disk}
+
+> 之前的版本中，同一个设备只会采集一个挂载点（具体采集哪一个，以具体挂载点在 */proc/self/mountpoint* 出现的顺序为准）。在 [:octicons-tag-24: Version-1.66.0](../datakit/changelog.md#cl-1.66.0) 版本中，主机对象中的磁盘部份会将符合条件（比如设备名以 `/dev` 开头）挂载点都采集上来，其目的是为了展示 Datakit 能看到的所有设备，避免遗漏。
 
 | 字段名       | 描述         |  类型  |
 | ------------ | ------------ | :----: |

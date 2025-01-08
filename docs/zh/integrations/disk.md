@@ -38,17 +38,8 @@ monitor   :
       ## and ignore all others (e.g. memory partitions such as /dev/shm)
       only_physical_device = false
     
-      ## Deprecated
-      # ignore_mount_points = ["/"]
-    
-      ## Deprecated
-      # mount_points = ["/"]
-    
-      ## Deprecated
-      # ignore_fs = ["tmpfs", "devtmpfs", "devfs", "iso9660", "overlay", "aufs", "squashfs"]
-    
-      ## Deprecated
-      # fs = ["ext2", "ext3", "ext4", "NTFS"]
+      ## merge disks that with the same device name(default true)
+      # merge_on_device = true
     
       ## We collect all devices prefixed with dev by default,If you want to collect additional devices, it's in extra_device add
       # extra_device = ["/nfsdata"]
@@ -56,9 +47,9 @@ monitor   :
       ## exclude some with dev prefix (We collect all devices prefixed with dev by default)
       # exclude_device = ["/dev/loop0","/dev/loop1"]
     
-      [inputs.disk.tags]
-        # some_tag = "some_value"
-        # more_tag = "some_other_value"
+      #[inputs.disk.tags]
+      #  some_tag = "some_value"
+      #  more_tag = "some_other_value"
     
     ```
 
@@ -110,15 +101,25 @@ monitor   :
     
         **默认值**: false
     
-    - **ENV_INPUT_DISK_ENABLE_L_V_M_MAPPER_PATH**
+    - **ENV_INPUT_DISK_ENABLE_LVM_MAPPER_PATH**
     
-        查看设备映射器对应的软链接（如/dev/dm-0 -> /dev/mapper/vg/lv）
+        查看设备映射器对应的软链接（如 `/dev/dm-0` -> `/dev/mapper/vg/lv`）
     
         **字段类型**: Boolean
     
-        **采集器配置字段**: `enable_l_v_m_mapper_path`
+        **采集器配置字段**: `enable_lvm_mapper_path`
     
         **默认值**: false
+    
+    - **ENV_INPUT_DISK_MERGE_ON_DEVICE**
+    
+        合并有相同 device 的磁盘
+    
+        **字段类型**: Boolean
+    
+        **采集器配置字段**: `merge_on_device`
+    
+        **默认值**: true
     
     - **ENV_INPUT_DISK_TAGS**
     
@@ -142,6 +143,13 @@ monitor   :
   # more_tag = "some_other_value"
   # ...
 ```
+
+<!-- markdownlint-disable MD046 -->
+???+ info "磁盘指标来源"
+    在 Linux 中，指标是通过获取 */proc/self/mountinfo* 其中的挂载信息，然后再逐个获取对应挂载点的磁盘指标（`statfs()`）。对 Windows 而言，则通过一系列 Windows API，诸如 `GetLogicalDriveStringsW()` 系统调用获取挂载点，然后再通过 `GetDiskFreeSpaceExW()` 获取磁盘用量信息。
+
+    在 [:octicons-tag-24: Version-1.66.0](../datakit/changelog.md#cl-1.66.0) 版本中，优化了磁盘信息采集，但是相同设备的挂载点仍然会合并成一个，且只取第一个出现的挂载点为准。如果要采集所有的挂载点，需关闭特定的 flag（`merge_on_device/ENV_INPUT_DISK_MERGE_ON_DEVICE`），关闭该合并功能后，磁盘指标集中可能会额外多出非常多的时间线。
+<!-- markdownlint-enable -->
 
 
 

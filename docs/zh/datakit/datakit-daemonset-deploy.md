@@ -107,7 +107,7 @@
         --privileged \
         --publish 19529:9529 \
         -d \
-        pubrepo.guance.com/datakit/datakit:1.65.2
+        pubrepo.guance.com/datakit/datakit:1.66.0
     ```
     
     启动参数说明：
@@ -116,7 +116,7 @@
     - **`--workdir`** 设置容器工作目录
     - **`-v`**：各种宿主机文件挂载：
         - DataKit 中有很多配置文件，我们可以将其在宿主机上准备好，通过 `-v` 一次性整个挂载到容器中去（容器中的路径为 *conf.d/host-inputs-conf* 目录）
-        - 此处将宿主机根目录挂载进 Datakit，目的是访问苏主机上的各种信息（比如 `/proc` 目录下的各种文件），便于默认开启的采集器采集数据
+        - 此处将宿主机根目录挂载进 Datakit，目的是访问宿主机上的各种信息（比如 `/proc` 目录下的各种文件），便于默认开启的采集器采集数据
         - 将 *docker.sock* 文件挂载进 Datakit 容器，便于 container 采集器采集数据。不同宿主机该文件目录可能不同，需按照实际来配置 
     - **`-e`**：各种 Datakit 运行期的环境变量配置，这些环境变量功能跟 DaemonSet 部署时是一样的
     - **`--publish`**：便于外部将 Trace 等数据发送给 Datakit 容器
@@ -689,6 +689,14 @@ spec:
     **字段类型**: String
 
     **默认值**: localhost:9529
+
+- **ENV_HTTP_LISTEN_SOCKET**
+
+    可修改地址，使得外部可以通过 unix socket 调用 [Datakit 接口](apis.md)。
+
+    **字段类型**: String
+
+    **示例**: `/var/run/datakit/datakit.sock`
 
 - **ENV_HTTP_PUBLIC_APIS**
 
