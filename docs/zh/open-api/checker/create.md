@@ -15,7 +15,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | type | string |  | 监控器类型, 默认trigger, trigger:普通监控器, smartMonitor 为智能监控<br>允许为空: False <br>例子: smartMonitor <br> |
-| extend | json |  | 额外信息<br>允许为空: True <br> |
+| extend | json |  | 额外信息 (异常追踪相关字段 和 部分用于前端回显字段)<br>允许为空: True <br> |
 | monitorUUID | string |  | 分组id<br>允许为空: True <br>允许为空字符串: True <br> |
 | alertPolicyUUIDs | array |  | 告警策略UUID<br>允许为空: False <br> |
 | dashboardUUID | string |  | 关联仪表板id<br>允许为空: False <br> |
@@ -172,7 +172,7 @@
 
 --------------
 
-**5.`jsonScript.noDataAction`参数信息 **
+**5. `jsonScript.noDataAction`参数信息 **
 
 |  参数名        |   说明  |
 |---------------|----------|
@@ -300,6 +300,7 @@ permissionSet 字段示例:
 --------------
 
 **13. 关联异常追踪 配置说明**
+
 |  参数名        |   type   |          说明          |
 |---------------|----------|------------------------|
 | extend.isNeedCreateIssue   | boolean | 是否关联异常追踪, 默认不关联 |
