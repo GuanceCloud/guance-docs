@@ -19,6 +19,7 @@ nav:
   - '异常追踪 - 配置管理 - Issue 发现': issue-auto-discovery
   - '基础设施': objects
   - '基础设施 - 资源目录': objc-set
+  - '日志 - 聚类查询': logmine
   - '日志 - 索引': log-index-cfg
   - '日志 - 数据转发': log-backup-cfg
   - '日志 - 数据访问': logging-query-rule
@@ -48,10 +49,9 @@ nav:
   - '管理 - 数据访问': data-query-rule
   - '管理 - 敏感数据脱敏': workspace-data-mask
   - '工作空间': workspace
-  - '工作空间属性声明': workspace-declaration
+  - '工作空间 - 属性声明': workspace-declaration
   - '快照管理': snapshot
   - 'DQL数据查询': query-data
-  - '日志聚类查询': logmine
   - 'Func 函数': outer-function
   - '账单分析': billing
   - '免登录Token': offline-token

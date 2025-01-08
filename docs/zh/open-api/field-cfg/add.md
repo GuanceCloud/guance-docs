@@ -45,17 +45,17 @@
 
 当该接口返回 的 content 内容为 need_confirm 时, 表示 已存在 同来源,同名的内置字段.
       <br/>
-如需继续 创建, 需指定 coverInner 为 true, 后续 将优先使用该自定义字段, 对应内置字段的前端也将隐藏.
+如需继续 创建, 需指定 coverInner 为 true, 同名内置字段将隐藏.
 
 --------------
 
 **3. 字段管理的使用说明**
-3.1. 字段管理 为字段查询时提供 字段说明.
+
+3.1. 字段管理 为字段查询提供 字段说明.
                   <br/>
-当进行 如下函数查询时, 需指定 fieldTagDescNeeded 为 true, 表示需要添加 字段说明的返回, 
-fieldTagDescNeeded 字段位置 与 queries 同级别. 
+当进行 如下函数查询时, 如需返回 字段说明, 需指定 fieldTagDescNeeded(字段位置 与 queries 同级别) 为 true .
             <br/>
-返回信息 series 将添加 value_desc 字段返回, 位置和 values,columns 同级别.
+返回 series 中将添加 value_desc(位置和 values,columns 同级别) 字段 .
 
 |  函数                |   字段来源/fieldSource  |
 |-----------------------|----------|
@@ -79,18 +79,21 @@ fieldTagDescNeeded 字段位置 与 queries 同级别.
 
 注: SHOW_FIELD_KEY 的字段说明, 使用自定义 指标配置 和 datakit 侧 measurements-meta.json
 
-3.2. 字段管理 为具体查询时候提供 单位信息
+3.2. 字段管理 为查询提供 单位信息
 
 dql 查询单位加载(query_data 结果的 series 中添加 units, ):
                   <br/>
-查询 指标 数据时, 加载的单位信息为 自定义指标字段, 覆盖官方指标字段(measurements-meta.json)得出
+查询 `指标` 数据时, 加载的单位信息为 自定义指标字段, 覆盖官方指标字段(measurements-meta.json)得出
                   <br/>
-查询 非指标 数据时, 加载的单位信息, 为字段管理中定义的单位
+查询 `非指标` 数据时, 加载的单位信息, 为字段管理中定义的单位
                   <br/>
-在进行 dql 查询时间, 使用的函数如果不在 配置的 unitWhiteFuncs 函数范围内则不加单位, 列如count
-                  <br/>
-unitWhiteFuncs 中有两类函数 normal, special, 当使用 special 的函数时, 单位加 固定后缀 /s, unit = {"unit": unit, "suffix": "/s"}
 
+3.3. 字段管理 提供单位信息 时 的查询函数说明
+
+在进行 dql 查询时间, 使用的函数如果不在 配置的 unitWhiteFuncs 函数范围内则不加单位, 列如: count
+                        <br/>
+unitWhiteFuncs 中有两类函数 normal, special, 当使用 special 的函数时, 单位加 固定后缀 /s, unit = {"unit": unit, "suffix": "/s"}
+                        <br/>
 unitWhiteFuncs 函数说明如下:
 ```yaml
 unitWhiteFuncs:
@@ -126,6 +129,7 @@ unitWhiteFuncs:
 ```
 
 **4. 字段同名优先级说明**
+
 4.1. 自定义字段 优先于 内置字段
                   <br/>
 4.2. 有具体来源(fieldSource) 优先于 通用字段 来源
