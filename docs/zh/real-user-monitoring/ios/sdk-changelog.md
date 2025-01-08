@@ -1,6 +1,10 @@
 # 更新日志
 
 ---
+## **1.5.9 (2025/1/8)** {#1-5-9}
+1. 新增支持通过 `FTURLSessionDelegate.traceInterceptor` block 拦截 `URLRequest`，进行自定义链路追踪、更改链路中 spanId 与 traceId
+2. RUM Resource 支持采集通过 swift async/await URLSession API 发起的网络请求
+3. 修复 LongTask 与 Anr 关联 View 错误问题
 
 ## **1.5.8 (2024/12/23)** {#1-5-8}
 
