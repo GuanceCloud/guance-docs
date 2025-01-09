@@ -79,7 +79,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `windows_event`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -98,7 +98,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`total_message`|Full text of the event|
 |`version`|Version|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

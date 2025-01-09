@@ -453,6 +453,8 @@ GO
 
 
 
+
+
 ## 自定义对象 {#object}
 
 
@@ -509,6 +511,35 @@ GO
 
 
 
+
+
+
+
+
+
+### `database`
+
+
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on SQLServer(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`|Connection IP of the SQLServer|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current SQLServer uptime|int|s|
+|`version`|Current version of SQLServer|string|-|
 
 
 
@@ -647,6 +678,8 @@ NA
 |`execution_count`|Number of times that the plan has been executed since it was last compiled|int|count|
 |`last_execution_time`|Last time at which the plan started executing, unix time in millisecond|int|count|
 |`total_worker_time`|Total amount of CPU time, reported in milliseconds|int|count|
+
+
 
 
 

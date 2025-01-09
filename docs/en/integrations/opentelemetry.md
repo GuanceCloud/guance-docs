@@ -441,7 +441,7 @@ In addition, the acquisition configuration of some third-party software built in
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -487,7 +487,7 @@ In addition, the acquisition configuration of some third-party software built in
 |`telemetry.sdk.version`|SDK Version|
 |`uri`|HTTP Request URI|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -564,7 +564,7 @@ In addition, the acquisition configuration of some third-party software built in
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -586,7 +586,7 @@ In addition, the acquisition configuration of some third-party software built in
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

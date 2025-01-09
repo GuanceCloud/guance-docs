@@ -160,6 +160,8 @@ server {
 
 
 
+
+
 ### `nginx`
 
 - 标签
@@ -188,6 +190,9 @@ server {
 |`load_timestamp`|Nginx process load time in milliseconds, exist when using vts|int|msec|
 |`pid`|The pid of nginx process (only for Nginx plus)|int|count|
 |`ppid`|The ppid of nginx process (only for Nginx plus)|int|count|
+
+
+
 
 
 
@@ -227,6 +232,9 @@ server {
 
 
 
+
+
+
 ### `nginx_upstream_zone`
 
 - 标签
@@ -263,6 +271,9 @@ server {
 
 
 
+
+
+
 ### `nginx_cache_zone`
 
 - 标签
@@ -293,6 +304,9 @@ server {
 |`responses_updating`|The number of cache updating|int|count|
 |`send`|The total number of bytes sent from the cache.|int|B|
 |`used_size`|The current size of the cache.|int|B|
+
+
+
 
 
 
@@ -328,6 +342,63 @@ server {
 |`response_4xx`|The number of 4xx response (only for Nginx plus)|int|count|
 |`response_5xx`|The number of 5xx response (only for Nginx plus)|int|count|
 |`sent`|The total number of send bytes (only for Nginx plus)|int|count|
+
+
+
+
+
+
+
+## 自定义对象 {#custom_object}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### `web_server`
+
+
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on Nginx(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`|Connection IP of the Nginx|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current Nginx uptime|int|s|
+|`version`|Current version of Nginx|string|-|
+
 
 
 

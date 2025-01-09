@@ -188,7 +188,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `nfs`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -196,7 +196,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`method`|Invoked method.|
 |`protocol`|Protocol type.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -213,7 +213,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `nfs_mountstats`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -222,7 +222,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`mountpoint`|Where the device is mounted.|
 |`type`|Device type.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -289,7 +289,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `nfsd`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -298,7 +298,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`method`|Invoked method.|
 |`protocol`|Protocol type.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
