@@ -184,7 +184,7 @@
 1. 进入仪表板页面；
 2. 开始添加图表；
 3. 选择需要添加的图表类型；
-4. 完成添加。
+4. 点击创建，即完成添加。
 
 <img src="../img/add_chart.png" width="60%" >
 
@@ -208,6 +208,8 @@
     - 分组柱状图
     - 分组条形图
 
+- [排行榜](./leaderboard.md)：用于展示一段时间内分组数据的排名情况
+
 - [饼图](./pie-chart.md)：用于展示数据的占比关系
     - 饼图
     - 环形图
@@ -216,10 +218,10 @@
 - [概览图](./overview-chart.md)：用于展示一个关键的数值或指标
 
 
-:material-numeric-3-circle: **排序图表**
+:material-numeric-3-circle: [**表格图**](./table-chart.md)
 
-- [排行榜](./leaderboard.md)：用于展示一段时间内分组数据的排名情况
-- [表格图](./table-chart.md)：数据以行和列的形式展示所有信息
+- 分组表格图：展示不同类别或分组的数据指标
+- 时序表格图：展示随时间变化的数据趋势
 
 
 :material-numeric-4-circle: **地图**
@@ -311,12 +313,12 @@
 
 在组合图表中，可对组合图表的标题进行编辑或直接隐藏主标题。
 
-![](../img/chart_combine.png)
+<img src="../img/chart_combine.png" width="60%" >
 
 
 <img src="../img/chart_combine_1.png" width="60%" >
 
-![](../img/chart_combine_2.png)
+<img src="../img/chart_combine_2.png" width="60%" >
 
 ### 分享 {#share}
 

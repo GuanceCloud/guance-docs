@@ -16,7 +16,7 @@
 |:-----------|:-------|:-----|:----------------|
 | search | string |  | 普通搜索字段<br>例子: xxxxx_text <br>允许为空: False <br>允许为空字符串: True <br> |
 | storeType | string |  | 存储类型<br>允许为空: False <br>可选值: ['guanceObject', 's3', 'obs', 'oss', 'kafka'] <br> |
-| dataType | string |  | 数据类型<br>允许为空: False <br>可选值: ['logging', 'tracing', 'rum'] <br> |
+| dataType | string |  | 数据类型<br>允许为空: False <br>可选值: ['logging', 'tracing', 'rum', 'keyevent'] <br> |
 | pageIndex | integer |  | 页码<br>允许为空: False <br>例子: 1 <br>$minValue: 1 <br> |
 | pageSize | integer |  | 每页返回数量<br>允许为空: False <br>例子: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
