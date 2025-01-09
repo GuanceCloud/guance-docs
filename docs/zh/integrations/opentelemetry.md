@@ -156,13 +156,13 @@ OTEL 是一组标准和工具的集合，旨在管理观测类数据，如 trace
     
         **默认值**: false
     
-    - **ENV_INPUT_OTEL_COMPATIBLE_D_D_TRACE**
+    - **ENV_INPUT_OTEL_COMPATIBLE_DD_TRACE**
     
         将 trace_id 转成 10 进制，兼容 DDTrace
     
         **字段类型**: Boolean
     
-        **采集器配置字段**: `compatible_d_d_trace`
+        **采集器配置字段**: `compatible_dd_trace`
     
         **默认值**: false
     
