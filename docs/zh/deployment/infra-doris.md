@@ -46,17 +46,17 @@
 ???+ warning "主机部署说明"
 
     guancedb-logs机器只有单台，提供给观测云业务服务使用的地址为主机ip:8480/8481；
-
+    
     guancedb-logs机器有多台：
-
+    
     a. 能提供ELB能力，使用ELB监听多台guancedb-logs 8480/8481端口，业务服务使用地址为ELB ip:8480/8481；
-
+    
     b. 无法提供ELB能力，可以在业务集群中创建service的方式，业务服务使用地址为：
-
+    
     写入：internal-doris-insert.middleware:8480
-
+    
     读取：internal-doris-select.middleware:8481
-
+    
     参考以下yaml创建service
 
 ???- note "doris-service.yaml (单击点开)"
@@ -119,7 +119,7 @@
           - ip: 10.7.17.251
         ports:
           - port: 8481
-
+    
     ```
 
 ## Doris 部署
@@ -155,9 +155,9 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub  root@192.168.xxx.xxx
 ???+ warning "部署 check 点"
      
      校验 be 、fe 机器配置是否同一规格;
-
+    
      be、fe 机器间网络互 ping 不超过 1ms;
-
+    
      服务器提供的数据盘是否为裸盘（未进行分区格式化）。
 
 ### hosts文件准备
@@ -170,6 +170,9 @@ inventory 目录下需要 5 个 hosts 文件，分别为：
 * guancedb-logs-doris-vm.hosts.yaml
 
 每个host文件格式如下：
+
+name 处格式必须为 xxx-doirs-fe-01 或 xxx-doris-be-01
+
 ```shell
 clusters:
   - name: xxx
@@ -180,7 +183,6 @@ clusters:
         user: xxx
         vars:
           default_ipv4: xxx
-    hosts:
       - name: xxx-doris-be-02
         port: xxx
         host: xxx
@@ -198,7 +200,7 @@ clusters:
 ???+ warning "说明"
 
     一般manager同fe部署在一起，doris-manager.hosts.yaml内容同doris-fe.hosts.yaml，如果doris-fe.hosts.yaml里有多台fe主机，doris-manager.hosts.yaml内容只需要填写fe-01一台
-
+    
     guancedb-logs-doris-vm.hosts.yaml内容同guancedb-logs-doris.hosts.yaml，如果guancedb-logs-doris.hosts.yaml里有多台主机，guancedb-logs-doris-vm.hosts.yaml只需填写一台
 
 ### 配置变量
@@ -288,9 +290,9 @@ python3 deployer.py -l clusrer_name -i 'inventory/doris-?e.*.yaml' -p playbooks/
 ???+ warning "部署 check 点"
      
      服务器磁盘挂载是否正确;
-
+    
      服务器 swap 是否永久关闭;
-
+    
      服务器vm.max_map_count参数是否调整到2000000。
 
 更新 Datakit 配置，用于上报自观测数据
@@ -303,7 +305,92 @@ python3 deployer.py -l cluster_name -i 'inventory/doris-?e.*.yaml' -p playbooks/
 python3 deployer.py -l cluster_name -i 'inventory/doris-manager.*.yaml' -p playbooks/doris/initialize-manager.yaml
 ```
 
+配置 be 节点 cgroup
+
+需要确定服务器支持 v1 还是v2 版本的cgroup
+
+```shell
+如果存在这个路径说明目前生效的是cgroup v1
+ls /sys/fs/cgroup/cpu/
+
+如果存在这个路径说明目前生效的是cgroup v2
+ls /sys/fs/cgroup/cgroup.controllers
+```
+
+=== "cgroup v1"
+	
+	```shell
+	# 创建服务文件
+	sudo vi /etc/systemd/system/doris-cgroup-v1.service
+	
+	#文件内容
+	[Unit]
+	Description=Create Doris CGroup V1
+	After=remote-fs.target
+	
+	[Service]
+	Type=oneshot
+	RemainAfterExit=yes
+	ExecStart=/bin/bash -c '\
+	    mkdir -p /sys/fs/cgroup/cpu/doris && \
+	    mkdir -p /sys/fs/cgroup/memory/doris && \
+	    chmod 770 /sys/fs/cgroup/cpu/doris && \
+	    chmod 770 /sys/fs/cgroup/memory/doris && \
+	    chown -R doris:doris /sys/fs/cgroup/cpu/doris && \
+	    chown -R doris:doris /sys/fs/cgroup/memory/doris'·
+	
+	[Install]
+	WantedBy=multi-user.target
+	# 重新加载 systemd 配置
+	sudo systemctl daemon-reload
+	# 开机启用服务
+	sudo systemctl enable doris-cgroup-v1.service
+	# 启动服务
+	sudo systemctl start doris-cgroup-v1.service
+	# 检查服务状态
+	sudo systemctl status doris-cgroup-v1.service
+	# 检查
+	ls -l /sys/fs/cgroup/cpu/doris
+	```
+
+=== "cgroup v2"
+
+	```shell
+	# 创建服务文件
+	sudo vi /etc/systemd/system/doris-cgroup-v2.service
+	
+	#文件内容
+	[Unit]
+	Description=Create Doris CGroup V2
+	After=remote-fs.target
+	
+	[Service]
+	Type=oneshot
+	RemainAfterExit=yes
+	ExecStart=/bin/bash -c '\
+	    mkdir -p /sys/fs/cgroup/doris && \
+	    chmod 770 /sys/fs/cgroup/doris && \
+	    chown -R doris:doris /sys/fs/cgroup/doris && \
+	    chmod a+w /sys/fs/cgroup/cgroup.procs'
+	
+	[Install]
+	WantedBy=multi-user.target
+	# 重新加载 systemd 配置
+	sudo systemctl daemon-reload
+	# 开机启用服务
+	sudo systemctl enable doris-cgroup-v2.service
+	# 启动服务
+	sudo systemctl start doris-cgroup-v2.service
+	# 检查服务状态
+	sudo systemctl status doris-cgroup-v2.service
+	
+	# 验证
+	ls -l /sys/fs/cgroup/doris
+	cat /sys/fs/cgroup/cgroup.subtree_control
+	```
+
 ### 部署Doris FE和BE
+
 #### 创建Doris集群
 访问地址：http://doris-fe-01:8004
 
@@ -364,7 +451,7 @@ python3 deployer.py -l cluster_name -i 'inventory/doris.vars.yaml' -p playbooks/
 ???+ warning "部署 check 点"
 
      配置文件中storage_path是否配置正确；
-
+    
      配置文件中priority_networks配置是否正确。
 
 修改 BE 配置：Doris Manager 集群页右上角「…」按钮 -> 「参数配置」 -> 全选 BE 节点 -> 右上角「编辑配置」 -> 粘贴刚生成的 be.conf -> 勾选「请确认……」 -> 「确定」
@@ -402,7 +489,7 @@ PROPERTIES(
 ???+ warning "部署 check 点"
 
      确定 s3 存储是否可以使用，且配置后无法更改；
-
+    
      s3 endpoint地址必须为内网地址。
 
 ### 部署guance-insert、guance-select和VictoriaMetrics
