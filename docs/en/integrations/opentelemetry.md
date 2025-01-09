@@ -164,13 +164,13 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
     
         **Default**: false
     
-    - **ENV_INPUT_OTEL_COMPATIBLE_D_D_TRACE**
+    - **ENV_INPUT_OTEL_COMPATIBLE_DD_TRACE**
     
         Convert trace_id to decimal, compatible with DDTrace
     
         **Type**: Boolean
     
-        **input.conf**: `compatible_d_d_trace`
+        **input.conf**: `compatible_dd_trace`
     
         **Default**: false
     

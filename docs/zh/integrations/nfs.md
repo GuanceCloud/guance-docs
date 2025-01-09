@@ -78,13 +78,13 @@ NFS 指标采集器，采集以下数据：
     
         **默认值**: `10s`
     
-    - **ENV_INPUT_NFS_ENABLE_MOUNT_STATS_R_W_BYTES**
+    - **ENV_INPUT_NFS_ENABLE_MOUNT_STATS_RW_BYTES**
     
         开启 NFS 挂载点的详细字节读写信息
     
         **字段类型**: Boolean
     
-        **采集器配置字段**: `enable_mount_stats_r_w_bytes`
+        **采集器配置字段**: `enable_mount_stats_rw_bytes`
     
         **默认值**: `false`
     
@@ -118,13 +118,13 @@ NFS 指标采集器，采集以下数据：
     
         **默认值**: `false`
     
-    - **ENV_INPUT_NFS_N_F_SD**
+    - **ENV_INPUT_NFS_NFSD**
     
         开启 NFSd 指标
     
         **字段类型**: Boolean
     
-        **采集器配置字段**: `n_f_sd`
+        **采集器配置字段**: `nfsd`
     
         **默认值**: `false`
 
