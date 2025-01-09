@@ -114,7 +114,7 @@ Check backend: curl ip: 8040/metrics
 
 ### `doris_fe`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -129,7 +129,7 @@ Check backend: curl ip: 8040/metrics
 |`state`|State.|
 |`type`|Metric type.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -186,7 +186,7 @@ Check backend: curl ip: 8040/metrics
 
 ### `doris_be`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -201,7 +201,7 @@ Check backend: curl ip: 8040/metrics
 |`status`|Metric status.|
 |`type`|Metric type.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -339,7 +339,7 @@ Check backend: curl ip: 8040/metrics
 
 ### `doris_common`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -350,7 +350,7 @@ Check backend: curl ip: 8040/metrics
 |`state`|Metric state.|
 |`type`|Metric type.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -363,7 +363,7 @@ Check backend: curl ip: 8040/metrics
 
 ### `doris_jvm`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -372,7 +372,7 @@ Check backend: curl ip: 8040/metrics
 |`instance`|Instance endpoint.|
 |`type`|Metric type.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

@@ -137,7 +137,7 @@ Note: To ensure that GitLab CI functions properly, the extra tags specified for 
 
 GitLab runtime metrics
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -147,7 +147,7 @@ GitLab runtime metrics
 |`feature_category`|Feature category|
 |`storage`|Storage|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -179,11 +179,11 @@ GitLab runtime metrics
 
 GitLab programming language level metrics
 
-- tag
+- Tags
 
 NA
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -200,7 +200,7 @@ NA
 
 GitLab HTTP metrics
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -208,7 +208,7 @@ GitLab HTTP metrics
 |`method`|方法|
 |`status`|状态码|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -223,7 +223,7 @@ GitLab HTTP metrics
 
 GitLab Pipeline event metrics
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -240,7 +240,7 @@ GitLab Pipeline event metrics
 |`repository_url`|Repository URL|
 |`resource`|Project name|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -258,7 +258,7 @@ GitLab Pipeline event metrics
 
 GitLab Job Event metrics
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -274,7 +274,7 @@ GitLab Job Event metrics
 |`sha`|The commit SHA corresponding to build|
 |`user_email`|User email|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

@@ -777,6 +777,10 @@ MySQL user information
 
 
 
+
+
+
+
 ## 自定义对象 {#object}
 
 
@@ -817,6 +821,35 @@ MySQL user information
 
 
 
+
+
+
+
+
+
+### `database`
+
+
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on MySQL(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`|Connection IP of the MySQl|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- 字段列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current MySQL uptime|int|s|
+|`version`|Current version of MySQL|string|-|
 
 
 
@@ -1022,6 +1055,83 @@ Record the replication string information.
 |`Master_Log_File`|The name of the binary log file from which the server is reading.|string|-|
 |`Master_Port`|The network port used to connect to the master.|int|count|
 |`Master_User`|The user name used to connect to the master.|string|-|
+
+
+
+
+
+
+
+
+## 自定义对象 {#customobject}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### `database`
+
+
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on MySQL(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`|Connection IP of the MySQl|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- 字段列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current MySQL uptime|int|s|
+|`version`|Current version of MySQL|string|-|
 
 
 

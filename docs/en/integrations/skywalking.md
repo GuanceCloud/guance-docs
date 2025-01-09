@@ -292,13 +292,13 @@ Others:
 
 jvm metrics collected by SkyWalking language agent.
 
-- Tag
+- Tags
 
 | Tag Name  | Description  |
 | --------- | ------------ |
 | `service` | service name |
 
-- Metrics List
+- Metrics
 
 | Metrics                            | Description                                                                                                                               | Data Type |  Unit   |
 | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | :-------: | :-----: |
@@ -337,7 +337,7 @@ jvm metrics collected by SkyWalking language agent.
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -359,7 +359,7 @@ jvm metrics collected by SkyWalking language agent.
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

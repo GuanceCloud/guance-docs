@@ -361,7 +361,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -369,7 +369,7 @@ For all of the following data collections, the global election tags will added a
 |`host`|The server host address|
 |`server`|Server addr|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -470,7 +470,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -478,7 +478,7 @@ For all of the following data collections, the global election tags will added a
 |`host`|The server host address|
 |`server`|Server addr|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -514,7 +514,7 @@ For all of the following data collections, the global election tags will added a
 
 MySQL schema information
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -523,7 +523,7 @@ MySQL schema information
 |`schema_name`|Schema name|
 |`server`|Server addr|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -539,7 +539,7 @@ MySQL schema information
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -547,7 +547,7 @@ MySQL schema information
 |`host`|The server host address|
 |`server`|Server addr|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -694,7 +694,7 @@ MySQL schema information
 
 MySQL table information
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -707,7 +707,7 @@ MySQL table information
 |`table_type`|BASE TABLE for a table, VIEW for a view, or SYSTEM VIEW for an INFORMATION_SCHEMA table.|
 |`version`|The version number of the table's .frm file.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -725,7 +725,7 @@ MySQL table information
 
 MySQL user information
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -734,7 +734,7 @@ MySQL user information
 |`server`|The server address containing both host and port|
 |`user`|user|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -752,6 +752,10 @@ MySQL user information
 |`table_open_cache_misses`|The number of misses for open tables cache lookups.|int|count|
 |`table_open_cache_overflows`|The number of overflows for the open tables cache. This is the number of times, after a table is opened or closed, a cache instance has an unused entry and the size of the instance is larger than table_open_cache / table_open_cache_instances.|int|count|
 |`total_connect`|The number of total connect|int|count|
+
+
+
+
 
 
 
@@ -816,6 +820,35 @@ MySQL user information
 
 
 
+
+### `database`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on MySQL(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`|Connection IP of the MySQl|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- Metrics
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current MySQL uptime|int|s|
+|`version`|Current version of MySQL|string|-|
+
+
+
+
+
 ## Log {#logging}
 
 [:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)
@@ -852,7 +885,7 @@ MySQL user information
 
 Record the number of executions of the query statement, wait time, lock time, and the number of rows queried.
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -864,7 +897,7 @@ Record the number of executions of the query statement, wait time, lock time, an
 |`server`|The server address containing both host and port|
 |`service`|The service name and the value is 'mysql'|
 
-- Metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -890,7 +923,7 @@ Record the number of executions of the query statement, wait time, lock time, an
 
 Select some of the SQL statements with high execution time, collect their execution plans, and collect various performance indicators during the actual execution process.
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -910,7 +943,7 @@ Select some of the SQL statements with high execution time, collect their execut
 |`server`|The server address containing both host and port|
 |`service`|The service name and the value is 'mysql'|
 
-- Metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -943,7 +976,7 @@ Select some of the SQL statements with high execution time, collect their execut
 
 Collect the waiting event of the current thread
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -952,7 +985,7 @@ Collect the waiting event of the current thread
 |`server`|The server address|
 |`service`|The service name and the value is 'mysql'|
 
-- Metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -996,7 +1029,7 @@ Collect the waiting event of the current thread
 
 Record the replication string information.
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -1004,7 +1037,7 @@ Record the replication string information.
 |`host`|The server host address|
 |`server`|Server addr|
 
-- Metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -1014,6 +1047,10 @@ Record the replication string information.
 |`Master_Log_File`|The name of the binary log file from which the server is reading.|string|-|
 |`Master_Port`|The network port used to connect to the master.|int|count|
 |`Master_User`|The user name used to connect to the master.|string|-|
+
+
+
+
 
 
 <!-- markdownlint-enable -->

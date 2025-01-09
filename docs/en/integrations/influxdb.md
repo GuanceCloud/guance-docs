@@ -150,14 +150,14 @@ For all of the following data collections, the global election tags will added a
 
 ### `influxdb_cq`
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -169,7 +169,7 @@ For all of the following data collections, the global election tags will added a
 
 ### `influxdb_database`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -177,7 +177,7 @@ For all of the following data collections, the global election tags will added a
 |`database`|Database name.|
 |`host`|System hostname.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -189,7 +189,7 @@ For all of the following data collections, the global election tags will added a
 
 ### `influxdb_httpd`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -197,7 +197,7 @@ For all of the following data collections, the global election tags will added a
 |`bind`|Bind port.|
 |`host`|System hostname.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -231,14 +231,14 @@ For all of the following data collections, the global election tags will added a
 
 ### `influxdb_memstats`
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -276,14 +276,14 @@ For all of the following data collections, the global election tags will added a
 
 ### `influxdb_queryExecutor`
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -298,14 +298,14 @@ For all of the following data collections, the global election tags will added a
 
 ### `influxdb_runtime`
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -330,7 +330,7 @@ For all of the following data collections, the global election tags will added a
 
 ### `influxdb_shard`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -344,7 +344,7 @@ For all of the following data collections, the global election tags will added a
 |`retention_policy`|Retention policy.|
 |`wal_path`|Wal path.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -365,14 +365,14 @@ For all of the following data collections, the global election tags will added a
 
 ### `influxdb_subscriber`
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -385,7 +385,7 @@ For all of the following data collections, the global election tags will added a
 
 ### `influxdb_tsm1_cache`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -399,7 +399,7 @@ For all of the following data collections, the global election tags will added a
 |`retention_policy`|Retention policy.|
 |`wal_path`|Wal path.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -418,7 +418,7 @@ For all of the following data collections, the global election tags will added a
 
 ### `influxdb_tsm1_engine`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -432,7 +432,7 @@ For all of the following data collections, the global election tags will added a
 |`retention_policy`|Retention policy.|
 |`wal_path`|Wal path.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -471,7 +471,7 @@ For all of the following data collections, the global election tags will added a
 
 ### `influxdb_tsm1_filestore`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -485,7 +485,7 @@ For all of the following data collections, the global election tags will added a
 |`retention_policy`|Retention policy.|
 |`wal_path`|Wal path.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -497,7 +497,7 @@ For all of the following data collections, the global election tags will added a
 
 ### `influxdb_tsm1_wal`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -511,7 +511,7 @@ For all of the following data collections, the global election tags will added a
 |`retention_policy`|Retention policy.|
 |`wal_path`|Wal path.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -525,14 +525,14 @@ For all of the following data collections, the global election tags will added a
 
 ### `influxdb_write`
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

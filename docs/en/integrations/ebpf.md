@@ -472,7 +472,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `netflow`
 
-- tag list
+- Tags
 
 
 | Tag | Description |
@@ -503,7 +503,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`sub_source`|Some specific connection classifications, such as the sub_source value for Kubernetes network traffic is K8s|
 |`transport`|Transport layer protocol. (udp/tcp)|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -524,7 +524,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `dnsflow`
 
-- tag list
+- Tags
 
 
 | Tag | Description |
@@ -551,7 +551,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`sub_source`|Some specific connection classifications, such as the sub_source value for Kubernetes network traffic is K8s|
 |`transport`|Transport layer protocol. (udp/tcp)|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -573,7 +573,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `httpflow`
 
-- tag list
+- Tags
 
 
 | Tag | Description |
@@ -604,7 +604,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`sub_source`|Some specific connection classifications, such as the sub_source value for Kubernetes network traffic is K8s|
 |`transport`|Transport layer protocol. (udp/tcp)|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -651,14 +651,14 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `bash`
 
-- tag list
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`host`|host name|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -680,7 +680,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `bpf_net_l4_log`
 
-- tag list
+- Tags
 
 
 | Tag | Description |
@@ -719,7 +719,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`vni_id`|Virtual Network Identifier|
 |`vxlan_packet`|Whether it is a VXLAN packet|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -745,7 +745,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `bpf_net_l7_log`
 
-- tag list
+- Tags
 
 
 | Tag | Description |
@@ -787,7 +787,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`vni_id`|Virtual Network Identifier|
 |`vxlan_packet`|Whether it is a VXLAN packet|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -838,7 +838,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `dketrace`
 
-- tag list
+- Tags
 
 
 | Tag | Description |
@@ -850,7 +850,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`src_ip`|Source IP|
 |`src_port`|Source port|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
