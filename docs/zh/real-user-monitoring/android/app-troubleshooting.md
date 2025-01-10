@@ -239,3 +239,7 @@ Plugin AOP ASM 插入之后，会在原工程代码基础上，会在 `OkHttpCli
 * **ft-sdk >= 1.4.1**
 
 	自定义一个 [CustomEventListenerFactory](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/custom/okhttp/CustomEventListenerFactory.kt) 并继承 `FTResourceEventListener.FTFactory`，通过设置 `FTRUMConfig.setOkHttpEventListenerHandler` 对 ASM 写入的 `eventListenerFactory` 进行自定义。
+
+* **ft-sdk >= 1.6.7**
+
+	SDK 自行适配兼容这个问题。
