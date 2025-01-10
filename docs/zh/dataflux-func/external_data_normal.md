@@ -52,7 +52,7 @@
 | series[#].values[#]       | list |          | 由 `[时间戳, 数据值, ...]` 组成的数据源，长度应跟 `series[#].columns` 一致，（如在折线图中，values 长度为 2，其代表折线图上的一个连接点）                   |
 | series[#].values[#][#]    | str  |          | 数据源字段 key 对应的数值，第一列值必须为时间戳值可为 null                                                                                                  |
 
-# 外部函数响应结构例子
+## 外部函数响应结构例子
 
 ```python
 @DFF.API('函数名', category='guance.dataQueryFunc')

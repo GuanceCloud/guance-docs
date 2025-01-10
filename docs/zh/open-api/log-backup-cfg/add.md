@@ -18,7 +18,7 @@
 | extend | json |  | 前端自定义数据<br>允许为空: True <br> |
 | syncExtensionField | boolean |  | 同步备份扩展字段, true为同步, false不同步, 默认不同步<br>允许为空: False <br> |
 | storeType | string | Y | 存储类型<br>允许为空: False <br>可选值: ['guanceObject', 's3', 'obs', 'oss', 'kafka'] <br> |
-| dataType | string |  | 数据类型<br>允许为空: False <br>可选值: ['logging', 'tracing', 'rum'] <br> |
+| dataType | string |  | 数据类型<br>允许为空: False <br>可选值: ['logging', 'tracing', 'rum', 'keyevent'] <br> |
 | duration | string |  | 数据保留时长,<br>例子: 180d <br>可选值: ['180d', '360d', '720d'] <br> |
 | accessCfg | json |  | 外部资源访问配置信息<br>允许为空: False <br> |
 | accessCfg.provider | string |  | 供应商<br>允许为空: False <br>可选值: ['aliyun', 'aws', 'huawei'] <br> |
