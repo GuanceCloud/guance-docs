@@ -73,6 +73,10 @@
 | jsonScript.atNoDataAccounts | array |  | 无数据情况下被@的账号UUID列表<br>例子: ['xx1', 'xx2'] <br>允许为空: False <br> |
 | jsonScript.subUri | string |  | 表示Webhook地址的地址后缀<br>例子: datakit/push <br>允许为空: False <br> |
 | jsonScript.disableCheckEndTime | boolean |  | 是否禁用结束时间限制<br>例子: True <br>允许为空: False <br> |
+| jsonScript.eventChartEnable | boolean |  | 是否启用事件图表, 默认禁用<br>例子: False <br>允许为空: False <br> |
+| jsonScript.eventCharts | array |  | 事件图表列表<br>例子: True <br>允许为空: False <br> |
+| jsonScript.eventCharts[*] | None |  | <br> |
+| jsonScript.eventCharts[*].dql | string |  | 事件图表的查询语句<br>例子: M::`cpu`:(avg(`load5s`)) BY `host` <br>允许为空: False <br> |
 | openPermissionSet | boolean |  | 开启 自定义权限配置, (默认 false:不开启), 开启后 该规则的操作权限根据 permissionSet<br>允许为空: False <br> |
 | permissionSet | array |  | 操作权限配置, 可配置(角色(除拥有者), 成员uuid, 团队uuid)<br>例子: ['wsAdmin', 'acnt_xxxx', 'group_yyyy'] <br>允许为空: False <br> |
 

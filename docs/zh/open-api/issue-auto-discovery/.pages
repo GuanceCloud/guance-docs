@@ -1,0 +1,7 @@
+nav:
+  - '新建自动发现配置': add.md
+  - '修改自动发现配置': modify.md
+  - '获取自动发现配置': get.md
+  - '列表自动发现配置': list.md
+  - '禁用/启用自动发现配置': set-disable.md
+  - '删除自动发现配置': delete.md

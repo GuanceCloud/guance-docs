@@ -9573,7 +9573,7 @@ Guance has the ability of full stack data collection, and now supports about 310
   				originList.forEach(item => {
   					const { tags, name, summary, dom } = item;
   					const show =
-  						((!tags && !tag) || tags.includes(tag)) && (!name || name.includes(search) || summary.includes(search));
+  						((!tags && !tag) || tags.includes(tag)) && (!name || name.includes(search) || summary.includes(search) || tags.includes(search));
   					dom.style.display = show ? 'block' : 'none';
   					// 如果是搜索触发 需重新计算tags
   					if (isSearch && show && tags) {
