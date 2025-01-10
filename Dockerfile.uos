@@ -9,7 +9,7 @@ ARG GUANCE_HELPS_OSS_ENDPOINT
 ARG ES_VAR_DOC_SEARCH_TEST
 ARG ES_VAR_DOC_SEARCH_PROD
 
-FROM registry.jiagouyun.com/basis/uos-mkdocs:2.3 as build
+FROM registry.jiagouyun.com/basis/mkdocs:2.6 as build
 
 ARG release_env
 ARG GUANCE_HELPS_OSS_AK_ID
@@ -114,7 +114,7 @@ RUN \
     fi
 
 # build static site
-FROM registry.jiagouyun.com/basis/uos-nginx:latest
+FROM registry.jiagouyun.com/basis/uos-nginx:v2.0
 
 RUN mkdir /etc/nginx/ssl
 RUN mkdir /dataflux-doc
