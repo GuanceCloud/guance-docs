@@ -86,7 +86,7 @@ For all of the following measurements, the `proto/dest_host/dest_port` global ta
 
 ### `tcp`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -95,7 +95,7 @@ For all of the following measurements, the `proto/dest_host/dest_port` global ta
 |`dest_port`|TCP port, such as `80`|
 |`proto`|Protocol, const to be `tcp`|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -108,7 +108,7 @@ For all of the following measurements, the `proto/dest_host/dest_port` global ta
 
 ### `udp`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -117,7 +117,7 @@ For all of the following measurements, the `proto/dest_host/dest_port` global ta
 |`dest_port`|UDP port|
 |`proto`|Protocol, const to be `udp`|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |

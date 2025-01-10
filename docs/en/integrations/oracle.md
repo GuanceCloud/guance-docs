@@ -297,10 +297,9 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
 ### `oracle_process`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -311,7 +310,7 @@ For all of the following data collections, the global election tags will added a
 |`pdb_name`|PDB name|
 |`program`|Program in progress|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -324,11 +323,9 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
 ### `oracle_tablespace`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -339,7 +336,7 @@ For all of the following data collections, the global election tags will added a
 |`pdb_name`|PDB name|
 |`tablespace_name`|Table space name|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -351,11 +348,9 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
 ### `oracle_system`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -365,7 +360,7 @@ For all of the following data collections, the global election tags will added a
 |`oracle_service`|Server service|
 |`pdb_name`|PDB name|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -408,9 +403,6 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
-
 ## Custom Object {#object}
 
 
@@ -423,35 +415,6 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
-
-
-
-
-### `database`
-
-
-
-- Tags
-
-
-| Tag | Description |
-|  ----  | --------|
-|`col_co_status`|Current status of collector on Oracle(`OK/NotOK`)|
-|`host`|The server host address|
-|`ip`|Connection IP of the Oracle|
-|`name`|Object uniq ID|
-|`reason`|If status not ok, we'll get some reasons about the status|
-
-- Metrics
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`display_name`|Displayed name in UI|string|-|
-|`uptime`|Current Oracle uptime|int|s|
-|`version`|Current version of Oracle|string|-|
 
 
 

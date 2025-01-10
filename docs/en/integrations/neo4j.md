@@ -118,7 +118,7 @@ See [official document](https://neo4j.com/docs/operations-manual/current/install
 
 ### `neo4j`
 
-- Tags
+- Tag
 
 
 | Tag | Description |
@@ -132,7 +132,7 @@ See [official document](https://neo4j.com/docs/operations-manual/current/install
 |`pool`|Pool name.|
 |`quantile`|Histogram `quantile`.|
 
-- Metrics
+- Metric list
 
 
 | Metric | Description | Type | Unit |

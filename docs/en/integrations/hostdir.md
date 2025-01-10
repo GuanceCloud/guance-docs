@@ -66,7 +66,7 @@ For all of the following metric sets, a global tag named `host` is appended by d
 
 ### `hostdir`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -76,7 +76,7 @@ For all of the following metric sets, a global tag named `host` is appended by d
 |`host_directory`|The start Dir.|
 |`mount_point`|Mount point.|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |

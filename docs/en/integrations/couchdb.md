@@ -117,7 +117,7 @@ See [official document](https://docs.couchdb.org/en/stable/install/index.html){:
 
 ### `couchdb`
 
-- Tags
+- Tag
 
 
 | Tag | Description |
@@ -131,7 +131,7 @@ See [official document](https://docs.couchdb.org/en/stable/install/index.html){:
 |`quantile`|Histogram `quantile`.|
 |`stage`|`Rexi` stream stage, like `init_stream`.|
 
-- Metrics
+- Metric list
 
 
 | Metric | Description | Type | Unit |

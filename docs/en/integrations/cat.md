@@ -160,7 +160,7 @@ Effect display:
 
 
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -174,7 +174,7 @@ Effect display:
 |`runtime_user-dir`|The path of jar.|
 |`runtime_user-name`|User name.|
 
-- Metrics
+- fields
 
 
 | Metric | Description | Type | Unit |
@@ -210,7 +210,7 @@ Effect display:
 
 
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -232,7 +232,7 @@ Effect display:
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- Metrics
+- fields
 
 
 | Metric | Description | Type | Unit |

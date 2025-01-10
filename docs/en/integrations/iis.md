@@ -73,7 +73,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -81,7 +81,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`app_pool`|IIS app pool|
 |`host`|Host name|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -98,7 +98,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -106,7 +106,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`host`|Host name|
 |`website`|IIS web site|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |

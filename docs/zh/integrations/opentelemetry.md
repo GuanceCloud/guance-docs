@@ -24,7 +24,6 @@ OTEL 是一组标准和工具的集合，旨在管理观测类数据，如 trace
 
 本篇旨在介绍如何在 Datakit 上配置并开启 OTEL 的数据接入，以及 Java、Go 的最佳实践。
 
-> 版本说明：Datakit 目前只接入 OTEL-v1 版本的 `otlp` 数据。
 
 ## 配置 {#config}
 
@@ -104,7 +103,6 @@ OTEL 是一组标准和工具的集合，旨在管理观测类数据，如 trace
       ## for example http://127.0.0.1:9529/otel/v1/trace
       ## The acceptable http_status_ok values will be 200 or 202.
       [inputs.opentelemetry.http]
-       enable = true
        http_status_ok = 200
        trace_api = "/otel/v1/trace"
        metric_api = "/otel/v1/metric"
@@ -114,8 +112,6 @@ OTEL 是一组标准和工具的集合，旨在管理观测类数据，如 trace
       ## GRPC services for trace and metrics can be enabled respectively as setting either to be true.
       ## add is the listening on address for GRPC server.
       [inputs.opentelemetry.grpc]
-       trace_enable = true
-       metric_enable = true
        addr = "127.0.0.1:4317"
     
       ## If 'expected_headers' is well configed, then the obligation of sending certain wanted HTTP headers is on the client side,
@@ -281,11 +277,10 @@ OTEL 是一组标准和工具的集合，旨在管理观测类数据，如 trace
 ### 注意事项 {#attentions}
 
 1. 建议使用 gRPC 协议，gRPC 具有压缩率高、序列化快、效率更高等优点
-2. 自 [Datakit 1.10.0](../datakit/changelog.md#cl-1.10.0) 版本开始，http 协议的路由是可配置的，默认请求路径（Trace/Metric）分别为 `/otel/v1/trace` 和 `/otel/v1/metric`
+2. 自 [Datakit 1.10.0](../datakit/changelog.md#cl-1.10.0) 版本开始，http 协议的路由是可配置的，默认请求路径（Trace/Metric）分别为 `/otel/v1/trace` `/otel/v1/logs` 以及 `/otel/v1/metric`
 3. 在涉及到 `float/double` 类型数据时，会最多保留两位小数
 4. HTTP 和 gRPC 都支持 gzip 压缩格式。在 exporter 中可配置环境变量来开启：`OTEL_EXPORTER_OTLP_COMPRESSION = gzip`, 默认是不会开启 gzip。
 5. HTTP 协议请求格式同时支持 JSON 和 Protobuf 两种序列化格式。但 gRPC 仅支持 Protobuf 一种。
-6. 请使用 V1 版本的 `javaagent` 版本号为 `1.xx.xx`。OTEL Java Agent V2 版本依然是 alpha 状态。
 
 <!-- markdownlint-disable MD046 -->
 ???+ tips
@@ -297,7 +292,39 @@ OTEL 是一组标准和工具的集合，旨在管理观测类数据，如 trace
 <!-- markdownlint-enable -->
 
 
-使用 OTEL HTTP exporter 时注意环境变量的配置，由于 Datakit 的默认配置是 `/otel/v1/trace` 和 `/otel/v1/metric`，所以想要使用 HTTP 协议的话，需要单独配置 `trace` 和 `metric`，
+使用 OTEL HTTP exporter 时注意环境变量的配置，由于 Datakit 的默认配置是 `/otel/v1/trace` `/otel/v1/logs` 和 `/otel/v1/metric`，所以想要使用 HTTP 协议的话，需要单独配置 `trace` 和 `metric`，
+
+## Agent V2 版本 {#v2}
+
+V2 版本默认使用 `otlp exporter` 将之前的 `grpc` 改为 `http/protobuf` ， 可以通过命令 `-Dotel.exporter.otlp.protocol=grpc` 设置，或者使用默认的 `http/protobuf`
+
+使用 http 的话，每个 exporter 路径需要显性配置 如：
+
+```shell
+java -javaagent:/usr/local/ddtrace/opentelemetry-javaagent-2.5.0.jar \
+  -Dotel.exporter=otlp \
+  -Dotel.exporter.otlp.protocol=http/protobuf \
+  -Dotel.exporter.otlp.logs.endpoint=http://localhost:9529/otel/v1/logs \
+  -Dotel.exporter.otlp.traces.endpoint=http://localhost:9529/otel/v1/trace \
+  -Dotel.exporter.otlp.metrics.endpoint=http://localhost:9529/otel/v1/metric \
+  -Dotel.service.name=app \
+  -jar app.jar
+```
+
+使用 gRPC 协议的话，必须是显式配置，否则就是默认的 http 协议：
+
+```shell
+java -javaagent:/usr/local/ddtrace/opentelemetry-javaagent-2.5.0.jar \
+  -Dotel.exporter=otlp \
+  -Dotel.exporter.otlp.protocol=grpc \
+  -Dotel.exporter.otlp.endpoint=http://localhost:4317
+  -Dotel.service.name=app \
+  -jar app.jar
+```
+
+默认日志是开启的，要关闭日志采集的话，exporter 配置为空即可：`-Dotel.logs.exporter=none`
+
+更多关于 V2 版本的重大修改请查看官方文档或者 GitHub 观测云版本说明： [Github-GuanCe-v2.11.0](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/releases/tag/v2.11.0-guance){:target="_blank"}
 
 ## 常规命令 {#sdk-configuration}
 
@@ -355,48 +382,49 @@ Datakit 只接收 OTLP 的数据，OTLP 有三种数据类型： `gRPC` ， `htt
 
 从 DataKit 版本 [1.22.0](../datakit/changelog.md#cl-1.22.0) 开始，黑名单功能废弃。增加固定标签列表，只有在此列表中的才会提取到一级标签中，以下是固定列表：
 
-| Attributes                 | tag                   | 说明                        |
-|:---------------------------|:----------------------|:--------------------------|
-| http.url                   | http_url              | HTTP 请求完整路径               |
-| http.hostname              | http_hostname         | hostname                  |
-| http.route                 | http_route            | 路由                        |
-| http.status_code           | http_status_code      | 状态码                       |
-| http.request.method        | http_request_method   | 请求方法                      |
-| http.method                | http_method           | 同上                        |
-| http.client_ip             | http_client_ip        | 客户端 IP                    |
-| http.scheme                | http_scheme           | 请求协议                      |
-| url.full                   | url_full              | 请求全路径                     |
-| url.scheme                 | url_scheme            | 请求协议                      |
-| url.path                   | url_path              | 请求路径                      |
-| url.query                  | url_query             | 请求参数                      |
-| span_kind                  | span_kind             | span 类型                   |
-| db.system                  | db_system             | span 类型                   |
-| db.operation               | db_operation          | DB 动作                     |
-| db.name                    | db_name               | 数据库名称                     |
-| db.statement               | db_statement          | 详细信息                      |
-| server.address             | server_address        | 服务地址                      |
-| net.host.name              | net_host_name         | 请求的 host                  |
-| server.port                | server_port           | 服务端口号                     |
-| net.host.port              | net_host_port         | 同上                        |
-| network.peer.address       | network_peer_address  | 网络地址                      |
-| network.peer.port          | network_peer_port     | 网络端口                      |
-| network.transport          | network_transport     | 协议                        |
-| messaging.system           | messaging_system      | 消息队列名称                    |
-| messaging.operation        | messaging_operation   | 消息动作                      |
-| messaging.message          | messaging_message     | 消息                        |
-| messaging.destination      | messaging_destination | 消息详情                      |
-| rpc.service                | rpc_service           | RPC 服务地址                  |
-| rpc.system                 | rpc_system            | RPC 服务名称                  |
-| error                      | error                 | 是否错误                      |
-| error.message              | error_message         | 错误信息                      |
-| error.stack                | error_stack           | 堆栈信息                      |
-| error.type                 | error_type            | 错误类型                      |
-| error.msg                  | error_message         | 错误信息                      |
-| project                    | project               | project                   |
-| version                    | version               | 版本                        |
-| env                        | env                   | 环境                        |
-| host                       | host                  | Attributes 中的 host 标签     |
-| pod_name                   | pod_name              | Attributes 中的 pod_name 标签 |
+| Attributes            | tag                   | 说明                             |
+|:----------------------|:----------------------|:-------------------------------|
+| http.url              | http_url              | HTTP 请求完整路径                    |
+| http.hostname         | http_hostname         | hostname                       |
+| http.route            | http_route            | 路由                             |
+| http.status_code      | http_status_code      | 状态码                            |
+| http.request.method   | http_request_method   | 请求方法                           |
+| http.method           | http_method           | 同上                             |
+| http.client_ip        | http_client_ip        | 客户端 IP                         |
+| http.scheme           | http_scheme           | 请求协议                           |
+| url.full              | url_full              | 请求全路径                          |
+| url.scheme            | url_scheme            | 请求协议                           |
+| url.path              | url_path              | 请求路径                           |
+| url.query             | url_query             | 请求参数                           |
+| span_kind             | span_kind             | span 类型                        |
+| db.system             | db_system             | span 类型                        |
+| db.operation          | db_operation          | DB 动作                          |
+| db.name               | db_name               | 数据库名称                          |
+| db.statement          | db_statement          | 详细信息                           |
+| server.address        | server_address        | 服务地址                           |
+| net.host.name         | net_host_name         | 请求的 host                       |
+| server.port           | server_port           | 服务端口号                          |
+| net.host.port         | net_host_port         | 同上                             |
+| network.peer.address  | network_peer_address  | 网络地址                           |
+| network.peer.port     | network_peer_port     | 网络端口                           |
+| network.transport     | network_transport     | 协议                             |
+| messaging.system      | messaging_system      | 消息队列名称                         |
+| messaging.operation   | messaging_operation   | 消息动作                           |
+| messaging.message     | messaging_message     | 消息                             |
+| messaging.destination | messaging_destination | 消息详情                           |
+| rpc.service           | rpc_service           | RPC 服务地址                       |
+| rpc.system            | rpc_system            | RPC 服务名称                       |
+| error                 | error                 | 是否错误                           |
+| error.message         | error_message         | 错误信息                           |
+| error.stack           | error_stack           | 堆栈信息                           |
+| error.type            | error_type            | 错误类型                           |
+| error.msg             | error_message         | 错误信息                           |
+| project               | project               | project                        |
+| version               | version               | 版本                             |
+| env                   | env                   | 环境                             |
+| host                  | host                  | Attributes 中的 host 标签          |
+| pod_name              | pod_name              | Attributes 中的 pod_name 标签      |
+| pod_namespace         | pod_namespace         | Attributes 中的 pod_namespace 标签 |
 
 如果想要增加自定义标签，可使用环境变量：
 
@@ -433,6 +461,8 @@ OpenTelemetry Java Agent 从应用程序中通过 JMX 协议获取 MBean 的指�
 
 另外 Agent 内置的一些三方软件的采集配置。具体可以参考： [GitHub OTEL JMX Metric](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/instrumentation/jmx-metrics/javaagent/README.md){:target="_blank"}
 
+所有发送到观测云的指标有一个统一的指标集的名字： `otel-service` 。
+
 ## 数据字段说明 {#fields}
 
 
@@ -453,42 +483,52 @@ OpenTelemetry Java Agent 从应用程序中通过 JMX 协议获取 MBean 的指�
 |`action`|GC Action|
 |`area`|Heap or not|
 |`cause`|GC Cause|
-|`container.id`|Container ID|
+|`container_id`|Container ID|
 |`description`|Metric Description|
 |`exception`|Exception Information|
 |`gc`|GC Type|
 |`host`|Host Name|
-|`http.flavor`|HTTP Version|
-|`http.method`|HTTP Method|
-|`http.route`|HTTP Request Route|
+|`host_arch`|Host arch|
+|`host_name`|Host Name|
 |`http.scheme`|HTTP/HTTPS|
-|`http.target`|HTTP Target|
+|`http_method`|HTTP Method|
+|`http_request_method`|HTTP Method|
+|`http_response_status_code`|HTTP status code|
+|`http_route`|HTTP Route|
 |`id`|JVM Type|
 |`instrumentation_name`|Metric Name|
+|`jvm_gc_action`|action:end of major,end of minor GC|
+|`jvm_gc_name`|name:PS MarkSweep,PS Scavenge|
+|`jvm_memory_pool_name`|pool_name:code cache,PS Eden Space,PS Old Gen,MetaSpace...|
+|`jvm_memory_type`|memory type:heap,non_heap|
+|`jvm_thread_state`|Thread state:runnable,timed_waiting,waiting|
+|`le`|*_bucket: histogram metric explicit bounds|
 |`level`|Log Level|
 |`main-application-class`|Main Entry Point|
 |`method`|HTTP Type|
 |`name`|Thread Pool Name|
-|`net.protocol.name`|Net Protocol Name|
-|`net.protocol.version`|Net Protocol Version|
-|`os.description`|OS Version|
-|`os.type`|OS Type|
+|`net_protocol_name`|Net Protocol Name|
+|`net_protocol_version`|Net Protocol Version|
+|`os_description`|OS Version|
+|`os_type`|OS Type|
 |`outcome`|HTTP Outcome|
 |`path`|Disk Path|
 |`pool`|JVM Pool Type|
-|`process.command_line`|Process Command Line|
-|`process.executable.path`|Executable File Path|
-|`process.runtime.description`|Process Runtime Description|
-|`process.runtime.name`|JVM Pool Runtime Name|
-|`process.runtime.version`|JVM Pool Runtime Version|
-|`service.name`|Service Name|
+|`process_command_line`|Process Command Line|
+|`process_executable_path`|Executable File Path|
+|`process_runtime_description`|Process Runtime Description|
+|`process_runtime_name`|JVM Pool Runtime Name|
+|`process_runtime_version`|JVM Pool Runtime Version|
+|`scope_name`|Scope name|
+|`service_name`|Service Name|
 |`spanProcessorType`|Span Processor Type|
-|`state`|Thread State|
+|`state`|Thread State:idle,used|
 |`status`|HTTP Status Code|
-|`telemetry.auto.version`|Version|
-|`telemetry.sdk.language`|Language|
-|`telemetry.sdk.name`|SDK Name|
-|`telemetry.sdk.version`|SDK Version|
+|`telemetry_auto_version`|Version|
+|`telemetry_sdk_language`|Language|
+|`telemetry_sdk_name`|SDK Name|
+|`telemetry_sdk_version`|SDK Version|
+|`unit`|metrics unit|
 |`uri`|HTTP Request URI|
 
 - 指标列表

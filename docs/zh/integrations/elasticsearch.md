@@ -229,8 +229,6 @@ PUT _plugins/_security/api/roles/monitor
 
 
 
-
-
 ### `elasticsearch_node_stats`
 
 - 标签
@@ -301,9 +299,6 @@ PUT _plugins/_security/api/roles/monitor
 
 
 
-
-
-
 ### `elasticsearch_indices_stats`
 
 - 标签
@@ -366,9 +361,6 @@ PUT _plugins/_security/api/roles/monitor
 
 
 
-
-
-
 ### `elasticsearch_cluster_stats`
 
 - 标签
@@ -386,9 +378,6 @@ PUT _plugins/_security/api/roles/monitor
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`nodes_process_open_file_descriptors_avg`|Average number of concurrently open file descriptors. Returns -1 if not supported.|float|count|
-
-
-
 
 
 
@@ -419,10 +408,6 @@ PUT _plugins/_security/api/roles/monitor
 
 
 
-
-
-
-
 ## 自定义对象 {#object}
 
 
@@ -439,35 +424,6 @@ PUT _plugins/_security/api/roles/monitor
 
 
 
-
-
-
-
-
-
-### `mq`
-
-
-
-- 标签
-
-
-| Tag | Description |
-|  ----  | --------|
-|`col_co_status`|Current status of collector on Elasticsearch(`OK/NotOK`)|
-|`host`|The server host address|
-|`ip`|Connection IP of the Elasticsearch|
-|`name`|Object uniq ID|
-|`reason`|If status not ok, we'll get some reasons about the status|
-
-- 指标列表
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`display_name`|Displayed name in UI|string|-|
-|`uptime`|Current Elasticsearch uptime|int|s|
-|`version`|Current version of Elasticsearch|string|-|
 
 
 

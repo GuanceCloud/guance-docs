@@ -122,10 +122,9 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
 ### `rabbitmq_overview`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -135,7 +134,7 @@ For all of the following data collections, the global election tags will added a
 |`rabbitmq_version`|RabbitMQ version|
 |`url`|RabbitMQ url|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -169,11 +168,9 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
 ### `rabbitmq_queue`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -185,7 +182,7 @@ For all of the following data collections, the global election tags will added a
 |`url`|RabbitMQ host URL|
 |`vhost`|RabbitMQ queue virtual hosts|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -214,11 +211,9 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
 ### `rabbitmq_exchange`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -233,7 +228,7 @@ For all of the following data collections, the global election tags will added a
 |`url`|RabbitMQ host URL|
 |`vhost`|RabbitMQ exchange virtual hosts|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -257,11 +252,9 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
 ### `rabbitmq_node`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -271,7 +264,7 @@ For all of the following data collections, the global election tags will added a
 |`node_name`|RabbitMQ node name|
 |`url`|RabbitMQ url|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -292,9 +285,6 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
-
 ## Custom Object {#object}
 
 
@@ -311,35 +301,6 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
-
-
-
-
-### `mq`
-
-
-
-- tag
-
-
-| Tag | Description |
-|  ----  | --------|
-|`col_co_status`|Current status of collector on RabbitMQ(`OK/NotOK`)|
-|`host`|The server host address|
-|`ip`|Connection IP of the RabbitMQ|
-|`name`|Object uniq ID|
-|`reason`|If status not ok, we'll get some reasons about the status|
-
-- Metric list
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`display_name`|Displayed name in UI|string|-|
-|`uptime`|Current RabbitMQ uptime|int|s|
-|`version`|Current version of RabbitMQ|string|-|
 
 
 

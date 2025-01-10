@@ -134,7 +134,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -142,7 +142,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`cpu`|CPU core ID. For `cpu-total`, it means *all-CPUs-in-one-tag*. If you want every CPU's metric, please enable `percpu` option in *cpu.conf* or set `ENV_INPUT_CPU_PERCPU` under K8s|
 |`host`|System hostname.|
 
-- Metrics
+- Metric list
 
 
 | Metric | Description | Type | Unit |

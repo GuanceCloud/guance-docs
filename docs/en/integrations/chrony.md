@@ -209,7 +209,7 @@ Leap status     : Normal
 
 ### `chrony`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -219,7 +219,7 @@ Leap status     : Normal
 |`reference_id`|This is the reference ID and name (or IP address) of the server to which the computer is currently synchronized.|
 |`stratum`|The stratum indicates how many hops away from a computer with an attached reference clock we are.|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |

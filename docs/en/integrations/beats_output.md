@@ -366,7 +366,7 @@ All of the following data collections are appended by default with global tags n
 
 Using `source` field in the config file, default is `default`.
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -375,7 +375,7 @@ Using `source` field in the config file, default is `default`.
 |`host`|Host name.|
 |`service`|Service name, equal to `service` field in the config file.|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |

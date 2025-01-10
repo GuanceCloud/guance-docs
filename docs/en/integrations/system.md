@@ -92,14 +92,14 @@ For all of the following data collections, a global tag named `host` is appended
 
 Basic information about system operation.
 
-- Tags
+- tag
 
 
 | Tag | Description |
 |  ----  | --------|
 |`host`|hostname|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -123,14 +123,14 @@ Basic information about system operation.
 
 Connection track metrics (Linux only).
 
-- Tags
+- tag
 
 
 | Tag | Description |
 |  ----  | --------|
 |`host`|hostname|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -152,14 +152,14 @@ Connection track metrics (Linux only).
 
 System file handle metrics (Linux only).
 
-- Tags
+- tag
 
 
 | Tag | Description |
 |  ----  | --------|
 |`host`|hostname|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |

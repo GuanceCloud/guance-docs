@@ -226,7 +226,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `HOST`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -237,7 +237,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`os`|Host OS type|
 |`unicast_ip`|Host unicast ip|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |

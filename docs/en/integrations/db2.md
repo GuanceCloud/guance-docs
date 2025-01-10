@@ -161,7 +161,7 @@ For all of the following data collections, the global election tags will added a
 
 ### `db2_instance`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -170,7 +170,7 @@ For all of the following data collections, the global election tags will added a
 |`db2_service`|Server service.|
 |`host`|Host name.|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -181,7 +181,7 @@ For all of the following data collections, the global election tags will added a
 
 ### `db2_database`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -190,7 +190,7 @@ For all of the following data collections, the global election tags will added a
 |`db2_service`|Server service.|
 |`host`|Host name.|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -215,7 +215,7 @@ For all of the following data collections, the global election tags will added a
 
 ### `db2_buffer_pool`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -225,7 +225,7 @@ For all of the following data collections, the global election tags will added a
 |`db2_service`|Server service.|
 |`host`|Host name.|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -255,7 +255,7 @@ For all of the following data collections, the global election tags will added a
 
 ### `db2_table_space`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -265,7 +265,7 @@ For all of the following data collections, the global election tags will added a
 |`host`|Host name.|
 |`tablespace_name`|Tablespace name.|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -279,7 +279,7 @@ For all of the following data collections, the global election tags will added a
 
 ### `db2_transaction_log`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -288,7 +288,7 @@ For all of the following data collections, the global election tags will added a
 |`db2_service`|Server service.|
 |`host`|Host name.|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |

@@ -175,7 +175,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -185,7 +185,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`process`|The name of the process|
 |`type`|The type of the exception|
 
-- Metrics
+- field list
 
 
 | Metric | Description | Type | Unit |
@@ -203,7 +203,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -212,7 +212,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`port`|The port|
 |`type`|The type of the exception|
 
-- Metrics
+- field list
 
 
 | Metric | Description | Type | Unit |
@@ -228,7 +228,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -237,7 +237,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`host`|System hostname|
 |`url`|The URL|
 
-- Metrics
+- field list
 
 
 | Metric | Description | Type | Unit |

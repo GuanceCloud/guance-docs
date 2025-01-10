@@ -228,7 +228,6 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
 ### `elasticsearch_node_stats`
 
 - Tags
@@ -299,8 +298,6 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
 ### `elasticsearch_indices_stats`
 
 - Tags
@@ -363,8 +360,6 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
 ### `elasticsearch_cluster_stats`
 
 - Tags
@@ -382,8 +377,6 @@ For all of the following data collections, the global election tags will added a
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`nodes_process_open_file_descriptors_avg`|Average number of concurrently open file descriptors. Returns -1 if not supported.|float|count|
-
-
 
 
 
@@ -414,9 +407,6 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
-
 ## Custom Object {#object}
 
 
@@ -433,35 +423,6 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
-
-
-
-
-### `mq`
-
-
-
-- Tags
-
-
-| Tag | Description |
-|  ----  | --------|
-|`col_co_status`|Current status of collector on Elasticsearch(`OK/NotOK`)|
-|`host`|The server host address|
-|`ip`|Connection IP of the Elasticsearch|
-|`name`|Object uniq ID|
-|`reason`|If status not ok, we'll get some reasons about the status|
-
-- Metrics
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`display_name`|Displayed name in UI|string|-|
-|`uptime`|Current Elasticsearch uptime|int|s|
-|`version`|Current version of Elasticsearch|string|-|
 
 
 

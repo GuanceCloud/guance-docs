@@ -198,7 +198,7 @@ Already tested CockroachDB version:
 |`node_id`|Node id.|
 |`store`|Store id.|
 
-- Metrics
+- Fields
 
 
 | Metric | Description | Type | Unit |

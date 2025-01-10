@@ -158,65 +158,10 @@ The collected metrics are affected by the environment in which Apache is install
 
 
 
-### `web_server` {#web_server}
-
-
-
-- 标签
-
-
-| Tag | Description |
-|  ----  | --------|
-|`col_co_status`|Current status of collector on Apache(`OK/NotOK`)|
-|`host`|The server host address|
-|`ip`|Connection IP of the Apache|
-|`name`|Object uniq ID|
-|`reason`|If status not ok, we'll get some reasons about the status|
-
-- 指标列表
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`display_name`|Displayed name in UI|string|-|
-|`uptime`|Current Apache uptime|int|s|
-|`version`|Current version of Apache|string|-|
-
-
-
 ## 自定义对象 {#object}
 
 
 
-
-
-
-
-
-
-### `web_server`
-
-
-
-- 标签
-
-
-| Tag | Description |
-|  ----  | --------|
-|`col_co_status`|Current status of collector on Apache(`OK/NotOK`)|
-|`host`|The server host address|
-|`ip`|Connection IP of the Apache|
-|`name`|Object uniq ID|
-|`reason`|If status not ok, we'll get some reasons about the status|
-
-- 指标列表
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`display_name`|Displayed name in UI|string|-|
-|`uptime`|Current Apache uptime|int|s|
-|`version`|Current version of Apache|string|-|
 
 
 
