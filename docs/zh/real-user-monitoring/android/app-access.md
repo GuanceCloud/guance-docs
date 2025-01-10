@@ -288,8 +288,8 @@ android{
 | setEnableResourceHostIP | Boolean | 否 | 是否采集请求目标域名地址的 IP。作用域：只影响 `EnableTraceUserResource`  为 true 的默认采集。自定义 Resource 采集，需要使用 `FTResourceEventListener.FTFactory(true)` 来开启这个功能。另外，单个 Okhttp 对相同域名存在 IP 缓存机制，相同 `OkhttpClient`，在连接服务端 IP 不发生变化的前提下，只会生成一次|
 | setResourceUrlHandler | Callback| 否 | 设置需要过滤的 Resource 条件，默认不过滤 |
 | setOkHttpEventListenerHandler | Callback| 否 | ASM 设置全局 Okhttp EventListener，默认不设置 |
-| setOkHttpTraceHeaderHandler | Callback| 否 | ASM 设置全局 Okhttp Trace Header，默认不设置, ft-sdk 1.6.7 以上支持，示例参考[自定义 Trace](#okhttp_resource_trace_interceptor_custom) |
-| setOkHttpResourceContentHandler | Callback| 否 | ASM 设置全局 Okhttp Resource Content Handler，默认不设置, ft-sdk 1.6.7 以上支持，[自定义 Resource](#okhttp_resource_trace_interceptor_custom) |
+| setOkHttpTraceHeaderHandler | Callback| 否 | ASM 设置全局 `FTTraceInterceptor.HeaderHandler`，默认不设置, ft-sdk 1.6.7 以上支持，示例参考[自定义 Trace](#okhttp_resource_trace_interceptor_custom) |
+| setOkHttpResourceContentHandler | Callback| 否 | ASM 设置全局 `FTResourceInterceptor.ContentHandlerHelper`，默认不设置, ft-sdk 1.6.7 以上支持，[自定义 Resource](#okhttp_resource_trace_interceptor_custom) |
 | addGlobalContext | Dictionary | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
 | setRumCacheLimitCount | int | 否 | 本地缓存 RUM 限制数量 [10000,),默认是 100_000。ft-sdk 1.6.6 以上支持 |
 | setRumCacheDiscardStrategy | RUMCacheDiscard | 否 | 设置 RUM 达到限制上限以后的数据的丢弃规则，默认为 `RUMCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据，ft-sdk 1.6.6 以上支持  |
@@ -1401,7 +1401,7 @@ android{
 ## 通过 OKHttp Interceptor 自定义 Resource 和 TraceHeader {#okhttp_resource_trace_interceptor_custom}
 
  `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace` 配置，同时开启，优先加载自定义 `Interceptor` 配置，
- >ft-sdk < 1.4.1，需要关闭 `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace`
+ >ft-sdk < 1.4.1，需要关闭 `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace`。
  >ft-sdk > 1.6.7 支持自定 Trace Header 与 RUM 数据做关联
 
 === "Java"
