@@ -116,7 +116,7 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
 
 
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -138,7 +138,7 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |

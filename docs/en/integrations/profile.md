@@ -137,7 +137,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -159,7 +159,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |

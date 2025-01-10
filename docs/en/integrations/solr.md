@@ -97,7 +97,7 @@ For all of the following data collections, the global election tags will added a
 
 ### `solr_cache`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -109,7 +109,7 @@ For all of the following data collections, the global election tags will added a
 |`instance`|Instance name, generated based on server address.|
 |`name`|Cache name.|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -133,7 +133,7 @@ For all of the following data collections, the global election tags will added a
 
 ### `solr_request_times`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -145,7 +145,7 @@ For all of the following data collections, the global election tags will added a
 |`host`|System hostname.|
 |`instance`|Instance name, generated based on server address.|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -169,7 +169,7 @@ For all of the following data collections, the global election tags will added a
 
 ### `solr_searcher`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -180,7 +180,7 @@ For all of the following data collections, the global election tags will added a
 |`host`|System hostname.|
 |`instance`|Instance name, generated based on server address.|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |

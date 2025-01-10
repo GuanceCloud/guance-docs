@@ -266,6 +266,180 @@ For all of the following data collections, the global election tags will added a
 
 
 
+### `mongodb`
+
+- explain
+
+MongoDB measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
+
+- tag
+
+
+| Tag | Description |
+|  ----  | --------|
+|`host`|mongodb host|
+|`mongod_host`|mongodb host with port|
+
+- metric list
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`active_reads`|The number of the active client connections performing read operations.|int|count|
+|`active_writes`|The number of active client connections performing write operations.|int|count|
+|`aggregate_command_failed`|The number of times that 'aggregate' command failed on this mongod|int|count|
+|`aggregate_command_total`|The number of times that 'aggregate' command executed on this mongod.|int|count|
+|`assert_msg`|The number of message assertions raised since the MongoDB process started. Check the log file for more information about these messages.|int|count|
+|`assert_regular`|The number of regular assertions raised since the MongoDB process started. Check the log file for more information about these messages.|int|count|
+|`assert_rollovers`|The number of times that the rollover counters have rolled over since the last time the MongoDB process started. The counters will rollover to zero after 2 30 assertions. Use this value to provide context to the other values in the asserts data structure.|int|count|
+|`assert_user`|The number of "user asserts" that have occurred since the last time the MongoDB process started. These are errors that user may generate, such as out of disk space or duplicate key. You can prevent these assertions by fixing a problem with your application or deployment. Check the MongoDB log for more information.|int|count|
+|`assert_warning`|Changed in version 4.0. Starting in MongoDB 4.0, the field returns zero 0. In earlier versions, the field returns the number of warnings raised since the MongoDB process started.|int|count|
+|`available_reads`|The number of concurrent of read transactions allowed into the WiredTiger storage engine|int|count|
+|`available_writes`|The number of concurrent of write transactions allowed into the WiredTiger storage engine|int|count|
+|`commands`|The total number of commands issued to the database since the mongod instance last started. `opcounters.command` counts all commands except the write commands: insert, update, and delete.|int|count|
+|`commands_per_sec`|Deprecated, use commands.|int|count|
+|`connections_available`|The number of unused incoming connections available.|int|count|
+|`connections_current`|The number of incoming connections from clients to the database server .|int|count|
+|`connections_total_created`|Count of all incoming connections created to the server. This number includes connections that have since closed.|int|count|
+|`count_command_failed`|The number of times that 'count' command failed on this mongod|int|count|
+|`count_command_total`|The number of times that 'count' command executed on this mongod|int|count|
+|`cursor_no_timeout`|Deprecated, use cursor_no_timeout_count.|int|count|
+|`cursor_no_timeout_count`|The number of open cursors with the option DBQuery.Option.noTimeout set to prevent timeout after a period of inactivity|int|count|
+|`cursor_pinned`|Deprecated, use cursor_pinned_count.|int|count|
+|`cursor_pinned_count`|The number of "pinned" open cursors.|int|count|
+|`cursor_timed_out`|Deprecated, use cursor_timed_out_count.|int|count|
+|`cursor_timed_out_count`|The total number of cursors that have timed out since the server process started. If this number is large or growing at a regular rate, this may indicate an application error.|int|count|
+|`cursor_total`|Deprecated, use cursor_total_count.|int|count|
+|`cursor_total_count`|The number of cursors that MongoDB is maintaining for clients. Because MongoDB exhausts unused cursors, typically this value small or zero. However, if there is a queue, stale *tailable* cursors, or a large number of operations this value may rise.|int|count|
+|`delete_command_failed`|The number of times that 'delete' command failed on this mongod|int|count|
+|`delete_command_total`|The number of times that 'delete' command executed on this mongod|int|count|
+|`deletes`|The total number of delete operations since the mongod instance last started.|int|count|
+|`deletes_per_sec`|Deprecated, use deletes.|int|count|
+|`distinct_command_failed`|The number of times that 'distinct' command failed on this mongod|int|count|
+|`distinct_command_total`|The number of times that 'distinct' command executed on this mongod|int|count|
+|`document_deleted`|The total number of documents deleted.|int|count|
+|`document_inserted`|The total number of documents inserted.|int|count|
+|`document_returned`|The total number of documents returned by queries.|int|count|
+|`document_updated`|The total number of documents updated.|int|count|
+|`find_and_modify_command_failed`|The number of times that 'find' and 'modify' commands failed on this mongod|int|count|
+|`find_and_modify_command_total`|The number of times that 'find' and 'modify' commands executed on this mongod|int|count|
+|`find_command_failed`|The number of times that 'find' command failed on this mongod|int|count|
+|`find_command_total`|The number of times that 'find' command executed on this mongod|int|count|
+|`flushes`|The number of transaction checkpoints|int|count|
+|`flushes_per_sec`|Deprecated, use flushes.|int|count|
+|`flushes_total_time_ns`|The transaction checkpoint total time (ms)"|int|count|
+|`get_more_command_failed`|The number of times that 'get more' command failed on this mongod|int|count|
+|`get_more_command_total`|The number of times that 'get more' command executed on this mongod|int|count|
+|`getmores`|The total number of `getMore` operations since the mongod instance last started. This counter can be high even if the query count is low. Secondary nodes send `getMore` operations as part of the replication process.|int|count|
+|`getmores_per_sec`|Deprecated, use getmores|int|count|
+|`insert_command_failed`|The number of times that 'insert' command failed on this mongod|int|count|
+|`insert_command_total`|The number of times that 'insert' command executed on this mongod|int|count|
+|`inserts`|The total number of insert operations received since the mongod instance last started.|int|count|
+|`inserts_per_sec`|Deprecated, use inserts.|int|count|
+|`jumbo_chunks`|Count jumbo flags in cluster chunk.|int|count|
+|`mapped_megabytes`|Mapped megabytes. (Existed in 3.0 and earlier version)|int|count|
+|`net_in_bytes`|Deprecated, use net_out_bytes_count.|int|count|
+|`net_in_bytes_count`|The total number of bytes that the server has received over network connections initiated by clients or other mongod instances.|int|count|
+|`net_out_bytes`|Deprecated, use net_out_bytes_count.|int|count|
+|`net_out_bytes_count`|The total number of bytes that the server has sent over network connections initiated by clients or other mongod instances.|int|count|
+|`non-mapped_megabytes`|Non mapped megabytes. (Existed in 3.0 and earlier version)|int|count|
+|`open_connections`|The number of incoming connections from clients to the database server.|int|count|
+|`operation_scan_and_order`|The total number of queries that return sorted numbers that cannot perform the sort operation using an index.|int|count|
+|`operation_write_conflicts`|The total number of queries that encountered write conflicts.|int|count|
+|`page_faults`|The total number of page faults.|int|count|
+|`page_faults_per_sec`|Page Faults/sec is the average number of pages faulted per second. (Existed in 3.0 and earlier version)|int|count|
+|`percent_cache_dirty`|Size in bytes of the dirty data in the cache. This value should be less than the bytes currently in the cache value.|float|count|
+|`percent_cache_used`|Size in byte of the data currently in cache. This value should not be greater than the maximum bytes configured value.|float|count|
+|`queries`|The total number of queries received since the mongod instance last started.|int|count|
+|`queries_per_sec`|Deprecated, use queries.|int|count|
+|`queued_reads`|The number of operations that are currently queued and waiting for the read lock. A consistently small read-queue, particularly of shorter operations, should cause no concern.|int|count|
+|`queued_writes`|The number of operations that are currently queued and waiting for the write lock. A consistently small write-queue, particularly of shorter operations, is no cause for concern.|int|count|
+|`repl_apply_batches_num`|The total number of batches applied across all databases.|int|count|
+|`repl_apply_batches_total_millis`|The total amount of time in milliseconds the mongod has spent applying operations from the oplog.|int|count|
+|`repl_apply_ops`|The total number of oplog operations applied. metrics.repl.apply.ops is incremented after each operation.|int|count|
+|`repl_buffer_count`|The current number of operations in the oplog buffer.|int|count|
+|`repl_buffer_size_bytes`|The current size of the contents of the oplog buffer.|int|count|
+|`repl_commands`|The total number of replicated commands issued to the database since the mongod instance last started.|int|count|
+|`repl_commands_per_sec`|Deprecated, use repl_commands.|int|count|
+|`repl_deletes`|The total number of replicated delete operations since the mongod instance last started.|int|count|
+|`repl_deletes_per_sec`|Deprecated, use repl_deletes.|int|count|
+|`repl_executor_pool_in_progress_count`|The number of replication tasks that are currently being executed by the executor pool.|int|count|
+|`repl_executor_queues_network_in_progress`|The number of network-related replication tasks that are currently being processed by the executor queues.|int|count|
+|`repl_executor_queues_sleepers`|The number of replication tasks in the executor queues that are currently in a sleeping state.|int|count|
+|`repl_executor_unsignaled_events`|The number of events related to the replication executor that have not yet been signaled.|int|count|
+|`repl_getmores`|The total number of replicated getmore operations since the mongod instance last started.|int|count|
+|`repl_getmores_per_sec`|Deprecated, use repl_getmores.|int|count|
+|`repl_inserts`|The total number of replicated insert operations since the mongod instance last started.|int|count|
+|`repl_inserts_per_sec`|Deprecated, use repl_inserts.|int|count|
+|`repl_lag`|Delay between a write operation on the primary and its copy to a secondary.|int|count|
+|`repl_network_bytes`|The total amount of data read from the replication sync source.|int|count|
+|`repl_network_getmores_num`|The total number of getmore operations, which are operations that request an additional set of operations from the replication sync source.|int|count|
+|`repl_network_getmores_total_millis`|The total amount of time required to collect data from getmore operations.|int|count|
+|`repl_network_ops`|The total number of operations read from the replication source.|int|count|
+|`repl_queries`|The total number of replicated queries since the mongod instance last started.|int|count|
+|`repl_queries_per_sec`|Deprecated, use repl_queries.|int|count|
+|`repl_state`|The node state of replication member.|int|count|
+|`repl_updates`|The total number of replicated update operations since the mongod instance last started.|int|count|
+|`repl_updates_per_sec`|Deprecated, use repl_updates.|int|count|
+|`resident_megabytes`|The value of mem.resident is roughly equivalent to the amount of RAM, in MiB, currently used by the database process.|int|count|
+|`storage_freelist_search_bucket_exhausted`|The number of times that mongod has checked the free list without finding a suitably large record allocation.|int|count|
+|`storage_freelist_search_requests`|The number of times mongod has searched for available record allocations.|int|count|
+|`storage_freelist_search_scanned`|The number of available record allocations mongod has searched.|int|count|
+|`tcmalloc_central_cache_free_bytes`|Number of free bytes in the central cache that have been assigned to size classes. They always count towards virtual memory usage, and unless the underlying memory is swapped.|int|count|
+|`tcmalloc_current_allocated_bytes`|Number of bytes currently allocated by application.|int|count|
+|`tcmalloc_current_total_thread_cache_bytes`|Number of bytes used across all thread caches.|int|count|
+|`tcmalloc_heap_size`|Number of bytes in the heap.|int|count|
+|`tcmalloc_max_total_thread_cache_bytes`|Upper limit on total number of bytes stored across all per-thread caches. Default: 16MB.|int|count|
+|`tcmalloc_pageheap_commit_count`|Number of virtual memory commits.|int|count|
+|`tcmalloc_pageheap_committed_bytes`|Bytes committed, always <= system_bytes_.|int|count|
+|`tcmalloc_pageheap_decommit_count`|Number of virtual memory de-commits.|int|count|
+|`tcmalloc_pageheap_free_bytes`|Number of bytes in free, mapped pages in page heap.|int|count|
+|`tcmalloc_pageheap_reserve_count`|Number of virtual memory reserves.|int|count|
+|`tcmalloc_pageheap_scavenge_count`|Number of times scavaged flush pages.|int|count|
+|`tcmalloc_pageheap_total_commit_bytes`|Bytes committed in lifetime of process.|int|count|
+|`tcmalloc_pageheap_total_decommit_bytes`|Bytes de-committed in lifetime of process.|int|count|
+|`tcmalloc_pageheap_total_reserve_bytes`|Number of virtual memory reserves.|int|count|
+|`tcmalloc_pageheap_unmapped_bytes`|Total bytes on returned free lists.|int|count|
+|`tcmalloc_spinlock_total_delay_ns`|The total time (in nanoseconds) threads have been delayed while waiting for spinlocks in TCMalloc.|int|count|
+|`tcmalloc_thread_cache_free_bytes`|Bytes in thread caches.|int|count|
+|`tcmalloc_total_free_bytes`|Total bytes on normal free lists.|int|count|
+|`tcmalloc_transfer_cache_free_bytes`|Bytes in central transfer cache.|int|count|
+|`total_available`|The number of connections available from the mongos to the config servers, replica sets, and standalone mongod instances in the cluster.|int|count|
+|`total_created`|The number of connections the mongos has ever created to other members of the cluster.|int|count|
+|`total_docs_scanned`|The total number of index items scanned during queries and query-plan evaluation.|int|count|
+|`total_in_use`|Reports the total number of outgoing connections from the current mongod/mongos instance to other members of the sharded cluster or replica set that are currently in use.|int|count|
+|`total_keys_scanned`|The total number of index items scanned during queries and query-plan evaluation.|int|count|
+|`total_refreshing`|Reports the total number of outgoing connections from the current mongod/mongos instance to other members of the sharded cluster or replica set that are currently being refreshed.|int|count|
+|`total_tickets_reads`|A document that returns information on the number of concurrent of read transactions allowed into the WiredTiger storage engine.|int|count|
+|`total_tickets_writes`|A document that returns information on the number of concurrent of write transactions allowed into the WiredTiger storage engine.|int|count|
+|`ttl_deletes`|The total number of documents deleted from collections with a ttl index.|int|count|
+|`ttl_deletes_per_sec`|Deprecated, use ttl_deletes.|int|count|
+|`ttl_passes`|The number of times the background process removes documents from collections with a ttl index.|int|count|
+|`ttl_passes_per_sec`|Deprecated, use ttl_passes.|int|count|
+|`update_command_failed`|The number of times that 'update' command failed on this mongod|int|count|
+|`update_command_total`|The number of times that 'update' command executed on this mongod|int|count|
+|`updates`|The total number of update operations received since the mongod instance last started.|int|count|
+|`updates_per_sec`|Deprecated, use updates.|int|count|
+|`uptime_ns`|The total upon time of mongod in nano seconds.|int|count|
+|`vsize_megabytes`|mem.virtual displays the quantity, in MiB, of virtual memory used by the mongod process.|int|count|
+|`wtcache_app_threads_page_read_count`|The number of pages read by application threads from the WiredTiger cache.|int|count|
+|`wtcache_app_threads_page_read_time`|The total time application threads spend reading pages from the WiredTiger cache.|int|count|
+|`wtcache_app_threads_page_write_count`|The number of pages written by application threads to the WiredTiger cache.|int|count|
+|`wtcache_bytes_read_into`|The total number of bytes read into the WiredTiger cache.|int|count|
+|`wtcache_bytes_written_from`|The total number of bytes written from the WiredTiger cache.|int|count|
+|`wtcache_current_bytes`|The current number of bytes being used in the WiredTiger cache.|int|count|
+|`wtcache_internal_pages_evicted`|The number of internal pages evicted from the WiredTiger cache.|int|count|
+|`wtcache_max_bytes_configured`|Maximum cache size.|int|count|
+|`wtcache_modified_pages_evicted`|The number of modified pages evicted from the WiredTiger cache.|int|count|
+|`wtcache_pages_evicted_by_app_thread`|The number of pages evicted from the WiredTiger cache by application threads.|int|count|
+|`wtcache_pages_queued_for_eviction`|The current number of pages in the WiredTiger cache that are queued for eviction.|int|count|
+|`wtcache_pages_read_into`|Number of pages read into the cache.|int|count|
+|`wtcache_pages_requested_from`|Number of pages request from the cache.|int|count|
+|`wtcache_pages_written_from`|Pages written from cache|int|count|
+|`wtcache_server_evicting_pages`|The current number of pages in the WiredTiger cache that are being evicted by the server.|int|count|
+|`wtcache_tracked_dirty_bytes`|The total number of bytes in the WiredTiger cache that are tracked as dirty.|int|count|
+|`wtcache_unmodified_pages_evicted`|Main statistics for page eviction.|int|count|
+|`wtcache_worker_thread_evictingpages`|The number of pages being evicted from the WiredTiger cache by worker threads.|int|count|
 
 
 
@@ -275,7 +449,7 @@ For all of the following data collections, the global election tags will added a
 
 MongoDB stats measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -284,7 +458,7 @@ MongoDB stats measurement. Some metrics may not appear depending on the MongoDB 
 |`host`|mongodb host|
 |`mongod_host`|mongodb host with port|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -323,15 +497,13 @@ MongoDB stats measurement. Some metrics may not appear depending on the MongoDB 
 
 
 
-
-
 ### `mongodb_col_stats`
 
 - explain
 
 MongoDB collection measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -341,7 +513,7 @@ MongoDB collection measurement. Some metrics may not appear depending on the Mon
 |`host`|mongodb host|
 |`mongod_host`|mongodb host with port|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -378,15 +550,13 @@ MongoDB collection measurement. Some metrics may not appear depending on the Mon
 
 
 
-
-
 ### `mongodb_shard_stats`
 
 - explain
 
 MongoDB shard measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -394,7 +564,7 @@ MongoDB shard measurement. Some metrics may not appear depending on the MongoDB 
 |`host`|mongodb host|
 |`mongod_host`|mongodb host with port|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -406,15 +576,13 @@ MongoDB shard measurement. Some metrics may not appear depending on the MongoDB 
 
 
 
-
-
 ### `mongodb_top_stats`
 
 - explain
 
 MongoDB top measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -423,7 +591,7 @@ MongoDB top measurement. Some metrics may not appear depending on the MongoDB ve
 |`host`|mongodb host|
 |`mongod_host`|mongodb host with port|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -472,9 +640,6 @@ MongoDB top measurement. Some metrics may not appear depending on the MongoDB ve
 
 
 
-
-
-
 ## Custom Object {#object}
 
 
@@ -495,35 +660,6 @@ MongoDB top measurement. Some metrics may not appear depending on the MongoDB ve
 
 
 
-
-
-
-
-
-
-### `database`
-
-
-
-- Tags
-
-
-| Tag | Description |
-|  ----  | --------|
-|`col_co_status`|Current status of collector on Mongodb(`OK/NotOK`)|
-|`host`|The server host address|
-|`ip`|Connection IP of the Mongodb|
-|`name`|Object uniq ID|
-|`reason`|If status not ok, we'll get some reasons about the status|
-
-- Metrics
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`display_name`|Displayed name in UI|string|-|
-|`uptime`|Current Mongodb uptime|int|s|
-|`version`|Current version of Mongodb|string|-|
 
 
 

@@ -159,10 +159,9 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
 ### `nginx`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -172,7 +171,7 @@ For all of the following data collections, the global election tags will added a
 |`nginx_server`|Nginx server host|
 |`nginx_version`|Nginx version, exist when using vts|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -191,11 +190,9 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
 ### `nginx_server_zone`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -206,7 +203,7 @@ For all of the following data collections, the global election tags will added a
 |`nginx_version`|nginx version|
 |`server_zone`|server zone|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -229,11 +226,9 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
 ### `nginx_upstream_zone`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -245,7 +240,7 @@ For all of the following data collections, the global election tags will added a
 |`upstream_server`|upstream server|
 |`upstream_zone`|upstream zone|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -267,11 +262,9 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
 ### `nginx_cache_zone`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -282,7 +275,7 @@ For all of the following data collections, the global election tags will added a
 |`nginx_server`|nginx server host|
 |`nginx_version`|nginx version|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -302,11 +295,9 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
 ### `nginx_location_zone`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -317,7 +308,7 @@ For all of the following data collections, the global election tags will added a
 |`nginx_server`|nginx server host|
 |`nginx_version`|nginx version|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -336,9 +327,6 @@ For all of the following data collections, the global election tags will added a
 |`response_4xx`|The number of 4xx response (only for Nginx plus)|int|count|
 |`response_5xx`|The number of 5xx response (only for Nginx plus)|int|count|
 |`sent`|The total number of send bytes (only for Nginx plus)|int|count|
-
-
-
 
 
 
@@ -362,35 +350,6 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
-
-
-
-
-### `web_server`
-
-
-
-- Tags
-
-
-| Tag | Description |
-|  ----  | --------|
-|`col_co_status`|Current status of collector on Nginx(`OK/NotOK`)|
-|`host`|The server host address|
-|`ip`|Connection IP of the Nginx|
-|`name`|Object uniq ID|
-|`reason`|If status not ok, we'll get some reasons about the status|
-
-- Metrics
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`display_name`|Displayed name in UI|string|-|
-|`uptime`|Current Nginx uptime|int|s|
-|`version`|Current version of Nginx|string|-|
 
 
 

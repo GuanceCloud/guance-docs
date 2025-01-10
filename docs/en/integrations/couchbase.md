@@ -264,7 +264,7 @@ TLS need Couchbase enterprise
 
 ### `cbnode`
 
-- Tags
+- Tag
 
 
 | Tag | Description |
@@ -274,7 +274,7 @@ TLS need Couchbase enterprise
 |`instance`|Instance endpoint.|
 |`node`|Node ip.|
 
-- Metrics
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -322,7 +322,7 @@ TLS need Couchbase enterprise
 
 ### `cbbucketinfo`
 
-- Tags
+- Tag
 
 
 | Tag | Description |
@@ -332,7 +332,7 @@ TLS need Couchbase enterprise
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
 
-- Metrics
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -349,7 +349,7 @@ TLS need Couchbase enterprise
 
 ### `cbtask`
 
-- Tags
+- Tag
 
 
 | Tag | Description |
@@ -362,7 +362,7 @@ TLS need Couchbase enterprise
 |`source`|Source id.|
 |`target`|Target id.|
 
-- Metrics
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -385,7 +385,7 @@ TLS need Couchbase enterprise
 
 ### `cbquery`
 
-- Tags
+- Tag
 
 
 | Tag | Description |
@@ -394,7 +394,7 @@ TLS need Couchbase enterprise
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
 
-- Metrics
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -423,7 +423,7 @@ TLS need Couchbase enterprise
 
 ### `cbindex`
 
-- Tags
+- Tag
 
 
 | Tag | Description |
@@ -433,7 +433,7 @@ TLS need Couchbase enterprise
 |`instance`|Instance endpoint.|
 |`keyspace`|Key space name.|
 
-- Metrics
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -458,7 +458,7 @@ TLS need Couchbase enterprise
 
 ### `cbfts`
 
-- Tags
+- Tag
 
 
 | Tag | Description |
@@ -467,7 +467,7 @@ TLS need Couchbase enterprise
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
 
-- Metrics
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -480,7 +480,7 @@ TLS need Couchbase enterprise
 
 ### `cbcbas`
 
-- Tags
+- Tag
 
 
 | Tag | Description |
@@ -489,7 +489,7 @@ TLS need Couchbase enterprise
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
 
-- Metrics
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -507,7 +507,7 @@ TLS need Couchbase enterprise
 
 ### `cbeventing`
 
-- Tags
+- Tag
 
 
 | Tag | Description |
@@ -516,7 +516,7 @@ TLS need Couchbase enterprise
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
 
-- Metrics
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -548,7 +548,7 @@ TLS need Couchbase enterprise
 
 ### `cbpernodebucket`
 
-- Tags
+- Tag
 
 
 | Tag | Description |
@@ -559,7 +559,7 @@ TLS need Couchbase enterprise
 |`instance`|Instance endpoint.|
 |`node`|Node ip.|
 
-- Metrics
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -767,7 +767,7 @@ TLS need Couchbase enterprise
 
 ### `cbbucketstat`
 
-- Tags
+- Tag
 
 
 | Tag | Description |
@@ -777,7 +777,7 @@ TLS need Couchbase enterprise
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
 
-- Metrics
+- Metric list
 
 
 | Metric | Description | Type | Unit |

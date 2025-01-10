@@ -173,7 +173,7 @@ All of the following data collections are appended with a global tag named `host
 
 ### `http_dial_testing`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -196,7 +196,7 @@ All of the following data collections are appended with a global tag named `host
 |`status_code_string`|The status string, such as '200 OK'|
 |`url`|The URL of the endpoint to be monitored|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -218,7 +218,7 @@ All of the following data collections are appended with a global tag named `host
 
 ### `tcp_dial_testing`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -239,7 +239,7 @@ All of the following data collections are appended with a global tag named `host
 |`province`|The name of the province|
 |`status`|The status of the task, either 'OK' or 'FAIL'|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -256,7 +256,7 @@ All of the following data collections are appended with a global tag named `host
 
 ### `icmp_dial_testing`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -275,7 +275,7 @@ All of the following data collections are appended with a global tag named `host
 |`province`|The name of the province|
 |`status`|The status of the task, either 'OK' or 'FAIL'|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -301,7 +301,7 @@ All of the following data collections are appended with a global tag named `host
 
 ### `websocket_dial_testing`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -320,7 +320,7 @@ All of the following data collections are appended with a global tag named `host
 |`status`|The status of the task, either 'OK' or 'FAIL'|
 |`url`|The URL string, such as `ws://www.abc.com`|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |

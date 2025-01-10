@@ -487,7 +487,7 @@ There may be significant differences in data due to different languages and vers
 
 Collect service,host,process APM Telemetry message.
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -511,7 +511,7 @@ Collect service,host,process APM Telemetry message.
 |`service_version`|Service version|
 |`tracer_version`|DdTrace version|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -572,7 +572,7 @@ If the configured whitelist label is in the native `message.meta`, Will convert 
 
 
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -594,7 +594,7 @@ If the configured whitelist label is in the native `message.meta`, Will convert 
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |

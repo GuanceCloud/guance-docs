@@ -87,14 +87,14 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `swap`
 
-- Tags
+- tag
 
 
 | Tag | Description |
 |  ----  | --------|
 |`host`|hostname|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |

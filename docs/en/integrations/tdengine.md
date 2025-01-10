@@ -75,7 +75,7 @@ TDengine collector needs to connect `taos_adapter` can work normally, taosAdapte
 
 
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -90,7 +90,7 @@ TDengine collector needs to connect `taos_adapter` can work normally, taosAdapte
 |`version`|Version|
 |`vgroup_id`|VGroup ID|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |

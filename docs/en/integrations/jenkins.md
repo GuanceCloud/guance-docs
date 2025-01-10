@@ -131,7 +131,7 @@ You can specify additional tags for the Jenkins CI Event in the configuration by
 
 ### `jenkins`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -141,7 +141,7 @@ You can specify additional tags for the Jenkins CI Event in the configuration by
 |`url`|Jenkins URL|
 |`version`|Jenkins  version|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -171,7 +171,7 @@ You can specify additional tags for the Jenkins CI Event in the configuration by
 
 ### `jenkins_pipeline`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -187,7 +187,7 @@ You can specify additional tags for the Jenkins CI Event in the configuration by
 |`repository_url`|Repository URL|
 |`resource`|Project name|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |
@@ -203,7 +203,7 @@ You can specify additional tags for the Jenkins CI Event in the configuration by
 
 ### `jenkins_job`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -219,7 +219,7 @@ You can specify additional tags for the Jenkins CI Event in the configuration by
 |`sha`|The hash value of the commit corresponding to Build|
 |`user_email`|Author's email|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |

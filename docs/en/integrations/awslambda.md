@@ -67,7 +67,7 @@ The AWS Lambda collector collects AWS Lambda metrics and logs through the Lambda
 |`aws_lambda_initialization_type`|Initialization type of the Lambda function.|
 |`aws_region`|AWS region where the function is executed.|
 
-- Metrics
+- List of Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -98,7 +98,7 @@ The AWS Lambda collector collects AWS Lambda metrics and logs through the Lambda
 |  ----  | --------|
 |`aws_log_from`|log sources, currently only function are supported|
 
-- Metrics
+- List of Metrics
 
 
 | Metric | Description | Type | Unit |

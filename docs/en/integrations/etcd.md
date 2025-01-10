@@ -82,7 +82,7 @@ Open etcd, the default metrics interface is `http://localhost:2379/metrics`, or 
 
 ### `etcd`
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -101,7 +101,7 @@ Open etcd, the default metrics interface is `http://localhost:2379/metrics`, or 
 |`server_version`|Server version.|
 |`version`|Version.|
 
-- Metrics
+- metric list
 
 
 | Metric | Description | Type | Unit |

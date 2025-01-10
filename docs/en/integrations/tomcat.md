@@ -118,7 +118,7 @@ For all of the following data collections, the global election tags will be adde
 |`service`|Service name.|
 |`type`|Type.|
 
-- Metrics
+- Fields
 
 
 | Metric | Description | Type | Unit |
@@ -361,7 +361,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`jolokia_agent_url`|Jolokia agent url.|
 |`name`|Protocol handler name.|
 
-- Metrics
+- Fields
 
 
 | Metric | Description | Type | Unit |
@@ -390,7 +390,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`host`|System hostname.|
 |`jolokia_agent_url`|Jolokia agent url.|
 
-- Metrics
+- Fields
 
 
 | Metric | Description | Type | Unit |
@@ -415,7 +415,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`jolokia_agent_url`|Jolokia agent url.|
 |`name`|Protocol handler name.|
 
-- Metrics
+- Fields
 
 
 | Metric | Description | Type | Unit |
@@ -443,7 +443,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`jolokia_agent_url`|Jolokia agent url.|
 |`name`|Name|
 
-- Metrics
+- Fields
 
 
 | Metric | Description | Type | Unit |
@@ -469,7 +469,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`tomcat_context`|Tomcat context.|
 |`tomcat_host`|Tomcat host.|
 
-- Metrics
+- Fields
 
 
 | Metric | Description | Type | Unit |
