@@ -43,7 +43,7 @@ icon: zy/release-notes
 
 1. 字段管理：支持获取字段管理列表，支持[新增](../open-api/field-cfg/add.md)/[修改](../open-api/field-cfg/modify.md)/[删除](../open-api/field-cfg/delete.md)字段管理。
 2. 可用性监测：支持[修改](../open-api/dialing-task/modify.md)拨测任务。
-3. 异常追踪 > 日程：支持获取日程列表，支持[新建](../open-api/dialing-task/add.md)/[修改](../open-api/dialing-task/modify.md)/[删除](../open-api/dialing-task/delete.md)日程。
+3. 异常追踪 > 日程：支持获取日程列表，支持[新建](../open-api/notification-schedule/add.md)/[修改](../open-api/notification-schedule/modify.md)/[删除](../open-api/notification-schedule/delete.md)日程。
 4. 异常追踪 > 配置管理：支持获取通知策略列表，支持[新增](../open-api/issue-notification-policy/add.md)/[修改](../open-api/issue-notification-policy/modify.md)/[删除](../open-api/issue-notification-policy/delete.md)通知策略；支持获取 Issue 发现列表，支持[新建](../open-api/issue-auto-discovery/add.md)/[修改](../open-api/issue-auto-discovery/modify.md)/[启用/禁用](../open-api/issue-auto-discovery/set-disable.md)/[删除](../open-api/issue-auto-discovery/delete.md) Issue 发现配置。
 
 
@@ -52,7 +52,7 @@ icon: zy/release-notes
 #### 日志
 
 1. 日志索引优化：
-    - 访问日志内置视图、日志上下文 tab 页时，默认选择全部索引，并支持索引的多选。在开启了跨工作空间查询，并在所属菜单选取了授权工作空间后，支持在此处直接查询对应工作空间的索引数据。以帮助用户在一个页面完整查看所关联的日志数据，优化日志查询交互。
+    - 访问日志内置视图、日志上下文 tab 页时，将分别默认选中当前日志所在的索引、`default` 索引，两处 tab 页均支持索引的多选，同时，在开启了跨工作空间查询，并在所属菜单选取了授权工作空间后，支持在此处直接查询对应工作空间的索引数据。最终帮助用户在一个页面完整查看所关联的日志数据，优化日志查询交互。  
     - 在日志索引列出时，除 `default` 置顶展示之外，其余日志索引按照 A-Z 排序列出。
 2. 日志查看器新增堆叠[查看模式](../logs/manag-explorer.md#mode)：堆叠模式下字段将会整合在同一列， 并且这些字段在单元格内部以行的形式呈现。日志信息的展示更加紧凑和清晰，方便用户快速浏览和分析。
 3. 日志 Pipeline 优化：日志 Pipeline 的测试样本调整为获取日志的全部字段，并且需要以行协议格式填入。同时用户手动输入的日志也要遵循格式要求。
@@ -92,6 +92,14 @@ AI 智能助手新增[生成图表](../guance-ai/index.md#chart)：生成图表�
     - 优化工作空间列表页码返回逻辑，当修改/删除某工作空间，或者修改工作空间的数据上报限制，将停留在当前页，以优化查询体验。
 2. 部署版新增参数：`alertPolicyFixedNotifyTypes`，支持配置告警策略中，选择“邮件”通知方式是否显示。
 
+### 新增集成 {#inte0108}
+
+1. 新增 [AWS Gateway Classic ELB](/integrations/aws_elb.md)；
+2. 新增 [火山引擎 TOS 对象存储](/integrations/volcengine_tos.md)；
+3. 修改 AWS Classic 采集器名称；
+4. 新增 [MinIO V3](/integrations/minio_v3.md)集成；
+5. 更新 elasticsearch、solr、nacos、influxdb_v2、mongodb 集成（视图、文档、监控器）；
+6. 更新 kubernetes 监控视图。
 
 ### Bug 修复 {#bug0108}
 
