@@ -1,3 +1,5 @@
 nav:
-  - '安装 Datakit Operator': apm_datakit_operator.md
-  - '安装 Helm': helm.md
+  - '在主机上部署': autowire_on_host.md
+  - '在 Kubernetes 上部署': 
+    - '安装 Datakit Operator': apm_datakit_operator.md
+    - '安装 Helm': helm.md
