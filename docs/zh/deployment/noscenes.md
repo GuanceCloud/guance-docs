@@ -24,14 +24,14 @@
 kubectl exec -ti -n forethought-core <inner_pod_name> -- /bin/bash
 ```
 
-2、查看 `/config/cloudcare-forethought-backend/sysconfig/staticFolder` 目录下是否含有 `dataflux-template` 以及 `dataflux-template-en` 目录。
+2、如需要修改查看器或视图等模板，请编辑 `/config/cloudcare-forethought-backend/data_package/dataflux-template` 目录中相应模板文件。
 
 3、执行以下同步命令，会将数据包中的 模版等数据复制到 工作目录下，然后自动发送更新任务（从工作目录同步到数据库中）
 
 ```shell
 curl 'http://0.0.0.0:5000/api/v1/inner/upgrade/tasks/execute_task_func' \
 -H 'Content-Type: application/json' \
---data-raw $'{"script_name": "data_package_task", "func_name": "distribute_data_package", "funcKwargs": {"keys": ["dataflux_template", "dataflux-template-en"], "is_force": true}}' \
+--data-raw $'{"script_name": "data_package_task", "func_name": "distribute_data_package", "funcKwargs": {"keys": ["dataflux_template"], "is_force": true}}' \
 --compressed
 ```
 
