@@ -37,6 +37,47 @@ icon: zy/release-notes
 
 </div>
 
+
+## 2025 年 1 月 16 日
+
+### 功能更新 {#feature0116}
+
+#### 用户访问监测
+
+1. 新增[漏斗分析](../real-user-monitoring/user_insight_funnel.md)功能：用户可以通过定义转换步骤来创建漏斗，查看数据的转化并进行深入分析；
+2. 用户洞察模块整合：新增用户洞察模块，将热图和漏斗分析整合在该模块中，提供更全面的用户行为分析工具；
+3. 新增移动端 SourceMap 还原：Android 和 iOS 应用支持在页面上传 SourceMap 文件且在错误查看器支持查看还原后数据。
+
+#### 应用性能监测
+
+APM 添加服务时，新增[主机自动注入](../application-performance-monitoring/explorer/auto_wire/autowire_on_host.md)的安装引导方式，简化安装流程。
+
+#### 集成
+
+1. DataKit（数据采集工具）：DataKit 安装页面新增了 Docker 方式的安装引导，提供更多样化的安装选项；
+2. 外部数据源优化：在 SLS 数据源查询时，新增了查询规范提示，帮助用户更准确地进行数据查询。
+
+
+#### 场景
+
+[组合图表](../scene/visual-chart/index.md#conbine)优化：组合图表新增视图变量配置，支持选取当前仪表板中的视图变量作用于该组合图表，帮助更灵活地筛选和分析数据。
+
+#### 监控
+
+突变检测监控器：新增对查询周期的周同比、月同比支持。
+
+#### AI 智能助手
+
+新增 DataFlux Func 相关知识库。
+
+#### Pipeline
+
+自动生成 Pipeline 优化：支持同时以结构化加自然语言的方式交互获取 Pipeline 解析。
+
+### Bug 修复 {#bug0116}
+
+1. 修复了日志堆叠模式中的显示问题。
+
 ## 2025 年 1 月 8 日
 
 ### OpenAPI 更新 {#openapi0108}
@@ -94,10 +135,10 @@ AI 智能助手新增[生成图表](../guance-ai/index.md#chart)：生成图表�
 
 ### 新增集成 {#inte0108}
 
-1. 新增 [AWS Gateway Classic ELB](/integrations/aws_elb.md)；
-2. 新增 [火山引擎 TOS 对象存储](/integrations/volcengine_tos.md)；
+1. 新增 [AWS Gateway Classic ELB](../integrations/aws_elb.md)；
+2. 新增[火山引擎 TOS 对象存储](../integrations/volcengine_tos.md)；
 3. 修改 AWS Classic 采集器名称；
-4. 新增 [MinIO V3](/integrations/minio_v3.md)集成；
+4. 新增 [MinIO V3](../integrations/minio_v3.md)集成；
 5. 更新 elasticsearch、solr、nacos、influxdb_v2、mongodb 集成（视图、文档、监控器）；
 6. 更新 kubernetes 监控视图。
 
