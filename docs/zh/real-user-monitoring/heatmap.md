@@ -7,20 +7,23 @@
 
 ## 查看热图
 
-1. 选择[应用](./index.md#create)；
-2. 确定页面地址，如当前页面 `/rum/heatmapindex`；
-3. 点击确定，即可进入该条被创建成功的热图的详情页。
+1. 进入用户洞察 > 会话热图；
+2. 选择[应用](./index.md#create)；
+3. 确定页面地址，如当前页面 `/rum/heatmapindex`；
+4. 点击确定，即可进入该条被创建成功的热图的详情页。
 
 ## 热图详情
 
 
 ### 点击热图
 
-在热图页面，观测云默认打开**点击热图**这一类型。在这一类型下，您可以查看当前页面不同指标的统计数据以及页面操作 TOP 100 次数的事件。
-
-hover 在左侧热图页面，点击色块可直接查看该区的点击数与占比。您可以通过点击查看更多分析打开右侧操作的详情页面，还可以复制该区操作名称直接前往 Action 查看器中作搜索查询使用；或直接点击在 Action 查看器中打开该处操作，查看更多详情。
+在热图页面，观测云默认打开右侧**点击热图**这一类型。在这一类型下，您可以查看当前页面不同指标的统计数据以及页面操作 TOP 100 次数的事件。
 
 <img src="../img/click.png" width="70%" >
+
+Hover 在左侧热图页面，点击色块可直接查看该区的点击数与占比。您可以通过点击查看更多分析打开右侧操作的详情页面，还可以复制该区操作名称直接前往 Action 查看器中作搜索查询使用；或直接点击在 Action 查看器中打开该处操作，查看更多详情。
+
+<img src="../img/click-1.png" width="70%" >
 
 #### 统计
 
@@ -54,7 +57,7 @@ hover 在左侧热图页面，点击色块可直接查看该区的点击数与�
 
 在这一类型下，观测云会展示点击次数 Top10 的元素。当 hover 在右侧列表所在行时，左侧的热图会划到对应位置。
 
-![](img/elments.gif)
+![](img/elments.png)
 
 点击某条事件，可进入操作详情页。页面细节可参考 [这里](#100)。
 
@@ -89,13 +92,12 @@ hover 在左侧热图页面，点击色块可直接查看该区的点击数与�
 
 在切换应用时，可能该页面无法未找到用于生成热图的会话重放数据，从而无法为您展示热图页面。您可尝试以下办法：
 
-1. 检查是否已添加热图的代码片段至 RUM SDK ；
+1. 检查是否已添加热图的代码片段至 RUM SDK；
 2. 检查您应用的用户访问和会话重播数据是否正常收集；
 3. 调整筛选条件，扩大查询的时间范围。
 
 在页面处可直接前往应用管理或跳转至检查是否有会话数据的详情页。
 
-<img src="../img/switch-2.png" width="70%" >
 
 ## 保存热图
 
@@ -103,14 +105,13 @@ hover 在左侧热图页面，点击色块可直接查看该区的点击数与�
 
 <img src="../img/save.png" width="70%" >
 
-保存后的热土页面统一在主页下方显示：
+保存后的页面统一在热图列表中显示：
 
 <img src="../img/save-1.png" width="70%" >
 
+对于以保存的热图，您可以：
 
-### 分享热图
-
-您可以将当前热图作为快照进行外部分享，[操作步骤同快照](../getting-started/function-details/snapshot.md#share)。
+:material-numeric-1-circle-outline: 将当前热图作为快照进行外部分享，[操作步骤同快照](../getting-started/function-details/snapshot.md#share)。
 
 被分享的热图可在管理 > 分享管理 > 分享快照处查看：
 
@@ -122,6 +123,10 @@ hover 在左侧热图页面，点击色块可直接查看该区的点击数与�
     2. 不支持切换应用；
     3. 不支持跳转至查看器中打开；
     4. 不支持点击会话重放。
+
+:material-numeric-2-circle-outline: 直接复制热图链接
+
+:material-numeric-3-circle-outline: 删除热图
 
 ## 更改页面截图
 
@@ -154,11 +159,6 @@ hover 在左侧热图页面，点击色块可直接查看该区的点击数与�
 
 </div>
 
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **查看器的强大之处**</font>](../getting-started/function-details/explorer-search.md)
-
-</div>
 
 <div class="grid cards" markdown>
 
