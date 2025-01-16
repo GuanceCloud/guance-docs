@@ -9,17 +9,19 @@
 kubectl exec -it launcher-xxxxxxxx-xxx -n launcher /bin/bash
 ```
 **launcher-xxxxxxxx-xxx 为您的 launcher 服务 pod 名称！**
-进入容器后，可以看到 Launcher 服务自带的 k8s-clear.sh（1.47.103 之后的版本，这个脚本在 /config/tools 目录中） 脚本，执行此脚本，将清理所有观测云应用服务及 k8s 的资源：
+进入容器后，可以看到 Launcher 服务自带的 k8s-clear.sh（`/config/tools/k8s-clear.sh`）脚本，执行此脚本，将清理所有观测云应用服务及 k8s 的资源：
 
-![](img/14.deployment_6.png)
+```shell
+sh /config/tools/k8s-clear.sh
+```
 
 ### 1.2 清理 MySQL 中自动创建的数据库
 可以进入 Launcher 容器，Launcher 容器中自带了 mysql 客户端工具，使用以下命令连接到观测云MySQL 实例：
-```
+```shell
 mysql -h <mysql 实例 host> -u root -P <mysql 端口> -p  
 ```
 需要使用 mysql 管理员账号连接，连接后，执行以下 6 个 MySQL 数据库及用户清理命令：
-```
+```sql
 drop database df_core;
 drop user df_core;
 drop database df_message_desk;
