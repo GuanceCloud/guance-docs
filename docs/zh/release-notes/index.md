@@ -90,7 +90,7 @@ AI 智能助手新增[生成图表](../guance-ai/index.md#chart)：生成图表�
 1. 管理后台 > 工作空间菜单优化：
     - 工作空间列表新增主存储引擎、业务两个筛选项，支持便捷筛选工作空间；
     - 优化工作空间列表页码返回逻辑，当修改/删除某工作空间，或者修改工作空间的数据上报限制，将停留在当前页，以优化查询体验。
-2. 部署版新增参数：`alertPolicyFixedNotifyTypes`，支持配置告警策略中，选择“邮件”通知方式是否显示。
+2. 部署版新增参数：`alertPolicyFixedNotifyTypes`，支持配置告警策略中，选择“邮件”通知方式是否显示 [配置参考](/deployment/application-configuration-guide/#studio-backend)。
 
 ### 新增集成 {#inte0108}
 
