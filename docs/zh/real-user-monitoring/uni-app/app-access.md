@@ -51,23 +51,23 @@
 ### 市场插件方式
 （未提供）
 
-### uni 小程序 SDK 安装
+### uni 小程序 SDK 安装 {#unimp-install}
 
-#### uni 小程序 SDK 开发调试阶段
+#### 开发调试与 wgt 发布使用 {#unimp-use}
 
-在 uni 小程序 SDK 开发调试时需要使用[本地使用](#local-plugin)方法集成 **GCUniPlugin**
+* 在 uni 小程序 SDK 开发调试时需要使用[本地使用](#local-plugin)方法集成 **GCUniPlugin** 。
 
-#### 原生 App 添加依赖和注册 Module
+* uni 小程序 SDK 制作成 wgt 包供宿主 App 使用时，宿主 App 中需要导入 [**GCUniPlugin** 的依赖库](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/develop/Hbuilder_Example/nativeplugins/GCUniPlugin)（包含 Native SDK 库），并注册 **GCUniPlugin Module** 。
 
-uni 小程序 SDK 制作成 wgt 包供原生 App 使用时，原生 App 中需要导入 [**GCUniPlugin** 的依赖库](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/develop/Hbuilder_Example/nativeplugins/GCUniPlugin)（包含 Native SDK 库），并注册 **GCUniPlugin Module** 。
+宿主 App 需要添加的操作：
 
  **iOS**
 
 *  添加 **GCUniPlugin** 依赖库
 
-    在 Xcode 项目左侧目录选中工程名，在 `TARGETS->Build Phases-> Link Binary With Libaries` 中点击“+”按钮，在弹出的窗口中点击 `Add Other -> Add Files...`，然后打开 `GCUniPlugin/ios/`  依赖库目录，选中目录中的 `FTMobileSDK.xcframework` 以及 `Guance_UniPlugin_App.xcframework` 单击 `open` 按钮将依赖库添加到工程中。
+    在 Xcode 项目左侧目录选中工程名，在 `TARGETS -> Build Phases -> Link Binary With Libaries` 中点击“+”按钮，在弹出的窗口中点击 `Add Other -> Add Files...`，然后打开 `GCUniPlugin/ios/`  依赖库目录，选中目录中的 `FTMobileSDK.xcframework` 以及 `Guance_UniPlugin_App.xcframework` 单击 `open` 按钮将依赖库添加到工程中。
 
-    在 `TARGETS->General-> Frameworks,Libaries,and Embedded Content` 中找到 `FTMobileSDK.xcframework` Embed 方式改为 `Embed & sign`。
+    在 `TARGETS -> General -> Frameworks,Libaries,and Embedded Content` 中找到 `FTMobileSDK.xcframework` Embed 方式改为 `Embed & sign`。
 
 * 注册 **GCUniPlugin Module**：
 
@@ -75,11 +75,10 @@ uni 小程序 SDK 制作成 wgt 包供原生 App 使用时，原生 App 中需�
     - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     ....
       //  注册 GCUniPlugin module
-      [WXSDKEngine registerModule:@&quot;GCUniPlugin-MobileAgent&quot; withClass:NSClassFromString(@&quot;FTMobileUniModule&quot;)];
-      [WXSDKEngine registerModule:@&quot;GCUniPlugin-RUM&quot; withClass:NSClassFromString(@&quot;FTRUMModule&quot;)];
-      [WXSDKEngine registerModule:@&quot;GCUniPlugin-Logger&quot; withClass:NSClassFromString(@&quot;FTLogModule&quot;)];
-      [WXSDKEngine registerModule:@&quot;GCUniPlugin-Tracer&quot; withClass:NSClassFromString(@&quot;FTTracerModule&quot;)];
-      
+    [WXSDKEngine registerModule:@"GCUniPlugin-MobileAgent" withClass:NSClassFromString(@"FTMobileUniModule")];
+    [WXSDKEngine registerModule:@"GCUniPlugin-RUM" withClass:NSClassFromString(@"FTRUMModule")];
+    [WXSDKEngine registerModule:@"GCUniPlugin-Logger" withClass:NSClassFromString(@"FTLogModule")];
+    [WXSDKEngine registerModule:@"GCUniPlugin-Tracer" withClass:NSClassFromString(@"FTTracerModule")];  
       return YES;
     }
 ```
@@ -120,9 +119,9 @@ uni 小程序 SDK 制作成 wgt 包供原生 App 使用时，原生 App 中需�
   }
 ```
 
-#### 原生 App 接入观测云 SDK
+#### UniApp SDK 与 Native SDK 混合使用 {#unimp-mixup}
 
-* 在上述添加 **GCUniPlugin** 依赖库操作时已将 Native SDK 添加至项目中，因此可直接调用 Native SDK 方法
+* 在上述添加 **GCUniPlugin** 依赖库操作时已将 Native SDK 添加至宿主项目中，因此可直接调用 Native SDK 方法
 
 * **Android 集成额外配置：**
 
