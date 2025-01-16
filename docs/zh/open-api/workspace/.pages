@@ -7,4 +7,6 @@ nav:
   - '功能菜单设置(new, 支持二级菜单)': menu-set-v2.md
   - '上传空间图片相关资源': upload-logo-image.md
   - '设置工作空间自定义绑定信息': set-bind-info.md
+  - '获取空间角色敏感数据脱敏字段': role-sensitive-mask-field-get.md
+  - '空间 敏感数据脱敏规则测试': sensitive-mask-test.md
   - '获取当前工作空间信息': current.md

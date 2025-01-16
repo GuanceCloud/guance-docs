@@ -6,11 +6,11 @@ summary: 'Aliyun PolarDB MySQL Metrics Display, including CPU usage, memory hit 
 __int_icon: icon/aliyun_polardb_mysql
 dashboard:
   - desc: 'Aliyun PolarDB MySQL Monitoring View'
-    path: 'dashboard/zh/aliyun_polardb_mysql/'
+    path: 'dashboard/en/aliyun_polardb_mysql/'
 
 monitor:
   - desc: 'Aliyun PolarDB MySQL Monitor'
-    path: 'monitor/zh/aliyun_polardb_mysql/'    
+    path: 'monitor/en/aliyun_polardb_mysql/'    
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -33,7 +33,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of PolarDB MySQL cloud resources, we install the corresponding collection script：「Guance Integration（Aliyun -PolarDBCollect）」(ID：`guance_aliyun_polardb`)
+To synchronize the monitoring data of PolarDB MySQL cloud resources, we install the corresponding collection script：「Guance Integration（Aliyun -PolarDB MySQL Collect）」(ID：`guance_aliyun_polardb_mysql`)
 
 Click "Install" and enter the corresponding parameters: Aliyun AK, Aliyun account name.。
 
@@ -51,7 +51,7 @@ We collected some configurations by default, as described in the Metrics column 
 ### Verify
 
 1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
+2. On the Guance platform, click 「Infrastructure - Resource Catalog」 to check whether asset information exists
 3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
 
 ## Metric {#metric}
@@ -90,7 +90,7 @@ Configure Ali Cloud - cloud monitoring. The default metric set is as follows. Yo
 
 ## Object {#object}
 
-The collected Aliyun PolarDB object data structure can be viewed in "Infrastructure - Custom" under the object data.
+The collected Aliyun PolarDB object data structure can be viewed in 「Infrastructure - Resource Catalog」 under the object data.
 
 ```json
 {
@@ -98,26 +98,27 @@ The collected Aliyun PolarDB object data structure can be viewed in "Infrastruct
   "tags": {
     "name"                : "pc-xxxx",
     "RegionId"            : "cn-hangzhou",
-    "VpcId"               : "vpc-xxxx",
     "DBNodeNumber"        : "2",
-    "PayType"             : "Postpaid",
     "DBType"              : "MySQL",
-    "LockMode"            : "Unlock",
-    "DBVersion"           : "8.0",
     "DBClusterId"         : "pc-xxxx",
-    "DBClusterNetworkType": "VPC",
     "ZoneId"              : "cn-hangzhou-i",
     "Engine"              : "POLARDB",
     "Category"            : "Normal",
-    "DBClusterDescription": "pc-xxxx",
-    "DBNodeClass"         : "polar.mysql.x4.medium"
+    "DBClusterDescription": "pc-xxxx"
   },
   "fields": {
-    "DBNodes"   : "{Node list JSON data}",
-    "Database"  : "[Details of the data library JSON data]",
-    "ExpireTime": "",
-    "CreateTime": "2022-06-17T06:07:19Z",
-    "message"   : "{Instance JSON data}"
+    "CreateTime"          : "2022-06-17T06:07:19Z",
+    "DBClusterNetworkType": "VPC",
+    "DBNodeClass"         : "polar.mysql.g1.tiny.c",
+    "DBNodes"             : "{Node List JSON Data}",
+    "DBVersion"           : "8.0",
+    "Database"            : "[Database Details JSON Data]",
+    "ExpireTime"          : "",
+    "LockMode"            : "Unlock",
+    "PayType"             : "Postpaid",
+    "Tags"                : "{"Tag": []}",
+    "VpcId"               : "vpc-bp16f7**********3p3",
+    "message"             : "{Instance JSON data}"
   }
 }
 
