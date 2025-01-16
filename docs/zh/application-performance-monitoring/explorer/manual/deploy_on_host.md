@@ -1,7 +1,7 @@
 # 在主机上部署
 ---
 
-## 安装 DataKit 采集器
+## 安装 DataKit Agent
 
 进行系统和应用程序的链路数据分析之前，需要在每个目标主机上[部署观测云 DataKit 采集器](../../../datakit/datakit-install.md)，以收集必要的链路数据。
 

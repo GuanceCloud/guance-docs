@@ -13,7 +13,9 @@ nav:
   - '查看器': explorer
   - '分析看板': app-analysis.md
   - '会话重放': session-replay
-  - '热图': heatmap.md
+  - '用户洞察': 
+    - '会话热图': heatmap.md
+    - '漏斗分析': user_insight_funnel.md
   - '数据访问': rumdata_access.md
   - '自建追踪': self-tracking.md
   - 'SourceMap': sourcemap
