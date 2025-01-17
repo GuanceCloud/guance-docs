@@ -33,7 +33,7 @@ monitor:
 
 > 提示：请提前准备好符合要求的阿里云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步 阿里云 PolarDB Oracle 的监控数据，我们安装对应的采集脚本：「观测云集成（阿里云-PolarDB采集）」(ID：`guance_aliyun_polardb`)
+同步 阿里云 PolarDB Oracle 的监控数据，我们安装对应的采集脚本：「观测云集成（阿里云-PolarDB Oracle 采集）」(ID：`guance_aliyun_polardb_oracle`)
 
 点击【安装】后，输入相应的参数：阿里云 AK、阿里云账户名。
 
@@ -53,7 +53,7 @@ monitor:
 ### 验证
 
 1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
-2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
+2. 在观测云平台，「基础设施 - 资源目录」中查看是否存在资产信息
 3. 在观测云平台，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
@@ -81,7 +81,7 @@ monitor:
 
 ## 对象 {#object}
 
-采集到的阿里云 PolarDB 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
+采集到的阿里云 PolarDB 对象数据结构, 可以从「基础设施 - 资源目录」里看到对象数据
 
 ```json
 {
@@ -89,26 +89,27 @@ monitor:
   "tags": {
     "name"                : "pc-xxxx",
     "RegionId"            : "cn-hangzhou",
-    "VpcId"               : "vpc-xxxx",
     "DBNodeNumber"        : "2",
-    "PayType"             : "Postpaid",
     "DBType"              : "MySQL",
-    "LockMode"            : "Unlock",
-    "DBVersion"           : "8.0",
     "DBClusterId"         : "pc-xxxx",
-    "DBClusterNetworkType": "VPC",
     "ZoneId"              : "cn-hangzhou-i",
     "Engine"              : "POLARDB",
     "Category"            : "Normal",
-    "DBClusterDescription": "pc-xxxx",
-    "DBNodeClass"         : "polar.mysql.x4.medium"
+    "DBClusterDescription": "pc-xxxx"
   },
   "fields": {
-    "DBNodes"   : "{节点列表 JSON 数据}",
-    "Database"  : "[数据库详情 JSON 数据]",
-    "ExpireTime": "",
-    "CreateTime": "2022-06-17T06:07:19Z",
-    "message"   : "{实例 JSON 数据}"
+    "CreateTime"          : "2022-06-17T06:07:19Z",
+    "DBClusterNetworkType": "VPC",
+    "DBNodeClass"         : "polar.mysql.g1.tiny.c",
+    "DBNodes"             : "{节点列表 JSON 数据}",
+    "DBVersion"           : "8.0",
+    "Database"            : "[数据库详情 JSON 数据]",
+    "ExpireTime"          : "",
+    "LockMode"            : "Unlock",
+    "PayType"             : "Postpaid",
+    "Tags"                : "{"Tag": []}",
+    "VpcId"               : "vpc-bp16f7**********3p3",
+    "message"             : "{实例 JSON 数据}"
   }
 }
 

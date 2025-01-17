@@ -44,7 +44,9 @@
 |整个站点 datakit 数量|cluster_datakit||每小时统计一次|全量|表示整个站点的 datakit 使用量，和具体的工作空间没有关系|
 |http api 数量|api_test||每小时统计一次|增量||
 |pv 数量|rum_pv||每小时统计一次|增量||
+|rum 写入流量计费项|rum_bytes||每小时执行一次|增量||
 |trace 数量|tracing||每小时统计一次|增量||
+|tracing 写入流量计费项|tracing_bytes||每小时执行一次|增量||
 |事件数量|keyevent||每小时执行一次|全量||
 |备份数据到客户s3对象存储|backup_log_s3_bytes|可选值为 logging/tracing/rum，分别表示对应数据类型的备份信息|每小时执行一次|增量||
 |备份数据到客户消息引擎|backup_log_kafka_bytes|可选值为 logging/tracing/rum，分别表示对应数据类型的备份信息|每小时执行一次|增量||
@@ -64,7 +66,7 @@
 ## 计量数据查询
 
 ```
-# 通过 dql 语句，可以查看具体空间一天内的日志写入量分布情况
+# 通过 dql 语句，可以查看具体空间一天内的日志写入量
 
-metering::`*`:(last(hour_count)) {project="logging", workspaceUUID="wksp_xxx"}
+metering::`*`:(sum(hour_count)) {project="logging", workspaceUUID="wksp_xxx"}
 ```
