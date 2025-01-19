@@ -87,7 +87,8 @@
 
 * 添加 **GCUniPlugin** 依赖库
 
-    将 `GCUniPlugin/android/` 文件夹中 `ft-native-[version].aar` 、`ft-sdk-[version].aar`、`gc-uniplugin-[last-version].aar`  添加到项目的 `libs` 文件夹中，修改 `build.gradle` 文件添加依赖
+   * **方式一：** 将 `GCUniPlugin/android/` 文件夹中 `ft-native-[version].aar` 、`ft-sdk-[version].aar`、`gc-uniplugin-[last-version].aar`  添加到项目的 `libs` 文件夹中，修改 `build.gradle` 文件添加依赖
+   * **方式二：** 使用 **Gradle Maven** 远程仓库的方式进行配置。这里配置方式可以参考 UniAndroid-Plugin [工程配置](#plugin_gradle_setting)
 
 ```Java
   dependencies {
@@ -166,7 +167,7 @@
 | env | string   | 否   | 环境，默认`prod`，任意字符，建议使用单个单词，例如 `test` 等 |
 | service       | string   | 否   | 设置所属业务或服务的名称 默认：`df_rum_ios`、`df_rum_android` |
 | globalContext | object   | 否   | 添加自定义标签                                               |
-| offlinePakcage | boolean   | 否   | 仅 Android 支持，是否使用离线打包，默认为 `false`，详细说明见[Android 云打包与离线打包区别](#package)       |
+| offlinePakcage | boolean   | 否   | 仅 Android 支持，是否使用离线打包或 uni 小程序，默认为 `false`，详细说明见[Android 云打包与离线打包区别](#package)       |
 
 ### RUM 配置 {#rum-config}
 
@@ -611,10 +612,10 @@ $(PROJECT_DIR)/../SDK/libs
 $(PROJECT_DIR)
 ```
 
-### 插件开发 Android 主工程 UniPlugin-Android 使用
-#### 工程配置
+### 插件开发 Android 主工程 UniPlugin-Android 使用 
+#### 工程配置 {#plugin_gradle_setting}
 
-> 详细依赖配置，可参考 [Demo](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/develop/Hbuilder_Example)。更多 Gradle 扩展参数配置请参考 [Android SDK](../android/app-access.md#gradle)
+> 详细依赖配置，可参考 [Demo](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/develop/Hbuilder_Example)。更多 Gradle 扩展参数配置请参考 [Android SDK](../android/app-access.md#gradle-setting)
 
 ```
 |-- UniPlugin-Android
@@ -650,6 +651,11 @@ $(PROJECT_DIR)
 Android 云打包与离线打包使用了两种不同的集成逻辑。离线打包集成方式与观测云 `Android SDK` 集成方式相同，使用 `Android Studio Gradle Plugin` 的方式，云打包无法使用 `Android Studio Gradle Plugin` ，所以只能通过观测云 `UniApp Native Plugin` 中内部代码实现部分功能。所以离线打包版本配置可选项要比云打包版本更多，SDK 配置中 `offlinePakcage`[参数](#base-config)就是为了区分两种情况。
 
 ### 其他
-- [Android 隐私审核](../android/app-access.md#third-party)
-- [iOS 其他相关](../ios/app-access.md#FAQ)
-- [Android 其他相关](../android/app-access.md#FAQ)
+* [Android 隐私审核](../android/app-access.md#third-party)
+* [iOS 其他相关](../ios/app-access.md#FAQ)
+* [Android 其他相关](../android/app-access.md#FAQ)
+* 原生符号文件上传
+	* [Android](../android/app-access.md#source_map)
+	* [iOS](../ios/app-access.md#source_map)
+
+
