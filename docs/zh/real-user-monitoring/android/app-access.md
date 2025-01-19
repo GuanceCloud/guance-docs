@@ -172,7 +172,7 @@ android{
 </application> 
 ```
 
-## SDK 初始化
+## SDK 初始化 {#init}
 
 ### 基础配置 {#base-setting}
 === "Java"
