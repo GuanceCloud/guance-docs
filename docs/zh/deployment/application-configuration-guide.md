@@ -59,6 +59,10 @@ external:
   # 当系统在 debug 模式下运行时，允许无限制自动通过的签名字符串, 默认无值
   debugPassSignature: ""
 
+# 告警策略 成员类型 可选的 通知方式
+alertPolicyFixedNotifyTypes:
+  email:
+    enable: true
 
 # Token 默认过期时间设置
 token_exp_set:

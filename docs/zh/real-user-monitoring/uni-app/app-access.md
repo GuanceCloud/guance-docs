@@ -51,6 +51,82 @@
 ### 市场插件方式
 （未提供）
 
+### uni 小程序 SDK 安装 {#unimp-install}
+
+#### 开发调试与 wgt 发布使用 {#unimp-use}
+
+* 在 uni 小程序 SDK 开发调试时需要使用[本地使用](#local-plugin)方法集成 **GCUniPlugin** 。
+
+* uni 小程序 SDK 制作成 wgt 包供宿主 App 使用时，宿主 App 中需要导入 [**GCUniPlugin** 的依赖库](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/develop/Hbuilder_Example/nativeplugins/GCUniPlugin)（包含 Native SDK 库），并注册 **GCUniPlugin Module** 。
+
+宿主 App 需要添加的操作：
+
+ **iOS**
+
+*  添加 **GCUniPlugin** 依赖库
+
+    在 Xcode 项目左侧目录选中工程名，在 `TARGETS -> Build Phases -> Link Binary With Libaries` 中点击“+”按钮，在弹出的窗口中点击 `Add Other -> Add Files...`，然后打开 `GCUniPlugin/ios/`  依赖库目录，选中目录中的 `FTMobileSDK.xcframework` 以及 `Guance_UniPlugin_App.xcframework` 单击 `open` 按钮将依赖库添加到工程中。
+
+    在 `TARGETS -> General -> Frameworks,Libaries,and Embedded Content` 中找到 `FTMobileSDK.xcframework` Embed 方式改为 `Embed & sign`。
+
+* 注册 **GCUniPlugin Module**：
+
+```objective-c
+    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    ....
+      //  注册 GCUniPlugin module
+    [WXSDKEngine registerModule:@"GCUniPlugin-MobileAgent" withClass:NSClassFromString(@"FTMobileUniModule")];
+    [WXSDKEngine registerModule:@"GCUniPlugin-RUM" withClass:NSClassFromString(@"FTRUMModule")];
+    [WXSDKEngine registerModule:@"GCUniPlugin-Logger" withClass:NSClassFromString(@"FTLogModule")];
+    [WXSDKEngine registerModule:@"GCUniPlugin-Tracer" withClass:NSClassFromString(@"FTTracerModule")];  
+      return YES;
+    }
+```
+
+ **Android**
+
+* 添加 **GCUniPlugin** 依赖库
+
+    将 `GCUniPlugin/android/` 文件夹中 `ft-native-[version].aar` 、`ft-sdk-[version].aar`、`gc-uniplugin-[last-version].aar`  添加到项目的 `libs` 文件夹中，修改 `build.gradle` 文件添加依赖
+
+```Java
+  dependencies {
+      implementation files('libs/ft-native-[version].aar')
+      implementation files('libs/ft-sdk-[version].aar')
+      implementation files('libs/gc-uniplugin-[last-version].aar')
+      implementation 'com.google.code.gson:gson:2.8.5'
+  }   
+```
+
+* 注册 **GCUniPlugin Module**：
+
+```java
+  public class App extends Application {
+      @Override
+      public void onCreate() {
+          super.onCreate();
+          try {
+            //  注册 GCUniPlugin module
+              WXSDKEngine.registerModule("GCUniPlugin-Logger", FTLogModule.class);
+              WXSDKEngine.registerModule("GCUniPlugin-RUM", FTRUMModule.class);
+              WXSDKEngine.registerModule("GCUniPlugin-Tracer", FTTracerModule.class);
+              WXSDKEngine.registerModule("GCUniPlugin-MobileAgent", FTSDKUniModule.class);
+          } catch (Exception e) {
+              e.printStackTrace();
+          }
+          ......
+      }
+  }
+```
+
+#### UniApp SDK 与 Native SDK 混合使用 {#unimp-mixup}
+
+* 在上述添加 **GCUniPlugin** 依赖库操作时已将 Native SDK 添加至宿主项目中，因此可直接调用 Native SDK 方法
+
+* **Android 集成额外配置：**
+
+    配置 Gradle Plugin [ft-plugin](../android/app-access/#gradle-setting) ，采集 App 启动事件和网络请求数据，以及 Android Native 原生相关事件（页面跳转、点击事件、Native 网络请求、WebView 数据）。
+
 ## SDK 初始化
 
 ### 基础配置 {#base-setting}
