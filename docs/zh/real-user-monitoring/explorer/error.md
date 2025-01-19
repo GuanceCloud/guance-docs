@@ -15,8 +15,8 @@
 
 在 Error 查看器，您可以快速查看用户访问时的页面地址、代码错误类型、错误内容等。
 
-- 错误内容 Load failed：即没有 response 的错误，默认 SDK 加了 Load failed；  
-- 错误内容 Network request failed：即 response 返回错误。 
+- 错误内容 Load failed：即没有 `response` 的错误，默认 SDK 加了 Load failed；  
+- 错误内容 Network request failed：即 `response` 返回错误。 
 
 ![](../img/12.rum_explorer_6.png)
 

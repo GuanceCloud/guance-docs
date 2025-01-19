@@ -60,7 +60,7 @@ AWS 账号类型有两种认证方式：Access Keys、角色授权。
 
 ???+ abstract "安装前提"
 
-    已开通 [DataFlux Func 托管版](../dataflux-func/index.md#steps)。
+    已开通 [DataFlux Func 托管版](../dataflux-func/automata.md)。
 
     若未开通 DataFlux Func 托管版，请先前往开通。
 

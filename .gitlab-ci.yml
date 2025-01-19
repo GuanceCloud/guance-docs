@@ -149,7 +149,7 @@ buildUOSRTM:
       --build-arg GUANCE_HELPS_CDN_AK_SECRET="${GUANCE_HELPS_CDN_AK_SECRET}"
       --build-arg GUANCE_HELPS_OSS_BUCKET="${GUANCE_HELPS_OSS_BUCKET}"
       --build-arg GUANCE_HELPS_OSS_ENDPOINT="${GUANCE_HELPS_OSS_ENDPOINT}"
-      --platform linux/amd64 
+      --platform linux/amd64,linux/arm64
       -t pubrepo.jiagouyun.com/$REPO:$TAG
       -f Dockerfile.uos . --push
   tags:

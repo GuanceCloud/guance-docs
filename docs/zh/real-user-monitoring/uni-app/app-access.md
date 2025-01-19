@@ -87,7 +87,8 @@
 
 * 添加 **GCUniPlugin** 依赖库
 
-    将 `GCUniPlugin/android/` 文件夹中 `ft-native-[version].aar` 、`ft-sdk-[version].aar`、`gc-uniplugin-[last-version].aar`  添加到项目的 `libs` 文件夹中，修改 `build.gradle` 文件添加依赖
+   * **方式一：** 将 `GCUniPlugin/android/` 文件夹中 `ft-native-[version].aar` 、`ft-sdk-[version].aar`、`gc-uniplugin-[last-version].aar`  添加到项目的 `libs` 文件夹中，修改 `build.gradle` 文件添加依赖
+   * **方式二：** 使用 **Gradle Maven** 远程仓库的方式进行配置。这里配置方式可以参考 UniAndroid-Plugin [工程配置](#plugin_gradle_setting)
 
 ```Java
   dependencies {
@@ -176,15 +177,15 @@
 | env | string   | 否   | 环境，默认`prod`，任意字符，建议使用单个单词，例如 `test` 等 |
 | service       | string   | 否   | 设置所属业务或服务的名称 默认：`df_rum_ios`、`df_rum_android` |
 | globalContext | object   | 否   | 添加自定义标签                                               |
-| offlinePakcage | boolean   | 否   | 仅 Android 支持，是否使用离线打包，默认为 `false`，详细说明见[Android 云打包与离线打包区别](#package)       |
+| offlinePakcage | boolean   | 否   | 仅 Android 支持，是否使用离线打包或 uni 小程序，默认为 `false`，详细说明见[Android 云打包与离线打包区别](#package)       |
 | autoSync | boolean | 否 | 是否开启自动同步。默认 `YES`。当为 `NO` 时使用 [`flushSyncData`](#flushSyncData) 方法自行管理数据同步 |
 | syncPageSize | number | 否 | 设置同步请求条目数。范围 [5,）注意：请求条目数越大，代表数据同步占用更大的计算资源，默认为 10 |
 | syncSleepTime | number | 否 | 设置同步间歇时间。范围 [0,5000]，默认不设置 |
 | enableDataIntegerCompatible | boolean | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题 。 |
-| compressIntakeRequests | boolean | 否 | 对同步数据进行压缩，SDK 0.1.3  以上版本支持这个参数 |
-| enableLimitWithDbSize | boolean | 否 | 开启使用 DB 限制总缓存大小功能。<br>**注意：**开启之后 Log 配置  `logCacheLimitCount` 及 RUM 配置`rumCacheLimitCount` 将失效。SDK 0.1.3  以上版本支持该参数 |
-| dbCacheLimit | number | 否 | DB 缓存限制大小。范围 [30MB,)，默认 100MB，单位 byte，SDK 0.1.3  以上版本支持该参数 |
-| dbDiscardStrategy | string | 否 | 设置数据库中数据丢弃规则。<br>丢弃策略：`discard`丢弃新数据（默认）、`discardOldest`丢弃旧数据。SDK 0.1.3 以上版本支持该参数 |
+| compressIntakeRequests | boolean | 否 | 对同步数据进行压缩，SDK 0.2.0  以上版本支持这个参数 |
+| enableLimitWithDbSize | boolean | 否 | 开启使用 DB 限制总缓存大小功能。<br>**注意：**开启之后 Log 配置  `logCacheLimitCount` 及 RUM 配置`rumCacheLimitCount` 将失效。SDK 0.2.0  以上版本支持该参数 |
+| dbCacheLimit | number | 否 | DB 缓存限制大小。范围 [30MB,)，默认 100MB，单位 byte，SDK 0.2.0  以上版本支持该参数 |
+| dbDiscardStrategy | string | 否 | 设置数据库中数据丢弃规则。<br>丢弃策略：`discard`丢弃新数据（默认）、`discardOldest`丢弃旧数据。SDK 0.2.0 以上版本支持该参数 |
 
 ### RUM 配置 {#rum-config}
 
@@ -810,16 +811,17 @@ $(PROJECT_DIR)/../SDK/libs
 $(PROJECT_DIR)
 ```
 
-### 插件开发 Android 主工程 UniPlugin-Android 使用
-#### 工程配置
+### 插件开发 Android 主工程 UniPlugin-Android 使用 
+#### 工程配置 {#plugin_gradle_setting}
 
-> 详细依赖配置，可参考 [Demo](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/develop/Hbuilder_Example)。
+> 详细依赖配置，可参考 [Demo](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/develop/Hbuilder_Example)。更多 Gradle 扩展参数配置请参考 [Android SDK](../android/app-access.md#gradle-setting)
 
 ```
 |-- UniPlugin-Android
 	|-- app
 		|--build.gradle
-		//配置 ft-plugin
+		// ---> 配置 ft-plugin
+		// apply:'ft-plugin'
 		
 	|-- uniplugin_module
 		|-- src
@@ -827,18 +829,18 @@ $(PROJECT_DIR)
 				|-- java
 					|-- com.ft.sdk.uniapp
 		|-- build.gradle 
-		//	配置依赖 dependencies
+		//---> 配置依赖 dependencies
 		//implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:xxxx'
 		//implementation 'com.google.code.gson:gson:xxxx'
 		//implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-native:xxxx'
 		
 	|-- build.gradle
-		//	配置 repo
+		//---> 配置 repo
 		//	maven {
 		//      	url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
 		//	}
 		//
-		//	配置 buildScrpit
+		//--> 配置 buildScrpit
 		//	classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:xxxx'
 
 ```
@@ -848,6 +850,11 @@ $(PROJECT_DIR)
 Android 云打包与离线打包使用了两种不同的集成逻辑。离线打包集成方式与观测云 `Android SDK` 集成方式相同，使用 `Android Studio Gradle Plugin` 的方式，云打包无法使用 `Android Studio Gradle Plugin` ，所以只能通过观测云 `UniApp Native Plugin` 中内部代码实现部分功能。所以离线打包版本配置可选项要比云打包版本更多，SDK 配置中 `offlinePakcage`[参数](#base-config)就是为了区分两种情况。
 
 ### 其他
-- [Android 隐私审核](../android/app-access.md#third-party)
-- [iOS 其他相关](../ios/app-access.md#FAQ)
-- [Android 其他相关](../android/app-access.md#FAQ)
+* [Android 隐私审核](../android/app-access.md#third-party)
+* [iOS 其他相关](../ios/app-access.md#FAQ)
+* [Android 其他相关](../android/app-access.md#FAQ)
+* 原生符号文件上传
+	* [Android](../android/app-access.md#source_map)
+	* [iOS](../ios/app-access.md#source_map)
+
+

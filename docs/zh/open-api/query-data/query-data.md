@@ -84,6 +84,9 @@ maxPointCount > interval > density > dql语句中的控制参数
 
   - [未恢复事件查询](../../../studio-backend/unrecovered-event-query/)
 
+</br>
+注: openapi 接口进行数据查询时, 默认为 管理员 角色. 需注意可能受到 数据访问规则限制
+
 
 
 
