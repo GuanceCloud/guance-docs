@@ -1868,7 +1868,7 @@ android{
 ```
 
 ## 符号文件上传 {#source_map}
-### plugin 上传
+### plugin 上传 （仅支持 datakit【本地部署】）
 `ft-plugin` 版本需要 `1.3.0` 以上版本支持最新的符号文件上传规则，支持 `productFlavor` 多版本区分管理，plugin 会在 `gradle task assembleRelease` 之后执行上传符号文件，详细配置可以参考 [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/build.gradle#L59)
 
 ``` groovy
@@ -1880,7 +1880,7 @@ FTExt {
     datawayToken = 'dataway_token'
     appId = "appid_xxxxx"// appid
     env = 'common'
-	generateSourceMapOnly //仅生成 sourcemap，路径示例：/app/build/tmp/ft{flavor}SourceMapMerge-release.zip，ft-plugin:1.3.4 以上版本支持
+	generateSourceMapOnly = false //仅生成 sourcemap，默认为 false，路径示例：/app/build/tmp/ft{flavor}SourceMapMerge-release.zip，ft-plugin:1.3.4 以上版本支持
 
     prodFlavors { //prodFlavors 配置会覆盖外层设置
         prodTest {
@@ -1904,7 +1904,7 @@ FTExt {
 
 ```
 ### 手动上传
-需要开发者将符号文件自行打包成 `zip` 文件，然后自行上传至 `datakit` ，推荐使用 `zip` 命令行进行打包，避免将一些系统隐藏文件打入 `zip` 包中，符号上传请参考 [sourcemap 上传](../../integrations/rum.md#sourcemap)
+使用 `plugin` 开启 `generateSourceMapOnly = true`, 执行 `gradle task assembleRelease`生成，或自行打包成 `zip` 文件，然后自行上传至 `datakit` 或从观测云 Studio 上传，推荐使用 `zip` 命令行进行打包，避免将一些系统隐藏文件打入 `zip` 包中，符号上传请参考 [sourcemap 上传](../../integrations/rum.md#sourcemap)
 
 > Unity Native Symbol 文件请参考[官方文档](https://docs.unity3d.com/Manual/android-symbols.html#public-symbols)
 
