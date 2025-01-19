@@ -538,13 +538,14 @@ $(PROJECT_DIR)
 ### 插件开发 Android 主工程 UniPlugin-Android 使用
 #### 工程配置
 
-> 详细依赖配置，可参考 [Demo](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/develop/Hbuilder_Example)。
+> 详细依赖配置，可参考 [Demo](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/develop/Hbuilder_Example)。更多 Gradle 扩展参数配置请参考 [Android SDK](../android/app-access.md#gradle)
 
 ```
 |-- UniPlugin-Android
 	|-- app
 		|--build.gradle
-		//配置 ft-plugin
+		// ---> 配置 ft-plugin
+		// apply:'ft-plugin'
 		
 	|-- uniplugin_module
 		|-- src
@@ -552,18 +553,18 @@ $(PROJECT_DIR)
 				|-- java
 					|-- com.ft.sdk.uniapp
 		|-- build.gradle 
-		//	配置依赖 dependencies
+		//---> 配置依赖 dependencies
 		//implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:xxxx'
 		//implementation 'com.google.code.gson:gson:xxxx'
 		//implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-native:xxxx'
 		
 	|-- build.gradle
-		//	配置 repo
+		//---> 配置 repo
 		//	maven {
 		//      	url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
 		//	}
 		//
-		//	配置 buildScrpit
+		//--> 配置 buildScrpit
 		//	classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:xxxx'
 
 ```
