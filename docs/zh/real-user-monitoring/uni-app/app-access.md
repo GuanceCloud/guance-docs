@@ -67,7 +67,7 @@
 
     在 Xcode 项目左侧目录选中工程名，在 `TARGETS -> Build Phases -> Link Binary With Libaries` 中点击“+”按钮，在弹出的窗口中点击 `Add Other -> Add Files...`，然后打开 `GCUniPlugin/ios/`  依赖库目录，选中目录中的 `FTMobileSDK.xcframework` 以及 `Guance_UniPlugin_App.xcframework` 单击 `open` 按钮将依赖库添加到工程中。
 
-    在 `TARGETS -> General -> Frameworks,Libaries,and Embedded Content` 中找到 `FTMobileSDK.xcframework` Embed 方式改为 `Embed & sign`。
+    当 SDK Version < 0.2.0 时：在 `TARGETS -> General -> Frameworks,Libaries,and Embedded Content` 中找到 `FTMobileSDK.xcframework` Embed 方式改为 `Embed & sign`。
 
 * 注册 **GCUniPlugin Module**：
 
@@ -123,6 +123,14 @@
 
 * 在上述添加 **GCUniPlugin** 依赖库操作时已将 Native SDK 添加至宿主项目中，因此可直接调用 Native SDK 方法
 
+* SDK 的初始化
+
+    混合使用时，仅需在宿主 App 内初始化 Native SDK，在 uni 小程序中无需再进行初始化配置，可以直接调用 UniApp SDK 提供的方法。
+
+    宿主 App 内 SDK 的初始方法请参考 [iOS SDK 初始化配置]() 、[Android SDK 初始化配置]() 。
+
+    注意：请在加载 uni 小程序之前，宿主 App 完成 SDK 初始化，以确保在调用 SDK 的其他任何方法之前，SDK 已经完全准备就绪。
+
 * **Android 集成额外配置：**
 
     配置 Gradle Plugin [ft-plugin](../android/app-access/#gradle-setting) ，采集 App 启动事件和网络请求数据，以及 Android Native 原生相关事件（页面跳转、点击事件、Native 网络请求、WebView 数据）。
@@ -139,7 +147,7 @@
         onLaunch: function() {
             console.log('App Launch')
             guanceModule.sdkConfig({
-                'serverUrl': 'your severurl',
+                'datakitUrl': 'your datakitUrl',
                 'debug': true,
                 'env': 'common',
                 'globalContext': {
@@ -161,12 +169,22 @@
 
 | 参数名称      | 参数类型 | 必须 | 参数说明                                                     |
 | :------------ | :------- | :--- | ------------------------------------------------------------ |
-| serverUrl     | string   | 是   | datakit 访问 URL 地址，例子：http://10.0.0.1:9529，端口默认 9529。注意：安装 SDK 设备需能访问这地址                                               |
+| datakitUrl | string   | 是   | Datakit 访问地址，例子：[http://10.0.0.1:9529](http://10.0.0.1:9529/)，端口默认 9529，安装 SDK 设备需能访问这地址.**注意：datakit 和 dataway 配置两者二选一** |
+| datawayUrl | string | 是 | 公网 Dataway 访问地址，例子：[http://10.0.0.1:9528](http://10.0.0.1:9528/)，端口默认 9528，安装 SDK 设备需能访问这地址.**注意：datakit 和 dataway 配置两者二选一** |
+| clientToken | string | 是 | 认证 token，需要与 datawayUrl 同时使用 |
 | debug         | boolean  | 否   | 设置是否允许打印 Debug 日志，默认`false`                            |
 | env | string   | 否   | 环境，默认`prod`，任意字符，建议使用单个单词，例如 `test` 等 |
 | service       | string   | 否   | 设置所属业务或服务的名称 默认：`df_rum_ios`、`df_rum_android` |
 | globalContext | object   | 否   | 添加自定义标签                                               |
 | offlinePakcage | boolean   | 否   | 仅 Android 支持，是否使用离线打包，默认为 `false`，详细说明见[Android 云打包与离线打包区别](#package)       |
+| autoSync | boolean | 否 | 是否开启自动同步。默认 `YES`。当为 `NO` 时使用 [`flushSyncData`](#flushSyncData) 方法自行管理数据同步 |
+| syncPageSize | number | 否 | 设置同步请求条目数。范围 [5,）注意：请求条目数越大，代表数据同步占用更大的计算资源，默认为 10 |
+| syncSleepTime | number | 否 | 设置同步间歇时间。范围 [0,5000]，默认不设置 |
+| enableDataIntegerCompatible | boolean | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题 。 |
+| compressIntakeRequests | boolean | 否 | 对同步数据进行压缩，SDK 0.1.3  以上版本支持这个参数 |
+| enableLimitWithDbSize | boolean | 否 | 开启使用 DB 限制总缓存大小功能。<br>**注意：**开启之后 Log 配置  `logCacheLimitCount` 及 RUM 配置`rumCacheLimitCount` 将失效。SDK 0.1.3  以上版本支持该参数 |
+| dbCacheLimit | number | 否 | DB 缓存限制大小。范围 [30MB,)，默认 100MB，单位 byte，SDK 0.1.3  以上版本支持该参数 |
+| dbDiscardStrategy | string | 否 | 设置数据库中数据丢弃规则。<br>丢弃策略：`discard`丢弃新数据（默认）、`discardOldest`丢弃旧数据。SDK 0.1.3 以上版本支持该参数 |
 
 ### RUM 配置 {#rum-config}
 
@@ -192,6 +210,12 @@ rum.setConfig({
 | deviceMonitorType        | string/array | 否       | 页面监控补充类型： `all` 、`battery`（仅Android支持)、 `memory`、`cpu`、`fps` |
 | detectFrequency          | string       | 否       | 页面监控频率：`normal`(默认)、 `frequent`、`rare`            |
 | globalContext            | object       | 否       | 自定义全局参数，特殊 key :`track_id`  (用于追踪功能)         |
+| enableTrackNativeCrash | boolean | 否 | 是否采集 `Native Error` |
+| enableTrackNativeAppANR | boolean | 否 | 是否采集 `Native ANR` |
+| enableTrackNativeFreeze | boolean | 否 | 是否采集 `Native Freeze` |
+| nativeFreezeDurationMs | number | 否 | 设置采集 `Native Freeze`卡顿的阈值，取值范围 [100,)，单位毫秒。iOS 默认 250ms，Android 默认 1000ms |
+| rumDiscardStrategy | string | 否 | 丢弃策略：`discard`丢弃新数据（默认）、`discardOldest`丢弃旧数据 |
+| rumCacheLimitCount | number | 否 | 本地缓存最大 RUM 条目数量限制 [10000,)，默认 100_000 |
 
 ### Log 配置 {#log-config}
 
@@ -204,14 +228,15 @@ logger.setConfig({
 })
 ```
 
-| 参数名称          | 参数类型      | 必须 | 参数说明                                                     |
-| :---------------- | :------------ | :--- | :----------------------------------------------------------- |
-| samplerate        | number        | 否   | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。                                                       |
-| enableLinkRumData | boolean       | 否   | 是否与 RUM 关联                                              |
-| enableCustomLog   | boolean       | 否   | 是否开启自定义日志                                           |
-| discardStrategy   | string        | 否   | 日志丢弃策略：`discard`丢弃新数据（默认）、`discardOldest`丢弃旧数据 |
-| logLevelFilters   | array<string> | 否   | 日志等级过滤，数组中需填写 **日志等级**：`info`提示、`warning`警告、`error`错误、`critical`、`ok`恢复 |
-| globalContext     | object        | 否   | 自定义全局参数                                               |
+| 参数名称           | 参数类型      | 必须 | 参数说明                                                     |
+| :----------------- | :------------ | :--- | :----------------------------------------------------------- |
+| samplerate         | number        | 否   | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
+| enableLinkRumData  | boolean       | 否   | 是否与 RUM 关联                                              |
+| enableCustomLog    | boolean       | 否   | 是否开启自定义日志                                           |
+| discardStrategy    | string        | 否   | 日志丢弃策略：`discard`丢弃新数据（默认）、`discardOldest`丢弃旧数据 |
+| logLevelFilters    | array<string> | 否   | 日志等级过滤，数组中需填写 **日志等级**：`info`提示、`warning`警告、`error`错误、`critical`、`ok`恢复 |
+| globalContext      | object        | 否   | 自定义全局参数                                               |
+| logCacheLimitCount | number        | 否   | 本地缓存最大日志条目数量限制 [1000,)，日志越大，代表磁盘缓存压力越大，默认 5000 |
 
 ### Trace 配置 {#trace-config}
 
@@ -239,7 +264,9 @@ var rum = uni.requireNativePlugin("GCUniPlugin-RUM");
 
 #### API - startAction
 
-添加 Action 事件：
+启动 RUM Action。
+
+RUM 会绑定该 Action 可能触发的 Resource、Error、LongTask 事件。避免在 0.1 s 内多次添加，同一个 View 在同一时间只会关联一个 Action，在上一个 Action 未结束时，新增的 Action 会被丢弃。与 `addAction` 方法添加 Action 互不影响.
 
 ```javascript
 rum.startAction({
@@ -253,6 +280,23 @@ rum.startAction({
 | actionName | string   | 是       | 事件名称         |
 | actionType | string   | 是       | 事件类型         |
 | property   | object   | 否       | 事件上下文(可选) |
+
+#### API - addAction
+
+添加 Action 事件。无 duration，无丢弃逻辑。
+
+```javascript
+rum.addAction({
+					'actionName': 'action name',
+					'actionType': 'action type'
+				})
+```
+
+| 参数名称   | 参数类型 | 必须 | 参数说明         |
+| ---------- | -------- | ---- | ---------------- |
+| actionName | string   | 是   | 事件名称         |
+| actionType | string   | 是   | 事件类型         |
+| property   | object   | 否   | 事件上下文(可选) |
 
 ### View {#rumview}
 
@@ -382,6 +426,7 @@ rum.addError({
 | message  | string   | 是       | 错误信息                                   |
 | stack    | string   | 是       | 堆栈信息                                   |
 | state    | string   | 否       | App 运行状态 (`unknown`、`startup`、`run`) |
+| type | string | 否 | 错误类型，默认 `uniapp_crash` |
 | property | object   | 否       | 事件上下文(可选)                           |
 
 ### Resource
@@ -389,6 +434,12 @@ rum.addError({
 ```javascript
 //示例使用 uni.request 进行网络请求，
       let key = Utils.getUUID();//可参考 example utils.js
+      // trace 关联 RUM
+			var traceHeader = tracer.getTraceHeader({
+				'key': key,
+				'url': requestUrl,
+			})
+			traceHeader = Object.assign({},traceHeader, header)
       // 1. startResource
 			rum.startResource({
         'key':key
@@ -399,7 +450,7 @@ rum.addError({
 			uni.request({
 				url: requestUrl,
 				method: method,
-				header: header,
+				header: traceHeader,
 				success: (res) => {
 					responseHeader = res.responseHeader;
 					responseBody = res.data;
@@ -475,7 +526,7 @@ logger.logging({
 				})
 ```
 
-#### API - logging
+### API - logging
 
 | 参数名称 | 参数类型 | 必须 | 参数说明                 |
 | :------- | -------- | -------- | ------------------------ |
@@ -543,7 +594,7 @@ guanceModule.bindRUMUserData({
 guanceModule.unbindRUMUserData()
 ```
 
-#### API - bindRUMUserData
+### API - bindRUMUserData
 
 绑定用户信息：
 
@@ -554,10 +605,81 @@ guanceModule.unbindRUMUserData()
 | userEmail | string   | 否       | 用户邮箱       |
 | extra     | object   | 否       | 用户的额外信息 |
 
-#### API - unbindRUMUserData
+### API - unbindRUMUserData
 
-解绑当前用户
+解绑当前用户。
 
+## 关闭 SDK
+
+```javascript
+var guanceModule = uni.requireNativePlugin("GCUniPlugin-MobileAgent");
+guanceModule.shutDown()
+```
+### API - shutDown
+
+关闭 SDK。
+
+## 清理 SDK 缓存数据
+```javascript
+var guanceModule = uni.requireNativePlugin("GCUniPlugin-MobileAgent");
+guanceModule.clearAllData()
+```
+
+### API - clearAllData
+
+清除所有尚未上传至服务器的数据。
+
+## 主动同步数据 {#flushSyncData}
+
+```javascript
+var guanceModule = uni.requireNativePlugin("GCUniPlugin-MobileAgent");
+guanceModule.flushSyncData()
+```
+
+### API - flushSyncData
+
+当配置 `guanceModule.sdkConfig` 为 `true` 时，无需做额外的操作，SDK 会进行自动同步。
+
+当配置 `guanceModule.sdkConfig` 为 `false` 时，需要主动触发数据同步方法，进行数据同步。
+
+## 添加自定义标签 {#user-global-context}
+
+```javascript
+var guanceModule = uni.requireNativePlugin("GCUniPlugin-MobileAgent");
+ftMobileSDK.appendGlobalContext({
+				  'ft_global_key':'ft_global_value'
+			  })
+ftMobileSDK.appendRUMGlobalContext({
+				  'ft_global_rum_key':'ft_global_rum_value'
+  			  })
+ftMobileSDK.appendLogGlobalContext({
+				  'ft_global_log_key':'ft_global_log_value'
+		     })  			  
+```
+
+### API - appendGlobalContext
+
+添加自定义全局参数。作用于 RUM、Log 数据
+
+| 参数名称 | 参数类型 | 必须 | 参数说明       |
+| :------- | -------- | ---- | -------------- |
+| 无       | object   | 是   | 自定义全局参数 |
+
+### API - appendRUMGlobalContext
+
+添加自定义 RUM 全局参数。作用于 RUM 数据
+
+| 参数名称 | 参数类型 | 必须 | 参数说明            |
+| :------- | -------- | ---- | ------------------- |
+| 无       | object   | 是   | 自定义全局 RUM 参数 |
+
+### API - appendLogGlobalContext
+
+添加自定义 RUM、Log 全局参数。作用于 Log 数据
+
+| 参数名称 | 参数类型 | 必须 | 参数说明            |
+| :------- | -------- | ---- | ------------------- |
+| 无       | object   | 是   | 自定义全局 Log 参数 |
 
 ## 常见问题
 
