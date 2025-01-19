@@ -1,7 +1,7 @@
 # 更新日志
 ---
 
-### **0.2.0 (2025/01/17)** {#0-2-0}
+### **0.2.0 (2025/01/19)** {#0-2-0}
 * 适配 iOS [1.5.9](../ios/sdk-changelog.md#1-5-9)
 * Android ft-sdk [1.6.7](../android/sdk-changelog.md#1-6-7), ft-native:1.1.1, ft-plugin-legacy 1.1.8
 * 支持 Open Dataway 直传
