@@ -285,7 +285,7 @@ rum.startAction({
 
 #### API - addAction
 
-添加 Action 事件。无 duration，无丢弃逻辑。
+添加 Action 事件。此类数据无法关联 Error，Resource，LongTask 数据，无丢弃逻辑。
 
 ```javascript
 rum.addAction({
