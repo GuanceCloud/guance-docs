@@ -721,7 +721,7 @@ NOTE: 以下内容，合并到 1.62.0 版本发布
 
 本次版本，扩展了数据协议，老版本的 Datakit 升级上来之后，如果中心底座是私有部署的，可以做如下措施（之一），保持数据兼容：
 
-- 升级中心底座至 [1.87.167](../deployment/changelog.md#1871672024-06-05)，或者
+- 升级中心底座至 [1.87.167](../deployment/changelog/2024.md#1.87.167)，或者
 - 修改 *datakit.conf* 中[上传协议配置 `content_encoding`](datakit-conf.md#dataway-settings)，将其改为 `v2`
 
 #### 对 InfluxDB 部署版的说明 {#cl-1.30.0-brk-influxdb}
