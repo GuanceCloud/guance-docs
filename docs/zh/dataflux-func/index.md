@@ -12,4 +12,3 @@ DataFlux Func 是一个基于 Python 的脚本开发、管理、执行平台。�
 - Server：使用 Node.js + Express 构建，主要提供 Web UI 服务、对外 API 接口。
 - Worker：使用 Python3 + Celery 构建，主要提供 Python 脚本的执行环境（内含 Beat 模块）。
 
-
