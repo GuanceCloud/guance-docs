@@ -839,10 +839,12 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`command`|Slow command|int|μs|
+|`client_addr`|The client ip:port that run the slow query|string|-|
+|`client_name`|The client name that run the slow query(if `client setname` executed on client-side)|string|-|
+|`command`|Slow command|string|-|
 |`slowlog_95percentile`|Slow 95th percentile duration|int|μs|
 |`slowlog_avg`|Slow average duration|float|μs|
-|`slowlog_id`|Slow log unique id|int|-|
+|`slowlog_id`|Slow log unique ID|int|-|
 |`slowlog_max`|Slow maximum duration|int|μs|
 |`slowlog_median`|Slow median duration|int|μs|
 |`slowlog_micros`|Cost time|int|μs|

@@ -151,7 +151,7 @@ spec:
       value: "YYY"    
 ```
 
-## ENV Set Collectors: {#env-setting}
+## ENV Set Collectors {#env-setting}
 
 The opening of some collectors can also be injected through ENV_DATAKIT_INPUTS.
 The following is an injection example of MySQL and Redis collectors:
@@ -590,6 +590,14 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
     **Type**: String
 
     **Default**: localhost:9529
+
+- **ENV_HTTP_LISTEN_SOCKET**
+
+    The address can be modified so that the [DataKit interface](apis.md) can be called externally.
+
+    **Type**: String
+
+    **Example**: `/var/run/datakit/datakit.sock`
 
 - **ENV_HTTP_PUBLIC_APIS**
 

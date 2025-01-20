@@ -1,6 +1,6 @@
 nav:
   - index.md
-  - '发布历史': changelog.md 
+  - '发布历史': changelog 
   - '私有化版本说明': deployment-description.md   
   - '产品部署': 
     - '部署必读': how-to-install.md
