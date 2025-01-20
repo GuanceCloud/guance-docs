@@ -159,9 +159,10 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
 ### `nginx`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -171,7 +172,7 @@ For all of the following data collections, the global election tags will added a
 |`nginx_server`|Nginx server host|
 |`nginx_version`|Nginx version, exist when using vts|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -190,9 +191,11 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
 ### `nginx_server_zone`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -203,7 +206,7 @@ For all of the following data collections, the global election tags will added a
 |`nginx_version`|nginx version|
 |`server_zone`|server zone|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -226,9 +229,11 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
 ### `nginx_upstream_zone`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -240,7 +245,7 @@ For all of the following data collections, the global election tags will added a
 |`upstream_server`|upstream server|
 |`upstream_zone`|upstream zone|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -262,9 +267,11 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
 ### `nginx_cache_zone`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -275,7 +282,7 @@ For all of the following data collections, the global election tags will added a
 |`nginx_server`|nginx server host|
 |`nginx_version`|nginx version|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -295,9 +302,11 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
 ### `nginx_location_zone`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -308,7 +317,7 @@ For all of the following data collections, the global election tags will added a
 |`nginx_server`|nginx server host|
 |`nginx_version`|nginx version|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -327,6 +336,9 @@ For all of the following data collections, the global election tags will added a
 |`response_4xx`|The number of 4xx response (only for Nginx plus)|int|count|
 |`response_5xx`|The number of 5xx response (only for Nginx plus)|int|count|
 |`sent`|The total number of send bytes (only for Nginx plus)|int|count|
+
+
+
 
 
 
@@ -350,6 +362,35 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
+
+
+
+
+### `web_server`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on Nginx(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`|Connection IP of the Nginx|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- Metrics
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current Nginx uptime|int|s|
+|`version`|Current version of Nginx|string|-|
 
 
 
@@ -436,14 +477,14 @@ The list of cut fields is as follows:
 
 ## Tracing {#tracing}
 
-### Pre-Condition
+### Requirements {#trace-requirements}
 
 - [x] Install nginx (>=1.9.13)
 
 ***This module only supports the Linux operating system***
 
 
-### Install Nginx OpenTracing Plugin
+### Install Nginx OpenTracing Plugin {#install-otp}
 
 The Nginx OpenTracing plugin is an open-source link tracking plugin for `OpenTracing`, written in C++，It's work for `Jaeger`、`Zipkin`、`LightStep`、`Datadog`.
 
@@ -469,7 +510,7 @@ load_module modules/ngx_http_opentracing_module.so;
 ```
 
 
-### Install DDAgent Nginx OpenTracing plugin
+### Install DDAgent Nginx OpenTracing plugin {#install-ddp}
 
 The DDAgent Nginx OpenTracing plugin is a set of vendor implementations based on `Nginx OpenTracing`, with different APMs having their own encoding and decoding implementations.
 
@@ -534,7 +575,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 `info: DATADOG TRACER CONFIGURATION` Indicates that DDTrace has been successfully loaded 。
 
-### Service tracing propagate
+### Service tracing propagate {#trace-propagate}
 
 After Nginx generates link information, it needs to forward the relevant request header information to the backend, which can form a link concatenation operation between Nginx and the backend.
 
@@ -552,7 +593,7 @@ location ^~ / {
 
 ```
 
-### Load nginx configure
+### Load nginx configure {#load-config}
 
 Execute the following command to make the Nginx configuration effective:
 

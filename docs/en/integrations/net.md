@@ -129,7 +129,7 @@ For all the following data collections, a global tag named `host` is appended by
 
 ### `net`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -137,7 +137,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`host`|System hostname.|
 |`interface`|Network interface name.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

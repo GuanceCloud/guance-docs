@@ -80,7 +80,7 @@ Consul collector is used to collect metric data related to Consul, and currently
 
 ### `consul`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -98,7 +98,7 @@ Consul collector is used to collect metric data related to Consul, and currently
 |`status`|Status: critical, maintenance, passing, warning.|
 |`tag`|Tag.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

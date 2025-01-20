@@ -120,7 +120,7 @@ Simply configure Output Host as a logstreaming URL (`http://Datakit_IP:PORT/v1/w
 
 Using `source` field in the config file, default is `default`.
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -128,7 +128,7 @@ Using `source` field in the config file, default is `default`.
 |`ip_or_hostname`|Request IP or hostname.|
 |`service`|Service name. Using the `service` parameter in the URL.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

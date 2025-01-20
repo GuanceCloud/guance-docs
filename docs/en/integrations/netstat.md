@@ -154,7 +154,7 @@ Measurements for statistics regardless of port number: `netstat` ; Measurements 
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -163,7 +163,7 @@ Measurements for statistics regardless of port number: `netstat` ; Measurements 
 |`host`|Host name|
 |`ip_version`|IP version, 4 for IPV4, 6 for IPV6, unknown for others|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
