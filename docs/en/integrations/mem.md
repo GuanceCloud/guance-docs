@@ -84,14 +84,14 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `mem`
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`host`|System hostname.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

@@ -163,7 +163,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -176,7 +176,7 @@ For all of the following data collections, the global election tags will added a
 |`tenant_id`|Tenant id|
 |`tenant_name`|Tenant Name|
 
-- Metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -196,7 +196,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -209,7 +209,7 @@ For all of the following data collections, the global election tags will added a
 |`tenant_id`|Tenant id|
 |`tenant_name`|Tenant Name|
 
-- Metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -225,7 +225,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -237,7 +237,7 @@ For all of the following data collections, the global election tags will added a
 |`tenant_id`|Tenant id|
 |`tenant_name`|Tenant Name|
 
-- Metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -254,7 +254,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -266,7 +266,7 @@ For all of the following data collections, the global election tags will added a
 |`tenant_id`|Tenant id|
 |`tenant_name`|Tenant Name|
 
-- Metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -283,7 +283,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -295,7 +295,7 @@ For all of the following data collections, the global election tags will added a
 |`tenant_id`|Tenant id|
 |`tenant_name`|Tenant Name|
 
-- Metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -312,7 +312,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -325,7 +325,7 @@ For all of the following data collections, the global election tags will added a
 |`tenant_id`|Tenant id|
 |`tenant_name`|Tenant Name|
 
-- Metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -349,7 +349,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -361,7 +361,7 @@ For all of the following data collections, the global election tags will added a
 |`tenant_id`|Tenant id|
 |`tenant_name`|Tenant Name|
 
-- Metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

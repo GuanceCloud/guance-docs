@@ -94,11 +94,12 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
 ### `nsq_topics`
 
 Metrics of all topics in the NSQ cluster
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -106,7 +107,7 @@ Metrics of all topics in the NSQ cluster
 |`channel`|Channel name|
 |`topic`|Topic name|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -121,11 +122,13 @@ Metrics of all topics in the NSQ cluster
 
 
 
+
+
 ### `nsq_nodes`
 
 Metrics of all nodes in the NSQ cluster.
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -133,7 +136,7 @@ Metrics of all nodes in the NSQ cluster.
 |`host`|Hostname|
 |`server_host`|Service address, that is `host:ip`.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -144,6 +147,9 @@ Metrics of all nodes in the NSQ cluster.
 
 
 
+
+
+
 ## Custom Object {#object}
 
 
@@ -151,6 +157,36 @@ Metrics of all nodes in the NSQ cluster.
 
 
 
+
+
+
+
+
+
+
+### `mq`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on Nsq(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`|Connection IP of the Nsq|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- Metrics
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current Nsq uptime|int|s|
+|`version`|Current version of Nsq|string|-|
 
 
 

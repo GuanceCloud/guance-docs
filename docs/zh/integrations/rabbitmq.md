@@ -121,6 +121,8 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 
 
+
+
 ### `rabbitmq_overview`
 
 - 标签
@@ -167,6 +169,9 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 
 
+
+
+
 ### `rabbitmq_queue`
 
 - 标签
@@ -207,6 +212,9 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 |`messages_ready_rate`|Number per second of messages ready to be delivered to clients|float|percent|
 |`messages_unacknowledged`|Number of messages delivered to clients but not yet acknowledged|int|count|
 |`messages_unacknowledged_rate`|Number per second of messages delivered to clients but not yet acknowledged|float|percent|
+
+
+
 
 
 
@@ -251,6 +259,9 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 
 
+
+
+
 ### `rabbitmq_node`
 
 - 标签
@@ -284,6 +295,10 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 
 
+
+
+
+
 ## 自定义对象 {#object}
 
 
@@ -300,6 +315,35 @@ RabbitMQ 采集器是通过插件 `rabbitmq-management` 采集数据监控 Rabbi
 
 
 
+
+
+
+
+
+
+### `mq`
+
+
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on RabbitMQ(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`|Connection IP of the RabbitMQ|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current RabbitMQ uptime|int|s|
+|`version`|Current version of RabbitMQ|string|-|
 
 
 

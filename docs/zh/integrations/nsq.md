@@ -95,6 +95,8 @@ monitor   :
 
 
 
+
+
 ### `nsq_topics`
 
 Metrics of all topics in the NSQ cluster
@@ -122,6 +124,9 @@ Metrics of all topics in the NSQ cluster
 
 
 
+
+
+
 ### `nsq_nodes`
 
 Metrics of all nodes in the NSQ cluster.
@@ -145,13 +150,48 @@ Metrics of all nodes in the NSQ cluster.
 
 
 
-## 自定义对象 {#object}
+
+
+
+
+
+## 自定义对象 {#custom_object}
 
 
 
 
 
 
+
+
+
+
+
+
+
+### `mq`
+
+
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on Nsq(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`|Connection IP of the Nsq|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current Nsq uptime|int|s|
+|`version`|Current version of Nsq|string|-|
 
 
 

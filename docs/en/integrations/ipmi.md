@@ -429,7 +429,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- Tag
+- Tags
 
 
 | Tag | Description |
@@ -437,7 +437,7 @@ For all of the following data collections, the global election tags will added a
 |`host`|Monitored host name|
 |`unit`|Unit name in the host|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |

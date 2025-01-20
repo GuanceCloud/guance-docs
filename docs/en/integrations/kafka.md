@@ -219,14 +219,14 @@ For all of the following data collections, the global election tags will added a
 
 In Kafka cluster mode, a unique controller node will be elected, and only the controller node will receive valid metrics.
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`jolokia_agent_url`|Jolokia agent url path|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -574,14 +574,14 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`jolokia_agent_url`|Jolokia agent url path|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -621,14 +621,14 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`jolokia_agent_url`|Jolokia agent url path|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -656,14 +656,14 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`jolokia_agent_url`|Jolokia agent url path|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -763,14 +763,14 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`jolokia_agent_url`|Jolokia agent url path|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -908,7 +908,7 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -916,7 +916,7 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 |`jolokia_agent_url`|Jolokia agent url path|
 |`topic`|topic name|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -963,7 +963,7 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -972,7 +972,7 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 |`partition`|partition number|
 |`topic`|topic name|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -989,14 +989,14 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`jolokia_agent_url`|Jolokia agent url path|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -1019,7 +1019,7 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -1027,7 +1027,7 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 |`jolokia_agent_url`|Jolokia agent url path|
 |`type`|metric type|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -1044,7 +1044,7 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -1052,7 +1052,7 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 |`jolokia_agent_url`|Jolokia agent url path|
 |`type`|metric type|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -1070,7 +1070,7 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 This metrics needs to be collected on the Consumer instance
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -1079,7 +1079,7 @@ This metrics needs to be collected on the Consumer instance
 |`jolokia_agent_url`|Jolokia agent url path|
 |`type`|metric type|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -1157,7 +1157,7 @@ This metrics needs to be collected on the Consumer instance
 
 This metrics needs to be collected on the Producer instance
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -1166,7 +1166,7 @@ This metrics needs to be collected on the Producer instance
 |`jolokia_agent_url`|Jolokia agent url path|
 |`type`|metric type|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -1235,7 +1235,7 @@ This metrics needs to be collected on the Producer instance
 
 This metrics needs to be collected on the Connect instance
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -1246,7 +1246,7 @@ This metrics needs to be collected on the Connect instance
 |`task`|task|
 |`type`|metric type|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

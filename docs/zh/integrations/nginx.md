@@ -160,6 +160,8 @@ server {
 
 
 
+
+
 ### `nginx`
 
 - 标签
@@ -188,6 +190,9 @@ server {
 |`load_timestamp`|Nginx process load time in milliseconds, exist when using vts|int|msec|
 |`pid`|The pid of nginx process (only for Nginx plus)|int|count|
 |`ppid`|The ppid of nginx process (only for Nginx plus)|int|count|
+
+
+
 
 
 
@@ -227,6 +232,9 @@ server {
 
 
 
+
+
+
 ### `nginx_upstream_zone`
 
 - 标签
@@ -263,6 +271,9 @@ server {
 
 
 
+
+
+
 ### `nginx_cache_zone`
 
 - 标签
@@ -293,6 +304,9 @@ server {
 |`responses_updating`|The number of cache updating|int|count|
 |`send`|The total number of bytes sent from the cache.|int|B|
 |`used_size`|The current size of the cache.|int|B|
+
+
+
 
 
 
@@ -328,6 +342,63 @@ server {
 |`response_4xx`|The number of 4xx response (only for Nginx plus)|int|count|
 |`response_5xx`|The number of 5xx response (only for Nginx plus)|int|count|
 |`sent`|The total number of send bytes (only for Nginx plus)|int|count|
+
+
+
+
+
+
+
+## 自定义对象 {#custom_object}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### `web_server`
+
+
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on Nginx(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`|Connection IP of the Nginx|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current Nginx uptime|int|s|
+|`version`|Current version of Nginx|string|-|
+
 
 
 
@@ -412,16 +483,15 @@ server {
 
 ## 链路 {#tracing}
 
-### 前提条件
+### 前提条件 {#trace-requirements}
 
 - [x] 安装 nginx (>=1.9.13)
 
-***该模块只支持 linux 操作系统***
+***该模块只支持 Linux 操作系统***
 
+### 安装 Nginx OpenTracing 插件 {#install-otp}
 
-### 安装 Nginx OpenTracing 插件
-
-Nginx OpenTracing 插件是 OpenTracing 开源的链路追踪插件，基于 C++ 编写，可以工作于 `Jaeger`、`Zipkin`、`LightStep`、`Datadog`.
+Nginx OpenTracing 插件是 OpenTracing 开源的链路追踪插件，基于 C++ 编写，可以工作于 `Jaeger`、`Zipkin`、`LightStep`、`Datadog`。
 
 - [下载](https://github.com/opentracing-contrib/nginx-opentracing/releases){:target="_blank"} 与当前 Nginx 版本对应的插件，通过以下命令可以查看当前 Nginx 版本
 
@@ -445,7 +515,7 @@ load_module modules/ngx_http_opentracing_module.so;
 ```
 
 
-### 安装 DDAgent Nginx OpenTracing 插件
+### 安装 DDAgent Nginx OpenTracing 插件 {#install-ddp}
 
 DDAgent Nginx OpenTracing 插件是基于 `Nginx OpenTracing` 的一套厂商的实现，不同的 APM 会有各自的编解码实现。
 
@@ -510,7 +580,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 `info: DATADOG TRACER CONFIGURATION` 表示已经成功加载了 DDTrace 。
 
-### 服务链路转发
+### 服务链路转发 {#trace-propagate}
 
 Nginx 产生链路信息后，需要将相关请求头信息转发给后端，可以形成 Nginx 与后端的链路串联操作。
 
@@ -528,7 +598,7 @@ location ^~ / {
 
 ```
 
-### 加载 Nginx 配置
+### 加载 Nginx 配置 {#load-config}
 
 执行以下命令使 Nginx 配置生效：
 
