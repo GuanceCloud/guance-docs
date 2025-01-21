@@ -20,8 +20,5 @@
     * 支持通过 rumCacheLimitCount ，rumDiscardStrategy 限制 RUM 数据缓存条目数上限，默认 100_000
 * `GCUniPlugin-Logger`
     * 支持通过 logCacheLimitCount 限制 RUM 数据缓存条目数上限，默认 5000
-<<<<<<< HEAD
 
 [更多日志](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/blob/develop/CHANGELOG.md)
-=======
->>>>>>> release

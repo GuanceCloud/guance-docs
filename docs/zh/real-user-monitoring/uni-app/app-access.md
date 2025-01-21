@@ -438,31 +438,6 @@ SDK 提供了一个示例方法 `gc.request`。该方法封装自 `uni.request` 
 **`gc.request` 实现**
 
 ```javascript
-<<<<<<< HEAD
-//示例使用 uni.request 进行网络请求，
-      let key = Utils.getUUID();//可参考 example utils.js
-      // trace 关联 RUM
-			var traceHeader = tracer.getTraceHeader({
-				'key': key,
-				'url': requestUrl,
-			})
-			traceHeader = Object.assign({},traceHeader, header)
-      // 1. startResource
-			rum.startResource({
-        'key':key
-      });
-			var responseHeader;
-			var responseBody;
-			var resourceStatus;
-			uni.request({
-				url: requestUrl,
-				method: method,
-				header: traceHeader,
-				success: (res) => {
-					responseHeader = res.responseHeader;
-					responseBody = res.data;
-					resourceStatus = res.statusCode;
-=======
 // GCRequest.js
 var rum = uni.requireNativePlugin("GCUniPlugin-RUM");
 var tracer = uni.requireNativePlugin("GCUniPlugin-Tracer");
@@ -568,7 +543,6 @@ gc.request({
 				timeout:30000,
 				success(res)  {
 					console.log('success:' + JSON.stringify(res))
->>>>>>> release
 				},
 				fail(err) {
 					console.log('fail:' + JSON.stringify(err))
