@@ -211,7 +211,10 @@ rum.setConfig({
 | deviceMonitorType        | string/array | 否       | 页面监控补充类型： `all` 、`battery`（仅Android支持)、 `memory`、`cpu`、`fps` |
 | detectFrequency          | string       | 否       | 页面监控频率：`normal`(默认)、 `frequent`、`rare`            |
 | globalContext            | object       | 否       | 自定义全局参数，特殊 key :`track_id`  (用于追踪功能)         |
+<<<<<<< HEAD
+=======
 | enableResourceHostIP | boolean | 否 | 是否采集请求目标域名地址的 IP。作用域：只影响 `enableNativeUserResource`  为 true 的默认采集。iOS：`>= iOS 13` 下支持。Android：单个 Okhttp 对相同域名存在 IP 缓存机制，相同 `OkhttpClient`，在连接服务端 IP 不发生变化的前提下，只会生成一次。 |
+>>>>>>> release
 | enableTrackNativeCrash | boolean | 否 | 是否采集 `Native Error` |
 | enableTrackNativeAppANR | boolean | 否 | 是否采集 `Native ANR` |
 | enableTrackNativeFreeze | boolean | 否 | 是否采集 `Native Freeze` |
