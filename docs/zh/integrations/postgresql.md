@@ -52,7 +52,7 @@ grant SELECT ON pg_stat_database to datakit;
       # or simple string
       # host=localhost user=pqgotest password=... sslmode=... dbname=app_production
     
-      address = "postgres://datakit:PASSWORD@localhost?sslmode=disable"
+      address = "postgres://datakit:PASSWORD@localhost/postgres?sslmode=disable"
     
       ## Ignore databases which are gathered. Do not use with 'databases' option.
       #
@@ -200,7 +200,7 @@ grant SELECT ON pg_stat_database to datakit;
 | Tag | Description |
 |  ----  | --------|
 |`db`|The database name|
-|`index`|The index name|
+|`pg_index`|The index name|
 |`schema`|The schema name|
 |`server`|The server address|
 |`table`|The table name|

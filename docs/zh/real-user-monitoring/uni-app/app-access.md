@@ -205,12 +205,16 @@ rum.setConfig({
 | iOSAppId                 | string       | 是       | appId，监测中申请                                            |
 | samplerate               | number       | 否       | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据        |
 | enableNativeUserAction   | boolean      | 否       | 是否进行 `Native Action` 追踪，`Button` 点击事件，纯 `uni-app` 应用建议关闭，默认为 `false`，Android 云打包不支持 |
-| enableNativeUserResource | boolean      | 否       | 是否进行 `Native Resource` 自动追踪，纯 `uni-app` 应用建议关闭，默认为 `false` ，Android 云打包不支持|
+| enableNativeUserResource | boolean      | 否       | 是否进行 `Native Resource` 自动追踪，默认为 `false` ，Android 云打包不支持。由于 uniapp 的网络请求在 iOS 端是使用系统 API 实现的，所以开启后，iOS 所有 resource 数据能够一并采集，此时请屏蔽 iOS 端的手动采集，以防止数据重复采集。 |
 | enableNativeUserView     | boolean      | 否       | 是否进行 `Native View` 自动追踪，纯 `uni-app` 应用建议关闭，，默认为 `false` |
 | errorMonitorType         | string/array | 否       | 错误监控补充类型：`all`、`battery`、 `memory`、 `cpu`        |
 | deviceMonitorType        | string/array | 否       | 页面监控补充类型： `all` 、`battery`（仅Android支持)、 `memory`、`cpu`、`fps` |
 | detectFrequency          | string       | 否       | 页面监控频率：`normal`(默认)、 `frequent`、`rare`            |
 | globalContext            | object       | 否       | 自定义全局参数，特殊 key :`track_id`  (用于追踪功能)         |
+<<<<<<< HEAD
+=======
+| enableResourceHostIP | boolean | 否 | 是否采集请求目标域名地址的 IP。作用域：只影响 `enableNativeUserResource`  为 true 的默认采集。iOS：`>= iOS 13` 下支持。Android：单个 Okhttp 对相同域名存在 IP 缓存机制，相同 `OkhttpClient`，在连接服务端 IP 不发生变化的前提下，只会生成一次。 |
+>>>>>>> release
 | enableTrackNativeCrash | boolean | 否 | 是否采集 `Native Error` |
 | enableTrackNativeAppANR | boolean | 否 | 是否采集 `Native ANR` |
 | enableTrackNativeFreeze | boolean | 否 | 是否采集 `Native Freeze` |
@@ -253,7 +257,7 @@ tracer.setConfig({
 | samplerate            | number   | 否       | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。              |
 | traceType             | string   | 否       | 链路类型：`ddTrace`（默认）、`zipkinMultiHeader`、`zipkinSingleHeader`、`traceparent`、`skywalking`、`jaeger` |
 | enableLinkRUMData     | boolean  | 否       | 是否与 `RUM` 数据关联，默认`false`                           |
-| enableNativeAutoTrace | boolean  | 否       | 是否开启原生网络自动追踪 iOS `NSURLSession` ,Android `OKhttp`，默认`false`, 纯 `uni-app` 应用建议关闭, Android 云打包不支持 |
+| enableNativeAutoTrace | boolean  | 否       | 是否开启原生网络自动追踪 iOS `NSURLSession` ,Android `OKhttp`，默认`false`, Android 云打包不支持。 由于 uniapp 的网络请求在 iOS 端是使用系统 API 实现的，所以开启后，iOS 端 uniapp 发起的网络请求可以自动追踪，此时请屏蔽 iOS 端的手动链路追踪，以防止链路与 `RUM` 数据关联错误。 |
 
 ## RUM 用户数据追踪
 
@@ -432,7 +436,17 @@ rum.addError({
 
 ### Resource
 
+SDK 提供了一个示例方法 `gc.request`。该方法封装自 `uni.request` 的网络请求方法，您可以直接将 `uni.request` 方法替换为 `gc.request` 进行网络请求。
+
+**额外参数：`filterPlatform`**
+
+* **功能**：`filterPlatform` 参数用于指定哪些平台的资源数据不应被采集。
+* **使用场景**：当启用 `enableNativeUserResource` 功能时，uniapp 在 iOS 端会自动采集通过系统 API 发起的网络请求数据。为了避免数据重复采集，您可以在使用 `gc.request` 时，通过添加 `filterPlatform: ["ios"]`参数来屏蔽在 iOS 平台上的手动数据采集。
+
+**`gc.request` 实现**
+
 ```javascript
+<<<<<<< HEAD
 //示例使用 uni.request 进行网络请求，
       let key = Utils.getUUID();//可参考 example utils.js
       // trace 关联 RUM
@@ -456,29 +470,121 @@ rum.addError({
 					responseHeader = res.responseHeader;
 					responseBody = res.data;
 					resourceStatus = res.statusCode;
+=======
+// GCRequest.js
+var rum = uni.requireNativePlugin("GCUniPlugin-RUM");
+var tracer = uni.requireNativePlugin("GCUniPlugin-Tracer");
+// 获取平台信息
+const platform = uni.getSystemInfoSync().platform;
+export default {
+    getUUID() {
+    	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    		var r = Math.random() * 16 | 0,
+    			v = c == 'x' ? r : (r & 0x3 | 0x8);
+    		return v.toString(16);
+    	});
+    },
+    isEmpty(value) {
+	    return value === null || value === undefined;
+	},
+	/// 通过 filterPlatform 参数进行平台过滤，当开启 `enableNativeUserResource` 时，
+	//  由于 uniapp 的网络请求在 iOS 端是使用系统 API 实现的，iOS 所有 resource 数据能够一并采集，
+	/// 此时请屏蔽 iOS 端 uniapp 中手动采集，以防止数据重复采集。
+	/// 例:["ios"], iOS 端设置不进行 trace 追踪与 RUM 采集。
+    request(options){ 
+		let key = this.getUUID();
+		var filter;
+		if(this.isEmpty(options.filterPlatform)){
+			filter = false
+		}else{
+	        filter = options.filterPlatform.includes(platform);
+		}
+		var traceHeader = {}
+		if(filter == false){
+		  // trace 关联 RUM
+		  var traceHeader = tracer.getTraceHeader({
+		  	'key': key,
+		  	'url': options.url,
+		  })
+		}
+		traceHeader = Object.assign({},traceHeader, options.header)
+		rum.startResource({
+			'key':key,
+		});
+		var responseHeader;
+		var responseBody;
+		var resourceStatus;
+		return uni.request({
+			url: options.url,
+			method: options.method,
+			header: traceHeader,
+			data:options.data,
+			timeout:options.timeout,
+			success: (res) => {
+				if(filter){
+				  responseHeader = res.header;
+				  responseBody = res.data;
+				  resourceStatus = res.statusCode;
+				}
+				if(this.isEmpty(options.success)){
+					options.success(res);
+				}
+			},
+			fail:(err) => {
+				if(!filter){
+				  responseBody = err.errMsg;
+				}
+				if(this.isEmpty(options.fail)){
+					options.fail(err);
+				}
+			},
+			complete() {
+				if(!filter){
+				  rum.stopResource({
+				  	'key':key,
+				  })
+				  rum.addResource({
+				  	'key': key,
+				  	'content': {
+				  		'url': options.url,
+				  		'httpMethod': options.method,
+				  		'requestHeader': traceHeader,
+				  		'responseHeader': responseHeader,
+				  		'responseBody': responseBody,
+				  		'resourceStatus': resourceStatus,
+				  	}
+				  })
+				}
+				if(this.isEmpty(options.complete)){
+					options.complete();
+				}
+			}
+		});
+	}
+} 
+```
+
+**使用示例**
+
+```javascript
+import gc from './GCRequest.js';
+gc.request({
+				url: requestUrl,
+				method: method,
+				header: header,
+				filterPlatform:["ios"],
+				timeout:30000,
+				success(res)  {
+					console.log('success:' + JSON.stringify(res))
+>>>>>>> release
 				},
-				fail: (err) =>{
-					responseBody = err.message;
+				fail(err) {
+					console.log('fail:' + JSON.stringify(err))
 				},
 				complete() {
-          // 2. stopResource
-					rum.stopResource({
-            'key':key
-          })
-          // 3. addResource
-					rum.addResource({
-						'key': key,
-						'content': {
-							'url': requestUrl,
-							'httpMethod': method,
-							'requestHeader': header,
-							'responseHeader': responseHeader,
-							'responseBody': responseBody,
-							'resourceStatus': resourceStatus,
-						}
-					})
+					console.log('complete:' + JSON.stringify(err))
 				}
-			});	
+			});
 ```
 
 #### API - startResource

@@ -223,7 +223,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **input.conf**: `extract_k8s_label_as_tags_v2`
     
-        **Example**: ["app","name"]
+        **Example**: `["app","name"]`
     
     - **ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2_FOR_METRIC**
     
@@ -233,7 +233,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **input.conf**: `extract_k8s_label_as_tags_v2_for_metric`
     
-        **Example**: ["app","name"]
+        **Example**: `["app","name"]`
     
     - **ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_POD_ANNOTATIONS**
     
@@ -277,7 +277,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
     - **ENV_INPUT_CONTAINER_KEEP_EXIST_PROMETHEUS_METRIC_NAME**
     
-        Whether to keep the raw field names for Prometheus, see [Kubernetes Prometheus doc](kubernetes-prom.md#measurement-and-tags
+        Deprecated. Whether to keep the raw field names for Prometheus, see [Kubernetes Prometheus doc](kubernetes-prom.md#measurement-and-tags
     
         **Type**: Boolean
     
@@ -293,7 +293,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **input.conf**: `container_include_log`
     
-        **Example**: "image:pubrepo.jiagouyun.com/datakit/logfwd*"
+        **Example**: `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`
     
     - **ENV_INPUT_CONTAINER_CONTAINER_EXCLUDE_LOG**
     
@@ -303,7 +303,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **input.conf**: `container_exclude_log`
     
-        **Example**: "image:pubrepo.jiagouyun.com/datakit/logfwd*"
+        **Example**: `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`
     
     - **ENV_INPUT_CONTAINER_KUBERNETES_URL**
     
@@ -313,7 +313,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **input.conf**: `kubernetes_url`
     
-        **Example**: https://kubernetes.default:443
+        **Example**: `https://kubernetes.default:443`
     
     - **ENV_INPUT_CONTAINER_BEARER_TOKEN**
     
@@ -333,7 +333,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **input.conf**: `bearer_token_string`
     
-        **Example**: your-token-string
+        **Example**: `your-token-string`
     
     - **ENV_INPUT_CONTAINER_LOGGING_SEARCH_INTERVAL**
     
@@ -353,7 +353,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **input.conf**: `logging_extra_source_map`
     
-        **Example**: source_regex*=new_source,regex*=new_source2
+        **Example**: `source_regex*=new_source,regex*=new_source2`
     
     - **ENV_INPUT_CONTAINER_LOGGING_SOURCE_MULTILINE_MAP_JSON**
     
@@ -363,7 +363,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **input.conf**: `logging_source_multiline_map`
     
-        **Example**: {"source_nginx":"^\\d{4}", "source_redis":"^[A-Za-z_]"}
+        **Example**: `{"source_nginx":"^\d{4}", "source_redis":"^[A-Za-z_]"}`
     
     - **ENV_INPUT_CONTAINER_LOGGING_AUTO_MULTILINE_DETECTION**
     
@@ -383,7 +383,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **input.conf**: `logging_auto_multiline_extra_patterns`
     
-        **Example**: ["^\\d{4}-\\d{2}", "^[A-Za-z_]"]
+        **Example**: `["^\d{4}-\d{2}", "^[A-Za-z_]"]`
     
         **Default**: For more default rules, see [doc](logging.md#auto-multiline)
     
@@ -445,7 +445,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **input.conf**: `logging_field_white_list`
     
-        **Example**: '["service","container_id"]'
+        **Example**: `'["service","container_id"]'`
     
     - **ENV_INPUT_CONTAINER_CONTAINER_MAX_CONCURRENT**
     
