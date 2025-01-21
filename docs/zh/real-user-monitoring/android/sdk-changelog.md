@@ -8,6 +8,11 @@
 </div>
 
 ## **ft-sdk** {#ft-sdk}
+### **1.6.8 (2025/01/21)** {#ft-sdk-1-6-8}
+1. 修复多次初始化 RUM 配置，fps 采集不准确的问题
+2. 容错老版本缓存数据升级
+3. `FTRUMConfig.setOkHttpTraceHeaderHandler` 迁移至 `FTTraceConfig.setOkHttpTraceHeaderHandler`
+4. WebView SDK 内部信息增强，优化性能
 ### **1.6.7 (2025/01/10)** {#ft-sdk-1-6-7}
 1. 支持自定义 `FTTraceInterceptor.HeaderHandler` 与 RUM 数据做关联
 2. 支持通过 `FTRUMConfig.setOkHttpTraceHeaderHandler` 更改 ASM 写入的 `FTTraceInterceptor.HeaderHandler` 内容，
