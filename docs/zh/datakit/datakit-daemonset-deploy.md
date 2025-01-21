@@ -631,6 +631,14 @@ spec:
 
     **默认值**: localhost:9529
 
+- **ENV_HTTP_LISTEN_SOCKET**
+
+    可修改地址，使得外部可以通过 unix socket 调用 [Datakit 接口](apis.md)。
+
+    **字段类型**: String
+
+    **示例**: `/var/run/datakit/datakit.sock`
+
 - **ENV_HTTP_PUBLIC_APIS**
 
     允许外部访问的 Datakit [API 列表](apis.md)，多个 API 之间以英文逗号分割。当 Datakit 部署在公网时，用来禁用部分 API。

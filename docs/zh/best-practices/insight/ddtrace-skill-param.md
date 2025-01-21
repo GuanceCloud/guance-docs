@@ -280,7 +280,7 @@ ddtrace 1.9.0 之前使用
 关于传播器更多资料可以参考[链路传播（Propagate）机制及使用场景](https://juejin.cn/post/7254125867177443365){:target="_blank"}
 
 
-### Response 返回 TraceId :loudspeaker:
+### Response 返回 TraceId
 
 此项不需要额外配置，在请求响应完成后， 追加 key 为 `guance_trace_id` 的 header。
 
@@ -288,7 +288,7 @@ ddtrace 1.9.0 之前使用
 
 :heavy_check_mark: version >= 1.25.1-guance
 
-### Header Tags :loudspeaker:
+### Header Tags
 
 把请求和响应中所有的 header 添加到链路 tag 上，请求 header 的 tag 名称为`request_header`，响应结果 header 的 tag 名称为 `response_header`。需要通过以下两种方式进行开启，二选一：
 
@@ -302,11 +302,14 @@ ddtrace 1.9.0 之前使用
 
 ![Img](../images/ddtrace-param-request-header.png)
 
-:point_right: 目前支持 Servlet3 和 Netty4
+|组件|ddtrace 版本|
+|-|-|
+|javax.servlet| >=1.25|
+|jakarta.servlet | >=1.42.9|
 
-:heavy_check_mark: version >= 1.25.2-guance
 
-### Request body Tag :loudspeaker:
+
+### Request body Tag
 
 把请求体添加到链路 tag 上，目前只支持 `POST` 请求，且 `Context-Type` 为 `application/json` 或 `application/json;charset=UTF-8`
 - 启动命令
@@ -324,9 +327,39 @@ ddtrace 1.9.0 之前使用
 ![Img](../images/ddtrace-param-request-body.png)
 
 
-:point_right: 目前支持 Servlet3
+|组件|ddtrace 版本|
+|-|-|
+|javax.servlet| >=1.25|
+|jakarta.servlet | >=1.42.9|
 
-:heavy_check_mark: version >= 1.25.2-guance
+### Response body Tag 
+
+把响应体的内容添加到链路 tag 上，支持`application/json` 和`text/plain` 类型的数据
+
+- 启动命令
+
+`-Ddd.trace.response.body.enabled`：默认值为 `false`，即不开启。
+
+- 环境变量
+
+`DD_TRACE_RESPONSE_BODY_ENABLED`
+
+读取 response body 会占用一定的 java 内存空间，建议对响应体较大的请求(如文件下载接口)加上黑名单处理，防止 OOM，黑名上的 url 将不再解析响应体内容。
+
+黑名单配置如下：
+
+- 参数方式
+
+> -Ddd.trace.response.body.blacklist.urls="/auth,/download/file"
+
+- 环境变量方式
+
+> DD_TRACE_RESPONSE_BODY_BLACKLIST_URLS
+
+|组件|ddtrace 版本|
+|-|-|
+|javax.servlet| >=1.42|
+|jakarta.servlet | >=1.42.9|
 
 
 
