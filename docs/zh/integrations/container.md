@@ -222,7 +222,7 @@ monitor:
     
         **采集器配置字段**: `extract_k8s_label_as_tags_v2`
     
-        **示例**: ["app","name"]
+        **示例**: `["app","name"]`
     
     - **ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2_FOR_METRIC**
     
@@ -232,7 +232,7 @@ monitor:
     
         **采集器配置字段**: `extract_k8s_label_as_tags_v2_for_metric`
     
-        **示例**: ["app","name"]
+        **示例**: `["app","name"]`
     
     - **ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_POD_ANNOTATIONS**
     
@@ -256,7 +256,7 @@ monitor:
     
     - **ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_POD_MONITORS**
     
-        是否开启自动发现 Prometheus Pod Monitor CRD 并采集指标，详见[Prometheus-Operator CRD 文档](kubernetes-prometheus-operator-crd.md#config)
+        是否开启自动发现 Prometheus Pod Monitor CRD 并采集指标，详见 [Prometheus-Operator CRD 文档](kubernetes-prometheus-operator-crd.md#config)
     
         **字段类型**: Boolean
     
@@ -266,7 +266,7 @@ monitor:
     
     - **ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_MONITORS**
     
-        是否开启自动发现 Prometheus ServiceMonitor CRD 并采集指标，详见[Prometheus-Operator CRD 文档](kubernetes-prometheus-operator-crd.md#config)
+        是否开启自动发现 Prometheus ServiceMonitor CRD 并采集指标，详见 [Prometheus-Operator CRD 文档](kubernetes-prometheus-operator-crd.md#config)
     
         **字段类型**: Boolean
     
@@ -276,7 +276,7 @@ monitor:
     
     - **ENV_INPUT_CONTAINER_KEEP_EXIST_PROMETHEUS_METRIC_NAME**
     
-        是否保留原始的 Prometheus 字段名，详见 [Kubernetes Prometheus doc](kubernetes-prom.md#measurement-and-tags
+        已弃用。是否保留原始的 Prometheus 字段名，详见 [Kubernetes Prometheus](kubernetes-prom.md#measurement-and-tags)
     
         **字段类型**: Boolean
     
@@ -292,7 +292,7 @@ monitor:
     
         **采集器配置字段**: `container_include_log`
     
-        **示例**: "image:pubrepo.jiagouyun.com/datakit/logfwd*"
+        **示例**: `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`
     
     - **ENV_INPUT_CONTAINER_CONTAINER_EXCLUDE_LOG**
     
@@ -302,7 +302,7 @@ monitor:
     
         **采集器配置字段**: `container_exclude_log`
     
-        **示例**: "image:pubrepo.jiagouyun.com/datakit/logfwd*"
+        **示例**: `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`
     
     - **ENV_INPUT_CONTAINER_KUBERNETES_URL**
     
@@ -312,7 +312,7 @@ monitor:
     
         **采集器配置字段**: `kubernetes_url`
     
-        **示例**: https://kubernetes.default:443
+        **示例**: `https://kubernetes.default:443`
     
     - **ENV_INPUT_CONTAINER_BEARER_TOKEN**
     
@@ -332,7 +332,7 @@ monitor:
     
         **采集器配置字段**: `bearer_token_string`
     
-        **示例**: your-token-string
+        **示例**: `your-token-string`
     
     - **ENV_INPUT_CONTAINER_LOGGING_SEARCH_INTERVAL**
     
@@ -352,7 +352,7 @@ monitor:
     
         **采集器配置字段**: `logging_extra_source_map`
     
-        **示例**: source_regex*=new_source,regex*=new_source2
+        **示例**: `source_regex*=new_source,regex*=new_source2`
     
     - **ENV_INPUT_CONTAINER_LOGGING_SOURCE_MULTILINE_MAP_JSON**
     
@@ -362,7 +362,7 @@ monitor:
     
         **采集器配置字段**: `logging_source_multiline_map`
     
-        **示例**: {"source_nginx":"^\\d{4}", "source_redis":"^[A-Za-z_]"}
+        **示例**: `{"source_nginx":"^\d{4}", "source_redis":"^[A-Za-z_]"}`
     
     - **ENV_INPUT_CONTAINER_LOGGING_AUTO_MULTILINE_DETECTION**
     
@@ -382,7 +382,7 @@ monitor:
     
         **采集器配置字段**: `logging_auto_multiline_extra_patterns`
     
-        **示例**: ["^\\d{4}-\\d{2}", "^[A-Za-z_]"]
+        **示例**: `["^\d{4}-\d{2}", "^[A-Za-z_]"]`
     
         **默认值**: For more default rules, see [doc](logging.md#auto-multiline)
     
@@ -444,7 +444,7 @@ monitor:
     
         **采集器配置字段**: `logging_field_white_list`
     
-        **示例**: '["service","container_id"]'
+        **示例**: `'["service","container_id"]'`
     
     - **ENV_INPUT_CONTAINER_CONTAINER_MAX_CONCURRENT**
     
