@@ -128,13 +128,13 @@
 
     混合使用时，仅需在宿主 App 内初始化 Native SDK，在 uni 小程序中无需再进行初始化配置，可以直接调用 UniApp SDK 提供的方法。
 
-    宿主 App 内 SDK 的初始方法请参考 [iOS SDK 初始化配置](../ios/app-access/#init) 、[Android SDK 初始化配置](../android/app-access/#init) 。
+    宿主 App 内 SDK 的初始方法请参考 [iOS SDK 初始化配置](../ios/app-access.md#init) 、[Android SDK 初始化配置](../android/app-access.md#init) 。
 
     注意：请在加载 uni 小程序之前，宿主 App 完成 SDK 初始化，以确保在调用 SDK 的其他任何方法之前，SDK 已经完全准备就绪。
 
 * **Android 集成额外配置：**
 
-    配置 Gradle Plugin [ft-plugin](../android/app-access/#gradle-setting) ，采集 App 启动事件和网络请求数据，以及 Android Native 原生相关事件（页面跳转、点击事件、Native 网络请求、WebView 数据）。
+    配置 Gradle Plugin [ft-plugin](../android/app-access.md#gradle-setting) ，采集 App 启动事件和网络请求数据，以及 Android Native 原生相关事件（页面跳转、点击事件、Native 网络请求、WebView 数据）。
 
 ## SDK 初始化
 
@@ -211,10 +211,7 @@ rum.setConfig({
 | deviceMonitorType        | string/array | 否       | 页面监控补充类型： `all` 、`battery`（仅Android支持)、 `memory`、`cpu`、`fps` |
 | detectFrequency          | string       | 否       | 页面监控频率：`normal`(默认)、 `frequent`、`rare`            |
 | globalContext            | object       | 否       | 自定义全局参数，特殊 key :`track_id`  (用于追踪功能)         |
-<<<<<<< HEAD
-=======
 | enableResourceHostIP | boolean | 否 | 是否采集请求目标域名地址的 IP。作用域：只影响 `enableNativeUserResource`  为 true 的默认采集。iOS：`>= iOS 13` 下支持。Android：单个 Okhttp 对相同域名存在 IP 缓存机制，相同 `OkhttpClient`，在连接服务端 IP 不发生变化的前提下，只会生成一次。 |
->>>>>>> release
 | enableTrackNativeCrash | boolean | 否 | 是否采集 `Native Error` |
 | enableTrackNativeAppANR | boolean | 否 | 是否采集 `Native ANR` |
 | enableTrackNativeFreeze | boolean | 否 | 是否采集 `Native Freeze` |
@@ -288,7 +285,7 @@ rum.startAction({
 
 #### API - addAction
 
-添加 Action 事件。无 duration，无丢弃逻辑。
+添加 Action 事件。此类数据无法关联 Error，Resource，LongTask 数据，无丢弃逻辑。
 
 ```javascript
 rum.addAction({
