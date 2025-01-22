@@ -1,7 +1,16 @@
 # 更新日志
 
 ---
-## **1.5.9 (2025/1/8)** {#1-5-9}
+## **1.5.10 (2025/01/21)** {#1-5-10}
+
+1. 支持通过 `FTTraceConfig.traceInterceptor` 拦截 Request 自定义 Trace，通过 `FTRumConfig.resourcePropertyProvider` 添加 RUM Resource 自定义属性
+
+2. 修复动态添加全局属性方法在多线程访问下的异常问题
+
+3. 优化 WebView 传入数据信息
+
+## **1.5.9 (2025/01/08)** {#1-5-9}
+
 1. 新增支持通过 `FTURLSessionDelegate.traceInterceptor` block 拦截 `URLRequest`，进行自定义链路追踪、更改链路中 spanId 与 traceId
 2. RUM Resource 支持采集通过 swift async/await URLSession API 发起的网络请求
 3. 修复 LongTask 与 Anr 关联 View 错误问题
