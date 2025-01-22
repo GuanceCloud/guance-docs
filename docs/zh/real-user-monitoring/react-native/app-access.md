@@ -922,84 +922,84 @@ function getInfoFromNet(info:Info){
 
 * React Native 配置：
 
-  在 React Native 侧无需再进行初始化配置。如果需要自动采集 `React Native Error`、自动采集 `React Native Action ` 方法如下：
-
-   ```typescript
-   import {FTRumActionTracking,FTRumErrorTracking} from '@cloudcare/react-native-mobile';
-   //开启自动采集 react-native 控件点击
-   FTRumActionTracking.startTracking();
-   //开启自动采集 react-native Error
-   FTRumErrorTracking.startTracking();
-   ```
+    在 React Native 侧无需再进行初始化配置。如果需要自动采集 `React Native Error`、自动采集 `React Native Action ` 方法如下：
+    
+```typescript
+import {FTRumActionTracking,FTRumErrorTracking} from '@cloudcare/react-native-mobile';
+//开启自动采集 react-native 控件点击
+FTRumActionTracking.startTracking();
+//开启自动采集 react-native Error
+FTRumErrorTracking.startTracking();
+```
 
 * 原生项目配置：
 
-  开启 RUM Resource 自动采集时，需要过滤掉仅在开发环境中发生的 React Native 符号化调用请求和 Expo日志调用请求。方法如下：
+    开启 RUM Resource 自动采集时，需要过滤掉仅在开发环境中发生的 React Native 符号化调用请求和 Expo日志调用请求。方法如下：
 
-  **iOS**
+    **iOS**
 
-  === "Objective-C"
+    === "Objective-C"
 
-      ```objective-c
-      #import <FTMobileReactNativeSDK/FTReactNativeRUM.h>
-      #import <FTMobileSDK/FTMobileAgent.h>
+        ```objective-c
+        #import <FTMobileReactNativeSDK/FTReactNativeRUM.h>
+        #import <FTMobileSDK/FTMobileAgent.h>
         
-      FTRumConfig *rumConfig = [[FTRumConfig alloc]initWithAppid:rumAppId];
-      rumConfig.enableTraceUserResource = YES;
-      #if DEBUG
-        rumConfig.resourceUrlHandler = ^BOOL(NSURL * _Nonnull url) {
-          return filterBlackResource(url);
-        };
-      #endif
-      ```
-  === "Swift"
+        FTRumConfig *rumConfig = [[FTRumConfig alloc]initWithAppid:rumAppId];
+        rumConfig.enableTraceUserResource = YES;
+        #if DEBUG
+          rumConfig.resourceUrlHandler = ^BOOL(NSURL * _Nonnull url) {
+            return filterBlackResource(url);
+          };
+        #endif
+        ```
+    === "Swift"
   
-      ```swift
-      import FTMobileReactNativeSDK
-      import FTMobileSDK
+        ```swift
+        import FTMobileReactNativeSDK
+        import FTMobileSDK
          
-      let rumConfig = FTRumConfig(appId: rumAppId)
-      rumConfig.enableTraceUserResource = true
-      #if DEBUG
-      rumConfig.resourceUrlHandler = { (url: URL) -> Bool in
-         return filterBlackResource(url)
-      }
-      #endif
-      ```
-  
-  **Android**
-  
-  === "Java"
-  
-      ```java
-      import com.cloudcare.ft.mobile.sdk.tracker.reactnative.utils.ReactNativeUtils;
-      import com.ft.sdk.FTRUMConfig;
-      
-      FTRUMConfig rumConfig = new FTRUMConfig().setRumAppId(rumAppId);
-      rumConfig.setEnableTraceUserResource(true);
-      if (BuildConfig.DEBUG) {
-          rumConfig.setResourceUrlHandler(new FTInTakeUrlHandler() {
-            @Override
-            public boolean isInTakeUrl(String url) {
-              return ReactNativeUtils.isReactNativeDevUrl(url);
-            }
-          });
+        let rumConfig = FTRumConfig(appId: rumAppId)
+        rumConfig.enableTraceUserResource = true
+        #if DEBUG
+        rumConfig.resourceUrlHandler = { (url: URL) -> Bool in
+           return filterBlackResource(url)
         }
-      ```
+        #endif
+        ```
   
-  === "Kotlin"
+    **Android**
   
-      ```kotlin
-      import com.cloudcare.ft.mobile.sdk.tracker.reactnative.utils.ReactNativeUtils
-      import com.ft.sdk.FTRUMConfig
-        
-      val rumConfig = FTRUMConfig().setRumAppId(rumAppId)
-          rumConfig.isEnableTraceUserResource = true
-          if (BuildConfig.DEBUG) {
-            rumConfig.setResourceUrlHandler { url ->
-              return@setResourceUrlHandler ReactNativeUtils.isReactNativeDevUrl(url)
+    === "Java"
+  
+        ```java
+        import com.cloudcare.ft.mobile.sdk.tracker.reactnative.utils.ReactNativeUtils;
+        import com.ft.sdk.FTRUMConfig;
+      
+        FTRUMConfig rumConfig = new FTRUMConfig().setRumAppId(rumAppId);
+        rumConfig.setEnableTraceUserResource(true);
+        if (BuildConfig.DEBUG) {
+            rumConfig.setResourceUrlHandler(new FTInTakeUrlHandler() {
+              @Override
+              public boolean isInTakeUrl(String url) {
+                return ReactNativeUtils.isReactNativeDevUrl(url);
+              }
+            });
           }
-      ```
+        ```
+  
+    === "Kotlin"
+  
+        ```kotlin
+        import com.cloudcare.ft.mobile.sdk.tracker.reactnative.utils.ReactNativeUtils
+        import com.ft.sdk.FTRUMConfig
+        
+        val rumConfig = FTRUMConfig().setRumAppId(rumAppId)
+            rumConfig.isEnableTraceUserResource = true
+            if (BuildConfig.DEBUG) {
+              rumConfig.setResourceUrlHandler { url ->
+                return@setResourceUrlHandler ReactNativeUtils.isReactNativeDevUrl(url)
+            }
+        ```
 
 具体使用示例可以参考 [example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)。
 
