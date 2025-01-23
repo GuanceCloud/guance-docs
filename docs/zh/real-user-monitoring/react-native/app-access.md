@@ -20,7 +20,7 @@
 
 ![](../img/image_13.png)
 
-## 安装
+## 安装 {#install}
 
 ![](https://img.shields.io/badge/dynamic/json?label=npm-package&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/react-native/version.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=react-native&color=green&query=$.react_native&uri=https://static.guance.com/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-react-native)
 
@@ -912,8 +912,101 @@ function getInfoFromNet(info:Info){
 }
 ```
 
+##  原生 与 React Native 混合开发 {#hybrid}
+
+如果您的项目是原生开发，部分页面或业务流程使用 React Native 实现，SDK 的安装初始化配置方法如下：
+
+* 安装：[安装](#install)方式不变
+
+* 初始化：请参考 [iOS SDK 初始化配置](../ios/app-access.md#init) 、[Android SDK 初始化配置](../android/app-access.md#init) 在原生工程内进行初始化配置
+
+* React Native 配置：
+
+    在 React Native 侧无需再进行初始化配置。如果需要自动采集 `React Native Error`、自动采集 `React Native Action ` 方法如下：
+    
+```typescript
+import {FTRumActionTracking,FTRumErrorTracking} from '@cloudcare/react-native-mobile';
+//开启自动采集 react-native 控件点击
+FTRumActionTracking.startTracking();
+//开启自动采集 react-native Error
+FTRumErrorTracking.startTracking();
+```
+
+* 原生项目配置：
+
+    开启 RUM Resource 自动采集时，需要过滤掉仅在开发环境中发生的 React Native 符号化调用请求和 Expo日志调用请求。方法如下：
+
+    **iOS**
+
+    === "Objective-C"
+
+        ```objective-c
+        #import <FTMobileReactNativeSDK/FTReactNativeRUM.h>
+        #import <FTMobileSDK/FTMobileAgent.h>
+        
+        FTRumConfig *rumConfig = [[FTRumConfig alloc]initWithAppid:rumAppId];
+        rumConfig.enableTraceUserResource = YES;
+        #if DEBUG
+          rumConfig.resourceUrlHandler = ^BOOL(NSURL * _Nonnull url) {
+            return filterBlackResource(url);
+          };
+        #endif
+        ```
+    === "Swift"
+  
+        ```swift
+        import FTMobileReactNativeSDK
+        import FTMobileSDK
+         
+        let rumConfig = FTRumConfig(appId: rumAppId)
+        rumConfig.enableTraceUserResource = true
+        #if DEBUG
+        rumConfig.resourceUrlHandler = { (url: URL) -> Bool in
+           return filterBlackResource(url)
+        }
+        #endif
+        ```
+  
+    **Android**
+  
+    === "Java"
+  
+        ```java
+        import com.cloudcare.ft.mobile.sdk.tracker.reactnative.utils.ReactNativeUtils;
+        import com.ft.sdk.FTRUMConfig;
+      
+        FTRUMConfig rumConfig = new FTRUMConfig().setRumAppId(rumAppId);
+        rumConfig.setEnableTraceUserResource(true);
+        if (BuildConfig.DEBUG) {
+            rumConfig.setResourceUrlHandler(new FTInTakeUrlHandler() {
+              @Override
+              public boolean isInTakeUrl(String url) {
+                return ReactNativeUtils.isReactNativeDevUrl(url);
+              }
+            });
+          }
+        ```
+  
+    === "Kotlin"
+  
+        ```kotlin
+        import com.cloudcare.ft.mobile.sdk.tracker.reactnative.utils.ReactNativeUtils
+        import com.ft.sdk.FTRUMConfig
+        
+        val rumConfig = FTRUMConfig().setRumAppId(rumAppId)
+            rumConfig.isEnableTraceUserResource = true
+            if (BuildConfig.DEBUG) {
+              rumConfig.setResourceUrlHandler { url ->
+                return@setResourceUrlHandler ReactNativeUtils.isReactNativeDevUrl(url)
+            }
+        ```
+
+具体使用示例可以参考 [example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)。
+
 ## Publish Package 相关配置
+
 ### Android
+
 * [Android R8/Prograd 配置](../android/app-access.md#r8_proguard)
 * [Android 符号文件上传](../android/app-access.md#source_map)
 
