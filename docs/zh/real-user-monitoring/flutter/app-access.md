@@ -665,7 +665,6 @@ WebView 数据监测，需要在 WebView 访问页面集成[Web 监测 SDK](../w
 * Flutter 配置:
     * View, Resource, Error 采用与纯 Flutter 项目一样的配置方式
     * Flutter Resource 与 Trace 自动采集使用以下配置方式
-
     ```dart
         // 设置 traceHeader 0.5.3-pre.1 支持
         FTHttpOverrideConfig.global.traceHeader = true;   
