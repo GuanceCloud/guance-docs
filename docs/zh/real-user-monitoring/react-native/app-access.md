@@ -912,7 +912,7 @@ function getInfoFromNet(info:Info){
 }
 ```
 
-##  原生 与 React Native 混合开发 {#hybrid}
+##  原生与 React Native 混合开发 {#hybrid}
 
 如果您的项目是原生开发，部分页面或业务流程使用 React Native 实现，SDK 的安装初始化配置方法如下：
 

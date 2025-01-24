@@ -16,7 +16,7 @@
 
 ![](../img/image_13.png)
 
-## 安装
+## 安装 {#install}
 ![](https://img.shields.io/badge/dynamic/json?label=pub.dev&color=blue&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/flutter/version.json) ![](https://img.shields.io/badge/dynamic/json?label=legacy.github.tag&color=blue&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/flutter/legacy/version.json) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/flutter/info.json)
 
 **Pub.Dev**: [ft_mobile_agent_flutter](https://pub.dev/packages/ft_mobile_agent_flutter)
@@ -129,6 +129,7 @@ void main() async {
 | globalContext | Map | 否 | 自定义全局参数 |
 | rumDiscardStrategy | string | 否 | 丢弃策略：`FTRUMCacheDiscard.discard`丢弃新数据（默认）、`FTRUMCacheDiscard.discardOldest`丢弃旧数据 |
 | rumCacheLimitCount | number | 否 | 本地缓存最大 RUM 条目数量限制 [10000,)，默认 100_000 |
+| isInTakeUrl | callBack | 否 | 设置需要过滤的 Resource 条件，默认不过滤|
 
 #### 添加自定义标签
 
@@ -655,6 +656,23 @@ void httpClientGetHttp() async {
 WebView 数据监测，需要在 WebView 访问页面集成[Web 监测 SDK](../web/app-access.md)
 
 
+##  原生与 Flutter 混合开发 {#hybrid}
+
+如果您的项目是原生开发，部分页面或业务流程使用 Flutter 实现，SDK 的安装初始化配置方法如下：
+
+* 安装：[安装](#install)方式不变
+* 初始化：请参考 [iOS SDK 初始化配置](../ios/app-access.md#init) 、[Android SDK 初始化配置](../android/app-access.md#init) 在原生工程内进行初始化配置
+* Flutter 配置:
+  * View, Resource, Error 采用与纯 Flutter 项目一样的配置方式
+  * Flutter Resource 与 Trace 自动采集使用以下配置方式
+
+  ```dart
+    // 设置 traceHeader 0.5.3-pre.1 支持
+    FTHttpOverrideConfig.global.traceHeader = true;   
+    //设置采集 Resource 数据 0.5.3-pre.1 支持
+    FTHttpOverrideConfig.global.traceResource = true; 
+  ```
+   
 ## Publish Package 相关配置
 ### Android
 * [Android R8/Prograd 配置](../android/app-access.md#r8_proguard)
