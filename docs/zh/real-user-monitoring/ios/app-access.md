@@ -289,6 +289,7 @@
 | globalContext | NSDictionary | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
 | rumCacheLimitCount | int                        | 否 | RUM 最大缓存量。 默认 100_000，SDK 1.5.8 以上版本支持该参数 |
 | rumDiscardType | FTRUMCacheDiscard          | 否 | 设置 RUM 丢弃规则。默认 `FTRUMCacheDiscard` <br/>`FTRUMCacheDiscard`当 RUM 数据数量大于最大值时，丢弃追加数据。`FTRUMDiscardOldest`当 RUM 数据大于最大值时，丢弃老数据。SDK 1.5.8 以上版本支持该参数 |
+| resourcePropertyProvider | FTResourcePropertyProvider | 否 | 通过 block 回调添加 RUM Resource 自定义属性。SDK 1.5.10 以上版本支持该参数。优先级低于 [URLSession 自定义采集](#urlsession_interceptor) |
 
 ### Log 配置 {#log-config}
 
@@ -354,6 +355,7 @@
 | networkTraceType | FTNetworkTraceType | 否 | 设置链路追踪的类型。默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
 | enableLinkRumData | BOOL | 否 | 是否与 RUM 数据关联。默认`NO` |
 | enableAutoTrace | BOOL | 否 | 设置是否开启自动 http trace。默认`NO`，目前只支持 NSURLSession |
+| traceInterceptor | FTTraceInterceptor | 否 | 支持通过 URLRequest 判断是否进行自定义链路追踪，确认拦截后，返回 `TraceContext`，不拦截返回 nil。SDK 1.5.10 以上版本支持该参数。优先级低于 [URLSession 自定义采集](#urlsession_interceptor) |
 
 ## RUM 用户数据追踪 {#rum}
 
@@ -1057,13 +1059,13 @@
     }
     ```
 
-## 通过转发 URLSession Delegate 自定义采集 Network
+## 通过转发 URLSession Delegate 自定义采集 Network {#urlsession_interceptor}
 
 SDK 提供了一个类 `FTURLSessionDelegate`，可以通过该类对某一 URLSession 发起的网络请求进行自定义 **RUM Resource 采集**和**链路追踪**。
 
-* `FTURLSessionDelegate` 支持通过设置 `traceInterceptor` block 拦截 `URLResquest`，进行自定义链路追踪（SDK 1.5.9 及以上版本支持该方法）。
-* `FTURLSessionDelegate` 支持通过设置 `provider` block 自定义 RUM Resource 需要额外采集的属性。
-* 与 `FTRumConfig.enableTraceUserResource` 与 `FTTraceConfig.enableAutoTrace`  一起使用时，优先级：**自定义 > 自动采集**。
+* `FTURLSessionDelegate` 支持通过设置 `traceInterceptor` block 拦截 `URLResquest`，进行自定义链路追踪（SDK 1.5.9 及以上版本支持该方法），优先级 > `FTTraceConfig.traceInterceptor`。
+* `FTURLSessionDelegate` 支持通过设置 `provider` block 自定义 RUM Resource 需要额外采集的属性，优先级 > ``FTRumConfig.resourcePropertyProvider`。
+* 与 `FTRumConfig.enableTraceUserResource` 、 `FTTraceConfig.enableAutoTrace`  一起使用时，优先级：**自定义 > 自动采集**。
 
 下面提供了三种方法，来满足用户的不同场景。
 
@@ -1585,6 +1587,8 @@ FT_DATAKIT_ADDRESS="YOUR_DATAKIT_ADDRESS"
 FT_ENV="common"
 #<dataway_token> 配置文件 datakit.conf 中 dataway 的 token
 FT_TOKEN="YOUR_DATAWAY_TOKEN"
+# 是否仅将 dSYM 文件打包 zip（可选，默认0上传），1=不上传，仅打包dSYM zip,0=上传,可在脚本输出日志中搜索 FT_DSYM_ZIP_FILE 来查看 DSYM_SYMBOL.zip 文件路径
+FT_DSYM_ZIP_ONLY=0
 ```
 
 如果您需要使用多个环境上传不同环境的符号文件，可参考下面方式。
@@ -1658,7 +1662,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 **命令格式：**
 
-`sh FTdSYMUpload.sh <datakit_address> <app_id> <version> <env> <dataway_token> <dSYMBOL_src_dir>`
+`sh FTdSYMUpload.sh <datakit_address> <app_id> <version> <env> <dataway_token> <dSYMBOL_src_dir> <dSYM_ZIP_ONLY>`
 
 > 示例：
 >
@@ -1672,6 +1676,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 - `<version>`：应用的 `version` ，`CFBundleShortVersionString` 值
 - `<dataway_token>`：配置文件 `datakit.conf` 中 `dataway` 的 token
 - `<dSYMBOL_src_dir>`： 包含所有 `.dSYM` 文件的目录路径。
+- `<dSYM_ZIP_ONLY>`：是否仅将 dSYM 文件打包 zip 文件。可选。1=不上传，仅打包dSYM Zip，0=上传，可在脚本输出日志中搜索 `FT_DSYM_ZIP_FILE` 来查看 Zip 文件路径。
 
 ### 手动上传
 

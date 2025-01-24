@@ -16,7 +16,7 @@ icon: zy/release-notes
 
     <table>
       <tr>
-        <th><a href="https://docs.guance.com/datakit/changelog/" target="_blank">DK</a></th>
+        <th><a href="https://docs.guance.com/datakit/changelog/" target="_blank">DataKit</a></th>
       </tr>
     </table>
 
