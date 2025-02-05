@@ -1,12 +1,15 @@
 # 更新日志
 
 ---
+## **1.5.11 (2025/02/05)** {#1-5-11}
+
+1. RUM Resource 采集优化，防止 RUM 开启 Resource 自动采集时采集 SDK 内请求
+2. 修复 Widget Extension 中 skyWalking 类型链路追踪失败问题
+
 ## **1.5.10 (2025/01/21)** {#1-5-10}
 
 1. 支持通过 `FTTraceConfig.traceInterceptor` 拦截 Request 自定义 Trace，通过 `FTRumConfig.resourcePropertyProvider` 添加 RUM Resource 自定义属性
-
 2. 修复动态添加全局属性方法在多线程访问下的异常问题
-
 3. 优化 WebView 传入数据信息
 
 ## **1.5.9 (2025/01/08)** {#1-5-9}
