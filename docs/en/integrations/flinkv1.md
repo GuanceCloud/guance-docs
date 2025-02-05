@@ -91,56 +91,20 @@ Flink collects multiple metrics by default, and these [metrics](https://nightlie
 
 ### `flink_jobmanager`
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`host`|Host name.|
 
-- metric list
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`Status_JVM_CPU_Load`|The recent CPU usage of the JVM.|int|count|
-|`Status_JVM_CPU_Time`|The CPU time used by the JVM.|int|count|
-|`Status_JVM_ClassLoader_ClassesLoaded`|The total number of classes loaded since the start of the JVM.|int|count|
-|`Status_JVM_ClassLoader_ClassesUnloaded`|The total number of classes unloaded since the start of the JVM.|int|count|
-|`Status_JVM_GarbageCollector_Copy_Count`|The total number of collections that have occurred.|int|count|
-|`Status_JVM_GarbageCollector_Copy_Time`|The total time spent performing garbage collection.|int|count|
-|`Status_JVM_GarbageCollector_G1_Old_Generation_Count`|The total number of collections that have occurred.|int|count|
-|`Status_JVM_GarbageCollector_G1_Old_Generation_Time`|The total time spent performing garbage collection.|int|count|
-|`Status_JVM_GarbageCollector_G1_Young_Generation_Count`|The total number of collections that have occurred.|int|count|
-|`Status_JVM_GarbageCollector_G1_Young_Generation_Time`|The total time spent performing garbage collection.|int|count|
-|`Status_JVM_GarbageCollector_MarkSweepCompact_Count`|The total number of collections that have occurred.|int|count|
-|`Status_JVM_GarbageCollector_MarkSweepCompact_Time`|The total time spent performing garbage collection.|int|count|
-|`Status_JVM_Memory_Direct_Count`|The number of buffers in the direct buffer pool.|int|count|
-|`Status_JVM_Memory_Direct_MemoryUsed`|The amount of memory used by the JVM for the direct buffer pool.|int|count|
-|`Status_JVM_Memory_Direct_TotalCapacity`|The total capacity of all buffers in the direct buffer pool.|int|count|
-|`Status_JVM_Memory_Heap_Committed`|The amount of heap memory guaranteed to be available to the JVM.|int|count|
-|`Status_JVM_Memory_Heap_Max`|The maximum amount of heap memory that can be used for memory management.|int|count|
-|`Status_JVM_Memory_Heap_Used`|The amount of heap memory currently used.|int|count|
-|`Status_JVM_Memory_Mapped_Count`|The number of buffers in the mapped buffer pool.|int|count|
-|`Status_JVM_Memory_Mapped_MemoryUsed`|The amount of memory used by the JVM for the mapped buffer pool.|int|count|
-|`Status_JVM_Memory_Mapped_TotalCapacity`|The number of buffers in the mapped buffer pool.|int|count|
-|`Status_JVM_Memory_Metaspace_Committed`|The amount of memory guaranteed to be available to the JVM in the meta-space memory pool (in bytes).|int|count|
-|`Status_JVM_Memory_Metaspace_Max`|The maximum amount of memory that can be used in the meta-space memory pool (in bytes).|int|count|
-|`Status_JVM_Memory_Metaspace_Used`|Used bytes of a given JVM memory area|int|count|
-|`Status_JVM_Memory_NonHeap_Committed`|The amount of non-heap memory guaranteed to be available to the JVM.|int|count|
-|`Status_JVM_Memory_NonHeap_Max`|The maximum amount of non-heap memory that can be used for memory management|int|count|
-|`Status_JVM_Memory_NonHeap_Used`|The amount of non-heap memory currently used.|int|count|
-|`Status_JVM_Threads_Count`|The total number of live threads.|int|count|
-|`numRegisteredTaskManagers`|The number of registered task managers.|int|count|
-|`numRunningJobs`|The number of running jobs.|int|count|
-|`taskSlotsAvailable`|The number of available task slots.|int|count|
-|`taskSlotsTotal`|The total number of task slots.|int|count|
+- Metrics
 
 
 
 ### `flink_taskmanager`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -148,45 +112,6 @@ Flink collects multiple metrics by default, and these [metrics](https://nightlie
 |`host`|Host name.|
 |`tm_id`|Task manager ID.|
 
-- metric list
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`Status_Flink_Memory_Managed_Total`|The total amount of managed memory.|int|count|
-|`Status_Flink_Memory_Managed_Used`|The amount of managed memory currently used.|int|count|
-|`Status_JVM_CPU_Load`|The recent CPU usage of the JVM.|int|count|
-|`Status_JVM_CPU_Time`|The CPU time used by the JVM.|int|count|
-|`Status_JVM_ClassLoader_ClassesLoaded`|The total number of classes loaded since the start of the JVM.|int|count|
-|`Status_JVM_ClassLoader_ClassesUnloaded`|The total number of classes unloaded since the start of the JVM.|int|count|
-|`Status_JVM_GarbageCollector_G1_Old_Generation_Count`|The total number of collections that have occurred.|int|count|
-|`Status_JVM_GarbageCollector_G1_Old_Generation_Time`|The total time spent performing garbage collection.|int|count|
-|`Status_JVM_GarbageCollector_G1_Young_Generation_Count`|The total number of collections that have occurred.|int|count|
-|`Status_JVM_GarbageCollector_G1_Young_Generation_Time`|The total time spent performing garbage collection.|int|count|
-|`Status_JVM_Memory_Direct_Count`|The number of buffers in the direct buffer pool.|int|count|
-|`Status_JVM_Memory_Direct_MemoryUsed`|The amount of memory used by the JVM for the direct buffer pool.|int|count|
-|`Status_JVM_Memory_Direct_TotalCapacity`|The total capacity of all buffers in the direct buffer pool.|int|count|
-|`Status_JVM_Memory_Heap_Committed`|The amount of heap memory guaranteed to be available to the JVM.|int|count|
-|`Status_JVM_Memory_Heap_Max`|The maximum amount of heap memory that can be used for memory management.|int|count|
-|`Status_JVM_Memory_Heap_Used`|The amount of heap memory currently used.|int|count|
-|`Status_JVM_Memory_Mapped_Count`|The number of buffers in the mapped buffer pool.|int|count|
-|`Status_JVM_Memory_Mapped_MemoryUsed`|The amount of memory used by the JVM for the mapped buffer pool.|int|count|
-|`Status_JVM_Memory_Mapped_TotalCapacity`|The number of buffers in the mapped buffer pool.|int|count|
-|`Status_JVM_Memory_Metaspace_Committed`|The amount of memory guaranteed to be available to the JVM in the meta-space memory pool (in bytes).|int|count|
-|`Status_JVM_Memory_Metaspace_Max`|The maximum amount of memory that can be used in the meta-space memory pool (in bytes).|int|count|
-|`Status_JVM_Memory_Metaspace_Used`|Used bytes of a given JVM memory area|int|count|
-|`Status_JVM_Memory_NonHeap_Committed`|The amount of non-heap memory guaranteed to be available to the JVM.|int|count|
-|`Status_JVM_Memory_NonHeap_Max`|The maximum amount of non-heap memory that can be used for memory management|int|count|
-|`Status_JVM_Memory_NonHeap_Used`|The amount of non-heap memory currently used.|int|count|
-|`Status_JVM_Threads_Count`|The total number of live threads.|int|count|
-|`Status_Network_AvailableMemorySegments`|The number of unused memory segments.|int|count|
-|`Status_Network_TotalMemorySegments`|The number of allocated memory segments.|int|count|
-|`Status_Shuffle_Netty_AvailableMemory`|The amount of unused memory in bytes.|int|count|
-|`Status_Shuffle_Netty_AvailableMemorySegments`|The number of unused memory segments.|int|count|
-|`Status_Shuffle_Netty_RequestedMemoryUsage`|Experimental: The usage of the network memory. Shows (as percentage) the total amount of requested memory from all of the subtasks. It can exceed 100% as not all requested memory is required for subtask to make progress. However if usage exceeds 100% throughput can suffer greatly and please consider increasing available network memory, or decreasing configured size of network buffer pools.|int|count|
-|`Status_Shuffle_Netty_TotalMemory`|The amount of allocated memory in bytes.|int|count|
-|`Status_Shuffle_Netty_TotalMemorySegments`|The number of allocated memory segments.|int|count|
-|`Status_Shuffle_Netty_UsedMemory`|The amount of used memory in bytes.|int|count|
-|`Status_Shuffle_Netty_UsedMemorySegments`|The number of used memory segments.|int|count|
+- Metrics
 
 

@@ -423,7 +423,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 Use the `source` of the config，if empty then use `default`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -432,7 +432,7 @@ Use the `source` of the config，if empty then use `default`
 |`host`|Host name|
 |`service`|Use the `service` of the config.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

@@ -20,7 +20,7 @@
 
 ![](../img/image_13.png)
 
-## 安装
+## 安装 {#install}
 
 ![](https://img.shields.io/badge/dynamic/json?label=npm-package&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/react-native/version.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=react-native&color=green&query=$.react_native&uri=https://static.guance.com/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-react-native)
 
@@ -104,6 +104,9 @@ await FTMobileReactNative.sdkConfig(config);
 | enableDataIntegerCompatible | boolean | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题 。 |
 | globalContext | object | 否 | 添加自定义标签。添加规则请查阅[此处](../android/app-access.md#key-conflict) |
 | compressIntakeRequests | boolean | 否 | 设置是否对同步数据进行压缩 |
+| enableLimitWithDbSize | boolean | 否 | 开启使用 DB 限制总缓存大小功能。<br>**注意：**开启之后 Log 配置  `logCacheLimitCount` 及 RUM 配置`rumCacheLimitCount` 将失效。SDK  0.3.10  以上版本支持该参数 |
+| dbCacheLimit | number | 否 | DB 缓存限制大小。范围 [30MB,)，默认 100MB，单位 byte，SDK 0.3.10  以上版本支持该参数 |
+| dbDiscardStrategy | string | 否 | 设置数据库中数据丢弃规则。<br>丢弃策略：`FTDBCacheDiscard.discard`丢弃新数据（默认）、`FTDBCacheDiscard.discardOldest`丢弃旧数据。SDK 0.3.10 以上版本支持该参数 |
 
 ### RUM 配置 {#rum-config}
 
@@ -143,6 +146,8 @@ await FTReactNativeRUM.setConfig(rumConfig);
 | enableTrackNativeAppANR | boolean | 否 | 是否采集 `Native ANR`                                        |
 | enableTrackNativeFreeze | boolean | 否 | 是否采集 `Native Freeze` |
 | nativeFreezeDurationMs | number | 否 | 设置采集 `Native Freeze`卡顿的阈值，取值范围 [100,)，单位毫秒。iOS 默认 250ms，Android 默认 1000ms |
+| rumDiscardStrategy | string | 否 | 丢弃策略：`FTRUMCacheDiscard.discard`丢弃新数据（默认）、`FTRUMCacheDiscard.discardOldest`丢弃旧数据 |
+| rumCacheLimitCount | number | 否 | 本地缓存最大 RUM 条目数量限制 [10000,)，默认 100_000 |
 
 ### Log 配置 {#log-config}
 
@@ -353,13 +358,23 @@ export default function Layout() {
 
 ```typescript
 /**
- * 执行 action 。
+ * 启动 RUM Action。RUM 会绑定该 Action 可能触发的 Resource、Error、LongTask 事件。
+ * 避免在 0.1 s 内多次添加，同一个 View 在同一时间只会关联一个 Action，在上一个 Action 未结束时，
+ * 新增的 Action 会被丢弃。与 `addAction` 方法添加 Action 互不影响.
  * @param actionName action 名称
  * @param actionType action 类型
  * @param property 事件上下文(可选)
  * @returns a Promise.
  */
 startAction(actionName:string,actionType:string,property?:object): Promise<void>;
+ /**
+  * 添加 Action 事件。此类数据无法关联 Error，Resource，LongTask 数据，无丢弃逻辑。
+  * @param actionName action 名称
+  * @param actionType action 类型
+  * @param property 事件上下文(可选)
+  * @returns a Promise.
+  */
+addAction(actionName:string,actionType:string,property?:object): Promise<void>;
 ```
 
 ####  代码示例
@@ -368,6 +383,8 @@ startAction(actionName:string,actionType:string,property?:object): Promise<void>
 import {FTReactNativeRUM} from '@cloudcare/react-native-mobile';
 
 FTReactNativeRUM.startAction('actionName','actionType',{'custom.foo': 'something'});
+
+FTReactNativeRUM.addAction('actionName','actionType',{'custom.foo': 'something'});
 ```
 
 **更多自定义采集操作**
@@ -895,8 +912,101 @@ function getInfoFromNet(info:Info){
 }
 ```
 
+##  原生与 React Native 混合开发 {#hybrid}
+
+如果您的项目是原生开发，部分页面或业务流程使用 React Native 实现，SDK 的安装初始化配置方法如下：
+
+* 安装：[安装](#install)方式不变
+
+* 初始化：请参考 [iOS SDK 初始化配置](../ios/app-access.md#init) 、[Android SDK 初始化配置](../android/app-access.md#init) 在原生工程内进行初始化配置
+
+* React Native 配置：
+
+    在 React Native 侧无需再进行初始化配置。如果需要自动采集 `React Native Error`、自动采集 `React Native Action ` 方法如下：
+    
+```typescript
+import {FTRumActionTracking,FTRumErrorTracking} from '@cloudcare/react-native-mobile';
+//开启自动采集 react-native 控件点击
+FTRumActionTracking.startTracking();
+//开启自动采集 react-native Error
+FTRumErrorTracking.startTracking();
+```
+
+* 原生项目配置：
+
+    开启 RUM Resource 自动采集时，需要过滤掉仅在开发环境中发生的 React Native 符号化调用请求和 Expo日志调用请求。方法如下：
+
+    **iOS**
+
+    === "Objective-C"
+
+        ```objective-c
+        #import <FTMobileReactNativeSDK/FTReactNativeRUM.h>
+        #import <FTMobileSDK/FTMobileAgent.h>
+        
+        FTRumConfig *rumConfig = [[FTRumConfig alloc]initWithAppid:rumAppId];
+        rumConfig.enableTraceUserResource = YES;
+        #if DEBUG
+          rumConfig.resourceUrlHandler = ^BOOL(NSURL * _Nonnull url) {
+            return filterBlackResource(url);
+          };
+        #endif
+        ```
+    === "Swift"
+  
+        ```swift
+        import FTMobileReactNativeSDK
+        import FTMobileSDK
+         
+        let rumConfig = FTRumConfig(appId: rumAppId)
+        rumConfig.enableTraceUserResource = true
+        #if DEBUG
+        rumConfig.resourceUrlHandler = { (url: URL) -> Bool in
+           return filterBlackResource(url)
+        }
+        #endif
+        ```
+  
+    **Android**
+  
+    === "Java"
+  
+        ```java
+        import com.cloudcare.ft.mobile.sdk.tracker.reactnative.utils.ReactNativeUtils;
+        import com.ft.sdk.FTRUMConfig;
+      
+        FTRUMConfig rumConfig = new FTRUMConfig().setRumAppId(rumAppId);
+        rumConfig.setEnableTraceUserResource(true);
+        if (BuildConfig.DEBUG) {
+            rumConfig.setResourceUrlHandler(new FTInTakeUrlHandler() {
+              @Override
+              public boolean isInTakeUrl(String url) {
+                return ReactNativeUtils.isReactNativeDevUrl(url);
+              }
+            });
+          }
+        ```
+  
+    === "Kotlin"
+  
+        ```kotlin
+        import com.cloudcare.ft.mobile.sdk.tracker.reactnative.utils.ReactNativeUtils
+        import com.ft.sdk.FTRUMConfig
+        
+        val rumConfig = FTRUMConfig().setRumAppId(rumAppId)
+            rumConfig.isEnableTraceUserResource = true
+            if (BuildConfig.DEBUG) {
+              rumConfig.setResourceUrlHandler { url ->
+                return@setResourceUrlHandler ReactNativeUtils.isReactNativeDevUrl(url)
+            }
+        ```
+
+具体使用示例可以参考 [example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)。
+
 ## Publish Package 相关配置
+
 ### Android
+
 * [Android R8/Prograd 配置](../android/app-access.md#r8_proguard)
 * [Android 符号文件上传](../android/app-access.md#source_map)
 

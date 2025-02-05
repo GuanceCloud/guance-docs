@@ -423,7 +423,7 @@ For all of the following data collections, the global election tags will added a
 
 SNMP device metric data.
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -461,7 +461,7 @@ SNMP device metric data.
 |`unit_status`|Macro value. Optional.|
 |`unit_type`|Macro value. Optional.|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -566,7 +566,7 @@ SNMP device metric data.
 
 SNMP device object data.
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -578,7 +578,7 @@ SNMP device object data.
 |`snmp_host`|Device host.|
 |`snmp_profile`|Device SNMP profile file.|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

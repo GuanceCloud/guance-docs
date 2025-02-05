@@ -244,7 +244,7 @@ Main logical points:
 
 
 
-- tags
+- Tags
 
 
 | Tag | Description |
@@ -266,7 +266,7 @@ Main logical points:
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- fields
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -300,7 +300,7 @@ Main logical points:
 
 
 
-- tags
+- Tags
 
 
 | Tag | Description |
@@ -313,7 +313,7 @@ Main logical points:
 |`pid`|Process ID|
 |`ports`|Open ports|
 
-- fields
+- Metrics
 
 
 | Metric | Description | Type | Unit |

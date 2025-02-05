@@ -1,12 +1,25 @@
 # Changelog
 
+## 1.66.2(2025/01/17) {#cl-1.66.2}
+
+This release is a hotfix update, with the following enhancements and fixes:
+
+### Bug Fixes {#cl-1.66.2-fix}
+
+- Fixed Pipeline debug API compatible issue (!3392)
+- Fixed UDS listen bug (#25344)
+- Added `linux/arm64` support for UOS images (#2529)
+- Fixed prom v2 tag precedence bug (#2546) and Bearer Token bug (#2547)
+
+---
+
 ## 1.66.1 (2025/01/10) {#cl-1.66.1}
 
 This release is a hotfix update, with the following enhancements and fixes:
 
 ### Bug Fixes {#cl-1.66.1-fix}
 
-- Fixed the timestamp precision issue in the promv2 collector (#2540).
+- Fixed the timestamp precision issue in the prom v2 collector (#2540).
 - Resolved the conflict between the PostgreSQL `index` tag and DQL keywords (#2537).
 - Fixed the missing `service_instance` field in SkyWalking collection (#2542).
 - Removed unnecessary configuration fields in OpenTelemetry and fixed the missing `unit` tags for some metrics (#2541).
@@ -1025,7 +1038,7 @@ This release is a Hotfix release, which fixes the following issues:
 
 ---
 
-## 1.21.0 (2023/12/14)
+## 1.21.0 (2023/12/14) {#cl-1.21.0}
 
 This release is an iteration release, with the following updates:
 
@@ -1963,3 +1976,4 @@ This release is an iterative release with the following updates:
 ### Breaking Changes {#cl-1.5.6-brk}
 
 - Removed unnecessary `datakit install --datakit-ebpf` (#1400) due to built-in eBPF input.
+

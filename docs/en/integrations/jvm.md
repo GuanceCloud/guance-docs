@@ -149,7 +149,7 @@ When turned on, you can collect jvm metrics exposed by DDTrace.
 
 ### Metric {#metric}
 
-- Tag
+- Tags
 
 Each metric has the following tags (the actual tags are affected by Java startup parameters and statsd configuration).
 
@@ -165,7 +165,7 @@ Each metric has the following tags (the actual tags are affected by Java startup
 | `type`        |               |
 | `version`     |               |
 
-- Metrics List
+- Metrics
 
 | Metrics                        | Description                                                                                                                          | Data Type | Unit   |
 | ----                        | ----                                                                                                                          | :---:    | :----: |
@@ -291,7 +291,7 @@ For all the following data collections, a global tag named `host` is appended by
 
 #### `java_runtime`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -299,7 +299,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`host`|The hostname of the Jolokia agent/proxy running on.|
 |`jolokia_agent_url`|Jolokia agent url path.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -314,7 +314,7 @@ For all the following data collections, a global tag named `host` is appended by
 
 #### `java_memory`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -322,7 +322,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`host`|The hostname of the Jolokia agent/proxy running on.|
 |`jolokia_agent_url`|Jolokia agent url path.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -345,7 +345,7 @@ For all the following data collections, a global tag named `host` is appended by
 
 #### `java_garbage_collector`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -354,7 +354,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`jolokia_agent_url`|Jolokia agent url path.|
 |`name`|The name of GC generation.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -370,7 +370,7 @@ For all the following data collections, a global tag named `host` is appended by
 
 #### `java_threading`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -378,7 +378,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`host`|The hostname of the Jolokia agent/proxy running on.|
 |`jolokia_agent_url`|Jolokia agent url path.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -396,7 +396,7 @@ For all the following data collections, a global tag named `host` is appended by
 
 #### `java_class_loading`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -404,7 +404,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`host`|The hostname of the Jolokia agent/proxy running on.|
 |`jolokia_agent_url`|Jolokia agent url path.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -421,7 +421,7 @@ For all the following data collections, a global tag named `host` is appended by
 
 #### `java_memory_pool`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -430,7 +430,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`jolokia_agent_url`|Jolokia agent url path.|
 |`name`|The name of space.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

@@ -288,7 +288,6 @@ android{
 | setEnableResourceHostIP | Boolean | 否 | 是否采集请求目标域名地址的 IP。作用域：只影响 `EnableTraceUserResource`  为 true 的默认采集。自定义 Resource 采集，需要使用 `FTResourceEventListener.FTFactory(true)` 来开启这个功能。另外，单个 Okhttp 对相同域名存在 IP 缓存机制，相同 `OkhttpClient`，在连接服务端 IP 不发生变化的前提下，只会生成一次|
 | setResourceUrlHandler | Callback| 否 | 设置需要过滤的 Resource 条件，默认不过滤 |
 | setOkHttpEventListenerHandler | Callback| 否 | ASM 设置全局 Okhttp EventListener，默认不设置 |
-| setOkHttpTraceHeaderHandler | Callback| 否 | ASM 设置全局 `FTTraceInterceptor.HeaderHandler`，默认不设置, ft-sdk 1.6.7 以上支持，示例参考[自定义 Trace](#okhttp_resource_trace_interceptor_custom) |
 | setOkHttpResourceContentHandler | Callback| 否 | ASM 设置全局 `FTResourceInterceptor.ContentHandlerHelper`，默认不设置, ft-sdk 1.6.7 以上支持，[自定义 Resource](#okhttp_resource_trace_interceptor_custom) |
 | addGlobalContext | Dictionary | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
 | setRumCacheLimitCount | int | 否 | 本地缓存 RUM 限制数量 [10000,),默认是 100_000。ft-sdk 1.6.6 以上支持 |
@@ -323,7 +322,7 @@ android{
 
 | **方法名** | **类型** | **必须** | **含义** |
 | --- | --- | --- | --- |
-| setSampleRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
+| setSamplingRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
 | setEnableConsoleLog | Boolean | 否 | 是否上报控制台日志，日志等级对应关系<br>Log.v -> ok;<br>Log.i -> info;<br> Log.d -> debug;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤。注意：Android 控制台量是很大的，为了避免影响应用性能，减少不必要的资源浪费，建议使用 `prefix` 过滤出有价值的日志 |
 | setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联，默认为 `false` |
 | setEnableCustomLog | Boolean| 否 | 是否上传自定义日志，默认为 `false` |
@@ -356,10 +355,11 @@ android{
 
 | **方法名** | **类型** | **必须** | **含义** |
 | --- | --- | --- | --- |
-| setSampleRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
+| setSamplingRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
 | setTraceType | TraceType | 否 | 设置链路追踪的类型，默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
 | setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联，默认为 `false` |
 | setEnableAutoTrace | Boolean | 否 | 设置是否开启自动 http trace，目前只支持 OKhttp 的自动追踪，默认为 `false` |
+| setOkHttpTraceHeaderHandler | Callback| 否 | ASM 设置全局 `FTTraceInterceptor.HeaderHandler`，默认不设置, ft-sdk 1.6.8 以上支持，示例参考[自定义 Trace](#okhttp_resource_trace_interceptor_custom) |
 
 ## RUM 用户数据追踪 {#rum-trace}
 

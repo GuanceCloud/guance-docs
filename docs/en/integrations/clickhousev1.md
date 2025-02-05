@@ -212,7 +212,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -224,7 +224,7 @@ For all of the following data collections, the global election tags will added a
 |`instance`|Instance endpoint|
 |`unit`|Unit name|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -384,7 +384,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -392,7 +392,7 @@ For all of the following data collections, the global election tags will added a
 |`host`|Host name|
 |`instance`|Instance endpoint|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -595,7 +595,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -603,7 +603,7 @@ For all of the following data collections, the global election tags will added a
 |`host`|Host name|
 |`instance`|Instance endpoint|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -1055,7 +1055,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -1063,7 +1063,7 @@ For all of the following data collections, the global election tags will added a
 |`host`|Host name|
 |`instance`|Instance endpoint|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
