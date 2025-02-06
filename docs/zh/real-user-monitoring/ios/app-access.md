@@ -130,8 +130,11 @@
     2. 在弹出的页面的搜索框中输入 `https://github.com/GuanceCloud/datakit-ios.git`。
     
     3. Xcode 获取软件包成功后，会展示 SDK 的配置页。
+    
         `Dependency Rule` ：建议选择 `Up to Next Major Version` 。
+    
         `Add To Project` ：选择支持的工程。
+        
         填好配置后点击  `Add Package`  按钮，等待加载完成。
     
     4. 在弹窗 `Choose Package Products for datakit-ios` 中选择需要添加 SDK 的 Target，点击 `Add Package` 按钮，此时 SDK 已经添加成功。
