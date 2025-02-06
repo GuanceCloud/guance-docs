@@ -153,7 +153,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 Collect process metrics, including CPU/memory usage, etc.
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -164,7 +164,7 @@ Collect process metrics, including CPU/memory usage, etc.
 |`process_name`|Process name|
 |`username`|Username|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -197,7 +197,7 @@ Collect process metrics, including CPU/memory usage, etc.
 
 Collect data on process objects, including process names, process commands, etc.
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -210,7 +210,7 @@ Collect data on process objects, including process names, process commands, etc.
 |`state`|Process status, currently not supported on Windows|
 |`username`|Username|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

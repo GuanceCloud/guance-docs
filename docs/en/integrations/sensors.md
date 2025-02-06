@@ -75,7 +75,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `sensors`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -85,7 +85,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`feature`|Gathering target|
 |`hostname`|Host name|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

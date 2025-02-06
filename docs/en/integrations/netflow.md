@@ -226,7 +226,7 @@ For all the following data collections, a global tag named  `host` is appended b
 
 Using `source` field in the config file, default is `default`.
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -234,7 +234,7 @@ Using `source` field in the config file, default is `default`.
 |`host`|Hostname.|
 |`ip`|Collector IP address.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

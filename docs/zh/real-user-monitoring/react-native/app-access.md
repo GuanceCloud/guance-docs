@@ -912,7 +912,7 @@ function getInfoFromNet(info:Info){
 }
 ```
 
-##  原生 与 React Native 混合开发 {#hybrid}
+##  原生与 React Native 混合开发 {#hybrid}
 
 如果您的项目是原生开发，部分页面或业务流程使用 React Native 实现，SDK 的安装初始化配置方法如下：
 
@@ -1004,9 +1004,7 @@ FTRumErrorTracking.startTracking();
 具体使用示例可以参考 [example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)。
 
 ## Publish Package 相关配置
-
 ### Android
-
 * [Android R8/Prograd 配置](../android/app-access.md#r8_proguard)
 * [Android 符号文件上传](../android/app-access.md#source_map)
 

@@ -160,7 +160,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `diskio`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -168,7 +168,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`host`|System hostname.|
 |`name`|Device name.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

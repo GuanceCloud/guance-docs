@@ -172,14 +172,14 @@ For all of the following data collections, the global election tags will be adde
 
 ### `sqlserver`
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`sqlserver_host`|Host name which installed SQLServer|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -204,7 +204,7 @@ For all of the following data collections, the global election tags will be adde
 
 ### `sqlserver_performance`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -215,7 +215,7 @@ For all of the following data collections, the global election tags will be adde
 |`object_name`|Category to which this counter belongs.|
 |`sqlserver_host`|Host name which installed SQLServer|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -272,7 +272,7 @@ For all of the following data collections, the global election tags will be adde
 
 ### `sqlserver_waitstats`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -281,7 +281,7 @@ For all of the following data collections, the global election tags will be adde
 |`wait_category`|Wait category info|
 |`wait_type`|Name of the wait type. For more information, see Types of Waits, later in this topic|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -298,7 +298,7 @@ For all of the following data collections, the global election tags will be adde
 
 ### `sqlserver_database_io`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -309,7 +309,7 @@ For all of the following data collections, the global election tags will be adde
 |`physical_filename`|Operating-system file name.|
 |`sqlserver_host`|Host name which installed SQLServer|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -329,7 +329,7 @@ For all of the following data collections, the global election tags will be adde
 
 ### `sqlserver_schedulers`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -338,7 +338,7 @@ For all of the following data collections, the global election tags will be adde
 |`scheduler_id`|ID of the scheduler. All schedulers that are used to run regular queries have ID numbers less than 1048576. Those schedulers that have IDs greater than or equal to 1048576 are used internally by SQL Server, such as the dedicated administrator connection scheduler. Is not nullable.|
 |`sqlserver_host`|Host name which installed SQLServer|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -364,7 +364,7 @@ For all of the following data collections, the global election tags will be adde
 
 ### `sqlserver_volumespace`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -372,7 +372,7 @@ For all of the following data collections, the global election tags will be adde
 |`sqlserver_host`|Host name which installed SQLServer|
 |`volume_mount_point`|Mount point at which the volume is rooted. Can return an empty string. Returns null on Linux operating system.|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -397,14 +397,14 @@ For all of the following data collections, the global election tags will be adde
 
 ### `sqlserver_database_size`
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`database_name`|Name of the database|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -418,14 +418,14 @@ For all of the following data collections, the global election tags will be adde
 
 ### `sqlserver_database_backup`
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`database`|Database name|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -438,7 +438,7 @@ For all of the following data collections, the global election tags will be adde
 
 ### `sqlserver_database_files`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -450,12 +450,14 @@ For all of the following data collections, the global election tags will be adde
 |`state`|Database file state: 0 = Online, 1 = Restoring, 2 = Recovering, 3 = Recovery_Pending, 4 = Suspect, 5 = Unknown, 6 = Offline, 7 = Defunct|
 |`state_desc`|Description of the file state|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`size`|Current size of the database file|int|KB|
+
+
 
 
 
@@ -520,6 +522,35 @@ For all of the following data collections, the global election tags will be adde
 
 
 
+
+
+### `database`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on SQLServer(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`|Connection IP of the SQLServer|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- Metrics
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current SQLServer uptime|int|s|
+|`version`|Current version of SQLServer|string|-|
+
+
+
+
 ## Logging {#logging}
 
 Following measurements are collected as logs with the level of `info`.
@@ -541,11 +572,11 @@ Following measurements are collected as logs with the level of `info`.
 
 ### `sqlserver_lock_row`
 
-- tag
+- Tags
 
 NA
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -569,11 +600,11 @@ NA
 
 ### `sqlserver_lock_table`
 
-- tag
+- Tags
 
 NA
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -591,11 +622,11 @@ NA
 
 ### `sqlserver_lock_dead`
 
-- tag
+- Tags
 
 NA
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -616,14 +647,14 @@ NA
 
 ### `sqlserver_logical_io`
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`message`|Text of the SQL query|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -642,14 +673,14 @@ NA
 
 ### `sqlserver_worker_time`
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`message`|Text of the SQL query|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -659,6 +690,8 @@ NA
 |`execution_count`|Number of times that the plan has been executed since it was last compiled|int|count|
 |`last_execution_time`|Last time at which the plan started executing, unix time in millisecond|int|count|
 |`total_worker_time`|Total amount of CPU time, reported in milliseconds|int|count|
+
+
 
 
 
