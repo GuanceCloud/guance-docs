@@ -57,6 +57,9 @@ In general, the host object is turned on by default and does not need to be conf
     # and ignore all others (e.g. memory partitions such as /dev/shm)
     only_physical_device = false
     
+    # merge disks that with the same device name(default false)
+    # merge_on_device = false
+    
     ## Ignore the disk which space is zero
     ignore_zero_bytes_disk = true
     
@@ -223,7 +226,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `HOST`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -234,7 +237,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`os`|Host OS type|
 |`unicast_ip`|Host unicast ip|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -344,6 +347,9 @@ The basic structure of the `message` field is as follows:
 | `ip6_all`| all IPv6 address     | []string |
 
 #### `host.disk` {#host-disk}
+
+> In previous versions, only one mount point would be collected for the same device (which specific mount point was collected depended on the order in which the mount points appeared in */proc/self/mountpoint*). In the [:octicons-tag-24: Version-1.66.0](../datakit/changelog.md#cl-1.66.0) release, the disk section of the host object will collect all mount points that meet certain criteria (such as device names starting with `/dev`). The purpose of this change is to display all devices visible to Datakit to avoid any omissions.
+
 
 | Field Name       | Description         | Type   |
 | ---          | ----         |:---:   |

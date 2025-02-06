@@ -7,3 +7,4 @@ nav:
   - '自定义用户访问监测 SDK 采集数据内容': custom-sdk
   - '如何配置用户访问监测采样': sampling.md
   - 'Action': tracking-user-actions.md
+  - 'FAQ': faq.md

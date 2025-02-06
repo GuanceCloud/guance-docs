@@ -1,4 +1,4 @@
-# iOS 应用接入
+# iOS/tvOS 应用接入
 
 ---
 
@@ -177,7 +177,7 @@
     import FTMobileSDK
     ```
 
-## SDK 初始化
+## SDK 初始化 {#init}
 
 ### 基础配置 {#base-setting}
 
@@ -280,7 +280,7 @@
 | freezeDurationMs | long | 否 | 设置UI卡顿的阈值，取值范围 [100,)，单位毫秒，默认 250ms。SDK 1.5.7 以上版本支持 |
 | enableTraceUserView | BOOL | 否 | 设置是否追踪用户 View 操作。默认`NO` |
 | enableTraceUserAction | BOOL | 否 | 设置是否追踪用户 Action 操作。默认`NO` |
-| enableTraceUserResource | BOOL | 否 | 设置是否追踪用户网络请求。默认`NO`，仅作用于 native http <br/>注意：不支持采集使用 **Swift URLSession async/await APIs** 和 `[NSURLSession sharedSession]`发起的请求. |
+| enableTraceUserResource | BOOL | 否 | 设置是否追踪用户网络请求。默认`NO`，仅作用于 native http <br/>注意：通过 `[NSURLSession sharedSession]`发起的网络请求无法采集性能数据；<br>SDK 1.5.9 及以上支持采集通过 **Swift的URLSession async/await APIs** 发起的网络请求。 |
 | resourceUrlHandler | FTResourceUrlHandler | 否 | 自定义采集 resource 规则。默认不过滤。 返回：NO 表示要采集，YES 表示不需要采集。 |
 | errorMonitorType | FTErrorMonitorType | 否 | 错误事件监控补充类型。在采集的崩溃数据中添加监控的信息。`FTErrorMonitorBattery`为电池余量，`FTErrorMonitorMemory`为内存用量，`FTErrorMonitorCpu`为 CPU 占有率 。 |
 | deviceMetricsMonitorType | FTDeviceMetricsMonitorType | 否 | 视图的性能监控类型。在采集的  **View** 数据中添加对应监控项信息。`FTDeviceMetricsMonitorMemory`监控当前应用使用内存情况，`FTDeviceMetricsMonitorCpu`监控 CPU 跳动次数，`FTDeviceMetricsMonitorFps`监控屏幕帧率。 |
@@ -289,6 +289,7 @@
 | globalContext | NSDictionary | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
 | rumCacheLimitCount | int                        | 否 | RUM 最大缓存量。 默认 100_000，SDK 1.5.8 以上版本支持该参数 |
 | rumDiscardType | FTRUMCacheDiscard          | 否 | 设置 RUM 丢弃规则。默认 `FTRUMCacheDiscard` <br/>`FTRUMCacheDiscard`当 RUM 数据数量大于最大值时，丢弃追加数据。`FTRUMDiscardOldest`当 RUM 数据大于最大值时，丢弃老数据。SDK 1.5.8 以上版本支持该参数 |
+| resourcePropertyProvider | FTResourcePropertyProvider | 否 | 通过 block 回调添加 RUM Resource 自定义属性。SDK 1.5.10 以上版本支持该参数。优先级低于 [URLSession 自定义采集](#urlsession_interceptor) |
 
 ### Log 配置 {#log-config}
 
@@ -354,6 +355,7 @@
 | networkTraceType | FTNetworkTraceType | 否 | 设置链路追踪的类型。默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
 | enableLinkRumData | BOOL | 否 | 是否与 RUM 数据关联。默认`NO` |
 | enableAutoTrace | BOOL | 否 | 设置是否开启自动 http trace。默认`NO`，目前只支持 NSURLSession |
+| traceInterceptor | FTTraceInterceptor | 否 | 支持通过 URLRequest 判断是否进行自定义链路追踪，确认拦截后，返回 `TraceContext`，不拦截返回 nil。SDK 1.5.10 以上版本支持该参数。优先级低于 [URLSession 自定义采集](#urlsession_interceptor) |
 
 ## RUM 用户数据追踪 {#rum}
 
@@ -1057,28 +1059,19 @@
     }
     ```
 
-## 通过转发 URLSession Delegate 自定义采集 Network
+## 通过转发 URLSession Delegate 自定义采集 Network {#urlsession_interceptor}
 
-**注意：该方法不适用于 Swift URLSession async/await APIs**
+SDK 提供了一个类 `FTURLSessionDelegate`，可以通过该类对某一 URLSession 发起的网络请求进行自定义 **RUM Resource 采集**和**链路追踪**。
 
-SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 delegate 转发给 `FTURLSessionDelegate`，以帮助 SDK 采集 Network 的相关数据。
-
-采集 Network 的相关数据在 SDK 中分为 `RUM-Resource` 和 `网络链路追踪`。
-
-**RUM-Resource**：
-
-* 可以开启  `FTRUMConfig` 的 `enableTraceUserResource` ，自动采集逻辑会忽略当前 `URLSession` 发起的请求；
-* 支持添加自定义属性。
-
-**网络链路追踪**：
-
-* 可以开启  `FTTraceConfig` 的 `enableAutoTrace` 。当设置自定义链路追踪时自动追踪逻辑会忽略当前 `URLSession` 发起的请求。
+* `FTURLSessionDelegate` 支持通过设置 `traceInterceptor` block 拦截 `URLResquest`，进行自定义链路追踪（SDK 1.5.9 及以上版本支持该方法），优先级 > `FTTraceConfig.traceInterceptor`。
+* `FTURLSessionDelegate` 支持通过设置 `provider` block 自定义 RUM Resource 需要额外采集的属性，优先级 > ``FTRumConfig.resourcePropertyProvider`。
+* 与 `FTRumConfig.enableTraceUserResource` 、 `FTTraceConfig.enableAutoTrace`  一起使用时，优先级：**自定义 > 自动采集**。
 
 下面提供了三种方法，来满足用户的不同场景。
 
 ### 方法一
 
-直接设置 URLSession 的 delegate 对象设置为 `FTURLSessionDelegate` 的实例
+直接设置 URLSession 的 delegate 对象为 `FTURLSessionDelegate` 的实例。
 
 === "Objective-C"
 
@@ -1089,20 +1082,16 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
                     NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
                     return @{@"df_requestbody":body};
                 };
-    // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪
-    delegate.requestInterceptor = ^NSURLRequest * _Nonnull(NSURLRequest * _Nonnull request) {
-                NSDictionary *traceHeader = [[FTExternalDataManager sharedManager] getTraceHeaderWithUrl:request.URL];
-                NSMutableURLRequest *newRequest = [request mutableCopy];
-                if(traceHeader){
-                    for (NSString *key in traceHeader.allKeys) {
-                        [newRequest setValue:traceHeader[key] forHTTPHeaderField:key];
-                    }
-                }
-                return newRequest;
-            };            
+    // 支持自定义 trace, 确认拦截后，返回 TraceContext，不拦截返回 nil
+    delegate.traceInterceptor = ^FTTraceContext * _Nullable(NSURLRequest *request) {
+            FTTraceContext *context = [FTTraceContext new];
+            context.traceHeader = @{@"trace_key":@"trace_value"};
+            context.traceId = @"trace_id";
+            context.spanId = @"span_id";
+            return context;
+        };            
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:delegate delegateQueue:nil];
     ```
-
 
 === "Swift"
 
@@ -1119,23 +1108,27 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
                 }
                 return extraData
             }
-    // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪        
-    delegate.requestInterceptor = { request in
-                var mutableRequest = request
-                if let traceHeader = FTExternalDataManager.shared().getTraceHeader(with: request.url!){
-                    for (key,value) in traceHeader {
-                        mutableRequest.setValue(value as? String, forHTTPHeaderField: key as! String)
-                    }
-                }
-                return mutableRequest
-            }        
+    // 支持自定义 trace, 确认拦截后，返回 TraceContext，不拦截返回 nil   
+    delegate.traceInterceptor = { request in
+                let traceContext = FTTraceContext()
+                traceContext.traceHeader = ["trace_key":"trace_value"]
+                traceContext.spanId = "spanId"
+                traceContext.traceId = "traceId"
+                return traceContext
+            }         
     let session =  URLSession.init(configuration: URLSessionConfiguration.default, delegate:delegate 
     , delegateQueue: nil)
     ```
 
 ### 方法二
 
-设置 URLSession 的 delegate 对象设置为 `FTURLSessionDelegate` 的子类
+使 URLSession 的 delegate 对象继承自 `FTURLSessionDelegate` 类。
+
+如果 delegate 对象实现了下列方法，请确保在方法内调用父类相应的方法。
+
+* `-URLSession:dataTask:didReceiveData:`
+* `-URLSession:task:didCompleteWithError:`
+* `-URLSession:task:didFinishCollectingMetrics:`
 
 === "Objective-C"
 
@@ -1153,17 +1146,14 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
             NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
             return @{@"df_requestbody":body};
         };
-            // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪
-           self.requestInterceptor = ^NSURLRequest * _Nonnull(NSURLRequest * _Nonnull request) {
-                NSDictionary *traceHeader = [[FTExternalDataManager sharedManager] getTraceHeaderWithUrl:request.URL];
-                NSMutableURLRequest *newRequest = [request mutableCopy];
-                if(traceHeader){
-                    for (NSString *key in traceHeader.allKeys) {
-                        [newRequest setValue:traceHeader[key] forHTTPHeaderField:key];
-                    }
-                }
-                return newRequest;
-            }; 
+            // 支持自定义 trace, 确认拦截后，返回 TraceContext，不拦截返回 nil
+           self.traceInterceptor = ^FTTraceContext * _Nullable(NSURLRequest *request) {
+            FTTraceContext *context = [FTTraceContext new];
+            context.traceHeader = @{@"trace_key":@"trace_value"};
+            context.traceId = @"trace_id";
+            context.spanId = @"span_id";
+            return context;
+           }; 
         }
         return self;
     }
@@ -1200,15 +1190,13 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
                 }
                 return extraData
             }
-            // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪
-            requestInterceptor = { request in
-                var mutableRequest = request
-                if let traceHeader = FTExternalDataManager.shared().getTraceHeader(with: request.url!){
-                    for (key,value) in traceHeader {
-                        mutableRequest.setValue(value as? String, forHTTPHeaderField: key as! String)
-                    }
-                }
-                return mutableRequest
+            // 支持自定义 trace, 确认拦截后，返回 TraceContext，不拦截返回 nil
+            traceInterceptor = { request in
+                let traceContext = FTTraceContext()
+                traceContext.traceHeader = ["trace_key":"trace_value"]
+                traceContext.spanId = "spanId"
+                traceContext.traceId = "traceId"
+                return traceContext
             }
         }
         }
@@ -1224,34 +1212,31 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
 
 ### 方法三
 
-使 URLSession 的 delegate 对象遵循 `FTURLSessionDelegateProviding` 协议，在该类里声明名为 ftURLSessionDelegate 的  `FTURLSessionDelegate` 属性（readwrite），实现 `- ftURLSessionDelegate` 方法。
+使 URLSession 的 delegate 对象遵循 `FTURLSessionDelegateProviding` 协议。
 
-接收到 session 的 delegate 方法：
-
-`-URLSession:dataTask:didReceiveData:`
-
-`-URLSession:task:didCompleteWithError:`
-
-`-URLSession:task:didFinishCollectingMetrics:`
-
-后发送给 `ftURLSessionDelegate` ，以能够使 SDK 进行数据采集。
+* 实现协议中 `ftURLSessionDelegate` 属性的 get 方法
+* 转发下列 URLSession 的 delegate 方法到 `ftURLSessionDelegate`，以便于 SDK 进行数据采集。
+    * `-URLSession:dataTask:didReceiveData:`
+    * `-URLSession:task:didCompleteWithError:`
+    * `-URLSession:task:didFinishCollectingMetrics:`
 
 === "Objective-C"
 
     ```objective-c
-    @interface InstrumentationPropertyClass:NSObject<NSURLSessionDataDelegate,FTURLSessionDelegateProviding>
-    @property (nonatomic, strong) FTURLSessionDelegate *ftURLSessionDelegate;
+    @interface UserURLSessionDelegateClass:NSObject<NSURLSessionDataDelegate,FTURLSessionDelegateProviding>
     @end
-    @implementation InstrumentationPropertyClass
+    @implementation UserURLSessionDelegateClass
+    @synthesize ftURLSessionDelegate = _ftURLSessionDelegate;
     
     - (nonnull FTURLSessionDelegate *)ftURLSessionDelegate {
         if(!_ftURLSessionDelegate){
             _ftURLSessionDelegate = [[FTURLSessionDelegate alloc]init];
+             // 添加自定义 RUM 资源属性，建议标签命名添加项目缩写的前缀，例如 `df_tag_name`。
             _ftURLSessionDelegate.provider =  ^NSDictionary * _Nullable(NSURLRequest *request, NSURLResponse *response, NSData *data, NSError *error) {
                     NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
                     return @{@"df_requestbody":body};
                 };
-                // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪
+              // 支持自定义 trace, 确认拦截后，返回 TraceContext，不拦截返回 nil
             _ftURLSessionDelegate.requestInterceptor = ^NSURLRequest * _Nonnull(NSURLRequest * _Nonnull request) {
                 NSDictionary *traceHeader = [[FTExternalDataManager sharedManager] getTraceHeaderWithUrl:request.URL];
                 NSMutableURLRequest *newRequest = [request mutableCopy];
@@ -1301,15 +1286,13 @@ SDK 提供了一个类 `FTURLSessionDelegate`，需要您将 URLSession 的 dele
                 }
                 return extraData
             }
-            // 拦截 Request 返回修改后的 Request，可用于自定义链路追踪
-            ftURLSessionDelegate.requestInterceptor = { request in
-                var mutableRequest = request
-                if let traceHeader = FTExternalDataManager.shared().getTraceHeader(with: request.url!){
-                    for (key,value) in traceHeader {
-                        mutableRequest.setValue(value as? String, forHTTPHeaderField: key as! String)
-                    }
-                }
-                return mutableRequest
+            // 支持自定义 trace, 确认拦截后，返回 TraceContext，不拦截返回 nil
+            ftURLSessionDelegate.traceInterceptor = { request in
+                let traceContext = FTTraceContext()
+                traceContext.traceHeader = ["trace_key":"trace_value"]
+                traceContext.spanId = "spanId"
+                traceContext.traceId = "traceId"
+                return traceContext
             }
         }
         // 下面方法一定要实现
@@ -1604,6 +1587,8 @@ FT_DATAKIT_ADDRESS="YOUR_DATAKIT_ADDRESS"
 FT_ENV="common"
 #<dataway_token> 配置文件 datakit.conf 中 dataway 的 token
 FT_TOKEN="YOUR_DATAWAY_TOKEN"
+# 是否仅将 dSYM 文件打包 zip（可选，默认0上传），1=不上传，仅打包dSYM zip,0=上传,可在脚本输出日志中搜索 FT_DSYM_ZIP_FILE 来查看 DSYM_SYMBOL.zip 文件路径
+FT_DSYM_ZIP_ONLY=0
 ```
 
 如果您需要使用多个环境上传不同环境的符号文件，可参考下面方式。
@@ -1677,7 +1662,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 **命令格式：**
 
-`sh FTdSYMUpload.sh <datakit_address> <app_id> <version> <env> <dataway_token> <dSYMBOL_src_dir>`
+`sh FTdSYMUpload.sh <datakit_address> <app_id> <version> <env> <dataway_token> <dSYMBOL_src_dir> <dSYM_ZIP_ONLY>`
 
 > 示例：
 >
@@ -1691,6 +1676,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 - `<version>`：应用的 `version` ，`CFBundleShortVersionString` 值
 - `<dataway_token>`：配置文件 `datakit.conf` 中 `dataway` 的 token
 - `<dSYMBOL_src_dir>`： 包含所有 `.dSYM` 文件的目录路径。
+- `<dSYM_ZIP_ONLY>`：是否仅将 dSYM 文件打包 zip 文件。可选。1=不上传，仅打包dSYM Zip，0=上传，可在脚本输出日志中搜索 `FT_DSYM_ZIP_FILE` 来查看 Zip 文件路径。
 
 ### 手动上传
 
@@ -1701,11 +1687,10 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 ### Widget Extension 数据采集支持
 
 * Logger 自定义日志
-
 * Trace 链路追踪
 * RUM 数据采集
-  * 手动采集  ([RUM 用户数据追踪](#rum) )
-  * 自动采集崩溃日志，HTTP Resource 数据
+    * 手动采集  ([RUM 用户数据追踪](#rum) )
+    * 自动采集崩溃日志，HTTP Resource 数据
 
 由于  HTTP Resource 数据是与 View 进行绑定的，所以需要用户手动采集 View 的数据。
 

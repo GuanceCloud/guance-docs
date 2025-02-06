@@ -250,7 +250,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -261,7 +261,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|Server addr|
 |`service_name`|Service name|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -294,7 +294,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -303,7 +303,7 @@ For all of the following data collections, the global election tags will added a
 |`server_addr`|Server addr|
 |`service_name`|Service name|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -351,7 +351,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -361,7 +361,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|Server addr|
 |`service_name`|Service name|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -380,7 +380,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -390,7 +390,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|Server addr.|
 |`service_name`|Service name.|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -407,7 +407,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -427,7 +427,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|Server addr.|
 |`service_name`|Service name.|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -627,7 +627,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -640,7 +640,7 @@ For all of the following data collections, the global election tags will added a
 |`slave_id`|Slave ID, only collected for master redis.|
 |`slave_state`|Slave state, only collected for master redis.|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -650,6 +650,10 @@ For all of the following data collections, the global election tags will added a
 |`master_repl_offset`|The server's current replication offset.|int|-|
 |`slave_lag`|Slave lag, only collected for master redis.|int|-|
 |`slave_offset`|Slave offset, only collected for master redis.|int|-| 
+
+
+
+
 
 
 
@@ -705,6 +709,35 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
+### `database`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on Redis(`OK/NotOK`)|
+|`host`|Connection name(domain) host address|
+|`ip`|Connection IP of the Redis|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- Metrics
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current Redis uptime|int|s|
+|`version`|Current version of Redis|string|-|
+
+
+
+
 ## Logging {#logging}
 
 <!-- markdownlint-disable MD024 -->
@@ -716,7 +749,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -728,7 +761,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|Server addr.|
 |`service_name`|Service name.|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -744,7 +777,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -755,7 +788,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|Server addr.|
 |`service_name`|Service name.|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -795,7 +828,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -803,7 +836,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|Server addr|
 |`service_name`|Service name|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -821,7 +854,7 @@ For all of the following data collections, the global election tags will added a
 
 Redis 慢查询命令历史，这里我们将其以日志的形式采集
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -831,18 +864,24 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 |`server`|server|
 |`service_name`|Service name|
 
-- field list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`command`|Slow command|int|μs|
+|`client_addr`|The client ip:port that run the slow query|string|-|
+|`client_name`|The client name that run the slow query(if `client setname` executed on client-side)|string|-|
+|`command`|Slow command|string|-|
 |`slowlog_95percentile`|Slow 95th percentile duration|int|μs|
 |`slowlog_avg`|Slow average duration|float|μs|
-|`slowlog_id`|Slow log unique id|int|-|
+|`slowlog_id`|Slow log unique ID|int|-|
 |`slowlog_max`|Slow maximum duration|int|μs|
 |`slowlog_median`|Slow median duration|int|μs|
 |`slowlog_micros`|Cost time|int|μs| 
+
+
+
+
 
 
 <!-- markdownlint-enable -->

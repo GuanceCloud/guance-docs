@@ -8,12 +8,24 @@
 </div>
 
 ## **ft-sdk** {#ft-sdk}
+### **1.6.8 (2025/01/21)** {#ft-sdk-1-6-8}
+1. 修复多次初始化 RUM 配置，fps 采集不准确的问题
+2. 容错老版本缓存数据升级
+3. `FTRUMConfig.setOkHttpTraceHeaderHandler` 迁移至 `FTTraceConfig.setOkHttpTraceHeaderHandler`
+4. WebView SDK 内部信息增强，优化性能
+### **1.6.7 (2025/01/10)** {#ft-sdk-1-6-7}
+1. 支持自定义 `FTTraceInterceptor.HeaderHandler` 与 RUM 数据做关联
+2. 支持通过 `FTRUMConfig.setOkHttpTraceHeaderHandler` 更改 ASM 写入的 `FTTraceInterceptor.HeaderHandler` 内容，
+   支持通过 `FTRUMConfig.setOkHttpResourceContentHandler` 更改 ASM 写入的 `FTResourceInterceptor.ContentHandlerHelper` 内容。
+3. 优化崩溃采集能力，适配某些 OS 触发 `system.exit` 导致崩溃数据无法采集的场景
+4. 修正 tag 偶现为空字符，从而导致数据无法正常上报的问题
+5. 优化 ASM OkHttpListener EventListener 的覆盖逻辑，支持保留原项目 EventListener 事件参数传递
 ### **1.6.6 (2024/12/27)** {#ft-sdk-1-6-6}
 1. 网络状态及类型获取优化，支持 ethernet 类型的网络类型显示
 2. 优化无网络状态下，数据写入频繁关闭数据库的问题
 3. 修复丢弃日志与 RUM 丢弃旧数据时，数据条目数与设置条目数偏差的问题
 4. TV 设备按键事件适配，剔除非 TV 设备 tag 
-5. 支持通过 `FTRUMConfig.setRumCacheLimitCount(int)`限制 RUM 数据条目数上限，默认 100_000
+5. 支持通过 `FTRUMConfig.setRumCacheLimitCount(int)`限制 RUM 数据缓存条目数上限，默认 100_000
 6. 支持通过 `FTSDKConfig enableLimitWithDbSize(long dbSize)` 限制总缓存大小功能，开启之后
    `FTLoggerConfig.setLogCacheLimitCount(int)` 及 `FTRUMConfig.setRumCacheLimitCount(int)` 将失效
 7. 优化设备无操作场景下 Session 刷新规则

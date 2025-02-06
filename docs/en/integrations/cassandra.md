@@ -181,7 +181,7 @@ Restart Datakit to make configuration take effect.
 |`table`|table=IndexInfo,table=available_ranges,table=batches,table=built_views,|
 |`type`|Object type.|
 
-- Fields
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -286,7 +286,7 @@ Restart Datakit to make configuration take effect.
 |`service`|Service name.|
 |`type`|Object type.|
 
-- Fields
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -344,7 +344,7 @@ Restart Datakit to make configuration take effect.
 |`service`|Service name.|
 |`type`|Object type.|
 
-- Fields
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -386,7 +386,7 @@ Restart Datakit to make configuration take effect.
 |`stat`|Stat.|
 |`tracer_version`|Tracer version.|
 
-- Fields
+- Metrics
 
 
 | Metric | Description | Type | Unit |

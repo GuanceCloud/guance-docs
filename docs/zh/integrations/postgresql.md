@@ -52,7 +52,7 @@ grant SELECT ON pg_stat_database to datakit;
       # or simple string
       # host=localhost user=pqgotest password=... sslmode=... dbname=app_production
     
-      address = "postgres://datakit:PASSWORD@localhost?sslmode=disable"
+      address = "postgres://datakit:PASSWORD@localhost/postgres?sslmode=disable"
     
       ## Ignore databases which are gathered. Do not use with 'databases' option.
       #
@@ -129,6 +129,8 @@ grant SELECT ON pg_stat_database to datakit;
 
 
 
+
+
 ### `postgresql`
 
 - 标签
@@ -169,6 +171,9 @@ grant SELECT ON pg_stat_database to datakit;
 
 
 
+
+
+
 ### `postgresql_lock`
 
 - 标签
@@ -192,6 +197,9 @@ grant SELECT ON pg_stat_database to datakit;
 
 
 
+
+
+
 ### `postgresql_index`
 
 - 标签
@@ -200,7 +208,7 @@ grant SELECT ON pg_stat_database to datakit;
 | Tag | Description |
 |  ----  | --------|
 |`db`|The database name|
-|`index`|The index name|
+|`pg_index`|The index name|
 |`schema`|The schema name|
 |`server`|The server address|
 |`table`|The table name|
@@ -213,6 +221,9 @@ grant SELECT ON pg_stat_database to datakit;
 |`idx_scan`|The number of index scans initiated on this table, tagged by index.|int|count|
 |`idx_tup_fetch`|The number of live rows fetched by index scans.|int|count|
 |`idx_tup_read`|The number of index entries returned by scans on this index.|int|count|
+
+
+
 
 
 
@@ -233,6 +244,9 @@ grant SELECT ON pg_stat_database to datakit;
 | ---- |---- | :---:    | :----: |
 |`replication_delay`|The current replication delay in seconds. Only available with `postgresql` 9.1 and newer.|int|s|
 |`replication_delay_bytes`|The current replication delay in bytes. Only available with `postgresql` 9.2 and newer.|int|B|
+
+
+
 
 
 
@@ -264,6 +278,9 @@ grant SELECT ON pg_stat_database to datakit;
 
 
 
+
+
+
 ### `postgresql_size`
 
 - 标签
@@ -284,6 +301,9 @@ grant SELECT ON pg_stat_database to datakit;
 |`index_size`|The total disk space used by indexes attached to the specified table.|int|B|
 |`table_size`|The total disk space used by the specified table with TOAST data. Free space map and visibility map are not included.|int|B|
 |`total_size`|The total disk space used by the table, including indexes and TOAST data.|int|B|
+
+
+
 
 
 
@@ -312,6 +332,9 @@ grant SELECT ON pg_stat_database to datakit;
 |`tidx_blks_read`|The number of disk blocks read from this table's TOAST table index.|int|count|
 |`toast_blks_hit`|The number of buffer hits in this table's TOAST table.|int|count|
 |`toast_blks_read`|The number of disk blocks read from this table's TOAST table.|int|count|
+
+
+
 
 
 
@@ -349,6 +372,9 @@ grant SELECT ON pg_stat_database to datakit;
 
 
 
+
+
+
 ### `postgresql_slru`
 
 - 标签
@@ -372,6 +398,9 @@ grant SELECT ON pg_stat_database to datakit;
 |`blks_zeroed`|Number of blocks zeroed during initializations of `SLRU` (simple least-recently-used) cache.|int|count|
 |`flushes`|Number of flush of dirty data for this `SLRU` (simple least-recently-used) cache.|int|count|
 |`truncates`|Number of truncates for this `SLRU` (simple least-recently-used) cache.|int|count|
+
+
+
 
 
 
@@ -403,6 +432,9 @@ grant SELECT ON pg_stat_database to datakit;
 
 
 
+
+
+
 ### `postgresql_connection`
 
 - 标签
@@ -420,6 +452,9 @@ grant SELECT ON pg_stat_database to datakit;
 | ---- |---- | :---:    | :----: |
 |`max_connections`|The maximum number of client connections allowed to this database.|float|count|
 |`percent_usage_connections`|The number of connections to this database as a fraction of the maximum number of allowed connections.|float|count|
+
+
+
 
 
 
@@ -446,6 +481,9 @@ grant SELECT ON pg_stat_database to datakit;
 
 
 
+
+
+
 ### `postgresql_archiver`
 
 - 标签
@@ -463,6 +501,10 @@ grant SELECT ON pg_stat_database to datakit;
 | ---- |---- | :---:    | :----: |
 |`archived_count`|Number of WAL files that have been successfully archived.|int|count|
 |`archived_failed_count`|Number of failed attempts for archiving WAL files.|int|count|
+
+
+
+
 
 
 
@@ -518,6 +560,35 @@ grant SELECT ON pg_stat_database to datakit;
 
 
 
+
+
+
+
+
+
+### `database`
+
+
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on PostgreSQL(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`||
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current PostgreSQL uptime|int|s|
+|`version`|Current version of PostgreSQL|string|-|
 
 
 

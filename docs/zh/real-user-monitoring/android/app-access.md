@@ -172,7 +172,7 @@ android{
 </application> 
 ```
 
-## SDK 初始化
+## SDK 初始化 {#init}
 
 ### 基础配置 {#base-setting}
 === "Java"
@@ -288,9 +288,10 @@ android{
 | setEnableResourceHostIP | Boolean | 否 | 是否采集请求目标域名地址的 IP。作用域：只影响 `EnableTraceUserResource`  为 true 的默认采集。自定义 Resource 采集，需要使用 `FTResourceEventListener.FTFactory(true)` 来开启这个功能。另外，单个 Okhttp 对相同域名存在 IP 缓存机制，相同 `OkhttpClient`，在连接服务端 IP 不发生变化的前提下，只会生成一次|
 | setResourceUrlHandler | Callback| 否 | 设置需要过滤的 Resource 条件，默认不过滤 |
 | setOkHttpEventListenerHandler | Callback| 否 | ASM 设置全局 Okhttp EventListener，默认不设置 |
+| setOkHttpResourceContentHandler | Callback| 否 | ASM 设置全局 `FTResourceInterceptor.ContentHandlerHelper`，默认不设置, ft-sdk 1.6.7 以上支持，[自定义 Resource](#okhttp_resource_trace_interceptor_custom) |
 | addGlobalContext | Dictionary | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
-| setRumCacheLimitCount | int | 否 | 本地缓存 RUM 限制数量 [10000,),默认是 100_000。ft-sdk 1.6.6 以上版本支持这个方法 |
-| setRumCacheDiscardStrategy | RUMCacheDiscard | 否 | 设置 RUM 达到限制上限以后的数据的丢弃规则，默认为 `RUMCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据，ft-sdk 1.6.6 以上版本支持这个方法  |
+| setRumCacheLimitCount | int | 否 | 本地缓存 RUM 限制数量 [10000,),默认是 100_000。ft-sdk 1.6.6 以上支持 |
+| setRumCacheDiscardStrategy | RUMCacheDiscard | 否 | 设置 RUM 达到限制上限以后的数据的丢弃规则，默认为 `RUMCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据，ft-sdk 1.6.6 以上支持  |
 
 ### Log 配置 {#log-config}
 
@@ -321,7 +322,7 @@ android{
 
 | **方法名** | **类型** | **必须** | **含义** |
 | --- | --- | --- | --- |
-| setSampleRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
+| setSamplingRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
 | setEnableConsoleLog | Boolean | 否 | 是否上报控制台日志，日志等级对应关系<br>Log.v -> ok;<br>Log.i -> info;<br> Log.d -> debug;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤。注意：Android 控制台量是很大的，为了避免影响应用性能，减少不必要的资源浪费，建议使用 `prefix` 过滤出有价值的日志 |
 | setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联，默认为 `false` |
 | setEnableCustomLog | Boolean| 否 | 是否上传自定义日志，默认为 `false` |
@@ -354,10 +355,11 @@ android{
 
 | **方法名** | **类型** | **必须** | **含义** |
 | --- | --- | --- | --- |
-| setSampleRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
+| setSamplingRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
 | setTraceType | TraceType | 否 | 设置链路追踪的类型，默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
 | setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联，默认为 `false` |
 | setEnableAutoTrace | Boolean | 否 | 设置是否开启自动 http trace，目前只支持 OKhttp 的自动追踪，默认为 `false` |
+| setOkHttpTraceHeaderHandler | Callback| 否 | ASM 设置全局 `FTTraceInterceptor.HeaderHandler`，默认不设置, ft-sdk 1.6.8 以上支持，示例参考[自定义 Trace](#okhttp_resource_trace_interceptor_custom) |
 
 ## RUM 用户数据追踪 {#rum-trace}
 
@@ -1398,8 +1400,9 @@ android{
 
 ## 通过 OKHttp Interceptor 自定义 Resource 和 TraceHeader {#okhttp_resource_trace_interceptor_custom}
 
- `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace` 配置，同时开启，优先加载自定义 `Interceptor` 配置
- >ft-sdk < 1.4.1，需要关闭 `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace`
+ `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace` 配置，同时开启，优先加载自定义 `Interceptor` 配置，
+ >ft-sdk < 1.4.1，需要关闭 `FTRUMConfig`的`enableTraceUserResource` ，`FTTraceConfig`的 `enableAutoTrace`。
+ >ft-sdk > 1.6.7 支持自定 Trace Header 与 RUM 数据做关联
 
 === "Java"
 
@@ -1412,6 +1415,17 @@ android{
 	                   map.put("custom_header","custom_value");
 	                   return map;
 	              }
+
+				 // 1.6.7 以上版本支持
+				  @Override
+				  public String getSpanID() {
+					return "span_id";
+				 }
+				// 1.6.7 以上版本支持
+				 @Override
+				 public String getTraceID() {
+					return "trace_id";
+				 }
 	        }))
            .addInterceptor(new FTResourceInterceptor(new FTResourceInterceptor.ContentHandlerHelper() {
                @Override
@@ -1854,7 +1868,7 @@ android{
 ```
 
 ## 符号文件上传 {#source_map}
-### plugin 上传
+### plugin 上传 （仅支持 datakit【本地部署】）
 `ft-plugin` 版本需要 `1.3.0` 以上版本支持最新的符号文件上传规则，支持 `productFlavor` 多版本区分管理，plugin 会在 `gradle task assembleRelease` 之后执行上传符号文件，详细配置可以参考 [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/build.gradle#L59)
 
 ``` groovy
@@ -1866,7 +1880,7 @@ FTExt {
     datawayToken = 'dataway_token'
     appId = "appid_xxxxx"// appid
     env = 'common'
-	generateSourceMapOnly //仅生成 sourcemap，路径示例：/app/build/tmp/ft{flavor}SourceMapMerge-release.zip，ft-plugin:1.3.4 以上版本支持
+	generateSourceMapOnly = false //仅生成 sourcemap，默认为 false，路径示例：/app/build/tmp/ft{flavor}SourceMapMerge-release.zip，ft-plugin:1.3.4 以上版本支持
 
     prodFlavors { //prodFlavors 配置会覆盖外层设置
         prodTest {
@@ -1890,7 +1904,7 @@ FTExt {
 
 ```
 ### 手动上传
-需要开发者将符号文件自行打包成 `zip` 文件，然后自行上传至 `datakit` ，推荐使用 `zip` 命令行进行打包，避免将一些系统隐藏文件打入 `zip` 包中，符号上传请参考 [sourcemap 上传](../../integrations/rum.md#sourcemap)
+使用 `plugin` 开启 `generateSourceMapOnly = true`, 执行 `gradle task assembleRelease`生成，或自行打包成 `zip` 文件，然后自行上传至 `datakit` 或从观测云 Studio 上传，推荐使用 `zip` 命令行进行打包，避免将一些系统隐藏文件打入 `zip` 包中，符号上传请参考 [sourcemap 上传](../../integrations/rum.md#sourcemap)
 
 > Unity Native Symbol 文件请参考[官方文档](https://docs.unity3d.com/Manual/android-symbols.html#public-symbols)
 

@@ -30,8 +30,6 @@ OTEL provides vendor-independent implementations that export observation class d
 
 The purpose of this article is to introduce how to configure and enable OTEL data access on Datakit, and the best practices of Java and Go.
 
-***Version Notes***: Datakit currently only accesses OTEL v1 version of OTLP data.
-
 <!-- markdownlint-disable MD046 -->
 ## Configuration {#config}
 
@@ -112,7 +110,6 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
       ## for example http://127.0.0.1:9529/otel/v1/trace
       ## The acceptable http_status_ok values will be 200 or 202.
       [inputs.opentelemetry.http]
-       enable = true
        http_status_ok = 200
        trace_api = "/otel/v1/trace"
        metric_api = "/otel/v1/metric"
@@ -122,8 +119,6 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
       ## GRPC services for trace and metrics can be enabled respectively as setting either to be true.
       ## add is the listening on address for GRPC server.
       [inputs.opentelemetry.grpc]
-       trace_enable = true
-       metric_enable = true
        addr = "127.0.0.1:4317"
     
       ## If 'expected_headers' is well configed, then the obligation of sending certain wanted HTTP headers is on the client side,
@@ -164,13 +159,13 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
     
         **Default**: false
     
-    - **ENV_INPUT_OTEL_COMPATIBLE_D_D_TRACE**
+    - **ENV_INPUT_OTEL_COMPATIBLE_DD_TRACE**
     
         Convert trace_id to decimal, compatible with DDTrace
     
         **Type**: Boolean
     
-        **input.conf**: `compatible_d_d_trace`
+        **input.conf**: `compatible_dd_trace`
     
         **Default**: false
     
@@ -289,7 +284,7 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
 ### Notes {#attentions}
 
 1. It is recommended to use grpc protocol, which has the advantages of high compression ratio, fast serialization and higher efficiency.
-2. The route of the http protocol is configurable and the default request path is trace: `/otel/v1/trace`, metric:`/otel/v1/metric`
+2. The route of the http protocol is configurable and the default request path is trace: `/otel/v1/trace`, metric:`/otel/v1/metric`,logs:`/otel/v1/logs`
 3. When data of type `float` `double` is involved, a maximum of two decimal places are reserved.
 4. Both http and grpc support the gzip compression format. You can configure the environment variable in exporter to turn it on: `OTEL_EXPORTER_OTLP_COMPRESSION = gzip`; gzip is not turned on by default.
 5. The http protocol request format supports both JSON and Protobuf serialization formats. But grpc only supports Protobuf.
@@ -306,7 +301,39 @@ The purpose of this article is to introduce how to configure and enable OTEL dat
 Pay attention to the configuration of environment variables when using OTEL HTTP exporter. Since the default configuration of Datakit is `/otel/v1/trace` and `/otel/v1/metric`,
 if you want to use the HTTP protocol, you need to configure `trace` and `trace` separately `metric`,
 
-The default request routes of OTLP are `v1/traces` and `v1/metrics`, which need to be configured separately for these two. If you modify the routing in the configuration file, just replace the routing address below.
+The default request routes of OTLP are `/otel/v1/logs` `v1/traces` and `v1/metrics`, which need to be configured separately for these two. If you modify the routing in the configuration file, just replace the routing address below.
+
+## Agent V2 version {#v2}
+
+The default OTLP protocol has been changed from `grpc` to `http/protobuf` in order to align with the specification.
+You can switch to the `grpc` protocol using `OTEL_EXPORTER_OTLP_PROTOCOL=grpc` or `-Dotel.exporter.otlp.protocol=grpc`.
+
+```shell
+java -javaagent:/usr/local/ddtrace/opentelemetry-javaagent-2.5.0.jar \
+  -Dotel.exporter=otlp \
+  -Dotel.exporter.otlp.protocol=http/protobuf \
+  -Dotel.exporter.otlp.logs.endpoint=http://localhost:9529/otel/v1/logs \
+  -Dotel.exporter.otlp.traces.endpoint=http://localhost:9529/otel/v1/trace \
+  -Dotel.exporter.otlp.metrics.endpoint=http://localhost:9529/otel/v1/metric \
+  -Dotel.service.name=app \
+  -jar app.jar
+```
+
+Use gPRC:
+
+```shell
+java -javaagent:/usr/local/ddtrace/opentelemetry-javaagent-2.5.0.jar \
+  -Dotel.exporter=otlp \
+  -Dotel.exporter.otlp.protocol=grpc \
+  -Dotel.exporter.otlp.endpoint=http://localhost:4317
+  -Dotel.service.name=app \
+  -jar app.jar
+```
+
+The default log is enabled. If you want to turn off log collection, the exporter configuration can be empty: `-Dotel.logs.exporter=none`
+
+For more major changes in the V2 version, please check the official documentation or [GitHub GuanCe Cloud](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/releases/tag/v2.11.0-guance){:target="_blank"} version notes
+
 
 ## General SDK Configuration {#sdk-configuration}
 
@@ -396,6 +423,7 @@ Add a fixed tags, only those in this list will be extracted into the tag. The fo
 | env                   | env                   |
 | host                  | host                  |
 | pod_name              | pod_name              |
+| pod_namespace         | pod_namespace         |
 
 If you want to add custom labels, you can use environment variables:
 
@@ -435,13 +463,15 @@ To control the time interval between MBean detection attempts, one can use the O
 
 In addition, the acquisition configuration of some third-party software built in the Agent. For details, please refer to: [JMX Metric Insight](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/instrumentation/jmx-metrics/javaagent/README.md){:target="_blank"}
 
+All indicators sent to the observation cloud have a unified indicator set name: `otel-service`.
+
 
 
 ### `opentelemetry`
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -449,45 +479,55 @@ In addition, the acquisition configuration of some third-party software built in
 |`action`|GC Action|
 |`area`|Heap or not|
 |`cause`|GC Cause|
-|`container.id`|Container ID|
+|`container_id`|Container ID|
 |`description`|Metric Description|
 |`exception`|Exception Information|
 |`gc`|GC Type|
 |`host`|Host Name|
-|`http.flavor`|HTTP Version|
-|`http.method`|HTTP Method|
-|`http.route`|HTTP Request Route|
+|`host_arch`|Host arch|
+|`host_name`|Host Name|
 |`http.scheme`|HTTP/HTTPS|
-|`http.target`|HTTP Target|
+|`http_method`|HTTP Method|
+|`http_request_method`|HTTP Method|
+|`http_response_status_code`|HTTP status code|
+|`http_route`|HTTP Route|
 |`id`|JVM Type|
 |`instrumentation_name`|Metric Name|
+|`jvm_gc_action`|action:end of major,end of minor GC|
+|`jvm_gc_name`|name:PS MarkSweep,PS Scavenge|
+|`jvm_memory_pool_name`|pool_name:code cache,PS Eden Space,PS Old Gen,MetaSpace...|
+|`jvm_memory_type`|memory type:heap,non_heap|
+|`jvm_thread_state`|Thread state:runnable,timed_waiting,waiting|
+|`le`|*_bucket: histogram metric explicit bounds|
 |`level`|Log Level|
 |`main-application-class`|Main Entry Point|
 |`method`|HTTP Type|
 |`name`|Thread Pool Name|
-|`net.protocol.name`|Net Protocol Name|
-|`net.protocol.version`|Net Protocol Version|
-|`os.description`|OS Version|
-|`os.type`|OS Type|
+|`net_protocol_name`|Net Protocol Name|
+|`net_protocol_version`|Net Protocol Version|
+|`os_description`|OS Version|
+|`os_type`|OS Type|
 |`outcome`|HTTP Outcome|
 |`path`|Disk Path|
 |`pool`|JVM Pool Type|
-|`process.command_line`|Process Command Line|
-|`process.executable.path`|Executable File Path|
-|`process.runtime.description`|Process Runtime Description|
-|`process.runtime.name`|JVM Pool Runtime Name|
-|`process.runtime.version`|JVM Pool Runtime Version|
-|`service.name`|Service Name|
+|`process_command_line`|Process Command Line|
+|`process_executable_path`|Executable File Path|
+|`process_runtime_description`|Process Runtime Description|
+|`process_runtime_name`|JVM Pool Runtime Name|
+|`process_runtime_version`|JVM Pool Runtime Version|
+|`scope_name`|Scope name|
+|`service_name`|Service Name|
 |`spanProcessorType`|Span Processor Type|
-|`state`|Thread State|
+|`state`|Thread State:idle,used|
 |`status`|HTTP Status Code|
-|`telemetry.auto.version`|Version|
-|`telemetry.sdk.language`|Language|
-|`telemetry.sdk.name`|SDK Name|
-|`telemetry.sdk.version`|SDK Version|
+|`telemetry_auto_version`|Version|
+|`telemetry_sdk_language`|Language|
+|`telemetry_sdk_name`|SDK Name|
+|`telemetry_sdk_version`|SDK Version|
+|`unit`|metrics unit|
 |`uri`|HTTP Request URI|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -564,7 +604,7 @@ In addition, the acquisition configuration of some third-party software built in
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -586,7 +626,7 @@ In addition, the acquisition configuration of some third-party software built in
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

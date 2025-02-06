@@ -102,7 +102,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 
 ### `coredns_acl`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -112,7 +112,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`server`|Server responsible for the request.|
 |`zone`|Zone name used for the request/response.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -126,7 +126,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 
 ### `coredns_cache`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -137,7 +137,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`type`|Cache type|
 |`zones`|Zone name used for the request/response|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -155,7 +155,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 
 ### `coredns_dnssec`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -165,7 +165,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`server`|Server responsible for the request|
 |`type`|signature|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -178,7 +178,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 
 ### `coredns_forward`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -189,7 +189,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`rcode`|Upstream returned `RCODE`|
 |`to`|Upstream server|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -207,7 +207,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 
 ### `coredns_grpc`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -217,7 +217,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`rcode`|Upstream returned `RCODE`|
 |`to`|Upstream server|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -230,7 +230,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 
 ### `coredns_hosts`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -238,7 +238,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`host`|Host name|
 |`instance`|Instance endpoint|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -250,7 +250,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 
 ### `coredns_template`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -265,7 +265,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`view`|View name|
 |`zone`|Zone name|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -278,7 +278,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 
 ### `coredns`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -300,7 +300,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`view`|View name|
 |`zone`|Zone name used for the request/response|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

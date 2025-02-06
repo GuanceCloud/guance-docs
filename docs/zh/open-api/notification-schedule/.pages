@@ -1,0 +1,6 @@
+nav:
+  - '日程列出': list.md
+  - '日程获取': get.md
+  - '日程新建': add.md
+  - '日程修改': modify.md
+  - '删除日程': delete.md

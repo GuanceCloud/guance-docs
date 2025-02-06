@@ -82,7 +82,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `lsblk`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -103,7 +103,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`uuid`|Filesystem UUID.|
 |`vendor`|Device vendor.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

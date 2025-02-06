@@ -30,7 +30,7 @@
 
 ![](../img/7.log_json.png)
 
-*JSON 搜索示例：*
+*场景示例：*
 
 ```
 message 信息如下：
@@ -54,6 +54,9 @@ message 信息如下：
 @meta.service:ruoyi?mysql*   // 模糊匹配
 ```
 
+<!--
+**注意**：当搜索内容包含 `.`，如 `trace.id`，若直接按照 `@key1.key2:value` 这一写法输入搜索，系统会判定 `trace` 和 `id` 为两个 `key`（但实际上是一个）。此时可按照 `@\"key1.xxx\":value` 的格式输入，即 `@\"key1.xxx\":value`。
+-->
 ## 筛选 {#filter}
 
 在查看器中，可针对 `字段名` 和 `字段值` 进行筛选查询数据。
