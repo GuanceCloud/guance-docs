@@ -941,14 +941,14 @@ FTRumErrorTracking.startTracking();
     === "Objective-C"
 
         ```objective-c
-        #import <FTMobileReactNativeSDK/FTReactNativeRUM.h>
+        #import <FTMobileReactNativeSDK/FTReactNativeUtils.h>
         #import <FTMobileSDK/FTMobileAgent.h>
         
         FTRumConfig *rumConfig = [[FTRumConfig alloc]initWithAppid:rumAppId];
         rumConfig.enableTraceUserResource = YES;
         #if DEBUG
           rumConfig.resourceUrlHandler = ^BOOL(NSURL * _Nonnull url) {
-            return filterBlackResource(url);
+            return [FTReactNativeUtils filterBlackResource:url];
           };
         #endif
         ```
@@ -962,7 +962,7 @@ FTRumErrorTracking.startTracking();
         rumConfig.enableTraceUserResource = true
         #if DEBUG
         rumConfig.resourceUrlHandler = { (url: URL) -> Bool in
-           return filterBlackResource(url)
+           return FTReactNativeUtils.filterBlackResource(url)
         }
         #endif
         ```
