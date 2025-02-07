@@ -661,6 +661,10 @@ yum install -y  redis
 
 
 
+
+
+
+
 ## 自定义对象 {#object}
 
 
@@ -701,6 +705,35 @@ yum install -y  redis
 
 
 
+
+
+
+
+
+
+### `database`
+
+
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on Redis(`OK/NotOK`)|
+|`host`|Connection name(domain) host address|
+|`ip`|Connection IP of the Redis|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- 字段列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current Redis uptime|int|s|
+|`version`|Current version of Redis|string|-|
 
 
 
@@ -848,6 +881,10 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 |`slowlog_max`|Slow maximum duration|int|μs|
 |`slowlog_median`|Slow median duration|int|μs|
 |`slowlog_micros`|Cost time|int|μs|
+
+
+
+
 
 
 

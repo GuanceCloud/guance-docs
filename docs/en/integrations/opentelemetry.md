@@ -471,7 +471,7 @@ All indicators sent to the observation cloud have a unified indicator set name: 
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -527,7 +527,7 @@ All indicators sent to the observation cloud have a unified indicator set name: 
 |`unit`|metrics unit|
 |`uri`|HTTP Request URI|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -604,7 +604,7 @@ All indicators sent to the observation cloud have a unified indicator set name: 
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -626,7 +626,7 @@ All indicators sent to the observation cloud have a unified indicator set name: 
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

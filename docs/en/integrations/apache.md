@@ -111,11 +111,12 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
 ### `apache`
 
 The collected metrics are affected by the environment in which Apache is installed. The metrics shown on the `http://<your-apache-server>/server-status?auto` page will prevail.
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -125,7 +126,7 @@ The collected metrics are affected by the environment in which Apache is install
 |`server_version`|Apache server version. Optional.|
 |`url`|Apache server status url.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -155,10 +156,42 @@ The collected metrics are affected by the environment in which Apache is install
 |`waiting_for_connection`|The number of workers that can immediately process an incoming request|int|count|
 
 
+
+
+
 ## Custom Object {#object}
 
 
 
+
+
+
+
+
+
+### `web_server`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on Apache(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`|Connection IP of the Apache|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- Metrics
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current Apache uptime|int|s|
+|`version`|Current version of Apache|string|-|
 
 
 

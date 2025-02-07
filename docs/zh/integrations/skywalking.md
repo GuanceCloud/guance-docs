@@ -314,7 +314,7 @@ SkyWalking 会上报一些 JVM 指标数据。
 
 
 
-### 指标类型 {metric}
+### 指标类型 {#metric}
 
 jvm metrics collected by SkyWalking language agent.
 
@@ -356,7 +356,7 @@ jvm metrics collected by SkyWalking language agent.
 
 
 
-### 链路字段说明 {tracing}
+### 链路字段说明 {#tracing}
 
 
 

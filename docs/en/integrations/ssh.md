@@ -74,14 +74,14 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `ssh`
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`host`|The host of ssh|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
