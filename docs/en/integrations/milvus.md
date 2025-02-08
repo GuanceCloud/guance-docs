@@ -16,9 +16,12 @@ Collect relevant metric information of Mlivus vector database
 
 ### Preconditions {#requirement}
 
-- [x] Installed datakit
+- [x] Installed DataKit
 - [x] Install [Milvus](https://www.bookstack.cn/read/milvus-0.10.0-zh/0895869624c7d37e.md)
-- [x] Go to the Milvus `/home/$USER/milvus/conf` directory, modify the `server_config.yaml` file, enable Prometheus monitoring
+
+### Enable Milvus monitoring
+
+Go to the Milvus `/home/$USER/milvus/conf` directory, modify the `server_config.yaml` file, enable Milvus monitoring
 
 ```yaml
 metric:

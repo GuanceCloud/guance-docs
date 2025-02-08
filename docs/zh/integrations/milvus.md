@@ -16,9 +16,12 @@ monitor   :
 
 ### 前置条件 {#requirement}
 
-- [x] 已安装 datakit
+- [x] 已安装 DataKit
 - [x] 安装 [Milvus](https://www.bookstack.cn/read/milvus-0.10.0-zh/0895869624c7d37e.md)
-- [x] 进入 Milvus `/home/$USER/milvus/conf` 目录，修改 `server_config.yaml` 文件，开启 Prometheus 监控
+
+### 开启 Milvus 监控
+
+进入 Milvus `/home/$USER/milvus/conf` 目录，修改 `server_config.yaml` 文件，开启 Milvus 监控
 
 ```yaml
 metric:
@@ -31,7 +34,7 @@ metric:
 
 - 修改后重启 Milvus，通过`http://localhost:9091/metrics`查看监控数据
 
-### 配置 datakit
+### 配置 DataKit
 
 - 进入 datakit 安装目录下的 `conf.d/prom` 目录，复制 `prom.conf.sample` 并命名为 `milvus.conf`
 
