@@ -1,6 +1,12 @@
 # 更新日志
 
 ---
+## **1.5.12** (2025/02/10)
+
+1. 调整文件存储路径配置，修复数据库创建失败的问题
+2. 更新了 tvOS 环境的默认 `service` 和日志 `source`，分别设置为 `df_rum_tvos` 和 `df_rum_tvos_log`
+3. 修复 RUM Action 事件中 `duration` 时长计算不准确的问题
+
 ## **1.5.11 (2025/02/05)** {#1-5-11}
 
 1. RUM Resource 采集优化，防止 RUM 开启 Resource 自动采集时采集 SDK 内请求
