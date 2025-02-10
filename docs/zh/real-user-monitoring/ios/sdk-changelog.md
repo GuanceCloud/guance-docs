@@ -1,12 +1,21 @@
 # 更新日志
 
 ---
+## **1.5.12** (2025/02/10)
+
+1. 调整文件存储路径配置，修复数据库创建失败的问题
+2. 更新了 tvOS 环境的默认 `service` 和日志 `source`，分别设置为 `df_rum_tvos` 和 `df_rum_tvos_log`
+3. 修复 RUM Action 事件中 `duration` 时长计算不准确的问题
+
+## **1.5.11 (2025/02/05)** {#1-5-11}
+
+1. RUM Resource 采集优化，防止 RUM 开启 Resource 自动采集时采集 SDK 内请求
+2. 修复 Widget Extension 中 skyWalking 类型链路追踪失败问题
+
 ## **1.5.10 (2025/01/21)** {#1-5-10}
 
 1. 支持通过 `FTTraceConfig.traceInterceptor` 拦截 Request 自定义 Trace，通过 `FTRumConfig.resourcePropertyProvider` 添加 RUM Resource 自定义属性
-
 2. 修复动态添加全局属性方法在多线程访问下的异常问题
-
 3. 优化 WebView 传入数据信息
 
 ## **1.5.9 (2025/01/08)** {#1-5-9}
