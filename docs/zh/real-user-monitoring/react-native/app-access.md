@@ -922,17 +922,21 @@ function getInfoFromNet(info:Info){
 
 * React Native 配置：
 
+    > RN SDK  0.3.11 支持
+
     在 React Native 侧无需再进行初始化配置。如果需要自动采集 `React Native Error`、自动采集 `React Native Action ` 方法如下：
-    
-```typescript
-import {FTRumActionTracking,FTRumErrorTracking} from '@cloudcare/react-native-mobile';
-//开启自动采集 react-native 控件点击
-FTRumActionTracking.startTracking();
-//开启自动采集 react-native Error
-FTRumErrorTracking.startTracking();
-```
+
+    ```typescript
+    import {FTRumActionTracking,FTRumErrorTracking} from '@cloudcare/react-native-mobile';
+    //开启自动采集 react-native 控件点击
+    FTRumActionTracking.startTracking();
+    //开启自动采集 react-native Error
+    FTRumErrorTracking.startTracking();
+    ```
 
 * 原生项目配置：
+
+    > RN SDK  0.3.11 支持
 
     开启 RUM Resource 自动采集时，需要过滤掉仅在开发环境中发生的 React Native 符号化调用请求和 Expo日志调用请求。方法如下：
 
@@ -941,14 +945,14 @@ FTRumErrorTracking.startTracking();
     === "Objective-C"
 
         ```objective-c
-        #import <FTMobileReactNativeSDK/FTReactNativeRUM.h>
+        #import <FTMobileReactNativeSDK/FTReactNativeUtils.h>
         #import <FTMobileSDK/FTMobileAgent.h>
         
         FTRumConfig *rumConfig = [[FTRumConfig alloc]initWithAppid:rumAppId];
         rumConfig.enableTraceUserResource = YES;
         #if DEBUG
           rumConfig.resourceUrlHandler = ^BOOL(NSURL * _Nonnull url) {
-            return filterBlackResource(url);
+            return [FTReactNativeUtils filterBlackResource:url];
           };
         #endif
         ```
@@ -962,7 +966,7 @@ FTRumErrorTracking.startTracking();
         rumConfig.enableTraceUserResource = true
         #if DEBUG
         rumConfig.resourceUrlHandler = { (url: URL) -> Bool in
-           return filterBlackResource(url)
+           return FTReactNativeUtils.filterBlackResource(url)
         }
         #endif
         ```
@@ -1004,9 +1008,7 @@ FTRumErrorTracking.startTracking();
 具体使用示例可以参考 [example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)。
 
 ## Publish Package 相关配置
-
 ### Android
-
 * [Android R8/Prograd 配置](../android/app-access.md#r8_proguard)
 * [Android 符号文件上传](../android/app-access.md#source_map)
 

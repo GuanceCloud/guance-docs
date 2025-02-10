@@ -1,4 +1,11 @@
 # 更新日志
+## 0.3.11 (2025/02/05)
+
+* 原生 与 React Native 混合开发 SDK 配置优化
+    * 支持通过  `FTRumActionTracking.startTracking()` 方法，自动采集 React Native 控件点击事件， `FTRumErrorTracking.startTracking()` 方法，自动采集 React Native 错误日志
+    * 开启 RUM Resource 自动采集时，新增方法 iOS 端 `FTReactNativeUtils.filterBlackResource(url)`、Android 端 `ReactNativeUtils.isReactNativeDevUrl(url)` 过滤开发环境中的 React Native 符号化请求及 Expo 日志请求，减少冗余数据
+* 适配 iOS SDK [1.5.11](../ios/sdk-changelog.md/#1-5-11)
+
 ## **0.3.10 (2025/01/21)**
 
 * 修改 iOS bridge 代码中引用 native SDK 头文件方式
