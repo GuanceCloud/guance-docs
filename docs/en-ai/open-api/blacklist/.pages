@@ -1,0 +1,8 @@
+nav:
+  - 'Get Blacklist List': list.md
+  - 'Get Blacklist Rule': get.md
+  - 'Create a Blacklist': add.md
+  - 'Modify a Blacklist': modify.md
+  - 'Delete One or Multiple Blacklists': delete.md
+  - 'Import One or Multiple Blacklists': import-blacklist.md
+  - 'Export One or Multiple Blacklists': export-blacklist.md

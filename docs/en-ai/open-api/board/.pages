@@ -1,0 +1,19 @@
+nav:
+  - 'Create a Dashboard': create.md
+  - 'Get Dashboard List': list.md
+  - 'Delete a Dashboard': delete.md
+  - 'Modify a Dashboard': modify.md
+  - 'Get a Dashboard': get.md
+  - 'Export a Dashboard': export.md
+  - 'Import a Dashboard': import.md
+  - 'Get Carousel List of Dashboards': carousel-list.md
+  - 'Get Configuration for a Single Dashboard Carousel': carousel-get.md
+  - 'Add Configuration for a Single Dashboard Carousel': carousel-add.md
+  - 'Modify Configuration for a Single Dashboard Carousel': carousel-modify.md
+  - 'Delete Configuration for Dashboard Carousel': carousel-delete.md
+  - 'Get Scheduled Report List': crontab-report-list.md
+  - 'Add a Scheduled Report': crontab-report-add.md
+  - 'Get a Scheduled Report': crontab-report-get.md
+  - 'Modify a Scheduled Report': crontab-report-modify.md
+  - 'Enable/Disable Scheduled Report': crontab-report-set-disable.md
+  - 'Delete Scheduled Report': crontab-report-delete.md

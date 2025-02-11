@@ -1,0 +1,47 @@
+# Modify Declaration Information
+
+---
+
+<br />**POST /api/v1/workspace/declaration/modify**
+
+## Overview
+
+
+
+
+## Body Request Parameters
+
+| Parameter Name | Type | Required | Description |
+|:--------------|:-----|:---------|:------------|
+| declaration   | json | Y        | Workspace attribute claims information<br>Example: {} <br>Allow null: False <br> |
+
+## Additional Parameter Notes
+
+
+
+
+
+## Request Example
+```shell
+curl 'https://openapi.guance.com/api/v1/workspace/declaration/modify' \
+  -H 'Accept: application/json, text/plain, */*' \
+  -H 'Content-Type: application/json;charset=UTF-8' \
+  -H 'DF-API-KEY: <DF-API-KEY>' \
+  --data-raw $'{"declaration":{"aad12":["asdaf"],"business":["事业部","产业一部","产品组啊时"],"organization":"88"}}' \
+  --compressed
+```
+
+
+
+
+## Response
+```shell
+{
+    "code": 200,
+    "content": true,
+    "errorCode": "",
+    "message": "",
+    "success": true,
+    "traceId": "TRACE-352C3704-3FC6-432E-8D51-EEBEA8E90B5A"
+} 
+```

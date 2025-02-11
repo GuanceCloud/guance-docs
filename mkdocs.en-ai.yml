@@ -1,0 +1,86 @@
+site_name: Docs
+docs_dir: './docs/en-ai'
+site_dir: './site/en'
+
+theme:
+  palette:
+    primary: white
+  name: material
+  custom_dir: overrides/
+  favicon: assets/images/favicon.ico
+  logo: assets/images/logo.png
+  language: en
+  features:
+    - navigation.instant
+    - navigation.path
+    - search.suggest
+    - toc.follow
+    - content.tabs.link
+    - content.code.copy
+
+markdown_extensions:
+  tables: {}
+  footnotes: {}
+  attr_list: {}
+  md_in_html: {}
+  toc:
+    permalink: true
+  pymdownx.tasklist:
+    custom_checkbox: true
+  meta: {}
+  pymdownx.caret: {}
+  pymdownx.mark: {}
+  pymdownx.tilde: {}
+  pymdownx.betterem: {}
+  pymdownx.critic: {}
+  pymdownx.keys: {}
+  pymdownx.snippets: {}
+  pymdownx.details: {}
+  pymdownx.tabbed:
+    alternate_style: true
+  pymdownx.highlight:
+    anchor_linenums: true
+    auto_title: false
+    linenums: false
+  pymdownx.inlinehilite: {}
+  pymdownx.superfences:
+    custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format
+  pymdownx.emoji:
+    emoji_index: !!python/name:materialx.emoji.twemoji
+    emoji_generator: !!python/name:materialx.emoji.to_svg
+    options:
+      custom_icons:
+        - overrides/.icons
+
+copyright: '&copy; 2013-2025 Shanghai Futuroscope Information Technology Co., Ltd. . All Rights Reserved.'
+
+extra:
+  generator: false
+  homepage: https://docs.guance.com/en
+  custom_key:
+    brand_name: Guance
+  alternate:
+    - name: 中文
+      link: /
+      lang: zh
+    - name: English
+      link: /en/
+      lang: en
+
+plugins:
+  macros: {}
+  awesome-pages: {}
+  section-index: {}
+  git-revision-date-localized:
+    type: custom
+    custom_format: '%Y-%m-%d'
+    enable_creation_date: true
+    fallback_to_build_date: true
+  search:
+    lang: en
+
+extra_css:
+  - assets/stylesheets/extra.css

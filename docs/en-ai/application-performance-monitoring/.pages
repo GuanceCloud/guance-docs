@@ -1,0 +1,9 @@
+nav:
+  - index.md
+  - 'Data Collection': collection
+  - 'Service Management': service-manag
+  - 'Overview': overview.md
+  - 'Explorer': explorer
+  - 'Error Tracking': error.md
+  - 'Profiling': profile.md
+  - 'FAQ': faq.md

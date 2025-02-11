@@ -1,0 +1,67 @@
+{
+  "deployment/download.md": {
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_translated": "2025-02-10T11:10:42.876570",
+    "usage": {
+      "prompt_tokens": 839,
+      "completion_tokens": 13,
+      "total_tokens": 852,
+      "prompt_price": 0.0006712,
+      "completion_price": 2.6e-05,
+      "total_price": 0.0006972,
+      "currency": "USD"
+    }
+  },
+  "deployment/capacity-planning.md": {
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_translated": "2025-02-10T11:10:44.453551",
+    "usage": {
+      "prompt_tokens": 839,
+      "completion_tokens": 13,
+      "total_tokens": 852,
+      "prompt_price": 0.0006712,
+      "completion_price": 2.6e-05,
+      "total_price": 0.0006972,
+      "currency": "USD"
+    }
+  },
+  "deployment/faq-all-in-one.md": {
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_translated": "2025-02-10T11:10:46.256941",
+    "usage": {
+      "prompt_tokens": 839,
+      "completion_tokens": 13,
+      "total_tokens": 852,
+      "prompt_price": 0.0006712,
+      "completion_price": 2.6e-05,
+      "total_price": 0.0006972,
+      "currency": "USD"
+    }
+  },
+  "deployment/faq-debug-cluster.md": {
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_translated": "2025-02-10T11:10:47.775569",
+    "usage": {
+      "prompt_tokens": 839,
+      "completion_tokens": 8,
+      "total_tokens": 847,
+      "prompt_price": 0.0006712,
+      "completion_price": 1.6e-05,
+      "total_price": 0.0006872,
+      "currency": "USD"
+    }
+  },
+  "deployment/faq-product-usage.md": {
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "last_translated": "2025-02-10T11:11:50.426575",
+    "usage": {
+      "prompt_tokens": 839,
+      "completion_tokens": 13,
+      "total_tokens": 852,
+      "prompt_price": 0.0006712,
+      "completion_price": 2.6e-05,
+      "total_price": 0.0006972,
+      "currency": "USD"
+    }
+  }
+}

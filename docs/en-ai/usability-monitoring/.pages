@@ -1,0 +1,6 @@
+nav:
+  - index.md
+  - 'Dial Testing': request-task
+  - 'Summary': overview.md
+  - 'Explorer': explorer.md
+  - 'User-defined Node Management': self-node.md

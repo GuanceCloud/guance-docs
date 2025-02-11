@@ -1,0 +1,4 @@
+nav:
+  - index.md
+  - 'Explorer': event-explorer
+  - '智能监控': inte-monitoring-event.md

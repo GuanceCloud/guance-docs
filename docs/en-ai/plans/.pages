@@ -1,0 +1,15 @@
+nav:
+  - index.md
+  - Commercial Plan Registration:
+    - commercial.md
+    - 'Register Commercial Plan from the Official Website': commercial-register.md   
+    - Register Commercial Plan from Cloud Providers:
+      - 'Enable on Alibaba Cloud Marketplace': commercial-aliyun.md
+      - 'Enable on Alibaba Cloud International Marketplace': en-alicloud.md
+      - 'Enable Exclusive Plan on Alibaba Cloud Marketplace': commercial-aliyun-sls.md
+      - 'Enable on AWS Marketplace': commercial-aws.md
+      - 'Purchase on Huawei Cloud Store': commercial-huaweiyun.md
+      - 'Purchase on Microsoft Azure Store': commercial-azure.md
+  - Register Free Plan: trail.md
+  - Private Cloud Deployment Plan: deployment.md
+  - Independent Storage Plan: independent-storage.md

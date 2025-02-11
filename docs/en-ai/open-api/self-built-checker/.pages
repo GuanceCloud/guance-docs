@@ -1,0 +1,9 @@
+nav:
+  - 'List intelligent inspection items': list.md
+  - 'Get information of an intelligent inspection': get.md
+  - 'Create an intelligent inspection': create.md
+  - 'Modify an intelligent inspection': modify.md
+  - 'Disable an intelligent inspection': disable.md
+  - 'Enable an intelligent inspection': enable.md
+  - 'Delete an intelligent inspection': delete.md
+  - 'Batch delete intelligent inspections': batch-delete.md

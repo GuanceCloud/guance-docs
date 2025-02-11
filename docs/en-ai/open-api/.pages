@@ -1,0 +1,57 @@
+nav:
+  - index.md
+  - 'Public Request Parameters': public-request-params.md
+  - 'Public Response Structure': public-response-params.md
+  - 'Signature Authentication': signature-certification.md
+  - 'Usage Limitations': api-limit.md
+  - 'Request Example': example.md
+  - 'Common Error Definitions': error-definition.md
+  - 'Scenario - Dashboard': board
+  - 'Scenario - Notes': notes
+  - 'Scenario - Explorer': viewer
+  - 'Scenario - Built-in Views': inner-dashboard
+  - 'Scenario - Service Management': service-manage
+  - 'Events': keyevent
+  - 'Incident - Channels': channel
+  - 'Incident - Issue': issue
+  - 'Incident - Schedules': notification-schedule
+  - 'Incident - Configuration Management - Notification Policy': issue-notification-policy
+  - 'Incident - Configuration Management - Issue Discovery': issue-auto-discovery
+  - 'Infrastructure': objects
+  - 'Infrastructure - Resource Catalog': objc-set
+  - 'Logs - Clustering Queries': logmine
+  - 'Logs - Indexing': log-index-cfg
+  - 'Logs - Data Forwarding': log-backup-cfg
+  - 'Logs - Data Access': logging-query-rule
+  - 'Metrics - Aggregated Metrics Generation': aggs-to-metric
+  - 'RUM - Applications': rum-cfg-set
+  - 'RUM - SourceMap': rum-sourcemap
+  - 'Synthetic Tests - Dial Testing Tasks': dialing-task
+  - 'Synthetic Tests - User-defined Node Management': dialing-region
+  - 'Monitoring - Checkers': checker
+  - 'Monitoring - SLO': slo
+  - 'Monitoring - Intelligent Security Check': self-built-checker
+  - 'Monitoring - Mute Configuration': mute
+  - 'Monitoring - Alert Policies': alert-policy
+  - 'Monitoring - Alert Policies - Custom Notification Dates': alert-policy-notice-date
+  - 'Monitoring - Notification Targets Management': notify-object
+  - 'Management - Field Management': field-cfg
+  - 'Management - Global Tags': tag
+  - 'Management - Member Management': workspace-member
+  - 'Management - Member Management - Role Permissions': permission
+  - 'Management - Member Management - Team Management': member-group
+  - 'Management - Member Management - SSO Management': sso
+  - 'Management - Member Management - SSO Management - Custom Mapping Rules (Deployment Plan)': custom-login-mapping
+  - 'Management - Role Management': role
+  - 'Management - API Key Management': workspace-ak
+  - 'Management - Blacklist': blacklist
+  - 'Management - Pipeline': pipeline
+  - 'Management - Data Access': data-query-rule
+  - 'Management - Sensitive Data Masking': workspace-data-mask
+  - 'Workspace': workspace
+  - 'Workspace - Attribute Claims': workspace-declaration
+  - 'Snapshot Management': snapshot
+  - 'DQL Data Query': query-data
+  - 'Func Functions': outer-function
+  - 'Billing Analysis': billing
+  - 'Login Token': offline-token

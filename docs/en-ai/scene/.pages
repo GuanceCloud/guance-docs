@@ -1,0 +1,10 @@
+nav:
+  - index.md
+  - 'Dashboard': dashboard
+  - 'Visual Charts': visual-chart
+  - 'View Variables': view-variable.md
+  - 'Scheduled Reports': report.md
+  - 'Notes': note.md
+  - 'Explorer': explorer
+  - 'Built-in Views': built-in-view
+  - 'FAQ': faq.md

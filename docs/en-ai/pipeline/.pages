@@ -1,0 +1,4 @@
+nav:
+  - index.md
+  - 'Manage Pipelines': overall-pipeline.md
+  - 'Pipeline Manual': use-pipeline

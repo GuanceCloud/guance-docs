@@ -1,0 +1,12 @@
+nav:
+  - 'Workspace - Create': create.md
+  - 'Modify Workspace': modify.md
+  - 'Get Function Menu (old)': menu-get.md
+  - 'Set Function Menu (old)': menu-set.md
+  - 'Get Function Menu (new, supports secondary menus)': menu-get-v2.md
+  - 'Set Function Menu (new, supports secondary menus)': menu-set-v2.md
+  - 'Upload Space-related Images and Resources': upload-logo-image.md
+  - 'Set Custom Binding Information for Workspace': set-bind-info.md
+  - 'Get Desensitization Fields for Sensitive Data in Space Roles': role-sensitive-mask-field-get.md
+  - 'Test Desensitization Rules for Sensitive Data in Space': sensitive-mask-test.md
+  - 'Get Current Workspace Information': current.md

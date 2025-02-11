@@ -1,0 +1,4 @@
+nav:
+  - 'Get cumulative consumption of each billing item in the workspace bill': billsummary.md
+  - 'Get billing information for the corresponding period of the workspace bill': billdetail.md
+  - 'Get the current account balance': billbalance.md

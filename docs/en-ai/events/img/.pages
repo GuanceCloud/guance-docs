@@ -1,0 +1,11 @@
+nav:
+  - index.md
+  - '事件产生': generating.md
+  - '事件查看器': explorer
+
+翻译后的内容为：
+
+nav:
+  - index.md
+  - 'Event Generating': generating.md
+  - 'Event Explorer': explorer

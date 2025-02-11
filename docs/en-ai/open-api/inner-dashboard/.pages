@@ -1,0 +1,7 @@
+nav:
+  - 'Get User View List': innerlist.md
+  - 'Get Single User View': get.md
+  - 'Export Single User View': export.md
+  - 'Create Single User View': add.md
+  - 'Modify Single User View': modify.md
+  - 'Delete Single User View': delete.md

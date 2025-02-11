@@ -1,0 +1,15 @@
+nav:
+  - index.md
+  - 'Monitor': monitor
+  - 'Intelligent Monitoring': intelligent-monitoring
+  - 'Bot Patrol': bot-obs
+  - 'SLO': slo.md
+  - 'Mute Management': silent-management.md
+  - 'Alert Policies':
+    - alert-setting.md
+    - 'Policy List': config-alert-setting.md
+  - 'Notification Targets Management': notify-object.md
+  - 'Alert Aggregation Notification Template': alert-template.md
+  - 'Custom Event Notification Template': event-template.md
+  - 'Monitor Internal Principles': monitor-internal.md
+  - 'FAQ': faq.md

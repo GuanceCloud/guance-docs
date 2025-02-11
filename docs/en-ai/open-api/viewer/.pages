@@ -1,0 +1,8 @@
+nav:
+  - 'Get Explorer List': list.md
+  - 'Get an Explorer': get.md
+  - 'Delete an Explorer': delete.md
+  - 'Export an Explorer': export.md
+  - 'Create an Explorer': create.md
+  - 'Modify an Explorer': modify.md
+  - 'Import an Explorer': import.md

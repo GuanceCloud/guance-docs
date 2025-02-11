@@ -1,0 +1,5 @@
+nav:
+  - 'Changelog': sdk-changelog.md
+  - 'App Access': app-access.md
+  - 'App Data Collection': app-data-collection.md
+  - 'Troubleshooting': app-troubleshooting.md

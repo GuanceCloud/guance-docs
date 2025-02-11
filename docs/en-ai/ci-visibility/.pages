@@ -1,0 +1,5 @@
+nav:
+  - index.md
+  - 'Data Collection': data-collection.md
+  - 'Summary': overview.md
+  - 'Explorer': explorer.md

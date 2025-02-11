@@ -1,0 +1,6 @@
+nav:
+  - 'List Teams': list.md
+  - 'Get a Team': get.md
+  - 'Delete a Team': delete.md
+  - 'Create a Team': create.md
+  - 'Modify a Team': modify.md

@@ -1,0 +1,7 @@
+nav:
+  - 'List': list.md
+  - 'Get': get.md
+  - 'Add': add.md
+  - 'Modify': modify.md
+  - 'Enable/Disable': set-disable.md
+  - 'Delete': delete.md

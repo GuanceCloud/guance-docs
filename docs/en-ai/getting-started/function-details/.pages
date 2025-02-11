@@ -1,0 +1,8 @@
+nav:
+  - Explorer: explorer-search.md
+  - dashboard.md
+  - snapshot.md
+  - 'Infrastructure Network Analysis': network-analysis.md
+  - 'Log Blacklist': logs-blacklist.md
+  - 'Notification Groups': inform-group.md
+  - 'Special Character Query Description': special-character-query.md

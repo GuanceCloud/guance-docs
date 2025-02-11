@@ -1,0 +1,38 @@
+nav:
+  - 'Methodology': 
+    - 'SLO from Methodology to Practice: Part1 Establishing Effective SLOs': slo-part1.md
+    - 'SLO from Methodology to Practice: Part2 SLO Tool Selection': slo-part2.md
+    - 'SLO from Methodology to Practice: Part3 Best Practices for Managing SLOs with Guance': slo-part3.md
+
+  - 'Data-Binding':
+    - 'Best Practices for Data Binding': data-ship.md
+    - 'Linked Analysis of Data': data-link.md
+    - 'End-to-End Observability Best Practices for E-commerce Orders': order.md
+    - 'Using SkyWalking with Guance for RUM, APM, and Log Linked Analysis': skywalking-apm-rum-log.md
+    - 'JAVA Application RUM-APM-LOG Linked Analysis': java-rum-apm-log.md
+
+  - 'Tech':
+    - 'Guance VS ELK, EFK': guance-elk-efk.md
+    - 'Guance VS Alibaba Cloud ARMS 3.0': guance-arms.md
+    - 'InfluxDB Time Series Overview': influxdb-descr.md
+
+  - 'Skills':
+    - 'Best Practices for Managing DataKit DaemonSet Configuration': datakit-daemonset.md
+    - 'Best Practices for Bulk Deployment of DataKit': datakit-ansible.md
+    - 'Best Practices for Using TAGs in Guance': tag.md
+    - 'Best Practices for Updating DataKit Versions': datakit-update.md
+    - 'Quick Start Guide for Pythond Collector': pythond.md
+    - 'Configuring HTTPS for DataKit': datakit-https.md
+    - 'Common Parameters Usage for ddtrace': ddtrace-skill-param.md
+    - 'Sampling with ddtrace': ddtrace-skill-sampling.md
+    - 'ddtrace-api User Guide': ddtrace-skill-api.md
+    - 'Log Correlation with ddtrace': ddtrace-skill-log.md
+    - tracing_method.md
+    - 'OpenTelemetry Java SDK': opentelemetry-sdk.md
+    - opentelemetry-params-for-java.md
+    - 'trace_thread.md'
+
+  - 'Scene': 
+    - 'Integrating Dubbo Microservices into Guance in Intranet Scenarios': scene-dubbo.md
+    - 'Observability of SpringBoot Projects with External Tomcat': springboot-tomcat.md
+    - 'Best Practices for Bidirectional Linkage between Incident and JIRA': im_jira.md

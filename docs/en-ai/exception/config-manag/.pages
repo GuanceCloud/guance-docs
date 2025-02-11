@@ -1,0 +1,4 @@
+nav:
+  - 'Level Definition': level-definition.md
+  - 'Issue Discovery': issue-discovery.md
+  - 'Notification Strategy': strategy.md

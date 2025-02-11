@@ -1,0 +1,6 @@
+nav:
+  - index.md
+  - 'Data forwarding to AWS S3': backup-aws.md
+  - 'Data forwarding to Huawei Cloud OBS': backup-huawei.md
+  - 'Data forwarding to Alibaba Cloud OSS': backup-ali.md
+  - 'Data forwarding to Kafka message queue': backup-kafka.md

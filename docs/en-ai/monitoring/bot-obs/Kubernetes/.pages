@@ -1,0 +1,3 @@
+nav:
+  - 'Kubernetes Pod Abnormal Restart Inspection': k8s-pod-restart.md
+  - 'Kubernetes Health Inspection': k8s-health.md

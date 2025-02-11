@@ -1,0 +1,3 @@
+nav:
+  - 'Deploy on Host': deploy_on_host.md
+  - 'Deploy on Kubernetes': deploy_on_k8s.md

@@ -1,0 +1,3 @@
+nav:
+  - 'Generate temporary token': create-temporary-token.md
+  - 'Revoke temporary token': revoke-temporary-token.md

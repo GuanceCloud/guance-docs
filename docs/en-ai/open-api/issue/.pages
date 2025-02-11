@@ -1,0 +1,18 @@
+nav:
+  - 'List issues': list.md
+  - 'Get issue details': get.md
+  - 'Create issue': add.md
+  - 'Modify issue': modify.md
+  - 'List issue replies': getissuereplylist.md
+  - 'Create issue reply': createissuereply.md
+  - 'Modify issue reply': modifyissuereply.md
+  - 'Delete issue reply': deleteissuereply.md
+  - 'List issue levels': level-list.md
+  - 'Add custom issue level': level-add.md
+  - 'Modify custom issue level': level-modify.md
+  - 'Delete custom issue level': level-delete.md
+  - 'Get default issue configuration status': config-get.md
+  - 'Modify default issue configuration status': config-set.md
+  - 'Upload attachment': attachmentupload.md
+  - 'Delete attachment': attachmentdelete.md
+  - 'Download attachment': downloadattachment.md

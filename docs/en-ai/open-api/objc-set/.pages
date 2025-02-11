@@ -1,0 +1,6 @@
+nav:
+  - '【Resource Class Configuration】List': list.md
+  - '【Resource Class Configuration】Create': create.md
+  - '【Resource Class Configuration】Modify': modify.md
+  - '【Resource Class Configuration】Delete': delete.md
+  - '【Resource Class Configuration】Export': export.md

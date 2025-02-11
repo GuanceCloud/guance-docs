@@ -1,0 +1,11 @@
+nav:
+  - '【Workspace】List': list.md
+  - '【Workspace】Create': create.md
+  - '【Workspace】Get Details': get.md
+  - '【Workspace】Modify': modify.md
+  - '【Workspace】Delete': delete.md
+  - '【Workspace】Query Usage Limit': usage-limit-get.md
+  - '【Workspace】Update Usage Limit': update-usage-limit.md
+  - '【Workspace】Upload Related Resources for Space Images': upload-logo-image.md
+  - '【Workspace】Get URLs for Related Resources of Space Images': get-logo-url.md
+  - '【Workspace】Custom Bind Information for Workspaces': set-bind-info.md

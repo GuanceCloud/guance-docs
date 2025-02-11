@@ -1,0 +1,7 @@
+nav:
+  - index.md
+  - 'DataFlux Func (Automata)': automata.md
+  - 'External Data Source': 
+    - external_data.md
+    - 'Normal Chart Data Return': external_data_normal.md
+    - 'Topology Graph Data Return': external_data_treemap.md

@@ -1,0 +1,126 @@
+nav:
+  - index.md
+  - 'Release History': changelog 
+  - 'Private Deployment Description': deployment-description.md   
+  - 'Product Deployment': 
+    - 'Pre-deployment Reading': how-to-install.md
+    - "How to Apply for License": get-license.md    
+    - 'Infrastructure Deployment': basic-env-install.md
+    - 'Start Installation': launcher-install.md
+    - 'Activate Product': activate.md
+    - "DataWay":
+      - 'Version History': dataway-changelog.md
+      - 'DataWay Installation and Usage': dataway.md
+      - 'Data Diversion': dataway-sink.md
+    - 'Deployment Solutions':
+       # - "How to Choose a Deployment Version Solution": how-to-select-deployment-version.md
+       # - "Secure Deployment Solution": security-deployment.md
+       # - "Hybrid Cloud Deployment Solution": hybrid-cloud-deployment.md
+      - "Cloud Infrastructure Deployment":
+        - "Resources and System Requirements": cloud-required.md
+        - "Alibaba Cloud Deployment Manual": cloud-deployment-manual.md
+        - "Huawei Cloud Deployment Manual": hwcloud-deployment-manual.md
+      - "User-defined Infrastructure Deployment": 
+        - "User-defined Infrastructure Deployment Manual": offline-deployment-manual.md    
+        - "Resources and System Requirements": offline-required.md
+        - "Infrastructure Deployment": 
+          - "Proxy": proxy-install.md
+          - "NFS": nfs-install.md
+          - "Ingress-Nginx": ingress-nginx-install.md
+          - "Kubernetes Storage NFS": nfs-provisioner.md 
+          - "Kubernetes Storage OpenEBS": openebs-install.md
+          - "Kubernetes": infra-kubernetes.md
+          - "MySQL": infra-mysql.md
+          - "Log Engine": infra-logengine.md
+          - "Doris": infra-doris.md
+          - "OpenSearch High Availability": ha-opensearch.md
+          - "Time Series Engine": infra-metric.md
+          - "Redis": infra-redis.md
+          - "Helm": helm-install.md
+        - "Application Image Acquisition": get-guance-images.md
+      - "Offline Environment Deployment":
+        - "Deployment Environment Description": 
+          - "Offline Image Description": Started.md
+        - "Basic Components":
+          - "Kubernetes Deployment": Kubernetes-HA-Guide.md
+        - "Application Middleware":
+          - "MySQL": Mysql-deployment.md
+          - "Redis": Redis-deployment.md
+          # - "TDengine": Tdengine-deployment.md
+          - "OpenSearch": Opensearch-deployment.md
+        - "Business Components":
+          - "Launcher": Launcher-deployment.md
+          - "Proxy": Proxy-deployment.md
+      - "Single Machine Environment Deployment":
+        - "Resources and System Requirements": single-required.md
+        - "Offline Deployment": single-deploy.md
+  - 'Getting Started':
+    - "How to Start": how-to-start.md
+    - "Upgrade to Commercial Plan": upgrade-version.md
+    - "SSO Management":
+      - "Keycloak SSO (Deployment Plan)":  keycloak-sso.md
+      - "Configure Keycloak SSO Mapping Rules":  keycloak-rule.md
+      - "Azure AD SSO (Deployment Plan)":  azure-ad-pass.md
+      - "Custom Mapping": custom-mapping.md
+      - "LDAP SSO": ldap.md
+      - "OIDC SSO Custom Domain Replacement Steps (Deployment Plan URL Address Replacement Solution)": oidc-custom-url.md
+    - 'Management Backend Manual': 
+      - "Workspace Management": space.md
+      - "User Management": user.md
+      - "Menu Management": menu.md
+      - "Template Management": integration.md
+      - "Field Management": field.md
+      - "Settings Management": setting.md
+  - 'Operations Manual':
+    - 'Deployment Configuration Manual':
+      - 'Application Service Configuration Guide': application-configuration-guide.md
+      - 'Enable Observability': self-monitoring.md
+      - 'Change Domain Access to IP Access': ip-access.md
+      - 'Configure Email Service': configuration-mail.md
+      - 'Switch Domain': switch-domain.md
+      - 'Switch Log Engine': switch-logengine.md
+      - 'Switch Time Series Engine': switch-metricengine.md
+      - 'Switch Dial Testing Center': change-boce-center.md
+      - 'Huawei Cloud Change OpenSearch Disk Type': hw-change-disk-type.md
+      - 'Configure Data Forwarding': configure-data-forwarding.md
+      - 'Update Offline Environment Template': update-template.md
+      # - 'Enable Central Pipeline': center-pl.md
+      - 'Manage Space Index Configuration': manage-index-config.md
+      - 'Embed Pages via iframe': iframe.md
+      - 'Guance Cluster Backup and Restore': velero-install.md
+      - 'Reliability Verification': proof-of-reliability.md
+      - 'Customize Frontend Colors': customize-frontend-color.md
+      - 'Customize Frontend Language': customize-frontend-languge.md
+      - 'Forgot Admin User Password in Backend Management': reset-admin-password.md
+      - 'Use Alibaba Cloud ECI Elastic Scaling for Kodo-x': aliyun-eci.md
+      - 'Split Kodo-X': kodo-x-split.md
+      - 'Switch HTTPS Access': switch-https.md
+    - 'Operations FAQ':
+      - 'Kubernetes Cluster': faq-k8s.md
+      - 'Guance Base': faq-guanceyun.md
+      - 'Doris': faq-doris.md
+      - 'GuanceDB': faq-guancedb.md
+      - 'OpenSearch': faq-opensearch.md
+    - 'Usage FAQ':
+      - 'Explorer Reports “View Template Not Exist”': noscenes.md
+      - 'Log Engine Storage Space Insufficient': es-disk-full.md
+      - "Monitor Troubleshooting": troubleshooting-monitor.md
+      - 'Data Discontinuity Troubleshooting': troubleshooting-log-nodata.md
+      - 'Empty DataWay List in Integration': not-see-dataway.md
+      - 'Handling Data Write Delay': data-write-delay.md
+      - 'Synthetic Tests Troubleshooting': clouddial-troubleshooting.md
+      - 'Created Dataway Not Visible in Frontend': no-dataway.md
+      - 'Error Creating Dial Testing Node': create-dial-error.md
+      - 'Metrics Query Error': query-metrics-error.md
+      - 'Deployment Plan Kodo Version Expired': kodo-version-expired.md
+      #- 'Why Can’t Use Dial Testing Service': no-boce.md 
+    - 'Upgrade Guance': version-upgrade.md
+    - 'Capacity Planning':  
+      - "Log Engine Capacity Planning": logengine-capacity-planning.md
+  - 'Extended Usage':
+    - "Metering Data Structure and Usage": metering-struct-and-query.md
+  #- 'Common Issues':
+  #  - "Deployment Operations FAQ": faq.md
+
+    #- "Cluster Fault FAQ": faq-debug-cluster.md
+    #- "All-in-one One-click Deployment FAQ": faq-all-in-one.md

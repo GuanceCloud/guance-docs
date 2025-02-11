@@ -1,0 +1,4 @@
+nav:
+  - 'DQL Data Asynchronous Query': query-data-asynchronous.md
+  - 'DQL Data Query (Legacy)': query-data.md
+  - 'DQL Data Query': query-data-v1.md

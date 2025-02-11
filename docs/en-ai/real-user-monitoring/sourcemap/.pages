@@ -1,0 +1,4 @@
+nav:
+- index.md
+- 'SourceMap Configuration': set-sourcemap.md
+- 'Upload SourceMap': upload-sourcemaps.md

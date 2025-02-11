@@ -1,0 +1,8 @@
+nav:
+  - 'List alert policies': list.md
+  - 'Create an alert policy': add.md
+  - 'Create an alert policy v2': add-v2.md
+  - 'Get an alert policy': get.md
+  - 'Modify an alert policy': modify.md
+  - 'Modify an alert policy v2': modify-v2.md
+  - 'Delete an alert policy': delete.md

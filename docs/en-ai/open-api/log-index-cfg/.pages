@@ -1,0 +1,9 @@
+nav:
+  - 'Get Index List': list.md
+  - 'Get Single Index/Bind Index Configuration': get.md
+  - 'Create Single Index Configuration': add.md
+  - 'Modify Single Index Configuration': modify.md
+  - 'Create Single Bind Index Configuration': bind.md
+  - 'Modify Single Bind Index Configuration': external-modify.md
+  - 'Enable/Disable Index Configuration': set-disable.md
+  - 'Delete an Index/Bind Index Configuration': delete.md
