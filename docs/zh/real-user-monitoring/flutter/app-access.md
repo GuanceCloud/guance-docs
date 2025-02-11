@@ -120,7 +120,7 @@ void main() async {
 | androidAppId | String | 是 | appId，监测中申请 |
 | iOSAppId | String | 是 | appId，监测中申请 |
 | sampleRate | double | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据     |
-| enableUserResource | bool | 否 | 是否开启  http `Resource` 数据自动抓取，默认为 `false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面需求需要继承 `FTHttpOverrides`，并设置 enableAutoTrace  为 `false` |
+| enableUserResource | bool | 否 | 是否开启  http `Resource` 数据自动抓取，默认为 `false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面定制需求需要继承 `FTHttpOverrides`。 |
 | enableNativeUserAction | bool | 否 | 是否进行 `Native Action` 追踪，原生系统 `Button` 点击事件，应用启动事件，默认为 `false` |
 | enableNativeUserView | bool | 否 | 是否进行 `Native View` 自动追踪，纯 `Flutter` 应用建议关闭，，默认为 `false` |
 | enableNativeUserResource | bool | 否 | 是否进行 `Native Resource` 自动追踪，纯 `Flutter` 应用建议关闭，默认为 `false` |
@@ -223,7 +223,7 @@ await FTTracer().setConfig(
 | sampleRate | double | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。   |
 | traceType | enum TraceType | 否 | 链路类型，默认`TraceType.ddTrace`。 |
 | enableLinkRUMData | bool | 否 | 是否与 `RUM` 数据关联，默认`false`。 |
-| enableAutoTrace | bool | 否 | 是否 `http` 请求中添加 `Trace Header`，默认`false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面需求需要继承 `FTHttpOverrides`，并设置 enableAutoTrace  为 `false`。|
+| enableAutoTrace | bool | 否 | 是否 `http` 请求中添加 `Trace Header`，默认`false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面更改需求需要继承 `FTHttpOverrides`|
 | enableNativeAutoTrace |  bool | 否 | 是否开启原生网络自动追踪 iOS `NSURLSession` ,Android `OKhttp`，默认`false`。 |
 
 ## RUM 用户数据追踪
