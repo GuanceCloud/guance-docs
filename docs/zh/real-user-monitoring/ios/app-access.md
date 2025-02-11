@@ -29,69 +29,72 @@
 === "CocoaPods"
 
     1. 配置 `Podfile` 文件。
+    
         * 使用 Dynamic Library
           ```
           use_frameworks!
           def shared_pods
             pod 'FTMobileSDK', '[latest_version]'
-          # 如果需要采集 widget Extension 数据
+            # 如果需要采集 widget Extension 数据
             pod 'FTMobileSDK', :subspecs => ['Extension'] 
           end
     
-          //主工程
+          # 主工程
           target 'yourProjectName' do
             shared_pods
           end
     
-          //Widget Extension
+          # Widget Extension
           target 'yourWidgetExtensionName' do
             shared_pods
           end
           ```
     
         * 使用 Static Library
-    
           ```
           use_modular_headers!
-          //主工程
+          # 主工程
           target 'yourProjectName' do
             pod 'FTMobileSDK', '[latest_version]'
           end
-          //Widget Extension
+          # Widget Extension
           target 'yourWidgetExtensionName' do
             pod 'FTMobileSDK', :subspecs => ['Extension'] 
           end
           ```
     
         * [将代码库下载到本地使用](https://guides.cocoapods.org/using/the-podfile.html#using-the-files-from-a-folder-local-to-the-machine)
-      
-          * **`Podfile` 文件:**
-            ```
-            use_modular_headers!
-            //主工程
-            target 'yourProjectName' do
-              pod 'FTMobileSDK', :path => '[folder_path]' 
-            end
-            //Widget Extension
-            target 'yourWidgetExtensionName' do
-              pod 'FTMobileSDK', :subspecs => ['Extension'] , :path => '[folder_path]'
-            end
-            ```
-            `folder_path`: `FTMobileSDK.podspec` 所在文件夹的路径。
+          
+          **`Podfile` 文件:**
+          ```
+          use_modular_headers!
+          # 主工程
+          target 'yourProjectName' do
+            pod 'FTMobileSDK', :path => '[folder_path]' 
+          end
+          # Widget Extension
+          target 'yourWidgetExtensionName' do
+            pod 'FTMobileSDK', :subspecs => ['Extension'] , :path => '[folder_path]'
+          end
+          ```
+          `folder_path`: `FTMobileSDK.podspec` 所在文件夹的路径。
     
-          * **`FTMobileSDK.podspec` 文件:**
-          修改 `FTMobileSDK.podspec` 文件中的 `s.version`  和 `s.source` 。
-            `s.version` ：修改为指定版本，建议与`FTMobileSDK/FTMobileAgent/Core/FTMobileAgentVersion.h`中`SDK_VERSION`一致。
-            `s.source`：tag => s.version
-            ```
-            Pod::Spec.new do |s|
+          **`FTMobileSDK.podspec` 文件:**
+          
+          修改 `FTMobileSDK.podspec` 文件中的 `s.version` 和 `s.source`。
+          ```
+          Pod::Spec.new do |s|
             s.name         = "FTMobileSDK"
             s.version      = "[latest_version]"  
             s.source       = { :git => "https://github.com/GuanceCloud/datakit-ios.git", :tag => s.version }
-            ```
+          end
+          ```
+          
+          `s.version`：修改为指定版本，建议与 `FTMobileSDK/FTMobileAgent/Core/FTMobileAgentVersion.h` 中的 `SDK_VERSION` 一致。
+          
+          `s.source`：`tag => s.version`
     
     2. 在 `Podfile` 目录下执行 `pod install` 安装 SDK。
-
 
 === "Carthage" 
 
@@ -101,26 +104,31 @@
         ```
     
     2. 更新依赖。
-       根据您的目标平台（iOS 或 tvOS），执行相应的 carthage update 命令，并添加 --use-xcframeworks 参数以生成 XCFrameworks：
-       **对于 iOS 平台**：
-        ```bash
-        carthage update --platform iOS --use-xcframeworks
-        ```
-        
-       **对于 tvOS 平台**：
-       
-        ```bash
-        carthage update --platform tvOS --use-xcframeworks
-        ```
-       
-        生成的  xcframework ，与普通的 Framework 使用方法相同。将编译生成的库添加到项目工程中。
-        `FTMobileAgent`：添加到主项目 Target，支持 iOS 和 tvOS 平台。
-        `FTMobileExtension`：添加到小组件 Widget Extension Target
     
-    3. 在 `TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
+        根据您的目标平台（iOS 或 tvOS），执行相应的 `carthage update` 命令，并添加 `--use-xcframeworks` 参数以生成 XCFrameworks：
+       
+        * 对于 iOS 平台：
+          ```
+          carthage update --platform iOS --use-xcframeworks
+          ```
+        
+        * 对于 tvOS 平台：
+          ```
+          carthage update --platform tvOS --use-xcframeworks
+          ```
+       
+        生成的 xcframework 与普通的 Framework 使用方法相同。将编译生成的库添加到项目工程中。
+        
+        `FTMobileAgent`：添加到主项目 Target，支持 iOS 和 tvOS 平台。
+        
+        `FTMobileExtension`：添加到小组件 Widget Extension Target。
+    
+    3. 在 `TARGETS` -> `Build Setting` -> `Other Linker Flags` 添加 `-ObjC`。
     
     4. 使用 Carthage 集成，SDK 版本支持：
+       
         `FTMobileAgent`：>=1.3.4-beta.2 
+    
         `FTMobileExtension`：>=1.4.0-beta.1
 
 === "Swift Package Manager"
