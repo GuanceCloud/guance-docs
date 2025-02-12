@@ -2,4 +2,5 @@ nav:
 
 - index.md
 - 'SourceMap 配置': set-sourcemap.md
-- '上传 sourcemap': upload-sourcemaps.md
+- 'Webpack 上传 sourcemap': webpack-upload-sourcemaps.md
+- 'Vite 上传 sourcemap': vite-upload-sourcemaps.md
