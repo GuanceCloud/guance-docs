@@ -183,7 +183,7 @@
 | syncSleepTime | number | 否 | 设置同步间歇时间。范围 [0,5000]，默认不设置 |
 | enableDataIntegerCompatible | boolean | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题 。 |
 | compressIntakeRequests | boolean | 否 | 对同步数据进行压缩，SDK 0.2.0  以上版本支持这个参数 |
-| enableLimitWithDbSize | boolean | 否 | 开启使用 DB 限制总缓存大小功能。<br>**注意：**开启之后 Log 配置  `logCacheLimitCount` 及 RUM 配置`rumCacheLimitCount` 将失效。SDK 0.2.0  以上版本支持该参数 |
+| enableLimitWithDbSize | boolean | 否 | 开启使用 db 限制数据大小，默认 100MB，单位 Byte，数据库越大，磁盘压力越大，默认不开启。<br>**注意：**开启之后 Log 配置  `logCacheLimitCount` 及 RUM 配置`rumCacheLimitCount` 将失效。SDK 0.2.0  以上版本支持该参数 |
 | dbCacheLimit | number | 否 | DB 缓存限制大小。范围 [30MB,)，默认 100MB，单位 byte，SDK 0.2.0  以上版本支持该参数 |
 | dbDiscardStrategy | string | 否 | 设置数据库中数据丢弃规则。<br>丢弃策略：`discard`丢弃新数据（默认）、`discardOldest`丢弃旧数据。SDK 0.2.0 以上版本支持该参数 |
 
@@ -217,7 +217,7 @@ rum.setConfig({
 | enableTrackNativeFreeze | boolean | 否 | 是否采集 `Native Freeze` |
 | nativeFreezeDurationMs | number | 否 | 设置采集 `Native Freeze`卡顿的阈值，取值范围 [100,)，单位毫秒。iOS 默认 250ms，Android 默认 1000ms |
 | rumDiscardStrategy | string | 否 | 丢弃策略：`discard`丢弃新数据（默认）、`discardOldest`丢弃旧数据 |
-| rumCacheLimitCount | number | 否 | 本地缓存最大 RUM 条目数量限制 [10000,)，默认 100_000 |
+| rumCacheLimitCount | number | 否 | 本地缓存最大 RUM 条目数量限制 [10_000,)，默认 100_000 |
 
 ### Log 配置 {#log-config}
 
