@@ -28,137 +28,131 @@
 
 === "CocoaPods"
 
-    1.配置 `Podfile` 文件。
+    1. 配置 `Podfile` 文件。
+        * 使用 Dynamic Library
+          ```
+          use_frameworks!
+          def shared_pods
+            pod 'FTMobileSDK', '[latest_version]'
+          # 如果需要采集 widget Extension 数据
+            pod 'FTMobileSDK', :subspecs => ['Extension'] 
+          end
     
-    * 使用 Dynamic Library
+          //主工程
+          target 'yourProjectName' do
+            shared_pods
+          end
     
-      ```
-      platform :ios, '10.0' 
-      use_frameworks!
-      def shared_pods
-      pod 'FTMobileSDK', '[latest_version]'
-      # 如果需要采集 widget Extension 数据
-      pod 'FTMobileSDK/Extension', '[latest_version]'
-      end
+          //Widget Extension
+          target 'yourWidgetExtensionName' do
+            shared_pods
+          end
+          ```
     
-      //主工程
-      target 'yourProjectName' do
-      shared_pods
-      end
+        * 使用 Static Library
     
-      //Widget Extension
-      target 'yourWidgetExtensionName' do
-      shared_pods
-      end
-      ```
+          ```
+          use_modular_headers!
+          //主工程
+          target 'yourProjectName' do
+            pod 'FTMobileSDK', '[latest_version]'
+          end
+          //Widget Extension
+          target 'yourWidgetExtensionName' do
+            pod 'FTMobileSDK', :subspecs => ['Extension'] 
+          end
+          ```
     
-    * 使用 Static Library
-    
-      ```
-      use_modular_headers!
-      //主工程
-      target 'yourProjectName' do
-      pod 'FTMobileSDK', '[latest_version]'
-      end
-      //Widget Extension
-      target 'yourWidgetExtensionName' do
-      pod 'FTMobileSDK/Extension', '[latest_version]'
-      end
-      ```
-    
-    * [将代码库下载到本地使用](https://guides.cocoapods.org/using/the-podfile.html#using-the-files-from-a-folder-local-to-the-machine)
+        * [将代码库下载到本地使用](https://guides.cocoapods.org/using/the-podfile.html#using-the-files-from-a-folder-local-to-the-machine)
       
-      **`Podfile` 文件**
-      ```
-      use_modular_headers!
-      //主工程
-      target 'yourProjectName' do
-      pod 'FTMobileSDK', :path => '[folder_path]' 
-      end
-      //Widget Extension
-      target 'yourWidgetExtensionName' do
-      pod 'FTMobileSDK/Extension', :path => '[folder_path]'
-      end
-      ```
-      `folder_path`: `FTMobileSDK.podspec` 所在文件夹的路径。
-      **`FTMobileSDK.podspec` 文件**
-      修改 `FTMobileSDK.podspec` 文件中的 `s.version`  和 `s.source` 。
-      `s.version` ：修改为指定版本，建议与`FTMobileSDK/FTMobileAgent/Core/FTMobileAgentVersion.h`中`SDK_VERSION`一致。
-      `s.source`：tag => s.version
-      ```
-      Pod::Spec.new do |s|
-      s.name         = "FTMobileSDK"
-      s.version      = "[latest_version]"  
-      s.source       = { :git => "https://github.com/GuanceCloud/datakit-ios.git", :tag => s.version }
-      ```
+          * **`Podfile` 文件:**
+            ```
+            use_modular_headers!
+            //主工程
+            target 'yourProjectName' do
+              pod 'FTMobileSDK', :path => '[folder_path]' 
+            end
+            //Widget Extension
+            target 'yourWidgetExtensionName' do
+              pod 'FTMobileSDK', :subspecs => ['Extension'] , :path => '[folder_path]'
+            end
+            ```
+            `folder_path`: `FTMobileSDK.podspec` 所在文件夹的路径。
     
-    2.在 `Podfile` 目录下执行 `pod install` 安装 SDK。
+          * **`FTMobileSDK.podspec` 文件:**
+          修改 `FTMobileSDK.podspec` 文件中的 `s.version`  和 `s.source` 。
+            `s.version` ：修改为指定版本，建议与`FTMobileSDK/FTMobileAgent/Core/FTMobileAgentVersion.h`中`SDK_VERSION`一致。
+            `s.source`：tag => s.version
+            ```
+            Pod::Spec.new do |s|
+            s.name         = "FTMobileSDK"
+            s.version      = "[latest_version]"  
+            s.source       = { :git => "https://github.com/GuanceCloud/datakit-ios.git", :tag => s.version }
+            ```
+    
+    2. 在 `Podfile` 目录下执行 `pod install` 安装 SDK。
 
 
 === "Carthage" 
 
-    1.配置 `Cartfile` 文件。
+    1. 配置 `Cartfile` 文件。
+        ```
+        github "GuanceCloud/datakit-ios" == [latest_version]
+        ```
     
-    ```
-    github "GuanceCloud/datakit-ios" == [latest_version]
-    ```
+    2. 更新依赖。
+       根据您的目标平台（iOS 或 tvOS），执行相应的 carthage update 命令，并添加 --use-xcframeworks 参数以生成 XCFrameworks：
+       **对于 iOS 平台**：
+        ```bash
+        carthage update --platform iOS --use-xcframeworks
+        ```
+        
+       **对于 tvOS 平台**：
+       
+        ```bash
+        carthage update --platform tvOS --use-xcframeworks
+        ```
+       
+        生成的  xcframework ，与普通的 Framework 使用方法相同。将编译生成的库添加到项目工程中。
+        `FTMobileAgent`：添加到主项目 Target，支持 iOS 和 tvOS 平台。
+        `FTMobileExtension`：添加到小组件 Widget Extension Target
     
-    2.在 `Cartfile` 目录下执行
+    3. 在 `TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
     
-    ```bash
-    carthage update --platform iOS
-    ```
-    
-    如果报错 "Building universal frameworks with common architectures is not possible. The device and simulator slices for "FTMobileAgent.framework" both build for: arm64" 
-    
-    根据提示添加 --use-xcframeworks 参数
-    
-    ```bash
-    carthage update --platform iOS --use-xcframeworks
-    ```
-    
-    生成的  xcframework ，与普通的 Framework 使用方法相同。将编译生成的库添加到项目工程中。
-    
-    `FTMobileAgent`：添加到主项目 Target
-    
-    `FTMobileExtension`：添加到小组件 Widget Extension Target
-    
-    3.在 `TARGETS`  -> `Build Setting` ->  `Other Linker Flags`  添加  `-ObjC`。
-    
-    4.使用 Carthage 集成，SDK 版本支持：
-      `FTMobileAgent`：>=1.3.4-beta.2 
-      `FTMobileExtension`：>=1.4.0-beta.1
+    4. 使用 Carthage 集成，SDK 版本支持：
+        `FTMobileAgent`：>=1.3.4-beta.2 
+        `FTMobileExtension`：>=1.4.0-beta.1
 
 === "Swift Package Manager"
 
-    1.选中 `PROJECT` -> `Package Dependency` ，点击 `Packages` 栏目下的 **+**。
+    1. 选中 `PROJECT` -> `Package Dependency` ，点击 `Packages` 栏目下的 **+**。
     
-    2.在弹出的页面的搜索框中输入 `https://github.com/GuanceCloud/datakit-ios.git`。
+    2. 在弹出的页面的搜索框中输入 `https://github.com/GuanceCloud/datakit-ios.git`。
     
-    3.Xcode 获取软件包成功后，会展示 SDK 的配置页。
+    3. Xcode 获取软件包成功后，会展示 SDK 的配置页。
     
-    `Dependency Rule` ：建议选择 `Up to Next Major Version` 。
+        `Dependency Rule` ：建议选择 `Up to Next Major Version` 。
     
-    `Add To Project` ：选择支持的工程。
+        `Add To Project` ：选择支持的工程。
+        
+        填好配置后点击  `Add Package`  按钮，等待加载完成。
     
-    填好配置后点击  `Add Package`  按钮，等待加载完成。
+    4. 在弹窗 `Choose Package Products for datakit-ios` 中选择需要添加 SDK 的 Target，点击 `Add Package` 按钮，此时 SDK 已经添加成功。
     
-    4.在弹窗 `Choose Package Products for datakit-ios` 中选择需要添加 SDK 的 Target，点击 `Add Package` 按钮，此时 SDK 已经添加成功。
+        `FTMobileSDK`：添加到主项目 Target
     
-    `FTMobileSDK`：添加到主项目 Target
+        `FTMobileExtension`：添加到 Widget Extension Target
     
-    `FTMobileExtension`：添加到 Widget Extension Target
+        如果您的项目由 SPM 管理，将 SDK 添加为依赖项，添加 `dependencies `到 `Package.swift`。
     
-    如果您的项目由 SPM 管理，将 SDK 添加为依赖项，添加 `dependencies `到 `Package.swift`。
+        ```plaintext
+        // 主项目
+        dependencies: [
+            .package(name: "FTMobileSDK", url: "https://github.com/GuanceCloud/datakit-ios.git",
+            .upToNextMajor(from: "[latest_version]"))]
+        ```
     
-    ```plaintext
-    // 主项目
-    dependencies: [
-    .package(name: "FTMobileSDK", url: "https://github.com/GuanceCloud/datakit-ios.git",.upToNextMajor(from: "[latest_version]"))
-    ]
-    ```
-    
-    5.1.4.0-beta.1 及以上支持 Swift Package Manager 。
+    5. 1.4.0-beta.1 及以上支持 Swift Package Manager 。
 
 ### 添加头文件
 
@@ -230,7 +224,7 @@
 | syncSleepTime | int | 否 | 设置同步间歇时间。范围 [0,5000]，默认不设置 |
 | enableDataIntegerCompatible | BOOL | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题 。 |
 | compressIntakeRequests | BOOL | 否 | 对同步数据进行压缩，SDK 1.5.6 以上版本支持这个参数 |
-| enableLimitWithDbSize       | BOOL             | 否       | 开启使用 DB 限制总缓存大小功能。<br>**注意：**开启之后 `FTLoggerConfig.logCacheLimitCount` 及 `FTRUMConfig.rumCacheLimitCount` 将失效。SDK 1.5.8 以上版本支持该参数 |
+| enableLimitWithDbSize       | BOOL             | 否       | 开启使用 db 限制数据大小，默认 100MB，单位 Byte，数据库越大，磁盘压力越大，默认不开启。<br>**注意：**开启之后 `FTLoggerConfig.logCacheLimitCount` 及 `FTRUMConfig.rumCacheLimitCount` 将失效。SDK 1.5.8 以上版本支持该参数 |
 | dbCacheLimit                | long             | 否       | DB 缓存限制大小。范围 [30MB,)，默认 100MB，单位 byte，SDK 1.5.8 以上版本支持该参数 |
 | dbDiscardType               | FTDBCacheDiscard | 否       | 设置数据库中数据丢弃规则。默认 `FTDBDiscard` <br/>`FTDBDiscard`当数据数量大于最大值时，丢弃追加数据。`FTDBDiscardOldest`当数据大于最大值时，丢弃老数据。SDK 1.5.8 以上版本支持该参数 |
 
@@ -285,7 +279,7 @@
 | errorMonitorType | FTErrorMonitorType | 否 | 错误事件监控补充类型。在采集的崩溃数据中添加监控的信息。`FTErrorMonitorBattery`为电池余量，`FTErrorMonitorMemory`为内存用量，`FTErrorMonitorCpu`为 CPU 占有率 。 |
 | deviceMetricsMonitorType | FTDeviceMetricsMonitorType | 否 | 视图的性能监控类型。在采集的  **View** 数据中添加对应监控项信息。`FTDeviceMetricsMonitorMemory`监控当前应用使用内存情况，`FTDeviceMetricsMonitorCpu`监控 CPU 跳动次数，`FTDeviceMetricsMonitorFps`监控屏幕帧率。 |
 | monitorFrequency | FTMonitorFrequency | 否 | 视图的性能监控采样周期。配置 `monitorFrequency` 来设置 **View** 监控项信息的采样周期。`FTMonitorFrequencyDefault`500ms (默认)，`FTMonitorFrequencyFrequent`100ms，`FTMonitorFrequencyRare`1000ms。 |
-| enableResourceHostIP | BOOL | 否 | 是否采集请求目标域名地址的 IP。`>= iOS 13` 下支持 |
+| enableResourceHostIP | BOOL | 否 | 是否采集请求目标域名地址的 IP。`>= iOS 13.0` `>= tvOS 13.0`下支持 |
 | globalContext | NSDictionary | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
 | rumCacheLimitCount | int                        | 否 | RUM 最大缓存量。 默认 100_000，SDK 1.5.8 以上版本支持该参数 |
 | rumDiscardType | FTRUMCacheDiscard          | 否 | 设置 RUM 丢弃规则。默认 `FTRUMCacheDiscard` <br/>`FTRUMCacheDiscard`当 RUM 数据数量大于最大值时，丢弃追加数据。`FTRUMDiscardOldest`当 RUM 数据大于最大值时，丢弃老数据。SDK 1.5.8 以上版本支持该参数 |
