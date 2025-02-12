@@ -70,6 +70,9 @@ monitor   :
     ## Enable put cloud provider region/zone_id information into global host tags, (default to true).
     # enable_cloud_host_tags_as_global_host_tags = true
     
+    ## Enable AWS IMDSv2
+    enable_cloud_aws_imds_v2 = false
+    
     ## [inputs.hostobject.tags] # (optional) custom tags
       # cloud_provider = "aliyun" # aliyun/tencent/aws/hwcloud/azure/volcengine, probe automatically if not set
       # some_tag = "some_value"
@@ -83,6 +86,9 @@ monitor   :
       # azure = ""
       # Hwcloud = ""
       # volcengine = ""
+    
+    ## [inputs.hostobject.cloud_meta_token_url]
+      # aws = "yyy"   # URL for AWS Cloud metadata token
     
     ```
 
@@ -164,6 +170,16 @@ monitor   :
     
         **默认值**: true
     
+    - **ENV_INPUT_HOSTOBJECT_CLOUD_AWS_IMDS_V2**
+    
+        开启 AWS IMDSv2
+    
+        **字段类型**: Boolean
+    
+        **采集器配置字段**: `enable_cloud_aws_imds_v2`
+    
+        **默认值**: false
+    
     - **ENV_INPUT_HOSTOBJECT_TAGS**
     
         自定义标签。如果配置文件有同名标签，将会覆盖它
@@ -193,6 +209,16 @@ monitor   :
         **采集器配置字段**: `cloud_meta_url`
     
         **示例**: `{"tencent":"xxx", "aliyun":"yyy"}`
+    
+    - **ENV_INPUT_HOSTOBJECT_CLOUD_META_TOKEN_URL**
+    
+        云服务商获取元数据的 Token URL 映射
+    
+        **字段类型**: Map
+    
+        **采集器配置字段**: `cloud_meta_token_url`
+    
+        **示例**: `{"aws":"xxx", "aliyun":"yyy"}`
 
 <!-- markdownlint-enable -->
 

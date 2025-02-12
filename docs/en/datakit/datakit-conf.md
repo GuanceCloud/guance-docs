@@ -19,7 +19,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is `datakit.conf`, here is the example sample(1.66.2):
+Datakit main configure is `datakit.conf`, here is the example sample(1.67.0):
 
 <!-- markdownlint-disable MD046 -->
 ??? info "`datakit.conf`"
