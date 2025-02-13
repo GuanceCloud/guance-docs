@@ -230,7 +230,7 @@ android{
 | enableDataIntegerCompatible | Void | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题  |
 | setNeedTransformOldCache | Boolean | 否 | 是否需要兼容同步 ft-sdk 1.6.0 以下的版本的旧缓存数据，默认为 false |
 | setCompressIntakeRequests | Boolean | 否 | 对同步数据进行压缩，ft-sdk 1.6.3 以上版本支持这个方法 |
-| enableLimitWithDbSize | Void | 否 | 开启使用 db 限制数据大小，默认 100MB，单位 byte，数据库越大，磁盘压力越大。ft-sdk 1.6.6 以上版本支持这个方法 |
+| enableLimitWithDbSize | Void | 否 | 开启使用 db 限制数据大小，默认 100MB，单位 Byte，数据库越大，磁盘压力越大，默认不开启。<br>**注意：** 开启之后 `FTLoggerConfig.setLogCacheLimitCount` 及 `FTRUMConfig.setRumCacheLimitCount` 将失效。ft-sdk 1.6.6 以上版本支持这个方法 |
 
 ### RUM 配置 {#rum-config}
 
@@ -290,7 +290,7 @@ android{
 | setOkHttpEventListenerHandler | Callback| 否 | ASM 设置全局 Okhttp EventListener，默认不设置 |
 | setOkHttpResourceContentHandler | Callback| 否 | ASM 设置全局 `FTResourceInterceptor.ContentHandlerHelper`，默认不设置, ft-sdk 1.6.7 以上支持，[自定义 Resource](#okhttp_resource_trace_interceptor_custom) |
 | addGlobalContext | Dictionary | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
-| setRumCacheLimitCount | int | 否 | 本地缓存 RUM 限制数量 [10000,),默认是 100_000。ft-sdk 1.6.6 以上支持 |
+| setRumCacheLimitCount | int | 否 | 本地缓存 RUM 限制数量 [10_000,),默认是 100_000。ft-sdk 1.6.6 以上支持 |
 | setRumCacheDiscardStrategy | RUMCacheDiscard | 否 | 设置 RUM 达到限制上限以后的数据的丢弃规则，默认为 `RUMCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据，ft-sdk 1.6.6 以上支持  |
 
 ### Log 配置 {#log-config}
