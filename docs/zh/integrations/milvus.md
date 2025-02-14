@@ -101,37 +101,52 @@ Milvus 指标位于 milvus 指标集下，这里介绍 Milvus 指标相关说明
 
 | Metrics | 描述 |单位 |
 |:--------|:-----|:--|
-|`CPU_usage_percent`|`CPU 使用率`| % |
-|`RAM_usage_percent`|`RAM（随机存取存储器）使用率`| % |
-|`memory_usage_percent`|`内存使用率`| % |
-|`memory_usage_total`|`总内存使用量`| bytes |
-|`add_group_request_total`|`添加组的请求总数`| count |
-|`add_vectors_request_total`|`添加向量的请求总数`| count |
-|`get_group_files_request_total`|`获取组文件的请求总数`| count |
-|`has_group_request_total`|`检查组存在的请求总数`| count |
-|`search_request_total`|`搜索请求总数`| count |
-|`add_vector_duration_microseconds_bucket`|`添加向量操作持续时间的桶分布`| microsecond |
-|`add_vector_duration_microseconds_count`|`添加向量操作持续时间的计数`| count |
-|`add_vector_duration_microseconds_sum`|`添加向量操作持续时间的总和`| microsecond |
-|`all_build_index_duration_microseconds_bucket`|`构建索引操作持续时间的桶分布`| microsecond |
-|`all_build_index_duration_microseconds_count`|`构建索引操作持续时间计数总和`| count |
-|`all_build_index_duration_microseconds_sum`|`构建索引操作持续时间总和`| microsecond |
-|`add_vectors_throughput_per_microsecond`|`添加向量的吞吐量`| count/μs |
-|`query_index_throughtout_per_microsecond`|`查询索引的吞吐量`| count/microsecond |
-|`query_response_per_microsecond`|`查询响应的速率`| count/microsecond |
-|`query_vector_response_per_microsecond`|`查询向量响应的速率`| count/microsecond |
-|`octets_bytes_per_second`|`每秒传输的字节数`| bytes/second |
-|`cache_access_total`|`缓存访问总数`| count |
-|`cache_usage_bytes`|`缓存使用量`| bytes |
-|`connection_number`|`连接数`| count |
-|`data_file_size_bytes`|`数据文件大小`| bytes |
-|`disk_load_IO_speed_byte_per_microsec`|`磁盘加载 I/O 速度`| bytes/microsecond |
-|`keeping_alive_seconds_total`|`保持活动的总秒数`| seconds |
-|`search_data_duration_microseconds_bucket`|`磁盘存储 I/O 速度`| bytes/microsecond |
-|`search_data_duration_microseconds_count`|`磁盘存储 I/O 速度`| bytes/microsecond |
-|`search_data_duration_microseconds_sum`|`搜索数据操作持续时间的桶分布`| microsecond |
-|`disk_store_IO_speed_bytes_per_microseconds`|`搜索数据操作持续时间计数总和`| microsecond |
-|`disk_store_IO_speed_bytes_per_microseconds`|`搜索数据操作持续时间总和`| microsecond |
-|`disk_load_size_bytes_bucket`|`磁盘加载数据大小的桶分布`| bytes |
-|`disk_load_size_bytes_count`|`磁盘加载数据大小的桶计数`| bytes |
-|`disk_load_size_bytes_sum`|`磁盘加载数据大小的桶总和`| bytes |
+|`ann_iterator_init_latency_bucket`|`ANN迭代器初始化的延迟分布桶`| s |
+|`bitset_ratio_bucket`|`bitset 比例的分布桶`| s |
+|`build_latency_bucket`|`索引构建延迟的分布桶`| s |
+|`build_latency_count`|`索引构建延迟的计数`| count |
+|`build_latency_sum`|`索引构建延迟的总和`| s |
+|`search_latency_bucket`|`搜索延迟的分布桶`| s |
+|`search_latency_count`|`搜索延迟的计数`| count |
+|`search_latency_sum`|`搜索延迟的总和`| count |
+|`search_topk_bucket`|`搜索 topk 的分布桶`| s |
+|`search_topk_count`|`搜索 topk 的计数`| count |
+|`search_topk_sum`|`搜索 topk 的总和`| count |
+|`milvus_datanode_consume_msg_count`|`数据节点消费的消息数量`| count |
+|`milvus_datanode_flush_buffer_op_count`|`数据节点刷新缓冲区操作次数`| count |
+|`milvus_datanode_msg_rows_count`|`数据节点消息行数`| count |
+|`milvus_querynode_consume_tt_lag_ms`|`查询节点消费的时间滞后`| microsecond |
+|`milvus_querynode_disk_used_size`|`查询节点磁盘使用大小`| bytes |
+|`milvus_querynode_entity_num`|`查询节点实体数量`| count |
+|`milvus_querynode_entity_size`|`查询节点实体大小`| bytes |
+|`milvus_querynode_search_group_nq_bucket`|`查询节点搜索组查询数的分布桶`| s |
+|`milvus_querynode_search_group_nq_count`|`查询节点搜索组查询数的计数`| count |
+|`milvus_querynode_search_group_nq_sum`|`查询节点搜索组查询数的总和`| count |
+|`milvus_proxy_req_count`|`代理请求次数`| count |
+|`milvus_proxy_req_latency_bucket`|`代理请求延迟的分布桶`| s |
+|`milvus_proxy_req_latency_count`|`代理请求延迟的计数`| count |
+|`milvus_proxy_req_latency_sum`|`代理请求延迟的总和`| s |
+|`milvus_proxy_search_vectors_count`|`代理搜索向量次数`| count |
+|`milvus_proxy_send_bytes_count`|`代理发送字节数`| bytes |
+|`milvus_rootcoord_collection_num`|`根协调集合数量`| count |
+|`milvus_rootcoord_ddl_req_count`|`根协调 DDL 请求次数`| count |
+|`milvus_rootcoord_ddl_req_latency_bucket`|`根协调 DDL 请求延迟的分布桶`| s |
+|`milvus_rootcoord_ddl_req_latency_count`|`根协调 DDL 请求延迟的计数`| count |
+|`milvus_rootcoord_ddl_req_latency_sum`|`根协调 DDL 请求延迟的总和`| s |
+|`milvus_rootcoord_entity_num`|`根协调实体数量`| count |
+|`milvus_rootcoord_partition_num`|`根协调分区数量`| count |
+|`milvus_rootcoord_produce_tt_lag_ms`|`根协调生产的时间滞后`| microsecond |
+|`milvus_storage_kv_size_bucket`|`Milvus 存储键值对大小的分布桶`| bytes |
+|`milvus_storage_kv_size_count`|`Milvus 存储键值对大小的计数`| count |
+|`milvus_storage_kv_size_sum`|`Milvus 存储键值对大小的总和`| bytes |
+|`milvus_storage_op_count`|`Milvus 存储操作次数`| count |
+|`milvus_storage_request_latency_bucket`|`Milvus 存储请求延迟的分布桶`| s |
+|`milvus_storage_request_latency_count`|`Milvus 存储请求延迟的计数`| count |
+|`milvus_storage_request_latency_sum`|`Milvus 存储请求延迟的总和`| s |
+|`milvus_num_node`|`Milvus 节点数量`| count |
+|`milvus_runtime_info`|`Milvus 运行时信息`| - |
+|`process_max_fds`|`进程最大文件描述符数`| count |
+|`process_open_fds`|`进程打开的文件描述符数`| count |
+|`process_start_time_seconds`|`进程启动时间`| s |
+|`process_virtual_memory_bytes`|`进程虚拟内存字节数`| bytes |
+|`process_virtual_memory_max_bytes`|`进程虚拟内存最大字节数`| bytes |
