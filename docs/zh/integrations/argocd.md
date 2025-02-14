@@ -6,8 +6,8 @@ dashboard :
   - desc  : 'ArgoCD 监控视图'
     path  : 'dashboard/zh/argocd'
 monitor   :
-  - desc  : '暂无'
-    path  : '-'
+  - desc  : 'AutoMQ'
+    path  : 'monitor/zh/argocd'
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -29,158 +29,82 @@ Argo CD 通过 Prometheus 协议暴露指标，通过这些指标可用于监控
 - [x] 安装 ArgoCD
 - [x] 安装 [DataKit](../datakit/datakit-daemonset-deploy.md)
 
-### Metric
+### DataKit 开启 KubernetesPrometheus
 
-#### DataKit 开启 `ServiceMonitor`
-
-[自动发现 Pod/Service 的 Prometheus 指标](kubernetes-prom.md#auto-discovery-metrics-with-prometheus)
-
-以下通过`ServiceMonitor`方式采集 `ArgoCD` 指标信息
-
-#### 安装 Prometheus Operator
-
-```shell
-git clone https://github.com/coreos/prometheus-operator.git
-cd prometheus-operator
-kubectl create -f bundle.yaml
-kubectl get pod -n default
-```
-
-
-#### 创建 ServiceMonitor
-
-- 创建 `argocd-metrics.yaml`
+1. mountPath 挂载把 KubernetesPrometheus 的配置文件挂载到容器内 
 
 ```yaml
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: argocd-metrics
-  labels:
-    release: prometheus-operator
-  namespace: argocd
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: argocd-metrics
-  endpoints:
-  - port: metrics
-    params:
-      measurement:
-        - argocd-application-controller
-
+          - mountPath: /usr/local/datakit/conf.d/kubernetesprometheus/kubernetesprometheus.conf
+            name: datakit-conf
+            subPath: kubernetesprometheus.conf
+            readOnly: true
 ```
 
-- 创建 `argocd-server-metrics.yaml`
+2. 添加 datakit.yaml 的 configmap 文件下添加 kubernetesprometheus.conf
 
 ```yaml
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: argocd-server-metrics
-  labels:
-    release: prometheus-operator
-  namespace: argocd
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: argocd-server-metrics
-  endpoints:
-  - port: metrics
-    params:
-      measurement:
-        - argocd-server
-```
+kubernetesprometheus.conf: |-
+      [inputs.kubernetesprometheus]
+        [[inputs.kubernetesprometheus.instances]]
+          role       = "service"
+          namespaces = ["argocd"]
+          selector   = "app.kubernetes.io/name=argocd-server-metrics"
 
-- 创建 `argocd-repo-server.yaml`
+          scrape     = "true"
+          scheme     = "http"
+          port       = "__kubernetes_service_port_metrics_targetport"
+          path       = "/metrics"
+          params     = ""
 
-```yaml
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: argocd-repo-server-metrics
-  labels:
-    release: prometheus-operator
-  namespace: argocd
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: argocd-repo-server
-  endpoints:
-  - port: metrics
-    params:
-      measurement:
-        - argocd-repo-server
-```
+          [inputs.kubernetesprometheus.instances.custom]
+            measurement        = "argocd-server"
+            job_as_measurement = false
+            [inputs.kubernetesprometheus.instances.custom.tags]
+              svc_name      = "__kubernetes_service_name"
+              pod_name      = "__kubernetes_service_target_name"
+              pod_namespace = "__kubernetes_service_target_namespace"
+        [[inputs.kubernetesprometheus.instances]]
+          role       = "service"
+          namespaces = ["argocd"]
+          selector   = "aapp.kubernetes.io/name=argocd-metrics"
 
-- 创建 `argocd-applicationset-controller.yaml`
+          scrape     = "true"
+          scheme     = "http"
+          port       = "__kubernetes_service_port_metrics_targetport"
+          path       = "/metrics"
+          params     = ""
 
-```yaml
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: argocd-applicationset-controller-metrics
-  labels:
-    release: prometheus-operator
-  namespace: argocd
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: argocd-applicationset-controller
-  endpoints:
-  - port: metrics
-    params:
-      measurement: 
-        - argocd-applicationset-controller
-```
+          [inputs.kubernetesprometheus.instances.custom]
+            measurement        = "argocd"
+            job_as_measurement = false
+            [inputs.kubernetesprometheus.instances.custom.tags]
+              svc_name      = "__kubernetes_service_name"
+              pod_name      = "__kubernetes_service_target_name"
+              pod_namespace = "__kubernetes_service_target_namespace"
 
-- 执行
+        [[inputs.kubernetesprometheus.instances]]
+          role       = "service"
+          namespaces = ["argocd"]
+          selector   = "app.kubernetes.io/name=argocd-notifications-controller-metrics"
 
-```shell
-kubectl apply -f argocd-metrics.yaml
-kubectl apply -f argocd-server-metrics.yaml 
-kubectl apply -f argocd-repo-server.yaml
-kubectl apply -f argocd-applicationset-controller.yaml
-```
+          scrape     = "true"
+          scheme     = "http"
+          port       = "__kubernetes_service_port_metrics_targetport"
+          path       = "/metrics"
+          params     = ""
 
-- 查看状态
+          [inputs.kubernetesprometheus.instances.custom]
+            measurement        = "argocd-application-controller"
+            job_as_measurement = false
+            [inputs.kubernetesprometheus.instances.custom.tags]
+              svc_name      = "__kubernetes_service_name"
+              pod_name      = "__kubernetes_service_target_name"
+              pod_namespace = "__kubernetes_service_target_namespace"
 
-```shell
-[root@k8s-master ~]# kubectl get ServiceMonitor -n argocd
-NAME                                       AGE
-argocd-applicationset-controller-metrics   7d6h
-argocd-metrics                             7d6h
-argocd-repo-server-metrics                 7d6h
-argocd-server-metrics                      7d6h
-
-```
-
-#### DataKit 配置
-
-- 开启 DataKit Service Monitor 自动发现
-
-添加 `env : ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_MONITORS`
-
-```yaml
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  labels:
-    app: daemonset-datakit
-  name: datakit
-  namespace: datakit
-spec:
-  ...
-  template:
-    ...
-    spec:
-      ...
-      containers:
-      - env:
-        ...
-        - name: ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_MONITORS
-          value: "true"
-        ...
+      [inputs.kubernetesprometheus.global_tags]
+        instance = "__kubernetes_mate_instance"
+        host     = "__kubernetes_mate_host"
+    
 ```
 
 - 重启 DataKit
@@ -262,6 +186,8 @@ spec:
       port: 4317
       targetPort: 4317
 ```
+
+调整后[重启 DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
 
 #### ArgoCD 开启 `otlp` 上报
