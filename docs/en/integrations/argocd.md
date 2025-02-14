@@ -33,7 +33,7 @@ Argo CD exposes metrics through the Prometheus protocol, which can be used to mo
 
 #### DataKit 开启 KubernetesPrometheus
 
-1. Mount KubernetesPrometheus
+- Mount KubernetesPrometheus
 
 ```yaml
           - mountPath: /usr/local/datakit/conf.d/kubernetesprometheus/kubernetesprometheus.conf
@@ -42,7 +42,7 @@ Argo CD exposes metrics through the Prometheus protocol, which can be used to mo
             readOnly: true
 ```
 
-2. Add `Kubernetes prometheus.conf` to the configmap file of `datakit. yaml`
+- Add `Kubernetes prometheus.conf` to the configmap file of `datakit. yaml`
 
 ```yaml
 kubernetesprometheus.conf: |-

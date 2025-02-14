@@ -31,7 +31,7 @@ Argo CD 通过 Prometheus 协议暴露指标，通过这些指标可用于监控
 
 ### DataKit 开启 KubernetesPrometheus
 
-1. mountPath 挂载把 KubernetesPrometheus 的配置文件挂载到容器内
+- mountPath 挂载把 KubernetesPrometheus 的配置文件挂载到容器内
 
 ```yaml
           - mountPath: /usr/local/datakit/conf.d/kubernetesprometheus/kubernetesprometheus.conf
@@ -40,7 +40,7 @@ Argo CD 通过 Prometheus 协议暴露指标，通过这些指标可用于监控
             readOnly: true
 ```
 
-2. 添加 `datakit.yaml` 的 configmap 文件下添加 `kubernetesprometheus.conf`
+- 添加 `datakit.yaml` 的 configmap 文件下添加 `kubernetesprometheus.conf`
 
 ```yaml
 kubernetesprometheus.conf: |-
