@@ -5,7 +5,7 @@ tags:
   - 'APM'
   - 'NEWRELIC'
   - 'TRACING'
-__int_icon      : ''
+__int_icon      : 'icon/newrelic'
 dashboard :
   - desc  : 'N/A'
     path  : '-'
@@ -190,7 +190,7 @@ All the following data collection will add a global tag named `host` by default 
 
 ### `newrelic`
 
-- Tags
+- tags
 
 
 | Tag | Description |
@@ -212,7 +212,7 @@ All the following data collection will add a global tag named `host` by default 
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- Metrics
+- fields
 
 
 | Metric | Description | Type | Unit |
