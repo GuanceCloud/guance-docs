@@ -37,6 +37,63 @@ icon: zy/release-notes
 
 </div>
 
+## 2025 年 2 月 19 日
+
+### 功能更新 {#feature0116}
+
+
+#### PromQL 查询
+
+新增查询类型：Instant Query，即针对单个时间点进行查询。
+
+**注意**：监控器中的 PromQL 查询调整为 Instant Query，以便获取查询范围内的精准结果值。
+
+
+#### 监控
+
+监控器配置页面：
+
+1. 触发条件的逻辑匹配中新增 `not between` 选项；
+2. 支持直接修改监控器状态（“启用”或“禁用”）。
+
+
+#### 应用性能监测
+
+链路：详情页新增[服务上下文](../application-performance-monitoring/explorer/explorer-analysis.md#context) tab 页。
+
+
+#### 事件
+
+1. 事件详情页：新增支持绑定[内置视图](../events/event-explorer/event-details.md#inner_view)；
+2. 对事件 `df_meta` 字段作精简处理，仅保留明确命中规则和通知对象信息记录，不再保留告警策略匹配的相关信息。
+
+
+#### 异常追踪
+
+1. Issue 新增 [`working`、`closed` 状态](../exception/issue.md#concepts)；  
+2. 针对 `open` 状态停留超时和未指定负责人和处理超时的情况，[Issue 升级](../exception/config-manag/strategy.md#upgrade)新增重复通知配置；  
+3. 调整 Issue 系统评论、频道通知的 UI 显示；
+4. 分析看板：新增时间控件。
+
+
+#### 场景
+
+1. [图表链接](../scene/visual-chart/chart-link.md)：新增“查看主机监控视图”，默认关闭。
+2. 查看器：支持删除固定 `name` 列，用户可自定义列表显示。
+
+#### 管理
+
+[角色管理](../management/role-list.md)：Session Replay 查看、审计事件新增自定义添加查看权限能力。
+
+#### 指标
+
+生成指标：指标名输入不再支持使用 `-` 中划线。
+
+
+### 部署版更新 {#deployment0219}
+
+1. 模板管理：支持上传基础设施查看器模板；
+2. 索引配置：弃用“备份日志”项。
 
 ## 2025 年 1 月 16 日
 

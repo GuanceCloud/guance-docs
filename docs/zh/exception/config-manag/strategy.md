@@ -8,23 +8,41 @@
 
 :material-numeric-1-circle-outline: 输入策略名称；
 
-:material-numeric-2-circle-outline: 选择通知范围：主要包含以下三种：
+:material-numeric-2-circle-outline: 选择通知范围：主要包含以下四种：
 
 - Issue 的新建、修改；
 
-- Issue 升级：
-    - 在具体分钟数内一直出现**未指定 Issue 负责人**的情况，则纳入当前策略的通知范围；
-    - 在具体分钟数内一直出现 Issue 未被解决的情况，则纳入当前策略的通知范围；
+- Issue 升级；
 
-![](../img/notice-create-1.png)
+- Issue 回复的新建、修改和删除；
 
-- Issue 回复的新建、修改和删除。
-
+- 日报总结。
 
 :material-numeric-3-circle-outline: 配置相应日程：即选定当前工作空间内的日程，配合日程向外发送通知。您还可按需直接[新建日程](../calendar.md#create)。
 
 <img src="../../img/notice-create-2.png" width="60%" >
 
+### Issue 升级 {#upgrade}
+
+
+为确保 Issue 能被及时通知到相关负责人，通过配置 Issue 升级，避免 Issue 无人负责或未及时解决的情况。
+
+**规则生效前提**：仅对新创建的 Issue 生效。
+
+<img src="../../img/notice-create-1.png" width="70%" >
+
+1. 若在指定的分钟数内**未指定 Issue 负责人**，可设置系统发送通知提醒次数；
+2. 对于**处于 `open` 状态**的 Issue：
+
+    - 如果其持续时间超过设定的特定分钟数，可设置系统发送通知提醒次数；
+    - 如果 Issue 在设定的分钟数内未流转到其他状态（如 `pending`、`resolved` 或 `closed` 等），可设置系统发送通知提醒次数。
+
+???+ warning "注意"
+
+    上文提到的**处于 `open` 状态**的 Issue 包含以下两种：
+
+    - 系统将新创建的 Issue (默认状态为 `open`)；
+    - 历史已经存在的 Issue 从其他状态变更为 `open`。
 
 ## 管理策略列表
 

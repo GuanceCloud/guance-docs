@@ -226,6 +226,12 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
 ![](../img/6.apm_error.png)
 
+### 服务上下文 {#context}
+
+在“服务上下文”，可以查看当前服务的运行信息、服务依赖和集成信息。
+
+![](../img/trace_context.png)
+
 ### 关联分析
 
 <div class="grid" markdown>
