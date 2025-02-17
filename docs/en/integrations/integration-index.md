@@ -6715,7 +6715,7 @@ Guance has the ability of full stack data collection, and now supports about 310
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="..//icon.png"
+									src="../icon/newrelic/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
@@ -6842,36 +6842,6 @@ Guance has the ability of full stack data collection, and now supports about 310
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Node Exporter</div>
                             <div title="Collect host metric information through Node Exporter" class="fth-integration-desc">Collect host metric information through Node Exporter</div>
-                        </div>
-                        <div class="fth-integration-mask-image"></div>
-  					</div>
-  					<div class="integration-list-item-right">
-  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  							<path
-  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
-  							></path>
-  						</svg>
-  					</div>
-  				</div>
-  			</div>
-  		
-  			<div
-  				class="fth-integration-list-item"
-  				data-href="../nodejs"
-  				data-tags=""
-  				data-name="NodeJs"
-  				data-summary="Obtain metrics, link tracking, and log information for NodeJs applications"
-  			>
-  				<div class="fth-integration-list-card">
-  					<div class="integration-list-item-left">
-  						<img
-									src="../icon/nodejs/icon.png"
-									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
-									alt=""
-  						/>
-  						<div class="fth-integration-description">
-                            <div class="fth-integration-name">NodeJs</div>
-                            <div title="Obtain metrics, link tracking, and log information for NodeJs applications" class="fth-integration-desc">Obtain metrics, link tracking, and log information for NodeJs applications</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7022,6 +6992,36 @@ Guance has the ability of full stack data collection, and now supports about 310
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">OpenGauss</div>
                             <div title="Collect OpenGaussian metric information" class="fth-integration-desc">Collect OpenGaussian metric information</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../openlit"
+  				data-tags="OTEL,Tracing"
+  				data-name="OpenLIT"
+  				data-summary="OpenLIT simplifies the development process for generative AI and large language models (LLMs), providing comprehensive observability support and reporting observability data to DataKit"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/openlit/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">OpenLIT</div>
+                            <div title="OpenLIT simplifies the development process for generative AI and large language models (LLMs), providing comprehensive observability support and reporting observability data to DataKit" class="fth-integration-desc">OpenLIT simplifies the development process for generative AI and large language models (LLMs), providing comprehensive observability support and reporting observability data to DataKit</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
