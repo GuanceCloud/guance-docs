@@ -9287,6 +9287,36 @@ Guance has the ability of full stack data collection, and now supports about 310
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../volcengine_eip"
+  				data-tags="Volcengine"
+  				data-name="Volcengine EIP"
+  				data-summary="Collect EIP metrics data of Volcengine"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/volcengine_eip/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Volcengine EIP</div>
+                            <div title="Collect EIP metrics data of Volcengine" class="fth-integration-desc">Collect EIP metrics data of Volcengine</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../volcengine_mongodb_replica_set"
   				data-tags="Volcengine"
   				data-name="Volcengine MongoDB Replica Set"
