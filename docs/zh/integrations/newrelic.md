@@ -4,7 +4,7 @@ summary   : '接收来自 New Relic Agent 的数据'
 tags:
   - 'NEWRELIC'
   - '链路追踪'
-__int_icon      : ''
+__int_icon      : 'icon/newrelic'
 dashboard :
   - desc  : 'N/A'
     path  : '-'
@@ -24,7 +24,7 @@ New Relic 的 .Net Agent 是基于 .Net 技术框架的开源项目，可用于�
 
 ## 配置 {#config}
 
-### 采集器配置 {#input-config}
+### 采集器配置 {input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "主机安装"

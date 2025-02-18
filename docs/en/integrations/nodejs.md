@@ -1,10 +1,10 @@
 ---
 title     : 'NodeJs'
 summary   : 'Obtain metrics, link tracking, and log information for NodeJs applications'
-__int_icon: 'icon/nodejs'
+__int_icon: 'icon/node_js'
 dashboard :
   - desc  : 'No'
-    path  : '-'
+    path  : -
 monitor   :
   - desc  : 'No'
     path  : '-'
