@@ -2,13 +2,13 @@
 ---
 
 
-资源目录数据上报需要先安装并连通 DataKit 和 DataFlux Func，再通过 DataFlux Func 上报数据到 DataKit，最终 DataKit 上报数据到观测云工作空间。
+资源目录数据上报需要先安装并连通 DataKit 和 DataFlux Func，再通过 DataFlux Func 上报数据到 DataKit，最终 DataKit 上报数据到{{{ custom_key.brand_name }}}工作空间。
 
 ![](../img/object.png)
 
 ## 安装 DataKit
 
-在到观测云工作空间，依次点击**集成 > DataKit**，选择 DataKit 安装方式，见如下信息，然后复制**安装指令**在主机执行。
+在到{{{ custom_key.brand_name }}}工作空间，依次点击**集成 > DataKit**，选择 DataKit 安装方式，见如下信息，然后复制**安装指令**在主机执行。
 
 ![](../img/1.datakit_install.png)
 
@@ -18,7 +18,7 @@
 
 ## 安装 DataFlux Func
 
-在观测云工作空间，依次点击**集成 > 扩展**，根据如下步骤在命令行终端工具进行安装 Func。
+在{{{ custom_key.brand_name }}}工作空间，依次点击**集成 > 扩展**，根据如下步骤在命令行终端工具进行安装 Func。
 
 ![](../img/1.func_install.png)
 
@@ -148,7 +148,7 @@ def main():
         pushdata(data)
 ```
 
-5、DataFlux Func 脚本配置完成执行后，即可在观测云工作空间**基础设施 > 自定义**中查看上报的数据。
+5、DataFlux Func 脚本配置完成执行后，即可在{{{ custom_key.brand_name }}}工作空间**基础设施 > 自定义**中查看上报的数据。
 
 ![](../img/3.object_more_api_function_11.png)
 

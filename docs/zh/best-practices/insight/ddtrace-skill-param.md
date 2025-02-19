@@ -66,7 +66,7 @@ ddtrace 提供两种添加 tag 方式，效果一样。但还是推荐使用 dd.
 
 以上两种方式都能生成 tag，效果一样，都会在`meta`里面展示数据。
 
-如果确实想要把 `dd.tags`标记的 tag 作为观测云的 标签 ，则需要在 `ddtrace.conf` 配置 `customer_tags`
+如果确实想要把 `dd.tags`标记的 tag 作为{{{ custom_key.brand_name }}}的 标签 ，则需要在 `ddtrace.conf` 配置 `customer_tags`
 
 ```yaml
     [[inputs.ddtrace]]

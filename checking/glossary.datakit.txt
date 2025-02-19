@@ -83,6 +83,7 @@ NGINX
 Nacos
 NetFlow
 Ning
+Ningxia
 ODBC
 OceanBase
 OpenSSL
@@ -222,6 +223,7 @@ vnode
 vnode
 workarea
 xpack
+xfsquota
 zabbix
 zhangsan
 

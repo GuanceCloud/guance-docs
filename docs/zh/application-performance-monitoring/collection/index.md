@@ -3,7 +3,7 @@
 
 
 
-观测云的链路数据采集目前支持使用 Opentracing 协议的采集器。在 DataKit 中开启链路数据接收服务后，通过完成采集器在代码中的埋点，DataKit 将自动完成数据的格式转换和采集，最终上报到观测云。
+{{{ custom_key.brand_name }}}的链路数据采集目前支持使用 Opentracing 协议的采集器。在 DataKit 中开启链路数据接收服务后，通过完成采集器在代码中的埋点，DataKit 将自动完成数据的格式转换和采集，最终上报到{{{ custom_key.brand_name }}}。
 
 
 ## 数据采集
@@ -14,7 +14,7 @@ DataKit 目前支持采集 `DDTrace`、`Apache Jaeger`、`OpenTelemetry`、`Skyw
 
 1. [安装 DataKit](../../datakit/datakit-install.md)；
 
-2. 安装完成后需要开启链路采集器的配置文件。进入**观测云控制台 > 集成**页面，输入搜索**应用性能监测**，即可查看所有链路数据采集的相关采集器，打开采集器的配置说明文档，按照文档中的步骤进行配置即可。
+2. 安装完成后需要开启链路采集器的配置文件。进入**{{{ custom_key.brand_name }}}控制台 > 集成**页面，输入搜索**应用性能监测**，即可查看所有链路数据采集的相关采集器，打开采集器的配置说明文档，按照文档中的步骤进行配置即可。
 
 或者您可以直接点击以下链接查看对应的采集器配置：
 
@@ -27,14 +27,14 @@ DataKit 目前支持采集 `DDTrace`、`Apache Jaeger`、`OpenTelemetry`、`Skyw
 1. [安装主机 DataKit](../../datakit/datakit-install.md) 或者 [安装 Kubernetes DataKit](../../datakit/datakit-daemonset-deploy.md)；  
 2. 在 DataKit 中开启链路数据接收服务；  
 3. 通过在业务系统中集成 Zipkin 或 Jaeger 或 Skywalking 等开源链路数据采集的 SDK，将数据上报到 DataKit 的链路追踪服务的 Endpoint；  
-4. DataKit 会将数据自动清洗为观测云本身的链路数据格式，并上报到观测云中心；  
-5. 在观测云的控制台进行链路分析和查看服务相关性能指标。
+4. DataKit 会将数据自动清洗为{{{ custom_key.brand_name }}}本身的链路数据格式，并上报到{{{ custom_key.brand_name }}}中心；  
+5. 在{{{ custom_key.brand_name }}}的控制台进行链路分析和查看服务相关性能指标。
 
 ![](../img/1.apm-1.png)
 
 ## 字段说明
 
-DataKit 会根据采集器的不同将上报的数据转换为观测云链路数据的格式保留标签和指标。下面是常用的字段说明：
+DataKit 会根据采集器的不同将上报的数据转换为{{{ custom_key.brand_name }}}链路数据的格式保留标签和指标。下面是常用的字段说明：
 
 
 | 字段名    | 说明                                                         |

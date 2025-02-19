@@ -17,7 +17,7 @@
 
 ![](../img/back-8.png)
 
-1. 须使用观测云为您提供的专属华为云账号 ID，[前往添加跨账号访问授权策略](../obs-config.md)；
+1. 须使用{{{ custom_key.brand_name }}}为您提供的专属华为云账号 ID，[前往添加跨账号访问授权策略](../obs-config.md)；
 2. 选择地区；
 3. 输入您在华为云的桶名称；
 
@@ -28,7 +28,7 @@
 
 ![](../img/back-9.png)
 
-1. 先在华为云中[配置观测云 RAM 策略](../obs-ak.md)；
+1. 先在华为云中[配置{{{ custom_key.brand_name }}} RAM 策略](../obs-ak.md)；
 2. 填写 Access Keys；
 3. 填写与之对应的 Secret Key；
 4. 选择地区；
@@ -53,7 +53,7 @@
 
 **注意**：
     
-- 若填入的文件夹不存在，观测云将直接创建，数据仍会存入该路径下。
+- 若填入的文件夹不存在，{{{ custom_key.brand_name }}}将直接创建，数据仍会存入该路径下。
 - 请谨慎变更存储路径，由于更新配置存在 5 分钟左右的延迟，变更后可能会有部分数据依然转发到原目录下。
 
 ## 更多阅读
@@ -62,7 +62,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 在观测云添加账号访问授权策略</font>](../obs-config.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 在{{{ custom_key.brand_name }}}添加账号访问授权策略</font>](../obs-config.md)
 
 </div>
 

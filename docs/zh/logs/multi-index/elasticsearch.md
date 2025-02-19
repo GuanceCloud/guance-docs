@@ -13,8 +13,8 @@
 :material-numeric-2-circle-outline: 资源授权
 
 1. Elasticsearch Index：Elasticsearch 中需要绑定查看的索引名称。 
-2. 观测云 Index：观测云工作空间唯一标识的索引名称，由用户自定义填写，且不支持重复的名字，配置完成后，可用于筛选索引名称。
-    - **注意**：该索引名称与 Elasticsearch 无关，仅用于您后续在观测云中的数据筛选。 
+2. {{{ custom_key.brand_name }}} Index：{{{ custom_key.brand_name }}}工作空间唯一标识的索引名称，由用户自定义填写，且不支持重复的名字，配置完成后，可用于筛选索引名称。
+    - **注意**：该索引名称与 Elasticsearch 无关，仅用于您后续在{{{ custom_key.brand_name }}}中的数据筛选。 
 
 :material-numeric-3-circle-outline: [字段映射](./index.md#mapping)。                 
 

@@ -8,7 +8,7 @@
 
 ## 前置条件
 
-登录 [观测云](https://console.guance.com/)，【集成】->【Datakit】-> 【Kubernetes】，请按照指引在 Kubernetes 集群中安装 DataKit ，其中部署使用的 datakit.yaml 文件，在接下来的操作中会使用到。
+登录 [{{{ custom_key.brand_name }}}](https://console.guance.com/)，【集成】->【Datakit】-> 【Kubernetes】，请按照指引在 Kubernetes 集群中安装 DataKit ，其中部署使用的 datakit.yaml 文件，在接下来的操作中会使用到。
 
 ## DataKit 高级配置
 
@@ -406,7 +406,7 @@ data:
           # some_tag = "some_value"
           # more_tag = "some_other_value" 
 ```
-『**注意**』：既然使用观测云收集日志，日志已经被持久化了，没必要再把日志落盘到宿主机，所以 Kubernetes 环境下不建议使用这种采集方式。
+『**注意**』：既然使用{{{ custom_key.brand_name }}}收集日志，日志已经被持久化了，没必要再把日志落盘到宿主机，所以 Kubernetes 环境下不建议使用这种采集方式。
 
 ## Pipeline
 
@@ -419,11 +419,11 @@ data:
 
 ## 异常检测
 
-当日志出现异常，对应用影响很大的时候，使用观测云的日志异常检测功能，并配置告警，能及时把异常通知到观测对象，观测云的告警支持邮箱、钉钉、短信、企业微信、飞书等通知方式。下面以邮箱为例介绍一下告警。
+当日志出现异常，对应用影响很大的时候，使用{{{ custom_key.brand_name }}}的日志异常检测功能，并配置告警，能及时把异常通知到观测对象，{{{ custom_key.brand_name }}}的告警支持邮箱、钉钉、短信、企业微信、飞书等通知方式。下面以邮箱为例介绍一下告警。
 
 ### 1 创建通知对象
 
-登录 [观测云](https://console.guance.com/)，【管理】->【通知对象管理】-> 【新建通知对象】，选择邮件组，输入名称和邮件地址。<br />
+登录 [{{{ custom_key.brand_name }}}](https://console.guance.com/)，【管理】->【通知对象管理】-> 【新建通知对象】，选择邮件组，输入名称和邮件地址。<br />
 
 ![image](../images/k8s-logs/1.png)	
 

@@ -2,11 +2,11 @@
 
 ---
 
-通过 Web 浏览器或者 Javascript 客户端主动发送不同等级的日志数据(`对应的 source:browser_log` 指标类型日志数据)到[观测云](https://www.guance.com/)。
+通过 Web 浏览器或者 Javascript 客户端主动发送不同等级的日志数据(`对应的 source:browser_log` 指标类型日志数据)到[{{{ custom_key.brand_name }}}](https://www.guance.com/)。
 
 
 - 自定义日志数据采集，通过 SDK 接入客户端应用中，针对不同场景采集不同日志数据；
-- 自动收集应用端的错误信息（包括网络错误，console 错误，以及 js 错误）上报到观测云；
+- 自动收集应用端的错误信息（包括网络错误，console 错误，以及 js 错误）上报到{{{ custom_key.brand_name }}}；
 - 自定义错误等级（`debug`,`critical`,`error`,`info`,`warn`），自定义 Logger 对象，以及自定义 Log 字段；
 - 自动收集 [RUM](../real-user-monitoring/web/app-access.md) 相关数据，关联 RUM 业务场景。
 
@@ -14,7 +14,7 @@
 
 ### 前置条件
 
-- **DataKit**：通过 DataKit 日志采集 API 发送日志数据到观测云平台；
+- **DataKit**：通过 DataKit 日志采集 API 发送日志数据到{{{ custom_key.brand_name }}}平台；
 
 - **引入 SDK**：可通过 `NPM`,`CDN 同步`或 `CDN 异步`的方式引入 SDK 到应用中；
 
@@ -57,7 +57,7 @@ datafluxLogs.init({
     d.src = n
     n = o.getElementsByTagName(u)[0]
     n.parentNode.insertBefore(d, n)
-  })(window, document, 'script', 'https://static.guance.com/browser-sdk/v3/dataflux-logs.js', 'DATAFLUX_LOGS')
+  })(window, document, 'script', 'https://{{{ custom_key.static_domain }}}/browser-sdk/v3/dataflux-logs.js', 'DATAFLUX_LOGS')
   DATAFLUX_LOGS.onReady(function () {
     DATAFLUX_LOGS.init({
       datakitOrigin: '<DataKit的域名或IP>', // DK方式接入时需要配置
@@ -73,7 +73,7 @@ datafluxLogs.init({
 #### CDN 同步加载
 
 ```html
-<script src="https://static.guance.com/browser-sdk/v3/dataflux-logs.js" type="text/javascript"></script>
+<script src="https://{{{ custom_key.static_domain }}}/browser-sdk/v3/dataflux-logs.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_LOGS &&
     window.DATAFLUX_LOGS.init({
@@ -93,13 +93,13 @@ datafluxLogs.init({
 | **参数**               | **类型**    | **是否必须** | **默认值** | **描述**                                                                                                                                 |
 | ---------------------- | ----------- | ------------ | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `datakitOrigin`        | String      | 是           |            | DataKit 数据上报 Origin 注释：`协议（包括：//），域名（或 IP 地址）[和端口号] `例如：https://www.datakit.com, http://100.20.34.3:8088。  |
-| `clientToken`          | String      | 是           |            | 以 openway 方式上报数据令牌，从观测云控制台获取，必填（公共 openway 方式接入）。                                                         |
-| `site`                 | String      | 是           |            | 以 公共 openway 方式上报数据地址，从观测云控制台获取，必填（公共 openway 方式接入）。                                                    |
+| `clientToken`          | String      | 是           |            | 以 openway 方式上报数据令牌，从{{{ custom_key.brand_name }}}控制台获取，必填（公共 openway 方式接入）。                                                         |
+| `site`                 | String      | 是           |            | 以 公共 openway 方式上报数据地址，从{{{ custom_key.brand_name }}}控制台获取，必填（公共 openway 方式接入）。                                                    |
 | `service`              | String      | 否           | `browser`  | 日志 Service 名称                                                                                                                        |
 | `env`                  | String      | 否           |            | Web 应用当前环境， 如 Prod：线上环境；Gray：灰度环境；Pre：预发布环境 Common：日常环境；Local：本地环境；                                |
 | `version`              | String      | 否           |            | Web 应用的版本号                                                                                                                         |
 | `sessionSampleRate`    | Number      | 否           | `100`      | 指标数据收集百分比：`100` 表示全收集，`0` 表示不收集                                                                                     |
-| `forwardErrorsToLogs`  | Boolean     | 否           | `true`     | 设置为 `false` 表示停止采集 console.error、 js、以及网络错误上报到观测云日志数据中                                                       |
+| `forwardErrorsToLogs`  | Boolean     | 否           | `true`     | 设置为 `false` 表示停止采集 console.error、 js、以及网络错误上报到{{{ custom_key.brand_name }}}日志数据中                                                       |
 | `silentMultipleInit`   | Boolean     | 否           | `false`    | 不允许有多个日志对象被初始化                                                                                                             |
 | `forwardConsoleLogs`   | 字符串/数组 |              |            | 需要采集浏览器 console 日志类型，可选值：`error`, `log`, `info`, `warn`, `error`                                                         |
 | `storeContextsToLocal` | Boolean     | 否           |            | 版本要求:`>3.1.2`。是否把用户自定义数据缓存到本地 localstorage，例如： `setUser`, `addGlobalContext` api 添加的自定义数据。              |
@@ -228,7 +228,7 @@ window.DATAFLUX_LOGS && DATAFLUX_LOGS.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<ST
 
 | **参数**            | **描述**                                                    |
 | ------------------- | ----------------------------------------------------------- |
-| `<MESSAGE>`         | 观测云日志中的 Message 字段                                 |
+| `<MESSAGE>`         | {{{ custom_key.brand_name }}}日志中的 Message 字段                                 |
 | `<JSON_ATTRIBUTES>` | 描述 Message 的额外数据，是一个 Json 对象                   |
 | `<STATUS>`          | 日志的等级，可选值 `debug`,`info`,`warn`,`error`,`critical` |
 

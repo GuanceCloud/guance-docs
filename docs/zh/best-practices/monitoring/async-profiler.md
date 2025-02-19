@@ -126,9 +126,9 @@ $ java -agentpath:async-profiler-2.8.3/build/libasyncProfiler.so=start,event=all
 
     html 格式只支持单事件，jfr 格式支持多种事件输出。
 
-## async-profiler 与 观测云
+## async-profiler 与 {{{ custom_key.brand_name }}}
 
-观测云对 async-profiler 做了深度集成，可以将数据发送至 DataKit，并借助观测云强大的 UI 及分析能力，方便用户在不同维度上进行分析。
+{{{ custom_key.brand_name }}}对 async-profiler 做了深度集成，可以将数据发送至 DataKit，并借助{{{ custom_key.brand_name }}}强大的 UI 及分析能力，方便用户在不同维度上进行分析。
 
 可参考相关[集成文档](../../integrations/profile-java.md)
 
@@ -188,7 +188,7 @@ public class MapGenerator {
     Read 16500000 elements in 15.531 seconds
     ```
 
-    在运行 MapReader 的同时执行 async-profiler 并将 profiling 信息推送至观测云平台进行分析。
+    在运行 MapReader 的同时执行 async-profiler 并将 profiling 信息推送至{{{ custom_key.brand_name }}}平台进行分析。
 
     ```shell
     [root@ip-172-31-19-50 async-profiler-2.8.3-linux-x64]# DATAKIT_URL=http://localhost:9529 APP_ENV=test APP_VERSION=1.0.0 HOST_NAME=datakit PROFILING_EVENT=cpu,alloc,lock PROFILING_DURATION=10 PROCESS_ID=`ps -ef |grep java|grep springboot|grep -v grep|awk '{print $2}'` SERVICE_NAME=demo bash collect.sh
@@ -249,7 +249,7 @@ public class MapGenerator {
     [root@ip-172-31-19-50 profiling]#
     ```
 
-    我们在运行 MapReader2 的同时执行 async-profiler 并将 profiling 信息推送至观测云平台进行分析，执行命令同方式一。
+    我们在运行 MapReader2 的同时执行 async-profiler 并将 profiling 信息推送至{{{ custom_key.brand_name }}}平台进行分析，执行命令同方式一。
 
     ![image.png](../images/profiling-8.png)
 

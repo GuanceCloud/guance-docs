@@ -1,10 +1,10 @@
 # 自建巡检
 
-观测云支持通过 DataFlux Func 自定义智能巡检，基于智能算法，自动检测基础设施、应用程序问题，帮助用户发现 IT 系统运行过程中已经发生的问题和潜在的问题，通过根因分析，快速定位异常问题原因。
+{{{ custom_key.brand_name }}}支持通过 DataFlux Func 自定义智能巡检，基于智能算法，自动检测基础设施、应用程序问题，帮助用户发现 IT 系统运行过程中已经发生的问题和潜在的问题，通过根因分析，快速定位异常问题原因。
 
 DataFlux Func 是一款函数开发、管理、执行平台。简单易用、无需从零搭建 Web 服务，无需管理服务器等基础设施，只需编写代码并发布，简单配置即可为函数生成 HTTP API 接口。
 
-本文档主要介绍如何使用 DataFlux Func 脚本市场中的「观测云自建巡检 Core 核心包」脚本包在自建 DataFlux Func 中实现巡检函数的工作。
+本文档主要介绍如何使用 DataFlux Func 脚本市场中的「{{{ custom_key.brand_name }}}自建巡检 Core 核心包」脚本包在自建 DataFlux Func 中实现巡检函数的工作。
 
 > 提示 1：请始终使用最新版 DataFlux Func 进行操作。
 
@@ -20,8 +20,8 @@ DataFlux Func 是一款函数开发、管理、执行平台。简单易用、无
 
 要实现自建巡检的搭建，需要进行如下步骤：
 
-1. 在观测云「管理 / API Key 管理」中创建用于进行操作的 API Key
-2. 在自建的 DataFlux Func 中，通过「脚本市场」安装「观测云自建巡检 Core 核心包」
+1. 在{{{ custom_key.brand_name }}}「管理 / API Key 管理」中创建用于进行操作的 API Key
+2. 在自建的 DataFlux Func 中，通过「脚本市场」安装「{{{ custom_key.brand_name }}}自建巡检 Core 核心包」
 3. 在自建的 DataFlux Func 中，编写自建巡检处理函数
 4. 在自建的 DataFlux Func 中，通过「管理 / 自动触发配置」，为所编写的函数创建自动触发配置
 
@@ -69,7 +69,7 @@ def run(param1=1, param2=True, param3=None):
     event_reporter.report(event)
 ```
 
-在脚本发布后，对应的函数即被注册到观测云，并可以在观测云平台「监控 / 智能巡检」中看到。
+在脚本发布后，对应的函数即被注册到{{{ custom_key.brand_name }}}，并可以在{{{ custom_key.brand_name }}}平台「监控 / 智能巡检」中看到。
 
 ![](img/self-hosted-monitor-list.png)
 
@@ -86,13 +86,13 @@ from guance_monitor__register import self_hosted_monitor
 from guance_monitor__event_reporter import EventReporter
 ~~~
 
-`self_hosted_monitor`是自建巡检函数装饰器，添加此装饰器的函数才会被注册到观测云。
+`self_hosted_monitor`是自建巡检函数装饰器，添加此装饰器的函数才会被注册到{{{ custom_key.brand_name }}}。
 
 `EventReporter`是事件报告器，用于上报事件数据。
 
 #### 自建巡检注册、函数定义部分
 
-需要注册到观测云的自建巡检，必须同时满足：
+需要注册到{{{ custom_key.brand_name }}}的自建巡检，必须同时满足：
 
 1. *先*使用`@self_hosted_monitor`装饰器装饰
 2. *后*使用`@DFF.API(...)`装饰器装饰
@@ -117,15 +117,15 @@ def run(param1=1, param2=True, param3=None):
 
 其中：
 
-装饰器`@self_hosted_monitor`需要传入在观测云「管理 / API Key 管理」创建的 API Key ID 和 API Key。
+装饰器`@self_hosted_monitor`需要传入在{{{ custom_key.brand_name }}}「管理 / API Key 管理」创建的 API Key ID 和 API Key。
 
 装饰器`@DFF.API(...)`中指定的标题，在注册后会作为自建巡检的标题出现。
 
 函数文档中的内容，在注册后会作为自建巡检配置页面中的文档出现。
 
-#### 其他观测云节点
+#### 其他{{{ custom_key.brand_name }}}节点
 
-如果需要连接到非默认节点（杭州）的观测云，则需要额外传入观测云节点名参数，具体代码示例如下：
+如果需要连接到非默认节点（杭州）的{{{ custom_key.brand_name }}}，则需要额外传入{{{ custom_key.brand_name }}}节点名参数，具体代码示例如下：
 
 ~~~python
 API_KEY_ID  = 'wsak_xxxxx'
@@ -136,12 +136,12 @@ GUANCE_NODE = 'aws'
 # 下略。..
 ~~~
 
-> 关于 `GUANCE_NODE` 可选值，可参考 [可用的观测云节点](https://func.guance.com/doc/ui-guide-development-module-guance-node/)
+> 关于 `GUANCE_NODE` 可选值，可参考 [可用的{{{ custom_key.brand_name }}}节点](https://func.guance.com/doc/ui-guide-development-module-guance-node/)
 
 <!-- 
 `GUANCE_NODE`可选值如下：
 
-| 观测云节点         | `GUANCE_NODE`取值 |
+| {{{ custom_key.brand_name }}}节点         | `GUANCE_NODE`取值 |
 | ------------------ | ----------------- |
 | 中国区 1（杭州）   | `None`            |
 | 中国区 2（宁夏）   | `aws`             |
@@ -224,9 +224,9 @@ def run(param1=1, param2=True, param3=None):
     event_reporter.report(events)
 ~~~
 
-## 3. 在观测云配置自建巡检
+## 3. 在{{{ custom_key.brand_name }}}配置自建巡检
 
-已经注册到观测云的自建巡检函数，可以在观测云平台中进行配置运行参数、告警策略。
+已经注册到{{{ custom_key.brand_name }}}的自建巡检函数，可以在{{{ custom_key.brand_name }}}平台中进行配置运行参数、告警策略。
 
 并且函数的文档也会一并展示，方便使用者参考。
 
@@ -238,9 +238,9 @@ def run(param1=1, param2=True, param3=None):
 
 ![](img/self-hosted-monitor-cron-config.png)
 
-*注意：自建巡检的参数在观测云中配置，「自动触发配置」中的参数指定不起作用*
+*注意：自建巡检的参数在{{{ custom_key.brand_name }}}中配置，「自动触发配置」中的参数指定不起作用*
 
-执行一段时间后，即可在观测云查看生成的事件。
+执行一段时间后，即可在{{{ custom_key.brand_name }}}查看生成的事件。
 
 ![](img/self-hosted-monitor-event.png)
 
@@ -248,9 +248,9 @@ def run(param1=1, param2=True, param3=None):
 
 使用自建巡检时，需要注意以下几个事项。
 
-### 5.1 函数与观测云自建巡检的关联
+### 5.1 函数与{{{ custom_key.brand_name }}}自建巡检的关联
 
-自建 DataFlux Func 中的自建巡检函数会按照「函数 ID + DataFlux Func Secret 配置」生成关联 Key 与观测云平台的自建巡检关联。
+自建 DataFlux Func 中的自建巡检函数会按照「函数 ID + DataFlux Func Secret 配置」生成关联 Key 与{{{ custom_key.brand_name }}}平台的自建巡检关联。
 
 因此，如果修改了以下任意一项，函数都会关联到不同的自建巡检上：
 
@@ -261,27 +261,27 @@ def run(param1=1, param2=True, param3=None):
 
 ### 5.2 函数注册
 
-添加了`@self_hosted_monitor`装饰器的函数，在每次执行时都会尝试访问观测云并进行函数注册。
+添加了`@self_hosted_monitor`装饰器的函数，在每次执行时都会尝试访问{{{ custom_key.brand_name }}}并进行函数注册。
 
-注册同时，函数的标题、文档、参数列表也会更新到观测云。
+注册同时，函数的标题、文档、参数列表也会更新到{{{ custom_key.brand_name }}}。
 
-注册完成后，装饰器会从观测云下载对应自建巡检的配置（参数指定），并以自建巡检配置中指定的参数运行函数，而自动触发中配置的参数不会起作用。
+注册完成后，装饰器会从{{{ custom_key.brand_name }}}下载对应自建巡检的配置（参数指定），并以自建巡检配置中指定的参数运行函数，而自动触发中配置的参数不会起作用。
 
-### 5.3 在观测云禁用自建巡检
+### 5.3 在{{{ custom_key.brand_name }}}禁用自建巡检
 
-在观测云平台中可以禁用自建巡检。
+在{{{ custom_key.brand_name }}}平台中可以禁用自建巡检。
 
-但由于观测云并不能反向控制 DataFlux Func 的数据，因此自建 DataFlux Func 中的自动触发配置依然会照常执行。
+但由于{{{ custom_key.brand_name }}}并不能反向控制 DataFlux Func 的数据，因此自建 DataFlux Func 中的自动触发配置依然会照常执行。
 
-函数执行后，`@self_hosted_monitor`装饰器会访问观测云并检查对应的自建巡检是否已被禁用，从而决定是否需要实际执行用户编写的函数。
+函数执行后，`@self_hosted_monitor`装饰器会访问{{{ custom_key.brand_name }}}并检查对应的自建巡检是否已被禁用，从而决定是否需要实际执行用户编写的函数。
 
-因此在自建 DataFlux Func 中，自建巡检函数的自动触发配置始终都会运行。只在遇到对应观测云自建巡检被禁用时，立刻结束处理。
+因此在自建 DataFlux Func 中，自建巡检函数的自动触发配置始终都会运行。只在遇到对应{{{ custom_key.brand_name }}}自建巡检被禁用时，立刻结束处理。
 
 ![](img/self-hosted-monitor-disabled.png)
 
-### 5.4 在观测云删除自建巡检
+### 5.4 在{{{ custom_key.brand_name }}}删除自建巡检
 
-观测云中的自建巡检可以删除，但如果实际的自建巡检存在，那么只要发布或者运行，都会再次自动在观测云创建自建巡检。
+{{{ custom_key.brand_name }}}中的自建巡检可以删除，但如果实际的自建巡检存在，那么只要发布或者运行，都会再次自动在{{{ custom_key.brand_name }}}创建自建巡检。
 
 同时，由于自建巡检删除后重新创建后，UUID 会发生变化，因此实际上前后两个自建巡检并不是同一个，所产生的事件之间也不会关联。
 

@@ -25,7 +25,7 @@
 
 === "arm64"
     
-    安装包地址：https://static.guance.com/dataflux/package/guance-middleware-arm64.tar.gz
+    安装包地址：https://{{{ custom_key.static_domain }}}/dataflux/package/guance-middleware-arm64.tar.gz
     解压安装包：
     ```shell
     tar -zvxf guance-middleware-arm64.tar.gz
@@ -33,7 +33,7 @@
 
 === "amd64"
     
-    安装包地址：https://static.guance.com/dataflux/package/guance-middleware-amd64.tar.gz
+    安装包地址：https://{{{ custom_key.static_domain }}}/dataflux/package/guance-middleware-amd64.tar.gz
     解压安装包：
     ```shell
     tar -zvxf guance-middleware-amd64.tar.gz
@@ -390,16 +390,16 @@ sealos run imagesId -e nfs_name=df-nfs-storage
 
 === "arm64"
     
-    镜像包下载地址：https://static.guance.com/dataflux/package/guance-arm64-latest.tar.gz
+    镜像包下载地址：https://{{{ custom_key.static_domain }}}/dataflux/package/guance-arm64-latest.tar.gz
 
 === "amd64"
     
-    镜像包下载地址：https://static.guance.com/dataflux/package/guance-amd64-latest.tar.gz
+    镜像包下载地址：https://{{{ custom_key.static_domain }}}/dataflux/package/guance-amd64-latest.tar.gz
 
 
 2.14.2 launcher chart包下载
 
-chart包下载地址：https://static.guance.com/dataflux/package/launcher-helm-latest.tgz
+chart包下载地址：https://{{{ custom_key.static_domain }}}/dataflux/package/launcher-helm-latest.tgz
 
 2.14.3 业务服务镜像导入
 

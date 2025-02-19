@@ -4,7 +4,7 @@
 
 ## 简介
 
-CRD 全称是 Custom Resource Definition，是 Kubernetes 的一种内置资源类型，允许用户自定义新的资源类型。**观测云实现了 CRD 资源的自定义**，然后通过 CRD 控制器实现对自定义的 CRD 对象的管理。使用 CRD 采集指标，可以实现与应用的解耦。
+CRD 全称是 Custom Resource Definition，是 Kubernetes 的一种内置资源类型，允许用户自定义新的资源类型。**{{{ custom_key.brand_name }}}实现了 CRD 资源的自定义**，然后通过 CRD 控制器实现对自定义的 CRD 对象的管理。使用 CRD 采集指标，可以实现与应用的解耦。
 
 以 Ingress 指标采集来说，采集指标需要在部署 Ingress 的 yaml 文件中的 Deployment 资源上增加 annotations，这样 DataKit 就可以通过自定义的 annotations ，来采集 Ingress Pod 的指标。有个不好的地方就是 annotations 与 Pod 耦合性太强，使用 CRD 就方便多了，只需要知道 Ingress 的 namespace 和 Deployment 的 name 就可以了。
 
@@ -13,7 +13,7 @@ CRD 全称是 Custom Resource Definition，是 Kubernetes 的一种内置资源�
 ## 前置条件
 
 - Kubernetes 集群
-- 观测云账号
+- {{{ custom_key.brand_name }}}账号
 
 ## 操作步骤
 
@@ -25,13 +25,13 @@ CRD 全称是 Custom Resource Definition，是 Kubernetes 的一种内置资源�
 
 #### 1.1 获取 Token
 
-登录「[观测云](https://console.guance.com/)」，点击「管理」模块，在基本设置界面找到 Token，点击后面的「复制图标」。
+登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，点击「管理」模块，在基本设置界面找到 Token，点击后面的「复制图标」。
 
 ![1643275020(1).png](../images/ingress-crd/1.png)
 
 #### 1.2 下载 DataKit 部署文件
 
-登录「[观测云](https://console.guance.com/)」，点击「集成」模块 - 「DataKit」 - 「Kubernetes」，下载 `datakit.yaml` 文件。
+登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，点击「集成」模块 - 「DataKit」 - 「Kubernetes」，下载 `datakit.yaml` 文件。
 
 ![1643275020(1).png](../images/ingress-crd/2.png)
 
@@ -956,7 +956,7 @@ while true; do sleep 1;curl -v http://8.136.207.182 -H 'host: mynginx.com'; done
 
 #### 5.2 Ingress 可观测
 
-登录「[观测云](https://console.guance.com/)」，点击「场景」模块，新建仪表板，搜索 ingress，点击「确定」。
+登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，点击「场景」模块，新建仪表板，搜索 ingress，点击「确定」。
 
 ![1643275020(1).png](../images/ingress-crd/5.png)
 

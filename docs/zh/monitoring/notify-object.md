@@ -12,7 +12,7 @@
     **2023.9.21**：**邮件组**类型正式下架，已创建的不受影响。后续使用管理 > 成员管理 > 团队功能代替。
 
 
-观测云支持设置告警事件的通知对象，包括系统[**默认通知对象**](#default)和[**自建通知对象**](#custom)。
+{{{ custom_key.brand_name }}}支持设置告警事件的通知对象，包括系统[**默认通知对象**](#default)和[**自建通知对象**](#custom)。
 
 ## 默认通知对象 {#default}
 
@@ -26,14 +26,14 @@
 
 #### 钉钉机器人 {#dingding}
 
-为了适配最新的钉钉机器人创建和使用模式，您需先在钉钉开发平台创建企业内部应用机器人，创建完成后，登录观测云新建钉钉机器人。
+为了适配最新的钉钉机器人创建和使用模式，您需先在钉钉开发平台创建企业内部应用机器人，创建完成后，登录{{{ custom_key.brand_name }}}新建钉钉机器人。
 
 > 可参考 [企业内部应用机器人的创建和安装](https://open.dingtalk.com/document/orgapp/overview-of-development-process)。
 
 ???- warning "钉钉机器人新旧区别"
 
     - 钉钉平台：创建机器人从**群管理**直接创建变更为在**开发平台创建应用**；   
-    - 观测云：最新的钉钉机器人密钥配置为非必填项。
+    - {{{ custom_key.brand_name }}}：最新的钉钉机器人密钥配置为非必填项。
 
 :material-numeric-1-circle: 创建企业内部应用机器人
 
@@ -139,7 +139,7 @@ Content-Type: application/json
 
 > Webhook 自定义通知发送内容的类型仅支持使用 JSON 格式，各字段的详情可参考 [事件产生](../events/index.md#fields)。
 >
-> 有关 Webhook 自定义更详细的实践文档，可参考 [观测云 Webhook 自定义告警通知集成](https://func.guance.com/doc/practice-guance-alert-webhook-integration/)。
+> 有关 Webhook 自定义更详细的实践文档，可参考 [{{{ custom_key.brand_name }}} Webhook 自定义告警通知集成](https://func.guance.com/doc/practice-guance-alert-webhook-integration/)。
 
 
 
@@ -184,7 +184,7 @@ Content-Type: application/json
 
 ## 自建通知对象 {#custom}
 
-为进一步满足您实际业务的需要，除官方提供的默认通知对象外，观测云还支持您通过第三方 Func 接入外部通知渠道的形式，将告警信息直接通知到本地 DataFlux Func。
+为进一步满足您实际业务的需要，除官方提供的默认通知对象外，{{{ custom_key.brand_name }}}还支持您通过第三方 Func 接入外部通知渠道的形式，将告警信息直接通知到本地 DataFlux Func。
 
 > 具体操作步骤，可参考 [对接自建通知对象](https://func.guance.com/doc/practice-guance-self-build-notify-function/)。
 
@@ -205,7 +205,7 @@ Content-Type: application/json
 
 ### 系统自动禁用
 
-如果通知对象规则连续两天对外发送失败，观测云会自动禁用该通知规则。
+如果通知对象规则连续两天对外发送失败，{{{ custom_key.brand_name }}}会自动禁用该通知规则。
 
 在**快捷筛选 > 状态**下方，勾选按钮后即可快速查看所有被自动禁用的规则。
 

@@ -1,6 +1,6 @@
 ### 简介
 
-本节介绍的是如果想要在不升级观测云版本的情况下，离线环境需要手工更新 视图模板包、指标字典、官方 Pipeline 包等，如何手工操作。
+本节介绍的是如果想要在不升级{{{ custom_key.brand_name }}}版本的情况下，离线环境需要手工更新 视图模板包、指标字典、官方 Pipeline 包等，如何手工操作。
 
 ### 离线环境如何更新视图模版包
 
@@ -28,9 +28,9 @@ execute_update_integration()
 ![success.jpg](img/update-success.png)
 
 ### 离线环境如何更新指标字典 json
-1. 下载最新的指标字典 JSON 文件：[https://static.guance.com/datakit/measurements-meta.json](https://static.guance.com/datakit/measurements-meta.json)
+1. 下载最新的指标字典 JSON 文件：[https://{{{ custom_key.static_domain }}}/datakit/measurements-meta.json](https://{{{ custom_key.static_domain }}}/datakit/measurements-meta.json)
 2. 在路径为：forethought-core命名空间-->inner容器-->/config/cloudcare-forethought-backend/sysconfig/staticFolder/metric的文件夹下新建metric_config.json文件，将链接中的内容粘贴进去
 
 ### 离线环境如何更新官方 Pipeline 库
-1. 下载最新的指标字典 JSON 文件：[https://static.guance.com/datakit/internal-pipelines.json](https://static.guance.com/datakit/internal-pipelines.json)
+1. 下载最新的指标字典 JSON 文件：[https://{{{ custom_key.static_domain }}}/datakit/internal-pipelines.json](https://{{{ custom_key.static_domain }}}/datakit/internal-pipelines.json)
 2. 在路径为：forethought-core命名空间-->inner容器-->/config/cloudcare-forethought-backend/sysconfig/staticFolder的文件夹下新建 internal-pipelines.json文件，将链接中的内容粘贴进去

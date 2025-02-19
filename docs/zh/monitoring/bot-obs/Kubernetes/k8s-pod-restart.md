@@ -8,17 +8,17 @@ Kubernetes 帮助用户自动调度和扩展容器化应用程序，但现代 Ku
 
 ## 前置条件
 
-1. 在观测云中开启「 [容器数据采集 ](https://docs.guance.com/datakit/container/)」
-2. 自建 [DataFlux Func 观测云特别版](https://func.guance.com/#/) ，或者开通 [DataFlux Func 托管版](../../../dataflux-func/index.md)
-4. 在观测云「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../../management/api-key/open-api.md)
+1. 在{{{ custom_key.brand_name }}}中开启「 [容器数据采集 ](https://docs.guance.com/datakit/container/)」
+2. 自建 [DataFlux Func {{{ custom_key.brand_name }}}特别版](https://func.guance.com/#/) ，或者开通 [DataFlux Func 托管版](../../../dataflux-func/index.md)
+4. 在{{{ custom_key.brand_name }}}「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../../management/api-key/open-api.md)
 
-> **注意**：如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的观测云 SaaS 部署在[同一运营商同一地域](../../../plans/commercial-register.md#site)。
+> **注意**：如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的{{{ custom_key.brand_name }}} SaaS 部署在[同一运营商同一地域](../../../plans/commercial-register.md#site)。
 
 ## 开启巡检
 
-在自建的 DataFlux Func 中，通过「脚本市场」安装「 观测云自建巡检（K8S-Pod重启检测）」并根据提示配置观测云 API Key 完成开启。 
+在自建的 DataFlux Func 中，通过「脚本市场」安装「 {{{ custom_key.brand_name }}}自建巡检（K8S-Pod重启检测）」并根据提示配置{{{ custom_key.brand_name }}} API Key 完成开启。 
 
-在 DataFlux Func 脚本市场中选择需要开启的巡检场景点击安装，配置观测云 API Key 和 [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/) 后选择部署启动脚本即可
+在 DataFlux Func 脚本市场中选择需要开启的巡检场景点击安装，配置{{{ custom_key.brand_name }}} API Key 和 [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/) 后选择部署启动脚本即可
 
 ![image](../../img/create_checker.png)
 
@@ -28,7 +28,7 @@ Kubernetes 帮助用户自动调度和扩展容器化应用程序，但现代 Ku
 
 ## 配置巡检
 
-### 在观测云中配置巡检
+### 在{{{ custom_key.brand_name }}}中配置巡检
 
 ![image](../../img/k8s-pod-restart02.png)
 
@@ -57,11 +57,11 @@ Kubernetes 帮助用户自动调度和扩展容器化应用程序，但现代 Ku
       ]
   ```
 
->  **注意**：在自建的 DataFlux Func 中，编写自建巡检处理函数时也可以添加过滤条件（参考示例代码配置），要注意的是在观测云 studio 中配置的参数会覆盖掉编写自建巡检处理函数时配置的参数
+>  **注意**：在自建的 DataFlux Func 中，编写自建巡检处理函数时也可以添加过滤条件（参考示例代码配置），要注意的是在{{{ custom_key.brand_name }}} studio 中配置的参数会覆盖掉编写自建巡检处理函数时配置的参数
 
 ### 在 DataFlux Func 中配置巡检
 
-在 DataFlux Func 中在配置好巡检所需的过滤条件之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后脚本就会正常执行了。也可以在观测云「监控 / 智能巡检」中查看或更改配置。
+在 DataFlux Func 中在配置好巡检所需的过滤条件之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后脚本就会正常执行了。也可以在{{{ custom_key.brand_name }}}「监控 / 智能巡检」中查看或更改配置。
 
 ```python
 from guance_monitor__runner import Runner
@@ -107,7 +107,7 @@ def run(configs=None):
 
 ### 查看事件
 
-  智能巡检基于观测云巡检算法，会查找当前配置的集群内是否会出现 Pod 异常重启的情况。对于异常情况，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击**查看相关事件**按钮，即可查看对应异常事件。
+  智能巡检基于{{{ custom_key.brand_name }}}巡检算法，会查找当前配置的集群内是否会出现 Pod 异常重启的情况。对于异常情况，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击**查看相关事件**按钮，即可查看对应异常事件。
 
 ![image](../../img/k8s-pod-restart04.png)
 
@@ -173,7 +173,7 @@ def run(configs=None):
 
 **5.在升级巡检脚本过程中发现 Startup 中对应的脚本集无变化**
 
-请先删除对应的脚本集后，再点击升级按钮配置对应观测云 API key 完成升级。
+请先删除对应的脚本集后，再点击升级按钮配置对应{{{ custom_key.brand_name }}} API key 完成升级。
 
 **6.开启巡检后如何判断巡检是否生效**
 

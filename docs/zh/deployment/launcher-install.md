@@ -1,7 +1,7 @@
 # Launcher 服务安装配置
 
 ## 产品简介
-   用于部署安装 观测云 的 WEB 应用，根据 Launcher 服务的引导步骤来完成 观测云 的安装与升级
+   用于部署安装 {{{ custom_key.brand_name }}} 的 WEB 应用，根据 Launcher 服务的引导步骤来完成 {{{ custom_key.brand_name }}} 的安装与升级
 
 ![](img/launcher-index.png)
 
@@ -9,9 +9,9 @@
 
 | **词条** | **说明** |
 | --- | --- |
-| Launcher | 用于部署安装 观测云 的 WEB 应用，根据 Launcher 服务的引导步骤来完成 观测云 的安装与升级 |
+| Launcher | 用于部署安装 {{{ custom_key.brand_name }}} 的 WEB 应用，根据 Launcher 服务的引导步骤来完成 {{{ custom_key.brand_name }}} 的安装与升级 |
 | 运维操作机 | 安装了 kubectl，与目标 Kubernetes 集群在同一网络的运维机器 |
-| 安装操作机 | 在浏览器访问 launcher 服务来完成 观测云 引导安装的机器 |
+| 安装操作机 | 在浏览器访问 launcher 服务来完成 {{{ custom_key.brand_name }}} 引导安装的机器 |
 | hosts 文件 | hosts文件是一个没有扩展名的系统文件。它的主要作用是保存域名与ip的映射关系。|
 
 
@@ -24,7 +24,7 @@
 
 ???+ warning "注意"
      部署 Launcher，请确保您的rbac权限是 `cluster-admin` ，否则部署 Launcher 将会报错。
-     如果是离线网络环境，可以参考[观测云离线包下载、导入](get-guance-images.md#offline-image)进行部署。
+     如果是离线网络环境，可以参考[{{{ custom_key.brand_name }}}离线包下载、导入](get-guance-images.md#offline-image)进行部署。
 
 
 === "Helm"
@@ -61,7 +61,7 @@
 
     - YAML 安装
     
-       Launcher YAML 下载：https://static.guance.com/launcher/launcher.yaml
+       Launcher YAML 下载：https://{{{ custom_key.static_domain }}}/launcher/launcher.yaml
      
        将上面的 YAML 内容保存为 **launcher.yaml** 文件，放到**运维操作机**上，然后替换文档内的变量部分：
     
@@ -88,7 +88,7 @@
          Launcher 安装成功，非正常情况请勿卸载。
 
 ## 2. 解析 launcher 域名到 launcher 服务
-因为 launcher 服务为部署和升级 观测云 使用，不需要对用户开放访问，所以域名不要在公网解析，可以在**安装操作机**上，绑定 host 的方式，模拟域名解析，在 /etc/hosts 中添加 **launcher.dataflux.cn** 的域名绑定
+因为 launcher 服务为部署和升级 {{{ custom_key.brand_name }}} 使用，不需要对用户开放访问，所以域名不要在公网解析，可以在**安装操作机**上，绑定 host 的方式，模拟域名解析，在 /etc/hosts 中添加 **launcher.dataflux.cn** 的域名绑定
 
 === "云上基础设施部署"
     ???+ note "/etc/hosts"
@@ -154,7 +154,7 @@
 
 ### 3.5 其他设置
 
-- 观测云管理后台的管理员账号初始账号名与邮箱（默认密码为 **admin，**建议登录后立即修改默认密码）
+- {{{ custom_key.brand_name }}}管理后台的管理员账号初始账号名与邮箱（默认密码为 **admin，**建议登录后立即修改默认密码）
 - 集群节点内网 IP（会自动获取，需要确认是否正确）
 - 主域名及各子应用的子域名配置，默认子域名如下，可根据需要修改：
    - dataflux 【**用户前台**】
@@ -264,7 +264,7 @@
 
 ## 6. 很重要的步骤！！！
 
-经过以上步骤，观测云 都安装完毕，可以进行验证，验证无误后一个很重要的步骤，将 launcher 服务下线，防止被误访问而破坏应用配置，可在**运维操作机**上执行以下命令，将 launcher 服务的 pod 副本数设为 0：
+经过以上步骤，{{{ custom_key.brand_name }}} 都安装完毕，可以进行验证，验证无误后一个很重要的步骤，将 launcher 服务下线，防止被误访问而破坏应用配置，可在**运维操作机**上执行以下命令，将 launcher 服务的 pod 副本数设为 0：
 
 ```shell
 kubectl patch deployment launcher \
