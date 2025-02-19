@@ -14,7 +14,7 @@ monitor   :
 # JAVA
 <!-- markdownlint-enable -->
 
-使用观测云链接到 JAVA 应用程序：
+使用{{{ custom_key.brand_name }}}链接到 JAVA 应用程序：
 
 - 从应用当中收集自定义指标数据；
 - 从应用中收集链路追踪数据；
@@ -28,7 +28,7 @@ monitor   :
 
 ### 链路追踪采集
 
-应用开启对应***采集器***，然后使用 JAVA agent 工具获取 traces 信息发送到观测云。
+应用开启对应***采集器***，然后使用 JAVA agent 工具获取 traces 信息发送到{{{ custom_key.brand_name }}}。
 <!-- markdownlint-disable MD046 -->
 === "OpenTelemetry"
 

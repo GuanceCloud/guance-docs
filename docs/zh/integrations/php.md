@@ -14,7 +14,7 @@ monitor   :
 # PHP
 <!-- markdownlint-enable -->
 
-将 PHP 应用程序相关信息上报到观测云：
+将 PHP 应用程序相关信息上报到{{{ custom_key.brand_name }}}：
 
 - 从应用当中收集自定义指标数据；
 - 从应用中收集链路追踪数据；

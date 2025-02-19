@@ -2,7 +2,7 @@
 
 ---
 
-小程序主动发送不同等级的日志数据(`对应的 source:browser_log` 指标类型日志数据)到[观测云](https://www.guance.com/)。
+小程序主动发送不同等级的日志数据(`对应的 source:browser_log` 指标类型日志数据)到[{{{ custom_key.brand_name }}}](https://www.guance.com/)。
 
 ## 功能简介
 
@@ -36,7 +36,7 @@ datafluxLogs.init({
 //#endif
 ```
 
-### CDN 下载文件本地方式引入([下载地址](https://static.guance.com/miniapp-sdk/v1/dataflux-rum-miniapp-logs.js))
+### CDN 下载文件本地方式引入([下载地址](https://{{{ custom_key.static_domain }}}/miniapp-sdk/v1/dataflux-rum-miniapp-logs.js))
 
 ```javascript
 //#ifndef H5 || APP-PLUS || APP-NVUE || APP-PLUS-NVUE
@@ -58,8 +58,8 @@ datafluxLogs.init({
 | 参数                  | 类型    | 是否必须 | 默认值    | 描述                                                                                                                                                                                         |
 | --------------------- | ------- | -------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `datakitOrigin`       | String  | 是       |           | DataKit 数据上报 Origin 注释: `协议（包括：//），域名（或IP地址）[和端口号]`<br>例如：[https://www.datakit.com](https://www.datakit.com), [http://100.20.34.3:8088](http://100.20.34.3:8088) |
-| `clientToken`         | String  | 是       |           | 以 openway 方式上报数据令牌，从观测云控制台获取，必填（公共 openway 方式接入）。                                                                                                             |
-| `site`                | String  | 是       |           | 以 公共 openway 方式上报数据地址，从观测云控制台获取，必填（公共 openway 方式接入）。                                                                                                        |
+| `clientToken`         | String  | 是       |           | 以 openway 方式上报数据令牌，从{{{ custom_key.brand_name }}}控制台获取，必填（公共 openway 方式接入）。                                                                                                             |
+| `site`                | String  | 是       |           | 以 公共 openway 方式上报数据地址，从{{{ custom_key.brand_name }}}控制台获取，必填（公共 openway 方式接入）。                                                                                                        |
 | `service`             | String  | 否       | `browser` | 日志 Service 名称                                                                                                                                                                            |
 | `env`                 | String  | 否       |           | Web 应用当前环境， 如 Prod：线上环境；Gray：灰度环境；Pre：预发布环境 Common：日常环境；Local：本地环境；                                                                                    |
 | `version`             | String  | 否       |           | Web 应用的版本号                                                                                                                                                                             |

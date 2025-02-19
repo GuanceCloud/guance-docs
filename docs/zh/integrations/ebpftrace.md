@@ -40,7 +40,7 @@ eBPF 链路功能分为 eBPF Span(以下简称 eSpan) 的采集器和汇集并�
 
 - Kubernetes 部署 DataKit ELinker：
 
-下载 [*datakit-elinker.yaml*](https://static.guance.com/datakit/datakit-elinker.yaml)，执行命令 `kubectl apply -f datakit-elinker.yaml`，可通过指定命名空间 `datakit-elinker`，如 `kubectl -n datakit-elinker get all -owide` 查看相关资源
+下载 [*datakit-elinker.yaml*](https://{{{ custom_key.static_domain }}}/datakit/datakit-elinker.yaml)，执行命令 `kubectl apply -f datakit-elinker.yaml`，可通过指定命名空间 `datakit-elinker`，如 `kubectl -n datakit-elinker get all -owide` 查看相关资源
 
 *为了降低误操作造成的数据污染可能性，推荐部署 DataKit ELinker 而非 DataKit。DataKit 的 ELinker 版本相较于 DataKit 的二进制和镜像大小分别减少约 50% 和 75%。*
 

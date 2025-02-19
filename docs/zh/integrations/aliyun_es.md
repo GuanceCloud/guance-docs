@@ -24,7 +24,7 @@ monitor:
 
 ### 安装 Func
 
-推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
+推荐开通 {{{ custom_key.brand_name }}}集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
 如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
@@ -34,7 +34,7 @@ monitor:
 
 > 提示：请提前准备好符合要求的阿里云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步 ElasticSearch 云资源的监控数据，我们安装对应的采集脚本：「观测云集成（阿里云-ElasticSearch采集）」(ID：`guance_aliyun_elasticsearch`)
+同步 ElasticSearch 云资源的监控数据，我们安装对应的采集脚本：「{{{ custom_key.brand_name }}}集成（阿里云-ElasticSearch采集）」(ID：`guance_aliyun_elasticsearch`)
 
 点击【安装】后，输入相应的参数：阿里云 AK、阿里云账户名。
 
@@ -52,8 +52,8 @@ monitor:
 ### 验证
 
 1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
-2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
-3. 在观测云平台，「指标」查看是否有对应监控数据
+2. 在{{{ custom_key.brand_name }}}平台，「基础设施 / 自定义」中查看是否存在资产信息
+3. 在{{{ custom_key.brand_name }}}平台，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
 配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
@@ -110,7 +110,7 @@ monitor:
 ## 日志 {#logging}
 
 ### 前提条件
-> 提示1：使用本采集器前，必须安装「观测云集成 Core 核心包」及其配套的第三方依赖包
+> 提示1：使用本采集器前，必须安装「{{{ custom_key.brand_name }}}集成 Core 核心包」及其配套的第三方依赖包
 > 提示2：本脚本的代码运行依赖 mongodb 实例对象采集，如果未配置 mongodb 的自定义对象采集，慢日志脚本无法采集到慢日志数据
 
 <!-- markdownlint-disable MD024 -->
@@ -123,11 +123,11 @@ monitor:
 
 在「管理 / 脚本市场」中点击并安装对应的脚本包：
 
-- 「观测云集成（阿里云-ElasticSearch采集）」(ID：`guance_aliyun_elasticsearch_log`)
+- 「{{{ custom_key.brand_name }}}集成（阿里云-ElasticSearch采集）」(ID：`guance_aliyun_elasticsearch_log`)
 
 
 ### 数据上报格式
-数据正常同步后，可以在观测云的「基础设施-自定义对象」中查看数据。
+数据正常同步后，可以在{{{ custom_key.brand_name }}}的「基础设施-自定义对象」中查看数据。
 
 上报的数据示例如下：
 

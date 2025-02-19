@@ -201,7 +201,7 @@
 
 ### 新加功能 {#cl-1.63.0-new}
 
-- 增加 Datakit [下发任务支持](datakit-conf.md#remote-job)（目前该功能需手动启动，且观测云需升级到 1.98.181 及以上的版本），目前支持通过在前端页面上下发指令给 Datakit 来获取 JVM Dump（#2367）
+- 增加 Datakit [下发任务支持](datakit-conf.md#remote-job)（目前该功能需手动启动，且{{{ custom_key.brand_name }}}需升级到 1.98.181 及以上的版本），目前支持通过在前端页面上下发指令给 Datakit 来获取 JVM Dump（#2367）
 
     在 Kubernetes 中执行时，需更新最新的 *datakit.yaml*，这里需要增加额外的 RBAC 权限
 
@@ -478,7 +478,7 @@ NOTE: 以下内容，合并到 1.62.0 版本发布
 
     那么 Nginx 日志不会通过 *nginx.p* 来切割，而是用 *default.p* 来切割。这个设置是不合理的，调整之后的优先级如下（优先级递减）：
 
-    1. 观测云页面上指定 `source` 对应的 Pipeline
+    1. {{{ custom_key.brand_name }}}页面上指定 `source` 对应的 Pipeline
     1. 在采集器中指定 `source` 对应的 Pipeline
     1. `source` 取值能找到对应的 Pipeline（比如 `source` 为 `my-app` 的日志，在 Pipeline 对应的存放目录中能找到一个 *my-app.p*）
     1. 最后再使用 *default.p*
@@ -2245,7 +2245,7 @@ NOTE: 以下内容，合并到 1.62.0 版本发布
 - 新增 [Promtail 采集器](promtail.md)(#644)
 - 新增 [NVIDIA GPU 指标采集器](nvidia_smi.md)(#1005)
 - 支持发现（需手动开启） Kubernetes 集群中带有 Prometheus Service 的服务，并对之实施 Prometheus 指标采集(#1123)
-- 支持从 Kafka 中订阅基于 SkyWalking 的指标、日志、Trace 类数据，并将其分别以对应的数据类型上传到观测云(#1127)
+- 支持从 Kafka 中订阅基于 SkyWalking 的指标、日志、Trace 类数据，并将其分别以对应的数据类型上传到{{{ custom_key.brand_name }}}(#1127)
 
 ### 问题修复 {#cl-1.4.17-fix}
 
@@ -2325,7 +2325,7 @@ NOTE: 以下内容，合并到 1.62.0 版本发布
 - 调整 Pipeline 有关的文档，将其移到「自定义开发」目录下：
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/cl-1.4.14-dk-docs.gif){ width="300"}
+  ![](https://{{{ custom_key.static_domain }}}/images/datakit/cl-1.4.14-dk-docs.gif){ width="300"}
 </figure>
 
 ---
@@ -2366,25 +2366,25 @@ NOTE: 以下内容，合并到 1.62.0 版本发布
 - 采集器文档从原来「集成」移到 「DataKit」文档库(#1060)
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/cl-1.4.13-dk-docs.gif){ width="300"}
+  ![](https://{{{ custom_key.static_domain }}}/images/datakit/cl-1.4.13-dk-docs.gif){ width="300"}
 </figure>
 
 - DataKit 文档目录结构调整，减少了目录层级
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/cl-1.4.13-dk-doc-dirs.gif){ width="300"}
+  ![](https://{{{ custom_key.static_domain }}}/images/datakit/cl-1.4.13-dk-doc-dirs.gif){ width="300"}
 </figure>
 
 - 几乎每个采集器都增加了 k8s 配置入口
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/cl-1.4.13-install-selector.gif){ width="800" }
+  ![](https://{{{ custom_key.static_domain }}}/images/datakit/cl-1.4.13-install-selector.gif){ width="800" }
 </figure>
 
 - 调整文档头部显示，除了操作系统标识外，对支持选举的采集器，增加选举标识
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/cl-1.4.13-doc-header.gif){ width="800" }
+  ![](https://{{{ custom_key.static_domain }}}/images/datakit/cl-1.4.13-doc-header.gif){ width="800" }
 </figure>
 
 ---
@@ -3093,7 +3093,7 @@ volumes:
 - Linux/Mac:
 
 ```shell
-DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install.sh)"
 ```
 
 - Windows
@@ -3103,7 +3103,7 @@ Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
 $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
 Set-ExecutionPolicy Bypass -scope Process -Force;
 Import-Module bitstransfer;
-start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
+start-bitstransfer  -source https://{{{ custom_key.static_domain }}}/datakit/install.ps1 -destination .install.ps1;
 powershell ./.install.ps1;
 ```
 
@@ -3173,7 +3173,7 @@ powershell ./.install.ps1;
     - 移除 `json_all()` 函数，这个函数对于异常的 JSON 有严重的数据问题，故选择禁用之(#457)
     - 修正 `default_time()` 函数时区设置问题(#434)
 - 解决 [`Prom`](prom) 采集器在 Kubernetes 环境下 HTTPS 访问问题(#447)
-- DataKit DaemonSet 安装的 [yaml 文件](https://static.guance.com/datakit/datakit.yaml){:target="_blank"} 公网可直接下载
+- DataKit DaemonSet 安装的 [yaml 文件](https://{{{ custom_key.static_domain }}}/datakit/datakit.yaml){:target="_blank"} 公网可直接下载
 
 ---
 

@@ -8,7 +8,7 @@ OpenTelemetry 有很多种开源组合方案，我们通过三种平台/架构�
 
 > 2、[OpenTelemetry to Grafana](./opentelemetry-grafana.md)
 
-> 3、[OpenTelemetry to 观测云](./opentelemetry-guance.md)
+> 3、[OpenTelemetry to {{{ custom_key.brand_name }}}](./opentelemetry-guance.md)
 
 ## OpenTelemetry
 OTEL 是 OpenTelemetry 的简称， 是 CNCF 的一个可观测性项目，旨在提供可观测性领域的标准化方案，解决观测数据的数据模型、采集、处理、导出等的标准化问题，提供与三方 vendor 无关的服务。

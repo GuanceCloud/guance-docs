@@ -54,7 +54,7 @@ root@ruoyi-system-c9c54dbd5-ltcvf:/data/app#
 
 ### 2、接入JVM可观测。
 
-请先接入 [JVM可观测]()，从观测云视图上我们可以看出初始堆内存为`80 M` ,与我们启动时指定参数一致。
+请先接入 [JVM可观测]()，从{{{ custom_key.brand_name }}}视图上我们可以看出初始堆内存为`80 M` ,与我们启动时指定参数一致。
 
 ![image.png](../images/java_oom_2.png)
 
@@ -75,9 +75,9 @@ root@ruoyi-system-c9c54dbd5-ltcvf:/data/app#
 
 ### 2、请求
 
-浏览器请求 [http://localhost:9201/exec/heapOOM](http://localhost:9201/exec/heapOOM)，需要等一段时间才能看到异常输出。看到异常输出后，即可前往观测云查看对应的日志。
+浏览器请求 [http://localhost:9201/exec/heapOOM](http://localhost:9201/exec/heapOOM)，需要等一段时间才能看到异常输出。看到异常输出后，即可前往{{{ custom_key.brand_name }}}查看对应的日志。
 
-### 3、观测云查看日志
+### 3、{{{ custom_key.brand_name }}}查看日志
 
 ![image.png](../images/java-oom-14.png)
 
@@ -95,9 +95,9 @@ root@ruoyi-system-c9c54dbd5-ltcvf:/data/app#
 
 浏览器访问地址：[http://localhost:9201/exec/stackOOM](http://localhost:9201/exec/stackOOM)
 
-### 3、观测云查看日志
+### 3、{{{ custom_key.brand_name }}}查看日志
 
-瞬间创建线程，JVM 自带工具不在上报线程等相关监控指标，观测云仍然上报最新 JVM 监控指标。
+瞬间创建线程，JVM 自带工具不在上报线程等相关监控指标，{{{ custom_key.brand_name }}}仍然上报最新 JVM 监控指标。
 
 ![image.png](../images/java_oom_3.png)
 
@@ -121,7 +121,7 @@ root@ruoyi-system-c9c54dbd5-ltcvf:/data/app#
 
 ### 2、请求
 浏览器请求 [http://localhost:9201/exec/stackOFE](http://localhost:9201/exec/stackOFE)
-### 3、观测云查看日志
+### 3、{{{ custom_key.brand_name }}}查看日志
 ![image.png](../images/java-oom-6.png)
 
 ## 元信息溢出 -java.lang.OutOfMemoryError: Metaspace
@@ -153,21 +153,21 @@ root@ruoyi-system-c9c54dbd5-ltcvf:/data/app#
 
 浏览器输入 [http://localhost:9201/exec/directBufferOOM](http://localhost:9201/exec/directBufferOOM)。
 
-### 3、观测云查看日志
+### 3、{{{ custom_key.brand_name }}}查看日志
 
 ![image.png](../images/java-oom-7.png)
 
 ## GC超限 -java.lang.OutOfMemoryError: GC overhead limit exceeded
 前面三种都会引起 GC 超限。JDK1.6 之后新增了一个错误类型，如果堆内存太小的时候会报这个错误。如果 98% 的 GC 的时候回收不到 2% 的时候会报这个错误，也就是最小最大内存出现了问题的时候会报这个错误。
 
-## 观测云
-无论是哪种异常，我们可以在观测云 `JVM 监控视图`上找到一些线索，同时结合日志情况，对 JVM 参数进行调优。gc 次数过多过少、gc 时间过长、线程突然增多、堆内存突然增多等等，都需要引起我们关注。
+## {{{ custom_key.brand_name }}}
+无论是哪种异常，我们可以在{{{ custom_key.brand_name }}} `JVM 监控视图`上找到一些线索，同时结合日志情况，对 JVM 参数进行调优。gc 次数过多过少、gc 时间过长、线程突然增多、堆内存突然增多等等，都需要引起我们关注。
 
 ![image.png](../images/java-oom-8.png)
 
-### 观测云 OOM 日志告警
+### {{{ custom_key.brand_name }}} OOM 日志告警
 
-以上几种 OOM 异常场景也只是演示了如何产生异常以及在观测云上如何表现。实际生产过程中, OOM 异常会影响业务逻辑，更严重的会导致系统中断。可以借助观测云告警功能快速通知相关人员进行干预。
+以上几种 OOM 异常场景也只是演示了如何产生异常以及在{{{ custom_key.brand_name }}}上如何表现。实际生产过程中, OOM 异常会影响业务逻辑，更严重的会导致系统中断。可以借助{{{ custom_key.brand_name }}}告警功能快速通知相关人员进行干预。
 
 #### 配置 StackOverflowError 异常检测
 
@@ -184,7 +184,7 @@ root@ruoyi-system-c9c54dbd5-ltcvf:/data/app#
 
 ![image.png](../images/java-oom-11.png)
 
-配置通知对象，观测云支持多种通知对象，当前采用的是邮件通知。
+配置通知对象，{{{ custom_key.brand_name }}}支持多种通知对象，当前采用的是邮件通知。
 
 ![image.png](../images/java-oom-12.png)
 

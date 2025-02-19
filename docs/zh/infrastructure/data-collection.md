@@ -2,7 +2,7 @@
 ---
 
 
-观测云支持采集包括主机、云主机、容器、进程和其他云服务的对象数据，并主动上报到工作空间。
+{{{ custom_key.brand_name }}}支持采集包括主机、云主机、容器、进程和其他云服务的对象数据，并主动上报到工作空间。
 
 ## 前置条件
 
@@ -12,7 +12,7 @@
 
 ### 主机
 
-在需要被观测的主机上完成 DataKit 安装后，系统会默认开启一批与主机相关的采集器，并主动上报数据至观测云工作空间。
+在需要被观测的主机上完成 DataKit 安装后，系统会默认开启一批与主机相关的采集器，并主动上报数据至{{{ custom_key.brand_name }}}工作空间。
 
 > 更多详情，可参考 [DataKit 采集器使用](../datakit/datakit-input-conf.md) 、[主机对象](../integrations/hostobject.md)。
 
@@ -64,10 +64,10 @@
 
 ### 资源目录
 
-观测云支持您上报资源目录数据到工作空间，并同步对象数据到指定的对象分类。
+{{{ custom_key.brand_name }}}支持您上报资源目录数据到工作空间，并同步对象数据到指定的对象分类。
 
 - 通过**基础设施 > 自定义**，您可以创建新的对象分类并资源目录字段；
 
-- 上报资源目录数据时，您需要先安装并连通 DataKIt 和 DataFlux Function，再通过 DataFlux Function 上报数据到 DataKit，最终由 DataKit 上报对象数据到观测云工作空间。
+- 上报资源目录数据时，您需要先安装并连通 DataKIt 和 DataFlux Function，再通过 DataFlux Function 上报数据到 DataKit，最终由 DataKit 上报对象数据到{{{ custom_key.brand_name }}}工作空间。
 
 > 具体操作过程，可参考[资源目录数据上报](custom/data-reporting.md)。 

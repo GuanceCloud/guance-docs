@@ -1,4 +1,4 @@
-# 观测云日志采集分析最佳实践
+# {{{ custom_key.brand_name }}}日志采集分析最佳实践
 
 ---
 
@@ -108,7 +108,7 @@ Linux 系统可通过 [NFS 方式](https://linuxize.com/post/how-to-mount-an-nfs
 
 #### DataKit 配置
 
-在采集流式日志时 DataKit 会启动一个 HTTP Server，接收日志文本数据，上报到观测云。HTTP URL 固定为：`/v1/write/logstreaming`，即 `http://Datakit_IP:PORT/v1/write/logstreaming`
+在采集流式日志时 DataKit 会启动一个 HTTP Server，接收日志文本数据，上报到{{{ custom_key.brand_name }}}。HTTP URL 固定为：`/v1/write/logstreaming`，即 `http://Datakit_IP:PORT/v1/write/logstreaming`
 > 注：如果 DataKit 以 daemonset 方式部署在 Kubernetes 中，可以使用 Service 方式访问，地址为 `http://datakit-service.datakit:9529`
 
 进入 DataKit 安装目录下的 `conf.d/log` 目录，复制 `logstreaming.conf.sample` 并命名为 `logstreaming.conf`。示例如下：
@@ -140,7 +140,7 @@ Logstreaming 支持在 HTTP URL 中添加参数，对日志数据进行操作。
 
 #### Fluentd 配置
 
-以 Fluentd 采集 Nginx 日志并转发至上级 Server 端的 Plugin 配置为例，我们不想直接发送到 Server 端进行处理，想直接处理好并发送给 DataKit 上报至观测云平台进行分析。
+以 Fluentd 采集 Nginx 日志并转发至上级 Server 端的 Plugin 配置为例，我们不想直接发送到 Server 端进行处理，想直接处理好并发送给 DataKit 上报至{{{ custom_key.brand_name }}}平台进行分析。
 
 ```yaml
 ##pc端日志收集
@@ -222,7 +222,7 @@ create_time 1637733374609
 
 ## 日志解析（ Pipeline ）
 
-一般系统或服务生成的日志都是一大长串。每个字段之间用空格隔开。一般在获取日志的时候都是整个一串获取，如果把日志中每个字段代表的意思分割开来在进行分析这样呈现出来的数据更加清晰，也更方便用来可视化。<br />Pipeline 是观测云用于文本数据处理的重要组件，它的主要作用就是将文本格式的字符串，转换成为具体的结构化的数据，配合 Grok 正则表达式使用。
+一般系统或服务生成的日志都是一大长串。每个字段之间用空格隔开。一般在获取日志的时候都是整个一串获取，如果把日志中每个字段代表的意思分割开来在进行分析这样呈现出来的数据更加清晰，也更方便用来可视化。<br />Pipeline 是{{{ custom_key.brand_name }}}用于文本数据处理的重要组件，它的主要作用就是将文本格式的字符串，转换成为具体的结构化的数据，配合 Grok 正则表达式使用。
 
 ### Grok 模式分类
 
@@ -566,21 +566,21 @@ No data extracted from pipeline
 
 ## 日志采集成本优化
 
-### 通过观测云产品侧进行成本优化
+### 通过{{{ custom_key.brand_name }}}产品侧进行成本优化
 
-“观测云”支持通过设置日志黑名单的方式过滤掉符合条件的日志，即配置日志黑名单以后，符合条件的日志数据不再上报到“观测云” 工作空间，帮助用户节约日志数据存储费用。
+“{{{ custom_key.brand_name }}}”支持通过设置日志黑名单的方式过滤掉符合条件的日志，即配置日志黑名单以后，符合条件的日志数据不再上报到“{{{ custom_key.brand_name }}}” 工作空间，帮助用户节约日志数据存储费用。
 > 注意：此处的配置并不会以下发的方式下发给 DataKit，此处配置的生效是由 DataKit 主动 Get 请求中心的配置文件，然后读取配置文件并在本地执行过滤动作。
 
 #### 新建日志黑名单
 
-在 “观测云” 工作空间，点击「日志」-「黑名单」-「新建黑名单」，选择「日志来源」，添加一条或多条日志筛选过滤规则，点击确定即默认开启该日志过滤规则。您可以通过「日志黑名单」，查看全部日志过滤规则。<br />
+在 “{{{ custom_key.brand_name }}}” 工作空间，点击「日志」-「黑名单」-「新建黑名单」，选择「日志来源」，添加一条或多条日志筛选过滤规则，点击确定即默认开启该日志过滤规则。您可以通过「日志黑名单」，查看全部日志过滤规则。<br />
 ![image](../images/logs/3.png)<br />
 ![image](../images/logs/4.png)
 <br />注意：日志过滤筛选条件为“**and（并且）**”的关系，即同时符合过滤筛选条件的日志数据，将不会被上报到工作空间。
 
 ### 采集流式日志前置成本优化
 
-以采集 Fluentd 日志为例，可以在`<match> </match>`中进行日志聚合来对日志进行压缩，或者在`<match> </match>`使用中来进行事件的过滤只将错误或告警日志上报至观测云来降低使用成本。
+以采集 Fluentd 日志为例，可以在`<match> </match>`中进行日志聚合来对日志进行压缩，或者在`<match> </match>`使用中来进行事件的过滤只将错误或告警日志上报至{{{ custom_key.brand_name }}}来降低使用成本。
 
 ## 更多内容
 [文本数据处理（ Pipeline ）](../../pipeline/use-pipeline/pipeline-quick-start.md#d29b7088)<br />

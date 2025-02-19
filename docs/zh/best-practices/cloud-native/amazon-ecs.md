@@ -1,11 +1,11 @@
-# 观测云采集 Amazon ECS 日志
+# {{{ custom_key.brand_name }}}采集 Amazon ECS 日志
 
 ---
 
 ## 简介
 
 Amazon Elastic Container Service (Amazon ECS) 是一项高度可扩展的快速容器管理服务，可以使用它轻松运行、停止和管理群集上的容器。这些容器可以运行在自己的 EC2 服务器上，也可以运行在由 AWS Fargate 托管的无服务器基础设施。<br/>
-针对任务使用 Fargate 的启动类型，需要启动容器的 [awslogs 日志驱动程序](https://docs.aws.amazon.com/zh_cn/AmazonECS/latest/developerguide/using_awslogs.html)，运行在容器中的应用以 STDOUT 和 STDERR I/O 流的方式输出的日志，会被发送到 CloudWatch Logs 的日志组中，再通过 Func 采集这些日志，Func 再把日志通过 EC2 上部署的 DataKit 写入观测云中。
+针对任务使用 Fargate 的启动类型，需要启动容器的 [awslogs 日志驱动程序](https://docs.aws.amazon.com/zh_cn/AmazonECS/latest/developerguide/using_awslogs.html)，运行在容器中的应用以 STDOUT 和 STDERR I/O 流的方式输出的日志，会被发送到 CloudWatch Logs 的日志组中，再通过 Func 采集这些日志，Func 再把日志通过 EC2 上部署的 DataKit 写入{{{ custom_key.brand_name }}}中。
 
 本文的日志采集就是针对 AWS Fargate 托管的容器。
 
@@ -13,7 +13,7 @@ Amazon Elastic Container Service (Amazon ECS) 是一项高度可扩展的快速�
 
 ## 前置条件
 
-- 需要先创建一个[观测云账号](https://www.guance.com/)
+- 需要先创建一个[{{{ custom_key.brand_name }}}账号](https://www.guance.com/)
 - [安装 DataKit](../../datakit/datakit-install.md)
 - [安装 Func 携带版](https://func.guance.com/doc/maintenance-guide-installation/)
 - 已经拥有运行在 ECS 的 Java 应用
@@ -233,7 +233,7 @@ Amazon Elastic Container Service (Amazon ECS) 是一项高度可扩展的快速�
 
 如下图选择「run」，第二个红框所示内容中：
 
-- `measurement` 的值输入 `ecs_log_source`，这个值对应观测云日志中的日志来源；
+- `measurement` 的值输入 `ecs_log_source`，这个值对应{{{ custom_key.brand_name }}}日志中的日志来源；
 - `logGroupName` 的值对应**前置条件**的日志配置中查到的 `awslogs-group`;
 - `interval` 的值对应采集频率，示例这里是 60 秒。
 
@@ -243,7 +243,7 @@ Amazon Elastic Container Service (Amazon ECS) 是一项高度可扩展的快速�
 
 ![image](../images/ecs/ecs-log-18.png)
 
-登录「[观测云](https://console.guance.com/)」，进入「日志」模块，数据源选择「ecs_log_source」，即可看到日志。
+登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「日志」模块，数据源选择「ecs_log_source」，即可看到日志。
 
 ![image](../images/ecs/ecs-log-19.png)
 

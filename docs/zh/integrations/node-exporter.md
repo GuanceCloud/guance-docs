@@ -14,7 +14,7 @@ monitor   :
 # Node Exporter
 <!-- markdownlint-enable -->
 
-本文介绍在主机部署Node Exporter组件，采集主机指标并通过Datakit进行收集、存储，最后通过观测云用于数据的可视化展示。
+本文介绍在主机部署Node Exporter组件，采集主机指标并通过Datakit进行收集、存储，最后通过{{{ custom_key.brand_name }}}用于数据的可视化展示。
 Node Exporter能够收集包括主机的 CPU 使用率、内存使用情况、磁盘 I/O、网络流量等在内的多种系统运行指标。
 
 ## 配置 {#config}
@@ -146,7 +146,7 @@ data:
             interval   = "30s"             # 非必填 采集频率，默认30s
 
             [inputs.kubernetesprometheus.instances.custom]
-              measurement        = "kube_nodeexporter"       #非必填 观测云指标名，默认使用指标下划线第一个字母
+              measurement        = "kube_nodeexporter"       #非必填 {{{ custom_key.brand_name }}}指标名，默认使用指标下划线第一个字母
               job_as_measurement = false             #非必填 是否使用数据中的 job 标签值当做指标集名
               [inputs.kubernetesprometheus.instances.custom.tags]
                 instance         = "__kubernetes_mate_instance"    #可选 指标tag

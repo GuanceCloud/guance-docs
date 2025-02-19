@@ -254,8 +254,8 @@ datakit monitor
 ```
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/datakit-crd-ingress.png){ width="800" }
+  ![](https://{{{ custom_key.static_domain }}}/images/datakit/datakit-crd-ingress.png){ width="800" }
   <figcaption> Ingress 数据采集 </figcaption>
 </figure>
 
-也可以登录 [观测云平台](https://www.guance.com/){:target="_blank"} ,【指标】-【查看器】查看指标数据
+也可以登录 [{{{ custom_key.brand_name }}}平台](https://www.guance.com/){:target="_blank"} ,【指标】-【查看器】查看指标数据

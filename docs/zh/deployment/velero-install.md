@@ -1,4 +1,4 @@
-# 观测云集群备份和恢复
+# {{{ custom_key.brand_name }}}集群备份和恢复
 
 ???+ warning "注意事项"
 
@@ -39,8 +39,8 @@ Velero 是一个开源工具，可以安全地备份和还原，执行灾难恢�
 
 |     名称     |                   下载地址                   |
 | :------------------: | :---------------------------------------------: |
-|     Velero-cli  |                [Amd 下载](https://static.guance.com/dataflux/package/velero-v1.13.0-linux-amd64.tar.gz)<br>[Arm 下载](https://static.guance.com/dataflux/package/velero-v1.13.0-linux-arm64.tar.gz)                |
-| Velero 镜像 | [Amd 下载](https://static.guance.com/dataflux/package/velero-amd64.tar.gz)<br/>[Arm 下载](https://static.guance.com/dataflux/package/velero-arm64.tar.gz) |
+|     Velero-cli  |                [Amd 下载](https://{{{ custom_key.static_domain }}}/dataflux/package/velero-v1.13.0-linux-amd64.tar.gz)<br>[Arm 下载](https://{{{ custom_key.static_domain }}}/dataflux/package/velero-v1.13.0-linux-arm64.tar.gz)                |
+| Velero 镜像 | [Amd 下载](https://{{{ custom_key.static_domain }}}/dataflux/package/velero-amd64.tar.gz)<br/>[Arm 下载](https://{{{ custom_key.static_domain }}}/dataflux/package/velero-arm64.tar.gz) |
 
 
 ### 镜像导入 {#image-load}
@@ -270,14 +270,14 @@ Velero 是一个开源工具，可以安全地备份和还原，执行灾难恢�
 === "Amd"
 
     ```shell
-    wget https://static.guance.com/dataflux/package/velero-v1.13.0-linux-amd64.tar.gz && tar -xvf velero-v1.13.0-linux-amd64.tar.gz && mv velero-v1.13.0-linux-amd64/velero /bin
+    wget https://{{{ custom_key.static_domain }}}/dataflux/package/velero-v1.13.0-linux-amd64.tar.gz && tar -xvf velero-v1.13.0-linux-amd64.tar.gz && mv velero-v1.13.0-linux-amd64/velero /bin
     ```
 
 === "Arm"
 
 
     ```shell
-    wget https://static.guance.com/dataflux/package/velero-v1.13.0-linux-arm64.tar.gz && tar -xvf velero-v1.13.0-linux-arm64.tar.gz && mv velero-v1.13.0-linux-arm64/velero /bin
+    wget https://{{{ custom_key.static_domain }}}/dataflux/package/velero-v1.13.0-linux-arm64.tar.gz && tar -xvf velero-v1.13.0-linux-arm64.tar.gz && mv velero-v1.13.0-linux-arm64/velero /bin
     ```
 
 #### 离线安装（可选） CLI {#install-download-cli}

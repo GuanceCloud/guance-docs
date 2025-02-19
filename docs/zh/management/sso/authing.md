@@ -10,7 +10,7 @@ Authing 是身份识别与访问管理解决方案提供商。
 
 您可以通过以下本步骤创建 [Authing 账号](https://www.authing.cn/) ，如您已经有正在使用中的账号，直接进行下一步配置。
 
-**注意**：当前观测云仅支持邮箱账号 SSO 登录。
+**注意**：当前{{{ custom_key.brand_name }}}仅支持邮箱账号 SSO 登录。
 
 ![](../img/1.authing_1.png)
 
@@ -37,9 +37,9 @@ Authing 是身份识别与访问管理解决方案提供商。
 
 进入应用配置页面，下拉到底部找到更多身份协议。配置 SAML2 身份提供商信息。如下图所示：
 
-（1）填写默认 ACS 地址（断言地址），点击保存。（此次配置仅为获取下一步的元数据使用，后面在观测云中获取到正确的断言地址后可以重新替换。断言地址示例：[https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/)；）
+（1）填写默认 ACS 地址（断言地址），点击保存。（此次配置仅为获取下一步的元数据使用，后面在{{{ custom_key.brand_name }}}中获取到正确的断言地址后可以重新替换。断言地址示例：[https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/)；）
 
-（2）下载 SAML2 元数据文档，该文档后续会在观测云 SSO 身份提供商创建处上传使用；
+（2）下载 SAML2 元数据文档，该文档后续会在{{{ custom_key.brand_name }}} SSO 身份提供商创建处上传使用；
 
 ![](../img/03_authing_07.png)
 
@@ -55,11 +55,11 @@ Authing 是身份识别与访问管理解决方案提供商。
 
 ![](../img/03_authing_09.png)
 
-### 7、[在观测云启用 SSO 单点登录](./azure-ad.md#step4)
+### 7、[在{{{ custom_key.brand_name }}}启用 SSO 单点登录](./azure-ad.md#step4)
 
 ### 8、更新 Authing ACS 地址和 Mapping
 
-配置好观测云 SSO 单点登录后获取断言地址，更新 Auhting SAML2 > **默认 ACS 地址**，新增字段 mapping 设置。如下图所示：
+配置好{{{ custom_key.brand_name }}} SSO 单点登录后获取断言地址，更新 Auhting SAML2 > **默认 ACS 地址**，新增字段 mapping 设置。如下图所示：
 
 ![](../img/03_authing_11.png)
 
@@ -82,6 +82,6 @@ Authing 是身份识别与访问管理解决方案提供商。
 }
 ```
 
-### 9、[通过单点登录访问观测云](./azure-ad.md#step7)
+### 9、[通过单点登录访问{{{ custom_key.brand_name }}}](./azure-ad.md#step7)
 
 

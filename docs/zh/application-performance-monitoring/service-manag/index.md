@@ -12,7 +12,7 @@
 
 **服务管理**作为一个集中管理入口，以全局的视角访问和查看当前工作空间内所有服务下的关键信息；同时，其将业务属性与链路数据相串联，通过关联的仓库和文档，快速确定紧急问题的代码位置和问题解决方案。
 
-在**应用性能监测 > 服务管理**，您可按需[添加服务清单](./service-list.md#create)。添加完成后，支持基于[性能指标列表](./service-manag/service-performance.md)、[服务清单列表](./service-manag/service-list.md)以及[服务拓扑图](./service-manag/service-map.md)三个维度进行查看。在对应列表页面，可借助全局筛选、快捷筛选、搜索、时间控件等方式快速定位至目标服务清单，缩减查询时间；还可通过保存快照随时记录查询条件；观测云提供多种设置与操作以满足服务数据查询诉求。
+在**应用性能监测 > 服务管理**，您可按需[添加服务清单](./service-list.md#create)。添加完成后，支持基于[性能指标列表](./service-manag/service-performance.md)、[服务清单列表](./service-manag/service-list.md)以及[服务拓扑图](./service-manag/service-map.md)三个维度进行查看。在对应列表页面，可借助全局筛选、快捷筛选、搜索、时间控件等方式快速定位至目标服务清单，缩减查询时间；还可通过保存快照随时记录查询条件；{{{ custom_key.brand_name }}}提供多种设置与操作以满足服务数据查询诉求。
 
 ![](../img/service-2.png)
 
@@ -34,7 +34,7 @@
 
 ### 资源调用
 
-在**资源调用**，观测云会展示出资源调用排行，默认在页面右侧向您展排行首位的资源信息，包含请求数、错误率、响应时间、响应时间分布及其链路数据。您还可以基于环境和版本进行全局筛选。若出现资源信息为空的情况，观测云在页面右侧则展示该条服务的相关数据。
+在**资源调用**，{{{ custom_key.brand_name }}}会展示出资源调用排行，默认在页面右侧向您展排行首位的资源信息，包含请求数、错误率、响应时间、响应时间分布及其链路数据。您还可以基于环境和版本进行全局筛选。若出现资源信息为空的情况，{{{ custom_key.brand_name }}}在页面右侧则展示该条服务的相关数据。
 
 ![](../img/service-9.gif)
 
@@ -57,7 +57,7 @@
 
 ### 基础设施依赖
 
-在该页面，观测云以仪表板的形式来向您展示当前服务所关联的主机、Pod 数量及对应列表。
+在该页面，{{{ custom_key.brand_name }}}以仪表板的形式来向您展示当前服务所关联的主机、Pod 数量及对应列表。
 
 ![](../img/service-11.png)
 
@@ -73,6 +73,6 @@
 | [错误追踪查看器](../../application-performance-monitoring/error.md){ .md-button .md-button--primary } | [事件查看器](../../events/event-explorer/unrecovered-events.md){ .md-button .md-button--primary } |
 
 <!--
-**注意**：因为 Pods 对象数据中并未存在 `service` 等相关字段，此处观测云使用 `deployment:服务名称` 做过滤列出。
+**注意**：因为 Pods 对象数据中并未存在 `service` 等相关字段，此处{{{ custom_key.brand_name }}}使用 `deployment:服务名称` 做过滤列出。
 -->
 

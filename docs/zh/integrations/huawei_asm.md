@@ -1,16 +1,16 @@
 ---
-title: '华为云ASM链路追踪 TO 观测云'
+title: '华为云ASM链路追踪 TO {{{ custom_key.brand_name }}}'
 tags: 
   - 华为云
-summary: '华为云的ASM的链路追踪数据输出到观测云，进行查看、分析。'
+summary: '华为云的ASM的链路追踪数据输出到{{{ custom_key.brand_name }}}，进行查看、分析。'
 __int_icon: 'icon/huawei_asm'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# 华为云ASM链路追踪 TO 观测云
+# 华为云ASM链路追踪 TO {{{ custom_key.brand_name }}}
 <!-- markdownlint-enable -->
 
-华为云的ASM的链路追踪数据输出到观测云，进行查看、分析。
+华为云的ASM的链路追踪数据输出到{{{ custom_key.brand_name }}}，进行查看、分析。
 
 ## 配置 {#config}
 
@@ -48,7 +48,7 @@ __int_icon: 'icon/huawei_asm'
 
 ![img](imgs/huawei_asm/huawei_asm07.png)
 
-### 链路数据发送到观测云
+### 链路数据发送到{{{ custom_key.brand_name }}}
 
 #### 开启 OpenTelemetry 采集器
 
@@ -103,7 +103,7 @@ sampling: 100   #该参数由原来的1改为100
 ...
 ```
 
-修改 asm 输出到观测云
+修改 asm 输出到{{{ custom_key.brand_name }}}
 
 ```shell
 # kubectl edit -n monitoring cm otel-collector-conf
@@ -127,7 +127,7 @@ traces/apm:
 
 ![img](imgs/huawei_asm/huawei_asm09.png)
 
-配置修改完后，我们访问几次 `http://124.70.68.49/productpage` 这个地址，然后去观测云空间查看链路
+配置修改完后，我们访问几次 `http://124.70.68.49/productpage` 这个地址，然后去{{{ custom_key.brand_name }}}空间查看链路
 
 ![img](imgs/huawei_asm/huawei_asm10.png)
 
@@ -135,7 +135,7 @@ traces/apm:
 
 ![img](imgs/huawei_asm/huawei_asm11.png)
 
-### 指标数据发送到观测云
+### 指标数据发送到{{{ custom_key.brand_name }}}
 #### 指标采集配置
 
 1. DataKit开启 `Prometheus Exportter` 数据采集，可以参考[**Prometheus Exportter**](https://docs.guance.com/integrations/prom/#__tabbed_1_2)，configmap如下：

@@ -100,7 +100,7 @@ $ nginx -s reload # reload 配置
 ```shell
 $ sudo vi /etc/hosts
 
-192.168.1.66 static.guance.com
+192.168.1.66 {{{ custom_key.static_domain }}}
 192.168.1.66 openway.guance.com
 192.168.1.66 dflux-dial.guance.com
 

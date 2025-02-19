@@ -4,7 +4,7 @@
 
 在当下，想要保障业务系统的稳定越来越依赖于数据，在收集这些数据观测整个系统时，首先第一点需要有统一的入口去查询数据信息，并且可以基于这些数据提取重点关注的有用信息搭建可视化仪表板和监控器，用来观测和告警。如果这些功能模块相互独立，单独使用时不会出现问题，但想要进行问题排查时就会很不方便，需要反复切换、搜索、查看。
 
-针对以上问题，观测云提供【仪表板】【 查看器】【监控器】三大功能，帮助您高效的完成数据查询、监控与分析。此外，还提供链接功能，让你平滑跳转各个模块，实现数据联动分析、系统全面可观测。
+针对以上问题，{{{ custom_key.brand_name }}}提供【仪表板】【 查看器】【监控器】三大功能，帮助您高效的完成数据查询、监控与分析。此外，还提供链接功能，让你平滑跳转各个模块，实现数据联动分析、系统全面可观测。
 
 ## 开始
 
@@ -18,7 +18,7 @@
 
 若您还没有注册tree-node-{"name":"datakit-daemonset.md","path":"/zh/best-practices/insight/datakit-daemonset.md","type":"file","repo":"guance集成","birthtime":1700705887402.8657,"mtime":1700705887402.8657,"level":5,"marked":false}账号或工作空间没有数据，可跟随以下步骤完成数据采集：
 
-1. [登录观测云控制台](https://auth.guance.com/login/pwd)（还未有账号，[点击注册](https://auth.guance.com/register)）；  
+1. [登录{{{ custom_key.brand_name }}}控制台](https://auth.guance.com/login/pwd)（还未有账号，[点击注册](https://auth.guance.com/register)）；  
 2. [安装 DataKit 采集器](https://docs.guance.com/datakit/datakit-install/)；  
 3. 前往控制台【集成】页面开启相应的数据采集器。
 

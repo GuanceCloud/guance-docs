@@ -16,7 +16,7 @@ Profiling 支持自动获取应用程序运行过程中 CPU、内存和 I/O 的�
 
 ## 查询与分析
 
-Profiling 数据上报到观测云工作空间以后，您可以通过 Profiling 实时数据查看器了解您的程序代码性能。支持对 Profiling 数据进行查询和分析，包括搜索与筛选、快捷筛选、添加显示列、数据导出等。
+Profiling 数据上报到{{{ custom_key.brand_name }}}工作空间以后，您可以通过 Profiling 实时数据查看器了解您的程序代码性能。支持对 Profiling 数据进行查询和分析，包括搜索与筛选、快捷筛选、添加显示列、数据导出等。
 
 > 更多详情，可参考 [查看器说明](../getting-started/function-details/explorer-search.md)。
 
@@ -93,7 +93,7 @@ Profiling 利用火焰图分析不同类型下代码方法级别的 CPU、内存
 
 ## 链路关联 Profiling {#correlate-trace}
 
-当应用程序使用 `ddtrace` 采集器同时开启了 APM 链路追踪和 Profiling 性能追踪数据采集后，观测云提供 Span 级别的关联查看分析。在应用性能监测的链路详情页，选中火焰图的 Span，获取对应时间段的代码热点信息，直接查看该段时间内的代码方法调用列表和 Wall Time 的执行耗时和占比信息。在方法列表，您可以递归查看方法调用的先后顺序以及执行时间情况。
+当应用程序使用 `ddtrace` 采集器同时开启了 APM 链路追踪和 Profiling 性能追踪数据采集后，{{{ custom_key.brand_name }}}提供 Span 级别的关联查看分析。在应用性能监测的链路详情页，选中火焰图的 Span，获取对应时间段的代码热点信息，直接查看该段时间内的代码方法调用列表和 Wall Time 的执行耗时和占比信息。在方法列表，您可以递归查看方法调用的先后顺序以及执行时间情况。
 
 ![](img/9.apm_explorer_11.png)
 

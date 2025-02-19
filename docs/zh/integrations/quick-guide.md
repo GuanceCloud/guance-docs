@@ -1,6 +1,6 @@
 ---
 title     : 'Grafana Dashboard Import'
-summary   : 'Grafana Dashboard 模版导入观测云工具'
+summary   : 'Grafana Dashboard 模版导入{{{ custom_key.brand_name }}}工具'
 __int_icon: 'icon/grafana_import'
 ---
 
@@ -8,7 +8,7 @@ __int_icon: 'icon/grafana_import'
 # Grafana Dashboard 导入工具
 <!-- markdownlint-enable -->
 
-观测云目前提供 grafana dashboard 模版转换为观测云仪表板模版的 node 脚本
+{{{ custom_key.brand_name }}}目前提供 grafana dashboard 模版转换为{{{ custom_key.brand_name }}}仪表板模版的 node 脚本
 
 ## 配置 {#config}
 
@@ -37,7 +37,7 @@ grafanaCovertToGuance
 
 具体脚本执行命令如下：
 `-d`: grafana json 文件的目录位置，例如：`./grafana/json/grafana.json`
-`-o`: 观测云仪表板 json 文件的输出位置，例如: `./guance/json/guance.json`
+`-o`: {{{ custom_key.brand_name }}}仪表板 json 文件的输出位置，例如: `./guance/json/guance.json`
 
 - 3 执行转换命令
 
@@ -46,6 +46,6 @@ grafanaCovertToGuance
 grafanaCovertToGuance -d ./grafana/json/grafana.json -o ./guance/json/guance.json
 ```
 <!-- markdownlint-enable -->
-- 4 在观测云控制台导入转换后的`json`文件
+- 4 在{{{ custom_key.brand_name }}}控制台导入转换后的`json`文件
 
 - 5 完成

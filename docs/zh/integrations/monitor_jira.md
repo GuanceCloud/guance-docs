@@ -15,7 +15,7 @@ __int_icon: 'icon/monitor_jira'
 
 ### 准备工作
 
-1. 部署一个 [Dataflux Func 观测云特别版](https://func.guance.com/#/) 生成授权链接
+1. 部署一个 [Dataflux Func {{{ custom_key.brand_name }}}特别版](https://func.guance.com/#/) 生成授权链接
 2. 创建[webhook 自定义通知对象](https://docs.guance.com/monitoring/notify-object/#4-webhook) (webhook 地址为 Func 授权链接地址)
 3. 正确配置[监控器](https://docs.guance.com/monitoring/monitor/)
 
@@ -25,7 +25,7 @@ __int_icon: 'icon/monitor_jira'
 
 #### 创建 Webhook 自定义通知对象
 
-在观测云 studio 中【监控/通知对象管理】中新建一个通知对象，选择**webhook 自定义**，webhook 地址填入我们部署的 Dataflux Func 的授权链接地址
+在{{{ custom_key.brand_name }}} studio 中【监控/通知对象管理】中新建一个通知对象，选择**webhook 自定义**，webhook 地址填入我们部署的 Dataflux Func 的授权链接地址
 
 ![1693212890543.png](imgs/monitor_jira/monitor_jira01.png)
 
@@ -33,7 +33,7 @@ __int_icon: 'icon/monitor_jira'
 
 #### 创建监控器
 
-在观测云 studio 中【监控/监控器】中新建一个监控器，选择需要观测的指标，配置好事件的通知内容后需要将告警策略中的告警通知对象指定为我们刚刚创建的**webhook 自定义**的通知对象的名称。
+在{{{ custom_key.brand_name }}} studio 中【监控/监控器】中新建一个监控器，选择需要观测的指标，配置好事件的通知内容后需要将告警策略中的告警通知对象指定为我们刚刚创建的**webhook 自定义**的通知对象的名称。
 
 ![1693212934306.png](imgs/monitor_jira/monitor_jira02.png)
 
@@ -115,7 +115,7 @@ def create_jira_issue_reply(**kwargs):
 
     # 创建 Jira 实例
     jira = JIRA(server=jira_server, basic_auth=(username, password))
-    # 获取观测云事件数据
+    # 获取{{{ custom_key.brand_name }}}事件数据
     event = json.dumps(kwargs)
     print(event)
     summary  = kwargs["df_title"]
@@ -138,7 +138,7 @@ def create_jira_issue_reply(**kwargs):
     print(f"新创建问题的 key：{issue.key}")
 ```
 
-我们通过创建 Jira 实例将获取到的观测云中的事件详情创建成事件字典，从而发送的 Jira 中，再发送成功后会生成日志，也就是我们创建的`issue.key`。
+我们通过创建 Jira 实例将获取到的{{{ custom_key.brand_name }}}中的事件详情创建成事件字典，从而发送的 Jira 中，再发送成功后会生成日志，也就是我们创建的`issue.key`。
 
 ![1693213100705.png](imgs/monitor_jira/monitor_jira03.png)
 

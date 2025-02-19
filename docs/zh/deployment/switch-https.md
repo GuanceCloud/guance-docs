@@ -3,18 +3,18 @@
 
 ## 简介
 
-本文只介绍如何将已部署的观测云从 http 访问修改为支持 https。
+本文只介绍如何将已部署的{{{ custom_key.brand_name }}}从 http 访问修改为支持 https。
 
 ## 前提条件
 
 - 操作前请验证 SSL 证书的有效性和 Ingress 插件支持 https 的功能 
-- 已部署完观测云并正常访问
-- 观测云集群权限
-- 观测云 Launcher 页面
+- 已部署完{{{ custom_key.brand_name }}}并正常访问
+- {{{ custom_key.brand_name }}}集群权限
+- {{{ custom_key.brand_name }}} Launcher 页面
 
 ## 影响范围
 
-观测云 Studio  有短暂的无法访问。
+{{{ custom_key.brand_name }}} Studio  有短暂的无法访问。
 
 ## 操作步骤
 
@@ -103,7 +103,7 @@ done
 
 ```
 
-### 步骤三：修改观测云前端配置
+### 步骤三：修改{{{ custom_key.brand_name }}}前端配置
 
 - 打开 Launcher 右上角的设置
 - 点击「修改应用配置」

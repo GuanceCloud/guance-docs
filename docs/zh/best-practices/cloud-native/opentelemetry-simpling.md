@@ -217,7 +217,7 @@ processors:
 
 ## 演示 demo
 
-本 demo 主要是将 OpenTelemetry 数据推送至 [观测云](https://www.guance.com/)
+本 demo 主要是将 OpenTelemetry 数据推送至 [{{{ custom_key.brand_name }}}](https://www.guance.com/)
 
 ### 准备工作
 
@@ -303,7 +303,7 @@ service:
 
 > curl http://localhost:8080/gateway
 
-2、前往观测云查看trace信息，按照采样规则，最多采样一次trace数据。
+2、前往{{{ custom_key.brand_name }}}查看trace信息，按照采样规则，最多采样一次trace数据。
 
 ### status_code 使用
 
@@ -332,7 +332,7 @@ processors:
 
 2、访问 5 次`gateway`服务,返回 `{"msg":"client 调用失败","code":500}`
 
-3、前往观测云查看trace信息，按照采样规则，如果发生异常，则异常全采。
+3、前往{{{ custom_key.brand_name }}}查看trace信息，按照采样规则，如果发生异常，则异常全采。
 
 ### span_count 使用
 

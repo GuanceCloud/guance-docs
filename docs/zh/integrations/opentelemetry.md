@@ -324,7 +324,7 @@ java -javaagent:/usr/local/ddtrace/opentelemetry-javaagent-2.5.0.jar \
 
 默认日志是开启的，要关闭日志采集的话，exporter 配置为空即可：`-Dotel.logs.exporter=none`
 
-更多关于 V2 版本的重大修改请查看官方文档或者 GitHub 观测云版本说明： [Github-GuanCe-v2.11.0](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/releases/tag/v2.11.0-guance){:target="_blank"}
+更多关于 V2 版本的重大修改请查看官方文档或者 GitHub {{{ custom_key.brand_name }}}版本说明： [Github-GuanCe-v2.11.0](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/releases/tag/v2.11.0-guance){:target="_blank"}
 
 ## 常规命令 {#sdk-configuration}
 
@@ -433,7 +433,7 @@ Datakit 只接收 OTLP 的数据，OTLP 有三种数据类型： `gRPC` ， `htt
 -Dotel.resource.attributes=username=myName,env=1.1.0
 ```
 
-并修改配置文件中的白名单，这样就可以在观测云的链路详情的一级标签出现自定义的标签。
+并修改配置文件中的白名单，这样就可以在{{{ custom_key.brand_name }}}的链路详情的一级标签出现自定义的标签。
 
 ```toml
 customer_tags = ["sink_project", "username","env"]
@@ -461,7 +461,7 @@ OpenTelemetry Java Agent 从应用程序中通过 JMX 协议获取 MBean 的指�
 
 另外 Agent 内置的一些三方软件的采集配置。具体可以参考： [GitHub OTEL JMX Metric](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/instrumentation/jmx-metrics/javaagent/README.md){:target="_blank"}
 
-所有发送到观测云的指标有一个统一的指标集的名字： `otel-service` 。
+所有发送到{{{ custom_key.brand_name }}}的指标有一个统一的指标集的名字： `otel-service` 。
 
 ## 数据字段说明 {#fields}
 
@@ -692,4 +692,4 @@ Datakit 目前提供了如下两种语言的最佳实践：
 - [Golang SDK](https://github.com/open-telemetry/opentelemetry-go){:target="_blank"}
 - [官方使用手册](https://opentelemetry.io/docs/){:target="_blank"}
 - [环境变量配置](https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md#otlp-exporter-both-span-and-metric-exporters){:target="_blank"}
-- [观测云二次开发版本](https://github.com/GuanceCloud/opentelemetry-java-instrumentation){:target="_blank"}
+- [{{{ custom_key.brand_name }}}二次开发版本](https://github.com/GuanceCloud/opentelemetry-java-instrumentation){:target="_blank"}

@@ -106,7 +106,7 @@ Project name 输入 `datakit-conf`，点击「Create Project」。
 
 ![image](../images/rancher-install-9.png)
 
-点击「Datakit Configuration」，把 `<your-token>` 替换成观测云的 token。由于本次使用自定义 container 采集器配置，所以把 `Enable the default Inputs` 中的 `container` 去掉。
+点击「Datakit Configuration」，把 `<your-token>` 替换成{{{ custom_key.brand_name }}}的 token。由于本次使用自定义 container 采集器配置，所以把 `Enable the default Inputs` 中的 `container` 去掉。
 
 ![image](../images/rancher-install-10.png)
 
@@ -154,7 +154,7 @@ Project name 输入 `datakit-conf`，点击「Create Project」。
 
 ![image](../images/rancher-install-15.png)
 
-登录「[观测云](https://console.guance.com/)」 - 「指标」，选中 「kubernetes」指标集，查看指标有数据，即表示指标采集正常。
+登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」 - 「指标」，选中 「kubernetes」指标集，查看指标有数据，即表示指标采集正常。
 
 ![image](../images/rancher-install-16.png)
 

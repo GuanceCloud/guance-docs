@@ -5,9 +5,9 @@
 ## 简介
 
 不同的企业在使用 Java 生态圈构建自己的企业级框架时，用到的技术栈不一定相同。就拿微服务框架来说，有的企业使用 Spring Boot + Spring Cloud，有的企业使用 Spring Boot + Dubbo。<br/>
-观测云支持不同的 APM 工具，把微服务链路接入到观测云，您可以根据需要选择适合自己的 APM 工具。
+{{{ custom_key.brand_name }}}支持不同的 APM 工具，把微服务链路接入到{{{ custom_key.brand_name }}}，您可以根据需要选择适合自己的 APM 工具。
 
-通常构建出的微服务都是以 Jar 的方式运行，本文重点阐述把这些微服务构建成 war 包并部署在 Tomcat 下，如何把链路数据接入到观测云。如果是传统的 war 包项目，接入方式相同。
+通常构建出的微服务都是以 Jar 的方式运行，本文重点阐述把这些微服务构建成 war 包并部署在 Tomcat 下，如何把链路数据接入到{{{ custom_key.brand_name }}}。如果是传统的 war 包项目，接入方式相同。
 
 ## SkyWalking 场景
 
@@ -16,7 +16,7 @@
 - 云主机(Centos 7.9)
 - 安装 JDK
 - 安装 Zookeeper
-- 观测云账号
+- {{{ custom_key.brand_name }}}账号
 - Tomcat 部署两个，部署路径 `/usr/local/df-demo/tomcat8080` 和 `/usr/local/df-demo/tomcat8081`
 - 云主机已 <[安装 DataKit](../../datakit/datakit-install.md)>
 
@@ -96,7 +96,7 @@ export  CATALINA_OPTS="$CATALINA_OPTS -javaagent:/usr/local/df-demo/tomcat8081/a
 ### 3 链路可观测
 
 浏览器访问 `http://192.168.0.100:8080/consumer/ping` ，这里的 IP 是主机的地址。<br/>
-登录 「[观测云](https://console.guance.com/)」-「应用性能监测」，可看到 `tomcat-customer` 和 `tomcat-provider` 服务。<br/>
+登录 「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」-「应用性能监测」，可看到 `tomcat-customer` 和 `tomcat-provider` 服务。<br/>
 点击一个链路进去，可以查看火焰图、span 列表、调用关系等。
 
 ![image](../images/springboot-tomcat-3.png)

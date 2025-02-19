@@ -9,7 +9,7 @@
 <!-- markdownlint-disable MD046 -->
 === "DaemonSet"
 
-    先下载 [*datakit.yaml*](https://static.guance.com/datakit/datakit.yaml){:target="_blank"}，其中开启了很多[默认采集器](datakit-input-conf.md#default-enabled-inputs)，无需配置。
+    先下载 [*datakit.yaml*](https://{{{ custom_key.static_domain }}}/datakit/datakit.yaml){:target="_blank"}，其中开启了很多[默认采集器](datakit-input-conf.md#default-enabled-inputs)，无需配置。
     
     ???+ attention
     
@@ -413,7 +413,7 @@ spec:
 
 - **ENV_DATAWAY_MAX_RETRY_COUNT**
 
-    指定当把数据发送到观测云中心时，最多可以发送的次数，最小值为 1（失败后不重试），最大值为 10 [:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0)
+    指定当把数据发送到{{{ custom_key.brand_name }}}中心时，最多可以发送的次数，最小值为 1（失败后不重试），最大值为 10 [:octicons-tag-24: Version-1.17.0](changelog.md#cl-1.17.0)
 
     **字段类型**: Int
 

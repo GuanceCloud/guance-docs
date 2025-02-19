@@ -38,7 +38,7 @@
 - 火焰图上的每个 Span 格子的颜色都对应其服务（service）的颜色。
 
 ```
-所以从火焰图上很直观的可以感知当前的 Trace 中涉及到有哪些服务请求在执行。（服务的颜色生成逻辑：用户登录到工作空间访问应用性能监测模块时，观测云会根据服务名称自动生成颜色，该颜色的集成会继承到链路查看器等分析页面）
+所以从火焰图上很直观的可以感知当前的 Trace 中涉及到有哪些服务请求在执行。（服务的颜色生成逻辑：用户登录到工作空间访问应用性能监测模块时，{{{ custom_key.brand_name }}}会根据服务名称自动生成颜色，该颜色的集成会继承到链路查看器等分析页面）
 ```
 
 - Span 块默认显示：当前 Span 的资源（resource）或操作（operation）、持续时间（duration）以及是否存在错误（status = error）
@@ -365,7 +365,7 @@ go build main.go -o my-app.exe
 $env:DD_AGENT_HOST="localhost"; $env:DD_TRACE_AGENT_PORT="9529"; .\my-app.exe
 ```
 
-程序运行一段时间后，即可在观测云看到类似如下 trace 数据：
+程序运行一段时间后，即可在{{{ custom_key.brand_name }}}看到类似如下 trace 数据：
 
 ![](../images/flame/flame_graph.016.png)
 
@@ -400,11 +400,11 @@ DD_XXX=<env-value> DD_YYY=<env-value> ./my-app
 
 ### 实际链路数据分析
 
-1.登录观测云工作空间，查看应用性能监测模块的服务列表，从服务页面已经可以看出 browser 服务的 P90 响应时间是比较长的。
+1.登录{{{ custom_key.brand_name }}}工作空间，查看应用性能监测模块的服务列表，从服务页面已经可以看出 browser 服务的 P90 响应时间是比较长的。
 
 ![](../images/flame/flame_graph.017.png)
 
-2.点击 browser 服务名称，查看该服务的概览分析视图，可以看出影响当前服务响应时间的最关键的资源是 query_data 这个接口，因为这个接口是观测云的一个数据查询接口，所以接下来我们看下这个接口在查询过程当中，到底是因为什么导致耗时较长。
+2.点击 browser 服务名称，查看该服务的概览分析视图，可以看出影响当前服务响应时间的最关键的资源是 query_data 这个接口，因为这个接口是{{{ custom_key.brand_name }}}的一个数据查询接口，所以接下来我们看下这个接口在查询过程当中，到底是因为什么导致耗时较长。
 
 ![](../images/flame/flame_graph.018.png)
 

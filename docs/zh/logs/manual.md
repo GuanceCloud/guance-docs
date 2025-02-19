@@ -3,11 +3,11 @@
 
 Pipeline 支持对不同格式的日志数据进行文本解析，通过编写 Pipeline 脚本，可以自定义切割出符合要求的结构化日志，并把切割出来的字段作为属性使用。通过属性字段，我们可以快速筛选相关日志、进行数据关联分析，帮助我们快速去定位问题并解决问题。
 
-观测云提供 Pipeline 官方脚本库，内置多种日志解析 Pipeline。同时支持用户创建自定义 Pipeline 脚本。接下来为您介绍如何使用自定义 Pipeline 功能。
+{{{ custom_key.brand_name }}}提供 Pipeline 官方脚本库，内置多种日志解析 Pipeline。同时支持用户创建自定义 Pipeline 脚本。接下来为您介绍如何使用自定义 Pipeline 功能。
 
 ## 前置条件
 
-1. 您需要先创建一个[观测云账号](https://www.guance.com/)，并在您的主机上 [安装 DataKit](../../datakit/datakit-install.md)；
+1. 您需要先创建一个[{{{ custom_key.brand_name }}}账号](https://www.guance.com/)，并在您的主机上 [安装 DataKit](../../datakit/datakit-install.md)；
 1. 开启日志采集器，并在配置文件中打开 Pipeline 功能；
 
 ## 自定义 Pipeline 脚本文件
@@ -50,20 +50,20 @@ Pipeline 支持对不同格式的日志数据进行文本解析，通过编写 P
 
 ### 步骤二：根据采集的日志，确定切割字段
 
-开启日志采集器后，即可在观测云工作空间查看采集到的 DataKit 日志。观察和分析 DataKit 日志，确定日志切割的字段，如日志产生的时间、日志等级、日志模块、模块内容以及日志的内容等。
+开启日志采集器后，即可在{{{ custom_key.brand_name }}}工作空间查看采集到的 DataKit 日志。观察和分析 DataKit 日志，确定日志切割的字段，如日志产生的时间、日志等级、日志模块、模块内容以及日志的内容等。
 
 ![](../img/12.pipeline_4.png)
 
 ### 步骤三：创建自定义 Pipeline
 
-在观测云工作空间**日志 > Pipelines**，点击**新建 Pipeline** 创建一个新的 Pipeline 文件。
+在{{{ custom_key.brand_name }}}工作空间**日志 > Pipelines**，点击**新建 Pipeline** 创建一个新的 Pipeline 文件。
 #### 过滤日志
 
 日志来源选择 “datakit”，根据你所选日志来源自动生成同名 Pipeline。
 
 #### 定义解析规则
 
-定义日志的解析规则，支持多种脚本函数，可通过观测云提供的脚本函数列表直接查看其语法格式。
+定义日志的解析规则，支持多种脚本函数，可通过{{{ custom_key.brand_name }}}提供的脚本函数列表直接查看其语法格式。
 
 本示例中基于对日志的观察结果，就可以编写 Pipeline 脚本文件。我们可以通过 `add_pattern()` 脚本函数先自定义 pattern， 并在 Grok 中引用自定义的 pattern，对日志进行切割。示例如下，其中 `rename` 和 `default_time` 是优化切割出来的字段。
 
@@ -97,19 +97,19 @@ default_time(time)       # 将 time 字段作为输出数据的时间戳
 
 ![](../img/12.pipeline_5.png)
 
-在观测云工作空间创建的 Pipeline 文件统一保存在 `/usr/local/datakit/Pipeline_remote` 目录下。
+在{{{ custom_key.brand_name }}}工作空间创建的 Pipeline 文件统一保存在 `/usr/local/datakit/Pipeline_remote` 目录下。
 
 ![](../img/12.pipeline_5.0.png)
 
 **注意**：DataKit 有两个 Pipeline 目录，DataKit 会自动匹配该目录下的 Pipeline 文件。
 
 - `Pipeline`：官方库的 Pipeline 文件目录；
-- `Pipeline_remote`：观测云工作空间自定义 Pipeline 文件目录；
+- `Pipeline_remote`：{{{ custom_key.brand_name }}}工作空间自定义 Pipeline 文件目录；
 - 若两个目录下存在同名 Pipeline 文件，DataKit 会优先匹配 `Pipeline_remote` 下的 Pipeline 文件。
 
-### 步骤五：在观测云查看切割后的字段
+### 步骤五：在{{{ custom_key.brand_name }}}查看切割后的字段
 
-在观测云工作空间的日志下，选择 datakit 的日志，在日志详情页，可以看到“属性”下的字段和字段值，这个就是我们日志切割后显示的字段和字段值。如：
+在{{{ custom_key.brand_name }}}工作空间的日志下，选择 datakit 的日志，在日志详情页，可以看到“属性”下的字段和字段值，这个就是我们日志切割后显示的字段和字段值。如：
 
 - `code: container/input.go:167`
 - `level: ERROR`
@@ -159,13 +159,13 @@ default_time(time)       # 将 time 字段作为输出数据的时间戳
 
 ### 步骤二：根据采集的日志，确定切割字段
 
-开启 Nginx 采集器，配置日志文件路径，开启 Pipeline 以后，即可在观测云工作空间查看采集到的 Nginx 日志，在日志详情中，可查看按照 Pipeline 文件切割的字段属性。观察和分析日志，确定是否需要优化切割的字段。
+开启 Nginx 采集器，配置日志文件路径，开启 Pipeline 以后，即可在{{{ custom_key.brand_name }}}工作空间查看采集到的 Nginx 日志，在日志详情中，可查看按照 Pipeline 文件切割的字段属性。观察和分析日志，确定是否需要优化切割的字段。
 
 ![](../img/12.pipeline_12.png)
 
 ### 步骤三：克隆并自定义官方库 Pipeline
 
-在观测云工作空间**日志 > Pipelines**，点击 **Pipeline 官方库**，选择查看并克隆 `nginx.p` 的 Pipeline 文件。
+在{{{ custom_key.brand_name }}}工作空间**日志 > Pipelines**，点击 **Pipeline 官方库**，选择查看并克隆 `nginx.p` 的 Pipeline 文件。
 
 - 在**过滤日志**选择 “nginx”；
 - 在**定义解析规则**优化[解析规则](../pipeline/use-pipeline/index.md)；
@@ -190,19 +190,19 @@ default_time(time)       # 将 time 字段作为输出数据的时间戳
 
 ![](../img/12.pipeline_9.png)
 
-在观测云工作空间创建的 Pipeline 文件统一保存在 `/usr/local/datakit/Pipeline_remote` 目录下。
+在{{{ custom_key.brand_name }}}工作空间创建的 Pipeline 文件统一保存在 `/usr/local/datakit/Pipeline_remote` 目录下。
 
 ![](../img/12.pipeline_10.png)
 
 **注意**：DataKit 有两个 Pipeline 目录，DataKit 会自动匹配该目录下的 Pipeline 文件。
 
 - `Pipeline`：官方库的 Pipeline 文件目录；
-- `Pipeline_remote`：观测云工作空间自定义 Pipeline 文件目录；
+- `Pipeline_remote`：{{{ custom_key.brand_name }}}工作空间自定义 Pipeline 文件目录；
 - 若两个目录下存在同名 Pipeline 文件，DataKit 会优先匹配 `Pipeline_remote` 下的 Pipeline 文件。
 
-### 步骤五：在观测云查看切割后的字段
+### 步骤五：在{{{ custom_key.brand_name }}}查看切割后的字段
 
-在观测云工作空间的日志下，选择 `nginx` 的日志，在日志详情页，可以看到“属性”下的字段和字段值，这个就是我们日志切割后显示的字段和字段值。如
+在{{{ custom_key.brand_name }}}工作空间的日志下，选择 `nginx` 的日志，在日志详情页，可以看到“属性”下的字段和字段值，这个就是我们日志切割后显示的字段和字段值。如
 
 - `http_method: GET`
 - `http_url: /server_status`
@@ -214,7 +214,7 @@ default_time(time)       # 将 time 字段作为输出数据的时间戳
 
 <font size=3>
 
-以上观测云工作空间日志 Pipeline 使用手册，更多关于 Pipeline 和 日志采集切割的内容，可参考如下文档：
+以上{{{ custom_key.brand_name }}}工作空间日志 Pipeline 使用手册，更多关于 Pipeline 和 日志采集切割的内容，可参考如下文档：
 
 <div class="grid cards" markdown>
 

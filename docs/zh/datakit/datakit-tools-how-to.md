@@ -81,7 +81,7 @@ DQL used to query data. If no option specified, query interactively. Other avail
 
 ### 数据回放 {#do-replay}
 
-Datakit 录制完数据后，我们可以将该目录中的数据用 Git 或其它方式保存（**一定要确保好已有的目录结构**），然后，通过如下命令可以将这些数据导入到观测云：
+Datakit 录制完数据后，我们可以将该目录中的数据用 Git 或其它方式保存（**一定要确保好已有的目录结构**），然后，通过如下命令可以将这些数据导入到{{{ custom_key.brand_name }}}：
 
 ```shell
 $ datakit import -P /usr/local/datakit/recorder -D https://openway.guance.com?token=tkn_xxxxxxxxx

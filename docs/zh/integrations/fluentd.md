@@ -8,7 +8,7 @@ __int_icon: 'icon/fluentd'
 # Fluentd 日志
 <!-- markdownlint-enable -->
 
-Fluentd 日志采集，接受日志文本数据上报至观测云。
+Fluentd 日志采集，接受日志文本数据上报至{{{ custom_key.brand_name }}}。
 
 ## 安装部署 {#config}
 
@@ -35,7 +35,7 @@ systemctl restart datakit
 
 #### Linux Fluentd 采集 nginx 日志接入 DataKit
 
-以 Fluentd 采集 nginx 日志并转发至上级 server 端的 plugin 配置为例，我们不想直接发送到 server 端进行处理，想直接处理好并发送给 DataKit 上报至观测云平台进行分析。
+以 Fluentd 采集 nginx 日志并转发至上级 server 端的 plugin 配置为例，我们不想直接发送到 server 端进行处理，想直接处理好并发送给 DataKit 上报至{{{ custom_key.brand_name }}}平台进行分析。
 
 ```yaml
 ##pc端日志收集
@@ -116,7 +116,7 @@ create_time 1637733374609
 
 #### windows Fluentd 采集 nginx 日志接入 DataKit
 
-以 Fluentd 采集 nginx 日志并转发至上级 server 端的 plugin 配置为例，我们不想直接发送到 server 端进行处理，想直接处理好并发送给 DataKit 上报至观测云平台进行分析。
+以 Fluentd 采集 nginx 日志并转发至上级 server 端的 plugin 配置为例，我们不想直接发送到 server 端进行处理，想直接处理好并发送给 DataKit 上报至{{{ custom_key.brand_name }}}平台进行分析。
 
 ```bash
 ##pc端日志收集
@@ -197,7 +197,7 @@ create_time 1637733374609
 
 #### Kubernetes sidecar Fluentd 采集 nginx 日志接入 DataKit
 
-以Deployment 部署 Fluentd sidecar 采集 nginx 日志并转发至上级 server 端的 plugin 配置为例，我们不想直接发送到 server 端进行处理，想直接处理好并发送给 DataKit 上报至观测云平台进行分析。
+以Deployment 部署 Fluentd sidecar 采集 nginx 日志并转发至上级 server 端的 plugin 配置为例，我们不想直接发送到 server 端进行处理，想直接处理好并发送给 DataKit 上报至{{{ custom_key.brand_name }}}平台进行分析。
 
 ```yaml
 apiVersion: apps/v1

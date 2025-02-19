@@ -27,11 +27,11 @@ Datakit Operator 是 Datakit 在 Kubernetes 编排的联动项目，旨在协助
 <!-- markdownlint-disable MD046 -->
 === "Deployment"
 
-    下载 [*datakit-operator.yaml*](https://static.guance.com/datakit-operator/datakit-operator.yaml){:target="_blank"}，步骤如下：
+    下载 [*datakit-operator.yaml*](https://{{{ custom_key.static_domain }}}/datakit-operator/datakit-operator.yaml){:target="_blank"}，步骤如下：
     
     ``` shell
     $ kubectl create namespace datakit
-    $ wget https://static.guance.com/datakit-operator/datakit-operator.yaml
+    $ wget https://{{{ custom_key.static_domain }}}/datakit-operator/datakit-operator.yaml
     $ kubectl apply -f datakit-operator.yaml
     $ kubectl get pod -n datakit
     
@@ -498,7 +498,7 @@ $ kubectl get pod logging-deployment-5d48bf9995-vt6bb -o=jsonpath={.spec.contain
 log-container datakit-logfwd
 ```
 
-最终可以在观测云日志平台查看日志是否采集。
+最终可以在{{{ custom_key.brand_name }}}日志平台查看日志是否采集。
 
 ### async-profiler {#inject-async-profiler}
 
@@ -577,7 +577,7 @@ $ kubectl describe pod movies-java-784f4bb8c7-59g6s | grep datakit-profiler
   Normal  Started    12m   kubelet            Started container datakit-profiler
 ```
 
-稍等几分钟后即可在观测云控制台 [应用性能检监测-Profiling](https://console.guance.com/tracing/profile){:target="_blank"} 页面查看应用性能数据。
+稍等几分钟后即可在{{{ custom_key.brand_name }}}控制台 [应用性能检监测-Profiling](https://console.guance.com/tracing/profile){:target="_blank"} 页面查看应用性能数据。
 
 <!-- markdownlint-disable MD046 -->
 ???+ note
@@ -665,7 +665,7 @@ $ kubectl describe pod movies-python-78b6cf55f-ptzxf | grep datakit-profiler
   Normal  Started    97s   kubelet            Started container datakit-profiler
 ```
 
-稍等几分钟后即可在观测云控制台 [应用性能检监测-Profiling](https://console.guance.com/tracing/profile){:target="_blank"} 页面查看应用性能数据。
+稍等几分钟后即可在{{{ custom_key.brand_name }}}控制台 [应用性能检监测-Profiling](https://console.guance.com/tracing/profile){:target="_blank"} 页面查看应用性能数据。
 
 <!-- markdownlint-disable MD046 -->
 ???+ note

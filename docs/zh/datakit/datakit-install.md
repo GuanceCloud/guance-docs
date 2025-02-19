@@ -4,9 +4,9 @@
 
 本文介绍 DataKit 的基本安装。
 
-## 注册/登陆观测云 {#login-guance}
+## 注册/登陆{{{ custom_key.brand_name }}} {#login-guance}
 
-浏览器访问 [观测云注册入口](https://auth.guance.com/redirectpage/register){:target="_blank"}，填写对应信息之后，即可[登陆观测云](https://console.guance.com/pageloading/login){:target="_blank"}
+浏览器访问 [{{{ custom_key.brand_name }}}注册入口](https://auth.guance.com/redirectpage/register){:target="_blank"}，填写对应信息之后，即可[登陆{{{ custom_key.brand_name }}}](https://console.guance.com/pageloading/login){:target="_blank"}
 
 ## 获取安装命令 {#get-install}
 
@@ -22,13 +22,13 @@
     - `bash`
 
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install.sh)"
     ```
 
     - `ash`
 
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> ash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> ash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install.sh)"
     ```
 
     安装完成后，在终端会看到安装成功的提示。
@@ -42,7 +42,7 @@
     $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://{{{ custom_key.static_domain }}}/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
@@ -55,7 +55,7 @@
 === "Linux/macOS"
 
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_LITE=1 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_LITE=1 bash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install.sh)"
     ```
 
 === "Windows"
@@ -66,7 +66,7 @@
     $env:DK_LITE="1";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://{{{ custom_key.static_domain }}}/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 
@@ -99,7 +99,7 @@
 === "Linux/macOS"
 
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_ELINKER=1 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_ELINKER=1 bash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install.sh)"
     ```
 
 === "Windows"
@@ -110,7 +110,7 @@
     $env:DK_ELINKER="1";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://{{{ custom_key.static_domain }}}/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
@@ -133,7 +133,7 @@ DataKit ELinker 只包含以下采集器：
 可通过在安装命令中指定版本号来安装指定版本的 DataKit，如安装 1.2.3 版本的 DataKit：
 
 ```shell
-DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install-1.2.3.sh)"
+DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install-1.2.3.sh)"
 ```
 
 Windows 下同理：
@@ -143,7 +143,7 @@ Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
 $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
 Set-ExecutionPolicy Bypass -scope Process -Force;
 Import-Module bitstransfer;
-start-bitstransfer  -source https://static.guance.com/datakit/install-1.2.3.ps1 -destination .install.ps1;
+start-bitstransfer  -source https://{{{ custom_key.static_domain }}}/datakit/install-1.2.3.ps1 -destination .install.ps1;
 powershell ./.install.ps1;
 ```
 
@@ -155,7 +155,7 @@ powershell ./.install.ps1;
 === "Linux/macOS"
 
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_NAMESPACE=[NAMESPACE] bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_NAMESPACE=[NAMESPACE] bash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install.sh)"
     ```
 
 === "Windows"
@@ -166,7 +166,7 @@ powershell ./.install.ps1;
     $env:DK_NAMESPACE="[NAMESPACE]";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://{{{ custom_key.static_domain }}}/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
@@ -208,7 +208,7 @@ NAME1="value1" NAME2="value2"
     ```shell
     DK_DEF_INPUTS="-" \
     DK_DATAWAY=https://openway.guance.com?token=<TOKEN> \
-    bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    bash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install.sh)"
     ```
 
     另外，如果之前有安装过 Datakit，必须将之前的默认采集器配置都删除掉，因为 Datakit 在安装的过程中只能添加采集器配置，但不能删除采集器配置。
@@ -346,7 +346,7 @@ NAME1="value1" NAME2="value2"
 === "Linux/macOS"
 
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_DATAWAY_ENABLE_SINKER=on DK_SINKER_GLOBAL_CUSTOMER_KEYS=key1,key2 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_DATAWAY_ENABLE_SINKER=on DK_SINKER_GLOBAL_CUSTOMER_KEYS=key1,key2 bash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install.sh)"
     ```
 
 === "Windows"
@@ -358,7 +358,7 @@ NAME1="value1" NAME2="value2"
     $env:DK_SINKER_GLOBAL_CUSTOMER_KEYS="key1,key2";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://{{{ custom_key.static_domain }}}/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
@@ -382,7 +382,7 @@ NAME1="value1" NAME2="value2"
 ```shell
 DK_APM_INSTRUMENTATION_ENABLED=host \
   DK_DATAWAY=https://openway.guance.com?token=<TOKEN> \
-  bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+  bash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install.sh)"
 ```
 
 - 开启 docker 注入：
@@ -390,7 +390,7 @@ DK_APM_INSTRUMENTATION_ENABLED=host \
 ```shell
 DK_APM_INSTRUMENTATION_ENABLED=docker \
   DK_DATAWAY=https://openway.guance.com?token=<TOKEN> \
-  bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+  bash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install.sh)"
 ```
 
 对于主机部署，在 DataKit 安装完成后，重新开启一个终端，并重启对应的 Java/Python 应用即可。
@@ -456,7 +456,7 @@ DK_APM_INSTRUMENTATION_ENABLED=docker \
 | `DK_HOSTNAME`                    | `some-host-name`            | 支持安装阶段自定义配置主机名                                                                                                     |
 | `DK_UPGRADE`                     | `1`                         | 升级到最新版本                                                   |
 | `DK_UPGRADE_MANAGER`             | `on`                        | 升级 Datakit 同时是否升级 **远程升级服务**，需要和 `DK_UPGRADE` 配合使用， 从 [1.5.9](changelog.md#cl-1.5.9) 版本开始支持        |
-| `DK_INSTALLER_BASE_URL`          | `https://your-url`          | 可选择不同环境的安装脚本，默认为 `https://static.guance.com/datakit`                                                             |
+| `DK_INSTALLER_BASE_URL`          | `https://your-url`          | 可选择不同环境的安装脚本，默认为 `https://{{{ custom_key.static_domain }}}/datakit`                                                             |
 | `DK_PROXY_TYPE`                  | -                           | 代理类型。选项有：`datakit` 或 `nginx`，均为小写                                                                                 |
 | `DK_NGINX_IP`                    | -                           | 代理服务器 IP 地址（只需要填 IP 不需要填端口）。这个与上面的 "HTTP_PROXY" 和 "HTTPS_PROXY" 互斥，而且优先级最高，会覆盖以上两者  |
 | `DK_INSTALL_LOG`                 | -                           | 设置安装程序日志路径，默认为当前目录下的 *install.log*，如果设置为 `stdout` 则输出到命令行终端                                   |
