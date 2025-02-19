@@ -64,7 +64,7 @@ cd ilogtail-1.7.1
 echo "hello" >>  /usr/local/df-demo/log-demo/logs/log.log
 ```
 
-此时{{{ custom_key.brand_name }}}已经收到 `iLogtail` 推送的日志。
+此时观测云已经收到 `iLogtail` 推送的日志。
 
 #### `pipeline` 配置
 
@@ -95,4 +95,4 @@ add_key(filepath, tags["log.file.path"])
 
 启动`JAVA`应用生成日志，会自动触发 `iLogtail`日志采集。
 
-进入{{{ custom_key.brand_name }}}，可以看到日志已经收集，`pipeline`也正常生效。
+进入观测云，可以看到日志已经收集，`pipeline`也正常生效。

@@ -6,9 +6,9 @@ icon: octicons/cloud-16
 
 ---
 
-[DataKit](../datakit/index.md) 是{{{ custom_key.brand_name }}}中至关重要的一个数据采集组件，几乎所有{{{ custom_key.brand_name }}}中的数据都是来源于 DataKit。
+[DataKit](../datakit/index.md) 是观测云中至关重要的一个数据采集组件，几乎所有观测云中的数据都是来源于 DataKit。
 
-[DataFlux Func](https://func.guance.com/doc/) 是{{{ custom_key.brand_name }}}的一个基于 Python 的脚本开发、管理、执行平台。
+[DataFlux Func](https://func.guance.com/doc/) 是观测云的一个基于 Python 的脚本开发、管理、执行平台。
 
 <br />
 

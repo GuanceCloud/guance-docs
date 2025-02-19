@@ -5,7 +5,7 @@ skip: 'not-searchable-on-index-page'
 
 ## 前言 {#head}
 
-日志采集（logging）是{{{ custom_key.brand_name }}} Datakit 重要的一项，它将主动采集或被动接收的日志数据加以处理，最终上传到{{{ custom_key.brand_name }}}中心。日志采集按照数据来源可以分为 “网络流数据” 和 “本地磁盘文件” 两种。
+日志采集（logging）是观测云 Datakit 重要的一项，它将主动采集或被动接收的日志数据加以处理，最终上传到观测云中心。日志采集按照数据来源可以分为 “网络流数据” 和 “本地磁盘文件” 两种。
 
 ### 网络流数据 {#network}
 

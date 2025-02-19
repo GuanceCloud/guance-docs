@@ -2,7 +2,7 @@
 
 ## 前言 {#intro}
 
-日志采集是{{{ custom_key.brand_name }}} Datakit 重要的一项，它将主动采集或被动接收的日志数据加以处理，最终上传到{{{ custom_key.brand_name }}}中心。
+日志采集是观测云 Datakit 重要的一项，它将主动采集或被动接收的日志数据加以处理，最终上传到观测云中心。
 
 按照数据来源可以分为 “日志文件数据” 和 “网络流数据” 两种。分别对应以下：
 
@@ -378,7 +378,7 @@ Connection to 127.1 (127.0.0.1) 9531 port [udp/*] succeeded!
 
 ### HTTP 数据接收 {#config-logstreaming}
 
-启动一个 HTTP server，接收日志文本数据，上报到{{{ custom_key.brand_name }}}。HTTP URL 固定为：`/v1/write/logstreaming`，即 `http://datakit_ip:port/v1/write/logstreaming`
+启动一个 HTTP server，接收日志文本数据，上报到观测云。HTTP URL 固定为：`/v1/write/logstreaming`，即 `http://datakit_ip:port/v1/write/logstreaming`
 
 > 注：如果 Datakit 以 DaemonSet 方式部署在 Kubernetes 中，可以使用 Service 方式访问，地址为 `http://datakit-service.datakit:9529`
 

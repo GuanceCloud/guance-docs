@@ -18,14 +18,14 @@ monitor   :
 
 ---
 
-该采集器是网络拨测结果数据采集，所有拨测产生的数据，上报{{{ custom_key.brand_name }}}。
+该采集器是网络拨测结果数据采集，所有拨测产生的数据，上报观测云。
 
 ## 配置 {#config}
 
 <!-- markdownlint-disable MD046 -->
 === "主机安装"
 
-    私有拨测节点部署，需在 [{{{ custom_key.brand_name }}}页面创建私有拨测节点](../usability-monitoring/self-node.md)。创建完成后，将页面上相关信息填入 `conf.d/network/dialtesting.conf` 即可：
+    私有拨测节点部署，需在 [观测云页面创建私有拨测节点](../usability-monitoring/self-node.md)。创建完成后，将页面上相关信息填入 `conf.d/network/dialtesting.conf` 即可：
 
     进入 DataKit 安装目录下的 `conf.d/network` 目录，复制 `dialtesting.conf.sample` 并命名为 `dialtesting.conf`。示例如下：
     
@@ -134,7 +134,7 @@ monitor   :
 
 以下是拨测节点的网络部署拓扑图，这里存在两种拨测节点部署方式：
 
-- 公网拨测节点：直接使用{{{ custom_key.brand_name }}}在全球部署的拨测节点来检测 **公网** 的服务运行情况。
+- 公网拨测节点：直接使用观测云在全球部署的拨测节点来检测 **公网** 的服务运行情况。
 - 私网拨测节点：如果需要拨测用户 **内网** 的服务，此时需要用户自行部署 **私有** 的拨测节点。当让，如果网络允许，这些私有的拨测节点也能部署公网上的服务。
 
 不管是公网拨测节点，还是私有拨测节点，它们都能通过 Web 页面创建拨测任务。
@@ -150,7 +150,7 @@ graph TD
   site_pub(公网站点);
   dw_inner(内网 Dataway);
   dw_pub(公网 Dataway);
-  guance({{{ custom_key.brand_name }}});
+  guance(观测云);
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -405,7 +405,7 @@ graph TD
 
 ## 拨测采集器自身指标采集 {#metric}
 
-拨测采集器会暴露 [Prometheus 指标](../datakit/datakit-metrics.md)，如果需要上报这些指标至{{{ custom_key.brand_name }}}，可以通过 [DataKit 采集器](dk.md) 进行采集，相关配置参考如下：
+拨测采集器会暴露 [Prometheus 指标](../datakit/datakit-metrics.md)，如果需要上报这些指标至观测云，可以通过 [DataKit 采集器](dk.md) 进行采集，相关配置参考如下：
 
 ```toml
 [[inputs.dk]]

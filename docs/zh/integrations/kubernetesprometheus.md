@@ -414,7 +414,7 @@ data:
           readOnly: true
 ```
 
-1. 最后启动 Datakit，在日志中能看到 `create prom url xxxxx for testing/prom-svc` 的内容，并在{{{ custom_key.brand_name }}}页面看到 `prom-svc` 指标集。
+1. 最后启动 Datakit，在日志中能看到 `create prom url xxxxx for testing/prom-svc` 的内容，并在观测云页面看到 `prom-svc` 指标集。
 
 
 ---

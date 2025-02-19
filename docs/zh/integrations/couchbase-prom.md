@@ -1,6 +1,6 @@
 ---
 title: 'CouchBase Exporter'
-summary: '采集器可以从 CouchBase 实例中采取很多指标，比如数据使用的内存和磁盘、当前连接数等多种指标，并将指标采集到{{{ custom_key.brand_name }}}，帮助监控分析 CouchBase 各种异常情况。'
+summary: '采集器可以从 CouchBase 实例中采取很多指标，比如数据使用的内存和磁盘、当前连接数等多种指标，并将指标采集到观测云，帮助监控分析 CouchBase 各种异常情况。'
 __int_icon: 'icon/couchbase'
 dashboard:
   - desc: 'CouchBase 内置视图 by Exporter'
@@ -18,7 +18,7 @@ monitor:
 <!-- markdownlint-enable -->
 
 
-采集器可以从 CouchBase 实例中采取很多指标，比如数据使用的内存和磁盘、当前连接数等多种指标，并将指标采集到{{{ custom_key.brand_name }}}，帮助监控分析 CouchBase 各种异常情况。
+采集器可以从 CouchBase 实例中采取很多指标，比如数据使用的内存和磁盘、当前连接数等多种指标，并将指标采集到观测云，帮助监控分析 CouchBase 各种异常情况。
 
 ## 采集器配置 {#config}
 

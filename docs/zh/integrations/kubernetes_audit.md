@@ -286,13 +286,13 @@ kubectl apply -f k8s-audit-log.yaml
 
 - 查看
 
-等几分钟后就可以在{{{ custom_key.brand_name }}}上查看到对应的日志。由于是`json`格式，{{{ custom_key.brand_name }}}支持通过`@+json`字段名的方式进行搜索，如`@verb:update⁠`。
+等几分钟后就可以在观测云上查看到对应的日志。由于是`json`格式，观测云支持通过`@+json`字段名的方式进行搜索，如`@verb:update⁠`。
 
 ### 审计日志字段提取
 
-审计日志采集上来后，通过{{{ custom_key.brand_name }}} `pipeline` 的能力，可以对审计日志关键字段进行提取，从而对审计日志进行进一步数据分析
+审计日志采集上来后，通过观测云 `pipeline` 的能力，可以对审计日志关键字段进行提取，从而对审计日志进行进一步数据分析
 
-- 在{{{ custom_key.brand_name }}}，`日志` - `pipeline` - `新建`
+- 在观测云，`日志` - `pipeline` - `新建`
 - 选择对应的日志来源 `k8s-audit`
 - `Pipeline` 名称：`kubelet-audit`
 - 定义解析规则

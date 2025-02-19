@@ -14,11 +14,11 @@ Amazon PrivateLink 是一项高度可用的可扩展技术，使您能够将 VPC
 
 目前已上架的服务为 **cn-northwest-1、us-west-2、 ap-southeast-1** 两个地域，其他地域的也即将上架，架构如下：
 
-![not-set](https://{{{ custom_key.static_domain }}}/images/datakit/aws_privatelink.png)
+![not-set](https://static.guance.com/images/datakit/aws_privatelink.png)
 
 ## 前提条件 {#prerequisite}
 
-1. 首先选择订阅地域，必须与您待接入{{{ custom_key.brand_name }}}的系统所部署云资源的同一地域。
+1. 首先选择订阅地域，必须与您待接入观测云的系统所部署云资源的同一地域。
 1. 选择待接入系统所部署云资源的同一个 VPC 网络，**如果涉及到多个 VPC 需要接入终端节点服务，可多次订阅，每个 VPC 订阅一次。**
 
 ## 订阅服务 {#sub-service}
@@ -47,9 +47,9 @@ Amazon PrivateLink 是一项高度可用的可扩展技术，使您能够将 VPC
     - [中国区](https://console.amazonaws.cn/console/home){:target="_blank"}
     - [海外区](https://console.aws.amazon.com/console/home){:target="_blank"}
 
-获取右上角账号 ID, 复制该「账号 ID」并**告知**我方{{{ custom_key.brand_name }}}的客户经理，加入其到我方白名单中。
+获取右上角账号 ID, 复制该「账号 ID」并**告知**我方观测云的客户经理，加入其到我方白名单中。
 
-![not-set](https://{{{ custom_key.static_domain }}}/images/datakit/aws_privatelink_id.png)
+![not-set](https://static.guance.com/images/datakit/aws_privatelink_id.png)
 
 #### 步骤二：创建终端节点 {#create-endpoint}
 
@@ -61,7 +61,7 @@ Amazon PrivateLink 是一项高度可用的可扩展技术，使您能够将 VPC
 1. **服务设置**输入服务名称，验证。选择 vpc，可用区，安全组开通 443
 1. 等待创建成功，获取终端节点服务地址
 
-![not-set](https://{{{ custom_key.static_domain }}}/images/datakit/aws-privatelink-dns.png)
+![not-set](https://static.guance.com/images/datakit/aws-privatelink-dns.png)
 
 #### 步骤三：Route 53 解析终端节点 {#route-53}
 
@@ -73,7 +73,7 @@ Amazon PrivateLink 是一项高度可用的可扩展技术，使您能够将 VPC
 1. 创建记录。
 1. 记录名称：参考 [Endpoint](aws-access.md#region-endpoint) 地址 ，记录类型：`cname`，值： [创建终端节点](aws-access.md#create-endpoint)的服务地址
 
-![not-set](https://{{{ custom_key.static_domain }}}/images/datakit/aws_privatelink_route53.png)
+![not-set](https://static.guance.com/images/datakit/aws_privatelink_route53.png)
 
 #### 验证 {#verify}
 

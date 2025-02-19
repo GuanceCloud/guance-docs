@@ -250,5 +250,5 @@ kubectl apply -f datakit.yaml
 
 ## 延伸阅读 {#more-reading}
 
-- <[TAG 在{{{ custom_key.brand_name }}}中的最佳实践](../best-practices/insight/tag.md)>
+- <[TAG 在观测云中的最佳实践](../best-practices/insight/tag.md)>
 - <[多个 Kubernetes 集群指标采集最佳实践](../best-practices/cloud-native/multi-cluster.md)>

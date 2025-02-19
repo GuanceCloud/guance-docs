@@ -88,7 +88,7 @@ Datakit 支持 `etcd-v3` `consul` `redis` `zookeeper` `aws secrets manager` `nac
 
     ```shell
     # Linux/Mac
-    DK_CONFD_BACKEND=etcd3 DK_CONFD_BACKEND_NODES=[127.0.0.1:2379] DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install.sh)"
+    DK_CONFD_BACKEND=etcd3 DK_CONFD_BACKEND_NODES=[127.0.0.1:2379] DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
 
     # Windows
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
@@ -97,7 +97,7 @@ Datakit 支持 `etcd-v3` `consul` `redis` `zookeeper` `aws secrets manager` `nac
     $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://{{{ custom_key.static_domain }}}/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 

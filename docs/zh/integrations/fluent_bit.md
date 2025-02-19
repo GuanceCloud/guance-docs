@@ -8,7 +8,7 @@ __int_icon: 'icon/fluentbit'
 # Fluent Bit 日志
 <!-- markdownlint-enable -->
 
-FluentBit 日志采集，接受日志文本数据上报至{{{ custom_key.brand_name }}}。
+FluentBit 日志采集，接受日志文本数据上报至观测云。
 
 ## 安装部署 {#config}
 

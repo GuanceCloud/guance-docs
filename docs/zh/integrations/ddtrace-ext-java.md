@@ -1,6 +1,6 @@
 ---
 title     : 'DDTrace 扩展'
-summary   : '{{{ custom_key.brand_name }}}扩展了 DDTrace 对组建的支持'
+summary   : '观测云扩展了 DDTrace 对组建的支持'
 __int_icon: 'icon/ddtrace'
 tags      :
   - 'DDTRACE'
@@ -61,7 +61,7 @@ tags      :
 DDTrace 最低版本支持： [v1.25.2](ddtrace-ext-changelog.md#cl-1.25.2-guance)
 
 ## 支持 MongoDB 数据库脱敏 {#mongo-obfuscation}
-使用启动参数 `-Ddd.mongo.obfuscation=true` 或者环境变量 `DD_MONGO_OBFUSCATION=TRUE` 开启脱敏。这样从{{{ custom_key.brand_name }}}上就可以看见一条具体的命令。
+使用启动参数 `-Ddd.mongo.obfuscation=true` 或者环境变量 `DD_MONGO_OBFUSCATION=TRUE` 开启脱敏。这样从观测云上就可以看见一条具体的命令。
 
 目前可以实现脱敏的类型有：Int32/Int64/Boolean/Double/String 。 剩余的并没有参考意义，所以目前暂不支持。
 
@@ -112,7 +112,7 @@ k8s:
 DD_REDIS_COMMAND_ARGS=TRUE
 ```
 
-在{{{ custom_key.brand_name }}}链路的详情中会增加一个 Tag：`redis.command.args=key val...`。其中 `key val ...` 对应的就是 redis 语句中的 `jedis.set(key,val)`
+在观测云链路的详情中会增加一个 Tag：`redis.command.args=key val...`。其中 `key val ...` 对应的就是 redis 语句中的 `jedis.set(key,val)`
 
 > 注意：val 中可能涉及到一些私密的信息，请谨慎开启。
 

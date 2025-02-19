@@ -60,7 +60,7 @@ dnsPolicy: ClusterFirstWithHostNet #修改
 ```
 
 -开启 Input
-{{{ custom_key.brand_name }}}接入 Ingress 指标数据，需要 DataKit 开启 prom 插件，在 prom 插件配置中指定 exporter 的 url，在 Kubernetes 集群中采集 Ingress Controller 指标，推荐使用 annotations 增加注解的方式。打开部署 Ingress 的 deploy.yaml 文件，找到上步中修改的 DaemonSet 部分 ，增加 annotations。
+观测云接入 Ingress 指标数据，需要 DataKit 开启 prom 插件，在 prom 插件配置中指定 exporter 的 url，在 Kubernetes 集群中采集 Ingress Controller 指标，推荐使用 annotations 增加注解的方式。打开部署 Ingress 的 deploy.yaml 文件，找到上步中修改的 DaemonSet 部分 ，增加 annotations。
 
 ```yaml
 annotations:
@@ -101,7 +101,7 @@ kubectl apply -f deploy.yaml
 
 ## 指标 {#metric}
 
-如果配置了 `inputs.prom.measurements` ，{{{ custom_key.brand_name }}}采集到的指标需要加上前缀才能与表格匹配。<br />
+如果配置了 `inputs.prom.measurements` ，观测云采集到的指标需要加上前缀才能与表格匹配。<br />
 举例，如下配置了前缀 `nginx*ingress_controller` ，指标集是 `prom_ingress` 。
 
 ```toml
@@ -110,7 +110,7 @@ kubectl apply -f deploy.yaml
               name = "prom_ingress"
 ```
 
-`nginx_ingress_controller_requests` 指标在{{{ custom_key.brand_name }}}上的指标就是 `prom_ingress` 指标集下的 `requests` 指标。
+`nginx_ingress_controller_requests` 指标在观测云上的指标就是 `prom_ingress` 指标集下的 `requests` 指标。
 
 | 指标                                                         | 描述                                                         | 数据类型 | 单位  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- | ----- |

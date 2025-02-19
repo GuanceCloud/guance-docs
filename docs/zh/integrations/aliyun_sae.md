@@ -27,8 +27,8 @@ monitor:
 
 - 应用通过接入 APM 上报 Trace 数据到 DataKit
 - 应用的日志数据可以通过 KafkaMQ 收集后，通过 DataKit 进行消费
-- 应用容器的指标数据利用阿里云的监控 API 并通过 Function 平台（DataFlux.f(x)）进行采集后上报到{{{ custom_key.brand_name }}}
-- DataKit 收集到对应的数据后统一处理并上报到{{{ custom_key.brand_name }}}上
+- 应用容器的指标数据利用阿里云的监控 API 并通过 Function 平台（DataFlux.f(x)）进行采集后上报到观测云
+- DataKit 收集到对应的数据后统一处理并上报到观测云上
 
 需要注意：在 SAE 上部署 DataKit，可以节省带宽。
 
@@ -61,7 +61,7 @@ monitor:
 
 配置项说明：
 
-1. ENV_DATAWAY：必填，上报{{{ custom_key.brand_name }}}的网关地址
+1. ENV_DATAWAY：必填，上报观测云的网关地址
 2. KAFKAMQ： 非必填，kafkamq 采集器配置，具体内容参考：Kafka 采集器配置文件介绍
 3. SPRINGBOOT_LOG_P：非必填，结合 KAFKAMQ 一起使用，日志 pipeline 脚本，用于切割来自 kafka 的日志数据
 4. ENV_GLOBAL_HOST_TAGS： 必填，采集器全局 tag
@@ -83,7 +83,7 @@ monitor:
 
 ### 安装 Func
 
-推荐开通 {{{ custom_key.brand_name }}}集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
+推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
 如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
@@ -93,7 +93,7 @@ monitor:
 
 > 提示：请提前准备好符合要求的阿里云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步 SAE 的监控数据，我们安装对应的采集脚本：「{{{ custom_key.brand_name }}}集成（阿里云-SAE-应用）」(ID：`guance_aliyun_sae_app`) 和 「{{{ custom_key.brand_name }}}集成（阿里云-SAE-应用实例）」(ID：`guance_aliyun_sae_app_instance`)
+同步 SAE 的监控数据，我们安装对应的采集脚本：「观测云集成（阿里云-SAE-应用）」(ID：`guance_aliyun_sae_app`) 和 「观测云集成（阿里云-SAE-应用实例）」(ID：`guance_aliyun_sae_app_instance`)
 
 点击【安装】后，输入相应的参数：阿里云 AK、阿里云账户名。
 
@@ -105,8 +105,8 @@ monitor:
 ### 验证
 
 1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
-2. 在{{{ custom_key.brand_name }}}平台，「基础设施 / 自定义」中查看是否存在资产信息
-3. 在{{{ custom_key.brand_name }}}平台，「指标」查看是否有对应监控数据
+2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
+3. 在观测云平台，「指标」查看是否有对应监控数据
 
 ### 指标介绍
 
@@ -165,7 +165,7 @@ monitor:
 
 ## 日志 {#logging}
 
-阿里云 SAE 提供了 Kakfa 方式将日志输出到{{{ custom_key.brand_name }}}平台，流程如下：
+阿里云 SAE 提供了 Kakfa 方式将日志输出到观测云平台，流程如下：
 
 - SAE 应用开启 Kafka 日志上报
 - DataKit 开启 KafkaMQ 日志采集，采集应用 Kafka 日志上报 Topic

@@ -1,6 +1,6 @@
 ---
 title     : 'AWS Firehose HTTP Endpoint'
-summary   : '将 Firehose 的日志或者指标发送到{{{ custom_key.brand_name }}}'
+summary   : '将 Firehose 的日志或者指标发送到观测云'
 tags      :
   - 'Amazon Firehose'
   - 'HTTP Endpoint'
@@ -19,7 +19,7 @@ tags      :
 ## 将 Kinesis Stream 发送到 Firehose {#stream}
 
 使用 [Amazon Agent 代理](https://github.com/awslabs/amazon-kinesis-agent) 或者使用 [AWS 开发工具包](https://github.com/aws/aws-sdk-java-v2) 将日志发送到 Kinesis Stream 中，都可以通过
-Firehose 将日志发送到{{{ custom_key.brand_name }}}。
+Firehose 将日志发送到观测云。
 
 ### 创建数据流 {creat_stream}
 
@@ -51,7 +51,7 @@ HTTP 终端节点配置注意事项：
 
 ### 后续 Pipeline 处理 {#pipeline}
 
-日志类型的数据发送到{{{ custom_key.brand_name }}}中后，将是明文显示。可以根据事先配置的 `source` 创建 Pipeline 脚本。
+日志类型的数据发送到观测云中后，将是明文显示。可以根据事先配置的 `source` 创建 Pipeline 脚本。
 
 
 ## CloudWatch 日志数据发送到 Firehose {#cloudwatch-log}

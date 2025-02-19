@@ -40,7 +40,7 @@ DataKit 支持手动更新和自动更新两种方式。
     Online version available: 1.2.9, commit 9f5ac898be (release at 2022-03-10 12:03:12)
     
     Upgrade:
-    DK_UPGRADE=1 bash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install.sh)"
+    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
 
 === "Windows"
@@ -64,7 +64,7 @@ DataKit 支持手动更新和自动更新两种方式。
     $env:DK_UPGRADE="1";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://{{{ custom_key.static_domain }}}/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
@@ -102,7 +102,7 @@ DataKit 支持手动更新和自动更新两种方式。
     ```shell hl_lines="2"
     DK_UPGRADE=1 \
       DK_UPGRADE_MANAGER=1 \
-      bash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install.sh)"
+      bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
 
 === "离线更新"
@@ -115,7 +115,7 @@ DataKit 支持手动更新和自动更新两种方式。
     DK_UPGRADE=1 \
       DK_UPGRADE_MANAGER=1 \
       DK_INSTALLER_BASE_URL="http://my.static.com/datakit" \
-      bash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install.sh)"
+      bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
 
 ???+ attention
@@ -126,7 +126,7 @@ DataKit 支持手动更新和自动更新两种方式。
     DK_UPGRADE=1 \
       DK_UPGRADE_MANAGER=1 \
       DK_UPGRADE_LISTEN=0.0.0.0:19542 \
-      bash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install.sh)"
+      bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
 
 ---
@@ -239,7 +239,7 @@ ReleasedInputs: checked
 === "Linux/macOS"
 
     ```shell
-    DK_UPGRADE=1 bash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install-3.4.5.sh)"
+    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/datakit/install-3.4.5.sh)"
     ```
 === "Windows"
 
@@ -248,7 +248,7 @@ ReleasedInputs: checked
     $env:DK_UPGRADE="1";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://{{{ custom_key.static_domain }}}/datakit/install-3.4.5.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.guance.com/datakit/install-3.4.5.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
