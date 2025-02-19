@@ -43,6 +43,10 @@ icon: zy/release-notes
 
 [事件](../events/index.md) `df_meta` 内将不再保留 `alert_info` 相关信息记录。此前依赖该信息实现通知对象获取的用户，请切换至使用新增的 `df_alert_info`（事件告警通知）、`df_is_silent`（是否静默）、`df_sent_target_types`（事件通知对象类型）3 个字段来完成相应功能。
 
+可能影响到的功能场景:
+
+1. 通过 OpenAPI 获取事件对接外部系统的自定义使用场景
+2. 通过 Webhook 通知对象转发事件到外部系统的自定义使用场景
 
 ### 功能更新 {#feature0116}
 
