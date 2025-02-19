@@ -1682,7 +1682,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 ### 手动上传
 
-[Sourcemap 上传](../../integrations/rum.md#sourcemap)
+[Sourcemap 上传](../sourcemap/set-sourcemap.md#uplo)
 
 ## Widget Extension 数据采集
 
@@ -1703,10 +1703,10 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 | **字段**                   | **类型**  | **必须**           | **说明**                                       |
 | -------------------------- | --------- | ------------------ | ---------------------------------------------- |
 | groupIdentifier            | NSString  | 是                 | 文件共享 Group Identifier                      |
-| enableSDKDebugLog          | BOOL      | 否（默认NO）       | 设置是否允许 SDK 打印 Debug 日志               |
-| enableTrackAppCrash        | BOOL      | 否（默认NO）       | 设置是否需要采集崩溃日志                       |
-| enableRUMAutoTraceResource | BOOL      | 否（默认NO）       | 设置是否追踪用户网络请求 (仅作用于native http) |
-| enableTracerAutoTrace      | BOOL      | 否（默认NO）       | 设置是否开启自动 http 链路追踪                 |
+| enableSDKDebugLog          | BOOL      | 否（默认 NO）       | 设置是否允许 SDK 打印 Debug 日志               |
+| enableTrackAppCrash        | BOOL      | 否（默认 NO）       | 设置是否需要采集崩溃日志                       |
+| enableRUMAutoTraceResource | BOOL      | 否（默认 NO）       | 设置是否追踪用户网络请求 (仅作用于native http) |
+| enableTracerAutoTrace      | BOOL      | 否（默认 NO）       | 设置是否开启自动 http 链路追踪                 |
 | memoryMaxCount             | NSInteger | 否（默认 1000 条） | 数据保存在 Widget Extension 数量最大值         |
 
 Widget Extension SDK 使用示例：
