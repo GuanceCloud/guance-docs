@@ -24,7 +24,6 @@
 
 您可通过以下操作来管理事件列表下的所有数据。
 
-![](../img/5.event_7.gif)
 
 1. 时间控件：事件列默认展示最近 15 分钟的数据，您也可以自定义数据展示的[时间范围](../../getting-started/function-details/explorer-search.md#time)。
 
@@ -48,6 +47,8 @@
 
 ## 更多阅读
 
+<font size=2>
+
 <div class="grid cards" markdown>
 
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 事件详情</font>](event-details.md)
@@ -60,3 +61,5 @@
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 查看器的强大之处</font>](../../getting-started/function-details/explorer-search.md)
 
 </div>
+
+</font>

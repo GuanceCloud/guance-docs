@@ -207,6 +207,11 @@ UI 模式下支持选择聚合方式返回结果值。
 
 观测云支持通过书写 PromQL 查询获取数据。
 
+| 查询方式      | 说明        |
+| ----------- | -------- |
+| Range 查询      | 在一定时间范围内运行查询        |
+| Instant 查询      | 针对单个时间点运行查询        |
+
 PromQL 添加后默认形式为文本框输入。在此输入框，既可以输入 PromQL 简单查询也可以输入表达式查询。
 
 > 点击了解 [DQL 与其它几种查询语言的对比](../../dql/dql-vs-others.md#promql)；或前往 [PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/)。
