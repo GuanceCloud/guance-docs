@@ -39,9 +39,11 @@
 ```yaml
    - name: ENV_DATAWAY
      value: https://openway.guance.com?token=tkn_a624xxxxxxxxxxxxxxxxxxxxxxxx74 ## 此处填上 dataway 真实地址
-   - name: ENV_INPUT_DISK_EXTRA_DEVICE
-     value : 10.100.14.144:/nfsdata            ## 修改成实际的nfs 目录
-   image: pubrepo.jiagouyun.com/datakit/datakit:1.5.6     ## 修改成最新镜像版本
+   - name: ENV_GLOBAL_TAGS
+     value: host=__datakit_hostname,host_ip=__datakit_ip,guance_site=guance,cluster_name_k8s=guance # 面板变量根据自己实际情况修改
+   - name: ENV_GLOBAL_ELECTION_TAGS
+     value: guance_site=guance,cluster_name_k8s=guance     # 根据自己面板变量实际情况修改
+   image: pubrepo.jiagouyun.com/datakit/datakit:1.65.2     ## 修改成最新镜像版本
 ```
 
 3）修改 datakit.yaml 中关于`ConfigMap`的相关配置
@@ -261,45 +263,14 @@ spec:
 
 #### 使用 Pipeline 切割日志
 
-=== "方法一"
-    **界面上一键导入 Pipeline 模板**
+**界面上一键导入 Pipeline 模板**
 
-    [Pipeline下载地址](Pipelines 模板.json)
-    
-    ![pipeline001](img/self-pipeline001.jpg)
+[Pipeline下载地址](Pipelines 模板.json)
 
-=== "方法二"
-    **通过修改 datakit 挂载，加上服务的 Annotations 配置，开启日志切割**
-    
+![pipeline001](img/self-pipeline001.jpg)
 
-    1）在对应的 datakit.yaml 下用`ConfigMap`的方式挂载<pipeline_name>.p文件到指定目录 （同 DataKit 部署中的一样)
-    
-    ```yaml
-            - mountPath: /usr/local/datakit/pipeline/kodo-x.p
-              name: datakit-conf
-              subPath: kodo-inner.p
-    ```
-    
-    2）修改对应服务的 yaml 文件，加入以下的 Annotations 配置
-    
-      ```yaml
-      spec:
-        template:
-          metadata:
-            annotations:
-              datakit/logs: |-
-                [
-                            {
-                              "source": "kodo",             ## 页面上显示对应的source
-                              "service": "kodo",            ## 页面上显示对应的service
-                              "pipeline": "kodo.p"          ## 默认会去datakit下去找对应的pipeline文件
-                            }
-                          ]
-      ```
-    
-    3）开启后的状态
-    
-      ![image-20221129165203967](https://docs.guance.com/logs/img/12.pipeline_4.png)
+
+   
 
 ### 配置应用性能监测
 
