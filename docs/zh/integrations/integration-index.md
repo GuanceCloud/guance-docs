@@ -1372,6 +1372,36 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../aws_billing"
+  				data-tags="AWS"
+  				data-name="AWS 云账单"
+  				data-summary="采集 AWS 云账单信息"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/aws/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">AWS 云账单</div>
+                            <div title="采集 AWS 云账单信息" class="fth-integration-desc">采集 AWS 云账单信息</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../aws_cloudfront"
   				data-tags="AWS"
   				data-name="AWS CloudFront"
@@ -6900,7 +6930,7 @@ icon: zy/integrations
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/newrelic/icon.png"
+									src="..//icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
@@ -9487,6 +9517,36 @@ icon: zy/integrations
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">火山引擎 ECS</div>
                             <div title="火山引擎 ECS 的展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS，这些指标反映了ECS实例的计算、内存、网络和存储性能表现。" class="fth-integration-desc">火山引擎 ECS 的展示指标包括CPU利用率、内存利用率、网络带宽和磁盘IOPS，这些指标反映了ECS实例的计算、内存、网络和存储性能表现。</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../volcengine_eip"
+  				data-tags="火山引擎"
+  				data-name="火山引擎 EIP"
+  				data-summary="采集火山引擎 EIP 指标数据"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/volcengine_eip/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">火山引擎 EIP</div>
+                            <div title="采集火山引擎 EIP 指标数据" class="fth-integration-desc">采集火山引擎 EIP 指标数据</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>

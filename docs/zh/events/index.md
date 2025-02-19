@@ -55,8 +55,8 @@ icon: zy/events
 | `df_status`            | 事件状态。包括 ok, info, warning, error, critical, nodata, nodata_ok, nodata_as_ok, manual_ok |
 | `df_sub_status`        | 事件细节状态（作为 `df_status` 的补充）                        |
 | `df_event_id`          | 事件唯一 ID                                                  |
-| `df_title`             | 标题                                                         |
-| `df_message`           | 描述                                                         |
+| `df_title`             | 标题                            |
+| `df_message`           | 描述                                 |
 
 
 - 当 `df_source = monitor` 时，额外存在以下字段：
@@ -72,14 +72,41 @@ icon: zy/events
 | `df_monitor_checker_id`        | 监控器 ID                                                    |
 | `df_monitor_checker_name`      | 监控器名称                                                   |
 | `df_monitor_checker_value`     | 事件产生时的异常值                                           |
+| `df_monitor_checker_value_dumps`     | 事件产生时的异常值（JSON 序列化）<br />方便使用方通过反序列化获取原始值                                           |
+| `df_monitor_checker_value_with_unit`     | 事件产生时的异常值（最优单位）            |
 | `df_monitor_checker_ref`       | 监控器关联，只和检测配置的 DQL 语句关联的字段              |
 | `df_monitor_checker_event_ref` | 监控器事件关联，只和 `df_dimension_tags` 和 `df_monitor_checker_id` 关联的字段 |
 | `df_monitor_ref_key`           | 自建巡检的关联 Key，用于和自建巡检对应                       |
+| `df_fault_id`     | 本轮故障 ID，取值为首次故障事件的 `df_event_id`                      |
+| `df_fault_status`     | 本轮故障状态，为 `df_status`、`df_sub_status` 的冗余字段，标记是否为 OK，取值如下：<br />ok：正常<br />fault：故障          |
+| `df_fault_start_time`     | 本轮故障开始的时间。               |
+| `df_fault_duration`     | 本轮故障的持续时间，单位秒（从 `df_issue_start_time` 开始到本事件）          |
 | `df_event_detail`              | 事件检测详情                                                 |
+| `df_event_report`              | 智能监控报告数据                                       |
 | `df_user_id`                   | 手工恢复时，操作者用户 ID                                    |
 | `df_user_name`                 | 手工恢复时，操作者用户名                                     |
 | `df_user_email`                | 手工恢复时，操作者用户邮箱                                   |
-| `df_exec_mode`                 | 执行模式，可选值。<br><li>自动触发（即定时执行）`crontab` <br><li> 异步调用（即手工执行）`async` |
+| `df_crontab_exec_mode`                 | 执行模式，可选值。<br><li>自动触发（即定时执行）`crontab` <br><li> 异步调用（即手工执行）`manual` |
+| `df_site_name`                | 当前观测云站点名                                   |
+| `df_workspace_name`                | 所属工作空间名                                   |
+| `df_workspace_uuid`                | 所属工作空间 UUID                             |
+| `df_label`                | 监控器标签，在监控器中指定的标签会存入此字段 UUID                             |
+| `df_alert_policy_ids`                | 告警策略 ID（列表）                            |
+| `df_alert_policy_names`                | 告警策略名称（列表）                             |
+| `df_matched_alert_policy_rules`                | 告警策略名称及所有匹配的规则名（列表）                             |
+| `df_channels`                | 事件所属的异常追踪频道列表                             |
+| `df_at_accounts`                | @账号信息                             |
+| `df_at_accounts_nodata`                | @账号信息（数据断档）                             |
+| `df_message_at_accounts`                | 故障告警消息中的 `@用户` 详细信息列表                             |
+| `df_nodata_message_at_accounts`                | 数据断档告警消息中的 `@用户` 详细信息列表       |
+| `df_workspace_declaration`                | 工作空间的属性声明       |
+| `df_matched_alert_members`                | 选择按成员发送时，所有匹配的告警通知成员信息列表       |
+| `df_matched_alert_upgrade_members`                | 选择按成员发送时，所有匹配的告警升级通知成员信息列表       |
+| `df_matched_alert_member_groups`                | 选择按成员发送时，所有匹配的成员组名       |
+| `df_charts`                | 当监控器配置中添加图表后，且本告警事件需要发送消息时，追加的图表信息       |
+| `df_alert_info`                | 记录告警通知信息       |
+| `df_is_silent`                | 事件是否被静默，取值为字符串 `"true"` / `"false"`       |
+| `df_sent_target_types`                | 本事件已发送的，不重复的告警通知对象类型列表       |
 
 - 当 `df_source = audit` 时，额外存在以下字段：
 
@@ -99,4 +126,16 @@ icon: zy/events
 | `df_user_email` | 创建者用户邮箱                   |
 | {其他字段}      | 根据用户操作而产生事件的其他字段 |
 
+<!--
+## 更多阅读
 
+<font size=2>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **事件数据分流实践：基于 Dataway Sink 的实现方案**</font>](../deployment/dataway-sink.md)
+
+</div>
+
+</font>
+-->
