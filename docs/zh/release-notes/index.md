@@ -39,6 +39,11 @@ icon: zy/release-notes
 
 ## 2025 年 2 月 19 日
 
+### Breaking Changes {#breakingchanges0219}
+
+事件 `df_meta` 内将不再保留 `alert_info` 相关信息记录。此前依赖该信息实现通知对象获取的用户，请切换至使用新增的 `df_alert_info`（事件告警通知）、`df_is_silent`（是否静默）、`df_sent_target_types`（事件通知对象类型）3 个字段来完成相应功能。
+
+
 ### 功能更新 {#feature0116}
 
 
@@ -46,7 +51,7 @@ icon: zy/release-notes
 
 新增查询类型：Instant Query，即针对单个时间点进行查询。
 
-**注意**：监控器中的 PromQL 查询调整为 Instant Query，以便获取查询范围内的精准结果值。
+**注意**：监控器、生成指标中的 PromQL 查询调整为 Instant Query，以便获取查询范围内的精准结果值。
 
 
 #### 监控
@@ -64,8 +69,7 @@ icon: zy/release-notes
 
 #### 事件
 
-1. 事件详情页：新增支持绑定[内置视图](../events/event-explorer/event-details.md#inner_view)；
-2. 对事件 `df_meta` 字段作精简处理，仅保留明确命中规则和通知对象信息记录，不再保留告警策略匹配的相关信息。
+事件详情页：新增支持绑定[内置视图](../events/event-explorer/event-details.md#inner_view)；
 
 
 #### 异常追踪
@@ -80,6 +84,7 @@ icon: zy/release-notes
 
 1. [图表链接](../scene/visual-chart/chart-link.md)：新增“查看主机监控视图”，默认关闭。
 2. 查看器：支持删除固定 `name` 列，用户可自定义列表显示。
+3. 云账单分析视图：支持查看账单详情。
 
 #### 管理
 
@@ -89,11 +94,34 @@ icon: zy/release-notes
 
 生成指标：指标名输入不再支持使用 `-` 中划线。
 
+#### 集成
+
+集成卡片新增描述信息。
 
 ### 部署版更新 {#deployment0219}
 
 1. 模板管理：支持上传基础设施查看器模板；
-2. 索引配置：弃用“备份日志”项。
+2. 索引配置：弃用“备份日志”项；可在“编辑工作空间 > 数据存储策略 > 数据转发-默认存储”处配置对应存储策略。
+
+### 新增集成 {#inte0219}
+
+- 新增 [Milvus](../integrations/milvus.md)；
+- 新增 [火山云公网 IP](../integrations/volcengine_eip.md)；
+- 新增 [opentelemetry-python](../integrations/opentelemetry-python.md)；
+- 新增 [openLIT 集成](../integrations/openlit.md)；
+- 更新 k8s\es\mongodb\rabbitmq\oracle\coredns\sqlserver 中英文监控器&视图。
+
+### Bug 修复 {#bug0219}
+
+1. 修复了 AI 聚合通知消息中特殊字符引起结果异常的问题；
+2. 修复了 Servicemap 部署版适配的问题；
+3. 修复了组合图表无法配置已隐藏的视图变量的问题；
+4. 修复了异常追踪 > 分析看板的"未恢复问题列表"显示错乱的问题；
+5. 修复了用户访问监测分析看板中最受欢迎页面的 P75 结果和 DQL 查询结果不一致的问题；
+6. 修复了用户访问监测 > 查看器搜索框异常的问题；
+7. 修复了场景 > 对象映射中，使用资源目录进行字段映射，看板中同一字段只有部分生效的问题；
+8. 修复了监控器 > 事件内容 UI 显示的问题；
+9. 修复了事件查看器未恢复事件快捷筛选结果不满足预期的问题。
 
 ## 2025 年 1 月 16 日
 

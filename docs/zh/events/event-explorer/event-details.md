@@ -149,4 +149,4 @@
 
 观测云支持设置绑定或者删除内置视图（用户视图）到事件详情页面。点击绑定内置视图，即可为当前事件详情页添加新的视图。
 
-<img src="../img/event-view.png" width="70%" >
+<img src="../../img/event-view.png" width="70%" >
