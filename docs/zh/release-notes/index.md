@@ -55,8 +55,6 @@ icon: zy/release-notes
 
 新增查询类型：Instant Query，即针对单个时间点进行查询。
 
-**注意**：监控器、生成指标中的 PromQL 查询调整为 Instant Query，以便获取查询范围内的精准结果值。
-
 
 #### 监控
 
