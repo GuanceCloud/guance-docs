@@ -155,10 +155,10 @@ DCA web 是 DCA 客户端的 web 版本，它通过部署一个后端服务来�
 
 | 环境变量名称            | 类型   | 默认值                           | 说明                                                                                            |
 | ---------:              | ----:  | ---:                             | ------                                                                                          |
-| `DCA_CONSOLE_API_URL`        | string | `https://console-api.guance.com` | {{{ custom_key.brand_name }}} console API 地址                                                                         |
-| `DCA_CONSOLE_WEB_URL`        | string | `https://console.guance.com` | {{{ custom_key.brand_name }}}平台地址                                                                         |
+| `DCA_CONSOLE_API_URL`        | string | `https://console-api.guance.com` | 观测云 console API 地址，参考 [节点地址](dca.md#node-address)                                                                        |
+| `DCA_CONSOLE_WEB_URL`        | string | `https://console.guance.com` | 观测云平台地址，参考 [节点地址](dca.md#node-address)                                                                         |
 | `DCA_STATIC_BASE_URL`        | string | `https://{{{ custom_key.static_domain }}}` | 静态文件服务器地址                                                                         |
-| `DCA_CONSOLE_PROXY`     | string | 无                               | {{{ custom_key.brand_name }}} API 代理，不代理 DataKit 接口                                                            |
+| `DCA_CONSOLE_PROXY`     | string | 无                               | 观测云 API 代理，不代理 DataKit 接口                                                            |
 | `DCA_LOG_LEVEL`         | string | INFO                             | 日志等级，取值为 debug/info/warn/error                  |
 | `DCA_LOG_PATH`         | string | INFO                             | 日志路径，如果需要输出到 stdout，则设置为 `stdout`                  |
 | `DCA_TLS_ENABLE`         | string |                              | 是否开启 TLS，设置该值表示开启                  |
@@ -170,6 +170,20 @@ DCA web 是 DCA 客户端的 web 版本，它通过部署一个后端服务来�
 ```shell
 docker run -d --name dca -p 8000:80 -e DCA_LOG_PATH=stdout -e DCA_LOG_LEVEL=WARN pubrepo.guance.com/tools/dca
 ```
+
+### 节点地址 {#node-address}
+
+| 部署类型  | 节点名       | `DCA_CONSOLE_API_URL`| `DCA_CONSOLE_WEB_URL`|
+|-------|-----------|--------------------------------| --------------------------------|
+| SaaS 部署 | 中国区 1（杭州）    | `https://console-api.guance.com`    | `https://console.guance.com` |
+| SaaS 部署 | 中国区 2（宁夏）    | `https://aws-console-api.guance.com`| `https://aws-console.guance.com` |
+| SaaS 部署 | 中国区 4（广州）    | `https://cn4-console-api.guance.com`| `https://cn4-console.guance.com` |
+| SaaS 部署 | 中国区 6（香港）    | `https://cn6-console-api.guance.com`| `https://cn6-console.guance.com` |
+| SaaS 部署 | 海外区 1（俄勒冈）  | `https://us1-console-api.guance.com`| `https://us1-console.guance.com` |
+| SaaS 部署 | 欧洲区 1（法兰克福）| `https://eu1-console-api.guance.com`| `https://eu1-console.guance.com` |
+| SaaS 部署 | 亚太区 1（新加坡）  | `https://ap1-console-api.guance.com`| `https://ap1-console.guance.com` |
+| 私有部署版 | 私有部署版     |实际部署地址|实际部署地址 |
+
 
 ### 登录 DCA {#login}
 
