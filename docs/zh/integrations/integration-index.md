@@ -3742,36 +3742,6 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
-  				data-href="../exchang"
-  				data-tags=""
-  				data-name="Exchange"
-  				data-summary="采集 Exchange 相关指标信息"
-  			>
-  				<div class="fth-integration-list-card">
-  					<div class="integration-list-item-left">
-  						<img
-									src="../icon/exchange/icon.png"
-									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
-									alt=""
-  						/>
-  						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Exchange</div>
-                            <div title="采集 Exchange 相关指标信息" class="fth-integration-desc">采集 Exchange 相关指标信息</div>
-                        </div>
-                        <div class="fth-integration-mask-image"></div>
-  					</div>
-  					<div class="integration-list-item-right">
-  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  							<path
-  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
-  							></path>
-  						</svg>
-  					</div>
-  				</div>
-  			</div>
-  		
-  			<div
-  				class="fth-integration-list-item"
   				data-href="../exchange"
   				data-tags=""
   				data-name="Exchange"
@@ -8092,6 +8062,36 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../pyroscope"
+  				data-tags="PYROSCOPE,PROFILE"
+  				data-name="Pyroscope"
+  				data-summary="Grafana Pyroscope 应用程序性能采集器"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/profiling/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Pyroscope</div>
+                            <div title="Grafana Pyroscope 应用程序性能采集器" class="fth-integration-desc">Grafana Pyroscope 应用程序性能采集器</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../pythond"
   				data-tags="PYTHON"
   				data-name="Pythond"
@@ -9817,6 +9817,36 @@ icon: zy/integrations
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Windows 事件</div>
                             <div title="采集 Windows 中的事件日志" class="fth-integration-desc">采集 Windows 中的事件日志</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../xfsquota"
+  				data-tags=""
+  				data-name="xfsquota"
+  				data-summary="采集 xfs 文件系统的限额信息"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="..//icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">xfsquota</div>
+                            <div title="采集 xfs 文件系统的限额信息" class="fth-integration-desc">采集 xfs 文件系统的限额信息</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
