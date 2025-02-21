@@ -20,3 +20,16 @@ kubectl delete pod -n forethought-kodo
 select * from main_es_instance;
 ```
 如果该字段的值不是guancedb，请通过sql修改为guancedb。
+
+
+## 3 指标查询报错
+
+问题描述：指标查询报 `query error: the query is too broad or the time range is too long, resulting in too many rows`
+
+问题解决：
+
+ 添加或修改 GuanceDB for metrics select 组件启动参数 `-search.maxQueryUniqueTimeseries`
+
+ ```
+--search.maxQueryUniqueTimeseries=3000000
+ ```
