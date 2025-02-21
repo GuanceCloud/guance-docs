@@ -105,7 +105,7 @@ interface Options {
   /**
    * 设置相对路径应计算的目录。sourcemaps 上传的相对路径应该要包含在 产生 error 的路径内，因此
    * 这个参数的意义在于控制上传的相对目录
-   * 默认为 `process.cwd()`.
+   * 默认 执行目录到搜索目录相对路径 path.relative(process.cwd(), filepath)
    */
   root?: string
   /**
@@ -163,7 +163,7 @@ module.exports = {
 
 ### `filepaths` 与 `root` 配置注意事项：
 
-1. 在{{{ custom_key.brand_name }}}控制台有一个错误的其中一行 `at SVGGElement.<anonymous> @ http://localhost:8000/js/chunk-vendors.732b3b98.js:1:93427`
+1. 在观测云控制台有一个错误的其中一行 `at SVGGElement.<anonymous> @ http://localhost:8000/js/chunk-vendors.732b3b98.js:1:93427`
 
 2. 引起错误产生的文件相对路径为 `js/chunk-vendors.732b3b98.js`
 
@@ -171,6 +171,6 @@ module.exports = {
 
 4. 插件配置 `filepaths: ['dist']`
 
-5. 如果在不配置 `root` 的情况下，默认上传到{{{ custom_key.brand_name }}}服务端的 SourceMap 文件路径 `dist/js/**.js.map`
+5. 如果在不配置 `root` 的情况下，默认值为 `dist/`,最后上传到观测云服务端的 sourcemap 文件路径 `dist/js/**.js.map`
 
-6. 这种情况下，就会出现**上传文件的目录路径** 与**产生错误的路径**不匹配的情况，所以这时候应该添加配置 `root:'dist/'`，保证上传的目录路径为 `js/**.js.map`。
+6. 这种情况下，就会出现**上传文件的目录路径** 与**产生错误的路径**不匹配的情况，所以这时候应该添加配置 `root:'/'` 或者 `root: ''`, 保证上传的目录路径为 `js/**.js.map`。
