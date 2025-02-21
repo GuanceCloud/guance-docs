@@ -10,19 +10,53 @@
 
 DataKit 目前支持采集 `DDTrace`、`Apache Jaeger`、`OpenTelemetry`、`Skywalking`、`Zipkin` 等第三方的 Tracing 数据。
 
-采集数据前，您需要：
+
+
+### 采集前提
 
 1. [安装 DataKit](../../datakit/datakit-install.md)；
 
-2. 安装完成后需要开启链路采集器的配置文件。进入**{{{ custom_key.brand_name }}}控制台 > 集成**页面，输入搜索**应用性能监测**，即可查看所有链路数据采集的相关采集器，打开采集器的配置说明文档，按照文档中的步骤进行配置即可。
+2. 配置所有链路数据采集的相关采集器
 
-或者您可以直接点击以下链接查看对应的采集器配置：
 
-|                          采集器配置                          |                                                              |                                                              |                                                              |                                                              |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [DDTrace](../../integrations/ddtrace.md){ .md-button .md-button--primary } | [Skywalking](../../integrations/skywalking.md){ .md-button .md-button--primary } | [OpenTelemetry](../../integrations/opentelemetry.md){ .md-button .md-button--primary } | [Zipkin](../../integrations/zipkin.md){ .md-button .md-button--primary } | [Jaeger](../../integrations/jaeger.md){ .md-button .md-button--primary } |
+#### 采集器配置   
 
-### 数据采集步骤
+1. [DDTrace](../../integrations/ddtrace.md) 
+
+    - [DDTrace C++](../../integrations/ddtrace-cpp.md)
+    - [DDTrace Golang](../../integrations/ddtrace-golang.md)
+    - [DDTrace Java](../../integrations/ddtrace-java.md)   
+    - [JMX Fetch 指标](../../integrations/ddtrace-jmxfetch.md)          
+    - [DDTrace NodeJS](../../integrations/ddtrace-nodejs.md)           
+    - [DDTrace PHP](../../integrations/ddtrace-php.md)          
+    - [DDTrace Python](../../integrations/ddtrace-python.md)        
+    - [DDTrace Ruby](../../integrations/ddtrace-ruby.md)  
+    - [DDTrace 扩展](../../integrations/ddtrace-ext-java.md)         
+    - [自动注入 DDTrace-Java Agent](../../integrations/ddtrace-attach.md)                           
+
+2. [OpenTelemetry](../../integrations/opentelemetry.md)      
+    - [OpenTelemetry Golang](../../integrations/opentelemetry-go.md)           
+    - [OpenTelemetry Java](../../integrations/opentelemetry-java.md)         
+    - [OpenTelemetry Python](../../integrations/opentelemetry-python.md)          
+    - [OpenTelemetry 扩展](../../integrations/otel-ext-changelog.md)         
+
+
+3. [Pinpoint](../../integrations/pinpoint.md)       
+
+    - [PinPoint Golang](../../integrations/pinpoint-go.md)          
+    - [PinPoint Java](../../integrations/pinpoint-java.md)                            
+
+4. [Skywalking](../../integrations/skywalking.md)    
+5. [Jaeger](../../integrations/jaeger.md)     
+6. [Zipkin](../../integrations/zipkin.md)    
+7. [New Relic](../../integrations/newrelic.md)    
+8. [eBPF Tracing](../../integrations/ebpftrace.md)     
+9. [OpenLIT](../../integrations/openlit.md)     
+10. [CAT](../../integrations/cat.md)     
+11. [Tracing Propagator](../../integrations/tracing-propagator.md)     
+
+
+### 采集步骤
 
 1. [安装主机 DataKit](../../datakit/datakit-install.md) 或者 [安装 Kubernetes DataKit](../../datakit/datakit-daemonset-deploy.md)；  
 2. 在 DataKit 中开启链路数据接收服务；  
