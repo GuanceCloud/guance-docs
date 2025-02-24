@@ -126,16 +126,15 @@ icon: zy/events
 | `df_user_email` | 创建者用户邮箱                   |
 | {其他字段}      | 根据用户操作而产生事件的其他字段 |
 
-<!--
+
 ## 更多阅读
 
 <font size=2>
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **事件数据分流实践：基于 Dataway Sink 的实现方案**</font>](../deployment/dataway-sink.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **事件数据分流实践：基于 Dataway Sink 的实现方案**</font>](./event_data_sharding.md)
 
 </div>
 
 </font>
--->

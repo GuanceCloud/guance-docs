@@ -16,45 +16,100 @@ DataKit 目前支持采集 `DDTrace`、`Apache Jaeger`、`OpenTelemetry`、`Skyw
 
 1. [安装 DataKit](../../datakit/datakit-install.md)；
 
-2. 配置所有链路数据采集的相关采集器
+2. 配置所有链路数据采集的相关采集器。
 
-
+<!--
 #### 采集器配置   
 
-1. [DDTrace](../../integrations/ddtrace.md) 
-
-    - [DDTrace C++](../../integrations/ddtrace-cpp.md)
-    - [DDTrace Golang](../../integrations/ddtrace-golang.md)
-    - [DDTrace Java](../../integrations/ddtrace-java.md)   
-    - [JMX Fetch 指标](../../integrations/ddtrace-jmxfetch.md)          
-    - [DDTrace NodeJS](../../integrations/ddtrace-nodejs.md)           
-    - [DDTrace PHP](../../integrations/ddtrace-php.md)          
-    - [DDTrace Python](../../integrations/ddtrace-python.md)        
-    - [DDTrace Ruby](../../integrations/ddtrace-ruby.md)  
-    - [DDTrace 扩展](../../integrations/ddtrace-ext-java.md)         
-    - [自动注入 DDTrace-Java Agent](../../integrations/ddtrace-attach.md)                           
-
-2. [OpenTelemetry](../../integrations/opentelemetry.md)      
-    - [OpenTelemetry Golang](../../integrations/opentelemetry-go.md)           
-    - [OpenTelemetry Java](../../integrations/opentelemetry-java.md)         
-    - [OpenTelemetry Python](../../integrations/opentelemetry-python.md)          
-    - [OpenTelemetry 扩展](../../integrations/otel-ext-changelog.md)         
+#### [DDTrace](../../integrations/ddtrace.md) 
 
 
-3. [Pinpoint](../../integrations/pinpoint.md)       
+<div class="grid cards" markdown>
 
-    - [PinPoint Golang](../../integrations/pinpoint-go.md)          
-    - [PinPoint Java](../../integrations/pinpoint-java.md)                            
+-   :fontawesome-brands-python: __[Python](../../integrations/ddtrace-python.md)__
 
-4. [Skywalking](../../integrations/skywalking.md)    
-5. [Jaeger](../../integrations/jaeger.md)     
-6. [Zipkin](../../integrations/zipkin.md)    
-7. [New Relic](../../integrations/newrelic.md)    
-8. [eBPF Tracing](../../integrations/ebpftrace.md)     
-9. [OpenLIT](../../integrations/openlit.md)     
-10. [CAT](../../integrations/cat.md)     
-11. [Tracing Propagator](../../integrations/tracing-propagator.md)     
 
+
+-   :material-language-ruby: __[Ruby](../../integrations/ddtrace-ruby.md)__
+
+
+
+-   :fontawesome-brands-golang: __[Golang](../../integrations/ddtrace-golang.md)__
+
+
+
+-   :material-language-php: __[PHP](../../integrations/ddtrace-php.md)__
+
+
+
+-   :fontawesome-brands-node-js: __[NodeJS](../../integrations/ddtrace-nodejs.md)__
+
+
+
+-   __[C++](../../integrations/ddtrace-cpp.md)__
+
+
+
+-   :material-language-java: __[Java](../../integrations/pinpoint-java.md)__
+
+    --- 
+    
+    该代码语言中还包含以下信息：
+
+    1. [DDTrace-Java agent](../../integrations/ddtrace-attach.md)
+
+    2. [DDTrace JMX](../../integrations/ddtrace-jmxfetch.md)
+    
+    3. [扩展功能](../../integrations/ddtrace-ext-java.md)
+
+
+</div>
+
+
+#### [OpenTelemetry](../../integrations/opentelemetry.md)      
+    
+
+<div class="grid cards" markdown>
+
+
+-   :octicons-history-16: __[更新历史](../../integrations/otel-ext-changelog.md)__
+
+
+-   :fontawesome-brands-python: __[Python](../../integrations/opentelemetry-python.md)__
+
+
+
+-   :material-language-ruby: __[Java](../../integrations/opentelemetry-java.md)__
+
+
+
+-   :fontawesome-brands-golang: __[Golang](../../integrations/opentelemetry-go.md)__
+    
+</div>
+
+
+#### [Pinpoint](../../integrations/pinpoint.md)       
+
+<div class="grid cards" markdown>
+
+-   :material-language-ruby: __[Java](../../integrations/pinpoint-java.md)__
+
+
+-   :fontawesome-brands-golang: __[Golang](../../integrations/pinpoint-go.md)__
+    
+</div>
+    
+                           
+
+#### [Skywalking](../../integrations/skywalking.md)    
+#### [Jaeger](../../integrations/jaeger.md)     
+#### [Zipkin](../../integrations/zipkin.md)    
+#### [New Relic](../../integrations/newrelic.md)    
+#### [eBPF Tracing](../../integrations/ebpftrace.md)     
+#### [OpenLIT](../../integrations/openlit.md)     
+#### [CAT](../../integrations/cat.md)     
+#### [Tracing Propagator](../../integrations/tracing-propagator.md)     
+-->
 
 ### 采集步骤
 
