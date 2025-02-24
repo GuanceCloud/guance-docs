@@ -32,7 +32,7 @@
 |:---------------:|:--------:|:--------:|:-------------------------------------------:|
 |      name       |  string  |    N     |                issue标题名称                |
 |      level      | string  |    N    |        issue等级 对应配置等级uuid        |
-|      statusType      | integer  |    N     |        issue状态, 10: Open, 20: Resolved, 30: Pending        |
+|      statusType      | integer  |    N     |        issue状态, 10: Open, 15: Working, 20: Resolved, 25: Closed, 30: Pending        |
 |   decription    |  string  |    N     |                issue描述信息                |
 | attachmentUuids |  array   |    N     |              附件上传列表uuid, 需先通过 /api/v1/attachment/upload 接口进行上传          |
 |     extend      |   json   |    N    |                  扩展字段，默认传{}                  |

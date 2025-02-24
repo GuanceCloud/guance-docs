@@ -6,13 +6,13 @@ icon: zy/open-api
 
 ---
 
-{{{ custom_key.brand_name }}} Open API 是一个简化的 HTTP REST API。
+观测云 Open API 是一个简化的 HTTP REST API。
 
 * 只有 GET / POST 请求
 * 使用面向资源的 URL 调用 API
 * 使用状态码指示请求成功或失败
 * 所有请求返回 JSON 结构
-* Open API 以编程方式访问{{{ custom_key.brand_name }}}平台
+* Open API 以编程方式访问观测云平台
 
 ## 支持Endpoint
 
