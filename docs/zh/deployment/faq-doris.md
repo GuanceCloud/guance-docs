@@ -110,3 +110,23 @@ show backends;
 # TabletNum 和 DataUsedCapacity 减少为0,则说明数据迁移完成
 ```
 回收下线的节点机器。
+
+## 7 点击主机对象页面报错: kodo服务API请求错误: Service Unavailable
+
+问题描述：点击主机对象报kodo服务API请求错误: Service Unavailable 错误
+
+问题解决：
+
+查看GuanceDB for logs select组件日志，发现报错 
+
+``` shell
+connect: connection refused" (Unavailable; AuthenticateBasicToken)
+```
+
+登录到 Doris manager web，查看BE角色参数，发现不存在 `arrow_flight_sql_port`参数，在 manager 中为BE 节点添加 `arrow_flight_sql_port` 参数。
+
+```shell
+arrow_flight_sql_port = 9090 
+```
+
+添加完成后重启 be 节点。

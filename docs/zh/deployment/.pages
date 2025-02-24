@@ -113,6 +113,7 @@ nav:
       - '创建拨测节点报错': create-dial-error.md
       - '指标查询报错': query-metrics-error.md
       - '部署版kodo版本过期': kodo-version-expired.md
+      - '配置 kodo-inner 查询并发数': set-kodo-inner.md
       #- '为什么不能使用拨测服务': no-boce.md 
     - '升级观测云': version-upgrade.md
     - '容量规划':  
