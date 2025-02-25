@@ -1040,7 +1040,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../apisix"
   				data-tags=""
   				data-name="APISIX"
-  				data-summary="Collecting APISIX metric information"
+  				data-summary="Collect APISIX related metrics, logs, and tracing information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1051,7 +1051,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">APISIX</div>
-                            <div title="Collecting APISIX metric information" class="fth-integration-desc">Collecting APISIX metric information</div>
+                            <div title="Collect APISIX related metrics, logs, and tracing information" class="fth-integration-desc">Collect APISIX related metrics, logs, and tracing information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5882,6 +5882,36 @@ Guance has the ability of full stack data collection, and now supports about 320
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">kube Proxy</div>
                             <div title="By tracking the performance metrics of kube proxy, it helps to understand the load, response time, synchronization status, and other information of network agents" class="fth-integration-desc">By tracking the performance metrics of kube proxy, it helps to understand the load, response time, synchronization status, and other information of network agents</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../kube_scheduler"
+  				data-tags=""
+  				data-name="Kube Scheduler"
+  				data-summary="By monitoring Kube Scheduler metrics to help configure and optimize Kube Scheduler, you can improve cluster resource utilization and application performance"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/kube_scheduler/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Kube Scheduler</div>
+                            <div title="By monitoring Kube Scheduler metrics to help configure and optimize Kube Scheduler, you can improve cluster resource utilization and application performance" class="fth-integration-desc">By monitoring Kube Scheduler metrics to help configure and optimize Kube Scheduler, you can improve cluster resource utilization and application performance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
