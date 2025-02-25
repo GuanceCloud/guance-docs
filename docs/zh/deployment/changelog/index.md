@@ -1,5 +1,36 @@
 # 版本历史
 
+## 1.104.190（2025 年 02 月 19 日） {#1.104.190}
+
+pubrepo.guance.com/dataflux/1.104.190:launcher-f574b1d-1740401808
+
+### 离线镜像包下载
+
+- AMD64 架构下载: https://{{{ custom_key.static_domain }}}/dataflux/package/guance-amd64-1.104.190.tar.gz
+    - MD5: `c75a12066300d28f85912128bf5e4b6f`
+
+- ARM64 架构下载: https://{{{ custom_key.static_domain }}}/dataflux/package/guance-arm64-1.104.190.tar.gz
+    - MD5: `9fc1d397413d9a49c1f9fc2362a7301c`
+
+???+ attention 重要版本依赖更新说明
+
+    ### 此部署版，对于 GuanceDB 组件的最低版本要求
+
+    #### GuanceDB for Logs
+    - guance-select: v1.11.4+
+    - guance-insert: v1.11.4+
+
+    #### GuanceDB for Metrics
+    - guance-select: v1.11.4+
+    - guance-insert: v1.11.4+
+    - guance-storage: v1.11.4+
+
+### 部署版更新 {#feature0219}
+
+- Launcher 支持一键暂停所有监控器，防止升级过程中产生误告警。注：此功能需要升级到 1.104.190 版本后支持。
+
+更多产品功能更新说明，请参考产品功能 [更新日志 -> 2025 年 2 月 19 日](../../release-notes/index.md#breakingchanges0219)
+
 ## 1.103.189（2025 年 01 月 16 日） {#1.103.189}
 
 pubrepo.guance.com/dataflux/1.103.189:launcher-d4a5efc-1737455050
