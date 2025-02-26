@@ -1195,7 +1195,7 @@ icon: zy/integrations
   				data-href="../apisix"
   				data-tags=""
   				data-name="APISIX"
-  				data-summary="采集 APISIX 相关指标信息"
+  				data-summary="采集 APISIX 相关指标、日志、链路信息"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1206,7 +1206,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">APISIX</div>
-                            <div title="采集 APISIX 相关指标信息" class="fth-integration-desc">采集 APISIX 相关指标信息</div>
+                            <div title="采集 APISIX 相关指标、日志、链路信息" class="fth-integration-desc">采集 APISIX 相关指标、日志、链路信息</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6007,6 +6007,36 @@ icon: zy/integrations
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">kube Proxy</div>
                             <div title="通过跟踪 kube-proxy 运行指标,帮助了解网络代理的负载、响应时间、同步状态等信息" class="fth-integration-desc">通过跟踪 kube-proxy 运行指标,帮助了解网络代理的负载、响应时间、同步状态等信息</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../kube_scheduler"
+  				data-tags=""
+  				data-name="Kube Scheduler"
+  				data-summary="通过监控 Kube Scheduler 指标,帮助配置和优化Kube Scheduler，可以提高集群的资源利用率和应用程序的性能"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/kube_scheduler/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Kube Scheduler</div>
+                            <div title="通过监控 Kube Scheduler 指标,帮助配置和优化Kube Scheduler，可以提高集群的资源利用率和应用程序的性能" class="fth-integration-desc">通过监控 Kube Scheduler 指标,帮助配置和优化Kube Scheduler，可以提高集群的资源利用率和应用程序的性能</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
