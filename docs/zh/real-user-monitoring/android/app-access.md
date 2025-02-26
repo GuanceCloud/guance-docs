@@ -1876,10 +1876,10 @@ FTExt {
 	//...
     autoUploadMap = true
     autoUploadNativeDebugSymbol = true
-    datakitUrl = 'https://datakit.url'
-    datawayToken = 'dataway_token'
-    appId = "appid_xxxxx"// appid
-    env = 'common'
+    datakitUrl = 'https://datakit.url' 	// datakit 上报地址， generateSourceMapOnly=true 时，无需配置
+    datawayToken = 'dataway_token' 		// 空间 token ， generateSourceMapOnly=true 时，无需配置
+    appId = "appid_xxxxx"				// appid ， generateSourceMapOnly=true 时，无需配置
+    env = 'common'						// 环境， generateSourceMapOnly=true 时，无需配置
 	generateSourceMapOnly = false //仅生成 sourcemap，默认为 false，路径示例：/app/build/tmp/ft{flavor}SourceMapMerge-release.zip，ft-plugin:1.3.4 以上版本支持
 
     prodFlavors { //prodFlavors 配置会覆盖外层设置
