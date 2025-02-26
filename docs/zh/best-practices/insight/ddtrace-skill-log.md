@@ -95,7 +95,7 @@
 
 ### 2 DataKit 采集日志
 
-上述日志输出到文本后，DataKit 可以从文本文件里面读取日志信息并上报到观测云。
+上述日志输出到文本后，DataKit 可以从文本文件里面读取日志信息并上报到{{{ custom_key.brand_name }}}。
 
 #### 2.1 开启日志采集器
 
@@ -172,11 +172,11 @@ default_time(time,"Asia/Shanghai")
 
 ![image.png](../images/ddtrace-skill-11.png)
 
-> 观测云也支持其他的日志方式采集，比如 socket，更多日志采集可参考：[日志](/best-practices/cloud-native/k8s-logs/)
+> {{{ custom_key.brand_name }}}也支持其他的日志方式采集，比如 socket，更多日志采集可参考：[日志](/best-practices/cloud-native/k8s-logs/)
 
 ### 3 效果展示
 
-当我们从日志里面把 `traceId` 和 `spanId` 切出来后，观测云上可以直接从日志关联到对应的链路信息，实现了日志链路的互通行为。
+当我们从日志里面把 `traceId` 和 `spanId` 切出来后，{{{ custom_key.brand_name }}}上可以直接从日志关联到对应的链路信息，实现了日志链路的互通行为。
 
 ![guance-log.gif](../images/ddtrace-skill-12.gif)
 

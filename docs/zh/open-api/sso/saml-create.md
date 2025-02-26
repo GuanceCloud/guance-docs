@@ -38,16 +38,16 @@
 |---------------|----------|----|-----|-----------------------|
 | modeType     |  enum  |   | easy  | 配置文件编辑模式。可选值如下：<br/> easy：简单UI编辑模式。此模式下，用户仅须配置 OIDC 交互协议中必须的基础数据即可，其他数据均为默认值.<br/>expert：专家配置文件模式，要求用户上传 OIDC 配置文件。该模式支持用户自定义 OIDC 协议中的各种请求信息|
 | wellKnowURL |  string  |  Y |   | OIDC 协议中的标准服务发现地址.<br/> [例如微软 AAD](https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration)|
-| clientId    |  string  |  Y |   |「认证服务」为「观测云」创建的客户端ID |
-| clientSecret    |  string  |  Y |    |「认证服务」为「观测云」创建的客户端对应的密钥 |
+| clientId    |  string  |  Y |   |「认证服务」为「{{{ custom_key.brand_name }}}」创建的客户端ID |
+| clientSecret    |  string  |  Y |    |「认证服务」为「{{{ custom_key.brand_name }}}」创建的客户端对应的密钥 |
 | sslVerify    |  boolean  |   |    | 服务发现配置信息请求时是否强制进行 ssl 认证；<br/> 默认根据 wellKnowURL 参数值的协议地址进行区分，如果是 https, 则默认为 true; 否则默认为 false|
-| grantType    |  string  |  Y | authorization_code   | 「认证服务」为「观测云」创建的客户端ID |
-| scope    |  array  |  Y | ["openid", "email"]   | 可访问的数据权限<br/>其中必选值为：openid<br/>其他可选值， 例如 profile, email<br/>该值取决于「认证服务」为「观测云」分配的 scop |
+| grantType    |  string  |  Y | authorization_code   | 「认证服务」为「{{{ custom_key.brand_name }}}」创建的客户端ID |
+| scope    |  array  |  Y | ["openid", "email"]   | 可访问的数据权限<br/>其中必选值为：openid<br/>其他可选值， 例如 profile, email<br/>该值取决于「认证服务」为「{{{ custom_key.brand_name }}}」分配的 scop |
 | authSet    |  dict  |   |    | 该配置服务于 OIDC 协议中的获取认证请求地址。<br/>[协议来源](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) |
 | getTokenSet    |  dict  |   |    | 该配置服务于 OIDC 协议中的 code 换 token 请求. <br/>[协议来源](https://openid.net/specs/openid-connect-core-1_0.html#TokenRequest) |
 | verifyTokenSet    |  dict  |   |    | id_token 的验证配置. <br/>[协议来源](https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation),  [jwks_urls 数据结构协议来源](https://datatracker.ietf.org/doc/html/rfc7515)|
 | getUserInfoSet    |  dict  |   |    | 该配置服务于 OIDC 协议中的获取用户信息请求. <br/>[协议来源](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo) |
-| claimMapping    |  dict  |   |    | 用户信息/id_token 中的字段映射配置。用于「观测云」根据该映射配置获取账号中对应的信息 |
+| claimMapping    |  dict  |   |    | 用户信息/id_token 中的字段映射配置。用于「{{{ custom_key.brand_name }}}」根据该映射配置获取账号中对应的信息 |
 
 <br/>
 2. config.authSet 配置内部结构参数说明

@@ -44,7 +44,7 @@
 | 应用名称 | 基于应用类型获取对应的应用列表，支持全选和单选 |
 | 指标 | 基于应用类型获取的指标列表，<br>**Web/Miniapp**（包括JS错误数、JS错误率、资源错误数、资源错误率、首次渲染平均时间、页面加载平均耗时、LCP(largest_contentful_paint)、FID(first_input_delay)、CLS(cumulative_layout_shift)、FCP(first_contentful_paint) 等）<br>**Android/IOS**（包括启动耗时、总崩溃数、总崩溃率、资源错误数、资源错误率、FPS、页面加载平均耗时等）。 |
 | 筛选条件 | 基于指标的标签对检测指标的数据进行筛选，限定检测的数据范围。支持添加一个或多个标签筛选，支持模糊匹配和模糊不匹配的筛选条件。 |
-| 检测维度 | 配置数据里对应的字符串类型（`keyword`）字段都可以作为检测维度进行选择，目前检测维度最多支持选择三个字段。通过多个检测维度的字段组合，可以确定一个确定的检测对象，观测云会判断某个检测对象对应的统计指标是否满足触发条件的阈值，若满足条件则产生事件。<br />*（例如选择检测维度 `host` 与 `host_ip`，则检测对象可以为 `{host: host1, host_ip: 127.0.0.1}`。）* |
+| 检测维度 | 配置数据里对应的字符串类型（`keyword`）字段都可以作为检测维度进行选择，目前检测维度最多支持选择三个字段。通过多个检测维度的字段组合，可以确定一个确定的检测对象，{{{ custom_key.brand_name }}}会判断某个检测对象对应的统计指标是否满足触发条件的阈值，若满足条件则产生事件。<br />*（例如选择检测维度 `host` 与 `host_ip`，则检测对象可以为 `{host: host1, host_ip: 127.0.0.1}`。）* |
 
 #### [**Web**](../../real-user-monitoring/web/app-data-collection.md) / [**Miniapp**](../../real-user-monitoring/miniapp/app-data-collection.md) **指标说明**
 

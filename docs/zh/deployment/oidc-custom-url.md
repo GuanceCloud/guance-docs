@@ -3,7 +3,7 @@
 
 ## 简介
 
-观测云部署版支持基于 OIDC 协议进行自定义域名地址替换实现单点登录。用以解决工作空间自定义域名方式接入OIDC登录。本文对具体配置实现方式进行讲解。
+{{{ custom_key.brand_name }}}部署版支持基于 OIDC 协议进行自定义域名地址替换实现单点登录。用以解决工作空间自定义域名方式接入OIDC登录。本文对具体配置实现方式进行讲解。
 
 
 
@@ -11,9 +11,9 @@
 
 | 名词      | 解释                          |
 | ----------- | ------------------------------------ |
-| loginUrl  | 观测云 OIDC 登录入口地址，一般格式 `http://域名/oidc/login`，或者地址上带些查询参数  |
+| loginUrl  | {{{ custom_key.brand_name }}} OIDC 登录入口地址，一般格式 `http://域名/oidc/login`，或者地址上带些查询参数  |
 | authUrl       | 账号认证地址 |
-| callbackURL    | 账号认证成功之后, 回调到观测云的地址，一般格式 `http://域名/oidc/callback` |
+| callbackURL    | 账号认证成功之后, 回调到{{{ custom_key.brand_name }}}的地址，一般格式 `http://域名/oidc/callback` |
 | redirect_uri      | authUrl 中携带的参数回调地址参数名                          |
 
 
@@ -21,7 +21,7 @@
 ## 操作步骤 {#steps}
 
 ### 1、OIDC 基本配置
-1）在观测云 Launcher **命名空间：forethought-core > core** 中为`OIDCClientSet`配置项添加子配置项`requestSet` 。
+1）在{{{ custom_key.brand_name }}} Launcher **命名空间：forethought-core > core** 中为`OIDCClientSet`配置项添加子配置项`requestSet` 。
 
 
 ```yaml
@@ -183,7 +183,7 @@ def __make_redirect_uri(url, headers):
 @DFF.API('对应 redirectUriFormatRequest 函数-格式化 oidc client 中的 redirect_uri 信息')
 def redirect_uri_format(**kwargs):
     '''
-    当对接观测云 OIDC 流程时，如果存在非标流程导致 redirect_uri 参数名或参数值发生改变时，需要通过当前函数进行处理。
+    当对接{{{ custom_key.brand_name }}} OIDC 流程时，如果存在非标流程导致 redirect_uri 参数名或参数值发生改变时，需要通过当前函数进行处理。
 
     Parameters:
       type {str} 当前操作对应 oidc 流程中的类型， login 表示 oidc/login 请求产生的地址变更；callback 表示 oidc/callback 流程产生的请求
@@ -211,7 +211,7 @@ def redirect_uri_format(**kwargs):
 @DFF.API('对应 urlFormatRequest 函数-格式化 login 中的 跳转地址信息')
 def login_auth_url_format(**kwargs):
     '''
-    当对接观测云 OIDC 流程时，如果存在非标流程导致 login 地址中的参数需要变更时，可以在当前函数中进行处理。
+    当对接{{{ custom_key.brand_name }}} OIDC 流程时，如果存在非标流程导致 login 地址中的参数需要变更时，可以在当前函数中进行处理。
 
     Parameters:
       type {str} 当前操作对应 oidc 流程中的类型， login 表示 oidc/login 请求产生的地址变更；callback 表示 oidc/callback 流程产生的请求
@@ -244,7 +244,7 @@ def login_auth_url_format(**kwargs):
 @DFF.API('对应 urlFormatRequest 函数-格式化 callback 中的 跳转地址信息')
 def callback_url_format(**kwargs):
     '''
-    当对接观测云 OIDC 流程时，如果存在非标流程导致 callback 后登录观测云空间的地址中的参数需要变更时，可以在当前函数中进行处理。
+    当对接{{{ custom_key.brand_name }}} OIDC 流程时，如果存在非标流程导致 callback 后登录{{{ custom_key.brand_name }}}空间的地址中的参数需要变更时，可以在当前函数中进行处理。
 
     Parameters:
       type {str} 当前操作对应 oidc 流程中的类型， login 表示 oidc/login 请求产生的地址变更；callback 表示 oidc/callback 流程产生的请求

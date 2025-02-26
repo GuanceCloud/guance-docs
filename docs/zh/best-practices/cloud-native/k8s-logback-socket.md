@@ -6,11 +6,11 @@
 
 Logback 日志输出除了常用的 file 和 stdout 外，还可以进行 socket（TCP）输出，基于 socket 日志上报最大的优势在于降低了存储费用，程序生成的日志在本地进行一部分内存缓冲继而上报到采集端。
 
-同样 DataKit 也支持 Socket 日志采集。本文主要介绍基于 K8s 下 Spring Boot 应用将日志通过 Logback Socket 方式推送至观测云平台进行观测。
+同样 DataKit 也支持 Socket 日志采集。本文主要介绍基于 K8s 下 Spring Boot 应用将日志通过 Logback Socket 方式推送至{{{ custom_key.brand_name }}}平台进行观测。
 
 ## 前置条件
 
-1. 需要先创建一个[观测云账号](https://www.guance.com/)
+1. 需要先创建一个[{{{ custom_key.brand_name }}}账号](https://www.guance.com/)
 1. Spring Boot应用
 1. docker-harbor
 1. K8s 集群
@@ -72,7 +72,7 @@ Kubernetes 下 DataKit 安装参照文档 <[Kubernetes 应用的 RUM-APM-LOG 联
 
 #### 2 Pipeline 解析日志
 
-`logback_socket_pipeline.p` 用于解析 socket 日志格式，便于您在观测云平台查看使用。<br/>全文如下：
+`logback_socket_pipeline.p` 用于解析 socket 日志格式，便于您在{{{ custom_key.brand_name }}}平台查看使用。<br/>全文如下：
 
 ??? quote "`logback_socket_pipeline.p`"
 
@@ -776,7 +776,7 @@ NAME                                      READY   STATUS    RESTARTS   AGE
 logback-socket-service-74bd778fcf-cqcn9   1/1     Running   0          5h41m
 ```
 
-## 观测云查看日志
+## {{{ custom_key.brand_name }}}查看日志
 
 日志查看器
 
@@ -790,6 +790,6 @@ logback-socket-service-74bd778fcf-cqcn9   1/1     Running   0          5h41m
 
 <[Kubernetes 应用的 RUM-APM-LOG 联动分析](./k8s-rum-apm-log.md)>
 
-<[观测云日志采集分析最佳实践](./logs.md)>
+<[{{{ custom_key.brand_name }}}日志采集分析最佳实践](./logs.md)>
 
 <[Pod 日志采集最佳实践](./pod-log.md)>

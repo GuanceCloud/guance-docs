@@ -2,7 +2,7 @@
 
 ## 简介
 
-本文将介绍观测云切换时序引擎，此操作适用于 InfluxDB 切换 GuanceDB。
+本文将介绍{{{ custom_key.brand_name }}}切换时序引擎，此操作适用于 InfluxDB 切换 GuanceDB。
 
 ## 前提条件
 
@@ -38,7 +38,7 @@ INSERT INTO  `main_influx_db_bak` SELECT * FROM `main_influx_db`;
 
 ### 插入 GuanceDB 信息
 
-- 登录观测云 df_core 数据库，执行以下语句：
+- 登录{{{ custom_key.brand_name }}} df_core 数据库，执行以下语句：
 
   ```sql
   INSERT INTO `main_influx_instance` (`uuid`, `host`, `authorization`, `configJSON`,`dbcount`, `user`, `pwd`, `dbType`, `priority`, `status`, `creator`, `updator`, `createAt`, `deleteAt`, `updateAt`)

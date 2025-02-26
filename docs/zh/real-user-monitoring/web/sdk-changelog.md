@@ -18,7 +18,7 @@
 
 1. 配合 V2 版本指标数据变更，需要升级 DataKit 1.1.7-rc0之后的版本。更多详情，可参考 [DataKit 配置](../../integrations/rum.md)。
 
-2. SDK 升级 V2 版本，CDN 地址变更为 `https://static.guance.com/browser-sdk/v2/dataflux-rum.js`。
+2. SDK 升级 V2 版本，CDN 地址变更为 `https://{{{ custom_key.static_domain }}}/browser-sdk/v2/dataflux-rum.js`。
 
 3. 删除 `rum_web_page_performance`、`rum_web_resource_performance`、` js_error`、`page` 指标数据收集，新增 `view`, `action`, `long_task`, `error` 指标数据采集。
 

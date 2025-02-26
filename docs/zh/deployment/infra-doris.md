@@ -45,7 +45,7 @@
 
 ???+ warning "主机部署说明"
 
-    guancedb-logs机器只有单台，提供给观测云业务服务使用的地址为主机ip:8480/8481；
+    guancedb-logs机器只有单台，提供给{{{ custom_key.brand_name }}}业务服务使用的地址为主机ip:8480/8481；
     
     guancedb-logs机器有多台：
     
@@ -128,22 +128,22 @@
 #### 下载物料包
 安装工具包。安装包放置在fe-01机器上
 ```shell
-https://static.guance.com/guancedb/guancedb-doris-deploy-latest.tar.gz
+https://{{{ custom_key.static_domain }}}/guancedb/guancedb-doris-deploy-latest.tar.gz
 ```
 
 下载包解压后是SelectDB + manager 安装包。安装包放置在fe-01机器上，文件夹位置同inventory/doris-manager.vars.yaml中配置的路径
 ```shell
-https://static.guance.com/guancedb/selectdb-latest.tar.gz
+https://{{{ custom_key.static_domain }}}/guancedb/selectdb-latest.tar.gz
 ```
 
 下载包解压后是GuanceDB安装包。 安装包放置在guancedb-logs所有机器上，文件位置同inventory/guancedb-logs-doris.vars.yaml中配置的路径
 ```shell
-https://static.guance.com/guancedb/guancedb-cluster-linux-amd64-latest.tar.gz
+https://{{{ custom_key.static_domain }}}/guancedb/guancedb-cluster-linux-amd64-latest.tar.gz
 ```
 
 下载包解压后是victoria-metrics + vmutils 安装包。安装包放置在guancedb-logs所有机器上，文件位置同inventory/guancedb-logs-doris.vars.yaml中配置的路径
 ```shell
-https://static.guance.com/guancedb/vmutils-latest.tar.gz
+https://{{{ custom_key.static_domain }}}/guancedb/vmutils-latest.tar.gz
 ```
 
 #### 配置机器间免密登录

@@ -70,13 +70,13 @@ ntpdate cn.pool.ntp.org
 === "amd64"
 
     ``` shell
-    wget https://static.guance.com/dataflux/package/sealos_4.1.5_linux_amd64.tar.gz \
+    wget https://{{{ custom_key.static_domain }}}/dataflux/package/sealos_4.1.5_linux_amd64.tar.gz \
        && tar zxvf sealos_4.1.5_linux_amd64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
     ```
 === "arm64"
 
     ``` shell
-    wget https://static.guance.com/dataflux/package/sealos_4.1.5_linux_arm64.tar.gz \
+    wget https://{{{ custom_key.static_domain }}}/dataflux/package/sealos_4.1.5_linux_arm64.tar.gz \
        && tar zxvf sealos_4.1.5_linux_arm64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
     ```
 

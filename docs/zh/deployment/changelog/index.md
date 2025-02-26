@@ -1,28 +1,59 @@
 # 版本历史
 
+## 1.104.190（2025 年 02 月 19 日） {#1.104.190}
+
+pubrepo.guance.com/dataflux/1.104.190:launcher-f574b1d-1740401808
+
+### 离线镜像包下载
+
+- AMD64 架构下载: https://{{{ custom_key.static_domain }}}/dataflux/package/guance-amd64-1.104.190.tar.gz
+    - MD5: `c75a12066300d28f85912128bf5e4b6f`
+
+- ARM64 架构下载: https://{{{ custom_key.static_domain }}}/dataflux/package/guance-arm64-1.104.190.tar.gz
+    - MD5: `9fc1d397413d9a49c1f9fc2362a7301c`
+
+???+ attention 重要版本依赖更新说明
+
+    ### 此部署版，对于 GuanceDB 组件的最低版本要求
+
+    #### GuanceDB for Logs
+    - guance-select: v1.11.4+
+    - guance-insert: v1.11.4+
+
+    #### GuanceDB for Metrics
+    - guance-select: v1.11.4+
+    - guance-insert: v1.11.4+
+    - guance-storage: v1.11.4+
+
+### 部署版更新 {#feature0219}
+
+- Launcher 支持一键暂停所有监控器，防止升级过程中产生误告警。注：此功能需要升级到 1.104.190 版本后支持。
+
+更多产品功能更新说明，请参考产品功能 [更新日志 -> 2025 年 2 月 19 日](../../release-notes/index.md#breakingchanges0219)
+
 ## 1.103.189（2025 年 01 月 16 日） {#1.103.189}
 
 pubrepo.guance.com/dataflux/1.103.189:launcher-d4a5efc-1737455050
 
 ### 离线镜像包下载
 
-- AMD64 架构下载: https://static.guance.com/dataflux/package/guance-amd64-1.103.189.tar.gz
+- AMD64 架构下载: https://{{{ custom_key.static_domain }}}/dataflux/package/guance-amd64-1.103.189.tar.gz
     - MD5: `e3c0d6aa1ca3e063575aeb1c7c6cf2da`
 
-- ARM64 架构下载: https://static.guance.com/dataflux/package/guance-arm64-1.103.189.tar.gz
+- ARM64 架构下载: https://{{{ custom_key.static_domain }}}/dataflux/package/guance-arm64-1.103.189.tar.gz
     - MD5: `1edf1c249834224b0ee2fa49e2280927`
 
 ### 功能更新 {#feature0116}
 
 #### 用户访问监测
 
-1. 新增[漏斗分析](../real-user-monitoring/user_insight_funnel.md)功能：用户可以通过定义转换步骤来创建漏斗，查看数据的转化并进行深入分析；
+1. 新增[漏斗分析](../../real-user-monitoring/user_insight_funnel.md)功能：用户可以通过定义转换步骤来创建漏斗，查看数据的转化并进行深入分析；
 2. 用户洞察模块整合：新增用户洞察模块，将热图和漏斗分析整合在该模块中，提供更全面的用户行为分析工具；
 3. 新增移动端 SourceMap 还原：Android 和 iOS 应用支持在页面上传 SourceMap 文件且在错误查看器支持查看还原后数据。
 
 #### 应用性能监测
 
-APM 添加服务时，新增[主机自动注入](../application-performance-monitoring/explorer/auto_wire/autowire_on_host.md)的安装引导方式，简化安装流程。
+APM 添加服务时，新增[主机自动注入](../../application-performance-monitoring/explorer/auto_wire/autowire_on_host.md)的安装引导方式，简化安装流程。
 
 #### 集成
 
@@ -32,7 +63,7 @@ APM 添加服务时，新增[主机自动注入](../application-performance-moni
 
 #### 场景
 
-[组合图表](../scene/visual-chart/index.md#conbine)优化：组合图表新增视图变量配置，支持选取当前仪表板中的视图变量作用于该组合图表，帮助更灵活地筛选和分析数据。
+[组合图表](../../scene/visual-chart/index.md#conbine)优化：组合图表新增视图变量配置，支持选取当前仪表板中的视图变量作用于该组合图表，帮助更灵活地筛选和分析数据。
 
 #### 监控
 
@@ -64,10 +95,10 @@ pubrepo.guance.com/dataflux/1.102.188:launcher-0bd0be5-1736856269
 
 ### 离线镜像包下载
 
-- AMD64 架构下载: https://static.guance.com/dataflux/package/guance-amd64-1.102.188.tar.gz
+- AMD64 架构下载: https://{{{ custom_key.static_domain }}}/dataflux/package/guance-amd64-1.102.188.tar.gz
     - MD5: `07d82df7e9a6ccb4ba747e8cb02d0882`
 
-- ARM64 架构下载: https://static.guance.com/dataflux/package/guance-arm64-1.102.188.tar.gz
+- ARM64 架构下载: https://{{{ custom_key.static_domain }}}/dataflux/package/guance-arm64-1.102.188.tar.gz
     - MD5: `e5ee7933fd1f46ae9df5d05219b4726d`
 
 ### 部署版更新 {#deployment0108}
@@ -108,7 +139,7 @@ pubrepo.guance.com/dataflux/1.102.188:launcher-0bd0be5-1736856269
 
 #### 管理
 
-1. 事件支持配置[数据转发](../../management/backup/index.md)：支持配置事件类型的数据转发规则，将符合过滤条件的事件数据保存到观测云的对象存储及转发到外部存储，提供灵活管理事件数据的能力。
+1. 事件支持配置[数据转发](../../management/backup/index.md)：支持配置事件类型的数据转发规则，将符合过滤条件的事件数据保存到{{{ custom_key.brand_name }}}的对象存储及转发到外部存储，提供灵活管理事件数据的能力。
 
 2. 工作空间新增 DataKit [环境变量](../../management/env_variable.md)：工作空间支持管理 DataKit 环境变量，用户可以轻松配置和更新环境变量，实现远程同步更新 DataKit 采集配置。
 

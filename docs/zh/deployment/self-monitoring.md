@@ -2,7 +2,7 @@
 
 ## 概述
 
-本文档的目的在于能够帮助私有部署版用户，如何对部署版实施可观测，以提升整体观测云服务的运行可靠性。此篇讲述了2种经典的可观测模式，以及在 Kubernetes 的环境下如何部署 **Datakit 数据采集、日志及切割、应用性能监测、可用性监测、用户访问监测** 等。此外，我们还提供了**基础设施及中间件观测** 和 **应用服务观测**的一键导入模板文件，方便大家更好的使用以便观测自身环境。
+本文档的目的在于能够帮助私有部署版用户，如何对部署版实施可观测，以提升整体{{{ custom_key.brand_name }}}服务的运行可靠性。此篇讲述了2种经典的可观测模式，以及在 Kubernetes 的环境下如何部署 **Datakit 数据采集、日志及切割、应用性能监测、可用性监测、用户访问监测** 等。此外，我们还提供了**基础设施及中间件观测** 和 **应用服务观测**的一键导入模板文件，方便大家更好的使用以便观测自身环境。
 
 
 
@@ -17,7 +17,7 @@
 
 === "一对多统一观测模式"
 
-    此模式是指，客户的多个观测云都往同一节点去打。优点：不会造成数据传输闭环的情况，并且能够实时监测到自身集群的状态。
+    此模式是指，客户的多个{{{ custom_key.brand_name }}}都往同一节点去打。优点：不会造成数据传输闭环的情况，并且能够实时监测到自身集群的状态。
     
     ![guance2](img/self-guance2.jpg)
 
@@ -39,9 +39,11 @@
 ```yaml
    - name: ENV_DATAWAY
      value: https://openway.guance.com?token=tkn_a624xxxxxxxxxxxxxxxxxxxxxxxx74 ## 此处填上 dataway 真实地址
-   - name: ENV_INPUT_DISK_EXTRA_DEVICE
-     value : 10.100.14.144:/nfsdata            ## 修改成实际的nfs 目录
-   image: pubrepo.jiagouyun.com/datakit/datakit:1.5.6     ## 修改成最新镜像版本
+   - name: ENV_GLOBAL_TAGS
+     value: host=__datakit_hostname,host_ip=__datakit_ip,guance_site=guance,cluster_name_k8s=guance # 面板变量根据自己实际情况修改
+   - name: ENV_GLOBAL_ELECTION_TAGS
+     value: guance_site=guance,cluster_name_k8s=guance     # 根据自己面板变量实际情况修改
+   image: pubrepo.jiagouyun.com/datakit/datakit:1.65.2     ## 修改成最新镜像版本
 ```
 
 3）修改 datakit.yaml 中关于`ConfigMap`的相关配置
@@ -261,45 +263,14 @@ spec:
 
 #### 使用 Pipeline 切割日志
 
-=== "方法一"
-    **界面上一键导入 Pipeline 模板**
+**界面上一键导入 Pipeline 模板**
 
-    [Pipeline下载地址](Pipelines 模板.json)
-    
-    ![pipeline001](img/self-pipeline001.jpg)
+[Pipeline下载地址](Pipelines 模板.json)
 
-=== "方法二"
-    **通过修改 datakit 挂载，加上服务的 Annotations 配置，开启日志切割**
-    
+![pipeline001](img/self-pipeline001.jpg)
 
-    1）在对应的 datakit.yaml 下用`ConfigMap`的方式挂载<pipeline_name>.p文件到指定目录 （同 DataKit 部署中的一样)
-    
-    ```yaml
-            - mountPath: /usr/local/datakit/pipeline/kodo-x.p
-              name: datakit-conf
-              subPath: kodo-inner.p
-    ```
-    
-    2）修改对应服务的 yaml 文件，加入以下的 Annotations 配置
-    
-      ```yaml
-      spec:
-        template:
-          metadata:
-            annotations:
-              datakit/logs: |-
-                [
-                            {
-                              "source": "kodo",             ## 页面上显示对应的source
-                              "service": "kodo",            ## 页面上显示对应的service
-                              "pipeline": "kodo.p"          ## 默认会去datakit下去找对应的pipeline文件
-                            }
-                          ]
-      ```
-    
-    3）开启后的状态
-    
-      ![image-20221129165203967](https://docs.guance.com/logs/img/12.pipeline_4.png)
+
+   
 
 ### 配置应用性能监测
 
@@ -510,14 +481,14 @@ window.DEPLOYCONFIG = {
     innerAppProfile: 'https://cn4-auth.guance.com/redirectpage/profile',
     innerAppCreateworkspace: 'https://cn4-auth.guance.com/redirectpage/createworkspace',
     staticFileUrl: 'https://cn4-static-res.guance.com',
-    staticDatakit: 'https://static.guance.com',
+    staticDatakit: 'https://{{{ custom_key.static_domain }}}',
     cloudDatawayUrl: '',
     isSaas: '1',
     showHelp: 1,
     rumEnable: 1,                                                                              ## 0是关闭，1是开启，此处开启
     rumDatakitUrl: "",                                                                         ## 修改成deployment的datakit地址
     rumApplicationId: "",                                                                      ## 修改成实际appid
-    rumJsUrl: "https://static.guance.com/browser-sdk/v2/dataflux-rum.js",
+    rumJsUrl: "https://{{{ custom_key.static_domain }}}/browser-sdk/v2/dataflux-rum.js",
     rumDataEnv: 'prod',
     shrineApiUrl: '',
     upgradeUrl: '',
@@ -547,13 +518,13 @@ token: xxxxxxxxxxx       ## 修改成实际的token
 
 ### Func 任务日志数据上报
 
-DataFlux Func 的函数运行日志、自动触发配置等信息可以直接上报至观测云。步骤如下图
+DataFlux Func 的函数运行日志、自动触发配置等信息可以直接上报至{{{ custom_key.brand_name }}}。步骤如下图
 
 ![allin](img/self-func.png)
 
 
 
-在观测云数据上报中填写 DataWay / OpenWay 地址和 Token 信息即可，格式如下：
+在{{{ custom_key.brand_name }}}数据上报中填写 DataWay / OpenWay 地址和 Token 信息即可，格式如下：
 
 ```shell
 https://openway.guance.com?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

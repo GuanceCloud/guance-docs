@@ -5,13 +5,13 @@
 
 ## 简介 {#intro}
 
-DataWay 是观测云的数据网关，采集器上报数据到观测云都需要经过 DataWay 网关。
+DataWay 是{{{ custom_key.brand_name }}}的数据网关，采集器上报数据到{{{ custom_key.brand_name }}}都需要经过 DataWay 网关。
 
 ## Dataway 安装 {#install}
 
 - **新建 Dataway**
 
-在观测云管理后台「数据网关」页面，点击「新建 Dataway 」。输入名称、绑定地址后，点击「创建」。
+在{{{ custom_key.brand_name }}}管理后台「数据网关」页面，点击「新建 Dataway 」。输入名称、绑定地址后，点击「创建」。
 
 创建成功后会自动创建新的 Dataway 并生成 Dataway 的安装脚本。
 
@@ -32,7 +32,7 @@ DataWay 是观测云的数据网关，采集器上报数据到观测云都需要
     DW_KODO=http://kodo_ip:port \
        DW_TOKEN=<tkn_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX> \
        DW_UUID=<YOUR_UUID> \
-       bash -c "$(curl https://static.guance.com/dataway/install.sh)"
+       bash -c "$(curl https://{{{ custom_key.static_domain }}}/dataway/install.sh)"
     ```
 
     安装完成后，在安装目录下，会生成 *dataway.yaml*，其内容示例如下，可手动修改，通过重启服务来生效。
@@ -141,10 +141,10 @@ DataWay 是观测云的数据网关，采集器上报数据到观测云都需要
 
 === "Kubernetes"
 
-    下载 [*dataway.yaml*](https://static.guance.com/dataway/dataway.yaml){:target="_blank"}，安装：
+    下载 [*dataway.yaml*](https://{{{ custom_key.static_domain }}}/dataway/dataway.yaml){:target="_blank"}，安装：
 
     ```shell
-    $ wget https://static.guance.com/dataway/dataway.yaml -O dw-deployment.yaml
+    $ wget https://{{{ custom_key.static_domain }}}/dataway/dataway.yaml -O dw-deployment.yaml
     $ kubectl apply -f dw-deployment.yaml
     ```
 
@@ -176,15 +176,15 @@ DataWay 是观测云的数据网关，采集器上报数据到观测云都需要
 
 - **验证 Dataway 安装**
 
-安装完毕后，等待片刻刷新「数据网关」页面，如果在刚刚添加的数据网关的「版本信息」列中看到了版本号，即表示这个 Dataway 已成功与观测云中心连接，前台用户可以通过它来接入数据了。
+安装完毕后，等待片刻刷新「数据网关」页面，如果在刚刚添加的数据网关的「版本信息」列中看到了版本号，即表示这个 Dataway 已成功与{{{ custom_key.brand_name }}}中心连接，前台用户可以通过它来接入数据了。
 
-Dataway 成功与观测云中心连接后，登录观测云控制台，在「集成」/「DataKit」页面，即可查看所有的 Dataway 地址，选择需要的 Dataway 网关地址，获取 DataKit 安装指令在服务器上执行，即可开始采集数据。
+Dataway 成功与{{{ custom_key.brand_name }}}中心连接后，登录{{{ custom_key.brand_name }}}控制台，在「集成」/「DataKit」页面，即可查看所有的 Dataway 地址，选择需要的 Dataway 网关地址，获取 DataKit 安装指令在服务器上执行，即可开始采集数据。
 
 ## 管理 DataWay {#manage}
 
 ### 删除 DataWay {#delete}
 
-在观测云管理后台「数据网关」页面，选择需要删除的 DataWay ，点击「配置」，在弹出的编辑 DataWay 对话框，点击左下角「删除」按钮即可。
+在{{{ custom_key.brand_name }}}管理后台「数据网关」页面，选择需要删除的 DataWay ，点击「配置」，在弹出的编辑 DataWay 对话框，点击左下角「删除」按钮即可。
 
 <!-- markdownlint-disable MD046 -->
 ???+ warning
@@ -194,13 +194,13 @@ Dataway 成功与观测云中心连接后，登录观测云控制台，在「集
 
 ### 升级 DataWay {#upgrade}
 
-在观测云管理后台「数据网关」页面，如果 DataWay 存在可升级的版本，版本信息处会有升级提示。
+在{{{ custom_key.brand_name }}}管理后台「数据网关」页面，如果 DataWay 存在可升级的版本，版本信息处会有升级提示。
 
 <!-- markdownlint-disable MD046 -->
 === "主机升级"
 
     ```shell
-    DW_UPGRADE=1 bash -c "$(curl https://static.guance.com/dataway/install.sh)"
+    DW_UPGRADE=1 bash -c "$(curl https://{{{ custom_key.static_domain }}}/dataway/install.sh)"
     ```
 
 === "Kubernetes 升级"
@@ -632,7 +632,7 @@ Content-Type: application/json
 
 ---
 
-如果采集成功，在观测云「场景」/「内置视图」中搜索 `dataway` 即可看到对应的监控视图。
+如果采集成功，在{{{ custom_key.brand_name }}}「场景」/「内置视图」中搜索 `dataway` 即可看到对应的监控视图。
 
 ### Dataway 指标列表 {#metrics}
 

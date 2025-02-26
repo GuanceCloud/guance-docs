@@ -10,7 +10,7 @@
 <img src="../img/custom-mapping-1.png" width="60%" >
 
 - 属性字段/属性值：在 SAML 映射配置的属性字段及属性值，必须和 IdP 的账号上配置的属性字段及属性值保持一致，SAML 映射才能验证成功，验证成功后，会在 IdP 账号登录时为账号赋予 SAML 映射对应的角色权限；
-- 角色授权：观测云支持四种默认成员角色 Owner、Administrator、Standard 和 Read-only；或在[角色管理](../management/member-management.md)创建的自定义角色；支持多选。
+- 角色授权：{{{ custom_key.brand_name }}}支持四种默认成员角色 Owner、Administrator、Standard 和 Read-only；或在[角色管理](../management/member-management.md)创建的自定义角色；支持多选。
 
 
 ## 搜索/编辑/删除映射

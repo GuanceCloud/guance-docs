@@ -23,8 +23,6 @@
 
 指标数据额外支持 PromQL 查询。除此之外，均支持简单查询和 DQL 查询。
 
-**注意**：此处的 PromQL 查询规则为 Instant 查询，即针对单个时间点运行查询。
-
 > 更多详情，可参考 [图表查询](../scene/visual-chart/chart-query.md)。
 
 :material-numeric-1-circle: 数据来源

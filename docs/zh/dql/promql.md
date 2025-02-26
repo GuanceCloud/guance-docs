@@ -26,7 +26,7 @@ node_network_receive_bytes_total{device="eth2"}
 
 ## 指标集 Measurement
 
-在观测云中的所有指标都是归属于指标集的，我们以指标集为单位管理指标的生命周期。而指标集 Measurement 这个概念在 Prometheus 中是不存在的，需要通过 Datakit 上报的时候可以手动配置或者根据前缀来自动生成，详细内容可以查看 [Datakit 的文档](../integrations/prom.md)。
+在{{{ custom_key.brand_name }}}中的所有指标都是归属于指标集的，我们以指标集为单位管理指标的生命周期。而指标集 Measurement 这个概念在 Prometheus 中是不存在的，需要通过 Datakit 上报的时候可以手动配置或者根据前缀来自动生成，详细内容可以查看 [Datakit 的文档](../integrations/prom.md)。
 
 我们继续以上面的 `node_network_receive_bytes_total` 指标为例，假设我们通过 Datakit 自动规则来生成，那么这个指标将会拆分为 Measurement 和 Field 两个部分，分别是 `node` 和 `network_receive_bytes_total`。
 
@@ -136,7 +136,7 @@ rate(node:network_receive_bytes_total[5m])
 
 如果这看起来太复杂了，那么只需记住更高的 `d` 会平滑图形，而较低的 `d` 会给图形带来更多噪音。
 
-观测云使用了一种 [PromQL 扩展语法 MetricsQL](metricsql.md) (感谢 [VictoriaMetrics](https://docs.victoriametrics.com/) 开源！)，在此情况下，`[d]` 可以省略在这种情况下，它等于图形上两个连续点之间的持续时间（也称为“步长”）：
+{{{ custom_key.brand_name }}}使用了一种 [PromQL 扩展语法 MetricsQL](metricsql.md) (感谢 [VictoriaMetrics](https://docs.victoriametrics.com/) 开源！)，在此情况下，`[d]` 可以省略在这种情况下，它等于图形上两个连续点之间的持续时间（也称为“步长”）：
 
 ```
 rate(node:network_receive_bytes_total)
@@ -291,7 +291,7 @@ PromQL 是一种易于使用但功能强大的时间序列数据库查询语言�
      
 你可以使用这个 [PromQL 速查表](https://promlabs.com/promql-cheat-sheet/)继续学习 PromQL。   
 
-*本文主体内容翻译自 [PromQL tutorial for beginners and humans](https://valyala.medium.com/promql-tutorial-for-beginners-9ab455142085) ，观测云也正在使用 [VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics) 开源的 [MetricsQL](https://docs.victoriametrics.com/MetricsQL.html) 引擎的实现，再次感谢 VictoriaMetrics ！*
+*本文主体内容翻译自 [PromQL tutorial for beginners and humans](https://valyala.medium.com/promql-tutorial-for-beginners-9ab455142085) ，{{{ custom_key.brand_name }}}也正在使用 [VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics) 开源的 [MetricsQL](https://docs.victoriametrics.com/MetricsQL.html) 引擎的实现，再次感谢 VictoriaMetrics ！*
 
 ## 更多阅读
 

@@ -1,6 +1,6 @@
 # DataFlux Func 托管版 {#steps}
 
-观测云支持 DataFlux Func 托管版一键开通服务，开通完成后即可在云主机中自动化部署 Func，同时在工作空间的**集成**可以快速登录对应 Func 平台。
+{{{ custom_key.brand_name }}}支持 DataFlux Func 托管版一键开通服务，开通完成后即可在云主机中自动化部署 Func，同时在工作空间的**集成**可以快速登录对应 Func 平台。
 
 ![](img/automata-1.png)
 

@@ -12,13 +12,13 @@
 - RUM : Real User Moitoring 真实用户体验监控
 - LOG : 日志
 
-目前**观测云**已具备这样的能力，本文以若依办公系统作为演示 demo ，将从如何接入 RUM+APM+LOG 这三方监控，以及如何利用观测云进行联动分析的角度进行阐述。
+目前**{{{ custom_key.brand_name }}}**已具备这样的能力，本文以若依办公系统作为演示 demo ，将从如何接入 RUM+APM+LOG 这三方监控，以及如何利用{{{ custom_key.brand_name }}}进行联动分析的角度进行阐述。
 
 ## 安装 DataKit
 
 ### 1 复制安装指令
 
-注册并登录[观测云](https://console.guance.com)，选择「集成」 - 「DataKit」，选择适合自己环境的安装指令，复制。
+注册并登录[{{{ custom_key.brand_name }}}](https://console.guance.com)，选择「集成」 - 「DataKit」，选择适合自己环境的安装指令，复制。
 
 ![image](../images/java-rum-apm-log/1.png)
 
@@ -34,7 +34,7 @@
 
 ### 4 查看数据
 
-Datakit 安装好后，默认会对如下内容进行采集，可直接在 「观测云」 - 「基础设施」 - 「主机」查看相关数据
+Datakit 安装好后，默认会对如下内容进行采集，可直接在 「{{{ custom_key.brand_name }}}」 - 「基础设施」 - 「主机」查看相关数据
 
 | 采集器名称   | 说明                                                 |
 | ------------ | ---------------------------------------------------- |
@@ -59,7 +59,7 @@ Datakit 安装好后，默认会对如下内容进行采集，可直接在 「�
 
 ### 1 复制 JS 代码
 
-登录[观测云](https://console.guance.com)，选择「用户访问监测」 - 「新建应用」 - 「Web」- 载入类型选择「同步载入」
+登录[{{{ custom_key.brand_name }}}](https://console.guance.com)，选择「用户访问监测」 - 「新建应用」 - 「Web」- 载入类型选择「同步载入」
 
 ![image](../images/java-rum-apm-log/5.png)
 
@@ -68,7 +68,7 @@ Datakit 安装好后，默认会对如下内容进行采集，可直接在 「�
 在前端页面 `/usr/local/ruoyi/dist/index.html` 的 head 中粘贴 JS
 
 ```javascript
-<script src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://{{{ custom_key.static_domain }}}/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({
@@ -119,7 +119,7 @@ Datakit 安装好后，默认会对如下内容进行采集，可直接在 「�
 
 > 详细步骤参见文档 [分布式链路追踪(APM)最佳实践](../monitoring/apm.md)
 
-观测云 支持的 APM 接入方式包含 ddtrace、SkyWalking、Zipkin、Jaejer 等多种支持 OpenTracing 协议的 APM 工具，此处示例采用 **ddtrace** 实现 APM 方面的可观测性。
+{{{ custom_key.brand_name }}} 支持的 APM 接入方式包含 ddtrace、SkyWalking、Zipkin、Jaejer 等多种支持 OpenTracing 协议的 APM 工具，此处示例采用 **ddtrace** 实现 APM 方面的可观测性。
 
 ### 1 修改 inputs
 
@@ -171,7 +171,7 @@ $ nohup java -Dfile.encoding=utf-8 -javaagent:dd-java-agent-0.80.0.jar -XX:Fligh
 
 ### 3 查看 APM 数据
 
-APM 是观测云默认内置的模块，无需创建场景或视图即可进行查看。
+APM 是{{{ custom_key.brand_name }}}默认内置的模块，无需创建场景或视图即可进行查看。
 
 视图示例：<br/>
 通过该视图即可快速查看应用调用情况、拓扑图、异常数据等其他 APM 相关数据

@@ -1,6 +1,6 @@
 # 等级定义 {#definition}
 
-观测云为异常追踪 Issue 配置了 4 种默认等级选项：P0、P1、P2 和未知。
+{{{ custom_key.brand_name }}}为异常追踪 Issue 配置了 4 种默认等级选项：P0、P1、P2 和未知。
 
 | 字段 | 说明 |
 | --- | --- |
@@ -40,6 +40,6 @@
 
 ![](../img/issue-backstage.png)
 
-1. 观测云支持[在平台级别管理异常追踪等级配置](../../deployment/setting.md#global-settings)，启用全局配置后，此处工作空间级别配置的异常追踪等级将不再适用。
+1. {{{ custom_key.brand_name }}}支持[在平台级别管理异常追踪等级配置](../../deployment/setting.md#global-settings)，启用全局配置后，此处工作空间级别配置的异常追踪等级将不再适用。
 2. 全局等级启用后，若工作空间内的监控器、智能监控、Issue 自动发现等规则中应用了其他等级配置，则新创建的 Issue 等级会置空处理。
 

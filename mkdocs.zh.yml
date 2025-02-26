@@ -61,6 +61,9 @@ copyright: '&copy; 2013-2025 上海观测未来信息技术有限公司 <a href=
 extra:
   generator: false
   homepage: https://docs.guance.com
+  custom_key:
+    static_domain: static.guance.com
+    brand_name: 观测云
 
   alternate:
     - name: 中文
@@ -80,6 +83,14 @@ plugins:
     fallback_to_build_date: true
   search:
     separator: '[\s\u200b\-]'
+  macros:
+    on_error_fail           : true
+    j2_block_start_string   : '{{{%'
+    j2_block_end_string     : '%}}}'
+    j2_variable_start_string: '{{{'
+    j2_variable_end_string  : '}}}'
+    j2_comment_start_string : '{{{#'
+    j2_comment_end_string   : '#}}}'
 
 extra_css:
   - assets/stylesheets/extra.css

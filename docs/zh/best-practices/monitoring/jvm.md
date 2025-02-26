@@ -3,7 +3,7 @@
 ---
 
 ## 前置条件
-前往官方网站 [观测云](https://guance.com/) 注册账号，使用已注册的账号/密码登录。
+前往官方网站 [{{{ custom_key.brand_name }}}](https://guance.com/) 注册账号，使用已注册的账号/密码登录。
 ## 安装 DataKit
 
 ### 获取命令
@@ -742,7 +742,7 @@ $ kubectl apply -f your-app-deployment-yaml
 
 ###  新建 JVM 可观测场景：
 
-登录[观测云](https://guance.com/)进入空间，点击【新建场景】
+登录[{{{ custom_key.brand_name }}}](https://guance.com/)进入空间，点击【新建场景】
 
 ![1631933819(1).png](../images/jvm-7.png)
 
@@ -916,4 +916,4 @@ OOM（Out of Memory）异常常见有以下几个原因：
 
 ## 更多请关注：
 
-- [如何利用观测云采集JVM指标](/integrations/jvm.md)
+- [如何利用{{{ custom_key.brand_name }}}采集JVM指标](/integrations/jvm.md)

@@ -1,7 +1,7 @@
 # 资源目录
 ---
 
-观测云支持通过 DataFlux Func 上报资源目录数据，除了主机、容器、进程、网络等，观测云基础设施自定义功能支持上报任意自定义数据。
+{{{ custom_key.brand_name }}}支持通过 DataFlux Func 上报资源目录数据，除了主机、容器、进程、网络等，{{{ custom_key.brand_name }}}基础设施自定义功能支持上报任意自定义数据。
 
 - 任意对象数据：自定义基础设施、云产品对象数据、业务类对象数据
 - 统一管理：各种不同类型的对象数据按照相同的格式收集起来统一管理。
@@ -9,7 +9,7 @@
 
 ## 前提条件
 
-资源目录数据上报需要先安装并连通 DataKit 和 DataFlux Func ，再通过 DataFlux Func 上报数据到 DataKit，最终 DataKit 上报数据到观测云工作空间。
+资源目录数据上报需要先安装并连通 DataKit 和 DataFlux Func ，再通过 DataFlux Func 上报数据到 DataKit，最终 DataKit 上报数据到{{{ custom_key.brand_name }}}工作空间。
 
 - [安装 DataKit](../datakit/datakit-install.md)
 - [安装 DataFlux Func](https://func.guance.com/doc/quick-start/)

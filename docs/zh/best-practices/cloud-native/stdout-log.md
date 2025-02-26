@@ -4,7 +4,7 @@
 
 ## 环境准备
 
-已有 Kubernetes 环境（简称 K8s），本实践基于自建 Kubernetes v1.23.1，观测云 Datakit 版本 1.2.13，Nginx 1.17。
+已有 Kubernetes 环境（简称 K8s），本实践基于自建 Kubernetes v1.23.1，{{{ custom_key.brand_name }}} Datakit 版本 1.2.13，Nginx 1.17。
 
 Datakit 已经部署好，Datakit 配置文件 `container.conf` 通过 ConfigMap 方式管理。
 
@@ -12,7 +12,7 @@ Datakit 已经部署好，Datakit 配置文件 `container.conf` 通过 ConfigMap
 
 ## 前置条件
 
-Nginx 日志在 K8s 环境中的输出为 StdOut 方式，而非文件方式。观测云 Datakit 以 DaemonSet 部署后，默认采集 K8s 内部所有 StdOut 日志输出，包括集群内部组件的 StdOut 输出方式，如 CoreDNS（需开启日志）。本文涉及的日志均为 Stdout 方式输出。
+Nginx 日志在 K8s 环境中的输出为 StdOut 方式，而非文件方式。{{{ custom_key.brand_name }}} Datakit 以 DaemonSet 部署后，默认采集 K8s 内部所有 StdOut 日志输出，包括集群内部组件的 StdOut 输出方式，如 CoreDNS（需开启日志）。本文涉及的日志均为 Stdout 方式输出。
 
 注：StdOut 是开发工程师写代码时，选择日志控制台的输出方式，如：
 
@@ -24,7 +24,7 @@ Nginx 日志在 K8s 环境中的输出为 StdOut 方式，而非文件方式。�
 
 Datakit 部署完成后，按需采集指定的业务 Pod 日志、K8s 集群组件的日志，后续新增的未指定的业务 Pod 日志不会采集，另外对同一个 Pod 里的多容器日志采集只采集其中一个或多个。
 
-本文通过观测云采集器 Datakit 不同的日志过滤方法来实现，使用给日志加 Annotation 标注（包括过滤 Pod 内部其他容器产生的日志）和 `container.conf` 中的 `container_include_log = []`组合来实现。
+本文通过{{{ custom_key.brand_name }}}采集器 Datakit 不同的日志过滤方法来实现，使用给日志加 Annotation 标注（包括过滤 Pod 内部其他容器产生的日志）和 `container.conf` 中的 `container_include_log = []`组合来实现。
 
 > 更详细日志处理原理，可参考<[Datakit 日志处理综述](../../integrations/datakit-logging-how.md)>
 

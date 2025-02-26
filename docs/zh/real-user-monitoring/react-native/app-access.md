@@ -22,7 +22,7 @@
 
 ## 安装 {#install}
 
-![](https://img.shields.io/badge/dynamic/json?label=npm-package&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/react-native/version.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=react-native&color=green&query=$.react_native&uri=https://static.guance.com/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-react-native)
+![](https://img.shields.io/badge/dynamic/json?label=npm-package&color=orange&query=$.version&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/react-native/version.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=react-native&color=green&query=$.react_native&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-react-native)
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-react-native](https://github.com/GuanceCloud/datakit-react-native)
 
@@ -46,7 +46,7 @@ npm install @cloudcare/react-native-mobile
 **Android 集成额外配置:**
 
 * 配置 Gradle Plugin [ft-plugin](../android/app-access.md#gradle-setting) ，采集 App 启动事件和网络请求数据，以及 Android Native 原生相关事件（页面跳转、点击事件、Native 网络请求、WebView 数据）。
-* 注意需要同时在 Gradle 中配置观测云 Android Maven 仓库地址，Plugin 和 AAR 都需要，配置配置细节 example 中 [build.gradle](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/android/build.gradle) 的配置
+* 注意需要同时在 Gradle 中配置{{{ custom_key.brand_name }}} Android Maven 仓库地址，Plugin 和 AAR 都需要，配置配置细节 example 中 [build.gradle](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/android/build.gradle) 的配置
 
 
 现在在您的代码中，您可以使用：
