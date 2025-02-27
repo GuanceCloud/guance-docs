@@ -37,6 +37,63 @@ icon: zy/release-notes
 
 </div>
 
+## 2025 年 2 月 27 日
+
+### OpenAPI 更新 {#openapi0227}
+
+指标：新增[指标集和标签信息获取](../open-api/metric/metric-info-get.md)。
+
+### 功能更新 {#feature0227}
+
+#### 可用性监测
+
+1. HTTP 拨测：支持[脚本模式](../usability-monitoring/request-task/http.md#script)。通过编写 Pipeline 脚本，灵活自定义拨测任务的判断条件和数据处理逻辑。
+2. 新增[多步拨测](../usability-monitoring/request-task/multistep_test.md)：允许使用多个 API 连接的响应数据创建测试，并通过局部变量传值，链接多个任务请求。
+
+
+#### 场景
+
+1. 仪表板 > 可见范围：新增“自定义”配置，可配置此仪表板的“操作”、“查看”权限。同时该配置下新增“全部成员”的选项。
+2. 图表：
+    - 新增基于 AI 自动生成图表标题及描述的能力；
+    - 日志流图新增“规则映射”功能；
+    - 表格图显示列优化；
+    - 分组表格图：表达式结果支持排序；
+    - 时序图、饼图等多个表格支持数据导出为 CSV 文件。
+
+#### 指标
+
+1. [指标分析 > 表格图](../metrics/explorer.md#table)：查询结果返回数量超过 2,000 条时，三个模式新增“查询结果计数”展示。
+2. [指标管理](../metrics/dictionary.md)：支持一键跳转到指标分析。
+3. [生成指标](../metrics/generate-metrics.md#manage)：支持导入创建方式、支持批量导出。
+
+#### 基础设施
+
+1. 容器：对象数据新增 `cpu_usage_by_limit`、`cpu_usage_by_request`、`mem_used_percent_base_limit`、`mem_used_percent_base_request`、`mem_used_percent_base_limit`、`mem_used_percent_base_request` 6 个新字段；
+2. Pod 查看器：对象数据新增 `cpu_usage_by_limit`、`cpu_usage_by_request`、`mem_used_percent_base_limit`、`mem_used_percent_base_request` 4 个新字段。
+
+#### 应用性能监测
+
+1. Profiling > 火焰图交互优化：选中单条搜索方法名称，可直接聚焦定位。
+2. ServiceMap 交互优化：在上下游页面中，支持对当前画布中的节点进行搜索。
+
+### 新增集成 {#inte0227}
+
+- 新增 [AWS 云账单](../integrations/aws_billing.md)；
+- 新增 [Kube Scheduler](../integrations/kube_scheduler.md)；
+- 新增 [MQTT](../integrations/mqtt.md)；
+- 重写 [APISIX](../integrations/apisix.md)；
+- 更新 [tidb](../integrations/tidb.md) 英文文档和视图；
+- 更新 [Zookeeper](../integrations/zookeeper.md) 视图、补充集成图标；
+- 修复部分组件 mainfest.yaml 英文翻译。
+
+### Bug 修复 {#bug0227}
+
+1. 修复了点击应用性能监测 > 链路详情 tab 页显示错误的问题；
+2. 修复了异常追踪 > Issue 回复中 `@成员` 有误的问题；
+3. 修复了图表中温度单位不正确的问题。
+
+
 ## 2025 年 2 月 19 日
 
 ### Breaking Changes {#breakingchanges0219}
@@ -107,11 +164,11 @@ icon: zy/release-notes
 
 ### 新增集成 {#inte0219}
 
-- 新增 [Milvus](../integrations/milvus.md)；
-- 新增 [火山云公网 IP](../integrations/volcengine_eip.md)；
-- 新增 [opentelemetry-python](../integrations/opentelemetry-python.md)；
-- 新增 [openLIT 集成](../integrations/openlit.md)；
-- 更新 k8s\es\mongodb\rabbitmq\oracle\coredns\sqlserver 中英文监控器&视图。
+1. 新增 [Milvus](../integrations/milvus.md)；
+2. 新增 [火山云公网 IP](../integrations/volcengine_eip.md)；
+3. 新增 [opentelemetry-python](../integrations/opentelemetry-python.md)；
+4. 新增 [openLIT 集成](../integrations/openlit.md)；
+5. 更新 k8s\es\mongodb\rabbitmq\oracle\coredns\sqlserver 中英文监控器&视图。
 
 ### Bug 修复 {#bug0219}
 

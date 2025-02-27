@@ -197,13 +197,18 @@
 3. 在下拉列表中点击进入**我的凭证**；
 4. 在 API 凭证页面，即可查看**帐号 ID**。
 
-<img src="../img/1.huaweicloud_6.png" width="65%" >
+<img src="../img/huaweicloud-id.png" width="65%" >
 
 
-<img src="../img/1.huaweicloud_8.png" width="65%" >
+<img src="../img/huaweicloud-id-1.png" width="75%" >
 
 ## 如何获取华为云实例 ID {#instanceid}
 
-在华为云云商店，进入**我的云商店 > 已购买的服务**。进入商品详情页，在当前服务的**应用信息**，即可查看华为云实例 ID。
+在华为云云商店，进入**我的云商店 > 已购买的服务**。进入商品详情页，在当前服务的**资源详情**，即可查看华为云实例 ID。
 
-![](../img/huaweicloud-0803.png)
+
+![](../img/huaweicloud-instanceid.png)
+
+
+
+

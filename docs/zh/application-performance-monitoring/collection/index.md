@@ -18,6 +18,72 @@ DataKit 目前支持采集 `DDTrace`、`Apache Jaeger`、`OpenTelemetry`、`Skyw
 
 2. 配置所有链路数据采集的相关采集器。
 
+#### 采集器配置   
+
+<div class="grid" markdown>
+
+=== "DDTrace"
+
+    [:octicons-book-16: DDTrace](../../integrations/ddtrace.md)
+
+    - [Python](../../integrations/ddtrace-python.md)
+
+    - [Ruby](../../integrations/ddtrace-ruby.md)
+
+
+    - [Golang](../../integrations/ddtrace-golang.md)
+
+
+    - [PHP](../../integrations/ddtrace-php.md)
+
+    - [NodeJS](../../integrations/ddtrace-nodejs.md)
+
+
+    - [C++](../../integrations/ddtrace-cpp.md)
+
+
+    - [Java](../../integrations/pinpoint-java.md)
+
+        该代码语言中还包含以下信息：
+
+        1. [DDTrace JMX](../../integrations/ddtrace-jmxfetch.md)
+            
+        2. [扩展功能](../../integrations/ddtrace-ext-java.md)
+    
+
+=== "OpenTelemetry"
+
+    [:octicons-book-16: OpenTelemetry](../../integrations/opentelemetry.md)
+
+    - [更新历史](../../integrations/otel-ext-changelog.md)
+
+    - [Python](../../integrations/opentelemetry-python.md)
+
+    - [Java](../../integrations/opentelemetry-java.md)
+
+    - [Golang](../../integrations/opentelemetry-go.md)
+
+=== "Pinpoint"
+
+    [:octicons-book-16: Pinpoint](../../integrations/opentelemetry.md)
+
+    - [Java](../../integrations/pinpoint-java.md)
+
+    - [Golang](../../integrations/pinpoint-go.md)
+
+=== "其他"
+
+    - [Skywalking](../../integrations/skywalking.md)    
+    - [Jaeger](../../integrations/jaeger.md)     
+    - [Zipkin](../../integrations/zipkin.md)    
+    - [New Relic](../../integrations/newrelic.md)    
+    - [eBPF Tracing](../../integrations/ebpftrace.md)     
+    - [OpenLIT](../../integrations/openlit.md)     
+    - [CAT](../../integrations/cat.md)     
+    - [Tracing Propagator](../../integrations/tracing-propagator.md) 
+
+</div>
+
 <!--
 #### 采集器配置   
 
@@ -56,11 +122,9 @@ DataKit 目前支持采集 `DDTrace`、`Apache Jaeger`、`OpenTelemetry`、`Skyw
     
     该代码语言中还包含以下信息：
 
-    1. [DDTrace-Java agent](../../integrations/ddtrace-attach.md)
-
-    2. [DDTrace JMX](../../integrations/ddtrace-jmxfetch.md)
+    1. [DDTrace JMX](../../integrations/ddtrace-jmxfetch.md)
     
-    3. [扩展功能](../../integrations/ddtrace-ext-java.md)
+    2. [扩展功能](../../integrations/ddtrace-ext-java.md)
 
 
 </div>
@@ -109,7 +173,8 @@ DataKit 目前支持采集 `DDTrace`、`Apache Jaeger`、`OpenTelemetry`、`Skyw
 #### [OpenLIT](../../integrations/openlit.md)     
 #### [CAT](../../integrations/cat.md)     
 #### [Tracing Propagator](../../integrations/tracing-propagator.md)     
--->
+
+
 
 ### 采集步骤
 
@@ -120,6 +185,7 @@ DataKit 目前支持采集 `DDTrace`、`Apache Jaeger`、`OpenTelemetry`、`Skyw
 5. 在{{{ custom_key.brand_name }}}的控制台进行链路分析和查看服务相关性能指标。
 
 ![](../img/1.apm-1.png)
+-->
 
 ## 字段说明
 
@@ -145,6 +211,7 @@ DataKit 会根据采集器的不同将上报的数据转换为{{{ custom_key.bra
 
 > 更多字段列表，可参考 [DataKit Tracing 数据结构](../../integrations/datakit-tracing-struct.md#point-proto)。
 
+<!--
 ## 更多阅读
 
 <div class="grid cards" markdown>
@@ -153,5 +220,5 @@ DataKit 会根据采集器的不同将上报的数据转换为{{{ custom_key.bra
 
 </div>
 
-
+-->
 
