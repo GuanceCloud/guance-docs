@@ -6,10 +6,10 @@ summary: 'Use the「Guance  Synchronization」series script package in the scrip
 __int_icon: 'icon/aws_elasticache_redis'
 dashboard:
   - desc: 'AWS ElastiCache Redis Monitoring View'
-    path: 'dashboard/zh/aws_elasticache_redis'
+    path: 'dashboard/en/aws_elasticache_redis'
 monitor:
   - desc: 'AWS ElastiCache RedisMonitor'
-    path: 'monitor/zh/aws_elasticache_redis'
+    path: 'monitor/en/aws_elasticache_redis'
 
 cloudCollector:
   desc: 'cloud collector'
