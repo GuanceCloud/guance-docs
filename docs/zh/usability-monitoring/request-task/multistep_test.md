@@ -86,7 +86,7 @@ if body["code"] == "200" {
 }
 ```
 
-上面的脚本中，首先使用 `load_json` 将响应内容解析为 JSON 对象，然后判断响应状态码是否为 200，如果为 200，则将响应内容中的 `token` 提取出来，并设置到 `vars` 中，否则将 `result` 的 `is_failed` 设置为 `true`， 且 `error_message` 设置为响应内容中的 `message`。
+上面的脚本中，首先使用 `load_json` 将响应内容解析为 JSON 对象，然后判断响应状态码是否为 200，如果为 200，则将响应内容中的 `token` 提取出来，通过 `vars` 存储，供后续请求使用；否则将 `result` 的 `is_failed` 设置为 `true`， 且 `error_message` 设置为响应内容中的 `message`。
 
 
 > 更多阅读，可参考 [自定义拨测任务](../../integrations/dialtesting_json.md#post_script)。
