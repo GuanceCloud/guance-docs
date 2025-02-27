@@ -74,20 +74,17 @@ icon: zy/release-notes
 
 #### 应用性能监测
 
-Profiling > 火焰图交互优化：选中单条搜索方法名称，可直接聚焦定位。
-
-#### 用户访问监测
-
-ServiceMap 交互优化：在上下游页面中，支持对当前画布中的节点进行搜索。
+1. Profiling > 火焰图交互优化：选中单条搜索方法名称，可直接聚焦定位。
+2. ServiceMap 交互优化：在上下游页面中，支持对当前画布中的节点进行搜索。
 
 ### 新增集成 {#inte0227}
 
-- 新增 [AWS 云账单](/integrations/aws_billing.md)；
-- 新增 [Kube Scheduler](/integrations/kube_scheduler.md)；
-- 新增 [MQTT](/integrations/mqtt.md)；
-- 重写 [APISIX](/integrations/apisix.md)；
-- 更新 [tidb](/integrations/tidb.md) 英文文档和视图；
-- 更新 [Zookeeper](/integrations/zookeeper.md) 视图、补充集成图标；
+- 新增 [AWS 云账单](../integrations/aws_billing.md)；
+- 新增 [Kube Scheduler](../integrations/kube_scheduler.md)；
+- 新增 [MQTT](../integrations/mqtt.md)；
+- 重写 [APISIX](../integrations/apisix.md)；
+- 更新 [tidb](../integrations/tidb.md) 英文文档和视图；
+- 更新 [Zookeeper](../integrations/zookeeper.md) 视图、补充集成图标；
 - 修复部分组件 mainfest.yaml 英文翻译。
 
 ### Bug 修复 {#bug0227}
