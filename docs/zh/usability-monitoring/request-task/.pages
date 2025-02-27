@@ -1,6 +1,9 @@
 nav:
   - index.md
-  - 'HTTP': http.md
-  - 'ICMP': icmp.md
-  - 'TCP': tcp.md
-  - 'WEBSOCKET': websocket.md
+  - 'API 拨测':
+    - api_test.md
+    - 'HTTP': http.md
+    - 'ICMP': icmp.md
+    - 'TCP': tcp.md
+    - 'WEBSOCKET': websocket.md
+  - '多步拨测': multistep_test.md
