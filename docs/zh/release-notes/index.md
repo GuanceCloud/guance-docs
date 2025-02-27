@@ -48,12 +48,12 @@ icon: zy/release-notes
 #### 可用性监测
 
 1. HTTP 拨测：支持[脚本模式](../usability-monitoring/request-task/http.md#script)。通过编写 Pipeline 脚本，灵活自定义拨测任务的判断条件和数据处理逻辑。
-2. 新增[多步拨测](../usability-monitoring/request-task/multistep_test.md)：允许使用多个 API 连接的响应数据创建测试，从而验证关键业务交易、模拟端到端的用户旅程，并支持认证和授权。
+2. 新增[多步拨测](../usability-monitoring/request-task/multistep_test.md)：允许使用多个 API 连接的响应数据创建测试，并通过局部变量传值，链接多个任务请求。
 
 
 #### 场景
 
-1. 仪表板 > 可见范围：新增“自定义”配置，可配置此仪表板的“操作”、“查看”权限；新增“全部成员”的选项。
+1. 仪表板 > 可见范围：新增“自定义”配置，可配置此仪表板的“操作”、“查看”权限。同时该配置下新增“全部成员”的选项。
 2. 图表：
     - 新增基于 AI 自动生成图表标题及描述的能力；
     - 日志流图新增“规则映射”功能；
@@ -74,7 +74,7 @@ icon: zy/release-notes
 
 #### 应用性能监测
 
-Profiling > 火焰图交互优化。
+Profiling > 火焰图交互优化：选中单条搜索方法名称，可直接聚焦定位。
 
 #### 用户访问监测
 
