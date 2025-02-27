@@ -7,12 +7,15 @@ __int_icon: 'icon/aws_dynamodb_DAX'
 dashboard:
 
   - desc: 'AWS DynamoDB DAX Dashboard'
-    path: 'dashboard/zh/aws_dynamodb_DAX'
+    path: 'dashboard/en/aws_dynamodb_DAX'
 
 monitor:
   - desc: 'AWS DynamoDB DAX Monitor'
-    path: 'monitor/zh/aws_dynamodb_DAX'
+    path: 'monitor/en/aws_dynamodb_DAX'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_dynamodb_dax'
 ---
 
 

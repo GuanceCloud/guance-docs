@@ -7,11 +7,11 @@ __int_icon: 'icon/aws_dms'
 dashboard:
 
   - desc: 'AWS DMS Monitoring View'
-    path: 'dashboard/zh/aws_dms'
+    path: 'dashboard/en/aws_dms'
 
 monitor:
   - desc: 'AWS DMS Monitor'
-    path: 'monitor/zh/aws_dms'
+    path: 'monitor/en/aws_dms'
 
 ---
 
