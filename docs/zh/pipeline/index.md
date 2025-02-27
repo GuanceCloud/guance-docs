@@ -122,7 +122,7 @@ Pipeline 的主要特点包括：
 
 ##### 行协议示例
 
-<img src="../img/pipeline_line_protocal.png" width="60%" >
+<img src="img/pipeline_line_protocal.png" width="60%" >
 
 
 - `cpu`、`redis` 为指标集；`tag1`、`tag2` 为标签集；`f1`、`f2`、`f3` 为字段集（其中 `f1=1i` 表示为 `int`，`f2=1.2` 表示默认为 `float`，`f3="abc"` 表示为 `string`）；`162072387000000000` 为时间戳；    
@@ -171,7 +171,7 @@ AI 生成解析规则是基于模型生成 Pipeline 解析，旨在快速提供�
 
 测试后，返回结果如：
 
-<img src="../img/pipeline_ai_1.png" width="70%" >
+<img src="img/pipeline_ai_1.png" width="70%" >
 
 > 更多详情，可参考 [规则编写指南](./use-pipeline/pipeline-built-in-function.md)。
 
