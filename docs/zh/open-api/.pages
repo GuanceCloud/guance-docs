@@ -23,7 +23,7 @@ nav:
   - '日志 - 索引': log-index-cfg
   - '日志 - 数据转发': log-backup-cfg
   - '日志 - 数据访问': logging-query-rule
-  - '指标 - 获取指标集和标签相关信息': metric
+  - '指标 - 获取指标集相关信息': metric
   - '指标 - 聚合生成指标': aggs-to-metric
   - '用户访问监测 - 应用': rum-cfg-set
   - '用户访问监测 - SourceMap': rum-sourcemap
