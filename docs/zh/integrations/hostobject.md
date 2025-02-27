@@ -73,6 +73,9 @@ monitor   :
     ## Enable AWS IMDSv2
     enable_cloud_aws_imds_v2 = false
     
+    ## Enable AWS IPv6
+    enable_cloud_aws_ipv6 = false
+    
     ## [inputs.hostobject.tags] # (optional) custom tags
       # cloud_provider = "aliyun" # aliyun/tencent/aws/hwcloud/azure/volcengine, probe automatically if not set
       # some_tag = "some_value"
@@ -177,6 +180,16 @@ monitor   :
         **字段类型**: Boolean
     
         **采集器配置字段**: `enable_cloud_aws_imds_v2`
+    
+        **默认值**: false
+    
+    - **ENV_INPUT_HOSTOBJECT_CLOUD_AWS_IPV6**
+    
+        开启 AWS IPv6
+    
+        **字段类型**: Boolean
+    
+        **采集器配置字段**: `enable_cloud_aws_ipv6`
     
         **默认值**: false
     
