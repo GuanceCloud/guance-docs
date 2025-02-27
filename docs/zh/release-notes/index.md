@@ -90,6 +90,13 @@ ServiceMap 交互优化：在上下游页面中，支持对当前画布中的节
 - 更新 [Zookeeper](/integrations/zookeeper.md) 视图、补充集成图标；
 - 修复部分组件 mainfest.yaml 英文翻译。
 
+### Bug 修复 {#bug0227}
+
+1. 修复了点击应用性能监测 > 链路详情 tab 页显示错误的问题；
+2. 修复了异常追踪 > Issue 回复中 `@成员` 有误的问题；
+3. 修复了图表中温度单位不正确的问题。
+
+
 ## 2025 年 2 月 19 日
 
 ### Breaking Changes {#breakingchanges0219}
@@ -160,11 +167,11 @@ ServiceMap 交互优化：在上下游页面中，支持对当前画布中的节
 
 ### 新增集成 {#inte0219}
 
-- 新增 [Milvus](../integrations/milvus.md)；
-- 新增 [火山云公网 IP](../integrations/volcengine_eip.md)；
-- 新增 [opentelemetry-python](../integrations/opentelemetry-python.md)；
-- 新增 [openLIT 集成](../integrations/openlit.md)；
-- 更新 k8s\es\mongodb\rabbitmq\oracle\coredns\sqlserver 中英文监控器&视图。
+1. 新增 [Milvus](../integrations/milvus.md)；
+2. 新增 [火山云公网 IP](../integrations/volcengine_eip.md)；
+3. 新增 [opentelemetry-python](../integrations/opentelemetry-python.md)；
+4. 新增 [openLIT 集成](../integrations/openlit.md)；
+5. 更新 k8s\es\mongodb\rabbitmq\oracle\coredns\sqlserver 中英文监控器&视图。
 
 ### Bug 修复 {#bug0219}
 
