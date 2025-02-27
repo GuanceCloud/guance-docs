@@ -39,6 +39,10 @@ icon: zy/release-notes
 
 ## 2025 年 2 月 27 日
 
+### OpenAPI 更新 {#openapi0227}
+
+指标：新增[指标集和标签信息获取](../open-api/metric/metric-info-get.md)。
+
 ### 功能更新 {#feature0227}
 
 #### 可用性监测
@@ -51,12 +55,11 @@ icon: zy/release-notes
 
 1. 仪表板 > 可见范围：新增“自定义”配置，可配置此仪表板的“操作”、“查看”权限；新增“全部成员”的选项。
 2. 图表：
-
-- 新增基于 AI 自动生成图表标题及描述的能力；
-- 日志流图新增“规则映射”功能；
-- 表格图显示列优化；
-- 分组表格图：表达式结果支持排序；
-- 时序图、饼图等多个表格支持数据导出为 CSV 文件。
+    - 新增基于 AI 自动生成图表标题及描述的能力；
+    - 日志流图新增“规则映射”功能；
+    - 表格图显示列优化；
+    - 分组表格图：表达式结果支持排序；
+    - 时序图、饼图等多个表格支持数据导出为 CSV 文件。
 
 #### 指标
 
@@ -66,8 +69,8 @@ icon: zy/release-notes
 
 #### 基础设施
 
-1. 容器：对象数据内新增 `cpu_usage_by_limit`、`cpu_usage_by_request`、`mem_used_percent_base_limit`、`mem_used_percent_base_request`、`mem_used_percent_base_limit`、`mem_used_percent_base_request` 6 个新字段；
-2. Pod 查看器：对象数据内新增 `cpu_usage_by_limit`、`cpu_usage_by_request`、`mem_used_percent_base_limit`、`mem_used_percent_base_request` 4 个新字段。
+1. 容器：对象数据新增 `cpu_usage_by_limit`、`cpu_usage_by_request`、`mem_used_percent_base_limit`、`mem_used_percent_base_request`、`mem_used_percent_base_limit`、`mem_used_percent_base_request` 6 个新字段；
+2. Pod 查看器：对象数据新增 `cpu_usage_by_limit`、`cpu_usage_by_request`、`mem_used_percent_base_limit`、`mem_used_percent_base_request` 4 个新字段。
 
 #### 应用性能监测
 
