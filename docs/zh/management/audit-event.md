@@ -1,7 +1,7 @@
 # 审计事件逻辑详解
 ---
 
-操作审计帮助您监控并记录所有成员在{{{ custom_key.brand_name }}}工作空间内的访问行为，包括通过{{{ custom_key.brand_name }}}控制台、OpenAPI 对工作空间内的登录访问和操作使用行为。
+操作审计帮助您监控并记录所有成员在<<< custom_key.brand_name >>>工作空间内的访问行为，包括通过<<< custom_key.brand_name >>>控制台、OpenAPI 对工作空间内的登录访问和操作使用行为。
 
 **审计事件范围**：
 

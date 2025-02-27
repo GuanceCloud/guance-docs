@@ -6,11 +6,11 @@ icon: zy/billing-method
 ---
 
 
-包括{{{ custom_key.brand_name }}}所有的计费项及其定价模型，助您全面了解{{{ custom_key.brand_name }}}产品价格，提前了解云成本。
+包括<<< custom_key.brand_name >>>所有的计费项及其定价模型，助您全面了解<<< custom_key.brand_name >>>产品价格，提前了解云成本。
 
 ## 计费项 {#item}
 
-{{{ custom_key.brand_name }}}的所有计费项都是**单独计费**，例如您上报的日志数据会产生日志存储的费用，您上报的应用性能链路追踪数据会产生应用性能 Trace 相关费用。
+<<< custom_key.brand_name >>>的所有计费项都是**单独计费**，例如您上报的日志数据会产生日志存储的费用，您上报的应用性能链路追踪数据会产生应用性能 Trace 相关费用。
 
 <!--
 <img src="img/billing-1.png" width="70%" >
@@ -518,7 +518,7 @@ icon: zy/billing-method
     |  中国香港及海外站点 |  $ 0.1 |
 ---
 
-:material-numeric-2-circle: 基于当前工作空间数据转发到{{{ custom_key.brand_name }}}内部存储类型统计汇总转发的流量大小，统计全量数据，并根据数据对应计费出账。（每 GB / 天）。
+:material-numeric-2-circle: 基于当前工作空间数据转发到<<< custom_key.brand_name >>>内部存储类型统计汇总转发的流量大小，统计全量数据，并根据数据对应计费出账。（每 GB / 天）。
 
 <font color=coral>**当采用人民币结算**：</font>
 

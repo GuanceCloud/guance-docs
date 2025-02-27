@@ -2,13 +2,13 @@
 
 ---
 
-本文介绍如何把阿里云事件总线 EventBridge 的内容接入{{{ custom_key.brand_name }}}平台，通过{{{ custom_key.brand_name }}}强大的统一汇聚能力轻松获取阿里云事件，实时追踪最新的数据信息。
+本文介绍如何把阿里云事件总线 EventBridge 的内容接入<<< custom_key.brand_name >>>平台，通过<<< custom_key.brand_name >>>强大的统一汇聚能力轻松获取阿里云事件，实时追踪最新的数据信息。
 
 
 
 ## 背景信息 
 
-事件总线 EventBridge 是阿里云提供的一款无服务器事件总线服务，支持阿里云服务、自定义应用、SaaS 应用以标准化、中心化的方式接入，并能够以标准化的 CloudEvents 1.0 协议在这些应用之间路由事件，帮助您轻松构建松耦合、分布式的事件驱动架构。但是对于多云环境，甚至传统 IDC + 云服务的组合架构下，客户更希望能够把云事件、指标、日志、链路等统一汇总，综合调度。{{{ custom_key.brand_name }}}平台提供了这样的能力。
+事件总线 EventBridge 是阿里云提供的一款无服务器事件总线服务，支持阿里云服务、自定义应用、SaaS 应用以标准化、中心化的方式接入，并能够以标准化的 CloudEvents 1.0 协议在这些应用之间路由事件，帮助您轻松构建松耦合、分布式的事件驱动架构。但是对于多云环境，甚至传统 IDC + 云服务的组合架构下，客户更希望能够把云事件、指标、日志、链路等统一汇总，综合调度。<<< custom_key.brand_name >>>平台提供了这样的能力。
 
 
 
@@ -24,7 +24,7 @@
 
 ## 适用场景
 
-通过事件总线内置的 HTTP 服务的方式，把事件信息推送至{{{ custom_key.brand_name }}}。
+通过事件总线内置的 HTTP 服务的方式，把事件信息推送至<<< custom_key.brand_name >>>。
 
 #### 步骤一：修改 DataKit 监听端口
 
@@ -74,7 +74,7 @@ systemctl restart datakit
 
 ![image.png](../images/aliyun-eventbridge-7.png)
 
-9、登录{{{ custom_key.brand_name }}}，点击「日志」模块查看对应生成的事件
+9、登录<<< custom_key.brand_name >>>，点击「日志」模块查看对应生成的事件
 
 - measurement：数据来源
 - message：日志内容
@@ -104,4 +104,4 @@ systemctl restart datakit
 
 <[阿里云 EventBridge 事件总线产品简介](https://help.aliyun.com/document_detail/163239.html)>
 
-<[{{{ custom_key.brand_name }}} DataKit API 开发文档](../../datakit/apis.md)>
+<[<<< custom_key.brand_name >>> DataKit API 开发文档](../../datakit/apis.md)>

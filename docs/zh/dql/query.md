@@ -1,7 +1,7 @@
 # DQL 查询
 ---
 
-击{{{ custom_key.brand_name }}}控制台的**快捷入口 > 查询工具**即可打开查询查看器，或者您可以通过快捷键 `Alt+Q` 或 `option+Q` 直接打开查询工具。
+击<<< custom_key.brand_name >>>控制台的**快捷入口 > 查询工具**即可打开查询查看器，或者您可以通过快捷键 `Alt+Q` 或 `option+Q` 直接打开查询工具。
 
 
 > 点击 **DQL 查询**右侧的 **[简单查询](../scene/visual-chart/chart-query.md#simple)**、**[PromQL 查询](../scene/visual-chart/chart-query.md#promql)** 按钮即可切换查询方式。
@@ -57,11 +57,11 @@ namespace::
 
 ### <u>示例说明</u>
 
-下面是一个简单的示例，通过 DQL 查询时序指标集 cpu 的字段 `usage_idle` (CPU空闲率)，以 host 来过滤筛选，同时以 host 来分组显示结果。其中 `#{host}` 是在{{{ custom_key.brand_name }}}仪表板设置的视图变量，用于过滤筛选。
+下面是一个简单的示例，通过 DQL 查询时序指标集 cpu 的字段 `usage_idle` (CPU空闲率)，以 host 来过滤筛选，同时以 host 来分组显示结果。其中 `#{host}` 是在<<< custom_key.brand_name >>>仪表板设置的视图变量，用于过滤筛选。
 
 ![](img/4.DQL_2.1.png)
 
-把上面的语句应用到{{{ custom_key.brand_name }}}场景仪表版的图表查询中，下图结合表达式查询和 DQL 查询，展示最近 15 分钟 CPU 使用率。
+把上面的语句应用到<<< custom_key.brand_name >>>场景仪表版的图表查询中，下图结合表达式查询和 DQL 查询，展示最近 15 分钟 CPU 使用率。
 
 ![](img/4.DQL_2.png)
 
@@ -144,7 +144,7 @@ M::cpu:(avg(`usage`)) [today:5m]
 表达式计算内还可以支持查询两个不同时间段的数据做最终的结果计算。表达式里如果有多个不同的时间参数定义，如子查询 A 与子查询 B 语句中分别定义时间参数为 `[today]` 和 `[yesterday]`，最终数据返回值的时间将按照查询时的 `now()` 时间做填充，最终返回一个数据。
 
 
-如果表达式里定义了时间间隔，且存在多个查询时间的时间点不一致的情况，如子查询 A 与子查询 B 语句中分别定义时间参数为 `[today:5m]` 和 `[yesterday:5m]`。此时数据点的时间对不上，无法进行加减乘除，{{{ custom_key.brand_name }}}会默认返回值为空。
+如果表达式里定义了时间间隔，且存在多个查询时间的时间点不一致的情况，如子查询 A 与子查询 B 语句中分别定义时间参数为 `[today:5m]` 和 `[yesterday:5m]`。此时数据点的时间对不上，无法进行加减乘除，<<< custom_key.brand_name >>>会默认返回值为空。
 
 
 

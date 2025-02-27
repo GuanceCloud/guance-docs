@@ -15,7 +15,7 @@ Amazon Elastic Kubernetes Service (Amazon EKS) 是 Amazon 提供的一项 Kubern
 
 ## 前置条件
 
-- 您需要先创建一个[{{{ custom_key.brand_name }}}账号](https://www.guance.com/)。
+- 您需要先创建一个[<<< custom_key.brand_name >>>账号](https://www.guance.com/)。
 - 您需要先创建一个[AWS 账号](https://www.amazonaws.cn/)。
 - [安装 EKS ](https://docs.amazonaws.cn/eks/latest/userguide/create-cluster.html)集群
 - 一台 EC2(Amazon Linux 2 AMI 镜像)
@@ -115,7 +115,7 @@ helm version
 
 #### 4.1 获取 Token
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」- 「管理」-「设置」，找到 Token，点击右边的复制图标，Token 在下一步中会使用到。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」- 「管理」-「设置」，找到 Token，点击右边的复制图标，Token 在下一步中会使用到。
 
 ![image.png](../images/eks-9.png)
 
@@ -175,7 +175,7 @@ helm install datakit . -n datakit  -f values.yaml --create-namespace
 
 ![image.png](../images/eks-14.png)
 
-部署成功后，可登录{{{ custom_key.brand_name }}}「工作空间」，在「指标」 - 「指标管理」中查看 kube 开头的指标，其中存在全局标签 `cluster_name_k8s`。
+部署成功后，可登录<<< custom_key.brand_name >>>「工作空间」，在「指标」 - 「指标管理」中查看 kube 开头的指标，其中存在全局标签 `cluster_name_k8s`。
 
 ![image.png](../images/eks-15.png)
 

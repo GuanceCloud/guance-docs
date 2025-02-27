@@ -2,7 +2,7 @@
 
 LDAP(Lightweight Directory Access Protocol) 是一种用于处理各种目录服务的应用程序协议。Microsoft Entra ID 通过 Microsoft Entra 域服务 (AD DS) 支持该模式。
 
-{{{ custom_key.brand_name }}}部署版支持已拥有 LDAP 服务的用户通过该协议一键登录。以下为一些必要的配置字段：
+<<< custom_key.brand_name >>>部署版支持已拥有 LDAP 服务的用户通过该协议一键登录。以下为一些必要的配置字段：
 
 | 字段      | 描述                          |
 | ----------- | ------------------------------------ |
@@ -12,7 +12,7 @@ LDAP(Lightweight Directory Access Protocol) 是一种用于处理各种目录服
 | `bindDN`      | 与 LDAP 服务建立链接时用于验证的 用户名信息(DN 接口)。       |
 | `searchAttribute`      | 搜索其他账号时，用来过滤账号的条目名。该条目名将与用户输入的用户名组成一个 DIT 条目信息。（该值能够根据用户名确认唯一用户）                 |
 | `bindPassword`      | 与 LDAP 服务建立链接时用于验证的密码信息。                          |
-| `mapping`      | 账号属性中需要映射到{{{ custom_key.brand_name }}}的属性字段映射信息。<br /><br />LDAP 中给出的账号属性对应的属性值一般都是列表；在{{{ custom_key.brand_name }}}中如果属性值为数组/列表结构，则默认取第一个元素作为值进行处理。*参考【字段概念补充 > 2.账号属性字段】*                          |
+| `mapping`      | 账号属性中需要映射到<<< custom_key.brand_name >>>的属性字段映射信息。<br /><br />LDAP 中给出的账号属性对应的属性值一般都是列表；在<<< custom_key.brand_name >>>中如果属性值为数组/列表结构，则默认取第一个元素作为值进行处理。*参考【字段概念补充 > 2.账号属性字段】*                          |
 
 
 ???- abstract "字段概念补充"
@@ -23,7 +23,7 @@ LDAP(Lightweight Directory Access Protocol) 是一种用于处理各种目录服
 
     2. 账号属性字段：
   
-    | {{{ custom_key.brand_name }}}中的账号属性      | {{{ custom_key.brand_name }}}侧字段说明      | LDAP 服务侧提供的账号属性，经 ldap3 转换之后的属性（默认字段）    |
+    | <<< custom_key.brand_name >>>中的账号属性      | <<< custom_key.brand_name >>>侧字段说明      | LDAP 服务侧提供的账号属性，经 ldap3 转换之后的属性（默认字段）    |
     | ----------- | ------------------------- |--------------------- |
     | `username`      | 认证服务中，登录账号的邮箱字段名，必填     |           `mail`            |
     | `email`      | 认证服务中，登录账号的用户名字段名，必填，如果值不存在，则取 `email`	|          `uid`  |
@@ -33,7 +33,7 @@ LDAP(Lightweight Directory Access Protocol) 是一种用于处理各种目录服
 
 ## 配置详情
 
-在{{{ custom_key.brand_name }}} Launcher 命名空间：forethought-core > core 中添加如下配置，需注意调整配置变量值：
+在<<< custom_key.brand_name >>> Launcher 命名空间：forethought-core > core 中添加如下配置，需注意调整配置变量值：
 
 
 ```
@@ -133,17 +133,17 @@ LDAPClientSet:
 ```
 
 
-## 使用 LDAP 单点登录至{{{ custom_key.brand_name }}}
+## 使用 LDAP 单点登录至<<< custom_key.brand_name >>>
 
 ![](img/ldap-1.png)
 
-以上配置添加完毕后，即可使用 LDAP 单点登录到{{{ custom_key.brand_name }}}。
+以上配置添加完毕后，即可使用 LDAP 单点登录到<<< custom_key.brand_name >>>。
 
-1）打开{{{ custom_key.brand_name }}}部署版登录地址，在登录页面选择 **LDAP 登录**；
+1）打开<<< custom_key.brand_name >>>部署版登录地址，在登录页面选择 **LDAP 登录**；
 
 2）输入在 LDAP server 使用的用户名与密码；
 
-3）登录到{{{ custom_key.brand_name }}}对应的工作空间。
+3）登录到<<< custom_key.brand_name >>>对应的工作空间。
 
 
 ## 更多阅读

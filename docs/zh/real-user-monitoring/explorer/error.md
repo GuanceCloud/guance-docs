@@ -22,7 +22,7 @@
 
 ### 聚类分析 {#analysis}
 
-若您需要查看发生频次较高的错误，可以在{{{ custom_key.brand_name }}}工作空间**用户访问监测 > 查看器 > Error**，选择**聚类分析**列表。
+若您需要查看发生频次较高的错误，可以在<<< custom_key.brand_name >>>工作空间**用户访问监测 > 查看器 > Error**，选择**聚类分析**列表。
 
 聚类分析是对所有错误的链路数据基于聚类字段进行相似度计算分析，根据右上方选择的时间范围固定当前时间段，并获取该时间段内 10000 条数据进行聚类分析，将近似度高的错误链路进行聚合，提取并统计共同的 Pattern 聚类，帮助快速发现异常链路和定位问题。
 
@@ -56,7 +56,7 @@
 
 应用在生产环境中发布的时候，为了防止代码泄露等安全问题，一般打包过程中会针对文件做转换、压缩等操作。以上举措在保障代码安全的同时也致使收集到的错误堆栈信息是经过混淆后的，无法直接定位问题，为后续 Bug 排查带来了不便。
 
-{{{ custom_key.brand_name }}}为应用程序提供 Sourcemap 功能，支持还原混淆后的代码，方便错误排查时定位源码，帮助用户更快解决问题。
+<<< custom_key.brand_name >>>为应用程序提供 Sourcemap 功能，支持还原混淆后的代码，方便错误排查时定位源码，帮助用户更快解决问题。
 
 > 您可以通过 RUM [Sourcemap 配置](../sourcemap/set-sourcemap.md) 或 [Datakit 采集器 Sourcemap 转换](../../integrations/rum.md#sourcemap)进行配置，配置完成后，即可以在错误详情中查看解析后的代码和原始的代码。
 
@@ -98,7 +98,7 @@
 
 ## Issue 自动发现 {#issue}
 
-基于{{{ custom_key.brand_name }}}对 RUM Error 进行监测而产生的数据，当您启用 **Issue 自动发现**这一配置后，系统会根据不同的分组维度统计对应异常数据，并对后续类似问题的产生进行堆栈跟踪，自动浓缩，最终产生 Issue。通过该入口产生的 Issue 会帮助您获取问题产生的上下文和根因，大量减少解决问题的平均时间。
+基于<<< custom_key.brand_name >>>对 RUM Error 进行监测而产生的数据，当您启用 **Issue 自动发现**这一配置后，系统会根据不同的分组维度统计对应异常数据，并对后续类似问题的产生进行堆栈跟踪，自动浓缩，最终产生 Issue。通过该入口产生的 Issue 会帮助您获取问题产生的上下文和根因，大量减少解决问题的平均时间。
 
 
 ![](../img/auto-issue-rum.png)
@@ -107,12 +107,12 @@
 
 :material-numeric-2-circle-outline: 组合维度：基于配置字段内容组合进行归类统计，包含 `app_name`、`env`、`version`、`error_type`。
 
-基于组合维度，可添加筛选条件，{{{ custom_key.brand_name }}}会针对符合条件的数据进一步作查询归类。
+基于组合维度，可添加筛选条件，<<< custom_key.brand_name >>>会针对符合条件的数据进一步作查询归类。
 
 
 <img src="../img/issue-filter-rum.png" width="70%" >
 
-:material-numeric-3-circle-outline: 检测频率：{{{ custom_key.brand_name }}}会根据您选择的频率来查询数据的时间范围，包含 5 分钟、10 分钟、15 分钟、30 分钟和 1 小时。
+:material-numeric-3-circle-outline: 检测频率：<<< custom_key.brand_name >>>会根据您选择的频率来查询数据的时间范围，包含 5 分钟、10 分钟、15 分钟、30 分钟和 1 小时。
 
 :material-numeric-4-circle-outline: Issue 定义：启用该配置后，Issue 将以此处的定义对外呈现。为避免信息缺失，[需依次填写](../exception/issue.md#concepts)。
 

@@ -8,12 +8,12 @@ icon: zy/faq
 
 <div class="grid cards" markdown>
 
--   :material-chat-question: 您在使用{{{ custom_key.brand_name }}}功能时遇到任何问题或疑问，请随时点击查询。
+-   :material-chat-question: 您在使用<<< custom_key.brand_name >>>功能时遇到任何问题或疑问，请随时点击查询。
 
 
     ---
 
-    [__开始观测__](../billing/faq/index.md)：涵盖激活{{{ custom_key.brand_name }}}各版本及其计费相关问题
+    [__开始观测__](../billing/faq/index.md)：涵盖激活<<< custom_key.brand_name >>>各版本及其计费相关问题
 
     ---
 

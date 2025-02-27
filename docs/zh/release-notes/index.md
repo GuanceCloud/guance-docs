@@ -6,7 +6,7 @@ icon: zy/release-notes
 
 ---
 
-本文档记录{{{ custom_key.brand_name }}}每次上线发布的更新内容说明。
+本文档记录<<< custom_key.brand_name >>>每次上线发布的更新内容说明。
 
 <div class="grid cards" markdown>
 
@@ -259,7 +259,7 @@ APM 添加服务时，新增[主机自动注入](../application-performance-moni
 
 #### 管理
 
-1. 事件支持配置[数据转发](../management/backup/index.md)：支持配置事件类型的数据转发规则，将符合过滤条件的事件数据保存到{{{ custom_key.brand_name }}}的对象存储及转发到外部存储，提供灵活管理事件数据的能力。
+1. 事件支持配置[数据转发](../management/backup/index.md)：支持配置事件类型的数据转发规则，将符合过滤条件的事件数据保存到<<< custom_key.brand_name >>>的对象存储及转发到外部存储，提供灵活管理事件数据的能力。
 
 2. 工作空间新增 DataKit [环境变量](../management/env_variable.md)：工作空间支持管理 DataKit 环境变量，用户可以轻松配置和更新环境变量，实现远程同步更新 DataKit 采集配置。
 

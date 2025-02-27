@@ -1,25 +1,25 @@
-# {{{ custom_key.brand_name }}} RUM SDK 快速入门指南
+# <<< custom_key.brand_name >>> RUM SDK 快速入门指南
 
 ## 概述
 
-{{{ custom_key.brand_name }}} RUM SDK（Real User Monitoring）提供了一套强大的工具，用于监测和分析 Web 应用的真实用户行为及性能。本快速入门指南将帮助您快速集成 RUM SDK 到您的 Web 应用中，并区分 DK 方式接入和公网 DataWay 接入，同时详细介绍如何自定义添加数据 TAG。
+<<< custom_key.brand_name >>> RUM SDK（Real User Monitoring）提供了一套强大的工具，用于监测和分析 Web 应用的真实用户行为及性能。本快速入门指南将帮助您快速集成 RUM SDK 到您的 Web 应用中，并区分 DK 方式接入和公网 DataWay 接入，同时详细介绍如何自定义添加数据 TAG。
 
 ## 前置条件
 
 - **安装 DataKit**：确保 DataKit 已安装并配置为公网可访问（对于 DK 方式接入）[如何安装 DataKit](../../datakit/datakit-install.md)；。
-- **配置 RUM 采集器**：按照{{{ custom_key.brand_name }}}文档配置 RUM 采集器 [如何配置 RUM 采集器](../../integrations/rum.md)；。
+- **配置 RUM 采集器**：按照<<< custom_key.brand_name >>>文档配置 RUM 采集器 [如何配置 RUM 采集器](../../integrations/rum.md)；。
 
 ## 接入方式
 
 ### 1. DK 方式接入
 
 - 确保 DataKit 已安装并配置为公网可访问。[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)
-- 在{{{ custom_key.brand_name }}}控制台获取`applicationId`、`env`、`version` 等参数 [新建应用](../index.md#create)。
+- 在<<< custom_key.brand_name >>>控制台获取`applicationId`、`env`、`version` 等参数 [新建应用](../index.md#create)。
 - 集成 SDK 时，将`datakitOrigin`配置为 DataKit 的域名或 IP。
 
 ### 2. 公网 OpenWay 接入
 
-- 登录{{{ custom_key.brand_name }}}控制台，进入**用户访问监测**页面，点击左上角**新建应用**，获取`applicationId`、`clientToken` 和 `site`参数。[新建应用](../index.md#create)
+- 登录<<< custom_key.brand_name >>>控制台，进入**用户访问监测**页面，点击左上角**新建应用**，获取`applicationId`、`clientToken` 和 `site`参数。[新建应用](../index.md#create)
 - 配置`site`和`clientToken`参数，支持在控制台中上传 SourceMap。
 - 集成 SDK 时，无需配置`datakitOrigin`，SDK 将默认将数据发送到公网 DataWay。
 
@@ -71,7 +71,7 @@ datafluxRum.startSessionReplayRecording()
     ;(d = o.createElement(u)), (d.async = 1), (d.src = n)
     n = o.getElementsByTagName(u)[0]
     n.parentNode.insertBefore(d, n)
-  })(window, document, 'script', 'https://{{{ custom_key.static_domain }}}/browser-sdk/v3/dataflux-rum.js', 'DATAFLUX_RUM')
+  })(window, document, 'script', 'https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js', 'DATAFLUX_RUM')
 
   window.DATAFLUX_RUM.onReady(function () {
     window.DATAFLUX_RUM.init({
@@ -97,7 +97,7 @@ datafluxRum.startSessionReplayRecording()
 在 HTML 文件中添加脚本：
 
 ```html
-<script src="https://{{{ custom_key.static_domain }}}/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({
@@ -242,4 +242,4 @@ datafluxRum.setUser({ id: '1234', name: 'John Doe', email: 'john@doe.com' })
 - 使用 SDK 提供的日志和监控工具来调试和优化您的应用性能。
 - 根据业务需求，调整`sessionSampleRate`和`sessionReplaySampleRate`等参数以优化数据采集。
 
-通过以上步骤，您可以成功将{{{ custom_key.brand_name }}} RUM SDK 集成到您的 Web 应用中，并开始收集数据和使用会话重放功能来优化用户体验和性能。
+通过以上步骤，您可以成功将<<< custom_key.brand_name >>> RUM SDK 集成到您的 Web 应用中，并开始收集数据和使用会话重放功能来优化用户体验和性能。

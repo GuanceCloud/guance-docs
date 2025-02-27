@@ -12,7 +12,7 @@
 
 **编译运行平台为 iOS 时：**
 
-在 Debug 环境，当您配置{{{ custom_key.brand_name }}} SDK 并首次运行该应用程序后，请在 Xcode 中检查您的调试器控制台，SDK 会使用断言检查多项配置的正确性并在配置错误时崩溃并输出相关警告。
+在 Debug 环境，当您配置<<< custom_key.brand_name >>> SDK 并首次运行该应用程序后，请在 Xcode 中检查您的调试器控制台，SDK 会使用断言检查多项配置的正确性并在配置错误时崩溃并输出相关警告。
 
 eg：当配置 SDK 时，未设置  datakit metrics 写入地址，程序会崩溃，并在控制台输出警告⚠️。
 
@@ -62,7 +62,7 @@ SDK 的调试日志是以  **[FTLog]** 作为前缀标识。
 
 * 确认 SDK 上传地址`datakitUrl` 或 `datawayUrl`[配置正确](app-access.md#base-setting)，并正确初始化。[debug 模式](#debug-mode)下, 查看 [Android Logcat](../android/app-troubleshooting.md#data_sync) 或 [iOS Xcode Console](../ios/app-troubleshooting.md#data_sync) 的同步日志。
 	
-* datakit 是否往对应工作空间上传数据，是否处于离线状态。这个可以通过登录{{{ custom_key.brand_name }}}，查看「基础设施」来确认这个问题。
+* datakit 是否往对应工作空间上传数据，是否处于离线状态。这个可以通过登录<<< custom_key.brand_name >>>，查看「基础设施」来确认这个问题。
 
 	![](../img/17.trouble_shooting_android_datakit_check.png)
 
@@ -82,7 +82,7 @@ SDK 的调试日志是以  **[FTLog]** 作为前缀标识。
 ## 兼容问题
 ### react-native-navigation 运行兼容问题
 ####  ReactTextShadowNode.UNSET 找不到符号 
-这是由于 react-native-navigation 版本兼容问题导致，相关 issue [查看这里](https://github.com/wix/react-native-navigation/issues/7881#issuecomment-2164213896)。通过更改或[下载](https://{{{ custom_key.static_domain }}}/ft-sdk-package/react_navigation_fix/ReactTypefaceUtils.java)替换 `ReactTypefaceUtils.java` 来修正这个问题。
+这是由于 react-native-navigation 版本兼容问题导致，相关 issue [查看这里](https://github.com/wix/react-native-navigation/issues/7881#issuecomment-2164213896)。通过更改或[下载](https://<<< custom_key.static_domain >>>/ft-sdk-package/react_navigation_fix/ReactTypefaceUtils.java)替换 `ReactTypefaceUtils.java` 来修正这个问题。
 
 ### 找不到模块 `react/jsx-runtime`
 

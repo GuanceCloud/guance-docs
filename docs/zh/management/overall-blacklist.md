@@ -1,7 +1,7 @@
 # 黑名单
 ---
 
-通过设置黑名单，可以过滤掉符合条件的不同类型的数据。即配置黑名单以后，符合条件的数据不再上报到{{{ custom_key.brand_name }}}工作空间，帮助您节约数据存储费用。
+通过设置黑名单，可以过滤掉符合条件的不同类型的数据。即配置黑名单以后，符合条件的数据不再上报到<<< custom_key.brand_name >>>工作空间，帮助您节约数据存储费用。
 
 
 ## 前提条件
@@ -84,14 +84,14 @@
 
     **注意**：该功能仅对工作空间拥有者、管理员、普通成员显示，只读成员不显示。
 
-6. 可通过导入 JSON 文件的方式创建黑名单，且导入的 JSON 文件需为来自{{{ custom_key.brand_name }}}的配置 JSON 文件。
+6. 可通过导入 JSON 文件的方式创建黑名单，且导入的 JSON 文件需为来自<<< custom_key.brand_name >>>的配置 JSON 文件。
 
 
 
 
 ## 注意事项
 
-1. 若在安装配置 DataKit 时，在 `datakit.conf` 文件中配置了[黑名单过滤](../datakit/datakit-filter.md#manual)，则{{{ custom_key.brand_name }}}中配置的黑名单规则不会对其生效；    
+1. 若在安装配置 DataKit 时，在 `datakit.conf` 文件中配置了[黑名单过滤](../datakit/datakit-filter.md#manual)，则<<< custom_key.brand_name >>>中配置的黑名单规则不会对其生效；    
 
 2. DataKit 每 10 秒会拉取一次数据，黑名单配置后不会立即生效，需要等待至少 10 秒时间；
 

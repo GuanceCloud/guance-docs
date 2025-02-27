@@ -4,11 +4,11 @@
 
 ## 简介
 
-一般企业创建自己的容器云环境后，企业为了简化繁琐的发布流程，一般会使用 GitlabCi 、Jenkins 进行应用部署。同时会考虑使用 Rancher 进行统一的资源编排管理，通过 Rancher 的应用商店简化应用管理。通过应用商店一键安装 DataKit （具体见 DataKit 文档的 Helm 安装方式），{{{ custom_key.brand_name }}}对 Rancher 管控的 Kubernetes 集群，提供了大量开箱即用的可观测功能。本文通过一个耳熟能详的 Bookinfo 案例，详细解释如何利用{{{ custom_key.brand_name }}}实现 GitlabCI、Kubernetes 与微服务的可观测性。
+一般企业创建自己的容器云环境后，企业为了简化繁琐的发布流程，一般会使用 GitlabCi 、Jenkins 进行应用部署。同时会考虑使用 Rancher 进行统一的资源编排管理，通过 Rancher 的应用商店简化应用管理。通过应用商店一键安装 DataKit （具体见 DataKit 文档的 Helm 安装方式），<<< custom_key.brand_name >>>对 Rancher 管控的 Kubernetes 集群，提供了大量开箱即用的可观测功能。本文通过一个耳熟能详的 Bookinfo 案例，详细解释如何利用<<< custom_key.brand_name >>>实现 GitlabCI、Kubernetes 与微服务的可观测性。
 
 ## 案例假设
 
-某公司利用 Rancher 管理了两套 Kubernetes ，一套研发测试，一套线上。公司在研发测试环境部署了 gitlab 做 CICD，BookInfo 项目是个电子书城，是个典型的多语言微服务项目。一个正在研发的发版本部署在研发测试环境，通过测试后，对线上环境的 BookInfo 做金丝雀灰度发布。该公司的可观测体系组成部分如下： <br />1.1 SRE 对整体两套环境的 Kubernetes 资源情况在{{{ custom_key.brand_name }}}上进行观测，做好容量规划和应急处理 <br />2.1 开发人员对 cicd 的流程进行观测从而了解软件迭代的速度和质量，及时处理出错的 pipeline。<br />2.2 SRE 对线上环境的金丝雀发布进行观测从而了解版本流量切换的状态，及时回滚避免对线上用户产生影响。 <br />3.1 SRE 通过 istio 对整个应用进行链路追踪，在{{{ custom_key.brand_name }}}上查看应用的健康关键指标，及时处理异常请求。<br />3.2 开发对自己的日志进行管理，出现健康异常时，在{{{ custom_key.brand_name }}}上及时通过链路追踪找到日志上下文解决问题<br />我们分三篇讲解整体实践。
+某公司利用 Rancher 管理了两套 Kubernetes ，一套研发测试，一套线上。公司在研发测试环境部署了 gitlab 做 CICD，BookInfo 项目是个电子书城，是个典型的多语言微服务项目。一个正在研发的发版本部署在研发测试环境，通过测试后，对线上环境的 BookInfo 做金丝雀灰度发布。该公司的可观测体系组成部分如下： <br />1.1 SRE 对整体两套环境的 Kubernetes 资源情况在<<< custom_key.brand_name >>>上进行观测，做好容量规划和应急处理 <br />2.1 开发人员对 cicd 的流程进行观测从而了解软件迭代的速度和质量，及时处理出错的 pipeline。<br />2.2 SRE 对线上环境的金丝雀发布进行观测从而了解版本流量切换的状态，及时回滚避免对线上用户产生影响。 <br />3.1 SRE 通过 istio 对整个应用进行链路追踪，在<<< custom_key.brand_name >>>上查看应用的健康关键指标，及时处理异常请求。<br />3.2 开发对自己的日志进行管理，出现健康异常时，在<<< custom_key.brand_name >>>上及时通过链路追踪找到日志上下文解决问题<br />我们分三篇讲解整体实践。
 
 ## 前置条件
 
@@ -28,11 +28,11 @@
 
 ##### 1.1.1 下载部署文件
 
-登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，点击『集成』模块，再点击左上角『DataKit』，选择『Kubernetes』，下载 datakit.yaml。
+登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，点击『集成』模块，再点击左上角『DataKit』，选择『Kubernetes』，下载 datakit.yaml。
 
 ##### 1.1.2 配置 token
 
-登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，进入『管理』模块，找到下图中 token，替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
+登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『管理』模块，找到下图中 token，替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
 
 ```yaml
         - name: ENV_DATAWAY
@@ -178,7 +178,7 @@ DataKit 部署成功后，可以看到如下图的运行状态。
 
 #### 2.2 开启 RUM
 
-为了观测网站被调用的信息，需要开通前端的数据采集。登录『 [{{{ custom_key.brand_name }}}](https://console.guance.com/)』，进入『用户访问监测』，新建应用 **devops-bookinfo** ，复制下方 JS。
+为了观测网站被调用的信息，需要开通前端的数据采集。登录『 [<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『用户访问监测』，新建应用 **devops-bookinfo** ，复制下方 JS。
 
 ![image](../images/microservices/6.png)	 
 
@@ -699,19 +699,19 @@ deploy_k8s:
 
 #### 6.2 Gitlab CI 流水线可观测
 
-登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，进入『CI』，点击『概览』选择 bookinfo-views 项目，查看 Pipeline 和 Job 的执行情况。
+登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『CI』，点击『概览』选择 bookinfo-views 项目，查看 Pipeline 和 Job 的执行情况。
 		  
 ![image](../images/microservices/16.png)	 
 
 ![image](../images/microservices/17.png)	 
 
-登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，进入『CI』,点击『查看器』，选择 gitlab_pipeline。
+登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『CI』,点击『查看器』，选择 gitlab_pipeline。
 		 
 ![image](../images/microservices/18.png)	 
 
 ![image](../images/microservices/19.png)	 
 
-登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，进入『CI』,点击『查看器』，选择 gitlab_job。
+登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『CI』,点击『查看器』，选择 gitlab_job。
 		 
 ![image](../images/microservices/20.png)	 
 

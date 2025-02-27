@@ -95,7 +95,7 @@ if body["code"] == "200" {
 
 ### :material-numeric-3-circle: 选择拨测节点
 
-目前{{{ custom_key.brand_name }}}已覆盖全球 14 个拨测节点。您可以选择中国地区或海外地区（仅限商业版及以上用户）的一个或多个节点，快速开启站点服务质量监测。
+目前<<< custom_key.brand_name >>>已覆盖全球 14 个拨测节点。您可以选择中国地区或海外地区（仅限商业版及以上用户）的一个或多个节点，快速开启站点服务质量监测。
 
 
 ### :material-numeric-4-circle: 选择拨测频率

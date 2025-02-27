@@ -1,4 +1,4 @@
-# {{{ custom_key.brand_name }}} ES 多租户生命周期管理实践
+# <<< custom_key.brand_name >>> ES 多租户生命周期管理实践
 ---
 
 
@@ -28,7 +28,7 @@
 
 ![](../img/es-1.png)
 
-## {{{ custom_key.brand_name }}}实际应用
+## <<< custom_key.brand_name >>>实际应用
 
 
 | **保存策略** | **描述** | **热数据阶段** | **温数据阶段** | **删除数据阶段** |

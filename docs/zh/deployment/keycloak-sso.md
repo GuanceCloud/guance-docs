@@ -3,9 +3,9 @@
 
 ## 简介
 
-{{{ custom_key.brand_name }}}部署版支持基于 OpenID Connect 和 OAuth 2.0 两种协议的单点登录方式。本文将以 Keycloak 登录为例进行讲解。
+<<< custom_key.brand_name >>>部署版支持基于 OpenID Connect 和 OAuth 2.0 两种协议的单点登录方式。本文将以 Keycloak 登录为例进行讲解。
 
-Keycloak 是一个开源的、面向现代应用和分布式服务的身份认证和访问控制的解决方案，{{{ custom_key.brand_name }}}部署版基于 OpenID Connect 协议，实现企业 Keycloak 账户单点登录到{{{ custom_key.brand_name }}}平台访问对应工作空间资源，无需另外创建企业/团队的{{{ custom_key.brand_name }}}账号。
+Keycloak 是一个开源的、面向现代应用和分布式服务的身份认证和访问控制的解决方案，<<< custom_key.brand_name >>>部署版基于 OpenID Connect 协议，实现企业 Keycloak 账户单点登录到<<< custom_key.brand_name >>>平台访问对应工作空间资源，无需另外创建企业/团队的<<< custom_key.brand_name >>>账号。
 
 **注意：**本文适用于使用 OpenID Connect 协议，且 Keycloak 为 18.0.2 及以下的版本。
 
@@ -41,7 +41,7 @@ Keycloak 是一个开源的、面向现代应用和分布式服务的身份认�
 
 ### 2、创建 Client 并配置 openid-connect 协议
 
-> 注意：本步骤将创建 Keycloak 客户端并配置 openid-connect 协议，建立 Keycloak 和{{{ custom_key.brand_name }}}之间的信任关系使之相互信任。
+> 注意：本步骤将创建 Keycloak 客户端并配置 openid-connect 协议，建立 Keycloak 和<<< custom_key.brand_name >>>之间的信任关系使之相互信任。
 
 1）在新创建的 “gcy” 领域下，点击 **Client**，在右侧点击 **Create**。
 
@@ -65,9 +65,9 @@ Client 创建后，按照如下截图进行配置，点击 **Save**。
 ### 3、[配置 Keycloak 用户](./keycloak-rule.md#new)
 
 
-### 4、{{{ custom_key.brand_name }}} Launcher 配置 {#config}
+### 4、<<< custom_key.brand_name >>> Launcher 配置 {#config}
 
-1）在{{{ custom_key.brand_name }}} Launcher **命名空间：forethought-core > core** 中配置 Keycloak 的基本信息。
+1）在<<< custom_key.brand_name >>> Launcher **命名空间：forethought-core > core** 中配置 Keycloak 的基本信息。
 
 ```
 
@@ -118,7 +118,7 @@ OIDCClientSet:
 ![](img/1.keycloak_3.2.png)
 
 
-2）在{{{ custom_key.brand_name }}} Launcher **命名空间：forethought-webclient > frontNginx** 中配置跳转信息。
+2）在<<< custom_key.brand_name >>> Launcher **命名空间：forethought-webclient > frontNginx** 中配置跳转信息。
 
 ```
         # =========OIDC协议 跳转相关配置开始=========
@@ -155,7 +155,7 @@ OIDCClientSet:
 
 ![](img/1.keycloak_4.1.png)
 
-3）在{{{ custom_key.brand_name }}} Launcher **命名空间：forethought-webclient > frontWeb** 中配置 Keycloak 用户登录{{{ custom_key.brand_name }}}部署版的入口地址。
+3）在<<< custom_key.brand_name >>> Launcher **命名空间：forethought-webclient > frontWeb** 中配置 Keycloak 用户登录<<< custom_key.brand_name >>>部署版的入口地址。
 
 ```
 window.DEPLOYCONFIG = {
@@ -163,9 +163,9 @@ window.DEPLOYCONFIG = {
     ......
 
     paasCustomLoginInfo:[
-        {url:"http://<{{{ custom_key.brand_name }}}的部署域名>/oidc/login",label:"Keycloak 登录"}
+        {url:"http://<<< custom_key.brand_name >>>的部署域名/oidc/login",label:"Keycloak 登录"}
     ],
-    paasCustomLoginUrl: "https://<客户提供的注销登录地址>?redirect_url=https://<{{{ custom_key.brand_name }}}Web端登录域名地址>/oidc/login"
+    paasCustomLoginUrl: "https://<客户提供的注销登录地址>?redirect_url=https://<<< custom_key.brand_name >>>Web端登录域名地址/oidc/login"
      
      
     ......
@@ -182,11 +182,11 @@ window.DEPLOYCONFIG = {
 ![](img/1.keycloak_6.png)
 
 
-### 5、使用 Keycloak 账号单点登录{{{ custom_key.brand_name }}}
+### 5、使用 Keycloak 账号单点登录<<< custom_key.brand_name >>>
 
-所有配置完成后，即可使用单点登录到{{{ custom_key.brand_name }}}。
+所有配置完成后，即可使用单点登录到<<< custom_key.brand_name >>>。
 
-1）打开{{{ custom_key.brand_name }}}部署版登录地址，在登录页面选择 **Keycloak 单点登录**。
+1）打开<<< custom_key.brand_name >>>部署版登录地址，在登录页面选择 **Keycloak 单点登录**。
 
 ![](img/1.keycloak_10.png)
 
@@ -198,17 +198,17 @@ window.DEPLOYCONFIG = {
 
 ![](img/1.keycloak_12.png)
 
-4）登录到{{{ custom_key.brand_name }}}对应的工作空间。
+4）登录到<<< custom_key.brand_name >>>对应的工作空间。
 
 ???+ warning
 
-    - 若提示“当前账户未加入任何工作空间，请移步至管理后台将该账户添加到工作空间。”，则需要登录{{{ custom_key.brand_name }}}管理后台为用户添加工作空间。
+    - 若提示“当前账户未加入任何工作空间，请移步至管理后台将该账户添加到工作空间。”，则需要登录<<< custom_key.brand_name >>>管理后台为用户添加工作空间。
 
     > 更多详情可参考文档 [部署版工作空间管理](space.md)。
  
     ![](img/1.keycloak_15.png)
 
-    在{{{ custom_key.brand_name }}}管理后台为用户添加完工作空间后，用户即可开始使用{{{ custom_key.brand_name }}}。
+    在<<< custom_key.brand_name >>>管理后台为用户添加完工作空间后，用户即可开始使用<<< custom_key.brand_name >>>。
 
 ![](img/1.keycloak_14.png)
 

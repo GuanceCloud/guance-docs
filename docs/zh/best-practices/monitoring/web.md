@@ -4,7 +4,7 @@
 
 ## 前置条件
 
-- 进入[{{{ custom_key.brand_name }}}官网](https://www.guance.cn/) 注册账号，使用已注册的账号/密码登录。
+- 进入[<<< custom_key.brand_name >>>官网](https://www.guance.cn/) 注册账号，使用已注册的账号/密码登录。
 - 服务器<[安装 DataKit](../../datakit/datakit-install.md)>
 
 ## Web 应用监控（RUM）介绍：
@@ -30,7 +30,7 @@ DF 官方目前支持的 RUM 监控方式有如下几种：
 
 ### Web 页面接入 RUM 相关步骤：
 
-##### 1、登录{{{ custom_key.brand_name }}}
+##### 1、登录<<< custom_key.brand_name >>>
 
 ##### 2、选择用户访问监测——新建应用——选择 web 类型——同步载入
 
@@ -62,7 +62,7 @@ $ cp index.html index.html.bkd
 $ vim index.html
 
 <head> 
-<script src="https://{{{ custom_key.static_domain }}}/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://<<< custom_key.static_domain >>>/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({

@@ -11,14 +11,14 @@
   value: xxx
 ```  
   
-针对一个工作空间接入多个 Kubernetes 集群指标，{{{ custom_key.brand_name }}}提供了使用全局 Tag 的方式来进行区分。当集群中只有一个采集对象，比如采集 **Kubernetes API Server** 指标，集群中 DataKit 的数量会大于一个，为了避免指标采集重复，DataKit 开启了**选举**功能，这个时候区分集群的方式是增加 `ENV_GLOBAL_ELECTION_TAGS`。
+针对一个工作空间接入多个 Kubernetes 集群指标，<<< custom_key.brand_name >>>提供了使用全局 Tag 的方式来进行区分。当集群中只有一个采集对象，比如采集 **Kubernetes API Server** 指标，集群中 DataKit 的数量会大于一个，为了避免指标采集重复，DataKit 开启了**选举**功能，这个时候区分集群的方式是增加 `ENV_GLOBAL_ELECTION_TAGS`。
 
 ```yaml
 - name: ENV_GLOBAL_ELECTION_TAGS
   value: cluster_name_k8s=k8s-prod
 ```
 
-而针对非选举类的指标采集，比如为 Pod 增加 annotations 的方式进行指标采集，{{{ custom_key.brand_name }}}提供了在 `ENV_GLOBAL_HOST_TAGS` 环境变量中增加全局 Tag 的方式。
+而针对非选举类的指标采集，比如为 Pod 增加 annotations 的方式进行指标采集，<<< custom_key.brand_name >>>提供了在 `ENV_GLOBAL_HOST_TAGS` 环境变量中增加全局 Tag 的方式。
 
 ```yaml
 - name: ENV_GLOBAL_HOST_TAGS
@@ -32,7 +32,7 @@
 ## 前置条件
 
 - 安装 [Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/) 1.18+
-- {{{ custom_key.brand_name }}}账号
+- <<< custom_key.brand_name >>>账号
 
 ## 操作步骤
 
@@ -40,11 +40,11 @@
 
 #### 1.1 下载 datakit.yaml
 
-登录[{{{ custom_key.brand_name }}}控制台](https://console.guance.com/)，点击「集成」 -「DataKit」 - 「Kubernetes」，下载 `datakit.yaml`。
+登录[<<< custom_key.brand_name >>>控制台](https://console.guance.com/)，点击「集成」 -「DataKit」 - 「Kubernetes」，下载 `datakit.yaml`。
 
 #### 1.2 替换 Token
 
-登录[{{{ custom_key.brand_name }}}控制台](https://console.guance.com/)，进入「管理」模块，在「基本设置」里面复制 token，替换 `datakit.yaml` 文件中的 `ENV_DATAWAY` 环境变量的 value 值中的 `<your-token>`。
+登录[<<< custom_key.brand_name >>>控制台](https://console.guance.com/)，进入「管理」模块，在「基本设置」里面复制 token，替换 `datakit.yaml` 文件中的 `ENV_DATAWAY` 环境变量的 value 值中的 `<your-token>`。
 
 #### 1.3 增加全局 Tag
 
@@ -94,12 +94,12 @@ kubectl apply -f datakit.yaml
 
 #### 3.1 指标预览
 
-登录[{{{ custom_key.brand_name }}}控制台](https://console.guance.com/)，点击「指标」，搜索「prom_api_server」，在 `cluster_name_k8s` 标签下面已经有两个集群的名称。
+登录[<<< custom_key.brand_name >>>控制台](https://console.guance.com/)，点击「指标」，搜索「prom_api_server」，在 `cluster_name_k8s` 标签下面已经有两个集群的名称。
 
 ![image](../images/multi-cluster-3.png)
 
 #### 3.2 新建视图
 
-登录[{{{ custom_key.brand_name }}}控制台](https://console.guance.com/)，点击「场景」 - 「新建仪表板」，选择 **Kubernetes API Server 监控视图**，集群名称下拉框可以区分集群了。
+登录[<<< custom_key.brand_name >>>控制台](https://console.guance.com/)，点击「场景」 - 「新建仪表板」，选择 **Kubernetes API Server 监控视图**，集群名称下拉框可以区分集群了。
 
 ![image](../images/multi-cluster-4.png)

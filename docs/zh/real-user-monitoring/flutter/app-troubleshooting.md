@@ -19,7 +19,7 @@ FTMobileFlutter.sdkConfig(
 
 * 确认 SDK 上传地址`datakitUrl` 或 `datawayUrl`[配置正确](app-access.md#base-setting)，并正确初始化。[debug 模式](#debug-mode)下, 查看 [Android Logcat](../android/app-troubleshooting.md#data_sync) 或 [iOS Xcode Console](../ios/app-troubleshooting.md#data_sync) 的同步日志。
 
-* datakit 是否往对应工作空间上传数据，是否处于离线状态。这个可以通过登录{{{ custom_key.brand_name }}}，查看「基础设施」来确认这个问题。
+* datakit 是否往对应工作空间上传数据，是否处于离线状态。这个可以通过登录<<< custom_key.brand_name >>>，查看「基础设施」来确认这个问题。
 
 	![](../img/17.trouble_shooting_android_datakit_check.png)
 

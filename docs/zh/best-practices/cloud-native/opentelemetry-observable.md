@@ -50,13 +50,13 @@ logging.pattern.level = trace_id=%mdc{trace_id} span_id=%mdc{span_id} trace_flag
 
 > 以上两种方案虽然解决了数据格式问题，但是从某种意义上来说，只能称之为技术，而不能称之为产品，基本上算是开源工具的缝合怪，在遇到一些业务问题时，仍然需要访问不同的工具查看分析问题，相关 log、metric、trace 没有很好的融合，并没有减轻运维以及开发人员运维及沟通成本。基于统一log、metric、trace 的数据分析平台就显得尤为重要，Grafana也在朝着这方面不断努力，但并没有完全解决数据孤岛，不同结构的数据仍然采用了不同的查询语言，Grafana 目前实现了 log 数据关联 trace 数据，但 trace 数据并不能反向关联 log 数据，Grafana 团队仍需努力解决数据之间的互相关联查询分析。
 
-### [3、基于{{{ custom_key.brand_name }}}-商业可观测性产品](./opentelemetry-guance.md)
+### [3、基于<<< custom_key.brand_name >>>-商业可观测性产品](./opentelemetry-guance.md)
 
-[{{{ custom_key.brand_name }}}](https://www.guance.com)是一个集指标数据、日志数据、APM 、RUM、基础设施、容器、中间件、网络性能等多种数据统一收集管理平台。使用{{{ custom_key.brand_name }}}可以为我们全方位观测应用，而不仅仅是日志链路之间的观测。
+[<<< custom_key.brand_name >>>](https://www.guance.com)是一个集指标数据、日志数据、APM 、RUM、基础设施、容器、中间件、网络性能等多种数据统一收集管理平台。使用<<< custom_key.brand_name >>>可以为我们全方位观测应用，而不仅仅是日志链路之间的观测。
 
 ![image.png](../images/opentelemetry_observable_guance.png)
 
-DataKit 是{{{ custom_key.brand_name }}}的前置 gateway, 若要把数据打给{{{ custom_key.brand_name }}}, 需要正确的配置 DataKit , 而且利用 DataKit 有以下优势:
+DataKit 是<<< custom_key.brand_name >>>的前置 gateway, 若要把数据打给<<< custom_key.brand_name >>>, 需要正确的配置 DataKit , 而且利用 DataKit 有以下优势:
 
 > 1.  主机环境下, 每个主机都有一个 datakit , 数据先打给本地的 datakit , 由 datakit 缓存,预处理,然后上报, 避免了网络抖动的同时,附带了边缘处理能力, 给后台数据处理缓解压力. 
 > 2.  k8 环境下, 每个 node 都有一个 DataKit 的 daemonset, 通过利用k8s 的 local traffic机制, 让每个 node所在 pod 的数据都先发送本地 node 的 DataKit , 避免网络抖动的同时, 给 apm 数据增加了 pod 和 node 标签, 分布式环境下便于定位. 
@@ -65,7 +65,7 @@ DataKit 是{{{ custom_key.brand_name }}}的前置 gateway, 若要把数据打给
 DataKit 的设计理念也是学习了 OpenTelemetry，兼容了oltp 协议的, 所以可以绕过 collector 直接打给 DataKit , 也可以把 collector 的 exporter 设置为 oltp(DataKit )
 
 ### 方案对比
-| **场景** | **开源自建产品** | **使用{{{ custom_key.brand_name }}}** |
+| **场景** | **开源自建产品** | **使用<<< custom_key.brand_name >>>** |
 | --- | --- | --- |
 | **构建云时代监测体系** | 专业技术团队至少超过3个月的投入，并且仅仅是开始 | 30分钟开箱即用 |
 | **相关费用投入** | 一个简单开源监控产品的硬件投入也需要超过2万/年，如果是云时代可观测平台则至少10万/年固定投入（以云硬件估计） | 按需付费，根据实际的业务情 况，费用弹性，整体费用比使用开源产品的综合投入低50%以上 |

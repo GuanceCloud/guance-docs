@@ -36,9 +36,9 @@
 | **用途**                   | **资源类型**           | **最低规格**   | **推荐规格**         | **数量** | **备注**                                                     |
 | -------------------------- | ---------------------- | -------------- | -------------------- | -------- | ------------------------------------------------------------ |
 | **Kubernetes Master**      | 物理服务器&#124;虚拟机 | 4C8GB 100GB    | 8C16GB  100GB        | 3        | 版本： 1.24.2 **注：若是为虚拟机需适当提高资源规格，复用一台master节点充当部署节点** |
-| **Kubernetes workerload**  | 物理服务器&#124;虚拟机 | 4C8GB 100GB    | 8C16GB  100GB        | 4        | k8s集群worker节点，承载{{{ custom_key.brand_name }}}应用、k8s组件、基础组件服务Mysql 5.7.18、Redis 6.0.6 |
-| **{{{ custom_key.brand_name }}}代理服务**         | 物理服务器&#124;虚拟机 | 2C4GB  100GB   | 4C8GB    200GB       | 1        | 用于部署nginx 反向代理服务器部署，代理到ingress 边缘节点 **注： 出于安全考虑不直接将集群边缘节点直接暴露** |
-| **{{{ custom_key.brand_name }}}网络文件系统服务** | 物理服务器&#124;虚拟机 | 2C4GB 200G     | 4C8GB 1TB 高性能磁盘 | 1        | 部署网络文件系统、网络存储服务，默认NFS（若已有存在的nfs服务该机器可取消） |
+| **Kubernetes workerload**  | 物理服务器&#124;虚拟机 | 4C8GB 100GB    | 8C16GB  100GB        | 4        | k8s集群worker节点，承载<<< custom_key.brand_name >>>应用、k8s组件、基础组件服务Mysql 5.7.18、Redis 6.0.6 |
+| **<<< custom_key.brand_name >>>代理服务**         | 物理服务器&#124;虚拟机 | 2C4GB  100GB   | 4C8GB    200GB       | 1        | 用于部署nginx 反向代理服务器部署，代理到ingress 边缘节点 **注： 出于安全考虑不直接将集群边缘节点直接暴露** |
+| **<<< custom_key.brand_name >>>网络文件系统服务** | 物理服务器&#124;虚拟机 | 2C4GB 200G     | 4C8GB 1TB 高性能磁盘 | 1        | 部署网络文件系统、网络存储服务，默认NFS（若已有存在的nfs服务该机器可取消） |
 | **DataWay**                | 物理服务器&#124;虚拟机 | 2C4GB  100GB   | 4C8GB    100GB       | 1        | 用户部署 DataWay                                             |
 | **OpenSearch**             | 物理服务器&#124;虚拟机 | 4C8GB 1TB      | 8C16G   1TB          | 3        | OpenSearch 版本：2.2.1 **注：需要开启密码认证，安装匹配版本分词插件 analysis-ik** |
 | **TDengine**               | 物理服务器&#124;虚拟机 | 4C8GB  500GB   | 8C16G 1TB            | 3        | TDengine 版本：2.6.0.18                |
@@ -53,10 +53,10 @@
 
       - **基础环境离线资源包上传到所有集群节点，并解压到服务器/etc目录**
       - **部署节点和集群其他节点已配置ssh免密登录(包括部署节点自身)**	
-      - **{{{ custom_key.brand_name }}}平台离线资源包上传到所有集群节点，定导入到容器运行时环境(containerd)**
+      - **<<< custom_key.brand_name >>>平台离线资源包上传到所有集群节点，定导入到容器运行时环境(containerd)**
       
       ```shell
-      #解压下载的{{{ custom_key.brand_name }}}镜像包，并导入到containerd
+      #解压下载的<<< custom_key.brand_name >>>镜像包，并导入到containerd
          
       gunzip xxx.tar.gz
       ctr -n k8s.io images import xxx.tar
@@ -103,7 +103,7 @@ ssh-copy-id $IP
 
 ### 2.1 资源包下载
 
-  基础环境离线资源包下载地址  [Download]( https://{{{ custom_key.static_domain }}}/dataflux/package/k8s_offline.tar.gz)
+  基础环境离线资源包下载地址  [Download]( https://<<< custom_key.static_domain >>>/dataflux/package/k8s_offline.tar.gz)
 
 ### 2.2 离线资源包结构说明
 
@@ -112,7 +112,7 @@ ssh-copy-id $IP
 - `/etc/kubeasz` 为kubeasz主目录 
 - `/etc/kubeasz/example ` 包含示例配置文件
 -  `/etc/kubeasz/clusters `包含创建的集群相关配置文件
-- ` /etc/kubeasz/guance` 包含{{{ custom_key.brand_name }}}相关的charts、yaml 等信息
+- ` /etc/kubeasz/guance` 包含<<< custom_key.brand_name >>>相关的charts、yaml 等信息
 - `/etc/kubeasz/bin` 包含 k8s/etcd/docker/cni 等二进制文件
 - `/etc/kubeasz/down` 包含集群安装时需要的离线容器镜像包等
 - `/etc/kubeasz/down/packages` 包含集群安装时需要的系统基础软件
