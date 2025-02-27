@@ -56,11 +56,9 @@ DataKit 目前支持采集 `DDTrace`、`Apache Jaeger`、`OpenTelemetry`、`Skyw
     
     该代码语言中还包含以下信息：
 
-    1. [DDTrace-Java agent](../../integrations/ddtrace-attach.md)
-
-    2. [DDTrace JMX](../../integrations/ddtrace-jmxfetch.md)
+    1. [DDTrace JMX](../../integrations/ddtrace-jmxfetch.md)
     
-    3. [扩展功能](../../integrations/ddtrace-ext-java.md)
+    2. [扩展功能](../../integrations/ddtrace-ext-java.md)
 
 
 </div>

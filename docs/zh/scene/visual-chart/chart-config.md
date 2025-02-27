@@ -2,7 +2,7 @@
 
 ---
 
-包含{{{ custom_key.brand_name }}}图表内通用的常用配置和高级配置。
+包含图表内通用的常用配置和高级配置。
 
 ## 常用配置 {#general}
 
@@ -11,9 +11,11 @@
 
 :material-numeric-1-circle: 标题：为图表设置标题名称，设置完成后，在图表的左上方显示，支持隐藏。
 
-
 :material-numeric-2-circle: 描述：为图表添加描述信息，设置后图表标题后方会出现【i】的提示，不设置则不显示。
 
+基于{{{ custom_key.brand_name }}}配备的大模型自然语言生成能力，您可使用“自动生成”功能，为图表快速生成贴合语义的标题和描述。
+
+<img src="../../img/chart-config-ai.png" width="80%" > 
 
 ### 单位
 
