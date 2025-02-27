@@ -201,6 +201,7 @@ graph TD
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`config_vars`|The configuration variables of the task|string|-|
 |`fail_reason`|The reason that leads to the failure of the task|string|-|
 |`message`|The message string which includes the header and the body of the request or the response|string|-|
 |`response_body_size`|The length of the body of the response|int|B|
@@ -213,6 +214,7 @@ graph TD
 |`seq_number`|The sequence number of the test|int|count|
 |`status_code`|The response code|int|-|
 |`success`|The number to specify whether is successful, 1 for success, -1 for failure|int|-|
+|`task`|The raw task string|string|-|
 
 
 
@@ -244,12 +246,14 @@ graph TD
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`config_vars`|The configuration variables of the task|string|-|
 |`fail_reason`|The reason that leads to the failure of the task|string|-|
 |`message`|The message string includes the response time or fail reason|string|-|
 |`response_time`|The time of the response |int|μs|
 |`response_time_with_dns`|The time of the response, which contains DNS time|int|μs|
 |`seq_number`|The sequence number of the test|int|count|
 |`success`|The number to specify whether is successful, 1 for success, -1 for failure|int|-|
+|`task`|The raw task string|string|-|
 |`traceroute`|The json string fo the `traceroute` result|string|-|
 
 
@@ -282,6 +286,7 @@ graph TD
 | ---- |---- | :---:    | :----: |
 |`average_round_trip_time`|The average time of the round trip(RTT)|float|μs|
 |`average_round_trip_time_in_millis`|The average time of the round trip(RTT), deprecated|float|ms|
+|`config_vars`|The configuration variables of the task|string|-|
 |`fail_reason`|The reason that leads to the failure of the task|string|-|
 |`max_round_trip_time`|The maximum time of the round trip(RTT)|float|μs|
 |`max_round_trip_time_in_millis`|The maximum time of the round trip(RTT), deprecated|float|ms|
@@ -295,6 +300,7 @@ graph TD
 |`std_round_trip_time`|The standard deviation of the round trip|float|μs|
 |`std_round_trip_time_in_millis`|The standard deviation of the round trip, deprecated|float|ms|
 |`success`|The number to specify whether is successful, 1 for success, -1 for failure|int|-|
+|`task`|The raw task string|string|-|
 |`traceroute`|The `json` string fo the `traceroute` result|string|-|
 
 
@@ -325,6 +331,7 @@ graph TD
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
+|`config_vars`|The configuration variables of the task|string|-|
 |`fail_reason`|The reason that leads to the failure of the task|string|-|
 |`message`|The message string includes the response time or the failure reason|string|-|
 |`response_message`|The message of the response|string|-|
@@ -333,6 +340,43 @@ graph TD
 |`sent_message`|The sent message |string|-|
 |`seq_number`|The sequence number of the test|int|count|
 |`success`|The number to specify whether is successful, 1 for success, -1 for failure|int|-|
+|`task`|The raw task string|string|-|
+
+
+
+### `multi_dial_testing`
+
+- 标签
+
+
+| Tag | Description |
+|  ----  | --------|
+|`city`|The name of the city|
+|`country`|The name of the country|
+|`datakit_version`|The DataKit version|
+|`df_label`|The label of the task|
+|`internal`|The boolean value, true for domestic and false for overseas|
+|`isp`|ISP, such as `chinamobile`, `chinaunicom`, `chinatelecom`|
+|`name`|The name of the task|
+|`node_name`|The name of the node|
+|`owner`|The owner name|
+|`province`|The name of the province|
+|`status`|The status of the task, either 'OK' or 'FAIL'|
+
+- 指标列表
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`config_vars`|The configuration variables of the task|string|-|
+|`fail_reason`|The reason that leads to the failure of the task|string|-|
+|`last_step`|The last number of the task be executed|int|-|
+|`message`|The message string which includes the header and the body of the request or the response|string|-|
+|`response_time`|The time of the response|int|μs|
+|`seq_number`|The sequence number of the test|int|count|
+|`steps`|The result of each step|string|-|
+|`success`|The number to specify whether is successful, 1 for success, -1 for failure|int|-|
+|`task`|The raw task string|string|-|
 
 
 
