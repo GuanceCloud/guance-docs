@@ -24,7 +24,6 @@
 
 您可通过以下操作来管理事件列表下的所有数据。
 
-![](../img/5.event_7.gif)
 
 1. 时间控件：事件列默认展示最近 15 分钟的数据，您也可以自定义数据展示的[时间范围](../../getting-started/function-details/explorer-search.md#time)。
 
@@ -34,7 +33,7 @@
 
 4. 快捷筛选：通过列表左侧的快捷筛选，可编辑[快捷筛选](../../getting-started/function-details/explorer-search.md#quick-filter)，添加新的筛选字段。
 
-5. 筛选历史：观测云支持在[筛选历史](../../getting-started/function-details/explorer-search.md#filter-history)保存查看器 `key:value` 的搜索条件历史，应用于当前工作空间不同的查看器。
+5. 筛选历史：{{{ custom_key.brand_name }}}支持在[筛选历史](../../getting-started/function-details/explorer-search.md#filter-history)保存查看器 `key:value` 的搜索条件历史，应用于当前工作空间不同的查看器。
 
 6. 事件导出：在事件列中，点击 :octicons-gear-24: 可导出当前事件查看器的数据为 CSV 文件或直接导出到仪表板和笔记。
 
@@ -48,6 +47,8 @@
 
 ## 更多阅读
 
+<font size=2>
+
 <div class="grid cards" markdown>
 
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 事件详情</font>](event-details.md)
@@ -60,3 +61,5 @@
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 查看器的强大之处</font>](../../getting-started/function-details/explorer-search.md)
 
 </div>
+
+</font>

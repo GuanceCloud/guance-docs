@@ -1,6 +1,6 @@
 # MetricsQL 语法参考
 
-当前在观测云的仪表盘中，你可以使用 MetricsQL 语言来查询 Pormetheus 指标。
+当前在{{{ custom_key.brand_name }}}的仪表盘中，你可以使用 MetricsQL 语言来查询 Pormetheus 指标。
 
 MetricsQL 是由 VictoriaMetrics 开发的 PromQL 语法增强语言，在绝大部分的情况下 MetricsQL 都可以兼容 PormQL 的查询，但也对 PormQL 中一些不够直观和方便的地方做了增强和优化，[这篇文章](https://medium.com/@romanhavronenko/victoriametrics-promql-compliance-d4318203f51e)介绍了更多的兼容设计细节。
 
@@ -16,11 +16,11 @@ MetricsQL 是由 VictoriaMetrics 开发的 PromQL 语法增强语言，在绝大
 - MetricsQL 在应用函数后保留指标名称，这些函数不会改变原始时间序列的含义。例如，[min_over_time(foo)](#min_over_time) 或 [round(foo)](#round) 在结果中保留了 `foo` 指标名称。有关详细信息，请参见[此问题](https://github.com/VictoriaMetrics/VictoriaMetrics/issues/674)。
 
 
-同时你依旧要注意在观测云中使用，与原版 MetricsQL 仍有差异：
+同时你依旧要注意在{{{ custom_key.brand_name }}}中使用，与原版 MetricsQL 仍有差异：
 
 - 支持 measurement 选择，需要在指标名前面拼接 measurement，以冒号分隔 `increase(measurement:metric[1m])`，当不写 measurement 时查询性能会显著下降
-- 观测云 UI 暂不支持手动配置 `step` ，目前的 `step` 根据时间范围和显示密度自动计算
-- 观测云 UI 暂不支持热力图 (Heatmap) 类型的图形展示，可能影响 Historgram 的显示效果
+- {{{ custom_key.brand_name }}} UI 暂不支持手动配置 `step` ，目前的 `step` 根据时间范围和显示密度自动计算
+- {{{ custom_key.brand_name }}} UI 暂不支持热力图 (Heatmap) 类型的图形展示，可能影响 Historgram 的显示效果
 
 <font color=coral>本篇文章内容主要来源于对 <u>https://docs.victoriametrics.com/MetricsQL.html</u> 的翻译，当中文翻译有歧义时，也可以对照原文阅读。</font>
 

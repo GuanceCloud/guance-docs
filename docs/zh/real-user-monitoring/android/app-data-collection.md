@@ -2,11 +2,11 @@
 ---
 
 
-应用数据采集到观测云后，可以通过观测云控制台进行自定义配置场景和配置异常检测事件。
+应用数据采集到{{{ custom_key.brand_name }}}后，可以通过{{{ custom_key.brand_name }}}控制台进行自定义配置场景和配置异常检测事件。
 
 ## 数据类型
 
-观测云的用户访问监测包括六种数据类型：
+{{{ custom_key.brand_name }}}的用户访问监测包括六种数据类型：
 
 | **类型** | **描述** |
 | --- | --- |
@@ -32,7 +32,7 @@
 
 | **字段** | **类型** | 描述 |
 | --- | --- | --- |
-| `app_id` | string | 必填，用户访问应用唯一 ID 标识，在观测云控制台上面创建监控时自动生成。 |
+| `app_id` | string | 必填，用户访问应用唯一 ID 标识，在{{{ custom_key.brand_name }}}控制台上面创建监控时自动生成。 |
 | `env` | string | 必填，环境字段。属性值：prod/gray/pre/common/local。其中：<br>prod：线上环境<br>gray：灰度环境<br>pre：预发布环境<br>common：日常环境<br>local：本地环境 |
 | `version` | string | 必填，版本号。 |
 | `service` | string | 可选，所属业务或服务的名称。固定名称：<br/>`df_rum_ios`<br/>`df_rum_android`<br/>`df_rum_windows`<br/>`df_rum_linux` |

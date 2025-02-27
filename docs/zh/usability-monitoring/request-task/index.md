@@ -19,7 +19,7 @@
 
 ## 创建拨测任务 {#create}
 
-在观测云工作空间**可用性监测 > 新建**，可基于 [HTTP](./http.md)、[TCP](./tcp.md)、[ICMP](./icmp.md)、[WEBSOCKET](./websocket.md) 四种协议来创建拨测任务。
+在{{{ custom_key.brand_name }}}工作空间**可用性监测 > 新建**，可基于 [HTTP](./http.md)、[TCP](./tcp.md)、[ICMP](./icmp.md)、[WEBSOCKET](./websocket.md) 四种协议来创建拨测任务。
 
 
 ???- warning "权限与版本"
@@ -47,7 +47,7 @@
 
 ## 高级配置
 
-观测云支持通过**自建节点管理**快速建立分布于全球的私有部署节点.
+{{{ custom_key.brand_name }}}支持通过**自建节点管理**快速建立分布于全球的私有部署节点.
 
 > 更多操作详情，可参考 [自建节点管理](../self-node.md)；具体部署文档，可参考 [网络拨测](../../integrations/dialtesting.md)。
 

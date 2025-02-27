@@ -10,7 +10,7 @@
 ???+ warning "体验版使用须知"
 
     - 体验版不升级则不收费，**一旦升级到商业版，不可回退**；
-    - 体验版若升级到商业版，采集数据会继续上报到观测云工作空间，但是**体验版时期采集的数据将无法查看**；
+    - 体验版若升级到商业版，采集数据会继续上报到{{{ custom_key.brand_name }}}工作空间，但是**体验版时期采集的数据将无法查看**；
     - 升级商业版仅支持当前工作空间拥有者查看和操作；
     - 备份日志统计的是全量数据，其他计费项都为增量数据；增量数据统计每天 0 点重置免费配额，当天有效；
     - 体验版不同计费项目若存在数据额度使用满载的情况，数据将停止上报更新；基础设施、事件这两类数据依旧支持上报更新，您仍然可以看到基础设施列表数据，事件数据；
@@ -50,7 +50,7 @@
 
 ## 开通体验版 {#register-trail}
 
-在[观测云官网](https://www.guance.com/)，点击[**免费开始**](https://auth.guance.com/businessRegister)，填写相关信息后即可成为观测云用户。
+在[{{{ custom_key.brand_name }}}官网](https://www.guance.com/)，点击[**免费开始**](https://auth.guance.com/businessRegister)，填写相关信息后即可成为{{{ custom_key.brand_name }}}用户。
 
 ### 第一步：基本信息
 
@@ -69,7 +69,7 @@
 3. 点击**更多信息**，您可按需填写其他企业相关信息；
 4. 点击注册。
 
-**注意**：完成第二步，即**成功注册了观测云账号**。接下来的第三步将继续指导您**开通该账号下的工作空间**。
+**注意**：完成第二步，即**成功注册了{{{ custom_key.brand_name }}}账号**。接下来的第三步将继续指导您**开通该账号下的工作空间**。
 
 ![](img/11.account_center_4.png)
 
@@ -89,7 +89,7 @@
 
 ### 体验额度查询
 
-观测云工作空间的拥有者、管理员可以在**付费计划与账单**模块，查看各个计费项目每天的体验额度及其使用情况。
+{{{ custom_key.brand_name }}}工作空间的拥有者、管理员可以在**付费计划与账单**模块，查看各个计费项目每天的体验额度及其使用情况。
 
 ![](img/9.upgrade_1.png)
 
@@ -98,17 +98,17 @@
 升级须知：
 
 - 体验版成功升级到商业版以后，**无法回退**；
-- 采集数据会继续上报到观测云工作空间，但是**体验版时期采集的数据将无法查看**。
+- 采集数据会继续上报到{{{ custom_key.brand_name }}}工作空间，但是**体验版时期采集的数据将无法查看**。
 
 ### 前置条件
 
-- 已注册[观测云控制台](https://console.guance.com/)账号，已有体验版工作空间；
-- 同步创建[观测云费用中心](https://boss.guance.com/)账号，对接后续费用结算功能。
+- 已注册[{{{ custom_key.brand_name }}}控制台](https://console.guance.com/)账号，已有体验版工作空间；
+- 同步创建[{{{ custom_key.brand_name }}}费用中心](https://boss.guance.com/)账号，对接后续费用结算功能。
 
 
 ???- abstract "什么是费用中心账号？"
 
-    [费用中心](../billing-center/index.md)是观测云的支付结算平台，只有注册该平台的账号，才能进行账户充值、支付结算、账单管理等操作。
+    [费用中心](../billing-center/index.md)是{{{ custom_key.brand_name }}}的支付结算平台，只有注册该平台的账号，才能进行账户充值、支付结算、账单管理等操作。
 
 
 ### 开始升级 {#upgrade-entry}
@@ -123,11 +123,11 @@
 
 ![](img/upgrade-plan-1.png)
 
-其他成员则需要联系工作空间的 Owner 进行升级。如果您拥有观测云费用中心账号，可以直接进入费用中心绑定该空间，从而实现版本的升级。
+其他成员则需要联系工作空间的 Owner 进行升级。如果您拥有{{{ custom_key.brand_name }}}费用中心账号，可以直接进入费用中心绑定该空间，从而实现版本的升级。
 
 1. 进入**套餐升级**页面；
 2. 点击**升级**；
-3. 开始[绑定观测云费用中心账号](#bind-billing)。
+3. 开始[绑定{{{ custom_key.brand_name }}}费用中心账号](#bind-billing)。
 
 
 ### 绑定费用中心账号 {#bind-billing}
@@ -152,9 +152,9 @@
 
 ## 查看升级版本
 
-返回观测云付费计划与账单，可以看到当前工作空间已经升级到**商业版**。
+返回{{{ custom_key.brand_name }}}付费计划与账单，可以看到当前工作空间已经升级到**商业版**。
 
-点击右上角**费用中心**，即可自动跳转到观测云费用中心。
+点击右上角**费用中心**，即可自动跳转到{{{ custom_key.brand_name }}}费用中心。
 
 ![](img/9.upgrade_10.png)
 
@@ -164,7 +164,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **观测云产品服务快速入门**</font>](../getting-started/index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **{{{ custom_key.brand_name }}}产品服务快速入门**</font>](../getting-started/index.md)
 
 </div>
 

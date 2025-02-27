@@ -51,7 +51,7 @@ spec:
               topologyKey: kubernetes.io/hostname
 
       containers:
-      - image: pubrepo.jiagouyun.com/dataflux/dataway:1.7.0
+      - image: pubrepo.jiagouyun.com/dataflux/dataway:1.8.0
         imagePullPolicy: IfNotPresent
         name: dataway
         env:

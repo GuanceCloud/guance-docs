@@ -3,11 +3,11 @@
 
 ## 简介
 
-观测云支持对 Kubernetes 中各类资源的运行状态和服务能力进行监测，包括 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等。您可以在 Kubernetes 中通过 DaemonSet 方式安装 DataKit，进而完成对 Kubernetes 资源的数据采集。最终，在观测云中实时监测 Kubernetes 各类资源的运行情况。
+{{{ custom_key.brand_name }}}支持对 Kubernetes 中各类资源的运行状态和服务能力进行监测，包括 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等。您可以在 Kubernetes 中通过 DaemonSet 方式安装 DataKit，进而完成对 Kubernetes 资源的数据采集。最终，在{{{ custom_key.brand_name }}}中实时监测 Kubernetes 各类资源的运行情况。
 
 ## 前置条件
 
-您需要先创建一个[观测云账号](https://www.guance.com/)。
+您需要先创建一个[{{{ custom_key.brand_name }}}账号](https://www.guance.com/)。
 
 ## 方法/步骤
 
@@ -44,7 +44,7 @@ $ helm repo update
 $ helm install datakit datakit/datakit -n datakit --set datakit.dataway_url="https://openway.guance.com?token=<your-token>" --create-namespace 
 ```
 
-token 可以在观测云工作空间的「管理」-「基本设置」获取。
+token 可以在{{{ custom_key.brand_name }}}工作空间的「管理」-「基本设置」获取。
 
 ![](img/1.contrainer_2.png)
 
@@ -62,9 +62,9 @@ DataKit 安装完成后，即可通过 `$ helm -n datakit list` 查看部署状�
 
 
 
-#### Step4：在观测云工作空间查看和分析采集的K8S数据
+#### Step4：在{{{ custom_key.brand_name }}}工作空间查看和分析采集的K8S数据
 
-DataKit 部署状态正常，即可在观测云工作空间「基础设施」-「容器」查看和分析采集的 K8S 数据。
+DataKit 部署状态正常，即可在{{{ custom_key.brand_name }}}工作空间「基础设施」-「容器」查看和分析采集的 K8S 数据。
 
 ![](img/2.helm_4.png)
 
@@ -75,7 +75,7 @@ DataKit 部署状态正常，即可在观测云工作空间「基础设施」-�
 开启 Kubernetes 资源采集前，需要使用终端工具登录到服务器执行下面的脚本命令来下载 yaml 文件。
 
 ```
-wget https://static.guance.com/datakit/datakit.yaml
+wget https://{{{ custom_key.static_domain }}}/datakit/datakit.yaml
 ```
 
 ![](img/3.yaml_3.png)
@@ -89,7 +89,7 @@ wget https://static.guance.com/datakit/datakit.yaml
 		value: https://openway.guance.com?token=<your-token> # 此处填上你工作空间的 token
 ```
 
-token 可以在观测云工作空间的「管理」-「基本设置」获取。
+token 可以在{{{ custom_key.brand_name }}}工作空间的「管理」-「基本设置」获取。
 
 ![](img/1.contrainer_2.png)
 
@@ -109,9 +109,9 @@ yaml 文件安装完后，会创建一个 datakit 的 DaemonSet 部署，可通�
 
 ![](img/3.yaml_5.png)
 
-#### Step5：在观测云工作空间查看和分析采集的K8S数据
+#### Step5：在{{{ custom_key.brand_name }}}工作空间查看和分析采集的K8S数据
 
-datakit 运行状态正常，即可在观测云工作空间「基础设施」-「容器」查看和分析采集的 K8S 数据。
+datakit 运行状态正常，即可在{{{ custom_key.brand_name }}}工作空间「基础设施」-「容器」查看和分析采集的 K8S 数据。
 
 ![](img/3.yaml_6.png)
 

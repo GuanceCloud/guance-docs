@@ -3,12 +3,12 @@
 
 应用性能监测（APM），主要用于查看系统整体的运行状态、健康程度、外部API、数据库调用以及自身代码及其调用资源的消耗或者异常问题，帮助企业从根源上快速定位问题，保障应用的性能及系统稳定性。
 
-观测云的应用性能监测，支持所有基于 Opentracing 协议的 APM 工具，如 ddtrace、Skywalking、Zipkin、Jaege 等。通过在 DataKit 中开启对应的采集器，并在需要监控的应用代码中加入相关监控文件，配置完成后即可在观测云工作空间查看上报的链路数据，同时可与基础设施、日志、RUM进行关联分析，快速定位并解决故障，提高用户体验。
+{{{ custom_key.brand_name }}}的应用性能监测，支持所有基于 Opentracing 协议的 APM 工具，如 ddtrace、Skywalking、Zipkin、Jaege 等。通过在 DataKit 中开启对应的采集器，并在需要监控的应用代码中加入相关监控文件，配置完成后即可在{{{ custom_key.brand_name }}}工作空间查看上报的链路数据，同时可与基础设施、日志、RUM进行关联分析，快速定位并解决故障，提高用户体验。
 
 本文档将使用 Python 应用，介绍如何通过 ddtrace 实现 APM 可观测。
 ## 前置条件
 
-您需要先创建一个[观测云账号](https://www.guance.com/)，并在您的主机上[安装 DataKit](../datakit/datakit-install.md)。
+您需要先创建一个[{{{ custom_key.brand_name }}}账号](https://www.guance.com/)，并在您的主机上[安装 DataKit](../datakit/datakit-install.md)。
 
 ## 方法/步骤
 
@@ -34,7 +34,7 @@ datakit --restart  或者  service datakit restart  或者 systemctl restart dat
 
 注意：`endpoints` 默认开启，不要修改。
 
-观测云支持为应用性能监测自定义标签来做关联查询，可通过命令行注入环境变量或者在`ddtrace.conf`中开启`inputs.ddtrace.tags`并添加`tag`的方式，详细配置可参考文档 [ddtrace 环境变量设置](../integrations/ddtrace.md)。
+{{{ custom_key.brand_name }}}支持为应用性能监测自定义标签来做关联查询，可通过命令行注入环境变量或者在`ddtrace.conf`中开启`inputs.ddtrace.tags`并添加`tag`的方式，详细配置可参考文档 [ddtrace 环境变量设置](../integrations/ddtrace.md)。
 
 ### Step2: 安装 ddtrace
 
@@ -68,7 +68,7 @@ ddtrace-run python your_app.py
 
 #### 方法二：直接在启动脚本文件中配置 DataKit 服务地址
 
-观测云支持通过直接启动脚本文件来配置 DataKit 服务地址，无需改动您的应用代码。本示例中已创建了一个“todoism”的 Python 应用，进入该应用的脚本文件目录，执行其脚本文件，实际按照您自己的应用为准。
+{{{ custom_key.brand_name }}}支持通过直接启动脚本文件来配置 DataKit 服务地址，无需改动您的应用代码。本示例中已创建了一个“todoism”的 Python 应用，进入该应用的脚本文件目录，执行其脚本文件，实际按照您自己的应用为准。
 
 1）在启动脚本文件中配置执行命令（注入环境变量）
 
@@ -88,9 +88,9 @@ DD_AGENT_HOST=localhost DATADOG_TRACE_AGENT_PORT=9529 ddtrace-run python your_ap
 
 ![](img/5.apm_5.png)
 
-### Step4: 在观测云查看器数据分析
+### Step4: 在{{{ custom_key.brand_name }}}查看器数据分析
 
-脚本文件启动以后，可以尝试访问 Python 应用，然后就可以在观测云工作空间的“应用性能监测”查看链路数据并进行分析。
+脚本文件启动以后，可以尝试访问 Python 应用，然后就可以在{{{ custom_key.brand_name }}}工作空间的“应用性能监测”查看链路数据并进行分析。
 
 1）在「应用性能监测」-「服务」，可以查看到采集上来的两个服务。包括服务类型、请求书、响应时间等。
 
@@ -144,7 +144,7 @@ DD_LOGS_INJECTION="true" DD_AGENT_HOST=localhost DATADOG_TRACE_AGENT_PORT=9529 d
 
 ![](img/5.apm_10.png)
 
-3）启动脚本文件，尝试访问 Python 应用，然后就可以在观测云工作空间的日志详情查看链路火焰图和 span 列表，并在应用性能监测详情查看相关的日志，帮助您快速做数据关联分析。示意图如下：
+3）启动脚本文件，尝试访问 Python 应用，然后就可以在{{{ custom_key.brand_name }}}工作空间的日志详情查看链路火焰图和 span 列表，并在应用性能监测详情查看相关的日志，帮助您快速做数据关联分析。示意图如下：
 
 - 日志详情
 
@@ -174,10 +174,10 @@ def after_request(response):
 
 ![](img/5.apm_13.png)
 
-2）在前端页面 index.html 的 head 中增加以下用户访问可观测配置（在观测云工作空间用户访问监测创建应用获取）。
+2）在前端页面 index.html 的 head 中增加以下用户访问可观测配置（在{{{ custom_key.brand_name }}}工作空间用户访问监测创建应用获取）。
 
 ```
-<script src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://{{{ custom_key.static_domain }}}/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({
@@ -197,13 +197,13 @@ def after_request(response):
 
 ![](img/5.apm_13.1.png)
 
-3）配置完成后，启动脚本文件，尝试访问 Python 应用，然后就可以在观测云工作空间的用户访问监测查看器详情关联链路，帮助您快速做数据关联分析。示意图如下：
+3）配置完成后，启动脚本文件，尝试访问 Python 应用，然后就可以在{{{ custom_key.brand_name }}}工作空间的用户访问监测查看器详情关联链路，帮助您快速做数据关联分析。示意图如下：
 
 ![](img/5.apm_14.png)
 
 ### 配置采样
 
-观测云的「应用性能监测」功能支持对ddtrace等符合 Opentracing 协议的采集器所采集的链路数据进行分析和管理。默认情况下，按照全量的方式采集应用性能数据，即每次调用都会产生数据，若不加以限制，采集到的数据量大，会占用过多的数据存储。你可以通过设置采样的方式采集应用性能数据，节约数据存储量，降低成本费用。更多配置详情可参考文档 [如何配置应用性能监测采样](../application-performance-monitoring/collection/sampling.md)。
+{{{ custom_key.brand_name }}}的「应用性能监测」功能支持对ddtrace等符合 Opentracing 协议的采集器所采集的链路数据进行分析和管理。默认情况下，按照全量的方式采集应用性能数据，即每次调用都会产生数据，若不加以限制，采集到的数据量大，会占用过多的数据存储。你可以通过设置采样的方式采集应用性能数据，节约数据存储量，降低成本费用。更多配置详情可参考文档 [如何配置应用性能监测采样](../application-performance-monitoring/collection/sampling.md)。
 
 ## 更多参考
 

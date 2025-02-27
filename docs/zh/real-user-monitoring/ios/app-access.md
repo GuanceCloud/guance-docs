@@ -2,7 +2,7 @@
 
 ---
 
-观测云应用监测能够通过收集各个 iOS 应用的指标数据，以可视化的方式分析各个 iOS 应用端的性能。
+{{{ custom_key.brand_name }}}应用监测能够通过收集各个 iOS 应用的指标数据，以可视化的方式分析各个 iOS 应用端的性能。
 
 ## 前置条件
 
@@ -14,13 +14,13 @@
 
 ## 应用接入 {#iOS-integration}
 
-登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
+登录{{{ custom_key.brand_name }}}控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
 ![](../img/6.rum_ios.png)
 
 ## 安装
 
-![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/ios/version.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=iOS&color=brightgreen&query=$.ios_api_support&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![tvOS](https://img.shields.io/badge/dynamic/json?label=tvOS&color=brightgreen&query=$.tvos_api_support&uri=https://static.guance.com/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios)
+![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/ios/version.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=iOS&color=brightgreen&query=$.ios_api_support&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![tvOS](https://img.shields.io/badge/dynamic/json?label=tvOS&color=brightgreen&query=$.tvos_api_support&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios)
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-ios](https://github.com/GuanceCloud/datakit-ios)
 
@@ -1682,7 +1682,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 ### 手动上传
 
-[Sourcemap 上传](../../integrations/rum.md#sourcemap)
+[Sourcemap 上传](../sourcemap/set-sourcemap.md#uplo)
 
 ## Widget Extension 数据采集
 
@@ -1703,10 +1703,10 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 | **字段**                   | **类型**  | **必须**           | **说明**                                       |
 | -------------------------- | --------- | ------------------ | ---------------------------------------------- |
 | groupIdentifier            | NSString  | 是                 | 文件共享 Group Identifier                      |
-| enableSDKDebugLog          | BOOL      | 否（默认NO）       | 设置是否允许 SDK 打印 Debug 日志               |
-| enableTrackAppCrash        | BOOL      | 否（默认NO）       | 设置是否需要采集崩溃日志                       |
-| enableRUMAutoTraceResource | BOOL      | 否（默认NO）       | 设置是否追踪用户网络请求 (仅作用于native http) |
-| enableTracerAutoTrace      | BOOL      | 否（默认NO）       | 设置是否开启自动 http 链路追踪                 |
+| enableSDKDebugLog          | BOOL      | 否（默认 NO）       | 设置是否允许 SDK 打印 Debug 日志               |
+| enableTrackAppCrash        | BOOL      | 否（默认 NO）       | 设置是否需要采集崩溃日志                       |
+| enableRUMAutoTraceResource | BOOL      | 否（默认 NO）       | 设置是否追踪用户网络请求 (仅作用于native http) |
+| enableTracerAutoTrace      | BOOL      | 否（默认 NO）       | 设置是否开启自动 http 链路追踪                 |
 | memoryMaxCount             | NSInteger | 否（默认 1000 条） | 数据保存在 Widget Extension 数量最大值         |
 
 Widget Extension SDK 使用示例：

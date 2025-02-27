@@ -18,7 +18,7 @@ GraalVM 作为一个运行时环境是独一无二的，它提供了多种操作
 
 [Native Image](https://www.graalvm.org/22.1/reference-manual/native-image/)是一项创新技术，可将 Java 代码编译成独立的二进制可执行文件或本机共享库。在本机映像构建期间处理的 Java 字节码包括所有应用程序类、依赖项、第三方依赖库以及所需的任何 JDK 类。生成的自包含本机可执行文件特定于不需要 JVM 的每个单独的操作系统和机器架构。
 
-Spring Native 为使用 GraalVM 原生镜像编译器编译 Spring 应用为本地可执行文件提供支持。本文使用 JVM 运行时模式，使用 ddtrace 实现链路接入观测云。
+Spring Native 为使用 GraalVM 原生镜像编译器编译 Spring 应用为本地可执行文件提供支持。本文使用 JVM 运行时模式，使用 ddtrace 实现链路接入{{{ custom_key.brand_name }}}。
 
 ## 操作步骤
 
@@ -128,7 +128,7 @@ mvn -Pnative -DskipTests clean package
 
 #### 6.1 安装 DataKit
 
-登录「[观测云](https://console.guance.com/)」，依次进入「集成」 - 「DataKit」 - 「Linux」，点击「复制图标」复制安装命令。
+登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，依次进入「集成」 - 「DataKit」 - 「Linux」，点击「复制图标」复制安装命令。
 
 ![image](../images/spring-native/7.png)
 
@@ -178,7 +178,7 @@ cd /usr/local/df-demo/springboot-native-demo/target
 
 ![image](../images/spring-native/12.png)
 
-登录「[观测云](https://console.guance.com/)」 - 「应用性能监测」，可看到 spring-native-demo 服务。
+登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」 - 「应用性能监测」，可看到 spring-native-demo 服务。
 
 ![image](../images/spring-native/13.png)
 

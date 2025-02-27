@@ -11,13 +11,13 @@
 
 ## 应用接入
 
-当前 Flutter 版本暂只支持 Android 和 iOS 平台。登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
+当前 Flutter 版本暂只支持 Android 和 iOS 平台。登录{{{ custom_key.brand_name }}}控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
 
 ![](../img/image_13.png)
 
 ## 安装 {#install}
-![](https://img.shields.io/badge/dynamic/json?label=pub.dev&color=blue&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/flutter/version.json) ![](https://img.shields.io/badge/dynamic/json?label=legacy.github.tag&color=blue&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/flutter/legacy/version.json) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/flutter/info.json)
+![](https://img.shields.io/badge/dynamic/json?label=pub.dev&color=blue&query=$.version&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/flutter/version.json) ![](https://img.shields.io/badge/dynamic/json?label=legacy.github.tag&color=blue&query=$.version&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/flutter/legacy/version.json) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/flutter/info.json)
 
 **Pub.Dev**: [ft_mobile_agent_flutter](https://pub.dev/packages/ft_mobile_agent_flutter)
 
@@ -102,7 +102,7 @@ void main() async {
 | env | String | 否 | 环境配置，默认 `prod`，任意字符，建议使用单个单词，例如 `test` 等|
 | envType | enum EnvType | 否 | 环境配置，默认 `EnvType.prod`。**注：env 与 envType 只需配置一个** |
 | serviceName | String | 否 | 服务名 |
-| enableLimitWithDbSize | boolean | 否 | 开启使用 DB 限制总缓存大小功能。<br>**注意：**开启之后 Log 配置  `logCacheLimitCount` 及 RUM 配置`rumCacheLimitCount` 将失效。SDK  0.3.10  以上版本支持该参数 |
+| enableLimitWithDbSize | boolean | 否 | 开启使用 db 限制数据大小，默认 100MB，单位 Byte，数据库越大，磁盘压力越大，默认不开启。<br>**注意：**开启之后 Log 配置  `logCacheLimitCount` 及 RUM 配置`rumCacheLimitCount` 将失效。SDK  0.3.10  以上版本支持该参数 |
 | dbCacheLimit | number | 否 | DB 缓存限制大小。范围 [30MB,)，默认 100MB，单位 byte，SDK 0.3.10  以上版本支持该参数 |
 | dbDiscardStrategy | string | 否 | 设置数据库中数据丢弃规则。<br>丢弃策略：`FTDBCacheDiscard.discard`丢弃新数据（默认）、`FTDBCacheDiscard.discardOldest`丢弃旧数据。SDK 0.3.10 以上版本支持该参数 |
 ### RUM 配置 {#rum-config}
@@ -128,7 +128,7 @@ void main() async {
 | deviceMetricsMonitorType | enum DeviceMetricsMonitorType | 否 |在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.battery` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.memory` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.cpu` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.fps` 监控屏幕帧率 |
 | globalContext | Map | 否 | 自定义全局参数 |
 | rumDiscardStrategy | string | 否 | 丢弃策略：`FTRUMCacheDiscard.discard`丢弃新数据（默认）、`FTRUMCacheDiscard.discardOldest`丢弃旧数据 |
-| rumCacheLimitCount | number | 否 | 本地缓存最大 RUM 条目数量限制 [10000,)，默认 100_000 |
+| rumCacheLimitCount | number | 否 | 本地缓存最大 RUM 条目数量限制 [10_000,)，默认 100_000 |
 | isInTakeUrl | callBack | 否 | 设置需要过滤的 Resource 条件，默认不过滤|
 
 #### 添加自定义标签

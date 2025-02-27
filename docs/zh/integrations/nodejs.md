@@ -1,7 +1,7 @@
 ---
 title     : 'NodeJs'
 summary   : '获取 NodeJs 应用的指标、链路追踪和日志信息'
-__int_icon: 'icon/nodejs'
+__int_icon: 'icon/node_js'
 dashboard :
   - desc  : '暂无'
     path  : '-'

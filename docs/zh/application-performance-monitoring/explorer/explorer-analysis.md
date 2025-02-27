@@ -4,11 +4,11 @@
 
 数据采集成功后，即可在链路功能页面查看所有相关数据。利用[强大的搜索功能](../../getting-started/function-details/explorer-search.md#search)，您可以轻松筛选并查看任何时间段的链路数据，迅速识别并定位异常链路。
 
-[火焰图](#flame)为您提供了直观的视图，以观察链路中每个 Span 的流转和性能表现。此外，观测云的标签功能使您能够自动将基础设施、日志、用户访问监测等数据与链路分析相关联，支持代码级别的数据关联查看，帮助您快速定位并解决异常问题。[Span 列表](./explorer-analysis.md#span)、[瀑布图](./explorer-analysis.md#waterfall)等工具进一步为您展示某条链路下相关的 Span 信息。
+[火焰图](#flame)为您提供了直观的视图，以观察链路中每个 Span 的流转和性能表现。此外，{{{ custom_key.brand_name }}}的标签功能使您能够自动将基础设施、日志、用户访问监测等数据与链路分析相关联，支持代码级别的数据关联查看，帮助您快速定位并解决异常问题。[Span 列表](./explorer-analysis.md#span)、[瀑布图](./explorer-analysis.md#waterfall)等工具进一步为您展示某条链路下相关的 Span 信息。
 
 ## 链路列表
 
-观测云提供三种链路查看列表，分别为**所有 Span**、**服务顶层 Span** 和**所有 Trace**。
+{{{ custom_key.brand_name }}}提供三种链路查看列表，分别为**所有 Span**、**服务顶层 Span** 和**所有 Trace**。
 
 Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Span 会构成一条链路轨迹（`trace`）。
 
@@ -40,17 +40,17 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
 - 在链路查看器搜索栏，支持[多种搜索方式和筛选方式](../../getting-started/function-details/explorer-search.md)。
 
-  - **注意：**当切换查看**服务**或**链路**查看器，观测云默认为您保留当前的筛选条件和时间范围。
+  - **注意：**当切换查看**服务**或**链路**查看器，{{{ custom_key.brand_name }}}默认为您保留当前的筛选条件和时间范围。
 
 - 分析模式：在链路查看器[分析栏](../../getting-started/function-details/explorer-search.md#analysis)，您可以基于 <u>1-3 个标签</u>进行多维度分析统计，并支持多种数据图表分析方式。
 
 - 快捷筛选：支持编辑[快捷筛选](../../getting-started/function-details/explorer-search.md#quick-filter)，添加新的筛选字段。
 
-- 筛选历史：观测云支持在[筛选历史](../../getting-started/function-details/explorer-search.md#filter-history)保存查看器 `key:value` 的搜索条件历史，应用于当前工作空间不同的查看器。
+- 筛选历史：{{{ custom_key.brand_name }}}支持在[筛选历史](../../getting-started/function-details/explorer-search.md#filter-history)保存查看器 `key:value` 的搜索条件历史，应用于当前工作空间不同的查看器。
 
 - 自定义[显示列](../../getting-started/function-details/explorer-search.md#columns)：在链路列表，默认查看**时间**、**链路 ID**、**服务**、**资源**以及**持续时间**，可自定义添加、编辑、删除、拖动显示列。
 
-- 观测云支持**查看历史快照**直接保存当前查看器的快照数据，通过[快照](../../getting-started/function-details/snapshot.md)功能，您可以快速复现即时拷贝的数据副本，将数据恢复到某一时间点和某一数据展示逻辑。
+- {{{ custom_key.brand_name }}}支持**查看历史快照**直接保存当前查看器的快照数据，通过[快照](../../getting-started/function-details/snapshot.md)功能，您可以快速复现即时拷贝的数据副本，将数据恢复到某一时间点和某一数据展示逻辑。
 
 ### 图表统计
 
@@ -160,7 +160,7 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
 用来查看服务之间的调用关系，并直接展示调用次数。您可通过服务、资源、Span ID 搜索筛选查看相关服务调用关系。
 
-观测云依据链路详情 > [火焰图](#flame)里面统计的服务对应的 `error` 结果对应显示此处服务的颜色，若出现红色则表示该服务存在错误。
+{{{ custom_key.brand_name }}}依据链路详情 > [火焰图](#flame)里面统计的服务对应的 `error` 结果对应显示此处服务的颜色，若出现红色则表示该服务存在错误。
 
 ![](../img/9.apm_explorer_9.gif)
 
@@ -201,7 +201,7 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
 ???- abstract "部分字段不支持筛选聚合等相关逻辑"
 
-    观测云存在部分字段采用全文索引，这部分字段不支持您做筛选聚合等相关逻辑。全文索引字段范围如下：
+    {{{ custom_key.brand_name }}}存在部分字段采用全文索引，这部分字段不支持您做筛选聚合等相关逻辑。全文索引字段范围如下：
 
     | 分类      | 字段                  |
     | ----------- | ------------------ |
@@ -226,6 +226,12 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
 ![](../img/6.apm_error.png)
 
+### 服务上下文 {#context}
+
+通过获取基础设施资源目录下的对象分类，并按 `create_time` 选择最新对象进行展示，快速查看当前服务的运行信息、服务依赖关系以及集成信息。
+
+![](../img/trace_context.png)
+
 ### 关联分析
 
 <div class="grid" markdown>
@@ -244,7 +250,7 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
 === "代码热点"
 
-    当应用程序使用 ddtrace 采集器同时开启了 APM 链路追踪和 Profile 性能追踪数据采集后，观测云提供 Span 级别的关联查看分析。在链路详情页，您可以点击火焰图下方的**代码热点**，查看当前链路关联的代码热点，包括执行耗时、方法以及执行时间占比。
+    当应用程序使用 ddtrace 采集器同时开启了 APM 链路追踪和 Profile 性能追踪数据采集后，{{{ custom_key.brand_name }}}提供 Span 级别的关联查看分析。在链路详情页，您可以点击火焰图下方的**代码热点**，查看当前链路关联的代码热点，包括执行耗时、方法以及执行时间占比。
 
     ![](../img/9.apm_explorer_11.png)
 
@@ -262,7 +268,7 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
     - 属性视图：帮助您回溯链路产生时主机对象的真实情况，支持查看相关主机**在对应时间内产生的最新的一条对象数据**，包括主机的基本信息、集成运行情况。若开启云主机的采集，还可查看云厂商的信息。
 
-    **注意：**观测云默认保存主机对象最近 48 小时的历史数据。未找到当前链路时间对应的主机历史数据时，您将无法查看关联主机的属性视图。
+    **注意：**{{{ custom_key.brand_name }}}默认保存主机对象最近 48 小时的历史数据。未找到当前链路时间对应的主机历史数据时，您将无法查看关联主机的属性视图。
 
     ![](../img/3.apm_10.png)
 
@@ -284,7 +290,7 @@ Span 表示给定时间段内分布式系统中的逻辑工作单元，多个 Sp
 
 === "关联网络"
 
-    观测云支持您在**网络**查看包括 Host 、Pod 、Deployment 和 Service 多维度的[网络拓扑图和总览数据](../../infrastructure/network.md)。
+    {{{ custom_key.brand_name }}}支持您在**网络**查看包括 Host 、Pod 、Deployment 和 Service 多维度的[网络拓扑图和总览数据](../../infrastructure/network.md)。
 
     ![](../img/7.host_network_2.png)
 

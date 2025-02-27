@@ -6,7 +6,7 @@ icon: zy/release-notes
 
 ---
 
-本文档记录观测云每次上线发布的更新内容说明。
+本文档记录{{{ custom_key.brand_name }}}每次上线发布的更新内容说明。
 
 <div class="grid cards" markdown>
 
@@ -37,6 +37,93 @@ icon: zy/release-notes
 
 </div>
 
+## 2025 年 2 月 19 日
+
+### Breaking Changes {#breakingchanges0219}
+
+[事件](../events/index.md) `df_meta` 内将不再保留 `alert_info` 相关信息记录。此前依赖该信息实现通知对象获取的用户，请切换至使用新增的 `df_alert_info`（事件告警通知）、`df_is_silent`（是否静默）、`df_sent_target_types`（事件通知对象类型）3 个字段来完成相应功能。
+
+可能影响到的功能场景:
+
+1. 通过 OpenAPI 获取事件对接外部系统的自定义使用场景
+2. 通过 Webhook 通知对象转发事件到外部系统的自定义使用场景
+
+### 功能更新 {#feature0116}
+
+
+#### PromQL 查询
+
+新增查询类型：Instant Query，即针对单个时间点进行查询。
+
+
+#### 监控
+
+监控器配置页面：
+
+1. 触发条件的逻辑匹配中新增 `not between` 选项；
+2. 支持直接修改监控器状态（“启用”或“禁用”）。
+
+
+#### 应用性能监测
+
+链路：详情页新增[服务上下文](../application-performance-monitoring/explorer/explorer-analysis.md#context) tab 页。
+
+
+#### 事件
+
+事件详情页：新增支持绑定[内置视图](../events/event-explorer/event-details.md#inner_view)；
+
+
+#### 异常追踪
+
+1. Issue 新增 [`working`、`closed` 状态](../exception/issue.md#concepts)；  
+2. 针对 `open` 状态停留超时和未指定负责人和处理超时的情况，[Issue 升级](../exception/config-manag/strategy.md#upgrade)新增重复通知配置；  
+3. 调整 Issue 系统评论、频道通知的 UI 显示；
+4. 分析看板：新增时间控件。
+
+
+#### 场景
+
+1. [图表链接](../scene/visual-chart/chart-link.md)：新增“查看主机监控视图”，默认关闭。
+2. 查看器：支持删除固定 `name` 列，用户可自定义列表显示。
+3. 云账单分析视图：支持查看账单详情。
+
+#### 管理
+
+[角色管理](../management/role-list.md)：Session Replay 查看、审计事件新增自定义添加查看权限能力。
+
+#### 指标
+
+生成指标：指标名输入不再支持使用 `-` 中划线。
+
+#### 集成
+
+集成卡片新增描述信息。
+
+### 部署版更新 {#deployment0219}
+
+1. 模板管理：支持上传基础设施查看器模板；
+2. 索引配置：弃用“备份日志”项；可在“编辑工作空间 > 数据存储策略 > 数据转发-默认存储”处配置对应存储策略。
+
+### 新增集成 {#inte0219}
+
+- 新增 [Milvus](../integrations/milvus.md)；
+- 新增 [火山云公网 IP](../integrations/volcengine_eip.md)；
+- 新增 [opentelemetry-python](../integrations/opentelemetry-python.md)；
+- 新增 [openLIT 集成](../integrations/openlit.md)；
+- 更新 k8s\es\mongodb\rabbitmq\oracle\coredns\sqlserver 中英文监控器&视图。
+
+### Bug 修复 {#bug0219}
+
+1. 修复了 AI 聚合通知消息中特殊字符引起结果异常的问题；
+2. 修复了 Servicemap 部署版适配的问题；
+3. 修复了组合图表无法配置已隐藏的视图变量的问题；
+4. 修复了异常追踪 > 分析看板的"未恢复问题列表"显示错乱的问题；
+5. 修复了用户访问监测分析看板中最受欢迎页面的 P75 结果和 DQL 查询结果不一致的问题；
+6. 修复了用户访问监测 > 查看器搜索框异常的问题；
+7. 修复了场景 > 对象映射中，使用资源目录进行字段映射，看板中同一字段只有部分生效的问题；
+8. 修复了监控器 > 事件内容 UI 显示的问题；
+9. 修复了事件查看器未恢复事件快捷筛选结果不满足预期的问题。
 
 ## 2025 年 1 月 16 日
 
@@ -115,7 +202,7 @@ APM 添加服务时，新增[主机自动注入](../application-performance-moni
 
 #### 管理
 
-1. 事件支持配置[数据转发](../management/backup/index.md)：支持配置事件类型的数据转发规则，将符合过滤条件的事件数据保存到观测云的对象存储及转发到外部存储，提供灵活管理事件数据的能力。
+1. 事件支持配置[数据转发](../management/backup/index.md)：支持配置事件类型的数据转发规则，将符合过滤条件的事件数据保存到{{{ custom_key.brand_name }}}的对象存储及转发到外部存储，提供灵活管理事件数据的能力。
 
 2. 工作空间新增 DataKit [环境变量](../management/env_variable.md)：工作空间支持管理 DataKit 环境变量，用户可以轻松配置和更新环境变量，实现远程同步更新 DataKit 采集配置。
 

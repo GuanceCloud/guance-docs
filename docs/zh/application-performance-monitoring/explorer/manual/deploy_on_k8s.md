@@ -3,17 +3,32 @@
 
 ## 安装 DataKit Agent
 
-进行系统和应用程序的链路数据分析之前，需要在每个目标主机上[部署观测云 DataKit 采集器](../../../datakit/datakit-install.md)，以收集必要的链路数据。
+进行系统和应用程序的链路数据分析之前，需要在每个目标主机上[部署{{{ custom_key.brand_name }}} DataKit 采集器](../../../datakit/datakit-install.md)，以收集必要的链路数据。
 
-### 选择语言
+## 开启 DDTrace 采集器
+
+DDTrace 用于接收、运算、分析 Tracing 协议数据，执行下面的命令，开启 DDTrace 采集器。其他第三方 Tracing 采集配置请参照[集成](../../../integrations/integration-index.md)。
+
+```
+- name: ENV_DEFAULT_ENABLED_INPUTS
+  value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,ddtrace
+```
+
+配置完成后，重启 DataKit：
+
+```
+datakit service -R
+```
+
+## 选择语言
 
 
-#### Java
+### Java
 
 安装依赖：
 
 ```
-wget -O dd-java-agent.jar 'https://static.guance.com/dd-image/dd-java-agent.jar'
+wget -O dd-java-agent.jar 'https://{{{ custom_key.static_domain }}}/dd-image/dd-java-agent.jar'
 ```
 
 运行应用：
@@ -44,7 +59,7 @@ spec:
 
 > 更多参数配置，参考 [这里](../../../integrations/ddtrace-java.md#start-options)。
 
-#### Python
+### Python
 
 安装依赖：
 
@@ -80,7 +95,7 @@ spec:
 
 > 更多参数配置，参考 [这里](../../../integrations/ddtrace-java.md#start-options)。
 
-#### Golang
+### Golang
 
 安装依赖：
 
@@ -146,7 +161,7 @@ metadata.labels['tags.datadoghq.com/version']
 
 > 更多参数配置，参考 [这里](../../../integrations/ddtrace-java.md#start-options)。
 
-#### Node.JS
+### Node.JS
 
 运行应用：
 
@@ -200,7 +215,7 @@ metadata.labels['tags.datadoghq.com/version']
 4. 自定义 DataKit 监听地址，若不设置则跟随默认地址；
 5. 设置采样率：开启后，可降低实际产生的数据量；数字范围从 0.0(0%) ~ 1.0(100%)。
 
-#### C++
+### C++
 
 <font size=2>
 
@@ -212,7 +227,7 @@ metadata.labels['tags.datadoghq.com/version']
 
 </font>
 
-#### PHP
+### PHP
 
 运行应用：
 

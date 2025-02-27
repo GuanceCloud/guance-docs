@@ -11,17 +11,17 @@
 - OpenTelemetry Collector
 - Auto-instrumentation ：使用 OpenTelemetry 检测库自动检测工作负载
 
-观测云采集器 DataKit 的引进了 OpenTelemetry 设计理念，兼容了`OTLP` 协议的, 所以可以绕过 OpenTelemetry Collector 直接将数据推送给 DataKit , 也可以把 OpenTelemetry Collector 的 exporter 设置为 `OTLP` ，地址指向 DataKit。
+{{{ custom_key.brand_name }}}采集器 DataKit 的引进了 OpenTelemetry 设计理念，兼容了`OTLP` 协议的, 所以可以绕过 OpenTelemetry Collector 直接将数据推送给 DataKit , 也可以把 OpenTelemetry Collector 的 exporter 设置为 `OTLP` ，地址指向 DataKit。
 
-我们将使用两种方案将 APM 数据集成到观测云上。
+我们将使用两种方案将 APM 数据集成到{{{ custom_key.brand_name }}}上。
 
-- APM 数据通过 OpenTelemetry Collector 推送到观测云;
-- APM 数据直接推送到观测云。
+- APM 数据通过 OpenTelemetry Collector 推送到{{{ custom_key.brand_name }}};
+- APM 数据直接推送到{{{ custom_key.brand_name }}}。
 
 ## 前置条件
 
 - [x] `k8s` 环境
-- [x] 观测云帐号
+- [x] {{{ custom_key.brand_name }}}帐号
 
 ## OpenTelemetry 相关组件安装
 
@@ -95,7 +95,7 @@ spec:
     exporters:
       logging:
       otlp:
-        endpoint: "http://datakit-service.datakit:4319" # 将链路信息输出到观测云平台
+        endpoint: "http://datakit-service.datakit:4319" # 将链路信息输出到{{{ custom_key.brand_name }}}平台
         tls:
           insecure: true
         #compression: none # 不开启gzip
@@ -190,7 +190,7 @@ NAME                 AGE   ENDPOINT                     SAMPLER   SAMPLER ARG
 my-instrumentation   71m   http://demo-collector:4317    
 ```
 
-## 观测云
+## {{{ custom_key.brand_name }}}
 
 ### Kubernetes DataKit 安装
 
@@ -435,7 +435,7 @@ connection				:keep-alive
 这里发现日志里面也生成了`traceId`和`spanId`,关于日志如何关联`trace`，参考文档 [日志关联](/integrations/java/#logging)。
 
 
-## 应用数据直推观测云
+## 应用数据直推{{{ custom_key.brand_name }}}
 
 - 调整 `opentelemetry-instrumentation.yaml` 文件 `OTEL_EXPORTER_OTLP_ENDPOINT` 
 
@@ -456,7 +456,7 @@ kubectl apply -f springboot-server.yaml
 
 - 访问应用 url，生成 trace 数据。
 
-- 登陆观测云帐号，查看链路视图
+- 登陆{{{ custom_key.brand_name }}}帐号，查看链路视图
 
 ![链路详情](../images/otel_operator_2.png)
 

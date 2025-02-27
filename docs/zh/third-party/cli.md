@@ -2,7 +2,7 @@
 
 ## 介绍
 
-Guance 命令行接口（Command-Line Interface）是一个跨平台命令行工具，用于连接到观测云并在观测云上执行资源管理操作。它同样适用于将各种第三方生态的内容，导入到观测云平台进行统一管理。
+Guance 命令行接口（Command-Line Interface）是一个跨平台命令行工具，用于连接到{{{ custom_key.brand_name }}}并在{{{ custom_key.brand_name }}}上执行资源管理操作。它同样适用于将各种第三方生态的内容，导入到{{{ custom_key.brand_name }}}平台进行统一管理。
 
 在实际的云服务交互场景中，有三种方式可以与 SaaS 平台交互：
 
@@ -14,25 +14,25 @@ CLI 是 SaaS 供应商至关重要的开发者工具，它取代了 GUI 作为�
 
 Guance CLI 目前支持以下三种命令式操作：
 
-- 资源导入工具：用于将第三方生态的内容，导入到观测云统一管理（例如导入 Grafana 仪表板到观测云）。  
-- 数据上传工具：用于将一次性数据（例如单一数据文件，持续集成产物等）上报到观测云（例如上传测试数据等）。  
-- 安装工具：用于一键安装观测云生态的各个组件。  
+- 资源导入工具：用于将第三方生态的内容，导入到{{{ custom_key.brand_name }}}统一管理（例如导入 Grafana 仪表板到{{{ custom_key.brand_name }}}）。  
+- 数据上传工具：用于将一次性数据（例如单一数据文件，持续集成产物等）上报到{{{ custom_key.brand_name }}}（例如上传测试数据等）。  
+- 安装工具：用于一键安装{{{ custom_key.brand_name }}}生态的各个组件。  
 
 如果您希望开始体验 Guance CLI 的能力，请打开下方**使用场景**，启动交互式指南，进行在线实验；或参考 GitHub 主页中的安装方式进行安装。
 
 ## 使用场景
 
-### 使用 CLI 导入 Grafana 仪表板到观测云
+### 使用 CLI 导入 Grafana 仪表板到{{{ custom_key.brand_name }}}
 
 Grafana 是一款流行的开源数据可视化工具，可以从多种数据源导入数据并进行可视化。它支持多种图表类型，如线图、柱状图、散点图、热力图等，通过直观的图表呈现方式，帮助用户更好地理解数据的变化趋势和分布情况，并进行数据分析和决策。
 
-Guance CLI 支持将 Grafana 中的仪表板导出成为观测云平台所支持的格式，以便导入到观测云。同时还可以导出 Terraform 文件以便于进行大规模的项目集成。
+Guance CLI 支持将 Grafana 中的仪表板导出成为{{{ custom_key.brand_name }}}平台所支持的格式，以便导入到{{{ custom_key.brand_name }}}。同时还可以导出 Terraform 文件以便于进行大规模的项目集成。
 
 ### 使用方法
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 观测云 Grafana Importer - 在线实验室</font>](https://killercoda.com/guance-cloud/course/official/grafana-importer)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; {{{ custom_key.brand_name }}} Grafana Importer - 在线实验室</font>](https://killercoda.com/guance-cloud/course/official/grafana-importer)
 
 <br/>
 
@@ -51,7 +51,7 @@ Guance CLI 支持将 Grafana 中的仪表板导出成为观测云平台所支持
 
 :material-numeric-2-circle-outline: 部分模版变量语法不支持
 
-Grafana PromQL 仪表板的 PromQL 查询将翻译成观测云的 DQL 查询， 但目前仅支持翻译 `label_values` 的非嵌套表达式函数，其它函数如 `query_result` 会转为空查询。
+Grafana PromQL 仪表板的 PromQL 查询将翻译成{{{ custom_key.brand_name }}}的 DQL 查询， 但目前仅支持翻译 `label_values` 的非嵌套表达式函数，其它函数如 `query_result` 会转为空查询。
 
 :material-numeric-3-circle-outline: PromQL 结果不支持简写
 

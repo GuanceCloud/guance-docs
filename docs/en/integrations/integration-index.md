@@ -6,7 +6,7 @@ icon: zy/integrations
 
 ---
 
-Guance has the ability of full stack data collection, and now supports about 310 integrations.
+Guance has the ability of full stack data collection, and now supports about 320 integrations.
 
 <!-- markdownlint-disable MD046 MD037 MD009 MD010 -->
 <html lang="en">
@@ -1040,7 +1040,7 @@ Guance has the ability of full stack data collection, and now supports about 310
   				data-href="../apisix"
   				data-tags=""
   				data-name="APISIX"
-  				data-summary="Collecting APISIX metric information"
+  				data-summary="Collect APISIX related metrics, logs, and tracing information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1051,7 +1051,7 @@ Guance has the ability of full stack data collection, and now supports about 310
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">APISIX</div>
-                            <div title="Collecting APISIX metric information" class="fth-integration-desc">Collecting APISIX metric information</div>
+                            <div title="Collect APISIX related metrics, logs, and tracing information" class="fth-integration-desc">Collect APISIX related metrics, logs, and tracing information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1232,6 +1232,36 @@ Guance has the ability of full stack data collection, and now supports about 310
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Auto Scaling</div>
                             <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance" class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../aws_billing"
+  				data-tags="AWS"
+  				data-name="AWS Cloud Billing"
+  				data-summary="Collecting AWS cloud billing information"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/aws/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">AWS Cloud Billing</div>
+                            <div title="Collecting AWS cloud billing information" class="fth-integration-desc">Collecting AWS cloud billing information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5867,6 +5897,36 @@ Guance has the ability of full stack data collection, and now supports about 310
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../kube_scheduler"
+  				data-tags=""
+  				data-name="Kube Scheduler"
+  				data-summary="By monitoring Kube Scheduler metrics to help configure and optimize Kube Scheduler, you can improve cluster resource utilization and application performance"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/kube_scheduler/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Kube Scheduler</div>
+                            <div title="By monitoring Kube Scheduler metrics to help configure and optimize Kube Scheduler, you can improve cluster resource utilization and application performance" class="fth-integration-desc">By monitoring Kube Scheduler metrics to help configure and optimize Kube Scheduler, you can improve cluster resource utilization and application performance</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../kube_state_metrics"
   				data-tags=""
   				data-name="Kube State Metrics"
@@ -6527,6 +6587,36 @@ Guance has the ability of full stack data collection, and now supports about 310
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../mqtt"
+  				data-tags=""
+  				data-name="MQTT"
+  				data-summary="Receiving Data via the MQTT Protocol"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/minio/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">MQTT</div>
+                            <div title="Receiving Data via the MQTT Protocol" class="fth-integration-desc">Receiving Data via the MQTT Protocol</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../mysql"
   				data-tags="DATA STORES"
   				data-name="MySQL"
@@ -6857,36 +6947,6 @@ Guance has the ability of full stack data collection, and now supports about 310
   		
   			<div
   				class="fth-integration-list-item"
-  				data-href="../nodejs"
-  				data-tags=""
-  				data-name="NodeJs"
-  				data-summary="Obtain metrics, link tracking, and log information for NodeJs applications"
-  			>
-  				<div class="fth-integration-list-card">
-  					<div class="integration-list-item-left">
-  						<img
-									src="../icon/nodejs/icon.png"
-									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
-									alt=""
-  						/>
-  						<div class="fth-integration-description">
-                            <div class="fth-integration-name">NodeJs</div>
-                            <div title="Obtain metrics, link tracking, and log information for NodeJs applications" class="fth-integration-desc">Obtain metrics, link tracking, and log information for NodeJs applications</div>
-                        </div>
-                        <div class="fth-integration-mask-image"></div>
-  					</div>
-  					<div class="integration-list-item-right">
-  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  							<path
-  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
-  							></path>
-  						</svg>
-  					</div>
-  				</div>
-  			</div>
-  		
-  			<div
-  				class="fth-integration-list-item"
   				data-href="../npd"
   				data-tags=""
   				data-name="Node Problem Detector"
@@ -7022,6 +7082,36 @@ Guance has the ability of full stack data collection, and now supports about 310
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">OpenGauss</div>
                             <div title="Collect OpenGaussian metric information" class="fth-integration-desc">Collect OpenGaussian metric information</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../openlit"
+  				data-tags="OTEL,Tracing"
+  				data-name="OpenLIT"
+  				data-summary="OpenLIT simplifies the development process for generative AI and large language models (LLMs), providing comprehensive observability support and reporting observability data to DataKit"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/openlit/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">OpenLIT</div>
+                            <div title="OpenLIT simplifies the development process for generative AI and large language models (LLMs), providing comprehensive observability support and reporting observability data to DataKit" class="fth-integration-desc">OpenLIT simplifies the development process for generative AI and large language models (LLMs), providing comprehensive observability support and reporting observability data to DataKit</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7832,6 +7922,36 @@ Guance has the ability of full stack data collection, and now supports about 310
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Prometheus Push Gateway</div>
                             <div title="Enable Pushgateway API to receive Prometheus metric data" class="fth-integration-desc">Enable Pushgateway API to receive Prometheus metric data</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../pyroscope"
+  				data-tags="PYROSCOPE,PROFILE"
+  				data-name="Pyroscope"
+  				data-summary="Grafana Pyroscope Application Performance Profiler"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/profiling/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Pyroscope</div>
+                            <div title="Grafana Pyroscope Application Performance Profiler" class="fth-integration-desc">Grafana Pyroscope Application Performance Profiler</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9272,6 +9392,36 @@ Guance has the ability of full stack data collection, and now supports about 310
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Volcengine ECS</div>
                             <div title="The display metrics of Voltage ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS, which reflect the computing, memory, network, and storage performance of ECS instances." class="fth-integration-desc">The display metrics of Voltage ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS, which reflect the computing, memory, network, and storage performance of ECS instances.</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../volcengine_eip"
+  				data-tags="Volcengine"
+  				data-name="Volcengine EIP"
+  				data-summary="Collect EIP metrics data of Volcengine"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/volcengine_eip/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Volcengine EIP</div>
+                            <div title="Collect EIP metrics data of Volcengine" class="fth-integration-desc">Collect EIP metrics data of Volcengine</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>

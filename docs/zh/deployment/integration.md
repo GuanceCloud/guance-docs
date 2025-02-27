@@ -3,7 +3,7 @@
 
 
 
-模板管理页面支持查看、搜索及导入观测云所有内置的模板项目。
+模板管理页面支持查看、搜索及导入{{{ custom_key.brand_name }}}所有内置的模板项目。
 
 ![](img/18.deployment_2.png)
 
@@ -20,7 +20,7 @@
 
 **模版管理**这一功能分为两个版本：部署版用户未更新前使用的版本 [1.89.169](./changelog.md#626) 与更新后的版本。基于不同的版本，在做导入这一动作时，针对不同的模版类型会存在些许差异。
 
-目前两个版本均支持导入四类模版：**内置视图、检测库、自定义查看器、Pipeline**。
+目前两个版本均支持导入以下几类模版：**内置视图、检测库、自定义查看器、Pipeline**。
 
 <img src="../img/deployment-2.png" width="70%" >
 
@@ -60,7 +60,7 @@
 
 :material-numeric-2-circle-outline: 自定义查看器：可在控制台 > 场景 > 查看器创建导出。 
 
-:material-numeric-3-circle-outline: 检测库：观测云的[检测库](../monitoring/monitor/template.md)内包含多种监控器规则模版。支持在监控器列表[导出](../monitoring/monitor/index.md#options)。
+:material-numeric-3-circle-outline: 检测库：{{{ custom_key.brand_name }}}的[检测库](../monitoring/monitor/template.md)内包含多种监控器规则模版。支持在监控器列表[导出](../monitoring/monitor/index.md#options)。
 
 可直接导入一个或多个监控器模板，其中检测库名称不允许重复，但监控器内不作限制。 
 

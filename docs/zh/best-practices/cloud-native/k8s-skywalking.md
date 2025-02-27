@@ -158,6 +158,6 @@ curl 10.244.36.98:8090/ping
 
 #### 应用性能监测
 
-登录『[观测云](https://console.guance.com/)』，进入『应用性能监测』模块，查看 skywalking-demo-master 应用。
+登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，进入『应用性能监测』模块，查看 skywalking-demo-master 应用。
 
 ![image](../images/k8s-skywalking/2.png)	

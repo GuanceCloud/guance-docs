@@ -24,7 +24,7 @@
 
 - 可编辑左侧的[快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter)或添加新的筛选字段。
 
-- 筛选历史：观测云支持在[筛选历史](../getting-started/function-details/explorer-search.md#filter-history)保存查看器 `key:value` 的搜索条件历史，应用于当前工作空间不同的查看器。
+- 筛选历史：{{{ custom_key.brand_name }}}支持在[筛选历史](../getting-started/function-details/explorer-search.md#filter-history)保存查看器 `key:value` 的搜索条件历史，应用于当前工作空间不同的查看器。
 
 - 事件导出：在智能监控事件查看器中，点击**导出**可导出当前事件查看器的数据到 CSV、仪表板和笔记。
 
