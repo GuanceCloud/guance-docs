@@ -6,11 +6,14 @@ summary: 'Use the「Guance  Synchronization」series script package in the scrip
 __int_icon: 'icon/aws_dynamodb'
 dashboard:
   - desc: 'AWS DynamoDB Monitoring View'
-    path: 'dashboard/zh/aws_dynamodb'
+    path: 'dashboard/en/aws_dynamodb'
 monitor:
   - desc: 'AWS DynamoDB Monitor'
-    path: 'monitor/zh/aws_dynamodb'
+    path: 'monitor/en/aws_dynamodb'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_dynamodb'
 ---
 
 

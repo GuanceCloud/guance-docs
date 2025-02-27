@@ -7,11 +7,15 @@ __int_icon: 'icon/aws_cloudfront'
 dashboard:
 
   - desc: 'AWS CloudFront Monitoring View'
-    path: 'dashboard/zh/aws_cloudfront'
+    path: 'dashboard/en/aws_cloudfront'
 
 monitor:
   - desc: 'AWS CloudFront Monitor'
-    path: 'monitor/zh/aws_cloudfront'
+    path: 'monitor/en/aws_cloudfront'
+
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_cloudfront'
 ---
 
 <!-- markdownlint-disable MD025 -->
