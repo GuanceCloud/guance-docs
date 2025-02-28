@@ -7,7 +7,7 @@
 
 :material-chat-question: 代金券使用范围
 
-代金券仅适用{{{ custom_key.brand_name }}}商业版。
+代金券仅适用<<< custom_key.brand_name >>>商业版。
 
 
 :material-chat-question: 代金券支付的金额是否可以开发票？

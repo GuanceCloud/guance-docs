@@ -6,7 +6,7 @@
 
 JVM 是一种用于计算设备的规范，它是一个虚构出来的计算机，是 Java Virtual Machine 的简称。Java 是一门抽象程度特别高的语言，提供了自动内存管理等一系列特性，所以就有了 JVM 这个抽象层，JVM 运行在操作系统之上，用来执行 java 字节码，这样 Java 就可以实现跨平台了。
 
-下面简要介绍一下 JVM 内存结构和线程，然后使用 SkyWalking 采集 JVM 指标数据并通过{{{ custom_key.brand_name }}}进行可观测。
+下面简要介绍一下 JVM 内存结构和线程，然后使用 SkyWalking 采集 JVM 指标数据并通过<<< custom_key.brand_name >>>进行可观测。
 
 ### JVM 内存结构
 
@@ -113,7 +113,7 @@ java  -javaagent:agent/skywalking-agent.jar \
 
 ### 3 JVM 可观测
 
-登录「 [{{{ custom_key.brand_name }}}](https://console.guance.com/)」 - 「场景」，输入“JVM”，选择「JVM Skywalking 监控视图」，点击「确定」。
+登录「 [<<< custom_key.brand_name >>>](https://console.guance.com/)」 - 「场景」，输入“JVM”，选择「JVM Skywalking 监控视图」，点击「确定」。
 
 再点击新建的「JVM Skywalking 监控视图」，即可进行观测。
 

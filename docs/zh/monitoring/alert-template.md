@@ -9,7 +9,7 @@
 
 ### 不聚合
 
-> 您有 N 条新的{{{ custom_key.brand_name }}}告警
+> 您有 N 条新的<<< custom_key.brand_name >>>告警
 >
 > 第 1 / 2 条：
 >

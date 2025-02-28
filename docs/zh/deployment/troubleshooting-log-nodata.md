@@ -2,13 +2,13 @@
 
 ## 简介
 
-本文将介绍如何排查{{{ custom_key.brand_name }}}的日志、链路、指标的数据断档问题。
+本文将介绍如何排查<<< custom_key.brand_name >>>的日志、链路、指标的数据断档问题。
 
 ## 架构图
 
-{{{ custom_key.brand_name }}}数据流向如下：
+<<< custom_key.brand_name >>>数据流向如下：
 
-1. DataKit 将指标日志推送给{{{ custom_key.brand_name }}} DataWay 集群
+1. DataKit 将指标日志推送给<<< custom_key.brand_name >>> DataWay 集群
 2. DataWay 将数据推送到 kodo 服务处理数据
 3. kodo 将处理完成的数据推送给 nsqd 消息队列服务
 4. kodo-x 请求  nsqd 消息队列服务消费数据
@@ -23,7 +23,7 @@
 
 请确认以下信息：
 
-- {{{ custom_key.brand_name }}}集群主机时间和当前时间一致
+- <<< custom_key.brand_name >>>集群主机时间和当前时间一致
 - DataKit 采集器主机和当前时间一致
 
 可执行命令查看：
@@ -102,7 +102,7 @@ grep -Ei error log
 ### 步骤五：查看 kodo 服务日志
 
 ???+ warning "注意"
-     查看 kodo 服务日志，可以排查{{{ custom_key.brand_name }}}是否成功将数据推送消费队列中。
+     查看 kodo 服务日志，可以排查<<< custom_key.brand_name >>>是否成功将数据推送消费队列中。
 
 - Namespace: forethought-kodo
 
@@ -151,7 +151,7 @@ grep -Ei error log
 ### 步骤六：查看 kodo-x 服务日志
 
 ???+ warning "注意"
-     查看 kodo-x 服务日志，可以排查{{{ custom_key.brand_name }}}是否成功写入数据，以及是否写入日志限流，是否写入日志慢等问题。
+     查看 kodo-x 服务日志，可以排查<<< custom_key.brand_name >>>是否成功写入数据，以及是否写入日志限流，是否写入日志慢等问题。
 
 - Namespace: forethought-kodo
 - Deployment: kodo-x

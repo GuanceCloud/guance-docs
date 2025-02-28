@@ -1,4 +1,4 @@
-# 在阿里云中配置{{{ custom_key.brand_name }}} RAM 策略
+# 在阿里云中配置<<< custom_key.brand_name >>> RAM 策略
 
 1、新增授权：
 

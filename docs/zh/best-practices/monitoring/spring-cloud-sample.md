@@ -1,10 +1,10 @@
-# 从 0 到 1 利用{{{ custom_key.brand_name }}}构建 Springcloud 服务的可观测性
+# 从 0 到 1 利用<<< custom_key.brand_name >>>构建 Springcloud 服务的可观测性
 
 ---
 
 ## 本项目业务系统简介：
 
-**本案例采用系统为模拟企业内部使用的办公系统，从 0 到 1 利用{{{ custom_key.brand_name }}}构建系统的可观测性**  
+**本案例采用系统为模拟企业内部使用的办公系统，从 0 到 1 利用<<< custom_key.brand_name >>>构建系统的可观测性**  
 
 **本次构建可观测性选择的是单机 jar 包版应用**  
 
@@ -43,7 +43,7 @@
 
 **办公系统中涉及的技术栈：**
 
-| 技术                | 版本              | 需开启{{{ custom_key.brand_name }}}可观测性inputs                 |
+| 技术                | 版本              | 需开启<<< custom_key.brand_name >>>可观测性inputs                 |
 | ------------------- | ----------------- | ------------------------------------------ |
 | SpringBoot          | 2.3.7.RELEASE     | ddtrace                                    |
 | SpringCloud         | Hoxton.SR9        | ddtrace                                    |
@@ -69,19 +69,19 @@
 
 ![image](../images/spring-cloud-sample/1.png)	
 
-## {{{ custom_key.brand_name }}}简介：
+## <<< custom_key.brand_name >>>简介：
 
-**简介：**[{{{ custom_key.brand_name }}}官方简介]
+**简介：**[<<< custom_key.brand_name >>>官方简介]
 
-{{{ custom_key.brand_name }}}是一款旨在解决云计算，以及云原生时代系统为每一个完整的应用构建**全链路的可观测性**的云服务平台，与传统的监控系统有着本质的区别。
+<<< custom_key.brand_name >>>是一款旨在解决云计算，以及云原生时代系统为每一个完整的应用构建**全链路的可观测性**的云服务平台，与传统的监控系统有着本质的区别。
 
 传统的监控系统往往都是单一领域的监控系统，就好比企业内部建立的诸多烟囱，例如 APM、RUM、日志、NPM、zabbix 等都是单一且割裂的监控体系，有应用的、日志的、基础设施的等等，现象就是烟囱林立，而且监控系统的割裂也带来监控数据的割裂，也造成了企业内部的数据孤岛，往往在企业内部进行问题排查时，通常要跨部门，跨平台，耗费大量人力物力进行异常定位。
 
 而**可观测性**的概念是通过一套完整的体系对承载业务系统的IT体系进行可观测性，包含指标、日志、链路追踪三大组件，实现统一数据采集，统一存储，统一查询，统一展现，并且将指标、链路、日志所有的可观测数据关联起来，实现IT体系完整的可观测性。
 
-{{{ custom_key.brand_name }}}就是基于这个理念研发出来的可观测性解决方案，致力于提升企业内部IT服务的质量，提升最终用户体验。
+<<< custom_key.brand_name >>>就是基于这个理念研发出来的可观测性解决方案，致力于提升企业内部IT服务的质量，提升最终用户体验。
 
-**{{{ custom_key.brand_name }}}数据流向：**
+**<<< custom_key.brand_name >>>数据流向：**
 
 ![image](../images/spring-cloud-sample/2.png)
 
@@ -212,7 +212,7 @@ $ service datakit restart
 
 ![image](../images/spring-cloud-sample/10.png)
 
-4、 在{{{ custom_key.brand_name }}}平台创建 Nginx 视图并查看数据  
+4、 在<<< custom_key.brand_name >>>平台创建 Nginx 视图并查看数据  
 **创建步骤参考[**[**创建场景及视图**](#IVN7h)**]**  
 **步骤：场景 —> 新建场景 —> 新建空白场景 —> 系统视图（创建 Nginx ）**  
 **视图示例（通过该视图即可快速查看 Nginx 相关的指标及日志信息，从而断定 Nginx 的健康状态）:**  
@@ -259,7 +259,7 @@ $ service datakit restart
 
 ![image](../images/spring-cloud-sample/13.png)
 
-##### 2、在{{{ custom_key.brand_name }}}平台创建 Mysql 视图并查看数据
+##### 2、在<<< custom_key.brand_name >>>平台创建 Mysql 视图并查看数据
 
 **创建步骤参考[**[**创建场景及视图**](#IVN7h)**]**
 **步骤：场景——新建场景——新建空白场景——系统视图（创建 Mysql）**
@@ -294,7 +294,7 @@ $ service datakit restart
 
 ![image](../images/spring-cloud-sample/16.png)
 
-##### 2、在{{{ custom_key.brand_name }}}平台创建 Redis 视图并查看数据
+##### 2、在<<< custom_key.brand_name >>>平台创建 Redis 视图并查看数据
 
 **创建步骤参考[**[**创建场景及视图**](#IVN7h)**]**
 **步骤：场景——新建场景——新建空白场景——系统视图（创建 Redis）**
@@ -324,7 +324,7 @@ $ vim ddtrace-jvm-statsd.conf
 
 **### 因 JVM 跟 APM 都是借由 ddtrace-agent 实现数据采集，应用启动脚本参见 APM 相关内容 [APM] ###**
 
-##### 3、在{{{ custom_key.brand_name }}}平台创建 JVM 视图并查看数据
+##### 3、在<<< custom_key.brand_name >>>平台创建 JVM 视图并查看数据
 
 **创建步骤参考[**[**创建场景及视图**](#IVN7h)**]**
 **步骤：场景——新建场景——新建空白场景——系统视图（创建 JVM）**
@@ -335,7 +335,7 @@ $ vim ddtrace-jvm-statsd.conf
 ### APM（application performance monitoring）：
 
 详细步骤参见文档 [分布式链路追踪(APM)最佳实践](../../best-practices/monitoring/apm.md)  
-**{{{ custom_key.brand_name }}}支持的 APM 接入方式包含 ddtrace、skywalking、zipkin、jaejer 等多种支持 opentracing 协议的 APM工具，此处示例采用 ddtrace 实现 APM 方面的可观测性。**
+**<<< custom_key.brand_name >>>支持的 APM 接入方式包含 ddtrace、skywalking、zipkin、jaejer 等多种支持 opentracing 协议的 APM工具，此处示例采用 ddtrace 实现 APM 方面的可观测性。**
 
 ##### 1、在 Datakit 中修改 APM（ddtrace）的 inputs
 
@@ -377,7 +377,7 @@ $ nohup java -Dfile.encoding=utf-8 -javaagent:dd-java-agent-0.80.0.jar  -XX:Flig
 $ nohup java -Dfile.encoding=utf-8 -javaagent:dd-java-agent-0.80.0.jar -XX:FlightRecorderOptions=stackdepth=256 -Ddd.logs.injection=true -Ddd.service.name=ruoyi-modules-system -Ddd.service.mapping=redis:redis_ruoyi,mysql:mysql_ruoyi -Ddd.env=dev -Ddd.agent.port=9529 -Ddd.jmxfetch.enabled=true -Ddd.jmxfetch.check-period=1000 -Ddd.jmxfetch.statsd.port=8125 -Ddd.version=1.0 -jar ruoyi-modules-system.jar > logs/system.log  2>&1 & 
 ```
 
-**！若果在{{{ custom_key.brand_name }}}平台未看到 APM 相关数据，请查看 datakit 日志**
+**！若果在<<< custom_key.brand_name >>>平台未看到 APM 相关数据，请查看 datakit 日志**
 **cat /var/log/datakit/gin.log**  
 正常日志：
 
@@ -400,13 +400,13 @@ $ nohup java -Dfile.encoding=utf-8 -javaagent:dd-java-agent-0.80.0.jar -XX:Fligh
 - Ddd.agent.port：数据上传端口（默认9529 ），必填项。
 - Ddd.version:应用版本，可选项。
 - Ddd.trace.sample.rate：设置采样率（默认是全采），可选项，如需采样，可设置 0~1 之间的数，例如 0.6，即采样 60%。
-- Ddd.service.mapping：当前应用调用到的 redis、mysql 等，可通过此参数添加别名，用以和其他应用调用到的 redis、mysql 进行区分，可选项，应用场景：例如项目 A 项目 B 都调用了 mysql，且分别调用的 mysql-a，mysql-b，如没有添加 mapping 配置项，在{{{ custom_key.brand_name }}}平台上会展现项目 A 项目 B 调用了同一个名为 mysql 的数据库，如果添加了 mapping 配置项，配置为 mysql-a，mysql-b，则在{{{ custom_key.brand_name }}}平台上会展现项目A调用 mysql-a，项目 B 调用 mysql-b。
+- Ddd.service.mapping：当前应用调用到的 redis、mysql 等，可通过此参数添加别名，用以和其他应用调用到的 redis、mysql 进行区分，可选项，应用场景：例如项目 A 项目 B 都调用了 mysql，且分别调用的 mysql-a，mysql-b，如没有添加 mapping 配置项，在<<< custom_key.brand_name >>>平台上会展现项目 A 项目 B 调用了同一个名为 mysql 的数据库，如果添加了 mapping 配置项，配置为 mysql-a，mysql-b，则在<<< custom_key.brand_name >>>平台上会展现项目A调用 mysql-a，项目 B 调用 mysql-b。
 - Ddd.agent.host：数据传输目标 IP，默认为本机 localhost，可选项。
 
-##### 3、在{{{ custom_key.brand_name }}}平台查看 APM 数据
+##### 3、在<<< custom_key.brand_name >>>平台查看 APM 数据
 
-**APM（应用性能检测）是{{{ custom_key.brand_name }}}默认内置的模块，无需创建场景或视图即可进行查看。**  
-**路径：{{{ custom_key.brand_name }}}平台——应用性能检测**  
+**APM（应用性能检测）是<<< custom_key.brand_name >>>默认内置的模块，无需创建场景或视图即可进行查看。**  
+**路径：<<< custom_key.brand_name >>>平台——应用性能检测**  
 **视图示例:（通过该视图即可快速查看应用调用情况、拓扑图、异常数据等其他 APM 相关数据）**
 
 ![image](../images/spring-cloud-sample/24.png)
@@ -425,7 +425,7 @@ $ nohup java -Dfile.encoding=utf-8 -javaagent:dd-java-agent-0.80.0.jar -XX:Fligh
 
 ![image](../images/spring-cloud-sample/27.png)
 
-##### 3、在前端页面 index.html 中接入{{{ custom_key.brand_name }}} rum 可观测性 js 文件
+##### 3、在前端页面 index.html 中接入<<< custom_key.brand_name >>> rum 可观测性 js 文件
 
 ```shell
 $ cd /usr/local/ruoyi/dist/
@@ -440,7 +440,7 @@ $ vim index.html
 ```
 
 ```javascript
-<script src="https://{{{ custom_key.static_domain }}}/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://<<< custom_key.static_domain >>>/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({
@@ -456,7 +456,7 @@ $ vim index.html
 # xxx 均需要根据实际情况进行更改，详细更改内容请参考如下：
 ```
 
-> **datakitOrigin**：datakit 地址（datakit 所在服务器的 ip 或域名），{{{ custom_key.brand_name }}}中 rum 数据流向为：rum.js 文件——>datakit——>dataway——>{{{ custom_key.brand_name }}}平台，如若是生产环境，需将该 IP 设置为域名或 slb 地址，测试环境需填写内网IP，对应 datakit 的服务器 9529 端口
+> **datakitOrigin**：datakit 地址（datakit 所在服务器的 ip 或域名），<<< custom_key.brand_name >>>中 rum 数据流向为：rum.js 文件——>datakit——>dataway——><<< custom_key.brand_name >>>平台，如若是生产环境，需将该 IP 设置为域名或 slb 地址，测试环境需填写内网IP，对应 datakit 的服务器 9529 端口
 >    
 > **trackInteractions**：用户行为采集配置项，可实现页面端用户操作行为统计
 > 
@@ -510,7 +510,7 @@ $ vim index.html
 
 ### Security Checker（安全巡检）：
 
-**Security Checker简介**：[**[**{{{ custom_key.brand_name }}}官方简介**](/scheck)**]
+**Security Checker简介**：[**[**<<< custom_key.brand_name >>>官方简介**](/scheck)**]
 
 注意：目前仅支持 **linux**
 详细步骤参见文档 [[Security Checker 安装和配置](/scheck/scheck-install/)]
@@ -519,10 +519,10 @@ $ vim index.html
 
 ```shell
 ##  安装
-$ bash -c "$(curl https://{{{ custom_key.static_domain }}}/security-checker/install.sh)"
+$ bash -c "$(curl https://<<< custom_key.static_domain >>>/security-checker/install.sh)"
 ## 或者执行   sudo datakit --install scheck
 ## 更新
-$ bash -c "$(curl https://{{{ custom_key.static_domain }}}/security-checker/install.sh) --upgrade"
+$ bash -c "$(curl https://<<< custom_key.static_domain >>>/security-checker/install.sh) --upgrade"
 ## 启停命令
 $ systemctl start/stop/restart/status scheck
 ## 或者
@@ -596,7 +596,7 @@ $     pipeline = "nginx.p"
 
 **示例：应用日志**
 
-pipeline（日志grok切割）[**[**{{{ custom_key.brand_name }}}官方文档**](/datakit/pipeline/)**]
+pipeline（日志grok切割）[**[**<<< custom_key.brand_name >>>官方文档**](/datakit/pipeline/)**]
 
 ```shell
 $ cd /usr/local/datakit/conf.d/log/
@@ -646,7 +646,7 @@ default_time(time)
 
 ### 创建 Nginx 日志异常检测：
 
-1. 打开{{{ custom_key.brand_name }}}平台—>异常检测库—>新建检测库—>自定义监控
+1. 打开<<< custom_key.brand_name >>>平台—>异常检测库—>新建检测库—>自定义监控
 ![image](../images/spring-cloud-sample/46.png)
 
 2. 点击新创建的检测库名称—>新建检测规则—>新建日志检测
@@ -681,7 +681,7 @@ $ kill -9 xxxxx
 
 ![image](../images/spring-cloud-sample/50.png)
 
-3. 查看{{{ custom_key.brand_name }}}平台事件相关内容
+3. 查看<<< custom_key.brand_name >>>平台事件相关内容
 
 ![image](../images/spring-cloud-sample/51.png)
 
@@ -696,7 +696,7 @@ $ kill -9 xxxxx
 ### 开启 inputs 过程中问题排查方式：
 
 1、 查看 inputs 报错信息  
-{{{ custom_key.brand_name }}}已默认将inputs的状态信息以一定的频率上传至{{{ custom_key.brand_name }}}平台，可以直接在基础设施——具体主机内查看集成情况。  
+<<< custom_key.brand_name >>>已默认将inputs的状态信息以一定的频率上传至<<< custom_key.brand_name >>>平台，可以直接在基础设施——具体主机内查看集成情况。  
 **示例：apache 服务宕机，inputs 显示报错**
 
 ![image](../images/spring-cloud-sample/55.png)
@@ -752,10 +752,10 @@ $ kill -9 xxxxx
 
 如此，便对此次 demo 办公系统的链路、指标、日志、基础设施等进行了全方位的可观测性。
 
-{{{ custom_key.brand_name }}}整体试用下来配置便捷，管理方便，同时还提供了统一的查看视图，所有的指标，链路，日志都通过同一 tag(host) 实现数据关联，很方便就可在平台上实现级联，从而实现 IT 系统的整体可观测性。
+<<< custom_key.brand_name >>>整体试用下来配置便捷，管理方便，同时还提供了统一的查看视图，所有的指标，链路，日志都通过同一 tag(host) 实现数据关联，很方便就可在平台上实现级联，从而实现 IT 系统的整体可观测性。
 
 最后再结合异常检测即可实现系统一体化的管理，进而提升运维研发效率，提升 IT 决策能力！
 
 该产品还在不断的完善，未来功能会越来越强大，越来越易用，UI 也会越来越美观。
 
-{{{ custom_key.brand_name }}}，要做可观测性的代言人！
+<<< custom_key.brand_name >>>，要做可观测性的代言人！

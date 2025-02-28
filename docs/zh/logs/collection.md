@@ -2,7 +2,7 @@
 ---
 
 
-{{{ custom_key.brand_name }}}拥有全面的日志采集能力，主要分成<u>主机日志采集和 K8S 容器日志采集</u>，两者 DataKit 的安装方式不同，日志采集的方式也不尽相同。采集的日志数据统一汇总到{{{ custom_key.brand_name }}}进行统一存储、搜索和分析，帮助我们快速定位问题并解决问题。
+<<< custom_key.brand_name >>>拥有全面的日志采集能力，主要分成<u>主机日志采集和 K8S 容器日志采集</u>，两者 DataKit 的安装方式不同，日志采集的方式也不尽相同。采集的日志数据统一汇总到<<< custom_key.brand_name >>>进行统一存储、搜索和分析，帮助我们快速定位问题并解决问题。
 
 本文主要介绍如何在**主机环境**下采集日志，关于在 K8S 环境采集日志可参考最佳实践 [Kubernetes 集群中日志采集的几种玩法](../best-practices/cloud-native/k8s-logs.md)。
 
@@ -10,7 +10,7 @@
 
 [安装 DataKit](../datakit/datakit-install.md)。                
 
-或者您也可以登录 [{{{ custom_key.brand_name }}}](https://auth.guance.com/login/pwd)，在**集成 > DataKit**，根据主机系统选择 **Linux、Windows、MacOS**，获取 DataKit 安装指令和安装步骤。
+或者您也可以登录 [<<< custom_key.brand_name >>>](https://auth.guance.com/login/pwd)，在**集成 > DataKit**，根据主机系统选择 **Linux、Windows、MacOS**，获取 DataKit 安装指令和安装步骤。
 
 ## 日志采集器配置
 
@@ -24,7 +24,7 @@ DataKit 安装完成后，您可以通过开启标准日志采集或者自定义
 
 === "标准日志采集器"
 
-    通过开启{{{ custom_key.brand_name }}}支持的标准日志采集器，如 [Nginx](../integrations/nginx.md)、[Redis](../integrations/redis.md)、[ES](../integrations/elasticsearch.md) 等，您可以一键开启日志采集。
+    通过开启<<< custom_key.brand_name >>>支持的标准日志采集器，如 [Nginx](../integrations/nginx.md)、[Redis](../integrations/redis.md)、[ES](../integrations/elasticsearch.md) 等，您可以一键开启日志采集。
 
 ???+ warning "注意"
 
@@ -39,7 +39,7 @@ DataKit 安装完成后，您可以通过开启标准日志采集或者自定义
 
 ## 日志数据存储
 
-日志采集器配置完成后，重启 DataKit，日志数据就可以统一上报到{{{ custom_key.brand_name }}}工作空间。
+日志采集器配置完成后，重启 DataKit，日志数据就可以统一上报到<<< custom_key.brand_name >>>工作空间。
 
 - 对于日志数据量比较多的用户来说，我们可以通过配置 [日志索引](./multi-index/index.md) 或者 [日志黑名单](../getting-started/function-details/logs-blacklist.md) 来节约数据存储费用；
 - 对于需要日志长久存储的用户来说，我们可以通过 [日志备份](../management/backup/index.md)来保存日志数据。

@@ -2,7 +2,7 @@
 ---
 
 
-{{{ custom_key.brand_name }}}提供应用性能监测错误数据分析查看器，您可以在**应用性能监测 > 错误追踪**快速查看链路中的类似错误的产生历史趋势及其分布情况，帮助快速定位性能问题。
+<<< custom_key.brand_name >>>提供应用性能监测错误数据分析查看器，您可以在**应用性能监测 > 错误追踪**快速查看链路中的类似错误的产生历史趋势及其分布情况，帮助快速定位性能问题。
 
 错误追踪查看器包括**所有错误**和**聚类分析**两个列表：
 
@@ -10,11 +10,11 @@
 
 - [聚类分析](#analysis)：用于<u>快速查看最频繁发生</u>的需要被解决的链路错误
 
-> {{{ custom_key.brand_name }}}查看器提供强大的查询和分析功能，可参考 [查看器说明](../getting-started/function-details/explorer-search.md)。
+> <<< custom_key.brand_name >>>查看器提供强大的查询和分析功能，可参考 [查看器说明](../getting-started/function-details/explorer-search.md)。
 
 ## 所有错误 {#errors}
 
-在{{{ custom_key.brand_name }}}工作空间**应用性能监测 > 错误追踪**，选择**所有错误**列表，即可查看和分析所有链路的错误数据。
+在<<< custom_key.brand_name >>>工作空间**应用性能监测 > 错误追踪**，选择**所有错误**列表，即可查看和分析所有链路的错误数据。
 
 **注意：**所有错误的数据统计的是基于错误状态 `status=error`，且含有错误类型 `error_type` 字段的 Span。
 
@@ -48,7 +48,7 @@
 
 ## 聚类分析 {#analysis}
 
-若您需要查看发生频次较高的错误，可以在{{{ custom_key.brand_name }}}工作空间**应用性能监测 > 错误追踪**，选择**聚类分析**列表。
+若您需要查看发生频次较高的错误，可以在<<< custom_key.brand_name >>>工作空间**应用性能监测 > 错误追踪**，选择**聚类分析**列表。
 
 聚类分析是对所有错误的链路数据基于聚类字段进行相似度计算分析，根据右上方选择的时间范围固定当前时间段，并获取该时间段内 10000 条数据进行聚类分析，将近似度高的错误链路进行聚合，提取并统计共同的 Pattern 聚类，帮助快速发现异常链路和定位问题。
 
@@ -73,7 +73,7 @@
 
 ## Issue 自动发现 {#issue}
 
-基于{{{ custom_key.brand_name }}}对 APM 错误追踪进行监测而产生的数据，当您启用 **Issue 自动发现**这一配置后，系统会根据不同的分组维度统计对应异常数据，并对后续类似问题的产生进行堆栈跟踪，自动浓缩，最终产生 Issue。通过该入口产生的 Issue 会帮助您直观获取问题产生的上下文和根因，大量减少解决问题的平均时间。
+基于<<< custom_key.brand_name >>>对 APM 错误追踪进行监测而产生的数据，当您启用 **Issue 自动发现**这一配置后，系统会根据不同的分组维度统计对应异常数据，并对后续类似问题的产生进行堆栈跟踪，自动浓缩，最终产生 Issue。通过该入口产生的 Issue 会帮助您直观获取问题产生的上下文和根因，大量减少解决问题的平均时间。
 
 ### 开始配置
 
@@ -85,11 +85,11 @@
 
 :material-numeric-2-circle-outline: 组合维度：基于配置字段内容组合进行归类统计，包含 `service`、`version`、`resource`、`error_type`。
 
-针对数据来源，您可以添加筛选条件来过滤数据，{{{ custom_key.brand_name }}}会针对符合条件的数据进一步作查询，缩小可用数据的范围。
+针对数据来源，您可以添加筛选条件来过滤数据，<<< custom_key.brand_name >>>会针对符合条件的数据进一步作查询，缩小可用数据的范围。
 
 <img src="../img/issue-filter.png" width="70%" >
 
-:material-numeric-3-circle-outline: 检测频率：{{{ custom_key.brand_name }}}会根据您选择的频率来查询数据的时间范围，包含 5 分钟、10 分钟、15 分钟、30 分钟和 1 小时。
+:material-numeric-3-circle-outline: 检测频率：<<< custom_key.brand_name >>>会根据您选择的频率来查询数据的时间范围，包含 5 分钟、10 分钟、15 分钟、30 分钟和 1 小时。
 
 :material-numeric-4-circle-outline: Issue 定义：启用该配置后，Issue 将以此处的定义对外呈现。为避免信息缺失，[需依次填写](../exception/issue.md#concepts)。
 

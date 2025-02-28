@@ -30,16 +30,16 @@
 
 ```YAML
 
-# {{{ custom_key.brand_name }}}控制台地址访问协议
+# <<< custom_key.brand_name >>>控制台地址访问协议
 protocol: "http"
-# {{{ custom_key.brand_name }}}控制台地址
+# <<< custom_key.brand_name >>>控制台地址
 hostname: "console.cloudcare.cn"
 
 # 管理后台站点访问地址
 managementHostname: "management.cloudcare.cn"
 
 # 当前站点名称
-envName: {{{ custom_key.brand_name }}}部署版
+envName: <<< custom_key.brand_name >>>部署版
 
 # 系统是否开启debug 模式，一般不开启
 debug: false
@@ -92,7 +92,7 @@ BusinessQueryViewTimeOffset: 900
 
 
 
-# {{{ custom_key.brand_name }}}的数据库配置
+# <<< custom_key.brand_name >>>的数据库配置
 database:
   connection:
   pool_size: 20
@@ -179,10 +179,10 @@ WorkspaceDefaultesIndexSettings:
 
 | 配置项                                            | 子项                      | 类型   | 默认值                  | 描述                                                                                                                                                                                                          |
 | ------------------------------------------------- | ------------------------- | ------ | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| protocol                                          |                           | 字符串 | http                    | {{{ custom_key.brand_name }}}控制台地址访问协议                                                                                                                                                                                      |
-| hostname                                          |                           | 字符串 | console.cloudcare.cn    | {{{ custom_key.brand_name }}}控制台地址                                                                                                                                                                                              |
+| protocol                                          |                           | 字符串 | http                    | <<< custom_key.brand_name >>>控制台地址访问协议                                                                                                                                                                                      |
+| hostname                                          |                           | 字符串 | console.cloudcare.cn    | <<< custom_key.brand_name >>>控制台地址                                                                                                                                                                                              |
 | managementHostname                                |                           | 字符串 | management.cloudcare.cn | 管理后台站点访问地址                                                                                                                                                                                          |
-| envName                                           |                           | 字符串 | {{{ custom_key.brand_name }}}                  | 当前站点名称                                                                                                                                                                                                  |
+| envName                                           |                           | 字符串 | <<< custom_key.brand_name >>>                  | 当前站点名称                                                                                                                                                                                                  |
 | debug                                             |                           | 布尔   | false                   | debug 模式开关                                                                                                                                                                                                |
 | frontServerUrlPrefixFormat                        |                           | 字符串 | {}://{}                 | 前端访问地址前缀, 前两个花括号会被 protocol 和 hostname 占据，如需配置统一的二级地址，可直接调整此配置                                                                                                        |
 | external                                          | timeliness                | 数值   | 60                      | 每次请求签名的有效期, 单位秒                                                                                                                                                                                  |
@@ -249,7 +249,7 @@ WorkspaceDefaultesIndexSettings:
 window.DEPLOYCONFIG = {
     ...
     "rumDatawayUrl": "https://rum-openway.guance.com",
-    "datakitScriptUrl": "https://{{{ custom_key.static_domain }}}/datakit",
+    "datakitScriptUrl": "https://<<< custom_key.static_domain >>>/datakit",
     "datakitHelmUrl": "https://pubrepo.guance.com",
     "passPublicNetwork": 1,
     "isOverseas": 0,
@@ -259,7 +259,7 @@ window.DEPLOYCONFIG = {
     "paasCustomSiteList": [{"url": "xxxx", "label": "xxx"}],
     "paasCustomLoginUrl": "https://www.xxx",
     "maxMessageByte": 10 * 1024,
-    "webRumSdkUrl": "https://{{{ custom_key.static_domain }}}/browser-sdk/v3/dataflux-rum.js",
+    "webRumSdkUrl": "https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js",
     "defaultTimeMap": {
         'log': [1732254771701,1732255671701],// 或者相对时间 5m
     }
@@ -273,23 +273,23 @@ window.DEPLOYCONFIG = {
 | 配置项                    | 子项 | 类型                | 默认值                              | 描述                                                                                                                                                            |
 | ------------------------- | ---- | ------------------- | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | rumDatawayUrl             |      | 字符串              | "https://rum-openway.guance.com"    | 用于上报 RUM 数据的专用 DataWay 地址，配置后将显示在 RUM 接入配置页面中                                                                                         |
-| datakitScriptUrl          |      | 字符串              | "https://{{{ custom_key.static_domain }}}/datakit" | DataKit 安装页面的默认安装脚本下载域名，如使用自建的内部静态资源，请修改此配置                                                                                  |
+| datakitScriptUrl          |      | 字符串              | "https://<<< custom_key.static_domain >>>/datakit" | DataKit 安装页面的默认安装脚本下载域名，如使用自建的内部静态资源，请修改此配置                                                                                  |
 | datakitHelmUrl            |      | 字符串              | "https://pubrepo.guance.com"        | DataKit Helm 镜像仓库地址，如使用自建镜像仓库，请修改此配置                                                                                                     |
 | passPublicNetwork         |      | 数值                | 1                                   | 配置访问 Studio 站点的客户端计算机是否有公网网络，0：无，1：有                                                                                                  |
-| isOverseas                |      | 数值                | 0                                   | 配置此{{{ custom_key.brand_name }}}站点是否为海外部署，将影响 RUM 中的世界地图、中国地图组件的显示                                                                                     |
+| isOverseas                |      | 数值                | 0                                   | 配置此<<< custom_key.brand_name >>>站点是否为海外部署，将影响 RUM 中的世界地图、中国地图组件的显示                                                                                     |
 | maxTraceSpanLimit         |      | 数值                | 10000                               | 链路的火焰图中最大的 Span 条数，默认值：10000                                                                                                                   |
 | maxProfileM               |      | 数值                | 5                                   | 获取 profile 显示火焰图的最大 MB 数,如果不配置，则默认取值: 5                                                                                                   |
-| paasCustomLoginInfo       |      | 数组                | 无                                  | 部署版{{{ custom_key.brand_name }}}控制台登录页面单点登录入口配置 新增 iconUrl, desc 自定义字段, iconUrl 为单点登录图标地址,不配置则为默认 icon desc 为单点登录描述文案                |
-| paasCustomSiteList        |      | 数组                | 无                                  | 部署版{{{ custom_key.brand_name }}}控制台登录页面新增多站点选择配置 label 为站点显示文案 url 为站点地址,如果不存在多站点，可以不添加此配置项                                           |
+| paasCustomLoginInfo       |      | 数组                | 无                                  | 部署版<<< custom_key.brand_name >>>控制台登录页面单点登录入口配置 新增 iconUrl, desc 自定义字段, iconUrl 为单点登录图标地址,不配置则为默认 icon desc 为单点登录描述文案                |
+| paasCustomSiteList        |      | 数组                | 无                                  | 部署版<<< custom_key.brand_name >>>控制台登录页面新增多站点选择配置 label 为站点显示文案 url 为站点地址,如果不存在多站点，可以不添加此配置项                                           |
 | rumEnable `自观测`        |      | Boolean             | 无                                  | 是否开启 RUM，1 表示开启，如果不开启，以下的配置值可以为空                                                                                                      |
 | rumDatakitUrl `自观测`    |      | 字符串              | 无                                  | RUM DataKit 的地址 或者 公网 openway 地址                                                                                                                       |
 | rumApplicationId `自观测` |      | 字符串              | 无                                  | RUM 应用 ID，用于上报应用数据                                                                                                                                   |
 | rumJsUrl `自观测`         |      | 字符串              | 无                                  | RUM SDk CDN 地址                                                                                                                                                |
-| rumClientToken `自观测`   |      | 字符串              | 无                                  | RUM Openway 方式上报数据(需要与 `rumOpenwayUrl` 配合使用)，在{{{ custom_key.brand_name }}}平台生成的 clientToken 和 datakit 上报方式冲突，优先级高于 datakit 上报方式                  |
+| rumClientToken `自观测`   |      | 字符串              | 无                                  | RUM Openway 方式上报数据(需要与 `rumOpenwayUrl` 配合使用)，在<<< custom_key.brand_name >>>平台生成的 clientToken 和 datakit 上报方式冲突，优先级高于 datakit 上报方式                  |
 | rumOpenwayUrl `自观测`    |      | 字符串              | 无                                  | RUM Openway 公网地址(需要与 `rumClientToken` 配合使用)，用于 Studio 前端站点数据自观测上报                                                                      |
 | paasCustomLoginUrl        |      | 字符串              | 无                                  | 自定义登录 url                                                                                                                                                  |
 | maxMessageByte            |      | 字符串              | 无                                  | 日志查看器列表 message 最大显示字节数， 不填默认为 10 \* 1024                                                                                                   |
-| paasCustomLoginUrl        |      | 字符串              | 无                                  | Rum web SDK CDN 地址，不填默认 https://{{{ custom_key.static_domain }}}/browser-sdk/v3/dataflux-rum.js                                                                         |
+| paasCustomLoginUrl        |      | 字符串              | 无                                  | Rum web SDK CDN 地址，不填默认 https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js                                                                         |
 | defaultTimeMap            |      | 字符串或者 对象结构 | 无                                  | 查看器默认初始化时间配置， 格式为 `{'log': '5m'}` 或者 `{'log': [1732254771701,1732255671701]}` 对象 key 为固定字符串，日志查看器为 `log`,安全巡检为 `security` |
 
 ### kodo 组件 {#kodo}

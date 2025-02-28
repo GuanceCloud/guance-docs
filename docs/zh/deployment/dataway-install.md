@@ -1,18 +1,18 @@
-# {{{ custom_key.brand_name }}} DataWay 部署
+# <<< custom_key.brand_name >>> DataWay 部署
 
 ???+ warning "注意"
      如果您使用 Launcher 部署过 DataWay，可跳过本文安装步骤。
-     本文描述如何使用{{{ custom_key.brand_name }}}管理后台注册和安装 DataWay ，您也可以使用 Launcher [快速安装 DataWay](launcher-install.md#dataway-install)
+     本文描述如何使用<<< custom_key.brand_name >>>管理后台注册和安装 DataWay ，您也可以使用 Launcher [快速安装 DataWay](launcher-install.md#dataway-install)
 
 ## 前提条件
 
-- 已部署{{{ custom_key.brand_name }}}，未部署参考 [使用 Launcher 部署产品](launcher-install.md)
+- 已部署<<< custom_key.brand_name >>>，未部署参考 [使用 Launcher 部署产品](launcher-install.md)
 
 ## 基础信息及兼容
 
 | 名称                 | 描述                                            |
 | :------------------: | :---------------------------------------------: |
-| {{{ custom_key.brand_name }}}管理控制台     | http://df-management.dataflux.cn                |
+| <<< custom_key.brand_name >>>管理控制台     | http://df-management.dataflux.cn                |
 | 是否支离线安装       | 是                                              |
 | 支持架构             | amd64/arm64                                     |
 | 部署机器IP           | 192.168.100.105                                 |
@@ -21,7 +21,7 @@
 
 ### 1、注册 DataWay
 
-登录后台管理控制台 `http://df-management.dataflux.cn` ，使用管理员账号，密码为 `admin`，账号为你设置的管理员的账号，进入“**{{{ custom_key.brand_name }}}管理后台**”的“**数据网关**”菜单，点击“新建 DataWay”，添加一个数据网关 DataWay 。
+登录后台管理控制台 `http://df-management.dataflux.cn` ，使用管理员账号，密码为 `admin`，账号为你设置的管理员的账号，进入“**<<< custom_key.brand_name >>>管理后台**”的“**数据网关**”菜单，点击“新建 DataWay”，添加一个数据网关 DataWay 。
 
 - **名称**：自定义名称即可
 - **绑定地址**：DataWay 的访问地址，在 DataKit 中接入数据使用，可以使用 `http://ip+端口`
@@ -63,7 +63,7 @@
 
 ### 3、验证部署
 
-安装完毕后，等待片刻刷新“数据网关”页面，如果在刚刚添加的数据网关的“版本信息”列中看到了版本号，即表示这个 DataWay 已成功与{{{ custom_key.brand_name }}}中心连接，前台用户可以通过它来接入数据了。
+安装完毕后，等待片刻刷新“数据网关”页面，如果在刚刚添加的数据网关的“版本信息”列中看到了版本号，即表示这个 DataWay 已成功与<<< custom_key.brand_name >>>中心连接，前台用户可以通过它来接入数据了。
 
 ![](img/12.deployment_3.png)
 

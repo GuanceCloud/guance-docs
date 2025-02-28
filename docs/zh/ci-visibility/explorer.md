@@ -3,11 +3,11 @@
 
 ## 简介
 
-{{{ custom_key.brand_name }}}支持为 Gitlab/Jenkins 内置的 CI 的过程和结果进行可视化，您可以通过{{{ custom_key.brand_name }}}的 CI 可视化功能直接查看在 Gitlab/Jenkins 的 CI 结果，实时了解您的 CI 性能、执行时间趋势、失败原因；通过 CI 火焰图，实时查看 CI 过程中 Pipeline 整条链路的健康状况，帮助您提供代码更新保障。
+<<< custom_key.brand_name >>>支持为 Gitlab/Jenkins 内置的 CI 的过程和结果进行可视化，您可以通过<<< custom_key.brand_name >>>的 CI 可视化功能直接查看在 Gitlab/Jenkins 的 CI 结果，实时了解您的 CI 性能、执行时间趋势、失败原因；通过 CI 火焰图，实时查看 CI 过程中 Pipeline 整条链路的健康状况，帮助您提供代码更新保障。
 
 ## 数据查询和分析
 
-CI 的过程和结果数据上报到{{{ custom_key.brand_name }}}工作空间以后，您可以在 CI 查看器通过选择时间范围、搜索关键字，筛选等方式查询和分析 Pipeline 和 Job 成功率、失败原因、具体失败环节等。
+CI 的过程和结果数据上报到<<< custom_key.brand_name >>>工作空间以后，您可以在 CI 查看器通过选择时间范围、搜索关键字，筛选等方式查询和分析 Pipeline 和 Job 成功率、失败原因、具体失败环节等。
 
 ![](img/10.ci_5.png)
 
@@ -20,7 +20,7 @@ CI 查看器默认展示最近 15 分钟的数据，通过右上角的「时间�
 
 ### 分析模式
 
-在 CI 查看器分析栏，支持基于 **1-3 个标签**进行多维度分析统计，以反映出数据在不同的维度下，不同时间的分布特征与趋势。{{{ custom_key.brand_name }}}支持多种数据图表分析方式，包括时序图、排行榜、饼图和矩形树图。更多详情可参考文档 [查看器的分析模式](../getting-started/function-details/explorer-search.md#analysis)。
+在 CI 查看器分析栏，支持基于 **1-3 个标签**进行多维度分析统计，以反映出数据在不同的维度下，不同时间的分布特征与趋势。<<< custom_key.brand_name >>>支持多种数据图表分析方式，包括时序图、排行榜、饼图和矩形树图。更多详情可参考文档 [查看器的分析模式](../getting-started/function-details/explorer-search.md#analysis)。
 
 ### 快捷筛选
 

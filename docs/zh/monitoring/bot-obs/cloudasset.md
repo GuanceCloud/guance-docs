@@ -3,16 +3,16 @@
 
 ## 背景
 
-为{{{ custom_key.brand_name }}}提供额外的数据接入能力，方便用户对云厂商的产品性能状态有更多的了解。
+为<<< custom_key.brand_name >>>提供额外的数据接入能力，方便用户对云厂商的产品性能状态有更多的了解。
 
 ## 前置条件
 
-1. 自建 [DataFlux Func {{{ custom_key.brand_name }}}特别版](https://func.guance.com/#/) ，或者开通 [DataFlux Func 托管版](../../dataflux-func/index.md)
-3. 在{{{ custom_key.brand_name }}}「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
-5. 开启对应需要检测的「{{{ custom_key.brand_name }}}自建巡检（阿里云）」中对象的[采集器(如: 阿里云 ECS)](https://func.guance.com/doc/script-market-guance-aliyun-ecs/)
+1. 自建 [DataFlux Func <<< custom_key.brand_name >>>特别版](https://func.guance.com/#/) ，或者开通 [DataFlux Func 托管版](../../dataflux-func/index.md)
+3. 在<<< custom_key.brand_name >>>「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
+5. 开启对应需要检测的「<<< custom_key.brand_name >>>自建巡检（阿里云）」中对象的[采集器(如: 阿里云 ECS)](https://func.guance.com/doc/script-market-guance-aliyun-ecs/)
 7. 在自建的 DataFlux Func 中，编写自建巡检处理函数
 
-> **注意**：如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的{{{ custom_key.brand_name }}} SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
+> **注意**：如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的<<< custom_key.brand_name >>> SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
 
 ## 配置巡检
 
@@ -22,11 +22,11 @@
 
 ## 开启巡检
 
-### 在{{{ custom_key.brand_name }}}中注册检测项
+### 在<<< custom_key.brand_name >>>中注册检测项
 
-在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后就可以在{{{ custom_key.brand_name }}}「监控 / 智能巡检」中查看并进行配置
+在 DataFlux Func 中在配置好巡检之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后就可以在<<< custom_key.brand_name >>>「监控 / 智能巡检」中查看并进行配置
 
-### 在{{{ custom_key.brand_name }}}中配置阿里云资产巡检
+### 在<<< custom_key.brand_name >>>中配置阿里云资产巡检
 
 ![image](../img/cloudasset01.png)
 
@@ -47,7 +47,7 @@
 
 ## 查看事件
 
-智能巡检基于{{{ custom_key.brand_name }}}智能算法，会查找云资产指标中的异常情况，如云资产指标突然发生异常。对于异常情况，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击**查看相关事件**按钮，即可查看对应异常事件。
+智能巡检基于<<< custom_key.brand_name >>>智能算法，会查找云资产指标中的异常情况，如云资产指标突然发生异常。对于异常情况，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击**查看相关事件**按钮，即可查看对应异常事件。
 
 ![image](../img/cloudasset03.png)
 

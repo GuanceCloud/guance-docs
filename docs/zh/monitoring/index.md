@@ -5,7 +5,7 @@ icon: zy/monitoring
 ---
 
 
-{{{ custom_key.brand_name }}}提供完善的异常监测体系，内置 Docker、Elasticsearch、Host 等十余种开箱即用的监控模板，同时支持完全自定义的监控器配置。通过灵活设置检测规则与智能告警通知，帮助快速完成从问题发现、定位到解决的全流程闭环。系统还集成 SLO（Service Level Objective）监控模块，支持对服务等级目标的量化管理与持续追踪，确保关键业务指标可控可视。
+<<< custom_key.brand_name >>>提供完善的异常监测体系，内置 Docker、Elasticsearch、Host 等十余种开箱即用的监控模板，同时支持完全自定义的监控器配置。通过灵活设置检测规则与智能告警通知，帮助快速完成从问题发现、定位到解决的全流程闭环。系统还集成 SLO（Service Level Objective）监控模块，支持对服务等级目标的量化管理与持续追踪，确保关键业务指标可控可视。
 
 
 <div class="grid cards" markdown>
@@ -15,7 +15,7 @@ icon: zy/monitoring
     ---
 
     *<font size=2>（原指“内置检测库”）</font>*    
-    用于配置数据指标检测，从而即时触发告警事件。您可以使用{{{ custom_key.brand_name }}}内置开箱即用的[监控模板](./monitor/template.md)，也可以自定义[新建监控器](./monitor/index.md#rules)，并设置对应[检测规则](./monitor/index.md#detect)。
+    用于配置数据指标检测，从而即时触发告警事件。您可以使用<<< custom_key.brand_name >>>内置开箱即用的[监控模板](./monitor/template.md)，也可以自定义[新建监控器](./monitor/index.md#rules)，并设置对应[检测规则](./monitor/index.md#detect)。
 
     <br/>
 

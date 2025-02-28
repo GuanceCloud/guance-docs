@@ -271,7 +271,7 @@ default_time(time,"Asia/Shanghai")
 
 ## 创建 RUM
 
-1. 登陆[{{{ custom_key.brand_name }}}](https://www.guance.com)
+1. 登陆[<<< custom_key.brand_name >>>](https://www.guance.com)
 2. 选择`用户访问检测`，选择`应用列表`，点击`新建应用`
 3. `应用名称`填写`ruoyi-admin`，`应用 ID`可以自定义，也可以点击`随机生成`按钮
 4. `应用类型` 选择 `web`，右边 `SDK 配置`有几个类型，这里我们选择 `CDN 同步载入`，***复制对应的脚本内容，后续会用到***。
@@ -327,7 +327,7 @@ Tomcat 启动完成后，自动解压 `war`应用，进入到`/webapps/ruoyi-adm
 ```
 <head th:fragment=header(title)>
 ...
-<script src="https://{{{ custom_key.static_domain }}}/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({

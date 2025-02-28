@@ -19,7 +19,7 @@
 - 下载测试数据，该数据集中含 10000 条日志，单条长度均为 1KB：
 
 ```bash
-wget https://{{{ custom_key.static_domain }}}/testing-data/10000-1kb.log
+wget https://<<< custom_key.static_domain >>>/testing-data/10000-1kb.log
 ```
 
 - 修改如下脚本，填写上面准备好的 Datakit IP，保存脚本为 *curl-log-streaming.sh*：
@@ -64,6 +64,6 @@ datakit monitor -MI
 datakit monitor -MW
 ```
 
-在{{{ custom_key.brand_name }}}的日志查看器中，选择日志来源（`source`）为 `drop-testing`，其状态分布图每一根柱子（间隔为 1min）的高度大概为 22~24w（`60s/2.5s*10000`）。正常情况下，数据是很均匀的，不会出现突增或突降的情况（因为数据写入是固定频率的）
+在<<< custom_key.brand_name >>>的日志查看器中，选择日志来源（`source`）为 `drop-testing`，其状态分布图每一根柱子（间隔为 1min）的高度大概为 22~24w（`60s/2.5s*10000`）。正常情况下，数据是很均匀的，不会出现突增或突降的情况（因为数据写入是固定频率的）
 
 在这个过程中，可以去内置视图中搜索「dataway」，可查看 Dataway 自身的指标情况，还需要去查看 NSQ/GuanceDB/Kodo/Kodo-X 等组建的查看器，以确保其部署成功。

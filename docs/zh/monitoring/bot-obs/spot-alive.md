@@ -7,16 +7,16 @@
 
 ## 前置条件
 
-1. 自建 [DataFlux Func {{{ custom_key.brand_name }}}特别版](https://func.guance.com/#/) ，或者开通 [DataFlux Func 托管版](../../dataflux-func/index.md)
-3. 在{{{ custom_key.brand_name }}}「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
+1. 自建 [DataFlux Func <<< custom_key.brand_name >>>特别版](https://func.guance.com/#/) ，或者开通 [DataFlux Func 托管版](../../dataflux-func/index.md)
+3. 在<<< custom_key.brand_name >>>「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 
-> **注意**：如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的{{{ custom_key.brand_name }}} SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
+> **注意**：如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的<<< custom_key.brand_name >>> SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
 
 ## 开启巡检
 
-在自建的 DataFlux Func 中，通过「脚本市场」安装「{{{ custom_key.brand_name }}}集成（阿里云-ECS采集） 」、「 {{{ custom_key.brand_name }}}自建巡检（阿里云抢占式实例存活检测）」并根据提示配置{{{ custom_key.brand_name }}} API Key 完成开启。
+在自建的 DataFlux Func 中，通过「脚本市场」安装「<<< custom_key.brand_name >>>集成（阿里云-ECS采集） 」、「 <<< custom_key.brand_name >>>自建巡检（阿里云抢占式实例存活检测）」并根据提示配置<<< custom_key.brand_name >>> API Key 完成开启。
 
-在 DataFlux Func 脚本市场中选择需要开启的巡检场景点击安装，配置{{{ custom_key.brand_name }}} API Key 和 [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/) 后选择部署启动脚本即可
+在 DataFlux Func 脚本市场中选择需要开启的巡检场景点击安装，配置<<< custom_key.brand_name >>> API Key 和 [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/) 后选择部署启动脚本即可
 
 ![image](../img/create_checker.png)
 
@@ -26,7 +26,7 @@
 
 ## 配置巡检
 
-### 在{{{ custom_key.brand_name }}}中配置巡检
+### 在<<< custom_key.brand_name >>>中配置巡检
 
 ![image](../img/spot_alive02.png)
 
@@ -54,7 +54,7 @@
 ```
 
 ## 查看事件
-{{{ custom_key.brand_name }}}会根据当前的抢占式实例的状态进行巡检当发现快要释放的抢占式实例，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击**查看相关事件**按钮，即可查看对应异常事件。
+<<< custom_key.brand_name >>>会根据当前的抢占式实例的状态进行巡检当发现快要释放的抢占式实例，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击**查看相关事件**按钮，即可查看对应异常事件。
 
 ![image](../img/spot_alive04.png)
 
@@ -103,7 +103,7 @@
 
 **4.在升级巡检脚本过程中发现 Startup 中对应的脚本集无变化**
 
-请先删除对应的脚本集后，再点击升级按钮配置对应{{{ custom_key.brand_name }}} API key 完成升级。
+请先删除对应的脚本集后，再点击升级按钮配置对应<<< custom_key.brand_name >>> API key 完成升级。
 
 **5.开启巡检后如何判断巡检是否生效**
 

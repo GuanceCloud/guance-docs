@@ -97,7 +97,7 @@ JVM（Java Virtual Machine，Java 虚拟机）内存快照是一种在特定时�
 
 ???+ warning "执行目标如何判定？"
 
-    {{{ custom_key.brand_name }}}会查询过去 1 小时的链路数据，并判断当前服务所在链路数据是否存在 POD，若存在 `pod_name` 值，则下拉列出 `pod_name`；若不存在，则下拉列出 `host`。
+    <<< custom_key.brand_name >>>会查询过去 1 小时的链路数据，并判断当前服务所在链路数据是否存在 POD，若存在 `pod_name` 值，则下拉列出 `pod_name`；若不存在，则下拉列出 `host`。
 
 
 #### 历史内存快照

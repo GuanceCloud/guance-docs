@@ -11,13 +11,13 @@
 
 ## 应用接入
 
-当前 Flutter 版本暂只支持 Android 和 iOS 平台。登录{{{ custom_key.brand_name }}}控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
+当前 Flutter 版本暂只支持 Android 和 iOS 平台。登录<<< custom_key.brand_name >>>控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
 
 ![](../img/image_13.png)
 
 ## 安装 {#install}
-![](https://img.shields.io/badge/dynamic/json?label=pub.dev&color=blue&query=$.version&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/flutter/version.json) ![](https://img.shields.io/badge/dynamic/json?label=legacy.github.tag&color=blue&query=$.version&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/flutter/legacy/version.json) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/flutter/info.json)
+![](https://img.shields.io/badge/dynamic/json?label=pub.dev&color=blue&query=$.version&uri=https://<<< custom_key.static_domain >>>/ft-sdk-package/badge/flutter/version.json) ![](https://img.shields.io/badge/dynamic/json?label=legacy.github.tag&color=blue&query=$.version&uri=https://<<< custom_key.static_domain >>>/ft-sdk-package/badge/flutter/legacy/version.json) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://<<< custom_key.static_domain >>>/ft-sdk-package/badge/flutter/info.json)
 
 **Pub.Dev**: [ft_mobile_agent_flutter](https://pub.dev/packages/ft_mobile_agent_flutter)
 

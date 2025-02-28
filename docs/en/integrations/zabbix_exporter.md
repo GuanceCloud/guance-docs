@@ -21,7 +21,7 @@ monitor   :
 
 ---
 
-Collect real-time data from the Zabbix service and send it to the GuanCe cloud center. Currently, Zabbix supports writing real-time data to files from version 5.0 to 7.0.
+Collect real-time data from the Zabbix service and send it to the GuanCe cloud center. Currently, Zabbix supports writing real-time data to files from version 4.0 to 7.0.
 ExportType allows to specify which entity types (events, history, trends) will be exported.
 
 ## Config {#config}
@@ -113,13 +113,24 @@ Go to the `conf.d/zabbix_exporter` directory under the DataKit installation dire
       #  user = "root"
       #  pw = "123456"
     
-      # Zabbix server version 5.x.
+      # Zabbix server version 4.x - 7.x
       [inputs.zabbix_exporter.export_v5]
         # zabbix realTime exportDir path
         export_dir = "/data/zbx/datakit/"
-    
+        # 4.0~4.9 is v4
+        # 5.0~7.x is v5
+        module_version = "v5"
     
 ```
+
+Precautions when configuring:
+
+1. Since the data in the collection file is collected, it must be the local machine, and the Zabbix server should be configured as `localhost`.
+2. `measurement_config_dir` is a YAML configuration.
+3. `objects`: There are three types of data exported by Zabbix, and currently only the item access is the most complete.
+4. `crontab`: A required field, the time expression for full - scale data update.
+5. `mysql`: A required field, full-scale item table data needs to be obtained from the database.
+6. `module_version`: A required field. For versions from 5.0 to 7.0+ it is `v5`, and when the Zabbix version is lower than 5.0, it is `v4`.
 
 Restart DataKit server.
 

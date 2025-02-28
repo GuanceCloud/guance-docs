@@ -43,7 +43,7 @@
 ???- warning "钉钉机器人新旧区别"
 
     - 钉钉平台：创建机器人从**群管理**直接创建变更为在**开发平台创建应用**；   
-    - {{{ custom_key.brand_name }}}：最新的钉钉机器人密钥配置为非必填项。
+    - <<< custom_key.brand_name >>>：最新的钉钉机器人密钥配置为非必填项。
 
 :material-numeric-1-circle: 创建企业内部应用机器人
 
@@ -146,7 +146,7 @@ Content-Type: application/json
 
 > Webhook 自定义通知发送内容的类型仅支持使用 JSON 格式，各字段的详情可参考 [事件产生](../events/index.md#fields)。
 >
-> 有关 Webhook 自定义更详细的实践文档，可参考 [{{{ custom_key.brand_name }}} Webhook 自定义告警通知集成](https://func.guance.com/doc/practice-guance-alert-webhook-integration/)。
+> 有关 Webhook 自定义更详细的实践文档，可参考 [<<< custom_key.brand_name >>> Webhook 自定义告警通知集成](https://func.guance.com/doc/practice-guance-alert-webhook-integration/)。
 
 
 

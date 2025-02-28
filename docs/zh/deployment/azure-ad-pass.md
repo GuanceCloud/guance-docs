@@ -7,7 +7,7 @@ Azure Active Directory (Azure AD) 是 Microsoft 推出的基于云的标识和�
 
 ## 一、获取单点登录所需关键配置信息
 
-通过 Azure AD 单点登录{{{ custom_key.brand_name }}}部署版，需要三项关键配置信息：
+通过 Azure AD 单点登录<<< custom_key.brand_name >>>部署版，需要三项关键配置信息：
 
 | 配置      | 描述                          |
 | ----------- | ------------------------------------ |
@@ -29,7 +29,7 @@ Azure Active Directory (Azure AD) 是 Microsoft 推出的基于云的标识和�
 
 2）创建新的应用程序
 
-在**注册应用程序**页面输入**名称**，受支持的账户类型需选择**任何组织目录**，重定向 URI 选择 **Web**。点击**注册**，即可创建一个新的应用程序。如下图，定义该应用名称为 “{{{ custom_key.brand_name }}}部署版”。
+在**注册应用程序**页面输入**名称**，受支持的账户类型需选择**任何组织目录**，重定向 URI 选择 **Web**。点击**注册**，即可创建一个新的应用程序。如下图，定义该应用名称为 “<<< custom_key.brand_name >>>部署版”。
 
 ![](img/aad-3.png)
 
@@ -138,9 +138,9 @@ Azure Active Directory (Azure AD) 是 Microsoft 推出的基于云的标识和�
 
 ![](img/aad-22.png)
 
-## 三、在{{{ custom_key.brand_name }}} Launcher 配置关联 {#config}
+## 三、在<<< custom_key.brand_name >>> Launcher 配置关联 {#config}
 
-1）在{{{ custom_key.brand_name }}} Launcher **命名空间：forethought-core > core** 中配置 Azure AD 的基本信息。
+1）在<<< custom_key.brand_name >>> Launcher **命名空间：forethought-core > core** 中配置 Azure AD 的基本信息。
 
 ```
 # OIDC 客户端配置(当该项配置中配置了 wellKnowURL 时, KeyCloakPassSet 配置项自动失效)
@@ -188,7 +188,7 @@ OIDCClientSet:
     ![](img/aad-16.png)
 
 
-2）在{{{ custom_key.brand_name }}} Launcher **命名空间：forethought-webclient > frontNginx** 中配置跳转信息。
+2）在<<< custom_key.brand_name >>> Launcher **命名空间：forethought-webclient > frontNginx** 中配置跳转信息。
 
 ```
 server {
@@ -240,7 +240,7 @@ server {
 
 ![](img/aad-17.png)
 
-3）在{{{ custom_key.brand_name }}} Launcher **命名空间：forethought-webclient > frontWeb** 中配置 Azure AD 用户登录{{{ custom_key.brand_name }}}部署版的入口地址。
+3）在<<< custom_key.brand_name >>> Launcher **命名空间：forethought-webclient > frontWeb** 中配置 Azure AD 用户登录<<< custom_key.brand_name >>>部署版的入口地址。
 
 ```
 window.DEPLOYCONFIG = {
@@ -255,7 +255,7 @@ window.DEPLOYCONFIG = {
 };
 ```
 
-**注意**：`server_name` 即{{{ custom_key.brand_name }}}登录页地址中的域名。
+**注意**：`server_name` 即<<< custom_key.brand_name >>>登录页地址中的域名。
 
 参考示例图：
 
@@ -265,27 +265,27 @@ window.DEPLOYCONFIG = {
 
 ![](img/1.keycloak_6.png)
 
-## 四、使用 Azure AD 账号单点登录{{{ custom_key.brand_name }}}
+## 四、使用 Azure AD 账号单点登录<<< custom_key.brand_name >>>
 
-所有配置完成后，即可使用单点登录到{{{ custom_key.brand_name }}}。
+所有配置完成后，即可使用单点登录到<<< custom_key.brand_name >>>。
 
-1）打开{{{ custom_key.brand_name }}}部署版登录地址，在登录页面选择 **Azure AD 单点登录**。
+1）打开<<< custom_key.brand_name >>>部署版登录地址，在登录页面选择 **Azure AD 单点登录**。
 
 2）输入在 Azure AD 配置的邮箱地址。
 
 3）更新登录密码。
 
-4）登录到{{{ custom_key.brand_name }}}对应的工作空间。
+4）登录到<<< custom_key.brand_name >>>对应的工作空间。
 
 ???+ warning
 
-    - 若提示“当前账户未加入任何工作空间，请移步至管理后台将该账户添加到工作空间。”，则需要登录{{{ custom_key.brand_name }}}管理后台为用户添加工作空间。
+    - 若提示“当前账户未加入任何工作空间，请移步至管理后台将该账户添加到工作空间。”，则需要登录<<< custom_key.brand_name >>>管理后台为用户添加工作空间。
 
     > 更多详情，可参考 [部署版工作空间管理](space.md)。
  
     ![](img/1.keycloak_15.png)
 
-    在{{{ custom_key.brand_name }}}管理后台为用户添加完工作空间后，用户即可开始使用{{{ custom_key.brand_name }}}。
+    在<<< custom_key.brand_name >>>管理后台为用户添加完工作空间后，用户即可开始使用<<< custom_key.brand_name >>>。
 
 ![](img/1.keycloak_14.png)
 
@@ -294,6 +294,6 @@ window.DEPLOYCONFIG = {
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **基于 OpenID Connect 协议实现 Keycloak 账户单点登录{{{ custom_key.brand_name }}}**</font>](./keycloak-sso.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **基于 OpenID Connect 协议实现 Keycloak 账户单点登录<<< custom_key.brand_name >>>**</font>](./keycloak-sso.md)
 
 </div>

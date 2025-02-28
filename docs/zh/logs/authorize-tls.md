@@ -7,7 +7,7 @@
 
 ## 步骤
 
-1、在{{{ custom_key.brand_name }}}[绑定火山引擎 TLS 外部索引](./multi-index/tls.md)的页面点击下载授权文件，打开后复制该 JSON 备份，后续会用到。
+1、在<<< custom_key.brand_name >>>[绑定火山引擎 TLS 外部索引](./multi-index/tls.md)的页面点击下载授权文件，打开后复制该 JSON 备份，后续会用到。
 
 2、登录您的火山引擎主账号并进行实名认证。
 

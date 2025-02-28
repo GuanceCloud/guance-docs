@@ -4,8 +4,8 @@ icon: zy/logs
 # 日志
 ---
 
-<video controls="controls" poster="https://{{{ custom_key.static_domain }}}/dataflux/help/video/log.png" >
-      <source id="mp4" src="https://{{{ custom_key.static_domain }}}/dataflux/help/video/log.mp4" type="video/mp4">
+<video controls="controls" poster="https://<<< custom_key.static_domain >>>/dataflux/help/video/log.png" >
+      <source id="mp4" src="https://<<< custom_key.static_domain >>>/dataflux/help/video/log.mp4" type="video/mp4">
 </video>
 
 在现代基础设施中，每分钟可能产生数千条日志事件，这些日志遵循特定格式，通常包含时间戳，并由服务器生成。它们被输出到不同的文件中，如系统日志、应用日志和安全日志等。然而，这些日志目前分散存储在各个服务器上，导致在系统发生故障时，需要分别登录到每个服务器去查阅日志，以确定故障原因，这一过程增加了故障排查的复杂性。
@@ -14,9 +14,9 @@ icon: zy/logs
 
 为了提高故障诊断的效率并全面掌握系统状态，避免在紧急情况下被动应对，实现日志的集中管理和提供集中检索与关联分析功能变得至关重要。
 
-{{{ custom_key.brand_name }}}通过其强大的日志采集功能，允许您将日志数据统一上报至{{{ custom_key.brand_name }}}工作空间。这样，您可以对采集的日志数据进行集中的存储、审计、监控、告警、分析和导出等操作，从而简化了日志管理流程。
+<<< custom_key.brand_name >>>通过其强大的日志采集功能，允许您将日志数据统一上报至<<< custom_key.brand_name >>>工作空间。这样，您可以对采集的日志数据进行集中的存储、审计、监控、告警、分析和导出等操作，从而简化了日志管理流程。
 
-通过这种方式，{{{ custom_key.brand_name }}}帮助您避免在发送日志前进行过滤可能带来的问题，确保所有关键信息都能被妥善处理和分析。
+通过这种方式，<<< custom_key.brand_name >>>帮助您避免在发送日志前进行过滤可能带来的问题，确保所有关键信息都能被妥善处理和分析。
 
 
 ## 功能模块
@@ -52,13 +52,13 @@ icon: zy/logs
 
     ---
 
-    自定义日志采集的过滤规则，符合条件的日志数据不再上报到{{{ custom_key.brand_name }}}，帮助节约日志数据存储费用
+    自定义日志采集的过滤规则，符合条件的日志数据不再上报到<<< custom_key.brand_name >>>，帮助节约日志数据存储费用
 
 - [:material-clipboard-check-multiple-outline:{ .lg .middle } __数据转发__](../management/backup/index.md)
     
     ---
 
-    将日志、链路和用户访问数据保存到{{{ custom_key.brand_name }}}的对象存储或转发到外部存储，灵活管理数据转发数据
+    将日志、链路和用户访问数据保存到<<< custom_key.brand_name >>>的对象存储或转发到外部存储，灵活管理数据转发数据
 
 - [:material-database-check:{ .lg .middle } __数据访问__](../management/logdata-access.md)
 

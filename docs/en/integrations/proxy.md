@@ -29,10 +29,13 @@ Proxy collector used to proxy HTTP request.
     ```toml
         
     [[inputs.proxy]]
-      ## default bind ip address
-      bind = "0.0.0.0"
+      ## choose some inner IP address
+      bind = "127.0.0.1"
       ## default bind port
       port = 9530
+    
+      # allowed client IP address(in CIDR format)
+      allowed_client_cidrs = []
     
       # verbose mode will show more info about during proxying.
       verbose = false

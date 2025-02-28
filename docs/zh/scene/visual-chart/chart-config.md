@@ -13,7 +13,7 @@
 
 :material-numeric-2-circle: 描述：为图表添加描述信息，设置后图表标题后方会出现【i】的提示，不设置则不显示。
 
-基于{{{ custom_key.brand_name }}}配备的大模型自然语言生成能力，您可使用“自动生成”功能，为图表快速生成贴合语义的标题和描述。
+基于<<< custom_key.brand_name >>>配备的大模型自然语言生成能力，您可使用“自动生成”功能，为图表快速生成贴合语义的标题和描述。
 
 <img src="../../img/chart-config-ai.png" width="80%" > 
 
@@ -85,7 +85,7 @@
 
 :material-numeric-2-circle: 千分位分隔符：默认开启；关闭后将显示原始值，无分隔符。
 
-{{{ custom_key.brand_name }}}仪表板图表查询结果支持自动加上数据千分位格式显示。
+<<< custom_key.brand_name >>>仪表板图表查询结果支持自动加上数据千分位格式显示。
 
 ![](../img/13.table_1.png)
 
