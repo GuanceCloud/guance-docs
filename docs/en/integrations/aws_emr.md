@@ -7,12 +7,15 @@ __int_icon: 'icon/aws_emr'
 dashboard:
 
   - desc: 'AWS EMR Monitoring View'
-    path: 'dashboard/zh/aws_emr'
+    path: 'dashboard/en/aws_emr'
 
 monitor:
   - desc: 'AWS DocumentDB Monitor'
-    path: 'monitor/zh/aws_emr'
+    path: 'monitor/en/aws_emr'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_emr'
 ---
 
 

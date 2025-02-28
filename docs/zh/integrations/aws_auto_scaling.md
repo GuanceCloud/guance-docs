@@ -13,6 +13,9 @@ monitor:
   - desc: 'AWS Auto Scaling 监控器'
     path: 'monitor/zh/aws_auto_scaling'
 
+cloudCollector:
+  desc: '云采集器'
+  path: 'cloud-collector/zh/aws_auto_scaling'
 ---
 
 <!-- markdownlint-disable MD025 -->

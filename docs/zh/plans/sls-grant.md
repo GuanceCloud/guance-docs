@@ -8,9 +8,9 @@
 
 ## 步骤
 
-1、{{{ custom_key.brand_name }}}一键开通 SLS 专属版的注册流程中下载 SLS 授权文件，打开后复制该 JSON 备份，后续会用到。
+1、<<< custom_key.brand_name >>>一键开通 SLS 专属版的注册流程中下载 SLS 授权文件，打开后复制该 JSON 备份，后续会用到。
 
-> 关于开通流程，可参考文档 [阿里云市场开通{{{ custom_key.brand_name }}}专属版](../commercial-aliyun-sls.md)；
+> 关于开通流程，可参考文档 [阿里云市场开通<<< custom_key.brand_name >>>专属版](../commercial-aliyun-sls.md)；
 
 ![](../img/1.sls_6.jpeg)
 

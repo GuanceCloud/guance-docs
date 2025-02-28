@@ -4,17 +4,17 @@
 
 ## 简介
 
-企业有一定规模后，服务器、Kubernetes 环境、微服务应用会越来越多，如何高效地对这些资源进行可观测，节省人力、资源成本是企业面临的问题。通过一键部署 Rancher 应用商店内的 Datakit，{{{ custom_key.brand_name }}}对 Rancher 管控的 K8s 集群，提供了大量开箱即用的可观测功能。
+企业有一定规模后，服务器、Kubernetes 环境、微服务应用会越来越多，如何高效地对这些资源进行可观测，节省人力、资源成本是企业面临的问题。通过一键部署 Rancher 应用商店内的 Datakit，<<< custom_key.brand_name >>>对 Rancher 管控的 K8s 集群，提供了大量开箱即用的可观测功能。
 
-本文通过一个耳熟能详的 service mesh 微服务架构 Bookinfo 案例，详细解释下如何利用{{{ custom_key.brand_name }}}一键提升 K8s、istio、持续集成、金丝雀发布等微服务端到端全链路的可观测性。
+本文通过一个耳熟能详的 service mesh 微服务架构 Bookinfo 案例，详细解释下如何利用<<< custom_key.brand_name >>>一键提升 K8s、istio、持续集成、金丝雀发布等微服务端到端全链路的可观测性。
 
-{{{ custom_key.brand_name }}}是一家致力于云原生领域可观测的头部企业，使用一个平台、部署 DataKit Agent 即可把主机、应用的指标、链路、日志串联起来。用户登录{{{ custom_key.brand_name }}}，即可实时主动观测自己的 K8s 运行时与微服务应用健康状态。
+<<< custom_key.brand_name >>>是一家致力于云原生领域可观测的头部企业，使用一个平台、部署 DataKit Agent 即可把主机、应用的指标、链路、日志串联起来。用户登录<<< custom_key.brand_name >>>，即可实时主动观测自己的 K8s 运行时与微服务应用健康状态。
 
 ## 案例假设
 
 假设一公司拥有若干台云服务器，两套 Kubernetes 集群，一套生产环境、一套测试环境，测试环境有一台 Master 节点，两台 Node 节点。在云服务器上部署了 Harbor、Gitlab、在 Kubernetes 测试环境部署了 Istio 项目 bookinfo。
 
-现在使用{{{ custom_key.brand_name }}}进行主机、Kubernetes 集群、Gitlab CI、金丝雀发布、RUM、APM、Istio 等做可观测。
+现在使用<<< custom_key.brand_name >>>进行主机、Kubernetes 集群、Gitlab CI、金丝雀发布、RUM、APM、Istio 等做可观测。
 
 ## 前置条件
 
@@ -53,7 +53,7 @@
 命名空间选择「datakit」，点击「下一步」。
 ![image](../images/rancher-datakit/6.png)
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「管理」模块，找到下图中 `token`，点击旁边的「复制图标」。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「管理」模块，找到下图中 `token`，点击旁边的「复制图标」。
 ![image](../images/rancher-datakit/7.png)
 
 切换到 Rancher 界面：
@@ -93,7 +93,7 @@
 
 2、 ebpf 视图
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」 - 「基础设施」，点击「k8s-node1」。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」 - 「基础设施」，点击「k8s-node1」。
 
 ![image](../images/rancher-datakit/15.png)
 
@@ -171,7 +171,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 
 2、 Container 监控视图
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」 - 「基础设施」 - 「容器」，输入「`host:k8s-node1`」 ，显示 k8s-node1 节点的容器，点击「ingress」。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」 - 「基础设施」 - 「容器」，输入「`host:k8s-node1`」 ，显示 k8s-node1 节点的容器，点击「ingress」。
 ![image](../images/rancher-datakit/24.png)
 
 点击「指标」，查看 DataKit Container 的监控视图。
@@ -185,7 +185,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 
 2、 部署 Kubernetes 监控视图
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「kubernetes 监控」，选择 「Kubernetes 监控视图」，点击「确定」。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「kubernetes 监控」，选择 「Kubernetes 监控视图」，点击「确定」。
 ![image](../images/rancher-datakit/26.png)
 
 点击新建的「Kubernetes 监控视图」，查看集群信息。
@@ -227,7 +227,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 
 2、 Kubernetes Overview with Kube State Metrics 监控视图
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「kubernetes Overview」，选择 「Kubernetes Overview with Kube State Metrics 监控视图」，点击「确定」。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「kubernetes Overview」，选择 「Kubernetes Overview with Kube State Metrics 监控视图」，点击「确定」。
 
 ![image](../images/rancher-datakit/32.png)
 
@@ -236,7 +236,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 
 #### 2.5 Kubernetes Overview by Pods 监控视图
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「kubernetes Overview by」，选择 「Kubernetes Overview by Pods 监控视图」，点击「确定」。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「kubernetes Overview by」，选择 「Kubernetes Overview by Pods 监控视图」，点击「确定」。
 ![image](../images/rancher-datakit/34.png)
 
 点击新建的「Kubernetes Overview by Pods 监控视图」，查看集群信息。
@@ -246,7 +246,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 
 #### 2.6 Kubernetes Services 监控视图
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「kubernetes Services」，选择 「Kubernetes Services 监控视图」，点击「确定」。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「kubernetes Services」，选择 「Kubernetes Services 监控视图」，点击「确定」。
 ![image](../images/rancher-datakit/37.png)
 
 点击新建的「Kubernetes Services 监控视图」，查看集群信息。
@@ -995,37 +995,37 @@ deploy_k8s:
 
 ### 步骤 4 Istio 可观测
 
-上述的步骤中，已经对 Istiod 及 bookinfo 应用做了指标采集，{{{ custom_key.brand_name }}}默认提供了四个监控视图来观测 Istio 的运行情况。
+上述的步骤中，已经对 Istiod 及 bookinfo 应用做了指标采集，<<< custom_key.brand_name >>>默认提供了四个监控视图来观测 Istio 的运行情况。
 
 ##### 4.1 Istio Workload 监控视图
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「Istio」，选择 「Istio Workload 监控视图」，点击「确定」。再点击新建的「Istio Workload 监控视图」进行观测。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「Istio」，选择 「Istio Workload 监控视图」，点击「确定」。再点击新建的「Istio Workload 监控视图」进行观测。
 ![image](../images/rancher-datakit/68.png)
 ![image](../images/rancher-datakit/69.png)
 ![image](../images/rancher-datakit/70.png)
 
 ##### 4.2 Istio Control Plane 监控视图
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「Istio」，选择「Istio Control Plane 监控视图」，点击「确定」。再点击新建的「Istio Control Plane 监控视图」进行观测 。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「Istio」，选择「Istio Control Plane 监控视图」，点击「确定」。再点击新建的「Istio Control Plane 监控视图」进行观测 。
 ![image](../images/rancher-datakit/71.png)
 ![image](../images/rancher-datakit/72.png)
 ![image](../images/rancher-datakit/73.png)
 
 ##### 4.3 Istio Service 监控视图
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「Istio」，选择「Istio Service 监控视图」，点击「确定」。再点击新建的「Istio Service 监控视图」进行观测 。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「Istio」，选择「Istio Service 监控视图」，点击「确定」。再点击新建的「Istio Service 监控视图」进行观测 。
 ![image](../images/rancher-datakit/74.png)
 
 ##### 4.4 Istio Mesh 监控视图
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「Istio」，选择「Istio Mesh 监控视图」，点击「确定」。再点击新建的「Istio Mesh 监控视图」进行观测 。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「Istio」，选择「Istio Mesh 监控视图」，点击「确定」。再点击新建的「Istio Mesh 监控视图」进行观测 。
 ![image](../images/rancher-datakit/75.png)
 
 ### 步骤 5 RUM 可观测
 
 ##### 5.1 新建用户访问监测
 
-登录「 [{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「用户访问监测」，新建应用 **devops-bookinfo** ，复制下方 JS。
+登录「 [<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「用户访问监测」，新建应用 **devops-bookinfo** ，复制下方 JS。
 ![image](../images/rancher-datakit/76.png)
 
 ![image](../images/rancher-datakit/77.png)
@@ -1063,7 +1063,7 @@ docker push 172.16.0.238/df-demo/product-page:v1
 
 ##### 5.4 用户访问监测
 
-登录「 [{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「用户访问监测」，找到 **devops-bookinfo **应用，点击进入，查看 UV、PV、会话数、访问的页面等信息。
+登录「 [<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「用户访问监测」，找到 **devops-bookinfo **应用，点击进入，查看 UV、PV、会话数、访问的页面等信息。
 ![image](../images/rancher-datakit/81.png)
 ![image](../images/rancher-datakit/82.png)
 
@@ -1075,12 +1075,12 @@ docker push 172.16.0.238/df-demo/product-page:v1
 
 ### 步骤 6 日志可观测
 
-根据部署 datakit 时的配置，默认采集输出到 /dev/stdout 的日志。 登录「 [{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「日志」，查看日志信息。此外{{{ custom_key.brand_name }}}还提供了 RUM、APM 和日志直接的联动功能，请参考官方文档做相应的配置。
+根据部署 datakit 时的配置，默认采集输出到 /dev/stdout 的日志。 登录「 [<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「日志」，查看日志信息。此外<<< custom_key.brand_name >>>还提供了 RUM、APM 和日志直接的联动功能，请参考官方文档做相应的配置。
 ![image](../images/rancher-datakit/85.png)
 
 ### 步骤 7 Gitlab CI 可观测
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「CI」，点击「概览」选择 bookinfo-views 项目，查看 Pipeline 和 Job 的执行情况。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「CI」，点击「概览」选择 bookinfo-views 项目，查看 Pipeline 和 Job 的执行情况。
 ![image](../images/rancher-datakit/86.png)
 
 进入「CI」,点击「查看器」，选择 gitlab_pipeline。
@@ -1095,7 +1095,7 @@ docker push 172.16.0.238/df-demo/product-page:v1
 
 ### 步骤 8： 金丝雀发布可观测
 
-操作步骤是先创建 DestinationRule 和 VirtualService，把流量只流向 reviews-v1 版本，发布 reviews-v2，切 10% 流量到 reviews-v2，通过{{{ custom_key.brand_name }}}验证通过后，把流量完全切到 reviews-v2，下线 reviews-v1。
+操作步骤是先创建 DestinationRule 和 VirtualService，把流量只流向 reviews-v1 版本，发布 reviews-v2，切 10% 流量到 reviews-v2，通过<<< custom_key.brand_name >>>验证通过后，把流量完全切到 reviews-v2，下线 reviews-v1。
 
 ##### 8.1 创建 DestinationRule
 
@@ -1128,7 +1128,7 @@ spec:
 登录「gitlab」，找到 bookinfo-views 项目， 修改 `.gitlab-ci.yml` 文件中的 `APP_VERSION` 的值为 `v2`，提交一次代码。
 ![image](../images/rancher-datakit/92.png)
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「CI」->「查看器」，可以看到 v2 版本已发布。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「CI」->「查看器」，可以看到 v2 版本已发布。
 
 ![image](../images/rancher-datakit/93.png)
 
@@ -1143,7 +1143,7 @@ spec:
 
 ##### 8.5 观测 reviews-v2 运行情况
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「应用性能监测」模块，点击右上方的图标。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「应用性能监测」模块，点击右上方的图标。
 ![image](../images/rancher-datakit/96.png)
 
 打开「区分环境和版本」，查看 bookinfo 的调用拓扑图。<br />
@@ -1169,7 +1169,7 @@ spec:
 
 ##### 8.6 完成发布
 
-通过在{{{ custom_key.brand_name }}}的操作，本次发布符合预期。「Rancher」 - 「集群」 - 「Istio」 - 「VirtualServices」，点击 reviews 右边的「编辑 YAML」，把“v2”权重设置成 100，“v1”去掉，点击「保存」。
+通过在<<< custom_key.brand_name >>>的操作，本次发布符合预期。「Rancher」 - 「集群」 - 「Istio」 - 「VirtualServices」，点击 reviews 右边的「编辑 YAML」，把“v2”权重设置成 100，“v1”去掉，点击「保存」。
 ![image](../images/rancher-datakit/104.png)
 
 进入「集群」 - 「工作负载」->「Deployments」，找到 “reviews-v1” 点击「删除」。

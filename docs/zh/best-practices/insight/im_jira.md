@@ -4,7 +4,7 @@
 
 > _作者： 苏桐桐、刘锐_
 
-[**异常追踪**](/exception/) 是{{{ custom_key.brand_name }}}推出的、基于内部异常有效协调的沟通管理工具。
+[**异常追踪**](/exception/) 是<<< custom_key.brand_name >>>推出的、基于内部异常有效协调的沟通管理工具。
 
 **JIRA** 为企业内部项目管理工具。
 
@@ -20,31 +20,31 @@
 ## 准备工作
 
 - [x] Jira 平台（需要有管理员权限）
-- [x] {{{ custom_key.brand_name }}}空间帐号
-- [x] [Dataflux Func {{{ custom_key.brand_name }}}特别版](https://func.guance.com/) 
+- [x] <<< custom_key.brand_name >>>空间帐号
+- [x] [Dataflux Func <<< custom_key.brand_name >>>特别版](https://func.guance.com/) 
 
 
 ## Jira
 
-获取 Jira 平台对应项目的 project、项目地址、api_token、username，后续{{{ custom_key.brand_name }}}脚本需要用到。
+获取 Jira 平台对应项目的 project、项目地址、api_token、username，后续<<< custom_key.brand_name >>>脚本需要用到。
 
 **只有管理员才有权限进行以上操作**
 
 
 
-## {{{ custom_key.brand_name }}}
+## <<< custom_key.brand_name >>>
 
 ### 创建 API Key
 
 API Key 可参考文档 [API Key](/management/api-key/index.md)
 
-其中 key name 设置为 `Jira 系统`，有利于区分该评论信息来源于{{{ custom_key.brand_name }}}或者是 Jira，且 key name 会作为 user 展示在{{{ custom_key.brand_name }}} `issue` 当中。
+其中 key name 设置为 `Jira 系统`，有利于区分该评论信息来源于<<< custom_key.brand_name >>>或者是 Jira，且 key name 会作为 user 展示在<<< custom_key.brand_name >>> `issue` 当中。
 
 ### Func 脚本编写
 
 - 登陆 Func
 
-登陆到已经部署的[Dataflux Func {{{ custom_key.brand_name }}}特别版](https://func.guance.com/) 
+登陆到已经部署的[Dataflux Func <<< custom_key.brand_name >>>特别版](https://func.guance.com/) 
 
 - 添加 Python 依赖
 
@@ -66,7 +66,7 @@ import time
 from datetime import datetime, timedelta
 from jira import JIRA
 
-# {{{ custom_key.brand_name }}}配置，注意修改df_api_key
+# <<< custom_key.brand_name >>>配置，注意修改df_api_key
 base_url = 'https://openapi.guance.com'
 channel_list_url = base_url + '/api/v1/channel/quick_list'
 issue_list_url = base_url + '/api/v1/issue/list'
@@ -203,21 +203,21 @@ def guance():
 
 ### 创建 issue
 
-{{{ custom_key.brand_name }}}有两种创建 issue 的方式
+<<< custom_key.brand_name >>>有两种创建 issue 的方式
 
 - [x] 直接创建
 - [x] 通过监控器创建
 
 #### 直接创建
 
-1. 登陆{{{ custom_key.brand_name }}}控制台
+1. 登陆<<< custom_key.brand_name >>>控制台
 2. 点击**异常追踪**菜单，点击右上角**新建Issue**按钮，填写 issue 信息，保存即可。
 
 #### 通过监控器创建
 
 **通过监控器创建**即通过监控器产生事件信息，进行创建issue。
 
-1. 登陆{{{ custom_key.brand_name }}}控制台
+1. 登陆<<< custom_key.brand_name >>>控制台
 2. 点击左侧**监控**菜单
 3. 可以新增监控器，也可以调整原有的监控器。编辑对应的监控器，开启**同步创建 Issue**开关，保存。
 
@@ -226,11 +226,11 @@ def guance():
 ### Jira 效果：
 
 ![Img](../images/im_jira_04.png)
-自动产生了 Jira issue，当进行评论后，可以在{{{ custom_key.brand_name }}}上展示 `issue` 的处理过程。
+自动产生了 Jira issue，当进行评论后，可以在<<< custom_key.brand_name >>>上展示 `issue` 的处理过程。
 
 
-### {{{ custom_key.brand_name }}}效果
+### <<< custom_key.brand_name >>>效果
 
-{{{ custom_key.brand_name }}}上也会同步 Jira `issue` 处理过程。
+<<< custom_key.brand_name >>>上也会同步 Jira `issue` 处理过程。
 
 ![Img](../images/im_jira_05.png)

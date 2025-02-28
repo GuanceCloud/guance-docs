@@ -28,11 +28,11 @@ Nginx  虽然简单，但因为应用场景广泛，所以在企业内部相对�
 ![image.png](../images/nginx-2.png)
 
 
-##  Nginx  监控接入{{{ custom_key.brand_name }}}前置条件
+##  Nginx  监控接入<<< custom_key.brand_name >>>前置条件
 
 ### 账号注册
 
-前往 [{{{ custom_key.brand_name }}}](https://www.guance.com) 注册账号，使用已注册的账号/密码登录。
+前往 [<<< custom_key.brand_name >>>](https://www.guance.com) 注册账号，使用已注册的账号/密码登录。
 
 ### 安装 Datakit
 

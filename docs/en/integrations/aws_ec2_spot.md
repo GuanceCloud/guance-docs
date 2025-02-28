@@ -7,11 +7,11 @@ __int_icon: 'icon/aws_ec2_spot'
 dashboard:
 
   - desc: 'Amazon EC2 Spot Monitoring View'
-    path: 'dashboard/zh/aws_ec2_spot'
+    path: 'dashboard/en/aws_ec2_spot'
 
 monitor:
   - desc: 'Amazon EC2 Spot Monitor'
-    path: 'monitor/zh/aws_ec2_spot'
+    path: 'monitor/en/aws_ec2_spot'
 
 ---
 

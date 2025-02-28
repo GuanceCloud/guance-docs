@@ -1,7 +1,7 @@
 # 外部数据源
 ---
 
-使用 DataFlux Func，可以将 MySQL 等多种数据源集成至{{{ custom_key.brand_name }}}，实现数据查询和可视化的无缝对接。
+使用 DataFlux Func，可以将 MySQL 等多种数据源集成至<<< custom_key.brand_name >>>，实现数据查询和可视化的无缝对接。
 
 ## 功能特点
 
@@ -18,9 +18,9 @@
 
 部署完成后，等待初始化完成，登录进入平台。
 
-## 关联 Func 与{{{ custom_key.brand_name }}} {#start}
+## 关联 Func 与<<< custom_key.brand_name >>> {#start}
 
-通过连接器，可以帮助开发者连接{{{ custom_key.brand_name }}}系统。
+通过连接器，可以帮助开发者连接<<< custom_key.brand_name >>>系统。
 
 进入开发 > 连接器 > 添加连接器页面：
 
@@ -29,16 +29,16 @@
 
 1. 选择连接器类型；
 2. 自定义该连接器的 [ID](https://func.guance.com/doc/development-guide-basic-conception/#2)，如 `guance_test`；
-3. 添加标题。该标题将同步展示在{{{ custom_key.brand_name }}}工作空间内；
+3. 添加标题。该标题将同步展示在<<< custom_key.brand_name >>>工作空间内；
 4. 按需输入该连接器的描述；
-5. 选择{{{ custom_key.brand_name }}}[节点](https://func.guance.com/doc/ui-guide-development-module-guance-node/)；
+5. 选择<<< custom_key.brand_name >>>[节点](https://func.guance.com/doc/ui-guide-development-module-guance-node/)；
 6. 添加 [API Key ID 和 API Key](#api-key-how_to_get_api_key)；
 7. 按需测试连通性；
 8. 点击保存。
 
 ### 如何获取 API Key {#how_to_get_api_key}
 
-1. 进入{{{ custom_key.brand_name }}}工作空间 > 管理 > API Key 管理；
+1. 进入<<< custom_key.brand_name >>>工作空间 > 管理 > API Key 管理；
 2. 点击页面右侧**新建 Key**。
 3. 输入名称；
 4. 点击确定。系统此时将会为您自动创建一个 API Key，您可在 API Key 中查看。
@@ -49,7 +49,7 @@
 
 ## 使用 Func 查询外部数据源
 
-**注意**：此处所指的“外部数据源”具有广泛的定义，既包括常见的外部数据存储系统（如 MySQL、Redis 等数据库），也涵盖第三方系统（例如{{{ custom_key.brand_name }}}控制台）。
+**注意**：此处所指的“外部数据源”具有广泛的定义，既包括常见的外部数据存储系统（如 MySQL、Redis 等数据库），也涵盖第三方系统（例如<<< custom_key.brand_name >>>控制台）。
 
 
 ### 使用连接器
@@ -267,7 +267,7 @@ def query_from_somewhere(time_range):
 
 #### 图表数据返回
 
-在{{{ custom_key.brand_name }}}中，使用外部数据源进行查询的一个典型场景是[图表](../scene/visual-chart/index.md)。
+在<<< custom_key.brand_name >>>中，使用外部数据源进行查询的一个典型场景是[图表](../scene/visual-chart/index.md)。
 
 <img src="../img/external-2.png" width="70%" >
 
@@ -275,7 +275,7 @@ def query_from_somewhere(time_range):
 | :---------------------: | :----------------: | :--------------: |
 | [折线图](./chart_line.md) | [饼图](./chart_pie.md) | [表格图](./chart_table.md) |
 
-## 在{{{ custom_key.brand_name }}}侧添加数据源
+## 在<<< custom_key.brand_name >>>侧添加数据源
 
 即直接在**扩展**中添加或查看所有接入的 DataFlux Func 列表，并进一步管理所有已接入的外部数据源。
 

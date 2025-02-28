@@ -84,12 +84,12 @@ plugins:
     lang: en
   macros:
     on_error_fail           : true
-    j2_block_start_string   : '{{{%'
-    j2_block_end_string     : '%}}}'
-    j2_variable_start_string: '{{{'
-    j2_variable_end_string  : '}}}'
-    j2_comment_start_string : '{{{#'
-    j2_comment_end_string   : '#}}}'
+    j2_block_start_string   : '<<<%'
+    j2_block_end_string     : '%>>>'
+    j2_variable_start_string: '<<<'
+    j2_variable_end_string  : '>>>'
+    j2_comment_start_string : '<<<#'
+    j2_comment_end_string   : '#>>>'
 
 extra_css:
   - assets/stylesheets/extra.css

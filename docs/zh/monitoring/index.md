@@ -5,7 +5,7 @@ icon: zy/monitoring
 ---
 
 
-{{{ custom_key.brand_name }}}拥有强大的异常监测能力，不仅提供了包括 Docker、Elasticsearch、Host 等一系列监控模板，还支持自定义监控器，配合告警通知功能，可及时发现帮助您快速发现问题、定位问题、解决问题。同时，{{{ custom_key.brand_name }}}支持 SLO (Service Level Objective) 监控，精准把控服务水准和目标。
+<<< custom_key.brand_name >>>提供完善的异常监测体系，内置 Docker、Elasticsearch、Host 等十余种开箱即用的监控模板，同时支持完全自定义的监控器配置。通过灵活设置检测规则与智能告警通知，帮助快速完成从问题发现、定位到解决的全流程闭环。系统还集成 SLO（Service Level Objective）监控模块，支持对服务等级目标的量化管理与持续追踪，确保关键业务指标可控可视。
 
 
 <div class="grid cards" markdown>
@@ -15,7 +15,7 @@ icon: zy/monitoring
     ---
 
     *<font size=2>（原指“内置检测库”）</font>*    
-    用于配置数据指标检测，从而即时触发告警事件。您可以使用{{{ custom_key.brand_name }}}内置开箱即用的[监控模板](./monitor/template.md)，也可以自定义[新建监控器](./monitor/index.md#rules)，并设置对应[检测规则](./monitor/index.md#detect)。
+    用于配置数据指标检测，从而即时触发告警事件。您可以使用<<< custom_key.brand_name >>>内置开箱即用的[监控模板](./monitor/template.md)，也可以自定义[新建监控器](./monitor/index.md#rules)，并设置对应[检测规则](./monitor/index.md#detect)。
 
     <br/>
 
@@ -32,7 +32,7 @@ icon: zy/monitoring
 
     ---
 
-    {{{ custom_key.brand_name }}} SLO 监控是围绕 DevOps 各类指标，测试系统服务可用性是否满足目标需要，不仅可以帮助使用者监控服务商提供的服务质量，还可以保护服务商免受 SLA 违规的影响。
+    SLO 监控是围绕 DevOps 各类指标，测试系统服务可用性是否满足目标需要，不仅可以帮助使用者监控服务商提供的服务质量，还可以保护服务商免受 SLA 违规的影响。
 
     <br/>
 

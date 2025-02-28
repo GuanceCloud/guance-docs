@@ -13,9 +13,9 @@
 :material-numeric-2-circle-outline: 资源授权
 
 1. beaver Index：日志易中需要绑定查看的索引名称。 
-2. 标签：可以以 `key:value` 的格式输入标签；{{{ custom_key.brand_name }}}会通过标签过滤数据，从而实现更细颗粒度的数据范围查询授权能力。             
+2. 标签：可以以 `key:value` 的格式输入标签；<<< custom_key.brand_name >>>会通过标签过滤数据，从而实现更细颗粒度的数据范围查询授权能力。             
     - 多个标签使用 AND & OR 组合。*示例：`字段1:值1 AND 字段2:值2 OR 字段3:值3`*；             
-3. {{{ custom_key.brand_name }}} Index：{{{ custom_key.brand_name }}}工作空间唯一标识的索引名称，由用户自定义填写，且不支持重复的名字，配置完成后，可用于筛选索引名称。 
+3. <<< custom_key.brand_name >>> Index：<<< custom_key.brand_name >>>工作空间唯一标识的索引名称，由用户自定义填写，且不支持重复的名字，配置完成后，可用于筛选索引名称。 
 
 :material-numeric-3-circle-outline: [字段映射](./index.md#mapping)。                     
 

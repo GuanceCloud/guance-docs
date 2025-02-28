@@ -12,7 +12,7 @@
 - RUM ： Real User Moitoring 真实用户体验监控
 - LOG ： 日志
 
-本文将从如何接入这三方监控，以及如何利用{{{ custom_key.brand_name }}}进行联动分析的角度进行阐述。用于演示的 Demo 为若依权限管理系统，具体内容可查看 <[从 0 到 1 利用{{{ custom_key.brand_name }}}构建 Spring cloud 服务的可观测性](../monitoring/spring-cloud-sample.md)>。
+本文将从如何接入这三方监控，以及如何利用<<< custom_key.brand_name >>>进行联动分析的角度进行阐述。用于演示的 Demo 为若依权限管理系统，具体内容可查看 <[从 0 到 1 利用<<< custom_key.brand_name >>>构建 Spring cloud 服务的可观测性](../monitoring/spring-cloud-sample.md)>。
 
 关于日志，本文将使用 DataKit 的 Logfwd 采集器采集业务 Pod 的日志，DataKit 开通 Logfwd 采集器，Pod 增加 lLgfwd 的 Sidecar 来采集业务容器的日志，推送给 DataKit。由于业务对 Sidecar 是可见的，所以日志文件不需要落到宿主机上，详细使用请在下方的 [部署 System](#system) 模块查看。DataKit 接收到日志后，使用配置的 Pipeline 做日志文件切割。
 
@@ -20,7 +20,7 @@
 
 ### 账号注册
 
-前往 [{{{ custom_key.brand_name }}}](https://console.guance.com/) 注册账号，使用已注册的账号/密码登录。
+前往 [<<< custom_key.brand_name >>>](https://console.guance.com/) 注册账号，使用已注册的账号/密码登录。
 
 ![image](../images/k8s-rum-apm-log/1.png)
 
@@ -374,7 +374,7 @@ $ kubectl get pod -n datakit
 
 ![image](../images/k8s-rum-apm-log/4.png)
 
-DataKit 安装完成后，已经默认开启 Linux 主机常用插件，可以在「{{{ custom_key.brand_name }}}」 - 「场景」 - 「基础设施 Linux 主机监控视图」查看。
+DataKit 安装完成后，已经默认开启 Linux 主机常用插件，可以在「<<< custom_key.brand_name >>>」 - 「场景」 - 「基础设施 Linux 主机监控视图」查看。
 
 | 采集器名称   | 说明                                           |
 | ------------ | ---------------------------------------------- |
@@ -547,7 +547,7 @@ EXPOSE 443
 
 使用 `java -jar` 方式启动用户的 jar 时，需要使用 `-javaagent:/usr/local/datakit/data/dd-java-agent.jar` 。而在用户的镜像中并不一定存在这个 jar，为了不侵入客户的业务镜像，我们需要制作一个包含 `dd-java-agent.jar` 的镜像，再以 Init 容器的方式先于业务容器启动，以共享存储的方式提供 `dd-java-agent.jar` 。
 
-{{{ custom_key.brand_name }}}已提供这个镜像。
+<<< custom_key.brand_name >>>已提供这个镜像。
 
 ```
 pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
@@ -981,7 +981,7 @@ volumeMounts 下面增加：
 
 #### 新建应用
 
-登录「{{{ custom_key.brand_name }}}平台」，选择「用户访问监测」 - 「新建应用」 - 「选择 Web 类型」 - 「同步载入」，应用名称输入 web-k8s-demo
+登录「<<< custom_key.brand_name >>>平台」，选择「用户访问监测」 - 「新建应用」 - 「选择 Web 类型」 - 「同步载入」，应用名称输入 web-k8s-demo
 
 ![image](../images/k8s-rum-apm-log/10.png)
 
@@ -1000,7 +1000,7 @@ DataKit 开启 RUM 采集器是通过 `ENV_DEFAULT_ENABLED_INPUTS` 环境变量�
 修改 `/usr/local/k8s/dist/index.html` 文件，在 head 中增加如下内容：
 
 ```
-<script src="https://{{{ custom_key.static_domain }}}/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://<<< custom_key.static_domain >>>/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({

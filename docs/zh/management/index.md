@@ -4,7 +4,7 @@ icon: zy/management
 # 工作空间管理
 ---
 
-工作空间是{{{ custom_key.brand_name }}}的基本操作单元。在{{{ custom_key.brand_name }}}工作空间内，您可以使用{{{ custom_key.brand_name }}}提供的多样化功能。而**工作空间管理**是针对当前工作空间进行的设置、管理和操作。在加入工作空间并被分配到权限后，您可以对该空间的基本信息、成员权限、SSO 登录、数据权限、API Key、通知对象、内置视图、图表和快照分享等进行管理。
+工作空间是<<< custom_key.brand_name >>>的基本操作单元。在<<< custom_key.brand_name >>>工作空间内，您可以使用<<< custom_key.brand_name >>>提供的多样化功能。而**工作空间管理**是针对当前工作空间进行的设置、管理和操作。在加入工作空间并被分配到权限后，您可以对该空间的基本信息、成员权限、SSO 登录、数据权限、API Key、通知对象、内置视图、图表和快照分享等进行管理。
 
 下文将从**个人账户层级**向您介绍**如何注册登录帐户并进入您的工作空间、关注您的帐户安全、设置您的工作空间外观**。
 
@@ -14,7 +14,7 @@ icon: zy/management
 
 您可以通过创建或者被邀请的方式加入一个或多个工作空间。
 
-在以任何方式加入工作空间之前，需要先[注册{{{ custom_key.brand_name }}}账号](https://auth.guance.com/businessRegister)。[注册完成](../plans/commercial-huaweiyun.md)后，您可以通过[{{{ custom_key.brand_name }}}官网](https://www.guance.com/)，点击**登录**，选择注册站点，输入登录账号和密码，登录到{{{ custom_key.brand_name }}}控制台。系统会默认为您创建一个工作空间，并赋予**拥有者**权限。
+在以任何方式加入工作空间之前，需要先[注册<<< custom_key.brand_name >>>账号](https://auth.guance.com/businessRegister)。[注册完成](../plans/commercial-huaweiyun.md)后，您可以通过[<<< custom_key.brand_name >>>官网](https://www.guance.com/)，点击**登录**，选择注册站点，输入登录账号和密码，登录到<<< custom_key.brand_name >>>控制台。系统会默认为您创建一个工作空间，并赋予**拥有者**权限。
 
 
 在现有的工作空间内，您可以从以下两个入口创建其他工作空间：
@@ -47,7 +47,7 @@ icon: zy/management
 
 ### SSO 账号登录 {#sso}
 
-除了通过注册{{{ custom_key.brand_name }}}账号登录以外，还支持企业用户通过 [SSO 单点登录](../management/sso/index.md)的方式登录到{{{ custom_key.brand_name }}}。
+除了通过注册<<< custom_key.brand_name >>>账号登录以外，还支持企业用户通过 [SSO 单点登录](../management/sso/index.md)的方式登录到<<< custom_key.brand_name >>>。
 
 通过 SSO 登录的账号，默认使用 SSO 配置的登录保持时间。
 
@@ -61,13 +61,13 @@ icon: zy/management
 
 ### MFA 认证 {#mfa}
 
-{{{ custom_key.brand_name }}}提供 MFA 认证管理，帮助在账号用户名和密码之外再额外增加一层安全保护。开启 MFA 认证后，您在登录时需要进行二次校验，从而帮助您提高账户的安全性。
+<<< custom_key.brand_name >>>提供 MFA 认证管理，帮助在账号用户名和密码之外再额外增加一层安全保护。开启 MFA 认证后，您在登录时需要进行二次校验，从而帮助您提高账户的安全性。
 
 > 更多详情，可参考 [MFA 管理](mfa-management.md)。
 
 ### 登录保持时间 {#login-hold-time}
 
-{{{ custom_key.brand_name }}}支持为登录到工作空间的账号设置会话保持时间，包括工作空间注册的账号和 SSO 单点登录的账号。
+<<< custom_key.brand_name >>>支持为登录到工作空间的账号设置会话保持时间，包括工作空间注册的账号和 SSO 单点登录的账号。
 
 注册账号可在工作空间，点击左下角**账号 > 账号管理**，在登录保持时间，点击修改默认的登录会话保持时间，包括无操作登录会话保持时间和登录会话最大保持时间。设置以后，超时登录会话会失效。
 
@@ -99,7 +99,7 @@ icon: zy/management
 
 :material-numeric-3-circle-outline: 在当前账号为非拥有者的前提下，进入第三步。在确认注销前需注意：
 
-1. 账号将无法登录进入{{{ custom_key.brand_name }}}工作空间；  
+1. 账号将无法登录进入<<< custom_key.brand_name >>>工作空间；  
 2. 账号在工作空间内所有关联信息将被清除且无法找回；  
 3. 账号提交的未关闭工单将于 7 个工作日内做关闭处理。
 
@@ -122,10 +122,10 @@ icon: zy/management
 
 ### 时区 {#zone}
 
-{{{ custom_key.brand_name }}}支持成员修改时区，从而切换到对应的工作空间时区查看数据。{{{ custom_key.brand_name }}}默认跟随“浏览器时间”，即本地浏览器检测到的时间。
+<<< custom_key.brand_name >>>支持成员修改时区，从而切换到对应的工作空间时区查看数据。<<< custom_key.brand_name >>>默认跟随“浏览器时间”，即本地浏览器检测到的时间。
 
 在工作空间，点击左下角**账号 > 账号管理 > 时区**，即可修改当前的时区。
-您也可以在{{{ custom_key.brand_name }}}提供的[时间控件](../getting-started/function-details/explorer-search.md#time)来快速修改时区。
+您也可以在<<< custom_key.brand_name >>>提供的[时间控件](../getting-started/function-details/explorer-search.md#time)来快速修改时区。
 
 **注意**：设置新的时区后，您当前账号所在的所有工作空间均按照设置后的时区进行显示，请谨慎操作。
 
@@ -151,13 +151,13 @@ icon: zy/management
 
 <img src="img/system-notice.png" width="70%" >
 
-点击上方的订阅按钮，当有新消息时，{{{ custom_key.brand_name }}}会发送相关邮件至您的邮箱。
+点击上方的订阅按钮，当有新消息时，<<< custom_key.brand_name >>>会发送相关邮件至您的邮箱。
 
 ![](img/system-notice-1.png)
 
 ### 高性能模式
 
-{{{ custom_key.brand_name }}}支持图表高性能加载模式，默认关闭。
+<<< custom_key.brand_name >>>支持图表高性能加载模式，默认关闭。
 
 <img src="img/3.customized_1.1.png" width="60%" >
 
@@ -172,7 +172,7 @@ icon: zy/management
 
 ### 系统主题 {#theme}
 
-{{{ custom_key.brand_name }}}支持切换主题颜色。
+<<< custom_key.brand_name >>>支持切换主题颜色。
 
 若系统主题选择【自动】，则可根据电脑外观自动切换主题颜色。
 

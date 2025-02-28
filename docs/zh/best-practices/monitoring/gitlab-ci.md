@@ -18,15 +18,15 @@
 
 GitLab CI/CD（后简称 GitLab CI）是一套基于 GitLab 的 CI/CD 系统，是 CI/CD 领域的一个新手玩家，但它已经在 Forrester Wave 持续集成工具中占据了领先地位。可以让开发人员通过  .gitlab-ci.yml 在项目中配置 CI/CD 流程，在提交后，系统可以自动/手动地执行任务，完成 CI/CD 操作。而且，它的配置非常简单，CI Runner 由 Go 语言编写，最终打包成单文件，所以只需要一个 Runner 程序、以及一个用于运行 jobs 的执行平台（如裸机 +SSH，Docker 或 Kubernetes 等，我推荐用 Docker，因为搭建相当容易）即可运行一套完整的 CI/CD  系统。
 
-## {{{ custom_key.brand_name }}}
+## <<< custom_key.brand_name >>>
 
-“[{{{ custom_key.brand_name }}}](https://guance.com/)” 是一个云时代的系统可观测性平台。平台包含基础设施、日志、指标、事件、应用性能、用户访问、云拨测、系统级安全巡检等功能模块，针对上述功能产生的 Logging、Metrics、Tracing 这三类数据提供全链路级别的数据分析和洞察能力。H5、iOS、Android、小程序等应用全面覆盖，支持完整追踪用户访问行为及真实体验，提供了页面性能、资源调用、错误告警、业务访问等一系列数据及分析视图。与链路追踪相联动，帮助您实时洞察应用表现和每一个请求背后的真实需求。灵活的场景布局、丰富的图表选择、拉拽式交互体验让您轻松搭建属于“自己”的仪表板。统一的数据查询方式，支持配置各类数据，简单易上手。
+“[<<< custom_key.brand_name >>>](https://guance.com/)” 是一个云时代的系统可观测性平台。平台包含基础设施、日志、指标、事件、应用性能、用户访问、云拨测、系统级安全巡检等功能模块，针对上述功能产生的 Logging、Metrics、Tracing 这三类数据提供全链路级别的数据分析和洞察能力。H5、iOS、Android、小程序等应用全面覆盖，支持完整追踪用户访问行为及真实体验，提供了页面性能、资源调用、错误告警、业务访问等一系列数据及分析视图。与链路追踪相联动，帮助您实时洞察应用表现和每一个请求背后的真实需求。灵活的场景布局、丰富的图表选择、拉拽式交互体验让您轻松搭建属于“自己”的仪表板。统一的数据查询方式，支持配置各类数据，简单易上手。
 ## DataKit
 
-DataKit 是{{{ custom_key.brand_name }}}开源的采集工具，开源地址：[https://github.com/DataFlux-cn/datakit](https://github.com/DataFlux-cn/datakit)
+DataKit 是<<< custom_key.brand_name >>>开源的采集工具，开源地址：[https://github.com/DataFlux-cn/datakit](https://github.com/DataFlux-cn/datakit)
 
 ## 背景介绍
-随着微服务日益流行，企业开始将软件单体服务架构逐渐过渡到微服务架构，微服务的一个特点工程模块众多，部署起来也相对麻烦，CICD 工具虽然能够很好的集成交付部署，但是部署过程中出现的一些问题很难进行统计分析，利用{{{ custom_key.brand_name }}}强大的观测能力和自定义视图能力，能够帮助您很好的查看、分析软件在持续部署过程中出现的一些问题。
+随着微服务日益流行，企业开始将软件单体服务架构逐渐过渡到微服务架构，微服务的一个特点工程模块众多，部署起来也相对麻烦，CICD 工具虽然能够很好的集成交付部署，但是部署过程中出现的一些问题很难进行统计分析，利用<<< custom_key.brand_name >>>强大的观测能力和自定义视图能力，能够帮助您很好的查看、分析软件在持续部署过程中出现的一些问题。
 ## 架构流程
 
 ![image.png](../images/gitlab-ci.png)
@@ -36,7 +36,7 @@ DataKit 是{{{ custom_key.brand_name }}}开源的采集工具，开源地址：[
 > 1.  GitlabRunner 向 gitlab 注册 
 > 1.  gitlab trigger 触发执行 Gitlab-CI 
 > 1.  Gitlab-CI 执行完成后，触发 webhook 将数据推送给 DataKit
-> 1. DataKit 打标签推送至{{{ custom_key.brand_name }}}平台
+> 1. DataKit 打标签推送至<<< custom_key.brand_name >>>平台
 
 ## 前置条件
 
@@ -240,8 +240,8 @@ test_job:
 
 状态 200 代表推送成功
 
-## {{{ custom_key.brand_name }}}
-pipeline 推送成功后，我们可以通过{{{ custom_key.brand_name }}}平台通过可视化方式，通过仪表盘和查看器观测 pipeline 执行的整体情况。
+## <<< custom_key.brand_name >>>
+pipeline 推送成功后，我们可以通过<<< custom_key.brand_name >>>平台通过可视化方式，通过仪表盘和查看器观测 pipeline 执行的整体情况。
 ### CI 查看器
 通过 菜单 `CI`查看器查看`gitlab_pipeline `和 `gitlab_job`明细。
 

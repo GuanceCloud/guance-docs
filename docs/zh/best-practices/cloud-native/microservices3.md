@@ -4,7 +4,7 @@
 
 ## 简介
 
-本篇将介绍金丝雀发布的整体情况，利用{{{ custom_key.brand_name }}}对微服务的指标、链路、日志进行可观测。以下关于 Rancher 的操作都是在 k8s-solution-cluster 集群，不再重复提示。 
+本篇将介绍金丝雀发布的整体情况，利用<<< custom_key.brand_name >>>对微服务的指标、链路、日志进行可观测。以下关于 Rancher 的操作都是在 k8s-solution-cluster 集群，不再重复提示。 
 
 ## 金丝雀发布
 
@@ -126,7 +126,7 @@ kubectl replace -f virtual-service-reviews.yaml
 
 #### 1. 应用性能监测
 
-登录『{{{ custom_key.brand_name }}}』->『应用性能监测』-> 右上角拓扑图表。打开区分环境和版本开关，reviews 有两个版本，其中 reviews:test:v2 调用 ratings 服务。
+登录『<<< custom_key.brand_name >>>』->『应用性能监测』-> 右上角拓扑图表。打开区分环境和版本开关，reviews 有两个版本，其中 reviews:test:v2 调用 ratings 服务。
 		
 ![image](../images/microservices/69.jpg)	
 
@@ -150,7 +150,7 @@ Span 列表中查看每个 Span 的执行耗时。
 
 ##### 2 Istio Mesh 监控视图
 
-登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Istio Mesh 监控视图**。在这个视图里面可以看到调用 reviews-v1 和 reviews-v2 的比例基本是 9:1.
+登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Istio Mesh 监控视图**。在这个视图里面可以看到调用 reviews-v1 和 reviews-v2 的比例基本是 9:1.
 
 ![image](../images/microservices/75.png)	
 
@@ -182,11 +182,11 @@ kubectl replace -f virtual-service-reviews.yaml
 
 ![image](../images/microservices/76.png)	
 
-『注意』如果 reviews-v2 版本有问题，请登录『 [{{{ custom_key.brand_name }}}](https://console.guance.com/)』参考本章最后一节的链路超时分析来分析问题，参考步骤六把流量完全切回 reviews-v1，等问题修复后，重新发布。
+『注意』如果 reviews-v2 版本有问题，请登录『 [<<< custom_key.brand_name >>>](https://console.guance.com/)』参考本章最后一节的链路超时分析来分析问题，参考步骤六把流量完全切回 reviews-v1，等问题修复后，重新发布。
 
 # 指标
 
-部署 Bookinfo 时，在使用自定义配置开启 Pod 时，在 annotations 配置中增加了 measurement_name = "istio_prom"，这就是把指标采集到 **istio_prom** 指标集中。登录『{{{ custom_key.brand_name }}}』->『指标』，查看 istio_prom 指标集。
+部署 Bookinfo 时，在使用自定义配置开启 Pod 时，在 annotations 配置中增加了 measurement_name = "istio_prom"，这就是把指标采集到 **istio_prom** 指标集中。登录『<<< custom_key.brand_name >>>』->『指标』，查看 istio_prom 指标集。
 
 ![image](../images/microservices/77.png)	
 
@@ -196,7 +196,7 @@ kubectl replace -f virtual-service-reviews.yaml
 
 ### RUM
 
-登录『 [{{{ custom_key.brand_name }}}](https://console.guance.com/)』，进入『用户访问监测』，找到  **devops-bookinfo** 应用，点击进入。
+登录『 [<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『用户访问监测』，找到  **devops-bookinfo** 应用，点击进入。
 
 ![image](../images/microservices/78.png)
 
@@ -216,7 +216,7 @@ kubectl replace -f virtual-service-reviews.yaml
 
 ### APM
 
-登录『 [{{{ custom_key.brand_name }}}](https://console.guance.com/)』，进入『应用性能监测』。通过应用性能监测，查看链路数据。
+登录『 [<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『应用性能监测』。通过应用性能监测，查看链路数据。
 		
 ![image](../images/microservices/84.png)
 
@@ -226,7 +226,7 @@ kubectl replace -f virtual-service-reviews.yaml
 
 ### stdout
 
-根据部署 DataKit 时的配置，默认采集输出到 /dev/stdout 的日志。 登录『 [{{{ custom_key.brand_name }}}](https://console.guance.com/)』，进入『日志』，查看日志信息。
+根据部署 DataKit 时的配置，默认采集输出到 /dev/stdout 的日志。 登录『 [<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『日志』，查看日志信息。
 		
 ![image](../images/microservices/86.png)
 
@@ -284,7 +284,7 @@ kubectl apply -f virtual-service-ratings-test-delay.yaml
 
 ![image](../images/microservices/88.png)
 
-登录『 [{{{ custom_key.brand_name }}}](https://console.guance.com/)』，进入『应用性能监测』。点击超时的链路。
+登录『 [<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『应用性能监测』。点击超时的链路。
 
 ![image](../images/microservices/89.png)
 

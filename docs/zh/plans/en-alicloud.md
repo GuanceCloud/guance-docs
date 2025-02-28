@@ -1,8 +1,8 @@
-# 阿里云海外云市场开通{{{ custom_key.brand_name }}}商业版
+# 阿里云海外云市场开通<<< custom_key.brand_name >>>商业版
 
-为满足海内外用户的产品需求，现支持从阿里云海外云市场购买{{{ custom_key.brand_name }}}商业版产品。
+为满足海内外用户的产品需求，现支持从阿里云海外云市场购买<<< custom_key.brand_name >>>商业版产品。
 
-## 第一步：购买{{{ custom_key.brand_name }}} {#purchase}
+## 第一步：购买<<< custom_key.brand_name >>> {#purchase}
 
 进入[阿里云海外云市场](https://marketplace.alibabacloud.com/store/3246568.html)，点击**立即激活**。
 
@@ -12,28 +12,28 @@
 
 ![](img/encloud-7.png)
 
-即可跳转至云市场页面，查看购买的{{{ custom_key.brand_name }}}产品服务。
+即可跳转至云市场页面，查看购买的<<< custom_key.brand_name >>>产品服务。
 
-## 第二步：开始使用{{{ custom_key.brand_name }}}
+## 第二步：开始使用<<< custom_key.brand_name >>>
 
-在阿里云海外云市场购买完{{{ custom_key.brand_name }}}服务后，在**已购买的服务**页面，您可以使用**免登**直接前往{{{ custom_key.brand_name }}}。
+在阿里云海外云市场购买完<<< custom_key.brand_name >>>服务后，在**已购买的服务**页面，您可以使用**免登**直接前往<<< custom_key.brand_name >>>。
 
 ![](img/encloud-4.png)
 
-如果当前阿里云账号 ID 未绑定{{{ custom_key.brand_name }}}费用中心账号，登录成功后，即可跳转至下图页面，您可以选择:
+如果当前阿里云账号 ID 未绑定<<< custom_key.brand_name >>>费用中心账号，登录成功后，即可跳转至下图页面，您可以选择:
 
 ![](img/encloud-3.png)
 
-:material-numeric-1-circle-outline: [立即注册{{{ custom_key.brand_name }}}商业版](./commercial-aliyun.md#register)；
+:material-numeric-1-circle-outline: [立即注册<<< custom_key.brand_name >>>商业版](./commercial-aliyun.md#register)；
 
 :material-numeric-2-circle-outline: [已有费用中心账号，去绑定](./commercial-aliyun.md#bond)。
 
 
 ## 结算
 
-在您开始使用{{{ custom_key.brand_name }}}产品服务后，可以通过[海外版费用中心](https://bill.guance.one/)使用阿里云账号美金结算方式。
+在您开始使用<<< custom_key.brand_name >>>产品服务后，可以通过[海外版费用中心](https://bill.guance.one/)使用阿里云账号美金结算方式。
 
-**注意**：目前，{{{ custom_key.brand_name }}}所有中国香港及海外站点均可以开通绑定阿里云海外云市场商品并以美金的方式做为结算，阿里云市场（国际）购买{{{ custom_key.brand_name }}}商品也可以选择任意的中国香港及海外站点做开通绑定。
+**注意**：目前，<<< custom_key.brand_name >>>所有中国香港及海外站点均可以开通绑定阿里云海外云市场商品并以美金的方式做为结算，阿里云市场（国际）购买<<< custom_key.brand_name >>>商品也可以选择任意的中国香港及海外站点做开通绑定。
 
 > 关于站点与结算相关的常见问题，可参考 [FAQ](../billing/faq/settlement-bill.md#site)。
 
@@ -49,6 +49,6 @@
 
 ## 如何获取实例 ID？ {##businessid}
 
-当您已购买{{{ custom_key.brand_name }}}服务，前往**云市场 > 已购买的服务**。您可在右侧查看已购买的所有商品。每个商品都有其**实例 ID**。
+当您已购买<<< custom_key.brand_name >>>服务，前往**云市场 > 已购买的服务**。您可在右侧查看已购买的所有商品。每个商品都有其**实例 ID**。
 
 ![](img/encloud-5.png)

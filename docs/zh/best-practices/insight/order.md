@@ -4,7 +4,7 @@
 
 ## 简介
 
-为了满足快速迭代和流量的激增，电商系统常常使用微服务的方式来进行开发部署，某个微服务系统性能瓶颈直接会影响到客户的购物体验，特别是出现了支付异常、订单取消后，我们要观测订单的整个链路，梳理出实时已支付的订单数量、异常订单数量、取消订单数量，用这些指标帮助我们分析业务瓶颈是很有帮助的。本最佳实践是基于 Java 的一个分布式电商平台，结合{{{ custom_key.brand_name }}}用订单的维度来观测订单成功支付的数量，实时剖析出未成功支付的原因。 
+为了满足快速迭代和流量的激增，电商系统常常使用微服务的方式来进行开发部署，某个微服务系统性能瓶颈直接会影响到客户的购物体验，特别是出现了支付异常、订单取消后，我们要观测订单的整个链路，梳理出实时已支付的订单数量、异常订单数量、取消订单数量，用这些指标帮助我们分析业务瓶颈是很有帮助的。本最佳实践是基于 Java 的一个分布式电商平台，结合<<< custom_key.brand_name >>>用订单的维度来观测订单成功支付的数量，实时剖析出未成功支付的原因。 
 
 ## 前置条件
 ### 安装 Datakit
@@ -12,7 +12,7 @@
 - <[安装 Datakit](/datakit/datakit-install/)>
 ## 数据接入
 
-订单数据接入{{{ custom_key.brand_name }}}的方式是通过 log ，微服务输出日志文件到云服务器，在这台云服务器上安装 DataKit ，并开通日志采集，指定日志文件的路径。为了解析出日志文件中的订单号、下单人、订单状态，需要编写Pipeline 把日志文件中的订单号、下单人、订单状态做切割。
+订单数据接入<<< custom_key.brand_name >>>的方式是通过 log ，微服务输出日志文件到云服务器，在这台云服务器上安装 DataKit ，并开通日志采集，指定日志文件的路径。为了解析出日志文件中的订单号、下单人、订单状态，需要编写Pipeline 把日志文件中的订单号、下单人、订单状态做切割。
 
 ### 开启 Input
 
@@ -176,7 +176,7 @@ mvn clean install -DskipTests
 ```
 ### 开启RUM
 
-- 登录[{{{ custom_key.brand_name }}}](https://console.guance.com/)
+- 登录[<<< custom_key.brand_name >>>](https://console.guance.com/)
 
 点击【用户访问监测】- 【新建应用】输入 book-shop，选择Web，复制js。
 
@@ -207,7 +207,7 @@ server {
 
 ### 开启 APM
 
-{{{ custom_key.brand_name }}}获取 Trace 数据，需要使用: /usr/local/datakit/data/dd-java-agent.jar。
+<<< custom_key.brand_name >>>获取 Trace 数据，需要使用: /usr/local/datakit/data/dd-java-agent.jar。
 
 ```shell
 java -jar bookstore-eureka-discovery-service-0.0.1-SNAPSHOT.jar
@@ -256,7 +256,7 @@ java  -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
  
 ### 订单监控视图
 
-登录[{{{ custom_key.brand_name }}}](https://console.guance.com/)，【场景】->【新建仪表板】->【新建空白仪表板】，输入“订单监控视图”，点击【确定】。
+登录[<<< custom_key.brand_name >>>](https://console.guance.com/)，【场景】->【新建仪表板】->【新建空白仪表板】，输入“订单监控视图”，点击【确定】。
 
 ![1641360132(1).png](../images/order-4.png)
 

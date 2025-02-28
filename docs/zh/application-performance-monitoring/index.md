@@ -4,8 +4,8 @@ icon: zy/application-performance-monitoring
 # 应用性能监测
 ---
 
-<video controls="controls" poster="https://{{{ custom_key.static_domain }}}/dataflux/help/video/apm.jpeg" >
-      <source id="mp4" src="https://{{{ custom_key.static_domain }}}/dataflux/help/video/apm.mp4" type="video/mp4">
+<video controls="controls" poster="https://<<< custom_key.static_domain >>>/dataflux/help/video/apm.jpeg" >
+      <source id="mp4" src="https://<<< custom_key.static_domain >>>/dataflux/help/video/apm.mp4" type="video/mp4">
 </video>
 
 应用性能监测支持使用 Opentracing 协议的采集器，实现对分布式架构的应用进行端到端的链路分析，并与基础设施、日志、用户访问监测进行关联，快速定位并解决故障，提高用户体验。
@@ -13,7 +13,7 @@ icon: zy/application-performance-monitoring
 
 ![](img/1.apm-2.png)
 
-最佳部署方案是将 DataKit 部署在每一台应用服务器中，通过服务所在主机的 DataKit 后将数据打到{{{ custom_key.brand_name }}}中心，能更好地对应用服务的服务器主机指标、应用日志、系统日志、应用服务链路数据等统一汇聚，进行各项数据的关联分析。
+最佳部署方案是将 DataKit 部署在每一台应用服务器中，通过服务所在主机的 DataKit 后将数据打到<<< custom_key.brand_name >>>中心，能更好地对应用服务的服务器主机指标、应用日志、系统日志、应用服务链路数据等统一汇聚，进行各项数据的关联分析。
 
 
 ## 应用场景
@@ -44,7 +44,7 @@ icon: zy/application-performance-monitoring
 
 ## 数据存储与计费规则
 
-{{{ custom_key.brand_name }}}为应用性能数据提供 3 天、7 天、14 天三种数据存储时长选择，您可以按照需求在**管理 > 设置 > 变更数据存储策略**中调整。
+<<< custom_key.brand_name >>>为应用性能数据提供 3 天、7 天、14 天三种数据存储时长选择，您可以按照需求在**管理 > 设置 > 变更数据存储策略**中调整。
 
 > 更多数据存储策略，可参考 [数据存储策略](../billing-method/data-storage.md)。
 

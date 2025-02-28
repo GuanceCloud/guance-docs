@@ -9,7 +9,7 @@
 - DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 
 ## 应用接入 {#integration}
-当前 Unity 版本暂时支持 Android 和 iOS 平台。登录{{{ custom_key.brand_name }}}控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
+当前 Unity 版本暂时支持 Android 和 iOS 平台。登录<<< custom_key.brand_name >>>控制台，进入「用户访问监测」页面，点击左上角「新建应用」，即可开始创建一个新的应用。
 
 1.输入「应用名称」、「应用ID」，选择 「自定义」 应用类型
 
@@ -20,13 +20,13 @@
 ![](../img/image_13.png)
 
 ## 安装 {#install}
-![](https://img.shields.io/badge/dynamic/json?label=unity&color=orange&query=$.version&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/unity/version.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-unity)
+![](https://img.shields.io/badge/dynamic/json?label=unity&color=orange&query=$.version&uri=https://<<< custom_key.static_domain >>>/ft-sdk-package/badge/unity/version.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://<<< custom_key.static_domain >>>/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-unity)
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-unity](https://github.com/GuanceCloud/datakit-unity)
 
 **Demo 地址**：[https://github.com/GuanceCloud/datakit-unity/blob/dev/Assets/Scenes](https://github.com/GuanceCloud/datakit-unity/blob/dev/Assets/Scenes/ClickEvent.cs)
 
-* 下载最新 [ft-sdk-unity.unitypackage](https://{{{ custom_key.static_domain }}}/ft-sdk-package/unitypackage/alpha/ft-sdk-unity.unitypackage)
+* 下载最新 [ft-sdk-unity.unitypackage](https://<<< custom_key.static_domain >>>/ft-sdk-package/unitypackage/alpha/ft-sdk-unity.unitypackage)
 
 ```
 Assets/Plugins

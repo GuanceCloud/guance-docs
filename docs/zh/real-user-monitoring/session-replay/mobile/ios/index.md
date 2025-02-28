@@ -1,6 +1,6 @@
 # iOS 会话重放
 
-![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/ios/feature/session_replay/version.json&link=https://github.com/GuanceCloud/datakit-ios) 
+![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://<<< custom_key.static_domain >>>/ft-sdk-package/badge/ios/feature/session_replay/version.json&link=https://github.com/GuanceCloud/datakit-ios) 
 
 ## 前置条件
 * 确保您已[设置并初始化 FTMobileSDK RUM 配置](../../../ios/app-access.md)，并开启 View 的监控采集。

@@ -22,7 +22,7 @@ Content-Security-Policy: connect-src http://example.com/;
 
 ## 如何在使用 CSP 的网站应用中，接入 RUM SDK
 
-如果您的网站应用正在使用 CSP，接入{{{ custom_key.brand_name }}} RUM SDK 之后，可能会在浏览器中出现安全违规的提示，你需要将以下 URL 添加到对应的指令中：
+如果您的网站应用正在使用 CSP，接入<<< custom_key.brand_name >>> RUM SDK 之后，可能会在浏览器中出现安全违规的提示，你需要将以下 URL 添加到对应的指令中：
 
 ### Datakit 上报 URLs
 
@@ -52,7 +52,7 @@ Content-Security-Policy: connect-src http://example.com/;
 
 在 SDK 版本 `>=3.2.0` 开始支持自己托管 webwork 文件。在 SDK 配置中添加 `workerUrl` 来添加托管地址。可以通过以下两种方式来获取 worker 文件
 
-1. 从{{{ custom_key.brand_name }}}官方地址 https://{{{ custom_key.static_domain }}}/browser-sdk/v3/worker.js 下载
+1. 从<<< custom_key.brand_name >>>官方地址 https://<<< custom_key.static_domain >>>/browser-sdk/v3/worker.js 下载
 2. 安装 @cloudcare/browser-worker NPM 包并使用构建工具将其包含在构建资产中（参见 [Webpack 4](https://v4.webpack.js.org/loaders/file-loader/)、[Webpack 5](https://webpack.js.org/guides/asset-modules/#url-assets)、[Vite](https://vitejs.dev/guide/assets.html#new-url-url-import-meta-url) 和 [Rollup](https://github.com/rollup/plugins/tree/master/packages/url/#readme) 的文档）。
 
 必要条件：
@@ -65,5 +65,5 @@ Content-Security-Policy: connect-src http://example.com/;
 如果您正在使用 [CDN 异步或 CDN 同步](../real-user-monitoring/web/app-access.md#access)的方式引入 RUM SDK，请添加以下 script-src 条目：
 
 ```json
-script-src https://{{{ custom_key.static_domain }}}
+script-src https://<<< custom_key.static_domain >>>
 ```

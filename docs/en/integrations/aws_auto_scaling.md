@@ -7,12 +7,15 @@ __int_icon: 'icon/aws_auto_scaling'
 dashboard:
 
   - desc: 'AWS Auto Scaling Monitoring View'
-    path: 'dashboard/zh/aws_auto_scaling'
+    path: 'dashboard/en/aws_auto_scaling'
 
 monitor:
   - desc: 'AWS Auto Scaling Monitor'
-    path: 'monitor/zh/aws_auto_scaling'
+    path: 'monitor/en/aws_auto_scaling'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_auto_scaling'
 ---
 
 <!-- markdownlint-disable MD025 -->

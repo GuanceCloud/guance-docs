@@ -4,7 +4,7 @@ icon: zy/ci-visibility
 # CI 可视化
 ---
 
-{{{ custom_key.brand_name }}}支持为 Gitlab/Jenkins 内置的 CI 的过程和结果进行可视化，您可以通过{{{ custom_key.brand_name }}}的 CI 可视化功能直接查看在 Gitlab/Jenkins 的 CI 结果。CI 的过程是持续集成，开发人员在 push 代码的时候，若碰到问题，可以在{{{ custom_key.brand_name }}}查看所有 CI 过程的成功率、失败原因、具体失败环节，帮助您提供代码更新保障。
+<<< custom_key.brand_name >>>支持为 Gitlab/Jenkins 内置的 CI 的过程和结果进行可视化，您可以通过<<< custom_key.brand_name >>>的 CI 可视化功能直接查看在 Gitlab/Jenkins 的 CI 结果。CI 的过程是持续集成，开发人员在 push 代码的时候，若碰到问题，可以在<<< custom_key.brand_name >>>查看所有 CI 过程的成功率、失败原因、具体失败环节，帮助您提供代码更新保障。
 
 ## 名词解释
 

@@ -27,7 +27,7 @@
 
 #### 标识 ID
 
-{{{ custom_key.brand_name }}}定义该 ID 为 `identifier`，用于确定仪表板或视图的唯一性。
+<<< custom_key.brand_name >>>定义该 ID 为 `identifier`，用于确定仪表板或视图的唯一性。
 
 ##### 应用场景
 

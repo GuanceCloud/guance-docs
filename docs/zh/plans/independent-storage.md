@@ -2,11 +2,11 @@
 ---
 
 
-{{{ custom_key.brand_name }}}提供的 SaaS 版具有专属的数据存储环境，享有更好的数据隔离和安全性；您还可以调整冷热数据的大小比例，实现更快的数据处理性能。
+<<< custom_key.brand_name >>>提供的 SaaS 版具有专属的数据存储环境，享有更好的数据隔离和安全性；您还可以调整冷热数据的大小比例，实现更快的数据处理性能。
 
 ## 专属存储版费用
 
-{{{ custom_key.brand_name }}}专属存储版为用户提供更高的性能和安全性，相对来说费用比{{{ custom_key.brand_name }}}商业版更高，以{{{ custom_key.brand_name }}}基础计费为例，专属存储版的参考价如下：
+<<< custom_key.brand_name >>>专属存储版为用户提供更高的性能和安全性，相对来说费用比<<< custom_key.brand_name >>>商业版更高，以<<< custom_key.brand_name >>>基础计费为例，专属存储版的参考价如下：
 
 **注意**：以下价格仅做参考使用，实际结算价格按照具体的需求而定。
 
@@ -20,8 +20,8 @@
 | 任务调用     | 每 1 万次    | 1 元     | 1.5 元     |
 | 短信         | 每 10 次     | 1 元     | 1.5 元     |
 
-> 更多{{{ custom_key.brand_name }}}计费，可参考 [用量计费方式](../billing-method/index.md)。
+> 更多<<< custom_key.brand_name >>>计费，可参考 [用量计费方式](../billing-method/index.md)。
 
 ## 如何获得专属存储版
 
-如果您想获取{{{ custom_key.brand_name }}}专属存储版或有其他任何问题，您可以联系客户经理。
+如果您想获取<<< custom_key.brand_name >>>专属存储版或有其他任何问题，您可以联系客户经理。

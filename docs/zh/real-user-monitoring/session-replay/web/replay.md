@@ -4,7 +4,7 @@
 
 ## 开启 Session Replay
 
-通过您之前的 SDK 引入方式，替换 NPM 包为 `> 3.0.0` 版本、或者替换原来的 CDN 链接为 `https://{{{ custom_key.static_domain }}}/browser-sdk/v3/dataflux-rum.js`。SDK 初始化 `init()` 之后并不会自动采集 Session Replay Record 数据，需要执行 `startSessionReplayRecording` 开启数据的采集，这对于一些只采集特定情况 Session Replay Record 数据很有用，比如：
+通过您之前的 SDK 引入方式，替换 NPM 包为 `> 3.0.0` 版本、或者替换原来的 CDN 链接为 `https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js`。SDK 初始化 `init()` 之后并不会自动采集 Session Replay Record 数据，需要执行 `startSessionReplayRecording` 开启数据的采集，这对于一些只采集特定情况 Session Replay Record 数据很有用，比如：
 
 ```js
 // 只采集用户登录之后的操作数据
@@ -38,11 +38,11 @@ datafluxRum.startSessionReplayRecording()
 
 ### CDN {#cdn}
 
-替换原来的 CDN 地址 `https://{{{ custom_key.static_domain }}}/browser-sdk/v2/dataflux-rum.js` 为 `https://{{{ custom_key.static_domain }}}/browser-sdk/v3/dataflux-rum.js`, 并在执行 `DATAFLUX_RUM.init()` 之后，执行 `DATAFLUX_RUM.startSessionReplayRecording()`。
+替换原来的 CDN 地址 `https://<<< custom_key.static_domain >>>/browser-sdk/v2/dataflux-rum.js` 为 `https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js`, 并在执行 `DATAFLUX_RUM.init()` 之后，执行 `DATAFLUX_RUM.startSessionReplayRecording()`。
 
 ```js
 <script
-src="https://{{{ custom_key.static_domain }}}/browser-sdk/v3/dataflux-rum.js"
+src="https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js"
 type="text/javascript"
 ></script>
 <script>

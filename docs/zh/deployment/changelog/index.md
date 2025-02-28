@@ -6,10 +6,10 @@ pubrepo.guance.com/dataflux/1.104.190:launcher-f574b1d-1740401808
 
 ### 离线镜像包下载
 
-- AMD64 架构下载: https://{{{ custom_key.static_domain }}}/dataflux/package/guance-amd64-1.104.190.tar.gz
+- AMD64 架构下载: https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-1.104.190.tar.gz
     - MD5: `c75a12066300d28f85912128bf5e4b6f`
 
-- ARM64 架构下载: https://{{{ custom_key.static_domain }}}/dataflux/package/guance-arm64-1.104.190.tar.gz
+- ARM64 架构下载: https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-1.104.190.tar.gz
     - MD5: `9fc1d397413d9a49c1f9fc2362a7301c`
 
 ???+ attention 重要版本依赖更新说明
@@ -25,6 +25,15 @@ pubrepo.guance.com/dataflux/1.104.190:launcher-f574b1d-1740401808
     - guance-insert: v1.11.4+
     - guance-storage: v1.11.4+
 
+### Breaking Changes {#breakingchanges0219}
+
+[事件](../../events/index.md) `df_meta` 内将不再保留 `alert_info` 相关信息记录。此前依赖该信息实现通知对象获取的用户，请切换至使用新增的 `df_alert_info`（事件告警通知）、`df_is_silent`（是否静默）、`df_sent_target_types`（事件通知对象类型）3 个字段来完成相应功能。
+
+可能影响到的功能场景:
+
+1. 通过 OpenAPI 获取事件对接外部系统的自定义使用场景
+2. 通过 Webhook 通知对象转发事件到外部系统的自定义使用场景
+
 ### 部署版更新 {#feature0219}
 
 - Launcher 支持一键暂停所有监控器，防止升级过程中产生误告警。注：此功能需要升级到 1.104.190 版本后支持。
@@ -37,10 +46,10 @@ pubrepo.guance.com/dataflux/1.103.189:launcher-d4a5efc-1737455050
 
 ### 离线镜像包下载
 
-- AMD64 架构下载: https://{{{ custom_key.static_domain }}}/dataflux/package/guance-amd64-1.103.189.tar.gz
+- AMD64 架构下载: https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-1.103.189.tar.gz
     - MD5: `e3c0d6aa1ca3e063575aeb1c7c6cf2da`
 
-- ARM64 架构下载: https://{{{ custom_key.static_domain }}}/dataflux/package/guance-arm64-1.103.189.tar.gz
+- ARM64 架构下载: https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-1.103.189.tar.gz
     - MD5: `1edf1c249834224b0ee2fa49e2280927`
 
 ### 功能更新 {#feature0116}
@@ -95,10 +104,10 @@ pubrepo.guance.com/dataflux/1.102.188:launcher-0bd0be5-1736856269
 
 ### 离线镜像包下载
 
-- AMD64 架构下载: https://{{{ custom_key.static_domain }}}/dataflux/package/guance-amd64-1.102.188.tar.gz
+- AMD64 架构下载: https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-1.102.188.tar.gz
     - MD5: `07d82df7e9a6ccb4ba747e8cb02d0882`
 
-- ARM64 架构下载: https://{{{ custom_key.static_domain }}}/dataflux/package/guance-arm64-1.102.188.tar.gz
+- ARM64 架构下载: https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-1.102.188.tar.gz
     - MD5: `e5ee7933fd1f46ae9df5d05219b4726d`
 
 ### 部署版更新 {#deployment0108}
@@ -139,7 +148,7 @@ pubrepo.guance.com/dataflux/1.102.188:launcher-0bd0be5-1736856269
 
 #### 管理
 
-1. 事件支持配置[数据转发](../../management/backup/index.md)：支持配置事件类型的数据转发规则，将符合过滤条件的事件数据保存到{{{ custom_key.brand_name }}}的对象存储及转发到外部存储，提供灵活管理事件数据的能力。
+1. 事件支持配置[数据转发](../../management/backup/index.md)：支持配置事件类型的数据转发规则，将符合过滤条件的事件数据保存到<<< custom_key.brand_name >>>的对象存储及转发到外部存储，提供灵活管理事件数据的能力。
 
 2. 工作空间新增 DataKit [环境变量](../../management/env_variable.md)：工作空间支持管理 DataKit 环境变量，用户可以轻松配置和更新环境变量，实现远程同步更新 DataKit 采集配置。
 

@@ -7,12 +7,15 @@ __int_icon: 'icon/aws_documentdb'
 dashboard:
 
   - desc: 'AWS DocumentDB Monitoring View'
-    path: 'dashboard/zh/aws_documentdb'
+    path: 'dashboard/en/aws_documentdb'
 
 monitor:
   - desc: 'AWS DocumentDB Monitor'
-    path: 'monitor/zh/aws_documentdb'
+    path: 'monitor/en/aws_documentdb'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_documentdb'
 ---
 
 

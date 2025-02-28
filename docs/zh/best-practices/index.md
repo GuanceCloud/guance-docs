@@ -38,7 +38,7 @@ icon: zy/best-practices
 ### 新增最佳实践
 
 - 洞见
-    - {{{ custom_key.brand_name }}}小妙招(Skills) - [DataKit 配置 HTTPS](./insight/datakit-https.md)。
+    - <<< custom_key.brand_name >>>小妙招(Skills) - [DataKit 配置 HTTPS](./insight/datakit-https.md)。
 
 - 监控 Monitoring
     - 应用性能监控 (APM) - 性能优化 - [利用 async-profiler 对应用性能调优](./monitoring/async-profiler.md)。
@@ -57,7 +57,7 @@ icon: zy/best-practices
 ### 新增最佳实践
 
 - 云原生
-    - 日志 - [{{{ custom_key.brand_name }}}采集 Amazon ECS 日志](./cloud-native/amazon-ecs.md)。
+    - 日志 - [<<< custom_key.brand_name >>>采集 Amazon ECS 日志](./cloud-native/amazon-ecs.md)。
 
 
 ## (2022/10/08)
@@ -117,7 +117,7 @@ icon: zy/best-practices
 ### 新增最佳实践
 
 - 洞见
-    - 场景 - [内网场景 Dubbo 微服务接入{{{ custom_key.brand_name }}}](./insight/scene-dubbo.md)。
+    - 场景 - [内网场景 Dubbo 微服务接入<<< custom_key.brand_name >>>](./insight/scene-dubbo.md)。
 
 ### 更新记录
 
@@ -138,7 +138,7 @@ icon: zy/best-practices
     - [主机可观测最佳实践 (Linux)](./monitoring/host-linux.md),<font color="red" > 优化指标和采集流程</font>。
 	
 - 洞见 Insight  
-    - [基于{{{ custom_key.brand_name }}}，使用 SkyWalking 实现 RUM、APM 和日志联动分析](insight/skywalking-apm-rum-log.md),<font color="red" > 新增skywalking 增加apm-spring-cloud-gateway 的使用说明</font>。
+    - [基于<<< custom_key.brand_name >>>，使用 SkyWalking 实现 RUM、APM 和日志联动分析](insight/skywalking-apm-rum-log.md),<font color="red" > 新增skywalking 增加apm-spring-cloud-gateway 的使用说明</font>。
 
 ## (2022/07/15)
 ### 新增最佳实践
@@ -187,7 +187,7 @@ icon: zy/best-practices
 ## (2022/06/03)
 ### 新增最佳实践
 
-- {{{ custom_key.brand_name }}}小妙招
+- <<< custom_key.brand_name >>>小妙招
    
      - [OpenTelemetry 采样最佳实践](./cloud-native/opentelemetry-simpling.md)
 
@@ -196,14 +196,14 @@ icon: zy/best-practices
 
 - APM
    
-    - [基于{{{ custom_key.brand_name }}}，使用 SkyWalking 实现 RUM、APM 和日志联动分析](./insight/skywalking-apm-rum-log.md)
+    - [基于<<< custom_key.brand_name >>>，使用 SkyWalking 实现 RUM、APM 和日志联动分析](./insight/skywalking-apm-rum-log.md)
 
 - 监控最佳实践
     - [OpenTelemetry 可观测建设](./cloud-native/opentelemetry-observable.md)
 
     - [OpenTelemetry to Jaeger 、Grafana、ELK](./cloud-native/opentelemetry-elk.md)
     - [OpenTelemetry to Grafana](./cloud-native/opentelemetry-grafana.md)
-    - [OpenTelemetry to {{{ custom_key.brand_name }}}](./cloud-native/opentelemetry-guance.md)
+    - [OpenTelemetry to <<< custom_key.brand_name >>>](./cloud-native/opentelemetry-guance.md)
 ### 更新记录
 
 - 云原生
@@ -269,7 +269,7 @@ icon: zy/best-practices
 ## (2022/04/01)
 ### 新增最佳实践
 
-- {{{ custom_key.brand_name }}}小妙招
+- <<< custom_key.brand_name >>>小妙招
     - [多微服务项目的性能可观测实践](./cloud-native/mutil-micro-service.md)
    
     - [Kubernetes 集群使用 ExternalName 映射 DataKit 服务](./cloud-native/kubernetes-external-name.md)
@@ -288,7 +288,7 @@ icon: zy/best-practices
 
 - 场景最佳实践
     - [RUM 数据上报 DataKit 集群最佳实践](./monitoring/rum-datakit-cluster.md)
-- {{{ custom_key.brand_name }}}小妙招
+- <<< custom_key.brand_name >>>小妙招
     - [数据关联最佳实践](./insight/data-ship.md)
 ### 更新记录
 
@@ -321,7 +321,7 @@ icon: zy/best-practices
     - [Gitlab-CI 可观测最佳实践](./monitoring/gitlab-ci.md)  
 - 日志最佳实践
     - [logback socket 日志采集最佳实践](./cloud-native/logback-socket.md)
-- {{{ custom_key.brand_name }}}小妙招
+- <<< custom_key.brand_name >>>小妙招
     - [页面渠道引流可观测最佳实践](./monitoring/page.md)
 ### 更新记录
 
@@ -337,7 +337,7 @@ icon: zy/best-practices
 
 - 微服务可观测最佳实践
     - [Kubernetes 应用的 RUM-APM-LOG 联动分析](./cloud-native/k8s-rum-apm-log.md)，<font color="red" >增加自己打 dd-java-agent.jar 到业务镜像的示例</font>
-    - [从 0 到 1 利用{{{ custom_key.brand_name }}}构建 Spring cloud 服务的可观测性](./monitoring/spring-cloud-sample.md)，<font color="red" >调整了部分产品名词叫法跟{{{ custom_key.brand_name }}}产品保持一致</font>
+    - [从 0 到 1 利用<<< custom_key.brand_name >>>构建 Spring cloud 服务的可观测性](./monitoring/spring-cloud-sample.md)，<font color="red" >调整了部分产品名词叫法跟<<< custom_key.brand_name >>>产品保持一致</font>
 - 日志最佳实践
     - [Pod 日志采集最佳实践](./cloud-native/pod-log.md) ，<font color="red" >调整方案循序，将热门使用方案置顶</font>
 
@@ -356,4 +356,4 @@ icon: zy/best-practices
 - 微服务可观测最佳实践
     - [Kubernetes 应用的 RUM-APM-LOG 联动分析](./cloud-native/k8s-rum-apm-log.md)，<font color="red" >修改 datakit 版本为datakit:1.2.1，container.conf 使用最新配置</font>
 - 技术理解
-    - Springboot, OTEL and Tempo 可观测，<font color="red" >新增 OpenTelemetry {{{ custom_key.brand_name }}}接入数据架构图及处理流程</font>
+    - Springboot, OTEL and Tempo 可观测，<font color="red" >新增 OpenTelemetry <<< custom_key.brand_name >>>接入数据架构图及处理流程</font>

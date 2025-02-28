@@ -8,7 +8,7 @@
 
 === "CDN"
 
-    [下载文件](https://{{{ custom_key.static_domain }}}/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
+    [下载文件](https://<<< custom_key.static_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -45,7 +45,7 @@
 
 === "CDN"
 
-    [下载文件](https://{{{ custom_key.static_domain }}}/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
+    [下载文件](https://<<< custom_key.static_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -77,7 +77,7 @@
 
 === "CDN"
 
-    [下载文件](https://{{{ custom_key.static_domain }}}/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
+    [下载文件](https://<<< custom_key.static_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -100,7 +100,7 @@
 
 === "CDN"
 
-    [下载文件](https://{{{ custom_key.static_domain }}}/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
+    [下载文件](https://<<< custom_key.static_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js');
@@ -122,7 +122,7 @@
 
 === "CDN"
 
-    [下载文件](https://{{{ custom_key.static_domain }}}/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
+    [下载文件](https://<<< custom_key.static_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js');
