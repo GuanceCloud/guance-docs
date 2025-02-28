@@ -23,7 +23,7 @@
 | name | string |  | 标题名称<br>例子: name <br>允许为空: False <br>$maxCustomLength: 256 <br> |
 | level | string |  | 等级,对应等级配置uuid<br>例子: level <br>允许为空: False <br>允许为空字符串: True <br> |
 | description | string |  | 描述<br>例子: description <br>允许为空: False <br> |
-| statusType | integer |  | issue的状态<br>例子: statusType <br>允许为空: False <br>可选值: [10, 20, 30] <br> |
+| statusType | integer |  | issue的状态<br>例子: statusType <br>允许为空: False <br>可选值: [10, 15, 20, 25, 30] <br> |
 | extend | json | Y | 额外拓展信息，没有内容默认{}<br>例子: {} <br>允许为空: True <br> |
 | attachmentUuids | array |  | 附件上传列表uuid<br>例子: [] <br>允许为空: True <br> |
 
@@ -36,7 +36,7 @@
 |:---------------:|:--------:|:--------:|:-------------------------------------------:|
 |      name       |  string  |    N     |                issue标题名称                |
 |      level      | string  |    N    |        issue等级 对应配置等级uuid        |
-|      statusType      | integer  |    N     |        issue状态, 10: Open, 20: Resolved, 30: Pending        |
+|      statusType      | integer  |    N     |        issue状态, 10: Open, 15: Working, 20: Resolved, 25: Closed, 30: Pending     |
 |   decription    |  string  |    N     |                issue描述信息                |
 | attachmentUuids |  array   |    N     |              附件上传列表uuid, 需先通过 /api/v1/attachment/upload 接口进行上传          |
 |     extend      |   json   |    N    |                  扩展字段，默认传{}                  |
