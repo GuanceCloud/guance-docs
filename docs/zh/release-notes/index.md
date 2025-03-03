@@ -37,7 +37,7 @@ icon: zy/release-notes
 
 </div>
 
-## 2025 年 2 月 27 日
+## 2025 年 2 月 27 日 {#20250227}
 
 ### OpenAPI 更新 {#openapi0227}
 
