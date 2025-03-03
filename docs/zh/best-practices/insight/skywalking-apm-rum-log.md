@@ -1,16 +1,16 @@
-# 基于观测云，使用 SkyWalking 实现 RUM、APM 和日志联动分析
+# 基于{{{ custom_key.brand_name }}}，使用 SkyWalking 实现 RUM、APM 和日志联动分析
 
 ---
 
 ## 应用场景
 
-分布式应用环境下，常常通过日志和链路来排查问题。观测云可以实现用户通过 Web 端进行的请求，通过 traceId 与后端的接口关联起来，如果后端接口输出了日志，通过 traceId 把链路和日志关联起来，最终形成 **RUM、APM 和日志的联动**，再运用**观测云**平台进行综合分析，能非常方便快捷地发现问题、定位问题。
+分布式应用环境下，常常通过日志和链路来排查问题。{{{ custom_key.brand_name }}}可以实现用户通过 Web 端进行的请求，通过 traceId 与后端的接口关联起来，如果后端接口输出了日志，通过 traceId 把链路和日志关联起来，最终形成 **RUM、APM 和日志的联动**，再运用**{{{ custom_key.brand_name }}}**平台进行综合分析，能非常方便快捷地发现问题、定位问题。
 
 本文用一个简单容易上手的开源项目为例，一步一步实现全链路可观测。
 
 ## 前置条件
 
-- 您需要先创建一个[观测云账号](https://www.guance.com/)。
+- 您需要先创建一个[{{{ custom_key.brand_name }}}账号](https://www.guance.com/)。
 - Spring Boot 和 vue 应用。
 - 一台部署了 Nginx 的 Linux 服务器。
 
@@ -24,7 +24,7 @@
 
 #### 1.1 安装 DataKit
 
-登录「[观测云](https://console.guance.com/)」，依次进入「集成」 - 「DataKit」 - 「Linux」，点击「复制图标」复制安装命令。
+登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，依次进入「集成」 - 「DataKit」 - 「Linux」，点击「复制图标」复制安装命令。
 
 ![image](../images/skywalking-apm-rum-log/1.png)
 
@@ -165,13 +165,13 @@ cd /usr/local/df-demo/skywalking
 java  -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=skywalking-log  -Dskywalking.collector.backend_service=localhost:11800 -jar skywalking-user-service.jar
 ```
 
-登录「[观测云](https://console.guance.com/)」，进入「应用性能监测」，查看服务、链路及拓扑图。
+登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「应用性能监测」，查看服务、链路及拓扑图。
 
 ![image](../images/skywalking-apm-rum-log/16.png)
 
 ### 4 开启 RUM
 
-登录「 [观测云](https://console.guance.com/)」，进入「用户访问监测」，新建应用 **skywalking-web-demo** ，复制下方 JS。
+登录「 [{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「用户访问监测」，新建应用 **skywalking-web-demo** ，复制下方 JS。
 
 ![image](../images/skywalking-apm-rum-log/17.png)
 
@@ -191,7 +191,7 @@ java  -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=skyw
 - traceType：trace 类型，默认为 ddtrace，非必填。
 - allowedTracingOrigins：实现 APM 与 RUM 链路打通，填写后端服务的域名或 IP ，非必填。
 
-点击前端界面的按钮。登录「 [观测云](https://console.guance.com/)」 - 「用户访问监测」，点击「skywalking-web-demo」，查看 UV、PV、会话数、访问的页面等信息。
+点击前端界面的按钮。登录「 [{{{ custom_key.brand_name }}}](https://console.guance.com/)」 - 「用户访问监测」，点击「skywalking-web-demo」，查看 UV、PV、会话数、访问的页面等信息。
 
 ![image](../images/skywalking-apm-rum-log/19.png)
 
@@ -199,7 +199,7 @@ java  -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=skyw
 
 ### 5 全链路可观测
 
-登录「 [观测云](https://console.guance.com/)」 - 「用户访问监测」，点击 「skywalking-web-demo」，进入后点击「查看器」，选择「view」，查看页面调用情况，然后点击「route_change」进入。
+登录「 [{{{ custom_key.brand_name }}}](https://console.guance.com/)」 - 「用户访问监测」，点击 「skywalking-web-demo」，进入后点击「查看器」，选择「view」，查看页面调用情况，然后点击「route_change」进入。
 
 ![image](../images/skywalking-apm-rum-log/21.png)
 

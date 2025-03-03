@@ -3,16 +3,31 @@
 
 ## 安装 DataKit Agent
 
-进行系统和应用程序的链路数据分析之前，需要在每个目标主机上[部署观测云 DataKit 采集器](../../../datakit/datakit-install.md)，以收集必要的链路数据。
+进行系统和应用程序的链路数据分析之前，需要在每个目标主机上[部署{{{ custom_key.brand_name }}} DataKit 采集器](../../../datakit/datakit-install.md)，以收集必要的链路数据。
 
-### 选择语言
+## 开启 DDTrace 采集器
 
-#### Java
+DDTrace 用于接收、运算、分析 Tracing 协议数据，执行下面的命令，开启 DDTrace 采集器。其他第三方 Tracing 采集配置请参照[集成](../../../integrations/integration-index.md)。
+
+```
+cp /usr/local/datakit/conf.d/ddtrace/ddtrace.conf.sample /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
+```
+
+配置完成后，重启 DataKit：
+
+```
+datakit service -R
+```
+
+
+## 选择语言
+
+### Java
 
 安装依赖：
 
 ```
-wget -O dd-java-agent.jar 'https://static.guance.com/dd-image/dd-java-agent.jar'
+wget -O dd-java-agent.jar 'https://{{{ custom_key.static_domain }}}/dd-image/dd-java-agent.jar'
 ```
 
 运行应用：
@@ -39,7 +54,7 @@ java \
 
 > 更多参数配置，参考 [这里](../../../integrations/ddtrace-java.md#start-options)。
 
-#### Python
+### Python
 
 安装依赖：
 
@@ -69,7 +84,7 @@ ddtrace-run python my_app.py
 
 > 更多参数配置，参考 [这里](../../../integrations/ddtrace-java.md#start-options)。
 
-#### Golang
+### Golang
 
 安装依赖：
 
@@ -119,7 +134,7 @@ func main() {
 
 > 更多参数配置，参考 [这里](../../../integrations/ddtrace-java.md#start-options)。
 
-#### Node.JS
+### Node.JS
 
 <font size=2>
 
@@ -131,7 +146,7 @@ func main() {
 
 </font>
 
-#### C++
+### C++
 
 <font size=2>
 
@@ -143,7 +158,7 @@ func main() {
 
 </font>
 
-#### PHP
+### PHP
 
 <font size=2>
 

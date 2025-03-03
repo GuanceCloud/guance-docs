@@ -1,6 +1,6 @@
 # SLS Logstore 索引绑定 {#sls}
 
-选择 **SLS Logstore**。观测云支持 [RAM 子账号授权](#ram)和[第三方快捷授权](#third-party)两种授权方式：
+选择 **SLS Logstore**。{{{ custom_key.brand_name }}}支持 [RAM 子账号授权](#ram)和[第三方快捷授权](#third-party)两种授权方式：
 
 ## RAM 子账号授权 {#ram}
 
@@ -14,9 +14,9 @@
 :material-numeric-2-circle-outline: 资源授权：
 
 1. 选择所在地区；
-2. 根据上面填写的 AK / AKS，观测云自动获取 Project 和 Logstore。 
-3. 观测云 Index：默认与 Logstore 的名称保持一致，您也可以自定义编辑名称。
-    - **注意**：该索引名称与 SLS 无关，用于您后续在观测云中的数据筛选。
+2. 根据上面填写的 AK / AKS，{{{ custom_key.brand_name }}}自动获取 Project 和 Logstore。 
+3. {{{ custom_key.brand_name }}} Index：默认与 Logstore 的名称保持一致，您也可以自定义编辑名称。
+    - **注意**：该索引名称与 SLS 无关，用于您后续在{{{ custom_key.brand_name }}}中的数据筛选。
 4. 访问类型：为避免配置路径错误，从而出现获取不到数据的问题，此处可根据实际情况选择**内网访问**或**公网访问**。
 
 
@@ -26,9 +26,9 @@
 
 ???- warning "针对商业版与专属版"
 
-    - 若您是观测云商业版用户，您可以参考文档 [RAM 账号授权](../../plans/sls-grant.md)，获取 AK / AKS 进行索引绑定；       
-    - 若您是观测云专属版用户，您可以直接使用开通专属版时的 AK / AKS 进行索引绑定，关于如何开通专属版，可参考 [阿里云市场开通观测云专属版](../../plans/commercial-aliyun-sls.md)；     
-    - 若您是观测云专属版用户，且希望绑定其他阿里云账号下的 SLS 日志索引，可参考 [RAM 账号授权](../../plans/sls-grant.md)，获取 AK / AKS 进行索引绑定。
+    - 若您是{{{ custom_key.brand_name }}}商业版用户，您可以参考文档 [RAM 账号授权](../../plans/sls-grant.md)，获取 AK / AKS 进行索引绑定；       
+    - 若您是{{{ custom_key.brand_name }}}专属版用户，您可以直接使用开通专属版时的 AK / AKS 进行索引绑定，关于如何开通专属版，可参考 [阿里云市场开通{{{ custom_key.brand_name }}}专属版](../../plans/commercial-aliyun-sls.md)；     
+    - 若您是{{{ custom_key.brand_name }}}专属版用户，且希望绑定其他阿里云账号下的 SLS 日志索引，可参考 [RAM 账号授权](../../plans/sls-grant.md)，获取 AK / AKS 进行索引绑定。
 
 
 ## 第三方快捷授权 {#third-party}
@@ -50,11 +50,11 @@
 
 :material-numeric-2-circle-outline: 资源授权：
 
-1. 授权完成后，填写您的阿里云账号 ID。填写完成后，观测云会自动获取 Project 和 Logstore。  
+1. 授权完成后，填写您的阿里云账号 ID。填写完成后，{{{ custom_key.brand_name }}}会自动获取 Project 和 Logstore。  
 
-2. 观测云 Index：默认与 Logstore 的名称保持一致，您也可以自定义编辑名称。   
+2. {{{ custom_key.brand_name }}} Index：默认与 Logstore 的名称保持一致，您也可以自定义编辑名称。   
 
-    - **注意**：该索引名称与 SLS 无关，用于您后续在观测云中的数据筛选。
+    - **注意**：该索引名称与 SLS 无关，用于您后续在{{{ custom_key.brand_name }}}中的数据筛选。
 
 3. 访问类型：为避免配置路径错误，从而出现获取不到数据的问题，此处可根据实际情况选择**内网访问**或**公网访问**。
 

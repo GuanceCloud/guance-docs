@@ -103,9 +103,9 @@ logging.pattern.level: "trace_id=%mdc{traceId} span_id=%mdc{spanId} trace_flags=
 {  "userId" :  1 ,  "id" :  1 ,  "title" :  "delectus aut autem" ,  "已完成" :  false  }
 ```
 
-要查看调用端点时创建的实际链路追踪，我们需要收集并查看它们。在本教程中，我们将使用`zipkin`导出器将数据导出到 **观测云**。当然也可以使用其他系统，例如 Zipkin、Grafana Loki 或 Datadog。
+要查看调用端点时创建的实际链路追踪，我们需要收集并查看它们。在本教程中，我们将使用`zipkin`导出器将数据导出到 **{{{ custom_key.brand_name }}}**。当然也可以使用其他系统，例如 Zipkin、Grafana Loki 或 Datadog。
 
-现在您可以再次调用我们的 Spring Boot 服务的端点。之后，当您在 **观测云** 中搜索任何 tracing 时，您应该能够找到端点请求的链路追踪信息。
+现在您可以再次调用我们的 Spring Boot 服务的端点。之后，当您在 **{{{ custom_key.brand_name }}}** 中搜索任何 tracing 时，您应该能够找到端点请求的链路追踪信息。
 
 ![Img](../images/guance_tracing.png)
 
@@ -165,7 +165,7 @@ trace_id=6c0053eba01199f194f5f76ff8d61917 span_id=967d591266756905 trace_flags= 
 ```
 
 ### WebClient 调用没有产生追踪信息
-第二个问题可以通过查看**观测云**中的 trace 来发现。它仅显示端点的父链路追踪，但不显示调用的子范围 WebClient。理论上，Spring WebClient 以及 RestTemplate 都是由 Micrometer 自动检测的。但是如果我们查看代码，就会发现我们正在使用静态构建器方法 WebClient。为了从 WebClient 获取自动链路追踪，我们需要使用 Spring 框架提供的构建器 bean。它可以通过我们类的构造函数注入Controller。
+第二个问题可以通过查看**{{{ custom_key.brand_name }}}**中的 trace 来发现。它仅显示端点的父链路追踪，但不显示调用的子范围 WebClient。理论上，Spring WebClient 以及 RestTemplate 都是由 Micrometer 自动检测的。但是如果我们查看代码，就会发现我们正在使用静态构建器方法 WebClient。为了从 WebClient 获取自动链路追踪，我们需要使用 Spring 框架提供的构建器 bean。它可以通过我们类的构造函数注入Controller。
 
 
 ```Kotlin
@@ -182,7 +182,7 @@ class Controller(
 
 }
 ```
-通过上面的代码调整后重新调用 endpoint，我们在**观测云**中可以看到`WebClient`的跨度。Micrometer Tracing 还将自动为包含trace_id. 例如，如果我们调用另一个带有链路追踪功能的微服务，它可以获取 ID 并向**观测云**发送附加信息。
+通过上面的代码调整后重新调用 endpoint，我们在**{{{ custom_key.brand_name }}}**中可以看到`WebClient`的跨度。Micrometer Tracing 还将自动为包含trace_id. 例如，如果我们调用另一个带有链路追踪功能的微服务，它可以获取 ID 并向**{{{ custom_key.brand_name }}}**发送附加信息。
 ![Img](../images/guance_trace_webclient.png)
 
 
@@ -206,7 +206,7 @@ suspend fun test(): String {
 }
 ```
 
-添加此代码后，我们可以在**观测云**中看到我们的自定义标签及其值。
+添加此代码后，我们可以在**{{{ custom_key.brand_name }}}**中看到我们的自定义标签及其值。
 
 ![Img](../images/guance_trace_tag.png)
 
@@ -254,7 +254,7 @@ suspend fun test(): String {
   // ....
 }
 ```
-将此代码添加到端点处理程序后，**观测云**将向我们显示该操作的自定义范围。
+将此代码添加到端点处理程序后，**{{{ custom_key.brand_name }}}**将向我们显示该操作的自定义范围。
 
 ![Img](../images/guance_trace_delay.png)
 

@@ -406,7 +406,7 @@ func foo() {
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -428,7 +428,7 @@ func foo() {
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

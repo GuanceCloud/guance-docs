@@ -92,7 +92,7 @@ systemctl restart scheck.service
 
 5、 观测
 
-登录[观测云](https://www.guance.com) 控制台->导航栏->安全巡检：查看安装巡检信息，发现有一条消息是修改了主机名
+登录[{{{ custom_key.brand_name }}}](https://www.guance.com) 控制台->导航栏->安全巡检：查看安装巡检信息，发现有一条消息是修改了主机名
 
    ![](img/image-hostname.png)
 

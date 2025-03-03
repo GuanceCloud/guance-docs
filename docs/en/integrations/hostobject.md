@@ -72,6 +72,9 @@ In general, the host object is turned on by default and does not need to be conf
     ## Enable put cloud provider region/zone_id information into global host tags, (default to true).
     # enable_cloud_host_tags_as_global_host_tags = true
     
+    ## Enable AWS IMDSv2
+    enable_cloud_aws_imds_v2 = false
+    
     ## [inputs.hostobject.tags] # (optional) custom tags
       # cloud_provider = "aliyun" # aliyun/tencent/aws/hwcloud/azure/volcengine, probe automatically if not set
       # some_tag = "some_value"
@@ -85,6 +88,9 @@ In general, the host object is turned on by default and does not need to be conf
       # azure = ""
       # Hwcloud = ""
       # volcengine = ""
+    
+    ## [inputs.hostobject.cloud_meta_token_url]
+      # aws = "yyy"   # URL for AWS Cloud metadata token
     
     ```
     
@@ -165,6 +171,16 @@ In general, the host object is turned on by default and does not need to be conf
     
         **Default**: true
     
+    - **ENV_INPUT_HOSTOBJECT_CLOUD_AWS_IMDS_V2**
+    
+        Enable AWS IMDSv2
+    
+        **Type**: Boolean
+    
+        **input.conf**: `enable_cloud_aws_imds_v2`
+    
+        **Default**: false
+    
     - **ENV_INPUT_HOSTOBJECT_TAGS**
     
         Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
@@ -194,6 +210,16 @@ In general, the host object is turned on by default and does not need to be conf
         **input.conf**: `cloud_meta_url`
     
         **Example**: `{"tencent":"xxx", "aliyun":"yyy"}`
+    
+    - **ENV_INPUT_HOSTOBJECT_CLOUD_META_TOKEN_URL**
+    
+        Cloud metadata Token URL mapping
+    
+        **Type**: Map
+    
+        **input.conf**: `cloud_meta_token_url`
+    
+        **Example**: `{"aws":"xxx", "aliyun":"yyy"}`
 
 <!-- markdownlint-enable -->
 
@@ -226,7 +252,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `HOST`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -237,7 +263,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`os`|Host OS type|
 |`unicast_ip`|Host unicast ip|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

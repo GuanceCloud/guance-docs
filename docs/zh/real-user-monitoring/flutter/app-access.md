@@ -11,13 +11,13 @@
 
 ## 应用接入
 
-当前 Flutter 版本暂只支持 Android 和 iOS 平台。登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
+当前 Flutter 版本暂只支持 Android 和 iOS 平台。登录{{{ custom_key.brand_name }}}控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
 
 ![](../img/image_13.png)
 
-## 安装
-![](https://img.shields.io/badge/dynamic/json?label=pub.dev&color=blue&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/flutter/version.json) ![](https://img.shields.io/badge/dynamic/json?label=legacy.github.tag&color=blue&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/flutter/legacy/version.json) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/flutter/info.json)
+## 安装 {#install}
+![](https://img.shields.io/badge/dynamic/json?label=pub.dev&color=blue&query=$.version&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/flutter/version.json) ![](https://img.shields.io/badge/dynamic/json?label=legacy.github.tag&color=blue&query=$.version&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/flutter/legacy/version.json) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/flutter/info.json)
 
 **Pub.Dev**: [ft_mobile_agent_flutter](https://pub.dev/packages/ft_mobile_agent_flutter)
 
@@ -102,7 +102,9 @@ void main() async {
 | env | String | 否 | 环境配置，默认 `prod`，任意字符，建议使用单个单词，例如 `test` 等|
 | envType | enum EnvType | 否 | 环境配置，默认 `EnvType.prod`。**注：env 与 envType 只需配置一个** |
 | serviceName | String | 否 | 服务名 |
-
+| enableLimitWithDbSize | boolean | 否 | 开启使用 db 限制数据大小，默认 100MB，单位 Byte，数据库越大，磁盘压力越大，默认不开启。<br>**注意：**开启之后 Log 配置  `logCacheLimitCount` 及 RUM 配置`rumCacheLimitCount` 将失效。SDK  0.3.10  以上版本支持该参数 |
+| dbCacheLimit | number | 否 | DB 缓存限制大小。范围 [30MB,)，默认 100MB，单位 byte，SDK 0.3.10  以上版本支持该参数 |
+| dbDiscardStrategy | string | 否 | 设置数据库中数据丢弃规则。<br>丢弃策略：`FTDBCacheDiscard.discard`丢弃新数据（默认）、`FTDBCacheDiscard.discardOldest`丢弃旧数据。SDK 0.3.10 以上版本支持该参数 |
 ### RUM 配置 {#rum-config}
 
 ```dart
@@ -118,13 +120,16 @@ void main() async {
 | androidAppId | String | 是 | appId，监测中申请 |
 | iOSAppId | String | 是 | appId，监测中申请 |
 | sampleRate | double | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据     |
-| enableUserResource | bool | 否 | 是否开启  http `Resource` 数据自动抓取，默认为 `false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面需求需要继承 `FTHttpOverrides`，并设置 enableAutoTrace  为 `false` |
+| enableUserResource | bool | 否 | 是否开启  http `Resource` 数据自动抓取，默认为 `false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面定制需求需要继承 `FTHttpOverrides`。 |
 | enableNativeUserAction | bool | 否 | 是否进行 `Native Action` 追踪，原生系统 `Button` 点击事件，应用启动事件，默认为 `false` |
 | enableNativeUserView | bool | 否 | 是否进行 `Native View` 自动追踪，纯 `Flutter` 应用建议关闭，，默认为 `false` |
 | enableNativeUserResource | bool | 否 | 是否进行 `Native Resource` 自动追踪，纯 `Flutter` 应用建议关闭，默认为 `false` |
 | errorMonitorType | enum ErrorMonitorType | 否 | 设置辅助监控信息，添加附加监控数据到 `RUM` Error 数据中，`ErrorMonitorType.battery` 为电池余量，`ErrorMonitorType.memory` 为内存用量，`ErrorMonitorType.cpu` 为 CPU 占有率 |
 | deviceMetricsMonitorType | enum DeviceMetricsMonitorType | 否 |在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.battery` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.memory` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.cpu` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.fps` 监控屏幕帧率 |
 | globalContext | Map | 否 | 自定义全局参数 |
+| rumDiscardStrategy | string | 否 | 丢弃策略：`FTRUMCacheDiscard.discard`丢弃新数据（默认）、`FTRUMCacheDiscard.discardOldest`丢弃旧数据 |
+| rumCacheLimitCount | number | 否 | 本地缓存最大 RUM 条目数量限制 [10_000,)，默认 100_000 |
+| isInTakeUrl | callBack | 否 | 设置需要过滤的 Resource 条件，默认不过滤|
 
 #### 添加自定义标签
 
@@ -218,7 +223,7 @@ await FTTracer().setConfig(
 | sampleRate | double | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。   |
 | traceType | enum TraceType | 否 | 链路类型，默认`TraceType.ddTrace`。 |
 | enableLinkRUMData | bool | 否 | 是否与 `RUM` 数据关联，默认`false`。 |
-| enableAutoTrace | bool | 否 | 是否 `http` 请求中添加 `Trace Header`，默认`false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面需求需要继承 `FTHttpOverrides`，并设置 enableAutoTrace  为 `false`。|
+| enableAutoTrace | bool | 否 | 是否 `http` 请求中添加 `Trace Header`，默认`false`，这个是通过修改 `HttpOverrides.global` 来实现，如果项目有这方面更改需求需要继承 `FTHttpOverrides`|
 | enableNativeAutoTrace |  bool | 否 | 是否开启原生网络自动追踪 iOS `NSURLSession` ,Android `OKhttp`，默认`false`。 |
 
 ## RUM 用户数据追踪
@@ -651,6 +656,22 @@ void httpClientGetHttp() async {
 WebView 数据监测，需要在 WebView 访问页面集成[Web 监测 SDK](../web/app-access.md)
 
 
+##  原生与 Flutter 混合开发 {#hybrid}
+
+如果您的项目是原生开发，部分页面或业务流程使用 Flutter 实现，SDK 的安装初始化配置方法如下：
+
+* 安装：[安装](#install)方式不变
+* 初始化：请参考 [iOS SDK 初始化配置](../ios/app-access.md#init) 、[Android SDK 初始化配置](../android/app-access.md#init) 在原生工程内进行初始化配置
+* Flutter 配置:
+    * View, Resource, Error 采用与纯 Flutter 项目一样的配置方式
+    * Flutter Resource 与 Trace 自动采集使用以下配置方式
+    ```dart
+        // 设置 traceHeader 0.5.3-pre.1 支持
+        FTHttpOverrideConfig.global.traceHeader = true;   
+        //设置采集 Resource 数据 0.5.3-pre.1 支持
+        FTHttpOverrideConfig.global.traceResource = true; 
+    ```
+   
 ## Publish Package 相关配置
 ### Android
 * [Android R8/Prograd 配置](../android/app-access.md#r8_proguard)

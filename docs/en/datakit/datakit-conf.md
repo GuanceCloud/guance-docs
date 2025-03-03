@@ -19,7 +19,7 @@ The DataKit master configuration is used to configure the running behavior of th
 
 ## Datakit Main Configure Sample {#maincfg-example}
 
-Datakit main configure is `datakit.conf`, here is the example sample(1.66.1):
+Datakit main configure is `datakit.conf`, here is the example sample(1.67.0):
 
 <!-- markdownlint-disable MD046 -->
 ??? info "`datakit.conf`"
@@ -719,6 +719,8 @@ The disk files are located in the *cache/dw-wal* directory under the Datakit ins
 ```
 
 Here, except for the *fc* directory, which is the failure retry queue, the other directories correspond to different data types. When data upload fails, these data will be cached in the *fc* directory, and Datakit will periodically upload them later.
+
+If the current host's disk performance is insufficient, you can try using [WAL with tmpfs](wal-tmpfs.md).
 
 ### Dataway Sinker {#dataway-sink}
 

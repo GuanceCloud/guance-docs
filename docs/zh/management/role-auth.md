@@ -34,7 +34,7 @@
 
 ???+ warning
 
-    在您进行自定义信任策略配置时，需填写观测云的 AWS ID 及用户名信息。
+    在您进行自定义信任策略配置时，需填写{{{ custom_key.brand_name }}}的 AWS ID 及用户名信息。
 
     ![](img/role.png)
 

@@ -49,7 +49,7 @@ curl 'https://openapi.guance.com/api/v1/issue/<issue_uuid>/get' \
                 "uuid": "att_xxxx32"
             },
             {
-                "fileName": "观测云图标2.png",
+                "fileName": "{{{ custom_key.brand_name }}}图标2.png",
                 "fileSuffix": "png",
                 "uuid": "att_xxxx32"
             },

@@ -80,7 +80,7 @@ java -javaagent:D:/ddtrace/dd-java-agent-1.25.2-guance.jar \
 或者在 idea 工具进行调试均可。
 
 
-请求 `http://localhost:8090/user`,在[观测云](https://www.guance.com)平台看到的效果如下图所示：
+请求 `http://localhost:8090/user`,在[{{{ custom_key.brand_name }}}](https://www.guance.com)平台看到的效果如下图所示：
 
 ![Img](../images/tracing_method_1.png)
 
@@ -102,7 +102,7 @@ java -javaagent:D:/ddtrace/dd-java-agent-1.25.2-guance.jar \
 -jar springboot-server.jar
 ```
 
-使用[观测云](https://www.guance.com)平台可以看到以下效果：
+使用[{{{ custom_key.brand_name }}}](https://www.guance.com)平台可以看到以下效果：
 
 ![Img](../images/tracing_method_2.png)
 
@@ -119,7 +119,7 @@ java -javaagent:D:/ddtrace/dd-java-agent-1.25.2-guance.jar \
 -jar springboot-server.jar
 ```
 
-使用[观测云](https://www.guance.com)平台可以看到以下效果：
+使用[{{{ custom_key.brand_name }}}](https://www.guance.com)平台可以看到以下效果：
 
 ![Img](../images/tracing_method_3.png)
 
@@ -159,7 +159,7 @@ java -javaagent:D:/ddtrace/dd-java-agent-1.25.2-guance.jar \
 -Dotel.resource.attributes=service.name=springboot-server
 ```
 
-使用[观测云](https://www.guance.com)平台可以看到以下效果：
+使用[{{{ custom_key.brand_name }}}](https://www.guance.com)平台可以看到以下效果：
 
 ![Img](../images/tracing_method_4.png)
 
@@ -182,7 +182,7 @@ java -javaagent:D:/ddtrace/dd-java-agent-1.25.2-guance.jar \
 -Dotel.instrumentation.methods.include="com.zy.observable.server.service.TestService[users]"
 ```
 
-使用[观测云](https://www.guance.com)平台可以看到以下效果：
+使用[{{{ custom_key.brand_name }}}](https://www.guance.com)平台可以看到以下效果：
 
 ![Img](../images/tracing_method_5.png)
 

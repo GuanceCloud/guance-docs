@@ -2,7 +2,7 @@
 
 ---
 
-观测云应用监测能够通过收集各个 Web 应用的指标数据，以可视化的方式分析各个 Web 应用端的性能。
+{{{ custom_key.brand_name }}}应用监测能够通过收集各个 Web 应用的指标数据，以可视化的方式分析各个 Web 应用端的性能。
 
 ## 前置条件
 
@@ -14,13 +14,13 @@
 
 ## 应用接入 {#access}
 
-登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
+登录{{{ custom_key.brand_name }}}控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
-- 观测云提供**公网 DataWay**直接接收 RUM 数据，无需安装 DataKit 采集器。配置 `site` 和 `clientToken` 参数即可。支持在控制台中直接上传 SourceMap，可以基于不同的版本和环境上传多个文件。
+- {{{ custom_key.brand_name }}}提供**公网 DataWay**直接接收 RUM 数据，无需安装 DataKit 采集器。配置 `site` 和 `clientToken` 参数即可。支持在控制台中直接上传 SourceMap，可以基于不同的版本和环境上传多个文件。
 
 ![](../img/web_01.png)
 
-- 观测云同时支持**本地环境部署**接收 RUM 数据，该方式需满足前置条件。
+- {{{ custom_key.brand_name }}}同时支持**本地环境部署**接收 RUM 数据，该方式需满足前置条件。
 
 ![](../img/6.rum_web.png)
 
@@ -72,7 +72,7 @@ Web 应用接入的有三种方式：NPM 接入、同步载入和异步载入。
         window,
         document,
         'script',
-        'https://static.guance.com/browser-sdk/v3/dataflux-rum.js',
+        'https://{{{ custom_key.static_domain }}}/browser-sdk/v3/dataflux-rum.js',
         'DATAFLUX_RUM'
       )
       DATAFLUX_RUM.onReady(function () {
@@ -96,7 +96,7 @@ Web 应用接入的有三种方式：NPM 接入、同步载入和异步载入。
 === "CDN 同步加载"
 
     ```javascript
-    <script src="https://static.guance.com/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
+    <script src="https://{{{ custom_key.static_domain }}}/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
     <script>
       window.DATAFLUX_RUM &&
         window.DATAFLUX_RUM.init({
@@ -121,10 +121,10 @@ Web 应用接入的有三种方式：NPM 接入、同步载入和异步载入。
 
 | 参数                                   | <div style="width: 60px">类型</div> | <div style="width: 60px">是否必须</div> | <div style="width: 60px">默认值</div> | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | -------------------------------------- | ----------------------------------- | --------------------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `applicationId`                        | String                              | 是                                      |                                       | 从观测云创建的应用 ID。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `applicationId`                        | String                              | 是                                      |                                       | 从{{{ custom_key.brand_name }}}创建的应用 ID。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | `datakitOrigin`                        | String                              | 是                                      |                                       | DataKit 数据上报 Origin 注释: <br>`协议（包括：//），域名（或IP地址）[和端口号]`<br> 例如：<br>[https://www.datakit.com](https://www.datakit.com)；<br>[http://100.20.34.3:8088](http://100.20.34.3:8088)。                                                                                                                                                                                                                                                                                                                                                   |
-| `clientToken`                          | String                              | 是                                      |                                       | 以 openway 方式上报数据令牌，从观测云控制台获取，必填（公共 openway 方式接入）。                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `site`                                 | String                              | 是                                      |                                       | 以 公共 openway 方式上报数据地址，从观测云控制台获取，必填（公共 openway 方式接入）。                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `clientToken`                          | String                              | 是                                      |                                       | 以 openway 方式上报数据令牌，从{{{ custom_key.brand_name }}}控制台获取，必填（公共 openway 方式接入）。                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `site`                                 | String                              | 是                                      |                                       | 以 公共 openway 方式上报数据地址，从{{{ custom_key.brand_name }}}控制台获取，必填（公共 openway 方式接入）。                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | `env`                                  | String                              | 否                                      |                                       | Web 应用当前环境，如 prod：线上环境；gray：灰度环境；pre：预发布环境；common：日常环境；local：本地环境。                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `version`                              | String                              | 否                                      |                                       | Web 应用的版本号。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `service`                              | String                              | 否                                      |                                       | 当前应用的服务名称，默认为 `browser`，支持自定义配置。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |

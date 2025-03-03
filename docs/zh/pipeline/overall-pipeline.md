@@ -29,15 +29,15 @@
 
 可通过导入 JSON 文件的方式创建 Pipeline。
 
-**注意**：导入的 JSON 文件需要是来自观测云的配置 JSON 文件。
+**注意**：导入的 JSON 文件需要是来自{{{ custom_key.brand_name }}}的配置 JSON 文件。
 
 ![](img/1-pipeline-3.png)
 
 ## Pipeline 官方库
 
-观测云为日志数据提供标准的 Pipeline 官方库，帮助您快速结构化您的日志数据。
+{{{ custom_key.brand_name }}}为日志数据提供标准的 Pipeline 官方库，帮助您快速结构化您的日志数据。
 
-在观测云工作空间**日志 > Pipelines**，点击 **Pipeline 官方库**即可查看内置标准的 Pipeline 官网文件库，包括 nginx、apache、redis、elasticsearch、mysql 等。
+在{{{ custom_key.brand_name }}}工作空间**日志 > Pipelines**，点击 **Pipeline 官方库**即可查看内置标准的 Pipeline 官网文件库，包括 nginx、apache、redis、elasticsearch、mysql 等。
 
 
 选择打开任意一个 Pipeline 文件，如 `apache.p`，可以看到内置的解析规则。如果需要自定义修改，可以点击右上角的 :heavy_plus_sign: 克隆按钮。

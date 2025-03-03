@@ -21,6 +21,7 @@ etcd[(etcd)];
 sinker(分流);
 wksp1(工作空间 1);
 wksp2(工作空间 2);
+wksp3(特定工作空间);
 wkspx(兜底工作空间);
 rules(分流规则);
 as_default{存在兜底规则?};
@@ -30,11 +31,14 @@ subgraph "Datakit 集群"
 dk
 end
 
-dk -.-> |HTTP: X-Global-Tags/Secret-Token|dw
+dk -.-> |"HTTP: X-Global-Tags + Secret-Token"|dw
+dk -..-> |"非分流请求（指定特定工作空间 Token）"|dw
 
 subgraph "Dataway 集群(Nginx)"
 %%direction LR
-rules -->  dw --> sinker
+rules -->  dw ---> |分流请求|sinker
+
+dw ---> |非分流请求|wksp3
 
 sinker --> |规则 1 匹配|wksp1;
 sinker --> |规则 2 匹配|wksp2;
@@ -47,6 +51,8 @@ direction BT
 etcd -.-> |key 变动通知|rules
 end
 ```
+
+> [Dataway 1.8.0](dataway-changelog.md#cl-1.8.0) 支持接收 Sinker/非 Sinker 两类请求，可以只部署一个 Dataway 即可。
 
 ### Dataway 级连模式 {#cascaded}
 
@@ -748,7 +754,7 @@ Datakit 内置了以下几个可用的自定义 Key，它们一般不会出现�
             "rules": [
                 "{ class = 'kubelet_pod' AND other_conditon = 'some-value' }",
             ],
-            "url": "https://openway.guance.com?token=<YOUR-TOKEN>"
+            "url": "https://kodo.guance.com?token=<YOUR-TOKEN>"
         },
         {
             ... # other rules
@@ -767,7 +773,7 @@ Datakit 内置了以下几个可用的自定义 Key，它们一般不会出现�
            "rules": [
                "{ measurement = 'disk' AND other_conditon = 'some-value' }",
            ],
-           "url": "https://openway.guance.com?token=<YOUR-TOKEN>"
+           "url": "https://kodo.guance.com?token=<YOUR-TOKEN>"
         },
         {
             ... # other rules
@@ -788,7 +794,7 @@ Datakit 内置了以下几个可用的自定义 Key，它们一般不会出现�
             "rules": [
                 "{ category = 'logging' AND other_conditon = 'some-value' }",
             ],
-            "url": "https://openway.guance.com?token=<YOUR-TOKEN>"
+            "url": "https://kodo.guance.com?token=<YOUR-TOKEN>"
         },
         {
             ... # other rules
@@ -816,7 +822,7 @@ Datakit 内置了以下几个可用的自定义 Key，它们一般不会出现�
             "rules": [
                 "{ __dataway_api in ['/v1/datakit/pull', '/v1/election', '/v1/election/heartbeat', '/v1/query/raw', '/v1/workspace', '/v1/object/labels', '/v1/check/token'] }",
             ],
-            "url": "https://openway.guance.com?token=<SOME-SPECIAL-WORKSPACE-TOKEN>"
+            "url": "https://kodo.guance.com?token=<SOME-SPECIAL-WORKSPACE-TOKEN>"
         }
     ]
 }

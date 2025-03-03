@@ -1,6 +1,6 @@
 # Android 应用接入
 ---
-观测云应用监测能够通过收集各个 Android 应用的指标数据，以可视化的方式分析各个 Android 应用端的性能。
+{{{ custom_key.brand_name }}}应用监测能够通过收集各个 Android 应用的指标数据，以可视化的方式分析各个 Android 应用端的性能。
 
 ## 前置条件
 
@@ -12,21 +12,21 @@
 
 ## 应用接入 {#android-integration} 
 
-登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
+登录{{{ custom_key.brand_name }}}控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
-- 观测云提供**公网 DataWay**直接接收 RUM 数据，无需安装 DataKit 采集器。配置 `site` 和 `clientToken` 参数即可。
+- {{{ custom_key.brand_name }}}提供**公网 DataWay**直接接收 RUM 数据，无需安装 DataKit 采集器。配置 `site` 和 `clientToken` 参数即可。
 
 ![](../img/android_01.png)
 
-- 观测云同时支持**本地环境部署**接收 RUM 数据，该方式需满足前置条件。
+- {{{ custom_key.brand_name }}}同时支持**本地环境部署**接收 RUM 数据，该方式需满足前置条件。
 
 ![](../img/6.rum_android_1.png)
 
 
 ## 安装 {#setup}
 
-![](https://img.shields.io/badge/dynamic/json?label=ft-sdk&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/android/agent/version.json&link=https://github.com/GuanceCloud/datakit-android) ![](https://img.shields.io/badge/dynamic/json?label=ft-native&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/android/native/version.json&link=https://github.com/GuanceCloud/datakit-android
-) ![](https://img.shields.io/badge/dynamic/json?label=ft-plugin&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/android/plugin/version.json&link=https://github.com/GuanceCloud/datakit-android) ![](https://img.shields.io/badge/dynamic/json?label=ft-plugin-legacy&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/android/plugin_legacy/version.json&link=https://github.com/GuanceCloud/datakit-android) ![](https://img.shields.io/badge/dynamic/json?label=mini.sdk&color=green&query=$.android_mini_sdk&uri=https://static.guance.com/ft-sdk-package/badge/android/agent/info.json&link=https://github.com/GuanceCloud/datakit-android) 
+![](https://img.shields.io/badge/dynamic/json?label=ft-sdk&color=orange&query=$.version&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/android/agent/version.json&link=https://github.com/GuanceCloud/datakit-android) ![](https://img.shields.io/badge/dynamic/json?label=ft-native&color=orange&query=$.version&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/android/native/version.json&link=https://github.com/GuanceCloud/datakit-android
+) ![](https://img.shields.io/badge/dynamic/json?label=ft-plugin&color=orange&query=$.version&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/android/plugin/version.json&link=https://github.com/GuanceCloud/datakit-android) ![](https://img.shields.io/badge/dynamic/json?label=ft-plugin-legacy&color=orange&query=$.version&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/android/plugin_legacy/version.json&link=https://github.com/GuanceCloud/datakit-android) ![](https://img.shields.io/badge/dynamic/json?label=mini.sdk&color=green&query=$.android_mini_sdk&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/android/agent/info.json&link=https://github.com/GuanceCloud/datakit-android) 
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-android](https://github.com/GuanceCloud/datakit-android)
 
@@ -230,7 +230,7 @@ android{
 | enableDataIntegerCompatible | Void | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题  |
 | setNeedTransformOldCache | Boolean | 否 | 是否需要兼容同步 ft-sdk 1.6.0 以下的版本的旧缓存数据，默认为 false |
 | setCompressIntakeRequests | Boolean | 否 | 对同步数据进行压缩，ft-sdk 1.6.3 以上版本支持这个方法 |
-| enableLimitWithDbSize | Void | 否 | 开启使用 db 限制数据大小，默认 100MB，单位 byte，数据库越大，磁盘压力越大。ft-sdk 1.6.6 以上版本支持这个方法 |
+| enableLimitWithDbSize | Void | 否 | 开启使用 db 限制数据大小，默认 100MB，单位 Byte，数据库越大，磁盘压力越大，默认不开启。<br>**注意：** 开启之后 `FTLoggerConfig.setLogCacheLimitCount` 及 `FTRUMConfig.setRumCacheLimitCount` 将失效。ft-sdk 1.6.6 以上版本支持这个方法 |
 
 ### RUM 配置 {#rum-config}
 
@@ -290,7 +290,7 @@ android{
 | setOkHttpEventListenerHandler | Callback| 否 | ASM 设置全局 Okhttp EventListener，默认不设置 |
 | setOkHttpResourceContentHandler | Callback| 否 | ASM 设置全局 `FTResourceInterceptor.ContentHandlerHelper`，默认不设置, ft-sdk 1.6.7 以上支持，[自定义 Resource](#okhttp_resource_trace_interceptor_custom) |
 | addGlobalContext | Dictionary | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#key-conflict) |
-| setRumCacheLimitCount | int | 否 | 本地缓存 RUM 限制数量 [10000,),默认是 100_000。ft-sdk 1.6.6 以上支持 |
+| setRumCacheLimitCount | int | 否 | 本地缓存 RUM 限制数量 [10_000,),默认是 100_000。ft-sdk 1.6.6 以上支持 |
 | setRumCacheDiscardStrategy | RUMCacheDiscard | 否 | 设置 RUM 达到限制上限以后的数据的丢弃规则，默认为 `RUMCacheDiscard.DISCARD`，`DISCARD` 为丢弃追加数据，`DISCARD_OLDEST` 丢弃老数据，ft-sdk 1.6.6 以上支持  |
 
 ### Log 配置 {#log-config}
@@ -322,7 +322,7 @@ android{
 
 | **方法名** | **类型** | **必须** | **含义** |
 | --- | --- | --- | --- |
-| setSampleRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
+| setSamplingRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
 | setEnableConsoleLog | Boolean | 否 | 是否上报控制台日志，日志等级对应关系<br>Log.v -> ok;<br>Log.i -> info;<br> Log.d -> debug;<br>Log.e -> error;<br>Log.w -> warning，<br> `prefix` 为控制前缀过滤参数，默认不设置过滤。注意：Android 控制台量是很大的，为了避免影响应用性能，减少不必要的资源浪费，建议使用 `prefix` 过滤出有价值的日志 |
 | setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联，默认为 `false` |
 | setEnableCustomLog | Boolean| 否 | 是否上传自定义日志，默认为 `false` |
@@ -355,7 +355,7 @@ android{
 
 | **方法名** | **类型** | **必须** | **含义** |
 | --- | --- | --- | --- |
-| setSampleRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
+| setSamplingRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
 | setTraceType | TraceType | 否 | 设置链路追踪的类型，默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
 | setEnableLinkRUMData | Boolean | 否 | 是否与 RUM 数据关联，默认为 `false` |
 | setEnableAutoTrace | Boolean | 否 | 设置是否开启自动 http trace，目前只支持 OKhttp 的自动追踪，默认为 `false` |
@@ -1876,10 +1876,10 @@ FTExt {
 	//...
     autoUploadMap = true
     autoUploadNativeDebugSymbol = true
-    datakitUrl = 'https://datakit.url'
-    datawayToken = 'dataway_token'
-    appId = "appid_xxxxx"// appid
-    env = 'common'
+    datakitUrl = 'https://datakit.url' 	// datakit 上报地址， generateSourceMapOnly=true 时，无需配置
+    datawayToken = 'dataway_token' 		// 空间 token ， generateSourceMapOnly=true 时，无需配置
+    appId = "appid_xxxxx"				// appid ， generateSourceMapOnly=true 时，无需配置
+    env = 'common'						// 环境， generateSourceMapOnly=true 时，无需配置
 	generateSourceMapOnly = false //仅生成 sourcemap，默认为 false，路径示例：/app/build/tmp/ft{flavor}SourceMapMerge-release.zip，ft-plugin:1.3.4 以上版本支持
 
     prodFlavors { //prodFlavors 配置会覆盖外层设置
@@ -1904,7 +1904,7 @@ FTExt {
 
 ```
 ### 手动上传
-使用 `plugin` 开启 `generateSourceMapOnly = true`, 执行 `gradle task assembleRelease`生成，或自行打包成 `zip` 文件，然后自行上传至 `datakit` 或从观测云 Studio 上传，推荐使用 `zip` 命令行进行打包，避免将一些系统隐藏文件打入 `zip` 包中，符号上传请参考 [sourcemap 上传](../../integrations/rum.md#sourcemap)
+使用 `plugin` 开启 `generateSourceMapOnly = true`, 执行 `gradle task assembleRelease`生成，或自行打包成 `zip` 文件，然后自行上传至 `datakit` 或从{{{ custom_key.brand_name }}} Studio 上传，推荐使用 `zip` 命令行进行打包，避免将一些系统隐藏文件打入 `zip` 包中，符号上传请参考 [sourcemap 上传](../sourcemap/set-sourcemap.md)
 
 > Unity Native Symbol 文件请参考[官方文档](https://docs.unity3d.com/Manual/android-symbols.html#public-symbols)
 
@@ -2180,7 +2180,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 `flutter`、`react-native`、`unity` 可以采用与以上原生 Android 相似延迟初始化方式，来应对应用市场隐私审核。
 
 ### 不使用 ft-plugin 情况下如何接入 SDK {#manual-set}
-观测云使用的 Androig Grale Plugin Transformation 实现的代码注入，从而实现数据自动收集。但是由于一些兼容性问题，可能存在无法使用 `ft-plugin` 的问题。受影响包括 **RUM** `Action`，`Resource`，和 `android.util.Log` ，Java 与 Kotlin `println` **控制台日志自动抓取**，以及符号文件的自动上传。
+{{{ custom_key.brand_name }}}使用的 Androig Grale Plugin Transformation 实现的代码注入，从而实现数据自动收集。但是由于一些兼容性问题，可能存在无法使用 `ft-plugin` 的问题。受影响包括 **RUM** `Action`，`Resource`，和 `android.util.Log` ，Java 与 Kotlin `println` **控制台日志自动抓取**，以及符号文件的自动上传。
 
 目前针对这种情况，我们有另外一种集成方案，应对方案如下：
 

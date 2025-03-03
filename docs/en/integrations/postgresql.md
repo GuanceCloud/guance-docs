@@ -130,9 +130,10 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
 ### `postgresql`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -140,7 +141,7 @@ For all of the following data collections, the global election tags will added a
 |`db`|The database name|
 |`server`|The server address|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -170,9 +171,11 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
 ### `postgresql_lock`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -184,7 +187,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|The server address|
 |`table`|The table name|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -193,9 +196,11 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
 ### `postgresql_index`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -206,7 +211,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|The server address|
 |`table`|The table name|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -217,9 +222,11 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
 ### `postgresql_replication`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -227,7 +234,7 @@ For all of the following data collections, the global election tags will added a
 |`db`|The database name|
 |`server`|The server address|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -237,9 +244,11 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
 ### `postgresql_replication_slot`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -249,7 +258,7 @@ For all of the following data collections, the global election tags will added a
 |`slot_name`|The replication slot name|
 |`slot_type`|The replication slot type|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -265,9 +274,11 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
 ### `postgresql_size`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -277,7 +288,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|The server address|
 |`table`|The table name|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -288,9 +299,11 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
 ### `postgresql_statio`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -300,7 +313,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|The server address|
 |`table`|The table name|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -316,9 +329,11 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
 ### `postgresql_stat`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -328,7 +343,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|The server address|
 |`table`|The table name|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -350,9 +365,11 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
 ### `postgresql_slru`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -361,7 +378,7 @@ For all of the following data collections, the global election tags will added a
 |`name`|The name of the `SLRU`|
 |`server`|The server address|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -376,9 +393,11 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
 ### `postgresql_bgwriter`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -386,7 +405,7 @@ For all of the following data collections, the global election tags will added a
 |`db`|The database name|
 |`server`|The server address|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -404,9 +423,11 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
 ### `postgresql_connection`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -414,7 +435,7 @@ For all of the following data collections, the global election tags will added a
 |`db`|The database name|
 |`server`|The server address|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -424,9 +445,11 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
 ### `postgresql_conflict`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -434,7 +457,7 @@ For all of the following data collections, the global election tags will added a
 |`db`|The database name|
 |`server`|The server address|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -447,9 +470,11 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
 ### `postgresql_archiver`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -457,13 +482,16 @@ For all of the following data collections, the global election tags will added a
 |`db`|The database name|
 |`server`|The server address|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`archived_count`|Number of WAL files that have been successfully archived.|int|count|
 |`archived_failed_count`|Number of failed attempts for archiving WAL files.|int|count|
+
+
+
 
 
 
@@ -519,6 +547,35 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
+
+
+
+
+
+### `database`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on PostgreSQL(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`||
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- Metrics
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current PostgreSQL uptime|int|s|
+|`version`|Current version of PostgreSQL|string|-|
 
 
 

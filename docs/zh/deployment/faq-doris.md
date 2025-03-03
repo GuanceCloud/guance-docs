@@ -12,7 +12,7 @@ set global time_zone = "Asia/Shanghai";
 ```
 
 ## 2 Doris insert组件报错 磁盘空间不足
-问题描述：观测云数据上报异常，nsq有堆积，但是查询没有报错，通过查询Doris-logs insert组件日志发现磁盘空间不足，通过df -h命令也可以验证。
+问题描述：{{{ custom_key.brand_name }}}数据上报异常，nsq有堆积，但是查询没有报错，通过查询Doris-logs insert组件日志发现磁盘空间不足，通过df -h命令也可以验证。
 ![](img/faq-doris-1.png)
 
 问题解决：重新挂载该目录，并重启insert组件，如果该问题出现比较频繁，建议升级Doris-logs服务器内存。
@@ -22,7 +22,7 @@ mount -o size=8G -t tmpfs none /data-tmp && sudo supervisorctl restart guance-in
 ```
 
 ## 3 Doris be 节点磁盘使用率100%
-问题描述：观测云数据上报查询异常，nsq有堆积。查询日志发现be节点磁盘空间使用率100%。
+问题描述：{{{ custom_key.brand_name }}}数据上报查询异常，nsq有堆积。查询日志发现be节点磁盘空间使用率100%。
 
 问题解决：删表释放磁盘空间。
 ???+ warning "注意"
@@ -62,7 +62,7 @@ sed -i '/broken/d' /home/doris/doris/be/conf/be_custom.conf
 ```
 
 ## 4 如何验证空间级别热数据修改是否有效
-问题描述：在观测云后台中修改了空间级别的索引热数据保留时长，怎么验证修改是否有效。
+问题描述：在{{{ custom_key.brand_name }}}后台中修改了空间级别的索引热数据保留时长，怎么验证修改是否有效。
 ![](img/faq-doris-3.png)
 
 问题解决：
@@ -110,3 +110,23 @@ show backends;
 # TabletNum 和 DataUsedCapacity 减少为0,则说明数据迁移完成
 ```
 回收下线的节点机器。
+
+## 7 点击主机对象页面报错: kodo服务API请求错误: Service Unavailable
+
+问题描述：点击主机对象报kodo服务API请求错误: Service Unavailable 错误
+
+问题解决：
+
+查看GuanceDB for logs select组件日志，发现报错 
+
+``` shell
+connect: connection refused" (Unavailable; AuthenticateBasicToken)
+```
+
+登录到 Doris manager web，查看BE角色参数，发现不存在 `arrow_flight_sql_port`参数，在 manager 中为BE 节点添加 `arrow_flight_sql_port` 参数。
+
+```shell
+arrow_flight_sql_port = 9090 
+```
+
+添加完成后重启 be 节点。

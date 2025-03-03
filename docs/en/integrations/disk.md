@@ -158,7 +158,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `disk`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -169,7 +169,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`host`|System hostname.|
 |`mount_point`|Mount point.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

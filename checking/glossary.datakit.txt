@@ -83,6 +83,7 @@ NGINX
 Nacos
 NetFlow
 Ning
+Ningxia
 ODBC
 OceanBase
 OpenSSL
@@ -207,6 +208,7 @@ tdengine
 tdengine
 tdengine
 tempdb
+tmpfs
 tracepoint
 unflushed
 uprobe
@@ -221,6 +223,7 @@ vnode
 vnode
 workarea
 xpack
+xfsquota
 zabbix
 zhangsan
 

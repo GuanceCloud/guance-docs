@@ -8,8 +8,8 @@ dashboard :
   - desc  : 'CoreDNS'
     path  : 'dashboard/en/coredns'
 monitor   :
-  - desc  : 'N/A'
-    path  : '-'
+  - desc  : 'CoreDNS'
+    path  : 'monitor/en/coredns'
 ---
 
 
@@ -93,7 +93,21 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+
+    Enable [`kubernetesprometheus`(https://docs.guance.com/integrations/kubernetesprometheus/) through DataKit .
+
+    ```yaml
+    [inputs.kubernetesprometheus]
+      [[inputs.kubernetesprometheus.instances]]
+          role       = "pod"
+          namespaces = ["kube-system"]
+          selector   = "k8s-app=kube-dns"
+          port     = "__kubernetes_pod_container_coredns_port_metrics_number"
+        [inputs.kubernetesprometheus.instances.custom]
+          [inputs.kubernetesprometheus.instances.custom.tags]
+            cluster = "demo"
+    ```
+
 <!-- markdownlint-enable -->
 
 ## Metric {#metric}
@@ -102,7 +116,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 
 ### `coredns_acl`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -112,7 +126,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`server`|Server responsible for the request.|
 |`zone`|Zone name used for the request/response.|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -126,7 +140,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 
 ### `coredns_cache`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -137,7 +151,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`type`|Cache type|
 |`zones`|Zone name used for the request/response|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -155,7 +169,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 
 ### `coredns_dnssec`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -165,7 +179,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`server`|Server responsible for the request|
 |`type`|signature|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -178,7 +192,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 
 ### `coredns_forward`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -189,7 +203,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`rcode`|Upstream returned `RCODE`|
 |`to`|Upstream server|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -207,7 +221,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 
 ### `coredns_grpc`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -217,7 +231,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`rcode`|Upstream returned `RCODE`|
 |`to`|Upstream server|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -230,7 +244,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 
 ### `coredns_hosts`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -238,7 +252,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`host`|Host name|
 |`instance`|Instance endpoint|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -250,7 +264,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 
 ### `coredns_template`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -265,7 +279,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`view`|View name|
 |`zone`|Zone name|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -278,7 +292,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 
 ### `coredns`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -300,7 +314,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`view`|View name|
 |`zone`|Zone name used for the request/response|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

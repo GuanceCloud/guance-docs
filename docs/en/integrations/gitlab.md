@@ -93,19 +93,14 @@ See [official configuration doc](https://docs.gitlab.com/ee/administration/monit
 
 ### Turn on GitLab CI Visualization {#ci-visible}
 
-Ensure that the current Datakit version (1.2. 13 and later) supports GitLab CI visualization.
+Ensure that the DataFlux Func platform is available.
 
-GitLab CI visualization can be achieved by configuring GitLab Webhook. The opening steps are as follows:
+By configuring GitLab Webhook, GitLab CI visualization can be achieved. Data reporting needs to be done through DataFlux Func, and the steps to enable it are as follows:
 
-- In GitLab go to `Settings` > `Webhooks`, configure the URL to http://Datakit_IP:PORT/v1/gitlab, Trigger configure Job events and Pipeline events, and click Add webhook to confirm the addition;
+1. Install the GitLab CI integration (script ID: `guance_gitlab_ci`) on DataFlux Func. Follow the installation process as referenced in [GitLab CI Integration Configuration](https://func.guance.com/doc/script-market-guance-gitlab-ci/){:target="_blank"};
+2. In GitLab go to `Settings` > `Webhooks`, configure the URL to the API address obtained from step one. Trigger configure Job events and Pipeline events, and click Add webhook to confirm the addition;
 
-- You can Test whether the Webhook is configured correctly by clicking the Test button, and Datakit should return a status code of 200 when it receives the Webhook. After proper configuration, Datakit can successfully collect CI information of GitLab.
-
-After Datakit receives the Webhook Event, it logs the data to the data center.
-
-Note: Additional configuration of Gitlab is required if Gitlab data is sent to Datakit on the local network, see [allow requests to the local network](https://docs.gitlab.com/ee/security/webhooks.html){:target="_blank"}.
-
-In addition, GitLab CI function does not participate in collector election, and users only need to configure the URL of GitLab Webhook as the URL of one of Datakit; If you only need GitLab CI visualization and do not need GitLab metrics collection, you can turn off metrics collection by configuring `enable_collect = false`.
+Triggering the GitLab CI process will allow you to log in to Guance Cloud to view the execution status of CI after completion.
 
 ## Metric {#metric}
 
@@ -137,7 +132,7 @@ Note: To ensure that GitLab CI functions properly, the extra tags specified for 
 
 GitLab runtime metrics
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -147,7 +142,7 @@ GitLab runtime metrics
 |`feature_category`|Feature category|
 |`storage`|Storage|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -179,11 +174,11 @@ GitLab runtime metrics
 
 GitLab programming language level metrics
 
-- tag
+- Tags
 
 NA
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -200,7 +195,7 @@ NA
 
 GitLab HTTP metrics
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -208,7 +203,7 @@ GitLab HTTP metrics
 |`method`|方法|
 |`status`|状态码|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -223,7 +218,7 @@ GitLab HTTP metrics
 
 GitLab Pipeline event metrics
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -240,7 +235,7 @@ GitLab Pipeline event metrics
 |`repository_url`|Repository URL|
 |`resource`|Project name|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -258,7 +253,7 @@ GitLab Pipeline event metrics
 
 GitLab Job Event metrics
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -274,7 +269,7 @@ GitLab Job Event metrics
 |`sha`|The commit SHA corresponding to build|
 |`user_email`|User email|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

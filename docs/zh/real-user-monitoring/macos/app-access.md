@@ -2,7 +2,7 @@
 
 ---
 
-观测云应用监测能够通过收集各个 macOS 应用的指标数据，以可视化的方式分析各个 macOS 应用端的性能。
+{{{ custom_key.brand_name }}}应用监测能够通过收集各个 macOS 应用的指标数据，以可视化的方式分析各个 macOS 应用端的性能。
 
 ## 前置条件
 
@@ -12,13 +12,13 @@
 
 ## 应用接入 {#macOS-integration}
 
-登录观测云控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，选择**自定义**，即可开始创建一个新的应用。
+登录{{{ custom_key.brand_name }}}控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，选择**自定义**，即可开始创建一个新的应用。
 
 ![](../img/image_14.png)
 
 ## 安装
 
-![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/macos/version.json&link=https://github.com/GuanceCloud/datakit-macos) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/macos/info.json&link=https://github.com/GuanceCloud/datakit-macos) ![](https://img.shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://static.guance.com/ft-sdk-package/badge/macos/info.json&link=https://github.com/GuanceCloud/datakit-macos) ![](https://img.shields.io/badge/dynamic/json?label=macOS&color=brightgreen&query=$.macos_api_support&uri=https://static.guance.com/ft-sdk-package/badge/macos/info.json&link=https://github.com/GuanceCloud/datakit-macos) 
+![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/macos/version.json&link=https://github.com/GuanceCloud/datakit-macos) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/macos/info.json&link=https://github.com/GuanceCloud/datakit-macos) ![](https://img.shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/macos/info.json&link=https://github.com/GuanceCloud/datakit-macos) ![](https://img.shields.io/badge/dynamic/json?label=macOS&color=brightgreen&query=$.macos_api_support&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/macos/info.json&link=https://github.com/GuanceCloud/datakit-macos) 
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-macos](https://github.com/GuanceCloud/datakit-macos)
 

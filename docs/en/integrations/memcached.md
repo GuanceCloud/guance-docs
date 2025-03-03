@@ -81,14 +81,14 @@ For all of the following data collections, the global election tags will added a
 
 ### `memcached`
 
-- tag
+- Tags
 
 
 | Tag | Description |
 |  ----  | --------|
 |`server`|The host name from which metrics are gathered|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -138,7 +138,7 @@ For all of the following data collections, the global election tags will added a
 
 ### `memcached_items`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -146,7 +146,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|The host name from which metrics are gathered|
 |`slab_id`|The id of the current slab|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -176,7 +176,7 @@ For all of the following data collections, the global election tags will added a
 
 ### `memcached_slabs`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -184,7 +184,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|The host name from which metrics are gathered|
 |`slab_id`|The id of the current slab|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

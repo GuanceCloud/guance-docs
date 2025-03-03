@@ -4,5 +4,8 @@ nav:
   - 'Func 托管版': automata.md
   - '外部数据源': 
     - external_data.md
-    - '正常图表数据返回': external_data_normal.md
+    - '一般图表数据返回': 
+      - 折线图: chart_line.md
+      - 饼图: chart_pie.md
+      - 表格图: chart_table.md
     - '拓扑图数据返回': external_data_treemap.md

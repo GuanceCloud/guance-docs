@@ -3,7 +3,7 @@
 
 ## 简介
 
-观测云支持上报 Gitlab/Jenkins 内置的 CI 的过程和结果到观测云进行可视化。您可以通过安装 DataKit ，开启 Gitlab/Jenkins 采集器，将整个 CI 过程（如 Build、Test、Deploy ）产生的结果上报到 DataKit，通过 DataWay 数据网关处理后再上报到观测云进行查看和分析。
+{{{ custom_key.brand_name }}}支持上报 Gitlab/Jenkins 内置的 CI 的过程和结果到{{{ custom_key.brand_name }}}进行可视化。您可以通过安装 DataKit ，开启 Gitlab/Jenkins 采集器，将整个 CI 过程（如 Build、Test、Deploy ）产生的结果上报到 DataKit，通过 DataWay 数据网关处理后再上报到{{{ custom_key.brand_name }}}进行查看和分析。
 
 ![](img/17.CI_1.png)
 
@@ -11,7 +11,7 @@
 
 ## 前提条件
 
-您需要创建一个 [观测云账号](https://auth.guance.com/register?channel=帮助文档)，并在您的主机上 [安装 DataKit](../datakit/datakit-install.md)。
+您需要创建一个 [{{{ custom_key.brand_name }}}账号](https://auth.guance.com/register?channel=帮助文档)，并在您的主机上 [安装 DataKit](../datakit/datakit-install.md)。
 
 ## 数据采集
 

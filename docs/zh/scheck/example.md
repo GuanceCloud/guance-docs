@@ -5,11 +5,11 @@
 - 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64
 
 
-观测云支持通过 Scheck 采集主机、系统、容器、网络等存在的漏洞和异常，并上报到工作空间。本文介绍 Scheck 安装配置示例。
+{{{ custom_key.brand_name }}}支持通过 Scheck 采集主机、系统、容器、网络等存在的漏洞和异常，并上报到工作空间。本文介绍 Scheck 安装配置示例。
 
 ### 1. 安装 DataKit
 
-在观测云工作空间「集成」-「DataKit」，选择DataKit安装方式，获取「安装指令」在主机执行。更多详情可参考 [DataKit 安装文档](../datakit/datakit-install.md)。
+在{{{ custom_key.brand_name }}}工作空间「集成」-「DataKit」，选择DataKit安装方式，获取「安装指令」在主机执行。更多详情可参考 [DataKit 安装文档](../datakit/datakit-install.md)。
 
 ![](img/2.datakit.png)
 
@@ -47,7 +47,7 @@ $ sudo datakit install --scheck
 
 ![](img/2.check_4.png)
 
-### 5. 在观测云工作空间查看安全巡检数据
-安装、配置、重启完安全巡检采集器后，即可在观测云工作空间的「安全巡检」，查看到主机根据安全脚本触发的巡检事件。
+### 5. 在{{{ custom_key.brand_name }}}工作空间查看安全巡检数据
+安装、配置、重启完安全巡检采集器后，即可在{{{ custom_key.brand_name }}}工作空间的「安全巡检」，查看到主机根据安全脚本触发的巡检事件。
 
 ![](img/2.check_5.png)

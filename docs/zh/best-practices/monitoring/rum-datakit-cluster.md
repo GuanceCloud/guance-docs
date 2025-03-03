@@ -4,13 +4,13 @@
 
 ## 简介
 
-使用观测云进行真实用户访问监测（RUM）的时候，如果网站的访问量比较大，收集用户数据的 DataKit 性能消耗就会比较大，这时就需要使用 DataKit 集群来收集 RUM 数据，提升数据上报的性能。由于网站使用的是 HTTPS 协议，下面我们使用阿里云的负载均衡 SLB 来部署 HTTPS 协议的 DataKit 集群来上报数据。
+使用{{{ custom_key.brand_name }}}进行真实用户访问监测（RUM）的时候，如果网站的访问量比较大，收集用户数据的 DataKit 性能消耗就会比较大，这时就需要使用 DataKit 集群来收集 RUM 数据，提升数据上报的性能。由于网站使用的是 HTTPS 协议，下面我们使用阿里云的负载均衡 SLB 来部署 HTTPS 协议的 DataKit 集群来上报数据。
 
 ## 1 部署 DataKit
 
 ### 1.1 Linux 部署 DataKit
 
-登录『[观测云](https://console.guance.com/)』，点击『集成』模块，再点击左上角『DataKit』，选择『Linux』，复制下面的命令在 Linux 服务器上执行安装命令。
+登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，点击『集成』模块，再点击左上角『DataKit』，选择『Linux』，复制下面的命令在 Linux 服务器上执行安装命令。
 
 ![1646965753(1).png](../images/rum-datakit-cluster-1.png)
 
@@ -30,7 +30,7 @@ systemctl restart datakit
 
 ### 1.2 Kubernetes 部署 DataKit
 
-登录『[观测云](https://console.guance.com/)』，点击『集成』模块，再点击左上角『DataKit』，选择『Kubernetes』 ，请按照指引安装 DataKit 。
+登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，点击『集成』模块，再点击左上角『DataKit』，选择『Kubernetes』 ，请按照指引安装 DataKit 。
 
 ## 2 配置 SLB
 
@@ -48,7 +48,7 @@ systemctl restart datakit
 
 ## 3 开通 RUM
 
-登录『[观测云](https://console.guance.com/)』，点击『用户访问监测』模块，再点击『新建应用』https-datakit。
+登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，点击『用户访问监测』模块，再点击『新建应用』https-datakit。
 
 ![1646976064(1).png](../images/rum-datakit-cluster-5.png)
 
@@ -71,7 +71,7 @@ systemctl restart datakit
    
 ## 4 用户访问监测
 
-使用浏览器访问网站。然后登录『[观测云](https://console.guance.com/)』，点击『用户访问监测』模块，再点击 https-datakit 应用查看上报的数据。
+使用浏览器访问网站。然后登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，点击『用户访问监测』模块，再点击 https-datakit 应用查看上报的数据。
 
 ![1646977682(1).png](../images/rum-datakit-cluster-7.png)
 

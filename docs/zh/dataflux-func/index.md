@@ -5,7 +5,7 @@ icon: zy/dataflux-func
 # DataFlux Func
 ---
 
-DataFlux Func 是一个基于 Python 的脚本开发、管理、执行平台。是[观测云](https://guance.com/)下属的一个函数计算组件，目前已成为可独立运行的系统。
+DataFlux Func 是一个基于 Python 的脚本开发、管理、执行平台。是[{{{ custom_key.brand_name }}}](https://guance.com/)下属的一个函数计算组件，目前已成为可独立运行的系统。
 
 主要分为 2 个部分：
 

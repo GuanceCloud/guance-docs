@@ -1195,7 +1195,7 @@ icon: zy/integrations
   				data-href="../apisix"
   				data-tags=""
   				data-name="APISIX"
-  				data-summary="采集 APISIX 相关指标信息"
+  				data-summary="采集 APISIX 相关指标、日志、链路信息"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1206,7 +1206,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">APISIX</div>
-                            <div title="采集 APISIX 相关指标信息" class="fth-integration-desc">采集 APISIX 相关指标信息</div>
+                            <div title="采集 APISIX 相关指标、日志、链路信息" class="fth-integration-desc">采集 APISIX 相关指标、日志、链路信息</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1357,6 +1357,36 @@ icon: zy/integrations
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Auto Scaling</div>
                             <div title="AWS Auto Scaling，包括实例数、容量单位、暖池等。" class="fth-integration-desc">AWS Auto Scaling，包括实例数、容量单位、暖池等。</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../aws_billing"
+  				data-tags="AWS"
+  				data-name="AWS 云账单"
+  				data-summary="采集 AWS 云账单信息"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/aws/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">AWS 云账单</div>
+                            <div title="采集 AWS 云账单信息" class="fth-integration-desc">采集 AWS 云账单信息</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3712,36 +3742,6 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
-  				data-href="../exchang"
-  				data-tags=""
-  				data-name="Exchange"
-  				data-summary="采集 Exchange 相关指标信息"
-  			>
-  				<div class="fth-integration-list-card">
-  					<div class="integration-list-item-left">
-  						<img
-									src="../icon/exchange/icon.png"
-									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
-									alt=""
-  						/>
-  						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Exchange</div>
-                            <div title="采集 Exchange 相关指标信息" class="fth-integration-desc">采集 Exchange 相关指标信息</div>
-                        </div>
-                        <div class="fth-integration-mask-image"></div>
-  					</div>
-  					<div class="integration-list-item-right">
-  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  							<path
-  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
-  							></path>
-  						</svg>
-  					</div>
-  				</div>
-  			</div>
-  		
-  			<div
-  				class="fth-integration-list-item"
   				data-href="../exchange"
   				data-tags=""
   				data-name="Exchange"
@@ -6022,6 +6022,36 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../kube_scheduler"
+  				data-tags=""
+  				data-name="Kube Scheduler"
+  				data-summary="通过监控 Kube Scheduler 指标,帮助配置和优化Kube Scheduler，可以提高集群的资源利用率和应用程序的性能"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/kube_scheduler/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Kube Scheduler</div>
+                            <div title="通过监控 Kube Scheduler 指标,帮助配置和优化Kube Scheduler，可以提高集群的资源利用率和应用程序的性能" class="fth-integration-desc">通过监控 Kube Scheduler 指标,帮助配置和优化Kube Scheduler，可以提高集群的资源利用率和应用程序的性能</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../kube_state_metrics"
   				data-tags=""
   				data-name="Kube State Metrics"
@@ -6562,6 +6592,36 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../milvus"
+  				data-tags=""
+  				data-name="Milvus 向量数据库"
+  				data-summary="采集 Mlivus 向量数据库相关指标信息"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/milvus/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Milvus 向量数据库</div>
+                            <div title="采集 Mlivus 向量数据库相关指标信息" class="fth-integration-desc">采集 Mlivus 向量数据库相关指标信息</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../minio"
   				data-tags=""
   				data-name="MinIO"
@@ -6667,6 +6727,36 @@ icon: zy/integrations
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">异常事件与 Jira 联动</div>
                             <div title="当我们的应用程序或系统出现异常时，通常需要及时处理以保证系统的正常运行。为了更好地管理和跟踪异常事件，我们可以将这些事件发送到 Jira 中创建事件，这样我们就可以在 Jira 中进行跟踪、分析和解决这些问题，通过快速地将异常事件发送到 Jira 中创建事件，为我们提供更好的管理和跟踪异常事件的能力，从而更好地保证系统的正常运行。同时，这种方法也可以帮助我们更好地分析和解决问题，提高系统的稳定性和可靠性。" class="fth-integration-desc">当我们的应用程序或系统出现异常时，通常需要及时处理以保证系统的正常运行。为了更好地管理和跟踪异常事件，我们可以将这些事件发送到 Jira 中创建事件，这样我们就可以在 Jira 中进行跟踪、分析和解决这些问题，通过快速地将异常事件发送到 Jira 中创建事件，为我们提供更好的管理和跟踪异常事件的能力，从而更好地保证系统的正常运行。同时，这种方法也可以帮助我们更好地分析和解决问题，提高系统的稳定性和可靠性。</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../mqtt"
+  				data-tags=""
+  				data-name="MQTT"
+  				data-summary="接收 MQTT 协议数据"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/mqtt/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">MQTT</div>
+                            <div title="接收 MQTT 协议数据" class="fth-integration-desc">接收 MQTT 协议数据</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7020,7 +7110,7 @@ icon: zy/integrations
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/nodejs/icon.png"
+									src="../icon/node_js/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
@@ -7192,6 +7282,36 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../openlit"
+  				data-tags="OTEL,链路追踪"
+  				data-name="OpenLIT"
+  				data-summary="OpenLIT 通过简化生成式 AI 和大模型语言(LLM)的开发流程，并提供全面的可观测性支持，并将可观测性数据上报到观测云"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/openlit/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">OpenLIT</div>
+                            <div title="OpenLIT 通过简化生成式 AI 和大模型语言(LLM)的开发流程，并提供全面的可观测性支持，并将可观测性数据上报到观测云" class="fth-integration-desc">OpenLIT 通过简化生成式 AI 和大模型语言(LLM)的开发流程，并提供全面的可观测性支持，并将可观测性数据上报到观测云</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../opentelemetry-go"
   				data-tags="GOLANG,OTEL,链路追踪"
   				data-name="OpenTelemetry Golang"
@@ -7237,6 +7357,36 @@ icon: zy/integrations
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">OpenTelemetry Java</div>
                             <div title="OpenTelemetry Java 集成" class="fth-integration-desc">OpenTelemetry Java 集成</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../opentelemetry-python"
+  				data-tags="Python,OTEL,链路追踪"
+  				data-name="OpenTelemetry Python"
+  				data-summary="OpenTelemetry Python 集成"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/opentelemetry/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">OpenTelemetry Python</div>
+                            <div title="OpenTelemetry Python 集成" class="fth-integration-desc">OpenTelemetry Python 集成</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7957,6 +8107,36 @@ icon: zy/integrations
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Prometheus Push Gateway</div>
                             <div title="开启 Pushgateway API，接收 Prometheus 指标数据" class="fth-integration-desc">开启 Pushgateway API，接收 Prometheus 指标数据</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../pyroscope"
+  				data-tags="PYROSCOPE,PROFILE"
+  				data-name="Pyroscope"
+  				data-summary="Grafana Pyroscope 应用程序性能采集器"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/profiling/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Pyroscope</div>
+                            <div title="Grafana Pyroscope 应用程序性能采集器" class="fth-integration-desc">Grafana Pyroscope 应用程序性能采集器</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9412,6 +9592,36 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../volcengine_eip"
+  				data-tags="火山引擎"
+  				data-name="火山引擎 EIP"
+  				data-summary="采集火山引擎 EIP 指标数据"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/volcengine_eip/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">火山引擎 EIP</div>
+                            <div title="采集火山引擎 EIP 指标数据" class="fth-integration-desc">采集火山引擎 EIP 指标数据</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../volcengine_mongodb_replica_set"
   				data-tags="火山引擎"
   				data-name="火山引擎 MongoDB 副本集"
@@ -9667,6 +9877,36 @@ icon: zy/integrations
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Windows 事件</div>
                             <div title="采集 Windows 中的事件日志" class="fth-integration-desc">采集 Windows 中的事件日志</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../xfsquota"
+  				data-tags=""
+  				data-name="xfsquota"
+  				data-summary="采集 xfs 文件系统的限额信息"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="..//icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">xfsquota</div>
+                            <div title="采集 xfs 文件系统的限额信息" class="fth-integration-desc">采集 xfs 文件系统的限额信息</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>

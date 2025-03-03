@@ -13,7 +13,7 @@ rules:
   resources: ["clusterroles"]
   verbs: ["get", "list", "watch"]
 - apiGroups: [""]
-  resources: ["nodes", "nodes/proxy", "namespaces", "pods", "pods/log", "events", "services", "endpoints"]
+  resources: ["nodes", "nodes/stats", "nodes/metrics", "namespaces", "pods", "pods/log", "events", "services", "endpoints", "persistentvolumes", "persistentvolumeclaims", "pods/exec"]
   verbs: ["get", "list", "watch"]
 - apiGroups: ["apps"]
   resources: ["deployments", "daemonsets", "statefulsets", "replicasets"]
@@ -147,7 +147,7 @@ spec:
         - name: ENV_DATAWAY
           value: https://openway.guance.com?token=tkn_83b339919xxxxxxxxxc052101
         - name: ENV_GLOBAL_TAGS
-          value: host=__datakit_hostname,host_ip=__datakit_ip
+          value: host=__datakit_hostname,host_ip=__datakit_ip,guance_site=guance,cluster_name_k8s=guance
         - name: ENV_DEFAULT_ENABLED_INPUTS
           value: self,cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container
         - name: ENV_ENABLE_ELECTION
@@ -170,12 +170,14 @@ spec:
           value: /rootfs/dev
         - name: HOST_ROOT
           value: /rootfs
+        - name: ENV_GLOBAL_ELECTION_TAGS
+          value: guance_site=guance,cluster_name_k8s=guance
         # # ---iploc-start
         #- name: ENV_IPDB
         #  value: iploc
         # # ---iploc-end
-        image: pubrepo.jiagouyun.com/datakit/datakit:1.9.2
-        imagePullPolicy: Always
+        image: pubrepo.guance.com/datakit/datakit:1.64.0
+        imagePullPolicy: IfNotPresent
         name: datakit
         ports:
         - containerPort: 9529

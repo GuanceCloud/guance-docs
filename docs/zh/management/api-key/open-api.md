@@ -2,9 +2,9 @@
 ---
 
 
-观测云支持通过调用 Open API 接口的方式来获取和更新观测云工作空间的数据。
+{{{ custom_key.brand_name }}}支持通过调用 Open API 接口的方式来获取和更新{{{ custom_key.brand_name }}}工作空间的数据。
 
-> 关于 API 详细清单，可参考 [观测云 OpenAPI 文档库](../../open-api/index.md)。
+> 关于 API 详细清单，可参考 [{{{ custom_key.brand_name }}} OpenAPI 文档库](../../open-api/index.md)。
 
 
 ## 认证方式
@@ -114,7 +114,7 @@ curl -X GET "https://openapi.guance.com/api/v1/validate" \
 | InternalError | 503 | 未知的错误。 |
 | ... |  |  |
 
-> 更多关于 API 接口列表，可参考 [观测云 OpenAPI 文档库](../../open-api/index.md)。
+> 更多关于 API 接口列表，可参考 [{{{ custom_key.brand_name }}} OpenAPI 文档库](../../open-api/index.md)。
 
 
 ---

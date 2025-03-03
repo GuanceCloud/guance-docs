@@ -106,7 +106,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `smart`
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -121,7 +121,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`serial_no`|device serial number|
 |`wwn`|WWN Device Id|
 
-- metric list
+- Metrics
 
 
 | Metric | Description | Type | Unit |

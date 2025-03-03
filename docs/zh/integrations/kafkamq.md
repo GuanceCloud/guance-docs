@@ -113,8 +113,8 @@ Datakit 支持从 Kafka 中订阅消息采集链路、指标和日志信息。�
       ## Receive and consume OTEL data from kafka.
       #[inputs.kafkamq.otel]
         #dk_endpoint="http://localhost:9529"
-        #trace_api="/otel/v1/trace"
-        #metric_api="/otel/v1/metric"
+        #trace_api="/otel/v1/traces"
+        #metric_api="/otel/v1/metrics"
         #trace_topics=["trace1","trace2"]
         #metric_topics=["otel-metric","otel-metric1"]
         #thread = 8 
@@ -230,13 +230,13 @@ kafka 插件默认会将 `traces/JVM metrics/logging/Instance Properties/profile
 配置说明：
 
 ```toml
-## Receive and consume OTEL data from kafka.
-[inputs.kafkamq.otel]
-    dk_endpoint="http://localhost:9529"
-    trace_api="/otel/v1/trace" 
-    metric_api="/otel/v1/metric"
-    trace_topics=["trace1","trace2"]
-    metric_topics=["otel-metric","otel-metric1"]
+  ## Receive and consume OTEL data from kafka.
+  [inputs.kafkamq.otel]
+      dk_endpoint="http://localhost:9529"
+      trace_api="/otel/v1/traces" 
+      metric_api="/otel/v1/metrics"
+      trace_topics=["trace1","trace2"]
+      metric_topics=["otel-metric","otel-metric1"]
 ```
 
 配置文件中的 `dk_endpoint` `trace_api` `metric_api` 对应的是 DataKit 的地址和 OpenTelemetry 采集器的 API 地址。
@@ -250,8 +250,8 @@ kafka 插件默认会将 `traces/JVM metrics/logging/Instance Properties/profile
 当不知道发送到 Kafka 上的数据结构时什么格式时。可以先将 Datakit 的日志级别改为 Debug。将订阅打开，在 Datakit 日志中会有输出。假设拿到的如下数据：
 
 ```shell
-# 打开 debug 日志级别之后，查看日志，Datakit 会将消息信息打印出来。
-tailf /var/log/datakit/log | grep "kafka_message"
+  # 打开 debug 日志级别之后，查看日志，Datakit 会将消息信息打印出来。
+  tailf /var/log/datakit/log | grep "kafka_message"
 ```
 
 假设拿到的这是一个 metric 的 JSON 格式纯文本字符串：
@@ -263,20 +263,20 @@ tailf /var/log/datakit/log | grep "kafka_message"
 有了数据格式，就可以手写 Pipeline 脚本。登录「观测云 -> 管理 -> 文本处理（Pipeline）编写脚本」。 如：
 
 ```python
-data = load_json(message)
-drop_origin_data()
-
-hostip = data["dimensions"]["ip"]
-bkzid = data["bk_biz_id"]
-cast(bkzid,"sttr")
-
-set_tag(hostip,hostip)
-set_tag(bk_biz_id,bkzid)
-
-add_key(cpu_usage_pct,data["metrics"]["cpu_usage_pct"])
-
-# 注意 此处为行协议缺省值，Pipeline 脚本通过之后 这个 message_len 就可以删掉了。
-drop_key(message_len)
+  data = load_json(message)
+  drop_origin_data()
+  
+  hostip = data["dimensions"]["ip"]
+  bkzid = data["bk_biz_id"]
+  cast(bkzid,"sttr")
+  
+  set_tag(hostip,hostip)
+  set_tag(bk_biz_id,bkzid)
+  
+  add_key(cpu_usage_pct,data["metrics"]["cpu_usage_pct"])
+  
+  # 注意 此处为行协议缺省值，Pipeline 脚本通过之后 这个 message_len 就可以删掉了。
+  drop_key(message_len)
 ```
 
 将文件放到 */usr/local/datakit/pipeline/metric/* 目录下。
