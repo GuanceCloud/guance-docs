@@ -7,12 +7,15 @@ __int_icon: 'icon/aws_neptune_cluster'
 
 dashboard:
   - desc: 'AWS Neptune Cluster Monitoring View'
-    path: 'dashboard/zh/aws_neptune_cluster'
+    path: 'dashboard/en/aws_neptune_cluster'
 
 monitor:
   - desc: 'AWS Neptune Cluster Monitor'
-    path: 'monitor/zh/aws_neptune_cluster'
+    path: 'monitor/en/aws_neptune_cluster'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_neptune_cluster'
 ---
 
 

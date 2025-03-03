@@ -7,11 +7,11 @@ __int_icon: 'icon/aws_ec2'
 dashboard:
 
   - desc: 'AWS EC2 Monitoring View'
-    path: 'dashboard/zh/aws_ec2'
+    path: 'dashboard/en/aws_ec2'
 
 monitor:
   - desc: 'AWS EC2 Monitor'
-    path: 'monitor/zh/aws_ec2'
+    path: 'monitor/en/aws_ec2'
 
 cloudCollector:
   desc: 'cloud collector'

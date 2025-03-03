@@ -10,6 +10,10 @@ dashboard:
 monitor:
   - desc: 'No'
     path: '-'
+
+cloudCollector:
+  desc: '云采集器'
+  path: 'cloud-collector/zh/aws_ecs'
 ---
 
 <!-- markdownlint-disable MD025 -->

@@ -7,12 +7,15 @@ __int_icon: 'icon/aws_opensearch'
 dashboard:
 
   - desc: 'AWS OpenSearch Monitoring View'
-    path: 'dashboard/zh/aws_opensearch'
+    path: 'dashboard/en/aws_opensearch'
 
 monitor:
   - desc: 'AWS OpenSearch Monitor'
-    path: 'monitor/zh/aws_opensearch'
+    path: 'monitor/en/aws_opensearch'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_opensearch'
 ---
 
 <!-- markdownlint-disable MD025 -->

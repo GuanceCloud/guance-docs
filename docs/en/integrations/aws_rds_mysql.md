@@ -7,11 +7,11 @@ __int_icon: 'icon/aws_rds_mysql'
 dashboard:
 
   - desc: 'AWS RDS MySQL Monitoring View'
-    path: 'dashboard/zh/aws_rds_mysql'
+    path: 'dashboard/en/aws_rds_mysql'
 
 monitor:
   - desc: 'AWS RDS MySQL Monitor'
-    path: 'monitor/zh/aws_rds_mysql'
+    path: 'monitor/en/aws_rds_mysql'
 
 cloudCollector:
   desc: 'cloud collector'

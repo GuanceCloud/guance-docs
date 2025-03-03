@@ -6,7 +6,7 @@ summary: 'Amazon MQ supports industry standard APIs and protocols to manage and 
 __int_icon: 'icon/aws_mq_rabbitmq'
 dashboard:
   - desc: 'Amazon MQ for RabbitMQ'
-    path: 'dashboard/zh/aws_mq_rabbitmq'
+    path: 'dashboard/en/aws_mq_rabbitmq'
 ---
 
 <!-- markdownlint-disable MD025 -->

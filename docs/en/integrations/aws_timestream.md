@@ -7,11 +7,11 @@ __int_icon: 'icon/aws_timestream'
 dashboard:
 
   - desc: 'AWS Timestream dashboard'
-    path: 'dashboard/zh/aws_timestream'
+    path: 'dashboard/en/aws_timestream'
 
 monitor:
   - desc: 'AWS Timestream monitor'
-    path: 'monitor/zh/aws_timestream'
+    path: 'monitor/en/aws_timestream'
 
 ---
 

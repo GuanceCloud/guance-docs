@@ -6,10 +6,14 @@ summary: 'The Amazon ECS feature is integrated with the Amazon Cloud Technology 
 __int_icon: 'icon/aws_ecs'
 dashboard:
   - desc: 'AWS ECS'
-    path: 'dashboard/zh/aws_ecs'
+    path: 'dashboard/en/aws_ecs'
 monitor:
   - desc: 'No'
     path: '-'
+
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_ecs'
 ---
 
 <!-- markdownlint-disable MD025 -->

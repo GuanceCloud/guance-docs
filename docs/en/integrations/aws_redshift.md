@@ -6,11 +6,14 @@ summary: 'Use the「Guance  Synchronization」series script package in the scrip
 __int_icon: 'icon/aws_redshift'
 dashboard:
   - desc: 'AWS Redshift Dashboard'
-    path: 'dashboard/zh/aws_redshift'
+    path: 'dashboard/en/aws_redshift'
 monitor:
   - desc: 'AWS Redshift Monitor'
-    path: 'monitor/zh/aws_redshift'
+    path: 'monitor/en/aws_redshift'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_redshift'
 ---
 
 

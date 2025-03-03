@@ -6,10 +6,10 @@ summary: 'Use the「Guance  Synchronization」series script package in the scrip
 __int_icon: 'icon/aws_s3'
 dashboard:
   - desc: 'AWS S3 Monitoring View'
-    path: 'dashboard/zh/aws_s3'
+    path: 'dashboard/en/aws_s3'
 monitor:
   - desc: 'AWS S3 Monitor'
-    path: 'monitor/zh/aws_s3'
+    path: 'monitor/en/aws_s3'
 
 cloudCollector:
   desc: 'cloud collector'

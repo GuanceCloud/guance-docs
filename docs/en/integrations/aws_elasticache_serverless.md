@@ -6,7 +6,7 @@ summary: 'Use the「Guance  Synchronization」series script package in the scrip
 __int_icon: 'icon/aws_elasticache_serverless'
 dashboard:
   - desc: 'AWS ElastiCache Serverless'
-    path: 'dashboard/zh/aws_elasticache_serverless'
+    path: 'dashboard/en/aws_elasticache_serverless'
 ---
 
 
