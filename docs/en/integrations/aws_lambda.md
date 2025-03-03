@@ -7,12 +7,15 @@ __int_icon: 'icon/aws_lambda'
 dashboard:
 
   - desc: 'AWS Lambda dashboard'
-    path: 'dashboard/zh/aws_lambda'
+    path: 'dashboard/en/aws_lambda'
 
 monitor:
   - desc: 'AWS Lambda monitor'
-    path: 'monitor/zh/aws_lambda'
+    path: 'monitor/en/aws_lambda'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_lambda'
 ---
 
 

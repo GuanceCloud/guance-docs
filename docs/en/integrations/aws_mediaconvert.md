@@ -7,11 +7,11 @@ __int_icon: 'icon/aws_mediaconvert'
 dashboard:
 
   - desc: 'AWS MediaConvert Monitoring View'
-    path: 'dashboard/zh/aws_mediaconvert'
+    path: 'dashboard/en/aws_mediaconvert'
 
 monitor:
   - desc: 'AWS MediaConvert Monitor'
-    path: 'monitor/zh/aws_mediaconvert'
+    path: 'monitor/en/aws_mediaconvert'
 
 ---
 

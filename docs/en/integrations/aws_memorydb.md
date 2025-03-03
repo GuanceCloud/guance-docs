@@ -6,11 +6,11 @@ summary: 'Use the「Guance  Synchronization」series script package in the scrip
 __int_icon: 'icon/aws_memorydb'
 dashboard:
   - desc: 'AWS MemoryDB Monitoring View'
-    path: 'dashboard/zh/aws_memorydb'
+    path: 'dashboard/en/aws_memorydb'
 
 monitor:
   - desc: 'AWS MemoryDB Monitor'
-    path: 'monitor/zh/aws_memorydb'
+    path: 'monitor/en/aws_memorydb'
 
 ---
 

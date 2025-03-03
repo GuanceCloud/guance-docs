@@ -7,11 +7,15 @@ __int_icon: 'icon/aws_kinesis_analytics'
 dashboard:
 
   - desc: 'AWS KinesisAnalytics Monitoring View'
-    path: 'dashboard/zh/aws_kinesis_analytics'
+    path: 'dashboard/en/aws_kinesis_analytics'
 
 monitor:
   - desc: 'AWS DocumentDB Monitor'
-    path: 'monitor/zh/aws_kinesis_analytics'
+    path: 'monitor/en/aws_kinesis_analytics'
+
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_kinesis_analytics'
 ---
 
 <!-- markdownlint-disable MD025 -->

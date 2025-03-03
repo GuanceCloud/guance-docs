@@ -7,12 +7,15 @@ __int_icon: 'icon/aws_kinesis'
 dashboard:
 
   - desc: 'AWS Kinesis Monitoring View'
-    path: 'dashboard/zh/aws_kinesis'
+    path: 'dashboard/en/aws_kinesis'
 
 monitor:
   - desc: 'AWS Kinesis Monitor'
-    path: 'monitor/zh/aws_kinesis'
+    path: 'monitor/en/aws_kinesis'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_kinesis'
 ---
 
 

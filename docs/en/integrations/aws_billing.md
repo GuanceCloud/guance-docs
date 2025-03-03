@@ -7,6 +7,10 @@ __int_icon: 'icon/aws'
 dashboard:
   - desc: 'Cloud billing analysis view'
     path: 'dashboard/en/Intelligent_analysis_cloud_billing/'
+
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_billing'
 ---
 
 ## Configuration {#config}
