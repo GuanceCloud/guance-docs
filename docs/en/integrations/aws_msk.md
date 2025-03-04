@@ -56,9 +56,9 @@ Configure AWS Cloud - cloud monitoring. The default metric set is as follows. Yo
 
 ### Level：`DEFAULT`
 
-|Name	|When visible	|Dimensions	|Description|
+|Name|When visible|Dimensions|Description|
 | - | - | - | - |
-|ActiveControllerCount|	After the cluster gets to the ACTIVE state.|Cluster Name	|Only one controller per cluster should be active at any given time.|
+|ActiveControllerCount|After the cluster gets to the ACTIVE state.|Cluster Name|Only one controller per cluster should be active at any given time.|
 |`BurstBalance`|After the cluster gets to the ACTIVE state.|Cluster Name , Broker ID|The remaining balance of input-output burst credits for EBS volumes in the cluster. Use it to investigate latency or decreased throughput.<br/>`BurstBalance` is not reported for EBS volumes when the baseline performance of a volume is higher than the maximum burst performance. For more information, see I/O Credits and burst performance.|
 |BytesInPerSec| After you create a topic.|Cluster Name, Broker ID, Topic|The number of bytes per second received from clients. This metric is available per broker and also per topic.|
 |BytesOutPerSec|After you create a topic.|Cluster Name, Broker ID, Topic|The number of bytes per second sent to clients. This metric is available per broker and also per topic.|
