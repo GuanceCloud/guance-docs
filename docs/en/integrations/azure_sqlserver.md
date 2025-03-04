@@ -28,7 +28,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip: Please prepare the required Azure application registration information in advance and assign the role of subscribing to `Monitoring Reader` to the application registration
 
-To synchronize the monitoring data of Azure Virtual Machines resources, we install the corresponding collection script ID：`guance_azure_sql_server_database`
+To synchronize the monitoring data of Azure Virtual Machines resources, we install the corresponding collection script: `ID:guance_azure_sql_server_database`
 
 
 After clicking on **Install**, enter the corresponding parameters:

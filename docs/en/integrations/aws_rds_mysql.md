@@ -38,7 +38,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of RDS MySQL cloud resources, we install the corresponding collection script：「Guance Integration（AWS-RDSCollect）」(ID：`guance_aws_rds`)
+To synchronize the monitoring data of RDS MySQL cloud resources, we install the corresponding collection script: `ID:guance_aws_rds`
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 

@@ -40,7 +40,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of ECS cloud resources, we install the corresponding collection script：「Guance Integration（AWS-OpenSearchCollect）」(ID：`guance_aws_open_search`)
+To synchronize the monitoring data of ECS cloud resources, we install the corresponding collection script: `ID:guance_aws_open_search`
 
 Click 【Install】 and enter the corresponding parameters: Aws AK, Aws account name.。
 
