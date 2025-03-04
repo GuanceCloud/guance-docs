@@ -1,31 +1,31 @@
 # Launcher 服务安装配置
 
 ## 产品简介
-   用于部署安装 {{{ custom_key.brand_name }}} 的 WEB 应用，根据 Launcher 服务的引导步骤来完成 {{{ custom_key.brand_name }}} 的安装与升级
+   用于部署安装 <<< custom_key.brand_name >>> 的 WEB 应用，根据 Launcher 服务的引导步骤来完成 <<< custom_key.brand_name >>> 的安装与升级
 
 ## 关键词
 
 | **词条**   | **说明**                                                     |
 | ---------- | ------------------------------------------------------------ |
-| Launcher   | 用于部署安装 {{{ custom_key.brand_name }}} 的 WEB 应用，根据 Launcher 服务的引导步骤来完成 {{{ custom_key.brand_name }}} 的安装与升级 |
+| Launcher   | 用于部署安装 <<< custom_key.brand_name >>> 的 WEB 应用，根据 Launcher 服务的引导步骤来完成 <<< custom_key.brand_name >>> 的安装与升级 |
 | 运维操作机 | 安装了 kubectl，与目标 Kubernetes 集群在同一网络的运维机器   |
-| 安装操作机 | 在浏览器访问 launcher 服务来完成 {{{ custom_key.brand_name }}} 引导安装的机器       |
+| 安装操作机 | 在浏览器访问 launcher 服务来完成 <<< custom_key.brand_name >>> 引导安装的机器       |
 | hosts 文件 | hosts文件是一个没有扩展名的系统文件。它的主要作用是保存域名与ip的映射关系。 |
 
-## 1. {{{ custom_key.brand_name }}}离线包导入
+## 1. <<< custom_key.brand_name >>>离线包导入
 
-如果是离线网络环境下安装，需要先手工下载最新的{{{ custom_key.brand_name }}}镜像包，通过  docker load  命令将所有镜像导入到各个 Kubernetes 工作节点上后，再进行后续的引导安装。
+如果是离线网络环境下安装，需要先手工下载最新的<<< custom_key.brand_name >>>镜像包，通过  docker load  命令将所有镜像导入到各个 Kubernetes 工作节点上后，再进行后续的引导安装。
 
-最新的{{{ custom_key.brand_name }}}镜像包下载地址：
+最新的<<< custom_key.brand_name >>>镜像包下载地址：
 === "amd64"
 
-    [https://{{{ custom_key.static_domain }}}/dataflux/package/guance-amd64-latest.tar.gz](https://{{{ custom_key.static_domain }}}/dataflux/package/guance-amd64-latest.tar.gz)
+    [https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-latest.tar.gz](https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-latest.tar.gz)
     
 
 === "arm64"
 
     
-    [https://{{{ custom_key.static_domain }}}/dataflux/package/guance-arm64-latest.tar.gz](https://{{{ custom_key.static_domain }}}/dataflux/package/guance-arm64-latest.tar.gz)
+    [https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-latest.tar.gz](https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-latest.tar.gz)
     
 Containterd 环境导入镜像命令
 ```shell
@@ -47,7 +47,7 @@ $ ctr -n=k8s.io images import guance-xxx-latest.tar
     --set storageClassName=managed-nfs-storage
   ```
 
->launcher chart 下载 [Download](https://{{{ custom_key.static_domain }}}/dataflux/package/launcher-helm-latest.tgz)
+>launcher chart 下载 [Download](https://<<< custom_key.static_domain >>>/dataflux/package/launcher-helm-latest.tgz)
 
 - Launcher 卸载
 
@@ -58,7 +58,7 @@ helm uninstall <RELEASE_NAME> -n launcher
 > Launcher 安装成功，非正常情况请勿卸载。
 
 ## 3. 解析 launcher 域名到 launcher 服务
-因为 launcher 服务为部署和升级 {{{ custom_key.brand_name }}} 使用，不需要对用户开放访问，所以域名不要在公网解析，可以在**安装操作机**上，绑定 host 的方式，模拟域名解析，在 /etc/hosts 中添加 **launcher.dataflux.cn** 的域名绑定
+因为 launcher 服务为部署和升级 <<< custom_key.brand_name >>> 使用，不需要对用户开放访问，所以域名不要在公网解析，可以在**安装操作机**上，绑定 host 的方式，模拟域名解析，在 /etc/hosts 中添加 **launcher.dataflux.cn** 的域名绑定
 
 ```shell
 192.168.100.104 df-kodo.dataflux.cn
@@ -131,7 +131,7 @@ helm uninstall <RELEASE_NAME> -n launcher
 
 ### 4.5 其他设置
 
-- {{{ custom_key.brand_name }}}管理后台的管理员账号初始账号名与邮箱（默认密码为 **admin，**建议登录后立即修改默认密码）
+- <<< custom_key.brand_name >>>管理后台的管理员账号初始账号名与邮箱（默认密码为 **admin，**建议登录后立即修改默认密码）
 - 集群节点内网 IP（会自动获取，需要确认是否正确）
 - 主域名及各子应用的子域名配置，默认子域名如下，可根据需要修改：
    - dataflux 【**用户前台**】
@@ -231,7 +231,7 @@ kubectl apply -f kodo-ingress.yaml
 ## 5. 安全设置
 ???+ warning "重要"
 
-    经过以上步骤，{{{ custom_key.brand_name }}} 都安装完毕，可以进行验证，验证无误后一个很重要的步骤，将 launcher 服务下线，防止被误访问而破坏应用配置，可在**运维操作机**上执行以下命令，将 launcher 服务的 pod 副本数设为 0：
+    经过以上步骤，<<< custom_key.brand_name >>> 都安装完毕，可以进行验证，验证无误后一个很重要的步骤，将 launcher 服务下线，防止被误访问而破坏应用配置，可在**运维操作机**上执行以下命令，将 launcher 服务的 pod 副本数设为 0：
 
     ```shell
     kubectl patch deployment launcher \

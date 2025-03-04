@@ -4,6 +4,7 @@ nav:
   - '分片上传事件初始化': multipart-upload-init.md
   - '上传单个分片': upload-part.md
   - '列出一个分片上传事件所对应的已上传的分片列表': part-list.md
+  - '列出指定文件 source map 文件解压之后的文件树列表': file-tree.md
   - '合并各分片生成文件': part-merge.md
   - '取消一个分片上传事件': upload-cancel.md
   - '上传单个文件内容': upload-file-content.md

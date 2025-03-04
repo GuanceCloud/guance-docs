@@ -32,7 +32,7 @@ sudo docker run \
     --privileged \
     --publish 19529:9529 \
     -d \
-    pubrepo.guance.com/datakit/datakit:1.67.0
+    pubrepo.guance.com/datakit/datakit:1.68.1
 ```
 
 启动参数说明：

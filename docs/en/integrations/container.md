@@ -313,6 +313,26 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
         **Example**: `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`
     
+    - **ENV_INPUT_CONTAINER_POD_INCLUDE_METRIC**
+    
+        Include condition of pod metrics, filtering with namespace
+    
+        **Type**: List
+    
+        **input.conf**: `pod_include_metric`
+    
+        **Example**: `"namespace:datakit*"`
+    
+    - **ENV_INPUT_CONTAINER_POD_EXCLUDE_METRIC**
+    
+        Exclude condition of pod metrics, filtering with namespace
+    
+        **Type**: List
+    
+        **input.conf**: `pod_exclude_metric`
+    
+        **Example**: `"namespace:kube-system"`
+    
     - **ENV_INPUT_CONTAINER_KUBERNETES_URL**
     
         k8s api-server access address
@@ -643,14 +663,21 @@ The metric of containers, only supported Running status.
 | ---- |---- | :---:    | :----: |
 |`block_read_byte`|Total number of bytes read from the container file system (only supported docker).|int|B|
 |`block_write_byte`|Total number of bytes wrote to the container file system (only supported docker).|int|B|
-|`cpu_numbers`|The number of the CPU core.|int|count|
-|`cpu_usage`|The percentage usage of CPU on system host.|float|percent|
-|`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%.|float|percent|
-|`mem_capacity`|The total memory in the host machine.|int|B|
-|`mem_limit`|The limit memory in the container.|int|B|
-|`mem_usage`|The usage of the memory.|int|B|
-|`mem_used_percent`|The percentage usage of the memory is calculated based on the capacity of host machine.|float|percent|
-|`mem_used_percent_base_limit`|The percentage usage of the memory is calculated based on the limit.|float|percent|
+|`cpu_limit_millicores`|The CPU limit of the container, measured in milli-cores.|int|m|
+|`cpu_numbers`|The number of CPU cores on the system host.|int|count|
+|`cpu_request_millicores`|The CPU request of the container, measured in milli-cores.|int|m|
+|`cpu_usage`|The actual CPU usage on the system host (percentage).|float|percent|
+|`cpu_usage_base100`|The normalized CPU usage, with a maximum value of 100%. It is calculated as the number of CPU cores multiplied by 100.|float|percent|
+|`cpu_usage_base_limit`|The CPU usage based on the CPU limit (percentage).|float|percent|
+|`cpu_usage_base_request`|The CPU usage based on the CPU request (percentage).|float|percent|
+|`cpu_usage_millicores`|The CPU usage of the container, measured in milli-cores.|int|m|
+|`mem_capacity`|The total memory on the system host.|int|B|
+|`mem_limit`|The memory limit of the container.|int|B|
+|`mem_request`|The memory request of the container.|int|B|
+|`mem_usage`|The actual memory usage of the container.|int|B|
+|`mem_used_percent`|The memory usage percentage based on the total memory of the system host.|float|percent|
+|`mem_used_percent_base_limit`|The memory usage percentage based on the memory limit.|float|percent|
+|`mem_used_percent_base_request`|The memory usage percentage based on the memory request.|float|percent|
 |`network_bytes_rcvd`|Total number of bytes received from the network (only count the usage of the main process in the container, excluding loopback).|int|B|
 |`network_bytes_sent`|Total number of bytes send to the network (only count the usage of the main process in the container, excluding loopback).|int|B|
 
@@ -966,18 +993,25 @@ The metric of the Kubernetes Pod.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`cpu_limit_millicores`|Max limits for CPU resources.|int|ms|
-|`cpu_usage`|The sum of the cpu usage of all containers in this Pod.|float|percent|
-|`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%. (Experimental)|float|percent|
-|`cpu_usage_millicores`|Total CPU usage (sum of all cores) averaged over the sample window.|int|ms|
+|`cpu_limit_millicores`|The total CPU limit (in millicores) across all containers in this Pod. Note: This value is the sum of all container limit values, as Pods do not have a direct limit value.|int|m|
+|`cpu_number`|The total number of CPUs on the node where the Pod is running.|int|count|
+|`cpu_request_millicores`|The total CPU request (in millicores) across all containers in this Pod.  Note: This value is the sum of all container request values, as Pods do not have a direct request value.|int|m|
+|`cpu_usage`|The total CPU usage across all containers in this Pod.|float|percent|
+|`cpu_usage_base100`|The normalized CPU usage, with a maximum of 100%.|float|percent|
+|`cpu_usage_base_limit`|The normalized CPU usage, with a maximum of 100%, based on the CPU limit.|float|percent|
+|`cpu_usage_base_request`|The normalized CPU usage, with a maximum of 100%, based on the CPU request.|float|percent|
+|`cpu_usage_millicores`|The total CPU usage (in millicores) averaged over the sample window for all containers.|int|m|
 |`ephemeral_storage_available_bytes`|The storage space available (bytes) for the filesystem.|int|B|
 |`ephemeral_storage_capacity_bytes`|The total capacity (bytes) of the filesystems underlying storage.|int|B|
 |`ephemeral_storage_used_bytes`|The bytes used for a specific task on the filesystem.|int|B|
-|`mem_capacity`|The total memory in the host machine.|int|B|
-|`mem_limit`|The sum of the memory limit of all containers in this Pod.|int|B|
-|`mem_usage`|The sum of the memory usage of all containers in this Pod.|int|B|
-|`mem_used_percent`|The percentage usage of the memory is calculated based on the capacity of host machine.|float|percent|
-|`mem_used_percent_base_limit`|The percentage usage of the memory is calculated based on the limit.|float|percent|
+|`mem_capacity`|The total memory capacity of the host machine.|int|B|
+|`mem_limit`|The total memory limit across all containers in this Pod.  Note: This value is the sum of all container limit values, as Pods do not have a direct limit value.|int|B|
+|`mem_request`|The total memory request across all containers in this Pod.  Note: This value is the sum of all container request values, as Pods do not have a direct request value.|int|B|
+|`mem_rss`|The total RSS memory usage of all containers in this Pod, which is not supported by metrics-server.|int|B|
+|`mem_usage`|The total memory usage of all containers in this Pod.|int|B|
+|`mem_used_percent`|The percentage of memory usage based on the host machine’s total memory capacity.|float|percent|
+|`mem_used_percent_base_limit`|The percentage of memory usage based on the memory limit.|float|percent|
+|`mem_used_percent_base_request`|The percentage of memory usage based on the memory request.|float|percent|
 |`memory_capacity`|The total memory in the host machine (Deprecated use `mem_capacity`).|int|B|
 |`memory_usage_bytes`|The sum of the memory usage of all containers in this Pod (Deprecated use `mem_usage`).|int|B|
 |`memory_used_percent`|The percentage usage of the memory (refer from `mem_used_percent`|float|percent|
@@ -1140,14 +1174,21 @@ The object of containers, only supported Running status.
 |`age`|Age (seconds)|int|s|
 |`block_read_byte`|Total number of bytes read from the container file system (only supported docker).|int|B|
 |`block_write_byte`|Total number of bytes wrote to the container file system (only supported docker).|int|B|
-|`cpu_numbers`|The number of the CPU core.|int|count|
-|`cpu_usage`|The percentage usage of CPU on system host.|float|percent|
-|`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%.|float|percent|
-|`mem_capacity`|The total memory in the host machine.|int|B|
-|`mem_limit`|The limit memory in the container.|int|B|
-|`mem_usage`|The usage of the memory.|int|B|
-|`mem_used_percent`|The percentage usage of the memory is calculated based on the capacity of host machine.|float|percent|
-|`mem_used_percent_base_limit`|The percentage usage of the memory is calculated based on the limit.|float|percent|
+|`cpu_limit_millicores`|The CPU limit of the container, measured in milli-cores.|int|m|
+|`cpu_numbers`|The number of CPU cores on the system host.|int|count|
+|`cpu_request_millicores`|The CPU request of the container, measured in milli-cores.|int|m|
+|`cpu_usage`|The actual CPU usage on the system host (percentage).|float|percent|
+|`cpu_usage_base100`|The normalized CPU usage, with a maximum value of 100%. It is calculated as the number of CPU cores multiplied by 100.|float|percent|
+|`cpu_usage_base_limit`|The CPU usage based on the CPU limit (percentage).|float|percent|
+|`cpu_usage_base_request`|The CPU usage based on the CPU request (percentage).|float|percent|
+|`cpu_usage_millicores`|The CPU usage of the container, measured in milli-cores.|int|m|
+|`mem_capacity`|The total memory on the system host.|int|B|
+|`mem_limit`|The memory limit of the container.|int|B|
+|`mem_request`|The memory request of the container.|int|B|
+|`mem_usage`|The actual memory usage of the container.|int|B|
+|`mem_used_percent`|The memory usage percentage based on the total memory of the system host.|float|percent|
+|`mem_used_percent_base_limit`|The memory usage percentage based on the memory limit.|float|percent|
+|`mem_used_percent_base_request`|The memory usage percentage based on the memory request.|float|percent|
 |`message`|Object details|string|-|
 |`network_bytes_rcvd`|Total number of bytes received from the network (only count the usage of the main process in the container, excluding loopback).|int|B|
 |`network_bytes_sent`|Total number of bytes send to the network (only count the usage of the main process in the container, excluding loopback).|int|B|
@@ -1508,15 +1549,22 @@ The object of the Kubernetes Pod.
 | ---- |---- | :---:    | :----: |
 |`age`|Age (seconds)|int|s|
 |`available`|Number of containers|int|count|
-|`cpu_limit_millicores`|Max limits for CPU resources.|int|ms|
-|`cpu_usage`|The sum of the cpu usage of all containers in this Pod.|float|percent|
-|`cpu_usage_base100`|The normalized cpu usage, with a maximum of 100%. (Experimental)|float|percent|
-|`cpu_usage_millicores`|Total CPU usage (sum of all cores) averaged over the sample window.|int|ms|
-|`mem_capacity`|The total memory in the host machine.|int|B|
-|`mem_limit`|The sum of the memory limit of all containers in this Pod.|int|B|
-|`mem_usage`|The sum of the memory usage of all containers in this Pod.|int|B|
-|`mem_used_percent`|The percentage usage of the memory is calculated based on the capacity of host machine.|float|percent|
-|`mem_used_percent_base_limit`|The percentage usage of the memory is calculated based on the limit.|float|percent|
+|`cpu_limit_millicores`|The total CPU limit (in millicores) across all containers in this Pod. Note: This value is the sum of all container limit values, as Pods do not have a direct limit value.|int|m|
+|`cpu_number`|The total number of CPUs on the node where the Pod is running.|int|count|
+|`cpu_request_millicores`|The total CPU request (in millicores) across all containers in this Pod.  Note: This value is the sum of all container request values, as Pods do not have a direct request value.|int|m|
+|`cpu_usage`|The total CPU usage across all containers in this Pod.|float|percent|
+|`cpu_usage_base100`|The normalized CPU usage, with a maximum of 100%.|float|percent|
+|`cpu_usage_base_limit`|The normalized CPU usage, with a maximum of 100%, based on the CPU limit.|float|percent|
+|`cpu_usage_base_request`|The normalized CPU usage, with a maximum of 100%, based on the CPU request.|float|percent|
+|`cpu_usage_millicores`|The total CPU usage (in millicores) averaged over the sample window for all containers.|int|m|
+|`mem_capacity`|The total memory capacity of the host machine.|int|B|
+|`mem_limit`|The total memory limit across all containers in this Pod.  Note: This value is the sum of all container limit values, as Pods do not have a direct limit value.|int|B|
+|`mem_request`|The total memory request across all containers in this Pod.  Note: This value is the sum of all container request values, as Pods do not have a direct request value.|int|B|
+|`mem_rss`|The total RSS memory usage of all containers in this Pod, which is not supported by metrics-server.|int|B|
+|`mem_usage`|The total memory usage of all containers in this Pod.|int|B|
+|`mem_used_percent`|The percentage of memory usage based on the host machine’s total memory capacity.|float|percent|
+|`mem_used_percent_base_limit`|The percentage of memory usage based on the memory limit.|float|percent|
+|`mem_used_percent_base_request`|The percentage of memory usage based on the memory request.|float|percent|
 |`memory_capacity`|The total memory in the host machine (Deprecated use `mem_capacity`).|int|B|
 |`memory_usage_bytes`|The sum of the memory usage of all containers in this Pod (Deprecated use `mem_usage`).|int|B|
 |`memory_used_percent`|The percentage usage of the memory (refer from `mem_used_percent`|float|percent|
@@ -1823,6 +1871,56 @@ All collected Kubernetes resources will have a Label that matches the CustomerKe
 Containers will add Customer Labels of the Pods they belong to.
 
 ## FAQ {#faq}
+
+### Filtering Metrics Collection by Pod Namespace {#config-metric-on-pod-namespace}
+
+When Kubernetes Pod metrics collection is enabled (`enable_pod_metric = true`), Datakit will collect metrics data for all Pods in the cluster. Since this can result in a large volume of data, you can filter the metrics collection by the Pod's `namespace` field to only collect metrics from Pods in specific namespaces.
+
+You can control which Pods are included or excluded from metrics collection by configuring `pod_include_metric` and `pod_exclude_metric`.
+
+<!-- markdownlint-disable md046 -->
+=== "Host Installation"
+
+    ``` toml
+      ## Collect metrics for Pods whose namespace matches `datakit`
+      pod_include_metric = ["namespace:datakit"]
+    
+      ## Exclude all Pods with namespace `kodo`
+      pod_exclude_metric = ["namespace:kodo"]
+    ```
+    
+    - Both `include` and `exclude` settings must start with a field name, formatted as a [glob pattern](https://en.wikipedia.org/wiki/glob_(programming)): `"<field name>:<glob rule>"`.
+    - Currently, only the `namespace` field is supported for filtering, e.g., `namespace:datakit-ns`.
+    
+    If both `include` and `exclude` are configured, the Pod must meet the following conditions:
+    
+    - It must satisfy the `include` rule
+    - It must not satisfy the `exclude` rule
+    
+    For example, the following configuration will filter out all Pods:
+    
+    ```toml
+      ## Collect only Pods in `namespace:datakit` and exclude all namespaces
+      pod_include_metric = ["namespace:datakit"]
+      pod_exclude_metric = ["namespace:*"]
+    ```
+
+=== "Kubernetes"
+
+    In a Kubernetes environment, you can configure the following environment variables:
+    
+    - `ENV_INPUT_CONTAINER_POD_INCLUDE_METRIC`
+    - `ENV_INPUT_CONTAINER_POD_EXCLUDE_METRIC`
+    
+    For example, if you want to collect metrics only for Pods in the `kube-system` namespace, you can set the `ENV_INPUT_CONTAINER_POD_INCLUDE_METRIC` environment variable as shown below:
+    
+    ```yaml
+      - env:
+          - name: ENV_INPUT_CONTAINER_POD_INCLUDE_METRIC
+            value: namespace:kube-system  # Specify the namespace to collect metrics from
+    ```
+    
+    By using this method, you can flexibly control the range of Pods from which Datakit collects metrics, reducing the collection of unnecessary data and optimizing system performance and resource usage.
 
 <!-- markdownlint-disable MD013 -->
 ### :material-chat-question: NODE_LOCAL Mode Requires New RBAC Permissions {#rbac-nodes-stats}

@@ -12,6 +12,10 @@ dashboard:
 monitor:
   - desc: 'AWS CloudFront 监控器'
     path: 'monitor/zh/aws_cloudfront'
+
+cloudCollector:
+  desc: '云采集器'
+  path: 'cloud-collector/zh/aws_cloudfront'
 ---
 
 <!-- markdownlint-disable MD025 -->

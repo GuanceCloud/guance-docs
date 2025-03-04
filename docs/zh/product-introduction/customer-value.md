@@ -1,9 +1,9 @@
 # 客户价值
 ---
 
-使用{{{ custom_key.brand_name }}}将使用户相较于开源产品获得以下的价值提升：
+使用<<< custom_key.brand_name >>>将使用户相较于开源产品获得以下的价值提升：
 
-| <div style="width: 200px">使用场景</div> | 开源自建 | {{{ custom_key.brand_name }}} |
+| <div style="width: 200px">使用场景</div> | 开源自建 | <<< custom_key.brand_name >>> |
 | --- | --- | --- |
 | **构建云时代监测体系** | 专业技术团队至少超过 3 个月的投入，并且仅仅是开始 | 30 分钟开箱即用 |
 | **相关费用投入** | 一个简单开源监控产品的硬件投入也需要超过 2 万/年，如果是云时代可观测平台则至少 10 万/年固定投入（以云硬件估计） | 按需付费，根据实际的业务情况，费用弹性，整体费用比使用开源产品的综合投入低 50 %以上。 |
@@ -25,7 +25,7 @@
 实际上，一个团队在系统保障方面的投入成本往往超过系统整体建设与维护成本的 30%～50%。这其中包括了被各种开源探针消耗的服务器资源、部署开源软件所需的服务器投入，以及相应的维护和监控系统的投入。此外，开发、测试和运维工程师花费大量精力处理如何确定各种故障和异常，并**耗了大量的工作时间**。这还不包括因未构建可观测性而导致的系统故障所导致的业务损失，这些都是**隐性成本**。而那些不使用强大的可观测性平台的团队，实际上往往面临的是投入大量隐性成本和浪费大量时间成本的困境。
 
 
-<font color=coral>**选择{{{ custom_key.brand_name }}}，意味着技术团队获得一个非常强大的可观测性产品，大量节省在系统保障这件事情上的显性成本和隐性成本，帮助每个团队专注于自身业务**。</font>
+<font color=coral>**选择<<< custom_key.brand_name >>>，意味着技术团队获得一个非常强大的可观测性产品，大量节省在系统保障这件事情上的显性成本和隐性成本，帮助每个团队专注于自身业务**。</font>
 
 
 ## 更多阅读
@@ -35,7 +35,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **{{{ custom_key.brand_name }}} VS 开源自建**</font>](https://www.guance.com/whitepaper/guanceVSopensource
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **<<< custom_key.brand_name >>> VS 开源自建**</font>](https://www.guance.com/whitepaper/guanceVSopensource
 )
 
 </div>

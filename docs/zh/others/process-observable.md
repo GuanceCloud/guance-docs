@@ -3,11 +3,11 @@
 
 ## 简介
 
-{{{ custom_key.brand_name }}}支持对系统中各种运行的进程进行实施监测， 获取、分析进程运行时各项指标，包括内存使用率、占用CPU时间、进程当前状态、进程监听的端口等，通过开启进程采集器，您可以通过「基础设施」快速查看和分析进程运行时的各项指标信息，配置相关告警，了解进程的状态，在进程发生故障时，可以及时对发生故障的进程进行维护。
+<<< custom_key.brand_name >>>支持对系统中各种运行的进程进行实施监测， 获取、分析进程运行时各项指标，包括内存使用率、占用CPU时间、进程当前状态、进程监听的端口等，通过开启进程采集器，您可以通过「基础设施」快速查看和分析进程运行时的各项指标信息，配置相关告警，了解进程的状态，在进程发生故障时，可以及时对发生故障的进程进行维护。
 
 ## 前置条件
 
-- 您需要先创建一个 [{{{ custom_key.brand_name }}}账号](https://www.guance.com/)
+- 您需要先创建一个 [<<< custom_key.brand_name >>>账号](https://www.guance.com/)
 - 安装 DataKit（[DataKit 安装文档](../datakit/datakit-install.md)）
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 

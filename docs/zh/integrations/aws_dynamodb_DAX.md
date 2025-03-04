@@ -13,6 +13,9 @@ monitor:
   - desc: 'AWS DynamoDB DAX监控器'
     path: 'monitor/zh/aws_dynamodb_DAX'
 
+cloudCollector:
+  desc: '云采集器'
+  path: 'cloud-collector/zh/aws_dynamodb_dax'
 ---
 
 

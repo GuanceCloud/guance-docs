@@ -6,11 +6,11 @@
 
 Kubernetes 环境在接入 Java 应用 APM 时，需要使用到 `dd-java-agent.jar` 包，为了不侵入应用的镜像，常用的方式是在部署应用的 yaml 中使用 initContainers，利用相同 Pod 中的容器共享存储的方式来使用 `dd-java-agent.jar`。使用这种方式就会出现，每个部署文件中都有相同的 initContainers 部分。
 
-那么，是否可以把这些相同的部分提取出来，进一步减少工作量？答案是可以的，这就用到了{{{ custom_key.brand_name }}}开源的[Admission Controller（准入控制器）](https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/admission-controllers/)。[datakit-operator](https://github.com/GuanceCloud/datakit-operator)，向特殊 Pod 提供注入 dd-lib 文件和 environment 的功能，目前支持 java、python 和 js。
+那么，是否可以把这些相同的部分提取出来，进一步减少工作量？答案是可以的，这就用到了<<< custom_key.brand_name >>>开源的[Admission Controller（准入控制器）](https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/admission-controllers/)。[datakit-operator](https://github.com/GuanceCloud/datakit-operator)，向特殊 Pod 提供注入 dd-lib 文件和 environment 的功能，目前支持 java、python 和 js。
 
 ## 前置条件
 
-- 您需要先创建一个[{{{ custom_key.brand_name }}}账号](https://www.guance.com/)。
+- 您需要先创建一个[<<< custom_key.brand_name >>>账号](https://www.guance.com/)。
 - 一个 Kubernetes 集群。
 - 已使用[ DaemonSet 方式部署 DataKit](../../datakit/datakit-daemonset-deploy.md)，且已开通 ddtrace 采集器。
 
@@ -25,7 +25,7 @@ Kubernetes 环境在接入 Java 应用 APM 时，需要使用到 `dd-java-agent.
 下载 `datakit-operator.yaml`，并部署到 Kubernetes 集群中。
 
 ```
-wget https://{{{ custom_key.static_domain }}}/datakit-operator/datakit-operator.yaml
+wget https://<<< custom_key.static_domain >>>/datakit-operator/datakit-operator.yaml
 kubectl apply -f datakit-operator.yaml
 ```
 
@@ -144,6 +144,6 @@ kubectl apply -f java-demo.yaml
 
 ![image.png](../images/datakit-operator1.png)
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」- 「应用性能监测」，根据服务器 java-demo-service，即可查询到链路。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」- 「应用性能监测」，根据服务器 java-demo-service，即可查询到链路。
 
 ![image.png](../images/datakit-operator2.png)

@@ -2,7 +2,7 @@
 
 ## SDK 初始化异常校验
 
-在 Debug 环境，当您配置{{{ custom_key.brand_name }}} SDK 并首次运行该应用程序后，请在 Xcode 中检查您的调试器控制台，SDK 会使用断言检查多项配置的正确性并在配置错误时崩溃并输出相关警告。
+在 Debug 环境，当您配置<<< custom_key.brand_name >>> SDK 并首次运行该应用程序后，请在 Xcode 中检查您的调试器控制台，SDK 会使用断言检查多项配置的正确性并在配置错误时崩溃并输出相关警告。
 
 eg：当配置 SDK 时，未设置  datakit metrics 写入地址，程序会崩溃，并在控制台输出警告⚠️。
 
@@ -70,7 +70,7 @@ stringByAppendingPathComponent:@"ExampleName.log"];
 
 * 确认 SDK 上传地址 `datakitUrl` 或 `datawayUrl` [配置正确](app-access.md#base-setting) ，并正确初始化。[debug 模式](#debug-mode)下，查看[日志](#data_sync)来判断上传问题
 
-* datakit 是否往对应工作空间上传数据，是否处于离线状态。这个可以通过登录{{{ custom_key.brand_name }}}，查看「基础设施」来确认这个问题。
+* datakit 是否往对应工作空间上传数据，是否处于离线状态。这个可以通过登录<<< custom_key.brand_name >>>，查看「基础设施」来确认这个问题。
 
   ![](../img/17.trouble_shooting_android_datakit_check.png)
 

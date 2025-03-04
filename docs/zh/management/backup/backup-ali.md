@@ -17,7 +17,7 @@
 
 ![](../img/oss-1.png)
 
-1. 您需使用{{{ custom_key.brand_name }}}默认生成的外部 ID 配置角色授权使用。
+1. 您需使用<<< custom_key.brand_name >>>默认生成的外部 ID 配置角色授权使用。
 
 2. [在阿里云配置台配置授权角色](../aliyun-account.md)后，填写存档信息，填入阿里云账号 ID、OSS 角色名称、地区及 Bucket 名称。
 
@@ -45,7 +45,7 @@
 
 ![](../img/oss-2.png)
 
-1. 您需在阿里云中[配置{{{ custom_key.brand_name }}} RAM 策略](../aliyun-ram.md)。配置完成后，填写账号信息，输入阿里云 AK & SK、地区及 Bucket 名称。
+1. 您需在阿里云中[配置<<< custom_key.brand_name >>> RAM 策略](../aliyun-ram.md)。配置完成后，填写账号信息，输入阿里云 AK & SK、地区及 Bucket 名称。
 
 2. 填入[存储路径](#standard)，方便后续进一步区分和查找数据转发的具体位置。
 
@@ -65,7 +65,7 @@
 ![](../img/oss-2-1.png)
 
 
-1. 阿里云提供跨账号授权能力，您需使用{{{ custom_key.brand_name }}}专属的账号 ID 并[依据配置说明](../ali-cross-account.md)添加跨账号访问授权策略。
+1. 阿里云提供跨账号授权能力，您需使用<<< custom_key.brand_name >>>专属的账号 ID 并[依据配置说明](../ali-cross-account.md)添加跨账号访问授权策略。
 
 2. 配置完成后，选择地区并输入存储桶名称。
 
@@ -100,5 +100,5 @@
 
 **注意**：
 
-- 若填入的文件夹不存在，{{{ custom_key.brand_name }}}将直接创建，数据仍会存入该路径下。
+- 若填入的文件夹不存在，<<< custom_key.brand_name >>>将直接创建，数据仍会存入该路径下。
 - 请谨慎变更存储路径，由于更新配置存在 5 分钟左右的延迟，变更后可能会有部分数据依然转发到原目录下。

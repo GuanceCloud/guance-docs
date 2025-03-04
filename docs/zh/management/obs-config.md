@@ -16,7 +16,7 @@
 
 4.1 填写被授权的华为云账号 ID，勾选桶访问权限和 ACL 访问权限，点击确定即可：
 
-**注意**：此处的账号 ID 即{{{ custom_key.brand_name }}}为您提供的专属华为云账号 ID：`f000ee4d7327428da2f53a081e7109bd`
+**注意**：此处的账号 ID 即<<< custom_key.brand_name >>>为您提供的专属华为云账号 ID：`f000ee4d7327428da2f53a081e7109bd`
 
 ![](img/obs-2.png)
 

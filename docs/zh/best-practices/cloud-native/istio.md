@@ -220,7 +220,7 @@ kubectl apply -f istio-egressgateway-service-ext.yaml
 
 #### 替换 token
 
-登录[{{{ custom_key.brand_name }}}](https://console.guance.com/)，「集成」 - 「DataKit」复制 token，替换到 `datakit.yaml` 中的 `<your-token>`。
+登录[<<< custom_key.brand_name >>>](https://console.guance.com/)，「集成」 - 「DataKit」复制 token，替换到 `datakit.yaml` 中的 `<your-token>`。
 
 ![image](../images/istio/7.png)
 
@@ -292,7 +292,7 @@ kubectl label namespace prod istio-injection=enabled
 
 #### 开启 RUM
 
-- 1 登录[{{{ custom_key.brand_name }}}](https://console.guance.com/)，「用户访问监测」 - 「新建应用」，输入 bookinfo，<br />
+- 1 登录[<<< custom_key.brand_name >>>](https://console.guance.com/)，「用户访问监测」 - 「新建应用」，输入 bookinfo，<br />
   复制 js 到 `/usr/local/df-demo/bookinfo/productpage/templates/productpage.html`，并修改 <DATAKIT ORIGIN> 为 `http://<your-外网 ip>:9529`。
 
 ![image](../images/istio/12.png)
@@ -908,7 +908,7 @@ systemctl restart nginx
 
 部署 BookInfo 时，开启 Pod 自定义采集时，配置了 `measurement_name = "istio_prom"`。
 
-登录「{{{ custom_key.brand_name }}}」 - 「指标」，查看 istio_prom 指标集。
+登录「<<< custom_key.brand_name >>>」 - 「指标」，查看 istio_prom 指标集。
 
 ![image](../images/istio/21.png)
 

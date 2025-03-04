@@ -10,7 +10,7 @@
 
 ### 1.1 Docker 监控视图
 
-在 Kubernetes 集群中， Pod 是最小的调度单元，一个 Pod 可以包含一个或多个容器，在{{{ custom_key.brand_name }}}中，可以使用 **Docker 监控视图**对容器进行可观测。<br />        登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Docker 监控视图**。
+在 Kubernetes 集群中， Pod 是最小的调度单元，一个 Pod 可以包含一个或多个容器，在<<< custom_key.brand_name >>>中，可以使用 **Docker 监控视图**对容器进行可观测。<br />        登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Docker 监控视图**。
 
 ![image](../images/microservices/23.png)
 
@@ -24,7 +24,7 @@
 
 ### 1.2 Kubernetes 监控视图
 
-登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Kubernetes 监控视图**。
+登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Kubernetes 监控视图**。
 
 ![image](../images/microservices/26.png)
 
@@ -158,7 +158,7 @@ data:
 
 #### 1.3.3 实现 ETCD 可观测
 
-登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **ETCD 监控视图**。
+登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **ETCD 监控视图**。
 
 仪表板名称填 **ETCD 监控视图**，名称可以自定义，点击『确定』。
 		 
@@ -174,7 +174,7 @@ data:
 
 ### 2.1 Istio Mesh 监控视图
 
-登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Istio Mesh 监控视图**。
+登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Istio Mesh 监控视图**。
 		
 ![image](../images/microservices/39.png)
 
@@ -191,7 +191,7 @@ data:
 
 ### 2.2 Istio Control Plan 监控视图
 
-登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Istio Control Plane 监控视图**。
+登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Istio Control Plane 监控视图**。
 		 
 ![image](../images/microservices/43.png)
 
@@ -205,7 +205,7 @@ data:
 
 ### 2.3 Istio Service 监控视图
 
-登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Istio Service 监控视图**。
+登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Istio Service 监控视图**。
 
 ![image](../images/microservices/47.png)
 
@@ -217,7 +217,7 @@ data:
 
 ### 2.4 Istio Workload 监控视图
 
-登录『[{{{ custom_key.brand_name }}}](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Istio Workload 监控视图**。
+登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Istio Workload 监控视图**。
 		 
 ![image](../images/microservices/50.png)
 

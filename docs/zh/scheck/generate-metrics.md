@@ -5,7 +5,7 @@
 - 操作系统支持：windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64
 
 
-{{{ custom_key.brand_name }}}支持基于当前空间内的现有数据生成新的指标数据，以便于您依据需求设计并实现新的技术指标。
+<<< custom_key.brand_name >>>支持基于当前空间内的现有数据生成新的指标数据，以便于您依据需求设计并实现新的技术指标。
 
 ???+ warning 
 

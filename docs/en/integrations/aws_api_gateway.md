@@ -7,12 +7,15 @@ __int_icon: 'icon/aws_api_gateway'
 dashboard:
 
   - desc: 'AWS API Gateway Monitoring View'
-    path: 'dashboard/zh/aws_api_gateway'
+    path: 'dashboard/en/aws_api_gateway'
 
 monitor:
   - desc: 'AWS API Gateway Monitor'
-    path: 'monitor/zh/aws_api_gateway'
+    path: 'monitor/en/aws_api_gateway'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_api_gateway'
 ---
 
 

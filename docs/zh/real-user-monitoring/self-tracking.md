@@ -3,7 +3,7 @@
 
 ## 简介
 
-{{{ custom_key.brand_name }}}支持您通过**用户访问监测**新建追踪任务，对自定义的链路追踪轨迹进行实时监控。通过预先设定链路追踪轨迹，可以集中筛选链路数据，精准查询用户访问体验，及时发现漏洞、异常和风险。
+<<< custom_key.brand_name >>>支持您通过**用户访问监测**新建追踪任务，对自定义的链路追踪轨迹进行实时监控。通过预先设定链路追踪轨迹，可以集中筛选链路数据，精准查询用户访问体验，及时发现漏洞、异常和风险。
 
 ## 应用支持
 
@@ -11,7 +11,7 @@
 
 ## 新建追踪
 
-在{{{ custom_key.brand_name }}}工作空间的**用户访问监测**中，点击**应用名称**进入指定应用，即可通过**追踪**新建追踪轨迹。
+在<<< custom_key.brand_name >>>工作空间的**用户访问监测**中，点击**应用名称**进入指定应用，即可通过**追踪**新建追踪轨迹。
 
 进行**新建追踪**时，您需要设定名称和字段，并在生成追踪 ID 后完成引入配置。
 
@@ -32,17 +32,17 @@
 
 ## 自动化追踪 {#auto-tracking}
 
-{{{ custom_key.brand_name }}}支持通过**浏览器插件**的实现方式，使用浏览器记录用户访问行为，创建无代码的端到端测试。
+<<< custom_key.brand_name >>>支持通过**浏览器插件**的实现方式，使用浏览器记录用户访问行为，创建无代码的端到端测试。
 
 ### 步骤说明
 
 #### 第一步：下载浏览器插件
 
-1、若您已经接入 Web 应用，您可以直接通过 [下载浏览器插件](https://{{{ custom_key.static_domain }}}/guance-plugin/guance-rum-plugin.zip) 进行安装。
+1、若您已经接入 Web 应用，您可以直接通过 [下载浏览器插件](https://<<< custom_key.static_domain >>>/guance-plugin/guance-rum-plugin.zip) 进行安装。
 
-2、若您还未开始使用{{{ custom_key.brand_name }}}，可以先完成以下步骤：
+2、若您还未开始使用<<< custom_key.brand_name >>>，可以先完成以下步骤：
 
- - [注册{{{ custom_key.brand_name }}}账号](https://www.guance.com/)；  
+ - [注册<<< custom_key.brand_name >>>账号](https://www.guance.com/)；  
  - [安装 DataKit](../datakit/datakit-install.md)；  
  - [开启用户访问监测采集器](../integrations/rum.md)；  
  - [接入 Web 应用](web/app-access.md)。
@@ -55,7 +55,7 @@
 
 2、开启**开发者模式**；
 
-3、解压下载的浏览器插件 [guance-rum-plugin.zip](https://{{{ custom_key.static_domain }}}/guance-plugin/guance-rum-plugin.zip)；  
+3、解压下载的浏览器插件 [guance-rum-plugin.zip](https://<<< custom_key.static_domain >>>/guance-plugin/guance-rum-plugin.zip)；  
 
 4、点击**加载已解压的压缩包**；
 
@@ -79,7 +79,7 @@
 
 ![](img/8.auto-tracking_3.png)
 
-#### 第四步：在{{{ custom_key.brand_name }}}筛选查看数据
+#### 第四步：在<<< custom_key.brand_name >>>筛选查看数据
 
 在用户访问监测应用列表，选择已接入的 Web 应用，即可通过插件生成的追踪 ID (`track_id`) 筛选查看用户访问数据。
 

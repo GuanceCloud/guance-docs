@@ -2,13 +2,13 @@
 ---
 
 
-{{{ custom_key.brand_name }}}的**应用性能监测**功能支持对符合 Opentracing 协议的采集器所采集的链路数据进行分析和管理。默认情况下，按照全量的方式采集应用性能数据，即每次调用都会产生数据，若不加以限制，采集到的数据量大，会占用过多的数据存储。您可以通过设置采样的方式采集应用性能数据，节约数据存储量，降低成本费用。
+<<< custom_key.brand_name >>>的**应用性能监测**功能支持对符合 Opentracing 协议的采集器所采集的链路数据进行分析和管理。默认情况下，按照全量的方式采集应用性能数据，即每次调用都会产生数据，若不加以限制，采集到的数据量大，会占用过多的数据存储。您可以通过设置采样的方式采集应用性能数据，节约数据存储量，降低成本费用。
 
 下面将以 *[DDtrace 采集器](../../integrations/ddtrace.md) 为例，介绍如何配置采样率为 5％ 的应用性能数据*。
 
 ## 前置条件
 
-- [注册登录{{{ custom_key.brand_name }}}](https://auth.guance.com/login/pwd)；  
+- [注册登录<<< custom_key.brand_name >>>](https://auth.guance.com/login/pwd)；  
 - [安装 DataKit](../../datakit/datakit-install.md)；   
 - [开启 DDtrace 采集器](../../integrations/ddtrace.md)。 
 
@@ -160,13 +160,13 @@ curl http://localhost:54321/stop
 curl http://localhost:54322/stop
 ```
 
-### Step 5：在{{{ custom_key.brand_name }}}工作空间查看效果
+### Step 5：在<<< custom_key.brand_name >>>工作空间查看效果
 
-登录{{{ custom_key.brand_name }}}工作空间，可以看到采集的 `SERVICE_A` 和 `SERVICE_B` 链路数据。
+登录<<< custom_key.brand_name >>>工作空间，可以看到采集的 `SERVICE_A` 和 `SERVICE_B` 链路数据。
 
 ???+ warning
 
-    应用性能采样是基于链路（Trace）的，如果有 100 个 trace ，设置采样率为 5%，则随机采集其中的 5%，也就是随机上报 5 个 trace 及下的所有 Span 到{{{ custom_key.brand_name }}}工作空间。
+    应用性能采样是基于链路（Trace）的，如果有 100 个 trace ，设置采样率为 5%，则随机采集其中的 5%，也就是随机上报 5 个 trace 及下的所有 Span 到<<< custom_key.brand_name >>>工作空间。
     
     在本示例中，`SERVICE_A` 提供 HTTP 服务，并且调用 `SERVICE_B` HTTP 服务，也就是 服务 A 调用 服务 B 是一条链路，假设有 100 条链路，即随机上报其中 5 条链路。
 
@@ -192,7 +192,7 @@ curl http://localhost:54322/stop
     sampling_rate = 1.0
 ```
 
-- 设置应用性能采样后，有可能会错过重要的链路，您可以通过配置过滤器来保证上报关键的链路，如配置 `keep_rare_resource = true`，那么被判定为稀有的链路将会被直接上报到{{{ custom_key.brand_name }}}。
+- 设置应用性能采样后，有可能会错过重要的链路，您可以通过配置过滤器来保证上报关键的链路，如配置 `keep_rare_resource = true`，那么被判定为稀有的链路将会被直接上报到<<< custom_key.brand_name >>>。
 
 
 <div class="grid cards" markdown>

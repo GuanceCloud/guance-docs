@@ -3,7 +3,7 @@
 
 在企业系统中，多方数据相互交织。为了有效管理这些数据，我们需要为上报的数据设定明确的业务责权范围。鉴于业务数据时刻处于动态变化之中，根据最新的业务管理范围来查询和获取相关联的数据结果变得尤为关键。
 
-{{{ custom_key.brand_name }}}提供的本地 Function 函数功能，允许第三方用户充分利用 Function 的本地缓存和本地文件管理服务接口，并结合相关负责人的业务关系，在工作空间内执行数据分析查询，最终轻松获取与业务关系相关的接口耗时等性能分析数据。
+<<< custom_key.brand_name >>>提供的本地 Function 函数功能，允许第三方用户充分利用 Function 的本地缓存和本地文件管理服务接口，并结合相关负责人的业务关系，在工作空间内执行数据分析查询，最终轻松获取与业务关系相关的接口耗时等性能分析数据。
 
 ## 配置步骤
 
@@ -22,7 +22,7 @@ import time
 
 @DFF.API('数据查询函数', category='guance.dataQueryFunc')
 def query_fake_data(time_range=None, tier=None):
-    # {{{ custom_key.brand_name }}}连接器
+    # <<< custom_key.brand_name >>>连接器
     guance = DFF.CONN('guance')
 
     # 未指定时间范围时，可以强制限制到最近 1 分钟数据
