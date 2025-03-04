@@ -54,6 +54,7 @@ data:
           insecure_skip_verify = false
           ca_certs = ["/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"]
 ```
+
 For detailed configuration, refer to Kubernetes Prometheus Discovery.
 
 ### Mount Configuration File for DataKit
@@ -83,6 +84,7 @@ spec:
           configMap:
             name: datakit-conf-kube-apiserver
 ```
+
 ## Metrics {#metric}
 
 The following table lists key metrics and their descriptions:
