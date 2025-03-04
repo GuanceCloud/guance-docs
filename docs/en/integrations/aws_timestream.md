@@ -7,11 +7,11 @@ __int_icon: 'icon/aws_timestream'
 dashboard:
 
   - desc: 'AWS Timestream dashboard'
-    path: 'dashboard/zh/aws_timestream'
+    path: 'dashboard/en/aws_timestream'
 
 monitor:
   - desc: 'AWS Timestream monitor'
-    path: 'monitor/zh/aws_timestream'
+    path: 'monitor/en/aws_timestream'
 
 ---
 
@@ -33,7 +33,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip: Please prepare AWS AK that meets the requirements in advance (For simplicity's sake, you can directly grant the global read-only permission for CloudWatch `CloudWatchReadOnlyAccess`)
 
-To synchronize the monitoring data of AWS `Timestream` cloud resources, we install the corresponding collection [Guance Integration（`AWS-Timestream Collect`）](ID:`guance_aws_timestream`)
+To synchronize the monitoring data of AWS `Timestream` cloud resources, we install the corresponding collection script: `ID:guance_aws_timestream`
 
 Click [Install] and enter the corresponding parameters: Alibaba Cloud AK ID, Alibaba Cloud AK SECRET and Account Name.
 

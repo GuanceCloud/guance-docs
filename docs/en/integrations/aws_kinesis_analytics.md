@@ -7,11 +7,15 @@ __int_icon: 'icon/aws_kinesis_analytics'
 dashboard:
 
   - desc: 'AWS KinesisAnalytics Monitoring View'
-    path: 'dashboard/zh/aws_kinesis_analytics'
+    path: 'dashboard/en/aws_kinesis_analytics'
 
 monitor:
   - desc: 'AWS DocumentDB Monitor'
-    path: 'monitor/zh/aws_kinesis_analytics'
+    path: 'monitor/en/aws_kinesis_analytics'
+
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_kinesis_analytics'
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -34,7 +38,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of KinesisAnalytics cloud resources, we install the corresponding collection script：「Guance Integration（AWS KinesisAnalyticsCollect）」(ID：`guance_aws_kinesis_analytics`)
+To synchronize the monitoring data of KinesisAnalytics cloud resources, we install the corresponding collection script: `ID:guance_aws_kinesis_analytics`
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 

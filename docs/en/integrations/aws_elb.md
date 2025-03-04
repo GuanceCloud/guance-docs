@@ -7,15 +7,19 @@ __int_icon: 'icon/aws_api_gateway'
 dashboard:
 
   - desc: 'AWS Application ELB dashboard'
-    path: 'dashboard/zh/aws_application_elb'
+    path: 'dashboard/en/aws_application_elb'
   - desc: 'AWS Network ELB dashboard'
-    path: 'dashboard/zh/aws_network_elb'
+    path: 'dashboard/en/aws_network_elb'
+  - desc: 'AWS Gateway ELB dashboard'
+    path: 'dashboard/en/aws_gateway_elb'
+  - desc: 'AWS Classic ELB dashboard'
+    path: 'dashboard/en/aws_classic_elb'
 
 monitor:
   - desc: 'AWS Application ELB monitor'
-    path: 'monitor/zh/aws_application_elb'
+    path: 'monitor/en/aws_application_elb'
   - desc: 'AWS Network ELB monitor'
-    path: 'monitor/zh/aws_network_elb'
+    path: 'monitor/en/aws_network_elb'
 
 ---
 
@@ -41,13 +45,13 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 To synchronize the monitoring data of AWS ELB cloud resources, we install the corresponding collection script :
 
-AWS Application ELB select[Guance Integration ( AWS-ApplicationELBCollect )]  (ID: `guance_aws_applicationelb`)
+AWS Application ELB select: `ID:guance_aws_applicationelb`
 
-AWS Network ELB select[Guance Integration ( AWS-NetworkELBCollect )]  (ID: `guance_aws_networkelb`)
+AWS Network ELB select: `ID:guance_aws_networkelb`
 
-AWS Gateway ELB select[Guance Integration ( AWS-GatewayELBCollect )]  (ID: `guance_aws_gatewayelb`)
+AWS Gateway ELB select: `ID:guance_aws_gatewayelb`
 
-AWS Classic ELB select[Guance Integration ( AWS-ELBCollect )]  (ID: `guance_aws_elb`)
+AWS Classic ELB select: `ID:guance_aws_elb`
 
 Click  [Install]  and enter the corresponding parameters: AWS AK, AWS account name.
 
