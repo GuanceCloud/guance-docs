@@ -5993,7 +5993,7 @@ icon: zy/integrations
   			<div
   				class="fth-integration-list-item"
   				data-href="../kube_proxy"
-  				data-tags=""
+  				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="kube Proxy"
   				data-summary="通过跟踪 kube-proxy 运行指标,帮助了解网络代理的负载、响应时间、同步状态等信息"
   			>
@@ -6023,7 +6023,7 @@ icon: zy/integrations
   			<div
   				class="fth-integration-list-item"
   				data-href="../kube_scheduler"
-  				data-tags=""
+  				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="Kube Scheduler"
   				data-summary="通过监控 Kube Scheduler 指标,帮助配置和优化Kube Scheduler，可以提高集群的资源利用率和应用程序的性能"
   			>
@@ -6053,7 +6053,7 @@ icon: zy/integrations
   			<div
   				class="fth-integration-list-item"
   				data-href="../kube_state_metrics"
-  				data-tags=""
+  				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="Kube State Metrics"
   				data-summary="通过 Kube State Metrics 收集集群资源实时信息"
   			>
@@ -6083,7 +6083,7 @@ icon: zy/integrations
   			<div
   				class="fth-integration-list-item"
   				data-href="../kubecost"
-  				data-tags=""
+  				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="KubeCost"
   				data-summary="采集 KubeCost 指标信息"
   			>
@@ -6113,7 +6113,7 @@ icon: zy/integrations
   			<div
   				class="fth-integration-list-item"
   				data-href="../kubernetes-api-server"
-  				data-tags=""
+  				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="Kubernetes API Server"
   				data-summary="采集 Kubernetes API Server 相关指标信息"
   			>
@@ -6233,7 +6233,7 @@ icon: zy/integrations
   			<div
   				class="fth-integration-list-item"
   				data-href="../kubernetes_audit"
-  				data-tags=""
+  				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="Kubernetes 审计日志采集"
   				data-summary="Kubernetes 审计日志采集"
   			>

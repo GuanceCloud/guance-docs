@@ -5988,9 +5988,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../kubernetes-api-server"
-  				data-tags=""
+  				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="Kubernetes API Server"
-  				data-summary="Collect information about Kubernetes API Server related metrics"
+  				data-summary="Collect metrics related to the Kubernetes API Server"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6001,7 +6001,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Kubernetes API Server</div>
-                            <div title="Collect information about Kubernetes API Server related metrics" class="fth-integration-desc">Collect information about Kubernetes API Server related metrics</div>
+                            <div title="Collect metrics related to the Kubernetes API Server" class="fth-integration-desc">Collect metrics related to the Kubernetes API Server</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>

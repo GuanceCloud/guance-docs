@@ -1,184 +1,102 @@
 ---
 title     : 'Kubernetes API Server'
-summary   : 'Collect information about Kubernetes API Server related metrics'
+summary   : 'Collect metrics related to the Kubernetes API Server'
 __int_icon: 'icon/kubernetes'
+tags      :
+  - 'PROMETHEUS'
+  - 'KUBERNETES'
 dashboard :
   - desc  : 'Kubernetes API Server Monitoring View'
-    path  : 'dashboard/zh/kubernetes_api_server'
+    path  : 'dashboard/en/kubernetes_api_server'
 monitor   :
-  - desc  : 'No'
-    path  : '-'
+  - desc  : 'Kubernetes API Server'
+    path  : 'monitor/en/kubernetes_api_server'
 ---
-
-<!-- markdownlint-disable MD025 -->
-# Kubernetes API Server
-<!-- markdownlint-enable -->
-
-
-Kubernetes API Server performance metrics display, including number of requests, work queue growth, work queue depth, CPU, Memory, Goroutine, etc.
-
 
 ## Configuration {#config}
 
-### Version support
+### [Install DataKit on Kubernetes](../datakit/datakit-daemonset-deploy.md)
 
-- Operating system support: Linux
+### Configure Collector
 
-- Kubernetes version: 1.18+
-
-### Preconditions
-
-- DataKit has been deployed, see Kubernetes Cluster [安装 Datakit](../datakit/datakit-daemonset-deploy.md)>
-
-- Kubernetes API Server metric data was collected, [Kubernetes is required to install the Metrics-Server component](https://github.com/kubernetes-sigs/metrics-server#installation){: target="_blank"}.
-
-### Metric Collection
-
-- Use `yaml` to create `bearer-token` authorization information
-
-```yaml
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: bearer-token
-rules:
-  - apiGroups: [""]
-    resources:
-      - nodes
-      - nodes/metrics
-      - nodes/stats
-      - nodes/proxy
-      - services
-      - endpoints
-      - pods
-      - configmaps
-      - secrets
-      - resourcequotas
-      - replicationcontrollers
-      - limitranges
-      - persistentvolumeclaims
-      - persistentvolumes
-      - namespaces
-    verbs: ["get", "list", "watch"]
-  - apiGroups:
-      - extensions
-      - networking.k8s.io
-    resources:
-      - ingresses
-    verbs: ["get", "list", "watch"]
-  - nonResourceURLs: ["/metrics", "/metrics/cadvisor"]
-    verbs: ["get"]
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: bearer-token
-  namespace: default
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: bearer-token
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: bearer-token
-subjects:
-- kind: ServiceAccount
-  name: bearer-token
-  namespace: default
-```
-
-- Get bearer token
-
-```shell
-kubectl get secret `kubectl get secret -ndefault | grep bearer-token | awk '{print $1}'` -o jsonpath={.data.token} | base64 -d
-```
-
-
-- ConfigMap increase `api-server.conf` Configuration
-
-In the `datakit.yaml` file used to deploy DataKit, add `api-server.conf` to the ConfigMap resource.
+Create the following ConfigMap to manage the collector configuration:
 
 ```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: datakit-conf
+  name: datakit-conf-kube-apiserver
   namespace: datakit
 data:
-  #### api-server ## add
-  api-server.conf: |-
-    [[inputs.prom]]
-      ## Windows example: C:\\Users
-      ## UNIX-like example: /usr/local/
-      url = "https://172.31.16.148:6443/metrics"
-
-      source = "prom-api-server"
-
-      metric_types = ["counter", "gauge"]
-
-      measurement_name = "prom_api_server"
-
-      interval = "60s"
-
-      tags_ignore = ["apiservice","bound","build_date","compiler","component","crd","dry_run","endpoint","error_type","flow_schema","git_commit","git_tree_state","git_version","go_version","group","grpc_code","grpc_method","grpc_service","grpc_type","kind","major","method","minor","operation","platform","priority_level","reason","rejection_code","removed_release","request_kind","resource","result","scope","source","status","subresource","type","usage","username","verb","version"]
-      metric_name_filter = ["workqueue_adds_total","workqueue_depth","apiserver_request_total","process_resident_memory_bytes","process_cpu_seconds_total","go_goroutines"]
-      
-      tls_open = true
-      tls_ca = "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
-
-      [inputs.prom.auth]
-       type = "bearer_token"
-       token = "eyJhbGciOiJSUzI1NiIsImtpZCI6ImlfX2V6UXdXWkpKUWZ6QlBxTGdSRTBpa0J1a2VpQUU3Q0JMWGFfYWNDYWcifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImJlYXJlci10b2tlbi10b2tlbi05emI5dCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJiZWFyZXItdG9rZW4iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiJkNWQxNDkzNi00NmM1LTRjZjMtYmI2MS00ODhhOTFiYTRjMTQiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6ZGVmYXVsdDpiZWFyZXItdG9rZW4ifQ.sBQUGE67N6BV6mnC0g72k8ciiSjEZ-ctFjHcyiP_rBp9paUnGwd3ouheF0ddGormn6esOGR1t6vvDdta9BiE3i5mHpJsOifkVXzv85N3qllJfSpXvIIn-LNq-wxnK55QbOhXQjeFKF0PBanJk4m_kWCM6SOuFrH9s8cHGhKEVCYw_7ScUwHCDGQVUq_zKCfKll20GHSwhlzjjt2tz07UYdQs5kQ9AN8VbM9qNIJmpasPOeqod9hTbevnL3kO5Lcd4h4NUOT8JfJ2Om72NvH71-xWNH0U_Hqf2yS0_ZlnneBESq4FDjbm1VnJPxeIOJL0dMaoRJVPPtA0yUhX5MYV7A"
-       #token_file = "/var/run/secrets/kubernetes.io/serviceaccount/token"
-
-      [inputs.prom.tags]
-        instance = "172.31.16.148:6443"
+  kube-apiserver.conf: |-
+    [[inputs.kubernetesprometheus.instances]]
+      role       = "pod"
+      namespaces = ["kube-system"]
+      selector   = "component=kube-apiserver,tier=control-plane"
+      scrape          = "true"
+      scheme          = "https"
+      port            = "6443"
+      path            = "/metrics"
+      scrape_interval = "60s"
+      node_local      = "ture"
+      [inputs.kubernetesprometheus.instances.custom]
+        measurement        = "kube_apiserver"
+        job_as_measurement = false
+        [inputs.kubernetesprometheus.instances.custom.tags]
+          cluster_name_k8s = "fill-your-cluster-name"
+          instance         = "__kubernetes_mate_instance"
+          pod_name         = "__kubernetes_pod_name"
+          pod_namespace    = "__kubernetes_pod_namespace"
+          node_name        = "__kubernetes_pod_node_name"
+      [inputs.kubernetesprometheus.instances.auth]
+        bearer_token_file = "/var/run/secrets/kubernetes.io/serviceaccount/token"
+        [inputs.kubernetesprometheus.instances.auth.tls_config]
+          insecure_skip_verify = false
+          ca_certs = ["/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"]
 ```
+For detailed configuration, refer to Kubernetes Prometheus Discovery.
 
-- Mount `api-server.conf`
+### Mount Configuration File for DataKit
 
-Add the following under `datakit.yaml` file `volumeMounts`.
+Modify the DataKit resource file and mount the collection configuration to enable the corresponding collector:
 
 ```yaml
-- mountPath: /usr/local/datakit/conf.d/prom/api-server.conf
-  name: datakit-conf
-  subPath: api-server.conf
+apiVersion: apps/v1
+kind: DaemonSet
+...
+spec:
+  ...
+  template:
+    ...
+    spec:
+      ...
+      containers:
+        ...
+        volumeMounts:
+          ...
+          - name: datakit-conf-kube-apiserver
+            subPath: kube-apiserver.conf
+            mountPath: /usr/local/datakit/conf.d/kubernetesprometheus/kube-apiserver.conf
+      volumes:
+        ...
+        - name: datakit-conf-kube-apiserver
+          configMap:
+            name: datakit-conf-kube-apiserver
 ```
+## Metrics {#metric}
 
-- Kubernetes has exposed metrics by default and can view them directly through curl.
+The following table lists key metrics and their descriptions:
 
-```shell
-curl -k "https://172.31.16.148:6443/metrics" -H "Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImlfX2V6UXdXWkpKUWZ6QlBxTGdSRTBpa0J1a2VpQUU3Q0JMWGFfYWNDYWcifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImJlYXJlci10b2tlbi10b2tlbi05emI5dCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJiZWFyZXItdG9rZW4iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiJkNWQxNDkzNi00NmM1LTRjZjMtYmI2MS00ODhhOTFiYTRjMTQiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6ZGVmYXVsdDpiZWFyZXItdG9rZW4ifQ.sBQUGE67N6BV6mnC0g72k8ciiSjEZ-ctFjHcyiP_rBp9paUnGwd3ouheF0ddGormn6esOGR1t6vvDdta9BiE3i5mHpJsOifkVXzv85N3qllJfSpXvIIn-LNq-wxnK55QbOhXQjeFKF0PBanJk4m_kWCM6SOuFrH9s8cHGhKEVCYw_7ScUwHCDGQVUq_zKCfKll20GHSwhlzjjt2tz07UYdQs5kQ9AN8VbM9qNIJmpasPOeqod9hTbevnL3kO5Lcd4h4NUOT8JfJ2Om72NvH71-xWNH0U_Hqf2yS0_ZlnneBESq4FDjbm1VnJPxeIOJL0dMaoRJVPPtA0yUhX5MYV7A"
-```
 
-- Restart DataKit
-
-```yaml
-kubectl delete -f datakit.yaml
-kubectl apply -f datakit.yaml
-```
-
-## Metric {#metric}
-
-| Tag                          |Describe| Data type |
-| ----------------------------- | ------------------------------------------------------------ | -------- |
-| `apiserver_request_total`       |Counter of apiserver requests broken out for each verb, dry run value, group, version, resource, scope, component, and HTTP response code.| int      |
-| `workqueue_adds_total`          |Total number of adds handled by workqueue| int      |
-| `workqueue_depth`               |Current depth of workqueue| int      |
-| `process_resident_memory_bytes` |Resident memory size in bytes| B        |
-| `process_cpu_seconds_total`     |Total user and system CPU time spent in seconds| float    |
-| `go_goroutines`                 |Number of goroutine that currently exist| int      |
-
-## Faq {#faq}
-
-[Why no data](../datakit/why-no-data.md)
-
-<!-- TODO: page 404
-## Extended reading {#more-reading}
-
-- [TAG best practices](../best-practices/insight/tag.md)
-- [Multiple Kubernetes cluster metric best practices](../best-practices/cloud-native/multi-cluster.md)
--->
+| Metric                                             | Metric Type | Description   |
+|----------------------------------------------------|-------------|--------------------------------------------------------------|
+| `apiserver_request_total`                          | Counter     | Counts requests by verb, dry_run, group, version, resource, scope, component, and code           |
+| `apiserver_current_inflight_requests`              | Gauge       | Current number of read/write requests, categorized by request_kind                               |
+| `apiserver_request_terminations_total`             | Counter     | Counts discarded requests due to self-protection, categorized by code, component, group, resource, scope, subresource, verb, and version |
+| `apiserver_request_duration_seconds_bucket`        | Histogram   | Response latency distribution, categorized by verb, dry_run, group, version, resource, subresource, scope, and component |
+| `etcd_request_duration_seconds_bucket`             | Histogram   | Etcd response latency distribution, categorized by operation and type                           |
+| `apiserver_admission_controller_admission_duration_seconds_bucket` | Histogram | Admission controller latency distribution, categorized by name, operation, rejected, and type  |
+| `apiserver_admission_webhook_admission_duration_seconds_bucket` | Histogram | Admission Webhook response latency distribution, categorized by name, operation, rejected, and type |
+| `workqueue_queue_duration_seconds_bucket`          | Histogram   | Distribution of time requests stay in the work queue, categorized by name                        |
+| `workqueue_work_duration_seconds_bucket`           | Histogram   | Distribution of time taken to process requests in the queue, categorized by name                 |
+| `apiserver_storage_objects`                        | Gauge       | Latest count of resources, categorized by resource                                               |
