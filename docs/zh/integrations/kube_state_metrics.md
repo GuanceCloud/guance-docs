@@ -2,6 +2,9 @@
 title     : 'Kube State Metrics'
 summary   : '通过 Kube State Metrics 收集集群资源实时信息'
 __int_icon: 'icon/kube_state_metrics'
+tags      :
+  - 'PROMETHEUS'
+  - 'KUBERNETES'
 dashboard :
   - desc  : 'Kube State Metrics'
     path  : 'dashboard/zh/kube_state_metrics'
