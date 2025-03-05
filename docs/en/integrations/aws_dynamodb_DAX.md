@@ -39,7 +39,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip: Please prepare AWS AK that meets the requirements in advance (For simplicity's sake, you can directly grant the global read-only permission for CloudWatch `CloudWatchReadOnlyAccess`)
 
-To synchronize the monitoring data of AWS ELB cloud resources, we install the corresponding collection script: [Guance Integration（AWS-LambdaCollect）](ID:`guance_aws_lambda`)
+To synchronize the monitoring data of AWS ELB cloud resources, we install the corresponding collection script: `ID:guance_aws_lambda`
 
 Click [ Install ] and enter the corresponding parameters: AWS AK, AWS account name.
 

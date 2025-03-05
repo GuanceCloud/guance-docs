@@ -18,7 +18,7 @@
 | funcBody | json |  | 函数请求体<br>允许为空: False <br> |
 | funcBody.kwargs | json |  | 函数调用字典参数（**kwargs）<br>例子: {'msg': 'tom'} <br>允许为空: False <br> |
 | funcBody.options | json |  | 返回类型（默认raw）<br>允许为空: False <br> |
-| funcBody.options.returnType | enum |  | 返回类型（默认raw）<br>例子: jsonDumps <br>允许为空: False <br>可选值: ['ALL', 'raw', 'repr', 'jsonDumps'] <br> |
+| funcBody.options.returnType | custom_enum |  | 返回类型（默认raw）<br>例子: jsonDumps <br>允许为空: False <br>可选值: ['ALL', 'raw', 'repr', 'jsonDumps'] <br> |
 
 ## 参数补充说明
 

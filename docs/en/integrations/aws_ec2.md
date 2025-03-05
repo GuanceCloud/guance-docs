@@ -7,11 +7,11 @@ __int_icon: 'icon/aws_ec2'
 dashboard:
 
   - desc: 'AWS EC2 Monitoring View'
-    path: 'dashboard/zh/aws_ec2'
+    path: 'dashboard/en/aws_ec2'
 
 monitor:
   - desc: 'AWS EC2 Monitor'
-    path: 'monitor/zh/aws_ec2'
+    path: 'monitor/en/aws_ec2'
 
 cloudCollector:
   desc: 'cloud collector'
@@ -38,7 +38,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of EC2 cloud resources, we install the corresponding collection script：「Guance Integration（AWS EC2Collect）」(ID：`guance_aws_ec2`)
+To synchronize the monitoring data of EC2 cloud resources, we install the corresponding collection script: `ID:guance_aws_ec2`
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 

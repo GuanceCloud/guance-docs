@@ -6,10 +6,14 @@ summary: 'The Amazon ECS feature is integrated with the Amazon Cloud Technology 
 __int_icon: 'icon/aws_ecs'
 dashboard:
   - desc: 'AWS ECS'
-    path: 'dashboard/zh/aws_ecs'
+    path: 'dashboard/en/aws_ecs'
 monitor:
   - desc: 'No'
     path: '-'
+
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_ecs'
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -30,7 +34,7 @@ If you deploy Func yourself,[Refer to](https://func.guance.com/doc/script-market
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of ElastiCache Redis cloud resources, we install the corresponding collection script：「Guance Integration（AWS ECS Collect）」(ID：`guance_aws_ecs`)
+To synchronize the monitoring data of ElastiCache Redis cloud resources, we install the corresponding collection script: `ID:guance_aws_ecs`
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 

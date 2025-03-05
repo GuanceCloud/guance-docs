@@ -10,6 +10,10 @@ dashboard:
     path: 'dashboard/zh/aws_application_elb'
   - desc: 'AWS Network ELB 内置视图'
     path: 'dashboard/zh/aws_network_elb'
+  - desc: 'AWS Gateway ELB 内置视图'
+    path: 'dashboard/zh/aws_gateway_elb'
+  - desc: 'AWS Classic ELB 内置视图'
+    path: 'dashboard/zh/aws_classic_elb'
 
 monitor:
   - desc: 'AWS Application ELB 监控器'
@@ -48,7 +52,7 @@ AWS 网络负载均衡器（ AWS Network ELB ）请选择「观测云集成（AW
 
 AWS 网关负载均衡器（ AWS Gateway ELB ）请选择「观测云集成（AWS-GatewayELB采集）」(ID：`guance_aws_gatewayelb`)
 
-AWS Classic 负载均衡器 请选择「观测云集成（AWS-ELB采集）」(ID：`guance_aws_elb`)
+AWS Classic 负载均衡器 请选择「观测云集成（AWS-ClassicELB采集）」(ID：`guance_aws_elb`)
 
 点击【安装】后，输入相应的参数：亚马逊云 AK、亚马逊云账户名。
 
