@@ -13,6 +13,9 @@ monitor:
   - desc: 'AWS Redshift 监控器'
     path: 'monitor/zh/aws_redshift'
 
+cloudCollector:
+  desc: '云采集器'
+  path: 'cloud-collector/zh/aws_redshift'
 ---
 
 

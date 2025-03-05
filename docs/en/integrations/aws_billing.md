@@ -7,6 +7,10 @@ __int_icon: 'icon/aws'
 dashboard:
   - desc: 'Cloud billing analysis view'
     path: 'dashboard/en/Intelligent_analysis_cloud_billing/'
+
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_billing'
 ---
 
 ## Configuration {#config}
@@ -21,7 +25,7 @@ If you choose to deploy Func on your own, please refer to [Self-hosted Func Depl
 
 > Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`)
 
-To synchronize AWS billing monitoring data, we will install the corresponding collection script:  ID: `guance_aws_billing_by_instance`
+To synchronize AWS billing monitoring data, we will install the corresponding collection script: `ID:guance_aws_billing_by_instance`
 
 After clicking 【Install】, enter the corresponding parameters: Amazon AK, Amazon account name, Area.
 

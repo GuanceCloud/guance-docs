@@ -12,6 +12,10 @@ dashboard:
 monitor:
   - desc: 'AWS DocumentDB 监控器'
     path: 'monitor/zh/aws_kinesis_analytics'
+
+cloudCollector:
+  desc: '云采集器'
+  path: 'cloud-collector/zh/aws_kinesis_analytics'
 ---
 
 <!-- markdownlint-disable MD025 -->
