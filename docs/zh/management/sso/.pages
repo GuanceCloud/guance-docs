@@ -1,8 +1,9 @@
 nav:
   - index.md
-  - '配置常见问题': configuration-faq.md
-  - 'Azure AD': azure-ad.md
   - 'Authing': authing.md
+  - 'AWS Identity Center': aws_iam_sso.md
+  - 'Azure AD': azure-ad.md
   - 'Okta': okta.md
   - '阿里云 IDaaS': aliyun-idaas.md
   - 'Keycloak': keycloak.md
+  - '常见问题': configuration-faq.md
