@@ -2,6 +2,9 @@
 title     : 'Kubernetes 审计日志采集'
 summary   : 'Kubernetes 审计日志采集'
 __int_icon: 'icon/kubernetes'
+tags      :
+  - 'PROMETHEUS'
+  - 'KUBERNETES'
 dashboard :
   - desc  : 'kubernetes Audit'
     path  : 'dashboard/zh/kubernetes_audit'

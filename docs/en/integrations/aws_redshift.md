@@ -6,11 +6,14 @@ summary: 'Use the「Guance  Synchronization」series script package in the scrip
 __int_icon: 'icon/aws_redshift'
 dashboard:
   - desc: 'AWS Redshift Dashboard'
-    path: 'dashboard/zh/aws_redshift'
+    path: 'dashboard/en/aws_redshift'
 monitor:
   - desc: 'AWS Redshift Monitor'
-    path: 'monitor/zh/aws_redshift'
+    path: 'monitor/en/aws_redshift'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_redshift'
 ---
 
 
@@ -34,7 +37,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of EC2 cloud resources, we install the corresponding collection script：「Guance Integration（AWS EC2 Collect）」(ID：`guance_aws_ec2`)
+To synchronize the monitoring data of EC2 cloud resources, we install the corresponding collection script: `ID:guance_aws_ec2`
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 

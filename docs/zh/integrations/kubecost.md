@@ -2,6 +2,9 @@
 title     : 'KubeCost'
 summary   : '采集 KubeCost 指标信息'
 __int_icon: 'icon/kubecost'
+tags      :
+  - 'PROMETHEUS'
+  - 'KUBERNETES'
 dashboard :
   - desc  : 'KubeCost'
     path  : 'dashboard/zh/kubecost'
