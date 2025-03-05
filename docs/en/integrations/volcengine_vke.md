@@ -6,7 +6,7 @@ summary: 'Volcengine VKE metrics collection, including Cluster, Container, Node,
 __int_icon: 'icon/volcengine_vke'
 dashboard:
   - desc: 'Volcengine VKE'
-    path: 'dashboard/zh/volcengine_vke/'
+    path: 'dashboard/en/volcengine_vke/'
 ---
 
 <!-- markdownlint-disable MD025 -->
