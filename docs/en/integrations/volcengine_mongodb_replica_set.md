@@ -5,8 +5,8 @@ tags:
 summary: 'Volcengine MongoDB replica set metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc.'
 __int_icon: 'icon/volcengine_mongodb'
 dashboard:
-  - desc: 'Volcengine Replica Set'
-    path: 'dashboard/zh/volcengine_mongodb_replica_set/'
+  - desc: 'Volcengine MongoDB Replica Set'
+    path: 'dashboard/en/volcengine_mongodb_replica_set/'
 ---
 
 <!-- markdownlint-disable MD025 -->
