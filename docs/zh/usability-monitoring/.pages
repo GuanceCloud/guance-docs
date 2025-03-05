@@ -4,3 +4,4 @@ nav:
   - '概览': overview.md
   - '查看器': explorer.md
   - '自建节点管理': self-node.md
+  - '常见问题': faq.md
