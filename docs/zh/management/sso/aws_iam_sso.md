@@ -12,9 +12,9 @@ AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理�
 2. 在搜索栏中，输入 IAM Identity Center；
 3. 点击“启用”。
 
-<img src="../img/aws_iam_sso-1.png" width="70%" >
+<img src="../../img/aws_iam_sso-1.png" width="70%" >
 
-<img src="../img/aws_iam_sso-2.png" width="70%" >
+<img src="../../img/aws_iam_sso-2.png" width="70%" >
 
 **注意**：
 
@@ -36,9 +36,9 @@ AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理�
 1. 选择应用程序类型为“我想设置应用程序”；
 2. 继续选择 SAML 2.0，进入下一步。
 
-<img src="../img/aws_iam_sso-3.png" width="70%" >
+<img src="../../img/aws_iam_sso-3.png" width="70%" >
 
-<img src="../img/aws_iam_sso-4.png" width="70%" >
+<img src="../../img/aws_iam_sso-4.png" width="70%" >
 
 ### 配置应用程序 {#config}
 
@@ -49,9 +49,9 @@ AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理�
 5. 提交当前配置；
 6. 页面将提示应用程序添加成功。
 
-<img src="../img/aws_iam_sso-5.png" width="70%" >
+<img src="../../img/aws_iam_sso-5.png" width="70%" >
 
-<img src="../img/aws_iam_sso-6.png" width="70%" >
+<img src="../../img/aws_iam_sso-6.png" width="70%" >
 
 ## 3、编辑属性映射
 
@@ -62,7 +62,7 @@ AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理�
 1. 系统默认提供字段 `Subject`（用户唯一标识符），选择将其映射为 `${user:email}`；
 2. 配置完毕后点击保存更改。
 
-<img src="../img/aws_iam_sso-18.png" width="70%" >
+<img src="../../img/aws_iam_sso-18.png" width="70%" >
 
 ## 4、分配用户和组访问权限
 
@@ -77,9 +77,9 @@ AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理�
 4. 进入下一步。
 
 
-<img src="../img/aws_iam_sso-7.png" width="70%" >
+<img src="../../img/aws_iam_sso-7.png" width="70%" >
 
-<img src="../img/aws_iam_sso-8.png" width="70%" >
+<img src="../../img/aws_iam_sso-8.png" width="70%" >
 
 **注意**：此处的用户名、密码、邮箱均为后续该用户单点登录时会用到的必需配置。
 
@@ -91,9 +91,9 @@ AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理�
 4. 回到添加用户页面，选择该组，进入下一步；
 5. 确认添加该用户。状态消息将通知您，您已成功添加该用户。
 
-<img src="../img/aws_iam_sso-9.png" width="70%" >
+<img src="../../img/aws_iam_sso-9.png" width="70%" >
 
-<img src="../img/aws_iam_sso-10.png" width="70%" >
+<img src="../../img/aws_iam_sso-10.png" width="70%" >
 
 
 ### 步骤 3：为应用程序分配用户和组
@@ -103,9 +103,9 @@ AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理�
 3. 审核通过后即可创分配成功。
 
 
-<img src="../img/aws_iam_sso-11.png" width="70%" >
+<img src="../../img/aws_iam_sso-11.png" width="70%" >
 
-<img src="../img/aws_iam_sso-12.png" width="70%" >
+<img src="../../img/aws_iam_sso-12.png" width="70%" >
 
 
 
@@ -121,7 +121,7 @@ AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理�
 8. 点击确认。
 
 
-<img src="../img/aws_iam_sso-13.png" width="70%" >
+<img src="../../img/aws_iam_sso-13.png" width="70%" >
 
 > 此处的更多配置详情，可参考 [SSO 管理](./index.md#corporate)。
 
@@ -134,6 +134,6 @@ AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理�
 5. 即可登录成功。
 
 
-<img src="../img/aws_iam_sso-14.png" width="70%" >
+<img src="../../img/aws_iam_sso-14.png" width="70%" >
 
-<img src="../img/aws_iam_sso-15.png" width="70%" >
+<img src="../../img/aws_iam_sso-15.png" width="70%" >
