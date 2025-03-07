@@ -94,7 +94,7 @@
 
 ![](img/2.png)
 
-开启主机相关的其他数据采集器，可参考[日志](../integrations/logging.md)、[进程](../integrations/host_processes.md)、[容器](../integrations/container.md)、[网络](../datakit/net.md)、[安全巡检](../integrations/sec-checker.md)。
+开启主机相关的其他数据采集器，可参考[日志](../integrations/logging.md)、[进程](../integrations/host_processes.md)、[容器](../integrations/container.md)、[网络](../integrations/net.md)、[安全巡检](../integrations/sec-checker.md)。
 
 - **自定义内置视图**
 
