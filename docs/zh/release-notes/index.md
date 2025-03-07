@@ -37,7 +37,7 @@ icon: zy/release-notes
 
 </div>
 
-## 2025 年 2 月 27 日
+## 2025 年 2 月 27 日 {#20250227}
 
 ### OpenAPI 更新 {#openapi0227}
 
@@ -69,8 +69,7 @@ icon: zy/release-notes
 
 #### 基础设施
 
-1. 容器：对象数据新增 `cpu_usage_by_limit`、`cpu_usage_by_request`、`mem_used_percent_base_limit`、`mem_used_percent_base_request`、`mem_used_percent_base_limit`、`mem_used_percent_base_request` 6 个新字段；
-2. Pod 查看器：对象数据新增 `cpu_usage_by_limit`、`cpu_usage_by_request`、`mem_used_percent_base_limit`、`mem_used_percent_base_request` 4 个新字段。
+容器/ Pod 查看器：对象数据新增 `cpu_usage_by_limit`、`cpu_usage_by_request`、`mem_used_percent_base_limit`、`mem_used_percent_base_request` 4 个新字段。
 
 #### 应用性能监测
 

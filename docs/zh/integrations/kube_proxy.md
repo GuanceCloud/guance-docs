@@ -2,6 +2,9 @@
 title     : 'kube Proxy'
 summary   : '通过跟踪 kube-proxy 运行指标,帮助了解网络代理的负载、响应时间、同步状态等信息'
 __int_icon: 'icon/kube_proxy'
+tags      :
+  - 'PROMETHEUS'
+  - 'KUBERNETES'
 dashboard :
   - desc  : 'kube Proxy'
     path  : 'dashboard/zh/kube_proxy'

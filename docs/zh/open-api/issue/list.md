@@ -52,7 +52,7 @@
 |:---------------:|:-------------------------------------------:|
 |      resource |            资源名称              |
 |      level   |          issue等级uuid            |
-|      statusType   |     issue状态 [10:Open,20:Resolve,30:Pending]       |
+|      statusType   |     issue状态 [10:Open,15:Working,20:Resolved,25:Closed,30:Pending]       |
 |      creator   |     创建人       |
 |      updator   |     更新人       |
 

@@ -36,6 +36,8 @@
 | task.port | string |  | type=tcp时，必填参数<br>允许为空: False <br> |
 | task.timeout | string |  | type=tcp/icmp时，选填参数<br>允许为空: False <br> |
 | task.message | string |  | type=websocket，必填参数<br>允许为空: False <br> |
+| task.post_mode | string |  | 可用性判断模式 默认-default 脚本模式-script<br>允许为空: False <br> |
+| task.post_script | string |  | 脚本内容<br>允许为空: False <br>允许为空字符串: True <br> |
 | tags | array |  | 标签名称列表<br>允许为空: False <br> |
 
 ## 参数补充说明
@@ -62,6 +64,8 @@
 | task.port  | string  |  N  |  type=tcp时，此参数必填  ｜
 | task.timeout  | string  | N  | type=tcp/icmp时，此参数选填  |
 | task.message  | string  | Y/N  | type=websocket时，此参数必填  ｜
+| task.post_mode  | string  | N  | 可用性判断模式 默认-default 脚本模式-script |
+| task.post_script  | string  | N  | 可用性判断脚本内容 |
 | tags          |  array  |  N | 标签列表  |
 
 * 注意 *: 拨测任务 task 参数内部的具体细节可参考 [自定义拨测](../../integrations/dialtesting_json.md)

@@ -37,7 +37,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of Amazon EC2 Spot, we install the corresponding collection script：「Guance Integration（AWS-EC2 SpotCollect）」(ID：`guance_aws_ec2_spot`)
+To synchronize the monitoring data of Amazon EC2 Spot, we install the corresponding collection script: `ID:guance_aws_ec2_spot`
 
 Click 【Install】 and enter the corresponding parameters: Aws AK, Aws account name.。
 

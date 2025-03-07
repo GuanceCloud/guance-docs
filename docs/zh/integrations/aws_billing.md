@@ -7,6 +7,10 @@ __int_icon: 'icon/aws'
 dashboard:
   - desc: '云账单分析视图'
     path: 'dashboard/zh/Intelligent_analysis_cloud_billing/'
+
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/zh/aws_billing'
 ---
 
 ## 配置 {#config}
