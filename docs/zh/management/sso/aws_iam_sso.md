@@ -3,6 +3,7 @@
 
 AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理服务，支持通过**单点登录（SSO）**统一管控用户对多个 AWS 账户、云应用（如 Salesforce、GitHub）及混合云资源的访问权限。
 
+注意：
 
 ## 1、启用 IAM Identity Center
 
