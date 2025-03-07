@@ -1,4 +1,4 @@
-# 内网场景 Dubbo 微服务接入{{{ custom_key.brand_name }}}
+# 内网场景 Dubbo 微服务接入<<< custom_key.brand_name >>>
 
 ---
 
@@ -6,9 +6,9 @@
 
 ## 简介
 
-有的项目，用户群体是公司内部人员，或者集团公司人员。为了安全，这些项目部署在自建机房，员工通过内网或者 VPN 访问。针对这种场景，**{{{ custom_key.brand_name }}}提供了离线部署方案**，即通过一台可以连外网的主机上部署 DataKit，开启 Proxy 采集器，内网的主机通过这台代理安装 DataKit，所有数据也是通过这台部署的 DataKit 上报到{{{ custom_key.brand_name }}}。
+有的项目，用户群体是公司内部人员，或者集团公司人员。为了安全，这些项目部署在自建机房，员工通过内网或者 VPN 访问。针对这种场景，**<<< custom_key.brand_name >>>提供了离线部署方案**，即通过一台可以连外网的主机上部署 DataKit，开启 Proxy 采集器，内网的主机通过这台代理安装 DataKit，所有数据也是通过这台部署的 DataKit 上报到<<< custom_key.brand_name >>>。
 
-下面使用微服务架构的项目来介绍如何接入{{{ custom_key.brand_name }}}，项目是前后端分离的项目，前端使用 Vue 开发的，后端微服务使用 Spring Boot 结合 Dubbo 开发的，前端通过 Gateway 访问后端的服务。用户通过浏览器访问前端网站，用户点击界面上的按钮触发后端接口请求，请求被 Gateway 转发到 Consumer 微服务，Consumer 微服务处理请求过程中会调用 Provider 微服务，并记录日志，处理完成后把结果返回给浏览器，至此完成一次调用。
+下面使用微服务架构的项目来介绍如何接入<<< custom_key.brand_name >>>，项目是前后端分离的项目，前端使用 Vue 开发的，后端微服务使用 Spring Boot 结合 Dubbo 开发的，前端通过 Gateway 访问后端的服务。用户通过浏览器访问前端网站，用户点击界面上的按钮触发后端接口请求，请求被 Gateway 转发到 Consumer 微服务，Consumer 微服务处理请求过程中会调用 Provider 微服务，并记录日志，处理完成后把结果返回给浏览器，至此完成一次调用。
 
 ![image](../images/dubbo/01.png)
 
@@ -44,7 +44,7 @@
 - 安装 Nginx
 - 安装 JDK
 - 安装 Zookeeper
-- {{{ custom_key.brand_name }}}账号
+- <<< custom_key.brand_name >>>账号
 
 ## 环境版本
 
@@ -58,7 +58,7 @@
 
 #### 1.1 在线部署 DataKit
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「集成」模块，点击 「DataKit」 - 「Linux」，复制安装命令，在 172.16.0.245 主机上执行。注意安装命令中包含了 token，后续操作中会使用到这个 token。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「集成」模块，点击 「DataKit」 - 「Linux」，复制安装命令，在 172.16.0.245 主机上执行。注意安装命令中包含了 token，后续操作中会使用到这个 token。
 
 ![image](../images/dubbo/03.png)
 
@@ -86,10 +86,10 @@ systemctl restart datakit
 这里 `172.16.0.245` 即是上步中安装的 DataKit 的主机 IP，此步骤即是通过 DataKit 代理来安装的，命令中使用到的 token 与上面提到的 token 相同。
 
 ```shell
-export HTTPS_PROXY=http://172.16.0.245:9530;  DK_DATAWAY=https://openway.guance.com?token=tkn_9a1111123412341234123412341113bb bash -c "$(curl -L https://{{{ custom_key.static_domain }}}/datakit/install.sh)"
+export HTTPS_PROXY=http://172.16.0.245:9530;  DK_DATAWAY=https://openway.guance.com?token=tkn_9a1111123412341234123412341113bb bash -c "$(curl -L https://<<< custom_key.static_domain >>>/datakit/install.sh)"
 ```
 
-执行如下命令，测试是否能上报数据到{{{ custom_key.brand_name }}}。
+执行如下命令，测试是否能上报数据到<<< custom_key.brand_name >>>。
 
 ```shell
 curl -x http://172.16.0.245:9530 -v -X POST https://openway.guance.com/v1/write/metrics?token=tkn_9a1111123412341234123412341113bb -d "proxy_test,name=test c=123i"
@@ -160,7 +160,7 @@ java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo
 ### 3 RUM 接入
 
 上传 `dist` 目录 到 172.16.0.29 主机的 `/usr/local/df-demo/ `目录，前端连接后端接口的 url 是在 `dist\js\app.ec288764.js` 文件内，这里后端 gateway 的 url 是 [http://172.16.0.51:9000/api](http://172.16.0.51:9000/api)。  
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「用户访问监测」模块，新建 dubbo-web 应用，复制下面命令。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「用户访问监测」模块，新建 dubbo-web 应用，复制下面命令。
 
 ![image](../images/dubbo/07.png)
 
@@ -197,7 +197,7 @@ server {
 
 浏览器访问 [http://172.16.0.29/](http://172.16.0.29/) ，即可访问前端界面，点击界面按钮会调用后端接口。
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「用户访问监测」 - 「dubbo-web」，这里有许多功能可以用来对前端应用做性能分析。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「用户访问监测」 - 「dubbo-web」，这里有许多功能可以用来对前端应用做性能分析。
 
 ![image](../images/dubbo/09.png)
 
@@ -240,7 +240,7 @@ systemctl restart datakit
 
 #### 4.3 pipeline
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「日志」 - 「Pipelines」。<br/>
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「日志」 - 「Pipelines」。<br/>
 点击「新建 Pipeline」，过滤选择开通日志采集器定义的 source 即 `log-dubbo-provider` 。<br/>
 定义解析规则输入如下内容，最后点击「保存」。
 
@@ -253,9 +253,9 @@ default_time(time)
 
 ![image](../images/dubbo/11.png)
 
-使用前端触发 provider 服务的调用，这样 provider 生成的日志即被 DataKit 采集后上报到{{{ custom_key.brand_name }}}。
+使用前端触发 provider 服务的调用，这样 provider 生成的日志即被 DataKit 采集后上报到<<< custom_key.brand_name >>>。
 
-登录「[{{{ custom_key.brand_name }}}](https://console.guance.com/)」，进入「日志」模块的查看器，数据来源找到 `log-dubbo-provider`，点击一条日志进去，可看到 traceId 已做为 tag，后面在 APM 中通过这个 traceId 即可关联到日志，帮助我们快速定位问题 。
+登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「日志」模块的查看器，数据来源找到 `log-dubbo-provider`，点击一条日志进去，可看到 traceId 已做为 tag，后面在 APM 中通过这个 traceId 即可关联到日志，帮助我们快速定位问题 。
 
 ![image](../images/dubbo/12.png)
 
@@ -263,7 +263,7 @@ default_time(time)
 
 通过上面的步骤，已经完成了 Rum、Apm 和日志的联动。
 
-登录「 [{{{ custom_key.brand_name }}}](https://console.guance.com/)」 - 「用户访问监测」，点击 「dubbo-web」进入后点击「查看器」，选择「view」，查看页面调用情况。<br/>
+登录「 [<<< custom_key.brand_name >>>](https://console.guance.com/)」 - 「用户访问监测」，点击 「dubbo-web」进入后点击「查看器」，选择「view」，查看页面调用情况。<br/>
 然后点击「route_change」进入，在 Fetch/XHR 标签可以查看到前端触发的接口调用情况，点击一条进入后，可查看火焰图、span 列表、服务调用关系，及关联的 provider 服务的日志。
 
 ![image](../images/dubbo/13.png)

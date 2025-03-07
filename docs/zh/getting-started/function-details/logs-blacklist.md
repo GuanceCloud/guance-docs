@@ -2,17 +2,17 @@
 ---
 
 
-{{{ custom_key.brand_name }}}为您提供了全面的日志采集能力，支持采集 Windows/Linux/MacOS 主机、Web 服务器、虚拟机、网络设备、安全设备、数据库等产生的日志数据，但由于采集的日志中会包含您不需要的部分日志，所以{{{ custom_key.brand_name }}}为您提供了**日志黑名单**功能，即<u>通过添加日志过滤规则，将符合该规则的日志数据过滤、阻止上报到工作空间</u>，帮助您节约日志数据存储费用。
+<<< custom_key.brand_name >>>为您提供了全面的日志采集能力，支持采集 Windows/Linux/MacOS 主机、Web 服务器、虚拟机、网络设备、安全设备、数据库等产生的日志数据，但由于采集的日志中会包含您不需要的部分日志，所以<<< custom_key.brand_name >>>为您提供了**日志黑名单**功能，即<u>通过添加日志过滤规则，将符合该规则的日志数据过滤、阻止上报到工作空间</u>，帮助您节约日志数据存储费用。
 
 ## 前置条件
 
-您需要先创建一个 [{{{ custom_key.brand_name }}}账号](https://www.guance.com)，并在您的主机上 [安装 DataKit](../../datakit/datakit-install.md) ，开启相关集成的运行，进行数据采集。
+您需要先创建一个 [<<< custom_key.brand_name >>>账号](https://www.guance.com)，并在您的主机上 [安装 DataKit](../../datakit/datakit-install.md) ，开启相关集成的运行，进行数据采集。
 
 ## 日志黑名单的作用
 
 ### 1、省钱
 
-在{{{ custom_key.brand_name }}}中，针对于日志类数据的计费方式如下：
+在<<< custom_key.brand_name >>>中，针对于日志类数据的计费方式如下：
 
 | **计费项** | **计费单元** | **商业版梯度价格** |  |  |  |
 | --- | --- | --- | --- | --- | --- |
@@ -33,7 +33,7 @@
 
 ###  1、查看黑名单
 
-在{{{ custom_key.brand_name }}}工作空间，点击**日志 > 黑名单**，您可以通过**日志黑名单**，查看全部日志过滤规则。
+在<<< custom_key.brand_name >>>工作空间，点击**日志 > 黑名单**，您可以通过**日志黑名单**，查看全部日志过滤规则。
 
 ![](../img/5.logs_blacklist_1.png)
 

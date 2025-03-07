@@ -11,7 +11,7 @@
 - DataKit 配置为[公网可访问，并且安装 IP 地理信息库](../../datakit/datakit-tools-how-to.md#install-ipdb)。
 ## 应用接入
 
-当前 UniApp 版本支持 Android 和 iOS 平台。登录{{{ custom_key.brand_name }}}控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
+当前 UniApp 版本支持 Android 和 iOS 平台。登录<<< custom_key.brand_name >>>控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
 ![](../img/image_13.png)
 
@@ -19,7 +19,7 @@
 
 ### 本地使用 {#local-plugin}
 
-![](https://img.shields.io/badge/dynamic/json?label=plugin&color=orange&query=$.version&uri=https://{{{ custom_key.static_domain }}}/ft-sdk-package/badge/uni-app/version.json&link=https://github.com/GuanceCloud/datakit-uniapp-native-plugin)
+![](https://img.shields.io/badge/dynamic/json?label=plugin&color=orange&query=$.version&uri=https://<<< custom_key.static_domain >>>/ft-sdk-package/badge/uni-app/version.json&link=https://github.com/GuanceCloud/datakit-uniapp-native-plugin)
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-uniapp-native-plugin](https://github.com/GuanceCloud/datakit-uniapp-native-plugin)
 
@@ -847,7 +847,7 @@ $(PROJECT_DIR)
 
 ### Android 云打包与离线打包区别 {#package}
 
-Android 云打包与离线打包使用了两种不同的集成逻辑。离线打包集成方式与{{{ custom_key.brand_name }}} `Android SDK` 集成方式相同，使用 `Android Studio Gradle Plugin` 的方式，云打包无法使用 `Android Studio Gradle Plugin` ，所以只能通过{{{ custom_key.brand_name }}} `UniApp Native Plugin` 中内部代码实现部分功能。所以离线打包版本配置可选项要比云打包版本更多，SDK 配置中 `offlinePakcage`[参数](#base-config)就是为了区分两种情况。
+Android 云打包与离线打包使用了两种不同的集成逻辑。离线打包集成方式与<<< custom_key.brand_name >>> `Android SDK` 集成方式相同，使用 `Android Studio Gradle Plugin` 的方式，云打包无法使用 `Android Studio Gradle Plugin` ，所以只能通过<<< custom_key.brand_name >>> `UniApp Native Plugin` 中内部代码实现部分功能。所以离线打包版本配置可选项要比云打包版本更多，SDK 配置中 `offlinePakcage`[参数](#base-config)就是为了区分两种情况。
 
 ### 其他
 * [Android 隐私审核](../android/app-access.md#third-party)

@@ -1,7 +1,7 @@
 # RUM Headless
 
 
-RUM 用于收集网页端或移动端上报的用户访问监测数据。{{{ custom_key.brand_name }}}提供 RUM 一键开通服务。开通后即可自动化安装部署在{{{ custom_key.brand_name }}}的云主机中，自动完成 DataKit 安装，RUM 采集器部署等一系列操作。
+RUM 用于收集网页端或移动端上报的用户访问监测数据。<<< custom_key.brand_name >>>提供 RUM 一键开通服务。开通后即可自动化安装部署在<<< custom_key.brand_name >>>的云主机中，自动完成 DataKit 安装，RUM 采集器部署等一系列操作。
 
 **注意**：开通 autometa func 平台的前提需要联系费用中心开启白名单通道。需要联系客户经理，提供工作空间所在站点及 ID 等信息。
 

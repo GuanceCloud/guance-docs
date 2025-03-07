@@ -2,7 +2,7 @@
 
 ## 简介
 
-本文将介绍{{{ custom_key.brand_name }}}切换日志引擎，支持 6 种不同的引擎，包含原版开源的 Elasticsearch、原版开源的 OpenSearch、AWS 云上的托管 OpenSearch、华为云上的托管 Elasticsearch、aliyun 上的托管 Elasticsearch 日志增强版、aliyun 上的托管 Elasticsearch。此操作适用于 POC 切换生产日志引擎。
+本文将介绍<<< custom_key.brand_name >>>切换日志引擎，支持 6 种不同的引擎，包含原版开源的 Elasticsearch、原版开源的 OpenSearch、AWS 云上的托管 OpenSearch、华为云上的托管 Elasticsearch、aliyun 上的托管 Elasticsearch 日志增强版、aliyun 上的托管 Elasticsearch。此操作适用于 POC 切换生产日志引擎。
 
 ## 前提条件
 
@@ -10,7 +10,7 @@
 - 准备日志引擎地址、账号密码
 - 确认 analysis-ik 是否安装成功
 - 是否关闭自动创建索引
-- 准备{{{ custom_key.brand_name }}} MySQL 的地址、`df_core` 数据库的账号密码
+- 准备<<< custom_key.brand_name >>> MySQL 的地址、`df_core` 数据库的账号密码
   ![](switch-log-1.png)
 
 
@@ -108,7 +108,7 @@ flushall
 
 ### 步骤七：验证
 
-请登录{{{ custom_key.brand_name }}}控制台仔细查看基础设施和日志功能。
+请登录<<< custom_key.brand_name >>>控制台仔细查看基础设施和日志功能。
 
 
 ## FAQ {#FAQ}

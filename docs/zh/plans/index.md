@@ -23,15 +23,15 @@ icon: zy/plans
 ## 费用结算时必备的两个账号
 
 
-:material-numeric-1-circle: {{{ custom_key.brand_name }}}控制台帐号：与工作空间绑定，统计此帐号下空间的数据量接入规模、账单明细等；可同步到指定的费用中心账号。
+:material-numeric-1-circle: <<< custom_key.brand_name >>>控制台帐号：与工作空间绑定，统计此帐号下空间的数据量接入规模、账单明细等；可同步到指定的费用中心账号。
 
-:material-numeric-2-circle: {{{ custom_key.brand_name }}}费用中心帐号：可与一个/多个工作空间绑定，实现统一的费用管理。
+:material-numeric-2-circle: <<< custom_key.brand_name >>>费用中心帐号：可与一个/多个工作空间绑定，实现统一的费用管理。
 
 **注意**：工作空间可以单个进行计费，也可以多个工作空间绑定共同计费。
 
 ### 为什么需要两个账号？
 
-结算流程主要包括两个方面。一方面，在{{{ custom_key.brand_name }}}控制台账号下创建工作空间，并在该工作空间内进行数据流量的存储和统计。另一方面，将费用中心账号与工作空间进行绑定，从而能够获取对应工作空间下的账单数据，最后根据用户选定的方式进行结算。
+结算流程主要包括两个方面。一方面，在<<< custom_key.brand_name >>>控制台账号下创建工作空间，并在该工作空间内进行数据流量的存储和统计。另一方面，将费用中心账号与工作空间进行绑定，从而能够获取对应工作空间下的账单数据，最后根据用户选定的方式进行结算。
 
 <img src="img/background-2.png" width="70%" >
 
@@ -40,7 +40,7 @@ icon: zy/plans
 
 ![](img/background-3.png)
 
-## {{{ custom_key.brand_name }}}支持哪些结算方式？
+## <<< custom_key.brand_name >>>支持哪些结算方式？
 
 
 :material-numeric-1-circle: 进入[费用中心](https://boss.guance.com/)，直接使用费用中心帐号进行结算。您只需在费用中心账号中进行充值、购买预购卡等，就可以完成账单支付。
@@ -48,21 +48,21 @@ icon: zy/plans
 :material-numeric-1-circle: 支持云厂商帐号结算，目前支持华为云、阿里云、亚马逊、微软云四大云平台。
 
 
-## 如何开通{{{ custom_key.brand_name }}}？
+## 如何开通<<< custom_key.brand_name >>>？
 
 | 账号注册入口 |  |  |  |
 | --- | --- | --- | --- |
-| [{{{ custom_key.brand_name }}}官网注册](./commercial-register.md) |  |  |
+| [<<< custom_key.brand_name >>>官网注册](./commercial-register.md) |  |  |
 | 云厂商注册 | [华为云云商店开通](./commercial-huaweiyun.md) | [AWS 云市场开通](./commercial-aws.md) |  [微软云市场开通](./commercial-azure.md)   |
 |  | [阿里云云市场开通](./commercial-aliyun.md) | [阿里云海外云市场开通](./en-alicloud.md) | |
 
 ## 常见问题
 
-:material-chat-question: 在{{{ custom_key.brand_name }}}官网和云厂商开通{{{ custom_key.brand_name }}}服务有什么区别？
+:material-chat-question: 在<<< custom_key.brand_name >>>官网和云厂商开通<<< custom_key.brand_name >>>服务有什么区别？
 
-两个渠道都能正常开通{{{ custom_key.brand_name }}}服务，主要区别在于**开通服务后结算方式的可选性**。
+两个渠道都能正常开通<<< custom_key.brand_name >>>服务，主要区别在于**开通服务后结算方式的可选性**。
 
-- 在{{{ custom_key.brand_name }}}官网开通时，您可以选择{{{ custom_key.brand_name }}}费用中心或云厂商帐号结算；     
+- 在<<< custom_key.brand_name >>>官网开通时，您可以选择<<< custom_key.brand_name >>>费用中心或云厂商帐号结算；     
 - 在对应的云厂商开通时，您只能以该云厂商帐号进行结算。
 
 所以，如果您已经有了意向的结算方式，可以根据结算方式来选择开通渠道。
@@ -70,9 +70,9 @@ icon: zy/plans
 
 :material-chat-question: 费用中心账号和工作空间如何绑定？
 
-- 如果您是新注册用户，在{{{ custom_key.brand_name }}}官网注册流程中，您会同时创建好{{{ custom_key.brand_name }}}控制台账号、费用中心账号和工作空间，工作空间会自动与账号进行绑定。
+- 如果您是新注册用户，在<<< custom_key.brand_name >>>官网注册流程中，您会同时创建好<<< custom_key.brand_name >>>控制台账号、费用中心账号和工作空间，工作空间会自动与账号进行绑定。
 
-- 如果您是通过云厂商渠道进行结算的，那么在云厂商订购{{{ custom_key.brand_name }}}服务成功后，会有绑定工作空间的流程，您可以根据需要选择可绑定的工作空间。
+- 如果您是通过云厂商渠道进行结算的，那么在云厂商订购<<< custom_key.brand_name >>>服务成功后，会有绑定工作空间的流程，您可以根据需要选择可绑定的工作空间。
 
 
 :material-chat-question: 为什么需要使用两个账号？
@@ -80,14 +80,14 @@ icon: zy/plans
 工作空间在控制台账号下进行创建，而工作空间进行费用结算时可以多个工作空间合并结算，两个流程单独进行，因此需要两个账号分别管控。
 
                                         
-:material-chat-question: 如何确定自己有没有{{{ custom_key.brand_name }}}控制台账号和费用中心账号？
+:material-chat-question: 如何确定自己有没有<<< custom_key.brand_name >>>控制台账号和费用中心账号？
 
-{{{ custom_key.brand_name }}}控制台账号用于官网登录：https://www.guance.com。**账号的唯一凭证是邮箱**。
+<<< custom_key.brand_name >>>控制台账号用于官网登录：https://www.guance.com。**账号的唯一凭证是邮箱**。
 
-费用中心账号可在**{{{ custom_key.brand_name }}}工作空间 > 付费计划与账单**查看。如有费用中心帐号，则结算账号可以正常显示；或者直接登录费用中心平台：https://boss.guance.com。**费用中心账号的唯一凭证是用户名**。
+费用中心账号可在**<<< custom_key.brand_name >>>工作空间 > 付费计划与账单**查看。如有费用中心帐号，则结算账号可以正常显示；或者直接登录费用中心平台：https://boss.guance.com。**费用中心账号的唯一凭证是用户名**。
 
 
-:material-chat-question: 我已开通{{{ custom_key.brand_name }}}体验版，如何升级商业版？
+:material-chat-question: 我已开通<<< custom_key.brand_name >>>体验版，如何升级商业版？
 
 可查看[文档](./trail.md)。
 
@@ -98,7 +98,7 @@ icon: zy/plans
 
     ---
 
-    包括[`在{{{ custom_key.brand_name }}}注册商业版`](./commercial-register.md)、[`阿里云云市场开通商业版`](./commercial-aliyun.md)、[`AWS 云市场开通商业版`](./commercial-aws.md)、[`华为云云市场开通商业版`](./commercial-huaweiyun.md) 等内容。
+    包括[`在<<< custom_key.brand_name >>>注册商业版`](./commercial-register.md)、[`阿里云云市场开通商业版`](./commercial-aliyun.md)、[`AWS 云市场开通商业版`](./commercial-aws.md)、[`华为云云市场开通商业版`](./commercial-huaweiyun.md) 等内容。
 
     <br/>
     [**:octicons-arrow-right-24: 更多**](./commercial.md)

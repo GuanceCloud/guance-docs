@@ -1,14 +1,14 @@
 # 在项目构建过程中上传 SourceMap
 
-{{{ custom_key.brand_name }}}目前提供 `Vite` 插件，能够轻松的在 Web 项目构建的过程中，上传对应目录的 SourceMap 文件。解决在繁杂的手动上传过程。
+<<< custom_key.brand_name >>>目前提供 `Vite` 插件，能够轻松的在 Web 项目构建的过程中，上传对应目录的 SourceMap 文件。解决在繁杂的手动上传过程。
 
 **注意**：目前支持 Web 应用的上传。
 
 ## 准备工作
 
 1. [获取](../../open-api/index.md)对应站点的 `OpenApi` 域名地址；
-2. 在{{{ custom_key.brand_name }}}[获取](../../open-api/signature-certification.md)对应的 `OpenApi` 所需的 `API KEY`；
-3. 在{{{ custom_key.brand_name }}}平台上获取 Web 应用的 `applicationId`、`env`、`version` 信息。如果没有应用，需[创建一个新应用](../web/app-access.md)；
+2. 在<<< custom_key.brand_name >>>[获取](../../open-api/signature-certification.md)对应的 `OpenApi` 所需的 `API KEY`；
+3. 在<<< custom_key.brand_name >>>平台上获取 Web 应用的 `applicationId`、`env`、`version` 信息。如果没有应用，需[创建一个新应用](../web/app-access.md)；
 4. 准备完毕。
 
 ## Vite
@@ -50,14 +50,14 @@ export default defineConfig({
 
     // Put the Sentry vite plugin after all other plugins
     GuanceSourceMapUploadVitePlugin({
-      applicationId: 'xxxxx', //  {{{ custom_key.brand_name }}}应用 appid
+      applicationId: 'xxxxx', //  <<< custom_key.brand_name >>>应用 appid
       apiKey: 'xxxxxxxx', // open apikey
       server: 'https://console.guance-xxx.cn',
       filepaths: ['dist/'], // 需要搜索的目录，可以是文件或者文件目录
       logLevel: 'verbose', // 日志打印级别
       //   root: 'dist/', // 需要上传的相对目录对应的跟目录
-      env: 'production', // {{{ custom_key.brand_name }}} 应用的 env
-      version: '1.0.0', // {{{ custom_key.brand_name }}}应用的 version
+      env: 'production', // <<< custom_key.brand_name >>> 应用的 env
+      version: '1.0.0', // <<< custom_key.brand_name >>>应用的 version
     }),
   ],
 })
@@ -76,24 +76,24 @@ interface Options {
   filepaths: Array<string> | string
 
   /**
-   * {{{ custom_key.brand_name }}}平台生成的openApi Key，生成方式参考（https://docs.guance.com/management/api-key/open-api/#_1）
+   * <<< custom_key.brand_name >>>平台生成的openApi Key，生成方式参考（https://docs.guance.com/management/api-key/open-api/#_1）
    */
   apiKey: string
 
   /**
-   * {{{ custom_key.brand_name }}}平台 OpenAPi 服务
+   * <<< custom_key.brand_name >>>平台 OpenAPi 服务
    */
   server: string
   /**
-   * {{{ custom_key.brand_name }}} RUM 应用对应的 applicationId(必填)
+   * <<< custom_key.brand_name >>> RUM 应用对应的 applicationId(必填)
    */
   applicationId: string
   /**
-   * {{{ custom_key.brand_name }}} RUM 应用对应的 version(非必填)
+   * <<< custom_key.brand_name >>> RUM 应用对应的 version(非必填)
    */
   version?: string
   /**
-   * {{{ custom_key.brand_name }}} RUM 应用对应的 env(非必填)
+   * <<< custom_key.brand_name >>> RUM 应用对应的 env(非必填)
    */
   env?: string
 
@@ -161,14 +161,14 @@ export default defineConfig({
 
     // Put the Sentry vite plugin after all other plugins
     GuanceSourceMapUploadVitePlugin({
-      applicationId: 'xxxxx', //  {{{ custom_key.brand_name }}}应用 appid
+      applicationId: 'xxxxx', //  <<< custom_key.brand_name >>>应用 appid
       apiKey: 'xxxxxxxx', // open apikey
       server: 'https://console.guance-xxx.cn',
       filepaths: ['dist/'], // 需要搜索的目录，可以是文件或者文件目录
       logLevel: 'verbose', // 日志打印级别
       //   root: 'dist/', // 需要上传的相对目录对应的跟目录
-      env: 'production', // {{{ custom_key.brand_name }}} 应用的 env
-      version: '1.0.0', // {{{ custom_key.brand_name }}}应用的 version
+      env: 'production', // <<< custom_key.brand_name >>> 应用的 env
+      version: '1.0.0', // <<< custom_key.brand_name >>>应用的 version
       deleteAfterUpload: true,
       matchSourcemapsByFilename: true,
     }),

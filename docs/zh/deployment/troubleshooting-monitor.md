@@ -10,14 +10,14 @@
 
 ## 前提条件
 
-- 需要{{{ custom_key.brand_name }}}创建监控器的账号权限
+- 需要<<< custom_key.brand_name >>>创建监控器的账号权限
 - 需要观测后台管理权限
 
 ## 排查步骤
 
 ### 步骤一：创建测试监控器
 
-- 登录{{{ custom_key.brand_name }}}控制台
+- 登录<<< custom_key.brand_name >>>控制台
 - 选择「监控」-「新建监控器」-「阈值检测」
 
 - 检测指标：
@@ -42,7 +42,7 @@
 
 ### 步骤二：获取自动触发配置 ID
 
-- 登录{{{ custom_key.brand_name }}}控制台 选择「监控」- 打开浏览器调试模式
+- 登录<<< custom_key.brand_name >>>控制台 选择「监控」- 打开浏览器调试模式
 
   ![](img/faq-get-cron-id.png)
 
@@ -80,7 +80,7 @@
 ???+ warning "注意"
      建议执行`kubectl rollout restart -n middleware deploy message-desk-worker message-desk`，再测试排查。
 
-message-desk-worker 服务是{{{ custom_key.brand_name }}}告警通知模块，负责发送钉钉机器人通知，邮件通知，飞书机器人通知等。
+message-desk-worker 服务是<<< custom_key.brand_name >>>告警通知模块，负责发送钉钉机器人通知，邮件通知，飞书机器人通知等。
 
 - namespace: middleware
 - deployment: message-desk-worker

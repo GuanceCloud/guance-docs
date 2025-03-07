@@ -199,5 +199,5 @@ Loki 的作为新型的日志存储工具，也有着自身的优缺点：
 
 本文demo 源码 [https://github.com/lrwh/observable-demo/blob/main/opentelemetry-to-grafana](https://github.com/lrwh/observable-demo/blob/main/opentelemetry-to-grafana)
 
-[下一篇](./opentelemetry-guance.md)我们主要介绍并演示 OpenTelemetry 基于{{{ custom_key.brand_name }}}平台的可观测。
+[下一篇](./opentelemetry-guance.md)我们主要介绍并演示 OpenTelemetry 基于<<< custom_key.brand_name >>>平台的可观测。
 

@@ -31,7 +31,7 @@
 ## 前提条件 {#preconditions}
 
 
-- 拥有{{{ custom_key.brand_name }}}集群操作权限
+- 拥有<<< custom_key.brand_name >>>集群操作权限
 - 提前规划 kodo-x 和 拆分的 kodo-x-metric 调度资源
 
 

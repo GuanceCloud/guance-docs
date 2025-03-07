@@ -32,7 +32,7 @@
 | `df_user_name`                                   | String         | 手工恢复时，操作者用户名称                                                                                                  |
 | `df_user_email`                                  | String         | 手工恢复时，操作者用户邮箱                                                                                                  |
 | `df_crontab_exec_mode`                           | String(Enum)   | 监控器运行模式，可能的值为：<br>自动触发 `crontab`<br>手工执行 `manual`                                                     |
-| `df_site_name`                                   | String         | 当前{{{ custom_key.brand_name }}}节点名                                                                                                            |
+| `df_site_name`                                   | String         | 当前<<< custom_key.brand_name >>>节点名                                                                                                            |
 | `df_workspace_name`                              | String         | 所属工作空间名                                                                                                              |
 | `df_workspace_uuid`                              | String         | 所属工作空间 ID<br>_如果对检测有疑问，可以将此 ID 发送给我们_                                                               |
 | `df_label`                                       | List           | 监控器标签列表                                                                                                              |

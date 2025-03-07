@@ -7,12 +7,15 @@ __int_icon: 'icon/aws_lambda'
 dashboard:
 
   - desc: 'AWS Lambda dashboard'
-    path: 'dashboard/zh/aws_lambda'
+    path: 'dashboard/en/aws_lambda'
 
 monitor:
   - desc: 'AWS Lambda monitor'
-    path: 'monitor/zh/aws_lambda'
+    path: 'monitor/en/aws_lambda'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_lambda'
 ---
 
 
@@ -35,7 +38,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission for CloudWatch `CloudWatchReadOnlyAccess`）
 
-To synchronize the monitoring data of AWS ELB cloud resources, we install the corresponding collection script：「Guance Integration（AWS-LambdaCollect）」(ID：`guance_aws_lambda`)
+To synchronize the monitoring data of AWS ELB cloud resources, we install the corresponding collection script: `ID:guance_aws_lambda`
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 

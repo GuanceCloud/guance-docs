@@ -13,6 +13,9 @@ monitor:
   - desc: 'AWS EventBridge 监控器'
     path: 'monitor/zh/aws_eventbridge'
 
+cloudCollector:
+  desc: '云采集器'
+  path: 'cloud-collector/zh/aws_eventbridge'
 ---
 
 

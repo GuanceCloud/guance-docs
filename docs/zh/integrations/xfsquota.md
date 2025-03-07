@@ -24,7 +24,7 @@ xfsquota 采集器通过运行 `xfs_quota` 解析标准输出，采集 xfs 文�
     
     ```toml
         
-    [[input.xfsquota]]
+    [[inputs.xfsquota]]
         ## Path to the xfs_quota binary.
         binary_path = "/usr/sbin/xfs_quota"
     

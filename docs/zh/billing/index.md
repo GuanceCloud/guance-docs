@@ -6,7 +6,7 @@ icon: zy/billing
 
 ## 版本说明
 
-{{{ custom_key.brand_name }}}现有体验版、商业版、私有云部署版三种版本。
+<<< custom_key.brand_name >>>现有体验版、商业版、私有云部署版三种版本。
 
 - 公有云提供的体验版、商业版，均采用<font color=coral>**按量付费**</font>的计费方式，在核心功能上并无差异。
 
@@ -18,15 +18,15 @@ icon: zy/billing
 
 ### 查看版本
 
-- 所有成员角色：在{{{ custom_key.brand_name }}}控制台**管理 > 空间设置 > 基本信息 > 当前版本**中查看；
+- 所有成员角色：在<<< custom_key.brand_name >>>控制台**管理 > 空间设置 > 基本信息 > 当前版本**中查看；
 
-- 拥有者、管理员：在{{{ custom_key.brand_name }}}控制台[**付费计划与账单**](#billing)中查看。
+- 拥有者、管理员：在<<< custom_key.brand_name >>>控制台[**付费计划与账单**](#billing)中查看。
 
 
 
 ## 付费计划与账单 {#billing}
 
-{{{ custom_key.brand_name }}}公有云版秉承按需购买、按量付费的原则。
+<<< custom_key.brand_name >>>公有云版秉承按需购买、按量付费的原则。
 
 在付费计划与账单，您可以查看当前结算账户的现金余额、代金券余额等，并分析包括时间线、日志、网络、应用性能 Trace、应用性能 Profile、用户访问 PV、任务调用、会话重放等计费项的统计数据。此外，您还可以从账单详情、使用量、数据转发使用三个方面进行费用分析。
 
@@ -38,9 +38,9 @@ icon: zy/billing
 
 <font size=2>**注意**：仅 Owner 和 Administrator 有权限进行该操作。</font>
 
-- 总阈值预警：即为当前工作空间设定一个总体消费阈值。一旦工作空间内所有计费项的总消费金额**超过**这个阈值，{{{ custom_key.brand_name }}}将自动向该成员发送邮件预警。
+- 总阈值预警：即为当前工作空间设定一个总体消费阈值。一旦工作空间内所有计费项的总消费金额**超过**这个阈值，<<< custom_key.brand_name >>>将自动向该成员发送邮件预警。
 
-- 单个计费项预警：即针对单个计费项设置预警。当某个计费项的**日账单金额超过设定的预警阈值**时，{{{ custom_key.brand_name }}}将自动向该成员发送邮件预警。
+- 单个计费项预警：即针对单个计费项设置预警。当某个计费项的**日账单金额超过设定的预警阈值**时，<<< custom_key.brand_name >>>将自动向该成员发送邮件预警。
 
 
 <img src="img/billing.png" width="50%" >
@@ -50,7 +50,7 @@ icon: zy/billing
 3. 选择通知成员，无论总阈值还是单一计费项的实际账单金额超出设定的预警阈值时，都会向成员发送预警邮件；
 4. 点击**确定**。
 
-**注意**：Owner 角色不受通知对象选择的限制。即无论是否选择 Owner 为通知对象，{{{ custom_key.brand_name }}}都会在触发预警条件时向 Owner 发送邮件通知。
+**注意**：Owner 角色不受通知对象选择的限制。即无论是否选择 Owner 为通知对象，<<< custom_key.brand_name >>>都会在触发预警条件时向 Owner 发送邮件通知。
 
 
 
@@ -78,7 +78,7 @@ icon: zy/billing
 
 **注意**：
 
-- 若转发规则保存到{{{ custom_key.brand_name }}}的备份日志，则显示对应的数据保存策略，若保存到外部存储，则展示为 `-`。
+- 若转发规则保存到<<< custom_key.brand_name >>>的备份日志，则显示对应的数据保存策略，若保存到外部存储，则展示为 `-`。
 - 此处仅列出工作空间内存在的数据转发规则且转发数量 > 0 的列表。
 
 ![](img/comm_01.png)
@@ -91,10 +91,10 @@ icon: zy/billing
     - 管理员：无上述按钮；  
     - 其他成员：无**付费计划与账单**模块，即没有查看费用情况的权限。
 
-{{{ custom_key.brand_name }}}现有两套独立运行、统计数据量相关连的账号体系，共同为**商业版用户**实现用量计费与费用结算流程：
+<<< custom_key.brand_name >>>现有两套独立运行、统计数据量相关连的账号体系，共同为**商业版用户**实现用量计费与费用结算流程：
 
-- [{{{ custom_key.brand_name }}}控制台](https://console.guance.com/)账号，可统计当前工作空间的数据量接入规模、账单明细等，同步到指定的费用中心账号。
-- [{{{ custom_key.brand_name }}}费用中心](https://boss.guance.com/)账号，可通过 `工作空间 ID` 进行绑定，实现**工作空间级别的统一费用管理**，并提供了多种费用结算方式供您选择。
+- [<<< custom_key.brand_name >>>控制台](https://console.guance.com/)账号，可统计当前工作空间的数据量接入规模、账单明细等，同步到指定的费用中心账号。
+- [<<< custom_key.brand_name >>>费用中心](https://boss.guance.com/)账号，可通过 `工作空间 ID` 进行绑定，实现**工作空间级别的统一费用管理**，并提供了多种费用结算方式供您选择。
 
 ![](img/billing-index-1.png)
 
@@ -102,12 +102,12 @@ icon: zy/billing
 
 ## 用量计费方式
 
-{{{ custom_key.brand_name }}}商业版采用**按量付费**的[计费方式](../billing-method/index.md)，通过计费周期、计费项、计费价格、计费模式等不同的纬度，综合计算出当前的费用情况。
+<<< custom_key.brand_name >>>商业版采用**按量付费**的[计费方式](../billing-method/index.md)，通过计费周期、计费项、计费价格、计费模式等不同的纬度，综合计算出当前的费用情况。
 
 
 
 ## 费用结算方式
 
-{{{ custom_key.brand_name }}}计算出当前工作空间的账单详情后，会同步推送到所绑定的{{{ custom_key.brand_name }}}费用中心账号，进行后续费用结算流程。
+<<< custom_key.brand_name >>>计算出当前工作空间的账单详情后，会同步推送到所绑定的<<< custom_key.brand_name >>>费用中心账号，进行后续费用结算流程。
 
-现支持{{{ custom_key.brand_name }}}费用中心账号、云账号等多种[结算方式](./billing-account/index.md)，后者包括阿里云、AWS、华为云、微软云账号结算。在云账号结算模式下支持多个站点的云账单合并到一个云账号下进行结算。
+现支持<<< custom_key.brand_name >>>费用中心账号、云账号等多种[结算方式](./billing-account/index.md)，后者包括阿里云、AWS、华为云、微软云账号结算。在云账号结算模式下支持多个站点的云账单合并到一个云账号下进行结算。

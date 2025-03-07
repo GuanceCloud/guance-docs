@@ -3,7 +3,7 @@
 
 
 
-模板管理页面支持查看、搜索及导入{{{ custom_key.brand_name }}}所有内置的模板项目。
+模板管理页面支持查看、搜索及导入<<< custom_key.brand_name >>>所有内置的模板项目。
 
 ![](img/18.deployment_2.png)
 
@@ -60,7 +60,7 @@
 
 :material-numeric-2-circle-outline: 自定义查看器：可在控制台 > 场景 > 查看器创建导出。 
 
-:material-numeric-3-circle-outline: 检测库：{{{ custom_key.brand_name }}}的[检测库](../monitoring/monitor/template.md)内包含多种监控器规则模版。支持在监控器列表[导出](../monitoring/monitor/index.md#options)。
+:material-numeric-3-circle-outline: 检测库：<<< custom_key.brand_name >>>的[检测库](../monitoring/monitor/template.md)内包含多种监控器规则模版。支持在监控器列表[导出](../monitoring/monitor/index.md#options)。
 
 可直接导入一个或多个监控器模板，其中检测库名称不允许重复，但监控器内不作限制。 
 

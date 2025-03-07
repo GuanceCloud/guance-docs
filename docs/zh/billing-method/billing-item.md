@@ -1,7 +1,7 @@
 # 计费产生逻辑
 ---
 
-本文将展示在{{{ custom_key.brand_name }}}产品的按量付费计费框架中，各计费项的计费产生和价格计算逻辑。
+本文将展示在<<< custom_key.brand_name >>>产品的按量付费计费框架中，各计费项的计费产生和价格计算逻辑。
 
 
 ## 概念先解
@@ -14,7 +14,7 @@
 
 ## 计费周期 {#cycle}
 
-{{{ custom_key.brand_name }}}计费周期为**天**，即根据工作空间当天统计的使用量在次日零点结算，生成每日账单同步到{{{ custom_key.brand_name }}}[费用中心](../billing-center/index.md)，最终根据实际绑定结算方式从对应账中扣除消费金额。
+<<< custom_key.brand_name >>>计费周期为**天**，即根据工作空间当天统计的使用量在次日零点结算，生成每日账单同步到<<< custom_key.brand_name >>>[费用中心](../billing-center/index.md)，最终根据实际绑定结算方式从对应账中扣除消费金额。
 
 <!--
 
@@ -32,9 +32,9 @@
 
 ## 结算方式 {#account}
 
-{{{ custom_key.brand_name }}}支持{{{ custom_key.brand_name }}}费用中心账号、云账号等多种结算方式，云账号结算包括阿里云账号、AWS 账号结算和华为云账号结算，在云账号结算模式下支持多个站点的云账单合并到一个云账号下进行结算。
+<<< custom_key.brand_name >>>支持<<< custom_key.brand_name >>>费用中心账号、云账号等多种结算方式，云账号结算包括阿里云账号、AWS 账号结算和华为云账号结算，在云账号结算模式下支持多个站点的云账单合并到一个云账号下进行结算。
 
-> 更多具体结算方式说明，可参考 [{{{ custom_key.brand_name }}}结算方式](../../billing/billing-account/index.md)。
+> 更多具体结算方式说明，可参考 [<<< custom_key.brand_name >>>结算方式](../../billing/billing-account/index.md)。
 
 <!--
 ## 统计范围 {#count}
@@ -48,14 +48,14 @@
 
 ![](../img/add.png)
 
-> {{{ custom_key.brand_name }}}不同类型数据的数据保存策略支持自定义选择，详细信息请参考 [数据存储策略](../../billing-method/data-storage.md)。
+> <<< custom_key.brand_name >>>不同类型数据的数据保存策略支持自定义选择，详细信息请参考 [数据存储策略](../../billing-method/data-storage.md)。
 -->
 
 ## 计费项 {#item}
 
 ### 时间线 {#timeline}
 
-{{{ custom_key.brand_name }}}的时序引擎存储数据主要涉及到以下几个基本概念：
+<<< custom_key.brand_name >>>的时序引擎存储数据主要涉及到以下几个基本概念：
 
 | 名词   | 说明 |
 | -------- | ---------- |
@@ -141,11 +141,11 @@
 ### 数据转发 {#backup}
 
 
-支持日志数据转发到{{{ custom_key.brand_name }}}或其他四种外部存储的方式。基于数据转发规则，统计汇总转发的流量大小对应计费。
+支持日志数据转发到<<< custom_key.brand_name >>>或其他四种外部存储的方式。基于数据转发规则，统计汇总转发的流量大小对应计费。
 
-**注意**：保存到{{{ custom_key.brand_name }}}提供的数据转发数据仍保留记录。
+**注意**：保存到<<< custom_key.brand_name >>>提供的数据转发数据仍保留记录。
 <!--
-控制台可以配置备份规则将上报的日志数据同步做备份操作，匹配到备份规则的数据将会存储到数据转发的索引，{{{ custom_key.brand_name }}}基于该索引下数据统计数据转发的容量大小。
+控制台可以配置备份规则将上报的日志数据同步做备份操作，匹配到备份规则的数据将会存储到数据转发的索引，<<< custom_key.brand_name >>>基于该索引下数据统计数据转发的容量大小。
 -->
 
 
@@ -168,7 +168,7 @@
 
 
 
-统计每天出账时工作空间内保存到{{{ custom_key.brand_name }}}存储对象的数据容量大小，即压缩后的数据容量大小。
+统计每天出账时工作空间内保存到<<< custom_key.brand_name >>>存储对象的数据容量大小，即压缩后的数据容量大小。
 
 
 
@@ -215,7 +215,7 @@
 
 - 工作空间内每日产生的 Span 数据数量统计。
 
-**注意**：{{{ custom_key.brand_name }}}新的计费调整中会取”数量/10“与 `trace_id` 数量中较大的作为当天计费数据出账。
+**注意**：<<< custom_key.brand_name >>>新的计费调整中会取”数量/10“与 `trace_id` 数量中较大的作为当天计费数据出账。
 
 
 
@@ -272,7 +272,7 @@
 
 - 工作空间内每日产生的 Resource、Long Task、Error、Action 数据数量统计。
 
-**注意**：{{{ custom_key.brand_name }}}新的计费调整中会取”数量/100“ 与 PV 中较大的做为当天计费数据出账。
+**注意**：<<< custom_key.brand_name >>>新的计费调整中会取”数量/100“ 与 PV 中较大的做为当天计费数据出账。
 
 
 
@@ -323,7 +323,7 @@
 
 
 
-- 开启可用性拨测任务并通过{{{ custom_key.brand_name }}}提供的拨测节点返回拨测结果
+- 开启可用性拨测任务并通过<<< custom_key.brand_name >>>提供的拨测节点返回拨测结果
   
 
 
@@ -411,7 +411,7 @@
 
 ## 计费示例 {#example}
 
-假设 A 公司使用{{{ custom_key.brand_name }}}对公司的 IT 基础设施、应用系统等进行整体观测。
+假设 A 公司使用<<< custom_key.brand_name >>>对公司的 IT 基础设施、应用系统等进行整体观测。
 
 假设 A 公司总共有 10 台主机（每台主机默认日活跃时间线为 600），每天产生 6000 条时间线，200 万条日志数据，200 万个 Trace 数据，2 万个 PV 数据，以及 2 万次任务调度，使用的数据存储策略如下：
 
@@ -441,7 +441,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; {{{ custom_key.brand_name }}}自研时序数据库</font>](./gauncedb.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; <<< custom_key.brand_name >>>自研时序数据库</font>](./gauncedb.md)
 
 
 </div>

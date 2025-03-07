@@ -33,26 +33,3 @@
 
 添加基线值、基线标题以及基线颜色。设置一个标准或预期值，用于比较数据的变化和趋势。
 
-<!--
-
-## 示例图
-
-下图为最近 15 分钟不同设备的磁盘剩余空间情况：
-
-![](../img/bar.gif)
-
-
-## 更多阅读
-
-<font size=2>
-
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 图表配置</font>](./chart-config.md)
-
-</div>
-
-
-</font>
-
--->

@@ -25,7 +25,7 @@
 | notificationScheduleUUIDs | array |  | 通知日程 UUID 列表<br>例子: ['nsche_xxx', 'nsche_yyy'] <br>允许为空: False <br> |
 | extend | json |  | 扩展信息, 包含 通知范围,升级配置<br>允许为空: False <br> |
 | extend.notifyTypes | array |  | 通知类型<br>例子: ['issue.add', 'issue.modify', 'issueUpgrade.noManager', 'issueUpgrade.processTimeout', 'issueReply.add', 'issueReply.modify', 'issueReply.delete', 'dailySummary'] <br>允许为空: False <br> |
-| extend.upgradeCfg | json |  | 升级配置<br>例子: {'noManager': {'duration': 600}, 'processTimeout': {'duration': 600}} <br>允许为空: False <br> |
+| extend.upgradeCfg | json |  | 升级配置<br>允许为空: False <br> |
 
 ## 参数补充说明
 

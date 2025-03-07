@@ -3,27 +3,27 @@
 
 ## 在线部署方式 {#online-image}
 
-在线部署是指 Kubernetes 环境可以访问公网，那么部署时可以由 Kubernetes 从{{{ custom_key.brand_name }}}官方的公网镜像仓库自动下载镜像。
+在线部署是指 Kubernetes 环境可以访问公网，那么部署时可以由 Kubernetes 从<<< custom_key.brand_name >>>官方的公网镜像仓库自动下载镜像。
 
-{{{ custom_key.brand_name }}}镜像公网地址获取，可以访问 [{{{ custom_key.brand_name }}}版本历史](changelog.md)。
+<<< custom_key.brand_name >>>镜像公网地址获取，可以访问 [<<< custom_key.brand_name >>>版本历史](changelog.md)。
 
 
 ## 离线部署方式 {#offline-image}
 
-### {{{ custom_key.brand_name }}}离线镜像包的下载以及导入
+### <<< custom_key.brand_name >>>离线镜像包的下载以及导入
 
 ???+ warning "注意"
      如果 kubernetes 节点主机可以访问公网，不需要通过以上离线导入的方式导入镜像，安装程序会自动下载镜像。
 
 === "amd64"
 
-    如果是离线网络环境下安装，需要先手工下载最新的{{{ custom_key.brand_name }}}镜像包，通过  docker load  命令将所有镜像导入到各个 kubernetes 工作节点上后，再进行后续的引导安装。
+    如果是离线网络环境下安装，需要先手工下载最新的<<< custom_key.brand_name >>>镜像包，通过  docker load  命令将所有镜像导入到各个 kubernetes 工作节点上后，再进行后续的引导安装。
 
-    最新的{{{ custom_key.brand_name }}} Docker 镜像包下载地址：[https://{{{ custom_key.static_domain }}}/dataflux/package/guance-amd64-latest.tar.gz](https://{{{ custom_key.static_domain }}}/dataflux/package/guance-amd64-latest.tar.gz)
+    最新的<<< custom_key.brand_name >>> Docker 镜像包下载地址：[https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-latest.tar.gz](https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-latest.tar.gz)
 
     1. 通过以下命令，将 Docker 镜像包下载到本地：
     ```shell
-    $ wget https://{{{ custom_key.static_domain }}}/dataflux/package/guance-amd64-latest.tar.gz
+    $ wget https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-latest.tar.gz
     ```
 
     2. 下载后，将 Docker 镜像包上传到 kubernetes 的每一个 node 主机上后，执行以下命令，导入 Docker 镜像：
@@ -39,13 +39,13 @@
     ```
 === "arm64"
 
-    如果是离线网络环境下安装，需要先手工下载最新的{{{ custom_key.brand_name }}}镜像包，通过  docker load  命令将所有镜像导入到各个 kubernetes 工作节点上后，再进行后续的引导安装。
+    如果是离线网络环境下安装，需要先手工下载最新的<<< custom_key.brand_name >>>镜像包，通过  docker load  命令将所有镜像导入到各个 kubernetes 工作节点上后，再进行后续的引导安装。
 
-    最新的{{{ custom_key.brand_name }}} Docker 镜像包下载地址：[https://{{{ custom_key.static_domain }}}/dataflux/package/guance-arm64-latest.tar.gz](https://{{{ custom_key.static_domain }}}/dataflux/package/guance-arm64-latest.tar.gz)
+    最新的<<< custom_key.brand_name >>> Docker 镜像包下载地址：[https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-latest.tar.gz](https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-latest.tar.gz)
 
     1. 通过以下命令，将 Docker 镜像包下载到本地：
     ```shell
-    $ wget https://{{{ custom_key.static_domain }}}/dataflux/package/guance-arm64-latest.tar.gz
+    $ wget https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-latest.tar.gz
     ```
 
     2. 下载后，将 Docker 镜像包上传到 kubernetes 的每一个 node 主机上后，执行以下命令，导入 Docker 镜像：
@@ -102,7 +102,7 @@
 
     - 安装
 
-      Launcher YAML 下载：[https://{{{ custom_key.static_domain }}}/launcher/launcher.yaml](https://{{{ custom_key.static_domain }}}/launcher/launcher.yaml)
+      Launcher YAML 下载：[https://<<< custom_key.static_domain >>>/launcher/launcher.yaml](https://<<< custom_key.static_domain >>>/launcher/launcher.yaml)
       
       将上面的 YAML 内容保存为 **launcher.yaml** 文件，放到**运维操作机**上，然后替换文档内的变量部分：
     

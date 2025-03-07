@@ -4,7 +4,7 @@
 <a name="1ad93e28"></a>
 ## 前言
 
-DQL 是{{{ custom_key.brand_name }}}统一的查询语言，为便于大家学习这种语言，下面我们选取几种不同的查询语言来与之对比，以便大家能较为快速的理解和运用 DQL。
+DQL 是<<< custom_key.brand_name >>>统一的查询语言，为便于大家学习这种语言，下面我们选取几种不同的查询语言来与之对比，以便大家能较为快速的理解和运用 DQL。
 
 这里我们选择 [PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/) 、[LogQL](https://grafana.com/docs/loki/latest/logql/) 以及大家较为熟知的 SQL 语句作为对比，对各个查询语言的基本使用做一个对比。
 
@@ -120,7 +120,7 @@ T::my_service { duration > 1000 } [10m] BY operation
 | PromQL | Prometheuse 指标查询 | 支持 | 不支持 | 支持 | [支持](https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators) |
 | LogQL | 主要用于查询日志 | 支持从日志生成指标 | 支持 | 支持 | [支持](https://grafana.com/docs/loki/latest/logql/#aggregation-operators) |
 | SQL | 通用查询语言 | [某些数据库](https://www.timescale.com/)<br />支持时序存储 | 不适合 | 支持 | 支持 |
-| DQL | {{{ custom_key.brand_name }}}全平台数据查询 | 支持 | 支持 | 支持 | 支持 |
+| DQL | <<< custom_key.brand_name >>>全平台数据查询 | 支持 | 支持 | 支持 | 支持 |
 
 
 <a name="8d81dc5d"></a>
@@ -240,7 +240,7 @@ show_logging_source() # 查看日志分类列表
 
 以上内容对几个常见的查询语言做了一些基本面的介绍，各个语言有其特定的应用领域，彼此之间功能差异也比较明显。对 DQL 而言，其设计初衷在于提供一种混合存储的查询方案，这是它相比文中其它几种查询语言的最大区别。虽然 DQL 并没有一个独立的存储引擎，但其扩展性是其它几种无言所不能相比的，这也正符合其<u>混合存储查询</u>的定位。
 
-目前 DQL 还在积极的开发和完善中，功能、性能还有较大的提升空间。目前{{{ custom_key.brand_name }}}的所有数据查询均全面应用 DQL，其功能、性能、稳定性经过了较为长时间的验证。随着{{{ custom_key.brand_name }}}整体产品的迭代，DQL 自身的完整性也将逐步演进，以满足产品侧以及广大开发者的需求。
+目前 DQL 还在积极的开发和完善中，功能、性能还有较大的提升空间。目前<<< custom_key.brand_name >>>的所有数据查询均全面应用 DQL，其功能、性能、稳定性经过了较为长时间的验证。随着<<< custom_key.brand_name >>>整体产品的迭代，DQL 自身的完整性也将逐步演进，以满足产品侧以及广大开发者的需求。
 
 
 ---

@@ -1,35 +1,25 @@
-# 可用性查看器
+# 可用性监测查看器
 ---
 
-{{{ custom_key.brand_name }}}支持您通过**查看器**查看拨测任务返回的全部数据详情，帮助您提前发现问题，定位问题，提升用户体验。
+可用性监测通过查看器为您提供拨测任务的全部数据详情，比如：网络站点的 DNS、SSL、TTFB 等性能测试结果，以及失败拨测的响应详情和失败原因。
 
-## 查询与分析
+## 查询分析
 
-{{{ custom_key.brand_name }}}支持多种方式对拨测数据进行查询和分析，包括选择数据来源、搜索、筛选、统计、导出等。通过选择时间范围、搜索关键字，筛选等方式查询拨测数据。
+您可通过多种方式对拨测数据进行查询和分析：
 
-### 时间控件
+- 自定义数据展示的[时间范围](../getting-started/function-details/explorer-search.md#time)；
 
-{{{ custom_key.brand_name }}}查看器默认展示最近 15 分钟的数据，您也可以自定义数据展示的[时间范围](../getting-started/function-details/explorer-search.md#time)。
+- 在查看器搜索栏，支持[多种搜索方式和筛选方式](../getting-started/function-details/explorer-search.md)；
 
-### 搜索与筛选
+- 在查看器 > 快捷筛选，可编辑[筛选字段](../getting-started/function-details/explorer-search.md#quick-filter)；
 
-在查看器搜索栏，支持[多种搜索方式和筛选方式](../getting-started/function-details/explorer-search.md)。
+- 通过[显示列](../getting-started/function-details/explorer-search.md#columns)自定义添加、编辑、删除、拖动显示列。
 
-### 快捷筛选
+- 在查看器[分析栏](../getting-started/function-details/explorer-search.md#analysis)，支持基于 1-3 个标签进行多维度分析统计，并支持多种数据图表分析方式。
 
-在查看器快捷筛选，支持编辑[快捷筛选](../getting-started/function-details/explorer-search.md#quick-filter)，添加新的筛选字段。
+### 分布图
 
-### 自定义显示列
-
-在可用性监测查看器列表，可通过 **[显示列](../getting-started/function-details/explorer-search.md#columns)** 自定义添加、编辑、删除、拖动显示列。
-
-### 分析
-
-在查看器[分析栏](../getting-started/function-details/explorer-search.md#analysis)，支持基于 ^^1-3 个标签^^进行多维度分析统计，并支持多种数据图表分析方式。
-
-### 拨测统计
-
-{{{ custom_key.brand_name }}}会依据选择的时间范围统计一定时间段内存在的拨测数据数量。您可以通过堆积柱状图，查看不同时间段存在的不同状态拨测数据数量。
+<<< custom_key.brand_name >>>会依据选择的时间范围统计一定时间段内存在的拨测数据数量。您可以通过堆积柱状图，查看不同时间段存在的不同状态拨测数据数量。
 
 不同数据类型存在不同的数据状态，http(API 拨测）数据的状态包括，
 
@@ -42,6 +32,7 @@
 
 如果需要导出某条数据，打开该条数据详情页，点击右上角 :material-tray-arrow-up: 图标即可。
 
+<!--
 ## HTTP 拨测
 
 在可用性监测**查看器**，选择 **HTTP 拨测**，即可查看配置的所有 HTTP 拨测任务的数据结果。
@@ -94,3 +85,4 @@
 
 ![](img/4.dailtesting_explorer_10.png)
 
+-->

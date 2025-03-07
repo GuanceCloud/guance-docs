@@ -5,12 +5,12 @@ tags:
 summary: 'Volcengine MongoDB Sharded Cluster metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc.'
 __int_icon: 'icon/volcengine_mongodb'
 dashboard:
-  - desc: 'Volcengine Sharded Cluster'
-    path: 'dashboard/zh/volcengine_mongodb_sharded_cluster/'
-  - desc: 'Volcengine Sharded Cluster for Shard'
-    path: 'dashboard/zh/volcengine_mongodb_sharded_cluster_shard/'
-  - desc: 'Volcengine Sharded Cluster for ConfigServer'
-    path: 'dashboard/zh/volcengine_mongodb_sharded_cluster_configserver/'
+  - desc: 'Volcengine Mongodb Sharded Cluster'
+    path: 'dashboard/en/volcengine_mongodb_sharded_cluster/'
+  - desc: 'Volcengine Mongodb Sharded Cluster for Shard'
+    path: 'dashboard/en/volcengine_mongodb_sharded_cluster_shard/'
+  - desc: 'Volcengine Mongodb Sharded Cluster for ConfigServer'
+    path: 'dashboard/en/volcengine_mongodb_sharded_cluster_configserver/'
 ---
 
 <!-- markdownlint-disable MD025 -->

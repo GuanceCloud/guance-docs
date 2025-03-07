@@ -2,7 +2,7 @@
 ---
 
 
-{{{ custom_key.brand_name }}}支持用户访问监测关联日志，通过在日志中注入 `span_id`、`trace_id`、`env`、`service`、`version` 来关联应用性能监测。关联后，在**应用性能监测**中可查看请求所在关联的特定日志。
+<<< custom_key.brand_name >>>支持用户访问监测关联日志，通过在日志中注入 `span_id`、`trace_id`、`env`、`service`、`version` 来关联应用性能监测。关联后，在**应用性能监测**中可查看请求所在关联的特定日志。
 
 ![](../../img/13.apm_log.png)
 

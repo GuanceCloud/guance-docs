@@ -58,6 +58,6 @@
 
 :material-chat-question: 如何查询其他工作空间的外部日志索引？
 
-1. 需界定，外部索引是从[外部渠道（SLS Logstore 、Elasticsearch、OpenSearch）](./multi-index/index.md)绑定到{{{ custom_key.brand_name }}}平台。
+1. 需界定，外部索引是从[外部渠道（SLS Logstore 、Elasticsearch、OpenSearch）](./multi-index/index.md)绑定到<<< custom_key.brand_name >>>平台。
 
 2. 因此，需要使用何种外部索引，直接绑定此外部索引到本工作空间下即可，使用时在日志查看器选择默认的当前工作空间，选取对应外部索引进行查询即可。

@@ -8,7 +8,7 @@ Opentelemetry 协议，是 CNCF (Cloud Native Computing Foundation -云原生计
 
 ![image.png](../images/data-ship-14.png)
 
-{{{ custom_key.brand_name }}}作为国内领先的可观测产品，如何打破技术壁垒，攻克难关？
+<<< custom_key.brand_name >>>作为国内领先的可观测产品，如何打破技术壁垒，攻克难关？
 
 ## 数据关联
 
@@ -117,7 +117,7 @@ M::`cpu`:(LAST(`usage_total`)) BY `host`
 
 ### 自定义
 
-{{{ custom_key.brand_name }}}产品除了默认的数据关联功能外，还支持更加灵活的用户自定义视图关联
+<<< custom_key.brand_name >>>产品除了默认的数据关联功能外，还支持更加灵活的用户自定义视图关联
 
 #### 自定义关联
 

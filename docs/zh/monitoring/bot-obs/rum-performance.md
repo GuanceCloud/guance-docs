@@ -7,17 +7,17 @@ Real User Monitoring（RUM）是一种应用性能监测技术，旨在通过模
 
 ## 前置条件
 
-1. {{{ custom_key.brand_name }}}「[用户访问监测](../../real-user-monitoring/index)」已经存在接入的应用
-2. 自建 [DataFlux Func {{{ custom_key.brand_name }}}特别版](https://func.guance.com/#/) ，或者开通 [DataFlux Func 托管版](../../dataflux-func/index.md)
-4. 在{{{ custom_key.brand_name }}}「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
+1. <<< custom_key.brand_name >>>「[用户访问监测](../../real-user-monitoring/index)」已经存在接入的应用
+2. 自建 [DataFlux Func <<< custom_key.brand_name >>>特别版](https://func.guance.com/#/) ，或者开通 [DataFlux Func 托管版](../../dataflux-func/index.md)
+4. 在<<< custom_key.brand_name >>>「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
 
-> **注意**：如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的{{{ custom_key.brand_name }}} SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
+> **注意**：如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的<<< custom_key.brand_name >>> SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
 
 ## 开启巡检
 
-在自建的 DataFlux Func 中，通过「脚本市场」安装「 {{{ custom_key.brand_name }}}自建巡检（RUM 性能）」并根据提示配置{{{ custom_key.brand_name }}} API Key 完成开启。
+在自建的 DataFlux Func 中，通过「脚本市场」安装「 <<< custom_key.brand_name >>>自建巡检（RUM 性能）」并根据提示配置<<< custom_key.brand_name >>> API Key 完成开启。
 
-在 DataFlux Func 脚本市场中选择需要开启的巡检场景点击安装，配置{{{ custom_key.brand_name }}} API Key 和 [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/) 后选择部署启动脚本即可
+在 DataFlux Func 脚本市场中选择需要开启的巡检场景点击安装，配置<<< custom_key.brand_name >>> API Key 和 [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/) 后选择部署启动脚本即可
 
 ![image](../img/create_checker.png)
 
@@ -27,9 +27,9 @@ Real User Monitoring（RUM）是一种应用性能监测技术，旨在通过模
 
 ## 配置巡检
 
-在{{{ custom_key.brand_name }}} studio 监控-智能巡检模块中或 DataFlux Func 自动创建的启动脚本中配置想要过滤的巡检条件即可，可以参考下面两种配置方式。
+在<<< custom_key.brand_name >>> studio 监控-智能巡检模块中或 DataFlux Func 自动创建的启动脚本中配置想要过滤的巡检条件即可，可以参考下面两种配置方式。
 
-### 在{{{ custom_key.brand_name }}}中配置巡检
+### 在<<< custom_key.brand_name >>>中配置巡检
 
 ![image](../img/rum_performance03.png)
 
@@ -55,11 +55,11 @@ RUM 性能巡检默认是「开启」状态，可手动「关闭」，开启后�
     	app_name_2
 ```
 
->  **注意**：在自建的 DataFlux Func 中，编写自建巡检处理函数时也可以添加过滤条件（参考示例代码配置），要注意的是在{{{ custom_key.brand_name }}} studio 中配置的参数会覆盖掉编写自建巡检处理函数时配置的参数
+>  **注意**：在自建的 DataFlux Func 中，编写自建巡检处理函数时也可以添加过滤条件（参考示例代码配置），要注意的是在<<< custom_key.brand_name >>> studio 中配置的参数会覆盖掉编写自建巡检处理函数时配置的参数
 
 ### 在 DataFlux Func 中配置巡检
 
-在 DataFlux Func 中在配置好巡检所需的过滤条件之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后脚本就会正常执行了。也可以在{{{ custom_key.brand_name }}}「监控 / 智能巡检」中查看或更改配置。
+在 DataFlux Func 中在配置好巡检所需的过滤条件之后可以通过直接再页面中选择 `run()` 方法进行点击运行进行测试，在点击发布之后脚本就会正常执行了。也可以在<<< custom_key.brand_name >>>「监控 / 智能巡检」中查看或更改配置。
 
 ```python
 from guance_monitor__runner import Runner
@@ -100,7 +100,7 @@ def run(configs=None):
 
 ## 查看事件
 
-{{{ custom_key.brand_name }}}会根据当前的 RUM 性能的状态进行巡检当发现 RUM 性能指标异常时，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击**查看相关事件**按钮，即可查看对应异常事件。
+<<< custom_key.brand_name >>>会根据当前的 RUM 性能的状态进行巡检当发现 RUM 性能指标异常时，智能巡检会生成相应的事件，在智能巡检列表右侧的操作菜单下，点击**查看相关事件**按钮，即可查看对应异常事件。
 
 ![image](../img/rum_performance05.png)
 
@@ -161,7 +161,7 @@ RUM 性能巡检会检测 3 个核心性能指标分别是 LCP、FID、CLS 当�
 
 **5.在升级巡检脚本过程中发现 Startup 中对应的脚本集无变化**
 
-请先删除对应的脚本集后，再点击升级按钮配置对应{{{ custom_key.brand_name }}} API key 完成升级。
+请先删除对应的脚本集后，再点击升级按钮配置对应<<< custom_key.brand_name >>> API key 完成升级。
 
 **6.开启巡检后如何判断巡检是否生效**
 

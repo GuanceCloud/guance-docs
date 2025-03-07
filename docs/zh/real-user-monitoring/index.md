@@ -4,8 +4,8 @@ icon: zy/real-user-monitoring
 # 用户访问监测
 ---
 
-<video controls="controls" poster="https://{{{ custom_key.static_domain }}}/dataflux/help/video/rum.png" >
-      <source id="mp4" src="https://{{{ custom_key.static_domain }}}/dataflux/help/video/rum.mp4" type="video/mp4">
+<video controls="controls" poster="https://<<< custom_key.static_domain >>>/dataflux/help/video/rum.png" >
+      <source id="mp4" src="https://<<< custom_key.static_domain >>>/dataflux/help/video/rum.mp4" type="video/mp4">
 </video>
 
 
@@ -13,18 +13,18 @@ icon: zy/real-user-monitoring
 
 云原生时代，如何提升用户体验成为企业关注的新命题。企业不仅需要观测全面、真实的数据来确保其系统的稳定性和可靠性，还需要快速监测用户的使用行为和遇到的问题。
 
-由此，{{{ custom_key.brand_name }}}提供用户访问监测（RUM）功能，力图完整追踪用户的每次访问，了解每个请求背后的真实需求，高效优化产品性能。
+由此，<<< custom_key.brand_name >>>提供用户访问监测（RUM）功能，力图完整追踪用户的每次访问，了解每个请求背后的真实需求，高效优化产品性能。
 
 ## 数据从何而来？
 
-{{{ custom_key.brand_name }}}用户访问监测通过 RUM Headless 自动化部署，采集 Web、Android、iOS、小程序和第三方框架的用户访问数据。您可以实时查看与分析用户访问数据，洞察用户访问环境，回溯用户操作路径及分解操作响应时间；还可以了解用户操作导致的一系列调用链的应用性能指标情况，实现端到端的全面监测，高效提高应用程序性能和用户体验。
+<<< custom_key.brand_name >>>用户访问监测通过 RUM Headless 自动化部署，采集 Web、Android、iOS、小程序和第三方框架的用户访问数据。您可以实时查看与分析用户访问数据，洞察用户访问环境，回溯用户操作路径及分解操作响应时间；还可以了解用户操作导致的一系列调用链的应用性能指标情况，实现端到端的全面监测，高效提高应用程序性能和用户体验。
 
 
 ![](img/rum-arch_1.png)
 
 ## 如何开启用户访问监测（RUM）？
 
-要开启用户访问监测功能，**首先需要部署一个公网 DataKit 作为 Agent**，客户端的用户访问数据通过这个 Agent 将数据上报到{{{ custom_key.brand_name }}}工作空间。
+要开启用户访问监测功能，**首先需要部署一个公网 DataKit 作为 Agent**，客户端的用户访问数据通过这个 Agent 将数据上报到<<< custom_key.brand_name >>>工作空间。
 
 > 具体的 DataKit 安装方法与配置方法，可参考 [DataKit 安装](../datakit/datakit-install.md)。
 
@@ -32,7 +32,7 @@ DataKit 安装完成后，**开启 [RUM 采集器](../integrations/rum.md)**，�
 
 ## 开始配置 {#create}
 
-登录{{{ custom_key.brand_name }}}控制台，进入**用户访问监测 > 应用列表 > 新建应用**。
+登录<<< custom_key.brand_name >>>控制台，进入**用户访问监测 > 应用列表 > 新建应用**。
 
 ![](img/rum_get_started.png)
 
@@ -79,9 +79,9 @@ DataKit 安装完成后，**开启 [RUM 采集器](../integrations/rum.md)**，�
 
 ## 何为会话重放？
 
-{{{ custom_key.brand_name }}}用户访问监测的基本概念围绕用户操作和用户会话展开。基于用户在应用程序中执行的各种访问行为，{{{ custom_key.brand_name }}}可以捕捉 Web 端、小程序、Android、iOS 和自定义应用的用户会话。
+<<< custom_key.brand_name >>>用户访问监测的基本概念围绕用户操作和用户会话展开。基于用户在应用程序中执行的各种访问行为，<<< custom_key.brand_name >>>可以捕捉 Web 端、小程序、Android、iOS 和自定义应用的用户会话。
 
-借助现代浏览器提供的强大 API 拓展能力，{{{ custom_key.brand_name }}}会话重放实时捕获用户的操作数据、重放用户的操作路径。如此一来，能有效重现、定位并解决错误。
+借助现代浏览器提供的强大 API 拓展能力，<<< custom_key.brand_name >>>会话重放实时捕获用户的操作数据、重放用户的操作路径。如此一来，能有效重现、定位并解决错误。
 
 <div class="grid cards" markdown>
 
@@ -124,7 +124,7 @@ DataKit 安装完成后，**开启 [RUM 采集器](../integrations/rum.md)**，�
 
 ## 自建链路异常数据追踪
 
-{{{ custom_key.brand_name }}}用户访问监测可以设置自定义追踪任务，实时监控追踪轨迹，基于全面的追踪信息，快速精准定位异常根因；同时能保证链路上下文在不同环境下都能够完整透传，避免出现上下文丢失导致的断链现象，从而及时发现漏洞、异常和风险；还能通过浏览器插件的实现方式，创建简洁无代码的端到端测试。
+<<< custom_key.brand_name >>>用户访问监测可以设置自定义追踪任务，实时监控追踪轨迹，基于全面的追踪信息，快速精准定位异常根因；同时能保证链路上下文在不同环境下都能够完整透传，避免出现上下文丢失导致的断链现象，从而及时发现漏洞、异常和风险；还能通过浏览器插件的实现方式，创建简洁无代码的端到端测试。
 
 <div class="grid cards" markdown>
 
@@ -136,7 +136,7 @@ DataKit 安装完成后，**开启 [RUM 采集器](../integrations/rum.md)**，�
 
 ## 利用生成指标细分数据
 
-面对庞大的原始数据体量，{{{ custom_key.brand_name }}}用户访问监测的生成指标功能可以帮助 Dev & Ops 和业务方降低多维度分析的难度。其基于当前空间内的现有数据生成新的指标数据，联动绑定自定义仪表板，从而根据指标维度进行定期统计。
+面对庞大的原始数据体量，<<< custom_key.brand_name >>>用户访问监测的生成指标功能可以帮助 Dev & Ops 和业务方降低多维度分析的难度。其基于当前空间内的现有数据生成新的指标数据，联动绑定自定义仪表板，从而根据指标维度进行定期统计。
 
 
 <div class="grid cards" markdown>
@@ -149,7 +149,7 @@ DataKit 安装完成后，**开启 [RUM 采集器](../integrations/rum.md)**，�
 
 ## 数据存储策略与计费规则
 
-{{{ custom_key.brand_name }}}为用户访问数据提供 <u>3 天、7 天、14 天</u>三种数据存储时长选择，您可以按照需求在**管理 > 基本设置 > 变更数据存储策略**中调整。
+<<< custom_key.brand_name >>>为用户访问数据提供 <u>3 天、7 天、14 天</u>三种数据存储时长选择，您可以按照需求在**管理 > 基本设置 > 变更数据存储策略**中调整。
 
 > 更多数据存储策略，可参考 [数据存储策略](../billing-method/data-storage.md)。
 

@@ -2,7 +2,7 @@
 ---
 
 
-{{{ custom_key.brand_name }}}应用监测能够收集各个小程序应用的指标数据，通过引入 SDK 文件，监控小程序性能指标、错误 Log 以及资源请求情况数据，上报到{{{ custom_key.brand_name }}}平台后，以可视化的方式分析各个小程序应用端的性能。
+<<< custom_key.brand_name >>>应用监测能够收集各个小程序应用的指标数据，通过引入 SDK 文件，监控小程序性能指标、错误 Log 以及资源请求情况数据，上报到<<< custom_key.brand_name >>>平台后，以可视化的方式分析各个小程序应用端的性能。
 
 ## 前置条件
 
@@ -14,7 +14,7 @@
 
 ## 应用接入
 
-登录{{{ custom_key.brand_name }}}控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
+登录<<< custom_key.brand_name >>>控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
 
 ![](../img/6.rum_miniapp.png)
 
@@ -45,7 +45,7 @@
 
 === "CDN" 
 
-	[下载文件](https://{{{ custom_key.static_domain }}}/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
+	[下载文件](https://<<< custom_key.static_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
 	
 	```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -68,7 +68,7 @@
 
 | 参数                            | 类型    | 是否必须 | 默认值    | 描述                                                         |
 | ------------------------------- | ------- | -------- | --------- | ------------------------------------------------------------ |
-| `applicationId`                 | String  | 是       |           | 从{{{ custom_key.brand_name }}}创建的应用 ID。                                    |
+| `applicationId`                 | String  | 是       |           | 从<<< custom_key.brand_name >>>创建的应用 ID。                                    |
 | `datakitOrigin`                 | String  | 是       |           | DataKit 数据上报 Origin；<br/>:warning: 需要在小程序管理后台加上 request 白名单。 |
 | `env`                           | String  | 否       |           | 小程序应用当前环境，如 prod：线上环境；gray：灰度环境；pre：预发布环境；common：日常环境；local：本地环境。 |
 | `version`                       | String  | 否       |           | 小程序应用的版本号。                                          |
