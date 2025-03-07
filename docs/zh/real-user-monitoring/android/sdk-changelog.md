@@ -9,11 +9,12 @@
 
 ## **ft-sdk** {#ft-sdk}
 ### **1.6.9 (2025/03/01)** {#ft-sdk-1-6-9}
-1. 调整 `Utils.isAppForeground()` 在 SDK 初始化之前的调用规则
+1. 修改 isAppForeground 的判断机制，适配隐私敏感信息检测
 2. 新增 `resource` 数据字段 `resource_first_byte_time`，`resource_dns_time`，
-   `resource_download_time`，`resource_connect_time`，`resource_ssl_time` 在观测云上的优化展示，
-   并支持 APM 火焰图的时间对齐
+   `resource_download_time`，`resource_connect_time`，`resource_ssl_time`，
+   支持在观测云上的优化展示和 APM 火焰图的时间对齐
 3. 优化同步重试机制，取消 `FTSDKConfig.setDataSyncRetryCount(0)` 数据直接丢弃的配置选项
+4. 修复多次初始化 RUM 配置的场景下，导致重复产生崩溃数据的问题
 
 ### **1.6.8 (2025/01/21)** {#ft-sdk-1-6-8}
 1. 修复多次初始化 RUM 配置，fps 采集不准确的问题
