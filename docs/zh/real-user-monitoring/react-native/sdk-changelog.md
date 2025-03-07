@@ -1,4 +1,8 @@
 # 更新日志
+## 0.3.12 (2025/03/07)
+* `FTMobileConfig.enableDataIntegerCompatible` 默认开启
+* 适配 Android ft-sdk [1.6.9](../android/sdk-changelog.md/#ft-sdk-1-6-9)，iOS [1.5.12](../ios/sdk-changelog.md/#1-5-12)、[1.5.13](../ios/sdk-changelog.md/#1-5-13)、[1.5.14](../ios/sdk-changelog.md/#1-5-14)
+
 ## 0.3.11 (2025/02/05)
 
 * 原生 与 React Native 混合开发 SDK 配置优化
