@@ -9,17 +9,17 @@
 点击**任务 > 新建 > 多步拨测**。
 
 
-### :material-numeric-1-circle: 基本信息
+### 1、基本信息
 
 1. 定义拨测任务名称；
 2. 按需填写描述；
 
-### :material-numeric-2-circle: 选择拨测节点
+### 2、选择拨测节点
 
 目前<<< custom_key.brand_name >>>已覆盖全球 14 个拨测节点。您可以选择中国地区或海外地区（仅限商业版及以上用户）的一个或多个节点，快速开启站点服务质量监测。
 
 
-### :material-numeric-3-circle: 选择拨测频率
+### 3、选择拨测频率
 
 选择拨测任务的执行频率，支持以下选项：
 
@@ -32,7 +32,7 @@
 - 12 小时
 - 24 小时
 
-### :material-numeric-4-circle: 定义请求步骤 {#request_step}
+### 4、定义请求步骤 {#request_step}
 
 点击**创建第一个请求**。
 
@@ -77,7 +77,7 @@
 ```
 body = load_json(response["body"])
 
-if body["code"] == "200" {
+if body["code"] == 200 {
   result["is_failed"] = false
   vars["token"] = body["token"]
 } else {

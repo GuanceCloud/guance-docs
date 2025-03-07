@@ -12,7 +12,7 @@ WebSocket 拨测允许客户端向服务器发起 HTTP 请求，建立 WebSocket
 
 
 
-### :material-numeric-1-circle: 定义请求格式
+### 1、定义请求格式
 
 1. URL：支持输入 WS 和 WSS 两种协议的 URL。  
 2. 高级设置：支持自定义请求设置和身份验证。  
@@ -20,7 +20,7 @@ WebSocket 拨测允许客户端向服务器发起 HTTP 请求，建立 WebSocket
 4. 名称：自定义 WebSocket 拨测任务的名称，当前工作空间内不允许重复。
 
 
-### :material-numeric-2-circle: 可用判断 {#test}
+### 2、可用判断 {#test}
 
 即通过添加判断条件来匹配数据。多个条件之间可以选择“所有”或“任意”来实现 AND 或 OR 逻辑关系。
 
@@ -28,13 +28,13 @@ WebSocket 拨测允许客户端向服务器发起 HTTP 请求，建立 WebSocket
 
 **注意**：测试结果与选择的节点无关。
 
-### :material-numeric-3-circle: 选择拨测节点
+### 3、选择拨测节点
 
 目前<<< custom_key.brand_name >>>已覆盖全球 14 个拨测节点。您可以选择中国地区或海外地区（仅限商业版及以上用户）的一个或多个节点，快速开启站点服务质量监测。
 
 
 
-### :material-numeric-4-circle: 选择拨测频率
+### 4、选择拨测频率
 
 选择拨测任务的执行频率，支持以下选项：
 
