@@ -1,6 +1,16 @@
 # 更新日志
 
 ---
+## **1.5.14 (2025/03/07)** {#1-5-14}
+
+1. 新增 RUM `Resource` 数据字段 `resource_first_byte_time`、`resource_dns_time`、`resource_download_time`、`resource_connect_time`、`resource_ssl_time`、`resource_redirect_time`，支持在观测云上 Resource 耗时增强展示，并在支持「应用性能监测」火焰图对齐时间轴
+
+2. 默认开启 `FTMobileConfig.enableDataIntegerCompatible` 
+
+3. 新增支持通过宏定义 `FT_DISABLE_SWIZZLING_RESOURCE` 关闭 SDK 内 URLSession Method Swizzling 方法
+
+4. 优化数据同步，添加失败重传逻辑
+
 ## **1.5.13** (2025/02/27) {#1-5-13}
 
 1. 优化页面采集逻辑，防止特殊视图导致 RUM View 采集缺失
