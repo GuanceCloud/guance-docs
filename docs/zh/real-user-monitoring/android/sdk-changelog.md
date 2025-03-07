@@ -8,7 +8,7 @@
 </div>
 
 ## **ft-sdk** {#ft-sdk}
-### **1.6.9 (2025/03/01)** {#ft-sdk-1-6-9}
+### **1.6.9 (2025/03/07)** {#ft-sdk-1-6-9}
 1. 修改 isAppForeground 的判断机制，适配隐私敏感信息检测
 2. 新增 `resource` 数据字段 `resource_first_byte_time`，`resource_dns_time`，
    `resource_download_time`，`resource_connect_time`，`resource_ssl_time`，
