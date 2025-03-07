@@ -1,5 +1,6 @@
 # 更新日志
 ## 0.3.12 (2025/03/07)
+* 新增 RUM `Resource` 数据字段 `resource_first_byte_time`、`resource_dns_time`、`resource_download_time`、`resource_connect_time`、`resource_ssl_time`、`resource_redirect_time`，支持在观测云上 Resource 耗时增强展示，并在支持「应用性能监测」火焰图对齐时间轴
 * `FTMobileConfig.enableDataIntegerCompatible` 默认开启
 * 适配 Android ft-sdk [1.6.9](../android/sdk-changelog.md/#ft-sdk-1-6-9)，iOS [1.5.12](../ios/sdk-changelog.md/#1-5-12)、[1.5.13](../ios/sdk-changelog.md/#1-5-13)、[1.5.14](../ios/sdk-changelog.md/#1-5-14)
 
