@@ -2,50 +2,50 @@
 
 ---
 
-This article will demonstrate the billing generation and price calculation logic for each billing item within the pay-as-you-go billing framework of the Guance product.
+This article will demonstrate the billing logic for various chargeable items and price calculation within the pay-as-you-go billing framework of <<< custom_key.brand_name >>> products.
 
 
-## Concept Explanation
+## Concepts
 
 | Term   | Description |
 | -------- | ---------- |
-| Data Storage   | Custom setting of data retention periods for different data types. |
-| Base Billing   | The unit price of a billing item is a **fixed value**. |
-| Tiered Billing   | The unit price of a billing item is a **dynamic value**, which varies based on the selected data storage strategy for the current data type. |
+| Data Storage   | Custom settings for data retention periods for different data types. |
+| Basic Billing   | The unit price of a certain chargeable item is a **fixed value**. |
+| Tiered Billing   | The unit price of a certain chargeable item is a **dynamic value**, which varies based on the selected data storage strategy for the current data type, resulting in **different unit prices**. |
 
 ## Billing Cycle {#cycle}
 
-The Guance billing cycle is **daily**, meaning that the usage statistics for the workspace on that day are settled at midnight the next day, generating a daily bill that is synchronized to the [Billing Center](../billing-center/index.md) of Guance. Ultimately, the consumption amount is deducted from the corresponding account based on the actual bound settlement method.
+The billing cycle for <<< custom_key.brand_name >>> is **daily**. Usage statistics for each workspace are calculated daily, with settlement occurring at midnight the following day. Daily bills are generated and synchronized to the <<< custom_key.brand_name >>> [Billing Center](../billing-center/index.md), from which the consumption amount is deducted based on the actual payment method.
 
 ## Billing Items {#item}
 
 ### Time Series {#timeline}
 
-Guance's time series engine mainly involves the following basic concepts when storing data:
+<<< custom_key.brand_name >>>'s time series engine primarily involves the following basic concepts for storing data:
 
 | Term   | Description |
 | -------- | ---------- |
-| Measurement   | Generally used to represent a set corresponding to a statistical value, similar to the `table` concept in relational databases. |
-| Data Point   | In the context of reporting metric data, it refers to a single metric data sample, analogous to `row` data in relational databases. |
-| Timestamp   | Represents the time when the data point was generated, or the time when DataKit collected and reported the metric data in line protocol format. |
-| Metrics   | Field, generally storing numerical data that changes with the timestamp. For example, common metrics in the CPU measurement like `cpu_total`, `cpu_use`, `cpu_use_pencent` are all metrics. |
-| Tags   | Tags, generally storing attribute information that does not change with the timestamp. For example, common fields like `host`, `project` in the CPU measurement are tag attributes used to identify the actual object properties of the metrics. |
+| Measurement   | Generally used to represent a collection corresponding to a statistical value, similar to the concept of a `table` in relational databases. |
+| Data Point   | In the context of reporting metric data, it refers to a single sample of metric data, analogous to `row` data in relational databases. |
+| Time   | Timestamp, representing the time when the data point was generated, which can also be understood as the time when DataKit collected and reported a row protocol for a specific metric data. |
+| Metric   | Field, typically holding numerical data that changes over time. For example, common metrics in the CPU measurement include `cpu_total`, `cpu_use`, `cpu_use_percent`. |
+| Tags   | Tags generally store attribute information that does not change with timestamps. For instance, fields like `host` and `project` in the CPU measurement are tag attributes used to identify the actual object properties of metrics. |
 
 #### Example {#example}
 
 ![](../img/billing-2.png)
 
-In the above figure, the measurement CPU has 6 data points based on a single metric. Each data point has a time field: `time`, one metric: `cpu_use_pencent`, and two tags: `host`, `project`. The first and fourth rows of data both have a `host` name `Hangzhou_test1` and belong to the project `Guance`, representing the CPU utilization (`cpu_use_pencent`). Similarly, the second and fifth rows indicate the CPU utilization for `host` name `Ningxia_test1` under the project `Guance`, and the third and sixth rows represent the CPU utilization for `host` name `Singapore_test1` under the project `Guance_oversea`.
+In the above diagram, the measurement CPU has a total of 6 data points based on a single metric. Each data point includes a time field: `time`, one metric: `cpu_use_percent`, and two tags: `host`, `project`. The first and fourth rows of data both have `host` named `Hangzhou_test1` and belong to the project `Guance`, indicating the CPU usage (`cpu_use_percent`). Similarly, the second and fifth rows represent CPU usage for `host` named `Ningxia_test1` and project `Guance`. The third and sixth rows have `host` named `Singapore_test1` and belong to the project `Guance_oversea`.
 
-Based on the time series data for the `cpu_use_pencent` metric, there are three combinations:
+Based on the time series data shown above, there are three combinations of time series based on the `cpu_use_percent` metric:
 
 `"host":"Hangzhou_test1","project":"Guance"`      
 `"host":"Ningxia_test1","project":"Guance"`       
-`"host":"Singapore_test1","project":"Guance_oversea"`       
+`"host":"Singapore_test1","project":"Guance_oversea"`
 
-Similarly, to calculate all the time series for metrics within the current workspace, sum up the number of time series actually counted.
+Similarly, to calculate all metrics' time series within the current workspace, sum up the number of time series actually counted.
 
-Data collection through DataKit reports metric data to a specific workspace. Specifically, this refers to data obtained by querying with DQL where NameSpace is **M**.
+Data is collected by DataKit and reported to a workspace. Specifically, this refers to data queried in DQL where NameSpace is **M**.
 
 <div class="grid cards" markdown>
 
@@ -56,17 +56,17 @@ Data collection through DataKit reports metric data to a specific workspace. Spe
 
 ???+ abstract "Billing Item Statistics"
 
-    Count the number of new time series added within the day at hourly intervals.
+    New time series counts are tallied every hour within the same day.
 
-    Billing formula: Daily cost = Actual billed quantity/1000 * Unit price (based on the applied data storage strategy)
+    Cost Calculation Formula: Daily cost = (Actual billed quantity / 1000) * Unit price (based on the applied data storage strategy)
 
 ### Logs {#logs}
 
-Any of the following situations will generate corresponding log data:
+Any of the following scenarios will generate log data:
 
 - Enabling log data collection and reporting;
-- Configuring monitoring tasks, intelligent inspections, SLO anomaly detection tasks, or reporting custom events via OpenAPI;
-- Initiating availability dial testing tasks and reporting test data through user-defined nodes.
+- Configuring monitoring, intelligent inspection, SLO anomaly detection tasks or reporting custom events via OpenAPI;
+- Initiating availability tests through self-built nodes and reporting test results.
 
 <div class="grid cards" markdown>
 
@@ -77,26 +77,28 @@ Any of the following situations will generate corresponding log data:
 
 ???+ abstract "Billing Item Statistics"
 
-    Count the number of new log entries added within an hour at hourly intervals.
+    Log data quantities added within an hour are counted hourly.
 
-    Billing formula: Daily cost = Actual billed quantity/1000000 * Unit price (based on the applied data storage strategy)
+    Cost Calculation Formula: Daily cost = (Actual billed quantity / 1,000,000) * Unit price (based on the applied data storage strategy)
 
 ???+ warning
 
-    **Depending on the chosen storage type, large logs may be split into multiple entries for billing**:
+    **For different storage types, extremely large log data will be split into multiple entries for billing**:
 
-    **ES Storage**: If the log size exceeds 10 KB, the number of billable entries for that log = integer division of (log size / 10 KB).
+    **ES Storage**: If log size exceeds 10 KB, the number of billable entries for this log = integer part of (log size / 10 KB)
 
-    **SLS Storage**: If the log size exceeds 2 KB, the number of billable entries for that log = integer division of (log size / 2 KB).
+    **SLS Storage**: If log size exceeds 2 KB, the number of billable entries for this log = integer part of (log size / 2 KB)
 
-    If a single entry is smaller than the above limit, it is still counted as 1 entry.
-
+    If a single entry is smaller than the above limits, it is still counted as 1 entry.
 
 ### Data Forwarding {#backup}
 
-Supports forwarding log data to Guance or four other external storage methods. Based on data forwarding rules, the volume of forwarded data is aggregated for billing.
+Supports forwarding log data to <<< custom_key.brand_name >>> or four other external storage methods. Based on data forwarding rules, the volume of forwarded data is aggregated and billed.
 
-**Note**: Data forwarded to Guance provided storage still retains records.
+**Note**: Data forwarded to <<< custom_key.brand_name >>> is still retained in records.
+<!--
+The console can configure backup rules to synchronize reported log data for backup operations. Data matching backup rules will be stored in the index for data forwarding, and <<< custom_key.brand_name >>> will base its data forwarding capacity statistics on the data under this index.
+-->
 
 <div class="grid cards" markdown>
 
@@ -107,9 +109,9 @@ Supports forwarding log data to Guance or four other external storage methods. B
 
 ???+ abstract "Billing Item Statistics"
 
-    At hourly intervals, count the volume of data forwarded according to the data storage strategy. Default unit: Bytes.
+    The capacity of data forwarded within the data storage strategy is counted hourly. Default capacity unit: Bytes.
 
-    Billing formula: Daily cost = Actual billed volume/1000000000 * Corresponding unit price
+    Cost Calculation Formula: Daily cost = (Actual billed capacity / 1,000,000,000) * Corresponding unit price
 
 ### Network {#network}
 
@@ -117,22 +119,22 @@ Supports forwarding log data to Guance or four other external storage methods. B
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Reported Network Data Host Billing Details</font>](../billing-method/index.md#network)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Host Reporting Network Data Billing Details</font>](../billing-method/index.md#network)
 
 
 </div>
 
 ???+ abstract "Billing Item Statistics"
 
-    At hourly intervals, count the number of new hosts added within the day.
+    The number of new hosts added within the day is counted hourly.
 
-    Billing formula: Daily cost = Actual billed quantity * Corresponding unit price
+    Cost Calculation Formula: Daily cost = Actual billed quantity * Corresponding unit price
 
 ### Application Performance Trace {#trace}
 
-- Daily statistics on the number of Span data generated within the workspace.
+- Daily Span data count within the workspace.
 
-**Note**: In Guance's new billing adjustments, the larger of "quantity/10" and the number of `trace_id`s will be used for billing.
+**Note**: In <<< custom_key.brand_name >>>'s new billing adjustment, the larger value between "quantity/10" and `trace_id` count will be used as the daily billing data.
 
 <div class="grid cards" markdown>
 
@@ -143,13 +145,13 @@ Supports forwarding log data to Guance or four other external storage methods. B
 
 ???+ abstract "Billing Item Statistics"
 
-    At hourly intervals, count the number of new `trace_id`s added within an hour.
+    The number of new `trace_id` entries added within an hour is counted hourly.
 
-    Billing formula: Daily cost = Actual billed quantity/1000000 * Corresponding unit price
+    Cost Calculation Formula: Daily cost = (Actual billed quantity / 1,000,000) * Corresponding unit price
 
 ### Application Performance Profile {#profile}
 
-- Enabling application performance monitoring Profile data collection
+- Enabling APM Profile data collection
 
 <div class="grid cards" markdown>
 
@@ -160,26 +162,25 @@ Supports forwarding log data to Guance or four other external storage methods. B
 
 ???+ abstract "Billing Item Statistics"
 
-    At hourly intervals, count the number of new Profile data entries added within an hour.
+    The number of new Profile data entries added within an hour is counted hourly.
 
-    Billing formula: Daily cost = Actual billed quantity/10000 * Corresponding unit price
+    Cost Calculation Formula: Daily cost = (Actual billed quantity / 10,000) * Corresponding unit price
 
 ???+ warning
 
-    Profile data consists of two main parts: **base attribute data** + **Profile analysis files**.
+    Profile data mainly consists of two parts: **basic attribute data** + **Profile analysis files**.
 
     If there are oversized Profile analysis files, Profile data will be split into multiple entries for billing.
 
-    If the Profile analysis file size is greater than 300 KB, the number of billable entries = integer division of (Profile analysis file size / 300 KB).
+    If the Profile analysis file size exceeds 300 KB, the billing count = integer part of (Profile analysis file size / 300 KB).
 
-    If the analysis file size is below the limit, it is still counted as 1 entry.
-
+    If the analysis file is smaller than the limit, it is still counted as 1 entry.
 
 ### User Access PV {#pv}
 
-- Daily statistics on the number of Resource, Long Task, Error, Action data entries generated within the workspace.
+- Daily count of Resource, Long Task, Error, Action data within the workspace.
 
-**Note**: In Guance's new billing adjustments, the larger of "quantity/100" and the PV will be used for billing.
+**Note**: In <<< custom_key.brand_name >>>'s new billing adjustment, the larger value between "quantity/100" and PV will be used as the daily billing data.
 
 <div class="grid cards" markdown>
 
@@ -190,9 +191,9 @@ Supports forwarding log data to Guance or four other external storage methods. B
 
 ???+ abstract "Billing Item Statistics"
 
-    At hourly intervals, count the number of new PV data entries added within an hour.
+    The number of new PV data entries added within an hour is counted hourly.
 
-    Billing formula: Daily cost = Actual billed quantity/10000 * Price (based on the applied data storage strategy)
+    Cost Calculation Formula: Daily cost = (Actual billed quantity / 10,000) * Price (based on the applied data storage strategy)
 
 ### Session Replay {#session}
 
@@ -207,131 +208,126 @@ Supports forwarding log data to Guance or four other external storage methods. B
 
 ???+ abstract "Billing Item Statistics"
 
-    At hourly intervals, count the number of new sessions added within the day.
+    The number of new sessions added within the day is counted hourly.
 
-    Billing formula: Daily cost = Actual billed quantity/1000 * Corresponding unit price
+    Cost Calculation Formula: Daily cost = (Actual billed quantity / 1,000) * Corresponding unit price
 
 ???+ warning
 
-    If there are excessively long active sessions, they will be split into multiple entries for billing based on `time_spent`.
+    If there are overly active sessions, they will be split into multiple entries for billing based on `time_spent`.
 
-    If `time_spent` > 4 hours, the number of billable entries = integer division of (`time_spent` / 4 hours).
+    If `time_spent` > 4 hours, billing count = integer part of (`time_spent` / 4 hours);
 
     If `time_spent` is less than 4 hours, it is still counted as 1 session.
 
+### Availability Monitoring {#st}
 
-### Synthetic Tests {#st}
-
-- Enabling synthetic tests and receiving results through Guance-provided dial testing nodes.
+- Initiating availability tests and returning test results via <<< custom_key.brand_name >>> provided testing nodes
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Synthetic Testing Data Billing Details</font>](../billing-method/index.md#st)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Availability Monitoring Data Billing Details</font>](../billing-method/index.md#st)
 
 
 </div>
 
 ???+ abstract "Billing Item Statistics"
 
-    At hourly intervals, count the number of new dial test data entries added within an hour.
+    The number of new test data entries added within an hour is counted hourly.
 
-    Billing formula: Daily cost = Actual billed quantity/10000 * Corresponding unit price
+    Cost Calculation Formula: Daily cost = (Actual billed quantity / 10,000) * Corresponding unit price
 
 ???+ warning
 
-    Since synthetic test data is currently stored in the default log index, DQL queries or statistics need to include the following filter conditions to query dial test data.
+    Since availability test data is currently stored in the default log index, DQL queries or statistics need to add the following filter conditions to query test data:
     
-    `index = ['default'], source = ['http_dial_testing','tcp_dial_testing','icmp_dial_testing','websocket_dial_testing']`.
+    `index = ['default'], source = ['http_dial_testing', 'tcp_dial_testing', 'icmp_dial_testing', 'websocket_dial_testing']`.
 
-### Triggers {#trigger}
+### Task Triggers {#trigger}
 
-- Enabling monitors, SLOs, and other periodic detection tasks. Among these, monitor anomaly detection, range detection, outlier detection, and log detection count as 5 trigger calls per detection, while other detection types count as 1 trigger call. Additionally, if the detection interval exceeds 15 minutes, the excess part is charged at 1 trigger call every 15 minutes;
+- Enabling monitors, SLO, etc., for periodic detection tasks, where monitor anomaly detection, interval detection, outlier detection, and log detection each count as 5 task triggers per detection, while other detection types count as 1 trigger. Additionally, if the **detection interval** exceeds 15 minutes, any excess is charged at 1 trigger for every additional 15 minutes;
 
-- Intelligent monitoring: host, log, and application intelligent detection count as 10 trigger calls per execution; user access intelligent detection counts as 100 trigger calls per execution.
+- Intelligent monitoring: Host, log, application intelligent detection counts as 10 triggers per execution; user access intelligent detection counts as 100 triggers per execution.
 
-???+ abstract "Calculation Example"
+???+ abstract "Calculation Examples"
      
-    :material-numeric-1-circle-outline: Monitor call counts:
+    :material-numeric-1-circle-outline: Monitor Trigger Counts:
 
-    1. Normal case: executing one [anomaly detection] counts as 5 trigger calls.
-    2. Exceeding detection interval: if the detection interval is 30 minutes, the excess part adds 1 call every 15 minutes. For example, executing one [outlier detection] counts as 6 trigger calls.
-    3. Multiple detections exceeding detection interval: executing two [range detections] with a total detection interval of 60 minutes counts as 13 trigger calls (2 detections * 5 + 3 extra intervals).
+    1. Normal scenario example: Executing one mutation detection counts as 5 task triggers.
+    2. Exceeding detection interval example: If the detection interval is 30 minutes, exceeding parts are added incrementally every 15 minutes. For instance, executing one outlier detection counts as 6 task triggers.
+    3. Multiple detections and exceeding detection interval example: Executing two interval detections with a combined detection interval of 60 minutes counts as 13 triggers (2 detections * 5 + 3 extra intervals).
 
-    :material-numeric-2-circle-outline: Intelligent monitoring call counts: executing one [host intelligent monitoring] counts as 10 trigger calls.
+    :material-numeric-2-circle-outline: Intelligent Monitoring Trigger Count Example: Executing one host intelligent monitoring counts as 10 task triggers.
 
-- Each DataKit/OpenAPI query counts as 1 trigger call;
-- Each metric generation query counts as 1 trigger call;
-- Each advanced function query from Func counts as 1 trigger call.
+- Each DataKit/OpenAPI query counts as 1 task trigger;
+- Each metric generation query counts as 1 task trigger;                  
+- Each advanced function query provided by Func center counts as 1 task trigger.
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Trigger Call Count Billing Details</font>](../billing-method/index.md#trigger)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Task Trigger Count Billing Details</font>](../billing-method/index.md#trigger)
 
 
 </div>
 
 ???+ abstract "Billing Item Statistics"
 
-    At hourly intervals, count the number of new trigger calls added within an hour.
+    The number of new task triggers added within an hour is counted hourly.
 
-    Billing formula: Daily cost = Actual billed quantity/10000 * Corresponding unit price
-
+    Cost Calculation Formula: Daily cost = (Actual billed quantity / 10,000) * Corresponding unit price
 
 ### SMS {#sms}
 
-- Alarm policy configuration sends SMS notifications.
+- Configuring alert strategies for SMS notifications
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; SMS Send Count Billing Details</font>](../billing-method/index.md#sms)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; SMS Sending Count Billing Details</font>](../billing-method/index.md#sms)
 
 
 </div>
 
 ???+ abstract "Billing Item Statistics"
 
-    At hourly intervals, count the number of new SMS messages sent within an hour.
+    The number of new SMS sent within an hour is counted hourly.
 
-    Billing formula: Daily cost = Actual billed quantity/10 * Unit price
+    Cost Calculation Formula: Daily cost = (Actual billed quantity / 10) * Unit price
 
 
 ## Billing Example {#example}
 
-Assume Company A uses Guance to monitor its IT infrastructure and application systems comprehensively.
+Assume Company A uses <<< custom_key.brand_name >>> to monitor its IT infrastructure and application systems comprehensively.
 
-Assume Company A has a total of 10 hosts (each host has a default daily active timeline of 600), generating 6,000 timelines, 2 million log entries, 2 million Trace entries, 20,000 PV entries, and 20,000 task schedules daily, using the following data storage strategy:
+Assume Company A has a total of 10 hosts (each host has a default daily active timeline of 600), generating 6,000 timelines, 2 million log entries, 2 million Trace entries, 20,000 PV entries, and 20,000 task schedules daily. The data storage strategy used is as follows:
 
-| Billing Item       | Metrics (Timeline) | Logs | APM Trace | User Access PV |
+| Chargeable Item       | Metrics (Timeline) | Logs | APM Trace | User Access PV |
 | ------------ | -------------- | ---- | -------------- | ----------- |
 | Data Storage Strategy | 3 days           | 7 days | 3 days           | 3 days        |
 
-Specific details:
+Specific details are as follows:
 
-| Billing Item   | Daily Billing Quantity | Billing Unit Price        | Billing Logic                                                     | Daily Billing Cost |
+| Chargeable Item   | Daily Billing Quantity | Billing Unit Price        | Billing Logic                                                     | Daily Billing Cost |
 | -------- | ---------- | --------------- | ------------------------------------------------------------ | ---------- |
-| Timeline   | 6,000 entries     | 0.6 RMB/thousand entries     | (Actual billed quantity/1000) * Unit price<br> i.e., (6,000 entries/1,000 entries) * 0.6 RMB | 3.6 RMB       |
-| Logs     | 2 million entries   | 1.2 RMB/million entries | (Actual counted quantity/billing unit) * Unit price<br> i.e., (2 million/1 million) * 1.2 RMB | 2.4 RMB     |
-| Trace    | 2 million entries   | 2 RMB/million entries   | (Actual counted quantity/billing unit) * Unit price<br/> i.e., (2 million/1 million) * 2 RMB | 4 RMB       |
-| PV       | 20,000 entries     | 0.7 RMB/ten thousand entries   | (Actual counted quantity/billing unit) * Unit price<br/> i.e., (20,000/10,000) * 0.7 RMB | 1.4 RMB     |
-| Task Schedule | 20,000 times     | 1 RMB/ten thousand times     | (Actual counted quantity/billing unit) * Unit price<br/> i.e., (20,000/10,000) * 1 RMB | 2 RMB       |
+| Timeline   | 6,000 entries     | $0.6 per thousand entries     | (Actual billed quantity / 1,000) * Unit price<br> i.e., (6,000 entries / 1,000 entries) * $0.6 | $3.6      |
+| Logs     | 2 million entries   | $1.2 per million entries | (Actual counted quantity / billing unit) * Unit price<br> i.e., (2 million / 1 million) * $1.2 | $2.4     |
+| Trace    | 2 million entries   | $2 per million entries   | (Actual counted quantity / billing unit) * Unit price<br/> i.e., (2 million / 1 million) * $2 | $4       |
+| PV       | 20,000 entries     | $0.7 per ten thousand entries   | (Actual counted quantity / billing unit) * Unit price<br/> i.e., (20,000 / 10,000) * $0.7 | $1.4     |
+| Task Scheduling | 20,000 times     | $1 per ten thousand times     | (Actual counted quantity / billing unit) * Unit price<br/> i.e., (20,000 / 10,000) * $1 | $2       |
 
-**Note**: Since timelines are incrementally billed, changes in the number of timelines generated by the company will affect the costs.
+**Note**: Since timelines are incremental billing items, changes in the number of timelines generated by the company will lead to changes in costs.
 
-> More timeline quantity calculations can be found in [Timeline Example](#timeline).
-
+> More examples of timeline quantity calculations can be found in [Timeline Example](#timeline).
 
 ## Further Reading
 
 <font size=2>
 
-
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Guance's Self-developed Time Series Database</font>](./gauncedb.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; <<< custom_key.brand_name >>> Self-developed Time Series Database</font>](./gauncedb.md)
 
 
 </div>
-
 
 <div class="grid cards" markdown>
 
@@ -342,10 +338,9 @@ Specific details:
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; An Introduction to Time Series Database Storage</font>](https://www.infoq.cn/article/storage-in-sequential-databases)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Deep Dive into Time Series Database Storage</font>](https://www.infoq.cn/article/storage-in-sequential-databases)
 
 
 </div>
-
 
 </font>

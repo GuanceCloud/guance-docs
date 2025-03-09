@@ -1,15 +1,15 @@
 ---
-title     : 'Solr'
-summary   : 'Collect metrics data from Solr'
+title: 'Solr'
+summary: 'Collect metrics data from Solr'
 tags:
   - 'Database'
-__int_icon      : 'icon/solr'
-dashboard :
-  - desc  : 'Solr'
-    path  : 'dashboard/en/solr'
-monitor   :
-  - desc  : 'Solr'
-    path  : 'monitor/en/solr'
+__int_icon: 'icon/solr'
+dashboard:
+  - desc: 'Solr'
+    path: 'dashboard/en/solr'
+monitor:
+  - desc: 'Solr'
+    path: 'monitor/en/solr'
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
@@ -22,8 +22,8 @@ The Solr collector is used to collect statistical information such as Solr Cache
 
 ### Prerequisites {#requirements}
 
-- The DataKit uses the Solr Metrics API to collect metrics data, supporting Solr version 7.0 and above.
-- It can also be used for Solr 6.6, but the metrics data will not be complete.
+- DataKit uses the Solr Metrics API to collect metrics data, supporting Solr version 7.0 and above.
+- It can also be used for Solr 6.6, but the metrics data may not be complete.
 
 Tested versions:
 
@@ -35,12 +35,12 @@ Tested versions:
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/db` directory under the DataKit installation directory, copy `solr.conf.sample` and rename it to `solr.conf`. An example is as follows:
+    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `solr.conf.sample` and rename it to `solr.conf`. An example configuration is as follows:
     
     ```toml
         
     [[inputs.solr]]
-      ##(optional) collect interval, default is 10 seconds
+      ## (optional) collection interval, default is 10 seconds
       interval = '10s'
     
       ## specify a list of one or more Solr servers
@@ -65,7 +65,7 @@ Tested versions:
     
     ```
     
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
@@ -74,19 +74,19 @@ Tested versions:
 
 ---
 
-If you need to collect Solr logs, you can enable the `files` section in *solr.conf* and enter the absolute path of the Solr log file. For example:
+If you need to collect Solr logs, you can enable `files` in *solr.conf* and specify the absolute path of the Solr log file. For example:
 
 ```toml
 [inputs.solr.log]
-    # Enter the absolute path
+    # enter the absolute path
     files = ["/path/to/demo.log"]
 ```
 
 ## Metrics {#metric}
 
-All the following data collection will append global election tags by default, or you can specify other tags through `[inputs.solr.tags]` in the configuration:
+All the following data collected will append the global election tag by default. You can also specify other tags through `[inputs.solr.tags]` in the configuration:
 
-``` toml
+```toml
  [inputs.solr.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
@@ -127,7 +127,7 @@ All the following data collection will append global election tags by default, o
 |`max_ram`|Maximum heap that should be used by the cache beyond which keys will be evicted.|int|MB|
 |`ram_bytes_used`|Actual heap usage of the cache at that particular instance.|int|B|
 |`size`|Number of entries in the cache at that particular instance.|int|count|
-|`warmup`|Warm-up time for the registered index searcher. This time is taken in account for the "auto-warming" of caches.|int|ms|
+|`warmup`|Warm-up time for the registered index searcher. This time is taken into account for the "auto-warming" of caches.|int|ms|
 
 
 
@@ -194,7 +194,7 @@ All the following data collection will append global election tags by default, o
 
 ## Logging {#logging}
 
-Log parsing example:
+Example of log parsing:
 
 ```log
 2013-10-01 12:33:08.319 INFO (org.apache.solr.core.SolrCore) [collection1] webapp.reporter
@@ -203,7 +203,7 @@ Log parsing example:
 Parsed fields:
 
 | Field Name     | Field Value                          |
-| --------       | -----------------------------        |
+| -------------- | ------------------------------------ |
 | `Reporter`     | `webapp.reporter`                    |
 | `status`       | `INFO`                               |
 | `thread`       | `org.apache.solr.core.SolrCore`      |

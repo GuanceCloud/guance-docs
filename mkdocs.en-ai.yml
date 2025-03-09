@@ -63,6 +63,7 @@ extra:
   custom_key:
     brand_key: guance
     brand_name: Guance
+    static_domain: static.guance.com
   alternate:
     - name: 中文
       link: /
@@ -75,12 +76,12 @@ plugins:
   # "my_plugins.dynamic_pages_plugin:DynamicPagesPlugin": {}
   macros:
     on_error_fail           : true
-    j2_block_start_string   : '{{{%'
-    j2_block_end_string     : '%}}}'
-    j2_variable_start_string: '{{{'
-    j2_variable_end_string  : '}}}'
-    j2_comment_start_string : '{{{#'
-    j2_comment_end_string   : '#}}}'
+    j2_block_start_string   : '<<<%'
+    j2_block_end_string     : '%>>>'
+    j2_variable_start_string: '<<<'
+    j2_variable_end_string  : '>>>'
+    j2_comment_start_string : '<<<#'
+    j2_comment_end_string   : '#>>>'
   awesome-pages: {}
   section-index: {}
   git-revision-date-localized:

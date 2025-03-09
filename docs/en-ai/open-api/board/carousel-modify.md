@@ -11,18 +11,18 @@
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
+| Parameter Name        | Type     | Required | Description              |
 |:-------------------|:-------|:-----|:----------------|
 | carousel_uuid | string | Y | Carousel UUID<br> |
 
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
+| Parameter Name        | Type     | Required | Description              |
 |:-------------------|:-------|:-----|:----------------|
 | dashboardUUIDs | array | Y | List of dashboard UUIDs for the carousel<br>Allow null: False <br> |
 | name | string | Y | Name of the dashboard carousel<br>Allow null: False <br>Maximum length: 256 <br> |
-| intervalTime | string | Y | Interval time for the carousel<br>Allow null: False <br> |
+| intervalTime | string | Y | Carousel interval<br>Allow null: False <br> |
 
 ## Additional Parameter Notes
 

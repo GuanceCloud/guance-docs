@@ -1,13 +1,13 @@
 ---
-title: 'JMX Micrometer'
-summary: 'JVM performance Metrics display: heap and non-heap memory, threads, class loading count, etc.'
+title     : 'JMX Micrometer'
+summary   : 'JVM performance metrics display: heap and non-heap memory, threads, number of classes loaded, etc.'
 __int_icon: 'icon/jvm'
-dashboard:
-  - desc: 'JVM by Micrometer monitoring view'
-    path: 'dashboard/en/jmx_micrometer'
-monitor:
-  - desc: 'Not available'
-    path: '-'
+dashboard :
+  - desc  : 'JVM by Micrometer monitoring view'
+    path  : 'dashboard/en/jmx_micrometer'
+monitor   :
+  - desc  : 'Not exist'
+    path  : '-'
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -18,16 +18,16 @@ monitor:
 <!-- markdownlint-disable MD046 -->
 ???+ info "Tip"
 
-    This article will be based on SpringBoot, introducing Micrometer-related dependencies to collect JVM Metrics.
+    This article will use SpringBoot as a prerequisite, introducing Micrometer-related dependencies to collect JVM metrics.
 <!-- markdownlint-enable -->
 
 ## Configuration {#config}
 
-Description: Enable the `Prometheus collector`, and collect JVM Metrics information through the `Prometheus collector`.
+Note: Enable the `Prometheus collector`, collecting JVM metric information via the `Prometheus collector`.
 
 ### Application Integration with Prometheus
 
-Here we use SpringBoot's `spring-boot-starter-actuator` and `micrometer`.
+Here we use SpringBoot's `spring-boot-starter-actuator` and `Micrometer`.
 
 
 ### Micrometer
@@ -35,7 +35,7 @@ Here we use SpringBoot's `spring-boot-starter-actuator` and `micrometer`.
 <!-- markdownlint-disable MD046 -->
 ???+ info "Micrometer"
 
-    Micrometer provides a universal API for collecting performance data on the Java platform. It offers various types of Metrics (`Timers`, `Gauges`, `Counters`, etc.), and supports integration with different monitoring systems such as Influxdb, Graphite, Prometheus, etc. We can collect Java performance data using Micrometer, combined with the Prometheus monitoring system to obtain data in real-time, and finally display it on Grafana, thus easily achieving application monitoring.
+    Micrometer provides a common API for performance data collection on the Java platform. It offers various types of metrics (`Timers`, `Gauges`, `Counters`, etc.), and supports integration with different monitoring systems such as Influxdb, Graphite, Prometheus, etc. We can collect Java performance data through Micrometer, combined with the Prometheus monitoring system to obtain real-time data, and finally display it on Grafana, making it easy to achieve application monitoring.
 <!-- markdownlint-enable -->
 
 - The application needs to introduce the following related dependencies
@@ -46,11 +46,12 @@ Here we use SpringBoot's `spring-boot-starter-actuator` and `micrometer`.
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
-    <!-- prometheus dependency -->
+    <!-- Prometheus dependency -->
     <dependency>
         <groupId>io.micrometer</groupId>
         <artifactId>micrometer-registry-prometheus</artifactId>
     </dependency>
+
 ```
 
 - Configure `application.yaml`
@@ -79,9 +80,9 @@ If the URL access is successful, it indicates that the application has successfu
 
 ### DataKit Enable `Prometheus` Collector
 
-- Enable the collector
+- Enable Collector
 
-The collector directory is `datakit/conf.d/prom`. Enter the directory and copy `prom.conf.sample` and rename the new file to `jvm-prom.conf`. Mainly configure the URL and `source`, other parameters can be adjusted as needed.
+The collector directory is `datakit/conf.d/prom`. Enter this directory, copy `prom.conf.sample` and rename the new file to `jvm-prom.conf`. Mainly configure the URL and `source`; other parameters can be adjusted as needed.
 
 ```toml
 urls = ["http://localhost:8091/actuator/prometheus"]
@@ -90,7 +91,7 @@ source = "jvm-prom"
 measurement_prefix = "jvm_"
 ```
 
-The above configuration will generate a Mearsurement set starting with `jvm_`.
+The above configuration will generate a metrics set starting with `jvm_`.
 
 - Restart DataKit
 

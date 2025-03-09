@@ -1,4 +1,4 @@
-# Security Checker Best Practices
+# Scheck Best Practices
 ---
 
 - Version: 1.0.7-7-g251eead
@@ -7,28 +7,28 @@
 
 # Introduction
 
-    In general operations and maintenance (O&M) processes, a very important task is to inspect the status of systems, software, logs, etc. Traditional solutions often involve engineers writing shell (bash) scripts to perform these tasks, managing clusters via remote script management tools. However, this method can be very dangerous because system inspection operations often require high-level permissions, typically running as root. If a malicious script is executed, the consequences can be severe. There are two types of malicious scripts in practice: one type involves malicious commands, such as `rm -rf`, and the other involves data theft, such as leaking data through network I/O. Therefore, Security Checker aims to provide a new, secure scripting method (restricting command execution, local I/O, and network I/O) to ensure all actions are safe and controllable. Security Checker will collect inspection events through unified network models in log format. Additionally, Security Checker will provide a vast, updatable rule library for system, container, network, and security inspections.
+    In general, one of the most important tasks in operations and maintenance is to inspect the status of systems, software, and logs. Traditional solutions often involve engineers writing shell (bash) scripts for similar tasks and using remote script management tools to manage clusters. However, this method can be very risky due to the high-level permissions required for system inspection operations, which are often run as root. If a malicious script is executed, the consequences can be disastrous. There are two types of malicious scripts: one type involves malicious commands like `rm -rf`, and the other involves data theft, such as leaking data through network IO. Therefore, Security Checker aims to provide a new secure scripting method (restricting command execution, local IO, and network IO) to ensure all actions are safe and controllable. Additionally, Security Checker will collect inspection events via a unified network model in log format. Security Checker will also provide a vast, updatable rule library for system, container, network, and security inspections.
 
 > scheck is the abbreviation for Security Checker.
 >
-> scheck only pushes security inspection events and does not send recovery notifications.
+> scheck only pushes security inspection events and does not provide recovery notifications.
 
 # Prerequisites
 
-| Service Name | Version                                                     | Mandatory Installation | Purpose          |
-| ------------ | ----------------------------------------------------------- | ---------------------- | ---------------- |
-| DataKit      | 1.1.6 or higher [Installation Method](../datakit/datakit-install.md) | Yes                    | Accept scheck signals |
-| DataFlux     | [DataFlux SaaS](https://guance.com) or other private deployment versions | Yes                    | View security inspection |
+| Service Name | Version                                                         | Required Installation | Purpose            |
+| ------------ | --------------------------------------------------------------- | --------------------- | ------------------ |
+| Datakit      | 1.1.6 or later [Installation Method](../datakit/datakit-install.md) | Required              | Accept scheck signals |
+| DataFlux     | [DataFlux SaaS](https://guance.com) or other private deployment versions | Required              | View security inspection |
 
 # Configuration
 
 ### 1 Install Scheck
 
 ```sh
-sudo -- bash -c "$(curl -L https://static.guance.com/security-checker/install.sh)"
+sudo -- bash -c "$(curl -L https://<<< custom_key.static_domain >>>/security-checker/install.sh)"
 ```
 
-### 2 Check Installation Status and DataKit Running Status
+### 2 Check Installation Status and Datakit Running Status
 - Check scheck status
 ```sh
 $ systemctl status scheck
@@ -42,7 +42,7 @@ $ systemctl status scheck
            └─15337 /usr/local/scheck/scheck -config /usr/local/scheck/scheck.conf
            
 ```
-- Check DataKit status
+- Check datakit status
 ```shell
 $ systemctl status datakit
 ● datakit.service - Collects data and uploads it to DataFlux.
@@ -57,7 +57,7 @@ $ systemctl status datakit
 
 ### 3 Log in to the DataFlux Console to View Security Inspection Records ([SaaS Platform](https://dataflux.cn))
 
-- Select Security Inspection from the left sidebar to view inspection content
+- Select the left sidebar - Security Inspection to view inspection content
 
   ![](img/bestpractices-2.png)
 
@@ -68,19 +68,19 @@ $ systemctl status datakit
 $scheck -h
 Usage of scheck:
   -check-md5
-        md5 checksum
+    	md5 checksum
   -config string
-        configuration file to load
+    	configuration file to load
   -config-sample
-        show config sample
+    	show config sample
   -funcs
-        show all supported lua-extend functions
+    	show all supported lua-extend functions
   -test string
-        the name of a rule, without file extension
+    	the name of a rule, without file extension
   -testc int
-        test rule count
+    	test rule count
   -version
-        show version
+    	show version
   -doc 
         Generate doc document from manifest file
   -tpl
@@ -88,14 +88,14 @@ Usage of scheck:
   -dir
         Use with `-doc` `-tpl` to output files to a specified directory
   -luastatus
-        Show all lua runtime statuses and output to the current directory in Markdown format.
+        Display all Lua runtime statuses and output them to the current directory in Markdown format.
   -sort
-        Use with `-luastatus`; sorting parameters include: name, time, count; default sort by count
+        Use with `-luastatus`. Sorting parameters: name, time, count. Default sorting by count
      ./scheck -luastatus -sort=time
   -check
-        Precompile all lua files in the user directory to check for syntax errors.
+        Precompile all Lua files in the user directory once to check for syntax errors.
   -box
-        Show all files loaded into the binary
+        Display all files loaded into the binary
 ```
 
 - Start/Stop Commands

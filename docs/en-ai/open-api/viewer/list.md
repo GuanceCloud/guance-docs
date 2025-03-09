@@ -5,21 +5,25 @@
 <br />**GET /api/v1/viewer/list**
 
 ## Overview
-List all Explorers that meet the specified conditions.
+List all Explorers that meet the specified conditions
+
+
 
 ## Query Request Parameters
 
 | Parameter Name | Type   | Required | Description                                                                 |
-|:--------------|:-------|:---------|:----------------------------------------------------------------------------|
-| sortKey       | string | No       | Sorting field, default sorting is by `updateAt`. If the current value does not exist, it sorts by default.<br>Can be empty: False <br>Can be an empty string: True <br>Optional values: ['name', 'updateAt'] <br> |
-| sortMethod    | string | No       | Sorting method, default sorting is by `desc`.<br>Can be empty: False <br>Can be an empty string: True <br>Optional values: ['desc', 'asc'] <br> |
-| search        | string | No       | Search by Explorer name.<br>Can be empty: False <br> |
-| pageIndex     | integer| No       | Page number.<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize      | integer| No       | Number of results per page.<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
-| filter        | string | No       | Filtering conditions.<br>Can be empty: False <br>Optional values: ['total', 'favorite', 'import', 'myCreate', 'oftenBrowse', 'ofenBrowse', 'selfVisibleOnly'] <br> |
-| tagNames      | json   | No       | Tag names for filtering.<br>Can be empty: False <br>Example: [] <br> |
+|:--------------|:-------|:--------|:-----------------------------------------------------------------------------|
+| sortKey       | string | No      | Sorting field, default sorting by updateAt. If no value exists, it sorts by default.<br>Can be empty: False <br>Can be an empty string: True <br>Optional values: ['name', 'updateAt'] <br> |
+| sortMethod    | string | No      | Sorting method, default sorting by desc.<br>Can be empty: False <br>Can be an empty string: True <br>Optional values: ['desc', 'asc'] <br> |
+| search        | string | No      | Search by Explorer name.<br>Can be empty: False <br> |
+| pageIndex     | integer| No      | Page number.<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize      | integer| No      | Number of items per page.<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| filter        | string | No      | Filtering conditions.<br>Can be empty: False <br>Optional values: ['total', 'favorite', 'import', 'myCreate', 'oftenBrowse', 'ofenBrowse', 'selfVisibleOnly'] <br> |
+| tagNames      | json   | No      | Tag names for filtering.<br>Can be empty: False <br>Example: [] <br> |
 
 ## Additional Parameter Notes
+
+
 
 ## Request Example
 ```shell
@@ -27,6 +31,9 @@ curl 'https://openapi.guance.com/api/v1/viewer/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
+
+
+
 
 ## Response
 ```shell
@@ -100,7 +107,7 @@ curl 'https://openapi.guance.com/api/v1/viewer/list' \
                             }
                         },
                         "isQuery": true,
-                        "name": "New Chart",
+                        "name": "Create Chart",
                         "queries": [
                             {
                                 "color": "",

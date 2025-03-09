@@ -1,31 +1,31 @@
-# Create Custom Notification Date Alert Policy
+# Create Custom Notification Dates for Alert Strategies
 
 ---
 
 <br />**POST /api/v1/notice/date/add**
 
 ## Overview
-Create a custom notification date alert policy
+Create custom notification dates for alert strategies
 
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------------|:-------|:-----|:----------------|
+|:-------------------|:-------|:-----|:----------------|
 | name | string | Y | Name<br>Allow null: False <br>Maximum length: 256 <br> |
 | noticeDates | array |  | Date list<br>Example: ['2024/01/02', '2024/02/03'] <br>Allow null: False <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
 
-Data Explanation.*
+Data description.*
 
-- Request body parameter explanation
+- Request body parameter notes
 
 | Parameter Name           | Type | Description                                                 |
 | ---------------- | ---- | ---------------------------------------------------- |
-| name       | str | Custom notification date configuration name for the alert policy |
+| name       | str | Configuration name for custom notification dates of alert strategy |
 | noticeDates    | list | Date list, example: ["2024/01/01","2024/05/01", "2024/10/01"]                               |
 
 ------

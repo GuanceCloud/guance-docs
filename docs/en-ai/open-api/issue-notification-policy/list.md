@@ -1,4 +1,4 @@
-# Notification Policy List
+# List Notification Policies
 
 ---
 
@@ -13,9 +13,9 @@
 
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| search | string | No  | Search name<br>Optional: True <br> |
-| pageIndex | integer | Yes  | Page number<br>Optional: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | Yes  | Number of items per page<br>Optional: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| search | string | No  | Search name<br>Can be empty: True <br> |
+| pageIndex | integer | Yes  | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize | integer | Yes  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
 

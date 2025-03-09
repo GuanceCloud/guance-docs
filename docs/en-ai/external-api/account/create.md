@@ -11,22 +11,20 @@
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                                                                                       |
-|:--------------|:-------|:---------|:--------------------------------------------------------------------------------------------------|
-| username      | string | Y        | Login account name (this field value is unique when exterId does not exist)<br>Example: test_wang <br>Allow null: True <br>Allow empty string: True <br> |
-| password      | string | Y        | Login password (set to an empty string for third-party login accounts when the password is an empty string)<br>Example: I am password <br>Allow empty string: True <br>Allow null: True <br> |
-| name          | string | Y        | Nickname<br>Example: test_wang <br>Allow null: False <br>Allow empty string: False <br> |
-| email         | string | Y        | User email<br>Example: test_wang@xx.com <br>Allow null: False <br>Allow empty string: True <br>$isEmail: True <br> |
-| mobile        | string |          | Phone number<br>Example: 1762xxx9836 <br>Allow null: False <br>Allow empty string: False <br> |
-| exterId       | string |          | Unique ID of the third-party account system; when this field exists, its value is unique (username field can be duplicated)<br>Example: 29ab8d31-ac52-4485-a572-f4cf25d355d9 <br>Allow null: False <br>Allow empty string: False <br> |
-| extend        | json   |          | Additional information<br>Allow null: True <br> |
-| language      | string |          | Language information<br>Example: zh <br>Allow null: True <br>Allow empty string: True <br>Possible values: ['zh', 'en'] <br> |
-| isDisable     | boolean|          | Whether disabled<br>Example: True <br>Allow null: False <br>Possible values: [True, False] <br> |
-| attributes    | json   |          | Account attribute information (JSON structure, KV structure, try to use strings for V part)<br>Example: {'department': 'Department A'} <br>Allow null: False <br> |
+| Parameter Name | Type   | Required | Description                                                                                         |
+|:--------------|:-------|:--------|:---------------------------------------------------------------------------------------------------|
+| username      | string | Y       | Login account name (when exterId does not exist, this field value is unique)<br>Example: test_wang <br>Can be empty: True <br>Allows empty string: True <br> |
+| password      | string | Y       | Login password (when the password is an empty string, third-party login accounts should set the password to an empty string)<br>Example: I am password <br>Allows empty string: True <br>Can be empty: True <br> |
+| name          | string | Y       | Nickname<br>Example: test_wang <br>Can be empty: False <br>Allows empty string: False <br> |
+| email         | string | Y       | User email<br>Example: test_wang@xx.com <br>Can be empty: False <br>Allows empty string: True <br>$isEmail: True <br> |
+| mobile        | string |         | Phone number<br>Example: 1762xxx9836 <br>Can be empty: False <br>Allows empty string: False <br> |
+| exterId       | string |         | Unique ID of a third-party account system; when this field exists, its value is unique (the username field can be repeated)<br>Example: 29ab8d31-ac52-4485-a572-f4cf25d355d9 <br>Can be empty: False <br>Allows empty string: False <br> |
+| extend        | json   |         | Additional information<br>Can be empty: True <br> |
+| language      | string |         | Language information<br>Example: zh <br>Can be empty: True <br>Allows empty string: True <br>Possible values: ['zh', 'en'] <br> |
+| isDisable     | boolean|         | Whether disabled<br>Example: True <br>Can be empty: False <br>Possible values: [True, False] <br> |
+| attributes    | json   |         | Account attribute information (JSON structure, KV structure, V part preferably uses strings)<br>Example: {'department': 'Department A'} <br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
-
-
 
 
 

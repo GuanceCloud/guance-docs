@@ -1,4 +1,4 @@
-# 0302-docker-service-ownership-docker.service file ownership not set to root:root
+# 0302-docker-service-ownership-docker.service File Ownership Not Set to root:root
 ---
 
 ## Rule ID
@@ -27,6 +27,7 @@
 
 
 ## Scan Frequency
+
 - 0 */30 * * *
 
 
@@ -42,12 +43,12 @@
 
 ## Audit Method
 
-- Execute the following command to verify that the file and group are owned by root:
+- Execute the following command to verify that the file and group belong to root:
 
 ```bash
 stat -c %U:%G /usr/lib/systemd/system/docker.service | grep -v root:root
 ```
-The above command should return no output.
+The above command should not return any output.
 
 
 ## Remediation
@@ -66,7 +67,7 @@ This will set the ownership and group ownership of the file to root.
 
 ## Default Values
 
-- This file may not exist on the system. In such cases, this recommendation does not apply. By default, if the file exists, its ownership and group ownership will be correctly set to root.
+- This file may not exist on the system. In this case, this recommendation does not apply. By default, if the file exists, the ownership and group ownership of the file will be correctly set to root.
 
 
 ## References

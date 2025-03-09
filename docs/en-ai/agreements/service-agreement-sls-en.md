@@ -15,7 +15,7 @@ The Guance SAAS Service User Agreement (the Agreement) is a legal agreement betw
 
 ## Definition
 
-1. Guance SAAS Service refers to a system observable product that meets the requirements of cloud, cloud-native, application, and business monitoring, hereinafter referred to as "Guance service".
+1. Guance SAAS Service refers to a system observable product that meets the requirements of cloud, cloud native, application, and business monitoring, hereinafter referred to as "Guance service".
 
 2. Guance Exclusive SAAS Service refers to the specific version of Alibaba Cloud SLS products used for underlying storage. The data is stored in the SLS instance under the user's Alibaba Cloud account, which supports open self-service flexible analysis and is exclusive to the data. At the same time, users can quickly access the log data in their own SLS instances to Guance, and analyze and process them uniformly with the link and metric data. Hereinafter referred to as “Guance Exclusive Plan”.
 
@@ -32,7 +32,7 @@ The Guance SAAS Service User Agreement (the Agreement) is a legal agreement betw
 ## Expenses
 
 1. The Guance Billing Center will automatically generate and send your monthly usage bill of Guance service to inform you of your monthly consumption. Its use fee will be paid through your Guance Billing Center wallet.
-
+ 
 2. You will use the wallet function opened by the Guance Billing Center for each enterprise member to settle accounts, and the wallet will include the account balance formed by your recharge.
 
 3. You can use the account balance of the Guance Billing Center to purchase Guance service. Guance will settle daily according to your usage of Guance services, and deduct your account balance according to the corresponding expenses. If you have bound an Alibaba Cloud account with Guance Billing Center, then, in the process of using Guance service, Guance will generate daily usage bills according to your usage of Guance service, and synchronize them to your Alibaba Cloud account bound under Guance Billing Center, and relevant fees will be paid through your Alibaba Cloud account.
@@ -61,7 +61,7 @@ The Guance SAAS Service User Agreement (the Agreement) is a legal agreement betw
 
 4. The user understands and agrees,
 
-- Due to the limitation of prior art, the service provided by the Service Provider may have defects, which cannot guarantee the normal execution or achieve the desired results of the user under any circumstances.
+- Due to the limitation of the prior art, the service provided by the Service Provider may have defects, which cannot guarantee the normal execution or achieve the desired results of the user under any circumstances.
 - For any damage caused by the user's use of Guance service, the user agrees that the maximum compensation limit of Guance shall not exceed 30% of the service time purchased in the month when the service availability commitment is not met (excluding the complimentary service time). For details, please refer to "Guance SaaS Service Level Agreement" on relevant pages of the Guance website.
 
 5. After successfully ordering Guance service, you have the right to require Guance to provide you with services according to the Guance Service Agreement and the service descriptions and technical specifications displayed on relevant pages of the Guance website.
@@ -102,7 +102,7 @@ The Guance SAAS Service User Agreement (the Agreement) is a legal agreement betw
 
 4. If you use the exclusive plan of Guance, the business data will be stored in the SLS instance of the log service under your Alibaba Cloud account. In the process of using Guance service, you do not need to pay extra for this resource. You can read the data and do self-help analysis in the SLS studio. In order to prevent the normal use of the system, you will not be able to modify and delete the data through the Alibaba Cloud SLS studio. If you need to modify and delete these data, please operate through the Guance platform.
 
-5. When the service period expires, the service is terminated in advance (including the early termination agreed by both parties, the early termination caused by other reasons, etc.) or you are in arrears, Unless clearly stipulated by laws and regulations, required by competent departments, or otherwise agreed by both parties, Guance will continue to store your user business data (if any) only within a certain buffer period (subject to the time limit specified in the exclusive terms, product documents, and service descriptions applicable to the Guance platform service). When the buffer period expires, Guance will delete all user business data, including all cached or backed-up copies, and will no longer retain any of your user business data.
+5. When the service period expires, the service is terminated in advance (including the early termination agreed by both parties, the early termination caused by other reasons, etc.) or you are in arrears, Unless clearly stipulated by laws and regulations, required by competent departments or otherwise agreed by both parties, Guance will continue to store your user business data (if any) only within a certain buffer period (subject to the time limit specified in the exclusive terms, product documents, and service descriptions applicable to the Guance platform service), When the buffer period expires, Guance will delete all user business data, including all cached or backed-up copies, and will no longer retain any of your user business data.
 
 6. Once the user's business data is deleted, it cannot be recovered; You should bear the consequences and responsibilities caused by the deletion of data. You understand and agree that Guance has no obligation to continue to retain, export, or return user business data.
 
@@ -123,7 +123,6 @@ The Guance SAAS Service User Agreement (the Agreement) is a legal agreement betw
 2. Both parties shall take appropriate measures to properly preserve the confidential information provided by the other party, and the measures shall be no less prudent than when protecting their own confidential information. The Confidential Information shall only be used by the Parties for purposes or purposes related to the Service Agreement.
 
 3. Both parties guarantee that the Confidential Information shall only be known to the responsible persons and employees of each party engaged in the business, and strictly restrict the employees who have access to the Confidential Information from complying with the confidentiality obligations of this clause.
-
 4. The above restrictions of this Article shall not apply to the following situations:
 
 - The Confidential Information is lawfully owned by the Recipient at or before the date of signing this Agreement;
@@ -172,7 +171,7 @@ The Guance SAAS Service User Agreement (the Agreement) is a legal agreement betw
 
 2. Guance will deliver various notices to one or more of your above contact information, and the contents of such notices may have significant beneficial or adverse effects on your rights and obligations, so please pay attention to them in time.
 
-3. Guance will send a notice to you through the above contact information, in which written notices sent electronically, including announcements, sending mobile phone short messages to the contact telephone number provided by you, sending e-mails to the e-mail address provided by you, sending system messages to your account number, and in-station letter information, will be deemed as delivery after successful sending; A written notice sent by paper carrier shall be deemed to have been delivered on the fifth (5) natural day after it is mailed according to the contact address provided.
+3. Guance will send a notice to you through the above contact information, in which written notices sent electronically, including announcements, sending mobile phone short messages to the contact telephone number provided by you, sending e-mails to the e-mail address provided by you, sending system messages to your account number and in-station letter information, will be deemed as delivery after successful sending; A written notice sent by paper carrier shall be deemed to have been delivered on the fifth (5) natural day after it is mailed according to the contact address provided.
 
 4. You should ensure that the contact information provided is accurate, effective, and updated in real-time. If the legal documents cannot be delivered or are not delivered in time due to inaccurate contact information provided or failure to inform the changed contact information in time, you will bear the possible legal consequences.
 

@@ -2,8 +2,8 @@ nav:
   - '【External Event Monitor】Event Reception': receive.md
   - 'Get a List of Monitors': list.md
   - 'Create a Monitor': create.md
-  - 'Export One/More Monitors': export.md
-  - 'Import One/More Monitors': import.md
+  - 'Export One or More Monitors': export.md
+  - 'Import One or More Monitors': import.md
   - 'Modify a Monitor': modify.md
-  - 'Delete One/More Monitors': delete.md
+  - 'Delete One or More Monitors': delete.md
   - 'Enable/Disable Monitors': set-disable.md

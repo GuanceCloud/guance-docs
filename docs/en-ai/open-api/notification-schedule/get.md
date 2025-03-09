@@ -1,8 +1,8 @@
-# Schedule Retrieval
+# Get Schedule
 
 ---
 
-<br />**GET /api/v1/notification_schedule/\{notification_schedule_uuid\}/get**
+<br />**GET /api/v1/notification_schedule/{notification_schedule_uuid}/get**
 
 ## Overview
 
@@ -11,9 +11,9 @@
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| notification_schedule_uuid | string | Y | Schedule UUID<br> |
+| Parameter Name               | Type   | Required | Description             |
+|:--------------------------|:-----|:-------|:----------------------|
+| notification_schedule_uuid | string | Y      | Schedule UUID<br> |
 
 
 ## Additional Parameter Notes

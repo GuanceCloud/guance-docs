@@ -12,13 +12,13 @@ __int_icon: 'icon/ddtrace'
 
 When DDTrace runs as an agent, it does not require users to specifically open a JMX port. If no port is opened, the agent will randomly open a local port.
 
-JMXFetch collects metrics from JMX servers and sends them in statsD data structure format. It is integrated into *dd-java-agent*.
+JMXFetch collects metrics from JMX servers and sends them in the form of statsD data structures. It is integrated into *dd-java-agent* by default.
 
-By default, it collects JVM information such as JVM CPU, memory, threads, classes, etc. Refer to the [Metrics List](jvm.md#metric) for details.
+By default, it collects JVM information such as JVM CPU, memory, threads, classes, etc. For more details, see the [Metrics list](jvm.md#metric).
 
 By default, the collected metrics are sent to `localhost:8125`. Ensure that the [statsd collector](statsd.md) is enabled.
 
-In a Kubernetes environment, configure the StatsD host and port:
+In a Kubernetes environment, you need to configure the StatsD host and port:
 
 ```shell
 DD_JMXFETCH_STATSD_HOST=datakit_url
@@ -27,7 +27,7 @@ DD_JMXFETCH_STATSD_PORT=8125
 
 You can enable specific collectors using `dd.jmxfetch.<INTEGRATION_NAME>.enabled=true`.
 
-Before filling in `INTEGRATION_NAME`, you can check the [default supported third-party software](https://docs.datadoghq.com/integrations/){:target="_blank"}.
+Before filling in `INTEGRATION_NAME`, you can refer to the [supported third-party software](https://docs.datadoghq.com/integrations/){:target="_blank"}.
 
 For example, for Tomcat:
 
@@ -37,19 +37,19 @@ For example, for Tomcat:
 
 ## How to Collect Metrics via Custom Configuration {#custom-metric}
 
-Custom JVM thread state metrics:
+Custom JVM thread state metrics
 
 - `jvm.total_thread_count`
 - `jvm.peak_thread_count`
 - `jvm.daemon_thread_count`
 
-> Since version v1.17.3-guance of `dd-java-agent`, these three metrics have been built-in and do not require additional configuration. However, this custom method can still be used to configure other MBean metrics.
+> Starting from version v1.17.3-guance, these three metrics are built-in with `dd-java-agent` and do not require additional configuration. However, this custom method can still be used to configure other MBean metrics.
 
-To collect custom metrics, add a configuration file:
+To collect custom metrics, you need to add a configuration file:
 
-1. Create a folder */usr/local/ddtrace/conf.d* (the directory path can vary, but pay attention to permissions).
-1. Under this folder, create a configuration file *guance.d/conf.yaml*. The file must be in YAML format.
-1. Refer to the final section for the configuration of *conf.yaml*.
+1. Create a directory */usr/local/ddtrace/conf.d* (the path can vary, but pay attention to permissions).
+1. In this directory, create a configuration file named *guance.d/conf.yaml*, which must be in YAML format.
+1. The configuration for *conf.yaml* is shown below.
 
 My service name is `tmall.jar`, and the combined startup parameters are:
 

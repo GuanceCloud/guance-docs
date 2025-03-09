@@ -2,25 +2,29 @@
 
 ## 1. Introduction
 
-REmote DIctionary Server (Redis) is a key-value storage system written by Salvatore Sanfilippo. It is a cross-platform NoSQL database.
+REmote DIctionary Server (Redis) is a key-value store system written by Salvatore Sanfilippo. It is a cross-platform NoSQL database.
 
-Redis is an open-source, ANSI C language-based, BSD-licensed, network-supported, in-memory, distributed, optionally persistent key-value (Key-Value) storage database that provides APIs for multiple programming languages.
+Redis is an open-source, ANSI C language-based, BSD-licensed, networked, in-memory, distributed, optionally persistent key-value storage database that provides APIs for multiple programming languages.
 
-Redis is often referred to as a data structure server because values can be strings (String), hashes (Hash), lists (List), sets (Sets), and sorted sets (Sorted Sets).
+Redis is often referred to as a data structure server because values can be strings, hashes, lists, sets, and sorted sets.
 
 ## 2. Prerequisites
 
 - A deployed Kubernetes cluster
 
+  
+
 ## 3. Installation
 
 ```shell
-# If you need to modify the password, please update /etc/kubeasz/guance/infrastructure/yaml/redis.yaml in advance.
-# Create the namespace
+# If you need to modify the password, please update /etc/kubeasz/guance/infrastructure/yaml/redis.yaml in advance
+# Create namespace
 kubectl create ns middleware
-# Deploy the Redis service
+# Deploy Redis service
 kubectl apply -f /etc/kubeasz/guance/infrastructure/yaml/redis.yaml -n middleware
 ```
+
+
 
 ## 4. Verify Deployment and Configuration
 

@@ -3,16 +3,16 @@ skip: 'not-searchable-on-index-page'
 title: 'DataKit Log Processing Overview'
 ---
 
-This document introduces how DataKit processes logs. In [another document](datakit-logging.md), we explained how DataKit collects logs. These two documents can be read together to gain a comprehensive understanding of the entire log processing pipeline.
+This document introduces how DataKit processes logs. In [another document](datakit-logging.md), we explained how DataKit collects logs. These two documents should be read together to gain a comprehensive understanding of the entire log processing pipeline.
 
-Core questions:
+Key questions:
 
 - Why is the configuration for log collection so complex?
 - How is log data processed?
 
-## Why Is Log Collection Configuration So Complex? {#why}
+## Why is Log Collection Configuration So Complex? {#why}
 
-From [this document](datakit-logging.md), we understand that because logs come from various sources, the configuration methods are also diverse. We will review these here to help you better understand.
+From [this document](datakit-logging.md), we know that because logs come from a variety of sources, the configuration methods are also diverse. We need to clarify this here to help you understand.
 
 During the log collection process, DataKit has two main types of collection methods:
 
@@ -23,44 +23,44 @@ During the log collection process, DataKit has two main types of collection meth
 - Passive Collection
     - Inject logs into DataKit via [HTTP](logstreaming.md), [TCP/UDP](logging.md#socket), and [Websocket](logfwd.md)
 
-In these different forms of log collection, they all need to solve the same core issue: **How does DataKit process these logs next?**
+In these different forms of log collection, they all need to solve the same core issue: **How does DataKit handle these logs next?**
 
-Breaking down this core issue further, it can be subdivided into several sub-questions:
+Breaking down this core issue further, it can be divided into the following sub-questions:
 
-- Determining what the `source` is: All subsequent log processing depends on this field (there is an additional `service` field, but if not specified, its value will be set to the same as the source).
-- How to configure the Pipeline: Although not mandatory, it is widely used.
-- Additional Tag Configuration: Also not mandatory, but sometimes it has special functions.
-- How to split multi-line logs: Need to inform DataKit how the target logs are split into individual logs (by default, DataKit treats each line starting with non-whitespace characters as a new log).
-- Whether there are specific ignore policies: Not all data collected by DataKit needs to be processed; under certain conditions, some data can be ignored (even though they meet the collection criteria).
+- Determining what the `source` is: All subsequent log processing depends on this field (there is an additional `service` field, but if not specified, its value will be set the same as the source)
+- How to configure the Pipeline: Although not mandatory, it is widely used
+- Additional Tag Configuration: Also not mandatory, but sometimes it has special functions
+- How to split multi-line logs: Need to tell DataKit how the target logs are separated into individual logs (by default, DataKit considers each line starting with non-whitespace characters as a new log)
+- Whether there are specific ignore policies: Not all data collected by DataKit needs to be processed; if certain conditions are met, they can be chosen not to be collected (even though they meet the collection criteria)
 - Other special configurations: Such as filtering color characters, text encoding handling, etc.
 
-Currently, there are several ways to tell DataKit how to process collected logs:
+Currently, there are several ways to inform DataKit how to process the collected logs:
 
-- [Log Collector](logging.md) conf configuration
+- The conf configuration in the [Log Collector](logging.md)
 
-In the log collector, [configure](logging.md#config) the list of files to collect (or which TCP/UDP port to read log streams from). In the conf, you can configure settings such as source/Pipeline/multi-line splitting/additional tags.
+In the log collector, [through conf configuration](logging.md#config) you can specify the list of files to collect (or which TCP/UDP port to read log streams from). In conf, you can configure settings such as source/Pipeline/multi-line splitting/additional tags, etc.
 
-If sending data to DataKit via TCP/UDP, only logging.conf can be used to configure subsequent log processing because protocols like TCP/UDP do not facilitate attaching additional descriptive information; they only transmit simple log stream data.
+If data is sent to DataKit via TCP/UDP, it can only be configured through logging.conf for subsequent log processing, because TCP/UDP protocols do not facilitate attaching additional descriptive information; they only transmit simple log stream data.
 
 This form of log collection is the easiest to understand.
 
-- Conf configuration in the [Container Collector](container.md)
+- The conf configuration in the [Container Collector](container.md)
 
-Currently, the container collector's conf can only make very basic configurations for logs (based on container/Pod image names) and cannot configure subsequent log processing (such as Pipeline/source settings) because this conf targets **all logs on the current host**. In container environments, logs on a single host are varied, making it impractical to configure them individually here.
+Currently, the container collector's conf can only make very basic configurations for logs (based on container/Pod image names) and cannot configure subsequent log processing (such as Pipeline/source settings) here, because this conf targets **all logs on the current host**, and in a container environment, logs on one host are varied, making it impossible to categorize and configure them individually here.
 
 - Inform DataKit how to configure log processing through requests
 
-By making HTTP requests to DataKit’s [Log Streaming](logstreaming.md) service and including various request parameters, you can instruct DataKit on how to handle received log data.
+Through HTTP requests to DataKit's [Log Streaming](logstreaming.md) service, various request parameters can be included in the request to inform DataKit how to process the received log data.
 
-- Annotate the objects being collected (e.g., containers/Pods) to inform DataKit how to process their logs
+- Annotate the object being collected (e.g., containers/Pods) to inform DataKit how to process their logs
 
-As mentioned earlier, configuring log collection solely through the container collector conf is too coarse-grained for detailed settings. However, you can [annotate containers/Pods](container-log.md#logging-with-annotation-or-label), and DataKit will **actively discover these annotations**, thereby knowing how to process logs from each container/Pod.
+As mentioned earlier, configuring log collection solely in the container collector conf is too coarse-grained and not conducive to fine-grained configuration. However, [annotations or labels can be added to containers/Pods](container-log.md#logging-with-annotation-or-label), and DataKit will **actively discover these annotations** to determine how to process each container/Pod's logs.
 
 ### Priority Explanation {#priority}
 
-Generally, annotations on containers/Pods have the highest priority, overriding settings in conf/Env; Env settings have medium priority, overriding conf settings; and conf settings have the lowest priority, which can be overridden by Env or annotation settings at any time.
+Under normal circumstances, annotations on containers/Pods have the highest priority, overriding settings in conf/Env; Env settings have medium priority, overriding conf configurations; configurations in conf have the lowest priority and can be overridden by Env or annotation settings at any time.
 
-> Currently, there are no direct environment variables related to log collection/processing, but they may be added in the future.
+> There are currently no direct Env variables related to log collection/processing, but relevant environment variables may be added in the future.
 
 For example, in container.conf, assume we exclude the image named 'my_test' from log collection:
 
@@ -90,9 +90,9 @@ spec:
      image: my_test:1.2.3
 ```
 
-Even though we excluded all images matching `my_test.*` in container.conf, because this Pod has a specific annotation (`datakit/logs`), DataKit will still collect logs from this Pod and can configure settings like Pipelines.
+Even though we excluded all images matching `my_test.*` in container.conf, DataKit will still collect logs from this Pod because it has specific annotations (`datakit/logs`) and can configure settings like Pipeline.
 
-## How Is Log Data Processed? {#how-logging-processed}
+## How Log Data Is Processed {#how-logging-processed}
 
 In DataKit, log data currently goes through the following stages of processing (listed in order):
 
@@ -100,28 +100,28 @@ In DataKit, log data currently goes through the following stages of processing (
 
 After reading (receiving) logs from external sources, the collection stage performs basic processing. This includes log segmentation (splitting large blocks of text into multiple independent raw logs), encoding/decoding (uniformly converting to UTF8 encoding), removing interfering color characters, etc.
 
-- Single Log Parsing
+- Single Log Segmentation
 
-If the corresponding log has Pipeline parsing configured, each log entry (including multi-line logs) will go through Pipeline parsing. Pipeline parsing mainly involves two steps:
+If the corresponding log has Pipeline segmentation configured, each log (including multi-line single logs) will go through Pipeline segmentation. Pipeline mainly consists of two steps:
 
-1. Grok/JSON Parsing: Using Grok/JSON to parse raw logs into structured data.
-1. Fine-tuning extracted fields: For example, [completing IP information](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-geoip), [log obfuscation](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-cover), etc.
+1. Grok/JSON Segmentation: Through Grok/JSON, a single raw log is segmented into structured data.
+1. Fine-tuning extracted fields: For example, [completing IP information](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-geoip), [log desensitization](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-cover), etc.
 
 - Blacklist (Filter)
 
-[Filters are a set of filtering rules](../datakit/datakit-filter.md) that receive structured data and decide whether to discard it based on certain logical judgments. Filters are centrally distributed (DataKit actively pulls them) and take the following form:
+[Filters are a set of filters](../datakit/datakit-filter.md) that receive structured data and decide whether to discard the data based on certain logic. Filters are centrally issued (pulled by DataKit) and follow a format similar to:
 
 ``` not-set
 { source = 'datakit' AND bar IN [ 1, 2, 3] }
 ```
 
-If central configuration includes a log blacklist, suppose out of 100 parsed logs, 10 meet the condition (i.e., source is `datakit`, and the `bar` field value appears in the list); these 10 logs will not be reported to Guance and will be silently discarded. The discard statistics can be viewed in the [DataKit Monitor](../datakit/datakit-monitor.md).
+If the center configures a log blacklist, assuming 10 out of 100 logs meet the condition (i.e., source is `datakit`, and the value of the `bar` field appears in the list), these 10 logs will not be reported to Guance and will be silently discarded. The statistics of discarded logs can be seen in [DataKit Monitor](../datakit/datakit-monitor.md).
 
 - Reporting to Guance
 
-After going through these steps, log data is finally reported to Guance, where it can be viewed on the log viewing page.
+After these steps, the log data is finally reported to Guance, where it can be viewed on the log viewing page.
 
-Under normal circumstances, from log generation to visibility on the page, if collection is successful, there is about a 30-second delay. During this period, DataKit itself reports data every 10 seconds at most, and the center also undergoes a series of processing before final storage.
+Under normal circumstances, from log generation to seeing data on the page, if collection is successful, there is about a 30-second delay. During this period, DataKit itself reports data every 10 seconds at most, and the center also undergoes a series of processing before final storage.
 
 ## Further Reading {#more-readings}
 

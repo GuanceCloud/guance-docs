@@ -3,14 +3,14 @@ skip: 'not-searchable-on-index-page'
 title: 'Datakit Tracing Data Structure'
 ---
 
-## Overview {#intro}
+## Introduction {#intro}
 
-This document explains the data structures of mainstream Telemetry platforms and their mapping to the Datakit platform's data structure. Currently supported data structures include: DataDog/Jaeger/OpenTelemetry/SkyWalking/Zipkin/PinPoint
+This document explains the data structures of mainstream Telemetry platforms and their mapping relationships with the Datakit platform data structure. Currently supported data structures: DataDog/Jaeger/OpenTelemetry/SkyWalking/Zipkin/PinPoint
 
 Data transformation steps:
 
-1. External Tracing data is ingested through multiple protocols, then deserialized.
-2. The deserialized objects are converted into `Line Protocol` (line protocol format).
+1. External Tracing data ingestion, where data is received via multiple protocols and then deserialized.
+2. Deserialized objects are converted to `Line Protocol` (line protocol format).
 3. Span data operations include: sampling, filtering, adding specific tags, etc.
 
 ---
@@ -52,16 +52,16 @@ Data transformation steps:
 | `time`        | Datakit received timestamp             | int    | ns   |
 | `trace_id`    | Trace ID                               | string |      |
 
-[^1]: This field does not exist during Datakit collection and is only appended after it is stored in the database.
+[^1]: This field does not exist during Datakit collection; it is only appended after being stored in the database.
 
-`span_type` indicates the relative position of the current Span within a Trace, with the following values:
+The `span_type` indicates the relative position of the current Span within the Trace. The values are as follows:
 
-- `entry`: Current API is the entry point, i.e., the first call after entering the service
-- `local`: Current API is between the entry and exit points
-- `exit`: Current API is the last call within the service
-- `unknown`: The relative position of the current API is unclear
+- `entry`: The current API is the entry point, i.e., the first call after entering the service.
+- `local`: The current API is between the entry and exit points.
+- `exit`: The current API is the last call in the trace on the service.
+- `unknown`: The relative position of the current API is unclear.
 
-`priority` represents the client-side sampling priority rules:
+The `priority` represents the client-side sampling priority rules:
 
 - `PRIORITY_USER_REJECT = -1` User chooses to reject reporting
 - `PRIORITY_AUTO_REJECT = 0` Client sampler chooses to reject reporting
@@ -71,7 +71,7 @@ Data transformation steps:
 
 ## OpenTelemetry Tracing Data Structure {#otel-trace-struct}
 
-When Datakit collects data sent from the OpenTelemetry Exporter (OTLP), the simplified raw data, serialized in JSON, looks as follows:
+When Datakit collects data sent from the OpenTelemetry Exporter (OTLP), the simplified raw data serialized in JSON format is as follows:
 
 ```text
 resource_spans:{
@@ -96,7 +96,7 @@ resource_spans:{
 }
 ```
 
-The correspondence between OpenTelemetry's `resource_spans` and DKProto is as follows:
+The correspondence between `resource_spans` in OpenTelemetry and DKProto is as follows:
 
 | Field Name           | Data Type           | Unit | Description    | Correspond To                                                                                                                                                       |
 | -------------------- | ------------------- | ---- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -105,21 +105,21 @@ The correspondence between OpenTelemetry's `resource_spans` and DKProto is as fo
 | parent_span_id       | `[8]byte`           |      | Parent Span ID | `DKProto.ParentID`                                                                                                                                                   |
 | name                 | `string`            |      | Span Name      | `DKProto.Operation`                                                                                                                                                  |
 | kind                 | `string`            |      | Span Type      | `DKProto.SpanType`                                                                                                                                                   |
-| start_time_unix_nano | `int64`             | ns   | Span start time| `DKProto.Start`                                                                                                                                                      |
-| end_time_unix_nano   | `int64`             | ns   | Span end time  | `DKProto.Duration = end - start`                                                                                                                                     |
+| start_time_unix_nano | `int64`             | Nanoseconds | Span Start Time  | `DKProto.Start`                                                                                                                                                      |
+| end_time_unix_nano   | `int64`             | Nanoseconds | Span End Time  | `DKProto.Duration = end - start`                                                                                                                                     |
 | status               | `string`            |      | Span Status    | `DKProto.Status`                                                                                                                                                     |
 | name                 | `string`            |      | Resource Name  | `DKProto.Resource`                                                                                                                                                   |
-| resource.attributes  | `map[string]string` |      | Resource tags  | `DKProto.tags.service, DKProto.tags.project, DKProto.tags.env, DKProto.tags.version, DKProto.tags.container_host, DKProto.tags.http_method, DKProto.tags.http_status_code` |
-| span.attributes      | `map[string]string` |      | Span tags      | `DKProto.tags`                                                                                                                                                       |
+| resource.attributes  | `map[string]string` |      | Resource Tags  | `DKProto.tags.service, DKProto.tags.project, DKProto.tags.env, DKProto.tags.version, DKProto.tags.container_host, DKProto.tags.http_method, DKProto.tags.http_status_code` |
+| span.attributes      | `map[string]string` |      | Span Tags      | `DKProto.tags`                                                                                                                                                       |
 
-OpenTelemetry has some unique fields that do not have corresponding fields in DKProto, so they are placed in the tags and only shown when these values are non-zero, such as:
+OpenTelemetry has some unique fields that do not have corresponding fields in DKProto, so they are placed in the tags. These values are only displayed when non-zero, such as:
 
 | Field                         | Data Type | Unit | Description             | Correspond                             |
 | :---------------------------- | :-------- | :--- | :---------------------- | :------------------------------------- |
-| span.dropped_attributes_count | `int`     |      | Number of dropped span tags | `DKProto.tags.dropped_attributes_count` |
-| span.dropped_events_count     | `int`     |      | Number of dropped events | `DKProto.tags.dropped_events_count`     |
-| span.dropped_links_count      | `int`     |      | Number of dropped links | `DKProto.tags.dropped_links_count`      |
-| span.events_count             | `int`     |      | Number of associated events | `DKProto.tags.events_count`             |
+| span.dropped_attributes_count | `int`     |      | Number of dropped span attributes | `DKProto.tags.dropped_attributes_count` |
+| span.dropped_events_count     | `int`     |      | Number of dropped span events   | `DKProto.tags.dropped_events_count`     |
+| span.dropped_links_count      | `int`     |      | Number of dropped span links   | `DKProto.tags.dropped_links_count`      |
+| span.events_count             | `int`     |      | Number of associated span events | `DKProto.tags.events_count`             |
 | span.links_count              | `int`     |      | Number of associated spans | `DKProto.tags.links_count`              |
 
 ---
@@ -128,100 +128,100 @@ OpenTelemetry has some unique fields that do not have corresponding fields in DK
 
 ### Jaeger Thrift Protocol Batch Data Structure {#jaeger-thrift-batch-struct}
 
-| Field Name | Data Type        | Unit | Description      | Correspond to       |
+| Field Name | Data Type        | Unit | Description      | Corresponds To       |
 | ---------- | ---------------- | ---- | ---------------- | ------------------- |
 | Process    | `struct pointer` |      | Process-related data structure | `DKProto.Service`    |
-| SeqNo      | `int64 pointer`  |      | Sequence number  | No direct mapping to DKProto |
-| Spans      | `array`          |      | Array of Span structures | See table below          |
-| Stats      | `struct pointer` |      | Client statistics structure | No direct mapping to DKProto |
+| SeqNo      | `int64 pointer`  |      | Sequence number           | No direct correspondence with DKProto |
+| Spans      | `array`          |      | Span array structure    | See table below              |
+| Stats      | `struct pointer` |      | Client statistics structure   | Does not directly correspond to DKProto   |
 
 ### Jaeger Thrift Protocol Span Data Structure {#jaeger-thrift-span-struct}
 
-| Field Name    | Data Type | Unit | Description                               | Correspond To      |
+| Field Name    | Data Type | Unit | Description                               | Corresponds To      |
 | ------------- | --------- | ---- | ----------------------------------------- | ------------------ |
-| TraceIdHigh   | `int64`   |      | High part of Trace ID combined with TraceIdLow | `DKProto.TraceID`   |
-| TraceIdLow    | `int64`   |      | Low part of Trace ID combined with TraceIdHigh | `DKProto.TraceID`   |
+| TraceIdHigh   | `int64`   |      | High bits of Trace ID combined with TraceIdLow to form Trace ID  | `DKProto.TraceID`   |
+| TraceIdLow    | `int64`   |      | Low bits of Trace ID combined with TraceIdHigh to form Trace ID | `DKProto.TraceID`   |
 | ParentSpanId  | `int64`   |      | Parent Span ID                            | `DKProto.ParentID`  |
 | SpanId        | `int64`   |      | Span ID                                   | `DKProto.SpanID`    |
-| OperationName | `string`  |      | Method name generating this Span          | `DKProto.Operation` |
-| Flags         | `int32`   |      | Span flags                                | No direct mapping to DKProto  |
-| Logs          | `array`   |      | Span logs                                 | No direct mapping to DKProto  |
-| References    | `array`   |      | Span references                           | No direct mapping to DKProto  |
-| StartTime     | `int64`   | ns   | Span start time                           | `DKProto.Start`     |
-| Duration      | `int64`   | ns   | Duration                                  | `DKProto.Duration`  |
-| Tags          | `array`   |      | Span tags, currently only takes Span status | `DKProto.Status`    |
+| OperationName | `string`  |      | Method name that generated this Span                    | `DKProto.Operation` |
+| Flags         | `int32`   |      | Span Flags                                | Does not directly correspond to DKProto  |
+| Logs          | `array`   |      | Span Logs                                 | Does not directly correspond to DKProto  |
+| References    | `array`   |      | Span References                           | Does not directly correspond to DKProto  |
+| StartTime     | `int64`   | Nanoseconds | Span start time                             | `DKProto.Start`     |
+| Duration      | `int64`   | Nanoseconds | Duration                                      | `DKProto.Duration`  |
+| Tags          | `array`   |      | Span Tags currently only take Span state fields          | `DKProto.Status`    |
 
 ---
 
-## SkyWalking Tracing Data Structure {#sw-trace-struct}
+## SkyWalking Tracing Data Data Structure {#sw-trace-struct}
 
 <!-- markdownlint-disable MD013 -->
 ### Segment Object Generated By Protobuf Protocol V3 {#sw-v3-pb-struct}
 <!-- markdownlint-enable -->
 
-| Field Name      | Data Type | Unit | Description                                     | Correspond To        |
+| Field Name      | Data Type | Unit | Description                                     | Corresponds To        |
 | --------------- | --------- | ---- | ----------------------------------------------- | -------------------- |
 | TraceId         | `string`  |      | Trace ID                                        | `DKProto.TraceID`     |
-| TraceSegmentId  | `string`  |      | Segment ID used with Span ID to uniquely identify a Span | `DKProto.SpanID` 高位 |
-| Service         | `string`  |      | Service name                                    | `DKProto.Service`     |
-| ServiceInstance | `string`  |      | Logical relationship name of node               | Unused field         |
-| Spans           | `array`   |      | Array of Tracing Spans                          | See table below      |
-| IsSizeLimited   | `bool`    |      | Whether it contains all Spans on the path       | Unused field         |
+| TraceSegmentId  | `string`  |      | Segment ID used together with Span ID to uniquely identify a Span | `DKProto.SpanID` high bits |
+| Service         | `string`  |      | Service name                                          | `DKProto.Service`     |
+| ServiceInstance | `string`  |      | Logical relationship name of node                                  | Unused field           |
+| Spans           | `array`   |      | Tracing Span array                               | See table below               |
+| IsSizeLimited   | `bool`    |      | Whether all Spans on the path are included                         | Unused field           |
 
 ### SkyWalking Span Object Data Structure in Segment Object {#sw-span-struct}
 
-| Field Name    | Data Type | Unit | Description                                                   | Correspond To          |
+| Field Name    | Data Type | Unit | Description                                                   | Corresponds To          |
 | ------------- | --------- | ---- | ------------------------------------------------------------- | ---------------------- |
-| ComponentId   | `int32`   |      | Numerical definition of third-party frameworks                | Unused field           |
-| Refs          | `array`   |      | Stores Parent Segment in cross-thread, cross-process scenarios | `DKProto.ParentID` 高位 |
-| ParentSpanId  | `int32`   |      | Parent Span ID used with Segment ID to uniquely identify a Parent Span | `DKProto.ParentID` 低位 |
-| SpanId        | `int32`   |      | Span ID used with Segment ID to uniquely identify a Span      | `DKProto.SpanID` 低位   |
-| OperationName | `string`  |      | Span operation name                                           | `DKProto.Operation`     |
-| Peer          | `string`  |      | Communication peer                                            | `DKProto.Endpoint`      |
-| IsError       | `bool`    |      | Span status field                                             | `DKProto.Status`        |
-| SpanType      | `int32`   |      | Numerical definition of Span type                             | `DKProto.SpanType`      |
-| StartTime     | `int64`   | ms   | Span start time                                               | `DKProto.Start`         |
-| EndTime       | `int64`   | ms   | Span end time, subtracted from StartTime for duration         | `DKProto.Duration`      |
-| Logs          | `array`   |      | Span logs                                                     | Unused field           |
-| SkipAnalysis  | `bool`    |      | Skips backend analysis                                        | Unused field           |
-| SpanLayer     | `int32`   |      | Numerical definition of Span technology stack                 | Unused field           |
-| Tags          | `array`   |      | Span tags                                                     | Unused field           |
+| ComponentId   | `int32`   |      | Numerical definition of third-party frameworks                                          | Unused field             |
+| Refs          | `array`   |      | Stores Parent Segment in cross-thread cross-process scenarios                         | `DKProto.ParentID` high bits |
+| ParentSpanId  | `int32`   |      | Parent Span ID used together with Segment ID to uniquely identify a Parent Span | `DKProto.ParentID` low bits |
+| SpanId        | `int32`   |      | Span ID used together with Segment ID to uniquely identify a Span               | `DKProto.SpanID` low bits   |
+| OperationName | `string`  |      | Span Operation Name                                           | `DKProto.Operation`     |
+| Peer          | `string`  |      | Communication peer                                                      | `DKProto.Endpoint`      |
+| IsError       | `bool`    |      | Span status field                                                 | `DKProto.Status`        |
+| SpanType      | `int32`   |      | Numerical definition of Span Type                                          | `DKProto.SpanType`      |
+| StartTime     | `int64`   | Milliseconds | Span start time                                                 | `DKProto.Start`         |
+| EndTime       | `int64`   | Milliseconds | Span end time subtracted from StartTime represents duration                        | `DKProto.Duration`      |
+| Logs          | `array`   |      | Span Logs                                                     | Unused field             |
+| SkipAnalysis  | `bool`    |      | Skip backend analysis                                                  | Unused field             |
+| SpanLayer     | `int32`   |      | Numerical definition of Span technology stack                                         | Unused field             |
+| Tags          | `array`   |      | Span Tags                                                     | Unused field             |
 
 ---
 
-## Zipkin Tracing Data Structure {#zk-trace-struct}
+## Zipkin Tracing Data Data Structure {#zk-trace-struct}
 
 ### Zipkin Thrift Protocol Span Data Structure V1 {#zk-thrift-v1-span-struct}
 
-| Field Name        | Data Type | Unit | Description         | Correspond To      |
+| Field Name        | Data Type | Unit | Description         | Corresponds To      |
 | ----------------- | --------- | ---- | ------------------- | ------------------ |
-| TraceIDHigh       | `uint64`  |      | High part of Trace ID | No direct mapping  |
+| TraceIDHigh       | `uint64`  |      | High bits of Trace ID       | No direct correspondence     |
 | TraceID           | `uint64`  |      | Trace ID            | `DKProto.TraceID`   |
 | ID                | `uint64`  |      | Span ID             | `DKProto.SpanID`    |
 | ParentID          | `uint64`  |      | Parent Span ID      | `DKProto.ParentID`  |
-| Annotations       | `array`   |      | Gets Service Name   | `DKProto.Service`   |
-| Name              | `string`  |      | Span operation name | `DKProto.Operation` |
-| BinaryAnnotations | `array`   |      | Gets Span status    | `DKProto.Status`    |
-| Timestamp         | `uint64`  | us   | Span start time     | `DKProto.Start`     |
-| Duration          | `uint64`  | us   | Span duration       | `DKProto.Duration`  |
-| Debug             | `bool`    |      | Debug status        | Unused field        |
+| Annotations       | `array`   |      | Get Service Name   | `DKProto.Service`   |
+| Name              | `string`  |      | Span Operation Name | `DKProto.Operation` |
+| BinaryAnnotations | `array`   |      | Get Span status field  | `DKProto.Status`    |
+| Timestamp         | `uint64`  | Microseconds | Span start time       | `DKProto.Start`     |
+| Duration          | `uint64`  | Microseconds | Span duration           | `DKProto.Duration`  |
+| Debug             | `bool`    |      | Debug status field      | Unused field         |
 
 ### Zipkin Span Data Structure V2 {#zk-thrift-v2-span-struct}
 
-| Field Name     | Data Type | Unit | Description                      | Correspond To      |
+| Field Name     | Data Type | Unit | Description                      | Corresponds To      |
 | -------------- | --------- | ---- | -------------------------------- | ------------------ |
 | TraceID        | `struct`  |      | Trace ID                         | `DKProto.TraceID`   |
 | ID             | `uint64`  |      | Span ID                          | `DKProto.SpanID`    |
 | ParentID       | `uint64`  |      | Parent Span ID                   | `DKProto.ParentID`  |
-| Name           | `string`  |      | Span operation name              | `DKProto.Operation` |
-| Debug          | `bool`    |      | Debug status                     | Unused field        |
-| Sampled        | `bool`    |      | Sampling status                  | Unused field        |
-| Err            | `string`  |      | Error message                    | No direct mapping   |
-| Kind           | `string`  |      | Span type                        | `DKProto.SpanType`  |
-| Timestamp      | `struct`  | us   | Microsecond-level time structure indicating Span start time | `DKProto.Start`     |
-| Duration       | `int64`   | us   | Span duration                    | `DKProto.Duration`  |
-| Shared         | `bool`    |      | Shared status                    | Unused field        |
-| LocalEndpoint  | `struct`  |      | Used to get Service Name         | `DKProto.Service`   |
-| RemoteEndpoint | `struct`  |      | Communication peer               | `DKProto.Endpoint`  |
-| Annotations    | `array`   |      | Used to explain delay-related events | Unused field        |
-| Tags           | `map`     |      | Used to get Span status          | `DKProto.Status`    |
+| Name           | `string`  |      | Span Operation Name              | `DKProto.Operation` |
+| Debug          | `bool`    |      | Debug status                     | Unused field         |
+| Sampled        | `bool`    |      | Sampling status field                     | Unused field         |
+| Err            | `string`  |      | Error Message                    | Does not directly correspond to DKProto  |
+| Kind           | `string`  |      | Span Type                        | `DKProto.SpanType`  |
+| Timestamp      | `struct`  | Microseconds | Microsecond-level time structure representing Span start time | `DKProto.Start`     |
+| Duration       | `int64`   | Microseconds | Span duration                        | `DKProto.Duration`  |
+| Shared         | `bool`    |      | Shared status                         | Unused field         |
+| LocalEndpoint  | `struct`  |      | Used to get Service Name            | `DKProto.Service`   |
+| RemoteEndpoint | `struct`  |      | Communication peer                         | `DKProto.Endpoint`  |
+| Annotations    | `array`   |      | Used to explain delay-related events           | Unused field         |
+| Tags           | `map`     |      | Used to get Span status               | `DKProto.Status`    |

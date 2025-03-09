@@ -37,7 +37,10 @@
 ## Theoretical Basis
 
 
-- The API server should rely on authentication. If you are using RBAC authorization, it is generally considered reasonable to allow anonymous access to the API server for health checks and discovery purposes. However, the risks that anonymous access poses to the service should also be considered.
+- The API server should rely on authentication. If you are using RBAC authorization, it is generally considered reasonable to allow anonymous access to the API server for health checks and discovery purposes, but you should also consider the risks that anonymous access poses to the service
+
+
+
 
 
 
@@ -57,10 +60,10 @@ ps -ef | grep kube-apiserver |grep anonymous-auth
 
 
 ## Remediation
-- The kubelet version must not be lower than v1.16.0.
+- The kubelet version must not be lower than v1.16.0
 Execute the following command:
 ```bash
-#> vim /etc/kubernetes/manifests/kube-apiserver.yaml
+#> vim 	/etc/kubernetes/manifests/kube-apiserver.yaml
 ```
 Set or add the parameter --anonymous-auth=false
 
@@ -69,7 +72,7 @@ Set or add the parameter --anonymous-auth=false
 ## Impact
 
 
-- You must readjust the kernel parameters to match the kubelet parameters
+- You must reconfigure kernel parameters to match kubelet parameters
 
 
 
@@ -77,7 +80,7 @@ Set or add the parameter --anonymous-auth=false
 ## Default Value
 
 
-- By default, anonymous access is enabled.
+- By default, anonymous access is enabled
 
 
 

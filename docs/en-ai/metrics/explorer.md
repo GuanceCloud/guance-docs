@@ -1,50 +1,54 @@
 # Metrics Analysis
 ---
 
-After data collection and reporting from Guance to the workspace, you can perform data queries and analysis on metrics and other data types (logs, basic objects, resource catalog, events, APM, RUM, security check, network, Profiling, etc.) on the **Metrics > Metrics Analysis** page.
+After data collection is reported to the workspace, you can perform data queries and analysis on metrics and other data types (logs, basic objects, resource catalogs, events, APM, RUM, security checks, network, Profiling, etc.) on the **Metrics > Metrics Analysis** page.
 
-## Metrics Query {#query}
+## Query Methods {#query}
 
-Metrics analysis supports users in querying metric data using five methods: simple query, expression query, DQL query, PromQL query, and adding a data source. These queries can be visualized in four viewing modes: <u>area chart, line chart, bar chart, and table chart</u>.
+You can perform metrics analysis through the following methods: simple query, expression query, DQL query, PromQL query, and adding data sources.
 
-Among these, the table chart supports queries in **time series mode, grouped mode, and query tool**. The results returned by the **query tool** are consistent with those of **Shortcut > Query Tool**. When you choose time series mode, you can select different [time intervals](#interval) to display query data:
+Query results can be viewed in four visualization modes: area chart, line chart, bar chart, or table chart.
 
-![Analysis Image](../img/analysis.png)
+![](img/metric_explorer_query.png)
 
-When you choose **query tool** mode and add multiple queries, the first data result is returned by default when the status is enabled; up to 1000 records can be exported.
+### Table Chart {#table}
 
-![](img/met-exp02.png)
+The table chart supports "Time Series Mode," "Grouping Mode," and provides a "Query Tool" for efficient analysis. The results returned by the query tool are consistent with those in "Shortcut > Query Tool." In Time Series Mode, you can display query data by selecting different [time intervals](#interval).
 
-Related operations:
+<img src="../img/analysis.png" width="80%" >
 
-- Enable/disable query
+- Under all three modes, query results return up to 2,000 records by default. To adjust the number of returned records, you can specify the `slimit` parameter, with a maximum of 10,000 data records.
 
-- Copy query
+- In "Query Tool" mode, if you add multiple queries and enable status, it defaults to returning the result of the first query; up to 2,000 records can be exported.
 
-- Edit DQL query/switch back to visual editing mode
+![](img/metric_explorer_query-1.png)
 
 > For more data query instructions, refer to [Chart Query](../scene/visual-chart/chart-query.md#query) and [Query Tool](../dql/define.md).
 
-![](img/4.changelog_1.2.gif)
 
-## Time Interval {#interval}
+## Managing Queries
 
-The time interval is the time length between data points in a [time series chart](../scene/visual-chart/timeseries-chart.md). By switching the [time interval](../scene/visual-chart/timeseries-chart.md#advanced-setting) in the top-right corner of the Explorer, you can set the time interval to 10 seconds, 20 seconds, 30 seconds, 1 minute, 5 minutes, or 10 minutes.
+![](img/metric_explorer_query-2.png)
 
-**Note**: Since the [time component](../getting-started/function-details/explorer-search.md#time) affects the data display range of metrics analysis, customizable time intervals will automatically adjust based on the time component range. For example, if you choose to view metrics data for the last 15 minutes, you cannot select "1 hour" as the time interval.
+### Time Interval {#interval}
 
-## Legends
+A time interval refers to the time length between data points in a [time series chart](../scene/visual-chart/timeseries-chart.md). You can set the time interval to 10 seconds, 20 seconds, 30 seconds, 1 minute, 5 minutes, and 10 minutes via the [time interval](../scene/visual-chart/timeseries-chart.md#interval) option in the top-right corner of the Explorer.
 
-**Legends** are auxiliary elements of charts that support distinguishing data based on different colors, points, and shapes. By clicking the :fontawesome-solid-table-list: icon in the top-right corner of the Explorer, you can hide or adjust the legend position to the bottom or right side.
+**Note**: The [time widget](../getting-started/function-details/explorer-search.md#time) affects the data display range for metrics analysis, so the available time intervals automatically adjust based on the selected time widget range. For example, if you choose to view metrics data for the past 15 minutes, you cannot select "1 hour" as the time interval.
 
-## Colors
 
-To better represent different trends of metric data using lines, points, and areas of different colors, click the **Colors** button :art: in the top-right corner of the Explorer to modify the legend colors.
+### Legends
 
-## Export
+**Legends** are auxiliary elements in charts used to differentiate data through various colors, points, and shapes. You can hide legends or adjust their position to the bottom or right side using the legend button :fontawesome-solid-table-list: in the top-right corner of the Explorer.
 
-After performing data queries in **Metrics Analysis** and obtaining results, you can directly click the **Export** button :material-export-variant: to choose exporting the chart to dashboards & notes or copying it to the clipboard.
 
-When using the table chart for visualization, in addition to the above three export paths, you can also choose to **export to CSV file**.
+### Colors
 
-![](img/chart-1.png)
+To better distinguish trends in different metrics using color, you can click the color settings button :art: in the top-right corner of the Explorer to customize legend colors.
+
+
+### Export
+
+After completing metrics analysis and obtaining query results, you can click the export button :material-export-variant: to choose exporting the chart to a dashboard, note, or copying it to the clipboard.
+
+If you use a table chart for visualization, in addition to the above export options, you can also choose to export the data as a CSV file.

@@ -11,19 +11,19 @@
 
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:------------------|:-------|:-----|:----------------|
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-----|:----------------|
 | search | string | No | Search by view name<br>Allow empty: False <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
-**Response Body Structure Explanation**
+**Response Body Structure Description**
 
 | Parameter Name                | Type  | Description          |
 |-----------------------|----------|------------------------|
 | chartGroupPos         | list | Chart group position information |
 | chartPos         | list | Chart position information |
-| createdWay             | string | The creation method of this built-in view, manually created: manual, created by import: import |
+| createdWay             | string | The creation method of this built-in view, manually created: manual, imported: import |
 | dashboardBindSet         | dict | Dashboard binding information |
 | name         | string | Dashboard name |
 
@@ -159,7 +159,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/inner_list' \
                 "innerTemplate": null,
                 "isPublic": 1,
                 "mapping": [],
-                "name": "Mysql Activity Monitoring View 111111",
+                "name": "Mysql Activity Monitoring View111111",
                 "ownerType": "inner",
                 "status": 0,
                 "type": "CUSTOM",

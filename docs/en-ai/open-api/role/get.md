@@ -11,9 +11,9 @@ Retrieve a role
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description          |
-|:--------------|:-------|:---------|:---------------------|
-| role_uuid     | string | Y        | Role UUID            |
+| Parameter Name | Type   | Required | Description             |
+|:-----------|:-------|:-----|:----------------|
+| role_uuid | string | Yes | Role UUID<br> |
 
 
 ## Additional Parameter Notes
@@ -47,7 +47,7 @@ curl 'https://openapi.guance.com/api/v1/role/role_xxxx32/get' \
         "desc": "",
         "id": 92,
         "isSystem": 0,
-        "name": "Billing Plan and Invoice",
+        "name": "Billing",
         "permissions": [
             "billing.billingRead",
             "routine.defaultAccess",
@@ -89,5 +89,5 @@ curl 'https://openapi.guance.com/api/v1/role/role_xxxx32/get' \
 } 
 ```
 
-### Notes on Translated Terms:
-- **付费计划与账单** has been translated to **Billing Plan and Invoice** based on the context provided. If this term needs to be adjusted, please provide additional context or specific terminology preferences.
+### Note:
+- The term "付费计划与账单" has been translated to "Billing" based on the provided dictionary.

@@ -11,20 +11,18 @@
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description                        |
-|:--------------|:-------|:--------|:----------------------------------|
-| cfg_uuid      | string | Y       | Issue auto discovery configuration UUID<br> |
+| Parameter Name | Type   | Required | Description                           |
+|:--------------|:-------|:---------|:--------------------------------------|
+| cfg_uuid      | string | Y        | Issue auto discovery configuration UUID<br> |
 
 
 ## Body Request Parameters
 
-| Parameter Name | Type      | Required | Description                                |
-|:--------------|:---------|:--------|:------------------------------------------|
-| isDisable     | boolean  | Y       | Set the enable status<br>Allow null: False <br> |
+| Parameter Name | Type      | Required | Description                                          |
+|:--------------|:----------|:---------|:----------------------------------------------------|
+| isDisable     | boolean   | Y        | Set the enabled status<br>Allow null: False <br> |
 
-## Additional Parameter Notes
-
-
+## Additional Parameter Explanation
 
 
 

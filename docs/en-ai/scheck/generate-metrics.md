@@ -4,60 +4,59 @@
 - Release Date: 2023-04-06 11:17:57
 - Supported Operating Systems: windows/amd64, windows/386, linux/arm, linux/arm64, linux/386, linux/amd64
 
-
-Guance supports generating new metrics data based on existing data within the current workspace, allowing you to design and implement new technical metrics as needed.
+<<< custom_key.brand_name >>> supports generating new metric data based on existing data within the current workspace to help you design and implement new technical metrics according to your needs.
 
 ???+ warning 
 
-    - The role with "Generate Metrics Configuration Management" permissions can create and edit metric generation rules. For more details, refer to [Permission List](../management/role-list.md).
-    - After metrics are generated, they will be stored according to the current default [Data Storage Policy](../billing-method/data-storage.md) and charged based on the number of [Time Series](../billing-method/index.md#time-example).
-    - If no data is reported during the period after metric generation, it cannot be queried or analyzed in the workspace, such as in "Metric Analysis", "Charts", or the "DQL Query Tool".
+    - Creating metrics requires roles with "Metric Generation Configuration Management" permissions. For more details, refer to [Permission List](../management/role-list.md).
+    - After metrics are generated, they will be stored according to the default [Data Storage Policy](../billing-method/data-storage.md) and charged based on the number of [Time Series](../billing-method/index.md#time-example).
+    - If no data is reported during the period after metric generation, it cannot be queried or analyzed in the workspace, such as in "Metric Analysis," "Charts," or the "DQL Query Tool."
 
-## Create/New Clone Rule
+## Create/Clone Rules
 
 Navigate to the **Security Check > Generate Metrics** page,
 
-- Click **Create New Rule** to start creating a new metric generation rule;
-- Click the :octicons-copy-24: icon to clone an existing rule to create a new one.
+- Click **Create Rule** to start creating a new metric generation rule;
+- Click the :octicons-copy-24: icon to clone an existing rule and create a new one.
 
 ![](img/5.scheck_metrics_1.png)
 
-**Step 1**: Data Source. Filter out all or single category data sources currently available in the workspace.
+**Step 1**: Data Source. Filter out all or single categories of existing data sources within the current workspace.
 
-- Category: After enabling the Security Check collector, categories include `network`, `storage`, `database`, `system`, `webserver`, `Kubernetes`. **Note: “ * ” indicates all.**
+- Category: After the Security Check collector is enabled, categories include `network`, `storage`, `database`, `system`, `webserver`, `Kubernetes`. **Note: “ * ” indicates all.**
 
 **Step 2:** Data Query. Based on the selected category, choose an aggregation method to query and aggregate data across different dimensions.
 
-- Aggregation Method: See the table below
+- Aggregation Method: See table below
 
 | Aggregation Method | Description |
 | --- | --- |
-| count | Count occurrences |
-| avg | Calculate the average value, requires selecting a field for aggregation |
-| max | Find the maximum value, requires selecting a field for aggregation |
-| min | Find the minimum value, requires selecting a field for aggregation |
-| P75 | Calculate the 75th percentile value of the specified field, requires selecting a field for aggregation |
-| P95 | Calculate the 95th percentile value of the specified field, requires selecting a field for aggregation |
-| P99 | Calculate the 99th percentile value of the specified field, requires selecting a field for aggregation |
+| count | Count the number of occurrences |
+| avg | Calculate the average value; requires selecting a field for aggregation |
+| max | Find the maximum value; requires selecting a field for aggregation |
+| min | Find the minimum value; requires selecting a field for aggregation |
+| P75 | Calculate the 75th percentile value of the specified field; requires selecting a field for aggregation |
+| P95 | Calculate the 95th percentile value of the specified field; requires selecting a field for aggregation |
+| P99 | Calculate the 99th percentile value of the specified field; requires selecting a field for aggregation |
 
 - Dimension: Aggregate data based on the selected objects, generating a statistical value for each selected object in the data request.
-- Filters: Support adding one or multiple filter conditions to the existing tag data, and define "AND" (and), "OR" (or) relationships between conditions in the same row.
+- Filters: Add one or more filter conditions to existing tag data, and add "AND" (and) or "OR" (or) relationships to the same row filter conditions.
 
-**Step 3:** Generate Metrics. Set up the method and results of metric generation, including the frequency of generation, the name of the newly generated metric, and the name of the metric set.
+**Step 3:** Generate Metrics. Set up the method and results for generating metrics, including the frequency of generation, the name of the newly generated metric, and the name of the metric set.
 
-- Frequency: Execution cycle for generating metrics, default is 1 minute, i.e., generate new metric data every 1 minute; the selected frequency also serves as the aggregation time. If the frequency is set to 1 minute, then metrics are aggregated every 1 minute, with each aggregation covering a 1-minute time range.
-- Time Range: Based on the selected frequency as the time interval, the chart defaults to querying data for 6 hours, i.e., displaying the effect of data statistics within 6 hours; when modifying the [Frequency] >= 1 hour, the query time range is fixed at 7 days.
+- Frequency: The execution cycle for generating metrics. Default is 1 minute, meaning new metric data is generated every 1 minute; the selected frequency also serves as the aggregation time. If the frequency is set to 1 minute, then metrics are aggregated and generated every 1 minute, with each aggregation covering a 1-minute time range.
+- Time Range: Based on the selected frequency as the time interval, the chart defaults to querying 6 hours, i.e., the effect of statistical data display within 6 hours; when modifying the [Frequency] >= 1 hour, the query time range is fixed at 7 days.
 - Metric Set: Set the name of the metric set where the metrics will be stored.
-- Metric: Set the name of the metric, ensuring that the metric names are unique. Multiple metrics can be added.
+- Metric: Set the name of the metric, which must be unique. Multiple metrics can be added.
 - Tags: Automatically generated based on the dimensions selected in the query.
 - Unit: Optional, set the unit for the metric. Once set, it can be applied in chart queries.
 - Description: Optional, set a description for the metric. Once set, it can be applied in chart queries.
 
-**Step 4:** After completing the creation of the metric generation rule, click "Confirm" to complete the rule and start data collection.
+**Step 4:** After completing the generation rule form, click "Confirm" to complete the creation of the metric generation rule and start data collection.
 
 ## Operation Instructions
 
-All added rules will be displayed on the "Generate Metrics" page, where users can perform actions such as "Enable/Disable", "Open in Metric Analysis", "Open in Metric Management", "Edit", and "Delete".
+All added rules will be displayed on the "Generate Metrics" interface, where users can perform operations such as "Enable/Disable," "Open in Metric Analysis," "Open in Metric Management," "Edit," and "Delete."
 
 ![](img/5.scheck_metrics_2.png)
 
@@ -65,17 +64,17 @@ All added rules will be displayed on the "Generate Metrics" page, where users ca
 
 On the "Generate Metrics" page, you can view all created metric generation rules and edit them.
 
-**Note: Since the data source and aggregation expression of the metric generation rule determine the data type, some rules do not support editing or modification.**
+**Note: Since the data source and aggregation expression of the metric generation rules determine the data type, some rules do not support editing or modification.**
 
 ![](img/5.scheck_metrics_3.png)
 
 ### Enable/Disable Rules
 
-On the "Generate Metrics" page, you can modify the status of the rules. When a metric generation rule is disabled, the corresponding data will not be written to the metric set. It will resume writing upon re-enabling.
+On the "Generate Metrics" page, you can modify the status of the rules. When a metric generation rule is disabled, the corresponding data will not be written to the metric set until it is re-enabled.
 
 ### Delete Rules
 
-On the "Generate Metrics" page, unnecessary rules can be deleted. Deleting a rule stops data from being written to the metric set but does not delete the metric set itself.
+On the "Generate Metrics" page, you can delete unnecessary rules. After a rule is "Deleted," the metric set will not be deleted, but data writing will stop.
 
 ### Batch Operations {#batch}
 
@@ -95,15 +94,15 @@ On the "Generate Metrics" page, click the "Open in Metric Management" button nex
 
 ![](img/5.scheck_metrics_5.png)
 
-## More Application Scenarios
+## More Use Cases
 
-### Use in Chart Queries
+### Apply in Chart Queries
 
-After metrics are generated, they can be used in "Scenes" - "Dashboard" - "New Dashboard" to query and analyze metric data in [Visual Charts](../scene/visual-chart/chart-query.md).
+After metrics are generated, they can be used in "Scenarios" - "Dashboard" - "Create Dashboard," where you can query and analyze metric data in [Visual Charts](../scene/visual-chart/chart-query.md).
 
 ![](img/5.scheck_metrics_7.png)
 
-### Use in DQL Query Tool
+### Apply in DQL Query Tool
 
 After metrics are generated, they can be queried and analyzed in the "Shortcut" - "[DQL Query](../dql/query.md)" tool.
 

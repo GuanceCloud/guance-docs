@@ -12,15 +12,15 @@ Export object classification configuration
 ## Route Parameters
 
 | Parameter Name | Type   | Required | Description               |
-|:--------------|:-------|:--------|:-------------------------|
-| objc_name     | string | Y       | Name of the object classification configuration<br> |
+|:------------|:------|:-------|:------------------------|
+| objc_name   | string | Y     | Name of the object classification configuration<br> |
 
 
 ## Query Request Parameters
 
 | Parameter Name | Type   | Required | Description               |
-|:--------------|:-------|:--------|:-------------------------|
-| sourceType    | string | Y       | Source type, default value is `custom_object`<br>Can be empty: False <br>Optional values: ['object', 'custom_object'] <br> |
+|:------------|:------|:-------|:------------------------|
+| sourceType  | string | Y     | Source type, default value is `custom_object`<br>Can be empty: False <br>Optional values: ['object', 'custom_object'] <br> |
 
 ## Additional Parameter Notes
 

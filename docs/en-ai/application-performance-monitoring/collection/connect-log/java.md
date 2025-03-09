@@ -1,10 +1,10 @@
 # Java Log Correlation with Trace Data
 ---
 
-To correlate logs from a `Java` application with trace data, follow these steps:
+`Java` application logs need to be correlated with trace data through the following steps:
 
 1. Enable logging in the application;  
-2. Enable [trace data collection](../../../integrations/ddtrace.md) in Datakit and configure the log parsing [Pipeline script](../../../pipeline/index.md), then start Datakit;  
+2. Enable [trace data collection](../../../integrations/ddtrace.md) in Datakit, configure log parsing [Pipeline scripts](../../../pipeline/index.md), and start Datakit;  
 3. Start the `Java` application.
 
 ## Maven Dependency for Logs
@@ -37,7 +37,7 @@ To correlate logs from a `Java` application with trace data, follow these steps:
 
 ## datakit logging.conf Configuration
 
-Microservices example, mount log volumes as specified by operations:
+Microservices example, mount log volumes via operations and maintenance paths:
 
 ```
 [[inputs.logging]]
@@ -133,7 +133,7 @@ java -javaagent:/your/path/dd-java-agent.jar \
 -jar /your/path/app.jar
 ```
 
-## Configuring Pipeline Script
+## Configuring Pipeline Scripts
 
 The collected log format is as follows:
 

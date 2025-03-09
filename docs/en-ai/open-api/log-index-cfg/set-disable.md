@@ -2,26 +2,26 @@
 
 ---
 
-<br />**POST /api/v1/log_index_cfg/\{cfg_uuid\}/set_disable**
+<br />**POST /api/v1/log_index_cfg/{cfg_uuid}/set_disable**
 
 ## Overview
-Enable/Disable the default storage index configuration
+Enable/disable the default storage index configuration
 
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description          |
-|:--------------|:-------|:---------|:---------------------|
-| cfg_uuid      | string | Y        | Configuration UUID   |
+| Parameter Name | Type   | Required | Description              |
+|:-----------|:-------|:-----|:----------------|
+| cfg_uuid | string | Y | Configuration UUID<br> |
 
 
 ## Body Request Parameters
 
-| Parameter Name | Type    | Required | Description                                                                                   |
-|:--------------|:--------|:---------|:-----------------------------------------------------------------------------------------------|
-| isDisable     | boolean | Y        | Whether to disable<br>Allow null: True <br> |
+| Parameter Name | Type      | Required | Description              |
+|:-----------|:-------|:-----|:----------------|
+| isDisable | boolean | Y | Whether to disable<br>Allow null: True <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
@@ -35,6 +35,7 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/lgim_xxxx32/set_disable' \
 --data-raw '{"isDisable":true}' \
 --compressed
 ```
+
 
 
 

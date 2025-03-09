@@ -1,4 +1,4 @@
-# 0045-libsbin-add-/sbin Directory Added Files
+# 0045-libsbin-add-/sbin Directory Has Added Files
 ---
 
 ## Rule ID
@@ -8,12 +8,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -23,22 +23,21 @@
 
 ## Description
 
-- Monitoring detects new files added under the host directory `/sbin`.
+- Monitor the host directory /sbin for new files being added.
 
 
 ## Scan Frequency
 
-- Disable
-
+- disable
 
 ## Theoretical Basis
 
-- The `/sbin` directory contains essential system commands. If new files are added, it is necessary to determine whether they are legitimate system commands.
+- The /sbin directory contains critical executable files for system commands. If new files are added, it is necessary to determine whether they are normal system commands.
 
 
 ## Risk Items
 
-- Function Unavailability
+- Functionality may become unavailable
 
 
 ## Audit Method
@@ -48,7 +47,7 @@
 
 ## Remediation
 
-- If files in the `/sbin` directory are found to be deleted, check if they were legitimate system commands.
+- If files in the /sbin directory are detected as deleted, check if they are normal system commands.
 
 
 ## Impact

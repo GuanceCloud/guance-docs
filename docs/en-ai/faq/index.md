@@ -1,27 +1,27 @@
 ---
 icon: zy/faq
 ---
-# Frequently Asked Questions
+# FAQ
 
 ---
 
 
 <div class="grid cards" markdown>
 
--   :material-chat-question: If you encounter any issues or have questions while using Guance features, please feel free to click and search.
+-   :material-chat-question: If you encounter any issues or have questions while using <<< custom_key.brand_name >>> features, please click to query.
 
 
     ---
 
-    [__Start Observing__](../billing/faq/index.md): Covers activation of various versions of Guance and related billing questions
+    [__Start Observing__](../billing/faq/index.md): Covers activation of <<< custom_key.brand_name >>> various plans and billing related issues
 
     ---
 
-    [__Billing Center__](../billing-center/faq.md): Usage questions related to the Billing Center platform
+    [__Billing Center__](../billing-center/faq.md): Questions related to the usage of the billing center platform
 
     ---
 
-    [__Workspace__](../management/faq.md): General questions related to workspaces as a medium for functional operations
+    [__Workspace__](../management/faq.md): Common questions related to workspaces as the medium for feature operations
 
     ---
 
@@ -29,11 +29,11 @@ icon: zy/faq
 
     ---
 
-    [__Logs__](../logs/faq.md): Difficulties that may be encountered when using various functions in the logs module
+    [__Logs__](../logs/faq.md): Challenges that may be encountered when using various features in the logs module
 
     ---
 
-    [__Application Performance Monitoring (APM)__](../application-performance-monitoring/faq.md): Confusions related to RUM data collection
+    [__APM__](../application-performance-monitoring/faq.md): Confusions related to RUM data collection
 
     ---
 

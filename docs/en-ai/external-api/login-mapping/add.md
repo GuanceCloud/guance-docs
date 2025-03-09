@@ -8,19 +8,16 @@
 
 
 
-
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:---------------------|:--------|:--------|:-------------------------|
-| workspaceUUID        | string  | Y       | Workspace UUID<br>Example: Workspace UUID <br>Can be empty: False <br> |
-| sourceField          | string  | Y       | Source field<br>Example: sourceField <br>Can be empty: False <br>Maximum length: 40 <br> |
-| sourceValue          | string  | Y       | Source field value<br>Example: <br>Can be empty: False <br>Maximum length: 40 <br> |
-| targetValues         | array   | Y       | Target field values (currently defaults to role UUID values)<br>Example: ['readOnly'] <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:-------------------------|
+| workspaceUUID        | string   | Y          | Workspace UUID<br>Example: Workspace UUID <br>Allow empty: False <br> |
+| sourceField          | string   | Y          | Source field<br>Example: sourceField <br>Allow empty: False <br>Maximum length: 40 <br> |
+| sourceValue          | string   | Y          | Source field value<br>Example: <br>Allow empty: False <br>Maximum length: 40 <br> |
+| targetValues         | array    | Y          | Target field values (currently defaults to the UUID of roles)<br>Example: ['readOnly'] <br> |
 
-## Additional Parameter Notes
-
-
+## Additional Parameter Explanation
 
 
 
@@ -35,7 +32,6 @@ curl '<Endpoint>/api/v1/login_mapping/field/add' \
   -H 'X-Df-Timestamp: <timestamp>' \
   --data-raw $'{"workspaceUUID": "wksp_xxxx","sourceField": "email","sourceValue": "xxx@qq.com","targetValues": [  "readOnly"]}'
 ```
-
 
 
 

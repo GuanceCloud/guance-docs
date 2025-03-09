@@ -1,14 +1,14 @@
 ---
-title: 'NFS'
-summary: 'NFS Metrics Collection'
+title     : 'NFS'
+summary   : 'NFS Metrics Collection'
 tags:
   - 'Host'
-__int_icon: 'icon/nfs'
-dashboard:
-  - desc: 'None'
-    path: '-'
+__int_icon      : 'icon/nfs'
+dashboard :
+  - desc  : 'Not available'
+    path  : '-'
 monitor:
-  - desc: 'None'
+  - desc: 'Not available'
     path: '-'
 ---
 
@@ -35,7 +35,7 @@ NFS metrics collector gathers the following data:
 
 === "Host Installation"
 
-    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `nfs.conf.sample`, and rename it to `nfs.conf`. Example configuration:
+    Enter the `conf.d/host` directory under the DataKit installation directory, copy `nfs.conf.sample` and rename it to `nfs.conf`. Example configuration:
     
     ```toml
         
@@ -90,7 +90,7 @@ NFS metrics collector gathers the following data:
     
     - **ENV_INPUT_NFS_ENABLE_MOUNT_STATS_TRANSPORT**
     
-        Enable transport information between NFS mount points and server
+        Enable transport information between NFS mount points and the server
     
         **Field Type**: Boolean
     
@@ -100,7 +100,7 @@ NFS metrics collector gathers the following data:
     
     - **ENV_INPUT_NFS_ENABLE_MOUNT_STATS_EVENT**
     
-        Enable NFS event statistics information
+        Enable NFS event statistics
     
         **Field Type**: Boolean
     
@@ -132,15 +132,15 @@ NFS metrics collector gathers the following data:
 
 ### Enabling NFSd {#nfsd}
 
-NFSd is the daemon for NFS service, a key component on the server side responsible for handling NFS requests from clients. If the local machine also acts as an NFS server, you can enable this metric to view statistics on network, disk I/O, and threads processing NFS requests.
+NFSd is the daemon process for NFS service, a key component on the server side that handles NFS requests from clients. If the local machine also acts as an NFS server, enabling this feature will allow you to view statistics such as network, disk I/O, and threads handling NFS requests.
 
-To enable, modify the configuration file:
+To enable, modify the configuration file.
 
 ```toml
 [[inputs.nfs]]
   ##(optional) collect interval, default is 10 seconds
   interval = '10s'
-  ## Whether to enable NFSd metric collection
+  ## Whether to enable NFSd metrics collection
   nfsd = true
 
 ...
@@ -149,14 +149,14 @@ To enable, modify the configuration file:
 
 ### Enabling Detailed Statistics for NFS Mount Points {#nfs-mountstats}
 
-By default, the enabled `nfs_mountstats` Mearsurement set only displays statistics on disk usage and NFS runtime. To view R/W, Transport, Event, Operations information for NFS mount points, modify the configuration file.
+By default, the enabled `nfs_mountstats` Mearsurement set only displays statistics on mount point disk usage and NFS runtime. To view R/W, Transport, Event, Operations information of NFS mount points, modify the configuration file.
 
 ```toml
 [[inputs.nfs]]
   
   ...
 
-  ## NFS mount point metric configuration
+  ## NFS mount point metrics configuration
   [inputs.nfs.mountstats]
     ## Enable R/W statistics
     # rw = true
@@ -173,9 +173,9 @@ By default, the enabled `nfs_mountstats` Mearsurement set only displays statisti
 
 ## Metrics {#metric}
 
-All collected data defaults to appending a global tag named `host` (tag value is the hostname where DataKit resides), and other tags can be specified in the configuration using `[inputs.nfs.tags]`:
+All collected data below will append a global tag named `host` (tag value is the hostname where DataKit resides), and additional tags can be specified in the configuration using `[inputs.nfs.tags]`:
 
-```toml
+``` toml
  [inputs.nfs.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
@@ -308,7 +308,7 @@ All collected data defaults to appending a global tag named `host` (tag value is
 |`read_ahead_cache_not_found_total`|Total number of NFSd read ahead cache not found.|int|count|
 |`read_ahead_cache_size_blocks`|How large the read ahead cache is in blocks.|int|count|
 |`reply_cache_hits_total`|Total number of NFSd Reply Cache hits (client lost server response).|int|count|
-|`reply_cache_misses_total`|Total number of NFSd Reply Cache misses (idempotent operations).|int|count|
+|`reply_cache_misses_total`|Total number of NFSd Reply Cache an operation that requires caching (idempotent).|int|count|
 |`reply_cache_nocache_total`|Total number of NFSd Reply Cache non-idempotent operations (rename/delete/…).|int|count|
 |`rpc_errors_total`|Total number of NFSd RPC errors by error type.|int|count|
 |`server_rpcs_total`|Total number of NFSd RPCs.|int|count|

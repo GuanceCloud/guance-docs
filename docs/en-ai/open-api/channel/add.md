@@ -11,14 +11,14 @@
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| name | string | Y | Channel name<br>Example: Channel 1 <br>Nullable: False <br>Maximum length: 256 <br> |
-| description | string | N | Description of the channel<br>Example: CUSTOM <br>Nullable: False <br>Allows empty string: True <br>Maximum length: 256 <br> |
-| notifyTarget | array | N | List of notification target UUIDs<br>Example: [] <br>Nullable: False <br> |
-| notifyUpgradeCfg | json | N | Rule configuration<br>Nullable: False <br> |
-| notifyUpgradeCfg.triggerTime | integer | Y | After how many seconds to trigger an upgrade notification, unit s<br>Example: simpleCheck <br>Nullable: False <br> |
-| notifyUpgradeCfg.notifyTarget | array | Y | List of UUIDs for upgrade notification targets<br>Example: [] <br>Nullable: False <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:-------------------------|
+| name                 | string   | Y          | Channel name<br>Example: Channel No.1 <br>Allow null: False <br>Maximum length: 256 <br> |
+| description          | string   |            | Description of the channel<br>Example: CUSTOM <br>Allow null: False <br>Allow empty string: True <br>Maximum length: 256 <br> |
+| notifyTarget         | array    |            | List of notification target UUIDs<br>Example: [] <br>Allow null: False <br> |
+| notifyUpgradeCfg     | json     |            | Rule configuration<br>Allow null: False <br> |
+| notifyUpgradeCfg.triggerTime | integer | Y | After how many seconds to trigger an upgrade notification, unit s<br>Example: simpleCheck <br>Allow null: False <br> |
+| notifyUpgradeCfg.notifyTarget | array | Y | List of upgrade notification target UUIDs<br>Example: [] <br>Allow null: False <br> |
 
 ## Additional Parameter Notes
 

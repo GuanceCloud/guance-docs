@@ -11,23 +11,23 @@
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
+| Parameter Name        | Type     | Required   | Description              |
 |:------------------|:-------|:-----|:----------------|
 | workspace_uuid | string | Y | Workspace UUID<br> |
 
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
+| Parameter Name        | Type     | Required   | Description              |
 |:------------------|:-------|:-----|:----------------|
-| config | json | Y | Usage limit configurations for different types, including metric "Metrics", network "Network", rum "RUM", logging "Logging", tracing "APM Trace", profile "APM Profile", dialing "Synthetic Tests"<br>Example: {rum: {openLimit: false, value: 0}, logging: {openLimit: false, value: 0} <br>Can be null: False <br> |
+| config | json | Y | Usage limit configurations for different types, metric "Metrics", network "Network", rum "RUM PV", logging "Logging", tracing "APM Trace", profile "APM Profile", dialing "Synthetic Tests"<br>Example: {rum: {openLimit: false, value: 0},logging: {openLimit: false, value: 0} <br>Nullable: False <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
 **Request Body Structure Explanation**
 
-| Parameter Name                |   Type  |          Description          |
-|-------------------------------|---------|------------------------------|
+| Parameter Name                | Type  |          Description          |
+|-----------------------|----------|------------------------|
 |config         |json |  Daily usage limits for specific types within the workspace |
 
 Example of config structure:

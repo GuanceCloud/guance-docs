@@ -2,23 +2,20 @@
 
 ---
 
-<br />**GET /api/v1/notes/\{notes_uuid\}/get**
+<br />**GET /api/v1/notes/{notes_uuid}/get**
 
 ## Overview
 Retrieve note details
 
 
-
 ## Route Parameters
 
 | Parameter Name   | Type     | Required | Description              |
-|:-------------|:-------|:-----|:----------------|
-| notes_uuid | string | Y | Note UUID<br> |
+|:------------|:-------|:-----|:----------------|
+| notes_uuid  | string | Yes  | Note UUID<br> |
 
 
-## Additional Parameter Information
-
-
+## Additional Parameter Explanation
 
 
 
@@ -71,7 +68,7 @@ curl 'https://openapi.guance.com/api/v1/notes/notes_xxxx32/get' \
                 },
                 "id": 3152,
                 "isWorkspaceKeyIndicator": 0,
-                "name": "New Chart",
+                "name": "Create Chart",
                 "queries": [
                     {
                         "color": "",
@@ -131,7 +128,7 @@ curl 'https://openapi.guance.com/api/v1/notes/notes_xxxx32/get' \
                 },
                 "id": 3153,
                 "isWorkspaceKeyIndicator": 0,
-                "name": "New Chart",
+                "name": "Create Chart",
                 "queries": [
                     {
                         "color": "",
@@ -166,7 +163,7 @@ curl 'https://openapi.guance.com/api/v1/notes/notes_xxxx32/get' \
         "creatorInfo": {
             "email": "wsak_xxxxx",
             "iconUrl": "",
-            "name": "Smart Inspection Test",
+            "name": "Intelligent Inspection Test",
             "username": "wsak_xxxxx"
         },
         "deleteAt": -1,
@@ -182,7 +179,7 @@ curl 'https://openapi.guance.com/api/v1/notes/notes_xxxx32/get' \
         "updatorInfo": {
             "email": "wsak_xxxxx",
             "iconUrl": "",
-            "name": "Smart Inspection Test",
+            "name": "Intelligent Inspection Test",
             "username": "wsak_xxxxx"
         },
         "uuid": "notes_xxxx32",

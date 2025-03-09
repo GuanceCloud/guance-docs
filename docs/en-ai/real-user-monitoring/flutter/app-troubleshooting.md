@@ -1,6 +1,6 @@
 # Troubleshooting
 ## Enable Debug Mode {#debug-mode}
-You can enable the Debug feature of the SDK using the following configuration. After enabling, for Android systems, you can directly see the output of Debug logs in the Flutter compilation tool. For iOS, you need to compile and run through Xcode or view them via the MacOS console.
+You can enable the Debug feature of the SDK with the following configuration. After enabling, for Android systems, you can directly see the output Debug logs in the Flutter compilation tool. For iOS, you need to compile and run via Xcode or view through the MacOS Console.
 
 ```dart
 FTMobileFlutter.sdkConfig(
@@ -17,13 +17,13 @@ FTMobileFlutter.sdkConfig(
 
 * [Troubleshoot Datakit](../../datakit/why-no-data.md) to ensure it is running normally.
 
-* Confirm that the SDK upload URL `datakitUrl` or `datawayUrl` is [configured correctly](app-access.md#base-setting) and initialized properly. In [debug mode](#debug-mode), check the synchronization logs in [Android Logcat](../android/app-troubleshooting.md#data_sync) or [iOS Xcode Console](../ios/app-troubleshooting.md#data_sync).
+* Confirm that the SDK upload address `datakitUrl` or `datawayUrl` is [configured correctly](app-access.md#base-setting) and initialized properly. In [debug mode](#debug-mode), check the synchronization logs in [Android Logcat](../android/app-troubleshooting.md#data_sync) or [iOS Xcode Console](../ios/app-troubleshooting.md#data_sync).
 
-* Check if Datakit is uploading data to the corresponding workspace and whether it is offline. This can be confirmed by logging into Guance and checking the "Infrastructure".
+* Check if Datakit is uploading data to the corresponding workspace and whether it is offline. This can be confirmed by logging into <<< custom_key.brand_name >>> and checking the "Infrastructure".
 
 	![](../img/17.trouble_shooting_android_datakit_check.png)
 
-## Errors Occur During Compilation with pod
+## Errors Occur During Pod Compilation
 
 ```bash
 [!] CocoaPods could not find compatible versions for pod "FTMobileSDK/FTMobileAgent":
@@ -42,7 +42,7 @@ You have either:
 
 ```
 
-If you encounter similar version import issues while compiling an iOS application, you need to execute the following command in the terminal within the ios directory of the Flutter project:
+If you encounter similar version import issues while compiling an iOS app, you need to execute the following command in the terminal within the ios directory of your Flutter project:
 
 ```bash
 pod install --repo-update
@@ -50,12 +50,12 @@ pod install --repo-update
 
 ## Data Loss
 ### Partial Data Loss
-* If RUM session data or Log, Trace data is missing, first check if `sampleRate < 1` is set in [FTRUMManager.setConfig](app-access.md#rum-config), [FTLogger.logConfig](app-access.md#log-config), [FTTracer.setConfig](app-access.md#trace-config).
-* If RUM data collection is incomplete, lacking Resource or Action data?
+* If RUM session data or a few pieces of data in Logs or Trace are missing, first check if `sampleRate < 1` is set in [FTRUMManager.setConfig](app-access.md#rum-config), [FTLogger.logConfig](app-access.md#log-config), [FTTracer.setConfig](app-access.md#trace-config).
+* If RUM data collection is incomplete, with missing Resource or Action data?
 
-	Resource and Action data are bound to Views. Ensure that there is a startView operation; refer to the [RUM-View](app-access.md#rum-view) documentation for implementing View event collection.
+	Resource and Action data are bound to Views. Ensure there is a `startView` operation. Refer to the [RUM-View](app-access.md#rum-view) documentation to implement View event collection.
 
-* Investigate network and load issues between the device uploading data and the device running Datakit.
+* Investigate network and load issues with devices uploading data and Datakit installation devices.
 
 ## Further Reading
 

@@ -1,31 +1,31 @@
 ---
 title     : 'Kong'
-summary   : 'Collect Kong Metrics and log information'
+summary   : 'Collect Kong Metrics and Log Information'
 __int_icon: 'icon/kong'
 dashboard :
-  - desc  : 'Kong Summary'
+  - desc  : 'Kong overview'
     path  : 'dashboard/en/kong'
-  - desc  : 'Kong API Summary'
+  - desc  : 'Kong API overview'
     path  : 'dashboard/en/kong_api'
 monitor   :
   - desc  : 'Kong'
     path  : 'monitor/en/kong'
 ---
 
-Collect Kong Metrics and log information
+Collect Kong Metrics and Log Information
 
 <!-- markdownlint-disable MD046 MD010 MD024-->
 ## Metrics {#metrics}
 
 ### 1. Kong Configuration
 
-To report Metrics data, the Prometheus plugin must be enabled in Kong. It is recommended to configure it globally; refer to the [official Kong documentation](https://docs.konghq.com/gateway/latest/production/monitoring/prometheus/).
+To report metrics data, the Prometheus plugin needs to be enabled in Kong. It is recommended to configure it globally; refer to the [official Kong documentation](https://docs.konghq.com/gateway/latest/production/monitoring/prometheus/).
 
-#### Configure via Kong Manager
+#### Configuration via Kong Manager
 
 Log in to `Kong Manager`, click on the `Plugins` menu, and add a new `Prometheus`.
 
-#### Configure via Kong API
+#### Configuration via Kong API
 
 ```shell
 curl -X POST http://localhost:8001/plugins \
@@ -50,7 +50,7 @@ curl -X POST http://localhost:8001/plugins \
 
 - Adjust `kong.conf`
 
-Only modify the following two parameters, keep the rest unchanged:
+Only modify the following two parameters, leaving others unchanged:
 
 ```yaml
 [[inputs.prom]]
@@ -67,7 +67,7 @@ Execute the following command:
 datakit service -R
 ```
 
-### 3. Kong Mearsurement Set
+### 3. Kong Mearsurement
 
 | Metric Name | Unit | Description |
 | --- | --- | --- |
@@ -75,10 +75,10 @@ datakit service -R
 | kong_datastore_reachable | - | Status metric indicating if the datastore is reachable |
 | kong_http_requests_total | count | Total number of HTTP requests |
 | kong_kong_latency_ms_bucket | ms | Histogram bucket for Kong's own latency, in milliseconds |
-| kong_kong_latency_ms_count | count | Count of Kong's own latency |
+| kong_kong_latency_ms_count | count | Count for Kong's own latency |
 | kong_kong_latency_ms_sum | ms | Sum of Kong's own latency, in milliseconds |
 | kong_latency_ms_bucket | ms | Histogram bucket for request latency, in milliseconds |
-| kong_latency_ms_count | count | Count of request latency |
+| kong_latency_ms_count | count | Count for request latency |
 | kong_latency_ms_sum | ms | Sum of request latency, in milliseconds |
 | kong_memory_lua_shared_dict_bytes | bytes | Memory used by Lua shared dictionary, in bytes |
 | kong_memory_lua_shared_dict_total_bytes | bytes | Total memory of Lua shared dictionary, in bytes |
@@ -88,10 +88,10 @@ datakit service -R
 | kong_nginx_requests_total | count | Total number of Nginx requests |
 | kong_node_info | - | Node information |
 | kong_request_latency_ms_bucket | ms | Histogram bucket for request latency, in milliseconds |
-| kong_request_latency_ms_count | count | Count of request latency |
+| kong_request_latency_ms_count | count | Count for request latency |
 | kong_request_latency_ms_sum | ms | Sum of request latency, in milliseconds |
 | kong_upstream_latency_ms_bucket | ms | Histogram bucket for upstream latency, in milliseconds |
-| kong_upstream_latency_ms_count | count | Count of upstream latency |
+| kong_upstream_latency_ms_count | count | Count for upstream latency |
 | kong_upstream_latency_ms_sum | ms | Sum of upstream latency, in milliseconds |
 
 
@@ -99,9 +99,9 @@ datakit service -R
 
 ### 1. Kong Configuration
 
-To report log data, the `TCP Log` plugin must be enabled in Kong.
+To report log data, the `TCP Log` plugin needs to be enabled in Kong.
 
-#### Configure via Kong Manager
+#### Configuration via Kong Manager
 
 Log in to `Kong Manager`, click on the `Plugins` menu, and add a new `TCP Log`.
 
@@ -110,7 +110,7 @@ Parameter descriptions:
 - host: DataKit host
 - port: DataKit log socket port
 
-#### Configure via Kong API
+#### Configuration via Kong API
 
 ```shell
 curl -X POST http://localhost:8001/plugins \
@@ -161,11 +161,11 @@ You can replace the entire content with the following:
   ## Grok pipeline script name.
   pipeline = ""
 
-  ## optional status:
+  ## Optional status:
   ##   "emerg","alert","critical","error","warning","info","debug","OK"
   ignore_status = []
 
-  ## optional encodings:
+  ## Optional encodings:
   ##    "utf-8", "utf-16le", "utf-16be", "gbk", "gb18030" or ""
   character_encoding = ""
 
@@ -206,7 +206,7 @@ datakit service -R
 
 ### Pipeline
 
-The Pipeline can be used for field extraction from logs. Kong reports JSON-formatted logs via tcp-log, and the rules are as follows:
+The Pipeline can be used for field extraction of logs. Kong reports JSON-formatted logs through tcp-log, following these rules:
 
 ```python
 
@@ -227,4 +227,4 @@ add_key("status", "ok")
 
 ```
 
-Adjustments can be made according to actual requirements.
+Fields can also be added or removed based on actual requirements.

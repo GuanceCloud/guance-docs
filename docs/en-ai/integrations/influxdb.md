@@ -14,6 +14,7 @@ monitor   :
     path  : 'monitor/en/influxdb_v2'
 ---
 
+
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
@@ -24,8 +25,8 @@ The InfluxDB collector is used to collect data from InfluxDB.
 
 ### Prerequisites {#requirements}
 
-- The InfluxDB collector is only applicable for InfluxDB v1.x.
-- For InfluxDB v2.x, the prom collector needs to be used for data collection.
+- The InfluxDB collector is only applicable to InfluxDB v1.x.
+- For InfluxDB v2.x, the prom collector should be used for data collection.
 
 Tested versions:
 
@@ -36,7 +37,7 @@ Tested versions:
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/influxdb` directory under the DataKit installation directory, copy `influxdb.conf.sample`, and rename it to `influxdb.conf`. Example configuration:
+    Enter the `conf.d/influxdb` directory under the DataKit installation directory, copy `influxdb.conf.sample`, and rename it to `influxdb.conf`. An example is as follows:
     
     ```toml
         
@@ -138,7 +139,7 @@ Tested versions:
 
 ## Metrics {#metric}
 
-By default, all collected data will append the global election tag, or you can specify other tags through `[inputs.influxdb.tags]` in the configuration:
+By default, all collected data will append a global election tag. Additional tags can be specified in the configuration using `[inputs.influxdb.tags]`:
 
 ``` toml
  [inputs.influxdb.tags]
@@ -552,11 +553,11 @@ By default, all collected data will append the global election tag, or you can s
 
 ## Logging {#logging}
 
-To collect logs from InfluxDB, open `files` in `influxdb.conf` and provide the absolute path to the InfluxDB log file. For example:
+To collect InfluxDB logs, you can enable `files` in `influxdb.conf` and specify the absolute path of the InfluxDB log file. For example:
 
 ```toml
 [inputs.influxdb.log]
-    # Enter absolute path
+    # Enter the absolute path
     files = ["/path/to/demo.log"] 
     ## grok pipeline script path
     pipeline = "influxdb.p"

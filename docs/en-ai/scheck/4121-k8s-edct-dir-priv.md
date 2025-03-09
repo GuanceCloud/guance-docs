@@ -23,26 +23,30 @@
 
 ## Description
 
-- Ensure that the etcd data directory has restrictive permissions of 700 or higher.
+- Ensure the etcd data directory has restrictive permissions of 700 or higher.
 
 ## Scan Frequency
+
 - 0 */30 * * *
 
 ## Theoretical Basis
 
 - Etcd is a highly available key-value store used by Kubernetes deployments for persistent storage of all REST API objects. This data directory should be protected from any unauthorized read/write access.
 
+
 ## Risk Items
 
 - Container Security
 
+
 ## Audit Method
 
-- Execute the following command to verify if the file permissions are set to "644" or more restrictive:
+- Execute the following command to verify that file permissions are set to "644" or more restrictive:
 
 ```bash
 stat -c %a /var/lib/etcd
 ```
+
 
 ## Remediation
 
@@ -52,18 +56,23 @@ stat -c %a /var/lib/etcd
 ```
 This will set the directory permissions to "700".
 
+
 ## Impact
 
 - None
 
+
 ## Default Value
 
-- By default, the permissions of `/var/lib/etcd` are set to 755.
+- By default, the permissions for /var/lib/etcd are 755
+
 
 ## References
 
 - [kubernetes-etcd](https://kubernetes.io/docs/admin/etcd/)
+
 - [etcd](https://coreos.com/etcd/docs/latest/op-guide/configuration.html#data-dir)
+
 
 ## CIS Controls
 

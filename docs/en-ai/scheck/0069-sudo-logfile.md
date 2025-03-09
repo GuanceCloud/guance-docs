@@ -8,12 +8,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -27,13 +27,13 @@
 ## Description
 
 
-- Sudo can use a custom log file to record the commands executed by each user.
+- sudo can use a custom log file to record the commands executed by each user.
 >   Note: visudo edits the sudoers file in a secure manner similar to vipw (8). visudo locks the sudoers file to prevent multiple simultaneous edits, provides basic integrity checks, and checks for parsing errors. If the current user is editing the sudoers file, you will receive a prompt message to try again later.
 
 
 
 ## Scan Frequency
-- Disable
+- disable
 
 ## Theoretical Basis
 
@@ -53,7 +53,7 @@
 
 
 ## Audit Method
-- Verify whether sudo has configured a custom log file. Run the following command:
+- Verify if sudo has configured a custom log file. Run the following command:
 
 ``` bash
 grep -Ei "^\s*Defaults\s+([^#;]+,\s*)?logfile\s*=\s*(")?[^#;]+(")?" /etc/sudoers
@@ -66,7 +66,7 @@ logfile ="/var/log/sudo.log"
 
 
 ## Remediation
-- Use visudo or visudo -f <PATH TO FILE> to edit the file /etc/sudoers
+- Use visudo or visudo -f <PATH TO FILE> to edit the /etc/sudoers file
 
 ``` bash
 logfile="/var/log/sudo.log"
@@ -77,7 +77,7 @@ logfile="/var/log/sudo.log"
 ## Impact
 
 
-- After configuring the sudo log, detailed records of commands executed by users, including execution time, login time, and login points, can be viewed.
+- After configuring the sudo log, detailed records of commands executed by users can be reviewed, including execution time, login time, and login points.
 
 
 
@@ -93,7 +93,7 @@ logfile="/var/log/sudo.log"
 ## References
 
 
-- [sudo Command Usage and Log Management (Unofficial)](https://blog.51cto.com/lifeng/976879) 
+- [Usage of sudo Command and Log Management (Unofficial)](https://blog.51cto.com/lifeng/976879) 
 
 
 

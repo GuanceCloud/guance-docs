@@ -1,94 +1,87 @@
-# Availability Explorer
+# Synthetic Tests Explorer
 ---
 
-Guance supports you in viewing all data details returned by dial testing tasks through the **Explorer**, helping you identify and troubleshoot issues early to enhance user experience.
+Synthetic Tests provide you with all data details of dial testing tasks through the Explorer, such as DNS, SSL, TTFB performance test results for web sites, and response details and failure reasons for failed dial tests.
 
 ## Query and Analysis
 
-Guance supports multiple methods for querying and analyzing dial testing data, including selecting data sources, searching, filtering, statistics, exporting, etc. You can query dial testing data by choosing a time range, search keywords, and filtering methods.
+You can query and analyze dial test data in various ways:
 
-### Time Controls
+- Customize the [time range](../getting-started/function-details/explorer-search.md#time) for data display;
 
-The Guance Explorer defaults to displaying data from the past 15 minutes, but you can also customize the [time range](../getting-started/function-details/explorer-search.md#time) for data display.
+- In the Explorer search bar, support for [multiple search and filter methods](../getting-started/function-details/explorer-search.md);
 
-### Search and Filtering
+- In the Explorer > Shortcut, edit [filter fields](../getting-started/function-details/explorer-search.md#quick-filter);
 
-In the Explorer search bar, you can use [multiple search and filtering methods](../getting-started/function-details/explorer-search.md).
+- Customize adding, editing, deleting, and dragging display columns via [display columns](../getting-started/function-details/explorer-search.md#columns).
 
-### Quick Filters
+- In the Explorer [analysis panel](../getting-started/function-details/explorer-search.md#analysis), support multi-dimensional analysis statistics based on 1-3 tags and multiple types of data chart analysis.
 
-In the Explorer quick filters, you can edit [quick filters](../getting-started/function-details/explorer-search.md#quick-filter) and add new filter fields.
+### Distribution Chart
 
-### Custom Display Columns
+<<< custom_key.brand_name >>> will count the number of dial test data within a selected time range. You can view the number of dial test data with different statuses at different time intervals using a stacked bar chart.
 
-In the Synthetic Tests Explorer list, you can customize columns by adding, editing, deleting, or dragging display columns via **[display columns](../getting-started/function-details/explorer-search.md#columns)**.
+Different data types have different data statuses; for http (Synthetic Tests) data, the statuses include:
 
-### Analysis
-
-In the Explorer [analysis panel](../getting-started/function-details/explorer-search.md#analysis), you can perform multi-dimensional analysis and statistical calculations based on ^^1-3 tags^^ and support various data chart analysis methods.
-
-### Dial Testing Statistics
-
-Guance will count the number of dial testing data points that exist within the selected time range. You can view the number of dial testing data points with different statuses over different time periods using a stacked bar chart.
-
-Different data types have different statuses. For HTTP (Synthetic Tests) data, the statuses include:
-
-- `OK`: Successful requests;
-- `FAIL`: Failed requests;
+- `OK`: Successful request;
+- `FAIL`: Failed request.
 
 ### Data Export
 
-In the Synthetic Tests Explorer list, you can first filter the data you want to export for viewing and analysis. You can export CSV files to local devices or export them to scenario dashboards or notes.
+In the Synthetic Tests Explorer list, you can first filter out the desired data to export and then view and analyze it. Supported export formats include CSV files to local devices or exporting to scenario dashboards or notes.
 
-To export a specific data point, open its detail page and click the :material-tray-arrow-up: icon in the top-right corner.
+If you need to export a specific data entry, open the data detail page and click the :material-tray-arrow-up: icon in the top-right corner.
 
-## HTTP Synthetic Tests
+<!--
+## HTTP Dial Testing
 
-In the Synthetic Tests **Explorer**, select **HTTP Synthetic Tests** to view the results of all configured HTTP synthetic testing tasks.
+In the Synthetic Tests **Explorer**, select **HTTP Dial Testing** to view the data results of all configured HTTP dial testing tasks.
 
 ![](img/4.dailtesting_explorer_2.png)
 
-In the Synthetic Tests Explorer list, click on the dial test data you want to view to see detailed information such as attributes, test performance, response details, response headers, and response content.
+In the Synthetic Tests Explorer list, click on the dial test data you want to view to see the corresponding dial test data details, including attributes, test performance, response details, response headers, response content, etc.
 
 ![](img/4.dailtesting_explorer_3.png)
 
-When you click on an attribute field with your mouse, the following operations are supported:
+When clicking on an attribute field, the following operations are supported:
 
 | Field | Description |
 | --- | --- |
-| Filter by field value | Adds this field to the Explorer to view all data related to this field. |
-| Exclude field value | Adds this field to the Explorer to view all data except for this field. |
-| Add to display columns | Adds this field to the Explorer list for viewing. |
-| Copy | Copies this field to the clipboard. |
+| Filter Field Value | Add this field to the Explorer to view all data related to this field. |
+| Reverse Filter Field Value | Add this field to the Explorer to view all other data except this field. |
+| Add to Display Columns | Add this field to the Explorer list for viewing. |
+| Copy | Copy this field to the clipboard. |
 
 ![](img/1.dailtesting_explorer_2.png)
 
-## TCP Synthetic Tests
+## TCP Dial Testing
 
-In the Synthetic Tests **Explorer**, select **TCP Synthetic Tests** to view the results of all configured TCP synthetic testing tasks.
+In the Synthetic Tests **Explorer**, select **TCP Dial Testing** to view the data results of all configured TCP dial testing tasks.
 
 ![](img/4.dailtesting_explorer_4.png)
 
-In the Synthetic Tests Explorer list, click on the dial test data you want to view to see detailed information such as attributes, test performance, response details, and route tracking results.
+In the Synthetic Tests Explorer list, click on the dial test data you want to view to see the corresponding dial test data details, including attributes, test performance, response details, traceroute results, etc.
 
 ![](img/4.dailtesting_explorer_5.png)
 
-## ICMP Synthetic Tests
+## ICMP Dial Testing
 
-In the Synthetic Tests **Explorer**, select **ICMP Synthetic Tests** to view the results of all configured ICMP synthetic testing tasks.
+In the Synthetic Tests **Explorer**, select **ICMP Dial Testing** to view the data results of all configured ICMP dial testing tasks.
 
 ![](img/4.dailtesting_explorer_7.png)
 
-In the Synthetic Tests Explorer list, click on the dial test data you want to view to see detailed information such as attributes and response details.
+In the Synthetic Tests Explorer list, click on the dial test data you want to view to see the corresponding dial test data details, including attributes, response details, etc.
 
 ![](img/4.dailtesting_explorer_8.png)
 
-## WebSocket Synthetic Tests
+## WEBSOCKET Dial Testing
 
-In the Synthetic Tests **Explorer**, select **WebSocket Synthetic Tests** to view the results of all configured WebSocket synthetic testing tasks.
+In the Synthetic Tests **Explorer**, select **WEBSOCKET Dial Testing** to view the data results of all configured WEBSOCKET dial testing tasks.
 
 ![](img/4.dailtesting_explorer_9.png)
 
-In the Synthetic Tests Explorer list, click on the dial test data you want to view to see detailed information such as attributes, sent messages, response details, response headers, and response content.
+In the Synthetic Tests Explorer list, click on the dial test data you want to view to see the corresponding dial test data details, including attributes, sent messages, response details, response headers, response content, etc.
 
 ![](img/4.dailtesting_explorer_10.png)
+
+-->

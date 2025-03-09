@@ -1,4 +1,4 @@
-# 【Workspace API Key】List
+# [Workspace API Key] List
 
 ---
 
@@ -13,10 +13,10 @@
 
 | Parameter Name        | Type     | Required   | Description              |
 |:---------------------|:---------|:----------|:------------------------|
-| search | string | No | Search by name<br>Example: supper_workspace <br>Allow null: False <br> |
-| workspaceUUID | string | No | Specify the Workspace UUID<br>Example: wksp_xxxxx <br>Allow null: False <br> |
-| pageIndex | integer | No | Page number<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize | integer | No | Number of results per page<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| search | string | No  | Search by name<br>Example: supper_workspace <br>Allow empty: False <br> |
+| workspaceUUID | string | No  | Specify the Workspace UUID<br>Example: wksp_xxxxx <br>Allow empty: False <br> |
+| pageIndex | integer | No  | Page number<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize | integer | No  | Number of items per page<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
 
@@ -35,3 +35,6 @@
 
 
 </input_content>
+<target_language>英语</target_language>
+</input>
+</example>

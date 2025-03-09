@@ -6,7 +6,7 @@ dashboard :
   - desc  : 'OpenGauss Monitoring View'
     path  : 'dashboard/en/opengauss'
 monitor   :
-  - desc  : 'None'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -24,7 +24,7 @@ monitor   :
 
 The official OpenGauss has open-sourced the [`openGauss-prometheus-exporter`](https://gitee.com/opengauss/openGauss-prometheus-exporter), which can be used to obtain metrics information by accessing `/metrics`.
 
-It supports running the Exporter using Docker or by compiling it into a binary.
+You can run the Exporter using Docker or by compiling it into a binary.
 
 ```shell
 git clone https://gitee.com/opengauss/openGauss-prometheus-exporter.git
@@ -40,7 +40,7 @@ After successful execution, the default port for the Exporter is `9187`.
 
 ### Enabling DataKit's `prom` Collector
 
-You can directly use the [`prom`](./prom.md) collector to collect Prometheus-formatted metrics.
+You can directly use the [`prom`](./prom.md) collector to collect metrics in Prometheus format.
 
 - Enable the DataKit prom plugin and copy the sample file
 
@@ -76,7 +76,7 @@ Adjust the following content:
 | `stat_database_blks_hit`| Cache hit|
 | `stat_database_blks_read`| Cache read|
 | `lock_count`| Total number of transaction locks|
-| `stat_database_conflicts_confl_bufferpin`| Cache conflicts|
+| `stat_database_conflicts_confl_bufferpin`| Buffer pin conflicts|
 | `stat_database_conflicts_confl_lock`| Lock conflicts|
 | `stat_database_conflicts_confl_snapshot`| Snapshot conflicts|
 | `stat_database_conflicts_confl_tablespace`| Tablespace conflicts|

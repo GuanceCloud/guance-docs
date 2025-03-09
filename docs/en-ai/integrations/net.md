@@ -1,6 +1,6 @@
 ---
 title: 'Net'
-summary: 'Collect metrics data from network interfaces'
+summary: 'Collect network interface metrics data'
 tags:
   - 'Host'
   - 'Network'
@@ -9,7 +9,7 @@ dashboard:
   - desc: 'Net'
     path: 'dashboard/en/net'
 monitor:
-  - desc: 'None'
+  - desc: 'Not available'
     path: '-'
 ---
 
@@ -18,17 +18,17 @@ monitor:
 
 ---
 
-The Net collector is used to collect host network information, such as traffic data for each network interface. For Linux, it collects system-wide TCP and UDP statistics.
+The Net collector is used to collect host network information, such as traffic information for various network interfaces. For Linux, it will collect system-wide TCP and UDP statistics.
 
 ## Configuration {#config}
 
-After successfully installing and starting DataKit, the Net collector will be enabled by default, so no manual activation is required.
+After successfully installing DataKit and starting it, the Net collector will be enabled by default, and no manual activation is required.
 
 <!-- markdownlint-disable MD046 -->
 
 === "Host Installation"
 
-    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `net.conf.sample`, and rename it to `net.conf`. An example configuration is shown below:
+    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `net.conf.sample`, and rename it to `net.conf`. An example is shown below:
 
     ```toml
         
@@ -41,10 +41,10 @@ After successfully installing and starting DataKit, the Net collector will be en
       # interfaces = ['''eth[\w-]+''', '''lo''', ]
     
       ## Datakit does not collect network virtual interfaces under the Linux system.
-      ## Setting enable_virtual_interfaces to true will collect virtual interface statistics for Linux.
+      ## Setting enable_virtual_interfaces to true will collect virtual interfaces stats for Linux.
       # enable_virtual_interfaces = true
     
-      ## On Linux systems, also collects protocol statistics.
+      ## On Linux systems also collects protocol stats.
       ## Setting ignore_protocol_stats to true will skip reporting of protocol metrics.
       # ignore_protocol_stats = false
     
@@ -58,65 +58,65 @@ After successfully installing and starting DataKit, the Net collector will be en
 
 === "Kubernetes"
 
-    You can enable the collector via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or by [setting ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
+    You can enable the collector via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
 
-    Environment variables can also be used to modify configuration parameters (requires adding to ENV_DEFAULT_ENABLED_INPUTS):
+    Environment variables can also be used to modify configuration parameters (you need to add it to ENV_DEFAULT_ENABLED_INPUTS as a default collector):
 
     - **ENV_INPUT_NET_INTERVAL**
-
-        Collector repetition interval
-
+    
+        Collector repeat interval duration
+    
         **Field Type**: Duration
-
-        **Collector Config Field**: `interval`
-
+    
+        **Collector Configuration Field**: `interval`
+    
         **Default Value**: 10s
-
+    
     - **ENV_INPUT_NET_IGNORE_PROTOCOL_STATS**
-
+    
         Skip reporting protocol metrics
-
+    
         **Field Type**: Boolean
-
-        **Collector Config Field**: `ignore_protocol_stats`
-
+    
+        **Collector Configuration Field**: `ignore_protocol_stats`
+    
         **Default Value**: false
-
+    
     - **ENV_INPUT_NET_ENABLE_VIRTUAL_INTERFACES**
-
+    
         Collect virtual network interfaces on Linux
-
+    
         **Field Type**: Boolean
-
-        **Collector Config Field**: `enable_virtual_interfaces`
-
+    
+        **Collector Configuration Field**: `enable_virtual_interfaces`
+    
         **Default Value**: false
-
+    
     - **ENV_INPUT_NET_INTERFACES**
-
+    
         Expected network interfaces (regex)
-
+    
         **Field Type**: List
-
-        **Collector Config Field**: `interfaces`
-
+    
+        **Collector Configuration Field**: `interfaces`
+    
         **Example**: eth[\w-]+,lo
-
+    
     - **ENV_INPUT_NET_TAGS**
-
-        Custom tags. If the same tag exists in the configuration file, it will override it.
-
+    
+        Custom tags. If there are tags with the same name in the configuration file, they will override them.
+    
         **Field Type**: Map
-
-        **Collector Config Field**: `tags`
-
+    
+        **Collector Configuration Field**: `tags`
+    
         **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 
 ## Metrics {#metric}
 
-By default, all collected data will append a global tag named `host` (tag value is the hostname where DataKit resides). Additional tags can be specified in the configuration using `[inputs.net.tags]`:
+All collected data will append a global tag named `host` by default (the tag value is the hostname where DataKit resides), and you can specify other tags through `[inputs.net.tags]` in the configuration:
 
 ```toml
 [inputs.net.tags]
@@ -166,7 +166,7 @@ By default, all collected data will append a global tag named `host` (tag value 
 |`tcp_outrsts`|The number of TCP segments sent containing the RST flag.|int|count|
 |`tcp_outsegs`|The number of packets sent by the TCP layer.|int|count|
 |`tcp_outsegs/sec`|The number of packets sent by the TCP layer per second.|int|count|
-|`tcp_passiveopens`|It means the TCP layer receives a SYN, replies with a SYN+ACK, and comes into the SYN-RCVD state.|int|count|
+|`tcp_passiveopens`|It means the TCP layer receives a SYN, replies a SYN+ACK, comes into the SYN-RCVD state.|int|count|
 |`tcp_retranssegs`|The total number of segments re-transmitted - that is, the number of TCP segments transmitted containing one or more previously transmitted octets.|int|count|
 |`tcp_rtoalgorithm`|The algorithm used to determine the timeout value used for retransmitting unacknowledged octets.|int|count|
 |`tcp_rtomax`|The maximum value permitted by a TCP implementation for the retransmission timeout, measured in milliseconds.|int|ms|
@@ -177,7 +177,7 @@ By default, all collected data will append a global tag named `host` (tag value 
 |`udp_indatagrams/sec`|The number of UDP datagrams delivered to UDP users per second.|int|count|
 |`udp_inerrors`|The number of packet receive errors.|int|count|
 |`udp_memerrors`|The number of memory errors.|int|count|
-|`udp_noports`|The number of packets to unknown ports received.|int|count|
+|`udp_noports`|The number of packets to unknown port received.|int|count|
 |`udp_outdatagrams`|The number of UDP datagrams sent from this entity.|int|count|
 |`udp_outdatagrams/sec`|The number of UDP datagrams sent from this entity per second.|int|count|
 |`udp_rcvbuferrors`|The number of receive buffer errors.|int|count|

@@ -27,10 +27,10 @@
 ## Description
 
 
-- The `nosuid` mount option specifies that the file system cannot contain setuid files.
+- The nosuid mount option specifies that the file system cannot contain setuid files.
 >
 
-- Note: `/dev/shm` is automatically mounted by systemd. However, even if `/dev/shm` has been mounted at startup, it still needs to add mount options in `/etc/fstab`.
+- Note: /dev/shm is mounted automatically by systemd. However, even if /dev/shm has been mounted at startup, it still needs to add mount options in /etc/fstab.
 
 
 
@@ -40,7 +40,7 @@
 ## Theoretical Basis
 
 
-- Setting this option on a file system can prevent users from introducing privileged programs into the system and executing these programs as non-root users
+- Setting this option on a file system can prevent users from introducing privileged programs into the system and allow non-root users to execute these programs
 
 
 
@@ -67,7 +67,7 @@
 
 
 ## Audit Method
-- Run the following command to check if the `nosuid` option is set:
+- Run the following command to check if the nosuid option is set:
 
 ```bash
 # mount | grep -E "\s/dev/shm\s" | grep -v nosuid
@@ -77,9 +77,9 @@ Nothing should be returned
 
 
 ## Remediation
-- Edit the `/etc/fstab` file and add `nosuid` to the fourth field of the `/dev/shm` partition mount options.
+- Edit the /etc/fstab file and add nosuid to the fourth field of the /dev/shm partition mount options.
 For more information, see the fstab(5) manual page.
-Execute the following command to remount `/dev/shm`.
+Run the following command to remount /dev/shm.
 ```bash
 # mount -o remount,noexec,nodev,nosuid /dev/shm
 ```
@@ -101,14 +101,14 @@ Execute the following command to remount `/dev/shm`.
 ## References
 
 
-## CIS Control
+## CIS Controls
 
 
 - Version 7
 
 > **5.1 Establish Secure Configurations**
 >
-> Maintain documented, standardized secure configuration standards for all authorized operating systems and software.
+> Maintain documented, standard secure configuration standards for all authorized operating systems and software.
 >
 > **13 Data Protection**
 >

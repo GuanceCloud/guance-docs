@@ -1,18 +1,18 @@
-# Get Smart Inspection Information
+# Get Self-built Checker Information
 
 ---
 
 <br />**GET /api/v1/self_built_checker/get**
 
 ## Overview
-Retrieve the details of a self-built inspection based on the provided identifier.
+Retrieve the details of a self-built checker based on the provided identifier.
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description                              |
-|:--------------|:-------|:--------|:----------------------------------------|
-| ruleUUID      | string |         | UUID of the self-built inspection <br> Example: rul_xxxxx <br> Can be empty: False <br> |
-| refKey        | string |         | Associated key of the self-built inspection <br> Example: xxx <br> Can be empty: False <br> |
+| Parameter Name | Type   | Required | Description                          |
+|:--------------|:-------|:--------|:------------------------------------|
+| ruleUUID      | string |         | UUID of the self-built checker<br>Example: rul_xxxxx <br>Can be empty: False <br> |
+| refKey        | string |         | Associated key of the self-built checker<br>Example: xxx <br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -36,7 +36,7 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/get?refKey=zyAy2l9v' 
         "extend": {},
         "id": 88,
         "jsonScript": {
-            "name": "self-built inspection-20220907T162421bymvlx",
+            "name": "self-built check-20220907T162421bymvlx",
             "type": "selfBuiltCheck"
         },
         "monitorUUID": "monitor_xxxx32",

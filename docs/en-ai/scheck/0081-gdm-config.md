@@ -27,7 +27,7 @@
 ## Description
 
 
-- GDM (GNOME Display Manager) is used to handle graphical logins for GNOME-based systems.
+- GDM is the GNOME Display Manager, used to handle graphical logins on GNOME-based systems.
 
 
 
@@ -37,9 +37,9 @@
 ## Theoretical Basis
 
 
-- If graphical login is not required, it should be removed to reduce the attack surface of the system. If graphical login is necessary, displaying the last logged-in user should be disabled and a warning banner should be configured.
-Displaying the last logged-in user can eliminate half of the equation needed for unauthorized users to log in, such as the user ID/password.
-The warning message informs users attempting to log in about the legal status of the system and must include the name of the organization that owns the system and any implemented monitoring policies.
+- If graphical login is not required, it should be removed to reduce the system's attack surface. If a graphical login is needed, the display of the last logged-in user should be disabled, and a warning banner should be configured.
+Displaying the last logged-in user can eliminate half of the equation for unauthorized users needing a username/ID and password.
+The warning message informs users attempting to log in about the legal status of the system and must include the name of the organization owning the system and any implemented monitoring policies.
 Note:
 Other options and sections may appear in the /etc/dconf/db/gdm.d/01-banner-message file.
 If another GUI login service is being used and is required on the system, refer to its documentation to disable the display of the last logged-in user and apply an equivalent banner.
@@ -93,14 +93,13 @@ user-db:user
 system-db:gdm
 file-db:/usr/share/gdm/greeter-dconf-defaults
 ```
-Edit or create the file /etc/dconf/db/gdm.d/, and add the following content: (this is usually /etc/dconf/db/gdm.d/01-banner-message)
+Edit or create the file in /etc/dconf/db/gdm.d/, and add the following content: (this is usually /etc/dconf/db/gdm.d/01-banner-message)
 ```bash
  [org/gnome/login-screen]
 banner-message-enable=true
 banner-message-text='<banner message>'
 ```
-Example banner text: "Authorized use only."
-Edit or create the file /etc/dconf/db/gdm.d/, and add the following content: (this is usually /etc/dconf/db/gdm.d/00-login-screen)
+Example banner text: "Authorized use only." Edit or create the file /etc/dconf/db/gdm.d/, and add the following content: (this is usually /etc/dconf/db/gdm.d/00-login-screen)
 ```bash
 [org/gnome/login-screen]
 # Do not show the user list
@@ -121,7 +120,7 @@ Run the following command to update the system database:
 
 
 
-## Default Value
+## Default Values
 
 
 
@@ -132,7 +131,7 @@ Run the following command to update the system database:
 
 
 
-## CIS Control
+## CIS Controls
 
 
 - Version 7

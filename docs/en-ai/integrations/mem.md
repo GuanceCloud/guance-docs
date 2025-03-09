@@ -27,7 +27,7 @@ After successfully installing and starting DataKit, the Memory collector is enab
 
 === "Host Installation"
 
-    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `mem.conf.sample`, and rename it to `mem.conf`. Example:
+    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `mem.conf.sample`, and rename it to `mem.conf`. Example configuration:
 
     ```toml
         
@@ -40,7 +40,7 @@ After successfully installing and starting DataKit, the Memory collector is enab
       # more_tag = "some_other_value"
     ```
 
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
@@ -50,7 +50,7 @@ After successfully installing and starting DataKit, the Memory collector is enab
 
     - **ENV_INPUT_MEM_INTERVAL**
     
-        Collector repetition interval duration
+        Collector repeat interval duration
     
         **Field Type**: Duration
     
@@ -72,7 +72,7 @@ After successfully installing and starting DataKit, the Memory collector is enab
 
 ## Metrics {#metric}
 
-By default, all collected data will append a global tag named `host` (the tag value is the hostname where DataKit resides). Additional tags can be specified in the configuration using `[inputs.mem.tags]`:
+By default, all collected data appends a global tag named `host` (the tag value is the hostname where DataKit resides). Additional tags can be specified in the configuration using `[inputs.mem.tags]`:
 
 ```toml
  [inputs.mem.tags]
@@ -92,7 +92,7 @@ By default, all collected data will append a global tag named `host` (the tag va
 |  ----  | --------|
 |`host`|System hostname.|
 
-- Metric List
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -132,4 +132,6 @@ By default, all collected data will append a global tag named `host` (the tag va
 |`wired`|Wired. (Darwin)|int|B|
 |`write_back`|Memory which is actively being written back to the disk. (Linux)|int|B|
 |`write_back_tmp`|Memory used by FUSE for temporary write back buffers. (Linux)|int|B|
-|
+
+
+</example>

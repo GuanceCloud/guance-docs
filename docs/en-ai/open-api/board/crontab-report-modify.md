@@ -6,63 +6,55 @@
 
 ## Overview
 
-
-
-
 ## Route Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| report_uuid | string | Y | UUID of the scheduled report<br> |
-
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:-------------------------|
+| report_uuid          | string   | Y        | UUID of the scheduled report<br> |
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| title | string | Y | Name of the scheduled report<br>Allow null: True <br>Maximum length: 200 <br> |
-| content | string |  | Content of the scheduled report<br>Allow null: True <br>Maximum length: 1000 <br>Allow empty string: True <br> |
-| dashboardUUID | string | Y | UUID of the dashboard<br>Allow null: False <br> |
-| recipient | array | Y | Recipient information<br>Example: [acnt_xxxx, 22@qq.com, acnt_yyy] <br>Allow null: False <br> |
-| variables | json |  | View variable information<br>Allow null: True <br> |
-| timeRange | string | Y | Query time range<br>Example: 1d <br>Allow null: True <br> |
-| crontab | string |  | Crontab expression for the scheduled task<br>Example: 1 2 * * * <br>Allow null: True <br>Allow empty string: True <br> |
-| singleExecuteTime | int |  | Timestamp for single execution<br>Allow null: True <br> |
-| extend | json |  | Additional information<br>Allow null: True <br> |
-| timezone | string | Y | Timezone for the scheduled report<br>Example: Asia/Shanghai <br>Allow null: True <br> |
-| notifyType | string | Y | Notification type for the scheduled report<br>Example: email <br>Allow null: True <br>Possible values: ['email', 'dingTalkRobot', 'wechatRobot', 'feishuRobot'] <br> |
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:-------------------------|
+| title                | string   | Y        | Name of the scheduled report<br>Allow empty: True <br>Maximum length: 200 <br> |
+| content              | string   | N        | Content of the scheduled report<br>Allow empty: True <br>Maximum length: 1000 <br>Allow empty string: True <br> |
+| dashboardUUID        | string   | Y        | UUID of the dashboard<br>Allow empty: False <br> |
+| recipient            | array    | Y        | Recipient information<br>Example: [acnt_xxxx, 22@qq.com, acnt_yyy] <br>Allow empty: False <br> |
+| variables            | json     | N        | View variable information<br>Allow empty: True <br> |
+| timeRange            | string   | Y        | Query time range<br>Example: 1d <br>Allow empty: True <br> |
+| crontab              | string   | N        | Crontab for the scheduled task<br>Example: 1 2 * * * <br>Allow empty: True <br>Allow empty string: True <br> |
+| singleExecuteTime    | int      | N        | Timestamp for single execution<br>Allow empty: True <br> |
+| extend               | json     | N        | Additional information<br>Allow empty: True <br> |
+| timezone             | string   | Y        | Timezone for the scheduled report<br>Example: Asia/Shanghai <br>Allow empty: True <br> |
+| notifyType           | string   | Y        | Notification type for the scheduled report<br>Example: email <br>Allow empty: True <br>Possible values: ['email', 'dingTalkRobot', 'wechatRobot', 'feishuRobot'] <br> |
 
 ## Additional Parameter Explanation
 
+### Data Explanation
 
-Data Explanation.*
-
-- Request parameter explanation
-
-| Parameter Name           | Type | Description                                                 |
-| ---------------- | ---- | ---------------------------------------------------- |
-| title       | string | Name of the scheduled report |
-| content             | string | Content of the scheduled report                                                 |
-| dashboardUUID       | string  | UUID of the dashboard associated with the scheduled report     |
-| recipient            | list  | List of recipients for the scheduled report, including user accounts (acnt_/email/notification target UUID)                                         |
-| variables            | json  | View variable information                                         |
-| timeRange            | string  | Query time range, in the format of integer + d/h/m, e.g., 3d, 15m, 2h                                       |
-| crontab            | string  | Crontab expression for repeated execution of the scheduled task                                         |
-| singleExecuteTime            | int  | Timestamp for single execution                                         |
-| extend            | json  | Extended information, used for displaying additional information on the frontend interface                                         |
-| timezone            | string  | Timezone                                         |
-| notifyType            | string  | Notification type, enum values (email, dingTalkRobot, wechatRobot, feishuRobot)                                         |
-
-- Extend field explanation
+- Request Parameter Explanation
 
 | Parameter Name           | Type | Description                                                 |
-| ---------------- | ---- | ---------------------------------------------------- |
-| shareConfig       | json | Sharing configuration for the scheduled report |    ｜
-| shareConfig.shareMethod  | string | Sharing method for the scheduled report: public or enciphered. Default is public                           |
+| ------------------------ | ---- | ----------------------------------------------------------- |
+| title                    | string | Name of the scheduled report |
+| content                  | string | Content of the scheduled report                                                 |
+| dashboardUUID            | string | UUID of the dashboard for the scheduled report     |
+| recipient                | list  | List of recipient information for the scheduled report, including user accounts (acnt_/email/notification target uuid)                                         |
+| variables                | json  | View variable information                                         |
+| timeRange                | string | Query time range, in the format of integer + d/h/m, e.g., 3d, 15m, 2h                                       |
+| crontab                  | string | Crontab for repeated execution of the scheduled task                                         |
+| singleExecuteTime        | int   | Timestamp for single execution                                         |
+| extend                   | json  | Extended information, used for displaying information on the front-end interface                                         |
+| timezone                 | string | Timezone                                         |
+| notifyType               | string | Notification type, enumerated values (email, dingTalkRobot, wechatRobot, feishuRobot)                                         |
+
+- Extend Field Explanation
+
+| Parameter Name           | Type | Description                                                 |
+| ------------------------ | ---- | ----------------------------------------------------------- |
+| shareConfig              | json | Sharing configuration for the scheduled report | 
+| shareConfig.shareMethod  | string | Sharing method for the scheduled report: public or encipher (default is public)                           |
 | shareConfig.password     | string | Password for encrypted sharing of the scheduled report                         |
-
-
-
 
 ## Request Example
 ```shell
@@ -74,9 +66,6 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/cron_xxxx32/modify' \
 --data-raw '{"title":"test3","content":"","dashboardUUID":"dsbd_xxxx32","recipient":["notify_xxxx32"],"timeRange":"1d","singleExecuteTime":-1,"crontab":"10 10 03,14,13 * *","variables":{},"extend":{"cycleTimeType":"day","hour":"10","minutes":"10","dashboardInfo":{}},"timezone":"Asia/Shanghai","notifyType":"dingTalkRobot"}' \
 --compressed
 ```
-
-
-
 
 ## Response
 ```shell

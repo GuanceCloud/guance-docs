@@ -1,3 +1,3 @@
 ---
 
-Guance APM can collect metrics data from various iOS applications and analyze the performance of each iOS application end in a visual manner.
+<<< custom_key.brand_name >>> APM can collect metrics data from various iOS applications and analyze the performance of each iOS application in a visual manner.

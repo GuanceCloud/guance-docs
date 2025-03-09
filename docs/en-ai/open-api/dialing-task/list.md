@@ -13,14 +13,14 @@
 
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| pageIndex | integer | Yes | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | Yes | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
-| type | string | Yes | Type of dial testing<br>Can be empty: False <br>Possible values: ['http', 'browser', 'tcp', 'icmp', 'websocket'] <br> |
-| search | string | Yes | Dial testing name<br>Can be empty: False <br> |
-| dialingTypes | commaArray | Yes | Dial testing types (http, browser, tcp, icmp, websocket)<br>Can be empty: False <br> |
-| dialingStatus | commaArray | Yes | Dial testing status (ok, stop)<br>Can be empty: False <br> |
-| tagsUUID | commaArray | Yes | Tag UUID<br>Can be empty: False <br> |
-| frequency | commaArray | Yes | Dial testing frequency (1m, 5m, 15m, 30m, 1h, 6h, 12h, 24h)<br>Can be empty: False <br> |
+| pageIndex | integer | Yes | Page number<br>Can be null: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize | integer | Yes | Number of items per page<br>Can be null: False <br>Example: 10 <br>$minValue: 1 <br> |
+| type | string | Yes | Type of dial testing<br>Can be null: False <br>Possible values: ['http', 'browser', 'tcp', 'icmp', 'websocket'] <br> |
+| search | string | Yes | Dial testing name<br>Can be null: False <br> |
+| dialingTypes | commaArray | Yes | Dial testing types (http, browser, tcp, icmp, websocket)<br>Can be null: False <br> |
+| dialingStatus | commaArray | Yes | Dial testing status (ok, stop)<br>Can be null: False <br> |
+| tagsUUID | commaArray | Yes | Tag UUID<br>Can be null: False <br> |
+| frequency | commaArray | Yes | Dial testing frequency (1m, 5m, 15m, 30m, 1h, 6h, 12h, 24h)<br>Can be null: False <br> |
 
 ## Additional Parameter Notes
 

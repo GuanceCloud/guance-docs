@@ -1,4 +1,4 @@
-# Schedule Listing
+# List Schedules
 
 ---
 
@@ -12,16 +12,16 @@
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-------|:----------------|
-| mySchedule | string | No | View my schedule, default false: view all schedules<br>Allow empty: True <br>Optional values: ['true', 'false'] <br> |
-| notificationScheduleUUIDs | commaArray | No | Filter schedule UUIDs<br>Allow empty: False <br> |
-| issueNotificationPolicyUUIDs | commaArray | No | Filter notification policy UUIDs<br>Allow empty: False <br> |
-| notifyTargets | commaArray | No | Filter notification targets, acnt_xxx,notify_yyy,jj@qq.com<br>Allow empty: False <br> |
-| search | string | No | Search name<br>Allow empty: True <br> |
-| pageIndex | integer | No | Page number<br>Allow empty: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | No | Number of items per page<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+|:-------------------|:-------|:--------|:----------------------|
+| mySchedule | string | No  | View my schedules, default false: view all schedules<br>Can be empty: True <br>Optional values: ['true', 'false'] <br> |
+| notificationScheduleUUIDs | commaArray | No  | Filter schedule UUIDs<br>Can be empty: False <br> |
+| issueNotificationPolicyUUIDs | commaArray | No  | Filter notification policy UUIDs<br>Can be empty: False <br> |
+| notifyTargets | commaArray | No  | Filter notification targets, acnt_xxx,notify_yyy,jj@qq.com<br>Can be empty: False <br> |
+| search | string | No  | Search name<br>Can be empty: True <br> |
+| pageIndex | integer | No  | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize | integer | No  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
 
 
@@ -119,7 +119,7 @@ curl 'https://openapi.guance.com/api/v1/notification_schedule/list' \
                     }
                 ],
                 "issueNotificationPolicyInfos": [],
-                "name": "schedule_modify",
+                "name": "schecule_modify",
                 "notifyTargets": [
                     "acnt_8b4bd2b8782646f3ba8f6554193f5997"
                 ],

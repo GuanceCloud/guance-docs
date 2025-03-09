@@ -1,6 +1,6 @@
 ---
 title     : 'Resin'
-summary   : 'Display Resin performance Metrics, including startup time, heap memory, non-heap memory, classes, threads, etc.'
+summary   : 'Display of Resin performance Metrics, including startup time, heap memory, non-heap memory, classes, threads, etc.'
 __int_icon: 'icon/resin'
 dashboard :
   - desc  : 'Resin monitoring view'
@@ -16,16 +16,16 @@ monitor   :
 
 ## Installation and Configuration {#config}
 
-Note: The example Resin version is for Windows environment Resin/4.0.66 (Windows).
+Note: The example Resin version is for a Windows environment, Resin/4.0.66 (Windows).
 
-Metrics collection is performed using the `jolokia-jvm-agent` to gather runtime Metrics of Resin.
+Metric collection is performed using the `jolokia-jvm-agent` to gather runtime Metrics of Resin.
 
 
-### Enabling Metrics Collection for Resin
+### Enabling Metric Collection in Resin
 
 - Configure `config/resin.properties`
 
-Add `jvm_args`, parameter description:
+Add `jvm_args`, parameter descriptions:
 
 - `javaagent`: `jolokia-jvm-agent`
 - port=9530 # Port exposed by `jolokia-jvm-agent` for Metrics
@@ -47,12 +47,12 @@ cd datakit/conf.d/jvm
 cp jvm.conf.sample jvm.conf
 ```
 
-- Modify the `jvm.conf` configuration file
+- Edit the `jvm.conf` configuration file
 
-Key parameters explanation:
+Key parameters description:
 
-- urls: `jolokia` agent access address
-- interval: collection frequency
+- urls: Access address for the `jolokia` agent
+- interval: Collection frequency
 - inputs.jvm.metric: JVM-related Metrics
 
 ```toml
@@ -78,7 +78,7 @@ interval   = "10s"
 # Add agents URLs to query
 urls = ["http://localhost:9530/jolokia/"]
 
-## Add Metrics to read
+## Add metrics to read
 [[inputs.jvm.metric]]
 name  = "resin_runtime"
 mbean = "java.lang:type=Runtime"
@@ -122,23 +122,23 @@ tag_keys = ["name"]
 
 ## Metrics {#metric}
 
-### Metric Set resin_runtime
+### Metrics Set resin_runtime
 
 | Metric | Description |
 | --- | --- |
-| `Uptime` | Uptime |
+| `Uptime` | Uptime duration |
 | `StartTime` | Startup time |
-| `VmVersion` | JVM version |
-| `SpecName` | Java Virtual Machine Specification Name |
+| `VmVersion` | Virtual machine version |
+| `SpecName` | Java virtual machine specification name |
 
-### Metric Set resin_memory
+### Metrics Set resin_memory
 
 | Metric | Description |
 | --- | --- |
 | `HeapMemoryUsage` | Heap memory usage |
 | `NonHeapMemoryUsage` | Non-heap memory usage |
 
-### Metric Set resin_threading
+### Metrics Set resin_threading
 
 | Metric | Description |
 | --- | --- |
@@ -147,7 +147,7 @@ tag_keys = ["name"]
 | `DaemonThreadCount` | Number of daemon threads |
 | `PeakThreadCount` | Peak thread count |
 
-### Metric Set resin_class_loading
+### Metrics Set resin_class_loading
 
 | Metric | Description |
 | --- | --- |
@@ -155,15 +155,15 @@ tag_keys = ["name"]
 | UnloadedClassCount | Total number of unloaded classes |
 | TotalLoadedClassCount | Total number of loaded classes |
 
-### Metric Set resin_memory_pool
+### Metrics Set resin_memory_pool
 
 | Metric | Description |
 | --- | --- |
 | Usage | Used memory pool |
 | PeakUsage | Peak used memory pool |
-| CollectionUsage | Collected memory pool |
+| CollectionUsage | Collected used memory pool |
 
-### Metric Set resin_garbage_collector
+### Metrics Set resin_garbage_collector
 
 | Metric | Description |
 | --- | --- |

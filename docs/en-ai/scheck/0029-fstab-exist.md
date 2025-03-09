@@ -1,4 +1,4 @@
-# 0029-fstab-exist-fstab Deleted
+# 0029-fstab-exist-fstab has been deleted
 ---
 
 ## Rule ID
@@ -8,12 +8,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Critical
+- critical
 
 
 ## Compatible Versions
@@ -23,7 +23,7 @@
 
 ## Description
 
-- Monitor whether the file /etc/fstab exists on the host.
+- Monitor whether the /etc/fstab file on the host exists.
 
 
 ## Scan Frequency
@@ -38,12 +38,12 @@
 
 ## Risk Items
 
-- Service Unavailability
+- Service unavailability
 
 
 ## Audit Method
 
-- Verify the existence of /etc/fstab on the host. You can run the following command to verify:
+- Verify the existence of /etc/fstab on the host. You can execute the following command to verify:
 
 ```bash
 ls /etc/fstab
@@ -52,7 +52,7 @@ ls /etc/fstab
 
 ## Remediation
 
-- If /etc/fstab has been deleted, execute the following commands:
+- If /etc/fstab has been deleted, please execute the following commands:
 
 ```bash
 # blkid
@@ -73,16 +73,16 @@ UUID=a8fbf99f-407e-4f33-86c4-a983349aaf62 /boot                   xfs     defaul
 - None
 
 
-## Default Values
+## Default Value
 
 - None
 
 
 ## References
 
-- [Emergency Response and Investigation Process for Hacker Intrusion (Unofficial)](https://www.sohu.com/a/236820450_99899618)
+- [Emergency Response and Investigation Ideas for Hacker Intrusions (Unofficial)](https://www.sohu.com/a/236820450_99899618)
 
-- [Investigation and Analysis of a Real Mining Intrusion (Unofficial)](https://www.cnblogs.com/zsl-find/articles/11688640.html)
+- [Real Case Analysis of a Mining Intrusion Investigation (Unofficial)](https://www.cnblogs.com/zsl-find/articles/11688640.html)
 
 
 ## CIS Controls

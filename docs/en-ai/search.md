@@ -5,10 +5,10 @@
     <div class="no-result-text">No results found</div>
 </script>
 <script id="prev-btn-tmpl" type="text/template">
-    <a id="btn-prev" class="btn">Previous Page</a>
+    <a id="btn-prev" class="btn">Previous page</a>
 </script>
 <script id="next-btn-tmpl" type="text/template">
-    <a id="btn-next" class="btn">Next Page</a>
+    <a id="btn-next" class="btn">Next page</a>
 </script>
 <script id="page-btn-tmpl" type="text/template">
     <a class="page-num btn"></a>

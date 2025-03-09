@@ -1,6 +1,6 @@
 ---
 title     : 'AWS Lambda Extension'
-summary   : 'Collecting data through AWS Lambda Extension'
+summary   : 'Collect data using AWS Lambda Extension'
 tags:
   - 'AWS'
 __int_icon      : 'icon/awslambda'
@@ -18,33 +18,33 @@ monitor   :
 
 [:octicons-tag-24: Version-1.34.0](../datakit/changelog.md#cl-1.34.0) · [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
 
-The AWS Lambda collector gathers metrics and logs from AWS Lambda using the AWS Lambda Extension.
+The AWS Lambda collector gathers metrics and logs from AWS Lambda via AWS Lambda Extension.
 
 ## Installation {#installation}
 
 ### Add Datakit Layer {#layer}
 
-- [Create a layer via Zip](https://docs.aws.amazon.com/en_us/lambda/latest/dg/creating-deleting-layers.html#layers-create){:target="_blank"}
+- [Create a layer through Zip](https://docs.aws.amazon.com/en_us/lambda/latest/dg/creating-deleting-layers.html#layers-create){:target="_blank"}
 
     - Zip download links:
         - [Linux amd64](https://static.guance.com/datakit/datakit_aws_extension-linux-amd64.zip)
         - [Linux arm64](https://static.guance.com/datakit/datakit_aws_extension-linux-arm64.zip)
 
-    - Open the [Layers page](https://console.amazonaws.cn/lambda/home#/layers){:target="_blank"} of the Lambda console.
-    - Select **Create layer** (创建层).
-    - Under **Layer configuration** (层配置), enter the layer name in **Name** (名称).
-    - Select **Upload a .zip file** (上传 .zip 文件). Then, choose **Upload** (上载) to select the local .zip file.
-    - Select **Create** (创建).
+    - Open the [Layers page](https://console.amazonaws.cn/lambda/home#/layers){:target="_blank"} in the Lambda console.
+    - Choose **Create layer** (Create layer).
+    - Under **Layer configuration** (Layer configuration), enter the layer name in the **Name** (Name) field.
+    - Select **Upload a .zip file** (Upload a .zip file). Then, choose **Upload** (Upload) to select the local .zip file.
+    - Choose **Create** (Create).
 
-- [Add a layer via ARN](https://docs.aws.amazon.com/en_us/lambda/latest/dg/adding-layers.html){:target="_blank"}
+- [Add layer through ARN](https://docs.aws.amazon.com/en_us/lambda/latest/dg/adding-layers.html){:target="_blank"}
 
-    - Open the [Functions page](https://console.amazonaws.cn/lambda/home#/functions){:target="_blank"} of the Lambda console.
+    - Open the [Functions page](https://console.amazonaws.cn/lambda/home#/functions){:target="_blank"} in the Lambda console.
     - Select the function you want to configure.
-    - Under **Layers** (层), select **Add layer** (添加层).
-    - Under **Select layer** (选择层), choose **ARN** as the layer source.
-    - Enter the ARN in the text box and select **Verify** (验证). Then, choose **Add** (添加).
+    - Under **Layers**, choose **Add layer**.
+    - Under **Select layer**, choose **ARN** as the layer source.
+    - Enter the ARN in the text box and choose **Validate**. Then, choose **Add**.
 
-### Configure Required Environment Variables
+### Configure Required Environment Variables {#config-env}
 
 - ENV_DATAWAY=`https://openway.guance.com?token=<your-token>`
 
@@ -53,7 +53,6 @@ The AWS Lambda collector gathers metrics and logs from AWS Lambda using the AWS 
 ### `awslambda-metric`
 
 - Tags
-
 
 | Tag | Description |
 |  ----  | --------|
@@ -64,8 +63,7 @@ The AWS Lambda collector gathers metrics and logs from AWS Lambda using the AWS 
 |`aws_lambda_initialization_type`|Initialization type of the Lambda function.|
 |`aws_region`|AWS region where the function is executed.|
 
-- Metrics List
-
+- Metrics list
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
@@ -84,28 +82,22 @@ The AWS Lambda collector gathers metrics and logs from AWS Lambda using the AWS 
 |`runtime_duration_ms`|Duration of the runtime in milliseconds.|int|ms|
 |`timeouts`|Timeouts count.|int|count|
 
-
-
 ### `awslambda-logging`
 
 - Tags
 
-
 | Tag | Description |
 |  ----  | --------|
-|`aws_log_from`|Log sources, currently only functions are supported|
+|`aws_log_from`|Log sources, currently only function are supported|
 
-- Metrics List
-
+- Metrics list
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`message`|Log message.|string|-|
 
-
-
 ### Collector Support {#input}
 
 - OpenTelemetry
 - statsd
-- ddtrace # Currently supports only golang. Since ddtrace has special operations in the Lambda environment, you need to add `tracer.WithLambdaMode(false)`.
+- ddtrace # Currently only supports golang. Since ddtrace has special operations in the Lambda environment, add `tracer.WithLambdaMode(false)`.

@@ -11,9 +11,9 @@
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:-------------------------|
-| issueNotificationPolicyUUIDs | array | Y | List of notification policy UUIDs<br>Allow null: False <br> |
+| Parameter Name                  | Type   | Required | Description              |
+|:-------------------------------|:-------|:---------|:-------------------------|
+| issueNotificationPolicyUUIDs    | array  | Y        | List of notification policy UUIDs<br>Allow null: False <br> |
 
 ## Additional Parameter Notes
 

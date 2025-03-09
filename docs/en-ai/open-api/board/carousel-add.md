@@ -12,12 +12,12 @@
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| dashboardUUIDs | array | Y | List of dashboard UUIDs for carousel<br>Allow null: False <br> |
+|:---------------------|:---------|:----------|:------------------------|
+| dashboardUUIDs | array | Y | List of dashboard UUIDs for the carousel<br>Allow null: False <br> |
 | name | string | Y | Name of the dashboard carousel<br>Allow null: False <br>Maximum length: 256 <br> |
 | intervalTime | string | Y | Carousel interval time<br>Allow null: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

@@ -5,26 +5,26 @@
 <br />**POST /api/v1/snapshots/\{snapshot_uuid\}/share**
 
 ## Overview
-Generate a sharing link for the specified snapshot based on `snapshot_uuid`
+Generate a sharing link for a specified snapshot based on `snapshot_uuid`
 
 
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:------------------|:-------|:-----|:----------------|
+| Parameter Name        | Type     | Required | Description              |
+|:-------------------|:-------|:-----|:----------------|
 | snapshot_uuid | string | Y | Snapshot UUID<br> |
 
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:------------------|:-------|:-----|:----------------|
+| Parameter Name        | Type     | Required | Description              |
+|:-------------------|:-------|:-----|:----------------|
 | changeTime | boolean |  | Whether to allow the viewer to change the time range, defaults to false<br>Can be null: False <br> |
-| expirationAt | integer |  | Expiration time as a timestamp, permanent validity if -1 is passed<br>Example: 1577758776 <br>Can be null: False <br>Can be an empty string: True <br> |
-| extractionCode | string |  | Extraction code required for accessing encrypted shares<br>Example: 123455x <br>Can be null: False <br>Can be an empty string: True <br>Maximum length: 12 <br> |
+| expirationAt | integer |  | Expiration time as a timestamp, permanent if set to -1<br>Example: 1577758776 <br>Can be null: False <br>Can be an empty string: True <br> |
+| extractionCode | string |  | Extraction code required for encrypted sharing access<br>Example: 123455x <br>Can be null: False <br>Can be an empty string: True <br>Maximum length: 12 <br> |
 | hiddenTopBar | boolean |  | Whether to hide the top bar, defaults to false<br>Can be null: False <br> |
-| showWatermark | boolean |  | Whether to display watermark, defaults to false<br>Can be null: False <br> |
+| showWatermark | boolean |  | Whether to show watermark, defaults to false<br>Can be null: False <br> |
 | maskCfg | None |  | <br> |
 | maskCfg.fields | string |  | Sensitive fields, multiple fields separated by commas<br>Example: message,host <br>Can be null: False <br>Can be an empty string: True <br> |
 | maskCfg.reExprs | array |  | Regular expressions<br>Example: [{'name': 'jjj', 'reExpr': 'ss', 'enable': 0}, {'name': 'lll', 'reExpr': 'ss', 'enable': 1}] <br>Can be null: False <br> |
@@ -33,24 +33,23 @@ Generate a sharing link for the specified snapshot based on `snapshot_uuid`
 | ipWhitelistSet.type | string |  | Type of IP whitelist, followWorkspace<br>Example: 123455x <br>Can be null: False <br>Can be an empty string: True <br>Maximum length: 12 <br>Optional values: ['followWorkspace', 'custom'] <br> |
 | ipWhitelistSet.ipWhitelist | array |  | IP whitelist list, used when type is custom<br>Example: [] <br>Can be null: False <br> |
 
-## Additional Parameter Descriptions
-
+## Additional Parameter Notes
 
 *Request Parameter Descriptions*
 
 | Parameter Name                | Type  | Description          |
 |-----------------------|----------|------------------------|
 |changeTime             |boolean| Whether to allow the viewer to change the time range|
-|expirationAt             |integer| Expiration time as a second-level timestamp, permanent validity if -1 is passed|
-|extractionCode   |string     | Extraction code required for accessing encrypted shares, default is public|
-|hiddenTopBar   |boolean     | Whether to hide the top bar, defaults to false |
-|showWatermark |boolean     | Whether to display watermark|
+|expirationAt             |integer| Expiration time as a second-level timestamp, permanent if set to -1|
+|extractionCode   |string     | Extraction code required for encrypted sharing access, defaults to public|
+|hiddenTopBar   |boolean     | Whether to hide the top bar, defaults to false|
+|showWatermark |boolean     | Whether to show watermark|
 |maskCfg |dict     | Masking configuration|
 |ipWhitelistSet |dict     | Snapshot IP whitelist configuration|
 
 --------------
 
-*maskCfg Internal Field Descriptions*
+*Internal Fields of maskCfg*
 | Parameter Name                | Type  | Description          |
 |-----------------------|----------|------------------------|
 |fields             |string| Sensitive fields, multiple fields separated by commas|
@@ -58,24 +57,23 @@ Generate a sharing link for the specified snapshot based on `snapshot_uuid`
 
 --------------
 
-*maskCfg.reExprs Internal Field Descriptions*
+*Internal Fields of maskCfg.reExprs*
 | Parameter Name                | Type  | Description          |
 |-----------------------|----------|------------------------|
 |name             |string| Name of the sensitive field|
 |reExpr   |string     | Regular expression|
-|enable   |integer     | Whether enabled 0,1|
+|enable   |integer     | Enable status 0 or 1|
 
 --------------
 
-*ipWhitelistSet Internal Field Descriptions*
+*Internal Fields of ipWhitelistSet*
 | Parameter Name                | Type  | Description          |
 |-----------------------|----------|------------------------|
 |isOpen             |boolean| Whether to enable IP whitelist|
-|type   |string     | Type of IP whitelist, follow workspace IP whitelist configuration: followWorkspace, custom: custom|
-|ipWhitelist   |boolean     | IP whitelist list, used when type is custom |
+|type   |string     | Type of IP whitelist, follow workspace IP whitelist configuration: followWorkspace, custom|
+|ipWhitelist   |array     | IP whitelist list, used when type is custom|
 
 --------------
-
 
 
 

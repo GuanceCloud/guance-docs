@@ -2,30 +2,30 @@
 
 ## Compilation Troubleshooting
 
-Errors occur during the compilation process, and you should first check the compilation environment.
+Compilation errors occur, and the first step is to check the compilation environment.
 
 ### Runnable Compilation Environment 
-#### ✅ Runnable Environment {#runnable}
+#### ✅ Supported Environment {#runnable}
 
 * AGP `com.android.tools.build:gradle` version `3.5.0` or higher
 * Gradle version `5.4.0` or higher
 * Java version `8.0` or higher
 * Android minSdkVersion 21
 
-**Note**: As Android Studio versions update, this compatibility will change. If you encounter compilation errors even though your environment meets the above conditions, please contact our developers.
+**Note**: As Android Studio versions update, this compatibility may change. If you encounter compilation issues despite meeting the above conditions, please contact our developers.
  
-#### ⚠️ Compatible Running Environment {#compatible}
+#### ⚠️ Compatible Environment {#compatible}
 * AGP `com.android.tools.build:gradle` version `3.0.1` or higher
 * Gradle version `4.8.1` or higher
 * Java version `8.0` or higher
 * Android minSdkVersion 21
 
-> This environment does not support `ft-plugin`, and automatic data capture parts need to be manually integrated. For more manual integration details, refer to [here](app-access.md#manual-set).
+> This environment does not support `ft-plugin`, and manual integration is required for data auto-capture. For more details on manual integration, refer to [here](app-access.md#manual-set).
 
-### SDK Unable to Resolve Imports
+### SDK Import Issues
 ![](../img/17.trouble_shooting_android_gradle_error_1.png)
 ![](../img/17.trouble_shooting_android_gradle_error_2.png)
-The above error occurs because the Maven repository is not correctly configured. Please refer to the [configuration](app-access.md#gradle-setting) here.
+The above errors occur because the Maven repository is not correctly set up. Please refer to the [configuration](app-access.md#gradle-setting) here.
 
 
 ### Compilation Errors
@@ -45,7 +45,7 @@ The above error occurs because the Maven repository is not correctly configured.
 		at org.objectweb.asm.ClassReader.accept(Unknown Source)
 		at com.google.devtools.build. android.desugar. Desugar.desugarClassesInInput (Desugar.java:401) at com.google.devtools.build.android.desugar.Desugar.desugar0neInput(Desugar.java:326) at com.google.devtools.build.android.desugar. Desugar.desugar (Desugar.java:280) at com.google.devtools.build.android.desugar. Desugar.main (Desugar.java:584)
 ```
-If you encounter the above error during compilation, it is due to an AGP `3.0.0` compatibility issue. The [issue](https://github.com/gradle/gradle/issues/2384) explains this problem. You can resolve this by upgrading AGP to version `3.1.0` or higher, or using a newer SDK version. Upgrade the version in `app/build.gradle`.
+If you encounter the above error during compilation, it is due to an AGP `3.0.0` compatibility issue. This [issue](https://github.com/gradle/gradle/issues/2384) explains the problem. You can resolve it by upgrading AGP to version `3.1.0` or higher, or using a newer SDK version. Upgrade the version in `app/build.gradle`.
 
 ```gradle
 dependencies {
@@ -54,13 +54,13 @@ dependencies {
 
 ```
 
-#### API 'android.registerTransform' is Obsolete {#transform_deprecated}
+#### API 'android.registerTransform' is obsolete {#transform_deprecated}
 
-`Transform` is marked as `Deprecated` in `AGP 7.0` and has been removed in `AGP 8.0`. `ft-plugin:1.2.0` has completed adaptation. Please upgrade to the corresponding version to fix this error. For specific instructions, see [integration configuration](app-access.md#gradle-setting)
+`Transform` has been marked as `Deprecated` in `AGP 7.0` and removed in `AGP 8.0`. `ft-plugin:1.2.0` has been adapted to fix this issue. Please upgrade to the corresponding version to resolve this error. Refer to [integration configuration](app-access.md#gradle-setting) for more details.
 
 #### AndroidComponentsExtension ClassNotFoundException {#android_cts_ext_no_fd}
 
-`AndroidComponentsExtension` is supported from AGP `7.4.2`. Compilation environments below this version will produce this error. Use `ft-plugin-legacy` to fix this error. Specific instructions are available [here](app-access.md#gradle-setting)
+`AndroidComponentsExtension` is supported starting from AGP `7.4.2`. Environments below this version will produce this error. You can use `ft-plugin-legacy` to fix this error. Refer to [integration configuration](app-access.md#gradle-setting) for more details.
 
 ![](../img/17.trouble_shooting_android_gradle_error_3.png)
 
@@ -68,7 +68,7 @@ dependencies {
 
 * Invalid opcode 169
 
-If you encounter this error while using `ft_plugin_legacy`, it is due to a bug in `asm-commons:7.0`. The original issue is [here](https://gitlab.ow2.org/asm/asm/-/issues/317873). You can resolve this by depending on `org.ow2.asm:asm-commons:7.2` or higher in the plugin configuration. Use `./gradlew buildEnvironment` to confirm the actual `asm-commons` version used.
+If you encounter this error while using `ft_plugin_legacy`, it's a bug in `asm-commons:7.0`. The original issue is [here](https://gitlab.ow2.org/asm/asm/-/issues/317873). You can resolve this by depending on `org.ow2.asm:asm-commons:7.2` or higher in the plugin configuration. Use `./gradlew buildEnvironment` to confirm the actual `asm-commons` version being used.
 
 ```groovy
 buildscript {
@@ -82,13 +82,13 @@ buildscript {
 
 * org.ow2.asm:asm version below 7.0
 
-Currently, the plugin version only supports build environments using `org.ow2.asm:asm7.x` or higher. Use `./gradlew buildEnvironment` to query the build environment and confirm this issue. This can be fixed by forcing a dependency on version 7.x or higher. It is recommended to use version 7.2 or higher.
+Currently, the plugin only supports build environments using `org.ow2.asm:asm7.x` or higher. You can query the build environment using `./gradlew buildEnvironment` to confirm this issue. You can resolve this by forcing a dependency on version 7.x or higher, with a recommendation to use version 7.2 or higher.
 
 ```groovy
 buildscript {
 	dependencies {
         classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin-legacy:[version]'
-         // Add dependencies
+         // Add dependency
         classpath 'org.ow2.asm:asm:7.2'
         classpath 'org.ow2.asm:asm-commons:7.2'
     }
@@ -98,22 +98,22 @@ buildscript {
 
 ## SDK Initialization Exception Verification
 
-Check `Logcat` to confirm if there are any logs with `Level` set to `Error` and `Tag` prefixed with `[FT-SDK]`
+Check `Logcat` to confirm if there are logs with `Level` as `Error` and `Tag` prefixed with `[FT-SDK]`
 
 ```kotlin
-[FT-SDK] com.demo E Please install the SDK (call FTSdk.install(FTSDKConfig ftSdkConfig) when the application starts)
+[FT-SDK] com.demo E Please install the SDK first (call FTSdk.install(FTSDKConfig ftSdkConfig) when the application starts)
 ``` 
 
 ## Enable Debug Mode {#debug_mode}
 ### ft-sdk Debug Mode
-You can enable the debug feature of the SDK through the following configuration. After enabling, the console `LogCat` will output SDK debugging logs, which you can filter by `[FT-SDK]` to locate Guance SDK logs.
+You can enable the debug functionality of the SDK through the following configuration. Once enabled, the console `LogCat` will output SDK debugging logs, which you can filter by `[FT-SDK]` to locate <<< custom_key.brand_name >>> SDK logs.
 
 ```kotlin
   val config = FTSDKConfig.builder(datakitUrl).setDebug(true)
   FTSdk.install(config)
 ```
 
-#### Log Example {#log_sample}
+#### Log Sample {#log_sample}
 ##### Data Synchronization {#data_sync}
 ```java
 // Check if the upload URL is correctly configured in the SDK
@@ -127,14 +127,14 @@ You can enable the debug feature of the SDK through the following configuration.
 
 // Below are successful synchronization logs
 [FT-SDK]SyncTaskManager com.demo   D  Sync Success-[code:200,response:]
-[FT-SDK]SyncTaskManager com.demo   D  <<<******************* Sync Poll Finish *******************
+[FT-SDK]SyncTaskManager com.demo   D  
 
 ```
 
 > **It is recommended to disable this configuration for Release versions**
 
 ### ft-plugin Debug Mode
-You can enable Plugin debug logs through the following configuration. After enabling, you can find `[FT-Plugin]` output logs in the `Build` output logs. Use this to view the Plugin ASM injection status.
+You can enable Plugin debug logs through the following configuration. Once enabled, you can find `[FT-Plugin]` output logs in the `Build` output logs. Use this to view the Plugin ASM injection status.
 
 ```groovy
 FTExt {
@@ -144,7 +144,7 @@ FTExt {
 ```
 > **It is recommended to disable this configuration for Release versions**
 
-## Convert SDK Internal Logs to Cache Files
+## Converting SDK Internal Logs to Cache Files
 ```kotlin
 // >= 1.4.6
 // Default path: /data/data/{package_name}/files/LogInner.log
@@ -154,63 +154,63 @@ LogUtils.registerInnerLogCacheToFile()
 val cacheFile = File(filesDir, "LogCache.log")
 LogUtils.registerInnerLogCacheToFile(cacheFile)
 ```
-> **To ensure the completeness of internal logs, set this configuration before initializing the SDK**
+> **To ensure the integrity of internal logs, set this configuration before initializing the SDK**
 
-## SDK Runs Normally But No Data
+## SDK Running Normally But No Data
 * [Troubleshoot Datakit](../../datakit/why-no-data.md) to ensure it is running normally
 
-* Confirm that the SDK upload address `datakitUrl` or `datawayUrl` is [configured correctly](app-access.md#base-setting) and initialized properly. In [debug mode](#debug-mode), check the [logs](#data_sync) to diagnose upload issues.
+* Confirm that the SDK upload URL `datakitUrl` or `datawayUrl` [is configured correctly](app-access.md#base-setting) and initialized properly. In [debug mode](#debug-mode), check the [logs](#data_sync) to diagnose upload issues.
 	
-* Ensure Datakit is uploading data to the corresponding workspace and is not offline. This can be confirmed by logging into Guance and checking the "Infrastructure".
+* Verify whether Datakit is uploading data to the corresponding workspace and whether it is offline. This can be confirmed by logging into <<< custom_key.brand_name >>> and checking "Infrastructure".
 
 	![](../img/17.trouble_shooting_android_datakit_check.png)
 	
 ## Data Loss
 ### Partial Data Loss
-* If RUM session data, Log, or a few Trace data points are lost, first check if `sampleRate < 1` is set in [FTRUMConfig](app-access.md#rum-config), [FTLoggerConfig](app-access.md#log-config), [FTTraceConfig](app-access.md#trace-config).
-* Investigate network and load issues between the device sending data and the device running Datakit.
-* Confirm that `FTSdk.shutDown` is correctly called. This method releases SDK data processing objects, including cached data.
+* If RUM session data, log entries, or a few Trace data points are missing, first check if `sampleRate < 1` is set in [FTRUMConfig](app-access.md#rum-config), [FTLoggerConfig](app-access.md#log-config), [FTTraceConfig](app-access.md#trace-config).
+* Investigate network and load issues between the device sending data and the Datakit installation.
+* Ensure `FTSdk.shutDown` is correctly called to release SDK data processing objects, including cached data.
 
 ### Resource Data Loss {#resource_missing}
-#### Automatic Collection Not Properly Integrated
-Resource auto-collection requires Plugin ASM bytecode injection to automatically configure OkHttpClient `Interceptor` and `EventListener`, injecting `FTTraceInterceptor`, `FTResourceInterceptor`, `FTResourceEventListener.FTFactory`. If not using Plugin, refer to [here](app-access.md#manual-set).
+#### Automatic Collection Not Properly Integrated with ft-plugin
+Resource automatic collection requires Plugin ASM bytecode injection to automatically configure OkHttpClient `Interceptor` and `EventListener`, injecting `FTTraceInterceptor`, `FTResourceInterceptor`, `FTResourceEventListener.FTFactory`. If not using Plugin, refer to [here](app-access.md#manual-set).
 
 #### OkHttpClient.build() Called Before SDK Initialization
-Plugin ASM injects code during `OkHttpClient.build()`. If called before SDK initialization, it leads to loading empty configurations, causing loss of Resource-related data. Inspect debug logs under debug mode for self-inspection.
+Plugin ASM injects code during `OkHttpClient.build()` calls. If this occurs before SDK initialization, it results in empty configurations and lost Resource data. Debug logs in debug mode can help self-inspect this scenario.
 
 ```java
-// SDK initialization log
+// SDK initialization logs
 [FT-SDK]FTSdk       com.ft  D  initFTConfig complete
 [FT-SDK]FTSdk       com.ft  D  initLogWithConfig complete
 [FT-SDK]FTSdk       com.ft  D  initRUMWithConfig complete
 [FT-SDK]FTSdk       com.ft  D  initTraceWithConfig complete
 
-// Log printed when OkHttpClient.Builder.build() is called
+// Logs printed when OkHttpClient.Builder.build() is called
 // (must be called after SDK initialization)
 [FT-SDK]AutoTrack  	com.ft  D  trackOkHttpBuilder    
 ```
 
 >If unable to adjust initialization order, choose [manual integration](app-access.md#manual-set)
 
-#### Interceptor or EventListener Performs Secondary Processing on Data
-After Plugin ASM inserts, `addInterceptor` is added to `OkHttpClient.Builder()` to include `FTTraceInterceptor` and `FTResourceInterceptor`. These interceptors use the HTTP request body contentLength for unique ID calculation. If third-party interceptors modify data size, it causes inconsistent ID calculations leading to data loss.
+#### Data Processed Twice Using Interceptor or EventListener 
+After Plugin ASM inserts `addInterceptor` into `OkHttpClient.Builder()`, adding `FTTraceInterceptor` and `FTResourceInterceptor`, it uses the HTTP request body contentLength for unique ID calculation. If additional interceptors modify the data size, causing inconsistent IDs across stages, data loss occurs.
 
 **Resolution:**
 
 * **ft-sdk < 1.4.1**
 
-	Adjust `addInterceptor` order to let SDK calculate IDs first. Disable `FTRUMConfig.enableTraceUserResource` and `FTTraceConfig.enableAutoTrace` to avoid redundant settings.
+	Adjust the order of `addInterceptor` calls so the SDK calculates the ID first. Disable `enableTraceUserResource` in `FTRUMConfig` and `enableAutoTrace` in `FTTraceConfig` to avoid duplicate settings.
 
-* **ft-sdk >= 1.4.1**
+* **ft-sdk >= 1.4.1** 
 
-	The SDK adapts to this issue automatically.
+	The SDK adapts to handle this compatibility issue.
 
-### Error Data Loss for Crash Type Data
-* Confirm whether other third-party SDKs with crash capture capabilities are also used. If so, initialize the Guance SDK after other SDKs.
+### Error Data Loss (Crash Type Data)
+* Ensure no other third-party SDK with crash capture functionality is used simultaneously. If so, initialize the observation SDK after other SDKs.
 
 ## Missing Field Information in Data
 ### User Data Fields
-* Confirm correct calls to [user data binding methods](app-access.md#userdata-bind-and-unbind). In debug mode, trace this via logs.
+* Confirm correct calls to [user data binding methods](app-access.md#userdata-bind-and-unbind). In debug mode, verify via logs:
 
 	```java
 	[FT-SDK]FTRUMConfigManager com.demo D  bindUserData xxxx
@@ -220,26 +220,26 @@ After Plugin ASM inserts, `addInterceptor` is added to `OkHttpClient.Builder()` 
 	[FT-SDK]FTRUMConfigManager com.demo D unbindUserData
 	```
 	
-### Lost Custom Parameters or Incorrect Values
-* Confirm correct context for calling `FTRUMConfig.addGlobalContext`, `FTLoggerConfig.addGlobalContext`. Use these for non-changing data within an app cycle. For dynamic scenarios, use [RUM](app-access.md#rum-trace) and [Log](app-access.md#log) interfaces manually.
-* In debug mode, check `[FT-SDK]SyncTaskManager` logs to verify custom field parameters.
+### Missing Custom Parameters or Incorrect Values
+* Ensure correct context for calling `FTRUMConfig.addGlobalContext` and `FTLoggerConfig.addGlobalContext`, suitable for application-wide contexts like channels or flavors. For dynamic scenarios, use [RUM](app-access.md#rum-trace) and [Log](app-access.md#log) interfaces manually.
+* In debug mode, review `[FT-SDK]SyncTaskManager` logs to validate custom field parameters.
 
-## Log Enablement Causes Lag Issues
-If lag occurs, it may be due to excessive log collection. `FTLoggerConfig.enableConsoleLog` captures `android.util.Log`, Java, and Kotlin `println`. Adjust `FTLoggerConfig` [settings](app-access.md#log-config) like `sampleRate`, `logPrefix`, `logLevelFilters` to mitigate this issue.
+## Log Enablement (`enableConsoleLog`) Causes Lagging Issues
+Possible reasons include large log data captured by `FTLoggerConfig.enableConsoleLog`, which grabs `android.util.Log`, Java, and Kotlin `println`. Adjust `FTLoggerConfig` [settings](app-access.md#log-config) like `sampleRate`, `logPrefix`, and `logLevelFilters` to mitigate or resolve this issue.
 
-## Okhttp EventListener Becomes Ineffective After SDK Integration
-Plugin AOP ASM inserts `eventListenerFactory` into `OkHttpClient.Builder()`, overriding existing `eventListener` or `eventListenerFactory`.
+## Okhttp EventListener Integration Becomes Ineffective After SDK Integration
+After Plugin AOP ASM injection, `eventListenerFactory` is added to `OkHttpClient.Builder()`, overriding original `eventListener` or `eventListenerFactory`.
 
 **Resolution:**
 
 * **ft-sdk < 1.4.1**
 
-	Disable automatic Plugin AOP setting (`FTRUMConfig.setEnableTraceUserResource(false)`), then create a [CustomEventListenerFactory](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/custom/okhttp/CustomEventListenerFactory.kt) extending `FTResourceEventListener.FTFactory` and integrate manually.
+	Disable automatic Plugin AOP settings by setting `FTRUMConfig setEnableTraceUserResource(false)`, then customize a [CustomEventListenerFactory](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/custom/okhttp/CustomEventListenerFactory.kt) inheriting from `FTResourceEventListener.FTFactory` and integrate it manually.
 
 * **ft-sdk >= 1.4.1**
 
-	Create a [CustomEventListenerFactory](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/custom/okhttp/CustomEventListenerFactory.kt) extending `FTResourceEventListener.FTFactory`, and customize ASM-injected `eventListenerFactory` using `FTRUMConfig.setOkHttpEventListenerHandler`.
+	Customize a [CustomEventListenerFactory](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/custom/okhttp/CustomEventListenerFactory.kt) inheriting from `FTResourceEventListener.FTFactory` and set `FTRUMConfig.setOkHttpEventListenerHandler` to customize the ASM-injected `eventListenerFactory`.
 
 * **ft-sdk >= 1.6.7**
 
-	The SDK adapts to this issue automatically.
+	The SDK handles this compatibility issue internally.

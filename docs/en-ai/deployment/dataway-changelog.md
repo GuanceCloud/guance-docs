@@ -1,31 +1,39 @@
 # Changelog
 
+## 1.8.0 (2025/02/19)
+
+### New Features
+
+- In Sinker mode, Dataway supports processing data reporting requests sent by clients (such as Datakit/Function) simultaneously (#50)
+
+---
+
 ## 1.7.0 (2024/12/18)
 
 ### New Features
 
-- Added AWS Firehose integration entry (#47)
-- Supported passing token via `X-Token` (#43)
+- Added an AWS Firehose integration entry (#47)
+- Supports passing tokens via `X-Token` (#43)
 
-### Functional Improvements
+### Feature Enhancements
 
 - Adjusted default parameters for internal reclamation to optimize memory usage (#49)
-- Optimized the default YAML in Kubernetes deployment, adjusting its cache disk mount configuration (#48)
-- Adjusted and added some internal metrics, updating Dataway's default view
+- Optimized the default YAML in Kubernetes deployments and adjusted its cache disk mount configuration (#48)
+- Adjusted and added some internal metrics, updating the default Dataway view
 
 ---
 
 ## 1.6.2 (2024/12/03)
 
-### Functional Improvements
+### Feature Enhancements
 
-- Added HTTP-level connection configuration entry (#46)
+- Added HTTP connection configuration options (#46)
 
 ---
 
 ## 1.6.1 (2024/11/19)
 
-### Functional Improvements
+### Feature Enhancements
 
 - Added an option to disable the 404 page (#44)
 
@@ -33,67 +41,67 @@
 
 ## 1.6.0 (2024/09/19)
 
-### Functional Improvements
+### Feature Enhancements
 
-- Optimized environment variable configurations related to disk caching [Environment Variable Configuration](dataway.md#env-diskcache)
-- Increased exposure of more self-metrics and optimized memory usage at the HTTP forwarding level (#39)
-- Dataway supports configuring its own SNI [Environment Variable Configuration](dataway.md#env-apis) (#42)
-- Added a time synchronization interface to facilitate Datakit obtaining a more accurate Unix timestamp (#40)
+- Optimized [environment variable configuration](dataway.md#env-diskcache) for disk caching
+- Exposed more internal metrics and optimized memory usage in HTTP forwarding (#39)
+- Dataway supports configuring [its own SNI](dataway.md#env-apis) (#42)
+- Added a time synchronization interface to help Datakit obtain more accurate Unix timestamps (#40)
 - Sinker:
-    - Filtering conditions support [`nil` checks](../datakit/datakit-filter.md#nil), i.e., determining whether a specific field exists (#41)
-    - Added [default rule settings](dataway-sink.md#default-rule), i.e., requests that do not match existing分流 rules will be routed to the workspace corresponding to this default rule (#30)
+    - Filter conditions support [`nil` checks](../datakit/datakit-filter.md#nil), i.e., determining whether a specific field exists (#41)
+    - Added [default rule settings](dataway-sink.md#default-rule), which route requests not matching existing分流 rules to the corresponding workspace (#30)
 
 ---
 
 ## 1.5.0 (2024/07/05)
 
-### Functional Improvements
+### Feature Enhancements
 
-- Optimized installation script (#33)
+- Optimized installation scripts (#33)
 
 ### Compatibility Changes
 
-- The new version has removed direct support for Sinker configuration under host installation mode. This feature will be supported in a new way in the future.
+- Removed direct support for Sinker configuration in host installation mode. This feature will be supported through new methods in future versions.
 
 ---
 
 ## 1.4.1 (2024/06/19)
 
 - Fixed the missing `DW_ENABLE_TLS` issue in Kubernetes installation mode
-- Changed build image address
+- Changed the build image URL
 
 ---
 
 ## 1.4.0 (2024/05/15)
 
-- Added Datakit metering interface (#29)
-- Fixed a potential data loss issue with cache (#31)
-- Supported direct configuration of HTTP TLS certificates on the Dataway side (#32)
-- Increased exposure of more metrics
+- Added a Datakit metering interface (#29)
+- Fixed potential data loss issues in cache (#31)
+- Supported configuring HTTP TLS certificates directly on the Dataway side (#32)
+- Exposed more metrics
 
 ---
 
 ## 1.3.9 (2024/03/28)
 
-- When Sink discards requests, it now returns an HTTP `406 Not Acceptable` error to facilitate troubleshooting (#82)
+- When Sink discards requests, it now returns an HTTP `406 Not Acceptable` error to aid in troubleshooting (#82)
 
 ---
 
 ## 1.3.8 (2024/01/24)
 
-- Added exposure of more metrics
+- Exposed more metrics
 - Significantly improved Sinker rule matching performance (#26)
 
 ---
 
 ## 1.3.7 (2023/12/14)
 
-- Added exposure of more metrics
-- Optimized disk cache cleanup strategy, adhering to the principle of rapid consumption:
-    - Avoid data being actively discarded due to exceeding storage limits
-    - Send cached data as soon as possible
-- Increased observability related to oversized request discarding ([metrics/logs](dataway.md#too-large-request-body))
-- Adjusted [Dataway's own POD YAML](https://static.guance.com/dataway/dataway.yaml) to improve metric and log collection
+- Exposed more metrics
+- Optimized disk cache cleanup policies to adhere to the principle of consuming data as soon as possible:
+    - Avoid data being proactively discarded due to exceeding storage limits
+    - Send cached data as early as possible
+- Added observability for oversized request discards ([metrics/logs](dataway.md#too-large-request-body))
+- Adjusted [Dataway POD yaml](https://<<< custom_key.static_domain >>>/dataway/dataway.yaml), enhancing metric and log collection
 
 ---
 
@@ -105,36 +113,36 @@
 
 ## 1.3.5 (2023/09/13)
 
-- Supported injecting Dataway through [environment variables](dataway.md#img-envs) in Kubernetes
-- Released a new [dataway.yaml](https://static.guance.com/dataway/dataway.yaml){:target="_blank"}
+- Supports installing Dataway via [environment variables](dataway.md#img-envs) in Kubernetes
+- Released a new [dataway.yaml](https://<<< custom_key.static_domain >>>/dataway/dataway.yaml){:target="_blank"}
 
 ---
 
 ## 1.3.4 (2023/09/01)
 
-- Upgraded Golang to 1.9
-- Fixed the issue of no data for inner token
-- Adjusted the following configurations in the default configuration:
+- Upgraded Golang to version 1.9
+- Fixed the issue of no data for inner tokens
+- Default configurations were adjusted as follows:
     - Increased default API rate limiting to 100K
     - Increased default maximum Body size to 64MB
-    - Added HTTP timeout setting (from Dataway to center), default 30s
+    - Added HTTP timeout settings (from Dataway to central), defaulting to 30s
     - Added configuration to ignore TLS 509 errors
 
 ## 1.3.3 (2023/09/01)
 
-- Fixed the `curl` issue in the image packaging
+- Fixed the `curl` packaging issue in the image
 
 ---
 
 ## 1.3.2 (2023/08/30)
 
-- Added the `curl` command in the image to facilitate viewing self-metrics
+- Added the `curl` command to the image for easier viewing of internal metrics
 
 ---
 
 ## 1.3.1 (2023/08/28)
 
-- Added URL Sinker functionality
+- Added URL-based Sinker functionality
 
 ---
 
@@ -146,16 +154,16 @@
 
 ## 1.2.12 (2023/08/28)
 
-- Restructured CI release process to achieve dual-release of install scripts
+- Restructured the CI release process to achieve dual-release of install scripts
 
 ---
 
 ## 1.2.8 (2022/09/18)
 
-- Updated /v1/write interface:
+- /v1/write interface updates:
     - Removed redundant /v1/write/xxx APIs, added /v1/write/:category interface
-    - Write data no longer decodes line protocol but still reads the Body for signing
+    - Write operations no longer perform line protocol decoding but still read the Body for signing
 
 - Disk Cache:
-    - When cache cleanup fails to send to the center, added a pause consumption strategy until the current cached request is successfully sent before cleaning up the next cache
+    - When the central server fails during cache cleanup, added a pause strategy until the current cached request is successfully sent before cleaning up the next cache
     - Updated pbcache proto file

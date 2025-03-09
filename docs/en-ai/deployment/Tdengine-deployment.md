@@ -2,12 +2,12 @@
 
 ## 1. Introduction
 
-TDengine is a high-performance, distributed, SQL-supporting time series database (Database). Its core code, including cluster functionality, is entirely open-source (under the AGPL v3.0 license). TDengine is widely used in fields such as IoT, industrial internet, connected vehicles, IT operations, and finance. In addition to its core time series database (Database) functions, TDengine also provides caching, data subscription, stream processing, and other big data platform functionalities to minimize the complexity of development and operations.
+TDengine is a high-performance, distributed, SQL-supporting time series database (Database). Its core code, including cluster functionality, is fully open-source (under the AGPL v3.0 license). TDengine can be widely used in fields such as IoT, industrial internet, connected vehicles, IT operations, and finance. In addition to core time series database (Database) features, TDengine also provides caching, data subscription, stream computing, and other big data platform functionalities to minimize development and maintenance complexity.
 
 ## 2. Prerequisites
 
-- A Kubernetes cluster has been deployed.
-- The OpenEBS storage plugin driver has been deployed.
+- Kubernetes cluster has been deployed
+- OpenEBS storage plugin driver has been deployed
 
 ```shell
 root@k8s-node01 ]# kubectl get pods -n kube-system | grep openebs
@@ -24,11 +24,11 @@ Since TDengine consumes significant resources and requires exclusive use of clus
 
 ## 4. Cluster Label Configuration
 
-Execute commands to label the cluster nodes:
+Execute commands to label nodes in the cluster:
 
 ```shell
-# According to the cluster plan, label the k8s nodes that will deploy TDengine services. It is recommended to use three nodes.
-# Replace "xxx" with actual node names in the cluster, separated by spaces if multiple nodes are used.
+# According to cluster planning, label the k8s nodes that will deploy TDengine services. It is recommended to use three nodes.
+# xxx represents actual nodes in the cluster, multiple nodes are separated by spaces
 kubectl label nodes xxx tdengine=true
 ```
 
@@ -38,22 +38,22 @@ Check labels:
 kubectl get nodes --show-labels | grep 'tdengine'
 ```
 
-## 5. Taint Configuration for Cluster Nodes
+## 5. Cluster Taint Configuration
 
-Execute commands to set taints on the cluster nodes:
+Execute commands to set taints on the cluster:
 ???+ Tips "Tip"
-    If you have not planned to run TDengine services on dedicated nodes, you do not need to taint the nodes, and this step can be skipped.
+    If you have not planned for TDengine services to run on dedicated nodes, you do not need to apply taints to the nodes; this step can be skipped.
 
     ```shell
     kubectl taint node xxxx infrastructure=middleware:NoExecute
     ```
 
-## 6. Configure StorageClass
+## 6. Configure StorageClass 
 
-Configure a dedicated StorageClass for TDengine:
+Configure a dedicated StorageClass for TDengine
 
 ```yaml
-# Copy the following YAML content to the k8s cluster and save it as sc-td.yaml. Modify it according to your actual situation before deployment.
+# Copy the following YAML content into the k8s cluster and save it as sc-td.yaml. Modify according to actual conditions before deployment.
 apiVersion: storage.k8s.io/v1
 allowVolumeExpansion: true
 kind: StorageClass
@@ -72,7 +72,7 @@ volumeBindingMode: WaitForFirstConsumer
 
 > Ensure that the `/data/tdengine` directory has sufficient disk capacity.
 
-Configure storage space size:
+Configure storage size:
 
 ```shell
 volumeClaimTemplates:
@@ -84,7 +84,7 @@ volumeClaimTemplates:
       storageClassName: "openebs-tdengine"
       resources:
         requests:
-          storage: "50Gi"  ## Allocate data storage space based on actual needs.
+          storage: "50Gi"  ## Allocate data storage space according to actual needs.
   - metadata:
       name: taos-tdengine-taoslog
     spec:
@@ -93,19 +93,19 @@ volumeClaimTemplates:
       storageClassName: "openebs-tdengine"
       resources:
         requests:
-          storage: "1Gi"  ## Allocate log storage space based on actual needs.
+          storage: "1Gi"  ## Allocate log storage space according to actual needs.
 ```
 
 ## 7. Installation
 
 ```shell
-# Create a namespace
+# Create namespace
 kubectl create ns middleware
 # Deploy TDengine service
 kubectl apply -f /etc/kubeasz/guance/infrastructure/yaml/taos.yaml -n middleware
 ```
 
-## 8. Verification of Deployment and Configuration
+## 8. Verify Deployment and Configuration
 
 ### 8.1 Check Container Status
 
@@ -119,7 +119,7 @@ taos-tdengine-arbitrator-5bfd76b7bd-8jtmd                   1/1     Running   0 
 ???+ success "Verify TDengine Service Availability"
 
     ```shell
-    # After successful installation, use the following command to log in and verify
+    # After successful installation, use the following command to verify login.
 
     [root@ecs-788c ~]# kubectl exec -it -n middleware taos-tdengine-0 -- taos
 
@@ -166,17 +166,18 @@ taos-tdengine-arbitrator-5bfd76b7bd-8jtmd                   1/1     Running   0 
     monitor                  | writable  | 2022-11-03 08:52:13.219 | root                     |                          |
     root                     | super     | 2022-11-03 08:52:13.219 | root                     |                          |
     Query OK, 3 row(s) in set (0.000691s)
+
     ```
 
-### 8.3 Scale Up the Cluster
+### 8.3 Cluster Scaling
 ???+ note "Note"
-    Optional, determine whether scaling up is necessary based on resource planning.
+    Optional, determine whether scaling is needed based on resource planning.
     ```shell
 
     [root@ecs-788c ~]# kubectl scale --replicas=3 -n middleware statefulset taos-tdengine
     statefulset.apps/taos-tdengine scaled
     ```
-    ???+ success "Verification of Successful Scaling"
+    ???+ success "Verification After Scaling"
         ```shell
         [root@ecs-788c ~]# kubectl exec -it -n middleware taos-tdengine-0 -- taos -uroot
 
@@ -229,34 +230,34 @@ taos-tdengine-arbitrator-5bfd76b7bd-8jtmd                   1/1     Running   0 
 
 ### 8.4 User Management
 
-System administrators can add, delete users, or modify passwords via the CLI interface. The SQL syntax in the CLI is as follows:
+System administrators can add, delete users, and modify passwords via the CLI interface. The SQL syntax in the CLI is as follows:
 
 ```sql
 CREATE USER <user_name> PASS <'password'>;
 ```
 
-Create a user with a specified username and password. The password should be enclosed in single quotes, which are English half-width characters.
+Create a user with a specified username and password. The password should be enclosed in single quotes, which must be ASCII single quotes.
 
 ```sql
 DROP USER <user_name>;
 ```
 
-Delete a user; only available to the root user.
+Delete a user; this operation is limited to the root user.
 
 ```sql
 ALTER USER <user_name> PASS <'password'>;
 ```
 
-Change the user's password. To avoid conversion to lowercase, the password should be enclosed in single quotes, which are English half-width characters.
+Modify the user's password. To avoid case conversion, the password should be enclosed in single quotes, which must be ASCII single quotes.
 
 ```sql
 ALTER USER <user_name> PRIVILEGE <write|read>;
 ```
 
-Change the user's privileges to either `write` or `read`. Do not enclose these terms in single quotes.
+Change the user's privileges to either write or read. Do not enclose these terms in quotes.
 
 ???+ info "Note"
-    There are three levels of permissions within the system: `super`, `write`, and `read`. However, currently, the `super` permission cannot be granted to users using the `alter` command.
+    The system supports three levels of privileges: super, write, and read. However, it currently does not allow assigning super privileges to users using the ALTER command.
 
 ```sql
 SHOW USERS;
@@ -264,7 +265,7 @@ SHOW USERS;
 
 Display all users.
 
-In SQL syntax, `< >` indicates parts that require user input, but do not include the `< >` symbols themselves.
+In SQL syntax, `< >` indicates parts that require user input but do not include the `< >` symbols themselves.
 
 #### 8.4.1 Account Management
 
@@ -273,14 +274,12 @@ In SQL syntax, `< >` indicates parts that require user input, but do not include
 taos> CREATE USER zhuyun PASS 'dfjdljf12341@3$';
 Query OK, 0 of 0 row(s) in database (0.002040s)
 
-# Change account privileges
+# Modify account privileges
 taos> ALTER USER zhuyun PRIVILEGE write;
 
-# Change account password
+# Modify account password
 taos> ALTER USER zhuyun PASS 'hjdkaGHJH123#';
 Query OK, 0 of 0 row(s) in database (0.001996s)
-
-
 ```
 
 #### 8.4.2 Verify User

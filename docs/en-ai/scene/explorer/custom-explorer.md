@@ -1,24 +1,24 @@
 # Quick Setup of Custom Explorer
 ---
 
-The Explorer serves as a crucial tool for data observability, enabling us to quickly pinpoint issues through search and filtering methods. Guance supports the creation of **custom Explorers within specific scenarios** in addition to its existing Explorers.
+The Explorer, as an important tool for observability, supports us in quickly locating issues through search, filtering, and other methods. <<< custom_key.brand_name >>>, based on the existing Explorer, **supports creating custom Explorers within scenes**.
 
-Custom Explorers feature a unified layout, responsive configuration mode, and more scientific data association settings. You can experience the following functionalities within a custom Explorer:
+Custom Explorers adopt a brand-new unified layout, responsive configuration mode, and more scientific data association settings. You can experience the following features in a custom Explorer:
 
-- Multiple customizable chart display settings;
+- Multiple custom chart display settings;
 - Custom quick filter fields;
-- Custom default columns for lists;
-- Binding associated built-in views.
+- Custom default columns for list display;
+- Binding with associated built-in views.
 
 ## Getting Started
 
-1. Navigate to the **Scenario > Explorer** page and click **New Explorer** to enter the creation page.
+1. Navigate to the **Scene > Explorer** page, click **Create**, and enter the creation page.
 
-**Note**: If you set up indexes under **Logs > Index**, you can select different log contents corresponding to various indexes in the custom Explorer.
+**Note**: If you set indexes under **Logs > Index**, you can choose different log contents corresponding to various indexes in the custom Explorer.
 
-![Explorer setup](../../img/1111.png)
+<img src="../../img/1111.png" width="60%" >
 
-> For more details, refer to [Log Indexing](../../logs/multi-index/index.md).
+> For more details, refer to [Log Index](../../logs/multi-index/index.md).
 
 2. Configure charts:
 
@@ -38,17 +38,20 @@ Click the **List** edit button to update the default display fields and aliases.
 
 ![](../img/4444.gif)
 
-5. After creation, view your new Explorer in the Explorer list.
+5. After creation, view your Explorer from the Explorer list.
 
-In non-edit mode, hover over **Data Range** to view all filter conditions.
+In non-edit mode, hover over the **Data Range** to view all filter conditions.
 
-![Data range](../../img/range.png)
+<img src="../../img/range.png" width="60%" >
 
 ## Further Reading
 
+<font size=3>
+
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Customize Your Viewing Needs with Custom Log Explorers</font>](./index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Customize Your Viewing Needs with Custom Log Explorer</font>](./index.md)
+
 
 </div>
 
@@ -56,4 +59,8 @@ In non-edit mode, hover over **Data Range** to view all filter conditions.
 
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; How to Bind Built-in Views</font>](../built-in-view/bind-view.md)
 
+
 </div>
+
+
+</font>

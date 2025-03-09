@@ -1,4 +1,4 @@
-# 【Custom Mapping Rules】Mapping Configuration List
+# [Custom Mapping Rules] Mapping Configuration List
 
 ---
 
@@ -12,12 +12,12 @@
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| search | string | No  | Search, default search role name, source field name and source field value<br>Example: supper_workspace <br>Can be empty: False <br> |
+|:-------------------|:-------|:-------|:----------------|
+| search | string | No  | Search, default searches role name, source field name, and source field value<br>Example: supper_workspace <br>Can be empty: False <br> |
 | pageIndex | integer | No  | Page number<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize | integer | No  | Number of items returned per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| pageSize | integer | No  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

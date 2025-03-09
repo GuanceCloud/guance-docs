@@ -4,11 +4,11 @@
 
 ## Software Overview
 
-InfluxDB is an open-source distributed time-series and metrics database, written in Go.
+InfluxDB is an open-source distributed time-series and metrics database written in Go.
 
 ## Industry Position
 
-InfluxDB consistently holds the top position, with the latest time-series database rankings showing InfluxDB leading the second-place Kdb+ by a margin equivalent to three Prometheus distances.
+InfluxDB consistently holds the top position, leaving its closest competitor Kdb+ far behind by a margin of three Prometheus distances in the latest time-series database rankings.
 
 ![image.png](../images/influxdb-descr-1.png)
 
@@ -17,14 +17,14 @@ InfluxDB consistently holds the top position, with the latest time-series databa
 - **Database**: Database
 
 - **Measurement**: Data table, analogous to a table in MySQL.
-- **Field**: Key-value pairs that record actual data in InfluxDB (mandatory, not indexed).
+- **Field**: Key-value pairs that record actual data in InfluxDB (mandatory and not indexed).
 - **Field Set**: A collection of Field key-value pairs.
-   - **Field Key**: The key part of the Field key-value pair.
-   - **Field Value**: The value part of the Field key-value pair (the actual data).
-- **Tag**: Key-value pairs used to describe Fields (optional, indexed).
+   - **Field Key**: The key in the Field key-value pair.
+   - **Field Value**: The value in the Field key-value pair (the actual data).
+- **Tag**: Key-value pairs used to describe Fields (optional but indexed).
 - **Tag Set**: A collection of Tag key-value pairs.
-   - **Tag Key**: The key part of the Tag key-value pair.
-   - **Tag Value**: The value part of the Tag key-value pair.
+   - **Tag Key**: The key in the Tag key-value pair.
+   - **Tag Value**: The value in the Tag key-value pair.
 - **Timestamp**: The date and time associated with a data point.
 
 ## Advanced Concepts
@@ -35,21 +35,21 @@ InfluxDB consistently holds the top position, with the latest time-series databa
 
 | **Series Number** | **Retention Policy** | **Measurement** | **Tag Set** |
 | --- | --- | --- | --- |
-| Time Series 1 | autogen | Weather | Province=Zhejiang, City=Wenzhou |
-| Time Series 2 | autogen | Weather | Province=Zhejiang, City=Shaoxing |
-| Time Series 3 | autogen | Weather | Province=Jiangsu, City=Changzhou |
-| Time Series 4 | autogen | Weather | Province=Jiangsu, City=Wuxi |
+| Series 1 | autogen | Weather | province=Zhejiang, city=Wenzhou |
+| Series 2 | autogen | Weather | province=Zhejiang, city=Shaoxing |
+| Series 3 | autogen | Weather | province=Jiangsu, city=Changzhou |
+| Series 4 | autogen | Weather | province=Jiangsu, city=Wuxi |
 
-- **Point**: A set of Fields with the same Timestamp within a Series, which can be understood as a row of data in a table.
+- **Point**: A set of Field Sets with the same Timestamp within a Series, which can also be understood as a row in a table.
 
 | **Timestamp** | **Measurement** | **Tag Set** | **Field Set** |
 | --- | --- | --- | --- |
-| 2021-12-12T00:00:00Z | Disk | Host=a, Path=/ | Free = 40836976, Used = 20836976 |
+| 2021-12-12T00:00:00Z | disk | host=a, path=/ | free = 40836976, used = 20836976 |
 
 - **Line Protocol**: A text format for writing data points into InfluxDB.
 
 ```
-# Converting the above Point into Line Protocol
+# Convert the above Point to Line Protocol
 disk,host=a,path=/ free=40836976,used=20836976 1639238400000000000
 ```
 
@@ -57,7 +57,7 @@ disk,host=a,path=/ free=40836976,used=20836976 1639238400000000000
 
 ### 1. Software Installation
 
-Add the Influxdata yum repository
+Add the Influxdata yum repository:
 
 ```
 cat <<EOF | tee /etc/yum.repos.d/influxdb.repo
@@ -69,15 +69,11 @@ gpgcheck = 1
 gpgkey = https://repos.influxdata.com/influxdb.key
 EOF
 ```
-
-Install Telegraf / InfluxDB
-
+Install Telegraf / InfluxDB:
 ```
 yum -y install telegraf influxdb
 ```
-
-Start the software
-
+Start the services:
 ```
 systemctl start influxdb
 systemctl start telegraf
@@ -85,20 +81,20 @@ systemctl start telegraf
 
 ### 2. Data Query
 
-Since it's a local installation, use the `influx` command to directly enter the database (for more parameters, see `influx -h`).
+Since it's a local installation, use the `influx` command to directly enter the database (see more parameters with `influx -h`):
 
 ```
 influx
 ```
 
-Select the `telegraf` database and query data using the `select` command (query language is InfluxQL).
+Select the `telegraf` database and query data using the `select` command (query language is InfluxQL):
 
 ```
 use telegraf
 select * from system limit 3
 ```
 
-The image shows 3 Points, each composed of 4 parts (measurement, timestamp, tag set, field set).
+The image shows 3 Points, each composed of four parts (measurement, timestamp, tag set, field set).
 
 ![image.png](../images/influxdb-descr-2.png)
 
@@ -120,13 +116,13 @@ The image shows 3 Points, each composed of 4 parts (measurement, timestamp, tag 
 
 ### 3. Viewing Time Series
 
-Use the `show series` command to view time series.
+Use the `show series` command to view time series:
 
 ```
 show series from cpu
 ```
 
-You can see that the time series for the measurement `cpu` has 5 entries (cpu-total, cpu0, cpu1, cpu2, cpu3, all hosts are the same).
+You can see that there are 5 time series for the measurement `cpu` (cpu-total, cpu0, cpu1, cpu2, cpu3, all with the same host).
 
 ![image.png](../images/influxdb-descr-3.png)
 
@@ -134,7 +130,7 @@ You can see that the time series for the measurement `cpu` has 5 entries (cpu-to
 
 #### 4.1 Adding `inputs.tags` (Plugin Tags)
 
-Edit the main configuration file `/etc/telegraf/telegraf.conf` to add `inputs.cpu.tags`.
+Edit the main configuration file `/etc/telegraf/telegraf.conf` and add `inputs.cpu.tags`:
 
 ```
 [[inputs.cpu]]
@@ -146,85 +142,79 @@ Edit the main configuration file `/etc/telegraf/telegraf.conf` to add `inputs.cp
   cloud = 'aliyun'
 ```
 
-Restart Telegraf
-
+Restart Telegraf:
 ```
 systemctl restart telegraf
 ```
 
-Use the `show series` command to view the time series.
-
+Use the `show series` command to view time series:
 ```
 show series from cpu
 ```
 
-You can see that the time series for the measurement `cpu` increases from 5 to 10 entries.
+You can see that the number of time series for the measurement `cpu` has increased from 5 to 10.
 
 ![image.png](../images/influxdb-descr-4.png)
 
 #### 4.2 Deleting a Measurement
 
-Use the `drop` command to delete a measurement.
+Use the `drop` command to delete a measurement:
 
 ```
 drop measurement cpu
 ```
 
-Use the `show series` command again to view the time series.
-
+Use the `show series` command again to view time series:
 ```
 show series from cpu
 ```
 
-You can see that the time series for the measurement `cpu` returns to 5 entries (cpu-total, cpu0, cpu1, cpu2, cpu3, all hosts/clouds are the same).
+You can see that the number of time series for the measurement `cpu` has returned to 5 (cpu-total, cpu0, cpu1, cpu2, cpu3, with the same host/cloud).
 
 ![image.png](../images/influxdb-descr-5.png)
 
 #### 4.3 Adding `global_tags` (Global Tags)
 
-Edit the main configuration file `/etc/telegraf/telegraf.conf` to add `global_tags`.
+Edit the main configuration file `/etc/telegraf/telegraf.conf` and add `global_tags`:
 
 ```
 [global_tags]
   user = 'admin'
 ```
 
-Restart Telegraf
-
+Restart Telegraf:
 ```
 systemctl restart telegraf
 ```
 
-Use the `show series` command to view the time series.
-
+Use the `show series` command to view time series:
 ```
 show series from cpu
 ```
 
-You can see that the time series for the measurement `cpu` increases from 5 to 10 entries again.
+You can see that the number of time series for the measurement `cpu` has increased from 5 to 10 again.
 
 ![image.png](../images/influxdb-descr-6.png)
 
-Use the `show series` command to view the time series for other measurements.
-
+Use the `show series` command to view time series for other measurements:
 ```
 show series from mem
 ```
 
-You can see that the time series for the measurement `mem` increases from 1 to 2 entries.
+You can see that the number of time series for the measurement `mem` has increased from 1 to 2.
 
 ![image.png](../images/influxdb-descr-7.png)
 
 ## Simple Analysis
 
-- **Retention Policy** remains unchanged:
-   - Using plugin tags doubles the number of time series for that measurement.
-   - Using global tags doubles the number of time series for that database.
-   - If the measurement also remains unchanged, more tag combinations result in more time series.
+- **Retention Policy**
+   - Using plugin tags will double the number of time series for that measurement.
+   - Using global tags will double the number of time series for that database.
+   - If the measurement remains unchanged, the more combinations of tags, the more time series.
 
-- **Measurement**:
-   - Once deleted, all time series under that measurement are cleared.
+- **Measurement**
+   - Once deleted, all time series under that measurement will be cleared.
 
-- **Tag**:
+- **Tag**
    - Typically enumerable, such as hostname, status.
-   - Should not be random values like container IDs or source IPs, as this can lead to a large number of time series.
+   - Should not be random numbers; otherwise, it can lead to a large number of time series, such as container IDs, source IPs.

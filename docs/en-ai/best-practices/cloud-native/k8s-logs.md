@@ -4,26 +4,26 @@
 
 ## Introduction
 
-For enterprise application systems, logs are of critical importance, especially in a Kubernetes environment where log collection becomes more complex. Therefore, DataKit provides robust support for log collection, accommodating multiple environments and technology stacks. The following sections will provide a detailed explanation of how to use DataKit for log collection.
+For enterprise application systems, logs are very important, especially in a Kubernetes environment where log collection becomes more complex. Therefore, DataKit provides robust support for log collection, supporting multiple environments and various technology stacks. Next, we will provide a detailed explanation of how to use DataKit for log collection.
 
 ## Prerequisites
 
-Log in to [Guance](https://console.guance.com/), navigate to 【Integration】->【Datakit】->【Kubernetes】, and follow the instructions to install DataKit in your Kubernetes cluster. The `datakit.yaml` file used for deployment will be referenced in subsequent operations.
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), navigate to 【Integration】->【DataKit】-> 【Kubernetes】, and follow the instructions to install DataKit in your Kubernetes cluster. The `datakit.yaml` file used for deployment will be referenced in subsequent operations.
 
 ## Advanced DataKit Configuration
 
 ### 1 Setting Log Levels
 
-By default, DataKit's log level is set to Info. If you need to change it to Debug, add an environment variable in the `datakit.yaml` file.
-	
+The default log level for DataKit is Info. If you need to change the log level to Debug, add an environment variable in the `datakit.yaml`.
+
 ```yaml
         - name: ENV_LOG_LEVEL
           value: debug
 ```
 
-### 2 Configuring Log Output
+### 2 Setting Log Output Methods
 
-By default, DataKit outputs logs to `/var/log/datakit/gin.log` and `/var/log/datakit/log`. If you do not want to generate log files inside the container, add the following environment variables in the `datakit.yaml` file.
+By default, DataKit outputs logs to `/var/log/datakit/gin.log` and `/var/log/datakit/log`. If you do not want to generate log files within the container, add the following environment variables in the `datakit.yaml`.
 
 ```yaml
     - name: ENV_LOG
@@ -31,37 +31,38 @@ By default, DataKit outputs logs to `/var/log/datakit/gin.log` and `/var/log/dat
     - name: ENV_GIN_LOG
       value: stdout     
 ```
+
 You can view DataKit-generated logs using the `kubectl` command with the POD name.
 
 ```shell
 kubectl logs datakit-2fnrz -n datakit # 
 ```
 
-**Note**: After setting `ENV_LOG_LEVEL` to `debug`, a large volume of logs will be generated. It is not recommended to set `ENV_LOG` to `stdout` in this case.
+**Note**: After setting `ENV_LOG_LEVEL` to `debug`, a large amount of logs will be generated. It is not recommended to set `ENV_LOG` to `stdout` at this time.
 
 ## Log Collection
 
-### 1 Collecting stdout Logs 
+### 1 Collecting stdout Logs
 
 #### 1.1 Full Collection of stdout Logs
 
-DataKit can collect logs output to stdout from containers. By default, the container collector is enabled when deploying DataKit using `datakit.yaml`.
+DataKit can collect logs output to stdout from containers. By deploying DataKit using `datakit.yaml`, the container collector is enabled by default.
 
 ```yaml
         - name: ENV_DEFAULT_ENABLED_INPUTS
           value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container
 ```
 
-This creates the configuration file `/usr/local/datakit/conf.d/container/container.conf` within the DataKit container. By default, it collects all stdout logs except those from images starting with `pubrepo.jiagouyun.com/datakit/logfwd`.
+This creates a configuration file `/usr/local/datakit/conf.d/container/container.conf` inside the DataKit container. By default, it collects all stdout logs except those from images starting with `pubrepo.jiagouyun.com/datakit/logfwd`.
 
 ```toml
-  container_include_log = []  # equivalent to image:*
+  container_include_log = []  # Equivalent to image:*
   container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*"]
 ```
 
 #### 1.2 Customized stdout Log Collection
 
-To better distinguish log sources, add tags and specify log slicing pipeline files. This requires customizing the deployment YAML file by adding annotations.
+To better distinguish log sources and specify log parsing pipelines, annotations should be added to the deployment YAML file.
 
 ```yaml
 apiVersion: apps/v1
@@ -92,18 +93,18 @@ spec:
           ]
 ```
 
-Annotations Parameter Explanation:
+Annotation Parameter Explanation:
 
 - source: Data source
-- service: Tag identifier
+- service: Tag marker
 - pipeline: Pipeline script name
 - ignore_status: 
-- multiline_match: Regular expression to match a line of log, e.g., lines starting with a date (like 2021-11-26) are considered one log entry, while subsequent lines without this date are part of the previous log.
+- multiline_match: Regular expression to match a line of log, e.g., logs starting with a date (like 2021-11-26) are considered one log entry; lines not starting with this date are part of the previous log.
 - remove_ansi_escape_codes: Whether to remove ANSI escape codes, such as text colors in standard output.
 
 #### 1.3 Not Collecting Container stdout Logs
 
-If the container collector is enabled, it will automatically collect logs output to stdout. To prevent collecting certain logs, you can use the following methods.
+If the container collector is enabled, it will automatically collect logs output to stdout. For logs you do not wish to collect, there are several methods.
 
 ##### 1.3.1 Disable stdout Log Collection for a POD
 
@@ -132,15 +133,15 @@ spec:
 
 ##### 1.3.2 Redirect Standard Output
 
-If stdout log collection is enabled and the container also outputs logs to stdout, but you do not want to modify either, you can change the startup command to redirect standard output.
+If stdout log collection is enabled and the container's logs are also output to stdout, but you do not want to modify either, you can redirect standard output by modifying the startup command.
 
 ```shell
 java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 > /dev/null
 ```
 
-##### 1.3.3 Using Container Collector Filtering
+##### 1.3.3 Filtering Functionality of the Container Collector
 
-For better control over stdout log collection, consider rewriting the `container.conf` file using a ConfigMap to define `container.conf`, modifying `container_include_log` and `container_exclude_log` values, and mounting it to DataKit. Modify `datakit.yaml` as follows:
+To control stdout log collection more conveniently, consider rewriting the `container.conf` file using a ConfigMap to define `container.conf`. Modify `container_include_log` and `container_exclude_log` values and mount them into DataKit. Modify `datakit.yaml` as follows:
 
 ```yaml
 ---
@@ -191,25 +192,26 @@ data:
           subPath: container.conf
 ```
 
-- `container_include` and `container_exclude` must start with `image`, formatted as `"image:<glob pattern>"`, indicating that the glob pattern applies to container images.
-- [Glob Pattern](https://en.wikipedia.org/wiki/Glob_(programming)) is a lightweight regular expression supporting `*` and `?` for basic matching.
+- `container_include` and `container_exclude` must start with `image`, formatted as `"image:<glob rule>"`, indicating that the glob rules apply to container images.
+- [Glob Rules](https://en.wikipedia.org/wiki/Glob_(programming)) are lightweight regular expressions supporting `*`, `?`, etc.
 
 For example, if you only want to collect logs from images containing `log-order` but not `log-pay`, configure as follows.
 
 ```bash
         container_include_log = ["image:*log-order*"]
         container_exclude_log = ["image:*log-pay*"]
+
 ```
 
-**Note**: If a POD has stdout log collection enabled, avoid using `logfwd` or socket log collection to prevent duplicate log collection.
+**Note**: If a POD has enabled stdout log collection, do not use `logfwd` or socket log collection to avoid duplicate log collection.
 
-### 2 logfwd Collection
+### 2 Logfwd Collection
 
-This method uses the Sidecar pattern for log collection, leveraging shared storage within the same POD to allow logfwd to read business container logs and send them to DataKit. For specific usage, refer to the [Best Practices for Pod Log Collection](../pod-log) Solution 2.
+This method uses the Sidecar pattern for log collection, leveraging shared storage within the same POD. Logfwd reads the business container's log files in Sidecar mode and sends them to DataKit. For specific usage, refer to the [Pod Log Collection Best Practices](../pod-log) Solution Two.
 
 ### 3 Socket Collection
 
-DataKit opens a Socket port, such as 9542, to which logs are pushed. Java's log4j and logback support log pushing. Below is an example of implementing socket log collection with SpringBoot integrated with Logback.
+DataKit opens a Socket port like 9542, and logs are pushed to this port. Java's log4j and logback support log pushing. Below is an example using SpringBoot with Logback for socket log collection.
 
 #### 3.1 Adding Appender
 
@@ -223,7 +225,7 @@ Add a socket Appender in the `logback-spring.xml` file.
     <springProperty scope="context" name="dkSocketPort" source="datakit.socket.port" />
     <contextName>logback</contextName>
 
-    <!-- Root log directory -->
+    <!-- Log root directory -->
     <property name="log.path" value="./logs"/>
     <!-- Log output format -->
     <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] -  - %msg%n" />
@@ -272,7 +274,7 @@ Add a socket Appender in the `logback-spring.xml` file.
 
 #### 3.2 Adding Configuration
 
-Add the configuration in the `application.yml` file of the SpringBoot project.
+Add configuration in the `application.yml` file of the SpringBoot project.
 
 ```toml
 datakit:
@@ -293,9 +295,9 @@ Add dependencies in the `pom.xml` file of the SpringBoot project.
 </dependency>
 ```
 
-#### 3.4 Adding logging-socket.conf File to DataKit
+#### 3.4 Adding logging-socket.conf File in DataKit
 
-In the `datakit.yaml` file of DataKit:
+In the `datakit.yaml` file of DataKit,
 
 ```yaml
         volumeMounts:  # Add the following three lines here
@@ -331,18 +333,18 @@ data:
         # more_tag = "some_other_value"
 ```
 
-For more information on Socket log collection, refer to the [Best Practices for logback Socket Log Collection](../logback-socket).
+For more details on Socket log collection, refer to the [Logback Socket Log Collection Best Practices](../logback-socket).
 
-### 4 File Log Collection
+### 4 Log File Collection
 
-On Linux hosts, DataKit collects logs by copying the `logging.conf` file and modifying the `logfiles` value in the `logging.conf` file to the absolute path of the log.
+On Linux hosts, DataKit installed on the host collects logs by copying the `logging.conf` file and modifying the `logfiles` value in `logging.conf` to the absolute path of the log files.
 
 ```shell
 cd /usr/local/datakit/conf.d/log
 cp logging.conf.sample  logging.conf
 ```
 
-In a Kubernetes environment, first mount the log directory `/data/app/logs/demo-system` of the Pod to the host's `/var/log/k8s/demo-system`, then deploy DataKit using DaemonSet and mount the `/var/log/k8s/demo-system` directory. This allows DataKit to collect the log file `/rootfs/var/log/k8s/demo-system/info.log` from the host.
+In a Kubernetes environment, mount the Pod's log directory `/data/app/logs/demo-system` to the host's `/var/log/k8s/demo-system`, then deploy DataKit using DaemonSet, mounting `/var/log/k8s/demo-system`. This allows DataKit to collect the `/rootfs/var/log/k8s/demo-system/info.log` log file from the host.
 
 ```yaml
         volumeMounts:
@@ -406,33 +408,33 @@ data:
           # more_tag = "some_other_value" 
 ```
 
-**Note**: Since Guance already collects and persists logs, there is no need to persist logs to the host disk in a Kubernetes environment. Therefore, this collection method is not recommended.
+**Note**: Since <<< custom_key.brand_name >>> already collects and persists logs, it is unnecessary to persist logs to the host in a Kubernetes environment. Therefore, this collection method is not recommended.
 
 ## Pipeline
 
-[Pipeline](pipeline) is primarily used to parse unstructured text data or extract information from structured text (such as JSON). For logs, it mainly extracts log generation time, log level, etc. Note that logs collected via Socket are in JSON format and need to be parsed before searching by keyword. For more details on Pipeline usage, see the articles below.
+[Pipeline](pipeline) is mainly used to parse unstructured text data or extract information from structured text (such as JSON). For logs, it primarily extracts log generation times, log levels, etc. Note that logs collected via Socket are in JSON format and need to be parsed before they can be searched using keywords in the search box. For more details on Pipeline usage, refer to the following articles.
 
-- [Best Practices for Pod Log Collection](../pod-log)
-- [Best Practices for logback Socket Log Collection](../logback-socket)
-- [RUM-APM-LOG Joint Analysis for Kubernetes Applications](../k8s-rum-apm-log)
+- [Pod Log Collection Best Practices](../pod-log)
+- [Logback Socket Log Collection Best Practices](../logback-socket)
+- [RUM-APM-LOG Correlated Analysis for Kubernetes Applications](../k8s-rum-apm-log)
 
 ## Anomaly Detection
 
-When logs contain anomalies that significantly impact applications, using Guance's log anomaly detection feature and configuring alerts can promptly notify the monitoring objects. Guance supports email, DingTalk, SMS, Enterprise WeChat, Feishu, and other notification methods. Below is an example using email for alerts.
+When logs indicate anomalies that significantly impact applications, using <<< custom_key.brand_name >>>'s anomaly detection feature for logs and configuring alerts can promptly notify monitoring objects. <<< custom_key.brand_name >>> supports notification methods including email, DingTalk, SMS, WeCom, Lark, etc. Below is an example using email for alerts.
 
 ### 1 Creating Notification Targets
 
-Log in to [Guance](https://console.guance.com/), navigate to 【Management】->【Notification Targets Management】->【Create New Notification Target】, select Email Group, and input the name and email address.<br />
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), navigate to 【Manage】->【Notification Targets Management】-> 【Create Notification Target】, select Email Group, and input the name and email address.<br />
 
 ![image](../images/k8s-logs/1.png)	
 
 ### 2 Creating a Monitor
 
-Click 【Monitoring】->【Create New Monitor】->【Log Monitoring】.<br />
+Click 【Monitoring】->【Create Monitor】-> 【Log Monitoring】.<br />
 
 ![image](../images/k8s-logs/2.png)	
 
-Input the rule name; `log_fwd_demo` is the source configured during log collection, and `error` is the content included in the log. `host_ip` is a log label that can be used in event content to output the specific label value. Set the trigger condition to 1, and the title and content will be sent via email. Click 【Save】 after filling out the form.<br />
+Input the rule name. The detection metric `log_fwd_demo` is configured during log collection. The subsequent `error` is the content included in the log, and `host_ip` is a log label. In the event content, you can use `{host_ip}` to output the specific label value. Set the trigger condition to 1, and the title and content will be sent via email. Click 【Save】 after completing the fields.<br />
 
 ![image](../images/k8s-logs/3.png)	
 
@@ -440,7 +442,7 @@ Input the rule name; `log_fwd_demo` is the source configured during log collecti
 
 ### 3 Configuring Alerts
 
-In the 【Monitors】interface, click on the newly created monitor and then click 【Alert Configuration】.<br />
+In the 【Monitors】 interface, click on the newly created monitor and then click 【Alert Configuration】.<br />
 
 ![image](../images/k8s-logs/5.png)	
 

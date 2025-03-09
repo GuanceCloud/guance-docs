@@ -32,7 +32,7 @@ Operating system requirements:
 
 ### Collector Configuration {#input-config}
 
-Navigate to the `conf.d/iis` directory under the DataKit installation directory, copy `iis.conf.sample`, and rename it to `iis.conf`. Example configuration:
+Navigate to the `conf.d/iis` directory under the DataKit installation directory, copy `iis.conf.sample` and rename it to `iis.conf`. Example:
 
 ```toml
 
@@ -52,9 +52,9 @@ Navigate to the `conf.d/iis` directory under the DataKit installation directory,
  
 ```
 
-After configuring, restart DataKit.
+After configuration, restart DataKit.
 
-By default, all collected data will append a global tag named `host` (tag value is the hostname where DataKit resides). You can also specify additional tags in the configuration using `[inputs.iis.tags]`:
+By default, all collected data will append a global tag named `host` (the value of this tag is the hostname where DataKit resides), or you can specify other tags via `[inputs.iis.tags]` in the configuration:
 
 ``` toml
 [inputs.iis.tags]
@@ -77,7 +77,7 @@ By default, all collected data will append a global tag named `host` (tag value 
 
 | Tag | Description |
 |  ----  | --------|
-|`app_pool`|IIS application pool|
+|`app_pool`|IIS app pool|
 |`host`|Host name|
 
 - Metrics List
@@ -136,7 +136,7 @@ By default, all collected data will append a global tag named `host` (tag value 
 
 
 
-## Logs {#logging}
+## Logging {#logging}
 
 To collect IIS logs, enable the log-related configuration, for example:
 

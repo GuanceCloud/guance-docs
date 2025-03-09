@@ -5,13 +5,13 @@
 - Supported Operating Systems: windows/amd64, windows/386, linux/arm, linux/arm64, linux/386, linux/amd64
 
 ## Configuration Description
-Enter the default installation directory `/usr/local/scheck`, open the configuration file `scheck.conf`. The configuration file uses the [TOML](https://toml.io/en/) format, as described below:
+Enter the default installation directory `/usr/local/scheck`, open the configuration file `scheck.conf`. The configuration file uses [TOML](https://toml.io/en/) format, as described below:
 
 ```toml
 [system]
-  # ##(Required) Directory where system stores detection scripts
+  # ##(Required) Directory where the system stores detection scripts
   rule_dir = "/usr/local/scheck/rules.d"
-  # ##Customer-defined directory
+  # ##Custom directory
   custom_dir = "/usr/local/scheck/custom.rules.d"
   # Hot update
   lua_HotUpdate = false
@@ -28,7 +28,7 @@ Enter the default installation directory `/usr/local/scheck`, open the configura
     enable = true
     output = "http://127.0.0.1:9529/v1/write/security"
   [scoutput.log]
-    # ##Can configure local storage
+    # ##Local storage can be configured
     enable = false
     output = "/var/log/scheck/event.log"
   # Alibaba Cloud Log Service
@@ -47,7 +47,7 @@ Enter the default installation directory `/usr/local/scheck`, open the configura
   rotate = 0
 
 [cgroup]
-    # Optional, disabled by default, can control CPU and memory
+    # Optional, default is disabled; can control CPU and memory
   enable = false
   cpu_max = 30.0
   cpu_min = 5.0
@@ -58,9 +58,9 @@ Enter the default installation directory `/usr/local/scheck`, open the configura
 
 ```toml
 [system]
-  # ##(Required) Directory where system stores detection scripts
+  # ##(Required) Directory where the system stores detection scripts
   rule_dir = "/usr/local/scheck/rules.d"
-  # ##Customer-defined directory
+  # ##Custom directory
   custom_dir = "/usr/local/scheck/custom.rules.d"
   # Hot update
   lua_HotUpdate = ""
@@ -73,12 +73,12 @@ Enter the default installation directory `/usr/local/scheck`, open the configura
 
 | Parameter Name      | Type  | Description                          |
 | :------------------ | :---: | ------------------------------------ |
-| rule_dir            | string | Directory where system stores detection scripts        |
-| custom_dir          | string | Customer-defined directory                |
+| rule_dir            | string | Directory where the system stores detection scripts        |
+| custom_dir          | string | Custom directory                |
 | lua_HotUpdate       | bool   | Hot update, supports loading Lua scripts every 10 seconds |
-| cron                | string | Forces all scheduled times              |
+| cron                | string | Enforces all scheduled times              |
 | disable_log         | bool   | Whether to disable logging                  |
-| system_rule_black_list | array  | Disable system rules (supports regex) ["all","0100*"]                 |
+| system_rule_black_list | array | Whether to disable system rules (supports regex) ["all","0100*"]                 |
 
 ### Scoutput Module
 
@@ -90,7 +90,7 @@ Enter the default installation directory `/usr/local/scheck`, open the configura
     enable = true
     output = "http://127.0.0.1:9529/v1/write/security"
   [scoutput.log]
-    # ##Can configure local storage
+    # ##Local storage can be configured
     enable = false
     output = "/var/log/scheck/event.log"
   # Alibaba Cloud Log Service
@@ -105,19 +105,19 @@ Enter the default installation directory `/usr/local/scheck`, open the configura
 
 | Parameter Name          | Type  | Description                   |
 | ----------------------- | :---: | ----------------------------- |
-| scoutput.http           |       | HTTP output module            |
-| enable                  | bool  | Whether to enable             |
-| output                  | string | DataKit API address           |
-| scoutput.log            |       |                               |
-| enable                  | bool  | Whether to enable             |
-| output                  | string | File path                     |
-| scoutput.alisls         |       |                               |
-| enable                  | bool  | Whether to enable             |
-| endpoint                | string | Alibaba Cloud region          |
+| scoutput.http           |       | HTTP output module          |
+| enable                  | bool  | Whether to enable               |
+| output                  | string | DataKit API address       |
+| scoutput.log            |       |                        |
+| enable                  | bool  | Whether to enable               |
+| output                  | string | File path               |
+| scoutput.alisls         |       |                        |
+| enable                  | bool  | Whether to enable               |
+| endpoint                | string | Alibaba Cloud region             |
 | access_key_id           | string | Alibaba Cloud AccessKey ID    |
 | access_key_secret       | string | Alibaba Cloud AccessKey Secret |
-| project_name            | string | Project name                  |
-| log_store_name          | string | Log store name                |
+| project_name            | string | Project name               |
+| log_store_name          | string | Log store name             |
 
 ### Logging Module
 
@@ -131,15 +131,15 @@ Enter the default installation directory `/usr/local/scheck`, open the configura
 
 | Parameter Name  | Type  | Description                                 |
 | --------------- | :---: | ------------------------------------------- |
-| log             | string | Scheck system log path                     |
-| log_level       | string | Scheck log level                           |
-| rotate          | int   | 0 is default, log segment size in MB, default 30MB |
+| log             | string | Path to Scheck system logs                   |
+| log_level       | string | Scheck log level                       |
+| rotate          | int    | 0 for default, log rotation size in MB, default 30MB |
 
 ### Cgroup Module
 
 ```toml
 [cgroup]
-    # Optional, disabled by default, can control CPU and memory
+    # Optional, default is disabled; can control CPU and memory
   enable = false
   cpu_max = 30.0
   cpu_min = 5.0
@@ -148,9 +148,9 @@ Enter the default installation directory `/usr/local/scheck`, open the configura
 
 | Parameter Name | Type  | Description        |
 | -------------- | ----- | ------------------ |
-| enable         | bool  | Whether to enable  |
-| cpu_max        | float | Maximum CPU limit  |
-| mem            | float | Minimum CPU limit  |
+| enable         | bool  | Whether to enable    |
+| cpu_max        | float | Maximum CPU limit |
+| mem            | float | Minimum CPU limit |
 
 ## Other
 ### How to Disable System Rules

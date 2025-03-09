@@ -1,6 +1,6 @@
 ---
 title: 'External'
-summary: 'Launch external programs for data collection'
+summary: 'Launch external programs for collection'
 __int_icon: 'icon/external'
 dashboard:
   - desc: 'Not available'
@@ -21,14 +21,14 @@ The External collector can launch external programs for data collection.
 
 ### Prerequisites {#requirements}
 
-- Ensure that the program to be launched and its runtime environment dependencies are complete. For example, if using Python to launch an external Python script, the required packages and dependencies for running the script must be available.
+- Ensure that the program to be launched and its runtime environment dependencies are complete. For example, if using Python to start an external Python script, all necessary packages and dependencies required by the script must be present.
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/external` directory under the DataKit installation directory, copy `external.conf.sample`, and rename it to `external.conf`. An example is shown below:
+    Navigate to the `conf.d/external` directory under the DataKit installation directory, copy `external.conf.sample`, and rename it to `external.conf`. An example is as follows:
     
     ```toml
         
@@ -40,7 +40,7 @@ The External collector can launch external programs for data collection.
         # Whether or not to run the external program in the background.
         daemon = false
     
-        # If the external program runs in Non-daemon mode,
+        # If the external program runs in a Non-daemon mode,
         #     it will be executed at this interval.
         #interval = '10s'
     
@@ -50,8 +50,8 @@ The External collector can launch external programs for data collection.
         # Full path of the external program. Use absolute paths whenever possible.
         cmd = "python" # required
     
-        # Set "true" if this collector is involved in the election.
-        # Note: The external program must run in daemon mode if it participates in the election.
+        # Set to "true" if this collector participates in the election.
+        # Note: The external program must run in daemon mode if participating in the election.
         election = false
         args = []
     
@@ -65,6 +65,6 @@ The External collector can launch external programs for data collection.
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by [injecting the collector configuration via ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
 <!-- markdownlint-enable -->

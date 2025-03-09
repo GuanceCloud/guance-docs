@@ -1,35 +1,35 @@
 # Billing Management
 ---
 
-Guance charges on a monthly basis. In **Billing Management**, this includes monthly bills, detailed expenses, transaction details, voucher details, and prepaid card management.
+The <<< custom_key.brand_name >>> Billing Center **issues monthly invoices**. In **Billing Management**, you can manage monthly invoices, detailed expenses, income and expenditure details, coupon details, and prepaid card details.
 
 ![](img/10.price_7.png)
 
-## Monthly Bills
+## Monthly Invoices
 
-In the Guance billing center, click **Monthly Bills** to view all detailed consumption records by month. Click **Export** to export the current list of bill information.
+In the <<< custom_key.brand_name >>> Billing Center, click **Monthly Invoices** to view all detailed expense records by month. Click **Export** to export the current invoice list information.
 
-**Note**: The previous month's bill is generated after the 3rd day of the following month.
+**Note**: The previous month's invoice is generated after the 3rd of the following month.
 
 ![](img/10.price_8.png)
 
 ## Detailed Expenses
 
-In the Guance billing center, click **Detailed Expenses** to view daily detailed consumption records. You can view daily detailed consumption records based on the selected billing period. Click **Export** to export the current list of consumption records.
+In the <<< custom_key.brand_name >>> Billing Center, click **Detailed Expenses** to view daily detailed expense records. You can view daily detailed expense records based on the selected billing period. Click **Export** to export the current expense record list information.
 
-**Note**: The previous day's bill is completed early the next morning, covering various types of consumption, including pay-as-you-go and annual subscription packages.
+**Note**: The previous day's invoice is completed in the early hours of the next day, covering various types of expenses, including pay-as-you-go and annual subscription packages.
 
 ![](img/10.price_9.png)
 
-## Transaction Details
+## Income and Expenditure Details
 
-In the Guance billing center, click **Transaction Details** to view changes in account balances, including cash, vouchers, and prepaid cards. You can view account balance changes based on the selected transaction time range. Click **Export** to export the current list of account balance changes.
+In the <<< custom_key.brand_name >>> Billing Center, click **Income and Expenditure Details** to view changes in account balance, including cash, coupons, and prepaid cards. You can view account balance changes based on the selected transaction time range. Click **Export** to export the current account balance change list information.
 
 ![](img/10.price_10.png)
 
-## Vouchers
+## Coupons
 
-In the Guance billing center, click **Vouchers** to view the details of activated vouchers. The voucher balance will gradually decrease as it is used.
+In the <<< custom_key.brand_name >>> Billing Center, click **Coupons** to view the details of activated coupons. The coupon balance will gradually decrease as expenses accumulate.
 
 ![](img/10.price_11.png)
 
@@ -37,9 +37,9 @@ In the Guance billing center, click **Vouchers** to view the details of activate
 <!--
 ## Prepaid Cards
 
-In the Guance billing center, click **Prepaid Cards** to view the details of purchased prepaid cards, including various denominations, available balances, and validity periods. After purchasing a prepaid card, you can apply for an invoice equivalent to its value, and the balance will gradually decrease as it is used.
+In the <<< custom_key.brand_name >>> Billing Center, click **Prepaid Cards** to view the details of purchased prepaid cards, including various denominations, available balances, and validity periods. After purchasing a prepaid card, you can apply for an invoice at face value, and the balance will gradually decrease with usage.
 
-**Note**: The deduction order for pay-as-you-go bills is: first regular vouchers, then prepaid cards, and finally cash balance.
+**Note**: The order of deduction for pay-as-you-go bills is: first regular coupons, then prepaid cards, and finally cash balance.
 
 ![](img/10.price_12.png)
 -->

@@ -8,12 +8,12 @@ __int_icon: 'icon/profiling'
 ---
 
 
-Starting from Datakit [:octicons-tag-24: Version-1.13.0](../datakit/changelog.md#cl-1.13.0){:target="_blank"}, support is provided for using [`dd-trace-php`](https://github.com/DataDog/dd-trace-php){:target="_blank"} as an APM tool for `PHP` projects.
+Starting from Datakit [:octicons-tag-24: Version-1.13.0](../datakit/changelog.md#cl-1.13.0){:target="_blank"}, support is available for using [`dd-trace-php`](https://github.com/DataDog/dd-trace-php){:target="_blank"} as the APM tool for `PHP` projects.
 
 ## Prerequisites {#prerequisites}
 
 - `Linux X64 with glibc 2.17+，Linux X64 with musl v1.2+`
-- `PHP 7.1+ NTS(Non-Thread Safe)`
+- `PHP 7.1+ NTS (Non-Thread Safe)`
 
 ## Install `dd-trace-php` {#install-dd-trace-php}
 
@@ -24,7 +24,7 @@ wget https://github.com/DataDog/dd-trace-php/releases/download/0.90.0/datadog-se
 php datadog-setup.php --enable-profiling
 ```
 
-During installation, the script will automatically detect the installed `php` and `php-fpm` paths on your system and allow you to choose which programs need profiling enabled. Enter the corresponding numbers based on your needs.
+During the installation, the script will automatically detect the installed `php` and `php-fpm` paths on your system and prompt you to select which programs need profiling enabled. Enter the corresponding numbers based on your needs.
 
 ```shell
 Searching for available php binaries, this operation might take a while.
@@ -38,13 +38,13 @@ Select binaries using their number. Multiple binaries separated by space (exampl
 ```
 
 
-If you know the installation path of `php` or `php-fpm` on your system, you can directly specify the `php` path using the `--php-bin` parameter when executing the installation script, skipping the above detection and selection steps, for example:
+If you know the installation paths of `php` or `php-fpm` on your system, you can specify the `php` path directly using the `--php-bin` parameter when running the installation script, skipping the above detection and selection steps, for example:
 
 ```shell
 php datadog-setup.php --enable-profiling --php-bin=/usr/bin/php8.1 --php-bin=/usr/sbin/php-fpm8.1
 ```
 
-The installation process requires downloading packages from `github.com`, which may take some time depending on your network conditions. Wait for the installation program to complete successfully. After that, you can verify the installation by running the command `php --ri "datadog-profiling"`.
+The installation process requires downloading packages from `github.com`, which may take some time depending on your network conditions. Wait for the installation program to complete successfully. You can then run the command `php --ri "datadog-profiling"` to verify the installation.
 
 ```shell
 php --ri "datadog-profiling"
@@ -62,7 +62,7 @@ Allocation Profiling Enabled => true
 <!-- markdownlint-disable MD046 -->
 ???+ Note
 
-    At the time of writing this document, `Datakit` supports up to version [`dd-trace-php v0.90.0`](https://github.com/DataDog/dd-trace-php/releases/tag/0.90.0){:target="_blank"}. Higher versions have not been systematically tested, and compatibility is unknown. If you encounter any issues during use, feel free to contact us.
+    At the time of writing this document, Datakit supports up to [`dd-trace-php v0.90.0`](https://github.com/DataDog/dd-trace-php/releases/tag/0.90.0){:target="_blank"}. Higher versions have not been systematically tested, and compatibility is unknown. If you encounter any issues during use, feel free to contact us.
 <!-- markdownlint-enable -->
 
 
@@ -89,10 +89,10 @@ Allocation Profiling Enabled => true
 
 === "PHP-FPM"
 
-    In the configuration file under the `PHP-FPM` process pool configuration directory *pool.d* (default is only one *www.conf* configuration file), add the following environment variables using the `env` directive in *www.conf*:
+    Add the following environment variables in the configuration file under the *pool.d* directory of the `PHP-FPM` process pool configuration (by default, there is only one *www.conf* configuration file):
 
     ???+ Note
-        You can try using `php-fpm -i | grep Configuration` to confirm the location of the current `php-fpm` loaded configuration file:
+        You can try using `php-fpm -i | grep Configuration` to confirm the current configuration file path loaded by `php-fpm`:
         ```shell
         php-fpm8.1 -i | grep Configuration
         Configuration File (php.ini) Path => /etc/php/8.1/fpm

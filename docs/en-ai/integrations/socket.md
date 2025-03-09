@@ -1,15 +1,15 @@
 ---
-title: 'Socket'
-summary: 'Collect metrics data from TCP/UDP ports'
+title     : 'Socket'
+summary   : 'Collect metrics data from TCP/UDP ports'
 tags:
   - 'Network'
-__int_icon: 'icon/socket'
-dashboard:
-  - desc: 'Socket'
-    path: 'dashboard/en/socket'
-monitor:
-  - desc: 'Socket'
-    path: 'monitor/en/socket'
+__int_icon      : 'icon/socket'
+dashboard :
+  - desc  : 'Socket'
+    path  : 'dashboard/en/socket'
+monitor   :
+  - desc  : 'Socket'
+    path  : 'monitor/en/socket'
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-apple:
@@ -22,12 +22,12 @@ Collect metrics data from UDP/TCP ports.
 
 ### Prerequisites {#requirements}
 
-For UDP metrics, the operating system needs to have the `nc` program.
+UDP metrics require the `nc` program to be installed on the operating system.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    The Socket collector is suitable for internal network TCP/UDP port detection. For public network services, it is recommended to use the [Dial Testing feature](dialtesting.md). If the service address points to the local machine, disable the election function (`election: false`) of the collector; otherwise, it may lead to invalid collection.
+    The Socket collector is suitable for internal network TCP/UDP port detection. For public services, it is recommended to use the [Dial Testing feature](dialtesting.md). If the service address points to the local machine, disable the election (`election: false`) function of the collector; otherwise, it may lead to invalid collection.
 <!-- markdownlint-enable -->
 
 ### Collector Configuration {#input-config}
@@ -35,9 +35,10 @@ For UDP metrics, the operating system needs to have the `nc` program.
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/socket` directory under the DataKit installation directory, copy `socket.conf.sample`, and rename it to `socket.conf`. An example configuration is as follows:
+    Navigate to the `conf.d/socket` directory under the DataKit installation directory, copy `socket.conf.sample`, and rename it to `socket.conf`. Example configuration:
     
     ```toml
+        
     [[inputs.socket]]
       ## Support TCP/UDP.
       ## If the quantity to be detected is too large, it is recommended to open more collectors
@@ -72,7 +73,7 @@ For UDP metrics, the operating system needs to have the `nc` program.
 
 ## Metrics {#metric}
 
-By default, all metric sets will append global tags `proto/dest_host/dest_port`. You can also specify other tags in the configuration using `[inputs.socket.tags]`:
+By default, all the following metric sets will append the global tags `proto/dest_host/dest_port`. You can also specify additional tags in the configuration using `[inputs.socket.tags]`:
 
 ``` toml
 [inputs.socket.tags]

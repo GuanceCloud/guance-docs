@@ -1,4 +1,4 @@
-# Issue Creation
+# Create Issue
 
 ---
 
@@ -12,56 +12,56 @@
 
 | Parameter Name        | Type     | Required   | Description              |
 |:---------------------|:---------|:-----------|:-------------------------|
-| name                 | string   | Y          | Title name<br>Example: name <br>Allow null: False <br>Maximum length: 256 <br> |
-| level                | string   | Y          | Level, corresponding to the UUID of the level configuration<br>Example: level <br>Allow null: False <br>Allow empty string: True <br> |
-| description          | string   | Y          | Description<br>Example: description <br>Allow null: False <br> |
-| attachmentUuids      | array    |            | List of attachment upload UUIDs<br>Example: [] <br>Allow null: True <br> |
-| extend               | json     | Y          | Additional extended information<br>Example: {} <br>Allow null: True <br> |
-| resourceType         | string   |            | Source type, not required if no scenario<br>Example: resourceType <br>Allow null: False <br>Possible values: ['event', 'dashboard', 'Explorer'] <br> |
-| resourceUUID         | string   |            | Corresponding source UUID for docid, dashboardUUID, or dashboardUUID<br>Example: resourceUuid <br>Allow null: False <br>Allow empty string: True <br> |
-| resource             | string   |            | Corresponding source name<br>Example: resource <br>Allow null: False <br>Allow empty string: True <br> |
-| channelUUIDs         | array    |            | UUIDs of issue delivery tracking channels<br>Example: [] <br>Allow null: True <br> |
+| name                 | string   | Y          | Title name <br>Example: name <br>Allow empty: False <br>Maximum length: 256 <br> |
+| level                | string   | Y          | Level, corresponding to the UUID of level configuration <br>Example: level <br>Allow empty: False <br>Allow empty string: True <br> |
+| description          | string   | Y          | Description <br>Example: description <br>Allow empty: False <br> |
+| attachmentUuids      | array    |            | List of attachment UUIDs <br>Example: [] <br>Allow empty: True <br> |
+| extend               | json     | Y          | Additional extended information <br>Example: {} <br>Allow empty: True <br> |
+| resourceType         | string   |            | Source type, not required if no scenario applies <br>Example: resourceType <br>Allow empty: False <br>Possible values: ['event', 'dashboard', 'viewer'] <br> |
+| resourceUUID         | string   |            | Corresponding source UUIDs for docid, dashboardUUID, dashboardUUID <br>Example: resourceUuid <br>Allow empty: False <br>Allow empty string: True <br> |
+| resource             | string   |            | Corresponding source name <br>Example: resource <br>Allow empty: False <br>Allow empty string: True <br> |
+| channelUUIDs         | array    |            | UUIDs of channels for issue delivery and tracking <br>Example: [] <br>Allow empty: True <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Explanations
 
 **Basic Parameter Explanation**
 
-| Parameter Name | Parameter Type | Required | Parameter Description |
-|:---------------:|:--------------:|:--------:|:---------------------:|
-| name            | string         | N        | Issue title name      |
-| level           | string         | N        | Issue level, corresponding to the UUID of the level configuration |
-| statusType      | integer        | N        | Issue status, 10: Open, 20: Resolved, 30: Pending |
-| description     | string         | N        | Issue description     |
-| attachmentUuids | array          | N        | List of attachment upload UUIDs, must be uploaded first via /api/v1/attachment/upload interface |
-| extend          | json           | N        | Extended fields, default is {} |
-| resourceType    | string         | N        | event:Event, dashboard:Dashboard, Explorer:Explorer (checker:Monitor, this type is automatically created) |
-| resourceUUID    | string         | N        | UUID associated with the resource |
-| resource        | string         | N        | Corresponding resource name |
-| channelUUIDs    | array          | N        | List of resources where the issue is expected to be delivered, defaults to the default workspace and default channel |
+| Parameter Name       | Parameter Type | Required | Parameter Description |
+|:--------------------:|:--------------:|:--------:|:---------------------:|
+| name                 | string         | N        | Issue title name      |
+| level                | string         | N        | Issue level, corresponding to configured level UUID |
+| statusType           | integer        | N        | Issue status, 10: Open, 15: Working, 20: Resolved, 25: Closed, 30: Pending |
+| description          | string         | N        | Issue description     |
+| attachmentUuids      | array          | N        | List of attachment UUIDs, must be uploaded first via /api/v1/attachment/upload interface |
+| extend               | json           | N        | Extended fields, default is {} |
+| resourceType         | string         | N        | event: Event, dashboard: Dashboard, viewer: Viewer (checker: Monitor, this type is auto-created) |
+| resourceUUID         | string         | N        | UUID associated with the resource |
+| resource             | string         | N        | Corresponding resource name |
+| channelUUIDs         | array          | N        | Expected issue delivery resources list, defaults to default workspace default channel |
 
 **Level Field Explanation**
-The level can be system-defined or custom (configurable in configuration management)
+Levels are divided into system levels and custom levels (configurable in configuration management)
 
 | Level | Value | Parameter Description |
-|:------:|:-----:|:---------------------:|
-| P0     | system_level_0 | Pass parameter level: system_level_0, indicating system level P0 |
-| P1     | system_level_1 | Pass parameter level: system_level_1, indicating system level P1 |
-| P2     | system_level_2 | Pass parameter level: system_level_2, indicating system level P2 |
-| P3     | system_level_3 | Pass parameter level: system_level_3, indicating system level P3 |
-| xxx    | issl_yyyyy    | Pass parameter level: issl_yyyyy, indicating custom level xxx |
+|:-----:|:-----:|:----------------------:|
+| P0    | system_level_0 | Pass parameter level: system_level_0, indicating system level P0 |
+| P1    | system_level_1 | Pass parameter level: system_level_1, indicating system level P1 |
+| P2    | system_level_2 | Pass parameter level: system_level_2, indicating system level P2 |
+| P3    | system_level_3 | Pass parameter level: system_level_3, indicating system level P3 |
+| xxx   | issl_yyyyy     | Pass parameter level: issl_yyyyy, indicating custom level xxx |
 
-**Issue Channel Explanation, all issues are automatically categorized under the default channel (All)**
-Channels associated with the issue include: Default channel (All), channels, and channelUUIDs
+**Issue Channel Explanation**
+All issues are automatically categorized under the default channel (all). Associated channels for the issue include: default channel (all), channels, and channelUUIDs.
 
-**Extend Field Explanation**
+**Extended Field Extend Explanation**
 
 | Parameter Name | Parameter Type | Required | Parameter Description |
 |:--------------:|:--------------:|:--------:|:---------------------:|
-| channels       | array          | N        | Expected issue delivery resource list described in the content using #: |
-| linkList       | array          | N        | Add issue links |
-| members        | array          | N        | Notification target members for issue notifications described in the content using @ |
+| channels       | array          | N        | Channels expected for issue delivery, described in content with #: |
+| linkList       | array          | N        | Add issue links        |
+| members        | array          | N        | Notification target members for issue notifications, described in content with @: |
 | manager        | array          | N        | User account UUID, email, team UUID |
-| extra          | json           | N        | Information about the creator/responsible person of the issue, used for front-end display |
+| extra          | json           | N        | Information about the creator/responsible person, used for front-end display |
 
 Extend field example:
 ```json
@@ -87,7 +87,7 @@ Extend field example:
     ],
     "linkList": [
         {
-            "name": "Solution",
+            "name": "Resolve",
             "link": "https://sd.com",
         }
     ],
@@ -99,8 +99,9 @@ Extend field example:
             "managerInfos": {
                 "111@qq.com": {"name": "111"},
                 "222@qq.com": {"name": "222"}
+
             }
-        }
+            }
 }
 ```
 

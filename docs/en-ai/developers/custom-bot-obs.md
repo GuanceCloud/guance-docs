@@ -1,29 +1,29 @@
 # Self-hosted Inspection
 
-Guance supports custom intelligent inspections through DataFlux Func, which automatically detects issues in infrastructure and applications based on smart algorithms. This helps users identify problems that have occurred and potential issues during the operation of IT systems, enabling quick root cause analysis to pinpoint the source of anomalies.
+<<< custom_key.brand_name >>> supports custom intelligent inspections through DataFlux Func, based on intelligent algorithms, automatically detecting infrastructure and application issues, helping users identify problems that have occurred and potential issues in the operation of IT systems. By performing root cause analysis, it quickly identifies the reasons for anomalies.
 
-DataFlux Func is a platform for developing, managing, and executing functions. It is simple to use, requiring no setup of web services from scratch or management of servers and other infrastructure. Users only need to write code, publish it, and configure it to generate HTTP API interfaces.
+DataFlux Func is a platform for developing, managing, and executing functions. It is easy to use, requiring no setup of web services from scratch or management of servers and other infrastructure. You only need to write and publish code, with simple configuration generating HTTP API interfaces for the functions.
 
-This document primarily introduces how to implement inspection functions using the "Guance Self-hosted Inspection Core Package" script package from the DataFlux Func Script Market in a self-hosted DataFlux Func environment.
+This document primarily introduces how to use the script package 「<<< custom_key.brand_name >>> Self-hosted Inspection Core Package」from the DataFlux Func Script Market to implement inspection functions in self-hosted DataFlux Func.
 
 > Tip 1: Always use the latest version of DataFlux Func for operations.
 
-> Tip 2: This script package will continuously add new features, so please keep an eye on document updates.
+> Tip 2: This script package will continuously add new features, please keep an eye on document updates.
 
 ## 1. Prerequisites
 
 - [Install DataFlux Func](https://func.guance.com/doc/quick-start/) 
 
-- [Install Script Package](https://func.guance.com/doc/script-market-basic-usage/) 
+- [Install Script Packages](https://func.guance.com/doc/script-market-basic-usage/) 
 
 ## 2. Quick Start
 
 To set up self-hosted inspections, follow these steps:
 
-1. Create an API Key for operations in Guance's "Management / API Key Management"
-2. Install the "Guance Self-hosted Inspection Core Package" via the "Script Market" in your self-hosted DataFlux Func
-3. Write a self-hosted inspection processing function in your self-hosted DataFlux Func
-4. Create automatic trigger configurations for the written function through "Management / Automatic Trigger Configuration" in your self-hosted DataFlux Func
+1. Create an API Key for operations in <<< custom_key.brand_name >>>「Manage / API Key Management」
+2. Install the 「<<< custom_key.brand_name >>> Self-hosted Inspection Core Package」in your self-hosted DataFlux Func via the 「Script Market」
+3. Write the self-hosted inspection processing function in your self-hosted DataFlux Func
+4. Create automatic trigger configurations for the written function in your self-hosted DataFlux Func through 「Manage / Automatic Trigger Configuration」
 
 ### 2.1 Writing Code
 
@@ -42,7 +42,7 @@ GUANCE_NODE = None
 @DFF.API('Self-hosted Inspection Example')
 def run(param1=1, param2=True, param3=None):
     '''
-    This is a self-hosted inspection example.
+    This is an example of a self-hosted inspection.
     Parameters:
         param1 {int}  Parameter 1
         param2 {bool} Parameter 2
@@ -69,7 +69,7 @@ def run(param1=1, param2=True, param3=None):
     event_reporter.report(event)
 ```
 
-After publishing the script, the corresponding function is registered with Guance and can be viewed in the "Monitoring / Intelligent Inspection" section of the Guance platform.
+After publishing the script, the corresponding function is registered to <<< custom_key.brand_name >>>, and can be seen in the <<< custom_key.brand_name >>> platform under 「Monitoring / Intelligent Inspection」.
 
 ![](img/self-hosted-monitor-list.png)
 
@@ -79,23 +79,23 @@ The following is a step-by-step explanation of the code in this example.
 
 #### Import Section
 
-To use the scripts provided by the Script Market, you need to import these components using the `import` statement after installing the script package.
+To properly use scripts provided by the Script Market, after installing the script package, you need to import these components using the `import` method.
 
 ~~~python
 from guance_monitor__register import self_hosted_monitor
 from guance_monitor__event_reporter import EventReporter
 ~~~
 
-`self_hosted_monitor` is a decorator for self-hosted inspection functions, ensuring they are registered with Guance.
+`self_hosted_monitor` is a decorator for self-hosted inspection functions, which registers functions decorated with this decorator to <<< custom_key.brand_name >>>.
 
 `EventReporter` is an event reporter used to report event data.
 
-#### Self-hosted Inspection Registration and Function Definition
+#### Self-hosted Inspection Registration and Function Definition Section
 
-A self-hosted inspection function must meet the following conditions to be registered with Guance:
+For self-hosted inspections that need to be registered to <<< custom_key.brand_name >>>, they must meet the following conditions:
 
-1. *First*, decorate with `@self_hosted_monitor`
-2. *Then*, decorate with `@DFF.API(...)`
+1. *First* decorate with the `@self_hosted_monitor` decorator
+2. *Then* decorate with the `@DFF.API(...)` decorator
 
 ~~~python
 API_KEY_ID  = 'wsak_xxxxx'
@@ -107,7 +107,7 @@ GUANCE_NODE = None
 @DFF.API('Self-hosted Inspection Example')
 def run(param1=1, param2=True, param3=None):
     '''
-    This is a self-hosted inspection example.
+    This is an example of a self-hosted inspection.
     Parameters:
         param1 {int}  Parameter 1
         param2 {bool} Parameter 2
@@ -115,15 +115,17 @@ def run(param1=1, param2=True, param3=None):
     '''
 ~~~
 
-The decorator `@self_hosted_monitor` requires the API Key ID and API Key created in Guance's "Management / API Key Management".
+Where:
 
-The title specified in the `@DFF.API(...)` decorator will appear as the title of the self-hosted inspection after registration.
+The decorator `@self_hosted_monitor` requires the API Key ID and API Key created in <<< custom_key.brand_name >>>「Manage / API Key Management」to be passed in.
 
-The content in the function documentation will appear as the documentation on the configuration page of the self-hosted inspection after registration.
+The title specified in the `@DFF.API(...)` decorator appears as the title of the self-hosted inspection after registration.
 
-#### Other Guance Nodes
+The content in the function documentation appears as the documentation on the self-hosted inspection configuration page after registration.
 
-If you need to connect to non-default nodes (Hangzhou) of Guance, you need to pass the node name parameter. For example:
+#### Other <<< custom_key.brand_name >>> Nodes
+
+If you need to connect to non-default nodes (Hangzhou) of <<< custom_key.brand_name >>>, you need to pass in additional <<< custom_key.brand_name >>> node name parameters. The specific code example is as follows:
 
 ~~~python
 API_KEY_ID  = 'wsak_xxxxx'
@@ -134,16 +136,16 @@ GUANCE_NODE = 'aws'
 # Omitted...
 ~~~
 
-> Refer to [Available Guance Nodes](https://func.guance.com/doc/ui-guide-development-module-guance-node) for optional values of `GUANCE_NODE`.
+> For available values of `GUANCE_NODE`, refer to [Available <<< custom_key.brand_name >>> Nodes](https://func.guance.com/doc/ui-guide-development-module-guance-node/)
 
 <!-- 
-Optional values for `GUANCE_NODE` are as follows:
+The available values of `GUANCE_NODE` are as follows:
 
-| Guance Node          | `GUANCE_NODE` Value |
-| -------------------- | ------------------- |
-| China Region 1 (Hangzhou) | `None`             |
-| China Region 2 (Ningxia)  | `aws`              |
-| China Region 3 (Zhangjiakou) | `cn3`            |
+| <<< custom_key.brand_name >>> Node         | `GUANCE_NODE` Value |
+| ------------------ | ----------------- |
+| China Region 1 (Hangzhou)   | `None`            |
+| China Region 2 (Ningxia)   | `aws`             |
+| China Region 3 (Zhangjiakou) | `cn3`             |
 | Overseas Region 1 (Oregon) | `us1`             |
 -->
 
@@ -167,20 +169,20 @@ The event data to be reported is a simple `dict`, like:
     }
 ~~~
 
-Field definitions are as follows:
+The specific field definitions are as follows:
 
 | Field             | Type | Required | Description                                                             |
-| ----------------- | ---- | -------- | ----------------------------------------------------------------------- |
-| `title`           | str  | Yes      | Event title, single-line plain text                                     |
-| `message`         | str  | Yes      | Event content, supports basic Markdown syntax                           |
-| `status`          | str  | Yes      | Event level<br>Possible values: `info`, `warning`, `error`, `critical`, `ok` |
-| `dimension_tags`  | dict | No       | Detection dimensions, e.g., `{ "host": "my_host" }`                     |
+| ---------------- | ---- | -------- | ---------------------------------------------------------------- |
+| `title`          | str  | Yes      | Event title, single-line plain text                                             |
+| `message`        | str  | Yes      | Event content, supports basic Markdown syntax                                 |
+| `status`         | str  | Yes      | Event level<br>Options: `info`, `warning`, `error`, `critical`, `ok` |
+| `dimension_tags` | dict | Optional | Detection dimensions, e.g., `{ "host": "my_host" }`                            |
 
-*Note: Since DingTalk bots, Feishu bots, and Enterprise WeChat bots do not support all Markdown syntax, choose carefully when specifying the `message` field*
+*Note: Since DingTalk bots, Lark bots, and WeCom bots do not fully support all Markdown syntax, please make appropriate choices when specifying the message field.*
 
-#### EventReporter Usage
+#### EventReporter Usage Section
 
-Using the event reporter is straightforward, but note that *the `EventReporter` object must be instantiated inside the function body*.
+Using the event reporter is very simple, but note that *you must instantiate the `EventReporter` object inside the function body*.
 
 Correct example:
 
@@ -208,7 +210,7 @@ def run(param1=1, param2=True, param3=None):
     event_reporter.report(event)
 ~~~
 
-Additionally, the `EventReporter.report(...)` method supports reporting multiple events at once, like:
+Additionally, the `EventReporter.report(...)` method also supports reporting multiple events at once, such as:
 
 ~~~python
 @self_hosted_monitor(API_KEY_ID, API_KEY)
@@ -221,23 +223,23 @@ def run(param1=1, param2=True, param3=None):
     event_reporter.report(events)
 ~~~
 
-## 3. Configuring Self-hosted Inspections in Guance
+## 3. Configuring Self-hosted Inspections in <<< custom_key.brand_name >>>
 
-Once registered with Guance, self-hosted inspection functions can be configured for running parameters and alert strategies in the Guance platform.
+Self-hosted inspection functions registered in <<< custom_key.brand_name >>> can be configured to run parameters and alert strategies in the <<< custom_key.brand_name >>> platform.
 
-The function documentation will also be displayed, providing a reference for users.
+The function's documentation will also be displayed together for reference by users.
 
 ![](img/self-hosted-monitor-edit.png)
 
-## 4. Configuring Automatic Triggers in Self-hosted DataFlux Func
+## 4. Configuring Automatic Trigger Settings in Self-hosted DataFlux Func
 
-After completing and publishing the code, go to "Management / Automatic Trigger Configuration" in your self-hosted DataFlux Func to create automatic trigger configurations. Only then will the function actually run.
+After completing and publishing the code, go to the 「Manage / Automatic Trigger Configuration」section in your self-hosted DataFlux Func to create automatic trigger configurations. Only then will the function actually run.
 
 ![](img/self-hosted-monitor-cron-config.png)
 
-*Note: Self-hosted inspection parameters are configured in Guance, and parameters specified in "Automatic Trigger Configuration" do not take effect.*
+*Note: Self-hosted inspection parameters are configured in <<< custom_key.brand_name >>>. Parameters specified in 「Automatic Trigger Configuration」do not take effect.*
 
-After some time, you can view generated events in Guance.
+After running for some time, you can view the generated events in <<< custom_key.brand_name >>>.
 
 ![](img/self-hosted-monitor-event.png)
 
@@ -245,47 +247,47 @@ After some time, you can view generated events in Guance.
 
 When using self-hosted inspections, pay attention to the following points.
 
-### 5.1 Association between Functions and Self-hosted Inspections
+### 5.1 Association Between Functions and <<< custom_key.brand_name >>> Self-hosted Inspections
 
-Self-hosted inspection functions in self-hosted DataFlux Func are associated with Guance based on "Function ID + DataFlux Func Secret Configuration".
+Self-hosted inspection functions in self-hosted DataFlux Func are associated with <<< custom_key.brand_name >>> based on 「Function ID + DataFlux Func Secret Configuration」, generating an association key.
 
 Therefore, if any of the following items are modified, the function will be associated with a different self-hosted inspection:
 
 - Function name (`def xxxx` part)
-- Function script ID
-- Function script set ID
+- Script ID where the function resides
+- Script set ID where the function resides
 - Different DataFlux Func (i.e., different Secret)
 
 ### 5.2 Function Registration
 
-Functions decorated with `@self_hosted_monitor` attempt to register with Guance each time they execute.
+Functions decorated with `@self_hosted_monitor` will attempt to access <<< custom_key.brand_name >>> and register the function each time they execute.
 
-During registration, the function's title, documentation, and parameter list are updated in Guance.
+During registration, the function's title, documentation, and parameter list will also be updated to <<< custom_key.brand_name >>>.
 
-After registration, the decorator downloads the corresponding self-hosted inspection configuration from Guance (parameter settings) and runs the function with the parameters specified in the self-hosted inspection configuration. Parameters configured in automatic triggers do not take effect.
+After registration, the decorator will download the corresponding self-hosted inspection configuration from <<< custom_key.brand_name >>> (parameter specification) and run the function with the parameters specified in the self-hosted inspection configuration. Parameters configured in automatic triggers will not take effect.
 
-### 5.3 Disabling Self-hosted Inspections in Guance
+### 5.3 Disabling Self-hosted Inspections in <<< custom_key.brand_name >>>
 
-Self-hosted inspections can be disabled in the Guance platform.
+Self-hosted inspections can be disabled in the <<< custom_key.brand_name >>> platform.
 
-However, since Guance cannot control DataFlux Func data in reverse, the automatic trigger configuration in self-hosted DataFlux Func will continue to execute normally.
+However, since <<< custom_key.brand_name >>> cannot control DataFlux Func data in reverse, the automatic trigger configuration in self-hosted DataFlux Func will still execute normally.
 
-After execution, the `@self_hosted_monitor` decorator checks whether the corresponding self-hosted inspection has been disabled and decides whether to execute the user-defined function.
+After execution, the `@self_hosted_monitor` decorator will check whether the corresponding self-hosted inspection has been disabled by accessing <<< custom_key.brand_name >>>, deciding whether to execute the user-written function.
 
-Thus, in self-hosted DataFlux Func, the automatic trigger configuration for self-hosted inspection functions will always run. It only ends processing immediately if the corresponding Guance self-hosted inspection is disabled.
+Therefore, in self-hosted DataFlux Func, the automatic trigger configuration for self-hosted inspection functions will always run. Only when encountering a disabled self-hosted inspection in <<< custom_key.brand_name >>>, it will immediately end processing.
 
 ![](img/self-hosted-monitor-disabled.png)
 
-### 5.4 Deleting Self-hosted Inspections in Guance
+### 5.4 Deleting Self-hosted Inspections in <<< custom_key.brand_name >>>
 
-Self-hosted inspections in Guance can be deleted. However, if the actual self-hosted inspection exists, it will automatically recreate itself in Guance upon publication or execution.
+Self-hosted inspections in <<< custom_key.brand_name >>> can be deleted. However, if the actual self-hosted inspection exists, it will automatically recreate the self-hosted inspection in <<< custom_key.brand_name >>> upon publishing or running.
 
-Since the UUID changes after deletion and recreation, the two self-hosted inspections are not the same, and events generated will not be associated.
+Since the UUID changes after deleting and recreating the self-hosted inspection, the two self-hosted inspections are not the same, and events generated will not be associated.
 
 ## X. Appendix
 
-### X.1 Markdown Support Documentation for Various IM Platform Bots
+### X.1 IM Platform Bot Markdown Support Documentation
 
-- [DingTalk Custom Bot / Custom Bot Access](https://open.dingtalk.com/document/group/custom-robot-access)
-- [Feishu Bot / Message Card / Constructing Card Content / Markdown Module](https://open.feishu.cn/document/ukTMukTMukTM/uADOwUjLwgDM14CM4ATN)
-- [Enterprise WeChat Bot / Group Bot Configuration / Markdown Type](https://developer.work.weixin.qq.com/document/path/91770#markdown%E7%B1%BB%E5%9E%8B)
+- [DingTalk Custom Bots / Custom Bot Access](https://open.dingtalk.com/document/group/custom-robot-access)
+- [Lark Bots / Message Cards / Construct Card Content / Markdown Module](https://open.feishu.cn/document/ukTMukTMukTM/uADOwUjLwgDM14CM4ATN)
+- [WeCom Bots / Group Bot Configuration / Markdown Type](https://developer.work.weixin.qq.com/document/path/91770#markdown%E7%B1%BB%E5%9E%8B)

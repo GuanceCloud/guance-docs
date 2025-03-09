@@ -1,37 +1,37 @@
 ---
-title: 'Hardware Sensors Data Collection'
-summary: 'Collect hardware temperature metrics using the Sensors command'
+title     : 'Hardware Sensors Data Collection'
+summary   : 'Collect hardware temperature metrics using the Sensors command'
 tags:
   - 'Host'
-__int_icon: 'icon/sensors'
-dashboard:
-  - desc: 'Not available'
-    path: '-'
-monitor:
-  - desc: 'Not available'
-    path: '-'
+__int_icon      : 'icon/sensors'
+dashboard :
+  - desc  : 'Not available'
+    path  : '-'
+monitor   :
+  - desc  : 'Not available'
+    path  : '-'
 ---
 
 :fontawesome-brands-linux:
 
 ---
 
-Data collection for computer chip temperature using the `lm-sensors` command (currently only supported on the `Linux` operating system)
+Computer chip temperature data collection using the `lm-sensors` command (currently only supported on the `Linux` operating system)
 
 ## Configuration {#config}
 
 ### Prerequisites {#requirements}
 
 - Run the installation command `apt install lm-sensors -y`
-- Run the scan command `sudo sensors-detect` and input `Yes` to each question.
-- After the scan completes, you will see `service kmod start` to load the detected sensors. This command may vary depending on your operating system.
+- Run the scan command `sudo sensors-detect` and input `Yes` for each question.
+- After the scan completes, you will see `service kmod start` to load the detected Sensors. This command may vary depending on your operating system.
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Enter the `conf.d/sensors` directory under the DataKit installation directory, copy `sensors.conf.sample` and rename it to `sensors.conf`. Example configuration:
+    Navigate to the `conf.d/sensors` directory under the DataKit installation directory, copy `sensors.conf.sample` and rename it to `sensors.conf`. Example configuration is as follows:
 
     ```toml
         
@@ -45,7 +45,7 @@ Data collection for computer chip temperature using the `lm-sensors` command (cu
       ## Command timeout
       # timeout = "3s"
     
-      ## Custom tags, if set will be seen with every metric.
+      ## Customer tags, if set will be seen with every metric.
       [inputs.sensors.tags]
         # "key1" = "value1"
         # "key2" = "value2"
@@ -63,7 +63,7 @@ Data collection for computer chip temperature using the `lm-sensors` command (cu
 
 ## Metrics {#metric}
 
-By default, all collected data will append a global tag named `host` (the tag value is the hostname where DataKit resides). You can also specify additional tags in the configuration using `[inputs.sensors.tags]`:
+By default, all collected data will append a global tag named `host` (tag value is the hostname where DataKit resides). You can also specify other tags in the configuration using `[inputs.sensors.tags]`:
 
 ```toml
 [inputs.sensors.tags]
@@ -72,22 +72,28 @@ By default, all collected data will append a global tag named `host` (the tag va
  # ...
 ```
 
+
+
 ### `sensors`
+
+
 
 - Tags
 
-| Tag       | Description          |
-| --------- | -------------------- |
-| `adapter` | Device adapter       |
-| `chip`    | Chip ID              |
-| `feature` | Gathering target     |
-| `hostname`| Host name            |
 
-- Metric List
+| Tag | Description |
+|  ----  | --------|
+|`adapter`|Device adapter|
+|`chip`|Chip ID|
+|`feature`|Gathering target|
+|`hostname`|Host name|
 
-| Metric           | Description                                                                 | Type | Unit |
-| ---------------- | --------------------------------------------------------------------------- | ---: | ----:|
-| `temp*_crit_alarm` | Alarm count, '*' is the order number in the chip list.                     | int  | C    |
-| `temp*_input`      | Current input temperature of this chip, '*' is the order number in the chip list. | int  | C    |
-| `temp*_crit`       | Critical temperature of this chip, '*' is the order number in the chip list. | int  | C    |
-| `temp*_max`        | Maximum temperature of this chip, '*' is the order number in the chip list. | int  | C    |
+- Metrics List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`temp*_crit_alarm`|Alarm count, '*' is the order number in the chip list.|int|C|
+|`temp*_input`|Current input temperature of this chip, '*' is the order number in the chip list.|int|C|
+|`tmep*_crit`|Critical temperature of this chip, '*' is the order number in the chip list.|int|C|
+|`tmep*_max`|Max temperature of this chip, '*' is the order number in the chip list.|int|C|

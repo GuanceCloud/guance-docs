@@ -18,17 +18,17 @@ Collect Azure MySQL metrics data.
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with the script installation.
+It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
 If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-> It is recommended to deploy the GSE version.
+> It is recommended to deploy the GSE version
 
 ### Install Script
 
 > Note: Please prepare the required Azure application registration information in advance and assign the `Monitoring Reader` role to the application registration.
 
-To synchronize Azure MySQL monitoring data, install the corresponding collection script: 「Guance Integration (Azure-DB For MySQL Flexible Server Collection)」(ID: `guance_azure_mysql_flexible_server`)
+To synchronize Azure MySQL monitoring data, we install the corresponding collection script: "Guance Integration (Azure-DB For MySQL Flexible Server Collection)" (ID: `guance_azure_mysql_flexible_server`)
 
 After clicking 【Install】, enter the corresponding parameters:
 
@@ -37,15 +37,15 @@ After clicking 【Install】, enter the corresponding parameters:
 - `Azure Client Secret Value`: Client secret value, not ID
 - `Subscriptions`: Subscription ID, multiple subscriptions separated by `,`
 
-Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
+Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
 
-After enabling, you can see the corresponding automatic trigger configuration in 「Management / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can check the execution task records and corresponding logs.
+Once enabled, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. Wait a moment, and you can check the execution task records and corresponding logs.
 
 ### Verification
 
-1. In 「Management / Automatic Trigger Configuration」confirm whether the corresponding task has an automatic trigger configuration, and check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, check under 「Infrastructure / Custom」to see if there is asset information.
-3. On the Guance platform, check 「Metrics」to see if there is corresponding monitoring data.
+1. In 「Manage / Automatic Trigger Configuration」confirm whether the corresponding tasks have the corresponding automatic trigger configurations. You can also check the corresponding task records and logs to inspect for any anomalies.
+2. On the Guance platform, in 「Infrastructure / Custom」check if asset information exists.
+3. On the Guance platform, in 「Metrics」check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 
@@ -53,53 +53,54 @@ After configuring Azure MySQL monitoring data, the default metric set is as foll
 
 | Metric Name | Description | Unit |
 | ---- | ------ | ------ |
-| aborted_connections_total       | Total number of aborted connections | count |
-| active_connections_maximum      | Maximum number of active connections | count |
-| active_transactions_maximum     | Maximum number of active transactions | count |
-| available_memory_bytes_average  | Average available memory bytes | byte |
-| backup_storage_used_maximum     | Maximum backup storage used | count |
-| binlog_storage_used_maximum     | Maximum binlog storage used | count |
-| com_alter_table_total           | Total number of ALTER TABLE commands | count |
-| com_create_db_total             | Total number of CREATE DATABASE commands | count |
-| com_create_table_total          | Total number of CREATE TABLE commands | count |
-| com_delete_total                | Total number of DELETE commands | count |
-| com_drop_db_total               | Total number of DROP DATABASE commands | count |
-| com_drop_table_total            | Total number of DROP TABLE commands | count |
-| com_insert_total                | Total number of INSERT commands | count |
-| com_select_total                | Total number of SELECT commands | count |
-| com_update_total                | Total number of UPDATE commands | count |
-| cpu_credits_consumed_maximum    | Maximum CPU credits consumed | count |
-| cpu_credits_remaining_maximum   | Maximum remaining CPU credits | count |
-| cpu_percent_maximum             | Maximum CPU percentage | % |
-| data_storage_used_maximum       | Maximum data storage used | byte |
-| ibdata_1_storage_used_maximum   | Maximum ibdata1 storage used | byte |
-| innodb_buffer_pool_pages_data_total | Total number of InnoDB buffer pool data pages | count |
-| innodb_buffer_pool_pages_dirty_total | Total number of InnoDB buffer pool dirty pages | count |
-| innodb_buffer_pool_pages_flushed_average | Average number of InnoDB buffer pool pages flushed | count |
-| innodb_buffer_pool_pages_free_total | Total number of InnoDB buffer pool free pages | count |
-| innodb_buffer_pool_read_requests_total | Total number of InnoDB buffer pool read requests | count |
-| innodb_buffer_pool_reads_total  | Total number of InnoDB buffer pool reads | count |
-| innodb_data_writes_total        | Total number of InnoDB data writes | count |
-| innodb_row_lock_time_average    | Average InnoDB row lock wait time | milliseconds |
-| innodb_row_lock_waits_maximum   | Maximum number of InnoDB row lock waits | count |
-| io_consumption_percent_maximum  | Maximum I/O consumption percentage | % |
-| lock_deadlocks_maximum          | Maximum number of deadlocks | count |
-| lock_row_lock_waits_maximum     | Maximum number of row lock waits | count |
-| lock_timeouts_maximum           | Maximum number of lock timeouts | count |
-| memory_percent_maximum          | Maximum memory percentage | % |
-| network_bytes_egress_total      | Total egress network bytes | byte |
-| network_bytes_ingress_total     | Total ingress network bytes | byte |
-| others_storage_used_maximum     | Maximum other storage used | byte |
-| queries_total                   | Total number of queries | count |
-| serverlog_storage_limit_maximum | Maximum server log storage limit | byte |
-| serverlog_storage_usage_maximum | Maximum server log storage usage | byte |
-| slow_queries_total              | Total number of slow queries | count |
-| storage_io_count_total          | Total storage I/O count | count |
-| storage_limit_maximum           | Maximum storage limit | byte |
-| storage_percent_maximum         | Maximum storage percentage | % |
-| storage_throttle_count_maximum  | Maximum storage throttle count | count |
-| storage_used_maximum            | Maximum storage used | byte |
-| threads_running_total           | Total number of running threads | count |
-| total_connections_total         | Total number of connections | count |
-| trx_rseg_history_len_maximum    | Maximum transaction rollback segment history length | count |
-| uptime_maximum                  | Maximum uptime | seconds |
+| aborted_connections_total       | Total number of aborted connections                             | count |
+| active_connections_maximum      | Maximum active connections                                     | count |
+| active_transactions_maximum     | Maximum active transactions                                    | count |
+| available_memory_bytes_average  | Average available memory bytes                                 | byte |
+| backup_storage_used_maximum     | Maximum backup storage used                                    | count |
+| binlog_storage_used_maximum     | Maximum binary log storage used                                | count |
+| com_alter_table_total           | Total number of alter table commands                           | count |
+| com_create_db_total             | Total number of create database commands                       | count |
+| com_create_table_total          | Total number of create table commands                          | count |
+| com_delete_total                | Total number of delete commands                                | count |
+| com_drop_db_total               | Total number of drop database commands                         | count |
+| com_drop_table_total            | Total number of drop table commands                            | count |
+| com_insert_total                | Total number of insert commands                                | count |
+| com_select_total                | Total number of select commands                                | count |
+| com_update_total                | Total number of update commands                                | count |
+| cpu_credits_consumed_maximum    | Maximum consumed CPU credits                                   | count |
+| cpu_credits_remaining_maximum   | Maximum remaining CPU credits                                  | count |
+| cpu_percent_maximum             | Maximum CPU percentage                                         | % |
+| data_storage_used_maximum       | Maximum data storage used                                      | count |
+| ibdata_1_storage_used_maximum   | Maximum ibdata1 storage used                                   | count |
+| innodb_buffer_pool_pages_data_total | Total InnoDB buffer pool data pages                          | count |
+| innodb_buffer_pool_pages_dirty_total | Total InnoDB buffer pool dirty pages                         | count |
+| innodb_buffer_pool_pages_flushed_average | Average InnoDB buffer pool page flushes                     | count |
+| innodb_buffer_pool_pages_free_total | Total InnoDB buffer pool free pages                          | count |
+| innodb_buffer_pool_read_requests_total | Total InnoDB buffer pool read requests                      | count |
+| innodb_buffer_pool_reads_total  | Total InnoDB buffer pool reads                                 | count |
+| innodb_data_writes_total        | Total InnoDB data writes                                       | count |
+| innodb_row_lock_time_average    | Average InnoDB row lock wait time                              | milliseconds |
+| innodb_row_lock_waits_maximum   | Maximum InnoDB row lock waits                                  | count |
+| io_consumption_percent_maximum  | Maximum I/O consumption percentage                              | % |
+| lock_deadlocks_maximum          | Maximum deadlocks                                             | count |
+| lock_row_lock_waits_maximum     | Maximum row lock waits                                         | count |
+| lock_timeouts_maximum           | Maximum lock timeouts                                          | count |
+| memory_percent_maximum          | Maximum memory percentage                                      | % |
+| network_bytes_egress_total      | Total egress network bytes                                     | byte |
+| network_bytes_ingress_total     | Total ingress network bytes                                    | byte |
+| others_storage_used_maximum     | Maximum other storage used                                     | count |
+| queries_total                   | Total queries                                                  | count |
+| serverlog_storage_limit_maximum | Maximum server log storage limit                               | count |
+| serverlog_storage_usage_maximum | Maximum server log storage usage                               | count |
+| slow_queries_total              | Total slow queries                                             | count |
+| storage_io_count_total          | Total storage I/O count                                        | count |
+| storage_limit_maximum           | Maximum storage limit                                          | count |
+| storage_percent_maximum         | Maximum storage percentage                                     | % |
+| storage_throttle_count_maximum  | Maximum storage throttle count                                 | count |
+| storage_used_maximum            | Maximum storage used                                           | count |
+| threads_running_total           | Total running threads                                          | count |
+| total_connections_total         | Total connections                                              | count |
+| trx_rseg_history_len_maximum    | Maximum transaction rollback segment history length            | count |
+| uptime_maximum                  | Maximum uptime                                                 | seconds |
+</translation>

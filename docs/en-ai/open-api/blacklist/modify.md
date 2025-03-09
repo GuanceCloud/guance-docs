@@ -5,26 +5,26 @@
 <br />**POST /api/v1/blacklist/\{blist_uuid\}/modify**
 
 ## Overview
-Modify a blacklist
+Modify an existing blacklist
 
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description |
-|:-----------|:-------|:-----|:----------------|
-| blist_uuid | string | Y | UUID of the blacklist rule<br>Allow empty: False <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| blist_uuid | string | Y | Blacklist rule UUID<br>Allow null: False <br> |
 
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description |
-|:-----------|:-------|:-----|:----------------|
-| name | string | Y | Name (Added in iteration on 2024-11-27)<br>Allow empty: False <br>Allow empty string: False <br>Maximum length: 50 <br> |
-| desc | string |  | Description (Added in iteration on 2024-11-27)<br>Example: Description1 <br>Allow empty: False <br>Allow empty string: True <br>Maximum length: 256 <br> |
-| type | string | Y | Blacklist type, enum values include ('object', 'custom_object', 'logging', 'keyevent', 'tracing', 'rum', 'network', 'security', 'profiling', 'metric')<br>Allow empty: False <br> |
-| source | string |  | Data source, when all sources are included, this field is re(`.*`)<br>Allow empty: True <br>Allow empty string: False <br>$maxCharacterLength: 128 <br> |
-| sources | array |  | Data sources, used for multiple sources (use `source` field with re(`.*`) for all sources)<br>Allow empty: True <br> |
-| filters | array |  | Filter conditions<br>Allow empty: True <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| name | string | Y | Name (Added in iteration on 2024-11-27)<br>Allow null: False <br>Allow empty string: False <br>Maximum length: 50 <br> |
+| desc | string |  | Description (Added in iteration on 2024-11-27)<br>Example: Description1 <br>Allow null: False <br>Allow empty string: True <br>Maximum length: 256 <br> |
+| type | string | Y | Blacklist type, enumerated values include ('object', 'custom_object', 'logging', 'keyevent', 'tracing', 'rum', 'network', 'security', 'profiling', 'metric')<br>Allow null: False <br> |
+| source | string |  | Data source, when all sources are included, this field is re(`.*`)<br>Allow null: True <br>Allow empty string: False <br>Maximum character length: 128 <br> |
+| sources | array |  | Data sources, used for multiple sources (when all sources are included, use the source field re(`.*`))<br>Allow null: True <br> |
+| filters | array |  | Filter conditions<br>Allow null: True <br> |
 
 ## Additional Parameter Notes
 
@@ -35,9 +35,10 @@ Modify a blacklist
 curl 'https://openapi.guance.com/api/v1/blacklist/blist_xxxx32/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"name":"Rule1","desc":"","type":"logging","source":"kodo-log","filters":[{"name":"hostname","value":["127.0.0.1"],"operation":"in","condition":"and"}]}' \
+--data-raw '{"name":"Rule 1","desc":"","type":"logging","source":"kodo-log","filters":[{"name":"hostname","value":["127.0.0.1"],"operation":"in","condition":"and"}]}' \
 --compressed
 ```
+
 
 
 
@@ -62,7 +63,7 @@ curl 'https://openapi.guance.com/api/v1/blacklist/blist_xxxx32/modify' \
             }
         ],
         "id": 24,
-        "name": "Rule1",
+        "name": "Rule 1",
         "source": "kodo-log",
         "status": 0,
         "type": "logging",

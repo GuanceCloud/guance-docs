@@ -8,13 +8,14 @@
 Delete data access rule
 
 
+
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:-------------------------|
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:----------|:------------------------|
 | queryRuleUuids | array | Y | UUID of the data access rule<br>Allow null: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

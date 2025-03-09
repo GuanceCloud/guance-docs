@@ -1,34 +1,37 @@
-# Import One or Multiple Monitors
+# Import One or Multiple Checkers
 
 ---
 
 <br />**POST /api/v1/checker/import**
 
 ## Overview
-Import one or multiple monitor configurations
+Import configuration for one or multiple checkers
+
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:------------------|:-------|:-----|:----------------|
+|:-------------------|:-------|:-----|:----------------|
 | checkers | array | Y | List of rule configurations<br>Allow null: False <br> |
-| type | string |  | For smart monitoring imports, use `smartMonitor`; the default is a regular monitor `trigger`<br>Allow null: False <br>Allow empty string: False <br>Possible values: ['smartMonitor', 'trigger'] <br> |
-| skipRepeatNameCheck | boolean |  | Whether to skip duplicate name checks; `false` for checking duplicates, `true` for skipping duplicate checks<br>Example: False <br>Allow null: False <br> |
-| skipRepeatNameCreate | boolean |  | `true` skips creation for duplicates, different names are created directly; `false` creates all imported information<br>Example: False <br>Allow null: False <br> |
+| type | string |  | For smart monitoring import, pass `smartMonitor`; default is ordinary checker `trigger`<br>Allow null: False <br>Allow empty string: False <br>Optional values: ['smartMonitor', 'trigger'] <br> |
+| skipRepeatNameCheck | boolean |  | Whether to skip duplicate name checks; `false` performs duplicate name checks, `true` skips them<br>Example: False <br>Allow null: False <br> |
+| skipRepeatNameCreate | boolean |  | `true` skips creation if names are identical, different names will be created directly; `false` creates all imported information<br>Example: False <br>Allow null: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
-** Monitor template configuration, refer to [Monitor Export API] **
 
-*Relevant parameter descriptions.*
-If `repeat_name` exists in the response content, it indicates there are duplicates. Add the `skipRepeatNameCreate` parameter to choose whether to skip or create duplicates.
+** Checker template configuration, refer to [Checker Export Interface] **
 
-| Parameter Name | Type | Mandatory | Description |
+
+*Related parameter explanation.*
+If the response content contains `repeat_name`, it indicates that there are duplicates. Add the parameter `skipRepeatNameCreate` to choose whether to skip or create duplicates.
+
+| Parameter Name | Type | Required | Description |
 | :---- | :-- | :--- | :------- |
-| checker   | array | Yes | List of rule configurations |
-| skipRepeatNameCheck   | boolean | Yes | Whether to skip duplicate name checks; if not skipped (`false`): returns a list of duplicate monitor names on failure |
-| skipRepeatNameCreate  | boolean | Yes | Whether to skip creating duplicates; if not skipped (`false`): creates monitors with the same name |
+| checker   | array | Required | List of rule configurations |
+| skipRepeatNameCheck   | boolean | Required | Whether to skip duplicate name checks; if not skipped (`false`): returns a list of duplicate checker names if the check fails |
+| skipRepeatNameCreate  | boolean | Required | Whether to skip creating identical names; if not skipped (`false`): duplicate named checkers will be created |
 
 
 
@@ -165,7 +168,7 @@ curl 'https://openapi.guance.com/api/v1/checker/import' \
                     ],
                     "interval": 300,
                     "message": ">等级：{df_status}  \n>实例：{instanceId}  \n>内容：RDS Mysql 每秒慢查询数为 {{ Result }}%  \n>建议：登录阿里云控制台查看 RDS 是否有异常",
-                    "name": "阿里云 RDS Mysql 每秒慢查询数过高",
+                    "name": "Alibaba Cloud RDS Mysql Slow Queries per Second Too High",
                     "noDataInterval": 0,
                     "recoverNeedPeriodCount": 1,
                     "targets": [
@@ -174,7 +177,7 @@ curl 'https://openapi.guance.com/api/v1/checker/import' \
                             "dql": "M::`aliyun_acs_rds_dashboard`:(LAST(`MySQL_SlowQueries_Average`))  BY `instanceId`"
                         }
                     ],
-                    "title": "阿里云 RDS Mysql 实例 ID 为 {instanceId} 每秒慢查询数过高",
+                    "title": "Alibaba Cloud RDS Mysql Instance ID {instanceId} Slow Queries per Second Too High",
                     "type": "simpleCheck"
                 },
                 "monitorUUID": "monitor_xxxx32",

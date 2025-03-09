@@ -1,6 +1,6 @@
 nav:
-  - 'Changelog': sdk-changelog.md
+  - 'Change Log': sdk-changelog.md
   - 'App Integration': app-access.md
   - 'Integration of Mini Programs Based on Uniapp Development Framework': uniapp-dev-framework.md
-  - 'App Data Collection': app-data-collection.md
-  - 'Custom SDK for RUM Data Collection': custom-sdk
+  - 'Application Data Collection': app-data-collection.md
+  - 'Custom RUM SDK Data Collection Content': custom-sdk

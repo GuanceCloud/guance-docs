@@ -5,19 +5,19 @@ icon: zy/external-api
 
 ---
 
-The Guance External API is a simplified HTTP REST API.
+<<< custom_key.brand_name >>> External API is a simplified HTTP REST API.
 
 * Only GET / POST requests
 * Use resource-oriented URLs to call the API
 * Use status codes to indicate request success or failure
 * All requests return JSON structures
-* The External API programmatically maintains the Guance platform
+* The External API programmatically maintains the <<< custom_key.brand_name >>> platform
 
 ## Supported Endpoints
 
 | Deployment Type | Node Name | Endpoint                |
 |-----------------|-----------|-------------------------|
-| Private Deployment Plan | Private Deployment Plan | Follow the actual deployed Endpoint, usually `http://external-api.dataflux.cn` |
+| Private Deployment Plan | Private Deployment Plan | Follow the actual deployment Endpoint, usually `http://external-api.dataflux.cn` |
 
 ## API Documentation Configuration
 
@@ -28,7 +28,7 @@ For example: http://external-api.dataflux.cn/v1/doc
 ```yaml
 # API Doc
 apiDocPageSwitch:
-  # Switch for external API documentation page, true: indicates enabled; false: indicates disabled. Default is `false`
+  # Switch for the external API documentation page, true: indicates enabled; false: indicates disabled. Default is `false`
   external: true
 
 ```
@@ -39,9 +39,9 @@ Optional configuration items are located in the core configuration of launcher (
 ```yaml
 # Configuration items for the external-api service
 external:
-  # Valid period for each request signature, in seconds, default is 60 seconds
+  # Validity period of each request signature, in seconds, default is 60 seconds
   timeliness: 60
-  # Visitor identifier, corresponding to the `X-Df-Access-Key` value in the request header; non-empty string
+  # Visitor identifier, corresponding to the value of the `X-Df-Access-Key` header in the API request; non-empty string
   accessKey: ""
   # Secret key used to calculate the signature
   secretKey: ""

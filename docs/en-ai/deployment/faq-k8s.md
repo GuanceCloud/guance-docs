@@ -1,13 +1,13 @@
-## 1 Sealos Node Not Ready, Kubelet Reports Node Not Found
+## 1 Sealos Node NotReady, Kubelet Reports Node Not Found
 Log in to the problematic node and check the kubelet logs.
 ```shell
 journalctl -xeu kubelet
 ```
-The logs show that apiserver cannot be connected. Test network connectivity.
+The logs indicate that apiserver cannot be connected. Test network connectivity.
 ```shell
 telnet apiserver.cluster.local 6443
 ```
-The test shows that the network is unreachable. Stop the firewall on the master node to resolve the issue.
+Testing reveals that the network is unreachable. Turn off the firewall on the master node to resolve the issue.
 ```shell
 systemctl stop firewalld
 ```
@@ -22,7 +22,7 @@ Redundant software is found; uninstall the redundant software.
 ```shell
 rpm -e <redundant_software_name>
 ```
-Uninstall Sealos and reinstall it.
+Uninstall and reinstall Sealos.
 ```shell
 sealos reset
 ```
@@ -35,14 +35,14 @@ When deploying a k8s cluster on a physical machine, the Calico component fails t
 kubectl -n calico-system get installations.operator.tigera.io 
 kubectl -n calico-system edit installations.operator.tigera.io default
 
-# Change to interface: eth.*|en.*|bound.* Modify bound.* based on the physical machine's network interface name, ensuring the regular expression matches it.
+# Change to interface: eth.*|en.*|bound.* Adjust bound.* based on the physical machine's network interface name, ensuring it matches with a regular expression
 nodeAddressAutodetectionV4:
   interface: eth.*|en.*
 ```
 
 ## 4 Kylin ARM Architecture Sealos Deployment Reports Segmentation Fault
 ![](img/faq-k8s-2.png)
-Install the new version of Sealos and the k8s cluster.
+Install the latest versions of Sealos and the k8s cluster.
 ```shell
 # Sealos
 wget https://mirror.ghproxy.com/https://github.com/labring/sealos/releases/download/v4.3.7/sealos_4.3.7_linux_arm64.tar.gz \
@@ -53,19 +53,19 @@ sealos run pubrepo.guance.com/googleimages/kubernetes:v1.25.16-4.3.7 pubrepo.gua
 
 ## 5 Sealos Installation Reports Port Conflict, 'Port: 10249 Occupied'
 ![](img/faq-k8s-3.png)
-Check if the port is in conflict; if so, close the port.
+Check for port conflicts. If there is a conflict, close the conflicting port.
 ```shell
 lsof -i: <port_number>
 ```
-If the above command has no output, there may be an issue with the lsof command.
+If the above command has no output, the lsof command may be malfunctioning.
 ```shell
 whereis lsof
-# If multiple lsof commands exist and only one works properly, rename or move the other lsof binaries to another path.
+# If multiple lsof commands exist and only one works, rename or move the other lsof binary files to another path
 ```
 
 ## 6 Sealos Cluster Deployment, Kubelet Fails to Start
 **OS is openEuler 22.03 version**
-Problem description: During Sealos deployment, errors persist, preventing the cluster from starting up. It appears to be a kubelet issue. Check the kubelet logs.
+Problem description: During the Sealos deployment process, errors persist, preventing the cluster from starting. It is suspected that this is due to an issue with kubelet. Check the kubelet logs.
 ![](img/faq-k8s-4.png)
 By checking the `/var/log/message` log, it is found that the `/etc/resolv.conf` file does not exist.
 ![](img/faq-k8s-5.png)

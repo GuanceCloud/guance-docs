@@ -2,14 +2,14 @@
 
 ## 1. Introduction
 
-MySQL is a lightweight relational database management system developed by MySQL AB in Sweden and currently owned by Oracle Corporation. It is widely used on medium and small websites on the Internet. Due to its small size, fast speed, low total cost of ownership, open-source nature, and being free, it is generally chosen as the website database for Linux + MySQL setups in most medium and small websites.
+MySQL is a lightweight relational database management system developed by MySQL AB in Sweden and currently owned by Oracle Corporation. Currently, MySQL is widely used on medium and small websites on the Internet due to its small size, fast speed, low total cost of ownership, open-source nature, and free availability. Most medium and small website developments choose Linux + MySQL as their website database.
 
-MySQL is a relational database management system that stores data in different tables rather than in one large repository, thereby increasing speed and flexibility.
+MySQL is a relational database management system that stores data in different tables rather than in a single large repository, which increases speed and flexibility.
 
 ## 2. Prerequisites
 
-- Kubernetes cluster has been deployed
-- OpenEBS storage plugin driver has been deployed
+- A Kubernetes cluster has been deployed
+- The OpenEBS storage plugin driver has been deployed
 
 ```shell
 root@k8s-node01 /etc]# kubectl  get pods -n kube-system|grep openebs
@@ -20,21 +20,21 @@ openebs-ndm-qtjxm                              1/1     Running   0          23h
 openebs-ndm-vlcrv                              1/1     Running   0          23h
 ```
 
-## 3. Pre-installation Preparation
+## 3. Preparation for Installation
 
-Since MySQL consumes a significant amount of resources and requires exclusive use of cluster resources, we need to configure cluster scheduling in advance.
+Since MySQL consumes significant resources and requires exclusive use of cluster resources, we need to configure cluster scheduling in advance.
 
 ## 4. Cluster Label Configuration
 
-Execute commands to label the cluster nodes
+Execute commands to label the cluster:
 
 ```shell
-# According to the cluster plan, apply labels to the k8s nodes where MySQL services will be deployed (single node)
-# xxx represents the actual node in the cluster used for deploying MySQL services
+# According to the cluster plan, label the k8s node that needs to deploy the MySQL service (single node)
+# xxx represents the actual node in the cluster used to deploy the MySQL service
 kubectl label nodes xxx mysql=true
 ```
 
-Check the labels
+Check the labels:
 
 ```shell
 kubectl get nodes --show-labels  | grep 'mysql'
@@ -42,9 +42,9 @@ kubectl get nodes --show-labels  | grep 'mysql'
 
 ## 5. Cluster Taint Configuration
 
-Execute commands to set taints on the cluster
-???+ Tips "Tip"
-    If there is no plan to run MySQL services on dedicated nodes, you do not need to apply taints to the nodes; this step can be skipped.
+Execute commands to set taints on the cluster:
+???+ Tips "Tips"
+    If the MySQL service is not planned to run on a dedicated node, you do not need to taint the node; this step can be skipped.
 
     ```shell
     kubectl taint node  xxxx infrastructure=middleware:NoExecute
@@ -52,10 +52,10 @@ Execute commands to set taints on the cluster
 
 ## 6. Configure StorageClass 
 
-Configure a dedicated StorageClass for MySQL
+Configure a dedicated StorageClass for MySQL:
 
 ```yaml
-# Copy the following YAML content into the k8s cluster and save it as a YAML file. Modify according to your actual situation before deployment.
+# Copy the following YAML content into the k8s cluster and save it as a YAML file. Modify it according to your actual situation before deployment.
 apiVersion: storage.k8s.io/v1
 allowVolumeExpansion: true
 kind: StorageClass
@@ -66,7 +66,7 @@ metadata:
         value: "hostpath"
       - name: BasePath
         value: "/data/mysql"  # This path can be modified based on actual conditions. Ensure sufficient storage space and that the path exists.
-  name: openebs-mysql  # The name must be unique within the cluster. Update the deployment file /etc/kubeasz/guance/infrastructure/yaml/mysql.yaml before installation.
+  name: openebs-mysql  # The name must be unique within the cluster. Modify it before deployment in the file /etc/kubeasz/guance/infrastructure/yaml/mysql.yaml 
 provisioner: openebs.io/local
 reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
@@ -74,10 +74,10 @@ volumeBindingMode: WaitForFirstConsumer
 
 > Ensure that the `/data/mysql` directory has sufficient disk capacity.
 
-Configure data storage space
+Configure data storage space:
 
 ```yaml
-# Edit /etc/kubeasz/guance/infrastructure/yaml/mysql.yaml as needed
+# Modify as needed in /etc/kubeasz/guance/infrastructure/yaml/mysql.yaml
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -89,15 +89,16 @@ spec:
   volumeMode: Filesystem
   resources:
     requests:
-      storage: 10Gi  # Set the storage size according to actual usage.
+      storage: 10Gi  # Set the storage size according to actual usage
   storageClassName:  openebs-mysql
 ```
 
 ## 7. Installation
 
 ```shell
-# Default root administrator password is "mQ2LZenlYs1UoVzi"
-# You can modify this password before installation via /etc/kubeasz/guance/infrastructure/yaml/mysql.yaml
+# The default root administrator password is "mQ2LZenlYs1UoVzi"
+# You can modify it before installation via /etc/kubeasz/guance/infrastructure/yaml/mysql.yaml
+
 
 # Create namespace
 kubectl  create  ns middleware
@@ -105,7 +106,7 @@ kubectl  create  ns middleware
 kubectl  apply  -f /etc/kubeasz/guance/infrastructure/yaml/mysql.yaml  -n middleware
 ```
 
-## 8. Verify Deployment and Configuration
+## 8. Verification of Deployment and Configuration
 
 ### 8.1 Check Container Status
 
@@ -118,8 +119,8 @@ mysql-75499f6fcd-6tc7l      1/1     Running   0          4m36s
 ???+ success "Verify MySQL Service Availability"
 
     ```shell
-    # Default root administrator password is "mQ2LZenlYs1UoVzi"
-    # You can modify this password before installation via /etc/kubeasz/guance/infrastructure/yaml/mysql.yaml
+    # The default root administrator password is "mQ2LZenlYs1UoVzi"
+    # You can modify it before installation via /etc/kubeasz/guance/infrastructure/yaml/mysql.yaml
 
     [root@k8s-node01 /etc/kubeasz/guance/infrastructure/yaml]# kubectl  exec -it -n middleware  mysql-xxxxx  -- mysql -uroot  -p
     Enter password:

@@ -1,18 +1,18 @@
-# Data Discontinuity Issue Troubleshooting
+# Data Discontinuity Troubleshooting
 
 ## Introduction
 
-This document will introduce how to troubleshoot log, trace, and metrics data discontinuity issues in Guance.
+This article will introduce how to troubleshoot log, trace, and metrics data discontinuity issues in <<< custom_key.brand_name >>>.
 
 ## Architecture Diagram
 
-The data flow in Guance is as follows:
+The <<< custom_key.brand_name >>> data flow is as follows:
 
-1. DataKit sends metrics logs to the Guance DataWay cluster
-2. DataWay pushes the data to the kodo service for processing
-3. kodo sends the processed data to the nsqd message queue service
-4. kodo-x requests data from the nsqd message queue service
-5. kodo-x sends the consumed data to the corresponding storage engine
+1. DataKit pushes metric logs to the <<< custom_key.brand_name >>> DataWay cluster.
+2. DataWay pushes the data to the kodo service for processing.
+3. kodo pushes the processed data to the nsqd message queue service.
+4. kodo-x requests data consumption from the nsqd message queue service.
+5. kodo-x pushes the consumed data to the corresponding storage engine.
 
 ![](img/faq-log-1.png)
 
@@ -22,10 +22,10 @@ The data flow in Guance is as follows:
 
 Please confirm the following information:
 
-- The time on the Guance cluster host matches the current time
-- The time on the DataKit collector host matches the current time
+- The host time of the <<< custom_key.brand_name >>> cluster matches the current time.
+- The DataKit collector host time matches the current time.
 
-You can check with the following command:
+You can check this by running the command:
 ```shell
 date
 ```
@@ -60,7 +60,7 @@ Please follow these steps:
 
 ```shell
 # Login to the container
-kubectl exec -ti -n  <Namespace> <dataway pod name> bash
+kubectl exec -ti -n <Namespace> <dataway pod name> bash
 # View logs
 cd /usr/local/cloudcare/dataflux/dataway
 # Search for error logs
@@ -68,9 +68,9 @@ grep -Ei error log
 ```
 
 
-### Step Four: Check the Status of Each Service
+### Step Four: Check the Running Status of Each Service
 
-- Check if the status of cluster nodes is normal
+- Check if the cluster node status is normal
 
   ```shell
   kubectl get node
@@ -88,16 +88,17 @@ grep -Ei error log
   kubectl get pods -n middleware | grep nsqd
   ```
 
-- Check if the storage engine is functioning properly
+- Check if the storage engine is functioning normally
 
   ```shell
   kubectl get pods -n middleware
   ```
 
+
 ### Step Five: View kodo Service Logs
 
 ???+ warning "Note"
-     Checking the kodo service logs can help determine whether Guance successfully pushed the data to the consumption queue.
+     Viewing the kodo service logs can help determine whether <<< custom_key.brand_name >>> successfully pushed data to the consumption queue.
 
 - Namespace: forethought-kodo
 
@@ -108,11 +109,11 @@ grep -Ei error log
   
 
 === "kodo Service Normal"
-    If the kodo service is functioning normally, please execute the following commands:
+    If the kodo service is normal, please execute the following commands:
 
     ```shell
     # Login to the container
-    kubectl exec -ti -n  forethought-kodo <kodo pod name> bash
+    kubectl exec -ti -n forethought-kodo <kodo pod name> bash
     # View logs
     cd /logdata
     # Search for error logs
@@ -121,9 +122,9 @@ grep -Ei error log
 
 === "kodo Service Abnormal"
 
-    If the kodo service is abnormal, you will be unable to log into the container. You can first adjust the kodo log output mode and then check the container logs.
+    If the kodo service is abnormal, you will be unable to log into the container. You can first adjust the kodo log output mode and then view the container logs.
 
-    - Modify the kodo log output mode
+    - Modify kodo log output mode
 
       ```shell
       kubectl get configmap kodo -n forethought-kodo -o yaml | \
@@ -146,7 +147,7 @@ grep -Ei error log
 ### Step Six: View kodo-x Service Logs
 
 ???+ warning "Note"
-     Checking the kodo-x service logs can help identify if Guance successfully wrote the data, and if there were any throttling or slow write issues.
+     Viewing the kodo-x service logs can help determine whether <<< custom_key.brand_name >>> successfully wrote data, and whether there are issues such as log throttling or slow log writing.
 
 - Namespace: forethought-kodo
 - Deployment: kodo-x
@@ -154,11 +155,11 @@ grep -Ei error log
 
 === "kodo-x Service Normal"
    
-    If the kodo-x service is functioning normally, please execute the following commands:
+    If the kodo-x service is normal, please execute the following commands:
 
     ```shell
     # Login to the container
-    kubectl exec -ti -n  forethought-kodo <kodo-x pod name> bash
+    kubectl exec -ti -n forethought-kodo <kodo-x pod name> bash
     # View logs
     cd /logdata
     # Search for error logs
@@ -167,9 +168,9 @@ grep -Ei error log
 
 === "kodo-x Service Abnormal"
 
-    If the kodo-x service is abnormal, you will be unable to log into the container. You can first adjust the kodo log output mode and then check the container logs.
+    If the kodo-x service is abnormal, you will be unable to log into the container. You can first adjust the kodo-x log output mode and then view the container logs.
 
-    - Modify the kodo log output mode
+    - Modify kodo-x log output mode
 
       ```shell
       kubectl get configmap kodo-x -n forethought-kodo -o yaml | \
@@ -177,13 +178,13 @@ grep -Ei error log
              kubectl apply -f -
       ```
 
-    - Restart the kodo container
+    - Restart the kodo-x container
 
       ```shell
       kubectl rollout restart -n forethought-kodo deploy kodo-x
       ```
 
-    - View kodo container logs
+    - View kodo-x container logs
 
       ```shell
       kubectl logs -f -n forethought-kodo <kodo-x pod name>

@@ -1,6 +1,6 @@
 ---
 title     : 'Node Problem Detector'
-summary   : 'Collecting cluster node metrics and events through NPD'
+summary   : 'Collect cluster node Metrics and events via NPD'
 __int_icon: 'icon/kubernetes'
 dashboard :
   - desc  : 'Node Problem Detector monitoring view'
@@ -21,7 +21,7 @@ monitor   :
 **NPD** features:
 
 - Generates event information and reports it to the APIServer.
-- Detects metric information and outputs it as Metrics.
+- Detects metrics information and outputs them as Metrics.
 
 
 ## Configuration {#config}
@@ -35,7 +35,7 @@ monitor   :
 
 Refer to the [installation documentation](https://github.com/kubernetes/node-problem-detector#installation). This guide uses the `yaml` method for installation.
 
-- Download the related YAML files
+- Download related YAML files
 
 1. [node-problem-detector.yaml](https://github.com/kubernetes/node-problem-detector/blob/master/deployment/node-problem-detector.yaml)
 
@@ -43,7 +43,7 @@ Refer to the [installation documentation](https://github.com/kubernetes/node-pro
 
 3. [rbac.yaml](https://github.com/kubernetes/node-problem-detector/blob/master/deployment/rbac.yaml)
 
-- Execute
+- Execution
 
 ```shell
 kubectl apply -f rbac.yaml
@@ -57,17 +57,17 @@ By default, after installing NPD, no additional configuration is required. DataK
 
 ### Metrics Mode
 
-In addition to event mode, NPD also supports exporting metrics.
+In addition to event mode, NPD also supports outputting metrics.
 
 #### Preparation
 
 - [x] Install [Prometheus Operator](kubernetes-prometheus-operator-crd.md)
 
-#### Enable `ServiceMonitor` in DataKit
+#### Enable DataKit `ServiceMonitor`
 
-[Automatic discovery of Pod/Service metrics with Prometheus](kubernetes-prom.md#auto-discovery-metrics-with-prometheus)
+[Automatic discovery of Pod/Service Prometheus metrics](kubernetes-prom.md#auto-discovery-metrics-with-prometheus)
 
-The following steps describe how to collect `NPD` metrics using `ServiceMonitor`.
+The following collects NPD metrics using the `ServiceMonitor` method.
 
 - Modify node-problem-detector.yaml
 
@@ -128,7 +128,7 @@ spec:
         - node-problem-detector
 ```
 
-- Execute
+- Execution
 
 ```shell
 kubectl apply -f rbac.yaml
@@ -142,29 +142,29 @@ kubectl apply -f npd-server-monitor.yaml
 
 ### problem_gauge
 
-| Tag | Description |
-| --- | --- |
-| `type="ConntrackFullProblem"` | Node connection tracking table issue |
+|Tag| Description|
+| -- | -- |
+| `type="ConntrackFullProblem"`| Node connection tracking table issue |
 | type="EmptyDirVolumeGroupStatusError" | Temporary volume storage pool issue |
 | type="MemoryProblem" | Node memory issue |
 | type="LocalPvVolumeGroupStatusError" | Persistent volume storage pool issue on the node |
 | type="MountPointProblem" | Node mount point issue |
 | type="FDProblem" | System critical resource FD file handle issue |
-| type="DiskHung" | Whether the node's disk has IO hang issues |
-| type="DiskReadonly" | Whether the node's disk is read-only |
+| type="DiskHung" | Whether the node disk has IO hang |
+| type="DiskReadonly" | Whether the node disk is read-only |
 | type="DiskProblem" | Node system disk issue |
-| type="DiskSlow" | Whether the node's disk has slow IO issues |
-| type="FrequentCRIRestart" | CRI frequent restarts |
-| type="FrequentDockerRestart" | Docker frequent restarts |
-| type="FrequentKubeletRestart" | Kubelet frequent restarts |
-| type="FrequentContainerdRestart" | Containerd frequent restarts |
+| type="DiskSlow" | Whether the node disk has slow IO issues |
+| type="FrequentCRIRestart" | Frequent CRI restarts |
+| type="FrequentDockerRestart" | Frequent Docker restarts |
+| type="FrequentKubeletRestart" | Frequent Kubelet restarts |
+| type="FrequentContainerdRestart" | Frequent Containerd restarts |
 | type="NTPProblem" | `ntpd` synchronization anomaly |
 | type="PIDProblem" | Insufficient system critical resource PID process resources |
-| type="ResolvConfFileProblem" | `ResolvConf` configuration anomaly |
+| type="`ResolvConfFileProblem`" | `ResolvConf` configuration anomaly |
 | type="CNIProblem" | CNI (container network) component anomaly |
-| type="CRIProblem" | Component CRI (container runtime component) Docker or Containerd runtime status anomaly |
-| type="KUBEPROXYProblem" | Kube-proxy running anomaly |
-| type="KUBELETProblem" | Kubelet status anomaly |
+| type="CRIProblem" | Component CRI (container runtime component) Docker or Containerd running state anomaly |
+| type="`KUBEPROXYProblem`" | Kube-proxy running anomaly |
+| type="`KUBELETProblem`" | Kubelet status anomaly |
 | type="ScheduledEvent" | Whether there are scheduled events on the node |
 | type="ProcessD" | Node has D processes |
 | type="ProcessZ" | Node has Z processes |
@@ -177,22 +177,22 @@ The following list includes but is not limited to the events that NPD can detect
 | --- | --- | --- |
 | `DockerHung` | Yes | Docker is hung or unresponsive |
 | `ReadonlyFilesystem` | Yes | Filesystem mounted as read-only, usually a protective mechanism to prevent filesystem corruption in certain situations |
-| `CorruptDockerOverlay2` | Yes | Overlay2 storage driver issue |
+| `CorruptDockerOverlay2` | Yes | Issues with the Overlay2 storage driver |
 | `ContainerdUnhealthy` | Yes | Containerd is in an unhealthy state |
 | `KubeletUnhealthy` | Yes | Kubelet is in an unhealthy state |
 | `DockerUnhealthy` | Yes | Docker is in an unhealthy state |
-| `OOMKilling` | No | Kubernetes terminates Pod due to OOM |
+| `OOMKilling` | No | Kubernetes terminates Pods due to OOM |
 | `TaskHung` | No | Task is hung |
 | `UnregisterNetDevice` | No | Network interface anomaly |
-| `KernelOops` | No | Kernel detects abnormal behavior, such as null pointer or device error |
-| `Ext4Error` | No | Ext4 filesystem issue |
-| `Ext4Warning` | No | Ext4 filesystem issue |
-| `IOError` | No | Buffer issue |
-| `MemoryReadError` | No | Correctable memory error; frequent occurrences may indicate potential hardware issues |
+| `KernelOops` | No | Kernel detects abnormal behavior, such as null pointer dereference, device errors |
+| `Ext4Error` | No | Ext4 filesystem issues |
+| `Ext4Warning` | No | Ext4 filesystem issues |
+| `IOError` | No | Buffer issues |
+| `MemoryReadError` | No | Correctable memory errors; frequent occurrences suggest potential hardware issues |
 | `KubeletStart` | No | Kubelet starts; frequent occurrences indicate frequent Kubelet restarts |
 | `DockerStart` | No | Docker starts; frequent occurrences indicate frequent Docker restarts |
 | `ContainerdStart` | No | Containerd starts; frequent occurrences indicate frequent Containerd restarts |
 | `CorruptDockerImage` | No | Docker registry directory is not empty |
 | `DockerContainerStartupFailure` | No | Docker fails to start |
-| `ConntrackFull` | No | Network connection tracking count is full, affecting NAT, firewall, etc. |
+| `ConntrackFull` | No | Network connection tracking full, affecting NAT, firewall, etc. |
 | `NTPIsDown` | No | NTP time synchronization anomaly |

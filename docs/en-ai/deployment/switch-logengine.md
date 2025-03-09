@@ -2,14 +2,14 @@
 
 ## Introduction
 
-This article will introduce how to switch the log engine in Guance. It supports six different engines, including the original open-source Elasticsearch, the original open-source OpenSearch, AWS cloud-managed OpenSearch, Huawei Cloud-managed Elasticsearch, Aliyun-managed Elasticsearch Enhanced Edition for logs, and Aliyun-managed Elasticsearch. This operation is suitable for switching production log engines during a Proof of Concept (POC).
+This document will introduce how to switch the log engine in <<< custom_key.brand_name >>>. It supports 6 different engines, including the original open-source Elasticsearch, the original open-source OpenSearch, AWS cloud-hosted OpenSearch, Huawei Cloud-hosted Elasticsearch, Alibaba Cloud托管 Elasticsearch Log Enhanced Edition, and Alibaba Cloud-hosted Elasticsearch. This operation is suitable for switching production log engines from POC.
 
 ## Prerequisites
 
 - Prepare the log engine address, account, and password.
-- Confirm whether analysis-ik is installed successfully.
-- Determine if automatic index creation is disabled.
-- Prepare the MySQL address for Guance and the account and password for the `df_core` database.
+- Confirm whether analysis-ik is successfully installed.
+- Determine if auto-index creation is disabled.
+- Prepare the <<< custom_key.brand_name >>> MySQL address and `df_core` database account and password.
   ![](switch-log-1.png)
 
 ## Switching Steps
@@ -23,7 +23,7 @@ kubectl scale -n forethought-kodo deploy kodo-x --replicas 0
 
 Log in to the `df_core` database.
 
-1. Backup table
+1. Backup the table
 
    ```sql
    SQL> create table df_core.main_es_instance_copy select * from df_core.main_es_instance;
@@ -53,19 +53,19 @@ Log in to the `df_core` database.
    SQL> update df_core.main_es_instance a set a.authorization='{"admin": {"password": "xxxxx", "username": "elastic"}}', a.configJSON='{"provider": "elastic"}', a.host='http://elasticsearch-client-headless.middleware:9200' where id =1;
    ```
 
-   **Parameter Description:**
+   **Parameter Explanation:**
 
-   - `authorization` is the username and password for ES.
-   - `configJSON` is the provider of ES,
+   - `authorization`: ES username and password
+   - `configJSON`: ES provider,
      Possible values:
      - elastic (original open-source Elasticsearch)
      - opensearch (original open-source OpenSearch)
-     - aws_opensearch (AWS cloud-managed OpenSearch)
-     - huawei_opensearch (Huawei Cloud-managed Elasticsearch)
-     - aliyun_openstore (Aliyun-managed Elasticsearch Enhanced Edition for logs)
-     - aliyun_elasticsearch (Aliyun-managed Elasticsearch)
-   - `host` is the ES address.
-   - `id` is the ES instance ID obtained in step two.
+     - aws_opensearch (AWS cloud-hosted OpenSearch)
+     - huawei_elasticsearch (Huawei Cloud-hosted Elasticsearch)
+     - aliyun_openstore (Alibaba Cloud-hosted Elasticsearch Log Enhanced Edition)
+     - aliyun_elasticsearch (Alibaba Cloud-hosted Elasticsearch)
+   - `host`: ES address
+   - `id`: The ES instance ID obtained in step two
 
 ### Step Three: Restart Services
 
@@ -98,8 +98,7 @@ flushall
 
 ### Step Seven: Verification
 
-Please log in to the Guance console and carefully check the infrastructure and log functions.
-
+Please log in to the <<< custom_key.brand_name >>> console and carefully check the infrastructure and log functionality.
 
 ## FAQ {#FAQ}
 
@@ -108,13 +107,13 @@ Please log in to the Guance console and carefully check the infrastructure and l
 ![](img/query-failed.png)
 #### Prerequisites
 
-- Obtain the workspace ID of the error space.
-- Able to access OpenSearch.
+- Obtain the space ID of the error space.
+- Ensure access to OpenSearch.
 
-#### Delete Error Index
+#### Delete Incorrect Index
 
 ```shell
-curl -XDELETE -u "user:password" http://<OpenSearchHost>:9200/<workspaceID>*
+curl -XDELETE -u "user:password" http://<OPenSearchHost>:9200/<workspaceID>*
 ```
 
 **Do not omit the asterisk (*)**

@@ -1,16 +1,16 @@
 ---
-title: 'Prometheus Remote Write'
-summary: 'Collect Metrics data via Prometheus Remote Write'
+title     : 'Prometheus Remote Write'
+summary   : 'Collect metrics data via Prometheus Remote Write'
 tags:
   - 'External Data Ingestion'
   - 'PROMETHEUS'
 __int_icon: 'icon/prometheus'
-dashboard:
-  - desc: 'Not available'
-    path: '-'
-monitor:
-  - desc: 'Not available'
-    path: '-'
+dashboard :
+  - desc  : 'Not available'
+    path  : '-'
+monitor   :
+  - desc  : 'Not available'
+    path  : '-'
 ---
 
 
@@ -32,7 +32,7 @@ Enable the Prometheus Remote Write function by adding the following configuratio
 remote_write:
  - url: "http://<datakit-ip>:9529/prom_remote_write"
 
-# If you want to add some tags, (__source will not be included in tags, only shown in Datakit exposed metrics)
+# If you want to add some tags, ( __source will not be included in tags, only shown in Datakit exposed metrics)
 # remote_write:
 # - url: "http://<datakit-ip>:9529/prom_remote_write?host=1.2.3.4&foo=bar&__source=<your_source>" 
 ```
@@ -58,13 +58,13 @@ remote_write:
       #
       # default_content_encoding = "snappy"
     
-      ## Part of the request to consume. Available options are "body" and "query".
+      ## Part of the request to consume.  Available options are "body" and "query".
       # data_source = "body"
     
       ## Output source
-      # Specify this to output collected metrics to a local file
-      # If not specified, metrics are sent to DataKit io
-      # If specified, you can use 'datakit --prom-conf /path/to/this/conf' to debug collected data
+      # specify this to output collected metrics to a local file
+      # if not specified, metrics is sent to datakit io
+      # if specified, you can use 'datakit --prom-conf /path/to/this/conf' to debug collected data
       # output = "/abs/path/file"
     
       ## If job_as_measurement is true, use the job field for the measurement name.
@@ -83,17 +83,17 @@ remote_write:
       # measurement_name_filter = ["kubernetes", "container"]
     
       ## Metric name prefix
-      ## Prefix will be added to the metric name
+      ## Prefix will be added to metric name
       # measurement_prefix = "prefix_"
     
       ## Metric name
       ## Metric name will be divided by "_" by default.
-      ## Metric is named by the first divided field, the remaining fields are used as the current metric name
+      ## Metric is named by the first divided field, the remaining field is used as the current metric name
       ## Metric name will not be divided if measurement_name is configured
       ## measurement_prefix will be added to the start of measurement_name
       # measurement_name = "prom_remote_write"
     
-      ## Maximum body size in bytes, default set to 500MB
+      ## Max body size in bytes, default set to 500MB
       # max_body_size = 0
     
       ## Optional username and password to accept for HTTP basic authentication.
@@ -122,15 +122,15 @@ remote_write:
       # old_tag_name = "new_tag_name"
       # more_old_tag_name = "other_new_tag_name"
     
-      ## Optional setting to map HTTP headers into tags
-      ## If the HTTP header is not present on the request, no corresponding tag will be added
-      ## If multiple instances of the HTTP header are present, only the first value will be used
+      ## Optional setting to map http headers into tags
+      ## If the http header is not present on the request, no corresponding tag will be added
+      ## If multiple instances of the http header are present, only the first value will be used
       [inputs.prom_remote_write.http_header_tags]
       # HTTP_HEADER = "TAG_NAME"
     
       ## Customize measurement set name.
       ## Treat those metrics with prefix as one set.
-      ## Prioritize over 'measurement_name' configuration.
+      ## Prioritier over 'measurement_name' configuration.
       ## Must measurement_name = ""
       [[inputs.prom_remote_write.measurements]]
         prefix = "etcd_network_"
@@ -151,12 +151,12 @@ remote_write:
 
 === "Kubernetes"
 
-    You can inject collector configurations via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or configure [ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
+    You can inject the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or configure [ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
 <!-- markdownlint-enable -->
 
-### Tag Handling {#tag-ops}
+### Tag Processing {#tag-ops}
 
-You can add tags to collected metrics by configuring `tags`, as follows:
+You can add tags to the collected metrics by configuring `tags`, as follows:
 
 ```toml
   ## Custom tags
@@ -165,7 +165,7 @@ You can add tags to collected metrics by configuring `tags`, as follows:
   more_tag = "some_other_value"
 ```
 
-Note: If both blacklists and whitelists are configured, they will all be canceled.
+Note: If both blacklist and whitelist are configured, they will both be ignored.
 
 You can ignore certain tags on metrics by configuring `tags_ignore` (blacklist), as follows:
 
@@ -174,7 +174,7 @@ You can ignore certain tags on metrics by configuring `tags_ignore` (blacklist),
   tags_ignore = ["xxxx"]
 ```
 
-You can ignore tags on metrics using regex matching by configuring `tags_ignore_regex` (blacklist), as follows:
+You can ignore tags on metrics using regex by configuring `tags_ignore_regex` (blacklist), as follows:
 
 ```toml
   ## Tags to ignore with regex
@@ -188,14 +188,14 @@ You can configure a whitelist of tags on metrics by configuring `tags_only`, as 
   # tags_only = ["xxxx"]
 ```
 
-You can configure a whitelist of tags on metrics using regex matching by configuring `tags_only_regex`, as follows:
+You can configure a whitelist of tags on metrics using regex by configuring `tags_only_regex`, as follows:
 
 ```toml
   ## Tags white list with regex
   # tags_only_regex = ["xxxx"]
 ```
 
-You can rename certain existing tags on metrics by configuring `tags_rename`, as follows:
+You can rename existing tags on metrics by configuring `tags_rename`, as follows:
 
 ```toml
   ## Tags to rename
@@ -204,21 +204,21 @@ You can rename certain existing tags on metrics by configuring `tags_rename`, as
   more_old_tag_name = "other_new_tag_name"
 ```
 
-Additionally, when the renamed tag key conflicts with an existing tag key, you can specify whether to overwrite the existing tag key using `overwrite`.
+Additionally, when renaming a tag key that already exists, you can configure whether to overwrite the existing tag key using `overwrite`.
 
-> Note: For [global tag keys of DataKit](../datakit/datakit-conf.md#update-global-tag), renaming them here is not supported.
+> Note: For [global tag keys in DataKit](../datakit/datakit-conf.md#update-global-tag), renaming them here is not supported.
 
 ## Metrics {#metric}
 
-The Mearsurement is based on the Metrics set sent by Prometheus.
+The metrics set follows the metrics set sent by Prometheus.
 
 ## Configuring Prometheus Remote Write Metric Filtering {#remote-write-relabel}
 
-When using Prometheus to push metrics to DataKit via remote write, too many metrics can lead to a surge in stored data. We can select specific metrics using Prometheus's relabeling feature.
+When using Prometheus to push metrics to DataKit via remote write, too many metrics may lead to an explosion of data in storage. In such cases, we can use Prometheus's relabel feature to select specific metrics.
 
-In Prometheus, to configure `remote_write` to another service and send only specified metrics, we need to set the `remote_write` section in Prometheus's configuration file (usually `prometheus.yml`) and specify the `match[]` parameter to define which metrics to send.
+In Prometheus, to configure `remote_write` to another service and send only specified metrics, we need to set the `remote_write` section in Prometheus's configuration file (usually `prometheus.yml`) and specify the `match[]` parameter to define the metrics to send.
 
-Here’s a configuration example showing how to send specific metrics to a remote write endpoint:
+Here’s an example configuration that shows how to send a specific list of metrics to a remote write endpoint:
 
 ```yaml
 remote_write:
@@ -231,23 +231,23 @@ remote_write:
 
 In this configuration:
 
-- `url`: URL of the remote write service
-- `write_relabel_configs`: A list used to relabel and filter metrics to be sent
-    - `source_labels`: Specifies the source labels for matching and relabeling
-    - `regex`: A regular expression to match metric names to retain
-    - `action`: Specifies whether to keep (`keep`) or drop (`drop`) metrics matching the regex
+- `url`: The URL of the remote write service
+- `write_relabel_configs`: A list used to relabel and filter the metrics to send
+    - `source_labels`: Specifies the source labels to match and relabel
+    - `regex`: A regular expression to match the metric names to retain
+    - `action`: Specifies whether metrics matching the regex should be kept (`keep`) or dropped (`drop`)
 
 In the above example, only metrics named `my_metric`, `another_metric`, or `yet_another_metric` will be sent to the remote write endpoint. All other metrics will be ignored.
 
-Finally, reload or restart the Prometheus service to apply changes.
+Finally, reload or restart the Prometheus service to apply the changes.
 
 ## Debugging Metrics Set via Command Line {#debug}
 
-DataKit provides a simple tool to debug `prom.conf`. If you continuously adjust the `prom.conf` configuration, you can achieve the purpose of collecting only Prometheus metrics that match certain naming rules.
+DataKit provides a simple tool to debug `prom.conf`. By continuously adjusting the `prom.conf` configuration, you can achieve the goal of collecting Prometheus metrics that match certain naming rules.
 
-DataKit supports debugging the configuration file of this collector directly via the command line. Configure the `output` item under `conf.d/prom/prom_remote_write.conf` to a local file path so that the collected data is written to the file instead of being uploaded to the central server.
+DataKit supports debugging the collector configuration file directly from the command line. Configure the `output` item in `prom_remote_write.conf` under `conf.d/prom` to a local file path. The collected data will then be written to the file instead of being uploaded to the central server.
 
-Restart DataKit to apply the configuration file:
+Restart DataKit to apply the configuration:
 
 ```shell
 datakit service -R
@@ -255,7 +255,7 @@ datakit service -R
 
 At this point, the *prom_remote_write* collector will write the collected data to the local file specified by `output`.
 
-Execute the following command to debug *prom_remote_write.conf*:
+Run the following command to debug *prom_remote_write.conf*:
 
 ```shell
 datakit debug --prom-conf prom_remote_write.conf
@@ -265,7 +265,7 @@ Parameter description:
 
 - `prom-conf`: Specifies the configuration file, defaults to searching for `prom_remote_write.conf` in the current directory; if not found, it looks for the corresponding file in the *<datakit-install-dir>/conf.d/prom* directory.
 
-Output example:
+Example output:
 
 ``` not-set
 ================= Line Protocol Points ==================
@@ -287,22 +287,22 @@ Output example:
  prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor tsdb_checkpoint_deletions_failed_total=0 1634548272855000000
  prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor tsdb_checkpoint_deletions_total=1 1634548272855000000
  prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor tsdb_clean_start=1 1634548272855000000
- prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor,le=100 tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
- prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor,le=400 tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
- prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor,le=1600 tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
- prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor,le=6400 tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
- prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor,le=25600 tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
- prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor,le=102400 tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
- prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor,le=409600 tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
- prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor,le=1.6384e+06 tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
- prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor,le=6.5536e+06 tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
- prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor,le=2.62144e+07 tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
- prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor,le=+Inf tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
+ prometheus,instance=localhost:9090,job=prometheus,le=100,monitor=codelab-monitor tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
+ prometheus,instance=localhost:9090,job=prometheus,le=400,monitor=codelab-monitor tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
+ prometheus,instance=localhost:9090,job=prometheus,le=1600,monitor=codelab-monitor tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
+ prometheus,instance=localhost:9090,job=prometheus,le=6400,monitor=codelab-monitor tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
+ prometheus,instance=localhost:9090,job=prometheus,le=25600,monitor=codelab-monitor tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
+ prometheus,instance=localhost:9090,job=prometheus,le=102400,monitor=codelab-monitor tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
+ prometheus,instance=localhost:9090,job=prometheus,le=409600,monitor=codelab-monitor tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
+ prometheus,instance=localhost:9090,job=prometheus,le=1.6384e+06,monitor=codelab-monitor tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
+ prometheus,instance=localhost:9090,job=prometheus,le=6.5536e+06,monitor=codelab-monitor tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
+ prometheus,instance=localhost:9090,job=prometheus,le=2.62144e+07,monitor=codelab-monitor tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
+ prometheus,instance=localhost:9090,job=prometheus,le=+Inf,monitor=codelab-monitor tsdb_compaction_chunk_range_seconds_bucket=0 1634548272855000000
  prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor tsdb_compaction_chunk_range_seconds_sum=0 1634548272855000000
  prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor tsdb_compaction_chunk_range_seconds_count=0 1634548272855000000
- prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor,le=4 tsdb_compaction_chunk_samples_bucket=0 1634548272855000000
- prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor,le=6 tsdb_compaction_chunk_samples_bucket=0 1634548272855000000
- prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor,le=9 tsdb_compaction_chunk_samples_bucket=0 1634548272855000000
+ prometheus,instance=localhost:9090,job=prometheus,le=4,monitor=codelab-monitor tsdb_compaction_chunk_samples_bucket=0 1634548272855000000
+ prometheus,instance=localhost:9090,job=prometheus,le=6,monitor=codelab-monitor tsdb_compaction_chunk_samples_bucket=0 1634548272855000000
+ prometheus,instance=localhost:9090,job=prometheus,le=9,monitor=codelab-monitor tsdb_compaction_chunk_samples_bucket=0 1634548272855000000
 ...
 ================= Summary ==================
 
@@ -315,6 +315,6 @@ Output explanation:
 
 - Line Protocol Points: Generated line protocol points
 - Summary: Summary results
-    - Total time series: Number of Time Series
+    - Total time series: Number of time series
     - Total line protocol points: Number of line protocol points
-    - Total measurements: Number and names of Mearsurements.
+    - Total measurements: Number of measurements and their names.

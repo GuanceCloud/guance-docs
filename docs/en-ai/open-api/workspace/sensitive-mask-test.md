@@ -7,15 +7,13 @@
 ## Overview
 Workspace sensitive data masking rule test
 
-
-
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                                                                 |
-|:--------------|:-------|:---------|:----------------------------------------------------------------------------|
-| roleUUIDs     | array  | Y        | Account roles associated<br>Allow null: False <br>Example: ['general', 'role_43f57c813b034c4b806a1a647b4ee387'] <br> |
-| namespace     | string | Y        | Masking type<br>Allow null: False <br>Allow empty string: False <br>Example: logging <br>Possible values: ['logging', 'metric', 'object', 'custom_object', 'keyevent', 'tracing', 'rum', 'security', 'network', 'profiling', 'billing'] <br> |
-| data          | array  | Y        | Email headers<br>Allow null: False <br>Example: [{'host': 'hangzhou_127', 'message': 'xxxL, id: 234887209348'}, {'host': 'xihu', 'message': 'xxxL, id: 234234234'}] <br> |
+| Parameter Name | Type   | Required | Description                                                                                           |
+|:--------------|:-------|:---------|:------------------------------------------------------------------------------------------------------|
+| roleUUIDs     | array  | Y        | Account roles associated<br>Can be empty: False <br>Example: ['general', 'role_43f57c813b034c4b806a1a647b4ee387'] <br> |
+| namespace     | string | Y        | Masking type<br>Can be empty: False <br>Can be an empty string: False <br>Example: logging <br>Possible values: ['logging', 'metric', 'object', 'custom_object', 'keyevent', 'tracing', 'rum', 'security', 'network', 'profiling', 'billing'] <br> |
+| data          | array  | Y        | Email headers<br>Can be empty: False <br>Example: [{'host': 'hangzhou_127', 'message': 'xxxL, id: 234887209348'}, {'host': 'xihu', 'message': 'xxxL, id: 234234234'}] <br> |
 
 ## Additional Parameter Notes
 

@@ -1,21 +1,36 @@
 # Install Helm
 ---
 
-## Install the Latest Helm Repository
+
+## Enable DDTrace Collector
+
+Edit the `datakit.yaml` file and append `ddtrace` to the default enabled collectors configuration.
+
+```
+ - name: ENV_DEFAULT_ENABLED_INPUTS
+   value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,ddtrace
+```
+
+After completing the configuration, restart DataKit:
+
+```
+kubectl apply -f datakit.yaml
+```
+
+
+## Helm Install DataKit Operator
 
 **Prerequisites**: Kubernetes >= 1.14, Helm >= 3.0+.
 
 ```
-$ helm -n datakit get values datakit-operator -a -o yaml > values.yaml
-$ helm upgrade datakit-operator datakit-operator \
-    --repo https://pubrepo.guance.com/chartrepo/datakit-operator \
-    -n datakit \
-    -f values.yaml
+$ helm install datakit-operator datakit-operator \
+     --repo  https://pubrepo.guance.com/chartrepo/datakit-operator \
+     -n datakit --create-namespace
 ```
 
-## Update Configuration File
+### Update Configuration File
 
-The DataKit Operator configuration is in JSON format and is stored as a ConfigMap in Kubernetes, loaded into the container via environment variables.
+The DataKit Operator configuration is in JSON format and is stored separately as a ConfigMap in Kubernetes, loaded into the container via environment variables.
 
 ```
 {
@@ -34,8 +49,8 @@ The DataKit Operator configuration is in JSON format and is stored as a ConfigMa
               "POD_NAME": "{fieldRef:metadata.name}",
               "POD_NAMESPACE": "{fieldRef:metadata.namespace}",
               "NODE_NAME": "{fieldRef:spec.nodeName}",
+              "DD_SERVICE": "{fieldRef:metadata.labels['app']}",
               "DD_TAGS": "pod_name:$(POD_NAME),pod_namespace:$(POD_NAMESPACE),host:$(NODE_NAME)"
-              "DD_SERVICE": "{fieldRef:metadata.labels['service']}",
             }
         },
         "logfwd": {
@@ -45,17 +60,28 @@ The DataKit Operator configuration is in JSON format and is stored as a ConfigMa
             "images": {
                 "logfwd_image": "pubrepo.guance.com/datakit/logfwd:1.28.1"
             }
-        },
+        }
     }
 }
 ```
 
 Configuration parameters:
 
-1. `service.name`: Service name;
+1. `service`: Service name;
 2. `env`: Environment information for the application service;
-3. `version`: Version number;
-4. Custom DataKit listening address; if not set, it will follow the default address;
-5. Set sampling rate: When enabled, this can reduce the actual amount of data generated; the range is from 0.0(0%) to 1.0(100%);
-6. Collect Profiling data: When enabled, more runtime information about the application can be seen;
-7. Enable JVM Metrics collection: Requires enabling the [statsd collector](../../../integrations/jvm.md) simultaneously.
+3. Customize the DataKit listening address; if not set, it will follow the default address;
+4. Set sampling rate: When enabled, it can reduce the actual amount of generated data; the number range is from 0.0(0%) ~ 1.0(100%);
+5. Collect Profiling data: When enabled, you can see more runtime information about the application;
+6. Enable JVM Metrics collection: Requires enabling the [statsd collector](../../../integrations/jvm.md) simultaneously.
+
+
+### Execute Installation Command
+
+```
+kubectl apply -f datakit-operator.yaml
+```
+
+
+## Restart Application
+
+After installation is complete, restart the application Pod.

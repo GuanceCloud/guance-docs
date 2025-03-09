@@ -8,14 +8,13 @@
 Delete specified notification targets
 
 
-
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| notifyObjectUUIDs | array | Y | Notification target UUID<br>Allow null: False <br> |
+|:---------------------|:---------|:----------|:------------------------|
+| notifyObjectUUIDs    | array    | Y         | Notification target UUID<br>Allow empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

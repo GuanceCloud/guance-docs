@@ -37,7 +37,7 @@
 ## Theoretical Basis
 
 
-- The kube-proxy configuration file contains sensitive parameters that can alter the behavior of the kube-proxy daemon. Therefore, no user other than root should have write access to maintain the integrity of the file.
+- The kube-proxy configuration file contains sensitive parameters that can alter the behavior of the kube-proxy daemon. Therefore, no user other than root should be able to write to it to maintain the integrity of the file.
 
 
 
@@ -49,7 +49,7 @@
 
 
 ## Audit Method
-- Execute the following command to verify that the file permissions are set to "644" or more restrictive:
+- Execute the following command to verify if the file permissions are set to "644" or more restrictive:
 
 ```bash
 stat -c %a /var/lib/kube-proxy/config.conf
@@ -62,7 +62,7 @@ stat -c %a /var/lib/kube-proxy/config.conf
 ```bash
 #> chmod 644 /var/lib/kube-proxy/config.conf
 ```
-This sets the file permissions to "644".
+This will set the file permissions to "644".
 
 
 
@@ -77,7 +77,7 @@ This sets the file permissions to "644".
 ## Default Value
 
 
-- This file may not exist on the system. In such cases, this recommendation does not apply. By default, if the file exists, its permissions will be correctly set to 644.
+- This file may not exist on the system. In this case, this recommendation does not apply. By default, if the file exists, the file permissions will be correctly set to 644.
 
 
 

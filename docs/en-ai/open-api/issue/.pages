@@ -1,18 +1,18 @@
 nav:
-  - 'List issues': list.md
-  - 'Get issue details': get.md
-  - 'Create issue': add.md
-  - 'Modify issue': modify.md
-  - 'List issue replies': getissuereplylist.md
-  - 'Create issue reply': createissuereply.md
-  - 'Modify issue reply': modifyissuereply.md
-  - 'Delete issue reply': deleteissuereply.md
-  - 'List issue levels': level-list.md
-  - 'Add custom issue level': level-add.md
-  - 'Modify custom issue level': level-modify.md
-  - 'Delete custom issue level': level-delete.md
-  - 'Get default issue configuration status': config-get.md
-  - 'Modify default issue configuration status': config-set.md
-  - 'Upload attachment': attachmentupload.md
-  - 'Delete attachment': attachmentdelete.md
-  - 'Download attachment': downloadattachment.md
+  - 'List Issues': list.md
+  - 'Get Issue Details': get.md
+  - 'Create Issue': add.md
+  - 'Modify Issue': modify.md
+  - 'List Issue Replies': getissuereplylist.md
+  - 'Create Issue Reply': createissuereply.md
+  - 'Modify Issue Reply': modifyissuereply.md
+  - 'Delete Issue Reply': deleteissuereply.md
+  - 'List Issue Levels': level-list.md
+  - 'Add Custom Issue Level': level-add.md
+  - 'Modify Custom Issue Level': level-modify.md
+  - 'Delete Custom Issue Level': level-delete.md
+  - 'Get Default Issue Configuration Status': config-get.md
+  - 'Modify Default Issue Configuration Status': config-set.md
+  - 'Upload Attachment': attachmentupload.md
+  - 'Delete Attachment': attachmentdelete.md
+  - 'Download Attachment': downloadattachment.md

@@ -8,12 +8,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -23,7 +23,7 @@
 
 ## Description
 
-- Monitor changes in the authorized_keys public key file on the host.
+- Monitor changes in the authorized_keys public key on the host.
 
 
 ## Scan Frequency
@@ -42,12 +42,12 @@
 - Data Breach
 - Network Security
 - Mining Risk
-- Compromised Machine Risk
+- Botnet Risk
 
 
 ## Audit Method
 
-- Verify if the authorized_keys file on the host has been illegally modified. You can run the following command to check:
+- Verify if the authorized_keys on the host has been illegally modified. You can run the following command to check:
 
 ```bash
 ls /root/.ssh/authorized_keys && ls /home/*/.ssh/authorized_keys
@@ -56,7 +56,7 @@ ls /root/.ssh/authorized_keys && ls /home/*/.ssh/authorized_keys
 
 ## Remediation
 
-- If the authorized_keys file on the host has been illegally modified, carefully inspect the host environment to determine if there has been an intrusion and change the host user passwords.
+- If the authorized_keys on the host has been illegally modified, carefully inspect the host environment to determine if there has been an intrusion and change the host user passwords.
 
 
 ## Impact
@@ -71,11 +71,11 @@ ls /root/.ssh/authorized_keys && ls /home/*/.ssh/authorized_keys
 
 ## References
 
-- [Emergency Response and Investigation Process for Hacker Intrusion (Unofficial)](https://www.sohu.com/a/236820450_99899618)
+- [Emergency Response and Investigation of Hacker Intrusion (Unofficial)](https://www.sohu.com/a/236820450_99899618)
 
-- [Real Case Analysis of Mining Intrusion Investigation (Unofficial)](https://www.cnblogs.com/zsl-find/articles/11688640.html)
+- [A Real Case Analysis of Mining Intrusion Investigation (Unofficial)](https://www.cnblogs.com/zsl-find/articles/11688640.html)
 
 
-## CIS Controls
+## CIS Control
 
 - None

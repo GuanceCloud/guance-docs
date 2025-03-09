@@ -3,19 +3,19 @@
 
 ## Introduction to Grok Patterns {#grok-pattern}
 
-DataKit Pipeline provides the [grok()](pipeline-built-in-function.md#fn-grok) function to support executing Grok patterns (internally, the grok() function translates Grok patterns into regular expressions), and it also provides the [add_pattern()](pipeline-built-in-function.md#fn-add-pattern) function to add custom named patterns.
+DataKit Pipeline provides the [grok()](pipeline-built-in-function.md#fn-grok) function to support executing Grok patterns (in implementation, the grok() function translates Grok patterns into regular expressions), and offers the [add_pattern()](pipeline-built-in-function.md#fn-add-pattern) function to add custom named patterns.
 
-Grok patterns are based on regular expressions. Once named, these patterns can be used in other patterns using the following three notations, ensuring no circular references:
+Grok patterns are based on regular expressions. Once named, patterns can be used in other patterns using one of the following three syntaxes, ensuring no circular references:
 
 - `%{pattern_name}`
 - `%{pattern_name:key_name}`
 - `%{pattern_name:key_name:type}`
 
-The value of `type` can be one of `{float, int, str, bool}`; complex Grok patterns can be created by combining Grok patterns.
+Here, the value of `type` can be one of `{float, int, str, bool}`; more complex Grok patterns can be created by combining Grok patterns.
 
-Any regular expression can be considered a valid Grok pattern and supports mixing named Grok patterns with regular expressions for writing Grok patterns;
+Any regular expression can be considered a valid Grok pattern and supports mixing named Grok patterns with regular expressions to write Grok patterns;
 
-For the pattern notation `%{pattern_name:key_name}`, it is equivalent to a named capture group in regular expressions:
+For the pattern syntax `%{pattern_name:key_name}`, it is equivalent to a named capture group in regular expressions:  
 
 ```regexp
 (?P<key_name>pattern)
@@ -23,18 +23,18 @@ For the pattern notation `%{pattern_name:key_name}`, it is equivalent to a named
 
 ## Classification of Grok Patterns in DataKit {#grok-pattern-class}
 
-In DataKit, Grok patterns can be divided into two categories:
+Grok patterns in DataKit can be divided into two categories:
 
-- Global patterns: All pattern files under the *pattern* directory are global patterns and can be used by all Pipeline scripts.
-- Local patterns: Patterns added via the [add_pattern()](pipeline-built-in-function.md#fn-add-pattern) function within a Pipeline script are local patterns and are only effective for the current Pipeline script.
+- Global patterns: All pattern files under the *pattern* directory are global patterns, available for use in all Pipeline scripts.
+- Local patterns: Patterns added through the [add_pattern()](pipeline-built-in-function.md#fn-add-pattern) function within Pipeline scripts are local patterns, effective only for the current Pipeline script.
 
-Taking an Nginx access-log as an example, let's illustrate how to write corresponding Grok patterns. The original nginx access log is as follows:
+The following example uses Nginx access-log to illustrate how to write corresponding Grok patterns. The original nginx access log is as follows:
 
 ```log
 127.0.0.1 - - [26/May/2022:20:53:52 +0800] "GET /server_status HTTP/1.1" 404 134 "-" "Go-http-client/1.1"
 ```
 
-Assuming we need to extract `client_ip`, `time (request)`, `http_method`, `http_url`, `http_version`, and `status_code` from this access log, the initial Grok pattern can be written as:
+Assuming we need to extract client_ip, time (request), http_method, http_url, http_version, status_code from this access log, the initial Grok pattern can be written as:
 
 ```python
 grok(_,"%{NOTSPACE:client_ip} %{NOTSPACE} %{NOTSPACE} \\[%{HTTPDATE:time}\\] \"%{DATA:http_method} %{GREEDYDATA:http_url} HTTP/%{NUMBER:http_version}\" %{INT:status_code} %{INT} \"%{NOTSPACE}\" \"%{NOTSPACE}\"")
@@ -47,14 +47,14 @@ group_between(status_code, [500,599], "error", status)
 default_time(time)
 ```
 
-Further optimization extracts specific features:
+After further optimization, extracting the corresponding features:
 
 ```python
-# Log header including client_ip, http_ident, http_auth as a pattern
+# Log header client_ip, http_ident, http_auth as a pattern
 add_pattern("p1", "%{NOTSPACE:client_ip} %{NOTSPACE} %{NOTSPACE}")
 
-# Middle part including http_method, http_url, http_version, status_code as a pattern,
-# and specify the data type of status_code as int to replace the cast function usage
+# Middle part http_method, http_url, http_version, status_code as a pattern,
+# specifying the data type of status_code as int within the pattern to replace the cast function
 add_pattern("p3", '"%{DATA:http_method} %{GREEDYDATA:http_url} HTTP/%{NUMBER:http_version}" %{INT:status_code:int}')
 
 grok(_, "%{p1} \\[%{HTTPDATE:time}\\] %{p3} %{INT} \"%{NOTSPACE}\" \"%{NOTSPACE}\"")
@@ -67,11 +67,11 @@ group_between(status_code, [500,599], "error", status)
 default_time(time)
 ```
 
-This optimized segmentation improves readability compared to a single-line pattern. Since fields parsed by Grok patterns default to string data types, specifying field data types here avoids the need to use the [cast()](pipeline-built-in-function.md#fn-cast) function later for type conversion.
+The optimized parsing improves readability compared to the initial single-line pattern. Since fields parsed by Grok patterns default to string type, specifying field types here avoids the need to use the [cast()](pipeline-built-in-function.md#fn-cast) function later for type conversion.
 
 ### Custom Grok Patterns {#custom-pattern}
 
-Grok essentially predefines some regular expressions for text matching and extraction, naming these predefined regular expressions for ease of use and nested referencing to extend into countless new patterns. For example, DataKit has three built-in patterns:
+Grok essentially predefines some regular expressions for text matching and extraction, naming these predefined regular expressions for ease of use and nested referencing to extend into countless new patterns. For instance, DataKit has three built-in patterns as follows:
 
 ```python
 # pattern_name pattern 
@@ -80,16 +80,16 @@ _minute (?:[0-5][0-9])                            # Matches minutes, _minute is 
 _hour (?:2[0123]|[01]?[0-9])                      # Matches hours, _hour is the pattern name
 ```
 
-Based on these three built-in patterns, you can extend your own built-in pattern named `time`:
+Based on the above three built-in patterns, you can extend your own built-in pattern named `time`:
 
 ```python
-# Add time to the pattern directory file, making it a global pattern that can be referenced anywhere
-# Example: time ([^0-9]?)%{hour:hour}:%{minute:minute}(?::%{second:second})([^0-9]?)
+# Add time to the pattern directory file, making this pattern global, which can be referenced anywhere
+# For example: time ([^0-9]?)%{hour:hour}:%{minute:minute}(?::%{second:second})([^0-9]?)
 
-# You can also add it to the pipeline file using add_pattern(), making it a local pattern usable only in the current pipeline script
+# Alternatively, add it to the pipeline file via add_pattern(), making this pattern local, usable only in the current pipeline script
 add_pattern("time", "(?:[^0-9]?)%{HOUR:hour}:%{MINUTE:minute}(?::%{SECOND:second})(?:[^0-9]?)")
 
-# Use grok to extract the time field from the raw input. Assuming the input is 12:30:59, the extracted result would be {"hour": 12, "minute": 30, "second": 59}
+# Extract the time field from the raw input using grok. Assuming the input is 12:30:59, then {"hour": 12, "minute": 30, "second": 59} will be extracted
 grok(_, "%{time}")
 ```
 
@@ -97,12 +97,12 @@ grok(_, "%{time}")
 ???+ attention
 
     - If there are patterns with the same name, the local pattern takes precedence (i.e., the local pattern overrides the global pattern).
-    - In Pipeline scripts, [add_pattern()](pipeline-built-in-function.md#fn-add-pattern) must be called before [grok()](pipeline-built-in-function.md#fn-grok), otherwise it will cause the first data extraction to fail.
+    - In Pipeline scripts, [add_pattern()](pipeline-built-in-function.md#fn-add-pattern) must be called before [grok()](pipeline-built-in-function.md#fn-grok), otherwise the first data extraction will fail.
 <!-- markdownlint-enable -->
 
 ### Built-in Pattern List {#built-in-patterns}
 
-DataKit includes some commonly used patterns that can be directly used when constructing Grok patterns:
+DataKit includes several commonly used patterns that can be directly utilized when constructing Grok patterns:
 
 ``` not-set
 USERNAME             : [a-zA-Z0-9._-]+

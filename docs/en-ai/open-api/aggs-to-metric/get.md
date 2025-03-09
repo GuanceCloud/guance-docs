@@ -1,18 +1,18 @@
-# 【Aggregation to Generate Metrics】Get
+# 【Aggregation to Metrics】Get
 
 ---
 
 <br />**GET /api/v1/aggs_to_metric/\{rule_uuid\}/get**
 
 ## Overview
-Retrieve the aggregation to generate metrics rule
+Retrieve the aggregation to metrics rule
 
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:-------------------------|
-| rule_uuid            | string   | Y        | ID of the aggregation to generate metrics rule<br> |
+| Parameter Name | Type   | Required | Description               |
+|:------------|:------|:-------|:-------------------------|
+| rule_uuid  | string | Y      | ID of the aggregation to metrics rule<br> |
 
 
 ## Additional Parameter Notes
@@ -25,7 +25,6 @@ curl 'https://openapi.guance.com/api/v1/aggs_to_metric/rul_xxxx/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
 
 
 ## Response

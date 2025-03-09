@@ -1,6 +1,6 @@
 ---
 title: 'Apollo'
-summary: 'Collect Apollo related Metrics information'
+summary: 'Collect Apollo-related Metrics information'
 __int_icon: 'icon/apollo'
 dashboard:
   - desc: 'Apollo monitoring view'
@@ -14,7 +14,7 @@ monitor:
 # Apollo
 <!-- markdownlint-enable -->
 
-Collect Apollo related Metrics information.
+Collect Apollo-related Metrics information.
 
 ## Installation and Configuration {#config}
 
@@ -22,13 +22,13 @@ Collect Apollo related Metrics information.
 
 ### Apollo Metrics
 
-Apollo exposes metrics on port `8070` by default, which can be viewed via a browser at: `http://clientIP:8070/prometheus`.
+Apollo exposes the metrics port by default at `8070`. You can view the metrics information via a browser at `http://clientIP:8070/prometheus`.
 
 ### DataKit Collector Configuration
 
-Since `Apollo` can directly expose a `metrics` URL, it can be collected using the [`prom`](./prom.md) collector.
+Since `Apollo` can directly expose a `metrics` URL, you can use the [`prom`](./prom.md) collector for data collection.
 
-The configuration changes are as follows:
+Adjust the content as follows:
 
 ```toml
 urls = ["http://clientIP:8070/prometheus"]
@@ -41,15 +41,15 @@ interval = "10s"
 ```
 
 <!-- markdownlint-disable MD033 -->
-<font color="red">*Other configurations can be adjusted as needed*</font>
+<font color="red">*Other configurations should be adjusted as needed*</font>
 <!-- markdownlint-enable -->
 
-Parameter adjustment explanation:
+Explanation of adjustable parameters:
 
 <!-- markdownlint-disable MD004 -->
-- urls: The `prometheus` Metrics address; enter the URL exposed by the corresponding component.
+- urls: The `prometheus` metrics address; enter the metrics URL exposed by the corresponding component.
 - source: Alias for the collector; it is recommended to differentiate it.
-- interval: Collection interval.
+- interval: Collection interval
 
 <!-- markdownlint-enable -->
 ### Restart DataKit
@@ -60,44 +60,42 @@ Parameter adjustment explanation:
 
 ### Tags
 
-| Tags       | Description        |
-|------------|--------------------|
+| Tags       | Description            |
+| ---------- | ---------------------- |
 | component  | Component name `apollo` |
 
-### Mearsurement `jvm`
+### Metrics Set `jvm`
 
-| Metrics                | Description     |
-|------------------------|-----------------|
-| threads_states_threads | Thread states   |
-| memory_used_bytes      | Memory usage    |
+| Metrics               | Description          |
+| --------------------- | -------------------- |
+| threads_states_threads | Thread states        |
+| memory_used_bytes     | Memory usage         |
 
-### Mearsurement `jdbc`
+### Metrics Set `jdbc`
 
-| Metrics             | Description   |
-|---------------------|---------------|
+| Metrics             | Description    |
+| ------------------- | -------------- |
 | connections_idle    | Idle connections |
 | connections_active  | Active connections |
 | connections_max     | Maximum connections |
 | connections_min     | Minimum connections |
 
-### Mearsasurement `process`
+### Metrics Set `process`
 
-| Metrics           | Description   |
-|-------------------|---------------|
+| Metrics           | Description      |
+| ----------------- | ---------------- |
 | uptime_seconds    | JVM uptime in seconds |
 
-### Mearsurement `system`
+### Metrics Set `system`
 
-| Metrics     | Description   |
-|-------------|---------------|
-| cpu_usage   | CPU usage rate |
-| cpu_count   | Available CPUs |
+| Metrics      | Description      |
+| ------------ | ---------------- |
+| cpu_usage    | CPU usage rate   |
+| cpu_count    | Available CPUs   |
 
-### Mearsurement `http`
+### Metrics Set `http`
 
-| Metrics                      | Description         |
-|------------------------------|---------------------|
-| server_requests_seconds_count | Server requests per second |
-| cpu_count                    | Available CPUs |
-
-Note: There seems to be a repetition of `cpu_count` under both `system` and `http` sections. Please verify the source content for accuracy.
+| Metrics                       | Description      |
+| ----------------------------- | ---------------- |
+| server_requests_seconds_count  | Requests per second |
+| cpu_count                     | Available CPUs   |

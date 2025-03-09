@@ -1,5 +1,5 @@
 ---
-title: 'DDTrace Java Extension Changelog'
+title: 'DDTrace Java Extension Change Log'
 skip: 'not-searchable-on-index-page'
 ---
 
@@ -7,7 +7,7 @@ skip: 'not-searchable-on-index-page'
 
 ## Introduction {#intro}
 
-Native DDTrace has incomplete support for some mainstream frameworks. On this basis, we have made some improvements to support more mainstream frameworks and critical data tracing.
+Native DDTrace has insufficient support for some mainstream frameworks. On this basis, we have made some improvements to support more mainstream frameworks and critical data tracing.
 
 The current DDTrace has added extensions for the following technology stacks:
 
@@ -26,27 +26,33 @@ The current DDTrace has added extensions for the following technology stacks:
 </div>
 <!-- markdownlint-enable -->
 
-## Change Log {#changelog}
+## Change History {#changelog}
 
 <!--
 
-The change log can refer to the basic paradigm of Datakit:
+Change history can refer to Datakit's basic paradigm:
 
 ## 1.2.3(2022/12/12) {#cl-1.2.3}
 This release mainly includes the following updates:
 
 ### New Features {#cl-1.2.3-new}
 ### Bug Fixes {#cl-1.2.3-fix}
-### Optimization {#cl-1.2.3-opt}
+### Feature Optimizations {#cl-1.2.3-opt}
 ### Compatibility Adjustments {#cl-1.2.3-brk}
 
 --->
+
+## v1.42.8-guance {#cl-1.42.8-guance}
+
+### Bug Fixes {#cl-1.42.8-guance-fix}
+
+- Added configuration for Response Body feature: "dd.trace.response.body.blacklist.urls".
 
 ## v1.42.7-guance {#cl-1.42.7-guance}
 
 ### Bug Fixes {#cl-1.42.7-guance-fix}
 
-- Fixed a bug where environment variables in Response Body functionality were not taking effect.
+- Fixed a bug where environment variables in the Response Body feature were not taking effect.
 - Merged the latest DDTrace tag v1.42.1 version.
 
 ## v1.36.1-guance {#cl-1.36.1-guance}
@@ -55,13 +61,13 @@ This release mainly includes the following updates:
 
 - Merged the latest DataDog Java Agent branch 1.36.0.
 - Added `dd-guance-version` tag for easier version identification.
-- Recorded SQL statements executed by `mybatis-plus batch` as `span` information.
+- SQL statements executed by `mybatis-plus batch` were not recorded as `span` information.
 
 ## v1.34.2-guance {#cl-1.34.2-guance}
 
 ### Bug Fixes {#cl-1.34.2-guance-fix}
 
-- Removed the [add response_body](ddtrace-ext-java.md#response_body) feature due to excessive memory usage.
+- Removed the [response_body addition](ddtrace-ext-java.md#response_body) feature due to excessive memory usage.
 
 ## v1.34.0-guance {#cl-1.34.0-guance}
 
@@ -73,35 +79,35 @@ This release mainly includes the following updates:
 
 ### Updates {#cl-1.30.5-guance-fix}
 
-- Fixed the `trace_id` extraction issue under the `W3C` protocol.
-- Resolved the `Pulsar OOM` issue.
+- Fixed the extraction of `trace_id` under the `W3C` protocol.
+- Fixed the `Pulsar OOM` issue.
 - Obtained `peer_ip` in `Lettuce5` cluster mode.
 
 ## v1.30.4-guance (2024/4/25) {#cl-1.30.4-guance}
 
 ### Updates {#cl-1.30.4-guance-fix}
 
-- Resolved the chain interruption issue caused by continuous Dubbo service transmission.
-- Resolved the memory leak issue in `Pulsar`.
+- Resolved the continuous propagation issue in `Dubbo` services causing the trace to not break.
+- Fixed the `Pulsar` memory leak issue.
 
 ## v1.30.2-guance (2024/4/3) {#cl-1.30.2-guance}
 
 ### Updates {#cl-1.30.2-guance-fix}
 
-- Added support for viewing `Command` parameters in Redis SDK `Lettuce`.
+- Redis SDK `Lettuce` supports viewing `Command` parameters.
 
 ## v1.30.1-guance (2024/2/6) {#cl-1.30.1-guance}
 
 ### Updates {#cl-1.30.1-guance-fix}
 
 - Merged the latest DataDog Java Agent branch 1.30.0.
-- Added HTTP Response Body information to trace data, [enable using commands](ddtrace-ext-java.md#response_body).
+- Added HTTP Response Body information to trace data, [enabled using commands](ddtrace-ext-java.md#response_body).
 
 ## v1.25.2-guance (2024/1/10) {#cl-1.25.2-guance}
 
 ### Updates {#cl-1.25.2-guance-fix}
 
-- Added HTTP Header information to trace data, [enable using commands](ddtrace-ext-java.md#trace_header).
+- Added HTTP Header information to trace data, [enabled using commands](ddtrace-ext-java.md#trace_header).
 
 ## v1.25.1-guance (2024/1/4) {#cl-1.25.1-guance}
 
@@ -143,39 +149,39 @@ This release mainly includes the following updates:
 
 ### Bug Fixes {#cl-1.17.4-guance-fix}
 
-- Fixed Span loss issues with RocketMQ under high concurrency.
+- Fixed Span loss issues in RocketMQ under high concurrency.
 
 ## v1.17.2-guance v1.17.3-guance (2023/7/20) {#cl-1.17.3-guance}
 
 ### Bug Fixes {#cl-1.17.3-guance-fix}
 
-- Fixed the issue of missing trace information in Redis.
+- Fixed the lack of trace information in Redis.
 - Removed extensive debug logs in Dubbo.
-- Added 4 JVM metrics, details see [GitHub-Issue](https://github.com/GuanceCloud/dd-trace-java/issues/46){:target="_blank"}
+- Added 4 JVM metrics; details can be found in [GitHub-Issue](https://github.com/GuanceCloud/dd-trace-java/issues/46){:target="_blank"}
 
 ## v1.17.1-guance (2023/7/11) {#cl-1.17.1-guance}
 
 ### Bug Fixes {#cl-1.17.1-guance-new}
 
-- NPE exception caused by return values when sending asynchronous messages in RocketMQ.
-- Replaced message cache span with local cache in RocketMQ, users no longer need to close traceContext function.
+- NPE exceptions caused by return values when sending asynchronous messages in RocketMQ.
+- Replaced message-based cache span with local cache in RocketMQ, so users no longer need to close the traceContext function.
 
 ### Optimizations {#cl-1.17.1-guance-opt}
 
-- Optimized log output
+- Optimized log output.
 
 ## v1.17.0-guance (2023/7/7) {#cl-1.17.0-guance}
 
 ### Bug Fixes {#cl-1.17.0-guance-new}
 
-- Merged the latest Datadog v1.17.0 version
+- Merged the latest Datadog v1.17.0 version.
 
 
 ## v1.15.4-guance (2023/6/12) {#cl-1.15.4-guance}
 
 ### Bug Fixes {#cl-1.15.4-guance-new}
 
-- Merged the latest Datadog v1.15.3 version
+- Merged the latest Datadog v1.15.3 version.
 - [Supported PowerJob](https://github.com/GuanceCloud/dd-trace-java/issues/42){:target="_blank"}
 
 
@@ -183,16 +189,16 @@ This release mainly includes the following updates:
 
 ### Bug Fixes {#cl-1.14.0-guance-new}
 
-- Merged the latest Datadog v1.14.0 version
-- [Supported 128-bit trace ID](https://github.com/GuanceCloud/dd-trace-java/issues/37){:target="_blank"}
+- Merged the latest Datadog v1.14.0 version.
+- [Supported 128-bit trace IDs](https://github.com/GuanceCloud/dd-trace-java/issues/37){:target="_blank"}
 
 
 ## v1.12.1-guance (2023/5/11) {#cl-1.12.1-guance}
 
 ### Bug Fixes {#cl-1.12.1-guance-new}
 
-- Supported MongoDB desensitization, [MongoDB desensitization issue](https://github.com/GuanceCloud/dd-trace-java/issues/38){:target="_blank"}
-- [Supported Dameng domestic database](https://github.com/GuanceCloud/dd-trace-java/issues/39){:target="_blank"}
+- Supported MongoDB obfuscation, [MongoDB obfuscation issue](https://github.com/GuanceCloud/dd-trace-java/issues/38){:target="_blank"}
+- Supported Dameng domestic database, [Domestic database issue](https://github.com/GuanceCloud/dd-trace-java/issues/39){:target="_blank"}
 
 
 ## v1.12.0 (2023/4/20) {#cl-1.12.0}
@@ -202,54 +208,54 @@ This release mainly includes the following updates:
 - Merged the latest DDTrace Tag:1.12.0
 - Supported [Dubbox](https://github.com/GuanceCloud/dd-trace-java/issues/32){:target="_blank"}
 - Resolved [confusion between jax-rs and Dubbo traces](https://github.com/GuanceCloud/dd-trace-java/issues/34){:target="_blank"}
-- Resolved [incorrect order in Dubbo Service Map](https://github.com/GuanceCloud/dd-trace-java/issues/35){:target="_blank"}
-- Resolved [RocketMQ custom trace data conflict](https://github.com/GuanceCloud/dd-trace-java/issues/29){:target="_blank"}
-- Resolved [RocketMQ Resource Name issue](https://github.com/GuanceCloud/dd-trace-java/issues/33){:target="_blank"}
+- Resolved [incorrect order in Dubbo service topology map](https://github.com/GuanceCloud/dd-trace-java/issues/35){:target="_blank"}
+- Resolved [RocketMQ and custom trace data conflicts](https://github.com/GuanceCloud/dd-trace-java/issues/29){:target="_blank"}
+- Resolved [RocketMQ Resource Name issues](https://github.com/GuanceCloud/dd-trace-java/issues/33){:target="_blank"}
 
 ## v1.10.2 (2023/4/10) {#cl-1.10.2}
 
 ### Bug Fixes {#cl-1.10.2-new}
 
 - Merged the latest DDTrace Tag: 1.10
-- Fixed non-support for `@DubboReference` nesting in Dubbo probe
-- Fixed failure to retrieve RocketMQ custom context after user-defined context
+- Fixed the issue of `@DubboReference` nesting not supported in Dubbo probes.
+- Fixed the issue of RocketMQ custom context retrieval failure after setting it.
 
 ## v1.8.0, v1.8.1, v1.8.3(2023/2/27) {#cl-1.8.0}
 
 ### New Features {#cl-1.8.0-new}
 
-- Merged the latest DDTrace branch
-- Added feature to [retrieve input parameters of specific functions](https://github.com/GuanceCloud/dd-trace-java/issues/26){:target="_blank"}
+- Merged the latest DDTrace branch.
+- Added functionality to [retrieve input parameters of specific functions](https://github.com/GuanceCloud/dd-trace-java/issues/26){:target="_blank"}
 
 ## v1.4.1(2023/2/27) {#cl-1.4.1}
 
 ### New Features {#cl-1.4.1-new}
 
-- Added support for Alibaba Cloud RocketMQ 4.0 series
+- Added support for Alibaba Cloud RocketMQ 4.0 series.
 
 ## v1.4.0(2023/1/12) {#cl-1.4.0}
 
 ### New Features {#cl-1.4.0-new}
 
-- Merged the latest DDTrace branch v1.4.0
+- Merged the latest DDTrace branch v1.4.0.
 
 ## v1.3.2(2023/1/12) {#cl-1.3.2}
 
 ### New Features {#cl-1.3.2-new}
 
-- Added support for viewing parameters in Redis [parameters viewing](https://github.com/GuanceCloud/dd-trace-java/issues/19){:target="_blank"})
-- Modified default port for DDTrace-Java-Agent [default port](https://github.com/GuanceCloud/dd-trace-java/issues/18){:target="_blank"})
-- Corrected single-end chain [issue](https://github.com/GuanceCloud/dd-trace-java/issues/22){:target="_blank"}) for Alibaba Cloud RocketMQ
+- Added Redis [view parameter feature](https://github.com/GuanceCloud/dd-trace-java/issues/19){:target="_blank"})
+- Modified DDTrace-Java-Agent [default port](https://github.com/GuanceCloud/dd-trace-java/issues/18){:target="_blank"})
+- Fixed single-end link [issue in Alibaba Cloud RocketMQ](https://github.com/GuanceCloud/dd-trace-java/issues/22){:target="_blank"})
 
 ## v1.3.0(2022/12/28) {#cl-1.3.0}
 
 ### New Features {#cl-1.3.0-new}
 
-- Merged the latest DataDog branch v1.3.0
-- Added Log Pattern support
-- Added HSF framework support
-- Added Axis 1.4 support
-- Added Alibaba Cloud RocketMQ 5.0 support
+- Merged the latest DataDog branch v1.3.0.
+- Added Log Pattern support.
+- Added HSF framework support.
+- Added Axis 1.4 support.
+- Added Alibaba Cloud RocketMQ 5.0 support.
 
 ## v1.0.1(2022/12/23) {#cl-1.0.1}
 
@@ -266,21 +272,21 @@ This release mainly includes the following updates:
 
 ## 0.113.0(2022-10-25) {#cl-0.113.0}
 
-- [GitHub download link](https://github.com/GuanceCloud/dd-trace-java/releases/tag/v0.113.0-guance){:target="_blank"}
+- [GitHub Download Link](https://github.com/GuanceCloud/dd-trace-java/releases/tag/v0.113.0-guance){:target="_blank"}
 
-### Feature Adjustment Description {#cl-0.113.0-new}
+### Function Adjustment Description {#cl-0.113.0-new}
 
-- Based on tag 0.113.0, merged previous code
+- Based on the 0.113.0 tag, merged previous code.
 
 - Fixed Thrift `TMultipexedProtocol` model support
 
 ## 0.108.1(2022-10-14) {#cl-0.118.0}
 
-Merged DataDog v0.108.1 version, compiled while retaining 0.108.1
+Merged DataDog v0.108.1 version, compiled while retaining 0.108.1.
 
-- [GitHub download link](https://github.com/GuanceCloud/dd-trace-java/releases/tag/v0.108.1){:target="_blank"}
+- [GitHub Download Link](https://github.com/GuanceCloud/dd-trace-java/releases/tag/v0.108.1){:target="_blank"}
 
-### Feature Adjustment Description {#cl-0.118.0-new}
+### Function Adjustment Description {#cl-0.118.0-new}
 
 - Added thrift instrumentation (thrift version >=0.9.3)
 
@@ -290,9 +296,9 @@ Merged DataDog v0.108.1 version, compiled while retaining 0.108.1
 
 Merged DataDog v0.108.1 version, compiled.
 
-- [GitHub download link](https://github.com/GuanceCloud/dd-trace-java/releases/tag/v0.108.1){:target="_blank"}
+- [GitHub Download Link](https://github.com/GuanceCloud/dd-trace-java/releases/tag/v0.108.1){:target="_blank"}
 
-### Feature Adjustment Description {#cl-0.108.1-new}
+### Function Adjustment Description {#cl-0.108.1-new}
 
 - Added xxl_job probe (xxl_job version >= 2.3.0)
 
@@ -302,16 +308,16 @@ Merged DataDog v0.108.1 version, compiled.
 
 Merged DataDog 107 version, compiled.
 
-- [GitHub download link](https://github.com/GuanceCloud/dd-trace-java/releases/tag/guance-107){:target="_blank"}
+- [GitHub Download Link](https://github.com/GuanceCloud/dd-trace-java/releases/tag/guance-107){:target="_blank"}
 
 ---
 
 ## guance-0.105.0(2022-08-23) {#cl-0.105.0}
 
-[GitHub download link](https://static.guance.com/ddtrace/dd-java-agent-guance-0.106.0-SNAPSHOT.jar){:target="_blank"}
+[GitHub Download Link](https://static.guance.com/ddtrace/dd-java-agent-guance-0.106.0-SNAPSHOT.jar){:target="_blank"}
 
-### Feature Adjustment Description {#cl-0.105.0}
+### Function Adjustment Description {#cl-0.105.0}
 
-- Added support for RocketMq probe versions (>= 4.8.0).
-- Added support for Dubbo probe versions (>= 2.7.0).
-- Added SQL desensitization feature: After enabling, it adds the original SQL statement to the trace for easier troubleshooting. Add configuration parameter `-Ddd.jdbc.sql.obfuscation=true` when starting the Agent
+- Added RocketMq probe support for versions (>= 4.8.0).
+- Added Dubbo probe support for versions (>= 2.7.0).
+- Added SQL obfuscation feature: After enabling, the original SQL statement is added to the trace for easier troubleshooting. Start the Agent with the configuration parameter `-Ddd.jdbc.sql.obfuscation=true`.

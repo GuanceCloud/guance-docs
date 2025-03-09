@@ -13,7 +13,7 @@ List all teams in the current workspace
 
 | Parameter Name | Type   | Required | Description              |
 |:-----------|:-------|:-----|:----------------|
-| search | string | No | Search by team name<br>Allow null: False <br> |
+| search | string | No  | Search by team name<br>Allow null: False <br> |
 
 ## Additional Parameter Notes
 
@@ -25,6 +25,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/member_group/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
+
 
 
 

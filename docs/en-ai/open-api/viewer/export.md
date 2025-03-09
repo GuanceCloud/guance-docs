@@ -1,19 +1,18 @@
-# Export an Explorer
+# Export a Viewer
 
 ---
 
 <br />**GET /api/v1/viewer/\{viewer_uuid\}/export**
 
 ## Overview
-Export the Explorer specified by `viewer_uuid` as a template structure
-
+Export the viewer specified by `viewer_uuid` as a template structure.
 
 
 ## Route Parameters
 
-| Parameter Name    | Type   | Required | Description             |
-|:-------------|:-----|:-------|:----------------------|
-| viewer_uuid  | string | Y     | Explorer UUID<br> |
+| Parameter Name    | Type   | Required | Description              |
+|:-------------|:-----|:-------|:----------------|
+| viewer_uuid  | string | Y     | Viewer UUID<br> |
 
 
 ## Additional Parameter Notes
@@ -26,7 +25,6 @@ curl 'https://openapi.guance.com/api/v1/viewer/dsbd_xxxx32/export' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
-
 
 
 ## Response

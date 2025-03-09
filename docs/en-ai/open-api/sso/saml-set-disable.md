@@ -10,16 +10,16 @@ Enable/Disable SAML SSO login
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description             |
-|:--------------|:-------|:---------|:------------------------|
-| sso_uuid      | string | Y        | SSO configuration item ID<br> |
+| Parameter Name | Type   | Required | Description              |
+|:-----------|:-------|:-----|:----------------|
+| sso_uuid | string | Y | SSO configuration item ID<br> |
 
 
 ## Body Request Parameters
 
-| Parameter Name | Type    | Required | Description                          |
-|:--------------|:--------|:---------|:-------------------------------------|
-| isDisable     | boolean | Y        | Set the enable status<br>Example: True <br>Can be null: False <br> |
+| Parameter Name | Type     | Required | Description              |
+|:-----------|:-------|:-----|:----------------|
+| isDisable | boolean | Y | Set the enabled status<br>Example: True <br>Allow null: False <br> |
 
 ## Additional Parameter Notes
 
@@ -33,6 +33,8 @@ curl 'https://openapi.guance.com/api/v1/sso/sso_xxxx32/set_disable' \
 --data-raw '{"isDisable":true}' \
 --compressed
 ```
+
+
 
 
 ## Response

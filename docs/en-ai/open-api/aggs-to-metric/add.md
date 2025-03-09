@@ -1,109 +1,114 @@
-# 【Aggregation to Generate Metrics】Create
+# 【Aggregation to Metrics】Create
 
 ---
 
 <br />**POST /api/v1/aggs_to_metric/add**
 
 ## Overview
-Create a metric generation rule
+Create an aggregation to metrics rule
+
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
 |:------------------|:-------|:-----|:----------------|
-| extend | json | Y | Additional information<br>Can be null: False <br> |
-| jsonScript | json | Y | Rule configuration<br>Can be null: False <br> |
-| jsonScript.type | string | Y | Type<br>Example: rumToMetric <br>Can be null: False <br>Can be empty string: False <br>Optional values: ['logToMetric', 'rumToMetric', 'apmToMetric', 'metricToMetric', 'securityToMetric'] <br> |
-| jsonScript.query | json | Y | DQL query related information<br>Can be null: False <br> |
-| jsonScript.metricInfo | json | Y | Metric configuration information<br>Can be null: False <br> |
-| jsonScript.metricInfo.every | string | Y | Frequency<br>Example: 5m <br>Can be empty string: False <br> |
-| jsonScript.metricInfo.metric | string | Y | Mearsurement name<br>Example: cpu <br>Can be empty string: False <br> |
-| jsonScript.metricInfo.metricField | string | Y | Metric name<br>Example: load5s <br>Can be empty string: False <br> |
-| jsonScript.metricInfo.unit | string |  | Unit<br>Example: load5s <br>Can be empty string: True <br> |
-| jsonScript.metricInfo.desc | string |  | Description<br>Example: xxx <br>Can be empty string: True <br> |
+| extend | json | Y | Additional information<br>Allow null: False <br> |
+| jsonScript | json | Y | Rule configuration<br>Allow null: False <br> |
+| jsonScript.type | string | Y | Type<br>Example: rumToMetric <br>Allow null: False <br>Allow empty string: False <br>Possible values: ['logToMetric', 'rumToMetric', 'apmToMetric', 'metricToMetric', 'securityToMetric'] <br> |
+| jsonScript.query | json | Y | DQL query related information<br>Allow null: False <br> |
+| jsonScript.metricInfo | json | Y | Metric configuration information<br>Allow null: False <br> |
+| jsonScript.metricInfo.every | string | Y | Frequency<br>Example: 5m <br>Allow empty string: False <br> |
+| jsonScript.metricInfo.metric | string | Y | Mearsurement name<br>Example: cpu <br>Allow empty string: False <br> |
+| jsonScript.metricInfo.metricField | string | Y | Metric name<br>Example: load5s <br>Allow empty string: False <br> |
+| jsonScript.metricInfo.unit | string |  | Unit<br>Example: load5s <br>Allow empty string: True <br> |
+| jsonScript.metricInfo.desc | string |  | Description<br>Example: xxx <br>Allow empty string: True <br> |
 
-## Additional Parameter Explanations
+## Additional Parameter Explanation
 
-*Request parameter explanations.*
 
-**1. `jsonScript` parameter explanations**
+*Request parameter explanation.*
+
+**1. **`jsonScript` parameter explanation**
 
 | Parameter Name                | Type  | Required  | Description          |
 |-----------------------|----------|----|------------------------|
-| type                   | String | Required | Data source type, enum type |
-| query                  | Json | Required | Query information |
-| metricInfo             | Json | Required | Mearsurement configuration information |
+|type                   |String|Required| Data source type, enumerated type|
+|query                  |Json|Required| Query information|
+|metricInfo             |Json|Required| Metric configuration information|
 
 --------------
 
-**2. Explanation of `jsonScript.type`**
+**2. Explanation of `jsonScript.type` types**
 
-| Key | Description |
+|Key|Description|
 |---|----|
-| rumToMetric | RUM generated metrics |
-| apmToMetric | APM generated metrics |
-| logToMetric | Logging generated metrics |
-| metricToMetric | Metric generated metrics |
-| securityToMetric | Security Check generated metrics |
+|rumToMetric| RUM to metric|
+|apmToMetric| APM to metric|
+|logToMetric| Logging to metric|
+|metricToMetric| Metric to metric|
+|securityToMetric| Security check to metric|
 
 --------------
 
-**3. Explanation of `jsonScript.metricInfo`**
+**3. Explanation of `jsonScript.metricInfo` types**
 
 | Parameter Name                | Type  | Required  | Description          |
 |-----------------------|----------|----|------------------------|
-| every                 | String | Required | Frequency, unit is (minutes: m), example: 15m |
-| metric                | String | Required | Mearsurement name |
-| metricField           | String | Required | Metric name |
-| unit                  | String |  | Unit |
-| desc                  | String |  | Description |
+|every                  |String|Required| Frequency, options are 1m, 5m, 15m, unit is (minutes/m)|
+|metric                 |String|Required| Mearsurement name |
+|metricField            |String|Required| Metric name |
+|unit                   |String| | Unit |
+|desc                   |String| | Description |
 
 --------------
 
 **3.1 Explanation of `jsonScript.metricInfo.unit` units**
 
-Unit format: custom/["unit type", "unit"], example: custom/["time", "ms"]<br/>
-Custom unit format: custom/["custom", "custom unit"], example: custom/["custom", "tt"]<br/>
-Standard unit types, refer to [Unit Explanation](../../../studio-backend/unit/)
+Unit format: custom/["unit type", "unit"], example: custom/["time", "ms"]
+<br/>
+Custom unit format: custom/["custom", "custom unit"], example: custom/["custom", "tt"]
+<br/>
+Standard unit types, refer to [ Unit Description ](../../../studio-backend/unit/)
 
 --------------
 
-**4. Explanation of `jsonScript.query`**
+**4. Explanation of `jsonScript.query` types**
 
 | Parameter Name                | Type  | Required  | Description          |
 |-----------------------|----------|----|------------------------|
-| q                     | String | Required | Query statement |
-| qtype                 | String |  | Query syntax type, dql/promql |
-| qmode                 | String |  | Query type, selector: selectorQuery, manual input: customQuery, this field affects the front-end query display style |
+|q                      |String|Required| Query statement  |
+|qtype                  |String| | Query syntax type, dql/promql |
+|qmode                  |String| | Query type, selector box: selectorQuery, manual: customQuery, this field affects the style of query echo on the frontend|
 
 --------------
 
-**5. Explanation of `extend` parameters**
+**5. **`extend` parameter explanation**
 
 | Parameter Name                | Type  | Required  | Description          |
 |-----------------------|----------|----|------------------------|
-| filters               | Array[dict] |  | Filter condition list when not log type |
-| groupBy               | Array[str] | Grouping information |
-| funcName              | string | Required | Aggregation function (required for selector mode, used for front-end display), enum ("count", "avg", "max", "sum", "min", "count_distinct", "p75", "p95", "p99") |
-| fieldKey              | string | Required | Aggregation field (required for selector mode, used for front-end display) |
-| index                 | string |  | Index name when log type |
-| source                | string |  | This field has different meanings for different types: Log type: source, APM type: service, RUM type: application app_id, Metrics type: mearsurement, Security Check: category |
-| filterString          | string |  | Filter condition when log type, original filter string, example: 'host:hangzhou123 -service:coredns internal:true' |
+|filters                |Array[dict]| | Filter condition list when not log type|
+|groupBy                |Array[str]| Grouping information|
+|funcName               |string|Required| Aggregation function (must be passed when qmode is selector box mode, used for frontend echo), enumerated values ("count", "avg", "max", "sum", "min", "count_distinct", "p75", "p95", "p99") |
+|fieldKey               |string|Required| Aggregation field (must be passed when qmode is selector box mode, used for frontend echo)|
+|index                  |string| | Index name when log type|
+|source                 |string| | This field represents different meanings in different types: log type: source, application performance type: service, user visit type: application app_id, metric type: mearsurement, security check: category|
+|filterString           |string| | Filter condition when log type, original filter string, example: 'host:hangzhou123 -service:coredns internal:true'|
 
-Note:
-All fields in the `extend` section are only used for front-end display. The actual metric generation query statement follows the query information configured in `jsonScript.query`.
+Note: 
+All fields in the extend field are only used for frontend echo display. The actual generation of metric queries follows the query information configured in jsonScript.query.
+<br/>
 
 --------------
 
-**6. Structure of `extend.filters`**
+**6. Structure explanation of `extend.filters`**
 
 | Parameter Name             | Type  | Required  | Description          |
 |--------------------|----------|----|------------------------|
-| condition           | string |  | Relationship with previous filter condition, optional values: `and`, `or`; default value: `and` |
-| name                | string |  | Field name to filter |
-| op                  | string |  | Operator, optional values: `=`, `!=`, `match`, `not match` |
-| values               | array |  | Value list |
-| values[#]            | string/int/boolean |  | Can be string/number/boolean, during comparison, specific elements from `values` will be selected based on `op`, e.g., if `op` is `=`, only values[0] is used |
+|condition           |string |  | Relationship with the previous filter condition, possible values: `and`, `or`; default value: `and` |
+|name                |string |  | Field name to be filtered |
+|op                  |string |  | Operator, possible values: `=`, `!=`, `match`, `not match`|
+|values              |array |  | Value list |
+|values[#]           |string/int/boolean |  | Can be string/number/boolean, during data comparison it will select specific elements from `values` based on the characteristics of `operation`, for example, when `operation` is `=`, only values[0] participates in the operation |
 
 **6.1 Example of `extend.filters`:**
 
@@ -124,7 +129,7 @@ All fields in the `extend` section are only used for front-end display. The actu
 ]
 ```
 
-**7. Full Example:**
+**7. **Overall structure example:**
 ```json
     {
       "extend": {
@@ -153,6 +158,9 @@ All fields in the `extend` section are only used for front-end display. The actu
     }
 ```
 
+
+
+
 ## Request Example
 ```shell
 curl 'https://openapi.guance.com/api/v1/objc_cfg/create' \
@@ -161,6 +169,9 @@ curl 'https://openapi.guance.com/api/v1/objc_cfg/create' \
 --data-raw '{"extend":{"filters":[],"groupBy":["host_ip"],"funcName":"count","fieldKey":"*","index":"default","source":"*","filterString":"host:hangzhou123 region:guanzhou"},"jsonScript":{"type":"logToMetric","metricInfo":{"every":"1m","metric":"test","metricField":"001-test","unit":"custom/[\"timeStamp\",\"ms\"]","desc":""},"query":{"q":"L('default')::RE(`.*`):(count(`*`)) { `host`='hangzhou123' and `region`='guanzhou'  } BY `host_ip`","qtype":"dql"}}}' \
 --compressed
 ```
+
+
+
 
 ## Response
 ```shell

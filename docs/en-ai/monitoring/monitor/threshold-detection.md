@@ -1,11 +1,11 @@
 # Threshold Detection
 ---
 
-Used for monitoring anomalies in data such as metrics, logs, traces, etc. You can set threshold ranges, and when the data exceeds these thresholds, the system will trigger alerts and notify externally. Additionally, it supports detecting multiple metrics simultaneously and configuring different alert levels for each detection.
+Used to monitor anomalies in data such as metrics, logs, traces, etc. You can set threshold ranges, and when the data exceeds these thresholds, the system will trigger alerts and notify externally. Additionally, it supports simultaneous detection of multiple metrics with different alert levels configured for each detection.
 
-## Application Scenarios
+## Use Cases
 
-Supports monitoring anomalies in data related to metrics, logs, infrastructure, resource catalogs, events, APM, RUM, security checks, and network aspects. For example, you can monitor whether the host memory usage rate is abnormally high.
+Supports monitoring anomalies in data related to metrics, logs, infrastructure, resource catalogs, events, APM, RUM, security checks, and network aspects. For example, you can monitor if the host memory usage rate is abnormally high.
 
 ## Detection Configuration {#steps}
 
@@ -13,17 +13,17 @@ Supports monitoring anomalies in data related to metrics, logs, infrastructure, 
 
 ### Detection Frequency
 
-The execution frequency of the detection rules; the default is 5 minutes.
+This refers to the execution frequency of the detection rules; the default selection is 5 minutes.
 
-In addition to the specific options provided by Guance, you can also enter a [**custom crontab task**](./detection-frequency.md), configuring scheduled tasks based on minutes, hours, days, months, weeks, etc.
+In addition to the specific options provided by <<< custom_key.brand_name >>>, you can also input a [**custom crontab task**](./detection-frequency.md), configuring scheduled tasks based on minutes, hours, days, months, weeks, etc.
 
-When using custom Crontab detection frequencies, the detection intervals include the last 1 minute, last 5 minutes, last 15 minutes, last 30 minutes, last 1 hour, and last 3 hours.
+When using a custom Crontab detection frequency, the detection intervals include the last 1 minute, last 5 minutes, last 15 minutes, last 30 minutes, last 1 hour, and last 3 hours.
 
 <img src="../../img/crontab.png" width="60%" >
 
 ### Detection Interval
 
-The time range for querying detection metrics. Depending on the detection frequency, selectable detection intervals may vary.
+This refers to the time range for querying detection metrics. Depending on the detection frequency, available detection intervals may vary.
 
 | Detection Frequency | Detection Intervals (Dropdown Options) |
 | --- | --- |
@@ -36,61 +36,60 @@ The time range for querying detection metrics. Depending on the detection freque
 | 12h | 12h/24h |
 | 24h | 24h |
 
-3) **Detection Metrics**: Setting the data to be detected.
+3) **Detection Metrics**: Set the data to be detected.
 
 | Field | Description |
 | --- | --- |
-| Data Type | The type of data currently being detected, supporting metrics, logs, infrastructure, resource catalogs, events, APM, RUM, security checks, and network data types. |
+| Data Type | The type of data currently being detected, supporting types such as metrics, logs, infrastructure, resource catalogs, events, APM, RUM, security checks, and network data. |
 | Mearsurement | The measurement set where the current detection metric resides (for "metrics" data type). |
-| Metric | The specific metric being detected (for "metrics" data type). |
-| Aggregation Algorithm | Includes Avg by (average), Min by (minimum), Max by (maximum), Sum by (sum), Last (last value), First by (first value), Count by (count of data points), Count_distinct by (count of distinct data points), p50 (median), p75 (75th percentile), p90 (90th percentile), p99 (99th percentile). |
-| Detection Dimensions | String type (`keyword`) fields in the configured data can be selected as detection dimensions. Currently, up to three fields can be chosen. By combining multiple detection dimension fields, a specific detection object can be determined. Guance will judge whether the statistical metrics of a specific detection object meet the threshold conditions, and if so, an event is generated.<br />* (For example, selecting detection dimensions `host` and `host_ip` results in a detection object like {host: host1, host_ip: 127.0.0.1}. For log detection objects, the default dimensions are `status`, `host`, `service`, `source`, `filename`). * |
-| Filter Conditions | Filters the data of the detection metric based on metric labels, limiting the scope of detection data. Multiple label filters can be added, and non-metric data supports fuzzy matching and fuzzy mismatching filter conditions. |
-| Alias | Custom name for the detection metric. |
+| Metric | The specific metric targeted for detection (for "metrics" data type). |
+| Aggregation Algorithm | Includes Avg by (average value), Min by (minimum value), Max by (maximum value), Sum by (sum), Last (last value), First by (first value), Count by (number of data points), Count_distinct by (number of distinct data points), p50 (median value), p75 (value at 75% position), p90 (value at 90% position), p99 (value at 99% position). |
+| Detection Dimensions | String type (`keyword`) fields in the configuration can be selected as detection dimensions. Currently, up to three fields are supported. By combining multiple detection dimension fields, a specific detection object can be determined. <<< custom_key.brand_name >>> will determine whether the statistical metric of a certain detection object meets the threshold conditions. If the conditions are met, an event is generated.<br />* (For example, selecting detection dimensions `host` and `host_ip`, the detection object could be {host: host1, host_ip: 127.0.0.1}. When the detection object is "logs," the default detection dimensions are `status`, `host`, `service`, `source`, `filename`.) |
+| Filtering Conditions | Filter the data of the detection metrics based on the labels of the metrics, limiting the scope of the detected data. Multiple label filters can be added, and non-metric data types support fuzzy matching and fuzzy mismatching filtering conditions. |
+| Alias | Customize the name of the detection metric. |
 | [Query Method](../../scene/visual-chart/chart-query.md) | Supports simple queries, expression queries, and PromQL queries. |
 
 ### Trigger Conditions
 
-Set the trigger conditions for alert levels: you can configure any one of critical, major, minor, or normal trigger conditions.
+Set the trigger conditions for alert levels: you can configure any one of critical, major, minor, or normal.
 
-Configure trigger conditions and severity levels. When query results contain multiple values, an event is generated if any value meets the trigger condition.
+Configure trigger conditions and severity levels. When the query results contain multiple values, an event is generated if any value meets the trigger condition.
 
 > For more details, refer to [Event Level Description](event-level-description.md).
 
-If **Continuous Trigger Judgment** is enabled, you can configure the number of consecutive times the trigger conditions must be met before an event is triggered again. The maximum limit is 10 times.
-
+If **Continuous Trigger Judgment** is enabled, you can configure the number of consecutive times the trigger condition must be met before triggering an event again. The maximum limit is 10 times.
 
 ???+ abstract "Alert Levels"
 
-	1. **Alert Levels Critical (Red), Major (Orange), Minor (Yellow)**: Based on configured conditions and operators.
+    1. **Critical (Red), Major (Orange), Minor (Yellow)**: Based on the configured operator conditions.
 
-    > For more operator details, refer to [Operator Description](operator-description.md);   
-    >     
+    > For more operator details, refer to [Operator Description](operator-description.md);
+    > 
     > For details on `likeTrue` and `likeFalse` truth tables, refer to [Truth Table Description](table-description.md).
 
 
-    2. **Alert Level Normal (Green)**: Based on configured detection counts, as follows:
+    2. **Normal (Green)**: Based on the configured detection count, as follows:
 
-    - Each execution of a detection task counts as 1 detection, e.g., with a detection frequency of 5 minutes, 1 detection = 5 minutes.
-    - You can customize the detection count, e.g., with a detection frequency of 5 minutes, 3 detections = 15 minutes.
+    - Each execution of a detection task counts as one detection, e.g., [Detection Frequency = 5 minutes] means 1 detection = 5 minutes.
+    - You can customize the detection count, e.g., [Detection Frequency = 5 minutes], then 3 detections = 15 minutes.
 
     | Level | Description |
     | --- | --- |
-    | Normal | After the detection rule takes effect, if critical, major, or minor anomaly events occur, and the data returns to normal within the configured custom detection count, a recovery alert event is generated.<br/> :warning: Recovery alert events are not subject to [alert muting](../alert-setting.md). If no recovery alert event detection count is set, the alert event will not recover and will remain in the [**Events > Unrecovered Events List**](../../events/event-explorer/unrecovered-events.md).|
+    | Normal | After the detection rule takes effect, if critical, major, or minor anomaly events occur, and within the configured custom detection count, the data returns to normal, a recovery alert event is generated.<br/> :warning: Recovery alert events are not subject to [alert muting](../alert-setting.md). If no recovery alert event detection count is set, the alert event will not recover and will remain in the [**Events > Unrecovered Events List**](../../events/event-explorer/unrecovered-events.md). |
 
 ### Data Gaps
 
-Seven strategies can be configured for handling data gaps.
+For data gaps, seven strategies can be configured.
 
-1. Linked to the detection interval time range, judging the query results of the most recent minutes of the detection metric, **no event is triggered**;
+1. Link the detection interval time range and evaluate the query results of the most recent minutes of the detection metric, **do not trigger an event**;
 
-2. Linked to the detection interval time range, judging the query results of the most recent minutes of the detection metric, **query results are considered as 0**; at this point, the query results are compared with the thresholds configured in the **trigger conditions** to determine if an anomaly event should be triggered.
+2. Link the detection interval time range and evaluate the query results of the most recent minutes of the detection metric, **treat the query result as 0**; the query result will be compared against the threshold configured in the **trigger condition**, determining whether to trigger an anomaly event.
 
-3. Custom fill-in for detection interval values, **trigger data gap events, critical events, major events, minor events, and recovery events**; when choosing this configuration strategy, it is recommended that the custom data gap time >= detection interval time. If the configured time <= detection interval time, both data gap and anomaly conditions may be met simultaneously, in which case only the data gap handling result will apply.
+3. Custom fill the detection interval value, **trigger data gap events, critical events, major events, minor events, and recovery events**; when choosing this configuration strategy, it is recommended that the custom data gap time >= detection interval time. If the configured time <= detection interval time, there might be simultaneous satisfaction of data gap and anomaly conditions, in which case only the data gap handling result will be applied.
 
 
 ### Information Generation
 
-Enabling this option generates "information" events for detection results that do not match any of the above trigger conditions and writes them into the system.
+Enabling this option generates "information" events for detection results that do not match any of the above trigger conditions.
 
-**Note**: When configuring trigger conditions, data gaps, and information generation simultaneously, the following priority order applies: data gaps > trigger conditions > information event generation.
+**Note**: If trigger conditions, data gaps, and information generation are configured simultaneously, the following priority order applies: data gaps > trigger conditions > information event generation.

@@ -1,6 +1,6 @@
 ---
 title     : 'PHP'
-summary   : 'Obtain Metrics, trace data, and log information for PHP applications'
+summary   : 'Get metrics, trace data, and log information from PHP applications'
 __int_icon: 'icon/php'
 dashboard :
   - desc  : 'Not available'
@@ -14,15 +14,15 @@ monitor   :
 # PHP
 <!-- markdownlint-enable -->
 
-Reporting information related to PHP applications to Guance:
+Report relevant information from PHP applications to Guance:
 
 - Collect custom Metrics data from the application;
 - Collect trace data from the application;
-- Manage all logs of the application.
+- Manage all logs from the application.
 
 ## Trace {#tracing}
 
-PHP provides a non-intrusive method to inject probe information.
+PHP provides a non-intrusive way to inject probe information.
 
 
 [DDTrace Integration](ddtrace-php.md)

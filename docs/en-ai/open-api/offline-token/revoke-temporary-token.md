@@ -1,4 +1,4 @@
-# 【Logout Token】Revoke token
+# Revoke Temporary Token
 
 ---
 
@@ -11,9 +11,9 @@
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description               |
+| Parameter Name | Type   | Required | Description              |
 |:--------------|:-------|:--------|:-------------------------|
-| token         | string | Y       | Data access token<br>Example: custom.xxxx.xxx <br>Allow null: False <br> |
+| token         | string | Y       | Data access token<br>Example: custom.xxxx.xxx <br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 

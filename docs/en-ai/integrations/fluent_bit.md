@@ -8,7 +8,7 @@ __int_icon: 'icon/fluentbit'
 # Fluent Bit Logs
 <!-- markdownlint-enable -->
 
-FluentBit log collection involves receiving log text data reported to Guance.
+FluentBit log collection involves receiving log text data and reporting it to Guance.
 
 ## Installation and Deployment {#config}
 
@@ -33,7 +33,7 @@ Navigate to the `conf.d/log` directory under the DataKit installation directory,
 
 ### 3 FluentBit Configuration
 
-Mainly adjust FluentBit's `OUTPUT`
+Mainly adjust the `OUTPUT` section of FluentBit:
 
 ``` toml
 [OUTPUT]
@@ -49,14 +49,14 @@ Mainly adjust FluentBit's `OUTPUT`
 Explanation of FluentBit's `OUTPUT` parameters:
 
 - Name: Fixed as `http`
-- Host: Host where DataKit resides
+- Host: The host where DataKit resides
 - Port: DataKit port number, default `9529`
 - Format: Output in `json` format
 - Header: Request headers
-- URI: Reception address for DataKit `logstreaming`
+- URI: Receiving address for DataKit `logstreaming`
 
-For more details on the configuration and parameters of `logstreaming`, refer to the [logstreaming](./logstreaming.md) documentation.
+For more information on the configuration and parameters of `logstreaming`, refer to the [logstreaming](./logstreaming.md) documentation.
 
 ### 4 Verification
 
-Once FluentBit collects the logs, it sends them to DataKit via the `OUTPUT` setting, and you can view the log information through the platform.
+Once FluentBit collects the logs, it will send them through the `OUTPUT` to DataKit, and you can view the log information via the platform.

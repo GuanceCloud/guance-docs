@@ -3,9 +3,9 @@
 
 [English Version of the Agreement](confidentiality-en.md)
 
-This confidentiality agreement is a legally binding contract between Guance's operator, Shanghai Guance Future Information Technology Co., Ltd. (hereinafter referred to as "Guance"), and the user (hereinafter referred to as "you"). Guance provides the products and services displayed on this website (hereinafter referred to as "this service" / "this product") and will continuously update the service content. The latest service is based on the relevant product and service introduction pages on this website and the actual services provided to users.
+This confidentiality agreement is entered into by <<< custom_key.brand_name >>>, operated by Shanghai Guance Future Information Technology Co., Ltd. (hereinafter referred to as “<<< custom_key.brand_name >>>”), and the user (hereinafter referred to as “you”). This is a binding and effective contract between both parties. “<<< custom_key.brand_name >>>” provides you with the products and services displayed on this website (hereinafter referred to as “this service” or “this product”) and will continuously update the service content. The latest service is based on the related product and service introduction pages on this website and the actual services provided to users.
 
-You confirm: Before using this service, you have fully read, understood, and accepted all the contents of this confidentiality agreement (especially the content marked in bold and/or underlined). By selecting "Agree" and using this service, you agree to comply with all the terms of this confidentiality agreement.
+You confirm: Before using this service, you have fully read, understood, and accepted all the contents of this confidentiality agreement (especially the content marked in bold and/or underlined). By choosing “agree” and using this service, you agree to comply with all the terms of this confidentiality agreement.
 
 ## Content of the Confidentiality Agreement
 
@@ -15,40 +15,40 @@ You confirm: Before using this service, you have fully read, understood, and acc
 
 (2) Data collected through APIs from cloud vendors authorized by you;
 
-(3) Data collected via probes installed by you;
+(3) Data collected by probes installed by you;
 
-(4) All confidential or proprietary information about Guance that you become aware of while using this product and service, including but not limited to Guance’s operational materials, services, products, business plans, sales plans, technical concepts, technical documents, customer lists, operating channels; information related to Guance’s commercial systems, product design, operations, forecasts, business opportunities and strategies, advertising promotions, personnel; and any other confidential or proprietary information.
+(4) Any confidential or proprietary information about “<<< custom_key.brand_name >>>” that you become aware of during the use of this product and service, including but not limited to operational materials, services, products, business plans, sales plans, technical concepts, technical documents, customer lists, business channels; information related to “<<< custom_key.brand_name >>>”’s commercial systems, product design, operations, forecasts, business opportunities and strategies, advertising promotions, personnel; and any other confidential or proprietary information.
 
-2. Encryption Protection of Your Data
+2. Encryption Protection of Your Data by “<<< custom_key.brand_name >>>”
 
-Guance encrypts all information it receives and transmits, and we are committed to using advanced encryption technology to ensure your data is protected as much as possible.
+All information received and transmitted by “<<< custom_key.brand_name >>>” will be fully encrypted, and we are committed to using advanced encryption technology to ensure your data is protected to the greatest extent possible.
 
 3. Rights, Obligations, and Responsibilities of Both Parties
 
-(1) Both parties must comply with the terms of this agreement and all applicable laws and regulations regarding data protection.
+(1) Both parties must comply with the terms of this agreement and all laws and regulations related to data protection.
 
-(2) You promise: The information obtained by Guance with your authorization is lawful, and such information has been agreed upon by the information owners.
+(2) You commit that all information obtained by “<<< custom_key.brand_name >>>” with your authorization is legal and has been agreed upon by the information owners.
 
 (3) You understand and authorize:
 
-    (a) The confidential information under this contract will be used to help you analyze and diagnose issues during the use of cloud computing and improve your service experience;
+    (a) The confidential information related to this contract will be used to help you analyze and diagnose issues in the use of cloud computing and enhance your service experience;
     
-    (b) Due to the need to provide services to you, the confidential information under this contract may be provided to third parties deemed necessary by Guance.
+    (b) Due to the need to provide you with services, the confidential information related to this contract may be provided to third parties deemed necessary by “<<< custom_key.brand_name >>>”.
 
-(4) After your service terminates, when you request the deletion of related data, upon acknowledgment by Guance, Guance will destroy the relevant data.
+(4) After your service termination, when you request the deletion of relevant data, “<<< custom_key.brand_name >>>” will destroy the related data upon acknowledgment.
 
-4. Exceptions to the Confidentiality Obligations
+4. Exceptions to the Confidentiality Obligations of This Agreement
 
 (1) Information that has become public due to your actions;
 
 (2) Information that has become public through channels other than you, which are not subject to confidentiality obligations;
 
-(3) Information disclosed due to legal requirements, court orders, or demands from other authorized national authorities.
+(3) Information disclosed due to the application of law, court orders, or other competent authorities' requirements.
 
 ## Disclaimer
 
-**Due to the needs of certain functionalities of Guance, it may explicitly indicate or suggest you provide accounts/keys within a specific permission scope. If you ultimately provide accounts/keys beyond this scope, any consequences (including but not limited to data exposure, tampering, etc.) will be borne by you, and Guance shall not bear any legal responsibility.**
+**For the needs of certain functionalities of <<< custom_key.brand_name >>>, <<< custom_key.brand_name >>> will explicitly indicate or suggest you provide accounts/keys within a specified permission scope. If you ultimately provide accounts/keys exceeding this scope, all consequences (including but not limited to data exposure, tampering, etc.) will be borne by you, and <<< custom_key.brand_name >>> will not be held liable for any legal responsibilities.**
 
-**You confirm: Before using the corresponding functionalities of Guance, Guance has adequately warned and clearly explained the above disclaimer content to you. Based on these warnings and explanations, you have confirmed that the marked sections in the above terms are clauses that exempt or limit Guance's liability, and you fully understand and have no objections to this content.**
+**You confirm: Before using the corresponding functionalities of <<< custom_key.brand_name >>>, <<< custom_key.brand_name >>> has provided you with sufficient warnings and clear explanations regarding the above disclaimer content. Based on these warnings and explanations, you have confirmed that the clearly marked sections in the above terms are clauses that exempt or limit the liability of <<< custom_key.brand_name >>>, and you fully understand and have no objections to this content.**
 
-**The final interpretation rights of this product's confidentiality agreement belong to Shanghai Guance Future Information Technology Co., Ltd. The validity, interpretation, amendment, execution, and dispute resolution of this agreement shall be governed by the laws of the People's Republic of China. Any disputes arising from this agreement shall be handled in accordance with the laws of the People's Republic of China and submitted to the Pudong New Area People's Court of Shanghai for trial.**
+**The final interpretation rights of the confidentiality agreement for this product belong to Shanghai Guance Future Information Technology Co., Ltd. The validity, interpretation, amendment, execution, and dispute resolution of this agreement shall be governed by the laws of the People's Republic of China. Any disputes arising from this agreement shall be handled according to the laws of the People's Republic of China and submitted to the Pudong New Area People's Court of Shanghai for trial.**

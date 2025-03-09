@@ -4,7 +4,7 @@
 
 ???+ warning
 
-    **The current example uses the version of ddtrace for testing**
+    **The current case is tested with the corresponding version of ddtrace**
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@
 
 ## Installation and Deployment
 
-### Add Maven Pom Dependency
+### Add Maven pom Dependency
 
 ```xml
 	<dependency>
@@ -49,18 +49,18 @@
 
 ### Obtain Tracer
 
-Obtain the Tracer object through `GlobalTracer`
+Get the Tracer object via `GlobalTracer`
 
 > Tracer tracer = GlobalTracer.get();
 
-You can get the current span information through Tracer
+Through Tracer, you can get information about the current span.
 
 > Span span = tracer.activeSpan();
 
 ```java
     // Get tracer object
     Tracer tracer = GlobalTracer.get();
-    // Get the current span object
+    // Get current span object
     Span span = tracer.activeSpan();
     if (span!=null) {
         // Get traceId
@@ -72,9 +72,9 @@ You can get the current span information through Tracer
 
 ### Function-level Instrumentation
 
-In addition to the `dd.trace.methods` method that allows active instrumentation of methods, ddtrace provides an API method that offers more flexible instrumentation for business logic.
+In addition to the `dd.trace.methods` method for proactive instrumentation of methods, ddtrace provides an API method that allows more flexible instrumentation of business logic.
 
-1. Add the `@Trace` annotation to the corresponding method that needs instrumentation
+1. Add the `@Trace` annotation to the corresponding method that needs instrumentation.
 
 ```java
     @Trace
@@ -83,7 +83,7 @@ In addition to the `dd.trace.methods` method that allows active instrumentation 
     }
 ```
 
-2. Call this in the `gateway` method
+2. Then call this in the `gateway` method.
 
 ```java
 ...
@@ -95,9 +95,9 @@ testService.apiTrace();
 
 ![image.png](../images/ddtrace-skill-9.png)
 
-> **Note:** Intrusive instrumentation does not mean that the agent is not required when the application starts. Without an agent, `@Trace` will also fail. The `@Trace` annotation has a default operation name `trace.annotation`, and the traced methods have default resources.
+> **Note:** Intrusive instrumentation does not mean that the agent is not required when starting the application. Without the agent, `@Trace` will also be invalid. The `@Trace` annotation has a default operation name `trace.annotation`, while tracked methods have resources by default.
 
-You can modify the corresponding names
+You can modify the corresponding names.
 
 ```java
     @Trace(resourceName = "apiTrace",operationName = "apiTrace")
@@ -110,9 +110,9 @@ After modification, the effect is as follows:
 
 ![image.png](../images/ddtrace-skill-10.png)
 
-### Using Baggage to Propagate Business-Critical Tags Through Backend Links
+### Using Baggage to Pass Business Critical Tags Through Backend Chains
 
-ddtrace provides the `Baggage` feature, specifically using OpenTracing's `Baggage` functionality to propagate specified tags through the trace. For example, username, position information, etc., to facilitate user behavior analysis.
+ddtrace provides the `Baggage` method. More accurately, ddtrace uses the `Baggage` feature provided by OpenTracing to pass specified tags through the chain. For example, username, position information, etc., which makes it easier to analyze user behavior.
 
 ```
 span.setBaggageItem("username","liurui");
@@ -120,7 +120,7 @@ span.setBaggageItem("username","liurui");
 
 #### 1 Write TraceBaggageFilter
 
-Intercept requests via `TraceBaggageFilter` and pass relevant `request header` parameters through `Baggage`.
+By using the `TraceBaggageFilter` method to intercept requests and pass related parameters from `request header` through `Baggage`.
 
 ```java
 package com.zy.observable.ddtrace;
@@ -136,7 +136,7 @@ import java.io.IOException;
 import java.util.Enumeration;
 
 /**
- * Baggage can propagate tags between traces by obtaining the current request header and setting specified prefix headers as Baggage
+ * Baggage can pass tags between chains, by obtaining the current request header, set the headers with a specified prefix as Baggage.
  * @author liurui
  * @date 2022/7/19 14:59
  */
@@ -144,7 +144,7 @@ import java.util.Enumeration;
 public class TraceBaggageFilter implements Filter {
 
     /**
-     * Propagate headers with specified prefixes
+     * Pass headers with a specified prefix through the chain
      */
     private static final String PREFIX = "dd-";
 
@@ -158,7 +158,7 @@ public class TraceBaggageFilter implements Filter {
                 final String header = headerNames.nextElement();
                 String value = request.getHeader(header);
                 if (StringUtils.startsWith(header,PREFIX) && StringUtils.isNotBlank(value)){
-                    // Baggage can be propagated between traces, while ordinary tags cannot
+                    // Baggage can be passed between chains, while ordinary tags cannot
                     span.setBaggageItem(header.replace(PREFIX,""),value);
                 }
             }
@@ -171,7 +171,7 @@ public class TraceBaggageFilter implements Filter {
 
 #### 2 DataKit Configuration
 
-This requires coordination with DataKit's ddtrace collector configuration. Use the `customer_tags` method to add custom tags; otherwise, this data only exists in `meta`.
+This requires using the ddtrace collector configuration of DataKit together. You need to add custom tags through the `customer_tags` method; otherwise, this data will only exist in `meta`.
 
 ```toml
 customer_tags = ["username", "job"]
@@ -179,7 +179,7 @@ customer_tags = ["username", "job"]
 
 #### 3 Initiate a Request
 
-Initiate a gateway request carrying two headers: `dd-username` and `dd-job`. The system will recognize headers starting with `dd` and propagate them across all trace spans.
+Initiate a gateway request carrying two headers: `dd-username` and `dd-job`. The system will recognize `dd` prefixed header parameters and pass them through all current chain spans.
 
 ![](../images/ddtrace-skill-14.png)
 
@@ -192,29 +192,29 @@ Initiate a gateway request carrying two headers: `dd-username` and `dd-job`. The
 
 ### Custom traceId
 
-Refer to the best practices document: <[Use extract + TextMapAdapter to Implement Custom traceId](/best-practices/monitoring/ddtrace-custom-traceId/)>
+Please refer to the best practices document: <[Implementing custom traceId using extract + TextMapAdapter](/best-practices/monitoring/ddtrace-custom-traceId/)>
 
 ### Custom span
 
-Typically, applications handle business logic exceptions, and related traces may not be marked as errors, leading to incorrect statistics on application error traces. This usually happens in try-catch or global exception handling scenarios.
+Usually, applications handle business logic exceptions, and related chains may not be marked as error, leading to inability to normally count the application's error traces. Generally, these are try-catch or global exception captures.
 
-At this point, you need to mark the trace. You can mark these spans as error spans through custom spans by marking them at the catch location.
+At this point, marking the chain is needed. By customizing the span, these spans can be marked as error spans, and marking can be done at the catch location.
 
-1. Obtain the current span information as follows
+1. Get current span information via the following method.
 
 ```
 final Span span = GlobalTracer.get().activeSpan();
 ```
 
-2. Mark the span as an error
+2. Mark span as error.
 
 ```
 span.setTag(Tags.ERROR, true);
 ```
 
-If the current method is placed inside a catch block, you can also output the track information into the span.
+If the current method is placed inside a catch block, the track information can also be output to the span.
 
-You can make the error span processing logic a common function for global use. The code is shown below:
+The error span handling logic can be made into a common function for global use. The code is shown below:
 
 ```java hl_lines="4 6 7 11"
     private void buildErrorTrace(Exception ex) {
@@ -254,6 +254,6 @@ Caller code
 
 ## Reference Documents
 
-<[Demo Source Code Address](https://github.com/lrwh/observable-demo/tree/main/springboot-ddtrace-server)>
+<[demo source code address](https://github.com/lrwh/observable-demo/tree/main/springboot-ddtrace-server)>
 
-[ddtrace Startup Parameters](/integrations/ddtrace-java/#start-options)
+[ddtrace startup parameters](/integrations/ddtrace-java/#start-options)

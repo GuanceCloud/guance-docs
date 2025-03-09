@@ -1,37 +1,37 @@
-# Add One or More Members (Deployment Plan)
+# Add One or Multiple Members (Deployment Plan)
 
 ---
 
 <br />**POST /api/v1/workspace/member/batch_add**
 
 ## Overview
-Add one or more members (only supported in the Deployment Plan)
+Add one or multiple members (only supported by the Deployment Plan)
 
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| accountUUIDs | array | Y | List of account UUIDs<br>Example: ['acnt_xxxx32'] <br>Can be empty: False <br> |
-| roleUUIDs | array | Y | List of user role UUIDs<br>Example: ['general', 'readOnly', 'role_xxxx32'] <br>Can be empty: False <br> |
+| Parameter Name   | Type   | Required | Description              |
+|:--------------|:-----|:-------|:----------------------|
+| accountUUIDs  | array | Y     | List of account UUIDs<br>Example: ['acnt_xxxx32'] <br>Allow empty: False <br> |
+| roleUUIDs     | array | Y     | List of user role UUIDs<br>Example: ['general', 'readOnly', 'role_xxxx32'] <br>Allow empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
-- Request parameter descriptions
+- Request parameter description
 
-| Parameter Name           | Type | Description                                                 |
-| ---------------- | ---- | ---------------------------------------------------- |
-| accountUUIDs       | array | Account UUIDs within the workspace |
-| roleUUIDs       | array | Workspace role UUIDs|
+| Parameter Name    | Type   | Description                                                 |
+| ----------------- | ------ | ----------------------------------------------------------- |
+| accountUUIDs      | array  | Account UUIDs within the site                               |
+| roleUUIDs         | array  | Workspace role UUIDs                                        |
 
 - Explanation of roleUUIDs
 
-| Role   | Description      |
-|-----------|-----------|
-| wsAdmin   | Administrator role |
-| general   | Standard member role |
-| readOnly  | Read-only role |
-| role_xxx | Custom role |
+| Role       | Description        |
+|------------|--------------------|
+| wsAdmin    | Administrator role |
+| general    | Standard member role|
+| readOnly   | Read-only role     |
+| role_xxx   | Custom role        |
 
 
 ## Request Example

@@ -29,8 +29,6 @@
 
 - The nodev mount option specifies that the filesystem cannot contain special devices.
 
-
-
 - Note: /dev/shm is automatically mounted by systemd. However, even if /dev/shm has been mounted at startup, it still needs to add mount options in /etc/fstab.
 
 
@@ -41,8 +39,7 @@
 ## Theoretical Basis
 
 
-- Since the /dev/shm filesystem is not intended to support devices, this option should be set to ensure users cannot attempt to create special devices in the /dev/shm partition.
-
+- Since the /dev/shm filesystem is not intended to support devices, this option should be set to ensure users cannot attempt to create special devices on the /dev/shm partition.
 
 
 ## Risk Items
@@ -50,18 +47,11 @@
 
 - Hacker penetration
 
-
-
 - Data leakage
-
-
 
 - Mining risk
 
-
-
 - Botnet risk
-
 
 
 ## Audit Method
@@ -76,8 +66,8 @@ Nothing should be returned
 
 ## Remediation
 - Edit the /etc/fstab file and add nodev to the fourth field of the /dev/shm partition mount options.
-For more information, see the fstab(5) manual page.
-Run the following command to remount /dev/shm.
+For more information, see the fstab(5) man page.
+Run the following command to remount /dev/shm:
 ```bash
 # mount -o remount,noexec,nodev,nosuid /dev/shm
 ```
@@ -104,6 +94,6 @@ Run the following command to remount /dev/shm.
 
 - Version 7
   **5.1 Establish Secure Configurations**
-  Maintain documented, standardized secure configuration standards for all authorized operating systems and software.
+  Maintain documented, standard security configuration baselines for all authorized operating systems and software.
   **13 Data Protection**
   Data protection

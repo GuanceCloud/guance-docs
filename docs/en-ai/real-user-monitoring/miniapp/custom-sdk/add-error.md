@@ -1,4 +1,4 @@
-# Custom Adding Error
+# Custom Addition of Error
 ---
 
 After initializing RUM, use the `addError('<NAME>', '<JSON_OBJECT>')` API to add custom Error Metrics data outside of the collected data.
@@ -56,5 +56,3 @@ After initializing RUM, use the `addError('<NAME>', '<JSON_OBJECT>')` API to add
     }         
 
     ```
-
-In this documentation, the term "RUM" refers to User Access Monitoring (RUM). The `addError` function allows you to add custom error data that can be used for further analysis and troubleshooting.

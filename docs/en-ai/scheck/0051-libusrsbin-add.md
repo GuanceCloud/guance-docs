@@ -1,4 +1,4 @@
-# 0051-libusrsbin-add-/usr/sbin Directory Has New Files Added
+# 0051-libusrsbin-add-/usr/sbin Directory Added Files
 ---
 
 ## Rule ID
@@ -23,7 +23,7 @@
 
 ## Description
 
-- Monitor the `/usr/sbin` directory for new files being added.
+- Monitor the addition of new files in the host directory /usr/sbin.
 
 
 ## Scan Frequency
@@ -32,12 +32,12 @@
 
 ## Theoretical Basis
 
-- The `/usr/sbin` directory contains essential system command executables. If new files are added, it is necessary to determine if they are legitimate system commands.
+- The /usr/sbin directory contains critical executable files for basic system commands. If new files are added, it is necessary to determine whether they are normal system commands.
 
 
 ## Risk Items
 
-- Functionality may become unavailable
+- Function unavailable
 
 
 ## Audit Method
@@ -47,7 +47,7 @@
 
 ## Remediation
 
-- If files in the `/sbin` directory are deleted, verify whether they were legitimate system commands.
+- If files in the /sbin directory are detected to be deleted, check if they are normal system commands.
 
 
 ## Impact
@@ -65,6 +65,6 @@
 - None
 
 
-## CIS Controls
+## CIS Control
 
 - None

@@ -11,12 +11,11 @@ Delete a tag
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description               |
+| Parameter Name | Type   | Required | Description              |
 |:-----------|:-------|:-----|:----------------|
 | tagUUIDs | array | Y | Tag UUIDs<br>Allow null: False <br> |
 
 ## Additional Parameter Notes
-
 
 
 

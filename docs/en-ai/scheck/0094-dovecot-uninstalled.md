@@ -1,4 +1,4 @@
-# 0094-dovecot-uninstalled-IMAP and POP3 services are installed
+# 0094-dovecot-uninstalled-IMAP and POP3 Services Installed
 ---
 
 ## Rule ID
@@ -18,40 +18,55 @@
 
 ## Compatible Versions
 
+
 - Linux
+
+
 
 
 ## Description
 
+
 - Unless this system provides POP3 and/or IMAP servers, it is recommended to remove this package to reduce the potential attack surface.
+
 
 
 ## Scan Frequency
-
 - 0 */30 * * *
-
 
 ## Theoretical Basis
 
+
 - Unless this system provides POP3 and/or IMAP servers, it is recommended to remove this package to reduce the potential attack surface.
+
+
 
 
 ## Risk Items
 
-- Hacker penetration
 
-- Data leakage
+- Hacker Penetration
 
-- Network security
 
-- Mining risk
 
-- Botnet risk
+- Data Breach
+
+
+
+- Network Security
+
+
+
+- Mining Risk
+
+
+
+- Botnet Risk
+
 
 
 ## Audit Method
-
-- Run the following command to verify if dovecot is installed.
+- Execute the following command to verify if dovecot is installed.
 
 ```bash
 # rpm -q dovecot
@@ -59,32 +74,44 @@ package dovecot is not installed
 ```
 
 
-## Remediation
 
+## Remediation
 - Run the command to remove dovecot.
 ```bash
 # yum remove dovecot
 ```
 
 
+
 ## Impact
 
+
 - None
+
+
 
 
 ## Default Value
 
+
 - None
+
+
 
 
 ## References
 
+
 - None
+
 
 
 ## CIS Controls
 
+
 - Version 7
 
-- 9.2 Ensure only approved ports, protocols, and services are running<br>
-Ensure that only network ports, protocols, and services that listen on systems for validated business needs are running on each system.
+
+
+- 9.2 Ensure Only Approved Ports, Protocols, and Services Are Running<br>
+    Ensure that only network ports, protocols, and services that have been validated by business requirements are listening on each system.

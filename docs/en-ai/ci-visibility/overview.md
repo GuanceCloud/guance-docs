@@ -1,11 +1,11 @@
-# Summary
+# Overview
 ---
 
-In the "CI Visualization" - "Summary", you can switch to view the overview of GitLab / Jenkins Pipelines and Jobs, including execution counts, failure rates, execution times, the number of failed executions, and the Top List for the duration of failed executions.
+In the "CI Visualization" - "Overview", you can switch to view the overview of Pipelines and Jobs for GitLab / Jenkins, including the number of executions, failure rate, execution time, number of failed executions, and the Top List of failed execution durations.
 
 ## GitLab
 
-You can view the execution counts, failure rates, execution times, the number of failed executions, and the Top List for the duration of failed executions in the GitLab CI summary view. This helps you quickly understand the operational status of Pipelines and Jobs throughout the entire CI process.
+You can view the number of executions, failure rate, execution time, number of failed executions, and the Top List of failed execution durations for Pipelines and Jobs in the GitLab CI overview view. This helps you quickly understand the operation status of Pipelines and Jobs throughout the entire CI process.
 
 === "Pipeline"
 
@@ -17,7 +17,7 @@ You can view the execution counts, failure rates, execution times, the number of
 
 ## Jenkins
 
-You can view the execution counts, failure rates, execution times, the number of failed executions, and the Top List for the duration of failed executions in the Jenkins CI summary view. This helps you quickly understand the operational status of Pipelines and Jobs throughout the entire CI process.
+You can view the number of executions, failure rate, execution time, number of failed executions, and the Top List of failed execution durations for Pipelines and Jobs in the Jenkins CI overview view. This helps you quickly understand the operation status of Pipelines and Jobs throughout the entire CI process.
 
 === "Pipeline"
 

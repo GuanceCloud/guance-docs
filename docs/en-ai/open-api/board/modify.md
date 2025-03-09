@@ -5,29 +5,29 @@
 <br />**POST /api/v1/dashboards/\{dashboard_uuid\}/modify**
 
 ## Overview
-Modify the property information of a dashboard.
+Modify the properties of a dashboard.
 
 
 ## Route Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| dashboard_uuid | string | Y | View UUID<br> |
+|:---------------------|:---------|:---------|:-------------------------|
+| dashboard_uuid        | string   | Y        | View UUID                |
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| name | string |  | View name<br>Example: Test View 1 <br>Can be empty: False <br> |
-| desc | string |  | Description<br>Example: Description 1 <br>Can be empty: False <br>Can be an empty string: True <br>Maximum length: 2048 <br> |
-| identifier | string |  | Identifier ID -- Added on December 25, 2024<br>Example: xxxx <br>Can be empty: False <br>Can be an empty string: True <br>Maximum length: 128 <br> |
-| extend | json |  | Additional view information<br>Example: {} <br>Can be empty: False <br> |
-| mapping | array |  | Mapping, defaults to []<br>Example: [] <br>Can be empty: False <br> |
-| tagNames | array |  | Tag names, note that this field is fully updated<br>Can be empty: False <br> |
-| isPublic | int |  | Whether it is publicly displayed, 1 for public, 0 for private, -1 for custom<br>Example: 1 <br>Can be empty: False <br> |
-| permissionSet | array |  | Custom operation permissions configuration when isPublic is -1, can configure (roles (except owner), member UUID, team UUID)<br>Example: ['wsAdmin', 'acnt_xxxx', 'group_yyyy'] <br>Can be empty: False <br> |
-| readPermissionSet | array |  | Custom read permissions configuration when isPublic is -1, can configure (roles (except owner), member UUID, team UUID)<br>Example: ['wsAdmin', 'acnt_xxxx', 'group_yyyy'] <br>Can be empty: False <br> |
+|:---------------------|:---------|:---------|:-------------------------|
+| name                 | string   |          | View name<br>Example: Test View 1<br>Allow empty: False <br> |
+| desc                 | string   |          | Description<br>Example: Description 1<br>Allow empty: False <br>Allow empty string: True <br>Maximum length: 2048 <br> |
+| identifier           | string   |          | Identifier ID -- Added on December 25, 2024<br>Example: xxxx<br>Allow empty: False <br>Allow empty string: True <br>Maximum length: 128 <br> |
+| extend               | json     |          | Additional view information<br>Example: {}<br>Allow empty: False <br> |
+| mapping              | array    |          | Mapping, defaults to []<br>Example: []<br>Allow empty: False <br> |
+| tagNames             | array    |          | Tag names, note that this field is fully updated<br>Allow empty: False <br> |
+| isPublic             | int      |          | Whether it is publicly displayed, 1 for public, 0 for private, -1 for custom<br>Example: 1<br>Allow empty: False <br> |
+| permissionSet        | array    |          | Custom operation permissions when isPublic is -1, configurable (roles except owner, member UUID, team UUID)<br>Example: ['wsAdmin', 'acnt_xxxx', 'group_yyyy']<br>Allow empty: False <br> |
+| readPermissionSet    | array    |          | Custom read permissions when isPublic is -1, configurable (roles except owner, member UUID, team UUID)<br>Example: ['wsAdmin', 'acnt_xxxx', 'group_yyyy']<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 

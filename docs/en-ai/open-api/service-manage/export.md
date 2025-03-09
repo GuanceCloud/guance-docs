@@ -1,20 +1,24 @@
-# Export Service List
+# 【Service List】Export
 
 ---
 
 <br />**GET /api/v1/service_manage/export**
 
 ## Overview
-Export the service list
+Service list export
+
+
 
 
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:----------|:------------------------|
-| originStr            | string   | No        | Pass `1` for raw string, pass `0` for structured data, default is `1`<br>Allow empty: False <br> |
+| Parameter Name    | Type     | Required | Description              |
+|:-----------------|:-------|:-----|:----------------|
+| originStr        | string | No   | Pass `1` for raw string, pass `0` for structured data, default is `1`<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
+
+
 
 
 
@@ -25,6 +29,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
   -o 'serviceInfo.json'
   --compressed
 ```
+
 
 
 
@@ -49,7 +54,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
             "Docs": [
                 {
                     "link": "https://www.docs.guance.com",
-                    "name": "Guance",
+                    "name": "guance",
                     "provider": "Guance"
                 },
                 {
@@ -70,7 +75,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
             "Repos": [
                 {
                     "link": "https://www.guance.com",
-                    "name": "Guance",
+                    "name": "guance",
                     "provider": "Guance"
                 },
                 {

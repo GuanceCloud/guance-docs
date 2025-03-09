@@ -1,4 +1,4 @@
-# 0427-k8s-kubelet-iptable-chains-Allow Kubelet to Manage Information iptables
+# 0427-k8s-kubelet-iptable-chains-Allow Kubelet to manage information iptables
 ---
 
 ## Rule ID
@@ -8,12 +8,12 @@
 
 ## Category
 
-- Container
+- container
 
 
 ## Level
 
-- Info
+- info
 
 
 ## Compatible Versions
@@ -27,7 +27,7 @@
 ## Description
 
 
-- Protect tuned kernel parameters from being overwritten by default Kubelet kernel parameter values
+- Protect kernel parameters from being overwritten by default Kubelet kernel parameter values
 
 
 
@@ -37,7 +37,7 @@
 ## Theoretical Basis
 
 
-- Kubelets can automatically manage the required changes to the information table based on how you choose your network options for pods. It is recommended to allow kubelet to make changes to iptables. This ensures that table configurations remain synchronized with pod network configurations. Configuring it yourself may result in iptable rules that are either too restrictive or too permissive
+- Kubelets can automatically manage the required changes to the information tables based on how you choose your network options for pods. It is recommended to allow kubelet to make changes to iptables. This ensures that table configurations remain synchronized with pod network configurations. Configuring it yourself may result in ip table rules that are either too restrictive or too permissive
 
 
 
@@ -60,10 +60,10 @@ ps -ef | grep kubelet
 
 
 ## Remediation
-- There are two ways to start kubelet:
-Check if there is a configuration file: /etc/systemd/system/kubelet.service.d/10-kubeadm.conf. If the file exists, set the parameter --make-iptables-util-chains=true.
-If the file does not exist, then kubelet was started via command line, check the kubelet startup parameter -config,
-Open the file and check if the parameter makeIPTablesUtilChains exists and set it to true.
+- Kubelet can start in two ways
+Check if there is a configuration file: /etc/systemd/system/kubelet.service.d/10-kubeadm.conf, if the file exists set the parameter --make-iptables-util-chains=true
+If the file does not exist, then kubelet starts via command line, check the kubelet startup parameter -config,
+Open the file and check if the parameter makeIPTablesUtilChains exists and set it to true
 
 After setting, restart kubelet:
 ```bash
@@ -76,7 +76,8 @@ systemctl restart kubelet.service
 ## Impact
 
 
-- Avoid conflicts with iptables settings you have configured and allow Kubernetes to manage iptables
+- Avoid conflicts with iptables settings you have configured, and also allow Kubernetes to manage iptables
+
 
 
 
@@ -95,7 +96,7 @@ systemctl restart kubelet.service
 
 
 
-## CIS Control
+## CIS Controls
 
 
 - None

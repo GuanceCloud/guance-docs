@@ -11,12 +11,12 @@
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:-------------------------|
-| data_mask_rule_uuid   | string   | Y        | The UUID of the data masking rule<br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| data_mask_rule_uuid | string | Y | UUID of the data masking rule<br> |
 
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

@@ -1,4 +1,4 @@
-# 0300-docker-kernel - Whether the Container Server Kernel Version is 3.10 or Higher
+# 0300-docker-kernel - Is the Container Server Kernel Version 3.10 or Higher
 ---
 
 ## Rule ID
@@ -8,17 +8,18 @@
 
 ## Category
 
-- Container
+- container
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
 
 - Linux
+
 
 
 
@@ -33,7 +34,7 @@
 
 ## Theoretical Basis
 
-- Kernels earlier than 3.10 lack some features required to run Docker containers. It is well known that these older versions have bugs that can cause data loss and frequent crashes under certain circumstances. Therefore, it is recommended to use the latest minor version (3.x.y) of the 3.10 (or newer maintenance version) Linux kernel. Additionally, using a more recent Linux kernel ensures that critical kernel errors previously discovered are fixed.
+- Kernels earlier than 3.10 lack some features required to run Docker containers. It is well known that these older versions have bugs that can cause data loss and frequent crashes in certain situations. Therefore, it is recommended to use the latest minor version (3.x.y) of the 3.10 (or newer maintenance version) Linux kernel. Additionally, using a newer Linux kernel ensures that critical kernel bugs discovered previously have been fixed.
 
 
 
@@ -44,17 +45,17 @@
 
 
 ## Audit Method
-- Execute the following command to find out the Linux kernel version:
+- Execute the following command to determine the Linux kernel version:
 
 ```bash
 uname -r
 ```
-Ensure that the found kernel version is 3.10 or higher.
+Ensure that the identified kernel version is 3.10 or newer.
 
 
 
 ## Remediation
-- Review Docker's kernel and operating system requirements and appropriately select your kernel and operating system.
+- Review Docker's kernel and operating system requirements and appropriately choose your kernel and operating system.
 
 
 
@@ -64,9 +65,11 @@ Ensure that the found kernel version is 3.10 or higher.
 
 
 
+
 ## Default Value
 
 - None
+
 
 
 
@@ -75,6 +78,7 @@ Ensure that the found kernel version is 3.10 or higher.
 - [check-kernel-dependencies](https://docs.docker.com/installation/binaries/#check-kernel-dependencies)
 
 - [installation-list](https://docs.docker.com/installation/#installation-list)
+
 
 
 ## CIS Control

@@ -8,16 +8,13 @@
 
 
 
-
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
+| Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
 | dataMaskRuleUUIDs | array | Y | List of sensitive data masking rule UUIDs<br>Allow null: False <br> |
 
-## Additional Parameter Notes
-
-
+## Additional Parameter Explanation
 
 
 
@@ -29,7 +26,6 @@ curl 'https://openapi.guance.com/api/v1/data_mask_rule/delete' \
 --data-raw $'{"dataMaskRuleUUIDs": ["wdmk_xxx"]}'
 --compressed
 ```
-
 
 
 

@@ -1,11 +1,12 @@
-# Custom Adding Action
+# Custom Add Action
 ---
 
-After initializing RUM, use the `addAction('<NAME>', '<JSON_OBJECT>')` API to add custom Action metric data outside of the collected data.
+
+After initializing RUM, use the `addAction('<NAME>', '<JSON_OBJECT>')` API to add custom Action metric data outside of the collection.
 
 ### Add Action
 
-=== "CDN Sync"
+=== "CDN Synchronous"
 
     ```javascript
     window.DATAFLUX_RUM && window.DATAFLUX_RUM.addAction('<NAME>', '<JSON_OBJECT>');
@@ -18,7 +19,7 @@ After initializing RUM, use the `addAction('<NAME>', '<JSON_OBJECT>')` API to ad
     });
     ```
 
-=== "CDN Async"
+=== "CDN Asynchronous"
 
     ```javascript
     DATAFLUX_RUM.onReady(function() {

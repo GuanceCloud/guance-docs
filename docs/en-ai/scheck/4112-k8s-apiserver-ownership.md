@@ -8,12 +8,12 @@
 
 ## Category
 
-- Nginx
+- Kubernetes API Server
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -23,7 +23,8 @@
 
 ## Description
 
-- If you are using nginx on a computer that uses systemd to manage services, verify that the file ownership and group ownership of nginx are correctly set to root.
+- If you are using nginx on a computer that manages services with systemd, verify that the file ownership and group ownership of nginx are correctly set to root.
+
 
 
 ## Scan Frequency
@@ -33,17 +34,19 @@
 
 ## Theoretical Basis
 
-- Setting the ownership to the root user and root group will reduce the possibility of unauthorized modifications to the nginx configuration files.
+- Setting ownership to the root user and root group reduces the possibility of unauthorized modifications to the nginx configuration files.
+
 
 
 ## Risk Items
 
-- Nginx Security
+- nginx security
+
 
 
 ## Audit Method
 
-- Execute the following command to verify that the file and group are owned by root:
+- Execute the following command to verify that the file and group belong to root:
 
 ```bash
 stat /etc/nginx
@@ -59,19 +62,23 @@ stat /etc/nginx
 This will set the file ownership and group ownership to root.
 
 
+
 ## Impact
 
 - None
 
 
+
 ## Default Values
 
-- The default ownership and group for nginx is root.
+- The default ownership and group for nginx is root
+
 
 
 ## References
 
 - None
+
 
 
 ## CIS Controls

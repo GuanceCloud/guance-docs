@@ -20,11 +20,11 @@ Collect metrics information related to JuiceFS data size, IO, transactions, obje
 
 ### JuiceFS Metrics
 
-JuiceFS exposes the metrics endpoint by default on port `9567`. You can view the metrics information via a browser at `http://clientIP:9567/metrics`.
+JuiceFS exposes the metrics port by default at `9567`. You can view the metrics information via a browser at `http://clientIP:9567/metrics`.
 
 ### DataKit Collector Configuration
 
-Since `JuiceFS` can directly expose a `metrics` URL, you can use the [`prom`](./prom.md) collector for metric collection.
+Since `JuiceFS` can directly expose a `metrics` URL, it can be collected using the [`prom`](./prom.md) collector.
 
 The configuration changes are as follows:
 
@@ -37,14 +37,13 @@ interval = "10s"
 ```
 
 <!-- markdownlint-disable MD033 -->
-<font color="red">*Adjust other configurations as needed*</font>
+<font color="red">*Other configurations can be adjusted as needed*</font>
 <!-- markdownlint-enable -->
 
-Parameter adjustment explanation:
-
-- urls: Prometheus metrics address, fill in the metrics URL exposed by the corresponding component.
+Parameter adjustment notes:
+- urls: Prometheus metrics address; enter the metrics URL exposed by the corresponding component.
 - source: Collector alias, it is recommended to differentiate.
-- interval: Collection interval
+- interval: Collection interval.
 
 ### Restart DataKit
 
@@ -54,4 +53,4 @@ systemctl restart datakit
 
 ## Metrics {#metric}
 
-For detailed metrics information, refer to the [official documentation](https://juicefs.com/docs/en/community/p8s_metrics)
+For detailed metrics information, refer to the [official documentation](https://juicefs.com/docs/en/community/p8s_metrics).

@@ -1,5 +1,5 @@
 nav:
   - 'Changelog': sdk-changelog.md
-  - 'App Integration': app-access.md
-  - 'Data Collection': app-data-collection.md
+  - 'Application Integration': app-access.md
+  - 'Application Data Collection': app-data-collection.md
   - 'Troubleshooting': app-troubleshooting.md

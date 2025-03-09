@@ -13,27 +13,26 @@ Sealos is a simple Go binary that can be installed on most Linux operating syste
 - It is recommended to use a clean operating system to create the cluster. Do not install Docker manually.
 - Supports most Linux distributions, such as Ubuntu, CentOS, Rocky Linux.
 - Supports using containerd as the container runtime.
-- Use private IPs in public clouds.
+- Use private IPs on public clouds.
 
 ## Basic Information and Compatibility
 
-| Hostname   | IP Address       | Role  | Configuration         |
-| :--------: | :-------------: | :---: | :-------------------: |
-| k8s-master | 192.168.100.101 | Master | 4 CPU, 16G MEM, 100G DISK |
+| Hostname   | IP Address      | Role  | Configuration        |
+| :--------: | :-------------: | :---: | :------------------: |
+| k8s-master | 192.168.100.101 | Master| 4 CPU, 16G MEM, 100G DISK |
 | K8s-node01 | 192.168.100.102 | Node  | 4 CPU, 16G MEM, 100G DISK |
 | K8s-node02 | 192.168.100.103 | Node  | 4 CPU, 16G MEM, 100G DISK |
 
-| Name               | Description                         |
-| :----------------: | :----------------------------------: |
-| Offline Installation Support | Yes                          |
-| Supported Architectures | amd64/arm64                      |
-
+| Name              | Description                         |
+| :---------------: | :----------------------------------: |
+| Offline Installation Support | Yes                               |
+| Supported Architectures    | amd64/arm64                       |
 
 ## Installation Steps
 
 ### 1. Set Hostnames
 
-Execute the following commands on each node:
+Run the following commands on each node:
 
 ```shell
 hostnamectl set-hostname k8s-master
@@ -49,10 +48,10 @@ Run the following commands on each node:
 # Install ntpdate
 yum install ntpdate -y
 
-# Synchronize local time
+# Sync local time
 ntpdate time.windows.com
 
-# Synchronize with network sources
+# Sync with network source
 ntpdate cn.pool.ntp.org
 ```
 
@@ -62,18 +61,18 @@ ntpdate cn.pool.ntp.org
 
 ### 3. Install Sealos Command
 
-Run the following command to install:
+Execute the following commands to install:
 
 === "amd64"
 
     ``` shell
-    wget https://static.guance.com/dataflux/package/sealos_4.1.5_linux_amd64.tar.gz \
+    wget https://<<< custom_key.static_domain >>>/dataflux/package/sealos_4.1.5_linux_amd64.tar.gz \
        && tar zxvf sealos_4.1.5_linux_amd64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
     ```
 === "arm64"
 
     ``` shell
-    wget https://static.guance.com/dataflux/package/sealos_4.1.5_linux_arm64.tar.gz \
+    wget https://<<< custom_key.static_domain >>>/dataflux/package/sealos_4.1.5_linux_arm64.tar.gz \
        && tar zxvf sealos_4.1.5_linux_arm64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
     ```
 
@@ -119,8 +118,7 @@ Flags:
 
 Use "sealos [command] --help" for more information about a command.
 ```
-> Installation only needs to be done on one machine.
-
+> Installation is only required on one machine.
 
 ### 4. Install the Cluster
 
@@ -132,20 +130,18 @@ sealos run pubrepo.guance.com/googleimages/kubernetes:v1.24.0 \
     --passwd [your-ssh-passwd] 
 ```
 
-> Note: Modify the IP addresses and password in the command.
+> Note that the IP addresses and password in the command need to be modified.
 
-> Ensure you are using the root user, and ensure port connectivity between nodes.
+> Ensure you are logged in as the root user, and ensure port connectivity between nodes.
 
 Parameter Description:
 
-| Parameter Name | Example Value                | Parameter Description            |
-| :------------: | :--------------------------: | :-------------------------------: |
-|  --masters    | 192.168.100.101              | List of Kubernetes master node IPs |
-|   --nodes     | 192.168.100.102,192.168.100.103 | List of Kubernetes node IPs       |
-|   --passwd    | [your-ssh-passwd]            | SSH login password                |
-|  kubernetes   | labring/kubernetes:v1.24.0   | Kubernetes image                  |
-
-
+| Parameter Name | Example Value                     | Description                           |
+| :------------: | :-------------------------------: | :------------------------------------: |
+| --masters      | 192.168.100.101                   | List of Kubernetes master node IP addresses |
+| --nodes        | 192.168.100.102,192.168.100.103   | List of Kubernetes node IP addresses   |
+| --passwd       | [your-ssh-passwd]                 | SSH login password                    |
+| kubernetes     | labring/kubernetes:v1.24.0        | Kubernetes image                      |
 
 ### Verify Installation
 
@@ -157,13 +153,13 @@ kubectl get nodes
 
 ### Add Nodes
 
-#### Add Node:
+#### Add Node Nodes:
 
 ```shell
 sealos add --nodes 192.168.100.104,192.168.100.105
 ```
 
-#### Add Master:
+#### Add Master Nodes:
 
 ```shell
 sealos add --masters 192.168.100.104,192.168.100.105
@@ -171,13 +167,13 @@ sealos add --masters 192.168.100.104,192.168.100.105
 
 ### Delete Nodes
 
-#### Delete Node:
+#### Delete Node Nodes:
 
 ```shell
 sealos delete --nodes 192.168.100.104,192.168.100.105
 ```
 
-#### Delete Master:
+#### Delete Master Nodes:
 
 ```shell
 sealos delete --masters 192.168.100.104,192.168.100.105

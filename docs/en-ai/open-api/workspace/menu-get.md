@@ -50,7 +50,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu/get' \
                 "value": 0
             },
             {
-                "key": "Metrics Query",
+                "key": "Metrics",
                 "value": 1
             },
             {

@@ -1,4 +1,4 @@
-# Get Workspace Billing Information for Specific Period
+# Get Billing Information for Workspace
 
 ---
 
@@ -11,20 +11,20 @@
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:----------------|:-------|:-----|:----------------|
-| startDate | string | Yes | Billing start date Format: 20230731<br>Example: 20230731 <br>Can be empty: False <br> |
-| endDate | string | Yes | Billing end date Format: 20230731<br>Example: 20230731 <br>Can be empty: False <br> |
+|:-------------------|:-------|:-----|:----------------|
+| startDate | string | Yes | Billing start date Format: 20230731<br>Example: 20230731 <br>Nullable: False <br> |
+| endDate | string | Yes | Billing end date Format: 20230731<br>Example: 20230731 <br>Nullable: False <br> |
 
 ## Additional Parameter Explanation
 
-Response parameter explanation:
+Return parameter explanation:
 
 **`content` main structure explanation**
 
 | Parameter Name                | Parameter Description  |
-|-----------------------|----------|
+|-------------------------------|------------------|
 |consumeTimeOfDay       |Billing consumption time |
-|orgName                |Organization name of the billing center (can be ignored)  |
+|orgName                |Billing Center organization name (Ignorable) |
 |productName            |Product name Fixed as dataFlux |
 |productDetail          |Product details |
 |billingCycle           |Billing cycle Day, Month, Year, Single |
@@ -32,20 +32,20 @@ Response parameter explanation:
 |deductionAmount        |Deduction amount |
 |oweAmount              |Unpaid amount |
 |originAmount           |Original price |
-|serviceBillingAmount   |Service Charges (can be ignored) |
+|serviceBillingAmount   |Service Charges (Ignorable) |
 |couponAmount           |Coupon deduction |
 |storedCardAmount       |Stored card deduction     |
 |cashAmount             |Cash deduction    |
 |cashCouldAmount        |Cloud market deduction    |
-|commodityCategory      |Product type Annual subscription, Pay-as-you-go    |
+|commodityCategory      |Product type Annual/Monthly subscription, Pay-as-you-go    |
 |consumePlatform        |Billing method   |
 |customerIdentifier     |Cloud market account   |
-|consumption            |Can be ignored   |
+|consumption            |Ignorable   |
 |workspaceUuid          |Workspace UUID   |
 |workspaceName          |Workspace name   |
 |consumeTime            |Consumption timestamp   |
 |tag6                   |Measurement name   |
-|billingResultDetails   |Can be ignored   |
+|billingResultDetails   |Ignorable   |
 |count                  |Usage   |
 
 
@@ -56,7 +56,6 @@ curl 'https://openapi.guance.com/api/v1/billing/detail/list' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --compressed
 ```
-
 
 
 ## Response

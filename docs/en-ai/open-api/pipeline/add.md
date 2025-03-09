@@ -7,24 +7,24 @@
 ## Overview
 Create a Pipeline
 
-When the category type is `profiling`, the rule will only take effect if the field `CentralPLServiceSwitch` (returned by the `/workspace/get` interface) in the workspace configuration is set to true.
+When the category is `profiling`, the rule will only take effect if the field `CentralPLServiceSwitch` (returned by the `/workspace/get` interface) in the workspace configuration is set to `true`.
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| name | string | Y | Pipeline file name<br>Nullable: False <br>Maximum Length: 256 <br>$notSearchRegExp: [^a-zA-Z0-9_\u4e00-\u9fa5-]+ <br> |
-| type | string | Y | Pipeline file type<br>Nullable: False <br>Options: ['local', 'central'] <br> |
-| source | array |  | Selected source list<br>Nullable: False <br> |
-| content | string | Y | Pipeline file content (base64 encoded)<br>Nullable: False <br> |
-| testData | string |  | Test data (base64 encoded)<br>Nullable: False <br>Allows empty string: True <br> |
-| isForce | boolean |  | Whether to replace when a default of the specific type exists<br>Nullable: False <br> |
-| category | string | Y | Category<br>Nullable: False <br>Allows empty string: False <br>Options: ['logging', 'object', 'custom_object', 'network', 'tracing', 'rum', 'security', 'keyevent', 'metric', 'profiling', 'dialtesting', 'billing'] <br> |
-| asDefault | int |  | Whether to set this as the default pipeline for the type, 1 for default, 0 for non-default<br>Nullable: False <br> |
-| extend | json |  | Extended information<br>Nullable: False <br> |
-| extend.appID | array |  | App ID<br>Nullable: True <br> |
-| extend.measurement | array |  | Source origin<br>Nullable: True <br> |
-| extend.loggingIndex | string |  | Log index<br>Nullable: True <br> |
+| name | string | Y | Pipeline file name<br>Allow null: False <br>Maximum length: 256 <br>$notSearchRegExp: [^a-zA-Z0-9_\u4e00-\u9fa5-]+ <br> |
+| type | string | Y | Pipeline file type<br>Allow null: False <br>Optional values: ['local', 'central'] <br> |
+| source | array |  | Selected source list<br>Allow null: False <br> |
+| content | string | Y | Pipeline file content (base64 encoded)<br>Allow null: False <br> |
+| testData | string |  | Test data (base64 encoded)<br>Allow null: False <br>Allow empty string: True <br> |
+| isForce | boolean |  | Whether to replace when a default of the specific type exists<br>Allow null: False <br> |
+| category | string | Y | Category<br>Allow null: False <br>Allow empty string: False <br>Optional values: ['logging', 'object', 'custom_object', 'network', 'tracing', 'rum', 'security', 'keyevent', 'metric', 'profiling', 'dialtesting', 'billing'] <br> |
+| asDefault | int |  | Whether to set this as the default pipeline for this type, 1 for default, 0 for non-default<br>Allow null: False <br> |
+| extend | json |  | Additional information<br>Allow null: False <br> |
+| extend.appID | array |  | App ID<br>Allow null: True <br> |
+| extend.measurement | array |  | Source origin<br>Allow null: True <br> |
+| extend.loggingIndex | string |  | Log index<br>Allow null: True <br> |
 
 ## Additional Parameter Notes
 

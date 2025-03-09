@@ -1,7 +1,7 @@
 # Various Other Tool Usages
 ---
 
-DataKit comes with many different tools built-in for daily use. You can view the command-line help for DataKit using the following command:
+DataKit comes with many different tools for daily use. You can view the command-line help of DataKit via the following command:
 
 ```shell
 datakit help
@@ -15,40 +15,40 @@ If you want to check how a specific command is used (for example, `dql`), you ca
 $ datakit help dql
 usage: datakit dql [options]
 
-DQL is used to query data. If no option is specified, it queries interactively. Other available options:
+DQL used to query data. If no option specified, query interactively. Other available options:
 
       --auto-json      pretty output string if field/tag value is JSON
       --csv string     Specify the directory
-  -F, --force          overwrite CSV if file exists
-  -H, --host string    specify DataKit host to query
-  -J, --json           output in JSON format
+  -F, --force          overwrite csv if file exists
+  -H, --host string    specify datakit host to query
+  -J, --json           output in json format
       --log string     log path (default "/dev/null")
   -R, --run string     run single DQL
   -T, --token string   run query for specific token(workspace)
   -V, --verbose        verbosity mode
 ```
 
-## Data Recording and Replay {#record-and-replay}
+## Data Recording and Playback {#record-and-replay}
 
 [:octicons-tag-24: Version-1.19.0](changelog.md#cl-1.19.0)
 
-Data import is mainly used to input existing collected data. When demonstrating or testing, additional data collection is not required.
+Data import is mainly used to input existing collected data, which can be reused for demonstration or testing without additional collection.
 
 ### Enable Data Recording {#enable-recorder}
 
-In *datakit.conf*, you can enable the data recording feature. Once enabled, DataKit will record data to the specified directory for subsequent imports:
+In *datakit.conf*, you can enable the data recording feature. Once enabled, DataKit will record data to the specified directory for later import:
 
 ```toml
 [recorder]
   enabled  = true
   path     = "/path/to/recorder"     # Absolute path, default is <DataKit installation directory>/recorder
-  encoding = "v2"                    # Use protobuf-JSON format (xxx.pbjson), or choose v1 (xxx.lp) for line protocol (the former is more readable and supports more data types)
+  encoding = "v2"                    # Uses protobuf-JSON format (xxx.pbjson); can also choose v1 (xxx.lp) using line protocol (former is easier to read and supports more complete data types)
   duration = "10m"                   # Recording duration, starting from when DataKit starts
-  inputs   = ["cpu", "mem"]          # Record data from specified collectors (use the name shown in the monitor's Inputs Info panel); leave empty to record all collectors
-  categories = ["logging", "metric"] # Record types; leave empty to record all data types
+  inputs   = ["cpu", "mem"]          # Record data from specified collectors (names as per specific feed names in monitor); empty means all collectors
+  categories = ["logging", "metric"] # Record types; empty means all data types
 ```
 
-After recording starts, the directory structure looks like this (showing time series data in `pbjson` format):
+After recording starts, the directory structure looks roughly like this (showing `pbjson` format for time series data):
 
 ```shell
 [ 416] /usr/local/datakit/recorder/
@@ -75,13 +75,13 @@ After recording starts, the directory structure looks like this (showing time se
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    - After completing data recording, remember to disable this function (`enable = false`), otherwise each DataKit startup will start recording, which could consume a lot of disk space.
-    - Collector names do not fully match the names in the collector configuration (`[[inputs.some-name]]`), but rather the names displayed in the first column of the monitor's *Inputs Info* panel. Some collector names might look like this: `logging/some-pod-name`, and the corresponding data directory would be */usr/local/datakit/recorder/logging/logging-some-pod-name.1705636073033197000.pbjson*. Here, slashes `/` in the collector name are replaced with hyphens `-`.
+    - After completing data recording, remember to disable this function (`enable = false`) to avoid unnecessary disk consumption.
+    - Collector names do not exactly match the names in collector configurations (`[[inputs.some-name]]`), but rather the names shown in the first column of the monitor *Inputs Info* panel. Some collector names might appear as `logging/some-pod-name`, and their data directories would be `/usr/local/datakit/recorder/logging/logging-some-pod-name.1705636073033197000.pbjson`, where slashes are replaced with hyphens.
 <!-- markdownlint-enable -->
 
-### Data Replay {#do-replay}
+### Data Playback {#do-replay}
 
-After DataKit has recorded data, you can save the directory containing the data using Git or other methods (**ensure the existing directory structure remains intact**). Then, you can import these data into Guance Cloud using the following command:
+After DataKit records data, you can save the data in this directory using Git or other methods (**make sure to preserve the directory structure**). Then, you can import this data into Guance Cloud using the following command:
 
 ```shell
 $ datakit import -P /usr/local/datakit/recorder -D https://openway.guance.com?token=tkn_xxxxxxxxx
@@ -96,16 +96,16 @@ $ datakit import -P /usr/local/datakit/recorder -D https://openway.guance.com?to
 Total upload 75 kB bytes ok
 ```
 
-Although the recorded data contains absolute timestamps (in nanoseconds), when replaying, DataKit automatically shifts these data points to the current time (preserving the relative intervals between data points), making them appear as newly collected data.
+Although the recorded data includes absolute timestamps (nanoseconds), during playback, DataKit automatically shifts these data points to the current time (preserving relative intervals between data points) to make it look like newly collected data.
 
-You can get more help on data import using the following command:
+You can get more help on data import with the following command:
 
 ```shell
 $ datakit help import
 
 usage: datakit import [options]
 
-Import is used to play back recorded historical data to Guance Cloud. Available options:
+Import used to play recorded history data to Guance Cloud. Available options:
 
   -D, --dataway strings   dataway list
       --log string        log path (default "/dev/null")
@@ -115,16 +115,16 @@ Import is used to play back recorded historical data to Guance Cloud. Available 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    For RUM data, if the target workspace does not have a matching APP ID, the data cannot be written. In the target workspace, create a new application and set the APP ID to match the one in the recorded data, or replace the APP ID in the existing recorded data with the corresponding RUM application's APP ID in the target workspace.
+    For RUM data, if the target workspace does not have a matching APP ID, the data cannot be written. You can create a new application in the target workspace and change its APP ID to match the one in the recorded data, or replace the APP ID in the recorded data with the corresponding RUM application's APP ID in the target workspace.
 <!-- markdownlint-enable -->
 
-## Viewing DataKit Operation Status {#using-monitor}
+## Viewing DataKit Running Status {#using-monitor}
 
-Refer to [this link](datakit-monitor.md) for monitor usage.
+Refer to [here](datakit-monitor.md) for monitor usage.
 
 ## Checking Collector Configuration Correctness {#check-conf}
 
-After editing the collector configuration file, certain configurations may be incorrect (e.g., incorrect configuration file format). You can check for correctness using the following command:
+After editing the collector configuration file, some configurations may be incorrect (e.g., incorrect configuration file format). You can check correctness with the following command:
 
 ```shell
 datakit check --config
@@ -164,7 +164,7 @@ datakit tool --workspace-info
 
 ## Debugging KV Files {#debug-kv}
 
-When configuring collectors using KV templates, you can debug using the following command:
+When configuring collector configurations using KV templates, if debugging is required, you can debug with the following command.
 
 ```shell
 datakit tool --parse-kv-file conf.d/host/cpu.conf --kv-file data/.kv
@@ -189,9 +189,9 @@ datakit tool --parse-kv-file conf.d/host/cpu.conf --kv-file data/.kv
   kv = "cpu_kv_value3"
 ```
 
-## Viewing DataKit Events {#event}
+## Viewing DataKit Related Events {#event}
 
-During DataKit operation, some critical events are reported as logs, such as DataKit startup and collector runtime errors. These can be queried via dql in the command-line terminal.
+During DataKit operation, some critical events are reported in log form, such as DataKit startup, collector runtime errors, etc. These can be queried in the command-line terminal using dql.
 
 ```shell
 datakit dql
@@ -232,9 +232,9 @@ create_time 1639657028706
           ...       
 ```
 
-Field explanations:
+Field descriptions:
 
-- `category`: Category, default is `default`, can also be `input`, indicating it is related to a collector (`input`)
+- `category`: Category, default is `default`, can also be `input`, indicating it is related to the collector (`input`)
 - `status`: Event level, can be `info`, `warning`, `error`
 
 ## Updating DataKit IP Database File {#install-ipdb}
@@ -242,13 +242,13 @@ Field explanations:
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    - You can directly use the following command to install/update the IP geographic database (you can choose another IP address database `geolite2`; just replace `iploc` with `geolite2`):
+    - You can directly use the following command to install/update the IP geolocation database (you can choose another IP address database `geolite2`; just replace `iploc` with `geolite2`):
     
     ```shell
     datakit install --ipdb iploc
     ```
     
-    - After updating the IP geographic database, modify the *datakit.conf* configuration:
+    - After updating the IP geolocation database, modify the *datakit.conf* configuration:
     
     ``` toml
     [pipeline]
@@ -257,7 +257,7 @@ Field explanations:
     
     - Restart DataKit for changes to take effect
 
-    - Test if the IP database is working
+    - Test if the IP library works
 
     ```shell
     datakit tool --ipinfo 1.2.3.4
@@ -268,7 +268,7 @@ Field explanations:
            isp: unknown
     ```
 
-    If installation fails, the output will be:
+    If the installation fails, the output will be as follows:
     
     ```shell
     datakit tool --ipinfo 1.2.3.4
@@ -281,7 +281,7 @@ Field explanations:
 
 === "Kubernetes(yaml)"
 
-    - Modify *datakit.yaml*, uncomment the sections between `---iploc-start` and `---iploc-end`.
+    - Modify *datakit.yaml* and uncomment the sections between `---iploc-start` and `---iploc-end`.
     
     - Reinstall DataKit:
     
@@ -291,8 +291,8 @@ Field explanations:
     # Ensure the DataKit pod is running
     kubectl get pod -n datakit
     ```
-    
-    - Enter the container and test if the IP database is working
+
+    - Enter the container and test if the IP library works
 
     ```shell
     datakit tool --ipinfo 1.2.3.4
@@ -303,7 +303,7 @@ Field explanations:
            isp: unknown
     ```
 
-    If installation fails, the output will be:
+    If the installation fails, the output will be as follows:
     
     ```shell
     datakit tool --ipinfo 1.2.3.4
@@ -316,7 +316,7 @@ Field explanations:
 
 === "Kubernetes(Helm)"
 
-    - Add `--set iploc.enable` during Helm deployment
+    - Add `--set iploc.enable` when deploying with Helm
     
     ```shell
     helm install datakit datakit/datakit -n datakit \
@@ -327,7 +327,7 @@ Field explanations:
     
     Refer to [here](datakit-daemonset-deploy.md/#__tabbed_1_2) for Helm deployment details.
     
-    - Enter the container and test if the IP database is working
+    - Enter the container and test if the IP library works
 
     ```shell
     datakit tool --ipinfo 1.2.3.4
@@ -338,7 +338,7 @@ Field explanations:
            isp: unknown
     ```
 
-    If installation fails, the output will be:
+    If the installation fails, the output will be as follows:
     
     ```shell
     datakit tool --ipinfo 1.2.3.4
@@ -350,11 +350,11 @@ Field explanations:
     ```
 <!-- markdownlint-enable -->
 
-## Installing Third-party Software with DataKit {#extras}
+## Installing Third-Party Software with DataKit {#extras}
 
 ### Telegraf Integration {#telegraf}
 
-> Note: Before using Telegraf, ensure that DataKit cannot already meet your expected data collection needs. If DataKit already supports it, avoid using Telegraf to prevent data conflicts, which can cause operational issues.
+> Note: It is recommended to confirm whether DataKit can meet your expected data collection before using Telegraf. If DataKit already supports it, it is not advisable to use Telegraf for collection, as this could lead to data conflicts and cause operational issues.
 
 Install Telegraf integration
 
@@ -370,7 +370,7 @@ cp telegraf.conf.sample telegraf.conf
 telegraf --config telegraf.conf
 ```
 
-Refer to [here](../integrations/telegraf.md) for more details on Telegraf usage.
+For details on using Telegraf, refer to [here](../integrations/telegraf.md).
 
 ### Security Checker Integration {#scheck}
 
@@ -380,27 +380,27 @@ Install Security Checker
 datakit install --scheck
 ```
 
-It will automatically run after successful installation. Refer to [here](../scheck/scheck-install.md) for detailed usage of Security Checker.
+After successful installation, Security Checker will run automatically. For detailed usage, refer to [here](../scheck/scheck-install.md).
 
 ### DataKit eBPF Integration {#ebpf}
 
-Install the DataKit eBPF collector, currently only supported on `linux/amd64 | linux/arm64` platforms. Refer to [DataKit eBPF Collector](../integrations/ebpf.md) for usage instructions.
+Install the DataKit eBPF collector, currently supported only on `linux/amd64 | linux/arm64` platforms. Refer to [DataKit eBPF Collector](../integrations/ebpf.md) for usage instructions.
 
 ```shell
 datakit install --ebpf
 ```
 
-If you encounter an error like `open /usr/local/datakit/externals/datakit-ebpf: text file busy`, stop the DataKit service before executing the command.
+If you encounter an error like `open /usr/local/datakit/externals/datakit-ebpf: text file busy`, stop the DataKit service and then execute the command again.
 
 <!-- markdownlint-disable MD046 -->
 ???+ warning
 
-    This command was removed in [:octicons-tag-24: Version-1.5.6](changelog.md#cl-1.5.6-brk). The new version includes eBPF integration by default.
+    This command has been removed since [:octicons-tag-24: Version-1.5.6](changelog.md#cl-1.5.6-brk). New versions come with eBPF integration by default.
 <!-- markdownlint-enable -->
 
-## Viewing Cloud Attributes Data {#cloudinfo}
+## Viewing Cloud Attribute Data {#cloudinfo}
 
-If the machine where DataKit is installed is a cloud server (currently supporting `aliyun/tencent/aws/hwcloud/azure`), you can view some cloud attributes data as follows (marked with `-` indicates invalid fields):
+If the machine where DataKit is installed is a cloud server (currently supports `aliyun/tencent/aws/hwcloud/azure`), you can view some cloud attribute data as follows (fields marked `-` indicate invalid fields):
 
 ```shell
 datakit tool --show-cloud-info aws
@@ -423,19 +423,19 @@ datakit tool --show-cloud-info aws
 
 [:octicons-tag-24: Version-1.5.6](changelog.md#cl-1.5.6)
 
-You can parse line protocol data using the following command:
+You can parse line protocol data with the following command:
 
 ```shell
 datakit tool --parse-lp /path/to/file
 Parse 201 points OK, with 2 measurements and 201 time series
 ```
 
-You can output in JSON format:
+It can also output in JSON format:
 
 ```shell
 datakit tool --parse-lp /path/to/file --json
 {
-  "measurements": {  # Metrics list
+  "measurements": {  # Mearsurement list
     "testing": {
       "points": 7,
       "time_series": 6
@@ -450,18 +450,18 @@ datakit tool --parse-lp /path/to/file --json
 }
 ```
 
-## DataKit Command Auto-completion {#completion}
+## DataKit Automatic Command Completion {#completion}
 
-> Auto-completion is supported from DataKit 1.2.12, tested on Ubuntu and CentOS Linux distributions. It is not supported on Windows or Mac.
+> Command completion is supported from DataKit 1.2.12 onwards and has been tested on Ubuntu and CentOS Linux distributions. Windows and Mac are not supported.
 
-When using DataKit commands, due to the numerous command-line parameters, we have added command prompt and completion functionality.
+While using DataKit commands, due to the numerous command-line parameters, we have added command prompt and completion features.
 
 Most mainstream Linux distributions support command completion. For Ubuntu and CentOS, if you want to use command completion, you can install the following packages:
 
 - Ubuntu: `apt install bash-completion`
 - CentOS: `yum install bash-completion bash-completion-extras`
 
-If these packages were already installed before installing DataKit, the command completion feature will be automatically included. If these packages were installed after DataKit, you can execute the following command to install DataKit command completion:
+If these packages were already installed before installing DataKit, command completion will be automatically included during DataKit installation. If these packages are installed after DataKit, you can execute the following command to add DataKit command completion:
 
 ```shell
 datakit tool --setup-completer-script
@@ -470,21 +470,21 @@ datakit tool --setup-completer-script
 Completion usage example:
 
 ```shell
-$ datakit <tab> # Press \tab to display the following commands
+$ datakit <tab> # Press \tab to prompt the following commands
 dql       help      install   monitor   pipeline  run       service   tool
 
-$ datakit dql <tab> # Press \tab to display the following options
+$ datakit dql <tab> # Press \tab to prompt the following options
 --auto-json   --csv         -F,--force    --host        -J,--json     --log         -R,--run      -T,--token    -V,--verbose
 ```
 
-All mentioned commands can be operated using this method.
+All mentioned commands can be operated in this manner.
 
-### Getting the Auto-completion Script {#get-completion}
+### Obtaining the Auto-Completion Script {#get-completion}
 
-If your Linux system is not Ubuntu or CentOS, you can obtain the completion script using the following command and then add it according to your platform's shell completion method.
+If your Linux system is not Ubuntu or CentOS, you can obtain the completion script with the following command and then add it according to your platform's shell completion method.
 
 ```shell
-# Export the completion script to the local datakit-completer.sh file
+# Export the completion script to a local datakit-completer.sh file
 datakit tool --completer-script > datakit-completer.sh
 ```
 
@@ -526,16 +526,16 @@ To debug whether a piece of data will be filtered by the centrally configured bl
     ```
 <!-- markdownlint-enable -->
 
-This output indicates that the data in the *lineproto.data* file was matched by the 7th rule (counting from 1) in the `tracing` category in the *.pull* file. Once matched, the data will be dropped.
+This output indicates that the data in the *lineproto.data* file was matched by the 7th rule (counting from 1) under the `tracing` category in the *.pull* file. Once matched, the data will be dropped.
 
 ### Using Glob Rules to Obtain File Paths {#glob-conf}
 [:octicons-tag-24: Version-1.8.0](changelog.md#cl-1.8.0)
 
-In log collection, glob rules can be used to configure log paths ([refer here](../integrations/logging.md#glob-rules)).
+In log collection, glob rules can be used to configure log paths [refer here](../integrations/logging.md#glob-rules).
 
-You can debug glob rules using DataKit. Provide a configuration file where each line is a glob statement.
+You can use DataKit to debug glob rules. Provide a configuration file where each line is a glob statement.
 
-Example configuration file:
+Configuration file example:
 
 ```shell
 $ cat glob-config
@@ -561,11 +561,11 @@ $ datakit debug --glob-conf glob-config
 ### Matching Text with Regular Expressions {#regex-conf}
 [:octicons-tag-24: Version-1.8.0](changelog.md#cl-1.8.0)
 
-In log collection, you can configure [regular expressions for multiline log collection](../integrations/logging.md#multiline).
+In log collection, regular expressions can be used to [collect multi-line logs](../integrations/logging.md#multiline).
 
-You can debug regular expression rules using DataKit. Provide a configuration file where the **first line is the regular expression**, and the remaining lines are the text to be matched (can be multiple lines).
+You can use DataKit to debug regular expression rules. Provide a configuration file where **the first line is the regular expression**, and the remaining lines are the text to be matched (which can be multiple lines).
 
-Example configuration file:
+Configuration file example:
 
 ```shell
 $ cat regex-config

@@ -9,14 +9,16 @@ Retrieve the blacklist.
 
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| type | string | Y | Blacklist type. For querying log blacklists, set `type` to `logging`. To query all blacklists under management submenus, set `type` to `all`.<br>Can be empty: False <br>Example: logging/all <br> |
-| search | string | N | Search term<br>Can be empty: False <br> |
-| pageIndex | integer | N | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | N | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
+| Parameter Name | Type   | Required | Description                                                                                             |
+|:--------------|:-------|:--------|:-------------------------------------------------------------------------------------------------------|
+| type          | string | Y       | Blacklist type. For querying log blacklists, set `type` to `logging`. To query all blacklists under management submenu, set `type` to `all`. <br> Can be null: False <br> Example: logging/all <br> |
+| search        | string |         | Search term <br> Can be null: False <br>                                                               |
+| pageIndex     | integer|         | Page number <br> Can be null: False <br> Example: 1 <br> $minValue: 1 <br>                            |
+| pageSize      | integer|         | Number of items per page <br> Can be null: False <br> Example: 10 <br> $minValue: 1 <br>               |
 
 ## Additional Parameter Notes
+
+None
 
 ## Request Example
 ```shell

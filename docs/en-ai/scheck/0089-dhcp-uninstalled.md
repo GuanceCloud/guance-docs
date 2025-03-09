@@ -1,5 +1,4 @@
 # 0089-dhcp-uninstalled-DHCP Uninstalled
-
 ---
 
 ## Rule ID
@@ -9,12 +8,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -28,7 +27,7 @@
 ## Description
 
 
-- The Dynamic Host Configuration Protocol (DHCP) is a service that allows dynamic allocation of IP addresses to computers.
+- The Dynamic Host Configuration Protocol (DHCP) is a service that allows dynamic assignment of IP addresses to computers.
 
 
 
@@ -39,6 +38,9 @@
 
 
 - Unless the system is specifically configured to act as a DHCP server, it is recommended to remove the dhcp package to reduce potential attack surfaces
+
+
+
 
 
 
@@ -69,7 +71,7 @@ package dhcp is not installed
 ## Impact
 
 
-- Servers within the cluster may have some risk of not automatically obtaining IP addresses and subnet masks assigned by the server.
+- Servers within the cluster may have a certain risk of not being able to automatically obtain IP addresses and subnet masks assigned by the server.
 
 
 
@@ -89,7 +91,7 @@ package dhcp is not installed
 
 
 
-## CIS Controls
+## CIS Control
 
 
 - Version 7

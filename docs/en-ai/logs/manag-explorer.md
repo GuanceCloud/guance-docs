@@ -2,100 +2,100 @@
 
 ---
 
-The Log Explorer is one of the core tools for log analysis and troubleshooting. Facing the massive amount of log data collected and reported by Guance, you can efficiently manage log information through various operations such as searching, filtering, and exporting.
+The log viewer is one of the core tools for you to perform log analysis and troubleshoot issues. Facing the massive amount of log data collected and reported by <<< custom_key.brand_name >>>, you can achieve efficient log management through various operations such as searching, filtering, and exporting.
 
 ## View Mode {#mode}
 
-- **Standard Mode**: Fields are displayed in columns;
+- Standard Mode: Fields are displayed in columns;
 
-![Log View Model](../img/log_view_model.png)
+<img src="../img/log_view_model.png" width="70%" >
 
-- **Stacked Mode**: Except for the time field (`time`), all other fields will be merged into a single column and displayed in multiple lines within cells.
+- Stacked Mode: Except for the time field (`time`), all other fields will be merged into a single column and displayed in multiple lines within the cell.
 
-![Log View Model 1](../img/log_view_model_1.png)
+<img src="../img/log_view_model_1.png" width="70%" >
 
-In Stacked Mode, you can perform graphical operations on specific fields:
+In stacked mode, you can perform graphical operations on specific fields:
 
-![Log View Model 2](../img/log_view_model_2.png)
+<img src="../img/log_view_model_2.png" width="70%" >
 
 ## Status Distribution Chart
 
-Guance automatically divides several time points based on the selected time range and displays the number of different log statuses using stacked bar charts to assist with statistical analysis. If logs have been filtered, the bar chart will also display the filtered results.
+<<< custom_key.brand_name >>> automatically divides several time points based on the selected time range, displaying the number of different log statuses via a stacked bar chart to assist with statistical analysis. If logs have been filtered, the bar chart will display the results after filtering.
 
-- You can export the chart after hovering over it, ultimately exporting it to dashboards, notes, or the clipboard.
-- You can customize the time interval.
+- You can export the chart by hovering over it, ultimately exporting it to dashboards, notes, or clipboard;
+- You can customize the time interval selection.
 
 ![](../img/10.export_pic.png)
 
-## Time Controls
+## Time Widget
 
-The Guance Log Explorer defaults to displaying logs from the last 15 minutes. You can customize the [time range](../getting-started/function-details/explorer-search.md#time).
+The <<< custom_key.brand_name >>> viewer defaults to displaying log data from the past 15 minutes. You can customize the [time range](../getting-started/function-details/explorer-search.md#time) for data display.
 
-## Log Indexing
+## Log Index
 
-You can set up [multi-log indexes](./multi-index/index.md) to filter and save logs that meet certain criteria in different log indexes. By selecting different data storage policies for log indexes, you can reduce log data storage costs.
+You can set up [multi-log indices](./multi-index/index.md) to filter and save logs that meet certain criteria in different log indices. By selecting different data storage policies for log indices, you can save on log data storage costs.
 
-After setting up indexes, you can switch between different indexes in the Explorer to view corresponding log content.
+After setting up indices, you can switch between different indices in the viewer to view corresponding log content.
 
-![Log 3.1](../img/5.log_3.1.png)
+<img src="../img/5.log_3.1.png" width="70%" >
 
 ## Search and Filtering
 
-In the Log Explorer search bar, [multiple search and filtering methods](../getting-started/function-details/explorer-search.md) are supported.
+In the search bar of the log viewer, you can use [various search and filtering methods](../getting-started/function-details/explorer-search.md).
 
-After entering search or filter conditions, you can preview the query results. You can copy these conditions for use in charts or query tools.
+After entering search or filter conditions, you can preview the query results. You can copy these conditions for direct use in charts or query tools.
 
-![Bar Preview](../img/bar-preview.png)
+<img src="../img/bar-preview.png" width="70%" >
 
 ## DQL Search {#dql}
 
-**Prerequisite**: The DQL search feature is currently only supported in the Log Explorer.
+**Prerequisite**: The DQL search function is currently only supported in the log viewer.
 
-In the Log Explorer, you can switch to DQL manual input mode by clicking the toggle button :fontawesome-solid-code: in the search box, allowing you to customize your search and filter conditions.
+In the log viewer, you can switch to DQL manual input query mode by clicking the toggle button :fontawesome-solid-code: inside the search box, allowing you to customize and input filtering and search conditions.
 
-- **Filter Conditions**: Supports `and / or` combinations, supports using `()` parentheses to indicate priority, and supports operators like `=` and `!=`.
-- **Search Conditions**: Supports using the DQL function `query_string()` for string queries, e.g., `message = query_string()` to search log content.
+- Filter Conditions: Supports `and / or` combinations, supports using `()` parentheses to indicate search priority, supports `=` and `!=` operators;
+- Search Conditions: Supports using the DQL function `query_string()` for string queries, such as entering `message = query_string()` to search log content.
 
 > For more DQL syntax, refer to [DQL Definition](../dql/define.md).
 
 ## Quick Filters {#filter}
 
-On the left side of the Log Explorer, you can edit [quick filters](../getting-started/function-details/explorer-search.md#quick-filter).
+On the left side of the log viewer, you can edit [quick filters](../getting-started/function-details/explorer-search.md#quick-filter).
 
-**Note**: If quick filter values are affected by sampling, the sample rate is displayed, and users can temporarily disable sampling.
+**Note**: If the values listed in quick filters are affected by sampling, the sampling rate will be displayed, and users can temporarily disable sampling.
 
 ## Custom Display Columns
 
-The Log Explorer defaults to displaying the `time` and `message` fields, where the `time` field is fixed and cannot be deleted. When hovering over the displayed columns in the Explorer, click the **Settings** button to perform operations such as sorting columns, moving columns, adding columns, adding to quick filters, adding to groups, and removing columns.
+The log viewer defaults to displaying the `time` and `message` fields. You can perform operations like sorting ascending/descending, moving columns left/right, adding/removing columns, adding to quick filters, grouping, etc.
 
 > For more details, refer to [Display Column Explanation](../getting-started/function-details/explorer-search.md#columns).
 
-### JSON Field Extraction {#json-content}
+### JSON Field Return {#json-content}
 
 **Note**: This feature is only available to user roles with DQL query permissions.
 
-Guance DQL queries support extracting nested values from JSON fields in log data. By adding fields with the `@` symbol in the DQL query statement, the system will recognize this configuration and display it as an independent field in the query results. For example:
+<<< custom_key.brand_name >>> DQL queries support extracting embedded values from JSON fields in log data by adding fields with the `@` symbol in the DQL query statement. The system will recognize this configuration and display it as an independent field in the query results. For example:
 
 - Normal Query:
 
-![JSON](../img/json.png)
+<img src="../img/json.png" width="70%" >
 
-- Expected query result after extracting nested fields:
+- Expected Query After Extracting Embedded Fields:
 
-![JSON-1](../img/json-1.png)
+<img src="../img/json-1.png" width="70%" >
 
-In the Log Explorer, if you want to specify viewing extracted values from each log's `message` JSON text directly in the data list, add fields in the format `@target_fieldname` to the display columns. For instance, we add `@fail_reason` configured in the DQL query statement to the display columns:
+In the log viewer, if you want to specify viewing extracted values from each log's `message` JSON text directly in the data list, add a field in the display columns with the format `@target_fieldname`. As shown below, we added `@fail_reason` configured in the DQL query statement to the display columns:
 
 ![](../img/json-3.gif)
 
-## Create a Monitor {#new}
+## Create Monitor {#new}
 
-While filtering log data, if you wish to implement further alert monitoring on the filtered data, you can achieve this by setting up a monitor with one click. Guance will automatically apply the selected index, data source, and search conditions, simplifying the configuration process.
+While filtering log data, if you wish to implement further alert monitoring on the filtered data, you can set up monitors with one click. <<< custom_key.brand_name >>> will automatically apply your selected index, data source, and search conditions, simplifying the configuration process.
 
 **Note**:
 
-1. If another workspace is selected in the top-left corner of the Explorer, the search conditions will not be synchronized, and the monitor configuration page will be empty by default.
-2. The default Commercial Plan enables site-level `left*` queries. You only need to enable workspace-level `left*` queries to support monitor `left*` queries. For Deployment Plans, you can independently enable or disable site-level `left*` queries. Only when both site and workspace-level `left*` queries are enabled can monitors perform `left*` queries. Otherwise, if the Log Explorer configures `left*` queries, switching to the monitor will result in query errors.
+1. If another workspace is selected in the top-left corner of the viewer, the search conditions will not be synchronized, and the monitor configuration page will be empty by default.
+2. In the standard Commercial Plan, site-level `left*` queries are enabled by default. You only need to enable workspace-level `left*` queries to support monitor `left*` queries. For the Deployment Plan, you can independently enable or disable site-level `left*` queries. Only when both site and workspace-level `left*` queries are enabled can the monitor perform `left*` queries. Otherwise, if the log viewer configures a `left*` query, switching to the monitor will result in an error.
 
 ![](../img/explorer-monitor.png)
 
@@ -103,16 +103,16 @@ While filtering log data, if you wish to implement further alert monitoring on t
 
 ## Copy as cURL
 
-The Log Explorer supports retrieving log data via command line. In the settings on the right side of the log data list, click **Copy as cURL** to copy the cURL command line. Execute this command on your host terminal to retrieve log data for the current time period under the relevant filter and search conditions.
+The log viewer supports obtaining log data via command line. On the right side of the log data list under **Settings**, click **Copy as cURL** to copy the cURL command line. Execute this command on your host terminal to retrieve log data for the current time period based on the selected filters and search conditions.
 
 ![](../img/logexport-1.png)
 
 <u>**Example**</u>
 
-After copying the cURL command line, replace `<Endpoint>` with the domain name and `<DF-API-KEY>` with the **Key ID** from [API Management](../management/api-key/index.md).
+After copying the cURL command line, it looks like the following: Replace `<Endpoint>` with the domain name, and `<DF-API-KEY>` should be replaced with the **Key ID** from [API Management](../management/api-key/index.md).
 
 > For more parameter explanations, refer to [DQL Data Query](../open-api/query-data/query-data.md).
->
+> 
 > For more API information, refer to [Open API](../management/api-key/open-api.md).
 
 ```shell
@@ -122,34 +122,34 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 - -insecure
 ```
 
-**Note**: Only **Standard Members and above** can perform the copy command line operation.
+**Note**: Only **Standard Member and above** can perform the copy command line operation.
 
-Besides this export path, you can also use [other log data export methods](#logexport).
+Apart from this export path, you can also use [other log data export](#logexport) methods.
 
 ## Set Status Colors {#status-color}
 
-Guance has predefined system colors for status values. If you need to modify the colors displayed for different statuses in the Explorer, you can do so by clicking **Set Status Colors**.
+<<< custom_key.brand_name >>> has predefined system default colors for status values. If you need to modify the color displayed for data in different states in the viewer, you can do so by clicking **Set Status Colors**.
 
-![Status Color](../img/status-color.png)
+<img src="../img/status-color.png" width="70%" >
 
 ## Formatting Configuration
 
-<font size=2>**Note**: Only administrators and above can configure formatting settings for the Explorer.</font>
+<font size=2>**Note**: Only administrators and above can configure formatting settings for the viewer.</font>
 
-Formatting configurations allow you to hide sensitive log data or highlight important log data. You can also quickly filter by replacing original log content.
+Formatting configuration allows you to hide sensitive log data or highlight important log data, and you can quickly filter by replacing original log content.
 
-Click the **Settings** icon in the top-right corner of the Explorer list, then click **Formatting Configuration** to add mappings. Enter the following content and click Save to replace original log content containing "DEBUG" with your desired format.
+Click the **Settings** in the top-right corner of the viewer list, then click **Formatting Configuration** to add mappings, enter the following content, and click Save to replace the original log content containing "DEBUG" with the format you want to display.
 
 - Field: e.g., Content
 - Matching Method: e.g., match (currently supports `=`, `!=`, `match`, `not match`)
 - Matching Content: e.g., DEBUG
-- Display As: e.g., `******`
+- Display as Content: e.g., `******`
 
 ![](../img/11.log_format_2.gif)
 
-## Export Log Data {#logexport}
+## Log Data Export {#logexport}
 
-In **Logs**, you can first filter out the desired log data and then export it for viewing and analysis, supporting exports to CSV files or dashboards and notes.
+In **Logs**, you can first filter out the desired log data and then export it for viewing and analysis via :octicons-gear-24:, supporting export to CSV files or dashboards and notes.
 
 ![](../img/5.log_explorer_3.png)
 
@@ -157,32 +157,32 @@ If you need to export a specific log entry, open the log detail page and click t
 
 ![](../img/export-log-0808.png)
 
-## Log Highlighting
+## Log Color Highlighting
 
-To help you quickly identify key information in logs, Guance uses different colors to highlight different parts of the logs, divided into light and dark themes.
+To help you quickly obtain key log information, <<< custom_key.brand_name >>> uses different colors to highlight different parts of the log content, divided into light and dark themes.
 
-**Note**: If you search for logs in the search bar, only the matching keywords will be highlighted in the returned list.
+**Note**: When searching logs in the search bar, only the matched keywords remain highlighted in the returned list.
 
 | Log Content | Light Theme | Dark Theme |
 | --- | --- | --- |
-| Date (log timestamp) | Yellow | Pale Yellow |
-| Keywords (HTTP protocol related, e.g., GET) | Green | Pale Green |
-| Text (quoted strings) | Blue | Pale Blue |
-| Default (plain text) | Black | Gray |
-| Numbers (log status codes, e.g., 404) | Purple | Pale Purple |
+| Date (log occurrence time) | Yellow | Light Yellow |
+| Keywords (HTTP protocol related, such as GET) | Green | Light Green |
+| Text (quoted strings) | Blue | Light Blue |
+| Default (unmarked text) | Black | Gray |
+| Numbers (log status codes, such as 404) | Purple | Light Purple |
 
 ![](../img/2.log_1.png)
 
-## Single-Line Log Expansion and Copy
+## Single-line Log Expansion and Copy
 
-Click :material-chevron-down: to expand a log entry and view its full content;
+Click :material-chevron-down: on a log entry to expand and view its full content;
 
-Click the :octicons-copy-16: button to copy the entire log entry. When expanded, if JSON display is supported, the log will be shown in JSON format; otherwise, it will be displayed normally.
+Click the :octicons-copy-16: button to copy the entire log entry. When expanded, if JSON display is supported, the log will be shown in JSON format; otherwise, it will display normally.
 
 ![](../img/5.log_explorer_1.png)
 
 ## Multi-line Log Browsing
 
-The log data list in Guance defaults to displaying the trigger time and content of logs. You can choose to display logs in "1 Line", "3 Lines", "10 Lines", or "All" in the **Display Columns** section to view complete log content.
+<<< custom_key.brand_name >>>'s log data list defaults to showing the trigger time and content of logs. You can choose to display logs in "1 Line", "3 Lines", "10 Lines", or "All" in the **Display Columns** to view complete log content.
 
 ![](../img/5.log_explorer_2.gif)

@@ -3,12 +3,12 @@ skip: 'not-searchable-on-index-page'
 title: 'Datakit Profiling Related Data Structures'
 ---
 
-This document introduces the definitions of profiling-related data structures in Datakit.
+This document describes the definitions of profiling-related data structures in Datakit.
 
 ## Introduction to Datakit Line Protocol {#line-protocol}
 
-- Line Protocol is the final data format that gets written to disk.
-- The Line Protocol data structure is a string composed of four parts: Name, Tags, Fields, and Timestamp, along with delimiters (English comma, space), formatted as:
+- Line Protocol is the final data that is written to disk.
+- The structure of Line Protocol data is a string composed of four parts: Name, Tags, Fields, and Timestamp, separated by commas and spaces, for example:
 
 ```line protocol
 source_name,key1=value1,key2=value2 field1=value1,field2=value2 ts
@@ -18,27 +18,27 @@ source_name,key1=value1,key2=value2 field1=value1,field2=value2 ts
 
 | Section | Name               | Unit       | Description                                                   |
 |---------|--------------------|------------|---------------------------------------------------------------|
-| Tag     | `host`             |            | Host name                                                     |
-| Tag     | `endpoint`         |            | Endpoint of resource                                          |
-| Tag     | `service`          |            | Service name                                                  |
-| Tag     | `env`              |            | Environment arguments                                         |
-| Tag     | `version`          |            | Service version                                               |
-| Tag     | `language`         |            | Language [`Java`, `Python`, `Golang`, ...]                    |
-| Field   | `runtime`          |            | Runtime [`jvm`, `CPython`, `go`, ....]                        |
-| Field   | `runtime_os`       |            | Operating system                                              |
+| Tag     | `host`             |            | host name                                                     |
+| Tag     | `endpoint`         |            | endpoint of resource                                          |
+| Tag     | `service`          |            | service name                                                  |
+| Tag     | `env`              |            | environment arguments                                         |
+| Tag     | `version`          |            | service version                                               |
+| Tag     | `language`         |            | language [`Java`, `Python`, `Golang`, ...]                    |
+| Field   | `runtime`          |            | runtime [`jvm`, `CPython`, `go`, ....]                        |
+| Field   | `runtime_os`       |            | operating system                                              |
 | Field   | `runtime_arch`     |            | CPU architecture                                              |
-| Field   | `runtime_version`  |            | Programming language version                                  |
-| Field   | `runtime_compiler` |            | Compiler                                                      |
-| Field   | `runtime_id`       |            | Unique ID allocated once process bootstrap                    |
-| Field   | `profiler`         |            | Profiler library name [`DDTrace`, `py-spy`, `Pyroscope`, ...] |
-| Field   | `library_ver`      |            | Profiler library version                                      |
-| Field   | `profiler_version` |            | Profiler library version                                      |
-| Field   | `profile_id`       |            | Unique ID for profiling                                       |
+| Field   | `runtime_version`  |            | programming language version                                  |
+| Field   | `runtime_compiler` |            | compiler                                                      |
+| Field   | `runtime_id`       |            | unique ID allocated once process bootstrap                    |
+| Field   | `profiler`         |            | profiler library name [`DDTrace`, `py-spy`, `Pyroscope`, ...]  |
+| Field   | `library_ver`      |            | profiler library version                                      |
+| Field   | `profiler_version` |            | profiler library version                                      |
+| Field   | `profile_id`       |            | profiling unique ID                                           |
 | Field   | `datakit_ver`      |            | Datakit version                                               |
-| Field   | `start`            | Nanosecond | Profiling start timestamp                                     |
-| Field   | `end`              | Nanosecond | Profiling end timestamp                                       |
-| Field   | `duration`         | Nanosecond | Profiling duration                                            |
-| Field   | `pid`              |            | Process ID                                                    |
-| Field   | `process_id`       |            | Process ID                                                    |
-| Field   | `format`           |            | Profiling file format                                         |
-| Field   | `__file_size`      | Byte       | Total size of profiling file                                  |
+| Field   | `start`            | nanosecond | profiling start timestamp                                     |
+| Field   | `end`              | nanosecond | profiling end timestamp                                       |
+| Field   | `duration`         | nanosecond | profiling duration                                            |
+| Field   | `pid`              |            | process ID                                                    |
+| Field   | `process_id`       |            | process ID                                                    |
+| Field   | `format`           |            | profiling file format                                         |
+| Field   | `__file_size`      | Byte       | total size of profiling file                                  |

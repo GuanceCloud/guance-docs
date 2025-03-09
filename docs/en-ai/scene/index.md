@@ -4,9 +4,9 @@ icon: zy/scene
 # Scene
 ---
 
-In the Scene feature, Guance primarily uses charts to allow you to intuitively reproduce data insights through a series of custom editing and filtering functions.
+<<< custom_key.brand_name >>> provides a scene feature that primarily uses charts, allowing you to intuitively reproduce data insights through a series of customizable editing and filtering functions.
 
-At the same time, Guance [provides multiple built-in data monitoring view templates](./built-in-view/index.md) that you can import to create dashboards and Explorers, and perform custom editing configurations; or choose a custom creation method to build data insight scenes with relevant settings.
+At the same time, <<< custom_key.brand_name >>> [includes multiple built-in data monitoring view templates](./built-in-view/index.md), which you can import to create dashboards and explorers, and customize configurations; or choose a custom creation method to build data insight scenes with relevant settings.
 
 ---
 
@@ -16,29 +16,28 @@ At the same time, Guance [provides multiple built-in data monitoring view templa
 
     ---
 
-    Use the dashboard to build data insight scenes and display data intuitively through various charts to track, analyze key performance Metrics, and monitor system status
-
+    Use dashboards to construct data insight scenes, displaying data through various charts for tracking, analyzing key performance metrics, and monitoring system status.
 
 
 -   [:material-database-export:{ .lg .middle } __Scheduled Reports__](report.md)
 
     ---
 
-    Export dashboard data and generate scheduled reports, supporting different time periods such as daily, weekly, monthly, etc., which can be sent via email to relevant personnel
+    Export dashboard data and generate scheduled reports, supporting different time periods such as daily, weekly, and monthly, sent via email to relevant personnel.
 
 
 -   [:material-note-edit-outline:{ .lg .middle } __Notes__](note.md)
 
     ---
 
-    Create notes to write reports, integrating charts and documents for analysis, and share with team members to save records of anomalies for easier problem tracking and resolution
+    Create notes to write reports, integrating charts and documents for analysis, and share with team members to save anomaly data records for easier issue tracking and resolution.
 
 
 -   [:material-clipboard-text-search:{ .lg .middle } __Explorer__](explorer/index.md)
 
     ---
 
-    Quickly create multiple custom Explorers to tailor data viewing needs with team members, achieving one-stop log management services
+    Quickly create multiple custom explorers to tailor data viewing needs with your team members, achieving one-stop log management services.
 
 
 </div>

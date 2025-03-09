@@ -1,9 +1,9 @@
-Phenomenon is shown in the following figure:
+The phenomenon is shown in the following figure:
 ![](img/not_see_dataway_1.jpg)
 
 ### Troubleshooting Ideas
 
-**Assumption 1: The backend management interface does not display the version number. After installing DataWay, the version number should be displayed to indicate a successful connection.**
+**Assumption 1: The backend management interface does not display the version number. After installing DataWay, the version number must be displayed to indicate a successful connection.**
 
 As shown in the figure:
 
@@ -38,18 +38,18 @@ cd /logdata
 tail -f logs
 ```
 
-5. Check if the DataWay service can communicate normally with the kodo service (including that the `dataway` server has not added the correct resolution of the `df-kodo` service in the `hosts`).
+5. Check if the DataWay service can communicate normally with the kodo service (including whether the `dataway` server has not added the correct resolution of the `df-kodo` service in the `hosts`).
 
-6. Check if the DataWay list in Studio integration is normal.
+6. Check in Studio integration whether the DataWay list is normal.
 
 **Assumption 2: The backend management interface displays the version number, but in the Studio integration, the DataWay list under the DataKit module is empty**
 
-1. If all the above situations have been resolved, the list being empty may occur.
+1. If all the above situations have been resolved, an empty list problem appears.
 
-2. If it was deployed once before, it might be due to Redis cache not being cleared. If there is no persistent storage, restarting the container will work.
+2. If it was deployed once before, it may be due to Redis cache not being cleared. If there is no persistent storage, restarting the container will do.
 
 ```shell
 kubectl delete pods -n middleware <redis_pod_name>
 ```
 
-3. Another possibility is that the format error caused by copying and pasting leads to the system workspace's token not being found. You can copy the token again, enter the vim command line and use "/" to check the format issue.
+3. Another possibility is that formatting errors occurred during copy-paste, causing the system workspace token to not be found. You can copy the token again and use the vim command line with "/" to check for formatting issues.

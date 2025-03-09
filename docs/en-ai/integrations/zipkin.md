@@ -6,10 +6,10 @@ tags      :
   - 'ZIPKIN'
   - 'Tracing'
 dashboard :
-  - desc  : 'None'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'None'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -25,7 +25,7 @@ The Zipkin Agent embedded in DataKit is used to receive, process, and analyze da
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/zipkin` directory under the DataKit installation directory, copy `zipkin.conf.sample`, and rename it to `zipkin.conf`. Example configuration is as follows:
+    Navigate to the `conf.d/zipkin` directory under the DataKit installation directory, copy `zipkin.conf.sample` and rename it to `zipkin.conf`. An example configuration is as follows:
 
     ```toml
         
@@ -33,12 +33,12 @@ The Zipkin Agent embedded in DataKit is used to receive, process, and analyze da
       pathV1 = "/api/v1/spans"
       pathV2 = "/api/v2/spans"
     
-      ## ignore_tags acts as a blacklist to prevent certain tags from being sent to the data center.
+      ## ignore_tags will work as a blacklist to prevent tags from being sent to the data center.
       ## Each value in this list is a valid regular expression string.
       # ignore_tags = ["block1", "block2"]
     
       ## Keep rare tracing resources list switch.
-      ## If some resources are rare enough (not present in 1 hour), these resources will always be sent
+      ## If some resources are rare enough (not present in 1 hour), those resources will always be sent
       ## to the data center without considering samplers and filters.
       # keep_rare_resource = false
     
@@ -56,7 +56,7 @@ The Zipkin Agent embedded in DataKit is used to receive, process, and analyze da
         # "*" = ["close_resource_under_all_services"]
         # ...
     
-      ## Sampler configuration for setting global sampling strategy.
+      ## Sampler configuration to set global sampling strategy.
       ## sampling_rate sets the global sampling rate.
       # [inputs.zipkin.sampler]
         # sampling_rate = 1.0
@@ -67,13 +67,13 @@ The Zipkin Agent embedded in DataKit is used to receive, process, and analyze da
         # ...
     
       ## Threads configuration controls how many goroutines an agent can start to handle HTTP requests.
-      ## buffer is the size of the job buffer in the worker channel.
+      ## buffer is the size of jobs' buffering of worker channel.
       ## threads is the total number of goroutines at runtime.
       # [inputs.zipkin.threads]
         # buffer = 100
         # threads = 8
     
-      ## Storage configuration sets up local storage space on the hard drive to cache trace data.
+      ## Storage configuration for a local storage space on the hard drive to cache trace data.
       ## path is the local file path used to cache data.
       ## capacity is the total space size (MB) used to store data.
       # [inputs.zipkin.storage]
@@ -86,22 +86,22 @@ The Zipkin Agent embedded in DataKit is used to receive, process, and analyze da
 
 === "Kubernetes"
 
-    Currently, the collector can be enabled by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
     Supported environment variables in Kubernetes are listed in the table below:
 
-    | Environment Variable Name              | Type        | Example                                                                                   |
-    | ------------------------------------- | ----------- | ----------------------------------------------------------------------------------------- |
-    | `ENV_INPUT_ZIPKIN_PATH_V1`            | string      | "/api/v1/spans"                                                                           |
-    | `ENV_INPUT_ZIPKIN_PATH_V2`            | string      | "/api/v2/spans"                                                                           |
-    | `ENV_INPUT_ZIPKIN_IGNORE_TAGS`        | JSON string | `["block1", "block2"]`                                                                    |
-    | `ENV_INPUT_ZIPKIN_KEEP_RARE_RESOURCE` | bool        | true                                                                                      |
-    | `ENV_INPUT_ZIPKIN_DEL_MESSAGE`        | bool        | true                                                                                      |
-    | `ENV_INPUT_ZIPKIN_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}`         |
-    | `ENV_INPUT_ZIPKIN_SAMPLER`            | float       | 0.3                                                                                       |
-    | `ENV_INPUT_ZIPKIN_TAGS`               | JSON string | `{"k1":"v1", "k2":"v2", "k3":"v3"}`                                                       |
-    | `ENV_INPUT_ZIPKIN_THREADS`            | JSON string | `{"buffer":1000, "threads":100}`                                                          |
-    | `ENV_INPUT_ZIPKIN_STORAGE`            | JSON string | `{"storage":"./zipkin_storage", "capacity": 5120}`                                        |
+    | Environment Variable Name                            | Type        | Example                                                                             |
+    | ------------------------------------- | ----------- | -------------------------------------------------------------------------------- |
+    | `ENV_INPUT_ZIPKIN_PATH_V1`            | string      | "/api/v1/spans"                                                                  |
+    | `ENV_INPUT_ZIPKIN_PATH_V2`            | string      | "/api/v2/spans"                                                                  |
+    | `ENV_INPUT_ZIPKIN_IGNORE_TAGS`        | JSON string | `["block1", "block2"]`                                                           |
+    | `ENV_INPUT_ZIPKIN_KEEP_RARE_RESOURCE` | bool        | true                                                                             |
+    | `ENV_INPUT_ZIPKIN_DEL_MESSAGE`        | bool        | true                                                                             |
+    | `ENV_INPUT_ZIPKIN_CLOSE_RESOURCE`     | JSON string | `{"service1":["resource1"], "service2":["resource2"], "service3":["resource3"]}` |
+    | `ENV_INPUT_ZIPKIN_SAMPLER`            | float       | 0.3                                                                              |
+    | `ENV_INPUT_ZIPKIN_TAGS`               | JSON string | `{"k1":"v1", "k2":"v2", "k3":"v3"}`                                              |
+    | `ENV_INPUT_ZIPKIN_THREADS`            | JSON string | `{"buffer":1000, "threads":100}`                                                 |
+    | `ENV_INPUT_ZIPKIN_STORAGE`            | JSON string | `{"storage":"./zipkin_storage", "capacity": 5120}`                               |
 
 <!-- markdownlint-enable -->
 
@@ -156,5 +156,5 @@ The Zipkin Agent embedded in DataKit is used to receive, process, and analyze da
 ## Zipkin Documentation {#docs}
 
 - [Quick Start](https://zipkin.io/pages/quickstart.html){:target="_blank"}
-- [Documentation](https://zipkin.io/pages/instrumenting.html){:target="_blank"}
+- [Docs](https://zipkin.io/pages/instrumenting.html){:target="_blank"}
 - [Source Code](https://github.com/openzipkin/zipkin){:target="_blank"}

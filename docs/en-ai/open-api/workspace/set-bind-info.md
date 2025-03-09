@@ -8,15 +8,16 @@
 Set custom binding information for the workspace
 
 
+
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| name | string | No | Product name<br>Can be an empty string: True <br>Example: Guance <br> |
-| companyInfo | string | No | Company description<br>Can be an empty string: True <br>Example: Guance is designed to solve challenges in cloud computing and cloud-native era...... <br> |
-| emailHeader | string | No | Email header<br>Can be an empty string: True <br>Example: System observability platform for the cloud era (in Chinese) <br> |
-| emailBottom | string | No | Email footer<br>Can be an empty string: True <br>Example: System observability platform for the cloud era (in Chinese) <br> |
-| domain | string | No | Full domain name, excluding protocol, including port if applicable; can be cleared by setting as an empty string<br>Can be an empty string: True <br>Example: www.baidu.com <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:------------------|:-------|:-----|:----------------|
+| name | string | No  | Product name<br>Can be an empty string: True <br>Example: <<< custom_key.brand_name >>> <br> |
+| companyInfo | string | No  | Company description<br>Can be an empty string: True <br>Example: <<< custom_key.brand_name >>> is designed to solve issues in cloud computing and cloud-native era...... <br> |
+| emailHeader | string | No  | Email header<br>Can be an empty string: True <br>Example: System observability platform of the cloud era in Chinese cloud era system observability platform <br> |
+| emailBottom | string | No  | Email footer<br>Can be an empty string: True <br>Example: System observability platform of the cloud era in Chinese cloud era <br> |
+| domain | string | No  | Full domain name, excluding protocol, including port if applicable, can be set to an empty string to clear the domain<br>Can be an empty string: True <br>Example: www.baidu.com <br> |
 
 ## Additional Parameter Notes
 

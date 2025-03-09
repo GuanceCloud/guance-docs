@@ -1,6 +1,6 @@
 nav:
   - index.md
-  - 'Enterprise Account Settlement': enterprise-account.md
-  - 'Alibaba Cloud Account Settlement': aliyun-account.md
-  - 'AWS Account Settlement': aws-account.md
-  - 'Huawei Cloud Account Settlement': huawei-account.md
+  - 'Billing Center account settlement': enterprise-account.md
+  - 'Alibaba Cloud account settlement': aliyun-account.md
+  - 'AWS account settlement': aws-account.md
+  - 'Huawei Cloud account settlement': huawei-account.md

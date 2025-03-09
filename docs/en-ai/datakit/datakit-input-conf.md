@@ -1,9 +1,10 @@
 # Collector Configuration
+
 ---
 
 ## Introduction {#intro}
 
-DataKit collector configurations all use the [TOML format](https://toml.io/en){:target="_blank"}. Each collector is categorized and placed in subdirectories under `conf.d`:
+DataKit collector configurations all use [TOML format](https://toml.io/en){:target="_blank"}. Each collector is categorized and located in subdirectories under `conf.d`:
 
 - Linux/Mac: `/usr/local/datakit/conf.d/`
 - Windows: `C:\Program Files\datakit\conf.d\`
@@ -11,11 +12,11 @@ DataKit collector configurations all use the [TOML format](https://toml.io/en){:
 A typical configuration file for a collector has the following structure:
 
 ```toml
-[[inputs.some_name]] # This line is mandatory; it indicates which collector this TOML file configures.
+[[inputs.some_name]] # This line is mandatory, indicating which collector's configuration this TOML file belongs to.
     key = value
     ...
 
-[[inputs.some_name.other_options]] # This line is optional; some collectors have this, others do not.
+[[inputs.some_name.other_options]] # This line is optional; some collectors have it while others do not.
     key = value
     ...
 ```
@@ -23,35 +24,35 @@ A typical configuration file for a collector has the following structure:
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    Since DataKit only searches for files with the `.conf` extension under the `conf.d/` directory, all collector configurations **must be placed in the `conf.d` directory (or its subdirectories) and must have `.conf` as the file extension**. Otherwise, DataKit will ignore these configuration files.
+    Since DataKit only searches for files with the `.conf` extension under the `conf.d/` directory, all collector configurations **must be placed under the `conf.d` directory (or its subdirectories) and must have `.conf` as the file extension**. Otherwise, DataKit will ignore the configuration file.
 <!-- markdownlint-enable -->
 
 ## Default Enabled Collectors {#default-enabled-inputs}
 
-After installing DataKit, a batch of collectors are enabled by default, requiring no manual activation. You can also [disable all default collectors as needed](datakit-install.md#common-envs).
+After installing DataKit, a set of collectors are enabled by default without requiring manual activation. You can also [disable all default collectors as needed](datakit-install.md#common-envs).
 
-The default enabled collectors are generally related to the host and are listed below:
+Default collectors generally relate to the host and are listed below:
 
-| Collector Name                                                        | Description                                                                         |
-| ---                                                                   | ---                                                                                 |
-| [CPU (`cpu`)](../integrations/cpu.md)                                 | Collects CPU usage metrics from the host                                             |
-| [Disk (`disk`)](../integrations/disk.md)                              | Collects disk usage information                                                     |
-| [Disk IO (`diskio`)](../integrations/diskio.md)                       | Collects disk IO metrics from the host                                               |
-| [Memory (`mem`)](../integrations/mem.md)                              | Collects memory usage metrics from the host                                         |
-| [Swap (`swap`)](../integrations/swap.md)                              | Collects swap memory usage metrics                                                   |
-| [System (`system`)](../integrations/system.md)                        | Collects operating system load metrics                                              |
-| [Net (`net`)](../integrations/net.md)                                 | Collects network traffic metrics                                                    |
-| [Host Processes (`host_processes`)](../integrations/host_processes.md)| Collects a list of long-running processes (those alive for more than 10 minutes)     |
-| [Host Object (`hostobject`)](../integrations/hostobject.md)           | Collects basic host information (e.g., OS info, hardware info)                      |
-| [Container (`container`)](../integrations/container.md)               | Collects container or Kubernetes data if present on the host; exits if none         |
-| [Datakit (`dk`)](../integrations/dk.md)                               | Collects Datakit runtime metrics                                                    |
+| Collector Name | Description |
+| --- | --- |
+| [CPU (`cpu`)](../integrations/cpu.md) | Collects CPU usage on the host. |
+| [Disk (`disk`)](../integrations/disk.md) | Collects disk usage. |
+| [Disk IO (`diskio`)](../integrations/diskio.md) | Collects disk IO metrics on the host. |
+| [Memory (`mem`)](../integrations/mem.md) | Collects memory usage on the host. |
+| [Swap (`swap`)](../integrations/swap.md) | Collects swap memory usage. |
+| [System (`system`)](../integrations/system.md) | Collects operating system load on the host. |
+| [Net (`net`)](../integrations/net.md) | Collects network traffic metrics on the host. |
+| [Host Processes (`host_processes`)](../integrations/host_processes.md) | Collects a list of long-running processes (surviving more than 10 minutes) on the host. |
+| [Host Object (`hostobject`)](../integrations/hostobject.md) | Collects basic information about the host (such as OS and hardware info). |
+| [Container (`container`)](../integrations/container.md) | Collects container or Kubernetes data on the host, assuming no containers exist, the collector will exit directly. |
+| [DataKit (`dk`)](../integrations/dk.md) | Collects DataKit's own runtime metrics. |
 
 ### Removing Default Collectors {#disable-default-inputs}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    To disable certain collectors, prefix their names with `-`:
+    If you do not want certain collectors to be enabled, you can disable them by adding a `-` before the collector name:
     
     ```toml
     # datakit.conf
@@ -69,22 +70,22 @@ The default enabled collectors are generally related to the host and are listed 
     ]
     ```
     
-    Similarly, during installation, you can disable them via [this method (`DK_DEF_INPUTS`)](datakit-install.md#common-envs).
+    Similarly, during installation, you can disable collectors using [this method (`DK_DEF_INPUTS`)](datakit-install.md#common-envs).
 
 === "Kubernetes"
 
-    Use [environment variables (`ENV_ENABLE_INPUTS`)](datakit-daemonset-deploy.md#env-common) to set the collectors to enable.
+    Use [environment variables (`ENV_ENABLE_INPUTS`)](datakit-daemonset-deploy.md#env-common) to specify which collectors should be enabled.
 <!-- markdownlint-enable -->
 
 ## Modifying Collector Configurations {#modify-input-conf}
 
 ### Enabling Multiple Instances of the Same Collector {#input-multi-inst}
 
-Using MySQL as an example, if you want to configure multiple MySQL collectors, there are two methods:
+Taking MySQL as an example, if you need to configure multiple MySQL collectors, there are two methods:
 
-- Method One: Create a new `conf` file, e.g., `mysql-2.conf`, and place it in the same directory as the existing `mysql.conf`.
+- Method One: Add a new `conf` file, such as `mysql-2.conf`, which can be placed in the same directory as the existing `mysql.conf`.
 
-- Method Two: Add a new section within the existing `mysql.conf`:
+- Method Two: Add a new section within the existing `mysql.conf` as follows:
 
 ```toml
 # First MySQL collector
@@ -122,13 +123,13 @@ Using MySQL as an example, if you want to configure multiple MySQL collectors, t
     # Omit other configuration items ...
 
 #-----------------------------------------
-# Add another one here
+# Add another one below
 #-----------------------------------------
 [[inputs.mysql]]
     ...
 ```
 
-Method Two's multi-instance configuration structure applies to all collectors and follows this pattern:
+Method Two's multi-instance configuration structure actually forms a TOML array and **is applicable to all collectors that require multiple configurations**, structured as follows:
 
 ```toml
 [[inputs.some-name]]
@@ -142,35 +143,35 @@ Method Two's multi-instance configuration structure applies to all collectors an
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    - If two collector configuration files have identical content (even if filenames differ), only one will be applied to prevent misconfiguration.
-    - It is not recommended to combine different collectors (like MySQL and Nginx) into a single `conf` file, as this may cause unexpected issues and complicates management.
-    - Some collectors are restricted to single-instance operation; see [Single-Instance Collectors](#input-singleton) for details.
+    - Two identical collector configuration files (with different filenames) will result in only one being applied to prevent misconfiguration.
+    - It is not recommended to combine configurations for different collectors (e.g., MySQL and Nginx) into one `conf` file, as this may cause issues and is harder to manage.
+    - Some collectors are restricted to single-instance operation; see [Single Instance Collectors](#input-singleton).
 
 ???+ tip "Comparison of Both Methods"
 
     - Method One can lead to a cluttered configuration directory.
-    - Method Two is easier to manage, consolidating all instances of the same collector into one `conf` file.
+    - Method Two is simpler to manage, consolidating all instances of the same collector into a single `conf` file.
 <!-- markdownlint-enable -->
 
-### Single-Instance Collectors {#input-singleton}
+### Single Instance Collectors {#input-singleton}
 
-Some collectors are restricted to single-instance operation, meaning even if configured multiple times, only one instance will run. The list of single-instance collectors includes:
+Some collectors are restricted to single-instance operation. Even if configured multiple times, only one instance will run. The list of single-instance collectors includes:
 
-| Collector Name                                                        | Description                                                                         |
-| ---                                                                   | ---                                                                                 |
-| [`cpu`](../integrations/cpu.md)                                       | Collects CPU usage metrics from the host                                             |
-| [`disk`](../integrations/disk.md)                                     | Collects disk usage information                                                     |
-| [`diskio`](../integrations/diskio.md)                                 | Collects disk IO metrics from the host                                               |
-| [eBPF](../integrations/ebpf.md)                                       | Collects TCP/UDP connection information, Bash execution logs, etc.                   |
-| [`mem`](../integrations/mem.md)                                       | Collects memory usage metrics from the host                                         |
-| [`swap`](../integrations/swap.md)                                     | Collects swap memory usage metrics                                                   |
-| [`system`](../integrations/system.md)                                 | Collects operating system load metrics                                              |
-| [`net`](../integrations/net.md)                                       | Collects network traffic metrics                                                    |
-| [`netstat`](../integrations/netstat.md)                               | Collects network connection statistics, including TCP/UDP connections, pending requests, etc. |
-| [Host Processes (`host_processes`)](../integrations/host_processes.md)| Collects a list of long-running processes (those alive for more than 10 minutes)     |
-| [Host Object (`hostobject`)](../integrations/hostobject.md)           | Collects basic host information (e.g., OS info, hardware info)                      |
-| [Container (`container`)](../integrations/container.md)               | Collects container or Kubernetes data if present on the host; exits if none         |
-| [Datakit (`dk`)](../integrations/dk.md)                               | Collects Datakit runtime metrics, including CPU, Memory, etc.                         |
+| Collector Name | Description |
+| --- | --- |
+| [`cpu`](../integrations/cpu.md) | Collects CPU usage on the host. |
+| [`disk`](../integrations/disk.md) | Collects disk usage. |
+| [`diskio`](../integrations/diskio.md) | Collects disk IO metrics on the host. |
+| [eBPF](../integrations/ebpf.md) | Collects TCP/UDP connection information, Bash execution logs, etc. on the host. |
+| [`mem`](../integrations/mem.md) | Collects memory usage on the host. |
+| [`swap`](../integrations/swap.md) | Collects swap memory usage. |
+| [`system`](../integrations/system.md) | Collects operating system load on the host. |
+| [`net`](../integrations/net.md) | Collects network traffic metrics on the host. |
+| [`netstat`](../integrations/netstat.md) | Collects network connection statistics including TCP/UDP connections, waiting connections, pending requests, etc. |
+| [Host Processes (`host_processes`)](../integrations/host_processes.md) | Collects a list of long-running processes (surviving more than 10 minutes) on the host. |
+| [Host Object (`hostobject`)](../integrations/hostobject.md) | Collects basic information about the host (such as OS and hardware info). |
+| [Container (`container`)](../integrations/container.md) | Collects container or Kubernetes data on the host, assuming no containers exist, the collector will exit directly. |
+| [DataKit (`dk`)](../integrations/dk.md) | Collects DataKit's own runtime metrics, including CPU, Memory, etc. |
 
 ### Disabling Specific Collectors {#disable-inputs}
 
@@ -179,11 +180,11 @@ To disable a specific collector, there are two methods:
 <!-- markdownlint-disable MD046 -->
 ???+ tip "Comparison of Both Methods"
 
-    - Method One is simpler but more forceful.
-    - Method Two requires careful editing to avoid TOML configuration errors.
+    - Method One is simpler but more brute force.
+    - Method Two requires careful editing and can lead to TOML configuration errors.
 
-- Method One: Rename the corresponding `conf` file, e.g., change `mysql.conf` to `mysql.conf.bak`. **Ensure the file extension is not `.conf`**.
-- Method Two: Comment out the relevant collector configuration in the `conf` file:
+- Method One: Rename the corresponding collector `conf` file, e.g., rename `mysql.conf` to `mysql.conf.bak`. **Ensure the file extension is not `.conf`.**
+- Method Two: Comment out the relevant collector configuration in the `conf` file, for example:
 
 ```toml
 
@@ -204,7 +205,7 @@ To disable a specific collector, there are two methods:
 #    # Omit other configuration items ...
 #
 
-# Keep this MySQL collector
+# Retain this MySQL collector
 [[inputs.mysql]]
   host = "localhost"
   user = "datakit"
@@ -224,40 +225,40 @@ To disable a specific collector, there are two methods:
 
 ### Regular Expressions in Collector Configurations {#debug-regex}
 
-When editing collector configurations, some settings may require regular expressions.
+When editing collector configurations, some parts may require regular expressions.
 
-Since DataKit is primarily developed using Golang, the regex patterns used in configurations follow Golang's regex implementation. Differences between regex implementations across languages can make it challenging to write correct configurations initially.
+Since most of DataKit is developed using Golang, the regex patterns used in configurations follow Golang's regex implementation. Differences between regex systems can make it challenging to get configurations right on the first try.
 
-We recommend using an [online tool to debug regex patterns](https://regex101.com/){:target="_blank"}. As shown below:
+We recommend using an [online tool to debug regex patterns](https://regex101.com/){:target="_blank"}. As shown in the image below:
 
 <figure markdown>
   ![](https://static.guance.com/images/datakit/debug-golang-regexp.png){ width="800" }
 </figure>
 
-Additionally, since DataKit configurations use TOML, we suggest using `'''here is a specific regex pattern'''` (i.e., surrounding the regex with three single quotes) to avoid complex escape sequences.
+Additionally, since DataKit configurations use TOML, we suggest using `'''here is a concrete regex pattern'''` (i.e., surrounding the regex with three single quotes) to avoid complex escape sequences.
 
 ## Using KV Template Configuration {#kv-template}
 
-KV (Key-Value) pairs are designed to allow users to edit configuration files more conveniently through templates. For example, sensitive information such as passwords and usernames can be securely stored as key-value pairs and referenced in configuration files.
+KV (key-value pairs) are designed primarily to allow users to edit configuration files via templates more conveniently. For example, sensitive information like passwords and usernames can be securely stored as key-value pairs and referenced in related configuration files.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
-    - Only supported for host configurations, not [Git](./git-config-how-to.md) or [configuration center](./confd.md).
-    - Only applicable within collector configuration files.
+    - Only supports host configuration, not [Git](./git-config-how-to.md) or [configuration center](./confd.md) configurations.
+    - Only supported in collector configuration files.
 <!-- markdownlint-enable -->
 
 ### Dynamic Loading Process {#kv-load-flow}
 
-Guance Cloud allows users to create or update KV pairs via the web client. DataKit periodically pulls the latest KV configurations from Guance Cloud and compares them with the current in-memory configurations. If any changes are detected, DataKit traverses all collector configuration files, replacing old KV values with new ones, and reloads any modified configurations.
+The Guance platform allows users to create or update KV configurations via the web client. DataKit periodically pulls the latest KV configurations from the Guance platform and compares them with the existing configurations in memory. If any changes are detected, DataKit traverses all collector configuration files, replacing old KV values with new ones to identify modified configurations. Once changes are found, all collectors generated from these configuration files are reloaded.
 
-Note that comparisons are made at the configuration file level. If a file contains multiple collectors, any changes to that file will trigger a reload of all collectors defined within it.
+Note that comparisons are made on a per-file basis. This means if a file contains multiple collectors, any modification to the file will trigger a reload of all collectors generated from that file.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
-    - If the reloaded collectors include HTTP services, such as the `ddtrace` collector, the entire HTTP service will be restarted.
+    - If reloading involves HTTP services, such as the `ddtrace` collector, the entire HTTP service will be restarted.
 <!-- markdownlint-enable -->
 
-Refer to the flowchart below for the complete process:
+Refer to the diagram below for the complete process:
 
 ```mermaid
 flowchart TD
@@ -282,23 +283,23 @@ flowchart TD
 
 ### KV File Cache {#kv-cache}
 
-DataKit caches KV information locally in `<DataKit-Install-Dir>/data/.kv` in JSON format. Example configuration:
+DataKit fetches KV information from the central server and caches it locally in `<DataKit-Install-Dir>/data/.kv` in JSON format. An example configuration is as follows:
 
 ```json
 {"value":"{\"cpu_kv\": \"cpu_kv_value3\", \"mysql_password\": \"000000\", \"cpu_enable_temperature\": true}","version":10}
 ```
 
-The `value` field contains the actual KV configuration in `key:value` format, accessible via `{{.key}}`.
+The `value` field contains the actual KV configuration in `key:value` format, which can be referenced using `{{.key}}` syntax.
 
-The `version` field indicates the current configuration version.
+The `version` indicates the current configuration version number.
 
 ### KV Usage Example {#kv-example}
 
-KV uses [Go template](https://pkg.go.dev/text/template){:target="_blank"} syntax. Below are common usage examples:
+KV uses [Go template](https://pkg.go.dev/text/template){:target="_blank"} syntax. Below are common usage examples.
 
 - Basic Usage
 
-Assuming the following KV configuration:
+Assume the following KV configuration:
 
 ```json
 {
@@ -309,9 +310,10 @@ Assuming the following KV configuration:
   },
   "version": 10
 }
+
 ```
 
-In the configuration file, reference KV values using `{{.key}}` syntax, as shown in the MySQL collector example:
+In the configuration file, you can reference KV configurations using `{{.key}}` syntax, as shown in the example below for the MySQL collector:
 
 ```toml
 [[inputs.mysql]]
@@ -326,58 +328,58 @@ In the configuration file, reference KV values using `{{.key}}` syntax, as shown
 
 ```
 
-Before loading, DataKit replaces `{{.key}}` with the corresponding KV values, enabling dynamic configuration. For debugging, see [Debugging KV Files](datakit-tools-how-to.md#debug-kv).
+Before loading, DataKit automatically replaces `{{.key}}` with the corresponding KV configuration, enabling dynamic configuration. For easier debugging, refer to [Debugging KV Files](datakit-tools-how-to.md#debug-kv).
 
-- Setting Defaults
+- Using Default Values
 
-To define default values for variables, use the following syntax:
+Sometimes you might want to define a default value for a variable, i.e., specify a default when the variable is undefined or empty. Example usage:
 
 ```toml
 port = {{.mysql_port | default 3306}}
 ```
 
-If `port` is undefined or empty, it defaults to `3306`.
+In the above template, if `port` is undefined or empty, it defaults to `3306`.
 
 ## Password Configuration Encoding Issues {#password-encode}
 
-When configuring connection strings, special characters (e.g., `@#*`) in passwords need to be URL-encoded. The following table lists URL encodings for special characters:
+When configuring connection strings, if the password contains special characters (like `@#*`), these characters need to be URL-encoded. Below is a list of URL encodings for special characters:
 
-> Note that not all special characters (like `~_-.`) require encoding, but they are included for reference.
+> Note, not all special characters (like `~_-.`) need encoding, but they are included here for reference.
 
-| Character    | URL Encoding | Character  | URL Encoding |
-| ---          | ---          | ---        | ---          |
-| `` ` ``      | `%60`        | `~`        | `~`          |
-| `!`          | `%21`        | `@`        | `%40`        |
-| `#`          | `%23`        | `$`        | `%24`        |
-| `%`          | `%25`        | `^`        | `%5E`        |
-| `&`          | `%26`        | `*`        | `%2A`        |
-| `(`          | `%28`        | `)`        | `%29`        |
-| `_`          | `_`          | `-`        | `-`          |
-| `+`          | `%2B`        | `=`        | `%3D`        |
-| `{`          | `%7B`        | `}`        | `%7D`        |
-| `[`          | `%5B`        | `]`        | `%5D`        |
-| `\`          | `%5C`        | `:`        | `%3A`        |
-| `|`          | `%7C`        | `"`        | `%22`        |
-| `'`          | `%27`        | `;`        | `%3B`        |
-| `,`          | `%2C`        | `.`        | `.`          |
-| `<`          | `%3C`        | `>`        | `%3E`        |
-| `/`          | `%2F`        | `?`        | `%3F`        |
+| Character | URL Encoding | Character | URL Encoding |
+| --- | --- | --- | --- |
+| `` ` `` | `%60` | `~` | `~` |
+| `!` | `%21` | `@` | `%40` |
+| `#` | `%23` | `$` | `%24` |
+| `%` | `%25` | `^` | `%5E` |
+| `&` | `%26` | `*` | `%2A` |
+| `(` | `%28` | `)` | `%29` |
+| `_` | `_` | `-` | `-` |
+| `+` | `%2B` | `=` | `%3D` |
+| `{` | `%7B` | `}` | `%7D` |
+| `[` | `%5B` | `]` | `%5D` |
+| `\` | `%5C` | `:` | `%3A` |
+| `|` | `%7C` | `"` | `%22` |
+| `'` | `%27` | `;` | `%3B` |
+| `,` | `%2C` | `.` | `.` |
+| `<` | `%3C` | `>` | `%3E` |
+| `/` | `%2F` | `?` | `%3F` |
 
-For example, given the Git connection string:
+Assuming we have the following Git connection string:
 
-```text
+``` text
 http://username:pa55w#rd@github.com/path/to/repository.git
 ```
 
-Encode the `#` in the password to `%23`:
+Here, we need to convert the `#` in the password to its URL-encoded form `%23`:
 
-```text
+``` text
 http://username:pa55w%23rd@github.com/path/to/repository.git
 ```
 
 ### Complex String Configuration in TOML {#toml-raw-string}
 
-In DataKit's TOML configurations, many settings involve strings. To avoid escaping complex characters, use TOML's raw string syntax. For example, if a string contains double quotes:
+In DataKit's TOML configurations, many string settings involve complex escaping. To avoid this, you can use TOML's raw string syntax. For example, if a string value contains double quotes:
 
 ```toml
 some_config = "this-string-contains-\"-and-others"

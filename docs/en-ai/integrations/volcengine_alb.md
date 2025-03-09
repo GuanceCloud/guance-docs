@@ -20,66 +20,66 @@ Collect VolcEngine ALB Metrics Data
 
 ### Install Func
 
-We recommend enabling the Guance Integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed, please proceed with the script installation.
+We recommend enabling the Guance Integration - Extensions - Managed Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-hosted Func Deployment](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
-> Note: Please prepare a qualified VolcEngine AK in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
+> Note: Prepare a qualified VolcEngine AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize the monitoring data of ALB cloud resources, we install the corresponding collection script: 「Guance Integration (VolcEngine-ALB Collection)」(ID: `guance_volcengine_alb`)
+To synchronize ALB cloud resource monitoring data, install the corresponding collection script: "Guance Integration (VolcEngine-ALB Collection)" (ID: `guance_volcengine_alb`)
 
-After clicking 【Install】, enter the required parameters: VolcEngine AK, VolcEngine account name, and Regions.
+After clicking 【Install】, enter the corresponding parameters: VolcEngine AK, VolcEngine account name, regions.
 
-Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the startup scripts accordingly.
+Click 【Deploy Startup Script】 and the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-Once enabled, you can see the corresponding automatic trigger configuration under 「Management / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. Wait a moment, and you can view the execution task records and corresponding logs.
+Once enabled, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】 to run it immediately without waiting for the scheduled time. Wait a moment, then check the execution task records and corresponding logs.
 
 ### Verification
 
-1. In 「Management / Automatic Trigger Configuration」confirm that the corresponding task has an automatic trigger configuration, and check the task records and logs for any anomalies.
-2. On the Guance platform, in 「Infrastructure - Resource Catalog」check if asset information exists.
-3. On the Guance platform, in 「Metrics」check if there is corresponding monitoring data.
+1. Confirm in 「Manage / Automatic Trigger Configuration」 that the corresponding task has an automatic trigger configuration. You can also view the task records and logs to check for any anomalies.
+2. In the Guance platform, under 「Infrastructure - Resource Catalog」, check if asset information exists.
+3. In the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 
-Configure VolcEngine ALB monitoring metrics. You can collect more metrics by configuring [VolcEngine ALB Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_ALB){:target="_blank"}
+Configure VolcEngine ALB monitoring metrics. You can collect more metrics through configuration [VolcEngine ALB Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_ALB){:target="_blank"}
 
-|`MetricName` |`Subnamespace` |Metric Name |MetricUnit | Dimension|
+| `MetricName` | `Subnamespace` | Metric Name | Metric Unit | Dimension |
 | ----------- |---------------| :----: |:--------: |:-------: |
-| `listener_max_conn` | `listener` | Concurrent Connections | Count | ResourceID,ListenerID |
-| `listener_new_conn` | `listener` | New Connections | Count/Second | ResourceID,ListenerID |
-| `listener_active_conn` | `listener` | Active Connections | Count | ResourceID,ListenerID |
-| `listener_inactive_conn` | `listener` | Inactive Connections | Count | ResourceID,ListenerID |
-| `listener_lost_conn` | `listener` | Lost Connections | Count/Second | ResourceID,ListenerID |
-| `listener_in_packets` | `listener` | Incoming Packets | Packet/Second | ResourceID,ListenerID |
-| `listener_out_packets` | `listener` | Outgoing Packets | Packet/Second | ResourceID,ListenerID |
-| `listener_in_drop_packets` | `listener` | Dropped Incoming Packets | Packet/Second | ResourceID,ListenerID |
-| `listener_out_drop_packets` | `listener` | Dropped Outgoing Packets | Packet/Second | ResourceID,ListenerID |
-| `listener_in_bytes` | `listener` | Incoming Bandwidth | Bits/Second(SI) | ResourceID,ListenerID |
-| `listener_out_bytes` | `listener` | Outgoing Bandwidth | Bits/Second(SI) | ResourceID,ListenerID |
-| `listener_in_drop_bytes` | `listener` | Dropped Incoming Bandwidth | Bits/Second(SI) | ResourceID,ListenerID |
-| `listener_out_drop_bytes` | `listener` | Dropped Outgoing Bandwidth | Bits/Second(SI) | ResourceID,ListenerID |
-| `listener_healthy_rs_count` | `listener` | Healthy Backend Servers | Count | ResourceID,ListenerID |
-| `listener_unhealthy_rs_count` | `listener` | Unhealthy Backend Servers | Count | ResourceID,ListenerID |
-| `listener_http_2xx_send_count` | `listener` | Sent 2xx Status Codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_3xx_send_count` | `listener` | Sent 3xx Status Codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_4xx_send_count` | `listener` | Sent 4xx Status Codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_5xx_send_count` | `listener` | Sent 5xx Status Codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_other_send_count` | `listener` | Sent Other Status Codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_404_send_count` | `listener` | Sent 404 Status Codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_502_send_count` | `listener` | Sent 502 Status Codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_2xx_recv_count` | `listener` | Received 2xx Status Codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_3xx_recv_count` | `listener` | Received 3xx Status Codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_4xx_recv_count` | `listener` | Received 4xx Status Codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_5xx_recv_count` | `listener` | Received 5xx Status Codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_other_recv_count` | `listener` | Received Other Status Codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_404_recv_count` | `listener` | Received 404 Status Codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_502_recv_count` | `listener` | Received 502 Status Codes | Count/Second | ResourceID,ListenerID |
-| `listener_qps` | `listener` | QPS | Count/Second | ResourceID,ListenerID |
-| `listener_response_time` | `listener` | Average Response Time | Millisecond | ResourceID,ListenerID |
-| `listener_ups_response_time` | `listener` | Average Request Time | Millisecond | ResourceID,ListenerID |
+| `listener_max_conn` | `listener` | Concurrent Connections | Count | ResourceID, ListenerID |
+| `listener_new_conn` | `listener` | New Connections | Count/Second | ResourceID, ListenerID |
+| `listener_active_conn` | `listener` | Active Connections | Count | ResourceID, ListenerID |
+| `listener_inactive_conn` | `listener` | Inactive Connections | Count | ResourceID, ListenerID |
+| `listener_lost_conn` | `listener` | Lost Connections | Count/Second | ResourceID, ListenerID |
+| `listener_in_packets` | `listener` | Incoming Packets | Packet/Second | ResourceID, ListenerID |
+| `listener_out_packets` | `listener` | Outgoing Packets | Packet/Second | ResourceID, ListenerID |
+| `listener_in_drop_packets` | `listener` | Dropped Incoming Packets | Packet/Second | ResourceID, ListenerID |
+| `listener_out_drop_packets` | `listener` | Dropped Outgoing Packets | Packet/Second | ResourceID, ListenerID |
+| `listener_in_bytes` | `listener` | Incoming Bandwidth | Bits/Second(SI) | ResourceID, ListenerID |
+| `listener_out_bytes` | `listener` | Outgoing Bandwidth | Bits/Second(SI) | ResourceID, ListenerID |
+| `listener_in_drop_bytes` | `listener` | Dropped Incoming Bandwidth | Bits/Second(SI) | ResourceID, ListenerID |
+| `listener_out_drop_bytes` | `listener` | Dropped Outgoing Bandwidth | Bits/Second(SI) | ResourceID, ListenerID |
+| `listener_healthy_rs_count` | `listener` | Healthy Backend Servers | Count | ResourceID, ListenerID |
+| `listener_unhealthy_rs_count` | `listener` | Unhealthy Backend Servers | Count | ResourceID, ListenerID |
+| `listener_http_2xx_send_count` | `listener` | Sent 2xx Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_3xx_send_count` | `listener` | Sent 3xx Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_4xx_send_count` | `listener` | Sent 4xx Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_5xx_send_count` | `listener` | Sent 5xx Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_other_send_count` | `listener` | Sent Other Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_404_send_count` | `listener` | Sent 404 Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_502_send_count` | `listener` | Sent 502 Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_2xx_recv_count` | `listener` | Received 2xx Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_3xx_recv_count` | `listener` | Received 3xx Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_4xx_recv_count` | `listener` | Received 4xx Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_5xx_recv_count` | `listener` | Received 5xx Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_other_recv_count` | `listener` | Received Other Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_404_recv_count` | `listener` | Received 404 Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_502_recv_count` | `listener` | Received 502 Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_qps` | `listener` | QPS | Count/Second | ResourceID, ListenerID |
+| `listener_response_time` | `listener` | Average Response Time | Millisecond | ResourceID, ListenerID |
+| `listener_ups_response_time` | `listener` | Average Request Time | Millisecond | ResourceID, ListenerID |
 | `listener_http_500_send_count` | `listener` | Sent 500 Status Codes | Count/Second | ResourceID |
 | `listener_http_503_send_count` | `listener` | Sent 503 Status Codes | Count/Second | ResourceID |
 | `listener_http_504_send_count` | `listener` | Sent 504 Status Codes | Count/Second | ResourceID |
@@ -118,33 +118,33 @@ Configure VolcEngine ALB monitoring metrics. You can collect more metrics by con
 | `load_balancer_http_503_send_count` | `loadbalancer` | Sent 503 Status Codes | Count/Second | ResourceID |
 | `load_balancer_http_504_send_count` | `loadbalancer` | Sent 504 Status Codes | Count/Second | ResourceID |
 
-## Objects {#object}
+## Object {#object}
 
-The structure of collected VolcEngine ALB object data can be seen from 「Infrastructure - Resource Catalog」
+The structure of collected VolcEngine ALB object data can be seen in 「Infrastructure - Resource Catalog」
 
 ``` json
-  {
-    "measurement": "volcengine_alb",
-    "tags": {
-      "RegionId"        : "cn-guangzhou",
-      "ProjectName"     : "default",
-      "AccountId"       : "2102598xxxx",
-      "LoadBalancerId"  : "LoadBalancerId:alb-3rfdnib02lzpc16nf3olxxxx",
-      "LoadBalancerName": "ALB",
-      "Type"            : "public",
-      "Status"          : "Active"
-    },
-    "fields": {
-      "Listeners": "[{JSON Data}]",
-      "VpcId": "vpc-11vrlrg75588w40yrhbxxxx",
-      "EniAddress": "172.31.0.xx",
-      "EipAddress": "118.145.xxx.170",
-      "LoadBalancerBillingType": "2",
-      "Description": "xxxxxx",
-      "CreateTime": "2024-12-12T02:43:11Z",
-      "UpdateTime": "2024-12-12T06:33:36Z",
-      "ExpiredTime": "xxxxxxxx",
-      "Tags": "[]"
-    }
+{
+  "measurement": "volcengine_alb",
+  "tags": {
+    "RegionId": "cn-guangzhou",
+    "ProjectName": "default",
+    "AccountId": "2102598xxxx",
+    "LoadBalancerId": "LoadBalancerId:alb-3rfdnib02lzpc16nf3olxxxx",
+    "LoadBalancerName": "ALB",
+    "Type": "public",
+    "Status": "Active"
+  },
+  "fields": {
+    "Listeners": "[{JSON Data}]",
+    "VpcId": "vpc-11vrlrg75588w40yrhbxxxx",
+    "EniAddress": "172.31.0.xx",
+    "EipAddress": "118.145.xxx.170",
+    "LoadBalancerBillingType": "2",
+    "Description": "xxxxxx",
+    "CreateTime": "2024-12-12T02:43:11Z",
+    "UpdateTime": "2024-12-12T06:33:36Z",
+    "ExpiredTime": "xxxxxxxx",
+    "Tags": "[]"
   }
+}
 ```

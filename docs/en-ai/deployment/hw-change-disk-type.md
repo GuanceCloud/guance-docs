@@ -1,6 +1,6 @@
 ## Overview
 
-When deploying a production environment, to save costs, OpenSearch clusters often choose disks with lower I/O and throughput when usage is not heavy. However, as data volume increases, performance bottlenecks may occur. At this point, changing the disk type to improve I/O and throughput becomes necessary.
+When deploying a production environment, to save costs, OpenSearch clusters often choose disks with lower I/O and throughput when usage is not high. However, as data volumes increase, performance bottlenecks may occur. At this point, changing the disk type to improve I/O and throughput becomes necessary.
 
 ### Prerequisites
 
@@ -10,15 +10,15 @@ When deploying a production environment, to save costs, OpenSearch clusters ofte
 
 ### Flowchart
 
-Please refer to the following **operation steps** for more details.
+Please refer to the following **operation steps** for details.
 
 ![](img/hw-change-disk-type.png)
 
 ## Operation Steps
 
-### Step One: Change the Default Disk Type of `csi-disk-topology`
+### Step One: Change the default disk type of `csi-disk-topology`
 
-Since we are using Huawei Cloud CCE's built-in StorageClass, it needs to be modified to ensure that the default created disk type meets the requirements.
+Since the StorageClass used is provided by the Huawei Cloud CCE cluster, it needs to be modified to ensure that the default disk type created meets the requirements.
 
 ```shell
 kubectl edit sc -n middleware csi-disk-topology
@@ -34,7 +34,7 @@ metadata:
 parameters:
   csi.storage.k8s.io/csi-driver-name: disk.csi.everest.io
   csi.storage.k8s.io/fstype: ext4
-  everest.io/disk-volume-type: SSD    ## Modify the disk type
+  everest.io/disk-volume-type: SSD    ## Modify disk type
   everest.io/passthrough: "true"
 provisioner: everest-csi-provisioner
 reclaimPolicy: Delete
@@ -45,13 +45,13 @@ volumeBindingMode: WaitForFirstConsumer
 
 | Parameter                        | Description                                                         |
 | ---------------------------------- | ------------------------------------------------------------------- |
-| everest.io/disk-volume-type       | Cloud disk type, in all uppercase. SAS: High I/O SSD: Ultra-high I/O GPSSD: General Purpose SSD ESSD: Extreme Speed SSD |
+| everest.io/disk-volume-type       | Cloud disk type, all uppercase. SAS: High I/O SSD: Ultra-high I/O   GPSSD: General Purpose SSD    ESSD: Extreme Speed SSD |
 
-### Step Two: Migrate Shards and Adjust Rate
+### Step Two: Migrate shards and adjust rates
 
-- Exclude nodes based on node names, excluding them in order from smallest to largest. After excluding the node, no new shards will be written to this data node, and existing shards will migrate to other nodes due to cluster self-balancing.
+- Exclude nodes based on node names in ascending order. After excluding a node, no new shards will be written to this data node, and existing shards will migrate to other nodes due to cluster self-balancing principles.
 
-  > Note: Ensure that the storage on other nodes can accommodate the data from the excluded node before performing this operation.
+  > Note: Ensure that the storage of other nodes can accommodate the data from the excluded node before performing this operation.
 
 ```json
 PUT _cluster/settings
@@ -63,8 +63,8 @@ PUT _cluster/settings
 ```
 
 - Configure the maximum number of balanced shards.
-- `incoming` indicates the maximum number of shards that can be written, usually representing the number of shards accepted by nodes other than the excluded one.
-- `outgoing` indicates the maximum number of shards that can be output, usually representing the number of shards output by the excluded node. It is recommended to set this to **the number of remaining nodes * incoming shard limit**.
+- `incoming` indicates the maximum number of incoming shards, typically representing the number of shards accepted by non-excluded nodes.
+- `outcoming` indicates the maximum number of outgoing shards, typically representing the number of shards output by the excluded node. It is recommended to set it to **the number of remaining nodes * the maximum number of incoming shards**.
 
 ```json
 PUT _cluster/settings
@@ -76,8 +76,8 @@ PUT _cluster/settings
 }
 ```
 
-- Set the maximum transfer rate for balancing shards.
-- You can adjust the migration throughput rate based on usage to minimize impact on business operations. For example, set a lower rate during the day and a higher rate at night.
+- Configure the maximum transfer rate during shard balancing.
+- Adjust the migration throughput rate according to actual usage to minimize impact on business operations. For example, set a lower rate during the day and a higher rate at night.
 
 ```json
 PUT _cluster/settings
@@ -88,19 +88,19 @@ PUT _cluster/settings
 }
 ```
 
-> Note: Adjust according to the actual disk throughput.
+> Note: Adjust based on the actual disk throughput.
 
-- Check Migration Status
+- Check migration status
 
 ```shell
 GET _cluster/health  ## Check cluster status
-GET _cat/tasks?v     ## View detailed shard information
-GET _cat/indices?v&s=health:desc     ## View index health status in order
+GET _cat/tasks?v     ## Check detailed shard information
+GET _cat/indices?v&s=health:desc     ## Check index health status in order
 ```
 
-### Step Three: Replace Disks
+### Step Three: Replace Disk
 
-- Delete the PVC and Pod corresponding to the previously excluded data node so that it can automatically use the StorageClass modified in **Step One**.
+- Delete the PVC and Pod corresponding to the previously excluded data node so that it automatically uses the modified StorageClass from **Step One**.
 - Pay attention to the deletion order.
 
 ```
@@ -108,13 +108,13 @@ kubectl delete pvc -n middleware opensearch-cluster-data-opensearch-cluster-data
 kubectl delete pods -n middleware opensearch-cluster-data-0
 ```
 
-> If PVC deletion gets stuck, you can directly **Ctrl + c** to skip it.
+> Deleting PVC might hang; you can directly use **Ctrl + c** to skip.
 
-### Step Four: Expand New Disks
+### Step Four: Expand the new disk
 
-- Directly expand the newly created disks to the required size via the Huawei Cloud console.
+- Directly expand the newly created disk to the required size via the Huawei Cloud console.
 
-- Modify the size of the corresponding data node's PVC to match the size of other nodes.
+- Modify the size of the PVC corresponding to the data node to match the size of other nodes.
 
 ```shell
 kubectl edit pvc -n middleware opensearch-cluster-data-opensearch-cluster-data-0
@@ -132,11 +132,11 @@ spec:
   volumeName: pvc-7025138f-04e0-4d5b-879d-7cf998f54628
 ```
 
-> Note: Disks can only be expanded, not reduced, so choose the size carefully.
+> Note: Disks can only be expanded, not shrunk, so choose the size carefully.
 
-### Step Five: Remove Excluded Nodes
+### Step Five: Remove node exclusion
 
-Since this is a cluster-wide migration, steps 2-4 only migrate and replace the disk type of one data node. Repeat steps 2-4 until all nodes have their disk types replaced. Then execute the following command to reset the excluded nodes, allowing the cluster to rebalance shards to the empty nodes.
+Since this involves migrating the entire cluster, steps 2-4 only migrate and replace the disk type of one data node. Repeat steps 2-4 until all nodes have their disk types replaced, then execute the following command to clear the excluded nodes. According to the cluster's self-balancing characteristics, it will automatically balance shards to the empty nodes.
 
 ```json
 PUT _cluster/settings
@@ -153,4 +153,4 @@ PUT _cluster/settings
 GET _cluster/health
 ```
 
-> If there are no issues with the cluster status, don't forget to release the old disks to avoid additional charges.
+> If there are no issues with the cluster status, don't forget to release old disks to avoid additional charges.

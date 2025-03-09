@@ -1,4 +1,4 @@
-# 0102-ypbind-uninstalled-NIS Client Uninstalled
+# 0102-ypbind-uninstalled-NIS Client Installed
 
 ---
 
@@ -9,12 +9,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -28,27 +28,26 @@
 
 
 ## Scan Frequency
+
 - 0 */30 * * *
+
 
 ## Theoretical Basis
 
-- The NIS service is inherently an insecure system, vulnerable to DOS attacks, buffer overflows, and poor authentication when querying NIS maps. NIS has generally been replaced by protocols such as Lightweight Directory Access Protocol (LDAP). It is recommended to remove this service.
+- The NIS service is inherently an insecure system, vulnerable to DOS attacks, buffer overflows, and has poor authentication when querying NIS maps. NIS has typically been replaced by protocols such as Lightweight Directory Access Protocol (LDAP). It is recommended to remove this service.
 
 
 ## Risk Items
 
-- Hacker Penetration
-
-- Data Leakage
-
-- Network Security
-
-- Mining Risk
-
-- Botnet Risk
+- Hacker penetration
+- Data leakage
+- Network security
+- Mining risk
+- Botnet risk
 
 
 ## Audit Method
+
 - Execute the following command to verify if ypbind is installed.
 
 ```bash
@@ -58,6 +57,7 @@ package ypbind is not installed
 
 
 ## Remediation
+
 - Run the command to remove ypbind.
 ```bash
 # yum remove ypbind
@@ -66,12 +66,12 @@ package ypbind is not installed
 
 ## Impact
 
-- Many insecure service clients are used as troubleshooting tools and in test environments. Uninstalling them can inhibit testing and troubleshooting capabilities. If they are required for use, ensure they are removed afterward to prevent accidental or intentional misuse.
+- Many insecure service clients are used as troubleshooting tools and in test environments. Uninstalling them will reduce testing and troubleshooting capabilities. If they are required for use, ensure they are removed afterward to prevent accidental or intentional misuse.
 
 
-## Default Values
+## Default Value
 
-- None
+- Not specified
 
 
 ## References
@@ -79,7 +79,7 @@ package ypbind is not installed
 - None
 
 
-## CIS Controls
+## CIS Control
 
 - Version 7<br>
-    Ensure unauthorized software is either removed or kept up-to-date.
+    Ensure unauthorized software is either removed or updated in a timely manner.

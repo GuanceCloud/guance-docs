@@ -1,22 +1,22 @@
 ---
-title: 'Windows Events'
-summary: 'Collecting event logs from Windows'
+title     : 'Windows Events'
+summary   : 'Collecting event logs from Windows'
 tags:
   - 'WINDOWS'
-__int_icon: 'icon/winevent'
-dashboard:
-  - desc: 'Not available'
-    path: '-'
-monitor:
-  - desc: 'Not available'
-    path: '-'
+__int_icon      : 'icon/winevent'
+dashboard :
+  - desc  : 'Not available'
+    path  : '-'
+monitor   :
+  - desc  : 'Not available'
+    path  : '-'
 ---
 
 :fontawesome-brands-windows:
 
 ---
 
-The collection of Windows event logs involves gathering application, security, system, and other Windows event logs.
+The collection of Windows Event Logs involves gathering application, security, system, and other types of Windows event logs.
 
 ## Configuration {#config}
 
@@ -26,9 +26,10 @@ The collection of Windows event logs involves gathering application, security, s
 
 ### Collector Configuration {#input-config}
 
-Navigate to the `conf.d/windows` directory under the DataKit installation directory, copy `windows_event.conf.sample`, and rename it to `windows_event.conf`. An example configuration is as follows:
+Navigate to the `conf.d/windows` directory under the DataKit installation directory, copy `windows_event.conf.sample`, and rename it to `windows_event.conf`. An example is shown below:
 
 ```toml
+
 [[inputs.windows_event]]
   xpath_query = '''
   <QueryList>
@@ -62,38 +63,44 @@ Navigate to the `conf.d/windows` directory under the DataKit installation direct
 
 After configuring, restart DataKit to apply changes.
 
-## Logs {#logging}
+## Logging {#logging}
 
-By default, all data collected will append a global tag named `host` (the tag value is the hostname where DataKit is located). You can also specify additional tags using `[inputs.windows_event.tags]` in the configuration:
+By default, all data collected will append a global tag named `host` (the tag value is the hostname where DataKit resides). You can also specify additional tags in the configuration using `[inputs.windows_event.tags]`:
 
-```toml
-[inputs.windows_event.tags]
+``` toml
+ [inputs.windows_event.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
   # ...
 ```
 
+
+
 ### `windows_event`
 
 - Tags
 
-| Tag             | Description                  |
-| --------------- | ---------------------------- |
-| `channel`       | Channel                      |
-| `computer`      | Computer                     |
-| `event_id`      | Event ID                     |
-| `event_record_id` | Event record ID            |
-| `event_source`  | Windows event source         |
-| `keyword`       | Keyword                      |
-| `level`         | Level                        |
-| `message`       | Event content                |
-| `process_id`    | Process ID                   |
-| `status`        | Log level                    |
-| `task`          | Task category                |
-| `total_message` | Full text of the event        |
-| `version`       | Version                      |
+
+| Tag | Description |
+|  ----  | --------|
+|`channel`|Channel|
+|`computer`|Computer|
+|`event_id`|Event ID|
+|`event_record_id`|Event record ID|
+|`event_source`|Windows event source|
+|`keyword`|Keyword|
+|`level`|Level|
+|`message`|Event content|
+|`process_id`|Process ID|
+|`status`|Log level|
+|`task`|Task category|
+|`total_message`|Full text of the event|
+|`version`|Version|
 
 - Metrics List
 
+
 | Metric | Description | Type | Unit |
-| ------ | ----------- | :--: | :--: |
+| ---- |---- | :---:    | :----: |
+
+Please note that the metrics list currently does not contain any specific entries.

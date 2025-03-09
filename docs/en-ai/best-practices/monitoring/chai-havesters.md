@@ -1,8 +1,9 @@
-# Best Practices for Monitoring Chia Harvesters
+# Chia Harvesters Best Practices
+
 ---
 
 ## Introduction
-Chia users need to monitor Harvesters on multiple hosts in real-time, analyzing the availability, status, and profitability of different Harvesters in detail. This enhances Chia users' control over their Harvesters. DataFlux takes an active and passive monitoring approach with a comprehensive anomaly detection module that aligns with the actual needs of Chia users. This builds a unified Chia business management platform, allowing Chia users to have a global and intuitive view of Harvester operational status, improving output efficiency, and facilitating troubleshooting of Harvester issues or insufficient expected profits. Additionally, expert-level performance services and on-site support services are provided to help Chia users achieve higher returns. The key areas that need monitoring are:
+Chia users need to perform real-time monitoring of Harvesters across multiple hosts, analyzing the availability, status, and profitability of different Harvesters in detail. This enhances Chia users' control over their Harvesters. Dataflux adopts active and passive monitoring with a comprehensive anomaly detection module that aligns closely with the needs of Chia users. It builds a unified Chia business management platform for users to have an intuitive overview of Harvester operations globally, improving output efficiency and facilitating troubleshooting for Harvester failures or insufficient expected profits. Additionally, it offers expert-level Chia performance services and on-site support services to help Chia users achieve higher returns. Key areas that need monitoring are:
 
 - **Harvesters**
 
@@ -11,7 +12,7 @@ Chia users need to monitor Harvesters on multiple hosts in real-time, analyzing 
 - **Disk**
 - **Network**
 
-## Scenario View
+## Scene View
 
 ![image.png](../images/chai-havesters-1.png)
 
@@ -23,33 +24,33 @@ Chia users need to monitor Harvesters on multiple hosts in real-time, analyzing 
 
 ## Prerequisites
 
-DataKit is installed ([DataKit Installation Documentation](/datakit/datakit-install/))
+DataKit has been installed ([DataKit Installation Documentation](/datakit/datakit-install/))
 
 ## Configuration
 
 ### Log Collection
 
-This section uses the Windows client as an example (similar for Linux)
+This example uses a Windows client (Linux is similar).
 
-#### Create a Chia Farm Log Collection Script
+#### Create a chia farm log collection script
 
 Git is installed ([Git Installation Reference](https://git-scm.com/))
 
-Enter the `chia-blockchain` directory (`C:\Users\{Your User}\AppData\Local\chia-blockchain\app-{Your Chia Version}\resources\app.asar.unpacked\daemon`) and create a log collection script named `farmer.sh`, which saves Chia client farm information to `farmer.log`.
+Navigate to the `chia-blockchain` directory (`C:\Users\{your user}\AppData\Local\chia-blockchain\app-{your chia version}\resources\app.asar.unpacked\daemon`) and create a log collection script named `farmer.sh`, saving the Chia client farm information to `farmer.log`.
 
-> First, create a `data_collect` folder in `C:\Users\{Your User}\AppData\Local\chia-blockchain\app-{Your Chia Version}\`
+> First, create a `data_collect` folder in `C:\Users\{your user}\AppData\Local\chia-blockchain\app-{your chia version}\`
 
 ```shell
 #!/bin/bash
 
 while true; do
-	sleep 2
-	./chia.exe farm summary  | awk '{line=line "," $0} NR%10==0{print substr(line,1); line=""}' >> ../../../data_collect/farmer.log
+    sleep 2
+    ./chia.exe farm summary | awk '{line=line "," $0} NR%10==0{print substr(line,1); line=""}' >> ../../../data_collect/farmer.log
 done
 ```
 
 ### DataKit Pipeline Configuration
-Enter the `pipeline` directory under the DataKit installation directory and create `farm_log.p` and `chia_debug_log.p` to complete the log parsing work. Examples are as follows:
+Navigate to the `pipeline` directory under the DataKit installation directory and create `farm_log.p` and `chia_debug_log.p` to process the collected logs. Example as follows:
 #### chia_debug_log.p
 ```shell
 # chia_debug_log
@@ -57,7 +58,7 @@ Enter the `pipeline` directory under the DataKit installation directory and crea
 # strptime($timestamp, "2006-01-02T15:04:05") 
 # total_plots  Number of Plots
 # eligible_plots   Number of Eligible Plots
-# proofs_found   Number of Blocks Found
+# proofs_found   Number of Proofs Found
 # check_duration  Query Time
 
 # Log Example:
@@ -66,7 +67,7 @@ Enter the `pipeline` directory under the DataKit installation directory and crea
 
 grok(_, "%{TIMESTAMP_ISO8601:strptime} harvester chia.harvester.harvester: INFO \\s+ %{NUMBER:eligible_plots} plots were eligible for farming \\w+\\.\\.\\. Found %{NUMBER:proofs_found} proofs\\. Time: %{NUMBER:check_duration} s\\. Total %{NUMBER:total_plots} plots.*")
 
-# Convert to numeric types
+# Convert data types
 cast(eligible_plots, "float")
 cast(proofs_found, "float")
 cast(check_duration, "float")
@@ -80,13 +81,13 @@ drop_origin_data()
 # farm_log
 # Name	Description
 # farming_status  Farmer Status
-# xch_count	Chia Coins Mined
+# xch_count	 XCH Mined
 # last_farm_height  Farm Height
 # total_plot  Number of Plots
 # total_plots_size_GiB Plot Size in GiB
 # total_plots_size_TiB Plot Size in TiB
 # total_plots_size_PiB Plot Size in PiB
-# network_space   Network Power in PiB
+# network_space   Network Space in PiB
 
 # Log Example:
 #,Farming status: Farming,Total chia farmed: 0.0,User transaction fees: 0.0,Block rewards: 0.0,Last height farmed: 0,Plot count: 137,Total size of plots: 13.561 TiB,Estimated network space: 12457.266 PiB,Expected time to win: 5 months and 4 weeks,Note: log into your key using 'chia wallet show' to see rewards for each key
@@ -95,7 +96,7 @@ grok(_, ",Farming status: %{WORD:farming_status},Total chia farmed: %{NUMBER:xch
 grok(_, ",Farming status: %{WORD:farming_status},Total chia farmed: %{NUMBER:xch_count},User transaction fees: %{NUMBER},Block rewards: %{NUMBER},Last height farmed: %{NUMBER:last_farm_height},Plot count: %{NUMBER:total_plot},Total size of plots: %{NUMBER:total_plots_size_TiB} TiB,Estimated network space: %{NUMBER:network_space_PiB} PiB.*")
 grok(_, ",Farming status: %{WORD:farming_status},Total chia farmed: %{NUMBER:xch_count},User transaction fees: %{NUMBER},Block rewards: %{NUMBER},Last height farmed: %{NUMBER:last_farm_height},Plot count: %{NUMBER:total_plot},Total size of plots: %{NUMBER:total_plots_size_PiB} PiB,Estimated network space: %{NUMBER:network_space_PiB} PiB.*")
 
-# Convert to numeric types
+# Convert data types
 cast(farming_status, "str")
 cast(xch_count, "float")
 cast(last_farm_height, "float")
@@ -109,8 +110,8 @@ cast(network_space_PiB, "float")
 drop_origin_data()
 ```
 ### DataKit Log Collection Configuration
-Enter the `conf.d/log` directory under the DataKit installation directory, copy `logging.conf.sample` and rename it to `logging.conf`. Example configuration follows:
-> Note: Change the two logfiles directories to the location of your Chia log files.
+Navigate to the `conf.d/log` directory under the DataKit installation directory, copy `logging.conf.sample` and rename it to `logging.conf`. Example as follows:
+> Note: Change the two logfiles directories to your Chia log file location.
 
 ```yaml
 [[inputs.logging]]
@@ -177,37 +178,37 @@ Enter the `conf.d/log` directory under the DataKit installation directory, copy 
 ```
 #### Restart DataKit to Apply Changes
 
-## Monitoring Metrics Explanation
+## Monitoring Metrics Description
 
 ### 1 Harvesters
-Real-time monitoring of Harvesters on multiple hosts analyzes the availability, status, and profitability of different Harvesters in detail, enhancing Chia users' control over their Harvesters.
+Real-time monitoring of Harvesters across multiple hosts analyzes the availability, status, and profitability of different Harvesters in detail, enhancing Chia users' control over their Harvesters.
 
 ![image.png](../images/chai-havesters-3.png)
 
 | **Metric Description** | **Name** | **Measurement Standard** |
 | --- | --- | --- |
-| Network Power | `chia_farmer.network_space` | N/A |
-| Personal Power | `chia_farmer.total_plots_size` | N/A |
-| Farm Height | `chia_farmer.last_farm_height` | N/A |
-| Daily Expected Profit | `chia_harvester.expected_xch` | N/A |
-| Challenges Queried | `chia_harvester.count_eligible` | N/A |
-| Eligible Plots | `chia_harvester.eligible_plots` | N/A |
+| Network Space | `chia_farmer.network_space` | None |
+| Personal Space | `chia_farmer.total_plots_size` | None |
+| Farm Height | `chia_farmer.last_farm_height` | None |
+| Expected Daily Profit | `chia_harvester.expected_xch` | None |
+| Challenges Queried | `chia_harvester.count_eligible` | None |
+| Eligible Plots | `chia_harvester.eligible_plots` | None |
 | Blocks Found | `chia_harvester.proofs_found` | Performance Metric |
 | Average Challenge Query Duration | `chia_harvester.check_duration` | Performance Metric |
-| XCH Profit | `chia_farmer.xch_count` | N/A |
+| XCH Profit | `chia_farmer.xch_count` | None |
 
-#### Daily Expected Profit
-To ensure stable daily profit, maintain a steady increase in plot quantity to stabilize your share of network power. Sudden changes in daily expected profit may indicate offline Harvester nodes or rapid growth in network power leading to lower share. It's recommended to monitor daily expected profit and set alerts to ensure stable earnings.
+#### Expected Daily Profit
+To ensure stable daily profit, maintain a steady plot growth rate and stable network space share. If you notice rapid changes in expected daily profit, investigate whether any Harvester nodes are offline or if the network space has grown rapidly, reducing your share. Set alerts to monitor daily expected profit stability.
 
 #### Harvester Eligibility Rate
-To ensure stable earnings, monitor the number of eligible plots from Harvesters. When network and disk states are healthy, the eligibility rate should remain stable within a certain range. Significant fluctuations suggest potential issues with disk or network states.
+Monitor the number of eligible plots from Harvesters to ensure stable earnings. Under healthy network and disk conditions, eligibility rates should remain stable. Investigate disk and network issues if there are sudden fluctuations.
 
 #### Average Challenge Query Duration
-Monitor the average challenge query duration and set alerts to ensure it does not exceed 5 seconds. If it does, investigate network or disk conditions to ensure stable earnings.
+Monitor the average challenge query duration and set alerts to ensure it does not exceed 5 seconds. Investigate network or disk issues if the duration exceeds this threshold.
 
 ### 2 CPU Monitoring
 
-CPU monitoring helps analyze CPU load peaks and identify excessive CPU usage. This can improve CPU capacity or reduce load, find potential problems, and avoid unnecessary upgrade costs. CPU metrics also help identify unnecessary background processes and their impact on overall network performance.
+CPU monitoring helps analyze CPU load peaks and identify excessive CPU usage. It can improve CPU capacity or reduce load, find potential issues, and avoid unnecessary upgrades. CPU monitoring metrics also help identify unnecessary background processes and their impact on overall system performance.
 
 ![image.png](../images/chai-havesters-4.png)
 
@@ -217,7 +218,12 @@ CPU monitoring helps analyze CPU load peaks and identify excessive CPU usage. Th
 | CPU Usage | `cpu.usage_idle`<br />`cpu.usage_user`<br />`cpu.usage_system` | Resource Utilization |
 
 #### CPU Usage
-CPU usage can be divided into: `User Time` (percentage of time spent executing user processes), `System Time` (percentage of time spent executing kernel processes and interrupts), and `Idle Time` (percentage of time CPU is idle). For optimal CPU performance, the run queue for each CPU should not exceed 3. If the CPU is fully loaded, `User Time` should be between 65%-70%, `System Time` between 30%-35%, and `Idle Time` between 0%-5%.
+CPU usage can be divided into:
+- `User Time` (Percentage of time spent executing user processes)
+- `System Time` (Percentage of time spent executing kernel processes and interrupts)
+- `Idle Time` (Percentage of time CPU is idle)
+
+For optimal CPU performance, ensure the run queue does not exceed 3 for each CPU. When fully loaded, `User Time` should be around 65%~70%, `System Time` around 30%~35%, and `Idle Time` close to 0%~5%.
 
 ### 3 Memory Monitoring
 Memory is one of the main factors affecting Linux performance. Adequate memory resources directly impact application system performance.
@@ -232,7 +238,7 @@ Memory is one of the main factors affecting Linux performance. Adequate memory r
 | Memory Buffer | `mem.cached` | Resource Utilization |
 
 #### Memory Usage Percentage
-Closely monitor available memory usage because RAM contention inevitably leads to paging and performance degradation. Ensure the machine has enough RAM to meet your workload to maintain smooth operation. Persistent low memory availability can lead to segmentation faults and other serious issues. Remedial measures include increasing physical memory or enabling memory deduplication if possible.
+Closely monitor available memory usage because RAM contention can lead to paging and performance degradation. Ensure the machine has enough RAM to meet your workload. Persistent low memory availability can cause segmentation faults and other severe issues. Remedies include increasing physical memory or enabling memory page merging if possible.
 
 ### 4 Disk Monitoring
 
@@ -240,28 +246,28 @@ Closely monitor available memory usage because RAM contention inevitably leads t
 
 | **Metric Description** | **Name** | **Measurement Standard** |
 | --- | --- | --- |
-| Disk Health Status | `disk.health`<br />`disk.pre_fail` | Availability |
+| Disk Health | `disk.health`<br />`disk.pre_fail` | Availability |
 | Disk Space | `disk.free`<br />`disk.used` | Resource Utilization |
 | Disk Inodes | `disk.inodes_free`<br />`disk.inodes_used` | Resource Utilization |
-| Disk Read/Write | `diskio.read_bytes`<br />`diskio.write_bytes` | Resource Utilization |
+| Disk I/O | `diskio.read_bytes`<br />`diskio.write_bytes` | Resource Utilization |
 | Disk Temperature | `disk.temperature` | Availability |
 | Disk Model | `disk.device_model` | Basic Information |
-| Disk Read/Write Time | `diskio.read_time`<br />`disk.io.write_time` | Resource Utilization |
+| Disk I/O Time | `diskio.read_time`<br />`disk.io.write_time` | Resource Utilization |
 
 #### Disk Space
-Maintaining sufficient free disk space is essential for any operating system. Besides regular processes requiring disk space, core system processes store logs and other data on the disk. Set alerts when available disk space drops below 15% to ensure business continuity.
+Maintaining sufficient free disk space is essential for any operating system. Core system processes store logs and other data on disk. Configure alerts when available disk space drops below 15% to ensure continuous operation.
 
-#### Disk Read/Write Time
-These metrics track the average time spent on disk read/write operations. Values greater than 50 milliseconds indicate relatively high latency (less than 10 milliseconds is ideal). Consider transferring business tasks to faster disks to reduce latency. Set different alert thresholds based on server roles, as acceptable thresholds vary by role.
+#### Disk I/O Time
+These metrics track the average time spent on disk read/write operations. Set alerts for values greater than 50 milliseconds (ideally less than 10 milliseconds). For high-latency servers, consider faster disks.
 
-#### Disk Read/Write
-If your server hosts resource-intensive applications, monitor disk I/O rates. Disk read/write metrics aggregate read (`diskio.read_bytes`) and write (`diskio.write_bytes`) activities. High disk activity can degrade service and cause system instability, especially when combined with high RAM and page file usage. Recommendations include increasing the number of disks used, using faster disks, increasing RAM reserved for file system caching, and distributing workloads across more machines if possible.
+#### Disk I/O
+If your server hosts resource-intensive applications, monitor disk I/O rates. High disk activity can degrade service quality and system stability, especially with high RAM and page file usage. Consider adding more disks, using faster disks, increasing file system cache RAM, or distributing workloads across more machines.
 
 #### Disk Temperature
-For critical business operations, monitor disk working temperature continuously. Temperatures exceeding 65°C (SSD above 75°C) warrant attention. Overheating protection mechanisms can prevent damage and data loss due to overheating disks.
+Set alerts to monitor disk temperature, especially if it exceeds 65°C (75°C for SSDs). Overheating can damage disks and result in data loss.
 
 ### 5 Network Monitoring
-Your applications and infrastructure components depend on increasingly complex architectures. Whether you're running monolithic applications or microservices, deployed to cloud infrastructure, private data centers, or both, virtualized infrastructure enables developers to respond to any scale and create dynamic network patterns that traditional network monitoring tools don't match. To provide visibility into each component and all connections between them, Datadog introduces network performance monitoring for the cloud era.
+Your applications and infrastructure components depend on increasingly complex architectures. Whether you run monolithic applications or microservices, deploy to cloud infrastructure, private data centers, or both, virtualized infrastructure allows developers to respond at scale and create dynamic network patterns that traditional monitoring tools may not match. Datadog provides network performance monitoring tailored for the cloud era.
 
 ![image.png](../images/chai-havesters-7.png)
 
@@ -272,21 +278,21 @@ Your applications and infrastructure components depend on increasingly complex a
 | Retransmissions | `net.tcp_retranssegs` | Availability |
 
 #### Network Traffic
-These metrics together measure the total network throughput of a given network interface. For most consumer hardware, NIC transmission speed is at least 1 Gbps. Network bottlenecks are unlikely except in extreme cases. Set alerts when interface bandwidth exceeds 80% utilization (for a 1 Gbps link, this is 100 MBps).
+These metrics measure total network throughput for a given network interface. For most consumer hardware, NIC transmission speeds are 1 Gbps or higher. Network bottlenecks are unlikely except in extreme cases. Set alerts when interface bandwidth exceeds 80% utilization (for 1 Gbps links, this is about 100 MB/s).
 
 #### Retransmissions
-TCP retransmissions are common but not errors, although they can indicate underlying issues. Retransmissions are often due to network congestion and high bandwidth consumption. Monitor this metric because excessive retransmissions can cause significant application delays. If the sender doesn't receive acknowledgment of sent packets, it delays sending more packets (typically for about 1 second), increasing delay and congestion-related speed.
+TCP retransmissions occur frequently but are not errors. They can indicate network congestion and high bandwidth consumption. Monitor this metric as excessive retransmissions can cause significant application delays. If the sender does not receive acknowledgment for transmitted packets, it will delay sending more packets (usually for about 1 second), increasing latency.
 
-If not caused by network congestion, retransmissions may indicate faulty network hardware. A small number of dropped packets and high retransmission rates can lead to excessive buffering. Regardless of the cause, tracking this metric helps understand seemingly random fluctuations in network application response times.
+High packet drop rates and retransmission rates can lead to excessive buffering. Regardless of the cause, track this metric to understand seemingly random variations in network application response times.
 
 ## Conclusion
-In this article, we discussed some of the most useful metrics you can monitor to retain labels during mining. If you are conducting mining operations, monitoring the metrics listed below will give you a good understanding of the mine's operational status and availability:
+In this article, we covered some of the most useful metrics to monitor for maintaining labels during mining. If you are running a mining operation, monitoring the metrics listed below will give you a good understanding of the mine's health and availability:
 
-- **Disk Read/Write Latency**
+- **Disk I/O Latency**
 - **Disk Temperature**
 - **Network Traffic**
-- **Daily Expected Profit**
+- **Expected Daily Profit**
 - **Harvester Eligibility Rate**
 - **Processes**
 
-Ultimately, you will identify additional metrics relevant to your specific use case. You can also learn more via [Guance](http://guance.com).
+Ultimately, you will identify additional metrics relevant to your specific use case. You can also learn more through [<<< custom_key.brand_name >>>](http://guance.com).

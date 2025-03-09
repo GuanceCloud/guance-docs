@@ -1,17 +1,19 @@
-## 1 GuanceDB Storage Component Expansion
-Problem Description: Due to increased access of metrics data, it is necessary to expand the GuanceDB storage component.
+## 1 Expand the GuanceDB Storage Component
 
-Solution:
+### Problem Description:
+Due to an increase in metrics data ingestion, it is necessary to expand the GuanceDB storage component.
 
-Expand the storage component
+### Solution:
+
+#### Expand the Storage Component
 ```shell
 # Change the number of replicas according to actual conditions
 kubectl -n middleware scale sts guancedb-cluster-guance-storage --replicas=2
 ```
 
-Modify insert and select container configurations
+#### Modify Insert and Select Container Configurations
 ```shell
-# Modify insert and select configurations
+# Edit the insert and select configurations
 kubectl -n middleware edit deploy guancedb-cluster-guance-select
 kubectl -n middleware edit deploy guancedb-cluster-guance-insert
 # Add the newly added pods to the startup parameters
@@ -19,7 +21,10 @@ kubectl -n middleware edit deploy guancedb-cluster-guance-insert
 - --storageNode=guancedb-cluster-guance-storage-2.guancedb-cluster-guance-storage.middleware.svc.cluster.local:8401
 ```
 
-## 2 Error Deploying GuanceDB in a Container
-Problem Description: When deploying GuanceDB in a container, the service fails to start with the error message: "This program can only be run on AMD64 processors with v3 microarchitecture support."
+## 2 Deployment Error of GuanceDB in a Container
 
-Solution: The provided server's CPU architecture is not supported. Provide a server that supports V3 architecture.
+### Problem Description:
+When deploying GuanceDB inside a container, the service fails to start with the error message: "This program can only be run on AMD64 processors with v3 microarchitecture support."
+
+### Solution:
+The provided server's CPU architecture is not supported. Provide a server that supports the V3 architecture.

@@ -1,16 +1,16 @@
 ---
-title: 'kube Proxy'
-summary: 'By tracking the operational metrics of kube-proxy, it helps to understand information such as the load, response time, and synchronization status of the network proxy'
+title     : 'kube Proxy'
+summary   : 'By tracking the runtime metrics of kube-proxy, it helps to understand the load, response time, synchronization status, and other information of the network proxy.'
 __int_icon: 'icon/kube_proxy'
-dashboard:
-  - desc: 'kube Proxy'
-    path: 'dashboard/en/kube_proxy'
-monitor:
-  - desc: 'kube Proxy'
-    path: 'monitor/en/kube_proxy'
+dashboard :
+  - desc  : 'kube Proxy'
+    path  : 'dashboard/en/kube_proxy'
+monitor   :
+  - desc  : 'kube Proxy'
+    path  : 'monitor/en/kube_proxy'
 ---
 
-By tracking the operational metrics of kube-proxy, it helps to understand information such as the load, response time, and synchronization status of the network proxy
+By tracking the runtime metrics of kube-proxy, it helps to understand the load, response time, synchronization status, and other information of the network proxy.
 
 ## Configuration {#config}
 
@@ -20,7 +20,7 @@ By tracking the operational metrics of kube-proxy, it helps to understand inform
 
 ### Configure Datakit
 
-- Navigate to the `conf.d/prom` directory under the Datakit installation directory, copy `prom.conf.sample` and rename it to `kube-proxy.conf`
+- Go to the `conf.d/prom` directory under the Datakit installation directory, copy `prom.conf.sample` and rename it to `kube-proxy.conf`
 
 ```shell
 cp prom.conf.sample kube-proxy.conf
@@ -69,8 +69,7 @@ cp prom.conf.sample kube-proxy.conf
     service = "service_name"
 ```
 
-- Restart Datakit
-Execute the following command
+- Restart Datakit by executing the following command
 
 ```shell
 datakit service -R
@@ -78,9 +77,9 @@ datakit service -R
 
 ## Metrics {#metric}
 
-### Kube-proxy Mearsurement Set
+### Kube-proxy Metrics Set
 
-Kube Proxy metrics are located under the kubeproxy mearsurement set. Here is an explanation of the Kube Proxy metrics
+Kube Proxy metrics are located under the kubeproxy Metrics set. The following introduces relevant explanations for Kube Proxy metrics.
 
 | Metrics | Description | Unit |
 |:--------|:------------|:-----|
@@ -90,8 +89,8 @@ Kube Proxy metrics are located under the kubeproxy mearsurement set. Here is an 
 |`sync_proxy_rules_duration_seconds_bucket`|Distribution of sync proxy rules operation times| s |
 |`sync_proxy_rules_duration_seconds_count`|Total number of sync proxy rules operations| count |
 |`sync_proxy_rules_duration_seconds_sum`|Total time spent on all sync proxy rules operations| count |
-|`sync_proxy_rules_endpoint_changes_pending`|Number of endpoint changes pending synchronization| count |
+|`sync_proxy_rules_endpoint_changes_pending`|Number of endpoint changes waiting to be synchronized| count |
 |`sync_proxy_rules_endpoint_changes_total`|Total number of endpoint changes synchronized| count |
 |`sync_proxy_rules_iptables_restore_failures_total`|Total number of IPTables rule restoration failures| count |
 |`sync_proxy_rules_no_local_endpoints_total`|Number of services with no local endpoints| count |
-|`sync_proxy_rules_service_changes_pending`|Number of service configuration changes pending synchronization| count |
+|`sync_proxy_rules_service_changes_pending`|Number of service configuration changes waiting to be synchronized| count |

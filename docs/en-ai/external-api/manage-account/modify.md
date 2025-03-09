@@ -1,8 +1,8 @@
-# 【Modify Management Backend Account】
+# Modify 【Super Account】
 
 ---
 
-<br />**POST /api/v1/super-account/\{account_uuid\}/modify**
+<br />**POST /api/v1/super-account/{account_uuid}/modify**
 
 ## Overview
 
@@ -20,14 +20,14 @@
 
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| username | string |  | Login account<br>Example: supper_man@zhuyun.com <br>Allow null: False <br> |
-| password | string |  | Login password<br>Example: I am password <br>Allow null: False <br> |
-| email | None |  | Email address<br>Example: supper_man@zhuyun.com <br>Allow null: False <br>$isEmail: True <br> |
-| name | string |  | Username<br>Example: supper_man <br>Allow null: False <br> |
-| role | string |  | Login role (admin/dev)<br>Example: admin <br>Allow null: False <br> |
-| mobile | string |  | Phone number<br>Allow null: False <br> |
-| exterId | string |  | External ID - This parameter is uncertain and may be removed<br>Allow null: False <br> |
-| extend | json |  | Additional information<br>Allow null: False <br> |
+| username | string |  | Login account<br>Example: supper_man@zhuyun.com <br>Can be empty: False <br> |
+| password | string |  | Login password<br>Example: I am password <br>Can be empty: False <br> |
+| email | None |  | Email address<br>Example: supper_man@zhuyun.com <br>Can be empty: False <br>$isEmail: True <br> |
+| name | string |  | Username<br>Example: supper_man <br>Can be empty: False <br> |
+| role | string |  | Login role (admin/dev)<br>Example: admin <br>Can be empty: False <br> |
+| mobile | string |  | Phone number<br>Can be empty: False <br> |
+| exterId | string |  | External ID - This parameter is undefined and may be removed<br>Can be empty: False <br> |
+| extend | json |  | Additional information<br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 

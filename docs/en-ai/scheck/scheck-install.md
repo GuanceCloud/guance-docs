@@ -4,7 +4,7 @@
 - Release Date: 2023-04-06 11:17:57
 - Supported Operating Systems: windows/amd64, windows/386, linux/arm, linux/arm64, linux/386, linux/amd64
 
-This document introduces the basic installation of Scheck.
+This document describes the basic installation of Scheck.
 
 ## Installation {#install}
 
@@ -12,13 +12,13 @@ This document introduces the basic installation of Scheck.
 === "Linux"
 
     ```Shell
-    sudo -- bash -c "$(curl -L https://static.guance.com/security-checker/install.sh)"
+    sudo -- bash -c "$(curl -L https://<<< custom_key.static_domain >>>/security-checker/install.sh)"
     ```
 
 === "Windows"
 
     ```powershell
-    Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://static.guance.com/security-checker/install.ps1 -destination .install.ps1; powershell .install.ps1;
+    Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://<<< custom_key.static_domain >>>/security-checker/install.ps1 -destination .install.ps1; powershell .install.ps1;
     ```
 <!-- markdownlint-enable MD046 -->
 
@@ -28,13 +28,13 @@ This document introduces the basic installation of Scheck.
 === "Linux"
 
     ```Shell
-    SC_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/security-checker/install.sh)"
+    SC_UPGRADE=1 bash -c "$(curl -L https://<<< custom_key.static_domain >>>/security-checker/install.sh)"
     ```
 
 === "Windows"
 
     ```powershell
-    $env:SC_UPGRADE;Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://static.guance.com/security-checker/install.ps1 -destination .install.ps1; powershell .install.ps1;
+    $env:SC_UPGRADE;Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://<<< custom_key.static_domain >>>/security-checker/install.ps1 -destination .install.ps1; powershell .install.ps1;
     ```
 <!-- markdownlint-enable MD046 -->
 
@@ -46,6 +46,6 @@ systemctl start/stop/restart scheck
 service scheck start/stop/restart
 ```
 
-Other related links:
+Other relevant links:
 
-- For basic usage of Scheck, refer to [Getting Started with Scheck](scheck-how-to.md)
+- For basic usage of Scheck, refer to [Scheck Getting Started](scheck-how-to.md)

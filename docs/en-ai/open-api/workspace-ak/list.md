@@ -8,12 +8,11 @@
 Get the list of keys
 
 
-
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description              |
+| Parameter Name | Type   | Required | Description               |
 |:--------------|:-------|:--------|:-------------------------|
-| search        | string | No      | Search by name<br>Example: supper_workspace <br>Allow empty: False <br> |
+| search        | string |         | Search by name<br>Example: supper_workspace <br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 

@@ -13,7 +13,7 @@
 
 | Parameter Name | Type   | Required | Description              |
 |:--------------|:-------|:--------|:-------------------------|
-| lgmp_uuid     | string | Y       | ID of the mapping configuration<br> |
+| lgmp_uuid     | string | Y       | Mapping configuration ID <br> |
 
 
 ## Additional Parameter Notes

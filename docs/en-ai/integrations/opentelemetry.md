@@ -1,6 +1,6 @@
 ---
 title     : 'OpenTelemetry'
-summary   : 'Receiving OpenTelemetry Metrics, Logs, and APM Data'
+summary   : 'Receive OpenTelemetry Metrics, logs, APM data'
 __int_icon: 'icon/opentelemetry'
 tags      :
   - 'OTEL'
@@ -9,7 +9,7 @@ dashboard :
   - desc  : 'Opentelemetry JVM Monitoring View'
     path  : 'dashboard/en/opentelemetry'
 monitor   :
-  - desc  : 'None'
+  - desc  : 'None for now'
     path  : '-'
 ---
 
@@ -18,9 +18,9 @@ monitor   :
 
 ---
 
-OpenTelemetry (hereinafter referred to as OTEL) is a CNCF observability project aimed at providing standardized solutions in the observability domain. It addresses standardization issues related to observable data models, collection, processing, and export.
+OpenTelemetry (hereinafter referred to as OTEL) is a CNCF observability project aimed at providing standardized solutions in the observability domain, addressing standardization issues of observable data models, collection, processing, and export.
 
-OTEL is a set of standards and tools designed to manage observable data such as traces, metrics, and logs.
+OTEL is a collection of standards and tools designed to manage observable data such as traces, metrics, and logs.
 
 This document aims to introduce how to configure and enable OTEL data ingestion on Datakit, along with best practices for Java and Go.
 
@@ -30,26 +30,26 @@ This document aims to introduce how to configure and enable OTEL data ingestion 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/opentelemetry` directory under the DataKit installation directory, copy `opentelemetry.conf.sample`, and rename it to `opentelemetry.conf`. An example is shown below:
+    Enter the `conf.d/opentelemetry` directory under the DataKit installation directory, copy `opentelemetry.conf.sample` and rename it to `opentelemetry.conf`. An example is as follows:
 
     ```toml
         
     [[inputs.opentelemetry]]
-      ## customer_tags will work as a whitelist to prevent tags from being sent to the data center.
-      ## All . will be replaced with _, like this:
-      ## "project.name" to send to Guance center becomes "project_name"
+      ## customer_tags will work as a whitelist to prevent tags send to data center.
+      ## All . will replace to _ ,like this :
+      ## "project.name" to send to Guance center is "project_name"
       # customer_tags = ["sink_project", "custom.otel.tag"]
     
       ## Keep rare tracing resources list switch.
-      ## If some resources are rare enough (not present within 1 hour), these resources will always be sent
-      ## to the data center without considering samplers and filters.
+      ## If some resources are rare enough(not present in 1 hour), those resource will always send
+      ## to data center and do not consider samplers and filters.
       # keep_rare_resource = false
     
-      ## By default, every error present in span will be sent to the data center and ignore any filters or
-      ## sampler. If you want to exclude certain error statuses, you can set the error status list here.
+      ## By default every error presents in span will be send to data center and omit any filters or
+      ## sampler. If you want to get rid of some error status, you can set the error status list here.
       # omit_err_status = ["404"]
     
-      ## Compatible with ddtrace: It is possible to make OTEL Trace compatible with DDTrace trace
+      ## Compatible ddtrace: It is possible to compatible OTEL Trace with DDTrace trace
       # compatible_ddtrace=false
     
       ## Split service.name from xx.system.
@@ -60,8 +60,8 @@ This document aims to introduce how to configure and enable OTEL data ingestion 
       # del_message = true
     
       ## Ignore tracing resources map like service:[resources...].
-      ## The service name is the full service name in the current application.
-      ## The resource list uses regular expressions to block resource names.
+      ## The service name is the full service name in current application.
+      ## The resource list is regular expressions uses to block resource names.
       ## If you want to block some resources universally under all services, you can set the
       ## service name as "*". Note: double quotes "" cannot be omitted.
       # [inputs.opentelemetry.close_resource]
@@ -80,43 +80,43 @@ This document aims to introduce how to configure and enable OTEL data ingestion 
         # key2 = "value2"
         # ...
     
-      ## Threads config controls how many goroutines an agent can start to handle HTTP requests.
+      ## Threads config controls how many goroutines an agent cloud start to handle HTTP request.
       ## buffer is the size of jobs' buffering of worker channel.
-      ## threads is the total number of goroutines at runtime.
+      ## threads is the total number fo goroutines at running time.
       # [inputs.opentelemetry.threads]
         # buffer = 100
         # threads = 8
     
-      ## Storage config sets up a local storage space on the hard drive to cache trace data.
+      ## Storage config a local storage space in hard dirver to cache trace data.
       ## path is the local file path used to cache data.
-      ## capacity is the total space size (MB) used to store data.
+      ## capacity is total space size(MB) used to store data.
       # [inputs.opentelemetry.storage]
         # path = "./otel_storage"
         # capacity = 5120
     
       ## OTEL agent HTTP config for trace and metrics
-      ## If enable is set to true, trace and metrics will be received on their respective paths, by default:
-      ## trace : /otel/v1/trace
-      ## metric: /otel/v1/metric
-      ## and the client side should be configured properly with Datakit listening port (default: 9529)
+      ## If enable set to be true, trace and metrics will be received on path respectively, by default is:
+      ## trace : /otel/v1/traces
+      ## metric: /otel/v1/metrics
+      ## and the client side should be configured properly with Datakit listening port(default: 9529)
       ## or custom HTTP request path.
-      ## for example http://127.0.0.1:9529/otel/v1/trace
+      ## for example http://127.0.0.1:9529/otel/v1/traces
       ## The acceptable http_status_ok values will be 200 or 202.
       [inputs.opentelemetry.http]
        http_status_ok = 200
-       trace_api = "/otel/v1/trace"
-       metric_api = "/otel/v1/metric"
+       trace_api = "/otel/v1/traces"
+       metric_api = "/otel/v1/metrics"
        logs_api = "/otel/v1/logs"
     
       ## OTEL agent GRPC config for trace and metrics.
-      ## GRPC services for trace and metrics can be enabled respectively by setting either to true.
-      ## add is the address for the GRPC server to listen on.
+      ## GRPC services for trace and metrics can be enabled respectively as setting either to be true.
+      ## add is the listening on address for GRPC server.
       [inputs.opentelemetry.grpc]
        addr = "127.0.0.1:4317"
     
       ## If 'expected_headers' is well configured, then the obligation of sending certain wanted HTTP headers is on the client side,
-      ## otherwise HTTP status code 400 (bad request) will be provoked.
-      ## Note: expected_headers will affect both trace and metrics if set up.
+      ## otherwise HTTP status code 400(bad request) will be provoked.
+      ## Note: expected_headers will be effected on both trace and metrics if setted up.
       # [inputs.opentelemetry.expected_headers]
       # ex_version = "1.2.3"
       # ex_name = "env_resource_name"
@@ -128,9 +128,9 @@ This document aims to introduce how to configure and enable OTEL data ingestion 
 
 === "Kubernetes"
 
-    You can inject collector configurations via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable collectors.
+    You can enable collectors via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
 
-    Environment variables can also modify configuration parameters (need to add as default collectors in ENV_DEFAULT_ENABLED_INPUTS):
+    Environment variables can also be used to modify configuration parameters (they need to be added as default collectors in ENV_DEFAULT_ENABLED_INPUTS):
 
     - **ENV_INPUT_OTEL_CUSTOMER_TAGS**
     
@@ -138,9 +138,9 @@ This document aims to introduce how to configure and enable OTEL data ingestion 
     
         **Field Type**: JSON
     
-        **Collector Config Field**: `customer_tags`
+        **Collector Configuration Field**: `customer_tags`
     
-        **Example**: `["sink_project", "custom.tag"]`
+        **Example**: [\"project_id\", \"custom.tag\"]
     
     - **ENV_INPUT_OTEL_KEEP_RARE_RESOURCE**
     
@@ -148,27 +148,27 @@ This document aims to introduce how to configure and enable OTEL data ingestion 
     
         **Field Type**: Boolean
     
-        **Collector Config Field**: `keep_rare_resource`
+        **Collector Configuration Field**: `keep_rare_resource`
     
         **Default Value**: false
     
     - **ENV_INPUT_OTEL_COMPATIBLE_DD_TRACE**
     
-        Convert trace_id to decimal, compatible with DDTrace
+        Convert trace_id to decimal to be compatible with DDTrace
     
         **Field Type**: Boolean
     
-        **Collector Config Field**: `compatible_dd_trace`
+        **Collector Configuration Field**: `compatible_dd_trace`
     
         **Default Value**: false
     
     - **ENV_INPUT_OTEL_SPILT_SERVICE_NAME**
     
-        Extract xx.system from span.Attributes to replace service name
+        Extract service name from span.Attributes
     
         **Field Type**: Boolean
     
-        **Collector Config Field**: `spilt_service_name`
+        **Collector Configuration Field**: `spilt_service_name`
     
         **Default Value**: false
     
@@ -178,7 +178,7 @@ This document aims to introduce how to configure and enable OTEL data ingestion 
     
         **Field Type**: Boolean
     
-        **Collector Config Field**: `del_message`
+        **Collector Configuration Field**: `del_message`
     
         **Default Value**: false
     
@@ -188,17 +188,17 @@ This document aims to introduce how to configure and enable OTEL data ingestion 
     
         **Field Type**: JSON
     
-        **Collector Config Field**: `omit_err_status`
+        **Collector Configuration Field**: `omit_err_status`
     
         **Example**: ["404", "403", "400"]
     
     - **ENV_INPUT_OTEL_CLOSE_RESOURCE**
     
-        Ignore specified server's tracing (regex match)
+        Ignore specified server tracing (regex match)
     
         **Field Type**: JSON
     
-        **Collector Config Field**: `close_resource`
+        **Collector Configuration Field**: `close_resource`
     
         **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
     
@@ -208,7 +208,7 @@ This document aims to introduce how to configure and enable OTEL data ingestion 
     
         **Field Type**: Float
     
-        **Collector Config Field**: `sampler`
+        **Collector Configuration Field**: `sampler`
     
         **Example**: 0.3
     
@@ -218,7 +218,7 @@ This document aims to introduce how to configure and enable OTEL data ingestion 
     
         **Field Type**: JSON
     
-        **Collector Config Field**: `threads`
+        **Collector Configuration Field**: `threads`
     
         **Example**: {"buffer":1000, "threads":100}
     
@@ -228,7 +228,7 @@ This document aims to introduce how to configure and enable OTEL data ingestion 
     
         **Field Type**: JSON
     
-        **Collector Config Field**: `storage`
+        **Collector Configuration Field**: `storage`
     
         **Example**: `{"storage":"./otel_storage", "capacity": 5120}`
     
@@ -238,9 +238,9 @@ This document aims to introduce how to configure and enable OTEL data ingestion 
     
         **Field Type**: JSON
     
-        **Collector Config Field**: `http`
+        **Collector Configuration Field**: `http`
     
-        **Example**: `{"enable":true, "http_status_ok": 200, "trace_api": "/otel/v1/trace", "metric_api": "/otel/v1/metric"}`
+        **Example**: `{"enable":true, "http_status_ok": 200, "trace_api": "/otel/v1/traces", "metric_api": "/otel/v1/metrics"}`
     
     - **ENV_INPUT_OTEL_GRPC**
     
@@ -248,27 +248,27 @@ This document aims to introduce how to configure and enable OTEL data ingestion 
     
         **Field Type**: JSON
     
-        **Collector Config Field**: `grpc`
+        **Collector Configuration Field**: `grpc`
     
         **Example**: {"trace_enable": true, "metric_enable": true, "addr": "127.0.0.1:4317"}
     
     - **ENV_INPUT_OTEL_EXPECTED_HEADERS**
     
-        Configure client-side HTTP headers
+        Configure HTTP headers used by clients
     
         **Field Type**: JSON
     
-        **Collector Config Field**: `expected_headers`
+        **Collector Configuration Field**: `expected_headers`
     
         **Example**: {"ex_version": "1.2.3", "ex_name": "env_resource_name"}
     
     - **ENV_INPUT_OTEL_TAGS**
     
-        Custom tags. If the configuration file has the same named tags, they will override it
+        Custom tags. If there are tags with the same name in the configuration file, they will override it
     
         **Field Type**: JSON
     
-        **Collector Config Field**: `tags`
+        **Collector Configuration Field**: `tags`
     
         **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 
@@ -276,40 +276,42 @@ This document aims to introduce how to configure and enable OTEL data ingestion 
 
 ### Precautions {#attentions}
 
-1. It is recommended to use the gRPC protocol, which offers higher compression rates, faster serialization, and better efficiency.
-2. Since [Datakit 1.10.0](../datakit/changelog.md#cl-1.10.0), HTTP protocol routes are configurable. Default request paths (Trace/Metric) are `/otel/v1/trace`, `/otel/v1/logs`, and `/otel/v1/metric`.
-3. When dealing with `float/double` type data, it retains up to two decimal places.
-4. Both HTTP and gRPC support gzip compression formats. In exporters, environment variables can be configured to enable gzip: `OTEL_EXPORTER_OTLP_COMPRESSION = gzip`, which is not enabled by default.
-5. HTTP protocol request formats support both JSON and Protobuf serialization formats. However, gRPC only supports Protobuf.
+1. It is recommended to use gRPC protocol, which has advantages such as high compression ratio, fast serialization, and higher efficiency.
+2. Since [Datakit 1.10.0](../datakit/changelog.md#cl-1.10.0), HTTP protocol routes are configurable. Default request paths (Trace/Metric) are `/otel/v1/traces`, `/otel/v1/logs`, and `/otel/v1/metrics`.
+3. When dealing with `float/double` type data, only two decimal places will be retained.
+4. Both HTTP and gRPC support gzip compression format. In exporters, environment variables can be configured to enable it: `OTEL_EXPORTER_OTLP_COMPRESSION = gzip`, which is disabled by default.
+5. HTTP protocol supports both JSON and Protobuf serialization formats. However, gRPC only supports Protobuf.
 
 <!-- markdownlint-disable MD046 -->
 ???+ tips
 
-    DDTrace trace data service names are based on service names or referenced third-party libraries, while OTEL collector service names follow the definition of `otel.service.name`.
-    To separate service names, an additional field configuration is added: `spilt_service_name = true`.
-    Service names are extracted from trace data labels. For example, DB type label `db.system=mysql` makes the service name Mysql; if it's MQ type: `messaging.system=kafka`, then the service name is Kafka.
-    By default, these labels are extracted: `"db.system" "rpc.system" "messaging.system"`.
+    Service names in DDTrace trace data are named based on the service name or referenced third-party libraries, while OTEL collector service names are defined according to `otel.service.name`.
+    To separate display service names, an additional field configuration is added: `spilt_service_name = true`.
+    The service name is extracted from the labels in the trace data, for example, DB type label `db.system=mysql`, then the service name is Mysql. If it's MQ type: `messaging.system=kafka`, then the service name is Kafka.
+    By default, it extracts from these three labels: `"db.system"` `"rpc.system"` `"messaging.system"`.
+<!-- markdownlint-enable -->
 
-When using the OTEL HTTP exporter, pay attention to environment variable configurations. Since Datakit defaults to `/otel/v1/trace`, `/otel/v1/logs`, and `/otel/v1/metric`, explicit configuration of `trace` and `metric` is required when using the HTTP protocol.
+
+When using the OTEL HTTP exporter, pay attention to the environment variable configuration. Since Datakit's default configuration is `/otel/v1/traces` `/otel/v1/logs` and `/otel/v1/metrics`, if you want to use the HTTP protocol, you need to configure `trace` and `metric` separately,
 
 ## Agent V2 Version {#v2}
 
-The V2 version defaults to using `otlp exporter` changing the previous `grpc` to `http/protobuf`. This can be set via the command `-Dotel.exporter.otlp.protocol=grpc`, or use the default `http/protobuf`.
+The V2 version defaults to using `otlp exporter` changing the previous `grpc` to `http/protobuf`. This can be set using the command `-Dotel.exporter.otlp.protocol=grpc`, or use the default `http/protobuf`.
 
-Using HTTP requires explicit configuration of each exporter path, such as:
+If using HTTP, each exporter path needs explicit configuration, for example:
 
 ```shell
 java -javaagent:/usr/local/ddtrace/opentelemetry-javaagent-2.5.0.jar \
   -Dotel.exporter=otlp \
   -Dotel.exporter.otlp.protocol=http/protobuf \
   -Dotel.exporter.otlp.logs.endpoint=http://localhost:9529/otel/v1/logs \
-  -Dotel.exporter.otlp.traces.endpoint=http://localhost:9529/otel/v1/trace \
-  -Dotel.exporter.otlp.metrics.endpoint=http://localhost:9529/otel/v1/metric \
+  -Dotel.exporter.otlp.traces.endpoint=http://localhost:9529/otel/v1/traces \
+  -Dotel.exporter.otlp.metrics.endpoint=http://localhost:9529/otel/v1/metrics \
   -Dotel.service.name=app \
   -jar app.jar
 ```
 
-For gRPC protocol, it must be explicitly configured; otherwise, it defaults to HTTP protocol:
+If using gRPC protocol, it must be explicitly configured; otherwise, it defaults to HTTP protocol:
 
 ```shell
 java -javaagent:/usr/local/ddtrace/opentelemetry-javaagent-2.5.0.jar \
@@ -320,37 +322,38 @@ java -javaagent:/usr/local/ddtrace/opentelemetry-javaagent-2.5.0.jar \
   -jar app.jar
 ```
 
-Logs are enabled by default. To disable log collection, leave the exporter configuration empty: `-Dotel.logs.exporter=none`
+Logs are enabled by default. To disable log collection, set the exporter configuration to empty: `-Dotel.logs.exporter=none`
 
-For more information about significant changes in V2, please refer to the official documentation or GitHub GuanceCloud release notes: [Github-GuanCe-v2.11.0](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/releases/tag/v2.11.0-guance){:target="_blank"}
+For more significant changes in V2, please refer to the official documentation or GitHub Guance release notes: [Github-GuanCe-v2.11.0](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/releases/tag/v2.11.0-guance){:target="_blank"}
 
 ## Common Commands {#sdk-configuration}
 
-| ENV                           | Command                       | Description                                       | Default                    | Notes                                           |
-|:------------------------------|:------------------------------|:-----------------------------------------|:------------------------|:---------------------------------------------|
-| `OTEL_SDK_DISABLED`           | `otel.sdk.disabled`           | Disable SDK                                   | false                   | Disables all trace metrics generation                             |
-| `OTEL_RESOURCE_ATTRIBUTES`    | `otel.resource.attributes`    | "service.name=App,username=liu"          |                         | Each span will include these tags                        |
-| `OTEL_SERVICE_NAME`           | `otel.service.name`           | Service name, equivalent to above "service.name=App"             |                                  | Higher priority than above                                      |
-| `OTEL_LOG_LEVEL`              | `otel.log.level`              | Log level                                     | `info`                          |                                              |
-| `OTEL_PROPAGATORS`            | `otel.propagators`            | Propagation protocols                                     | `tracecontext,baggage`          |                                              |
-| `OTEL_TRACES_SAMPLER`         | `otel.traces.sampler`         | Sampling                                       | `parentbased_always_on`         |                                              |
-| `OTEL_TRACES_SAMPLER_ARG`     | `otel.traces.sampler.arg`     | Sampling parameter                                | 1.0                             | 0 - 1.0                                      |
-| `OTEL_EXPORTER_OTLP_PROTOCOL` | `otel.exporter.otlp.protocol` | Protocol options: `grpc`,`http/protobuf`,`http/json` | gRPC                            |                                              |
-| `OTEL_EXPORTER_OTLP_ENDPOINT` | `otel.exporter.otlp.endpoint` | OTLP endpoint                                  | <http://localhost:4317>                  | <http://datakit-endpoint:9529/otel/v1/trace> |
-| `OTEL_TRACES_EXPORTER`        | `otel.traces.exporter`        | Trace exporter                                    | `otlp`                                   |                                              |
-| `OTEL_LOGS_EXPORTER`          | `otel.logs.exporter`          | Log exporter                                    | `otlp`                                   | OTEL V1 needs explicit configuration, otherwise it is not enabled                     |
+| ENV                           | Command                       | Description                                       | Default                    | Notes                                            |
+|:------------------------------|:------------------------------|:-----------------------------------------|:------------------------|:----------------------------------------------|
+| `OTEL_SDK_DISABLED`           | `otel.sdk.disabled`           | Disable SDK                                   | false                   | No trace metrics information will be generated after disabling                            |
+| `OTEL_RESOURCE_ATTRIBUTES`    | `otel.resource.attributes`    | "service.name=App,username=liu"          |                         | Each span will have this tag information                         |
+| `OTEL_SERVICE_NAME`           | `otel.service.name`           | Service name, equivalent to above "service.name=App"             |                                  | Higher priority than the above                                       |
+| `OTEL_LOG_LEVEL`              | `otel.log.level`              | Log level                                     | `info`                          |                                               |
+| `OTEL_PROPAGATORS`            | `otel.propagators`            | Propagation protocol                                     | `tracecontext,baggage`          |                                               |
+| `OTEL_TRACES_SAMPLER`         | `otel.traces.sampler`         | Sampling                                       | `parentbased_always_on`         |                                               |
+| `OTEL_TRACES_SAMPLER_ARG`     | `otel.traces.sampler.arg`     | Sampling parameter                                | 1.0                             | 0 - 1.0                                       |
+| `OTEL_EXPORTER_OTLP_PROTOCOL` | `otel.exporter.otlp.protocol` | Protocol includes: `grpc`,`http/protobuf`,`http/json` | gRPC                            |                                               |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | `otel.exporter.otlp.endpoint` | OTLP endpoint                                  | <http://localhost:4317>                  | <http://datakit-endpoint:9529/otel/v1/traces> |
+| `OTEL_TRACES_EXPORTER`        | `otel.traces.exporter`        | Trace exporter                                    | `otlp`                                   |                                               |
+| `OTEL_LOGS_EXPORTER`          | `otel.logs.exporter`          | Logs exporter                                    | `otlp`                                   | OTEL V1 requires explicit configuration, otherwise it defaults to not enabling                      |
 
 
 > You can pass the parameter `otel.javaagent.debug=true` to the Agent to view debug logs. Please note that these logs are quite verbose and should be used cautiously in production environments.
 
 ## Tracing {#tracing}
 
-Traces (tracing) consist of multiple spans forming a chain of information. Whether it's a single service or a service cluster, tracing information provides a complete set of paths traversed by all services during a request from start to finish.
+A trace (trace) is a chain of information composed of multiple spans.
+Whether it's a single service or a service cluster, trace information provides a complete set of paths between all services involved in a request from start to finish.
 
 Datakit only accepts OTLP data. OTLP has three data types: `gRPC`, `http/protobuf`, and `http/json`. Specific configurations can be found below:
 
 ```shell
-# OpenTelemetry sends data to Datakit using gPRC protocol by default
+# OpenTelemetry sends data to Datakit using the gPRC protocol by default
 -Dotel.exporter=otlp \
 -Dotel.exporter.otlp.protocol=grpc \
 -Dotel.exporter.otlp.endpoint=http://datakit-endpoint:4317
@@ -358,28 +361,28 @@ Datakit only accepts OTLP data. OTLP has three data types: `gRPC`, `http/protobu
 # Using http/protobuf method
 -Dotel.exporter=otlp \
 -Dotel.exporter.otlp.protocol=http/protobuf \
--Dotel.exporter.otlp.traces.endpoint=http://datakit-endpoint:9529/otel/v1/trace \
--Dotel.exporter.otlp.metrics.endpoint=http://datakit-endpoint:9529/otel/v1/metric 
+-Dotel.exporter.otlp.traces.endpoint=http://datakit-endpoint:9529/otel/v1/traces \
+-Dotel.exporter.otlp.metrics.endpoint=http://datakit-endpoint:9529/otel/v1/metrics 
 
 # Using http/json method
 -Dotel.exporter=otlp \
 -Dotel.exporter.otlp.protocol=http/json \
--Dotel.exporter.otlp.traces.endpoint=http://datakit-endpoint:9529/otel/v1/trace \
--Dotel.exporter.otlp.metrics.endpoint=http://datakit-endpoint:9529/otel/v1/metric
+-Dotel.exporter.otlp.traces.endpoint=http://datakit-endpoint:9529/otel/v1/traces \
+-Dotel.exporter.otlp.metrics.endpoint=http://datakit-endpoint:9529/otel/v1/metrics
 ```
 
 ### Trace Sampling {#sample}
 
-You can use head sampling or tail sampling. Refer to the following best practices for more details:
+You can adopt head-based or tail-based sampling. For detailed best practices, refer to the following articles:
 
-- Tail sampling with collector: [OpenTelemetry Sampling Best Practices](../best-practices/cloud-native/opentelemetry-simpling.md)
-- Head sampling on the Agent side: [OpenTelemetry Java Agent Sampling Strategies](../best-practices/cloud-native/otel-agent-sampling.md)
+- Tail-based sampling with Collector: [OpenTelemetry Sampling Best Practices](../best-practices/cloud-native/opentelemetry-simpling.md)
+- Head-based sampling on the Agent side: [OpenTelemetry Java Agent Sampling Strategies](../best-practices/cloud-native/otel-agent-sampling.md)
 
 ### Tags {#tags}
 
-Starting from DataKit version [1.22.0](../datakit/changelog.md#cl-1.22.0), the blacklist feature has been deprecated. Instead, there is a fixed tag list where only tags in this list are promoted to first-level tags. Below is the fixed list:
+Starting from DataKit version [1.22.0](../datakit/changelog.md#cl-1.22.0), the blacklist feature has been deprecated. A fixed tag list has been added, and only items in this list will be extracted into first-level tags. Below is the fixed list:
 
-| Attributes            | Tag                   | Description                             |
+| Attributes            | tag                   | Description                             |
 |:----------------------|:----------------------|:-------------------------------|
 | http.url              | http_url              | Full HTTP request path                    |
 | http.hostname         | http_hostname         | Hostname                       |
@@ -405,7 +408,7 @@ Starting from DataKit version [1.22.0](../datakit/changelog.md#cl-1.22.0), the b
 | network.peer.address  | network_peer_address  | Network address                           |
 | network.peer.port     | network_peer_port     | Network port                           |
 | network.transport     | network_transport     | Protocol                             |
-| messaging.system      | messaging_system      | Messaging queue name                         |
+| messaging.system      | messaging_system      | Message queue name                         |
 | messaging.operation   | messaging_operation   | Message action                           |
 | messaging.message     | messaging_message     | Message                             |
 | messaging.destination | messaging_destination | Message details                           |
@@ -423,14 +426,14 @@ Starting from DataKit version [1.22.0](../datakit/changelog.md#cl-1.22.0), the b
 | pod_name              | pod_name              | Pod name tag from Attributes      |
 | pod_namespace         | pod_namespace         | Pod namespace tag from Attributes |
 
-To add custom tags, use environment variables:
+To add custom tags, you can use environment variables:
 
 ```shell
 # Add custom tags through startup parameters
 -Dotel.resource.attributes=username=myName,env=1.1.0
 ```
 
-Modify the whitelist in the configuration file so that custom tags appear as first-level tags in the Guance trace details.
+Modify the whitelist in the configuration file so that custom tags appear in the first-level tags of the trace details in Guance:
 
 ```toml
 customer_tags = ["sink_project", "username","env"]
@@ -438,11 +441,11 @@ customer_tags = ["sink_project", "username","env"]
 
 ### Kind {#kind}
 
-All `Spans` have a `span_kind` tag with six attributes:
+All `Spans` have a `span_kind` tag, with six attributes:
 
-- `unspecified`: Not set.
-- `internal`: Internal span or child span type.
-- `server`: WEB service, RPC service, etc.
+- `unspecified`: Unset.
+- `internal`: Internal span or sub-span type.
+- `server`: WEB services, RPC services, etc.
 - `client`: Client type.
 - `producer`: Message producer.
 - `consumer`: Message consumer.
@@ -450,27 +453,62 @@ All `Spans` have a `span_kind` tag with six attributes:
 
 ## Metrics {#metric}
 
-OpenTelemetry Java Agent collects MBean metrics from applications via JMX protocol. Java Agent reports selected JMX metrics using its internal SDK, meaning all metrics are configurable.
+OpenTelemetry Java Agent collects JMX metrics from applications through the JMX protocol. The Java Agent reports selected JMX metrics via the internal SDK, meaning all metrics are configurable.
 
-You can enable/disable JMX metric collection using the command `otel.jmx.enabled=true/false`; it is enabled by default.
+You can enable and disable JMX metric collection using the command `otel.jmx.enabled=true/false`, which is enabled by default.
 
-To control the time interval between MBean detection attempts, use the `otel.jmx.discovery.delay` command, which defines the milliseconds between the first and next detection cycles.
+To control the interval between MBean detection attempts, you can use the `otel.jmx.discovery.delay` command, defining the milliseconds between the first and next detection cycles.
 
-Additionally, the Agent includes built-in configurations for collecting metrics from third-party software. Refer to [GitHub OTEL JMX Metric](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/instrumentation/jmx-metrics/javaagent/README.md){:target="_blank"}
+Additionally, the Agent has built-in configurations for collecting metrics from third-party software. Refer to: [GitHub OTEL JMX Metric](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/instrumentation/jmx-metrics/javaagent/README.md){:target="_blank"}
 
-All metrics sent to Guance have a unified measurement name: `otel-service`.
+<!-- markdownlint-disable MD046 -->
+???+ warning "metrics"
 
-## Data Field Descriptions {#fields}
+    Starting from version [DataKit 1.68.0](../datakit/changelog.md#cl-1.68.0), the measurement set name has been changed:
+    All metrics sent to Guance have a unified measurement set name: `otel_service` 
+    If you already have dashboards, export them and uniformly change `otel-serivce` to `otel_service` before re-importing.
+
+<!-- markdownlint-enable -->
+
+When converting **Histogram** metrics to Guance, some special handling is applied:
+
+- OpenTelemetry histogram buckets are directly mapped to Prometheus histogram buckets.
+- Each bucket count is converted to Prometheus cumulative count format.
+- For example, OpenTelemetry buckets `[0, 10)`, `[10, 50)`, `[50, 100)` are converted to Prometheus `_bucket` metrics with `le` labels:
+
+```text
+  my_histogram_bucket{le="10"} 100
+  my_histogram_bucket{le="50"} 200
+  my_histogram_bucket{le="100"} 250
+```
+
+- The total number of observations in the OpenTelemetry histogram is converted to the Prometheus `_count` metric.
+- The sum of the OpenTelemetry histogram is converted to the Prometheus `_sum` metric, with `_max` and `_min` added.
+
+```text
+  my_histogram_count 250
+  my_histogram_max 100
+  my_histogram_min 50
+  my_histogram_sum 12345.67
+```
+
+Any metric ending in `_bucket` is histogram data and will have corresponding `_max`, `_min`, `_count`, and `sum` metrics.
+
+In histogram data, you can classify using the `le(less or equal)` label and filter based on the label. For more information, refer to [OpenTelemetry Metrics](https://opentelemetry.io/docs/specs/semconv/){:target="_blank"} for all metrics and labels.
+
+This conversion allows OpenTelemetry-collected histogram data to seamlessly integrate into Prometheus and leverage its powerful query and visualization capabilities for analysis.
 
 
 
-
-
-### Metric Types {metric}
+## Data Field Explanation {#fields}
 
 
 
-- Metric Tags
+### Metrics
+
+
+
+- Tags
 
 
 | Tag | Description |
@@ -479,11 +517,10 @@ All metrics sent to Guance have a unified measurement name: `otel-service`.
 |`area`|Heap or not|
 |`cause`|GC Cause|
 |`container_id`|Container ID|
-|`description`|Metric Description|
 |`exception`|Exception Information|
 |`gc`|GC Type|
 |`host`|Host Name|
-|`host_arch`|Host arch|
+|`host_arch`|Host architecture|
 |`host_name`|Host Name|
 |`http.scheme`|HTTP/HTTPS|
 |`http_method`|HTTP Method|
@@ -504,29 +541,19 @@ All metrics sent to Guance have a unified measurement name: `otel-service`.
 |`name`|Thread Pool Name|
 |`net_protocol_name`|Net Protocol Name|
 |`net_protocol_version`|Net Protocol Version|
-|`os_description`|OS Version|
 |`os_type`|OS Type|
 |`outcome`|HTTP Outcome|
 |`path`|Disk Path|
 |`pool`|JVM Pool Type|
-|`process_command_line`|Process Command Line|
-|`process_executable_path`|Executable File Path|
-|`process_runtime_description`|Process Runtime Description|
-|`process_runtime_name`|JVM Pool Runtime Name|
-|`process_runtime_version`|JVM Pool Runtime Version|
 |`scope_name`|Scope name|
 |`service_name`|Service Name|
 |`spanProcessorType`|Span Processor Type|
 |`state`|Thread State:idle,used|
 |`status`|HTTP Status Code|
-|`telemetry_auto_version`|Version|
-|`telemetry_sdk_language`|Language|
-|`telemetry_sdk_name`|SDK Name|
-|`telemetry_sdk_version`|SDK Version|
 |`unit`|Metrics unit|
 |`uri`|HTTP Request URI|
 
-- Metric List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -544,7 +571,8 @@ All metrics sent to Guance have a unified measurement name: `otel-service`.
 |`executor.queued`|The approximate number of tasks that are queued for execution|float|count|
 |`http.server.active_requests`|The number of concurrent HTTP requests that are currently in-flight|float|count|
 |`http.server.duration`|The duration of the inbound HTTP request|float|ns|
-|`http.server.requests`|The http request count|float|count|
+|`http.server.request.duration`|The count of HTTP request duration time in each bucket|float|count|
+|`http.server.requests`|The HTTP request count|float|count|
 |`http.server.requests.max`|None|float|B|
 |`http.server.response.size`|The size of HTTP response messages|float|B|
 |`jvm.buffer.count`|An estimate of the number of buffers in the pool|float|count|
@@ -599,14 +627,11 @@ All metrics sent to Guance have a unified measurement name: `otel-service`.
 
 
 
+### Tracing
 
 
 
-### Trace Fields Description {tracing}
-
-
-
-- Tags (String type)
+- Tags
 
 
 | Tag | Description |
@@ -628,7 +653,7 @@ All metrics sent to Guance have a unified measurement name: `otel-service`.
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- Metrics (Non-string type or long string type)
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -636,7 +661,7 @@ All metrics sent to Guance have a unified measurement name: `otel-service`.
 |`duration`|Duration of span|int|μs|
 |`message`|Origin content of span|string|-|
 |`parent_id`|Parent span ID of current span|string|-|
-|`resource`|Resource name producing current span|string|-|
+|`resource`|Resource name produce current span|string|-|
 |`span_id`|Span id|string|-|
 |`start`|Start time of span.|int|usec|
 |`trace_id`|Trace id|string|-|
@@ -644,15 +669,32 @@ All metrics sent to Guance have a unified measurement name: `otel-service`.
 
 
 
+## Deleted Tags in Metrics {#del-metric}
 
+Many useless tags are reported by OTEL metrics. These are string types that occupy too much memory and bandwidth, so they are deleted and not uploaded to the Guance center.
+
+These tags include:
+
+```text
+process.command_line
+process.executable.path
+process.runtime.description
+process.runtime.name
+process.runtime.version
+telemetry.distro.name
+telemetry.distro.version
+telemetry.sdk.language
+telemetry.sdk.name
+telemetry.sdk.version
+```
 
 ## Logging {#logging}
 
 [:octicons-tag-24: Version-1.33.0](../datakit/changelog.md#cl-1.33.0)
 
-Currently, the JAVA Agent supports collecting `stdout` logs and sends them to DataKit using the [Standard output](https://opentelemetry.io/docs/specs/otel/logs/sdk_exporters/stdout/){:target="_blank"} method through the `otlp` protocol.
+Currently, JAVA Agent supports collecting `stdout` logs and uses the [Standard output](https://opentelemetry.io/docs/specs/otel/logs/sdk_exporters/stdout/){:target="_blank"} method to send logs to DataKit via the `otlp` protocol.
 
-By default, `OTEL Agent` does not collect logs. You need to explicitly enable it using the `otel.logs.exporter` command:
+By default, `OTEL Agent` does not enable log collection and must be explicitly enabled through the command `otel.logs.exporter`. The method is as follows:
 
 ```shell
 # env
@@ -662,29 +704,33 @@ export OTEL_EXPORTER_OTLP.ENDPOINT=http://<DataKit Addr>:4317
 java -jar app.jar
 
 # command
-java -javaagent:/path/to/agent.jar \
+java -javaagent:/path/to/agnet.jar \
   -otel.logs.exporter=otlp \
   -Dotel.exporter.otlp.endpoint=http://<DataKit Addr>:4317 \
   -jar app.jar
 ```
 
-Logs collected through OTEL have the `source` as the service name. You can customize it by adding tags: `log.source`, for example: `-Dotel.resource.attributes="log.source=source_name"`.
+Logs collected via OTEL have a `source` of the service name, which can be customized by adding tags: `log.source`, for example: `-Dotel.resource.attributes="log.source=source_name"`.
 
-> Note: If your app runs in a containerized environment (like k8s), Datakit automatically collects logs (default behavior). Enabling another log collection might cause duplicate collection. It's recommended to [manually disable Datakit's automatic log collection](container-log.md#logging-with-image-config){:target="_blank"} before enabling this.
+> Note: If the app is running in a container environment (such as k8s), Datakit automatically collects logs [automatically](container-log.md#logging-stdout){:target="_blank"} (default behavior). Collecting logs again will result in duplicate collection. It is recommended to [manually disable Datakit's automatic log collection](container-log.md#logging-with-image-config){:target="_blank"} before enabling log collection.
 
-Refer to the [official documentation](https://opentelemetry.io/docs/specs/otel/logs/){:target="_blank"} for more languages.
+For more languages, refer to the [official documentation](https://opentelemetry.io/docs/specs/otel/logs/){:target="_blank"}
 
 ## Examples {#examples}
 
 Datakit currently provides best practices for the following two languages:
 
-- [Golang](opentelemetry-go.md)
+- [- [Golang](opentelemetry-go.md)
 - [Java](opentelemetry-java.md)
 
 
 ## More Documentation {#more-readings}
 
 - [Golang SDK](https://github.com/open-telemetry/opentelemetry-go){:target="_blank"}
-- [Official User Guide](https://opentelemetry.io/docs/){:target="_blank"}
+- [Official User Manual](https://opentelemetry.io/docs/){:target="_blank"}
 - [Environment Variable Configuration](https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md#otlp-exporter-both-span-and-metric-exporters){:target="_blank"}
-- [GuanceCloud Custom Development Version](https://github.com/GuanceCloud/opentelemetry-java-instrumentation){:target="_blank"}
+- [Guance Custom Development Version](https://github.com/GuanceCloud/opentelemetry-java-instrumentation){:target="_blank"}
+
+---
+
+This completes the translation of the provided content. If you need any further assistance or additional sections translated, please let me know!

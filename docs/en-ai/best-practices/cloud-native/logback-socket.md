@@ -4,11 +4,11 @@
 
 ## Introduction
 
-For a company, the Guance workspace collects logs from multiple applications. Distinguishing which Service these logs originate from is a common challenge. In this guide, we will explore how to use Pipelines to add Service tags to logs, thereby distinguishing their sources.
+For a company, the <<< custom_key.brand_name >>> workspace will collect logs from multiple applications. Distinguishing which log comes from which Service is a challenge we face. Next, we will explore how to use Pipelines to add Service tags to logs in order to differentiate their sources.
 
-DataKit supports various methods for log collection. This article focuses on collecting logs via Socket in Java Springboot applications, using Logback's Socket to send logs to DataKit. First, operations personnel enable the Socket collector in DataKit and restart it. Next, developers add an Appender to the `logback-spring.xml` file and declare `springProperty` to include the Service name in the logs when starting the JAR. Developers then start the JAR, passing the required Service name into the application. Finally, developers log into Guance and create a new Pipeline under the Logs module's Pipeline tab, specifying the Source of the Socket collector enabled by operations. This way, logs are tagged accordingly.
+DataKit has many ways to collect logs. This article focuses on collecting logs via Socket for Java Springboot applications, transmitting logs to DataKit through Logback's Socket. First, operations staff enable the Socket collector in DataKit and restart DataKit. Then developers add an Appender in the application’s logback-spring.xml file and declare springProperty to write the Service name into the logs when starting the jar. Developers then start the jar, passing the Service name that needs to be written into the logs. Finally, developers log into <<< custom_key.brand_name >>>, create a new Pipeline under the Pipeline tab of the Logs module, and specify the Source of the Socket collector enabled by the operations team. This way, the logs will be distinguished using Tags.
 
-The following solution will be implemented from both development and operations perspectives.
+The following solution will be implemented from both the development and operations perspectives.
 
 ## Solution
 
@@ -16,39 +16,39 @@ The following solution will be implemented from both development and operations 
 
 #### Linux Environment
 
-##### 1. Enable Collector
+##### 1 Enable Collector
 
-Log in to the Linux server where DataKit is deployed and create a `logging-socket.conf` file.
+Log in to the Linux server where DataKit is deployed and create a logging-socket.conf file.
 
-```shell
+```
 cd /usr/local/datakit/conf.d/log
 vi logging-socket.conf
 ```
 
-The content of the `logging-socket.conf` file is as follows:
+The content of the logging-socket.conf file is as follows:
 
 ```toml
-[[inputs.logging]]
-  # Only two protocols are supported: TCP and UDP
-  sockets = [
-    "tcp://0.0.0.0:9542",
-    #"udp://0.0.0.0:9531",                  
-  ]
-  ignore = [""]
-  source = "socketdefault"
-  service = ""
-  pipeline = ""
-  ignore_status = []
-  character_encoding = ""
-  # multiline_match = '''^\S'''
-  remove_ansi_escape_codes = false
+      [[inputs.logging]]
+        # only two protocols are supported: TCP and UDP
+        sockets = [
+          "tcp://0.0.0.0:9542",
+        #"udp://0.0.0.0:9531",                  
+        ]
+        ignore = [""]
+        source = "socketdefault"
+        service = ""
+        pipeline = ""
+        ignore_status = []
+        character_encoding = ""
+        # multiline_match = '''^\S'''
+        remove_ansi_escape_codes = false
 
-  [inputs.logging.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
+        [inputs.logging.tags]
+        # some_tag = "some_value"
+        # more_tag = "some_other_value"
 ```
 
-##### 2. Restart DataKit
+##### 2 Restart DataKit 
 
 ```shell
 systemctl restart datakit
@@ -56,17 +56,17 @@ systemctl restart datakit
 
 #### Kubernetes Environment
 
-Log in to [Guance](https://console.guance.com/), navigate to **Integration** -> **DataKit** -> **Kubernetes**, and follow the instructions to install DataKit. Modify the `datakit.yaml` used for deployment. The steps involve creating a `logging-socket.conf` file and mounting it to DataKit.
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), go to 【Integration】->【Datakit】-> 【Kubernetes】, and follow the instructions to install DataKit. You need to modify the datakit.yaml used for deployment. The steps involve creating a logging-socket.conf file and mounting it into DataKit.
 
-##### 1. Add Configuration to ConfigMap
+##### 1 Add Configuration to ConfigMap
 
 ```yaml
     logging-socket.conf: |-
       [[inputs.logging]]
-        # Only two protocols are supported: TCP and UDP
+        # only two protocols are supported: TCP and UDP
         sockets = [
           "tcp://0.0.0.0:9542",
-          #"udp://0.0.0.0:9531",                  
+        #"udp://0.0.0.0:9531",                  
         ]
         ignore = [""]
         source = "pay-socket-service"
@@ -82,7 +82,7 @@ Log in to [Guance](https://console.guance.com/), navigate to **Integration** -> 
         # more_tag = "some_other_value"
 ```
 
-##### 2. Mount `logging-socket.conf`
+##### 2 Mount logging-socket.conf
 
 ```yaml
         - mountPath: /usr/local/datakit/conf.d/log/logging-socket.conf
@@ -90,7 +90,7 @@ Log in to [Guance](https://console.guance.com/), navigate to **Integration** -> 
           subPath: logging-socket.conf
 ```
 
-##### 3. Restart DataKit
+##### 3 Restart DataKit 
 
 ```shell
 kubectl delete -f datakit.yaml
@@ -99,20 +99,20 @@ kubectl apply -f datakit.yaml
 
 #### Parameter Explanation
 
-- `sockets`: Protocol ports.
-- `ignore`: File path filtering using glob rules; files matching any filter condition will not be collected.
-- `source`: Data source.
-- `service`: Additional tag; if empty, defaults to `$source`.
-- `pipeline`: Script path when using Pipeline.
-- `character_encoding`: Character encoding selection.
-- `multiline_match`: Multiline matching.
-- `remove_ansi_escape_codes`: Whether to remove ANSI escape codes (e.g., text colors in standard output); values can be `true` or `false`.
+- sockets: Protocol ports.
+- ignore: File path filtering using glob rules; files matching any filter condition will not be collected.
+- source: Data source.
+- service: Additional tag; if empty, defaults to $source.
+- pipeline: Script path when using Pipeline.
+- character_encoding: Character encoding selection.
+- multiline_match: Multi-line matching.
+- remove_ansi_escape_codes: Whether to remove ANSI escape codes (e.g., text colors in standard output); values can be true or false.
 
 ### Development
 
-#### 1. Add Dependencies
+#### 1 Add Dependencies
 
-Add the following dependency to the project's `pom.xml`:
+Add the following dependencies to the project's pom.xml:
 
 ```xml
 <dependency>
@@ -122,9 +122,9 @@ Add the following dependency to the project's `pom.xml`:
 </dependency>
 ```
 
-#### 2. Add Appender to Log Configuration
+#### 2 Add Appender to Log Configuration
 
-In this step, we define DataKit's address, Socket port, Service, and Source as externally configurable parameters. Add an Appender to the `logback-spring.xml` file, defining `datakitHostIP`, `datakitSocketPort`, `datakitSource`, and `datakitService`, whose values are passed from external sources via `guangce.datakit.host_ip`, `guangce.datakit.socket_port`, `guangce.datakit.source`, and `guangce.datakit.service`.
+In this step, we define DataKit address, Socket port, Service, and Source as external parameters. In the project's logback-spring.xml file, add an Appender and define datakitHostIP, datakitSocketPort, datakitSource, and datakitService, whose values are passed from external parameters guangce.datakit.host_ip, guangce.datakit.socket_port, guangce.datakit.source, and guangce.datakit.service.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -184,34 +184,34 @@ In this step, we define DataKit's address, Socket port, Service, and Source as e
 </configuration>
 ```
 
-#### 3. Configure Defaults
+#### 3 Configure Default Values
 
-Add the following configuration to the `application.yml` file. These default parameters will be passed to Logback.
+Add the following configuration to the application.yml file. These default parameters will be passed to Logback.
 
 ```yaml
 guangce:
   datakit:
     host_ip: 127.0.0.1  # DataKit address
     socket_port: 9542   # DataKit socket port
-    #source: mySource   # If uncommented, this will override the source defined by the socket collector
-    #service: myService # If uncommented, this will override the service defined by the socket collector
+    #source: mySource   # If not specified, it will use the source defined by the socket collector
+    #service: myService # If not specified, it will use the service defined by the socket collector
 ```
 
-#### 4. Run Application
+#### 4 Run Application
 
-##### 1. Linux Environment
+##### 1 Linux Environment
 
-Execute the following command to start the application. If no parameters are provided, the defaults in `application.yml` will be used.
+Execute the following command to start the application. If no parameters are passed, it will use the default values from application.yml.
 
 ```shell
 java -jar pay-service-1.0-SNAPSHOT.jar --guangce.datakit.host_ip=172.26.0.231 --guangce.datakit.socket_port=9542 --guangce.datakit.source=pay-socket-source --guangce.datakit.service=pay-socket-service
 ```
 
-##### 2. Kubernetes Environment
+##### 2 Kubernetes Environment
 
-Add `PARAMS` to the Dockerfile to receive external parameters.
+Add PARAMS to the Dockerfile to receive external parameters.
 
-```dockerfile
+```
 FROM openjdk:8u292
 RUN echo 'Asia/Shanghai' >/etc/timezone
 
@@ -229,7 +229,7 @@ docker build -t 172.16.0.238/df-demo/istio-pay:v1 -f DockerfilePay .
 docker push 172.16.0.238/df-demo/istio-pay:v1
 ```
 
-Write the `pay-deployment.yaml` deployment file, adding the `PARAMS` environment variable to pass `guangce.datakit.host_ip`, `guangce.datakit.socket_port`, `guangce.datakit.source`, and `guangce.datakit.service`. If not provided, the defaults will be used.
+Write the pay-deployment.yaml file and add the PARAMS environment variable to pass guangce.datakit.host_ip, guangce.datakit.socket_port, guangce.datakit.source, and guangce.datakit.service values. If not passed, it will use the default values.
 
 ```yaml
 apiVersion: apps/v1
@@ -281,46 +281,46 @@ spec:
 kubectl apply -f pay-deployment.yaml
 ```
 
-#### 5. Configure Pipeline
+#### 5 Configure Pipeline
 
-Since the Socker Appender outputs logs in JSON format, DataKit needs to use Pipeline to parse the JSON string. The `source` and `service` are default Tags, so `set_tag` is needed.
+Since the Socker Appender outputs logs in JSON format, DataKit needs to use Pipeline to parse the JSON string. The source and service are default Tags, so set_tag needs to be used.
 
-Log in to [Guance](https://console.guance.com/), go to **Logs** -> **Pipelines**, click **Create New Pipeline**, and select the `source` name defined when enabling the Socket collector (`socketdefault`). Define the parsing rules as follows:
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), go to 【Logs】->【Pipelines】, click 【Create Pipeline】, and select the source name socketdefault defined when enabling the Socket collector. Define the parsing rules as follows:
 
 ```toml
-json(_,msg,"message")
-json(_,class,"class")
-json(_,thread,"thread")
-json(_,severity,"status")
-json(_,method,"method")
-json(_,line,"line")
-json(_,source,"source")
-json(_,service,"service")
-json(_,`@timestamp`,"time")
-set_tag(service)
-set_tag(source)
-default_time(time) 
+        json(_,msg,"message")
+        json(_,class,"class")
+        json(_,thread,"thread")
+        json(_,severity,"status")
+        json(_,method,"method")
+        json(_,line,"line")
+        json(_,source,"source")
+        json(_,service,"service")
+        json(_,`@timestamp`,"time")
+        set_tag(service)
+        set_tag(source)
+        default_time(time) 
 ```
 
-After testing with a log sample and ensuring it passes, click **Save**. Note that the parsing rules should correspond to the pattern added in the `logback-spring.xml` file.
+After testing with log samples and ensuring it works, click 【Save】. Note that these parsing rules correspond to the pattern added in the logback-spring.xml file.
 
 ```toml
-<pattern>
-{
-"severity": "%level",
-"source": "${datakitSource}",
-"service": "${datakitService}",
-"method": "%method",
-"line": "%line",
-"thread": "%thread",
-"class": "%logger{40}",
-"msg": "%message\n%exception"
-}
+                    <pattern>
+                        {
+                        "severity": "%level",
+                        "source": "${datakitSource}",
+                        "service": "${datakitService}",
+                        "method": "%method",
+                        "line": "%line",
+                        "thread": "%thread",
+                        "class": "%logger{40}",
+                        "msg": "%message\n%exception"
+                        }
 ```
 
 ### View Log Files
 
-Access the application's API to generate application logs. Log in to [Guance](https://console.guance.com/), go to **Logs** -> **Data Collection** -> select `pay-socket-source` to view detailed logs. Here you can see that `source` and `service` have been replaced by the external parameters.
+Access the application's interface to generate application logs. Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), go to 【Logs】->【Data Collection】-> select pay-socket-source to view log details. Here you can see that the source and service have been replaced by the externally passed parameters.
 
 ![image](../images/logback-socket/1.png)
 

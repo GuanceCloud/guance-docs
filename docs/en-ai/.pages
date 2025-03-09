@@ -9,7 +9,7 @@ nav:
   - Integrations: integrations
   - Quick Start: getting-started
   - <br/>Product Features: ""
-  - Scenarios: scene
+  - Use Cases: scene
   - Monitoring: monitoring
   - Events: events
   - Incident: exception
@@ -33,7 +33,7 @@ nav:
   - Workspace Management: management
   - Billing Plans and Invoices: billing
   - Billing Center: billing-center
-  - AI Assistant: guance-ai
+  - Guance AI: guance-ai
   - <br/>Private Deployment: ""
   - Private Deployment: deployment
   - ExternalAPI: external-api
@@ -44,4 +44,4 @@ nav:
   - Third-party Integration: third-party
   - Data Security: security
   - Mobile: mobile
-  - Related Agreements: agreements
+  - Agreements: agreements

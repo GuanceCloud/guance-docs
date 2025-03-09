@@ -3,22 +3,22 @@
 ## Introduction
 
 Kubernetes local persistent volumes allow users to access local storage in a simple and portable way through the standard PVC interface. PVs contain node affinity information, which the system uses to schedule pods to the correct nodes.
-OpenEBS dynamic local PV extends the functionality provided by Kubernetes local PVs by using the OpenEBS Node Disk Manager (NDM). The main differences include:
+OpenEBS dynamic local PV extends the functionality provided by Kubernetes local PV by using the OpenEBS Node Disk Manager (NDM). The main differences include:
 
 - Users do not need to pre-format and mount devices on nodes.
-- Support for dynamic local PVs where devices can be used by CAS solutions and applications. CAS solutions typically access devices directly. By using blockdeviceclaims supported by OpenEBS NDM, OpenEBS local PV simplifies the management of storage devices used between CAS solutions (direct access) and applications (via PV).
+- Support for dynamic local PVs—where devices can be used by CAS solutions and applications. CAS solutions typically access devices directly. By using blockdeviceclaims supported by OpenEBS NDM, OpenEBS local PV simplifies the management of storage devices used between CAS solutions (direct access) and applications (via PV).
 - Support for providing local PVs using hostpath. In fact, in some cases, Kubernetes nodes may have only a limited number of storage devices connected to the nodes, and hostpath-based local PVs provide effective management of available storage on the nodes.
 
 ## Prerequisites
 
-- A deployed Kubernetes cluster; if not deployed, refer to [Kubernetes Deployment](infra-kubernetes.md)
-- (Optional) Deployed Helm tool; if not deployed, refer to [Helm Installation](helm-install.md)
+- A Kubernetes cluster has been deployed; if not, refer to [Kubernetes Deployment](infra-kubernetes.md)
+- (Optional) Helm tool has been deployed; if not, refer to [Helm Installation](helm-install.md)
 
 ## Basic Information and Compatibility
 
-| Name                 | Version | Supports Offline Deployment | Supported Architectures | Supported Cluster Versions |
-| :------------------: | :-----: | :-------------------------: | :----------------------: | :------------------------: |
-| localpv-provisioner  |   2.0   |            Yes              |        amd64/arm64       |          1.18+             |
+| Name                    | Version | Offline Deployment Supported | Supported Architectures | Supported Cluster Versions |
+| :---------------------- | :-----: | :--------------------------: | :----------------------: | :------------------------: |
+| localpv-provisioner     |   2.0   |            Yes               |      amd64/arm64         |          1.18+             |
 
 ## Deployment Steps
 
@@ -89,7 +89,7 @@ localpv-openebs-ndm-operator-8d67c79dd-482sb   1/1     Running   0          27m
 
 #### 2.2 Create StorageClass
 
-We create a localpv StorageClass using the `/data` directory.
+We create a `localpv` StorageClass under the `/data` directory
 
 ```yaml
 apiVersion: storage.k8s.io/v1
@@ -137,7 +137,7 @@ apiVersion: v1
 metadata:
   name: test-pvc
 spec:
-  storageClassName: openebs-data ## StorageClass deployed earlier
+  storageClassName: openebs-data ## StorageClass deployed above
   accessModes:
     - ReadWriteOnce
   resources:
@@ -157,14 +157,14 @@ Check the status:
 kubectl get pvc
 ```
 
-PVC status:
+PVC status is as follows:
 
 ```shell
 NAME       STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 test-pvc   Pending                                      openebs-data   18s
 ```
 
-> Since the StorageClass is set to `volumeBindingMode` mode `WaitForFirstConsumer`, the PVC status being `Pending` is normal.
+> Since the `volumeBindingMode` of the StorageClass is set to `WaitForFirstConsumer`, the PVC status being `Pending` is normal.
 
 #### 2.4 Create Test Deployment
 
@@ -198,10 +198,10 @@ spec:
             cpu: 100m
             memory: 30Mi
         volumeMounts:
-          - mountPath: "/var/www/html" ## mount container directory to PVC NFS directory
+          - mountPath: "/var/www/html" ## mount the directory in the container to the directory in the pvc nfs
             name: storage    ## add storage
       volumes:
-      - name: storage   ## corresponds to previous section
+      - name: storage   ## corresponding to the previous one
         persistentVolumeClaim:  ## PVC claim
           claimName: test-pvc   ## created PVC name
 ```

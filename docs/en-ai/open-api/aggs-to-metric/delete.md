@@ -1,19 +1,21 @@
-# 【Aggregation Generated Metrics】Deletion
+# 【Aggregation to Metrics】Delete
 
 ---
 
 <br />**POST /api/v1/aggs_to_metric/delete**
 
 ## Overview
-Enable/Disable Aggregation Generated Metrics Rules
+Enable/Disable Aggregation to Metrics rules
+
 
 ## Body Request Parameters
 
 | Parameter Name | Type   | Required | Description                                |
 |:--------------|:-------|:---------|:-------------------------------------------|
-| ruleUUIDs     | array  | Y        | List of UUIDs for aggregation generated metrics <br>Allow Null: False <br> |
+| ruleUUIDs     | array  | Y        | List of UUIDs for Aggregation to Metrics<br>Allow null: False <br> |
 
 ## Additional Parameter Notes
+
 
 
 ## Request Example
@@ -24,6 +26,7 @@ curl 'https://openapi.guance.com/api/v1/aggs_to_metric/delete' \
 --data-raw '{"ruleUUIDs":["rul_xxxx"]}' \
 --compressed
 ```
+
 
 ## Response
 ```shell

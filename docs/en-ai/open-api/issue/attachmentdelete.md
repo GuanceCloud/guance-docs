@@ -11,11 +11,11 @@
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:--------|:-------------------------|
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-----|:----------------|
 | attachmentUUID | string | Y | Attachment UUID<br>Example: attachmentUUIDs <br>Allow empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

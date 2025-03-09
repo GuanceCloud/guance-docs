@@ -2,15 +2,14 @@
 title     : 'Couchbase'
 summary   : 'Collect metrics data related to Couchbase servers'
 tags:
-  - 'database'
+  - 'Database'
 __int_icon      : 'icon/couchbase'
 dashboard :
   - desc  : 'Built-in views for Couchbase'
     path  : 'dashboard/zh/couchbase'
 monitor   :
-  - desc  : 'None available'
+  - desc  : 'Not available'
     path  : '-'
----
 
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
@@ -19,7 +18,7 @@ monitor   :
 
 The Couchbase collector is used to collect metrics data related to Couchbase servers.
 
-The Couchbase collector supports remote collection and can run on multiple operating systems.
+The Couchbase collector supports remote collection and can run on various operating systems.
 
 Tested versions:
 
@@ -32,20 +31,20 @@ Tested versions:
 
 - Install Couchbase service
   
-[Official documentation - CentOS/RHEL installation](https://docs.couchbase.com/server/current/install/install-intro.html){:target="_blank"}
+[Official Documentation - CentOS/RHEL Installation](https://docs.couchbase.com/server/current/install/install-intro.html){:target="_blank"}
 
-[Official documentation - Debian/Ubuntu installation](https://docs.couchbase.com/server/current/install/ubuntu-debian-install.html){:target="_blank"}
+[Official Documentation - Debian/Ubuntu Installation](https://docs.couchbase.com/server/current/install/ubuntu-debian-install.html){:target="_blank"}
 
-[Official documentation - Windows installation](https://docs.couchbase.com/server/current/install/install-package-windows.html){:target="_blank"}
+[Official Documentation - Windows Installation](https://docs.couchbase.com/server/current/install/install-package-windows.html){:target="_blank"}
 
-- Verify the correct installation
+- Verify installation
 
   Access the URL `<ip>:8091` in a browser to enter the Couchbase management interface.
 
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    - Data collection requires ports `8091` `9102` `18091` `19102`. When performing remote collection, these ports need to be open on the target server.
+    - Data collection requires ports `8091`, `9102`, `18091`, `19102`. When performing remote collection, these ports need to be open on the target server.
 <!-- markdownlint-enable -->
 
 ### Collector Configuration {#input-config}
@@ -53,7 +52,7 @@ Tested versions:
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/couchbase` directory under the DataKit installation directory, copy `couchbase.conf.sample` and rename it to `couchbase.conf`. Example configuration as follows:
+    Navigate to the `conf.d/couchbase` directory under the DataKit installation directory, copy `couchbase.conf.sample` and rename it to `couchbase.conf`. Example configuration:
     
     ```toml
         
@@ -107,13 +106,13 @@ Tested versions:
 
 === "Kubernetes"
 
-    You can inject collector configurations via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting) or set [ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
+    You can inject collector configuration via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
 
-    Environment variables can also be used to modify configuration parameters (add as default collectors in ENV_DEFAULT_ENABLED_INPUTS):
+    You can also modify configuration parameters using environment variables (add as default collectors in ENV_DEFAULT_ENABLED_INPUTS):
 
     - **ENV_INPUT_COUCHBASE_INTERVAL**
     
-        Collector repeat interval duration
+        Collection interval duration
     
         **Field Type**: Duration
     
@@ -243,7 +242,7 @@ Tested versions:
     
     - **ENV_INPUT_COUCHBASE_TAGS**
     
-        Custom tags. If the same tag exists in the configuration file, it will overwrite it.
+        Custom tags. If there are tags with the same name in the configuration file, they will overwrite them.
     
         **Field Type**: Map
     
@@ -257,9 +256,9 @@ Tested versions:
 
 TLS requires support from the Couchbase enterprise edition
 
-[Official documentation - Configure server certificates](https://docs.couchbase.com/server/current/manage/manage-security/configure-server-certificates.html){:target="_blank"}
+[Official Documentation - Configure Server Certificates](https://docs.couchbase.com/server/current/manage/manage-security/configure-server-certificates.html){:target="_blank"}
 
-[Official documentation - Configure client certificates](https://docs.couchbase.com/server/current/manage/manage-security/configure-client-certificates.html){:target="_blank"}
+[Official Documentation - Configure Client Certificates](https://docs.couchbase.com/server/current/manage/manage-security/configure-client-certificates.html){:target="_blank"}
 
 ## Metrics {#metric}
 
@@ -690,4 +689,80 @@ TLS requires support from the Couchbase enterprise edition
 |`ep_num_ops_set_meta`|Number of set operations per second for this bucket as the target for `XDCR`.|float|req/s|
 |`ep_num_ops_set_ret_meta`|Number of setRetMeta operations per second for this bucket as the target for `XDCR`.|float|req/s|
 |`ep_num_value_ejects`|Total number of items per second being ejected to disk in this bucket.|float|req/s|
-|`ep_oom_errors`|Number of times unrecoverable O
+|`ep_oom_errors`|Number of times unrecoverable OOMs happened while processing operations.|float|count|
+|`ep_ops_create`|Total number of new items being inserted into this bucket.|float|count|
+|`ep_ops_update`|Number of items updated on disk per second for this bucket.|float|req/s|
+|`ep_overhead`|Extra memory used by transient data like persistence queues or checkpoints.|float|B|
+|`ep_queue_size`|Number of items queued for storage.|float|count|
+|`ep_replica_ahead_exceptions`|Total number of ahead exceptions (when timestamp drift between mutations and local time has exceeded 5000000 μs) per second for all replica vBuckets.|float|req/s|
+|`ep_replica_hlc_drift`|The sum of the total Absolute Drift, which is the accumulated drift observed by the vBucket. Drift is always accumulated as an absolute value.|float|s|
+|`ep_resident_items_rate`|Percentage of all items cached in RAM in this bucket.|float|count|
+|`ep_tmp_oom_errors`|Number of back-offs sent per second to client SDKs due to OOM situations from this bucket.|float|req/s|
+|`ep_vbuckets`|Total number of vBuckets for this bucket.|float|count|
+|`evictions`|Number of evictions.|float|count|
+|`get_hits`|Number of get hits.|float|count|
+|`get_misses`|Number of get misses.|float|count|
+|`hibernated_requests`|Number of streaming requests on port 8091 now idle.|float|count|
+|`hibernated_waked`|Rate of streaming request wakeups on port 8091.|float|percent|
+|`hit_ratio`|Hit ratio.|float|percent|
+|`incr_hits`|Number of increment hits.|float|count|
+|`incr_misses`|Number of increment misses.|float|count|
+|`mem_actual_free`|Amount of RAM available on this server.|float|B|
+|`mem_actual_used_bytes`|Memory actually used in bytes.|float|B|
+|`mem_bytes`|Total amount of memory available.|float|B|
+|`mem_free_bytes`|Amount of Memory free.|float|B|
+|`mem_used_bytes`|Amount of memory used.|float|B|
+|`mem_used_sys_bytes`|System memory in use.|float|B|
+|`misses`|Number of misses.|float|count|
+|`ops`|Total amount of operations per second to this bucket.|float|req/s|
+|`read_bytes`|Bytes read.|float|B|
+|`rest_requests`|Rate of http requests on port 8091.|float|B/S|
+|`swap_bytes`|Total amount of swap available.|float|B|
+|`swap_used`|Amount of swap space in use on this server.|float|B|
+|`vbuckets_active_eject`|Number of items per second being ejected to disk from active vBuckets in this bucket.|float|req/s|
+|`vbuckets_active_itm_memory`|Amount of active user data cached in RAM in this bucket.|float|count|
+|`vbuckets_active_meta_data_memory`|Amount of active item metadata consuming RAM in this bucket.|float|B|
+|`vbuckets_active_num`|Number of vBuckets in the active state for this bucket.|float|count|
+|`vbuckets_active_num_non_resident`|Number of non resident vBuckets in the active state for this bucket.|float|count|
+|`vbuckets_active_ops_create`|New items per second being inserted into active vBuckets in this bucket.|float|req/s|
+|`vbuckets_active_ops_update`|Number of items updated on active vBucket per second for this bucket.|float|req/s|
+|`vbuckets_active_queue_age`|Sum of disk queue item age in milliseconds.|float|ms|
+|`vbuckets_active_queue_drain`|Number of active items per second being written to disk in this bucket.|float|req/s|
+|`vbuckets_active_queue_fill`|Number of active items per second being put on the active item disk queue in this bucket.|float|req/s|
+|`vbuckets_active_queue_size`|Number of active items waiting to be written to disk in this bucket.|float|count|
+|`vbuckets_active_resident_items_ratio`|Percentage of active items cached in RAM in this bucket.|float|percent|
+|`vbuckets_avg_active_queue_age`|Average age in seconds of active items in the active item queue for this bucket.|float|s|
+|`vbuckets_avg_pending_queue_age`|Average age in seconds of pending items in the pending item queue for this bucket and should be transient during rebalancing.|float|s|
+|`vbuckets_avg_replica_queue_age`|Average age in seconds of replica items in the replica item queue for this bucket.|float|s|
+|`vbuckets_avg_total_queue_age`|Average age in seconds of all items in the disk write queue for this bucket.|float|s|
+|`vbuckets_pending_curr_items`|Number of items in pending vBuckets in this bucket and should be transient during rebalancing.|float|count|
+|`vbuckets_pending_eject`|Number of items per second being ejected to disk from pending vBuckets in this bucket and should be transient during rebalancing.|float|req/s|
+|`vbuckets_pending_itm_memory`|Amount of pending user data cached in RAM in this bucket and should be transient during rebalancing.|float|count|
+|`vbuckets_pending_meta_data_memory`|Amount of pending item metadata consuming RAM in this bucket and should be transient during rebalancing.|float|count|
+|`vbuckets_pending_num`|Number of vBuckets in the pending state for this bucket and should be transient during rebalancing.|float|count|
+|`vbuckets_pending_num_non_resident`|Number of non resident vBuckets in the pending state for this bucket.|float|count|
+|`vbuckets_pending_ops_create`|New items per second being instead into pending vBuckets in this bucket and should be transient during rebalancing.|float|req/s|
+|`vbuckets_pending_ops_update`|Number of items updated on pending vBucket per second for this bucket.|float|req/s|
+|`vbuckets_pending_queue_age`|Sum of disk pending queue item age in milliseconds.|float|ms|
+|`vbuckets_pending_queue_drain`|Number of pending items per second being written to disk in this bucket and should be transient during rebalancing.|float|req/s|
+|`vbuckets_pending_queue_fill`|Number of pending items per second being put on the pending item disk queue in this bucket and should be transient during rebalancing.|float|req/s|
+|`vbuckets_pending_queue_size`|Number of pending items waiting to be written to disk in this bucket and should be transient during rebalancing.|float|count|
+|`vbuckets_pending_resident_items_ratio`|Percentage of items in pending state vb cached in RAM in this bucket.|float|percent|
+|`vbuckets_replica_curr_items`|Number of items in replica vBuckets in this bucket.|float|count|
+|`vbuckets_replica_eject`|Number of items per second being ejected to disk from replica vBuckets in this bucket.|float|req/s|
+|`vbuckets_replica_itm_memory`|Amount of replica user data cached in RAM in this bucket.|float|count|
+|`vbuckets_replica_meta_data_memory`|Amount of replica item metadata consuming in RAM in this bucket.|float|B|
+|`vbuckets_replica_num`|Number of vBuckets in the replica state for this bucket.|float|count|
+|`vbuckets_replica_num_non_resident`|vb replica num non resident.|float|count|
+|`vbuckets_replica_ops_create`|New items per second being inserted into replica vBuckets in this bucket.|float|req/s|
+|`vbuckets_replica_ops_update`|Number of items updated on replica vBucket per second for this bucket.|float|req/s|
+|`vbuckets_replica_queue_age`|Sum of disk replica queue item age in milliseconds.|float|ms|
+|`vbuckets_replica_queue_drain`|Number of replica items per second being written to disk in this bucket.|float|req/s|
+|`vbuckets_replica_queue_fill`|Number of replica items per second being put on the replica item disk queue in this bucket.|float|req/s|
+|`vbuckets_replica_queue_size`|Number of replica items waiting to be written to disk in this bucket.|float|count|
+|`vbuckets_replica_resident_items_ratio`|Percentage of replica items cached in RAM in this bucket.|float|percent|
+|`vbuckets_total_queue_age`|Sum of disk queue item age in milliseconds.|float|ms|
+|`written_bytes`|Bytes written.|float|B|
+|`xdc_ops`|Total `XDCR` operations per second for this bucket.|float|req/s|
+
+This completes the translation of the provided content. If you need further assistance or have additional sections to translate, please let me know!

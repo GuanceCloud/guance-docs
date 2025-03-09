@@ -11,10 +11,10 @@
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description |
-|:--------------|:-------|:---------|:------------|
-| rumcfgUUIDs   | array  |          | List of appIds (this parameter was deprecated on 2022-09-01)<br>Can be empty: False <br> |
-| appIds        | array  |          | List of appIds<br>Can be empty: False <br> |
+| Parameter Name | Type   | Required | Description              |
+|:--------------|:-------|:---------|:-------------------------|
+| rumcfgUUIDs   | array  |          | appId list (this parameter was deprecated on 2022-09-01)<br>Can be empty: False <br> |
+| appIds        | array  |          | appId list<br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 

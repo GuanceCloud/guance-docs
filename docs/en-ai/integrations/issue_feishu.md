@@ -1,6 +1,6 @@
 ---
-title: 'Incident - Feishu'
-summary: 'Guance Incident is deeply integrated with Feishu, making it easy to send incident information to Feishu and reply through Feishu, which will be transmitted back to Guance'
+title: 'Incident - Lark'
+summary: 'Guance Incident is deeply integrated with Lark, making it easy to send incident information to Lark and reply through Lark, which will be transmitted back to Guance'
 __int_icon: 'icon/feishu'
 dashboard:
   - desc: 'None'
@@ -11,10 +11,10 @@ monitor:
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Incident - Feishu
+# Incident - Lark
 <!-- markdownlint-enable -->
 
-Guance Incident is deeply integrated with Feishu, making it easy to send incident information to Feishu and reply through Feishu, which will be transmitted back to Guance.
+Guance Incident is deeply integrated with Lark, making it easy to send incident information to Lark and reply through Lark, which will be transmitted back to Guance.
 
 ---
 
@@ -22,18 +22,18 @@ Guance Incident is deeply integrated with Feishu, making it easy to send inciden
 
 ### Prerequisites
 
-You need administrative permissions for both the "Guance Workspace" and the "Feishu Open Platform".
+You need administrative permissions for both the "Guance Workspace" and the "Lark Open Platform".
 
 ### Install Func
 
-We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with the script installation.
+We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you choose to deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 > We recommend deploying the GSE version.
 
 ### Install Script
 
-In the script market, install the corresponding collection script: “Guance Integration (Guance Incident-Feishu)” (ID: `guance_issue_feishu`) to enable it.
+In the script market, install the corresponding collection script: "Guance Integration (Guance Incident - Lark)" (ID: `guance_issue_feishu`) to enable it.
 
-For easier documentation maintenance, please go to [Feishu Integration Configuration](https://func.guance.com/doc/script-market-guance-issue-feishu-integration/){:target="_blank"} for operation.
+For easier maintenance of the documentation, please navigate to [Lark Integration Configuration](https://func.guance.com/doc/script-market-guance-issue-feishu-integration/){:target="_blank"} for operation.

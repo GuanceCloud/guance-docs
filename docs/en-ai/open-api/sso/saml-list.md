@@ -5,15 +5,17 @@
 <br />**GET /api/v1/sso/saml_list**
 
 ## Overview
-Retrieve a list of SAML SSO login configurations.
+Retrieve the list of SAML SSO login configurations.
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description               |
-|:--------------|:-------|:---------|:--------------------------|
-| type          | string | No       | Type<br>Example: <br>Can be empty: False <br>Optional values: ['saml', 'oidc'] |
+| Parameter Name | Type   | Required | Description              |
+|:--------------|:-------|:--------|:-------------------------|
+| type          | string | No      | Type<br>Example: <br>Allow empty: False <br>Optional values: ['saml', 'oidc'] |
 
 ## Additional Parameter Notes
+
+None
 
 ## Request Example
 ```shell
@@ -23,7 +25,7 @@ curl 'https://openapi.guance.com/api/v1/sso/saml_list' \
 ```
 
 ## Response
-```shell
+```json
 {
     "code": 200,
     "content": [

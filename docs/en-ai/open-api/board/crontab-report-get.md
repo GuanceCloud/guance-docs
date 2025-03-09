@@ -11,9 +11,9 @@
 
 ## Route Parameters
 
-| Parameter Name     | Type   | Required | Description             |
-|:-----------------|:------|:-------|:----------------------|
-| report_uuid      | string | Y     | UUID of the scheduled report<br> |
+| Parameter Name   | Type   | Required | Description              |
+|:-------------|:------|:-------|:--------------------------|
+| report_uuid  | string | Y     | Scheduled report UUID<br> |
 
 
 ## Additional Parameter Notes

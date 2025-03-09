@@ -9,27 +9,28 @@ Create a new tag
 
 
 
+
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                                    |
-|:--------------|:-------|:---------|:-----------------------------------------------|
-| name          | string | Y        | Tag name<br>Can be null: False <br>Maximum length: 50 <br> |
-| description   | string |          | Tag description<br>Can be null: False <br>Maximum length: 100 <br> |
-| colour        | string |          | Tag color<br>Can be null: False <br>Maximum length: 50 <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:----------|:------------------------|
+| name | string | Y | Tag name<br>Allow empty: False <br>Maximum length: 50 <br> |
+| description | string |  | Tag description<br>Allow empty: False <br>Maximum length: 100 <br> |
+| colour | string |  | Tag color<br>Allow empty: False <br>Maximum length: 50 <br> |
 
 ## Additional Parameter Notes
 
 Data Description
 
-- Request Parameter Explanation
+- Request Parameter Description
 
-| Parameter Name | Type   | Description                                           |
-| -------------- | ------ | ----------------------------------------------------- |
-| name           | string | Tag name                                              |
-| description    | string | Field description information                         |
-| color          | string | Front and back-end agreed color type, default, style_key1, style_key2 ~~                |
+| Parameter Name           | Type | Description                                                 |
+| ------------------------ | ---- | ----------------------------------------------------------- |
+| name       | string | Tag name |
+| description             | string | Field description information                                                 |
+| color    | string | Predefined color type, default, style_key1, style_key2 ~~                |
 
-- Color `color` field type-color mapping:
+- Color color field type-color mapping:
 ```json
 {
     "default": {"background": "#CCE6FF", "color": "rgba(0,0,0,0.8)"},
@@ -62,6 +63,7 @@ Data Description
 
 
 
+
 ## Request Example
 ```shell
 curl 'https://openapi.guance.com/api/v1/tag/create' \
@@ -72,6 +74,7 @@ curl 'https://openapi.guance.com/api/v1/tag/create' \
 --data-raw '{"name":"test_1","description":"temp_test","colour":"style_key3"}' \
 --compressed
 ```
+
 
 
 

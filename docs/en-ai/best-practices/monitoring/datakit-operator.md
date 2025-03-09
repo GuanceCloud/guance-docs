@@ -1,31 +1,31 @@
-# Inject dd-java-agent using datakit-operator
+# Using datakit-operator to Inject dd-java-agent
 
 ---
 
 ## Introduction
 
-In a Kubernetes environment, when integrating Java applications with APM, the `dd-java-agent.jar` package is required. To avoid modifying the application's image, a common approach is to use initContainers in the deployment YAML to leverage shared storage within the same Pod for using `dd-java-agent.jar`. This method results in repetitive initContainers sections across multiple deployment files.
+In a Kubernetes environment, when integrating Java applications with APM, the `dd-java-agent.jar` package is required. To avoid modifying the application's image, a common approach is to use initContainers in the deployment YAML to leverage shared storage within the same Pod for using `dd-java-agent.jar`. This method results in identical initContainers sections appearing in each deployment file.
 
-Can these repetitive sections be extracted to reduce redundancy? The answer is yes. This can be achieved using the open-source [Admission Controller (Admission Controllers)](https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/admission-controllers/) from Guance. [datakit-operator](https://github.com/GuanceCloud/datakit-operator) provides functionality to inject dd-lib files and environment variables into specific Pods, currently supporting Java, Python, and JavaScript.
+Is it possible to extract these identical parts to reduce workload? The answer is yes. This can be achieved using the open-source [Admission Controller (Admission Controllers)](https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/admission-controllers/) from <<< custom_key.brand_name >>>. The [datakit-operator](https://github.com/GuanceCloud/datakit-operator) provides the capability to inject dd-lib files and environments into specific Pods, currently supporting Java, Python, and JavaScript.
 
 ## Prerequisites
 
-- You need to create a [Guance account](https://www.guance.com/).
+- You need to first create a [<<< custom_key.brand_name >>> account](https://www.guance.com/).
 - A Kubernetes cluster.
-- Deploy DataKit using [DaemonSet](../../datakit/datakit-daemonset-deploy.md) and enable the ddtrace collector.
+- DataKit has been deployed using [DaemonSet](../../datakit/datakit-daemonset-deploy.md), and ddtrace collector has been enabled.
 
 ## Procedure
 
 ???+ warning
 
-    The version information used in this example is: DataKit `1.5.2`, Kubernetes `1.24`
+    The version information used in this example is: DataKit `1.5.2`, Kubernetes `1.24`.
 
 ### 1 Deploy datakit-operator
 
 Download `datakit-operator.yaml` and deploy it to your Kubernetes cluster.
 
 ```
-wget https://static.guance.com/datakit-operator/datakit-operator.yaml
+wget https://<<< custom_key.static_domain >>>/datakit-operator/datakit-operator.yaml
 kubectl apply -f datakit-operator.yaml
 ```
 
@@ -33,9 +33,9 @@ kubectl apply -f datakit-operator.yaml
 
 #### 2.1 Write Dockerfile
 
-Write the Dockerfile for your application, mainly exposing JAVA_OPTS to facilitate the injection of the javaagent package externally.
+Write the Dockerfile for the application, mainly exposing JAVA_OPTS to facilitate the injection of the javaagent package from outside.
 
-```dockerfile
+```
 FROM openjdk:8u292
 
 RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
@@ -48,13 +48,14 @@ RUN mkdir -p ${workdir}
 COPY ${jar} ${workdir}
 WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} "]
+
 ```
 
-After completing the Dockerfile, push the image to your repository. In this example, we directly pull the image `172.16.0.246/df-demo/service-log-demo:v1`.
+After writing, push the image to the repository. Below, we directly pull the image using `172.16.0.246/df-demo/service-log-demo:v1`.
 
 #### 2.2 Modify Application YAML
 
-Add an annotation to the application's YAML.
+Add an annotation in the application's YAML.
 
 ```yaml
       annotations:
@@ -71,7 +72,7 @@ Declare the JAVA_OPTS environment variable. The application can now access the a
             -javaagent:/datadog-lib/dd-java-agent.jar -Ddd.service.name=java-demo-service -Ddd.tags=container_host:$(POD_NAME) -Ddd.env=dev -Ddd.agent.port=9529
 ```
 
-??? quote "Example complete `java-demo.yaml`"
+??? quote "Complete Example `java-demo.yaml`"
 
     ```yaml
     apiVersion: v1
@@ -139,10 +140,10 @@ kubectl apply -f java-demo.yaml
 
 ### 3 Trace Reporting
 
-Obtain the pod's IP address and access the application's interface to generate trace data.
+Obtain the pod's IP address, access the application's interface to generate trace data.
 
 ![image.png](../images/datakit-operator1.png)
 
-Log in to the [Guance Console](https://console.guance.com/) -> [APM] and query the traces based on the server `java-demo-service`.
+Log in to the [<<< custom_key.brand_name >>> Console](https://console.guance.com/) - [APM], and based on the server `java-demo-service`, you can query the traces.
 
 ![image.png](../images/datakit-operator2.png)

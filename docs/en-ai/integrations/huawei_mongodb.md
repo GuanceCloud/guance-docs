@@ -2,53 +2,53 @@
 title: 'Huawei Cloud MongoDB'
 tags: 
   - Huawei Cloud
-summary: 'Collecting Huawei Cloud MongoDB Metrics Data'
+summary: 'Collecting Huawei Cloud MongoDB Metrics data'
 __int_icon: 'icon/huawei_mongodb'
 dashboard:
-  - desc: 'Huawei Cloud MongoDB Built-in Views'
+  - desc: 'Huawei Cloud MongoDB built-in views'
     path: 'dashboard/en/huawei_mongodb/'
 
 monitor:
-  - desc: 'Huawei Cloud MongoDB Monitor'
+  - desc: 'Huawei Cloud MongoDB monitor'
     path: 'monitor/en/huawei_mongodb/'
 ---
 
 
-Collecting Huawei Cloud MongoDB Metrics Data
+Collecting Huawei Cloud MongoDB Metrics data
 
 ## Configuration {#config}
 
 ### Installing Func
 
-It is recommended to activate the Guance integration - Extension - Managed Func: all prerequisites are automatically installed. Please proceed with the script installation.
+It is recommended to enable the Guance Integration - Extensions - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/)
+If you deploy Func on your own, refer to [Deploying Func](https://func.guance.com/doc/script-market-guance-integration/)
 
 > It is recommended to deploy the GSE version
 
 ### Installing Script
 
-> Note: Prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
+> Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize Huawei Cloud MongoDB monitoring data, we install the corresponding collection script: 「Guance Integration (Huawei Cloud-GaussDB-Mongo)」(ID: `guance_huaweicloud_gaussdb_mongo`).
+To synchronize Huawei Cloud MongoDB monitoring data, we install the corresponding collection script: "Guance Integration (Huawei Cloud-GaussDB-Mongo)" (ID: `guance_huaweicloud_gaussdb_mongo`).
 
 After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK and Huawei Cloud account name.
 
-Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the corresponding startup script.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-After the script is installed, find the script 「Guance Integration (Huawei Cloud-GaussDB-Mongo Collection)」in the "Development" section of Func, expand and modify this script. Find `collector_configs` and `monitor_configs` and edit the contents under `region_projects`, changing the region and Project ID to the actual region and Project ID, then click Save and Publish.
+After the script is installed, find the script "Guance Integration (Huawei Cloud-GaussDB-Mongo Collection)" under "Development" in Func, expand and modify this script. Edit the contents of `collector_configs` and `monitor_configs` for the `region_projects`, changing the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
-Additionally, you can see the corresponding automatic trigger configuration in 「Management / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. Wait a moment, and you can view the execution task records and corresponding logs.
+Additionally, view the corresponding automatic trigger configuration in "Management / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short wait, you can check the execution task records and corresponding logs.
 
 ### Verification
 
-1. In 「Management / Automatic Trigger Configuration」confirm whether the corresponding task has an automatic trigger configuration. You can also check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, check under 「Infrastructure / Custom」whether asset information exists.
-3. On the Guance platform, check under 「Metrics」whether there is corresponding monitoring data.
+1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and check the task records and logs for any abnormalities.
+2. On the Guance platform, in "Infrastructure / Custom", check if asset information exists.
+3. On the Guance platform, in "Metrics", check if the corresponding monitoring data exists.
 
 ## Metrics {#metric}
 
-Configure Huawei Cloud MongoDB metrics. You can collect more metrics by configuring [Huawei Cloud MongoDB Metrics Details](https://support.huaweicloud.com/mongoug-nosql/nosql_08_0106.html){:target="_blank"}
+Configure Huawei Cloud MongoDB metrics, which can collect more metrics through configuration [Huawei Cloud MongoDB Metrics Details](https://support.huaweicloud.com/mongoug-nosql/nosql_08_0106.html){:target="_blank"}
 
 | **Metric ID**            |          **Metric Name**   | **Metric Meaning** | **Value Range**      | **Measurement Object** | **Monitoring Period (Original Metric)** |
 | ---- | :----: | ------ | ------ | ---- | ---- |
@@ -65,7 +65,7 @@ Configure Huawei Cloud MongoDB metrics. You can collect more metrics by configur
 | `mongodb004_query_ps`           |  Query Statement Execution Frequency   | This metric counts the average number of query statements executed per second on the node. Unit: Counts/s          | ≥ 0 Counts/s   | GeminiDB Mongo instance node | 1 minute        |
 | `mongodb005_update_ps`          |  Update Statement Execution Frequency  | This metric counts the average number of update statements executed per second on the node. Unit: Counts/s          | ≥ 0 Counts/s | GeminiDB Mongo instance node | 1 minute          |
 | `mongodb006_getmore_ps`         | Getmore Statement Execution Frequency  | This metric counts the average number of getmore statements executed per second on the node. Unit: Counts/s          | ≥ 0 Counts/s | GeminiDB Mongo instance node | 1 minute          |
-| `mongodb007_connections_usage`  |  Percentage of Active Connections | This metric counts the percentage of connections attempting to connect to the instance node out of available connections. Unit: %          | 0~100 %      | GeminiDB Mongo instance node | 1 minute          |
+| `mongodb007_connections_usage`  |  Percentage of Active Connections | This metric counts the percentage of connection attempts to the instance node out of available connections. Unit: %          | 0~100 %      | GeminiDB Mongo instance node | 1 minute          |
 | `mongodb008_mem_resident`       |  Resident Memory           | This metric counts the current size of resident memory. Unit: MB            | ≥ 0 MB      | GeminiDB Mongo instance node | 1 minute               |
 | `mongodb009_mem_virtual`       |   Virtual Memory           | This metric counts the current size of virtual memory. Unit: MB           | ≥ 0 MB       | GeminiDB Mongo instance node | 1 minute              |
 | `mongodb010_regular_asserts_ps` |  Regular Assertion Frequency        | This metric counts the regular assertion frequency. Unit: Counts/s          | ≥ 0 Counts/s       | GeminiDB Mongo instance node | 1 minute         |
@@ -75,14 +75,14 @@ Configure Huawei Cloud MongoDB metrics. You can collect more metrics by configur
 | `mongodb014_queues_total`    |     Number of Operations Waiting for Lock     | This metric counts the number of operations currently waiting for a lock. Unit: Counts         |   ≥ 0 Counts |  GeminiDB Mongo instance node       | 1 minute                |
 | `mongodb015_queues_readers`       |    Number of Operations Waiting for Read Lock    | This metric counts the number of operations currently waiting for a read lock. Unit: Counts               | ≥ 0 Counts   | GeminiDB Mongo instance node  | 1 minute      |
 | `mongodb016_queues_writers`     |   Number of Operations Waiting for Write Lock        | This metric counts the number of operations currently waiting for a write lock. Unit: Counts                   | ≥ 0 Counts   | GeminiDB Mongo instance node | 1 minute                    |
-| `mongodb017_page_faults`     |   Page Fault Count   | This metric counts the page faults on the current node. Unit: Counts             | ≥ 0 Counts   | GeminiDB Mongo instance node | 1 minute                    |
-| `mongodb018_porfling_num`        |      Slow Query Count      | This metric counts the slow queries on the current node. Unit: Counts          | ≥ 0 Counts   | GeminiDB Mongo instance node | 1 minute                    |
-| `mongodb019_cursors_open`       |       Open Cursors       | This metric counts the open cursors on the current node. Unit: Counts             | ≥ 0 Counts   | GeminiDB Mongo instance node   | 1 minute                    |
-| `mongodb020_cursors_timeout`       |    Timed-out Cursors    | This metric counts the timed-out cursors on the current node. Unit: Counts           | ≥ 0 Counts       | GeminiDB Mongo instance node | 1 minute                    |
+| `mongodb017_page_faults`     |   Page Fault Count   | This metric counts the number of page faults on the current node. Unit: Counts             | ≥ 0 Counts   | GeminiDB Mongo instance node | 1 minute                    |
+| `mongodb018_porfling_num`        |      Slow Query Count      | This metric counts the number of slow queries on the current node. Unit: Counts          | ≥ 0 Counts   | GeminiDB Mongo instance node | 1 minute                    |
+| `mongodb019_cursors_open`       |       Current Open Cursors       | This metric counts the number of open cursors on the current node. Unit: Counts             | ≥ 0 Counts   | GeminiDB Mongo instance node   | 1 minute                    |
+| `mongodb020_cursors_timeout`       |    Service Timeout Cursors    | This metric counts the number of service timeout cursors on the current node. Unit: Counts           | ≥ 0 Counts       | GeminiDB Mongo instance node | 1 minute                    |
 
 ## Objects {#object}
 
-After data synchronization, you can view the data in the 「Infrastructure / Custom (Objects)」section of Guance.
+After data synchronization is normal, you can view the data in the "Infrastructure / Custom (Objects)" section of Guance.
 
 ```json
 {
@@ -115,9 +115,9 @@ After data synchronization, you can view the data in the 「Infrastructure / Cus
 }
 ```
 
-> *Note: Fields in `tags` and `fields` may change with subsequent updates.*
+> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tip 1: The value of `tags.name` is the instance ID, serving as a unique identifier.
+> Tip 1: The value of `tags.name` is the instance ID, used as a unique identifier.
 >
 > Tip 2:
 >

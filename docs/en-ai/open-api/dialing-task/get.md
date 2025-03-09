@@ -11,9 +11,9 @@
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:--------|:-------------------------|
-| task_uuid     | string | Y       | ID of the dial testing task<br> |
+| Parameter Name | Type   | Required | Description               |
+|:-------------|:------|:-------|:-------------------------|
+| task_uuid    | string | Y     | ID of the dial testing task<br> |
 
 
 ## Additional Parameter Notes

@@ -1,4 +1,4 @@
-# 【Login Mapping】Switch Status Setting
+# 【Login Mapping】Switch Status Settings
 
 ---
 
@@ -8,23 +8,21 @@
 
 
 
-
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:-----------|:-------|:-----|:----------------|
-| isDisable | boolean |  | Whether to disable<br>Example: True <br>Can be empty: False <br>Optional values: [True, False] <br> |
-| type | string |  | Scope type when enabled<br>Example: GlobalValid <br>Can be empty: False <br>Optional values: ['ValidOnFirstLogin', 'GlobalValid'] <br> |
+| Parameter Name | Type   | Required | Description |
+|:--------------|:-------|:---------|:------------|
+| isDisable     | boolean| No       | Whether to disable<br>Example: True <br>Can be empty: False <br>Optional values: [True, False] <br> |
+| type          | string | No       | Scope type when enabled<br>Example: GlobalValid <br>Can be empty: False <br>Optional values: ['ValidOnFirstLogin', 'GlobalValid'] <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanations
 
-* Explanation of the type parameter*
+* Explanation of the type parameter *
 
-| Optional Value | Description |
-|:------|:----------------|
-| ValidOnFirstLogin | Indicates that under the enabled mapping configuration, the mapping configuration is only valid for the user's first login |
-| GlobalValid | Indicates that under the enabled mapping configuration, the mapping configuration is valid for each user login; this is the default value |
-
+| Optional Value        | Description                                                                 |
+|:----------------------|:----------------------------------------------------------------------------|
+| ValidOnFirstLogin     | Indicates that the mapping configuration is only effective for the user's first login when enabled. |
+| GlobalValid          | Indicates that the mapping configuration is effective for each user login when enabled; serves as the default value. |
 
 
 

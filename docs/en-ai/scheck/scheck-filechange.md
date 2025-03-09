@@ -1,6 +1,6 @@
 # Implementation of Checking Changes in Sensitive Files
 
-This guide will demonstrate how to use Scheck to check sensitive files using a Lua script.
+This guide will demonstrate how to use Scheck to check sensitive files with a Lua script.
 
 - Version: 1.0.7-7-g251eead
 - Release Date: 2023-04-06 11:17:57
@@ -8,28 +8,28 @@ This guide will demonstrate how to use Scheck to check sensitive files using a L
 
 ## Prerequisites
 
-- [Scheck](scheck-install.md) is installed
+- Scheck is already installed [(Scheck Installation)](scheck-install.md)
 
 ## Development Steps
 
-1. Navigate to the installation directory and edit the `enable` field in the configuration file `scheck.conf` to `true`:
+1. Navigate to the installation directory and edit the `enable` field in the configuration file `scheck.conf` to set it to `true`:
 
 ```toml
 ...
 [scoutput]
-   # ## Messages generated during Security Check can be sent to local storage, HTTP, or Alibaba Cloud SLS.
-   # ## Remote server example: http(s)://your.url
+   # ##Messages generated during Security Check can be sent to local storage, HTTP, or Alibaba Cloud SLS.
+   # ##Remote server, e.g., http(s)://your.url
   [scoutput.http]
     enable = true
     output = "http://127.0.0.1:9529/v1/write/security"
   [scoutput.log]
-    # ## Local storage can be configured
+    # ##Local storage can be configured
     enable = false
     output = "/var/log/scheck/event.log"
 ...
 ```
 
-2. Create a new manifest file `files.manifest` under the directory `/usr/local/scheck/custom.rules.d` (this directory is for user-defined scripts), and edit it as follows:
+2. Create a manifest file `files.manifest` under the directory `/usr/local/scheck/custom.rules.d` (this directory is for user-defined scripts), and edit it as follows:
 
 ```toml
 id       = 'check-file'
@@ -41,7 +41,7 @@ cron     = '*/10 * * * *' # Indicates that this Lua script runs every 10 seconds
 os_arch  = ["Linux"]
 ```
 
-3. In the same directory as the manifest file, create a new script file `files.lua`, and edit it as follows:
+3. In the same directory as the manifest file, create a script file `files.lua`, and edit it as follows:
 
 ```lua
 local files={
@@ -70,7 +70,7 @@ for i,v in ipairs(files) do
 end
 ```
 
-4. When a sensitive file is modified, within the next 10 seconds, the change will be detected and the `trigger` function will be invoked, sending the event to the file `/var/log/scheck/event.log`. An entry will be added, for example:
+4. When a sensitive file is modified, within the next 10 seconds, the change will be detected and the `trigger` function will be invoked, sending the event to the file `/var/log/scheck/event.log`. A new line of data will be added, for example:
 
 ```
 check-file-01,category=security,level=warn,title=Monitor File Changes message="File /etc/passwd has changed" 1617262230001916515

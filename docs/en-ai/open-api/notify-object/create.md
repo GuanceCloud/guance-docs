@@ -12,7 +12,7 @@ Create a notification target
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
+|:---------------------|:---------|:-----------|:-------------------------|
 | type | string | Y | Trigger rule type, default is `trigger`<br>Can be empty: True <br>Optional values: ['dingTalkRobot', 'HTTPRequest', 'wechatRobot', 'mailGroup', 'feishuRobot', 'sms', 'simpleHTTPRequest'] <br> |
 | name | string | Y | Notification target name<br>Can be empty: False <br> |
 | optSet | json |  | Alert settings<br>Can be empty: False <br> |
@@ -22,72 +22,75 @@ Create a notification target
 ## Additional Parameter Explanation
 
 
-*Data description.*
+*Data explanation.*
 
 **Request parameter explanation: **
 | Parameter Name           | Type | Description                                                 |
-| ---------------- | ---- | ---------------------------------------------------- |
+| ------------------------ | ---- | ------------------------------------------------------------ |
 | name       | string | Notification target name |
 | type             | string | Trigger rule type                                                 |
 | optSet             | dict | Alert settings                                                 |
-| openPermissionSet             | boolean | Whether to enable custom permission configuration, default false                                                 |
+| openPermissionSet             | boolean | Whether to enable custom permission configuration, default is false                                                 |
 | permissionSet             | array | Operation permission configuration                                                 |
 
 **1. When `type`=`dingTalkRobot`, parameters of optSet **
 
-| key      | Type   | Required | Description    |
-| :------- | :----- | :------- | :------------------ |
-| webhook  | String | Required | DingTalk bot invocation address |
-| secret   | String | Required | DingTalk bot invocation secret key (add bot - security settings - signature) |
+| Key      | Type   | Required | Description    |
+| :------- | :----- | :------- | :------------- |
+| webhook  | String | Required | DingTalk bot invocation URL |
+| secret   | String | Required | DingTalk bot invocation secret key (add bot - security settings - sign) |
 
 
 **2. When `type`=`HTTPRequest`, parameters of optSet **
 
-| key      | Type   | Required | Description  |
+| Key      | Type   | Required | Description  |
 | :------- | :----- | :------- | :----------- |
-| url      | String | Required | HTTP invocation address |
+| url      | String | Required | HTTP invocation URL |
 
 
 **3. When `type`=`wechatRobot`, parameters of optSet **
 
-| key      | Type   | Required | Description  |
+| Key      | Type   | Required | Description  |
 | :------- | :----- | :------- | :----------- |
-| webhook  | String | Required | Bot invocation address |
+| webhook  | String | Required | Bot invocation URL |
+
 
 **4. When `type`=`mailGroup`, parameters of optSet **
 
-| key      | Type   | Required | Description  |
+| Key      | Type   | Required | Description  |
 | :------- | :----- | :------- | :----------- |
 | to  | Array | Required | List of member accounts |
 
+
 **5. When `type`=`feishuRobot`, parameters of optSet **
 
-| key      | Type   | Required | Description    |
-| :------- | :----- | :------- | :------------------ |
-| webhook  | String | Required | Feishu bot invocation address |
-| secret   | String | Required | Feishu bot invocation secret key (add bot - security settings - signature) |
+| Key      | Type   | Required | Description    |
+| :------- | :----- | :------- | :------------- |
+| webhook  | String | Required | Lark bot invocation URL |
+| secret   | String | Required | Lark bot invocation secret key (add bot - security settings - sign) |
+
 
 **6. When `type`=`sms`, parameters of optSet **
 
- | key      | Type   | Required | Description  |
- | :------- | :----- | :------- | :----------- |
- | to  | Array | Required | List of phone numbers |
+| Key      | Type   | Required | Description  |
+| :------- | :----- | :------- | :----------- |
+| to  | Array | Required | List of phone numbers |
+
 
 **7. When `type`=`simpleHTTPRequest`, parameters of optSet **
 
-| key      | Type   | Required | Description  |
+| Key      | Type   | Required | Description  |
 | :------- | :----- | :------- | :----------- |
-| url      | String | Required | HTTP invocation address |
+| url      | String | Required | HTTP invocation URL |
 
 **Explanation of permissionSet and openPermissionSet fields (new fields added in iteration on 2024-06-26):**
-When the notification target has openPermissionSet enabled, only the workspace owner and users with roles, teams, or members specified in permissionSet can edit/delete.
-When openPermissionSet is disabled (default), deletion/editing permissions follow the original interface editing/deletion permissions.
+When the notification target configuration has openPermissionSet enabled, only the space owner and members belonging to the roles, teams, or members specified in permissionSet can edit/delete.
+When the notification target configuration has openPermissionSet disabled (default), delete/edit permissions follow the original interface edit/delete permissions.
 
 The permissionSet field can be configured with role UUIDs (wsAdmin, general, readOnly, role_xxxxx), team UUIDs (group_yyyy), and member UUIDs (acnt_xxx).
-Example of permissionSet:
+Example of permissionSet field:
 ```
   ["wsAdmin", "general", "group_yyyy", "acnt_xxxx"]
-
 ```
 
 

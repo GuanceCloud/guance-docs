@@ -2,13 +2,13 @@
 
 ## Introduction
 
-TDengine is a high-performance, distributed, SQL-supporting time series database (Database). Its core code, including cluster functionality, is fully open-source (open-source license AGPL v3.0). TDengine can be widely used in areas such as IoT, industrial internet, connected vehicles, IT operations, and finance. In addition to the core time series database (Database) functionality, TDengine also provides caching, data subscription, stream computing, and other big data platform functions required to minimize the complexity of development and maintenance.
+TDengine is a high-performance, distributed, SQL-supporting time series database (Database), whose core code, including cluster functionality, is entirely open-source (under the AGPL v3.0 license). TDengine can be widely used in areas such as IoT, Industrial Internet, connected vehicles, IT operations, finance, and more. In addition to its core time series database (Database) functions, TDengine also provides caching, data subscription, stream processing, and other big data platform functionalities, minimizing the complexity of development and maintenance.
 
 ## Prerequisites
 
-- [Kubernetes](infra-kubernetes.md#kubernetes-install) has been deployed
+- [Kubernetes](infra-kubernetes.md#kubernetes-install) has been deployed.
 
-- (Optional) Public cloud storage components (public cloud)
+- (Optional) Public cloud storage block components (public cloud)
 - (Optional) [OpenEBS storage plugin](openebs-install.md)
 
 ```shell
@@ -23,10 +23,11 @@ openebs-ndm-vlcrv                              1/1     Running   0          23h
 
 ## Basic Information and Compatibility
 
+
 | Name | Description |
 | :------------------: | :---------------------------------------------: |
 | TDengine Version | 2.6.0 |
-| Offline Installation Support | Yes |
+| Supports Offline Installation | Yes |
 | Supported Architectures | amd64/arm64 |
 
 
@@ -44,20 +45,20 @@ openebs-ndm-vlcrv                              1/1     Running   0          23h
 
 ### 1. Installation
 
-#### 1.1 Cluster Label Setup
+#### 1.1 Cluster Label Configuration
 
-Since TDengine consumes a lot of resources and requires exclusive use of cluster resources, we need to configure cluster scheduling in advance.
+Since TDengine consumes significant resources and requires exclusive use of cluster resources, we need to configure cluster scheduling in advance.
 
 
 Execute commands to label the cluster:
 
 ```shell
-# According to the cluster plan, label the k8s nodes where tdengine services will be deployed with a tag. It is recommended to use three nodes.
-# xxx represents actual nodes in the cluster. Multiple node IPs are separated by spaces or use the tab key for auto-completion in the command line terminal.
+# Based on cluster planning, apply labels to the k8s nodes that will host the TDengine service. It is recommended to use three nodes.
+# Replace `xxx` with actual node names from your cluster, separated by spaces or using the tab key for auto-completion in the command line terminal.
 kubectl label nodes xxx tdengine=true
 ```
 
-Check labels:
+Check the labels:
 
 ```shell
 kubectl get nodes --show-labels  | grep 'tdengine'
@@ -65,9 +66,9 @@ kubectl get nodes --show-labels  | grep 'tdengine'
 
 
 
-#### 1.2 Cluster Taint Setup
+#### 1.2 Taint Configuration
 
-Execute commands to set cluster taints:
+Execute commands to set taints on the cluster:
 
 ```shell
 kubectl taint node xxxx infrastructure=middleware:NoExecute
@@ -75,12 +76,12 @@ kubectl taint node xxxx infrastructure=middleware:NoExecute
 
 
 
-#### 1.3 Configure StorageClass
+#### 1.3 StorageClass Configuration
 
 Configure a dedicated StorageClass for TDengine
 
 ```yaml
-# Copy the following YAML content into the k8s cluster and save it as sc-td.yaml. Modify it according to your actual situation before deployment.
+# Copy the following YAML content into the k8s cluster as sc-td.yaml, modify it according to your needs, and deploy it.
 apiVersion: storage.k8s.io/v1
 allowVolumeExpansion: true
 kind: StorageClass
@@ -90,8 +91,8 @@ metadata:
       - name: StorageType
         value: "hostpath"
       - name: BasePath
-        value: "/data/tdengine"  # This path can be modified based on actual conditions. Ensure sufficient storage space and that the path exists.
-  name: openebs-tdengine   # The name must be unique within the cluster and should be synchronized with modifications in /etc/kubeasz/guance/infrastructure/yaml/taos.yaml before installation.
+        value: "/data/tdengine"  # Modify this path based on actual conditions, ensuring sufficient storage space and path existence
+  name: openebs-tdengine   # The name must be unique within the cluster; synchronize changes before deployment in /etc/kubeasz/guance/infrastructure/yaml/taos.yaml 
 provisioner: openebs.io/local
 reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
@@ -546,7 +547,7 @@ Save `tdengine.yaml` and deploy it.
               storage: "100Gi"
     ```
 
-Execute commands for installation:
+Execute the installation commands:
 
 ```shell
 kubectl create namespace middleware

@@ -1,7 +1,11 @@
 nav:
+
   - index.md
   - 'DataFlux Func (Automata)': automata.md
-  - 'External Data Source': 
+  - 'External Data Sources': 
     - external_data.md
-    - 'Normal Chart Data Return': external_data_normal.md
+    - 'General Chart Data Return': 
+      - Line Chart: chart_line.md
+      - Pie Chart: chart_pie.md
+      - Table Chart: chart_table.md
     - 'Topology Graph Data Return': external_data_treemap.md

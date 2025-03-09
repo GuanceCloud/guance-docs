@@ -1,5 +1,5 @@
-# Monitoring System User Changes
-  This will demonstrate how to use Scheck to check sensitive files with a Lua script.
+# Monitor System User Changes
+  This will demonstrate how to use Scheck to implement a Lua script for checking sensitive files.
 
 - Version: 1.0.7-5-gb83de2d
 - Release Date: 2022-08-30 03:31:26
@@ -7,17 +7,17 @@
 
 ## Prerequisites
 
-- [Scheck](../scheck/scheck-install.md) is installed
+- [Scheck](../scheck/scheck-install.md) is already installed
 
 ## Development Steps
 
-1. Navigate to the installation directory and set the `enable` field in the configuration file `scheck.conf` to `true`:
+1. Navigate to the installation directory and edit the `enable` field in the configuration file `scheck.conf` to set it to `true`:  
 
 ```toml
 ...
 [scoutput]
-   # ##Messages generated during Security Check can be sent to local, http, or Alibaba Cloud SLS.
-   # ##Remote server, example: http(s)://your.url
+   # ##Messages generated during Security Check can be sent to local, http, Alibaba Cloud sls.
+   # ##Remote server, e.g., http(s)://your.url
   [scoutput.http]
     enable = true
     output = "http://127.0.0.1:9529/v1/write/security"
@@ -28,20 +28,21 @@
 ...
 ```
 
-2. Create a new manifest file `files.manifest` in the directory `/usr/local/scheck/custom.rules.d` (this directory is for user-defined scripts), and edit it as follows:
+2. Create a manifest file `files.manifest` under the directory `/usr/local/scheck/custom.rules.d` (this directory is for user-defined scripts), and edit it as follows:  
 
 ```toml
 id         = 'users-checker'
 category   = 'system'
 level      = 'warn'
-title      = 'Monitoring System User Changes'
+title      = 'Monitor System User Changes'
 desc       = '{{.Content}}'
 cron       = '*/10 * * * *'
 instanceId = 'id-xxx'
 os_arch    = ["Linux"]
 ```
 
-3. In the same directory as the manifest file, create a new script file `users.lua`, and edit it as follows:
+
+3. In the same directory as the manifest file, create a script file `users.lua`, and edit it as follows:
 ```lua
 local function check()
     local cache_key="current_users"
@@ -101,5 +102,5 @@ check()
 4. When a user is added, it will be detected within the next 10 seconds and trigger the `trigger` function, sending the event to the file `/var/log/scheck/event.log`, adding a line of data, for example:
 
 ```
-users-checker,category=system,level=warn,title=Monitoring System User Changes message="New users: xxx" 1617262230001916515
+users-checker,category=system,level=warn,title=Monitor System User Changes message="New users: xxx" 1617262230001916515
 ```

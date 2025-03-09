@@ -8,16 +8,14 @@
 Enable or disable a checker
 
 
-
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                                      |
-|:--------------|:-------|:--------|:-------------------------------------------------|
-| isDisable    | boolean | Y       | Set the enable status<br>Can be null: False <br> |
-| ruleUUIDs    | array  | Y       | List of UUIDs for the check items<br>Can be null: False <br> |
+| Parameter Name | Type   | Required | Description              |
+|:-----------|:-------|:-----|:----------------|
+| isDisable | boolean | Y | Set the enable status<br>Allow null: False <br> |
+| ruleUUIDs | array | Y | List of UUIDs for the check items<br>Allow null: False <br> |
 
 ## Additional Parameter Notes
-
 
 
 
@@ -29,7 +27,6 @@ curl 'https://openapi.guance.com/api/v1/checker/set_disable' \
 --data-raw '{"ruleUUIDs":["rul_xxxx32"],"isDisable":true}' \
 --compressed 
 ```
-
 
 
 

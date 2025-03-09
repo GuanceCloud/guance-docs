@@ -1,8 +1,8 @@
 ---
 title     : 'CouchDB'
-summary   : 'Collect metrics data from CouchDB'
+summary   : 'Collect Metrics Data from CouchDB'
 tags:
-  - 'database'
+  - 'Database'
 __int_icon      : 'icon/couchdb'
 dashboard :
   - desc  : 'CouchDB'
@@ -17,7 +17,7 @@ monitor   :
 
 ---
 
-The CouchDB collector is used to collect metrics data related to CouchDB, currently only supporting Prometheus formatted data.
+The CouchDB collector is used to collect metrics data related to CouchDB, currently only supporting data in Prometheus format.
 
 Tested versions:
 
@@ -31,7 +31,7 @@ Tested versions:
 
 - Install the CouchDB service
   
-  Refer to the [official installation documentation](https://docs.couchdb.org/en/stable/install/index.html){:target="_blank"}
+Refer to the [official installation documentation](https://docs.couchdb.org/en/stable/install/index.html){:target="_blank"}
 
 - Verify the installation
 
@@ -39,7 +39,7 @@ Tested versions:
 
 - Enable the CouchDB Prometheus port
   
-  Locate and edit the CouchDB startup configuration file, usually found at `/opt/couchdb/etc/local.ini`
+  Find and edit the CouchDB startup configuration file, usually located at `/opt/couchdb/etc/local.ini`
 
   ```ini
   [prometheus]
@@ -64,8 +64,8 @@ Tested versions:
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    - The ports `5984` and `17986` are required for data collection; these ports need to be open on the server being monitored for remote collection.
-    - If collecting locally, there is no need to modify `bind_address = 127.0.0.1`.
+    - The ports `5984` and `17986` are required for data collection. When collecting remotely, these ports need to be open on the server being monitored.
+    - If `bind_address = 127.0.0.1`, no changes are needed for local collection.
 <!-- markdownlint-enable -->
 
 ### Collector Configuration {#input-config}
@@ -73,7 +73,7 @@ Tested versions:
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/couchdb` directory under the DataKit installation directory, copy `couchdb.conf.sample` and rename it to `couchdb.conf`. An example is as follows:
+    Navigate to the `conf.d/couchdb` directory under the DataKit installation directory, copy `couchdb.conf.sample` and rename it to `couchdb.conf`. Example configuration:
     
     ```toml
         
@@ -125,9 +125,9 @@ Tested versions:
 |`code`|HTTP response codes, such as 200, 201, 202, 204, 206, 301, 304, 400, 403, 404, 405, 406, 409, 412, 414, 415, 416, 417, 500, 501, 503.|
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
-|`level`|Log level, including `alert`, `critical`, `debug`, `emergency`, `error`, `info`, `notice`, `warning`.|
-|`memory_type`|Erlang memory type, including `total`, `processes`, `processes_used`, `system`, `atom`, `atom_used`, `binary`, `code`, `ets`|
-|`method`|HTTP request methods, including `COPY`, `DELETE`, `GET`, `HEAD`, `OPTIONS`, `POST`, `PUT`.|
+|`level`|Log level, such as `alert`, `critical`, `debug`, `emergency`, `error`, `info`, `notice`, `warning`.|
+|`memory_type`|Erlang memory type, such as `total`, `processes`, `processes_used`, `system`, `atom`, `atom_used`, `binary`, `code`, `ets`|
+|`method`|HTTP request method, such as `COPY`, `DELETE`, `GET`, `HEAD`, `OPTIONS`, `POST`, `PUT`.|
 |`quantile`|Histogram `quantile`.|
 |`stage`|`Rexi` stream stage, like `init_stream`.|
 
@@ -143,7 +143,7 @@ Tested versions:
 |`coalesced_updates_replicated`|Number of coalesced replicated updates.|float|count|
 |`collect_results_time_seconds`|Microsecond latency for calls to couch_db:collect_results.|float|ms|
 |`commits_total`|Number of commits performed.|float|count|
-|`couch_log_requests_total`|Number of logged `level` messages. `level` includes `alert`, `critical`, `debug`, `emergency`, `error`, `info`, `notice`, `warning`.|float|count|
+|`couch_log_requests_total`|Number of logged `level` messages. `level` = `alert` `critical` `debug` `emergency` `error` `info` `notice` `warning`.|float|count|
 |`couch_replicator_changes_manager_deaths_total`|Number of failed replicator changes managers.|float|count|
 |`couch_replicator_changes_queue_deaths_total`|Number of failed replicator changes work queues.|float|count|
 |`couch_replicator_changes_read_failures_total`|Number of failed replicator changes read failures.|float|count|
@@ -187,7 +187,7 @@ Tested versions:
 |`database_reads_total`|Number of times a document was read from a database.|float|count|
 |`database_writes_total`|Number of times a database was changed.|float|count|
 |`db_open_time_seconds`|Milliseconds required to open a database.|float|ms|
-|`dbinfo_seconds`|Milliseconds required to retrieve DB info.|float|ms|
+|`dbinfo_seconds`|Milliseconds required to get DB info.|float|ms|
 |`ddoc_cache_hit_total`|Number of design doc cache hits.|float|count|
 |`ddoc_cache_miss_total`|Number of design doc cache misses.|float|count|
 |`ddoc_cache_recovery_total`|Number of design doc cache recoveries.|float|count|
@@ -266,9 +266,9 @@ Tested versions:
 |`httpd_partition_view_requests_total`|Number of partition HTTP view requests.|float|count|
 |`httpd_partition_view_timeouts_total`|Number of partition HTTP view timeouts.|float|count|
 |`httpd_purge_requests_total`|Number of purge requests.|float|count|
-|`httpd_request_methods`|Number of HTTP `option` requests. `option` includes `COPY`, `DELETE`, `GET`, `HEAD`, `OPTIONS`, `POST`, `PUT`.|float|count|
+|`httpd_request_methods`|Number of HTTP `option` requests. `option` = `COPY` `DELETE` `GET` `HEAD` `OPTIONS` `POST` `PUT`.|float|count|
 |`httpd_requests_total`|Number of HTTP requests.|float|count|
-|`httpd_status_codes`|Number of HTTP `status_codes` responses. `status_codes` includes 200, 201, 202, 204, 206, 301, 304, 400, 403, 404, 405, 406, 409, 412, 414, 415, 416, 417, 500, 501, 503.|float|count|
+|`httpd_status_codes`|Number of HTTP `status_codes` responses. `status_codes` = 200 201 202 204 206 301 304 400 403 404 405 406 409 412 414 415 416 417 500 501 503.|float|count|
 |`httpd_temporary_view_reads_total`|Number of temporary view reads.|float|count|
 |`httpd_view_reads_total`|Number of view reads.|float|count|
 |`httpd_view_timeouts_total`|Number of HTTP view timeouts.|float|count|
@@ -295,7 +295,7 @@ Tested versions:
 |`open_databases_total`|Number of open databases.|float|count|
 |`open_os_files_total`|Number of file descriptors CouchDB has open.|float|count|
 |`pread_exceed_eof_total`|Number of attempts to read beyond the end of the db file.|float|count|
-|`pread_exceed_limit_total`|Number of attempts to read beyond the set limit.|float|count|
+|`pread_exceed_limit_total`|Number of attempts to read beyond set limit.|float|count|
 |`query_server_acquired_processes_total`|Number of acquired external processes.|float|count|
 |`query_server_process_errors_total`|Number of OS error process exits.|float|count|
 |`query_server_process_exists_total`|Number of OS normal process exits.|float|count|
@@ -312,8 +312,3 @@ Tested versions:
 |`rexi_streams_timeout_total`|Number of `rexi` stream initialization timeouts.|float|count|
 |`rexi_streams_timeout_wait_for_ack_total`|Number of `rexi` stream timeouts while waiting for `acks`.|float|count|
 |`uptime_seconds`|CouchDB uptime.|float|s|
-
-
-</input_content>
-</example>
-```

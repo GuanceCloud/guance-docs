@@ -1,6 +1,6 @@
 ---
 title     : 'TiDB'
-summary   : 'Collect metrics information related to TiDB cluster, TiDB, Etcd, Region, and other components'
+summary   : 'Collect metrics information from TiDB cluster, TiDB, Etcd, Region, and other related components'
 __int_icon: 'icon/tidb'
 dashboard :
   - desc  : 'TiDB monitoring view'
@@ -14,22 +14,22 @@ monitor   :
 # TiDB
 <!-- markdownlint-enable -->
 
-The TiDB view displays information including an overview (such as startup time, storage information, node information, etc.), cluster-related information, TiDB, Etcd, Region, and other component metrics.
+The TiDB view displays information including an overview (such as startup time, storage information, node information, etc.), cluster (related cluster information), TiDB, Etcd, Region, and other relevant metrics.
 
 
-## Installation Configuration {#config}
+## Installation and Configuration {#config}
 
 ### Version Support
 
-Version support depends on the TiDB system itself.
+Version support depends on the versions supported by the TiDB system itself.
 
 Note: The example TiDB version is 6.3+
 
 (The environment for Linux / Windows is the same)
 
-To install TiDB, refer to the documentation [Deploy a Local Test Cluster](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4)
+To install TiDB, refer to the documentation [Deploy a Local Test Cluster](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4).
 
-The following collection process follows the deployment method described in [Deploy a Local Test Cluster](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4).
+The following collection process follows the deployment method described in [Deploy a Local Test Cluster](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4) for data collection.
 
 
 ### Metrics Collection Configuration
@@ -45,7 +45,7 @@ All TiDB components (a total of 4 components) expose `metrics` via HTTP protocol
 | TiFlash | 8234 <br/> 20292 |
 
 
-The above table lists the `metrics` ports for a single-node cluster. For multi-node clusters, the port configuration is similar.
+The above table lists the `metrics` ports for single-node cluster component deployments; for multi-node clusters, the port configuration is similar.
 
 #### Enable DataKit Collector
 
@@ -96,7 +96,7 @@ The above table lists the `metrics` ports for a single-node cluster. For multi-n
 		  # The matched tags would be dropped, but the item would still be sent.
 		  # tags_ignore = ["xxxx"]
 
-		  ## Customize authentication. Currently supports Bearer Token only.
+		  ## Customize authentication. For now supports Bearer Token only.
 		  # Filling in 'token' or 'token_file' is acceptable.
 		  # [inputs.prom.auth]
 		  # type = "bearer_token"
@@ -105,7 +105,7 @@ The above table lists the `metrics` ports for a single-node cluster. For multi-n
 
 		  ## Customize measurement set name.
 		  # Treat those metrics with prefix as one set.
-		  # Prioritier over 'measurement_name' configuration.
+		  # Prioritizes over 'measurement_name' configuration.
 		  #[[inputs.prom.measurements]]
 		  #  prefix = "cpu_"
 		  #  name = "cpu"
@@ -214,7 +214,7 @@ The above table lists the `metrics` ports for a single-node cluster. For multi-n
 		  # The matched tags would be dropped, but the item would still be sent.
 		  # tags_ignore = ["xxxx"]
 
-		  ## Customize authentication. Currently supports Bearer Token only.
+		  ## Customize authentication. For now supports Bearer Token only.
 		  # Filling in 'token' or 'token_file' is acceptable.
 		  # [inputs.prom.auth]
 		  # type = "bearer_token"
@@ -223,7 +223,7 @@ The above table lists the `metrics` ports for a single-node cluster. For multi-n
 
 		  ## Customize measurement set name.
 		  # Treat those metrics with prefix as one set.
-		  # Prioritier over 'measurement_name' configuration.
+		  # Prioritizes over 'measurement_name' configuration.
 		  #[[inputs.prom.measurements]]
 		  #  prefix = "cpu_"
 		  #  name = "cpu"
@@ -338,7 +338,7 @@ The above table lists the `metrics` ports for a single-node cluster. For multi-n
 		  # The matched tags would be dropped, but the item would still be sent.
 		  # tags_ignore = ["xxxx"]
 
-		  ## Customize authentication. Currently supports Bearer Token only.
+		  ## Customize authentication. For now supports Bearer Token only.
 		  # Filling in 'token' or 'token_file' is acceptable.
 		  # [inputs.prom.auth]
 		  # type = "bearer_token"
@@ -347,7 +347,7 @@ The above table lists the `metrics` ports for a single-node cluster. For multi-n
 
 		  ## Customize measurement set name.
 		  # Treat those metrics with prefix as one set.
-		  # Prioritier over 'measurement_name' configuration.
+		  # Prioritizes over 'measurement_name' configuration.
 		  #[[inputs.prom.measurements]]
 		  #  prefix = "cpu_"
 		  #  name = "cpu"
@@ -457,7 +457,7 @@ The above table lists the `metrics` ports for a single-node cluster. For multi-n
 		  # The matched tags would be dropped, but the item would still be sent.
 		  # tags_ignore = ["xxxx"]
 
-		  ## Customize authentication. Currently supports Bearer Token only.
+		  ## Customize authentication. For now supports Bearer Token only.
 		  # Filling in 'token' or 'token_file' is acceptable.
 		  # [inputs.prom.auth]
 		  # type = "bearer_token"
@@ -466,7 +466,7 @@ The above table lists the `metrics` ports for a single-node cluster. For multi-n
 
 		  ## Customize measurement set name.
 		  # Treat those metrics with prefix as one set.
-		  # Prioritier over 'measurement_name' configuration.
+		  # Prioritizes over 'measurement_name' configuration.
 		  #[[inputs.prom.measurements]]
 		  #  prefix = "cpu_"
 		  #  name = "cpu"
@@ -506,20 +506,20 @@ The above table lists the `metrics` ports for a single-node cluster. For multi-n
 		```
 
 <!-- markdownlint-disable MD033 -->
-<font color="red">*Note: Adjustments need to be made where marked*</font>
+<font color="red">*Note that adjustments are needed for marked sections*</font>
 
 
-Key Parameters Description:
+Key Parameter Explanation:
 
-- urls: `Prometheus` metrics address, fill in the metrics URL exposed by the corresponding component
-- source: Collector alias, it is recommended to differentiate them
-- interval: Collection interval
-- measurement_prefix: Metrics set prefix, for easier management and classification
-- tls_open: TLS configuration
-- metric_types: Metrics types, leave blank to collect all metrics, recommend filling based on Time Series needs
-- tags_ignore: Ignore unnecessary tags
-- [inputs.prom.tags_rename.mapping]: <font color="red">Rename tags, if there is a conflict between tags and fields, then rename the tags, otherwise the entire metric cannot be collected.</font>
-- [inputs.prom.tags]: Set tags, applied to all metrics of the current metrics set
+- urls: Prometheus metrics address, fill in the corresponding component's exposed metrics URL.
+- source: Collector alias, it is recommended to differentiate them.
+- interval: Collection interval.
+- measurement_prefix: Prefix for the metrics set, making management and classification easier.
+- tls_open: TLS configuration.
+- metric_types: Metric types, leaving it blank means collecting all metrics. It is recommended to fill in as needed, especially concerning Time Series.
+- tags_ignore: Ignore unnecessary tags.
+- [inputs.prom.tags_rename.mapping]: <font color="red">Rename tags. If a tag conflicts with a field name, rename the tag to ensure metrics can be collected.</font>
+- [inputs.prom.tags]: Set tags applied to all metrics.
 
 ### Restart DataKit
 

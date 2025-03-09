@@ -1,4 +1,5 @@
 # 0049-libusrbin-priv-/usr/bin Directory File Permissions Modified
+
 ---
 
 ## Rule ID
@@ -23,26 +24,27 @@
 
 ## Description
 
-- Monitor whether the file permissions in the /usr/bin directory have been modified.
+- Monitor whether the file permissions in the /usr/bin directory on the host have been modified.
 
 
 ## Scan Frequency
 
 - disable
 
+
 ## Theoretical Basis
 
-- The /usr/bin directory contains essential executable files for system commands. If the permissions are changed, it may prevent these commands from executing, potentially impacting the system.
+- The /usr/bin directory contains executable files for essential system commands. If permissions change, it may prevent commands from executing and impact the system.
 
 
 ## Risk Items
 
-- Functionality Unavailable
+- Function Unavailability
 
 
 ## Audit Method
 
-- Run the following command on the specified files to verify that Uid and Gid are both 0/root, and the permissions are 755. Here we use the users file as an example:
+- Run the following command on the specified file to verify that Uid and Gid are both 0/root, and the permissions are 755. For example, using the users file:
 
 ```bash
 stat /usr/bin/users
@@ -52,7 +54,7 @@ Access: (0755/-rwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)
 
 ## Remediation
 
-- If it is detected that the file permissions in the /usr/bin directory have been changed, log in to the server as the root user and restore the permissions. Audit this change.
+- If a file permission in the /usr/bin directory has been changed, log in as the root user and restore the permissions. Audit this change.
 
 
 ## Impact

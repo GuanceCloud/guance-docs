@@ -1,7 +1,7 @@
 ---
-title: 'Grafana Dashboard Import'
-summary: 'Tool for importing Grafana Dashboard templates into Guance'
-__int_icon: 'icon/grafana_import'
+title     : 'Grafana Dashboard Import'
+summary   : 'Tool for importing Grafana Dashboard templates into Guance'
+__int_icon: 'icon/grafance_import'
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -48,4 +48,4 @@ grafanaCovertToGuance -d ./grafana/json/grafana.json -o ./guance/json/guance.jso
 <!-- markdownlint-enable -->
 - 4 Import the converted `json` file into the Guance console
 
-- 5 Completion
+- 5 Complete

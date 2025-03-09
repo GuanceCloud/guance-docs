@@ -13,7 +13,7 @@ dashboard:
 
 ---
 
-The lsblk collector is used for collecting information about block devices on Linux hosts, such as device name, major and minor device numbers, available filesystem size, filesystem type, used filesystem size, percentage of filesystem usage, and device mount points.
+The lsblk collector is used to collect information from block devices on Linux hosts, such as device name, major/minor device numbers, available filesystem size, filesystem type, used filesystem size, percentage of filesystem usage, and mount points.
 
 ## Configuration {#config}
 
@@ -39,13 +39,13 @@ The lsblk collector is used for collecting information about block devices on Li
 
 === "Kubernetes"
 
-    You can enable the collector by injecting the configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or setting [ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
+    You can enable the collector via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or by [setting ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
 
     Environment variables can also be used to modify configuration parameters (requires adding to ENV_DEFAULT_ENABLED_INPUTS):
 
     - **ENV_INPUT_LSBLK_INTERVAL**
     
-        Collector repetition interval duration
+        Interval for repeated collection
     
         **Field Type**: Duration
     
@@ -55,7 +55,7 @@ The lsblk collector is used for collecting information about block devices on Li
     
     - **ENV_INPUT_LSBLK_EXCLUDE_DEVICE**
     
-        Prefixes of devices to exclude. (By default, all devices with the prefix dev are collected)
+        Prefixes of devices to exclude. (By default, all devices with the prefix `dev` are collected)
     
         **Field Type**: List
     
@@ -67,7 +67,7 @@ The lsblk collector is used for collecting information about block devices on Li
 
 ## Metrics {#metric}
 
-All collected data will append a global tag named `host` (tag value is the hostname where DataKit resides) by default. Additional tags can be specified in the configuration using `[inputs.lsblk.tags]`:
+All collected data will have a global tag named `host` appended by default (tag value is the hostname where DataKit resides), and additional tags can be specified in the configuration using `[inputs.lsblk.tags]`:
 
 ```toml
  [inputs.lsblk.tags]
@@ -99,7 +99,7 @@ All collected data will append a global tag named `host` (tag value is the hostn
 |`uuid`|Filesystem UUID.|
 |`vendor`|Device vendor.|
 
-- Metric List
+- Metrics List
 
 
 | Metric | Description | Type | Unit |

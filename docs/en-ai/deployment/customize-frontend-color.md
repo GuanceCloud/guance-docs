@@ -1,31 +1,31 @@
-# Custom Frontend Coloring
+# Custom Frontend Color Scheme
 ---
 
-This article demonstrates how to achieve different frontend color schemes by modifying service configurations.
+This article explains how to achieve different frontend color schemes by modifying service configurations.
 
 ## Configure ConfigMap
 Save the following content as a `theme.css` file:
 ```css
-/* The following configuration overrides the default configuration variables */
+/* The following configuration overrides the default variable settings */
 :root {
-  /* Button primary color */
+  /* Primary button color */
   --gc-primary-color: #1770e6;
   --gc-primary-color-hover: #4d7ee6;
 
-  /* Tag color, such as in host details */
+  /* Secondary color for tags, such as in host details */
   --gc-subprimary-color: #76b1ea;
   --gc-subprimary-color-hover: #549adf;
 
-  /* Warning primary color, for example, menu active */
+  /* Warning color, e.g., active menu items */
   --gc-warning-color: #1770e6;
   --gc-warning-color-hover: #1770e6;
 
-  /* Error button and important operation primary color */
+  /* Error button and critical operation color */
   --gc-error-color: #e64545;
   --gc-error-color-hover: #f46359;
   --gc-success-color: #4ac473;
 
-  /* Explorer status field primary color */
+  /* Explorer status field colors */
   --gc-status-ok-color: #508371;
   --gc-status-error-color: #ff9500;
   --gc-status-critical-color: #e64545;
@@ -35,14 +35,14 @@ Save the following content as a `theme.css` file:
   --gc-status-debug-color: #9666b9;
   --gc-status-alert-color: #ff9500;
 
-  /* Cell map, Service Map status field primary color */
+  /* Status field colors for honeycomb and topology maps */
   --gc-level-0-color: #6ed08f;
   --gc-level-1-color: #508371;
   --gc-level-2-color: #ffd500;
   --gc-level-3-color: #ff9500;
   --gc-level-4-color: #e64545;
 
-  /* Link, A tag status field primary color */
+  /* Link and A tag status field colors */
   --gc-link-color: #1770e6;
   --gc-link-hover-color: #3873ef;
   --gc-link-active-color: #1770e6;
@@ -59,7 +59,7 @@ html.light {
   --gc-leftmenu-color: rgba(255, 255, 255, 0.6);
   /* Left navigation hover or selected background color */
   --gc-leftmenu-active-background: #21262d;
-  /* Selected menu effect background */
+  /* Selected menu item background */
   --gc-list-item-active-background: #e9effe;
 }
 /* Dark theme color configuration */
@@ -73,18 +73,18 @@ html.dark {
   --gc-leftmenu-color: hsla(0, 0%, 100%, 0.5);
   /* Left navigation hover or selected background color */
   --gc-leftmenu-active-background: #21262d;
-  /* Selected menu effect background */
+  /* Selected menu item background */
   --gc-list-item-active-background: #0e1935;
 }
 
 ```
-Execute the following command to create a ConfigMap:
+Execute the following command to create the ConfigMap:
 ```shell
 kubectl -n forethought-webclient create cm front-customize-color-config --from-file=theme.css
 ```
 
-## Use ConfigMap
-Use the ConfigMap with the following command:
+## Using the ConfigMap
+Use the following command to apply the ConfigMap:
 ```shell
 kubectl -n forethought-webclient edit deploy front-webclient
 ```
@@ -122,8 +122,8 @@ Add the following content as prompted:
         name: front-customize-color-config
 ```
 
-## Restart Application
-Restart the application to apply the configuration:
+## Restart the Application
+Restart the application to apply the new configuration:
 ```shell
 kubectl -n forethought-webclient rollout restart deploy front-webclient
 ```

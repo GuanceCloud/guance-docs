@@ -1,4 +1,4 @@
 nav:
   - 'App Access': app-access.md
-  - 'App Data Collection': app-data-collection.md
+  - 'Application Data Collection': app-data-collection.md
   - 'Troubleshooting': app-troubleshooting.md

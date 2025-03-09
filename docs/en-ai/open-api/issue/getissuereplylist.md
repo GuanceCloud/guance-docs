@@ -1,4 +1,4 @@
-# Issue-Reply List
+# List Issue Replies
 
 ---
 
@@ -6,21 +6,29 @@
 
 ## Overview
 
+
+
+
 ## Route Parameters
 
-| Parameter Name   | Type   | Required | Description               |
-|:-------------|:-----|:-------|:-----------------------|
-| issue_uuid   | string | Y      | Issue UUID             |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| issue_uuid | string | Y | Issue UUID<br> |
+
 
 ## Query Request Parameters
 
-| Parameter Name | Type    | Required | Description                                             |
-|:-----------|:------|:-----|:---------------------------------------------------|
-| ordering   | string |      | Sorting method, e.g., `ordering=-createAt`<br>Optional: False <br> |
-| pageSize   | integer |      | Number of items per page<br>Optional: False <br>Example: 10 <br> |
-| pageIndex  | integer |      | Page number<br>Optional: False <br>Example: 1 <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| ordering | string |  | Sorting method, e.g., ordering=-createAt<br>Can be empty: False <br> |
+| pageSize | integer |  | Number of items per page<br>Can be empty: False <br>Example: 10 <br> |
+| pageIndex | integer |  | Page number<br>Can be empty: False <br>Example: 10 <br> |
 
 ## Additional Parameter Notes
+
+
+
+
 
 ## Request Example
 ```shell
@@ -29,6 +37,9 @@ curl 'https://openapi.guance.com/api/v1/issue/reply/issue_xxxx32/list?ordering=-
 --compressed
 ```
 
+
+
+
 ## Response
 ```shell
 {
@@ -36,14 +47,14 @@ curl 'https://openapi.guance.com/api/v1/issue/reply/issue_xxxx32/list?ordering=-
     "content": [
         {
             "attachmentsList": [],
-            "content": "Member created an Issue.",
+            "content": "A member created the Issue.",
             "createAt": 1690278285,
             "creator": "acnt_xxxx32",
             "creatorInfo": {
                 "acntWsNickname": "",
                 "email": "88@qq.com",
                 "iconUrl": "http://testing-static-res.cloudcare.cn/icon/acnt_xxxx32.png",
-                "name": "Test 88",
+                "name": "88 Test",
                 "username": "Test"
             },
             "deleteAt": -1,
@@ -60,7 +71,7 @@ curl 'https://openapi.guance.com/api/v1/issue/reply/issue_xxxx32/list?ordering=-
                 "acntWsNickname": "",
                 "email": "88@qq.com",
                 "iconUrl": "http://testing-static-res.cloudcare.cn/icon/acnt_xxxx32.png",
-                "name": "Test 88",
+                "name": "88 Test",
                 "username": "Test"
             },
             "uuid": "repim_xxxx32",
@@ -77,5 +88,5 @@ curl 'https://openapi.guance.com/api/v1/issue/reply/issue_xxxx32/list?ordering=-
     },
     "success": true,
     "traceId": "TRACE-463593F6-6084-4675-8EB5-F138D579EA0A"
-}
+} 
 ```

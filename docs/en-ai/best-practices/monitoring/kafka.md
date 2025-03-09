@@ -1,16 +1,16 @@
-# Kafka Observability Best Practices
+# Best Practices for Observability with Kafka
 
 ---
 
 ## Overview 
 
-Kafka is a distributed messaging queue based on the publish-subscribe model developed by LinkedIn. It is a real-time data processing system that can scale horizontally. Like middleware such as RabbitMQ and RocketMQ, Kafka has several key features:
+Kafka is a distributed messaging queue based on the publish-subscribe model, developed by LinkedIn. It is a real-time data processing system that can scale horizontally. Like middleware such as RabbitMQ and RocketMQ, Kafka has several key features:
 
-- Asynchronous Processing 
-- Service Decoupling 
-- Traffic Shaving 
+- Asynchronous processing 
+- Service decoupling 
+- Traffic shaping 
 
-The following image illustrates asynchronous processing.
+The following diagram illustrates an example of asynchronous processing.
 
 ![image.png](../images/kafka-1.png)
 
@@ -20,25 +20,25 @@ As shown in the diagram below, a Kafka architecture includes multiple Producers,
 
 ![image.png](../images/kafka-2.png)
 
-- **Zookeeper**: Manages cluster configurations for the Kafka cluster, elects Leaders, and handles rebalancing when Consumer Groups change.
-- **Broker**: Message handling nodes in the messaging middleware; each node is a Broker, and a Kafka cluster consists of one or more Brokers. Messages can be distributed across multiple Brokers.
+- **Zookeeper**: Manages cluster configurations for the Kafka cluster. It elects Leaders and handles rebalancing when Consumer Groups change.
+- **Broker**: Message handling nodes; each node is a Broker, and a Kafka cluster consists of one or more Brokers. A message can be distributed across multiple Brokers.
 - **Producer**: Responsible for publishing messages to Brokers.
 - **Consumer**: Reads messages from Brokers.
-- **Consumer Group**: Each Consumer belongs to a specific Consumer Group, which can be named. If not specified, it belongs to the default Group. A message can be sent to multiple Groups, but only one Consumer within a Group can consume the message.
+- **Consumer Group**: Each Consumer belongs to a specific Consumer Group, which can be named. If no name is specified, it defaults to a default group. A message can be sent to multiple Groups, but within a Group, only one Consumer can consume the message.
 
-Kafka categorizes messages, and every message sent to the cluster must specify a Topic. A Topic represents a class of messages logically considered as a Queue. Each message produced by a Producer must specify a Topic, and Consumers will pull messages from the corresponding Broker based on the subscribed Topic. Each Topic contains one or more Partitions, where a Partition corresponds to a folder storing the Partition's data and index files. Messages within a Partition are ordered. A Topic can be divided into one or more Partitions, with multiple replicas of each Partition distributed across different Brokers. Replicas of a partition have a leader-follower relationship, with the Leader providing external services and Followers synchronizing with the Leader passively. This multi-replica mechanism ensures automatic failover in case of broker failure, enhancing disaster recovery capabilities.
+Kafka categorizes messages, and every message sent to the cluster must specify a Topic. A Topic represents a class of messages, logically considered as a Queue. Each message produced by a Producer must specify a Topic, and Consumers will pull messages from the corresponding Broker based on the subscribed Topic. Each Topic contains one or more Partitions, and each Partition corresponds to a folder storing the Partition's data and index files. Messages within each Partition are ordered. A Topic can be divided into one or more Partitions, with multiple replicas of each Partition distributed across different Brokers. Replicas have a leader-follower relationship: the Leader provides services externally (interacting with client programs), while Followers passively synchronize with the Leader and do not interact with external clients. The multi-replica mechanism enables automatic failover, ensuring service availability even if a Broker fails, thereby enhancing disaster recovery capabilities.
 
-As shown in the figure below, a Kafka cluster has 4 Brokers, and a certain Topic has three partitions. Assuming the replication factor is set to 3, each partition will have one Leader and two Follower replicas.
+As shown in the figure below, the Kafka cluster has 4 Brokers, and a certain Topic has three partitions. Assuming the replication factor is set to 3, each partition will have one Leader and two Follower replicas.
 
 ![image.png](../images/kafka-3.png)
 
-Partition replicas reside on different Brokers, with producers and consumers interacting only with Leader replicas while Follower replicas handle message synchronization. When a Leader replica fails, a new Leader is elected from the Follower replicas to provide service.<br /> Below are some important terms related to Kafka's multi-replica mechanism.
+Partition replicas reside on different Brokers, and Producers and Consumers only interact with Leader replicas, while Follower replicas are responsible for synchronizing messages. When a Leader replica fails, a new Leader is elected from the Follower replicas to provide services.<br /> Below are some important terms related to Kafka's multi-replica mechanism.
 
 - **AR (Assigned Replicas)**: All replicas of a partition are collectively referred to as AR.
-- **ISR (In-Sync Replicas)**: The ISR comprises the Leader replica and all Follower replicas that maintain a certain level of synchronization (including the Leader itself).
-- **OSR (Out-of-Sync Replicas)**: OSR includes all Follower replicas that do not maintain a certain level of synchronization with the Leader.
+- **ISR (In-Sync Replicas)**: The ISR consists of the Leader replica and all Follower replicas that maintain synchronization with the Leader (including the Leader itself).
+- **OSR (Out-of-Sync Replicas)**: OSR comprises all Follower replicas that do not maintain synchronization with the Leader.
 
-Initially, producers send messages to the Leader replica, and then Follower replicas pull messages from the Leader for synchronization. At any given time, the messages in all replicas may not be identical, meaning there can be a lag between Followers and the Leader during synchronization. Thus, the relationship among AR, ISR, and OSR is: AR = ISR + OSR.<br /> The Leader maintains and tracks the lag state of all Follower replicas in the ISR set. If a Follower lags too much or fails, it is removed from the ISR set. Conversely, if a Follower in the OSR set catches up to the Leader, it can be moved back to the ISR set. Generally, only Followers in the ISR set are eligible to be elected as new Leaders when the current Leader fails, while Followers in the OSR set do not have this opportunity (though this behavior can be changed via configuration).
+First, producers send messages to the Leader replica, and then Follower replicas pull messages from the Leader for synchronization. At any given moment, messages in all replicas may not be identical, meaning that during synchronization, Followers may lag behind the Leader to some extent. This relationship can be expressed as: AR = ISR + OSR.<br /> The Leader maintains and tracks the lag state of all Follower replicas in the ISR set. When a Follower lags too much or fails, the Leader removes it from the ISR set. Conversely, if a Follower in the OSR set catches up with the Leader, the Leader moves it from the OSR set to the ISR set. Generally, when a Leader fails, only Followers in the ISR set are eligible to be elected as new Leaders, while Followers in the OSR set are not (though this behavior can be changed via configuration).
 
 ## Key Metrics for Monitoring Kafka
 
@@ -46,118 +46,119 @@ Next, we introduce detailed information about Kafka metrics.
 
 #### UnderReplicatedPartitions
 
-UnderReplicatedPartitions indicates the number of partitions not fully synchronized, i.e., partitions with failed replicas. In a well-functioning cluster, the number of in-sync replicas (ISR) should equal the total number of replicas. A non-zero value indicates the number of partitions on a Broker where the Leader does not have fully synchronized replicas in the ISR. Possible issues include:
+UnderReplicatedPartitions indicates the number of partitions in an unsynchronized state, i.e., the number of partitions with failed replicas. An abnormal value is non-zero. In a well-functioning cluster, the number of synchronized replicas (ISR) should equal the total number of replicas. A non-zero value indicates the number of partitions where the Leader on a Broker does not have fully synchronized replicas in the ISR. Possible issues include:
 
-- A Broker going down.
-- Disk failures or full disks causing replicas to go offline, which can be verified by checking the OfflineLogDirectoryCount metric.
-- Performance issues leading to delayed synchronization. Two scenarios could occur: first, a Follower process getting stuck without initiating sync requests to the Leader, e.g., due to frequent Full GC; second, a Follower process syncing too slowly to catch up with the Leader, e.g., due to high I/O overhead.
+- A Broker has crashed.
+- Disk failure or full disk causing replica offline, which can be identified by a non-zero OfflineLogDirectoryCount metric.
+- Performance issues causing replicas to fall behind. This could happen due to frequent Full GC or excessive I/O overhead.
 
-| Mearsurement | kafka_replica_manager |  |
+| Measurement | kafka_replica_manager |  |
 | --- | --- | --- |
-| Metrics | Description | Data Type |
+| Metric | Description | Data Type |
 | UnderReplicatedPartitions | Number of partitions in an unsynchronized state | int |
-| UnderMinIsrPartitionCount | Number of partitions below minimum ISR | int |
+| UnderMinIsrPartitionCount | Number of partitions with fewer than the minimum ISR | int |
 
 #### OfflineLogDirectoryCount
 
-OfflineLogDirectoryCount measures the number of offline log directories, with a non-zero value indicating issues. Monitoring this metric helps identify whether any log directories are offline.
+OfflineLogDirectoryCount indicates the number of offline log directories, with an abnormal value being non-zero. This metric should be monitored to check for any offline log directories.
 
-| Mearsurement | kafka_log |  |
+| Measurement | kafka_log |  |
 | --- | --- | --- |
-| Metrics | Description | Data Type |
+| Metric | Description | Data Type |
 | OfflineLogDirectoryCount | Number of offline log directories | int |
 
 #### IsrShrinksPerSec / IsrExpandsPerSec
 
-The number of in-sync replicas (ISR) for any partition should remain stable unless expanding Broker nodes or deleting partitions. To ensure high availability, a Kafka cluster must maintain a minimum ISR count so that Followers can take over if a partition's Leader goes down. Reasons for removing a replica from the ISR pool include a Follower's offset falling significantly behind the Leader (configurable via `replica.lag.max.messages`) or losing contact with the Leader for some time (configurable via `replica.socket.timeout.ms`). An increase in IsrShrinksPerSec (ISR shrinkage) without a corresponding increase in IsrExpandsPerSec (ISR expansion) warrants attention and manual intervention.
+The number of in-sync replicas (ISR) for any partition should remain stable unless you are expanding Broker nodes or deleting partitions. To ensure high availability, a Kafka cluster must maintain a minimum ISR count so that Followers can take over if a partition's Leader fails. Reasons for removing a replica from the ISR pool include a Follower's offset lagging far behind the Leader (configurable via `replica.lag.max.messages`) or a Follower losing contact with the Leader for some time (configurable via `replica.socket.timeout.ms`). If IsrShrinksPerSec (ISR shrinkage) increases without a corresponding increase in IsrExpandsPerSec (ISR expansion), attention and manual intervention are required.
 
-| Mearsurement | kafka_replica_manager |  |
+| Measurement | kafka_replica_manager |  |
 | --- | --- | --- |
-| Metrics | Description | Data Type |
+| Metric | Description | Data Type |
 | IsrShrinksPerSec.Count | Number of ISR reductions | int |
-| IsrShrinksPerSec.OneMinuteRate | Frequency of ISR reductions | float |
+| IsrShrinksPerSec.OneMinuteRate | Rate of ISR reductions | float |
 | IsrExpandsPerSec.Count | Number of ISR expansions | int |
-| IsrExpandsPerSec.OneMinuteRate | Frequency of ISR expansions | float |
+| IsrExpandsPerSec.OneMinuteRate | Rate of ISR expansions | float |
 
 #### ActiveControllerCount
 
-ActiveControllerCount measures the number of currently active controllers, with an abnormal value of 0. In a Kafka cluster, the first started node automatically becomes the Controller, and there can only be one such node. Normally, this metric should be 1 on the Broker hosting the Controller and 0 on other Brokers. The Controller manages the list of partition Leaders and coordinates Leader changes when necessary. If a new Controller needs to be selected, Zookeeper randomly picks one from the Broker pool. Typically, this value cannot exceed 1, but if it remains at 0 for a period, an alert should be triggered.
+ActiveControllerCount indicates the number of active controllers, with an abnormal value being 0. In a Kafka cluster, the first started node automatically becomes the Controller, and there can only be one such node. Normally, this metric should be 1 on the Broker hosting the Controller and 0 on other Brokers. The Controller's responsibility is to maintain the list of partition Leaders and coordinate Leader changes when a Leader becomes unavailable. If necessary, a new Controller is randomly selected from the Broker pool by Zookeeper. Typically, this value should not exceed 1, but if it equals 0 for an extended period (<1), a clear warning should be issued. Therefore, this metric can be used for alerts.
 
-| Mearsurement | kafka_controller |  |
+| Measurement | kafka_controller |  |
 | --- | --- | --- |
-| Metrics | Description | Data Type |
-| ActiveControllerCount.Value | Number of active Controllers | int |
+| Metric | Description | Data Type |
+| ActiveControllerCount.Value | Number of live Controllers | int |
 
 #### OfflinePartitionsCount
 
-OfflinePartitionsCount measures the number of partitions without active Leaders, with an abnormal value of non-zero. Since all read/write operations occur only on Partition Leaders, any partition without an active Leader becomes completely unavailable, blocking producers and consumers until a Leader becomes available. This metric can be used for alerts.
+OfflinePartitionsCount indicates the number of partitions without an active Leader, with an abnormal value being non-zero. Since all read/write operations occur only on Partition Leaders, any partition without an active Leader becomes completely unavailable, blocking consumers and producers until the Leader becomes available. This metric can be used for alerts.
 
-| Mearsurement | kafka_controller |  |
+| Measurement | kafka_controller |  |
 | --- | --- | --- |
-| Metrics | Description | Data Type |
+| Metric | Description | Data Type |
 | OfflinePartitionsCount.Value | Number of offline partitions | int |
 
 #### LeaderElectionRateAndTimeMs
 
-LeaderElectionRateAndTimeMs measures the frequency of Leader elections per second. When a Partition Leader fails, a new Leader election is triggered.
+When a Partition Leader fails, a new Leader election is triggered. LeaderElectionRateAndTimeMs measures how many times per second Leader elections occur, indicating the election frequency.
 
-| Mearsurement | kafka_controller |  |
+| Measurement | kafka_controller |  |
 | --- | --- | --- |
-| Metrics | Description | Data Type |
+| Metric | Description | Data Type |
 | LeaderElectionRateAndTimeMs.Count | Number of Leader elections | int |
-| LeaderElectionRateAndTimeMs.OneMinuteRate | Frequency of Leader elections | float |
-| LeaderElectionRateAndTimeMs.50thPercentile | Median Leader election time | float |
-| LeaderElectionRateAndTimeMs.75thPercentile | 75th percentile Leader election time | float |
-| LeaderElectionRateAndTimeMs.99thPercentile | 99th percentile Leader election time | float |
+| LeaderElectionRateAndTimeMs.OneMinuteRate | Leader election rate | float |
+| LeaderElectionRateAndTimeMs.50thPercentile | Median Leader election rate | float |
+| LeaderElectionRateAndTimeMs.75thPercentile | 75th percentile Leader election rate | float |
+| LeaderElectionRateAndTimeMs.99thPercentile | 99th percentile Leader election rate | float |
 
 #### UncleanLeaderElectionsPerSec
 
-UncleanLeaderElectionsPerSec measures unclean Leader elections when no in-sync replicas are available in the ISR set, leading to potential data loss. An abnormal value is non-zero, indicating data loss and necessitating alerts.
+When a Kafka Broker's partition Leader is unavailable, an unclean Leader election occurs, selecting a new Leader from the ISR set. Essentially, an unclean Leader election sacrifices consistency for availability. If there are no available replicas in the ISR, the election falls back to unsynchronized replicas, resulting in permanent data loss of messages from the previous Leader. An abnormal value for UncleanLeaderElectionsPerSec.Count is non-zero, indicating potential data loss, thus requiring alerts.
 
-| Mearsurement | kafka_controller |  |
+
+| Measurement | kafka_controller |  |
 | --- | --- | --- |
-| Metrics | Description | Data Type |
+| Metric | Description | Data Type |
 | UncleanLeaderElectionsPerSec.Count | Number of unclean Leader elections | int |
 
 #### TotalTimeMs
 
-TotalTimeMs measures the sum of four metrics:
+TotalTimeMs is the sum of four metrics:
 
 - Queue: Time spent waiting in the request queue
-- Local: Time spent processing by the leader
-- Remote: Time spent waiting for follower responses (only when `requests.required.acks=-1`)
-- Response: Time spent sending replies
+- Local: Time taken by the leader to process the request
+- Remote: Time waiting for follower responses (only when `requests.required.acks=-1`)
+- Response: Time taken to send the reply
 
-TotalTimeMs measures server request latency, which should be stable under normal conditions. Irregular fluctuations suggest potential delays, requiring investigation into the specific segments causing the delay.
+TotalTimeMs measures the server request response time. Under normal conditions, this metric remains stable with small fluctuations. Irregular data spikes indicate potential delays, which can be diagnosed by examining the individual queue, local, remote, and response values.
 
-| Mearsurement | kafka_request |  |
+| Measurement | kafka_request |  |
 | --- | --- | --- |
-| Metrics | Description | Data Type |
-| TotalTimeMs.Count | Total request latency | int |
+| Metric | Description | Data Type |
+| TotalTimeMs.Count | Total request response time | int |
 
 #### PurgatorySize
 
-PurgatorySize refers to temporary storage areas for produce and fetch requests, waiting until they are needed. Monitoring purgatory size can help identify latency root causes. For example, an increase in fetch requests in purgatory can explain increased consumer fetch times.
+PurgatorySize refers to a temporary holding area where produce and fetch requests wait until needed. Monitoring the size of purgatory helps identify latency root causes. For instance, an increase in fetch requests in purgatory can explain increased consumer fetch times.
 
-| Mearsurement | kafka_purgatory |  |
+| Measurement | kafka_purgatory |  |
 | --- | --- | --- |
-| Metrics | Description | Data Type |
-| Fetch.PurgatorySize | Size of fetch purgatory | int |
-| Produce.PurgatorySize | Size of produce purgatory | int |
-| Rebalance.PurgatorySize | Size of rebalance purgatory | int |
-| topic.PurgatorySize | Size of topic purgatory | int |
-| ElectLeader.PurgatorySize | Size of leader election purgatory | int |
-| DeleteRecords.PurgatorySize | Size of delete records purgatory | int |
-| DeleteRecords.NumDelayedOperations | Number of delayed delete operations | int |
+| Metric | Description | Data Type |
+| Fetch.PurgatorySize | Size of Fetch Purgatory | int |
+| Produce.PurgatorySize | Size of Produce Purgatory | int |
+| Rebalance.PurgatorySize | Size of Rebalance Purgatory | int |
+| topic.PurgatorySize | Size of Topic Purgatory | int |
+| ElectLeader.PurgatorySize | Size of Leader Election Purgatory | int |
+| DeleteRecords.PurgatorySize | Size of Delete Records Purgatory | int |
+| DeleteRecords.NumDelayedOperations | Number of delayed delete records | int |
 | Heartbeat.NumDelayedOperations | Heartbeat monitoring | int |
 
 #### BytesInPerSec / BytesOutPerSec
 
-BytesInPerSec/BytesOutPerSec measure incoming/outgoing bytes. Disk throughput and network throughput can both become bottlenecks. Network throughput can impact Kafka performance when sending messages across data centers, having many Topics, or catching up with Leaders. These metrics help track network throughput on Brokers to identify bottlenecks.
+BytesInPerSec/BytesOutPerSec measure incoming and outgoing bytes. Disk throughput and network throughput can both become bottlenecks. If you are sending messages across data centers, have numerous Topics, or replicas are catching up to the Leader, network throughput can impact Kafka performance. These metrics help track network throughput on Brokers to identify bottlenecks.
 
-| Mearsurement | kafka_topics |  |
+| Measurement | kafka_topics |  |
 | --- | --- | --- |
-| Metrics | Description | Data Type |
+| Metric | Description | Data Type |
 | BytesInPerSec.Count | Incoming bytes per second | int |
 | BytesInPerSec.OneMinuteRate | Incoming byte rate per second | float |
 | BytesOutPerSec.Count | Outgoing bytes per second | int |
@@ -165,42 +166,42 @@ BytesInPerSec/BytesOutPerSec measure incoming/outgoing bytes. Disk throughput an
 
 #### RequestsPerSec
 
-RequestsPerSec measures the number of requests per second. Monitoring this metric provides real-time insights into producer and consumer request rates to ensure efficient Kafka communication. If this metric remains consistently high, consider increasing the number of producers or consumers to improve throughput and reduce unnecessary network overhead.
+RequestsPerSec measures requests per second. Monitoring this metric provides real-time insight into producer and consumer request rates to ensure efficient Kafka communication. If this metric remains consistently high, consider increasing the number of producers or consumers to improve throughput and reduce unnecessary network overhead.
 
-| Mearsurement | kafka_topics |  |
+| Measurement | kafka_topics |  |
 | --- | --- | --- |
-| Metrics | Description | Data Type |
-| TotalFetchRequestsPerSec.Count | Number of fetch requests per second | int |
-| TotalProduceRequestsPerSec.Count | Number of produce requests per second | int |
-| FailedFetchRequestsPerSec.Count | Number of failed fetch requests per second | int |
-| FailedProduceRequestsPerSec.Count | Number of failed produce requests per second | int |
+| Metric | Description | Data Type |
+| TotalFetchRequestsPerSec.Count | Fetch requests per second | int |
+| TotalProduceRequestsPerSec.Count | Producer write requests per second | int |
+| FailedFetchRequestsPerSec.Count | Failed fetch requests per second | int |
+| FailedProduceRequestsPerSec.Count | Failed produce requests per second | int |
 
 #### Other Common Metrics
 
-| Mearsurement | kafka_controller |  |
+| Measurement | kafka_controller |  |
 | --- | --- | --- |
-| Metrics | Description | Data Type |
+| Metric | Description | Data Type |
 | GlobalTopicCount.Value | Total number of Topics in the cluster | int |
-| GlobalPartitionCount.Value | Total number of partitions | int |
+| GlobalPartitionCount.Value | Total number of Partitions | int |
 | TotalQueueSize.Value | Total queue size | int |
 | EventQueueSize.Value | Event queue size | int |
 
-| Mearsurement | kafka_request |  |
+| Measurement | kafka_request |  |
 | --- | --- | --- |
-| Metrics | Description | Data Type |
+| Metric | Description | Data Type |
 | RequestQueueTimeMs.Count | Request queue time | int |
 | ResponseSendTimeMs.Count | Response queue time | int |
 | MessageConversionsTimeMs.Count | Message conversion time | int |
 
-| Mearsurement | kafka_topics |  |
+| Measurement | kafka_topics |  |
 | --- | --- | --- |
-| Metrics | Description | Data Type |
-| PartitionCount.Value | Number of partitions | int |
+| Metric | Description | Data Type |
+| PartitionCount.Value | Number of Partitions | int |
 | LeaderCount.Value | Number of Leaders | int |
 | BytesRejectedPerSec.Count | Number of rejected Topic requests | int |
 
-## Scenario Views
+## Use Case View
 
-Before using Guance to monitor Kafka, you need to register a [Guance account](https://auth.guance.com/register?channel=Help Documentation). After registration, log in to your Guance workspace. Then follow the <[Kafka Integration Documentation](/integrations/kafka/)> to implement Kafka observability.
+Before using <<< custom_key.brand_name >>> to observe Kafka, you need to register a [<<< custom_key.brand_name >>> account](https://auth.guance.com/register?channel=Help_Documentation). After registration, log in to the <<< custom_key.brand_name >>> workspace. Then follow the <[Kafka Integration Documentation](/integrations/kafka/)> to implement Kafka observability.
 
 ![image.png](../images/kafka-4.png)

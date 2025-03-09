@@ -7,16 +7,18 @@
 ## Overview
 Retrieve a list of dashboards, sorted by update time in descending order by default.
 
+
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description                              |
-|:--------------|:-------|:---------|:-----------------------------------------|
-| search        | string | No       | Search by name<br>Can be empty: False <br> |
-| tagNames      | json   | No       | Tag names for filtering<br>Can be empty: False <br>Example: [] <br> |
-| pageIndex     | integer| No       | Page number<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize      | integer| No       | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| Parameter Name | Type   | Required | Description |
+|:--------------|:-------|:---------|:------------|
+| search        | string | No       | Search by name<br>Allow empty: False <br> |
+| tagNames      | json   | No       | Tag names for filtering<br>Allow empty: False <br>Example: [] <br> |
+| pageIndex     | integer| No       | Page number<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize      | integer| No       | Number of items per page<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
+
 
 ## Request Example
 ```shell
@@ -24,6 +26,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/list?pageIndex=1&pageSize=10'
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
+
 
 ## Response
 ```shell

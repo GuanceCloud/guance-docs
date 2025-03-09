@@ -17,13 +17,13 @@ monitor:
 
 ---
 
-The Redis metrics collector gathers the following data:
+Redis metrics collector gathers the following data:
 
-- When AOF data persistence is enabled, related metrics are collected.
-- RDB data persistence metrics.
-- Slow Log monitoring metrics.
-- Big Key scan monitoring.
-- Master-slave Replication.
+- When AOF data persistence is enabled, related metrics will be collected.
+- RDB data persistence metrics
+- Slow Log monitoring metrics
+- Big Key scan monitoring
+- Master-slave Replication
 
 ## Configuration {#config}
 
@@ -37,8 +37,8 @@ Tested versions:
 
 ### Prerequisites {#reqirement}
 
-- When collecting data in a master-slave architecture, configure the host information of the slave node or master node to collect different master-slave related metrics.
-- Create a monitoring user (optional): For redis 6.0+, enter `redis-cli` command line and create a user with authorization:
+- When collecting data in a master-slave architecture, configure the host information of the slave node or master node for data collection to obtain different master-slave related metrics.
+- Create a monitoring user (**optional**): For Redis 6.0+, enter `redis-cli` command line and create a user with authorization:
 
 ```sql
 ACL SETUSER username >password
@@ -67,7 +67,7 @@ yum install -y  redis
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `redis.conf.sample` and rename it to `redis.conf`. Example configuration:
+    Enter the `conf.d/db` directory under the DataKit installation directory, copy `redis.conf.sample` and rename it to `redis.conf`. Example configuration as follows:
     
     ```toml
         
@@ -186,17 +186,17 @@ yum install -y  redis
     
     ```
     
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    You can inject the collector configuration via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
+    You can inject the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or configure [ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
 
 ---
 
 ???+ attention
 
-    If using Alibaba Cloud Redis and setting corresponding username and password, the `<PASSWORD>` in the conf should be set to `your-user:your-password`, such as `datakit:Pa55W0rd`
+    If using Alibaba Cloud Redis and setting corresponding username and password, `<PASSWORD>` in the conf should be set to `your-user:your-password`, like `datakit:Pa55W0rd`
 <!-- markdownlint-enable -->
 
 ### Log Collection Configuration {#logging-config}
@@ -205,21 +205,21 @@ To collect Redis logs, you need to enable log file output configuration in Redis
 
 ```toml
 [inputs.redis.log]
-    # Log path needs to be an absolute path
+    # Log paths require absolute paths
     files = ["/var/log/redis/*.log"]
 ```
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    When configuring log collection, DataKit should be installed on the same host as the Redis service, or use other methods to mount the logs to the machine where DataKit resides.
+    When configuring log collection, DataKit needs to be installed on the same host as the Redis service, or use other methods to mount logs to the machine where DataKit is located.
 
     In K8s, you can expose Redis logs to stdout, and DataKit can automatically find the corresponding logs.
 <!-- markdownlint-enable -->
 
 ## Metrics {#metric}
 
-All collected data defaults to appending global election tags, and additional tags can be specified through `[inputs.redis.tags]` in the configuration:
+All data collected below will append global election tags by default, or specify other tags through `[inputs.redis.tags]` in the configuration:
 
 ``` toml
  [inputs.redis.tags]
@@ -267,7 +267,7 @@ All collected data defaults to appending global election tags, and additional ta
 |`id`|Unique 64-bit client ID.|float|count|
 |`idle`|Idle time of the connection in seconds|float|s|
 |`multi`|Number of commands in a MULTI/EXEC context.|float|count|
-|`multi_mem`|Memory is used up by buffered multi commands. Added in Redis 7.0.|float|count|
+|`multi_mem`|Memory used up by buffered multi commands. Added in Redis 7.0.|float|count|
 |`obl`|Output buffer length.|float|count|
 |`oll`|Output list length (replies are queued in this list when the buffer is full).|float|count|
 |`omem`|Output buffer memory usage.|float|count|
@@ -303,7 +303,7 @@ All collected data defaults to appending global election tags, and additional ta
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`cluster_current_epoch`|The local Current Epoch variable. This is used in order to create unique increasing version numbers during fail overs.|float|-|
+|`cluster_current_epoch`|The local Current Epoch variable. This is used in order to create unique increasing version numbers during failovers.|float|-|
 |`cluster_known_nodes`|The total number of known nodes in the cluster, including nodes in HANDSHAKE state that may not currently be proper members of the cluster.|float|count|
 |`cluster_my_epoch`|The Config Epoch of the node we are talking with. This is the current configuration version assigned to this node.|float|-|
 |`cluster_size`|The number of master nodes serving at least one hash slot in the cluster.|float|count|
@@ -587,4 +587,326 @@ All collected data defaults to appending global election tags, and additional ta
 |`total_net_input_bytes`|The total number of bytes read from the network|float|B|
 |`total_net_output_bytes`|The total number of bytes written to the network|float|B|
 |`total_net_repl_input_bytes`|The total number of bytes read from the network for replication purposes.|float|B|
-|`total_net_repl_output_bytes`|The total number
+|`total_net_repl_output_bytes`|The total number of```markdown
+|`total_net_repl_output_bytes`|The total number of bytes written to the network for replication purposes.|float|B|
+|`total_reads_processed`|Total number of read events processed.|float|count|
+|`total_system_memory`|The total amount of memory that the Redis host has.|float|B|
+|`total_writes_processed`|Total number of write events processed.|float|count|
+|`tracking_clients`|Number of clients being tracked (CLIENT TRACKING).|float|count|
+|`tracking_total_items`|Number of items, that is the sum of clients number for each key, that are being tracked.|float|count|
+|`tracking_total_keys`|Number of keys being tracked by the server.|float|count|
+|`tracking_total_prefixes`|Number of tracked prefixes in server's prefix table (only applicable for broadcast mode).|float|count|
+|`unexpected_error_replies`|Number of unexpected error replies, that are types of errors from an AOF load or replication.|float|count|
+|`uptime_in_days`|Same value expressed in days.|float|d|
+|`uptime_in_seconds`|Number of seconds since Redis server start.|float|s|
+|`used_cpu_sys`|System CPU consumed by the Redis server, which is the sum of system CPU consumed by all threads of the server process (main thread and background threads).|float|s|
+|`used_cpu_sys_children`|System CPU consumed by the background processes.|float|s|
+|`used_cpu_sys_main_thread`|System CPU consumed by the Redis server main thread.|float|s|
+|`used_cpu_sys_percent`|System CPU percentage consumed by the Redis server, which is the sum of system CPU consumed by all threads of the server process (main thread and background threads)|float|percent|
+|`used_cpu_user`|User CPU consumed by the Redis server, which is the sum of user CPU consumed by all threads of the server process (main thread and background threads).|float|s|
+|`used_cpu_user_children`|User CPU consumed by the background processes.|float|s|
+|`used_cpu_user_main_thread`|User CPU consumed by the Redis server main thread.|float|s|
+|`used_cpu_user_percent`|User CPU percentage consumed by the Redis server, which is the sum of user CPU consumed by all threads of the server process (main thread and background threads)|float|percent|
+|`used_memory`|Total number of bytes allocated by Redis using its allocator (either standard libc, jemalloc, or an alternative allocator such as tcmalloc)|float|B|
+|`used_memory_dataset`|The size in bytes of the dataset (used_memory_overhead subtracted from used_memory).|float|B|
+|`used_memory_dataset_perc`|The percentage of used_memory_dataset out of the net memory usage (used_memory minus used_memory_startup).|float|percent|
+|`used_memory_lua`|Number of bytes used by the Lua engine|float|B|
+|`used_memory_overhead`|The sum in bytes of all overheads that the server allocated for managing its internal data structures|float|B|
+|`used_memory_peak`|Peak memory consumed by Redis (in bytes)|float|B|
+|`used_memory_peak_perc`|The percentage of used_memory_peak out of used_memory.|float|percent|
+|`used_memory_rss`|Number of bytes that Redis allocated as seen by the operating system (a.k.a resident set size)|float|B|
+|`used_memory_scripts`|Number of bytes used by cached Lua scripts.|float|B|
+|`used_memory_startup`|Initial amount of memory consumed by Redis at startup in bytes|float|B|
+
+
+
+
+
+
+### `redis_replica`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`host`|Hostname.|
+|`master_addr`|Master addr, only collected for slave redis.|
+|`server`|Server addr.|
+|`service_name`|Service name.|
+|`slave_addr`|Slave addr, only collected for master redis.|
+|`slave_id`|Slave ID, only collected for master redis.|
+|`slave_state`|Slave state, only collected for master redis.|
+
+- Field List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`master_link_down_since_seconds`|Number of seconds since the link is down when the link between master and replica is down, only collected for slave redis.|int|-|
+|`master_link_status`|Status of the link (up/down), `1` for up, `0` for down, only collected for slave redis.|int|-|
+|`master_repl_offset`|The server's current replication offset.|int|-|
+|`slave_lag`|Slave lag, only collected for master redis.|int|-|
+|`slave_offset`|Slave offset, only collected for master redis.|int|-|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Custom Objects {#object}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### `database`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on Redis(`OK/NotOK`)|
+|`host`|Connection name(domain) host address|
+|`ip`|Connection IP of the Redis|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- Field List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current Redis uptime|int|s|
+|`version`|Current version of Redis|string|-|
+
+
+
+
+## Logs {#logging}
+
+<!-- markdownlint-disable MD024 -->
+
+
+
+
+### `redis_bigkey`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`db_name`|DB name.|
+|`host`|Hostname.|
+|`key`|Key name.|
+|`key_type`|Key type.|
+|`server`|Server addr.|
+|`service_name`|Service name.|
+
+- Field List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`keys_sampled`|Sampled keys in the key space.|int|-|
+|`value_length`|Key length.|int|-|
+
+
+
+
+
+
+### `redis_hotkey`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`db_name`|DB name.|
+|`host`|Hostname.|
+|`key`|Key name.|
+|`server`|Server addr.|
+|`service_name`|Service name.|
+
+- Field List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`key_count`|Key count times.|int|-|
+|`keys_sampled`|Sampled keys in the key space.|int|-|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### `redis_latency`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`server`|Server addr|
+|`service_name`|Service name|
+
+- Field List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`cost_time`|Latest event latency in millisecond.|int|ms|
+|`event_name`|Event name.|string|-|
+|`max_cost_time`|All-time maximum latency for this event.|int|ms|
+|`occur_time`|Unix timestamp of the latest latency spike for the event.|int|sec|
+
+
+
+
+
+
+### `redis_slowlog`
+
+Redis slow query command history, here we collect it as logs.
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`host`|Host|
+|`message`|Log message|
+|`server`|Server|
+|`service_name`|Service name|
+
+- Field List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`client_addr`|The client ip:port that run the slow query|string|-|
+|`client_name`|The client name that run the slow query(if `client setname` executed on client-side)|string|-|
+|`command`|Slow command|string|-|
+|`slowlog_95percentile`|Slow 95th percentile duration|int|μs|
+|`slowlog_avg`|Slow average duration|float|μs|
+|`slowlog_id`|Slow log unique ID|int|-|
+|`slowlog_max`|Slow maximum duration|int|μs|
+|`slowlog_median`|Slow median duration|int|μs|
+|`slowlog_micros`|Cost time|int|μs|
+
+
+
+
+
+
+
+<!-- markdownlint-enable -->
+
+### Pipeline Log Parsing {#pipeline}
+
+Original log:
+
+```log
+122:M 14 May 2019 19:11:40.164 * Background saving terminated with success
+```
+
+Parsed fields list:
+
+| Field Name      | Field Value                                      | Description                         |
+| ---             | ---                                              | ---                                 |
+| `pid`           | `122`                                            | Process id                          |
+| `role`          | `M`                                              | Role                                |
+| `severity`      | `*`                                              | Severity                            |
+| `status`        | `notice`                                         | Log level                           |
+| `msg`           | `Background saving terminated with success`      | Log content                         |
+| `time`          | `1557861100164000000`                            | Nanosecond timestamp (as line protocol time) |
+```

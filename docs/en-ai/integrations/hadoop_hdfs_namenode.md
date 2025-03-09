@@ -18,21 +18,21 @@ Collect HDFS namenode metrics information.
 
 ## Installation and Deployment {#config}
 
-Since NameNode is developed in Java, the JMX Exporter method can be used to collect metrics information.
+Since NameNode is developed in Java, you can use the jmx-exporter method to collect metrics information.
 
 ### 1. NameNode Configuration
 
-#### 1.1 Download JMX Exporter
+#### 1.1 Download jmx-exporter
 
-Download link: `https://github.com/prometheus/jmx_exporter`
+Download URL: `https://github.com/prometheus/jmx_exporter`
 
-#### 1.2 Download JMX Script
+#### 1.2 Download jmx Script
 
-Download link: `https://github.com/lrwh/jmx-exporter/blob/main/hadoop-hdfs-namenode.yml`
+Download URL: `https://github.com/lrwh/jmx-exporter/blob/main/hadoop-hdfs-namenode.yml`
 
 #### 1.3 Adjust NameNode Startup Parameters
 
-Add the following to the NameNode startup parameters:
+Add the following to the startup parameters of namenode:
 
 > {JAVA_GC_ARGS} -javaagent:/opt/guance/jmx/jmx_exporter-1.0.1.jar=localhost:17107:/opt/guance/jmx/hadoop-hdfs-namenode.yml
 
@@ -44,15 +44,16 @@ Add the following to the NameNode startup parameters:
 
 #### 2.2 Configure the Collector
 
-The JMX Exporter can directly expose a `metrics` URL, so the [`prom`](./prom.md) collector can be used for collection.
+The jmx-exporter can directly expose a `metrics` URL, so you can use the [`prom`](./prom.md) collector for collection.
 
-Navigate to the [DataKit installation directory](./datakit_dir.md) under `conf.d/prom`, copy `prom.conf.sample` to `namenode.conf`.
+Go to the [DataKit installation directory](./datakit_dir.md) under `conf.d/prom`, copy `prom.conf.sample` to `namenode.conf`.
 
 > `cp prom.conf.sample namenode.conf`
 
 Adjust the content of `namenode.conf` as follows:
 
 ```toml
+
   urls = ["http://localhost:17107/metrics"]
   source ="hdfs-namenode"
   [inputs.prom.tags]
@@ -66,9 +67,9 @@ Adjust the content of `namenode.conf` as follows:
 , parameter adjustment explanation:
 
 <!-- markdownlint-disable MD004 -->
-- urls: The address of the `JMX Exporter` metrics, fill in the exposed metrics URL of the corresponding component.
-- source: Alias for the collector, it's recommended to differentiate them.
-- keep_exist_metric_name: Keep the metric name.
+- urls: The address of the `jmx-exporter` metrics, fill in the exposed metrics URL of the corresponding component.
+- source: Alias for the collector, it is recommended to differentiate.
+- keep_exist_metric_name: Keep metric names.
 - interval: Collection interval.
 - inputs.prom.tags: Add additional tags.
 
@@ -96,7 +97,7 @@ NameNode metrics are located under the Hadoop metrics set. Here we mainly introd
 |`namenode_blocks` | Number of blocks | count |
 |`namenode_bytes_in_future_ecblock_groups` | Number of bytes in future EC block groups | count |
 |`namenode_bytes_in_future_replicated_blocks` | Number of bytes in future replicated blocks | count |
-|`namenode_bytes_with_future_generation_stamps` | Number of bytes with future generation stamps | count |
+|`namenode_bytes_with_future_generation_stamps` | Number of bytes with future generation timestamps | count |
 |`namenode_cache_capacity` | Cache capacity | byte |
 |`namenode_cache_report_avg_time` | Average cache report time | count |
 |`namenode_cache_report_num_ops` | Number of cache report operations | count |
@@ -108,9 +109,9 @@ NameNode metrics are located under the Hadoop metrics set. Here we mainly introd
 |`namenode_capacity_used` | Used capacity | byte |
 |`namenode_capacity_used_gb` | Used capacity (GB) | GB |
 |`namenode_capacity_used_non_dfs` | Non-DFS used capacity | GB |
-|`namenode_corrupt_blocks` | Number of corrupt blocks | count |
-|`namenode_corrupt_ecblock_groups` | Number of corrupt EC block groups | count |
-|`namenode_corrupt_replicated_blocks` | Number of corrupt replicated blocks | count |
+|`namenode_corrupt_blocks` | Corrupt blocks | count |
+|`namenode_corrupt_ecblock_groups` | Corrupt EC block groups | count |
+|`namenode_corrupt_replicated_blocks` | Corrupt replicated blocks | count |
 |`namenode_create_file_ops` | Number of create file operations | count |
 |`namenode_create_snapshot_ops` | Number of create snapshot operations | count |
 |`namenode_create_symlink_ops` | Number of create symlink operations | count |
@@ -119,11 +120,11 @@ NameNode metrics are located under the Hadoop metrics set. Here we mainly introd
 |`namenode_disallow_snapshot_ops` | Number of disallow snapshot operations | count |
 |`namenode_distinct_version_count` | Distinct version count | count |
 |`namenode_distinct_versions` | Distinct versions | count |
-|`namenode_dropped_pub_all` | Number of dropped pub_all | count |
+|`namenode_dropped_pub_all` | Dropped pub_all | count |
 |`namenode_elapsed_time` | Elapsed time | ms |
 |`namenode_estimated_capacity_lost` | Estimated lost capacity | byte |
-|`namenode_excess_blocks` | Number of excess blocks | count |
-|`namenode_expired_heartbeats` | Number of expired heartbeats | count |
+|`namenode_excess_blocks` | Excess blocks | count |
+|`namenode_expired_heartbeats` | Expired heartbeats | count |
 |`namenode_file_info_ops` | Number of file info operations | count |
 |`namenode_files` | Number of files | count |
 |`namenode_files_appended` | Number of appended files | count |
@@ -135,8 +136,8 @@ NameNode metrics are located under the Hadoop metrics set. Here we mainly introd
 |`namenode_fs_image_load_time` | File system image load time | ms |
 |`namenode_fs_lock_queue_length` | File system lock queue length | count |
 |`namenode_gc_count` | Garbage collection count | count |
-|`namenode_generate_edektime_avg_time` | Average generate EDEK time | ms |
-|`namenode_generate_edektime_num_ops` | Number of generate EDEK operations | count |
+|`namenode_generate_edektime_avg_time` | Average EDEK generation time | ms |
+|`namenode_generate_edektime_num_ops` | Number of EDEK generation operations | count |
 |`namenode_get_additional_datanode_ops` | Number of get additional datanode operations | count |
 |`namenode_highest_priority_low_redundancy_ecblocks` | Highest priority low redundancy EC blocks | count |
 |`namenode_highest_priority_low_redundancy_replicated_blocks` | Highest priority low redundancy replicated blocks | count |
@@ -151,9 +152,9 @@ NameNode metrics are located under the Hadoop metrics set. Here we mainly introd
 |`namenode_millis_since_last_loaded_edits` | Milliseconds since last loaded edits | ms |
 |`namenode_missing_blocks` | Missing blocks | count |
 |`namenode_missing_ecblock_groups` | Missing EC block groups | count |
-|`namenode_missing_repl_one_blocks` | Missing one replica blocks | count |
+|`namenode_missing_repl_one_blocks` | Missing blocks with replication factor one | count |
 |`namenode_missing_replicated_blocks` | Missing replicated blocks | count |
-|`namenode_missing_replication_one_blocks` | Missing one replica replicated blocks | count |
+|`namenode_missing_replication_one_blocks` | Missing replicated blocks with replication factor one | count |
 |`namenode_nnstarted_time_in_millis` | Start time (milliseconds) | ms |
 |`namenode_non_dfs_used_space` | Non-DFS used space | count |
 |`namenode_num_active_clients` | Number of active clients | count |
@@ -168,14 +169,14 @@ NameNode metrics are located under the Hadoop metrics set. Here we mainly introd
 |`namenode_num_edit_log_loaded_avg_count` | Average edit log loaded count | count |
 |`namenode_num_edit_log_loaded_num_ops` | Number of edit log loaded operations | count |
 |`namenode_num_encryption_zones` | Number of encryption zones | count |
-|`namenode_num_entering_maintenance_data_nodes` | Number of entering maintenance data nodes | count |
+|`namenode_num_entering_maintenance_data_nodes` | Number of data nodes entering maintenance mode | count |
 |`namenode_num_files_under_construction` | Number of files under construction | count |
-|`namenode_num_in_maintenance_dead_data_nodes` | Number of in-maintenance dead data nodes | count |
-|`namenode_num_in_maintenance_live_data_nodes` | Number of in-maintenance live data nodes | count |
+|`namenode_num_in_maintenance_dead_data_nodes` | Number of dead data nodes in maintenance | count |
+|`namenode_num_in_maintenance_live_data_nodes` | Number of live data nodes in maintenance | count |
 |`namenode_num_live_data_nodes` | Number of live data nodes | count |
 |`namenode_num_stale_data_nodes` | Number of stale data nodes | count |
 |`namenode_num_stale_storages` | Number of stale storages | count |
-|`namenode_num_timed_out_pending_reconstructions` | Number of timed-out pending reconstructions | count |
+|`namenode_num_timed_out_pending_reconstructions` | Number of timed out pending reconstructions | count |
 |`namenode_num_times_re_replication_not_scheduled` | Number of times re-replication not scheduled | count |
 |`namenode_number_of_missing_blocks` | Number of missing blocks | count |
 |`namenode_number_of_missing_blocks_with_replication_factor_one` | Number of missing blocks with replication factor one | count |
@@ -236,9 +237,6 @@ NameNode metrics are located under the Hadoop metrics set. Here we mainly introd
 
 
 </input_content>
-<target_language>英语</target_language>
-</input>
 </example>
 </example>
-</instruction>
-</instructions>
+</example>

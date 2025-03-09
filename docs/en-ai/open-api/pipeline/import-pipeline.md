@@ -5,18 +5,18 @@
 <br />**POST /api/v1/pipeline/import**
 
 ## Overview
-Import one or more Pipelines
+Import one or multiple Pipelines
 
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:----------|:-------------------------|
-| pipelines            | array    | Y         | List of pipelines<br>Allow null: False <br> |
-| isForce              | boolean  |           | Whether to replace when the specific type exists with a default<br>Allow null: False <br> |
-| pipelineType         | string   | Y         | Used to distinguish whether the import is from the logging menu or the management menu<br>Example: logging <br>Optional values: ['logging', 'all'] <br> |
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:------------------------|
+| pipelines            | array    | Y        | List of pipelines<br>Allow null: False <br> |
+| isForce              | boolean  |          | Whether to replace when a specific type has a default value<br>Allow null: False <br> |
+| pipelineType         | string   | Y        | To distinguish whether the import is from the logging menu or the management menu<br>Example: logging <br>Optional values: ['logging', 'all'] <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
@@ -28,6 +28,7 @@ curl 'https://openapi.guance.com/api/v1/pipeline/import' \
 --data-raw '{"pipelines":[{"asDefault":0,"category":"logging","content":"ZW51bWVyYXRl\n","extend":{},"isDisable":false,"name":"eee","source":["calico-node"],"testData":"W10=\n"}],"pipelineType":"all"}' \
 --compressed
 ```
+
 
 
 

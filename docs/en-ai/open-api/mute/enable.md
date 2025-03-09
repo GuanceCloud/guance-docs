@@ -5,16 +5,15 @@
 <br />**POST /api/v1/monitor/mute/\{mute_uuid\}/enable**
 
 ## Overview
-Enable a mute rule based on `mute_uuid`
-
+Enable a mute rule based on the `mute_uuid`
 
 
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:-------------------------|
-| mute_uuid            | string   | Y        | Mute rule UUID           |
+| Parameter Name    | Type     | Required | Description              |
+|:-------------|:-------|:-----|:----------------|
+| mute_uuid | string | Y | Mute rule UUID<br> |
 
 
 ## Additional Parameter Notes

@@ -3,5 +3,5 @@ nav:
   - '【Login Mapping】Modify a mapping configuration': modify.md
   - '【Login Mapping】Mapping configuration list': list.md
   - '【Login Mapping】Delete a mapping configuration': delete.md
-  - '【Login Mapping】Switch status settings': login-mapping-set-disable.md
+  - '【Login Mapping】Switch status setting': login-mapping-set-disable.md
   - '【Login Mapping】Get switch status information': get-switch.md

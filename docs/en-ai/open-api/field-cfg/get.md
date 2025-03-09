@@ -5,20 +5,17 @@
 <br />**GET /api/v1/field_cfg/\{field_uuid\}/get**
 
 ## Overview
-Retrieve details of field management
-
+Get field management details
 
 
 ## Route Parameters
 
-| Parameter Name   | Type     | Required | Description              |
-|:------------|:-------|:-----|:----------------|
-| field_uuid  | string | Y    | Field UUID<br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-------|:----------------|
+| field_uuid         | string | Y      | Field UUID<br> |
 
 
-## Additional Parameter Notes
-
-
+## Additional Parameter Explanation
 
 
 
@@ -28,8 +25,6 @@ curl 'https://openapi.guance.com/api/v1/field_cfg/field_0f95016f7254494da088d878
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
-
 
 
 ## Response

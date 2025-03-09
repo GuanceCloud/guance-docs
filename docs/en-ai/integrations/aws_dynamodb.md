@@ -2,17 +2,20 @@
 title: 'AWS DynamoDB'
 tags: 
   - AWS
-summary: 'The metrics displayed for AWS DynamoDB include throughput capacity units, latency, concurrent connections, and read/write throughput. These metrics reflect the performance and scalability of DynamoDB in handling large-scale data storage and access.'
+summary: 'The metrics displayed for AWS DynamoDB include throughput capacity units, latency, concurrent connections, and read/write throughput. These metrics reflect the performance and scalability of DynamoDB when handling large-scale data storage and access.'
 __int_icon: 'icon/aws_dynamodb'
 dashboard:
 
-  - desc: 'Built-in Views for AWS DynamoDB'
+  - desc: 'Built-in views for AWS DynamoDB'
     path: 'dashboard/en/aws_dynamodb'
 
 monitor:
   - desc: 'AWS DynamoDB Monitor'
     path: 'monitor/en/aws_dynamodb'
 
+cloudCollector:
+  desc: 'Cloud Collector'
+  path: 'cloud-collector/en/aws_dynamodb'
 ---
 
 
@@ -21,45 +24,45 @@ monitor:
 <!-- markdownlint-enable -->
 
 
-The metrics displayed for AWS DynamoDB include throughput capacity units, latency, concurrent connections, and read/write throughput. These metrics reflect the performance and scalability of **DynamoDB** in handling large-scale data storage and access.
+The metrics displayed for AWS DynamoDB include throughput capacity units, latency, concurrent connections, and read/write throughput. These metrics reflect the **DynamoDB** performance and scalability when handling large-scale data storage and access.
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-We recommend enabling Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
 If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Installation Script
 
-> Note: Please prepare a qualified Amazon AK in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`)
+> Note: Prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-To synchronize monitoring data from AWS DynamoDB, we install the corresponding collection script: "Guance Integration (AWS-DynamoDB Collection)" (ID: `guance_aws_dynamodb`)
+To synchronize AWS DynamoDB monitoring data, we install the corresponding collection script: 「Guance Integration (AWS-DynamoDB Collection)」(ID: `guance_aws_dynamodb`)
 
-After clicking 【Install】, enter the required parameters: Amazon AK, Amazon account name.
+After clicking 【Install】, enter the corresponding parameters: Amazon AK, Amazon account name.
 
-Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the startup script accordingly.
+Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-Additionally, you can see the corresponding automatic trigger configuration in 「Management / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+Additionally, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-By default, we collect some configurations; for details, see [Configuration of Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+We collect some configurations by default; for details, see [Custom Cloud Object Metrics Configuration](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
 ### Verification
 
-1. In 「Management / Automatic Trigger Configuration」confirm that the corresponding task has an automatic trigger configuration, and check the task records and logs for any anomalies.
-2. On the Guance platform, in 「Infrastructure / Custom」check if asset information exists.
-3. On the Guance platform, in 「Metrics」check if the corresponding monitoring data exists.
+1. In 「Manage / Automatic Trigger Configuration」confirm whether the corresponding automatic trigger configuration exists for the task, and check the corresponding task records and logs for any anomalies.
+2. In the Guance platform, under 「Infrastructure / Custom」check if asset information exists.
+3. In the Guance platform, under 「Metrics」check if the corresponding monitoring data exists.
 
 ## Metrics {#metric}
 After configuring Amazon CloudWatch, the default metric set is as follows. You can collect more metrics through configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/amazondynamodb/latest/developerguide/metrics-dimensions.html){:target="_blank"}
 
 ### ConditionalCheckFailedRequests
 
-Number of failed attempts to perform conditional writes.
+The number of attempts to perform conditional writes that failed.
 
 | Metric Name | Description | Unit | Dimensions |
 | :---: | :---: | :---: | :---: |
@@ -71,7 +74,7 @@ Number of failed attempts to perform conditional writes.
 
 ### ConsumedReadCapacityUnits
 
-Number of read capacity units consumed during a specified period, which allows tracking of provisioned throughput usage.
+Number of read capacity units consumed during a specified period, which can track the use of provisioned throughput.
 
 | Metric Name | Description | Unit | Dimensions |
 | :---: | :---: | :---: | :---: |
@@ -83,7 +86,7 @@ Number of read capacity units consumed during a specified period, which allows t
 
 ### ConsumedWriteCapacityUnits
 
-Number of write capacity units consumed during a specified period, which allows tracking of provisioned throughput usage.
+Number of write capacity units consumed during a specified period, which can track the use of provisioned throughput.
 
 | Metric Name | Description | Unit | Dimensions |
 | :---: | :---: | :---: | :---: |
@@ -95,7 +98,7 @@ Number of write capacity units consumed during a specified period, which allows 
 
 ## Objects {#object}
 
-Data structure of collected AWS DynamoDB objects, which can be viewed in 「Infrastructure - Custom」
+The structure of collected AWS DynamoDB object data can be viewed in 「Infrastructure - Custom」
 
 ```json
 {
@@ -116,7 +119,7 @@ Data structure of collected AWS DynamoDB objects, which can be viewed in 「Infr
     "KeySchema"             : "[{\"AttributeName\": \"LockID\", \"KeyType\": \"HASH\"}]",
     "LocalSecondaryIndexes" : "{}",
     "TableSizeBytes"        : "96",
-    "message"               : "{instance JSON information}"
+    "message"               : "{instance JSON info}"
   }
 }
 
@@ -124,6 +127,6 @@ Data structure of collected AWS DynamoDB objects, which can be viewed in 「Infr
 
 > *Note: The fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Note 1: The value of `tags.name` is the instance ID, used as a unique identifier.
+> Tip 1: The value of `tags.name` is the instance ID, used for unique identification.
 >
-> Note 2: `fields.message`, `fields.Endpoint` are serialized JSON strings.
+> Tip 2: `fields.message`, `fields.Endpoint` are JSON serialized strings.

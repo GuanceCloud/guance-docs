@@ -1,7 +1,7 @@
-# Query Data Using DQL
+# Query Data via DQL
 ---
 
-DataKit supports executing DQL queries interactively. In interactive mode, DataKit provides auto-completion for statements:
+DataKit supports executing DQL queries in an interactive manner. In interactive mode, DataKit features auto-completion for statements:
 
 > Use `datakit help dql` to get more command-line parameter help.
 
@@ -16,16 +16,16 @@ datakit dql      # or datakit -Q
 
 Tips:
 
-- Type `echo_explain` to see the backend query statement.
-- To avoid displaying too many `nil` results, you can toggle this behavior with `disable_nil/enable_nil`.
-- Fuzzy search is supported for query statements; for example, typing `echo` or `exp` will bring up suggestions for `echo_explain`, and you can select from the dropdown using the Tab key.
-- DataKit automatically saves the history of multiple previous DQL queries (up to 5000 entries), which you can navigate using the up and down arrow keys.
+- Input `echo_explain` to see the backend query statement.
+- To avoid displaying too many `nil` results, you can toggle with `disable_nil/enable_nil`.
+- Supports fuzzy search for query statements; for example, typing `echo` or `exp` will bring up suggestions for `echo_explain`, and you can select from the dropdown using the Tab key.
+- DataKit automatically saves the history of previously executed DQL queries (up to 5000 entries), which you can navigate using the up and down arrow keys.
 
-> Note: On Windows, run `datakit dql` in PowerShell.
+> Note: On Windows, run `datakit dql` in Powershell.
 
-## Single Execution of a DQL Query {#dql-once}
+## Execute a Single DQL Query {#dql-once}
 
-For DQL queries, DataKit supports running a single DQL statement:
+Regarding DQL queries, DataKit supports running a single DQL statement:
 
 ```shell
 # Execute a single query statement
@@ -34,14 +34,14 @@ datakit dql --run 'cpu limit 1'
 # Write the execution result to a CSV file
 datakit dql --run 'O::HOST:(os, message)' --csv="path/to/your.csv"
 
-# Overwrite an existing CSV file
+# Force overwrite an existing CSV file
 datakit dql --run 'O::HOST:(os, message)' --csv /path/to/xxx.csv --force
 
-# Write results to CSV while also displaying them in the terminal
+# Display the query results in the terminal while writing to a CSV file
 datakit dql --run 'O::HOST:(os, message)' --csv="path/to/your.csv" --vvv
 ```
 
-Example of an exported CSV file:
+Example of the exported CSV file format:
 
 ```shell
 name,active,available,available_percent,free,host,time
@@ -53,20 +53,20 @@ mem,2014437376,2077097984,24.18060302734375,73502720,achen.local,1635242544382
 Note:
 
 - The first column is the name of the queried Mearsurement.
-- Subsequent columns are the corresponding data items for that collector.
+- Subsequent columns represent the corresponding data fields of the collector.
 - If a field is empty, the corresponding column will also be empty.
 
 ## JSONify DQL Query Results {#json-result}
 
-Output results in JSON format. However, in JSON mode, some statistical information such as the number of returned rows and time consumed will not be displayed (to ensure JSON can be parsed directly).
+Output results in JSON format. However, in JSON mode, some statistical information such as the number of returned rows and time taken will not be included (to ensure JSON can be parsed directly).
 
 ```shell
 datakit dql --run 'O::HOST:(os, message)' --json
 
-# If the field value is a JSON string, it will automatically be pretty-printed (Note: the `--auto-json` option is invalid in JSON mode)
+# If the field value is a JSON string, it will be automatically beautified (note: the `--auto-json` option is invalid in JSON mode (`--json`))
 datakit dql --run 'O::HOST:(os, message)' --auto-json
 -----------------[ r1.HOST.s1 ]-----------------
-message ----- json -----  # JSON starts here, where "message" is the field name
+message ----- json -----  # JSON starts here, where `message` is the field name
 {
   "host": {
     "meta": {
@@ -88,7 +88,7 @@ message ----- json -----  # JSON starts here, where "message" is the field name
 
 ## Query Data from Specific Workspaces {#query-on-wksp}
 
-Query data from other workspaces by specifying different tokens:
+Query data from other workspaces by specifying different Tokens:
 
 ```shell
 datakit dql --run 'O::HOST:(os, message)' --token <your-token>

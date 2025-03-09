@@ -2,12 +2,12 @@
 
 ## Introduction
 
-This article will demonstrate how to configure the email alert service in Guance.
+This article will demonstrate how to configure the email alert service for <<< custom_key.brand_name >>>.
 
 ## Prerequisites
 
-- Guance has been fully initialized.
-- You have the information for your email service:
+- <<< custom_key.brand_name >>> has been fully initialized.
+- You have the information of the email service:
     - `host`
     - `port`
     - `useTLS`
@@ -20,7 +20,7 @@ This article will demonstrate how to configure the email alert service in Guance
 
 ### Step One: Test Email Service Information
 
-Execute the following Python script within the message-desk-worker pod under middleware, modify the host, port, sender, password, use_tls, recipient, useSSL, usePlainAuth parameters, and run it to test whether the configuration is correct.
+Execute the following Python script in the message-desk-worker pod under middleware, modify the host, port, sender, password, use_tls, recipient, useSSL, usePlainAuth parameters, and run it to test if the configuration is correct.
 
 ```shell
 cat <<EOF> test-maile.py
@@ -53,7 +53,7 @@ EOF
 Run the Python script:
 
 ```shell
-  python test-maile.py
+python test-maile.py
 ```
 
 Check the execution result:
@@ -63,9 +63,9 @@ Check the execution result:
 ### Step Two: Modify Service Configuration
 
 ???+ warning "Note"
-    Please modify the configuration according to your actual email service information.
+    Please modify the configuration according to your actual email information.
 
-1. Log in to Launcher, click on the settings in the top right corner.
+1. Log in to Launcher, click on the configuration in the top-right corner.
 2. Select "Modify Service Configuration"
 
   ![](img/faq-mail.png)
@@ -75,10 +75,10 @@ Check the execution result:
     - Namespace: func2
     - Modify the configuration of the following services:
       - func2Config (Function Computation, Function Computation Inner, Task Queue Scheduler, worker 0, worker 1, worker 2, worker 3, worker 4, worker 5, worker 6, worker 7, worker 8, worker 9)
-    - Sample configuration file:
+    - Example configuration file:
 
     ```yaml
-    # Email SMTP, please fill in the configuration values based on your email service information
+    # Email SMTP, please fill in the following configuration values according to your email service information
     CUSTOM_MESSAGE_DESK_MAIL_HOST: 'smtpdm.aliyun.com'
     CUSTOM_MESSAGE_DESK_MAIL_PORT: 465
     CUSTOM_MESSAGE_DESK_MAIL_USE_SSL: true
@@ -100,7 +100,7 @@ Check the execution result:
     - Namespace: middleware
     - Modify the configuration of the following services:
         - messageDeskWorker (Message Center Worker)
-    - Modify configuration
+    - Modify the configuration
       ![](img/faq-mail-2.png)
 
 
@@ -110,8 +110,8 @@ Check the execution result:
 
 ### Step Three: Testing and Troubleshooting
 
-You can create an incorrect alert configuration to manually trigger the alert settings.
+You can create incorrect alert configurations to manually trigger alert settings.
 
 ![](img/faq-mail-3.png)
 
-Refer to [Monitor Troubleshooting](troubleshooting-monitor.md) for troubleshooting issues.
+You can refer to [Monitor Troubleshooting](troubleshooting-monitor.md) to troubleshoot issues.

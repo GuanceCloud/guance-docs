@@ -1,4 +1,4 @@
-# Performance Benchmark and Optimization
+# Performance Benchmarks and Optimization
 
 ---
 
@@ -11,7 +11,7 @@
 
 ## JSON Benchmark {#benchmark-json}
 
-Test Data:
+Test data:
 
 ```json
 {
@@ -29,7 +29,7 @@ Test Data:
 }
 ```
 
-Extraction is performed using the functions `json()` and `load_json()`
+Extraction using functions `json()` and `load_json()`
 
 - `load_json()`
 
@@ -64,14 +64,14 @@ json(_, status, status)
 json(_, cost, cost)
 ```
 
-Benchmark Results:
+Benchmark results:
 
 ```not-set
 BenchmarkScript/load_json()-20            202762          5674 ns/op        2865 B/op         61 allocs/op
 BenchmarkScript/json()-20                  31024         41463 ns/op       21144 B/op        455 allocs/op
 ```
 
-The results show that using the `load_json()` function significantly reduces processing time compared to the `json()` function. The execution time of a single script was reduced from 41.46us to 5.67us.
+The results show that using the `load_json()` function significantly reduces processing time compared to the `json()` function. The script runtime decreased from 41.46us to 5.67us.
 
 ## Grok Benchmark {#benchmark-grok}
 
@@ -81,7 +81,7 @@ Using nginx access logs as test data:
 192.168.158.20 - - [19/Jun/2021:04:04:58 +0000] "POST /baxrrrrqc.php?daxd=a%20&d=1 HTTP/1.1" 404 118 "-" "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; fr; rv:1.9.2.8) Gecko/20100722 Firefox/3.6.8"
 ```
 
-Two scripts were used for testing to compare the performance impact of different Grok patterns, primarily optimizing by replacing `IPORHOST` with `NOTSPACE`:
+Two scripts were used to test the performance impact of different Grok patterns, with the main optimization being the replacement of `IPORHOST` with `NOTSPACE`:
 
 - Script before optimization
 
@@ -94,7 +94,6 @@ cast(bytes, "int")
 default_time(time)
 ```
 
-
 - Script after optimization
 
 ```python
@@ -106,11 +105,11 @@ cast(bytes, "int")
 default_time(time)
 ```
 
-Benchmark Results:
+Benchmark results:
 
 ```not-set
 BenchmarkScript/grok_nginx-20            19292       67006 ns/op        3828 B/op         42 allocs/op
 BenchmarkScript/grok_p1-20              139440        7860 ns/op        3665 B/op         42 allocs/op
 ```
 
-The results show that replacing the Grok pattern `IPORHOST` with `NOTSPACE` reduced the execution time of a single script from 67us to 7.86us.
+The results show that replacing the Grok pattern `IPORHOST` with `NOTSPACE` reduced the execution time for a single script from 67us to 7.86us.

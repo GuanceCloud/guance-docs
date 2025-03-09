@@ -11,13 +11,13 @@
 
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:----------|:------------------------|
-| search | string | No | Search scheduled report name<br>Optional: True <br> |
-| pageIndex | integer | Yes | Page number<br>Optional: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | Yes | Number of items per page<br>Optional: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 10000 <br> |
+| Parameter Name | Type   | Required | Description              |
+|:-----------|:-------|:-----|:----------------|
+| search | string | No | Search scheduled report name<br>Can be empty: True <br> |
+| pageIndex | integer | Yes | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize | integer | Yes | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 10000 <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
@@ -129,8 +129,8 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
                 "acntWsNickname": "",
                 "email": "88@qq.com",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
-                "name": "88 Test",
-                "username": "Test"
+                "name": "88 test",
+                "username": "test"
             },
             "uuid": "cron_xxxx32",
             "variables": {
@@ -149,8 +149,8 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
                 "acntWsNickname": "",
                 "email": "88@qq.com",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
-                "name": "88 Test",
-                "username": "Test"
+                "name": "88 test",
+                "username": "test"
             },
             "crontab": "",
             "dashboardName": "whytest",
@@ -192,8 +192,8 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
                 "acntWsNickname": "",
                 "email": "88@qq.com",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
-                "name": "88 Test",
-                "username": "Test"
+                "name": "88 test",
+                "username": "test"
             },
             "uuid": "cron_xxxx32",
             "variables": {},
@@ -207,8 +207,8 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
                 "acntWsNickname": "",
                 "email": "88@qq.com",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
-                "name": "88 Test",
-                "username": "Test"
+                "name": "88 test",
+                "username": "test"
             },
             "crontab": "50 15 01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31 * *",
             "dashboardName": "11-02",
@@ -235,7 +235,7 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
                     "acntWsNickname": "",
                     "email": "sunhui@jiagouyun.com",
                     "iconUrl": "",
-                    "name": "Sun Shuhui",
+                    "name": "Sun Shuhua",
                     "username": "sunhui"
                 }
             },
@@ -250,8 +250,8 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
                 "acntWsNickname": "",
                 "email": "88@qq.com",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
-                "name": "88 Test",
-                "username": "Test"
+                "name": "88 test",
+                "username": "test"
             },
             "uuid": "cron_xxxx32",
             "variables": {},

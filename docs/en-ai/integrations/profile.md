@@ -17,27 +17,27 @@ monitor   :
 
 ---
 
-Profile supports collecting dynamic performance data of applications running in different language environments such as Java, Python, and Go, helping users identify CPU, memory, and IO performance issues.
+Profile supports collecting dynamic performance data from applications running in different language environments such as Java, Python, and Go, helping users identify performance issues related to CPU, memory, and IO.
 
 ## Configuration {#config}
 
-Currently, DataKit collects profiling data in two ways:
+Currently, DataKit can collect profiling data in two ways:
 
-- Push method: Requires enabling the DataKit Profile service, where the client actively pushes data to DataKit
-- Pull method: Currently only supported for [Go](profile-go.md), requiring manual configuration of relevant information
+- Push method: Requires enabling the DataKit Profile service, where the client actively pushes data to DataKit.
+- Pull method: Currently only supported for [Go](profile-go.md), requiring manual configuration of relevant information.
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/profile` directory under the DataKit installation directory, copy `profile.conf.sample`, and rename it to `profile.conf`. The configuration file is explained as follows:
+    Navigate to the `conf.d/profile` directory under the DataKit installation directory, copy `profile.conf.sample` and rename it to `profile.conf`. The configuration file is explained as follows:
     
     ```shell
         
     [[inputs.profile]]
-      ## profile Agent endpoints registered by version respectively.
-      ## Endpoints can be skipped by removing them from the list.
+      ## profile Agent endpoints register by version respectively.
+      ## Endpoints can be skipped listen by remove them from the list.
       ## Default value set as below. DO NOT MODIFY THESE ENDPOINTS if not necessary.
       endpoints = ["/profiling/v1/input"]
     
@@ -51,12 +51,12 @@ Currently, DataKit collects profiling data in two ways:
       generate_metrics = true
     
       ## io_config is used to control profiling uploading behavior.
-      ## cache_path sets the disk directory where temporarily caching profiling data.
-      ## cache_capacity_mb specifies the maximum storage space (in MiB) that profiling cache can use.
-      ## clear_cache_on_start sets whether all previous profiling cache should be cleared on restarting Datakit.
+      ## cache_path sets the disk directory where temporarily cache profiling data.
+      ## cache_capacity_mb specifies the max storage space (in MiB) that profiling cache can use.
+      ## clear_cache_on_start sets whether we should clear all previous profiling cache on restarting Datakit.
       ## upload_workers sets the count of profiling uploading workers.
-      ## send_timeout specifies the HTTP timeout when uploading profiling data to DataWay.
-      ## send_retry_count sets the maximum retry count when sending each profiling request.
+      ## send_timeout specifies the http timeout when uploading profiling data to DataWay.
+      ## send_retry_count sets the max retry count when sending every profiling request.
       # [inputs.profile.io_config]
       #   cache_path = "/usr/local/datakit/cache/profile_inputs"  # C:\Program Files\datakit\cache\profile_inputs by default on Windows
       #   cache_capacity_mb = 10240  # 10240MB
@@ -114,7 +114,7 @@ Currently, DataKit collects profiling data in two ways:
     
     ```
     
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service) to enable the Profile service.
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service) to start the Profile service.
 
 === "Kubernetes"
 
@@ -123,7 +123,7 @@ Currently, DataKit collects profiling data in two ways:
 
 ### Client Application Configuration {#app-config}
 
-Client applications need to be configured separately based on the programming language. Supported languages include:
+The client application must be configured separately based on the programming language. Supported languages include:
 
 - [Java](profile-java.md)
 - [Go](profile-go.md)
@@ -134,7 +134,7 @@ Client applications need to be configured separately based on the programming la
 
 ## Profiling Fields {#profiling}
 
-All collected data will append a global tag named `host` (tag value is the hostname of the DataKit host) by default. Additional tags can also be specified using `[inputs.profile.tags]` in the configuration:
+All collected data will have a global tag named `host` (with the tag value being the hostname of the host where DataKit is located) appended by default. You can also specify additional tags through `[inputs.profile.tags]` in the configuration:
 
 ``` toml
  [inputs.profile.tags]
@@ -143,15 +143,12 @@ All collected data will append a global tag named `host` (tag value is the hostn
   # ...
 ```
 
-
-
 ### `profile`
 
 - Tags
 
-
 | Tag | Description |
-|  ----  | --------|
+| ---- | --------|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
@@ -171,16 +168,12 @@ All collected data will append a global tag named `host` (tag value is the hostn
 
 - Metrics List
 
-
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`duration`|Duration of span|int|μs|
 |`message`|Origin content of span|string|-|
 |`parent_id`|Parent span ID of current span|string|-|
-|`resource`|Resource name producing current span|string|-|
+|`resource`|Resource name produce current span|string|-|
 |`span_id`|Span id|string|-|
 |`start`|Start time of span.|int|usec|
 |`trace_id`|Trace id|string|-|
-
-
-</input_content>

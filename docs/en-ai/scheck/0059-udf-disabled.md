@@ -1,5 +1,4 @@
-# 0059-udf-disabled-udf Enabled
-
+# 0059-udf-disabled-UDF is Enabled
 ---
 
 ## Rule ID
@@ -24,7 +23,7 @@
 
 ## Description
 
-- Monitor the host to ensure that udf is not enabled.
+- Monitor the host to ensure that UDF is not enabled.
 
 
 ## Scan Frequency
@@ -39,13 +38,14 @@
 
 ## Risk Items
 
-- Hacker penetration
-- Data leakage
+- Hacker渗透
+
+- Data Leakage
 
 
 ## Audit Method
 
-- Verify whether udf is enabled on the host. You can run the following command to verify:
+- Verify whether UDF is enabled on the host. You can run the following command to verify:
 
 ```bash
 lsmod | grep udf
@@ -75,3 +75,5 @@ lsmod | grep udf
 ## CIS Controls
 
 - None
+
+Please note that "黑客渗透" was left untranslated as it seems to be a term that should be clarified or corrected in the original text. If you want it translated, please specify the correct term in English.

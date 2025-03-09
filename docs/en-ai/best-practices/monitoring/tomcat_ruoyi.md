@@ -1,15 +1,15 @@
-# Best Practices for Observability of RuoYi Monolithic Application Deployed on Tomcat
+# Best Practices for Deploying RuoYi Monolithic Application Observability on Tomcat
 
-Based on the [RuoYi monolithic application](https://gitee.com/y_project/RuoYi/tree/master), this guide provides best practices for observability in an external Tomcat environment.
+Based on the [RuoYi monolithic application](https://gitee.com/y_project/RuoYi/tree/master), this guide demonstrates best practices for observability in an external Tomcat environment.
 
 ## Objectives
 
 - [x] Collect Metrics information
-- [x] Collect Trace information
-- [x] Collect Log information
+- [x] Collect trace information
+- [x] Collect log information
 - [x] Collect RUM information
-- [x] Session Replay
-    Recording a series of user interactions with the frontend, including button clicks, interface operations, dwell time, etc., which helps to reproduce customer intent and actions.
+- [x] Session replay
+    This involves recording user interactions with the frontend, including button clicks, interface operations, dwell times, etc., which helps in understanding user intent and reproducing operations.
 
 ## Version Information
 
@@ -20,21 +20,21 @@ Based on the [RuoYi monolithic application](https://gitee.com/y_project/RuoYi/tr
 
 ???+ info "Special Notes"
 
-    For Springboot projects, the major version of Tomcat should match the major version of the embedded Tomcat in Springboot; otherwise, there might be startup issues.
+    If it is a Springboot project, the major version of Tomcat should match the major version of the embedded Tomcat in Springboot; otherwise, startup issues may occur.
 
 ## RuoYi Monolithic Application
 
-- Download Source Code
+- Download source code
 
-[Link to RuoYi Monolithic Application](https://gitee.com/y_project/RuoYi/tree/master)
+[Link to RuoYi monolithic application](https://gitee.com/y_project/RuoYi/tree/master)
 
 ```shell
 git clone https://gitee.com/y_project/RuoYi.git
 ```
 
-- Remove Internal Tomcat
+- Remove internal Tomcat
 
-Modify the `pom.xml` file in the project root directory:
+Modify the `pom.xml` file at the root directory of the project:
 
 ```xml
 ......
@@ -47,7 +47,7 @@ Modify the `pom.xml` file in the project root directory:
             <version>2.5.15</version>
             <type>pom</type>
             <scope>import</scope>
-            <!-- Remove internal tomcat -->
+            <!-- Remove internal Tomcat -->
             <exclusions>
                 <exclusion>
                     <artifactId>spring-boot-starter-tomcat</artifactId>
@@ -66,9 +66,9 @@ Modify the `pom.xml` file under the `ruoyi-admin` module:
 <packaging>war</packaging>
 ```
 
-- Adjust Logging
+- Adjust logging
 
-Create a new `logback-spring.xml` in `ruoyi-admin/src/main/resources` with the following content:
+Add `logback-spring.xml` in `ruoyi-admin/src/main/resources`, with the following content:
 
 ???- info "logback-spring.xml"
 
@@ -86,7 +86,7 @@ Create a new `logback-spring.xml` in `ruoyi-admin/src/main/resources` with the f
                 <pattern>${log.pattern}</pattern>
             </encoder>
         </appender>
-
+        
         <!-- System log output -->
         <appender name="file_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <file>${log.path}/sys-info.log</file>
@@ -94,7 +94,7 @@ Create a new `logback-spring.xml` in `ruoyi-admin/src/main/resources` with the f
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                 <!-- Log file name pattern -->
                 <fileNamePattern>${log.path}/sys-info.%d{yyyy-MM-dd}.log</fileNamePattern>
-                <!-- Maximum history 60 days -->
+                <!-- Maximum history of logs 60 days -->
                 <maxHistory>60</maxHistory>
             </rollingPolicy>
             <encoder>
@@ -103,20 +103,20 @@ Create a new `logback-spring.xml` in `ruoyi-admin/src/main/resources` with the f
             <filter class="ch.qos.logback.classic.filter.LevelFilter">
                 <!-- Filter level -->
                 <level>INFO</level>
-                <!-- Action when matched: accept (record) -->
+                <!-- Action when matched: accept (log) -->
                 <onMatch>ACCEPT</onMatch>
-                <!-- Action when not matched: deny (do not record) -->
+                <!-- Action when unmatched: deny (do not log) -->
                 <onMismatch>DENY</onMismatch>
             </filter>
         </appender>
-
+        
         <appender name="file_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <file>${log.path}/sys-error.log</file>
             <!-- Rolling policy: create log files based on time -->
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                 <!-- Log file name pattern -->
                 <fileNamePattern>${log.path}/sys-error.%d{yyyy-MM-dd}.log</fileNamePattern>
-                <!-- Maximum history 60 days -->
+                <!-- Maximum history of logs 60 days -->
                 <maxHistory>60</maxHistory>
             </rollingPolicy>
             <encoder>
@@ -125,27 +125,27 @@ Create a new `logback-spring.xml` in `ruoyi-admin/src/main/resources` with the f
             <filter class="ch.qos.logback.classic.filter.LevelFilter">
                 <!-- Filter level -->
                 <level>ERROR</level>
-                <!-- Action when matched: accept (record) -->
+                <!-- Action when matched: accept (log) -->
                 <onMatch>ACCEPT</onMatch>
-                <!-- Action when not matched: deny (do not record) -->
+                <!-- Action when unmatched: deny (do not log) -->
                 <onMismatch>DENY</onMismatch>
             </filter>
         </appender>
-
+        
         <!-- User access log output -->
         <appender name="sys-user" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <file>${log.path}/sys-user.log</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                 <!-- Roll daily -->
                 <fileNamePattern>${log.path}/sys-user.%d{yyyy-MM-dd}.log</fileNamePattern>
-                <!-- Maximum history 60 days -->
+                <!-- Maximum history of logs 60 days -->
                 <maxHistory>60</maxHistory>
             </rollingPolicy>
             <encoder>
                 <pattern>${log.pattern}</pattern>
             </encoder>
         </appender>
-
+        
         <!-- System module log level control -->
         <logger name="com.ruoyi" level="info" />
         <!-- Spring log level control -->
@@ -154,13 +154,13 @@ Create a new `logback-spring.xml` in `ruoyi-admin/src/main/resources` with the f
         <root level="info">
             <appender-ref ref="console" />
         </root>
-
+        
         <!-- System operation logs -->
         <root level="debug">
             <appender-ref ref="file_info" />
             <appender-ref ref="file_error" />
         </root>
-
+        
         <!-- System user operation logs -->
         <logger name="sys-user" level="info">
             <appender-ref ref="sys-user"/>
@@ -168,15 +168,15 @@ Create a new `logback-spring.xml` in `ruoyi-admin/src/main/resources` with the f
     </configuration> 
     ```
 
-- Compilation
+- Compile
 
-Run the following command in the project root directory to compile:
+Run the following command in the project's root directory to compile:
 
 ```shell
 mvn clean package
 ```
 
-If Maven is not installed, you need to install Maven first before compiling.
+If Maven is not installed, install Maven first before compiling.
 
 ```shell
 [INFO] --- spring-boot:2.5.15:repackage (default) @ ruoyi-admin ---
@@ -202,21 +202,21 @@ If Maven is not installed, you need to install Maven first before compiling.
 ## DataKit
 
 - Install DataKit
-- Enable Collectors
+- Enable collectors
 
 ### Install DataKit
 
-Refer to the [DataKit Installation Documentation](/datakit/datakit-install/)
+Refer to the [DataKit installation documentation](/datakit/datakit-install/)
 
-### Enable DDTrace Collector
+### Enable DDTrace Collector in DataKit
 
-The **DDTrace Collector** is used to collect trace information from applications. Refer to the [DDTrace Collector](/integrations/ddtrace/) integration documentation.
+The **DDTrace collector** is used to collect trace information from applications. Refer to the [DDTrace collector integration documentation](/integrations/ddtrace/).
 
-### Enable Log Collector
+### Enable Log Collector in DataKit
 
-The **Log Collector** is used to collect log information. Refer to the [Log Collector](/integrations/logging/) integration documentation.
+The **Log collector** is used to collect log information. Refer to the [Log collector integration documentation](/integrations/logging/).
 
-Adjust the following information:
+Adjust the following settings:
 
 ```toml
 logfiles = [
@@ -235,7 +235,7 @@ pipeline = "ruoyi.p"
 
 **Pipeline Configuration**
 
-A **Pipeline** is used for data governance, primarily extracting log information to associate with trace data.
+The **Pipeline** is used for data governance, primarily extracting log information to correlate with trace data.
 
 Create a `ruoyi.p` file in the `datakit/pipeline/` directory with the following content:
 
@@ -245,13 +245,13 @@ grok(_, "%{TIMESTAMP_ISO8601:time} %{NOTSPACE:thread_name} %{LOGLEVEL:status}%{S
 default_time(time,"Asia/Shanghai")
 ```
 
-### Enable StatsD Collector
+### Enable StatsD Collector in DataKit
 
-The **StatsD Collector** is used to collect metrics information. Refer to the [StatsD Collector](/integrations/statsd/) integration documentation.
+The **StatsD collector** is used to collect metrics information. Refer to the [StatsD collector integration documentation](/integrations/statsd/).
 
-### Enable RUM Collector
+### Enable RUM Collector in DataKit
 
-The **RUM Collector**: The RUM (Real User Monitoring) collector collects user access monitoring data from web or mobile clients. Refer to the [RUM Collector](/integrations/rum/) integration documentation.
+The **RUM collector**: RUM (Real User Monitor) collector is used to collect user visit monitoring data from web or mobile clients. Refer to the [RUM collector integration documentation](/integrations/rum/).
 
 ### Restart DataKit
 
@@ -263,11 +263,11 @@ Download [dd-trace-java](https://github.com/GuanceCloud/dd-trace-java/releases),
 
 ## Create RUM
 
-1. Log in to [Guance](https://www.guance.com)
-2. Select `User Analysis`, choose `Application List`, and click `Create New Application`
-3. Enter `Application Name` as `ruoyi-admin`. You can customize the `Application ID` or click the `Generate Randomly` button.
-4. Choose `web` for `Application Type`. On the right, select `CDN Synchronous Loading` under `SDK Configuration`, ***copy the corresponding script content for later use***.
-5. Click the `Create` button to complete the creation.
+1. Log in to [<<< custom_key.brand_name >>>](https://www.guance.com)
+2. Select `User Analysis`, choose `Application List`, and click `Create`
+3. Fill in `Application Name` as `ruoyi-admin`, and customize or generate the `Application ID` using the `Random Generate` button
+4. Choose `web` for `Application Type`. On the right side, select `CDN Synchronous Loading` for `SDK Configuration` and ***copy the corresponding script content for later use***.
+5. Click the `Create` button to complete creation.
 
 ## Tomcat
 
@@ -290,7 +290,7 @@ export CATALINA_OPTS="-javaagent:/home/root/agent/dd-java-agent-1.14.0-guance.ja
 ```
 
 - `javaagent`: Specifies the `ddtrace` agent directory
-- `Dlogging.config`: Specifies the application's log configuration using `logback`. If the application uses log4j internally, specify the corresponding file.
+- `Dlogging.config`: Specifies the application's log output using `logback`. If the application uses log4j internally, specify the corresponding file.
 
 ### Deploy Application
 
@@ -313,25 +313,25 @@ Tomcat started.
 
 ### Integrate RUM
 
-After Tomcat starts, it automatically extracts the `war` application. Navigate to `/webapps/ruoyi-admin/WEB-INF/classes/templates` and modify `include.html`, pasting the previously copied script into the `head`.
+After Tomcat starts, it automatically unzips the `war` application. Navigate to `/webapps/ruoyi-admin/WEB-INF/classes/templates` and modify `include.html`, pasting the previously copied script into the `head`.
 
 ```
 <head th:fragment=header(title)>
 ...
-<script src="https://static.guance.com/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({
       applicationId: 'APP_ID',
-      datakitOrigin: 'http://localhost:9529', // Protocol (including: //), domain name (or IP address)[and port number]
+      datakitOrigin: 'http://localhost:9529', // Protocol (including: //), domain (or IP address)[and port number]
       env: 'production',
       version: '1.0.0',
       service: 'browser',
       sessionSampleRate: 100,
       sessionReplaySampleRate: 70,
       trackInteractions: true,
-      traceType: 'ddtrace', // Optional, default is ddtrace. Currently supports 6 types: ddtrace, zipkin, skywalking_v3, jaeger, zipkin_single_header, w3c_traceparent
-      allowedTracingOrigins: ['http://localhost:8080','http://localhost:8080/ruoyi-admin'],  // Optional, list of origins or URLs where tracing headers are injected
+      traceType: 'ddtrace', // Optional, default is ddtrace. Currently supports ddtrace, zipkin, skywalking_v3, jaeger, zipkin_single_header, w3c_traceparent
+      allowedTracingOrigins: ['http://localhost:8080','http://localhost:8080/ruoyi-admin'],  // Optional, list of origins or regex patterns for injecting trace headers in API requests
     });
     window.DATAFLUX_RUM && window.DATAFLUX_RUM.startSessionReplayRecording()
 </script>
@@ -341,7 +341,7 @@ After Tomcat starts, it automatically extracts the `war` application. Navigate t
 
 - `applicationId`: No need to change if copied correctly.
 - `datakitOrigin`: Address of the DataKit receiving RUM data
-- `allowedTracingOrigins`: Connects with backend APM, injecting necessary trace headers into API calls made by the frontend.
+- `allowedTracingOrigins`: To link with backend APM, frontend API calls will include necessary trace headers in the request.
 
 ## Results
 
@@ -353,7 +353,7 @@ Access `http://localhost:8080/ruoyi-admin`, default username: `admin`, password:
 
 ![Img](../images/tomcat_ruoyi_2.png)
 
-View the trace information associated with the current log in the log details.
+In the log details, you can view the corresponding trace information.
 
 ![Img](../images/tomcat_ruoyi_3.png)
 
@@ -361,7 +361,7 @@ View the trace information associated with the current log in the log details.
 
 ![Img](../images/tomcat_ruoyi_4.png)
 
-You can also view logs and metrics information through traces.
+You can also view logs and metrics through traces.
 
 ![Img](../images/tomcat_ruoyi_5.png)
 

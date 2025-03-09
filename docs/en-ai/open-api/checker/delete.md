@@ -10,11 +10,11 @@ Delete one or multiple monitors
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                         |
-|:--------------|:-------|:--------|:------------------------------------|
-| ruleUUIDs     | array  | Y       | List of UUIDs for the checkers <br> Allow null: False <br> |
+| Parameter Name | Type   | Required | Description              |
+|:--------------|:-------|:---------|:-------------------------|
+| ruleUUIDs     | array  | Y        | List of checker UUIDs<br>Allow null: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

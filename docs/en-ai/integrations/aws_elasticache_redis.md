@@ -31,31 +31,31 @@ Use the script market "Guance Cloud Sync" series script packages to synchronize 
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with the script installation.
+It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Install Script
 
-> Note: Prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
+> Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize monitoring data of AWS ElastiCache Redis cloud resources, we install the corresponding collection script: "Guance Integration (AWS-ElastiCache Collection)" (ID: `guance_aws_elasticache`)
+To synchronize monitoring data of AWS ElastiCache Redis cloud resources, install the corresponding collection script: "Guance Integration (AWS-ElastiCache Collection)" (ID: `guance_aws_elasticache`)
 
-After clicking 【Install】, enter the corresponding parameters: Amazon AK, Amazon account name.
+After clicking [Install], enter the corresponding parameters: Amazon AK, Amazon account name.
 
-Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
+Click [Deploy Startup Script], and the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-Additionally, you can see the corresponding automatic trigger configuration under "Management / Automatic Trigger Configuration". Click 【Execute】to immediately execute once without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+Additionally, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click [Execute] to immediately execute it once without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-We collect some configurations by default; for more details, see the metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+By default, we collect some configurations; for more details, see [Custom Cloud Object Metrics Configuration](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
 ### Verification
 
-1. Confirm in "Management / Automatic Trigger Configuration" whether the corresponding task has the automatic trigger configuration, and check the task records and logs for any anomalies.
-2. In the Guance platform, check if there is asset information under "Infrastructure / Custom".
-3. In the Guance platform, check if there is corresponding monitoring data under "Metrics".
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and check the task records and logs for any abnormalities.
+2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Amazon CloudWatch, the default metric set is as follows. You can collect more metrics through configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/AmazonElastiCache/latest/red-ug/CacheMetrics.html){:target="_blank"}
@@ -64,36 +64,36 @@ After configuring Amazon CloudWatch, the default metric set is as follows. You c
 
 | Metric Name | Description | Unit | Dimensions |
 | :---: | :---: | :---: | :---: |
-| CPUUtilization | Percentage of CPU utilization across the host | % | name |
-| FreeableMemory | Amount of idle memory available on the host. Derived from RAM reported as free by the OS, buffers, and caches. | byte | name |
-| SwapUsage | Amount of swap space used on the host. | byte | name |
-| NetworkBytesIn | Number of bytes read from the network by the host. | byte | name |
-| NetworkBytesOut | Number of bytes sent by the instance over all network interfaces. | byte | name |
-| NetworkPacketsIn | Number of packets received by the instance over all network interfaces. This metric identifies the volume of incoming traffic based on packet count per instance. | count | name |
-| NetworkPacketsOut | Number of packets sent by the instance over all network interfaces. This metric identifies the volume of outgoing traffic based on packet count per instance. | count | name |
+| CPUUtilization | The percentage of CPU utilization across the host | % | name |
+| FreeableMemory | The amount of available idle memory on the host. This is derived from RAM reported as free by the operating system, buffers, and caches. | byte | name |
+| SwapUsage | The amount of swap space used on the host. | byte | name |
+| NetworkBytesIn | The number of bytes read from the network by the host. | byte | name |
+| NetworkBytesOut | The number of bytes sent over all network interfaces by the instance. | byte | name |
+| NetworkPacketsIn | The number of packets received over all network interfaces by the instance. This metric identifies the volume of incoming traffic based on the number of packets on a single instance. | count | name |
+| NetworkPacketsOut | The number of packets sent over all network interfaces by the instance. This metric identifies the volume of outgoing traffic based on the number of packets on a single instance. | count | name |
 
 ### Redis Metrics
 
 | Metric Name | Description | Unit | Dimensions |
 | :---: | :---: | :---: | :---: |
-| `ActiveDefragHits` | Number of value reassignments performed by the active defragmentation process per minute. | count | name |
-| `BytesUsedForCache` | Total number of bytes used for caching in memory. | byte | name |
-| `CacheHits` | Number of successful read-only key lookups in the main dictionary. | count | name |
-| `CacheMisses` | Number of failed read-only key lookups in the main dictionary. | count | name |
-| `CurrConnections` | Number of client connections excluding connections from read-only replicas. | count | name |
-| `CurrItems` | Number of items in the cache. | count | name |
-| `CurrVolatileItems` | Total number of keys with TTL set across all databases. | count | name |
-| `DatabaseCapacityUsagePercentage` | Percentage of total data capacity in use within the cluster. | % | name |
-| `DatabaseMemoryUsagePercentage` | Percentage of memory in use within the cluster. | % | name |
-| `EngineCPUUtilization` | CPU utilization of Redis engine threads. | % | name |
-| `Evictions` | Number of keys evicted due to `maxmemory` limit. | count | name |
-| `IsMaster` | Indicates whether the node is the primary node of the current shard/cluster. The metric can be 0 (not primary) or 1 (primary). | count | name |
-| `MasterLinkHealthStatus` | This status has two values: 0 or 1. A value of 0 indicates that data in the ElastiCache master node has not synchronized with Redis on EC2. A value of 1 indicates that the data has synchronized. | count | name |
+| `ActiveDefragHits` | The number of value reassignments performed per minute by the active defragmentation process. | count | name |
+| `BytesUsedForCache` | The total number of bytes used for caching in memory. | byte | name |
+| `CacheHits` | The number of successful read-only key lookups in the main dictionary. | count | name |
+| `CacheMisses` | The number of failed read-only key lookups in the main dictionary. | count | name |
+| `CurrConnections` | The number of client connections, excluding connections from read-only replicas. | count | name |
+| `CurrItems` | The number of items in the cache. | count | name |
+| `CurrVolatileItems` | The total number of keys with TTL set across all databases. | count | name |
+| `DatabaseCapacityUsagePercentage` | The percentage of the cluster's total data capacity currently in use. | % | name |
+| `DatabaseMemoryUsagePercentage` | The percentage of memory currently in use within the cluster. | % | name |
+| `EngineCPUUtilization` | Provides the CPU utilization of the Redis engine threads. | % | name |
+| `Evictions` | The number of keys evicted due to the `maxmemory` limit. | count | name |
+| `IsMaster` | Indicates whether the node is the master node for the current shard/cluster. The metric can be 0 (not master) or 1 (master). | count | name |
+| `MasterLinkHealthStatus` | This status has two values: 0 or 1. A value of 0 indicates that the data in the Elasticache master node has not synchronized with Redis on EC2. A value of 1 indicates that the data has been synchronized. | count | name |
 | `MemoryFragmentationRatio` | Indicates the efficiency of memory allocation by the Redis engine. | count | name |
 
 ## Objects {#object}
 
-The collected AWS ElastiCache Redis object data structure from Amazon can be viewed under "Infrastructure - Custom"
+The structure of collected AWS ElastiCache Redis object data can be viewed in "Infrastructure - Custom"
 
 ```json
 {
@@ -110,15 +110,15 @@ The collected AWS ElastiCache Redis object data structure from Amazon can be vie
     "RegionId"                 : "cn-north-1"
   },
   "fields": {
-    "SecurityGroups": "{JSON security group data}}",
+    "SecurityGroups": "{JSON security group data}",
     "NumCacheNodes" : "1",
     "message"       : "{JSON instance data}"
   }
 }
 ```
 
-> *Note: Fields in `tags`, `fields` may change with subsequent updates*
+> *Note: Fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Note 1: The value of `tags.name` is the instance ID, used for unique identification
+> Note 1: The value of `tags.name` is the instance ID, used as a unique identifier.
 >
-> Note 2: `fields.message`, `fields.network_interfaces`, `fields.blockdevicemappings` are JSON serialized strings
+> Note 2: `fields.message`, `fields.network_interfaces`, `fields.blockdevicemappings` are JSON serialized strings.

@@ -1,27 +1,27 @@
-# Guance RUM SDK Quick Start Guide
+# <<< custom_key.brand_name >>> RUM SDK Quick Start Guide
 
 ## Overview
 
-The Guance RUM SDK (Real User Monitoring) provides a powerful set of tools for monitoring and analyzing the behavior and performance of real users in web applications. This quick start guide will help you integrate the RUM SDK into your web application quickly, distinguishing between DK-based integration and public DataWay integration, while detailing how to add custom data TAGs.
+<<< custom_key.brand_name >>> RUM SDK (Real User Monitoring) provides a powerful set of tools for monitoring and analyzing the behavior and performance of Web applications from real users. This quick start guide will help you integrate the RUM SDK into your Web application quickly, distinguishing between DK integration and public DataWay integration, while detailing how to customize and add data TAGs.
 
 ## Prerequisites
 
-- **Install DataKit**: Ensure that DataKit is installed and configured to be publicly accessible (for DK-based integration). [How to install DataKit](../../datakit/datakit-install.md).
-- **Configure RUM Collector**: Configure the RUM collector according to the Guance documentation [How to configure RUM collector](../../integrations/rum.md).
+- **Install DataKit**: Ensure that DataKit is installed and configured to be publicly accessible (for DK integration). [How to install DataKit](../../datakit/datakit-install.md).
+- **Configure RUM Collector**: Configure the RUM collector according to <<< custom_key.brand_name >>> documentation [How to configure RUM collector](../../integrations/rum.md).
 
 ## Integration Methods
 
-### 1. DK-Based Integration
+### 1. DK Integration
 
-- Ensure that DataKit is installed and configured to be publicly accessible. [Publicly accessible and IP geolocation database installation](../../datakit/datakit-tools-how-to.md#install-ipdb)
-- Obtain parameters such as `applicationId`, `env`, `version` from the Guance console [Create Application](../index.md#create).
-- When integrating the SDK, configure `datakitOrigin` to the domain name or IP address of DataKit.
+- Ensure DataKit is installed and configured to be publicly accessible. [Publicly accessible and IP geolocation database installed](../../datakit/datakit-tools-how-to.md#install-ipdb)
+- Obtain parameters such as `applicationId`, `env`, `version` in the <<< custom_key.brand_name >>> console [Create Application](../index.md#create).
+- When integrating the SDK, configure `datakitOrigin` to the domain name or IP of DataKit.
 
 ### 2. Public OpenWay Integration
 
-- Log in to the Guance console, go to the **RUM** page, click on **Create Application** in the top-left corner, and obtain parameters such as `applicationId`, `clientToken`, and `site`. [Create Application](../index.md#create)
-- Configure `site` and `clientToken` parameters; support uploading SourceMap via the console.
-- When integrating the SDK, there's no need to configure `datakitOrigin`; the SDK will send data to the public DataWay by default.
+- Log in to the <<< custom_key.brand_name >>> console, go to the **Synthetic Tests** page, click on **Create Application** in the top-left corner to obtain `applicationId`, `clientToken`, and `site` parameters. [Create Application](../index.md#create)
+- Configure `site` and `clientToken` parameters; SourceMap uploads are supported in the console.
+- When integrating the SDK, there's no need to configure `datakitOrigin`; the SDK will default to sending data to the public DataWay.
 
 ## SDK Integration
 
@@ -40,9 +40,9 @@ import { datafluxRum } from '@cloudcare/browser-rum'
 
 datafluxRum.init({
   applicationId: 'Your Application ID',
-  datakitOrigin: '<DataKit Domain or IP>', // Required for DK-based integration
+  datakitOrigin: '<DataKit Domain or IP>', // Required for DK integration
   clientToken: 'clientToken', // Required for public OpenWay integration
-  site: 'Public OpenWay URL', // Required for public OpenWay integration
+  site: 'Public OpenWay Address', // Required for public OpenWay integration
   env: 'production',
   version: '1.0.0',
   sessionSampleRate: 100,
@@ -57,7 +57,7 @@ datafluxRum.startSessionReplayRecording()
 
 ### Asynchronous CDN Loading
 
-Add the script to your HTML file:
+Add the script in your HTML file:
 
 ```html
 <script>
@@ -71,14 +71,14 @@ Add the script to your HTML file:
     ;(d = o.createElement(u)), (d.async = 1), (d.src = n)
     n = o.getElementsByTagName(u)[0]
     n.parentNode.insertBefore(d, n)
-  })(window, document, 'script', 'https://static.guance.com/browser-sdk/v3/dataflux-rum.js', 'DATAFLUX_RUM')
+  })(window, document, 'script', 'https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js', 'DATAFLUX_RUM')
 
   window.DATAFLUX_RUM.onReady(function () {
     window.DATAFLUX_RUM.init({
       applicationId: 'Your Application ID',
-      datakitOrigin: '<DataKit Domain or IP>', // Required for DK-based integration
+      datakitOrigin: '<DataKit Domain or IP>', // Required for DK integration
       clientToken: 'clientToken', // Required for public OpenWay integration
-      site: 'Public OpenWay URL', // Required for public OpenWay integration
+      site: 'Public OpenWay Address', // Required for public OpenWay integration
       env: 'production',
       version: '1.0.0',
       sessionSampleRate: 100,
@@ -94,17 +94,17 @@ Add the script to your HTML file:
 
 ### Synchronous CDN Loading
 
-Add the script to your HTML file:
+Add the script in your HTML file:
 
 ```html
-<script src="https://static.guance.com/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({
       applicationId: 'Your Application ID',
-      datakitOrigin: '<DataKit Domain or IP>', // Required for DK-based integration
+      datakitOrigin: '<DataKit Domain or IP>', // Required for DK integration
       clientToken: 'clientToken', // Required for public OpenWay integration
-      site: 'Public OpenWay URL', // Required for public OpenWay integration
+      site: 'Public OpenWay Address', // Required for public OpenWay integration
       env: 'production',
       version: '1.0.0',
       sessionSampleRate: 100,
@@ -117,15 +117,15 @@ Add the script to your HTML file:
 </script>
 ```
 
-## Custom Data TAG Addition
+## Customizing Data TAGs
 
-Use the `setGlobalContextProperty` or `setGlobalContext` API to add additional TAGs to all RUM events [Add custom tag](./custom-sdk/add-additional-tag.md).
+Use the `setGlobalContextProperty` or `setGlobalContext` API to add additional TAGs to all RUM events [Add custom tags](./custom-sdk/add-additional-tag.md).
 
 ### Example
 
 ```javascript
 // Add a single TAG using setGlobalContextProperty
-window.DATAFLUX_RUM && window.DATAFLUX_RUM.setGlobalContextProperty('userName', 'Zhang San')
+window.DATAFLUX_RUM && window.DATAFLUX_RUM.setGlobalContextProperty('userName', 'John Doe')
 
 // Add multiple TAGs using setGlobalContext
 window.DATAFLUX_RUM &&
@@ -141,7 +141,7 @@ With the above code, you can add `userName`, `userAge`, and `userGender` TAGs to
 
 ### Control Action Collection
 
-Control whether to collect user click actions through the `trackUserInteractions` initialization parameter.
+Control whether to collect user click actions via the `trackUserInteractions` initialization parameter.
 
 ### Customize Action Names
 
@@ -177,9 +177,9 @@ datafluxRum &&
   })
 ```
 
-## Custom Error Addition
+## Customizing Errors
 
-Use the `addError` API to add custom Error Metrics data [Add custom Error](./custom-sdk/add-error.md).
+Use the `addError` API to add custom Error Metrics data [Add custom errors](./custom-sdk/add-error.md).
 
 ```javascript
 // Synchronous CDN loading
@@ -198,7 +198,7 @@ const error = new Error('Something wrong occurred.')
 datafluxRum.addError(error, { pageStatus: 'beta' })
 ```
 
-## Custom User Identification
+## Customizing User Identifiers
 
 Use the `setUser` API to add identifier properties (such as ID, name, email) for the current user [Add custom user information](./custom-sdk/user-id.md).
 
@@ -225,21 +225,21 @@ datafluxRum.setUser({ id: '1234', name: 'John Doe', email: 'john@doe.com' })
 
 ### Ensure SDK Version Support
 
-Ensure that the SDK version you are using supports session replay functionality (usually versions `> 3.0.0`).
+Ensure the SDK version you are using supports session replay functionality (usually versions `> 3.0.0`).
 
 ### Start Session Replay Recording
 
-After initializing the SDK, call the `startSessionReplayRecording()` method to start recording session replays. You can choose to start it under specific conditions, such as after user login [Start session recording](../session-replay/index.md).
+After initializing the SDK, call the `startSessionReplayRecording()` method to start session replay recording. You can choose to enable it under specific conditions, such as after user login [Start session recording](../session-replay/index.md).
 
 ## Important Notes
 
 - Session replay does not support playing iframes, videos, audio, canvases, etc.
-- Ensure that static resources (such as fonts, images) remain accessible during replay, possibly requiring CORS policy settings.
-- For CSS styles and mouse hover events, ensure that CSS rules can be accessed via the CSSStyleSheet interface.
+- Ensure static resources (like fonts, images) remain accessible during replay, which may require setting up CORS policies.
+- For CSS styles and mouse hover events, ensure CSS rules can be accessed via the CSSStyleSheet interface.
 
 ## Debugging and Optimization
 
 - Use the logging and monitoring tools provided by the SDK to debug and optimize your application performance.
 - Adjust parameters like `sessionSampleRate` and `sessionReplaySampleRate` based on business needs to optimize data collection.
 
-By following the steps above, you can successfully integrate the Guance RUM SDK into your web application and start collecting data and using session replay features to optimize user experience and performance.
+By following these steps, you can successfully integrate the <<< custom_key.brand_name >>> RUM SDK into your Web application and start collecting data and using session replay features to optimize user experience and performance.

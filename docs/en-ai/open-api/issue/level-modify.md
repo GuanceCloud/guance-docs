@@ -1,4 +1,4 @@
-# Issue-Custom Level Modification
+# Modify Custom Issue Level
 
 ---
 
@@ -12,18 +12,18 @@
 ## Route Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------------|:-------|:-----|:----------------|
+|:-------------------|:-------|:-----|:----------------|
 | issue_level_uuid | string | Y | issue_level_uuid<br> |
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------------|:-------|:-----|:----------------|
-| name | string |  | Custom level name<br>Example: name <br>Allow null: False <br>Maximum length: 256 <br> |
-| description | string |  | Custom level description<br>Example: description <br>Allow null: False <br> |
-| extend | json |  | Additional extended information<br>Example: {} <br>Allow null: True <br> |
-| color | string |  | Custom level color<br>Example: description <br>Allow null: False <br> |
+|:-------------------|:-------|:-----|:----------------|
+| name | string |  | Custom level name<br>Example: name <br>Can be empty: False <br>Maximum length: 256 <br> |
+| description | string |  | Custom level description<br>Example: description <br>Can be empty: False <br> |
+| extend | json |  | Additional extended information<br>Example: {} <br>Can be empty: True <br> |
+| color | string |  | Custom level color<br>Example: description <br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 

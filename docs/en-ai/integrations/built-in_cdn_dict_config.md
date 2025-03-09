@@ -105,7 +105,7 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"tl88.net",
-        "name":"Yitongruijin (Akamai China) operated by Wangsu",
+        "name":"Yitong Ruijin (Akamai China) operated by Wangsu",
         "website":"https://www.akamai.com"
     },
     {
@@ -195,37 +195,37 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"ccgslb.com.cn",
-        "name":"ChinaCache CDN",
+        "name":"Chinacache CDN",
         "website":"https://cn.chinacache.com/"
     },
     {
         "domain":"ccgslb.net",
-        "name":"ChinaCache CDN",
+        "name":"Chinacache CDN",
         "website":"https://cn.chinacache.com/"
     },
     {
         "domain":"ccgslb.com",
-        "name":"ChinaCache CDN",
+        "name":"Chinacache CDN",
         "website":"https://cn.chinacache.com/"
     },
     {
         "domain":"ccgslb.cn",
-        "name":"ChinaCache CDN",
+        "name":"Chinacache CDN",
         "website":"https://cn.chinacache.com/"
     },
     {
         "domain":"c3cache.net",
-        "name":"ChinaCache CDN",
+        "name":"Chinacache CDN",
         "website":"https://cn.chinacache.com/"
     },
     {
         "domain":"c3dns.net",
-        "name":"ChinaCache CDN",
+        "name":"Chinacache CDN",
         "website":"https://cn.chinacache.com/"
     },
     {
         "domain":"chinacache.net",
-        "name":"ChinaCache CDN",
+        "name":"Chinacache CDN",
         "website":"https://cn.chinacache.com/"
     },
     {
@@ -400,22 +400,22 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"jiashule.com",
-        "name":"Zhidao Chuangyu Cloud Security Acceleration JSL CDN",
+        "name":"Zhidao Chuangyu Cloud Security Acceleration CDN",
         "website":"https://www.yunaq.com/jsl/"
     },
     {
         "domain":"jiasule.org",
-        "name":"Zhidao Chuangyu Cloud Security Acceleration JSL CDN",
+        "name":"Zhidao Chuangyu Cloud Security Acceleration CDN",
         "website":"https://www.yunaq.com/jsl/"
     },
     {
         "domain":"365cyd.cn",
-        "name":"Zhidao Chuangyu Cloud Security CYD (Government Dedicated)",
+        "name":"Zhidao Chuangyu Cloud Security CYD (Government Special)",
         "website":"https://www.yunaq.com/cyd/"
     },
     {
         "domain":"huaweicloud.com",
-        "name":"Huawei Cloud WAF Advanced Cloud Shield",
+        "name":"Huawei Cloud WAF High Defense Cloud Shield",
         "website":"https://www.huaweicloud.com/product/aad.html"
     },
     {
@@ -435,37 +435,37 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"dnion.com",
-        "name":"Dilian Technology",
+        "name":"DiLian Technology",
         "website":"http://www.dnion.com/"
     },
     {
         "domain":"ewcache.com",
-        "name":"Dilian Technology",
+        "name":"DiLian Technology",
         "website":"http://www.dnion.com/"
     },
     {
         "domain":"globalcdn.cn",
-        "name":"Dilian Technology",
+        "name":"DiLian Technology",
         "website":"http://www.dnion.com/"
     },
     {
         "domain":"tlgslb.com",
-        "name":"Dilian Technology",
+        "name":"DiLian Technology",
         "website":"http://www.dnion.com/"
     },
     {
         "domain":"fastcdn.com",
-        "name":"Dilian Technology",
+        "name":"DiLian Technology",
         "website":"http://www.dnion.com/"
     },
     {
         "domain":"flxdns.com",
-        "name":"Dilian Technology",
+        "name":"DiLian Technology",
         "website":"http://www.dnion.com/"
     },
     {
         "domain":"dlgslb.cn",
-        "name":"Dilian Technology",
+        "name":"DiLian Technology",
         "website":"http://www.dnion.com/"
     },
     {
@@ -480,7 +480,7 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"aocdn.com",
-        "name":"Reliable Cloud CDN (Pic Library)",
+        "name":"Reliable Cloud CDN (Image Library)",
         "website":"http://www.kekaoyun.com/"
     },
     {
@@ -610,12 +610,12 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"aligaofang.com",
-        "name":"Alibaba Cloud Shield DDoS Protection",
+        "name":"Alibaba Cloud Shield High Defense",
         "website":"https://www.aliyun.com/product/ddos"
     },
     {
         "domain":"yundunddos.com",
-        "name":"Alibaba Cloud Shield DDoS Protection",
+        "name":"Alibaba Cloud Shield High Defense",
         "website":"https://www.aliyun.com/product/ddos"
     },
     {
@@ -695,7 +695,7 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"xgslb.net",
-        "name":"WebLuker (ChinaCache)",
+        "name":"WebLuker (Chinacache)",
         "website":"http://www.webluker.com"
     },
     {
@@ -855,7 +855,7 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"dayugslb.com",
-        "name":"Tencent Cloud Dayu BGP DDoS Protection",
+        "name":"Tencent Cloud Dayu BGP High Defense",
         "website":"https://cloud.tencent.com/product/ddos-advanced"
     },
     {
@@ -910,7 +910,7 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"scsdns.com",
-        "name":"Yiyun Technology Cloud Acceleration CDN",
+        "name":"EYUN Technology Cloud Acceleration CDN",
         "website":"http://www.exclouds.com/navPage/wise"
     },
     {
@@ -930,7 +930,7 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"sangfordns.com",
-        "name":"Sangfor AD Series Application Delivery Product Single-Sided Acceleration Solution",
+        "name":"Sangfor AD Series Application Delivery Products - Unilateral Acceleration Solution",
         "website":"http://www.sangfor.com.cn/topic/2011adn/solutions5.html"
     },
     {
@@ -1045,7 +1045,7 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"zenedge.net",
-        "name":"Oracle Dyn Web Application Security suite (formerly Zenedge CDN)",
+        "name":"Oracle Dyn Web Application Security Suite (formerly Zenedge CDN)",
         "website":"https://cdn.tatacommunications.com"
     },
     {
@@ -1060,7 +1060,7 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"hdslb.com",
-        "name":"Bilibili High Availability Regional Load Balancing",
+        "name":"Bilibili High Availability Geographic Load Balancing",
         "website":"https://github.com/bilibili/overlord"
     },
     {
@@ -1070,7 +1070,7 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"shifen.com",
-        "name":"Baidu Business Regional Load Balancing System",
+        "name":"Baidu Business Geographic Load Balancing System",
         "website":"https://lab.skk.moe/cdn"
     },
     {
@@ -1080,12 +1080,12 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"tencent-cloud.net",
-        "name":"Tencent Business Regional Load Balancing System",
+        "name":"Tencent Business Geographic Load Balancing System",
         "website":"https://lab.skk.moe/cdn"
     },
     {
         "domain":"elemecdn.com",
-        "name":"Ele.me Static Domain and Regional Load Balancing",
+        "name":"Ele.me Static Domain and Geographic Load Balancing",
         "website":"https://lab.skk.moe/cdn"
     },
     {
@@ -1115,11 +1115,227 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"websitecname.cn",
-        "name":"Meicheng Interconnect Construction Star",
+        "name":"MeiCheng Interconnection BuildStar",
         "website":"https://www.sitestar.cn"
     },
     {
         "domain":"cdncenter.cn",
-        "name":"Meicheng Interconnect CDN",
-        "website":"https://www.cndns.com"
-   
+        "name":"MeiCheng Inter```toml
+    {
+        "domain":"vhostgo.com",
+        "name":"West Digital Virtual Hosting",
+        "website":"https://www.west.cn"
+    },
+    {
+        "domain":"jsd.cc",
+        "name":"Shanghai Yundun Cloud Security",
+        "website":"https://www.yundun.com"
+    },
+    {
+        "domain":"powercdn.cn",
+        "name":"Power Online CDN",
+        "website":"http://www.powercdn.com"
+    },
+    {
+        "domain":"21vokglb.cn",
+        "name":"Century互联 Cloud Express Line Business",
+        "website":"https://www.21vianet.com"
+    },
+    {
+        "domain":"21vianet.com.cn",
+        "name":"Century互联 Cloud Express Line Business",
+        "website":"https://www.21vianet.com"
+    },
+    {
+        "domain":"21okglb.cn",
+        "name":"Century互联 Cloud Express Line Business",
+        "website":"https://www.21vianet.com"
+    },
+    {
+        "domain":"21speedcdn.com",
+        "name":"Century互联 Cloud Express Line Business",
+        "website":"https://www.21vianet.com"
+    },
+    {
+        "domain":"21cvcdn.com",
+        "name":"Century互联 Cloud Express Line Business",
+        "website":"https://www.21vianet.com"
+    },
+    {
+        "domain":"okcdn.com",
+        "name":"Century互联 Cloud Express Line Business",
+        "website":"https://www.21vianet.com"
+    },
+    {
+        "domain":"okglb.com",
+        "name":"Century互联 Cloud Express Line Business",
+        "website":"https://www.21vianet.com"
+    },
+    {
+        "domain":"cdnetworks.net",
+        "name":"Beijing Tongxing Wandian Network Technology",
+        "website":"http://www.txnetworks.cn/"
+    },
+    {
+        "domain":"txnetworks.cn",
+        "name":"Beijing Tongxing Wandian Network Technology",
+        "website":"http://www.txnetworks.cn/"
+    },
+    {
+        "domain":"cdnnetworks.com",
+        "name":"Beijing Tongxing Wandian Network Technology",
+        "website":"http://www.txnetworks.cn/"
+    },
+    {
+        "domain":"txcdn.cn",
+        "name":"Beijing Tongxing Wandian Network Technology",
+        "website":"http://www.txnetworks.cn/"
+    },
+    {
+        "domain":"cdnunion.net",
+        "name":"Baoteng Interconnection Shanghai Wanggen Network (CDN Union)",
+        "website":"http://www.cdnunion.com"
+    },
+    {
+        "domain":"cdnunion.com",
+        "name":"Baoteng Interconnection Shanghai Wanggen Network (CDN Union)",
+        "website":"http://www.cdnunion.com"
+    },
+    {
+        "domain":"mygslb.com",
+        "name":"Baoteng Interconnection Shanghai Wanggen Network (YaoCDN)",
+        "website":"http://www.vangen.cn"
+    },
+    {
+        "domain":"cdnudns.com",
+        "name":"Baoteng Interconnection Shanghai Wanggen Network (YaoCDN)",
+        "website":"http://www.vangen.cn"
+    },
+    {
+        "domain":"sprycdn.com",
+        "name":"Baoteng Interconnection Shanghai Wanggen Network (YaoCDN)",
+        "website":"http://www.vangen.cn"
+    },
+    {
+        "domain":"chuangcdn.com",
+        "name":"Chuangshi Cloud Fusion CDN",
+        "website":"https://www.chuangcache.com/index.html"
+    },
+    {
+        "domain":"aocde.com",
+        "name":"Chuangshi Cloud Fusion CDN",
+        "website":"https://www.chuangcache.com"
+    },
+    {
+        "domain":"ctxcdn.cn",
+        "name":"China Telecom Tianyi Cloud CDN",
+        "website":"https://www.ctyun.cn/product2/#/product/10027560"
+    },
+    {
+        "domain":"yfcdn.net",
+        "name":"Yifan Acceleration CDN",
+        "website":"https://www.yfcloud.com"
+    },
+    {
+        "domain":"mmycdn.cn",
+        "name":"Manman Cloud CDN (Zhonglian Lixin)",
+        "website":"https://www.chinamaincloud.com/cloudDispatch.html"
+    },
+    {
+        "domain":"chinamaincloud.com",
+        "name":"Manman Cloud CDN (Zhonglian Lixin)",
+        "website":"https://www.chinamaincloud.com/cloudDispatch.html"
+    },
+    {
+        "domain":"cnispgroup.com",
+        "name":"Zhonglian Data (Zhonglian Lixin)",
+        "website":"http://www.cnispgroup.com/"
+    },
+    {
+        "domain":"cdnle.com",
+        "name":"New LeCloud CDN (formerly LeCloud) CDN",
+        "website":"http://www.lecloud.com/zh-cn"
+    },
+    {
+        "domain":"gosuncdn.com",
+        "name":"Gaosun Holdings CDN Technology",
+        "website":"http://www.gosun.com"
+    },
+    {
+        "domain":"mmtrixopt.com",
+        "name":"mmTrix Performance Cube (under Gaosun Holdings)",
+        "website":"http://www.mmtrix.com"
+    },
+    {
+        "domain":"cloudfence.cn",
+        "name":"Landun Cloud CDN",
+        "website":"https://www.cloudfence.cn/#/cloudWeb/yaq/yaqyfx"
+    },
+    {
+        "domain":"ngaagslb.cn",
+        "name":"Xinliu Cloud (Xinliu Wanlian)",
+        "website":"https://www.ngaa.com.cn"
+    },
+    {
+        "domain":"p2cdn.com",
+        "name":"Xingyu Cloud P2P CDN",
+        "website":"https://www.xycloud.com"
+    },
+    {
+        "domain":"00cdn.com",
+        "name":"Xingyu Cloud P2P CDN",
+        "website":"https://www.xycloud.com"
+    },
+    {
+        "domain":"sankuai.com",
+        "name":"Meituan Cloud (SanKuai Technology) Load Balancing",
+        "website":"https://www.mtyun.com"
+    },
+    {
+        "domain":"lccdn.org",
+        "name":"Lingzhi Cloud CDN (Hangzhou Lingzhi Yunhua)",
+        "website":"http://www.linkingcloud.com"
+    },
+    {
+        "domain":"nscloudwaf.com",
+        "name":"NSFOCUS Cloud WAF",
+        "website":"https://cloud.nsfocus.com"
+    },
+    {
+        "domain":"2cname.com",
+        "name":"NetDi Security",
+        "website":"https://www.ddos.com"
+    },
+    {
+        "domain":"ucloudgda.com",
+        "name":"UCloud Rome Global Network Acceleration",
+        "website":"https://www.ucloud.cn/site/product/rome.html"
+    },
+    {
+        "domain":"google.com",
+        "name":"Google Web Services",
+        "website":"https://lab.skk.moe/cdn"
+    },
+    {
+        "domain":"1e100.net",
+        "name":"Google Web Services",
+        "website":"https://lab.skk.moe/cdn"
+    },
+    {
+        "domain":"ncname.com",
+        "name":"NodeCache",
+        "website":"https://www.nodecache.com"
+    },
+    {
+        "domain":"alipaydns.com",
+        "name":"Ant Financial Business Geographic Load Balancing System",
+        "website":"https://lab.skk.moe/cdn/"
+    },
+    {
+        "domain":"wscloudcdn.com",
+        "name":"Quansu Cloud (Wangsu) CloudEdge Cloud Acceleration",
+        "website":"https://www.quansucloud.com/product.action?product.id=270"
+    }
+]
+'''
+```

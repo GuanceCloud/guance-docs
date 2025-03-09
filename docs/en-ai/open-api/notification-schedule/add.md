@@ -14,38 +14,38 @@ Create a new schedule
 | Parameter Name        | Type     | Required   | Description              |
 |:------------------|:-------|:-----|:----------------|
 | name | string | Y | Name<br>Allow null: False <br>Maximum length: 256 <br>Allow empty string: False <br> |
-| timezone | string |  | Timezone, default Asia/Shanghai<br>Example: Asia/Shanghai <br>Allow null: False <br>Maximum length: 48 <br> |
+| timezone | string |  | Time zone, default Asia/Shanghai<br>Example: Asia/Shanghai <br>Allow null: False <br>Maximum length: 48 <br> |
 | start | string | Y | Time period start time<br>Example: 00:00 <br>Allow null: False <br>Maximum length: 48 <br> |
 | end | string | Y | Time period end time<br>Example: 23:59 <br>Allow null: False <br>Maximum length: 48 <br> |
 | notifyTargets | array | Y | Notification targets, including account UUID, notification target UUID, email<br>Example: ['acnt_xxx', 'notify_', 'test@qq.com'] <br>Allow null: False <br> |
-| extend | json |  | Extended information, including rotation notification target configuration<br>Allow null: False <br> |
-| extend.enableRotateNotification | boolean |  | Whether to enable rotation, default is off<br>Example: False <br>Allow null: False <br> |
+| extend | json |  | Extended information, including rotation notification configuration<br>Allow null: False <br> |
+| extend.enableRotateNotification | boolean |  | Whether to enable rotation, default is disabled<br>Example: False <br>Allow null: False <br> |
 | extend.rotationCycle | string |  | Rotation cycle, day: day, week: week, month: month, workday: workDay, weekend: weekend<br>Example: day <br>Allow null: False <br>Optional values: ['day', 'week', 'month', 'workDay', 'weekend'] <br> |
-| extend.effectiveTime | json |  | Schedule validity period, default is permanent, start/end time is an 11-digit timestamp<br>Example: {'start': 1719990196, 'end': 1729990196} <br>Allow null: False <br> |
+| extend.effectiveTime | json |  | Schedule validity period, default this schedule is permanently valid, start/end times are 11-digit timestamps<br>Example: {'start': 1719990196, 'end': 1729990196} <br>Allow null: False <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
 
-**1. Request Parameter Explanation**
+**1. Request Parameter Description**
 
 | Parameter Name                | Type  | Required  | Description          |
 |-----------------------|----------|----|------------------------|
 |name                   |String|Required| Schedule name|
 |start                   |String|Required| Time period start time|
 |end                   |String|Required| Time period end time|
-|timezone                   |String|| Timezone|
+|timezone                   |String|| Time zone|
 |notifyTargets                   |array|Required| Notification targets, including account UUID, notification target UUID, email|
 |extend                   |Json|| Extended information|
 
 --------------
 
-**2. Parameter Explanation in `extend`**
+**2. Description of parameters in `extend`**
 
 | Parameter Name                | Type  | Required  | Description          |
 |-----------------------|----------|----|------------------------|
-|enableRotateNotification                   |Boolean|| Whether to enable notification target rotation, default is off |
+|enableRotateNotification                   |Boolean|| Whether to enable notification target rotation, default is disabled |
 |rotationCycle                   |string|| After enabling notification target rotation, the rotation cycle|
-|effectiveTime                   |json|| Schedule validity period configuration, default is permanent, start/end time is an 11-digit timestamp|
+|effectiveTime                   |json|| Validity period configuration for the schedule, default this schedule is permanently valid, start/end times are 11-digit timestamps|
 
 
 

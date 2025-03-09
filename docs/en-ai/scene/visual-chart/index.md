@@ -2,7 +2,7 @@
 
 ---
 
-Guance is equipped with over 20 standardized visualization charts, allowing you to easily customize dashboards according to your business needs. Additionally, using advanced features like view variables, data interactivity between charts can be achieved, ensuring personalized and professional data presentation.
+<<< custom_key.brand_name >>> provides over 20 standardized visualization charts, allowing you to easily customize dashboards according to your business needs. Additionally, using advanced features such as view variables can achieve data interactivity between charts, ensuring personalized and professional data presentation.
 
 <!--
 
@@ -180,11 +180,11 @@ Guance is equipped with over 20 standardized visualization charts, allowing you 
 -->
 
 
-## Adding Charts
+## Adding a Chart
 
 1. Enter the dashboard page;
 2. Start adding a chart;
-3. Select the type of chart you want to add;
+3. Select the type of chart to add;
 4. Click create to complete the addition.
 
 <img src="../img/add_chart.png" width="60%" >
@@ -204,13 +204,13 @@ Guance is equipped with over 20 standardized visualization charts, allowing you 
     - Time series bar chart
     - Time series area chart
 
-- [Grouped Bar Chart](./bar-chart.md): Used to show comparisons between different items
+- [Grouped Bar Chart](./bar-chart.md): Used to show comparisons between items
     - Grouped bar chart
     - Grouped bar chart (horizontal)
 
-- [Top List](./leaderboard.md): Used to display rankings of grouped data over a period of time
+- [Top List](./leaderboard.md): Used to display ranking of grouped data over a period of time
 
-- [Pie Chart](./pie-chart.md): Used to display the proportion of data
+- [Pie Chart](./pie-chart.md): Used to show the proportion of data
     - Pie chart
     - Donut chart
     - Rose chart
@@ -226,60 +226,60 @@ Guance is equipped with over 20 standardized visualization charts, allowing you 
 
 :material-numeric-4-circle: **Maps**
 
-- [China Map](./china-map.md): Used to display distribution on different geographical locations, indicated by color intensity
-- [World Map](./world-map.md): Used to display distribution on different geographical locations, indicated by color intensity
+- [China Map](./china-map.md): Used to display distribution across different geographic locations, with colors indicating data size
+- [World Map](./world-map.md): Used to display distribution across different geographic locations, with colors indicating data size
 
 :material-numeric-5-circle: **Scatter Plots**
 
-- [Scatter Plot](./scatter-plot.md): Displays data points to show the relationship and impact between two variables
-- [Bubble Chart](./bubble-chart.md): Displays the relationship and impact between three variables, with bubble size representing the third variable
+- [Scatter Plot](./scatter-plot.md): Displays data as points to show relationships between two variables and their impact
+- [Bubble Chart](./bubble-chart.md): Displays relationships between three variables, with bubble size indicating the third variable
 
 
 :material-numeric-6-circle: **Distribution Charts**
 
-- [Cellular Map](./cellular-map.md): Used to display the distribution of multiple sets of data, indicated by color intensity
-- [Topology Map](./topology-map.md): Used to display relationships and relative positions between different entities
-- [Treemap](./treemap.md): Used to display the proportion of different categories, effectively utilizing space compared to pie charts, showing more data
-- [Histogram](./histogram.md): Also known as a quality distribution chart, represented by a series of bars indicating data distribution
-- [Heatmap](./heatmap_scene.md): Uses color intensity changes to indicate data density or strength, typically using gradient colors to represent different value ranges
-
+- [Cellular Map](./cellular-map.md): Displays distribution of multiple datasets, with color intensity indicating data size
+- [Topology Map](./topology-map.md): Shows relationships and relative positions between different entities
+- [Treemap](./treemap.md): Displays proportions of different categories, effectively utilizing space to show more data compared to pie charts
+- [Histogram](./histogram.md): Also known as a frequency distribution chart, it shows data distribution through bars of varying heights
+- [Heatmap](./heatmap_scene.md): Uses color gradients to represent data density or intensity, typically showing different numerical ranges
 
 
 :material-numeric-7-circle: **Other Charts**
 
-- [SLO](./slo-chart.md): Directly selects pre-configured SLO monitoring to display related performance data
-- [Dashboard](./dashboard.md): Used to display progress or completion of metrics
+- [SLO](./slo-chart.md): Requires selecting a pre-configured SLO monitoring to display related performance data
+- [Dashboard](./dashboard.md): Used to display progress or completion status of metrics
 - [Funnel Chart](./funnel-chart.md): Used to display conversion rates in business processes
-- [Sankey Diagram](./sankey.md): A special type of flowchart used to display the flow of data or energy
+- [Sankey Diagram](./sankey.md): A special type of flowchart used to show data or energy flow
 
 :material-numeric-8-circle: **Advanced Charts**
 
-- [Log Stream Chart](./log-stream.md): Displays log data in a time series table format, customizable for log range and columns displayed
-- [Object List Chart](./object-list.md): Displays infrastructure data in a table format, including "basic objects" and "resource catalog"
-- [Alert Statistics Chart](./alert-statistics.md): Displays unresolved alert events in a list format for quick identification and response to system emergencies
-- [Text](./text.md): Used to add prompts, explanations, and various content such as text, images, and hyperlinks in Markdown-formatted documents
-- [Video](./video.md): Adds video content to the dashboard by embedding video URLs, enhancing information delivery
-- [Image](./picture.md): Displays images in the dashboard, supporting image URL addition with multiple display options such as fill, fit, stretch, and center
-- [Command Panel](./command-panel.md): Composed of command buttons, allowing users to execute specific commands or navigate to specified links by clicking
-- [IFrame](./iframe.md): Embeds external pages into the dashboard, supporting https and http links
+- [Log Stream Chart](./log-stream.md): Displays log data in a time series table format, customizable for displaying log ranges and columns
+- [Object List Chart](./object-list.md): Displays infrastructure data in a table format, including "base objects" and "resource catalog"
+- [Alert Statistics Chart](./alert-statistics.md): Displays unresolved alert events in a list format, enabling quick identification and response to system issues
+- [Text](./text.md): Adds prompts, explanations, and various content like text, images, and hyperlinks in Markdown-formatted documents
+- [Video](./video.md): Embeds video content in dashboards by adding video URLs, enhancing information delivery
+- [Image](./picture.md): Displays images in dashboards, supports embedding image URLs with options like fill, fit, stretch, and center
+- [Command Panel](./command-panel.md): Composed of command buttons, allows users to execute specific commands or navigate to specified links
+- [IFrame](./iframe.md): Embeds external pages in dashboards, supporting https and http links
+
 
 
 ## Chart Settings {#settings}
 
 <img src="../img/chart-settings.png" width="70%" >
 
-1. Edit: Modify chart configuration;
-2. [Combine Charts](#conbine);
-3. Copy: Copies all configurations of the chart; can be used in current or other dashboards, notes;
-4. Clone: Clones the chart directly to the current dashboard;
-5. Delete: Deletes the current chart;
-6. [Share](#share): Shares the current chart externally
+- Modify: Edit chart configuration;
+- [Combine Charts](#conbine);
+- Copy: Copies all configurations of the chart; can be used in current or other dashboards, notes;
+- Clone: Directly clones the chart to the current dashboard;
+- Delete: Deletes the current chart;
+- [Share](#share): Share the current chart externally
 
 ### Time Interval {#interval}
 
 #### Lock Time
 
-If the locked time in chart settings is set to "Last 15 minutes";
+If "Last 15 minutes" is selected in the lock time setting;
 
 ![](../img/chart008.png)
 
@@ -289,7 +289,7 @@ When previewing the chart, the selected locked time will appear in the top right
 
 #### Auto Align
 
-If the time interval in chart settings is set to **Auto Align**;
+If "Auto Align" is selected in the time interval setting;
 
 ![](../img/chart010.png)
 
@@ -299,11 +299,11 @@ When previewing the chart, the time interval option will appear in the top right
 
 ### Combine Charts {#conbine}
 
-The combine charts feature allows users to add individual charts or integrate multiple charts. Additionally, it can apply view variables from the current dashboard to this combined chart, enabling flexible data filtering on top of combined comparisons.
+The combine charts feature allows users to add single charts or integrate multiple charts. It also enables the selection of view variables from the current dashboard to filter data flexibly on combined charts.
 
 
-1. Click edit to enter the combined chart configuration page;
-2. Define the title for the combined chart;
+1. Click modify to enter the chart combination configuration page;
+2. Define the title of the combined chart;
 3. Configure variables for the combined chart;
 4. Select charts;
 5. Click confirm.
@@ -321,11 +321,11 @@ The combine charts feature allows users to add individual charts or integrate mu
 #### Start Sharing
 
 1. Click settings > share;
-2. Select chart query time;
-3. Get embed code;
+2. Choose the chart query time;
+3. Get the embed code;
 4. The chart sharing is now successful.
 
-Guance generates an embed code based on the chart query time. For example, if the chart query time is set to "Last 15 minutes," the embedded chart will display results for the last 15 minutes when embedded on other platforms.
+<<< custom_key.brand_name >>> generates the embed code based on the chart query time. For example, if the chart query time is the last 15 minutes, the embedded platform will display results for the last 15 minutes.
 
 <img src="../img/table_share.png" width="60%" >
 
@@ -333,49 +333,52 @@ Guance generates an embed code based on the chart query time. For example, if th
 
 **Note:**
 
-- If the chart has a locked time setting, the chart query time will display as the locked time and cannot be changed;
-- The width and height of the shared chart default to the dimensions shown in the view, but can be modified in the embed code;
-- If the chart is associated with view variables, it shares the chart based on the currently selected view variables, e.g., if the host is currently selected, the chart shares data for that host only.
+- If the chart has a locked time, the chart query time will display as the locked time and cannot be changed;
+- The width and height of the shared chart default to the dimensions in the view, but the embed code can be modified;
+- If the chart is associated with view variables, it shares the chart based on the currently selected view variables, such as the currently selected host if associated with `host`.
 
 
-#### View Shared
+#### View Shared Charts
 
-All shared charts in scene views are stored under **Management > Share Management > [Shared Charts](../../management/share-management.md)**.
+<<< custom_key.brand_name >>> stores all shared charts in **Management > Share Management > [Shared Charts](../../management/share-management.md)**.
 
 
-### Download Chart {#download}
 
-Click :material-tray-arrow-down: to download the chart as a PNG image.
+### Export Charts {#download}
+
+Click :material-tray-arrow-down: to export the chart as a PNG image.
 
 <img src="../img/upload.png" width="70%" >
 
-If the chart is a table chart, it can be downloaded as a PNG image or exported as a CSV file.
+Among them, time series charts, pie charts, top lists, bar charts, treemaps can also be exported as CSV files.
 
 <img src="../img/upload-1.png" width="70%" >
 
-### Analyze Chart {#analysis}
 
-In the dashboard, click the **Analyze** button on the chart or double-click the blank area of the chart to enlarge it for viewing and analysis. You can hover over the chart to see data information or select [Time Series](timeseries-chart.md) to view metric trends within a specific time range.
+### Analyze Charts {#analysis}
+
+In the dashboard, clicking the **Analyze** button on the chart or double-clicking an empty area of the chart can zoom in for detailed viewing and analysis. You can hover over the chart to view data information or select [Timeline](timeseries-chart.md#timeline) to view metric trends within a specific time range.
 
 ![](../img/0615-1.gif)
 
-- When hovering over a particular time series in one chart, if other charts have grouping conditions (`by` clause) with matching tags, the corresponding high-lighted block will appear in those charts;
-- By clicking on a query, you can view the [DQL Query Statement](chart-query.md).
+- When hovering over a particular time series in the chart, if other charts have grouping conditions with the same tags, they will highlight corresponding sections;
+- Clicking a chart displays the [DQL Query Statement](chart-query.md).
 
-#### [Similar Trend Metrics](./timeseries-chart.md#similar) 
+#### [Similar Trend Metrics](./timeseries-chart.md#similar)
 
 #### Related Analysis
 
-- Clicking on a query allows you to view related analyses, such as logs, containers, processes, traces, etc.;
-- If the chart query includes host (`host`) information and the grouping condition selects `by host`, you can also view related host monitoring views.
+- Clicking a query allows you to view related analyses, such as logs, containers, processes, traces, etc.
+
+- When the chart query includes host (`host`) information and the grouping condition selects `by host`, you can also view related host monitoring views.
 
 <img src="../img/related-analysis.png" width="70%" >
 
 #### Drill-down Analysis {#deep}
 
-To dig deeper into data to identify root causes and achieve more precise analysis and troubleshooting, you can perform **drill-down analysis** on all **metric data**.
+To uncover root causes of events and achieve more precise data analysis and troubleshooting, you can perform drill-down analysis on all metric data.
 
-Click to enter **drill-down analysis**, select a time region, then click **Start Search** to display drill-down analysis results. You can view the first-level labels and corresponding time series analysis results within that time region in the query results.
+Click into **Drill-down Analysis**, select the target time range, and click **Start Search** to present drill-down analysis results. In the query results, you can view the first-level labels and corresponding time series analysis for that time range.
 
 **Note**: Drill-down analysis only supports simple queries.
 
@@ -383,7 +386,7 @@ Click to enter **drill-down analysis**, select a time region, then click **Start
 
 #### Root Cause Analysis {#root}
 
-To pinpoint root cause failures in business logic, you can use the **Root Cause Analysis** feature. Currently, root cause analysis supports `disk usage` and `memory usage`.
+To accurately identify the root cause of business logic issues, you can use the root cause analysis feature to quickly pinpoint the source of faults. Currently, root cause analysis supports analyzing `disk usage` and `memory usage`.
 
 **Note**: Root cause analysis only supports simple queries.
 

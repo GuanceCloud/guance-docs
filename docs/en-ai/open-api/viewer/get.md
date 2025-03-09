@@ -1,19 +1,20 @@
-# Get an Explorer
+# Get a Viewer
 
 ---
 
 <br />**GET /api/v1/viewer/\{viewer_uuid\}/get**
 
 ## Overview
-Retrieve details of an Explorer
+Retrieve details of a viewer
+
 
 
 
 ## Route Parameters
 
-| Parameter Name    | Type   | Required | Description              |
-|:--------------|:-----|:-------|:----------------|
-| viewer_uuid | string | Y | Explorer UUID<br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:-------------------------|
+| viewer_uuid           | string   | Y          | Viewer UUID<br>          |
 
 
 ## Additional Parameter Notes

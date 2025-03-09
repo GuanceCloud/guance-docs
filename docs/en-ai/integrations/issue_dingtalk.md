@@ -1,6 +1,6 @@
 ---
 title: 'Incident - DingTalk'
-summary: 'Guance Incident is deeply integrated with DingTalk, making it convenient to send incident information to DingTalk and reply through DingTalk, which will be transmitted back to Guance'
+summary: 'Guance Incident is deeply integrated with DingTalk, making it easy to send incident information to DingTalk and reply through DingTalk, which will be transmitted back to Guance'
 __int_icon: 'icon/dingtalk'
 dashboard:
   - desc: 'None'
@@ -14,7 +14,7 @@ monitor:
 # Incident - DingTalk
 <!-- markdownlint-enable -->
 
-Guance Incident is deeply integrated with DingTalk, making it convenient to send incident information to DingTalk and reply through DingTalk, which will be transmitted back to Guance.
+Guance Incident is deeply integrated with DingTalk, making it easy to send incident information to DingTalk and reply through DingTalk, which will be transmitted back to Guance.
 
 ---
 
@@ -26,14 +26,14 @@ You need management permissions for both the "Guance Workspace" and the "DingTal
 
 ### Install Func
 
-We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with script installation.
+It is recommended to enable the hosted version of Func under Guance Integrations - Extensions: all prerequisites are automatically installed. Please continue with the script installation.
 
 If you deploy Func on your own, refer to [Self-hosted Func Deployment](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-> We recommend deploying the GSE version.
+> It is recommended to deploy the GSE version.
 
 ### Install Script
 
 In the script market, install the corresponding collection script: "Guance Integration (Guance Incident - DingTalk)" (ID: `guance_issue_dingtalk`) to enable it.
 
-For easier maintenance of documentation, please perform operations at [DingTalk Integration Configuration](https://func.guance.com/doc/script-market-guance-issue-dingtalk-integration/)
+For easier maintenance of this documentation, please perform the operation at [DingTalk Integration Configuration](https://func.guance.com/doc/script-market-guance-issue-dingtalk-integration/)

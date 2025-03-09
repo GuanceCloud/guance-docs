@@ -8,16 +8,13 @@
 
 
 
-
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                              |
-|:--------------|:-------|:--------|:-----------------------------------------|
-| taskUUIDs     | array  | Y       | List of UUIDs for the dial testing tasks <br>Allow Null: False <br> |
+| Parameter Name | Type   | Required | Description                             |
+|:--------------|:-------|:---------|:----------------------------------------|
+| taskUUIDs     | array  | Y        | List of UUIDs for dial testing tasks<br>Allow null: False <br> |
 
 ## Additional Parameter Notes
-
-
 
 
 
@@ -29,7 +26,6 @@ curl 'https://openapi.guance.com/api/v1/dialing_task/delete' \
 --data-raw '{"taskUUIDs":["dial_xxxx32"]}' \
 --compressed
 ```
-
 
 
 

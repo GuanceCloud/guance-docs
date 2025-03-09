@@ -3,10 +3,10 @@
 
 ## Usage Notes
 
-Commercial Plan users of Guance workspaces need to successfully register **two accounts: the Guance Console and the Guance Billing Center** to proceed with subsequent usage billing and fee settlement processes.
+<<< custom_key.brand_name >>> workspace users of the Commercial Plan need to successfully register for **<<< custom_key.brand_name >>> Console and <<< custom_key.brand_name >>> Billing Center accounts** in order to proceed with subsequent usage billing and fee settlement processes.
 
-- The [Guance Console](https://console.guance.com/) account can track the data volume intake scale and detailed billing information for the current workspace, which is synchronized to the specified billing center account.
-- The [Guance Billing Center](https://boss.guance.com/) account can be bound via `Workspace ID` to achieve **unified fee management at the workspace level** and offers multiple payment options for you to choose from.
+- [<<< custom_key.brand_name >>> Console](https://console.guance.com/) account can track the data intake scale and bill details of the current workspace, synchronizing this information to a specified Billing Center account.
+- [<<< custom_key.brand_name >>> Billing Center](https://boss.guance.com/) account can be bound via `Workspace ID` to achieve **unified fee management at the workspace level**, providing you with multiple payment options.
 
 
 <!--
@@ -15,12 +15,11 @@ Commercial Plan users of Guance workspaces need to successfully register **two a
 
 ## Activation Methods
 
-
 <font size=2>
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Register Directly from the Guance Official Website**</font>](./commercial-register.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Register Directly from <<< custom_key.brand_name >>> Website**</font>](./commercial-register.md)
 
 </div>
 

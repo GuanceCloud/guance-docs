@@ -1,4 +1,4 @@
-# 0065-usbstorage-disable - Disable USB Storage
+# 0065-usbstorage-disable-Disable USB Storage
 ---
 
 ## Rule ID
@@ -27,7 +27,7 @@
 ## Description
 
 
-- USB storage devices provide a method for transferring and storing files. However, hackers have been using USB devices to install malware on servers, which has become a simple and common method for network penetration and establishing persistent threats in network environments.
+- USB storage devices provide a method for transferring and storing files. However, hackers have used USB to install malware on servers, which has become a simple and common method for network penetration and establishing persistent threats in network environments.
 
 
 
@@ -52,7 +52,7 @@
 
 
 ## Audit Method
-- Run the following commands and verify that the output matches the expected results:
+- Run the following commands and verify that the output matches:
 
 ``` bash
 # modprobe -n -v usb-storage
@@ -64,8 +64,8 @@ install /bin/true
 
 
 ## Remediation
-- Edit or create a file with a .conf extension in the /etc/modprobe.d/ directory.
-  Example: Add the following line in vim /etc/modprobe.d/usb_storage.conf:
+- Edit or create a file ending with .conf in the /etc/modprobe.d/ directory.
+  Example: Add the following line using vim /etc/modprobe.d/usb_storage.conf:
 
 ``` bash
 install usb-storage /bin/true
@@ -81,7 +81,7 @@ Run the following command to unload the usb-storage module:
 ## Impact
 
 
-- After unloading, the system will not be able to implant malware through the USB interface, enhancing system security.
+- After unloading, no entities will be able to implant malware through the USB interface, enhancing system security.
 
 
 
@@ -89,7 +89,7 @@ Run the following command to unload the usb-storage module:
 ## Default Value
 
 
-- By default, the USB module is not installed.
+- By default, the usb-storage module is not installed.
 
 
 

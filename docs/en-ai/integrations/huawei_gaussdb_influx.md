@@ -2,7 +2,7 @@
 title: 'Huawei Cloud GaussDB-Influx'
 tags: 
   - Huawei Cloud
-summary: 'The metrics displayed for Huawei Cloud GaussDB-Influx include write throughput, query latency, data retention policies, and scalability. These metrics reflect the performance and reliability of GaussDB-Influx in handling large-scale time series data storage and queries.'
+summary: 'The displayed metrics for Huawei Cloud GaussDB-Influx include write throughput, query latency, data retention policy, and scalability. These metrics reflect the performance and reliability of GaussDB-Influx when handling large-scale time series data storage and queries.'
 __int_icon: 'icon/huawei_gaussdb_influx'
 dashboard:
 
@@ -10,26 +10,25 @@ dashboard:
     path: 'dashboard/en/huawei_gaussdb_influx'
 
 monitor:
-  - desc: 'Monitors for Huawei Cloud GaussDB-Influx'
+  - desc: 'Monitor for Huawei Cloud GaussDB-Influx'
     path: 'monitor/en/huawei_gaussdb_influx'
 
 ---
-
 
 <!-- markdownlint-disable MD025 -->
 # Huawei Cloud GaussDB-Influx
 <!-- markdownlint-enable -->
 
-The metrics displayed for Huawei Cloud GaussDB-Influx include write throughput, query latency, data retention policies, and scalability. These metrics reflect the performance and reliability of GaussDB-Influx in handling large-scale time series data storage and queries.
+The displayed metrics for Huawei Cloud GaussDB-Influx include write throughput, query latency, data retention policy, and scalability. These metrics reflect the performance and reliability of GaussDB-Influx when handling large-scale time series data storage and queries.
 
 
 ## Configuration {#config}
 
-### Installing Func
+### Install Func
 
-We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please proceed with script installation.
+We recommend enabling Guance integration - Extensions - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Installation Script
@@ -38,45 +37,45 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 To synchronize monitoring data from Huawei Cloud DIS, we install the corresponding collection script: 「Guance Integration (Huawei Cloud-GaussDB-Influx Collection)」(ID: `guance_huaweicloud_gaussdb_influx`)
 
-After clicking 【Install】, enter the required parameters: Huawei Cloud AK, Huawei Cloud account name.
+Click 【Install】and input the corresponding parameters: Huawei Cloud AK and Huawei Cloud account name.
 
 Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-After the script is installed, find the script 「Guance Integration (Huawei Cloud-GaussDB-Influx Collection)」 under "Development" in Func, expand and modify this script, locate `collector_configs` and `monitor_configs`, and edit the contents of `region_projects`, changing the region and Project ID to the actual values, then click Save and Publish.
+After the script is installed, find the script 「Guance Integration (Huawei Cloud-GaussDB-Influx Collection)」in the "Development" section of Func, expand and modify this script. Find `collector_configs` and `monitor_configs`, and edit the content under `region_projects`, changing the region and Project ID to the actual ones, then click Save and Publish.
 
-Additionally, in 「Management / Automatic Trigger Configuration」, you can see the corresponding automatic trigger configuration. Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
+Additionally, in the 「Management / Automatic Trigger Configuration」section, you can see the corresponding automatic trigger configuration. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-By default, we collect some configurations; for more details, see the metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
+By default, we collect some configurations. For more details, see [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
 
 
 ### Verification
 
-1. In 「Management / Automatic Trigger Configuration」, confirm that the corresponding task has an automatic trigger configuration, and check the task records and logs for any anomalies.
-2. On the Guance platform, in 「Infrastructure / Custom」, check if asset information exists.
-3. On the Guance platform, in 「Metrics」, check if there is corresponding monitoring data.
+1. In 「Management / Automatic Trigger Configuration」, confirm whether the corresponding task has an automatic trigger configuration. You can also check the task records and logs for any anomalies.
+2. In the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
+3. In the Guance platform, under 「Metrics」, check if the corresponding monitoring data exists.
 
 ## Metrics {#metric}
-After configuring Huawei Cloud monitoring, the default metric set is as follows. You can collect more metrics through configuration [Huawei Cloud Monitoring Metric Details](https://support.huaweicloud.com/influxug-nosql/nosql_09_0036.html){:target="_blank"}
+After configuring Huawei Cloud Monitoring, the default metric set is as follows. More metrics can be collected through configuration [Huawei Cloud Monitoring Metric Details](https://support.huaweicloud.com/influxug-nosql/nosql_09_0036.html){:target="_blank"}
 
 | Metric ID                                | Metric Name             | Metric Description                                                     | Value Range      | Measurement Object | Monitoring Period (Original Metric)|
 | ------------------------------------- | -------------------- | ------------------------------------------------------------ | ------------- | ---------------- | ------------------------------------------------- |
-| `nosql001_cpu_usage`       | CPU Utilization      | This metric represents the CPU usage rate collected at the system level. Unit: %                  | 0~100 %  | GaussDB(for Influx) instance node | 1 minute                                             |
-| `nosql002_mem_usage`       | Memory Utilization     | This metric represents the memory usage rate collected at the system level. Unit: %                 | 0~100 %  | GaussDB(for Influx) instance node | 1 minute                |
-| `nosql003_bytes_out`       | Network Output Throughput | Statistics of the average traffic output per second from all network adapters of the measurement object. Unit: kb/s | ≥ 0 kb/s | GaussDB(for Influx) instance node | 1 minute                |
-| `nosql004_bytes_in`        | Network Input Throughput | Statistics of the average traffic input per second from all network adapters of the measurement object. Unit: kb/s | ≥ 0 kb/s | GaussDB(for Influx) instance node | 1 minute                |
-| `nosql005_disk_usage`      | Disk Utilization     | This metric is used to calculate the disk utilization of the measurement object. Unit: %                 | 0~100 %  | GaussDB(for Influx) instance node | 1 minute                |
-| `nosql006_disk_total_size` | Total Disk Size     | This metric is used to calculate the total disk size of the measurement object. Unit: GB                | ≥ 0 GB   | GaussDB(for Influx) instance node | 1 minute                |
-| `nosql007_disk_used_size`  | Disk Used Size     | This metric is used to calculate the total disk used size of the measurement object. Unit: GB          | ≥ 0 GB   | GaussDB(for Influx) instance node | 1 minute                |
+| `nosql001_cpu_usage`       | CPU Utilization      | This metric collects CPU usage at the system level. Unit: %                  | 0~100 %  | GaussDB(for Influx) instance node | 1 minute                                             |
+| `nosql002_mem_usage`       | Memory Utilization     | This metric collects memory usage at the system level. Unit: %                 | 0~100 %  | GaussDB(for Influx) instance node | 1 minute                |
+| `nosql003_bytes_out`       | Network Output Throughput | Statistics on average traffic output per second from all network adapters of the measurement object. Unit: kb/s | ≥ 0 kb/s | GaussDB(for Influx) instance node | 1 minute                |
+| `nosql004_bytes_in`        | Network Input Throughput | Statistics on average traffic input per second from all network adapters of the measurement object. Unit: kb/s | ≥ 0 kb/s | GaussDB(for Influx) instance node | 1 minute                |
+| `nosql005_disk_usage`      | Disk Utilization     | This metric collects disk utilization statistics. Unit: %                 | 0~100 %  | GaussDB(for Influx) instance node | 1 minute                |
+| `nosql006_disk_total_size` | Total Disk Size     | This metric collects total disk size statistics. Unit: GB                | ≥ 0 GB   | GaussDB(for Influx) instance node | 1 minute                |
+| `nosql007_disk_used_size`  | Disk Usage     | This metric collects total used disk size statistics. Unit: GB          | ≥ 0 GB   | GaussDB(for Influx) instance node | 1 minute                |
 | `influxdb001_series_num` | Time Series Count | Describes the total number of time series. Unit: Counts | ≥ 0 Counts | GaussDB(for Influx) instance node | 1 minute |
 | `influxdb002_query_req_ps` | Queries Per Second | Describes the number of queries per second. Unit: Counts/s | ≥ 0 Counts/s | GaussDB(for Influx) instance node | 1 minute |
 | `influxdb003_write_req_ps` | Writes Per Second | Describes the number of write requests per second. Unit: Counts/s | ≥ 0 Counts/s | GaussDB(for Influx) instance node | 1 minute |
-| `influxdb004_write_points_ps` | Write Points Per Second | Describes the number of data points written per second. Unit: Counts/s | ≥ 0 Counts/s | GaussDB(for Influx) instance node | 1 minute |
+| `influxdb004_write_points_ps` | Points Written Per Second | Describes the number of data points written per second. Unit: Counts/s | ≥ 0 Counts/s | GaussDB(for Influx) instance node | 1 minute |
 | `influxdb005_write_concurrency` | Write Concurrency | Describes the number of concurrent write requests. Unit: Counts | ≥ 0 Counts | GaussDB(for Influx) instance node | 1 minute |
 | `influxdb006_query_concurrency` | Query Concurrency | Describes the number of concurrent query requests. Unit: Counts | ≥ 0 Counts | GaussDB(for Influx) instance node | 1 minute |
 
 ## Objects {#object}
 
-The structure of the collected Huawei Cloud GaussDB-Influx object data can be viewed in 「Infrastructure-Custom」.
+The collected Huawei Cloud GaussDB-Influx object data structure can be viewed in 「Infrastructure - Custom」
 
 ``` json
 {
@@ -100,21 +99,21 @@ The structure of the collected Huawei Cloud GaussDB-Influx object data can be vi
     "actions"         : "[]",
     "create_time"     : "2023-08-01T14:17:40+0800",
     "update_time"     : "2023-08-01T14:17:42+0800",
-    "backup_strategy" : "{Instance JSON Data}",
-    "datastore"       : "{Instance JSON Data}",
-    "groups"          : "[{Instance JSON Data}]",
+    "backup_strategy" : "{JSON data for instance}",
+    "datastore"       : "{JSON data for instance}",
+    "groups"          : "[{JSON data for instance}]",
     "time_zone"       : "",
-    "message"         : "{Instance JSON Data}"
+    "message"         : "{JSON data for instance}"
   }
 }
 
 ```
 
-> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
+> *Note: Fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tip 1: The value of `tags.name` is the instance ID, which serves as a unique identifier.
+> Note 1: The value of `tags.name` is the instance ID, which serves as a unique identifier.
 >
-> Tip 2: The following fields are serialized JSON strings:
+> Note 2: The following fields are JSON serialized strings:
 >
 > - `fields.message`
 > - `fields.backup_strategy`

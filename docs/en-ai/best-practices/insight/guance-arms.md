@@ -1,11 +1,11 @@
-# Guance vs Alibaba Cloud ARMS 3.0
+# <<< custom_key.brand_name >>> vs Alibaba Cloud ARMS 3.0
 
 ---
 
 ## Product Comparison
 Background introduction:
 
-40 Alibaba Cloud servers, log volume of 70-80 GB/day (including trace data), approximately 60 million lines/day, PV 30,000/day
+40 Alibaba Cloud ECS instances, log volume of 70-80 GB/day (including trace data), approximately 60 million lines/day, PV 30,000/day.
 
 ### Deployment Architecture Comparison
 
@@ -13,28 +13,28 @@ Background introduction:
 
 ### Product Cost Comparison
 
-(Representative of this test only)
+(This represents this specific test only)
 
 ![image.png](../images/guance-arms-2.png)
 
 ### Resource Consumption Comparison
 
-(Representative of this test only)
+(This represents this specific test only)
 
 ![image.png](../images/guance-arms-3.png)
 
 ## ARMS 3.0
 
-Application Real-Time Monitoring Service (ARMS) is an Application Performance Management (APM) product that includes three sub-products: application monitoring, Prometheus monitoring, and frontend monitoring. It covers performance management for distributed applications, container environments, browsers, mini-programs, and apps, enabling comprehensive stack performance monitoring and end-to-end full trace diagnosis to make application operations easy and efficient.
+Application Real-Time Monitoring Service (ARMS) is an APM product that includes three major sub-products: application monitoring, Prometheus monitoring, and frontend monitoring. It covers performance management for distributed applications, container environments, browsers, mini-programs, and mobile apps, providing comprehensive stack performance monitoring and end-to-end full trace diagnostics to make application operations efficient and easy.
 ![](../images/guance-arms-4.png)
 
 ### Prometheus
 
-Alibaba Cloud Prometheus monitoring fully integrates with the open-source Prometheus ecosystem, supporting a wide range of component monitoring, providing various ready-to-use pre-configured monitoring dashboards, and offering a fully managed Prometheus service.
+Alibaba Cloud Prometheus Monitoring fully integrates with the open-source Prometheus ecosystem, supporting rich component monitoring and offering various pre-configured dashboards. It also provides a fully managed Prometheus service.
 
-#### Integration Methods
+#### Access Methods
 
-1. ACK (Alibaba Cloud Container Service) Kubernetes cluster 
+1. ACK (Alibaba Cloud Container Service for Kubernetes) Kubernetes cluster
 
 2. Self-built Kubernetes cluster
 
@@ -42,15 +42,15 @@ Alibaba Cloud Prometheus monitoring fully integrates with the open-source Promet
 
 #### Implementation Configuration
 
-Prometheus data integration is based on Kubernetes clusters, directly creating [[Kubernetes Managed Cluster](https://help.aliyun.com/document_detail/85903.htm?spm=a2c4g.11186623.2.6.472e7cb6yXVXyj#task-mmv-33q-n2b)]. After creation, you can see built-in view dashboards related to Kubernetes on the page.
+Prometheus data ingestion is based on Kubernetes clusters. Directly create [[Kubernetes Managed Cluster](https://help.aliyun.com/document_detail/85903.htm?spm=a2c4g.11186623.2.6.472e7cb6yXVXyj#task-mmv-33q-n2b)]. After creation, you can see built-in dashboard views related to Kubernetes on the page.
 
 ![image.png](../images/guance-arms-5.png)
 
 #### Product Pricing
 
-Prometheus monitoring charges based on the number of metrics reported. Metrics are divided into two types: basic metrics and custom metrics. Among them, [[basic metrics](https://help.aliyun.com/document_detail/148104.html#concept-2372936)] are free, while custom metrics are charged.
+Prometheus monitoring charges based on the number of metric reports. Metrics are divided into two types: basic metrics and custom metrics. Among them, [[basic metrics](https://help.aliyun.com/document_detail/148104.html#concept-2372936)] are free, while custom metrics incur charges.
 
-| Daily Reported Metrics Range (millions) | Unit Price (RMB/million) | Daily Charge Range (RMB) |
+| Daily Reported Metric Range (millions) | Unit Price (CNY/million) | Daily Charge Range (CNY) |
 | --- | --- | --- |
 | 0~50 | 0.8 | 0~40 |
 | 50~150 | 0.65 | 40~105 |
@@ -61,59 +61,59 @@ Prometheus monitoring charges based on the number of metrics reported. Metrics a
 
 ##### Notes
 
-1. Each reported metric cannot exceed 2 KB.
+1. Each reported metric must not exceed 2 KB.
 
-2. Each metric is stored for up to 15 days; data older than 15 days will be cleared. You can contact support to adjust this.
+2. Each metric is stored for up to 15 days; data older than 15 days will be cleared but can be adjusted upon request.
 
-### Cloud Monitor
+### CloudMonitor
 
 CloudMonitor is a service for monitoring Alibaba Cloud resources and internet applications.
 
-#### Integration Methods
+#### Access Methods
 
-Prometheus integrates with Alibaba Cloud CloudMonitor to monitor cloud services in the specified region under the current cloud account within Prometheus.
+Prometheus integrates with Alibaba Cloud CloudMonitor, allowing cloud services in specified regions to be monitored within Prometheus via CloudMonitor.
 
-Currently supports integrating ECS, RDS MongoDB, Redis, OSS, RDS, NAT, SLB, RocketMQ, Kafka, EIP, ES, and DRDS.
+Currently supported services include ECS, RDS MongoDB, Redis, OSS, RDS, NAT, SLB, RocketMQ, Kafka, EIP, ES, and DRDS.
 
 #### Implementation Configuration
 
-Add cloud service integration through the Prometheus configuration interface.
+Add cloud service access in the Prometheus configuration interface.
 
 ![image.png](../images/guance-arms-6.png)
 
 #### Product Pricing
 
-After integrating Prometheus with CloudMonitor, there are no additional charges for CloudMonitor. The collected monitoring data will be charged **according to Prometheus rules**.
+After integrating Prometheus with CloudMonitor, CloudMonitor does not incur additional charges. The collected monitoring data will be charged **according to Prometheus rules**.
 
 ### Frontend Monitoring
 
-ARMS frontend monitoring focuses on Web scenarios, Weex scenarios, and mini-program scenarios, monitoring web and mini-program page health from three aspects: page load speed (speed measurement), page stability (JS Error), and external service call success rate (API).
+ARMS frontend monitoring focuses on Web scenarios, Weex scenarios, and mini-program scenarios, monitoring the health of Web and mini-program pages from three aspects: page load speed (speed measurement), page stability (JS Error), and external service call success rate (API).
 
-#### Integration Methods
+#### Access Methods
 
-Web scenario
+Web Scenarios
 
 - CDN installation of probe
 
 - NPM installation of probe
 
-Weex scenario
+Weex Scenarios
 
 - Weex integration
 
-Mini-program scenario
+Mini-Program Scenarios
 
-- DingTalk mini-program
+- DingTalk Mini Program
 
-- Alipay mini-program
+- Alipay Mini Program
 
-- WeChat mini-program
+- WeChat Mini Program
 
 - Other categories
 
 #### Implementation Configuration
 
-Create an application site, choose Web type integration, copy the BI probe (code) and place it at the first line of the HTML `<body>` content.
+Create an application site, choose Web type integration, copy the BI probe (code) and place it in the first line of the HTML `<body>` content.
 
 ![image.png](../images/guance-arms-7.png)
 
@@ -123,42 +123,42 @@ Create an application site, choose Web type integration, copy the BI probe (code
 
 Pay-as-you-go
 
-| Billing Quantity | Billing Unit Price |
+| Billing Volume | Billing Unit Price |
 | --- | --- |
-| All sites frontend data reporting times | 0.028 RMB / 1000 page reporting times |
+| All sites frontend data reporting times | 0.028 CNY / 1000 page reporting times |
 
 ##### Professional Edition
 
 Pay-as-you-go
 
-| Billing Quantity | Billing Unit Price |
+| Billing Volume | Billing Unit Price |
 | --- | --- |
-| All sites frontend data reporting times | 0.28 RMB / 1000 page reporting times |
+| All sites frontend data reporting times | 0.28 CNY / 1000 page reporting times |
 
 Resource Packs
 
 | Name | Specification | Price | Discounted Billing Price | Validity Period |
 | --- | --- | --- | --- | --- |
-| Basic Resource Pack | 2 million page reporting times | 420 RMB | 0.21 RMB / 1000 frontend data reporting times | 6 months |
-| Intermediate Resource Pack | 16 million page reporting times | 2,520 RMB | 0.158 RMB / 1000 frontend data reporting times | 1 year |
-| Advanced Resource Pack | 128 million page reporting times | 15,120 RMB | 0.118 RMB / 1000 frontend data reporting times | 1 year |
-| Gold Resource Pack | 600 million page reporting times | 60,000 RMB | 0.1 RMB / 1000 frontend data reporting times | 1 year |
+| Basic Resource Pack | 2 million page reporting times | 420 CNY | 0.21 CNY / 1000 frontend data reporting times | 6 months |
+| Intermediate Resource Pack | 16 million page reporting times | 2,520 CNY | 0.158 CNY / 1000 frontend data reporting times | 1 year |
+| Advanced Resource Pack | 128 million page reporting times | 15,120 CNY | 0.118 CNY / 1000 frontend data reporting times | 1 year |
+| Gold Resource Pack | 600 million page reporting times | 60,000 CNY | 0.1 CNY / 1000 frontend data reporting times | 1 year |
 
 ##### Notes
 
-1. Frontend monitoring: billing mainly involves page PV calls and API call reporting times, custom reporting times. Billing is settled daily, and any usage less than 1000 reporting times is billed as 1000. Frontend monitoring data is cached by default for 30 days.
+1. Frontend monitoring: billing primarily measures page PV calls and API call reporting times, self-defined reporting times. Charges are settled daily, with any less than 1000 reporting times rounded up to 1000. Frontend monitoring data is cached by default for 30 days.
 
-2. Frontend monitoring calculation formula reference: Daily reporting traffic = daily PV + (daily API call times - daily 500,000) * 0.1 + custom reporting.
+2. Calculation formula reference: Daily reported traffic = daily PV + (daily API calls - 500,000 per day) * 0.1 + self-defined reporting.
 
-3. One PV generates data reporting times = 1 + API call times + custom data reporting times. In most cases, page data reporting times are roughly equal to page visit times.
+3. Data reporting times generated by one PV = 1 + API call times + self-defined data reporting times. In most cases, page data reporting times are roughly equal to page visits.
 
 ### Application Monitoring
 
-ARMS application monitoring is an Application Performance Management (APM) product. Without modifying code, you just need to install a probe for your application, and ARMS can provide comprehensive monitoring to help you quickly locate faulty interfaces and slow interfaces, reproduce call parameters, discover system bottlenecks, thus significantly improving online issue diagnosis efficiency.
+ARMS Application Monitoring is an APM product. Without modifying code, just install a probe for your application, ARMS can provide comprehensive monitoring, helping you quickly locate faulty interfaces and slow interfaces, reproduce call parameters, discover system bottlenecks, and significantly improve online issue diagnosis efficiency.
 
-#### Data Integration
+#### Data Access
 
-Integration based on deployment environment
+By deployment environment
 
 - EDAS
 
@@ -170,7 +170,7 @@ Integration based on deployment environment
 
 - Other environments (such as self-built IDC)
 
-Integration based on development language
+By development language
 
 - JAVA
 
@@ -178,7 +178,7 @@ Integration based on development language
 
 #### Implementation Configuration
 
-Integrate application, choose Java language, automatic script installation method
+Integrate the application, choose Java language, and use script auto-installation method.
 
 ![image.png](../images/guance-arms-8.png)
 
@@ -188,8 +188,8 @@ Integrate application, choose Java language, automatic script installation metho
 
 | Name | Billing Content | Notes |
 | --- | --- | --- |
-| Application Monitoring Basic Edition - Statistical Metrics Storage Fee | Statistical metrics stored for 3 days, free.<br />Statistical metrics stored for 30 days, 1.2 RMB per probe per day.<br />Statistical metrics stored for 90 days, 2.4 RMB per probe per day.<br />Statistical metrics stored for 180 days, 3.6 RMB per probe per day. | (1) Default storage period for statistical metrics is 3 days, free to use. To extend the storage period, adjust in the Global Configuration - Storage Period Configuration page under Application Monitoring.<br /> (2) One probe can monitor one application instance (e.g., one Tomcat instance, one Java process).<br /> (3) Supports upgrading to Expert Edition, which charges according to the Expert Edition after activation. |
-| Application Monitoring Basic Edition - Call Chain Storage Fee | 0.2 RMB / million request chains * day<br />Default sampling strategy stores for 1 day, free. | (1) Free sampling and storage for the first request chain of each interface every minute for 1 day. To store more request chains, adjust in the Custom Configuration - Sampling Rate page under Application Settings, pay-as-you-go.<br /> (2) All calls under the same TraceId are considered one request chain, with a maximum of ten spans per chain. Excess parts are charged at one-tenth of the request chain fee.<br /> (3) Supports upgrading to Expert Edition, which charges according to the Expert Edition after activation. |
+| Application Monitoring Basic Edition - Statistical Metric Storage Costs | Statistical metrics stored for 3 days, free.<br />Statistical metrics stored for 30 days, 1.2 CNY per probe per day.<br />Statistical metrics stored for 90 days, 2.4 CNY per probe per day.<br />Statistical metrics stored for 180 days, 3.6 CNY per probe per day. | (1) Default storage period for statistical metrics is 3 days, free to use. To extend the storage period, adjust settings in the global configuration - storage period configuration page under Application Monitoring.<br /> (2) One probe can monitor one application instance (e.g., one Tomcat instance, one Java process).<br /> (3) Supports upgrading to the Expert Edition, which charges according to the Expert Edition after activation. |
+| Application Monitoring Basic Edition - Call Chain Storage Costs | 0.2 CNY / million request chains * day<br />Default sampling strategy stores for 1 day, free. | (1) Free sampling and storing the first request chain every minute for each interface for 1 day. To store more request chains, adjust settings in the custom configuration - sampling rate page under Application Settings, billed on a pay-as-you-go basis.<br /> (2) All calls under the same TraceId are considered one request chain, with a maximum of ten Spans per chain. Excess parts are billed at one-tenth the request chain.<br /> (3) Supports upgrading to the Expert Edition, which charges according to the Expert Edition after activation. |
 
 ##### Professional Edition
 
@@ -197,49 +197,49 @@ Pay-as-you-go:
 
 | Billing Item | Billing Unit Price |
 | --- | --- |
-| Pay-as-you-go | 6.72 RMB per probe per day |
+| Pay-as-you-go | 6.72 CNY per probe per day |
 
-Resource pack billing:
+Resource pack pricing:
 
 | Name | Specification | Price | Discounted Billing Price | Validity Period |
 | --- | --- | --- | --- | --- |
-| Basic Resource Pack | 150 probes*days (resources available for 150 probes for 1 day, or 5 probes for 30 days) | 700 RMB | 4.68 RMB / probe*day | 6 months |
-| Intermediate Resource Pack | 1200 probes*days (resources available for 1200 probes for 1 day, or 40 probes for 30 days) | 4,200 RMB | 4.38 RMB / probe*day | 1 year |
-| Advanced Resource Pack | 9600 probes*days (resources available for 9600 probes for 1 day, or 320 probes for 30 days) | 25,200 RMB | 2.616 RMB / probe*day | 1 year |
-| Gold Resource Pack | 36500 probes*days (resources available for 100 probes for 365 days) | 66,838 RMB | 1.8312 RMB / probe*day | 1 year |
-| Platinum Resource Pack | 109500 probes*days (resources available for 300 probes for 365 days) | 174,000 RMB | 1.5696 RMB / probe*day | 1 year |
-| Top Resource Pack | 182500 probes*days (resources available for 500 probes for 365 days) | 238,710 RMB | 1.308 RMB / probe*day | 1 year |
+| Basic Resource Pack | 150 probes*day (resources sufficient for 150 probes for 1 day or 5 probes for 30 days) | 700 CNY | 4.68 CNY / probe*day | 6 months |
+| Intermediate Resource Pack | 1200 probes*day (resources sufficient for 1200 probes for 1 day or 40 probes for 30 days) | 4,200 CNY | 4.38 CNY / probe*day | 1 year |
+| Advanced Resource Pack | 9600 probes*day (resources sufficient for 9600 probes for 1 day or 320 probes for 30 days) | 25,200 CNY | 2.616 CNY / probe*day | 1 year |
+| Gold Resource Pack | 36500 probes*day (resources sufficient for 100 probes for 365 days) | 66,838 CNY | 1.8312 CNY / probe*day | 1 year |
+| Platinum Resource Pack | 109500 probes*day (resources sufficient for 300 probes for 365 days) | 174,000 CNY | 1.5696 CNY / probe*day | 1 year |
+| Top-tier Resource Pack | 182500 probes*day (resources sufficient for 500 probes for 365 days) | 238,710 CNY | 1.308 CNY / probe*day | 1 year |
 
 ##### Notes
 
 1. One probe can monitor one application instance (e.g., one Tomcat instance, one Java process).
 
-2. Application monitoring: traffic is calculated based on the actual total online time of all applications, settled daily. Application monitoring data is cached by default for 60 days.
+2. Application monitoring: traffic is calculated based on the total online time of all applications, settled daily. Application monitoring data is cached by default for 60 days.
 
 ### Synthetic Tests
 
-Synthetic Tests is a service for monitoring the performance and user experience of internet applications (web pages, network links, etc.).
+Synthetic Tests is a service for monitoring the performance and user experience of internet applications (Web pages, network links, etc.).
 
-#### Integration Methods
+#### Access Methods
 
-Synthetic Tests can utilize a globally distributed monitoring network to perform browsing or network tests on target web applications (such as websites, servers), currently supporting up to 50 monitoring points per task.
+Synthetic Tests can utilize a globally distributed monitoring network to perform browsing or network tests on target Web applications (such as websites, servers), currently supporting up to 50 monitoring points per task.
 
 #### Implementation Configuration
 
-Create a synthetic testing task, add URLs and monitoring points (up to 50) to be monitored
+Create a Synthetic Test task, add URLs and monitoring points (up to 50) to be monitored.
 
 ![image.png](../images/guance-arms-9.png)
 #### Product Pricing
 
-Synthetic Tests entered public beta on November 20, 2020. You can activate ARMS' 15-day free trial version or any paid version to use Synthetic Tests. During the public beta period, even after the 15-day trial expires, you can still **use Synthetic Tests for free**.
+Synthetic Tests entered public beta on November 20, 2020. You can activate the 15-day free trial version of ARMS or any paid version to use Synthetic Tests. During the beta period, even after the 15-day trial expires, you can still **use Synthetic Tests for free**.
 
 ### Log Monitoring
 
-For highly customized business scenarios, you can create log monitoring tasks to freely aggregate required metrics, generate necessary data and reports, and configure alarms flexibly.
+For highly customized business scenarios, you can create log monitoring tasks to freely calculate required metrics, generate necessary data and reports, and configure alarms flexibly.
 
-#### Integration Methods
+#### Access Methods
 
-ARMS log monitoring supports completely customizable monitoring tasks, involving configuring data sources and metrics, as shown below.
+ARMS Log Monitoring supports completely customizable monitoring tasks, involving configuring data sources and metrics, as shown in the following figure.
 
 ![](../images/guance-arms-10.png)
 #### Configuration Implementation
@@ -252,11 +252,11 @@ Prerequisites: [[Activate Alibaba Cloud Log Service](https://www.aliyun.com/prod
 
 Log metrics generated **are charged according to Prometheus rules**
 
-## Guance
+## <<< custom_key.brand_name >>>
 
-Guance is a cloud service platform aimed at solving observability for complete applications in the era of cloud computing and cloud-native systems.
+<<< custom_key.brand_name >>> is a cloud service platform aimed at solving observability for complete applications in the era of cloud computing and cloud-native systems.
 
-### Integration Methods
+### Access Methods
 
 - Frontend page configuration
 
@@ -266,13 +266,13 @@ Guance is a cloud service platform aimed at solving observability for complete a
 
 #### Host Infrastructure
 
-Install Datakit, default enabled [CPU, System, Mem, Disk, DiskIO, Swap, Net information collection], view **infrastructure** information
+Install Datakit, default enabling [CPU, System, Mem, Disk, DiskIO, Swap, Net information collection], view **infrastructure** information
 
 ![image.png](../images/guance-arms-12.png)
 
 #### Application Middleware
 
-Configure Datakit [[MySQL data collection](/../../integrations/mysql.md)] and [[Nginx data collection](/datakit/nginx/)], click `Integration Status` of host
+Configure Datakit [[Mysql data collection](/../../integrations/mysql.md)] and [[Nginx data collection](/datakit/nginx/)], click on host `integration runtime`
 
 Nginx redirects to built-in views
 
@@ -281,11 +281,11 @@ Nginx redirects to built-in views
 ![](../images/guance-arms-14.png)
 
 #### Logs
-Configure logs in [[MySQL data collection](/../../integrations/mysql.md)] and [[Nginx data collection](/datakit/nginx/)], or enable custom log configuration [Tailf data collection], after creation you can see the log list
+Configure Datakit [[Mysql data collection](/../../integrations/mysql.md)] and [[Nginx data collection](/datakit/nginx/)] log configurations, or enable custom log configuration [Tailf data collection], after creation you can see the log list
 
 ![image.png](../images/guance-arms-15.png)
 
-Click log source to view detailed log information (processed with Grok parsing)
+Click on log source to view detailed log information (processed with Grok parsing)
 
 ![image.png](../images/guance-arms-16.png)
 
@@ -295,27 +295,27 @@ Download dd-java-agent.jar, add it as a javaagent parameter to the Java applicat
 
 ![image.png](../images/guance-arms-17.png)
 
-Click service name to see the summary
+Click on service name to see summary
 
 ![image.png](../images/guance-arms-18.png)
 
-Click trace to see trace information
+Click on trace to see trace information
 
 ![image.png](../images/guance-arms-19.png)
 
-Click service name to see flame graphs and detailed information
+Click on service name to see flame graph and detailed information
 
 ![image.png](../images/guance-arms-20.png)
 
 #### RUM
 
-Create an application, choose Web type integration, copy the probe (code) and place it at the first line of the HTML `<body>` content
+Create an application, choose Web type integration, copy the probe (code) and place it in the first line of the HTML `<body>` content
 
 ![image.png](../images/guance-arms-21.png)
 
 #### Synthetic Tests
 
-Create new synthetic testing URL and testing points and frequency
+Create new URL and test point along with frequency
 ![image.png](../images/guance-arms-22.png)
 
 #### Incident Detection Library
@@ -328,41 +328,41 @@ Built-in host detection library (no configuration needed), other detection libra
 
 #### Pay-as-you-go Basic Pricing Model
 
-Guance offers two pricing models, which can be switched in the billing center. One model calculates "DataKit + Time Series" quantities, while the other only calculates "Time Series" quantities. Other billing items such as backup log data quantity, API synthetic testing times, task scheduling times, and SMS sending times are common billing items.
+<<< custom_key.brand_name >>> offers two pricing models, switchable in the billing center. One model calculates "DataKit+Time Series" quantities, while the other calculates only "Time Series" quantities. Other general billing items include backup log data quantity, API synthetic test counts, task scheduling counts, and SMS sending counts.
 
-###### 1. Calculating "DataKit + Time Series" Quantities
+###### 1. Calculating "DataKit+Time Series" Quantities
 
-| **Billing Item** | **Billing Unit** | **Commercial Plan Price** |
+| **Billing Item** | **Billing Unit** | **Commercial Plan Unit Price** |
 | --- | --- | --- |
-| Datakit Quantity | Per 1 unit | 3 RMB |
-| Time Series Quantity | Per 500 | 3 RMB |
-| Backup Log Data Quantity | Per 10 million | 2 RMB |
-| API Synthetic Testing Times | Per 10,000 | 1 RMB<br />Note: Statistics do not include API synthetic testing data generated by user-defined nodes |
-| Task Scheduling Times | Per 10,000 | 1 RMB |
+| Datakit Quantity | Per 1 unit | 3 CNY |
+| Time Series Quantity | Per 500 units | 3 CNY |
+| Backup Log Data Quantity | Per 10 million units | 2 CNY |
+| API Synthetic Test Counts | Per 10,000 units | 1 CNY<br />Note: Statistics do not include API synthetic test data from user-defined nodes |
+| Task Scheduling Counts | Per 10,000 units | 1 CNY |
 
-Time Series Calculation Formula:
+Time Series calculation formula:
 
-- Billing Time Series Quantity = Time Series Quantity - DataKit Quantity * 500
+- Billable Time Series Quantity = Time Series Quantity - DataKit Quantity * 500
 
-- Billing Time Series Amount = (Time Series Quantity - DataKit Quantity * 500) / 500 * 3
+- Billable Time Series Quantity Invoice = (Time Series Quantity - DataKit Quantity * 500) / 500 * 3
 
-- If the calculated billing Time Series Quantity <= 0, it is billed as 0.
+- If the calculated billable Time Series Quantity <= 0, it is counted as 0.
 
 ###### 2. Calculating "Time Series" Quantities
 
-| **Billing Item** | **Billing Unit** | **Commercial Plan Price** |
+| **Billing Item** | **Billing Unit** | **Commercial Plan Unit Price** |
 | --- | --- | --- |
-| Time Series Quantity | Per 300 | 3 RMB |
-| Backup Log Data Quantity | Per 10 million | 2 RMB |
-| API Synthetic Testing Times | Per 10,000 | 1 RMB<br />Note: Statistics do not include API synthetic testing data generated by user-defined nodes |
-| Task Scheduling Times | Per 10,000 | 1 RMB |
-| SMS Sending Times | Per 10 | 1 RMB |
+| Time Series Quantity | Per 300 units | 3 CNY |
+| Backup Log Data Quantity | Per 10 million units | 2 CNY |
+| API Synthetic Test Counts | Per 10,000 units | 1 CNY<br />Note: Statistics do not include API synthetic test data from user-defined nodes |
+| Task Scheduling Counts | Per 10,000 units | 1 CNY |
+| SMS Sending Counts | Per 10 units | 1 CNY |
 
-Time Series Calculation Formula:
+Time Series calculation formula:
 
-- Billing Time Series Quantity = Time Series Quantity
+- Billable Time Series Quantity = Time Series Quantity
 
-- Billing Time Series Amount = Time Series Quantity / 300 * 3
+- Billable Time Series Quantity Invoice = Time Series Quantity / 300 * 3
 
 ##### Tiered Pricing Model
 
@@ -370,81 +370,81 @@ Time Series Calculation Formula:
 
 | **Billing Item** | **Billing Unit** | **Commercial Plan Tiered Price** |  |  |
 | --- | --- | --- | --- | --- |
-| Data Storage Strategy |  | 14 Days | 30 Days | 60 Days |
-| Log Data Quantity | Per million | 1.5 RMB | 2 RMB | 2.5 RMB |
+| Data Retention Policy |  | 14 days | 30 days | 60 days |
+| Log Data Quantity | Per million units | 1.5 CNY | 2 CNY | 2.5 CNY |
 
 ###### APM Trace
 
 | **Billing Item** | **Billing Unit** | **Commercial Plan Tiered Price** |  |
 | --- | --- | --- | --- |
-| Data Storage Strategy |  | 7 Days | 14 Days |
-| APM Trace Quantity | Per million | 3 RMB | 6 RMB |
+| Data Retention Policy |  | 7 days | 14 days |
+| APM Trace Quantity | Per million units | 3 CNY | 6 CNY |
 
-###### User Visit PV
+###### RUM PV
 
 | **Billing Item** | **Billing Unit** | **Commercial Plan Tiered Price** |  |
 | --- | --- | --- | --- |
-| Data Storage Strategy |  | 7 Days | 14 Days |
-| User Visit PV Quantity | Per ten thousand | 1 RMB | 2 RMB |
+| Data Retention Policy |  | 7 days | 14 days |
+| RUM PV Quantity | Per 10,000 units | 1 CNY | 2 CNY |
 
-#### Annual Package
+#### Annual Subscription Packages
 
-##### Startup Acceleration Package
+##### Startup Accelerator Package
 
-| **Billing Item** | **Capacity** | **Pay-as-you-go Price (372 Days)** | **Package Price** |
+| **Billing Item** | **Capacity** | **Pay-as-you-go Price (372 days)** | **Package Price** |
 | --- | --- | --- | --- |
 | DataKit | 20 units | **￥ 72,168** | **￥ 42,000** |
 | Log Data | 40 million |  |  |
 | APM Trace | 5 million |  |  |
-| User Visit PV | 400,000 |  |  |
+| RUM PV | 400,000 |  |  |
 | Task Calls | 190,000 |  |  |
 
 ##### Entrepreneur Development Package
 
-| **Billing Item** | **Capacity** | **Pay-as-you-go Price (372 Days)** | **Package Price** |
+| **Billing Item** | **Capacity** | **Pay-as-you-go Price (372 days)** | **Package Price** |
 | --- | --- | --- | --- |
 | DataKit | 100 units | **￥ 517,080** | **￥ 280,000** |
 | Log Data | 400 million |  |  |
 | APM Trace | 50 million |  |  |
-| User Visit PV | 2 million |  |  |
+| RUM PV | 2 million |  |  |
 | Task Calls | 1.4 million |  |  |
 
 ##### Enterprise Standard Package
 
-| **Billing Item** | **Capacity** | **Pay-as-you-go Price (372 Days)** | **Package Price** |
+| **Billing Item** | **Capacity** | **Pay-as-you-go Price (372 days)** | **Package Price** |
 | --- | --- | --- | --- |
 | DataKit | 200 units | **￥ 1,019,280** | **￥ 510,000** |
 | Log Data | 800 million |  |  |
 | APM Trace | 100 million |  |  |
-| User Visit PV | 4 million |  |  |
+| RUM PV | 4 million |  |  |
 | Task Calls | 2.4 million |  |  |
 
 ##### Traffic Package
 
-Traffic packages offer different discounts based on the purchased capacity size. Specific details can be obtained by contacting the account manager.
+Traffic packages offer different discounts based on purchased capacity size; contact your account manager for details.
 
-| **Traffic Package** | **Base Unit** | **Base Capacity Purchased** | **Default Data Storage Strategy** | **Unit Price** | **Price (Day)** |
+| **Traffic Package** | **Base Unit** | **Base Capacity Purchase** | **Default Data Retention Policy** | **Unit Price** | **Price (Day)** |
 | --- | --- | --- | --- | --- | --- |
 | DataKit | 1 | 20 units | / | 3 | 60 |
-| Log Data (ten thousand) | 1 million | 1 million | 14 Days | 1.5 | 1.5 |
-| Backup Logs (ten thousand) | 10 million | 10 million | / | 2 | 2 |
-| APM Trace (ten thousand) | 1 million | 1 million | 7 Days | 3 | 3 |
-| User PV (ten thousand) | 100 thousand | 100 thousand | 7 Days | 1 | 10 |
-| API Calls (ten thousand) | 10 thousand | 100 thousand | / | 1 | 10 |
-| Task Calls (ten thousand) | 10 thousand | 300 thousand | / | 1 | 30 |
-| SMS | 1 | 100 | / | 0.1 | 10 |
+| Log Data (million units) | 1 million | 1 million units | 14 days | 1.5 | 1.5 |
+| Backup Log (million units) | 10 million | 10 million units | / | 2 | 2 |
+| APM Trace (ten thousand units) | 1 million | 1 million units | 7 days | 3 | 3 |
+| User PV (ten thousand units) | 100 thousand | 100 thousand units | 7 days | 1 | 10 |
+| API Calls (ten thousand units) | 10 thousand | 100 thousand units | / | 1 | 10 |
+| Task Calls (ten thousand units) | 10 thousand | 300 thousand units | / | 1 | 30 |
+| SMS | 1 | 100 units | / | 0.1 | 10 |
 
 ##### Notes
 
-- Once the package limit is exceeded, the excess can be purchased as a traffic package or charged based on the "pay-as-you-go" method using the **default data retention policy price**.
-- For tiered billing items in the package, the data retention strategy follows the default strategy: log data (14 days), APM Trace (7 days), User Visit PV (7 days).
-- If the data retention strategy is not the default strategy (log data 30 days or 60 days, APM Trace 14 days, User Visit PV 14 days), the billing platform needs to convert the reported usage and data retention strategy accordingly. Conversion factors are as follows:
-   - Log data conversion factor: default 14 days, 30 days Usage * 2, 60 days Usage * 3
-   - APM Trace conversion factor: default 7 days, 14 days Usage * 2
-   - User Visit PV conversion factor: default 7 days, 14 days Usage * 2
+- Once package limits are exceeded, additional usage can be covered by purchasing traffic packages or paying based on **default data retention policy unit prices**.
+- For tiered billing items in the package, data retention policies follow default settings: log data (14 days), APM Trace (7 days), RUM PV (7 days).
+- If data retention policies differ from defaults (log data 30 or 60 days, APM Trace 14 days, RUM PV 14 days), the billing platform adjusts charges based on reported usage and retention policies as follows:
+   - Log Data Conversion Factor: default 14 days, 30 days Usage * 2, 60 days Usage * 3
+   - APM Trace Conversion Factor: default 7 days, 14 days Usage * 2
+   - RUM PV Conversion Factor: default 7 days, 14 days Usage * 2
 
-Time Series Calculation Formula:
+Time Series calculation formula:
 
-- Billing Time Series Quantity = Time Series Quantity - DataKit Quantity * 500
-- Billing Time Series Amount = (Time Series Quantity - DataKit Quantity * 500) / 500 * 3
-- If the calculated billing Time Series Quantity <= 0, it is billed as 0.
+- Billable Time Series Quantity = Time Series Quantity - DataKit Quantity * 500
+- Billable Time Series Quantity Invoice = (Time Series Quantity - DataKit Quantity * 500) / 500 * 3
+- If the calculated billable Time Series Quantity <= 0, it is counted as 0.

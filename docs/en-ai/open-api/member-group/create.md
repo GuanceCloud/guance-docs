@@ -5,8 +5,7 @@
 <br />**POST /api/v1/workspace/member_group/add**
 
 ## Overview
-Create a new team
-
+Create a team
 
 
 ## Body Request Parameters
@@ -14,9 +13,9 @@ Create a new team
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
 | name | string | Y | Team name<br>Allow null: False <br>Maximum length: 48 <br> |
-| accountUUIDs | array | N | Account list<br>Example: ['xxxx', 'xxx'] <br>Allow null: True <br> |
+| accountUUIDs | array |  | Account list<br>Example: ['xxxx', 'xxx'] <br>Allow null: True <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
@@ -29,6 +28,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/member_group/add' \
   --compressed \
   --insecure
 ```
+
 
 
 

@@ -5,7 +5,7 @@ Used to add prompts, explanations, and various content in Markdown formatted doc
 
 ![](../img/text.png)
 
-## Application Scenarios
+## Use Cases
 
 1. Display explanatory text for different scenarios;
 2. Provide special prompts for texts that require them.
@@ -15,7 +15,7 @@ Used to add prompts, explanations, and various content in Markdown formatted doc
 
 | Option | Description |
 | --- | --- |
-| Chart Title | Set a title for the chart, which will be displayed in the top-left corner of the chart after setting. It supports hiding. |
+| Chart Title | Set a title for the chart. After setting, it will be displayed in the top left corner of the chart and supports hiding. |
 
 
 

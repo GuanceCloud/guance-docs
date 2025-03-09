@@ -27,13 +27,12 @@
 
 
 ## Scan Frequency
-
 - 0 */30 * * *
-
 
 ## Theoretical Basis
 
-- The kubernetes.service file contains sensitive parameters that may alter the behavior of the Kubernetes daemon. Therefore, no user other than root should be able to write to it to maintain the integrity of the file.
+- The kubernetes.service file contains sensitive parameters that can alter the behavior of the Kubernetes daemon. Therefore, no user other than root should be able to write to it to maintain the integrity of the file.
+
 
 
 ## Risk Items
@@ -41,9 +40,9 @@
 - Container Security
 
 
-## Audit Method
 
-- Execute the following commands to verify if the file permissions are set to "644" or more restrictive:
+## Audit Method
+- Execute the following commands to verify that the file permissions are set to "644" or more restrictive:
 
 ```bash
 stat -c %a /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
@@ -52,13 +51,14 @@ stat -c %a /var/lib/kubelet/config.yaml
 ```
 
 
-## Remediation
 
-- Execute the following command to modify the permissions of the three configuration files:
+## Remediation
+- Execute the following commands to modify the permissions of the three configuration files:
 ```bash
 #> chmod 644 /etc/systemd/system/kubelet.service.d/10-kubeadm.conf /etc/kubernetes/kubelet.conf /var/lib/kubelet/config.yaml
 ```
 This will set the file permissions to "644".
+
 
 
 ## Impact
@@ -66,14 +66,17 @@ This will set the file permissions to "644".
 - None
 
 
+
 ## Default Values
 
 - This file may not exist on the system. In this case, this recommendation does not apply. By default, if the file exists, the file permissions will be correctly set to 644.
 
 
+
 ## References
 
 - [kubernetes-kubelet](https://kubernetes.io/docs/admin/kubelet/)
+
 
 
 ## CIS Controls

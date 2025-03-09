@@ -1,7 +1,7 @@
 nav:
-  - '【Workspace API Key】Add': add.md
+  - '【Workspace API Key】Create': add.md
   - '【Workspace API Key】Get specified API Key': get.md
-  - '【Workspace API Key】Modify the name of the specified API Key': modify.md
+  - '【Workspace API Key】Modify the name associated with the specified API Key': modify.md
   - '【Workspace API Key】List': list.md
   - '【Workspace API Key】Delete': delete.md
   - '【Workspace API Key】Batch delete': batch-delete.md

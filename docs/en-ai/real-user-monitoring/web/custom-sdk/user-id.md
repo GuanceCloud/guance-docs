@@ -1,8 +1,8 @@
-# Custom User Identifier
+# Custom User Identifiers
 
 ---
 
-By default, the SDK automatically generates a unique identifier ID for users. This ID does not carry any identifying attributes and can only distinguish between different user properties. Therefore, we provide an additional API to add different identifying attributes to the current user.
+By default, the SDK automatically generates a unique identifier ID for users. This ID does not carry any identifying attributes and can only distinguish between different user properties. Therefore, we provide additional APIs to add different identifying attributes to the current user.
 
 | Property       | Type   | Description               |
 | -------------- | ------ | ------------------------- |

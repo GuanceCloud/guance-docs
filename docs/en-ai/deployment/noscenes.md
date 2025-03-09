@@ -1,6 +1,6 @@
 ## Overview
 
-After deployment, there might be instances where templates do not exist. This document aims to help resolve such issues and complete the initialization of view templates.
+After deployment, there might be cases where templates do not exist. This document aims to help resolve such issues and complete the initialization of view templates.
 
 As shown in the figure below:
 
@@ -8,15 +8,15 @@ As shown in the figure below:
 
 ## Synchronization Commands
 
-### Option 1: Synchronization via Launcher Interface
+### Solution One: Launcher Interface Synchronization
 
-Log in to the launcher management interface via a browser, click on **the configuration icon at the top right corner**, and select the following content for synchronization.
+Log in to the launcher management interface via a browser, click **Configuration** at the top right corner, and select the following content for synchronization.
 
 ![](img/noscenes_2.png)
 
-> Note: After clicking sequentially, please wait patiently for a few minutes for synchronization to complete. If the above option does not succeed, you can choose **Option 2** to manually execute the synchronization operation.
+> Note: After clicking sequentially, please wait patiently for a few minutes for successful synchronization. If the above solution does not succeed, you can choose **Solution Two** to manually execute the synchronization operation.
 
-### Option 2: Command Line Execution
+### Solution Two: Command Line Execution
 
 1. Enter the `inner` container under the `forethought-core Namespace`
 
@@ -24,9 +24,9 @@ Log in to the launcher management interface via a browser, click on **the config
 kubectl exec -ti -n forethought-core <inner_pod_name> -- /bin/bash
 ```
 
-2. If you need to modify templates for the Explorer or views, edit the corresponding template files in the `/config/cloudcare-forethought-backend/data_package/dataflux-template` directory.
+2. If you need to modify templates for explorers or views, please edit the corresponding template files in the `/config/cloudcare-forethought-backend/data_package/dataflux-template` directory.
 
-3. Execute the following synchronization command, which will copy the templates and other data from the data package to the working directory and then automatically send an update task (synchronizing from the working directory to the database).
+3. Execute the following synchronization command, which will copy the templates and other data from the data package to the working directory, then automatically send an update task (synchronize from the working directory to the database).
 
 ```shell
 curl 'http://0.0.0.0:5000/api/v1/inner/upgrade/tasks/execute_task_func' \

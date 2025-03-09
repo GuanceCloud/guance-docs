@@ -1,14 +1,14 @@
-# ddtrace log association
+# ddtrace log correlation
 
 ---
 
 ???+ warning
 
-    **The current example uses ddtrace version `0.114.0` (latest version) for testing**
+    **The current case uses ddtrace version `0.114.0` (latest version) for testing**
 
 ## Prerequisites
 
-- Enable the [DataKit ddtrace collector](/integrations/ddtrace/)
+- Enable [DataKit ddtrace collector](/integrations/ddtrace/)
 - Prepare Shell
 
   ```shell
@@ -18,8 +18,8 @@
   -jar springboot-ddtrace-server.jar
   ```
 
-> **Note:**<br/>- Both trace and log association are embedded through MDC.<br/>
-    - No jar package dependency is required; the ddtrace-agent handles the MDC embedding.
+> **Note:**<br/>- Trace and log correlation are both implemented through MDC.<br/>
+    - No jar dependencies are required here; the ddtrace-agent handles MDC instrumentation.
 
 ## Installation and Deployment
 
@@ -36,7 +36,7 @@ Taking `logback-spring.xml` as an example
     <jmxConfigurator />
     <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] %X{dd.service} %X{dd.trace_id} %X{dd.span_id} - %msg%n" />
 
-    <!-- %m outputs the message, %p log level, %t thread name, %d date, %c full class name,,,, -->
+    <!-- %m outputs information, %p log level, %t thread name, %d date, %c full class name,,,, -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>${log.pattern}</pattern>
@@ -65,7 +65,7 @@ Taking `logback-spring.xml` as an example
     <logger name="org.springframework" level="ERROR" />
     <logger name="springfox" level="ERROR" />
 
-    <!-- SQL logging configuration -->
+    <!-- SQL printing configuration -->
     <logger name="com.github.pagehelper.mapper" level="DEBUG" />
     <logger name="org.apache.ibatis" level="DEBUG" />
 
@@ -76,7 +76,7 @@ Taking `logback-spring.xml` as an example
 </configuration>
 ```
 
-Mainly through pattern configuration for log format
+Mainly configure the log format through pattern
 
 ```
 %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] %X{dd.service} %X{dd.trace_id} %X{dd.span_id} - %msg%n
@@ -95,7 +95,7 @@ Mainly through pattern configuration for log format
 
 ### 2 DataKit Log Collection
 
-After the above logs are output to text, DataKit can read log information from text files and report it to Guance.
+After the logs are output to text files, DataKit can read the log information from the text files and report it to <<< custom_key.brand_name >>>.
 
 #### 2.1 Enable Log Collector
 
@@ -132,7 +132,7 @@ After the above logs are output to text, DataKit can read log information from t
   ##    "utf-8", "utf-16le", "utf-16le", "gbk", "gb18030" or ""
   character_encoding = ""
 
-  ## datakit reads text from Files or Socket, default max_textline is 32k
+  ## datakit read text from Files or Socket, default max_textline is 32k
   ## If your log text line exceeds 32Kb, please configure the length of your text,
   ## but the maximum length cannot exceed 32Mb
   # maximum_length = 32766
@@ -156,7 +156,7 @@ After the above logs are output to text, DataKit can read log information from t
 
 #### 2.2 Configure Pipeline
 
-The purpose is to split the logs, extracting key fields as tags for filtering, selection, and data analysis.
+The purpose is to parse the logs, extracting key fields as tags for filtering, selection, and data analysis.
 
 ```toml
 # Log pattern
@@ -168,20 +168,20 @@ default_time(time,"Asia/Shanghai")
 
 ```
 
-The parsed logs have generated many tags
+After parsing, many tags have been generated from the logs.
 
 ![image.png](../images/ddtrace-skill-11.png)
 
-> Guance also supports other log collection methods, such as socket. For more log collection methods, refer to: [Logs](/best-practices/cloud-native/k8s-logs/)
+> <<< custom_key.brand_name >>> also supports other log collection methods, such as socket. For more log collection options, refer to: [Logs](/best-practices/cloud-native/k8s-logs/)
 
 ### 3 Display Effect
 
-When we extract `traceId` and `spanId` from the logs, Guance can directly associate them with corresponding trace information, achieving interconnectivity between logs and traces.
+When we extract `traceId` and `spanId` from the logs, <<< custom_key.brand_name >>> can directly correlate logs to corresponding trace information, achieving log-trace interoperability.
 
 ![guance-log.gif](../images/ddtrace-skill-12.gif)
 
-## Reference Documents
+## Reference Documentation
 
-<[demo source code](https://github.com/lrwh/observable-demo/tree/main/springboot-ddtrace-server)>
+<[Demo Source Code](https://github.com/lrwh/observable-demo/tree/main/springboot-ddtrace-server)>
 
-[ddtrace startup parameters](/integrations/ddtrace-java/#start-options)
+[ddtrace Startup Parameters](/integrations/ddtrace-java/#start-options)

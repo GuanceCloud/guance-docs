@@ -16,7 +16,7 @@ MySQL is one of the most popular relational database management systems and is a
 |     MySQL Version     |     8.0     |
 |      Supported Cluster Version       |    1.18+    |
 |    Offline Installation Support    |      Yes      |
-|       Supported Architectures       | amd64/arm64 |
+|       Supported Architecture       | amd64/arm64 |
 
 ## Default Configuration Information for Deployment
 
@@ -28,15 +28,15 @@ MySQL is one of the most popular relational database management systems and is a
 
 ## Installation {#install}
 ???+ warning "Note"
-     Create an administrator account (it must be an **administrator account**, which will be used for initializing each application DB during subsequent installation steps; enable remote connection if needed).
+     Create an administrator account (it must be an **administrator account**; this account will be used for initializing various application DBs during subsequent installation. If remote connection is required, enable it accordingly).
 
-     If deployment fails, you can deploy MySQL using Docker.
+     If the deployment fails, you can deploy MySQL using Docker.
 
-     The highlighted `storageClassName` should be set according to your actual environment.
+     The highlighted `storageClassName` should be set according to your actual situation.
 
-     Make sure to change the MySQL administrator account.
+     Please ensure that you modify the MySQL administrator account.
 
-Save `mysql.yaml` and deploy it.
+Save `mysql.yaml` and deploy.
 
 ???- note "mysql.yaml (click to expand)" 
     ```yaml hl_lines='17'
@@ -56,7 +56,7 @@ Save `mysql.yaml` and deploy it.
       resources:
         requests:
           storage: 10Gi
-      storageClassName: standard-nfs-storage ## Specify the actual existent StorageClass #
+      storageClassName:  standard-nfs-storage ## Specify an existing StorageClass
 
 
     ---
@@ -169,7 +169,7 @@ Save `mysql.yaml` and deploy it.
 
     ```
 
-Execute the following commands to install:
+Execute the commands to install:
 ```shell
 kubectl create namespace middleware
 kubectl apply -f mysql.yaml

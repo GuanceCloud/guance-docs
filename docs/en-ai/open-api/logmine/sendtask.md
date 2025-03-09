@@ -1,4 +1,4 @@
-# 【Logmine Logs】Send Logmine Query Task
+# 【Logmine】Send Logmine Query Task
 
 ---
 
@@ -14,11 +14,11 @@ Send a log clustering query task
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
 | query | string | No | DQL query statement. If this value exists, the `namespace` and `conditions` parameters will be ignored. 【Format Requirement】:L::`*`:(`__docid`, analysis_field){}<br> |
-| namespace | string | No | Full namespace in the DQL query statement. Default value is `logging`. <br>Possible values: ['object', 'object_history', 'custom_object', 'logging', 'keyevent', 'unrecovered_event', 'tracing', 'rum', 'network', 'security', 'backup_log', 'profiling', 'billing'] <br> |
-| highlight | boolean | No | Whether to highlight the query string <br> |
-| conditions | string | No | DQL query filter conditions <br>Example:  `source` IN ['kube-controller']  <br>Can be empty: False <br>Can be an empty string: True <br> |
-| timeRange | array | No | Data time range, two elements, <br>Example: [1573646935000, 1573646960000] <br>Can be empty: False <br> |
-| analysisField | string | Yes | Approximate text analysis field <br>Example: message <br>Can be empty: True <br> |
+| namespace | string | No | Full namespace in the DQL query statement, default value is `logging`. Optional values: ['object', 'object_history', 'custom_object', 'logging', 'keyevent', 'unrecovered_event', 'tracing', 'rum', 'network', 'security', 'backup_log', 'profiling', 'billing'] <br> |
+| highlight | boolean | No | Whether to highlight the query string<br> |
+| conditions | string | No | DQL query filter conditions. Example:  `source` IN ['kube-controller']  <br>Allow null: False <br>Allow empty string: True <br> |
+| timeRange | array | No | Data time range, two elements. Example: [1573646935000, 1573646960000] <br>Allow null: False <br> |
+| analysisField | string | Yes | Approximate text analysis field. Example: message <br>Allow null: True <br> |
 
 ## Additional Parameter Notes
 

@@ -1,43 +1,43 @@
 # 1. Introduction
 
-InfluxDB is a popular time series database nowadays. InfluxDB is written in Go, requires no external dependencies, and is very easy to install and configure, making it suitable for building monitoring systems for large distributed systems.
+InfluxDB is a popular time-series database at present. InfluxDB is written in the Go language, has no external dependencies, and is very easy to install and configure, making it suitable for building monitoring systems for large distributed systems.
 
-Main features:
+Key features:
 
-1) Time series-based: supports time-related functions (such as max, min, sum, etc.)
+1) Based on time series, it supports time-related functions (such as max, min, sum, etc.)
 
-2) Scalability: you can perform real-time calculations on large amounts of data
+2) Measurability: You can perform real-time calculations on large amounts of data
 
-3) Event-based: it supports arbitrary event data
+3) Event-based: It supports arbitrary event data
 
 # 2. Prerequisites
 
-- Kubernetes cluster has been deployed
+- A deployed Kubernetes cluster
 - OpenEBS storage plugin driver
 
-# 3. Installation Preparation
+# 3. Pre-installation Preparation
 
-Since InfluxDB consumes a lot of resources and requires exclusive use of cluster resources, we need to configure cluster scheduling in advance.
+Since InfluxDB consumes significant resources and requires dedicated cluster resources, we need to configure cluster scheduling in advance.
 
 # 4. Cluster Label Configuration
 
-## 4.1 Execute Command to Label Cluster Nodes
+## 4.1 Execute Command to Label Nodes
 
 ```shell
-# According to the cluster plan, label the k8s nodes that need to deploy the InfluxDB service
-# xxx represents actual nodes in the cluster; multiple node IPs should be separated by spaces or use the tab key in the command line terminal for auto-completion
+# According to the cluster plan, label the nodes where InfluxDB services will be deployed
+# xxx represents actual nodes in the cluster; multiple node IPs should be separated by spaces or use the tab key for auto-completion in the command line terminal
 kubectl label nodes xxx influxdb=true
 ```
 
-## 4.2 Check Labels
+## 4.2 Verify Labels
 
 ```shell
-kubectl get nodes --show-labels | grep 'influxdb'
+kubectl get nodes --show-labels  | grep 'influxdb'
 ```
 
-# 5. Taint Configuration for Cluster Nodes
+# 5. Cluster Taint Configuration
 
-## 5.1 Execute Command to Set Taints
+## 5.1 Execute Command to Set Cluster Taint
 
 ```shell
 kubectl taint node xxxx infrastructure=middleware:NoExecute
@@ -48,7 +48,7 @@ kubectl taint node xxxx infrastructure=middleware:NoExecute
 ## 6.1 Create a Dedicated Storage Class for InfluxDB
 
 ```yaml
-# Copy the following YAML content into the k8s cluster and save it as sc-influxdb.yaml. Modify it according to your actual situation before deployment.
+# Copy the following YAML content to the k8s cluster and save it as sc-influxdb.yaml. Modify according to your actual situation before deployment.
 apiVersion: storage.k8s.io/v1
 allowVolumeExpansion: true
 kind: StorageClass
@@ -58,8 +58,8 @@ metadata:
       - name: StorageType
         value: "hostpath"
       - name: BasePath
-        value: "/data/influxdb"  # This path can be modified according to actual conditions; ensure sufficient storage space
-  name: openebs-influxdb  # The name must be unique within the cluster and needs to be synchronized with modifications in /etc/kubeasz/guance/infrastructure/yaml/taos.yaml before installation
+        value: "/data/influxdb"  # This path can be modified based on actual conditions. Ensure sufficient storage space.
+  name: openebs-influxdb  # The name must be unique within the cluster and should be updated in the deployment file /etc/kubeasz/guance/infrastructure/yaml/taos.yaml before installation.
 provisioner: openebs.io/local
 reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
@@ -81,7 +81,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi  # Configure the storage size according to actual needs
+      storage: 10Gi  # Adjust the storage size based on actual needs
   volumeMode: Filesystem
   storageClassName: openebs-hostpath
 ```
@@ -89,9 +89,9 @@ spec:
 # 7. Installation
 
 ```shell
-# Default admin username: admin
+# Default admin account: admin
 # Default login password: "B8vBISUItYEH4uhk"
-# If you need to customize the password, modify /etc/kubeasz/guance/infrastructure/yaml/influxdb.yaml before installation
+# If you need to customize the password, modify /etc/kubeasz/guance/infrastructure/yaml/influxdb.yaml before installation.
 
 # Create namespace
 kubectl create ns middleware
@@ -102,7 +102,7 @@ kubectl apply -f /etc/kubeasz/guance/infrastructure/yaml/influxdb.yaml -n middle
 # 8. Verify Deployment
 
 ```shell
-# Default admin username: admin
+# Default admin account: admin
 # Default login password: "B8vBISUItYEH4uhk"
 [root@k8s-node01 ~]# kubectl get pods -n middleware
 NAME                        READY   STATUS    RESTARTS   AGE

@@ -11,11 +11,11 @@ Delete an existing sourcemap for a specified application
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                             |
-|:--------------|:-------|:--------|:---------------------------------------|
-| appId         | string | Y       | appId<br>Can be empty: False <br>      |
-| version       | string |         | Version<br>Can be empty: False <br>Can be an empty string: True <br> |
-| env           | string |         | Environment<br>Can be empty: False <br>Can be an empty string: True <br> |
+| Parameter Name | Type   | Required | Description                              |
+|:------------|:-----|:-------|:----------------------------------------|
+| appId       | string | Y     | appId<br>Can be empty: False <br>      |
+| version     | string |        | Version<br>Can be empty: False <br>Can be an empty string: True <br> |
+| env         | string |        | Environment<br>Can be empty: False <br>Can be an empty string: True <br> |
 
 ## Additional Parameter Notes
 

@@ -2,7 +2,7 @@
 
 ---
 
-<br />**POST /api/v1/slo/\{slo_uuid\}/modify**
+<br />**POST /api/v1/slo/{slo_uuid}/modify**
 
 ## Overview
 
@@ -12,19 +12,19 @@
 ## Route Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| slo_uuid | string | Y | SLO UUID<br>Allow null: False <br> |
+|:---------------------|:---------|:-----------|:-------------------------|
+| slo_uuid             | string   | Y          | SLO UUID<br>Allow empty: False <br> |
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| interval | string |  | Detection frequency<br>Allow null: False <br>Optional values: ['5m', '10m'] <br>Example: 5m <br> |
-| sliUUIDs | array |  | List of SLI UUIDs<br>Allow null: False <br>Example: ['rul-aaaaaa', 'rul-bbbbbb'] <br> |
-| describe | string |  | SLO description<br>Example: This is an example <br>Allow null: False <br>Allow empty string: True <br>Maximum length: 3000 <br> |
-| alertPolicyUUIDs | array |  | Alert policy UUIDs<br>Allow null: False <br> |
-| tags | array |  | Tag names for filtering<br>Allow null: False <br>Example: ['xx', 'yy'] <br> |
+|:---------------------|:---------|:-----------|:-------------------------|
+| interval             | string   |            | Check frequency<br>Allow empty: False <br>Optional values: ['5m', '10m'] <br>Example: 5m <br> |
+| sliUUIDs             | array    |            | List of SLI UUIDs<br>Allow empty: False <br>Example: ['rul-aaaaaa', 'rul-bbbbbb'] <br> |
+| describe             | string   |            | SLO description<br>Example: This is an example <br>Allow empty: False <br>Allow empty string: True <br>Maximum length: 3000 <br> |
+| alertPolicyUUIDs     | array    |            | Alert strategy UUIDs<br>Allow empty: False <br> |
+| tags                 | array    |            | Tag names for filtering<br>Allow empty: False <br>Example: ['xx', 'yy'] <br> |
 
 ## Additional Parameter Notes
 
@@ -35,7 +35,7 @@
 ## Request Example
 ```shell
 curl 'https://openapi.guance.com/api/v1/slo/monitor_xxxx32/modify' \
--H 'DF-API-KEY:  <DF-API-KEY>' \
+-H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json' \
 --data '{
   "describe": "This is an example",
@@ -68,7 +68,7 @@ curl 'https://openapi.guance.com/api/v1/slo/monitor_xxxx32/modify' \
                 },
                 {
                     "id": "rul_9eb74xxxx",
-                    "name": "whytest-Feedback verification",
+                    "name": "whytest-feedback verification",
                     "status": 2
                 }
             ]

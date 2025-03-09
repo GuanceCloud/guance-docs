@@ -1,4 +1,5 @@
 # 0046-libsbin-priv-/sbin Directory File Permissions Modified
+
 ---
 
 ## Rule ID
@@ -8,12 +9,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -28,22 +29,22 @@
 
 ## Scan Frequency
 
-- Disabled
+- disable
 
 
 ## Theoretical Basis
 
-- The /sbin directory contains critical system executable files. If the permissions change, it may prevent commands from executing and impact the system.
+- The /sbin directory contains essential system commands that are critical for system operation. If the permissions change, it may prevent these commands from executing properly, impacting the system.
 
 
 ## Risk Items
 
-- Function Unavailable
+- Function Unavailability
 
 
 ## Audit Method
 
-- Run the following command on the specified file to verify that Uid and Gid are both 0/root, and the permissions are 755. Here, we use the `ss` file as an example:
+- Run the following command on the specified files to verify that Uid and Gid are both 0/root and the permissions are 755. For example, using the ss file:
 
 ```bash
 stat /usr/sbin/ss
@@ -53,7 +54,7 @@ Access: (0755/-rwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)
 
 ## Remediation
 
-- If it is detected that file permissions in the /sbin directory have changed, log in to the server as the root user to restore the permissions and audit this change.
+- If a permission change is detected in the /sbin directory, log in as the root user and restore the permissions. Also, audit this change.
 
 
 ## Impact

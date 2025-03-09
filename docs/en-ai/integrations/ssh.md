@@ -16,7 +16,7 @@ monitor:
 
 ---
 
-Monitor the SSH/SFTP service and report data to Guance.
+Monitor SSH/SFTP services and report data to Guance.
 
 ## Configuration {#config}
 
@@ -25,7 +25,7 @@ Monitor the SSH/SFTP service and report data to Guance.
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/ssh` directory under the DataKit installation directory, copy `ssh.conf.sample` and rename it to `ssh.conf`. An example is as follows:
+    Navigate to the `conf.d/ssh` directory under the DataKit installation directory, copy `ssh.conf.sample` and rename it to `ssh.conf`. An example is shown below:
     
     ```toml
         ### You need to configure an [[inputs.ssh]] for each ssh/sftp to be monitored.
@@ -51,7 +51,7 @@ Monitor the SSH/SFTP service and report data to Guance.
       # ...
     ```
     
-    After configuration, restart DataKit.
+    After configuring, restart DataKit to apply changes.
 
 === "Kubernetes"
 
@@ -62,7 +62,7 @@ Monitor the SSH/SFTP service and report data to Guance.
 
 By default, all collected data will append a global tag named `host` (the tag value is the hostname where DataKit resides). You can also specify other tags in the configuration using `[inputs.ssh.tags]`:
 
-``` toml
+```toml
  [inputs.ssh.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
@@ -75,14 +75,14 @@ By default, all collected data will append a global tag named `host` (the tag va
 
 | Tag | Description |
 | ---- | --------|
-| `host` | The host of SSH |
+|`host`|The host of SSH|
 
-- Metrics List
+- Metric List
 
 | Metric | Description | Type | Unit |
-| ---- | ---- | :---: | :----: |
-| `sftp_check` | SFTP service status | bool | - |
-| `sftp_err` | Fail reason of connecting to SFTP service | string | - |
-| `sftp_response_time` | Response time of SFTP service | float | ms |
-| `ssh_check` | SSH service status | bool | - |
-| `ssh_err` | Fail reason of connecting to SSH service | string | - |
+| ---- |---- | :---:    | :----: |
+|`sftp_check`|SFTP service status|bool|-|
+|`sftp_err`|Fail reason of connecting SFTP service|string|-|
+|`sftp_response_time`|Response time of SFTP service|float|ms|
+|`ssh_check`|SSH service status|bool|-|
+|`ssh_err`|Fail reason of connecting SSH service|string|-|

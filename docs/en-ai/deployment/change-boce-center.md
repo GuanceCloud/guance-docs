@@ -1,59 +1,59 @@
 ## Overview
 
-The official Dial Testing Center is managed and maintained by Guance, with predefined domestic and international Dial Testing nodes. It can monitor and statistically track the availability of Dial Testing tasks in real-time, identifying network site performance issues and affected areas before users do.
+The official dial testing center is managed and maintained by <<< custom_key.brand_name >>>, with predefined domestic and international dial testing nodes. It can monitor and statistically analyze the availability of dial testing tasks in real-time, identifying network site performance issues and affected areas before users do.
 
-### Applicable Scenarios
+### Use Cases
 
-- Completely disconnected from the internet, wanting to implement a self-hosted Dial Testing service.
-- Wanting to implement a Dial Testing service for internal websites.
+- Completely offline, wanting to implement a dial testing service on your own.
+- Wanting to implement a dial testing service for internal websites.
 
 ### Prerequisites
 
 - Version 1.63.128 or higher
 
-> During upgrades, the launcher service will guide you on whether to switch to a private Dial Testing Center.
+> During upgrades, the launcher service will guide you on whether to switch to a private dial testing center.
 >
-> During deployment, there will be an option to choose between using a private Dial Testing Center or the official Dial Testing Center.
+> During deployment, you will have an option to choose between using a private dial testing center or the official dial testing center.
 
-This article aims to address the pain points of switching Dial Testing Centers after deployment. Below are the operational steps.
+This article aims to address the pain points of switching dial testing centers after deployment. The following are the steps to do so.
 
-## Operational Steps
+## Operation Steps
 
 ### Switching to a Private Dial Testing Center
 
-Log in to the launcher console ---> Top-right corner button ---> Others, add the following line `dialService: buildin`
+Log in to the launcher console ---> top-right corner button ---> other, add the following line `dialService: buildin`
 
 ![](img/change-boce-center_1.png)
 
-> Adding `dialService: buildin` switches to a private Dial Testing Center, changing it to `dialService: saas` switches back to the official Dial Testing Center.
+> Adding `dialService: buildin` switches to the private dial testing center, changing it to `dialService: saas` switches back to the official dial testing center.
 
-Top-right corner button ---> Click **Modify Application Configuration**, edit the content of the ConfigMap named `core` under the `forethought-core` Namespace regarding the DialingServer module.
+Top-right corner button ---> click **Modify Application Configuration**, modify the ConfigMap named `core` under the `forethought-core` Namespace related to the DialingServer module.
 
 ```shell
-# Cloud Dial Testing Service
+# Cloud dial testing service
 DialingServer:
-  # Address configuration for the Dial Testing Service Center
-  use_https: true                           ## Whether to use HTTPS
-  host: dflux-dial.guance.com               ## Dial Testing Center address, replace with the ingress domain name of your private deployment; remember to revert to the original address if switching back
+  # Configuration of the dial testing service center's address
+  use_https: true                           ## Whether to use https
+  host: dflux-dial.guance.com               ## Address of the dial testing center, replace with the ingress domain name of your private deployment; remember to revert to the original address if switching back
   port: 443
   timeout: 10
 ```
 
-> By default, the official provided Dial Testing Center is used.
+> By default, it uses the official provided dial testing center.
 
 ### Adding Dial Testing Nodes
 
-Log in to the Guance console, click Synthetic Tests ---> User-defined Node Management ---> New Node.
+Log in to the <<< custom_key.brand_name >>> console, click Synthetic Tests ---> User-defined Node Management ---> Create Node.
 
-> Note: If the node is created in the system workspace, all workspaces can see this Dial Testing node. If you want only a single workspace to see it, create the node within that specific workspace.
+> Note: If the node is created in the system workspace, all workspaces can see this dial testing node. If you want only a single workspace to see it, create the dial testing node within that specific workspace.
 
-Click the "Get Configuration" button on the far right, follow the redirection to install the Dial Testing node.
+Click the "Get Configuration" button on the far right, follow the redirection to install the dial testing node.
 
 ![](img/change-boce-center_2.png)
 
 ![](img/change-boce-center_3.png)
 
-> Note: In addition to these three fields, the `dialtesting.conf` file in DataKit also needs to configure `server` as the address of the Dial Testing Service Center you wish to use (usually the ingress domain name created during deployment or upgrade).
+> Note: Besides these three fields, the `dialtesting.conf` file in DataKit also needs to configure `server` as the address of the dial testing service center you intend to use (usually the ingress domain name created during deployment or upgrade).
 
 ```shell
 [[inputs.dialtesting]]
@@ -63,21 +63,21 @@ Click the "Get Configuration" button on the far right, follow the redirection to
   # [require] node ID
   region_id = "default"
 
-  # if server is dflux-dial.guance.com, ak/sk are required
+  # if server is dflux-dial.guance.com, ak/sk required
   ak = ""
   sk = ""
 ```
 
 ### Verification Method
 
-1. Log in to the Guance console, click Synthetic Tests ---> Tasks ---> New Task ---> HTTP Dial Testing
+1. Log in to the <<< custom_key.brand_name >>> console, click Synthetic Tests ---> Tasks ---> Create Task ---> HTTP Test.
 
-2. Follow the steps below to create a new Dial Testing task, then save it.
+2. Follow the steps below to create a new dial testing task, then save it.
 
 ![](img/change-boce-center_4.png)
 
-3. Return to the tasks page and click on the newly created Dial Testing task.
+3. Go back to the task list and click on the newly created dial testing task.
 
 ![](img/change-boce-center_5.png)
 
-4. If the data appears as shown above, the setup is successful.
+4. If the data appears as shown in the image above, the setup was successful.

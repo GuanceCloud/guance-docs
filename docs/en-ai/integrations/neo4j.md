@@ -1,6 +1,6 @@
 ---
 title     : 'Neo4j'
-summary   : 'Collect Metrics data from Neo4j'
+summary   : 'Collect metrics data from Neo4j'
 tags:
   - 'Database'
 __int_icon      : 'icon/neo4j'
@@ -25,23 +25,23 @@ Tested versions:
 - [x] Neo4j 4.4.0 enterprise
 - [x] Neo4j 3.4.0 enterprise
 - [ ] Neo4j 3.3.0 enterprise and below are not supported
-- [ ] Neo4j 5.11.0 community and all community versions are not supported
+- [ ] Neo4j 5.11.0 community version is not supported
 
 ## Prerequisites {#requirements}
 
-- Install Neo4j service
+- Install the Neo4j service
   
 Refer to the [official installation documentation](https://neo4j.com/docs/operations-manual/current/installation/){:target="_blank"}
 
 - Verify correct installation
 
-  Access `<ip>:7474` in a browser to enter the Neo4j management interface.
+  Access `<ip>:7474` in your browser to enter the Neo4j management interface.
 
-- Open the Neo4j Prometheus port
+- Enable the Neo4j Prometheus port
   
   Locate and edit the Neo4j startup configuration file, typically found at `/etc/neo4j/neo4j.conf`
 
-  Append at the end:
+  Append the following at the end of the file:
 
   ```ini
   # Enable the Prometheus endpoint. Default is false.
@@ -60,8 +60,8 @@ Refer to the [official installation documentation](https://neo4j.com/docs/operat
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    - Data collection requires port `2004`, and these ports need to be opened on the remote server for remote collection.
-    - For local collection, `0.0.0.0:2004` can be changed to `localhost:2004`.
+    - Data collection uses port `2004`. When collecting remotely, these ports need to be opened on the target server.
+    - If `0.0.0.0:2004` is for local collection, it can be changed to `localhost:2004`.
 <!-- markdownlint-enable -->
 
 ## Configuration {#input-config}
@@ -69,7 +69,7 @@ Refer to the [official installation documentation](https://neo4j.com/docs/operat
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/neo4j` directory under the DataKit installation directory, copy `neo4j.conf.sample` and rename it to `neo4j.conf`. Example configuration:
+    Navigate to the `conf.d/neo4j` directory under the DataKit installation directory, copy `neo4j.conf.sample`, and rename it to `neo4j.conf`. An example is shown below:
     
     ```toml
         
@@ -102,15 +102,17 @@ Refer to the [official installation documentation](https://neo4j.com/docs/operat
     
     ```
 
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
 <!-- markdownlint-enable -->
 
 ## Metrics {#metric}
+
+
 
 ### `neo4j`
 
@@ -128,7 +130,7 @@ Refer to the [official installation documentation](https://neo4j.com/docs/operat
 |`pool`|Pool name.|
 |`quantile`|Histogram `quantile`.|
 
-- Metric List
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -159,7 +161,7 @@ Refer to the [official installation documentation](https://neo4j.com/docs/operat
 |`database_cluster_raft_in_flight_cache_total_bytes`|In-flight cache total bytes.|float|B|
 |`database_cluster_raft_is_leader`|Is this server the leader? Track this for each database primary in the cluster. It reports `0` if it is not the leader and `1` if it is the leader. The sum of all of these should always be `1`. However, there are transient periods in which the sum can be more than `1` because more than one member thinks it is the leader. Action may be needed if the metric shows `0` for more than 30 seconds.|float|count|
 |`database_cluster_raft_last_leader_message`|The time elapsed since the last message from a leader in milliseconds. Should reset periodically.|float|ms|
-|`database_cluster_raft_message_processing_delay`|The time the Raft message stays in the queue after being received and before being processed, i.e., append and commit to the store. The higher the value, the longer the messages wait to be processed. This metric is closely linked to disk write performance.(gauge)|float|ms|
+|`database_cluster_raft_message_processing_delay`|The time the Raft message stays in the queue after being received and before being processed, i.e. append and commit to the store. The higher the value, the longer the messages wait to be processed. This metric is closely linked to disk write performance.(gauge)|float|ms|
 |`database_cluster_raft_message_processing_timer`|Timer for Raft message processing.|float|count|
 |`database_cluster_raft_raft_log_entry_prefetch_buffer_async_put`|Raft Log Entry Prefetch buffer async puts.|float|count|
 |`database_cluster_raft_raft_log_entry_prefetch_buffer_bytes`|Raft Log Entry Prefetch total bytes.|float|B|
@@ -299,6 +301,5 @@ Refer to the [official installation documentation](https://neo4j.com/docs/operat
 
 
 </input_content>
-</instruction>
-</input>
+</example>
 </example>

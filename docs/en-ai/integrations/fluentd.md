@@ -1,6 +1,6 @@
 ---
 title: 'Fluentd'
-summary: 'Collecting Fluentd logs'
+summary: 'Collect logs from Fluentd'
 __int_icon: 'icon/fluentd'
 ---
 
@@ -8,7 +8,7 @@ __int_icon: 'icon/fluentd'
 # Fluentd Logs
 <!-- markdownlint-enable -->
 
-Fluentd log collection involves accepting log text data for reporting to Guance.
+Fluentd log collection involves accepting log text data and reporting it to Guance.
 
 ## Installation and Deployment {#config}
 
@@ -19,7 +19,7 @@ Fluentd log collection involves accepting log text data for reporting to Guance.
 
 ### Collector Configuration
 
-Navigate to the `conf.d/log` directory under the DataKit installation directory, copy `logstreaming.conf.sample` and rename it to `logstreaming.conf`. An example is as follows:
+Navigate to the `conf.d/log` directory under the DataKit installation directory, copy `logstreaming.conf.sample` and rename it to `logstreaming.conf`. Example:
 
 ```yaml
 [inputs.logstreaming]
@@ -34,10 +34,10 @@ systemctl restart datakit
 
 #### Linux Fluentd Collecting Nginx Logs into DataKit
 
-For example, using Fluentd to collect nginx logs and forward them to an upstream server's plugin configuration, instead of sending directly to the server for processing, we want to process and send them directly to DataKit for reporting to the Guance platform for analysis.
+Using Fluentd to collect nginx logs and forward them to an upstream server via a plugin configuration example. Instead of sending directly to the server for processing, we want to process and send the data directly to DataKit for analysis on the Guance platform.
 
 ```yaml
-## Endpoint log collection
+## PC Log Collection
 <source>
   @type tail
   format ltsv
@@ -48,7 +48,7 @@ For example, using Fluentd to collect nginx logs and forward them to an upstream
   time_format %d/%b/%Y:%H:%M:%S %z
 </source>
 
-## Forward collected data via TCP protocol to multiple servers on port 49875
+## Forward collected data to multiple servers on port 49875 using TCP protocol
 ## Multiple output
 <match nginx>
  type forward
@@ -67,10 +67,10 @@ For example, using Fluentd to collect nginx logs and forward them to an upstream
 </match>
 ```
 
-Modify the output of the match to specify the type as http and direct the endpoint to the DataKit address with **logstreaming** enabled to complete the collection.
+Modify the match output to specify the type as http and direct the endpoint to the DataKit address with **logstreaming** enabled to complete the collection.
 
 ```yaml
-## Endpoint log collection
+## PC Log Collection
 <source>
   @type tail
   format ltsv
@@ -81,7 +81,7 @@ Modify the output of the match to specify the type as http and direct the endpoi
   time_format %d/%b/%Y:%H:%M:%S %z
 </source>
 
-## Forward collected data via HTTP protocol to local DataKit
+## Forward collected data to local DataKit using HTTP protocol
 ## nginx output
 <match nginx>
   @type http
@@ -115,10 +115,10 @@ create_time 1637733374609
 
 #### Windows Fluentd Collecting Nginx Logs into DataKit
 
-For example, using Fluentd to collect nginx logs and forward them to an upstream server's plugin configuration, instead of sending directly to the server for processing, we want to process and send them directly to DataKit for reporting to the Guance platform for analysis.
+Using Fluentd to collect nginx logs and forward them to an upstream server via a plugin configuration example. Instead of sending directly to the server for processing, we want to process and send the data directly to DataKit for analysis on the Guance platform.
 
 ```bash
-## Endpoint log collection
+## PC Log Collection
 <source>
   @type tail
   format ltsv
@@ -129,7 +129,7 @@ For example, using Fluentd to collect nginx logs and forward them to an upstream
   time_format %d/%b/%Y:%H:%M:%S %z
 </source>
 
-## Forward collected data via TCP protocol to multiple servers on port 49875
+## Forward collected data to multiple servers on port 49875 using TCP protocol
 ## Multiple output
 <match nginx>
  type forward
@@ -148,10 +148,10 @@ For example, using Fluentd to collect nginx logs and forward them to an upstream
 </match>
 ```
 
-Modify the output of the match to specify the type as http and direct the endpoint to the DataKit address with **logstreaming** enabled to complete the collection.
+Modify the match output to specify the type as http and direct the endpoint to the DataKit address with **logstreaming** enabled to complete the collection.
 
 ```yaml
-## Endpoint log collection
+## PC Log Collection
 <source>
   @type tail
   format ltsv
@@ -162,7 +162,7 @@ Modify the output of the match to specify the type as http and direct the endpoi
   time_format %d/%b/%Y:%H:%M:%S %z
 </source>
 
-## Forward collected data via HTTP protocol to local DataKit
+## Forward collected data to local DataKit using HTTP protocol
 ## nginx output
 <match nginx>
   @type http
@@ -174,7 +174,7 @@ Modify the output of the match to specify the type as http and direct the endpoi
 </match>
 ```
 
-After modifying the configuration, restart `fluentd -c` with the changed configuration file to complete data reporting.
+After modifying the configuration, restart `fluentd -c` the modified configuration file to complete data reporting.
 
 ![image](imgs/input-fluentd-2.png)
 
@@ -196,7 +196,7 @@ create_time 1637733374609
 
 #### Kubernetes Sidecar Fluentd Collecting Nginx Logs into DataKit
 
-For example, deploying Fluentd sidecar in a Deployment to collect nginx logs and forward them to an upstream server's plugin configuration, instead of sending directly to the server for processing, we want to process and send them directly to DataKit for reporting to the Guance platform for analysis.
+Using a Deployment to deploy Fluentd sidecar to collect nginx logs and forward them to an upstream server via a plugin configuration example. Instead of sending directly to the server for processing, we want to process and send the data directly to DataKit for analysis on the Guance platform.
 
 ```yaml
 apiVersion: apps/v1
@@ -270,7 +270,7 @@ data:
         time_key time
         time_format %d/%b/%Y:%H:%M:%S %z
       </source>
-      ## Forward collected data via TCP protocol to multiple servers on port 49875
+      ## Forward collected data to multiple servers on port 49875 using TCP protocol
       ## Multiple output
       <match nginx>
        type forward
@@ -287,7 +287,7 @@ data:
          weight 60
         </server>
       </match>
-      ## Forward collected data via HTTP protocol to local DataKit
+      ## Forward collected data to local DataKit using HTTP protocol
       ## nginx output
       <match nginx>
         @type http
@@ -315,7 +315,7 @@ spec:
     nodePort: 32004
 ```
 
-Modify the output of the match in the mounted Fluentd configuration file to specify the type as http and direct the endpoint to the DataKit address with **logstreaming** enabled to complete the collection.
+Modify the match output in the mounted Fluentd configuration file to specify the type as http and direct the endpoint to the DataKit address with **logstreaming** enabled to complete the collection.
 
 ```yaml
 apiVersion: apps/v1
@@ -389,7 +389,7 @@ data:
         time_key time
         time_format %d/%b/%Y:%H:%M:%S %z
       </source>
-      ## Forward collected data via HTTP protocol to local DataKit
+      ## Forward collected data to local DataKit using HTTP protocol
       ## nginx output
       <match nginx>
         @type http
@@ -417,7 +417,7 @@ spec:
     nodePort: 32004
 ```
 
-After modifying the configuration, redeploy the YAML file to complete data reporting. You can access port 32004 on the corresponding node to check if the data has been successfully collected.
+After modifying the configuration, redeploy the YAML file to complete data reporting. You can access the 32004 port on the corresponding node to check if the data has been successfully collected.
 
 ![image](imgs/input-fluentd-3.png)
 

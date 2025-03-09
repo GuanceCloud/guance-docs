@@ -1,6 +1,6 @@
 nav:
   - index.md
   - 'Custom User Identifier': user-id.md
-  - 'Custom Addition of Extra Data TAG': add-additional-tag.md
-  - 'Custom Addition of Action': add-action.md
-  - 'Custom Addition of Error': add-error.md
+  - 'Custom Addition of Extra Data TAGs': add-additional-tag.md
+  - 'Custom Addition of Actions': add-action.md
+  - 'Custom Addition of Errors': add-error.md

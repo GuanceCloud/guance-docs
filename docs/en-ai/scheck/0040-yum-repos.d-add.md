@@ -27,7 +27,7 @@
 ## Description
 
 
-- Monitor the addition of configurations in the `/etc/yum.repos.d` directory on the host.
+- Monitor the addition of configurations in the /etc/yum.repos.d directory on the host.
 
 
 
@@ -37,7 +37,7 @@
 ## Theoretical Basis
 
 
-- A repo file is a configuration file for YUM repositories (software repositories) in Fedora. Typically, one repo file defines the details of one or more software repositories, such as where we will download the required installation or upgrade packages from. The settings in the repo file will be read and applied by YUM. If configured incorrectly, it can cause services to be unavailable.
+- A repo file is a configuration file for YUM repositories (software repositories) in Fedora. Typically, one repo file defines the details of one or more software repositories, such as where we will download the packages needed for installation or upgrades from. The settings in the repo file will be read and applied by YUM. If configured incorrectly, it can cause services to be unavailable.
 
 
 
@@ -49,7 +49,7 @@
 
 
 ## Audit Method
-- Verify if any files have been added under the `/etc/yum.repos.d` directory on the host. You can use the following command to verify:
+- Verify if any files have been added under the /etc/yum.repos.d directory on the host. You can use the following command to verify:
 
 ```bash
 ls -l /etc/yum.repos.d
@@ -58,7 +58,7 @@ ls -l /etc/yum.repos.d
 
 
 ## Remediation
-- If files have been added to `/etc/yum.repos.d`, carefully check the host environment for signs of intrusion and change the host user passwords.
+- If files have been added to /etc/yum.repos.d on the host, carefully check the host environment to ensure there has been no intrusion and change the host user passwords.
 
 
 

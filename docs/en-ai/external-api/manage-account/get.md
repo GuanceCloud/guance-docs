@@ -1,4 +1,4 @@
-# 【Super Account Management】Get Details
+# [Super Account Management] Get Details
 
 ---
 
@@ -12,7 +12,7 @@
 ## Route Parameters
 
 | Parameter Name      | Type     | Required | Description              |
-|:-----------------|:-------|:-----|:----------------|
+|:-----------------|:-------|:------|:----------------|
 | account_uuid | string | Y | UUID of the account<br> |
 
 
@@ -33,11 +33,8 @@
 
 
 </input_content>
-</target_language>
-</input>
-</example>
-
-# 【Management Console Account】Get Details
+<translation>
+# [Management Backend Account] Get Details
 
 ---
 
@@ -47,19 +44,18 @@
 
 
 
+This API endpoint retrieves detailed information about a specific management backend account.
 
 ## Route Parameters
 
 | Parameter Name      | Type     | Required | Description              |
-|:-----------------|:-------|:-----|:----------------|
-| account_uuid | string | Y | UUID of the account<br> |
+|:-------------------|:---------|:---------|:-------------------------|
+| account_uuid        | string   | Yes      | UUID of the account<br>  |
 
 
 ## Additional Parameter Notes
 
-
-
-
+No additional parameters are required for this request.
 
 
 
@@ -67,3 +63,6 @@
 ```shell
  
 ```
+
+The response will contain detailed information about the specified account.
+</translation>

@@ -1,110 +1,101 @@
-# Best Practices for Observability in Channel Traffic Acquisition
+# Page Channel Traffic Attraction Best Practices
 
 ---
 
-## I: Background
+## 1: Background
 
-For marketing, it is crucial to understand the traffic acquisition situation of multi-channel campaign landing pages and registration pages. How do we record what the previous page was for this advertisement page? And how many times has this page been visited? How do we record the number of button clicks on a specific page?
+For marketing, it is crucial to understand the traffic situation of multi-channel campaign landing pages and registration pages. How do we record what the previous page was for this advertisement page? And how do we track the number of visits to this page? How do we record the number of button clicks on a particular page?
 
-## II: Guance Solution
+## 2: <<< custom_key.brand_name >>> Solution
 
-### 1: How to Analyze Page Origin Statistics
+### 1: How to Analyze Page Source Statistics
 
-【View Attributes】
+**View Attributes**
 
 | **Field** | **Type** | **Description** |
 | --- | --- | --- |
-| view_id | string | A unique ID generated each time a page is visited |
-| is_active | boolean | Indicates whether the user is still active; reference values: true &#124; false |
-| view_loading_type | string | Type of page loading,<br />reference values: initial_load &#124; route_change<br />route_change refers to SPA page loading mode |
-| view_referrer | string | Referring page |
+| view_id | string | Unique ID generated each time a page is visited |
+| is_active | boolean | Indicates whether the user is still active; reference values: true | false |
+| view_loading_type | string | Page loading type, <br />reference values: initial_load | route_change<br />route_change refers to SPA page loading mode |
+| view_referrer | string | Page source |
 | view_url | string | Page URL |
 | view_host | string | Domain part of the page URL |
 | view_path | string | Path part of the page URL |
 | view_path_group | string | Grouped path part of the page URL |
 | view_url_query | string | Query part of the page URL |
 
-**As shown above, in RUM, the metric "view_referrer" (referring page) is already captured. We can use this data for page analysis**
+**From the table above, we can see that in RUM PV, the metric "view_referrer" (page source) has already been collected. We can leverage this for page analysis.**
 
-### 2: How to Track Button Clicks on Pages
+### 2: How to Track Button Clicks on a Page
 
-【Action Attributes】
+**Action Attributes**
 
 | **Field** | **Type** | **Description** |
 | --- | --- | --- |
-| action_id | string | A unique ID generated when a user performs an action on the page |
-| action_name | string | Action name |
-| action_type | string | Type of action |
+| action_id | string | Unique ID generated when a user performs an operation on the page |
+| action_name | string | Operation name |
+| action_type | string | Type of operation |
 
-**As shown above, in RUM, the metric "action_name" (button name) is already captured. We can use this data to analyze button click counts**
+**From the table above, we can see that in RUM PV, the metric "action_name" (button name) has already been collected. We can leverage this for tracking button click counts.**
 
-_**For more metrics, see:**_[Web Application Data Collection](/real-user-monitoring/web/app-data-collection/)
+**For more metrics, see:** [Web Application Data Collection](/real-user-monitoring/web/app-data-collection/)
 
-## III: Final Visualization
+## 3: Final Visualization
 
 ![image.png](../images/page-5.png)
 
-## IV: Implementation Steps
+## 4: Implementation Steps
 
-### 1: Integrate RUM based on your actual needs
+### 1: Integrate RUM based on your actual scenario
 
-Website integration reference: [web-RUM Integration](/real-user-monitoring/web/app-access/)
+Website integration reference: [web-rum integration](/real-user-monitoring/web/app-access/)
 
-APP integration reference: [iOS-RUM Integration](/real-user-monitoring/ios/app-access/) / [Android-RUM Integration](/real-user-monitoring/android/app-access/)
+APP integration reference: [iOS-rum integration](/real-user-monitoring/ios/app-access/) / [Android-rum integration](/real-user-monitoring/android/app-access/)
 
-Mini-program integration reference: [Mini-program-RUM Integration](/real-user-monitoring/miniapp/app-access/)
+Mini-program integration reference: [miniapp-rum integration](/real-user-monitoring/miniapp/app-access/)
 
-### 2: Create a New Dashboard for the Scenario
+### 2: Create Dashboards for Different Scenarios
 
-#### a: Create a new chart titled "Traffic from Page A to Page B" (where B is the campaign page)
+#### a: Create a Chart Named "Traffic from Page A to Page B"
 
 ![image.png](../images/page-1.png)
 
-Explanation: Record the number of transitions from the URL specified in field 6 to the URL specified in field 5.
+Explanation by image: Record the number of transitions from the URL entered in field 6 to the URL entered in field 5.
 
-1: In the list, select "User Analysis"
+1. In the list, select "User Access"
+2. In the list, select "view"
+3. In the list, select "count", as this records the count
+4. In the list, select "view_referrer", meaning to track the page source
+5. As one condition, set `view_url` to the URL of Page B, which is the monitored event page
+6. As another condition, set `view_referrer` to the URL of Page A, which is the source page.
 
-2: In the list, select "View"
+**Note: If there are multiple pages like C -> B, just replace the `view_referrer` URL with the URL of Page C, and so on.**
 
-3: In the list, select "count", as this records the count, so we need to use count
-
-4: In the list, select "view_referrer", which means tracking the referring page
-
-5: One condition is setting `view_url` to the URL of Page B, i.e., the monitored campaign page URL
-
-6: Another condition is setting `view_referrer` to the URL of Page A, i.e., the source URL.
-
-_**Note: If there are multiple pages like C->B, etc., simply replace the `view_referrer` URL with the URL of Page C, and so on.**_
-
-#### b: Create a new chart titled "Button Clicks on Page A"
+#### b: Create a Chart Named "Button Click Counts on Page A"
 
 ![image.png](../images/page-2.png)
 
-Explanation: Record the number of button clicks on Page A
+Explanation by image: Record the number of button clicks on Page A.
 
-1: In the list, select "User Analysis"
-
-2: In the list, select "Action"
-
-3: In the list, select "count", as this records the count, so we need to use count
-
-4: In the list, select "action_name", which refers to the button name
-
-5: One condition is setting `view_url` to the URL of Page A, i.e., the page where the button is located
-
-6: Another condition is setting `action_name` to the name displayed on the page, such as "Manage", "Reset", "+ Add"
+1. In the list, select "User Access"
+2. In the list, select "action"
+3. In the list, select "count", as this records the count
+4. In the list, select "action_name", which is the button name
+5. As one condition, set `view_url` to the URL of Page A, which is the page where you want to monitor buttons
+6. As another condition, set `action_name` to the displayed name on the page, such as "Manage", "Reset", "+ Add"
 
 ![image.png](../images/page-3.png)
 
-_**Note: If you need to track multiple buttons, follow the same process.**_
+**Note: If there are multiple buttons to track, follow the same steps.**
 
-#### c: Create a map titled "Geographical Distribution of Visits to Page A - China"
+#### c: Create a Map for Geographical Distribution of Visits to Page A - China
 
 ![image.png](../images/page-4.png)
 
-The condition here is the URL of Page A.
+Condition here is the URL of Page A.
 
-_**Note: The world map is similar to the China map.**_
+**Note: World maps are similar to China maps.**
 
 ## Summary
-After integrating web monitoring, Guance captures a large number of metrics. We can use these metrics to monitor and record their origins (from which page or button click) with minimal effort for statistical analysis.
+
+After integrating web monitoring, <<< custom_key.brand_name >>> collects a large number of metrics. We can use these metrics to complete monitoring with minimal effort, recording their sources (from which page or which button click) for statistical analysis.

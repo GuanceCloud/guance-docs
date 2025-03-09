@@ -2,7 +2,7 @@
 
 ---
 
-<br />**POST /api/v1/notes/\{notes_uuid\}/modify**
+<br />**POST /api/v1/notes/{notes_uuid}/modify**
 
 ## Overview
 Modify a note. `chartUUIDs` contains the chart information bound to this note.
@@ -17,9 +17,9 @@ Modify a note. `chartUUIDs` contains the chart information bound to this note.
 
 | Parameter Name | Type   | Required | Description              |
 |:--------------|:-------|:---------|:-------------------------|
-| name          | string | Y        | Note name<br>Allow null: False <br>Maximum length: 128 <br> |
-| chartUUIDs    | array  |          | Note type, default is CUSTOM<br>Example: CUSTOM <br>Allow null: False <br>Maximum length: 32 <br> |
-| extend        | json   |          | Additional data of the note, defaults to {}<br>Example: {} <br>Allow null: False <br> |
+| name          | string | Y        | Note name<br>Allow empty: False <br>Maximum length: 128 <br> |
+| chartUUIDs    | array  |          | Note type, default is CUSTOM<br>Example: CUSTOM <br>Allow empty: False <br>Maximum length: 32 <br> |
+| extend        | json   |          | Additional data of the note, default is {}<br>Example: {} <br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 

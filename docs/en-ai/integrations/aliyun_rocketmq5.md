@@ -2,14 +2,14 @@
 title: 'Alibaba Cloud RocketMQ5'
 tags: 
   - Alibaba Cloud
-summary: 'The displayed metrics of Alibaba Cloud RocketMQ 5.0 include message throughput, latency, reliability, and horizontal scalability.'
+summary: 'The display metrics of Alibaba Cloud RocketMQ 5.0 include message throughput, latency, reliability, and horizontal scalability.'
 __int_icon: 'icon/aliyun_rocketmq'
 dashboard:
   - desc: 'Alibaba Cloud RocketMQ5 built-in views'
     path: 'dashboard/en/aliyun_rocketmq5/'
 
 monitor:
-  - desc: 'Alibaba Cloud RocketMQ5 monitors'
+  - desc: 'Alibaba Cloud RocketMQ5 monitor'
     path: 'monitor/en/aliyun_rocketmq5/'
 ---
 
@@ -17,76 +17,77 @@ monitor:
 # Alibaba Cloud RocketMQ5
 <!-- markdownlint-enable -->
 
-The displayed metrics of Alibaba Cloud RocketMQ 5.0 include message throughput, latency, reliability, and horizontal scalability.
+The display metrics of Alibaba Cloud RocketMQ 5.0 include message throughput, latency, reliability, and horizontal scalability.
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-We recommend enabling the Guance integration - Extensions - DataFlux Func (Automata): all prerequisites are automatically installed, please proceed with script installation.
+It is recommended to enable the Guance integration - Expansion - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Deploy Func on Your Own](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+
 
 
 ### Install Script
 
-> Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
+> Tip: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize monitoring data for Alibaba Cloud RocketMQ5, we install the corresponding collection script: 「Guance Integration (Alibaba Cloud-RocketMQ 5.0)」(ID: `guance_aliyun_rocketmq5`)
+To synchronize monitoring data from Alibaba Cloud RocketMQ5, we install the corresponding collection script: 「Guance Integration (Alibaba Cloud-RocketMQ 5.0)」(ID: `guance_aliyun_rocketmq5`)
 
 After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
-Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
+Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and configure the corresponding startup scripts automatically.
 
-Additionally, you can see the corresponding automatic trigger configuration in 「Management / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+Additionally, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
 
-By default, we collect some configurations; see the Metrics section for details.
+We default to collecting some configurations, see the metrics section for details.
 
 [Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### Verification
 
-1. In 「Management / Automatic Trigger Configuration」, confirm whether the corresponding automatic trigger configuration exists for the task, and check the task records and logs for any anomalies.
-2. On the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
-3. On the Guance platform, under 「Metrics」, check if the corresponding monitoring data exists.
+1. In 「Manage / Automatic Trigger Configuration」confirm whether the corresponding task has an automatic trigger configuration, and check the corresponding task records and logs for any anomalies.
+2. On the Guance platform, in 「Infrastructure / Custom」check if there is asset information.
+3. On the Guance platform, in 「Metrics」check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Alibaba Cloud CloudMonitor, the default metric sets are as follows. You can collect more metrics through configuration. [Alibaba Cloud CloudMonitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+After configuring Alibaba Cloud CloudMonitor, the default metric set is as follows. You can collect more metrics through configuration [Alibaba Cloud CloudMonitor Metric Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
-| MetricName | MetricCategory | MetricDescription | Dimensions | Statistics | Unit | MinPeriods |
-| :--------- | :------------- | :---------------- | :--------- | :--------- | :--- | :--------- |
-| `ConsumerLag`                         | **rocketmq** | Message backlog (Group)                       | userId,instanceId,groupId       | Sum     | count        | 60 s |
-| `ConsumerLagLatencyPerGid`            | **rocketmq** | Message processing delay time (GroupId)       | userId,instanceId,groupId       | Maximum | milliseconds | 60 s |
-| `ConsumerLagLatencyPerGidTopic`       | **rocketmq** | Message processing delay time (GroupId&Topic) | userId,instanceId,topic,groupId | Maximum | milliseconds | 60 s |
-| `ConsumerLagPerGidTopic`              | **rocketmq** | Message backlog (Group&Topic)                 | userId,instanceId,groupId,topic | Sum     | count        | 60 s |
-| `InstanceApiCallTps`                  | **rocketmq** | Instance API call frequency (Instance)        | userId,instanceId               | Sum     | countSecond  | 60 s |
-| `InstanceInternetFlowoutBandwidth`    | **rocketmq** | Public network downstream traffic bandwidth   | userId,instanceId               | Sum     | bytes/Second | 60 s |
-| `InstanceReceiveApiCallTps`           | **rocketmq** | Consumption API call TPS peak                | userId,instanceId               | Maximum | countSecond  | 60 s |
-| `InstanceSendApiCallTps`              | **rocketmq** | Sending API call TPS peak                    | userId,instanceId               | Maximum | countSecond  | 60 s |
-| `InstanceStorageSize`                 | **rocketmq** | Instance storage size                        | userId,instanceId               | Sum     | Bytes        | 60 s |
-| `ReadyMessageQueueTime`               | **rocketmq** | Ready message queue time (Group)             | userId,instanceId,groupId       | Maximum | milliseconds | 60 s |
-| `ReadyMessageQueueTimePerGidTopic`    | **rocketmq** | Ready message queue time (Group&Topic)       | userId,instanceId,groupId,topic | Maximum | milliseconds | 60 s |
-| `ReadyMessages`                       | **rocketmq** | Ready message count (Group)                  | userId,instanceId,groupId       | Sum     | count        | 60 s |
-| `ReadyMessagesPerGidTopic`            | **rocketmq** | Ready message count (Group&Topic)            | userId,instanceId,groupId,topic | Sum     | count        | 60 s |
-| `ReceiveMessageCountPerGid`           | **rocketmq** | Messages received per minute (Group)         | userId,instanceId,groupId       | Sum     | count/min    | 60 s |
-| `ReceiveMessageCountPerGidTopic`      | **rocketmq** | Messages received per minute (Group&Topic)   | userId,instanceId,topic,groupId | Sum     | count/min    | 60 s |
-| `ReceiveMessageCountPerInstance`      | **rocketmq** | Messages received per minute (Instance)      | userId,instanceId               | Sum     | count/min    | 60 s |
-| `ReceiveMessageCountPerTopic`         | **rocketmq** | Messages received per minute (Topic)         | userId,instanceId,topic         | Sum     | count/min    | 60 s |
-| `SendDLQMessageCountPerGid`           | **rocketmq** | Dead-letter messages per minute (Group)      | userId,instanceId,groupId       | Sum     | count/min    | 60 s |
-| `SendDLQMessageCountPerGidTopic`      | **rocketmq** | Dead-letter messages per minute (Group&Topic)| userId,instanceId,groupId,topic | Sum     | count/min    | 60 s |
-| `SendMessageCountPerInstance`         | **rocketmq** | Messages sent per minute (Instance)          | userId,instanceId               | Sum     | count/min    | 60 s |
-| `SendMessageCountPerTopic`            | **rocketmq** | Messages sent per minute (Topic)             | userId,instanceId,topic         | Sum     | count/min    | 60 s |
-| `ThrottledReceiveRequestsPerGid`      | **rocketmq** | Throttled receive requests per minute (GroupId) | userId,instanceId,groupId       | Sum     | counts/min   | 60 s |
-| `ThrottledReceiveRequestsPerGidTopic` | **rocketmq** | Throttled receive requests per minute (GroupId&Topic) | userId,instanceId,topic,groupId | Sum     | counts/min   | 60 s |
-| `ThrottledReceiveRequestsPerInstance` | **rocketmq** | Throttled receive requests per minute (Instance) | userId,instanceId               | Sum     | counts/min   | 60 s |
-| `ThrottledSendRequestsPerInstance`    | **rocketmq** | Throttled send requests per minute (Instance) | userId,instanceId               | Sum     | counts/min   | 60 s |
-| `ThrottledSendRequestsPerTopic`       | **rocketmq** | Throttled send requests per minute (Topic)   | userId,instanceId,topic         | Sum     | counts/min   | 60 s |
+| MetricName | MetricCategory | MetricDescribe | Dimensions | Statistics | Unit | MinPeriods |
+| :--------- | :------------- | :------------- | :--------- | :--------- | :--- | :--------- |
+| `ConsumerLag`                         | **rocketmq** | Message backlog quantity (Group)                     | userId,instanceId,groupId       | Sum     | count        | 60 s |
+| `ConsumerLagLatencyPerGid`            | **rocketmq** | Message processing delay time (GroupId)              | userId,instanceId,groupId       | Maximum | milliseconds | 60 s |
+| `ConsumerLagLatencyPerGidTopic`       | **rocketmq** | Message processing delay time (GroupId&Topic)        | userId,instanceId,topic,groupId | Maximum | milliseconds | 60 s |
+| `ConsumerLagPerGidTopic`              | **rocketmq** | Message backlog quantity (Group&Topic)               | userId,instanceId,groupId,topic | Sum     | count        | 60 s |
+| `InstanceApiCallTps`                  | **rocketmq** | Instance API call frequency (Instance)               | userId,instanceId               | Sum     | countSecond  | 60 s |
+| `InstanceInternetFlowoutBandwidth`    | **rocketmq** | Public network downlink traffic bandwidth for 5.0 series instances | userId,instanceId               | Sum     | bytes/Second | 60 s |
+| `InstanceReceiveApiCallTps`           | **rocketmq** | Consumption API call TPS peak for 5.0 series instances | userId,instanceId               | Maximum | countSecond  | 60 s |
+| `InstanceSendApiCallTps`              | **rocketmq** | Sending API call TPS peak for 5.0 series instances   | userId,instanceId               | Maximum | countSecond  | 60 s |
+| `InstanceStorageSize`                 | **rocketmq** | Storage size for 5.0 series instances                | userId,instanceId               | Sum     | Bytes        | 60 s |
+| `ReadyMessageQueueTime`               | **rocketmq** | Ready message queue time (Group)                     | userId,instanceId,groupId       | Maximum | milliseconds | 60 s |
+| `ReadyMessageQueueTimePerGidTopic`    | **rocketmq** | Ready message queue time (Group&Topic)               | userId,instanceId,groupId,topic | Maximum | milliseconds | 60 s |
+| `ReadyMessages`                       | **rocketmq** | Ready message quantity (Group)                       | userId,instanceId,groupId       | Sum     | count        | 60 s |
+| `ReadyMessagesPerGidTopic`            | **rocketmq** | Ready message quantity (Group&Topic)                 | userId,instanceId,groupId,topic | Sum     | count        | 60 s |
+| `ReceiveMessageCountPerGid`           | **rocketmq** | Number of messages received by consumer per minute (Group) | userId,instanceId,groupId       | Sum     | count/min    | 60 s |
+| `ReceiveMessageCountPerGidTopic`      | **rocketmq** | Number of messages received by consumer per minute (Group&Topic) | userId,instanceId,topic,groupId | Sum     | count/min    | 60 s |
+| `ReceiveMessageCountPerInstance`      | **rocketmq** | Number of messages received by consumer per minute (Instance) | userId,instanceId               | Sum     | count/min    | 60 s |
+| `ReceiveMessageCountPerTopic`         | **rocketmq** | Number of messages received by consumer per minute (Topic) | userId,instanceId,topic         | Sum     | count/min    | 60 s |
+| `SendDLQMessageCountPerGid`           | **rocketmq** | Number of dead-letter messages generated per minute (Group) | userId,instanceId,groupId       | Sum     | count/min    | 60 s |
+| `SendDLQMessageCountPerGidTopic`      | **rocketmq** | Number of dead-letter messages generated per minute (Group&Topic) | userId,instanceId,groupId,topic | Sum     | count/min    | 60 s |
+| `SendMessageCountPerInstance`         | **rocketmq** | Number of messages sent by producer per minute (Instance) | userId,instanceId               | Sum     | count/min    | 60 s |
+| `SendMessageCountPerTopic`            | **rocketmq** | Number of messages sent by producer per minute (Topic) | userId,instanceId,topic         | Sum     | count/min    | 60 s |
+| `ThrottledReceiveRequestsPerGid`      | **rocketmq** | Number of throttled consumption requests per minute (GroupId) | userId,instanceId,groupId       | Sum     | counts/min   | 60 s |
+| `ThrottledReceiveRequestsPerGidTopic` | **rocketmq** | Number of throttled consumption requests per minute (GroupId&Topic) | userId,instanceId,topic,groupId | Sum     | counts/min   | 60 s |
+| `ThrottledReceiveRequestsPerInstance` | **rocketmq** | Number of throttled consumption requests per minute (Instance) | userId,instanceId               | Sum     | counts/min   | 60 s |
+| `ThrottledSendRequestsPerInstance`    | **rocketmq** | Number of throttled sending requests per minute (Instance) | userId,instanceId               | Sum     | counts/min   | 60 s |
+| `ThrottledSendRequestsPerTopic`       | **rocketmq** | Number of throttled sending requests per minute (Topic) | userId,instanceId,topic         | Sum     | counts/min   | 60 s |
 
 ## Objects {#object}
 
-The object data structure collected from Alibaba Cloud RocketMQ5 can be viewed in 「Infrastructure - Custom」.
+The object data structure collected from Alibaba Cloud RocketMQ5 can be viewed in 「Infrastructure - Custom」
 
 ```json
 {

@@ -11,12 +11,12 @@
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
+| Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
 | workspace_uuid | string | Y | Workspace UUID<br> |
 
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

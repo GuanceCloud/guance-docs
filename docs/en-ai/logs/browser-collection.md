@@ -2,21 +2,21 @@
 
 ---
 
-Send log data of different levels (`source: browser_log` Metrics type log data) from Web browsers or JavaScript clients to [Guance](https://www.guance.com).
+Send log data of different levels (`source:browser_log` Metrics type log data) from Web browsers or JavaScript clients to [<<< custom_key.brand_name >>>](https://www.guance.com/).
 
 
-- Custom log data collection, by integrating the SDK into client applications to collect log data for different scenarios;
-- Automatically collect error information from the application end (including network errors, console errors, and JS errors) and report it to Guance;
+- Custom log data collection, by integrating SDK into client applications to collect different log data for different scenarios;
+- Automatically collect error information from the application end (including network errors, console errors, and JS errors) and report it to <<< custom_key.brand_name >>>;
 - Customize error levels (`debug`, `critical`, `error`, `info`, `warn`), customize Logger objects, and customize log fields;
-- Automatically collect [RUM](../real-user-monitoring/web/app-access.md) related data, associated with RUM business scenarios.
+- Automatically collect [RUM](../real-user-monitoring/web/app-access.md) related data and associate it with RUM business scenarios.
 
 ## Getting Started
 
 ### Prerequisites
 
-- **DataKit**: Send log data to the Guance platform using the DataKit Log Collection API;
+- **DataKit**: Send log data to the <<< custom_key.brand_name >>> platform via the DataKit Log Collection API;
 
-- **Integrate SDK**: Integrate the SDK into your application via `NPM`, `CDN synchronous`, or `CDN asynchronous`;
+- **Integrate SDK**: The SDK can be integrated into your application via `NPM`, `CDN Sync`, or `CDN Async`;
 
 - **Supported Browsers**: Supports all PC and mobile browsers.
 
@@ -24,16 +24,16 @@ Send log data of different levels (`source: browser_log` Metrics type log data) 
 
 | Integration Method | Description                                                                                                                                                             |
 | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NPM                | By bundling the SDK code into your frontend project, this method ensures no impact on frontend page performance but may miss requests and errors before SDK initialization.  |
-| CDN Asynchronous   | Load SDK script asynchronously via CDN cache. This ensures that the SDK script download does not affect page load performance but may miss requests and errors before SDK initialization. |
-| CDN Synchronous    | Load SDK script synchronously via CDN cache. This ensures collecting all errors, resources, requests, and performance Metrics but may affect page load performance. |
+| NPM                | By bundling the SDK code with your frontend project, this method ensures no impact on frontend page performance but might miss requests and errors before SDK initialization. |
+| CDN Async Loading  | Using asynchronous script loading via CDN cache, this method ensures that the SDK script download does not affect page load performance but might miss requests and errors before SDK initialization. |
+| CDN Sync Loading   | Using synchronous script loading via CDN cache, this method ensures collecting all errors, resources, requests, and performance metrics but may impact page load performance. |
 
 #### NPM
 
 ```javascript
 import { datafluxLogs } from '@cloudcare/browser-logs'
 datafluxLogs.init({
-  datakitOrigin: '<DataKit domain or IP>', // Configuration required for DK integration
+  datakitOrigin: '<DataKit domain or IP>', // Required for DK integration
   clientToken: 'clientToken', // Required for public OpenWay integration
   site: 'public OpenWay address', // Required for public OpenWay integration
   //service: 'browser',
@@ -41,7 +41,7 @@ datafluxLogs.init({
 })
 ```
 
-#### CDN Asynchronous Loading
+#### CDN Async Loading
 
 ```html
 <script>
@@ -57,10 +57,10 @@ datafluxLogs.init({
     d.src = n
     n = o.getElementsByTagName(u)[0]
     n.parentNode.insertBefore(d, n)
-  })(window, document, 'script', 'https://static.guance.com/browser-sdk/v3/dataflux-logs.js', 'DATAFLUX_LOGS')
+  })(window, document, 'script', 'https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-logs.js', 'DATAFLUX_LOGS')
   DATAFLUX_LOGS.onReady(function () {
     DATAFLUX_LOGS.init({
-      datakitOrigin: '<DataKit domain or IP>', // Configuration required for DK integration
+      datakitOrigin: '<DataKit domain or IP>', // Required for DK integration
       clientToken: 'clientToken', // Required for public OpenWay integration
       site: 'public OpenWay address', // Required for public OpenWay integration
       //service: 'browser',
@@ -70,14 +70,14 @@ datafluxLogs.init({
 </script>
 ```
 
-#### CDN Synchronous Loading
+#### CDN Sync Loading
 
 ```html
-<script src="https://static.guance.com/browser-sdk/v3/dataflux-logs.js" type="text/javascript"></script>
+<script src="https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-logs.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_LOGS &&
     window.DATAFLUX_LOGS.init({
-      datakitOrigin: '<DataKit domain or IP>', // Configuration required for DK integration
+      datakitOrigin: '<DataKit domain or IP>', // Required for DK integration
       clientToken: 'clientToken', // Required for public OpenWay integration
       site: 'public OpenWay address', // Required for public OpenWay integration
       //service: 'browser',
@@ -90,24 +90,24 @@ datafluxLogs.init({
 
 ### Initialization Parameters
 
-| **Parameter**               | **Type**    | **Required** | **Default Value** | **Description**                                                                                                                                       |
-| --------------------------- | ----------- | ------------ | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `datakitOrigin`             | String      | Yes          |                   | DataKit data reporting Origin: `Protocol (including: //), domain name (or IP address) [and port number]`, e.g., https://www.datakit.com, http://100.20.34.3:8088. |
-| `clientToken`               | String      | Yes          |                   | Data token for reporting data via openway, obtained from the Guance console (required for public openway integration).                               |
-| `site`                      | String      | Yes          |                   | Data reporting address for public openway, obtained from the Guance console (required for public openway integration).                                |
-| `service`                   | String      | No           | `browser`         | Log Service name                                                                                                                                      |
-| `env`                       | String      | No           |                   | Current environment of the web application, e.g., Prod: production environment; Gray: gray release environment; Pre: pre-release environment.        |
-| `version`                   | String      | No           |                   | Version number of the web application                                                                                                                 |
-| `sessionSampleRate`         | Number      | No           | `100`             | Percentage of Metrics data collected: `100` means full collection, `0` means no collection                                                             |
-| `forwardErrorsToLogs`       | Boolean     | No           | `true`            | Set to `false` to stop collecting console.error, JS, and network errors in Guance log data                                                            |
-| `silentMultipleInit`        | Boolean     | No           | `false`           | Prevent multiple log objects from being initialized                                                                                                   |
-| `forwardConsoleLogs`        | String/Array|              |                   | Console log types to collect, options include: `error`, `log`, `info`, `warn`, `error`                                                               |
-| `storeContextsToLocal`      | Boolean     | No           |                   | Version requirement: `>3.1.2`. Whether to cache user-defined data locally in localstorage, e.g., custom data added via `setUser`, `addGlobalContext` APIs. |
-| `storeContextsKey`          | String      | No           |                   | Version requirement: `>3.1.18`. Define the key stored in localstorage, default is auto-generated. Mainly used to distinguish shared stores under the same domain. |
+| **Parameter**               | **Type**    | **Required** | **Default Value** | **Description**                                                                                                                               |
+| --------------------------- | ----------- | ------------ | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `datakitOrigin`             | String      | Yes          |                   | DataKit data reporting Origin: `protocol (including: //), domain name (or IP address) [and port number]`. Example: https://www.datakit.com.  |
+| `clientToken`               | String      | Yes          |                   | Data reporting token for openway method, obtained from the <<< custom_key.brand_name >>> console (required for public openway integration).  |
+| `site`                      | String      | Yes          |                   | Data reporting URL for public openway method, obtained from the <<< custom_key.brand_name >>> console (required for public openway integration). |
+| `service`                   | String      | No           | `browser`         | Log Service name                                                                                                                             |
+| `env`                       | String      | No           |                   | Current environment of the web application, e.g., Prod: production; Gray: gray release; Pre: pre-release; Common: daily; Local: local.       |
+| `version`                   | String      | No           |                   | Version number of the web application                                                                                                        |
+| `sessionSampleRate`         | Number      | No           | `100`             | Percentage of metric data collection: `100` means full collection, `0` means no collection                                                   |
+| `forwardErrorsToLogs`       | Boolean     | No           | `true`            | Set to `false` to stop collecting console.error, JS, and network errors in <<< custom_key.brand_name >>> log data                           |
+| `silentMultipleInit`        | Boolean     | No           | `false`           | Prevent multiple log objects from being initialized                                                                                          |
+| `forwardConsoleLogs`        | String/Array| No           |                   | Console log types to collect, options: `error`, `log`, `info`, `warn`, `error`                                                              |
+| `storeContextsToLocal`      | Boolean     | No           |                   | Version requirement: `>3.1.2`. Whether to cache user-defined data in localstorage, e.g., data added via `setUser`, `addGlobalContext` APIs.  |
+| `storeContextsKey`          | String      | No           |                   | Version requirement: `>3.1.18`. Define the key for storing data in localstorage, auto-generated if not specified, mainly for distinguishing store usage under the same domain with different sub-paths. |
 
 ## Usage
 
-After initializing the SDK in your application, you can customize log data using exposed JS APIs.
+After initializing the SDK in your application, you can customize log data through exposed JS APIs.
 
 ```javascript
 logger.debug | info | warn | error | critical (message: string, messageContext = Context)
@@ -121,7 +121,7 @@ import { datafluxLogs } from '@cloudcare/browser-logs'
 datafluxLogs.logger.info('Button clicked', { name: 'buttonName', id: 123 })
 ```
 
-### CDN Asynchronous
+### CDN Async
 
 ```javascript
 DATAFLUX_LOGS.onReady(function () {
@@ -129,13 +129,13 @@ DATAFLUX_LOGS.onReady(function () {
 })
 ```
 
-### CDN Synchronous
+### CDN Sync
 
 ```javascript
 window.DATAFLUX_LOGS && DATAFLUX_LOGS.logger.info('Button clicked', { name: 'buttonName', id: 123 })
 ```
 
-## Returned Data Structure
+## Return Data Structure
 
 ```json
 {
@@ -207,40 +207,40 @@ log (message: string, messageContext: Context, status? = 'debug' | 'info' | 'war
 ```javascript
 import { datafluxLogs } from '@cloudcare/browser-logs'
 
-datafluxLogs.logger.log(<MESSAGE>, <JSON_ATTRIBUTES>, <STATUS>);
+datafluxLogs.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<STATUS>);
 ```
 
-### CDN Asynchronous
+### CDN Async
 
 ```javascript
 DATAFLUX_LOGS.onReady(function () {
-  DATAFLUX_LOGS.logger.log(<MESSAGE>, <JSON_ATTRIBUTES>, <STATUS>);
+  DATAFLUX_LOGS.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<STATUS>);
 })
 ```
 
-### CDN Synchronous
+### CDN Sync
 
 ```javascript
-window.DATAFLUX_LOGS && DATAFLUX_LOGS.logger.log(<MESSAGE>, <JSON_ATTRIBUTES>, <STATUS>);
+window.DATAFLUX_LOGS && DATAFLUX_LOGS.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<STATUS>);
 ```
 
-## Parameter Explanation
+## Parameter Description
 
 | **Parameter**            | **Description**                                                    |
 | ------------------------ | ------------------------------------------------------------------- |
-| `<MESSAGE>`              | Message field in Guance logs                                       |
-| `<JSON_ATTRIBUTES>`      | Additional data describing the Message, as a JSON object           |
-| `<STATUS>`               | Log level, options include `debug`, `info`, `warn`, `error`, `critical` |
+| `<MESSAGE>`              | Message field in <<< custom_key.brand_name >>> logs                 |
+| `<JSON_ATTRIBUTES>`      | Additional data describing the message, a JSON object               |
+| `<STATUS>`               | Log level, options: `debug`,`info`,`warn`,`error`,`critical`        |
 
-## Adding Custom Tags
+## Adding Custom Data Tags
 
 ---
 
-After initializing LOG, use the `setGlobalContextProperty(key:string, value:any)` API to add additional tags to all collected LOG events from the application.
+After initializing the log, use the `setGlobalContextProperty(key:string, value:any)` API to add extra tags to all collected log events.
 
 ### Adding Tags
 
-=== "CDN Synchronous"
+=== "CDN Sync"
 
     ```javascript
     window.DATAFLUX_LOGS && window.DATAFLUX_LOGS.setGlobalContextProperty('<CONTEXT_KEY>', '<CONTEXT_VALUE>');
@@ -253,7 +253,7 @@ After initializing LOG, use the `setGlobalContextProperty(key:string, value:any)
     });
     ```
 
-=== "CDN Asynchronous"
+=== "CDN Async"
 
     ```javascript
     DATAFLUX_LOGS.onReady(function() {
@@ -289,7 +289,7 @@ After initializing LOG, use the `setGlobalContextProperty(key:string, value:any)
 
 ### Replacing Tags (Overwrite)
 
-=== "CDN Synchronous"
+=== "CDN Sync"
 
     ```javascript
     window.DATAFLUX_LOGS &&
@@ -302,7 +302,7 @@ After initializing LOG, use the `setGlobalContextProperty(key:string, value:any)
         });
     ```
 
-=== "CDN Asynchronous"
+=== "CDN Async"
 
     ```javascript
      window.DATAFLUX_LOGS.onReady(function() {
@@ -332,14 +332,14 @@ After initializing LOG, use the `setGlobalContextProperty(key:string, value:any)
 
 ### Retrieving All Custom Tags
 
-=== "CDN Synchronous"
+=== "CDN Sync"
 
     ```javascript
     var context = window.DATAFLUX_LOGS &&  window.DATAFLUX_LOGS.getGlobalContext();
 
     ```
 
-=== "CDN Asynchronous"
+=== "CDN Async"
 
     ```javascript
      window.DATAFLUX_LOGS.onReady(function() {
@@ -358,14 +358,14 @@ After initializing LOG, use the `setGlobalContextProperty(key:string, value:any)
 
 ### Removing Specific Key's Custom Tag
 
-=== "CDN Synchronous"
+=== "CDN Sync"
 
     ```javascript
     var context = window.DATAFLUX_LOGS &&  window.DATAFLUX_LOGS.removeGlobalContextProperty('<CONTEXT_KEY>');
 
     ```
 
-=== "CDN Asynchronous"
+=== "CDN Async"
 
     ```javascript
      window.DATAFLUX_LOGS.onReady(function() {
@@ -383,14 +383,14 @@ After initializing LOG, use the `setGlobalContextProperty(key:string, value:any)
 
 ### Removing All Custom Tags
 
-=== "CDN Synchronous"
+=== "CDN Sync"
 
     ```javascript
     var context = window.DATAFLUX_LOGS &&  window.DATAFLUX_LOGS.clearGlobalContext();
 
     ```
 
-=== "CDN Asynchronous"
+=== "CDN Async"
 
     ```javascript
      window.DATAFLUX_LOGS.onReady(function() {
@@ -410,19 +410,19 @@ After initializing LOG, use the `setGlobalContextProperty(key:string, value:any)
 
 ---
 
-By default, the SDK automatically generates a unique ID for each user. This ID does not contain any identifying attributes and only distinguishes between different users. To provide more identifying attributes for the current user, additional APIs are available.
+By default, the SDK automatically generates a unique identifier ID for each user. This ID has no identifying attributes and is only used to distinguish different users. We provide additional APIs to add different identifying attributes to the current user.
 
 | Property       | Type   | Description               |
-| -------------- | ------ | ------------------------- |
-| user.id        | string | User ID                   |
-| user.name      | string | Username or nickname      |
-| user.email     | string | User email                |
+| -------------- | ------ | -------------------------- |
+| user.id        | string | User ID                    |
+| user.name      | string | User nickname or username  |
+| user.email     | string | User email                 |
 
-**Note**: The following properties are optional, but it is recommended to provide at least one.
+**Note**: These properties are optional, but it is recommended to provide at least one.
 
 ### Adding User Identification
 
-=== "CDN Synchronous"
+=== "CDN Sync"
 
     ```javascript
     window.DATAFLUX_LOGS && window.DATAFLUX_LOGS.setUser({
@@ -432,7 +432,7 @@ By default, the SDK automatically generates a unique ID for each user. This ID d
     })
     ```
 
-=== "CDN Asynchronous"
+=== "CDN Async"
 
     ```javascript
     window.DATAFLUX_LOGS.onReady(function() {
@@ -457,13 +457,13 @@ By default, the SDK automatically generates a unique ID for each user. This ID d
 
 ### Removing User Identification
 
-=== "CDN Synchronous"
+=== "CDN Sync"
 
     ```javascript
     window.DATAFLUX_LOGS && window.DATAFLUX_LOGS.clearUser()
     ```
 
-=== "CDN Asynchronous"
+=== "CDN Async"
 
     ```javascript
     window.DATAFLUX_LOGS.onReady(function() {

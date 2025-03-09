@@ -1,8 +1,8 @@
 ---
-skip: 'reason: Not part of the integration document'
+skip: 'reason: not part of the integration documentation'
 ---
 
-# DataKit Catalog
+# DataKit Directory
 
 ## Windows
 
@@ -25,6 +25,6 @@ Under the log directory, there are mainly two files: `gin.log` and `log`
 
 ## Collectors
 
-The collector directory is `conf.d`, which contains over 200 built-in collector configurations. For example, the `conf.d/db` directory includes more than ten types of database collector configurations; `conf.d/host` also has a dozen host-related collectors.
+The collector directory is `conf.d`, which contains over 200 built-in collector configurations. For example, the `conf.d/db` directory includes more than ten types of database collector configurations; `conf.d/host` also has over a dozen host-related collectors.
 
-Among these, `conf.d/datakit.conf` is the main configuration file for the DataKit collector, including settings related to token, global tags, resources, API, etc.
+Among these, `conf.d/datakit.conf` is the main configuration file for DataKit's primary collector, including configurations related to token, global tags, resources, APIs, etc.

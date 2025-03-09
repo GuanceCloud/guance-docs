@@ -27,17 +27,17 @@
 ## Description
 
 
-- Enable the kubelet client certificate rotation
+- Enable the kubelet client certificate
 
 
 
 ## Scan Frequency
 - 0 */30 * * *
 
-## Theory
+## Theoretical Basis
 
 
-- This ensures that kubelet replaces its client certificate by creating a new CSR when its existing certificate expires, ensuring that the cluster remains available and solving the issue of certificate expiration.
+- This ensures that when its existing certificate expires, kubelet replaces its client certificate by creating a new CSR. This prevents cluster unavailability due to expired certificates and ensures certificate availability.
 
 
 
@@ -62,14 +62,14 @@ Execute the following command:
 ```bash
 #> vim /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 ```
-Set or add the parameter `--RotateKubeletServerCertificate=true` or remove `--RotateKubeletServerCertificate=false`
+Set or add the parameter --RotateKubeletServerCertificate=true or remove --RotateKubeletServerCertificate=false
 
 
 
 ## Impact
 
 
-- You must reset the certificate parameters to ensure the security and availability of the kubelet operation
+- You must reset the certificate parameters to ensure the security and availability of kubelet operation.
 
 
 
@@ -77,7 +77,7 @@ Set or add the parameter `--RotateKubeletServerCertificate=true` or remove `--Ro
 ## Default Value
 
 
-- By default: `--RotateKubeletServerCertificate=true`
+- By default: --RotateKubeletServerCertificate=true
 
 
 

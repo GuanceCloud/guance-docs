@@ -12,9 +12,9 @@ Retrieve the configuration of a user-defined node
 
 ## Route Parameters
 
-| Parameter Name    | Type   | Required | Description              |
-|:-------------|:-----|:------|:----------------|
-| region_uuid  | string | Yes  | ID of the 【User-defined Node】<br> |
+| Parameter Name   | Type     | Required | Description              |
+|:------------|:-------|:-----|:----------------|
+| region_uuid | string | Y   | ID of the 【User-defined Node】<br> |
 
 
 ## Additional Parameter Notes

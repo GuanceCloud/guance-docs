@@ -5,11 +5,12 @@
 <br />**GET /api/v1/workspace/menu_v2/get**
 
 ## Overview
-Retrieve the feature menu for the current workspace
+Retrieve the current workspace feature menu
 
 
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
+
 
 
 
@@ -19,6 +20,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/get' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 ```
+
 
 
 
@@ -81,7 +83,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/get' \
                 "value": 1
             },
             {
-                "key": "Workspace management",
+                "key": "Workspace",
                 "value": 1
             },
             {

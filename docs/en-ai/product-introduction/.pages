@@ -1,4 +1,4 @@
 nav:
   - index.md
-  - 'Glossary': glossary.md
-  - 'Customer Value': customer-value.md
+  - Concepts: glossary.md
+  - Customer Value: customer-value.md

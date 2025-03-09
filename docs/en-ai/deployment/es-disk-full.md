@@ -2,7 +2,7 @@
 
 You can choose to scale horizontally or vertically.
 
-Horizontal scaling: Add data nodes to the cluster.
+Horizontal scaling: Increase the data nodes in the cluster.
 
 Vertical scaling: Expand the data disk of the data nodes.
 
@@ -30,13 +30,13 @@ green  open   .infini_activities-00001                                          
 
 3. As shown above, each index has its size and number. We prioritize deleting indexes with smaller numbers to clean up data.
 
-> **Index Name Explanation**: An index name consists of a workspace ID + data type + number.
+> **Index Name Explanation**: The index name consists of a workspace ID + data type + number.
 
-> Note: Delete indexes in ascending order based on the same workspace and data type but different numbers. Do not delete the index with the largest number. The smaller the number, the older the data. Generally, the index with the largest number is the one currently being written to.
+> Note: Delete indexes in ascending order based on **the same workspace and data type but different numbers**, **but do not delete the largest numbered index**. Smaller numbers represent older data. Generally, the largest numbered index is the one currently being written to.
 
-For example, from the query results, you can see that there are four indexed logs for `wksp_4bcd96fc753e4a87a7f035717e3492f4_logging` with numbers 000001, 000002, 000003, and 000004. In this case, you can delete indexes 000001, 000002, and 000003 in sequence.
+For example, from the query results, you can see that `wksp_4bcd96fc753e4a87a7f035717e3492f4_logging` has four indexed logs: 000001, 000002, 000003, and 000004. In this case, you can delete up to 000001, 000002, and 000003 in order.
 
-Delete command:
+Deletion command:
 
 ```shell
 $ kubectl exec -ti -n middleware <es_pod_name> -- curl -XDELETE -u <user>:<password> 127.0.0.1:9200/<index>

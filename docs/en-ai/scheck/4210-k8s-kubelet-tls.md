@@ -27,7 +27,7 @@
 ## Description
 
 
-- N/A
+- None
 
 
 
@@ -37,7 +37,10 @@
 ## Theoretical Basis
 
 
-- Not setting up a TLS connection can lead to insecure operation on untrusted and/or public networks, making it susceptible to man-in-the-middle attacks. You can set `--tls-cert-file=<path/to/tls-certificate-file>` and `--tls-private-key-file=<path/to/tls-key-file>`.
+- Not setting up a TLS connection can lead to insecure operations on untrusted and/or public networks, making it susceptible to man-in-the-middle attacks. You should set --tls-cert-file=<path/to/tls-certificate-file> --tls-private-key-file=<path/to/tls-key-file>
+
+
+
 
 
 
@@ -57,18 +60,18 @@ ps -ef | grep kubelet
 
 
 ## Remediation
-- The kubelet version must be no lower than v1.16.0.
-Execute the following commands:
+- The kubelet version must not be lower than v1.16.0.
+Execute the following command:
 ```bash
 #> vim /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 ```
-Set or add parameters `--tls-cert-file` and `--tls-private-key-file`.
-Note: If the `--tls-cert-file` parameter exists, set it to the corresponding CA file path.
-If this parameter does not exist, check the configuration file specified by the `-config` parameter used to start kubelet,
-and ensure that the `tlsCertFile` and `tlsPrivateKeyFile` settings are set to the appropriate file paths.
-If the kubelet server is started via command line, follow the configurations specified by `-config`.
+Set or add parameters --tls-cert-file and --tls-private-key-file.
+Note: If the --tls-cert-file parameter exists, set it to the corresponding CA file path.
+If this parameter does not exist, check the configuration file specified by the -config parameter used to start kubelet,
+and ensure that the tlsCertFile and tlsPrivateKeyFile settings in the file are set to the correct file paths.
+If the kubelet server is started via command line, follow the configuration specified by -config.
 
-After setting these parameters and ensuring they are correct, restart kubelet as follows:
+After setting these parameters and ensuring they are correct, restart kubelet as shown below:
 ```bash
 systemctl daemon-reload
 systemctl restart kubelet.service
@@ -78,12 +81,12 @@ systemctl restart kubelet.service
 ## Impact
 
 
-- N/A
+- None
 
 
 
 
-## Default Values
+## Default Value
 
 
 - By default: certificate locations are not configured.
@@ -101,4 +104,4 @@ systemctl restart kubelet.service
 ## CIS Controls
 
 
-- N/A
+- None

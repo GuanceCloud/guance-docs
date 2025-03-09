@@ -11,12 +11,13 @@ Enable a user-defined security check based on `checker_uuid`
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description |
-|:--------------|:-------|:---------|:------------|
-| ruleUUIDs     | array  |          | UUID of the user-defined security check<br>Example: rul_xxxxx <br>Nullable: False <br> |
-| refKey        | string |          | Associated key of the user-defined security check<br>Example: xxx <br>Nullable: False <br> |
+| Parameter Name | Type   | Required | Description              |
+|:-----------|:-------|:-----|:----------------|
+| ruleUUIDs | array | No  | UUID of the user-defined security check<br>Example: rul_xxxxx <br>Can be empty: False <br> |
+| refKey | string | No  | Associated key of the user-defined security check<br>Example: xxx <br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
+
 
 
 ## Request Example

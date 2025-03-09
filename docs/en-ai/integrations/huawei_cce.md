@@ -1,5 +1,5 @@
 ---
-title: 'Collecting Huawei Cloud CCE Metrics Data with Guance'
+title: 'Collect Huawei Cloud CCE Metrics Data with Guance'
 tags: 
   - Huawei Cloud
 summary: 'Guance supports monitoring the operational status and service capabilities of various resources in CCE, including Containers, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs, Cron Jobs, etc.'
@@ -10,15 +10,15 @@ dashboard:
     path: 'dashboard/en/huawei_cce'
 
 monitor:
-  - desc: 'Huawei Cloud CCE Monitoring Library'
+  - desc: 'Huawei Cloud CCE Detection Library'
     path: 'monitor/en/huawei_cce'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Collecting Huawei Cloud CCE Metrics Data with Guance
+# Collect Huawei Cloud CCE Metrics Data with Guance
 <!-- markdownlint-enable -->
 
-Guance supports monitoring the operational status and service capabilities of various resources in CCE, including Containers, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs, Cron Jobs, etc. You can install `DataKit` via DaemonSet in Kubernetes to collect data from Kubernetes resources. Finally, monitor the operational status of various Kubernetes resources in real-time using Guance.
+Guance supports monitoring the operational status and service capabilities of various resources in CCE, including Containers, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs, Cron Jobs, etc. You can install `DataKit` via DaemonSet in Kubernetes to collect data from Kubernetes resources. Ultimately, you can monitor the operation of various Kubernetes resources in real-time using Guance.
 
 ## Configuration {#config}
 
@@ -43,14 +43,14 @@ There are two methods to install `DataKit` via DaemonSet in Kubernetes:
 
 ##### 1. Add the `Datakit` Helm Repository
 
-To install the `Datakit` collector using Helm, you need to first install Helm on your server. After installing Helm, add the Datakit Helm repository.
+To install `Datakit` using Helm, you need to first install Helm on your server. After installing Helm, add the Datakit Helm repository.
 
 ```Bash
 helm repo add datakit https://pubrepo.guance.com/chartrepo/datakit 
 helm repo update
 ```
 
-> After adding the `Datakit` Helm repository, you must execute `helm repo update` to update the local repository.
+> After adding the `Datakit` Helm repository, you must run `helm repo update` to update the local repository.
 
 ![img](imgs/cce_im01.png)
 
@@ -59,15 +59,15 @@ helm repo update
 ```Bash
 # Download the datakit chart
 helm pull datakit/datakit
-# Extract 
+# Extract
 tar xvf datakit-1.14.2.tgz
 ```
 
 ![img](imgs/cce_im02.png)
 
-##### 3. Customize the `Datakit` Installation Parameters
+##### 3. Customize `Datakit` Installation Parameters
 
-Uncomment the ENV_NAMESPACE under extraEnvs and modify the cluster name.
+Uncomment the `ENV_NAMESPACE` under `extraEnvs` and modify the cluster name.
 
 ```YAML
 extraEnvs:
@@ -85,15 +85,15 @@ extraEnvs:
     value: cluster_name_k8s=hwcce-k8s
 ```
 
-##### 4. Install `Datakit` Using Helm
+##### 4. Helm Install `Datakit`
 
-Modify the token data in `datakit.dataway_url`.
+Modify the `datakit.dataway_url` token data.
 
 ```Bash
 helm install datakit -n datakit -f datakit/values.yaml  datakit --set datakit.dataway_url="https://openway.guance.com?token=tkn_1661b3cb5fc442719eae064edb979b5d" --create-namespace
 ```
 
-The token can be obtained from the Guance workspace under "Integration" -> "Datakit".
+You can obtain the token from the Guance workspace under "Integration" - "Datakit".
 
 ![img](imgs/cce_im03.png)
 
@@ -107,15 +107,15 @@ After installing Datakit, you can check the deployment status using `helm -n dat
 
 ![img](imgs/cce_im05.png)
 
-##### 6. View and Analyze Collected K8S Data in the Guance Workspace
+##### 6. View and Analyze Collected K8S Data in Guance Workspace
 
-Once the `DataKit` deployment is successful, you can view and analyze the collected K8S data in the Guance workspace under "Infrastructure" -> "Containers".
+If the `DataKit` deployment is successful, you can view and analyze the collected K8S data in the Guance workspace under "Infrastructure" - "Containers".
 
 ![img](imgs/cce_im06.png)
 
 ##### 7. Add Dashboard
 
-After K8S data can be collected normally, you can add a new dashboard in the Guance workspace under "Scenarios" -> "Dashboards" -> "Create New Dashboard". Search for the Kubernetes monitoring view, and you will see the following dashboard.
+Once K8S data is being collected normally, you can create a new dashboard in the Guance workspace under "Scenarios" - "Dashboards" - "Create Dashboard", and search for Kubernetes monitoring views to see the following dashboards.
 
 ![img](imgs/cce_im07.png)
 
@@ -123,7 +123,7 @@ After K8S data can be collected normally, you can add a new dashboard in the Gua
 
 ##### 1. Download YAML File
 
-Before enabling Kubernetes resource collection, use a terminal tool to log in to the server and execute the following script command to download the yaml file.
+Before enabling Kubernetes resource collection, use a terminal tool to log into the server and execute the following script command to download the YAML file.
 
 ```Bash
 wget https://static.guance.com/datakit/datakit.yaml
@@ -131,7 +131,7 @@ wget https://static.guance.com/datakit/datakit.yaml
 
 ![img](imgs/cce_im08.png)
 
-##### 2. Modify the `datakit.yaml` File
+##### 2. Modify `datakit.yaml` File
 
 Edit the `datakit.yaml` file to configure the data gateway `dataway`, replacing the `token` with the workspace's `token`.
 
@@ -140,18 +140,18 @@ Edit the `datakit.yaml` file to configure the data gateway `dataway`, replacing 
 2.    value: https://openway.guance.com?token=<your-token> # Replace with the actual dataway URL
 ```
 
-Add an environment variable `ENV_NAMESPACE` to set the cluster name. The name can be customized, such as setting it to `hwcce_k8s`:
+Add the environment variable `ENV_NAMESPACE` to set the cluster name, which can be customized, for example, `hwcce_k8s`:
 
 ```yaml
 1. - name: ENV_NAMESPACE 
-     value: hwcce_k8s # Replace with the cluster name
+     value: hwcce_k8s # Fill in the cluster name here
 ```
 
-Add an environment variable `ENV_GLOBAL_ELECTION_TAGS` to differentiate election metrics by cluster:
+Add the environment variable `ENV_GLOBAL_ELECTION_TAGS` to distinguish clusters for election metrics:
 
 ```yaml
 1. - name: ENV_GLOBAL_ELECTION_TAGS
-2.   value: cluster_name_k8s=hwcce_k8s # Replace with the cluster name
+2.   value: cluster_name_k8s=hwcce_k8s # Fill in the cluster name here
 ```
 
 Modify the environment variable `ENV_GLOBAL_TAGS` to set global tags for non-election metrics:
@@ -161,7 +161,7 @@ Modify the environment variable `ENV_GLOBAL_TAGS` to set global tags for non-ele
 2.   value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=hwcce_k8s # Add cluster_name_k8s here
 ```
 
-The `token` can be obtained from the Guance workspace under "Integration" -> "Datakit".
+You can obtain the `token` from the Guance workspace under "Integration" - "Datakit".
 
 ![img](imgs/cce_im09.png)
 
@@ -169,24 +169,24 @@ After making the replacements, save the `datakit.yaml` file.
 
 ![img](imgs/cce_im10.png)
 
-##### 3. Install the YAML File
+##### 3. Install YAML File
 
-After modifying the data gateway configuration in the `datakit.yaml` file, use the command `kubectl apply -f datakit.yaml` to install the YAML file. The filename should match the one you saved.
+After modifying the data gateway configuration in the `datakit.yaml` file, use the command `kubectl apply -f datakit.yaml` to install the YAML file, where `datakit.yaml` is the filename, depending on what you saved it as.
 
 ![img](imgs/cce_im11.png)
 
 ##### 4. Check Datakit Running Status
 
-After installing the YAML file, a `datakit` DaemonSet deployment will be created. Use the command `kubectl get pod -n datakit` to check the running status of `datakit`.
+After installing the YAML file, a `datakit` DaemonSet deployment will be created. You can check the `datakit` running status using the command `kubectl get pod -n datakit`.
 
 ![img](imgs/cce_im12.png)
 
-##### 5. View and Analyze Collected K8S Data in the Guance Workspace
+##### 5. View and Analyze Collected K8S Data in Guance Workspace
 
 ![img](imgs/cce_im06.png)
 
 ##### 6. Add Dashboard
 
-After K8S data can be collected normally, you can add a new dashboard in the Guance workspace under "Scenarios" -> "Dashboards" -> "Create New Dashboard". Search for the Kubernetes monitoring view, and you will see the following dashboard.
+Once K8S data is being collected normally, you can create a new dashboard in the Guance workspace under "Scenarios" - "Dashboards" - "Create Dashboard", and search for Kubernetes monitoring views to see the following dashboards.
 
 ![img](imgs/cce_im07.png)

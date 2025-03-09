@@ -4,51 +4,51 @@
 
 ## Background
 
-Monitoring abnormal host restarts is a crucial aspect of modern internet system operations. On one hand, the stability and reliability of computer systems are essential for smooth business operations and user experience. When issues like abnormal host restarts occur, they can lead to system crashes, service interruptions, and data loss, thereby impacting business operations and user satisfaction. On the other hand, in cloud computing and virtualized environments, the number and scale of hosts continue to grow, increasing system complexity and the likelihood of problems. This necessitates that system administrators use relevant monitoring tools for real-time monitoring and timely detection and resolution of abnormal restarts. Therefore, implementing effective host restart monitoring helps businesses quickly diagnose issues, reduce operational risks, improve operational efficiency, and enhance user experience.
+Monitoring abnormal host restarts is an important aspect of modern internet system operations. On one hand, the stability and reliability of computer systems are crucial for smooth business operations and user experience. When issues such as abnormal host restarts occur, they can lead to system crashes, service interruptions, and data loss, thereby impacting business operations and customer satisfaction. On the other hand, in cloud computing and virtualized environments, the number and scale of hosts continue to increase, and system complexity is also rising, increasing the likelihood of problems. Therefore, system administrators need to use relevant monitoring tools for real-time monitoring and promptly identify and resolve abnormal restarts. Properly implementing host restart monitoring helps businesses quickly diagnose issues, reduce business risks, improve operational efficiency, and enhance user experience.
 
 ## Prerequisites
 
-1. Set up [DataFlux Func (Guance Special Edition)](https://func.guance.com/#/), or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
-2. Create an [API Key](../../management/api-key/open-api.md) in Guance under "Management / API Key Management"
+1. Self-host [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/) or subscribe to [DataFlux Func (Automata)](../../dataflux-func/index.md)
+2. In <<< custom_key.brand_name >>> "Management / API Key Management," create an [API Key](../../management/api-key/open-api.md) for operations.
 
-> **Note**: If you plan to deploy DataFlux Func offline using a cloud server, consider deploying it with the current SaaS deployment of Guance on the [same operator and region](../../../getting-started/necessary-for-beginners/select-site/).
+> **Note**: If you plan to use a cloud server for offline deployment of DataFlux Func, consider deploying it with the current <<< custom_key.brand_name >>> SaaS deployment on the [same provider and region](../../../getting-started/necessary-for-beginners/select-site/).
 
 ## Enabling Inspection
 
-In your self-hosted DataFlux Func, install the "Self-hosted Inspection (Host Restart)" script from the "Script Market" and configure the Guance API Key to enable it.
+In your self-hosted DataFlux Func, install "<<< custom_key.brand_name >>> Self-built Inspection (Host Restart)" via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to enable it.
 
-Select the inspection scenario you want to enable in the DataFlux Func Script Market, click Install, configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
+Select the required inspection scenario in the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
 
 ![image](../img/create_checker.png)
 
-After successfully deploying the startup script, it will automatically create the startup script and trigger configuration. You can directly jump to view the corresponding configuration via the link.
+After successfully deploying the startup script, it will automatically create the startup script and auto-trigger configuration. You can directly jump to view the corresponding configuration via the link.
 
 ![image](../img/success_checker.png)
 
 ## Configuring Inspection
 
-Configure the inspection conditions you want to filter in the Guance Studio Monitoring - Smart Inspection module or in the startup script automatically created by DataFlux Func. Refer to the following two configuration methods:
+Configure the desired filtering conditions for inspection in either the <<< custom_key.brand_name >>> Studio under Monitoring - Smart Inspection module or in the startup script automatically created by DataFlux Func. Refer to the two configuration methods below:
 
-### Configuring Inspection in Guance
+### Configuring Inspection in <<< custom_key.brand_name >>>
 
 ![image](../img/host-restart02.png)
 
 #### Enable/Disable
 
-Host restart inspection is enabled by default. It can be manually disabled. Once enabled, it will inspect the configured list of hosts.
+Host restart inspection is set to "Enabled" by default and can be manually "Disabled." Once enabled, it will inspect the configured list of hosts.
 
 #### Editing
 
-The "Host Restart Inspection" feature supports manual addition of filtering conditions. Click the **Edit** button in the operation menu on the right side of the smart inspection list to edit the inspection template.
+Smart Inspection "Host Restart Inspection" supports manual addition of filtering conditions. Click the **Edit** button in the operation menu on the right side of the smart inspection list to edit the inspection template.
 
 * Filtering Conditions: Configure the hosts to be inspected.
-* Alert Notifications: Supports selecting and editing alert policies, including event severity levels, notification targets, and alert silence periods.
+* Alert Notifications: Supports selecting and editing alert strategies, including event severity, notification targets, and alert mute periods.
 
-Click Edit in the configuration entry parameters and fill in the corresponding inspection objects in the parameter configuration, then save and start the inspection:
+Click Edit in the entry parameter configuration and fill in the corresponding detection objects in the parameter configuration, then save and start the inspection:
 
 ![image](../img/host-restart03.png)
 
-You can reference the following configuration for multiple hosts:
+You can refer to the following configuration for multiple host information:
 
 ```
 Example configs:
@@ -57,11 +57,11 @@ Example configs:
           host3
 ```
 
-> **Note**: In your self-hosted DataFlux Func, when writing custom inspection handling functions, you can also add filtering conditions (refer to example code configuration). Note that parameters configured in the Guance Studio will override those set in the custom inspection handling function.
+> **Note**: In self-hosted DataFlux Func, when writing self-built inspection processing functions, you can add filtering conditions (refer to sample code configuration). Note that parameters configured in <<< custom_key.brand_name >>> Studio will override those configured in the self-built inspection processing function.
 
 ### Configuring Inspection in DataFlux Func
 
-After configuring the required filtering conditions in DataFlux Func, you can test the script by clicking the `run()` method directly on the page. After publishing, the script will execute normally. You can also view or change the configuration in the Guance "Monitoring / Smart Inspection" section.
+In DataFlux Func, after configuring the required filtering conditions, you can test by selecting the `run()` method directly on the page. After clicking Publish, the script will run normally. You can also view or modify configurations in <<< custom_key.brand_name >>> "Monitoring / Smart Inspection."
 
 ```python
 from guance_monitor__register import self_hosted_monitor
@@ -81,10 +81,10 @@ def filter_host(host):
 @DFF.API('Host Restart Inspection', fixed_crontab='*/15 * * * *', timeout=900)
 def run(configs=None):
     '''
-  Optional Parameters:
+  Optional parameters:
     configs : 
-            List of hosts to inspect (optional; if not configured, defaults to all hosts in the current workspace)
-            Multiple hosts can be specified (using newline separation); if not configured, defaults to all hosts in the current workspace
+            List of hosts to be inspected (optional; defaults to all hosts in the current workspace if not specified)
+            Multiple hosts can be specified (separated by new lines); defaults to all hosts in the current workspace if not specified
     Example configs:
             host1
             host2
@@ -99,19 +99,19 @@ def run(configs=None):
 
 ## Viewing Events
 
-This inspection scans for host restart events within the last 15 minutes. Once a restart occurs, the smart inspection generates corresponding events. Click the **View Related Events** button in the operation menu on the right side of the smart inspection list to view the associated abnormal events.
+This inspection scans for host restart events within the last 15 minutes. Once a restart occurs, the smart inspection generates the corresponding event. In the operation menu on the right side of the smart inspection list, click the **View Related Events** button to view the corresponding abnormal events.
 
 ![image](../img/host-restart04.png)
 
 ### Event Details Page
 
-Click **Event** to view the details page of the smart inspection event, including event status, time of occurrence, anomaly name, basic attributes, event details, alert notifications, historical records, and related events.
+Click **Event** to view the details page of the smart inspection event, including event status, occurrence time, anomaly name, basic attributes, event details, alert notifications, history, and related events.
 
 * Click the small icon labeled "View Monitor Configuration" in the top-right corner of the details page to view and edit the current smart inspection configuration.
 
 #### Basic Attributes
 
-* Detection Dimensions: Based on the filtering conditions configured in the smart inspection, support copying, adding to filters, and viewing related logs, containers, processes, security checks, traces, RUM, Synthetic Tests, and CI data in `key/value` format.
+* Detection Dimensions: Based on the filtering conditions configured in the smart inspection, support copying `key/value`, adding to filters, and viewing related logs, containers, processes, security checks, traces, user access monitoring, synthetic tests, and CI data.
 * Extended Attributes: Selecting extended attributes allows copying in `key/value` format and forward/reverse filtering.
 
 ![image](../img/host-restart05.png)
@@ -120,19 +120,19 @@ Click **Event** to view the details page of the smart inspection event, includin
 
 * Event Overview: Describes the object and content of the abnormal inspection event.
 * Host Details: View key metrics of the host during the restart period.
-* Anomaly Logs: View detailed information about the current anomaly logs.
+* Anomaly Logs: View detailed logs of the current anomaly.
 
 ![image](../img/host-restart06.png)
 
-#### Historical Records
+#### History
 
-Support viewing the detected object, anomaly/recovery times, and duration.
+Supports viewing detected objects, anomaly/recovery times, and duration.
 
 ![image](../img/host-restart07.png)
 
 #### Related Events
 
-Support viewing related events through filtering fields and selected time component information.
+Supports viewing related events using filtered fields and selected time components.
 
 ![image](../img/host-restart08.png)
 
@@ -142,22 +142,22 @@ Support viewing related events through filtering fields and selected time compon
 
 ## Common Issues
 
-**1. How to configure the inspection frequency for host restarts**
+**1. How to configure the frequency of host restart inspections**
 
-In your self-hosted DataFlux Func, add `fixed_crontab='*/15 * * * *', timeout=900` in the decorator when writing the custom inspection handling function, then configure it in "Management / Automatic Trigger Configuration".
+In self-hosted DataFlux Func, add `fixed_crontab='*/15 * * * *', timeout=900` in the decorator when writing self-built inspection processing functions, then configure it in "Management / Auto-Trigger Configuration."
 
-**2. No anomaly analysis in the host restart inspection report**
+**2. Why there might be no anomaly analysis when host restart inspections trigger**
 
-If there is no anomaly analysis in the inspection report, check the current `datakit` data collection status.
+When there is no anomaly analysis in the inspection report, check the data collection status of the current `datakit`.
 
-**3. Previously normal scripts encounter errors during inspection**
+**3. Previously working scripts fail during inspection**
 
-Update the referenced script set in the DataFlux Func Script Market. You can check the update records of the script market via the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate immediate script updates.
+Update the referenced script sets in the DataFlux Func Script Market. You can view the update records of the script market via the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate timely script updates.
 
-**4. Startup script set does not change during inspection script upgrade**
+**4. No changes in the script set in Startup during script upgrade**
 
-First delete the corresponding script set, then click the upgrade button and configure the corresponding Guance API Key to complete the upgrade.
+Delete the corresponding script set first, then click the Upgrade button to configure the corresponding <<< custom_key.brand_name >>> API Key to complete the upgrade.
 
 **5. How to determine if the inspection has taken effect after enabling**
 
-Check the corresponding inspection status in "Management / Automatic Trigger Configuration". The status should be enabled first, then verify the inspection script by clicking Execute. If it shows "Executed successfully X minutes ago," the inspection is running normally and has taken effect.
+In "Management / Auto-Trigger Configuration," check the corresponding inspection status. It should be Enabled first, then verify the inspection script by clicking Execute. If it shows "Executed Successfully xxx minutes ago," the inspection is running normally and taking effect.

@@ -1,4 +1,4 @@
 nav:
   - index.md 
-  - 'Billing Account': billing-account
+  - 'Billing': billing-account
   - FAQ: faq

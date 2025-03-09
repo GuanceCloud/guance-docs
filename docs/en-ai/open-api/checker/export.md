@@ -1,23 +1,23 @@
-# Export One or Multiple Monitors
+# Export One or Multiple Checkers
 
 ---
 
 <br />**POST /api/v1/checker/export**
 
 ## Overview
-Export the configuration of one or multiple monitors based on the specified list of checker UUIDs.
+Export the configuration of one or multiple checkers based on the specified checker UUID list.
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                         |
-|:--------------|:-------|:---------|:------------------------------------|
+| Parameter Name | Type   | Required | Description                           |
+|:--------------|:-------|:---------|:--------------------------------------|
 | checkers      | array  | Y        | Array of checker_uuids<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
-**Related API: Import One or Multiple Monitors**
+**Related API: Import One or Multiple Checkers**
 
-The `checkers` parameter in the import monitor API is the same as the `content.checkers` content returned by a successful export monitor request.
+The `checkers` parameter in the import checkers API is the content of `content.checkers` returned by the successful export of checkers.
 
 ## Request Example
 ```shell
@@ -141,8 +141,8 @@ curl 'https://openapi.guance.com/api/v1/checker/export' \
                         "instanceId"
                     ],
                     "interval": 300,
-                    "message": ">Level: {df_status}  \n>Instance: {instanceId}  \n>Content: RDS Mysql slow queries per second is {{ Result }}%  \n>Suggestion: Log in to the Alibaba Cloud console to check if there are any anomalies with RDS",
-                    "name": "Alibaba Cloud RDS Mysql Slow Queries Per Second Too High",
+                    "message": ">Level: {df_status}  \n>Instance: {instanceId}  \n>Content: RDS Mysql slow queries per second is {{ Result }}%  \n>Suggestion: Log in to Alibaba Cloud console to check if there are any abnormalities with RDS",
+                    "name": "Alibaba Cloud RDS Mysql high slow queries per second",
                     "noDataInterval": 0,
                     "recoverNeedPeriodCount": 1,
                     "targets": [
@@ -151,10 +151,10 @@ curl 'https://openapi.guance.com/api/v1/checker/export' \
                             "dql": "M::`aliyun_acs_rds_dashboard`:(LAST(`MySQL_SlowQueries_Average`))  BY `instanceId`"
                         }
                     ],
-                    "title": "Alibaba Cloud RDS Mysql Instance ID {instanceId} Slow Queries Per Second Too High",
+                    "title": "Alibaba Cloud RDS Mysql instance ID {instanceId} has a high number of slow queries per second",
                     "type": "simpleCheck"
                 },
-                "monitorName": "Alibaba Cloud RDS Mysql Monitoring Library"
+                "monitorName": "Alibaba Cloud RDS Mysql Monitoring Database"
             }
         ]
     },
@@ -162,5 +162,5 @@ curl 'https://openapi.guance.com/api/v1/checker/export' \
     "message": "",
     "success": true,
     "traceId": "TRACE-80D11C67-BFB0-4040-8670-0237C9E0AA0E"
-} 
+}
 ```

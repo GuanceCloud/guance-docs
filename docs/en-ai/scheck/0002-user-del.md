@@ -8,12 +8,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -27,17 +27,17 @@
 ## Description
 
 
-- Monitor whether the host has deleted a user
+- Monitor whether the host deletes users
 
 
 
 ## Scan Frequency
-- Disable
+- disable
 
 ## Theoretical Basis
 
 
-- Deleting a user on the host is a normal operation. However, if an unknown user is deleted from the host, it may lead to information security breaches. Therefore, this action should be within the scope of audits.
+- Deleting users on a host can be a normal operation. However, if unknown users are deleted from the host, it may lead to information security breaches on the host. Therefore, this action should fall within the audit scope.
 
 
 
@@ -45,20 +45,28 @@
 ## Risk Items
 
 
-- Hacker Penetration
+- Hacker penetration
 
-- Data Leakage
 
-- Network Security
 
-- Mining Risk
+- Data leakage
 
-- Botnet Risk
+
+
+- Network security
+
+
+
+- Mining risk
+
+
+
+- Compromised machine risk
 
 
 
 ## Audit Method
-- Verify whether the host has deleted a user. You can run the following command for verification:
+- Verify whether the host has deleted users. You can run the following command for verification:
 
 ```bash
 cat /etc/passwd |cut -f 1 -d :
@@ -67,7 +75,7 @@ cat /etc/passwd |cut -f 1 -d :
 
 
 ## Remediation
-- If the host has deleted a user, carefully review the user information.
+- If the host has deleted users, carefully review the user information.
 
 
 
@@ -94,7 +102,7 @@ cat /etc/passwd |cut -f 1 -d :
 
 
 
-## CIS Controls
+## CIS Control
 
 
 - None

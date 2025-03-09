@@ -1,4 +1,4 @@
-# 4508-nginx-defindex-nginx reference to index page should not mention nginx field
+# 4508-nginx-defindex-nginx Reference to index Page Should Not Include nginx Field
 ---
 
 ## Rule ID
@@ -8,7 +8,7 @@
 
 ## Category
 
-- NGINX
+- nginx
 
 
 ## Level
@@ -27,7 +27,7 @@
 ## Description
 
 
-- The default error and index.html pages of NGINX indicate that the server is running NGINX. These default pages should be deleted or modified so that they do not advertise the underlying infrastructure of the server.
+- The default error and index.html pages of NGINX display that the server is running NGINX. These default pages should be deleted or modified so they do not advertise the underlying server infrastructure.
 
 
 
@@ -37,14 +37,14 @@
 ## Theoretical Basis
 
 
-- By gathering information about the server, attackers can launch attacks targeting known vulnerabilities. Removing pages that reveal the server is running NGINX helps reduce targeted attacks on the server.
+- By gathering information about the server, attackers can target known vulnerabilities. Removing pages that reveal the server is running NGINX helps reduce targeted attacks on the server.
 
 
 
 ## Risk Items
 
 
-- NGINX security
+- nginx Security
 
 
 
@@ -55,7 +55,7 @@
 grep -i nginx /usr/share/nginx/html/index.html
 grep -i nginx /usr/share/nginx/html/50x.html
 grep -i nginx /usr/share/nginx/html/404.html
-# There should be no 'nginx' signature
+# Output should not contain 'nginx' signature
 ```
 
 
@@ -81,7 +81,7 @@ Remove lines and fields related to nginx.
 ## Default Values
 
 
-- By default, these files contain nginx fields.
+- By default, these files contain the nginx field.
 
 
 

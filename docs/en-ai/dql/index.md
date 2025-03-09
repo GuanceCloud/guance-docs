@@ -5,4 +5,4 @@ icon: zy/dql
 
 ---
 
-DQL is a language specifically developed for Guance. It has simple syntax and is easy to use, allowing data queries through the Guance console or terminal devices using the DQL language.
+DQL is a language specifically developed for <<< custom_key.brand_name >>>. It has simple syntax and is easy to use. You can perform data queries using DQL in the <<< custom_key.brand_name >>> console or terminal device.

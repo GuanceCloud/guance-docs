@@ -53,7 +53,7 @@ Access: (0440/-r--r-----) Uid: ( 0/root) Gid: ( 0/root)
 
 ## Remediation
 
-- If it is detected that the permissions of the `/etc/sudoers` file have changed, log in to the server as the root user and restore the permissions. Audit this change.
+- If it is detected that the permissions of the `/etc/sudoers` file have changed, log in to the server as the root user to restore the permissions and audit this change.
 
 
 ## Impact
@@ -68,9 +68,9 @@ Access: (0440/-r--r-----) Uid: ( 0/root) Gid: ( 0/root)
 
 ## References
 
-- [Emergency Response and Investigation Ideas for Hacker Intrusions (Unofficial)](https://www.sohu.com/a/236820450_99899618)
+- [Emergency Response and Investigation Process for Hacker Intrusions (Unofficial)](https://www.sohu.com/a/236820450_99899618)
 
-- [A Real Case of Mining Malware Intrusion Investigation and Analysis (Unofficial)](https://www.cnblogs.com/zsl-find/articles/11688640.html)
+- [Real Case Analysis of Crypto Mining Intrusion Investigation (Unofficial)](https://www.cnblogs.com/zsl-find/articles/11688640.html)
 
 
 ## CIS Controls

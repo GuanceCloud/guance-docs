@@ -1,4 +1,4 @@
-# 0092-dns-uninstalled-DNS is installed
+# 0092-dns-uninstalled-DNS is Uninstalled
 ---
 
 ## Rule ID
@@ -27,7 +27,7 @@
 ## Description
 
 
-- The Domain Name System (DNS) is a hierarchical naming system that maps names to the IP addresses of computers, services, and other resources connected to the network.
+- The Domain Name System (DNS) is a hierarchical naming system that maps names to IP addresses of computers, services, and other resources connected to the network.
 
 
 
@@ -88,7 +88,7 @@ package bind is not installed
 
 
 
-## CIS Control
+## CIS Controls
 
 
 - Version 7

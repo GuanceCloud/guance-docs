@@ -2,7 +2,7 @@
 
 ---
 
-<br />**POST /api/v1/slo/\{slo_uuid\}/set_disable**
+<br />**POST /api/v1/slo/{slo_uuid}/set_disable**
 
 ## Overview
 
@@ -11,16 +11,16 @@
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:-----------|:-------|:-----|:----------------|
-| slo_uuid | string | Y | UUID of an SLO<br> |
+| Parameter Name | Type   | Required | Description             |
+|:--------------|:-------|:---------|:------------------------|
+| slo_uuid      | string | Y        | UUID of a specific SLO  |
 
 
 ## Body Request Parameters
 
-| Parameter Name | Type     | Required | Description              |
-|:-----------|:-------|:-----|:----------------|
-| isDisable | boolean | Y | Enable/disable, false: enable, true: disable<br>Allow null: False <br> |
+| Parameter Name | Type    | Required | Description                                                                                   |
+|:--------------|:--------|:---------|:-----------------------------------------------------------------------------------------------|
+| isDisable     | boolean | Y        | Enable/disable, false: enable, true: disable<br>Allow null: False <br> |
 
 ## Additional Parameter Notes
 

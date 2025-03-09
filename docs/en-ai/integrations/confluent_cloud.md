@@ -20,11 +20,11 @@ Collect Kafka Metrics data from Confluent Cloud
 
 1. Log in to Confluent Cloud, under **ADMINISTRATION** select **Metrics**
 
-2. On the **Metrics** page, click the button **New integration**, and choose the monitoring type `Prometheus`
+2. On the **Metrics** page, click the **New integration** button and choose the monitoring type `Prometheus`
 
 3. Click the **Generate Cloud API key** button to generate an `API Key`
 
-4. Under **Resources**, select **All Kafka clusters**, to generate `Prometheus`'s `scrape_configs`
+4. Under **Resources**, select **All Kafka clusters** to generate `Prometheus`'s `scrape_configs`
 
 5. Click the **Copy** button on the page to copy the content
 
@@ -51,11 +51,11 @@ scrape_configs:
 
 Since `Confluent Cloud` can directly expose a `metrics` URL, it can be collected directly using the [`prom`](./prom.md) collector.
 
-Go to the [DataKit installation directory](./datakit_dir.md) under `conf.d/prom`, copy `prom.conf.sample` as `confluent_cloud.conf`.
+Navigate to the [DataKit installation directory](./datakit_dir.md) under `conf.d/prom`, and copy `prom.conf.sample` to `confluent_cloud.conf`.
 
 > `cp prom.conf.sample confluent_cloud.conf`
 
-Adjust the content of `confluent_cloud.conf` as follows:
+Modify the content of `confluent_cloud.conf` as follows:
 
 ```toml
 # {"version": "1.61.0-testing_testing-graphite-metric-set", "desc": "do NOT edit this line"}
@@ -73,13 +73,13 @@ Adjust the content of `confluent_cloud.conf` as follows:
   interval = "60s"
 ```
 
-Parameter adjustment instructions:
+Parameter adjustment explanation:
 
-- urls: Adjust the content copied from `Confluent Cloud` and concatenate it into a URL. If there are multiple Kafka resources, separate them with commas.
+- urls: Adjust the content copied from `Confluent Cloud` to form a URL; if there are multiple Kafka resources, separate them with commas.
 
 - Authorization: Convert the username and password into Basic Authorization format.
 
-- interval: Set to 60s. Due to the `Confluent Cloud` API limitation, this value cannot be less than `60s`. A lower value will result in data not being collected.
+- interval: Set to 60s. Due to `Confluent Cloud` API limitations, this value cannot be less than `60s`; otherwise, data collection will fail.
 
 
 ### Restart DataKit
@@ -91,17 +91,17 @@ Parameter adjustment instructions:
 ### Confluent Metrics Set
 
 | Metric Name | Description | Unit |
-| --- | --- | --- |
+| -- | -- | -- |
 | `kafka_server_active_connection_count` | Number of active authenticated connections | count |
-| `kafka_server_consumer_lag_offsets` | Lag in offsets submitted by group members compared to the high-watermark of the partition | count |
+| `kafka_server_consumer_lag_offsets` | Lag between offsets committed by group members and the high-watermark of the partition. | count |
 | `kafka_server_partition_count` | Number of partitions | count |
 | `kafka_server_received_bytes` | Incremental count of client data bytes received over the network. Each sample represents the number of bytes received since the last data point. Counted every 60 seconds. | byte |
 | `kafka_server_received_records` | Incremental count of records received. Each sample represents the number of records received since the last data point. Counted every 60 seconds. | count |
 | `kafka_server_request_bytes` | Incremental count of total request bytes sent over the network for specified request types. Each sample represents the number of bytes sent since the last data point. Counted every 60 seconds. | byte |
 | `kafka_server_request_count` | Incremental count of requests received over the network. Each sample represents the number of requests received since the last data point. Counted every 60 seconds. | count |
 | `kafka_server_response_bytes` | Incremental count of total response bytes sent over the network for specified response types. Each sample represents the number of bytes sent since the last data point. Counted every 60 seconds. | byte |
-| `kafka_server_rest_produce_request_bytes` | Incremental count of total request bytes sent for Kafka REST produce calls. | byte |
-| `kafka_server_retained_bytes` | Current count of bytes retained by the cluster. Sampled every 60 seconds. | byte |
+| `kafka_server_rest_produce_request_bytes` | Incremental count of total request bytes sent by Kafka REST produce calls. | byte |
+| `kafka_server_retained_bytes` | Current count of bytes retained by the cluster. Counted every 60 seconds. | byte |
 | `kafka_server_sent_bytes` | Incremental count of client data bytes sent over the network. Each sample represents the number of bytes sent since the last data point. Counted every 60 seconds. | byte |
 | `kafka_server_sent_records` | Incremental count of records sent. Each sample represents the number of records sent since the last data point. Counted every 60 seconds. | count |
 | `kafka_server_successful_authentication_count` | Incremental count of successful authentications. Each sample represents the number of successful authentications since the last data point. Counted every 60 seconds. | count |

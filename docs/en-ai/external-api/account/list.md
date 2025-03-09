@@ -8,18 +8,15 @@
 
 
 
-
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description                         |
-|:------------|:------|:-------|:----------------------------------|
-| search      | string |        | Username, email<br>Can be empty: False <br> |
-| pageIndex   | integer|        | Page number<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize    | integer|        | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| Parameter Name | Type   | Required | Description |
+|:--------------|:-------|:---------|:------------|
+| search        | string |          | Username, email<br>Can be empty: False <br> |
+| pageIndex     | integer|          | Page number<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize      | integer|          | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
-
-
 
 
 
@@ -32,7 +29,6 @@ curl '<Endpoint>/api/v1/account/list?pageIndex=1&pageSize=5' \
   -H 'X-Df-Signature: <signature>' \
   -H 'X-Df-Timestamp: <timestamp>'
 ```
-
 
 
 
@@ -72,7 +68,7 @@ curl '<Endpoint>/api/v1/account/list?pageIndex=1&pageSize=5' \
                 "uuid": "acnt_a95702ad60d04209b3ba42650e75c8a8",
                 "wsInfo": [
                     {
-                        "name": "xxxxx's Workspace",
+                        "name": "xxxxx's workspace",
                         "roles": [
                             {
                                 "name": "Owner",

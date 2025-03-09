@@ -1,43 +1,26 @@
-# 【Workspace API Key】Modify the Name of a Specified API Key
+# Modify the Name of a Specified API Key
 
 ---
 
-<br />**POST /api/v1/workspace/accesskey/\{ak_uuid\}/modify**
+<br />**POST /api/v1/workspace/accesskey/{ak_uuid}/modify**
 
 ## Overview
 
-
-
-
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:--------|:------------------------|
-| ak_uuid       | string | Y       | UUID of the API Key<br> |
-
+| Parameter Name | Type   | Required | Description               |
+|:--------------|:-------|:---------|:--------------------------|
+| ak_uuid       | string | Y        | UUID of the API Key       |
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:--------|:------------------------|
-| name          | string | Y       | Name information for the API Key<br>Example: xxx <br>Can be empty: False <br>Maximum length: 256 <br> |
+| Parameter Name | Type   | Required | Description                                                                 |
+|:--------------|:-------|:---------|:-----------------------------------------------------------------------------|
+| name          | string | Y        | Name information for the API Key<br>Example: xxx <br>Allow empty: False <br>Maximum length: 256 |
 
 ## Additional Parameter Notes
-
-
-
-
-
-
 
 ## Response
 ```shell
  
 ```
-
-
-
-
-</input_content>
-</target_language>
-</input>

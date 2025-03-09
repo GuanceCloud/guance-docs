@@ -6,7 +6,7 @@ icon: octicons/cloud-16
 
 ---
 
-[DataKit](../datakit/index.md) is a critical data collection component in Guance, with almost all data in Guance originating from DataKit.
+[DataKit](../datakit/index.md) is a crucial data collection component in Guance, with almost all data in Guance originating from DataKit.
 
 [DataFlux Func](https://func.guance.com/doc/) is a Python-based script development, management, and execution platform provided by Guance.
 

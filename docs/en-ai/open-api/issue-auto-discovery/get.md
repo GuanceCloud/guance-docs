@@ -11,9 +11,9 @@
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:-----------|:-------|:-----|:----------------|
-| cfg_uuid | string | Y | Issue auto discovery configuration UUID<br> |
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:-------------------------|
+| cfg_uuid             | string   | Y        | Issue auto discovery configuration UUID<br> |
 
 
 ## Additional Parameter Notes
@@ -59,7 +59,7 @@ curl 'https://openapi.guance.com/api/v1/issue_auto_discovery/iatdc_xxxxx/get' \
             "organization": "xxx"
         },
         "deleteAt": -1,
-        "description": "This is an example of a newly created issue auto discovery rule",
+        "description": "This is an example of creating a new issue auto discovery rule",
         "dimensions": [
             "name"
         ],

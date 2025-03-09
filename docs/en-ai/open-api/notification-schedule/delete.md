@@ -11,8 +11,8 @@
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:-------------------------|
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:-------------------------|
 | notificationScheduleUUIDs | array | Y | List of schedule UUIDs<br>Allow null: False <br> |
 
 ## Additional Parameter Explanation

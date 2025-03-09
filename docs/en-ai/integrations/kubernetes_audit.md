@@ -1,20 +1,18 @@
 ---
-title: 'Kubernetes Audit Log Collection'
-summary: 'Kubernetes Audit Log Collection'
+title     : 'Kubernetes Audit Log Collection'
+summary   : 'Kubernetes Audit Log Collection'
 __int_icon: 'icon/kubernetes'
-dashboard:
-  - desc: 'kubernetes Audit'
-    path: 'dashboard/en/kubernetes_audit'
-monitor:
-  - desc: 'Not Available'
-    path: '-'
+dashboard :
+  - desc  : 'Kubernetes Audit'
+    path  : 'dashboard/en/kubernetes_audit'
+monitor   :
+  - desc  : 'None'
+    path  : '-'
 ---
 
-<!-- markdownlint-disable MD025 -->
 # Kubernetes Audit Log Collection
-<!-- markdownlint-enable -->
 
-Kubernetes Audit provides security-related time-series operation records (including time, source, operation result, user initiating the operation, resources being operated on, and detailed information about requests/responses).
+Kubernetes audit provides security-related time series operation records (including time, source, operation result, user initiating the operation, resources operated on, and detailed information about requests/responses).
 
 ## Configuration {#config}
 
@@ -27,13 +25,14 @@ Kubernetes Audit provides security-related time-series operation records (includ
 
 ❗ If already enabled, please ignore
 
-Using Kubernetes `1.24` as an example to enable audit log policy:
+Using Kubernetes `1.24` as an example to enable the audit log policy
 
+<!-- markdownlint-disable MD031 MD032 MD009 MD034 MD046-->
 - Log in to the master node server
 
 > `cd /etc/kubernetes`
 
-- Create `audit-policy.yml`
+- Create audit-policy.yml
 
 ???- info "audit-policy.yml"
     ```yaml        
@@ -158,13 +157,15 @@ Using Kubernetes `1.24` as an example to enable audit log policy:
     # Default level for all other requests.
     - level: Metadata
     ```
+<!-- markdownlint-enable -->
+
 💡 The corresponding policy information can be adjusted according to actual needs.
 
-### Enable Audit Logs in API Server
+### Enable API Server Audit Logs
 
 ❗ If already enabled, please ignore
 
-Enter the directory `/etc/kubernetes/manifests`, back up the `kube-apiserver.yaml` file, and ensure the backup file is not placed under `/etc/kubernetes/manifests/`. Adjust the file content:
+Enter the directory `/etc/kubernetes/manifests`, back up the `kube-apiserver.yaml` file first, and ensure the backup file is not placed under `/etc/kubernetes/manifests/`. Adjust the file content:
 
 - Add commands under `spec.containers.command`:
 
@@ -203,21 +204,22 @@ Enter the directory `/etc/kubernetes/manifests`, back up the `kube-apiserver.yam
     name: audit-log
 ```
 
-- Effectiveness
+- Apply changes
 
-After modifying the API Server, it will automatically restart. Please wait a few minutes.
+After modifying the API Server, it will automatically restart. Wait patiently for a few minutes.
 
-- Verification
+- Verify
 
-Run the following command to check if the `audit.log` file is generated. If it exists, it indicates that the configuration has taken effect.
+Run the following command to check if the `audit.log` file has been generated. If it exists, the configuration has taken effect.
 
 > `ls /var/log/kubernetes`
 
-### Collecting K8S Audit Logs
 
-K8S audit logs are stored in the `/var/log/kubernetes` directory of the corresponding `master` node. Here we collect using the `annotation` method.
+### Collect K8S Audit Logs
 
-- Create pod: `k8s-audit-log.yaml`
+K8S audit logs are stored in the `/var/log/kubernetes` directory on the corresponding `master` node. Here we use the `annotation` method for collection.
+
+- Create pod: k8s-audit-log.yaml
 
 ```yaml
 apiVersion: v1
@@ -279,15 +281,15 @@ spec:
 kubectl apply -f k8s-audit-log.yaml 
 ```
 
-- View
+- Check
 
-After a few minutes, you should be able to view the corresponding logs in Guance. Since the logs are in `json` format, Guance supports searching through `@+json` field names, such as `@verb:update`.
+After a few minutes, you can view the corresponding logs in Guance. Since they are in `json` format, Guance supports searching using the `@+json` field name, such as `@verb:update`.
 
-### Extracting Audit Log Fields
+### Extract Fields from Audit Logs
 
-After collecting audit logs, they can be processed using Guance's `pipeline` capability to extract key fields from the audit logs for further analysis.
+After collecting audit logs, use Guance's `pipeline` capability to extract key fields from the audit logs for further analysis.
 
-- In Guance, go to `Logs` - `Pipeline` - `Create`
+- In Guance, go to `Logs` -> `Pipeline` -> `Create`
 - Select the corresponding log source `k8s-audit`
 - Pipeline Name: `kubelet-audit`
 - Define parsing rules

@@ -1,19 +1,19 @@
-# Upload a Single Shard
+# Upload a Single Chunk
 
 ---
 
 <br />**POST /api/v1/rum_sourcemap/upload_part**
 
 ## Overview
-This is the second step in the operation of uploading a compressed SourceMap file (shard upload). It involves uploading a single shard.
-For more details, refer to: [SourceMap Shard Upload Related Interface Usage Instructions](../../../studio-backend/sourcemap-multipart-upload-init/)
+This is the second step in the sourcemap compressed file upload (multipart upload) operation. It involves uploading a single chunk.
+For more details, refer to: [SourceMap Multipart Upload Associated API Usage Instructions](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
 
 
 ## Additional Parameter Notes
 
-Note 1: The size of a single shard file should be controlled within 10MB.
+Note 1: The size of a single chunk should be controlled within 10MB.
 
 
 

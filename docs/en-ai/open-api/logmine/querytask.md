@@ -1,20 +1,20 @@
-# 【Logmine Logs】Get Logmine Query Task Results
+# [Logmine] Get Logmine Query Task Results
 
 ---
 
 <br />**GET /api/v1/logmine/query_task**
 
 ## Overview
-Query log clustering analysis results
+Query log pattern analysis results
 
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:---------|:------------------------|
-| taskId        | string | Y        | Task ID<br>             |
+| Parameter Name | Type   | Required | Description          |
+|:--------------|:-------|:---------|:---------------------|
+| taskId        | string | Y        | Task ID              |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

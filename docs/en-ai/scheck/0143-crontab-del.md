@@ -1,4 +1,4 @@
-# 0143-crontab-del-Crontab Scheduled Task Deleted
+# 0143-crontab-del-crontab scheduled task deleted
 ---
 
 ## Rule ID
@@ -8,12 +8,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -27,17 +27,17 @@
 ## Description
 
 
-- A crontab scheduled task has been deleted.
+- A crontab scheduled task has been deleted
 
 
 
 ## Scan Frequency
-- Disable
+- disable
 
 ## Theoretical Basis
 
 
-- Whether the host deletes crontab scheduled tasks. If the host deletes unknown crontab scheduled tasks, it may lead to information security breaches on the host. Therefore, this needs to be within the audit scope.
+- Whether the host deletes crontab scheduled tasks. If the host deletes unknown crontab scheduled tasks, it may lead to information security breaches on the host, so this needs to be within the audit scope.
 
 
 
@@ -45,20 +45,28 @@
 ## Risk Items
 
 
-- Hacker Infiltration
+- Hacker penetration
 
-- Data Leakage
 
-- Network Security
 
-- Mining Risk
+- Data leakage
 
-- Botnet Risk
+
+
+- Network security
+
+
+
+- Mining risk
+
+
+
+- Botnet risk
 
 
 
 ## Audit Method
-- Verify whether the host has deleted crontab scheduled tasks. You can use the following command for verification:
+- Verify whether the host has deleted crontab scheduled tasks. You can run the following command to verify:
 
 ```bash
 cat /etc/passwd | cut -f 1 -d : |xargs -I {} crontab -l -u {}
@@ -67,7 +75,7 @@ cat /etc/passwd | cut -f 1 -d : |xargs -I {} crontab -l -u {}
 
 
 ## Remediation
-- If the host has deleted crontab scheduled tasks, carefully review the user's crontab scheduled tasks. If there are any suspicious crontab scheduled tasks, delete them.
+- If the host has deleted crontab scheduled tasks, carefully review the user's crontab scheduled tasks. If any suspicious crontab scheduled tasks exist, delete them.
 ```bash
 crontab -e
 ```
@@ -97,7 +105,7 @@ crontab -e
 
 
 
-## CIS Control
+## CIS Controls
 
 
 - None

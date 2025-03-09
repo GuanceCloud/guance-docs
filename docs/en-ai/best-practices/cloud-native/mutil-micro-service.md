@@ -1,4 +1,4 @@
-# Best Practices for Observability of Large-Scale Microservices Projects
+# Best Practices for Performance Observability in Large-Scale Microservices Projects
 
 ---
 
@@ -8,44 +8,41 @@
 
 ![image.png](../images/mutil-micro-service-1.png)
 
-As you integrate more and more systems into Guance, the **[APM]** list becomes filled with all the collected APM services. Browsing through these services to find the project you want can be overwhelming.<br />
+As you integrate more and more systems into <<< custom_key.brand_name >>>, the **[APM]** list fills up with all the collected APM services. Finding the specific project service you want from these services can be overwhelming.<br />
 
-At this point, you might think about having a view similar to RUM that provides an overview of APM, allowing you to quickly check the operational status of each project: how many times were APIs called? How many calls failed? What are the top 10 APIs with the highest latency? etc.
+At this point, you might wonder if there is a view similar to RUM that provides an overview of APM, allowing you to quickly check the operational status of each project: how many times have the APIs been called? How many calls failed? What are the top 10 APIs with the highest latency? etc.
 
-Guance has powerful visualization capabilities and can build project views according to your needs. Assuming you have two Java SpringCloud microservices projects, each with multiple microservices, the following effects can be achieved using Guance's views for your reference:
+<<< custom_key.brand_name >>> has powerful visualization capabilities and can build project views based on your needs. Assuming you have two Java SpringCloud microservices projects, each with multiple microservices, <<< custom_key.brand_name >>>'s views can achieve the following effects for your reference:
 
-- **Project A ：**
+- **Project A:**
 
 ![image.png](../images/mutil-micro-service-2.png)
 
-- **Project B ：**
+- **Project B:**
 
 ![image.png](../images/mutil-micro-service-3.png)
 
 ## Prerequisites
 
-- You have already integrated APM into Guance.
-
-- Your application is deployed in a K8s environment (the steps for non-K8s environments are basically the same, except you don't modify YAML files).
-
-- You have multiple projects (e.g., Project A, Project B), but this approach also supports single projects.
-
-- APM is based on ddtrace.
+- You have already integrated APM into <<< custom_key.brand_name >>>
+- Your application is deployed in a K8s environment (the steps for non-K8s environments are basically the same, except you don't modify YAML files)
+- You have multiple projects (such as Project A, Project B), although single projects also support this approach
+- APM is based on ddtrace
 
 ## APM Trace Collection Optimization
 
-To achieve the above view effects, you need to make some minor adjustments to your application and DataKit configurations.<br />
-The idea behind achieving the above view is as follows:
+To achieve the aforementioned view effects, you need to make some minor adjustments to your application and DataKit configurations.<br />
+The idea behind achieving these views is:
 
-- When starting the application (microservice), add a tag (instrumentation) `app_id` with the value set to projectId (you can generate a 32-character UUID as the projectId).
+- When starting the application (microservice), add a tag (instrumentation) named `app_id` with a value of projectId (you can generate a 32-character projectId using UUID).
 
-- Prepare two `app_id`s: `4a10ede2a69f11eca952fa163e23efe1` (Project A) and `aea5a70da66811eca952fa163e23efe1` (Project B).
+- Prepare two `app_id`s: `4a10ede2a69f11eca952fa163e23efe1` (for Project A) and `aea5a70da66811eca952fa163e23efe1` (for Project B).
 
 ### Optimizing Microservices Application YAML
 
 Assuming your application is deployed on K8s,
 
-- The relevant YAML configuration for Project A's microservices is as follows:
+- For Project A's related microservices YAML, part of the configuration is as follows:
 
 ```yaml
         - name: APP_ID
@@ -55,7 +52,7 @@ Assuming your application is deployed on K8s,
             -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service.name=demo-k8s-auth  -Ddd.tags=container_host:$(POD_NAME),app_id:$(APP_ID) -Ddd.service.mapping=redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529
 ```
 
-- The relevant YAML configuration for Project B's microservices is as follows:
+- For Project B's related microservices YAML, part of the configuration is as follows:
 
 ```yaml
         - name: APP_ID
@@ -67,7 +64,7 @@ Assuming your application is deployed on K8s,
 
 ### Optimizing DataKit YAML
 
-#### Adding ddtrace.conf to ConfigMap
+#### Adding ddtrace.conf in ConfigMap
 
 ```yaml
     ddtrace.conf: |-
@@ -79,7 +76,7 @@ Assuming your application is deployed on K8s,
 
 Here, a `customer_tags` label is defined, where you configure your tags.
 
-Additionally, add a mountPath:
+Additionally, you need to add a mountPath:
 
 ```yaml
         - mountPath: /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
@@ -87,11 +84,11 @@ Additionally, add a mountPath:
           subPath: ddtrace.conf 
 ```
 
-#### Disabling Nacos Registration Center Traces
+#### Disabling Nacos Registration Center Related Traces
 
-If your application uses a registration center like Nacos, heartbeats from the registration center can generate traces, which may waste resources in actual production environments. If you want to ignore traces related to the registration center, you can do the following:
+If your application uses a registration center like Nacos, heartbeats from the registration center will generate traces, which can waste resources in actual production data reporting. If you want to ignore traces related to the registration center, you can do the following:
 
-(If you don't mind, you can skip this step.)
+(You can skip this step if you don't mind.)
 
 ```yaml
     ddtrace.conf: |-
@@ -103,10 +100,10 @@ If your application uses a registration center like Nacos, heartbeats from the r
 
 ```
 
-> The Nacos registration center heartbeat reporting mainly uses three URLs, filtered here using regular expressions:<br />
+> The Nacos registration center heartbeat checks mainly use three URLs, filtered here using regular expressions:<br />
 ` GET /nacos/v1/ns/instance/list`, `PUT /nacos/v1/ns/instance/beat`, `POST /nacos/v1/cs/configs/listener`.
 
-Restart DataKit and the application. At this point, the optimization configuration is basically complete; go ahead and check the effect.
+Restart DataKit and the application. At this point, the optimization configuration is basically complete; go ahead and check the results.
 
 ## More Documentation
 <[ddtrace Configuration](../../integrations/ddtrace.md)>

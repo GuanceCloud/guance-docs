@@ -1,4 +1,5 @@
-# 0106-openldapclients-uninstalled-LDAP Client Uninstalled
+# LDAP Client Uninstalled
+
 ---
 
 ## Rule ID
@@ -38,15 +39,15 @@
 
 ## Risk Items
 
-- Hacker Penetration
+- Hacker penetration
 
-- Data Leakage
+- Data leakage
 
-- Network Security
+- Network security
 
-- Mining Risk
+- Mining risk
 
-- Botnet Risk
+- Botnet risk
 
 
 ## Audit Method
@@ -54,7 +55,7 @@
 - Run the following command to verify that the openldap clients package is not installed:
 
 ```bash
- # rpm -q openldap-clients
+# rpm -q openldap-clients
 package openldap-clients is not installed
 ```
 
@@ -62,6 +63,7 @@ package openldap-clients is not installed
 ## Remediation
 
 - Run the following command to remove the openldap clients package:
+
 ```bash
 # yum remove openldap-clients
 ```
@@ -69,10 +71,10 @@ package openldap-clients is not installed
 
 ## Impact
 
-- Many insecure service clients are used as troubleshooting tools and test environments. Uninstalling them will suppress the ability to troubleshoot and test. If needed, it is recommended to remove the client after use to prevent accidental or intentional misuse.
+- Many insecure service clients are used as troubleshooting tools and test environments. Uninstalling them will inhibit testing and troubleshooting capabilities. If necessary, it is recommended to remove the client after use to prevent accidental or intentional misuse.
 
 
-## Default Value
+## Default Values
 
 
 
@@ -84,5 +86,5 @@ package openldap-clients is not installed
 ## CIS Controls
 
 - Version 7
-   9.2 Ensure Only Approved Ports, Protocols, and Services Are Running
-Ensure that only network ports, protocols, and services that have verified business needs are running on each system.
+   9.2 Ensure only approved ports, protocols, and services are running
+Ensure that only network ports, protocols, and services that have validated business needs are running on each system.

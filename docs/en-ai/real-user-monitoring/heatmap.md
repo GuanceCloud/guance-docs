@@ -1,27 +1,27 @@
 # Heatmap
 ---
 
-A heatmap is a data visualization tool that intuitively displays user interactions on web pages, such as clicks and scrolls, using color gradients. This color coding helps frontend engineers quickly identify elements of interest to users and areas that may need optimization. For example, high-frequency areas on the heatmap might indicate a strong demand for specific features, guiding engineers to highlight or enhance these functionalities.
+A heatmap is a data visualization tool that intuitively displays user interactions on web pages, such as clicks and scrolls, using color gradients. This color coding helps front-end engineers quickly identify elements of interest to users and areas that may need optimization. For example, high-frequency regions on the heatmap might indicate a strong demand for specific features, guiding engineers to highlight or enhance these features.
 
-Additionally, heatmaps can reveal frustration points users encounter while searching for information or features, helping engineers discover and resolve these obstacles, improving the usability and satisfaction of the user interface. Heatmaps provide direct feedback based on user behavior, enabling engineers to make more precise design decisions and optimize user experience.
+At the same time, heatmaps can reveal frustration points users encounter while searching for information or functionality, helping engineers discover and resolve these obstacles, thereby improving the usability and satisfaction of the user interface. Heatmaps provide direct feedback based on user behavior, enabling engineers to make more precise design decisions and optimize the user experience.
 
 ## Viewing Heatmaps
 
 1. Navigate to User Analysis > Session Heatmap;
 2. Select [Application](./index.md#create);
-3. Confirm the page address, such as the current page `/rum/heatmapindex`;
-4. Click Confirm to enter the detailed page of the successfully created heatmap.
+3. Confirm the page URL, such as the current page `/rum/heatmapindex`;
+4. Click confirm to enter the details page of the successfully created heatmap.
 
 ## Heatmap Details
 
 
 ### Click Heatmap
 
-On the heatmap page, Guance defaults to opening the **Click Heatmap** type on the right side. Under this type, you can view statistics for different metrics on the current page and the top 100 events by click frequency.
+On the heatmap page, <<< custom_key.brand_name >>> defaults to opening the **Click Heatmap** type on the right side. Under this type, you can view statistics for different metrics on the current page and the top 100 events by page operation count.
 
 <img src="../img/click.png" width="70%" >
 
-Hover over the left heatmap area, click on a color block to directly view the number of clicks and the percentage in that region. You can click to view more analysis and open the detailed page for the action on the right, or copy the action name and search in the Action Explorer; or directly open the action in the Action Explorer to view more details.
+Hover over the left heatmap page, click on a color block to directly view the number of clicks and percentage in that area. You can click to see more analysis and open the detailed page of the action on the right, or copy the action name to search in the Action Explorer; or directly open the action in the Action Explorer to view more details.
 
 <img src="../img/click-1.png" width="70%" >
 
@@ -30,53 +30,53 @@ Hover over the left heatmap area, click on a color block to directly view the nu
 | Statistical Dimension | Description |
 | --- | --- |
 | Total Clicks | The total number of clicks by users on the current page. |
-| Rage Clicks | The number of repeated clicks in a short time on one spot. |
-| Average Time Spent | The average time users spend on this page. |
-| Session End Ratio | The percentage of users who end their session on the current page. |
-| Page Errors | The number of errors that occurred on the current page. |
+| Rage Clicks | The number of times users repeatedly click in one place within a short period. |
+| Average Time Spent on Page | The average time users spend on this page. |
+| Session End Percentage | The percentage of users who end their session on the current page. |
+| Page Error Count | The number of errors that occur on the current page. |
 
-#### Top 100 Actions {#100}
+#### Top 100 Operations {#100}
 
-Based on action events, Guance will tally the click counts and percentages for each action, listing them from highest to lowest by default.
+Based on operational events, <<< custom_key.brand_name >>> will tally the number of clicks and percentages for each operation, defaulting to a descending order.
 
-On the left side of the event, two icons appear:
+On the left side of an event, two icons will appear:
 
-- :material-target:：Locate: Clicking this icon scrolls the page to show the corresponding hot zone in the background image;
-- :material-eye-off:：Invisible: The action hot zone is not visible in the current background image.
+- :material-target:：Positioning: Clicking this icon will scroll the page to display the corresponding hot zone in the background image;
+- :material-eye-off:：Invisible: This indicates that the operation's hot zone is not within the current background image.
 
-Clicking an event takes you to the action detail page. Guance visualizes the operation data of the current action event with a time series distribution chart. It also analyzes the most popular actions, the number of clicking users, and the click count across three dimensions. The last 10 related session replays are displayed together (including time, duration, username, browser, etc.).
+Clicking on an event will take you to the operation details page. <<< custom_key.brand_name >>> will visualize the operation data for the current event using a time series distribution chart. It also provides statistical analysis from three dimensions: most popular operations, number of clicking users, and click counts. The last 10 related session replays are displayed (including time, duration, username, browser, etc.).
 
 <img src="../img/top-100.png" width="70%" >
 
-To view more detailed information, click the arrow icon :fontawesome-solid-arrow-up-right-from-square: on the right side of the event to open the explorer.
+To view more detailed information, click the :fontawesome-solid-arrow-up-right-from-square: icon on the right side of the event to navigate to the explorer.
 
 <img src="../img/top-100-jump.png" width="70%" >
 
 
 ### Element Analysis
 
-Under this type, Guance displays the top 10 elements by click count. When hovering over a row in the right-side list, the heatmap on the left highlights the corresponding position.
+Under this type, <<< custom_key.brand_name >>> will display the top 10 elements by click count. When hovering over a row in the right-side list, the left heatmap will highlight the corresponding position.
 
 ![](img/elments.png)
 
-Clicking an event takes you to the action detail page. Refer to [this section](#100) for page details.
+Clicking on an event will take you to the operation details page. Refer to [here](#100) for page details.
 
 ### Page Management
 
-Besides managing different page displays under the two main heatmap types, you can perform the following operations on the heatmap detail page:
+In addition to the different page displays under the two main types of heatmaps, you can manage the heatmap detail page with the following operations:
 
-:material-numeric-1-circle-outline: Use the [time control](../getting-started/function-details/explorer-search.md#time) to view heatmap data across different time spans;
+:material-numeric-1-circle-outline: On the current heatmap, you can use the [Time Widget](../getting-started/function-details/explorer-search.md#time) to view heatmap data across different time spans;
 
-:material-numeric-2-circle-outline: At the top of the page, filter by different metric dimensions including environment, version, service, city, etc. Hover over a filter dimension to delete it or click **More** to add new filter dimensions as needed.
+:material-numeric-2-circle-outline: At the top of the page, filter based on different metric dimensions including environment, version, service, city, etc. Hovering over a filter dimension allows you to delete it or add new filtering criteria by clicking **More**. Use as needed.
 
 <img src="../img/filter.png" width="70%" >
 
-:material-numeric-3-circle-outline: Set screen width options, including four presets, choose as needed:
+:material-numeric-3-circle-outline: Set screen width, with four options available:
 
 - Screen width greater than 1280 px;
 - Screen width between 768px and 1280 px;
 - Screen width less than 768px;
-- Custom screen width, input `min` and `max` values, then click Confirm.
+- Custom screen width, enter `min` and `max` values, then click confirm.
 
 <img src="../img/size.png" width="70%" >
 
@@ -86,21 +86,21 @@ To view heatmap data for other pages, simply click the dropdown box below the ch
 
 <img src="../img/switch.png" width="70%" >
 
-To switch **Applications**, click the dropdown box. Guance will display the top 5 most visited page views (based on page visit frequency), then select a page as needed:
+To switch **Applications**, click the dropdown box. <<< custom_key.brand_name >>> will display the top 5 most visited page views (based on page visit frequency), then select a page as needed:
 
 <img src="../img/switch-1.png" width="70%" >
 
-When switching applications, if no session replay data is available to generate the heatmap for the page, the heatmap page will not be displayed. Try the following methods:
+When switching applications, if the session replay data required to generate the heatmap cannot be found, the heatmap page may not be displayed. You can try the following solutions:
 
 1. Check if the heatmap code snippet has been added to the RUM SDK;
-2. Verify that your application's user visits and session replay data are being collected properly;
-3. Adjust the filtering conditions and expand the query time range.
+2. Verify that user visits and session replay data for your application are being collected correctly;
+3. Adjust the filtering conditions to expand the query time range.
 
-You can directly navigate to application management or check the session data details page from the page.
+You can directly navigate to application management or jump to the page to check if there is any session data.
 
-## Saving Heatmaps
+## Save Heatmap
 
-You can save the current heatmap page, and any applied filters will be saved together. Saved pages will be added to the homepage for quick access, allowing you to share, copy links, delete, etc., later.
+You can save the current heatmap page, and any applied filters will be saved as well. Saved pages will be added to the homepage for quick access, allowing you to share, copy links, or delete them later.
 
 <img src="../img/save.png" width="70%" >
 
@@ -110,29 +110,28 @@ Saved pages are displayed uniformly in the heatmap list:
 
 For saved heatmaps, you can:
 
-:material-numeric-1-circle-outline: Share the current heatmap as a snapshot externally, [follow the same steps as snapshots](../getting-started/function-details/snapshot.md#share).
+:material-numeric-1-circle-outline: Share the current heatmap as a snapshot externally, [follow the same steps as for snapshots](../getting-started/function-details/snapshot.md#share).
 
-Shared heatmaps can be viewed under Management > Sharing Management > Shared Snapshots:
+Shared heatmaps can be viewed in Manage > Share Management > Shared Snapshots:
 
 <img src="../img/save-2.png" width="70%" >
 
 ???+ warning "Note: In the shared heatmap snapshot page"
 
-    1. Shared heatmap snapshots cannot be saved again;
+    1. Shared heatmap snapshots cannot be resaved;
     2. Application switching is not supported;
-    3. Opening in the Explorer is not supported;
+    3. Opening in the explorer is not supported;
     4. Clicking session replays is not supported.
 
 :material-numeric-2-circle-outline: Directly copy the heatmap link
 
 :material-numeric-3-circle-outline: Delete the heatmap
 
-## Changing Page Screenshots
+## Change Page Screenshot
 
-Considering that a page may contain other embedded pages, and you want to view other heatmaps under the same `view_name`, you can click Change Page Screenshot. Guance will automatically capture a screenshot from user session replays to use as the heatmap background, allowing you to choose from multiple page screenshots.
+Considering that a page may contain embedded pages and you want to view other heatmaps under the same `view_name`, you can click to change the page screenshot. <<< custom_key.brand_name >>> will automatically capture screenshots from user session replays as the heatmap background, allowing you to choose among multiple page screenshots.
 
 <img src="../img/change.png" width="70%" >
-
 
 ## Further Reading
 

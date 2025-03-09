@@ -1,4 +1,4 @@
-# Get Default Configuration Status for Issue
+# Get Default Configuration Status of Issue
 
 ---
 
@@ -9,7 +9,7 @@
 
 
 
-## Additional Parameter Notes
+## Additional Parameter Information
 
 
 
@@ -38,3 +38,8 @@ curl 'https://openapi.guance.com/api/v1/issue-level/config/get' \
     "traceId": "TRACE-CDE3B645-7CE4-43E1-B06B-090F72A3902C"
 } 
 ```
+
+
+
+
+</input_content>

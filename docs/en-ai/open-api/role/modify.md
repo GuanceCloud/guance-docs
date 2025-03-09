@@ -20,9 +20,9 @@ Modify an existing role
 
 | Parameter Name | Type   | Required | Description              |
 |:-----------|:-------|:-----|:----------------|
-| name | string | Y | Role name<br>Example: Role No.1 <br>Nullable: False <br>Maximum Length: 256 <br> |
-| desc | string | N | Description of the role<br>Example: CUSTOM <br>Nullable: False <br>Allows empty string: True <br>Maximum Length: 3000 <br> |
-| keys | array | N | Selected permissions list, must contain at least one permission<br>Example: [] <br>Nullable: False <br> |
+| name | string | Y | Role name<br>Example: Role No.1 <br>Allow null: False <br>Maximum length: 256 <br> |
+| desc | string | N | Description of the role<br>Example: CUSTOM <br>Allow null: False <br>Allow empty string: True <br>Maximum length: 3000 <br> |
+| keys | array | N | Selected permission list, must have at least one permission<br>Example: [] <br>Allow null: False <br> |
 
 ## Additional Parameter Notes
 

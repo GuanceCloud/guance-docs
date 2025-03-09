@@ -1,22 +1,24 @@
-# Get Custom Notification Date for Alert Policy
+# Get Custom Notification Date for Alert Strategy
 
 ---
 
 <br />**GET /api/v1/notice/date/\{notice_date_uuid\}/get**
 
 ## Overview
-Get custom notification date for alert policy
+Get custom notification date for alert strategy
 
 
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
+| Parameter Name        | Type     | Required | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| notice_date_uuid | string | Y | Unique UUID of the custom notification date configuration for the alert policy<br>Allow empty string: False <br> |
+| notice_date_uuid | string | Y | Unique UUID of the custom notification date configuration for the alert strategy<br>Allow empty string: False <br> |
 
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
+
+
 
 
 

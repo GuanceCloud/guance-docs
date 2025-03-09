@@ -15,5 +15,5 @@
 | `not match` | Does not contain | `String` |
 | `isTrue` | Value is `true` | `Boolean` |
 | `isFalse` | Value is `false` | `Boolean` |
-| `likeTrue` | Value is `true`, `yes`, or any value considered true | `Integer`、`Float`、`String`、`Boolean` |
-| `likeFalse` | Value is `false`, `no`, or any value considered false | `Integer`、`Float`、`String`、`Boolean` |
+| `likeTrue` | Value is `true`, `yes`, or any value that can be considered true | `Integer`、`Float`、`String`、`Boolean` |
+| `likeFalse` | Value is `false`, `no`, or any value that can be considered false | `Integer`、`Float`、`String`、`Boolean` |

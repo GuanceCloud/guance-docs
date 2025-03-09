@@ -11,12 +11,11 @@ List all simple configuration information for applications
 
 ## Query Request Parameters
 
-| Parameter Name | Type        | Required | Description              |
-|:--------------|:------------|:--------|:-------------------------|
-| appId         | commaArray  | No      | App ID<br>Can be empty: False <br>Example: app_xxx <br> |
+| Parameter Name | Type       | Required | Description               |
+|:--------------|:----------|:-------|:----------------------|
+| appId         | commaArray |        | App ID<br>Allow empty: False <br>Example: app_xxx <br> |
 
 ## Additional Parameter Notes
-
 
 *Data Description.*
 

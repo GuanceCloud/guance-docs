@@ -1,15 +1,15 @@
 ---
-title: 'File Directory'
-summary: 'Collect metrics data from file directories'
+title     : 'File Directory'
+summary   : 'Collect metrics data from file directories'
 tags:
   - 'Host'
-__int_icon: 'icon/hostdir'
-dashboard:
-  - desc: 'File Directory'
-    path: 'dashboard/en/hostdir'
-monitor:
-  - desc: 'Not Available'
-    path: '-'
+__int_icon      : 'icon/hostdir'
+dashboard :
+  - desc  : 'File Directory'
+    path  : 'dashboard/en/hostdir'
+monitor   :
+  - desc  : 'Not Available'
+    path  : '-'
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -23,7 +23,7 @@ The host directory collector is used for collecting data from directory files, s
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `hostdir.conf.sample`, and rename it to `hostdir.conf`. An example is shown below:
+    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `hostdir.conf.sample`, and rename it to `hostdir.conf`. Example:
     
     ```toml
         
@@ -43,7 +43,7 @@ The host directory collector is used for collecting data from directory files, s
       # more_tag = "some_other_value"
     ```
 
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
@@ -52,7 +52,7 @@ The host directory collector is used for collecting data from directory files, s
 
 ## Metrics {#metric}
 
-All metric sets below will append a global tag named `host` (the tag value is the hostname where DataKit resides) by default. You can also specify other tags in the configuration using `[inputs.hostdir.tags]`:
+All the following metric sets will append a global tag named `host` (tag value is the hostname where DataKit resides) by default. You can also specify additional tags in the configuration using `[inputs.hostdir.tags]`:
 
 ``` toml
  [inputs.hostdir.tags]

@@ -11,12 +11,12 @@
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description               |
-|:--------------|:-------|:---------|:--------------------------|
+| Parameter Name | Type   | Required | Description              |
+|:--------------|:-------|:---------|:-------------------------|
 | cfg_uuid      | string | Y        | Issue auto discovery configuration UUID<br> |
 
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

@@ -2,11 +2,10 @@
 
 ???+ warning "Note"
 
-    NFS service is not deployed within the Kubernetes cluster and requires a separate machine for deployment.
-
+    NFS service is not deployed within a Kubernetes cluster and requires a separate machine for deployment.
 ## Introduction {#info}
 
-NFS (Network File System) allows different machines and operating systems to share files over a network.
+NFS (Network File System) allows different machines and operating systems to share files with each other over a network.
 
 ## Prerequisites
 
@@ -16,13 +15,14 @@ NFS (Network File System) allows different machines and operating systems to sha
 
 |     Name     |                   Description                   |
 | :------------------: | :---------------------------------------------: |
-|      Path      | /nfsdata （Ensure this directory has sufficient capacity and is on a data disk） |
+|      Path      | /nfsdata (Ensure this directory has sufficient capacity and is on a data disk) |
 |    Offline Installation Support    |                       No                        |
 |       Supported Architectures       |                   amd64/arm64                   |
 |      Deployment Machine IP      |                 192.168.100.105                 |
 
-## Installation Steps
 
+## Installation Steps
+ 
 ### 1. Preparations
 
 #### 1.1 Disable Firewall Service
@@ -36,7 +36,7 @@ systemctl disable firewalld
 
 #### 2.1 Install NFS Service
 
-Run the following commands to install the necessary packages for the NFS server and create the mount directory (please set up a data disk, here using `/nfsdata` as the data directory):
+Run the following commands to install the necessary packages for the NFS server and create the mount directory (please ensure it's on a data disk, here using /nfsdata as the data directory)
 
 ```shell
 yum install -y rpcbind nfs-utils
@@ -45,16 +45,16 @@ mkdir /nfsdata
 
 #### 2.2 Configure NFS Shared Path
 
-Execute the command `vim /etc/exports` to create the exports file with the following content:
+Run the command `vim /etc/exports` to create the exports file, with the following content:
 
 ```shell
 #/nfsdata *(insecure,rw,async,no_root_squash)
-/nfsdata *(rw,no_root_squash,no_all_squash,insecure)
+/nfsdata *(rw,no_root_squash,no_all_squash,insecure) 
 ```
 
 #### 2.3 Start NFS Service
 
-Run the following commands to start the NFS service:
+Run the following commands to start the NFS service
 
 ```shell
 systemctl enable rpcbind
@@ -63,15 +63,17 @@ systemctl restart rpcbind
 systemctl restart nfs-server
 ```
 
+
+
 #### 2.4 Verify Configuration
 
-Check if the configuration is effective:
+Check if the configuration has taken effect
 
 ```shell
 exportfs
 ```
 
-Query the NFS shared directories on the local machine:
+Query the NFS shared directories on the local machine
 
 ```shell
 showmount -e localhost
@@ -81,7 +83,7 @@ showmount -e localhost
 
 #### 3.1 Install Client
 
-Run the following command to install the necessary packages for the NFS client:
+Run the following command to install the necessary packages for the NFS client
 
 ```shell
 yum install -y nfs-utils
@@ -91,14 +93,14 @@ yum install -y nfs-utils
 
 ???+ warning "Note"
 
-    192.168.100.105 is the test IP used in this article; you need to replace it with your NFS server's IP address.
+    192.168.100.105 is the test IP used in this article; you need to replace it with your NFS server IP.
 
-Run the following command to check if the NFS server has configured any shared directories:
+Run the following command to check if the NFS server has set up any shared directories
 
 ```shell 
 # showmount -e $(NFS server IP)
 showmount -e 192.168.100.105
-# The output should look like this:
+# The output should look like this
 Export list for 192.168.100.105:
 /nfsdata *
 ```
@@ -107,9 +109,9 @@ Export list for 192.168.100.105:
 
 ???+ warning "Note"
 
-    192.168.100.105 is the test IP used in this article; you need to replace it with your NFS server's IP address.
+    192.168.100.105 is the test IP used in this article; you need to replace it with your NFS server IP.
 
-Run the following command to mount the shared directory from the NFS server to the local path `/data`:
+Run the following command to mount the shared directory from the NFS server to the local path `/data`
 
 ```sh
 mkdir /data
@@ -121,7 +123,7 @@ echo "hello nfs server" > /data/test.txt
 
 #### 3.4 Check Test Results
 
-On the NFS server, run the following command to verify that the file was written successfully:
+On the NFS server, run the following command to verify that the file was written successfully
 
 ```sh
 cat /nfsdata/test.txt

@@ -1,22 +1,22 @@
-# Delete Custom Notification Dates for Alert Policies
+# Delete Custom Notification Dates for Alert Strategies
 
 ---
 
 <br />**POST /api/v1/notice/date/delete**
 
 ## Overview
-Delete custom notification dates for alert policies
+Delete custom notification dates for alert strategies
 
 
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| noticeDatesUUIDs | array | Y | UUID of the custom notification dates for alert policies<br>Allow null: False <br> |
-| skipRefCheck | boolean |  | Whether to skip (alert policy) relationship checks, default is False, which means checks will be performed,<br>Allow null: False <br> |
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:-------------------------|
+| noticeDatesUUIDs      | array    | Y        | UUID of the custom notification date for the alert strategy<br>Allow empty: False <br> |
+| skipRefCheck          | boolean  |          | Whether to skip (alert strategy) association detection, default is False, which means perform detection,<br>Allow empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

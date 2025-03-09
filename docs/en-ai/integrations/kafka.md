@@ -1,31 +1,31 @@
 ---
-title     : 'Kafka'
-summary   : 'Collect Kafka Metrics Data'
+title: 'Kafka'
+summary: 'Collect Kafka Metrics Data'
 tags:
   - 'Middleware'
   - 'Message Queue'
-__int_icon      : 'icon/kafka'
-dashboard :
-  - desc  : 'Kafka'
-    path  : 'dashboard/en/kafka'
-monitor   :
-  - desc  : 'Kafka'
-    path  : 'monitor/en/kafka'
+__int_icon: 'icon/kafka'
+dashboard:
+  - desc: 'Kafka'
+    path: 'dashboard/en/kafka'
+monitor:
+  - desc: 'Kafka'
+    path: 'monitor/en/kafka'
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-Collect Kafka metrics and log data into Guance, helping you monitor and analyze various anomalies in Kafka.
+Collect Kafka metrics and log reports to Guance, helping you monitor and analyze various abnormal situations in Kafka.
 
 ## Configuration {#config}
 
 ### Prerequisites {#requirements}
 
-Install or download [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar){:target="_blank"}. The Jolokia jar file is already downloaded under the `data` directory of the DataKit installation directory.
+Install or download [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar){:target="_blank"}. The Jolokia jar package is already downloaded in the `data` directory under the DataKit installation directory.
 
-Jolokia acts as a Java agent for Kafka, providing an external interface that uses JSON as the data format over HTTP protocol for use by DataKit. When starting Kafka, configure the `KAFKA_OPTS` environment variable first (the port can be modified to an available port according to actual conditions):
+Jolokia acts as a Java agent for Kafka, providing an external interface that uses JSON as the data format based on the HTTP protocol, which is used by DataKit. When starting Kafka, configure the `KAFKA_OPTS` environment variable first (the port can be modified to an available port as needed):
 
 ```shell
 export KAFKA_OPTS="$KAFKA_OPTS -javaagent:/usr/local/datakit/data/jolokia-jvm-agent.jar=host=*,port=8080"
@@ -43,13 +43,13 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
 
     Jolokia does not allow changing the port number during runtime. If you find that the `--port` command cannot change the port number, this is the reason.
 
-    To modify the Jolokia port number, you must exit Jolokia and then restart it to succeed.
+    To modify the Jolokia port number, you must exit Jolokia and then restart it.
 
 ???+ tip
 
     The command to exit Jolokia is: `java -jar </path/to/jolokia-jvm-agent.jar> --quiet stop <Kafka-PID>`
 
-    For more information on Jolokia commands, refer to [here](https://jolokia.org/reference/html/agents.html#jvm-agent){:target="_blank"}.
+    For more information about Jolokia commands, refer to [here](https://jolokia.org/reference/html/agents.html#jvm-agent){:target="_blank"}.
 
 <!-- markdownlint-enable -->
 
@@ -58,7 +58,7 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `kafka.conf.sample`, and rename it to `kafka.conf`. An example is shown below:
+    Enter the `conf.d/db` directory under the DataKit installation directory, copy `kafka.conf.sample`, and rename it to `kafka.conf`. Example configuration is as follows:
     
     ```toml
         
@@ -194,16 +194,16 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
     
     ```
 
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, you can enable the collector via [ConfigMap injection method](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
 ## Metrics {#metric}
 
-All collected data will append global election tags by default, or you can specify other tags in the configuration using `[inputs.kafka.tags]`:
+All the collected data will append global election tags by default, or you can specify other tags through `[inputs.kafka.tags]` in the configuration:
 
 ``` toml
  [inputs.kafka.tags]
@@ -223,9 +223,9 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 | Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|Jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent URL path|
 
-- Metrics List
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -578,9 +578,9 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 | Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|Jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent URL path|
 
-- Metrics List
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -595,4 +595,941 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 |`FailedIsrUpdatesPerSec.RateUnit`||string|-|
 |`IsrExpandsPerSec.Count`||int|count|
 |`IsrExpandsPerSec.EventType`||string|-|
-|`IsrExpandsPerSec.FifteenMinuteRate`||float|-
+|`IsrExpandsPerSec.FifteenMinuteRate`||float|-|
+|`|`IsrExpandsPerSec.FiveMinuteRate`||float|-|
+|`IsrExpandsPerSec.MeanRate`||float|-|
+|`IsrExpandsPerSec.OneMinuteRate`||float|-|
+|`IsrExpandsPerSec.RateUnit`||string|-|
+|`IsrShrinksPerSec.Count`||int|count|
+|`IsrShrinksPerSec.EventType`||string|-|
+|`IsrShrinksPerSec.FifteenMinuteRate`||float|-|
+|`IsrShrinksPerSec.FiveMinuteRate`||float|-|
+|`IsrShrinksPerSec.MeanRate`||float|-|
+|`IsrShrinksPerSec.OneMinuteRate`||float|-|
+|`IsrShrinksPerSec.RateUnit`||string|-|
+|`LeaderCount.Value`||int|count|
+|`OfflineReplicaCount.Value`||int|count|
+|`PartitionCount.Value`||int|count|
+|`ReassigningPartitions.Value`||int|count|
+|`UnderMinIsrPartitionCount.Value`||int|count|
+|`UnderReplicatedPartitions.Value`||int|count|
+
+
+
+### `kafka_purgatory`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`jolokia_agent_url`|Jolokia agent URL path|
+
+- Metric List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`AlterAcls.NumDelayedOperations`||int|-|
+|`AlterAcls.PurgatorySize`||int|-|
+|`DeleteRecords.NumDelayedOperations`||int|-|
+|`DeleteRecords.PurgatorySize`||int|-|
+|`ElectLeader.NumDelayedOperations`||int|-|
+|`ElectLeader.PurgatorySize`||int|-|
+|`Fetch.NumDelayedOperations`||int|-|
+|`Fetch.PurgatorySize`||int|-|
+|`Heartbeat.NumDelayedOperations`||int|-|
+|`Heartbeat.PurgatorySize`||int|-|
+|`Produce.NumDelayedOperations`||int|-|
+|`Produce.PurgatorySize`||int|-|
+|`Rebalance.NumDelayedOperations`||int|-|
+|`Rebalance.PurgatorySize`||int|-|
+|`topic.NumDelayedOperations`||int|-|
+|`topic.PurgatorySize`||int|-|
+
+
+
+### `kafka_request`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`jolokia_agent_url`|Jolokia agent URL path|
+
+- Metric List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`LocalTimeMs.50thPercentile`||float|ms|
+|`LocalTimeMs.75thPercentile`||float|ms|
+|`LocalTimeMs.95thPercentile`||float|ms|
+|`LocalTimeMs.98thPercentile`||float|ms|
+|`LocalTimeMs.999thPercentile`||float|ms|
+|`LocalTimeMs.99thPercentile`||float|ms|
+|`LocalTimeMs.Count`||int|count|
+|`LocalTimeMs.Max`||float|ms|
+|`LocalTimeMs.Mean`||float|ms|
+|`LocalTimeMs.Min`||float|ms|
+|`LocalTimeMs.StdDev`||float|ms|
+|`RemoteTimeMs.50thPercentile`||float|ms|
+|`RemoteTimeMs.75thPercentile`||float|ms|
+|`RemoteTimeMs.95thPercentile`||float|ms|
+|`RemoteTimeMs.98thPercentile`||float|ms|
+|`RemoteTimeMs.999thPercentile`||float|ms|
+|`RemoteTimeMs.99thPercentile`||float|ms|
+|`RemoteTimeMs.Count`||int|count|
+|`RemoteTimeMs.Max`||float|ms|
+|`RemoteTimeMs.Mean`||float|ms|
+|`RemoteTimeMs.Min`||float|ms|
+|`RemoteTimeMs.StdDev`||float|ms|
+|`RequestBytes.50thPercentile`||float|ms|
+|`RequestBytes.75thPercentile`||float|ms|
+|`RequestBytes.95thPercentile`||float|ms|
+|`RequestBytes.98thPercentile`||float|ms|
+|`RequestBytes.999thPercentile`||float|ms|
+|`RequestBytes.99thPercentile`||float|ms|
+|`RequestBytes.Count`||int|count|
+|`RequestBytes.Max`||float|ms|
+|`RequestBytes.Mean`||float|ms|
+|`RequestBytes.Min`||float|ms|
+|`RequestBytes.StdDev`||float|ms|
+|`RequestQueueTimeMs.50thPercentile`||float|ms|
+|`RequestQueueTimeMs.75thPercentile`||float|ms|
+|`RequestQueueTimeMs.95thPercentile`||float|ms|
+|`RequestQueueTimeMs.98thPercentile`||float|ms|
+|`RequestQueueTimeMs.999thPercentile`||float|ms|
+|`RequestQueueTimeMs.99thPercentile`||float|ms|
+|`RequestQueueTimeMs.Count`||int|count|
+|`RequestQueueTimeMs.Max`||float|ms|
+|`RequestQueueTimeMs.Mean`||float|ms|
+|`RequestQueueTimeMs.Min`||float|ms|
+|`RequestQueueTimeMs.StdDev`||float|ms|
+|`ResponseQueueTimeMs.50thPercentile`||float|ms|
+|`ResponseQueueTimeMs.75thPercentile`||float|ms|
+|`ResponseQueueTimeMs.95thPercentile`||float|ms|
+|`ResponseQueueTimeMs.98thPercentile`||float|ms|
+|`ResponseQueueTimeMs.999thPercentile`||float|ms|
+|`ResponseQueueTimeMs.99thPercentile`||float|ms|
+|`ResponseQueueTimeMs.Count`||int|count|
+|`ResponseQueueTimeMs.Max`||float|ms|
+|`ResponseQueueTimeMs.Mean`||float|ms|
+|`ResponseQueueTimeMs.Min`||float|ms|
+|`ResponseQueueTimeMs.StdDev`||float|ms|
+|`ResponseSendTimeMs.50thPercentile`||float|ms|
+|`ResponseSendTimeMs.75thPercentile`||float|ms|
+|`ResponseSendTimeMs.95thPercentile`||float|ms|
+|`ResponseSendTimeMs.98thPercentile`||float|ms|
+|`ResponseSendTimeMs.999thPercentile`||float|ms|
+|`ResponseSendTimeMs.99thPercentile`||float|ms|
+|`ResponseSendTimeMs.Count`||int|count|
+|`ResponseSendTimeMs.Max`||float|ms|
+|`ResponseSendTimeMs.Mean`||float|ms|
+|`ResponseSendTimeMs.Min`||float|ms|
+|`ResponseSendTimeMs.StdDev`||float|ms|
+|`ThrottleTimeMs.50thPercentile`||float|ms|
+|`ThrottleTimeMs.75thPercentile`||float|ms|
+|`ThrottleTimeMs.95thPercentile`||float|ms|
+|`ThrottleTimeMs.98thPercentile`||float|ms|
+|`ThrottleTimeMs.999thPercentile`||float|ms|
+|`ThrottleTimeMs.99thPercentile`||float|ms|
+|`ThrottleTimeMs.Count`||int|count|
+|`ThrottleTimeMs.Max`||float|ms|
+|`ThrottleTimeMs.Mean`||float|ms|
+|`ThrottleTimeMs.Min`||float|ms|
+|`ThrottleTimeMs.StdDev`||float|ms|
+|`TotalTimeMs.50thPercentile`||float|ms|
+|`TotalTimeMs.75thPercentile`||float|ms|
+|`TotalTimeMs.95thPercentile`||float|ms|
+|`TotalTimeMs.98thPercentile`||float|ms|
+|`TotalTimeMs.999thPercentile`||float|ms|
+|`TotalTimeMs.99thPercentile`||float|ms|
+|`TotalTimeMs.Count`||int|count|
+|`TotalTimeMs.Max`||float|ms|
+|`TotalTimeMs.Mean`||float|ms|
+|`TotalTimeMs.Min`||float|ms|
+|`TotalTimeMs.StdDev`||float|ms|
+
+
+
+### `kafka_topics`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`jolokia_agent_url`|Jolokia agent URL path|
+
+- Metric List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`BytesInPerSec.Count`||int|count|
+|`BytesInPerSec.EventType`||string|-|
+|`BytesInPerSec.FifteenMinuteRate`||float|-|
+|`BytesInPerSec.FiveMinuteRate`||float|-|
+|`BytesInPerSec.MeanRate`||float|-|
+|`BytesInPerSec.OneMinuteRate`||float|-|
+|`BytesInPerSec.RateUnit`||string|-|
+|`BytesOutPerSec.Count`||int|count|
+|`BytesOutPerSec.EventType`||string|-|
+|`BytesOutPerSec.FifteenMinuteRate`||float|-|
+|`BytesOutPerSec.FiveMinuteRate`||float|-|
+|`BytesOutPerSec.MeanRate`||float|-|
+|`BytesOutPerSec.OneMinuteRate`||float|-|
+|`BytesOutPerSec.RateUnit`||string|-|
+|`BytesRejectedPerSec.Count`||int|count|
+|`BytesRejectedPerSec.EventType`||string|-|
+|`BytesRejectedPerSec.FifteenMinuteRate`||float|-|
+|`BytesRejectedPerSec.FiveMinuteRate`||float|-|
+|`BytesRejectedPerSec.MeanRate`||float|-|
+|`BytesRejectedPerSec.OneMinuteRate`||float|-|
+|`BytesRejectedPerSec.RateUnit`||string|-|
+|`FailedFetchRequestsPerSec.Count`||int|count|
+|`FailedFetchRequestsPerSec.EventType`||string|-|
+|`FailedFetchRequestsPerSec.FifteenMinuteRate`||float|-|
+|`FailedFetchRequestsPerSec.FiveMinuteRate`||float|-|
+|`FailedFetchRequestsPerSec.MeanRate`||float|-|
+|`FailedFetchRequestsPerSec.OneMinuteRate`||float|-|
+|`FailedFetchRequestsPerSec.RateUnit`||string|-|
+|`FailedProduceRequestsPerSec.Count`||int|count|
+|`FailedProduceRequestsPerSec.EventType`||string|-|
+|`FailedProduceRequestsPerSec.FifteenMinuteRate`||float|-|
+|`FailedProduceRequestsPerSec.FiveMinuteRate`||float|-|
+|`FailedProduceRequestsPerSec.MeanRate`||float|-|
+|`FailedProduceRequestsPerSec.OneMinuteRate`||float|-|
+|`FailedProduceRequestsPerSec.RateUnit`||string|-|
+|`FetchMessageConversionsPerSec.Count`||int|count|
+|`FetchMessageConversionsPerSec.EventType`||string|-|
+|`FetchMessageConversionsPerSec.FifteenMinuteRate`||float|-|
+|`FetchMessageConversionsPerSec.FiveMinuteRate`||float|-|
+|`FetchMessageConversionsPerSec.MeanRate`||float|-|
+|`FetchMessageConversionsPerSec.OneMinuteRate`||float|-|
+|`FetchMessageConversionsPerSec.RateUnit`||string|-|
+|`InvalidMagicNumberRecordsPerSec.Count`||int|count|
+|`InvalidMagicNumberRecordsPerSec.EventType`||string|-|
+|`InvalidMagicNumberRecordsPerSec.FifteenMinuteRate`||float|-|
+|`InvalidMagicNumberRecordsPerSec.FiveMinuteRate`||float|-|
+|`InvalidMagicNumberRecordsPerSec.MeanRate`||float|-|
+|`InvalidMagicNumberRecordsPerSec.OneMinuteRate`||float|-|
+|`InvalidMagicNumberRecordsPerSec.RateUnit`||string|-|
+|`InvalidMessageCrcRecordsPerSec.Count`||int|count|
+|`InvalidMessageCrcRecordsPerSec.EventType`||string|-|
+|`InvalidMessageCrcRecordsPerSec.FifteenMinuteRate`||float|-|
+|`InvalidMessageCrcRecordsPerSec.FiveMinuteRate`||float|-|
+|`InvalidMessageCrcRecordsPerSec.MeanRate`||float|-|
+|`InvalidMessageCrcRecordsPerSec.OneMinuteRate`||float|-|
+|`InvalidMessageCrcRecordsPerSec.RateUnit`||string|-|
+|`InvalidOffsetOrSequenceRecordsPerSec.Count`||int|count|
+|`InvalidOffsetOrSequenceRecordsPerSec.EventType`||string|-|
+|`InvalidOffsetOrSequenceRecordsPerSec.FifteenMinuteRate`||float|-|
+|`InvalidOffsetOrSequenceRecordsPerSec.FiveMinuteRate`||float|-|
+|`InvalidOffsetOrSequenceRecordsPerSec.MeanRate`||float|-|
+|`InvalidOffsetOrSequenceRecordsPerSec.OneMinuteRate`||float|-|
+|`InvalidOffsetOrSequenceRecordsPerSec.RateUnit`||string|-|
+|`MessagesInPerSec.Count`||int|count|
+|`MessagesInPerSec.EventType`||string|-|
+|`MessagesInPerSec.FifteenMinuteRate`||float|-|
+|`MessagesInPerSec.FiveMinuteRate`||float|-|
+|`MessagesInPerSec.MeanRate`||float|-|
+|`MessagesInPerSec.OneMinuteRate`||float|-|
+|`MessagesInPerSec.RateUnit`||string|-|
+|`NoKeyCompactedTopicRecordsPerSec.Count`||int|count|
+|`NoKeyCompactedTopicRecordsPerSec.EventType`||string|-|
+|`NoKeyCompactedTopicRecordsPerSec.FifteenMinuteRate`||float|-|
+|`NoKeyCompactedTopicRecordsPerSec.FiveMinuteRate`||float|-|
+|`NoKeyCompactedTopicRecordsPerSec.MeanRate`||float|-|
+|`NoKeyCompactedTopicRecordsPerSec.OneMinuteRate`||float|-|
+|`NoKeyCompactedTopicRecordsPerSec.RateUnit`||string|-|
+|`ProduceMessageConversionsPerSec.Count`||int|count|
+|`ProduceMessageConversionsPerSec.EventType`||string|-|
+|`ProduceMessageConversionsPerSec.FifteenMinuteRate`||float|-|
+|`ProduceMessageConversionsPerSec.FiveMinuteRate`||float|-|
+|`ProduceMessageConversionsPerSec.MeanRate`||float|-|
+|`ProduceMessageConversionsPerSec.OneMinuteRate`||float|-|
+|`ProduceMessageConversionsPerSec.RateUnit`||string|-|
+|`ReassignmentBytesInPerSec.Count`||int|count|
+|`ReassignmentBytesInPerSec.EventType`||string|-|
+|`ReassignmentBytesInPerSec.FifteenMinuteRate`||float|-|
+|`ReassignmentBytesInPerSec.FiveMinuteRate`||float|-|
+|`ReassignmentBytesInPerSec.MeanRate`||float|-|
+|`ReassignmentBytesInPerSec.OneMinuteRate`||float|-|
+|`ReassignmentBytesInPerSec.RateUnit`||string|-|
+|`ReassignmentBytesOutPerSec.Count`||int|count|
+|`ReassignmentBytesOutPerSec.EventType`||string|-|
+|`ReassignmentBytesOutPerSec.FifteenMinuteRate`||float|-|
+|`ReassignmentBytesOutPerSec.FiveMinuteRate`||float|-|
+|`ReassignmentBytesOutPerSec.MeanRate`||float|-|
+|`ReassignmentBytesOutPerSec.OneMinuteRate`||float|-|
+|`ReassignmentBytesOutPerSec.RateUnit`||string|-|
+|`ReplicationBytesInPerSec.Count`||int|count|
+|`ReplicationBytesInPerSec.EventType`||string|-|
+|`ReplicationBytesInPerSec.FifteenMinuteRate`||float|-|
+|`ReplicationBytesInPerSec.FiveMinuteRate`||float|-|
+|`ReplicationBytesInPerSec.MeanRate`||float|-|
+|`ReplicationBytesInPerSec.OneMinuteRate`||float|-|
+|`ReplicationBytesInPerSec.RateUnit`||string|-|
+|`ReplicationBytesOutPerSec.Count`||int|count|
+|`ReplicationBytesOutPerSec.EventType`||string|-|
+|`ReplicationBytesOutPerSec.FifteenMinuteRate`||float|-|
+|`ReplicationBytesOutPerSec.FiveMinuteRate`||float|-|
+|`ReplicationBytesOutPerSec.MeanRate`||float|-|
+|`ReplicationBytesOutPerSec.OneMinuteRate`||float|-|
+|`ReplicationBytesOutPerSec.RateUnit`||string|-|
+|`TotalFetchRequestsPerSec.Count`||int|count|
+|`TotalFetchRequestsPerSec.EventType`||string|-|
+|`TotalFetchRequestsPerSec.FifteenMinuteRate`||float|-|
+|`TotalFetchRequestsPerSec.FiveMinuteRate`||float|-|
+|`TotalFetchRequestsPerSec.MeanRate`||float|-|
+|`TotalFetchRequestsPerSec.OneMinuteRate`||float|-|
+|`TotalFetchRequestsPerSec.RateUnit`||string|-|
+|`TotalProduceRequestsPerSec.Count`||int|count|
+|`TotalProduceRequestsPerSec.EventType`||string|-|
+|`TotalProduceRequestsPerSec.FifteenMinuteRate`||float|-|
+|`TotalProduceRequestsPerSec.FiveMinuteRate`||float|-|
+|`TotalProduceRequestsPerSec.MeanRate`||float|-|
+|`TotalProduceRequestsPerSec.OneMinuteRate`||float|-|
+|`TotalProduceRequestsPerSec.RateUnit`||string|-|
+
+
+
+### `kafka_topic`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`jolokia_agent_url`|Jolokia agent URL path|
+|`topic`|Topic name|
+
+- Metric List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`BytesInPerSec.Count`||int|count|
+|`BytesInPerSec.EventType`||string|-|
+|`BytesInPerSec.FifteenMinuteRate`||float|-|
+|`BytesInPerSec.FiveMinuteRate`||float|-|
+|`BytesInPerSec.MeanRate`||float|-|
+|`BytesInPerSec.OneMinuteRate`||float|-|
+|`BytesInPerSec.RateUnit`||string|-|
+|`BytesOutPerSec.Count`||int|count|
+|`BytesOutPerSec.EventType`||string|-|
+|`BytesOutPerSec.FifteenMinuteRate`||float|-|
+|`BytesOutPerSec.FiveMinuteRate`||float|-|
+|`BytesOutPerSec.MeanRate`||float|-|
+|`BytesOutPerSec.OneMinuteRate`||float|-|
+|`BytesOutPerSec.RateUnit`||string|-|
+|`MessagesInPerSec.Count`||int|count|
+|`MessagesInPerSec.EventType`||string|-|
+|`MessagesInPerSec.FifteenMinuteRate`||float|-|
+|`MessagesInPerSec.FiveMinuteRate`||float|-|
+|`MessagesInPerSec.MeanRate`||float|-|
+|`MessagesInPerSec.OneMinuteRate`||float|-|
+|`MessagesInPerSec.RateUnit`||string|-|
+|`TotalFetchRequestsPerSec.Count`||int|count|
+|`TotalFetchRequestsPerSec.EventType`||string|-|
+|`TotalFetchRequestsPerSec.FifteenMinuteRate`||float|-|
+|`TotalFetchRequestsPerSec.FiveMinuteRate`||float|-|
+|`TotalFetchRequestsPerSec.MeanRate`||float|-|
+|`TotalFetchRequestsPerSec.OneMinuteRate`||float|-|
+|`TotalFetchRequestsPerSec.RateUnit`||string|-|
+|`TotalProduceRequestsPerSec.Count`||int|count|
+|`TotalProduceRequestsPerSec.EventType`||string|-|
+|`TotalProduceRequestsPerSec.FifteenMinuteRate`||float|-|
+|`TotalProduceRequestsPerSec.FiveMinuteRate`||float|-|
+|`TotalProduceRequestsPerSec.MeanRate`||float|-|
+|`TotalProduceRequestsPerSec.OneMinuteRate`||float|-|
+|`TotalProduceRequestsPerSec.RateUnit`||string|-|
+
+
+
+### `kafka_partition`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`jolokia_agent_url`|Jolokia agent URL path|
+|`partition`|Partition number|
+|`topic`|Topic name|
+
+- Metric List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`LogEndOffset`||int|-|
+|`LogStartOffset`||int|-|
+|`NumLogSegments`||int|-|
+|`Size`||int|-|
+|`UnderReplicatedPartitions`||int|-|
+
+
+
+### `kafka_zookeeper`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`jolokia_agent_url`|Jolokia agent URL path|
+
+- Metric List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`ZooKeeperRequestLatencyMs.50thPercentile`||float|ms|
+|`ZooKeeperRequestLatencyMs.75thPercentile`||float|ms|
+|`ZooKeeperRequestLatencyMs.95thPercentile`||float|ms|
+|`ZooKeeperRequestLatencyMs.98thPercentile`||float|ms|
+|`ZooKeeperRequestLatencyMs.999thPercentile`||float|ms|
+|`ZooKeeperRequestLatencyMs.99thPercentile`||float|ms|
+|`ZooKeeperRequestLatencyMs.Count`||int|count|
+|`ZooKeeperRequestLatencyMs.Max`||float|ms|
+|`ZooKeeperRequestLatencyMs.Mean`||float|ms|
+|`ZooKeeperRequestLatencyMs.Min`||float|ms|
+|`ZooKeeperRequestLatencyMs.StdDev`||float|ms|
+
+
+
+### `kafka_network`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`jolokia_agent_url`|Jolokia agent URL path|
+|`type`|Metric type|
+
+- Metric List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`ControlPlaneExpiredConnectionsKilledCount`||int|count|
+|`ExpiredConnectionsKilledCount`||int|count|
+|`MemoryPoolAvailable`||int|count|
+|`MemoryPoolUsed`||int|count|
+|`NetworkProcessorAvgIdlePercent`||float|-|
+
+
+
+### `kafka_log`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`jolokia_agent_url`|Jolokia agent URL path|
+|`type`|Metric type|
+
+- Metric List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`DeadThreadCount`||int|count|
+|`OfflineLogDirectoryCount`||int|count|
+|`cleaner_recopy_percent`||float|-|
+|`max_buffer_utilization_percent`||float|-|
+|`max_clean_time_secs`||int|s|
+|`max_compaction_delay_secs`||int|s|
+
+
+
+### `kafka_consumer`
+
+These metrics need to be collected on the Consumer instance
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`client_id`|Client ID|
+|`jolokia_agent_url`|Jolokia agent URL path|
+|`type`|Metric type|
+
+- Metric List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`assigned_partitions`||int|count|
+|`bytes_consumed_rate`||float|-|
+|`bytes_consumed_total`||int|count|
+|`commit_id`||string|-|
+|`commit_rate`||float|-|
+|`commit_total`||int|count|
+|`connection_close_rate`||float|-|
+|`connection_close_total`||int|count|
+|`connection_count`||int|count|
+|`connection_creation_rate`||float|-|
+|`connection_creation_total`||int|count|
+|`count`||int|count|
+|`failed_authentication_rate`||float|-|
+|`failed_authentication_total`||int|count|
+|`failed_reauthentication_rate`||float|-|
+|`failed_reauthentication_total`||int|count|
+|`failed_rebalance_rate_per_hour`||float|-|
+|`failed_rebalance_total`||float|-|
+|`fetch_latency_avg`||float|-|
+|`fetch_latency_max`||float|-|
+|`fetch_rate`||float|-|
+|`fetch_throttle_time_avg`||float|-|
+|`fetch_throttle_time_max`||float|-|
+|`fetch_total`||float|-|
+|`heartbeat_rate`||float|-|
+|`heartbeat_response_time_max`||float|-|
+|`heartbeat_total`||int|count|
+|`incoming_byte_rate`||float|-|
+|`incoming_byte_total`||float|-|
+|`io_ratio`||float|-|
+|`io_time_ns_avg`||int|ns|
+|`io_wait_ratio`||float|-|
+|`io_wait_time_ns_avg`||int|ns|
+|`io_waittime_total`||int|ns|
+|`iotime_total`||int|count|
+|`join_rate`||float|-|
+|`join_total`||int|count|
+|`last_heartbeat_seconds_ago`||float|-|
+|`last_poll_seconds_ago`||int|count|
+|`last_rebalance_seconds_ago`||float|-|
+|`network_io_rate`||float|-|
+|`network_io_total`||int|count|
+|`outgoing_byte_rate`||float|-|
+|`outgoing_byte_total`||float|-|
+|`rebalance_latency_total`||int|count|
+|`rebalance_rate_per_hour`||float|-|
+|`rebalance_total`||int|count|
+|`records_consumed_rate`||float|-|
+|`records_consumed_total`||float|-|
+|`request_rate`||float|-|
+|`request_size_avg`||float|-|
+|`request_size_max`||float|-|
+|`request_total`||int|count|
+|`response_rate`||float|-|
+|`response_total`||int|count|
+|`select_rate`||float|-|
+|`select_total`||int|count|
+|`start_time_ms`||int|msec|
+|`successful_authentication_no_reauth_total`||int|count|
+|`successful_authentication_rate`||float|-|
+|`successful_authentication_total`||int|count|
+|`successful_reauthentication_rate`||float|-|
+|`successful_reauthentication_total`||int|count|
+|`sync_rate`||float|-|
+|`sync_total`||int|-|
+|`version`||string|-|
+
+
+
+### `kafka_producer`
+
+These metrics need to be collected on the Producer instance
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`client_id`|Client ID|
+|`jolokia_agent_url`|Jolokia agent URL path|
+|`type`|Metric type|
+
+- Metric List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`batch_split_rate`||float|-|
+|`batch_split_total`||int|-|
+|`buffer_available_bytes`||int|-|
+|`buffer_exhausted_rate`||float|-|
+|`buffer_exhausted_total`||float|-|
+|`buffer_total_bytes`||int|-|
+|`bufferpool_wait_ratio`||float|-|
+|`bufferpool_wait_time_total`||int|count|
+|`commit_id`||string|-|
+|`connection_close_rate`||float|-|
+|`connection_close_total`||int|count|
+|`connection_count`||int|count|
+|`connection_creation_rate`||float|-|
+|`connection_creation_total`||int|count|
+|`count`||int|count|
+|`failed_authentication_rate`||float|-|
+|`failed_authentication_total`||int|count|
+|`failed_reauthentication_rate`||float|-|
+|`failed_reauthentication_total`||int|count|
+|`incoming_byte_rate`||float|-|
+|`incoming_byte_total`||int|-|
+|`io_ratio`||float|-|
+|`io_time_ns_avg`||float|ns|
+|`io_wait_ratio`||float|-|
+|`io_wait_time_ns_avg`||int|ns|
+|`io_waittime_total`||int|ns|
+|`iotime_total`||int|ns|
+|`metadata_age`||float|-|
+|`network_io_rate`||float|-|
+|`network_io_total`||int|count|
+|`outgoing_byte_rate`||float|-|
+|`outgoing_byte_total`||int|count|
+|`produce_throttle_time_avg`||int|ms|
+|`produce_throttle_time_max`||int|ms|
+|`record_error_rate`||float|-|
+|`record_error_total`||int|-|
+|`record_retry_rate`||float|-|
+|`record_retry_total`||int|-|
+|`record_send_rate`||float|-|
+|`record_send_total`||int|count|
+|`request_rate`||float|-|
+|`request_size_avg`||float|-|
+|`request_size_max`||int|-|
+|`request_total`||int|count|
+|`requests_in_flight`||int|count|
+|`response_rate`||float|-|
+|`response_total`||int|count|
+|`select_rate`||float|-|
+|`select_total`||int|count|
+|`start_time_ms`||int|msec|
+|`successful_authentication_no_reauth_total`||int|count|
+|`successful_authentication_rate`||float|-|
+|`successful_authentication_total`||int|count|
+|`successful_reauthentication_rate`||float|-|
+|`successful_reauthentication_total`||int|-|
+|`version`||string|-|
+|`waiting_threads`||int|count|
+
+
+
+### `kafka_connect`
+
+These metrics need to be collected on the Connect instance
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`client_id`|Client ID|
+|`connector`|Connector|
+|`jolokia_agent_url`|Jolokia agent URL path|
+|`task`|Task|
+|`type`|Metric type|
+
+- Metric List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`batch_size_avg`||int|-|
+|`batch_size_max`||int|-|
+|`commit_id`||string|-|
+|`connector_class`||string|-|
+|`connector_count`||int|count|
+|`connector_destroyed_task_count`||int|count|
+|`connector_failed_task_count`||int|count|
+|`connector_paused_task_count`||int|count|
+|`connector_restarting_task_count`||int|count|
+|`connector_running_task_count`||int|count|
+|`connector_startup_attempts_total`||int|count|
+|`connector_startup_failure_percentage`||float|-|
+|`connector_startup_failure_total`||int|count|
+|`connector_startup_success_percentage`||float|-|
+|`connector_startup_success_total`||int|count|
+|`connector_total_task_count`||int|count|
+|`connector_type`||string|-|
+|`connector_unassigned_task_count`||int|count|
+|`connector_version`||string|-|
+|`count`||int|count|
+|`deadletterqueue_produce_failures`||int|count|
+|`deadletterqueue_produce_requests`||int|count|
+|`last_error_timestamp`|The epoch timestamp when this task last encountered an error in milliseconds.|int|msec|
+|`offset_commit_avg_time_ms`||float|ms|
+|`offset_commit_completion_rate`||float|-|
+|`offset_commit_completion_total`||int|count|
+|`offset_commit_failure_percentage`||float|-|
+|`offset_commit_max_time_ms`||float|ms|
+|`offset_commit_seq_no`||int|-|
+|`offset_commit_skip_rate`||float|-|
+|`offset_commit_skip_total`||int|count|
+|`offset_commit_success_percentage`||float|-|
+|`partition_count`||int|count|
+|`pause_ratio`||float|-|
+|`put_batch_avg_time_ms`||float|ms|
+|`put_batch_max_time_ms`||float|ms|
+|`running_ratio`||float|-|
+|`sink_record_active_count`||int|count|
+|`sink_record_active_count_avg`||int|count|
+|`sink_record_active_count_max`||int|count|
+|`sink_record_read_rate`||float|-|
+|`sink_record_read_total`||int|count|
+|`sink_record_send_rate`||float|-|
+|`sink_record_send_total`||int|count|
+|`source_record_active_count`||int|count|
+|`source_record_poll_rate`||float|-|
+|`source_record_poll_total`||int|count|
+|`source_record_write_rate`||float|-|
+|`source_record_write_total`||int|count|
+|`start_time_ms`||int|msec|
+|`status`||string|-|
+|`task_count`||int|count|
+|`task_startup_attempts_total`||int|count|
+|`task_startup_failure_percentage`||float|-|
+|`task_startup_failure_total`||int|count|
+|`task_startup_success_percentage`||float|-|
+|`task_startup_success_total`||int|count|
+|`total_errors_logged`||int|count|
+|`total_record_errors`||int|count|
+|`total_record_failures`||int|count|
+|`total_records_skipped`||int|count|
+|`total_retries`||int|count|
+|`version`||string|-|
+
+
+
+## Logging {#logging}
+
+If you need to collect Kafka logs, you can enable `files` in `kafka.conf` and enter the absolute path of the Kafka log files. For example:
+
+```toml
+[[inputs.kafka]]
+  ...
+  [inputs.kafka.log]
+    files = ["/usr/local/var/log/kafka/error.log","/usr/local/var/log/kafka/kafka.log"]
+```
+
+After enabling log collection, by default, logs with a source (`source`) of `kafka` will be generated.
+
+> Note: DataKit must be installed on the same host as Kafka to collect Kafka logs.
+
+Example of log segmentation:
+
+``` log
+[2020-07-07 15:04:29,333] DEBUG Progress event: HTTP_REQUEST_COMPLETED_EVENT, bytes: 0 (io.confluent.connect.s3.storage.S3OutputStream:286)
+```
+
+The segmented field list is as follows:
+
+| Field Name | Field Value                                                 |
+| ------ | ------------------------------------------------------ |
+| msg    | Progress event: HTTP_REQUEST_COMPLETED_EVENT, bytes: 0 |
+| name   | io.confluent.connect.s3.storage.S3OutputStream:286     |
+| status | DEBUG                                                  |
+| time   | 1594105469333                                          |
+
+## FAQ {#faq}
+
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: Why can't I see the `kafka_producer` / `kafka_consumer` / `kafka_connect` metric sets? {#faq-no-data}
+
+After starting the Kafka service, if you need to collect Producer/Consumer/Connector metrics, you need to configure Jolokia for each of them separately.
+
+Refer to [Kafka Quick Start](https://kafka.apache.org/quickstart){:target="_blank"}, taking Producer as an example, first configure the `KAFKA_OPTS` environment variable, as shown below:
+
+```shell
+export KAFKA_OPTS="-javaagent:/usr/local/datakit/data/jolokia-jvm-agent.jar=host=127.0.0.1,port=8090"
+```
+
+Enter the Kafka directory and start a Producer:
+
+```shell
+bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092
+```
+
+Copy out a `kafka.conf` to enable multiple Kafka collectors and configure this URL:
+
+```toml
+  urls = ["http://localhost:8090/jolokia"]
+```
+
+Uncomment the fields for collecting Producer metrics:
+
+```toml
+  # The following metrics are available on producer instances.  
+  [[inputs.kafka.metric]]
+    name       = "kafka_producer"
+    mbean      = "kafka.producer:type=*,client-id=*"
+    tag_keys   = ["client-id", "type"]
+``After configuring the above settings, restart DataKit. At this point, DataKit will be able to collect metrics from the Producer instance.
+
+### :material-chat-question: Why are some metrics missing or showing as zero? {#faq-missing-data}
+
+If you encounter issues where some metrics are not appearing or are showing as zero, it could be due to several reasons:
+
+1. **Jolokia Configuration**: Ensure that Jolokia is correctly configured and running on the Kafka broker, producer, consumer, or connector instances.
+2. **Network Issues**: Verify that there are no network issues preventing DataKit from reaching the Jolokia endpoint.
+3. **Permissions**: Make sure that DataKit has the necessary permissions to access the Jolokia endpoints.
+4. **Kafka Version Compatibility**: Ensure that the version of Kafka you are using is compatible with the Jolokia agent and the metrics being collected.
+
+For more detailed troubleshooting, refer to the [DataKit Troubleshooting Guide](../datakit/troubleshooting.md).
+
+### :material-chat-question: How do I enable log collection for Kafka? {#faq-enable-logging}
+
+To enable log collection for Kafka, you need to modify the `kafka.conf` file to include the paths to your Kafka log files. Here's how you can do it:
+
+1. Open the `kafka.conf` file located in the `conf.d/db` directory under the DataKit installation directory.
+2. Uncomment and configure the `files` section to include the absolute paths to your Kafka log files. For example:
+
+```toml
+[[inputs.kafka]]
+  ...
+  [inputs.kafka.log]
+    files = ["/usr/local/var/log/kafka/error.log", "/usr/local/var/log/kafka/kafka.log"]
+```
+
+3. Save the changes and restart DataKit to apply the configuration.
+
+By default, logs collected will have a source (`source`) of `kafka`.
+
+> **Note:** DataKit must be installed on the same host as Kafka to collect Kafka logs.
+
+### :material-chat-question: What if I need to collect logs from multiple Kafka instances? {#faq-multiple-instances}
+
+If you need to collect logs from multiple Kafka instances, you can create multiple `kafka.conf` files, each targeting a different Kafka instance. For example:
+
+1. Copy the `kafka.conf.sample` file to create new configuration files like `kafka-instance1.conf`, `kafka-instance2.conf`, etc.
+2. In each configuration file, specify the appropriate log file paths for the respective Kafka instances.
+3. Ensure that each configuration file has a unique set of URLs for the Jolokia agents if you're also collecting metrics.
+
+Example for `kafka-instance1.conf`:
+
+```toml
+[[inputs.kafka]]
+  urls = ["http://localhost:8080/jolokia"]
+  [inputs.kafka.log]
+    files = ["/path/to/instance1/error.log", "/path/to/instance1/kafka.log"]
+```
+
+Example for `kafka-instance2.conf`:
+
+```toml
+[[inputs.kafka]]
+  urls = ["http://localhost:8090/jolokia"]
+  [inputs.kafka.log]
+    files = ["/path/to/instance2/error.log", "/path/to/instance2/kafka.log"]
+```
+
+4. Restart DataKit to apply the new configurations.
+
+### :material-chat-question: How do I handle large log volumes? {#faq-large-logs}
+
+Handling large volumes of logs efficiently is crucial to avoid performance degradation. Here are some best practices:
+
+1. **Log Rotation**: Ensure that Kafka log rotation is properly configured to manage log file sizes and prevent them from growing indefinitely.
+2. **Filtering**: Use log filtering to only collect relevant logs. This can be done by specifying patterns in the `grok` pipeline script if you are using one.
+3. **Sampling**: Consider implementing log sampling to reduce the volume of logs sent to Guance.
+4. **Retention Policies**: Set up retention policies in Guance to automatically archive or delete old logs based on your requirements.
+
+### :material-chat-question: Can I use custom tags for Kafka metrics? {#faq-custom-tags}
+
+Yes, you can add custom tags to Kafka metrics by modifying the `[inputs.kafka.tags]` section in your `kafka.conf` file. Custom tags can help you better organize and filter your metrics.
+
+Example:
+
+```toml
+[inputs.kafka.tags]
+  environment = "production"
+  datacenter  = "dc1"
+```
+
+These tags will be appended to all metrics collected from Kafka, allowing you to query and filter them more effectively in Guance.
+
+### :material-chat-question: How do I troubleshoot Jolokia connection issues? {#faq-troubleshoot-jolokia}
+
+If you are experiencing issues connecting to Jolokia, follow these steps to troubleshoot:
+
+1. **Check Jolokia Agent Status**: Ensure that the Jolokia agent is running and accessible. You can test this by accessing the Jolokia URL directly in a web browser or using a tool like `curl`.
+
+   Example:
+   ```shell
+   curl http://localhost:8080/jolokia
+   ```
+
+2. **Firewall and Network Settings**: Verify that there are no firewall rules or network configurations blocking access to the Jolokia port.
+
+3. **Permissions**: Ensure that the user running DataKit has the necessary permissions to access the Jolokia endpoint.
+
+4. **Logs**: Check the DataKit logs for any error messages related to Jolokia connections. These logs can provide clues about what might be going wrong.
+
+5. **Jolokia Configuration**: Review the Jolokia configuration to ensure it is set up correctly. Refer to the [Jolokia documentation](https://jolokia.org/reference/html/agents.html#jvm-agent) for more details.
+
+6. **Restart Services**: Sometimes, simply restarting the Kafka service and DataKit can resolve transient issues.
+
+### :material-chat-question: What are the best practices for securing Jolokia endpoints? {#faq-secure-jolokia}
+
+Securing Jolokia endpoints is important to protect your Kafka cluster from unauthorized access. Here are some best practices:
+
+1. **Use HTTPS**: Configure Jolokia to use HTTPS instead of HTTP to encrypt communication between DataKit and the Jolokia agent.
+
+   Example configuration:
+   ```shell
+   export KAFKA_OPTS="-javaagent:/usr/local/datakit/data/jolokia-jvm-agent.jar=host=*,port=8080,ssl=true"
+   ```
+
+2. **Authentication**: Enable authentication for Jolokia endpoints to restrict access to authorized users only. You can configure basic authentication or integrate with existing authentication mechanisms.
+
+3. **Firewall Rules**: Restrict access to the Jolokia port using firewall rules to allow only trusted IP addresses or networks.
+
+4. **Access Control**: Implement access control lists (ACLs) to limit which MBeans and operations can be accessed via Jolokia.
+
+5. **Monitoring and Alerts**: Set up monitoring and alerts for unusual activity on Jolokia endpoints to quickly detect and respond to potential security incidents.
+
+For more detailed information on securing Jolokia, refer to the [Jolokia Security Documentation](https://jolokia.org/reference/html/security.html).
+
+### :material-chat-question: How do I verify that DataKit is collecting Kafka metrics correctly? {#faq-verify-collection}
+
+To verify that DataKit is correctly collecting Kafka metrics, follow these steps:
+
+1. **Check DataKit Logs**: Review the DataKit logs to ensure there are no errors related to Kafka metric collection. Look for successful connections to Jolokia endpoints and metric collection entries.
+
+2. **Verify Metrics in Guance**: Log into the Guance platform and navigate to the Kafka dashboard or use the Explorer to check if the expected metrics are being reported.
+
+3. **Test with Sample Data**: If possible, generate some sample traffic on your Kafka cluster (e.g., produce and consume messages) and observe if the corresponding metrics are updated in real-time in Guance.
+
+4. **Compare with Native Monitoring Tools**: Cross-reference the metrics collected by DataKit with those from native Kafka monitoring tools like Kafka Manager or Confluent Control Center to ensure consistency.
+
+5. **Use Debug Mode**: Enable debug mode in DataKit to get more detailed logs about the metric collection process. This can help identify any issues during data collection.
+
+Example to enable debug mode:
+
+```toml
+[agent]
+  debug = true
+```
+
+6. **Consult Documentation**: Refer to the [DataKit Documentation](../datakit/index.md) and [Guance Documentation](https://www.guance.com/docs) for additional troubleshooting tips and best practices.
+
+By following these steps, you can ensure that DataKit is correctly collecting and reporting Kafka metrics to Guance.
+
+---
+
+This guide should cover most common questions and issues related to collecting Kafka metrics and logs with DataKit. If you have further questions or need assistance, please refer to the [DataKit Support Resources](../datakit/support.md) or contact the support team at Guance.

@@ -13,72 +13,71 @@ Create a mute rule
 
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| muteRanges | array |  | Mute ranges<br>Can be null: False <br> |
-| name | string |  | Rule name<br>Example: Name A <br>Can be null: False <br> |
-| description | string |  | Description<br>Example: Description A <br>Can be null: False <br>Can be empty string: True <br> |
-| tags | json |  | Tag set<br>Can be null: False <br> |
-| filterString | string |  | Event attributes<br>Can be null: False <br>Can be empty string: True <br>Maximum length: 2048 <br> |
-| notifyTargets | array |  | Notification targets<br>Can be null: False <br> |
-| notifyMessage | string |  | Notification message<br>Can be null: False <br>Maximum length: 3000 <br> |
-| notifyTimeStr | string |  | Notification time, %Y/%m/%d %H:%M:%S<br>Example: 2023/08/21 19:19:00 <br>Can be null: False <br>Can be empty string: True <br> |
-| startTime | string |  | Start time %Y/%m/%d %H:%M:%S<br>Example: 2023/08/21 19:19:00 <br>Can be null: False <br> |
-| endTime | string |  | End time %Y/%m/%d %H:%M:%S<br>Example: 2023/08/21 19:19:00 <br>Can be null: False <br>Can be empty string: True <br> |
-| repeatTimeSet | int | Y | Repeat configuration value 1 for repeated mute, 0 for single occurrence<br>Example: 0 <br>Can be null: False <br> |
-| repeatCrontabSet | None |  | Repeated crontab configuration<br>Can be null: False <br> |
-| repeatCrontabSet.min | string |  | Minute<br>Example: 10 <br>Can be null: False <br> |
-| repeatCrontabSet.hour | string |  | Hour<br>Example: 10 <br>Can be null: False <br> |
-| repeatCrontabSet.day | string |  | Day<br>Example: * <br>Can be null: False <br> |
-| repeatCrontabSet.month | string |  | Month<br>Example: * <br>Can be null: False <br> |
-| repeatCrontabSet.week | string |  | Week<br>Example: 1,3 <br>Can be null: False <br> |
-| crontabDuration | int |  | End time minus start time, positive integer, unit is seconds<br>Example: 3600 <br>Can be null: False <br> |
-| repeatExpireTime | string |  | Repeat expiration time %Y/%m/%d %H:%M:%S<br>Example: 0 <br>Can be null: False <br>Can be empty string: True <br> |
-| timezone | str | Y | Timezone of the mute rule<br>Example: Asia/Shanghai <br>Can be null: False <br> |
-| type | str | Y | Type of mute rule<br>Example: custom <br>Can be null: False <br>Possible values: ['checker', 'alertPolicy', 'tag', 'custom'] <br> |
-| declaration | json |  | Custom declaration information<br>Can be null: False <br> |
+| muteRanges | array |  | Mute ranges<br>Can be empty: False <br> |
+| name | string |  | Rule name<br>Example: Name A <br>Can be empty: False <br> |
+| description | string |  | Description<br>Example: Description A <br>Can be empty: False <br>Can be an empty string: True <br> |
+| tags | json |  | Tag set<br>Can be empty: False <br> |
+| filterString | string |  | Event attributes<br>Can be empty: False <br>Can be an empty string: True <br>Maximum length: 2048 <br> |
+| notifyTargets | array |  | Notification targets<br>Can be empty: False <br> |
+| notifyMessage | string |  | Notification message<br>Can be empty: False <br>Maximum length: 3000 <br> |
+| notifyTimeStr | string |  | Notification time, %Y/%m/%d %H:%M:%S<br>Example: 2023/08/21 19:19:00 <br>Can be empty: False <br>Can be an empty string: True <br> |
+| startTime | string |  | Start time %Y/%m/%d %H:%M:%S<br>Example: 2023/08/21 19:19:00 <br>Can be empty: False <br> |
+| endTime | string |  | End time %Y/%m/%d %H:%M:%S<br>Example: 2023/08/21 19:19:00 <br>Can be empty: False <br>Can be an empty string: True <br> |
+| repeatTimeSet | int | Y | Repeat configuration value 1 for repeated mutes, 0 for single occurrence<br>Example: 0 <br>Can be empty: False <br> |
+| repeatCrontabSet | None |  | Repeat crontab configuration<br>Can be empty: False <br> |
+| repeatCrontabSet.min | string |  | Minute<br>Example: 10 <br>Can be empty: False <br> |
+| repeatCrontabSet.hour | string |  | Hour<br>Example: 10 <br>Can be empty: False <br> |
+| repeatCrontabSet.day | string |  | Day<br>Example: * <br>Can be empty: False <br> |
+| repeatCrontabSet.month | string |  | Month<br>Example: * <br>Can be empty: False <br> |
+| repeatCrontabSet.week | string |  | Week<br>Example: 1,3 <br>Can be empty: False <br> |
+| crontabDuration | int |  | End time minus start time, positive integer, unit is s<br>Example: 3600 <br>Can be empty: False <br> |
+| repeatExpireTime | string |  | Repeat expiration time %Y/%m/%d %H:%M:%S<br>Example: 0 <br>Can be empty: False <br>Can be an empty string: True <br> |
+| timezone | str | Y | Timezone of the mute rule<br>Example: Asia/Shanghai <br>Can be empty: False <br> |
+| type | str | Y | Type of mute rule<br>Example: custom <br>Can be empty: False <br>Possible values: ['checker', 'alertPolicy', 'tag', 'custom'] <br> |
+| declaration | json |  | Custom declaration information<br>Can be empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
-Data notes.*
+Data Explanation.*
 
-**1. Request parameter explanation**
+**1. Request Parameter Explanation**
 
 | Parameter Name           | Type | Description                                                 |
 | ---------------- | ---- | ---------------------------------------------------- |
-| type          |  string  | Corresponds to the mute rule type Checker:checker, Alert policy:alertPolicy, Checker tag:tag, Custom:custom                  |
-| muteRanges       | list | Mute ranges, including checkers, intelligent inspections, user-defined inspections, SLO, alert policies |
+| type          |  string  | Corresponds to the mute rule type Checker:checker, Alert Policy:monitor, Checker Tag:tag, Custom:custom                  |
+| muteRanges       | list | Mute ranges, includes checkers, intelligent inspections, user-defined inspections, SLOs, alert policies |
 | name             | str  | Rule name           |
 | description      | str  | Description            |
 | tags             | dict | Advanced configuration, event attributes                                                 |
-| filterString     | str  | Event attributes (expression format input)            |
-| notifyTargets    | list | To: List of notification objects, type as their notification type                  |
-| repeatTimeSet    | int  | Whether to repeat mute, 1 represents enabling repeated mute, 0 represents only once         |
-| repeatCrontabSet | dict | Configuration for repeating mute rules                               |
+| filterString     | str  | Event attributes (expression form input parameter)            |
+| notifyTargets    | list | List of notification targets, type represents notification type                  |
+| repeatTimeSet    | int  | Whether to repeat mute, 1 means enable repeated mutes, 0 means only once         |
+| repeatCrontabSet | dict | Configuration for repeated mute rules                               |
 | crontabDuration  | int  | Represents the duration of silence after the scheduled task starts               |
-| notifyTargets    | list | To: List of notification objects, type as their notification type                  ｜
+| notifyTargets    | list | List of notification targets, type represents notification type                  ｜
 | notifyTimeStr    | str  | Notification time, %Y/%m/%d %H:%M:%S    |
-| startTime        | str  | Start time of silence  %Y/%m/%d %H:%M:%S                 |
-| endTime          | str  | End time of silence  %Y/%m/%d %H:%M:%S                 |
-| repeatExpireTime | str  | 0 means forever repeat, repeat expiration time of silence %Y/%m/%d %H:%M:%S             |
-| timezone         | str  | Corresponding task timezone default Asia/Shanghai              |
-| repeatExpire     | int  | Repeat expiration time of silence (deprecated on 2023-08-24)                |
-| start            | int  | Start time of silence (deprecated on 2023-08-24)                  |
-| end              | int  | End time of silence (deprecated on 2023-08-24)                  ｜
-| notifyTime       | int  | Notification time, timestamp in seconds corresponding to the time point, -1 means immediate notification (deprecated on 2023-08-24) |
+| startTime        | str  | Mute start time  %Y/%m/%d %H:%M:%S                 |
+| endTime          | str  | Mute end time  %Y/%m/%d %H:%M:%S                 |
+| repeatExpireTime | str  | 0 means forever repeating, expiration time for repeated mutes %Y/%m/%d %H:%M:%S             |
+| timezone         | str  | Corresponding task timezone, default is Asia/Shanghai              |
+| repeatExpire     | int  | Expiration time for repeated mutes (deprecated on 2023-08-24)                |
+| start            | int  | Mute start time  (deprecated on 2023-08-24)                  |
+| end              | int  | Mute end time  (deprecated on 2023-08-24)                  ｜
+| notifyTime       | int  | Notification time, timestamp in seconds, -1 means immediate notification (deprecated on 2023-08-24) |
 | declaration             | dict  | Custom declaration information |
-
 --------------
 
-**2. Explanation of mute ranges**
+**2. Mute Range Explanation**
 
-|  Parameter Name        |   Type  | Required  |          Description          |
+| Parameter Name        | Type  | Required  | Description          |
 |---------------|----------|----|------------------------|
-| type          |  string  |  Y | Corresponds to the mute rule type Checker:checker, Alert policy:alertPolicy, Checker tag:tag, Custom:custom                  |
-| muteRanges         |  list  |  Y | Mute ranges, [] represents all selected                |
+| type          |  string  |  Y | Corresponds to the mute rule type Checker:checker, Alert Policy:monitor, Checker Tag:tag, Custom:custom                  |
+| muteRanges         |  list  |  Y | Mute ranges, [] represents selecting all                |
 | tags       |  dict  |  Y | Advanced configuration, event attributes                |
-| filterString     | str  | Event attributes (expression format input)            |
+| filterString     | str  | Event attributes (expression form input parameter)            |
 
-Tags configuration supports negative selection configuration, example:
+Tags configuration supports negative selection configuration. Example:
 ```json
 {
     "tags": {
@@ -91,6 +90,7 @@ Tags configuration supports negative selection configuration, example:
 }
 ```
 
+
 Type as checker, checker type, example:
 ```json
 {
@@ -101,7 +101,7 @@ Type as checker, checker type, example:
     },
     "muteRanges": [
         {
-            "name": "Infrastructure survival detection - ReplicaSet type - {Result}",
+            "name": "Infrastructure liveness detection - ReplicaSet type - {Result}",
             "checkerUUID": "rul_xxxx22",
         },
         {
@@ -179,7 +179,7 @@ Type as custom, custom type, example:
 }
 ```
 
-filterString is the new event attribute, syntax follows the Explorer syntax. The interface currently also supports tags as the old event attributes, giving priority to the value of filterString, for example:
+filterString is the new version of event attributes, syntax follows the Explorer syntax. Currently, the API also supports tags as the old version of event attributes and prioritizes the value of filterString, for example:
 ```json
 {
     "filterString": "df_status:ok OR host:web001",
@@ -190,22 +190,22 @@ filterString is the new event attribute, syntax follows the Explorer syntax. The
 
 --------------
 
-**3. Explanation of mute time**
+**3. Mute Time Explanation**
 
-Mute time is divided into single occurrence and repeated mutes.
+Mute time can be either a single occurrence or repeated.
 
 --------------
 
-Configuration parameters for single occurrence mute:
+Single occurrence mute configuration:
 
-|  Parameter Name        |   Type  |          Description          |
+| Parameter Name        | Type  | Description          |
 |---------------|----------|------------------------|
-| repeatTimeSet    | int  | Whether to repeat mute, 1 represents enabling repeated mute, 0 represents only once         |
-| startTime        | str  | Start time of silence  %Y/%m/%d %H:%M:%S                 |
-| endTime          | str  | End time of silence  %Y/%m/%d %H:%M:%S                 |
-| timezone         | str  | Corresponding task timezone default Asia/Shanghai              |
+| repeatTimeSet    | int  | Whether to repeat mute, 1 means enable repeated mutes, 0 means only once         |
+| startTime        | str  | Mute start time  %Y/%m/%d %H:%M:%S                 |
+| endTime          | str  | Mute end time  %Y/%m/%d %H:%M:%S                 |
+| timezone         | str  | Corresponding task timezone, default is Asia/Shanghai              |
 
-repeatTimeSet is 0, single occurrence mute, example:
+repeatTimeSet is 0 for a single occurrence mute, example:
 ```json
 {
     "startTime": "2024/03/27 14:06:57",
@@ -217,17 +217,17 @@ repeatTimeSet is 0, single occurrence mute, example:
 
 --------------
 
-Configuration parameters for repeated mute:
+Repeated mute configuration:
 
-|  Parameter Name        |   Type  |          Description          |
+| Parameter Name        | Type  | Description          |
 |---------------|----------|------------------------|
-| repeatTimeSet    | int  | Whether to repeat mute, 1 represents enabling repeated mute, 0 represents only once         |
-| repeatCrontabSet | dict | Configuration for repeating mute rules using Crontab (Crontab syntax)                              |
-| crontabDuration  | int  | Duration of silence after the scheduled task starts, unit is seconds               |
-| repeatExpireTime | str  | 0 means forever repeat, repeat expiration time of silence %Y/%m/%d %H:%M:%S             |
-| timezone         | str  | Corresponding task timezone default Asia/Shanghai              |
+| repeatTimeSet    | int  | Whether to repeat mute, 1 means enable repeated mutes, 0 means only once         |
+| repeatCrontabSet | dict | Crontab configuration for repeated mute rules                              |
+| crontabDuration  | int  | Duration of silence after the scheduled task starts, unit is s               |
+| repeatExpireTime | str  | 0 means forever repeating, expiration time for repeated mutes %Y/%m/%d %H:%M:%S             |
+| timezone         | str  | Corresponding task timezone, default is Asia/Shanghai              |
 
-repeatTimeSet is 1, repeated mute, example:
+repeatTimeSet is 1 for repeated mute, example:
 ```json
 {
     "timezone": "Asia/Shanghai",
@@ -253,7 +253,7 @@ repeatTimeSet is 1, repeated mute, example:
 curl 'https://openapi.guance.com/api/v1/monitor/mute/create' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   -H 'Content-Type: application/json;charset=UTF-8' \
-  --data-raw '{"name":"Name A","description":"Description A","startTime":"2023/08/23 14:00:07","endTime":"2023/08/23 14:31:07","notifyTargets":[{"to":["acnt_xxxx32"],"type":"mail"}],"tags":{},"muteRanges":[{"name":"Aerospike Cluster【{cluster_name}】Namespace【{{ ns }}】 Memory usage too high","checkerUUID":"rul_xxxx32","type":"checker"}],"type":"checker","timezone":"Asia/Shanghai","notifyMessage":"cjkackcnkjcklasc","notifyTimeStr":"2023/08/23 13:45:07","repeatTimeSet":0}' \
+  --data-raw '{"name":"Name A","description":"Description A","startTime":"2023/08/23 14:00:07","endTime":"2023/08/23 14:31:07","notifyTargets":[{"to":["acnt_xxxx32"],"type":"mail"}],"tags":{},"muteRanges":[{"name":"Aerospike cluster 【{cluster_name}】 namespace 【{{ ns }}】 Memory usage too high","checkerUUID":"rul_xxxx32","type":"checker"}],"type":"checker","timezone":"Asia/Shanghai","notifyMessage":"cjkackcnkjcklasc","notifyTimeStr":"2023/08/23 13:45:07","repeatTimeSet":0}' \
   --compressed \
   --insecure
 ```
@@ -278,7 +278,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/create' \
         "muteRanges": [
             {
                 "checkerUUID": "rul_xxxx32",
-                "name": "Aerospike Cluster【{cluster_name}】Namespace【{{ ns }}】 Memory usage too high",
+                "name": "Aerospike cluster 【{cluster_name}】 namespace 【{{ ns }}】 Memory usage too high",
                 "type": "checker"
             }
         ],

@@ -5,14 +5,13 @@
 <br />**POST /api/v1/workspace/accesskey/add**
 
 ## Overview
-Create an Access Key
-
+Create an access key
 
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:---------|:-------------------------|
+| Parameter Name | Type   | Required | Description               |
+|:--------------|:-------|:---------|:--------------------------|
 | name          | string | Y        | AK name information<br>Example: xxx <br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
@@ -28,7 +27,6 @@ curl 'https://openapi.guance.com/api/v1/workspace/accesskey/add' \
   --compressed \
   --insecure
 ```
-
 
 
 ## Response

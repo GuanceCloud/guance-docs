@@ -27,7 +27,7 @@
 ## Description
 
 
-- Monitor whether files under the host directory `/sbin` have been deleted
+- Monitor whether files under the host directory /sbin have been deleted
 
 
 
@@ -37,7 +37,7 @@
 ## Theoretical Basis
 
 
-- The `/sbin` directory contains essential executable files for critical system commands. If they are deleted, it may cause the system to fail to operate normally.
+- The /sbin directory contains critical executable files for system commands. If these files are deleted, it may cause the system to fail to operate normally.
 
 
 
@@ -54,7 +54,7 @@
 
 
 ## Remediation
-- If it is detected that files under the `/sbin` directory have been deleted, check if they are critical system commands
+- If it is detected that files under the /sbin directory have been deleted, check if they are critical system commands
 
 
 
@@ -81,7 +81,7 @@
 
 
 
-## CIS Control
+## CIS Controls
 
 
 - None

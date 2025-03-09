@@ -1,18 +1,18 @@
-# Get an Alert Policy
+# Get an Alert Strategy
 
 ---
 
-<br />**GET /api/v1/alert_policy/\{alert_policy_uuid\}/get**
+<br />**GET /api/v1/alert_policy/{alert_policy_uuid}/get**
 
 ## Overview
-Retrieve an alert policy
+Retrieve an alert strategy
 
 
 ## Route Parameters
 
 | Parameter Name        | Type     | Required | Description              |
 |:---------------------|:---------|:---------|:-------------------------|
-| alert_policy_uuid     | string   | Y        | Alert policy UUID        |
+| alert_policy_uuid     | string   | Y        | Alert strategy UUID      |
 
 
 ## Additional Parameter Notes
@@ -59,7 +59,7 @@ curl 'https://openapi.guance.com/api/v1/alert_policy/altpl_xxxx32/get' \
         "id": 4100,
         "name": "jj_modify",
         "notifyObjectName": {
-            "notify_xxxx32": "Jinlei Test Without Key"
+            "notify_xxxx32": "Jinlei Test No Secret Key"
         },
         "ruleTimezone": "Asia/Shanghai",
         "score": 0,

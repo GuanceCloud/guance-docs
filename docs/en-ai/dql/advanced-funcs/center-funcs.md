@@ -1,30 +1,30 @@
 # DBSCAN
 
-Anomaly detection based on historical data for multiple time series.
+A method for detecting anomalies by analyzing multiple time series based on historical data.
 
 ## Algorithm Introduction
 
-DBSCAN is a density-based clustering algorithm. It divides regions with density reaching a certain threshold into clusters and considers low-density regions as noise. The DBSCAN algorithm does not require pre-specifying the number of clusters, can discover clusters of arbitrary shape, and has good robustness to noisy data.
+DBSCAN is a density-based clustering algorithm. It partitions regions with density above a certain threshold into clusters and considers low-density regions as noise. The DBSCAN algorithm does not require pre-specifying the number of clusters, can discover clusters of arbitrary shape, and has good robustness to noisy data.
 
 - Detection Object: Multiple time series data;
-- Use Case: Suitable for scenarios where outliers in the same group of time series need to be identified;
+- Use Cases: Suitable for scenarios where outliers need to be detected within the same group of time series;
 - Parameters: Detection interval T, distance parameter;
-- Meaning: From the multiple time series between `Now - T` and `Now`, identify which time series are anomalous;
+- Meaning: Identify which time series are abnormal within the range `Now - T` to `Now`;
 - Return: Returns 1 to n outlier time series.
 
 ## Core Parameters
 
 > Distance (eps): float, default=0.5
 
-The distance parameter indicates the maximum distance between two samples for them to be considered neighbors, not the maximum distance between points within a cluster. (float, default=0.5)
+The distance parameter indicates the maximum distance between two samples that are considered neighbors, not the maximum distance between points within a cluster. (float, default=0.5)
 
-You can configure any floating-point value between 0 and 3.0. If not configured, the default distance parameter is 0.5. Larger distance settings result in fewer anomalies detected, while too small a distance may detect many outliers, and too large a distance may result in no outliers being detected. Therefore, it's important to set an appropriate distance parameter based on different data characteristics.
+You can configure any floating-point value in the range (0-3.0). If not configured, the default distance parameter is 0.5. Larger distances result in fewer detected anomalies, while smaller distances may detect many outliers. Setting the distance too large might result in no outliers being detected. Therefore, it's important to set an appropriate distance parameter based on the characteristics of the data.
 
 ## Use Cases
 
-Taking the central function DBSCAN as an example, when users join a Guance workspace, they can choose DBSCAN. **Advanced Function - DBSCAN** outlier detection is based on historical data for multiple time series.
+Taking the central function DBSCAN as an example, when users join the <<< custom_key.brand_name >>> workspace, they can choose DBSCAN. **Advanced Function - DBSCAN** detects outliers in multiple time series based on historical data.
 
-In the **Scenario**, select **Time Series Chart**, click the **Add Function** button under **Query**, choose **Advanced Function > DBSCAN**, set the algorithm parameters, and the chart will display the outlier effects of multiple time series. As shown in the figure:
+In the **Scenario**, select **Time Series Chart**, click the **Add Function** button under **Query**, choose **Advanced Functions > DBSCAN**, configure the algorithm parameters, and the view will display the outlier effects of multiple time series. As shown in the figure:
 
 ![](../img/ad-2.png)
 
@@ -38,17 +38,17 @@ DBSCAN(`M::cpu:(usage_idle)`, 0.5)
 
     When performing queries:
 
-    - Time slices should be included in the query data, for example `1h:5m:1m`;
-    - The algorithm requires at least five values for calculation; ensure the query meets this requirement;
-    - This algorithm processes multiple time series and requires a `group by` field in the data query.
+    - Time slices should be included in the query data, e.g., `1h:5m:1m`;
+    - The algorithm requires at least five values; ensure sufficient data points during the query;
+    - This algorithm processes multiple time series, so the query should include a `group by` field.
 
 
-## Display Style
+## Display Styles
 
-- Configuration results for outliers:
+- Configuration results showing outliers:
 
 ![](../img/ad-3.png)
 
-- If there are no outliers, the original data is displayed as follows:
+- If no outliers are detected, the original data is displayed as is:
 
 ![](../img/ad-4.png)

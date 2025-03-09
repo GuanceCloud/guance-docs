@@ -1,4 +1,5 @@
 # 0041-yum-repos.d-del Repository Configuration File Deleted
+
 ---
 
 ## Rule ID
@@ -8,12 +9,12 @@
 
 ## Category
 
-- System
+- system
 
 
-## Severity
+## Level
 
-- Warning
+- warn
 
 
 ## Compatible Versions
@@ -27,29 +28,29 @@
 ## Description
 
 
-- Monitor the deletion of configurations in the `/etc/yum.repos.d` directory on the host.
+- Monitor the deletion of configurations in the /etc/yum.repos.d directory on the host.
 
 
 
 ## Scan Frequency
-- Disabled
+- disable
 
-## Background
+## Theoretical Basis
 
 
-- Repo files are configuration files for yum repositories (software repositories) in Fedora. Typically, a repo file defines the details of one or more software repositories, such as where to download the required installation or upgrade packages from. The settings in the repo files will be read and applied by yum. If configured incorrectly, this can cause services to become unavailable.
+- A repo file is a configuration file for yum repositories (software repositories) in Fedora. Typically, one repo file defines the details of one or more software repositories, such as where we will download the required installation or upgrade packages from. The settings in the repo file are read and applied by yum. If configured incorrectly, it can cause services to be unavailable.
 
 
 
 ## Risk Items
 
 
-- Services may become unusable
+- Services become unusable
 
 
 
 ## Audit Method
-- Verify whether any files have been deleted from the `/etc/yum.repos.d` directory on the host. You can use the following command to check:
+- Verify if any files have been deleted from the /etc/yum.repos.d directory on the host. You can run the following command to check:
 
 ```bash
 ls -l /etc/yum.repos.d
@@ -58,7 +59,7 @@ ls -l /etc/yum.repos.d
 
 
 ## Remediation
-- If the `/etc/yum.repos.d` directory on the host has been deleted, carefully inspect the host environment for signs of intrusion and change the host user passwords.
+- If files in /etc/yum.repos.d on the host have been deleted, carefully inspect the host environment to ensure there has been no intrusion, and change the host user passwords.
 
 
 

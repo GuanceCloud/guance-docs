@@ -11,8 +11,8 @@ Delete one or multiple blacklists
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| blacklistUUIDs | commaArray | Y | UUIDs of the blacklist filtering rules<br>Allow null: False <br> |
+|:---------------------|:---------|:---------|:-------------------------|
+| blacklistUUIDs        | commaArray | Y       | UUIDs of blacklist filtering rules<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -24,7 +24,6 @@ curl 'https://openapi.guance.com/api/v1/blacklist/delete?blacklistUUIDs=blist_xx
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
 
 
 ## Response

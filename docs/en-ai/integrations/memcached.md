@@ -1,6 +1,6 @@
 ---
 title     : 'Memcached'
-summary   : 'Collect metrics from Memcached instances'
+summary   : 'Collect metrics data from Memcached'
 tags:
   - 'Cache'
   - 'Middleware'
@@ -17,7 +17,7 @@ monitor   :
 
 ---
 
-The Memcached collector gathers runtime status metrics from Memcached instances and sends them to Guance, helping to monitor and analyze various anomalies in Memcached.
+The Memcached collector gathers instance runtime status metrics from Memcached instances and sends the metrics to Guance, helping to monitor and analyze various abnormal conditions in Memcached.
 
 ## Configuration {#config}
 
@@ -30,7 +30,7 @@ The Memcached collector gathers runtime status metrics from Memcached instances 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `memcached.conf.sample` and rename it to `memcached.conf`. An example is as follows:
+    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `memcached.conf.sample` and rename it to `memcached.conf`. Example:
     
     ```toml
         
@@ -65,7 +65,7 @@ The Memcached collector gathers runtime status metrics from Memcached instances 
 
 ## Metrics {#metric}
 
-All data collected below will append global election tags by default, or you can specify other tags through `[inputs.memcached.tags]` in the configuration:
+By default, all collected data will append the global election tag, and you can also specify other tags through `[inputs.memcached.tags]` in the configuration:
 
 ``` toml
  [inputs.memcached.tags]
@@ -85,7 +85,7 @@ All data collected below will append global election tags by default, or you can
 |  ----  | --------|
 |`server`|The host name from which metrics are gathered|
 
-- Metric List
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -96,7 +96,7 @@ All data collected below will append global election tags by default, or you can
 |`bytes`|Current number of bytes used to store items|int|B|
 |`bytes_read`|Total number of bytes read by this server from network|int|B|
 |`bytes_written`|Total number of bytes sent by this server to network|int|B|
-|`cas_badval`|Number of CAS operations where a key was found, but the CAS value did not match|int|count|
+|`cas_badval`|Number of CAS operations for which a key was found, but the CAS value did not match|int|count|
 |`cas_hits`|Number of successful CAS requests|int|count|
 |`cas_misses`|Number of CAS requests against missing keys|int|count|
 |`cmd_flush`|Cumulative number of flush requests|int|count|
@@ -143,7 +143,7 @@ All data collected below will append global election tags by default, or you can
 |`server`|The host name from which metrics are gathered|
 |`slab_id`|The id of the current slab|
 
-- Metric List
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -181,7 +181,7 @@ All data collected below will append global election tags by default, or you can
 |`server`|The host name from which metrics are gathered|
 |`slab_id`|The id of the current slab|
 
-- Metric List
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -192,17 +192,14 @@ All data collected below will append global election tags by default, or you can
 |`chunk_size`|The amount of space each chunk uses|int|B|
 |`chunks_per_page`|How many chunks exist within one page|int|count|
 |`cmd_set`|Number of set requests stored data in this slab class|int|count|
-|`decr_hits`|Number of `decrs` commands modified this slab class|int|count|
+|`decr_hits`|Number of `decr` commands modified this slab class|int|count|
 |`delete_hits`|Number of delete commands succeeded in this slab class|int|count|
 |`free_chunks`|Chunks not yet allocated to items or freed via delete|int|count|
 |`free_chunks_end`|Number of free chunks at the end of the last allocated page|int|count|
 |`get_hits`|Number of get requests were serviced by this slab class|int|count|
-|`incr_hits`|Number of `incrs` commands modified this slab class|int|count|
+|`incr_hits`|Number of `incr` commands modified this slab class|int|count|
 |`total_chunks`|Total number of chunks allocated to the slab class|int|count|
 |`total_malloced`|Total amount of memory allocated to slab pages|int|B|
 |`total_pages`|Total number of pages allocated to the slab class|int|count|
 |`touch_hits`|Number of touches serviced by this slab class|int|count|
 |`used_chunks`|How many chunks have been allocated to items|int|count|
-|`reclaimed`|Number of entries which were stored using memory from an expired entry|int|count|
-
----

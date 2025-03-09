@@ -1,4 +1,4 @@
-# Cross-Account Authorization on Alibaba Cloud
+# Alibaba Cloud Cross-Account Authorization
 
 1. Click to enter **Object Storage OSS > Bucket List**, and select the corresponding Bucket;
    

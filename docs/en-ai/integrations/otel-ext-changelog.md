@@ -10,9 +10,9 @@ skip: 'not-searchable-on-index-page'
 
 ## Introduction {#intro}
 
-The native OTEL agent does not fully support some mainstream frameworks. On this basis, we have made some improvements to support more mainstream frameworks and critical data tracing.
+The native OTEL agent has inadequate support for some mainstream frameworks. On this basis, we have made some improvements to support more mainstream frameworks and critical data tracing.
 
-Currently, OTEL has added extensions for the following technology stacks:
+The current OTEL has added extensions for the following technology stacks:
 
 <!-- markdownlint-disable MD046 MD030 -->
 <div class="grid cards" markdown>
@@ -40,7 +40,7 @@ This release mainly includes the following updates:
 
 ### New Features {#cl-1.2.3-new}
 ### Bug Fixes {#cl-1.2.3-fix}
-### Optimizations {#cl-1.2.3-opt}
+### Enhancements {#cl-1.2.3-opt}
 ### Compatibility Changes {#cl-1.2.3-brk}
 
 --->
@@ -49,7 +49,7 @@ This release mainly includes the following updates:
 
 ### New Features {#cl-1.28.0-guance-new}
 
-- Merge the latest branch from open-telemetry
+- Merge the latest branch from OpenTelemetry
 
 ---
 
@@ -57,16 +57,16 @@ This release mainly includes the following updates:
 
 ### New Features {#cl-1.26.3-guance-new}
 
-- Added [guance-exporter](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/17){:target="_blank"}
+- Add [guance-exporter](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/17){:target="_blank"}
 
 ---
 
 ## 1.26.2-guance (2023/6/15) {#cl-1.26.2-guance}
-Download the current version JAR file: [v1.26.2-guance](https://static.guance.com/dd-image/opentelemetry-javaagent-1.26.2-guance.jar){:target="_blank"}
+Download the jar file for this version: [v1.26.2-guance](https://static.guance.com/dd-image/opentelemetry-javaagent-1.26.2-guance.jar){:target="_blank"}
 
 ### New Features {#cl-1.26.2-guance-new}
 
-- [Add SQL statement desensitization](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/15){:target="_blank"}
+- [Add DB statement desensitization](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/15){:target="_blank"}
 
 ---
 
@@ -74,7 +74,7 @@ Download the current version JAR file: [v1.26.2-guance](https://static.guance.co
 
 ### New Features {#cl-1.26.1-guance-new}
 
-- Non-intrusive support for obtaining input parameters of specific methods [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/12){:target="_blank"}
+- Non-intrusive support for capturing method input parameters [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/12){:target="_blank"}
 - Integration with Alibaba Cloud HSF framework [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/12){:target="_blank"}
 
 ---
@@ -95,6 +95,6 @@ Download the current version JAR file: [v1.26.2-guance](https://static.guance.co
 - Merge the latest OpenTelemetry branch v1.25.0
 - Support for xxl-job 2.3 [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/1){:target="_blank"}
 - Add support for Alibaba Dubbo and Dubbox frameworks [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/2){:target="_blank"}
-- Support for thrift [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/3){:target="_blank"}
+- Support for Thrift [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/3){:target="_blank"}
 
 ---

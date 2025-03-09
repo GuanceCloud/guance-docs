@@ -10,12 +10,11 @@ The previous document introduced the deployment of DataKit in a Kubernetes envir
 
 ### 1.1 Docker Monitoring View
 
-In a Kubernetes cluster, a Pod is the smallest scheduling unit, and it can contain one or more containers. In Guance, you can use the **Docker Monitoring View** to monitor these containers.  
-Log in to [Guance](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Docker Monitoring View**.
+In a Kubernetes cluster, a Pod is the smallest scheduling unit, which can contain one or more containers. In <<< custom_key.brand_name >>>, you can use the **Docker Monitoring View** to observe containers.<br /> Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Docker Monitoring View**.
 
 ![image](../images/microservices/23.png)
 
-Name the dashboard **Docker Monitoring View 1**; you can customize this name. Click **Confirm**.
+Enter the dashboard name as **Docker Monitoring View 1**. The name can be customized. Click **Confirm**.
 		
 ![image](../images/microservices/24.png)
 
@@ -25,15 +24,15 @@ Enter the monitoring view and select the hostname and container name.
 
 ### 1.2 Kubernetes Monitoring View
 
-Log in to [Guance](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Kubernetes Monitoring View**.
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Kubernetes Monitoring View**.
 
 ![image](../images/microservices/26.png)
 
-Name the dashboard **Kubernetes Monitoring View**; you can customize this name. Click **Confirm**.
+Enter the dashboard name as **Kubernetes Monitoring View**. The name can be customized. Click **Confirm**.
 		
 ![image](../images/microservices/27.png)
 
-Enter the monitoring view and select the cluster name and namespace. **Note** that the cluster name dropdown is set during the DataKit deployment in the previous document.
+Enter the monitoring view and select the cluster name and namespace. **Note**: The cluster name dropdown list is set up during the deployment of DataKit in the previous document.
 		 
 ![image](../images/microservices/28.png)
 
@@ -41,9 +40,9 @@ Enter the monitoring view and select the cluster name and namespace. **Note** th
 
 ### 1.3 ETCD Monitoring View
 
-#### 1.3.1 Enabling ETCD Collector
+#### 1.3.1 Enable ETCD Collector
 
-In a Kubernetes cluster, enabling collectors requires defining configurations using ConfigMap and then mounting them to the corresponding DataKit directory. The content of `etcd.conf` is as follows:
+In a Kubernetes cluster, enabling the collector requires defining the configuration using a ConfigMap and mounting it to the corresponding directory in DataKit. The content of etcd.conf is as follows:
 
 ```yaml
 apiVersion: v1
@@ -55,7 +54,7 @@ data:
     #### etcd
     etcd.conf: |-    
         [[inputs.prom]]
-          ## Exporter address or file path (include network protocol http or https)
+          ## Exporter address or file path (Exporter address should include http or https protocol)
           ## File paths differ across operating systems
           ## Windows example: C:\\Users
           ## UNIX-like example: /usr/local/
@@ -66,12 +65,12 @@ data:
 
           ## Metric type filtering, optional values are counter, gauge, histogram, summary
           # By default, only counter and gauge types are collected
-          # If empty, no filtering is applied
+          # If empty, no filtering is performed
           metric_types = ["counter", "gauge"]
 
           ## Metric name filtering
-          # Supports regex, multiple can be configured, satisfying any one is sufficient
-          # If empty, no filtering is applied
+          # Supports regular expressions; multiple can be configured, matching any one is sufficient
+          # If empty, no filtering is performed
           metric_name_filter = ["etcd_server_proposals","etcd_server_leader","etcd_server_has","etcd_network_client"]
 
           ## Measurement name prefix
@@ -79,8 +78,8 @@ data:
           measurement_prefix = ""
 
           ## Measurement name
-          # By default, the metric name is split by underscore "_", with the first field as the measurement name and the rest as the current metric name
-          # If measurement_name is configured, no splitting occurs
+          # By default, the metric name is split by underscores "_", with the first segment as the measurement name and the rest as the current metric name
+          # If measurement_name is configured, the metric name is not split
           # The final measurement name will include the measurement_prefix prefix
           # measurement_name = "prom"
 
@@ -98,8 +97,8 @@ data:
           tls_key = "/etc/kubernetes/pki/etcd/peer.key"
 
           ## Custom measurement names
-          # Metrics with a prefix can be grouped into one measurement
-          # Custom measurement name configuration takes precedence over measurement_name
+          # Metrics with a specific prefix can be grouped into a single measurement
+          # Custom measurement name configuration takes precedence over measurement_name configuration
           [[inputs.prom.measurements]]
             prefix = "etcd_"
             name = "etcd"
@@ -111,27 +110,25 @@ data:
           # token_file = "/tmp/token"
 
           ## Custom Tags
-
-
 ```
 
-Log in to **Rancher**, under the browse clusters tab, select the **k8s-solution-cluster** cluster, navigate sequentially into **More Resources** -> **Core** -> **ConfigMaps**, choose the datakit namespace, click on the **Edit Configuration** button next to the datakit.conf row, click **Add**, add the etcd.conf configuration, and click **Save**.
+Log in to **Rancher**, under the Browse Clusters tab, select the **k8s-solution-cluster** cluster, navigate to **More Resources** -> **Core** -> **ConfigMaps**, choose the datakit namespace, click **Edit Configuration** on the datakit.conf row, click **Add**, add the etcd.conf configuration, and then click **Save**.
 		
 ![image](../images/microservices/30.png)
 
 ![image](../images/microservices/31.png)
 
-Log in to **Rancher**, under the browse clusters tab, select the **k8s-solution-cluster** cluster, navigate sequentially into **Workloads** -> **DaemonSets**, choose the datakit workspace, click **Edit Configuration** next to the datakit column. 
+Log in to **Rancher**, under the Browse Clusters tab, select the **k8s-solution-cluster** cluster, navigate to **Workloads** -> **DaemonSets**, choose the datakit workspace, and click **Edit Configuration** on the datakit column.
 	  
 ![image](../images/microservices/32.png)
 
-Go to the **Storage** interface, add the mount directory `/usr/local/datakit/conf.d/etcd/etcd.conf`, and click **Save**.
+Enter the **Storage** interface, add the etcd.conf mount directory `/usr/local/datakit/conf.d/etcd/etcd.conf`, and click **Save**.
 		
 ![image](../images/microservices/33.png)     
 
-#### 1.3.2 Mounting Certificate Files
+#### 1.3.2 Mount Certificate Files
 
-To collect ETCD metrics using HTTPS, Kubernetes cluster certificates are required. Specifically, the `/etc/kubernetes/pki/etcd` directory from the Kubeadmin-deployed cluster should be mounted to the `/etc/kubernetes/pki/etcd` directory in DataKit.
+To collect ETCD metrics using HTTPS, you need to use the certificates from the Kubernetes cluster. Specifically, you need to mount the `/etc/kubernetes/pki/etcd` directory from the Kubeadmin-deployed cluster to the `/etc/kubernetes/pki/etcd` directory in DataKit.
 
 ```yaml
       volumes:
@@ -146,22 +143,22 @@ To collect ETCD metrics using HTTPS, Kubernetes cluster certificates are require
           name: dir-etcd   
 ```
 
-Below, we complete the configuration using Rancher. Log in to **Rancher**, under the browse clusters tab, select the **k8s-solution-cluster** cluster, navigate sequentially into **Workloads** -> **DaemonSets**, choose the datakit workspace, click **Edit YAML** next to the datakit column.
+Use Rancher to complete the configuration. Log in to **Rancher**, under the Browse Clusters tab, select the **k8s-solution-cluster** cluster, navigate to **Workloads** -> **DaemonSets**, choose the datakit workspace, and click **Edit YAML** on the datakit column.
 		
 ![image](../images/microservices/34.png)
 
-Add the content as shown in the figure, then click **Save**.
+Add the content as shown in the image and click **Save**.
 		 
 ![image](../images/microservices/35.png)
 
 ![image](../images/microservices/36.png)
 
 
-#### 1.3.3 Achieving ETCD Observability
+#### 1.3.3 Achieve ETCD Observability
 
-Log in to [Guance](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **ETCD Monitoring View**.
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **ETCD Monitoring View**.
 
-Name the dashboard **ETCD Monitoring View**; you can customize this name. Click **Confirm**.
+Enter the dashboard name as **ETCD Monitoring View**. The name can be customized. Click **Confirm**.
 		 
 ![image](../images/microservices/37.png)
 
@@ -169,17 +166,17 @@ Enter the monitoring view and select the cluster name.
 		 
 ![image](../images/microservices/38.png)
 
-For more information on ETCD integration methods, please refer to the [ETCD](../../integrations/container/etcd.md) integration documentation.
+For more information on ETCD integration methods, refer to the [ETCD](../../integrations/container/etcd.md) integration documentation.
 
 ## 2 Observability in Istio
 
 ### 2.1 Istio Mesh Monitoring View
 
-Log in to [Guance](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Istio Mesh Monitoring View**.
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Istio Mesh Monitoring View**.
 		
 ![image](../images/microservices/39.png)
 
-Name the dashboard **Istio Mesh Monitoring View**; you can customize this name. Click **Confirm**.
+Enter the dashboard name as **Istio Mesh Monitoring View**. The name can be customized. Click **Confirm**.
 		
 ![image](../images/microservices/40.png)
 
@@ -192,7 +189,7 @@ Enter the monitoring view and select the cluster name.
 
 ### 2.2 Istio Control Plane Monitoring View
 
-Log in to [Guance](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Istio Control Plane Monitoring View**.
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Istio Control Plane Monitoring View**.
 		 
 ![image](../images/microservices/43.png)
 
@@ -206,7 +203,7 @@ Enter the monitoring view and select the cluster name.
 
 ### 2.3 Istio Service Monitoring View
 
-Log in to [Guance](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Istio Service Monitoring View**.
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Istio Service Monitoring View**.
 
 ![image](../images/microservices/47.png)
 
@@ -218,7 +215,7 @@ Enter the monitoring view and select the cluster name.
 
 ### 2.4 Istio Workload Monitoring View
 
-Log in to [Guance](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Istio Workload Monitoring View**.
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Istio Workload Monitoring View**.
 		 
 ![image](../images/microservices/50.png)
 

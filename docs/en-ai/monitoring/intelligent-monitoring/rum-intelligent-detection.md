@@ -1,7 +1,7 @@
-# Intelligent User Access Monitoring
+# Intelligent User Access Detection
 ---
 
-Using intelligent detection algorithms, the system can intelligently monitor performance anomalies and sudden error increases when users access websites or apps. By analyzing monitoring metrics, the system will automatically perform anomaly analysis and trigger alerts when necessary.
+Using intelligent detection algorithms, the system can intelligently monitor performance anomalies and sudden error increases when users access websites or apps. By analyzing detection metrics, the system will automatically perform anomaly analysis and trigger alerts when necessary.
 
 Performance analysis metrics include:
 
@@ -10,11 +10,11 @@ Performance analysis metrics include:
 - FID (First Input Delay greater than or equal to 100 milliseconds);
 - CLS (Cumulative Layout Shift greater than 0.01).
 
-Based on these performance analysis metrics, the system will calculate the percentage of affected users within the detection interval and issue alerts according to predefined alert level thresholds:
+Based on these performance analysis metrics, the system will calculate the percentage of affected users within the detection period and issue alerts based on preset alert level thresholds:
 
-- Critical level: More than 76.2% of users are affected;
-- Warning level: More than 47.4% of users are affected;
-- Error level: More than 59.8% of users are affected.
+- Critical level: Affected user percentage exceeds 76.2%;
+- Warning level: Affected user percentage exceeds 47.4%;
+- Error level: Affected user percentage exceeds 59.8%.
 
 Error detection metrics include:
 
@@ -23,9 +23,9 @@ Error detection metrics include:
 - Action error count.
 
 
-## Application Scenarios
+## Use Cases
 
-Supports monitoring abnormal metric data for application types including Web and APP.
+Supports monitoring metric data anomalies for both Web and APP application types.
 
 
 ## Detection Configuration {#config}
@@ -34,23 +34,23 @@ Supports monitoring abnormal metric data for application types including Web and
 
 1. Define the monitor name;
 
-2. Select the detection frequency: the execution frequency of the detection rule is fixed at 60 minutes;
+2. Select detection frequency: The execution frequency of the detection rule is fixed at 60 minutes;
 
-3. Select the detection scope: filter the data range to be detected using fields; if no filters are added, all application data will be detected.
+3. Select detection scope: Filter the data range to be detected using fields; if no filters are added, all application data will be detected.
 
 
 ## View Events
 
-The monitor retrieves the metric information of the monitored application service objects for the last 60 minutes. When an anomaly is identified, corresponding events are generated and can be viewed in the [**Events > Intelligent Monitoring**](../../events/inte-monitoring-event.md) list.
+The monitor will retrieve the service object metrics information for the last 60 minutes. When anomalies are detected, corresponding events will be generated and can be viewed in the [**Events > Intelligent Monitoring**](../../events/inte-monitoring-event.md) list.
 
 
 ### Event Details Page
 
-Click **Event** to view the details page of the intelligent monitoring event, which includes event status, anomaly occurrence time, anomaly name, analysis report, alert notifications, historical records, and related events.
+Click **Event** to view the details page of the intelligent monitoring event, including event status, anomaly occurrence time, anomaly name, analysis report, alert notifications, history, and related events.
 
-* Click the **Jump to Monitor** button in the top right corner to adjust the [intelligent monitor](index.md);
+* Click the **Jump to Monitor** button in the top-right corner to adjust the [intelligent monitor](index.md);
 
-* Click the **Export** button in the top right corner to export as a **JSON file** or **PDF file**, thus obtaining all key data related to the current event.
+* Click the **Export** button in the top-right corner to export as a **JSON file** or **PDF file**, thus obtaining all key data corresponding to the current event.
 
 :material-numeric-1-circle-outline: Analysis Report
 
@@ -58,13 +58,13 @@ Click **Event** to view the details page of the intelligent monitoring event, wh
 
 ![](../img/intelligent-detection16.png)
 
-* Anomaly Summary: Displays user access service labels, detailed analysis reports, and statistical distribution of anomalies;
+* Anomaly Summary: Displays user access service tags, detailed analysis reports, and statistical anomaly distribution;
 
 * Page Performance/Error Analysis: Links to the user access page dashboard to analyze trends in metrics such as LCP, FCP, and page error rates.
 
-**Note**: When multiple intervals have anomalies, the **Anomaly Analysis** dashboard defaults to displaying the first anomaly interval. You can switch by clicking on the [Anomaly Value Distribution Chart], after which the anomaly analysis dashboard will synchronize accordingly.
+**Note**: When multiple intervals have anomalies, the **Anomaly Analysis** dashboard defaults to displaying the anomaly situation of the first interval. You can switch by clicking the [Anomaly Value Distribution Chart], and the anomaly analysis dashboard will synchronize accordingly.
 
-:material-numeric-2-circle-outline: [Extended Fields](../../events/event-explorer/event-details.md#extension)
+:material-numeric-2-circle-outline: [Extension Fields](../../events/event-explorer/event-details.md#extension)
 
 :material-numeric-3-circle-outline: [Alert Notifications](../../events/event-explorer/event-details.md#alarm)
 

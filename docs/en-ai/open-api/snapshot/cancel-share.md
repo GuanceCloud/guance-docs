@@ -5,19 +5,15 @@
 <br />**GET /api/v1/share_config/delete**
 
 ## Overview
-Delete a specified snapshot or chart share based on `share_uuid`
-
-
+Delete a specified snapshot or chart share based on the `share_uuid`.
 
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
+| Parameter Name        | Type     | Required | Description              |
 |:-------------------|:-------|:-----|:----------------|
 | shareConfigUUIDs | commaArray | Y | Share configuration UUID<br>Allow null: False <br>Allow empty string: False <br> |
 
 ## Additional Parameter Notes
-
-
 
 ## Request Example
 ```shell
@@ -25,8 +21,6 @@ curl 'https://openapi.guance.com/api/v1/share_config/delete?shareConfigUUIDs=sha
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
-
 
 ## Response
 ```shell

@@ -1,65 +1,72 @@
-# High Availability Deployment of OpenSearch
+# OpenSearch High Availability Deployment
+
+
 
 ## Introduction
 
-OpenSearch is an open-source distributed search and analytics suite derived from Elasticsearch OSS 7.10.2. It provides the basic capabilities to perform interactive log analysis, real-time application monitoring, and data analysis.
+OpenSearch is an open-source distributed search and analytics suite, derived from Elasticsearch OSS 7.10.2. It provides the foundational capabilities to perform interactive log analysis, real-time application monitoring, and data analysis.
 
 | Node Type                 | Description                                                         | Best Practices for Production                                               |
-| ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Cluster manager          | Manages overall cluster operations and tracks cluster status. This includes creating and deleting indices, tracking nodes joining and leaving the cluster, checking the health of each node in the cluster (via ping requests), and assigning shards to nodes. | Having three dedicated cluster manager nodes across three different regions is the right approach for almost all production use cases. This configuration ensures your cluster never loses quorum. Two nodes are mostly idle most of the time unless one of them fails or requires some maintenance. |
-| Cluster manager eligible | One of these nodes is selected as the cluster manager node through a voting process.           | For production clusters, ensure you have dedicated cluster manager nodes. The way to achieve dedicated node types is by marking all other node types as false. In this case, all other nodes must be marked as ineligible for cluster management. |
-| Data                     | Stores and searches data. Executes all data-related operations (indexing, searching, aggregating) on local shards. These are the workhorse nodes of your cluster, requiring more disk space than any other node type. | When adding data nodes, keep them balanced across regions. For example, if there are three zones, add data nodes in multiples of three, one per zone. We recommend using nodes with large storage and RAM. |
-| Ingest                   | Preprocesses data before storing it in the cluster. Runs ingest pipelines to transform data before adding it to indices. | If you plan to ingest a large volume of data and run complex ingest pipelines, we recommend using dedicated ingest nodes. You can also choose to offload indexing from data nodes so that data nodes are used exclusively for searching and aggregating. |
-| Coordinating             | Delegates client requests to shards on data nodes, collects and aggregates results into a final result, and sends that result back to the client. | A pair of dedicated coordinating-only nodes can prevent bottlenecks for high search volumes. We recommend using CPUs with as many cores as possible. |
-| Dynamic                  | Assigns specific nodes to custom tasks, such as machine learning (ML) jobs, preventing resource consumption from data nodes, thus not affecting any OpenSearch functionality. |                                                              |
+| ------------------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Cluster manager           | Manages overall cluster operations and tracks cluster status. This includes creating and deleting indices, tracking nodes joining and leaving the cluster, checking the health of each node in the cluster (by running ping requests), and assigning shards to nodes. | Having three dedicated cluster manager nodes across three different regions is the right approach for almost all production use cases. This configuration ensures your cluster never loses quorum. Two nodes are mostly idle most of the time unless one of them fails or requires some maintenance. |
+| Cluster manager eligible  | One of these nodes is elected as the cluster manager node through a voting process. | For production clusters, ensure you have dedicated cluster manager nodes. The way to achieve this is by marking all other node types as false. In this case, all other nodes must be marked as ineligible for the cluster manager role. |
+| Data                      | Stores and searches data. Executes all data-related operations (indexing, searching, aggregating) on local shards. These are your cluster's workhorse nodes and require more disk space than any other node type. | When adding data nodes, keep them balanced across zones. For example, if there are three zones, add data nodes in multiples of three, one per zone. We recommend using nodes with large storage and RAM. |
+| Ingest                    | Preprocesses data before storing it in the cluster. Runs ingest pipelines to transform data before adding it to the index. | If you plan to ingest large volumes of data and run complex ingest pipelines, we recommend using dedicated ingest nodes. You can also choose to offload indexing from data nodes so that data nodes are exclusively used for searching and aggregating. |
+| Coordinating              | Delegates client requests to shards on data nodes, collects and aggregates results into a final result, and sends that result back to the client. | A pair of dedicated coordinating-only nodes can prevent bottlenecks for high-volume search workloads. We recommend using CPUs with as many cores as possible. |
+| Dynamic                   | Assigns specific nodes to custom tasks, such as machine learning (ML) jobs, preventing resource consumption from data nodes and thus not affecting any OpenSearch functionality. |                                                                                                                              |
+
+
 
 ## Prerequisites
 
 - Deployed Kubernetes cluster
+
 - Determined storage components (based on actual conditions)
-  - Public cloud block storage component (public cloud)
+  - Public cloud storage block components (public cloud)
   - OpenEBS storage plugin
+
+​		
 
 ## Resource Catalog
 
-| Hostname    | IP Address      | Role                       | k8s Configuration       | Data Storage   |
-| :---------: | :-------------: | :------------------------: | :---------------------: | -------------: |
-| k8s-master  | 192.168.100.101 | k8s,master                 | 4 CPU, 16G MEM, 100G DISK |                |
-| K8s-node01  | 192.168.100.102 | k8s,node01                 | 4 CPU, 16G MEM, 100G DISK |                |
-| K8s-node02  | 192.168.100.103 | k8s,node02                 | 4 CPU, 16G MEM, 100G DISK |                |
-| K8s-node03  | 192.168.100.104 | k8s,node03                 | 4 CPU, 16G MEM, 100G DISK |                |
-| K8s-node04  | 192.168.100.105 | openes, master, client     | 4 CPU, 16G MEM, 100G DISK | /data:200G     |
-| K8s-node05  | 192.168.100.106 | openes, master, client     | 4 CPU, 16G MEM, 100G DISK | /data:200G     |
-| K8s-node06  | 192.168.100.107 | openes, master, client     | 4 CPU, 16G MEM, 100G DISK | /data:200G     |
-| K8s-node07  | 192.168.100.108 | openes, data               | 8 CPU, 32G MEM, 100G DISK | /data:1T       |
-| K8s-node08  | 192.168.100.109 | openes, data               | 8 CPU, 32G MEM, 100G DISK | /data:1T       |
-| K8s-node09  | 192.168.100.110 | openes, data               | 8 CPU, 32G MEM, 100G DISK | /data:1T       |
+| Hostname   | IP Address     | Role                     | K8s Configuration        | Data Storage  |
+| ---------- | -------------- | ------------------------ | ------------------------ | ------------- |
+| k8s-master | 192.168.100.101 | k8s, master              | 4 CPU, 16G MEM, 100G DISK |               |
+| K8s-node01 | 192.168.100.102 | k8s, node01              | 4 CPU, 16G MEM, 100G DISK |               |
+| K8s-node02 | 192.168.100.103 | k8s, node02              | 4 CPU, 16G MEM, 100G DISK |               |
+| K8s-node03 | 192.168.100.104 | k8s, node03              | 4 CPU, 16G MEM, 100G DISK |               |
+| K8s-node04 | 192.168.100.105 | OpenES, master, client   | 4 CPU, 16G MEM, 100G DISK | /data:200G    |
+| K8s-node05 | 192.168.100.106 | OpenES, master, client   | 4 CPU, 16G MEM, 100G DISK | /data:200G    |
+| K8s-node06 | 192.168.100.107 | OpenES, master, client   | 4 CPU, 16G MEM, 100G DISK | /data:200G    |
+| K8s-node07 | 192.168.100.108 | OpenES, data             | 8CPU, 32G MEM, 100G DISK | /data:1T      |
+| K8s-node08 | 192.168.100.109 | OpenES, data             | 8CPU, 32G MEM, 100G DISK | /data:1T      |
+| K8s-node09 | 192.168.100.110 | OpenES, data             | 8CPU, 32G MEM, 100G DISK | /data:1T      |
 
 ## Default Configuration
 
-| OpenSearch URL                    | opensearch-cluster-client.middleware |
-| :-------------------------------: | :----------------------------------: |
-| OpenSearch Port Number            |                 9200                 |
-| OpenSearch Account                |         openes/kJMerxk3PwqQ          |
-| Master JVM Size                   |                  2G                  |
-| Client JVM Size                   |                  4G                  |
-| Data JVM Size                     |                 20G                  |
+| OpenSearch URL                  | opensearch-cluster-client.middleware |
+| ------------------------------- | ------------------------------------ |
+| OpenSearch Port                 | 9200                                |
+| OpenSearch Account              | openes/kJMerxk3PwqQ                 |
+| Master JVM Size                 | 2G                                  |
+| Client JVM Size                 | 4G                                  |
+| Data JVM Size                   | 20G                                 |
 
 ## Deployment Architecture Diagram
 
-![Deployment Architecture](https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/liwenjin/img/openes.png)
+![OpenSearch Architecture](https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/liwenjin/img/openes.png)
 
 ## Installation Preparation
 
-Since OpenSearch consumes significant resources and requires exclusive use of cluster resources, we need to configure cluster scheduling in advance.
+Since OpenSearch consumes significant resources and requires exclusive cluster resources, we need to configure cluster scheduling in advance.
 
-### Cluster Label Setting
+### Cluster Label Settings
 
-Execute commands to label the cluster:
+Run commands to label the cluster:
 
 ```shell
-kubectl label node 192.168.100.105 192.168.100.106  192.168.100.107 openes=master-client
-kubectl label node 192.168.100.108 192.168.100.109 192.168.100.110  openes=data
+kubectl label node 192.168.100.105 192.168.100.106 192.168.100.107 openes=master-client
+kubectl label node 192.168.100.108 192.168.100.109 192.168.100.110 openes=data
 ```
 
 Check labels:
@@ -68,17 +75,17 @@ Check labels:
 kubectl get nodes --show-labels  | grep 'openes'
 ```
 
-### Cluster Taint Setting
+### Cluster Taint Settings
 
-Execute commands to set taints on the cluster:
+Run commands to set cluster taints:
 
 ```shell
-kubectl taint node 192.168.100.105 192.168.100.106  192.168.100.107 192.168.100.108 192.168.100.109 192.168.100.110 app=openes:NoExecute
+kubectl taint node 192.168.100.105 192.168.100.106 192.168.100.107 192.168.100.108 192.168.100.109 192.168.100.110 app=openes:NoExecute
 ```
 
 ### Set OpenEBS StorageClass 
 
-If using public cloud, refer to the public cloud block storage component.
+If using public cloud, refer to the public cloud storage block component.
 
 Deploy the following YAML configuration:
 
@@ -99,13 +106,13 @@ reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
 ```
 
-> Ensure that the `/data` directory has sufficient disk capacity.
+> Ensure the `/data` directory has sufficient disk capacity.
 
 ## Installation
 
 ### Modify Configuration
 
-The infrastructure-related charts are located in the `/etc/kubeasz/guance/infrastructure/charts` directory. Navigate to this directory for operations:
+The infrastructure-related charts are located in the `/etc/kubeasz/guance/infrastructure/charts` directory. Change to this directory for operations.
 ```shell
 $ cd /etc/kubeasz/guance/infrastructure/charts
 $ ls
@@ -116,8 +123,8 @@ Extract the default configuration from the chart for customization.
 $ tar -zxvf opensearch-cluster-0.0.1.tgz opensearch-cluster/values.yaml
 ```
 
-> Modify the `values.yaml` file under the `opensearch-cluster` directory, paying attention to parameters like `opensearchJavaOpts`, `nodeSelector`, `tolerations`, and `storageClass` for each node type.
-> Set `resources` and `opensearchJavaOpts` based on actual conditions; Kubernetes allocated memory should not be lower than the JVM heap memory. Use odd numbers for `replicas` to prevent split-brain scenarios.
+> Modify the `values.yaml` file under the `opensearch-cluster` directory, paying attention to the `opensearchJavaOpts`, `nodeSelector`, `tolerations`, and `storageClass` parameters for each node type.
+> Set `resources` and `opensearchJavaOpts` based on actual conditions; Kubernetes-assigned memory should not be lower than the JVM heap memory. An odd number of `replicas` is preferred to prevent cluster split-brain.
 
 ```yaml
 opensearch-master:
@@ -172,13 +179,13 @@ opensearch-data:
     ...
     storageClass: openebs-opensearch    
 ```
-> If you do not want to manually set the kernel parameter `vm.max_map_count` on the host, you can enable `sysctlInit` to use init containers for this purpose.  
-Once set via an init container, the kernel parameter will remain independent of the container lifecycle until the machine is restarted or `sysctl -p` refreshes the configuration.  
-`vm.max_map_count` is a non-namespaced kernel parameter, so to minimize its impact, it's recommended to isolate OpenSearch on dedicated machines.
+> If you do not want to manually set the kernel parameter `vm.max_map_count` on the host, you can enable the `sysctlInit` configuration to use init containers for this purpose.
+Setting this parameter via init containers will remain independent of the container lifecycle until the machine is restarted or the configuration is refreshed with `sysctl -p`.
+`vm.max_map_count` is a non-namespaced kernel parameter, and to minimize its impact, it is recommended to isolate OpenSearch deployments on dedicated machines.
 
 ### Execute Installation
 
-Run the following command in the `/etc/kubeasz/guance/infrastructure/charts` directory:
+Run the installation command in the `/etc/kubeasz/guance/infrastructure/charts` directory:
 ```shell
 $ helm install opensearch-cluster -n middleware --create-namespace -f opensearch-cluster/values.yaml opensearch-cluster-0.0.1.tgz
 ```
@@ -195,9 +202,11 @@ REVISION: 1
 TEST SUITE: None
 ```
 
+
+
 ## Verify Deployment and Configuration
 
-### Check Pod Status
+### Check Container Status
 
 ```shell
 kubectl get pods -A -l app.kubernetes.io/instance=opensearch-cluster
@@ -224,7 +233,7 @@ middleware   opensearch-cluster-master-2   1/1     Running   0          4m31s
 
 #### Create User
 
-> `kJMerxk3PwqQ` is the set password; you can customize it.
+> Replace `kJMerxk3PwqQ` with your desired password.
 
 ```shell
 kubectl exec -ti -n middleware opensearch-cluster-client-0 -c opensearch-client \
@@ -241,7 +250,7 @@ Output:
 
 #### Verify User
 
-> If you changed the default password in the document, modify the command accordingly.
+> If you modified the default password in the document, update the command accordingly.
 
 Run the following command:
 

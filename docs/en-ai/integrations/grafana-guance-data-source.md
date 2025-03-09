@@ -8,7 +8,7 @@ __int_icon: 'icon/grafana_datasource'
 # Grafana Guance Datasource
 <!-- markdownlint-enable -->
 
-This plugin is designed to display Guance data within Grafana, providing a Datasource plugin.
+This plugin aims to display Guance data within Grafana, providing a Datasource plugin.
 
 ## Configuration {#config}
 

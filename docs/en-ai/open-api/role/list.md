@@ -5,23 +5,19 @@
 <br />**GET /api/v1/role/list**
 
 ## Overview
-Get the list of roles
-
-
+Retrieve the list of roles
 
 
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:--------|:----------------------|
-| search | string | No | Search by name<br>Example: read <br>Allow null: False <br> |
-| statMember | boolean | No | Whether to display member statistics information<br>Example: read <br>Allow null: False <br> |
-| pageSize | integer | No | Number of items returned per page<br>Allow null: False <br>Example: 10 <br> |
-| pageIndex | integer | No | Page number<br>Allow null: False <br>Example: 10 <br> |
+| Parameter Name    | Type      | Required | Description                                      |
+|:-------------|:-------|:-----|:----------------------------------------------|
+| search | string | No | Search by name<br>Example: read <br>Can be empty: False <br> |
+| statMember | boolean | No | Whether to display member statistics information<br>Example: read <br>Can be empty: False <br> |
+| pageSize | integer | No | Number of items per page<br>Can be empty: False <br>Example: 10 <br> |
+| pageIndex | integer | No | Page number<br>Can be empty: False <br>Example: 10 <br> |
 
 ## Additional Parameter Notes
-
-
 
 
 
@@ -31,7 +27,6 @@ curl 'https://openapi.guance.com/api/v1/role/list?pageIndex=1&pageSize=3&statMem
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
 
 
 

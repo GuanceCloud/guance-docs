@@ -1,21 +1,21 @@
-# Delete an Explorer
+# Delete a Viewer
 
 ---
 
 <br />**GET /api/v1/viewer/\{viewer_uuid\}/delete**
 
 ## Overview
-Delete an Explorer
+Delete a viewer
 
 
 ## Route Parameters
 
 | Parameter Name   | Type     | Required | Description              |
-|:------------|:-------|:-----|:----------------|
-| viewer_uuid | string | Y | Explorer UUID<br> |
+|:-------------|:-------|:-----|:----------------|
+| viewer_uuid | string | Y | Viewer UUID<br> |
 
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
@@ -25,6 +25,8 @@ curl 'https://openapi.guance.com/api/v1/viewer/dsbd_xxxx32/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
+
+
 
 
 ## Response

@@ -4,40 +4,40 @@
 
 ## Introduction
 
-CRD stands for Custom Resource Definition, a built-in resource type in Kubernetes that allows users to define new resource types. **Guance has implemented custom CRD resources**, and manages these custom CRD objects through a CRD controller. Using CRD to collect metrics can decouple the collection from the application.
+CRD stands for Custom Resource Definition, a built-in resource type in Kubernetes that allows users to define new resource types. **<<< custom_key.brand_name >>> implements the customization of CRD resources**, and then manages these customized CRD objects through a CRD controller. Using CRD to collect metrics can decouple the collection process from the application.
 
-For example, collecting Ingress metrics typically requires adding annotations to the Deployment resource in the YAML file where Ingress is deployed. DataKit can then use these custom annotations to collect metrics from the Ingress Pod. However, annotations are tightly coupled with Pods, making CRD a more convenient option as it only requires knowing the namespace of the Ingress and the name of the Deployment.
+For collecting Ingress metrics, annotations need to be added to the Deployment resource in the YAML file where Ingress is deployed. This way, DataKit can collect metrics from the Ingress Pod via these custom annotations. However, annotations are tightly coupled with Pods, which can be inconvenient. Using CRD simplifies this process; you only need to know the namespace of the Ingress and the name of the Deployment.
 
-Let's walk through the steps to enable observability for Ingress using CRD.
+Next, let's walk through enabling observability for Ingress using CRD step by step.
 
 ## Prerequisites
 
 - Kubernetes cluster
-- Guance account
+- <<< custom_key.brand_name >>> account
 
 ## Procedure
 
 ???+ warning
 
-    This example uses DataKit version `1.4.11` and Nginx Ingress Controller version `1.1.1`
+    This example uses DataKit version `1.4.11` and Nginx Ingress Controller version `1.1.1`.
 
 ### 1 Deploy DataKit
 
 #### 1.1 Obtain Token
 
-Log in to [Guance](https://console.guance.com/), click on the "Management" module, find the Token under Basic Settings, and click the "Copy Icon".
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on the "Manage" module, find the Token in the basic settings interface, and click the "Copy Icon".
 
 ![1643275020(1).png](../images/ingress-crd/1.png)
 
 #### 1.2 Download DataKit Deployment File
 
-Log in to [Guance](https://console.guance.com/), click on the "Integration" module - "DataKit" - "Kubernetes", and download the `datakit.yaml` file.
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on the "Integration" module - "DataKit" - "Kubernetes", and download the `datakit.yaml` file.
 
 ![1643275020(1).png](../images/ingress-crd/2.png)
 
 #### 1.3 Deploy DataKit
 
-Open the `datakit.yaml` file, replace `<your-token>` with the copied Token. To differentiate clusters and facilitate elections, add a few environment variables; `k8s-containerd` can be defined by yourself.
+Open the `datakit.yaml` file, replace `<your-token>` with the copied Token. To distinguish clusters and facilitate elections, add a few environment variables. You can define `k8s-containerd` yourself.
 
 ```yaml
 - name: ENV_GLOBAL_HOST_TAGS
@@ -50,7 +50,7 @@ Open the `datakit.yaml` file, replace `<your-token>` with the copied Token. To d
 
 ![1643275020(1).png](../images/ingress-crd/3.png)
 
-Upload the `datakit.yaml` file to the master node of the Kubernetes cluster and deploy DataKit using the following command.
+Upload the `datakit.yaml` file to the master node of the Kubernetes cluster and deploy DataKit using the command:
 
 ```shell
 kubectl apply -f datakit.yaml
@@ -58,11 +58,12 @@ kubectl apply -f datakit.yaml
 
 ### 2 Deploy Ingress
 
-#### 2.1 Write `ingress-deployment.yaml`
+#### 2.1 Write ingress-deployment.yaml
 
 ??? quote "`ingress-deployment.yaml`"
 
     ```yaml
+
     apiVersion: v1
     kind: Namespace
     metadata:
@@ -758,9 +759,11 @@ kubectl apply -f datakit.yaml
             runAsNonRoot: true
             runAsUser: 2000
 
+    ```
+
 #### 2.2 Deploy Ingress
 
-Upload the `ingress-deployment.yaml` file to the master node of the Kubernetes cluster and deploy Ingress using the following command.
+Upload the `ingress-deployment.yaml` file to the master node of the Kubernetes cluster and deploy Ingress using the command:
 
 ```shell
 kubectl apply -f ingress-deployment.yaml
@@ -768,7 +771,7 @@ kubectl apply -f ingress-deployment.yaml
 
 ### 3 Deploy Nginx
 
-#### 3.1 Write `nginx-deployment.yaml`
+#### 3.1 Write nginx-deployment.yaml
 
 ??? quote "`nginx-deployment.yaml`"
 
@@ -813,7 +816,7 @@ kubectl apply -f ingress-deployment.yaml
 
     ```
 
-#### 3.2 Write `nginx-ingress.yaml`
+#### 3.2 Write nginx-ingress.yaml
 
 ??? quote "`nginx-ingress.yaml`"
 
@@ -842,7 +845,7 @@ kubectl apply -f ingress-deployment.yaml
 
 #### 3.3 Deploy Nginx
 
-Upload `nginx-deployment.yaml` and `nginx-ingress.yaml` to the master node of the Kubernetes cluster and execute the commands.
+Upload the `nginx-deployment.yaml` and `nginx-ingress.yaml` files to the master node of the Kubernetes cluster and execute the commands.
 
 ```shell
 kubectl apply -f nginx-deployment.yaml
@@ -851,7 +854,7 @@ kubectl apply -f nginx-ingress.yaml
 
 ### 4 Create CRD
 
-#### 4.1 Write `datakit-crd.yaml`
+#### 4.1 Write datakit-crd.yaml
 
 ??? quote "`datakit-crd.yaml`"
 
@@ -896,7 +899,7 @@ kubectl apply -f nginx-ingress.yaml
 
     ```
 
-#### 4.2 Write `ingress-crd.yaml`
+#### 4.2 Write ingress-crd.yaml
 
 ??? quote "`ingress-crd.yaml`"
 
@@ -953,10 +956,10 @@ while true; do sleep 1;curl -v http://8.136.207.182 -H 'host: mynginx.com'; done
 
 #### 5.2 Ingress Observability
 
-Log in to [Guance](https://console.guance.com/), click on the "Scenarios" module, create a new dashboard, search for "ingress", and click "Confirm".
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on the "Scenarios" module, create a new dashboard, search for ingress, and click "Confirm".
 
 ![1643275020(1).png](../images/ingress-crd/5.png)
 
-The above `while` command simulates accessing `mynginx.com`, and the monitoring view will display the usage of Ingress.
+The while loop command executed above will simulate visits to `mynginx.com`, and the monitoring view will display the usage of Ingress.
 
 ![1643275020(1).png](../images/ingress-crd/6.png)

@@ -1,4 +1,4 @@
-# Best Practices for Bulk Deployment of DataKit
+# Best Practices for Batch Deployment of DataKit
 
 ---
 
@@ -8,27 +8,27 @@
 | ------- | ----------------------------------------------- |
 | Centos  | 7.6                                            |
 | Ansible | 2.10.4                                         |
-| Host IPs | 10.200.14.56; 10.200.14.57; 10.200.14.63       |
+| Host IP | 10.200.14.56; 10.200.14.57; 10.200.14.63       |
 
 **Note: Only supports Linux hosts**
 
-## Deploying Ansible
+## Deploy Ansible
 
-### Installing Ansible
+### Install Ansible
 
-Log in to the server at 10.200.14.56 and execute the installation command:
+Log in to the server at 10.200.14.56 and execute the installation command
 ```
 yum -y install ansible
 ```
 
-### Configuring Ansible
+### Configure Ansible
 
-Edit the Ansible `hosts` file:
+Edit the Ansible hosts file 
 ```
 vim /etc/ansible/hosts
 ```
 
-Add the list of hosts along with the user/password:
+Add the list of hosts and user/password
 
 ```
 [all]
@@ -49,51 +49,51 @@ sed -i '/host_key_checking/c\host_key_checking = False' /etc/ansible/ansible.cfg
 ansible all -m ping
 ```
 
-| 10.200.14.57 \| SUCCESS => { "ansible_facts": { "discovered_interpreter_python": "/usr/bin/python" }, "changed": false, "ping": "pong" } <br />10.200.14.56 \| SUCCESS => { "ansible_facts": { "discovered_interpreter_python": "/usr/bin/python" }, "changed": false, "ping": "pong" } <br />10.200.14.63 \| SUCCESS => { "ansible_facts": { "discovered_interpreter_python": "/usr/bin/python" }, "changed": false, "ping": "pong" } |
+| 10.200.14.57 &#124; SUCCESS => { "ansible_facts": { "discovered_interpreter_python": "/usr/bin/python" }, "changed": false, "ping": "pong" } <br />10.200.14.56 &#124; SUCCESS => { "ansible_facts": { "discovered_interpreter_python": "/usr/bin/python" }, "changed": false, "ping": "pong" } <br />10.200.14.63 &#124; SUCCESS => { "ansible_facts": { "discovered_interpreter_python": "/usr/bin/python" }, "changed": false, "ping": "pong" } |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
-## Bulk Deployment
+## Batch Deployment
 
-### Configure Playbook
+### Configure PlayBook
 
-#### Get Command
+#### Obtain Command
 
-Click on the [**Integration**] module, top-right corner [_Quickly get DataKit installation command_], choose the appropriate [_DataKit installation command_] based on your operating system and type.
+Click on the [**Integration**] module, and in the top right corner, click [_Quickly Get DataKit Installation Command_], then choose the appropriate [_Datakit Installation Command_] based on your operating system and system type.
 
 ![image.png](../images/datakit-ansible-1.png)
 
 #### Create YAML File
 
-Navigate to the Ansible directory:
+Enter the Ansible directory
 
 ```
 cd /etc/ansible
 ```
 
-Create a new file:
+Create a new file
 
 ```
 vim datakit-install.yaml
 ```
 
-Add the following content (copy the previous _[DataKit installation command]_):
+Add the following content (copy the previous _[Datakit Installation Command]_)
 
-```yaml
+```
 - hosts: all
   remote_user: root
   tasks:
-   - name: judge DataKit exists
+   - name: judge datakit exists
      shell: ls /usr/local/datakit/conf.d
      ignore_errors: True
      register: result
-   - name: install DataKit
-     shell: [DataKit installation command]
+   - name: install datakit
+     shell: [Datakit Installation Command]
      when: result.rc != 0
 ```
 
 #### Execute YAML File
 
-*** Ensure the server can access the public network ***
+*** Ensure the server can access the internet ***
 
 ```
 ansible-playbook datakit-install.yaml
@@ -104,35 +104,35 @@ ansible-playbook datakit-install.yaml
 
 #### Verify Information
 
-Click on the [**Infrastructure**] module, [_Hosts_] to view the list of all hosts with installed DataKit and basic information.
+Click on the [**Infrastructure**] module, and under [_Hosts_], view the list of all hosts with DataKit installed along with basic information.
 ![image.png](../images/datakit-ansible-2.png)
 
-## Bulk Upgrade
+## Batch Upgrade
 
 #### Create YAML File
 
-Navigate to the Ansible directory:
+Enter the Ansible directory
 
 ```
 cd /etc/ansible
 ```
 
-Create a new file:
+Create a new file
 ```
 vim datakit-upgrade.yaml
 ```
 
-Add the following content:
-```yaml
+Add the following content
+```
 - hosts: all
   remote_user: root
   tasks:
-   - name: judge DataKit exists
+   - name: judge datakit exists
      shell: ls /usr/local/datakit/conf.d
      ignore_errors: True
      register: result
-   - name: upgrade DataKit
-     shell: sudo -- sh -c "curl https://static.guance.com/datakit/installer-linux-amd64 -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk installer"
+   - name: upgrade datakit
+     shell: sudo -- sh -c "curl https://<<< custom_key.static_domain >>>/datakit/installer-linux-amd64 -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk installer"
      when: result.rc == 0
 ```
 
@@ -144,33 +144,33 @@ ansible-playbook datakit-upgrade.yaml
 
 #### Verify Information
 
-Click on the [**Infrastructure**] module, use quick filter conditions to select the latest [_DataKit version_]
+Click on the [**Infrastructure**] module, and use quick filter conditions to select the latest [_DataKit Version_]
 
 ![image.png](../images/datakit-ansible-3.png)
 
-## Bulk Synchronization
+## Batch Synchronization
 
 #### Create YAML File
 
-Navigate to the Ansible directory:
+Enter the Ansible directory
 
 ```
 cd /etc/ansible
 ```
 
-Create a new file:
+Create a new file
 
 ```
 vim datakit-config-upgrade.yaml
 ```
 
-Add the following content:
+Add the following content
 
-```yaml
+```
 - hosts: all
   remote_user: root
   tasks:
-   - name: judge DataKit exists
+   - name: judge datakit exists
      shell: ls /usr/local/datakit/conf.d
      ignore_errors: True
      register: result
@@ -191,7 +191,7 @@ Add the following content:
      register: res
    - debug: var=res.stdout_lines
    - debug: var=res.changed
-   - name: reload DataKit
+   - name: reload datakit
      shell: systemctl restart datakit
      when: res.changed == true
 ```
@@ -204,4 +204,4 @@ ansible-playbook datakit-config-upgrade.yaml
 
 #### Verify Information
 
-All hosts will apply the same DataKit configuration (conf.d directory). If encountering customized server configurations, you can use the DataKit whitelist feature.
+All hosts will apply the same DataKit configuration (conf.d directory). If you encounter customized server configurations, you can use the DataKit whitelist feature.

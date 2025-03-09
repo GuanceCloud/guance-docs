@@ -1,4 +1,4 @@
-# 【Super Account Management】Delete
+# 【Manage Backend Account】Delete
 
 ---
 
@@ -12,10 +12,10 @@
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| accountUuids | commaArray | Y | Account UUID<br>Example: supper_xxx1,supper_xxx2,supper_xxx3 <br>Allow Null: False <br> |
+|:---------------------|:---------|:----------|:-------------------------|
+| accountUuids         | commaArray | Y         | Account UUID<br>Example: supper_xxx1,supper_xxx2,supper_xxx3 <br>Allow empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
@@ -32,29 +32,4 @@
 
 
 </input_content>
-<target_language>英语</target_language>
-</input>
-
-## Overview
-
-This API endpoint is used to delete super accounts.
-
-## Body Request Parameters
-
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| accountUuids | commaArray | Yes | Account UUID<br>Example: supper_xxx1,supper_xxx2,supper_xxx3 <br>Allow Null: False <br> |
-
-## Additional Parameter Notes
-
-No additional notes provided.
-
-## Response
-
-```shell
- 
-```
-
-## Notes
-
-No further information provided.
+</translated_content>

@@ -4,9 +4,9 @@
 
 ## Preface
 
-When deploying microservices using containerization, the microservices run inside containers. A Pod is composed of one or more tightly coupled containers and is the smallest scheduling unit in Kubernetes.
+When deploying microservices using containerization, the microservices run inside containers. A Pod is composed of one or a group of tightly coupled containers and is the smallest scheduling unit in Kubernetes.
 
-This article outlines three methods for collecting logs from Pods using DataKit.
+This article lists three methods for collecting logs from Pods using DataKit.
 
 ## Solution One
 
@@ -14,11 +14,11 @@ DataKit enables the Logfwd collector, which collects business container logs in 
 
 ### 1 Enable the Logfwd Collector
 
-If Kubernetes is not integrated with DataKit, log in to [Guance](https://console.guance.com/), go to 「Integration」 - 「Datakit」 - 「Kubernetes」, and use the `datakit.yaml` file to integrate DataKit.
+If Kubernetes is not integrated with DataKit, please log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), go to "Integration" - "Datakit" - "Kubernetes", and use the `datakit.yaml` file to integrate DataKit.
 
 ![image](../images/pod-log/1.png)
 
-Next, modify the `datakit.yaml` file to mount the `logfwdserver.conf` file into DataKit's `/usr/local/datakit/conf.d/log/` directory.
+Modify the `datakit.yaml` file to mount the `logfwdserver.conf` file to DataKit's `/usr/local/datakit/conf.d/log/` directory.
 
 Add the following configuration to `datakit.yaml`:
 
@@ -33,7 +33,7 @@ data:
   #### logfwdserver
   logfwdserver.conf: |-
     [inputs.logfwdserver]
-      ## Logfwd receiver address and port
+      ## Logfwd receiver listening address and port
       address = "0.0.0.0:9531"
 
       [inputs.logfwdserver.tags]
@@ -41,7 +41,7 @@ data:
       # more_tag = "some_other_value"
 ```
 
-In the DaemonSet resource, add:
+Add the following to the DaemonSet resource:
 
 ```yaml
 - mountPath: /usr/local/datakit/conf.d/log/logfwdserver.conf
@@ -51,9 +51,9 @@ In the DaemonSet resource, add:
 
 ### 2 Mount Pipeline
 
-Modify the `datakit.yaml` file to mount the `pod-logging-demo.p` file into DataKit's `/usr/local/datakit/pipeline/` directory.
+Modify the `datakit.yaml` file to mount the `pod-logging-demo.p` file to DataKit's `/usr/local/datakit/pipeline/` directory.
 
-Add to the ConfigMap resource:
+Add the following to the ConfigMap resource:
 
 ```toml
     pod-logging-demo.p: |-
@@ -65,7 +65,7 @@ Add to the ConfigMap resource:
         default_time(time,"Asia/Shanghai")
 ```
 
-In the DaemonSet resource, add:
+Add the following to the DaemonSet resource:
 
 ```yaml
 - mountPath: /usr/local/datakit/pipeline/pod-logging-demo.p
@@ -73,7 +73,7 @@ In the DaemonSet resource, add:
   subPath: pod-logging-demo.p
 ```
 
-> **Note:** If you do not need to use the Pipeline for log parsing, this step can be skipped.
+> **Note:** If you do not need to use Pipeline for log parsing, this step can be skipped.
 
 ### 3 Restart DataKit
 
@@ -84,9 +84,9 @@ kubectl apply -f datakit.yaml
 
 ### 4 Collect Logs with Logfwd Sidecar
 
-Deploy the Logfwd image and the business image within the same Pod. Below, `log-demo-service:v1` is used as the business image, generating a log file at `/data/app/logs/log.log`. Logfwd reads the log file via shared storage and sends it to DataKit. The `pod-logging-demo.p` script parses the logs using date-based multiline matching.
+Deploy the Logfwd image and the business image in the same Pod. Below, we use `log-demo-service:v1` as the business image, generating a `/data/app/logs/log.log` log file. Use Logfwd to read the log file via shared storage and send it to DataKit. Use `pod-logging-demo.p` to parse the log and match multiple lines using dates.
 
-??? quote "Example Configuration Files"
+??? quote "Sample Configuration Files"
 
     ```yaml
     apiVersion: apps/v1
@@ -176,22 +176,22 @@ Deploy the Logfwd image and the business image within the same Pod. Below, `log-
         ]
     ```
 
-Explanation of `logfwd-conf` parameters:
+Parameters explanation for `logfwd-conf`:
 
 - logfiles: List of log files.
-- ignore: File path filtering using glob rules; files matching any condition will not be collected.
+- ignore: File path filter using glob rules; files matching any condition will not be collected.
 - source: Data source.
-- service: Additional tag label; if empty, defaults to `$source`.
-- pipeline: Script path for pipeline usage.
+- service: Additional tag, defaults to `$source` if empty.
+- pipeline: Script path when using Pipeline.
 - character_encoding: Character encoding selection.
-- multiline_match: Multiline matching pattern.
-- remove_ansi_escape_codes: Whether to remove ANSI escape codes (e.g., text colors in standard output); values are true or false.
-- tags: Key-value pairs defining labels; optional.
+- multiline_match: Multi-line matching.
+- remove_ansi_escape_codes: Whether to remove ANSI escape codes (e.g., text color in standard output); values are true or false.
+- tags: Define tags in key-value pairs; optional.
 
 Environment variable explanations:
 
 - LOGFWD_DATAKIT_HOST: DataKit address.
-- LOGFWD_DATAKIT_PORT: Logfwd port
+- LOGFWD_DATAKIT_PORT: Logfwd port.
 
 ```shell
 kubectl apply -f log-fwd-deployment.yaml
@@ -199,7 +199,7 @@ kubectl apply -f log-fwd-deployment.yaml
 
 ### 5 View Logs
 
-Log in to Guance - 「Logs」, search for `log_fwd_demo` as the data source.
+Log in to <<< custom_key.brand_name >>> - "Logs", search for `log_fwd_demo`.
 
 ![image](../images/pod-log/2.png)
 
@@ -207,9 +207,9 @@ Log in to Guance - 「Logs」, search for `log_fwd_demo` as the data source.
 
 ## Solution Two
 
-By default, DataKit collects logs output to Stdout in Pods. To specially handle log formats, Annotations are often added to the Deployment controller YAML file when deploying Pods.
+DataKit collects logs output to Stdout by default. To handle log formats specially, Annotations are often added to the Deployment controller's YAML file when deploying Pods.
 
-Below is an example of log collection for a Springboot microservice project, where the jar package is `log-springboot-demo-1.0-SNAPSHOT.jar`, and logging is done using Logback. Follow these steps:
+Below is an example of log collection for a Springboot microservice project, with the jar package being `log-springboot-demo-1.0-SNAPSHOT.jar`, and logs using Logback. The specific steps are as follows:
 
 ### 1 Write `logback-spring.xml`
 
@@ -221,12 +221,12 @@ Below is an example of log collection for a Springboot microservice project, whe
     <configuration scan="true" scanPeriod="60 seconds" debug="false">
         <contextName>logback</contextName>
 
-        <!-- Log root directory -->
+        <!-- Log root directory - - 
         <property name="log.root.dir" value="./logs"/>
-        <!-- Log output format -->
+        <!-- Log output format - - 
         <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] -  - %msg%n" />
 
-        <!-- Print logs to console -->
+        <!-- Print logs to console - - 
         <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
             <encoder>
                 <pattern>${log.pattern}</pattern>
@@ -241,7 +241,7 @@ Below is an example of log collection for a Springboot microservice project, whe
 
 ### 2 Build Image
 
-Dockerfile content:
+Dockerfile as follows:
 
 ```bash
 FROM openjdk:8u292
@@ -256,7 +256,7 @@ WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} "]
 ```
 
-Build and push the image to the Harbor repository:
+Build the image and push it to the Harbor repository:
 
 ```bash
  docker build -t <your-harbor>/log-demo-service:v1 .
@@ -329,18 +329,18 @@ Build and push the image to the Harbor repository:
               emptyDir: {}
     ```
 
-Annotations parameter explanations:
+Annotations parameters explanation:
 
 - source: Data source
-- service: Tag label
+- service: Tag marker
 - pipeline: Pipeline script path
 - ignore_status:
-- multiline_match: Regular expression for matching log lines; for example, starting with a date (like 2021-11-26) indicates a new log line, while subsequent lines without the date prefix are considered part of the previous log line
-- remove_ansi_escape_codes: Whether to remove ANSI escape codes (e.g., text colors in standard output)
+- multiline_match: Regular expression to match a line of log; e.g., starting with a date (like 2021-11-26) indicates a new log line, while subsequent lines not starting with that date are considered part of the previous log entry.
+- remove_ansi_escape_codes: Whether to remove ANSI escape codes (e.g., text color in standard output).
 
 ### 4 Configure Pipeline
 
-Add the `pod-logging-demo.p` section to the ConfigMap resource in the `datakit-default.yaml` file:
+Add the `pod-logging-demo.p` section to the ConfigMap resource in the `datakit-default.yaml` file.
 
 ```yaml
 apiVersion: v1
@@ -379,7 +379,7 @@ Access the microservice:
 curl localhost:30053/ping
 ```
 
-Log in to [Guance](https://console.guance.com/) in the 「Logs」 module, input `log-demo-service`, and successfully view the logs.
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/) "Logs" module, input `log-demo-service`, and successfully view the logs.
 
 ![image](../images/pod-log/4.png)
 
@@ -387,4 +387,4 @@ Log in to [Guance](https://console.guance.com/) in the 「Logs」 module, input 
 
 ## Solution Three
 
-Mount a Volume to the Pod using the `hostPath` volume type, mounting the log file to the host machine. Deploy DataKit using a DaemonSet, also mounting a `hostPath` volume type, so that DataKit can collect log files from within the Pod.
+Mount Volume to Pod using hostPath type, mounting log files to the host machine. Deploy DataKit using DaemonSet, also mounting hostPath type Volume, allowing DataKit to collect logs from within the Pod.

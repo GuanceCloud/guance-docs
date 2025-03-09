@@ -1,4 +1,4 @@
-# 0021-profile-exist-Global Environment Variable File Existence
+# 0021-profile-exist-Check if Global Environment Variable File Exists
 ---
 
 ## Rule ID
@@ -18,50 +18,44 @@
 
 ## Compatible Versions
 
-
 - Linux
-
-
 
 
 ## Description
 
-
-- Monitor whether `/etc/profile` exists on the host
-
+- Monitor whether `/etc/profile` exists on the host.
 
 
 ## Scan Frequency
+
 - 1 */5 * * *
+
 
 ## Theoretical Basis
 
 
 
-
-
 ## Risk Items
 
-
-- Service Unavailability
-
+- Service Unavailable
 
 
 ## Audit Method
-- Verify the existence of `/etc/profile` on the host. You can use the following command to verify:
+
+- Verify the existence of `/etc/profile` on the host. You can run the following command to verify:
 
 ```bash
 ls /etc/profile
 ```
 
 
-
 ## Remediation
-- If `/etc/profile` is deleted, execute the following commands:
+
+- If `/etc/profile` has been deleted, please execute the following commands:
 > ```bash
 >    export PATH=/usr/bin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin
 > ```
-> Create a new `/etc/profile` file using `vim /etc/profile`, copy the following content into it, and then use `source /etc/profile` to make the changes take effect immediately.
+> Create a new `profile` file using `vim /etc/profile`, copy the following content into it, and then use `source /etc/profile` to make the changes take effect immediately.
 ```bash
 # /etc/profile
 
@@ -143,35 +137,23 @@ ls /etc/profile
 ```
 
 
-
 ## Impact
 
-
 - None
-
-
 
 
 ## Default Value
 
-
 - None
-
-
 
 
 ## References
 
+- [Emergency Response Thoughts and Procedures for Hacker Intrusions (Unofficial)](https://www.sohu.com/a/236820450_99899618)
 
-- [Emergency Response Thoughts and Procedures for Hacker Intrusion (Unofficial)](https://www.sohu.com/a/236820450_99899618)
-
-
-
-- [A Real Case of Mining Intrusion Investigation Analysis (Unofficial)](https://www.cnblogs.com/zsl-find/articles/11688640.html)
-
+- [Real Case Analysis of a Mining Malware Intrusion (Unofficial)](https://www.cnblogs.com/zsl-find/articles/11688640.html)
 
 
 ## CIS Controls
-
 
 - None

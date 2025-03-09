@@ -1,12 +1,11 @@
-# Modify an Explorer
+# Modify a Viewer
 
 ---
 
 <br />**POST /api/v1/viewer/\{viewer_uuid\}/modify**
 
 ## Overview
-Modify an Explorer
-
+Modify a viewer
 
 
 
@@ -14,21 +13,21 @@ Modify an Explorer
 
 | Parameter Name        | Type     | Required   | Description              |
 |:---------------------|:---------|:-----------|:-------------------------|
-| viewer_uuid           | string   | Y          | Explorer UUID            |
+| viewer_uuid           | string   | Y          | Viewer UUID<br>          |
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
 |:---------------------|:---------|:-----------|:-------------------------|
-| name                  | string   |            | Explorer name<br>Example: Explorer 1 <br>Can be empty: False <br>Maximum length: 64 <br> |
-| desc                  | string   |            | Description<br>Example: Description 1 <br>Can be empty: False <br>Can be an empty string: True <br>Maximum length: 2048 <br> |
-| type                  | string   |            | Type, defaults to CUSTOM<br>Example: CUSTOM <br>Can be empty: False <br>Maximum length: 32 <br> |
-| extend                | json     |            | Additional data for the Explorer, defaults to {}<br>Example: {} <br>Can be empty: False <br> |
-| pathName              | string   |            | Explorer path name<br>Example: tracing__profile <br>Can be empty: False <br>Maximum length: 32 <br> |
-| tagNames              | array    |            | Names of tags<br>Can be empty: False <br> |
-| tagNames[*]           | string   |            | Tag name<br>Can be empty: False <br>Maximum length: 128 <br> |
-| dashboardBindSet      | array    |            | Information about views bound to the Explorer<br>Example: [] <br>Can be empty: False <br>Can be an empty string: False <br> |
+| name                 | string   |            | Viewer name<br>Example: Viewer No.1 <br>Can be empty: False <br>Maximum length: 64 <br> |
+| desc                 | string   |            | Description<br>Example: Description 1 <br>Can be empty: False <br>Can be an empty string: True <br>Maximum length: 2048 <br> |
+| type                 | string   |            | Type, default is CUSTOM<br>Example: CUSTOM <br>Can be empty: False <br>Maximum length: 32 <br> |
+| extend               | json     |            | Additional data of the viewer, default is {}<br>Example: {} <br>Can be empty: False <br> |
+| pathName             | string   |            | Explorer path name<br>Example: tracing__profile <br>Can be empty: False <br>Maximum length: 32 <br> |
+| tagNames             | array    |            | Names of tags<br>Can be empty: False <br> |
+| tagNames[*]          | string   |            | Tag name<br>Can be empty: False <br>Maximum length: 128 <br> |
+| dashboardBindSet     | array    |            | Information of views bound to the viewer<br>Example: [] <br>Can be empty: False <br>Can be an empty string: False <br> |
 
 ## Additional Parameter Notes
 

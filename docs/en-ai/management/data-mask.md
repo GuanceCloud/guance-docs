@@ -1,37 +1,37 @@
 # Sensitive Data Masking
 ---
 
-After data is collected and reported to the Guance workspace, sensitive information fields such as IP addresses and user information can be masked by setting up sensitive fields.
+After data is collected and reported to the <<< custom_key.brand_name >>> workspace, sensitive information fields such as IP addresses and user information can be masked by setting up sensitive fields.
 
 **Note**:
 
-- Different data types (including: logs, base objects, Resource Catalog, events, APM, RUM, Security Check, network, Profile) can have their sensitive fields (field names are case-sensitive) configured individually;
+- Different data types (including logs, base objects, resource catalogs, events, APM, RUM, security checks, network, Profile) can have their sensitive fields (field names are case-sensitive) configured individually;
     
-- After configuring masking for string (`string`) type fields, the data displayed will be `***`;
-
-- Only members with assigned roles after adding masking rules can view the original data; other members will not be able to see the unmasked information in the Explorer or charts.
+- After configuring field masking, string (`string`) type field data will be displayed as `***`;
+    
+- Only members with added masking rules can view the original data after it has been distributed; other members will not be able to view unmasked information in the Explorer or charts.
 
 ## Start Adding Rules
 
-1. Go to **Management > Sensitive Data Masking > Add Masking Rule**;
+1. Go to **Manage > Sensitive Data Masking > Add Masking Rule**;
 2. Define the name of the masking rule;
 3. Select the data type;
-4. Enter the fields that need to be masked;
-5. Write a regular expression to configure masking based on the field value content using regex syntax; currently supports either selecting from the [template library](./regex.md) or custom input;
-    - Click preview, enter the original text, click mask to view the masking effect.
-6. Select the roles that need to be shielded from viewing the data;
-7. Click **Confirm**, and you can view the configured sensitive fields.
+4. Input the fields that need to be masked;
+5. Write a regular expression, i.e., configure masking for field values using regex syntax; currently supports either directly selecting from the [template library](./regex.md) or custom input;
+    - Click Preview, enter the original text, click Mask to see the masking effect.
+6. Select roles that need to be shielded from viewing the data;
+7. Click **Confirm** to view the configured sensitive fields.
 
-As shown in the figure, Guance will mask the results matched by the left-side regular expression with `***`.
+As shown in the figure, <<< custom_key.brand_name >>> will mask the results matched by the left-side regular expression according to `***`.
 
-![Masked Data Example](../img/token-mask.png)
+![Masking Example](../img/token-mask.png)
 
-## Managing Rule List
+## Manage Rules List
 
 1. Search: In the search bar on the right side of the page, you can directly input the rule name to search;
 2. Edit: Click to modify the current rule;
-3. Delete: If you no longer need the current rule, click delete;
-4. Batch Operations: In the rule list, you can batch enable, disable, or delete specific rules.
+3. Delete: If the current rule is no longer needed, click delete;
+4. Batch operations: In the rules list, you can batch enable, disable, or delete specific rules.
 
 ## Further Reading
 
@@ -39,7 +39,7 @@ As shown in the figure, Guance will mask the results matched by the left-side re
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Permission Scenarios Combining Data Access with Sensitive Data Masking Rules**</font>](./access_mask_combine.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Permission Use Cases Combining Data Access with Sensitive Data Masking Rules**</font>](./access_mask_combine.md)
 
 </div>
 

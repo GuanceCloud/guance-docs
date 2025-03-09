@@ -1,6 +1,6 @@
 # Unresolved Event Query
 
-Please refer to the [event-related field descriptions](../../events/#fields) for `df_monitor_checker_event_ref`, `df_fault_id`, `df_status`, and `df_fault_status` before querying.
+Before querying, please refer to the [Event Field Description](../../events/#fields) for the fields `df_monitor_checker_event_ref`, `df_fault_id`, `df_status`, and `df_fault_status`.
 
 ## 1. Query Entry Points
 
@@ -10,11 +10,11 @@ Please refer to the [event-related field descriptions](../../events/#fields) for
 
 ## 2. Query Statements
 
-### Method One: Using `having` (Applicable to Doris Engine) - Direct Results
+### Method One: Using HAVING Clause (Applicable to Doris Engine) - Direct Results
 
 #### Query Structure
 
-```
+```json
 {
     "queries": [
         {
@@ -32,17 +32,17 @@ Please refer to the [event-related field descriptions](../../events/#fields) for
                 // Specify the number of groups to retrieve, i.e., 100 unresolved events
                 "slimit": 100,
                 "tz": "Asia/Shanghai"
-            },
+            }
         }
     ]
 }
 ```
 
-### Method Two: Without `having` (Not Applicable to Doris Engine) - Requires Filtering
+### Method Two: Without HAVING Clause (Not Applicable to Doris Engine) - Requires Filtering
 
-#### Query Structure
+1. **Query Structure**
 
-```
+```json
 {
     "queries": [
         {
@@ -60,32 +60,32 @@ Please refer to the [event-related field descriptions](../../events/#fields) for
                 # Specify retrieving 1000 trigger objects
                 "slimit": 1000,
                 "tz": "Asia/Shanghai"
-            },
+            }
         }
     ]
 }
 ```
 
-#### Post-processing Filter
+2. **Filter DQL Query Results**
 
-Filter the results based on the `df_fault_status` field, extracting events where `df_fault_status=fault`. These are the unresolved events.
+Filter the `df_fault_status` field in the query results to retain events where `df_fault_status = fault`. These data points represent the list of unresolved events.
 
-#### Final Sorting
+3. **Sort Data by Time Field**
 
-Sort the filtered data in descending order by the `time` field to obtain the final list of unresolved events.
+Sort the data by the `time` field in descending order to obtain the final list of unresolved events.
 
 ## 3. How to Confirm the Storage Engine Type for Events in the Current Workspace
 
-1. Obtain workspace storage information via API
+1. Retrieve workspace storage information via API
 
 - [OpenAPI 「Get Current Workspace Information」](../../open-api/workspace/current/)
 
 - [ExternalAPI 「【Workspace】Get Details」](../../external-api/workspace/get/)
 
-The API response includes the `datastore` field, which stores the type of storage engine used for all basic data within the current workspace (excluding external indexes). If the value of `keyevent` in `datastore` is `doris`, it indicates that the event data uses the Doris storage engine.
+In the API response, the `datastore` field stores the type of storage engine used for all basic data within the current workspace (excluding external indexes). If the value of `keyevent` in `datastore` is `doris`, it indicates that event data uses the `doris` storage engine.
 
 ```
-API response example:
+Example API Response:
 {
     "code": 200,
     "content": {
@@ -97,7 +97,7 @@ API response example:
         "datastore": {
             "backup_log": "doris",
             "custom_object": "doris",
-            "keyevent": "doris", // Check if the value here is doris, indicating a Doris storage engine
+            "keyevent": "doris", // Check this value; if it is doris, it indicates a doris storage engine
             "logging": "doris",
             "metric": "guancedb",
             "network": "doris",

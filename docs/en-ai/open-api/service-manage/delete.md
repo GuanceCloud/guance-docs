@@ -8,15 +8,13 @@
 Delete Service List configuration
 
 
-
 ## Body Request Parameters
 
 | Parameter Name    | Type   | Required | Description              |
 |:-------------|:-----|:------|:----------------|
-| serviceUUIDs | array | Y | Service List<br>Example: ['ss', 'yy'] <br>Can be empty: False <br> |
+| serviceUUIDs | array | Y | Service List<br>Example: ['ss', 'yy'] <br>Allow empty: False <br> |
 
-## Additional Parameter Explanation
-
+## Additional Parameter Notes
 
 
 
@@ -28,7 +26,6 @@ curl 'https://openapi.guance.com/api/v1/service_manage/delete' \
   --data-binary '{"serviceUUIDs":["sman_xxxx32", "sman_xxxx32"]}' \
   --compressed
 ```
-
 
 
 

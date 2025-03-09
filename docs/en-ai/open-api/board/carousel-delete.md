@@ -12,7 +12,7 @@
 ## Route Parameters
 
 | Parameter Name    | Type   | Required | Description              |
-|:--------------|:-----|:-------|:----------------|
+|:-------------|:-----|:------|:----------------|
 | carousel_uuid | string | Y | Carousel dashboard UUID<br> |
 
 

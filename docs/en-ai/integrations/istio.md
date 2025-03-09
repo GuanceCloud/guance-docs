@@ -27,9 +27,9 @@ Display of Istio performance Metrics, including Incoming Request Volume, Incomin
 
 ### Prerequisites
 
-- Deployed [Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/)
-- Deployed DataKit, refer to Kubernetes cluster <[Install Datakit](../datakit/datakit-daemonset-deploy.md)>
-- Istio is deployed
+- [Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/) has been deployed.
+- DataKit has been deployed. Please refer to <[Install Datakit](../datakit/datakit-daemonset-deploy.md)>
+- Istio has been deployed.
 
 ---
 
@@ -134,21 +134,21 @@ spec:
             namespace = "$NAMESPACE"
 ```
 
-Parameter Description
+Parameter Explanation
 
 - url: Exporter address
 - source: Collector name
 - metric_types: Metric type filter
 - measurement_name: Name of the collected Mearsurement
-- interval: Collection frequency in seconds
-- $IP: Wildcard for the internal IP of the Pod
+- interval: Collection frequency, in seconds
+- $IP: Wildcard for Pod's internal IP
 - $NAMESPACE: Namespace where the Pod resides
 - tags_ignore: Ignored tags
 - metric_name_filter: Retained metric names
 
 ## Metrics {#metric}
 
-All the data collected below will append a global tag named `host` (tag value is the hostname where DataKit is located) by default. You can also specify other labels through `[inputs.{{.InputName}}.tags]` in the configuration:
+All the following data collection will append a global tag named `host` (tag value is the hostname where DataKit resides) by default. You can also specify other tags in the configuration using `[inputs.{{.InputName}}.tags]`:
 
 ```toml
  [inputs.{{.InputName}}.tags]
@@ -157,29 +157,29 @@ All the data collected below will append a global tag named `host` (tag value is
   # ...
 ```
 
-### Detailed Metrics
+### Metric Details
 
 | Metric                                                                 | Description                                                                                          | Data Type | Unit   |
-| ---                                                                    | ---                                                                                                   | ---       | ---    |
-| `istio_agent_process_virtual_memory_bytes`                             | Virtual memory size in bytes                                                                          | int       | B      |
-| `istio_agent_go_memstats_alloc_bytes`                                  | Number of bytes allocated and still in use.                                                           | int       | B      |
-| `istio_agent_go_memstats_heap_inuse_bytes`                             | Number of heap bytes that are in use.                                                                 | int       | B      |
-| `istio_agent_go_memstats_stack_inuse_bytes`                            | Number of bytes in use by the stack allocator.                                                        | int       | B      |
-| `istio_agent_go_memstats_last_gc_time_seconds`                         | Number of seconds since 1970 of last garbage collection                                                | int       | s      |
-| `istio_agent_go_memstats_next_gc_bytes`                                | Number of heap bytes when next garbage collection will take place.                                    | int       | B      |
-| `istio_agent_process_cpu_seconds_total`                                | Total user and system CPU time spent in seconds.                                                      | int       | count  |
-| `istio_agent_outgoing_latency`                                         | The latency of outgoing requests (e.g., to a token exchange server, CA, etc.) in milliseconds.        | int       | count  |
-| `istio_requests_total`                                                 | Total number of requests.                                                                             | int       |        |
-| `istio_agent_pilot_xds`                                                | Number of endpoints connected to this pilot using XDS.                                                | int       | count  |
-| `istio_agent_pilot_xds_pushes`                                         | Pilot build and send errors for lds, rds, cds and eds.                                                | int       | count  |
-| `istio_agent_pilot_xds_expired_nonce`                                  | Total number of XDS requests with an expired nonce.                                                   | int       | count  |
-| `istio_agent_pilot_push_triggers`                                      | Total number of times a push was triggered, labeled by reason for the push.                           | int       | count  |
-| `istio_agent_pilot_endpoint_not_ready`                                 | Endpoint found in unready state.                                                                      | int       | count  |
-| `envoy_cluster_upstream_cx_total`                                      | Total upstream connections in the Envoy cluster.                                                     | int       | count  |
-| `istio_agent_pilot_conflict_inbound_listener`                          | Number of conflicting inbound listeners                                                               | int       | count  |
-| `istio_agent_pilot_conflict_outbound_listener_http_over_current_tcp`   | Number of conflicting wildcard HTTP listeners with current wildcard TCP listener.                     | int       | count  |
-| `istio_agent_pilot_conflict_outbound_listener_tcp_over_current_tcp`    | Number of conflicting TCP listeners with current TCP listener.                                        | int       | count  |
-| `istio_agent_pilot_conflict_outbound_listener_tcp_over_current_http`   | Number of conflicting wildcard TCP listeners with current wildcard HTTP listener.                     | int       | count  |
+| ---                                                                  | ---                                                                                           | ---      | ---    |
+| `istio_agent_process_virtual_memory_bytes`                           | Virtual memory size in bytes                                                                  | int      | B      |
+| `istio_agent_go_memstats_alloc_bytes`                                | Number of bytes allocated and still in use.                                                   | int      | B      |
+| `istio_agent_go_memstats_heap_inuse_bytes`                           | Number of heap bytes that are in use.                                                         | int      | B      |
+| `istio_agent_go_memstats_stack_inuse_bytes`                          | Number of bytes in use by the stack allocator.                                                | int      | B      |
+| `istio_agent_go_memstats_last_gc_time_seconds`                       | Number of seconds since 1970 of last garbage collection                                       | int      | s      |
+| `istio_agent_go_memstats_next_gc_bytes`                              | Number of heap bytes when next garbage collection will take place.                            | int      | B      |
+| `istio_agent_process_cpu_seconds_total`                              | Total user and system CPU time spent in seconds.                                              | int      | count  |
+| `istio_agent_outgoing_latency`                                       | The latency of outgoing requests (e.g., to a token exchange server, CA, etc.) in milliseconds. | int      | count  |
+| `istio_requests_total`                                               | Total number of requests.                                                                     | int      | <br /> |
+| `istio_agent_pilot_xds`                                              | Number of endpoints connected to this pilot using XDS.                                        | int      | count  |
+| `istio_agent_pilot_xds_pushes`                                       | Pilot build and send errors for LDS, RDS, CDS, and EDS.                                       | int      | count  |
+| `istio_agent_pilot_xds_expired_nonce`                                | Total number of XDS requests with an expired nonce.                                           | int      | count  |
+| `istio_agent_pilot_push_triggers`                                    | Total number of times a push was triggered, labeled by reason for the push.                   | int      | count  |
+| `istio_agent_pilot_endpoint_not_ready`                               | Endpoint found in unready state.                                                              | int      | count  |
+| `envoy_cluster_upstream_cx_total`                                    | Total upstream connections in the Envoy cluster.                                             | int      | count  |
+| `istio_agent_pilot_conflict_inbound_listener`                        | Number of conflicting inbound listeners                                                       | int      | count  |
+| `istio_agent_pilot_conflict_outbound_listener_http_over_current_tcp` | Number of conflicting wildcard HTTP listeners with current wildcard TCP listener.             | int      | count  |
+| `istio_agent_pilot_conflict_outbound_listener_tcp_over_current_tcp`  | Number of conflicting TCP listeners with current TCP listener.                                | int      | count  |
+| `istio_agent_pilot_conflict_outbound_listener_tcp_over_current_http` | Number of conflicting wildcard TCP listeners with current wildcard HTTP listener.             | int      | count  |
 
 ---
 
@@ -222,7 +222,8 @@ kubectl delete -f datakit.yaml
 kubectl apply -f  datakit.yaml
 ```
 
-Trace data will be sent to the **zipkin.istio-system** Service, and the reporting port is `9411`. When deploying DataKit, the Zipkin collector for trace metrics has already been enabled. Since the DataKit service's namespace is `datakit`, and the port is `9529`, a conversion is required here.
+Trace data will be sent to the **zipkin.istio-system** Service, and the reporting port is `9411`. <br />
+When deploying DataKit, the Zipkin collector for trace metrics has already been enabled. Since the DataKit service namespace is `datakit`, and the port is `9529`, a conversion is needed here.
 
 ### 2 Define ClusterIP Service
 
@@ -256,22 +257,22 @@ spec:
   externalName: datakit-service-ext.datakit.svc.cluster.local
 ```
 
-After deployment, within the cluster's containers, you can use `zipkin.istio-system.svc.cluster.local:9411` to push data to DataKit.
+After deployment, containers within the cluster can push data to DataKit using `zipkin.istio-system.svc.cluster.local:9411`.
 
 ---
 
 ## Logging {#logging}
 
-By default, DataKit collects logs output by containers to `/dev/stdout`.
+By default, DataKit collects logs output to `/dev/stdout` by containers.<br />
 
 For more log collection, please refer to
 
 <[Pod Log Collection Best Practices](../best-practices/cloud-native/pod-log.md)>
 
-<[Several Approaches to Log Collection in Kubernetes Clusters](../best-practices/cloud-native/k8s-logs.md)>
+<[Several Ways of Log Collection in Kubernetes Clusters](../best-practices/cloud-native/k8s-logs.md)>
 
 ---
 
 ## Best Practices
 
-Best practices include Istio installation, deployment of built-in projects, RUM/APM association, and other extended operations. For details, please refer to [Best Practices for Achieving Microservice Observability Based on Istio](../best-practices/cloud-native/istio.md)
+Best practices include Istio installation, deployment of built-in projects, association of RUM/APM, and other extended operations. For details, please refer to [Microservices Observability Best Practices Based on Istio](../best-practices/cloud-native/istio.md).

@@ -23,24 +23,24 @@
 
 ## Description
 
-- MySQL is one of the best relational database management systems (RDBMS) and is widely used in web applications. Due to simple password settings for the MySQL root account, it is easy to be cracked, allowing intruders to obtain the password and gain high privileges.
+- MySQL is one of the best relational database management systems and is among the most popular RDBMS used in web applications. Due to the simple password setting for the MySQL root account, it can be easily cracked, allowing intruders to obtain the password and gain high privileges.
 
 
-## Scanning Frequency
+## Scan Frequency
 
 - 1 1 1 * *
 
 
 ## Theoretical Basis
 
-- If the password for the MySQL root account is too simple and lacks complexity, it can be easily cracked. If not detected and handled in time, this can lead to data breaches and other issues.
+- The password for the MySQL root account is too simple and lacks complexity, making it easy to crack. If not detected and handled in time, this can lead to data breaches and other issues.
 
 
 ## Risk Items
 
-- Data leakage
+- Data Breach
 
-- Data ransom
+- Data Extortion
 
 
 ## Audit Method

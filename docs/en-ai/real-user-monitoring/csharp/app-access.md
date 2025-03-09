@@ -9,11 +9,12 @@
 - Ensure DataKit is [publicly accessible and has the IP geolocation database installed](../../datakit/datakit-tools-how-to.md#install-ipdb).
 
 ## Application Integration {#integration}
-The current C# version supports Windows and Linux platforms. Log in to the Guance console, navigate to the "User Analysis" page, click on "New Application" in the top-left corner, and start creating a new application.
+The current C# version supports Windows and Linux platforms. Log in to the <<< custom_key.brand_name >>> console, navigate to the "User Analysis" page, click on "Create" in the top-left corner, and start creating a new application.
 
-1. Enter the "Application Name", "Application ID", and select the "Custom" application type:
-   - Application Name: Used to identify the current user access monitoring application.
-   - Application ID: A unique identifier for the application within the current workspace, corresponding field: `app_id`. This field only supports English letters, numbers, and underscores, with a maximum of 48 characters.
+1. Enter the "Application Name", "Application ID", and select the "Custom" application type
+
+- Application Name: Used to identify the RUM-monitored application.
+- Application ID: The unique identifier for the application within the current workspace, corresponding field: app_id. This field only supports English letters, numbers, and underscores, with a maximum of 48 characters.
 
 ![](../img/image_14.png)
 
@@ -21,7 +22,7 @@ The current C# version supports Windows and Linux platforms. Log in to the Guanc
 
 - Install the [C++ SDK](../cpp/app-access.md#install)
 - Use C# [FTWrapper.cs](https://github.com/GuanceCloud/datakit-cpp/blob/develop/src/datakit-sdk-cpp/ft-sdk-wrapper-sample/FTWrapper.cs)
-- Adjust the path for the `FTWrapper.cs` DLL
+- Adjust the FTWrapper.cs DLL path
 
 ```csharp
 //class FTWrapper.cs
@@ -34,7 +35,7 @@ public static extern void Install(string jsonConfig);
 
 ```
 
-`vcpkg_root` is the installation directory for `vcpkg`, and `platform` refers to the CPU architecture and operating system, e.g., `x64-windows`.
+`vcpkg_root` is the `vcpkg` installation directory, and `platform` is the CPU architecture and operating system, e.g., `x64-windows`.
 
 ## Initialization
 ```csharp
@@ -47,19 +48,20 @@ FTWrapper.Install(@"
         ""custom_key"": ""custom value""
     }
 }");
+
 ```
 
 | **Field** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| serverUrl | string | Yes | URL address of the DataKit installation, example: http://10.0.0.1:9529, default port 9529. **Note: The device where the SDK is installed must be able to access this address** |
-| envType | enum | No | Environment configuration, default `prod` |
-| appVersion | enum | No | Automatically retrieved for Windows, needs to be set manually for Linux |
-| enableFileDBCache | bool | No | Whether to enable local database, default `false` |
-| globalContext | dictionary | No | Add SDK global properties, rules for adding are available [here](#key-conflict) |
+| serverUrl | string | Yes | URL address of the datakit installation, example: http://10.0.0.1:9529, default port is 9529. **Note: The device installing the SDK must be able to access this address** |
+| envType | enum | No | Environment configuration, default is `prod` |
+| appVersion | enum | No | Automatically obtained for Windows, needs manual assignment for Linux |
+| enableFileDBCache | bool | No | Whether to enable local database, default is false |
+| globalContext | dictionary | No | Add global properties to the SDK, rules for adding are available [here](#key-conflict) |
 | serviceName | string | No | Affects the `service` field data in Logs and RUM, defaults to `df_rum_windows` for Windows and `df_rum_linux` for Linux |
 
 ### JSON Configuration File
-Configure the `json` file to enable SDK debug logs, place it in the same directory as the application execution:
+Configure the `json` file to enable SDK debug logs in the same directory as the application execution
 
 ```json
 {    
@@ -83,10 +85,10 @@ FTWrapper.InitRUMConfig(@"
 
 | **Field** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| appId | string | Yes | Corresponds to the RUM `appid`, enabling RUM collection, [method to obtain appid](#integration) |
+| appId | string | Yes | Corresponds to the RUM `appid`, required to enable RUM collection, [method to obtain appid](#integration) |
 | sampleRate | float | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default is 1. Applies to all View, Action, LongTask, Error data under the same session_id |
 | extraMonitorTypeWithError | string | No | Adds additional monitoring data to RUM crash data, `memory` for memory usage, `cpu` for CPU usage, `all` for both |
-| globalContext | dictionary | No | Add label data to distinguish data sources, if tracking is needed, use `track_id` as key and any value as value. Rules for adding are available [here](#key-conflict) |
+| globalContext | dictionary | No | Add label data for user monitoring data source differentiation. If using tracking functionality, set `key` to `track_id` and `value` to any number. Rules for adding are available [here](#key-conflict) |
 
 ### Log Configuration
 ```csharp
@@ -122,7 +124,7 @@ FTWrapper.InitTraceConfig(@"
 | **Field** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
 | sampleRate | float | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default is 1 |
-| traceType | enum | No | Default is `ddtrace`, currently supports `zipkin`, `jaeger`, `ddtrace`, `skywalking` (8.0+), `traceParent` (W3C). When integrating with OpenTelemetry, choose the appropriate trace type and refer to supported types and agent configurations |
+| traceType | enum | No | Default is `ddtrace`, currently supports `zipkin`, `jaeger`, `ddtrace`, `skywalking` (8.0+), `traceParent` (W3C). When integrating with OpenTelemetry, please refer to supported types and agent configurations |
 | enableLinkRUMData | bool | No | Whether to link with RUM data, default is `false` |
 
 ## RUM User Data Tracking
@@ -175,14 +177,14 @@ FTWrapper.StopView();
 #### Usage
 ```csharp
 /**
- * Start resource
+ * Start a resource
  * 
  * @param resourceId resource Id
  */
 void StartResource(string resourceId)
 	
 /**
- * Stop resource
+ * Stop a resource
  * 
  * @param resourceId resource Id
  */
@@ -197,11 +199,11 @@ void StopResource(string resourceId)
  * @param netStatusBean network status statistics
  */
 void AddResource((string resourceId, string resourceParams, string netStatus);
-```
 
+```
 ##### netStatus
 
-| **Method Name** | **Type** | **Required** | **Description** |
+| **Method** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
 | fetchStartTime | long | No | Request start time, ns |
 | tcpTime | long | No | TCP connection time, ns |
@@ -220,7 +222,7 @@ void AddResource((string resourceId, string resourceParams, string netStatus);
 | sslEndTime | long | No | SSL end time, ns |
 
 ##### resourceParams
-| **Method Name** | **Type** | **Required** | **Description** |
+| **Method** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
 | url | string | Yes | URL address |
 | requestHeader | string | No | Request header parameters, no format restrictions |
@@ -262,21 +264,21 @@ FTWrapper.AddResource(resourceId, @"
  * @param log log
  * @param message message
  * @param errorType error type
- * @param state program running state
+ * @param state program state
  */
 void AddError(string log, string message, string errorType, string state);
 ```
 
 ##### errorType
 
-| **Method Name** | **Description** |
+| **Method** | **Description** |
 | --- | --- |
 | native_crash | Application error |
 | network_error | Network error |
 
 ##### state
 
-| **Method Name** | **Description** |
+| **Method** | **Description** |
 | --- | --- |
 | unknown | Unknown |
 | startup | Startup |
@@ -294,7 +296,7 @@ FTWrapper.AddError("error", "error msg", "native_crash", "run");
  * Add a long-running task
  * 
  * @param log log
- * @param duration duration (ns)
+ * @param duration duration(ns)
  */
 void AddLongTask(string log, long duration)
 ```
@@ -304,11 +306,11 @@ void AddLongTask(string log, long duration)
 FTWrapper.AddLongTask("long task test", 100002);
 ```
 
-## Log Printing
+## Log Logging
 ### Usage
 ```csharp
 /**
-  * Upload user logs to DataKit
+  * Upload user logs to datakit
   * @param content log content
   * @param level log level
   */
@@ -316,7 +318,7 @@ void AddLog(string log, string level);
 ```
 ### level
 
-| **Method Name** | **Meaning** |
+| **Method** | **Meaning** |
 | --- | --- |
 | info | Information |
 | warning | Warning |
@@ -329,8 +331,8 @@ void AddLog(string log, string level);
 FTWrapper.AddLog("test log", "info");
 ```
 
-## Tracer Network Link Tracing
-Tracing is achieved by generating a Trace Header and then adding the Header to the HTTP request headers.
+## Tracer Network Link Tracking
+Tracing is achieved by generating a Trace Header and adding it to the HTTP request headers.
 
 ### Usage
 ```csharp
@@ -363,7 +365,7 @@ string headString = Marshal.PtrToStringAnsi(headData);
 
 ```
 
-## User Information Binding and Unbinding
+## Binding and Unbinding User Information
 ### Usage
 
 ```csharp 
@@ -383,7 +385,7 @@ void UnbindUserdata();
 
 ```
 
-| **Method Name** | **Type** | **Required** | **Description** |
+| **Method** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
 | userId | string | Yes | User ID |
 | userName | string | No | Username |
@@ -401,18 +403,19 @@ FTWrapper.BindUserData(@"
         ""custom_data"": ""custom data""
     }
 }");
+
 ```
 
 ## Closing the SDK
 ```csharp
 /**
- * Close the SDK and perform resource cleanup
+ * Close the SDK and perform cleanup operations 
  */
 FTWrapper.DeInit();
 
 ```
 
 ## Frequently Asked Questions {#FAQ}
-### Adding Prefixes to Avoid Conflict Fields {#key-conflict}
+### Adding Custom Fields to Avoid Conflicts {#key-conflict}
 
-To avoid conflicts between custom fields and SDK data, it is recommended to add a **project abbreviation** prefix to tag names, such as `df_tag_name`. For more details on key values used in the project, refer to the [source code](https://github.com/GuanceCloud/datakit-cpp/blob/develop/src/datakit-sdk-cpp/ft-sdk/FTSDKConstants.h). If SDK global variables conflict with RUM or Log variables, the latter will override the former.
+To avoid conflicts between custom fields and SDK data, it is recommended to prefix labels with the **project abbreviation**, such as `df_tag_name`. For a list of keys used in the project, refer to the [source code](https://github.com/GuanceCloud/datakit-cpp/blob/develop/src/datakit-sdk-cpp/ft-sdk/FTSDKConstants.h). If global variables in the SDK conflict with RUM or Log variables, RUM or Log will override the SDK's global variables.

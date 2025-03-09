@@ -12,11 +12,11 @@ Retrieve information about a Pipeline
 ## Route Parameters
 
 | Parameter Name | Type   | Required | Description               |
-|:-----------|:-------|:-----|:----------------|
-| pl_uuid    | string | Y    | ID of the Pipeline<br> |
+|:------------|:------|:-------|:------------------------|
+| pl_uuid    | string | Y      | ID of the Pipeline<br>  |
 
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

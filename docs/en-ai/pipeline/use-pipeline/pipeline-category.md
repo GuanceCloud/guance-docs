@@ -1,18 +1,18 @@
-# Pipeline Data Processing for Various Categories
+# Pipeline Data Processing for Different Categories
 
 [:octicons-beaker-24: Experimental](index.md#experimental)
 
 ---
 
-Since DataKit 1.4.0, the built-in Pipeline feature can directly manipulate data collected by DataKit, supporting all [data types](../../datakit/apis.md#category).
+Since DataKit 1.4.0, the built-in Pipeline feature can be used to directly manipulate data collected by DataKit, supporting all [data types](../../datakit/apis.md#category).
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    - The Pipeline applies to all data and is currently in the experimental phase. There is no guarantee that incompatible changes will not be made to the mechanism or behavior later.
+    - The Pipeline applies to all data and is currently in the experimental phase. There is no guarantee that backward incompatible changes will not be made to the mechanism or behavior.
     - Even data reported via the [DataKit API](../../datakit/apis.md) supports Pipeline processing.
-    - Using Pipeline to process existing collected data (especially non-log data) may destroy the existing data structure, leading to abnormal behavior in Guance.
-    - Before applying a Pipeline, please confirm whether the data processing meets expectations using the [Pipeline debugging tool](pipeline-quick-start.md#debug).
+    - Using Pipeline to process existing collected data (especially non-log data) may significantly alter the existing data structure, leading to abnormal behavior in Guance.
+    - Before applying a Pipeline, please confirm that the data processing meets expectations using the [Pipeline Debugging Tool](pipeline-quick-start.md#debug).
 <!-- markdownlint-enable -->
 
 The Pipeline can perform the following operations on data collected by DataKit:
@@ -20,26 +20,26 @@ The Pipeline can perform the following operations on data collected by DataKit:
 - Add, delete, modify the values or data types of fields and tags
 - Convert fields to tags
 - Modify the name of a measurement
-- Mark the current data for discard ([drop()](pipeline-built-in-function.md#fn-drop))
+- Mark data for discard ([drop()](pipeline-built-in-function.md#fn-drop))
 - Terminate the execution of the Pipeline script ([exit()](pipeline-built-in-function.md#fn-exit))
 - ...
 
 ## Input Data Structure {#input-data-struct}
 
-All categories of data are encapsulated into a Point structure before being processed by the Pipeline script. Its structure can be viewed as:
+All categories of data are encapsulated into a Point structure before being processed by the Pipeline script. The structure can be viewed as follows:
 
 ``` not-set
 struct Point {
-   Name:      str          # Equivalent to the name of the Metrics (time series) data's measurement set, Logging (log) data's source,
-                              # Network data's source, Object/CustomObject (object) data's class ...
-   Tags:      map[str]str  # Stores all tags of the data; for non-time series category data, the boundary between tags and fields is blurry
-   Fields:    map[str]any  # Stores all fields of the data (referred to as metrics for time series data)
-   Time:      int64        # Represents the timestamp of the data, typically interpreted as the timestamp when the data was generated, in nanoseconds
-   DropFlag:  bool         # Indicates whether this data should be discarded
+   Name:      str          # Equivalent to the measurement name for Metrics (time series) data, source for Logging (log) data,
+                              # source for Network data, class for Object/CustomObject (object) data ...
+   Tags:      map[str]str  # Stores all tags of the data; for non-time series data, the distinction between tags and fields is less clear
+   Fields:    map[str]any  # Stores all fields (metrics for time series data)
+   Time:      int64        # Represents the timestamp of the data, typically the time when the data was generated, in nanoseconds
+   DropFlag:  bool         # Indicates whether the data should be discarded
 }
 ```
 
-For example, an nginx log entry collected by the log collector would be represented as follows when input into the Pipeline script:
+For example, an Nginx log entry collected by the log collector would be represented as follows when input into the Pipeline script:
 
 ``` not-set
 Point {
@@ -57,45 +57,45 @@ Point {
 
 Note:
 
-- The `name` can be modified using the function `set_measurement()`.
+- The `name` can be modified using the `set_measurement()` function.
 
-- In the point's tags/fields map, **no key will appear simultaneously in both tags and fields**;
+- In the Point's tags/fields map, **no key will appear simultaneously in both tags and fields**;
 
-- You can read the corresponding key's value from the point's tags/fields map using custom identifiers or the `get_key()` function within the Pipeline; modifying keys in Tags or Fields requires other built-in functions like `add_key`; `_` can be considered an alias for the key `message`.
+- You can read the corresponding key value from the Point's tags/fields map in the Pipeline using custom identifiers or the `get_key()` function; modifying the value of keys in Tags or Fields requires other built-in functions such as `add_key`; `_` can be considered an alias for the key `message`.
 
-- After the script runs, if there is a key named `time` in the point's tags/fields map, it will be deleted; if its value is of type int64, it will be assigned to the point's time and then deleted. If `time` is a string, you can attempt to use the `default_time()` function to convert it to int64.
+- After the script runs, if there is a key named `time` in the Point's tags/fields map, it will be deleted; if its value is of type int64, it will be assigned to the Point's time and then deleted. If `time` is a string, you can attempt to convert it to int64 using the `default_time()` function.
 
-- You can mark an input Point for discard using the `drop()` function, ensuring that the data will not be uploaded after the script executes.
+- You can use the `drop()` function to mark the input Point for discard; after the script executes, this data will not be uploaded.
 
 ## Storage, Indexing, and Matching of Pipeline Scripts {#script-store-index-match}
 
 ### Script Storage and Indexing {#store-and-index}
 
-Currently, Pipeline scripts are divided into four namespaces based on their source, with decreasing indexing priority as shown in the table below:
+Currently, Pipeline scripts are divided into four namespaces with decreasing indexing priority, as shown in the table below:
 
-| Namespace | Directory | Supported Data Types | Description |
-| --- | --- | --- | --- |
-| `remote`  | *[DataKit installation directory]/pipeline_remote*                  | CO, E, L, M, N, O, P, R, S, T | Scripts managed by the Guance console            |
-| `confd`   | *[DataKit installation directory]/pipeline_confd*                    | CO, E, L, M, N, O, P, R, S, T | Scripts managed by Confd                |
-| `gitrepo` | *[DataKit installation directory]/pipeline_gitrepos/[repo-name]*  | CO, E, L, M, N, O, P, R, S, T | Scripts managed by Git                  |
-| `default` | *[DataKit installation directory]/pipeline*                         | CO, E, L, M, N, O, P, R, S, T | Scripts generated by DataKit or written by users |
+| Namespace | Directory | Supported Data Categories | Description |
+| - | -  | - | - |
+| `remote`  | *[DataKit Installation Directory]/pipeline_remote*                  | CO, E, L, M, N, O, P, R, S, T | Scripts managed by the Guance console            |
+| `confd`   | *[DataKit Installation Directory]/pipeline_confd*                    | CO, E, L, M, N, O, P, R, S, T | Scripts managed by Confd                |
+| `gitrepo` | *[DataKit Installation Directory]/pipeline_gitrepos/[repo-name]*  | CO, E, L, M, N, O, P, R, S, T | Scripts managed by Git                  |
+| `default` | *[DataKit Installation Directory]/pipeline*                         | CO, E, L, M, N, O, P, R, S, T | Scripts generated by DataKit or user-written |
 
 Note:
 
-- Do not modify the automatically generated default scripts under the *pipeline* directory; any modifications will be overwritten upon DataKit startup.
-- It is recommended to add local scripts corresponding to specific data types under the *pipeline/[category]/* directory.
+- Do not modify the automatically generated default scripts under the *pipeline* directory. Any modifications will be overwritten upon DataKit startup.
+- It is recommended to add local scripts for specific data categories under the *pipeline/[category]/* directory.
 - Except for the *pipeline* directory, do not make any modifications to other script directories (*remote*, *confd*, *gitrepo*).
 
-When DataKit selects the corresponding Pipeline, the indexing priority of scripts within these four namespaces decreases in order. For example, when needing *metric/cpu.p*, DataKit searches in the following order:
+When DataKit selects the appropriate Pipeline, the indexing priority of scripts within these four namespaces decreases in order. For example, when looking for *metric/cpu.p*, DataKit will search in the following order:
 
 1. `pipeline_remote/metric/cpu.p`
 2. `pipeline_confd/metric/cpu.p`
 3. `gitrepo/<repo-name>/metric/cpu.p`
 4. `pipeline/metric/cpu.p`
 
-> Note: `<repo-name>` depends on your git repository name.
+> Note: `<repo-name>` depends on your Git repository name.
 
-We create separate indexes for each data category's scripts. This feature does not allow cross-namespace script references via the `use()` function. The implementation of Pipeline script storage and indexing is illustrated in the diagram below, where higher-priority namespace scripts shadow lower-priority ones during index creation:
+We create indexes for each category of scripts separately. This functionality does not allow the `use()` function to reference scripts across namespaces. The implementation of Pipeline script storage and indexing is illustrated in the diagram below, where higher-priority namespace scripts override lower-priority ones during indexing:
 
 ![script-index](img/pipeline-script-index.drawio.png)
 
@@ -105,61 +105,61 @@ All four sources of Pipeline directories store Pipeline scripts in the following
 ├── pattern   <-- Directory specifically for custom patterns
 ├── apache.p
 ├── consul.p
-├── sqlserver.p        <--- All top-level directories' Pipelines default to logs for backward compatibility
+├── sqlserver.p        <--- All top-level directory Pipelines default to logs for historical compatibility
 ├── tomcat.p
 ├── other.p
-├── custom_object      <--- Directory specifically for custom object pipelines
+├── custom_object      <--- Directory specifically for custom object Pipelines
 │   └── some-object.p
-├── keyevent           <--- Directory specifically for event pipelines
+├── keyevent           <--- Directory specifically for event Pipelines
 │   └── some-event.p
-├── logging            <--- Directory specifically for log pipelines
+├── logging            <--- Directory specifically for log Pipelines
 │   └── nginx.p
-├── metric             <--- Directory specifically for time series metric pipelines
+├── metric             <--- Directory specifically for time series metric Pipelines
 │   └── cpu.p
-├── network            <--- Directory specifically for network metric pipelines
+├── network            <--- Directory specifically for network metric Pipelines
 │   └── ebpf.p
-├── object             <--- Directory specifically for object pipelines
+├── object             <--- Directory specifically for object Pipelines
 │   └── HOST.p
-├── rum                <--- Directory specifically for RUM pipelines
+├── rum                <--- Directory specifically for RUM Pipelines
 │   └── error.p
-├── security           <--- Directory specifically for Security Check pipelines
+├── security           <--- Directory specifically for Security Check Pipelines
 │   └── scheck.p
-└── tracing            <--- Directory specifically for APM pipelines
+└── tracing            <--- Directory specifically for APM Pipelines
     └── service_a.p
 ```
 
 ### Data and Script Matching Strategy {#match}
 
-The matching strategy between data and script names consists of four rules, evaluated from highest (Rule 4) to lowest (Rule 1) priority. If a higher-priority rule is satisfied, lower-priority rules are not evaluated:
+The data and script name matching strategy consists of four rules, evaluated from highest (Rule 4) to lowest (Rule 1) priority. If a higher-priority rule is satisfied, lower-priority rules are not applied:
 
-1. Generate a data characteristic string based on the input data, append the Pipeline script file extension `.p`, and search for the corresponding category script.
-2. Use the default script set in the Guance console for all data of that category.
-3. Use the data-to-script mapping defined in the Guance console.
+1. Generate a data characteristic string based on the input data, append the Pipeline script file extension `.p`, and find the corresponding category script.
+2. Use the default script set for all data of this category in the Guance console.
+3. Use the data-to-script mapping relationship defined in the Guance console.
 4. Use the script specified in the collector configuration file.
 
-All data and script matching strategies depend on the data characteristic string, which varies by data category:
+All data and script matching strategies depend on the data characteristic string; the generation strategy varies by data category:
 
-1. Generating the data characteristic string using specific point tags/fields:
-   - For APM Tracing and Profiling data:
-       - Use the value of `service` in tags/fields to generate the data characteristic string. For example, if DataKit collects data with `service` value `service-a`, it generates `service-a`, corresponding to the script name `service-a.p`, which is then searched in the *Tracing/Profiling* script index.
-   - For Security Check data:
-       - Use the value of `category` in tags/fields to generate the data characteristic string. For example, if DataKit receives Security data with `category` value `system`, it generates `system`, corresponding to the script name `system.p`.
+1. Generate the data characteristic string using specific point tags/fields:
+   - For Tracing and Profiling data in APM:
+       - Use the value of `service` in tags/fields to generate the data characteristic string. For example, if `service` is `service-a`, the generated string is `service-a`, corresponding to the script name `service-a.p`, which is then searched under the *Tracing/Profiling* script index.
+   - For Security data in Security Check:
+       - Use the value of `category` in tags/fields to generate the data characteristic string. For example, if `category` is `system`, the generated string is `system`, corresponding to the script name `system.p`.
 
-2. Generating the data characteristic string using specific point tags/fields and point name:
-   - For RUM data:
-     - Use the value of `app_id` in tags/fields and the point name to generate the data characteristic string. For example, with a point name of `action`, it generates `<app_id>_action`, corresponding to the script name `<app_id>_action.p`.
+2. Generate the data characteristic string using specific point tags/fields and point name:
+   - For RUM data in RUM:
+     - Use the value of `app_id` in tags/fields and the point name to generate the data characteristic string. For example, if the point name is `action`, the generated string is `<app_id>_action`, corresponding to the script name `<app_id>_action.p`.
 
-3. Generating the data characteristic string using the point name:
-   - For Logging/Metric/Network/Object/... and other categories:
-     - Use the point name to generate the data characteristic string. For example, for the time series measurement `cpu`, it generates `cpu`, corresponding to the script `cpu.p`. For object data with class `HOST`, it generates `HOST`, corresponding to the script `HOST.p`.
+3. Generate the data characteristic string using the point name:
+   - For Logging, Metric, Network, Object, etc.:
+     - Use the point name to generate the data characteristic string. For example, for the `cpu` time series metric, the generated string is `cpu`, corresponding to the script `cpu.p`. For object data with class `HOST`, the generated string is `HOST`, corresponding to the script `HOST.p`.
 
 ## Pipeline Processing Examples {#examples}
 
-> Example scripts are for reference only; please write according to your needs.
+> Example scripts are for reference only; customize them according to your needs.
 
 ### Processing Time Series Data {#M}
 
-The following example demonstrates how to modify tags and fields using Pipeline. Through DQL, we can see the fields of a CPU measurement set as follows:
+The following example demonstrates how to modify tags and fields using Pipeline. Through DQL, we know the fields of a CPU metric are as follows:
 
 ```shell
 dql > M::cpu{host='u'} LIMIT 1
@@ -192,7 +192,7 @@ set_tag(host2, host)
 usage_guest = 100.1
 ```
 
-After restarting DataKit, new data is collected, and through DQL, we can get the modified CPU measurement set as follows:
+After restarting DataKit, new data is collected, and through DQL, we get the modified CPU metric:
 
 ```shell
 dql > M::cpu{host='u'}[20s] LIMIT 1
@@ -234,7 +234,7 @@ www-data    1286  0.0  0.0  55856  5212 ?        S    10:10   0:00  \_ nginx: wo
 www-data    1287  0.0  0.0  55856  5212 ?        S    10:10   0:00  \_ nginx: worker process
 ```
 
-Through DQL, we can see the fields of a specific process measurement set as follows:
+Through DQL, we know the fields of a specific process metric are as follows:
 
 ```shell
 dql > O::host_processes:(host, class, process_name, cmdline, pid) {host='u', pid=1278}
@@ -252,9 +252,9 @@ Write the following Pipeline script:
 
 ```python
 if process_name == "nginx" {
-    drop()  # The drop() function marks this data for discard and continues running the pl
-    exit()  # The exit() function terminates Pipeline execution
+    drop()  # drop() marks the data for discard and continues running the pl
+    exit()  # exit() terminates the Pipeline execution
 }
 ```
 
-After restarting DataKit, the corresponding Nginx process objects will no longer be collected (the central object has an expiration policy, so wait 5-10 minutes for the original Nginx object to expire automatically).
+After restarting DataKit, the corresponding Nginx process objects will no longer be collected (the central object has an expiration policy, so wait 5~10 minutes for the original Nginx object to expire automatically).

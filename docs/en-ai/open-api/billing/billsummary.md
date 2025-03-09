@@ -1,4 +1,4 @@
-# Get Cumulative Consumption of Each Billing Item in a Workspace
+# Get Cumulative Consumption of Each Billing Item in the Workspace
 
 ---
 
@@ -30,14 +30,14 @@ curl 'https://openapi.guance.com/api/v1/billing/project/summary' \
 ```shell
 {
     "Session Replay": 806.8,
-    "Extended Applications": 1500.0,
+    "Extended Application": 1500.0,
     "Cumulative Consumption": 17211.88,
     "Triggers": 73.4,
     "Service Charges": 0,
     "RUM PV Count": 8.81,
     "APM Profile": 14747.72,
     "Network (Host)": 34.0,
-    "Cross-region Private Network Traffic Fee": 0,
+    "Cross-Region Private Network Traffic Fee": 0,
     "Time Series": 17.81,
     "APM Trace": 0.1,
     "Log Data": 2.86,

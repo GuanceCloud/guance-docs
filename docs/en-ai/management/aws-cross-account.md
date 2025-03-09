@@ -4,7 +4,7 @@ Enter **Amazon S3 > Buckets > Permissions > Bucket Policy**, and click **Edit**:
 
 ![](img/s3-bucket.png)
 
-Fill in the following JSON:
+Enter the following JSON:
 
 ```
 {

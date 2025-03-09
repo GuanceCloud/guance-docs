@@ -16,11 +16,11 @@ monitor:
 
 ---
 
-The Swap collector is used to collect the usage of the host's swap memory.
+The Swap collector is used to collect the usage of swap memory on hosts.
 
 ## Configuration {#config}
 
-After successfully installing and starting DataKit, the Swap collector will be enabled by default, and no manual activation is required.
+After successfully installing and starting DataKit, the Swap collector will be enabled by default, and there is no need to manually enable it.
 
 <!-- markdownlint-disable MD046 -->
 
@@ -46,13 +46,13 @@ After successfully installing and starting DataKit, the Swap collector will be e
 
 === "Kubernetes"
 
-    You can enable the collector via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or by [setting ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
+    You can enable the collector by injecting configuration through [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or by [configuring ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
 
-    It also supports modifying configuration parameters using environment variables (you need to add it to ENV_DEFAULT_ENABLED_INPUTS):
+    It also supports modifying configuration parameters via environment variables (you need to add it to ENV_DEFAULT_ENABLED_INPUTS as a default collector):
 
     - **ENV_INPUT_SWAP_INTERVAL**
 
-        Collector repeat interval duration
+        Collector repetition interval duration
 
         **Field Type**: Duration
 
@@ -62,7 +62,7 @@ After successfully installing and starting DataKit, the Swap collector will be e
 
     - **ENV_INPUT_SWAP_TAGS**
 
-        Custom tags. If the configuration file has tags with the same name, they will be overridden.
+        Custom tags. If there are tags with the same name in the configuration file, they will override them.
 
         **Field Type**: Map
 
@@ -74,7 +74,7 @@ After successfully installing and starting DataKit, the Swap collector will be e
 
 ## Metrics {#metric}
 
-By default, all collected data will append a global tag named `host` (the tag value is the hostname where DataKit resides). You can also specify other tags in the configuration through `[inputs.swap.tags]`:
+All the following data collections will append a global tag named `host` (the tag value is the hostname where DataKit resides) by default, or you can specify other tags using `[inputs.swap.tags]` in the configuration:
 
 ```toml
 [inputs.swap.tags]
@@ -83,21 +83,28 @@ By default, all collected data will append a global tag named `host` (the tag va
  # ...
 ```
 
+
+
 ### `swap`
 
 - Tags
 
+
 | Tag | Description |
-| ---- | --------|
-| `host` | Hostname |
+|  ----  | --------|
+|`host`|Hostname|
 
 - Metrics List
 
+
 | Metric | Description | Type | Unit |
-| ---- | ---- | :---: | :----: |
-| `free` | Total free swap memory on the host. | int | B |
-| `in` | Moving data from swap space to main memory of the machine. | int | B |
-| `out` | Moving main memory contents to swap disk when main memory space fills up. | int | B |
-| `total` | Total swap memory on the host. | int | B |
-| `used` | Used swap memory on the host. | int | B |
-| `used_percent` | Percentage of used swap memory on the host. | float | percent |
+| ---- |---- | :---:    | :----: |
+|`free`|Total free swap memory on the host.|int|B|
+|`in`|Moving data from swap space to main memory of the machine.|int|B|
+|`out`|Moving main memory contents to swap disk when main memory space fills up.|int|B|
+|`total`|Total swap memory on the host.|int|B|
+|`used`|Used swap memory on the host.|int|B|
+|`used_percent`|Percentage of used swap memory on the host.|float|percent|
+
+
+</example>

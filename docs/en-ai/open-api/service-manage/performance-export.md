@@ -1,4 +1,4 @@
-# 【Service Performance】Export
+# [Service Performance] Export
 
 ---
 
@@ -9,17 +9,14 @@ Service performance export
 
 
 
-
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
+| Parameter Name | Type   | Required | Description               |
+|:-----------|:-------|:-----|:----------------|
 | start | integer | Y | Time start, unit ms<br> |
 | end | integer | Y | Time end, unit ms<br> |
 
 ## Additional Parameter Notes
-
-
 
 
 
@@ -30,7 +27,6 @@ curl 'https://openapi.guance.com/api/v1/service_manage/performance/export?end=16
   -o 'servicePerformanceInfo.csv'
   --compressed
 ```
-
 
 
 

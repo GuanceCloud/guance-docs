@@ -9,12 +9,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -34,25 +34,26 @@
 
 ## Theoretical Basis
 
-- Account password status can be one of three states: LK (Locked), NP (No Password Set), PS (Password Set). Information about the status of host account passwords is critical for user login. If an unknown operation causes a change in the password status, it is important to check if the host environment has been compromised.
+- Account password status can be LK (locked), NP (no password set), or PS (password set). Information about the password status of host accounts is critical for user login. If an unknown operation causes a change in the account password status, it is important to check whether the host environment has been compromised.
 
 
 ## Risk Items
 
-- Hacker Infiltration
-- Data Breach
-- Network Security
-- Mining Risk
-- Botnet Risk
+- Hacker penetration
+- Data leakage
+- Network security
+- Mining risk
+- Botnet risk
 
 
 ## Audit Method
 
-- Verify whether the host account password status has been illegally modified. You can run the following command to verify:
+- Verify if the host account password status has been illegally modified. You can run the following command to verify:
 
 ```bash
 ls -l /etc/shadow
 ```
+
 
 ## Remediation
 

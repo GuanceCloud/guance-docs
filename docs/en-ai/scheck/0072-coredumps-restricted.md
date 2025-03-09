@@ -1,4 +1,5 @@
 # 0072-coredumps-restricted-Core Dumps Restricted
+
 ---
 
 ## Rule ID
@@ -8,12 +9,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -21,13 +22,9 @@
 - Linux
 
 
-
-
 ## Description
 
-
-- Core dumps are memory images of executable programs, typically used to determine why a program terminated. They can also be used to collect confidential information from core files. The system provides the ability to set a soft limit for core dumps, but users can ignore this limit.
-
+- A core dump is a memory snapshot of an executable program, typically used to determine why a program terminated. It can also be used to extract confidential information from the core file. The system provides functionality to set soft limits on core dumps, but users can override this limit.
 
 
 ## Scan Frequency
@@ -35,20 +32,12 @@
 
 ## Theory
 
-
 - Setting a hard limit on core dumps prevents users from overriding the soft limit. If core dumps are necessary, consider setting limits for user groups. Additionally, setting the fs.suid_dumpable variable to 0 will prevent setuid programs from dumping the kernel.
->
-
-
-
-
 
 
 ## Risk Items
 
-
 - Preventing users from overriding the soft limit
-
 
 
 ## Audit Method
@@ -69,7 +58,7 @@ Run the following command to check if systemd-coredump is installed:
 # systemctl is-enabled coredump.service
 ```
 
-If it returns enabled or disabled, then systemd-coredump is installed
+If it returns enabled or disabled, then systemd-coredump is installed.
 
 
 
@@ -110,29 +99,20 @@ systemctl daemon-reload
 
 ## Impact
 
-
 - Setting a hard limit on core dumps prevents users from overriding the soft limit
 
 
+## Default Values
 
-
-## Default Value
-
-
-- By default, there is no configuration.
-
-
+- By default, no configuration is set.
 
 
 ## References
 
-
 - None
 
 
-
 ## CIS Controls
-
 
 - Version 7
 >   5.1 Establish Secure Configurations 

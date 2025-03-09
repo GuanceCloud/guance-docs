@@ -1,64 +1,64 @@
 # Analysis Dashboard
 
-Guance supports visual analysis of applications on different platforms and has preset multiple monitoring solutions. After application data is uploaded to Guance, you can directly view the analysis of web, mobile, mini-program, and macOS applications in the monitoring and analysis dashboard, covering key dimensions such as summary, performance, resources, and errors.
+<<< custom_key.brand_name >>> supports visual analysis of applications on different ports and presets multiple monitoring schemes. After application data is uploaded to <<< custom_key.brand_name >>>, you can directly view the analysis of web, mobile, mini-program, and macOS applications in the monitoring and analysis dashboard, covering key dimensions such as overview, performance, resources, and errors.
 
-## Concept Explanation
+## Concepts
 
-LCP, FID, and CLS are Google's core web vitals used to measure a website's loading speed, interactivity, and visual stability.
+LCP, FID, CLS are core metrics for Google's web pages, used to measure the loading speed, interactivity, and stability of a webpage.
 
 | Metric | Description | Target Value |
 | --- | --- | --- |
 | LCP (Largest Contentful Paint) | Measures the time it takes to load the largest content element within the visible area of the webpage | Less than 2.5s |
-| FID (First Input Delay) | Measures the delay between the user's first interaction with the webpage and the browser's response | Less than 100ms |
-| CLS (Cumulative Layout Shift) | Measures how much the page shifts during loading due to dynamic content changes; 0 indicates no shift | Less than 0.1 |
+| FID (First Input Delay) | Measures the delay time when users first interact with the webpage | Less than 100ms |
+| CLS (Cumulative Layout Shift) | Measures whether the page content shifts due to dynamic loading during page load, 0 indicates no change | Less than 0.1 |
 
 ## Analysis Dimensions
 
-The dashboard includes four dimensions:
+Includes four dimensions:
 
 1. Web;
 2. Mobile (Android / iOS);
 3. Mini-program;
 4. macOS Application.
 
-Switching tabs at the top of the view allows you to switch between different views.
+Switching the tabs above the view allows you to switch views.
 
-<!-- 
-**Note**: Under the **macOS** application type, Guance will default to displaying up to five views. You can use the search bar to locate specific views:
+<!--
+**Note**: Under the **macOS** application type, <<< custom_key.brand_name >>> will default to displaying up to five views. You can search via the search bar to locate:
 
-- Enter the application ID: List views bound to the current application ID;
-- Enter the view name: List all matching bound views.
+- Enter Application ID: List views bound to the current application ID;  
+- Enter View Name: List all matching bound views.
 
 
 -->
 
 ![](img/board.gif)
 
-## Summary {#overview}
+## Overview {#overview}
 
-This section provides statistics on UV, PV, page error rate, page load time, and other metrics for the current platform application. It visually presents user access data from session analysis, performance analysis, and error analysis to quickly identify issues with user access and improve application performance.
+Statistics on UV count, PV count, page error rate, page load time, etc., of the current port application, and assists in visually presenting user access data statistics from session analysis, performance analysis, and error analysis, helping to quickly identify issues with user access and improve user access performance.
 
-You can filter by application ID, environment, version, etc., to quickly locate and view connected applications.
+You can quickly locate and view connected applications by filtering through application ID, environment, version, etc.
 
 ## Performance Analysis {#performance}
 
-This section provides statistics on PV, page load time, number of sessions for popular pages, long task analysis, resource analysis, and other metrics. It offers real-time insights into overall application page performance from three aspects: Long Task analysis, XHR & Fetch analysis, and resource analysis, helping to precisely identify pages that need optimization.
+Statistics on PV count, page load time, most concerned page sessions, long task analysis, resource analysis, etc., and real-time viewing of overall application page performance from Long Task analysis, XHR & Fetch analysis, and resource analysis, further accurately identifying pages that need optimization.
 
-You can filter by application ID, environment, version, load type, etc.
+You can细分筛选 through application ID, environment, version, loading type, etc.
 
 ## Resource Analysis {#resources}
 
-This section provides statistics on resource classification, resource request rankings, and other metrics. It offers real-time insights into overall resource conditions and identifies resources that need optimization from two aspects: XHR & Fetch analysis and resource timing analysis.
+Statistics on resource classification, resource request ranking, etc., and real-time viewing of overall resource conditions and resources that need optimization from XHR & Fetch analysis and resource timing analysis.
 
-You can filter by application ID, environment, version, resource group, resource URL, etc.
+You can细分筛选 through application ID, environment, version, resource address grouping, resource address, etc.
 
 ## Error Analysis {#errors}
 
-This section provides statistics on error rates, crash versions, network error status distribution, page error rates, and other metrics to quickly identify resource errors.
+Statistics on error rate, crash versions, network error status distribution, page error rate, etc., to quickly identify resource errors.
 
-You can filter by application ID, environment, version, source, page URL group, browser, etc.
+You can细分筛选 through application ID, environment, version, source, page address grouping, browser, etc.
 
-<!-- 
+<!--
 ![](img/overview-4.png)
 ![](img/overview-1.png)
 ![](img/overview-2.png)
@@ -67,8 +67,8 @@ You can filter by application ID, environment, version, source, page URL group, 
 
 ## Associated Views
 
-The current analysis dashboard is the standard "System View" provided by Guance. If you wish to use a customized view for analysis, you can create a "User View" with the same name as the system view. The system will automatically prioritize your "User View" for display.
+The current analysis dashboard is the standard "system view" provided by <<< custom_key.brand_name >>>. If you want to use a personalized view for analysis, you can create a "user view" with the same name as the system view, and the system will automatically prioritize your "user view" for display.
 
-Click the jump button in the top-right corner to proceed.
+Click the jump button in the top right corner to proceed.
 
 ![](img/board.png)

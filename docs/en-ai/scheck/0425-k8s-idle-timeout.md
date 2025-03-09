@@ -1,4 +1,4 @@
-# 0425-k8s-idle-timeout - Ensure streaming connection idle timeout --streaming-connection-idle-timeout parameter is not set to 0
+# 0425-k8s-idle-timeout - Ensure Streaming Connection Idle Timeout --streaming-connection-idle-timeout Parameter Is Not Set to 0
 ---
 
 ## Rule ID
@@ -37,7 +37,7 @@
 ## Theoretical Basis
 
 
-- Setting an idle timeout ensures protection against denial of service attacks, inactive connections, and exhaustion of ephemeral ports
+- Setting an idle timeout can ensure protection against denial of service attacks, inactive connections, and depletion of ephemeral ports
 
 
 
@@ -54,18 +54,18 @@
 ## Audit Method
 - Execute the following command to verify:
 ```bash
-ps -ef | grep kubelet |grep streaming-connection-idle-timeout
+ps -ef | grep kubelet | grep streaming-connection-idle-timeout
 ```
 
 
 
 ## Remediation
 - 
-kubelet can be started in two ways:
+The kubelet can be started in two ways:
 Check if there is a configuration file: /etc/systemd/system/kubelet.service.d/10-kubeadm.conf. If the file exists, set the parameter --streaming-connection-idle-timeout=5m.
 If the file does not exist, check the kubelet startup parameter -config,
-Open the file and check if the parameter streamingConnectionIdleTimeout exists and set it to 0.
-After setting, restart kubelet:
+Open the file and check if the parameter streamingConnectionIdleTimeout exists and set it to 5m.
+After completing the settings, restart the kubelet:
 ```bash
 systemctl daemon-reload
 systemctl restart kubelet.service

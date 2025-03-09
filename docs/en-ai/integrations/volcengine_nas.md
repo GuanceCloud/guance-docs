@@ -2,52 +2,52 @@
 title: 'VolcEngine NAS File Storage'
 tags: 
   - VolcEngine
-summary: 'Collecting VolcEngine NAS Metrics Data'
+summary: 'Collect VolcEngine NAS Metrics data'
 __int_icon: 'icon/volcengine_nas'
 dashboard:
 
-  - desc: 'Built-in View for VolcEngine NAS'
+  - desc: 'VolcEngine NAS built-in views'
     path: 'dashboard/en/volcengine_nas'
 monitor:
   - desc: 'VolcEngine NAS Monitor'
     path: 'monitor/en/volcengine_nas'
 ---
 
-Collecting VolcEngine NAS Metrics Data
+Collect VolcEngine NAS Metrics data
 
 ## Configuration {#config}
 
-### Installing Func
+### Install Func
 
-We recommend enabling the Guance Integration - Expansion - Managed Func: All prerequisites are automatically installed. Please proceed with script installation.
+We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you choose to deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-### Installing Script
+### Install Script
 
-> Note: Ensure you have prepared a VolcEngine AK that meets the requirements (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
+> Note: Prepare a VolcEngine AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize monitoring data from NAS cloud resources, install the corresponding collection script: 「Guance Integration (VolcEngine-NAS Collection)」(ID: `guance_volcengine_nas`)
+To synchronize monitoring data from NAS cloud resources, we install the corresponding collection script: "Guance Integration (VolcEngine-NAS Collection)" (ID: `guance_volcengine_nas`)
 
 After clicking 【Install】, enter the required parameters: VolcEngine AK, VolcEngine account name, and Regions.
 
-Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script.
+Click 【Deploy Startup Script】. The system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-Once enabled, you can view the corresponding automatic trigger configuration in 「Management / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. Wait a moment, and you can check the execution task records and corresponding logs.
+Once enabled, you can see the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. Wait a moment, then check the task execution records and corresponding logs.
 
 ### Verification
 
-1. In 「Management / Automatic Trigger Configuration」, confirm that the corresponding automatic trigger configuration exists for the task. You can also check the task records and logs to ensure there are no anomalies.
-2. On the Guance platform, in 「Infrastructure - Resource Catalog」, check if the asset information exists.
-3. On the Guance platform, in 「Metrics」, check if the corresponding monitoring data is available.
+1. Confirm in "Manage / Automatic Trigger Configuration" whether the corresponding task has an automatic trigger configuration. You can also view the task records and log checks for any anomalies.
+2. In the Guance platform, under "Infrastructure - Resource Catalog", check if asset information exists.
+3. In the Guance platform, under "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 
-Configure VolcEngine NAS monitoring metrics. You can collect more metrics through configuration [VolcEngine NAS Extreme Type Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_FileNAS){:target="_blank"} and [VolcEngine NAS Capacity Type Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_veFileNAS)
+Configure VolcEngine NAS monitoring metrics. More metrics can be collected through configuration. Refer to [VolcEngine NAS Extreme Type Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_FileNAS){:target="_blank"} and [VolcEngine NAS Capacity Type Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_veFileNAS)
 
 ### VolcEngine NAS Extreme Type Monitoring Metrics
 
-|`MetricName` |`Subnamespace` |Metric Name |MetricUnit | Dimension|
+|`MetricName` |`Subnamespace` |Metric Name |Metric Unit | Dimension|
 | ----------- |---------------| :----: |:--------: |:-------: |
 | `Nfsv3ReadBandwidth` | `bandwidth` | NFSv3 Read Bandwidth | Bytes/Second(SI) | ResourceID |
 | `Nfsv4ReadBandwidth` | `bandwidth` | NFSv4 Read Bandwidth | Bytes/Second(SI) | ResourceID |
@@ -66,16 +66,16 @@ Configure VolcEngine NAS monitoring metrics. You can collect more metrics throug
 | `Nfsv3WriteIops` | `iops` | NFSv3 Write IOPS | Count/Second | ResourceID |
 | `Nfsv4ReadIops` | `iops` | NFSv4 Read IOPS | Count/Second | ResourceID |
 | `Nfsv4WriteIops` | `iops` | NFSv4 Write IOPS | Count/Second | ResourceID |
-| `Nfsv3ReadLatency` | `latency` | NFSv3 Read Latency | Seconds | ResourceID |
-| `Nfsv3WriteLatency` | `latency` | NFSv3 Write Latency | Seconds | ResourceID |
-| `Nfsv4ReadLatency` | `latency` | NFSv4 Read Latency | Seconds | ResourceID |
-| `Nfsv4WriteLatency` | `latency` | NFSv4 Write Latency | Seconds | ResourceID |
-| `NfsMetaLatency` | `latency` | NFS Metadata Latency | Seconds | ResourceID |
+| `Nfsv3WriteLatency` | `latency` | NFSv3 Write Latency | Milliseconds | ResourceID |
+| `Nfsv3ReadLatency` | `latency` | NFSv3 Read Latency | Milliseconds | ResourceID |
+| `Nfsv4ReadLatency` | `latency` | NFSv4 Read Latency | Milliseconds | ResourceID |
+| `Nfsv4WriteLatency` | `latency` | NFSv4 Write Latency | Milliseconds | ResourceID |
+| `NfsMetaLatency` | `latency` | NFS Metadata Latency | Milliseconds | ResourceID |
 | `NfsMetaQps` | `qps` | NFS Metadata QPS | Count/Second | ResourceID |
 
 ### VolcEngine NAS Capacity Type Monitoring Metrics
 
-|`MetricName` |`Subnamespace` |Metric Name |MetricUnit | Dimension|
+|`MetricName` |`Subnamespace` |Metric Name |Metric Unit | Dimension|
 | ----------- |---------------| :----: |:--------: |:-------: |
 | `Nfsv3ReadBandwidth` | `bandwidth` | NFSv3 Read Bandwidth | Bytes/Second(SI) | ResourceID |
 | `Nfsv4ReadBandwidth` | `bandwidth` | NFSv4 Read Bandwidth | Bytes/Second(SI) | ResourceID |
@@ -91,44 +91,48 @@ Configure VolcEngine NAS monitoring metrics. You can collect more metrics throug
 | `Nfsv3WriteIops` | `iops` | NFSv3 Write IOPS | Count/Second | ResourceID |
 | `Nfsv4ReadIops` | `iops` | NFSv4 Read IOPS | Count/Second | ResourceID |
 | `Nfsv4WriteIops` | `iops` | NFSv4 Write IOPS | Count/Second | ResourceID |
-| `Nfsv3ReadLatency` | `latency` | NFSv3 Read Latency | Seconds | ResourceID |
-| `Nfsv3WriteLatency` | `latency` | NFSv3 Write Latency | Seconds | ResourceID |
-| `Nfsv4ReadLatency` | `latency` | NFSv4 Read Latency | Seconds | ResourceID |
-| `Nfsv4WriteLatency` | `latency` | NFSv4 Write Latency | Seconds | ResourceID |
-| `NfsMetaLatency` | `latency` | NFS Metadata Latency | Seconds | ResourceID |
+| `Nfsv3WriteLatency` | `latency` | NFSv3 Write Latency | Milliseconds | ResourceID |
+| `Nfsv3ReadLatency` | `latency` | NFSv3 Read Latency | Milliseconds | ResourceID |
+| `Nfsv4ReadLatency` | `latency` | NFSv4 Read Latency | Milliseconds | ResourceID |
+| `Nfsv4WriteLatency` | `latency` | NFSv4 Write Latency | Milliseconds | ResourceID |
+| `NfsMetaLatency` | `latency` | NFS Metadata Latency | Milliseconds | ResourceID |
 | `NfsMetaQps` | `qps` | NFS Metadata QPS | Count/Second | ResourceID |
 
 ## Objects {#object}
 
-The collected VolcEngine NAS object data structure can be viewed in 「Infrastructure - Resource Catalog」
+The structure of the VolcEngine NAS object data collected can be seen in "Infrastructure - Resource Catalog"
 
 ``` json
-  {
-    "measurement": "volcengine_nas",
-    "tags": {
-      "RegionId"        : "cn-guangzhou",
-      "ProjectName"     : "default",
-      "AccountId"       : "2102598xxxx",
-      "FileSystemId"    : "enas-cngza0cfd219xxxxx",
-      "FileSystemName"  : "xxxxx",
-      "FileSystemType"  : "Extreme",
-      "Status"          : "Active"
-    },
-    "fields": {
-      "ZoneId": "cn-guangzhou-a",
-      "Capacity": "{JSON data}",
-      "StorageType": "Standard",
-      "ChargeType": "PayAsYouGo",
-      "Description": "xxxxxx",
-      "CreateTime": "2024-12-16T02:43:11Z",
-      "UpdateTime": "2024-12-16T06:33:36Z",
-      "Tags": "[]"
-    }
+{
+  "measurement": "volcengine_nas",
+  "tags": {
+    "RegionId": "cn-guangzhou",
+    "ProjectName": "default",
+    "AccountId": "2102598xxxx",
+    "FileSystemId": "enas-cngza0cfd219xxxxx",
+    "FileSystemName": "xxxxx",
+    "FileSystemType": "Extreme",
+    "Status": "Active"
+  },
+  "fields": {
+    "ZoneId": "cn-guangzhou-a",
+    "Capacity": "{JSON data}",
+    "StorageType": "Standard",
+    "ChargeType": "PayAsYouGo",
+    "Description": "xxxxxx",
+    "CreateTime": "2024-12-16T02:43:11Z",
+    "UpdateTime": "2024-12-16T06:33:36Z",
+    "Tags": "[]"
   }
+}
 ```
 
 > *Note: The fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Note 1: `FileSystemType` indicates file types, including Extreme and Capacity types.
+> Tip 1: `FileSystemType` indicates the file type, including Extreme and Capacity types.
 >
 </input_content>
+<target_language>英语</target_language>
+</input>
+
+Please continue translating.

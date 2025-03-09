@@ -1,13 +1,13 @@
 ---
-title: 'TongWeb'
-summary: 'Collect TongWeb runtime Metrics and trace information'
+title     : 'TongWeb'
+summary   : 'Collect TongWeb runtime Metrics and tracing information'
 __int_icon: 'icon/dongfangtong'
-dashboard:
-  - desc: 'TongWeb monitoring View'
-    path: 'dashboard/en/dongfangtong_tweb'
-monitor:
-  - desc: 'Not available'
-    path: '-'
+dashboard :
+  - desc  : 'TongWeb monitoring view'
+    path  : 'dashboard/en/dongfangtong_tweb'
+monitor   :
+  - desc  : 'Not available'
+    path  : '-'
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -22,7 +22,7 @@ Download the [`ddtrace` agent](https://github.com/GuanceCloud/dd-trace-java/rele
 
 ### Configure Agent
 
-In the bin directory, modify the `external.vmoptions` file and add the following variable information under `server_options`:
+In the bin directory, modify the `external.vmoptions` file by adding the following variable information under `server_options`:
 
 ```shell
 ......
@@ -38,7 +38,7 @@ In the bin directory, modify the `external.vmoptions` file and add the following
 ......
 ```
 
-Adjust the `dd-java-agent` version as needed. It is not recommended to add the `-Ddd.service.name` variable; doing so will cause all projects to use the same serviceName.
+Adjust the `dd-java-agent` version according to your actual situation. It is not recommended to add the variable `-Ddd.service.name`, as it would cause all projects to use the same serviceName.
 
 ### Enable `Statsd` Collector in DataKit
 
@@ -53,11 +53,11 @@ drwxr-xr-x 53 root root 4096 Oct  9 08:32 ../
 -rwxr-xr-x  1 root root 2233 Oct  9 08:32 statsd.conf.sample
 ```
 
-Refer to the [Statsd](statsd.md) collector integration documentation for more configuration options.
+Refer to the [Statsd](statsd.md) collector integration documentation for more parameter adjustments.
 
 ### Enable `ddtrace` Collector in DataKit
 
-The `ddtrace` collector is used to collect trace-related information from `ddtrace`. Go to the `datakit/conf.d/ddtrace` directory and copy `ddtrace.conf.sample` to `ddtrace.conf`.
+The `ddtrace` collector is used to collect `ddtrace` tracing-related information. Go to the `datakit/conf.d/ddtrace` directory and copy `ddtrace.conf.sample` to `ddtrace.conf`.
 
 ```shell
 root:/usr/local/datakit/conf.d/ddtrace$ ll
@@ -68,7 +68,7 @@ drwxr-xr-x 53 root root 4096 Oct  9 08:32 ../
 -rwxr-xr-x  1 root root 2474 Oct  9 08:32 ddtrace.conf.sample
 ```
 
-Refer to the [`ddtrace`](ddtrace.md) collector integration documentation for more configuration options.
+Refer to the [`ddtrace`](ddtrace.md) collector integration documentation for more parameter adjustments.
 
 ### Restart DataKit
 
@@ -80,6 +80,7 @@ Refer to the [`ddtrace`](ddtrace.md) collector integration documentation for mor
 bin/startserver.sh restart
 ```
 
+
 ## Metrics {#metric}
 
 Global Tags
@@ -89,4 +90,4 @@ Global Tags
 | component | Component name: `tongweb` |
 | env | Environment: env |
 
-For JVM metrics, refer to [JVM Metrics](jvm.md#metric)
+For JVM metrics, refer to [JVM Metrics](jvm.md#metric).

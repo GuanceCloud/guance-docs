@@ -5,12 +5,12 @@
 - Supported Operating Systems: windows/amd64, windows/386, linux/arm, linux/arm64, linux/386, linux/amd64
 
 ## Introduction
-Originally, all functions were registered when initializing the Lua virtual machine, even though the Lua script did not use these methods, leading to redundancy in the virtual machine.
+Originally, all functions were registered when initializing the Lua virtual machine, but these methods were not used by the Lua scripts, causing redundancy in the virtual machine.
 
-As the number of functions increased, this redundancy became increasingly severe. Therefore, a modular and package-based approach was adopted.
+As the number of functions increased, this redundancy became increasingly severe, so modularization and packaging were implemented.
 
 ## How to Use These Modules
-Go functions are divided into multiple modules by packages. When using a module in a Lua script, you need to import the package first (except for `trigger`).
+Go functions are divided into multiple modules by package. When using a module in a Lua script, you need to import the package first (except for `trigger`).
 
 Lua code:
 ``` lua
@@ -32,7 +32,7 @@ Lua code:
 
 ## Module and Funcs List
 
-> Note: The method sets differ across operating systems and cannot be called across systems! `all_os` contains methods common to all operating systems.
+> Note: The method sets differ across operating systems and cannot be called across systems! `all_os` includes methods common to all operating systems.
 
 - [file](#file)
     - [all_os](#file_all_os)
@@ -93,12 +93,13 @@ Lua code:
     - [all_os](#mysql_all_os)
       - [mysql_weak_psw](#mysql_weak_psw)
       - [mysql_ports_list](#mysql_ports_list)
-- [Container](#container-related)
+- [Container](#container-related-functions)
     - [sc_docker_exist](#sc_docker_exist)
     - [sc_docker_containers](#sc_docker_containers)
     - [sc_docker_runlike](#sc_docker_runlike)
 - [Others](#others)
       - [trigger](#trigger)
+
 
 ## File
 ### file_all_os
@@ -118,19 +119,19 @@ List files in the specified directory.
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `table`(array) | Each item describes as below |
+| `table`(array) | Each item described as below |
 
  
 | Name | Type | Description |
 | --- | ---- | ---- |
-| path | string | File's full path |
-| filename | string | Name of file |
-| size | number | Size of file in bytes |
-| block_size | number | Block size of filesystem |
+| path | string | Full path of the file |
+| filename | string | Name of the file |
+| size | number | Size of the file in bytes |
+| block_size | number | Block size of the filesystem |
 | mode | string | Permission bits |
 | uid | number | Owning user ID |
 | gid | number | Owning group ID |
@@ -160,7 +161,7 @@ Check if a file exists.
 
 | Type | Description |
 | --- | ---- |
-| `boolean` | `true` if exists, otherwise is `false` |
+| `boolean` | `true` if exists, otherwise `false` |
 
 *Example:*  
 
@@ -187,17 +188,17 @@ Read file attributes and metadata.
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `table` | Contains details of file as below |
+| `table` | Contains details of the file as below |
 
 
 | Name | Type | Description |
 | --- | ---- | ---- |
-| size | number | Size of file in bytes |
-| block_size | number | Block size of filesystem |
+| size | number | Size of the file in bytes |
+| block_size | number | Block size of the filesystem |
 | mode | string | Permission string |
 | perm | string | Permission bits |
 | uid | number | Owning user ID |
@@ -234,7 +235,7 @@ Reads the file content.
 
 *Return value(s):*   
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
@@ -255,7 +256,7 @@ content = read_file(file)
 
 `file_hash(filepath)`
 
-Calculate the MD5 sum of file content.
+Calculate the MD5 sum of the file content.
 
 *Parameters:*  
 
@@ -266,11 +267,11 @@ Calculate the MD5 sum of file content.
 
 *Return value(s):*   
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `string` | MD5 of file content |
+| `string` | MD5 of the file content |
 
 
 *Examples:*  
@@ -299,42 +300,42 @@ Watch whether the file or directory has changed.
 *Return value(s):*  
 
 No return value and never stops.
-If the directory or file changes, it will notify through `lua.LChannel`.
+If the directory or file changes, it will be notified through the Lua channel.
 
-*The `lua.LChannel`:*
+*The Lua channel:* 
 
 | Type | Description |
 | --- | ---- |
-| `table`(array) | Each item describes as below |
+| `table`(array) | Each item described as below |
 
  
 | Name | Type | Description |
 | --- | ---- | ---- |
-| path | string | File's full path |
+| path | string | Full path of the file |
 | status | int | File status |
 *File status:*
 
 | status | name | Description |
 | --- | ---- | ---- |
-| 1 | CREATE | Create file in directory |
-| 2 | WRITE | Write file |
+| 1 | CREATE | Create file in the directory |
+| 2 | WRITE | Write to file |
 | 4 | REMOVE | When file is deleted |
-| 8 | RENAME | File rename |
-| 16 | CHMOD | Chmod is changed |
+| 8 | RENAME | File renamed |
+| 16 | CHMOD | Permissions changed |
 
 #### grep
 
 `grep(option, pattern, file)`
 
-Run grep command.
+Run the grep command.
 
 *Parameters:*  
 
 | Name | Type | Description | Required |
 | --- | ---- | ---- | ---- |
-| option | `string` | Option(s) for grep | false |
+| option | `string` | Options for grep | false |
 | pattern | `string` | Pattern for grep | true |
-| file | `string` | File to search by grep | true |
+| file | `string` | File to search with grep | true |
 
 
 *Return value(s):*  
@@ -352,12 +353,12 @@ Run grep command.
 
 `hostname()`
 
-Get current hostname.
+Get the current hostname.
 
 
 *Return value(s):*   
 
-It issues an error when fail to get.
+It issues an error when it fails to get.
 
 | Type | Description |
 | --- | ---- |
@@ -370,7 +371,7 @@ It issues an error when fail to get.
 
 `uptime()`
 
-Time passed since last boot.
+Time passed since the last boot.
 
 
 *Return value(s):*   
@@ -405,11 +406,11 @@ System mounted devices and filesystems (not process specific)
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `table`(array) | Each item corresponds to a mounted device described as below |
+| `table`(array) | Each item corresponding to a mounted device described as below |
 
  
 | Name | Type | Description |
@@ -429,7 +430,7 @@ Operating system name and version
 
 *Return value(s):*  
 
-It issues an error when failed.
+It issues an error when it fails.
 
 | Type | Description |
 | --- | ---- |
@@ -457,30 +458,30 @@ Thread sleeps for a certain number of seconds
 
 | Name | Type | Description | Required |
 | --- | ---- | ---- | ---- |
-| time | `int` | Second sleep time | true |
+| time | `int` | Seconds to sleep | true |
 
 
 *Return value(s):*  
 
-It issues an error when failed.
+It issues an error when it fails.
 
 #### sc_ticker
 
  `sc_ticker(channel,time)`
  
- Send signals to the `lua.LChannel` regularly
+ Send signals to the Lua channel regularly
  
  *Parameters:*  
  
  | Name | Type | Description | Required |
  | --- | ---- | ---- | ---- |
  | chan | `lua.LChannel` | Lua channel | true |
- | time | `int` | Second time | true |
+ | time | `int` | Seconds interval | true |
  
  *Return value(s):*  
  
  No return value
- Sent `Lua.LString` to `lua.LChannel`.
+ Sends Lua.LString to Lua channel.
 ### system_linux
 #### kernel_info
 
@@ -491,7 +492,7 @@ Linux kernel modules both loaded and within the load search path
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
@@ -516,11 +517,11 @@ Linux kernel modules both loaded and within the load search path
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `table`(array) | Each item corresponds to a module described as below |
+| `table`(array) | Each item corresponding to a module described as below |
 
  
 | Name | Type | Description |
@@ -541,7 +542,7 @@ System resource usage limits.
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
@@ -564,11 +565,11 @@ All running processes on the host system
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `table`(array) | Each item corresponds to a process described as below |
+| `table`(array) | Each item corresponding to a process described as below |
 
  
 | Name | Type | Description |
@@ -608,11 +609,11 @@ File descriptors for each process.
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `table`(array) | Each item corresponds to a processe which have open file, described as below |
+| `table`(array) | Each item corresponding to a process which has open files described as below |
 
  
 | Name | Type | Description |
@@ -631,11 +632,11 @@ Local user accounts (including domain accounts that have logged on locally (Wind
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `table`(array) | Each item describes as below |
+| `table`(array) | Each item described as below |
 
  
 | Name | Type | Description |
@@ -657,11 +658,11 @@ Users with an active shell on the system.
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `table`(array) | Each item describes as below |
+| `table`(array) | Each item described as below |
 
  
 | Name | Type | Description |
@@ -684,11 +685,11 @@ System logins and logouts.
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `table`(array) | Each item describes as below |
+| `table`(array) | Each item described as below |
 
  
 | Name | Type | Description |
@@ -711,11 +712,11 @@ Failed logins.
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `table`(array) | Each item describes as below |
+| `table`(array) | Each item described as below |
 
  
 | Name | Type | Description |
@@ -737,11 +738,11 @@ Local system users encrypted passwords and related information. Please note, tha
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `table`(array) | Each item describes as below |
+| `table`(array) | Each item described as below |
 
  
 | Name | Type | Description |
@@ -761,11 +762,11 @@ A line-delimited (command) table of per-user .*_history data.
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `table`(array) | Each item describes as below |
+| `table`(array) | Each item described as below |
 
  
 | Name | Type | Description |
@@ -785,18 +786,18 @@ Line parsed values from system and user cron/tab.
 
 *Return value(s):*  
 
-It issues an error when failed.
+It issues an error when it fails.
 
 | Type | Description |
 | --- | ---- |
-| `table`(array) | Each item describes as below |
+| `table`(array) | Each item described as below |
 
  
 | Name | Type | Description |
 | --- | ---- | ---- |
 | minute | string | The exact minute for the job |
 | hour | string | The hour of the day for the job |
-| day_of_monthmand | string | The day of the month for the job |
+| day_of_month | string | The day of the month for the job |
 | month | string | The month of the year for the job |
 | day_of_week | string | The day of the week for the job |
 | command | string | Raw command string |
@@ -818,11 +819,11 @@ Operating system sysctl info
 
 *Return value(s):*  
 
-It issues an error when failed.
+It issues an error when it fails.
 
 | Type | Description |
 | --- | ---- |
-| `table` | Same as run Linux command 'sysctl -a' |
+| `table` | Same as running Linux command 'sysctl -a' |
 
 ---
 
@@ -834,11 +835,11 @@ List all current RPM packages
 
 *Return value(s):*  
 
-It issues an error when failed.
+It issues an error when it fails.
 
 | Type | Description |
 | --- | ---- |
-| `string` | Same as run Linux command 'rpm -qa' |
+| `string` | Same as running Linux command 'rpm -qa' |
 
 ---
 
@@ -852,7 +853,7 @@ Check if a package is installed
 
 | Name | Type | Description | Required |
 | --- | ---- | ---- | ---- |
-| package | `string` | The package name, e.g. yum | false |
+| package | `string` | The package name, e.g., yum | false |
 
 *Return value(s):*  
 
@@ -875,18 +876,18 @@ Network interfaces and relevant metadata.
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `table`(array) | Each item corresponds to a net interface described as below |
+| `table`(array) | Each item corresponding to a network interface described as below |
 
  
 | Name | Type | Description |
 | --- | ---- | ---- |
 | interface | string | Interface name |
-| ip4 | string | IP4 addr |
-| ip6 | string | IP6 addr |
+| ip4 | string | IPv4 address |
+| ip6 | string | IPv6 address |
 | mtu | number | MTU |
 | mac | string | MAC address |
 
@@ -902,11 +903,11 @@ Linux IP packet filtering and NAT tool
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `table`(array) | Each item corresponds to a filtering described as below |
+| `table`(array) | Each item corresponding to a filtering rule described as below |
 
  
 | Name | Type | Description |
@@ -923,11 +924,11 @@ Processes which have open network sockets on the system
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `table`(array) | Each item corresponds to a processe which have open network described as below |
+| `table`(array) | Each item corresponding to a process with open network sockets described as below |
 
  
 | Name | Type | Description |
@@ -958,11 +959,11 @@ Processes with listening (bound) network sockets/ports
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `table`(array) | Each item describes as below |
+| `table`(array) | Each item described as below |
 
  
 | Name | Type | Description |
@@ -1031,7 +1032,7 @@ Set a cache key-value pair.
 
 `clean_cache()`
 
-Clean this rule cache .
+Clean this rule cache.
 
 *Parameters:*  
 
@@ -1057,7 +1058,7 @@ no return
 ---
 #### del_cache_all
 
-`del_cache()`
+`del_cache_all()`
 
 Delete all cache.
 
@@ -1127,7 +1128,7 @@ Encode a Lua table to JSON string
 
 *Return value(s):*  
 
-It issues an error if fail to encode
+It issues an error if it fails to encode
 
 | Type | Description |
 | --- | ---- |
@@ -1150,7 +1151,7 @@ Decode a JSON string to Lua table
 
 *Return value(s):*  
 
-It issues an error if fail to encode
+It issues an error if it fails to decode
 
 | Type | Description |
 | --- | ---- |
@@ -1179,11 +1180,11 @@ Check MySQL weak password
 
 *Return value(s):*  
 
-It issues an error when failed.
+It issues an error when it fails.
 
 | Type | Description |
 | --- | ---- |
-| `boolean` | True means found some weak password |
+| `boolean` | True means some weak password found |
 | `string` | The weak password if found |
 
 
@@ -1198,11 +1199,11 @@ List the host MySQL ports
 
 *Return value(s):*  
 
-It issues an error when fail to read.
+It issues an error when it fails to read.
 
 | Type | Description |
 | --- | ---- |
-| `table`() | Each item describes as below |
+| `table`() | Each item described as below |
 
  
 | Name | Type | Description |
@@ -1213,7 +1214,7 @@ It issues an error when fail to read.
 | protocolversion | string | MySQL protocol version |
 | statusflags | string | Socket file descriptor number |
 | authpluginname | string | Auth plugin name |
-| s️erverversion | string | MySQL Server Version |
+| serverversion | string | MySQL Server Version |
 | state | string | Process state |
 
 *Output example:*
@@ -1222,23 +1223,23 @@ port	3307
 protocolversion	10
 statusflags	2
 authpluginname	mysql_native_password
-s️erverversion	5.7.34
+serverversion	5.7.34
 state	LISTEN
 cmdline	/usr/bin/docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port 3307 -container-ip 172.18.0.4 -container-port 3306
 pid	7062
 ``` 
 
-## Container Related
+## Container-related Functions
 #### sc_docker_exist
 
 `sc_docker_exist()`
 
-Check Docker service on host
+Check if Docker service exists on the host
 
 
 *Return value(s):*  
 
-It issues an error when failed.
+It issues an error when it fails.
 
 | Type | Description |
 | --- | ---- |
@@ -1248,13 +1249,13 @@ It issues an error when failed.
 
 `sc_docker_containers()`
 
-Check Docker containers
+List Docker containers
 
-Before other Docker functions, `sc_docker_exist` must be called first!!!
+Before using other Docker functions, `sc_docker_exist` must be checked first!!!
 
 *Return value(s):*  
 
-It issues an error when failed.
+It issues an error when it fails.
 
 | Type | Description |
 | --- | ---- |
@@ -1265,7 +1266,7 @@ It issues an error when failed.
 
 `sc_docker_runlike(containerName)`
 
-Check Docker run command
+Get the run command for a Docker container
 
 *Parameters:*  
 
@@ -1275,7 +1276,7 @@ Check Docker run command
 
 *Return value(s):*  
 
-It issues an error when failed.
+It issues an error when it fails.
 
 | Type | Description |
 | --- | ---- |
@@ -1293,11 +1294,11 @@ Trigger an event and send it to target with line protocol.
 
 | Name | Type | Description | Required |
 | --- | ---- | ---- | ---- |
-| template_vals | `table` | If you use templates in manifest, the values of this table will replace the template variables | false |
+| template_vals | `table` | If you use templates in the manifest, the values of this table will replace the template variables | false |
 
 
 *Return value(s):*  
 
-It issues an error when failed.
+It issues an error when it fails.
 
 ---

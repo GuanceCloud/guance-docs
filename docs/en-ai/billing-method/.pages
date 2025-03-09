@@ -1,5 +1,5 @@
 nav:
   - index.md
-  - 'Billing Item Logic': billing-item.md
+  - 'Billing Logic': billing-item.md
   - 'Data Storage Policy': data-storage.md
   - 'FAQ': faq.md

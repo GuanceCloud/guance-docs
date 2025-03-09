@@ -1,15 +1,15 @@
 ---
-title: 'NetFlow'
-summary: 'The NetFlow collector can be used to visualize and monitor devices that have enabled NetFlow'
+title     : 'NetFlow'
+summary   : 'The NetFlow collector can be used to visualize and monitor devices that have NetFlow enabled'
 tags:
   - 'Network'
-__int_icon: 'icon/netflow'
-dashboard:
-  - desc: 'NetFlow'
-    path: 'dashboard/en/netflow'
-monitor:
-  - desc: 'NetFlow'
-    path: 'monitor/en/netflow'
+__int_icon      : 'icon/netflow'
+dashboard :
+  - desc  : 'NetFlow'
+    path  : 'dashboard/en/netflow'
+monitor   :
+  - desc  : 'NetFlow'
+    path  : 'monitor/en/netflow'
 ---
 
 
@@ -17,11 +17,11 @@ monitor:
 
 ---
 
-The NetFlow collector can be used to visualize and monitor devices that have enabled NetFlow, and collect logs into Guance to help monitor and analyze various anomalies in NetFlow.
+The NetFlow collector can be used to visualize and monitor devices that have NetFlow enabled, and collect logs into Guance to help analyze various anomalies in NetFlow.
 
 ## What is NetFlow {#what}
 
-NetFlow is the most widely used traffic data statistics standard, developed by Cisco for monitoring and recording all traffic entering and exiting interfaces. NetFlow analyzes the traffic data it collects to provide visibility into traffic patterns and sources, tracking where traffic comes from, where it goes, and how much traffic is generated at any given time. The recorded information can be used for usage monitoring, anomaly detection, and other network management tasks.
+NetFlow is the most widely used traffic data statistics standard, developed by Cisco for monitoring and recording all traffic entering and exiting interfaces. NetFlow analyzes the traffic data it collects to provide visibility into traffic and flows, and tracks where the traffic comes from, where it goes, and the traffic generated at any time. The recorded information can be used for usage monitoring, anomaly detection, and other network management tasks.
 
 Currently, Datakit supports the following protocols:
 
@@ -34,12 +34,12 @@ Currently, Datakit supports the following protocols:
 
 ### Prerequisites {#requirements}
 
-- Devices that support the NetFlow feature and have it enabled. Each device's method of enabling this feature may vary, so it is recommended to refer to the official documentation. For example: [Enabling NetFlow on Cisco ASA](https://www.petenetlive.com/KB/Article/0000055){:target="_blank"}
+- Devices that support NetFlow functionality and have NetFlow enabled. Each device's activation method may differ; it is recommended to refer to the official documentation. For example: [Enabling NetFlow on Cisco ASA](https://www.petenetlive.com/KB/Article/0000055){:target="_blank"}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/netflow` directory under the DataKit installation directory, copy `netflow.conf.sample` and rename it to `netflow.conf`. An example configuration is as follows:
+    Navigate to the `conf.d/netflow` directory under the DataKit installation directory, copy `netflow.conf.sample`, and rename it to `netflow.conf`. An example is as follows:
     
     ```toml
         
@@ -69,16 +69,16 @@ Currently, Datakit supports the following protocols:
     
     ```
 
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, you can enable collectors via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting collector configurations via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-## Logs {#logging}
+## Logging {#logging}
 
-Below is an example log entry:
+Below is a log sample:
 
 ```json
 {
@@ -129,83 +129,83 @@ Below is an example log entry:
 
 Explanation:
 
-- Root/NetFlow node
+- Root/NetFlow Node
 
-| Field            | Description                  |
-| ----:            | :----                        |
-| flush_timestamp  | Reporting timestamp          |
-| type             | Protocol                     |
-| sampling_rate    | Sampling rate                |
-| direction        | Direction                    |
-| start            | Start time                   |
-| end              | End time                     |
-| bytes            | Transmitted bytes            |
-| packets          | Transmitted packet count     |
-| ether_type       | Ethernet type (IPv4/IPv6)    |
-| ip_protocol      | IP protocol (TCP/UDP)        |
-| device           | Device information node      |
-| exporter         | Exporter information node    |
-| source           | Flow source endpoint info    |
-| destination      | Flow destination endpoint info|
-| ingress          | Ingress gateway info         |
-| egress           | Egress gateway info          |
-| host             | Collector's Hostname         |
-| tcp_flags        | TCP flags                    |
-| next_hop         | Next_Hop attribute info      |
+| Field            | Description                    |
+| :----           | :----                   |
+| flush_timestamp | Reporting time                |
+| type            | Protocol                    |
+| sampling_rate   | Sampling frequency                |
+| direction       | Direction                    |
+| start           | Start time                |
+| end             | End time                |
+| bytes           | Transmitted bytes              |
+| packets         | Transmitted packet count              |
+| ether_type      | Ethernet type (IPv4/IPv6) |
+| ip_protocol     | IP protocol (TCP/UDP)      |
+| device          | Device information node            |
+| exporter        | Exporter information node       |
+| source          | Source endpoint information node     |
+| destination     | Destination endpoint information node     |
+| ingress         | Ingress gateway information node        |
+| egress          | Egress gateway information node        |
+| host            | Collector's Hostname   |
+| tcp_flags       | TCP flags                |
+| next_hop        | Next_Hop attribute information node   |
 
-- `device` node
+- `device` Node
 
-| Field      | Description  |
-| ----:      | :----        |
-| namespace  | Namespace    |
+| Field      | Description     |
+| :----     | :----    |
+| namespace | Namespace |
 
-- `exporter` node
+- `exporter` Node
 
-| Field  | Description         |
-| ----:  | :----              |
-| ip     | Exporter's IP      |
+| Field  | Description           |
+| :---- | :----          |
+| ip    | Exporter's IP |
 
-- `source` node
+- `source` Node
 
-| Field  | Description         |
-| ----:  | :----              |
-| ip     | Source IP address  |
-| port   | Source port        |
-| mac    | Source MAC address |
-| mask   | Source subnet mask |
+| Field  | Description              |
+| :---- | :----             |
+| ip    | Source IP address  |
+| port  | Source port      |
+| mac   | Source MAC address |
+| mask  | Source network mask  |
 
-- `destination` node
+- `destination` Node
 
-| Field  | Description         |
-| ----:  | :----              |
-| ip     | Destination IP     |
-| port   | Destination port   |
-| mac    | Destination MAC    |
-| mask   | Destination subnet |
+| Field  | Description                 |
+| :---- | :----                |
+| ip    | Destination IP address     |
+| port  | Destination port         |
+| mac   | Destination MAC address    |
+| mask  | Destination IP network mask |
 
-- `ingress` node
+- `ingress` Node
 
-| Field      | Description  |
-| ----:      | :----        |
-| interface  | Interface ID |
+| Field      | Description     |
+| :----     | :----    |
+| interface | Interface index |
 
-- `egress` node
+- `egress` Node
 
-| Field      | Description  |
-| ----:      | :----        |
-| interface  | Interface ID |
+| Field      | Description     |
+| :----     | :----    |
+| interface | Interface index |
 
-- `next_hop` node
+- `next_hop` Node
 
-| Field  | Description                         |
-| ----:  | :----                               |
-| ip     | Next hop IP address                 |
+| Field  | Description                                      |
+| :---- | :----                                     |
+| ip    | Next hop IP address in the Next_Hop attribute |
 
-## Mearsurement {#metric}
+## Metrics {#metric}
 
-All collected data will default to appending a global tag named `host` (tag value is the hostname of the DataKit host), or you can specify other tags through `[inputs.netflow.tags]` in the configuration:
+All collected data will default append a global tag named `host` (tag value is the hostname of the machine where DataKit resides), or you can specify other tags through `[inputs.netflow.tags]` in the configuration:
 
-```toml
+``` toml
  [inputs.netflow.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
@@ -215,13 +215,13 @@ All collected data will default to appending a global tag named `host` (tag valu
 <!-- markdownlint-disable MD046 -->
 ???+ info
 
-    Data collected by the Netflow collector is stored in the log category (`L`) data.
+    Data collected by Netflow is stored in log-type (`L`) data.
 <!-- markdownlint-enable -->
 
 
 ### `netflow` {#netflow}
 
-Using the `source` field in the config file, default is `default`.
+Using `source` field in the config file, default is `default`.
 
 - Tags
 
@@ -231,7 +231,7 @@ Using the `source` field in the config file, default is `default`.
 |`host`|Hostname.|
 |`ip`|Collector IP address.|
 
-- Metrics list
+- Metrics List
 
 
 | Metric | Description | Type | Unit |

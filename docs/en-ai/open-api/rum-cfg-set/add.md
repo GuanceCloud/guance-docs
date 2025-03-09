@@ -11,18 +11,20 @@
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:------------------------|
-| customIdentity | string | No | Custom identity (maximum 19 characters)<br>Allow null: False <br>Allow empty string: True <br>$maxCharacterLength: 19 <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| customIdentity | string | No | Custom identifier (maximum 19 characters)<br>Allow null: False <br>Allow empty string: True <br>$maxCharacterLength: 19 <br> |
 | appId | string | No | Custom appId (maximum 48 characters)<br>Allow null: False <br>Allow empty string: True <br>$maxCharacterLength: 48 <br> |
 | dashboardUuids | array | No | Built-in view UUIDs<br>Allow null: False <br> |
 | jsonContent | json | Yes | JSON formatted content<br>Allow null: False <br> |
 | jsonContent.name | string | Yes | Application name<br>Allow null: False <br>Maximum length: 256 <br> |
-| jsonContent.type | string | Yes | Application type<br>Allow null: False <br>Possible values: ['web', 'miniapp', 'android', 'ios', 'custom', 'reactnative'] <br> |
-| jsonContent.extend | json | No | Additional settings (please inform if you need to add fields at the same level)<br>Allow null: False <br> |
-| clientToken | string | No | Client token<br>Allow null: False <br>Allow empty string: True <br> |
+| jsonContent.type | string | Yes | Application type<br>Allow null: False <br>Options: ['web', 'miniapp', 'android', 'ios', 'custom', 'reactnative'] <br> |
+| jsonContent.extend | json | No | Other settings (please inform if additional fields at the same level are needed)<br>Allow null: False <br> |
+| clientToken | string | No | clientToken<br>Allow null: False <br>Allow empty string: True <br> |
 
 ## Additional Parameter Notes
+
+
 
 
 

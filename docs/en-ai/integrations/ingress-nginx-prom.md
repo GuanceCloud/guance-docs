@@ -6,7 +6,7 @@ dashboard :
   - desc  : 'Ingress Nginx monitoring view'
     path  : 'dashboard/en/ingress_nginx'
 monitor   :
-  - desc  : 'Not applicable'
+  - desc  : 'None'
     path  : '-'
 ---
 
@@ -15,14 +15,14 @@ monitor   :
 <!-- markdownlint-enable -->
 
 
-Display of Ingress performance metrics, including the average CPU usage of the Ingress Controller, average memory usage, total network requests/responses, number of Ingress Config loads, result of the last Ingress Config load, and the forwarding success rate of Ingress.
+Display of Ingress performance metrics, including the average CPU usage, average memory usage, total network requests/responses, number of times Ingress Config is loaded, result of the last Ingress Config load, and success rate of Ingress forwarding, etc.
 
 
 ## Configuration {#config}
 
 ### Prerequisites
 
-- DataKit has been deployed. Please refer to Kubernetes cluster <[Install Datakit](../datakit/datakit-daemonset-deploy.md)>
+- DataKit has been deployed; please refer to Kubernetes cluster <[Install DataKit](../datakit/datakit-daemonset-deploy.md)>
 
 ### Installation and Deployment
 Note: The example Ingress version is `willdockerhub/ingress-nginx-controller:v1.0.0` (deployed with `kubeadmin` in CentOS environment). Metrics may vary across different versions.
@@ -39,6 +39,7 @@ wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.
 Set the service type to `NodePort` and expose port `10254` externally
 
 ```yaml
+
 spec:
   type: NodePort
 ......
@@ -47,7 +48,7 @@ spec:
       targetPort: prometheus
 ```
 
-Find the part where `kind: Deployment`, and modify as follows:
+Find the part where `kind: Deployment` and modify as follows:
 
 ```shell
 kind: DaemonSet # Modify
@@ -55,10 +56,11 @@ kind: DaemonSet # Modify
 ---
 hostNetwork: true # Add
 dnsPolicy: ClusterFirstWithHostNet # Modify
+
 ```
 
 - Enable Input
-To integrate Ingress metrics into Guance, you need to enable the prom plugin in DataKit and specify the exporter's URL in the prom plugin configuration. For collecting Ingress Controller metrics in a Kubernetes cluster, it is recommended to use annotations to add annotations. Open the deploy.yaml file used to deploy Ingress, find the DaemonSet section modified in the previous step, and add annotations.
+To collect Ingress metrics in Guance, you need to enable the prom plugin in DataKit and specify the exporter's URL in the prom plugin configuration. In a Kubernetes cluster, it is recommended to use annotations to add annotations for collecting Ingress Controller metrics. Open the deploy.yaml file used to deploy Ingress, find the DaemonSet part modified in the previous step, and add annotations.
 
 ```yaml
 annotations:
@@ -84,10 +86,10 @@ annotations:
 
 - url: Exporter URLs, multiple URLs are separated by commas
 - source: Collector alias
-- metric_types: Metric types, options include counter, gauge, histogram, summary
+- metric_types: Metric types, options are counter, gauge, histogram, summary
 - measurement_name: Measurement set name
 - interval: Collection frequency
-- inputs.prom.measurements: Measurement sets prefixed with `prefix` are grouped under `name`
+- inputs.prom.measurements: Metrics with the specified prefix are grouped into the named measurement set
 - tags_ignore: Ignored tags
 - metric_name_filter: Retained metric names
 
@@ -99,7 +101,7 @@ kubectl apply -f deploy.yaml
 
 ## Metrics {#metric}
 
-If `inputs.prom.measurements` is configured, the metrics collected by Guance need to have a prefix added to match the table.<br />
+If `inputs.prom.measurements` is configured, the metrics collected by Guance need to be prefixed to match the table.<br />
 For example, if the prefix `nginx*ingress_controller` is configured and the measurement set is `prom_ingress`.
 
 ```toml
@@ -108,7 +110,7 @@ For example, if the prefix `nginx*ingress_controller` is configured and the meas
               name = "prom_ingress"
 ```
 
-The `nginx_ingress_controller_requests` metric in Guance would be the `requests` metric under the `prom_ingress` measurement set.
+The metric `nginx_ingress_controller_requests` becomes the `requests` metric under the `prom_ingress` measurement set in Guance.
 
 | Metric                                                         | Description                                                         | Data Type | Unit  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- | ----- |
@@ -121,7 +123,7 @@ The `nginx_ingress_controller_requests` metric in Guance would be the `requests`
 | nginx_process_resident_memory_bytes                          | Number of bytes of memory in use                             | int      | B     |
 | nginx_ingress_controller_request_duration_seconds_bucket     | Request processing time in milliseconds                      | int      | ms    |
 | nginx_ingress_controller_request_size_sum                    | Request length (including request line, header, and request body) | int      | B     |
-| nginx_ingress_controller_response_size_sum                   | Response length (including response line, header, and response body) | int      | B     |
+| nginx_ingress_controller_response_size_sum                   | Response length (including request line, header, and response body) | int      | B     |
 | nginx_ingress_controller_ssl_expire_time_seconds             | Number of seconds since 1970 to SSL certificate expiration   | int      | s     |
 
 ## Best Practices {#more-reading}

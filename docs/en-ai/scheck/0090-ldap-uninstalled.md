@@ -1,5 +1,4 @@
-# 0090-ldap-uninstalled-LDAP Installed
-
+# 0090-ldap-uninstalled-LDAP Uninstalled
 ---
 
 ## Rule ID
@@ -24,7 +23,7 @@
 
 ## Description
 
-- Lightweight Directory Access Protocol (LDAP) was introduced as a replacement for NIS/YP. It provides a method to look up information from a central database.
+- Lightweight Directory Access Protocol (LDAP) was introduced as a replacement for NIS/YP. It is a service that provides a method to look up information from a central database.
 
 
 ## Scan Frequency
@@ -32,14 +31,14 @@
 - 0 */30 * * *
 
 
-## Theoretical Basis
+## Rationale
 
 - If the system does not need to act as an LDAP server, it is recommended to remove this software to reduce the potential attack surface.
 
 
 ## Risk Items
 
-- Increased risk of being attacked
+- Increased risk of attack
 
 
 ## Audit Method
@@ -64,7 +63,7 @@ package openldap-servers is not installed
 - For more detailed documentation on OpenLDAP, please visit the project homepage: http://www.openldap.org.
 
 
-## Default Values
+## Default Value
 
 - None
 

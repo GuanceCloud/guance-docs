@@ -26,11 +26,11 @@ SQL Server version >= 2012, tested versions include:
 - [x] 2019
 - [x] 2022
 
-### Prerequisites {#requirements}
+### Prerequisites {#requrements}
 
 - Create user:
 
-For Linux and Windows:
+Linux, Windows:
 
 ```sql
 USE master;
@@ -43,7 +43,7 @@ GRANT VIEW ANY DEFINITION TO [guance];
 GO
 ```
 
-For Aliyun RDS SQL Server:
+Aliyun RDS SQL Server:
 
 ```sql
 USE master;
@@ -53,12 +53,12 @@ GO
 ```
 
 <!-- markdownlint-disable MD046 -->
-???+ attention "Notes"
+???+ attention "Note"
 
-    Note that the above operations require an account with appropriate permissions; otherwise, it may lead to failure in user creation or authorization.
+    Note that the above operations require an account with appropriate permissions; otherwise, user creation or authorization may fail.
 
-    - For self-hosted SQL Server, a user with `WITH GRANT OPTION`, `CREATE ANY LOGIN`, `CREATE ANY USER`, `ALTER ANY LOGIN` permissions is required, or you can directly use a user with the `sysadmin` role or local user for authorization.
-    - For RDS for SQL Server, a high-privilege account is required for authorization.
+    - For self-built SQL Server, a user with `WITH GRANT OPTION`, `CREATE ANY LOGIN`, `CREATE ANY USER`, and `ALTER ANY LOGIN` permissions is required. Alternatively, you can use a user with the `sysadmin` role or local user authorization.
+    - For RDS for SQL Server, a high-privilege account must be used for authorization.
 
 ### Collector Configuration {#input-config}
 
@@ -135,7 +135,7 @@ GO
 
 === "Kubernetes"
 
-    Currently, you can enable the collector via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, the collector can be enabled via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
 ### Log Collection Configuration {#logging-config}
@@ -155,11 +155,11 @@ To collect SQL Server logs, you can enable the `files` option in *sqlserver.conf
         files = ["/var/opt/mssql/log/error.log"]
 ```
 
-After enabling log collection, logs will be generated with the source (`source`) as `sqlserver`.
+After enabling log collection, logs will have a default source (`source`) of `sqlserver`.
 
 ## Metrics {#metric}
 
-All data collected by default will append global election tags, or you can specify other tags via `[inputs.sqlserver.tags]` in the configuration:
+By default, all collected data will append global election tags. You can also specify other tags through `[inputs.sqlserver.tags]` in the configuration:
 
 ``` toml
  [inputs.sqlserver.tags]
@@ -180,7 +180,7 @@ All data collected by default will append global election tags, or you can speci
 |  ----  | --------|
 |`sqlserver_host`|Host name where SQLServer is installed|
 
-- Fields
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -215,7 +215,7 @@ All data collected by default will append global election tags, or you can speci
 |`object_name`|Category to which this counter belongs.|
 |`sqlserver_host`|Host name where SQLServer is installed|
 
-- Fields
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -280,7 +280,7 @@ All data collected by default will append global election tags, or you can speci
 |`wait_category`|Wait category info|
 |`wait_type`|Name of the wait type. For more information, see Types of Waits, later in this topic|
 
-- Fields
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -307,7 +307,7 @@ All data collected by default will append global election tags, or you can speci
 |`physical_filename`|Operating-system file name.|
 |`sqlserver_host`|Host name where SQLServer is installed|
 
-- Fields
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -335,7 +335,7 @@ All data collected by default will append global election tags, or you can speci
 |`scheduler_id`|ID of the scheduler. All schedulers that are used to run regular queries have ID numbers less than 1048576. Those schedulers that have IDs greater than or equal to 1048576 are used internally by SQL Server, such as the dedicated administrator connection scheduler. Is not nullable.|
 |`sqlserver_host`|Host name where SQLServer is installed|
 
-- Fields
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -368,7 +368,7 @@ All data collected by default will append global election tags, or you can speci
 |`sqlserver_host`|Host name where SQLServer is installed|
 |`volume_mount_point`|Mount point at which the volume is rooted. Can return an empty string. Returns null on Linux operating system.|
 
-- Fields
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -399,7 +399,7 @@ All data collected by default will append global election tags, or you can speci
 |  ----  | --------|
 |`database_name`|Name of the database|
 
-- Fields
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -419,7 +419,7 @@ All data collected by default will append global election tags, or you can speci
 |  ----  | --------|
 |`database`|Database name|
 
-- Fields
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -443,12 +443,14 @@ All data collected by default will append global election tags, or you can speci
 |`state`|Database file state: 0 = Online, 1 = Restoring, 2 = Recovering, 3 = Recovery_Pending, 4 = Suspect, 5 = Unknown, 6 = Offline, 7 = Defunct|
 |`state_desc`|Description of the file state|
 
-- Fields
+- Field List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`size`|Current size of the database file|int|KB|
+
+
 
 
 
@@ -513,9 +515,40 @@ All data collected by default will append global election tags, or you can speci
 
 
 
+
+
+
+
+### `database`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on SQLServer(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`|Connection IP of the SQLServer|
+|`name`|Object unique ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- Metric List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current SQLServer uptime|int|s|
+|`version`|Current version of SQLServer|string|-|
+
+
+
+
 ## Logs {#logging}
 
-All measurement sets are collected in log form, with all log levels set to `info`.
+All the following measurement sets are collected in log form, with all log levels set to `info`.
 
 
 
@@ -525,7 +558,7 @@ All measurement sets are collected in log form, with all log levels set to `info
 
 NA
 
-- Fields
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -552,7 +585,7 @@ NA
 
 NA
 
-- Fields
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -573,7 +606,7 @@ NA
 
 NA
 
-- Fields
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -600,7 +633,7 @@ NA
 |  ----  | --------|
 |`message`|Text of the SQL query|
 
-- Fields
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -625,7 +658,7 @@ NA
 |  ----  | --------|
 |`message`|Text of the SQL query|
 
-- Fields
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -644,21 +677,23 @@ NA
 
 
 
+
+
 <!-- markdownlint-enable -->
 
 ### Log Pipeline Field Splitting Explanation {#pipeline}
 
-Example of a generic SQL Server log entry:
+Example of a common SQL Server log text:
 
 ```log
 2021-05-28 10:46:07.78 spid10s     0 transactions rolled back in database 'msdb' (4:0). This is an informational message only. No user action is required
 ```
 
-Fields after splitting:
+The split field list is as follows:
 
-| Field Name   | Field Value                | Description                                          |
+| Field Name | Field Value                | Description                                          |
 | -------- | --------------------- | --------------------------------------------- |
 | `msg`    | `spid...`             | Log content                                      |
 | `time`   | `1622169967780000000` | Nanosecond timestamp (as line protocol time)                  |
 | `origin` | `spid10s`             | Source                                            |
-| `status` | `info`                | Since the log does not explicitly specify a log level, it defaults to info |
+| `status` | `info`                | Since the log does not have explicit severity fields, it defaults to info |

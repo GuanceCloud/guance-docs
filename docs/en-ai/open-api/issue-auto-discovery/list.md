@@ -1,4 +1,4 @@
-# Automatic Discovery Configuration for Lists
+# Auto-discovery List Configuration
 
 ---
 
@@ -12,12 +12,12 @@
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| dqlNamespace | string | No | Data scope, multiple values separated by commas<br>Example: keyevent <br>Can be empty: False <br> |
-| isDisable | string | No | Filter condition<br>Example: [] <br>Can be empty: False <br>Optional values: ['true', 'false'] <br> |
-| search | string | No | Search by rule name<br>Example: xxxxx_text <br>Can be empty: False <br>Can be an empty string: True <br> |
-| pageSize | integer | No | Number of items per page<br>Can be empty: False <br>Example: 10 <br> |
-| pageIndex | integer | No | Page number<br>Can be empty: False <br>Example: 10 <br> |
+|:---------------------|:---------|:-----------|:-------------------------|
+| dqlNamespace          | string   | No         | Data scope, multiple values separated by commas.<br>Example: keyevent <br>Can be empty: False <br> |
+| isDisable             | string   | No         | Filter condition.<br>Example: [] <br>Can be empty: False <br>Optional values: ['true', 'false'] <br> |
+| search                | string   | No         | Search by rule name.<br>Example: xxxxx_text <br>Can be empty: False <br>Can be an empty string: True <br> |
+| pageSize              | integer  | No         | Number of items per page.<br>Can be empty: False <br>Example: 10 <br> |
+| pageIndex             | integer  | No         | Page number.<br>Can be empty: False <br>Example: 10 <br> |
 
 ## Additional Parameter Notes
 

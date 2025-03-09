@@ -1,17 +1,17 @@
 ---
-title: 'DataKit Self Metrics Collection'
-summary: 'Collection of DataKit runtime metrics'
+title: 'DataKit Self-Monitoring Metrics Collection'
+summary: 'Collecting DataKit runtime metrics'
 tags:
   - 'Host'
 __int_icon: 'icon/dk'
 dashboard:
-  - desc: 'DataKit Built-in Views'
+  - desc: 'Built-in DataKit Views'
     path: 'dashboard/en/dk'
-  - desc: 'DataKit Dial Testing Built-in Views'
+  - desc: 'Built-in DataKit Dial Testing Views'
     path: 'dashboard/en/dialtesting'
 
 monitor:
-  - desc: 'Not Available'
+  - desc: 'None'
     path: '-'
 ---
 
@@ -20,25 +20,25 @@ monitor:
 
 ---
 
-The DataKit collector is used to collect basic information about its own operation, including runtime environment information, CPU usage, memory usage, and metrics from various core modules.
+The DataKit collector is used to collect basic information about its own operation, including runtime environment information, CPU usage, memory usage, and various core module metrics.
 
 ## Configuration {#config}
 
-After DataKit starts, it exposes some [Prometheus Metrics](../datakit/datakit-metrics.md) by default. No additional actions are required, and this collector is enabled by default, replacing the previous `self` collector.
+After starting DataKit, it will expose some [Prometheus Metrics](../datakit/datakit-metrics.md) by default. No additional actions are required, and this collector is enabled by default, replacing the previous `self` collector.
 
 <!-- markdownlint-disable MD046 -->
 === "Host Deployment"
 
-    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `dk.conf.sample`, and rename it to `dk.conf`. Example configuration:
+    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `dk.conf.sample`, and rename it to `dk.conf`. An example is shown below:
 
     ```toml
         
     [[inputs.dk]]
     
-      # See https://docs.guance.com/datakit/datakit-metrics/#metrics for all metrics exported by Datakit.
+      # See https://docs.guance.com/datakit/datakit-metrics/#metrics for all metrics exported by DataKit.
       metric_name_filter = [
-        ### Collect all metrics (these may collect 300+ metrics of Datakit)
-        ### if you want to collect all, make this rule the first in the list.
+        ### Collect all metrics (these may collect over 300 metrics of DataKit)
+        ### If you want to collect all, make this rule the first in the list.
         # ".*",
     
         "datakit_http.*",       # HTTP API
@@ -85,9 +85,9 @@ After DataKit starts, it exposes some [Prometheus Metrics](../datakit/datakit-me
 
 === "Kubernetes"
 
-    You can enable the collector via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or by [setting ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
+    You can inject the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
 
-    You can also modify configuration parameters using environment variables (you need to add it to ENV_DEFAULT_ENABLED_INPUTS as a default collector):
+    It also supports modifying configuration parameters via environment variables (you need to add it as a default collector in ENV_DEFAULT_ENABLED_INPUTS):
 
     - **ENV_INPUT_DK_ENABLE_ALL_METRICS**
     
@@ -103,7 +103,7 @@ After DataKit starts, it exposes some [Prometheus Metrics](../datakit/datakit-me
     
     - **ENV_INPUT_DK_ADD_METRICS**
     
-        Append metrics list; available metric names can be found [here](../datakit/datakit-metrics.md)
+        Append the list of metrics; available metric names can be found [here](../datakit/datakit-metrics.md)
     
         **Field Type**: List
     
@@ -129,4 +129,4 @@ After DataKit starts, it exposes some [Prometheus Metrics](../datakit/datakit-me
 
 ## Metrics {#metric}
 
-DataKit's self metrics primarily consist of Prometheus metrics. For documentation, refer to [this link](../datakit/datakit-metrics.md)
+DataKit's self-monitoring metrics are primarily Prometheus metrics. Refer to the documentation [here](../datakit/datakit-metrics.md) for more details.

@@ -4,18 +4,18 @@
 
 ## Introduction
 
-In a Kubernetes cluster, applications are deployed as images. When using SkyWalking to collect application tracing data, if the traditional method is used to embed the SkyWalking Agent into each application image before deployment, it can lead to overly large images and make future upgrades of SkyWalking inconvenient. This article introduces a method that uses the official SkyWalking image with initContainers to provide the SkyWalking Agent for applications to collect tracing data.
+In Kubernetes clusters, applications are deployed in the form of images. When using SkyWalking to collect application tracing data, if you follow the traditional method of embedding the SkyWalking Agent into each application image before deployment, it can lead to overly large images and make future upgrades to SkyWalking inconvenient. This article introduces a method that uses the official SkyWalking image with initContainers to provide the SkyWalking Agent for applications to collect tracing data.
 
 ## Prerequisites
 
 ### Install DataKit
 
 - <Install [DataKit](../../datakit/datakit-daemonset-deploy.md)>
-- DataKit version >= 1.4.15
+- DataKit version >=1.4.15
 
-### Enable Input
+### Enable Input 
 
-Enable the SkyWalking collector by adding the `/usr/local/datakit/conf.d/skywalking/skywalking.conf` file on the server where DataKit is located. When deploying using DaemonSet, define a ConfigMap first and then mount the file into the DataKit container. The `datakit.yaml` file used during DataKit deployment will be needed next.
+Enable the SkyWalking collector by adding the `/usr/local/datakit/conf.d/skywalking/skywalking.conf` file on the server where DataKit is located. When deploying using DaemonSet, define a ConfigMap first, then mount the file into the DataKit container. The `datakit.yaml` file used during DataKit deployment will be needed next.
 
 #### Define skywalking.conf
 
@@ -31,7 +31,7 @@ data:
     ## Below is the new content
     skywalking.conf: |- 
         [[inputs.skywalking]]
-          ## skywalking grpc server listening on address
+          ## SkyWalking gRPC server listening address
           address = "0.0.0.0:11800"
 ```
 
@@ -54,11 +54,11 @@ kubectl apply -f datakit.yaml
 
 ### Java Tracing Data Integration
 
-#### Write a Test Application
+#### Write Test Application
 
-The example uses [datakit-springboot-demo](https://github.com/stevenliu2020/datakit-springboot-demo). After downloading, package it into a jar named `service-demo-1.0-SNAPSHOT.jar`.
+The example uses [datakit-springboot-demo](https://github.com/stevenliu2020/datakit-springboot-demo). After downloading, package it into a JAR file named `service-demo-1.0-SNAPSHOT.jar`.
 
-#### Build the Image
+#### Build Image
 
 Write a Dockerfile.
 
@@ -76,16 +76,16 @@ WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} "]
 ```
 
-Build the image and push it to the image repository.
+Build and push the image to the image repository.
 
 ```shell
 docker build -t 172.16.0.246/df-demo/service-demo:v1 .
 docker push 172.16.0.246/df-demo/service-demo:v1
 ```
 
-#### Deploy the Application
+#### Deploy Application
 
-In the `skywalking-demo.yaml` file for application deployment, use `initContainers` to initialize the `apache/skywalking-java-agent:8.7.0-alpine` image. Applications within the same Pod can access `skywalking-agent.jar`, and define the start command for the jar in `JAVA_OPTS`. Specifically, `-Dskywalking.agent.service_name=skywalking-demo-master` sets the alias of the application to `skywalking-demo-master`.
+In the `skywalking-demo.yaml` file for application deployment, use `initContainers` to initialize the `apache/skywalking-java-agent:8.7.0-alpine` image. Applications within the same Pod can access `skywalking-agent.jar`, and define the startup command for the JAR in `JAVA_OPTS`. Specifically, `-Dskywalking.agent.service_name=skywalking-demo-master` sets the alias of the application to `skywalking-demo-master`.
 
 ```yaml
 apiVersion: apps/v1
@@ -144,7 +144,7 @@ spec:
 kubectl apply -f skywalking-demo.yaml 
 ```
 
-#### Access the Application
+#### Access Application
 
 Check the pod port.
 
@@ -158,6 +158,6 @@ curl 10.244.36.98:8090/ping
 
 #### Application Performance Monitoring (APM)
 
-Log in to [Guance](https://console.guance.com/) and enter the APM module to view the `skywalking-demo-master` application.
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/) and enter the APM module to view the `skywalking-demo-master` application.
 
 ![image](../images/k8s-skywalking/2.png)

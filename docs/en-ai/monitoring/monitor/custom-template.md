@@ -1,16 +1,16 @@
 # Custom Template Library
 
-In the monitor list, you can save created monitors as templates. Based on these templates, it is easy to quickly edit monitor configuration conditions and create similar monitors for monitoring.
+In the monitor list, you can save the created monitors as templates. Based on these templates, it is convenient for you to quickly edit the monitor configuration conditions and create monitors of the same type for monitoring.
 
 ![](../img/monior-0725.png)
 
-## Saving Methods
+## Saving Method
 
-1. In the pop-up window, the name will be the current monitor's name. You can add associated detection libraries here; or you can create a new detection library:
+1. In the pop-up window, the name is the current monitor's name. You can add associated detection libraries here; or you can create a new detection library:
 
 <img src="../../img/monior-0725-2.png" width="50%" >
 
-2. After saving successfully, you can view the saved monitor templates at **Monitor > New > Custom Template Library**:
+2. After saving successfully, you can view the saved monitor templates at **Monitor > Create > Custom Template Library** page:
 
 <img src="../../img/monior-0725-1.png" width="80%" >
 
@@ -20,7 +20,7 @@ In the monitor list, you can save created monitors as templates. Based on these 
 
 ![](../img/custom-monitor.png)
 
-2. Clicking on the avatar to the right of a monitor allows you to view the creator, creation time, updater, and update time of that monitor:
+2. Click the avatar on the right side of the monitor to view the creator, creation time, updater, and update time of that monitor:
 
 ![](../img/custom-monitor-1.png)
 

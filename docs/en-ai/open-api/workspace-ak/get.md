@@ -1,19 +1,18 @@
-# Get an Access Key
+# Get a Key
 
 ---
 
 <br />**GET /api/v1/workspace/accesskey/\{ak_uuid\}/get**
 
 ## Overview
-Retrieve an access key
-
+Retrieve a key
 
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:-----------|:-------|:-----|:----------------|
-| ak_uuid | string | Y | UUID of the access key<br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:-------------------------|
+| ak_uuid               | string   | Y          | UUID of the access key    |
 
 
 ## Additional Parameter Notes
@@ -26,7 +25,6 @@ curl 'https://openapi.guance.com/api/v1/workspace/accesskey/wsak_xxxxx/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
 
 
 ## Response

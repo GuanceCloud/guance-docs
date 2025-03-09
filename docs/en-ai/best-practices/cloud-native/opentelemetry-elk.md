@@ -2,54 +2,54 @@
 
 ----
 
-OpenTelemetry has many open-source combination options. We will introduce and demonstrate OpenTelemetry deployments under different technical architectures through three platforms:
+OpenTelemetry has various open-source combination solutions. We will introduce and demonstrate OpenTelemetry deployments under different technical architectures through three platforms/frameworks.
 
 > 1. [OpenTelemetry to Jaeger, Grafana, and ELK](./opentelemetry-elk.md)
 
 > 2. [OpenTelemetry to Grafana](./opentelemetry-grafana.md)
 
-> 3. [OpenTelemetry to Guance](./opentelemetry-guance.md)
+> 3. [OpenTelemetry to <<< custom_key.brand_name >>>](./opentelemetry-guance.md)
 
 ## OpenTelemetry
-OTEL is the abbreviation for OpenTelemetry, a CNCF observability project aimed at providing standardized solutions in the observability domain. It addresses standardization issues related to observable data models, collection, processing, and exporting, offering vendor-agnostic services.
+OTEL is the abbreviation for OpenTelemetry, a CNCF observability project aimed at providing standardized solutions in the observability domain. It addresses standardization issues of observability data models, collection, processing, and export, offering services independent of third-party vendors.
 
-OpenTelemetry is a set of standards and tools designed to manage observability data such as Traces, Metrics, Logs, etc. (new types of observability data may emerge in the future). It has become an industry standard.
+OpenTelemetry is a collection of standards and tools designed to manage observability data such as Traces, Metrics, Logs, etc. (new types of observability data may emerge in the future). It has become an industry standard.
 
 ## OTLP
-OTLP (short for OpenTelemetry Protocol) is the native telemetry signal transmission protocol of OpenTelemetry. Although components in the OpenTelemetry project support protocols like Zipkin v2 or Jaeger Thrift, these are provided as third-party contributed libraries. Only OTLP is natively supported by OpenTelemetry. The data model definition of OTLP is based on ProtoBuf. If you need to implement a backend service that can collect OTLP telemetry data, you should understand its contents. Refer to the code repository: opentelemetry-proto ([https://github.com/open-telemetry/opentelemetry-proto](https://github.com/open-telemetry/opentelemetry-proto))
+OTLP (full name: OpenTelemetry Protocol) is the native telemetry signal transmission protocol of OpenTelemetry. Although components in the OpenTelemetry project support Zipkin v2 or Jaeger Thrift protocol formats, these are provided as third-party contribution libraries. Only OTLP is natively supported by OpenTelemetry. The data model definition of OTLP is based on ProtoBuf. If you need to implement a backend service that can collect OTLP telemetry data, you need to understand its content; refer to the code repository: opentelemetry-proto ([https://github.com/open-telemetry/opentelemetry-proto](https://github.com/open-telemetry/opentelemetry-proto))
 
 ## OpenTelemetry-Collector
 
-The OpenTelemetry Collector (hereinafter referred to as "otel-collector") provides a vendor-agnostic implementation for receiving, processing, and exporting telemetry data. It eliminates the need to run, operate, and maintain multiple agents/collectors to support sending open-source observability data formats (such as Jaeger, Prometheus, etc.) to one or more open-source or commercial backends. Additionally, the collector allows end-users to control their data. The collector is the default location where detection libraries export their telemetry data.
+The OpenTelemetry Collector (hereinafter referred to as "otel-collector") provides vendor-neutral implementations for receiving, processing, and exporting telemetry data. It eliminates the need to run, operate, and maintain multiple agents/collectors to support sending open-source observability data formats (such as Jaeger, Prometheus, etc.) to one or more open-source or commercial backends. Additionally, the collector allows end-users to control their data. The collector is the default location where detection libraries export their telemetry data.
 
 ## OpenTelemetry-Java
 
-The OpenTelemetry SDK developed in Java supports pushing data to various observation platforms via exporters.
+The OpenTelemetry SDK developed in Java supports pushing data through various exporters to different observability platforms.
 
 ## OpenTelemetry-JS
 
-OpenTelemetry's front-end JS-based tracing solution.
+OpenTelemetry offers frontend JavaScript-based tracing.
 
 ## Architecture
 ![image.png](../images/opentelemetry-elk-1.png)
 ### Architecture Description
-1. Application server and client push metric and trace data to otel-collector via otlp-exporter.
+1. Application servers and clients push metric and trace data through otlp-exporter to otel-collector.
 
-2. Front-app pushes trace information to otel-collector and accesses application service APIs.
+2. Front-end applications send trace information to otel-collector and access application service APIs.
 
-3. Otel-collector collects and transforms data before pushing it to Jaeger, Zipkin.
+3. Otel-collector collects and transforms data before pushing it to Jaeger and Zipkin.
 
-4. Prometheus pulls data from otel-collector.
+4. Meanwhile, Prometheus pulls data from otel-collector.
 
-There are two methods for log submission:
+There are two ways to push logs:
 
-Method One: Submit logs via OTLP
+Method One: Push logs via OTLP
 
-Application servers and clients push logs to otel-collector via otlp-exporter, which then exports them to Elasticsearch. Since OpenTelemetry log handling is not yet stable, it is recommended to handle logs separately, bypassing otel-collector. During testing, conflicts were found when configuring logs and metrics simultaneously, primarily on otel-collector. This issue awaits official fixes.
+Application servers and clients push logs through otlp-exporter to otel-collector, which then exports them to Elasticsearch. Since OpenTelemetry log handling is not yet stable, it's recommended to handle logs separately without going through otel-collector. During testing, conflicts were found between configuring logs and metrics, primarily on otel-collector, awaiting official fixes.
 
-Method Two: Submit logs via Logback-logstash
+Method Two: Push logs via Logback-logstash
 
-Application servers and clients push logs to Logstash via Logback-logstash.
+Application servers and clients push logs through Logback-logstash to logstash.
 
 Otel-collector is configured with four exporters.
 ```yaml
@@ -68,7 +68,7 @@ Otel-collector is configured with four exporters.
     endpoints: "http://192.168.0.17:9200"
 ```
 
-> Note, all applications are deployed on the same machine with IP address 192.168.0.17. If applications and some middleware are deployed separately, make sure to modify the corresponding IPs. For cloud servers, ensure relevant ports are open to avoid access failures.
+> Note, all applications are deployed on the same machine with IP address 192.168.0.17. If applications and some middleware are deployed separately, ensure corresponding IPs are modified. For cloud servers, ensure relevant ports are opened to avoid access failures.
 
 ## Installation and Deployment
 
@@ -78,9 +78,9 @@ Otel-collector is configured with four exporters.
 
 [https://github.com/lrwh/observable-demo/tree/main/opentelemetry-collector-to-all](https://github.com/lrwh/observable-demo/tree/main/opentelemetry-collector-to-all)
 
-#### Configuring otel-collector-config.yaml
+#### Configuring `otel-collector-config.yaml`
 
-Add new collector configurations, including 1 receiver (otlp) and 4 exporters (prometheus, zipkin, jaeger, and elasticsearch).
+Add new collector configurations, configure one receiver (otlp) and four exporters (Prometheus, Zipkin, Jaeger, and Elasticsearch).
 
 ```yaml
 receivers:
@@ -133,6 +133,8 @@ service:
       receivers: [otlp]
       processors: [batch]
       exporters: [elasticsearch]
+
+
 ```
 
 Install otel-collector using docker-compose
@@ -181,8 +183,10 @@ services:
         image: grafana/grafana
         ports:
             - "3000:3000"
+
+
 ```
-#### Configuring Prometheus
+#### Configure Prometheus
 ```yaml
 scrape_configs:
   - job_name: 'otel-collector'
@@ -191,13 +195,13 @@ scrape_configs:
       - targets: ['otel-collector:8889']
       - targets: ['otel-collector:8888']
 ```
-#### Starting Containers
+#### Start Containers
 
 ```yaml
 docker-compose up -d
 ```
 
-#### Checking Start Status
+#### Check Startup Status
 
 ```yaml
 docker-compose ps
@@ -207,19 +211,19 @@ docker-compose ps
 
 ### Docker Installation of ELK
 
-Using Docker to install ELK is simple and convenient. The relevant component versions are `7.16.2`.
+Using Docker to install ELK is simple and convenient; the related component versions are `7.16.2`.
 
-#### Pulling Images
+#### Pull Images
 
 ```shell
 docker pull docker.elastic.co/elasticsearch/elasticsearch:7.16.2
 docker pull docker.elastic.co/logstash/logstash:7.16.2
 docker pull docker.elastic.co/kibana/kibana:7.16.2
 ```
-#### Configuring Directories
+#### Configuration Directories
 
 ```shell
-# Linux specific configuration
+# Linux-specific configuration
 sysctl -w vm.max_map_count=262144
 sysctl -p
 # End of Linux configuration
@@ -263,46 +267,46 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
     container_name: elasticsearch
     volumes:
-      - ~/elk/elasticsearch/plugins:/usr/share/elasticsearch/plugins # Plugin file mounting
-      - ~/elk/elasticsearch/data:/usr/share/elasticsearch/data # Data file mounting
+      - ~/elk/elasticsearch/plugins:/usr/share/elasticsearch/plugins # Mount plugin files
+      - ~/elk/elasticsearch/data:/usr/share/elasticsearch/data # Mount data files
     environment:
       - "cluster.name=elasticsearch" # Set cluster name to elasticsearch
-      - "discovery.type=single-node" # Start in single node mode
+      - "discovery.type=single-node" # Start in single-node mode
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m" # Set JVM memory size
-      - "ingest.geoip.downloader.enabled=false" # Disable automatic GeoIP2 database updates
+      - "ingest.geoip.downloader.enabled=false" # Disable GeoIP2 database updates
     ports:
       - 9200:9200
   logstash:
     image: docker.elastic.co/logstash/logstash:7.16.2
     container_name: logstash
     volumes:
-      - ~/elk/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf # Mount logstash configuration file
+      - ~/elk/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf # Mount Logstash configuration file
     depends_on:
-      - elasticsearch # Start after elasticsearch
+      - elasticsearch # Start after Elasticsearch
     links:
-      - elasticsearch:es # Access elasticsearch service via es domain
+      - elasticsearch:es # Access Elasticsearch service via es domain name
     ports:
       - 4560:4560
   kibana:
     image: docker.elastic.co/kibana/kibana:7.16.2
     container_name: kibana
     depends_on:
-      - elasticsearch # Start after elasticsearch
+      - elasticsearch # Start after Elasticsearch
     links:
-      - elasticsearch:es # Access elasticsearch service via es domain
+      - elasticsearch:es # Access Elasticsearch service via es domain name
     environment:
-      - "elasticsearch.hosts=http://es:9200" # Set elasticsearch access address
+      - "elasticsearch.hosts=http://es:9200" # Set Elasticsearch access address
     ports:
       - 5601:5601
 ```
 
-#### Starting Containers
+#### Start Containers
 
 ```yaml
 docker-compose up -d
 ```
 
-#### Checking Start Status
+#### Check Startup Status
 
 ```yaml
 docker-compose ps
@@ -316,7 +320,7 @@ docker-compose ps
 
 [https://github.com/lrwh/observable-demo/tree/main/springboot-server](https://github.com/lrwh/observable-demo/tree/main/springboot-server)
 
-#### Starting Server
+#### Start Server
 
 ```yaml
 java -javaagent:opentelemetry-javaagent-1.13.1.jar \
@@ -329,7 +333,7 @@ java -javaagent:opentelemetry-javaagent-1.13.1.jar \
 -jar springboot-server.jar --client=true
 ```
 
-#### Starting Client
+#### Start Client
 
 ```yaml
 java -javaagent:opentelemetry-javaagent-1.13.1.jar \
@@ -344,29 +348,29 @@ java -javaagent:opentelemetry-javaagent-1.13.1.jar \
 
 #### Parameter Explanation
 
-otel.traces.exporter: otlp # Configure exporter type to otlp, default is otlp.
+`otel.traces.exporter`: otlp # Set exporter type to otlp, default is otlp.
 
-otel.exporter.otlp.endpoint: OTLP exporter endpoint (grpc)
+`otel.exporter.otlp.endpoint`: otlp exporter endpoint (grpc)
 
-otel.resource.attributes: Configure tags.
+`otel.resource.attributes`: Set tags.
 
-otel.metrics.exporter: otlp # Configure metrics exporter type, default is none.
+`otel.metrics.exporter`: otlp # Set metrics exporter type, default is none.
 
-otel.logs.exporter: otlp # Configure logs exporter type, default is none.
+`otel.logs.exporter`: otlp # Set logs exporter type, default is none.
 
-otel.propagators: Configure trace propagator.
+`otel.propagators`: Set trace propagator.
 
-Since OpenTelemetry log functionality is not mature and stable, it is not recommended for production use. Some bugs were encountered during testing, only suitable for learning.
+Since OpenTelemetry log handling is not mature and stable, it is not recommended for production use. Some bugs were found during testing, only for learning purposes.
 
 ### Springboot Application Integration (Log)
 
-#### Method One: Submitting Logs via OTLP
+#### Method One: Push Logs via OTLP
 
-Application server and client push logs to otel-collector via otlp-exporter, which then exports them to Elasticsearch.
+Application server and client push logs through otlp-exporter to otel-collector, which then exports them to Elasticsearch.
 
 ##### Modify Startup Parameters
 
-Add `-Dotel.logs.exporter=otlp` to the application startup parameters.
+Add `-Dotel.logs.exporter=otlp` when starting the application.
 ```yaml
 java -javaagent:opentelemetry-javaagent-1.13.1.jar \
 -Dotel.traces.exporter=otlp \
@@ -387,28 +391,28 @@ java -javaagent:opentelemetry-javaagent-1.13.1.jar \
 -Dotel.propagators=b3 \
 -jar springboot-client.jar
 ```
-After starting, logs will be transmitted to otel-collector via the otlp protocol and exported to Elasticsearch by otel-collector.
+After startup, logs will be transmitted to otel-collector via the otlp protocol and exported to Elasticsearch by otel-collector.
 
-#### Method Two: Submitting Logs via Logstash-logback
+#### Method Two: Push Logs via Logstash-logback
 
-This involves uploading logs to Logstash using the socket method provided by Logstash-logback, requiring some adjustments to the code.
+Mainly through the socket method provided by Logstash-logback to upload logs to Logstash, requiring some adjustments to the code.
 
 ##### 1. Add Maven Dependency for Logstash-logback
 
-```xml
+```toml
 <dependency>
   <groupId>net.logstash.logback</groupId>
   <artifactId>logstash-logback-encoder</artifactId>
   <version>7.0.1</version>
 </dependency>
 ```
-#### 2. Add logback-logstash.xml
+#### 2. Add `logback-logstash.xml`
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds">
-    <!-- Some parameters come from properties files -->
+    <!-- Some parameters need to come from properties files -->
     <springProperty scope="context" name="logName" source="spring.application.name" defaultValue="localhost.log"/>
-    <!-- Dynamic log level modification -->
+    <!-- Allows dynamic modification of log levels -->
     <jmxConfigurator />
     <property name="log.pattern" value="%d{HH:mm:ss} [%thread] %-5level %logger{10} [traceId=%X{trace_id} spanId=%X{span_id} userId=%X{user-id}] %msg%n" />
 
@@ -439,7 +443,7 @@ This involves uploading logs to Logstash using the socket method provided by Log
 
     <!-- LOGSTASH output settings -->
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <!-- Configure logStash service address -->
+        <!-- LogStash service address -->
         <destination>${logstashHost}:${logstashPort}</destination>
         <!-- Log output encoding -->
         <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
@@ -465,7 +469,7 @@ This involves uploading logs to Logstash using the socket method provided by Log
                 </pattern>
             </providers>
         </encoder>
-        <!-- Keep alive -->
+        <!-- Keep-alive -->
         <keepAliveDuration>5 minutes</keepAliveDuration>
     </appender>
 
@@ -478,8 +482,9 @@ This involves uploading logs to Logstash using the socket method provided by Log
         <appender-ref ref="LOGSTASH"/>
     </root>
 </configuration>
+
 ```
-##### 3. Add application-logstash.yml
+##### 3. Add `application-logstash.yml`
 
 ```yaml
 logstash:
@@ -491,7 +496,7 @@ logging:
 
 ##### 4. Rebuild Package
 
-```shell
+```bash
 mvn clean package -DskipTests
 ```
 
@@ -539,42 +544,43 @@ const otelExporter = new OTLPTraceExporter({
 });
 ```
 
-Here, the URL is the otlp reception address of otel-collector (HTTP protocol).
+Here, the URL is the OTLP reception address of otel-collector (HTTP protocol).
 
-#### Configure server_name
+#### Configure `server_name`
 
 ```javascript
 const providerWithZone = new WebTracerProvider({
       resource: new Resource({
         [SemanticResourceAttributes.SERVICE_NAME]: 'front-app',
       }),
-    });
+    }
+);
 ```
 
-#### Install
+#### Installation
 
-```shell
+```bash
 npm install
 ```
 
 #### Start
 
-```shell
+```bash
 npm start
 ```
 Default port `8090`
 
 ## APM and RUM Correlation
 
-APM and RUM mainly correlate through header parameters. To maintain consistency, configure a unified Propagator. Here, RUM uses `B3`, so APM also needs to configure `B3`. Just add `-Dotel.propagators=b3` to the APM startup parameters.
+APM and RUM are mainly correlated through header parameters. To maintain consistency, a unified propagator (`Propagator`) needs to be configured. Here, RUM uses `B3`, so APM also needs to configure `B3`. Just add `-Dotel.propagators=b3` to the APM startup parameters.
 
 ## APM and Log Correlation
 
-APM and Log correlation mainly involve embedding traceId and spanId in log points. Different log integration methods result in differences in embedding.
+APM and Log correlation primarily involves embedding traceId and spanId in log instrumentation. Different log integration methods result in differences in instrumentation.
 
 ## UI Display
 
-Generate trace information by accessing the frontend URL.
+Access the frontend URL to generate trace information.
 
 ![image.png](../images/opentelemetry-elk-4.png)
 
@@ -582,11 +588,11 @@ Generate trace information by accessing the frontend URL.
 
 ELK stands for ElasticSearch, Logstash, and Kibana.
 
-#### Submitting Logs via OTLP
+#### Logs Reported via OTLP
 
 ![otel-log-es.gif](../images/opentelemetry-elk-5.gif)
 
-Expanded log source part
+Expanded log source part:
 
 ```json
 "_source": {
@@ -614,16 +620,15 @@ Expanded log source part
   "SpanId": "bb890485f7b6ba05",
   "TraceFlags": 1,
   "TraceId": "b4841a6b3ec9aa93d7f002393a156ff5"
-  },
+},
 ```
 
-Through the otlp protocol, traceId and spanId are automatically embedded in logs.
+Through the OTLP protocol, traceId and spanId are automatically instrumented in logs.
 
-### Submitting Logs via Logstash-logback
-
+### Logs Reported via Logstash-logback
 ![logtash-kibana.gif](../images/opentelemetry-elk-6.gif)
 
-Expanded log source part
+Expanded log source part:
 
 ```json
   "_source": {
@@ -644,7 +649,7 @@ Expanded log source part
   },
 ```
 
-Through the Logstash-logback method, traceId and spanId need to be manually embedded.
+Through the Logstash-logback method, traceId and spanId need to be manually instrumented.
 
 ### Prometheus & Grafana Metrics Display
 
@@ -658,4 +663,4 @@ Through the Logstash-logback method, traceId and spanId need to be manually embe
 
 ![zipkin-ui.gif](../images/opentelemetry-elk-10.gif)
 
-[Next Article](./opentelemetry-grafana.md) will introduce how OpenTelemetry integrates with Grafana-related components for observability.
+[Next Article](./opentelemetry-grafana.md) introduces how OpenTelemetry leverages Grafana-related components for observability.

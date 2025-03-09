@@ -1,111 +1,111 @@
 # Error Tracking
 ---
 
-Guance provides an APM error data analysis Explorer, where you can quickly view the historical trends and distribution of similar errors in traces under **APM > Error Tracking**. This helps in rapidly pinpointing performance issues.
+<<< custom_key.brand_name >>> provides an APM error data analysis Explorer, where you can quickly view the historical trends and distribution of similar errors in the chain under **APM > Error Tracking** to help rapidly pinpoint performance issues.
 
-The Error Tracking Explorer includes two lists: **All Errors** and **Cluster Analysis**:
+The Error Tracking Explorer includes two lists: **All Errors** and **Pattern Analysis**:
 
-- [All Errors](#errors): Used for<u>overall viewing of all</u> trace errors that occur in the application project;
+- [All Errors](#errors): Used for<u>comprehensively viewing all</u> chain errors that occur in the project application;
 
-- [Cluster Analysis](#analysis): Used for<u>quickly viewing the most frequent</u> trace errors that need to be resolved
+- [Pattern Analysis](#analysis): Used for<u>quickly viewing the most frequent</u> chain errors that need to be resolved.
 
-> The Guance Explorer provides powerful query and analysis capabilities; refer to [Explorer Details](../getting-started/function-details/explorer-search.md).
+> <<< custom_key.brand_name >>> Explorer offers powerful query and analysis capabilities. Refer to [Explorer Details](../getting-started/function-details/explorer-search.md).
 
 ## All Errors {#errors}
 
-In the Guance workspace under **APM > Error Tracking**, select the **All Errors** list to view and analyze all trace error data.
+In the <<< custom_key.brand_name >>> workspace under **APM > Error Tracking**, select the **All Errors** list to view and analyze error data from all chains.
 
-**Note:** The statistics for all errors are based on Spans with `status=error` and contain the `error_type` field.
+**Note:** The statistics for all errors are based on spans with `status=error` and containing the `error_type` field.
 
 ![](img/1.apm_error_12.png)
 
 ### Correlation Analysis
 
-In the Error Tracking Explorer, you can click any error to view detailed information about the corresponding error trace, including service, error type, error content, error distribution chart, error details, trace details, extended attributes, and associated logs, hosts, networks, etc.
+In the Error Tracking Explorer, you can click any error to view the corresponding error trace details, including service, error type, error content, error distribution chart, error details, trace details, extended attributes, and associated logs, hosts, networks, etc.
 
 <div class="grid" markdown>
 
 === "Error Distribution Chart"
 
-    In the Error Details page > Error Distribution Chart, based on the fields `error_message` and `error_type`, **similar errors are aggregated and statistically grouped by similarity within the selected time range, automatically adjusting the time interval to display the distribution trend of errors**, helping you intuitively identify time points or ranges with frequent errors, thus quickly locating trace issues.
+    In the Error Explorer details page > Error Distribution Chart, based on the fields `error_message` and `error_type`, **similar errors are aggregated and statistically analyzed according to the selected time range, automatically adjusting the time interval to display the error distribution trend**, helping you intuitively identify frequent error occurrences or time ranges and quickly locate trace issues.
 
     ![](img/1.apm_error_11.1.png)
 
 === "Error Details"
 
-    Use error detail information to quickly locate error issues.
+    Use error details information to quickly pinpoint error issues.
 
     ![](img/1.apm_error_14.png)
 
 === "Trace Details"
 
-    This tab displays error information occurring under the current service trace.
+    This tab displays error information that occurred under the current service trace.
 
     ![](img/1.apm_error_13.png)
 
 </div>
 
-## Cluster Analysis {#analysis}
+## Pattern Analysis {#analysis}
 
-If you need to view errors with higher occurrence frequency, you can choose the **Cluster Analysis** list in the Guance workspace under **APM > Error Tracking**.
+If you need to view higher-frequency errors, in the <<< custom_key.brand_name >>> workspace under **APM > Error Tracking**, select the **Pattern Analysis** list.
 
-Cluster Analysis involves similarity calculations on all trace data based on clustering fields. It selects a fixed time range and retrieves 10,000 data points within that range for cluster analysis, aggregating similar trace errors and extracting common patterns to help quickly identify abnormal traces and pinpoint issues.
+Pattern Analysis performs similarity calculations on all error trace data based on clustering fields, fixing the current time range as selected in the upper right corner, and retrieves 10,000 records within this time frame for cluster analysis. Similar errors are aggregated, common patterns extracted and counted to help quickly identify abnormal traces and locate issues.
 
-By default, it aggregates based on the `error_message` field, but up to three custom clustering fields can be input.
+By default, aggregation is based on the `error_message` field, but up to three custom clustering fields can be input.
 
 ![](img/1.apm_error_10.0.png)
 
-### Cluster Analysis Details
+### Pattern Analysis Details
 
-- In the Cluster Analysis list, you can click any error to view all related error traces, and clicking a trace will take you to the error trace details page for analysis;
+- In the Pattern Analysis list, you can click any error to view all associated error traces, and clicking a trace will lead you to the error trace detail page for analysis.
 
 ![](img/1.apm_error_10.png)
 
-- On the Cluster Analysis page, clicking the sorting icon :octicons-triangle-up-16: & :octicons-triangle-down-16: allows you to sort document counts in ascending/descending order (default is descending).
+- On the Pattern Analysis page, clicking the sort icon :octicons-triangle-up-16: & :octicons-triangle-down-16: allows ascending/descending sorting by document count (default descending).
 
 ![](img/error-1.png)
 
-- To export a specific data point, open its details page and click the :material-tray-arrow-up: icon in the top-right corner.
+- To export a specific data entry, open its detail page and click the :material-tray-arrow-up: icon in the top-right corner.
 
 <img src="../img/error-0809.png" width="70%" >
 
-## Issue Auto Discovery {#issue}
+## Automatic Issue Discovery {#issue}
 
-Based on data from monitoring APM error tracking, when you enable the **Issue Auto Discovery** configuration, the system will aggregate and track stack traces for similar issues, condensing them into Issues. These Issues provide context and root causes, significantly reducing average resolution time.
+Based on data generated from <<< custom_key.brand_name >>> monitoring APM error tracking, when you enable the **Automatic Issue Discovery** configuration, the system will aggregate and track stack traces for subsequent similar issues, automatically condensing them into Issues. This helps you intuitively obtain the context and root cause of the issue, significantly reducing the average time to resolve problems.
 
-### Configuration Setup
+### Start Configuration
 
-<font size=2>**Note**: Before enabling this configuration, you must **configure rules first**. Otherwise, enabling is not supported.</font>
+<font size=2>**Note**: Before enabling this configuration, you must **first configure rules**. Otherwise, it cannot be enabled.</font>
 
 ![](img/auto-issue.png)
 
-:material-numeric-1-circle-outline: Data Source: The entry point for enabling the current configuration.
+:material-numeric-1-circle-outline: Data Source: The activation entry on the current configuration page.
 
-:material-numeric-2-circle-outline: Grouping Dimensions: Based on configured fields, this includes `service`, `version`, `resource`, `error_type`.
+:material-numeric-2-circle-outline: Grouping Dimensions: Based on configured field content combinations for classification and statistical aggregation, including `service`, `version`, `resource`, `error_type`.
 
-For data sources, you can add filtering conditions to narrow down the data set.
+For the data source, you can add filtering conditions to narrow down the data range, allowing <<< custom_key.brand_name >>> to further query and refine the available data.
 
 <img src="../img/issue-filter.png" width="70%" >
 
-:material-numeric-3-circle-outline: Detection Frequency: Guance queries data based on selected intervals such as 5 minutes, 10 minutes, 15 minutes, 30 minutes, and 1 hour.
+:material-numeric-3-circle-outline: Detection Frequency: <<< custom_key.brand_name >>> queries data within the time range based on the frequency you choose, including 5 minutes, 10 minutes, 15 minutes, 30 minutes, and 1 hour.
 
 :material-numeric-4-circle-outline: Issue Definition: After enabling this configuration, Issues will be presented according to the definitions here. To avoid missing information, [fill out sequentially](../exception/issue.md#concepts).
 
-In both the **Title** and **Description** sections of an Issue, the following template variables are supported:
+In the **Title** and **Description** sections of the Issue, the following template variables are supported:
 
 | Variable | Meaning |
 | --- | --- |
 | `count` | Count |
-| `service` | Service name |
+| `service` | Service Name |
 | `version` | Version |
-| `resource` | Resource name |
-| `error_type` | Error type |
-| `error_message` | Error message |
-| `error_stack` | Error stack |
+| `resource` | Resource Name |
+| `error_type` | Error Type |
+| `error_message` | Error Content |
+| `error_stack` | Error Stack |
 
 ### View Issues {#display}
 
-After saving and enabling the configuration, automatically discovered Issues will be displayed in **Console > [Incident](../exception/issue.md#auto)**.
+After saving and enabling the configuration, automatically discovered Issues will be displayed in the **Console > [Incident](../exception/issue.md#auto)** section.
 
 ![](img/issue-auto.png)
 
@@ -113,20 +113,20 @@ After saving and enabling the configuration, automatically discovered Issues wil
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Efficiently Respond to Anomalies Using Issue Auto Discovery**</font>](./issue-auto-generate.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Quick Response to Anomalies Using Automatic Issue Discovery**</font>](./issue-auto-generate.md)
 
 </div>
 
 <!--
-Additionally, depending on the grouping dimensions, Issues generated from this source will be categorized as new, recurring, or regressed issues for easier identification.
+At the same time, based on different grouping dimensions, Issues generated from this source will be categorized as new issues, recurring issues, or regression issues for easier identification.
 
-- New Issue: No matching combination dimensions exist in historical Issues.
+- New Issue: Does not have the same grouping dimension as any historical Issue.
 
 ![](img/auto-issue-1.png)
 
-- Recurring Issue: Matching combination dimensions exist in historical Issues with status Open or Pending. Newly discovered data will be appended directly to this Issue's reply section.
+- Recurring Issue: Has the same grouping dimension as a historical Issue with a status of Open or Pending. Newly discovered data will be appended directly to this Issue's reply section.
 
 ![](img/auto-issue-2.png)
 
-- Regressed Issue: Matching combination dimensions exist in historical Issues with status Resolved. The Issue status will change from Resolved to Open, and newly discovered data will be appended directly to this Issue's reply section.
+- Regression Issue: Has the same grouping dimension as a historical Issue with a status of Resolved. The Issue status will change from Resolved to Open, and newly discovered data will be appended directly to this Issue's reply section.
 -->

@@ -2,24 +2,24 @@
 
 ---
 
-After deploying Datakit, you typically check the collected data directly from the Guance page. If everything is normal, the data will soon be displayed on the page (most directly in the "Infrastructure" section, such as host/process data). However, due to various reasons, issues can occur during data collection, processing, or transmission, leading to no data.
+After deploying Datakit, you typically check the collected data directly from the Guance page. If everything is normal, the data will quickly appear on the page (most directly in the "Infrastructure" section with host/process data). However, due to various reasons, issues can occur during data collection, processing, or transmission, leading to no data being available.
 
-The following sections analyze potential causes of no data:
+The following sections analyze possible causes of no data:
 
-- [Network-related](why-no-data.md#iss-network)
-- [Host-related](why-no-data.md#iss-host)
+- [Network Related](why-no-data.md#iss-network)
+- [Host Related](why-no-data.md#iss-host)
 - [Startup Issues](why-no-data.md#iss-start-fail)
-- [Collector Configuration-related](why-no-data.md#iss-input-config)
-- [Global Configuration-related](why-no-data.md#iss-global-settings)
+- [Collector Configuration](why-no-data.md#iss-input-config)
+- [Global Configuration](why-no-data.md#iss-global-settings)
 - [Others](why-no-data.md#iss-others)
 
-## Network-related {#iss-network}
+## Network Related {#iss-network}
 
-Network-related issues are relatively straightforward and common. You can also troubleshoot them using other methods (`ping/nc/curl` commands).
+Network-related issues are relatively straightforward and common. They can also be diagnosed using other methods (`ping/nc/curl` commands).
 
-### Target Object Cannot Be Connected {#iss-input-connect}
+### Target Object Unreachable {#iss-input-connect}
 
-Since Datakit is installed on specific machines/Nodes, it may fail to access the target objects (e.g., MySQL/Redis) due to network issues. At this point, you can use collector debugging to identify the problem:
+Since Datakit is installed on specific machines/Nodes, when it collects certain data, network issues may prevent access to the target object (e.g., MySQL/Redis). Debugging the collector can help identify the problem:
 
 ```shell
 $ datakit debug --input-conf conf.d/db/redis.conf
@@ -44,64 +44,62 @@ access-control-allow-methods: POST, OPTIONS, GET, PUT
 access-control-allow-origin: *
 ```
 
-If it shows a status code of 404, it indicates that the connection to Dataway is normal.
+A status code of 404 indicates a successful connection to Dataway.
 
 For SaaS, the Dataway address is `https://openway.guance.com`.
 
-If you get the following result, it indicates a network issue:
+If you get the following result, there is a network issue:
 
 ```shell
 curl: (6) Could not resolve host: openway.guance.com
 ```
 
-If you find similar error logs in the Datakit logs (`/var/log/datakit/log`), it suggests that there might be a firewall restriction preventing the connection to Dataway:
+If similar error logs are found in the Datakit logs (`/var/log/datakit/log`), it indicates that the environment has connectivity issues with Dataway, possibly due to firewall restrictions:
 
 ```shell
 request url https://openway.guance.com/v1/write/xxx/token=tkn_xxx failed:  ... context deadline exceeded...
 ```
 
-## Host-related {#iss-host}
+## Host Related {#iss-host}
 
-Host-related issues are usually more hidden and often overlooked, making them difficult to troubleshoot (the lower-level problems are harder to detect). Here’s a rough outline:
+Host-related issues are often subtle and difficult to diagnose, especially lower-level problems. Here’s an overview:
 
 ### Timestamp Anomalies {#iss-timestamp}
 
-On Linux/Mac, entering `date` displays the current system time:
+On Linux/Mac, enter `date` to view the current system time:
 
 ```shell
 $ date
 Wed Jul 21 16:22:32 CST 2021
 ```
 
-In some cases, it might show:
+Sometimes it might show:
 
 ```shell
 $ date
 Wed Jul 21 08:22:32 UTC 2021
 ```
 
-This is because the former is China Standard Time (UTC+8), while the latter is Greenwich Mean Time (UTC), differing by 8 hours. However, these two times have the same timestamp.
+The former is China Standard Time (UTC+8), while the latter is Greenwich Mean Time (UTC). Both timestamps are identical but differ by 8 hours. If the system time significantly differs from your phone's time, especially if it's ahead, future data won't be visible in Guance.
 
-If your system time differs significantly from your phone’s time, especially if it is ahead, Guance won't display this "future" data.
-
-Additionally, if the time lags behind, the default Explorer in Guance won't display these data (usually showing only the last 15 minutes of data). You can adjust the time range in the Explorer.
+If the time lags, the default Explorer in Guance won’t display this data (usually showing only the last 15 minutes). Adjust the time range in the Explorer.
 
 ### Unsupported Host Hardware/Software {#iss-os-arch}
 
-Some collectors are unsupported on certain platforms. Even if the configuration is enabled, no data will be collected:
+Some collectors are unsupported on certain platforms and will not collect data even if configured:
 
 - macOS lacks a CPU collector
 - Collectors like Oracle/DB2/OceanBase/eBPF run only on Linux
-- Some Windows-specific collectors do not work on non-Windows platforms
-- The Datakit-Lite release compiles only a few collectors; most collectors are not included in its binary
+- Some Windows-specific collectors don’t work on non-Windows platforms
+- Datakit-Lite only compiles a few collectors into its binary
 
 ## Startup Issues {#iss-start-fail}
 
-Due to Datakit's adaptation to mainstream OS/Arch types, deployment issues can arise on certain OS distributions. After service installation, the service might be in an abnormal state, preventing Datakit from starting.
+Datakit supports mainstream OS/Arch types, but deployment issues can still arise on certain OS versions, causing abnormal service states and preventing Datakit from starting.
 
 ### *datakit.conf* Errors {#iss-timestamp}
 
-*datakit.conf* is the main configuration entry for Datakit. If it contains errors (TOML syntax errors), Datakit won’t start, and the Datakit logs will contain similar entries (different syntax errors yield different messages):
+*datakit.conf* is the main configuration entry for Datakit. If it contains errors (invalid TOML syntax), Datakit won’t start. Similar logs will appear in the Datakit logs (different syntax errors produce different messages):
 
 ```shell
 # Manually start the datakit program
@@ -112,11 +110,11 @@ $ /usr/local/datakit
 
 ### Service Abnormalities {#iss-service-fail}
 
-Certain reasons (such as Datakit service startup timeout) can cause the `datakit` service to be in an invalid state. In such cases, you need to [reset the Datakit system service](datakit-service-how-to.md#when-service-failed).
+Service startup timeouts or other issues can cause the `datakit` service to be in an invalid state. Follow [these steps to reset the Datakit system service](datakit-service-how-to.md#when-service-failed).
 
-### Continuously Restarting or Not Starting {#iss-restart-notstart}
+### Constant Restarts or Failures to Start {#iss-restart-notstart}
 
-In Kubernetes, insufficient resources (memory) can lead to Datakit OOM, preventing it from performing specific data collection tasks. Check if the memory allocation in *datakit.yaml* is appropriate:
+In Kubernetes, insufficient resources (memory) can lead to Datakit OOM, preventing data collection. Check if the memory resources allocated in *datakit.yaml* are sufficient:
 
 ```yaml
   containers:
@@ -131,69 +129,63 @@ In Kubernetes, insufficient resources (memory) can lead to Datakit OOM, preventi
     args: ["--vm", "1", "--vm-bytes", "150M", "--vm-hang", "1"]
 ```
 
-Here, the system requires at least (requests) 128MB of memory to start Datakit. If Datakit's own collection tasks are heavy, the default 4GB might not be sufficient, and you need to adjust the `limits` parameter.
+Here, at least 128MB (`requests`) of memory is required to start Datakit. If Datakit’s tasks are resource-intensive, the default 4GB limit might be insufficient; adjust the `limits` parameter accordingly.
 
-### Port Occupied {#iss-port-in-use}
+### Port Conflicts {#iss-port-in-use}
 
-Some Datakit collectors need specific ports locally to receive external data. If these ports are occupied, the corresponding collectors won't start, and you'll see port occupation information in the Datakit logs.
+Some Datakit collectors need specific local ports to receive external data. If these ports are occupied, the corresponding collectors won’t start. Logs will indicate port conflicts.
 
-Mainstream collectors affected by ports include:
+Common collectors affected by port usage include:
 
-- HTTP's port 9529: Some collectors (like eBPF/Oracle/LogStream) push data via Datakit's HTTP interface
-- StatsD's port 8125: For receiving StatsD metrics (e.g., JVM-related metrics)
-- OpenTelemetry's port 4317: For receiving OpenTelemetry metrics and trace data
+- HTTP port 9529: Collectors like eBPF/Oracle/LogStream push data via Datakit’s HTTP interface
+- StatsD port 8125: Receives StatsD metrics (e.g., JVM metrics)
+- OpenTelemetry port 4317: Receives OpenTelemetry metrics and Trace data
 
-Refer to [this list](datakit-port.md) for more port occupation details.
+Refer to [this list](datakit-port.md) for more details.
 
 ### Insufficient Disk Space {#iss-disk-space}
 
-Insufficient disk space can lead to undefined behavior (Datakit's own logs cannot be written/diskcache cannot be written).
+Insufficient disk space can lead to undefined behavior (Datakit logs unable to write/diskcache failure).
 
-### Resource Usage Exceeds Default Settings {#iss-ulimit}
+### Resource Limits Exceeded {#iss-ulimit}
 
-After installing Datakit, the default number of files it can open is 64K (Linux). If a collector (e.g., file log collector) opens too many files, subsequent files won't be opened, affecting collection.
+Post-installation, Datakit defaults to opening 64K files (Linux). If a collector (like file log collection) opens too many files, subsequent files won’t be accessible, impacting collection.
 
-Moreover, opening too many files indicates severe congestion, which may consume excessive memory resources, leading to OOM.
+Excessive open files indicate severe congestion, potentially consuming too much memory and causing OOM.
 
-## Collector Configuration-related {#iss-input-config}
+## Collector Configuration {#iss-input-config}
 
-Issues related to collector configurations are generally straightforward. The following possibilities exist:
+Collector configuration issues are usually straightforward. Common causes include:
 
-### Target Object Produces No Data {#iss-input-nodata}
+### No Data Produced by Target Object {#iss-input-nodata}
 
-For example, with MySQL, some slow queries or lock-related collections only produce data when corresponding issues occur. Otherwise, no data will be visible in the relevant views.
+For example, MySQL slow queries or lock-related collections require actual occurrences to generate data. Prometheus metrics exposed by targets might be disabled by default or accessible only locally. These configurations need adjustment on the target object for Datakit to collect data. Use the debugging feature (`datakit debug --input-conf ...`) to verify.
 
-Additionally, for Prometheus-metric-exposing targets, their Prometheus metrics might be disabled by default (or accessible only from localhost). These configurations need to be set on the target object for Datakit to collect the data. Such issues can be verified using the collector debugging feature (`datakit debug --input-conf ...`).
+For log collection, if the log file doesn’t have new entries post Datakit startup, no data will be collected.
 
-For log collection, if the log file does not generate new logs relative to when Datakit starts, even if the log file already contains log data, no data will be collected.
-
-For Profiling data, the service/application must enable the corresponding functionality for Profiling data to be pushed to Datakit.
+For Profiling data, the service/application must enable the corresponding feature for Profiling data to reach Datakit.
 
 ### Access Permissions {#iss-permission-deny}
 
-Many middleware collectors require user authentication configurations, which sometimes need settings on the target object. If the username/password configuration is incorrect, Datakit will report errors.
+Many middleware collectors require user authentication. Incorrect credentials will cause Datakit to report errors. Passwords in TOML configurations sometimes need URL-encoding (e.g., `@` becomes `%40`).
 
-Additionally, since Datakit uses TOML configuration, some password strings need extra escaping (generally URL-Encoded). For instance, if the password contains `@`, it should be converted to `%40`.
+> Datakit is optimizing password string (connection string) configurations to reduce such encoding needs.
 
-> Datakit is gradually optimizing existing password string (connection string) configurations to reduce such escaping.
+### Version Incompatibility {#iss-version-na}
 
-### Version Issues {#iss-version-na}
+Old or new software versions outside Datakit’s support list can cause collection issues. Unsupported versions should be reported.
 
-Some user environments' software versions might be too old or too new, not supported by Datakit, causing collection issues.
+### Collector Bugs {#iss-datakit-bug}
 
-Unsupported versions might still collect data, but we can't test all version numbers. When encountering incompatible/unsupported versions, feedback is needed.
+Submit a [Bug Report](why-no-data.md#bug-report).
 
-### Collector Bug {#iss-datakit-bug}
+### Misconfigured Collectors {#iss-no-input}
 
-Report directly through [Bug Report](why-no-data.md#bug-report).
+Datakit recognizes `.conf` files in the *conf.d* directory. Misplaced or incorrectly named files will be ignored. Correct the file location or name.
 
-### Collector Configuration Not Enabled {#iss-no-input}
+### Disabled Collectors {#iss-input-disabled}
 
-Since Datakit recognizes only `.conf` files under the *conf.d* directory, misplacing some collector configurations or using the wrong extension can cause Datakit to skip them. Correcting the file location or name resolves this.
-
-### Collector Disabled {#iss-input-disabled}
-
-In Datakit's main configuration, certain collectors can be disabled. Even if correctly configured in *conf.d*, Datakit will ignore these collectors:
+In the main Datakit configuration, some collectors can be disabled:
 
 ```toml
 default_enabled_inputs = [
@@ -202,68 +194,65 @@ default_enabled_inputs = [
 ]
 ```
 
-Collectors prefixed with `-` are disabled. Remove the prefix or the item to enable them.
+Collectors prefixed with `-` are disabled. Remove the prefix or the item.
 
-### Invalid Collector Configuration {#iss-invalid-conf}
+### Invalid Configuration {#iss-invalid-conf}
 
-Datakit collectors use TOML-formatted configuration files. If the configuration file doesn't conform to TOML specifications or the program field definitions (e.g., setting integers as strings), loading failures occur, preventing the collector from starting.
+Invalid TOML syntax or incorrect data types in configuration files can prevent collectors from starting. Refer to [configuration checks](datakit-tools-how-to.md#check-conf).
 
-Datakit includes a built-in configuration detection function; refer to [here](datakit-tools-how-to.md#check-conf).
+### Misconfigured Methods {#iss-config-mistaken}
 
-### Incorrect Configuration Method {#iss-config-mistaken}
+Collector configurations fall into two categories:
 
-Collector configurations in Datakit fall into two categories:
+- Host installation: Add collector configurations directly in the *conf.d* directory.
+- Kubernetes installation:
+  - Use ConfigMap to mount configurations.
+  - Modify via environment variables (higher priority than ConfigMap).
+  - Use Annotations (highest priority).
 
-- Host Installation: Add corresponding collector configurations directly under the *conf.d* directory.
-- Kubernetes Installation:
-  - Use ConfigMap to mount collector configurations.
-  - Modify via environment variables (if both ConfigMap and environment variables exist, environment variables take precedence).
-  - Use Annotations for configuration (Annotations have the highest priority compared to environment variables and ConfigMap).
-  - If a collector is specified in the default collector list (`ENV_DEFAULT_ENABLED_INPUTS`) and added again in ConfigMap with the same name and configuration, behavior is undefined, potentially triggering singleton collector issues.
+If both default and ConfigMap configurations specify the same collector, behavior is undefined and may trigger singleton issues.
 
-### Singleton Collector {#iss-singleton}
+### Singleton Collectors {#iss-singleton}
 
-[Singleton collectors](datakit-input-conf.md#input-singleton) can only be enabled once per Datakit. If multiple collectors are enabled, Datakit loads the first one in file order (only the first in the same `.conf` file), ignoring others. This can prevent later collectors from starting.
+[Singleton collectors](datakit-input-conf.md#input-singleton) can only be enabled once per Datakit instance. If multiple instances are specified, Datakit loads the first one alphabetically, ignoring others.
 
-## Global Configuration-related {#iss-global-settings}
+## Global Configuration {#iss-global-settings}
 
-Certain global configurations in Datakit segments can affect collected data. Besides disabling collectors, the following aspects can impact data:
+Certain global configurations can affect data collection beyond disabling collectors.
 
-### Blacklist/Pipeline Impact {#iss-pipeline-filter}
+### Blacklist/Pipeline Filters {#iss-pipeline-filter}
 
-Users might configure blacklists on the Guance page to discard data matching certain criteria.
+Users may configure blacklists in the Guance page to discard data matching certain criteria. Pipelines can also drop data (`drop()`).
 
-Pipelines themselves also drop data (`drop()`).
+These behaviors can be observed in `datakit monitor -V`.
 
-Both types of discarding behaviors can be seen in the output of `datakit monitor -V`.
-
-Besides discarding data, Pipelines can modify data, affecting front-end queries, such as cutting time fields, leading to significant time deviations.
+Pipelines can modify data, affecting front-end queries, such as time field slicing leading to significant time discrepancies.
 
 ### Disk Cache {#iss-diskcache}
 
-Datakit sets up a disk cache mechanism for complex data processing. Due to high processing costs, these data are temporarily cached to disk for peak shaving and then reported later. Refer to [disk cache-related metrics](datakit-metrics.md#metrics) to understand cache conditions.
+Datakit uses disk caching for complex data processing. This temporarily caches data for peak handling, delaying reporting. Review [disk cache metrics](datakit-metrics.md#metrics) to understand cache status.
 
 ### Sinker Dataway {#iss-sinker-dataway}
 
-If [Sinker Dataway](../deployment/dataway-sink.md) is enabled, data not matching existing Sinker rules are discarded.
+If [Sinker Dataway](../deployment/dataway-sink.md) is enabled, data not matching rules will be discarded.
 
 ### IO Busy {#iss-io-busy}
 
-Due to bandwidth limitations between Datakit and Dataway, reporting data can be slow, impacting data collection (inability to consume data in time). In such cases, Datakit drops unprocessed metric data and blocks non-metric data, preventing data visibility on the Guance page.
+Bandwidth limitations between Datakit and Dataway can delay data uploads, affecting collection speed. In such cases, Datakit drops metrics and blocks other data, preventing data visibility in Guance.
 
 ### Dataway Cache {#iss-dataway-cache}
 
-If a network failure occurs between Dataway and the Guance center, Dataway caches Datakit-pushed data. This data might arrive late or eventually be discarded (exceeding disk cache limits).
+Network issues between Dataway and Guance can cause Dataway to cache Datakit data, which may be delayed or ultimately dropped if exceeding disk cache limits.
 
 ### Account Issues {#iss-workspace}
 
-If the user's Guance account is overdue or exceeds data usage limits, Datakit data uploads may encounter 4xx issues. These problems can be directly seen in `datakit monitor`.
+If the Guance account is overdue or exceeds data quotas, Datakit data uploads may return 4xx errors. These issues are visible in `datakit monitor`.
 
-## Other {#iss-others}
+## Other Issues {#iss-others}
 
-`datakit monitor -V` outputs a lot of status information. Due to resolution issues, some data may not be directly displayed and need scrolling within the corresponding table.
+`datakit monitor -V` outputs extensive status information. Due to resolution issues, some data isn’t immediately visible and requires scrolling within tables.
 
-However, certain terminals don't support dragging operations, leading to the mistaken belief that no data is being collected. You can view monitor data by specifying specific modules (indicated by red letters at the top of each table):
+However, some terminals do not support drag-and-drop operations, leading to misinterpretations of missing data. Use specific modules (indicated by red letters in table headers) to view monitor output:
 
 ```shell
 # View HTTP API status
@@ -276,36 +265,37 @@ $ datakit monitor -M I
 $ datakit monitor -M B,R
 ```
 
-The above outlines basic troubleshooting steps for no data issues. Below introduces some Datakit functionalities used during the troubleshooting process.
+These are basic troubleshooting steps for no data issues. Below are some Datakit features and methods used during troubleshooting.
 
-## Collect DataKit Runtime Information {#bug-report}
+## Collecting DataKit Runtime Information {#bug-report}
 
 [:octicons-tag-24: Version-1.5.9](changelog.md#cl-1.5.9)
 
-After various troubleshooting efforts, if the issue remains unresolved, you need to collect various Datakit information (such as logs, configuration files, profiles, and self-metrics). To simplify this process, DataKit provides a command to gather all relevant information and package it into a single file. Usage:
+After various troubleshooting attempts, if the issue remains unresolved, we need to collect Datakit information (logs, configuration files, profiles, and internal metrics). To simplify this process, DataKit provides a command to gather all relevant information into a single zip file. Usage:
 
 ```shell
 $ datakit debug --bug-report
 ...
 ```
 
-Upon successful execution, a zip file named `info-<timestamp>.zip` is generated in the current directory.
+Successful execution generates a zip file named `info-<timestamp>.zip` in the current directory.
 
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    - Ensure you collect bug report information while Datakit is running, ideally when the issue occurs (e.g., high memory/CPU usage). With the help of Datakit's own metrics and profile data, we can quickly pinpoint complex issues.
+    - Ensure bug report collection occurs while Datakit is running, ideally during issues (e.g., high memory/CPU usage). With Datakit metrics and profile data, we can quickly pinpoint complex issues.
 
-    - By default, the command collects profile data, which might impact Datakit performance. You can disable collecting profiles ([:octicons-tag-24: Version-1.15.0](changelog.md#cl-1.15.0)):
 
+    - By default, the command collects profile data, which may impact performance. Disable profile collection with ([:octicons-tag-24: Version-1.15.0](changelog.md#cl-1.15.0)):
+    
     ```shell
     $ datakit debug --bug-report --disable-profile
     ```
-
-    - If you have public internet access, you can upload the file directly to OSS to avoid cumbersome file copying ([:octicons-tag-24: Version-1.27.0](changelog.md#cl-1.27.0)):
-
+    
+    - If public internet access is available, upload directly to OSS to avoid cumbersome file copying ([:octicons-tag-24: Version-1.27.0](changelog.md#cl-1.27.0)):
+    
     ```shell hl_lines="7"
-    # You *must* provide the correct OSS address/Bucket name and corresponding AS/SK
+    # Must provide correct OSS address/Bucket name and corresponding AS/SK
     $ datakit debug --bug-report --oss OSS_HOST:OSS_BUCKET:OSS_ACCESS_KEY:OSS_SECRET_KEY
     ...
     bug report saved to info-1711794736881.zip
@@ -314,16 +304,16 @@ Upon successful execution, a zip file named `info-<timestamp>.zip` is generated 
         https://OSS_BUCKET.OSS_HOST/datakit-bugreport/2024-03-30/dkbr_co3v2375mqs8u82aa6sg.zip
     ```
 
-    Share the bottom link with us (ensure the OSS file is publicly accessible).
+    Provide the download link (ensure the OSS file is publicly accessible).
 
-    - By default, the bug report collects Datakit's own metrics three times. Adjust this count using `--nmetrics` ([:octicons-tag-24: Version-1.27.0](changelog.md#cl-1.27.0)):
-
+    - By default, bug report collects 3 sets of Datakit metrics. Adjust with `--nmetrics` ([:octicons-tag-24: Version-1.27.0](changelog.md#cl-1.27.0)):
+    
     ```shell
     $ datakit debug --bug-report --nmetrics 10
     ```
 <!-- markdownlint-enable -->
 
-Unpacked file structure:
+Unzipped file structure:
 
 ```not-set
 ├── basic
@@ -393,40 +383,40 @@ Unpacked file structure:
 
 File descriptions:
 
-| File Name          | Is Directory | Description                                                                                                    |
-| ---:              | ---:         | ---:                                                                                                           |
-| `config`          | Yes          | Configuration files, including main configuration and enabled collector configurations                        |
-| `basic`           | Yes          | Operating system and environment variable information                                                         |
-| `data`            | Yes          | `.pull` files under the `data` directory                                                                       |
-| `log`             | Yes          | Latest log files, including log and gin log (no `stdout` support yet)                                         |
-| `profile`         | Yes          | pprof data (enabled by default since [:octicons-tag-24: Version-1.9.2](changelog.md#cl-1.9.2))                 |
-| `metrics`         | Yes          | Data returned by the `/metrics` endpoint, named as `metric-<timestamp>`                                        |
-| `syslog`          | Yes          | Only supports `linux`, based on `journalctl` to retrieve relevant logs                                          |
-| `error.log`       | No           | Records errors encountered during command execution                                                            |
+| File Name       | Directory? | Description                                                                                                    |
+| ---:          | ---:     | ---:                                                                                                    |
+| `config`      | Yes       | Configuration files, including main configuration and enabled collector configurations                                          |
+| `basic`       | Yes       | Operating system and environment variable information                                                                                  |
+| `data`        | Yes       | Blacklist files under the `data` directory, i.e., `.pull` files                                                                                |
+| `log`         | Yes       | Latest log files, including log and gin log, does not support `stdout`                                                  |
+| `profile`     | Yes       | pprof data ([:octicons-tag-24: Version-1.9.2](changelog.md#cl-1.9.2) already enabled by default)                                      |
+| `metrics`     | Yes       | Data returned by the `/metrics` endpoint, named as `metric-<timestamp>`                                           |
+| `syslog`      | Yes       | Only supported on `linux`, based on `journalctl` to fetch related logs                                                        |
+| `error.log`   | No       | Records errors during command execution |
 
-### Handling Sensitive Information {#sensitive}
+### Sensitive Information Handling {#sensitive}
 
-Sensitive information (such as tokens, passwords) is automatically filtered and replaced during collection:
+Sensitive information (tokens, passwords, etc.) is automatically filtered. Rules:
 
 - Environment Variables
 
-Only retrieves environment variables starting with `ENV_` and desensitizes those containing `password`, `token`, `key`, `key_pw`, `secret` by replacing them with `******`
+Only retrieves variables starting with `ENV_`. Variables containing `password`, `token`, `key`, `key_pw`, `secret` are masked as `******`.
 
 - Configuration Files
 
-Configuration file content is processed with regular expressions, such as:
+Content is replaced using regex:
 
-- `https://openway.guance.com?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` becomes `https://openway.guance.com?token=******`
-- `pass = "1111111"` becomes `pass = "******"`
-- `postgres://postgres:123456@localhost/test` becomes `postgres://postgres:******@localhost/test`
+- `https://openway.guance.com?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` → `https://openway.guance.com?token=******`
+- `pass = "1111111"` → `pass = "******"`
+- `postgres://postgres:123456@localhost/test` → `postgres://postgres:******@localhost/test`
 
-Despite these measures, sensitive information might still exist in the exported files. Please manually remove any remaining sensitive information and ensure confirmation.
+Despite filtering, exported files may still contain sensitive information. Please manually review and remove any sensitive data.
 
 ## Debugging Collector Configurations {#check-input-conf}
 
 [:octicons-tag-24: Version-1.9.0](changelog.md#cl-1.9.0)
 
-You can debug whether collectors can normally collect data using the command line, such as debugging the disk collector:
+Use the command line to debug whether collectors can collect data normally, e.g., debugging the disk collector:
 
 ``` shell
 $ datakit debug --input-conf /usr/local/datakit/conf.d/host/disk.conf
@@ -437,39 +427,39 @@ disk,device=/dev/disk3s1s1,fstype=apfs free=167050518528i,inodes_free=1631352720
 # 10 points("M"), 98 time series from disk, cost 1.544792ms | Ctrl+c to exit.
 ```
 
-This command starts the collector and prints the collected data to the terminal. It shows:
+This command starts the collector and prints collected data to the terminal. The footer shows:
 
-- Number of collected points and their type (here `M` represents time series data)
-- Number of time series (only for time series data)
-- Collector name (here `disk`)
+- Number of collected points and type (`M` indicates time series data)
+- Number of time series (for time series data only)
+- Collector name (`disk`)
 - Collection duration
 
-Use Ctrl + c to end debugging. To quickly obtain collected data, adjust the collector's collection interval (if applicable).
+Press Ctrl + c to end debugging. Adjust the collector’s collection interval for faster results.
 
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    - For collectors that passively receive data (like DDTrace/RUM), specify the HTTP service (`--hppt-listen=[IP:Port]`) and send data to the corresponding Datakit address using HTTP client tools (like `curl`). See `datakit help debug` for details.
+    - For passive collectors (like DDTrace/RUM), specify HTTP service (`--hppt-listen=[IP:Port]`) and use HTTP clients (like `curl`) to send data. See `datakit help debug` for more.
 
-    - The debugging configuration can have any extension, not necessarily ending with `.conf`. You can use filenames like `my-input.conf.test` for debugging without affecting Datakit's normal operation.
+    - Debug configurations can have any extension, not necessarily `.conf`. Use names like *my-input.conf.test* for debugging without affecting Datakit operation.
 <!-- markdownlint-enable -->
 
-## Viewing Monitor Page {#monitor}
+## Viewing the Monitor Page {#monitor}
 
 Refer to [here](datakit-monitor.md)
 
-## Checking Data Generation via DQL {#dql}
+## Checking Data via DQL {#dql}
 
-Supported on Windows/Linux/Mac, where Windows needs to be executed in PowerShell
+Supported on Windows/Linux/Mac, use PowerShell on Windows.
 
-> Datakit [1.1.7-rc7](changelog.md#cl-1.1.7-rc7) supports this feature
+> Datakit [1.1.7-rc7](changelog.md#cl-1.1.7-rc7) added this feature.
 
 ```shell
 $ datakit dql
 > Enter DQL query statements here ...
 ```
 
-For no data troubleshooting, refer to the collector documentation to find the names of relevant measurement sets. Taking the MySQL collector as an example, the current documentation lists several measurement sets:
+For no data issues, refer to collector documentation to find corresponding metric sets. For the MySQL collector:
 
 - `mysql`
 - `mysql_schema`
@@ -477,32 +467,32 @@ For no data troubleshooting, refer to the collector documentation to find the na
 - `mysql_table_schema`
 - `mysql_user_status`
 
-If the MySQL collector has no data, check if the `mysql` measurement set has data:
+Check if the `mysql` metric set has data:
 
 ``` python
 #
-# View the latest `mysql` metrics for a specified host (here 'tan-air.local')
+# Query the latest `mysql` metric from the specified host (`tan-air.local`)
 #
 M::mysql {host='tan-air.local'} order by time desc limit 1
 ```
 
-Check if a host object has reported data:
+Check if a host reports data:
 
 ```python
 O::HOST {host='tan-air.local'}
 ```
 
-View existing APM (tracing) data classifications:
+Check existing APM (tracing) data categories:
 
 ```python
 show_tracing_service()
 ```
 
-If data is indeed reported, it can always be found via DQL. Whether data is collected by Datakit or other means (like Function), DQL allows you to view raw data directly, facilitating debugging.
+If data is indeed reported, DQL can help locate it. Any data collected by Datakit or other means (like Function) can be viewed directly, aiding in debugging.
 
-## Checking Datakit Program Logs for Abnormalities {#check-log}
+## Checking Datakit Program Logs for Anomalies {#check-log}
 
-Retrieve the last 10 ERROR/WARN level logs via Shell/Powershell
+Retrieve the last 10 ERROR/WARN logs via Shell/Powershell.
 
 <!-- markdownlint-disable MD046 -->
 === "Linux/macOS"
@@ -520,12 +510,12 @@ Retrieve the last 10 ERROR/WARN level logs via Shell/Powershell
     ```
 <!-- markdownlint-enable -->
 
-- If logs mention `Beyond...`, it generally indicates data exceeding the free quota.
-- If there are `ERROR/WARN` entries, it usually signifies issues encountered by DataKit.
+- Descriptions like `Beyond...` usually indicate exceeding free quota.
+- `ERROR/WARN` messages generally indicate issues.
 
 ### Checking Individual Collector Logs {#check-input-log}
 
-If no abnormalities are found, directly check individual collector logs:
+If no anomalies are found, check individual collector logs:
 
 ```shell
 # shell
@@ -535,13 +525,13 @@ tail -f /var/log/datakit/log | grep "<collector_name>" | grep "WARN\|ERROR"
 Get-Content -Path "C:\Program Files\datakit\log" -Wait | Select-String "<collector_name>" | Select-String "ERROR", "WARN"
 ```
 
-You can also remove the `ERROR/WARN` filter to view the corresponding collector logs. If more logs are needed, enable debug logging in `datakit.conf`:
+Remove `ERROR/WARN` filters to see all logs. Increase verbosity by setting debug level in `datakit.conf`:
 
 ```toml
 # DataKit >= 1.1.8-rc0
 [logging]
     ...
-    level = "debug" # Change default info to debug
+    level = "debug" # Change from info to debug
     ...
 
 # DataKit < 1.1.8-rc0
@@ -550,39 +540,39 @@ log_level = "debug"
 
 ### Checking gin.log {#check-gin-log}
 
-For remote data sent to DataKit, check `gin.log` to see if remote data is received:
+For remote data submissions to Datakit, check `gin.log` for incoming data:
 
 ```shell
 tail -f /var/log/datakit/gin.log
 ```
 
-## Problem Troubleshooting Diagram {#how-to-trouble-shoot}
+## Troubleshooting Flowchart {#how-to-trouble-shoot}
 
-To facilitate troubleshooting, the following diagram outlines basic troubleshooting steps. Follow the guidance to identify potential issues:
+To assist with troubleshooting, the following flowchart outlines basic steps:
 
 ``` mermaid
 graph TD
   %% node definitions
   no_data[No Data];
-  debug_fail{No Results};
-  monitor[Check <a href='https://docs.guance.com/datakit/datakit-monitor/'>Monitor</a>];
-  debug_input[Debug <a href='https://docs.guance.com/datakit/why-no-data/#check-input-conf'>Collector Configuration</a>];
-  read_faq[Review FAQ in Documentation];
+  debug_fail{No Result};
+  monitor[View <a href='https://docs.guance.com/datakit/datakit-monitor/'>Monitor</a>];
+  debug_input[<a href='https://docs.guance.com/datakit/why-no-data/#check-input-conf'>Debug Collector Configuration</a>];
+  read_faq[Review FAQ];
   dql[DQL Query];
   beyond_usage[Is Data Over Quota?];
   pay[Become a Paid User];
-  filtered[Is Data Filtered Out by Blacklist?];
+  filtered[Is Data Filtered Out?];
   sinked[Is Data Sunk?];
   check_time[Check Machine Time];
   check_token[Check Workspace Token];
   check_version[Check Datakit Version];
-  dk_service_ok[Is <a href='https://docs.guance.com/datakit/datakit-service-how-to/'>Datakit Service Normal?</a>];
-  check_changelog[Check <a href='https://docs.guance.com/datakit/changelog'>Changelog</a>];
+  dk_service_ok[<a href='https://docs.guance.com/datakit/datakit-service-how-to/'>Is Datakit Service Normal?</a>];
+  check_changelog[<a href='https://docs.guance.com/datakit/changelog'>Check Changelog for Fixes</a>];
   is_input_ok[Is Collector Running Normally?];
   is_input_enabled[Is Collector Enabled?];
   enable_input[Enable Collector];
   dataway_upload_ok[Is Upload Normal?];
-  ligai[Submit <a href='https://ligai.cn/'>Ligai</a> Issue];
+  ligai[Submit Issue to <a href='https://ligai.cn/'>Ligai</a>];
 
   no_data --> dk_service_ok --> check_time --> check_token --> check_version --> check_changelog;
 

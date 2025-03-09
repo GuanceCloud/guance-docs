@@ -2,9 +2,9 @@
 
 ---
 
-This document introduces the common request parameters of the Open API.
+This document describes the common request parameters for the Open API.
 
-## Common Request Headers (Header)
+## Common Request Header (Header)
 
 | Parameter Name | Type   | Description                                                                |
 |:--------------|:-------|:---------------------------------------------------------------------------|

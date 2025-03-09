@@ -1,12 +1,12 @@
 ## FAQ
 
-### Configuring `allowedTracingOrigins` Results in Cross-Origin Requests for Asynchronous Requests
+### Configuring allowedTracingOrigins Results in Cross-Origin Requests for Asynchronous Calls
 
-To achieve full tracking from the frontend to the backend using APM (Application Performance Monitoring) tools (commonly referred to as RUM, Real User Monitoring), you need to configure both the frontend and backend accordingly. Below are the main steps and considerations:
+To achieve full tracking from the frontend to the backend when using APM (Application Performance Monitoring) tools (commonly known as RUM, or Real User Monitoring), you need to configure both the frontend and backend accordingly. Below are the main steps and considerations:
 
 #### Frontend Configuration
 
-1. **Install and Configure the RUM SDK**:
+1. **Install and Configure RUM SDK**:
 
    - Install the RUM SDK provided by the APM tool in your web frontend application.
    - Configure the SDK, including setting `allowedTracingOrigins` (domains allowed to send tracing information) and `traceType` (tracing type or framework, such as `ddtrace` for Datadog).
@@ -18,7 +18,7 @@ To achieve full tracking from the frontend to the backend using APM (Application
 
 1. **Set Up CORS Policy**:
 
-   - Configure the CORS (Cross-Origin Resource Sharing) policy on your backend server to allow requests from the frontend domain and specifically include all necessary tracing headers in `Access-Control-Allow-Headers`.
+   - Configure a CORS (Cross-Origin Resource Sharing) policy on your backend server to allow requests from the frontend domain and specifically specify `Access-Control-Allow-Headers` to include all necessary tracing headers.
    - For example, if your backend uses Node.js and Express, you can add the CORS middleware and set the `allowedHeaders` property to include these tracing headers.
 
    ```javascript
@@ -37,42 +37,42 @@ To achieve full tracking from the frontend to the backend using APM (Application
    )
    ```
 
-2. **Handle Requests**:
-   - Ensure that the backend service can receive and correctly process these tracing headers. This information is typically used to associate and track requests within the backend services.
+2. **Process Requests**:
+   - Ensure that the backend service can receive and correctly handle these tracing headers. This information is typically used to correlate and trace requests within the backend services.
 
 #### Verification and Testing
 
 - **Test Configuration**:
 
-  - Initiate a request from the frontend to the backend and check the HTTP headers of the network request to ensure that the tracing information is correctly sent.
-  - Review the backend server logs to confirm that the tracing information is correctly processed.
+  - Initiate requests from the frontend to the backend and inspect the HTTP headers of network requests to ensure tracing information is sent correctly.
+  - Review backend server logs to confirm that tracing information is processed correctly.
 
 - **Debugging and Fixes**:
-  - If any issues arise (such as CORS errors, missing headers, etc.), review the configurations of both the frontend and backend and make adjustments as needed.
+  - If any issues arise (such as CORS errors, missing headers, etc.), review the configurations of both the frontend and backend and adjust as necessary.
 
-#### Considerations
+#### Precautions
 
-- **Security**: Ensure that `allowedTracingOrigins` only includes trusted sources to prevent potential CSRF (Cross-Site Request Forgery) attacks.
-- **Performance**: While tracing information is crucial for performance monitoring, ensure it does not negatively impact your application's performance.
+- **Security**: Ensure `allowedTracingOrigins` only includes trusted sources to prevent potential Cross-Site Request Forgery (CSRF) attacks.
+- **Performance**: Although tracing information is crucial for performance monitoring, ensure it does not negatively impact your application's performance.
 
-By following these steps, you can successfully configure APM tools to support full tracking from the frontend to the backend, thereby more effectively monitoring and optimizing the performance of your web application.
+By following these steps, you can successfully configure the APM tool to support full tracking from the frontend to the backend, thereby more effectively monitoring and optimizing the performance of your web application.
 
-### Script Error Occurs
+### Script Error Appears
 
-When using Guance Web RUM SDK for web error collection, you often see `Script error` in `js_error`. Such error messages do not contain any detailed information.
+When using <<< custom_key.brand_name >>> Web RUM SDK for web-side error collection, you often see `Script error` in `js_error`. Such error messages do not contain any detailed information.
 
 :face_with_monocle: Possible reasons for this issue:
 
 1. The user's browser does not support error capturing (very rare).
 2. The script file is loaded cross-origin into the page.
 
-For cases where the user's browser does not support error capturing, there is little we can do; here, we focus on solving the problem of not being able to collect cross-origin script errors and provide solutions.
+For cases where the user's browser does not support error capturing, there is nothing we can do; here we focus on solving the issue of cross-origin script errors not being collected.
 
-Generally, script files are loaded using `<script>` tags. For same-origin scripts, when using the browser's `GlobalEventHandlers API`, collected error messages include detailed information. However, for cross-origin scripts, the collected error message only contains the text `Script error.` This is controlled by the browser's same-origin policy and is normal behavior. For non-same-origin scripts, we just need to perform Cross-Origin Resource Sharing (CORS) operations.
+In general, script files are loaded using `<script>` tags. For same-origin scripts, when using the browser's `GlobalEventHandlers API`, the collected error information includes detailed error information. However, for cross-origin scripts, the collected error information only contains the text `Script error.` This is controlled by the browser's same-origin policy and is normal behavior. For non-same-origin scripts, we need to perform Cross-Origin Resource Sharing (CORS) operations.
 
-:partying_face: Solutions:
+:partying_face: Solution:
 
-:material-numeric-1-circle-outline: Script File Stored on Server:
+:material-numeric-1-circle-outline: Script File Hosted Directly on the Server:
 
 Add the following header when serving static files on the server:
 
@@ -86,7 +86,7 @@ Add the attribute `crossorigin="anonymous"` to the `<script>` tag for non-same-o
 <script type="text/javascript" src="path/to/your/script.js" crossorigin="anonymous"></script>
 ```
 
-:material-numeric-2-circle-outline: Script File Stored on CDN:
+:material-numeric-2-circle-outline: Script File Hosted on CDN:
 
 Add the following header in the CDN settings:
 
@@ -110,37 +110,37 @@ Add the attribute `crossorigin="anonymous"` to the `<script>` tag for non-same-o
 
 ### Incomplete Resource Data Collection
 
-The following phenomena may indicate incomplete resource data collection:
+The following phenomena may indicate that resource data has not been fully collected:
 
-1. **Resource Size Data is 0**
-   Including fields such as `resource_transfer_size`, `resource_decode_size`, `resource_encode_size`, `resource_size`.
+1. **Resource Size Data is 0**  
+   Including fields like `resource_transfer_size`, `resource_decode_size`, `resource_encode_size`, `resource_size`.
 
-2. **Time-related Data Not Collected**
-   Including fields such as `resource_dns`, `resource_tcp`, `resource_ssl`, `resource_ttfb`, `resource_trans`, `resource_first_byte`, `resource_dns_time`, `resource_download_time`, `resource_first_byte_time`, `resource_connect_time`.
+2. **Time-Related Data Not Collected**  
+   Including fields like `resource_dns`, `resource_tcp`, `resource_ssl`, `resource_ttfb`, `resource_trans`, `resource_first_byte`, `resource_dns_time`, `resource_download_time`, `resource_first_byte_time`, `resource_connect_time`.
 
-#### Possible Causes
+#### Possible Reasons
 
-- **Connection Reuse (Keep-Alive)**
-  When resource requests use the `keep-alive` method to maintain connections, DNS queries and TCP connection processes occur only during the first request. Subsequent requests reuse the same connection, so related data may not be recorded or may be 0.
+- **Connection Reuse (Keep-Alive)**  
+  When resource requests use the `keep-alive` method to maintain connections, DNS queries and TCP connection processes only occur during the first request. Subsequent requests reuse the same connection, so related data may not be recorded or may be 0.
 
-- **Cross-Origin Resource Loading**
-  If resources are loaded cross-origin and relevant headers are not configured, the browser cannot collect complete performance data. This is the primary cause of missing data.
+- **Cross-Origin Loading of Resources**  
+  If resources are loaded cross-origin without configuring relevant headers, browsers cannot collect complete performance data. This is the primary cause of data loss.
 
-- **Browser Compatibility**
-  In rare cases, some browsers may not support the `Performance API`, resulting in the inability to obtain resource-related performance data.
+- **Browser Compatibility**  
+  In rare cases, some browsers may not support the `Performance API`, preventing the collection of resource-related performance data.
 
 ---
 
-#### How to Solve Data Missing Issues Caused by Cross-Origin Resources
+#### How to Resolve Data Loss Caused by Cross-Origin Resources
 
-**1. Resource Files Stored on Server**
+**1. Resource Files Hosted on the Server**  
 Add the following HTTP Header to resource files on the server:
 
 ```http
 Timing-Allow-Origin: *
 ```
 
-**2. Resource Files Stored on CDN**
+**2. Resource Files Hosted on CDN**  
 Add the following HTTP Header to resource files in the CDN configuration:
 
 ```http
@@ -149,40 +149,40 @@ Timing-Allow-Origin: *
 
 [Reference Document](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/transferSize)
 
-### `resource_status` Data Not Collected
+### Missing `resource_status` Data
 
-In certain situations, `resource_status` data may be missing due to the following reasons:
+In certain cases, `resource_status` data may be missing, due to the following reasons:
 
-- **Cross-Origin Resource Loading**
-  If resources are loaded cross-origin and cross-origin access permissions are not set, the browser cannot obtain resource status information.
+- **Cross-Origin Loading of Resources**  
+  If resources are loaded cross-origin without setting cross-origin access permissions, browsers cannot obtain resource status information.
 
-- **Browser Compatibility**
+- **Browser Compatibility**  
   Some browsers may not support the `Performance API`, leading to the inability to collect relevant data (very rare).
 
 ---
 
-#### How to Solve `resource_status` Data Missing Issues Caused by Cross-Origin Resources
+#### How to Resolve Missing `resource_status` Data Caused by Cross-Origin Resources
 
-**1. Resource Files Stored on Server**
+**1. Resource Files Hosted on the Server**  
 Add the following HTTP Header to resource files in the server configuration:
 
 ```http
 Access-Control-Allow-Origin: *
 ```
 
-**2. Resource Files Stored on CDN**
+**2. Resource Files Hosted on CDN**  
 Add the following HTTP Header to resource files in the CDN configuration:
 
 ```http
 Access-Control-Allow-Origin: *
 ```
 
-Through the above configurations, cross-origin resource data collection issues can be effectively resolved, ensuring that browsers can correctly obtain performance data.
+By implementing the above configurations, you can effectively resolve data collection issues caused by cross-origin resources and ensure that browsers can correctly obtain performance data.
 [Reference Document](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseStatus).
 
 ### Identifying Search Engine Bots {#bot}
 
-When conducting web activities, it's important to distinguish between real user activities and search engine bots. You can use the following sample script to filter sessions with bots:
+When engaging in web activities, it is necessary to distinguish between real user activity and search engines. You can use the following sample script to filter sessions containing bots:
 
 ```
 // regex patterns to identify known bot instances:
@@ -191,7 +191,7 @@ let botPattern = "(googlebot\/|bot|Googlebot-Mobile|Googlebot-Image|Google favic
 let regex = new RegExp(botPattern, 'i');
 
 // Define var allowedTracingOrigins if the userAgent matches a pattern in botPatterns
-// Otherwise, define allowedTracingOrigins normally
+// Otherwise, define allowedTracingOrigins to be normal
 let allowedTracingOrigins = regex.test(navigator.userAgent)
 
 // Initialize the RUM Browser SDK and set allowedTracingOrigins

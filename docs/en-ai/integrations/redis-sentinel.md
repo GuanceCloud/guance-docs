@@ -1,6 +1,6 @@
 ---
 title     : 'Redis Sentinel'
-summary   : 'Collect metrics and log information from Redis Sentinel clusters'
+summary   : 'Collect Redis Sentinel cluster Metrics and log information'
 __int_icon: 'icon/redis'
 dashboard :
   - desc  : 'Redis-sentinel monitoring view'
@@ -14,13 +14,15 @@ monitor   :
 # Redis Sentinel
 <!-- markdownlint-enable -->
 
-Display of Redis-sentinel metrics, including Redis cluster, Slaves, node distribution information, etc.
+Display of Redis-sentinel Metrics, including Redis cluster, Slaves, node distribution information, etc.
+
 
 ## Installation and Deployment {#config}
 
-### Download the redis-sentinel-exporter Metrics Collector
+### Download the redis-sentinel-exporter Metrics collector
 
-Download address [https://github.com/lrwh/redis-sentinel-exporter/releases](https://github.com/lrwh/redis-sentinel-exporter/releases)
+Download link [https://github.com/lrwh/redis-sentinel-exporter/releases](https://github.com/lrwh/redis-sentinel-exporter/releases)
+
 
 ### Start redis-sentinel-exporter
 
@@ -61,42 +63,42 @@ cp prom.conf.sample redis-sentinel-prom.conf
     source = "redis_sentinel"
 
     ## Output source for collected data
-    # Configuring this can write collected data to a local file instead of sending it to the center
-    # You can then use the command `datakit --prom-conf /path/to/this/conf` to debug locally saved Mearsurement sets
-    # If the URL is configured as a local file path, the `--prom-conf` command will prioritize debugging the data in the output path
+    # Configuring this option allows you to write collected data to a local file instead of sending it to the center.
+    # You can then use the command `datakit --prom-conf /path/to/this/conf` to debug locally saved Mearsurement.
+    # If the URL is configured as a local file path, the `--prom-conf` command will prioritize debugging the output path data.
     # output = "/abs/path/to/file"
 
-    ## Maximum size limit for collected data, in bytes
-    # When outputting data to a local file, you can set a maximum size limit for the collected data
-    # If the size of the collected data exceeds this limit, the data will be discarded
-    # The default maximum size limit is set to 32MB
+    ## Maximum size limit for collected data in bytes
+    # When outputting data to a local file, you can set a maximum size limit for the collected data.
+    # If the size of the collected data exceeds this limit, the collected data will be discarded.
+    # The default maximum size limit for collected data is 32MB.
     # max_file_size = 0
 
     ## Metric type filter, optional values are counter, gauge, histogram, summary
-    # By default, only counter and gauge types of metrics are collected
-    # If left empty, no filtering is performed
+    # By default, only counter and gauge types of metrics are collected.
+    # If empty, no filtering is performed.
     metric_types = []
 
     ## Metric name filter
-    # Supports regex, multiple configurations can be made, i.e., matching any one of them is sufficient
-    # If left empty, no filtering is performed
+    # Supports regular expressions, multiple configurations can be made, i.e., satisfying any one condition is sufficient.
+    # If empty, no filtering is performed.
     # metric_name_filter = ["cpu"]
 
     ## Prefix for Mearsurement names
-    # Configuring this can add a prefix to the Mearsurement names
+    # Configuring this option adds a prefix to the Mearsurement names.
     # measurement_prefix = "redis_sentinel_"
 
     ## Mearsurement name
-    # By default, the metric name will be split by underscores "_", with the first segment becoming the Mearsurement name and the remaining segments becoming the current metric name
-    # If `measurement_name` is configured, the metric name will not be split
-    # The final Mearsurement name will include the `measurement_prefix` prefix
+    # By default, the metric name is split by underscores "_", with the first field after splitting used as the Mearsurement name, and the remaining fields as the current metric name.
+    # If `measurement_name` is configured, the metric name will not be split.
+    # The final Mearsurement name will have the `measurement_prefix` prefix added.
     measurement_name = "redis_sentinel"
 
     ## Collection interval "ns", "us" (or "µs"), "ms", "s", "m", "h"
     interval = "10s"
 
     ## Filter tags, multiple tags can be configured
-    # Matching tags will be ignored
+    # Matching tags will be ignored.
     # tags_ignore = ["xxxx"]
 
     ## TLS configuration
@@ -106,15 +108,15 @@ cp prom.conf.sample redis-sentinel-prom.conf
     # tls_key = "/tmp/peer.key"
 
     ## Custom authentication method, currently only supports Bearer Token
-    # Only one of `token` or `token_file` needs to be configured
+    # Only one of `token` or `token_file` needs to be configured.
     # [inputs.prom.auth]
     # type = "bearer_token"
     # token = "xxxxxxxx"
     # token_file = "/tmp/token"
 
     ## Custom Mearsurement names
-    # Metrics containing the prefix `prefix` can be grouped into one Mearsurement set
-    # Custom Mearsurement name configuration takes precedence over the `measurement_name` option
+    # Metrics containing the prefix `prefix` can be grouped into a single Mearsurement.
+    # Custom Mearsurement name configuration takes precedence over the `measurement_name` option.
     #[[inputs.prom.measurements]]
     #  prefix = "cpu_"
     #  name = "cpu"
@@ -130,21 +132,22 @@ cp prom.conf.sample redis-sentinel-prom.conf
 
     ```
 <!-- markdownlint-enable -->
-Key parameter descriptions:
+Main parameter descriptions:
 
-- `urls`: Prometheus metrics address, fill in the URL exposed by redis-sentinel-exporter
-- `source`: Collector alias
-- `interval`: Collection interval
-- `measurement_prefix`: Metric prefix for easier classification and querying
-- `tls_open`: TLS configuration
-- `metric_types`: Metric types, leaving it empty means collecting all metrics
-- `[inputs.prom.tags]`: Additional defined tags
+- `urls`: Prometheus Metrics address; here, fill in the Metrics URL exposed by redis-sentinel-exporter.
+- `source`: Collector alias.
+- `interval`: Collection interval.
+- `measurement_prefix`: Metrics prefix, useful for categorizing and querying metrics.
+- `tls_open`: TLS configuration.
+- `metric_types`: Metric types; leaving it blank means collecting all metrics.
+- `[inputs.prom.tags]`: Additional defined tags.
 
-- Restart DataKit (if you need to enable logging, configure log collection before restarting)
+- Restart DataKit (if enabling logs is required, configure log collection before restarting)
 
 ```bash
 systemctl restart datakit
 ```
+
 
 ## Log Collection {#logging}
 
@@ -163,37 +166,37 @@ systemctl restart datakit
   ## glob filter
   ignore = [""]
 
-  ## Your logging source, if it's empty, use 'default'
+  ## your logging source, if it's empty, use 'default'
   source = "redis-sentinel"
 
-  ## Add service tag, if it's empty, use `$source`.
+  ## add service tag, if it's empty, use $source.
   service = "redis-sentinel"
 
-  ## Grok pipeline script name
+  ## grok pipeline script name
   pipeline = ""
 
-  ## Optional status:
+  ## optional status:
   ##   "emerg","alert","critical","error","warning","info","debug","OK"
   ignore_status = []
 
-  ## Optional encodings:
+  ## optional encodings:
   ##    "utf-8", "utf-16le", "utf-16le", "gbk", "gb18030" or ""
   character_encoding = ""
 
-  ## Datakit reads text from files or sockets, default max_textline is 32k
-  ## If your log text line exceeds 32Kb, please configure the length of your text,
-  ## but the maximum length cannot exceed 32Mb
+  ## datakit read text from Files or Socket , default max_textline is 32k
+  ## If your log text line exceeds 32Kb, please configure the length of your text, 
+  ## but the maximum length cannot exceed 32Mb 
   # maximum_length = 32766
 
   ## The pattern should be a regexp. Note the use of '''this regexp'''
   ## regexp link: https://golang.org/pkg/regexp/syntax/#hdr-Syntax
   # multiline_match = '''^\S'''
 
-  ## Removes ANSI escape codes from text strings
+  ## removes ANSI escape codes from text strings
   remove_ansi_escape_codes = false
 
-  ## If a file is inactive, it is ignored
-  ## Time units are "ms", "s", "m", "h"
+  ## if file is inactive, it is ignored
+  ## time units are "ms", "s", "m", "h"
   # ignore_dead_log = "1h"
 
   [inputs.logging.tags]
@@ -206,13 +209,13 @@ Parameter descriptions:
 
 ```txt
 - `files`: Log file paths (usually access logs and error logs)
-- `ignore`: Files to filter out
-- `pipeline`: Log splitting file
+- `ignore`: Filenames to filter out
+- `pipeline`: Log parsing file
 - `character_encoding`: Log encoding format
 - `match`: Enable multi-line log collection
 ```
 
-- Restart DataKit (if you need to enable custom tags, configure plugin tags before restarting)
+- Restart DataKit (if custom tags need to be enabled, configure plugin tags before restarting)
 
 ```bash
 systemctl restart datakit
@@ -220,7 +223,7 @@ systemctl restart datakit
 
 ### Configure Pipeline
 
-Log Pipeline functionality for field splitting
+Log Pipeline function field splitting explanation
 
 General Redis log splitting
 
@@ -247,17 +250,18 @@ Restart DataKit
 systemctl restart datakit
 ```
 
-## Metric Details {#metric}
+
+## Metrics Details {#metric}
 
 | Metric | Meaning | Type |
 | --- | --- | --- |
 | `redis_sentinel_known_sentinels` | Number of sentinel instances | Gauge |
 | `redis_sentinel_known_slaves` | Number of cluster slave instances | Gauge |
 | `redis_sentinel_cluster_type` | Cluster node type | Gauge |
-| `redis_sentinel_link_pending_commands` | Number of pending commands on sentinels | Gauge |
-| `redis_sentinel_odown_slaves` | Objectively down slaves | Gauge |
-| `redis_sentinel_sdown_slaves` | Subjectively down slaves | Gauge |
+| `redis_sentinel_link_pending_commands` | Number of pending commands on sentinel | Gauge |
+| `redis_sentinel_odown_slaves` | Objective down slaves | Gauge |
+| `redis_sentinel_sdown_slaves` | Subjective down slaves | Gauge |
 | `redis_sentinel_ok_slaves` | Number of running slaves | Gauge |
-| `redis_sentinel_ping_latency` | Latency of sentinel pings in milliseconds | Gauge |
+| `redis_sentinel_ping_latency` | Sentinel ping latency in milliseconds | Gauge |
 | `redis_sentinel_last_ok_ping_latency` | Seconds since last successful sentinel ping | Gauge |
 | `redis_sentinel_node_state` | Redis node state | Gauge |

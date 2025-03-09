@@ -12,11 +12,11 @@
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
+|:---------------------|:---------|:----------|:-------------------------|
 | isDisable | boolean | Y | Set the enable status<br>Nullable: False <br> |
 | dataMaskRuleUUIDs | array | Y | List of sensitive data masking rule UUIDs<br>Nullable: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

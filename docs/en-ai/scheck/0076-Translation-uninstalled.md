@@ -1,4 +1,4 @@
-# 0076-Translation-uninstalled-mcstrans Service Has Been Installed
+# 0076-Translation-uninstalled-mcstrans Service Installed
 ---
 
 ## Rule ID
@@ -23,7 +23,7 @@
 
 ## Description
 
-- The mcstransd daemon provides category label information to client processes requesting it. Label translation is defined in /etc/selinux/targeted/setrans.conf.
+- The mcstransd daemon provides category label information to client processes that request it. Label translation is defined in /etc/selinux/targeted/setrans.conf.
 
 
 ## Scan Frequency
@@ -33,18 +33,18 @@
 
 ## Theoretical Basis
 
-- Since this service is not frequently used, remove it to reduce the amount of potentially vulnerable code running on the system.
+- Since this service is not frequently used, uninstall it to reduce the amount of potentially vulnerable code running on the system.
 
 
 ## Risk Items
 
-- Hacker Penetration
+- Hacker penetration
 
-- Data Breach
+- Data leakage
 
-- Mining Risk
+- Mining risk
 
-- Botnet Risk
+- Compromised machine risk
 
 
 ## Audit Method
@@ -78,8 +78,8 @@ package mcstrans is not installed
 
 ## References
 
-## CIS Controls
+## CIS Control
 
 - Version 7
 9.2 Ensure Only Approved Ports, Protocols, and Services Are Running
-Ensure that only network ports, protocols, and services that have validated business needs are listening on each system.
+Ensure that only network ports, protocols, and services with validated business needs are listening on each system.

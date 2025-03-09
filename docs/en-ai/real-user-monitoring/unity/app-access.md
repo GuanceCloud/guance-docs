@@ -2,29 +2,31 @@
 ---
 ## Prerequisites
 
-**Note**: If you have enabled the [RUM Headless](../../dataflux-func/headless.md) service, the prerequisites are automatically configured for you. You can directly integrate the application.
+**Note**: If you have enabled the [RUM Headless](../../dataflux-func/headless.md) service, the prerequisites have been automatically configured for you. You can directly integrate your application.
 
 - Install [DataKit](../../datakit/datakit-install.md);
 - Configure the [RUM Collector](../../integrations/rum.md);
-- Configure DataKit to be [accessible from the public network and install the IP geolocation database](../../datakit/datakit-tools-how-to.md#install-ipdb).
+- Ensure DataKit is [publicly accessible and has the IP geolocation database installed](../../datakit/datakit-tools-how-to.md#install-ipdb).
 
 ## Application Integration {#integration}
-The current Unity version supports Android and iOS platforms. Log in to the Guance console, go to the "User Access Monitoring" page, click on "New Application" in the top-left corner, and start creating a new application.
+The current Unity version supports Android and iOS platforms. Log in to the <<< custom_key.brand_name >>> console, navigate to the "User Analysis" page, click on "Create" in the top-left corner, and start creating a new application.
 
-1. Enter the "Application Name", "Application ID", and select the "Custom" application type.
-   - Application Name: Used to identify the name of the current user access monitoring application.
-   - Application ID: The unique identifier for the application within the current workspace, corresponding field: `app_id`. This field only supports English letters, numbers, and underscores, with a maximum of 48 characters.
+1. Enter the "Application Name", "Application ID", and select the "Custom" application type:
+
+- Application Name: Used to identify the name of the current user analysis application.
+- Application ID: A unique identifier for the application within the current workspace, corresponding field: app_id. This field only supports English letters, numbers, and underscores, with a maximum of 48 characters.
+
 
 ![](../img/image_13.png)
 
 ## Installation {#install}
-![](https://img.shields.io/badge/dynamic/json?label=unity&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/unity/version.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.guance.com/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-unity)
+![](https://img.shields.io/badge/dynamic/json?label=unity&color=orange&query=$.version&uri=https://<<< custom_key.static_domain >>>/ft-sdk-package/badge/unity/version.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://<<< custom_key.static_domain >>>/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-unity)
 
 **Source Code Address**: [https://github.com/GuanceCloud/datakit-unity](https://github.com/GuanceCloud/datakit-unity)
 
 **Demo Address**: [https://github.com/GuanceCloud/datakit-unity/blob/dev/Assets/Scenes](https://github.com/GuanceCloud/datakit-unity/blob/dev/Assets/Scenes/ClickEvent.cs)
 
-* Download the latest [ft-sdk-unity.unitypackage](https://static.guance.com/ft-sdk-package/unitypackage/alpha/ft-sdk-unity.unitypackage)
+* Download the latest [ft-sdk-unity.unitypackage](https://<<< custom_key.static_domain >>>/ft-sdk-package/unitypackage/alpha/ft-sdk-unity.unitypackage)
 
 ```
 Assets/Plugins
@@ -32,13 +34,13 @@ Assets/Plugins
 │   ├── FTUnityBridge.java					// Android bridge 
 │   ├── ft-sdk-release.aar					// Android SDK
 │   ├── gson-2.8.5.jar						// Third-party library dependency for Android SDK
-├── FTSDK.cs								// Script bound to FTSDK.prefab
-├── FTSDK.prefab							// SDK initialization prefab
-├── FTUnityBridge.cs						// Bridge method for iOS and Android platforms
-├── FTViewObserver.cs						// Script bound to FTViewObserver.prefab
-├── FTViewObserver.prefab					// Prefab for View lifecycle monitoring
-├── UnityMainThreadDispatcher.cs			// Script bound to UnityMainThreadDispatcher.prefab
-├── UnityMainThreadDispatcher.prefab 		// Prefab for main thread queue consumption
+├── FTSDK.cs								// Binding script for FTSDK.prefab
+├── FTSDK.prefab							// Initialization prefab for SDK
+├── FTUnityBridge.cs						// Bridge methods for iOS and Android platforms
+├── FTViewObserver.cs						// Binding script for FTViewObserver.prefab
+├── FTViewObserver.prefab					// Prefab for View page lifecycle monitoring
+├── UnityMainThreadDispatcher.cs			// Binding script for UnityMainThreadDispatcher.prefab
+├── UnityMainThreadDispatcher.prefab 		// Main thread consumption queue prefab
 ├── iOS
 │   ├── FTMobileSDK.framework 				// iOS SDK
 │   ├── FTUnityBridge.mm					// iOS bridge
@@ -46,13 +48,13 @@ Assets/Plugins
 ```
 
 * `Asserts` -> `Import Package` -> `Custom Package...` to import `ft-sdk-unity.unitypackage`
-* Add the third-party library for JSON parsing `"com.unity.nuget.newtonsoft-json"` via `Package Manager` -> `Add Package by name ...`
+* Add the third-party JSON parsing library `"com.unity.nuget.newtonsoft-json"` via `Pakcage Manager` -> `Add Package by name ...`
 * Drag `FTSDK.prefab` into the first scene page and initialize the SDK in the `_InitSDK` method of `FTSDK.cs`. If the native Android and iOS projects already integrate the native SDK, comment out the `_InitSDK` method to avoid duplicate settings.
-* Drag `FTViewObserver.prefab` into other scene pages to achieve lifecycle monitoring of `View`, including app suspension and resumption.
-* Use `Application.logMessageReceived` to listen and convert Unity crash data and normal log data. See the `OnEnable` and `OnDisable` methods in `FTSDK.cs`.
+* Drag `FTViewObserver.prefab` into other scene pages to achieve lifecycle monitoring of pages `View`, including application suspension and resumption.
+* Use `Application.logMessageReceived` to listen and convert Unity crash data and ordinary log data; see the `OnEnable` and `OnDisable` methods in `FTSDK.cs`.
 
-> Note: If the native SDKs (Android `gson-2.8.5.jar`, `ft-sdk-release.aar`, iOS `FTMobileSDK.framework`) are already integrated, they can be removed from the project.
-> Additionally, for Android Okhttp request and startup time features, use `ft-plugin`. For detailed configuration, see [Android SDK](../android/app-access.md#gradle-setting)
+> **Note**: If the native SDK Android gson-2.8.5.jar, ft-sdk-release.aar, and iOS FTMobileSDK.framework are already integrated, they can be removed from the project.
+> Additionally, for Android Okhttp request and startup time features, use ft-plugin. Detailed configuration can be found in [Android SDK](../android/app-access.md#gradle-setting)
 
 ## Initialization
 ```csharp
@@ -67,11 +69,12 @@ FTUnityBridge.Install(new SDKConfig
 
 | **Field** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| serverUrl | string | Yes | DataKit access URL, example: http://10.0.0.1:9529, default port is 9529. Note: The device where the SDK is installed must be able to access this address |
-| env | string | No | Environment, default `prod`. Options: `prod`: production environment; `gray`: gray release environment; `pre`: pre-release environment; `common`: daily environment; `local`: local environment, custom values supported |
+| serverUrl | string | Yes | The URL address for accessing DataKit, example: http://10.0.0.1:9529, default port 9529. Note: The device installing the SDK must be able to access this address |
+| env | string | No | Environment, default `prod`. Options: `prod`: production environment; `gray`: gray release environment; `pre`: pre-release environment; `common`: daily environment; `local`: local environment, supports customization |
 | debug | bool | No | Whether to enable debug mode |
 | globalContext | dictionary | No | Add global properties to the SDK, rules for adding can be found [here](#key-conflict) |
-| serviceName| string | No | Affects the `service` field data in Logs and RUM, default for Android is `df_rum_android`, for iOS is `df_rum_ios` |
+| serviceName| string |No| Affects the `service` field data in Logs and RUM, defaults to `df_rum_android` for Android and `df_rum_ios` for iOS |
+
 
 ### RUM Configuration
 ```csharp
@@ -85,15 +88,15 @@ FTUnityBridge.InitRUMConfig(new RUMConfig()
 
 | **Field** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| androidAppId | string | Yes | Corresponds to setting the RUM `appid`, enabling RUM collection, [method to obtain appid](#integration) |
-| iOSAppId | string | Yes | Corresponds to setting the RUM `appid`, enabling RUM collection, [method to obtain appid](#integration) |
-| sampleRate | float | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default is 1. Applies to all View, Action, LongTask, Error data under the same session_id |
-| globalContext | dictionary | No | Add label data for distinguishing user monitoring data sources, if tracking functionality is needed, parameter `key` is `track_id`, `value` is any numeric value. Rules for adding can be found [here](#key-conflict) |
-| enableNativeUserAction | bool | No | Whether to enable Native Action collection, default is false |
-| enableNativeUserView | bool | No | Whether to enable Native View collection, default is false |
-| enableNativeUserResource | bool | No | Whether to enable Native Resource collection, Android supports Okhttp, iOS uses NSURLSession, default is false |
-| extraMonitorTypeWithError | enum | No | Add additional monitoring data to RUM crash data, `memory` for memory usage, `cpu` for CPU occupancy, `all` for all |
-| deviceMonitorType | enum | No | Page monitoring supplementary types: `all`, `battery` (only supported by Android), `memory`, `cpu`, `fps` |
+| androidAppId | string | Yes | Corresponds to setting the RUM `appid`, which enables RUM collection, [method to obtain appid](#integration) |
+| iOSAppId | string | Yes | Corresponds to setting the RUM `appid`, which enables RUM collection, [method to obtain appid](#integration) |
+| sampleRate | float | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1. Applies to all View, Action, LongTask, Error data under the same session_id |
+| globalContext | dictionary | No | Adds label data for distinguishing user monitoring data sources. If tracking functionality is required, set `key` to `track_id` and `value` to any number. Rules for adding can be found [here](#key-conflict) |
+| enableNativeUserAction | bool | No | Whether to enable Native Action collection, default false |
+| enableNativeUserView | bool | No | Whether to enable Native View collection, default false |
+| enableNativeUserResource | bool | No | Whether to enable Native Resource collection, supports Okhttp for Android and NSURLSession for iOS, default false |
+| extraMonitorTypeWithError | enum | No | Adds additional monitoring data to RUM crash data: `memory` for memory usage, `cpu` for CPU usage, `all` for both |
+| deviceMonitorType | enum | No | Page monitoring supplementary types: `all`, `battery` (only supported on Android), `memory`, `cpu`, `fps` |
 | detectFrequency | enum | No | Page monitoring frequency: `normal` (default), `frequent`, `rare` |
 
 ### Log Configuration
@@ -108,11 +111,11 @@ FTUnityBridge.InitLogConfig(new LogConfig
 
 | **Field** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| sampleRate | float | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default is 1 |
-| globalContext | dictionary | No | Add label data, rules for adding can be found [here](#key-conflict) |
-| logLevelFilters | array | No | Set log level filters, options: `ok`, `info`, `warning`, `error`, `critical`, default is no filtering |
+| sampleRate | float | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1. |
+| globalContext | dictionary | No | Adds label data, rules for adding can be found [here](#key-conflict) |
+| logLevelFilters | array | No | Sets log level filters: `ok`, `info`, `warning`, `error`, `critical`, default does not filter |
 | enableCustomLog | bool | No | Whether to upload custom logs, default is `false` |
-| discardStrategy | enum | No | `discard` discards appended data, `discard_oldest` discards oldest data, default is `discard` |
+| discardStrategy | enum | No | `discard` discards appended data, `discard_oldest` discards old data, default is `discard` |
 
 ### Trace Configuration
 ```csharp
@@ -128,8 +131,8 @@ FTUnityBridge.InitTraceConfig(new TraceConfig
 
 | **Field** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| sampleRate | float | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default is 1 |
-| traceType | enum | No | Default is `ddtrace`, currently supports `zipkin`, `jaeger`, `ddtrace`, `skywalking` (8.0+), `traceParent` (W3C). When integrating with OpenTelemetry, choose the appropriate trace type and check the supported types and agent configurations |
+| sampleRate | float | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1. |
+| traceType | enum | No | Default is `ddtrace`, currently supports `zipkin`, `jaeger`, `ddtrace`, `skywalking` (8.0+), `traceParent` (W3C). When integrating OpenTelemetry, please refer to supported types and agent configurations |
 | enableLinkRUMData | bool | No | Whether to link with RUM data, default is `false` |
 
 ## RUM User Data Tracking
@@ -164,25 +167,25 @@ FTUnityBridge.StartAction("click", "test");
 #### Usage
 ```csharp
 /// <summary>
-/// View Start
+/// Start View
 /// </summary>
 /// <param name="viewName">Current page name</param>
 public static void StartView(string viewName)
     
 /// <summary>
-/// View Start
+/// Start View
 /// </summary>
 /// <param name="viewName">Current page name</param>
 /// <param name="property">Additional property parameters</param>
 public static void StartView(string viewName, Dictionary<string, object> property)
 
 /// <summary>
-/// View End
+/// Stop View
 /// </summary>
 public static void StopView()
     
 /// <summary>
-/// View End
+/// Stop View
 /// </summary>
 /// <param name="property">Additional property parameters</param>
 public static void StopView(Dictionary<string, object> property)
@@ -200,14 +203,14 @@ FTUnityBridge.StopView();
 #### Usage
 ```csharp
 /// <summary>
-/// Resource Start
+/// Start resource
 /// </summary>
 /// <param name="resourceId">Resource Id</param>
 /// <returns></returns>
 public static async Task StartResource(string resourceId)
     
 /// <summary>
-/// Resource Start
+/// Start resource
 /// </summary>
 /// <param name="resourceId">Resource Id</param>
 /// <param name="property">Additional property parameters</param>
@@ -215,14 +218,14 @@ public static async Task StartResource(string resourceId)
 public static async Task StartResource(string resourceId, Dictionary<string, object> property)
 	
 /// <summary>
-/// Resource End
+/// Stop resource
 /// </summary>
 /// <param name="resourceId">Resource Id</param>
 /// <returns></returns>
 public static async Task StopResource(string resourceId)
     
 /// <summary>
-/// Resource End
+/// Stop resource
 /// </summary>
 /// <param name="resourceId">Resource Id</param>
 /// <param name="property">Additional property parameters</param>
@@ -230,10 +233,10 @@ public static async Task StopResource(string resourceId, Dictionary<string, obje
 
 
 /// <summary>
-/// Add network transfer content and metrics
+/// Add network transmission content and metrics
 /// </summary>
 /// <param name="resourceId">Resource Id</param>
-/// <param name="resourceParams">Data transfer content</param>
+/// <param name="resourceParams">Data transmission content</param>
 /// <param name="netStatus">Network metric data</param>
 public static async Task AddResource(string resourceId, ResourceParams resourceParams, NetStatus netStatus)
 
@@ -245,10 +248,10 @@ public static async Task AddResource(string resourceId, ResourceParams resourceP
 | fetchStartTime | long| No | Request start time, ns|
 | tcpTime | long | No | TCP connection duration, ns |
 | dnsTime | long | No | DNS resolution time, ns |
-| responseTime | long | No | Response content transmission duration, ns |
+| responseTime | long | No | Response content transfer duration, ns |
 | sslTime |long | No | SSL connection duration, ns |
 | firstByteTime |long | No | Total time from DNS resolution to receiving the first data packet, ns |
-| ttfb | long | No | Time from sending the request to receiving the first response packet, ns|
+| ttfb | long | No | Time from sending the request to receiving the first byte of the response, ns|
 | tcpStartTime | long  | No | TCP connection start time, ns |
 | tcpEndTime | long | No | TCP connection end time, ns|
 | dnsStartTime | long | No | DNS start time, ns|
@@ -261,7 +264,7 @@ public static async Task AddResource(string resourceId, ResourceParams resourceP
 ##### ResourceParams
 | **Method Name** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| url | string| Yes | URL address  |
+| url | string| Yes | URL address |
 | requestHeader | string | No | Request header parameters, no format restrictions |
 | responseHeader | string | No | Response header parameters, no format restrictions |
 | responseConnection | string | No | Response connection |
@@ -299,7 +302,7 @@ FTUnityBridge.AddResource(resourceId, resourceParams, netStatus);
 /// <param name="log">Log</param>
 /// <param name="message">Message</param>
 /// <param name="errorType">Error type</param>
-/// <param name="state">Program runtime state</param>
+/// <param name="state">Program running state</param>
 /// <returns></returns>
 public static async Task AddError(string log, string message)
     
@@ -310,7 +313,7 @@ public static async Task AddError(string log, string message)
 /// <param name="log">Log</param>
 /// <param name="message">Message</param>
 /// <param name="errorType">Error type</param>
-/// <param name="state">Program runtime state</param>
+/// <param name="state">Program running state</param>
 /// <param name="property">Additional property parameters</param>
 /// <returns></returns>
 public static async Task AddError(string log, string message,
@@ -348,7 +351,7 @@ void LogCallBack(string condition, string stackTrace, LogType type)
 /// Add long-running task
 /// </summary>
 /// <param name="log">Log content</param>
-/// <param name="duration">Duration in nanoseconds</param>
+/// <param name="duration">Duration, nanoseconds</param>
 /// <returns></returns>
 public static async Task AddLongTask(string log, long duration)
 
@@ -356,7 +359,7 @@ public static async Task AddLongTask(string log, long duration)
 /// Add long-running task
 /// </summary>
 /// <param name="log">Log content</param>
-/// <param name="duration">Duration in nanoseconds</param>
+/// <param name="duration">Duration, nanoseconds</param>
 /// <param name="property">Additional property parameters</param>
 /// <returns></returns>
 public static async Task AddLongTask(string log, long duration, Dictionary<string, object> property)
@@ -368,7 +371,7 @@ FTUnityBridge.AddLongTask("long task test", 100002);
 ```
 
 ## Log Printing
-> Current log content limit is 30 KB, exceeding characters will be truncated
+> Current log content limit is 30 KB, exceeding parts will be truncated
 ### Usage
 ```csharp
 /// <summary>
@@ -406,12 +409,12 @@ FTUnityBridge.AddLog("test log", "test message");
 ```
 
 ## Tracer Network Link Tracing
-Tracing is achieved by generating a Trace Header and adding it to the HTTP request headers.
+Tracing is achieved by generating a Trace Header and then adding the Header to the HTTP request headers.
 
 ### Usage
 ```csharp
 /// <summary>
-/// Get trace ID
+/// Get trace Id
 /// </summary>
 /// <param name="url">URL address</param>
 /// <returns>JSON string</returns>
@@ -437,14 +440,14 @@ string headData = FTUnityBridge.GetTraceHeader(FAKE_URL);
 
 ```
 
-## Binding and Unbinding User Information
+## User Information Binding and Unbinding
 ### Usage
 
 ```csharp 
 /// <summary>
 /// Bind RUM user information
 /// </summary>
-/// <param name="userId">Unique user id</param>
+/// <param name="userId">User unique id</param>
 public static async Task BindUserData(string userId)
 	
 /// <summary>
@@ -460,7 +463,7 @@ public static async Task BindUserData(UserData userData)
 | userId | string| Yes | User id |
 | userName | string | No | Username |
 | userEmail | string | No | User email |
-| extra | dictionary | No | KV assignment, rules for adding can be found [here](#key-conflict) |
+| extra | dictionary | No | Key-value pairs, rules for adding can be found [here](#key-conflict) |
 
 
 ### Code Example
@@ -482,7 +485,7 @@ FTUnityBridge.UnBindUserdata()
 ## Closing the SDK
 ```csharp
 /// <summary>
-/// SDK Deinitialization
+/// SDK deinitialization
 /// </summary>
 public static void DeInit()
 ```
@@ -492,7 +495,7 @@ public static void DeInit()
 FTUnityBridge.DeInit()
 ```
 
-## Publish Package Related Configurations
+## Publish Package Configuration
 ### Android
 * [Android R8/Proguard Configuration](../android/app-access.md#r8_proguard)
 * [Android Symbol File Upload](../android/app-access.md#source_map)
@@ -502,11 +505,11 @@ FTUnityBridge.DeInit()
 
 
 ## Frequently Asked Questions {#FAQ}
-### Adding Local Variables to Avoid Conflicting Fields {#key-conflict}
+### Adding Local Variables to Avoid Field Conflicts {#key-conflict}
 
-To avoid conflicts between custom fields and SDK data, it is recommended to prefix tag names with **project abbreviations**, such as `df_tag_name`. In the project, you can [query the source code](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java) for `key` values. If there are variables in the SDK global variables that conflict with RUM or Log, RUM or Log will override the global variables in the SDK.
+To avoid conflicts between custom fields and SDK data, it is recommended to prefix tags with the **project abbreviation**, such as `df_tag_name`. For key values used in the project, you can [query the source code](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). If global variables in the SDK conflict with RUM or Log variables, RUM or Log will override the SDK's global variables.
 
 ### Others
-- [iOS Other Related](../ios/app-access.md#FAQ)
+- [iOS Related](../ios/app-access.md#FAQ)
 - [Android Privacy Review](../android/app-access.md#third-party)
-- [Android Other Related](../android/app-access.md#FAQ)
+- [Android Related](../android/app-access.md#FAQ)

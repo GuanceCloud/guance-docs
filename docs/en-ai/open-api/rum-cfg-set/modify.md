@@ -2,7 +2,7 @@
 
 ---
 
-<br />**POST /api/v1/rum_cfg/\{appid\}/modify**
+<br />**POST /api/v1/rum_cfg/{appid}/modify**
 
 ## Overview
 
@@ -12,21 +12,21 @@
 ## Route Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:------------------|:-------|:-----|:----------------|
-| appid | string | Y | AppId<br> |
+|:-------------------|:-------|:-------|:----------------|
+| appid | string | Y | appId<br> |
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:------------------|:-------|:-----|:----------------|
+|:-------------------|:-------|:-------|:----------------|
 | newAppId | string |  | New AppId<br>Allow null: False <br>Allow empty string: True <br>$maxCharacterLength: 48 <br> |
-| dashboardUuids | array |  | Built-in View UUIDs<br>Allow null: False <br> |
+| dashboardUuids | array |  | Built-in view UUIDs<br>Allow null: False <br> |
 | jsonContent | json |  | JSON formatted content<br> |
 | jsonContent.name | string |  | Application name<br>Allow null: False <br>Maximum length: 256 <br> |
 | jsonContent.type | string |  | Application type, not modifiable for existing business scenarios<br>Allow null: False <br>Options: ['web', 'miniapp', 'android', 'ios', 'custom', 'reactnative'] <br> |
-| jsonContent.extend | json |  | Other settings (please inform if additional fields at the same level are needed)<br>Allow null: False <br> |
-| clientToken | string |  | Client Token<br>Allow null: False <br>Allow empty string: True <br> |
+| jsonContent.extend | json |  | Other settings (please inform if additional fields are needed)<br>Allow null: False <br> |
+| clientToken | string |  | clientToken<br>Allow null: False <br>Allow empty string: True <br> |
 
 ## Additional Parameter Notes
 

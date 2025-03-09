@@ -1,4 +1,4 @@
-# 【Object Classification Configuration】Delete
+# Delete Object Classification Configuration
 
 ---
 
@@ -8,18 +8,14 @@
 Delete object classification configuration
 
 
-
-
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| sourceType | string | Y | Source type, default value is `custom_object`<br>Can be empty: False <br>Optional values: ['custom_object'] <br> |
-| objc_name | string | Y | Object classification configuration name<br>Can be empty: False <br> |
+| Parameter Name | Type   | Required | Description                                      |
+|:--------------|:-------|:--------|:------------------------------------------------|
+| sourceType    | string | Y       | Source type, default value is `custom_object`<br>Can be empty: False <br>Optional values: ['custom_object'] <br> |
+| objc_name     | string | Y       | Object classification configuration name<br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
-
-
 
 
 
@@ -31,8 +27,6 @@ curl 'https://openapi.guance.com/api/v1/objc_cfg_template/delete' \
 --data-raw '{"sourceType":"custom_object","objc_name":"test"}' \
 --compressed
 ```
-
-
 
 
 ## Response

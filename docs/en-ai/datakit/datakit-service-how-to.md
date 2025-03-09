@@ -1,21 +1,21 @@
 # DataKit Service Management
 ---
 
-[DataKit Installation](datakit-install.md) After the installation is complete, it's necessary to provide a basic introduction to the installed DataKit.
+[DataKit Installation](datakit-install.md) After installation, it is necessary to provide some basic introductions for the installed DataKit.
 
 ## DataKit Directory Introduction {#install-dir}
 
 DataKit currently supports three major platforms: Linux/Windows/Mac:
 
-| Operating System                            | Architecture                | Installation Path                                                                       |
-| ------------------------------------------- | ---------------------------- | ---------------------------------------------------------------------------------------- |
-| Linux kernel 2.6.23 or higher               | amd64/386/arm/arm64          | `/usr/local/datakit`                                                                     |
-| macOS 10.13 or higher[^1]                   | amd64                       | `/usr/local/datakit`                                                                     |
-| Windows 7, Server 2008R2 or higher          | amd64/386                    | 64-bit: `C:\Program Files\datakit`<br />32-bit: `C:\Program Files (x86)\datakit`        |
+| Operating System                           | Architecture        | Installation Path                                                                 |
+| ------------------------------------------ | ------------------- | --------------------------------------------------------------------------------- |
+| Linux kernel 2.6.23 or higher              | amd64/386/arm/arm64 | `/usr/local/datakit`                                                              |
+| macOS 10.13 or higher[^1]                  | amd64               | `/usr/local/datakit`                                                              |
+| Windows 7, Server 2008R2 or higher         | amd64/386           | 64-bit: `C:\Program Files\datakit`<br />32-bit: `C:\Program Files (x86)\datakit` |
 
 [^1]: Golang 1.18 requires macOS-amd64 version 10.13.
 
-After installation, the DataKit directory structure looks roughly like this:
+After installation, the DataKit directory structure looks like this:
 
 ``` not-set
 ├── [4.4K]  conf.d
@@ -30,18 +30,18 @@ After installation, the DataKit directory structure looks roughly like this:
 Where:
 
 - `conf.d`: Contains configuration examples for all collectors. The main DataKit configuration file *datakit.conf* is located in this directory.
-- `data`: Stores data files required for DataKit operation, such as IP address databases.
-- `datakit`: Main DataKit program, *datakit.exe* on Windows.
-- `externals`: Some collectors are not integrated into the main DataKit program and are placed here.
-- `pipeline`: Stores scripts used for text processing.
-- `gin.log`: DataKit can receive external HTTP data input, and this log file acts as an HTTP access log.
-- `log`: DataKit runtime logs (on Linux/Mac platforms, DataKit runtime logs are stored in the `/var/log/datakit` directory).
+- `data`: Stores data files required by DataKit, such as IP address databases.
+- `datakit`: The main DataKit program; on Windows, it is *datakit.exe*.
+- `externals`: Some collectors are not integrated into the main DataKit program and reside here.
+- `pipeline`: Contains scripts used for text processing.
+- `gin.log`: DataKit can accept external HTTP data input, and this log file acts as an HTTP access-log.
+- `log`: DataKit runtime logs (on Linux/Mac platforms, DataKit runtime logs are in the `/var/log/datakit` directory).
 
 <!-- markdownlint-disable MD046 -->
-???+ tip "View Kernel Version"
+???+ tip "Check Kernel Version"
 
     - Linux/Mac: `uname -r`
-    - Windows: Run the `cmd` command (hold down the Win key + `r`, type `cmd` and press Enter), then input `winver` to get system version information.
+    - Windows: Run the `cmd` command (hold down the Win key + `r`, type `cmd` and press Enter), then type `winver` to get system version information.
 <!-- markdownlint-enable -->
 
 ## DataKit Service Management {#manage-service}
@@ -49,7 +49,7 @@ Where:
 You can manage DataKit directly using the following commands:
 
 ```shell
-# On Linux/Mac, you may need to add sudo
+# Linux/Mac may require sudo
 datakit service -T # stop
 datakit service -S # start
 datakit service -R # restart
@@ -58,7 +58,7 @@ datakit service -R # restart
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    You can view more help information by running `datakit help service`.
+    You can view more help information with `datakit help service`.
 <!-- markdownlint-enable -->
 
 ### Handling Service Management Failures {#when-service-failed}
@@ -93,7 +93,7 @@ You can uninstall or reinstall the DataKit service directly using the following 
 > Note: Uninstalling DataKit here will not delete related DataKit files.
 
 ```shell
-# On Linux/Mac shell
+# Linux/Mac shell
 datakit service -I # re-install
 datakit service -U # uninstall
 ```
@@ -102,12 +102,12 @@ datakit service -U # uninstall
 
 ### :material-chat-question: Failure to Start on Windows {#windows-start-fail}
 
-DataKit runs as a service on Windows and writes many Event logs upon startup. As logs accumulate, you might encounter the following error:
+DataKit runs as a service on Windows, writing many Event logs upon startup. As logs accumulate, the following error may occur:
 
 ``` not-set
 Start service failed: The event log file is full.
 ```
 
-This error can prevent DataKit from starting. You can resolve this by [adjusting the Windows Event settings](https://stackoverflow.com/a/13868216/342348){:target="_blank"} (using Windows Server 2016 as an example):
+This error prevents DataKit from starting. You can resolve it by [adjusting the Windows Event settings](https://stackoverflow.com/a/13868216/342348){:target="_blank"} (using Windows Server 2016 as an example):
 
 ![Modify Windows Event Settings](https://static.guance.com/images/datakit/set-windows-event-log.gif)

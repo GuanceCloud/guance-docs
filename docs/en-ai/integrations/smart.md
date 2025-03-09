@@ -1,15 +1,15 @@
 ---
-title: 'Disk S.M.A.R.T'
-summary: 'Collect disk metrics using `smartctl`'
+title     : 'Disk S.M.A.R.T'
+summary   : 'Collect disk metrics using `smartctl`'
 tags:
   - 'Host'
-__int_icon: 'icon/smartctl'
-dashboard:
-  - desc: 'Not available'
-    path: '-'
-monitor:
-  - desc: 'Not available'
-    path: '-'
+__int_icon      : 'icon/smartctl'
+dashboard :
+  - desc  : 'Not available'
+    path  : '-'
+monitor   :
+  - desc  : 'Not available'
+    path  : '-'
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
@@ -20,13 +20,13 @@ Data collection for computer hard drive operational status
 
 ## Configuration {#config}
 
-### Prerequisites {#requirements}
+### Prerequisites {#requrements}
 
 Install `smartmontools`
 
 - Linux: `sudo apt install smartmontools -y`
 
-If the solid-state drive complies with the NVMe standard, it is recommended to install `nvme-cli` to obtain more NVMe information:
+If the solid-state drive conforms to the NVMe standard, it is recommended to install `nvme-cli` to obtain more NVMe information:
 
 <!-- markdownlint-disable MD046 -->
 === "Linux"
@@ -72,7 +72,7 @@ If the solid-state drive complies with the NVMe standard, it is recommended to i
       ## ["vendor1", "vendor2", ...] - e.g. "Intel" enable additional Intel specific disk info
       # enable_extensions = ["auto-on"]
     
-      ## On most platforms used cli utilities require root access.
+      ## On most platforms used cli utilities requires root access.
       ## Setting 'use_sudo' to true will make use of sudo to run smartctl or nvme-cli.
       ## Sudo must be configured to allow the telegraf user to run smartctl or nvme-cli
       ## without a password.
@@ -106,7 +106,7 @@ If the solid-state drive complies with the NVMe standard, it is recommended to i
 
 ## Metrics {#metric}
 
-By default, all collected data will append a global tag named `host` (tag value is the hostname where DataKit resides), and other tags can be specified through `[inputs.smart.tags]` in the configuration:
+All data collected below will append a global tag named `host` (tag value is the hostname where DataKit resides) by default. Additional tags can be specified in the configuration through `[inputs.smart.tags]`:
 
 ```toml
  [inputs.smart.tags]
@@ -193,8 +193,8 @@ By default, all collected data will append a global tag named `host` (tag value 
 |`perc_avail_resrvd_space_value`|The value of available reserved space.|int|count|
 |`perc_avail_resrvd_space_worst`|The worst value of available reserved space.|int|count|
 |`perc_write/erase_count_raw_value`|The raw value of write/erase count.|int|count|
-|`perc_write/erase_count_value`|The value of of write/erase count.|int|count|
-|`perc_write/erase_count_worst`|The worst value of of write/erase count.|int|count|
+|`perc_write/erase_count_value`|The value of write/erase count.|int|count|
+|`perc_write/erase_count_worst`|The worst value of write/erase count.|int|count|
 |`perc_write/erase_ct_bc_raw_value`|The raw value of write/erase count.|int|count|
 |`perc_write/erase_ct_bc_value`|The value of write/erase count.|int|count|
 |`perc_write/erase_ct_bc_worst`|The worst value of write/erase count.|int|count|
@@ -262,7 +262,7 @@ By default, all collected data will append a global tag named `host` (tag value 
 |`total_nand_writes_gib_worst`|The worst value of total NAND flush writes.|int|count|
 |`total_reads_gib_raw_value`|The raw value of total read.|int|count|
 |`total_reads_gib_value`|The value of total read.|int|count|
-|`total_reads_gib_worst`|The worst value of total read|int|count|
+|`total_reads_gib_worst`|The worst value of total read.|int|count|
 |`total_write/erase_count_raw_value`|The raw value of total write/erase count.|int|count|
 |`total_write/erase_count_value`|The value of total write/erase count.|int|count|
 |`total_write/erase_count_worst`|The worst value of total write/erase count.|int|count|
@@ -283,4 +283,28 @@ By default, all collected data will append a global tag named `host` (tag value 
 
 
 </input_content>
+<target_language>英语</target_language>
+</input>
+
+- If the input is Markdown content, example:
+<example>
+Input example:
+- input_content: "# Introduction\nThis is a brief introduction to the product.\n- Feature 1\n- Feature 2"
+- target_language: English
+
+Expected output:
+- translated_content: "# Introduction\nThis is a brief introduction to the product.\n- Feature 1\n- Feature 2"
+</example>
+
+- If the input is YAML content, example:
+<example>
+Input example:
+nav:
+ - 观测云: /guance
+ - 应用性能监测: /apm
+
+Expected output (do not add extra ```YAML ``` Markdown code block markers):
+nav:
+ - Guance: /guance
+ - APM: /apm
 </example>

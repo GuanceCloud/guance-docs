@@ -1,9 +1,9 @@
 # iOS Session Replay
 
-![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://static.guance.com/ft-sdk-package/badge/ios/feature/session_replay/version.json&link=https://github.com/GuanceCloud/datakit-ios) 
+![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://<<< custom_key.static_domain >>>/ft-sdk-package/badge/ios/feature/session_replay/version.json&link=https://github.com/GuanceCloud/datakit-ios) 
 
 ## Prerequisites
-* Ensure you have [configured and initialized the FTMobileSDK RUM settings](../../../ios/app-access.md) and enabled View monitoring.
+* Ensure you have [configured and initialized the FTMobileSDK RUM settings](../../../ios/app-access.md), and enabled monitoring for Views.
 * iOS Session Replay is currently an alpha feature, **version support: SDK.Version >= 1.6.0**
 
 ## Configuration
@@ -35,11 +35,13 @@ Link the `FTSessionReplay` component from the `FTMobileSDK` library to your proj
        FTRumSessionReplay.shared().start(with: srConfig)
     ```
 
+
+
 | Property       | Type        | Required | Description                                                         |
 | ---------- | ----------- | ---- | ------------------------------------------------------------ |
-| sampleRate | int         | No   | Sampling rate. Range [0,100], 0 means no sampling, 100 means full sampling, default is 100. This sampling rate is based on the RUM sampling rate. |
-| privacy    | FTSRPrivacy | No   | Set the privacy level for content masking in Session Replay. Default is `FTSRPrivacyMask`.<br/>Masking behavior: Text is replaced with * or # <br>`FTSRPrivacyAllow`: Records all content except sensitive input controls, such as password inputs<br/>`FTSRPrivacyMaskUserInput`: Masks input elements, such as `UITextField`, `UISwitch`, etc.<br/>`FTSRPrivacyMask`: Masks all content. |
+| sampleRate | int         | No   | Sampling rate. Range [0,100], where 0 means no collection, and 100 means full collection. Default value is 100. This sampling rate is based on the RUM sampling rate. |
+| privacy    | FTSRPrivacy | No   | Set the privacy level for content masking in Session Replay. Default is `FTSRPrivacyMask`.<br/> Masking behavior: text is replaced with * or # <br>`FTSRPrivacyAllow`: records all content except sensitive input controls, such as password inputs<br/>`FTSRPrivacyMaskUserInput`: masks input elements. For example, `UITextField`, `UISwitch`, etc.<br/>`FTSRPrivacyMask`: masks all content. |
 
 ## Code and Configuration References
- * [iOS Demo Cocoapod Configuration](https://github.com/GuanceDemo/guance-app-demo/blob/session_replay/src/ios/demo/Podfile#L11)
+ * [iOS Demo CocoaPods Configuration](https://github.com/GuanceDemo/guance-app-demo/blob/session_replay/src/ios/demo/Podfile#L11)
  * [iOS Demo Code Invocation](https://github.com/GuanceDemo/guance-app-demo/blob/session_replay/src/ios/demo/GuanceDemo/AppDelegate.swift#L69)

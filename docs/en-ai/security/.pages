@@ -1,5 +1,5 @@
 nav:
   - index.md
-  - 'beforeSend (数据拦截以及数据修改)': before-send.md
+  - 'beforeSend (Data Interception and Data Modification)': before-send.md
   - 'Page Performance': page-performance.md
   - 'Content Security Policy (Content Security Policy)': content-security-policy.md

@@ -10,9 +10,9 @@ Delete data access rule
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:----------|:------------------------|
-| loggingQueryRuleUuids | array    | Y         | List of UUIDs for log data access rules<br>Allow null: False <br> |
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:-------------------------|
+| loggingQueryRuleUuids | array    | Y        | List of UUIDs for log data access rules<br>Allow null: False <br> |
 
 ## Additional Parameter Notes
 

@@ -10,7 +10,7 @@ dashboard :
   - desc  : 'etcd-k8s'
     path  : 'dashboard/en/etcd-k8s'    
 monitor   :
-  - desc  : 'None'            # No monitoring view examples available
+  - desc  : 'None'            # Missing monitoring view examples
     path  : '-'
 ---
 
@@ -19,7 +19,7 @@ monitor   :
 
 ---
 
-The etcd collector can collect many metrics from an etcd instance, such as the status of the etcd server and network conditions, among others, and send these metrics to DataFlux to help you monitor and analyze various anomalies in etcd.
+The etcd collector can gather many metrics from etcd instances, such as the status of etcd servers and network conditions, and send these metrics to DataFlux for you to monitor and analyze various anomalies in etcd.
 
 ## Configuration {#config}
 
@@ -33,12 +33,12 @@ etcd version >= 3, tested versions:
 
 ### Collector Configuration {#input-config}
 
-By default, the etcd metrics endpoint is `http://localhost:2379/metrics`, but you can also modify it in the configuration file.
+To enable etcd, the default metrics endpoint is `http://localhost:2379/metrics`, which can also be customized in the configuration file.
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/etcd` directory under the DataKit installation directory, copy `etcd.conf.sample` and rename it to `etcd.conf`. An example is shown below:
+    Navigate to the `conf.d/etcd` directory under the DataKit installation directory, copy `etcd.conf.sample` and rename it to `etcd.conf`. Example configuration:
     
     ```toml
         
@@ -101,7 +101,7 @@ By default, the etcd metrics endpoint is `http://localhost:2379/metrics`, but yo
 |`server_version`|Server version.|
 |`version`|Version.|
 
-- Metric List
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -255,4 +255,5 @@ By default, the etcd metrics endpoint is `http://localhost:2379/metrics`, but yo
 |`promhttp_metric_handler_requests_total`|Total number of scrapes by HTTP status code.|float|count|
 
 
+</input_content>
 </example>

@@ -6,6 +6,6 @@ nav:
   - '【Workspace】Delete': delete.md
   - '【Workspace】Query Usage Limit': usage-limit-get.md
   - '【Workspace】Update Usage Limit': update-usage-limit.md
-  - '【Workspace】Upload Related Resources for Space Images': upload-logo-image.md
-  - '【Workspace】Get URLs for Related Resources of Space Images': get-logo-url.md
-  - '【Workspace】Custom Bind Information for Workspaces': set-bind-info.md
+  - '【Workspace】Upload Workspace-related Images and Resources': upload-logo-image.md
+  - '【Workspace】Get Workspace-related Image URLs': get-logo-url.md
+  - '【Workspace】Set Custom Workspace Binding Information': set-bind-info.md

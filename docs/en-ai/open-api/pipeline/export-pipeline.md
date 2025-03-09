@@ -5,17 +5,20 @@
 <br />**POST /api/v1/pipeline/export**
 
 ## Overview
-Export one or more Pipelines
+Export one or multiple Pipelines
+
 
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:----------|:------------------------|
-| pipelineUUIDs         | array    | Y         | Array of pipeline UUIDs<br>Allow null: False <br> |
+|:-------------------|:-------|:-----|:----------------|
+| pipelineUUIDs | array | Y | Array of Pipeline UUIDs<br>Allow null: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
+
+
 
 
 
@@ -27,6 +30,7 @@ curl 'https://openapi.guance.com/api/v1/pipeline/export' \
 --data-raw '{"pipelineUUIDs":["pl_xxxx32"]}' \
 --compressed
 ```
+
 
 
 

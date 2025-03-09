@@ -1,4 +1,4 @@
-# Modify Mapping Rules
+# Modify Mapping Rule
 
 ---
 
@@ -9,21 +9,22 @@ Modify a SAML mapping
 
 
 
+
 ## Route Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------------|:-------|:-----|:----------------|
-| fdmp_uuid | string | Y | Mapping configuration ID<br> |
+|:---------------------|:---------|:-----------|:-------------------------|
+| fdmp_uuid            | string   | Y          | Mapping configuration ID<br> |
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------------|:-------|:-----|:----------------|
-| ssoUUID | string |  | SSO configuration UUID<br>Example: sso_xxx <br>Allow null: False <br>Maximum length: 48 <br> |
-| sourceField | string | Y | Source field<br>Example: sourceField <br>Allow null: False <br>Maximum length: 256 <br> |
-| sourceValue | string | Y | Source field value<br>Example:  <br>Allow null: False <br>Maximum length: 256 <br> |
-| targetValues | array | Y | Target field values (currently defaults to a list of role UUIDs)<br>Example: ['readOnly'] <br> |
+|:---------------------|:---------|:-----------|:-------------------------|
+| ssoUUID              | string   |            | SSO configuration UUID<br>Example: sso_xxx <br>Can be empty: False <br>Maximum length: 48 <br> |
+| sourceField          | string   | Y          | Source field<br>Example: sourceField <br>Can be empty: False <br>Maximum length: 256 <br> |
+| sourceValue          | string   | Y          | Source field value<br>Example:  <br>Can be empty: False <br>Maximum length: 256 <br> |
+| targetValues         | array    | Y          | Target field values (currently defaults to a list of role UUIDs)<br>Example: ['readOnly'] <br> |
 
 ## Additional Parameter Notes
 

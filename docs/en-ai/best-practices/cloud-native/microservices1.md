@@ -4,18 +4,11 @@
 
 ## Introduction
 
-After enterprises create their own container cloud environment, they typically use GitlabCI and Jenkins for application deployment to simplify complex release processes. They also consider using Rancher for unified resource orchestration management and simplify application management through the Rancher application store. By installing DataKit via the application store (see DataKit documentation for Helm installation), Guance provides a large number of out-of-the-box observability features for Kubernetes clusters managed by Rancher. This article uses a familiar Bookinfo case study to detail how to achieve observability with GitlabCI, Kubernetes, and microservices using Guance.
+After enterprises create their own container cloud environment, they typically use GitLab CI or Jenkins for application deployment to simplify complex release processes. They also consider using Rancher for unified resource orchestration management and simplify application management through the Rancher application store. By installing DataKit via the application store (see the Helm installation method in the DataKit documentation), <<< custom_key.brand_name >>> provides a large number of out-of-the-box observability features for Kubernetes clusters managed by Rancher. This article uses the familiar Bookinfo example to explain how to achieve observability for GitLab CI, Kubernetes, and microservices using <<< custom_key.brand_name >>>.
 
-## Case Assumption
+## Case Assumptions
 
-A company manages two sets of Kubernetes environments using Rancher: one for development and testing, and one for production. The company deploys GitLab in the development and testing environment for CI/CD. The BookInfo project is an electronic bookstore and a typical multi-language microservice project. A new version being developed is deployed in the development and testing environment. After passing tests, it undergoes canary gray-scale release in the production environment. The components of the company's observability system are as follows:
-1.1 SRE observes the overall Kubernetes resources of both environments on Guance to plan capacity and handle emergencies.
-2.1 Developers observe the CI/CD process to understand software iteration speed and quality, and promptly address pipeline errors.
-2.2 SRE observes the canary release in the production environment to monitor traffic switching status and roll back if necessary to avoid impacting users.
-3.1 SRE performs end-to-end tracing through Istio to view critical health metrics of applications on Guance and handle abnormal requests in a timely manner.
-3.2 Developers manage their logs and find log context through traceability on Guance when health issues arise.
-
-We will cover the entire practice in three parts.
+A company manages two sets of Kubernetes environments using Rancher: one for development and testing, and another for production. The company deploys GitLab in the development and testing environment for CICD. The BookInfo project is an e-book store and a typical multi-language microservice project. A new version under development is deployed in the development and testing environment, and after passing tests, it undergoes canary gray release in the production environment. The components of the company's observability system are as follows: <br />1.1 SREs observe the overall Kubernetes resource status of both environments on <<< custom_key.brand_name >>>, ensuring capacity planning and emergency response <br />2.1 Developers monitor the CICD process to understand software iteration speed and quality, promptly handling failed pipelines.<br />2.2 SREs monitor the canary release in the production environment to understand traffic switching status and roll back if necessary to avoid impacting production users. <br />3.1 SREs use Istio to trace the entire application, viewing key health metrics on <<< custom_key.brand_name >>> and promptly handling abnormal requests.<br />3.2 Developers manage their logs and, when encountering health issues, use <<< custom_key.brand_name >>> to find log context and resolve problems through tracing. We will cover this practice in three parts.
 
 ## Prerequisites
 
@@ -23,23 +16,23 @@ We will cover the entire practice in three parts.
 - Install [Rancher](https://rancher.com/docs/rancher/v2.6/en/installation/).
 - Install [GitLab](https://about.gitlab.com/).
 - Install the [Metrics-Server component](https://github.com/kubernetes-sigs/metrics-server#installation).
-- Deploy a Harbor repository or other image repository.
-- Deploy Istio and be familiar with [best practices for achieving microservice observability with Istio](../istio).
-- Configure GitLab-runner and be familiar with [best practices for GitLab-CI observability](../monitoring/gitlab-ci).
+- Deploy Harbor registry or other image repositories.
+- Deploy Istio and be familiar with [Best Practices for Achieving Observability in Microservices Using Istio](../istio).
+- Configure GitLab-runner and be familiar with [Best Practices for Observing GitLab-CI](../monitoring/gitlab-ci).
 
 ## Deployment Steps
 
-### Step 1: Installing DataKit Using Rancher
+### Step 1: Install DataKit Using Rancher
 
 #### 1.1 Deploy DataKit
 
-##### 1.1.1 Download Deployment File
+##### 1.1.1 Download Deployment Files
 
-Log in to [Guance](https://console.guance.com/) and click on the 'Integration' module. Then click on 'DataKit' in the top-left corner, select 'Kubernetes', and download datakit.yaml.
+Log in to『[<<< custom_key.brand_name >>>](https://console.guance.com/)』, click on the 『Integration』module, then click 『DataKit』in the top-left corner, select 『Kubernetes』, and download datakit.yaml.
 
 ##### 1.1.2 Configure Token
 
-Log in to [Guance](https://console.guance.com/) and go to the 'Management' module. Find the token in the screenshot and replace the value of the ENV_DATAWAY environment variable in datakit.yaml with <your-token>.
+Log in to『[<<< custom_key.brand_name >>>](https://console.guance.com/)』, enter the 『Management』module, find the token in the image below, and replace the value of the ENV_DATAWAY environment variable in the datakit.yaml file with <your-token>.
 
 ```yaml
         - name: ENV_DATAWAY
@@ -50,7 +43,7 @@ Log in to [Guance](https://console.guance.com/) and go to the 'Management' modul
 
 ##### 1.1.3 Set Global Tags
 
-Add `cluster_name_k8s=k8s-istio` at the end of the ENV_GLOBAL_HOST_TAGS environment variable value in the datakit.yaml file, where k8s-istio is your cluster name. This step sets global tags for the cluster.
+Add cluster_name_k8s=k8s-istio at the end of the ENV_GLOBAL_HOST_TAGS environment variable value in the datakit.yaml file, where k8s-istio is your cluster name. This step sets global tags for the cluster.
 
 ```yaml
         - name: ENV_GLOBAL_HOST_TAGS
@@ -59,7 +52,7 @@ Add `cluster_name_k8s=k8s-istio` at the end of the ENV_GLOBAL_HOST_TAGS environm
 
 ##### 1.1.4 Set Namespace
 
-To distinguish different clusters during DataKit elections, set the ENV_NAMESPACE environment variable. Ensure different clusters have different values. Add the following content to the environment variables section in datakit.yaml.
+To distinguish different clusters during DataKit election, set the ENV_NAMESPACE environment variable. Ensure that the values for different clusters are not the same. Add the following content to the environment variables section in the datakit.yaml file.
 
 ```yaml
         - name: ENV_NAMESPACE
@@ -68,7 +61,7 @@ To distinguish different clusters during DataKit elections, set the ENV_NAMESPAC
 
 ##### 1.1.5 Enable Collectors
 
-Enable ddtrace and statsd collectors by adding statsd,ddtrace to the ENV_DEFAULT_ENABLED_INPUTS environment variable in datakit.yaml.
+Enable the ddtrace and statsd collectors. In the datakit.yaml file, find the ENV_DEFAULT_ENABLED_INPUTS environment variable and add statsd,ddtrace at the end.
 
 ```yaml
         - name: ENV_DEFAULT_ENABLED_INPUTS
@@ -77,15 +70,15 @@ Enable ddtrace and statsd collectors by adding statsd,ddtrace to the ENV_DEFAULT
 
 ##### 1.1.6 Deploy DataKit
 
-Log in to 'Rancher', under the Browse Clusters tab, choose the 'k8s-solution-cluster' cluster, open datakit.yaml, and create resources according to the content of the resource file in the k8s-solution-cluster cluster.
+Log in to『Rancher』, under the Browse Clusters tab, select the『k8s-solution-cluster』cluster, open datakit.yaml, and create resources according to the contents of the resource file in the k8s-solution-cluster cluster.
 
 ![image](../images/microservices/2.png)	 
 
-**Note:** To quickly proceed to the next step, this operation will merge ConfigMap and deploy DataKit directly using the kubectl command.
+**Note**: To quickly proceed to the next step, this operation merges ConfigMap and directly deploys DataKit using the kubectl command.
 
 #### 1.2 Create ConfigMap
 
-Enable container and zipkin collectors by defining container.conf and zipkin.conf.
+Enable the container collector and Zipkin collector by defining container.conf and zipkin.conf.
 
 ```yaml
 apiVersion: v1
@@ -134,21 +127,21 @@ data:
           pathV2 = "/api/v2/spans"
 ```
 
-[inputs.container] parameter descriptions:
+[inputs.container] Parameter Description
 
-- container_include_metric: Metrics to collect from containers.
-- container_exclude_metric: Metrics not to collect from containers.
-- container_include_log: Logs to collect from containers.
-- container_exclude_log: Logs not to collect from containers.
-- exclude_pause_container: True excludes pause containers.
-- `container_include` and `container_exclude` must start with `image`, formatted as `"image:<glob rule>"`, indicating that the glob rule applies to container images.
-- [Glob rules](https://en.wikipedia.org/wiki/Glob_(programming)) are lightweight regular expressions supporting basic match units like `*` and `?`.
+- container_include_metric: Metrics of containers to collect.
+- container_exclude_metric: Metrics of containers not to collect.
+- container_include_log: Logs of containers to collect.
+- container_exclude_log: Logs of containers not to collect.
+- exclude_pause_container: true excludes pause containers.
+- `container_include` and `container_exclude` must start with `image`, formatted as `"image:<glob pattern>"`, indicating that the glob pattern applies to the container image.
+- [Glob Pattern](https://en.wikipedia.org/wiki/Glob_(programming)) is a lightweight regular expression supporting basic match units like `*` and `?`.
 
-Then log in to 'Rancher', under the Browse Clusters tab, choose the 'k8s-solution-cluster' cluster, navigate to 'More Resources' -> 'Core' -> 'ConfigMaps', and create the defined ConfigMap in YAML format.
+Then log in to『Rancher』, under the Browse Clusters tab, select the『k8s-solution-cluster』cluster, navigate to『More Resources』-> 『Core』-> 『ConfigMaps』, and create the defined ConfigMap using YAML format.
 
 ![image](../images/microservices/3.png)	 
 
-Finally, associate DataKit with ConfigMap. In the 'k8s-solution-cluster' cluster, enter 'Workloads' -> 'DaemonSets', find DataKit, choose 'Edit YAML' on the right, add the following content, and click 'Save'.
+Finally, associate DataKit with ConfigMap. In the『k8s-solution-cluster』cluster, go to 『Workloads』-> 『DaemonSets』, find DataKit, select『Edit YAML』on the right, and add the following content, then click『Save』.
 
 ![image](../images/microservices/4.png)	 
 
@@ -161,21 +154,21 @@ Finally, associate DataKit with ConfigMap. In the 'k8s-solution-cluster' cluster
           subPath: zipkin.conf
 ```
 
-If you use the kubectl command to create DataKit, add the contents defined in ConfigMap to the end of datakit.yaml and add the above configuration to the volumeMounts section.<br /> **Note:** Use --- as a separator.
+If using kubectl to create DataKit, add the content defined in ConfigMap to the end of the datakit.yaml file and place the above configuration under volumeMounts. <br /> **Note**: Use --- as a separator.
        
 #### 1.3 View DataKit Running Status
 
-After successful deployment of DataKit, you should see the running status as shown in the following figure.
+After successfully deploying DataKit, you should see the running status as shown in the following figure.
 		
 ![image](../images/microservices/5.png)	 
 
-### Step 2: Map DataKit Service
+### Step 2: Map DataKit Services
 
-When reporting trace data using Istio, the trace data is sent to the Service named **zipkin.istio-system**, and the reporting port is 9411. Since the DataKit service namespace is datakit and the port is 9529, a conversion is needed here. For details, refer to [Using ExternalName to Map DataKit Service in Kubernetes Cluster](../kubernetes-external-name).
+When reporting trace data using Istio, the trace data is sent to the Service **zipkin.istio-system**, with the reporting port being 9411. Since the DataKit service namespace is datakit and the port is 9529, a conversion is needed. For details, refer to [Using ExternalName to Map DataKit Services in Kubernetes Cluster](../kubernetes-external-name).
 
 ### Step 3: Configure DataKit with DataFlux Function
 
-When deploying microservices using Gitlab-CI, to collect Gitlab execution data, deploy DataFlux Function and configure DataKit. Detailed steps can be found in [Gitlab-CI Observability Best Practices](../monitoring/gitlab-ci).
+When deploying microservices using GitLab-CI, to collect GitLab execution data, you need to deploy DataFlux Function and configure DataKit. For detailed steps, refer to [Best Practices for Observing GitLab-CI](../monitoring/gitlab-ci).
 
 ### Step 4: Deploy Bookinfo
 
@@ -185,12 +178,12 @@ Download [istio-1.13.2.zip](https://github.com/istio/istio/releases). All subseq
 
 #### 2.2 Enable RUM
 
-To observe website call information, frontend data collection needs to be enabled. Log in to [Guance](https://console.guance.com/) and go to 'User Analysis'. Create a new application named **devops-bookinfo** and copy the JS code below.
+To observe website call information, front-end data collection needs to be enabled. Log in to『 [<<< custom_key.brand_name >>>](https://console.guance.com/)』, enter『User Analysis』, create a new application named **devops-bookinfo**, and copy the JS code below.
 
 ![image](../images/microservices/6.png)	 
 
-Place the copied JS in a location accessible by all productpage project interfaces. In this project, the JS is added to the **istio-1.13.2\samples\bookinfo\src\productpage\templates\productpage.html** file.
-**Note:** Refer to [Best Practices for Reporting RUM Data to DataKit Cluster](../monitoring/rum-datakit-cluster) for the DataKit address used for RUM data reporting.
+Place the JS code in a location accessible by all pages of the productpage project. This project copies the JS code into the **istio-1.13.2\samples\bookinfo\src\productpage\templates\productpage.html** file.
+**Note**: For the DataKit address used for RUM data reporting, refer to [Best Practices for RUM Data Reporting DataKit Cluster](../monitoring/rum-datakit-cluster).
 
 ![image](../images/microservices/7.png)	 
 
@@ -204,7 +197,7 @@ docker push 172.16.0.238/df-demo/product-page:v1
 
 #### 2.3 Enable Sidecar Injection
 
-Create a prod namespace and enable automatic Sidecar injection for Pods created in this namespace to route inbound and outbound traffic through the Sidecar.
+Create the prod namespace and enable automatic Sidecar injection for Pods created in this namespace so that Pod ingress and egress traffic is handled by Sidecar.
 
 ```shell
 kubectl create ns prod 
@@ -213,7 +206,7 @@ kubectl label namespace prod istio-injection=enabled
 
 #### 2.4 Deploy productpage, details, ratings
 
-In the istio-1.13.2\samples\bookinfo\platform\kube\bookinfo.yaml file, remove the part about deploying the reviews microservice. Deploy Services and Deployments to the prod namespace and add annotations to all Deployment controllers and Pod templates to enable custom collection. Modify the productpage image to the one created in the previous step. The complete file is as follows:
+In the istio-1.13.2\samples\bookinfo\platform\kube\bookinfo.yaml file, remove the part about deploying the reviews microservice. Deploy the Services and Deployments to the prod namespace and add annotations to all Deployment controllers and Pod templates to enable custom collection. Modify the productpage image to the one created in the previous step. The complete file is as follows:
 
 ```yaml
 
@@ -519,7 +512,7 @@ kubectl apply -f bookinfo-gateway.yaml
 
 #### 2.6 Access productpage
 
-Check the exposed port of the ingresgateway.
+Check the external port exposed by the ingress gateway.
 
 ```shell
 kubectl get svc -n istio-system
@@ -527,13 +520,13 @@ kubectl get svc -n istio-system
 
 ![image](../images/microservices/8.png)	 
 
-According to the virtual service rules, browse to [http://8.136.193.105:32156/productpage](http://8.136.193.105:32156/productpage) to access productpage. Since the reviews service has not been deployed yet, you will see the message **Sorry, product reviews are currently unavailable for this book**.
-
+Based on the virtual service rules, access [http://8.136.193.105:32156/productpage](http://8.136.193.105:32156/productpage) in the browser to access productpage. Since the reviews service has not been deployed yet, you will see the message **Sorry, product reviews are currently unavailable for this book**.
+		
 ![image](../images/microservices/9.png)	 
 
 ### Step 5: Automated Deployment
 
-#### 5.1 Create GitLab Project
+#### 5.1 Create a GitLab Project
 
 Log in to GitLab and create the bookinfo-views project.
 		
@@ -541,7 +534,7 @@ Log in to GitLab and create the bookinfo-views project.
 	 
 #### 5.2 Connect GitLab with DataKit
 
-Refer to the [GitLab integration documentation](/integrations/gitlab) to connect GitLab and DataKit. Here, only GitLab CI is configured.<br /> Log in to 'GitLab', go to 'bookinfo-views' -> 'Settings' -> 'Webhooks', and input the URL with the IP address of the DataKit host and the 9529 port of DataKit followed by /v1/gitlab in the URL field. As shown in the figure below.
+Refer to the [GitLab Integration Documentation](/integrations/gitlab) to connect GitLab and DataKit. Here, only GitLab CI configuration is covered.<br />        Log in to『GitLab』, go to『bookinfo-views』-> 『Settings』-> 『Webhooks』, and input the URL with the IP address of the DataKit host and DataKit's port 9529, followed by /v1/gitlab. As shown in the image below.
 
 ![image](../images/microservices/11.png)	 
 
@@ -549,14 +542,14 @@ Select Job events and Pipeline events, then click Add webhook.
 		
 ![image](../images/microservices/12.png)
 
-Click Test next to the created Webhook and choose Pipeline events. An HTTP 200 response indicates successful configuration.
+Click Test next to the Webhook you just created, choose Pipeline events, and an HTTP 200 response indicates successful configuration.
 			
 ![image](../images/microservices/13.png)	 
 
        
 #### 5.3 Configure GitLab-CI for the Reviews Microservice
 
-Log in to 'GitLab', go to 'bookinfo-views', and create deployment.yaml and .gitlab-ci.yml files at the root directory. Annotations define project, env, and version tags to differentiate between different projects and versions.
+Log in to『GitLab』, go to『bookinfo-views』, and create deployment.yaml and .gitlab-ci.yml files in the root directory. Annotations define the project, env, and version labels for distinguishing different projects and versions.
 
 ```yaml
 apiVersion: v1
@@ -665,7 +658,7 @@ deploy_k8s:
   tags:
     - kubernetes-runner
   script:
-    - echo "Executing deployment"
+    - echo "Executing deploy"
     - ls
     - sed -i "s#__version__#${APP_VERSION}#g" deployment.yaml
     - cat deployment.yaml
@@ -676,11 +669,11 @@ deploy_k8s:
 
 ```
 
-### Step 6: GitLab CI Observability
+### Step 6: Observability of GitLab CI
 
-#### 6.1 Publish Reviews Microservice
+#### 6.1 Deploy the Reviews Microservice
 
-Modify the APP_VERSION value in the .gitlab-ci.yml file to "v1", commit once, modify to "v2", commit once, and modify to "v3" and commit once.
+Modify the APP_VERSION value in the .gitlab-ci.yml file to "v1", commit once, change it to "v2", commit again, and finally change it to "v3" and commit once more.
 		
 ![image](../images/microservices/14.png)
 
@@ -688,21 +681,21 @@ At this point, the Pipeline is triggered three times.
 
 ![image](../images/microservices/15.png)	 
 
-#### 6.2 GitLab CI Pipeline Observability
+#### 6.2 Observability of GitLab CI Pipelines
 
-Log in to [Guance](https://console.guance.com/), go to 'CI', click on 'Summary', and select the bookinfo-views project to view the execution status of Pipelines and Jobs.
+Log in to『[<<< custom_key.brand_name >>>](https://console.guance.com/)』, go to『CI』, click『Overview』and select the bookinfo-views project to view the execution status of Pipelines and Jobs.
 		  
 ![image](../images/microservices/16.png)	 
 
 ![image](../images/microservices/17.png)	 
 
-Log in to [Guance](https://console.guance.com/), go to 'CI', click on 'Explorer', and select gitlab_pipeline.
+Log in to『[<<< custom_key.brand_name >>>](https://console.guance.com/)』, go to『CI』, click『Explorer』, and select gitlab_pipeline.
 		 
 ![image](../images/microservices/18.png)	 
 
 ![image](../images/microservices/19.png)	 
 
-Log in to [Guance](https://console.guance.com/), go to 'CI', click on 'Explorer', and select gitlab_job.
+Log in to『[<<< custom_key.brand_name >>>](https://console.guance.com/)』, go to『CI』, click『Explorer』, and select gitlab_job.
 		 
 ![image](../images/microservices/20.png)	 
 

@@ -1,4 +1,4 @@
-# Custom Addition of Additional Data TAG
+# Custom Addition of Extra Data TAG
 
 ---
 
@@ -96,7 +96,7 @@ After initializing RUM, use the `setGlobalContextProperty(key:string, value:any)
     });
     ```
 
-### Retrieving All Set Custom TAGs
+### Getting All Set Custom TAGs
 
 === "CDN Sync"
 
@@ -122,7 +122,7 @@ After initializing RUM, use the `setGlobalContextProperty(key:string, value:any)
 
     ```
 
-### Removing Specific Custom TAG by Key
+### Removing Specific Key Corresponding Custom TAG
 
 === "CDN Sync"
 

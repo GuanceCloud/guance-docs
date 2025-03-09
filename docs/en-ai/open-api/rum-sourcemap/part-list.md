@@ -1,23 +1,25 @@
-# List the Uploaded Chunks for a Chunked Upload Event
+# List the Uploaded Parts Corresponding to a Sharded Upload Event
 
 ---
 
 <br />**POST /api/v1/rum_sourcemap/part_list**
 
 ## Overview
-This is the fourth optional step in the SourceMap compressed file upload (chunked upload) process. It lists the chunks that have already been uploaded. This is generally used for resuming interrupted uploads or checking uploaded chunks.
-For more details, refer to: [SourceMap Chunked Upload Related API Usage Instructions](../../../studio-backend/sourcemap-multipart-upload-init/)
+This is an optional fourth step in the sourcemap compressed file upload (sharded upload) operation. It lists the parts that have already been uploaded. This is generally used for resuming interrupted uploads or checking shards.
+For more details, refer to: [SourceMap Sharded Upload Related Interface Usage Instructions](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
 
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                  |
-|:--------------|:-------|:--------|:----------------------------|
-| uploadId      | string | Y       | ID of the chunked upload event<br>Can be null: False <br> |
+| Parameter Name | Type   | Required | Description              |
+|:--------------|:-------|:---------|:------------------------|
+| uploadId      | string | Y        | Sharded upload event ID<br>Allow null: False <br> |
 
 ## Additional Parameter Notes
+
+
 
 
 

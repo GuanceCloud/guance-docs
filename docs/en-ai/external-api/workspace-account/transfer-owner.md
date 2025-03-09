@@ -1,4 +1,4 @@
-# 【Workspace Members】Transfer the Owner of a Specified Workspace (The old owner's account will be directly removed from the current workspace)
+# Change the Owner of a Specified Workspace (The old owner's account will be directly removed from the current workspace)
 
 ---
 
@@ -11,16 +11,16 @@
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:---------|:----------------|
 | workspace_uuid | string | Y | Workspace UUID<br> |
 
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| accountUUID | string | Y | Account UUID, transfer the owner role to this account<br>Example: acnt_xxx <br>Can be null: True <br>Can be empty string: False <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:---------|:----------------|
+| accountUUID | string | Y | Account UUID, transfer the owner role to this account<br>Example: acnt_xxx <br>Allow null: True <br>Allow empty string: False <br> |
 
 ## Additional Parameter Notes
 
@@ -39,7 +39,3 @@
 
 
 </input_content>
-</example>
-</example>
-</example>
-</example>

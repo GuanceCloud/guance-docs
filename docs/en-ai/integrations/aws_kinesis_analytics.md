@@ -2,7 +2,7 @@
 title: 'AWS KinesisAnalytics'
 tags: 
   - AWS
-summary: 'Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance'
+summary: 'Use the script packages in the Script Market of Guance Cloud Sync series to synchronize cloud monitoring and cloud asset data to Guance'
 __int_icon: 'icon/aws_kinesis_analytics'
 dashboard:
 
@@ -18,56 +18,56 @@ monitor:
 # AWS KinesisAnalytics
 <!-- markdownlint-enable -->
 
-Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance
+Use the script packages in the Script Market of Guance Cloud Sync series to synchronize cloud monitoring and cloud asset data to Guance
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-We recommend enabling the Guance Integration - Extension - DataFlux Func (Automata): All prerequisites are automatically installed. Please proceed with the script installation.
+It is recommended to enable the Guance integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed, please proceed with the script installation
 
 If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
-> Note: Please prepare a qualified Amazon AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
+> Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize the monitoring data of KinesisAnalytics cloud resources, we install the corresponding collection script: 「Guance Integration (AWS KinesisAnalytics Collection)」(ID: `guance_aws_kinesis_analytics)
+To synchronize the monitoring data of KinesisAnalytics cloud resources, we install the corresponding collection script: "Guance Integration (AWS KinesisAnalytics Collection)" (ID: `guance_aws_kinesis_analytics`).
 
-After clicking 【Install】, enter the required parameters: Amazon AK, Amazon account name.
+After clicking [Install], enter the corresponding parameters: Amazon AK, Amazon account name.
 
-Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script.
+Click [Deploy Startup Script], the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-Additionally, you can see the corresponding automatic trigger configuration in 「Management / Automatic Trigger Configuration」. Click 【Execute】 to run it immediately without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
+Additionally, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click [Execute] to immediately execute it once without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-By default, we collect some configurations; for more details, see the metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+By default, we collect some configurations; for more details, see the metrics section [Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
 ### Verification
 
-1. In 「Management / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the automatic trigger configuration, and check the task records and logs for any anomalies.
-2. On the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
-3. On the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has the corresponding automatic trigger configuration, and check the task records and logs for any anomalies.
+2. On the Guance platform, under "Infrastructure / Custom", check if asset information exists.
+3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Amazon CloudWatch, the default metric set is as follows. You can collect more metrics through configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/kinesisanalytics/latest/java/metrics-dimensions.html){:target="_blank"}
+After configuring Amazon CloudWatch, the default metric set is as follows. You can collect more metrics via configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/en_us/kinesisanalytics/latest/java/metrics-dimensions.html){:target="_blank"}
 
 | Metric                    | Description                                                   | Unit       |
 | :---------------------- | :---------------------------------------------------- | :----------|
-| `cpuUtilization` | The overall percentage of CPU utilization in the Task Managers. For example, if there are five Task Managers, Kinesis Data Analytics publishes five samples of this metric at each reporting interval. | Percentage  |
-| `containerCPUUtilization` | The total percentage of CPU utilization in the Task Manager containers of the Flink application cluster. For example, if there are five Task Managers, which correspond to five TaskManager containers, Kinesis Data Analytics publishes 2 * 5 samples of this metric every 1 minute. | Percentage |
-| `containerMemoryUtilization` | The overall percentage of memory utilization in the Task Manager containers of the Flink application cluster. For example, if there are five Task Managers, which correspond to five TaskManager containers, Kinesis Data Analytics publishes 2 * 5 samples of this metric every 1 minute. | Percentage |
-| `containerDiskUtilization` | The overall percentage of disk utilization in the Task Manager containers of the Flink application cluster. For example, if there are five Task Managers, which correspond to five TaskManager containers, Kinesis Data Analytics publishes 2 * 5 samples of this metric every 1 minute. | Percentage |
-| `heapMemoryUtilization` | The overall heap memory utilization of Task Managers. For example, if there are five Task Managers, Kinesis Data Analytics publishes five samples of this metric at each reporting interval. | Percentage |
-| `oldGenerationGCCount` | The total number of old generation garbage collection operations that occurred across all Task Managers. | Count |
-| `oldGenerationGCTime` | The total time spent performing old generation garbage collection operations. | Milliseconds |
-| `threadCount` | The total number of live threads used by the application. | Count |
+| `cpuUtilization` | Overall percentage of CPU utilization in Task Managers. For example, if there are five Task Managers, Kinesis Data Analytics will publish five samples of this metric at each reporting interval. | Percentage  |
+| `containerCPUUtilization` | Overall percentage of CPU utilization in Task Manager containers of the Flink application cluster. For example, if there are five Task Managers, which correspond to five TaskManager containers, Kinesis Data Analytics publishes 2 * 5 samples of this metric every 1 minute. | Percentage |
+| `containerMemoryUtilization` | Overall percentage of memory utilization in Task Manager containers of the Flink application cluster. For example, if there are five Task Managers, which correspond to five TaskManager containers, Kinesis Data Analytics publishes 2 * 5 samples of this metric every 1 minute. | Percentage |
+| `containerDiskUtilization` | Overall percentage of disk utilization in Task Manager containers of the Flink application cluster. For example, if there are five Task Managers, which correspond to five TaskManager containers, Kinesis Data Analytics publishes 2 * 5 samples of this metric every 1 minute. | Percentage |
+| `heapMemoryUtilization` | Overall heap memory utilization in Task Managers. For example, if there are five Task Managers, Kinesis Data Analytics will publish five samples of this metric at each reporting interval. | Percentage |
+| `oldGenerationGCCount` | Total number of old generation garbage collection operations across all Task Managers. | Count |
+| `oldGenerationGCTime` | Total time spent executing old generation garbage collection operations. | Milliseconds |
+| `threadCount` | Total number of live threads used by the application. | Count |
 
 
 ## Objects {#object}
 
-The structure of the collected AWS KinesisAnalytics object data can be viewed in 「Infrastructure - Custom」
+The structure of the collected AWS KinesisAnalytics object data can be viewed in "Infrastructure - Custom"
 
 ```json
 {
@@ -83,10 +83,10 @@ The structure of the collected AWS KinesisAnalytics object data can be viewed in
     "name": "zsh_test"
   },
   "fields": {
-    "message"     : "{instance JSON data}"
+    "message"     : "{Instance JSON Data}"
   }
 }
 
 ```
 
-> *Note: Fields within `tags` and `fields` may change with subsequent updates*
+> *Note: The fields in `tags` and `fields` may change with subsequent updates*

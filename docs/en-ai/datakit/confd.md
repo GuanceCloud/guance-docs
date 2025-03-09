@@ -1,19 +1,19 @@
-# Distributing Configuration via the Configuration Center
+# Distributing Configuration via Configuration Center
 ---
 
-## Introduction to the Configuration Center {#intro}
+## Introduction to Configuration Center {#intro}
 
-The idea behind the configuration center is to centralize all configurations, parameters, and switches from various projects into one unified management system, providing a standardized set of interfaces. When services need to retrieve configurations, they pull from the configuration center's interface. When there are updates to parameters in the configuration center, it can notify services to synchronize the latest information in real-time, enabling dynamic updates.
+The idea behind the configuration center is to centrally manage all configurations, parameters, and switches in a project through a unified interface. When services need to obtain configurations, they can pull them from the configuration center's API. When parameters in the configuration center are updated, it can notify services to synchronize the latest information in real time, enabling dynamic updates.
 
-Using "centralized configuration management" effectively addresses the traditional problem of "configuration files being too scattered." All configurations are managed in one place at the configuration center, eliminating the need for each project to have its own configuration file, significantly reducing development costs.
+Adopting "centralized configuration management" effectively solves the traditional problem of "dispersed configuration files." All configurations are managed in one place, reducing development costs significantly.
 
-By separating "configuration from application," it effectively solves the traditional issue of "configuration files not distinguishing between environments." Configurations do not follow the environment; when different environments have different requirements, they can obtain the necessary configurations from the configuration center, greatly reducing deployment and maintenance costs.
+Using "separation of configuration and application" effectively addresses the traditional issue of "configuration files not distinguishing environments." Configurations do not follow environments; when different environments have different requirements, they can be obtained from the configuration center, greatly reducing deployment costs.
 
-The "real-time update" feature addresses the problem of traditional "static configurations." When online systems need parameter adjustments, they can be dynamically modified in the configuration center.
+The "real-time update" feature resolves the traditional problem of "static configuration." When online systems need parameter adjustments, changes can be made dynamically in the configuration center.
 
-Datakit supports multiple configuration centers such as `etcd-v3`, `consul`, `redis`, `zookeeper`, `aws secrets manager`, `nacos`, `file`, etc., and can use multiple configuration centers simultaneously. When data in the configuration center changes, Datakit can automatically update configurations, add or remove collectors, and restart relevant collectors as needed.
+Datakit supports multiple configuration centers such as `etcd-v3`, `consul`, `redis`, `zookeeper`, `aws secrets manager`, `nacos`, and `file`, and can use multiple configuration centers simultaneously. When data in the configuration center changes, Datakit can automatically update configurations, add or remove collectors, and restart related collectors as necessary.
 
-## Introducing the Configuration Center {#Configuration-Center-Import}
+## Introducing Configuration Center {#Configuration-Center-Import}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
@@ -78,12 +78,12 @@ Datakit supports multiple configuration centers such as `etcd-v3`, `consul`, `re
 === "Kubernetes"
 
     Due to the special nature of Kubernetes environments, using environment variables for installation/configuration is the simplest method.
+    
+    When installing in Kubernetes, you need to set the following environment variables to include configuration information. Refer to [Kubernetes Documentation](datakit-daemonset-deploy.md#env-confd)
 
-    When installing in Kubernetes, you need to set the following environment variables to pass the configuration information. Refer to the [Kubernetes documentation](datakit-daemonset-deploy.md#env-confd).
+=== "Introducing During Program Installation"
 
-=== "Program Installation"
-
-    If you need to define some Datakit configurations during the installation phase, you can add environment variables before the installation command. For example:
+    If you need to define some Datakit configurations during installation, you can add environment variables before the installation command, prefixed with `DK_DATAWAY`. For example:
 
     ```shell
     # Linux/Mac
@@ -110,26 +110,26 @@ Datakit supports multiple configuration centers such as `etcd-v3`, `consul`, `re
     NAME1="value1" NAME2="value2"
     ```
 
-    Refer to the [host installation documentation](datakit-install.md#env-confd) for more details.
+    Refer to [Host Installation Documentation](datakit-install.md#env-confd)
 
 <!-- markdownlint-enable -->
 
 ## Default Enabled Collectors {#default-enabled-inputs}
-After installing DataKit, a batch of host-related collectors are enabled by default without manual configuration, such as `cpu`, `disk`, `diskio`, `mem`, etc. Refer to [Collector Configuration](datakit-input-conf.md#default-enabled-inputs)
+After installing DataKit, a batch of host-related collectors are enabled by default and do not require manual configuration, such as `cpu`, `disk`, `diskio`, `mem`, etc. Refer to [Collector Configuration](datakit-input-conf.md#default-enabled-inputs)
 
-The configuration center can modify these collector configurations but cannot delete or stop them. To delete default collectors, open the *datakit.conf* file under the Datakit *conf.d* directory and remove the collector from `default_enabled_inputs`.
+The configuration center can modify these collector configurations but cannot delete or stop them. To delete default collectors, open the `datakit.conf` file under the Datakit *conf.d* directory and remove the collector from `default_enabled_inputs`.
 
 ## Singleton Operation Control for Collectors {#input-singleton}
 
-Some collectors are allowed to run only as singletons, such as all default enabled collectors and `netstat`. Others can run multiple instances, such as `nginx` and `nvidia_smi`.
+Some collectors are allowed to run as singletons, such as all default enabled collectors and `netstat`. Others can run multiple instances, like `nginx` and `nvidia_smi`.
 
-For singleton-running collector configurations, only the first loaded configuration takes effect (sorted by filename).
+For singleton-running collector configurations, only the first loaded configuration (sorted by filename) will take effect.
 
 ## Data Format {#data-format}
 
-Datakit configuration information is stored in the configuration center in Key-Value form. The key prefix must be `/datakit/`, for example, `/datakit/XXX`, where `XXX` should be unique. It is recommended to use the corresponding collector name, such as `/datakit/netstat`.
+Datakit configuration information is stored in the configuration center in Key-Value format. The Key prefix must be `/datakit/`, for example, `/datakit/XXX`, where `XXX` should be unique. It is recommended to use the corresponding collector name, such as `/datakit/netstat`.
 
-The value content is the complete content of various configuration files in the *conf.d* subdirectory. For example:
+The Value content is the complete content of various configuration files in the *conf.d* subdirectory. For example:
 
 ```toml
 [[inputs.netstat]]
@@ -141,9 +141,9 @@ The value content is the complete content of various configuration files in the 
   # more_tag = "some_other_value"
 ```
 
-In file mode, the file content is the original *.conf* file content.
+In `file` mode, the file content is the same as the original *.conf* file content.
 
-## How the Configuration Center Updates Configuration (Example in Golang) {#update-config}
+## How Configuration Center Updates Configuration (Example in Golang) {#update-config}
 
 ### Zookeeper {#update-zookeeper}
 
@@ -161,10 +161,10 @@ func zookeeperDo(index int) {
     defer conn.Close()
     // Create top-level directory node
     add(conn, "/datakit", "")
-    // Create second-level directory nodes
+    // Create second-level directory node
     add(conn, "/datakit/confd", "")
     add(conn, "/datakit/pipeline", "")
-    // Create third-level directory nodes
+    // Create third-level directory node
     add(conn, "/datakit/pipeline/metrics", "")
     add(conn, "/datakit/pipeline/metric", "")
     add(conn, "/datakit/pipeline/network", "")
@@ -200,7 +200,7 @@ func add(conn *zk.Conn, path, value string) {
     acls := zk.WorldACL(zk.PermAll)
     s, err := conn.Create(path, data, flags, acls)
     if err != nil {
-        fmt.Println("create error: ", err)
+        fmt.Println("creation error: ", err)
         modify(conn, path, value)
         return
     }
@@ -215,11 +215,12 @@ func modify(conn *zk.Conn, path, value string) {
     _, state, _ := conn.Get(path)
     s, err := conn.Set(path, data, state.Version)
     if err != nil {
-        fmt.Println("modify error: ", err)
+        fmt.Println("modification error: ", err)
         return
     }
     fmt.Println("modified successfully", s)
 }
+
 ```
 
 ### etcd-v3 {#update-etcdv3}
@@ -324,7 +325,7 @@ func consulDo(index int) {
     // Get KV handle
     kv := client.KV()
   
-    // Note: no leading slash before datakit
+    // Note: No leading slash before datakit
     key := "/datakit/confd/host/netstat.conf"
     value := `
 [[inputs.netstat]]
@@ -365,10 +366,10 @@ func awsSecretsManagerDo(index int) {
     // Create client
     region := "cn-north-1"
     config, err := config.LoadDefaultConfig(context.TODO(),
-        config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider("<AccessKeyID>", "<SecretAccessKey>", "")),
+        config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(<<AccessKeyID>>, <<SecretAccessKey>>, "")),
         config.WithRegion(region),
     )
-    // will use secret file like ~/.aws/config
+    // Will use secret file like ~/.aws/config
     // config, err := config.LoadDefaultConfig(context.TODO(), config.WithRegion(region))
     if err != nil {
         fmt.Printf("ERROR config.LoadDefaultConfig : %v\n", err)
@@ -406,18 +407,18 @@ func awsSecretsManagerDo(index int) {
 ### Nacos {#update-nacos}
 
 1. Log in to the Nacos management page via the URL.
-1. Create two namespaces `/datakit/confd` and `/datakit/pipeline`.
-1. Create groups according to the `datakit/conf.d` and `datakit/pipeline` subdirectories.
+1. Create two namespaces: `/datakit/confd` and `/datakit/pipeline`.
+1. Create group names according to the `datakit/conf.d` and `datakit/pipeline` subdirectories.
 1. Create `dataID` following the rules for `.conf` and `.p` files. Do not omit the suffix.
 1. Add, delete, or modify `dataID` via the management page.
 
-## Updating Pipelines in the Configuration Center {#update-config-pipeline}
+## Updating Pipeline in Configuration Center {#update-config-pipeline}
 
-Refer to [How the Configuration Center Updates Configuration](confd.md#update-config)
+Refer to [How Configuration Center Updates Configuration](confd.md#update-config)
 
-Change the key prefix `datakit/confd` to `datakit/pipeline` and add the "type/filename". For example, the key `datakit/pipeline/logging/nginx.p` holds the Pipeline text.
+Change the key name `datakit/confd` to `datakit/pipeline` and add the "type/filename". For example, the key `datakit/pipeline/logging/nginx.p` contains the Pipeline text.
 
-Updating Pipelines supports etcdV3/Consul/Redis/Zookeeper/AWS Secrets Manager/Nacos.
+Updating Pipeline supports etcdV3/Consul/Redis/Zookeeper/AWS Secrets Manager/Nacos.
 
 ## Backend Data Source Software Version Notes {#backend-version}
 

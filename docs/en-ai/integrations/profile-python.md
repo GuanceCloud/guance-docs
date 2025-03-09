@@ -1,6 +1,6 @@
 ---
-title: 'Profiling Python'
-summary: 'Python Profiling Integration'
+title     : 'Profiling Python'
+summary   : 'Python Profiling Integration'
 tags:
   - 'PYTHON'
   - 'PROFILE'
@@ -15,14 +15,14 @@ DataKit is installed and the [profile](profile.md#config) collector is enabled.
 
 ## dd-trace-py Integration {#ddtrace}
 
-`dd-trace-py` is an open-source library for tracing and performance analysis provided by DataDog, capable of collecting Metrics such as CPU, memory, blocking, etc.
+`dd-trace-py` is an open-source library provided by DataDog for trace collection and performance analysis, capable of collecting metrics such as CPU, memory, and blocking.
 
 - Install the dd-trace-py library
 
 <!-- markdownlint-disable MD046 -->
 ???+ note "Version Requirements"
 
-    DataKit currently supports `dd-trace-py 1.14.x` and below. Higher versions have not been systematically tested, and compatibility is unknown.
+    DataKit currently supports `dd-trace-py 1.14.x` and earlier versions. Higher versions have not been systematically tested, and compatibility is unknown.
 <!-- markdownlint-enable -->
 
 ```shell
@@ -69,38 +69,38 @@ DD_ENV=testing DD_SERVICE=python-profiling-manual DD_VERSION=1.2.3 python3 app.p
 
 ### Viewing Profiles {#view}
 
-After starting the program, DDTrace will periodically collect data (default is every 1 minute) and report it to DataKit. After a few minutes, you can view the corresponding data on the Guance platform under [APM -> Profile](https://console.guance.com/tracing/profile){:target="_blank"}.
+After starting the program, DDTrace will periodically collect data (default is every 1 minute) and report it to Datakit. After a few minutes, you can view the corresponding data on the Guance platform under [APM -> Profile](https://console.guance.com/tracing/profile){:target="_blank"}.
 
 ### Generating Performance Metrics {#metrics}
 
-Starting from [:octicons-tag-24: Version-1.39.0](../datakit/changelog.md#cl-1.39.0), DataKit supports extracting a set of Python runtime-related metrics from `dd-trace-py` output. These metrics are placed under the `profiling_metrics` Mearsurement set. Below is a partial list of these metrics with explanations:
+Starting from [:octicons-tag-24: Version-1.39.0](../datakit/changelog.md#cl-1.39.0), DataKit supports extracting a set of Python runtime-related metrics from the output information of `dd-trace-py`. This set of metrics is placed under the `profiling_metrics` Mearsurement. Below are some of the metrics listed with explanations:
 
 | Metric Name                                  | Description                                                     | Unit         |
 |---------------------------------------|--------------------------------------------------------|------------|
 | prof_python_cpu_cores                 | Number of CPU cores consumed                                             | core       |
-| prof_python_alloc_bytes_per_sec       | Memory bytes allocated per second                                            | byte       |
-| prof_python_allocs_per_sec            | Number of memory allocations per second                                               | count      |
-| prof_python_alloc_bytes_total         | Total memory allocated during a single profiling period (dd-trace defaults to 60 seconds per collection cycle) | byte       |
+| prof_python_alloc_bytes_per_sec       | Number of bytes allocated per second                                            | byte       |
+| prof_python_allocs_per_sec            | Number of allocations per second                                               | count      |
+| prof_python_alloc_bytes_total         | Total bytes allocated during a single profiling period (dd-trace defaults to a 60-second collection cycle) | byte       |
 | prof_python_lock_acquisition_time     | Total time spent waiting for locks during a single profiling period                          | nanosecond |
 | prof_python_lock_acquisitions_per_sec | Number of lock contentions per second                                             | count      |
 | prof_python_lock_hold_time            | Total time holding locks during a single profiling period                              | nanosecond |
 | prof_python_exceptions_per_sec        | Number of exceptions thrown per second                                               | count      |
 | prof_python_exceptions_total          | Total number of exceptions thrown during a single profiling period                               | count      |
 | prof_python_lifetime_heap_bytes       | Total size of heap memory objects currently in use                                        | byte       |
-| prof_python_wall_time                 | Wall-clock duration                                                   | nanosecond |
+| prof_python_wall_time                 | Wall clock duration                                                   | nanosecond |
 
 
 <!-- markdownlint-disable MD046 -->
 ???+ tips
 
-    This feature is enabled by default. If you do not need it, you can disable it by modifying the configuration file `<DATAKIT_INSTALL_DIR>/conf.d/profile/profile.conf` and setting the `generate_metrics` option to false, then restart DataKit.
+    This feature is enabled by default. If you do not need it, you can disable it by modifying the configuration file `<DATAKIT_INSTALL_DIR>/conf.d/profile/profile.conf` and setting the `generate_metrics` option to false, then restart Datakit.
 
     ```toml
     [[inputs.profile]]
     
     ...
     
-    ## Set false to stop generating APM metrics from ddtrace output.
+    ## set false to stop generating apm metrics from ddtrace output.
     generate_metrics = false
     ```
 <!-- markdownlint-enable -->
@@ -110,17 +110,17 @@ Starting from [:octicons-tag-24: Version-1.39.0](../datakit/changelog.md#cl-1.39
 
 ### Usage in Host Environment {#py-spy-on-host}
 
-`py-spy` is a non-intrusive Python performance sampling tool provided by the open-source community. It has the advantages of running independently and having minimal impact on the target program's load. By default, `py-spy` outputs sampling data in various formats to local files based on specified parameters. To simplify integration with DataKit, Guance provides a forked version [`py-spy-for-datakit`](https://github.com/GuanceCloud/py-spy-for-datakit){:target="_blank"}, which includes minor modifications to support automatically sending profiling data to DataKit.
+`py-spy` is a non-intrusive Python performance sampling tool provided by the open-source community. It has advantages such as standalone operation and low impact on target program load. By default, `py-spy` outputs sample data in different formats to local files based on specified parameters. To simplify the integration of `py-spy` with DataKit, Guance provides a forked version [`py-spy-for-datakit`](https://github.com/GuanceCloud/py-spy-for-datakit){:target="_blank"}, which includes minor modifications to support automatically sending profiling data to DataKit.
 
 - Installation
 
-We recommend installing via pip:
+It is recommended to install using pip:
 
 ```shell
 pip3 install py-spy-for-datakit
 ```
 
-Additionally, the [Github Release](https://github.com/GuanceCloud/py-spy-for-datakit/releases){:target="_blank"} page provides precompiled binaries for some mainstream platforms. You can also download and install them using pip. The following installation steps are for the Linux x86_64 platform (similar for other platforms):
+Additionally, the [Github Release](https://github.com/GuanceCloud/py-spy-for-datakit/releases){:target="_blank"} page provides precompiled versions for major platforms. You can also download and install them using pip. The following example demonstrates the installation steps for the Linux x86_64 platform (other platforms are similar):
 
 ```shell
 # Download the precompiled package for the corresponding platform
@@ -129,7 +129,7 @@ curl -SL https://github.com/GuanceCloud/py-spy-for-datakit/releases/download/v0.
 # Install using pip
 pip3 install --force-reinstall --no-index --find-links . py-spy-for-datakit
 
-# Verify installation success
+# Verify the installation
 py-spy-for-datakit help
 ```
 
@@ -141,24 +141,24 @@ cargo install py-spy-for-datakit
 
 - Usage
 
-`py-spy-for-datakit` adds the `datakit` command to the existing subcommands of `py-spy`, specifically for sending sampling data to DataKit. You can run `py-spy-for-datakit help datakit` to view usage instructions:
+`py-spy-for-datakit` adds the `datakit` command to the existing subcommands of `py-spy`, specifically for sending sample data to DataKit. You can run `py-spy-for-datakit help datakit` to view usage instructions:
 
 | Parameter                 | Description                                             | Default Value                  |
 |--------------------|------------------------------------------------|----------------------|
-| -H, --host         | Address of the DataKit listener to send data to                            | 127.0.0.1            |
-| -P, --port         | Port of the DataKit listener to send data to                             | 9529                 |
-| -S, --service      | Project name, used to distinguish projects in the backend and for filtering and querying, recommended to set              | unnamed-service      |
-| -E, --env          | Deployment environment of the project, used to distinguish development, testing, and production environments, and for filtering, recommended to set         | unnamed-env          |
-| -V, --version      | Project version, used for querying and filtering in the backend, recommended to set                          | unnamed-version      |
-| -p, --pid          | PID of the Python process to analyze                         | Either process PID or project startup command must be specified |
-| -d, --duration     | Sampling duration, sends data to DataKit at intervals of this duration, in seconds, minimum can be set to 10 | 60                   |
+| -H, --host         | Address of the Datakit server to send data to                           | 127.0.0.1            |
+| -P, --port         | Port of the Datakit server to send data to                            | 9529                 |
+| -S, --service      | Service name, used to distinguish different services in the backend, and for filtering and querying, it is recommended to set              | unnamed-service      |
+| -E, --env          | Deployment environment of the service, used to distinguish between development, testing, and production environments, and for filtering, it is recommended to set         | unnamed-env          |
+| -V, --version      | Service version, used for querying and filtering in the backend, it is recommended to set                          | unnamed-version      |
+| -p, --pid          | PID of the Python process to analyze                         | Either the process PID or the startup command must be specified |
+| -d, --duration     | Duration of sampling, sends data to Datakit at intervals of this duration, minimum can be set to 10 seconds | 60                   |
 | -r, --rate         | Sampling frequency, number of samples per second                                    | 100                  |
 | -s, --subprocesses | Whether to analyze subprocesses                                        | false                |
 | -i, --idle         | Whether to sample idle threads                                   | false                |
 
-`py-spy-for-datakit` can analyze currently running programs by passing the process PID of the running Python program using the `--pid <PID>` or `-p <PID>` parameter.
+`py-spy-for-datakit` can analyze running programs. Pass the PID of the running Python program using the `--pid <PID>` or `-p <PID>` parameter.
 
-Assuming your Python application is running with a process PID of 12345, and DataKit is listening on 127.0.0.1:9529, the command would look like this:
+Assuming your Python application's current running process PID is 12345 and Datakit is listening on 127.0.0.1:9529, the command would look like this:
 
 ```shell
 py-spy-for-datakit datakit \
@@ -171,9 +171,9 @@ py-spy-for-datakit datakit \
   --pid 12345
 ```
 
-If you encounter a permission issue, prepend the command with `sudo`.
+If you encounter permission issues, add `sudo` before the command.
 
-`py-spy-for-datakit` also supports directly integrating with the Python project's startup command, eliminating the need to specify the process PID. Data sampling begins when the program starts. The command would look like this:
+`py-spy-for-datakit` also supports directly following the startup command of a Python project, eliminating the need to specify the process PID. Data sampling starts immediately when the program starts. The command would look like this:
 
 ```shell
 py-spy-for-datakit datakit \
@@ -183,11 +183,11 @@ py-spy-for-datakit datakit \
   --env testing \
   --version v0.1 \
   -d 60 \
-  -- python3 server.py  # Note the extra space before python3
+  -- python3 server.py  # Note that there should be an extra space before python3
 ```
 
-If no errors occur, you should be able to view specific performance metric data on the Guance platform under [APM -> Profile](https://console.guance.com/tracing/profile){:target="_blank"} within a couple of minutes.
+If no errors occur, wait a couple of minutes and you can view the specific performance metric data on the Guance platform under [APM -> Profile](https://console.guance.com/tracing/profile){:target="_blank"}.
 
 ### Usage in k8s Environment {#py-spy-on-k8s}
 
-Please refer to [Injecting `py-spy` using `datakit-operator`](../datakit/datakit-operator.md#inject-py-spy){:target="_blank"}.
+Refer to [Injecting `py-spy` using `datakit-operator`](../datakit/datakit-operator.md#inject-py-spy){:target="_blank"}.

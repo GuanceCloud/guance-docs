@@ -1,45 +1,47 @@
-# Create a WEBSOCKET Dial Testing Task
+# Create a WEBSOCKET Test Task
 ---
 
-WEBSOCKET dial testing allows your client to initiate an HTTP request to the server, establish a WEBSOCKET connection, and verify the defined requests and judgment conditions, such as request headers, response times, etc.
+WebSocket testing allows the client to initiate an HTTP request to the server, establish a WebSocket connection, thereby verifying requests and judging conditions (such as request headers, response times, etc.).
 
-## Create a Task
 
-In the Guance workspace, click **New > Synthetic Tests**, and select **WEBSOCKET Protocol**.
+## Start Creating
 
-![](../img/4.dailtesting_websocket_1.png)
+Click **Create > Synthetic Tests**, and select **WEBSOCKET Protocol**.
 
-You can add [labels](../../management/global-label.md) in the top-left corner for the current dial testing task, enabling data linkage within the current workspace through global labels. Added labels are saved and displayed directly in the list. You can quickly find the dial testing tasks under specific labels using the **Shortcut > Labels** on the left panel.
+![API Test WebSocket](../../img/api_test_websocket.png)
 
-**Additional Label Logic**: Set the dial testing task node to `node_name:South China-Guangzhou-China Telecom`. If you add a label `node_name:User-defined Node` to the dial testing task, this custom label `node_name:User-defined Node` will not be written into the dial test result attributes.
 
-### Define Request Format
+### :material-numeric-1-circle: Define Request Format
 
-<img src="../../img/4.dailtesting_websocket_2.png" width="70%" >
+1. URL: Supports entering URLs for both WS and WSS protocols.
+2. Advanced Settings: Supports custom request settings and authentication.
+3. Content: Enter the message content to be sent to the server.
+4. Name: Customize the name of the WebSocket test task; duplication is not allowed within the current workspace.
 
-1. URL: Supports both WS and WSS protocol URLs;
-2. Advanced Settings: Adjust advanced settings according to actual needs, including request settings and authentication;
-3. Content: Input the message to send to the client;
-4. Name: Customize the name of the WEBSOCKET dial testing task; duplicate names are not supported within the same space.
 
-### Availability Judgment
+### :material-numeric-2-circle: Define Conditions {#test}
 
-You can add judgment conditions to match data based on filtering criteria. When multiple judgment conditions are selected, you can choose "All" or "Any" to determine the `AND` or `OR` relationship between conditions.
+This involves adding conditions to match data. Multiple conditions can be combined using "All" or "Any" to achieve AND or OR logical relationships.
 
-<img src="../../img/4.dailtesting_websocket_3.png" width="80%" >
+After defining the request format and adding conditions, click the "Test" button to the right of the URL to verify whether the test configuration is successful.
 
-After defining the request format and adding availability judgment conditions, you can click the **Test** button next to the URL to check if the dial test connection configuration is successful.
+**Note**: The test result is independent of the selected node.
 
-**Note**: Testing is independent of the selected node.
+### :material-numeric-3-circle: Select Test Nodes
 
-### Select Dial Testing Nodes
+Currently <<< custom_key.brand_name >>> covers 14 global test nodes. You can choose one or more nodes from either China or overseas regions (available only to Commercial Plan users and above) to quickly start monitoring site service quality.
 
-Guance currently covers 14 dial testing nodes globally. You can choose one or more nodes from China or overseas regions (only available for Commercial Plan users and above) to quickly start monitoring the service quality of your site.
 
-<img src="../../img/4.dailtesting_http_4.png" width="80%" >
 
-### Choose Dial Testing Frequency
+### :material-numeric-4-circle: Select Test Frequency
 
-Select the frequency at which cloud dial testing returns data. Options include 1 minute (only available for Commercial Plan users and above), 5 minutes (only available for Commercial Plan users and above), 15 minutes (only available for Commercial Plan users and above), 30 minutes, 1 hour, 6 hours, 12 hours, and 24 hours.
+Choose the execution frequency of the test task. The following options are supported:
 
-<img src="../../img/4.dailtesting_http_5.png" width="70%" >
+- 1 minute (Commercial Plan users and above only)
+- 5 minutes (Commercial Plan users and above only)
+- 15 minutes (Commercial Plan users and above only)
+- 30 minutes
+- 1 hour
+- 6 hours
+- 12 hours
+- 24 hours

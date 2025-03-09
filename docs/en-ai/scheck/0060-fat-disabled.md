@@ -8,12 +8,12 @@
 
 ## Category
 
-- Storage
+- storage
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -38,14 +38,14 @@
 
 ## Risk Items
 
-- Hacker Penetration
+- Hacker penetration
 
-- Data Leakage
+- Data leakage
 
 
 ## Audit Method
 
-- Verify whether fat / vfat / msdos are enabled on the host. You can execute the following command for verification:
+- Verify whether fat / vfat / msdos is enabled on the host. You can run the following command to verify:
 
 ```bash
 lsmod | egrep "msdos|vfat|fat"
@@ -72,6 +72,6 @@ lsmod | egrep "msdos|vfat|fat"
 - None
 
 
-## CIS Control
+## CIS Controls
 
 - None

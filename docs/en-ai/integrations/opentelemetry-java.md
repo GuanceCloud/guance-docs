@@ -9,11 +9,11 @@ __int_icon: 'icon/opentelemetry'
 ---
 
 
-Before sending Trace data to Datakit using OTEL, please ensure that you have [configured the collector](opentelemetry.md).
+Before sending Trace to Datakit using OTEL, please make sure you have [configured the collector](opentelemetry.md).
 
-Configuration: [Datakit OTEL Configuration](opentelemetry.md)
+Configuration: [Datakit Configuration for OTEL](opentelemetry.md)
 
-## Add Dependencies {#dependencies}
+## Adding Dependencies {#dependencies}
 
 Add dependencies in pom.xml
 
@@ -49,9 +49,9 @@ Add dependencies in pom.xml
 
 ## Java Agent Method {#with-agent}
 
-You can start the Agent in multiple ways. The following sections describe how to start it via environment variables, command line, and Tomcat configuration.
+You have multiple ways to start the Agent. The following describes how to start it via environment variables, command line, and Tomcat configuration.
 
-- Start with Environment Variables
+- Starting with Environment Variables
 
 ```shell
 export JAVA_OPTS="-javaagent:PATH/TO/opentelemetry-javaagent.jar"
@@ -59,7 +59,7 @@ export OTEL_TRACES_EXPORTER=otlp
 export OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317"
 ```
 
-- Start with Command Line
+- Starting with Command Line
 
 ```shell
 java -javaagent:opentelemetry-javaagent-1.13.1.jar \
@@ -68,7 +68,7 @@ java -javaagent:opentelemetry-javaagent-1.13.1.jar \
     -jar your-server.jar
 ```
 
-- Start with Tomcat Configuration
+- Starting with Tomcat Configuration
 
 ```shell
 cd <local tomcat installation directory>
@@ -82,7 +82,7 @@ CATALINA_OPTS="$CATALINA_OPTS -javaagent:PATH/TO/opentelemetry-javaagent.jar -Do
 # Restart Tomcat
 ```
 
-When configuring the `exporter.otlp.endpoint` field, you can omit the configuration and use the default value (localhost:4317) if Datakit and the Java application are on the same host, as the default port is also 4317.
+When configuring the `exporter.otlp.endpoint` field, you can omit it and use the default value (localhost:4317) because Datakit and the Java program are on the same host, and the default port is also 4317.
 
 ## Java 2: Code Injection Method {#with-code}
 
@@ -140,7 +140,7 @@ public class otlpdemo {
                     .startSpan();
             childSpan.setAttribute("tagsA", "vllelel");
             // do stuff
-            sleep(500);    // Delay for 0.5 seconds
+            sleep(500);    // Delay for 1 second
             for (int i = 0; i < 10; i++) {
                 Span childSpan1 = tracer.spanBuilder("child")
                         .setParent(Context.current().with(parentSpan))
@@ -165,9 +165,9 @@ public class otlpdemo {
 }
 ```
 
-## View Results {#view}
+## Viewing Results {#view}
 
-Log in to [Guance](https://console.guance.com/tracing/service/table?time=15m){:target="_blank"} and view 「APM -> Tracing -> Click a single trace」
+Log in to [Guance](https://console.guance.com/tracing/service/table?time=15m){:target="_blank"} and view 「APM -> Traces -> Click on a single trace」
 
 ![avatar](imgs/otel-java-example.png)
 

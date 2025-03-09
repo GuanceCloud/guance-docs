@@ -7,13 +7,14 @@
 
 ## Introduction {#intro}
 
+
 |      |     |
 | ---------- | ------- |
 | **Deployment Method**    | Kubernetes Container Deployment    |
 | **Log Engine (Choose One)**|      |
 | **OpenSearch** | Version: 2.3.0 | 
 | **Elasticsearch** | Version: 7.13.2 |        
-| **Prerequisites for Deployment** | Deployed [Kubernetes](infra-kubernetes.md#kubernetes-install) <br> Deployed [Kubernetes Storage](infra-kubernetes.md#kube-storage) |
+| **Prerequisites for Deployment** | [Kubernetes](infra-kubernetes.md#kubernetes-install) has been deployed <br> [Kubernetes Storage](infra-kubernetes.md#kube-storage) has been deployed |
 
 
 ## Default Configuration Information for Deployment
@@ -38,10 +39,10 @@
 ### Installation
 
 ???+ warning "Note" 
-     The highlighted `storageClassName` should be determined based on actual conditions. It is best to set JVM to 50% of physical memory; if the node's physical memory is 8GB, it can be set to `-Xmx4g -Xms4g`.
+     The `storageClassName` highlighted in the YAML should be set according to your actual situation. JVM is best set to 50% of physical memory; if the node's physical memory is 8GB, it can be set to `-Xmx4g -Xms4g`.
 
-Save openes.yaml and deploy.
-???- note "openes.yaml (Click to Expand)" 
+Save openes.yaml and deploy it.
+???- note "openes.yaml (Click to expand)" 
     ```yaml hl_lines='147 247'
     ---
     # Source: opensearch/templates/configmap.yaml
@@ -304,7 +305,7 @@ Save openes.yaml and deploy.
               subPath: opensearch.yml
     ``` 
 
-  Execute the installation command:
+Execute the following commands to install:
 ```shell
 kubectl create namespace middleware
 kubectl apply -f openes.yaml
@@ -330,7 +331,7 @@ opensearch-single-0   1/1     Running   0          4m37s
 #### Add Elastic Password {#addpasswd}
 
 ???+ warning "Note" 
-     The highlighted `{"password": "4dIv4VJQG5t5dcJOL8R5"}` can be modified to your own password.
+     The `{"password": "4dIv4VJQG5t5dcJOL8R5"}` part highlighted can be modified with your own password.
 
 ```shell hl_lines='5'
 kubectl exec -ti -n middleware opensearch-single-0 -- curl -u admin:admin \
@@ -349,7 +350,7 @@ kubectl delete -f openes.yaml
 kubectl delete -n middleware pvc  opensearch-single-opensearch-single-0
 ```
 
-### Troubleshooting
+### How to Troubleshoot
 
 #### View Container Status
 
@@ -367,13 +368,15 @@ kubectl logs -n middleware -f opensearch-single-0 -c opensearch
 
 ## Elasticsearch Deployment {#es-install}
 
+
+
 ### Installation
 
 ???+ warning "Note" 
-     The highlighted `storageClassName` should be determined based on actual conditions. It is best to set JVM to 50% of physical memory; if the node's physical memory is 8GB, it can be set to `-Xmx4g -Xms4g`.
+     The `storageClassName` highlighted in the YAML should be set according to your actual situation. JVM is best set to 50% of physical memory; if the node's physical memory is 8GB, it can be set to `-Xmx4g -Xms4g`.
 
-Save es.yaml and deploy.
-???- note "es.yaml (Click to Expand)" 
+Save es.yaml and deploy it.
+???- note "es.yaml (Click to expand)" 
     ```yaml hl_lines='88 140'
     ---
     apiVersion: v1
@@ -514,13 +517,13 @@ Save es.yaml and deploy.
             app: elasticsearch
         spec:
           accessModes: [ "ReadWriteOnce" ]
-          storageClassName: df-nfs-storage ## Specify the StorageClassName that exists in the environment. If empty, use the default storageclass (if configured with a default option). ##
+          storageClassName: df-nfs-storage ## Specify the existing StorageClassName in your environment. If empty, use the default storageclass (if configured). ##
           resources:
             requests:
-              storage: 50Gi  ## Specify the size based on actual requirements ##
+              storage: 50Gi  ## Specify the size based on actual needs ##
    
     ```
-  Execute the installation command:
+  Execute the following commands to install:
 ```shell
 kubectl create namespace middleware
 kubectl apply -f es.yaml
@@ -546,7 +549,7 @@ es-cluster-0   1/1     Running   0          24h
 
 #### Create Admin Account (Authentication Required)
 
-Create a superuser via the kubectl command-line client by logging into the deployed Elasticsearch service interactively.
+Use the kubectl command-line client to log in interactively to the deployed ES service and execute the operation to create a superuser.
 
 ```shell
 kubectl exec -ti -n middleware es-cluster-0 \
@@ -555,7 +558,7 @@ kubectl exec -ti -n middleware es-cluster-0 \
 
 #### Change Elastic Password {#changepasswd}
 ???+ warning "Note" 
-     The highlighted `{"password": "4dIv4VJQG5t5dcJOL8R5"}` can be modified to your own password.
+     The `{"password": "4dIv4VJQG5t5dcJOL8R5"}` part highlighted can be modified with your own password.
 
 ```shell hl_lines='4'
 kubectl exec -ti -n middleware es-cluster-0 -- curl -u copriwolf:sayHi2Elastic \
@@ -576,11 +579,12 @@ kubectl delete -n middleware pvc data-es-cluster-0
 
 ## Control Panel Deployment
 
+
 === "OpenSearch"
     - Deployment
-    Save opensearch-dashboards.yaml and deploy.
+    Save opensearch-dashboards.yaml and deploy it.
 
-    ???- note "opensearch-dashboards.yaml (Click to Expand)" 
+    ???- note "opensearch-dashboards.yaml (Click to expand)" 
         ```yaml
         ---
         # Source: opensearch-dashboards/templates/service.yaml
@@ -644,5 +648,177 @@ kubectl delete -n middleware pvc data-es-cluster-0
                 image: "pubrepo.jiagouyun.com/base/opensearch-dashboards:2.3.0"
                 imagePullPolicy: "IfNotPresent"
                 readinessProbe:
+```yaml
                   failureThreshold: 10
                   initialDelaySeconds: 10
+                  periodSeconds: 20
+                  successThreshold: 1
+                  tcpSocket:
+                    port: 5601
+                  timeoutSeconds: 5
+                livenessProbe:
+                  failureThreshold: 10
+                  initialDelaySeconds: 10
+                  periodSeconds: 20
+                  successThreshold: 1
+                  tcpSocket:
+                    port: 5601
+                  timeoutSeconds: 5
+                startupProbe:
+                  failureThreshold: 20
+                  initialDelaySeconds: 10
+                  periodSeconds: 10
+                  successThreshold: 1
+                  tcpSocket:
+                    port: 5601
+                  timeoutSeconds: 5
+                env:
+                - name: OPENSEARCH_HOSTS
+                  value: "http://opensearch-single:9200"
+                - name: SERVER_HOST
+                  value: "0.0.0.0"
+                ports:
+                - containerPort: 5601
+                  name: http
+                  protocol: TCP
+                resources:
+                  limits:
+                    cpu: 100m
+                    memory: 512M
+                  requests:
+                    cpu: 100m
+                    memory: 512M
+        ```
+
+    ```shell
+    kubectl apply -f opensearch-dashboards.yaml
+    ``` 
+
+    - Access
+    
+    You can access using the `NodePort` type, `Node IP`:31601
+    ![](img/22.opensearch-dashboards-login.png)
+
+=== "Elasticsearch"
+
+    - Deployment
+    Save kibana.yaml and deploy it.
+
+    ???- note "kibana.yaml (Click to expand)" 
+        ```yaml
+        ---
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          labels:
+            cattle.io/creator: norman
+            workload.user.cattle.io/workloadselector: deployment-middleware-kibana
+          name: kibana
+          namespace: middleware
+        spec:
+          progressDeadlineSeconds: 600
+          replicas: 1
+          revisionHistoryLimit: 10
+          selector:
+            matchLabels:
+              workload.user.cattle.io/workloadselector: deployment-middleware-kibana
+          strategy:
+            rollingUpdate:
+              maxSurge: 1
+              maxUnavailable: 0
+            type: RollingUpdate
+          template:
+            metadata:
+              labels:
+                workload.user.cattle.io/workloadselector: deployment-middleware-kibana
+            spec:
+              containers:
+              - image: pubrepo.guance.com/googleimages/kibana:7.13.2
+                imagePullPolicy: IfNotPresent
+                env:
+                - name: ELASTICSEARCH_URL
+                  value: http://elasticsearch:9200
+                name: kibana
+                ports:
+                - containerPort: 5601
+                  name: 5601tcp2
+                  protocol: TCP
+                - containerPort: 5601
+                  name: 5601tcp1
+                  protocol: TCP
+                resources: {}
+                securityContext:
+                  allowPrivilegeEscalation: false
+                  privileged: false
+                  readOnlyRootFilesystem: false
+                  runAsNonRoot: false
+                stdin: true
+                terminationMessagePath: /dev/termination-log
+                terminationMessagePolicy: File
+                tty: true
+                volumeMounts:
+                - mountPath: /usr/share/kibana/config/kibana.yml
+                  name: kibana-cfg
+                  subPath: kibana.yml
+              dnsPolicy: ClusterFirst
+              imagePullSecrets:
+              - name: devops
+              - name: registry-key
+              restartPolicy: Always
+              schedulerName: default-scheduler
+              securityContext: {}
+              terminationGracePeriodSeconds: 30
+              volumes:
+              - configMap:
+                  defaultMode: 420
+                  name: kibana-cfg
+                  optional: false
+                name: kibana-cfg
+
+
+        ---
+        apiVersion: v1
+        data:
+          kibana.yml: |-
+            server.name: kibana
+            server.host: "0.0.0.0"
+            xpack.monitoring.ui.container.elasticsearch.enabled: true
+            i18n.locale: "en-US"
+
+            elasticsearch.hosts: ["http://elasticsearch:9200"]
+            elasticsearch.username: "elastic"
+            elasticsearch.password: "4dIv4VJQG5t5dcJOL8R5"
+        kind: ConfigMap
+        metadata:
+          name: kibana-cfg
+          namespace: middleware
+
+        ---
+        apiVersion: v1
+        kind: Service
+        metadata:
+          name: kibana
+          namespace: middleware
+          labels:
+            app: kibana
+        spec:
+          ports:
+          - port: 5601
+            protocol: TCP
+            targetPort: 5601
+            nodePort: 32601
+          type: NodePort
+          selector:
+            workload.user.cattle.io/workloadselector: deployment-middleware-kibana
+
+        ```
+
+    ```shell
+    kubectl apply -f kibana.yaml
+    ```
+
+    - Access
+    
+    You can access using the `NodePort` type, `Node IP`:32601
+    ![](img/22.kibana-login.png)
+```

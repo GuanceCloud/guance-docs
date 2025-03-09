@@ -8,19 +8,16 @@
 
 
 
-
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description                                                                 |
-|:--------------|:-------|:---------|:----------------------------------------------------------------------------|
-| refSli        | string | No       | Specifies the SLI UUID, returns SLOs containing this SLI. <br>Optional: True <br> |
-| search        | string | No       | SLO name <br>Optional: True <br>                                             |
-| pageIndex     | integer| Yes      | Page number <br>Optional: False <br>Example: 1 <br>$minValue: 1 <br>         |
-| pageSize      | integer| Yes      | Number of items per page <br>Optional: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 10000 <br> |
+| Parameter Name | Type   | Required | Description                                      |
+|:--------------|:-------|:--------|:------------------------------------------------|
+| refSli        | string |         | Specifies the SLI UUID, returns SLOs containing this SLI<br>Can be empty: True <br> |
+| search        | string |         | SLO name<br>Can be empty: True <br>             |
+| pageIndex     | integer|         | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize      | integer|         | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 10000 <br> |
 
 ## Additional Parameter Notes
-
-
 
 
 
@@ -33,7 +30,6 @@ curl 'https://openapi.guance.com/api/v1/slo/list?pageIndex=1&pageSize=2' \
 
 
 
-
 ## Response
 ```shell
 {
@@ -43,7 +39,7 @@ curl 'https://openapi.guance.com/api/v1/slo/list?pageIndex=1&pageSize=2' \
             {
                 "alertPolicyInfos": [
                     {
-                        "name": "lwc SLO alert policy test",
+                        "name": "lwc SLO to alert policy test",
                         "uuid": "altpl_xxxx"
                     }
                 ],
@@ -56,7 +52,7 @@ curl 'https://openapi.guance.com/api/v1/slo/list?pageIndex=1&pageSize=2' \
                     "sli_infos": [
                         {
                             "id": "rul_9eb74xxxxx",
-                            "name": "whytest - Feedback Issue Verification",
+                            "name": "whytest-feedback issue verification",
                             "status": 2
                         },
                         {

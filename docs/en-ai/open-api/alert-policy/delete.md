@@ -1,18 +1,18 @@
-# Delete an Alert Policy
+# Delete an Alert Strategy
 
 ---
 
 <br />**POST /api/v1/alert_policy/delete**
 
 ## Overview
-Delete an alert policy
+Delete an alert strategy
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:-------------------------|
-| alertPolicyUUIDs     | array    | Y        | Alert policy UUIDs<br>Allow null: False <br> |
+|:-------------------|:-------|:-----|:----------------|
+| alertPolicyUUIDs | array | Y | Alert strategy UUIDs<br>Allow null: False <br> |
 
 ## Additional Parameter Notes
 

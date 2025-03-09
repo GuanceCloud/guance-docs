@@ -5,7 +5,8 @@ icon: zy/getting-started
 # Quick Start
 ---
 
-Guance is a cloud service platform designed to build **end-to-end observability** for every complete application in the era of cloud computing and cloud-native systems. This chapter will give you a quick overview of the Guance product and guide you to quickly set up your own observability platform.
+
+<<< custom_key.brand_name >>> is a cloud service platform designed to build **end-to-end observability** for every complete application in the era of cloud computing and cloud-native systems. This chapter will give you a quick overview of the <<< custom_key.brand_name >>> product and guide you to quickly set up your own observability platform.
 
 
 <!--
@@ -18,17 +19,17 @@ Guance is a cloud service platform designed to build **end-to-end observability*
 
     ---
 
-    Includes contents such as [Product Overview](./product-introduction/index.md), [Glossary](./product-introduction/glossary.md), [Customer Value](./product-introduction/customer-value.md).
+    Includes [Product Overview](./product-introduction/index.md), [Glossary](./product-introduction/glossary.md), [Customer Value](./product-introduction/customer-value.md), and more.
 
     <br/>
     [**:octicons-arrow-right-24: More**](./product-introduction/index.md)
 
 
--   :material-compass:{ .lg .middle } __Function Guide__
+-   :material-compass:{ .lg .middle } __Feature Guide__
 
     ---
 
-    Introduces more functional operation skills, including [Explorer](./function-details/explorer-search.md), [Dashboards](../scene/dashboard/index.md), [Snapshots](./function-details/snapshot.md), etc.
+    Introduces more feature operation tips, such as [Explorer](./function-details/explorer-search.md), [Dashboard](../scene/dashboard/index.md), [Snapshot](./function-details/snapshot.md), and more.
 
     <br/>
     [**:octicons-arrow-right-24: More**](./function-details/explorer-search.md)

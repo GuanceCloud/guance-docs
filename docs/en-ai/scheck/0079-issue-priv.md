@@ -1,4 +1,4 @@
-# 0079-issue-priv-Ensure issue Permissions (-rw-r--r--)
+# 0079-issue-priv-Ensure Correct Permissions for /etc/issue (-rw-r--r--)
 ---
 
 ## Rule ID
@@ -8,16 +8,15 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
-
 
 - Linux
 
@@ -27,7 +26,7 @@
 ## Description
 
 
-- Before logging in locally, the contents of the /etc/issue file will be displayed to the user.
+- The content of the `/etc/issue` file will be displayed to users before they log in via a local terminal.
 
 
 
@@ -37,20 +36,20 @@
 ## Theoretical Basis
 
 
-- If the /etc/issue file does not have the correct ownership, unauthorized users may modify it with incorrect or misleading information.
+- If the `/etc/issue` file does not have the correct ownership, unauthorized users may modify it with incorrect or misleading information.
 
 
 
 ## Risk Items
 
 
-- Hacker Penetration
+- Hacker penetration
 
-- Data Leakage
+- Data leakage
 
-- Mining Risk
+- Mining risk
 
-- Botnet Risk
+- Botnet risk
 
 
 
@@ -65,7 +64,7 @@ Access: (0644/-rw-r--r--) Uid: ( 0/ root) Gid: ( 0/ root)
 
 
 ## Remediation
-- Run the following commands to set permissions for /etc/issue:
+- Run the following commands to set permissions for `/etc/issue`:
 ```bash
 # chown root:root /etc/issue
 # chmod u-x,go-wx /etc/issue
@@ -96,5 +95,5 @@ Access: (0644/-rw-r--r--) Uid: ( 0/ root) Gid: ( 0/ root)
 
 
 - Version 7
- 14.6 Protect Information Through Access Control Lists
-    Use access control lists for file systems, network shares, claims, applications, or database-specific controls to protect all information stored on the system. These controls enforce the principle that only authorized individuals have access to information as part of their responsibilities.
+ 14.6 Protect Information through Access Control Lists
+    Use access control lists for file systems, network shares, claims, applications, or database-specific access control lists to protect all information stored on the system. These controls enforce the principle that only authorized individuals have access to information as part of their job responsibilities.

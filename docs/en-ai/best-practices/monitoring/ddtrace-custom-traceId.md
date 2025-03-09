@@ -8,25 +8,24 @@
 
 In certain specific scenarios, it is necessary to implement **custom traceId** through code.
 
-Implementation idea: By using `tracer.extract`, we can construct a SpanContext. The constructed SpanContext serves as the parent node information. Through `asChildOf(SpanContext)`, we can construct the current span.
+Implementation idea: By using `tracer.extract`, a SpanContext can be constructed. The constructed SpanContext serves as the parent node information, and by using `asChildOf(SpanContext)`, the current span can be constructed.
 
 ### How TraceId Parameters Are Defined
 
-For constructing SpanContext via `tracer.extract`, the internal process involves parsing and obtaining the corresponding traceId and spanId through ContextInterpreter. Part of the implementation code for ContextInterpreter will be introduced in the following sections.
+For constructing SpanContext using `tracer.extract`, ContextInterpreter is used internally to parse and obtain the corresponding traceId and spanId. The implementation code of ContextInterpreter will be introduced in the following sections.
 
 ### Propagators
 
-ddtrace supports several propagation protocols, and different propagation protocols have different parameter names for traceId.<br/>
-For Java, ddtrace supports two propagation protocols:
+ddtrace supports several propagation protocols, and the parameter names for traceId differ across different propagation protocols. For Java, ddtrace supports two propagation protocols:
 
 - Datadog: Default propagation protocol
-- B3: B3 propagation specifies headers "b3" and headers starting with "x-b3-". These headers are used for propagating tracing context across service boundaries. B3 has two formats:
-    - B3SINGLE (B3_SINGLE_HEADER), corresponding header key is `b3`
-    - B3 (B3MULTI), corresponding header key is `x-b3-`
+- B3: B3 propagation is the specification of headers "b3" and those starting with "x-b3-". These headers are used for propagating tracing context across service boundaries. B3 has two formats:
+    - B3SINGLE (B3_SINGLE_HEADER), where the header key is `b3`
+    - B3 (B3MULTI), where the header key is `x-b3-`
 
-## Implementing Custom TraceId Using Datadog Propagator
+## Implementing Custom TraceId Using the Datadog Propagator
 
-### Enabling Datadog Propagator
+### Enabling the Datadog Propagator
 
 ```shell
 -Ddd.propagation.style.extract=Datadog
@@ -64,7 +63,7 @@ ddtrace defaults to using **Datadog** as the default propagation protocol, with 
 			case 3:
 				this.samplingPriority = Integer.parseInt(firstValue);
 				break;
-		....
+	....
 	}
 ```
 
@@ -73,7 +72,7 @@ ddtrace defaults to using **Datadog** as the default propagation protocol, with 
 ```java
 
     /***
-     * Custom traceId related information, implementing custom traces
+     * Custom traceId related information, implementing custom tracing.
      * @param traceId
      * @param parentId
      * @param treeLength
@@ -105,20 +104,20 @@ ddtrace defaults to using **Datadog** as the default propagation protocol, with 
 
 ```
 
-## Implementing Custom TraceId Using B3 Propagator
+## Implementing Custom TraceId Using the B3 Propagator
 
 [About B3 Propagator](https://github.com/openzipkin/b3-propagation#single-header)
 
 B3 has two encoding formats: Single Header and Multiple Headers.
 
-- Multiple Headers encode each item in the tracing context with a prefix header starting with X-B3-
-- Single Header encodes the context into a single header named b3. When extracting fields, the single-header variant takes precedence over the multi-header variant.
+- Multiple Headers encode each item in the tracing context with a prefixed header.
+- Single Header encodes the context into one header named `b3`. When extracting fields, the single-header variant takes precedence over the multi-header variant.
 
-This is an example flow using multiple headers encoding, assuming an HTTP request carries propagated tracing:
+This is an example flow using multiple headers, assuming an HTTP request carries propagated tracing:
 
 ![image](../images/ddtrace-custom-traceId-1.png)
 
-### Enabling B3 Propagator
+### Enabling the B3 Propagator
 
 ```shell
 -Ddd.propagation.style.extract=B3SINGLE
@@ -223,7 +222,7 @@ The following method handles the Single Header format:
 	}
 ```
 
-### Multiple Headers Code Implementation
+### Multiple Header Code Implementation
 
 ```java
 	private static void b3TraceByMultiple(){
@@ -251,7 +250,7 @@ The following method handles the Single Header format:
 
 ```
 
-> **Note:** Multiple Headers must include two headers: `X-B3-TraceId` and `X-B3-SpanId`. From the interceptor analysis, they are case-insensitive.
+> **Note:** Multiple Header must include two headers: `X-B3-TraceId` and `X-B3-SpanId`. From the interceptor analysis, these headers are case-insensitive.
 
 ```bash
 6001828a33d570a9	6917954032704516265	58c4b35f113ee353
@@ -295,11 +294,11 @@ b3=6001828a33d570a9-308287d022272ed9-1
 b3=6001828a33d570a9-5e6fbaad91daef5c-1
 ```
 
-> **Note:** Single Header only requires the header `b3` to be passed, with the format `traceId-parentId-Sampled`
+> **Note:** Single Header only requires the `b3` header, with the format `traceId-parentId-Sampled`
 
 ## Enabling Multiple Propagators
 
-Choose one of the two methods:
+Choose either of the two methods:
 
 - System Property:
 

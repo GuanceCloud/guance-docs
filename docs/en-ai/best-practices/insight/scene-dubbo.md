@@ -1,4 +1,4 @@
-# Internal Network Scenario for Dubbo Microservices Integration with Guance
+# Intranet Scenario for Dubbo Microservices Integration with <<< custom_key.brand_name >>>
 
 ---
 
@@ -6,46 +6,44 @@
 
 ## Introduction
 
-Some projects are used by internal company personnel or group company personnel. For security reasons, these projects are deployed in self-built data centers, and employees access them via the internal network or VPN. For such scenarios, **Guance provides an offline deployment solution**, which involves deploying DataKit on a host that can connect to the external internet, enabling the Proxy collector, and installing DataKit on internal network hosts through this proxy. All data is reported to Guance via the DataKit deployed on this host.
+Some projects are aimed at internal company personnel or group company personnel. For security reasons, these projects are deployed in self-built data centers, and employees access them via the intranet or a VPN. For this scenario, **<<< custom_key.brand_name >>> provides an offline deployment solution**, which involves deploying DataKit on a host that can connect to the external network, enabling the Proxy collector, and installing DataKit on intranet hosts through this proxy. All data is reported to <<< custom_key.brand_name >>> via the DataKit deployed on this host.
 
-Below, we will use a microservices architecture project to introduce how to integrate with Guance. The project is a front-end and back-end separated project, with the front-end developed using Vue and the back-end microservices developed using Spring Boot combined with Dubbo. The front-end accesses the back-end services through a Gateway. Users access the front-end website via a browser, and clicking buttons on the interface triggers backend API requests. These requests are forwarded by the Gateway to the Consumer microservice, which processes the request and calls the Provider microservice during processing, logs the process, and returns the result to the browser, completing one call.
+The following uses a microservices architecture project to introduce how to integrate with <<< custom_key.brand_name >>>. The project is a front-end and back-end separated project, where the front-end is developed using Vue, and the back-end microservices are developed using Spring Boot combined with Dubbo. The front-end accesses the back-end services through a Gateway. Users visit the front-end website via a browser, clicking buttons on the interface triggers backend API requests, which are forwarded by the Gateway to the Consumer microservice. During processing, the Consumer microservice calls the Provider microservice and logs events. After completing the processing, it returns the results to the browser, thus completing one call.
 
 ![image](../images/dubbo/01.png)
 
 ## Deployment Planning
 
-The entire sample project consists of four services, each deployed on four separate hosts. Additionally, there is one host that can connect to the external internet, which is also within the same internal network as the other four hosts.
+The entire example project consists of four services deployed on four hosts, plus one host that can connect to the external network, which is also on the same intranet as the other four hosts.
 
-- First, deploy DataKit on the host with external internet access and enable the Proxy collector.
+- First, deploy DataKit on the host with external network access and enable the Proxy collector.
 - Second, install DataKit on the other four hosts through this proxy.
-- Third, deploy the Web project on a Web server with Nginx installed, ensuring that port 9529 on this Web host can be accessed by other internal network hosts.
+- Third, deploy the Web project on a Web server with Nginx installed, making port 9529 of this Web host accessible from the intranet.
 - Finally, deploy the Gateway, Consumer, and Provider microservices and enable the SkyWalking collector.
 
-The sample services can be downloaded from [https://github.com/stevenliu2020/vue3-dubbo](https://github.com/stevenliu2020/vue3-dubbo). This repository contains `provider.jar`, `consumer.jar`, `gateway.jar`, and the `dist` directory (which includes the Vue project).
+The services used in this example can be downloaded from [https://github.com/stevenliu2020/vue3-dubbo](https://github.com/stevenliu2020/vue3-dubbo), which includes `provider.jar`, `consumer.jar`, `gateway.jar`, and the `dist` directory (Vue project). Below is the correspondence between projects and hosts, along with the overall deployment architecture diagram.
 
-### Project and Host Correspondence and Overall Deployment Architecture Diagram
+- Project and Host Correspondence
 
-- **Project and Host Correspondence**
+| IP           | Deployed Project          | Description                    |
+| ------------ | ------------------------- | ------------------------------ |
+| 172.16.0.245 | DataKit (Proxy)           | Can connect to the external network |
+| 172.16.0.29  | Web/DataKit               | Intranet, Web server (Nginx)   |
+| 172.16.0.51  | Gateway/DataKit           | Intranet, gateway service      |
+| 172.16.0.52  | Consumer/DataKit          | Intranet, consumer service     |
+| 172.16.0.53  | Provider/DataKit          | Intranet, producer service     |
 
-| IP           | Deployed Projects       | Description                     |
-| ------------ | ----------------------- | ------------------------------- |
-| 172.16.0.245 | DataKit (Proxy)         | Can connect to the external internet |
-| 172.16.0.29  | Web/DataKit             | Internal network, Web server (Nginx) |
-| 172.16.0.51  | Gateway/DataKit         | Internal network, gateway service deployment |
-| 172.16.0.52  | Consumer/DataKit        | Internal network, consumer service deployment |
-| 172.16.0.53  | Provider/DataKit        | Internal network, producer service deployment |
-
-- **Overall Deployment Architecture Diagram**
+- Overall Deployment Architecture Diagram
 
 ![image](../images/dubbo/02.png)
 
 ## Prerequisites
 
-- Centos 7.9
+- CentOS 7.9
 - Install Nginx
 - Install JDK
 - Install Zookeeper
-- Guance account
+- <<< custom_key.brand_name >>> account
 
 ## Environment Versions
 
@@ -59,18 +57,18 @@ The sample services can be downloaded from [https://github.com/stevenliu2020/vue
 
 #### 1.1 Online Deployment of DataKit
 
-Log in to the [Guance Console](https://console.guance.com/), go to the "Integration" module, click on "DataKit" - "Linux", copy the installation command, and execute it on the host at `172.16.0.245`. Note that the installation command includes a token, which will be used in subsequent operations.
+Log in to 「[<<< custom_key.brand_name >>>](https://console.guance.com/)」, go to the 「Integration」 module, click 「DataKit」 - 「Linux」, copy the installation command, and execute it on the host `172.16.0.245`. Note that the installation command contains a token, which will be used in subsequent operations.
 
 ![image](../images/dubbo/03.png)
 
-After installation, execute the following commands to enable the Proxy collector:
+After installation, execute the following commands to enable the Proxy collector.
 
 ```shell
 cd /usr/local/datakit/conf.d/proxy
 cp proxy.conf.sample proxy.conf
 ```
 
-Edit the `/usr/local/datakit/conf.d/datakit.conf` file and change the `http_api` listen value to `0.0.0.0:9529` to ensure that other hosts can access port 9529 on this host.
+Edit the `/usr/local/datakit/conf.d/datakit.conf` file and change the `http_api` listen value to `0.0.0.0:9529` to ensure that other hosts can normally access port 9529 on this host.
 
 ![image](../images/dubbo/04.png)
 
@@ -80,17 +78,17 @@ Restart DataKit.
 systemctl restart datakit
 ```
 
-#### 1.2 Deploy DataKit via Proxy
+#### 1.2 Deploy DataKit Through Proxy
 
-Log in to the `172.16.0.29` host and execute the following command to install DataKit.
+Log in to the host `172.16.0.29` and execute the following command to install DataKit.
 
 Here, `172.16.0.245` is the IP address of the host where DataKit was installed in the previous step. This step installs DataKit through the DataKit proxy, using the same token mentioned earlier.
 
 ```shell
-export HTTPS_PROXY=http://172.16.0.245:9530;  DK_DATAWAY=https://openway.guance.com?token=tkn_9a1111123412341234123412341113bb bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+export HTTPS_PROXY=http://172.16.0.245:9530;  DK_DATAWAY=https://openway.guance.com?token=tkn_9a1111123412341234123412341113bb bash -c "$(curl -L https://<<< custom_key.static_domain >>>/datakit/install.sh)"
 ```
 
-Execute the following command to test if data can be reported to Guance.
+Execute the following command to test if data can be reported to <<< custom_key.brand_name >>>.
 
 ```shell
 curl -x http://172.16.0.245:9530 -v -X POST https://openway.guance.com/v1/write/metrics?token=tkn_9a1111123412341234123412341113bb -d "proxy_test,name=test c=123i"
@@ -100,13 +98,13 @@ A return code of 200 indicates successful data reporting.
 
 ![image](../images/dubbo/05.png)
 
-Use the same steps to deploy DataKit on the `172.16.0.51`, `172.16.0.52`, and `172.16.0.53` hosts. By now, DataKit has been deployed on all four hosts.
+Use the same steps to deploy DataKit on the hosts `172.16.0.51`, `172.16.0.52`, and `172.16.0.53`. At this point, DataKit has been deployed on all four hosts.
 
 ### 2 APM Integration
 
 #### 2.1 Enable SkyWalking Collector
 
-Log in to the `172.16.0.51` host, copy the sample file, and enable the SkyWalking collector.
+Log in to the host `172.16.0.51`, copy the sample file, and enable the SkyWalking collector.
 
 ```shell
 cd /usr/local/datakit/conf.d/skywalking
@@ -119,21 +117,21 @@ Restart DataKit.
 systemctl restart datakit
 ```
 
-Use the same operation to enable the SkyWalking collector on DataKit deployed on the `172.16.0.52` and `172.16.0.53` hosts.
+Perform the same operation to enable the SkyWalking collector on the DataKit deployed on hosts `172.16.0.52` and `172.16.0.53`.
 
 #### 2.2 Upload SkyWalking Agent
 
 There are many APM tools available, but since the microservices use the Dubbo framework, we recommend using SkyWalking.
 
-Download [apache-skywalking-java-agent-8.11.0](https://www.apache.org/dyn/closer.cgi/skywalking/java-agent/8.11.0/apache-skywalking-java-agent-8.11.0.tgz), extract it, rename it to `agent`, and upload it to the `/usr/local/df-demo/` directory on the `172.16.0.51`, `172.16.0.52`, and `172.16.0.53` hosts.
+Download [apache-skywalking-java-agent-8.11.0](https://www.apache.org/dyn/closer.cgi/skywalking/java-agent/8.11.0/apache-skywalking-java-agent-8.11.0.tgz), extract it, rename the folder to `agent`, and upload it to the `/usr/local/df-demo/` directory on hosts `172.16.0.51`, `172.16.0.52`, and `172.16.0.53`.
 
-> **Note:** On the `172.16.0.51` host, which deploys the Gateway, copy the `apm-spring-cloud-gateway-3.x-plugin-8.11.0.jar` and `apm-spring-webflux-5.x-plugin-8.11.0.jar` files from the `agent\optional-plugins` directory to the `agent\plugins` directory.
+> **Note:** On host `172.16.0.51`, which deploys the Gateway, copy the `apm-spring-cloud-gateway-3.x-plugin-8.11.0.jar` and `apm-spring-webflux-5.x-plugin-8.11.0.jar` files from the `agent\optional-plugins` directory to the `agent\plugins` directory.
 
 ![image](../images/dubbo/06.png)
 
 #### 2.3 Deploy Provider Microservice
 
-Upload `provider.jar` to the `/usr/local/df-demo/` directory on the `172.16.0.53` host, ensuring that `provider.jar` is in the same directory as the agent folder. Start the provider service.
+Upload `provider.jar` to the `/usr/local/df-demo/` directory on host `172.16.0.53`, ensuring that `provider.jar` is in the same directory as the agent folder. Start the provider service.
 
 ```shell
 cd /usr/local/df-demo/
@@ -142,7 +140,7 @@ java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo
 
 #### 2.4 Deploy Consumer Microservice
 
-Upload `consumer.jar` to the `/usr/local/df-demo/` directory on the `172.16.0.52` host. Start the consumer service.
+Upload `consumer.jar` to the `/usr/local/df-demo/` directory on host `172.16.0.52`. Start the consumer service.
 
 ```shell
 cd /usr/local/df-demo/
@@ -151,7 +149,7 @@ java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo
 
 #### 2.5 Deploy Gateway Microservice
 
-Upload `gateway.jar` to the `/usr/local/df-demo/` directory on the `172.16.0.51` host. Start the gateway service.
+Upload `gateway.jar` to the `/usr/local/df-demo/` directory on host `172.16.0.51`. Start the gateway service.
 
 ```shell
 cd /usr/local/df-demo/
@@ -160,9 +158,9 @@ java -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=dubbo
 
 ### 3 RUM Integration
 
-Upload the `dist` directory to the `/usr/local/df-demo/` directory on the `172.16.0.29` host. The URL for the backend Gateway is specified in the `dist\js\app.ec288764.js` file, which is `[http://172.16.0.51:9000/api](http://172.16.0.51:9000/api)`.
+Upload the `dist` directory to the `/usr/local/df-demo/` directory on host `172.16.0.29`. The URL for connecting to the backend API is in the `dist\js\app.ec288764.js` file, where the backend Gateway URL is [http://172.16.0.51:9000/api](http://172.16.0.51:9000/api).
 
-Log in to the [Guance Console](https://console.guance.com/), go to the "User Access Monitoring" module, create a new dubbo-web application, and copy the following command.
+Log in to 「[<<< custom_key.brand_name >>>](https://console.guance.com/)」, go to the 「User Access Monitoring」 module, create a new dubbo-web application, and copy the following command.
 
 ![image](../images/dubbo/07.png)
 
@@ -194,24 +192,24 @@ server {
 Reload the configuration.
 
 ```shell
- nginx -s reload
+nginx -s reload
 ```
 
-Access the front-end interface by visiting [http://172.16.0.29/](http://172.16.0.29/) in your browser. Clicking buttons on the interface will trigger backend API calls.
+Access [http://172.16.0.29/](http://172.16.0.29/) via the browser to view the front-end interface. Clicking buttons on the interface will trigger backend API calls.
 
-Log in to the [Guance Console](https://console.guance.com/), go to "User Access Monitoring" - "dubbo-web". There are many features available for performance analysis of the front-end application.
+Log in to 「[<<< custom_key.brand_name >>>](https://console.guance.com/)」, go to 「User Access Monitoring」 - 「dubbo-web」, where various features can be used to analyze the performance of the front-end application.
 
 ![image](../images/dubbo/09.png)
 
 ### 4 Log Integration
 
-Using the `apm-toolkit-log4j-2.x` package from SkyWalking, you can output the traceId generated by SkyWalking into the logs via log4j2.
+Using the `apm-toolkit-log4j-2.x` package from SkyWalking, traceId generated by SkyWalking can be output to logs via log4j2.
 
-DataKit's pipeline can extract the traceId from the logs and associate it with the tracing data.
+DataKit's pipeline can extract traceId from logs and associate it with traces.
 
 #### 4.1 Add Dependencies
 
-To output the traceId in the provider microservice logs, add the dependency to the `pom.xml` file of the provider, using the same version as the javaagent, which is 8.11.0.
+To output traceId in the logs of the provider microservice, add dependencies to the `pom.xml` file of the provider, using the same version as the javaagent, which is 8.11.0 here.
 
 ```xml
 <dependency>
@@ -230,7 +228,7 @@ cd /usr/local/datakit/conf.d/log
 cp logging.conf.sample logging.conf
 ```
 
-Edit the `logging.conf` file, set the source to `log-dubbo-provider`, which will be used in log queries or configuring pipelines. Set the `logfiles` field to the path of the log files to be collected.
+Edit the `logging.conf` file, set the source input to `log-dubbo-provider`, which will be used in log queries or pipeline configurations. Set `logfiles` to the path of the log files to collect.
 
 ![image](../images/dubbo/10.png)
 
@@ -240,12 +238,14 @@ Restart DataKit.
 systemctl restart datakit
 ```
 
-#### 4.3 Pipeline Configuration
+#### 4.3 Pipeline
 
-Log in to the [Guance Console](https://console.guance.com/), go to "Logs" - "Pipelines". Click "Create New Pipeline", select the source defined in the log collector configuration (`log-dubbo-provider`). Define the parsing rules as follows and click "Save".
+Log in to 「[<<< custom_key.brand_name >>>](https://console.guance.com/)」, go to the 「Logs」 - 「Pipelines」 section.<br/>
+Click 「Create Pipeline」, filter and select the source defined in the log collector configuration, i.e., `log-dubbo-provider`.<br/>
+Define the parsing rules as follows, then click 「Save」.
 
 ```toml
-# 2022-08-03 10:55:50.818 [DubboServerHandler-172.16.0.29:20880-thread-2] INFO dubbo.service.StockAPIService - [decreaseStorage,21] - [TID: 1bc41dfa-3c2c-4917-9da7-0f48b4bcf4b7] - 用户ID：-4972683369271453960 ，发起流程审批：-1133938638
+# 2022-08-03 10:55:50.818 [DubboServerHandler-172.16.0.29:20880-thread-2] INFO dubbo.service.StockAPIService - [decreaseStorage,21] - [TID: 1bc41dfa-3c2c-4917-9da7-0f48b4bcf4b7] - User ID: -4972683369271453960, initiate process approval: -1133938638
 
 grok(_, "%{TIMESTAMP_ISO8601:time} %{NOTSPACE:thread_name} %{LOGLEVEL:status}%{SPACE}%{NOTSPACE:class_name} - \\[%{NOTSPACE:method_name},%{NUMBER:line}\\] - \\[TID: %{DATA:trace_id}\\] - %{GREEDYDATA:msg}")
 default_time(time)
@@ -253,19 +253,18 @@ default_time(time)
 
 ![image](../images/dubbo/11.png)
 
-Trigger a call to the provider service using the front-end. The logs generated by the provider service will be collected by DataKit and reported to Guance.
+Trigger a call to the provider service using the front-end, so that the logs generated by the provider service are collected by DataKit and reported to <<< custom_key.brand_name >>>.
 
-Log in to the [Guance Console](https://console.guance.com/), go to the "Logs" module's Explorer, find the data source `log-dubbo-provider`, click on a log entry, and you will see the traceId as a tag. You can then use this traceId in APM to correlate with logs, helping you quickly locate issues.
+Log in to 「[<<< custom_key.brand_name >>>](https://console.guance.com/)」, go to the 「Logs」 module's Explorer, find the data source `log-dubbo-provider`, click on a log entry, and you can see that traceId is included as a tag. Later, in APM, you can use this traceId to correlate with logs, helping you quickly locate issues.
 
 ![image](../images/dubbo/12.png)
 
-### 5 Correlated Analysis
+### 5 Linked Analysis
 
-Through the above steps, RUM, APM, and logs have been integrated.
+Through the above steps, Rum, Apm, and logs have been integrated.
 
-Log in to the [Guance Console](https://console.guance.com/) - "User Access Monitoring", click on "dubbo-web", enter the Explorer, select "View" to view page call situations.
-
-Then click on "route_change", under the Fetch/XHR tab, you can view the API call situations triggered by the front-end. Clicking on an entry allows you to view flame graphs, span lists, service call relationships, and associated provider service logs.
+Log in to 「 [<<< custom_key.brand_name >>>](https://console.guance.com/)」 - 「User Access Monitoring」, click 「dubbo-web」, enter and click 「Explorer」, choose 「view」 to check page call situations.<br/>
+Then click 「route_change」, in the Fetch/XHR tab you can view the status of front-end triggered API calls. Clicking on one entry allows you to view flame graphs, span lists, service call relationships, and associated logs from the provider service.
 
 ![image](../images/dubbo/13.png)
 

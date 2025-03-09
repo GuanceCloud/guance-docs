@@ -19,11 +19,11 @@ monitor   :
 
 You can use [DDTrace](ddtrace.md) to collect Cassandra metrics. The data flow is as follows: Cassandra -> DDTrace -> DataKit(StatsD).
 
-It can be seen that DataKit has already integrated the server side of [StatsD](https://github.com/statsd/statsd){:target="_blank"}, and DDTrace reports data to DataKit using the StatsD protocol after collecting data from Cassandra.
+You can see that DataKit has already integrated the [StatsD](https://github.com/statsd/statsd){:target="_blank"} server, and DDTrace collects Cassandra data and reports it to DataKit using the StatsD protocol.
 
 ## Configuration {#config}
 
-### Prerequisites {#requirements}
+### Prerequisites {#requrements}
 
 - Tested versions:
     - [x] 5.0
@@ -34,11 +34,11 @@ It can be seen that DataKit has already integrated the server side of [StatsD](h
 
 - Download the `dd-java-agent.jar` package, refer to [here](ddtrace.md){:target="_blank"};
 
-- On the DataKit side: refer to the configuration for [StatsD](statsd.md){:target="_blank"}.
+- On the DataKit side: refer to the [StatsD](statsd.md){:target="_blank"} configuration.
 
 - On the Cassandra side:
 
-Create a file named *setenv.sh* under */usr/local/cassandra/bin* and grant it execution permissions, then add the following content:
+Create a file named *setenv.sh* under */usr/local/cassandra/bin* and give it execution permissions, then write the following content:
 
 ```shell
 export CATALINA_OPTS="-javaagent:dd-java-agent.jar \
@@ -48,23 +48,23 @@ export CATALINA_OPTS="-javaagent:dd-java-agent.jar \
                       -Ddd.jmxfetch.cassandra.enabled=true"
 ```
 
-Parameter explanations are as follows:
+Parameter descriptions are as follows:
 
 - `javaagent`: This should be the full path to `dd-java-agent.jar`;
-- `Ddd.jmxfetch.enabled`: Set to `true`, indicating enabling DDTrace collection;
-- `Ddd.jmxfetch.statsd.host`: Enter the network address listened by Datakit without the port number;
-- `Ddd.jmxfetch.statsd.port`: Enter the port number listened by Datakit, usually `11002`, which is determined by the Datakit-side configuration;
-- `Ddd.jmxfetch.cassandra.enabled`: Set to `true`, indicating enabling DDTrace's Cassandra collection. After enabling, there will be a Mearsurement named `cassandra`;
+- `Ddd.jmxfetch.enabled`: Set to `true`, indicating that the DDTrace collection function is enabled;
+- `Ddd.jmxfetch.statsd.host`: Enter the network address listened by Datakit. Do not include the port number;
+- `Ddd.jmxfetch.statsd.port`: Enter the port number listened by Datakit. Generally set to `11002`, determined by the Datakit side configuration;
+- `Ddd.jmxfetch.Cassandra.enabled`: Set to `true`, indicating that the DDTrace Cassandra collection function is enabled. After enabling, there will be a metric set named `cassandra`;
 
-Restart Cassandra to make the configuration effective.
+Restart Cassandra to make the configuration take effect.
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/db` directory under the DataKit installation directory, copy `cassandra.conf.sample` and rename it to `cassandra.conf`. An example is as follows:
-    
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `cassandra.conf.sample` and rename it to `cassandra.conf`. Example:
+
     ```toml
         
     [[inputs.statsd]]
@@ -143,7 +143,7 @@ Restart Cassandra to make the configuration effective.
 
 === "Kubernetes"
 
-    You can inject collector configurations via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or configure [ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
+    You can inject collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or configure [ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
 
 ---
 
@@ -174,7 +174,7 @@ Restart Cassandra to make the configuration effective.
 |`table`|table=IndexInfo,table=available_ranges,table=batches,table=built_views,|
 |`type`|Object type.|
 
-- Metric List
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -279,7 +279,7 @@ Restart Cassandra to make the configuration effective.
 |`service`|Service name.|
 |`type`|Object type.|
 
-- Metric List
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -310,7 +310,7 @@ Restart Cassandra to make the configuration effective.
 |`heap_memory_init`|The initial Java heap memory allocated.|float|B|
 |`heap_memory_max`|The maximum Java heap memory available.|float|B|
 |`loaded_classes`|Number of classes currently loaded.|float|count|
-|`non_heap_memory`|The total Java non-heap memory used. Non-heap memory is calculated as follows: 'Metaspace' + CompressedClassSpace + CodeCache|float|B|
+|`non_heap_memory`|The total Java non-heap memory used. Non-heap memory is: `Metaspace + CompressedClassSpace + CodeCache`.|float|B|
 |`non_heap_memory_committed`|The total Java non-heap memory committed to be used.|float|B|
 |`non_heap_memory_init`|The initial Java non-heap memory allocated.|float|B|
 |`non_heap_memory_max`|The maximum Java non-heap memory available.|float|B|
@@ -337,7 +337,7 @@ Restart Cassandra to make the configuration effective.
 |`service`|Service name.|
 |`type`|Object type.|
 
-- Metric List
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -379,7 +379,7 @@ Restart Cassandra to make the configuration effective.
 |`stat`|Stat.|
 |`tracer_version`|Tracer version.|
 
-- Metric List
+- Metrics List
 
 
 | Metric | Description | Type | Unit |

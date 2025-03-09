@@ -1,25 +1,23 @@
-# Cancel a Shard Upload Event
+# Cancel a Sharded Upload Event
 
 ---
 
 <br />**POST /api/v1/rum_sourcemap/upload_cancel**
 
 ## Overview
-This is an optional third step in the sourcemap compressed file upload (shard upload) operation. It cancels an already uploaded shard. Generally used for resuming interrupted uploads or re-uploading shards.
-For more details, refer to: [SourceMap Shard Upload Related API Usage Instructions](../../../studio-backend/sourcemap-multipart-upload-init/)
+This is an optional third step in the SourceMap compressed file upload (sharded upload) operation. It cancels an already uploaded shard. This is generally used for resuming interrupted uploads or re-uploading shards.
+For more details, refer to: [SourceMap Sharded Upload Associated Interface Usage Instructions](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
 
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description               |
-|:--------------|:-------|:---------|:--------------------------|
-| uploadId      | string | Y        | Shard upload event ID<br>Can be empty: False <br> |
+| Parameter Name | Type   | Required | Description              |
+|:-----------|:-------|:-----|:----------------|
+| uploadId | string | Y | Shard upload event ID<br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
-
-
 
 
 

@@ -1,16 +1,16 @@
 ---
-title     : 'GitLab'
-summary   : 'Collect metrics data from GitLab'
+title: 'GitLab'
+summary: 'Collect metrics data from GitLab'
 tags:
   - 'GITLAB'
   - 'CI/CD'
-__int_icon      : 'icon/gitlab'
-dashboard :
-  - desc  : 'GitLab'
-    path  : 'dashboard/en/gitlab'
-monitor   :
-  - desc  : 'Not available'
-    path  : '-'
+__int_icon: 'icon/gitlab'
+dashboard:
+  - desc: 'GitLab'
+    path: 'dashboard/en/gitlab'
+monitor:
+  - desc: 'Not available'
+    path: '-'
 ---
 
 
@@ -18,48 +18,48 @@ monitor   :
 
 ---
 
-Collect runtime data from GitLab and report it to Guance as metrics.
+Collect runtime data from GitLab and report it as metrics to Guance.
 
 ## Configuration {#config}
 
-First, you need to enable the data collection feature for GitLab services and set up a whitelist. Specific operations are detailed in the following sections.
+First, you need to enable the data collection feature for the GitLab service and set up a whitelist. Specific operations are detailed in the following sections.
 
 After completing the GitLab settings, configure DataKit. Note that depending on the GitLab version and configuration, the collected data may vary.
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/gitlab` directory under the DataKit installation directory, copy `gitlab.conf.sample`, and rename it to `gitlab.conf`. Example configuration:
-    
+    Navigate to the `conf.d/gitlab` directory under the DataKit installation directory, copy `gitlab.conf.sample`, and rename it to `gitlab.conf`. Example:
+
     ```toml
         
     [[inputs.gitlab]]
         ## set true if you need to collect metric from url below
         enable_collect = true
-    
+
         ## param type: string - default: http://127.0.0.1:80/-/metrics
         prometheus_url = "http://127.0.0.1:80/-/metrics"
-    
+
         ## param type: string - optional: time units are "ms", "s", "m", "h" - default: 10s
         interval = "10s"
-    
+
         ## datakit can listen to gitlab ci data at /v1/gitlab when enabled
         enable_ci_visibility = true
-    
+
         ## Set true to enable election
         election = true
-    
+
         ## extra tags for gitlab-ci data.
         ## these tags will not overwrite existing tags.
         [inputs.gitlab.ci_extra_tags]
         # some_tag = "some_value"
         # more_tag = "some_other_value"
-    
+
         ## extra tags for gitlab metrics
         [inputs.gitlab.tags]
         # some_tag = "some_value"
         # more_tag = "some_other_value"
-    
+
     ```
 
     After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
@@ -69,44 +69,40 @@ After completing the GitLab settings, configure DataKit. Note that depending on 
     Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-### Enable Data Collection in GitLab {#enable-prom}
+### Enabling Data Collection in GitLab {#enable-prom}
 
-To enable Prometheus data collection in GitLab, follow these steps (using the English interface as an example):
+To enable Prometheus data collection in GitLab, follow these steps (for English pages):
 
-- Log in to your GitLab instance with an admin account.
-- Go to `Admin Area` > `Settings` > `Metrics and profiling`.
-- Select `Metrics - Prometheus`, click `Enable Prometheus Metrics`, and save changes.
-- Restart the GitLab service.
+- Log in to your GitLab page with an admin account
+- Go to `Admin Area` > `Settings` > `Metrics and profiling`
+- Select `Metrics - Prometheus`, click `Enable Prometheus Metrics`, and save changes
+- Restart the GitLab service
 
 For more details, see the [official configuration documentation](https://docs.gitlab.com/ee/administration/monitoring/prometheus/gitlab_metrics.html#gitlab-prometheus-metrics){:target="_blank"}.
 
-### Configure Access Whitelist {#white-list}
+### Configuring Data Access Whitelist {#white-list}
 
-Enabling data collection alone is not enough; GitLab has strict data management policies, so you also need to configure a whitelist for access. Follow these steps:
+Enabling data collection alone is not enough; GitLab has strict data management policies, so you must also configure the access whitelist. Follow these steps:
 
-- Edit the GitLab configuration file `/etc/gitlab/gitlab.rb`, find `gitlab_rails['monitoring_whitelist'] = ['::1/128']` and add DataKit's access IP (usually the IP of the host where DataKit is located, or adjust according to actual container setup) to this array.
-- Restart the GitLab service.
+- Edit the GitLab configuration file `/etc/gitlab/gitlab.rb`, find `gitlab_rails['monitoring_whitelist'] = ['::1/128']` and add the DataKit access IP (usually the IP of the host where DataKit resides, or adjust according to actual conditions if GitLab runs in a container)
+- Restart the GitLab service
 
 For more details, see the [official configuration documentation](https://docs.gitlab.com/ee/administration/monitoring/ip_whitelist.html){:target="_blank"}.
 
-### Enable GitLab CI Visibility {#ci-visible}
+### Enabling GitLab CI Visibility {#ci-visible}
 
-Ensure that your current DataKit version (1.2.13 and later) supports GitLab CI visibility.
+Ensure you have the DataFlux Func platform
 
-By configuring GitLab Webhooks, you can achieve GitLab CI visibility. Follow these steps:
+By configuring GitLab Webhooks, you can achieve GitLab CI visibility. Data reporting needs to be done through DataFlux Func. The setup steps are as follows:
 
-- In GitLab, go to `Settings` -> `Webhooks`, configure the URL to `http://Datakit_IP:PORT/v1/gitlab`, set Triggers to include Job events and Pipeline events, and click Add webhook to confirm.
-- You can test the Webhook configuration using the Test button. DataKit should return a status code of 200 upon receiving the Webhook. Once correctly configured, DataKit can successfully collect GitLab CI information.
+1. Install the GitLab CI integration on DataFlux Func (script ID: `guance_gitlab_ci`), refer to the [GitLab CI integration configuration](https://func.guance.com/doc/script-market-guance-gitlab-ci/){:target="_blank"};
+2. In GitLab, go to `Settings` -> `Webhooks`, configure the URL to the API address from step 1, set Triggers to Job events and Pipeline events, and click Add webhook to confirm;
 
-DataKit receives Webhook events and logs them to the data center.
-
-Note: If you are sending GitLab data to a local network DataKit, additional configurations are required for GitLab; see [allow requests to the local network](https://docs.gitlab.com/ee/security/webhooks.html){:target="_blank"}.
-
-Additionally, GitLab CI functionality does not participate in the collector election. Users only need to configure the GitLab Webhook URL to one of the DataKit URLs. If you only need GitLab CI visibility without collecting GitLab metrics, you can disable metrics collection by setting `enable_collect = false`.
+Trigger the GitLab CI process; after execution, log in to Guance to view the CI execution status.
 
 ## Metrics {#metric}
 
-By default, all data collection appends global election tags, which can be specified in the configuration:
+All data collection defaults to appending global election tags, but you can specify other tags in the configuration:
 
 - You can specify additional tags for **GitLab metrics data** using `[inputs.gitlab.tags]` in the configuration:
 
@@ -126,7 +122,9 @@ By default, all data collection appends global election tags, which can be speci
 # ...
 ```
 
-Note: To ensure proper GitLab CI functionality, the extra tags specified for GitLab CI data will not overwrite existing tags (see GitLab CI tag list below).
+Note: To ensure proper functionality of GitLab CI, the extra tags specified for GitLab CI data will not overwrite existing tags (see GitLab CI tag list below).
+
+
 
 ### `gitlab`
 
@@ -147,26 +145,26 @@ GitLab runtime metrics
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`banzai_cacheless_render_real_duration_seconds_count`|Count of duration of rendering Markdown into HTML when cached output exists|float|s|
-|`banzai_cacheless_render_real_duration_seconds_sum`|Sum of duration of rendering Markdown into HTML when cached output exists|float|s|
-|`cache_misses_total`|Cache read miss count|float|-|
-|`cache_operation_duration_seconds_count`|Count of cache access time|float|s|
-|`cache_operation_duration_seconds_sum`|Sum of cache access time|float|s|
-|`cache_operations_total`|Count of cache access time|float|-|
-|`rack_requests_total`|Rack request count|float|-|
-|`redis_client_requests_duration_seconds_count`|Count of Redis request latency, excluding blocking commands|float|s|
-|`redis_client_requests_duration_seconds_sum`|Sum of Redis request latency, excluding blocking commands|float|s|
+|`banzai_cacheless_render_real_duration_seconds_count`|The count of duration of rendering Markdown into HTML when cached output exists|float|s|
+|`banzai_cacheless_render_real_duration_seconds_sum`|The sum of duration of rendering Markdown into HTML when cached output exists|float|s|
+|`cache_misses_total`|The cache read miss count|float|-|
+|`cache_operation_duration_seconds_count`|The count of cache access time|float|s|
+|`cache_operation_duration_seconds_sum`|The count of cache access time|float|s|
+|`cache_operations_total`|The count of cache access time|float|-|
+|`rack_requests_total`|The rack request count|float|-|
+|`redis_client_requests_duration_seconds_count`|The count of redis request latency, excluding blocking commands|float|s|
+|`redis_client_requests_duration_seconds_sum`|The sum of redis request latency, excluding blocking commands|float|s|
 |`redis_client_requests_total`|Number of Redis client requests|float|-|
-|`sql_duration_seconds_count`|Total SQL execution time, excluding SCHEMA operations and BEGIN / COMMIT|float|s|
-|`sql_duration_seconds_sum`|Sum of SQL execution time, excluding SCHEMA operations and BEGIN / COMMIT|float|s|
-|`transaction_cache_read_hit_count_total`|Counter for cache hits for Rails cache calls|float|count|
-|`transaction_cache_read_miss_count_total`|Counter for cache misses for Rails cache calls|float|count|
-|`transaction_db_cached_count_total`|Counter for db cache|float|count|
-|`transaction_db_count_total`|Counter for db|float|count|
-|`transaction_duration_seconds_count`|Count of duration for all transactions (gitlab_transaction_* metrics)|float|s|
-|`transaction_duration_seconds_sum`|Sum of duration for all transactions (gitlab_transaction_* metrics)|float|s|
-|`transaction_new_redis_connections_total`|Counter for new Redis connections|float|-|
-|`transaction_view_duration_total`|Duration for views|float|-|
+|`sql_duration_seconds_count`|The total SQL execution time, excluding SCHEMA operations and BEGIN / COMMIT|float|s|
+|`sql_duration_seconds_sum`|The sum of SQL execution time, excluding SCHEMA operations and BEGIN / COMMIT|float|s|
+|`transaction_cache_read_hit_count_total`|The counter for cache hits for Rails cache calls|float|count|
+|`transaction_cache_read_miss_count_total`|The counter for cache misses for Rails cache calls|float|count|
+|`transaction_db_cached_count_total`|The counter for db cache|float|count|
+|`transaction_db_count_total`|The counter for db|float|count|
+|`transaction_duration_seconds_count`|The count of duration for all transactions (gitlab_transaction_* metrics)|float|s|
+|`transaction_duration_seconds_sum`|The sum of duration for all transactions (gitlab_transaction_* metrics)|float|s|
+|`transaction_new_redis_connections_total`|The counter for new Redis connections|float|-|
+|`transaction_view_duration_total`|The duration for views|float|-|
 
 
 
@@ -183,11 +181,11 @@ NA
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`rails_queue_duration_seconds_count`|Counter for latency between GitLab Workhorse forwarding a request to Rails|float|s|
-|`rails_queue_duration_seconds_sum`|Sum for latency between GitLab Workhorse forwarding a request to Rails|float|s|
-|`ruby_gc_duration_seconds_count`|Count of time spent by Ruby in GC|float|s|
-|`ruby_gc_duration_seconds_sum`|Sum of time spent by Ruby in GC|float|s|
-|`ruby_sampler_duration_seconds_total`|Time spent collecting stats|float|s|
+|`rails_queue_duration_seconds_count`|The counter for latency between GitLab Workhorse forwarding a request to Rails|float|s|
+|`rails_queue_duration_seconds_sum`|The sum for latency between GitLab Workhorse forwarding a request to Rails|float|s|
+|`ruby_gc_duration_seconds_count`|The count of time spent by Ruby in GC|float|s|
+|`ruby_gc_duration_seconds_sum`|The sum of time spent by Ruby in GC|float|s|
+|`ruby_sampler_duration_seconds_total`|The time spent collecting stats|float|s|
 
 
 
@@ -209,8 +207,8 @@ GitLab HTTP metrics
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`http_health_requests_total`|Number of health requests|float|-|
-|`http_request_duration_seconds_count`|Counter for request duration|float|s|
-|`http_request_duration_seconds_sum`|Sum for request duration|float|s|
+|`http_request_duration_seconds_count`|The counter for request duration|float|s|
+|`http_request_duration_seconds_sum`|The sum for request duration|float|s|
 
 
 
@@ -277,9 +275,14 @@ GitLab Job Event metrics
 |`build_commit_message`|The message attached to the most recent commit of the code that triggered the build|string|-|
 |`build_duration`|Build duration (microseconds)|int|μs|
 |`build_finished_at`|Millisecond timestamp of the end of build|int|msec|
-|`build_id`|Build id|string|-|
+|`build_id`|build id|string|-|
 |`build_started_at`|Millisecond timestamp of the start of build|int|msec|
 |`message`|The message attached to the most recent commit of the code that triggered the build. Same as build_commit_message|string|-|
 |`pipeline_id`|Pipeline id for build|string|-|
 |`project_id`|Project id for build|string|-|
 |`runner_id`|Runner id for build|string|-|
+
+
+</input_content>
+<target_language>英语</target_language>
+</input>

@@ -16,12 +16,12 @@ monitor:
 
 ---
 
-This document primarily introduces [Elastic Beats](https://www.elastic.co/products/beats/){:target="_blank"} data collection. Currently supported:
+This document primarily introduces data collection using [Elastic Beats](https://www.elastic.co/products/beats/){:target="_blank"}. Currently supported:
 
 - [Filebeat](https://www.elastic.co/beats/filebeat/){:target="_blank"}
 - [Download Address](http://www.elastic.co/cn/downloads/past-releases/filebeat-7-17-3){:target="_blank"}
 
-Tested versions of Filebeat:
+Tested Filebeat versions:
 
 - [x] 8.6.2
 - [x] 7.17.9
@@ -40,7 +40,7 @@ Tested versions of Filebeat:
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/beats_output` directory under the DataKit installation directory, copy `beats_output.conf.sample`, and rename it to `beats_output.conf`. Example configuration:
+    Navigate to the `conf.d/beats_output` directory under the DataKit installation directory, copy `beats_output.conf.sample` and rename it to `beats_output.conf`. Example configuration:
     
     ```toml
         
@@ -73,18 +73,18 @@ Tested versions of Filebeat:
 
 === "Kubernetes"
 
-    You can currently enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
 ---
 
 ???+ attention
 
-    In the above configuration, if the keys in `inputs.beats_output.tags` are duplicated with the original fields, they will be overwritten by the original data.
+    In the above configuration for `inputs.beats_output.tags`, if a key repeats in the original fields, it will be overwritten by the original data.
 <!-- markdownlint-enable -->
 
 ### Configure Filebeat {#config-filebeat}
 
-Configure the `filebeat.yml` file under the Filebeat installation directory as follows.
+Set the `filebeat.yml` file in the Filebeat installation directory as follows.
 
 - `filebeat.inputs`
 
@@ -114,11 +114,11 @@ output.logstash:
   hosts: ["<Datakit-IP>:5044"]
 ```
 
-The port `5044` here must match the `listen` port configured in *<Datakit installation directory>/conf.d/beats_output/beats_output.conf*.
+The port `5044` must match the `listen` port configured in *<Datakit installation directory>/conf.d/beats_output/beats_output.conf*.
 
-This setup allows Filebeat to collect logs from the file `/Users/mac/Downloads/tmp/1.log` and report them to DataKit.
+This configuration allows Filebeat to collect logs from `/Users/mac/Downloads/tmp/1.log` and report them to DataKit.
 
-Note: **Ensure that the elasticsearch configuration on port 9200 is commented out**. The complete *filebeat.yml* file is as follows:
+Note that **the elasticsearch configuration on port 9200 needs to be commented out**. The complete *filebeat.yml* file is as follows:
 
 ```yml
 #--------------------- Filebeat Configuration Example ------------------------#
@@ -351,7 +351,7 @@ processors:
 
 ## Logs {#logging}
 
-By default, all data collection will append global tags named `host` (value is the hostname where Filebeat is located) and `filepath` (value is the full path of the file being collected by Filebeat). Additional tags can be specified using `[inputs.beats_output.tags]` in the configuration:
+By default, all data collection appends global tags named `host` (value is the hostname where Filebeat is located) and `filepath` (value is the full path of the Filebeat collected file). Additional tags can be specified in the configuration through `[inputs.beats_output.tags]`:
 
 ``` toml
  [inputs.beats_output.tags]
@@ -380,7 +380,7 @@ Using the `source` field in the config file, the default value is `default`.
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`message`|Message text, exists by default. Can be deleted using Pipeline.|string|-|
+|`message`|Message text, exists when default. Can be deleted using Pipeline.|string|-|
 |`status`|Log status.|string|-|
 
 

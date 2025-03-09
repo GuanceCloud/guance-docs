@@ -11,9 +11,9 @@
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                           |
-|:--------------|:-------|:---------|:--------------------------------------|
-| akUUIDs       | array  | Y        | UUID of the API Key<br>Can be empty: False <br> |
+| Parameter Name | Type   | Required | Description                              |
+|:--------------|:-------|:--------|:----------------------------------------|
+| akUUIDs       | array  | Y       | UUID of the API Key<br>Allow null: False <br> |
 
 ## Additional Parameter Notes
 
@@ -32,5 +32,3 @@
 
 
 </input_content>
-```
-请注意，我保留了原始的Markdown格式，并根据专用名词翻译词典和目标语言进行了翻译。

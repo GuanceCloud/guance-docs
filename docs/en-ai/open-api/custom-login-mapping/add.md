@@ -13,9 +13,9 @@
 
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| sourceField | string | Y | Source Field<br>Example: sourceField <br>Allow Null: False <br>Maximum Length: 256 <br> |
-| sourceValue | string | Y | Source Field Value<br>Example:  <br>Allow Null: False <br>Maximum Length: 256 <br> |
-| targetValues | array | Y | Target Field Values (currently defaults to a list of role UUIDs)<br>Example: readOnly <br> |
+| sourceField | string | Y | Source Field<br>Example: sourceField <br>Nullable: False <br>Maximum Length: 256 <br> |
+| sourceValue | string | Y | Source Field Value<br>Example:  <br>Nullable: False <br>Maximum Length: 256 <br> |
+| targetValues | array | Y | Target Field Values (currently defaults to a list of UUIDs for roles)<br>Example: readOnly <br> |
 
 ## Additional Parameter Notes
 

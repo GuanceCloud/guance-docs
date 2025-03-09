@@ -1,21 +1,20 @@
-# 【Service Performance】Get
+# [Service Performance] Get
 
 ---
 
 <br />**GET /api/v1/service_manage/performance/get**
 
 ## Overview
-Retrieve information about a single service performance
-
+Retrieve performance information for a single service
 
 
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:------------------|:-------|:-----|:----------------|
-| start | integer | Y | Time start, unit ms<br> |
-| end | integer | Y | Time end, unit ms<br> |
-| serviceName | string | Y | Service name<br>Allow null: False <br>Allow empty string: False <br> |
+|:-------------------|:-------|:-----|:----------------|
+| start | integer | Y | Start time, unit ms<br> |
+| end | integer | Y | End time, unit ms<br> |
+| serviceName | string | Y | Service name<br>Allow empty: False <br>Allow empty string: False <br> |
 
 ## Additional Parameter Notes
 
@@ -46,7 +45,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/performance/get?end=16938
                 "uuid": "rul_xxxx32"
             },
             {
-                "name": "High host {host}",
+                "name": "Host {host} High",
                 "type": "simpleCheck",
                 "uuid": "rul_xxxx32"
             },

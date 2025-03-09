@@ -12,14 +12,14 @@ Modify a team
 ## Route Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------------|:-------|:-----|:----------------|
+|:-------------------|:-------|:-----|:----------------|
 | group_uuid | string | Y | Team UUID<br> |
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------------|:-------|:-----|:----------------|
+|:-------------------|:-------|:-----|:----------------|
 | name | string | Y | Team name<br>Allow null: False <br>Maximum length: 48 <br> |
 | accountUUIDs | array | Y | Account list<br>Example: ['xxxx', 'xxx'] <br>Allow null: True <br> |
 

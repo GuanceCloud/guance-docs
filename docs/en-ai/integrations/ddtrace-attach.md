@@ -2,7 +2,7 @@
 title     : 'Automatic Injection of DDTrace-Java Agent'
 summary   : 'DDTrace Java Integration'
 tags      :
-  - 'Trace Collection'
+  - 'Tracing'
   - 'JAVA'
 __int_icon: 'icon/ddtrace'
 ---
@@ -24,19 +24,19 @@ This Java tool is primarily used to inject the DDTrace-Java agent into a current
 
 ## Principle {#principle}
 
-The basic principle of agent injection is to inject through a file under the */proc/[Java-PID]* (or */tmp/*) directory:
+The basic principle of agent injection is to inject through a file in the */proc/[Java-PID]* (or */tmp/*) directory:
 
 ``` not-set
 load instrument dd-agent.jar=<params...>
 ```
 
-Then send a SIGQUIT signal to the JVM, and the JVM will read the specified agent jar package.
+Then send a SIGQUIT signal to the JVM, which will read the specified agent JAR package.
 
 ## Download and Compile {#download}
 
-JDK version 1.8 and above cannot be cross-used.
+JDK versions 1.8 and above cannot be used interchangeably.
 
-If using a released version, please use the corresponding [releases version](https://github.com/GuanceCloud/agent-attach-java/releases){:target="_blank"}
+If using a release version, please use the corresponding [release version](https://github.com/GuanceCloud/agent-attach-java/releases){:target="_blank"}
 
 ***It is recommended to download the source code*** and compile it:
 
@@ -44,16 +44,16 @@ If using a released version, please use the corresponding [releases version](htt
 git clone https://github.com/GuanceCloud/agent-attach-java
 ```
 
-For JDK 1.8 versions, modify the pom.xml configuration file:
+For JDK 1.8 version, modify the pom.xml configuration file:
 
 ```xml
-<!--Change the version to 1.8 -->
+<!-- Change the version to 1.8 -->
     <configuration>
       <source>1.8</source>
       <target>1.8</target>
     </configuration>
     
-    <!--Uncomment the following dependency and remove the tools.jar comment !!!-->
+    <!-- Uncomment the following and comment out tools.jar !!!-->
     <dependency>
       <groupId>io.earcam.wrapped</groupId>
       <artifactId>com.sun.tools.attach</artifactId>
@@ -66,7 +66,7 @@ For JDK 1.8 versions, modify the pom.xml configuration file:
 For JDK 9, 11, 17, use the following pom.xml configuration:
 
 ```xml
-<!--Change the target version to the specified version-->
+<!-- Change the target version to the specified version -->
     <configuration>
         <source>11</source>
         <target>11</target>
@@ -107,7 +107,7 @@ java -jar agent-attach-java.jar [-options <dd options>]
                                 [-h]
                                 [-help]
 [-options]:
-   This is dd-java-agent.jar env, example:
+   This is the dd-java-agent.jar environment, example:
        dd.agent.port=9529,dd.agent.host=localhost,dd.service.name=serviceName,...
 [-agent-jar]:
    Default is: /usr/local/ddtrace/dd-java-agent.jar
@@ -124,17 +124,17 @@ java -jar agent-attach-java.jar -options 'dd.service.name=test,dd.tag=v1'\
  -agent-jar /usr/local/ddtrace/dd-java-agent.jar
 ```
 
-Parameter Explanation:
+Parameter descriptions:
 
 - `-options` DDTrace parameters: `dd.agent.host=localhost,dd.agent.port=9529,dd.service.name=mytest ...`
 - `-agent-jar` agent path, default is: `/usr/local/ddtrace/dd-java-agent.jar`
-- `-pid` process PID; either PID or `displayName` must not be empty, you can use one of them
+- `-pid` process PID, either PID or `displayName` cannot be empty at the same time; one of them can be used.
 - `-displayName` process name, for example `-displayName tmall.jar`
 - `-h or -help` help
 
-Note: Since JDK 9 no longer includes the *tools.jar* file, the project directory includes the *tools* file. *lib/tools.jar* is for JDK 1.8 version.
+Note: Since *tools.jar* file does not exist from JDK 9 onwards, the *tools* file is included in the project directory. *lib/tools.jar* is for JDK 1.8 version.
 
-## Dynamic Injection of *dd-java-agent.jar* {#dynamic-inject-ddagent-java}
+## Dynamically Inject *dd-java-agent.jar* {#dynamic-inject-ddagent-java}
 
 - First, download *dd-java-agent.jar* and place it in the */usr/local/ddtrace/* directory.
 
@@ -147,7 +147,7 @@ wget https://static.guance.com/ddtrace/dd-java-agent.jar
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    You must use the [Extended DDTrace](ddtrace-ext-java.md), otherwise, the automatic injection feature will be limited (various Trace parameters cannot be set).
+    You must use the [Extended DDTrace](ddtrace-ext-java.md), otherwise the auto-injection feature will be limited (various trace parameters cannot be set).
 <!-- markdownlint-enable -->
 
 - Start the Java application (if the Java application is already started, ignore this step)
@@ -217,4 +217,4 @@ Exception in thread "main" java.lang.UnsupportedClassVersionError: com/guance/ja
         at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:495)
 ```
 
-This occurs because the compilation version is lower while the runtime version is higher. Change the version or recompile with the current version.
+This occurs because the compilation version is lower than the runtime version. Change the version or recompile using the current version.

@@ -1,6 +1,6 @@
 ---
 title     : 'Socket Logging'
-summary   : 'This primarily discusses how to configure Socket in Java/Go/Python logging frameworks to send logs to the Datakit log collector.'
+summary   : 'This document mainly describes how to configure Socket in Java/Go/Python logging frameworks to send logs to the Datakit log collector.'
 tags:
   - 'Logging'
 __int_icon      : 'icon/socket'
@@ -12,20 +12,21 @@ monitor   :
     path  : '-'
 ---
 
-This document mainly introduces how to configure Socket in Java/Go/Python logging frameworks to send logs to the Datakit log collector.
+This document primarily introduces how to configure Socket in Java/Go/Python logging frameworks to send logs to the Datakit log collector.
 
-> File collection and Socket collection are mutually exclusive. Before enabling Socket collection, please ensure file collection is disabled. Refer to [Log Collection Configuration](logging.md).
+> File collection and Socket collection are mutually exclusive. Before enabling Socket collection, please ensure file collection is disabled. Refer to [Log Collection Configuration](logging.md)  
 
-## Configuration
+## Configuration {#config}
+
 ### Java {#java}
 
 When configuring log4j, note that log4j v1 defaults to using *.properties* files for configuration, while log4j-v2 uses XML files.
 
-Although the filenames differ, log4j looks for configuration files in the Class Path directory. According to conventions: v1 configurations are placed in *resources/log4j.properties*, and v2 configurations in *resources/log4j.xml*.
+Although the filenames differ, log4j looks for configuration files in the Class Path directory. According to conventions: v1 configurations should be placed in *resources/log4j.properties*, and v2 configurations in *resources/log4j.xml*.
 
 #### log4j(v2) {#log4j-v2}
 
-In Maven configuration, import the log4j 2.x jar packages:
+In Maven configuration, import the log4j 2.x JAR packages:
 
 ``` xml
 <dependency>
@@ -41,24 +42,24 @@ In Maven configuration, import the log4j 2.x jar packages:
 </dependency>
 ```
 
-Configure *log4j.xml* in *resources* and add `Socket Appender`:
+Configure *log4j.xml* in the *resources* directory and add `Socket Appender`:
 
 ``` xml
- <!-- Socket appender configured to send logs to port 9530 on localhost, protocol defaults to TCP -->
+ <!-- Socket appender configured to send logs to localhost on port 9530, protocol defaults to TCP -->
  <Socket name="socketname" host="localhost" port="9530" charset="utf8">
-     <!-- Customize output format and layout -->
+     <!-- Custom output format and layout -->
      <PatternLayout pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z} %-5level [traceId=%X{trace_id} spanId=%X{span_id}] %class{36} %L %M - %msg%xEx%n"/>
 
-     <!-- Note: Do not enable serialized transmission to the socket collector as DataKit cannot deserialize it. Use plain text instead -->
+     <!-- Note: Do not enable serialized transmission to the socket collector as DataKit cannot deserialize it. Use plain text format instead -->
      <!-- <SerializedLayout/>-->
 
      <!-- Alternative JSON output format -->
-     <!-- Note: Ensure compact eventEol is set to true to output each log entry on a single line -->
-     <!-- Logs sent to Guance will automatically expand JSON, so it's recommended to output each log entry on a single line -->
-     <!-- <JsonLayout properties="true" compact="true" complete="false" eventEol="true"/>-->
+     <!-- Note: Ensure compact and eventEol are set to true to output each log entry on a single line -->
+     <!-- The JSON will be automatically expanded after sending to Guance, so it's recommended to output each log entry on a single line -->
+     <!-- <JsonLayout  properties="true" compact="true" complete="false" eventEol="true"/>-->
  </Socket>
 
- <!-- Define logger to apply the appender -->
+ <!-- Define logger to reference the appender for it to take effect -->
  <loggers>
       <root level="trace">
           <appender-ref ref="Console"/>
@@ -99,7 +100,7 @@ public class logdemo {
 
 #### log4j(v1) {#log4j-v1}
 
-In Maven configuration, import the log4j 1.x jar package:
+In Maven configuration, import the log4j 1.x JAR package
 
 ``` xml
  <dependency>
@@ -109,7 +110,7 @@ In Maven configuration, import the log4j 1.x jar package:
  </dependency>
 ```
 
-Create a *log4j.properties* file under the *resources* directory:
+Create a *log4j.properties* file in the *resources* directory
 
 ``` text
 log4j.rootLogger=INFO,server
@@ -120,7 +121,7 @@ log4j.appender.server.Port=<dk socket port>
 log4j.appender.server.RemoteHost=<dk socket ip>
 log4j.appender.server.ReconnectionDelay=10000
 
-# Can be configured for JSON format
+# Can be configured to JSON format
 # log4j.appender.server.layout=net.logstash.log4j.JSONEventLayout
 ...
 ```
@@ -132,6 +133,7 @@ The `SocketAppender` in Logback [cannot send plain text over Socket](https://log
 > The issue is that `SocketAppender` sends serialized Java objects rather than plain text. You can use `log4j` input, but it is not recommended to switch logging components. Instead, rewrite an `Appender` that sends log data as plain text and use it with JSON formatting.
 
 Alternative solution: [Best Practices for Logback Logstash Plugin](../best-practices/cloud-native/k8s-logback-socket.md#spring-boot){:target="_blank"}
+
 
 ### Golang {#golang}
 
@@ -151,7 +153,7 @@ func (s *socketOutput) Write(b []byte) (int, error) {
 }
 
 func zapcal() {
-    conn, _ := net.DialTCP("tcp", nil, DK_LOG_PORT)
+    conn, _ := net.DialTCP("tcp", nil, <<<DK_LOG_PORT>>>) // <<<DK_LOG_PORT>>> should be replaced with actual port
     socket := &socketOutput{
         conn: conn,
     }
@@ -185,9 +187,9 @@ func zapcal() {
 
 #### logging.handlers.SocketHandler {#socket-handler}
 
-The native `SocketHandler` sends log objects via socket, not plain text, so you need to customize a Handler and override the `makePickle(self, record)` method in `SocketHandler`.
+The native `SocketHandler` sends log objects via socket, not in plain text form, so you need to customize a Handler and override the `makePickle(self, record)` method of `SocketHandler`.
 
-Example code:
+Code for reference:
 
 ```python
 import logging
@@ -195,7 +197,7 @@ import logging.handlers
 
 logger = logging.getLogger("") # Instantiate logging
 
-# Custom class to override makePickle method
+# Customize class and override makePickle method
 class PlainTextTcpHandler(logging.handlers.SocketHandler):
     """ Sends plain text log messages over TCP channel """
 
@@ -213,7 +215,7 @@ def logging_init():
     # Set logger log level
     logger.setLevel(logging.INFO)
 
-    # Set log output format
+    # Set log format
     formatter = logging.Formatter(
         fmt="%(asctime)s - %(filename)s line:%(lineno)d - %(levelname)s: %(message)s"
     )
@@ -240,4 +242,4 @@ if __name__ == '__main__':
     
 ```
 
-TODO: We will gradually add configurations for other language logging frameworks to send logs to DataKit via Socket.
+TODO: We will gradually add configurations for other language logging frameworks to use socket to send logs to DataKit.

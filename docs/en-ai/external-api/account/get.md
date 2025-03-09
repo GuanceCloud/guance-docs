@@ -1,4 +1,4 @@
-# 【Frontend Account】Retrieval
+# [Frontend Account] Acquisition
 
 ---
 
@@ -13,11 +13,11 @@
 
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| accountUUID | string | Yes | UUID of the account<br>Example: acnt-c846ed9e105911ea83fad20d0b94ecd1 <br>Nullable: False <br> |
-| exterId | string | Yes | External account ID<br>Nullable: False <br>Example: acnt-uJm5JYubZA3qewBmx3AtvU <br> |
-| wsRoleNeeded | string | Yes | Whether to return associated workspace and role information, true for yes, false for no<br>Example: supper_xxx <br>Nullable: False <br> |
+| accountUUID | string | Yes | UUID of the account<br>Example: acnt-c846ed9e105911ea83fad20d0b94ecd1 <br>Can be empty: False <br> |
+| exterId | string | Yes | External access account ID<br>Can be empty: False <br>Example: acnt-uJm5JYubZA3qewBmx3AtvU <br> |
+| wsRoleNeeded | string | Yes | Whether to return associated workspace and role information, true for yes, false for no<br>Example: supper_xxx <br>Can be empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
@@ -28,7 +28,7 @@
 curl '<Endpoint>/api/v1/account/get?accountUUID=acnt_b3ba42650e75c8a8xxx' \
   -H 'Content-Type: application/json' \
   -H 'X-Df-Access-Key: <AK key>' \
-  -H 'X-Df-Nonce: <random string>' \
+  -H 'X-Df-Nonce: <random characters>' \
   -H 'X-Df-Signature: <signature>' \
   -H 'X-Df-Timestamp: <timestamp>'
 ```

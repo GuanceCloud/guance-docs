@@ -1,4 +1,5 @@
-# 0306-docker-socket-ownership - docker.socket file ownership is not set to root:root
+# 0306-docker-socket-ownership - The ownership of docker.socket file is not set to root:root
+
 ---
 
 ## Rule ID

@@ -8,55 +8,61 @@
 
 
 
+
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                           |
-|:--------------|:-------|:---------|:--------------------------------------|
-| channelUUID   | string |          | Channel UUID<br>Example: chan_xxxxx <br>Can be empty: False <br> |
-| filters       | array  |          | Filter conditions<br>Example: [{key: xxxx, value: xxx, equal: true}...] <br>Can be empty: False <br> |
-| startTime     | integer|          | Start time<br>Example: xxxxx <br>Can be empty: False <br> |
-| endTime       | integer|          | End time<br>Example: xxxxx <br>Can be empty: False <br> |
-| search        | string |          | General search field<br>Example: xxxxx_text <br>Can be empty: False <br>Can be an empty string: True <br> |
-| pageSize      | integer|          | Number of items per page<br>Can be empty: False <br>Example: 10 <br> |
-| pageIndex     | integer|          | Page number<br>Can be empty: False <br>Example: 10 <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:-------------------------|
+| channelUUID          | string   | Yes        | Channel UUID<br>Example: chan_xxxxx <br>Can be empty: False <br> |
+| filters              | array    | No         | Filter conditions<br>Example: [{key: xxxx, value: xxx, equal: true}...] <br>Can be empty: False <br> |
+| startTime            | integer  | Yes        | Start time<br>Example: xxxxx <br>Can be empty: False <br> |
+| endTime              | integer  | Yes        | End time<br>Example: xxxxx <br>Can be empty: False <br> |
+| search               | string   | No         | General search field<br>Example: xxxxx_text <br>Can be empty: False <br>Can be an empty string: True <br> |
+| pageSize             | integer  | Yes        | Number of items per page<br>Can be empty: False <br>Example: 10 <br> |
+| pageIndex            | integer  | Yes        | Page number<br>Can be empty: False <br>Example: 10 <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
-**Filters Explanation**
 
-| Parameter Name | Data Type | Required | Parameter Description                         |
-|:--------------:|:----------:|:--------:|:---------------------------------------------:|
-| channelUUID    | string     | Y        | Channel UUID                                  |
-| startTime      | int        | F        | Start time                                    |
-| endTime        | int        | F        | End time                                      |
-| pageIndex      | int        | F        | Page number                                   |
-| pageSize       | int        | F        | Number of items per page                      |
-| search         | string     | F        | Search field (name and description)           |
-| filters        | array      | F        | Issue list filter conditions                  |
+**Filters Condition Explanation**
+
+| Parameter Name      | Parameter Type | Required | Parameter Description                  |
+|:--------------------|:---------------|:---------|:---------------------------------------|
+| channelUUID         | string         | Yes      | Channel UUID                          |
+| startTime           | int            | No       | Start time                            |
+| endTime             | int            | No       | End time                              |
+| pageIndex           | int            | No       | Page number                           |
+| pageSize            | int            | No       | Number of items per page              |
+| search              | string         | No       | Search field (name and description)   |
+| filters             | array          | No       | Issue list filter conditions          |
+
 
 **Detailed Filters Explanation**
 
-| Parameter Name | Data Type | Parameter Description                          |
-|:--------------:|:----------:|:----------------------------------------------:|
-| filters.key    | string     | Filter condition key                           |                       
-| filters.value  | string     | Filter condition value                         |
-| filters.equal  | string     | Comparison symbol (true: equals; false: not equals) |
+| Parameter Name      | Parameter Type | Parameter Description                  |
+|:--------------------|:---------------|:---------------------------------------|
+| filters.key         | string         | Filter condition key                   |                       
+| filters.value       | string         | Filter condition value                 |
+| filters.equal       | string         | Comparison symbol (true: equals; false: not equals) |
 
-**filters.key Detailed Explanation**
+**Detailed Filters.Key Explanation**
 
-| Parameter Name | Description                             |
-|:--------------:|:---------------------------------------:|
-| resource       | Resource name                           |
-| level          | Issue level UUID                        |
-| statusType     | Issue status [10: Open, 20: Resolve, 30: Pending] |
-| creator        | Creator                                 |
-| updator        | Updator                                 |
+| Parameter Name      | Description                  |
+|:--------------------|:-------------------------------|
+| resource            | Resource name                 |
+| level               | Issue level UUID              |
+| statusType          | Issue status [10: Open, 15: Working, 20: Resolved, 25: Closed, 30: Pending] |
+| creator             | Creator                       |
+| updator             | Updater                       |
 
-**filters Example**
+**Filters Example**
 
 ```json
 [{"key": "statusType", "value": 30, "equal": true}, {"key": "resource", "value": 'dds', "equal": false}]
 ```
+
+
+
 
 ## Request Example
 ```shell
@@ -66,6 +72,9 @@ curl 'https://openapi.guance.com/api/v1/issue/list' \
 --data-raw '{"pageIndex":1,"pageSize":20,"search":"","filters":[],"channelUUID":"xxxxxxxx"}' \
 --compressed
 ```
+
+
+
 
 ## Response
 ```shell
@@ -107,7 +116,7 @@ curl 'https://openapi.guance.com/api/v1/issue/list' \
                 "level": 2,
                 "name": "bbbb",
                 "resource": "APM-http://testing-ft2x-saas.cloudcare.cn/tracing/service/table?leftActiveKey=Tracing&activeName=LinkToTrackService&w=wksp_xxxx32&time=15m",
-                "resourceType": "Explorer",
+                "resourceType": "viewer",
                 "resourceUUID": "",
                 "status": 0,
                 "statusType": 30,

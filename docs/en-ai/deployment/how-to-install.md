@@ -4,7 +4,7 @@
 
 ## Deployment Steps {#install-step}
 
-Guance deployment can be initiated according to the following steps:
+<<< custom_key.brand_name >>> deployment can be initiated by following these steps:
 
 ### 1. Resource Planning and Material Preparation
 
@@ -15,55 +15,57 @@ Guance deployment can be initiated according to the following steps:
 
 * 2.1 [Deploy Infrastructure](basic-env-install.md#basic-install)
 
-### 3. Deploy Guance
+### 3. Deploy <<< custom_key.brand_name >>>
 
 * 3.1 [Deploy Product Using Launcher](launcher-install.md)
 * 3.2 [Initialize DataWay](dataway-install.md)
-* 3.3 [Activate Guance](activate.md)
+* 3.3 [Activate <<< custom_key.brand_name >>>](activate.md)
 
-### 4. Start Experiencing Features
+### 4. Start Exploring Features
 
 * 4.1 [Get Started](experience-function.md)
 
 
 
-## Important Notes
+## Precautions
 
-### Regarding Domain Names
+### Domain Names
 
-Deployment requires providing a domain name. If you have a real domain, DNS resolution is required, or you can use local hosts binding.
+Deployment requires providing a domain name. If you have a real domain, it needs DNS resolution or local hosts binding.
 
-Taking `dataflux.cn` as an example, the following table describes the roles of each subdomain:
+Taking `dataflux.cn` as an example, the following describes the purpose of each subdomain:
 
-| Subdomain Prefix | Example Domain                  | Target          | Function                      | Required |
-| :--------------: | :-----------------------------: | :-------------: | :----------------------------: | :------: |
-| dataflux         | dataflux.dataflux.cn            | Ingress-Nginx   | Guance Console Frontend        | Yes      |
-| df-api           | df-api.dataflux.cn              | Ingress-Nginx   | Guance Console API             | Yes      |
-| df-docs          | df-docs.dataflux.cn             | Ingress-Nginx   | Help Documentation             | No       |
-| df-func          | df-func.dataflux.cn             | Ingress-Nginx   | Guance Computing Service       | No       |
-| df-kodo          | df-kodo.dataflux.cn             | kodo-nginx      | Metrics Data Entry Service     | Yes      |
-| df-management    | df-management.dataflux.cn       | Ingress-Nginx   | Guance Backend Management UI   | Yes      |
-| df-management-api| df-management-api.dataflux.cn   | Ingress-Nginx   | Guance Backend Management API  | Yes      |
-| df-openapi       | df-openapi.dataflux.cn          | Ingress-Nginx   | Guance Data Interface          | No       |
-| df-static-res    | df-static-res.dataflux.cn       | Ingress-Nginx   | Guance Template Resource Service| Yes     |
+| Subdomain Prefix | Example Domain               | Target         | Purpose                                      | Required |
+| :--------------: | :--------------------------: | :------------: | :-------------------------------------------: | :------: |
+| dataflux         | dataflux.dataflux.cn         | Ingress-Nginx  | <<< custom_key.brand_name >>> Console Frontend |    Yes   |
+| df-api           | df-api.dataflux.cn           | Ingress-Nginx  | <<< custom_key.brand_name >>> Console API     |    Yes   |
+| df-docs          | df-docs.dataflux.cn          | Ingress-Nginx  | Help Documentation                           |    No    |
+| df-func          | df-func.dataflux.cn          | Ingress-Nginx  | <<< custom_key.brand_name >>> Compute Service |    No    |
+| df-kodo          | df-kodo.dataflux.cn          | kodo-nginx     | Metrics Data Entry Service                   |    Yes   |
+| df-management    | df-management.dataflux.cn    | Ingress-Nginx  | <<< custom_key.brand_name >>> Admin Console  |    Yes   |
+| df-management-api| df-management-api.dataflux.cn| Ingress-Nginx  | <<< custom_key.brand_name >>> Admin API      |    Yes   |
+| df-openapi       | df-openapi.dataflux.cn       | Ingress-Nginx  | <<< custom_key.brand_name >>> Data Interface |    No    |
+| df-static-res    | df-static-res.dataflux.cn    | Ingress-Nginx  | <<< custom_key.brand_name >>> Template Resources | Yes |
 
-For more information on Guance components, please refer to: [Component Description](deployment-description.md#module)
+For more information on <<< custom_key.brand_name >>> components, please refer to: [Component Description](deployment-description.md#module)
 
-### Regarding Cluster Storage Classes
+### Cluster Storage Classes
 
 ???+ warning "Note"
 
-     Guance software deployment must use the [nfs-subdir-external-provisioner](nfs-provisioner.md)
+     <<< custom_key.brand_name >>> software deployment must use [nfs-subdir-external-provisioner](nfs-provisioner.md).
 
-In deploying Guance services, two main parts are involved: one is the deployment of basic components, and the other is the deployment of Guance software. The storage classes for these two deployments differ as follows:
+Deploying <<< custom_key.brand_name >>> services involves deploying two main parts: one is the basic component deployment, and the other is <<< custom_key.brand_name >>> software deployment. The storage classes used in both deployments differ as follows:
 
 
 
-| Name                        | [nfs-subdir-external-provisioner](nfs-provisioner.md)                                                                 | [OpenEBS](openebs-install.md)                                      |
-| :-------------------------: | :-------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------: |
-| Third-party Requirement     | Requires NFS                                                                                                        | Does not require third-party, local disk is sufficient            |
-| Performance                 | Network storage, poor IO performance                                                                                | Local storage, high IO performance                                |
-| Read/Write Type             | ReadWriteMany, ReadOnlyMany, ReadWriteOnce                                                                          | ReadWriteOnce                                                    |
-| Pros and Cons               | Pros: Can share data, supports multi-node mounting; Cons: Poor IO                                                   | Pros: High IO; Cons: Cannot share across multiple pods on different nodes, does not support dynamic scheduling |
-| Supported Environments      | Basic component deployment, Guance software deployment                                                               | Basic component deployment                                        |
-| Remarks                     | For POC environments, this storage class can be used for both basic component and Guance software deployment. For production environments, it is not recommended to use this storage class for basic component deployment | This storage class is not suitable for deploying Guance software |
+| Name                         | [nfs-subdir-external-provisioner](nfs-provisioner.md) | [OpenEBS](openebs-install.md)                 |
+| :--------------------------: | :---------------------------------------------------: | :-------------------------------------------: |
+| Requires Third Party?        | NFS required                                         | Not required, local disk sufficient           |
+| Performance                  | Network storage, poor IO performance                  | Local storage, high IO performance            |
+| Read/Write Type              | ReadWriteMany, ReadOnlyMany, ReadWriteOnce            | ReadWriteOnce                                 |
+| Pros and Cons                | Pros: Shared data, multi-node mounting; Cons: Poor IO | Pros: High IO; Cons: No cross-node sharing, no dynamic scheduling support |
+| Supported Environments       | Basic component deployment, <<< custom_key.brand_name >>> software deployment | Basic component deployment only               |
+| Remarks                      | For POC environments, this storage class can be used for deploying basic components and <<< custom_key.brand_name >>> software. For production environments, it is not recommended to use this storage class for basic component deployment | This storage class is not suitable for deploying <<< custom_key.brand_name >>> software |
+
+Please continue translating if there's more content.

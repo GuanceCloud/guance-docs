@@ -5,17 +5,17 @@
 <br />**GET /api/v1/rum_sourcemap/list**
 
 ## Overview
-List all sourcemap information that exists under the specified application
+List all existing sourcemap information for the specified application
 
 
 
 ## Query Request Parameters
 
 | Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:---------|:-------------------------|
-| appId         | string | Yes      | appId<br>Can be empty: False <br> |
+|:--------------|:-------|:--------|:-------------------------|
+| appId         | string | Y       | appId<br>Allow empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

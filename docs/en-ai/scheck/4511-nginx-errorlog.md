@@ -1,4 +1,4 @@
-# 4511-nginx-errorlog - Ensure NGINX enables error access logging
+# 4511-nginx-errorlog - Ensure NGINX Enables Error Access Logging
 ---
 
 ## Rule ID
@@ -37,7 +37,7 @@
 ## Theoretical Basis
 
 
-- Error logging can be used to identify attackers attempting to exploit the system and to reconstruct the attacker's steps. Error logging also helps identify potential issues in the application
+- Error logging can be used to identify attackers attempting to exploit the system and recreate the steps taken by the attacker. Error logging also helps identify issues that may arise in the application
 
 
 

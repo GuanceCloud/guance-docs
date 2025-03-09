@@ -1,59 +1,56 @@
-# Best Practices for Two-Way Integration Between Incident and JIRA
+# Best Practices for Bidirectional Integration between Incident and JIRA
 
 ---
 
 > _Authors: Su Tongtong, Liu Rui_
 
-[**Incident**](/exception/) is a communication management tool launched by Guance, designed to facilitate effective coordination based on internal incidents.
+[**Incident**](/exception/) is a communication management tool launched by <<< custom_key.brand_name >>> for effective coordination of internal incidents.
 
 **JIRA** is an enterprise-level project management tool.
 
 ???+ info
 
-    When an application or system encounters an incident, it usually needs to be handled promptly to ensure normal operation. By integrating [**Incident**](/exception/) with JIRA in a two-way manner, relevant personnel within the enterprise can quickly understand, analyze the cause of the problem, trace and record the handling process, effectively improving communication efficiency and significantly reducing the cost of incident resolution.
+    When an application or system encounters an incident, it typically needs to be handled promptly to ensure normal system operation. By integrating [**Incident**](/exception/) with JIRA bidirectionally, relevant personnel within the enterprise can quickly understand and analyze the cause of the problem, trace and record the handling process, effectively improving communication efficiency and significantly reducing incident resolution costs.
 
-![Incident Interaction Flow with IM —— Jira Flowchart](../images/im_jira_01.png)
-
+![Incident Interaction Process with IM —— Jira Flowchart](../images/im_jira_01.png)
 
 ## Preparation
 
-- [x] Jira platform (requires administrative privileges)
-- [x] Guance space account
-- [x] [DataFlux Func (Automata)](https://func.guance.com/)
-
+- [x] Jira platform (requires administrator privileges)
+- [x] <<< custom_key.brand_name >>> workspace account
+- [x] [Dataflux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/) 
 
 ## Jira
 
-Obtain the project key, project URL, api_token, and username from the Jira platform. These will be used in subsequent Guance scripts.
+Obtain the corresponding project key, project URL, API token, and username from the Jira platform. These will be used in subsequent <<< custom_key.brand_name >>> scripts.
 
-**Only administrators have permission to perform these operations.**
+**Only administrators have permission to perform these operations**
 
-
-## Guance
+## <<< custom_key.brand_name >>>
 
 ### Create API Key
 
-Refer to the documentation [API Key](/management/api-key/index.md)
+Refer to the documentation for [API Key](/management/api-key/index.md).
 
-Set the key name to `Jira System` to distinguish whether the comment originates from Guance or Jira. The key name will be displayed as the user in the Guance `issue`.
+Set the key name to `Jira System` to distinguish whether the comment information originates from <<< custom_key.brand_name >>> or Jira. The key name will also appear as the user in <<< custom_key.brand_name >>> `issue`.
 
 ### Func Script Development
 
 - Log in to Func
 
-Log in to the deployed [DataFlux Func (Automata)](https://func.guance.com/)
+Log in to the deployed [Dataflux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/)
 
 - Add Python Dependencies
 
-1. Click the **Management** menu
-2. Click **Experimental Features**, enable the **Enable PIP Tool** switch. If already enabled, ignore this step.
-3. Click **PIP Tool**, install **Python Packages**, enter **jira**, choose the default data source, or switch to another data source if necessary, then click the **Install** button to complete the dependency installation.
+1. Click on the **Manage** menu
+2. Click **Experimental Features**, turn on the **Enable PIP Tool** switch. If already enabled, ignore this step.
+3. Click **PIP Tool**, install the **Python package**, enter **jira**, select the default data source. If the default data source does not contain the current dependency, switch to another data source and click the **Install** button to complete the dependency installation.
 
 - Write the Script
 
-1. Click the **Development** menu;
-2. Click the **New Script Set** button, fill in the script **ID**, which can be customized. Here, use `Issue_to_jira`, then click the **Save** button;
-3. Select `Issue_to_jira`, click **New Script**, this ID can also be customized;
+1. Click on the **Development** menu;
+2. Click the **Create Script Set** button, fill in the script **ID**, which can be customized. Here, fill in `Issue_to_jira`, then click the **Save** button;
+3. Select `Issue_to_jira`, click **Create Script**, this ID can also be customized;
 4. Paste the following script content and adjust the configuration information.
 
 ```python
@@ -63,14 +60,14 @@ import time
 from datetime import datetime, timedelta
 from jira import JIRA
 
-# Guance configuration, note to modify df_api_key
+# <<< custom_key.brand_name >>> configuration, note to modify df_api_key
 base_url = 'https://openapi.guance.com'
 channel_list_url = base_url + '/api/v1/channel/quick_list'
 issue_list_url = base_url + '/api/v1/issue/list'
 create_issue_reply_url = base_url + '/api/v1/issue/reply/create'
 df_api_key = 'vy2EV......fuTtn'
 
-# JIRA configuration, all configurations below are mandatory, modify to your own environment
+# JIRA configuration, all configurations are mandatory, modify them for your environment
 username = 'sutt'
 api_token = 'ATATT3xFfGF0eVvhZUkO0tTas8JnNYEsxGIJqWGinVyQL0ME......B6E'
 jira_server_url = 'https://***.net/'
@@ -171,7 +168,7 @@ def sync_comments_from_jira_to_guance():
                 create_issue_reply(guance_issue_id, comment.body)
 
     if not has_updates:
-        print("No updates or new comments in the past minute.")
+        print("No updates or new comments in the last minute.")
 
 @DFF.API('Create_JIRA_Issue_Reply2')
 def guance():
@@ -185,36 +182,35 @@ def guance():
 
 - Publish Script
 
-Click the **Publish** button to complete the publication. After publication, the API is successfully released and can provide external services.
+Click the **Publish** button to complete the publication. After publishing, the API is successfully published and can provide external services.
 
-- Configure Automatic Triggers
+- Automatic Trigger Configuration
 
-**Automatic Trigger Configuration** can schedule the execution of APIs.
+**Automatic Trigger Configuration** can schedule API execution.
 
-1. From the **Management** menu, click the **Automatic Trigger Configuration** button;
-2. Click the **New** button in the top right corner to create a new trigger;
-3. Select the script to execute, parameters can be left unspecified, check the corresponding execution frequency, set it to repeat **every minute**, and **save**.
+1. From the **Manage** menu, click the **Automatic Trigger Configuration** button;
+2. Click the **New** button in the top-right corner to create a new configuration;
+3. Select the script to execute. Parameters can be left unspecified. Choose the execution frequency, here set it to **Repeat Every Minute**, and **Save**.
 
 ![Img](../images/im_jira_03.png)
 
-
 ### Create Issue
 
-Guance provides two ways to create issues:
+<<< custom_key.brand_name >>> supports two methods for creating issues:
 
 - [x] Direct Creation
-- [x] Creation via Monitors
+- [x] Creation via Monitor
 
 #### Direct Creation
 
-1. Log in to the Guance console
-2. Click the **Incident** menu, click the **New Issue** button in the top right corner, fill in the issue information, and save.
+1. Log in to the <<< custom_key.brand_name >>> console
+2. Click the **Incident** menu, then click the **Create Issue** button in the top-right corner. Fill in the issue information and save.
 
-#### Creation via Monitors
+#### Creation via Monitor
 
-**Creation via Monitors** means creating issues through events generated by monitors.
+**Creation via Monitor** involves generating event information through monitors to create issues.
 
-1. Log in to the Guance console
+1. Log in to the <<< custom_key.brand_name >>> console
 2. Click the **Monitoring** menu on the left
 3. You can add new monitors or adjust existing ones. Edit the corresponding monitor, enable the **Synchronize Issue Creation** switch, and save.
 
@@ -223,11 +219,10 @@ Guance provides two ways to create issues:
 ### Jira Effect:
 
 ![Img](../images/im_jira_04.png)
-Jira issues are automatically generated, and when comments are made, the handling process of the `issue` can be displayed on Guance.
+Jira issues are automatically generated, and when comments are made, the handling process of the `issue` can be displayed on <<< custom_key.brand_name >>>.
 
+### <<< custom_key.brand_name >>> Effect
 
-### Guance Effect
-
-The handling process of Jira `issues` is also synchronized on Guance.
+<<< custom_key.brand_name >>> synchronizes the Jira `issue` handling process.
 
 ![Img](../images/im_jira_05.png)

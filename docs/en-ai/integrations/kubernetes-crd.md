@@ -17,11 +17,11 @@ __int_icon: 'icon/kubernetes'
 
 **This feature is deprecated in Datakit 1.63.0.**
 
-This document describes how to create a Datakit resource and configure extended collectors within a Kubernetes cluster.
+This document describes how to create a Datakit resource and configure extended collectors in a Kubernetes cluster.
 
 ### Add Authorization {#authorization}
 
-For upgraded versions of DataKit, authorization needs to be added under the `apiVersion: rbac.authorization.k8s.io/v1` section in `datakit.yaml`. Specifically, copy and add the following lines to the end:
+If you are using an upgraded version of DataKit, you need to add authorization under the `apiVersion: rbac.authorization.k8s.io/v1` item in `datakit.yaml`, i.e., copy the following lines and add them to the end:
 
 ```yaml
 - apiGroups:
@@ -33,14 +33,14 @@ For upgraded versions of DataKit, authorization needs to be added under the `api
   - list
 ```
 
-### Create v1beta1 DataKit Instances and DataKit Resource Objects {#create}
+### Create v1beta1 DataKit Instance and DataKit Object {#create}
 
-Write the following content into a YAML configuration file, for example *datakit-crd.yaml*. The meaning of each field is as follows:
+Write the following content into a YAML configuration, for example *datakit-crd.yaml*, where the meaning of each field is as follows:
 
 - `k8sNamespace`: Specifies the namespace, which helps locate a set of Pods in conjunction with deployment. This is a required field.
 - `k8sDaemonSet`: Specifies the DaemonSet name, which helps locate a set of Pods in conjunction with the namespace.
 - `k8sDeployment`: Specifies the deployment name, which helps locate a set of Pods in conjunction with the namespace.
-- `inputConf`: Configuration file for the collector. Based on the namespace and deployment, it finds the corresponding Pod, replaces wildcard information in the Pod, and then runs the collector based on the content of `inputConf`. The following wildcards are supported:
+- `inputConf`: Collector configuration file, based on namespace and deployment to find the corresponding Pod, replace the wildcard information of the Pod, then run the collector according to the content of `inputConf`. The following wildcards are supported:
     - `$IP`: Internal IP of the Pod
     - `$NAMESPACE`: Namespace of the Pod
     - `$PODNAME`: Name of the Pod
@@ -51,17 +51,17 @@ Execute the command `kubectl apply -f datakit-crd.yaml`.
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    - DaemonSet and Deployment are two different Kubernetes resources, but here `k8sDaemonSet` and `k8sDeployment` can coexist. In the same Namespace, Pods created by DaemonSet and Pods created by Deployment share the same CRD configuration. However, this is not recommended because fields like `source` are used to identify data sources, and mixing them can lead to unclear data boundaries. It is suggested that only one of `k8sDaemonSet` or `k8sDeployment` exists in a single CRD configuration.
+    - DaemonSet and Deployment are two different Kubernetes resources, but here, `k8sDaemonSet` and `k8sDeployment` can coexist. That is, in the same Namespace, Pods created by DaemonSet and Pods created by Deployment share the same CRD configuration. However, this is not recommended because fields like `source` are used to identify data sources, and mixing them can lead to unclear data boundaries. It is suggested that only one of `k8sDaemonSet` or `k8sDeployment` exists in a single CRD configuration.
 
-    - DataKit only collects data from Pods on the same node, adhering to a proximity collection principle without crossing nodes.
+    - Datakit only collects Pods that reside on the same node as it does, performing local collection without crossing nodes.
 <!-- markdownlint-enable -->
 
 ## Example {#example}
 
-The complete example includes:
+A complete example is provided below, including:
 
-- Creating a CRD for DataKit
-- Test namespaces and DataKit instance objects
+- Creating CRD Datakit
+- Testing namespaces and Datakit instance objects
 - Configuring the Prom collector (`inputConf`)
 
 ```yaml
@@ -126,12 +126,12 @@ spec:
 
 ### NGINX Ingress Configuration Example {#example-nginx}
 
-Here, we use the DataKit CRD to extend the collection of Ingress metrics, i.e., collecting Ingress metrics via the prom collector.
+Here we use the DataKit CRD to extend the collection of Ingress metrics, i.e., collecting Ingress metrics through the prom collector.
 
 #### Prerequisites {#nginx-requirements}
 
-- Deployed [DaemonSet DataKit](../datakit/datakit-daemonset-deploy.md)
-- If the `Deployment` name is `ingress-nginx-controller`, the YAML configuration should be as follows:
+- [DaemonSet DataKit](../datakit/datakit-daemonset-deploy.md) has been deployed.
+- If the `Deployment` name is `ingress-nginx-controller`, the YAML configuration would be as follows:
 
   ```yaml
   ...
@@ -149,7 +149,7 @@ Here, we use the DataKit CRD to extend the collection of Ingress metrics, i.e., 
 
 #### Configuration Steps {#nginx-steps}
 
-- First, create the DataKit CustomResourceDefinition
+- First, create the Datakit CustomResourceDefinition
 
 Execute the following creation command:
 
@@ -203,11 +203,11 @@ kubectl get crds | grep guance.com
 datakits.guance.com   2022-08-18T10:44:09Z
 ```
 
-- Create the DataKit resource
+- Create the Datakit resource
 
-Refer to the detailed Prometheus configuration [here](kubernetes-prom.md).
+For detailed Prometheus configuration, refer to [this link](kubernetes-prom.md)
 
-Execute the following YAML:
+Execute the following `yaml`:
 
 ```yaml
 apiVersion: guance.com/v1beta1
@@ -245,9 +245,9 @@ NAME           AGE
 prom-ingress   18m
 ```
 
-- Check the metric collection status
+- Check the metrics collection status
 
-Log into the `DataKit pod` and execute the following command:
+Log in to the `Datakit pod` and execute the following command:
 
 ```bash
 datakit monitor
@@ -258,4 +258,4 @@ datakit monitor
   <figcaption> Ingress Data Collection </figcaption>
 </figure>
 
-You can also log into the [Guance platform](https://www.guance.com/){:target="_blank"}, go to 【Metrics】-【Explorer】to view the metric data.
+You can also log in to the [Guance platform](https://www.guance.com/){:target="_blank"}, go to 【Metrics】-【Explorer】to view the metrics data.

@@ -1,18 +1,18 @@
 # Managing Configuration with Git
 ---
 
-This article explains how to manage DataKit configurations using Git. These configurations include collection configurations, Pipeline scripts, etc. By maintaining a local or remote Git repository, we can manage changes to DataKit's configuration and leverage Git's version control features to track historical changes in the configuration.
+This document explains how to manage DataKit configurations using Git. These configurations include collection configurations, Pipeline scripts, etc. By maintaining a local or remote Git repository, we can manage changes in DataKit's configuration and leverage Git’s version control features to track historical changes in the configuration.
 
 ## Operating Mechanism {#mechanism}
 
-DataKit integrates Git client functionality, which periodically pulls the latest configuration data from the Git repository (default 1min). By loading these latest configurations, DataKit updates its settings.
+DataKit integrates Git client functionality, which periodically (default 1min) fetches the latest configuration data from the Git repository. By loading these latest configurations, it achieves updates to DataKit's configuration.
 
 ## Usage Example {#example}
 
 The complete usage example steps are as follows:
 
 1. Create a Git repository
-2. Plan the repository’s configuration according to predefined directory rules
+2. Plan the configuration within the repository according to predefined directory rules
 3. Push the configuration to the Git repository
 4. Add the Git repository in the main DataKit configuration
 5. Restart DataKit
@@ -20,7 +20,7 @@ The complete usage example steps are as follows:
 <!-- markdownlint-disable MD046 -->
 ???+ note
 
-    The creation of the Git repository does not have to follow this order. For example, you can first create a remote repository URL, then clone the repository for modification. The following example creates a local Git repository first and then pushes it to a remote repository.
+    The creation of the Git repository does not have to follow this order. For example, you can first create a remote repository URL, then clone the repository for modifications. The following example creates a local Git repository first and then pushes it to a remote repository.
 <!-- markdownlint-enable -->
 
 ### Creating a Git Repository {#new-repo}
@@ -44,7 +44,7 @@ mkdir -p python.d && touch python.d/.gitkeep
 
 ### Pushing Configuration {#repo-push}
 
-Push configuration changes to the repository using common Git commands:
+Use common Git commands to push configuration changes to the repository:
 
 ```shell
 # cd your/path/to/repo
@@ -54,7 +54,7 @@ git add conf.d pipeline python.d
 
 git commit -m "init datakit repo"
 
-# Push the repo to YOUR GitHub(ssh or https)
+# Push the repo to YOUR GitHub (ssh or https)
 git remote add origin ssh://git@github.com/PATH/TO/datakit-confs.git
 git push origin --all
 ```
@@ -74,7 +74,7 @@ Enable the *git_repos* feature in *datakit.conf*. Find `git_repos` as shown belo
 
     branch = "master" # Specify which branch to pull
 
-    # git/ssh authentication requires key-path key-password configuration
+    # git/ssh authentication require key-path key-password configure
     # url = "git@github.com:PATH/TO/datakit-confs.git"
     # url = "ssh://git@github.com/PATH/TO/datakit-confs.git"
     # ssh_private_key_path = "/Users/username/.ssh/id_rsa"
@@ -85,7 +85,7 @@ If the password contains special characters, refer to [this section](datakit-inp
 
 ### Restarting DataKit {#restart}
 
-After completing the configuration, [restart DataKit](datakit-service-how-to.md#manage-service). After a short while, you can check the status of the collectors through [DataKit Monitor](datakit-monitor.md).
+After completing the configuration, [restart DataKit](datakit-service-how-to.md#manage-service). Wait a moment, and use [DataKit Monitor](datakit-monitor.md) to check the status of the collectors.
 
 ## Using Git in Kubernetes {#k8s}
 
@@ -97,9 +97,9 @@ Refer to [here](datakit-daemonset-deploy.md#env-git).
 ### :material-chat-question: Error: Authentication Required {#auth-required}
 <!-- markdownlint-enable -->
 
-This error may occur due to several reasons.
+This error may occur due to the following reasons.
 
-If using SSH, it is usually because the provided key is incorrect. If using HTTP, it might be because:
+If using SSH, it is usually because the provided key is incorrect. If using HTTP, it may be because:
 
 1. The provided username and password are incorrect
 2. The protocol in the Git URL is wrong
@@ -116,7 +116,7 @@ But it was written as
 http://username:password@github.com/path/to/repository.git
 ```
 
-That is, `https` was changed to `http`, which would cause this error. Change `http` to `https`.
+Changing `https` to `http` will cause this error. In this case, change `http` back to `https`.
 
 ### :material-chat-question: Repository Directory Constraints {#repo-dirs}
 
@@ -128,16 +128,16 @@ The Git repository must store various configurations in the following directory 
 └── python.d  # For storing Python scripts
 ```
 
-Where:
+Where
 
-- *conf.d* is specifically for storing collector configurations. Subdirectories can be planned arbitrarily (subdirectories are allowed), and any collector configuration file should end with `.conf`
-- *pipeline* is used for storing Pipeline scripts. It is recommended to organize Pipeline scripts based on [data types](../pipeline/use-pipeline/pipeline-category.md#store-and-index)
-- *python.d* is used for storing Python scripts
+- *conf.d* specifically stores collector configurations. Subdirectories can be planned arbitrarily (subdirectories are allowed), and any collector configuration file should end with `.conf`
+- *pipeline* is used for Pipeline scripts, which are recommended to be organized based on [data types](../pipeline/use-pipeline/pipeline-category.md#store-and-index)
+- *python.d* is used for Python scripts
 
-Here is an example of the DataKit directory structure after Git synchronization is enabled:
+Below is an example of the DataKit directory structure after enabling Git synchronization:
 
 ```shell
-datakit root directory
+DataKit root directory
 ├── conf.d   # Default main configuration directory
 ├── pipeline # Top-level Pipeline scripts
 ├── python.d # Top-level Python scripts
@@ -152,16 +152,16 @@ datakit root directory
 
 ### :material-chat-question: Git Configuration Loading Mechanism {#repo-apply-rules}
 
-After Git synchronization is enabled, the priority of configurations (`.conf`/Pipeline) is defined as follows:
+After Git synchronization is enabled, the priority of configurations (*.conf*/Pipeline) is defined as follows:
 
-1. All collector configurations will be loaded from the *gitrepos* directory
-2. The loading order of Git repositories follows the order they appear in *datakit.conf*
-3. For Pipelines, the first found Pipeline file takes precedence. For example, when searching for *nginx.p*, if it is found in `repo-1`, it **will not** search in `repo-2`. Only if *nginx.p* is not found in both repositories will it look in the top-level Pipeline directory. The same applies to Python scripts.
+1. All collector configurations are loaded from the *gitrepos* directory
+2. The loading order of Git repositories follows their appearance order in *datakit.conf*
+3. For Pipeline scripts, the first found Pipeline file takes precedence. For example, when searching for *nginx.p*, if it is found in `repo-1`, it **will not** search in `repo-2`. If *nginx.p* is not found in either repository, it will then look in the top-level Pipeline directory. The same applies to Python scripts.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    After enabling the remote Pipeline feature, the first Pipeline loaded is synchronized from the center.
+    After enabling the remote Pipeline feature, the first loaded Pipeline is synchronized from the center.
 
-    After enabling Git synchronization, collector configurations in the original *conf.d* directory will no longer take effect. Additionally, the main configuration *datakit.conf* **cannot** be managed via Git.
+    After enabling Git synchronization, the original *conf.d* directory collector configurations will no longer take effect. Additionally, the main configuration *datakit.conf* **cannot** be managed via Git.
 <!-- markdownlint-enable -->

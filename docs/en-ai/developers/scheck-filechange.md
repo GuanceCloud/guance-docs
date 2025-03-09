@@ -1,5 +1,5 @@
 # Implementation of Checking Changes in Sensitive Files
-  This section will demonstrate how to use Scheck to check sensitive files with a Lua script.
+This will demonstrate how to use Scheck to check sensitive files using a Lua script.
 
 - Version: 1.0.7-5-gb83de2d
 - Release Date: 2022-08-30 03:31:26
@@ -11,12 +11,12 @@
 
 ## Development Steps
 
-1. Navigate to the installation directory and set the `enable` field in the configuration file `scheck.conf` to `true`:
+1. Enter the installation directory and set the `enable` field in the configuration file `scheck.conf` to `true`:  
 
 ```toml
 ...
 [scoutput]
-   # ##Messages generated during Security Check can be sent to local, http, or Alibaba Cloud SLS.
+   # ##Messages generated during Security Check can be sent to local, http, or Alibaba Cloud sls.
    # ##Remote server, example: http(s)://your.url
   [scoutput.http]
     enable = true
@@ -28,7 +28,7 @@
 ...
 ```
 
-2. Create a manifest file `files.manifest` in the directory `/usr/local/scheck/custom.rules.d` (this directory is for user-defined scripts), and edit it as follows:
+2. Create a manifest file `files.manifest` under the directory `/usr/local/scheck/custom.rules.d` (this directory is for user-defined scripts), and edit it as follows:  
 
 ```toml
 id       = 'check-file'
@@ -36,7 +36,7 @@ category = 'system'
 level    = 'warn'
 title    = 'Monitor File Changes'
 desc     = 'File {{.File}} has changed'
-cron     = '*/10 * * * *' # Indicates that this Lua script runs every 10 seconds
+cron     = '*/10 * * * *' # This means the Lua script will run every 10 seconds
 os_arch  = ["Linux"]
 ```
 
@@ -69,7 +69,7 @@ for i,v in ipairs(files) do
 end
 ```
 
-4. When a sensitive file is modified, within the next 10 seconds, the change will be detected and the `trigger` function will be invoked, sending the event to the log file `/var/log/scheck/event.log`. An entry will be added, for example:
+4. When a sensitive file is modified, within the next 10 seconds, the change will be detected and the `trigger` function will be invoked, sending the event to the file `/var/log/scheck/event.log`, adding a line of data, for example:  
 
 ```
 check-file-01,category=security,level=warn,title=Monitor File Changes message="File /etc/passwd has changed" 1617262230001916515

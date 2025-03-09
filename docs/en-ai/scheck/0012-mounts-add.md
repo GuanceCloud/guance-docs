@@ -1,4 +1,5 @@
 # 0012-mounts-add-New Path Mounted
+
 ---
 
 ## Rule ID
@@ -27,12 +28,13 @@
 
 
 ## Scan Frequency
+
 - 1 */5 * * *
 
 
 ## Theoretical Basis
 
-- A bind mount is an alternative view of a related directory tree. Typically, mounts create a tree-like view for storage devices. A bind mount, however, duplicates an existing directory tree to another mount point. Directories and files obtained through a bind mount are identical to the original directories and files; changes made from either the mount directory or the original directory are immediately reflected at the other end. In short, this means that any mount point, regular directory, or file can be mounted elsewhere. If maliciously mounted, it can lead to risks such as data leakage.
+- A bind mount is an additional view of a related directory tree. Typically, mounts create a tree-like view for storage devices. A bind mount duplicates an existing directory tree to another mount point. Directories and files obtained through a bind mount are identical to the original directories and files. Changes made in either the mount directory or the original directory will immediately reflect at the other end. In short, any mount point, regular directory, or file can be mounted elsewhere. If maliciously mounted, it can lead to risks such as data leakage.
 
 
 ## Risk Items
@@ -43,14 +45,17 @@
 
 
 ## Audit Method
-- Verify that a new path has been mounted. You can run the following command to verify:
+
+- Verify that a new path has been mounted. You can execute the following command to verify:
 
 ```bash
 mount
 ```
 
+
 ## Remediation
-- If a new path has been maliciously mounted, thoroughly inspect the host environment to prevent data leakage.
+
+- If a new path is maliciously mounted, carefully inspect the host environment to prevent data leakage.
 
 
 ## Impact
@@ -65,9 +70,9 @@ mount
 
 ## References
 
-- [Emergency Response and Investigation Process for Hacker Intrusions (Unofficial)](https://www.sohu.com/a/236820450_99899618)
+- [Emergency Response and Investigation Process for Hacker Intrusion (Unofficial)](https://www.sohu.com/a/236820450_99899618)
 
-- [A Real Incident Analysis of Cryptojacking Intrusion (Unofficial)](https://www.cnblogs.com/zsl-find/articles/11688640.html)
+- [Real Case Analysis of Mining Malware Intrusion Investigation (Unofficial)](https://www.cnblogs.com/zsl-find/articles/11688640.html)
 
 
 ## CIS Controls

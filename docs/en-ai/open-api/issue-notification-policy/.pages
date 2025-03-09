@@ -1,6 +1,6 @@
 nav:
-  - 'Notification Policies List': list.md
-  - 'Notification Policies Get': get.md
-  - 'Notification Policies Add': add.md
-  - 'Notification Policies Modify': modify.md
-  - 'Notification Policies Delete': delete.md
+  - 'Notification Targets List': list.md
+  - 'Notification Targets Get': get.md
+  - 'Notification Targets Create': add.md
+  - 'Notification Targets Modify': modify.md
+  - 'Notification Targets Delete': delete.md

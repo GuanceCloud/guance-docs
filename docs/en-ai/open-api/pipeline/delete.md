@@ -8,15 +8,13 @@
 Delete one or multiple Pipelines
 
 
-
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| pipelineUUIDs | commaArray | Y | UUIDs of the Pipelines<br>Allow null: False <br> |
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:-------------------------|
+| pipelineUUIDs         | commaArray | Y        | UUIDs of the Pipelines<br>Allow empty: False <br> |
 
-## Additional Parameter Notes
-
+## Additional Parameter Explanation
 
 
 
@@ -26,7 +24,6 @@ curl 'https://openapi.guance.com/api/v1/pipeline/delete?pipelineUUIDs=pl_xxxx32'
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
 
 
 

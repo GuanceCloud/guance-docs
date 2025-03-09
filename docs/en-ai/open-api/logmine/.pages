@@ -1,3 +1,3 @@
 nav:
-  - '【Logmine日志】Get Logmine Query Task Results': querytask.md
-  - '【Logmine日志】Send Logmine Query Task': sendtask.md
+  - '【Logmine log query】Get Logmine query task results': querytask.md
+  - '【Logmine log query】Send Logmine query task': sendtask.md

@@ -1,4 +1,4 @@
-# Modify Single User View
+# Modify a Single User View
 
 ---
 
@@ -10,19 +10,19 @@ Modify a single user view
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
+| Parameter Name        | Type     | Required | Description              |
 |:-----------------|:-------|:-----|:----------------|
 | dashboard_uuid | string | Y | View UUID<br> |
 
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
+| Parameter Name        | Type     | Required | Description              |
 |:-----------------|:-------|:-----|:----------------|
-| name | string |  | View name<br>Example: Test View No.1 <br>Allow empty: False <br>Maximum length: 256 <br> |
-| desc | string |  | Description<br>Example: Description 1 <br>Allow empty: False <br>Maximum length: 2048 <br> |
-| identifier | string |  | Identifier ID -- Added on 2024.12.25<br>Example: xxxx <br>Allow empty: False <br>Allow empty string: True <br>Maximum length: 128 <br> |
-| dashboardBidding | json |  | Mapping, default is {}<br>Example: {} <br>Allow empty: False <br> |
+| name | string |  | View name<br>Example: Test View No.1 <br>Can be empty: False <br>Maximum length: 256 <br> |
+| desc | string |  | Description<br>Example: Description 1 <br>Can be empty: False <br>Maximum length: 2048 <br> |
+| identifier | string |  | Identifier ID -- Added on 2024.12.25<br>Example: xxxx <br>Can be empty: False <br>Can be an empty string: True <br>Maximum length: 128 <br> |
+| dashboardBidding | json |  | Mapping, default is {}<br>Example: {} <br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -30,11 +30,10 @@ Modify a single user view
 
 | Parameter Name                | Type  | Description          |
 |-----------------------|----------|------------------------|
-|name         |string |  View name |
-|desc         |string |  Description |
-|identifier         |string |  Identifier ID -- Added on 2024.12.25 |
-|dashboardBidding         |dict |   Dashboard binding information|
-
+|name         |string | View name |
+|desc         |string | Description |
+|identifier         |string | Identifier ID -- Added on 2024.12.25 |
+|dashboardBidding         |dict | Dashboard binding information|
 
 **Explanation of Built-in View Fields `dashboardBidding`**
 
@@ -72,7 +71,6 @@ Internal support for op values: in/wildcard
 
 
 
-
 ## Request Example
 ```shell
 curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/modify' \
@@ -80,15 +78,14 @@ curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/modify' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Accept-Language: en' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"name":"test_Redis Monitoring View","dashboardBidding":{"app_id":[{"value":["cccc"],"op":"in"}]}}' \
+--data-raw '{"name":"Test Redis Monitoring View","dashboardBidding":{"app_id":[{"value":["cccc"],"op":"in"}]}}' \
 --compressed
 ```
 
 
 
-
 ## Response
-```shell
+```json
 {
     "code": 200,
     "content": {
@@ -246,14 +243,14 @@ curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/modify' \
         "deleteAt": -1,
         "extend": {},
         "iconSet": {
-            "icon": "http://testing-static-res.dataflux.cn/dataflux-template/dashboard/zh/aliyun_redis/icon.svg",
-            "url": "http://testing-static-res.dataflux.cn/dataflux-template/dashboard/zh/aliyun_redis/aliyun_redis.png"
+            "icon": "http://testing-static-res.dataflux.cn/dataflux-template/dashboard/en/aliyun_redis/icon.svg",
+            "url": "http://testing-static-res.dataflux.cn/dataflux-template/dashboard/en/aliyun_redis/aliyun_redis.png"
         },
         "id": 4615,
         "isPublic": 1,
         "mapping": [],
-        "name": "test_Redis Monitoring View",
-        "old_name": "test_Redis Monitoring View",
+        "name": "Test Redis Monitoring View",
+        "old_name": "Test Redis Monitoring View",
         "ownerType": "inner",
         "status": 0,
         "tag_info": {

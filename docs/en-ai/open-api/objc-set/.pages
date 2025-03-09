@@ -1,6 +1,6 @@
 nav:
-  - '【Resource Class Configuration】List': list.md
-  - '【Resource Class Configuration】Create': create.md
-  - '【Resource Class Configuration】Modify': modify.md
-  - '【Resource Class Configuration】Delete': delete.md
-  - '【Resource Class Configuration】Export': export.md
+  - '【Object Classification Configuration】List': list.md
+  - '【Object Classification Configuration】Create': create.md
+  - '【Object Classification Configuration】Modify': modify.md
+  - '【Object Classification Configuration】Delete': delete.md
+  - '【Object Classification Configuration】Export': export.md

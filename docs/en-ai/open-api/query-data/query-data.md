@@ -12,10 +12,10 @@ DQL data query
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| body | string |  | DQL query structure<br>Allow null: False <br> |
-| queries_body | string |  | DQL query structure (Deprecated on 2023-08-11)<br>Allow null: False <br> |
-| search_after | string |  | Pagination query parameter (Deprecated on 2023-08-11)<br>Allow null: False <br> |
+|:------------------|:-------|:-----|:----------------|
+| body | string |  | DQL query structure<br>Allow empty: False <br> |
+| queries_body | string |  | DQL query structure (deprecated on 2023-08-11)<br>Allow empty: False <br> |
+| search_after | string |  | Pagination query parameter (deprecated on 2023-08-11)<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -26,60 +26,61 @@ DQL data query
 1. Query String Element Field Description
 
 | Parameter Name        | Type  | Required | Description          |
-|-------------------|----------|----|------------------------|
+|---------------|----------|----|------------------------|
 | body    | string  | Y | Query request body |
 | queries_body[\*]    | string  |   | (Deprecated parameter, removed on 2023-08-10) Query list |
-| search_after    | string  |   | (Deprecated parameter, moved to the query structure on 2023-08-10) Query pagination data. Default is [], add the search_after field from the previous query result for subsequent data |
+| search_after    | string  |   | (Deprecated parameter, moved to the query structure in the new version on 2023-08-10) Query pagination data. Default is [], for subsequent pagination data, add the `search_after` field from the previous query results to query more data |
 
 2. JSON Structure Parameter Description in `body`
 
 | Parameter Name  | Type  | Required  | Description  |
 | :------------ | :------------ | :------------ | :------------ |
-| queries | array  | Y | Multiple command queries, a list of query objects |
-| fieldTagDescNeeded  | boolean |   | Whether field or tag description information is needed |
+| queries | array  | Y | Multi-command query, its content is a list of query objects |
+| fieldTagDescNeeded  | boolean |   | Whether to include field or tag description information |
 
-3. Member Parameter Structure Description for `queries[\*]`
+3. Member Parameter Structure Description of `queries[\*]`
 
 | Parameter Name  | Type  | Required  | Description  |
 | :------------ | :------------ | :------------ | :------------ |
-| qtype | string  | Y | Query statement type <br/> dql: Indicates a DQL type query statement; <br/> promql: Indicates a PromQL type query statement   |
+| qtype | string  | Y | Query statement type <br/> dql: Indicates a DQL type query statement; <br/> promql: Indicates a PromQL type query statement |
 | query | json  | Y | Query structure |
 | query.q  | string |   | Query statement consistent with `qtype`, e.g., DQL or PromQL query statement |
-| query.highlight  | boolean |   | Whether to display highlighted data |
+| query.promqlType  | enum |   | Effective when `qtype=promql`, PromQL query type, optional values `instantQuery` and `rangeQuery`, default value `rangeQuery` |
+| query.highlight  | boolean |   | Whether to show highlighted data |
 | query.timeRange  | array  |   | List of timestamps for time range |
-| query.disableMultipleField  | bool  |   | Whether to enable single-column mode, default is `true` |
-| query.showLabel  | bool  |   | Whether to show object labels, default is none |
-| query.funcList  | array  |   | Re-aggregates DQL return values; note that this parameter is invalid when `disableMultipleField=false` |
+| query.disableMultipleField  | bool  |   | Whether to enable single column mode, default `true` |
+| query.showLabel  | bool  |   | Whether to show object labels, default no label |
+| query.funcList  | array  |   | Re-aggregates DQL return values, note this parameter is invalid when `disableMultipleField=False` |
 | query.slimit  | integer  |   | Time series group size, only effective for metrics queries |
 | query.soffset  | integer  |   | Time series group offset |
 | query.limit  | integer  |   | Page size |
 | query.offset  | integer  |   | Page offset |
-| query.orderby  | array  |   | Sorting list, `{fieldName:method}`. Note that sorting for metrics queries only supports `fieldName=time`; method in ["desc", "asc"] |
-| query.density  | string  |   | Response point density, priority less than `autoDensity` and greater than density set in DQL statement |
-| query.interval  | integer  |   | Unit is seconds, time slice interval for calculating response points; valid if calculated points are less than or equal to the number of points when `density=high`, otherwise invalid |
-| query.search_after  | array  |   | Pagination marker, returned by the current interface for use in the next request |
+| query.orderby  | array  |   | Sorting list, `{fieldName:method}`, note that sorting for measurements only supports `fieldName=time`; methods are ["desc", "asc"]; note that sorting for measurements only supports `fieldName=time` |
+| query.density  | string  |   | Response point density, lower priority than `autoDensity` and higher than the density set in the DQL statement |
+| query.interval  | integer  |   | Unit is seconds, time slice interval used to calculate response points; if calculated points are less than or equal to the number of points when `density=high`, it is valid, otherwise invalid |
+| query.search_after  | array  |   | Pagination marker, returned by the current interface, used for the next request |
 | query.maxPointCount  | integer  |   | Maximum number of points |
 | query.workspaceUUID  | string  |   | UUID of the workspace to query |
 | query.workspaceUUIDs  | array  |   | UUIDs of workspaces to query, higher priority than `query.workspaceUUID` |
 | query.output_format  | string  |   | lineprotocol: Line protocol output, defaults to existing output format if not specified |
-| query.cursor_time  | integer  |   | Segment query threshold: Set `cursor_time` to `end_time` for the first segment query; set it to `next_cursor_time` in the response for subsequent segment queries |
-| query.disable_sampling  | bool  |   | Sampling disable switch, default value is false |
+| query.cursor_time  | integer  |   | Segment query threshold: For the first segment query, set `cursor_time` to `end_time`; for subsequent segment queries, set `cursor_time` to the `next_cursor_time` in the response |
+| query.disable_sampling  | bool  |   | Sampling disable switch, default `false` |
 
 4. Explanation of Response Point Density `density` Parameter Values
 
 | Option  | Description  |
 | :------------ | :------------ |
-| lower | Low, 60 points  |
-| low   | Medium-low, 180 points |
+| lower | Low, 60 points |
+| low   | Low, 180 points |
 | medium| Medium, 360 points |
 | high  | High, 720 points |
 
-* Note the priority of the point density parameter, maximum density `density[high]` </br>
-maxPointCount > interval > density > control parameters in DQL statement  
+* Note the priority of the point density parameter, the highest density `density[high]` </br>
+maxPointCount > interval > density > control parameters in the DQL statement   
 
-5. Common Query Explanations
+5. Common Query Descriptions
 
-  - [Unrecovered Event Query](../../../studio-backend/unrecovered-event-query/)
+  - [Unresolved Event Query](../../../studio-backend/unrecovered-event-query/)
 
 </br>
 Note: When performing data queries using the openapi interface, the default role is Administrator. Be aware that data access may be restricted by data access rules.

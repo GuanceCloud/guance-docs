@@ -3,102 +3,102 @@
 
 ## Introduction
 
-Guance supports the visualization of the process and results of built-in CI in Gitlab/Jenkins. Through the CI visualization feature of Guance, you can directly view the CI results in Gitlab/Jenkins, gaining real-time insights into your CI performance, execution time trends, and failure causes. By using CI flame graphs, you can monitor the health status of the entire Pipeline chain during the CI process, helping to ensure code updates.
+<<< custom_key.brand_name >>> supports the visualization of the process and results of Gitlab/Jenkins's built-in CI. You can directly view the CI results in Gitlab/Jenkins through <<< custom_key.brand_name >>>'s CI visualization feature, gaining real-time insights into your CI performance, execution time trends, and failure reasons. Through the CI flame graph, you can monitor the health of the entire Pipeline chain during the CI process, helping to ensure code updates.
 
 ## Data Query and Analysis
 
-After the process and result data of CI is reported to the Guance workspace, you can query and analyze the success rate, failure reasons, specific failure stages of Pipelines and Jobs by selecting time ranges, searching with keywords, and filtering within the CI Explorer.
+After the CI process and result data are reported to the <<< custom_key.brand_name >>> workspace, you can query and analyze Pipeline and Job success rates, failure reasons, specific failure stages, etc., using the CI Explorer by selecting a time range, searching with keywords, or applying filters.
 
 ![](img/10.ci_5.png)
 
-### Time Controls
+### Time Widget
 
-The CI Explorer defaults to displaying data from the last 15 minutes. Using the "Time Controls" in the top-right corner, you can choose the time range for data display. For more details, refer to the [Time Controls Documentation](../getting-started/function-details/explorer-search.md#time).
+The CI Explorer defaults to displaying data from the past 15 minutes. Using the "Time Widget" in the top-right corner, you can choose the time range for data display. For more details, refer to the [Time Widget documentation](../getting-started/function-details/explorer-search.md#time).
 
-### Search and Filter
+### Search and Filtering
 
-In the CI Explorer search bar, multiple search methods are supported, including keyword search, wildcard search, associated search, and JSON search. You can filter values using `labels/attributes`, including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, existence checks, and non-existence checks. For more on searching and filtering, see the [Explorer Search and Filter Documentation](../getting-started/function-details/explorer-search.md).
+In the CI Explorer search bar, multiple search methods are supported, including keyword search, wildcard search, related search, and JSON search. You can filter values using `tags/attributes`, including forward filtering, reverse filtering, fuzzy matching, reverse fuzzy matching, checking for existence or non-existence, and more. For more information on search and filtering, see the [Explorer Search and Filter documentation](../getting-started/function-details/explorer-search.md).
 
 ### Analysis Mode
 
-In the analysis section of the CI Explorer, multi-dimensional analysis statistics based on **1-3 labels** are supported to reflect data distribution characteristics and trends across different dimensions over time. Guance supports various data chart analysis methods, including time series charts, top lists, pie charts, and treemaps. For more details, refer to the [Explorer Analysis Mode Documentation](../getting-started/function-details/explorer-search.md#analysis).
+In the CI Explorer analysis panel, multi-dimensional statistical analysis based on **1-3 tags** is supported to reflect the distribution characteristics and trends of data across different dimensions over time. <<< custom_key.brand_name >>> supports various data chart analysis methods, including time series charts, top lists, pie charts, and treemaps. For more details, refer to the [Explorer Analysis Mode documentation](../getting-started/function-details/explorer-search.md#analysis).
 
 ### Quick Filters
 
-In the CI Explorer quick filters, you can edit "quick filters" and add new filter fields. After adding, you can select field values for quick filtering.
+In the CI Explorer quick filter section, you can edit "quick filters" and add new filter fields. After adding them, you can select field values for quick filtering.
 
 **Note:**
 
-- The default minimum and maximum values for "duration" in quick filters are the smallest and largest durations in the trace data list.
-- You can adjust the maximum/minimum values by dragging the progress bar, which will update the input box values synchronously.
-- You can manually enter maximum/minimum values and apply the filter by pressing "Enter" or clicking outside the input box.
-- If the input format is incorrect, the input box turns red, and no search is performed. Correct formats include pure "numbers" or "number+ns/μs/ms/s/min".
-- If no unit is specified, "s" is appended to the number before performing the filter.
+- The default minimum and maximum values for the "duration" progress bar are the smallest and largest durations in the trace data list.
+- You can adjust the maximum/minimum values by dragging the progress bar, which will synchronize changes in the input boxes.
+- You can manually enter maximum/minimum values and press "Enter" or click outside the input box to perform a filtered search.
+- If the input format is incorrect, the input box turns red, and no search is performed. Correct formats include pure "numbers" or "numbers+ns/μs/ms/s/min".
+- If no unit is specified, "s" is added after the entered number before performing the search.
 - If a unit is manually entered, the search is performed directly.
 
-For more on quick filters, refer to the [Quick Filters Documentation](../getting-started/function-details/explorer-search.md#quick-filter).
+For more information on quick filters, refer to the [Quick Filter documentation](../getting-started/function-details/explorer-search.md#quick-filter).
 
 ### Custom Display Columns
 
-In the Explorer list, you can customize columns by adding, editing, deleting, and dragging display columns. When hovering over the display columns in the Explorer, click the "Settings" button to perform operations such as sorting ascending/descending, moving columns left/right, adding/removing columns, and adding columns to quick filters or groups. For more on customizing display columns, see the [Display Columns Documentation](../getting-started/function-details/explorer-search.md#columns).
+In the Explorer list, you can customize the display columns by adding, editing, deleting, or dragging display columns. When hovering over the display columns in the Explorer, clicking the "Settings" button allows you to sort columns in ascending or descending order, move columns left or right, add columns to quick filters, add columns to groups, or remove columns. For more information on customizing display columns, refer to the [Display Column documentation](../getting-started/function-details/explorer-search.md#columns).
 
 ### Data Export
 
-In the Explorer list, you can first filter the desired data and then export it for viewing and analysis. Supported export options include CSV files, dashboards, and notes.
+In the Explorer list, you can first filter out the desired data and then export it for viewing and analysis. Supported export formats include CSV files, dashboards, and notes.
 
 ## Gitlab
 
 ### Pipeline Explorer
 
-In the top-left corner of the Explorer, switch to the "Gitlab Pipeline" Explorer to query and analyze the CI Pipeline process, including Pipeline ID, name, duration, commit content, and commit time.
+In the top-left corner of the Explorer, you can switch to the "Gitlab Pipeline" Explorer to query and analyze the CI Pipeline process, including Pipeline ID, name, duration, commit content, commit time, etc.
 
 ![](img/10.ci_5.png)
 
 #### Pipeline Details Page
 
-Click on the data you want to view in the Pipeline list. In the sliding details page, you can see detailed information about the Pipeline and Job, including attributes, flame graphs, Job lists, content details, and related logs.
+Click on the data you want to view in the Pipeline list, and the detailed page will show the details of the Pipeline and Jobs, including attributes, flame graphs, Job lists, content details, and associated logs.
 
-When you click on an attribute field, you can perform actions like "filter by field value," "exclude field value," "add to display columns," and "copy" for quick filtering.
+When you click on an attribute field, you can quickly filter and view data by "filtering field values," "excluding field values," "adding to display columns," or "copying" the field.
 
-- "Filter by field value": Adds the field to the Explorer to view all related data.
-- "Exclude field value": Adds the field to the Explorer to view data excluding this field.
-- "Add to display columns": Adds the field to the Explorer list for viewing.
-- "Copy": Copies the field to the clipboard.
+- "Filtering field values" adds the field to the Explorer to view all related data.
+- "Excluding field values" adds the field to the Explorer to view data excluding this field.
+- "Adding to display columns" adds the field to the Explorer list for viewing.
+- "Copying" copies the field to the clipboard.
 
 ![](img/10.ci_7.1.png)
 
 ##### Flame Graph
 
-The flame graph clearly displays the flow and execution time of each Job in the entire Pipeline chain. On the right side of the flame graph, you can view the service list and the percentage of execution time. Clicking on a pipeline or job in the flame graph shows the corresponding JSON content in the "Details."
+The flame graph clearly displays each Job's flow and execution time in the entire Pipeline chain during the CI process. On the right side of the flame graph, you can view the corresponding service list and execution time percentages. Clicking on the pipeline and job in the flame graph shows the corresponding Json content in the "Details."
 
 ![](img/10.ci_14.png)
 
 ##### Flame Graph Explanation
 
-CI visualization primarily collects data on the Pipeline and Job processes. The entire Pipeline process is divided into three stages (stages): Build, Test, Deploy. Each stage has different tasks (Jobs).
+CI visualization primarily collects data from the Pipeline and Jobs during the CI process. The entire Pipeline process is divided into three stages (stages): Build, Test, Deploy. Each stage has different tasks (Jobs).
 
-- If all tasks in each stage complete normally, the Pipeline executes successfully, and the flame graph will list the total execution time of the Pipeline and each Job.
-- If an error occurs during the first stage, Build, it will indicate task failure and the reason for the error.
+- If all tasks in each stage complete normally, the Pipeline successfully executes, and the flame graph will list the total execution time of the Pipeline and each Job's execution time.
+- If the tasks in the first stage, Build, fail, an error message will indicate the task failure and the reason.
 
-For better understanding, the following diagram illustrates the Gitlab CI Pipeline process. Referring to the above flame graph, you can clearly see the execution time of each Job and the overall completion time of the Pipeline.
+For easier understanding, the following diagram illustrates the Gitlab CI Pipeline process. Referring to the flame graph above, you can clearly see the execution time of each Job and the total execution time of the entire Pipeline.
 
 ![](img/10.ci_2.png)
 
 ##### Job List
 
-Displays all stages and their Job counts in the entire Pipeline chain, including "resource name," "Job count," "execution time," and "execution time ratio." Click any Job to view the corresponding JSON content in the "Details." If there's an error, an error message appears before the Job.
+This section displays all stages and their Job counts in the entire Pipeline chain, including "resource name," "Job count," "execution time," and "execution time percentage." Clicking any Job shows the corresponding Json content in the "Details." If there are errors, an error message appears before the Job.
 
 ![](img/10.ci_13.png)
 
 ### Job Explorer
 
-In the top-left corner of the Explorer, switch to the "Gitlab Job" Explorer to query and analyze the CI Pipeline Job process, including Pipeline ID, Job name, duration, commit content, and commit time.
+In the top-left corner of the Explorer, you can switch to the "Gitlab Job" Explorer to query and analyze the CI Pipeline's Job process, including Pipeline ID, Job name, duration, commit content, commit time, etc.
 
 ![](img/10.ci_6.png)
 
 #### Job Details Page
 
-Click on the data you want to view in the Job list. In the sliding details page, you can see detailed information about the Pipeline and Job, including attributes, flame graphs, Job lists, content details, and related logs.
+Click on the data you want to view in the Job list, and the detailed page will show the details of the Pipeline and Job, including attributes, flame graphs, Job lists, content details, and associated logs.
 
 ![](img/10.ci_7.2.png)
 
@@ -106,24 +106,24 @@ Click on the data you want to view in the Job list. In the sliding details page,
 
 ### Pipeline Explorer
 
-In the top-left corner of the Explorer, switch to the "Jenkins Pipeline" Explorer to query and analyze the CI Pipeline process, including Pipeline ID, name, duration, commit content, and commit time.
+In the top-left corner of the Explorer, you can switch to the "Jenkins Pipeline" Explorer to query and analyze the CI Pipeline process, including Pipeline ID, name, duration, commit content, commit time, etc.
 
 ![](img/17.CI_4.png)
 
 #### Pipeline Details Page
 
-Click on the data you want to view in the Pipeline list. In the sliding details page, you can see detailed information about the Pipeline and Job, including attributes, flame graphs, Job lists, content details, and related logs.
+Click on the data you want to view in the Pipeline list, and the detailed page will show the details of the Pipeline and Job, including attributes, flame graphs, Job lists, content details, and associated logs.
 
 ![](img/17.CI_5.png)
 
 ### Job Explorer
 
-Using the data type filter bar in the top-left corner, switch to the "jenkins_job" Explorer to query and analyze the CI Pipeline Job process, including Pipeline ID, Job name, duration, commit content, and commit time.
+Using the data type filter bar in the top-left corner, you can switch to the "jenkins_job" Explorer to query and analyze the CI Pipeline's Job process, including Pipeline ID, Job name, duration, commit content, commit time, etc.
 
 ![](img/17.CI_8.png)
 
 #### Job Details Page
 
-Click on the data you want to view in the Job list. In the sliding details page, you can see detailed information about the Pipeline and Job, including attributes, flame graphs, Job lists, content details, and related logs.
+Click on the data you want to view in the Job list, and the detailed page will show the details of the Pipeline and Job, including attributes, flame graphs, Job lists, content details, and associated logs.
 
 ![](img/17.CI_9.png)

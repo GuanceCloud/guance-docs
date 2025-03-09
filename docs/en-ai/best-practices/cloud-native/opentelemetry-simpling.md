@@ -2,31 +2,31 @@
 
 ---
 
-Full-chain data can indeed help relevant personnel promptly and accurately identify business issues. However, the probability of business problems occurring is generally low, and full-chain sampling has its own advantages and disadvantages.
+Full-chain data can indeed help relevant personnel to promptly and accurately identify business issues. However, the probability of business problems occurring in enterprises is generally low, and full-chain sampling has its own advantages and disadvantages.
 
 ### Advantages
 
-- Complete trace data
+- Comprehensive link data
 
 ### Disadvantages
 
-- Resource waste. Due to complete data, storage resource costs increase significantly, and the cost of searching for abnormal trace data also increases.
+- Resource waste. Due to comprehensive data leading to increased data storage resource costs, the cost of searching for abnormal link data also increases.
 
 Based on full-chain data collection, OpenTelemetry supports two types of samplers:
 
-> 1. Probabilistic sampler (`probabilisticsamplerprocessor`)
-> 
-> 2. Tail-based sampler (`tailsamplingprocessor`)
+> 1. Probabilistic sampler (probabilisticsamplerprocessor)
+>
+> 2. Tail-based sampler (tailsamplingprocessor)
 
-## [Probabilistic Sampler](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/probabilisticsamplerprocessor)
+## [Probabilistic Sampler Processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/probabilisticsamplerprocessor)
 
-As the name suggests, the probabilistic sampler samples according to a certain probability. Similarly, OpenTelemetry supports two types of probabilistic sampling:
+As the name suggests, the probabilistic sampler samples based on a certain probability. Similarly, OpenTelemetry supports two types of probabilistic sampling:
 
-> 1. `sampling.priority` defined by OpenTracing's semantic conventions
-> 
+> 1. `sampling.priority` defined by OpenTracing semantic conventions
+>
 > 2. TraceId hash
 
-The `sampling.priority` semantic convention takes precedence over TraceId hash. As the name implies, TraceId hash sampling is based on the hash value determined by the TraceId. To make TraceId hash effective, all collectors in a given layer (e.g., behind the same load balancer) must have the same `hash_seed`. Different layers of collectors can support additional sampling requirements by using different `hash_seed` values. For configuration specifications, refer to [config.go](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/probabilisticsamplerprocessor/config.go).
+The `sampling.priority` semantic convention takes precedence over TraceId hash. As the name implies, TraceId hash sampling is based on the hash value determined by the TraceId. To make TraceId hash work, all collectors in a given layer (e.g., behind the same load balancer) must have the same `hash_seed`. You can also leverage different `hash_seed` values across different collector layers to support additional sampling requirements. For configuration specifications, see [config.go](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/probabilisticsamplerprocessor/config.go).
 
 You can modify the following configuration options:
 
@@ -34,11 +34,11 @@ You can modify the following configuration options:
   
   This is important when using multi-layer collectors to achieve the desired sampling rate, for example: 10% at the first layer, 10% at the second layer, resulting in an overall sampling rate of 1% (10% x 10%).
 
-  If all layers use the same seed, all data passing through one layer will also pass through the next layer, regardless of the configured sampling rate. Having different seeds in different layers ensures that the sampling rate works as expected in each layer.
+  If all layers use the same seed, all data passing through one layer will also pass through the next layer regardless of the configured sampling rate. Different seeds in different layers ensure that the sampling rate works as expected in each layer.
 
-- `sampling_percentage` (default = 0): The percentage of traces to sample; >= 100 means collecting all traces.
+- `sampling_percentage` (default = 0): The percentage of traces to sample; >= 100 indicates sampling all traces.
 
-Configuration for the probabilistic sampler:
+Configuration of the probabilistic sampler:
 
 ```yaml
 processors:
@@ -64,9 +64,9 @@ service:
       exporters: [otlp]
 ```
 
-## [Tail-based Sampler](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/tailsamplingprocessor)
+## [Tail-Based Sampler](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/tailsamplingprocessor)
 
-The tail-based sampler samples traces based on a set of defined policies. Currently, this processor only applies to a single instance of the collector. Technically, TraceId-aware load balancing can be used to support multiple collector instances, but this configuration has not been tested. For configuration specifications, refer to [config.go](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/tailsamplingprocessor/config.go).
+The tail-based sampler processor samples traces based on a set of defined policies. Currently, this processor only applies to a single instance of the collector. Technically, traceId-aware load balancing can be used to support multiple collector instances, but this configuration has not been tested. For configuration specifications, see [config.go](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/tailsamplingprocessor/config.go).
 
 The following configuration options are required:
 
@@ -75,21 +75,21 @@ The following configuration options are required:
 Currently, multiple policies are supported. These include:
 
 > - `always_sample`: Sample all traces
-> - `latency`: Sample based on trace duration. Duration is determined by looking at the earliest start time and the latest end time, without considering what happens between them.
+> - `latency`: Sample based on trace duration. Duration is determined by looking at the earliest start time and latest end time, ignoring what happens between them.
 > - `numeric_attribute`: Sample based on numeric attributes
-> - `probabilistic`: Sample a certain percentage of traces
-> - `status_code`: Sample based on status code (`OK`, `ERROR`, or `UNSET`). Many people incorrectly treat this as the response body JSON code.
+> - `probabilistic`: Sample a certain percentage of traces.
+> - `status_code`: Sample based on status code (`OK`, `ERROR`, or `UNSET`). Many people mistakenly treat this as the response body JSON code (which many projects define this way), but it is incorrect.
 > - `string_attribute`: Sample based on string attribute value matches, supporting exact matches and regular expression value matches
 > - `rate_limiting`: Sample based on rate limiting
-> - `and`: Combine multiple policies with an AND condition
-> - `composite`: Combine multiple samplers, each with ordering and rate allocation. Rate allocation assigns a certain percentage of spans to each policy. For example, if we set `max_total_spans_per_second` to 100, we can configure rate allocation as follows:
+> - `and`: Sample based on multiple policies, creating an AND policy
+> - `composite`: Sample based on combinations of the above samplers, with each sampler having sorting and rate allocation. Rate allocation assigns a certain percentage of spans per policy order. For example, if we set max_total_spans_per_second to 100, we can allocate rates as follows:
 >   1. test-composite-policy-1 = 50% of max_total_spans_per_second = 50 spans_per_second
 >   2. test-composite-policy-2 = 25% of max_total_spans_per_second = 25 spans_per_second
->   3. Ensure remaining capacity is filled by including `always_sample` as one of the policies
+>   3. Use `always_sample` as one of the policies to ensure remaining capacity is filled.
 
-Additional configuration options that can be modified:
+Additional configuration options can be modified:
 
-> - `decision_wait` (default = 30 seconds): Wait time from the start of the first span in the trace before making a sampling decision
+> - `decision_wait` (default = 30 seconds): Wait time from the first span of a trace before making a sampling decision
 > - `num_traces` (default = 50000): Number of traces stored in memory
 > - `expected_new_traces_per_sec` (default = 0): Expected number of new traces (helps allocate data structures)
 
@@ -145,7 +145,7 @@ processors:
         {
           name: test-policy-9,
           type: string_attribute,
-          string_attribute: {key: http.url, values: [\/health, \/metrics], enabled_regex_matching: true, invert_match: true}
+          string_attribute: {key: http.url, values: [/health, /metrics], enabled_regex_matching: true, invert_match: true}
         },
         {
           name: and-policy-1,
@@ -206,44 +206,44 @@ processors:
       ]
 ```
 
-For detailed examples of using the processor, refer to [tail_sampling_config.yaml](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/tailsamplingprocessor/testdata/tail_sampling_config.yaml).
+For detailed examples using the processor, see [tail_sampling_config.yaml](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/tailsamplingprocessor/testdata/tail_sampling_config.yaml).
 
-## Comparison of Probabilistic Sampler and Tail-based Sampler with Probabilistic Policy
+## Comparison Between Probabilistic Sampler Processor and Tail-Based Sampler with Probabilistic Policy
 
-The probabilistic sampler and tail-based sampler with probabilistic policy work similarly: based on a configurable sampling percentage, they sample traces at a fixed ratio. However, depending on the overall processing pipeline, you should prefer one over the other.
+The probabilistic sampler processor and tail-based sampler with probabilistic policy work similarly: based on a configurable sampling percentage, they sample received traces at a fixed ratio. However, depending on the overall processing pipeline, you should prefer one over the other.
 
 As a rule of thumb, if you want to add probabilistic sampling and...
 
-...you are not already using the tail-based sampler: Use the probabilistic sampler. Running the probabilistic sampler is more efficient than the tail-based sampler. Probabilistic sampling strategies make decisions based on TraceId, so waiting for more spans to arrive does not affect its decision.
+...you haven't used the tail-based sampler yet: use the probabilistic sampler processor. Running the probabilistic sampler processor is more efficient than the tail-based sampler. Probabilistic sampling policies make decisions based on TraceId, so waiting for more spans to arrive does not affect their decision.
 
-...you are already using the tail-based sampler: Add a probabilistic sampling policy. You have already incurred the cost of running the tail-based sampler, adding a probabilistic policy will be negligible. Additionally, using this policy within the tail-based sampler ensures that traces sampled by other policies are not discarded.
+...you are already using the tail-based sampler: add a probabilistic sampling policy. You've already incurred the cost of running the tail-based sampler, and adding a probabilistic policy will be negligible. Additionally, using this policy within the tail-based sampler ensures that traces sampled by other policies are not discarded.
 
 ## Demonstration Demo
 
-This demo primarily pushes OpenTelemetry data to [Guance](https://www.guance.com/)
+This demo mainly pushes OpenTelemetry data to [<<< custom_key.brand_name >>>](https://www.guance.com/)
 
 ### Preparation
 
 1. Download source code: [https://github.com/lrwh/observable-demo/tree/main/opentelemetry-collector-sampling](https://github.com/lrwh/observable-demo/tree/main/opentelemetry-collector-sampling)
 
-2. Ensure that [DataKit](/datakit/datakit-install/) is installed.
+2. Ensure [DataKit](/datakit/datakit-install/) is installed.
 
-| Service Name       | Port         | Description                                                                                                                   |
-| ------------------ | ------------ | ----------------------------------------------------------------------------------------------------------------------------- |
-| otel-collector     |              | otel/opentelemetry-collector-contrib:0.69.0                                                                                   |
+| Service Name       | Port         | Description                                                                                                                                                                             |
+| ------------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| otel-collector     |              | otel/opentelemetry-collector-contrib:0.69.0                                                                                                                                    |
 | springboot_server  | 8080:8080    | opentelemetry-agent version 1.21.0, source code: [https://github.com/lrwh/observable-demo/tree/main/springboot-server](https://github.com/lrwh/observable-demo/tree/main/springboot-server) |
 
 3. Enable OpenTelemetry collection in DataKit.
 
-### Starting Services
+### Start Services
 
 ```shell
 docker-compose up -d
 ```
 
-The following example mainly tests the tail-based sampling policy.
+The following example primarily tests the tail-based sampling strategy.
 
-Configure tail-based sampler:
+Configure the tail-based sampler:
 
 ```yaml
 processors:
@@ -269,7 +269,7 @@ processors:
 
 The above rules are OR relationships, meaning either `policy-1` or `policy-2` being true results in sampling.
 
-Enable tail-based sampler:
+Enable the tail-based sampler:
 
 ```yaml
 service:
@@ -285,30 +285,30 @@ service:
       exporters: [otlp]
 ```
 
-### Using Probabilistic Policy
+### Probabilistic Usage
 
 ```yaml
-  tail_sampling:
-    decision_wait: 10s
-    num_traces: 100
-    expected_new_traces_per_sec: 100
-    policies:
-      [
-        {
-          name: policy-2,
-          type: probabilistic,
-          probabilistic: {sampling_percentage: 20}
-        }
-      ]
+tail_sampling:
+  decision_wait: 10s
+  num_traces: 100
+  expected_new_traces_per_sec: 100
+  policies:
+    [
+      {
+        name: policy-2,
+        type: probabilistic,
+        probabilistic: {sampling_percentage: 20}
+      }
+    ]
 ```
 
 1. Access the service API `gateway` 5 times, each returning normally.
 
 > curl http://localhost:8080/gateway
 
-2. Check trace information in Guance, according to the sampling rule, it should sample at most once.
+2. Go to <<< custom_key.brand_name >>> to view trace information. According to the sampling rule, at most one trace data will be sampled.
 
-### Using Status Code
+### Status Code Usage
 
 ```yaml
 processors:
@@ -327,7 +327,7 @@ processors:
       ]
 ```
 
-1. Set up the client
+1. Set up the client startup.
 
 > curl http://localhost:8080/setClient?c=true
 
@@ -335,88 +335,88 @@ Since the current demo does not start the client service, subsequent calls to th
 
 2. Access the `gateway` service 5 times, returning `{"msg":"client call failed","code":500}`
 
-3. Check trace information in Guance, according to the sampling rule, if there is an error, all errors are fully sampled.
+3. Go to <<< custom_key.brand_name >>> to view trace information. According to the sampling rule, if an error occurs, all errors are fully sampled.
 
-### Using Span Count
+### Span Count Usage
 
-If the span count is less than or equal to 2, no reporting occurs. Configuration:
-
-```yaml
-  tail_sampling:
-    decision_wait: 10s
-    num_traces: 100
-    expected_new_traces_per_sec: 100
-    policies:
-      [
-        {
-          name: p2,
-          type: span_count,
-          span_count: {min_spans: 3}
-        }
-      ]
-```
-
-### Using String Attribute
-
-Scenario: Only collect traces for GET requests
+If the span count is less than or equal to 2, no reporting occurs. Configuration as follows:
 
 ```yaml
-  tail_sampling:
-    decision_wait: 10s
-    num_traces: 100
-    expected_new_traces_per_sec: 100
-    policies:
-      [
-        {
-          name: policy-string,
-          type: string_attribute,
-          string_attribute: {key: http.method, values: [GET]}
-        }
-      ]
+tail_sampling:
+  decision_wait: 10s
+  num_traces: 100
+  expected_new_traces_per_sec: 100
+  policies:
+    [
+      {
+        name: p2,
+        type: span_count,
+        span_count: {min_spans: 3}
+      }
+    ]
 ```
 
-???+ warning "String attribute does not always work?"
+### String Attribute Usage
 
-Yes, you read that right, string_attribute does not always work 100%. For example, matching GET requests where a GET request calls a POST request in the same trace, both GET and POST exist, creating a conflict. Since it matches GET, satisfying the match requirement, it won't filter out the trace just because it contains POST.
-
-### Using AND
-
-AND: Sample and report only when all AND conditions are met, discard otherwise.
-
-Scenario: Report GET requests and sample at 20%, discard others
+Scenario: Only collect traces for GET requests.
 
 ```yaml
-  tail_sampling:
-    decision_wait: 10s
-    num_traces: 100
-    expected_new_traces_per_sec: 100
-    policies:
-      [
-        {
-          name: and-policy-1,
-          type: and,
-          and: {
-            and_sub_policy:
-              [
-                {
-                  name: test-and-policy-2,
-                  type: string_attribute,
-                  string_attribute: {key: http.method, values: [GET]}
-                },
-                {
-                  name: policy-2,
-                  type: probabilistic,
-                  probabilistic: {sampling_percentage: 20}
-                }
-              ]
-          }
-        }
-      ]
+tail_sampling:
+  decision_wait: 10s
+  num_traces: 100
+  expected_new_traces_per_sec: 100
+  policies:
+    [
+      {
+        name: policy-string,
+        type: string_attribute,
+        string_attribute: {key: http.method, values: ["GET"]}
+      }
+    ]
 ```
 
-## Writing Format for Sampling Rules
+???+ warning "String Attribute Not Always Effective?"
 
-Incorrect formatting can lead to sampling failure. It is recommended to add spaces between each word, symbol, and number.
+Yes, you read that right. The string_attribute may not always be 100% effective. For example, matching GET requests where a GET request calls a POST request chain means that both GET and POST exist in the complete chain. Despite matching GET, which satisfies the matching requirement, the presence of POST in the chain does not cause filtering.
+
+### AND Usage
+
+AND: Sample and report when all AND conditions are met; discard otherwise.
+
+Scenario: Report GET requests and sample at a 20% rate, discarding other cases.
+
+```yaml
+tail_sampling:
+  decision_wait: 10s
+  num_traces: 100
+  expected_new_traces_per_sec: 100
+  policies:
+    [
+      {
+        name: and-policy-1,
+        type: and,
+        and: {
+          and_sub_policy:
+            [
+              {
+                name: test-and-policy-2,
+                type: string_attribute,
+                string_attribute: {key: http.method, values: ["GET"]}
+              },
+              {
+                name: policy-2,
+                type: probabilistic,
+                probabilistic: {sampling_percentage: 20}
+              }
+            ]
+        }
+      }
+    ]
+```
+
+## Sampling Format Notes
+
+Incorrect sampling format can lead to sampling failure. It is recommended to add spaces between each word, symbol, and number.
 
 ???+ warning "Incorrect Format"
 

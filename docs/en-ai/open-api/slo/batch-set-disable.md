@@ -11,12 +11,12 @@
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:---------|:-------------------------|
-| isDisable     | boolean| Y        | Enable/disable, false: enable, true: disable<br>Allow null: False <br> |
-| sloUUIDs      | array  | Y        | List of SLO UUIDs<br>Allow null: False <br> |
+| Parameter Name | Type   | Required | Description                              |
+|:-------------|:------|:-------|:----------------------------------------|
+| isDisable   | boolean | Y     | Enable/disable, false: enable, true: disable<br>Can be null: False <br> |
+| sloUUIDs    | array  | Y     | List of SLO UUIDs<br>Can be null: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

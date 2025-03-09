@@ -1,6 +1,6 @@
 # Topology Graph Data Structure Explanation
 
-## [Service Relationship Diagram] Data Structure Explanation
+## [Service Relationship Graph] Data Structure Explanation
 
 ```
 {
@@ -44,14 +44,14 @@ Field Description:
 | maps.target | string | Target service name |
 | services | array | List of service nodes in the topology graph |
 | services.name | string | Service name |
-| services.type | string | Service type, currently available types are<br/>["app", "framework", "cache", "message_queue", "custom", "db", "web", "aws_lambda"]<br/>Custom types can also be entered |
+| services.type | string | Service type, current available types are<br/>["app", "framework", "cache", "message_queue", "custom", "db", "web", "aws_lambda"]<br/>Custom types can also be specified |
 | services.data | json | Service node data |
-| services.data.__size | double | Value for circle size field, this value has no range<br/>It adjusts automatically according to the set size |
+| services.data.__size | double | Value for circle size field, this value has no range<br/>It is displayed adaptively according to the set size |
 | services.data.__fill | double | Value for fill color field, this value's range is<br/>the maximum and minimum values of the **gradient color scheme** |
 | services.data.fieldA | string | Field displayed in tooltip |
 | services.data.fieldB | string | Field displayed in tooltip |
 
-## [Resource Relationship Diagram] Data Structure Explanation
+## [Resource Relationship Graph] Data Structure Explanation
 
 ```
 {
@@ -108,12 +108,12 @@ Field Description:
 | serviceResource | array | List of resource nodes in the topology graph |
 | serviceResource.service | string | Service name |
 | serviceResource.resource | string | Resource name |
-| serviceResource.source_type | string | Resource type, currently available types are<br/>["app", "framework", "cache", "message_queue", "custom", "db", "web", "aws_lambda"]<br/>Custom types can also be entered |
+| serviceResource.source_type | string | Resource type, current available types are<br/>["app", "framework", "cache", "message_queue", "custom", "db", "web", "aws_lambda"]<br/>Custom types can also be specified |
 | serviceResource.data | json | Resource node data |
 | serviceResource.data.__fill | double | Value for fill color field, this value's range is<br/>the maximum and minimum values of the **gradient color scheme** |
-| serviceResource.data.avg_per_second_title | string | Title for left field |
-| serviceResource.data.avg_per_second | double | Value for left field |
-| serviceResource.data.p99_title | string | Title for middle field |
-| serviceResource.data.p99 | double | Value for middle field |
-| serviceResource.data.error_rate_title | string | Title for right field |
-| serviceResource.data.error_rate | double | Value for right field |
+| serviceResource.data.avg_per_second_title | string | Title for the left field |
+| serviceResource.data.avg_per_second | double | Value for the left field |
+| serviceResource.data.p99_title | string | Title for the middle field |
+| serviceResource.data.p99 | double | Value for the middle field |
+| serviceResource.data.error_rate_title | string | Title for the right field |
+| serviceResource.data.error_rate | double | Value for the right field |

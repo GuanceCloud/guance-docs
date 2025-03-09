@@ -1,83 +1,83 @@
-# AWS Virtual Private Internet Access
+# AWS Private Internet Access
 
 ---
 
 ## Overview {#overview}
 
-Amazon PrivateLink is a highly available and scalable technology that allows you to privately connect your VPC to services as if these services were within your own VPC. You do not need to use internet gateways, NAT devices, public IP addresses, Amazon Direct Connect connections, or Amazon Site-to-Site VPN connections to enable communication with services in private subnets. Therefore, you can control specific API endpoints, sites, and services accessible from the VPC. Amazon PrivateLink can help you save on some traffic costs.
+Amazon PrivateLink is a highly available and scalable technology that enables you to connect your VPC privately to services as if these services were within your own VPC. You do not need to use an internet gateway, NAT device, public IP addresses, Amazon Direct Connect connection, or Amazon Site-to-Site VPN connection to allow communication with services in private subnets. Therefore, you can control specific API endpoints, sites, and services accessible from the VPC. Amazon PrivateLink can help you save on some traffic costs.
 
-Advantages of establishing a private network connection:
+Benefits of establishing a private network connection:
 
-- **Higher Bandwidth**: Does not consume public bandwidth of business systems, achieving higher bandwidth through endpoint services
-- **More Secure**: Data does not pass through the public internet, ensuring data security within the private network
-- **Lower Costs**: Compared to high costs of public bandwidth, the cost of virtual internet access is lower
+- **Higher Bandwidth**: Does not consume public bandwidth of business systems, achieving higher bandwidth through endpoint services.
+- **More Secure**: Data does not pass through the public internet, ensuring data remains within the private network for enhanced security.
+- **Lower Costs**: Compared to high fees for public bandwidth, the cost of virtual internet access is lower.
 
-Currently available services are in the regions **cn-northwest-1, us-west-2, ap-southeast-1**. Services in other regions will be available soon. The architecture is as follows:
+Currently available regions are **cn-northwest-1, us-west-2, ap-southeast-1**. Other regions will be available soon. The architecture is as follows:
 
 ![not-set](https://static.guance.com/images/datakit/aws_privatelink.png)
 
 ## Prerequisites {#prerequisite}
 
-1. First, select the subscription region, which must match the region where the cloud resources for the system to be connected to Guance are deployed.
-1. Choose the same VPC network as the cloud resources for the system to be connected. **If multiple VPCs need to connect to the endpoint service, subscribe multiple times, once per VPC.**
+1. First, select the subscription region, which must match the region where your cloud resources for Guance are deployed.
+2. Choose the same VPC network where your cloud resources are deployed. **If multiple VPCs need to connect to the endpoint service, subscribe multiple times, once for each VPC.**
 
 ## Subscribe to Service {#sub-service}
 
 ### Service Deployment Links {#service-dep}
 
-| **Access Region**      | **Your Server's Region** | **Endpoint Service Name**                         |
-| --------          | ----------------------    | -----------                          |
-| China Region 2 (Ningxia)  | `cn-northwest-1` (Ningxia)   | `cn.com.amazonaws.vpce.cn-northwest-1.vpce-svc-070f9283a2c0d1f0c` |
-| US West Region 1 (Oregon)  | `us-west-2` (Oregon)     |  `com.amazonaws.vpce.us-west-2.vpce-svc-084745e0ec33f0b44` |
-| Asia Pacific Region 1 (Singapore)  | `ap-southeast-1` (Singapore)     |  `com.amazonaws.vpce.ap-southeast-1.vpce-svc-070194ed9d834d571` |
+| **Access Region** | **Your Server's Region**       | **Endpoint Service Name**                                      |
+| ----------------- | ------------------------------ | -------------------------------------------------------------- |
+| China Region 2 (Ningxia) | `cn-northwest-1` (Ningxia) | `cn.com.amazonaws.vpce.cn-northwest-1.vpce-svc-070f9283a2c0d1f0c` |
+| Overseas Region 1 (Oregon) | `us-west-2` (Oregon)     | `com.amazonaws.vpce.us-west-2.vpce-svc-084745e0ec33f0b44`      |
+| Asia-Pacific Region 1 (Singapore) | `ap-southeast-1` (Singapore) | `com.amazonaws.vpce.ap-southeast-1.vpce-svc-070194ed9d834d571` |
 
-### Default Endpoint for Different Regions' Private Network Gateways {#region-endpoint}
+### Default Endpoint for Private Network Gateway in Different Regions {#region-endpoint}
 
-| **Access Region**      | **Your Server's Region** | **Endpoint**                         |
-| --------          | ----------------------    | -----------                          |
-| China Region 2 (Ningxia)  | `cn-northwest-1` (Ningxia)   | `https://aws-openway.guance.com`         |
-| US West Region 1 (Oregon)  |  `us-west-2` (Oregon)          | `https://us1-openway.guance.com` |
-| Asia Pacific Region 1 (Singapore)  |  `ap-southeast-1` (Singapore)         | `https://ap1-openway.guance.one` |
+| **Access Region** | **Your Server's Region**       | **Endpoint**                                                |
+| ----------------- | ------------------------------ | ------------------------------------------------------------ |
+| China Region 2 (Ningxia) | `cn-northwest-1` (Ningxia) | `https://aws-openway.guance.com`                             |
+| Overseas Region 1 (Oregon) | `us-west-2` (Oregon)     | `https://us1-openway.guance.com`                             |
+| Asia-Pacific Region 1 (Singapore) | `ap-southeast-1` (Singapore) | `https://ap1-openway.guance.one`                            |
 
 ### Configure Service Subscription {#config-sub}
 
-#### Step One: Account ID Authorization {#accredit-id}
+#### Step One: Authorize Account ID {#accredit-id}
 
-Open the Amazon Console via the following links:
-    - [China Region](https://console.amazonaws.cn/console/home){:target="_blank"}
-    - [International Region](https://console.aws.amazon.com/console/home){:target="_blank"}
+Open the Amazon console via the following links:
+- [China Region](https://console.amazonaws.cn/console/home){:target="_blank"}
+- [Overseas Region](https://console.aws.amazon.com/console/home){:target="_blank"}
 
-Obtain the account ID in the top-right corner, copy this "Account ID" and **inform** our customer manager at Guance to add it to our whitelist.
+Obtain the account ID in the top-right corner, copy this "Account ID," and **inform** our customer manager at Guance to add it to our whitelist.
 
 ![not-set](https://static.guance.com/images/datakit/aws_privatelink_id.png)
 
 #### Step Two: Create Endpoint {#create-endpoint}
 
-1. Open the Amazon VPC Console via the following links:
-    - [China Region](https://console.amazonaws.cn/vpc/){:target="_blank"}
-    - [International Region](https://console.amazonaws.cn/vpc/){:target="_blank"}
-1. In the navigation pane, select **Endpoints**.
-1. Create an endpoint.
-1. Enter the service name under **Service Settings**, verify. Select VPC, availability zone, and open port 443 for the security group.
-1. Wait for creation success and obtain the endpoint service address.
+1. Open the Amazon VPC console via the following links:
+   - [China Region](https://console.amazonaws.cn/vpc/){:target="_blank"}
+   - [Overseas Region](https://console.amazonaws.cn/vpc/){:target="_blank"}
+2. In the navigation pane, select **Endpoint** (Endpoint Service).
+3. Create an endpoint.
+4. **Service Settings**: Input the service name and verify. Select VPC, availability zone, and enable port 443 in the security group.
+5. Wait for creation to complete and obtain the endpoint service address.
 
 ![not-set](https://static.guance.com/images/datakit/aws-privatelink-dns.png)
 
-#### Step Three: Route 53 DNS Resolution for Endpoint {#route-53}
+#### Step Three: Route 53 Resolve Endpoint {#route-53}
 
-1. Open the Amazon Route 53 Console via the following links:
-    - [China Region](https://console.amazonaws.cn/route53/v2/hostedzones/){:target="_blank"}
-    - [International Region](https://console.aws.amazon.com/route53/v2/hostedzones/){:target="_blank"}
-1. Create a hosted zone.
-1. Domain: `guance.com`, type: private hosted zone, region: DK's region, VPC ID: customer's VPC ID.
-1. Create a record.
-1. Record name: refer to [Endpoint](aws-access.md#region-endpoint), record type: `cname`, value: [Create Endpoint](aws-access.md#create-endpoint) service address.
+1. Open the Amazon Route 53 console via the following links:
+   - [China Region](https://console.amazonaws.cn/route53/v2/hostedzones/){:target="_blank"}
+   - [Overseas Region](https://console.aws.amazon.com/route53/v2/hostedzones/){:target="_blank"}
+2. Create a hosted zone.
+3. Domain: `guance.com`, Type: Private Hosted Zone, Region: DK's region, VPC ID: Customer’s VPC ID.
+4. Create a record.
+5. Record Name: Refer to [Endpoint](aws-access.md#region-endpoint) address, Record Type: `CNAME`, Value: [Create Endpoint](aws-access.md#create-endpoint) service address.
 
 ![not-set](https://static.guance.com/images/datakit/aws_privatelink_route53.png)
 
 #### Verification {#verify}
 
-Run the command on EC2:
+Run the following command on EC2:
 
 ```shell
 dig aws-openway.guance.com
@@ -111,23 +111,23 @@ vpce-0d431e354cf9ad4f1-h1y2auf6.vpce-svc-070f9283a2c0d1f0c.cn-northwest-1.vpce.a
 
 Taking Oregon as an example:
 
-| Name                                                         | Cost     | Documentation                                                         | Notes                   |
-| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ | ---------------------- |
-| Data transferred from Amazon EC2 to the Internet                              | $0.09/GB | [Documentation](https://aws.amazon.com/cn/ec2/pricing/on-demand/#Data_Transfer){:target="_blank"} | Charged by traffic             |
-| Interface Endpoint                                                 | $0.01/H  | [Documentation](https://aws.amazon.com/cn/privatelink/pricing/?nc1=h_ls){:target="_blank"} | Charged by availability zones and hours |
-| Traffic Outbound from Endpoint Interfaces                                        | $0.01/GB | [Documentation](https://aws.amazon.com/cn/privatelink/pricing/?nc1=h_ls){:target="_blank"} | Charged by traffic    |
+| Name                                                        | Cost     | Documentation                                                         | Notes                   |
+| ----------------------------------------------------------- | -------- | --------------------------------------------------------------------- | ----------------------- |
+| Data transfer out from Amazon EC2 to the internet            | $0.09/GB | [Documentation](https://aws.amazon.com/cn/ec2/pricing/on-demand/#Data_Transfer){:target="_blank"} | Charged by traffic      |
+| Interface VPC endpoint                                       | $0.01/H  | [Documentation](https://aws.amazon.com/cn/privatelink/pricing/?nc1=h_ls){:target="_blank"} | Charged by AZ and hour  |
+| Data transfer out from interface VPC endpoint                | $0.01/GB | [Documentation](https://aws.amazon.com/cn/privatelink/pricing/?nc1=h_ls){:target="_blank"} | Charged by traffic      |
 
 The main cost components are:
 
-1. Interface Endpoint [Service Charges](https://aws.amazon.com/cn/privatelink/pricing/?nc1=h_ls){:target="_blank"}
-1. Endpoint traffic charges
+1. Interface VPC endpoint [service charges](https://aws.amazon.com/cn/privatelink/pricing/?nc1=h_ls){:target="_blank"}
+2. Traffic charges for the endpoint
 
 Comparison:
 
-Assuming the customer transmits **200GB** of outbound traffic and **10GB** of inbound traffic daily:
+Assuming the client transmits **200GB** of outbound traffic and **10GB** of inbound traffic **daily**:
 
-|          |           Internet           | PrivateLink                                                  |
-| :------: | :------------------------: | ------------------------------------------------------------ |
-|   Formula   | Internet outbound traffic x Internet outbound traffic cost x 30 | Interface Endpoint service x 3 availability zones x 24 hours x 30 days + (Interface Endpoint outbound cost x Interface Endpoint outbound traffic + Interface Endpoint inbound cost x Interface Endpoint inbound traffic) x 30 |
-|   Calculation   |       0.09 x 200 x 30       | 0.01 x 3 x 24 x 30 +(0.01 x 200  + 10 x 0.01) x 30 |
-| Monthly Total |           $540.0           | $84.6 |
+|          |              Internet               | PrivateLink                                                  |
+| :------: | :---------------------------------: | ------------------------------------------------------------ |
+| Formula  | Internet Outbound Traffic × Internet Outbound Traffic Fee × 30 | Interface VPC Endpoint Service × 3 Availability Zones × 24 Hours × 30 Days + (Interface VPC Endpoint Outbound Traffic Fee × Interface VPC Endpoint Outbound Traffic + Interface VPC Endpoint Inbound Traffic Fee × Interface VPC Endpoint Inbound Traffic) × 30 |
+| Calculation |         0.09 × 200 × 30           | 0.01 × 3 × 24 × 30 + (0.01 × 200 + 0.01 × 10) × 30 |
+| Monthly Total |             $540.0              | $84.6 |

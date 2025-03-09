@@ -2,8 +2,8 @@
 ---
 
 ## Invocation Principle
-Third-party framework SDK depends on the native SDK
-### SDK Structure
+Third-party framework SDK depends on native SDK
+### SDK Architecture
 
 - AutoTrack handles native application behavior, thereby automatically generating RUM, Log, and Trace data
 - Open API provides external interfaces

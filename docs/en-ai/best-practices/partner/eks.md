@@ -8,25 +8,25 @@ Amazon Elastic Kubernetes Service (Amazon EKS) is an Amazon-provided managed Kub
 
 There are two ways to deploy DataKit on EKS:
 
-- Method One: Execute `datakit.yaml` using `kubectl`
-- Method Two: Install Helm and deploy DataKit using Helm
+- The first method: Use kubectl to execute datakit.yaml.
+- The second method: Install Helm and use Helm to deploy DataKit.
 
-This article describes deploying `kubectl` and `eksctl` on an EC2 instance to connect to the EKS cluster, followed by deploying Helm on the EC2 instance and using Helm to deploy DataKit.
+This article describes deploying kubectl and eksctl on an EC2 instance to connect to the EKS cluster, then installing Helm on the EC2 instance and using Helm to deploy DataKit.
 
 ## Prerequisites
 
-- You need to first create a [Guance account](https://www.guance.com/).
-- You need to first create an [AWS account](https://www.amazonaws.cn/).
-- [Install EKS](https://docs.amazonaws.cn/eks/latest/userguide/create-cluster.html) cluster
-- An EC2 instance (Amazon Linux 2 AMI image)
+- You need to create a [<<< custom_key.brand_name >>> account](https://www.guance.com/).
+- You need to create an [AWS account](https://www.amazonaws.cn/).
+- [Install EKS](https://docs.amazonaws.cn/eks/latest/userguide/create-cluster.html) cluster.
+- An EC2 instance (Amazon Linux 2 AMI image).
 
-## Procedures
+## Procedure
 
 ???+ warning
 
-    The version information used in this example is: DataKit `1.5.2`, Kubernetes `1.24`, kubectl `v1.23.6`, Helm `v3.8.2`
+    The version information used in this example is: DataKit `1.5.2`, Kubernetes `1.24`, kubectl `v1.23.6`, Helm `v3.8.2`.
 
-### 1. Install kubectl
+### 1 Install kubectl
 
 Run the following commands to install kubectl.
 
@@ -44,16 +44,16 @@ kubectl version --client
 
 ![image.png](../images/eks-1.png)
 
-### 2. Connect to EKS
+### 2 Connect to EKS
 
 #### 2.1 Configure Amazon CLI
 
 This example uses an AMI image that has the Amazon CLI installed by default.<br/>
-If you are not using an Amazon CLI image, you will need to install it; please refer to [Amazon CLI Installation](https://docs.amazonaws.cn/cli/latest/userguide/getting-started-install.html).
+If you are not using an Amazon CLI image, you need to install it; refer to [Amazon CLI Installation](https://docs.amazonaws.cn/cli/latest/userguide/getting-started-install.html).
 
 ![image.png](../images/eks-2.png)
 
-Log in to EC2, input `aws configure`, and follow the prompts to enter the `Access Key ID`, `Access Key`, and `region` from the AWS account used to create the EKS cluster. Set Default output format to **json**.
+Log in to EC2, enter `aws configure`, and input the `Access Key ID`, `Access Key`, and `region` from the AWS account used to create the EKS cluster. Enter **json** for Default output format.
 
 ![image.png](../images/eks-3.png)
 
@@ -77,11 +77,11 @@ eksctl version
 
 #### 2.3 Configure EKS Cluster
 
-Navigate to the EKS section in AWS to view the cluster name.
+Go to AWS's EKS console and check the cluster name.
 
 ![image.png](../images/eks-5.png)
 
-Use the following command to configure the cluster, where the region is `cn-northwest-1` and the name is the EKS cluster name.
+Use the following command to configure the cluster. In this example, the region is `cn-northwest-1` and the name is the EKS cluster name.
 
 ```
 aws eks --region cn-northwest-1 update-kubeconfig --name eks_liuyujie
@@ -89,11 +89,11 @@ aws eks --region cn-northwest-1 update-kubeconfig --name eks_liuyujie
 
 ![image.png](../images/eks-6.png)
 
-Use the kubectl command to check the cluster Pods. If there are results, it indicates a successful connection to EKS.
+Use the `kubectl` command to check the cluster Pods. If there are results, it means the connection to EKS was successful.
 
 ![image.png](../images/eks-7.png)
 
-### 3. Install Helm
+### 3 Install Helm
 
 Log in to EC2 and use the following commands to install Helm.
 
@@ -111,11 +111,11 @@ helm version
 
 ![image.png](../images/eks-8.png)
 
-### 4. Deploy DataKit
+### 4 Deploy DataKit
 
 #### 4.1 Obtain Token
 
-Log in to [Guance](https://console.guance.com/) - "Management" - "Settings", find the Token, click the copy icon on the right, and use the Token in the next step.
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/) - "Manage" - "Settings", find the Token, click the copy icon to the right, and use this Token in the next step.
 
 ![image.png](../images/eks-9.png)
 
@@ -128,7 +128,7 @@ helm repo add datakit https://pubrepo.guance.com/chartrepo/datakit
 helm repo update
 ```
 
-Verify if the repository was added successfully.
+Check if the repository was added successfully.
 
 ```
 helm repo list
@@ -145,7 +145,7 @@ helm pull datakit/datakit --untar
 cd datakit
 ```
 
-Edit the `values.yaml` file and paste the obtained token into the red box position in the `dataway_url`. Add the value `cluster_name_k8s=k8s-aws` to `global_tags`, which adds the global Tag **cluster_name_k8s** for non-election metrics collection.
+Edit the `values.yaml` file and paste the obtained token into the red box under `dataway_url`. Add the value `cluster_name_k8s=k8s-aws` to `global_tags` to add the global Tag **cluster_name_k8s** for non-election metrics collection.
 
 ```
 vim values.yaml
@@ -153,28 +153,28 @@ vim values.yaml
 
 ![image.png](../images/eks-11.png)
 
-Set the environment variable `ENV_NAMESPACE` to `k8s-aws`. By default, DataKit elections are enabled, ensuring only one DataKit collects election metrics within the workspace + namespace to avoid duplicate collection.<br/>
-Add the environment variable `ENV_GLOBAL_ELECTION_TAGS` to include the global Tag **cluster_name_k8s** for election metrics.
+Set the environment variable `ENV_NAMESPACE` to `k8s-aws`. By default, DataKit elections are enabled, ensuring only one DataKit collects election-related metrics within the workspace + namespace to avoid duplicate collection.<br/>
+Add another environment variable `ENV_GLOBAL_ELECTION_TAGS` to include the global Tag **cluster_name_k8s** for election-related metrics.
 
 ![image.png](../images/eks-12.png)
 
-> **Note:** The three instances of `k8s-aws` mentioned above can be changed to other strings, but they must not be the same across different clusters.
+> **Note:** The three instances of `k8s-aws` can be changed to other strings, but they must be unique across different clusters.
 
-If you need to enable collectors, you can add configurations under `dfconfig`. The commented-out part shows an example of enabling the MySQL collector.
+If you need to enable collectors, you can add configurations under `dfconfig`. The commented-out section shows an example for enabling the MySQL collector.
 
 ![image.png](../images/eks-13.png)
 
 #### 4.4 Install DataKit
 
-Run the following command to deploy DataKit. If the `datakit` namespace already exists, you can omit the `--create-namespace` flag.
+Run the following command to deploy DataKit. If the `datakit` namespace already exists, you can remove the `--create-namespace` flag.
 
 ```
-helm install datakit . -n datakit  -f values.yaml --create-namespace
+helm install datakit . -n datakit -f values.yaml --create-namespace
 ```
 
 ![image.png](../images/eks-14.png)
 
-After a successful deployment, log in to Guance's "Workspace," navigate to "Metrics" - "Metric Management" to view metrics starting with `kube`, which include the global tag `cluster_name_k8s`.
+After successful deployment, log in to <<< custom_key.brand_name >>> "Workspace," go to "Metrics" - "Metrics Management" to view metrics starting with `kube`, which include the global tag `cluster_name_k8s`.
 
 ![image.png](../images/eks-15.png)
 

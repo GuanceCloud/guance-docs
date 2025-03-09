@@ -21,7 +21,7 @@
 
 ## Installation and Deployment
 
-### 1 Configuration of Sampling in ddtrace.conf
+### 1 Configuration of the Sampler Section in `ddtrace.conf`
 
 ```toml
   ## Sampler config used to set global sampling strategy.
@@ -39,23 +39,23 @@ do
 done
 ```
 
-### 3 Enabling Sampling
+### 3 Enable Sampling
 
 1. Enable sampling on the collector side
 
-`sampling_rate` range is (0,1). Traces are discarded if outside this range.
+   The `sampling_rate` range is (0,1). If it is outside this range, traces are discarded.
 
-If full collection is required, there is no need to configure `[inputs.ddtrace.sampler]`.
+   If full tracing is required, there is no need to configure `[inputs.ddtrace.sampler]`.
 
 2. Enable sampling on the application side
 
-Sampling on the application side is enabled via `-Ddd.trace.sample.rate`, with a range of (0,1).
+   Sampling is enabled on the application side using `-Ddd.trace.sample.rate`, with a range of (0,1).
 
-This is a marked sampling method, meaning all traces are collected while also being sampled.
+   This is marked as sampled, meaning all traces are collected while being marked for sampling.
 
 3. Sampling Priority
 
-Both sampling methods have the same effect. If both are configured simultaneously, the sampling setting on the collector side will not take effect.
+   Both sampling methods have the same effect. If both are configured, the sampling configuration on the collector side will not take effect.
 
 ???+ note "Summary"
 

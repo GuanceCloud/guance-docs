@@ -2,30 +2,35 @@
 
 ---
 
-<br />**POST /api/v1/issue/notification_policy/\{issue_notification_policy_uuid\}/modify**
+<br />**POST /api/v1/issue/notification_policy/{issue_notification_policy_uuid}/modify**
 
 ## Overview
-Modify a notification policy.
+Modify a notification policy
+
+
 
 ## Route Parameters
 
-| Parameter Name              | Type   | Required | Description               |
-|:------------------------|:------|:-------|:-------------------------|
-| notification_schedule_uuid | string | Y      | Schedule UUID            |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| notification_schedule_uuid | string | Y | Schedule UUID<br> |
+
 
 ## Body Request Parameters
 
-| Parameter Name              | Type   | Required | Description                                                                                       |
-|:------------------------|:------|:-------|:---------------------------------------------------------------------------------------------|
-| name                   | string | Y      | Notification policy name <br>Allow empty: False <br>Maximum length: 256 <br>Allow empty string: False <br> |
-| notificationScheduleUUIDs | array |        | List of notification schedule UUIDs <br>Example: ['nsche_xxx', 'nsche_yyy'] <br>Allow empty: False <br> |
-| extend                 | json  |        | Extended information, including notification scope and upgrade configuration <br>Allow empty: False <br> |
-| extend.notifyTypes     | array |        | Notification types <br>Example: ['issue.add', 'issue.modify', 'issueUpgrade.noManager', 'issueUpgrade.processTimeout', 'issueReply.add', 'issueReply.modify', 'issueReply.delete', 'dailySummary'] <br>Allow empty: False <br> |
-| extend.upgradeCfg      | json  |        | Upgrade configuration <br>Example: {'noManager': {'duration': 600}, 'processTimeout': {'duration': 600}} <br>Allow empty: False <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| name | string | Y | Notification policy name<br>Allow empty: False <br>Maximum length: 256 <br>Allow empty string: False <br> |
+| notificationScheduleUUIDs | array | N | List of notification schedule UUIDs<br>Example: ['nsche_xxx', 'nsche_yyy'] <br>Allow empty: False <br> |
+| extend | json | N | Extended information, including notification scope and upgrade configuration<br>Allow empty: False <br> |
+| extend.notifyTypes | array | N | Notification types<br>Example: ['issue.add', 'issue.modify', 'issueUpgrade.noManager', 'issueUpgrade.processTimeout', 'issueReply.add', 'issueReply.modify', 'issueReply.delete', 'dailySummary'] <br>Allow empty: False <br> |
+| extend.upgradeCfg | json | N | Upgrade configuration<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
-Refer to the documentation for creating a new notification policy.
+Parameter description: Refer to the create interface documentation
+
+
 
 ## Request Example
 ```shell
@@ -36,8 +41,10 @@ curl 'https://openapi.guance.com/api/v1/notification_policy/inpy_c79b26b3f6a5408
 --compressed
 ```
 
+
+
 ## Response
-```json
+```shell
 {
     "code": 200,
     "content": {

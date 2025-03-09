@@ -3,37 +3,38 @@ nav:
   - 'Public Request Parameters': public-request-params.md
   - 'Public Response Structure': public-response-params.md
   - 'Signature Authentication': signature-certification.md
-  - 'Usage Limitations': api-limit.md
+  - 'Usage Limits': api-limit.md
   - 'Request Example': example.md
   - 'Common Error Definitions': error-definition.md
-  - 'Scenario - Dashboard': board
-  - 'Scenario - Notes': notes
-  - 'Scenario - Explorer': viewer
-  - 'Scenario - Built-in Views': inner-dashboard
-  - 'Scenario - Service Management': service-manage
+  - 'Use Case - Dashboard': board
+  - 'Use Case - Notes': notes
+  - 'Use Case - Explorer': viewer
+  - 'Use Case - Built-in Views': inner-dashboard
+  - 'Use Case - Service Management': service-manage
   - 'Events': keyevent
   - 'Incident - Channels': channel
   - 'Incident - Issue': issue
   - 'Incident - Schedules': notification-schedule
-  - 'Incident - Configuration Management - Notification Policy': issue-notification-policy
+  - 'Incident - Configuration Management - Notification Policies': issue-notification-policy
   - 'Incident - Configuration Management - Issue Discovery': issue-auto-discovery
   - 'Infrastructure': objects
   - 'Infrastructure - Resource Catalog': objc-set
-  - 'Logs - Clustering Queries': logmine
-  - 'Logs - Indexing': log-index-cfg
+  - 'Logs - Pattern Query': logmine
+  - 'Logs - Index': log-index-cfg
   - 'Logs - Data Forwarding': log-backup-cfg
   - 'Logs - Data Access': logging-query-rule
-  - 'Metrics - Aggregated Metrics Generation': aggs-to-metric
-  - 'RUM - Applications': rum-cfg-set
-  - 'RUM - SourceMap': rum-sourcemap
-  - 'Synthetic Tests - Dial Testing Tasks': dialing-task
+  - 'Metrics - Get Mearsurement Information': metric
+  - 'Metrics - Aggregate and Generate Metrics': aggs-to-metric
+  - 'RUM PV - Application': rum-cfg-set
+  - 'RUM PV - SourceMap': rum-sourcemap
+  - 'Synthetic Tests - Test Tasks': dialing-task
   - 'Synthetic Tests - User-defined Node Management': dialing-region
   - 'Monitoring - Checkers': checker
   - 'Monitoring - SLO': slo
-  - 'Monitoring - Intelligent Security Check': self-built-checker
+  - 'Monitoring - Intelligent Inspection': self-built-checker
   - 'Monitoring - Mute Configuration': mute
-  - 'Monitoring - Alert Policies': alert-policy
-  - 'Monitoring - Alert Policies - Custom Notification Dates': alert-policy-notice-date
+  - 'Monitoring - Alert Strategies': alert-policy
+  - 'Monitoring - Alert Strategies - Custom Notification Dates': alert-policy-notice-date
   - 'Monitoring - Notification Targets Management': notify-object
   - 'Management - Field Management': field-cfg
   - 'Management - Global Tags': tag

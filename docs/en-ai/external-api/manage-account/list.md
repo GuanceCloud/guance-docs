@@ -1,4 +1,4 @@
-# 【Management Backend Accounts】List
+# [Super Account Management] List
 
 ---
 
@@ -8,20 +8,15 @@
 
 
 
-
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| search | string | No  | Account, username, email<br>Can be empty: False <br> |
-| pageIndex | integer | No  | Page number<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize | integer | No  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| Parameter Name | Type   | Required | Description                           |
+|:--------------|:-------|:--------|:--------------------------------------|
+| search        | string | No      | Account, username, email<br>Allow null: False <br> |
+| pageIndex     | integer| No      | Page number<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize      | integer| No      | Number of items per page<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
-
-
-
-
 
 
 
@@ -31,6 +26,7 @@
 ```
 
 
-
-
 </input_content>
+<target_language>英语</target_language>
+</input>
+</example>

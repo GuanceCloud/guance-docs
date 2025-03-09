@@ -1,4 +1,4 @@
-# Get a Single User View
+# Get Single User View
 
 ---
 
@@ -20,11 +20,11 @@
 
 **Response Body Structure Explanation**
 
-| Parameter Name                | Type  | Description          |
+| Parameter Name                |   Type  |          Description          |
 |-----------------------|----------|------------------------|
 | chartGroupPos         | list | Chart group position information |
 | chartPos         | list | Chart position information |
-| createdWay             | string | The creation method of this built-in view, manually created: manual, imported: import |
+| createdWay             | string | Built-in view creation method, manually created: manual, imported created: import |
 | dashboardBidding         | dict | Dashboard binding information |
 | name         | string | Dashboard name |
 
@@ -152,7 +152,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/get' \
         "id": 4490,
         "isPublic": 1,
         "mapping": [],
-        "name": "Mysql Activity Monitoring View111111",
+        "name": "Mysql Activity Monitoring View 111111",
         "ownerType": "inner",
         "status": 0,
         "tag_info": {},

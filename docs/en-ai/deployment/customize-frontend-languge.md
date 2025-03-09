@@ -2,7 +2,7 @@
 
 ---
 
-This document aims to guide how to achieve internationalization support for the frontend by adjusting service configurations.
+This document aims to guide how to achieve multi-language internationalization support for the frontend by adjusting service configurations.
 
 ## Configuration Steps
 
@@ -16,7 +16,7 @@ This document aims to guide how to achieve internationalization support for the 
 
 3. Modify the corresponding text according to the format of the file content:
    - If you need to customize the text content, replace the corresponding `key` value.
-   - If certain `key` values do not need modification, they can be directly deleted.
+   - If some `key` values do not need to be modified, they can be directly deleted.
    - Note: The `key` is fixed and cannot be modified.
 
 ---
@@ -34,7 +34,7 @@ window.GC_GLOBAL_LOCAL = {
 
   // Simplified Chinese configuration
   'zh-CN': {
-    // Scene-related
+    // Scene related
     'left_menu.scene.label': 'Scene',
     'left_menu.scene.dashboard': 'Dashboard',
     'left_menu.scene.create_dashboard': 'Create Dashboard',
@@ -45,14 +45,14 @@ window.GC_GLOBAL_LOCAL = {
     'g.viewers': 'Explorer',
     'left_menu.scene.built_in_view': 'Built-in View',
 
-    // Event-related
+    // Event related
     'left_menu.event.label': 'Event',
     'left_menu.event.smart_monitor': 'Smart Monitoring',
     'left_menu.common.help_doc': 'Help Documentation',
 
-    // Incident Tracking
-    'left_menu.exception_tracking.label': 'Incident Tracking',
-    'g.analysis_dashboard': 'Analysis Dashboard',
+    // Incident
+    'left_menu.exception_tracking.label': 'Incident',
+    'g.analysis_dashboard': 'Analysis Board',
     'exceptions.schedule': 'Schedule',
     'left_menu.exception_tracking.conf': 'Configuration Management',
 
@@ -68,13 +68,13 @@ window.GC_GLOBAL_LOCAL = {
     'r.object_others': 'Resource Catalog',
     'left_menu.manage.pipeline': 'Pipelines',
 
-    // Metrics-related
+    // Metrics related
     'left_menu.metric.label': 'Metrics',
-    'left_menu.metric.metric_analysis': 'Metric Analysis',
-    'left_menu.metric.metric_map': 'Metric Management',
+    'left_menu.metric.metric_analysis': 'Metrics Analysis',
+    'left_menu.metric.metric_map': 'Metrics Management',
     'r.log_query_rule_list': 'Data Access',
 
-    // Log-related
+    // Log related
     'left_menu.log.label': 'Log',
     'left_menu.log.error_track': 'Error Tracking',
     'left_menu.common.indicator': 'Generate Metrics',
@@ -100,7 +100,7 @@ window.GC_GLOBAL_LOCAL = {
     // RUM
     'left_menu.rum.label': 'RUM',
     'left_menu.rum.rum_list': 'Application List',
-    'g.analysis_dashboard': 'Analysis Dashboard',
+    'g.analysis_dashboard': 'Analysis Board',
     'rum.heatmap': 'Heatmap',
     'rum.tracking': 'Tracking',
     'left_menu.integration.rum_headless': 'RUM Headless',
@@ -116,25 +116,25 @@ window.GC_GLOBAL_LOCAL = {
     // CI Visualization
     'r.ci': 'CI Visualization',
 
-    // Monitoring-related
+    // Monitoring related
     'left_menu.monitor.label': 'Monitoring',
     'left_menu.monitor.checker': 'Checker',
     'left_menu.monitor.smart_checker': 'Smart Monitoring',
     'left_menu.monitor.intelligent_inspection': 'Intelligent Inspection',
     'r.slo_list': 'SLO',
     'left_menu.monitor.silence_manage': 'Mute Management',
-    'left_menu.monitor.alert_policy_manage': 'Alert Policy Management',
-    'left_menu.monitor.notification_manage': 'Notification Targets Management',
+    'left_menu.monitor.alert_policy_manage': 'Alert Strategies',
+    'left_menu.monitor.notification_manage': 'Notification Targets',
 
-    // Integration-related
+    // Integration related
     'left_menu.integration.label': 'Integration',
     'r.datakit': 'Datakit',
-    'left_menu.integration.func_expand': 'Expansion',
+    'left_menu.integration.func_expand': 'Extension',
     'left_menu.integration.external_data_source': 'External Data Source',
     'r.dca': 'DCA',
     'left_menu.integration.mobile': 'Mobile',
 
-    // Management-related
+    // Management related
     'left_menu.manage.label': 'Management',
     'left_menu.manage.system_settings': 'System Settings',
     'left_menu.manage.settings': 'Workspace Settings',
@@ -156,10 +156,10 @@ window.GC_GLOBAL_LOCAL = {
     'left_menu.manage.cloud_account_manage': 'Cloud Account Management',
     'h.action_audit': 'Audit Events',
     'left_menu.manage.share_manage': 'Share Management',
-    'left_menu.manage.cross_namespace_auth': 'Cross-space Authorization',
+    'left_menu.manage.cross_namespace_auth': 'Cross Workspace Authorization',
     'left_menu.manage.data_compliance': 'Data Compliance',
     'left_menu.manage.sensitive_data_desensitization': 'Sensitive Data Masking',
-    'r.sensitive_data': 'Sensitive Data Scanning',
+    'r.sensitive_data': 'Sensitive Data Scan',
 
     // Usage Statistics
     'left_menu.billing.label': 'Usage Statistics',
@@ -169,4 +169,4 @@ window.GC_GLOBAL_LOCAL = {
 
 ---
 
-If further expansion or optimization is needed, you can always add content or adjust the format!
+If further expansion or optimization is needed, feel free to add content or adjust the format at any time!

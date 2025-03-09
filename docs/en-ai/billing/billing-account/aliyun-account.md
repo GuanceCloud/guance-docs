@@ -1,71 +1,71 @@
-# AliCloud Account Settlement
+# Alibaba Cloud Account Settlement
 ---
 
-This involves directly topping up and settling accounts through an AliCloud account. A single AliCloud account supports associating multiple workspaces and multiple site workspaces for fee settlement.
+This involves directly topping up and settling accounts through an Alibaba Cloud account. One Alibaba Cloud account supports associating multiple workspaces, across multiple sites, for fee settlement.
 
-## When Purchasing the Commercial Plan of Guance for the First Time
+## When Selecting Commercial Plan for the First Purchase of <<< custom_key.brand_name >>>
 
-![Bill by Ali](../../img/bill-by-ali.png)
+![Bill by Alibaba Cloud](../../img/bill-by-ali.png)
 
 1. [Enter the registration process](../../plans/commercial-register.md);
-2. On step three, when selecting the activation method, choose [AliCloud Market Activation](#purchase);
-3. Enter the workspace name, select the workspace language;
+2. On step three, when selecting the activation method, choose [Activation via Alibaba Cloud Market](#purchase);
+3. Enter the workspace name and select the workspace language;
 4. Fill in the account ID and product instance ID;
-5. Check the agreement;
+5. Check the box to agree with the terms;
 6. Click activate.
 
-During this step, the system will create a billing center account for you synchronously. Later on, you can log into the billing center platform using the username/password used during registration (i.e., the username/password used in the first step of registering for Guance) to view detailed billing information.
+During this step, the system will synchronize and create a Billing Center account for you. Later on, you can log into the billing center platform using the username/password used during registration (i.e., the username/password used in the first step of registering the <<< custom_key.brand_name >>> account) to view detailed billing information.
 
-### Activating via AliCloud Marketplace {#purchase}
+### Activation via Alibaba Cloud Marketplace {#purchase}
 
-Log in to the [AliCloud Heart Selection Platform](https://market.aliyun.com/products/56838014/cmgj00053362.html?spm=5176.19720258.J_3207526240.210.62c176f4i6AFbF), and click **Activate Immediately**.
+Log in to the [Alibaba Cloud Preferred Platform](https://market.aliyun.com/products/56838014/cmgj00053362.html?spm=5176.19720258.J_3207526240.210.62c176f4i6AFbF), and click **Activate Now**.
 
-![Market Guance](../../img/market-guance.png)
+![Marketplace Guance](../../img/market-guance.png)
 
-Prompt **Activate Pay-as-you-go Service**, agree to the agreement, and click **Activate**.
+Prompt **Activate Pay-as-you-go Service**, agree to the terms, and click **Activate**.
 
-![Market Guance 1](../../img/market-guance-1.png)
+![Marketplace Guance Step 1](../../img/market-guance-1.png)
 
 Display **Activation Request Submitted**.
 
-![Market Guance 2](../../img/market-guance-2.png)
+![Marketplace Guance Step 2](../../img/market-guance-2.png)
 
-Click **Confirm** to redirect to the marketplace page where you can view the subscribed Guance instance.
+Click **Confirm** to be redirected to the marketplace page where you can view the activated <<< custom_key.brand_name >>> instance.
 
-![Aliyun Market 1](../../img/10.aliyun_market_1.png)
+![Marketplace Instance](../../img/10.aliyun_market_1.png)
 
-Click **Activate Immediately**.
+Click **Activate Now**.
 
 ![](../img/6.aliyun_6.png)
 
-## Changing Settlement in the Billing Center Platform
+## Changing Settlement Method via the Billing Center Platform
 
-1. Log in to the Guance [Billing Center](https://boss.guance.com);
+1. Log into the <<< custom_key.brand_name >>> [Billing Center](https://boss.guance.com);
 2. Enter workspace management;
-3. Select the workspace, click the change button on the right side;
-4. Choose **AliCloud Account Settlement**;
-5. First [go to AliCloud to activate](#purchase) the Guance service;
-6. After purchase, obtain the [account ID](#id) and [product instance ID](#entity-id);
+3. Select the workspace and click the change button on the right;
+4. Choose **Alibaba Cloud Account Settlement**;
+5. First [go to Alibaba Cloud to activate](#purchase) <<< custom_key.brand_name >>> service;
+6. After purchasing, obtain the [account ID](#id) and [product instance ID](#entity-id);
 7. Click confirm.
 
-![Bill by Center 2](../../img/bill-by-center-2.png)
+![Billing Center Change 2](../../img/bill-by-center-2.png)
 
-![Bill by Center 3](../../img/bill-by-center-3.png)
+![Billing Center Change 3](../../img/bill-by-center-3.png)
 
 ### How to Obtain the Account ID {#uid}
 
-#### AliCloud Main Account
+#### Alibaba Cloud Main Account
 
-Log in to [AliCloud](https://www.aliyun.com) with the main account, enter the AliCloud console, click the account avatar at the top right corner, and you can find the account ID.
+Log in to [Alibaba Cloud](https://www.aliyun.com) using the main account, enter the Alibaba Cloud console, click the account avatar at the top right corner, and you can find the account ID.
 
 ![](../img/6.aliyun_2.png)
 
 
 <!--
 
-### AliCloud RAM Sub-account
+### Alibaba Cloud RAM Sub-Account
 
-Log in to [AliCloud](https://www.aliyun.com) via RAM, enter the AliCloud console, click the account avatar at the top right corner, and you can find the UID after @ in the RAM account.
+Log in to [Alibaba Cloud](https://www.aliyun.com) via RAM, enter the Alibaba Cloud console, click the account avatar at the top right corner, and you can find the main account UID after the @ in the RAM account.
 
 ![](../img/20.aliyun_3.png)
 -->
@@ -74,17 +74,15 @@ Log in to [AliCloud](https://www.aliyun.com) via RAM, enter the AliCloud console
 
 ## How to Obtain the Product Instance ID {#entity-id}
 
-After confirming the activation request on AliCloud Heart Selection, it directly redirects to the list of purchased services on AliCloud. Below the purchased Guance service, you can see the **instance ID** of the product. Copy this **instance ID** and fill it into the **product instance ID** field in the change settlement method dialog box.
+After confirming the activation request on Alibaba Cloud Preferred, <<< custom_key.brand_name >>> will redirect you to the list of purchased services on Alibaba Cloud. Below the purchased <<< custom_key.brand_name >>> service, you can view the **Instance ID** of the product. Copy this **Instance ID** and fill it into the **Product Instance ID** field in the change settlement method dialog box.
 
 ![](../img/10.aliyun_market_5.png)
 
+## Cancel Subscription to <<< custom_key.brand_name >>> on Alibaba Cloud {#cancel}
 
-
-## Canceling Subscription to Guance on AliCloud {#cancel}
-
-1. In the AliCloud console, click to enter **Marketplace > Purchased Services**;
-2. Under **Purchased Services**, you can see the subscribed Guance instance. Click the **Close** button at the top right corner of the instance;
-3. In the pop-up **Service Closure** dialog box, click **Confirm**. You will then see that the instance is marked as **Closed**, indicating that the subscription to Guance has been canceled on AliCloud.
+1. In the Alibaba Cloud console, click into **Cloud Market > Purchased Services**;
+2. Under **Purchased Services**, you can view the <<< custom_key.brand_name >>> instance that was subscribed to. Click the **Close** button at the top right corner of the instance;
+3. In the pop-up **Business Closure** dialog box, click **Confirm**. Once confirmed, you will see that the instance status has changed to **Closed**, indicating that the subscription to <<< custom_key.brand_name >>> has been canceled on Alibaba Cloud.
 
 ![](../img/10.aliyun_market_1.png)
 
@@ -92,4 +90,4 @@ After confirming the activation request on AliCloud Heart Selection, it directly
 
 ![](../img/1.aliyun_cancel_3.png)
 
-**Note**: After canceling the subscription to the Guance service, the Guance billing center will unbind all associated workspaces from this account and switch to using the Guance billing center account for settlement. You will also receive an email notification regarding this change.
+**Note**: After canceling the <<< custom_key.brand_name >>> service subscription, the <<< custom_key.brand_name >>> Billing Center will unbind all associated workspaces from this account and switch to the <<< custom_key.brand_name >>> Billing Center account settlement method. You will also receive an email notification regarding this change.

@@ -1,9 +1,9 @@
 # Video
 ---
 
-In the dashboard, you can enhance the delivery of information by adding video content through video URLs.
+In the dashboard, you can enhance the delivery of information by adding video content through a video URL.
 
-## Application Scenarios
+## Use Cases
 
 1. Displaying instructional videos for different scenarios;  
 2. Providing video explanations for items that require special instructions.
@@ -15,8 +15,8 @@ In the dashboard, you can enhance the delivery of information by adding video co
 ### Playback Settings
 
 1. Volume: Set the volume level of the video.    
-2. Auto Play: Set whether the video should autoplay.    
-3. Loop: Set whether the video should loop playback.     
+2. Auto Play: Set whether the video should play automatically.    
+3. Loop Play: Set whether the video should loop playback.     
 
 <!--
 ## Example Image

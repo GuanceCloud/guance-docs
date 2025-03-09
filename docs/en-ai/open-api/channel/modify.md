@@ -1,4 +1,4 @@
-# Modify Channel Information
+# Modify a Channel Information
 
 ---
 
@@ -12,24 +12,22 @@
 ## Route Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
+|:-------------------|:-------|:--------|:----------------|
 | channel_uuid | string | Y | Channel UUID<br> |
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
+|:-------------------|:-------|:--------|:----------------|
 | name | string |  | Channel name<br>Example: Channel 1 <br>Can be empty: False <br>Maximum length: 256 <br> |
 | description | string |  | Channel description<br>Example: CUSTOM <br>Can be empty: False <br>Can be an empty string: True <br>Maximum length: 256 <br> |
 | notifyTarget | array |  | List of notification target UUIDs<br>Example: [] <br>Can be empty: False <br> |
 | notifyUpgradeCfg | json |  | Rule configuration<br>Can be empty: False <br> |
-| notifyUpgradeCfg.triggerTime | integer | Y | After how many seconds to trigger upgrade notification, unit is seconds<br>Example: simpleCheck <br>Can be empty: False <br> |
+| notifyUpgradeCfg.triggerTime | integer | Y | Time in seconds after which to trigger upgrade notification<br>Example: simpleCheck <br>Can be empty: False <br> |
 | notifyUpgradeCfg.notifyTarget | array | Y | List of upgrade notification target UUIDs<br>Example: [] <br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
-
-
 
 
 

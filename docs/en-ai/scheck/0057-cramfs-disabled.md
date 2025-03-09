@@ -1,4 +1,5 @@
-# 0057-cramfs-disabled-cramfs is Enabled
+# 0057-cramfs-disabled-cramfs Enabled
+
 ---
 
 ## Rule ID
@@ -33,7 +34,7 @@
 
 ## Theoretical Basis
 
-- The cramfs file system type is a compressed, read-only Linux file system embedded in small systems. It can be used with cramfs images without needing to decompress the image first.
+- The cramfs file system type is a compressed read-only Linux file system embedded in small systems. It can be used with cramfs images without needing to decompress the image first.
 
 - Removing support for unnecessary file system types can reduce the local attack surface of the server. If this file system type is not required, disable it.
 

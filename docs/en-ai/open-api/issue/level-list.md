@@ -1,4 +1,4 @@
-# Issue Level List
+# List Issue Levels
 
 ---
 
@@ -6,11 +6,13 @@
 
 ## Overview
 
-This API lists the default issue levels of the workspace and any custom levels defined within the workspace (excluding globally configured levels set via the management console).
+
 
 ## Additional Parameter Notes
 
-The interface lists the default issue levels of the workspace along with any custom levels defined within it (does not include globally configured levels set via the management console).
+This API lists the default levels of the workspace and any custom levels defined within the workspace (it does not include global levels configured in the management backend).
+
+
 
 ## Request Example
 ```shell
@@ -18,6 +20,8 @@ curl 'https://openapi.guance.com/api/v1/issue-level/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
+
+
 
 ## Response
 ```shell

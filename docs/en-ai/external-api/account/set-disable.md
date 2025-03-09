@@ -1,4 +1,4 @@
-# 【Frontend Account】Enable/Disable
+# [Frontend Account] Enable/Disable
 
 ---
 
@@ -8,17 +8,14 @@
 
 
 
-
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:-----------|:-------------------------|
-| accountUUIDs          | array    | Y          | Account UUID<br>Example: ['acnt_xxxx', 'acnt_yyyy'] <br>Can be empty: False <br> |
-| isDisable             | boolean  | Y          | Whether to disable, true for disable, false for enable<br>Example: True <br>Can be empty: False <br>Possible values: [True, False] <br> |
+|:---------------------|:---------|:----------|:------------------------|
+| accountUUIDs         | array    | Y         | Account UUID<br>Example: ['acnt_xxxx', 'acnt_yyyy'] <br>Can be empty: False <br> |
+| isDisable            | boolean  | Y         | Whether to disable, true for disable, false for enable<br>Example: True <br>Can be empty: False <br>Possible values: [True, False] <br> |
 
 ## Additional Parameter Notes
-
-
 
 
 
@@ -27,13 +24,11 @@
 curl '<Endpoint>/api/v1/account/set-disable' \
   -H 'Content-Type: application/json' \
   -H 'X-Df-Access-Key: <AK key>' \
-  -H 'X-Df-Nonce: <random characters>' \
+  -H 'X-Df-Nonce: <random string>' \
   -H 'X-Df-Signature: <signature>' \
   -H 'X-Df-Timestamp: <timestamp>' \
   --data-raw $'{"accountUUIDs": ["acnt_a95702ad60d04209b3ba42650e75c8a8"],"isDisable": true}'
-
 ```
-
 
 
 

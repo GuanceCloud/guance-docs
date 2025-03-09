@@ -1,13 +1,13 @@
 ---
-title: 'TongHttpServer (THS) by Dongfangtong'
-summary: 'Collect operational Metrics information for TongHttpServer (THS) by Dongfangtong'
+title     : 'TongHttpServer (THS) by Dongfangtong'
+summary   : 'Collect runtime Metrics information of TongHttpServer (THS) by Dongfangtong'
 __int_icon: 'icon/dongfangtong'
-dashboard:
-  - desc: 'TongHttpServer (THS) by Dongfangtong monitoring view'
-    path: 'dashboard/en/dongfangtong_ths'
-monitor:
-  - desc: 'Not available'
-    path: '-'
+dashboard :
+  - desc  : 'TongHttpServer (THS) by Dongfangtong monitoring view'
+    path  : 'dashboard/en/dongfangtong_ths'
+monitor   :
+  - desc  : 'Not available'
+    path  : '-'
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -18,23 +18,23 @@ monitor:
 
 ### Configure API Monitoring Interface
 
-The API monitoring interface needs to be set up only within one virtual host. `THS` supports HTTP data statistics, and other applications can obtain JSON data by appending `/http/monitor/format/json` to the route name, which can then be integrated into the monitoring system.
+The API monitoring interface only needs to be set up in one virtual host. `THS` supports HTTP data statistics, and other applications can obtain `json` data by appending `/http/monitor/format/json` to the `route` name, which can then be integrated into the monitoring system.
 
-Default adjustment of `httpserver.conf`
+By default, adjust `httpserver.conf`
 
 ```nginx
-location /api {
-    access_log off;
-    api write=off;
-    status_bypass on;
-    allow 127.0.0.1;
-    deny all;
-}
+    location /api {
+        access_log off;
+        api write=off;
+        status_bypass on;
+        allow 127.0.0.1;
+        deny all;
+    }
 ```
 
 ### Enable Exporter
 
-Since the built-in API interface of `THS` returns data in JSON format, which does not conform to `Metrics`, an additional `exporter` needs to be written for conversion. **We look forward to official support for direct conversion**.
+Since the built-in API interface of `THS` returns data in `json` format, which does not conform to `Metrics`, an additional `exporter` needs to be written for conversion. **We look forward to official support for direct conversion**.
 
 - Download
 
@@ -42,7 +42,7 @@ Download from `https://github.com/lrwh/dongfangtong-ths-exporter/releases`
 
 - Run
 
-**Note the `JDK` version, requiring JDK 1.8 or higher**
+**Note: Ensure `JDK` version is `JDK1.8` or higher**
 
 ```shell
 java -jar dongfangtong-ths-exporter.jar --ths.url=http://localhost:8080/api/http/monitor/format/json
@@ -50,9 +50,9 @@ java -jar dongfangtong-ths-exporter.jar --ths.url=http://localhost:8080/api/http
 
 ### Enable DataKit Collector
 
-Since `dongfangtong-ths-exporter` can directly expose a `metrics` URL, it can be collected via the [`prom`](./prom.md) collector.
+Since `dongfangtong-ths-exporter` can directly expose a `metrics` URL, it can be collected directly using the [`prom`](./prom.md) collector.
 
-Adjustments are as follows:
+Adjust the configuration as follows:
 
 ```toml
 urls = ["http://localhost:8081/ths/metrics"]
@@ -65,11 +65,10 @@ interval = "10s"
 <!-- markdownlint-disable MD033 -->
 <font color="red">*Other configurations should be adjusted as needed*</font>
 <!-- markdownlint-enable -->
+Parameter adjustment notes:
 
-Parameter adjustments explained:
-
-- urls: Prometheus Metrics address, fill in the metrics URL exposed by the corresponding component.
-- source: Collector alias, recommended to differentiate.
+- urls: The `Prometheus` metrics address; fill in the metrics URL exposed by the corresponding component.
+- source: Alias for the collector; it is recommended to differentiate this.
 - interval: Collection interval
 
 ### Restart DataKit
@@ -88,4 +87,4 @@ Parameter adjustments explained:
 | `ths_server_zone_over_count` | Zone over count |
 | `ths_connections` | Connections |
 
-For more metric information, [refer to the documentation](https://github.com/lrwh/dongfangtong-ths-exporter/blob/main/TongHttpServer%20v6.0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf)
+For more metric information, refer to the [documentation](https://github.com/lrwh/dongfangtong-ths-exporter/blob/main/TongHttpServer%20v6.0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf)

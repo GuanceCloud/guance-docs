@@ -1,28 +1,28 @@
 nav:
   - index.md
   - 'Release History': changelog 
-  - 'Private Deployment Description': deployment-description.md   
+  - 'Deployment Plan Description': deployment-description.md   
   - 'Product Deployment': 
-    - 'Pre-deployment Reading': how-to-install.md
-    - "How to Apply for License": get-license.md    
+    - 'Pre-installation Reading': how-to-install.md
+    - "How to Apply for a License": get-license.md    
     - 'Infrastructure Deployment': basic-env-install.md
     - 'Start Installation': launcher-install.md
     - 'Activate Product': activate.md
     - "DataWay":
       - 'Version History': dataway-changelog.md
       - 'DataWay Installation and Usage': dataway.md
-      - 'Data Diversion': dataway-sink.md
+      - 'Data Routing': dataway-sink.md
     - 'Deployment Solutions':
-       # - "How to Choose a Deployment Version Solution": how-to-select-deployment-version.md
-       # - "Secure Deployment Solution": security-deployment.md
+       # - "How to Choose Deployment Version Solution": how-to-select-deployment-version.md
+       # - "Security Deployment Solution": security-deployment.md
        # - "Hybrid Cloud Deployment Solution": hybrid-cloud-deployment.md
       - "Cloud Infrastructure Deployment":
-        - "Resources and System Requirements": cloud-required.md
+        - "Resource and System Requirements": cloud-required.md
         - "Alibaba Cloud Deployment Manual": cloud-deployment-manual.md
         - "Huawei Cloud Deployment Manual": hwcloud-deployment-manual.md
-      - "User-defined Infrastructure Deployment": 
-        - "User-defined Infrastructure Deployment Manual": offline-deployment-manual.md    
-        - "Resources and System Requirements": offline-required.md
+      - "Self-built Infrastructure Deployment": 
+        - "Self-built Infrastructure Deployment Manual": offline-deployment-manual.md    
+        - "Resource and System Requirements": offline-required.md
         - "Infrastructure Deployment": 
           - "Proxy": proxy-install.md
           - "NFS": nfs-install.md
@@ -51,19 +51,19 @@ nav:
         - "Business Components":
           - "Launcher": Launcher-deployment.md
           - "Proxy": Proxy-deployment.md
-      - "Single Machine Environment Deployment":
-        - "Resources and System Requirements": single-required.md
+      - "Single-machine Environment Deployment":
+        - "Resource and System Requirements": single-required.md
         - "Offline Deployment": single-deploy.md
   - 'Getting Started':
     - "How to Start": how-to-start.md
-    - "Upgrade to Commercial Plan": upgrade-version.md
+    - "Upgrade Commercial Plan": upgrade-version.md
     - "SSO Management":
-      - "Keycloak SSO (Deployment Plan)":  keycloak-sso.md
+      - "Keycloak Single Sign-On (Deployment Plan)":  keycloak-sso.md
       - "Configure Keycloak SSO Mapping Rules":  keycloak-rule.md
-      - "Azure AD SSO (Deployment Plan)":  azure-ad-pass.md
+      - "Azure AD Single Sign-On (Deployment Plan)":  azure-ad-pass.md
       - "Custom Mapping": custom-mapping.md
-      - "LDAP SSO": ldap.md
-      - "OIDC SSO Custom Domain Replacement Steps (Deployment Plan URL Address Replacement Solution)": oidc-custom-url.md
+      - "LDAP Single Sign-On": ldap.md
+      - "OIDC Single Sign-On Custom Domain Replacement Steps (Deployment Plan URL Address Replacement Solution)": oidc-custom-url.md
     - 'Management Backend Manual': 
       - "Workspace Management": space.md
       - "User Management": user.md
@@ -74,8 +74,8 @@ nav:
   - 'Operations Manual':
     - 'Deployment Configuration Manual':
       - 'Application Service Configuration Guide': application-configuration-guide.md
-      - 'Enable Observability': self-monitoring.md
-      - 'Change Domain Access to IP Access': ip-access.md
+      - 'Enable Self-Observability': self-monitoring.md
+      - 'Modify Domain Access to IP Access': ip-access.md
       - 'Configure Email Service': configuration-mail.md
       - 'Switch Domain': switch-domain.md
       - 'Switch Log Engine': switch-logengine.md
@@ -83,18 +83,18 @@ nav:
       - 'Switch Dial Testing Center': change-boce-center.md
       - 'Huawei Cloud Change OpenSearch Disk Type': hw-change-disk-type.md
       - 'Configure Data Forwarding': configure-data-forwarding.md
-      - 'Update Offline Environment Template': update-template.md
+      - 'Offline Environment Template Update': update-template.md
       # - 'Enable Central Pipeline': center-pl.md
-      - 'Manage Space Index Configuration': manage-index-config.md
+      - 'Manage Workspace Index Configuration': manage-index-config.md
       - 'Embed Pages via iframe': iframe.md
       - 'Guance Cluster Backup and Restore': velero-install.md
       - 'Reliability Verification': proof-of-reliability.md
       - 'Customize Frontend Colors': customize-frontend-color.md
       - 'Customize Frontend Language': customize-frontend-languge.md
       - 'Forgot Admin User Password in Backend Management': reset-admin-password.md
-      - 'Use Alibaba Cloud ECI Elastic Scaling for Kodo-x': aliyun-eci.md
+      - 'Use Alibaba Cloud ECI for Elastic Scaling of Kodo-X': aliyun-eci.md
       - 'Split Kodo-X': kodo-x-split.md
-      - 'Switch HTTPS Access': switch-https.md
+      - 'Switch to HTTPS Access': switch-https.md
     - 'Operations FAQ':
       - 'Kubernetes Cluster': faq-k8s.md
       - 'Guance Base': faq-guanceyun.md
@@ -102,18 +102,19 @@ nav:
       - 'GuanceDB': faq-guancedb.md
       - 'OpenSearch': faq-opensearch.md
     - 'Usage FAQ':
-      - 'Explorer Reports “View Template Not Exist”': noscenes.md
+      - 'Explorer Reports "View Template Does Not Exist"': noscenes.md
       - 'Log Engine Storage Space Insufficient': es-disk-full.md
       - "Monitor Troubleshooting": troubleshooting-monitor.md
-      - 'Data Discontinuity Troubleshooting': troubleshooting-log-nodata.md
+      - 'Data Gap Troubleshooting': troubleshooting-log-nodata.md
       - 'Empty DataWay List in Integration': not-see-dataway.md
-      - 'Handling Data Write Delay': data-write-delay.md
+      - 'Handling Data Write Delays': data-write-delay.md
       - 'Synthetic Tests Troubleshooting': clouddial-troubleshooting.md
-      - 'Created Dataway Not Visible in Frontend': no-dataway.md
+      - 'Created Dataway Not Visible on Frontend': no-dataway.md
       - 'Error Creating Dial Testing Node': create-dial-error.md
       - 'Metrics Query Error': query-metrics-error.md
       - 'Deployment Plan Kodo Version Expired': kodo-version-expired.md
-      #- 'Why Can’t Use Dial Testing Service': no-boce.md 
+      - 'Configure kodo-inner Query Concurrency': set-kodo-inner.md
+      #- 'Why Can’t Use Synthetic Tests Service': no-boce.md 
     - 'Upgrade Guance': version-upgrade.md
     - 'Capacity Planning':  
       - "Log Engine Capacity Planning": logengine-capacity-planning.md
@@ -122,5 +123,5 @@ nav:
   #- 'Common Issues':
   #  - "Deployment Operations FAQ": faq.md
 
-    #- "Cluster Fault FAQ": faq-debug-cluster.md
-    #- "All-in-one One-click Deployment FAQ": faq-all-in-one.md
+    #- "Cluster Failure FAQ": faq-debug-cluster.md
+    #- "All-in-One One-click Deployment FAQ": faq-all-in-one.md

@@ -4,16 +4,16 @@
 
 ## Introduction
 
-In a Kubernetes cluster, when using DaemonSet-deployed DataKit to collect metrics, traces, and log data, the best way to improve the performance of Pod and DataKit interactions is to deploy DataKit on the same node as the Pod to collect this data. With DataKit deployed via DaemonSet, each node in the cluster will have one DataKit instance. By routing traffic to the DataKit on that node, you can achieve data collection from the same node.
+In a Kubernetes cluster, when using DaemonSet-deployed DataKit to collect metrics, traces, and log data, the best way to improve interaction performance between Pods and DataKit is to deploy DataKit on the same node as the Pod. With DaemonSet-deployed DataKit, each node in the cluster runs one DataKit instance. Routing traffic to the DataKit on the same node can achieve local data collection.
 
 ![image](../images/log-report-one-node/1.png)
 
-In Kubernetes's Service resource, there is a field called "externalTrafficPolicy" which can be set to either Cluster or Local policy. This external policy applies when the service type is NodePort or LoadBalancer.
+In Kubernetes Service resources, there is a field called "externalTrafficPolicy" that can be set to either Cluster or Local policies. This external policy requires the service type to be NodePort or LoadBalancer.
 
-1. **Cluster**: Traffic can be forwarded to Pods on other nodes, which is the default mode.
+1. **Cluster**: Traffic can be forwarded to Pods on other nodes; this is the default mode.
 2. **Local**: Traffic is only sent to Pods on the local node.
 
-In the default Cluster mode, Kube-proxy receives request traffic and performs SNAT (source network address translation) when forwarding, changing the source IP to the node's IP to ensure the request returns along the original path. In Local mode, Kube-proxy retains the source IP and forwards traffic only to Pods on the local node, never across nodes.
+In the default Cluster mode, Kube-proxy receives request traffic and performs SNAT (source network address translation) during forwarding, changing the source IP to the node's IP to ensure the request returns via the original path. In Local mode, Kube-proxy forwards requests while retaining the source IP and only forwards to Pods on the local node, never across nodes.
 
 ## Installation and Deployment
 
@@ -21,11 +21,11 @@ In the default Cluster mode, Kube-proxy receives request traffic and performs SN
 
 ##### 1.1.1 Download Deployment Files
 
-Log in to [Guance](https://console.guance.com/), click on the 'Integration' module, then click 'DataKit' in the top-left corner, select 'Kubernetes', and download `datakit.yaml`.
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/) and click on the 'Integration' module. Then click on 'DataKit' in the top-left corner, select 'Kubernetes', and download `datakit.yaml`.
 
 ##### 1.1.2 Configure Token
 
-Log in to [Guance](https://console.guance.com/), enter the 'Management' module, find the token as shown in the image below, and replace `<your-token>` in the `ENV_DATAWAY` environment variable value in the `datakit.yaml` file.
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/) and enter the 'Management' module. Find the token as shown in the image below and replace the `<your-token>` value in the ENV_DATAWAY environment variable of `datakit.yaml`.
 
 ```yaml
         - name: ENV_DATAWAY
@@ -36,7 +36,7 @@ Log in to [Guance](https://console.guance.com/), enter the 'Management' module, 
 
 ##### 1.1.3 Set Global Tags
 
-Add `cluster_name_k8s=k8s-istio` to the end of the `ENV_GLOBAL_HOST_TAGS` environment variable value in the `datakit.yaml` file, where `k8s-istio` is the global tag.
+Add `cluster_name_k8s=k8s-istio` to the end of the ENV_GLOBAL_HOST_TAGS environment variable value in the `datakit.yaml` file, where `k8s-istio` is the global tag.
 
 ```yaml
         - name: ENV_GLOBAL_HOST_TAGS
@@ -45,7 +45,7 @@ Add `cluster_name_k8s=k8s-istio` to the end of the `ENV_GLOBAL_HOST_TAGS` enviro
 
 ##### 1.1.4 Set Namespace
 
-To distinguish between different clusters during DataKit elections, set the `ENV_NAMESPACE` environment variable. Ensure the value is unique for each cluster. Add the following content to the environment variables section in the `datakit.yaml` file.
+To distinguish different clusters during DataKit elections, set the ENV_NAMESPACE environment variable. The values for different clusters must not be the same. Add the following content to the environment variables section in `datakit.yaml`.
 
 ```yaml
         - name: ENV_NAMESPACE
@@ -54,12 +54,12 @@ To distinguish between different clusters during DataKit elections, set the `ENV
 
 ##### 1.1.5 Enable Collectors
 
-For this case, we use logfwd to collect logs, so enable logfwd and mount the pipeline.
+This example uses logfwd to collect logs, so you need to enable logfwd and mount the pipeline.
 
 ```yaml
 
         volumeMounts:
-        # Below is the new content
+        # Below is new content
         - mountPath: /usr/local/datakit/conf.d/log/logfwdserver.conf
           name: datakit-conf
           subPath: logfwdserver.conf 
@@ -75,18 +75,18 @@ metadata:
   name: datakit-conf
   namespace: datakit
 data:
-    # ... Below is the new content
+    # ... Below is new content
     #### logfwdserver
     logfwdserver.conf: |-
       [inputs.logfwdserver]
-        ## Address and port for logfwd receiver
+        ## logfwd server listening address and port
         address = "0.0.0.0:9531"
 
         [inputs.logfwdserver.tags]
         # some_tag = "some_value"
         # more_tag = "some_other_value"
     pod-logging-demo.p: |-
-        # Log pattern
+        # Log format
         grok(_, "%{TIMESTAMP_ISO8601:time} %{NOTSPACE:thread_name} %{LOGLEVEL:status}%{SPACE}%{NOTSPACE:class_name} - \\[%{NOTSPACE:method_name},%{NUMBER:line}\\] -  - %{GREEDYDATA:msg}")
         default_time(time,"Asia/Shanghai")
 ```
@@ -242,7 +242,7 @@ spec:
               apiVersion: v1
               fieldPath: spec.nodeName
         - name: ENV_DATAWAY
-          value: https://openway.guance.com?token=<your-token> # Replace with the actual dataway URL
+          value: https://openway.guance.com?token=<your-token> # Replace with the actual DataWay URL
         - name: ENV_GLOBAL_HOST_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip
         - name: ENV_DEFAULT_ENABLED_INPUTS
@@ -361,14 +361,14 @@ data:
     #### logfwdserver
     logfwdserver.conf: |-
       [inputs.logfwdserver]
-        ## Address and port for logfwd receiver
+        ## logfwd server listening address and port
         address = "0.0.0.0:9531"
 
         [inputs.logfwdserver.tags]
         # some_tag = "some_value"
         # more_tag = "some_other_value"
     pod-logging-demo.p: |-
-        # Log pattern
+        # Log format
         grok(_, "%{TIMESTAMP_ISO8601:time} %{NOTSPACE:thread_name} %{LOGLEVEL:status}%{SPACE}%{NOTSPACE:class_name} - \\[%{NOTSPACE:method_name},%{NUMBER:line}\\] -  - %{GREEDYDATA:msg}")
         default_time(time,"Asia/Shanghai")
 
@@ -378,7 +378,7 @@ data:
 
 #### Writing Microservices
 
-To easily see which node the logs are output from, write code to print the node server name along with the logs. The node IP comes from the `HOST_IP` environment variable, and the node server name comes from the `HOST_NAME` environment variable. Complete project available at [datakit-springboot-demo](https://github.com/stevenliu2020/datakit-springboot-demo).
+To easily see which node outputs the logs, write code to print the node server name along with the logs. The node IP comes from the HOST_IP environment variable, and the node server name comes from the HOST_NAME environment variable. Complete project: [datakit-springboot-demo](https://github.com/stevenliu2020/datakit-springboot-demo).
 
 ![image](../images/log-report-one-node/3.png)
 
@@ -402,7 +402,7 @@ WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} "]
 ```
 
-Place the project JAR and Dockerfile in the same directory. Build the image and push it to a private repository with the following commands:
+Place the project JAR and Dockerfile in the same directory. Execute the following commands to build the image and upload it to a private repository.
 
 ```shell
 docker build -t 172.16.0.238/df-demo/service-demo:v1 .
@@ -411,20 +411,20 @@ docker push 172.16.0.238/df-demo/service-demo:v1
 
 #### Writing Deployment Files
 
-Write the `demo-service.yaml` deployment file. In the Service resource file, add `externalTrafficPolicy: Local` to enable the Local mode for external policies. Add `HOST_IP` and `HOST_NAME` environment variables to output the IP and server name.
+Write the `demo-service.yaml` deployment file and add `externalTrafficPolicy: Local` in the Service resource file to enable Local mode. Add HOST_IP and HOST_NAME environment variables to output the IP and server name.
 
 ```shell
-kubectl apply -f demo-service.yaml
+ kubectl apply -f demo-service.yaml
 ```
 
-Refer to [Best Practices for Pod Log Collection](../pod-log) for details on using logfwd. In the specified DataKit environment variables for logfwd, use the DataKit Service domain name `datakit-service.datakit.svc.cluster.local`.
+Refer to the [Best Practices for Pod Log Collection](../pod-log) for using logfwd. In the specified DataKit environment variable for logfwd, use the DataKit Service domain name `datakit-service.datakit.svc.cluster.local`.
 
 ```yaml
         - name: LOGFWD_DATAKIT_HOST
           value: "datakit-service.datakit.svc.cluster.local"
 ```
 
-The complete content of `demo-service.yaml` is as follows:
+The complete content of `demo-service.yaml` is as follows.
 
 ```yaml
 apiVersion: v1
@@ -557,10 +557,10 @@ Log in to the master node of the cluster and execute the following command to ge
 
 ![image](../images/log-report-one-node/5.png)
 
-Log in to [Guance](https://console.guance.com/), go to the 'Logs' module, search for `log_fwd_demo` based on the data source, and click to view the details.
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/) and go to the 'Logs' module. Search for `log_fwd_demo` based on the data source, find the logs, and click to view details.
 
 ![image](../images/log-report-one-node/6.png)
 
-You can see that the `host` matches the server name from which the logs were output. Multiple requests show the same `host`.
+You will see that the host matches the server name from which the logs were output. Multiple requests still report the same host.
 
 ![image](../images/log-report-one-node/7.png)

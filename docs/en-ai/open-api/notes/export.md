@@ -10,18 +10,18 @@ Export the note specified by `notes_uuid` as a template structure.
 ## Route Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
+|:------------------|:-------|:-----|:----------------|
 | notes_uuid | string | Y | Note UUID |
 
 ## Additional Parameter Information
 
 Note template structure description:
 
-The basic structure of the template includes: view structure (only contains chart structure).
+The basic structure of the template includes: view structure (only contains chart structure)
 
-**Structure description of the main body of `templateInfo`:**
+**Main structure description of `templateInfo`:**
 
-| Parameter Name                | Type   | Required | Description          |
+| Parameter Name                | Type  | Required | Description          |
 |-----------------------|----------|----|------------------------|
 | name             | string | Yes | Note title |
 | main             | json | No | Main structure of the exported content |
@@ -36,7 +36,7 @@ The basic structure of the template includes: view structure (only contains char
 | type             | string | Yes | Chart type |
 | queries             | array[json] | Yes | List of query statements for the chart |
 
-**For `Time Series Chart` structure where `type=sequence`, its main structure parameters are as follows:**
+**For `Time Series Chart` structure where `type=sequence`, the main structure parameters are as follows:**
 
 | Parameter Name                | Type  | Required | Description          |
 |-----------------------|----------|----|------------------------|
@@ -78,5 +78,5 @@ curl 'https://openapi.guance.com/api/v1/notes/notes_xxxx32/export' \
     "message": "",
     "success": true,
     "traceId": "TRACE-8FD9876D-842E-4E0D-AC9E-F76E98943984"
-}
+} 
 ```

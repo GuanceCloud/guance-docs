@@ -8,33 +8,29 @@
 List data forwarding rules
 
 
-
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:----------|:------------------------|
-| search | string | No | General search field<br>Example: xxxxx_text <br>Allow null: False <br>Allow empty string: True <br> |
-| storeType | string | No | Storage type<br>Allow null: False <br>Optional values: ['guanceObject', 's3', 'obs', 'oss', 'kafka'] <br> |
-| dataType | string | No | Data type<br>Allow null: False <br>Optional values: ['logging', 'tracing', 'rum', 'keyevent'] <br> |
-| pageIndex | integer | No | Page number<br>Allow null: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | No | Number of items per page<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| Parameter Name    | Type   | Required | Description                                                                 |
+|:--------------|:-----|:-------|:--------------------------------------------------------------------------|
+| search     | string | No     | General search field<br>Example: xxxxx_text <br>Allow null: False <br>Allow empty string: True <br> |
+| storeType  | string | No     | Storage type<br>Allow null: False <br>Possible values: ['guanceObject', 's3', 'obs', 'oss', 'kafka'] <br> |
+| dataType   | string | No     | Data type<br>Allow null: False <br>Possible values: ['logging', 'tracing', 'rum', 'keyevent'] <br> |
+| pageIndex  | integer | No     | Page number<br>Allow null: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize   | integer | No     | Number of items per page<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
-## Additional Parameter Notes
-
+## Additional Parameter Explanation
 
 Data description.*
 
 - Request parameter explanation
 
-| Parameter Name           | Type | Description                                                 |
-| ------------------------ | ---- | ----------------------------------------------------------- |
-| search       | string | Search rule name |
-| storeType             | string | Filter rule storage type                                                 |
-| dataType       | string  | Data type     |
-| pageIndex |  string  | N | Page number |
-| pageSize  |  string  | N | Number of items per page |
-
-
+| Parameter Name         | Type | Description                          |
+| ---------------------- | ---- | ------------------------------------ |
+| search                 | string | Search rule name                   |
+| storeType              | string | Filter rule storage type            |
+| dataType               | string | Data type                           |
+| pageIndex              | string | N | Page number                        |
+| pageSize               | string | N | Number of items per page           |
 
 
 ## Request Example
@@ -43,8 +39,6 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/list?pageIndex=1&pageSize
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
-
 
 
 ## Response

@@ -55,7 +55,7 @@ pip install ddtrace
     ```
 <!-- markdownlint-enable -->
 
-In addition, there are a few other common options that can be enabled.
+In addition, there are several other common options that can be enabled.
 
 ### Profiling {#instrument-profile}
 
@@ -142,7 +142,7 @@ if __name__ == '__main__':
 
 ## Running {#run}
 
-Here we use a common Web Server in Python, Flask, as an example. In the example, `SERVICE_A` provides an HTTP service and calls the `SERVICE_B` HTTP service.
+Here, we use a commonly used Web Server in Python, Flask application as an example. In the example, `SERVICE_A` provides an HTTP service and calls the `SERVICE_B` HTTP service.
 
 - Run `SERVICE_A`
 
@@ -166,7 +166,7 @@ DD_AGENT_PORT=9529 \
 ddtrace-run python3 service_b.py &> b.log &
 ```
 
-Call Service A to trigger it to call Service B, thus generating corresponding trace data (this can be executed multiple times)
+Call service A to trigger it to call service B, thereby generating corresponding trace data (this can be executed multiple times).
 
 ```shell
 curl http://localhost:54321/a
@@ -181,13 +181,13 @@ curl http://localhost:54322/stop
 
 ## Supported Environment Variables {#envs}
 
-Commonly supported environment variables are listed below. For a complete list of Python environment variables, refer to the [official DataDog documentation](https://docs.datadoghq.com/tracing/trace_collection/library_config/python/){:target="_blank"}.
+Commonly supported environment variables are listed below. For a complete list of Python environment variables, refer to the [DataDog official documentation](https://docs.datadoghq.com/tracing/trace_collection/library_config/python/){:target="_blank"}.
 
-- `DD_ENV`: Sets the environment for the service.
+- `DD_ENV`: Set the environment variable for the service.
 - `DD_VERSION`: APP version number.
-- `DD_SERVICE`: Sets the service name for the application. When integrating middleware for web frameworks like Pylons, Flask, or Django, this value is passed. For Tracing without web integration, it is recommended to set the service name within your code.
-- `DD_SERVICE_MAPPING`: Defines service name mappings to rename services in Tracing.
+- `DD_SERVICE`: Used to set the service name of the application. When setting middleware for web frameworks such as Pylons, Flask, or Django, this value is passed. For Tracing without web integration, it is recommended to set the service name within your code.
+- `DD_SERVICE_MAPPING`: Defines service name mapping to rename services in Tracing.
 - `DD_TAGS`: Adds default Tags to each Span, formatted as `key:val,key:val`.
-- `DD_AGENT_HOST`: The hostname where Datakit listens, defaults to localhost.
-- `DD_AGENT_PORT`: The port number where Datakit listens, defaults to 9529.
-- `DD_TRACE_SAMPLE_RATE`: Sets the sampling rate from 0.0 (0%) to 1.0 (100%).
+- `DD_AGENT_HOST`: Hostname where Datakit listens, defaults to localhost.
+- `DD_AGENT_PORT`: Port number where Datakit listens, defaults to 9529.
+- `DD_TRACE_SAMPLE_RATE`: Sets the sampling rate from 0.0(0%) to 1.0(100%).

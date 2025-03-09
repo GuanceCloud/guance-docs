@@ -8,12 +8,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -27,7 +27,7 @@
 ## Description
 
 
-- The Samba daemon allows system administrators to configure their Linux systems to share file systems and directories with Windows desktops. Samba publishes file systems and directories via the Server Message Block (SMB) protocol. Windows desktop users will be able to mount these directories and file systems as lettered drives on their systems.
+- The Samba daemon allows system administrators to configure their Linux systems to share file systems and directories with Windows desktops. Samba will publish file systems and directories via the Server Message Block (SMB) protocol. Windows desktop users will be able to mount these directories and file systems as lettered drives on their systems.
 
 
 
@@ -47,7 +47,7 @@
 
 
 
-- Data Breach
+- Data Leakage
 
 
 
@@ -59,12 +59,12 @@
 
 
 
-- Botnet Risk
+- Zombie Machine Risk
 
 
 
 ## Audit Method
-- Execute the following command to verify whether Samba is installed.
+- Execute the following command to verify if samba is installed.
 
 ```bash
 # rpm -q samba
@@ -74,7 +74,7 @@ package samba is not installed
 
 
 ## Remediation
-- Run the command to remove Samba.
+- Run the command to remove samba.
 ```bash
 # yum remove samba
 ```
@@ -89,7 +89,7 @@ package samba is not installed
 
 
 
-## Default Values
+## Default Value
 
 
 - None
@@ -104,9 +104,9 @@ package samba is not installed
 
 
 
-## CIS Controls
+## CIS Control
 
 
 - Version 7<br>
-  9.2 Ensure Only Approved Ports, Protocols, and Services Are Running<br>
-     Ensure that only network ports, protocols, and services listening on each system are those required by validated business needs.
+  9.2 Ensure only approved ports, protocols, and services are running<br>
+     Ensure that only network ports, protocols, and services listening on each system have validated business needs and are running on each system.

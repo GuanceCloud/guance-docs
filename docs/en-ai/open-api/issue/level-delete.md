@@ -1,4 +1,4 @@
-# Issue-Custom Level Deletion
+# Delete Custom Issue Level
 
 ---
 
@@ -8,16 +8,13 @@
 
 
 
-
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                          |
-|:--------------|:-------|:--------|:------------------------------------|
-| uuids         | array  | Y       | Custom level UUIDs<br>Example: ['uuid1', 'uuid2'] <br>Allow empty: False <br> |
+| Parameter Name | Type   | Required | Description                                |
+|:--------------|:-------|:---------|:-------------------------------------------|
+| uuids         | array  | Y        | Custom issue level UUIDs<br>Example: ['uuid1', 'uuid2'] <br>Allow empty: False <br> |
 
-## Additional Parameter Explanation
-
-
+## Additional Parameter Notes
 
 
 
@@ -29,7 +26,6 @@ curl 'https://openapi.guance.com/api/v1/issue-level/delete' \
 --data-raw '{"uuids": []}'\
 --compressed
 ```
-
 
 
 

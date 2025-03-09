@@ -11,9 +11,9 @@
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:-----------|:-------|:-----|:----------------|
-| lgmp_uuid | string | Y | Mapping configuration ID<br> |
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:-------------------------|
+| lgmp_uuid            | string   | Y        | Mapping configuration ID <br> |
 
 
 ## Additional Parameter Notes

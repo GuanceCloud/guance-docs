@@ -4,7 +4,7 @@
 
 > _Author: Liu Rui_
 
-By introducing the OpenTelemetry SDK, you can observe the core business logic, such as setting a span for the core business to statistically track and analyze its actual behavior, set business attribute metrics, etc. This method is somewhat intrusive.
+By introducing the OpenTelemetry SDK, you can observe the core business logic, such as setting a span for core business to statistically track and analyze its actual behavior, set business attribute metrics, etc. This method is somewhat intrusive.
 
 ## Start Command
 
@@ -20,9 +20,9 @@ java -javaagent:../opentelemetry-javaagent/opentelemetry-javaagent.jar \
 ???+ warning "Special Note"
 
 	<font color="red">
-	Depending on the exporter specified in the startup parameters, the corresponding exporter must also be introduced into the SDK; otherwise, the startup will fail. For example, if the startup parameters use both `otlp` and `logging` exporters, then the corresponding two exporter dependencies need to be added in the pom.
+	Depending on the exporter specified in the startup parameters, the corresponding exporter must also be introduced in the SDK; otherwise, the startup will fail. If the startup parameters use both `otlp` and `logging` exporters, then the corresponding two exporter dependencies need to be added in the pom.
 	
-	If no SDK-related dependencies are used, no corresponding adjustments are needed.
+	If no SDK-related dependencies are used, no corresponding adjustments are necessary.
 	</font>
 
 ## Introduce Dependencies
@@ -78,21 +78,21 @@ Not recommended
     }
 ```
 
-The above approach would cause `AutoConfiguredOpenTelemetrySdk` to reload, and the SDK provides a global object `GlobalOpenTelemetry` to obtain the `OpenTelemetry` object.
+The above method will cause `AutoConfiguredOpenTelemetrySdk` to reload. The SDK provides a global object `GlobalOpenTelemetry` to obtain the `OpenTelemetry` object.
 
-Below, we mainly use `GlobalOpenTelemetry.get()` to get the `OpenTelemetry` object.
+Below, we mainly use `GlobalOpenTelemetry.get()` to obtain the `OpenTelemetry` object.
 
 ## Trace
 
 ### Create Tracer
 
-`Tracer` is primarily used to obtain and create Span objects. Note: `Tracer` typically does not handle configuration; this is the responsibility of `TracerProvider`. The OpenTelemetry interface provides a default implementation of `TracerProvider`.
+`Tracer` is primarily used to obtain and create Span objects. Note: `Tracer` does not handle configuration; this is the responsibility of `TracerProvider`. The OpenTelemetry interface provides a default implementation of `TracerProvider`.
 
 ```java
 TracerProvider getTracerProvider();
 ```
 
-Obtain the `Tracer` object via `openTelemetry()`
+Obtain the `Tracer` object through `openTelemetry()`
 
 ```java
     @Bean
@@ -105,7 +105,7 @@ Obtain the `Tracer` object via `openTelemetry()`
 
 ???+ info  
 
-	No other APIs besides Tracer are allowed to create Spans.
+	No other API except Tracer is allowed to create Span.
 
 ```java
 Span span = tracer.spanBuilder(spanName).startSpan();
@@ -113,7 +113,7 @@ Span span = tracer.spanBuilder(spanName).startSpan();
 
 ### Get Current Span Object
 
-Get the current Span object to set attributes, events, etc., for the current Span.
+To get the current span object, you can set attributes, events, etc., for the current span.
 
 ```java
 Span span = Span.current();
@@ -121,15 +121,15 @@ Span span = Span.current();
 
 ### Create Attribute
 
-Attributes are properties of a Span, serving as labels for the current Span.
+Attributes are properties of spans and act as labels for the current span.
 
 ```java
 span.setAttribute(key, value);
 ```
 
-### Create Linked Span
+### Create Linked Spans
 
-A Span can link to one or more causally related Spans. Links can represent batch operations where a Span's initialization is composed of multiple Spans initializing, each representing a single input item processed in the batch.
+A Span can link to one or more causally related other Spans. Links can represent batch operations where one Span's initialization is composed of multiple Spans' initializations, each representing a single input item processed in the batch.
 
 ```java
 Span child = tracer.spanBuilder(spanName)
@@ -141,7 +141,7 @@ Span child = tracer.spanBuilder(spanName)
 
 ### Create Event
 
-Spans can carry zero or more named events annotated with Span attributes. Each event is a key:value pair and automatically carries a timestamp.
+Spans can carry zero or more named events annotated with Span attributes, each event being a key:value pair and automatically carrying a timestamp.
 
 ```java
 span.addEvent(eventName);
@@ -153,10 +153,9 @@ span.addEvent(eventName, Attributes);
 
 	`recordException` is a special variant of `addEvent`, used to record exception events.
 
-
 ### Create a Nested Span
 
-Set the parentSpan using `setParent(parentSpan)`
+Set the parent span using `setParent(parentSpan)`.
 
 ```java 
 void parent() {
@@ -176,9 +175,9 @@ void childSpan(Span parentSpan) {
 
 ### Baggage Usage
 
-Baggage can propagate throughout the trace, suitable for global instrumentation like user ID or username, enabling tracking of business data.
+Baggage can propagate throughout the entire trace and is suitable for global tracing, such as embedding user IDs or usernames to track business data.
 
-Gateway method to set Baggage
+Gateway method to set Baggage:
 
 ```java
 // Baggage usage, set here
@@ -186,7 +185,7 @@ Gateway method to set Baggage
 	logger.info("gateway set baggage[app.username] value: gateway");
 ```
 
-Resource method to get Baggage
+Resource method to get Baggage:
 
 ```java
  // Baggage usage, get here
@@ -196,7 +195,7 @@ Resource method to get Baggage
 
 ### Construct a New Span Using Known TraceId and SpanId
 
-Tracer provides the `setParent(context)` method to construct a parent Span for custom spans.
+The Tracer provides the `setParent(context)` method to construct a parent Span for custom spans.
 
 ```java 
 tracer.spanBuilder(spanName).setParent(context)
@@ -204,27 +203,27 @@ tracer.spanBuilder(spanName).setParent(context)
 
 The `setParent` method requires a `Context` parameter, so a context needs to be constructed.
 
-The OpenTelemetry SDK only provides a `create` method to create a `SpanContext`, which allows customizing `traceId` and `spanId`.
+The OpenTelemetry SDK only provides a `create` method to create `SpanContext`, which allows customizing `traceId` and `spanId`.
 
 ```java
 SpanContext create(String traceIdHex, String spanIdHex, TraceFlags traceFlags, TraceState traceState)
 ```
 
-`SpanContext` represents part of a Span, must be serializable, and should propagate along the distributed context. `SpanContext` is immutable.
+`SpanContext` represents part of a Span and must be serializable, propagating along distributed contexts. `SpanContext` is immutable.
 
-OpenTelemetry `SpanContext` conforms to the [W3C TraceContext](https://www.w3.org/TR/trace-context/) specification. This includes two identifiers - `TraceId` and `SpanId` - a set of common `TraceFlags`, and system-specific `TraceState`.
+OpenTelemetry `SpanContext` conforms to the [W3C TraceContext](https://www.w3.org/TR/trace-context/) specification. This includes two identifiers - TraceId and SpanId - a set of common TraceFlags, and system-specific TraceState.
 
 1. **`TraceId`** A valid `TraceId` is a 16-byte array with at least one non-zero byte.
 
 2. **`SpanId`** A valid `SpanId` is an 8-byte array with at least one non-zero byte.
 
-3. **`TraceFlags`** Contains details about the trace. Unlike `TraceFlags`, `TraceFlags` affect all traces. The only flag defined in the current version is `sampled`.
+3. **`TraceFlags`** Contains details about the trace. Unlike `TraceFlags`, `TraceFlags` affect all traces. In the current version, the defined Flag is only sampled.
 
-4. **`TraceState`** Carries specific trace identifier data through a KV pair array. `TraceState` allows multiple tracing systems to participate in the same trace. For a full definition, refer to the [W3C Trace Context specification](https://www.w3.org/TR/trace-context/#tracestate-header).
+4. **`TraceState`** Carries trace-specific identifier data represented by a KV pair array. `TraceState` allows multiple tracing systems to participate in the same trace. For a complete definition, refer to the [W3C Trace Context specification](https://www.w3.org/TR/trace-context/#tracestate-header).
 
-This API must implement methods to create `SpanContext`. These methods should be the only ones used to create `SpanContext`. This functionality must be fully implemented in the API and cannot be overridden.
+This API must implement methods to create SpanContext. These methods should be the only ones used to create SpanContext. This functionality must be fully implemented in the API and cannot be overridden.
 
-However, `SpanContext` is not `Context`, so an additional conversion is required.
+However, SpanContext is not Context, so an additional conversion is needed.
 
 ```java
 private Context withSpanContext(SpanContext spanContext, Context context) {
@@ -268,7 +267,7 @@ Complete code:
 
 ???+ warning "Note"
 
-	**Pay special attention that the request itself generates a new trace information based on the current test writing method. The newly constructed Span is created based on the input parameters.**
+	**It is important to note that based on the current test writing method, the request itself generates a new trace information. The newly constructed span is built based on the provided parameters.**
 
 We can observe the results by accessing the following URL:
 
@@ -279,21 +278,22 @@ http://localhost:8080/customSpanByTraceIdAndSpanId?spanName=tSpan&traceId=24baee
 
 OpenTelemetry also provides APIs for metric-related operations.
 
-Spans provide detailed information about applications, but the generated data scales with the load on the system. In contrast, metrics aggregate individual measurements and generate constant data as a function of system load. Aggregations lack the detail required to diagnose low-level issues but complement spans by helping identify trends and providing runtime telemetry for applications.
+Spans provide detailed information about applications, but the generated data is proportional to the load on the system. In contrast, metrics aggregate individual measurements into summaries and generate constant data as a function of system load. Aggregations lack the detail required to diagnose low-level issues but complement spans by helping identify trends and providing runtime telemetry for applications.
 
-The Metrics API defines various instruments. Instruments record measurements, which are aggregated by the Metrics SDK and eventually exported out-of-process. Instruments come in synchronous and asynchronous forms. Synchronous instruments record measurements directly. Asynchronous instruments register callbacks, called once per collection period, recording measurements at those points in time. The following instruments are available:
+The Metrics API defines various instruments. Instruments record measurements, which are aggregated by the Metrics SDK and eventually exported out-of-process. Instruments can be synchronous or asynchronous. Synchronous instruments record measurements. Asynchronous instruments register callbacks, which are called each time a measurement is collected and record the measurement at that point in time. The following instruments are available:
 
-1. **LongCounter/DoubleCounter:** Record positive values only, with synchronous and asynchronous options. Useful for counting things like bytes sent over the network. By default, counter measurements are aggregated as always-increasing monotonic sums.
+1. **LongCounter/DoubleCounter:** Record only positive values, with synchronous and asynchronous options. Used to count things like bytes sent over the network. By default, counter measurements are aggregated as always-increasing monotonic sums.
 
-2. **LongUpDownCounter/DoubleUpDownCounter:** Record positive and negative values, with synchronous and asynchronous options. Useful for measuring rising and falling quantities, like queue sizes. By default, up-down counter measurements are aggregated as non-monotonic sums.
+2. **LongUpDownCounter/DoubleUpDownCounter:** Record positive and negative values, with synchronous and asynchronous options. Useful for counting rising and falling items, such as queue sizes. By default, up-down counter measurements are aggregated as non-monotonic sums.
 
-3. **LongGauge/DoubleGauge:** Measure instantaneous values with asynchronous callbacks. Used for values that cannot be combined across attributes, like CPU usage percentages. By default, gauge measurements are aggregated as gauges.
+3. **LongGauge/DoubleGauge:** Measure instantaneous values with asynchronous callbacks. Used to record values that cannot be combined across attributes, such as CPU usage percentages. By default, gauge measurements are aggregated as gauges.
 
-4. **LongHistogram/DoubleHistogram (long histogram/double histogram):** Record measurements most useful for histogram distribution analysis. No asynchronous options are available. Used for recording times taken by an HTTP server to process requests, etc. By default, histogram measurements are aggregated as explicit bucket histograms.
+4. **LongHistogram/DoubleHistogram (long histogram/double histogram):** Record measurements most useful for analyzing histogram distributions. No asynchronous options are available. Used to record the time spent processing requests by an HTTP server, etc. By default, histogram measurements are aggregated into explicit bucket histograms.
+
 
 ### Obtain Meter Object
 
-The API defines a `Meter` interface. This interface consists of a set of instrument builders and a tool for atomically collecting batches of measurements. A new instance of `Meter` can be created using the `getMeter(name)` method of `MeterProvider`. `MeterProvider` is typically expected to be used as a singleton. Its implementation should be the unique global implementation of `MeterProvider`. Through the `Meter` object, different types of metrics can be built.
+The API defines a Meter interface. This interface consists of a set of instrument constructors and a tool for atomically batch-retrieving measurements. Meters can be created using the `MeterProvider`'s `getMeter(name)` method. `MeterProvider` is typically expected to be used as a singleton. Its implementation should be the unique global implementation of `MeterProvider`. Through the Meter object, different types of metrics can be constructed.
 
 ```java
     @Bean
@@ -313,8 +313,9 @@ Here we skip the details of `MeterProvider`, mainly because the OpenTelemetry In
 ### Build Gauge Type Metric
 
 ```java
+
 	meter.gaugeBuilder("connections")
-		.setDescription("Current Socket.io connections")
+		.setDescription("Current number of Socket.io connections")
 		.setUnit("1")
 		.buildWithCallback(
 				result -> {
@@ -327,11 +328,13 @@ Here we skip the details of `MeterProvider`, mainly because the OpenTelemetry In
 										"a" + i));
 					}
 				});
+
 ```
 
-`buildWithCallback` is a callback function that supports asynchronous APIs and collects metrics on-demand, collecting data at intervals, defaulting to once every `1min`.
+`buildWithCallback` is a callback function, an additional tool supporting asynchronous APIs and collecting metrics on demand, collecting data at intervals, defaulting to once every `1min`.
 
-## Related Documentation
+
+## Related Documents
 
 [OpenTelemetry Trace Data Integration](/integrations/opentelemetry/)
 

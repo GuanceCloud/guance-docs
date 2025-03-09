@@ -12,8 +12,8 @@ Delete a mute rule based on the `mute_uuid`
 ## Route Parameters
 
 | Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:---------|:-------------------------|
-| mute_uuid     | string | Y        | Mute rule UUID<br>       |
+|:-----------|:-------|:-----|:----------------|
+| mute_uuid | string | Y | Mute rule UUID<br> |
 
 
 ## Additional Parameter Notes

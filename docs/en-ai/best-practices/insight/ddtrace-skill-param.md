@@ -8,7 +8,8 @@
 
 - Enable [DataKit ddtrace Collector](/integrations/ddtrace/)
 
-- Startup Command
+
+- Start Command
 
   ```shell
   java -javaagent:D:/ddtrace/dd-java-agent-guance.jar \
@@ -21,7 +22,7 @@
 
 ### Enable Query Parameters
 
-Enabling query parameters allows users to more intuitively see the parameters carried by the current request, providing a clearer replay of the actual user operation flow. By default, it is set to `false`, meaning it is not enabled by default.
+Enabling query parameters allows users to more intuitively see which parameters are carried in the current request, thus more accurately reproducing the user's real operation flow. By default, this is set to `false`, meaning it is not enabled by default.
 
 However, enabling query parameters only collects parameters from the URL; parameters inside the request body are currently not supported.
 
@@ -33,7 +34,7 @@ However, enabling query parameters only collects parameters from the URL; parame
 
 ### Configure Remote Collection Link
 
-The default value for `dd.agent.host` is `localhost`, so by default, data is pushed to the local DataKit.
+The default value of `dd.agent.host` is `localhost`, so by default it pushes data to the local DataKit.
 
 If you want to push data to a remote DataKit, you need to configure `dd.agent.host`.
 
@@ -41,9 +42,9 @@ If you want to push data to a remote DataKit, you need to configure `dd.agent.ho
 -Ddd.agent.host=192.168.91.11
 ```
 
-### Two Methods to Add Tags
+### Two Ways to Add Tags
 
-ddtrace provides two methods to add tags, which have the same effect. However, using `dd.tags` is still recommended.
+ddtrace provides two ways to add tags, with the same effect. However, we still recommend using the `dd.tags` method.
 
 #### 1. `dd.trace.span.tags`
 
@@ -63,9 +64,9 @@ Example of adding `projectName:observable-demo` to each span:
 
 ![image.png](../images/ddtrace-skill-4.png)
 
-Both methods generate tags with the same effect, displaying data in the `meta` section.
+Both methods generate tags with the same effect, displaying data within `meta`.
 
-If you want to use `dd.tags` as Guance labels, you need to configure `customer_tags` in `ddtrace.conf`.
+If you want to mark `dd.tags` as <<< custom_key.brand_name >>> labels, you need to configure `customer_tags` in `ddtrace.conf`.
 
 ```yaml
     [[inputs.ddtrace]]
@@ -73,25 +74,25 @@ If you want to use `dd.tags` as Guance labels, you need to configure `customer_t
       customer_tags = ["projectName","user_name"]
 ```
 
-Effect as shown:
+Effect as shown in the image:
 
 ![image.png](../images/ddtrace-skill-5.png)
 
 ### Display Database Instance Name
 
-By default, only the database type is displayed. To display the database name, set this value to `TRUE`.
+To display the database name, set the value to `TRUE`. By default, it shows the database type.
 
 ```
 -Ddd.trace.db.client.split-by-instance=TRUE
 ```
 
-Since this demo does not load a database, to achieve this effect, choose an application that introduces a database and add the parameter.
+In the demo above, no database was loaded, so to achieve this effect, choose an application that introduces a database and add the parameter:
 
 ```
 dd.trace.db.client.split-by-instance=TRUE
 ```
 
-Effect as shown:
+Effect as shown in the image:
 
 ![image](../images/ddtrace-skill-6.png)
 
@@ -99,11 +100,11 @@ Effect as shown:
 
 ddtrace supports injecting traces into methods. By default, ddtrace dynamically injects traces into all API interfaces.
 
-If you want to mark important classes and methods that are not APIs, you can configure this via the `dd.trace.methods` parameter.
+If you want to specifically mark important classes and methods (non-API classes/methods), you can configure this via the `dd.trace.methods` parameter.
 
 - **Environment Variable**: DD_TRACE_METHODS <br/>
 - **Default**: null <br/>
-- **Example**: package.ClassName[method1,method2,...];AnonymousClass$1[call];package.ClassName[*]<br /> List of class/interface and methods to trace. Similar to adding @Trace, but without changing code. <br/>
+- **Example**: package.ClassName[method1,method2,...];AnonymousClass$1[call];package.ClassName[*]<br />List of class/interface and methods to trace. Similar to adding @Trace, but without changing code. <br/>
 - **Note:** The wildcard method support ([*]) does not accommodate constructors, getters, setters, synthetic, toString, equals, hashcode, or finalizer method calls
 
 For example, to add a trace to the `getDemo` method of the `com.zy.observable.ddtrace.service.TestService` class:
@@ -112,7 +113,7 @@ For example, to add a trace to the `getDemo` method of the `com.zy.observable.dd
 -Ddd.trace.methods="com.zy.observable.ddtrace.service.TestService[getDemo]"
 ```
 
-Part of the code is shown below:
+Partial code snippet:
 
 ```java
     @Autowired
@@ -135,13 +136,13 @@ Part of the code is shown below:
     }
 ```
 
-Without adding the `dd.trace.methods` parameter, 11 spans are reported, with the following effect:
+Without adding the `dd.trace.methods` parameter, 11 spans are reported, as shown below:
 
 ![image.png](../images/ddtrace-skill-2.png)
 
-### Custom Business Tags via Header
+### Custom Business Tags via Headers
 
-This primarily involves injecting business tags into traces in a non-intrusive way through headers, allowing tracking of the execution of corresponding business processes. Configuration is done in Key:value format, where key is the original header paramName, and value is the renamed key. The key can be omitted.
+This feature allows business tags to be injected into traces through headers in a non-intrusive way, enabling tracking of business execution. Configuration is done in Key:value format, where key is the original header paramName, and value is the renamed key, which can be omitted.
 
 ```
 -Ddd.trace.header.tags=user-id:userid,order-id:orderid,orderno
@@ -155,7 +156,7 @@ Trace Effect:
 
 ![image.png](../images/ddtrace-skill-6-2.png)
 
-### Baggage, Unlimited Tag Propagation
+### Baggage, Infinite Tag Propagation
 
 Environment Variable: DD_TRACE_HEADER_BAGGAGE
 
@@ -169,7 +170,7 @@ For example:
 ```
 
 ???+ info ""
-    `-Ddd.trace.header.tags` does not implement propagation functionality. Baggage allows header tags to propagate infinitely.
+    `-Ddd.trace.header.tags` does not implement propagation functionality. Baggage can propagate header tags infinitely.
 
 Trace Effect:
 
@@ -177,24 +178,24 @@ Trace Effect:
 
 ### Enable Debug Mode
 
-After enabling debug mode, the system outputs ddtrace-related logs, which helps in troubleshooting ddtrace issues.
+Enabling debug mode outputs ddtrace-related logs, aiding in troubleshooting ddtrace issues.
 
 ```
 -Ddd.trace.debug=true
 ```
 
-By default, debug logs are output to stdout. If you want to output them to a file, you need to use the following parameter.
+By default, debug logs are output to stdout. If you want to output them to a file, use the following parameter:
 
 ```
--Ddatadog.slf4j.simpleLogger.logFile=<NEW_LOG_FILE_PATH>
+-Ddatadog.slf4j.simpleLogger.logFile=<NEW_LOG_FILE_PATH> 
 ```
 
 ???+ warning "Note"
-    `-Ddd.trace.debug=true` enables ddtrace debug logs, not application debug logs.
+    `-Ddd.trace.debug=true` is used to enable ddtrace debug logs, not application debug logs.
 
-### Enable 128-bit TraceId
+### Enable 128-bit traceId
 
-The default traceId is 64 bits (long type). To better align with OpenTelemetry (which uses a 128-bit traceId), you can manually enable 128 bits.
+The default traceId is 64 bits (long type). To better align with OpenTelemetry (which uses a 128-bit traceId), you can manually enable 128-bit traceIds.
 
 ```
 -Ddd.trace.128.bit.traceid.generation.enabled=true
@@ -202,7 +203,7 @@ The default traceId is 64 bits (long type). To better align with OpenTelemetry (
 
 ### Output Trace Information
 
-To understand the structure of the trace data being reported, especially for development work, you can configure the following parameter to output trace information to the console:
+If you need to understand the structure of trace reporting data for development purposes, you can configure the following parameter to output trace information to the console instead of sending it to the remote observability platform.
 
 ```
 -Ddd.writer.type=LoggingWriter
@@ -214,17 +215,17 @@ You can also configure multiple writers:
 -Ddd.writer.type=LoggingWriter,DDAgentWriter
 ```
 
-### Replace Middleware Service Names with Application Service Names
+### Replace Middleware Service Name with Application Service Name
 
-By default, trace information is grouped by middleware names, making it difficult to trace back to the application if only middleware generates trace information. You can adjust this by setting the global tag service name as the middleware's service name. This can be configured using the following parameter:
+By default, trace information is grouped by middleware name, making it difficult to trace back to the application if only middleware generates trace information. You can adjust the parameter to use the global tag service name as the middleware service name. This can be configured as follows:
 
-Startup parameter injection:
+Startup parameter injection
 
 ```
 -Ddd.trace.span.attribute.schema=v1
 ```
 
-Or environment variable injection:
+Or environment variable injection
 
 ```
 export DD_TRACE_SPAN_ATTRIBUTE_SCHEMA=v1
@@ -232,22 +233,22 @@ export DD_TRACE_SPAN_ATTRIBUTE_SCHEMA=v1
 
 Choose one of the two methods.
 
-Final effect: No longer displays middleware service names (i.e., application service names replace middleware names), while other span tags and data remain unaffected.
+Final effect: No longer displays the middleware service name (i.e., the application service name replaces the middleware name), other span tags and data remain unaffected.
 
-Before replacement:
+Before replacement effect
 
 ![image.png](../images/ddtrace-param-7.png)
 
-After replacement:
+After replacement effect
 
 ![image.png](../images/ddtrace-param-8.jpg)
 
 ### Propagator Configuration
 
-ddtrace supports several propagators, and propagator types are case-insensitive.
+ddtrace supports the following propagators, case-insensitive:
 
 - Datadog: Default propagator
-- B3: B3 propagation specifies headers "b3" and those starting with "x-b3-". These headers are used for tracing context propagation across service boundaries. B3 has two modes:
+- B3: B3 propagation is standardized with headers "b3" and those starting with "x-b3-". These headers are used for cross-service boundary trace context propagation. B3 has two modes:
     - B3SINGLE (B3_SINGLE_HEADER), corresponding header key is `b3`
     - B3 (B3MULTI), corresponding header key is `x-b3-`
 - haystack
@@ -258,7 +259,7 @@ ddtrace supports several propagators, and propagator types are case-insensitive.
 -Ddd.trace.propagation.style=B3SINGLE
 ```
 
-Or configure environment variables:
+Or configure environment variables
 
 ```shell
 DD_TRACE_PROPAGATION_STYLE=B3SINGLE
@@ -275,9 +276,9 @@ or
 -Ddd.propagation.style=Datadog
 ```
 
-***Note: Multiple propagators can be configured, separated by commas. Propagator types are case-insensitive.***
+***Note: Multiple propagators can be configured, separated by commas, and propagator types are case-insensitive.***
 
-For more information on propagators, refer to [Propagation Mechanism and Use Cases](https://juejin.cn/post/7254125867177443365){:target="_blank"}
+For more information on propagators, refer to [Trace Propagation Mechanism and Use Cases](https://juejin.cn/post/7254125867177443365){:target="_blank"}
 
 ### Response Returns TraceId
 
@@ -289,11 +290,11 @@ No additional configuration is required. After the request response is completed
 
 ### Header Tags
 
-All headers from requests and responses are added to trace tags. Request headers have the tag name `request_header`, and response headers have the tag name `response_header`. You can enable this in two ways, choosing one:
+All request and response headers are added to trace tags. Request headers have the tag name `request_header`, and response headers have the tag name `response_header`. This can be enabled in two ways, choose one:
 
 - Startup command
 
-`-Ddd.trace.headers.enabled`: Default value is `false`, meaning it is not enabled by default.
+`-Ddd.trace.headers.enabled`: Default value is `false`, i.e., not enabled.
 
 - Environment variable
 
@@ -301,17 +302,18 @@ All headers from requests and responses are added to trace tags. Request headers
 
 ![Img](../images/ddtrace-param-request-header.png)
 
-|Component|ddtrace Version|
-|-|-|
-|javax.servlet| >=1.25|
-|jakarta.servlet | >=1.42.9|
+| Component | ddtrace Version |
+| --- | --- |
+| javax.servlet | >=1.25 |
+| jakarta.servlet | >=1.42.9 |
 
 ### Request Body Tag
 
-Adds the request body to the trace tag. Currently, only `POST` requests with `Context-Type` as `application/json` or `application/json;charset=UTF-8` are supported.
+Adds the request body to trace tags. Currently only supports `POST` requests with `Content-Type` of `application/json` or `application/json;charset=UTF-8`.
+
 - Startup command
 
-`-Ddd.trace.request.body.enabled`: Default value is `false`, meaning it is not enabled by default.
+`-Ddd.trace.request.body.enabled`: Default value is `false`, i.e., not enabled.
 
 - Environment variable
 
@@ -323,24 +325,24 @@ For example, executing the following request:
 
 ![Img](../images/ddtrace-param-request-body.png)
 
-|Component|ddtrace Version|
-|-|-|
-|javax.servlet| >=1.25|
-|jakarta.servlet | >=1.42.9|
+| Component | ddtrace Version |
+| --- | --- |
+| javax.servlet | >=1.25 |
+| jakarta.servlet | >=1.42.9 |
 
 ### Response Body Tag
 
-Adds the content of the response body to the trace tag, supporting `application/json` and `text/plain` data types.
+Adds the response body content to trace tags, supporting `application/json` and `text/plain` data types.
 
 - Startup command
 
-`-Ddd.trace.response.body.enabled`: Default value is `false`, meaning it is not enabled by default.
+`-Ddd.trace.response.body.enabled`: Default value is `false`, i.e., not enabled.
 
 - Environment variable
 
 `DD_TRACE_RESPONSE_BODY_ENABLED`
 
-Reading the response body consumes some Java memory space. It is recommended to add blacklisted URLs for large response bodies (e.g., file download interfaces) to prevent OOM. URLs on the blacklist will not parse the response body content.
+Reading the response body consumes some Java memory space. It is recommended to handle large response bodies (e.g., file download interfaces) with a blacklist to prevent OOM. URLs on the blacklist will not parse the response body content.
 
 Blacklist configuration:
 
@@ -352,10 +354,10 @@ Blacklist configuration:
 
 > DD_TRACE_RESPONSE_BODY_BLACKLIST_URLS
 
-|Component|ddtrace Version|
-|-|-|
-|javax.servlet| >=1.42|
-|jakarta.servlet | >=1.42.9|
+| Component | ddtrace Version |
+| --- | --- |
+| javax.servlet | >=1.42 |
+| jakarta.servlet | >=1.42.9 |
 
 ## Reference Documents
 

@@ -3,7 +3,7 @@ nav:
   - 'Get Single Index/Bind Index Configuration': get.md
   - 'Create Single Index Configuration': add.md
   - 'Modify Single Index Configuration': modify.md
-  - 'Create Single Bind Index Configuration': bind.md
-  - 'Modify Single Bind Index Configuration': external-modify.md
+  - 'Create Single Bound Index Configuration': bind.md
+  - 'Modify Single Bound Index Configuration': external-modify.md
   - 'Enable/Disable Index Configuration': set-disable.md
-  - 'Delete an Index/Bind Index Configuration': delete.md
+  - 'Delete an Index/Bound Index Configuration': delete.md

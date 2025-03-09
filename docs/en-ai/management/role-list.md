@@ -1,149 +1,179 @@
 # Permission List
 ---
 
-Guance supports setting permissions for custom roles within the workspace to meet different users' permission needs.
+<<< custom_key.brand_name >>> supports setting permissions for custom roles within the workspace to meet different user permission requirements.
 
-**Note**: Currently, only the permission settings for functional operations within the workspace are supported.
+**Note**: Currently, only functional operation permissions within the workspace can be set.
 
 ## Permission List
 
-- √: Default role indicates **support** for this permission; custom role indicates **support** for granting this permission to custom roles;
+- √: Default role indicates **support** for this permission; custom role indicates **support** for granting this permission to custom roles;      
 - ×: Default role indicates **no support** for this permission; custom role indicates **no support** for granting this permission to custom roles.
 
-| Function Module                       | Operation Permissions                             | Owner | Administrator | Standard | Read-only | Custom Role |
-| ------------------------------------- | ------------------------------------------------- | ----- | ------------ | -------- | --------- | ----------- |
-| General                | Default Access Rights        | √      | √            | √        | √         | √           |
-|                                | Explorer - Quick Filter Management  | √      | √            | ×        | ×         | √           |
-|                                | Export Management             | √      | √            | √        | ×         | √           |
-| Workspace Management      | API Key Management       | √      | √            | ×        | ×         | ×           |
-|                                | Token View                | √      | √            | ×        | ×         | ×           |
-|                                | Token Replacement             | √      | √            | ×        | ×         | ×           |
-|                                | Member Management View             | √      | √            | √        | ×         | √           |
-|                                | Invite Members               | √      | √            | √        | ×         | √           |
-|                                | Member Management               | √      | √            | ×        | ×         | √           |
-|                                | Transfer Ownership        | √      | ×            | ×        | ×         | ×           |
-|                                | Settings Management                  | √      | √            | ×        | ×         | ×           |
-|                                | Dissolve Workspace               | √      | ×            | ×        | ×         | ×           |
-|                                | Data Storage Policy Management          | √      | ×            | ×        | ×         | ×           |
-|                                | Workspace Status Management                     | √      | ×            | ×        | ×         | ×           |
-| Data Permission Management | Configuration Management      | √      | √            | ×        | ×         | √           |
-| Field Management                | Field Configuration Management       | √      | √            | √        | ×         | √           |
-| Global Tags                | Global Tag Configuration Management       | √      | √            | ×        | ×         | √           |
-| Share Management                | Share Configuration Management            | √      | √            | √        | ×         | √           |
-| Snapshot                 | Create Snapshot         | √      | √            | √        | √         | √           |
-|                     | Delete Snapshot | √      | √            | √        | ×         | √           |
-| Paid Plan and Billing        | Paid Plan and Billing Read-only Permissions  | √      | √            | ×        | ×         | √           |
-|                                | Paid Plan and Billing Read-write Permissions | √      | ×            | ×        | ×         | ×           |
-|                                | Upgrade Permissions           | √      | ×            | ×        | ×         | ×           |
-| Scene                    | Scene Configuration Management              | √      | √            | √        | ×         | √           |
-|                                | Chart Configuration Management            | √      | √            | √        | ×         | √           |
-|                                | Service List Management            | √      | √            | √        | ×         | √           |
-| Event                    | Manual Recovery                    | √      | √            | √        | ×         | √           |
-|                         | Event Data Query                  | √      | √            | √        | √         | √           |
-| Infrastructure     | Infrastructure Configuration Management          | √      | √            | ×        | ×         | √           |
-|             | Infrastructure Data Query           | √      | √            | √        | √         | √           |
-| Logs                      | Log Index Management            | √      | √            | ×        | ×         | √           |
-|                                | External Index Management    | √      | √            | ×        | ×         | √           |
-|                                | Data Forwarding        | √      | √            | ×        | ×         | √           |
-|                                 | Log Data Query        | √      | √            | √        | √         | √           |
-|                                 | Log Data Access Configuration Management   | √      | √            | ×        | ×         | √           |
-| Metrics                   | Metric Description Management           | √      | √            | √        | ×         | √           |
-|                        | Metric Data Query            | √      | √            | √        | √         | √           |
-| Incident                 | Channel Management            | √      | √            | √        | ×         | √           |
-|                                | Channel Subscription    | √      | √            | √        | √         | √           |
-|                                | Channel View        | √      | √            | √        | √         | √           |
-|                                 | Issue Management        | √      | √            | √        | ×         | √           |
-|                                 | Issue View   | √      | √            | √        | √         | √           |
-|                                 | Reply Management        | √      | √            | √        | ×         | √           |
-|                                 | Reply View   | √      | √            | √        | √         | √           |
-|                                 | Level Configuration   | √      | √            | ×        | ×         | √           |
-| Pipelines            | Pipelines Management       | √      | √            | √        | ×         | √           |
-| Blacklist              | Blacklist Management                   | √      | √            | √        | ×         | √           |
-| Generated Metrics      | Generated Metrics Configuration Management          | √      | √            | √        | ×         | √           |
-| APM            | Associated Log Management                         | √      | √            | √        | ×         | √           |
-|                       | APM Data Query          | √      | √            | √        | √         | √           |
-| RUM              | Application Configuration Management           | √      | √            | √        | ×         | √           |
-|                                | Trace Configuration Management         | √      | √            | √        | ×         | √           |
-|                                 | User Access Data Query      | √      | √            | √        | √         | √           |
-| Synthetic Tests           | Task Configuration Management             | √      | √            | √        | ×         | √           |
-|                                | User-defined Node Configuration Management   | √      | √            | √        | ×         | √           |
-| Security Check             | Security Check Data Query          | √      | √            | √        | √         | √           |
-| Monitoring                  | Monitor Configuration Management            | √      | √            | √        | ×         | √           |
-|                                | Intelligent Inspection Configuration Management       | √      | √            | √        | ×         | √           |
-|                                | SLO Configuration Management           | √      | √            | √        | ×         | √           |
-|                                | Mute Configuration Management          | √      | √            | √        | ×         | √           |
-|                                | Alert Strategy Configuration Management   | √      | √            | √        | ×         | √           |
-|                                | Notification Targets Management | √      | √            | ×        | ×         | √           |
-| DataKit                         | DCA Configuration Management     | √      | √            | ×        | ×         | ×           |
-| DataFlux Func (Automata)                         | Func Enable/Configuration     | √      | ×            | ×        | ×         | ×           |
-| RUM (Automata)                         | RUM Enable/Configuration     | √      | ×            | ×        | ×         | ×           |
-|                         | RUM Admin    | √      | √            | ×        | ×         | ×           |
+| Feature Module                 | Operation Permissions                  | Owner | Administrator | Standard | Read-only | Custom Role |
+| ------------------------------ | -------------------------------------- | ----- | ------------- | -------- | --------- | ----------- |
+| General                       | Default Access Permissions             | √     | √            | √        | √         | √           |
+|                               | Explorer - Shortcut Management         | √     | √            | ×        | ×         | √           |
+|                               | Export Management                      | √     | √            | √        | ×         | √           |
+| Workspace Management          | API Key Management                    | √     | √            | ×        | ×         | ×           |
+|                               | Token View                            | √     | √            | ×        | ×         | ×           |
+|                               | Token Replacement                     | √     | √            | ×        | ×         | ×           |
+|                               | Client Token Management               | √     | √            | √        | ×         | √           |
+|                               | Member Management View                | √     | √            | √        | ×         | √           |
+|                               | Invite Members                        | √     | √            | √        | ×         | √           |
+|                               | Member Management                     | √     | √            | ×        | ×         | √           |
+|                               | Transfer Ownership                    | √     | ×            | ×        | ×         | ×           |
+|                               | Settings Management                   | √     | √            | ×        | ×         | ×           |
+|                               | Dissolve Workspace                    | √     | ×            | ×        | ×         | ×           |
+|                               | Data Storage Policy Management        | √     | ×            | ×        | ×         | ×           |
+|                               | Workspace Status Management           | √     | ×            | ×        | ×         | ×           |
+| Data Permission Management    | Configuration Management              | √     | √            | ×        | ×         | √           |
+| Sensitive Data Scan           | Configuration Management              | √     | √            | ×        | ×         | √           |
+| Field Management              | Field Configuration Management        | √     | √            | √        | ×         | √           |
+| Regular Expression            | Regular Expression Configuration Management | √     | √            | ×        | ×         | √           |
+| Cloud Account Management      | Account Management                    | √     | √            | ×        | ×         | ×           |
+|                               | Integration Configuration Management  | √     | √            | ×        | ×         | ×           |
+| Global Tags                   | Global Tag Configuration Management   | √     | √            | ×        | ×         | √           |
+| Share Management              | Share Configuration Management        | √     | √            | √        | ×         | √           |
+| Snapshot                      | Create Snapshot                       | √     | √            | √        | √         | √           |
+|                               | Delete Snapshot                       | √     | √            | √        | ×         | √           |
+| Billing                       | Billing Read-Only Permissions         | √     | √            | ×        | ×         | √           |
+|                               | Billing Read/Write Permissions        | √     | ×            | ×        | ×         | ×           |
+|                               | Upgrade Permissions                   | √     | ×            | ×        | ×         | ×           |
+| Scene                         | Scene Configuration Management        | √     | √            | √        | ×         | √           |
+|                               | Chart Configuration Management        | √     | √            | √        | ×         | √           |
+|                               | Service List Management               | √     | √            | √        | ×         | √           |
+| Incident                      | Manual Recovery                       | √     | √            | √        | ×         | √           |
+|                               | Event Data Query                      | √     | √            | √        | √         | √           |
+| Infrastructure                | Infrastructure Configuration Management | √     | √            | ×        | ×         | √           |
+|                               | Infrastructure Data Query             | √     | √            | √        | √         | √           |
+| Log                           | Log Index Management                  | √     | √            | ×        | ×         | √           |
+|                               | External Index Management             | √     | √            | ×        | ×         | √           |
+|                               | Data Forwarding                       | √     | √            | ×        | ×         | √           |
+|                               | Log Data Query                        | √     | √            | √        | √         | √           |
+| Metrics                       | Metric Description Management         | √     | √            | √        | ×         | √           |
+|                               | Metric Data Query                     | √     | √            | √        | √         | √           |
+| APM                           | Associated Log Management             | √     | √            | √        | ×         | √           |
+|                               | APM Data Query                        | √     | √            | √        | √         | √           |
+|                               | Issue Auto Discovery                  | √     | √            | √        | ×         | √           |
+| RUM                           | Application Configuration Management  | √     | √            | √        | ×         | √           |
+|                               | Trace Configuration Management        | √     | √            | √        | ×         | √           |
+|                               | RUM Data Query                        | √     | √            | √        | √         | √           |
+|                               | Session Replay View                   | √     | √            | √        | √         | √           |
+|                               | Issue Auto Discovery                  | √     | √            | √        | ×         | √           |
+| Synthetic Tests               | Task Configuration Management         | √     | √            | √        | ×         | √           |
+|                               | User-defined Node Configuration Management | √     | √            | √        | ×         | √           |
+| Security Check                | Security Check Data Query             | √     | √            | √        | √         | √           |
+| Monitoring                    | Monitor Configuration Management      | √     | √            | √        | ×         | √           |
+|                               | External Event Reporting Management   | √     | √            | ×        | ×         | ×           |
+|                               | Smart Inspection Configuration Management | √     | √            | √        | ×         | √           |
+|                               | SLO Configuration Management          | √     | √            | √        | ×         | √           |
+|                               | Mute Configuration Management         | √     | √            | √        | ×         | √           |
+|                               | Alert Strategies Configuration Management | √     | √            | √        | ×         | √           |
+|                               | Notification Targets Configuration Management | √     | √            | ×        | ×         | √           |
+| Incident                      | Channel Management                    | √     | √            | √        | ×         | √           |
+|                               | Channel Subscription                  | √     | √            | √        | √         | √           |
+|                               | Channel View                          | √     | √            | √        | √         | √           |
+|                               | Issue Management                      | √     | √            | √        | ×         | √           |
+|                               | Issue View                            | √     | √            | √        | √         | √           |
+|                               | Reply Management                      | √     | √            | √        | ×         | √           |
+|                               | Reply View                            | √     | √            | √        | √         | √           |
+|                               | Level Configuration                   | √     | √            | ×        | ×         | √           |
+|                               | Notification Policies                 | √     | √            | √        | ×         | √           |
+|                               | Schedule                              | √     | √            | √        | ×         | √           |
+|                               | Issue Discovery                       | √     | √            | √        | ×         | √           |
+| Pipelines                     | Pipelines Management                  | √     | √            | √        | ×         | √           |
+| Blacklist                     | Blacklist Management                  | √     | √            | √        | ×         | √           |
+| Generated Metrics             | Generated Metrics Configuration Management | √     | √            | √        | ×         | √           |
+| DCA                           | DCA Configuration Management          | √     | √            | ×        | ×         | ×           |
+| DataFlux Func (Automata)      | Func Enable/Configuration             | √     | ×            | ×        | ×         | ×           |
+| RUM (Automata)                | RUM Enable/Configuration              | √     | ×            | ×        | ×         | ×           |
+|                               | RUM Admin                             | √     | √            | ×        | ×         | ×           |
+| Cloud Billing                 | Cloud Billing Data Query              | √     | √            | √        | √         | √           |
+| External Data Sources         | Data Source Configuration Management | √     | √            | ×        | ×         | √           |
+|                               | Data Source Query Permissions         | √     | √            | √        | √         | √           |
+| Environment Variables         | Environment Variable Configuration Management | √     | √            | ×        | ×         | √           |
+| Audit Logs                    | Audit Logs View                       | √     | √            | √        | √         | √           |
 
 ## Detailed Permission Descriptions
 
 You can understand the specific descriptions of the permission list through the following table:
 
-| Function Module                       | Operation Permissions                             | Description                                                         |
-| ------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------ |
-| General                | Default Access Rights        | View and edit components in Guance that do not have explicitly defined permissions, including<br><li>Dashboard, notes, explorer, built-in views: read-only permissions<br/><li>Dashboard carousel: read-only permissions<br/><li>Charts: read-only permissions, copy<br/><li>Dashboards, notes, explorer: favorite<br/><li>All explorer-level quick filters: edit permissions<br/><li>All explorer display columns: configuration permissions<br/><li>APM - Service List: read-only permissions<br/><li>RUM - Application Configuration: read-only permissions<br/><li>RUM - Trace Configuration: read-only permissions<br/><li>Synthetic Tests - Task Configuration: read-only permissions<br/><li>Synthetic Tests - User-defined Node Configuration: read-only permissions<br/><li>Monitors, intelligent inspections, SLOs, mute management, alert strategies, notification targets configuration: read-only permissions<br/><li>Pipelines configuration: user pipelines, official pipelines read-only permissions<br/><li>Blacklist configuration: read-only permissions<br/><li>Basic workspace information: read-only permissions<br/><li>Field management: read-only permissions<br/><li>Data permission management: read-only permissions<br/><li>Share management: read-only permissions<br/><li>Snapshot: read-only permissions (view/copy)<br/><li>DQL query tool<br/><li>Integration<br/><li>Aobs assistant<br/><li>Experience Demo workspace<br/><li>Ticket management<br/><li>Workspace remarks (personal account level)<br/><li>New user guide<br/>&nbsp; &nbsp; - Automatically pop up [New User Guide]<br/>&nbsp; &nbsp; - Avatar - view new user guide<br/><li>Log data access configuration view: read-only<br/><li>Incident tracking: channel read-only, issue read-only, reply read-only |
-|                                | Explorer - Quick Filter Management  | Management of default display quick filter options configured at the workspace level<br/><li>Log viewer display column configuration management |
-|                                | Export Management             | Includes<br/><li>Explorer: export CSV file, copy as cURL<br/><li>Metric management: export CSV file<br/><li>Event detail page: export JSON, PDF |
-| Workspace Management      | API Key Management       | Operations such as creating, viewing, deleting API Keys                             |
-|                                | Token View                | Retrieve the Token for the workspace                                         |
-|                                | Token Replacement             | Replace the Token for the workspace, must have "Token View" permission |
-|                                 | Member Management View             | Includes read-only (view) permissions for the following pages.<br/><li>Member management, member details page<br/><li>Role management, role details page<br/><li>SSO management, SAML mapping |
-|                                | Member Management               | Workspace member management and SSO management operations, including<br/><li>Team management (add, delete, modify)<br/><li>Invitation records<br/><li>Member information management (delete, modify)<br/><li>Role management (create, delete, modify)<br/><li>Batch modification of permissions<br/><li>SSO management<br/>&nbsp; &nbsp; - SSO login (enable, disable, delete)<br/>&nbsp; &nbsp; - SAML mapping (create, delete, modify, enable, disable)<br/>&nbsp; &nbsp;- Custom mapping (create, delete, modify) |
-|                                | Transfer Ownership        | Transfer ownership of the current workspace to another member                           |
-|                                | Settings Management                  | Editing operations on the workspace settings page, including<br/><li>Modify workspace name<br/><li>Modify description<br/><li>Configuration migration (import, export)<br/><li>Advanced settings<br/>&nbsp; &nbsp; - Add, remove key metrics<br/>&nbsp; &nbsp; - Function menu management<br/><li>View operation audit<br/><li>IP whitelist settings<br/><li>Data deletion<br/>&nbsp; &nbsp; - Manual data deletion operations within the workspace, including<br/>&nbsp; &nbsp; &nbsp; &nbsp; - Deleting data from a specific metric set<br/>&nbsp; &nbsp; &nbsp; &nbsp; - Resource catalog<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - Single resource catalog (resource catalog detail page)<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - All resource catalogs (management-settings-risky operations)<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - Resource catalogs under a specific object classification (management-settings-risky operations)<br/><li>Enable approval join |
-|                                | Dissolve Workspace               | Dissolve the workspace, including unbinding Commercial Plan workspaces with the billing center account and deleting the workspace, etc.<br/><li>Dissolution entry under locked workspace status |
-|                                | Data Storage Policy Management          | <li>Modify storage policy for metric sets (metric management page)<br/><li>Modify general storage policy (management-settings page) |
-|                                | Workspace Status Management                     | Operations under locked workspace status<br/><li>Unlock immediately            |
-| Data Permission Management | Configuration Management      | <li>Sensitive fields: disable, enable, configure (add, delete)<br/><li>Data authorization: configure (add, delete) |
-| Field Management                | Field Configuration Management       | Create, edit, delete                                             |
-| Global Tags                | Global Tag Configuration Management       | Create, edit, delete                                             |
-| Share Management                | Share Configuration Management            | Share charts, cancel sharing charts, share snapshots, cancel sharing snapshots               |
-| Snapshot                 | Create Snapshot         | Create snapshots. Includes<br/><li>Scenes: dashboards, notes, explorers<br/><li>Events: unrecovered events, events<br/><li>Infrastructure: hosts, containers, processes, networks, custom<br/><li>Logs: all logs, cluster analysis<br/><li>APM: services, summary, traces, error tracking, Profile<br/><li>RUM: views, explorers, traces<br/><li>Synthetic Tests: summary, explorer<br/><li>CI visualization: summary, explorer<br/><li>Security checks: summary, explorer |
-| | Delete Snapshot         | Delete snapshots. Includes<br/><li>Scenes: dashboards, notes, explorers<br/><li>Events: unrecovered events, events<br/><li>Infrastructure: hosts, containers, processes, networks, custom<br/><li>Logs: all logs, cluster analysis<br/><li>APM: services, summary, traces, error tracking, Profile<br/><li>RUM: views, explorers, traces<br/><li>Synthetic Tests: summary, explorer<br/><li>CI visualization: summary, explorer<br/><li>Security checks: summary, explorer<br/>:warning: Read-only members can only delete snapshots created by their own account |
-| Paid Plan and Billing        | Paid Plan and Billing Read-only Permissions  | View usage statistics and billing costs for the current workspace                           |
-|                                | Paid Plan and Billing Read-write Permissions | Includes viewing account balance, recharging, changing settlement method, changing billing center accounts, navigating to the billing center. Only supports members of the current workspace owner role to view and initiate related operations |
-|                                | Upgrade Permissions           | Entry point to initiate the upgrade process from Free Plan to Commercial Plan. Only supports members of the current workspace owner role to initiate |
-| Scene                    | Scene Configuration Management              | <li>Dashboard: create, delete, modify (with this permission, the explorer supports exporting list data to the dashboard), import, export, copy, save to built-in views, set refresh frequency<br/><li>Scheduled reports: create, modify, delete<br/><li>Carousel: create, modify, delete<br/><li>Note: create, delete, modify (with this permission, the explorer supports exporting list data to notes), import, export (JSON/PDF)<br/><li>Explorer: create, delete, modify, export, import, copy<br/><li>Built-in views-system views: export, clone<br/><li>Built-in views-user views: create, delete, modify, export, clone |
-|                                | Chart Configuration Management            | <li>Add view variables<br/><li>Edit view variables<br/><li>Delete view variables<br/><li>Add chart<br/><li>Modify chart<br/><li>Combine charts<br/><li>Clone chart<br/><li>Delete chart<br/><li>Add chart group<br/><li>Modify chart group<br/><li>Delete chart group |
-|                                | Service List Management            | Edit service list configuration |
-| Event                    | Manual Recovery                    | Includes manual recovery operations for unrecovered events                                   |
-|                        | Event Data Query                  | Query all event data within the workspace, including all data for events and unrecovered events (Namespace = E or UE)    |
-| Infrastructure     | Infrastructure Configuration Management          | Includes editing host labels, editing object classifications, adding object classifications, adding tags, deleting objects, etc. |
-|             | Infrastructure Data Query           | Query all infrastructure-related data within the workspace, including host, container, K8s, process, resource catalog data, historical 48-hour data, and Layer 4, Layer 7 network data reported to the workspace. | 
-| Logs                      | Log Index Management            | Read-write permissions. Includes creation, deletion, modification, enabling, disabling, dragging, and operations        |
-|                                | External Index Management    | Read-write permissions. Includes binding, deletion, and operations                                |
-|                                | Data Forwarding        | Read-write permissions. Includes creation, editing, deletion, enabling, disabling, and operations                                |
-|                           | Log Data Query             | Query permissions for all log data within the current workspace, including Guance logs (L) default index, custom indexes, bound external indexes (ES, Opensearch, SLS standard logstore) data, and backup log (BL) data.                               |
-|                            | Log Data Access Configuration Management      | Create, modify, delete rules for querying log data ranges within the workspace, supporting configuration of one, multiple, or all indexes' query ranges, and authorizing query ranges to specific roles.               |
-| Metrics                   | Metric Description Management           | Edit and modify metric descriptions                                             |
-|                        | Metric Data Query           | Query all metric data within the current workspace                                  |
-| Pipelines            | Pipelines Management       | Read-write permissions. Includes creation, modification, deletion, enabling, disabling, importing, batch exporting, batch deletion, cloning from the official library<br/><li>Logs - pipelines<br/><li>Management - pipelines |
-| Blacklist              | Blacklist Management                   | Read-write permissions. Includes creation, modification, deletion, importing, batch exporting, batch deletion<br/><li>Logs - blacklist<br/><li>Management - blacklist |
-| Generated Metrics      | Generated Metrics Configuration Management          | Includes creation, modification, deletion, enabling, disabling operations<br/><li>Logs-generated metrics<br/><li>APM-generated metrics<br/><li>RUM-generated metrics<br/><li>Security check-generated metrics |
-| APM            | Service List Management          | Edit service list configuration                                             |
-|                                | Associated Log Management                         | Edit log association field configuration                                         |
-|                       | APM Data Query        | Query all trace and Profile data within the current workspace                         |
-| RUM              | Application Configuration Management           | Create, modify, delete applications                                         |
-|                                | Trace Configuration Management         | Create, modify, delete trace configurations                                     |
-|                              | User Access Data Query           | Query all user access data within the current workspace, including session, session replay, view, resource, error, long task, action, etc. data         |
-| Synthetic Tests           | Task Configuration Management             | Create, delete, modify, enable, disable, test                           |
-|                                | User-defined Node Configuration Management   | Create, modify, delete, get configuration                                   |
-| Security Check             | Security Check Data Query          | Query all security check-related data within the current workspace                         |
-| Incident             | Channel Management          | Channels: create, modify, delete; notification targets: add, modify                         |
-|              | Channel Subscription         | Subscribe to channels              |
-|              | Issue Management         | Create, modify, delete issues, upload attachments              |
-|              | Level Configuration         | Default levels: enable, disable;<br/>Custom levels: create, edit, delete              |
-| Monitoring                  | Monitor Configuration Management            | Create, delete, test, modify, enable, disable, import, batch export, batch delete, edit alert configurations, create from templates |
-|                                | Intelligent Inspection Configuration Management       | Create, delete, test, modify, enable, disable, export                     |
-|                                | SLO Configuration Management           | Create, delete, modify, enable, disable                                 |
-|                                | Mute Configuration Management          | Create, delete, modify, enable, disable<br/><li>Monitoring-mute management<br/><li>Infrastructure-host details page-mute host |
-|                                | Alert Strategy Configuration Management   | Create, delete, edit alert configurations                                     |
-|                                | Notification Targets Management | Create, delete, modify                                             |
-| DataKit                       | DCA Configuration Management    | Restart DataKit, create/delete/modify collectors, pipelines              |
-| DataFlux Func (Automata)                       | Func Enable/Configuration    | Enable application, modify domain/specifications, upgrade version, reset password, deactivate application	              |
-| RUM (Automata)                       | RUM Enable/Configuration  | Enable application, modify service address/specifications, upgrade version, deactivate application	              |
-|                       | RUM Admin Permissions | View configuration information, modify service address/specifications/version/status/configuration		              |
+| Feature Module                 | Operation Permissions                  | Description                                                                 |
+| ------------------------------ | -------------------------------------- | --------------------------------------------------------------------------- |
+| General                       | Default Access Permissions             | View and edit <<< custom_key.brand_name >>> components without explicit permission definitions, including<br><li>Dashboard, Notes, Explorer, Built-in Views: read-only permission<br/><li>Carousel Dashboard: read-only permission<br/><li>Charts: read-only permission, copy<br/><li>Dashboard, Notes, Explorer: favorite<br/><li>All personal-level shortcuts in Explorer: edit permission<br/><li>Display columns in all Explorers: configuration permission<br/><li>Creator of Dashboard, Notes, Explorer: edit permission<br/><li>APM > Service List: read-only permission<br/><li>RUM > Application Configuration: read-only permission<br/><li>RUM > Trace Configuration: read-only permission<br/><li>Synthetic Tests > Task Configuration: read-only permission<br/><li>Synthetic Tests > User-defined Node Configuration: read-only permission<br/><li>Monitors, Smart Inspections, SLOs, Mute Management, Alert Strategies, Notification Targets Configuration: read-only permission<br/><li>Pipelines Configuration: user pipeline, official pipeline read-only permission<br/><li>Blacklist Configuration: read-only permission<br/><li>Basic Workspace Information: read-only permission<br/><li>Role Management: read-only permission<br/><li>Field Management: read-only permission<br/><li>Data Permission Management: read-only permission<br/><li>Regular Expression: read-only permission<br/><li>Share Management: read-only permission<br/><li>Snapshot: read-only permission (view/copy)<br/><li>DQL Query Tool<br/><li>Integration<br/><li>Assistant<br/><li>Demo Workspace<br/><li>Ticket Management<br/><li>Workspace Notes (personal account level)<br/><li>New User Guide<br/>&nbsp; &nbsp; - Automatically pop up [New User Guide]<br/>&nbsp; &nbsp; - Avatar > View New User Guide<br/><li>Log Data Access Configuration View: read-only<br/><li>Incident: read-only channels, Issues, replies, notification policies, schedules |
+|                               | Explorer > Shortcut Management         | <br/><li>Default display shortcut options management at the workspace level<br/><li>Log Explorer column configuration management |
+|                               | Export Management                      | Includes:<br/><li>Explorer: export CSV file, copy as cURL<br/><li>Metric Management: export CSV file<br/><li>Event Detail Page: export JSON, PDF |
+| Workspace Management          | API Key Management                    | Operations such as creating, viewing, deleting API Keys.                             |
+|                               | Token View                            | Obtain the workspace's Token                                         |
+|                               | Token Replacement                     | Replace the workspace's Token; must also have "Token View" permission |
+|                               | Client Token Management               | Operations such as creating, deleting Client Tokens |
+|                               | Member Management View                | View permissions for the following pages (read-only).<br/><li>Member Management, Member Details Page<br/><li>SSO Management, SAML Mapping|
+|                               | Invite Members                        | |
+|                               | Member Management                     | Operations related to workspace member management, SSO management, including<br/><li>Team Management (add, delete, modify)<br/><li>Member Information Management (delete, modify)<br/><li>Role Management (create, delete, modify)<br/><li>Invitation Records<br/><li>Batch Modify Permissions<br/><li>SSO Management<br/>&nbsp; &nbsp; - SSO Login (enable, disable, delete)<br/>&nbsp; &nbsp; - SAML Mapping (create, delete, modify, enable, disable)<br/>&nbsp; &nbsp;- Custom Mapping (create, delete, modify) |
+|                               | Transfer Ownership                    | Transfer the current workspace ownership to another member                           |
+|                               | Settings Management                   | Editing operations on the workspace settings page, including<br/><li>Modify workspace name<br/><li>Modify description<br/><li>Configuration migration (import, export)<br/><li>Advanced settings<br/>&nbsp; &nbsp; - Add, delete key metrics<br/>&nbsp; &nbsp; - Feature menu management<br/><li>View operation audit logs<br/><li>IP whitelist settings<br/><li>Data deletion<br/>&nbsp; &nbsp; - Manually delete data within the workspace, including<br/>&nbsp; &nbsp; &nbsp; &nbsp; - Deleting a specific metric set data<br/>&nbsp; &nbsp; &nbsp; &nbsp; - Resource catalog<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - Individual resource catalog (resource catalog detail page)<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - All resource catalogs (manage-settings-risky operations)<br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - Resource catalogs under a specific object classification (manage-settings-risky operations)<br/><li>Enable approval join |
+|                               | Dissolve Workspace                    | Dissolving the workspace, including unbinding Commercial Plan workspaces from billing center accounts and workspace deletion operations<br/><li>Dissolution entry when the workspace is locked |
+|                               | Data Storage Policy Management        | <li>Modify storage policy for metric sets (Metric Management page)<br/><li>Modify general storage policy (Manage-Settings page) |
+|                               | Workspace Status Management           | Operations during the locked state of the workspace<br/><li>Immediate unlock            |
+| Data Permission Management    | Configuration Management              | <li>Sensitive fields: disable, enable, configure (add, delete)<br/><li>Data authorization: configure (add, delete) |
+| Sensitive Data Scan           | Configuration Management              | Create, edit, enable, disable, delete |
+| Field Management              | Field Configuration Management        | Create, edit, delete                                             |
+| Regular Expression            | Regular Expression Configuration Management | Create, edit, clone, delete               |
+| Cloud Account Management      | Account Management                    | Create, edit, delete               |
+|                               | Integration Configuration Management  | Install, uninstall, modify configuration	               |
+| Global Tags                   | Global Tag Configuration Management   | Create, edit, delete                                             |
+| Share Management              | Share Configuration Management        | Share charts, cancel chart shares, share snapshots, cancel snapshot shares               |
+| Snapshot                      | Create Snapshot                       | Creating snapshots. Includes<br/><li>Scenes: Dashboards, Notes, Explorers<br/><li>Events: Unresolved Events, Events<br/><li>Infrastructure: Hosts, Containers, Processes, Network, Custom<br/><li>Logs: All Logs, Pattern Analysis<br/><li>APM: Services, Summary, Traces, Error Tracking, Profile<br/><li>RUM: Views, Explorers, Traces<br/><li>Synthetic Tests: Summary, Explorers<br/><li>CI Visualization: Summary, Explorers<br/><li>Security Checks: Summary, Explorers |
+|                               | Delete Snapshot                       | Deleting snapshots. Includes<br/><li>Scenes: Dashboards, Notes, Explorers<br/><li>Events: Unresolved Events, Events<br/><li>Infrastructure: Hosts, Containers, Processes, Network, Custom<br/><li>Logs: All Logs, Pattern Analysis<br/><li>APM: Services, Summary, Traces, Error Tracking, Profile<br/><li>RUM: Views, Explorers, Traces<br/><li>Synthetic Tests: Summary, Explorers<br/><li>CI Visualization: Summary, Explorers<br/><li>Security Checks: Summary, Explorers<br/>:warning: Read-only members can only delete snapshots they created |
+| Billing                       | Billing Read-Only Permissions         | <br/><li>View current workspace usage statistics and billing costs   <br/><li>Set high consumption alerts                        |
+|                               | Billing Read/Write Permissions        | Includes viewing account balance, recharging, changing settlement methods, switching billing center accounts, navigating to the billing center. Only supports actions initiated by the workspace owner |
+|                               | Upgrade Permissions                   | Entry point to upgrade Free Plan to Commercial Plan, only supports actions initiated by the current workspace owner |
+| Scene                         | Scene Configuration Management        | <li>Dashboard: create, delete, modify (supports exporting list data to dashboard if this permission is granted), import, export, copy, save to built-in view, set refresh frequency<br/><li>Scheduled Reports: create, modify, delete<br/><li>Carousel: create, modify, delete<br/><li>Notes: create, delete, modify (supports exporting list data to notes if this permission is granted), import, export (JSON/PDF)<br/><li>Explorer: create, delete, modify, export, import, copy<br/><li>Built-in View > System View: export, clone<br/><li>Built-in View > User View: create, delete, modify, export, clone |
+|                               | Chart Configuration Management        | <li>View Variables: add, edit, delete<br/><li>Charts: add, modify, combine, clone, delete<br/><li>Chart Groups: add, modify, delete |
+|                               | Service List Management               | Edit service list configuration |
+| Incident                      | Manual Recovery                       | Includes manual recovery operations for unresolved events                                   |
+|                               | Event Data Query                      | Query all event data within the workspace, including resolved and unresolved event data (Namespace = E or UE)    |
+| Infrastructure                | Infrastructure Configuration Management | Includes editing host labels, object classifications, adding object classifications, adding tags, deleting objects |
+|                               | Infrastructure Data Query             | Query all infrastructure-related data within the workspace, including hosts, containers, K8s, processes, resource catalog data, historical 48-hour data, and fourth-layer, seventh-layer network data reported to the workspace. |
+| Log                           | Log Index Management                  | Read/write permissions. Includes create, delete, modify, enable, disable, drag-and-drop, operations        |
+|                               | External Index Management             | Read/write permissions. Includes binding, delete, operations                                |
+|                               | Data Forwarding                       | Read/write permissions. Includes create, edit, delete, enable, disable, operations                                |
+|                               | Log Data Query                        | Query all log data within the current workspace, including <<< custom_key.brand_name >>> logs (L) default index, custom indexes, bound external indexes (ES, Opensearch, SLS standard logstore) data, and backup logs (BL) data.                               |
+| Metrics                       | Metric Description Management         | Edit and modify metric descriptions                                             |
+|                               | Metric Data Query                     | Query all metric data within the current workspace                                  |
+| APM                           | Associated Log Management             | Edit log association field configurations                                         |
+|                               | APM Data Query                        | Query all trace and Profile data within the current workspace                         |
+|                               | Issue Auto Discovery                  | Automatically discover and generate Incident based on error tracking data according to service, version, resource, error type dimensions	                        |
+| RUM                           | Application Configuration Management  | Create, modify, delete applications                                         |
+|                               | Trace Configuration Management        | Create, modify, delete trace configurations                                     |
+|                               | RUM Data Query                        | Query all user access data within the current workspace, including `session`, `session replay`, `view`, `resource`, `error`, `long task`, `action` data         |
+|                               | Session Replay View                   | View all session replay data within the current workspace	                                     |
+|                               | Issue Auto Discovery                  | Automatically discover and generate Incident based on error data according to application name, environment, version, error type dimensions	                                     |
+| Synthetic Tests               | Task Configuration Management         | Create, delete, modify, enable, disable, test                           |
+|                               | User-defined Node Configuration Management | Create, modify, delete, obtain configuration                                   |
+| Security Check                | Security Check Data Query             | Query all security check-related data within the current workspace                         |
+| Monitoring                    | Monitor Configuration Management      | Create, delete, test, modify, enable, disable, import, batch export, batch delete, alert configuration editing, create from template |
+|                               | External Event Reporting Management   | View Webhook addresses generated by the [External Event Detection] monitor	                     |
+|                               | Smart Inspection Configuration Management | Create, delete, test, modify, enable, disable, export                     |
+|                               | SLO Configuration Management          | Create, delete, modify, enable, disable                                 |
+|                               | Mute Configuration Management         | Create, delete, modify, enable, disable<br/><li>Monitoring > Mute Management<br/><li>Infrastructure > Host Detail Page > Mute Host |
+|                               | Alert Strategies Configuration Management | Create, delete, alert configuration editing                                     |
+|                               | Notification Targets Configuration Management | Create, delete, modify                                             |
+| Incident                      | Channel Management                    | Channels: create, modify, delete; Notification targets: add, modify                         |
+|                               | Channel Subscription                  | Channel subscription              |
+|                               | Issue Management                      | Issue creation, modification, deletion, attachment upload              |
+|                               | Level Configuration                   | Default levels: enable, disable;<br/>Custom levels: create, edit, delete              |
+|                               | Notification Policies                 | Creation, modification, deletion of notification policies	              |
+|                               | Schedule                              | Creation, modification, deletion of schedules	              |
+|                               | Issue Discovery                       | Creation, modification, deletion, enabling, disabling of Issues	             |
+| Pipelines                     | Pipelines Management                  | Read/write permissions. Includes create, modify, delete, enable, disable, import, batch export, batch delete, clone from official library<br/><li>Logs > Pipelines<br/><li>Management > Pipelines |
+| Blacklist                     | Blacklist Management                  | Read/write permissions. Includes create, modify, delete, import, batch export, batch delete<br/><li>Logs > Blacklist<br/><li>Management > Blacklist |
+| Generated Metrics             | Generated Metrics Configuration Management | Includes create, modify, delete, enable, disable operations<br/><li>Logs > Generated Metrics<br/><li>APM > Generated Metrics<br/><li>RUM > Generated Metrics<br/><li>Security Check > Generated Metrics |
+| DCA                           | DCA Configuration Management          | Restart DataKit, collectors, pipelines, blacklist creation, deletion, modification<br/><li>Configure DCA address              |
+| DataFlux Func (Automata)      | Func Enable/Configuration             | Enable application, modify domain/specification, upgrade version, reset password, deactivate application	              |
+| RUM (Automata)                | RUM Enable/Configuration              | Enable application, modify service address, specification, upgrade version, deactivate application	              |
+|                               | RUM Admin Permissions                 | View configuration information, modify service address, specification, version, status, configuration		              |
+| External Data Sources         | Data Source Configuration Management | Create, edit, delete external data sources		              |
+|                               | Data Source Query Permissions         | Query external data sources			              |
+| Audit Logs                    | Audit Logs View                       | View operation audit logs				              |

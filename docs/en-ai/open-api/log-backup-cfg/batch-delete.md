@@ -7,13 +7,16 @@
 ## Overview
 Delete data forwarding rules
 
+
 ## Body Request Parameters
 
 | Parameter Name | Type   | Required | Description                          |
-|:--------------|:-------|:--------|:-------------------------------------|
-| cfgUUIDs      | array  | Y       | List of forwarding configuration UUIDs<br>Allow null: False <br> |
+|:--------------|:-------|:---------|:-------------------------------------|
+| cfgUUIDs      | array  | Y        | List of forwarding configuration UUIDs<br>Allow null: False <br> |
 
 ## Additional Parameter Notes
+
+
 
 ## Request Example
 ```shell
@@ -24,6 +27,7 @@ curl 'https://openapi.guance.com/api/v1/log_backup_cfg/batch_delete' \
 --data-raw '{"cfgUUIDs":["lgbp_xxxx32"]}' \
 --compressed
 ```
+
 
 ## Response
 ```shell

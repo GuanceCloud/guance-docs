@@ -3,7 +3,7 @@ nav:
  - Quick Start: pipeline-quick-start.md
  - Basics and Principles:
    - pipeline-architecture.md
-   - Data Processing for Each Category: pipeline-category.md
+   - Data Processing for Each Data Category: pipeline-category.md
    - Grok Patterns: pipeline-grok.md
  - Platypus Syntax: pipeline-platypus-grammar.md
  - Built-in Functions: pipeline-built-in-function.md

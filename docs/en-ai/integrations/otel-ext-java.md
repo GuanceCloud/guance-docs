@@ -13,18 +13,16 @@ tags       :
 
 SQL obfuscation is also narrowly referred to as DB statement cleaning.
 
-According to the official OTEL documentation:
+According to the official OTEL definition:
 
 ```text
-The agent cleans all database queries/statements before setting the `db.statement` semantic attribute. All values (strings, numbers) in the query string are replaced with a question mark (?), and the entire SQL statement is formatted (replacing newline characters with spaces, ensuring only one space remains) and so on.
-
+The agent cleans all database queries/statements before setting the `db.statement` semantic attribute. All values (strings, numbers) in the query string are replaced with a question mark (?), and the entire SQL statement is formatted (replacing newline characters with spaces, leaving only one space).
 
 Example:
 
-- For the SQL query SELECT a FROM b WHERE password="secret", it will appear in the span as SELECT a FROM b WHERE password=?
+- For the SQL query SELECT a from b where password="secret", it will appear as SELECT a from b where password=?
 
-
-By default, this behavior is enabled for all database instrumentation. To disable it, use the following properties:
+By default, this behavior is enabled for all database detections. To disable it, use the following properties:
 
 System property: otel.instrumentation.common.db-statement-sanitizer.enabled
 Environment variable: OTEL_INSTRUMENTATION_COMMON_DB_STATEMENT_SANITIZER_ENABLED
@@ -33,51 +31,51 @@ Default value: true
 Description: Enables DB statement cleaning.
 ```
 
-### Purpose of DB Statement Cleaning and Results {#why}
+### Why DB Statement Cleaning Is Necessary {#why}
 
-Most statements include some sensitive data, such as usernames, phone numbers, passwords, card numbers, etc. By processing these statements, we can filter out this sensitive information. Another reason is to facilitate grouping and filtering operations.
+Most statements include some sensitive data such as usernames, phone numbers, passwords, card numbers, etc. By sanitizing these statements, we can filter out this sensitive data. Another reason is that it facilitates grouping and filtering operations.
 
 There are two ways to write SQL statements:
 
 For example:
 
 ```java
-ps = conn.prepareStatement("SELECT name,password,id FROM student WHERE name=? AND password=?");
+ps = conn.prepareStatement("SELECT name,password,id FROM student where name=? and password=?");
 ps.setString(1, username);   // Replace the first ?
 ps.setString(2, pw);        // Replace the second ?
 ```
 
-This is the JDBC approach, which is database-independent (both Oracle and MySQL are written this way).
+This is the JDBC way of writing, which is database-independent (both Oracle and MySQL are written this way).
 
-The result is that the trace will contain two '?' placeholders in `db.statement`.
+The result is that the trace will capture the `db.statement` with two '?' placeholders.
 
-A less common alternative approach:
+Another less common way:
 
 ```java
-ps = conn.prepareStatement("SELECT name,password,id FROM student WHERE name='guance' AND password='123456'");
+ps = conn.prepareStatement("SELECT name,password,id FROM student where name='guance' and password='123456'");
 // ps.setString(1, username);  No longer using set
 // ps.setString(2, pw);
 ```
 
 In this case, the agent captures the SQL statement without placeholders.
 
-The purpose of `OTEL_INSTRUMENTATION_COMMON_DB_STATEMENT_SANITIZER_ENABLED` is described here.
+The purpose of `OTEL_INSTRUMENTATION_COMMON_DB_STATEMENT_SANITIZER_ENABLED` is to control this behavior.
 
-The root cause is that the agent's probe is placed on the functions `prepareStatement` or `Statement`.
+The root cause is that the agent's probe is placed on the `prepareStatement` or `Statement` functions.
 
-To fundamentally solve the obfuscation issue, probes need to be added to the `set` methods. Parameters should be cached before `execute()`, and finally, the parameters should be placed in Attributes.
+To fundamentally solve the obfuscation issue, probes need to be added to the `set` methods. Parameters should be cached before `execute()`, and finally, the parameters should be placed into Attributes.
 
-### Guance Extension {#guacne-branch}
+### Guance Extension {#guance-branch}
 
-To capture the data before obfuscation and the values added via the `set` function, new probes need to be added, along with the environment variable:
+To obtain the data before obfuscation and the values added via the `set` function, new probes need to be added, along with the environment variable:
 
 ```shell
 -Dotel.jdbc.sql.obfuscation=true
-# or for k8s
+# or in Kubernetes
 OTEL_JDBC_SQL_OBFUSCATION=true
 ```
 
-Ultimately, in the trace details on Guance, it looks like this:
+Ultimately, the trace details in Guance will look like this:
 
 <!-- markdownlint-disable MD046 MD033 -->
 <figure>
@@ -89,11 +87,11 @@ Ultimately, in the trace details on Guance, it looks like this:
 
 1. Enabling `-Dotel.jdbc.sql.obfuscation=true` but not disabling DB statement obfuscation
 
-This may result in mismatched placeholders and `origin_sql_x` counts because some parameters have already been replaced by placeholders during DB statement obfuscation.
+You may encounter mismatches between placeholders and `origin_sql_x` counts because some parameters have already been replaced by placeholders during DB statement obfuscation.
 
-2. Enabling `-Dotel.jdbc.sql.obfuscation=true` and disabling DB statement obfuscation
+1. Enabling `-Dotel.jdbc.sql.obfuscation=true` and disabling DB statement obfuscation
 
-If the statement is too long or contains many newline characters, it can become messy without formatting. This also causes unnecessary traffic waste.
+If the statement is too long or contains many newline characters, and no formatting is applied, the statement can become messy. This also wastes unnecessary network traffic.
 
 ## More {#more}
 

@@ -13,11 +13,11 @@
 
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| search | string | No | Search rule name<br>Nullable: False <br> |
-| pageIndex | integer | No | Page index<br>Nullable: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | No | Number of items per page<br>Nullable: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| search | string | No  | Search rule name<br>Can be empty: False <br> |
+| pageIndex | integer | No  | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize | integer | No  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Information
 
 
 

@@ -37,16 +37,16 @@
 ## Theoretical Basis
 
 
-- In Linux, the /etc/sudoers file allows users to execute commands as superuser or other users according to the specified security policy. The security policy determines what privileges a user must have to run sudo. This policy may require users to authenticate themselves using a password or other authentication mechanisms.
+- In Linux, the /etc/sudoers file allows users to execute commands as a superuser or another user according to specified security policies. Security policies determine what privileges a user must have to run sudo. The policy may require users to authenticate themselves using a password or other authentication mechanisms.
 
 
 
 ## Risk Items
 
 
-- Hacker Penetration
+- Hacker penetration
 
-- Data Leakage
+- Data leakage
 
 
 
@@ -66,7 +66,7 @@ ls /etc/sudoers
 ## Impact
 
 
-- The system may not log in properly
+- The system may fail to log in properly
 
 
 

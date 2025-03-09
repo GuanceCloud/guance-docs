@@ -8,18 +8,20 @@
 Create a blacklist
 
 
+
 ## Route Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| name | string | Y | Name (Added in iteration on 2024-11-27)<br>Allow null: False <br>Allow empty string: False <br>Maximum length: 50 <br> |
-| desc | string | Y | Description (Added in iteration on 2024-11-27)<br>Example: Description1 <br>Allow null: False <br>Allow empty string: True <br>Maximum length: 256 <br> |
-| type | string | Y | Blacklist type, enum values are ('object', 'custom_object', 'logging', 'keyevent', 'tracing', 'rum', 'network', 'security', 'profiling', 'metric')<br>Allow null: False <br> |
-| source | string | Y | Data source, when all sources are used, `source` is re(`.*`)<br>Allow null: True <br>Allow empty string: False <br>Max character length: 128 <br> |
-| sources | array | Y | Data sources, use this field for multiple sources (use `source` field re(`.*`) for all sources)<br>Allow null: True <br> |
-| filters | array | Y | Filter conditions<br>Allow null: True <br> |
+| name | string | Y | Name (Added in iteration on 2024-11-27)<br>Nullable: False <br>Allow empty string: False <br>Maximum length: 50 <br> |
+| desc | string | Y | Description (Added in iteration on 2024-11-27)<br>Example: Description1 <br>Nullable: False <br>Allow empty string: True <br>Maximum length: 256 <br> |
+| type | string | Y | Blacklist type, enum values include ('object', 'custom_object', 'logging', 'keyevent', 'tracing', 'rum', 'network', 'security', 'profiling', 'metric')<br>Nullable: False <br> |
+| source | string | Y | Data source, when all sources are included, this field is re(`.*`)<br>Nullable: True <br>Allow empty string: False <br>Max character length: 128 <br> |
+| sources | array | Y | Data sources, used for multiple sources, when not all sources are included (use the `source` field re(`.*`) for all sources)<br>Nullable: True <br> |
+| filters | array | Y | Filter conditions<br>Nullable: True <br> |
 
-## Additional Parameter Descriptions
+
+## Additional Parameter Notes
 
 --------------
 **1. Request Body Field Descriptions**
@@ -29,14 +31,14 @@ Create a blacklist
 | name    | string  | Y | Name (Added in iteration on 2024-11-27) |
 | desc    | string  | N | Description (Added in iteration on 2024-11-27) |
 | type    | string  | Y | Enum values ('object', 'custom_object', 'logging', 'keyevent', 'tracing', 'rum', 'network', 'security', 'profiling', 'metric') |
-| source  | string  | N | Data source, when all sources are used, `source` is re(`.*`) |
-| sources  | array  | N | Data sources, added in iteration on 2024-10-16, supports multiple source selections; use this field when not all sources are selected, with priority over the `source` field |
+| source  | string  | N | Data source, all sources, at this time source is re(`.*`)|
+| sources  | array  | N | Data sources, added in iteration on 2024-10-16, supports multiple source selections, use this field when not all sources are included, `sources` has higher priority than `source` field |
 | filter    | array  | N | Filter conditions |
 
-**2. Explanation of the `source` Field**
+**2. Source Field Description**
 
 When generating blacklist filter conditions based on the `type`, the key of the `source` field will be replaced as follows:
-| Type        | Key corresponding to the `source` field when generating filter conditions |
+| Type        | Key corresponding to the `source` field when generating filter conditions  |
 |---------------|----------|
 | object    | class  |
 | logging    | source  |
@@ -49,7 +51,8 @@ When generating blacklist filter conditions based on the `type`, the key of the 
 | profiling    | service  |
 | metric    | measurement  |
 
-**3. Description of Elements in the `filters` Array**
+
+**3. Filters Array Element Field Descriptions**
 
 | Parameter Name        | Type  | Required  | Description          |
 |---------------|----------|----|------------------------|
@@ -58,18 +61,17 @@ When generating blacklist filter conditions based on the `type`, the key of the 
 | condition    | string  | N | DQL formatted filter condition |
 | values    | array  | N | Specific values for query conditions |
 
-**4. Explanation of `operation`**
-
+**4. Operation Descriptions**
 Refer to [Line Protocol Filters](https://docs.guance.com/datakit/datakit-filter/)
 
 | Key | Description |
 |---|----|
-| in | Specified field exists in the list |
-| not_in | Specified field does not exist in the list |
+| in | The specified field is in the list |
+| not_in | The specified field is not in the list |
 | match | Regular expression match |
-| not_match | Regular expression mismatch |
+| not_match | Does not match regular expression |
 
-**Example of `filters`:**
+**Filters Example**
 ```json
 [
     {
@@ -91,6 +93,8 @@ Refer to [Line Protocol Filters](https://docs.guance.com/datakit/datakit-filter/
 ]
 ```
 
+
+
 ## Request Example
 ```shell
 curl 'https://openapi.guance.com/api/v1/blacklist/add' \
@@ -99,6 +103,8 @@ curl 'https://openapi.guance.com/api/v1/blacklist/add' \
 --data-raw '{"name":"Rule 1","desc":"","type":"logging","source":"kodo-log","filters":[{"name":"host","value":["127.0.0.1"],"operation":"in","condition":"and"}]}' \
 --compressed
 ```
+
+
 
 ## Response
 ```json

@@ -1,41 +1,40 @@
-# Get the List of Unresolved Incidents
+# Get the List of Unresolved Events
 
 ---
 
 <br />**POST /api/v1/events/abnormal/list**
 
 ## Overview
-Retrieve a list of unresolved incidents (the most recent event status for the same `df_monitor_checker_event_ref` is not `ok`) within a specified time range. Typically, this query retrieves data from the last 6 hours.
-
+Retrieve a list of unresolved events (the latest event status of the same `df_monitor_checker_event_ref` is not `ok`) within a specified time range. This typically queries data from the last 6 hours;
 
 ## Body Request Parameters
 
-| Parameter Name     | Type   | Required | Description                                                                 |
-|:-----------------|:------|:-------|:---------------------------------------------------------------------------|
-| search          | string | No    | Search incident title<br>Can be empty: False <br>                          |
-| lastStatus      | string | No    | Last status<br>Can be empty: False <br>Example: critical <br>Possible values: ['critical', 'error', 'warning', 'nodata'] <br> |
-| timeRange       | array  | Yes   | Time range, defaults to the last 6 hours, with a maximum difference of 6 hours<br>Can be empty: False <br>$minLength: 2 <br>Maximum length: 2 <br>Example: [1642563283250, 1642563304850] <br> |
-| timeRange[*]    | integer| Yes   | Millisecond timestamp<br>Can be empty: False <br>                          |
-| filters         | array  | No    | List of filter conditions<br>Can be empty: False <br>                      |
-| offset          | integer| No    | Offset<br>Can be empty: False <br>Example: 10 <br>$minValue: 0 <br>        |
-| limit           | integer| No    | Number of results per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:--------------------------|
+| search | string | No | Search event title<br>Can be empty: False <br> |
+| lastStatus | string | No | Last status<br>Can be empty: False <br>Example: critical <br>Possible values: ['critical', 'error', 'warning', 'nodata'] <br> |
+| timeRange | array | Yes | Time range, defaults to the last 6 hours, time difference should not exceed 6 hours<br>Can be empty: False <br>$minLength: 2 <br>Maximum length: 2 <br>Example: [1642563283250, 1642563304850] <br> |
+| timeRange[*] | integer | Yes | Millisecond timestamp<br>Can be empty: False <br> |
+| filters | array | No | Filter conditions list<br>Can be empty: False <br> |
+| offset | integer | No | Offset<br>Can be empty: False <br>Example: 10 <br>$minValue: 0 <br> |
+| limit | integer | No | Number of results per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
 Parameter description:
 
 The basic structure of the template includes: view structure (including chart structure, view variable structure, and chart grouping structure)
 
-**Structure explanation of `filters`**
+**Main Structure of `filters`**
 
-| Parameter Name   | Type   | Required | Description                                                                 |
-|------------------|--------|----------|-----------------------------------------------------------------------------|
-| condition        | string | No       | Relationship with the previous filter condition, possible values: `and`, `or`; default value: `and` |
-| filters          | array  | No       | Sub-filter conditions, equivalent to adding a layer of parentheses; when this parameter exists, only `condition` takes effect, other parameters will be ignored |
-| name             | string | No       | Field name to be filtered                                                   |
-| operation        | string | No       | Operator, possible values: `>`, `>=`, `<`, `<=`, `=`, `!=`, `in`, `wildcard`, `query_string`, `exists` |
-| value            | array  | No       | Value list                                                                  |
-| value[#]         | string/int/boolean | No | Can be string/number/boolean type; during data comparison, specific elements are selected from `value` based on the characteristics of `operation`. For example, if `operation` is `=`, only value[0] participates in the operation |
+| Parameter Name             | Type  | Required  | Description          |
+|-----------------------------|-------|-----------|----------------------|
+| condition           | string | No | Relationship with the previous filter condition, possible values: `and`, `or`; default value: `and` |
+| filters             | array | No | Sub-filter conditions, equivalent to adding a layer of parentheses; when this parameter exists, only `condition` takes effect, other parameters will be ignored |
+| name                | string | No | Field name to filter |
+| operation           | string | No | Operator, possible values: `>`, `>=`, `<`, `<=`, `=`, `!=`, `in`, `wildcard`, `query_string`, `exists` |
+| value               | array | No | Value list |
+| value[#]            | string/int/boolean | No | Can be string/number/boolean type; during comparison, specific elements from `value` are selected based on the characteristics of `operation`. For example, if `operation` is `=`, only value[0] is used in the calculation |
 
 **Example of `filters`**
 

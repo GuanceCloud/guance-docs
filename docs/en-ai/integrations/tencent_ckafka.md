@@ -22,77 +22,77 @@ The displayed metrics for Tencent Cloud CKafka include message throughput, laten
 
 ## Configuration {#config}
 
-### Install Func
+### Installing Func
 
-We recommend enabling Guance Integration - Extensions - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with the script installation.
+We recommend enabling the Guance Integration - Extensions - DataFlux Func (Automata): All prerequisites are automatically installed. Please proceed with the script installation.
 
 If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-### Install CKafka Collection Script
+### Installing CKafka Collection Script
 
-> Note: Please prepare a Tencent Cloud AK that meets the requirements in advance (for simplicity, you can directly grant read-only access `ReadOnlyAccess`).
+> Note: Please prepare a Tencent Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
 To synchronize CKafka monitoring data, we install the corresponding collection script: "Guance Integration (Tencent Cloud-CKafka)" (ID: `guance_tencentcloud_ckafka`)
 
-After clicking 【Install】, enter the required parameters: Tencent Cloud AK, Tencent Cloud account name.
+After clicking 【Install】, enter the required parameters: Tencent Cloud AK and Tencent Cloud account name.
 
-Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the startup script accordingly.
+Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
 
-Once enabled, you can see the corresponding automatic trigger configuration in "Management / Automatic Trigger Configuration". Click 【Execute】to run it immediately without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
+Once enabled, you can see the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Click 【Execute】to run it immediately without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
 
-By default, we collect some configurations. For details, see [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+By default, we collect some configurations; for more details, see [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
 
 ### Verification
 
-1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding tasks have the automatic trigger configuration and check the task records and logs for any anomalies.
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have been configured for automatic triggers, and check the task records and logs for any anomalies.
 2. On the Guance platform, under "Infrastructure / Custom", check if asset information exists.
-3. On the Guance platform, under "Metrics", check if the corresponding monitoring data exists.
+3. On the Guance platform, under "Metrics", check if the corresponding monitoring data is available.
 
 ## Metrics {#metric}
-After configuring Tencent Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration [Tencent Cloud Cloud Monitoring Metrics Details](https://cloud.tencent.com/document/product/248/45121){:target="_blank"}
+After configuring Tencent Cloud Cloud Monitor, the default metric set is as follows. You can collect more metrics through configuration. For detailed information, see [Tencent Cloud Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/45121){:target="_blank"}
 
 ### Performance Metrics
 
-| Metric Name          | Metric Description       | Metric Meaning                                           | Unit | Dimension       |
-| ------------------- | ---------------- | -------------------------------------------------- | ---- | ---------- |
-| InstanceProCount    | Number of Messages Produced by Instance | Number of messages produced by the instance, summed up according to the selected time granularity     | Count   | instanceId |
-| InstanceConCount    | Number of Messages Consumed by Instance | Number of messages consumed by the instance, summed up according to the selected time granularity     | Count   | instanceId |
-| InstanceConReqCount | Number of Consumption Requests by Instance | Number of consumption requests at the instance level, summed up according to the selected time granularity | Count   | instanceId |
-| InstanceProReqCount | Number of Production Requests by Instance | Number of production requests at the instance level, summed up according to the selected time granularity | Count   | instanceId |
+| Metric Name          | Metric Description       | Meaning                                           | Unit | Dimension       |
+| -------------------- | ------------------------ | ------------------------------------------------- | ---- | --------------- |
+| InstanceProCount     | Instance Message Production Count | Number of messages produced by the instance, aggregated over the selected time granularity | Count | instanceId      |
+| InstanceConCount     | Instance Message Consumption Count | Number of messages consumed by the instance, aggregated over the selected time granularity | Count | instanceId      |
+| InstanceConReqCount  | Instance Consumption Request Count | Number of consumption requests made by the instance, aggregated over the selected time granularity | Count | instanceId      |
+| InstanceProReqCount  | Instance Production Request Count | Number of production requests made by the instance, aggregated over the selected time granularity | Count | instanceId      |
 
 ### System Metrics
 
-| Metric Name        | Metric Description     | Metric Meaning                                 | Unit | Dimension       |
-| ----------------- | -------------- | ---------------------------------------- | ---- | ---------- |
-| InstanceDiskUsage | Disk Usage Percentage | Current disk usage as a percentage of the total disk capacity of the instance | %    | instanceId |
+| Metric Name        | Metric Description     | Meaning                                 | Unit | Dimension       |
+| ------------------ | ---------------------- | --------------------------------------- | ---- | --------------- |
+| InstanceDiskUsage  | Disk Usage Percentage  | Percentage of current disk usage relative to the total disk capacity of the instance | %    | instanceId      |
 
 ### Cumulative Usage Metrics
 
-| Metric Name                         | Metric Description                              | Metric Meaning                                                     | Unit | Dimension       |
-| ---------------------------------- | --------------------------------------- | ------------------------------------------------------------ | ---- | ---------- |
-| InstanceConnectCount               | Number of Connections | Number of client-server connections                                       | Count   | instanceId |
-| InstanceConFlow                    | Consumption Traffic | Consumption traffic (excluding replica traffic), summed up according to the selected time granularity | MB   | instanceId |
-| InstanceMaxConFlow                 | Peak Consumption Bandwidth | Peak consumption bandwidth (no concept of replicas during consumption)                   | MB/s | instanceId |
-| InstanceMaxProFlow                 | Peak Production Bandwidth | Peak production bandwidth (excluding replica bandwidth)                 | MB/s | instanceId |
-| InstanceMsgCount                   | Total Number of Persisted Messages | Total number of persisted messages (excluding replicas), latest value taken according to the selected time granularity | Count   | instanceId |
-| InstanceMsgHeap                    | Disk Usage | Disk usage (including replicas), latest value taken according to the selected time granularity     | MB   | instanceId |
-| InstanceProFlow                    | Production Traffic | Production traffic (excluding replica traffic), summed up according to the selected time granularity | MB   | instanceId |
-| InstanceConnectPercentage          | Connection Percentage | Connection percentage (client and server connections as a percentage of quota)           | %    | instanceId |
-| InstanceConsumeBandwidthPercentage | Consumption Bandwidth Percentage | Consumption bandwidth percentage (instance consumption bandwidth as a percentage of quota)                 | %    | instanceId |
-| InstanceConsumeGroupNum            | Number of Consumer Groups | Number of consumer groups                                             | Count   | instanceId |
-| InstanceConsumeGroupPercentage     | Consumer Group Percentage | Consumer group percentage (number of consumer groups as a percentage of quota)                 | %    | instanceId |
-| InstanceConsumeThrottle            | Number of Consumption Throttling Events | Number of consumption throttling events                                             | Count   | instanceId |
-| InstancePartitionNum               | Number of Partitions | Number of partitions                                          | Count   | instanceId |
-| InstancePartitionPercentage        | Partition Percentage (Quota Usage) | Partition percentage (quota usage)                      | %    | instanceId |
-| InstanceProduceBandwidthPercentage | Production Bandwidth Percentage | Production bandwidth percentage (quota usage)                         | %    | instanceId |
-| InstanceProduceThrottle            | Number of Production Throttling Events | Number of production throttling events                                             | Count   | instanceId |
-| InstanceReplicaProduceFlow         | Peak Production Bandwidth | Peak production bandwidth (including replica bandwidth)                   | MB/s | instanceId |
-| InstanceTopicNum                   | Number of Topics | Number of topics                                              | Count   | instanceId |
-| InstanceTopicPercentage            | Topic Percentage | Topic percentage (quota usage)                                | %    | instanceId |
+| Metric Name                         | Metric Description                              | Meaning                                                     | Unit | Dimension       |
+| ----------------------------------- | ----------------------------------------------- | ----------------------------------------------------------- | ---- | --------------- |
+| InstanceConnectCount                | Instance Connection Count                       | Number of connections between clients and servers            | Count | instanceId      |
+| InstanceConFlow                     | Instance Consumption Traffic                    | Instance consumption traffic (excluding replica traffic), aggregated over the selected time granularity | MB   | instanceId      |
+| InstanceMaxConFlow                  | Instance Consumption Peak Bandwidth             | Instance consumption peak bandwidth (no concept of replicas) | MB/s | instanceId      |
+| InstanceMaxProFlow                  | Instance Production Peak Bandwidth              | Instance production peak bandwidth (excluding replica bandwidth) | MB/s | instanceId      |
+| InstanceMsgCount                    | Instance Total Messages Persisted               | Total number of messages persisted to disk (excluding replicas), latest value within the selected time granularity | Count | instanceId      |
+| InstanceMsgHeap                     | Instance Disk Usage                             | Instance disk usage (including replicas), latest value within the selected time granularity | MB   | instanceId      |
+| InstanceProFlow                     | Instance Production Traffic                     | Instance production traffic (excluding replica traffic), aggregated over the selected time granularity | MB   | instanceId      |
+| InstanceConnectPercentage           | Instance Connection Percentage                  | Percentage of instance connections (client and server connections as a percentage of quota) | %    | instanceId      |
+| InstanceConsumeBandwidthPercentage  | Instance Consumption Bandwidth Percentage       | Percentage of instance consumption bandwidth (as a percentage of quota) | %    | instanceId      |
+| InstanceConsumeGroupNum             | Instance Consumption Group Count                | Number of instance consumption groups                        | Count | instanceId      |
+| InstanceConsumeGroupPercentage      | Instance Consumption Group Percentage           | Percentage of instance consumption groups (as a percentage of quota) | %    | instanceId      |
+| InstanceConsumeThrottle             | Instance Consumption Throttling Count           | Number of times instance consumption was throttled           | Count | instanceId      |
+| InstancePartitionNum               | Instance Partition Count                        | Number of partitions in the instance                         | Count | instanceId      |
+| InstancePartitionPercentage         | Instance Partition Percentage (Quota Usage)     | Percentage of partitions used (as a percentage of quota)     | %    | instanceId      |
+| InstanceProduceBandwidthPercentage  | Instance Production Bandwidth Percentage        | Percentage of instance production bandwidth (as a percentage of quota) | %    | instanceId      |
+| InstanceProduceThrottle             | Instance Production Throttling Count            | Number of times instance production was throttled            | Count | instanceId      |
+| InstanceReplicaProduceFlow          | Instance Production Peak Bandwidth (Including Replicas) | Instance production peak bandwidth (including replica bandwidth) | MB/s | instanceId      |
+| InstanceTopicNum                    | Instance Topic Count                            | Number of topics in the instance                             | Count | instanceId      |
+| InstanceTopicPercentage             | Instance Topic Percentage (Quota Usage)         | Percentage of topics used (as a percentage of quota)         | %    | instanceId      |
 
 ## Objects {#object}
 
-The collected Tencent Cloud CKafka object data structure can be viewed in "Infrastructure - Custom"
+The collected Tencent Cloud CKafka object data structure can be viewed under "Infrastructure - Custom" objects.
 
 ```json
 {
@@ -107,7 +107,7 @@ The collected Tencent Cloud CKafka object data structure can be viewed in "Infra
   "message": "{\"AllowDowngrade\": true, \"Bandwidth\": 160, \"ClusterType\": \"CLOUD_EKS_TSE\", \"CreateTime\": 1692066710, \"Cvm\": 1, \"DiskSize\": 200, \"DiskType\": \"CLOUD_BASIC\", \"ExpireTime\": -62170009580, \"Features\": [], \"Healthy\": 1, \"HealthyMessage\": \"\", \"InstanceId\": \"ckafka-jamo82wo\", \"InstanceName\": \"\\u672a\\u547d\\u540d\", \"InstanceType\": \"profession\", \"IsInternal\": 0, \"MaxPartitionNumber\": 400, \"MaxTopicNumber\": 200, \"PartitionNumber\": 3, \"PublicNetwork\": 3, \"PublicNetworkChargeType\": \"BANDWIDTH_POSTPAID_BY_HOUR\", \"RebalanceDeadLineTimeStamp\": \"0000-00-00 00:00:00\", \"RebalanceTime\": \"0000-00-00 00:00:00\", \"RegionId\": \"ap-shanghai\", \"RenewFlag\": 0, \"Status\": 1, \"SubnetId\": \"subnet-bp2jqhcj\", \"Tags\": [], \"TopicNum\": 1, \"Version\": \"2.4.1\", \"Vip\": \"172.17.32.16\", \"VipList\": [{\"Vip\": \"172.17.32.16\", \"Vport\": \"9092\"}], \"VpcId\": \"vpc-kcphyzty\", \"Vport\": \"9092\", \"ZoneId\": 200002, \"ZoneIds\": [200002, 200003]}",
   "__docid": "CO_31e0187c3c5c2842b60f88a87c11eca0",
   "InstanceId": "ckafka-jamo82wo",
-  "InstanceName": "Unspecified",
+  "InstanceName": "Unnamed",
   "Status": "1",
   "VpcId": "vpc-kcphyzty",
   "Cvm": "1",

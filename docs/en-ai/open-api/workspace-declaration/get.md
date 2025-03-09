@@ -32,10 +32,10 @@ curl 'https://openapi.guance.com/api/v1/workspace/declaration/get' \
 {
     "code": 200,
     "content": {
-        "sub-department": "Sub-department 1",
+        "subdepartment": "subdepartment1",
         "business": [
-            "Business Unit",
-            "Industry Department One"
+            "business unit",
+            "industry department one"
         ],
         "declaration": null,
         "organization": "88"

@@ -4,43 +4,43 @@
 
 ## Introduction
 
-Kubernetes provides a Layer 4 proxy for accessing applications deployed in Pods. This type of Layer 4 proxy Service offers four access methods:
+Kubernetes provides a Layer 4 proxy to access applications deployed in Pods. This type of Service with a Layer 4 proxy, Kubernetes offers four ways to access services:
 
-1. ClusterIP: Accessible by other applications within the cluster, not externally accessible.
-2. NodePort: Opens a specified port on all nodes, allowing external access via IP+port. If no specific NodePort is defined, Kubernetes will randomly assign a port from 30000–32767.
-3. LoadBalancer: Built on top of NodePort, it uses cloud provider load balancers to forward traffic to services.
-4. ExternalName: By returning a CNAME and its value, it maps services to the content of the `externalName` field.
+1. ClusterIP: Available for other applications within the cluster, not accessible externally.
+2. NodePort: Opens a specified port on all nodes, external access can be achieved via IP+port. If no specific NodePort port is defined, it defaults to randomly assigning a port between 30000–32767.
+3. LoadBalancer: On top of NodePort, using a load balancer provided by cloud service providers to forward traffic to the service.
+4. ExternalName: By returning a CNAME and its value, you can map the service to the content of the externalName field.
 
-None of these four methods support accessing applications within the cluster via domain names. To access applications deployed in Kubernetes using domain names, the simplest approach is to deploy a Layer 7 proxy, Nginx, which forwards requests based on domain names. When new deployments occur, the Nginx configuration needs to be updated. To ensure that updates to the configuration are transparent to other applications, Ingress was introduced.
+None of these four methods allow access to applications within the cluster via domain names. To access applications deployed in Kubernetes through a domain name, the simplest way is to deploy a Layer 7 proxy like Nginx in the cluster, which forwards requests to the corresponding Service based on the domain name. When new deployments occur, the Nginx configuration needs to be updated. To ensure that updates to the configuration do not affect other applications, Ingress was introduced.
 
 ![image](../images/ingress-nginx-1.png)
 
-Ingress can route HTTP and HTTPS requests to internal services within the Kubernetes cluster, ultimately accessing the backend Pods of the Service. It can provide an external accessible URL for the Service, balance traffic, and offer virtual hosting based on domain names.
+Ingress can forward HTTP and HTTPS requests to internal services within the Kubernetes cluster, ultimately accessing the backend Pods of the Service. It can provide external accessible URLs for Services, balance traffic, and offer virtual hosting based on domain names.
 
 ![image](../images/ingress-nginx-2.png)
 
-Ingress consists of two main components: Ingress Controller and Ingress. Common Ingress implementations include Traefik Ingress and Nginx Ingress. This article focuses on Nginx Ingress. The Ingress Controller interacts with the Kubernetes API to dynamically detect changes in Ingress service rules within the cluster, reads these rules, and forwards them to the corresponding Services in the Kubernetes cluster according to the Ingress rules. Ingress configurations define these rules, specifying which domains correspond to which Services in the Kubernetes cluster. Based on the Nginx configuration template in the Ingress Controller, a corresponding Nginx configuration is generated, dynamically loaded by the Ingress Controller, written into the running Nginx service inside the Ingress Controller Pod, and reloaded to make the configuration effective.
+Ingress consists of two main components: Ingress Controller and Ingress. Common Ingresses include Traefik Ingress and Nginx Ingress. This article uses Nginx Ingress as an example. The Ingress Controller interacts with the Kubernetes API to dynamically detect changes in Ingress service rules within the Kubernetes cluster, then reads these rules and forwards them to the corresponding Services according to the Ingress rules. Ingress configures these rules, specifying which domain corresponds to which Service in the Kubernetes cluster. Based on the Nginx configuration template in the Ingress Controller, a corresponding Nginx configuration is generated. The Ingress Controller dynamically loads these configurations and writes them into the Nginx service running inside the Ingress Controller Pod, then reloads to make the configuration effective.
 
-For Kubernetes clusters deploying Ingress, it becomes crucial to monitor resources such as CPU usage, memory consumption, configuration file loading, and forwarding success rates of the Ingress Controller.
+For Kubernetes clusters with deployed Ingress, it becomes very important to observe resources such as CPU usage, memory consumption, configuration file loading, and forwarding success rate of the Ingress Controller.
 
 **Ingress Working Principle:**
 
 1. A client initiates a request to [http://myNginx.com](http://mynginx.com).
 2. The client's DNS server returns the IP address of the Ingress controller.
-3. The client sends an HTTP request to the Ingress controller with the Host header set to [myNginx.com](http://mynginx.com).
-4. Upon receiving the request, the controller determines which service the client is trying to access from the headers, identifies the pod's IP through the associated endpoint object.
-5. The client's request is forwarded to the specific pod for execution.
+3. The client sends an HTTP request to the Ingress controller, specifying [myNginx.com](http://mynginx.com) in the Host header.
+4. Upon receiving the request, the controller determines which service the client is trying to access from the headers, checks the pod's IP via the endpoint object associated with that service.
+5. The client's request is forwarded to the specific pod for processing.
 
 ![image](../images/ingress-nginx-3.png)
 
 ## Prerequisites
 
 - [Install Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/)
-- Install DataKit: Log in to the [Guance Console](https://console.guance.com/), click on 「Integration」 - 「DataKit」 - 「Kubernetes」
+- Install DataKit: Log in to the [<<< custom_key.brand_name >>> Console](https://console.guance.com/), click 「Integration」 - 「DataKit」 - 「Kubernetes」
 
 ### Deploy Ingress
 
-It is recommended to deploy Ingress using DaemonSet in production environments and set `hostNetwork` to `true` to allow Nginx to use the host machine's network directly, then access Ingress via the cloud provider's load balancer.
+In production environments, it is recommended to deploy Ingress using DaemonSet and set `hostNetwork` to `true`, allowing Nginx to directly use the host network, then access Ingress via a load balancer provided by the cloud provider.
 
 #### 1 Download deploy.yaml
 
@@ -61,25 +61,25 @@ registry.cn-hangzhou.aliyuncs.com/google_containers/kube-webhook-certgen:v1.1.1
 
 ##### 2.2 Modify Deployment Resource File
 
-Find the part where `kind: Deployment` and modify as follows:
+Find the kind: Deployment section and modify it as follows:
 
 ```yaml
-kind: DaemonSet # Modify
+kind: DaemonSet # Modified
 
 ---
-hostNetwork: true # Add
-dnsPolicy: ClusterFirstWithHostNet # Modify
+hostNetwork: true # Added
+dnsPolicy: ClusterFirstWithHostNet # Modified
 ```
 
 ```shell
 kubectl apply -f deploy.yaml
 ```
 
-## Metric Collection
+## Metrics Collection
 
 ### Enable Input
 
-To collect Ingress metrics data in Guance, enable the prom plugin in DataKit. Specify the exporter's URL in the prom plugin configuration. For collecting Ingress Controller metrics in the Kubernetes cluster, it is recommended to add annotations. Open the `deploy.yaml` file where Ingress is deployed, find the DaemonSet section modified in the previous step, and add annotations.
+To collect Ingress metrics data in <<< custom_key.brand_name >>>, you need to enable the prom plugin in DataKit and specify the exporter's URL in the prom plugin configuration. For collecting Ingress Controller metrics in a Kubernetes cluster, it is recommended to add annotations using annotations. Open the deploy.yaml file where Ingress is deployed, find the DaemonSet section modified in the previous step, and add annotations.
 
 ```yaml
 annotations:
@@ -88,6 +88,8 @@ annotations:
       url = "http://$IP:10254/metrics"
       source = "prom-ingress"
       metric_types = ["counter", "gauge", "histogram"]
+      # metric_name_filter = ["cpu"]
+      # measurement_prefix = ""
       measurement_name = "prom_ingress"
       interval = "60s"
       tags_ignore = ["build","le","path","method","release","repository"]
@@ -101,16 +103,16 @@ annotations:
 
 ![image](../images/ingress-nginx-4.png)
 
-Parameter Explanation:
+Parameter Explanation
 
-- url: Exporter URLs, multiple URLs separated by commas, example ["[http://127.0.0.1:9100/metrics",](http://127.0.0.1:9100/metrics",) "[http://127.0.0.1:9200/metrics"]](http://127.0.0.1:9200/metrics"])
+- url: Exporter URLs, multiple URLs are separated by commas, e.g., ["[http://127.0.0.1:9100/metrics",](http://127.0.0.1:9100/metrics",) "[http://127.0.0.1:9200/metrics"]](http://127.0.0.1:9200/metrics"])
 - source: Collector alias.
 - metric_types: Metric types, options are counter, gauge, histogram, summary.
-- measurement_name: Mearsurement name.
+- measurement_name: Measurement set name.
 - interval: Collection frequency.
-- inputs.prom.measurements: Metrics with the prefix are grouped under the name measurement set.
+- inputs.prom.measurements: Metrics with the specified prefix are grouped into the named measurement set.
 - tags_ignore: Ignored tags.
-- metric_name_filter: Filters for metrics, only collects necessary metric items.
+- metric_name_filter: Filters metrics, only collecting necessary items.
 
 Annotations support the following wildcards:
 
@@ -144,6 +146,7 @@ Write the deployment file for Nginx `nginx-deployment.yaml`
           labels:
             app: backend
         spec:
+          # nodeName: df-k8s-node2
           containers:
             - name: nginx
               image: nginx:latest
@@ -167,7 +170,7 @@ Write the deployment file for Nginx `nginx-deployment.yaml`
           targetPort: 80
     ```
 
-Write the corresponding `nginx-ingress.yaml`, according to this rule, if the domain is mynginx.com, it will forward to the Nginx - Service.
+Write the corresponding `nginx-ingress.yaml`, based on this rule, if the domain is mynginx.com, it will forward to the Nginx - Service Service.
 
 ??? quote "`nginx-ingress.yaml`"
 
@@ -194,31 +197,31 @@ Write the corresponding `nginx-ingress.yaml`, according to this rule, if the dom
 Deployment Example
 
 ```shell
-kubectl apply -f nginx-deployment.yaml
-kubectl apply -f nginx-ingress.yaml
+kubectl apply -f  nginx-deployment.yaml
+kubectl apply -f  nginx-ingress.yaml
 ```
 
 Test Request, where
 
 - `8.136.204.98` is the IP of the node in the Kubernetes cluster where Ingress is deployed
-- `mynginx.com` is the host in `nginx-ingress.yaml`
+- `mynginx.com` is the host defined in `nginx-ingress.yaml`
 
 ```shell
 curl -v http://8.136.204.98 -H 'host: mynginx.com'
 ```
 
-### View Metric Data
+### View Metrics Data
 
-Log in to [Guance](https://console.guance.com/), in 「Metrics」 find the `prom_ingress` metric. `prom_ingress` is the value of the `measurement_name` parameter in annotations.
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), under 「Metrics」 find the prom_ingress metric. The prom_ingress is the value of the measurement_name parameter in the annotations.
 
 ![image](../images/ingress-nginx-6.png)
 
-## Monitor Ingress
+## Observing Ingress
 
 ### Ingress Monitoring View
 
-Log in to [Guance](https://console.guance.com/), go to 「Scenarios」 - 「Create Dashboard」, search for 「Ingress Nginx Monitoring View」 in the template library, and click 「Confirm」.
+Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), go to 「Scenes」 - 「Create Dashboard」, search for 「Ingress Nginx Monitoring View」 in the template library, and click 「Confirm」.
 
-The Ingress performance metrics displayed include the average CPU usage, average memory usage, total network requests/responses, number of Ingress Config loads, result of the last Ingress Config load, and Ingress forwarding success rate.
+The Ingress performance metrics displayed include the average CPU usage, average memory usage, total network requests/responses, number of Ingress Config loads, result of the last Ingress Config load, and the forwarding success rate of Ingress.
 
 ![image](../images/ingress-nginx-7.png)

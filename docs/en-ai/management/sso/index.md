@@ -1,21 +1,21 @@
 # SSO Management
 ---
 
-Guance supports SSO management based on SAML, OIDC/Oauth2.0 protocols, allowing enterprises to manage employee information locally in their IdP (Identity Provider) without needing user synchronization between Guance and the enterprise IdP. Enterprise employees can log in and access Guance through specified roles.
+<<< custom_key.brand_name >>> supports SSO management based on SAML, OIDC/Oauth2.0 protocols, allowing enterprises to manage employee information in their local IdP (Identity Provider). There is no need for user synchronization between <<< custom_key.brand_name >>> and the enterprise IdP; employees can log in to <<< custom_key.brand_name >>> with specified roles.
 
-In SSO Management, you can:
+In SSO management, you can:
 
-- [Configure corporate domains for employees to set up single sign-on](#corporate)
-- [Configure corporate domains with role mapping for more refined single sign-on solutions](#saml-mapping)
+- [Configure corporate domain names to set up single sign-on for employees](#corporate)
+- [Configure corporate domain names and enable role mapping to provide a more refined single sign-on solution](#saml-mapping)
 
 ## User SSO {#corporate}
 
-Guance supports setting up single sign-on for employees based on corporate domains. Any employee who meets the unified identity authentication of the company can log in to Guance via an email with the same domain suffix as the company domain, with access permissions selectable as read-only members or standard members.
+<<< custom_key.brand_name >>> supports setting up single sign-on for employees based on corporate domain names. Any employee who complies with the unified identity authentication of the company can log in to <<< custom_key.brand_name >>> via an email address with the same suffix as the corporate domain name, with access permissions that can be selected as read-only member or standard member.
 
-In Guance workspace **Management > Member Management > SSO Management > User SSO**, choose either [SAML](configuration-faq.md#saml) or [OIDC](#oidc) as needed to start setting up SSO single sign-on for employees.
+In <<< custom_key.brand_name >>> workspace **Management > Member Management > SSO Management > User SSO**, choose [SAML](configuration-faq.md#saml) or [OIDC](#oidc) as needed to start setting up SSO single sign-on for employees.
 
-- Guance supports creating multiple SSO IDP configurations within a workspace, with no more than 10 SSO configurations per workspace.
-- If multiple workspaces are configured with the same identity provider SSO single sign-on, users can switch between different workspaces to view data after logging in via SSO single sign-on by clicking the workspace option in the top-left corner of Guance.
+- <<< custom_key.brand_name >>> supports creating multiple SSO IDP configurations within a workspace, with each workspace's SSO configuration not exceeding 10;
+- If multiple workspaces are configured with the same identity provider SSO single sign-on simultaneously, users can switch between different workspaces to view data after logging in through SSO single sign-on by clicking the workspace options in the top-left corner of <<< custom_key.brand_name >>>.
 
 ![](../img/5.sso_mapping_6.png)
 
@@ -23,70 +23,70 @@ In Guance workspace **Management > Member Management > SSO Management > User SSO
 
 ![](../img/5.sso_mapping_7.png)
 
-| Field        | Description                                                                                   |
-| -------------- | ------------------------------------------------------------------------------------------------ |
-| Type          | Select [SAML](configuration-faq.md#saml).                                                        |
-| Identity Provider | Entity platform used for identity management services.                                             |
-| Metadata Document | XML document provided by the IdP (Identity Provider).                                          |
-| Remarks       | Customizable description information for the identity provider added by the user.                        |
-| Access Restrictions | Verifies that the email suffix entered during single sign-on matches the domain name. Only emails with matching domain suffixes have permission to access the identity provider's single sign-on link. Users can dynamically create Guance member accounts upon first login without pre-creating them in the workspace. |
-| Role Authorization | Assign roles to SSO accounts logging in for the first time; existing member accounts remain unaffected.<br/>:warning: If the [SAML Mapping](#saml-mapping) feature is enabled within the workspace, roles will be assigned based on the mapping rules when members log in.<br/>For role permissions, refer to [Role Management](../role-management.md). |
-| [Session Persistence](#login-hold-time) | Set idle session persistence time and maximum session persistence time for single sign-on members. Sessions will expire if inactive beyond the set times. |
+| Field      | Description                          |
+| ----------- | ------------------------------------ |
+| Type       | Choose [SAML](configuration-faq.md#saml).  |
+| Identity Provider      | The entity platform providing identity management services.                          |
+| Metadata Document       | XML document provided by the IdP (Identity Provider). |
+| Remarks       | Customizable descriptive information added by users regarding the identity provider.  |
+| Access Restrictions    | Used to verify whether the email suffix entered during single sign-on matches the domain name. Only emails with matching domain suffixes have permission to obtain the single sign-on access link from this identity provider. Users can dynamically create <<< custom_key.brand_name >>> member accounts upon first login without pre-creating them in the workspace. |
+| Role Authorization       | Grant roles to SSO accounts logging in for the first time, leaving existing member accounts unaffected.<br/>:warning: If the [SAML Mapping](#saml-mapping) feature is enabled in the workspace, members will be assigned roles according to the mapping rules when they log in.<br/>For role permissions, refer to [Role Management](../role-management.md).  |
+| [Session Persistence](#login-hold-time)       | Set the idle session persistence time and maximum session persistence time for single sign-on members. Sessions will expire if inactive beyond these times. |
 
 #### Obtain Entity ID and Assertion URL {#obtain}
 
-After completing the above information, click **Confirm** to obtain the **Entity ID** and **Assertion URL**. Follow the identity provider's requirements to complete the corresponding SAML configuration.
+After completing the above information, click **Confirm** to get the **Entity ID** and **Assertion URL**. Once the corresponding SAML configuration is completed according to the identity provider's requirements, it can be used.
 
-| Field         | Description                                                                                         |
-| --------------- | ----------------------------------------------------------------------------------------------------- |
-| Login URL      | Generated based on the uploaded metadata document, this URL allows access to only one workspace.                 |
-| Metadata       | Generated based on the uploaded metadata document, this is the Guance SSO metadata document.                       |
-| Entity ID      | Generated based on the uploaded metadata document, this is the entity ID for Guance SSO login responses used by the identity provider to identify the service provider (SP), such as Guance. |
-| Assertion URL  | Generated based on the uploaded metadata document, this is the response target URL for Guance SSO login used by the identity provider for single sign-on. |
+| Field      | Description                  |
+| ----------- | ------------------- |
+| Login URL       | <<< custom_key.brand_name >>> SSO login URL generated based on the uploaded metadata document, which can only access one workspace.  |
+| Metadata      | <<< custom_key.brand_name >>> SSO metadata document generated based on the uploaded metadata document.                  |
+| Entity ID      | <<< custom_key.brand_name >>> SSO login response entity ID generated based on the uploaded metadata document, used to identify the service provider (SP) in the identity provider, such as <<< custom_key.brand_name >>>.                  |
+| Assertion URL      | <<< custom_key.brand_name >>> SSO login response target URL generated based on the uploaded metadata document, used by the identity provider to initiate single sign-on.                  |
 
-After obtaining the **Entity ID** and **Assertion URL**, click **Confirm** or **Cancel** to return to SSO Management.
+After obtaining the **Entity ID** and **Assertion URL**, click **Confirm** or **Cancel** to return to SSO management.
 
 ![](../img/5.sso_mapping_8.png)
 
 #### Session Persistence {#login-hold-time}
 
-When configuring SSO single sign-on, you can set a uniform login persistence time for corporate members logging in via SSO, including idle session persistence time and maximum session persistence time.
+When configuring SSO single sign-on, you can set a uniform login persistence time for enterprise members accessing via SSO, including idle session persistence time and maximum session persistence time.
 
-- Idle session persistence time: Supports settings from 180 to 1440 minutes, defaulting to 180 minutes;
-- Maximum session persistence time: Supports settings from 0 to 7 days, where 0 means never timeout, defaulting to 7 days.
+- Idle session persistence time: Support range 180 ~ 1440 minutes, default is 180 minutes;
+- Maximum session persistence time: Support range 0 ~ 7 days, where 0 indicates never timeout, default is 7 days.
 
 ???+ abstract "Example Explanation"
 
-    After configuring SSO single sign-on, if the SSO login persistence time is updated, previously logged-in SSO member sessions will retain their original expiration times, while new SSO members logging in after the update will follow the latest settings.
-
+    After configuring SSO single sign-on, if the SSO login persistence time is updated, the session expiration time for previously logged-in SSO members remains unchanged. Members logging in after the update follow the newly set login persistence time.
+    
     For example:
 
-    - When configuring SSO single sign-on, the idle session timeout is set to 30 minutes. Member A logs into Guance at this point, so their SSO login account has an idle session timeout of 30 minutes.
-    - Later, the administrator updates the idle session timeout to 60 minutes. Member A's SSO login account still has an idle session timeout of 30 minutes. However, any new member B logging in afterward will have an idle session timeout of 60 minutes, and so on.
+    - When configuring SSO single sign-on, the idle session expiration time is set to 30 minutes. Member A logs into <<< custom_key.brand_name >>> at this point, so their SSO login account's idle session expiration time is 30 minutes;
+    - Later, the administrator updates the idle session expiration time to 60 minutes. Member A's SSO login account's idle session expiration time remains 30 minutes; however, if Member B logs into <<< custom_key.brand_name >>> afterward, their SSO login account's idle session expiration time will be 60 minutes, and so on.
 
 ### OIDC {#oidc}
 
-Click into **Management > Member Management > SSO Management > OIDC > Create New Identity Provider**, which defaults to **Standard OIDC Configuration**. If you are not using standard OIDC configuration, you can [switch pages for configuration](#non-standard).
+Click into **Management > Member Management > SSO Management > OIDC > Create Identity Provider**, the default entry is **Standard OIDC Configuration**. If you are not using standard OIDC configuration, you can [switch pages for configuration](#non-standard).
 
 ![](../img/oidc.png)
 
 :material-numeric-1-circle: Connection Configuration:
 
-| Field            | Description                                                                                           |
-| ------------------ | ------------------------------------------------------------------------------------------------------- |
-| Type              | Select [OIDC](configuration-faq.md#saml).                                                              |
-| Identity Provider Name | The entity platform providing identity management services.                                               |
-| Remarks           | Customizable description information for the identity provider added by the user.                             |
-| Identity Provider URL | Full URL of the identity provider, also the discovery address, e.g., https://guance.example.com.             |
-| Client ID         | Client ID provided by the authentication service.                                                     |
-| Client Secret     | Used with the client ID to authenticate the client application.                                         |
-| Authorization Request Scope | Scopes for authorization requests; besides the default scopes, additional claims can be manually added; default selected `openid`, `profile`, and `email`. You can add `address` and `phone` claims as needed. |
+| Field      | Description                          |
+| ----------- | ------------------------------------ |
+| Type       | Select [OIDC](configuration-faq.md#saml).  |
+| Identity Provider Name      | The entity platform providing identity management services.                          |
+| Remarks       | Customizable descriptive information added by users regarding the identity provider.  |
+| Identity Provider URL       | Complete URL of the identity provider, also the service discovery address, e.g., https://guance.example.com. |
+| Client ID    | Client ID provided by the authentication service. |
+| Client Secret       | Client secret used together with the client ID to authenticate the client application.  |
+| Authorization Request Scope      | Authorization request scope, additional claims can be manually added besides the default scopes; default includes `openid`, `profile`, and `email`. You can add `address` and `phone` as needed.|
 
 ![](../img/oidc-1.png)
 
 :material-numeric-2-circle: Mapping Configuration:
 
-To achieve SSO login, map the identity provider account information to Guance account information. The main fields include:
+To achieve SSO login, the account information from the identity provider needs to be mapped to <<< custom_key.brand_name >>> account information. The fields mainly include:
 
 <img src="../img/oidc-2.png" width="70%" >
 
@@ -96,37 +96,38 @@ To achieve SSO login, map the identity provider account information to Guance ac
 
 :material-numeric-3-circle: Login Configuration:
 
-| Field            | Description                                                                                           |
-| ------------------ | ------------------------------------------------------------------------------------------------------- |
-| Access Restrictions | Verifies that the email suffix entered during single sign-on matches the domain name. Only emails with matching domain suffixes have permission to access the identity provider's single sign-on link. Users can dynamically create Guance member accounts upon first login without pre-creating them in the workspace. |
-| Role Authorization | Assign roles to SSO accounts logging in for the first time; existing member accounts remain unaffected.<br/>:warning: If the [Role Mapping](#saml-mapping) feature is enabled within the workspace, roles will be assigned based on the mapping rules when members log in.<br/>For role permissions, refer to [Role Management](../role-management.md). |
-| [Session Persistence](#login-hold-time) | Set idle session persistence time and maximum session persistence time for single sign-on members. Sessions will expire if inactive beyond the set times. |
+| Field      | Description                          |
+| ----------- | -------------------------- |
+| Access Restrictions    | Used to verify whether the email suffix entered during single sign-on matches the domain name. Only emails with matching domain suffixes have permission to obtain the single sign-on access link from this identity provider. Users can dynamically create <<< custom_key.brand_name >>> member accounts upon first login without pre-creating them in the workspace. |
+| Role Authorization       | Grant roles to SSO accounts logging in for the first time, leaving existing member accounts unaffected.<br/>:warning: If the [Role Mapping](#saml-mapping) feature is enabled in the workspace, members will be assigned roles according to the mapping rules when they log in.<br/>For role permissions, refer to [Role Management](../role-management.md).  |
+| [Session Persistence](#login-hold-time)       | Set the idle session persistence time and maximum session persistence time for single sign-on members. Sessions will expire if inactive beyond these times.  |
 
 <img src="../img/oidc-3.png" width="70%" >
 
-???- abstract "User-side Configuration Notes for OIDC"
+???- abstract "User-side OIDC Configuration Precautions"
 
-    1. Authorization Mode: Guance only supports the `authorization_code` authorization mode; the response type must be `code`.
-    2. `id_token` Signature Algorithm: Currently only supports `HS256`.
+    1. Authorization Mode: <<< custom_key.brand_name >>> only supports the `authorization_code` authorization mode; the response type must be `code`;
+    2. `id_token` Signature Algorithm: Currently only supports `HS256`;
     3. `code` Exchange `token` Authentication Method:
 
         - Default support: `client_secret_basic`
+
         - Custom methods supported: `client_secret_post`, `client_secret_basic`, `none`
 
-    4. `scope` Range: Defaults to `openid profile email phone`
+    4. `scope` Scope: Default is `openid profile email phone`
 
-        - Custom method: Must include `openid`, other scopes can be customized
+        - Custom method: Must include `openid`, others can be customized
 
-    **Note**: Although customization is possible, the returned result must contain `email` information, and optionally `phone_number` information.
+    **Note**: Although customization is allowed, the returned result must contain `email` information, optionally returning `phone_number` information.
 
 
-#### Non-Standard OIDC Configuration {#non-standard}
+#### Non-standard OIDC Configuration {#non-standard}
 
-???- abstract "Understanding Non-Standard OIDC Configuration?"
+???- abstract "Understanding Non-standard OIDC Configuration?"
 
-    Non-standard configurations generally occur because customers use Oauth2 for identity authentication, but Oauth2 does not specify an **account information retrieval interface**, leading to significant differences in obtaining user information. Since successful mapping relies on accurate information, this step can vary widely. Additionally, due to different interface design rules on the customer side, **parameter case styles may be inconsistent**, which also results in non-standard configurations.
+    Non-standard configurations generally occur when customers use OAuth2 for identity authentication. However, OAuth2 does not specify an **interface to retrieve account information**, leading to significant differences in retrieving user information, which is crucial for establishing successful mapping relationships. Additionally, due to varying interface design rules across customers, there may be inconsistencies in **parameter case styles**, making it non-standard.
 
-Enter **Management > Member Management > SSO Management > OIDC > Create New Identity Provider**, and click the upper-right corner to switch to the standard OIDC configuration page:
+Enter **Management > Member Management > SSO Management > OIDC > Create Identity Provider**, and click the top-right corner to switch to the standard OIDC configuration page:
 
 ![](../img/oidc-5.png)
 
@@ -134,129 +135,130 @@ Enter **Management > Member Management > SSO Management > OIDC > Create New Iden
 
 :material-numeric-1-circle: Connection Configuration:
 
-| Field            | Description                                                                                           |
-| ------------------ | ------------------------------------------------------------------------------------------------------- |
-| Identity Provider Name | The entity platform providing identity management services.                                               |
-| Configuration File Upload | Click to download a template, fill in the relevant information, and then upload it.                             |
-| Remarks           | Customizable description information for the identity provider added by the user.                             |
+| Field      | Description                          |
+| ----------- | ------------------------------------ |
+| Identity Provider Name      | The entity platform providing identity management services.                          |
+| Configuration File Upload      | Click to download a template, fill in the required information, and upload it.                          |
+| Remarks       | Customizable descriptive information added by users regarding the identity provider.  |
 
 :material-numeric-2-circle: Login Configuration:
 
-| Field            | Description                                                                                           |
-| ------------------ | ------------------------------------------------------------------------------------------------------- |
-| Access Restrictions | Verifies that the email suffix entered during single sign-on matches the domain name. Only emails with matching domain suffixes have permission to access the identity provider's single sign-on link. Users can dynamically create Guance member accounts upon first login without pre-creating them in the workspace. |
-| Role Authorization | Assign roles to SSO accounts logging in for the first time; existing member accounts remain unaffected.<br/>:warning: If the [Role Mapping](#saml-mapping) feature is enabled within the workspace, roles will be assigned based on the mapping rules when members log in.<br/>For role permissions, refer to [Role Management](../role-management.md). |
-| [Session Persistence](#login-hold-time) | Set idle session persistence time and maximum session persistence time for single sign-on members. Sessions will expire if inactive beyond the set times. |
+| Field      | Description                          |
+| ----------- | -------------------------- |
+| Access Restrictions    | Used to verify whether the email suffix entered during single sign-on matches the domain name. Only emails with matching domain suffixes have permission to obtain the single sign-on access link from this identity provider. Users can dynamically create <<< custom_key.brand_name >>> member accounts upon first login without pre-creating them in the workspace. |
+| Role Authorization       | Grant roles to SSO accounts logging in for the first time, leaving existing member accounts unaffected.<br/>:warning: If the [Role Mapping](#saml-mapping) feature is enabled in the workspace, members will be assigned roles according to the mapping rules when they log in.<br/>For role permissions, refer to [Role Management](../role-management.md).  |
+| [Session Persistence](#login-hold-time)       | Set the idle session persistence time and maximum session persistence time for single sign-on members. Sessions will expire if inactive beyond these times.  |
 
 #### Obtain Relevant URLs
 
 After saving the identity provider information, you can obtain the **Callback URL** and **Initiate Login URL**.
 
-| Field         | Description                                                                                         |
-| --------------- | ----------------------------------------------------------------------------------------------------- |
-| Callback URL   | The callback address agreed upon in the OIDC protocol after successful account authentication.                  |
-| Initiate Login URL | Used to enter the OIDC protocol flow from the Guance end, this is the URL initiated by the provider for login. |
+| Field      | Description                  |
+| ----------- | ------------------- |
+| Callback URL      | The callback address agreed upon in the OIDC protocol after the account authentication service verifies the credentials.                  |
+| Initiate Login URL      | Used to enter the OIDC protocol flow from <<< custom_key.brand_name >>>, which is the URL initiated by the provider for login.                 |
 
-After obtaining these two URLs, send them to the identity provider. They can also be reviewed later on the configuration details page.
+After obtaining the two URLs, send them to the identity provider. They can also be reviewed later on the configuration detail page.
 
 
 ### Enable Role Mapping
 
-You can enable or disable role mapping for individual IDPs:
+You can enable/disable role mapping for individual IDPs:
 
-- When enabled, SSO login user accounts will lose their current roles in the workspace and dynamically assign roles based on the identity provider's **attribute fields** and **attribute values**. If no role mapping rule matches, the user account will lose all roles and will not be allowed to log in to the Guance workspace.
-- When disabled, SSO login users will continue to have the roles previously assigned to their accounts, which are not affected by changes in assertions from the identity provider side.
+- Enabling it means SSO login users' current roles in the workspace will be revoked and dynamically assigned based on the **attribute fields** and **attribute values** provided by the identity provider. If no role mapping rule matches, the user account will be stripped of all roles and denied access to <<< custom_key.brand_name >>> workspace;
+- Disabling it means SSO login users will retain the roles previously assigned to their accounts, unaffected by changes in assertions from the identity provider side.
 
 ![](../img/saml.png)
 
 
 ### Enable/Update/Delete/Import/Export SSO
 
-After adding an identity provider, you can enable or disable the current SSO configuration as needed.
+After adding the identity provider, you can enable or disable the current SSO configuration as needed.
 
-Once SSO is enabled, you can update or delete the SSO configuration. Updating or deleting will affect existing SSO member logins, so proceed with caution.
+Once SSO is enabled, you can update or delete the SSO configuration, which will affect existing SSO members' login. Be cautious when performing these actions.
 
-You can also import/export identity providers to quickly configure multiple workspace single sign-on settings.
+You can also import/export identity providers to quickly configure SSO settings for multiple workspaces.
 
-When exporting, ensure the file name does not conflict with existing identity providers in the workspace and that it conforms to JSON format standards.
+When exporting, ensure the exported file does not have the same name as any existing identity providers in the workspace and conforms to JSON format standards.
 
 <img src="../img/5.sso_mapping_9.png" width="60%" >
 
 ### View SSO Members
 
-After enabling SSO, if enterprise members log in via SSO to Guance, you can view all logged-in members under **SSO Login**. Clicking the member count shows specific authorized SSO login member lists.
+After enabling SSO, if enterprise members log in to <<< custom_key.brand_name >>> via SSO, you can view the total number of logged-in members under **SSO Login**. Clicking on the member count allows you to see the list of authorized SSO members.
 
 ![](../img/1.5.sso_mapping_9.png)
 
 
 ## Role Mapping {#saml-mapping}
 
-Guance supports configuring role mapping relationships to provide more refined single sign-on solutions for enterprises. Enabling role mapping allows dynamic allocation of access permissions for employees, who can access Guance based on the roles assigned to them.
+<<< custom_key.brand_name >>> supports configuring role mapping relationships to provide a more refined single sign-on solution. Enabling role mapping allows dynamic assignment of access permissions to employees, who can then access <<< custom_key.brand_name >>> based on the roles assigned to them.
 
 ### Configure Role Mapping
 
-In Guance workspace **Management > Member Management > SSO Management > Role Mapping**, click **Add Mapping** to create a new mapping relationship.
+In <<< custom_key.brand_name >>> workspace **Management > Member Management > SSO Management > Role Mapping**, click **Add Mapping** to create a new mapping relationship.
 
 ![](../img/5.sso_mapping_10.png)
 
-- Identity Provider: Select from all identity providers within the current workspace; only single selection is allowed.
-- Attribute Field/Attribute Value: Ensure that the attribute fields and values configured in role mapping match those set in the IdP account for successful verification. Upon successful verification, the corresponding role permissions will be assigned to the IdP account upon login.
-- Role Authorization: Guance supports four default member roles: Owner, Administrator, Standard, and Read-only; or custom roles created in [Role Management](../role-management.md).
+- Identity Provider: Select from all identity providers available in the current workspace; only single selection is allowed;
+- Attribute Field/Attribute Value: Ensure the attribute fields and values in the role mapping configuration match those configured on the IdP account for successful verification. Upon successful verification, the corresponding role permissions will be assigned to the IdP account upon login;
+- Role Authorization: <<< custom_key.brand_name >>> supports four default member roles: Owner, Administrator, Standard, and Read-only; or custom roles created in [Role Management](../role-management.md).
 
 <img src="../img/5.sso_mapping_11.png" width="60%" >
 
 ### Search/Edit/Delete Mappings
 
-- Search & Filter: Support searching mapped roles by role, attribute field, attribute value. You can also filter by selecting specific identity providers.
-- Edit: Support modifying existing mapped roles. Users logging in via SAML without mapped roles will be stripped of all roles and denied access to the Guance console.
-- Delete: Support directly deleting or batch-deleting configured mappings. Users logging in via SAML without mapped roles will be stripped of all roles and denied access to the Guance console.
+- Search & Filter: Supports searching for configured mappings by role, attribute field, and attribute value. You can also filter by selecting specific identity providers;
+- Edit: Allows reconfiguring existing mappings. Users logging in via SAML without a valid <<< custom_key.brand_name >>> role mapping will lose all roles and cannot log into <<< custom_key.brand_name >>> console;
+- Delete: Directly delete or batch delete configured mappings. Users logging in via SAML without a valid <<< custom_key.brand_name >>> role mapping will lose all roles and cannot log into <<< custom_key.brand_name >>> console.
 
 ![](../img/5.sso_mapping_10.1.png)
 
 
-## Log in to Guance Console {#login}
+## Logging into <<< custom_key.brand_name >>> Console {#login}
 
-After SSO configuration is complete, go to the [Guance official website](https://www.guance.com/) login page and select **Single Sign-On**.
+After SSO configuration is complete, go to the <<< custom_key.brand_name >>> [official website](https://www.guance.com/) login page and select **Single Sign-On**.
 
 <img src="../img/06_sso_5.png" width="60%" >
 
-Enter the email address used to create the SSO to access all authorized workspaces under the identity provider ID. You can also use the search bar to precisely locate specific workspaces.
+Enter the email address used to create the SSO to access all authorized workspaces associated with the identity provider ID. You can also search for specific workspaces using the search bar.
 
 ![](../img/06_sso_6.png)
 
-Click the row to enter the login page:
+Clicking on a row will take you to the login page:
 
 <img src="../img/06_sso_7.png" width="70%" >
 
 **Note**:
 
-1. If the workspace's identity provider has enabled [role mapping](#mapping) but the current user does not have a role mapping rule or role mapping is disabled, you will be prompted that you do not have access rights.
+1. If the workspace identity provider has enabled [Role Mapping](#mapping), but the current user has no role mapping rules or role mapping is disabled, a message indicating no access rights will appear;
     
 2. If the workspace deletes the identity provider, users choosing SSO login will not see unauthorized workspaces.
 
-Enter the company's general email and password to directly log into the corresponding workspace in Guance:
+Entering the company-wide email and password directly logs you into the corresponding <<< custom_key.brand_name >>> workspace:
 
 <img src="../img/06_sso_8.png" width="70%" >
 
 ### SSO Account Management {#account}
 
-After entering the workspace with an SSO account, click the left-hand **Account > Account Management** to modify the SSO account.
+After logging into the workspace with an SSO account, click on the left-hand side **Account > Account Management** to modify the SSO account.
 
-- Supports changing avatar, username;
-- Supports changing session persistence time.
+- Modify avatar and username;
+- Adjust session persistence time.
 
-**Note**: By default, SSO login accounts use the session persistence time set in the SSO configuration. After modification in account management, the modified session persistence time takes effect. For more details, refer to [Account Session Persistence Time](../account-management.md#login-hold-time).
+**Note**: By default, SSO accounts use the session persistence time configured in SSO. After modification in account management, the modified session persistence time takes effect. For more details, refer to [Account Session Persistence Time](../account-management.md#login-hold-time).
 
 ## Email Notifications
 
-Enabling, configuring, or deleting SSO will trigger email notifications to Owners and Administrators of the corresponding workspace.
+Enabling, configuring, or deleting SSO triggers email notifications to the Owner and Administrator of the corresponding workspace.
 
 
 ## Audit Events
 
 Enabling, configuring, or deleting SSO generates audit events.
 
-In the Guance workspace, click **Management > Settings > Security > Operation Audit**, then click **View** to review all audit events in the current workspace.
+
+In <<< custom_key.brand_name >>> workspace, click **Management > Settings > Security > Operation Audit**, and click **View** to check all audit events for the current workspace.
 
 <img src="../img/5.sso_mapping_13.png" width="60%" >
 
@@ -266,12 +268,12 @@ In the Guance workspace, click **Management > Settings > Security > Operation Au
 ![](../img/5.sso_mapping_12.png)
 -->
 
-## Single Sign-On Examples
+## Single Sign-On Example
 
-Integrate external platforms with Guance to enable automatic login (single sign-on) from the external platform into the Guance platform to access corresponding workspace resources without creating separate Guance accounts for the enterprise/team.
+Integrate external platforms with <<< custom_key.brand_name >>> to enable automatic login (single sign-on) from external platform accounts to <<< custom_key.brand_name >>> and access corresponding workspace resources without creating separate <<< custom_key.brand_name >>> accounts for the enterprise/team.
 
 
-|              <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**Configuration Example**</font>                         |                                                              |                                                              |
+|              <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**Configuration Examples**</font>                         |                                                              |                                                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | [Azure AD](azure-ad.md){ .md-button .md-button--primary } | [Authing](authing.md){ .md-button .md-button--primary } | [Okta](okta.md){ .md-button .md-button--primary } |
-| [Aliyun IDaaS](aliyun-idaas.md){ .md-button .md-button--primary } | [Keycloak](keycloak.md){ .md-button .md-button--primary } |  |
+| [Alibaba Cloud IDaaS](aliyun-idaas.md){ .md-button .md-button--primary } | [Keycloak](keycloak.md){ .md-button .md-button--primary } |  |

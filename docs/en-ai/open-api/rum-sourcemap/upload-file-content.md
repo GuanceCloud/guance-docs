@@ -10,13 +10,13 @@ Used to upload the content of a single sourcemap source file (a single source fi
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description |
-|:-----------|:-------|:-----|:----------------|
-| appId | string | Y | appId<br>Allow empty: False <br> |
-| version | string |  | Version<br>Allow empty: False <br>Allow empty string: True <br> |
-| env | string |  | Environment<br>Allow empty: False <br>Allow empty string: True <br> |
-| filename | string | Y | Filename with full relative path<br>Allow empty: False <br>Allow empty string: True <br> |
-| content | string |  | File content<br>Allow empty: False <br>Allow empty string: True <br> |
+| Parameter Name | Type   | Required | Description                                |
+|:--------------|:-------|:--------|:------------------------------------------|
+| appId         | string | Y       | appId<br>Can be empty: False <br>         |
+| version       | string |         | Version<br>Can be empty: False <br>Can be an empty string: True <br> |
+| env           | string |         | Environment<br>Can be empty: False <br>Can be an empty string: True <br> |
+| filename      | string | Y       | Filename including full relative path<br>Can be empty: False <br>Can be an empty string: True <br> |
+| content       | string |         | File content<br>Can be empty: False <br>Can be an empty string: True <br> |
 
 ## Additional Parameter Notes
 

@@ -3,7 +3,7 @@ title     : 'Seata'
 summary   : 'Collect Seata related Metrics information'
 __int_icon: 'icon/seata'
 dashboard :
-  - desc  : 'Seata monitoring view'
+  - desc  : 'Seata Monitoring View'
     path  : 'dashboard/en/seata'
 monitor   :
   - desc  : 'None'
@@ -14,13 +14,13 @@ monitor   :
 # Seata
 <!-- markdownlint-enable -->
 
-## Deployment and Implementation {#config}
+## Deployment {#config}
 
-Seata supports enabling Metrics data collection in TC and outputting it to the Prometheus monitoring system.
+Seata supports enabling Metrics data collection and outputting it to the Prometheus monitoring system in TC.
 
 ### Enable Seata Metrics
 
-- To enable Metrics in TC, configure the Metrics settings in TC. The Seata Server already includes the Metrics (`seata-metrics-all`) dependency, but it is disabled by default. You need to enable the metrics collection configuration. (**This step is very important**)
+- Configure TC to enable Metrics. Turn on the Metrics configuration items in TC. The Seata Server already includes the Metrics (`seata-metrics-all`) dependency, but it is disabled by default. You need to enable the Metrics collection configuration. (**This step is very important**)
 
 For `Seata 1.5.0+`, use `application.yaml`
 
@@ -35,11 +35,11 @@ seata:
 
 For `Seata <1.5.0`, enable `metrics`
 
-GitHub configuration link: [https://github.com/seata/seata/blob/1.4.2/server/src/main/resources/file.conf.example](https://github.com/seata/seata/blob/1.4.2/server/src/main/resources/file.conf.example)
+GitHub configuration address: [https://github.com/seata/seata/blob/1.4.2/server/src/main/resources/file.conf.example](https://github.com/seata/seata/blob/1.4.2/server/src/main/resources/file.conf.example)
 
-Configure server-side `metrics`
+Configure `metrics` on the server side
 
-【file.conf】
+[file.conf]
 
 ```shell
 metrics {
@@ -51,19 +51,19 @@ metrics {
 }
 ```
 
-【registry.conf】
+[registry.conf]
 
 ```shell
 registry {
     type = "nacos"
     nacos {
-      application = "application name"
+      application = "Application Name"
       serverAddr = "xxxx:port"
       group = "group"
       namespace = "namespace"
       cluster = "default"
-      username = "fill according to actual situation"
-      password = "fill according to actual situation"
+      username = "fill according to actual"
+      password = "fill according to actual"
     }
 }
 config {
@@ -90,7 +90,7 @@ seata_transaction{meter="timer",role="tc",statistic="max",status="committed",} 1
 seata_transaction{meter="timer",role="tc",statistic="average",status="committed",} 151.66666666666666 1551946035372
 ```
 
-Receiving similar data indicates that `metric` has been successfully enabled. (If certain Transaction statuses have not occurred, such as `rollback`, the corresponding Metrics will not exist (output)).
+Receiving data similar to the above proves that `metrics` has been successfully enabled. (If certain transaction statuses have not occurred, such as `rollback`, then the corresponding Metrics indicators will not exist (output)).
 
 ### Enable DataKit Collector
 
@@ -109,9 +109,9 @@ cp prom.conf.sample seata-prom.conf
   ## Ignore request errors for URLs
   ignore_req_err = false
   ## Collector alias
-  source = "resource name"
+  source = "Resource Name"
   metric_types = []
-  ## Filter metrics to collect only those related to seata_
+  ## Filter metrics, collect only seata_* metrics
   metric_name_filter = ["seata_*"]
   measurement_prefix = "seata_"
   ## Collection interval "ns", "us" (or "µs"), "ms", "s", "m", "h"
@@ -120,7 +120,7 @@ cp prom.conf.sample seata-prom.conf
   tls_open = false
   ## Custom Tags
   [inputs.prom.tags]
-  app = "custom app name"
+  app = "Custom App Name"
   # more_tag = "some_other_value"
 ```
 
@@ -135,11 +135,9 @@ systemctl restart datakit
 | **Metrics** | **Description** |
 | --- | --- |
 | `seata.transaction`(role=tc,meter=counter,status=active/committed/rollback) | Total number of active/committed/rolled back transactions currently |
-| `seata.transaction`(role=tc,meter=summary,statistic=count,status=committed/rollback) | Number of committed/rolled back transactions within the current period |
-| `seata.transaction`(role=tc,meter=summary,statistic=tps,status=committed/rollback) | Transactions per second (TPS) of committed/rolled back transactions within the current period |
-| `seata.transaction`(role=tc,meter=timer,statistic=total,status=committed/rollback) | Total time spent on committed/rolled back transactions within the current period |
-| `seata.transaction`(role=tc,meter=timer,statistic=count,status=committed/rollback) | Number of committed/rolled back transactions within the current period |
-| `seata.transaction`(role=tc,meter=timer,statistic=average,status=committed/rollback) | Average time spent on committed/rolled back transactions within the current period |
-| `seata.transaction`(role=tc,meter=timer,statistic=max,status=committed/rollback) | Maximum time spent on committed/rolled back transactions within the current period |
-  
-Note: Replace placeholders like "application name", "xxxx:port", "group", "namespace", "custom app name", etc., with actual values as required.
+| `seata.transaction`(role=tc,meter=summary,statistic=count,status=committed/rollback) | Number of committed/rolled back transactions in the current period |
+| `seata.transaction`(role=tc,meter=summary,statistic=tps,status=committed/rollback) | TPS (transactions per second) of committed/rolled back transactions in the current period |
+| `seata.transaction`(role=tc,meter=timer,statistic=total,status=committed/rollback) | Total time consumed by committed/rolled back transactions in the current period |
+| `seata.transaction`(role=tc,meter=timer,statistic=count,status=committed/rollback) | Number of committed/rolled back transactions in the current period |
+| `seata.transaction`(role=tc,meter=timer,statistic=average,status=committed/rollback) | Average time consumed by committed/rolled back transactions in the current period |
+| `seata.transaction`(role=tc,meter=timer,statistic=max,status=committed/rollback) | Maximum time consumed by committed/rolled back transactions in the current period |

@@ -1,32 +1,32 @@
-# Guance DataWay Deployment
+# <<< custom_key.brand_name >>> DataWay Deployment
 
 ???+ warning "Note"
-     If you have deployed DataWay using Launcher, you can skip the installation steps in this document.
-     This document describes how to register and install DataWay using the Guance management backend. You can also use Launcher [to quickly install DataWay](launcher-install.md#dataway-install)
+     If you have deployed DataWay using Launcher, you can skip the installation steps described in this document.
+     This document describes how to register and install DataWay using the <<< custom_key.brand_name >>> management console. You can also use Launcher to [quickly install DataWay](launcher-install.md#dataway-install)
 
 ## Prerequisites
 
-- Guance has been deployed; if not, refer to [Deploying Products Using Launcher](launcher-install.md)
+- <<< custom_key.brand_name >>> has been deployed. If not, refer to [Deploying Products Using Launcher](launcher-install.md)
 
 ## Basic Information and Compatibility
 
-| Name                 | Description                                            |
-| :------------------: | :----------------------------------------------------: |
-| Guance Management Console | http://df-management.dataflux.cn                |
-| Supports Offline Installation | Yes                                              |
-| Supported Architectures | amd64/arm64                                     |
-| Deployment Machine IP | 192.168.100.105                                 |
+| Name                     | Description                                            |
+| :-----------------------: | :----------------------------------------------------: |
+| <<< custom_key.brand_name >>> Management Console | http://df-management.dataflux.cn                |
+| Offline Installation Support | Yes                                              |
+| Supported Architectures   | amd64/arm64                                     |
+| Deployment Machine IP     | 192.168.100.105                                 |
 
 ## Installation Steps
 
 ### 1. Register DataWay
 
-Log in to the backend management console `http://df-management.dataflux.cn` with an admin account, using the password `admin`. The account is the administrator account you set up. Navigate to the "Data Gateway" menu under the "**Guance Management Backend**", click "Create DataWay", and add a data gateway DataWay.
+Log in to the management console `http://df-management.dataflux.cn` with the administrator account, the password is `admin`, and the account is the administrator account you set up. Navigate to the "<<< custom_key.brand_name >>> Management Console" under the "Data Gateway" menu, click "Create DataWay", and add a data gateway DataWay.
 
-- **Name**: Customizable
-- **Binding Address**: The access address for DataWay, used by DataKit to ingest data. You can use `http://ip+port`
+- **Name**: Custom name
+- **Binding Address**: The access address of DataWay, used for data ingestion in DataKit. You can use `http://ip+port`
 
-**Note: When configuring the DataWay binding address, ensure that the DataKit host can connect to this DataWay address and report data through it.**
+**Note: When configuring the binding address for DataWay, ensure that the DataKit host can reach this DataWay address and can report data through it.**
 
 ![](img/12.deployment_1.png)
 
@@ -35,9 +35,9 @@ Log in to the backend management console `http://df-management.dataflux.cn` with
 === "Host and Docker"
 
     ???+ warning "Note"
-          **Ensure that the host where DataWay is deployed can access the previously configured kodo address. It is recommended to access kodo via the internal network from DataWay!**
+          **Ensure that the host deploying DataWay can access the previously configured kodo address. It is recommended that DataWay connects to kodo via an internal network!**
      
-     After adding DataWay, obtain an installation script for DataWay, copy the installation script, and run it on the host where DataWay is deployed.
+     After adding DataWay, you can obtain an installation script for DataWay. Copy the installation script and run it on the host where DataWay is being deployed.
 
 
 
@@ -53,7 +53,7 @@ Log in to the backend management console `http://df-management.dataflux.cn` with
 
     Download [dataway.yaml](dataway.yaml)
 
-    Update the `{DW_UUID}` and `{DW_TOKEN}` parameters in the YAML file
+    Modify the {DW_UUID} and {DW_TOKEN} parameters in the YAML file
 
     - Install
 
@@ -63,7 +63,7 @@ Log in to the backend management console `http://df-management.dataflux.cn` with
 
 ### 3. Verify Deployment
 
-After installation, wait a moment and refresh the "Data Gateway" page. If you see a version number in the "Version Information" column of the newly added data gateway, it indicates that this DataWay has successfully connected to the Guance center, and front-end users can now ingest data through it.
+After installation, wait a moment and refresh the "Data Gateway" page. If you see a version number in the "Version Information" column of the newly added data gateway, it indicates that this DataWay has successfully connected to the <<< custom_key.brand_name >>> center, and front-end users can start ingesting data through it.
 
 ![](img/12.deployment_3.png)
 
@@ -89,12 +89,12 @@ After installation, wait a moment and refresh the "Data Gateway" page. If you se
 
      You can directly access: `http://10.200.14.112:30928` 
 
-     > 10.200.14.112 is the node IP in this example. You need to access it using your own cluster IP. You can also access DataWay via a proxy service; refer to [Proxy Setup](proxy-install.md) for configuration details.
+     > 10.200.14.112 is the node IP in this example; you need to access it based on your cluster's IP. You can also access DataWay via a proxy service; refer to [Proxy Configuration](proxy-install.md) for setup instructions.
 
 
 === "EKS"
 
-    Save the following content as `dataway-svc.yaml`
+    Save the following content as dataway-svc.yaml
 
     ```yaml
     ---
@@ -136,4 +136,4 @@ After installation, wait a moment and refresh the "Data Gateway" page. If you se
 
 === "Host and Docker"
 
-    You can directly access port `9528` on the installation machine.
+    You can directly access the `9528` port of the installation machine.

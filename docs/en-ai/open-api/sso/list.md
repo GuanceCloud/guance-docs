@@ -5,18 +5,21 @@
 <br />**GET /api/v1/saml/mapping/field/list**
 
 ## Overview
-Retrieve the list of SAML mappings.
+Get the SAML mapping list
+
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description |
-|:--------------|:-------|:---------|:------------|
-| ssoUUID       | string | No       | Filter by identity provider, SSO configuration UUID.<br>Example: sso_xxx <br>Can be empty: False <br>Maximum length: 48 <br> |
-| search        | string | No       | Search, defaults to searching role names, source field names, and source field values.<br>Example: supper_workspace <br>Can be empty: False <br> |
-| pageIndex     | integer| No       | Page number.<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize      | integer| No       | Number of items per page.<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:--------|:----------------------|
+| ssoUUID | string | No | Filter identity provider, SSO configuration UUID<br>Example: sso_xxx <br>Can be empty: False <br>Maximum length: 48 <br> |
+| search | string | No | Search, default searches role name, source field name, and source field value<br>Example: supper_workspace <br>Can be empty: False <br> |
+| pageIndex | integer | No | Page number<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize | integer | No | Number of items returned per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
+
+
 
 ## Request Example
 ```shell
@@ -24,6 +27,8 @@ curl 'https://openapi.guance.com/api/v1/saml/mapping/field/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
+
+
 
 ## Response
 ```shell

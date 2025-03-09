@@ -1,10 +1,10 @@
-# Guance Agent Deployment
+# <<< custom_key.brand_name >>> Proxy Deployment
 
 ## Prerequisites
 
 Download docker-nginx.tar.gz 
 
-Resource package download address [Download](https://static.guance.com/dataflux/package/docker-nginx.tar.gz)
+Resource package download address [Download](https://<<< custom_key.static_domain >>>/dataflux/package/docker-nginx.tar.gz)
 
 ## Install Docker
 
@@ -74,7 +74,7 @@ docker load -i nginx.tar
 
 ## Configure Nginx
 
-Modify the following configuration and save it to the `/data/nginx/conf.d` directory, named **`dataflux.conf`**
+Modify the following configuration and save it to the `/data/nginx/conf.d` directory, with the name **`dataflux.conf`**:
 ???+ example ""
     ```shell
     upstream httpbakend {

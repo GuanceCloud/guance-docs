@@ -1,4 +1,5 @@
-# 0101-telnetserver-uninstalled-telnet Server Installed
+# 0101-telnetserver-uninstalled-Telnet Server Uninstalled
+
 ---
 
 ## Rule ID
@@ -8,12 +9,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -23,13 +24,11 @@
 
 ## Description
 
-- The telnet-server package includes the telnet daemon, which accepts connections from users of other systems via the telnet protocol. This software uses an insecure transmission protocol, posing a security risk.
+- The telnet-server package contains the telnet daemon, which accepts connections from users on other systems via the telnet protocol. This software uses an insecure transmission protocol and poses security risks.
 
 
 ## Scan Frequency
-
 - * * */1 * *
-
 
 ## Theoretical Basis
 
@@ -50,7 +49,6 @@
 
 
 ## Audit Method
-
 - Execute the following command to verify whether telnet-server is installed.
 
 ```bash
@@ -60,7 +58,6 @@ package telnet-server is not installed
 
 
 ## Remediation
-
 - Run the command to remove telnet-server.
 ```bash
 # yum remove telnet-server
@@ -72,7 +69,7 @@ package telnet-server is not installed
 - None
 
 
-## Default Value
+## Default Values
 
 - None
 
@@ -84,10 +81,10 @@ package telnet-server is not installed
 
 ## CIS Controls
 
-- Version 7
+- Version 7<br>
 
-- 2.6 Address Unauthorized Software  
-Ensure unauthorized software is removed or directories are updated in a timely manner.
+- 2.6 Address Unauthorized Software<br>
+  Ensure unauthorized software is removed or directories are updated in a timely manner.
 
-- 9.2 Ensure Only Approved Ports, Protocols, and Services Are Running  
-Ensure only network ports, protocols, and services that meet validated business needs are listening on each system.
+- 9.2 Ensure Only Approved Ports, Protocols, and Services Are Running<br>
+  Ensure only network ports, protocols, and services that have validated business requirements are listening on each system.

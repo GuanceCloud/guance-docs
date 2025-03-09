@@ -8,48 +8,68 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
 
+
 - Linux
+
+
 
 
 ## Description
 
+
 - Squid is a standard proxy server used in many distributions and environments.
 
 
-## Scan Frequency
 
+## Scan Frequency
 - 0 * * * *
 
+## Theoretical Basis
 
-## Rationale
 
 - Unless the system is specifically configured to act as a proxy server, it is recommended to remove the squid package to reduce the potential attack surface.
 
-- Note: There are multiple HTTP proxy servers. Unless needed, these should be checked and removed.
+
+
+- Note: There are multiple HTTP proxy servers. Unless required, these should be checked and removed if not needed.
+
 
 
 ## Risk Items
 
+
 - Hacker Penetration
-- Data Leakage
+
+
+
+- Data Breach
+
+
+
 - Network Security
+
+
+
 - Mining Risk
+
+
+
 - Botnet Risk
 
 
-## Audit Method
 
-- Run the following command to verify if squid is installed.
+## Audit Method
+- Execute the following command to verify whether squid is installed.
 
 ```bash
 # rpm -q squid
@@ -57,31 +77,41 @@ package squid is not installed
 ```
 
 
-## Remediation
 
+## Remediation
 - Run the command to remove squid.
 ```bash
 # yum remove squid
 ```
 
 
+
 ## Impact
 
+
 - None
+
+
 
 
 ## Default Value
 
+
 - None
+
+
 
 
 ## References
 
+
 - None
+
 
 
 ## CIS Controls
 
+
 - Version 7<br>
-    9.2 Ensure only approved ports, protocols, and services are running<br>
-       Ensure that only network ports, protocols, and services that listen on the system are validated for business needs and are running on each system.
+    9.2 Ensure Only Approved Ports, Protocols, and Services Are Running<br>
+       Ensure that only network ports, protocols, and services listening on each system are those validated by business requirements.

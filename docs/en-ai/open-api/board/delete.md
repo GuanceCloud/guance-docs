@@ -13,7 +13,7 @@ Delete a dashboard based on the specified `dashboard_uuid`
 
 | Parameter Name        | Type     | Required | Description              |
 |:---------------------|:---------|:---------|:-------------------------|
-| dashboard_uuid        | string   | Y        | View ID<br>              |
+| dashboard_uuid        | string   | Yes      | View ID<br> |
 
 
 ## Additional Parameter Notes
@@ -28,6 +28,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/dsbd_xxxx32/delete' \
 --data-raw 'null' \
 --compressed 
 ```
+
 
 
 

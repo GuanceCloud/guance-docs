@@ -2,7 +2,7 @@
 
 ---
 
-<br />**GET /api/v1/logging_query_rule/\{logging_query_rule_uuid\}/get**
+<br />**GET /api/v1/logging_query_rule/{logging_query_rule_uuid}/get**
 
 ## Overview
 Retrieve a single data access rule
@@ -10,9 +10,9 @@ Retrieve a single data access rule
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| logging_query_rule_uuid | string | Y | Data access rule UUID<br> |
+| Parameter Name            | Type   | Required | Description              |
+|:---------------------|:------|:-------|:----------------|
+| logging_query_rule_uuid | string | Yes  | Data access rule UUID<br> |
 
 
 ## Additional Parameter Notes
@@ -58,7 +58,7 @@ curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_xxxx32/get' \
                     "status": 0
                 },
                 "wsInfo": {
-                    "name": "[Doris] Development and Testing Together",
+                    "name": "[Doris] Development and Testing Shared",
                     "status": 0
                 }
             }

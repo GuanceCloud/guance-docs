@@ -1,4 +1,5 @@
 # 4509-nginx-xpoweredby - Ensure NGINX Reverse Proxy Does Not Enable Information Disclosure
+
 ---
 
 ## Rule ID
@@ -23,7 +24,7 @@
 
 ## Description
 
-- The headers `server` and `x-powered-by` can specify the underlying technology used by the application. If not explicitly configured, an NGINX reverse proxy might pass these headers. To prevent this, they should be removed.
+- The `server` and `x-powered-by` headers can specify the underlying technology used by the application. Without explicit instructions, NGINX reverse proxy may pass these headers. To remove them, appropriate configurations should be made.
 
 
 ## Scan Frequency
@@ -33,12 +34,12 @@
 
 ## Theoretical Basis
 
-- Attackers can use these response headers to gather information about the website and then target known vulnerabilities associated with the underlying technology. Removing these headers reduces the likelihood of targeted attacks.
+- Attackers can use these response headers to perform reconnaissance on websites and then target attacks based on specific known vulnerabilities related to the underlying technology. Removing these headers will reduce the likelihood of targeted attacks.
 
 
 ## Risk Items
 
-- nginx security
+- NGINX Security
 
 
 ## Audit Method
@@ -47,9 +48,9 @@
 
 ```bash
 grep proxy_hide_header /etc/nginx/nginx.conf
-# It should display
+# It should display:
 proxy_hide_header X-Powered-By;
-# If it does not exist, it is recommended to add it.
+# If not present, it is recommended to add it.
 ```
 
 

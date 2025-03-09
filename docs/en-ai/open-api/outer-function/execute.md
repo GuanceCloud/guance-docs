@@ -1,4 +1,4 @@
-# 【Func Function】Execute External Function
+# [Func Function] Execute External Function
 
 ---
 
@@ -10,12 +10,12 @@ Initiate an execution request for a specified Func function.
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:---------|:-----------------------|
+|:-------------------|:-------|:-----|:----------------|
 | funcId | string | Y | Function ID<br>Example: hello_world_msg <br>Allow null: False <br> |
 | funcBody | json |  | Function request body<br>Allow null: False <br> |
-| funcBody.kwargs | json |  | Dictionary parameters for function invocation (**kwargs）<br>Example: {'msg': 'tom'} <br>Allow null: False <br> |
+| funcBody.kwargs | json |  | Dictionary parameters for function invocation (**kwargs)<br>Example: {'msg': 'tom'} <br>Allow null: False <br> |
 | funcBody.options | json |  | Return type (default raw)<br>Allow null: False <br> |
-| funcBody.options.returnType | enum |  | Return type (default raw)<br>Example: jsonDumps <br>Allow null: False <br>Optional values: ['ALL', 'raw', 'repr', 'jsonDumps'] <br> |
+| funcBody.options.returnType | custom_enum |  | Return type (default raw)<br>Example: jsonDumps <br>Allow null: False <br>Optional values: ['ALL', 'raw', 'repr', 'jsonDumps'] <br> |
 
 ## Additional Parameter Notes
 

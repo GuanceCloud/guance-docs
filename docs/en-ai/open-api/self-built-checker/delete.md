@@ -1,20 +1,20 @@
-# Delete a Smart Inspection
+# Delete a Self-built Security Check
 
 ---
 
 <br />**POST /api/v1/self_built_checker/delete**
 
 ## Overview
-Delete a user-defined inspection based on `checker_uuid`
+Delete a self-built security check based on `checker_uuid`
 
 
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                                      |
-|:--------------|:-------|:---------|:-------------------------------------------------|
-| ruleUUID      | string | Yes      | UUID of the user-defined inspection <br>Example: rul_xxxxx <br>Allow null: False <br> |
-| refKey        | string | Yes      | Associated key of the user-defined inspection <br>Example: xxx <br>Allow null: False <br> |
+| Parameter Name | Type   | Required | Description                                                                 |
+|:--------------|:-------|:--------|:---------------------------------------------------------------------------|
+| ruleUUID      | string |         | UUID of the self-built security check<br>Example: rul_xxxxx <br>Can be empty: False <br> |
+| refKey        | string |         | Associated key of the self-built security check<br>Example: xxx <br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -28,6 +28,7 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/delete' \
 --data-raw '{"ruleUUID":"rule_xxx"}' \
 --compressed
 ```
+
 
 
 

@@ -31,8 +31,10 @@ You acknowledge that you have fully read, understood and accepted the entire con
    (2) You promise that the information obtained by Guance with your authorization is legal and the information has been obtained with the consent of the information owner.
 
    (3) You understand and authorize:
-   - (a) your relevant confidential content under this Confidentiality Agreement be used to help you analyze and diagnose problems in the use of cloud computing and enhance your service experience;
-   - (b) due to the need to provide services to you, your relevant confidential contents under this Confidentiality Agreement be provided to a third party deemed necessary by Guance.
+   
+      (a) Your relevant confidential content under this Confidentiality Agreement be used to help you analyze and diagnose problems in the use of cloud computing and enhance your service experience;
+      
+      (b) Due to the need to provide services to you, your relevant confidential contents under this Confidentiality Agreement be provided to a third party deemed necessary by Guance.
 
    (4) When you request to delete relevant data after your service is terminated, Guance will destroy relevant data after its approval.
 

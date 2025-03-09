@@ -11,9 +11,9 @@
 
 ## Body Request Parameters
 
-| Parameter Name  | Type   | Required | Description                             |
-|:--------------|:------|:-------|:---------------------------------------|
-| reportUUIDs | array | Y     | UUIDs of scheduled reports<br>Allow null: False <br> |
+| Parameter Name   | Type    | Required | Description                          |
+|:-------------|:------|:-------|:------------------------------------|
+| reportUUIDs  | array | Y      | UUIDs of the scheduled reports<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 

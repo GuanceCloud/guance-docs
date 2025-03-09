@@ -1,5 +1,5 @@
 ---
-title      : 'Guance OpenTelemetry Exportor'
+title      : 'Guance OpenTelemetry Exporter'
 summary    : 'Directly export OpenTelemetry data to Guance'
 __int_icon : 'icon/opentelemetry'
 tags       :
@@ -10,13 +10,13 @@ tags       :
 
 Guance has added a `guance-exporter` in the OTEL JAVA agent, which can send traces and metrics directly to the Guance center.
 
-The [guance-exporter](https://github.com/GuanceCloud/guance-java-exporter){:target="_blank"} is open-source on GitHub and integrated into the Guance-developed [otel-java-agent](https://github.com/GuanceCloud/opentelemetry-java-instrumentation){:target="_blank"}.
+The [guance-exporter](https://github.com/GuanceCloud/guance-java-exporter){:target="_blank"} is open-source on GitHub and integrated into the Guance-modified [otel-java-agent](https://github.com/GuanceCloud/opentelemetry-java-instrumentation){:target="_blank"}.
 
-The `guance-exporter` can send data directly to Guance, i.e., the `endpoint`. The format of the sent data is InfluxDB point.
+The `guance-exporter` can send data directly to Guance, specifically to the `endpoint`, with the data format being InfluxDB point.
 
 ## Download {#download}
 
-Download from [GitHub-Release](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/release){:target="_blank"}, version ***no less than*** `v1.26.3-guance`
+Download from [GitHub-Release](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/release){:target="_blank"}, version ***not lower than*** `v1.26.3-guance`
 
 ### Agent Usage {#agent}
 
@@ -42,13 +42,13 @@ Parameter descriptions:
 
 - `guance` exporter name.
 - `endpoint` Guance center address, usually `https://openway.guance.com`.
-- `token` Guance workspace token.
+- `token` Guance user space token.
 
-Note: If `otel.metrics.exporter` is not configured, metrics will not be uploaded; similarly for `otel.traces.exporter`. However, `endpoint` and `token` are mandatory.
+Note: If `otel.metrics.exporter` is not configured, metrics will not be uploaded; similarly for `otel.traces.exporter`. However, both `endpoint` and `token` are required.
 
 ### Integration Method {#code-integration}
 
-Reference this JAR package. The *pom.xml* section is as follows:
+Reference this jar package, with the following *pom.xml* section:
 
 ```xml
 <dependencies>
@@ -79,9 +79,9 @@ Reference this JAR package. The *pom.xml* section is as follows:
 </dependencies>
 ```
 
-You can use the latest version from the maven2 repository: [maven2-guance-exporter](https://repo1.maven.org/maven2/com/guance/guance-exporter/){:target="_blank"}
+You can find the latest version in the maven2 repository: [maven2-guance-exporter](https://repo1.maven.org/maven2/com/guance/guance-exporter/){:target="_blank"}
 
-To initialize a global OpenTelemetry object in a `SpringBoot` project, you can create a singleton class to manage it. Here's an example:
+To initialize a global OpenTelemetry object in a `SpringBoot` project, you can create a singleton class to manage it. Here is an example:
 
 First, create a class named `OpenTelemetryManager`:
 
@@ -102,7 +102,7 @@ public class OpenTelemetryManager {
 }
 ```
 
-Then, configure and initialize `OpenTelemetry` in the `OpenTelemetryInitializer` class:
+Then, in the `OpenTelemetryInitializer` class, perform the initialization and configuration of `OpenTelemetry`:
 
 ```java
 import com.guance.exporter.guance.trace.GuanceSpanExporter;
@@ -137,7 +137,7 @@ public class OpenTelemetryInitializer {
 }
 ```
 
-Finally, in your Java files, you can obtain the global `OpenTelemetry` object directly through the `OpenTelemetryManager` class:
+Finally, in your Java files, you can directly obtain the global `OpenTelemetry` object through the `OpenTelemetryManager` class:
 
 ```java
 import io.opentelemetry.api.OpenTelemetry;
@@ -157,4 +157,4 @@ public class YourClass {
 
 ## Metrics {#metrics}
 
-The `guance-exporter` supports sending metric data to Guance, with the Mearsurement name being `otel-service`.
+The `guance-exporter` supports sending metric data to Guance, with the measurement set name being `otel_service`.

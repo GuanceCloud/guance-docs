@@ -6,11 +6,11 @@ tags:
 summary: 'The displayed metrics for Alibaba Cloud ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS. These metrics reflect the performance of ECS instances in terms of computing, memory, network, and storage.'
 __int_icon: 'icon/aliyun_ecs'
 dashboard:
-  - desc: 'Alibaba Cloud ECS built-in views'
+  - desc: 'Built-in view for Alibaba Cloud ECS'
     path: 'dashboard/en/aliyun_ecs/'
 
 monitor:
-  - desc: 'Alibaba Cloud ECS monitor'
+  - desc: 'Alibaba Cloud ECS Monitor'
     path: 'monitor/en/aliyun_ecs/'
 ---
 
@@ -25,79 +25,79 @@ The displayed metrics for Alibaba Cloud ECS include CPU utilization, memory util
 
 ### Install Func
 
-We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+We recommend enabling the Guance integration - Extensions - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation.
 
 If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Installation Script
+### Install Script
 
-> Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant read-only access `ReadOnlyAccess`).
+> Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
 To synchronize monitoring data from ECS cloud resources, we install the corresponding collection script: 「Guance Integration (Alibaba Cloud-ECS Collection)」(ID: `guance_aliyun_ecs`)
 
 After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
-Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
+Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-Once enabled, you can see the corresponding automatic trigger configurations in 「Management / Automatic Trigger Configurations」. Click 【Execute】to run it immediately without waiting for the scheduled time. Wait a moment, then check the task execution records and corresponding logs.
+Once enabled, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short wait, you can view the task execution records and corresponding logs.
 
-> If you need to collect logs, enable the corresponding log collection script. If you need to collect billing information, enable the cloud billing collection script.
+> If you need to collect logs, enable the corresponding log collection script. If you need to collect billing data, enable the cloud billing collection script.
 
 
-By default, we collect some configurations; see the Metrics section for details.
+By default, we collect some configurations; see the metrics section for details.
 
-[Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### Verification
 
-1. In 「Management / Automatic Trigger Configurations」, confirm whether the corresponding tasks have been configured with automatic triggers, and check the task records and logs for any anomalies.
+1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the automatic trigger configuration and check the task records and logs for any anomalies.
 2. In the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
 3. In the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 
-After configuring Alibaba Cloud Cloud Monitoring, the default metric set is as follows. You can collect more metrics by configuration. [Alibaba Cloud Cloud Monitoring Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_ecs_dashboard/ecs?spm=a2c4g.11186623.0.0.252476abTrNabN){:target="_blank"}
+After configuring Alibaba Cloud Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration [Alibaba Cloud Cloud Monitoring Metric Details](https://cms.console.aliyun.com/metric-meta/acs_ecs_dashboard/ecs?spm=a2c4g.11186623.0.0.252476abTrNabN){:target="_blank"}
 
-> Note: The monitoring plugin needs to be installed in the Alibaba Cloud ECS console.
+> Note: You need to install the monitoring plugin in the Alibaba Cloud ECS console.
 
 | Metric | Description                         | Type | Unit |
 | ---- |-------------------------------------| :---:    | :----: |
-|`CPUUtilization`| CPU utilization                              |float|%|
-|`memory_usedutilization`| Memory utilization                               |float|%|
-|`load_1m`| Load average over 1 minute                             |float|count|
-|`load_15m`| Load average over 15 minutes                            |float|count|
-|`load_5m`| Load average over 5 minutes                             |float|count|
-|`DiskReadBPS`| Disk read bytes per second                           |float|bytes/s|
-|`DiskWriteBPS`| Disk write bytes per second                           |float|bytes/s|
-|`DiskReadIOPS`| Disk read operations per second                          |float|Count/Second|
-|`DiskWriteIOPS`| Disk write operations per second                          |float|Count/Second|
-|`disk_readiops`| Disk read operations per second                            |float|Count/Second|
-|`disk_writeiops`| Disk write operations per second                            |float|Count/Second|
-|`diskusage_utilization`| `Host.diskusage.utilization`        |float|%|
-|`fs_inodeutilization`| (Agent) fs.inode.utilization_device  |float|%|
-|`GroupVPC_PublicIP_InternetInRate`| Internet inbound bandwidth at IP level                          |float|bits/s|
-|`GroupVPC_PublicIP_InternetOutRate`| Internet outbound bandwidth at IP level                          |float|bits/s|
-|`IntranetInRate`| Intranet inbound bandwidth                              |float|bits/s|
-|`IntranetOutRate`| Intranet outbound bandwidth                              |float|bits/s|
-|`concurrentConnections`| Concurrent connections                               |float|count|
-|`cpu_wait`| (Agent) cpu.wait                     |float|%|
-|`cpu_user`| (Agent) cpu.user                     |float|%|
-|`cpu_system`| (Agent) cpu.total                    |float|%|
-|`memory_freeutilization`| (Agent) memory.free.utilization      |float|%|
-|`disk_readbytes`| (Agent) disk.read.bytes_device       |float|bytes/s|
-|`disk_writebytes`| (Agent) disk.write.bytes_device      |float|bytes/s|
-|`networkin_rate`| (Agent) network.in.rate_device       |float|bits/s|
-|`networkin_packages`| (Agent) network.in.packages_device   |float|Count/s|
-|`net_tcpconnection`| (Agent) network.tcp.connection_state |float|Count|
-|`memory_freespace`| (Agent) memory.free.space            |float|bytes|
-|`memory_usedspace`| (Agent) memory.used.space            |float|bytes|
-|`memory_totalspace`| (Agent) memory.total.space           |float|bytes|
+|`CPUUtilization`| CPU Utilization                             |float|%|
+|`memory_usedutilization`| Memory Utilization                            |float|%|
+|`load_1m`| Load Average over 1 minute                          |float|count|
+|`load_15m`| Load Average over 15 minutes                         |float|count|
+|`load_5m`| Load Average over 5 minutes                          |float|count|
+|`DiskReadBPS`| Disk Read Throughput                           |float|bytes/s|
+|`DiskWriteBPS`| Disk Write Throughput                           |float|bytes/s|
+|`DiskReadIOPS`| Disk Reads per Second                          |float|Count/Second|
+|`DiskWriteIOPS`| Disk Writes per Second                          |float|Count/Second|
+|`disk_readiops`| Disk Reads per Second                            |float|Count/Second|
+|`disk_writeiops`| Disk Writes per Second                            |float|Count/Second|
+|`diskusage_utilization`| Disk Usage Utilization        |float|%|
+|`fs_inodeutilization`| File System Inode Utilization  |float|%|
+|`GroupVPC_PublicIP_InternetInRate`| Internet Inbound Bandwidth by IP                          |float|bits/s|
+|`GroupVPC_PublicIP_InternetOutRate`| Internet Outbound Bandwidth by IP                          |float|bits/s|
+|`IntranetInRate`| Internal Network Inbound Bandwidth                              |float|bits/s|
+|`IntranetOutRate`| Internal Network Outbound Bandwidth                              |float|bits/s|
+|`concurrentConnections`| Concurrent Connections                               |float|count|
+|`cpu_wait`| CPU Wait Time                     |float|%|
+|`cpu_user`| CPU User Time                     |float|%|
+|`cpu_system`| CPU System Time                    |float|%|
+|`memory_freeutilization`| Free Memory Utilization      |float|%|
+|`disk_readbytes`| Disk Read Bytes       |float|bytes/s|
+|`disk_writebytes`| Disk Write Bytes      |float|bytes/s|
+|`networkin_rate`| Network Inbound Rate       |float|bits/s|
+|`networkin_packages`| Network Inbound Packets   |float|Count/s|
+|`net_tcpconnection`| TCP Connections State |float|Count|
+|`memory_freespace`| Free Memory Space            |float|bytes|
+|`memory_usedspace`| Used Memory Space            |float|bytes|
+|`memory_totalspace`| Total Memory Space           |float|bytes|
 
 ## Objects {#object}
 
-The collected Alibaba Cloud ECS object data structure can be viewed in 「Infrastructure - Custom」.
+The collected Alibaba Cloud ECS object data structure can be viewed under 「Infrastructure - Custom」
 
 ``` json
 {
@@ -121,17 +121,17 @@ The collected Alibaba Cloud ECS object data structure can be viewed in 「Infras
     "CreationTime"           : "2022-01-01T00:00Z",
     "StartTime"              : "2022-01-02T00:00Z",
     "ExpiredTime"            : "2023-01-01T00:00Z",
-    "disks"                  : "[ {associated disk JSON data}, ... ]",
-    "network_interfaces"     : "[ {associated network card JSON data}, ... ]",
-    "instance_renew_attribute": "[ {auto-renewal JSON data}, ...]",
-    "instances_full_status"  : "[ {full status information JSON data}, ...]",
-    "OperationLocks"         : "[ {lock reason JSON data}, ...]",
+    "disks"                  : "[ {Associated Disk JSON Data}, ... ]",
+    "network_interfaces"     : "[ {Associated Network Interface JSON Data}, ... ]",
+    "instance_renew_attribute": "[ {Auto Renewal JSON Data}, ...]",
+    "instances_full_status"  : "[ {Full Status Information JSON Data}, ...]",
+    "OperationLocks"         : "[ {Lock Reason JSON Data}, ...]",
     "Memory"                 : "8192",
     "Cpu"                    : "4",
     "InternetMaxBandwidthOut": "0",
     "InternetMinBandwidthIn" : "0",
     "AutoReleaseTime"        : "xxxx",
-    "message"                : "{instance JSON data}"
+    "message"                : "{Instance JSON Data}"
   }
 }
 ```

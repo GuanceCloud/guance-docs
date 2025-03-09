@@ -1,4 +1,4 @@
-# 【Frontend Account】Deletion
+# [Frontend Account] Deletion
 
 ---
 
@@ -10,11 +10,11 @@
 
 ## Body Request Parameters
 
-| Parameter Name    | Type   | Required | Description                                      |
-|:-----------------|:-------|:--------|:------------------------------------------------|
-| accountUUIDs     | array  | Y       | Account UUID<br>Example: ['acnt_xxxx', 'acnt_yyyy'] <br>Allow empty: False <br> |
+| Parameter Name       | Type   | Required | Description                             |
+|:-------------------|:------|:-------|:---------------------------------------|
+| accountUUIDs        | array | Y      | Account UUID<br>Example: ['acnt_xxxx', 'acnt_yyyy'] <br>Allow empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

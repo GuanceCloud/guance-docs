@@ -1,4 +1,4 @@
-# Issue - Custom Level Addition
+# Add Custom Issue Level
 
 ---
 
@@ -11,12 +11,12 @@
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description |
-|:--------------|:-------|:--------|:------------|
-| name          | string | Y       | Custom level name<br>Example: name <br>Allow empty: False <br>Maximum length: 256 <br> |
-| description   | string |         | Custom level description<br>Example: description <br>Allow empty: False <br> |
-| extend        | json   |         | Additional extended information<br>Example: {} <br>Allow empty: True <br> |
-| color         | string | Y       | Custom level color<br>Example: description <br>Allow empty: False <br> |
+| Parameter Name | Type   | Required | Description                                |
+|:--------------|:-------|:---------|:-------------------------------------------|
+| name          | string | Y        | Custom level name<br>Example: name <br>Allow empty: False <br>Maximum length: 256 <br> |
+| description   | string |          | Custom level description<br>Example: description <br>Allow empty: False <br> |
+| extend        | json   |          | Additional extended information<br>Example: {} <br>Allow empty: True <br> |
+| color         | string | Y        | Custom level color<br>Example: description <br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 

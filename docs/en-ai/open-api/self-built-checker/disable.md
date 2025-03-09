@@ -1,20 +1,20 @@
-# Disable a Self-built Security Check
+# Disable a Smart Security Check
 
 ---
 
 <br />**POST /api/v1/self_built_checker/disable**
 
 ## Overview
-Disable a self-built security check based on `checker_uuid`
+Disable a user-defined security check based on `checker_uuid`
 
 
 
 ## Body Request Parameters
 
 | Parameter Name | Type   | Required | Description                                      |
-|:--------------|:-------|:--------|:------------------------------------------------|
-| ruleUUIDs     | array  |         | UUID of the self-built security check<br>Example: rul_xxxxx <br>Allow null: False <br> |
-| refKey        | string |         | Associated key of the self-built security check<br>Example: xxx <br>Allow null: False <br> |
+|:--------------|:-------|:---------|:-------------------------------------------------|
+| ruleUUIDs     | array  |          | UUID of the user-defined security check<br>Example: rul_xxxxx <br>Can be empty: False <br> |
+| refKey        | string |          | Associated key of the user-defined security check<br>Example: xxx <br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 

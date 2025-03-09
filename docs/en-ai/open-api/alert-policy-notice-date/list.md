@@ -1,20 +1,20 @@
-# List Custom Notification Dates for Alert Policies
+# List Custom Notification Dates for Alert Strategies
 
 ---
 
 <br />**GET /api/v1/notice/date/list**
 
 ## Overview
-List custom notification dates for alert policies
+List custom notification dates for alert strategies
 
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description                                      |
-|:--------------|:-------|:---------|:-------------------------------------------------|
-| search        | string |          | Search configuration name of custom notification dates<br>Can be empty: True <br> |
-| pageIndex     | integer| Yes      | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize      | integer| Yes      | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 10000 <br> |
+| Parameter Name | Type   | Required | Description                                |
+|:--------------|:-------|:--------|:-------------------------------------------|
+| search        | string | No      | Search configuration name of custom notification dates<br>Can be empty: True <br> |
+| pageIndex     | integer| Yes     | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize      | integer| Yes     | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 10000 <br> |
 
 ## Additional Parameter Notes
 
@@ -26,7 +26,6 @@ curl 'https://openapi.guance.com/api/v1/notice/date/list?pageIndex=1&pageSize=10
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
 
 
 ## Response

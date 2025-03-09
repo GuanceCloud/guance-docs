@@ -17,28 +17,28 @@ monitor   :
 
 ---
 
-The ElasticSearch collector primarily gathers data on node operation, cluster health, JVM performance, indexing performance, and search performance.
+The ElasticSearch collector primarily collects node operation status, cluster health, JVM performance, index performance, and search performance.
 
 ## Configuration {#config}
 
 ### Prerequisites {#requirements}
 
 - ElasticSearch version >= 6.0.0
-- By default, the ElasticSearch collector gathers `Node Stats` metrics. If you need to collect `Cluster-Health` related metrics, set `cluster_health = true`.
-- Setting `cluster_health = true` can generate the following Metrics set:
+- By default, ElasticSearch collects `Node Stats` metrics. If you need to collect `Cluster-Health` related metrics, set `cluster_health = true`.
+- Setting `cluster_health = true` can generate the following measurement sets:
     - `elasticsearch_cluster_health`
-- Setting `cluster_stats = true` can generate the following Metrics set:
+- Setting `cluster_stats = true` can generate the following measurement sets:
     - `elasticsearch_cluster_stats`
 
 ### User Permission Configuration {#user-permission}
 
-If authentication with username and password is enabled, appropriate permissions must be configured; otherwise, it will result in failure to obtain monitoring information.
+If account and password access is enabled, corresponding permissions must be configured; otherwise, it will result in a failure to obtain monitoring information.
 
-Currently supported configurations include [Elasticsearch](elasticsearch.md#perm-es), [Open Distro for Elasticsearch](elasticsearch.md#perm-open-es), and [OpenSearch](elasticsearch.md#perm-opensearch).
+Currently supported configurations are for [Elasticsearch](elasticsearch.md#perm-es), [Open Distro for Elasticsearch](elasticsearch.md#perm-open-es), and [OpenSearch](elasticsearch.md#perm-opensearch).
 
 #### Elasticsearch {#perm-es}
 
-- Create a role `monitor`, and set the following permissions:
+- Create the `monitor` role with the following permissions:
 
 ```http
 POST /_security/role/monitor
@@ -64,12 +64,12 @@ POST /_security/role/monitor
 ```
 
 - Create a custom user and assign the newly created `monitor` role.
-- For more information, refer to the configuration file documentation.
+- Refer to the configuration file documentation for other information.
 
-#### Open Distro for Elasticsearch {#perm-open-es}
+#### Open Distro for ElasticSearch {#perm-open-es}
 
 - Create a user.
-- Create a role `monitor`, and set the following permissions:
+- Create the `monitor` role with the following permissions:
 
 ``` http
 PUT _opendistro/_security/api/roles/monitor
@@ -102,7 +102,7 @@ PUT _opendistro/_security/api/roles/monitor
 #### OpenSearch {#perm-opensearch}
 
 - Create a user.
-- Create a role `monitor`, and set the following permissions:
+- Create the `monitor` role with the following permissions:
 
 ``` http
 PUT _plugins/_security/api/roles/monitor
@@ -137,56 +137,56 @@ PUT _plugins/_security/api/roles/monitor
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `elasticsearch.conf.sample` and rename it to `elasticsearch.conf`. Example:
+    Enter the `conf.d/db` directory under the DataKit installation directory, copy `elasticsearch.conf.sample` and rename it to `elasticsearch.conf`. Example configuration:
 
     ```toml
         
     [[inputs.elasticsearch]]
-      ## Elasticsearch server URL
+      ## Elasticsearch server url
       # Basic Authentication is allowed
       # servers = ["http://user:pass@localhost:9200"]
       servers = ["http://localhost:9200"]
-    
-      ## Collection interval
+
+      ## Collect interval
       # Time unit: "ns", "us", "ms", "s", "m", "h"
       interval = "10s"
-    
+
       ## HTTP timeout
       http_timeout = "5s"
-    
+
       ## Distribution: elasticsearch, opendistro, opensearch
       distribution = "elasticsearch"
-    
+
       ## Set local true to collect the metrics of the current node only.
       # Or you can set local false to collect the metrics of all nodes in the cluster.
       local = false
-    
+
       ## Set true to collect the health metric of the cluster.
       cluster_health = true
-    
+
       ## Set cluster health level, either indices or cluster.
       # cluster_health_level = "indices"
-    
+
       ## Whether to collect the stats of the cluster.
       cluster_stats = true 
-    
+
       ## Set true to collect cluster stats only from the master node.
       cluster_stats_only_from_master = true
-    
+
       ## Indices to be collected, such as _all.
       indices_include = ["_all"]
-    
+
       ## Indices level, may be one of "shards", "cluster", "indices".
       # Currently only "shards" is implemented.
       indices_level = "shards"
-    
+
       ## Specify the metrics to be collected for the node stats, such as "indices", "os", "process", "jvm", "thread_pool", "fs", "transport", "http", "breaker".
       # node_stats = ["jvm", "http"]
-    
+
       ## HTTP Basic Authentication
       # username = ""
       # password = ""
-    
+
       ## TLS Config
       tls_open = false
       # tls_ca = "/etc/telegraf/ca.pem"
@@ -194,31 +194,31 @@ PUT _plugins/_security/api/roles/monitor
       # tls_key = "/etc/telegraf/key.pem"
       ## Use TLS but skip chain & host verification
       # insecure_skip_verify = false
-    
+
       ## Set true to enable election
       election = true
-    
+
       # [inputs.elasticsearch.log]
       # files = []
       # #grok pipeline script path
       # pipeline = "elasticsearch.p"
-    
+
       [inputs.elasticsearch.tags]
         # some_tag = "some_value"
         # more_tag = "some_other_value"
-    
+
     ```
 
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service) to apply changes.
 
 === "Kubernetes"
 
-    Currently, the collector configuration can be injected via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) to enable the collector.
+    You can currently inject collector configurations via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) to enable the collector.
 <!-- markdownlint-enable -->
 
 ## Metrics {#metric}
 
-All the data collected below will append the global election tag by default, or you can specify other tags through `[inputs.elasticsearch.tags]` in the configuration:
+By default, all collected data will append the global election tag, or you can specify additional tags using `[inputs.elasticsearch.tags]` in the configuration:
 
 ``` toml
 [inputs.elasticsearch.tags]
@@ -236,12 +236,12 @@ All the data collected below will append the global election tag by default, or 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name`|Name of the cluster, based on the Cluster name setting.|
+|`cluster_name`|Name of the cluster based on the Cluster name setting.|
 |`node_attribute_ml.enabled`|Set to true (default) to enable machine learning APIs on the node.|
 |`node_attribute_ml.machine_memory`|The machine’s memory that machine learning may use for running analytics processes.|
 |`node_attribute_ml.max_open_jobs`|The maximum number of jobs that can run simultaneously on a node.|
-|`node_attribute_xpack.installed`|Show whether xpack is installed.|
-|`node_host`|Network host for the node, based on the network.host setting.|
+|`node_attribute_xpack.installed`|Indicates whether xpack is installed.|
+|`node_host`|Network host for the node based on the network.host setting.|
 |`node_id`|The id for the node.|
 |`node_name`|Human-readable identifier for the node.|
 
@@ -250,52 +250,55 @@ All the data collected below will append the global election tag by default, or 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`fs_data_0_available_in_gigabytes`|Total number of gigabytes available to this Java virtual machine on this file store.|float|B|
-|`fs_data_0_free_in_gigabytes`|Total number of unallocated gigabytes in the file store.|float|B|
+|`fs_data_0_available_in_gigabytes`|Total gigabytes available to this Java virtual machine on this file store.|float|B|
+|`fs_data_0_free_in_gigabytes`|Total unallocated gigabytes in the file store.|float|B|
 |`fs_data_0_total_in_gigabytes`|Total size (in gigabytes) of the file store.|float|B|
-|`fs_io_stats_devices_0_operations`|The total number of read and write operations for the device completed since starting Elasticsearch.|float|count|
-|`fs_io_stats_devices_0_read_kilobytes`|The total number of kilobytes read for the device since starting Elasticsearch.|float|count|
-|`fs_io_stats_devices_0_read_operations`|The total number of read operations for the device completed since starting Elasticsearch.|float|count|
-|`fs_io_stats_devices_0_write_kilobytes`|The total number of kilobytes written for the device since starting Elasticsearch.|float|count|
-|`fs_io_stats_devices_0_write_operations`|The total number of write operations for the device completed since starting Elasticsearch.|float|count|
-|`fs_io_stats_total_operations`|The total number of read and write operations across all devices used by Elasticsearch completed since starting Elasticsearch.|float|count|
-|`fs_io_stats_total_read_kilobytes`|The total number of kilobytes read across all devices used by Elasticsearch since starting Elasticsearch.|float|count|
-|`fs_io_stats_total_read_operations`|The total number of read operations for across all devices used by Elasticsearch completed since starting Elasticsearch.|float|count|
-|`fs_io_stats_total_write_kilobytes`|The total number of kilobytes written across all devices used by Elasticsearch since starting Elasticsearch.|float|count|
-|`fs_io_stats_total_write_operations`|The total number of write operations across all devices used by Elasticsearch completed since starting Elasticsearch.|float|count|
+|`fs_io_stats_devices_0_operations`|Total number of read and write operations for the device completed since starting Elasticsearch.|float|count|
+|`fs_io_stats_devices_0_read_kilobytes`|Total kilobytes read for the device since starting Elasticsearch.|float|count|
+|`fs_io_stats_devices_0_read_operations`|Total read operations for the device completed since starting Elasticsearch.|float|count|
+|`fs_io_stats_devices_0_write_kilobytes`|Total kilobytes written for the device since starting Elasticsearch.|float|count|
+|`fs_io_stats_devices_0_write_operations`|Total write operations for the device completed since starting Elasticsearch.|float|count|
+|`fs_io_stats_total_operations`|Total read and write operations across all devices used by Elasticsearch completed since starting Elasticsearch.|float|count|
+|`fs_io_stats_total_read_kilobytes`|Total kilobytes read across all devices used by Elasticsearch since starting Elasticsearch.|float|count|
+|`fs_io_stats_total_read_operations`|Total read operations across all devices used by Elasticsearch completed since starting Elasticsearch.|float|count|
+|`fs_io_stats_total_write_kilobytes`|Total kilobytes written across all devices used by Elasticsearch since starting Elasticsearch.|float|count|
+|`fs_io_stats_total_write_operations`|Total write operations across all devices used by Elasticsearch completed since starting Elasticsearch.|float|count|
 |`fs_timestamp`|Last time the file stores statistics were refreshed. Recorded in milliseconds since the Unix Epoch.|float|msec|
-|`fs_total_available_in_gigabytes`|Total number of gigabytes available to this Java virtual machine on all file stores.|float|B|
-|`fs_total_free_in_gigabytes`|Total number of unallocated gigabytes in all file stores.|float|B|
+|`fs_total_available_in_gigabytes`|Total gigabytes available to this Java virtual machine on all file stores.|float|B|
+|`fs_total_free_in_gigabytes`|Total unallocated gigabytes in all file stores.|float|B|
 |`fs_total_total_in_gigabytes`|Total size (in gigabytes) of all file stores.|float|B|
 |`http_current_open`|Current number of open HTTP connections for the node.|float|count|
-|`indices_fielddata_evictions`|Total number of evictions from the field data cache across all shards assigned to selected nodes.|float|count|
-|`indices_fielddata_memory_size_in_bytes`|Total amount, in bytes, of memory used for the field data cache across all shards assigned to selected nodes.|float|B|
+|`indices_fielddata_evictions`|Total evictions from the field data cache across all shards assigned to selected nodes.|float|count|
+|`indices_fielddata_memory_size_in_bytes`|Total memory, in bytes, used for the field data cache across all shards assigned to selected nodes.|float|B|
 |`indices_get_missing_time_in_millis`|Time in milliseconds spent performing failed get operations.|float|ms|
-|`indices_get_missing_total`|Total number of failed get operations.|float|count|
+|`indices_get_missing_total`|Total failed get operations.|float|count|
 |`jvm_gc_collectors_old_collection_count`|Number of JVM garbage collectors that collect old generation objects.|float|count|
 |`jvm_gc_collectors_old_collection_time_in_millis`|Total time in milliseconds spent by JVM collecting old generation objects.|float|ms|
 |`jvm_gc_collectors_young_collection_count`|Number of JVM garbage collectors that collect young generation objects.|float|count|
 |`jvm_gc_collectors_young_collection_time_in_millis`|Total time in milliseconds spent by JVM collecting young generation objects.|float|ms|
 |`jvm_mem_heap_committed_in_bytes`|Amount of memory, in bytes, available for use by the heap.|float|B|
-|`jvm_mem_heap_used_percent`|Percentage of memory currently in use by the heap.|float|count|
+|`jvm_mem_heap_used_percent`|Percentage of memory currently in use by the heap.|float|percent|
 |`os_cpu_load_average_15m`|Fifteen-minute load average on the system (field is not present if fifteen-minute load average is not available).|float|count|
 |`os_cpu_load_average_1m`|One-minute load average on the system (field is not present if one-minute load average is not available).|float|count|
-|`os_cpu_load_average_5m`| Five-minute load average on the system (field is not present if five-minute load average is not available).|float|count|
+|`os_cpu_load_average_5m`|Five-minute load average on the system (field is not present if five-minute load average is not available).|float|count|
 |`os_cpu_percent`|Recent CPU usage for the whole system, or -1 if not supported.|float|count|
-|`os_mem_total_in_bytes`|Total amount of physical memory in bytes.|float|B|
+|`os_mem_total_in_bytes`|Total physical memory in bytes.|float|B|
 |`os_mem_used_in_bytes`|Amount of used physical memory in bytes.|float|B|
 |`os_mem_used_percent`|Percentage of used memory.|float|percent|
-|`process_open_file_descriptors`|Number of opened file descriptors associated with the current or -1 if not supported.|float|count|
-|`thread_pool_force_merge_queue`|Number of tasks in queue for the thread pool|float|count|
+|`process_open_file_descriptors`|Number of opened file descriptors associated with the current process, or -1 if not supported.|float|count|
+|`thread_pool_force_merge_queue`|Number of tasks in queue for the thread pool.|float|count|
 |`thread_pool_force_merge_rejected`|Number of tasks rejected by the thread pool executor.|float|count|
-|`thread_pool_rollup_indexing_queue`|Number of tasks in queue for the thread pool|float|count|
+|`thread_pool_rollup_indexing_queue`|Number of tasks in queue for the thread pool.|float|count|
 |`thread_pool_rollup_indexing_rejected`|Number of tasks rejected by the thread pool executor.|float|count|
-|`thread_pool_search_queue`|Number of tasks in queue for the thread pool|float|count|
+|`thread_pool_search_queue`|Number of tasks in queue for the thread pool.|float|count|
 |`thread_pool_search_rejected`|Number of tasks rejected by the thread pool executor.|float|count|
-|`thread_pool_transform_indexing_queue`|Number of tasks in queue for the thread pool|float|count|
+|`thread_pool_transform_indexing_queue`|Number of tasks in queue for the thread pool.|float|count|
 |`thread_pool_transform_indexing_rejected`|Number of tasks rejected by the thread pool executor.|float|count|
 |`transport_rx_size_in_bytes`|Size of RX packets received by the node during internal cluster communication.|float|B|
 |`transport_tx_size_in_bytes`|Size of TX packets sent by the node during internal cluster communication.|float|B|
+
+
+
 
 
 
@@ -306,8 +309,8 @@ All the data collected below will append the global election tag by default, or 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name`|Name of the cluster, based on the Cluster name setting.|
-|`index_name`|Name of the index. The name '_all' target all data streams and indices in a cluster.|
+|`cluster_name`|Name of the cluster based on the Cluster name setting.|
+|`index_name`|Name of the index. The name '_all' targets all data streams and indices in a cluster.|
 
 - Metrics List
 
@@ -320,44 +323,47 @@ All the data collected below will append the global election tag by default, or 
 |`primaries_docs_deleted`|Number of deleted documents. Only for the primary shards.|float|count|
 |`primaries_flush_total`|Number of flush operations. Only for the primary shards.|float|count|
 |`primaries_flush_total_time_in_millis`|Total time in milliseconds spent performing flush operations. Only for the primary shards.|float|ms|
-|`primaries_get_missing_total`|Total number of failed get operations. Only for the primary shards.|float|count|
+|`primaries_get_missing_total`|Total failed get operations. Only for the primary shards.|float|count|
 |`primaries_indexing_index_current`|Number of indexing operations currently running. Only for the primary shards.|float|count|
 |`primaries_indexing_index_time_in_millis`|Total time in milliseconds spent performing indexing operations. Only for the primary shards.|float|ms|
-|`primaries_indexing_index_total`|Total number of indexing operations. Only for the primary shards.|float|count|
+|`primaries_indexing_index_total`|Total indexing operations. Only for the primary shards.|float|count|
 |`primaries_merges_current_docs`|Number of document merges currently running. Only for the primary shards.|float|count|
-|`primaries_merges_total`|Total number of merge operations. Only for the primary shards.|float|count|
-|`primaries_merges_total_docs`|Total number of merged documents. Only for the primary shards.|float|count|
+|`primaries_merges_total`|Total merge operations. Only for the primary shards.|float|count|
+|`primaries_merges_total_docs`|Total merged documents. Only for the primary shards.|float|count|
 |`primaries_merges_total_time_in_millis`|Total time in milliseconds spent performing merge operations. Only for the primary shards.|float|ms|
-|`primaries_refresh_total`|Total number of refresh operations. Only for the primary shards.|float|count|
+|`primaries_refresh_total`|Total refresh operations. Only for the primary shards.|float|count|
 |`primaries_refresh_total_time_in_millis`|Total time in milliseconds spent performing refresh operations. Only for the primary shards.|float|ms|
 |`primaries_search_fetch_current`|Number of fetch operations currently running. Only for the primary shards.|float|count|
 |`primaries_search_fetch_time_in_millis`|Time in milliseconds spent performing fetch operations. Only for the primary shards.|float|ms|
-|`primaries_search_fetch_total`|Total number of fetch operations. Only for the primary shards.|float|count|
+|`primaries_search_fetch_total`|Total fetch operations. Only for the primary shards.|float|count|
 |`primaries_search_query_current`|Number of query operations currently running. Only for the primary shards.|float|count|
 |`primaries_search_query_time_in_millis`|Time in milliseconds spent performing query operations. Only for the primary shards.|float|ms|
-|`primaries_search_query_total`|Total number of query operations. Only for the primary shards.|float|count|
+|`primaries_search_query_total`|Total query operations. Only for the primary shards.|float|count|
 |`primaries_store_size_in_bytes`|Total size, in bytes, of all shards assigned to selected nodes. Only for the primary shards.|float|B|
-|`total_docs_count`|Number of documents.|float|B|
-|`total_docs_deleted`|Number of deleted documents.|float|B|
+|`total_docs_count`|Number of documents.|float|count|
+|`total_docs_deleted`|Number of deleted documents.|float|count|
 |`total_flush_total`|Number of flush operations.|float|count|
 |`total_flush_total_time_in_millis`|Total time in milliseconds spent performing flush operations.|float|ms|
-|`total_get_missing_total`|Total number of failed get operations.|float|count|
+|`total_get_missing_total`|Total failed get operations.|float|count|
 |`total_indexing_index_current`|Number of indexing operations currently running.|float|count|
 |`total_indexing_index_time_in_millis`|Total time in milliseconds spent performing indexing operations.|float|ms|
-|`total_indexing_index_total`|Total number of indexing operations.|float|count|
+|`total_indexing_index_total`|Total indexing operations.|float|count|
 |`total_merges_current_docs`|Number of document merges currently running.|float|count|
-|`total_merges_total`|Total number of merge operations.|float|count|
-|`total_merges_total_docs`|Total number of merged documents.|float|count|
+|`total_merges_total`|Total merge operations.|float|count|
+|`total_merges_total_docs`|Total merged documents.|float|count|
 |`total_merges_total_time_in_millis`|Total time in milliseconds spent performing merge operations.|float|ms|
-|`total_refresh_total`|Total number of refresh operations.|float|count|
+|`total_refresh_total`|Total refresh operations.|float|count|
 |`total_refresh_total_time_in_millis`|Total time in milliseconds spent performing refresh operations.|float|ms|
 |`total_search_fetch_current`|Number of fetch operations currently running.|float|count|
 |`total_search_fetch_time_in_millis`|Time in milliseconds spent performing fetch operations.|float|ms|
-|`total_search_fetch_total`|Total number of fetch operations.|float|count|
+|`total_search_fetch_total`|Total fetch operations.|float|count|
 |`total_search_query_current`|Number of query operations currently running.|float|count|
 |`total_search_query_time_in_millis`|Time in milliseconds spent performing query operations.|float|ms|
-|`total_search_query_total`|Total number of query operations.|float|count|
+|`total_search_query_total`|Total query operations.|float|count|
 |`total_store_size_in_bytes`|Total size, in bytes, of all shards assigned to selected nodes.|float|B|
+
+
+
 
 
 
@@ -368,9 +374,9 @@ All the data collected below will append the global election tag by default, or 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name`|Name of the cluster, based on the cluster.name setting.|
+|`cluster_name`|Name of the cluster based on the cluster.name setting.|
 |`node_name`|Name of the node.|
-|`status`|Health status of the cluster, based on the state of its primary and replica shards.|
+|`status`|Health status of the cluster based on the state of its primary and replica shards.|
 
 - Metrics List
 
@@ -378,6 +384,9 @@ All the data collected below will append the global election tag by default, or 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`nodes_process_open_file_descriptors_avg`|Average number of concurrently open file descriptors. Returns -1 if not supported.|float|count|
+
+
+
 
 
 
@@ -398,23 +407,48 @@ All the data collected below will append the global election tag by default, or 
 | ---- |---- | :---:    | :----: |
 |`active_primary_shards`|The number of active primary shards in the cluster.|int|count|
 |`active_shards`|The number of active shards in the cluster.|int|count|
-|`indices_lifecycle_error_count`|The number of indices that are managed by ILM and are in an error state.|int|count|
-|`initializing_shards`|The number of shards that are currently initializing.|int|count|
+|`indices_lifecycle_error_count`|The number of indices managed by ILM in an error state.|int|count|
+|`initializing_shards`|The number of shards currently initializing.|int|count|
 |`number_of_data_nodes`|The number of data nodes in the cluster.|int|count|
 |`number_of_pending_tasks`|The total number of pending tasks.|int|count|
-|`relocating_shards`|The number of shards that are relocating from one node to another.|int|count|
-|`status_code`|The health as a number: red = 3, yellow = 2, green = 1.|int|count|
-|`unassigned_shards`|The number of shards that are unassigned to a node.|int|count|
+|`relocating_shards`|The number of shards relocating from one node to another.|int|count|
+|`status_code`|The health status as a number: red = 3, yellow = 2, green = 1.|int|count|
+|`unassigned_shards`|The number of shards unassigned to a node.|int|count|
+
+
+
+
 
 
 
 ## Custom Objects {#object}
 
+### `mq`
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on Elasticsearch (`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`|Connection IP of the Elasticsearch|
+|`name`|Object unique ID|
+|`reason`|Reasons about the status if it is not ok|
+
+- Metrics List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current Elasticsearch uptime|int|s|
+|`version`|Current version of Elasticsearch|string|-|
 
 
 
 
-## Logs {#logging}
+## Logging {#logging}
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
@@ -422,7 +456,7 @@ All the data collected below will append the global election tag by default, or 
     Log collection is only supported for logs on hosts where DataKit is installed.
 <!-- markdownlint-enable -->
 
-To collect ElasticSearch logs, you can enable `files` in `elasticsearch.conf` and provide the absolute path to the ElasticSearch log file. For example:
+To collect ElasticSearch logs, you can enable `files` in `elasticsearch.conf` and specify the absolute path of the ElasticSearch log files. For example:
 
 ```toml
 [[inputs.elasticsearch]]
@@ -431,11 +465,11 @@ To collect ElasticSearch logs, you can enable `files` in `elasticsearch.conf` an
 files = ["/path/to/your/file.log"]
 ```
 
-After enabling log collection, logs with a source (`source`) of `elasticsearch` will be generated by default.
+After enabling log collection, logs with the source (`source`) set to `elasticsearch` will be generated by default.
 
-### Log Pipeline Field Splitting Explanation {#pipeline}
+### Log Pipeline Field Extraction Explanation {#pipeline}
 
-- General ElasticSearch Log Splitting
+- General ElasticSearch Log Extraction
   
 General log text example:
 
@@ -443,16 +477,16 @@ General log text example:
 [2021-06-01T11:45:15,927][WARN ][o.e.c.r.a.DiskThresholdMonitor] [master] high disk watermark [90%] exceeded on [A2kEFgMLQ1-vhMdZMJV3Iw][master][/tmp/elasticsearch-cluster/nodes/0] free: 17.1gb[7.3%], shards will be relocated away from this node; currently relocating away shards totalling [0] bytes; the node is expected to continue to exceed the high disk watermark when these relocations are complete
 ```
 
-Split fields list:
+Extracted fields list:
 
-| Field Name | Field Value                         | Description       |
-| ---        | ---                                 | ---               |
+| Field Name | Field Value                         | Description |
+| ---        | ---                                 | ---         |
 | time       | 1622519115927000000                 | Log generation time |
-| name       | o.e.c.r.a.DiskThresholdMonitor     | Component name    |
+| name       | o.e.c.r.a.DiskThresholdMonitor      | Component name     |
 | status     | WARN                                | Log level         |
 | nodeId     | master                              | Node name         |
 
-- ElasticSearch Slow Search Log Splitting
+- ElasticSearch Slow Search Log Extraction
   
 Slow search log text example:
 
@@ -460,18 +494,18 @@ Slow search log text example:
 [2021-06-01T11:56:06,712][WARN ][i.s.s.query              ] [master] [shopping][0] took[36.3ms], took_millis[36], total_hits[5 hits], types[], stats[], search_type[QUERY_THEN_FETCH], total_shards[1], source[{"query":{"match":{"name":{"query":"Nariko","operator":"OR","prefix_length":0,"max_expansions":50,"fuzzy_transpositions":true,"lenient":false,"zero_terms_query":"NONE","auto_generate_synonyms_phrase_query":true,"boost":1.0}}},"sort":[{"price":{"order":"desc"}}]}], id[], 
 ```
 
-Split fields list:
+Extracted fields list:
 
-| Field Name | Field Value              | Description             |
-| ---        | ---                      | ---                     |
-| time       | 1622519766712000000      | Log generation time     |
-| name       | i.s.s.query              | Component name          |
-| status     | WARN                     | Log level               |
-| nodeId     | master                   | Node name               |
-| index      | shopping                 | Index name              |
-| duration   | 36000000                | Request duration, unit ns|
+| Field Name | Field Value              | Description |
+| ---        | ---                      | ---         |
+| time       | 1622519766712000000      | Log generation time |
+| name       | i.s.s.query              | Component name |
+| status     | WARN                     | Log level |
+| nodeId     | master                   | Node name |
+| index      | shopping                 | Index name |
+| duration   | 36000000                 | Request duration, unit ns |
 
-- ElasticSearch Slow Index Log Splitting
+- ElasticSearch Slow Index Log Extraction
 
 Slow index log text example:
 
@@ -479,13 +513,13 @@ Slow index log text example:
 [2021-06-01T11:56:19,084][WARN ][i.i.s.index              ] [master] [shopping/X17jbNZ4SoS65zKTU9ZAJg] took[34.1ms], took_millis[34], type[_doc], id[LgC3xXkBLT9WrDT1Dovp], routing[], source[{"price":222,"name":"hello"}]
 ```
 
-Split fields list:
+Extracted fields list:
 
-| Field Name | Field Value              | Description             |
-| ---        | ---                      | ---                     |
-| time       | 1622519779084000000      | Log generation time     |
-| name       | i.i.s.index              | Component name          |
-| status     | WARN                     | Log level               |
-| nodeId     | master                   | Node name               |
-| index      | shopping                 | Index name              |
-| duration   | 34000000                | Request duration, unit ns|
+| Field Name | Field Value              | Description |
+| ---        | ---                      | ---         |
+| time       | 1622519779084000000      | Log generation time |
+| name       | i.i.s.index              | Component name |
+| status     | WARN                     | Log level |
+| nodeId     | master                   | Node name |
+| index      | shopping                 | Index name |
+| duration   | 34000000                 | Request duration, unit ns |

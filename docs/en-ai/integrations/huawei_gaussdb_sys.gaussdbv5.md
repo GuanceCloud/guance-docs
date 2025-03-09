@@ -2,7 +2,7 @@
 title: 'Huawei Cloud GaussDB SYS.GAUSSDBV5'
 tags: 
   - Huawei Cloud
-summary: 'Huawei Cloud GaussDB SYS.GAUSSDBV5 provides data for metrics such as CPU, memory, disk, deadlocks, and SQL response time.'
+summary: 'Huawei Cloud GaussDB SYS.GAUSSDBV5 provides data on CPU, memory, disk, deadlocks, SQL response time metrics, etc.'
 __int_icon: 'icon/huawei_gaussdb_sys.gaussdbv5'
 dashboard:
 
@@ -20,73 +20,73 @@ monitor:
 # Huawei Cloud GaussDB `SYS.GAUSSDBV5`
 <!-- markdownlint-enable -->
 
-Huawei Cloud GaussDB `SYS.GAUSSDBV5` provides data for metrics such as CPU, memory, disk, deadlocks, and `SQL` response time.
+Huawei Cloud GaussDB `SYS.GAUSSDBV5` provides data on CPU, memory, disk, deadlocks, `SQL` response time metrics, etc.
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with the script installation.
+It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Installation Script
 
-> Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
+> Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant read-only access `ReadOnlyAccess`)
 
-To synchronize monitoring data for GaussDB `SYS.GAUSSDBV5`, we install the corresponding collection script: 「Guance Integration (Huawei Cloud - GaussDB Collection)」(ID: `guance_huaweicloud_gaussdb`)
+To synchronize monitoring data for GaussDB `SYS.GAUSSDBV5`, we install the corresponding collection script: "Guance Integration (Huawei Cloud - GaussDB Collection)" (ID: `guance_huaweicloud_gaussdb`).
 
-After clicking 【Install】, enter the required parameters: Huawei Cloud AK and Huawei Cloud account name.
+After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK and Huawei Cloud account name.
 
-Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script.
+Click 【Deploy Startup Script】. The system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-Once enabled, you can see the corresponding automatic trigger configuration under 「Management / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+Once enabled, you can see the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-We have collected some configurations by default; see the Metrics section for details.
+We have collected some configurations by default; for more details, see the Metrics section.
 
 [Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-gaussdb/){:target="_blank"}
 
 
 ### Verification
 
-1. In 「Management / Automatic Trigger Configuration」, confirm whether the corresponding tasks have been configured with automatic triggers, and check the task records and logs for any anomalies.
-2. On the Guance platform, go to 「Infrastructure / Custom」to check if asset information exists.
-3. On the Guance platform, go to 「Metrics」to check if the corresponding monitoring data is available.
+1. In "Manage / Automatic Trigger Configuration", confirm that the corresponding tasks have the corresponding automatic trigger configurations. You can also check the task records and logs to see if there are any abnormalities.
+2. On the Guance platform, in "Infrastructure / Custom", check if asset information exists.
+3. On the Guance platform, in "Metrics", check if the corresponding monitoring data exists.
 
 ## Metrics {#metric}
-After configuring GaussDB `SYS.GAUSSDBV5`, the default metric set is as follows. You can collect more metrics through configuration. [Huawei Cloud Monitoring Metrics Details](https://support.huaweicloud.com/usermanual-opengauss/opengauss_01_0071.html){:target="_blank"}
+After configuring GaussDB `SYS.GAUSSDBV5`, the default metric set is as follows. More metrics can be collected through configuration. [Huawei Cloud Monitoring Metrics Details](https://support.huaweicloud.com/usermanual-opengauss/opengauss_01_0071.html){:target="_blank"}
 
 | Metric ID                                             | Metric Name                          | Metric Description                                                     | Display Object      | Metric Unit               | Measurement Object |
 | ------------------------------------- | -------------------- | ------------------------------------------------------------ | ------------- | ---------------- | ------------------------------------------------- |
-| rds005_instance_disk_used_size                     | Instance Data Disk Used Size            | This metric measures the used size of the instance data disk.          | Instance          | GB                     | Instance     |
-| rds006_instance_disk_total_size                    | Instance Data Disk Total Size                | This metric measures the total size of the instance data disk.         | Instance          | GB                     | Instance     |
-| rds007_instance_disk_usage                         | Instance Data Disk Usage Percentage          | This metric measures the usage percentage of the instance data disk.   | Instance          | %                      | Instance     |
-| rds035_buffer_hit_ratio                            | Buffer Hit Ratio                      | This metric measures the database buffer hit ratio.                           | Instance          | %                      | Instance     |
-| rds036_deadlocks                                   | Deadlock Count                          | This metric counts the number of transaction deadlocks in the database, taken as an incremental value over the period. | Instance          | Count                  | Instance     |
-| rds048_P80                                         | 80% SQL Response Time                 | This metric measures the response time for 80% of SQL queries.        | Instance          | us                     | Instance     |
-| rds049_P95                                         | 95% SQL Response Time                 | This metric measures the response time for 95% of SQL queries.        | Instance          | us                     | Instance     |
-| rds001_cpu_util                                    | CPU Utilization                         | This metric measures the CPU utilization.                          | Current Node      | %                      | Node     |
-| rds002_mem_util                                    | Memory Utilization                        | This metric measures the memory utilization.                         | Current Node      | %                      | Node     |
-| rds003_bytes_in                                    | Data Write Volume                        | This metric measures the network bytes sent by the corresponding VM over the period, taken as an average. | Current Node      | Byte/s                 | Node     |
-| rds004_bytes_out                                   | Data Read Volume                        | This metric measures the network bytes received by the corresponding VM over the period, taken as an average. | Current Node      | Byte/s                 | Node     |
-| rds014_iops                                        | Data Disk IOPS              | This metric measures the number of reads and writes per second on the node's data disk. | Current Node      | Count/s                | Node     |
-| rds016_disk_write_throughput                       | Data Disk Write Throughput                  | This metric measures the write throughput of the node's data disk per second. | Current Node      | Byte/s                 | Node     |
-| rds017_disk_read_throughput                        | Data Disk Read Throughput                  | This metric measures the read throughput of the node's data disk per second. | Current Node      | Byte/s                 | Node     |
-| rds020_avg_disk_ms_per_write                       | Average Time Per Disk Write                       | This metric measures the average time spent per disk write over the period. | Current Node      | ms                     | Node     |
-| rds021_avg_disk_ms_per_read                        | Average Time Per Disk Read                        | This metric measures the average time spent per disk read over the period. | Current Node      | ms                     | Node     |
-| io_bandwidth_usage                                 | Disk IO Bandwidth Usage Rate                  | This metric measures the ratio of current disk IO bandwidth to maximum disk IO bandwidth.                             | Current Node      | %                      | Node     |
-| iops_usage                                         | IOPS Usage Rate                        | This metric measures the ratio of current IOPS to maximum disk IOPS.                                   | Current Node      | %                      | Node     |
-| rds069_swap_total_size                             | Swap Memory Total Size                    | This metric describes the total size of the operating system swap memory.         | Current Node      | MB                     | Node     |
-| rds068_swap_used_ratio                             | Swap Memory Usage Rate                    | This metric describes the usage rate of the operating system swap memory.         | Current Node      | %                      | Node     |
+| rds005_instance_disk_used_size                     | Instance Disk Used Size              | This metric is used to count the instance data disk usage size, which is a real-time value. | Instance          | GB                     | Instance     |
+| rds006_instance_disk_total_size                    | Instance Disk Total Size             | This metric is used to count the instance data disk total size, which is a real-time value.   | Instance          | GB                     | Instance     |
+| rds007_instance_disk_usage                         | Instance Disk Usage Percentage       | This metric is used to count the instance data disk usage percentage, which is a real-time value.   | Instance          | %                      | Instance     |
+| rds035_buffer_hit_ratio                            | Buffer Hit Ratio                     | This metric is used to count the database buffer hit ratio.                           | Instance          | %                      | Instance     |
+| rds036_deadlocks                                   | Deadlock Count                       | This metric is used to count the number of transaction deadlocks in the database, taking the incremental value during this period. | Instance          | Count                  | Instance     |
+| rds048_P80                                         | 80% SQL Response Time                | This metric is used to count the response time of 80% SQL queries in the database, which is a real-time value.        | Instance          | us                     | Instance     |
+| rds049_P95                                         | 95% SQL Response Time                | This metric is used to count the response time of 95% SQL queries in the database, which is a real-time value.        | Instance          | us                     | Instance     |
+| rds001_cpu_util                                    | CPU Utilization                      | This metric is used to count the CPU utilization of the measurement object.                          | Current Node      | %                      | Node     |
+| rds002_mem_util                                    | Memory Utilization                   | This metric is used to count the memory utilization of the measurement object.                         | Current Node      | %                      | Node     |
+| rds003_bytes_in                                    | Data Write Volume                    | This metric is used to count the network bytes sent by the corresponding VM of the measurement object, taking the average value over the time period | Current Node      | Byte/s                 | Node     |
+| rds004_bytes_out                                   | Data Transfer Volume                 | This metric is used to count the network bytes received by the corresponding VM of the measurement object, taking the average value over the time period | Current Node      | Byte/s                 | Node     |
+| rds014_iops                                        | Data Disk Read/Write Operations per Second | This metric is used to count the number of read/write operations per second on the node data disk of the measurement object, which is a real-time value. | Current Node      | Count/s                | Node     |
+| rds016_disk_write_throughput                       | Data Disk Write Throughput           | This metric is used to count the write throughput per second on the node data disk of the measurement object, which is a real-time value. | Current Node      | Byte/s                 | Node     |
+| rds017_disk_read_throughput                        | Data Disk Read Throughput            | This metric is used to count the read throughput per second on the node data disk of the measurement object, which is a real-time value. | Current Node      | Byte/s                 | Node     |
+| rds020_avg_disk_ms_per_write                       | Average Time per Disk Write          | This metric is used to count the average time spent per disk write operation on the node data disk of the measurement object, taking the average value over the time period. | Current Node      | ms                     | Node     |
+| rds021_avg_disk_ms_per_read                        | Average Time per Disk Read           | This metric is used to count the average time spent per disk read operation on the node data disk of the measurement object, taking the average value over the time period. | Current Node      | ms                     | Node     |
+| io_bandwidth_usage                                 | Disk IO Bandwidth Usage              | The ratio of current disk IO bandwidth to maximum disk bandwidth                             | Current Node      | %                      | Node     |
+| iops_usage                                         | IOPS Usage                           | The ratio of current IOPS to maximum disk IOPS                                   | Current Node      | %                      | Node     |
+| rds069_swap_total_size                             | Swap Memory Total Size               | This metric describes the total swap memory size of the operating system, which is a real-time value.         | Current Node      | MB                     | Node     |
+| rds068_swap_used_ratio                             | Swap Memory Usage Percentage         | This metric describes the swap memory usage percentage of the operating system, which is a real-time value.         | Current Node      | %                      | Node     |
 
 
 
 
 ## Objects {#object}
 
-The structure of the collected GaussDB `SYS.GAUSSDBV5` object data can be viewed under 「Infrastructure - Custom」
+The structure of the collected GaussDB `SYS.GAUSSDBV5` object data can be viewed in "Infrastructure - Custom"
 
 ``` json
 {
@@ -103,7 +103,7 @@ The structure of the collected GaussDB `SYS.GAUSSDBV5` object data can be viewed
     "instance_name"           : "xxxxx-efa7"
   },
   "fields": {
-    "charge_info"          : "{Billing type information, supports on-demand and subscription}",
+    "charge_info"          : "{Billing type information, supports pay-as-you-go and subscription}",
     "flavor_info"          : "{Specification information}",
     "volume"               : "{Volume information}",
     "create_time"          : "2023-08-01T14:17:40+0800",
@@ -117,8 +117,8 @@ The structure of the collected GaussDB `SYS.GAUSSDBV5` object data can be viewed
 
 ```
 
-> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
+> *Note: Fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tip 1: The value of `tags.name` is the instance ID, which serves as a unique identifier.
+> Note 1: The value of `tags.name` is the instance ID, used for unique identification.
 >
-> Tip 2: `fields.message`, `fields.charge_info`, `fields.flavor_info`, `fields.volume`, `fields.public_ips`, and `fields.nodes` are serialized JSON strings.
+> Note 2: `fields.message`, `fields.charge_info`, `fields.flavor_info`, `fields.volume`, `fields.public_ips`, and `fields.nodes` are all JSON serialized strings.

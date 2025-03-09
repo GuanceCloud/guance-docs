@@ -1,14 +1,14 @@
 ---
 title: 'Host Health Check'
-summary: 'Periodically check the health of host processes and network'
+summary: 'Periodically check the health status of host processes and network'
 tags:
   - 'Host'
 __int_icon: 'icon/healthcheck'
 dashboard:
-  - desc: 'None'
+  - desc: 'Not available'
     path: '-'
 monitor:
-  - desc: 'None'
+  - desc: 'Not available'
     path: '-'
 ---
 
@@ -20,7 +20,7 @@ monitor:
 
 ---
 
-The health check collector can periodically monitor the health status of the host's processes and network (such as TCP and HTTP). If it does not meet the health requirements, DataKit will collect the corresponding information and report Metrics data.
+The health check collector can periodically monitor the health status of host processes and networks (such as TCP and HTTP). If it does not meet the health requirements, DataKit will collect the corresponding information and report metric data.
 
 ## Configuration {#config}
 
@@ -30,12 +30,12 @@ The health check collector can periodically monitor the health status of the hos
 
 === "Host Installation"
 
-    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `host_healthcheck.conf.sample`, and rename it to `host_healthcheck.conf`. An example is as follows:
+    Enter the `conf.d/host` directory under the DataKit installation directory, copy `host_healthcheck.conf.sample`, and rename it to `host_healthcheck.conf`. An example is as follows:
 
     ```toml
         
     [[inputs.host_healthcheck]]
-      ## Collection interval
+      ## Collect interval
       interval = "1m" 
     
       ## Check process
@@ -52,7 +52,7 @@ The health check collector can periodically monitor the health status of the hos
         # Process filtering based on regular expression 
         # cmd_lines_regex = [ "my_args_.*" ]
     
-        ## Minimum process run time
+        ## Process minimal run time
         # Only check the process when the running time of the process is greater than min_run_time
         min_run_time = "10m"
     
@@ -66,7 +66,7 @@ The health check collector can periodically monitor the health status of the hos
     
       ## Check HTTP
       # [[inputs.host_healthcheck.http]]
-          ## HTTP URLs
+          ## HTTP urls
           # http_urls = [ "http://127.0.0.1:8000/path/to/api?arg1=x&arg2=y" ]
     
           ## HTTP method
@@ -98,9 +98,9 @@ The health check collector can periodically monitor the health status of the hos
 
 === "Kubernetes"
 
-    You can inject the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or configure ENV_DATAKIT_INPUTS to enable the collector.
+    You can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [setting ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
 
-    Environment variables are also supported for modifying configuration parameters (you need to add it to ENV_DEFAULT_ENABLED_INPUTS as a default collector):
+    You can also modify the configuration parameters via environment variables (you need to add it to ENV_DEFAULT_ENABLED_INPUTS as a default collector):
 
     - **ENV_INPUT_HEALTHCHECK_INTERVAL**
     
@@ -144,7 +144,7 @@ The health check collector can periodically monitor the health status of the hos
     
     - **ENV_INPUT_HEALTHCHECK_TAGS**
     
-        Custom tags. If there are tags with the same name in the configuration file, they will be overwritten.
+        Custom tags. If the configuration file has tags with the same name, they will be overwritten.
     
         **Field Type**: JSON
     
@@ -156,7 +156,7 @@ The health check collector can periodically monitor the health status of the hos
 
 ## Metrics {#metric}
 
-All collected data will append a global tag named `host` (tag value is the hostname where DataKit resides by default), which can also be specified through `[inputs.host_healthcheck.tags]` in the configuration:
+All collected data below will append a global tag named `host` (tag value is the hostname where DataKit resides) by default. You can also specify additional tags through `[inputs.host_healthcheck.tags]` in the configuration:
 
 ```toml
  [inputs.host_healthcheck.tags]
@@ -181,7 +181,7 @@ All collected data will append a global tag named `host` (tag value is the hostn
 |`process`|The name of the process|
 |`type`|The type of the exception|
 
-- Field List
+- Fields
 
 
 | Metric | Description | Type | Unit |
@@ -208,7 +208,7 @@ All collected data will append a global tag named `host` (tag value is the hostn
 |`port`|The port|
 |`type`|The type of the exception|
 
-- Field List
+- Fields
 
 
 | Metric | Description | Type | Unit |
@@ -233,7 +233,7 @@ All collected data will append a global tag named `host` (tag value is the hostn
 |`host`|System hostname|
 |`url`|The URL|
 
-- Field List
+- Fields
 
 
 | Metric | Description | Type | Unit |

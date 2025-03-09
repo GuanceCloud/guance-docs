@@ -1,4 +1,4 @@
-# 【Workspace API Key】Creation
+# 【Workspace API Key】Create
 
 ---
 
@@ -12,11 +12,11 @@
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| name | string | Y | API Key name information<br>Example: xxx <br>Can be empty: False <br>Maximum length: 256 <br> |
-| workspaceUUID | string | Y | Specify the Workspace UUID<br>Example: wksp_xxxxx <br>Can be empty: False <br> |
+|:---------------------|:---------|:-----------|:-------------------------|
+| name                 | string   | Y          | API Key name information<br>Example: xxx <br>Allow empty: False <br>Maximum length: 256 <br> |
+| workspaceUUID        | string   | Y          | Specify the workspace UUID<br>Example: wksp_xxxxx <br>Allow empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

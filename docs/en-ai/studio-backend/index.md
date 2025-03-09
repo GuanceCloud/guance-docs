@@ -6,4 +6,4 @@ icon: zy/studio-backend
 
 ---
 
-Public descriptions for Guance Open API / External API
+<<< custom_key.brand_name >>> Open API / External API contains some common descriptions

@@ -1,13 +1,13 @@
 # How to Configure Application Performance Monitoring Sampling
 ---
 
-Guance's **APM** feature supports the analysis and management of trace data collected by collectors that comply with the Opentracing protocol. By default, APM data is collected in full volume, meaning that every call generates data. If not restricted, this can result in a large amount of collected data, consuming excessive storage. You can configure sampling to collect APM data, thereby saving storage space and reducing costs.
+<<< custom_key.brand_name >>>'s **APM** feature supports the analysis and management of trace data collected by collectors that comply with the Opentracing protocol. By default, application performance data is collected in full volume, meaning every call generates data. Without restrictions, this can lead to a large amount of collected data, consuming excessive storage. You can configure sampling to collect APM data, reducing storage usage and lowering costs.
 
-Below, we will use *[DDtrace Collector](../../integrations/ddtrace.md)* as an example to introduce how to configure a 5% sampling rate for APM data.
+Below, we will use *[DDtrace Collector](../../integrations/ddtrace.md)* as an example to explain how to configure a 5% sampling rate for APM data.
 
 ## Prerequisites
 
-- [Register and log in to Guance](https://auth.guance.com/login/pwd);
+- [Register and log in to <<< custom_key.brand_name >>>](https://auth.guance.com/login/pwd);
 - [Install DataKit](../../datakit/datakit-install.md);
 - [Enable DDtrace Collector](../../integrations/ddtrace.md).
 
@@ -15,7 +15,7 @@ Below, we will use *[DDtrace Collector](../../integrations/ddtrace.md)* as an ex
 
 Before starting to collect APM data, you need to configure DDtrace according to different programming languages.
 
-The following example uses a common Python web server, Flask, to illustrate how to sample APM data. In this example, `SERVICE_A` provides HTTP services and calls `SERVICE_B`'s HTTP service.
+The following example uses a common Python Webserver Flask application to illustrate how to sample APM data. In this example, `SERVICE_A` provides an HTTP service and calls the `SERVICE_B` HTTP service.
 
 ### Step 1: Install DDtrace Runtime Environment
 
@@ -23,7 +23,7 @@ The following example uses a common Python web server, Flask, to illustrate how 
 pip install ddtrace
 ```
 
-### Step 2: Install flask Package
+### Step 2: Install Flask Package
 
 ```python
 pip install flask
@@ -35,9 +35,9 @@ pip install flask
 
     Create `SERVICE_A` and `SERVICE_B`, configuring `SERVICE_A` to sample at 5%, while `SERVICE_B` collects data by default.
 
-When creating these services, you need to reference DDtrace, set the service names, define service name mappings, and configure environment variables for project name, environment name, version number, etc. Additionally, configure the DataKit trace API service address (port number is 9529, depending on your specific DataKit address).
+When creating services, you need to reference DDtrace, set the service names, define service name mappings, and configure environment variables for project name, environment name, version number, etc. Additionally, configure the DataKit trace API service address (the port number is 9529, depending on your specific DataKit address).
 
-> Refer to [Python Flask Complete Example](../../integrations/apm/ddtrace-python.md).
+> Refer to the [Complete Python Flask Example](../../integrations/apm/ddtrace-python.md).
 
 #### 1. SERVICE_A
 
@@ -147,7 +147,7 @@ if __name__ == '__main__':
 (ddtrace-run python3 service_a.py &> a.log &)
 (ddtrace-run python3 service_b.py &> b.log &)
 
-# Call service A, which will invoke service B, generating corresponding trace data (you can run this multiple times to trigger more traces)
+# Call service A, which triggers a call to service B, generating corresponding trace data (this command can be executed multiple times to trigger more events)
 curl http://localhost:54321/a
 
 # Stop both services
@@ -155,15 +155,15 @@ curl http://localhost:54321/stop
 curl http://localhost:54322/stop
 ```
 
-### Step 5: View Results in Guance Workspace
+### Step 5: View Results in <<< custom_key.brand_name >>> Workspace
 
-Log in to your Guance workspace to view the collected `SERVICE_A` and `SERVICE_B` trace data.
+Log in to the <<< custom_key.brand_name >>> workspace to view the collected `SERVICE_A` and `SERVICE_B` trace data.
 
 ???+ warning
 
-    APM sampling is based on traces. If there are 100 traces and the sampling rate is set to 5%, then 5% of the traces are randomly sampled, i.e., 5 traces and all their Spans are reported to the Guance workspace.
+    APM sampling is based on traces. If there are 100 traces and the sampling rate is set to 5%, then 5% of the traces are randomly sampled, i.e., 5 traces and all their spans are reported to the <<< custom_key.brand_name >>> workspace.
     
-    In this example, `SERVICE_A` provides HTTP services and calls `SERVICE_B`'s HTTP service, forming one trace. Assuming there are 100 traces, 5 traces will be randomly reported.
+    In this example, `SERVICE_A` provides an HTTP service and calls the `SERVICE_B` HTTP service, forming a single trace. Assuming there are 100 traces, 5 traces are randomly reported.
 
 ![](../img/sample_explor.png)
 
@@ -173,7 +173,7 @@ Log in to your Guance workspace to view the collected `SERVICE_A` and `SERVICE_B
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; DataKit Samplers</font>](../../integrations/datakit-tracing.md#samplers)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Datakit Samplers</font>](../../integrations/datakit-tracing.md#samplers)
 
 
 </div>
@@ -185,12 +185,12 @@ Log in to your Guance workspace to view the collected `SERVICE_A` and `SERVICE_B
     sampling_rate = 1.0
 ```
 
-- After configuring APM sampling, you might miss important traces. You can ensure critical traces are reported by configuring filters, such as setting `keep_rare_resource = true`, which ensures rare traces are directly reported to Guance.
+- After setting up APM sampling, you might miss important traces. You can ensure critical traces are reported by configuring filters, such as setting `keep_rare_resource = true`, which ensures rare traces are directly reported to <<< custom_key.brand_name >>>.
 
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; DataKit Filters</font>](../../integrations/datakit-tracing.md#filters)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Datakit Filters</font>](../../integrations/datakit-tracing.md#filters)
 
 
 </div>

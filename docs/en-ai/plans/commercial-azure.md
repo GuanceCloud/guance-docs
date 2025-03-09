@@ -1,21 +1,20 @@
-# Activate Guance Commercial Plan on Microsoft Cloud Marketplace
-
+# Activating <<< custom_key.brand_name >>> Commercial Plan on Microsoft Cloud Marketplace
 ---
 
-This article will guide you through **activating the Guance Commercial Plan and using your Microsoft account for billing after subscribing to Guance services via Microsoft Cloud Marketplace**.
+This article will guide you through the process of subscribing to <<< custom_key.brand_name >>> services on Microsoft Cloud Marketplace, activating the <<< custom_key.brand_name >>> Commercial Plan, and using your Microsoft account for billing.
 
-**Note**: Billing through a Microsoft Cloud account supports only US dollars.
+**Note**: Billing via a Microsoft Cloud account only supports US dollars.
 
-## Subscribe to Guance {#subscribe}
+## Subscribing to <<< custom_key.brand_name >>> {#subscribe}
 
-1. Log in and navigate to the [Microsoft Cloud Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/ceinformationtechnologycompanylimited1715838939322.guance_saas?tab=Overview) Guance product page;
+1. Log in and visit the <<< custom_key.brand_name >>> product page on [Microsoft Cloud Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/ceinformationtechnologycompanylimited1715838939322.guance_saas?tab=Overview);
 2. Click **Get It Now**;
 3. In the pop-up window, check the agreement and click **Continue**;
-4. You will be redirected to the subscription page by default; select the subscription resource group;
-5. Confirm your subscription information on the new page, define the name, choose the billing period, and whether to renew;
+4. You will be redirected to the subscription page by default; select a subscription resource group;
+5. Confirm your subscription information on the new page, define a name, choose a billing period, and whether to renew;
 6. Click **Review + Subscribe** at the bottom left;
-7. After confirming that all information is correct, click **Subscribe**;
-8. A successful subscription message will be displayed.
+7. After confirming that the information is correct, click **Subscribe**;
+8. Subscription successful.
 
 ![](img/azure.png)
 
@@ -27,19 +26,19 @@ This article will guide you through **activating the Guance Commercial Plan and 
 
 ![](img/azure-4.png)
 
-## Activate the Guance Commercial Plan
+## Activating <<< custom_key.brand_name >>> Commercial Plan
 
-After clicking, you will be automatically redirected to the activation page of Guance. If your current Microsoft Cloud account is not linked to a Guance billing center account, two scenarios may occur:
+After clicking, you will be automatically redirected to the <<< custom_key.brand_name >>> activation page. If your current Microsoft Cloud account is not linked to a <<< custom_key.brand_name >>> Billing Center account, two scenarios may occur:
 
-:material-numeric-1-circle-outline: [No billing center account](#register): You need to register for a Guance account and a billing center account before linking the cloud account for billing;
+:material-numeric-1-circle-outline: [No Billing Center Account](#register): You need to register for a <<< custom_key.brand_name >>> account and a Billing Center account, then bind the cloud account for billing;
 
-:material-numeric-2-circle-outline: [Existing billing center account](#bond): You can directly bind the billing center account to enable cloud account billing.
+:material-numeric-2-circle-outline: [Has Billing Center Account](#bond): You can directly bind the Billing Center account to enable cloud account billing.
 
 ![](img/10.aliyun_market_2.png)
 
-???+ warning "What is a billing center account?"
+???+ warning "What is a Billing Center account?"
 
-    A billing center account is an independent account within the Guance billing center platform used to manage Commercial Plan billing. It allows a single account to be associated with multiple workspaces for unified billing management.
+    A Billing Center account is an independent account within the <<< custom_key.brand_name >>> Billing Center platform used to manage Commercial Plan billing. It allows a single account to associate with multiple workspaces for unified billing management.
 
     The overall process is as follows:
 
@@ -47,77 +46,78 @@ After clicking, you will be automatically redirected to the activation page of G
 
 ### No Billing Center Account {#register}
 
-If you do not have a billing center account yet, click next, and you will be redirected to the registration page. After completing the registration process, you will obtain both a Guance account and a billing center account.
+If you do not have a Billing Center account yet, click next to be automatically redirected to the registration page. Complete the registration process to obtain both a <<< custom_key.brand_name >>> account and a Billing Center account.
 
-1. Fill out basic information;
+1. Fill in basic information;
 2. Provide company information;
-3. Choose the activation method: enter the workspace name, select the workspace language, and click **Activate** to complete registration.
+3. Choose the activation method: enter a workspace name, select the workspace language, and click **Activate** to complete registration.
 
 ![](img/azure-5.png)
 
-### Existing Billing Center Account {#bond}
+### Has Billing Center Account {#bond}
 
-If you already have a billing center account, click next, and you will be directed to the binding page:
+If you already have a Billing Center account, click next to go directly to the binding page:
 
-**Note**: The site selection in the top-right corner of this page is unrelated to the billing center binding process and only affects the site when creating a workspace later. This selection cannot be changed afterward.
+**Note**: The site selection in the top-right corner of this page is unrelated to the Billing Center binding process. It only affects the site selection when creating a workspace later, and cannot be changed after creation.
 
-#### :material-numeric-1-circle: Bind Billing Center Account
+#### :material-numeric-1-circle: Binding Billing Center Account
 
-Enter the username of your billing center account and verify via email to bind it;
+Enter the username of the Billing Center account and verify via email to bind it;
 
 ![](img/azure-6.png)
 
-#### :material-numeric-2-circle: Bind Guance Workspace
+#### :material-numeric-2-circle: Binding <<< custom_key.brand_name >>> Workspace
 
-##### Create a Workspace
+##### Creating a Workspace
 
-If your billing center account does not yet have any associated workspaces, click to create a workspace first.
+If there are no associated workspaces under your current Billing Center account, click to create a workspace first.
 
 ![](img/azure-7.png)
 
-Since the Guance console and the billing center are two separate platforms, you need to confirm whether you have registered for Guance and have a Guance account.
+Since <<< custom_key.brand_name >>> Console and the Billing Center are two separate platforms, confirm whether you have registered for <<< custom_key.brand_name >>> and own a <<< custom_key.brand_name >>> account.
 
 <img src="../img/azure-8.png" width="70%" >
 
-:material-numeric-1-circle-outline: Have a Guance Account
+:material-numeric-1-circle-outline: Have <<< custom_key.brand_name >>> Account
 
 1. Enter the workspace name;
 2. Select the workspace language;
 3. Enter the email;
-4. Input the verification code;
+4. Enter the verification code;
 5. Agree to the terms;
-6. Click **Create**, and the workspace will be successfully created.
+6. Click **Create**, and the workspace will be created successfully.
 
 <img src="../img/azure-9.png" width="60%" >
 
-:material-numeric-1-circle-outline: No Guance Account
+:material-numeric-1-circle-outline: No <<< custom_key.brand_name >>> Account
 
 1. Enter the workspace name;
 2. Select the workspace language;
 3. Enter the username;
 4. Enter and confirm the login password;
 5. Enter the email;
-6. Optionally, enter the phone number;
-7. Agree to the terms;
-8. Click **Register and Create Workspace**.
+6. Enter the verification code;
+7. Optionally fill in the phone number;
+8. Agree to the terms;
+9. Click **Register and Create Workspace**.
 
 <img src="../img/azure-10.png" width="60%" >
 
-##### Bind Existing Workspace
+##### Binding Existing Workspace
 
-If you have workspaces available for binding under your Guance billing center account, simply click **Bind**.
+If you have workspaces available for binding under your <<< custom_key.brand_name >>> Billing Center account, simply click **Bind**.
 
-1. Select the workspace you want to bind and click **Bind**;
-2. On the new page, click **Confirm**;
-3. A confirmation message will display indicating successful binding.
+1. Select the workspace you want to bind and click bind;
+2. On the new page, click confirm;
+3. The system will display that it has been bound.
 
 ![](img/azure-11.png)
 
 ![](img/azure-12.png)
 
-## Start Using Guance
+## Start Using <<< custom_key.brand_name >>>
 
-After successfully binding the workspace, click **Confirm** to be redirected to the login page. Enter your username and password to access the workspace and start using Guance.
+After successfully binding the workspace, click confirm, and you will be redirected to the login page. Enter your username and password to access the workspace and start using <<< custom_key.brand_name >>>.
 
 ![](img/azure-13.png)
 

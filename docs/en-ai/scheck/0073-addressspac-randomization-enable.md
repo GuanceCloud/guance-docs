@@ -1,48 +1,58 @@
-# 0073-address-space-randomization-enable - Ensure Address Space Layout Randomization (ASLR) is Enabled
+# Ensure Address Space Layout Randomization (ASLR) is Enabled
 ---
 
 ## Rule ID
 
-- 0073-address-space-randomization-enable
+- 0073-addressspac-randomization-enable
 
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
 
+
 - Linux
+
+
 
 
 ## Description
 
-- Address Space Layout Randomization (ASLR) is a security feature that mitigates vulnerabilities by randomizing the memory address space of key data regions in a process.
+
+- Address Space Layout Randomization (ASLR) is a vulnerability mitigation technique that randomizes the address space of critical data regions within a process.
+
 
 
 ## Scan Frequency
-
 - 0 */30 * * *
-
 
 ## Theoretical Basis
 
-- Randomly placing virtual memory regions makes it more difficult for attacks that write to memory pages, as the memory locations will continuously change.
+
+- Randomizing the placement of virtual memory regions makes memory page attacks more difficult because memory locations will continuously change.
+>
+
+
+
+
 
 
 ## Risk Items
 
+
 - Service Unavailability
 
 
-## Audit Method
 
+## Audit Method
 - Run the following commands and verify if the output matches:
 
 ```bash
@@ -53,35 +63,46 @@ kernel.randomize_va_space = 2
 ```
 
 
-## Remediation
 
+
+## Remediation
 - Add the following line to `/etc/security/limits.conf` or `/etc/security/limits.d/*` files:
 
-```bash
+``` bash
 kernel.randomize_va_space = 2
 ```
-Run the following command to set the active kernel parameter:
-```bash
+Run the following command to set the active kernel parameters:
+``` bash
 sysctl -w kernel.randomize_va_space=2
 ```
 
 
+
 ## Impact
 
+
 - None
+
+
 
 
 ## Default Value
 
+
 - None
+
+
 
 
 ## References
 
+
 - None
 
 
-## CIS Controls
+
+## CIS Control
+
 
 - Version 7
 >   8.3 Enable Operating System Anti-Attack Features / Deploy Anti-Attack Technologies

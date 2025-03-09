@@ -3,7 +3,7 @@ title: 'Kubernetes API Server'
 summary: 'Collect metrics related to the Kubernetes API Server'
 __int_icon: 'icon/kubernetes'
 dashboard:
-  - desc: 'Monitoring view for Kubernetes API Server'
+  - desc: 'Kubernetes API Server monitoring view'
     path: 'dashboard/en/kubernetes_api_server'
 monitor:
   - desc: 'Not available'
@@ -15,23 +15,21 @@ monitor:
 <!-- markdownlint-enable -->
 
 
-Performance metrics display for the Kubernetes API Server, including request counts, work queue growth rate, work queue depth, CPU, Memory, Goroutine, etc.
+Display performance metrics of the Kubernetes API Server, including request counts, work queue growth rate, work queue depth, CPU, Memory, Goroutine, etc.
 
 ## Configuration {#config}
 
 ### Version Support
 
-- Operating System Support: Linux
-
-- Kubernetes Version: 1.18+
+- Operating system support: Linux
+- Kubernetes version: 1.18+
 
 ### Prerequisites
 
-- DataKit has been deployed. Refer to the [Installation of DataKit in Kubernetes Cluster](../datakit/datakit-daemonset-deploy.md).
+- DataKit has been deployed; refer to [Install DataKit](../datakit/datakit-daemonset-deploy.md) for Kubernetes clusters.
+- To collect metrics from the Kubernetes API Server, you need to install the [Metrics-Server component](https://github.com/kubernetes-sigs/metrics-server#installation){:target="_blank"}.
 
-- To collect Kubernetes API Server metrics data, [the Metrics-Server component needs to be installed on Kubernetes](https://github.com/kubernetes-sigs/metrics-server#installation){:target="_blank"}.
-
-### Metric Collection
+### Metrics Collection
 
 - Create `bearer-token` authorization information using `yaml`
 
@@ -95,9 +93,9 @@ subjects:
 kubectl get secret `kubectl get secret -ndefault | grep bearer-token | awk '{print $1}'` -o jsonpath={.data.token} | base64 -d
 ```
 
-- Add `api-server.conf` configuration to ConfigMap
+- Add `api-server.conf` to ConfigMap
 
-In the `datakit.yaml` file used for deploying DataKit, add `api-server.conf` to the ConfigMap resource.
+Add `api-server.conf` to the `ConfigMap` resource in the `datakit.yaml` file used for deploying DataKit.
 
 ```yaml
 apiVersion: v1
@@ -109,7 +107,7 @@ data:
   #### api-server ## Below is the new part
   api-server.conf: |-
     [[inputs.prom]]
-      ## Exporter address or file path (Exporter address should include the network protocol http or https)
+      ## Exporter address or file path (include http or https protocol for Exporter addresses)
       ## File paths differ across operating systems
       ## Windows example: C:\\Users
       ## UNIX-like example: /usr/local/
@@ -117,24 +115,24 @@ data:
       ## Collector alias
       source = "prom-api-server"
 
-      ## Filter metric types, optional values are counter, gauge, histogram, summary
-      # By default, only counter and gauge types of metrics are collected
-      # If empty, no filtering will be performed
+      ## Metric type filter, optional values are counter, gauge, histogram, summary
+      # By default, only counter and gauge types are collected
+      # If empty, no filtering is performed
       metric_types = ["counter", "gauge"]
 
-      ## Filter metric names
-      # Supports regex, multiple configurations can be set, meeting any one condition is sufficient
-      # If empty, no filtering will be performed
+      ## Metric name filter
+      # Supports regex, multiple configurations can be set where any one match is sufficient
+      # If empty, no filtering is performed
       #metric_name_filter = [""]
 
       ## Prefix for measurement names
-      # Configuring this item can add a prefix to the measurement names
+      # Configure this to add a prefix to the measurement names
       #measurement_prefix = "prom_api_server"
 
       ## Measurement name
-      # By default, it splits the metric name with underscores "_", taking the first field as the measurement name and the remaining fields as the current metric name
-      # If measurement_name is configured, the metric name will not be split
-      # The final measurement name will have the measurement_prefix prefix added
+      # By default, it splits the metric name by underscores ("_"), with the first field as the measurement name and the rest as the current metric name
+      # If measurement_name is configured, it will not split the metric name
+      # The final measurement name will include the measurement_prefix prefix
       measurement_name = "prom_api_server"
 
       ## Collection interval "ns", "us" (or "µs"), "ms", "s", "m", "h"
@@ -151,32 +149,32 @@ data:
       #tls_cert = "/etc/kubernetes/pki/apiserver.crt"
       #tls_key = "/etc/kubernetes/pki/apiserver.key"
 
-      ## Custom authentication method, currently only supports Bearer Token
+      ## Custom authentication method, currently supports Bearer Token only
       [inputs.prom.auth]
        type = "bearer_token"
        token = "eyJhbGciOiJSUzI1NiIsImtpZCI6ImlfX2V6UXdXWkpKUWZ6QlBxTGdSRTBpa0J1a2VpQUU3Q0JMWGFfYWNDYWcifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImJlYXJlci10b2tlbi10b2tlbi05emI5dCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJiZWFyZXItdG9rZW4iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiJkNWQxNDkzNi00NmM1LTRjZjMtYmI2MS00ODhhOTFiYTRjMTQiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6ZGVmYXVsdDpiZWFyZXItdG9rZW4ifQ.sBQUGE67N6BV6mnC0g72k8ciiSjEZ-ctFjHcyiP_rBp9paUnGwd3ouheF0ddGormn6esOGR1t6vvDdta9BiE3i5mHpJsOifkVXzv85N3qllJfSpXvIIn-LNq-wxnK55QbOhXQjeFKF0PBanJk4m_kWCM6SOuFrH9s8cHGhKEVCYw_7ScUwHCDGQVUq_zKCfKll20GHSwhlzjjt2tz07UYdQs5kQ9AN8VbM9qNIJmpasPOeqod9hTbevnL3kO5Lcd4h4NUOT8JfJ2Om72NvH71-xWNH0U_Hqf2yS0_ZlnneBESq4FDjbm1VnJPxeIOJL0dMaoRJVPPtA0yUhX5MYV7A"
        #token_file = "/var/run/secrets/kubernetes.io/serviceaccount/token"
 
-      ## Custom Tags
+      ## Custom tags
       [inputs.prom.tags]
         instance = "172.31.16.148:6443"
 ```
 
-- Parameter Explanation:
+- Parameter descriptions:
 
-- url: Address of the api-server metrics
-- source: Alias for the collector
+- url: Address of the api-server metrics endpoint
+- source: Collector alias
 - metric_types: Metric type filter
 - metric_name_filter: Metric name filter
 - measurement_prefix: Prefix for measurement names
 - measurement_name: Measurement name
 - interval: Collection interval
-- tags_ignore: Ignored tags
+- tags_ignore: Tags to ignore
 - metric_name_filter: Retained metric names
-- tls_open: Whether to ignore security verification (if HTTPS, set to true and configure the corresponding certificate), here it is true
+- tls_open: Whether to skip security verification (set to true if using HTTPS and provide corresponding certificates), set to true here
 - tls_ca: Path to CA certificate
 - type: Custom authentication method, api-server uses bearer_token authentication
-- token_file: Path to the authentication file
+- token_file: Path to authentication file
 - inputs.prom.tags: Refer to plugin tags
 
 - Mount `api-server.conf`
@@ -189,7 +187,7 @@ Add the following content under `volumeMounts` in the `datakit.yaml` file.
   subPath: api-server.conf
 ```
 
-- Kubernetes exposes metrics by default, you can directly view related metrics via curl.
+- Kubernetes exposes metrics by default, which can be viewed directly using curl.
 
 ```shell
 curl -k "https://172.31.16.148:6443/metrics" -H "Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImlfX2V6UXdXWkpKUWZ6QlBxTGdSRTBpa0J1a2VpQUU3Q0JMWGFfYWNDYWcifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImJlYXJlci10b2tlbi10b2tlbi05emI5dCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJiZWFyZXItdG9rZW4iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiJkNWQxNDkzNi00NmM1LTRjZjMtYmI2MS00ODhhOTFiYTRjMTQiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6ZGVmYXVsdDpiZWFyZXItdG9rZW4ifQ.sBQUGE67N6BV6mnC0g72k8ciiSjEZ-ctFjHcyiP_rBp9paUnGwd3ouheF0ddGormn6esOGR1t6vvDdta9BiE3i5mHpJsOifkVXzv85N3qllJfSpXvIIn-LNq-wxnK55QbOhXQjeFKF0PBanJk4m_kWCM6SOuFrH9s8cHGhKEVCYw_7ScUwHCDGQVUq_zKCfKll20GHSwhlzjjt2tz07UYdQs5kQ9AN8VbM9qNIJmpasPOeqod9hTbevnL3kO5Lcd4h4NUOT8JfJ2Om72NvH71-xWNH0U_Hqf2yS0_ZlnneBESq4FDjbm1VnJPxeIOJL0dMaoRJVPPtA0yUhX5MYV7A"
@@ -204,14 +202,14 @@ kubectl apply -f datakit.yaml
 
 ### Plugin Tags (Required)
 
-Parameter Explanation
+Parameter description
 
-- This configuration allows custom tags, which can contain any key-value pairs.
-- After configuring the following example, all api-server metrics will carry similar tags for quick querying.
-- For collecting api-server metrics, the required key is `instance`, and its value is the address of the api-server.
+- This configuration allows custom tags with any key-value pairs.
+- After configuring the following example, all api-server metrics will have similar tags for quick querying.
+- For collecting api-server metrics, the required key is `instance`, and its value should be the api-server address.
 
 ```toml
-    ## Custom Tags
+    ## Custom tags
       [inputs.prom.tags]
           instance = "172.16.0.229:6443"
 ```
@@ -227,18 +225,18 @@ kubectl apply -f datakit.yaml
 
 | Metric                         | Description                                                         | Data Type |
 | ------------------------------ | ------------------------------------------------------------------- | --------- |
-| `apiserver_request_total`      | Counter of apiserver requests broken out for each verb, dry run value, group, version, resource, scope, component, and HTTP response code. | int      |
-| `workqueue_adds_total`         | Total number of adds handled by workqueue                          | int      |
-| `workqueue_depth`              | Current depth of workqueue                                         | int      |
-| `process_resident_memory_bytes`| Resident memory size in bytes                                      | B        |
-| `process_cpu_seconds_total`    | Total user and system CPU time spent in seconds                    | float    |
-| `go_goroutines`                | Number of goroutines that currently exist                         | int      |
+| `apiserver_request_total`       | Counter of apiserver requests broken out for each verb, dry run value, group, version, resource, scope, component, and HTTP response code. | int      |
+| `workqueue_adds_total`          | Total number of adds handled by workqueue                          | int      |
+| `workqueue_depth`               | Current depth of workqueue                                         | int      |
+| `process_resident_memory_bytes` | Resident memory size in bytes                                      | B        |
+| `process_cpu_seconds_total`     | Total user and system CPU time spent in seconds                    | float    |
+| `go_goroutines`                 | Number of goroutines that currently exist                         | int      |
 
 ## Common Issues Troubleshooting {#faq}
 
-Refer to [No Data Reporting Troubleshooting](../datakit/why-no-data.md)
+[No data reporting troubleshooting](../datakit/why-no-data.md)
 
 ## Further Reading {#more-reading}
 
-- [Best Practices for TAGs in Guance](../best-practices/insight/tag.md)
-- [Best Practices for Collecting Metrics from Multiple Kubernetes Clusters](../best-practices/cloud-native/multi-cluster.md)
+- [Best practices for using TAGs in Guance](../best-practices/insight/tag.md)
+- [Best practices for collecting metrics from multiple Kubernetes clusters](../best-practices/cloud-native/multi-cluster.md)

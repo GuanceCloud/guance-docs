@@ -10,53 +10,53 @@
 
 2. Select the service type; options include: `app`, `framework`, `cache`, `message_queue`, `custom`, `db`, `web`.
 
-3. Choose the color for the current service; a default random color is generated, but you can also select from a dropdown.
+3. Choose the color for the current service; defaults to a randomly generated color, but can also be selected from a dropdown.
 
-4. Configure team information:
+4. Configure team information
 
-    - Team: The team to which the current service belongs; you can choose an existing team in the current workspace or manually enter a new team name and press Enter to create a new one.
-    - Contact Information: This will be contacted first when the service encounters issues; supports email, phone, and Slack channels; multiple selections should be separated by commas, semicolons, or spaces.
+    - Team: The team to which the current service belongs; you can choose an existing team within the current workspace or manually enter a new team name and press Enter to create a new team.
+    - Contact Information: This will be contacted first when the current service encounters an issue; supports email, phone, and Slack channels; multiple entries should be separated by commas, semicolons, or spaces.
 
-    **Note**: After successfully creating the service list, any new teams created here will be synchronized to the **Management > Member Management > Team Management** list.
+    **Note**: After successfully creating the service list, any new teams created here will be synchronized in the **Manage > Member Management > Team Management** list.
 
-5. Configure related information:
+5. Configure associated information
 
-    - Application: The application information associated with the current service; same as the RUM application ID.
-    - Tags: Used to associate other configuration information within the current workspace, linking workspace information via global tags and supporting jump-to operations for viewing and analysis.
+    - Application: Information related to the application associated with the current service; this is the same as the RUM Application ID.
+    - Tags: Used to associate other configuration information within the current workspace, linking workspace information through global tags, supporting operations such as jumping to view and analyze.
 
-6. Configure help links:
+6. Configure help links
 
     - Repository Configuration: Enter the display name, provider name, and repository code URL sequentially.
-    - Help Documentation: Enter the display name, provider name, and other relevant document URLs sequentially.
-    - View: You can bind built-in views needed for the current service. Once selected, these views can be viewed under the **Analysis Dashboard** for linked data.
+    - Help Documentation: Enter the display name, provider name, and other related document URLs sequentially.
+    - View: You can bind required built-in views to the current service. Once selected, you can view the bound built-in views under the **Analysis Dashboard** for the current service.
 
 7. Click Confirm.
 
-## View Service
+## View Service 
 
-After creation, you can view the relevant parameters of the service in the following three lists:
+After creation, you can view relevant parameters of the service in the following three lists:
 
 ![](../img/service-3.png)
 
 ## Manage List {#list-deatils}
 
-You can manage the service list with the following operations:
+You can manage the service list according to the following operations:
 
 1. Search: In the search bar, you can input keywords to search for service names.
 
 2. Filter:
 
-    - In the full list, quickly filter and find services using frequently browsed, my favorites, and my creations.
+    - In the entire list, quickly filter and find corresponding services by frequently browsed, my favorites, and my created services.
     - On the left side of the list, filter based on creation type, team, and service type.
 
 3. On the list page:
 
-    - Application: If the application matches the RUM application ID, it supports clicking to open a new page and redirecting to the Session Explorer.
-    - Team: Supports clicking to open a new page and view team information.
-    - Contact Information: Supports hovering over to view detailed information such as email, phone, and Slack; Slack supports redirection.
-    - Repository Configuration & Documentation: Hover over the corresponding icon and click to automatically redirect to the associated repository or documentation.
+    - Application: If the application matches the RUM Application ID, it supports Hover-clicking to open a new tab to jump to the Session Explorer.
+    - Team: Supports Hover-clicking to open a new tab to view team information.
+    - Contact Information: Supports Hover-viewing detailed information for email, phone, and Slack; Slack supports jumping.
+    - Repository Configuration & Documentation: Hover over the corresponding icon and click to automatically jump to the associated repository or documentation.
 
-4. In **Actions**:
+4. In **Operations**:
 
     - Hover over the avatar icon to view the creator, creation time, updater, and update time of the service.
     - Click the :material-dots-vertical: button to modify or delete the current service.
@@ -67,35 +67,35 @@ You can manage the service list with the following operations:
 
 7. You can save the current page data as a [Snapshot](../../getting-started/function-details/snapshot.md).
 
-![Snapshot](../../img/service-10.png)
+![Service Snapshot](../../img/service-10.png)
 
 
 ### Memory Snapshot {#jvm}
 
 For Java services, you can configure JVM memory snapshots.
 
-#### Concept Explanation
+#### Concepts
 
-A JVM (Java Virtual Machine) memory snapshot is a complete record capturing the state of the JVM's memory at a specific point in time. You can use the log information within the snapshot to view detailed information about the application's memory usage, promptly diagnose issues like memory leaks and performance problems, and optimize data structures based on this understanding.
+JVM (Java Virtual Machine) memory snapshots are complete records capturing the state of JVM memory at a specific point in time. You can use the log information within the snapshot to view detailed information about the memory usage of the associated application, promptly identify issues such as memory leaks and performance problems, and further optimize data structures based on understanding memory usage.
 
 > For more collector-side configurations, refer to [Collection](../../datakit/datakit-conf.md#remote-job).
 
 #### Start Creation
 
 1. Input the task name;
-2. The system automatically fills in the current service;
+2. The system automatically fills in the current service for you;
 3. Select the execution host or Pod;
-4. Add a description as needed;
+4. Add a description if needed;
 5. Click Confirm.
 
 ???+ warning "How is the execution target determined?"
 
-    Guance queries the trace data from the past hour and determines whether the current service's trace data contains a POD. If a `pod_name` value exists, it lists `pod_name` in the dropdown; otherwise, it lists `host`.
+    <<< custom_key.brand_name >>> queries link data from the past hour and determines whether the current service's link data contains PODs. If there is a `pod_name` value, it lists `pod_name` in the dropdown; otherwise, it lists `host`.
 
 
 #### Historical Memory Snapshots
 
-All created snapshots can be viewed through the **Historical Memory Snapshots** entry above the list.
+All created snapshots can be viewed by clicking the **Historical Memory Snapshots** entry above the list.
 
 ![](../img/service-4.png)
 

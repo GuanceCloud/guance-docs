@@ -8,12 +8,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -27,7 +27,7 @@
 ## Description
 
 
-- Monitor the addition of kernel modules on the host
+- Monitor kernel modules being added to the host
 
 
 
@@ -37,27 +37,27 @@
 ## Theoretical Basis
 
 
-- The kernel is composed of a series of programs, including interrupt service routines responsible for responding to interrupts, schedulers responsible for managing multiple processes to share processor time, memory management programs responsible for managing address spaces, network services, and system services for inter-process communication. The kernel manages the system's hardware devices. Adding kernel modules can cause instability and security risks in system services, with the potential for malicious code injection.
+- The kernel consists of a series of programs, including interrupt service routines responsible for responding to interrupts, schedulers responsible for managing multiple processes to share processor time, memory management programs responsible for managing address spaces, network services, and inter-process communication system services. The kernel manages the system's hardware devices. Adding kernel modules can cause instability and security risks in system services, increasing the likelihood of malicious code injection.
 
 
 
 ## Risk Items
 
 
-- Hacker Penetration
+- Hacker penetration
 
-- Data Leakage
+- Data leakage
 
-- Network Security
+- Network security
 
-- Mining Risk
+- Mining risk
 
-- Botnet Risk
+- Botnet risk
 
 
 
 ## Audit Method
-- Verify if kernel modules have been added on the host. You can run the following command to verify:
+- Verify that kernel modules have been added to the host. You can run the following command to verify:
 
 ```bash
 lsmod
@@ -66,12 +66,12 @@ lsmod
 
 
 ## Remediation
-- If kernel modules have been added to the host, you can run the following commands to check and remove the modules:
+- If kernel modules have been added to the host, you can run the following commands to view and remove the modules:
 > ```bash
 > lsmod
 > rmmod hello
 > ```
-> Please carefully inspect the host environment for signs of intrusion and change the host user password.
+> Carefully inspect the host environment for any signs of intrusion and change the host user passwords.
 
 
 
@@ -94,9 +94,9 @@ lsmod
 ## References
 
 
-- [Emergency Response and Investigation Process for Hacker Intrusion (Unofficial)](https://www.sohu.com/a/236820450_99899618)
+- [Emergency Response to Hacker Intrusion](https://www.sohu.com/a/236820450_99899618)
 
-- [Real Incident Analysis of Mining Intrusion (Unofficial)](https://www.cnblogs.com/zsl-find/articles/11688640.html)
+- [A Real Case Study of Mining Intrusion Analysis](https://www.cnblogs.com/zsl-find/articles/11688640.html)
 
 
 

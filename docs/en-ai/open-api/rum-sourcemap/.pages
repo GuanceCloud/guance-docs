@@ -3,7 +3,8 @@ nav:
   - 'Delete SourceMap': delete.md
   - 'Initialize multipart upload event': multipart-upload-init.md
   - 'Upload a single part': upload-part.md
-  - 'List uploaded parts corresponding to a multipart upload event': part-list.md
+  - 'List the uploaded parts corresponding to a multipart upload event': part-list.md
+  - 'List the file tree of the specified file source map after decompression': file-tree.md
   - 'Merge parts to generate file': part-merge.md
   - 'Cancel a multipart upload event': upload-cancel.md
   - 'Upload content of a single file': upload-file-content.md

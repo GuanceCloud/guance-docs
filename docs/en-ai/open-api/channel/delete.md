@@ -2,7 +2,7 @@
 
 ---
 
-<br />**POST /api/v1/channel/\{channel_uuid\}/delete**
+<br />**POST /api/v1/channel/{channel_uuid}/delete**
 
 ## Overview
 
@@ -11,9 +11,9 @@
 
 ## Route Parameters
 
-| Parameter Name   | Type     | Required | Description          |
+| Parameter Name    | Type     | Required | Description              |
 |:-------------|:-------|:-----|:----------------|
-| channel_uuid | string | Y    | Channel UUID<br> |
+| channel_uuid | string | Y | Channel UUID<br> |
 
 
 ## Additional Parameter Notes

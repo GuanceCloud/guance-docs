@@ -7,7 +7,7 @@ nav:
   - 'Cloud Account Instance-level Billing Security Check': cloudfee-instance.md
   - 'Alibaba Cloud Spot Instance Survival Security Check': spot-alive.md
   - 'Idle Host Security Check': idle-resources.md
-  - 'Idle Cloud Resource Security Check': cloud-idle-resources.md
+  - 'Idle Cloud Resources Security Check': cloud-idle-resources.md
   - 'Workspace Asset Security Check': workspace-weekly-report.md
   - 'Frontend Application Log Error Security Check': rum_errors.md
   - 'RUM Performance Security Check': rum-performance.md

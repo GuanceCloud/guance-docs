@@ -10,9 +10,9 @@ Delete field management
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description               |
-|:-------------|:------|:-------|:------------------------|
-| objUUIDs     | array | Y      | List of UUIDs for fields <br>Allow null: False <br> |
+| Parameter Name | Type   | Required | Description                          |
+|:--------------|:-------|:--------|:-------------------------------------|
+| objUUIDs      | array  | Y       | List of UUIDs for the fields<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -28,6 +28,7 @@ curl 'https://openapi.guance.com/api/v1/field_cfg/delete' \
 --data-raw '{"objUUIDs":["field_e99a8428395e412f90754a090e23243f", "field_f9c3a77d0196425eb46b143aaec40aab"]}' \
 --compressed
 ```
+
 
 
 ## Response

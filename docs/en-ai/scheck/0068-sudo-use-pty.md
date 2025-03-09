@@ -8,12 +8,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -39,15 +39,15 @@
 ## Theoretical Basis
 
 
-- An attacker can use sudo to run a malicious program that restarts a background process, which remains active even after the main program has finished executing.
->   This situation can be mitigated by configuring sudo to run other commands only from a pseudo-pty.
+- An attacker can use sudo to run a malicious program that will restart a background process, which remains active even after the main program has finished executing.
+>   This can be mitigated by configuring sudo to run other commands only from a pseudo-pty.
 
 
 
 ## Risk Items
 
 
-- Exploitation by hackers using sudo to run malicious programs
+- Exploitation by hackers to run malicious programs using sudo
 
 
 
@@ -74,7 +74,7 @@ Defaults use_pty
 ## Impact
 
 
-- Configuring sudo to use pty can effectively prevent hackers from exploiting sudo to run malicious programs.
+- Configuring sudo to use pty can effectively prevent hackers from exploiting sudo to run malicious programs
 
 
 
@@ -82,7 +82,7 @@ Defaults use_pty
 ## Default Value
 
 
-- By default, it is not configured.
+- By default, it is not configured
 
 
 

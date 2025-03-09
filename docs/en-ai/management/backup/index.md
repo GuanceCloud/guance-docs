@@ -6,66 +6,67 @@
 
     **2023.11.2**:
     
-    1. Support saving data to Guance's OSS, S3, and OBS data repositories;
-    2. The navigation position of [Data Forwarding] has been moved to the [Management] module, but it can still be accessed through the secondary menu under [Logs], [RUM], and [APM].
+    1. Support for saving data to <<< custom_key.brand_name >>> side OSS, S3, OBS data repositories;
+    2. The navigation position of [Data Forwarding] has been moved to the [Manage] module but can still be accessed via secondary menus under [Logs], [RUM], and [APM].
 
     **2023.9.26**: Data forwarding rule queries now support RUM and APM data.
 
-    **2023.9.21**: Added a new entry for querying external storage forwarding rules; supports enabling/disabling forwarding rules.
+    **2023.9.21**: Added entry points for querying external storage forwarding rules; support for enabling/disabling forwarding rules.
 
-    **2023.9.7**: The original [Backup Logs] has officially been renamed to [Data Forwarding].
+    **2023.9.7**: The original [Backup Logs] was officially renamed to [Data Forwarding].
 -->
 
-Guance supports saving logs, application performance, user access, and event data to its object storage or forwarding it to external storage systems. You can freely choose the storage destination and manage data forwarding flexibly.
+<<< custom_key.brand_name >>> supports saving logs, application performance, user access, and event data to its object storage or forwarding it to external storage systems. You can freely choose your storage destination and manage data forwarding flexibly.
 
-After the rules take effect, on the Data Forwarding page, you can quickly search stored data by setting query times and data forwarding rules, including backup logs in Guance, AWS S3, Huawei Cloud OBS, Alibaba Cloud OSS, and Kafka message queues.
+After the rules take effect, on the Data Forwarding page, you can set query times and data forwarding rules to quickly retrieve stored data, including <<< custom_key.brand_name >>> backup logs, AWS S3, Huawei Cloud OBS, Alibaba Cloud OSS, and Kafka message queues.
 
 
 ## Prerequisites
 
-Users of the Commercial Plan can use the data forwarding feature. Free Plan users need to [upgrade to the Commercial Plan](../../plans/trail.md#upgrade-commercial).
+Commercial Plan users of <<< custom_key.brand_name >>> can use the data forwarding feature. Free Plan users need to [upgrade to a Commercial Plan](../../plans/trail.md#upgrade-commercial).
 
-## Create New Rule
+## Create Rule
 
-Enter the **Data Forwarding** page, click **Forwarding Rules > Create New Rule**.
+Enter the **Data Forwarding** page and click **Forwarding Rules > Create Rule**.
 
-**Note**: After creating a data forwarding rule, the rule is checked every 5 minutes.
+**Note**: After creating a data forwarding rule, it will be executed every 5 minutes.  
 
 ![](../img/back-5.png)
 
-### :material-numeric-1-circle: Enter Rule Name
+### :material-numeric-1-circle: Input Rule Name
 
 1. Rule Name: The name of the current data forwarding rule, limited to 30 characters.
-2. Include Extended Fields: By default, only the `message` field content of logs that meet the criteria is forwarded. If you check "Include Extended Fields," the entire log data that meets the criteria will be forwarded. Application performance and user access data are forwarded as complete data by default, unaffected by this option.
+2. Include Extended Fields: By default, only the `message` field content of logs that meet the conditions is forwarded. If you select "Include Extended Fields," the entire log entry that meets the conditions will be forwarded. Application performance and user access data are forwarded as complete entries by default and are not affected by this option.
 
-**Note**: If multiple data forwarding rules are created, rules with extended fields enabled have priority. If different rules match the same data, the rule with extended fields included takes precedence.
+**Note**: If multiple data forwarding rules are created, priority is given to rules that include extended fields. If different rules match the same data, the entire log entry will be forwarded according to the rule that includes extended fields.
 
-### :material-numeric-2-circle: Define Filtering Conditions
+### :material-numeric-2-circle: Define Filter Conditions
 
 1. Data Source: Includes logs, application performance, user access, and event data.
-2. Filtering Conditions: Supports custom logic between conditions. You can choose **All Conditions** or **Any Condition**:
 
-    - All Conditions: Only logs that match all filtering conditions will be saved for data forwarding.
-    - Any Condition: Logs that match any one condition will be saved for data forwarding.
+2. Filter Conditions: Supports custom logic between conditions. You can choose **All Conditions** or **Any Condition**:
 
-**Note**: Not adding filtering conditions means saving all log data; you can add multiple filtering conditions.
+    - All Conditions: Only log data matching all filter conditions will be saved for data forwarding.
+    - Any Condition: Log data matching any one of the filter conditions will be saved for data forwarding.
 
-**Condition Operators (see table below):**
+**Note**: Not adding filter conditions means saving all log data; you can add multiple filter conditions.
 
-| Condition Operator | Match Type          |
-| ------------------ | ------------------- |
-| in, not in         | Exact match, supports multiple values (comma-separated) |
-| match, not match   | Fuzzy match, supports regular expression syntax |
+**Condition Operators Table:**
+
+| Condition Operator | Match Type     |
+| ------------- | -------------- |
+| in, not in      | Exact match, supports multiple values (comma-separated) |
+| match, not match | Fuzzy match, supports regular expression syntax |
 
 ### :material-numeric-3-circle: Select Archive Type
 
 ???+ warning "Note"
 
-    All five archive types are available site-wide.
+    Five archive types are available across the site.
 
-To provide more comprehensive data forwarding storage options, Guance supports five storage paths.
+To provide more comprehensive data forwarding storage options, <<< custom_key.brand_name >>> supports five storage paths.
 
-:material-numeric-1-circle-outline: Guance: When selecting Guance as the data forwarding storage object, matching log data will be saved to **Guance's OSS, S3, OBS object storage**.
+:material-numeric-1-circle-outline: <<< custom_key.brand_name >>>: When choosing <<< custom_key.brand_name >>> as the data forwarding storage object, matched log data will be saved to **<<< custom_key.brand_name >>>'s OSS, S3, OBS object storage**.
 
 :material-numeric-2-circle-outline: [AWS S3](./backup-aws.md);
 
@@ -75,32 +76,37 @@ To provide more comprehensive data forwarding storage options, Guance supports f
 
 :material-numeric-5-circle-outline: [Kafka Message Queue](./backup-kafka.md).
 
-**Note**: When choosing Guance as the data forwarding storage object, the minimum retention period for log data is 180 days by default. Once the rule is created, it cannot be canceled, and daily charges will apply during the retention period. You can modify the data forwarding storage policy at **Management > Settings > Change Data Storage Policy**.
+**Note**: When selecting <<< custom_key.brand_name >>> as the data forwarding storage object, log data is stored for a minimum of 180 days by default. Once created, the rule cannot be canceled, and daily fees are charged during the storage period. You can modify the data forwarding storage policy at **Manage > Settings > Change Data Storage Policy**.
 
 ## View Forwarding Rules
 
-After creating the rule, you automatically enter the forwarding rule list:
+After creating the rule, you automatically enter the forwarding rules list:
 
 1. You can search by entering the rule name;
+
 2. You can enable or disable the current rule;
-3. Click the :material-text-search:, edit, :fontawesome-regular-trash-can: buttons on the right side of the rule to perform corresponding actions.
+
+3. Click the :material-text-search:, edit, :fontawesome-regular-trash-can: buttons on the right side of the rule to perform corresponding actions;
+
 4. You can select multiple rules for batch operations.
 
 **Note**:
 
-- Viewing forwarded data may have up to a 1-hour delay.
-- In edit mode, **Access Type** and **Region** cannot be adjusted; rules choosing **Guance** storage have consistent viewing and editing content.
-- Deleting a rule does not delete already forwarded data, but no new forwarded data will be generated.
+- Viewing forwarded data may have a delay of up to 1 hour;
 
-### Forwarding Rule Explorer {#explorer}
+- In edit mode, **Access Type** and **Region** cannot be adjusted; rules selecting **<<< custom_key.brand_name >>>** storage have consistent editing and viewing content;
 
-Returning to the **Data Forwarding** page, the default tab is **Forwarded Data**. You can customize the time range query using the time control widget.
+- Deleting a rule does not delete already forwarded data but stops new data from being forwarded.
+
+### Forwarding Rules Explorer {#explorer}
+
+Returning to the **Data Forwarding** page, you will default to the **Forwarded Data** tab. You can query within a custom time range using the time widget.
 
 ![](../img/back_data_explorer.png)
 
-Guance retrieves file search match data in batches based on the selected time, returning 50 entries per batch. **If no data is found on the first query or if fewer than 50 entries are returned**, you can manually click **Continue Query** until the scan is complete.
+<<< custom_key.brand_name >>> retrieves file search match data in batches based on the selected time, returning 50 entries per batch. If the first query returns fewer than 50 entries or no data, you can manually click **Continue Query** until the scan is complete.
 
-Since the queried data is unordered, you can sort the listed data by time range. This action does not affect the query results.
+Since the queried data is unordered, you can sort the listed data by time range. This action does not affect the data query results.
 
 ## Further Reading
 

@@ -4,64 +4,64 @@
 
 ## Background
 
-"Disk Usage Inspection" is based on a disk anomaly analysis detector, which regularly performs intelligent inspections of host disks. It analyzes the root cause of hosts with disk anomalies to determine the mount points and disk information corresponding to the anomalous time points, and assesses whether there are disk usage issues in the current workspace's hosts.
+"Disk Usage Inspection" is based on the disk anomaly analysis detector, which regularly performs intelligent inspections on host disks. It identifies root causes by analyzing hosts with disk anomalies, determining the corresponding disk mount points and disk information at the time of anomaly, and analyzing whether there are disk usage issues in the current workspace hosts.
 
 ## Prerequisites
 
-1. Set up [DataFlux Func (Automata) for Guance](https://func.guance.com/#/) or subscribe to [DataFlux Func (Automata)](../../dataflux-func/index.md)
-2. Create an [API Key](../../management/api-key/open-api.md) for operations in the "Management / API Key Management" section of Guance.
+1. Self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/), or subscribe to [DataFlux Func (Automata)](../../dataflux-func/index.md)
+3. Create an [API Key](../../management/api-key/open-api.md) for operations in <<< custom_key.brand_name >>> "Manage / API Key Management"
 
-> **Note**: If you plan to use a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and in the same region as your current Guance SaaS deployment [here](../../../getting-started/necessary-for-beginners/select-site/).
+> **Note**: If you consider using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and region as your current <<< custom_key.brand_name >>> SaaS deployment [in the same location](../../../getting-started/necessary-for-beginners/select-site/).
 
 ## Enable Inspection
 
-In your self-hosted DataFlux Func, install "Guance Self-hosted Inspection (Disk Usage)" from the "Script Market" and configure the Guance API Key to enable it.
+In the self-hosted DataFlux Func, install "<<< custom_key.brand_name >>> Self-hosted Inspection (Disk Usage)" via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to complete the setup.
 
-Select the inspection scenario you want to enable from the DataFlux Func Script Market, click Install, configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
+Select the inspection scenario you want to enable in the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
 
 ![image](../img/create_checker.png)
 
-After successfully deploying the startup script, it will automatically create the startup script and automatic trigger configuration. You can directly jump to view the corresponding configuration via the provided link.
+After successfully deploying the startup script, it will automatically create the startup script and auto-trigger configuration, which can be viewed directly via the provided link.
 
 ![image](../img/success_checker.png)
 
 ## Configure Inspection
 
-Configure the inspection conditions you want to filter in either the Guance Studio Monitoring - Intelligent Inspection module or the startup script automatically created by DataFlux Func. Refer to the following two configuration methods:
+Configure the inspection conditions you want to filter in the <<< custom_key.brand_name >>> studio under Monitoring - Intelligent Inspection module or in the startup script automatically created by DataFlux Func. Refer to the following two configuration methods:
 
-### Configuration in Guance
+### Configuration in <<< custom_key.brand_name >>>
 
 ![image](../img/disk-usage02.png)
 
 #### Enable/Disable
 
-Disk Usage Inspection is enabled by default. You can manually disable it. Once enabled, it will inspect the configured list of hosts.
+Disk usage inspection is enabled by default and can be manually disabled. After enabling, it will inspect the configured list of hosts.
 
 #### Edit
 
-The "Disk Usage Inspection" under Intelligent Inspection supports manual addition of filtering conditions. Click the **Edit** button in the operation menu on the right side of the intelligent inspection list to edit the inspection template.
+The "Disk Usage Inspection" supports users to manually add filtering conditions. Click the **Edit** button in the operation menu on the right side of the intelligent inspection list to edit the inspection template.
 
-* Filtering Conditions: Configure the hosts to be inspected.
-* Alert Notifications: Supports selecting and editing alert policies, including event severity levels, notification targets, and alert mute periods.
+* Filtering Conditions: Configure the hosts to be inspected
+* Alert Notifications: Supports selecting and editing alert strategies, including event severity levels, notification targets, and alert silence periods
 
-To configure entry parameters, click Edit, fill in the corresponding detection objects in the parameter configuration, and save to start the inspection:
+Click the **Edit** button to enter the parameter configuration, fill in the corresponding detection objects, and save to start the inspection:
 
 ![image](../img/disk-usage03.png)
 
-You can refer to the following example for configuring multiple hosts:
+You can refer to the following configuration for multiple hosts:
 
 ```
-Configuration Example:
+Configuration example:
           host1
           host2
           host3
 ```
 
-> **Note**: In your self-hosted DataFlux Func, you can also add filtering conditions when writing custom inspection handling functions (refer to sample code configuration). Note that parameters configured in the Guance Studio will override those set in the custom inspection handling function.
+> **Note**: In the self-hosted DataFlux Func, when writing the self-hosted inspection processing function, you can also add filtering conditions (refer to the sample code configuration). Note that parameters configured in <<< custom_key.brand_name >>> studio will override those configured in the self-hosted inspection processing function.
 
 ### Configuration in DataFlux Func
 
-In DataFlux Func, after configuring the necessary filtering conditions for inspection, you can test the script by clicking the `run()` method directly on the page. After clicking Publish, the script will run normally. You can also view or modify the configuration in the Guance "Monitoring / Intelligent Inspection".
+In DataFlux Func, after configuring the required filtering conditions for inspection, you can test by clicking the `run()` method directly on the page. After clicking Publish, the script will run normally. You can also view or modify configurations in <<< custom_key.brand_name >>> "Monitoring / Intelligent Inspection".
 
 ```python
 from guance_monitor__register import self_hosted_monitor
@@ -81,11 +81,11 @@ def filter_host(host):
 @DFF.API('Self-hosted Disk Usage Inspection', fixed_crontab='0 */6 * * *', timeout=900)
 def run(configs=None):
     '''
-  Optional Parameters:
+  Optional parameters:
     configs : 
-            List of hosts to inspect (optional; if not configured, it defaults to all hosts in the current workspace)
-            Multiple hosts can be specified (separated by new lines); if not configured, it defaults to all hosts in the current workspace
-    Configuration Example:
+            List of hosts to be inspected (optional, defaults to all hosts in the current workspace if not configured)
+            Multiple hosts can be specified (through newline concatenation), defaults to all hosts in the current workspace if not configured
+    Configuration example:
             host1
             host2
             host3
@@ -99,61 +99,61 @@ def run(configs=None):
 
 ## View Events
 
-This inspection scans disk usage information for the past 14 days. If it predicts that usage will exceed the warning threshold within the next 48 hours, it will generate corresponding events. In the intelligent inspection list, click the **View Related Events** button in the operation menu on the right to view the corresponding anomaly events.
+This inspection scans disk usage information for the past 14 days. If it detects that the threshold will be exceeded within the next 48 hours, the intelligent inspection will generate corresponding events. Click the **View Related Events** button in the operation menu on the right side of the intelligent inspection list to view the corresponding abnormal events.
 
 ![image](../img/disk-usage04.png)
 
 ### Event Details Page
 
-Clicking **Event**, you can view the details page of the intelligent inspection event, including event status, time of anomaly occurrence, anomaly name, basic attributes, event details, alert notifications, historical records, and related events.
+Click **Event** to view the details page of the intelligent inspection event, including event status, anomaly occurrence time, anomaly name, basic attributes, event details, alert notifications, history, and related events.
 
-* Click the small icon "View Monitor Configuration" in the top-right corner of the details page to view and edit the current intelligent inspection configuration.
+* Click the small icon in the upper right corner of the details page labeled "View Monitor Configuration" to view and edit the current intelligent inspection configuration.
 
 #### Basic Attributes
 
-* Detection Dimensions: Based on the filtering conditions configured in the intelligent inspection, you can copy, add to filters, and view related logs, containers, processes, security checks, traces, RUM, Synthetic Tests, and CI data in `key/value` format.
-* Extended Attributes: Select extended attributes to copy, forward/reverse filter in `key/value` format.
+* Detection Dimensions: Based on the filtering conditions configured in the intelligent inspection, support copying detection dimensions `key/value`, adding to filters, and viewing related logs, containers, processes, security checks, traces, user access monitoring, synthetic tests, and CI data.
+* Extended Attributes: Selecting extended attributes allows copying in `key/value` format, forward/reverse filtering.
 
 ![image](../img/disk-usage05.png)
 
 #### Event Details
 
-* Event Overview: Describes the object and content of the anomaly inspection event.
-* Anomaly Details: View the disk usage over the past 14 days for the current anomalous disk.
-* Anomaly Analysis: Displays information about the anomalous host, disk, and mount point to help analyze specific issues.
+* Event Overview: Describes the object and content of the abnormal inspection event.
+* Anomaly Details: View the disk usage for the last 14 days for the currently anomalous disk.
+* Anomaly Analysis: Display information about the anomalous host, disk, and mount point to help analyze specific issues.
 
 ![image](../img/disk-usage06.png)
 
-#### Historical Records
+#### History
 
-Supports viewing detected objects, anomaly/recovery times, and duration.
+Support viewing detected objects, anomaly/recovery times, and duration.
 
 ![image](../img/disk-usage07.png)
 
 #### Related Events
 
-Supports viewing related events through filtered fields and selected time component information.
+Support viewing related events through filtered fields and selected time component information.
 
 ![image](../img/disk-usage08.png)
 
 ## Common Issues
 
-**1. How to configure the inspection frequency of Disk Usage Inspection**
+**1. How to configure the inspection frequency for disk usage**
 
-* In your self-hosted DataFlux Func, add `fixed_crontab='0 */6 * * *', timeout=900` in the decorator when writing custom inspection handling functions, and configure it in "Management / Automatic Trigger Configuration".
+* In the self-hosted DataFlux Func, add `fixed_crontab='0 */6 * * *', timeout=900` in the decorator when writing the self-hosted inspection processing function, then configure it in "Manage / Automatic Trigger Configuration".
 
-**2. Why might there be no anomaly analysis when Disk Usage Inspection triggers**
+**2. Why might there be no anomaly analysis when the disk usage inspection triggers**
 
-If there is no anomaly analysis in the inspection report, check the data collection status of the current `datakit`.
+If the inspection report does not contain anomaly analysis, please check the data collection status of the current `datakit`.
 
-**3. What to do if a previously working script fails during inspection**
+**3. Previously running scripts may encounter errors during inspection**
 
-Update the referenced script set in the DataFlux Func Script Market. You can view the update records of the Script Market [here](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate timely updates to the script.
+Please update the referenced script set in the DataFlux Func Script Market. You can view the update records of the script market through the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) for timely updates.
 
-**4. Why does the script set in Startup not change during script upgrade**
+**4. No changes in the script set during upgrade**
 
-Delete the corresponding script set first, then click the Upgrade button to configure the corresponding Guance API key to complete the upgrade.
+Delete the corresponding script set first, then click the upgrade button to configure the corresponding <<< custom_key.brand_name >>> API key to complete the upgrade.
 
 **5. How to determine if the inspection has taken effect after enabling**
 
-In "Management / Automatic Trigger Configuration", check the inspection status. First, the status should be Enabled, and second, you can verify if the inspection script runs correctly by clicking Execute. If it shows "Executed Successfully xxx minutes ago," the inspection is running normally.
+In "Manage / Automatic Trigger Configuration," check the inspection status. First, it should be enabled, and second, you can validate by clicking Execute to see if the inspection script runs without issues. If it shows "Executed successfully xxx minutes ago," the inspection is functioning properly.

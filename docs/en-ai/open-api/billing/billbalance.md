@@ -9,14 +9,14 @@
 
 
 
-## Additional Parameter Information
+## Additional Parameter Description
 
 Return parameter description:
 
 **Key Fields**
 
-| Parameter Name | Description |
-|-----------------------|----------|
+| Parameter Name                | Description          |
+|-----------------------|----------------|
 |cashBalance            | Cash account balance |
 |couponBalance          | Coupon balance |
 |storedCardBalance      | Stored card balance |

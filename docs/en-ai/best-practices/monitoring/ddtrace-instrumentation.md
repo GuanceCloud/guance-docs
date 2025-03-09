@@ -6,40 +6,40 @@
 
 ## Introduction to Java Instrumentation
 
-Instrumentation: Instrumentation (some people refer to it as "probe," others as "embedding points"; translation variations exist but the understanding is key)
+Instrumentation: instrumentation (some people call it "probe", some call it "burial point"; translation is not wrong, as long as it is understood)
 
-Java Instrumentation is a new feature introduced in [Java](https://baike.baidu.com/item/Java%20) SE 6. Through [java.lang.instrument](https://baike.baidu.com/item/java.lang.instrument/5179837), developers can implement instrumentation using Java code, providing a way to solve problems via Java code.
+Java Instrumentation is a new feature in [Java](https://en.wikipedia.org/wiki/Java_(programming_language)) SE 6. Through the use of [java.lang.instrument](https://docs.oracle.com/javase/8/docs/api/java/lang/instrument/package-summary.html), developers can implement instrumentation using Java code, solving problems with Java code.
 
-Using Instrumentation, developers can build an agent program (Agent) independent of the application to monitor and assist programs running on the JVM, even replacing and modifying certain class definitions. With this capability, developers can achieve more flexible runtime [virtual machine](https://baike.baidu.com/item/%E8%99%9A%E6%8B%9F%E6%9C%BA) monitoring and Java class manipulation. This feature essentially provides a virtual machine-level supported AOP implementation method, allowing developers to achieve some AOP functionalities without upgrading or modifying the JDK.
+Using Instrumentation, developers can build an agent program independent of the application to monitor and assist programs running on the JVM, even replacing and modifying certain class definitions. With this capability, developers can achieve more flexible runtime monitoring and Java class operations, providing a VM-level supported AOP implementation method. This allows developers to implement certain AOP features without upgrading or modifying the JDK.
 
-In [Java](https://baike.baidu.com/item/Java%20) SE 6, the instrumentation package has been enhanced with more powerful features: post-start instrumentation, [native code](https://baike.baidu.com/item/%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81) instrumentation, and dynamically changing the classpath. These changes mean that Java has stronger dynamic control and interpretation capabilities, making the Java language more flexible.
+In [Java](https://en.wikipedia.org/wiki/Java_(programming_language)) SE 6, the instrumentation package has been enhanced with powerful features such as post-start instrumentation, [native code](https://en.wikipedia.org/wiki/Native_code) instrumentation, and dynamic changes to the classpath. These improvements mean that Java has stronger dynamic control and interpretive capabilities, making the Java language more flexible.
 
-## Structure Analysis of DDtrace Custom Instrumentation
+## Analysis of DDtrace Custom Instrumentation Structure
 
 ![image.png](../images/ddtrace-instrumentation/ddtrace-instrumentation-1.png)
 
-1. Decorator: Decorator used for decorating Instrumentation. `BaseDecorator` is a base decorator, so custom decorators must inherit from `BaseDecorator` or its subclasses. Operations on spans, such as adding custom tags, are implemented through `BaseDecorator`.
-1. Instrumentation: The instrumentation program uses the `@AutoService(Instrumenter.class)` annotation to register the current class as an instrumentation application. When the agent starts, it loads classes annotated with `@AutoService(Instrumenter.class)`.
-1. Advice: Enhances methods that need instrumentation, mainly providing two method-level annotations `@Advice.OnMethodEnter` and `@Advice.OnMethodExit`, representing calls when entering and exiting a method.
-1. Inject/Extract: Represents injection/extraction, not mandatory to implement, primarily used for injecting and extracting trace information like traceid, spanid, and related propagation parameters.
+1. Decorator: Used for decorating Instrumentation. `BaseDecorator` is a base decorator, so custom decorators need to inherit from `BaseDecorator` or its subclasses. Operations on spans and custom tags are implemented through `BaseDecorator`.
+2. Instrumentation: An instrumentation program annotated with `@AutoService(Instrumenter.class)` to register the current class as an instrumentation application. When the agent starts, classes annotated with `@AutoService(Instrumenter.class)` will be loaded.
+3. Advice: Enhances methods that need instrumentation, mainly providing two method-level annotations `@Advice.OnMethodEnter` and `@Advice.OnMethodExit`, which are called when entering and exiting methods, respectively.
+4. Inject/Extract: Represents injection/extraction, not mandatory to implement. The main function is to inject and extract trace information such as traceid, spanid, and related propagation parameters. It is used to ensure trace information transparency across services.
 
 ### Decorator Class Diagram
 
-Partial class diagram shown here.
+Here is part of the class diagram.
 
 ![image.png](../images/ddtrace-instrumentation/ddtrace-instrumentation-2.png)
 
 ### Instrumentation Class Diagram
 
-Partial class diagram shown here.
+Here is part of the class diagram.
 
 ![image.png](../images/ddtrace-instrumentation/ddtrace-instrumentation-3.png)
 
-`Instrumenter` is an interface providing rich interfaces for implementation based on different definitions.
+`Instrumenter` is an interface providing rich interfaces for different implementations.
 
 ![image.png](../images/ddtrace-instrumentation/ddtrace-instrumentation-4.png)
 
-`HasAdvice`: Wraps method handling, commonly known as embedding points, mainly providing an interface method for registering methods that need embedding points, which can be applied to multiple methods:
+`HasAdvice`: Wraps methods, i.e., performs instrumentation operations. It mainly provides an interface method to register methods that need instrumentation, allowing multiple methods to be instrumented:
 
 ```java
 /**
@@ -56,7 +56,7 @@ Tracing: Used for tracing.
 abstract class Tracing extends Default{...}
 ```
 
-Profiling: Represents profiling instrumentation.
+Profiling: Indicates profiling instrumentation.
 
 ```java
 /** Parent class for all profiling related instrumentations */
@@ -70,7 +70,7 @@ CiVisibility: CI instrumentation type.
 abstract class CiVisibility extends Default {...}
 ```
 
-Default: Default implementation.
+Default: A default implementation.
 
 ```java
 @SuppressFBWarnings("IS2_INCONSISTENT_SYNC")
@@ -79,34 +79,34 @@ abstract class Default implements Instrumenter, HasAdvice{...}
 
 ### Inject Class Diagram
 
-Setter<C> is fully named: `AgentPropagation.Setter<C>`. Partial class diagram shown here.
+`Setter<C>` is fully named `AgentPropagation.Setter<C>`. Here is part of the class diagram.
 
 ![image.png](../images/ddtrace-instrumentation/ddtrace-instrumentation-5.png)
 
 ### Extract Class Diagram
 
-ContextVisitor<C> is fully named: `AgentPropagation.ContextVisitor<C>`. Partial class diagram shown here.
+`ContextVisitor<C>` is fully named `AgentPropagation.ContextVisitor<C>`. Here is part of the class diagram.
 
 ![image.png](../images/ddtrace-instrumentation/ddtrace-instrumentation-6.png)
 
-Both Inject and Extract involve Propagation (propagator). For details on the usage and introduction of propagators, refer to the document [Custom traceId Implementation Using extract + TextMapAdapter](/best-practices/monitoring/ddtrace-custom-traceId).
+Both Inject and Extract involve Propagation (propagators). For usage and introduction of propagators, refer to the document [Custom traceId Implementation Using extract + TextMapAdapter](/best-practices/monitoring/ddtrace-custom-traceId).
 
-## Practical Example: Custom DDtrace Dubbo Instrumentation
+## Practical Example: DDtrace Custom Dubbo Instrumentation
 
-### Integration Approach
+### Integration Ideas
 
 ![image.png](../images/ddtrace-instrumentation/ddtrace-instrumentation-7.png)
 
-1. Create the `DubboInstrumentation` class to configure instrumentation-related information;
-1. Use `adviceTransformations` to enhance relevant methods; business logic enhancements are implemented in the `RequestAdvice` class, mainly implementing two methods: `@Advice.OnMethodEnter` and `@Advice.OnMethodExit`, representing calls when entering and exiting a method;
-1. `DubboDecorator` acts as a decorator, performing operations such as setting related tags or closing a span;
-1. Inject/Extract represents injection/extraction, primarily used for injecting and extracting trace information like traceid, spanid, and related propagation parameters. `DubboHeadersInjectAdapter` is mainly used by consumers to propagate traceId, spanId, etc., while providers extract related parameters using `DubboHeadersExtractAdapter` to build spans.
+1. Create the `DubboInstrumentation` class and configure instrumentation-related information.
+2. Use `adviceTransformations` to enhance relevant methods. Business logic enhancements are implemented in the `RequestAdvice` class, primarily implementing two methods: `@Advice.OnMethodEnter` and `@Advice.OnMethodExit`, which are called when entering and exiting methods, respectively.
+3. `DubboDecorator` acts as a decorator, performing operations like setting related tags or closing a span.
+4. Inject/Extract: Mainly used for injecting and extracting trace information. They ensure trace information transparency, such as traceid, spanid, and related propagation parameters. `DubboHeadersInjectAdapter` is mainly used by consumers to propagate traceId, spanId, etc., while providers extract related parameters using `DubboHeadersExtractAdapter` to build spans.
 
 ### Integration Steps
 
-#### 1. In the `dd-java-agent\instrumentation` directory, create a module using Gradle.
+#### Step 1: In the `dd-java-agent\instrumentation` directory, create a module using Gradle.
 
-<font color="red">Since dubbo has differences in package names, class names, and method names across major versions, it's beneficial to include the corresponding major version number when creating the module, e.g., `dubbo-2.7`, indicating support for dubbo 2.7 and above. Specific version support can be modified in the `build.gradle` file within the current module. Since `build.gradle` is not ideal for maintenance, we rename it to `dubbo-2.7.gradle`.</font>
+<font color="red">Since dubbo's package names, class names, and method names differ significantly between major versions, it's beneficial to include the corresponding major version number when creating modules, such as dubbo-2.7, indicating support for dubbo 2.7 and above. Specific version support can be modified in the module's build.gradle file. Since the name `build.gradle` is not conducive to maintenance, we rename it to `dubbo-2.7.gradle`.</font>
 
 ```groovy
 muzzle {
@@ -137,7 +137,7 @@ tasks.withType(Test).configureEach {
 }
 ```
 
-Also add `dubbo-2.7.gradle` in the `settings.gradle` file.
+Add `dubbo-2.7.gradle` in the `settings.gradle` file.
 
 ```groovy
 ...
@@ -151,9 +151,9 @@ include ':dd-java-agent:instrumentation:elasticsearch:rest-7'
 ...
 ```
 
-#### 2. Create the package name `datadog.trace.instrumentation.dubbo_2_7x`.
+#### Step 2: Create the package name `datadog.trace.instrumentation.dubbo_2_7x`.
 
-#### 3. Create the instrumentation class `DubboInstrumentation.java`
+#### Step 3: Create the instrumentation class `DubboInstrumentation.java`
 
 ```java
 package datadog.trace.instrumentation.dubbo_2_7x;
@@ -221,8 +221,6 @@ public class DubboInstrumentation extends Instrumenter.Tracing
     return singletonMap("org.apache.dubbo.rpc.RpcContext", AgentSpan.class.getName());
   }
 }
-
-
 ```
 
 Let's take a look at the source code of `org.apache.dubbo.rpc.Filter`:
@@ -245,27 +243,27 @@ public interface Filter {
 }
 ```
 
-`Filter` is an interface, so the `implementsInterface` method is used to intercept all implementations of the `Filter` interface. `org.apache.dubbo.rpc.Filter` provides the `invoke` method with two parameters `Invoker` and `Invocation`, which will be used later.
+`Filter` is an interface, so we need to use `implementsInterface` to intercept all implementations of the `Filter` interface. `org.apache.dubbo.rpc.Filter` provides the `invoke` method with two parameters: `Invoker` and `Invocation`, which will be used later.
 
-By overriding `void adviceTransformations(AdviceTransformation transformation)`, interception of `org.apache.dubbo.rpc.Filter` is achieved.
+By overriding `void adviceTransformations(AdviceTransformation transformation)`, we achieve interception of `org.apache.dubbo.rpc.Filter`.
 
 Parameters for `applyAdvice`:
 
-- `isMethod()`: Indicates method interception;
-- `isPublic()`: Indicates public access modifier;
-- `nameStartsWith("invoke")`: Method name;
-- `takesArguments`: Number of arguments required by `nameStartsWith("invoke")`;
-- `takesArgument`: Arguments for `nameStartsWith("invoke")`, fill according to needs. Incorrect parameter types or orders will render the instrumentation ineffective.
-  - `takesArgument(0, named("org.apache.dubbo.rpc.Invoker"))`: First argument type
-  - `takesArgument(1, named("org.apache.dubbo.rpc.Invocation"))`: Second argument type
+- `isMethod()`: Intercept methods.
+- `isPublic()`: Public access modifier.
+- `nameStartsWith("invoke")`: Method name.
+- `takesArguments`: Number of arguments required by `nameStartsWith("invoke")`.
+- `takesArgument`: Parameters for `nameStartsWith("invoke")`, fill in according to needs. Incorrect parameter types or orders will render the instrumentation invalid.
+  - `takesArgument(0, named("org.apache.dubbo.rpc.Invoker"))`: First parameter type.
+  - `takesArgument(1, named("org.apache.dubbo.rpc.Invocation"))`: Second parameter type.
 
 `helperClassNames()`: Declares additional custom classes.
 
-`Map<String, String> contextStore()`: Used for storing context information, mainly for storing `AgentSpan` or `AgentScope` information (such as traceid, spanid, etc.). Here, `singletonMap("org.apache.dubbo.rpc.Invocation", AgentSpan.class.getName())` indicates enhancement for `org.apache.dubbo.rpc.Invocation`.
+`Map<String, String> contextStore()`: Used for storing context information, mainly storing `AgentSpan` or `AgentScope` related information (such as traceid, spanid, etc.). Here, we configure `singletonMap("org.apache.dubbo.rpc.Invocation", AgentSpan.class.getName())` to enhance `org.apache.dubbo.rpc.Invocation`.
 
 `@AutoService` is a SPI interface specification provided by Google, processed during compilation.
 
-The instrumentation class is core and requires the annotation `@AutoService(Instrumenter.class)` to indicate an instrumentation application. During application compilation and packaging, classes annotated with `@AutoService(Instrumenter.class)` are iterated and their class names are placed in a file named `META-INF/services/datadog.trace.agent.tooling.Instrumenter`, which is loaded by the class loader upon startup. `META-INF/services/datadog.trace.agent.tooling.Instrumenter` is auto-generated, with partial content as follows:
+The instrumentation class is core and requires adding the annotation `@AutoService(Instrumenter.class)` to indicate an instrumentation application. During compilation and packaging, classes annotated with `@AutoService(Instrumenter.class)` are iterated over and their class names are placed in a file named `META-INF/services/datadog.trace.agent.tooling.Instrumenter`, which is then loaded by the class loader at startup. The `META-INF/services/datadog.trace.agent.tooling.Instrumenter` file is auto-generated, with partial content as follows:
 
 ```groovy
 ...
@@ -284,7 +282,7 @@ datadog.trace.instrumentation.elasticsearch7_3.Elasticsearch73TransportClientIns
 ...
 ```
 
-#### 4. Create `DubboDecorator`
+#### Step 4: Create `DubboDecorator`
 
 Partial code as follows:
 
@@ -380,9 +378,9 @@ public class DubboDecorator extends BaseDecorator {
 ...
 ```
 
-As an RPC framework, dubbo has both consumer and provider sides. `isConsumer` determines whether the current execution belongs to the consumer or provider side. If it's a consumer, a span is directly created, and its traceid and parentId come from propagated data from other traces, injected via `propagate().inject(span, invocation, SETTER)`. If it's a provider, `parentContext` is constructed by extracting data using `propagate().extract(invocation, GETTER)`, then the current span information is built using `parentContext`, completing the trace linkage.
+As an RPC framework, dubbo has both consumers and providers. We determine whether the current execution belongs to consumer or provider code via `isConsumer`. If it's a consumer, it directly creates a span with traceid and parentId propagated from other chains, and passes data to the provider using `propagate().inject(span, invocation, SETTER)`. If it's a provider, it extracts data using `propagate().extract(invocation, GETTER)` to construct `parentContext`, and then constructs the current span information to complete the trace linkage.
 
-#### 5. Create `RequestAdvice`
+#### Step 5: Create `RequestAdvice`
 
 ```java
 
@@ -418,12 +416,12 @@ public class RequestAdvice {
 }
 ```
 
-The `RequestAdvice` class mainly implements two methods. Method names can be customized. The two methods use the `@Advice.OnMethodEnter` and `@Advice.OnMethodExit` annotations, representing operations to be performed when entering and exiting a method. `CallDepthThreadLocalMap.incrementCallDepth(RpcContext.class)` prevents method re-entry, and `CallDepthThreadLocalMap.reset(RpcContext.class)` resets the rule when exiting the method.
+`RequestAdvice` mainly implements two methods. Method names can be customized, and the two methods are annotated with `@Advice.OnMethodEnter` and `@Advice.OnMethodExit`, representing actions to be performed when entering and exiting methods. `CallDepthThreadLocalMap.incrementCallDepth(RpcContext.class)` prevents method reentry, and `CallDepthThreadLocalMap.reset(RpcContext.class)` resets the rule upon exit.
 
-#### 6. Compile and Package
+#### Step 6: Compile and Package
 
-Use `gradle shadowJar` for packaging. After packaging, the files are stored under `dd-java-agent\build\libs`.
+Use `gradle shadowJar` for packaging. After packaging, the file is stored in `dd-java-agent\build\libs`.
 
-## Source Code Address
+## Source Code Location
 
 <[dubbo-instrumentation](https://github.com/GuanceCloud/dd-trace-java/tree/v0.105.0/dd-java-agent/instrumentation/dubbo-2.7)>

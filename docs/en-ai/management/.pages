@@ -20,7 +20,7 @@ nav:
   - 'Cloud Account Management': cloud-account-manag.md
   - 'Audit Events': operation-audit.md
   - 'Share Management': share-management.md
-  - 'Cross Workspace Authorization': data-authorization.md
+  - 'Cross-Workspace Authorization': data-authorization.md
   - 'Sensitive Data Masking': data-mask.md
   - 'Sensitive Data Scanning': data-scanner.md
   - 'Workspace Management': space-management.md

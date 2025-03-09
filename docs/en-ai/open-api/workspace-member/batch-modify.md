@@ -8,34 +8,32 @@
 Modify one or more members
 
 
-
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
+| Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
 | accountUUIDs | array | Y | List of account UUIDs<br>Example: ['Account UUID1 not in workspace', 'Account UUID2 not in workspace'] <br>Can be empty: True <br> |
 | roleUUIDs | array | Y | List of user role UUIDs<br>Example: None <br>Can be empty: False <br> |
-| onlyModifyRoles | boolean | Y | Whether to only modify member roles, True does not change team information<br>Example: True <br>Can be empty: False <br> |
+| onlyModifyRoles | boolean | Y | Whether to only modify member roles, True does not modify team information<br>Example: True <br>Can be empty: False <br> |
 | memberGroupUUIDs | array |  | List of teams<br>Example: ['xxx', 'xxx'] <br>Can be empty: True <br> |
 | acntWsNickname | string |  | Nickname of the account in this workspace<br>Example: NicknameAAA <br>Can be empty: True <br>$maxCustomLength: 128 <br> |
 
 ## Additional Parameter Notes
 
-Data description.*
+Data notes.*
 
-When modifying member roles, if `roleUUIDs` includes roles that require Token review (SAAS Free Plan and PAAS do not require cost center review), then it must include role UUIDs that do not require review.
+When modifying member roles, if any roles in roleUUIDs require Token review (SaaS Free Plan and PaaS do not require Billing Center review), then non-reviewed role UUIDs must be included.
 
-- Request parameter description
+- Request parameter explanation
 
-| Parameter Name           | Type | Description                                                 |
+| Parameter Name           | type | Description                                                 |
 | ---------------- | ---- | ---------------------------------------------------- |
 | accountUUIDs       | list | Member account UUIDs |
 | roleUUIDs             | list | Role UUIDs                                              |
-| onlyModifyRoles    | boolean | Whether to only change role information (true for batch modification, false for individual modification)                 |
-| memberGroupUUIDs       | list  | Team information is required for individual member modifications     |
+| onlyModifyRoles    | boolean | Whether to only change role information (true for batch modification, false for single modification)                 |
+| memberGroupUUIDs       | list  | Team information is required when making a single modification     |
 | acntWsNickname       | string  | Nickname of the account in the workspace     |
 ------
-
 
 
 
@@ -47,7 +45,6 @@ curl 'https://openapi.guance.com/api/v1/workspace/member/batch_modify' \
 --data-raw '{"accountUUIDs": ["acnt_xxxx32"], "onlyModifyRoles": true, "roleUUIDs": ["general","wsAdmin"]}' \
 --compressed 
 ```
-
 
 
 

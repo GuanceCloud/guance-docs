@@ -1,35 +1,40 @@
-# Get Single Index/Bind Index Configuration
+# Get a Single Index/Bound Index Configuration
 
 ---
 
 <br />**GET /api/v1/log_index_cfg/\{cfg_uuid\}/get**
 
 ## Overview
-Retrieve a bound index configuration.
+Retrieve a bound index configuration
+
 
 ## Route Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| cfg_uuid | string | Y | UUID of the log index configuration |
+|:------------------|:-------|:-----|:----------------|
+| cfg_uuid | string | Y | UUID of the log index configuration<br> |
+
 
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| isShowAccessCfg | boolean |  | Whether to display accessCfg |
-| isShowFields | boolean |  | Whether to display the fields list |
+|:------------------|:-------|:-----|:----------------|
+| isShowAccessCfg | boolean |  | Whether to display accessCfg<br> |
+| isShowFields | boolean |  | Whether to display fields list<br> |
 
 ## Additional Parameter Explanation
 
 **Response Body Structure Explanation**
 
-| Parameter Name                | Type  | Description          |
-|-----------------------|----------|------------------------|
+| Parameter Name                | Type   | Description          |
+|-------------------------------|----------|------------------------|
 | isBindCustomStore         | int | 1: Bound to custom storage index configuration, 0: Default |
-| storeType         | string | Storage type ('es': Elasticsearch storage, 'sls': SLS Logstore storage, 'opensearch': OpenSearch storage, 'beaver': LogEase storage) |
+| storeType         | string | Storage type, ('es': Elasticsearch storage, 'sls': SLS Logstore storage, 'opensearch': OpenSearch storage, 'beaver': LogEase storage) |
 | fields         | array | Field mapping configuration |
 | accessCfg         | array | Custom storage index permission configuration items |
+
+
+
 
 ## Request Example
 ```shell
@@ -37,6 +42,9 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/lgim_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
+
+
+
 
 ## Response
 ```shell

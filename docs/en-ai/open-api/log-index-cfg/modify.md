@@ -2,29 +2,30 @@
 
 ---
 
-<br />**POST /api/v1/log_index_cfg/\{cfg_uuid\}/modify**
+<br />**POST /api/v1/log_index_cfg/{cfg_uuid}/modify**
 
 ## Overview
-Modify a single default storage index configuration
+Modify the configuration of a single default storage index
+
 
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description               |
-|:--------------|:-------|:---------|:--------------------------|
-| cfg_uuid      | string | Y        | Configuration UUID<br>    |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| cfg_uuid | string | Y | Configuration UUID<br> |
 
 
 ## Body Request Parameters
 
-| Parameter Name              | Type   | Required | Description                                                                                             |
-|:--------------------------|:-------|:---------|:--------------------------------------------------------------------------------------------------------|
-| extend                    | json   |          | Frontend custom data<br>Can be empty: True <br>                                                         |
-| duration                  | string |          | Data retention period<br>Can be empty: False <br>Example: 7d <br>                                      |
-| setting                   | json   |          | Relevant configuration information<br>Can be empty: False <br>                                         |
-| setting.hot_retention      | int    |          | Volcengine Storage, Standard Storage - Hot Storage<br>Can be empty: False <br>                          |
-| setting.cold_retention     | int    |          | Volcengine Storage, Infrequent Access Storage - Cold Data<br>Can be empty: False <br>                   |
-| setting.archive_retention  | int    |          | Volcengine Storage, Archive Storage - Archived Data<br>Can be empty: False <br>                         |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| extend | json |  | Custom data from frontend<br>Optional: True <br> |
+| duration | string |  | Data retention duration<br>Optional: False <br>Example: 7d <br> |
+| setting | json |  | Configuration information<br>Optional: False <br> |
+| setting.hot_retention | int |  | Volc Engine Storage, Standard Storage - Hot Storage<br>Optional: False <br> |
+| setting.cold_retention | int |  | Volc Engine Storage, Infrequent Access Storage - Cold Data<br>Optional: False <br> |
+| setting.archive_retention | int |  | Volc Engine Storage, Archive Storage - Archived Data<br>Optional: False <br> |
 
 ## Additional Parameter Notes
 
@@ -40,6 +41,7 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/lgim_xxxx32/modify' \
 --data-raw '{"duration":"7d","extend":{"filters":[{"condition":"and","name":"host","operation":"in","value":["guance"]}]}}' \
 --compressed
 ```
+
 
 
 

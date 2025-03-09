@@ -1,20 +1,20 @@
-# Get Alert Policy List
+# Get Alert Strategies List
 
 ---
 
 <br />**GET /api/v1/alert_policy/list**
 
 ## Overview
-Retrieve a paginated list of alert policies
+Retrieve a paginated list of alert strategies
 
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description                                      |
-|:--------------|:-------|:--------|:-------------------------------------------------|
-| search        | string |         | Search for alert policy names<br>Can be empty: True <br> |
-| pageIndex     | integer|         | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize      | integer|         | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| search | string | No  | Search for alert strategy names<br>Can be empty: True <br> |
+| pageIndex | integer | Yes  | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize | integer | Yes  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
 

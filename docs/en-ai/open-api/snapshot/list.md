@@ -5,38 +5,38 @@
 <br />**GET /api/v1/snapshots/list**
 
 ## Overview
-Retrieve the snapshot list of the current workspace
+Retrieve the snapshot list for the current workspace
 
 
 
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------------|:-------|:-----|:----------------|
-| type | string | No | Type filter<br>Can be empty: False <br> |
-| search | string | No | Search snapshot name<br>Can be empty: False <br> |
-| pageIndex | integer | No | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | No | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| Parameter Name | Type   | Required | Description               |
+|:--------------|:-------|:--------|:-------------------------|
+| type          | string | No      | Type filter<br>Can be empty: False <br> |
+| search        | string | No      | Search snapshot name<br>Can be empty: False <br> |
+| pageIndex     | integer| No      | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize      | integer| No      | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
 
 
 *Data Description*
 
-**1. Snapshot Type Description**
+**1. Snapshot Type Explanation**
 
-|Key|Description|
-|---|----|
-|logging|Log Explorer|
-|keyevent|Event Explorer|
-|tracing|Trace Explorer|
-|object|Infrastructure Explorer|
-|dialing_task|Dial Testing Explorer|
-|security|Security Check Explorer|
-|rum|RUM Explorer|
-|measurement|Metrics Explorer|
-|scene_dashboard|Scene View|
-|dashboard|User-defined View|
+| Key           | Description                          |
+|---------------|--------------------------------------|
+| logging       | Log Explorer                         |
+| keyevent      | Event Explorer                       |
+| tracing       | Trace Explorer                       |
+| object        | Infrastructure Explorer              |
+| dialing_task  | Cloud Test Explorer                  |
+| security      | Security Check Explorer              |
+| rum           | RUM PV Explorer                      |
+| measurement   | Metrics Explorer                     |
+| scene_dashboard | Scene View                        |
+| dashboard     | User-defined View                    |
 
 
 
@@ -46,6 +46,7 @@ curl 'https://openapi.guance.com/api/v1/snapshots/list?pageIndex=1&pageSize=2' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
+
 
 
 

@@ -5,20 +5,16 @@
 <br />**POST /api/v1/workspace/modify**
 
 ## Overview
-Modify the information of the workspace associated with the current API Key
-
-
+Modify the workspace information associated with the current API Key.
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                                      |
-|:--------------|:-------|:---------|:-------------------------------------------------|
-| name          | string |          | Name<br>Example: supper_workspace <br>Nullable: False <br>Maximum Length: 256 <br> |
-| desc          | string |          | Notes<br>Example: ccc <br>Nullable: False <br>Empty String Allowed: True <br> |
+| Parameter Name | Type   | Required | Description                                                                 |
+|:--------------|:-------|:---------|:----------------------------------------------------------------------------|
+| name          | string | No       | Name<br>Example: supper_workspace <br>Can be empty: False <br>Maximum length: 256 <br> |
+| desc          | string | No       | Remarks<br>Example: ccc <br>Can be empty: False <br>Allows empty string: True <br> |
 
-## Additional Parameter Information
-
-
+## Additional Parameter Notes
 
 ## Request Example
 ```shell
@@ -30,8 +26,6 @@ curl 'https://openapi.guance.com/api/v1/workspace/modify' \
 --compressed
 --insecure
 ```
-
-
 
 ## Response
 ```shell

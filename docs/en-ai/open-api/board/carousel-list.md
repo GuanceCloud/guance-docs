@@ -11,9 +11,9 @@
 
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| search | string | No | Search by carousel dashboard name<br>Allow null: False <br> |
+| Parameter Name | Type   | Required | Description               |
+|:------------|:------|:-------|:------------------------|
+| search | string |  | Search for carousel dashboard names<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 

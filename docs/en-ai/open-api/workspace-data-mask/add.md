@@ -1,4 +1,4 @@
-# New
+# Create
 
 ---
 
@@ -11,13 +11,13 @@
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description |
-|:--------------|:-------|:--------|:------------|
-| name          | string | Y       | Rule name<br>Allow null: False <br>Maximum length: 128 <br>Allow empty string: False <br> |
+| Parameter Name | Type   | Required | Description                                                                                   |
+|:--------------|:-------|:--------|:---------------------------------------------------------------------------------------------|
+| name          | string | Y       | Rule name<br>Allow null: False <br>Maximum length: 128 <br>Allow empty string: False <br>     |
 | type          | string | Y       | Data type<br>Example: logging <br>Allow null: True <br>Possible values: ['logging', 'metric', 'object', 'custom_object', 'keyevent', 'tracing', 'rum', 'security', 'network', 'profiling', 'billing'] <br> |
-| field         | string | Y       | Field name<br>Allow null: False <br>Maximum length: 128 <br>Allow empty string: False <br> |
+| field         | string | Y       | Field name<br>Allow null: False <br>Maximum length: 128 <br>Allow empty string: False <br>   |
 | reExpr        | string | Y       | Regular expression<br>Allow null: False <br>Maximum length: 5000 <br>Allow empty string: False <br> |
-| roleUUIDs     | array  | Y       | Which roles in the workspace this rule applies to for data masking<br>Example: ['xxx', 'xxx'] <br>Allow null: False <br> |
+| roleUUIDs     | array  | Y       | Roles in the workspace for which this rule applies data masking<br>Example: ['xxx', 'xxx'] <br>Allow null: False <br> |
 
 ## Additional Parameter Notes
 

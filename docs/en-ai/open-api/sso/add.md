@@ -1,4 +1,4 @@
-# Create a New Mapping Rule
+# Create Mapping Rule
 
 ---
 
@@ -12,13 +12,13 @@ Add a SAML mapping
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------------|:-------|:-----|:----------------|
-| ssoUUID | string | Y | SSO configuration UUID<br>Example: sso_xxx <br>Can be empty: False <br>Maximum length: 48 <br> |
-| sourceField | string | Y | Source field<br>Example: sourceField <br>Can be empty: False <br> |
-| sourceValue | string | Y | Source field value<br>Example:  <br>Can be empty: False <br> |
-| targetValues | array | Y | Target field values (currently defaults to a list of role UUIDs)<br>Example: readOnly <br> |
+|:---------------------|:---------|:-----------|:-------------------------|
+| ssoUUID              | string   | Y          | SSO configuration UUID<br>Example: sso_xxx <br>Allow empty: False <br>Maximum length: 48 <br> |
+| sourceField          | string   | Y          | Source field<br>Example: sourceField <br>Allow empty: False <br> |
+| sourceValue          | string   | Y          | Source field value<br>Example:  <br>Allow empty: False <br> |
+| targetValues         | array    | Y          | Target field values (currently defaults to a list of role UUIDs)<br>Example: readOnly <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
@@ -30,6 +30,7 @@ curl 'https://openapi.guance.com/api/v1/saml/mapping/field/add' \
   --data-raw '{"ssoUUID":"sso_xxxx32","sourceField":"sd1","sourceValue":"sd1_value1","targetValues":["general"]}' \
   --compressed
 ```
+
 
 
 

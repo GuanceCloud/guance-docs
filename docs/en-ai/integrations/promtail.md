@@ -56,13 +56,13 @@ Tested versions:
     Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-### API Version {#API-version}
+### API Version {#API version}
 
-For versions `v0.3.0` and earlier, set `legacy = true`, i.e., use [`POST /api/prom/push`](https://grafana.com/docs/loki/latest/api/#post-apiprompush){:target="_blank"}, which uses the Legacy API to handle incoming Promtail log data.
+For versions `v0.3.0` and earlier, set `legacy = true` to use the [`POST /api/prom/push`](https://grafana.com/docs/loki/latest/api/#post-apiprompush){:target="_blank"} endpoint, which uses the Legacy API to handle incoming Promtail log data.
 
-For later versions, use the default configuration, i.e., `legacy = false`, which means using [`POST /loki/api/v1/push`](https://grafana.com/docs/loki/latest/api/#post-lokiapiv1push){:target="_blank"}.
+For later versions, use the default configuration (`legacy = false`) to use the [`POST /loki/api/v1/push`](https://grafana.com/docs/loki/latest/api/#post-lokiapiv1push){:target="_blank"} endpoint.
 
-### Custom Tags {#custom-tags}
+### Custom Tags {#custom tags}
 
 By configuring `[inputs.promtail.tags]`, you can add custom tags to the log data. Example:
 
@@ -79,12 +79,12 @@ After configuring, restart DataKit.
 The Promtail collector supports adding parameters in the HTTP URL. The parameter list is as follows:
 
 - `source`: Identifies the source of the data. For example, `nginx` or `redis` (`/v1/write/promtail?source=nginx`). By default, `source` is set to `default`.
-- `pipeline`: Specifies the pipeline name to be used for the data, e.g., `nginx.p` (`/v1/write/promtail?pipeline=nginx.p`).
-- `tags`: Adds custom tags, separated by commas, e.g., `key1=value1` and `key2=value2` (`/v1/write/promtail?tags=key1=value1,key2=value2`).
+- `pipeline`: Specifies the pipeline name for the data, for example, `nginx.p` (`/v1/write/promtail?pipeline=nginx.p`).
+- `tags`: Adds custom tags, separated by commas `,`, for example, `key1=value1` and `key2=value2` (`/v1/write/promtail?tags=key1=value1,key2=value2`).
 
 ### Example {#example}
 
-Promtail's data is originally sent to Loki, i.e., `/loki/api/v1/push`. Modify the `url` in the Promtail configuration to point to DataKit, enabling the Promtail collector in DataKit. Promtail will then send its data to the Promtail collector in DataKit.
+Promtail's data originally goes to Loki, i.e., `/loki/api/v1/push`. Modify the `url` in the Promtail configuration to point to DataKit, enabling the Promtail collector in DataKit. After this setup, Promtail will send its data to DataKit's Promtail collector.
 
 Example Promtail configuration:
 

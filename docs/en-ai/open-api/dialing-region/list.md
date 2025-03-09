@@ -11,8 +11,8 @@ Get the list of user-defined nodes
 ## Query Request Parameters
 
 | Parameter Name | Type   | Required | Description                                      |
-|:--------------|:-------|:--------|:-------------------------------------------------|
-| isAlive       | string | No      | Node status selection<br>Can be empty: True <br>Optional values: ['true', 'false'] <br> |
+|:--------------|:-------|:---------|:-------------------------------------------------|
+| isAlive       | string | No       | Node status selection<br>Can be empty: True <br>Optional values: ['true', 'false'] <br> |
 
 ## Additional Parameter Notes
 

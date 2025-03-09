@@ -8,17 +8,14 @@
 Delete a SAML mapping
 
 
-
 ## Route Parameters
 
 | Parameter Name | Type   | Required | Description              |
 |:--------------|:-------|:--------|:-------------------------|
-| fdmp_uuid     | string | Y       | ID of the mapping configuration<br> |
+| fdmp_uuid     | string | Y       | Mapping configuration ID |
 
 
 ## Additional Parameter Notes
-
-
 
 
 

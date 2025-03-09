@@ -13,9 +13,9 @@ Invite one or multiple members
 
 | Parameter Name | Type   | Required | Description              |
 |:-----------|:-------|:-----|:----------------|
-| to | array | Y | List of invitees<br>Example: ['xx1@jiagouyun.com', 'xx2@jiagouyun.com'] <br>Nullable: True <br> |
-| roleUUIDs | array | Y | List of role UUIDs for invitees<br>Example: ['xxx', 'xxx'] <br>Nullable: False <br> |
-| method | string | Y | Invitation method<br>Example: None <br>Nullable: False <br>Possible values: ['email'] <br> |
+| to | array | Y | List of invitees<br>Example: ['xx1@jiagouyun.com', 'xx2@jiagouyun.com'] <br>Allow null: True <br> |
+| roleUUIDs | array | Y | List of role UUIDs for invitees<br>Example: ['xxx', 'xxx'] <br>Allow null: False <br> |
+| method | string | Y | Invitation method<br>Example: None <br>Allow null: False <br>Optional values: ['email'] <br> |
 
 ## Additional Parameter Notes
 

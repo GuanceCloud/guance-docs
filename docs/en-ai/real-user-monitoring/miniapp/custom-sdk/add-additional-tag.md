@@ -8,7 +8,7 @@ After initializing RUM, use the `addRumGlobalContext(key:string, value:any)` API
 
 === "CDN"
 
-    [Download File](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js) and include it locally
+    [Download file](https://<<< custom_key.static_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js) for local inclusion
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -26,7 +26,7 @@ After initializing RUM, use the `addRumGlobalContext(key:string, value:any)` API
 
 === "NPM"
 
-    [Include via NPM](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
+    [Inclusion](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')
@@ -45,7 +45,7 @@ After initializing RUM, use the `addRumGlobalContext(key:string, value:any)` API
 
 === "CDN"
 
-    [Download File](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js) and include it locally
+    [Download file](https://<<< custom_key.static_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js) for local inclusion
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -60,7 +60,7 @@ After initializing RUM, use the `addRumGlobalContext(key:string, value:any)` API
 
 === "NPM"
 
-    [Include via NPM](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
+    [Inclusion](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')
@@ -77,7 +77,7 @@ After initializing RUM, use the `addRumGlobalContext(key:string, value:any)` API
 
 === "CDN"
 
-    [Download File](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js) and include it locally
+    [Download file](https://<<< custom_key.static_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js) for local inclusion
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -87,7 +87,7 @@ After initializing RUM, use the `addRumGlobalContext(key:string, value:any)` API
 
 === "NPM"
 
-    [Include via NPM](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
+    [Inclusion](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')
@@ -96,11 +96,11 @@ After initializing RUM, use the `addRumGlobalContext(key:string, value:any)` API
 
     ```
 
-### Removing Specific Key's Custom TAG
+### Removing Specific Custom TAG by Key
 
 === "CDN"
 
-    [Download File](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js) and include it locally
+    [Download file](https://<<< custom_key.static_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js) for local inclusion
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js');
@@ -110,7 +110,7 @@ After initializing RUM, use the `addRumGlobalContext(key:string, value:any)` API
 
 === "NPM"
 
-    [Include via NPM](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
+    [Inclusion](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')
@@ -122,7 +122,7 @@ After initializing RUM, use the `addRumGlobalContext(key:string, value:any)` API
 
 === "CDN"
 
-    [Download File](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js) and include it locally
+    [Download file](https://<<< custom_key.static_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js) for local inclusion
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js');
@@ -132,7 +132,7 @@ After initializing RUM, use the `addRumGlobalContext(key:string, value:any)` API
 
 === "NPM"
 
-    [Include via NPM](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
+    [Inclusion](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')

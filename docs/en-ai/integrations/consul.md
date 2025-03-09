@@ -1,15 +1,15 @@
 ---
-title: 'Consul'
-summary: 'Collect metrics data from Consul'
-__int_icon: 'icon/consul'
+title     : 'Consul'
+summary   : 'Collect metrics data from Consul'
+__int_icon      : 'icon/consul'
 tags:
   - 'Middleware'
-dashboard:
-  - desc: 'Consul'
-    path: 'dashboard/en/consul'
-monitor:
-  - desc: 'Consul'
-    path: 'monitor/en/consul'
+dashboard :
+  - desc  : 'Consul'
+    path  : 'dashboard/en/consul'
+monitor   :
+  - desc  : 'Consul'
+    path  : 'monitor/en/consul'
 ---
 
 
@@ -17,7 +17,7 @@ monitor:
 
 ---
 
-The Consul collector is used to collect metrics data related to Consul, currently only supporting Prometheus format data.
+The Consul collector is used to collect metrics data related to Consul, currently only supporting Prometheus formatted data.
 
 ## Configuration {#config}
 
@@ -37,18 +37,18 @@ sudo wget https://github.com/prometheus/consul_exporter/releases/download/v0.7.1
 sudo tar -zxvf consul_exporter-0.7.1.linux-amd64.tar.gz  
 ```
 
-- Enter the *consul_exporter-0.7.1.linux-amd64* directory and run the `consul_exporter` script
+- Navigate to the *consul_exporter-0.7.1.linux-amd64* directory and run the `consul_exporter` script
 
 ```shell
 ./consul_exporter     
 ```
 
-### Collector Configuration {input-config}
+### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/consul` directory under the DataKit installation directory, copy `consul.conf.sample` and rename it to `consul.conf`. Example configuration:
+    Navigate to the `conf.d/consul` directory under the DataKit installation directory, copy `consul.conf.sample` and rename it to `consul.conf`. Example:
     
     ```toml
         
@@ -71,7 +71,7 @@ sudo tar -zxvf consul_exporter-0.7.1.linux-amd64.tar.gz
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
 <!-- markdownlint-enable -->
 
@@ -81,38 +81,42 @@ sudo tar -zxvf consul_exporter-0.7.1.linux-amd64.tar.gz
 
 - Tags
 
-| Tag         | Description                   |
-|-------------|-------------------------------|
-| `check`     | Check.                        |
-| `check_id`  | Check ID.                     |
-| `check_name`| Check name.                   |
-| `host`      | Host name.                    |
-| `instance`  | Instance endpoint.            |
-| `key`       | Key.                          |
-| `member`    | Member name.                  |
-| `node`      | Node name.                    |
-| `service_id`| Service ID.                   |
-| `service_name`| Service name.               |
-| `status`    | Status: critical, maintenance, passing, warning. |
-| `tag`       | Tag.                          |
+
+| Tag | Description |
+|  ----  | --------|
+|`check`|Check.|
+|`check_id`|Check ID.|
+|`check_name`|Check name.|
+|`host`|Host name.|
+|`instance`|Instance endpoint.|
+|`key`|Key.|
+|`member`|Member name.|
+|`node`|Node name.|
+|`service_id`|Service ID.|
+|`service_name`|Service name.|
+|`status`|Status: critical, maintenance, passing, warning.|
+|`tag`|Tag.|
 
 - Metrics List
 
-| Metric                      | Description                                                                 | Type | Unit   |
-|-----------------------------|-----------------------------------------------------------------------------|------|--------|
-| `catalog_kv`                | The values for selected keys in Consul's key/value catalog. Keys with non-numeric values are omitted. | float|-      |
-| `catalog_service_node_healthy` | Is this service healthy on this node?                                      | float| bool   |
-| `catalog_services`          | How many services are in the cluster.                                       | float| count  |
-| `health_node_status`        | Status of health checks associated with a node.                             | float| bool   |
-| `health_service_status`     | Status of health checks associated with a service.                          | float| bool   |
-| `raft_leader`               | Does Raft cluster have a leader (according to this node).                   | float| bool   |
-| `raft_peers`                | How many peers (servers) are in the Raft cluster.                           | float| count  |
-| `serf_lan_member_status`    | Status of member in the cluster. 1=Alive, 2=Leaving, 3=Left, 4=Failed.      | float|-      |
-| `serf_lan_members`          | How many members are in the cluster.                                        | float| count  |
-| `serf_wan_member_status`    | Status of member in the WAN cluster. 1=Alive, 2=Leaving, 3=Left, 4=Failed.  | float|-      |
-| `service_checks`            | Link the service ID and check name if available.                             | float| bool   |
-| `service_tag`               | Tags of a service.                                                          | float| count  |
-| `up`                        | Was the last query of Consul successful.                                    | float| bool   |
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`catalog_kv`|The values for selected keys in Consul's key/value catalog. Keys with non-numeric values are omitted.|float|-|
+|`catalog_service_node_healthy`|Is this service healthy on this node?|float|bool|
+|`catalog_services`|How many services are in the cluster.|float|count|
+|`health_node_status`|Status of health checks associated with a node.|float|bool|
+|`health_service_status`|Status of health checks associated with a service.|float|bool|
+|`raft_leader`|Does Raft cluster have a leader (according to this node).|float|bool|
+|`raft_peers`|How many peers (servers) are in the Raft cluster.|float|count|
+|`serf_lan_member_status`|Status of member in the cluster. 1=Alive, 2=Leaving, 3=Left, 4=Failed.|float|-|
+|`serf_lan_members`|How many members are in the cluster.|float|count|
+|`serf_wan_member_status`|Status of member in the WAN cluster. 1=Alive, 2=Leaving, 3=Left, 4=Failed.|float|-|
+|`service_checks`|Link the service ID and check name if available.|float|bool|
+|`service_tag`|Tags of a service.|float|count|
+|`up`|Was the last query of Consul successful.|float|bool|
+
+
 
 ## Logging {#logging}
 
@@ -123,8 +127,8 @@ consul agent -dev -syslog
 ```
 
 To collect logs using the logging collector, configure the logging collector.
-Go to the `conf.d/log` directory under the DataKit installation directory, copy `logging.conf.sample` and rename it to `logging.conf`.
-Configuration example:
+Navigate to the `conf.d/log` directory under the DataKit installation directory, copy `logging.conf.sample` and rename it to `logging.conf`.
+Configuration as follows:
 
 ```toml
 [[inputs.logging]]
@@ -170,9 +174,9 @@ Sep 18 19:30:23 derrick-ThinkPad-X230 consul[11803]: 2021-09-18T19:30:23.522+080
 
 Parsed fields list:
 
-| Field Name | Field Value                                                   | Description |
-|------------|---------------------------------------------------------------|-------------|
-| `date`     | `2021-09-18T19:30:23.522+0800`                                | Log date    |
-| `level`    | `INFO`                                                        | Log level   |
-| `character`| `agent.server.connect`                                        | Role        |
-| `msg`      | `initialized primary datacenter CA with provider: provider=consul` | Log content |
+| Field Name      | Field Value                                                             | Description     |
+| ---         | ---                                                                | ---      |
+| `date`      | `2021-09-18T19:30:23.522+0800`                                     | Log Date |
+| `level`     | `INFO`                                                             | Log Level |
+| `character` | `agent.server.connect`                                             | Role     |
+| `msg`       | `initialized primary datacenter CA with provider: provider=consul` | Log Content |

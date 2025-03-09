@@ -15,27 +15,24 @@
 |:---------------------|:---------|:-----------|:-------------------------|
 | cfg_uuid             | string   | Y          | Issue auto discovery configuration UUID<br> |
 
-
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
 |:---------------------|:---------|:-----------|:-------------------------|
-| name                 | string   | Y          | Title name<br>Example: name <br>Can be empty: False <br>Maximum length: 256 <br> |
-| description          | string   |            | Description<br>Example: description <br>Can be empty: False <br>Can be an empty string: True <br> |
-| dqlNamespace         | string   | Y          | Data scope<br>Example: keyevent <br>Can be empty: False <br>Optional values: ['keyevent'] <br> |
-| every                | integer  | Y          | Check frequency (time length in seconds)<br>Example: 300 <br>Can be empty: False <br>$minValue: 300 <br>$maxValue: 3600 <br>Optional values: [300, 600, 900, 1800, 3600] <br> |
-| conditions           | string   |            | Content within the curly braces of the DQL query filter conditions<br>Example: `source` IN ['kube-controller'] <br>Can be empty: False <br>Can be an empty string: True <br> |
-| dimensions           | array    |            | List of dimension fields<br>Example: ['chan_xxx1', 'chan_xxx2'] <br>Can be empty: False <br>$minLength: 1 <br> |
-| config               | json     | Y          | Issue definition configuration<br>Example: {} <br>Can be empty: False <br> |
-| config.name          | string   | Y          | Title name<br>Example: name <br>Can be empty: False <br>Maximum length: 256 <br> |
-| config.level         | string   |            | Level<br>Example: level <br>Can be empty: False <br>Can be an empty string: True <br> |
-| config.channelUUIDs  | array    |            | List of channel UUIDs<br>Example: ['chan_xxx1', 'chan_xxx2'] <br>Can be empty: False <br> |
-| config.description   | string   |            | Description<br>Example: description <br>Can be empty: False <br> |
-| config.extend        | json     |            | Additional extension information, refer to the extend field in new issue creation, generally not recommended for OpenAPI side settings<br>Example: {} <br>Can be empty: True <br> |
+| name                 | string   | Y          | Title name<br>Example: name <br>Allow null: False <br>Maximum length: 256 <br> |
+| description          | string   |            | Description<br>Example: description <br>Allow null: False <br>Allow empty string: True <br> |
+| dqlNamespace         | string   | Y          | Data scope<br>Example: rum <br>Allow null: False <br>Optional values: ['keyevent'] <br> |
+| every                | integer  | Y          | Check frequency (time length in seconds)<br>Example: 300 <br>Allow null: False <br>$minValue: 300 <br>$maxValue: 3600 <br>Optional values: [300, 600, 900, 1800, 3600] <br> |
+| conditions           | string   |            | Content within the curly braces of the DQL query filter condition<br>Example: `source` IN ['kube-controller'] <br>Allow null: False <br>Allow empty string: True <br> |
+| dimensions           | array    |            | List of dimension fields<br>Example: ['chan_xxx1', 'chan_xxx2'] <br>Allow null: False <br>$minLength: 1 <br> |
+| config               | json     | Y          | Issue definition configuration<br>Example: {} <br>Allow null: False <br> |
+| config.name          | string   | Y          | Title name<br>Example: name <br>Allow null: False <br>Maximum length: 256 <br> |
+| config.level         | string   |            | Level<br>Example: level <br>Allow null: False <br>Allow empty string: True <br> |
+| config.channelUUIDs  | array    |            | List of channel UUIDs<br>Example: ['chan_xxx1', 'chan_xxx2'] <br>Allow null: False <br> |
+| config.description   | string   |            | Description<br>Example: description <br>Allow null: False <br> |
+| config.extend        | json     |            | Additional extended information. Refer to the extend field in issue creation, generally not recommended to set from the OpenAPI side.<br>Example: {} <br>Allow null: True <br> |
 
 ## Additional Parameter Notes
-
-
 
 
 
@@ -44,7 +41,7 @@
 curl 'https://openapi.guance.com/api/v1/issue_auto_discovery/iatdc_xxxxx/modify' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---data-raw '{"name":"test-core-worker","description":"This is a test example for creating a new issue auto discovery rule","every":300,"dqlNamespace":"keyevent","conditions":"`source` = \"lwctest\"","dimensions":["name"],"config":{"name":"Title in issue definition","description":"Modified description in issue definition","level":"system_level_0","extend":{"text":"Modified description in issue definition","manager":["acnt_xxx"]},"channelUUIDs":["chan_xxxxx"]}}' \
+--data-raw '{"name":"test-core-worker","description":"This is a test example for creating an issue auto-discovery rule","every":300,"dqlNamespace":"keyevent","conditions":"`source` = \"lwctest\"","dimensions":["name"],"config":{"name":"Title in issue definition","description":"Modified description in issue definition","level":"system_level_0","extend":{"text":"Modified description in issue definition","manager":["acnt_xxx"]},"channelUUIDs":["chan_xxxxx"]}}' \
 --insecure
 ```
 
@@ -77,7 +74,7 @@ curl 'https://openapi.guance.com/api/v1/issue_auto_discovery/iatdc_xxxxx/modify'
             "organization": "xxx"
         },
         "deleteAt": -1,
-        "description": "This is a test example for creating a new issue auto discovery rule",
+        "description": "This is a test example for creating an issue auto-discovery rule",
         "dimensions": [
             "name"
         ],

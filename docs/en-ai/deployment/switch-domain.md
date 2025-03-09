@@ -1,21 +1,21 @@
 # Switch Domain
 
 ???+ warning "Note"
-     If HTTPS was previously enabled, you need to prepare the new domain's **certificate** in advance. This domain replacement assumes `dataflux.cn` will be replaced with `guance.com`.
+     If HTTPS was previously enabled, you need to prepare the **certificate** for the new domain in advance. This domain replacement assumes `dataflux.cn` is being replaced with `guance.com`.
 
 ## Introduction
 
-This document will guide you through the process of replacing the domain for Guance. The main steps are as follows:
+This document will guide you through how to replace the domain of <<< custom_key.brand_name >>>. The main steps are as follows:
 
 1. Modify the domain in Launcher
-2. Update all domains in configmap
+2. Update all domains in configmaps
 3. Add certificate Secret (optional)
 4. Update all ingress domains
 5. Restart services
 
 ## Impact Scope
 
-Guance Studio will be unavailable for approximately 15 to 30 minutes during this process.
+<<< custom_key.brand_name >>> Studio will be unavailable for approximately 15-30 minutes.
 
 ## Operation Steps
 
@@ -29,7 +29,7 @@ Guance Studio will be unavailable for approximately 15 to 30 minutes during this
 
 ![](img/faq-ingress-1.png)
 
-### Step Two: Update All Domains in Configmap
+### Step Two: Update All Domains in Configmaps
 
 - You can execute the following script to back up:
 
@@ -50,7 +50,7 @@ done
 - Execute the following script to update the addresses:
 
 ???+ warning "Note"
-      You need to replace the variables `OLD_VALUE` and `NEW_VALUE`.
+      You need to replace the `OLD_VALUE` and `NEW_VALUE` variables.
 
 ```shell
 # Set the key-value pairs to be replaced

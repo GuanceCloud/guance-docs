@@ -3,20 +3,19 @@
 
 ## Install DataKit Agent
 
-Before performing link data analysis for systems and applications, it is necessary to [deploy the Guance DataKit collector on each target host](../../../datakit/datakit-install.md) to collect essential trace data.
+Before performing link data analysis for systems and applications, you need to [deploy <<< custom_key.brand_name >>> DataKit collector](../../../datakit/datakit-install.md) on each target host to collect necessary link data.
 
+Add the command `DK_APM_INSTRUMENTATION_ENABLED=host` before the installation instructions to enable APM auto-injection.
 
-Add this command before the installation instructions: `DK_APM_INSTRUMENTATION_ENABLED=host` to enable APM auto-injection.
-
-If DataKit is already installed, you only need to upgrade it. Use the following command for the upgrade operation:
+If DataKit is already installed, you only need to upgrade it. Use the following command to perform the upgrade operation.
 
 ```
-DK_APM_INSTRUMENTATION_ENABLED=host DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+DK_APM_INSTRUMENTATION_ENABLED=host DK_DEF_INPUTS="ddtrace" DK_UPGRADE=1 bash -c "$(curl -L https://<<< custom_key.static_domain >>>/datakit/install.sh)"
 ```
 
 ## Verification
 
-Run the following command to verify. If the value of `instrumentation_enabled` is empty, manually set it to `host`:
+Run the following command to verify. If the value of `instrumentation_enabled` is empty, you need to manually set it to `host`:
 
 ```
 $ cat /usr/local/datakit/conf.d/datakit.conf | grep instru

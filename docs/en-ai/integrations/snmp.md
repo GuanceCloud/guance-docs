@@ -16,34 +16,34 @@ monitor   :
 
 ---
 
-This article mainly introduces the [SNMP](https://en.wikipedia.org/wiki/Simple_Network_Management_Protocol){:target="_blank"} data collection.
+This document primarily introduces [SNMP](https://en.wikipedia.org/wiki/Simple_Network_Management_Protocol){:target="_blank"} data collection.
 
 ## Terminology  {#terminology}
 
 - `SNMP` (Simple Network Management Protocol): A network protocol used to collect information about bare-metal network devices.
-- `OID` (Object Identifier): A unique ID or address on the device that returns a response code when polled. For example, OID refers to CPU or device fan speed.
-- `sysOID` (System Object Identifier): A specific address that defines the type of device. All devices have a unique ID that defines them. For example, the base sysOID for `Meraki` is “1.3.6.1.4.1.29671”.
-- `MIB` (Managed Information Base): A database or list of all possible OIDs related to the MIB and their definitions. For example, “IF-MIB” (Interface MIB) contains all OIDs with descriptive information about the device interfaces.
+- `OID` (Object Identifier): A unique ID or address on the device that returns a response code when polled. For example, OID can refer to CPU or device fan speed.
+- `sysOID` (System Object Identifier): A specific address defining the type of device. All devices have a unique ID that defines them. For example, the base sysOID for `Meraki` is “1.3.6.1.4.1.29671”.
+- `MIB` (Managed Information Base): A database or list of all possible OIDs related to the MIB and their definitions. For example, “IF-MIB” (Interface MIB) contains all OIDs with descriptive information about the device's interfaces.
 
 ## About the SNMP Protocol {#config-pre}
 
 The SNMP protocol has three versions: v1/v2c/v3, where:
 
-- **v1 and v2c are compatible**. Many SNMP devices only offer v2c and v3 options. Version v2c has the best compatibility, and many old devices only support this version;
-- If high security is required, choose v3. Security is the main difference between version v3 and previous versions;
+- **v1 and v2c are compatible**. Many SNMP devices only provide v2c and v3 options. Version v2c has the best compatibility, and many older devices only support this version;
+- If higher security is required, choose v3. Security is the main difference between v3 and previous versions;
 
-Datakit supports all the above versions.
+Datakit supports all these versions.
 
-### Selecting v1/v2c Version {#config-v2}
+### Choosing v1/v2c Versions {#config-v2}
 
-If you choose the v1/v2c version, you need to provide the `community string`, which translates to "community name/community string/unencrypted password", i.e., the password needed for authentication with the SNMP device. Additionally, some devices further differentiate between "read-only community name" and "read-write community name". As the names suggest:
+If you choose the v1/v2c version, you need to provide the `community string`, which translates to "community name/string/unencrypted password" in Chinese, essentially acting as a password for authentication with SNMP devices. Additionally, some devices may further differentiate between "read-only community name" and "read-write community name". As the names suggest:
 
-- Read-only community name: The device only provides internal metric data to this party and does not allow modification of some internal configurations (this is sufficient for Datakit).
-- Read-write community name: Provides query access to internal metric data and permission to modify some configurations.
+- Read-only community name: The device only provides internal metric data to the party and does not allow modification of internal configurations (this is sufficient for Datakit)
+- Read-write community name: The provider has permissions to query internal metric data and modify certain configurations
 
-### Selecting v3 Version {#config-v3}
+### Choosing v3 Version {#config-v3}
 
-If you choose the v3 version, you need to provide the "username", "authentication algorithm/password", "encryption algorithm/password", "context", etc. The requirements vary by device, so fill in according to the configuration on the device side.
+If you choose the v3 version, you need to provide "username", "authentication algorithm/password", "encryption algorithm/password", "context", etc., which vary by device. Fill in the details according to the configuration on the device side.
 
 ## Configuration {#config}
 
@@ -52,22 +52,22 @@ If you choose the v3 version, you need to provide the "username", "authenticatio
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/snmp` directory under the DataKit installation directory, copy `snmp.conf.sample` and rename it to `snmp.conf`. An example is as follows:
+    Navigate to the `conf.d/snmp` directory under the DataKit installation directory, copy `snmp.conf.sample` and rename it to `snmp.conf`. Example configuration:
     
     ```toml
         
     [[inputs.snmp]]
-      ## Fill in specific device IP addresses, e.g., ["10.200.10.240", "10.200.10.241"].
-      ## You can use auto_discovery and specific_devices simultaneously.
-      ## If you do not want to specify devices, you do not need to provide this.
+      ## Filling in specific device IP address, example ["10.200.10.240", "10.200.10.241"].
+      ## And you can use auto_discovery and specific_devices at the same time.
+      ## If you don't want to specify a device, you don't need to provide this.
       # specific_devices = ["***"] # SNMP Device IP.
     
-      ## Fill in the autodiscovery CIDR subnet, e.g., ["10.200.10.0/24", "10.200.20.0/24"].
-      ## If you do not want to enable the autodiscovery feature, you do not need to provide this.
+      ## Filling in autodiscovery CIDR subnet, example ["10.200.10.0/24", "10.200.20.0/24"].
+      ## If you don't want to enable the autodiscovery feature, you don't need to provide this.
       # auto_discovery = ["***"] # Used in autodiscovery mode only, ignore this in other cases.
     
       ## Consul server URL for consul discovery
-      ## We can discover SNMP instances from consul services
+      ## We can discover SNMP instances from Consul services
       # consul_discovery_url = "http://127.0.0.1:8500"
     
       ## Consul token, optional.
@@ -76,8 +76,8 @@ If you choose the v3 version, you need to provide the "username", "authenticatio
       ## Instance IP key name. ("IP" case sensitive)
       # instance_ip_key = "IP"
     
-      ## Which task will collect, according to consul service field "Address"
-      ## [] means collect all, optional, default to []
+      ## Which task will collect, according to Consul service field "Address"
+      ## [] means collect all, optional, defaults to []
       # exporter_ips = ["<ip1>", "<ip2>"...]
     
       ## Consul TLS connection config, optional.
@@ -86,23 +86,23 @@ If you choose the v3 version, you need to provide the "username", "authenticatio
       # cert_key = "/opt/tls/client.key"
       # insecure_skip_verify = true
     
-      ## SNMP protocol version the devices are using, fill in 2 or 3.
-      ## If you are using version 1, just fill in 2. Version 2 supports version 1.
-      ## This is must be provided.
+      ## SNMP protocol version the devices use, fill in 2 or 3.
+      ## If using version 1, just fill in 2. Version 2 supports version 1.
+      ## This is mandatory.
       snmp_version = 2
     
-      ## SNMP port on the devices. Default is 161. In most cases, you do not need to change this.
+      ## SNMP port on the devices. Default is 161. In most cases, you don't need to change this.
       ## This is optional.
       # port = 161
     
-      ## Password in SNMP v2, enclosed with single quotes. Only works in SNMP v2.
-      ## If you are using SNMP v2, this is must be provided.
-      ## If you are using SNMP v3, you do not need to provide this.
+      ## Password in SNMP v2, enclosed in single quotes. Only works in SNMP v2.
+      ## If using SNMP v2, this is mandatory.
+      ## If using SNMP v3, you don't need to provide this.
       # v2_community_string = "***"
     
-      ## Authentication stuff in SNMP v3.
-      ## If you are using SNMP v2, you do not need to provide this.
-      ## If you are using SNMP v3, this is must be provided.
+      ## Authentication details in SNMP v3.
+      ## If using SNMP v2, you don't need to provide this.
+      ## If using SNMP v3, this is mandatory.
       # v3_user = "***"
       # v3_auth_protocol = "***"
       # v3_auth_key = "***"
@@ -119,19 +119,19 @@ If you choose the v3 version, you need to provide the "username", "authenticatio
       ## Maximum number of OIDs during walk (default 1000)
       # max_oids = 1000
     
-      ## Interval between each auto-discovery in seconds. Default is "1h".
-      ## Only works in auto-discovery feature.
+      ## Interval between each auto discovery in seconds. Default is "1h".
+      ## Only works in auto discovery feature.
       ## This is optional.
       # discovery_interval = "1h"
     
-      ## Collection interval for metrics, default is 10s. (optional)
+      ## Collection metric interval, default is 10s. (optional)
       # metric_interval = "10s"
     
-      ## Collection interval for objects, default is 5m. (optional)
+      ## Collection object interval, default is 5m. (optional)
       # object_interval = "5m"
     
-      ## Fill in excluded device IP addresses, e.g., ["10.200.10.220", "10.200.10.221"].
-      ## Only works in auto-discovery feature.
+      ## Filling in excluded device IP address, example ["10.200.10.220", "10.200.10.221"].
+      ## Only works in auto discovery feature.
       ## This is optional.
       # discovery_ignored_ip = []
     
@@ -141,7 +141,7 @@ If you choose the v3 version, you need to provide the "username", "authenticatio
       ## Device Namespace. Default is "default".
       # device_namespace = "default"
     
-      ## Pick metric data containing only the fields below.
+      ## Picking the metric data only contains the fields' names below.
       # enable_picking_data = true # Default is "false", which means collecting all data.
       # status = ["sysUpTimeInstance", "tcpCurrEstab", "ifAdminStatus", "ifOperStatus", "cswSwitchState"]
       # speed = ["ifHCInOctets", "ifHCInOctetsRate", "ifHCOutOctets", "ifHCOutOctetsRate", "ifHighSpeed", "ifSpeed", "ifBandwidthInUsageRate", "ifBandwidthOutUsageRate"]
@@ -158,7 +158,7 @@ If you choose the v3 version, you need to provide the "username", "authenticatio
       ## Zabbix profiles
       # [[inputs.snmp.zabbix_profiles]]
         ## Can be full path file name or only file name.
-        ## If only file name, the path is "./conf.d/snmp/userprofiles/"
+        ## If only file name, the path is "./conf.d/snmp/userprofiles/
         ## Suffix can be .yaml .yml .xml
         # profile_name = "xxx.yaml"
         ## ip_list is optional
@@ -174,8 +174,8 @@ If you choose the v3 version, you need to provide the "username", "authenticatio
     
       # ...
     
-      ## Prometheus snmp_exporter profiles,
-      ## If module mapping different class, can disassemble yml file.
+      ## Prometheus snmp_exporter profiles, 
+      ## If module mapping different classes, can disassemble yml file.
       # [[inputs.snmp.prom_profiles]]
         # profile_name = "xxx.yml"
         ## ip_list useful when xxx.yml have 1 module 
@@ -218,7 +218,7 @@ If you choose the v3 version, you need to provide the "username", "authenticatio
         SENSOR_INFO = "unit_desc"
         ## We can add more mapping below
         # dev_fan_speed = "fanSpeed"
-        # dev_disk_size = "diskTotal
+        # dev_disk_size = "diskTotal"
       
       ## Reserved oid-key mappings. Do NOT edit.
       [inputs.snmp.oid_keys]
@@ -246,11 +246,11 @@ If you choose the v3 version, you need to provide the "username", "authenticatio
     
     ```
 
-    After configuring, you can restart DataKit by following [these instructions](../datakit/datakit-service-how-to.md#manage-service).
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    You can inject the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or configure [ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
+    You can inject collector configuration via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting) or configure [ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
 
 ### Multiple Configuration Formats {#configuration-formats}
 
@@ -272,17 +272,17 @@ If you choose the v3 version, you need to provide the "username", "authenticatio
       # ...
     ```
   
-    `profile_name` can be a full path or just a filename. If only a filename, the file should be placed in the *./conf.d/snmp/userprofiles/* subdirectory.
+    `profile_name` can be a full path or just a filename. If it's just a filename, place it in the *./conf.d/snmp/userprofiles/* subdirectory.
 
     You can download corresponding configurations from the official Zabbix website or from the [community](https://github.com/zabbix/community-templates){:target="_blank"}.
 
-    If you are not satisfied with the downloaded yaml or xml files, you can also modify them yourself.
+    If you are not satisfied with the downloaded yaml or xml files, you can modify them yourself.
 
 - Auto-discovery
-    - Auto-discovery matches collection rules within multiple imported yaml configurations for collection.
-    - Try to configure auto-discovery by C segment; configuring by B segment might be slower.
-    - If auto-discovery fails to match a yaml, it may be because the existing yaml lacks the manufacturer's characteristic code for the device being collected.
-        - You can manually add an OID entry in the items of the yaml to guide the auto-matching process.
+    - Auto-discovery matches collection rules within multiple imported yaml configurations and performs collection.
+    - Auto-discovery should be configured per C segment; configuring B segments might be slower.
+    - If auto-discovery fails to match any yaml, it’s because the existing yaml lacks the manufacturer's characteristic code for the device being collected.
+        - You can manually add an OID entry in the items section of the yaml to guide the auto-matching process.
 
           ```yaml
           zabbix_export:
@@ -291,7 +291,7 @@ If you choose the v3 version, you need to provide the "username", "authenticatio
               - snmp_oid: 1.3.6.1.4.1.2011.5.2.1.1.1.1.6.114.97.100.105.117.115.0.0.0.0
           ```
 
-        - Obtain the OID to be added by executing the following commands, appending `.0.0.0.0` to prevent unnecessary metrics.
+        - Obtain the OID by executing the following command, appending .0.0.0.0 to prevent generating unnecessary metrics.
 
         ```shell
         $ snmpwalk -v 2c -c public <ip> 1.3.6.1.2.1.1.2.0
@@ -319,9 +319,9 @@ If you choose the v3 version, you need to provide the "username", "authenticatio
       # ...
     ```
 
-    Refer to Prometheus [snmp_exporter](https://github.com/prometheus/snmp_exporter){:target="_blank"}'s snmp.yml file for profiles. It is recommended to split different class modules into separate .yml configurations.
+    Refer to Prometheus [snmp_exporter](https://github.com/prometheus/snmp_exporter){:target="_blank"} snmp.yml file. It is recommended to split different class modules into separate .yml configurations.
 
-    Prometheus profiles allow specifying a community name for individual modules, which takes precedence over the collector configuration's community name.
+    Prometheus profiles allow specifying a community string for individual modules, which takes precedence over the collector configuration's community string.
 
     ```yml
     switch:
@@ -337,11 +337,11 @@ If you choose the v3 version, you need to provide the "username", "authenticatio
 
 - Auto-discovery
 
-    The SNMP collector supports discovering targets via Consul service discovery. Refer to the [Prometheus documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#consul_sd_config){:target="_blank"} for service injection format.
+    The SNMP collector supports discovering targets through Consul service discovery. Refer to [Prometheus official documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#consul_sd_config){:target="_blank"} for service injection format.
 
 ???+ tip
 
-    After completing the above configuration, you can use the `datakit debug --input-conf` command to test if the configuration is correct, as shown below:
+    After completing the above configuration, you can use the `datakit debug --input-conf` command to test if the configuration is correct. Example:
 
     ```sh
     sudo datakit debug --input-conf /usr/local/datakit/conf.d/snmp/snmp.conf
@@ -351,30 +351,30 @@ If you choose the v3 version, you need to provide the "username", "authenticatio
 
 ???+ attention
 
-    1. If tags specified in `inputs.snmp.tags` have the same key as the original fields, they will be overridden by the original data.
-    2. The IP address (for specified devices)/subnet (for auto-discovery), SNMP protocol version, and corresponding authentication fields are mandatory.
+    1. If there are duplicate keys in `inputs.snmp.tags` with the original fields, they will be overridden by the original data.
+    2. The device's IP address (for specified device mode)/subnet (for auto-discovery mode), SNMP protocol version, and corresponding authentication fields are mandatory.
     3. Both "specified device" and "auto-discovery" modes can coexist, but the SNMP protocol version and corresponding authentication fields must be consistent across devices.
 
 <!-- markdownlint-enable -->
 
 ### Configuring the Target SNMP Device {#config-snmp}
 
-By default, SNMP protocol is generally turned off on SNMP devices and needs to be manually enabled through the management interface. Additionally, select the protocol version and fill in the necessary information according to actual conditions.
+By default, SNMP protocol is usually disabled on SNMP devices and needs to be manually enabled via the management interface. Additionally, select the appropriate protocol version and fill in the necessary information.
 
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
     Some devices require additional configuration to allow SNMP for security reasons. For example, Huawei firewalls need to check SNMP in "Enable Access Management" to allow it.
-    You can use the `snmpwalk` command to test whether the configuration on both sides is correctly set up (run the following command on the host where DataKit is running):
+    You can use the `snmpwalk` command to test if the configuration between the collector and the device is successful (run this command on the host running Datakit):
 
     ```shell
-    # Applicable to v2c version
+    # For v2c version
     snmpwalk -O bentU -v 2c -c [community string] [SNMP_DEVICE_IP] 1.3.6
-    # Applicable to v3 version
+    # For v3 version
     snmpwalk -v 3 -u user -l authPriv -a sha -A [authentication password] -x aes -X [encryption password] [SNMP_DEVICE_IP] 1.3.6
     ```
 
-    If the configuration is correct, this command will output a large amount of data. `snmpwalk` is a testing tool that runs on the collection side. MacOS comes with it by default. Installation methods for Linux:
+    If the configuration is correct, this command will output a large amount of data. `snmpwalk` is a testing tool run on the collector side. MacOS includes it by default, while Linux installation methods are as follows:
 
     ```shell
     sudo yum install net-snmp net-snmp-utils # CentOS
@@ -384,7 +384,7 @@ By default, SNMP protocol is generally turned off on SNMP devices and needs to b
 
 ## Metrics {#metric}
 
-All data collected by default will append global election tags. You can also specify other tags in the configuration using `[inputs.snmp.tags]`:
+All data collected by default appends global election tags. Additional tags can be specified in the configuration using `[inputs.snmp.tags]`:
 
 ``` toml
 [inputs.snmp.tags]
@@ -395,7 +395,7 @@ All data collected by default will append global election tags. You can also spe
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
-    The following metric sets and their metrics only include some common fields. Depending on the configuration and device model, there may be additional fields specific to certain devices.
+    The following metric sets and their metrics only include some common fields. Specific device fields may vary depending on the configuration and device model.
 <!-- markdownlint-enable -->
 
 <!-- markdownlint-disable MD024 -->
@@ -449,7 +449,7 @@ SNMP device metric data.
 |`unit_status`|Macro value. Optional.|
 |`unit_type`|Macro value. Optional.|
 
-- Field List
+- Fields List
 
 
 | Metric | Description | Type | Unit |
@@ -534,8 +534,8 @@ SNMP device metric data.
 |`tcpPassiveOpens`|(Shown as connection) The number of times TCP connections have made a direct transition to the SYN-RCVD state from the LISTEN state.|float|count|
 |`tcpRetransSegs`|(Shown as segment) The total number of segments retransmitted; that is, the number of TCP segments transmitted containing one or more previously transmitted octets.|float|count|
 |`temperature`|The Temperature of item.|float|C|
-|`udpInErrors`|(Shown as datagram) The number of received UDP datagrams that could not be delivered for reasons other than the lack of an application at the destination port.|float|count|
-|`udpNoPorts`|(Shown as datagram) The total number of received UDP datagrams for which there was no application at the destination port.|float|count|
+|`udpInErrors`|(Shown as datagram) The number of received UDP datagram that could not be delivered for reasons other than the lack of an application at the destination port.|float|count|
+|`udpNoPorts`|(Shown as datagram) The total number of received UDP datagram for which there was no application at the destination port.|float|count|
 |`uptime`|(in second) uptime.|float|s|
 |`uptimeTimestamp`|uptime timestamp.|float|sec|
 |`voltage`|The Volt of item.|float|volt|
@@ -566,7 +566,7 @@ SNMP device object data.
 |`snmp_host`|Device host.|
 |`snmp_profile`|Device SNMP profile file.|
 
-- Field List
+- Fields List
 
 
 | Metric | Description | Type | Unit |
@@ -589,19 +589,19 @@ SNMP device object data.
 
 ## FAQ {#faq}
 
-### :material-chat-question: How does DataKit discover devices? {#faq-discover}
+### :material-chat-question: How does Datakit discover devices? {#faq-discover}
 
-DataKit supports two modes: "specific device" and "auto-discovery." These two modes can be enabled simultaneously.
+Datakit supports both "specified device" and "auto-discovery" modes, which can be enabled simultaneously.
 
-In the specific device mode, DataKit communicates with devices using the SNMP protocol at specified IPs, allowing it to know their online status.
+In specified device mode, Datakit communicates with devices using SNMP protocol based on specified IPs and can know their online status.
 
-In auto-discovery mode, DataKit sends SNMP protocol packets to all addresses within the specified IP subnet. If the response matches a corresponding Profile, DataKit recognizes that there is an SNMP device on that IP.
+In auto-discovery mode, Datakit sends SNMP protocol packets to all addresses within the specified IP subnet. If a response matches a corresponding Profile, Datakit recognizes an SNMP device on that IP.
 
-### :material-chat-question: What if I don't see the metrics I want in Guance? {#faq-not-support}
+### :material-chat-question: What should I do if I cannot see the metrics I want in Guance? {#faq-not-support}
 
-DataKit collects baseline metrics from all SNMP devices. If you find that the collected data from your device does not contain the metrics you need, you may need to [customize a Profile for the device](snmp.md#advanced-custom-oid).
+Datakit collects baseline metrics from all SNMP devices. If you find that the collected data from your device does not contain the metrics you want, you may need to [customize a Profile for the device](snmp.md#advanced-custom-oid).
 
-To complete the above work, you will likely need to download the OID manual for the device model from the manufacturer's official website.
+To accomplish this, you likely need to download the OID manual for the device model from the manufacturer's website.
 
 <!-- markdownlint-disable MD013 -->
 
@@ -611,4 +611,4 @@ To complete the above work, you will likely need to download the OID manual for 
 
 Try opening ACLs/firewall rules for your device.
 
-Run the command `snmpwalk -O bentU -v 2c -c <COMMUNITY_STRING> <IP_ADDRESS>:<PORT> 1.3.6` on the host where DataKit is running. If you receive a timeout with no response, something is likely blocking DataKit from collecting metrics from your device.
+Run the command `snmpwalk -O bentU -v 2c -c <COMMUNITY_STRING> <IP_ADDRESS>:<PORT> 1.3.6` on the host running Datakit. If you get a timeout without any response, something is likely blocking Datakit from collecting metrics from your device.

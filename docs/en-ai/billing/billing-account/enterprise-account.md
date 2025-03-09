@@ -1,30 +1,30 @@
-# Account Settlement in the Billing Center
+# Billing Center Account Settlement
 ---
 
 ## Selection During Commercial Plan Registration
 
-During the registration process for the Commercial Plan of Guance, you can directly choose to use the billing center account for settlement.
+During the registration process for the <<< custom_key.brand_name >>> Commercial Plan, you can directly choose to use a Billing Center account for settlement.
 
-![Register with Billing Center](../../img/bill-by-center.png)
+<img src="../../img/bill-by-center.png" width="70%" >
 
-1. [Enter the registration process](../../plans/commercial-register.md);
-2. On the third step, when selecting the activation method, choose direct activation by Guance;
+1. [Start the registration process](../../plans/commercial-register.md);
+2. On the third step, when selecting the activation method, choose direct activation for <<< custom_key.brand_name >>>
 3. Enter the workspace name and select the workspace language;
 4. Check the box to agree to the terms;
-5. Click activate.
+5. Click Activate.
 
-At this step, the system will simultaneously create a billing center account for you, indicating that your current account will use this newly created billing center account for settlement.
+At this step, the system will create a Billing Center account for you, indicating that the current account will use this created Billing Center account for settlement.
 
-![Billing Center Account Created](../../img/bill-by-center-1.png)
+<img src="../../img/bill-by-center-1.png" width="70%" >
 
-## Changing Settlement Method via the Billing Center Platform
+## Changing Settlement in the Billing Center Platform
 
-1. Log in to the [Guance Billing Center](https://boss.guance.com);
-2. Navigate to Workspace management;
-3. Select the workspace and click the change button on the right side;
+1. Log in to the <<< custom_key.brand_name >>> [Billing Center](https://boss.guance.com);
+2. Go to Workspace management;
+3. Select the workspace and click the change button on the right;
 4. Choose **Billing Center Settlement**;
-5. Click confirm.
+5. Click Confirm.
 
-![Change Settlement Method](../../img/bill-by-center-2.png)
+<img src="../../img/bill-by-center-2.png" width="70%" >
 
-![Confirm Settlement Change](../../img/bill-by-center-3.png)
+<img src="../../img/bill-by-center-3.png" width="70%" >

@@ -1,4 +1,5 @@
 # 0043-libbin-priv-/bin Directory File Permissions Modified
+
 ---
 
 ## Rule ID
@@ -8,12 +9,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -28,17 +29,17 @@
 
 ## Scan Frequency
 
-- Disabled
+- disable
 
 
 ## Theoretical Basis
 
-- The /bin directory contains critical system command executables. If the permissions change, it may prevent commands from executing properly, potentially impacting the system.
+- The /bin directory contains executable files for critical system commands. If permissions change, it may prevent commands from executing, affecting the system.
 
 
 ## Risk Items
 
-- Functionality Unavailable
+- Function Unavailability
 
 
 ## Audit Method
@@ -53,7 +54,7 @@ Access: (0755/-rwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)
 
 ## Remediation
 
-- If a change in file permissions under the /bin directory is detected, log in to the server as the root user, restore the permissions, and audit the change.
+- If a permission change is detected in the /bin directory, log in as the root user and restore the permissions. Also, audit this change.
 
 
 ## Impact

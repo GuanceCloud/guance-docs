@@ -1,4 +1,4 @@
-# Import One or More Blacklists
+# Import One/More Blacklists
 
 ---
 
@@ -10,12 +10,12 @@ Import one or more blacklists
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
+| Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
 | blacklists | array | Y | List of blacklists<br>Allow null: False <br> |
-| blacklistType | string | Y | Used to distinguish whether the import is from the log menu or the management menu<br>Example: logging <br>Optional values: ['logging', 'all'] <br> |
+| blacklistType | string | Y | Used to distinguish whether the import is from the logging menu or the management menu<br>Example: logging <br>Optional values: ['logging', 'all'] <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
@@ -27,6 +27,8 @@ curl 'https://openapi.guance.com/api/v1/blacklist/import' \
 --data-raw '{"blacklists":[{"filters":[{"condition":"and","name":"host","operation":"in","value":["127.0.0.1"]}],"source":"kodo-log","type":"logging"}],"blacklistType":"all"}' \
 --compressed
 ```
+
+
 
 
 ## Response

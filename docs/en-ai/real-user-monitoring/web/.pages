@@ -1,8 +1,9 @@
 nav:
+
   - index.md
   - 'Changelog': sdk-changelog.md
-  - 'Application Integration': app-access.md
-  - 'Application Data Collection': app-data-collection.md
+  - 'App Integration': app-access.md
+  - 'App Data Collection': app-data-collection.md
   - 'Custom RUM SDK Data Collection': custom-sdk
   - 'How to Configure RUM Sampling': sampling.md
   - 'Action': tracking-user-actions.md

@@ -5,15 +5,16 @@
 <br />**GET /api/v1/service_manage/list**
 
 ## Overview
-List the service list information
+List service list information
+
 
 
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:------------------|:-------|:-----|:----------------|
+|:-------------------|:-------|:-----|:----------------|
 | search | string | No  | Search service name<br>Example: mysql <br>Can be empty: False <br> |
-| originStr | string | No  | Pass 1 for raw string, pass 0 for structured data, default is 1<br>Can be empty: False <br> |
+| originStr | string | No  | Pass 1 for raw string, 0 for structured data, default is 1<br>Can be empty: False <br> |
 | filter | string | No  | Filter condition<br>Example: total <br>Can be empty: False <br>Optional values: ['total', 'favorite', 'myCreate', 'oftenBrowse'] <br> |
 | createType | commaArray | No  | Creation type<br>Example: openapi,manual,automatic <br>Can be empty: False <br> |
 | serviceType | commaArray | No  | Service type<br>Example: web,custom <br>Can be empty: False <br> |
@@ -21,32 +22,34 @@ List the service list information
 | pageIndex | integer | No  | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
 | pageSize | integer | No  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
-**Request Body Structure Explanation**
 
-| Parameter Name        | Type  | Required  | Description          |
-|-------------------|----------|----|------------------------|
+**Request Body Structure Description**
+
+| Parameter Name        | Type  | Required | Description          |
+|---------------------|----------|----|------------------------|
 | search    | string  | No | Search service name |
-| originStr | string  | No | Whether to return the original string of `serviceCatelog`, 1 for yes, 0 for no. Default is 1 |
+| originStr | string  | No | Whether to return the serviceCatelog as a raw string, 1 for yes, 0 for no. Default is 1 |
 | filter    | string  | No | Filter condition |
-| createType| string  | No | Filter service creation type, separated by ',', manual,openapi,automatic |
-| serviceType| string  | No | Filter service type, separated by ',', app,framework,cache,message_queue,custom,db,web |
+| createType| string  | No | Filter service creation type, separated by ',', e.g., manual,openapi,automatic |
+| serviceType| string  | No | Filter service type, separated by ',', e.g., app,framework,cache,message_queue,custom,db,web |
 | teamUUID    | string  | No | Filter teams, separated by ',' |
-| pageIndex | string  | No | Page number |
+| pageIndex | string  | No | Pagination page number |
 | pageSize  | string  | No | Number of items per page |
 
 
-**Response Body Structure Explanation**
+**Response Body Structure Description**
 
 | Parameter Name                | Type  | Description          |
 |---------------------------|----------|------------------------|
-| serviceCatelog         | string,dict | Original string or structured data of the service list |
-| service         | string | Service name |
-| type         | string | Service type |
-| dfStatus         | string | Service status |
-| creatorInfo             | dict | Creator information of the service list |
-| updatorInfo             | dict | Updater information of the service list |
+|serviceCatelog         |string,dict | Raw string or structured data of the service list |
+|service         |string | Service name |
+|type         |string | Service type |
+|dfStatus         |string | Service status |
+|creatorInfo             |dict | Creator information of the service list |
+|updatorInfo             |dict | Updater information of the service list |
+
 
 
 
@@ -128,7 +131,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/list?originStr=0' \
                     },
                     {
                         "link": "https://func.guance.com",
-                        "name": "Func",
+                        "name": "func",
                         "provider": "Guance"
                     }
                 ],
@@ -140,7 +143,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/list?originStr=0' \
                     },
                     {
                         "link": "https://func.guance.com/doc",
-                        "name": "Func",
+                        "name": "func",
                         "provider": "Guance"
                     }
                 ],

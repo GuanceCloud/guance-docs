@@ -3,80 +3,81 @@
 
 ## 1 Introduction
 ### 1.1 Document Overview
-This document primarily focuses on deploying on Alibaba Cloud, introducing the complete steps from resource planning and configuration to deploying Guance and running it.
+This document primarily covers the deployment on Alibaba Cloud, introducing the complete steps from resource planning and configuration to deploying <<< custom_key.brand_name >>> and running it.
 
 **Note:**
 
-- This document uses **dataflux.cn** as the main domain name example. Replace it with the corresponding domain name during actual deployment.
+- This document uses **dataflux.cn** as the primary domain name example. Replace it with the appropriate domain during actual deployment.
 
 ### 1.2 Key Terms
 
 | **Term** | **Description** |
 | --- | --- |
-| Launcher | A WEB application used for deploying and installing Guance. Follow the steps provided by the Launcher service to complete the installation and upgrade of Guance. |
-| Operations Machine | A machine installed with kubectl, which is in the same network as the target Kubernetes cluster. |
-| Installation Machine | The machine that accesses the launcher service via a browser to complete the guided installation of Guance. |
+| Launcher | A WEB application used for deploying and installing <<< custom_key.brand_name >>>. Follow the guidance steps of the Launcher service to complete the installation and upgrade of <<< custom_key.brand_name >>>. |
+| Operations Machine | A machine with kubectl installed, connected to the target Kubernetes cluster in the same network. |
+| Installation Machine | A machine used to access the launcher service via a browser to complete the guided installation of <<< custom_key.brand_name >>>. |
 | kubectl | The command-line client tool for Kubernetes, installed on the **operations machine**. |
 
 ### 1.3 Deployment Architecture {#install-step-image}
 ![](img/23.install-step.png)
+
 ## 2 Resource Preparation
 [Alibaba Cloud Resource List](cloud-required.md#list)
 
 ## 3 Infrastructure Deployment
 
-### 3.1 Deployment Instructions
+### 3.1 Deployment Description
 
-**RDS, InfluxDB, OpenSearch, NAS Storage** should be created according to configuration requirements, all within the same region under the same **VPC** network.
-ECS, SLB, NAT Gateway are automatically created by ACK, so they do not need to be created separately, meaning steps 1, 2, and 3 in the [deployment diagram](#install-step-image) do not need separate creation.
+**RDS, InfluxDB, OpenSearch, NAS Storage** should be created according to the configuration requirements, all within the same region and under the same **VPC** network.
+ECS, SLB, NAT Gateway are automatically created by ACK, so there is no need to create them separately, meaning steps 1, 2, and 3 in the [deployment diagram](#install-step-image) do not require separate creation.
 
 ### 3.2 Steps One, Two, Three - ACK Service Creation
 
 #### 3.2.1 Cluster Configuration
 
-Enter **Container Service for Kubernetes**, create a **Kubernetes** cluster, choose the **Managed Standard Cluster** option. Pay attention to the following when configuring the cluster:
+Enter **Container Service for Kubernetes**, create a **Kubernetes** cluster, select **Managed Standard Cluster**, and pay attention to the following cluster configuration requirements:
 
-- It must be in the same region as the previously created RDS, InfluxDB, Elasticsearch resources.
-- Check the "Configure SNAT" option (ACK will automatically create and configure a NAT Gateway, enabling outbound internet access for the cluster).
-- Check the "Public Access" option (if you are maintaining this cluster internally, you can skip this option).
-- When enabling ACK services, temporarily select flexvolume as the storage driver, as CSI drivers are not yet supported in this document.
+- It must be in the same region as the previously created RDS, InfluxDB, Elasticsearch, etc.
+- Select the "Configure SNAT" option (ACK will automatically create and configure the NAT Gateway to enable outbound internet access for the cluster)
+- Select the "Public Access" option (to allow public access to the cluster API; if you are managing the cluster internally, this can be unchecked)
+- Choose flexvolume as the storage driver temporarily when enabling ACK services; CSI drivers are not supported in this document yet.
 
 ![](img/7.deployment_2.png)
 
 #### 3.2.2 Worker Configuration
 
-Select ECS specifications and quantity based on the configuration list or actual assessment, but ensure it meets the minimum configuration requirements. At least three or more workers are required.
+Mainly choose the ECS specifications and quantity. Specifications can be selected based on the configuration list or assessed according to actual needs, but they must not fall below the minimum requirements. There should be at least 3 nodes, or more.
 
 ![](img/7.deployment_3.png)
 
 #### 3.2.3 Component Configuration
 
-Ensure the "Install Ingress Component" option is checked, selecting the "Public" type. ACK will automatically create a public SLB. After installation, bind the domain name to the public IP of this SLB.
+Component configuration must include selecting the "Install Ingress Component" option, choosing "Public" type. ACK will automatically create a public SLB. After installation, point the domain to the public IP of this SLB.
 
 ![](img/7.deployment_4.png)
 
 ### 3.3 Steps Four, Five - Dynamic Storage Configuration
 
-You need to pre-create the NAS file system and obtain the `nas_server_url`.
+Create the NAS file system in advance and obtain the nas_server_url.
 
 #### 3.3.1 Dynamic Storage Installation
 
 === "CSI"
 
-    Alibaba Cloud Container Service ACK's container storage functionality is based on Kubernetes Container Storage Interface (CSI), deeply integrating with Alibaba Cloud storage services such as EBS, NAS, CPFS, OSS, and local disks, fully compatible with Kubernetes-native storage services like EmptyDir, HostPath, Secret, ConfigMap, etc. This section introduces an overview of ACK storage CSI, supported features, usage authorization, and limitations. The console will **default install** the CSI-Plugin and CSI-Provisioner components.
+    Alibaba Cloud Container Service for Kubernetes' container storage capabilities are based on Kubernetes Container Storage Interface (CSI), deeply integrating with Alibaba Cloud storage services such as cloud disks EBS, file storage NAS and CPFS, object storage OSS, local disks, etc., and fully compatible with Kubernetes-native storage services like EmptyDir, HostPath, Secret, ConfigMap, etc. This section introduces an overview of ACK storage CSI, supported features, usage authorization, and usage restrictions. The console will **default install** the CSI-Plugin and CSI-Provisioner components.
     
     - Verify Plugins
-      - Run the following command to check if the CSI-Plugin component is successfully deployed:
+      - Run the following command to check if the CSI-Plugin component has been successfully deployed.
         ```shell
         kubectl get pod -n kube-system | grep csi-plugin
         ```
-      - Run the following command to check if the CSI-Provisioner component is successfully deployed:
+      - Run the following command to check if the CSI-Provisioner component has been successfully deployed.
         ```shell
         kubectl get pod -n kube-system | grep csi-provisioner
         ```
     - Create StorageClass
        
-      Create and copy the following content into the `alicloud-nas-subpath.yaml` file.
+      Create and copy the following content into the alicloud-nas-subpath.yaml file.
     
     ???+ note "alicloud-nas-subpath.yaml"
           ```yaml
@@ -94,34 +95,34 @@ You need to pre-create the NAS file system and obtain the `nas_server_url`.
           reclaimPolicy: Retain
           ```
     
-      Replace **{{ nas_server_url }}** with the Server URL of the NAS storage created earlier. Execute the command on the **operations machine**:
+      Replace **{{ nas_server_url }}** with the Server URL of the NAS storage created earlier, then run the command on the **operations machine**:
     
       ```shell
       kubectl apply -f ./alicloud-nas-subpath.yaml
       ```
 
-=== "flexvolume (officially deprecated)"
+=== "flexvolume (Officially Deprecated)"
 
-    When creating clusters using versions of Alibaba Cloud Kubernetes before 1.16, if the storage plugin selected is Flexvolume, the console defaults to installing Flexvolume and Disk-Controller components but does not default install the alicloud-nas-controller component.
+    When creating clusters with Alibaba Cloud Kubernetes versions prior to 1.16, if the storage plugin is chosen as Flexvolume, the console will default install the Flexvolume and Disk-Controller components but not the alicloud-nas-controller component.
     
     - Install the alicloud-nas-controller component
     
       Download [nas_controller.yaml](nas_controller.yaml)
-      Execute the command on the **operations machine**:
+      Run the command on the **operations machine**:
       ```shell
       kubectl apply -f nas_controller.yaml
       ```
     
-    - Verify Plugins
+    - Verify Plugin
     
-      Run the following command to check if the Disk-Controller component is successfully deployed:
+      Run the following command to check if the Disk-Controller component has been successfully deployed.
       ```shell
       kubectl get pod -nkube-system | grep alicloud-nas-controller
       ```
     
     - Create StorageClass
     
-      Create and copy the following content into the `storage_class.yaml` file.
+      Create and copy the following content into the storage_class.yaml file.
     
     ???+ note "storage_class.yaml"
           ```yaml
@@ -141,7 +142,7 @@ You need to pre-create the NAS file system and obtain the `nas_server_url`.
           provisioner: alicloud/nas
           reclaimPolicy: Delete
           ```
-      Replace **{{ nas_server_url }}** with the Server URL of the NAS storage created earlier. Execute the command on the **operations machine**:
+      Replace **{{ nas_server_url }}** with the Server URL of the NAS storage created earlier, then run the command on the **operations machine**:
     
       ```shell
       kubectl apply -f ./storage_class.yaml
@@ -151,7 +152,7 @@ You need to pre-create the NAS file system and obtain the `nas_server_url`.
 
 ##### 3.3.2.1 Create PVC and Check Status
 
-Execute the command to create a PVC:
+Run the command to create a PVC:
 
 ```shell
 $ cat <<EOF | kubectl apply -f -
@@ -169,7 +170,7 @@ spec:
 EOF
 ```
 
-##### 3.3.2.2 Check PVC Status
+##### 3.3.2.2 Check PVC
 
 ```shell
 $ kubectl get pvc | grep cfs-pvc001
@@ -183,41 +184,41 @@ cfs-pvc001       Bound    pvc-a17a0e50-04d2-4ee0-908d-bacd8d53aaa4   1Gi        
 
 - You can use the default built-in cache service.
 - If you do not use the default built-in cache service, configure Redis as follows:
-  - Redis version: 6.0, supporting standalone, proxy, and master-slave modes.
+  - Redis Version: 6.0, supporting standalone mode, proxy mode, and master-slave mode Redis clusters.
   - Configure Redis password.
-  - Add the internal ECS IP addresses automatically created by ACK to the Redis whitelist.
+  - Add the automatically created ECS internal IP to the Redis whitelist.
 
 ### 3.5 Step Seven - InfluxDB
 
-- Create an administrator account (must be an **administrator account**, used for initializing DB and RP information during subsequent installations).
-- Add the internal ECS IP addresses automatically created by ACK to the InfluxDB whitelist.
+- Create an administrator account (must be an **administrator account**, required for subsequent initialization and DB/RP creation).
+- Add the internal IP of the ECS instances automatically created by ACK to the InfluxDB whitelist.
 
 ### 3.6 Step Eight - OpenSearch
 
 - Create an administrator account.
-- Install Chinese segmentation plugin.
-- Add the internal ECS IP addresses automatically created by ACK to the OpenSearch whitelist.
+- Install the Chinese segmentation plugin.
+- Add the internal IP of the ECS instances automatically created by ACK to the OpenSearch whitelist.
 
 ### 3.7 Step Nine - RDS
 
-- Create an administrator account (must be an **administrator account**, used for initializing various application DBs during subsequent installations).
-- Modify parameter settings in the console to set **innodb_large_prefix** to **ON**.
-- Add the internal ECS IP addresses automatically created by ACK to the RDS whitelist.
+- Create an administrator account (must be an **administrator account**, required for subsequent initialization and creation of various application DBs).
+- Modify parameter configurations in the console to set **innodb_large_prefix** to **ON**.
+- Add the internal IP of the ECS instances automatically created by ACK to the RDS whitelist.
 
 ## 4 kubectl Installation and Configuration
 ### 4.1 Install kubectl
-kubectl is a command-line client tool for Kubernetes, allowing you to deploy applications, check, and manage cluster resources.
-Our Launcher is based on this command-line tool to deploy applications. For specific installation methods, refer to the official documentation:
+kubectl is a command-line client tool for Kubernetes, allowing you to deploy applications, check, and manage cluster resources through this tool.
+Our Launcher is based on this command-line tool for deploying applications. Refer to the official documentation for specific installation methods:
 
 [https://kubernetes.io/docs/tasks/tools/install-kubectl/](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
 ### 4.2 Configure kube config
-To gain management capabilities over the cluster, the cluster's kubeconfig content needs to be placed in the **$HOME/.kube/config** file. You can view the kubeconfig content in the cluster's **Basic Information** section.
+For kubectl to manage the cluster, the cluster's kubeconfig content must be placed in the **$HOME/.kube/config** file. You can find the kubeconfig content in the cluster's **Basic Information** section.
 
-Choose between public or private kubeconfig based on whether your operations machine is connected to the cluster's internal network.
+Choose whether to use the public or private kubeconfig based on whether your operations machine is connected to the cluster's internal network.
 
 ![](img/7.deployment_5.png)
 
 ## 5 Start Installation
 
-After completing the above operations, you can refer to the manual [Start Installation](launcher-install.md)
+After completing the above operations, refer to the manual [Start Installation](launcher-install.md) for further instructions.

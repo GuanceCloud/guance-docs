@@ -11,9 +11,9 @@ nav:
     - 'Outlier Detection': outlier-detection.md
     - 'Log Detection': log-detection.md
     - 'Process Anomaly Detection': processes-detection.md
-    - 'Infrastructure Liveness Detection V2': infrastructure-detection.md
-    - 'Application Performance Metrics Detection': application-performance-detection.md
-    - 'Real User Monitoring Detection': real-user-detection.md
+    - 'Infrastructure Survival Detection V2': infrastructure-detection.md
+    - 'Application Performance Detection': application-performance-detection.md
+    - 'User Access Detection': real-user-detection.md
     - 'Composite Detection': composite-detection.md
     - 'Security Check Anomaly Detection': security_checker.md
     - 'Synthetic Testing Anomaly Detection': usability-detection.md

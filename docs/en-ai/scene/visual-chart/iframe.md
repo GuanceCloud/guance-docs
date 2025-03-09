@@ -11,16 +11,15 @@ Add IFrame URL: Embed another website within the chart. (Use an HTTPS URL or con
 
 
 
-
 <!--
 | Option | Description |
 | --- | --- |
-| Chart Title | Set a title for the chart. After setting, it will be displayed in the top-left corner of the chart and supports hiding. |
+| Chart Title | Set a title name for the chart. After setting, it will be displayed in the top-left corner of the chart, and supports hiding. |
 
 
 ## Example Images
 
-1. Directly enter an external address in the IFrame URL to view:
+1. Directly enter an external URL in the IFrame URL to view:
 
 ![](../img/7.ifram_1.png)
 

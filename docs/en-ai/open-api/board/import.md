@@ -5,22 +5,24 @@
 <br />**POST /api/v1/dashboards/\{dashboard_uuid\}/import**
 
 ## Overview
-Reset the content of the dashboard corresponding to `dashboard_uuid` based on the content of `templateInfo`. After the operation is completed, the UUID of the view will change, and the charts and view variables within the view will be rebuilt. At this point, the shared resources within the original view will become invalid; the content of `templateInfo` can remain consistent with the `content` field in the response result of the [Export Dashboard API].
+Reset the content of the dashboard corresponding to `dashboard_uuid` based on the content of `templateInfo`. After the operation is completed, the UUID of the view will change, and charts and view variables within the view will be rebuilt. At this point, the shared resources within the original view will become invalid. The content of `templateInfo` can match the `content` field in the response result of the [Export Dashboard API].
 
 ## Route Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:--------|:--------------------------|
-| dashboard_uuid        | string   | Y       | View UUID                |
+|:---------------------|:---------|:---------|:-------------------------|
+| dashboard_uuid        | string   | Y        | View UUID                |
 
 ## Body Request Parameters
 
-| Parameter Name           | Type     | Required | Description              |
-|:-----------------------|:--------|:--------|:--------------------------|
-| templateInfo            | json    |         | View template<br>Example: {} <br>Can be empty: False <br> |
-| specifyDashboardUUID    | string  |         | Specify the UUID for the new dashboard, must start with `dsbd_custom_` followed by 32 lowercase letters or digits<br>Example: dsbd_custom_xxxx32 <br>Can be empty: False <br>Can be an empty string: False <br>$matchRegExp: ^dsbd_custom_[a-z0-9]{32}$ <br> |
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:-------------------------|
+| templateInfo          | json     |          | View template<br>Example: {} <br>Can be empty: False <br> |
+| specifyDashboardUUID  | string   |          | Specify the UUID for the new dashboard, which must start with `dsbd_custom_` followed by 32 lowercase letters or digits.<br>Example: dsbd_custom_xxxx32 <br>Can be empty: False <br>Can be an empty string: False <br>$matchRegExp: ^dsbd_custom_[a-z0-9]{32}$ <br> |
 
 ## Additional Parameter Notes
+
+
 
 ## Request Example
 ```shell

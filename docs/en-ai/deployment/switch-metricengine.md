@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This article will introduce how to switch the time series engine in Guance, specifically for switching from InfluxDB to GuanceDB.
+This document will introduce how to switch the time series engine in <<< custom_key.brand_name >>>. This operation applies to switching from InfluxDB to GuanceDB.
 
 ## Prerequisites
 
@@ -10,12 +10,12 @@ This article will introduce how to switch the time series engine in Guance, spec
 
 ## Deployment Information
 
-| Name                           | Content                                      |
-| ------------------------------ | -------------------------------------------- |
-| **guance-insert default address** | guancedb-cluster-guance-select.middleware   |
-| **guance-insert default port**  | 8480                                         |
-| **guance-select default address** | guancedb-cluster-guance-select.middleware   |
-| **guance-select default port**  | 8481                                         |
+| Name                       | Content                                      |
+| -------------------------- | -------------------------------------------- |
+| **guance-insert default address** | guancedb-cluster-guance-select.middleware |
+| **guance-insert default port**  | 8480                                        |
+| **guance-select default address** | guancedb-cluster-guance-select.middleware |
+| **guance-select default port** | 8481                                        |
 
 ## Switching Steps
 
@@ -26,6 +26,7 @@ CREATE TABLE `main_workspace_bak` LIKE `main_workspace`;
 
 INSERT INTO `main_workspace_bak` SELECT * FROM `main_workspace`;
 
+
 CREATE TABLE `main_influx_db_bak` LIKE `main_influx_db`;
 
 INSERT INTO `main_influx_db_bak` SELECT * FROM `main_influx_db`;
@@ -33,7 +34,7 @@ INSERT INTO `main_influx_db_bak` SELECT * FROM `main_influx_db`;
 
 ### Insert GuanceDB Information
 
-- Log in to the df_core database of Guance and execute the following statements:
+- Log in to the <<< custom_key.brand_name >>> df_core database and execute the following statements:
 
   ```sql
   INSERT INTO `main_influx_instance` (`uuid`, `host`, `authorization`, `configJSON`,`dbcount`, `user`, `pwd`, `dbType`, `priority`, `status`, `creator`, `updator`, `createAt`, `deleteAt`, `updateAt`)
@@ -43,10 +44,10 @@ INSERT INTO `main_influx_db_bak` SELECT * FROM `main_influx_db`;
   ```
 
   Verification:
-  
+
   ```shell
   select count(1) from main_influx_instance where uuid='276f8404252347d18e469f65f5a1abdd';
-  
+
   +----------+
   | count(1) |
   +----------+
@@ -59,7 +60,7 @@ INSERT INTO `main_influx_db_bak` SELECT * FROM `main_influx_db`;
 
 ### Replace InfluxDB Information with GuanceDB
 
-- Change the status of InfluxDB
+- Change InfluxDB Status
 
   ```sql
   update main_influx_instance set status=3 where status=0 and dbType='influxdb';
@@ -80,7 +81,7 @@ INSERT INTO `main_influx_db_bak` SELECT * FROM `main_influx_db`;
 
   > The query result should be greater than or equal to 1 for successful execution.
 
-- Batch update all workspace-related time series database information
+- Batch Update All Workspace Corresponding Time Series Database Information
 
   ```sql
   update main_influx_db set influxInstanceUUID=(select uuid from main_influx_instance where status=0 and dbType='guancedb' order by priority desc limit 1), dbType='guancedb' where status=0;
@@ -101,12 +102,11 @@ INSERT INTO `main_influx_db_bak` SELECT * FROM `main_influx_db`;
   |       26 |
   +----------+
   1 row in set (0.01 sec)
-
   ```
 
   > The query result should be greater than or equal to 1 for successful execution.
 
-- Batch update the `metric` value in the `datastore` field of the `main_workspace` table
+- Batch Update `metric` Value in `datastore` of `main_workspace` Table
 
   ```sql
   update main_workspace set datastore=JSON_SET(datastore, "$.metric", "guancedb") where status=0 and datastore ->> "$.metric" = "influxdb";
@@ -130,7 +130,7 @@ INSERT INTO `main_influx_db_bak` SELECT * FROM `main_influx_db`;
 
   > The query result should be greater than or equal to 1 for successful execution.
 
-- Update DB ID
+- Change DB ID
 
   ```sql
   UPDATE df_core.main_influx_db 
@@ -175,15 +175,15 @@ Choose one of the two methods:
   kubectl delete po -n middleware <redis pod name>
   ```
 
-- Execute cache clearing commands
+- Execute Cache Clear Commands
 
   ```shell
-  # Delete all "dbinfo:*" cache records, run the following bulk delete command
+  # Delete all "dbinfo:*" cache records, execute the following batch delete command
   redis-cli -h <host> -p <port> -n 0 -a <password> keys dbinfo:* | xargs -r -t -n1 redis-cli -h <host> -p <port> -n 0 -a <password> del
   
-  # Delete all "wkspInfo:*" cache records, run the following bulk delete command
+  # Delete all "wkspInfo:*" cache records, execute the following batch delete command
   redis-cli -h <host> -p <port> -n 0 -a <password> keys wkspInfo:* | xargs -r -t -n1 redis-cli -h <host> -p <port> -n 0 -a <password> del
   
-  # Delete all "tkn_info:*" cache records, run the following bulk command
+  # Delete all "tkn_info:*" cache records, execute the following batch command
   redis-cli -h <host> -p <port> -n 0 -a <password> keys tkn_info:* | xargs -r -t -n1 redis-cli -h <host> -p <port> -n 0 -a <password> del
   ```

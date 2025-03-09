@@ -8,14 +8,16 @@
 Retrieve a blacklist rule
 
 
+
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| blist_uuid | string | Y | Unique identifier for the blacklist rule<br>Allow empty: False <br> |
+| Parameter Name    | Type     | Required | Description                                      |
+|:--------------|:-------|:-----|:---------------------------------------------|
+| blist_uuid    | string | Y   | UUID of the blacklist rule<br>Allow empty: False <br> |
 
 
 ## Additional Parameter Notes
+
 
 
 
@@ -25,6 +27,7 @@ curl 'https://openapi.guance.com/api/v1/blacklist/blist_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
+
 
 
 

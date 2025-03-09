@@ -1,68 +1,68 @@
-# MySQL Performance Inspection
+# MySQL Performance Security Check
 
 ---
 
 ## Background
 
-As application architectures become increasingly complex, more and more customers are opting for managed cloud databases to avoid operational overhead. Therefore, inspecting the performance of MySQL is crucial. Regular intelligent inspections of MySQL help identify performance issues early, enabling timely alerts.
+For increasingly complex application architectures, the current trend is for more and more customers to adopt maintenance-free cloud databases. Therefore, performing a MySQL performance security check is crucial. Regular intelligent security checks on MySQL are conducted to detect performance issues and trigger anomaly alerts.
 
 ## Prerequisites
 
-1. Set up [DataFlux Func (Automata) Guance Special Edition](https://func.guance.com/#/) or subscribe to [DataFlux Func (Automata)](../../dataflux-func/index.md)
-2. Create an [API Key](../../management/api-key/open-api.md) in the Guance "Management / API Key Management" section for performing operations.
+1. Self-host [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/), or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
+2. Create an [API Key](../../management/api-key/open-api.md) for operations in <<< custom_key.brand_name >>> "Management / API Key Management"
 
-> **Note**: If you plan to use a cloud server for offline deployment of DataFlux Func, ensure it is deployed with the same operator and region as your current Guance SaaS deployment [in the same operator and region](../../../getting-started/necessary-for-beginners/select-site/).
+> **Note**: If you plan to use a cloud server for offline deployment of DataFlux Func, consider deploying it with the current used <<< custom_key.brand_name >>> SaaS [in the same provider and region](../../../getting-started/necessary-for-beginners/select-site/).
 
-## Initiating Inspection
+## Enable Security Check
 
-In your self-hosted DataFlux Func, install the "Guance Self-Hosted Inspection (MySQL Performance)" script from the "Script Market" and configure the Guance API Key to start the inspection.
+In your self-hosted DataFlux Func, install "<<< custom_key.brand_name >>> Self-hosted Security Check (MySQL Performance)" via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to enable it.
 
-Select the required inspection scenario in the DataFlux Func Script Market, click Install, configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
+Select the required security check scenario from the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/) settings, then choose to deploy and start the script.
 
 ![image](../img/create_checker.png)
 
-After successfully deploying the startup script, it will automatically create the startup script and auto-trigger configuration, which can be viewed directly via the provided link.
+After successfully deploying the startup script, it will automatically create the startup script and auto-trigger configuration. You can directly jump to and view the corresponding configuration via the provided link.
 
 ![image](../img/success_checker.png)
 
-## Configuring Inspection
+## Configure Security Check
 
-You can configure the inspection filters either in the Guance Studio under Monitoring - Intelligent Inspection or in the startup script automatically created by DataFlux Func. Refer to the following two configuration methods.
+Configure the desired filtering conditions for the security check in the <<< custom_key.brand_name >>> Studio Monitoring - Intelligent Security Check module or in the startup script automatically created by DataFlux Func. Refer to the following two configuration methods.
 
-### Configuring Inspection in Guance
+### Configuration in <<< custom_key.brand_name >>>
 
 ![image](../img/mysql-performance02.png)
 
 #### Enable/Disable
 
-The MySQL performance inspection is enabled by default but can be manually disabled. Once enabled, it will inspect the configured list of hosts.
+MySQL performance security check is set to "Enabled" by default. It can be manually "Disabled". Once enabled, it will perform security checks on the configured host list.
 
-#### Editing
+#### Edit
 
-The "MySQL Performance Inspection" supports manual addition of filtering conditions. Click the **Edit** button in the operation menu on the right side of the intelligent inspection list to edit the inspection template.
+The "MySQL Performance Security Check" supports manual addition of filtering conditions. Click the **Edit** button in the operation menu on the right side of the intelligent security check list to edit the security check template.
 
-* Filtering Conditions: Configure the hosts to be inspected.
-* Alert Notifications: Supports selecting and editing alert policies, including event severity levels, notification targets, and alert silence periods.
+* Filtering Conditions: Configure the hosts to be checked
+* Alert Notifications: Supports selecting and editing alert strategies, including event severity levels, notification targets, and alert silence periods
 
-Click Edit in the parameter configuration entry, fill in the corresponding detection objects, and save to start the inspection:
+Click **Edit** to enter the parameter configuration and fill in the detection objects, then save to start the security check:
 
 ![image](../img/mysql-performance03.png)
 
-You can refer to the following configuration for multiple host information:
+You can refer to the following example to configure multiple host information
 
 ```json
-// Configuration example:
-  configs:
-        host1
-        host2
-        host3
+ // Configuration Example:
+  configs Configuration Example:
+            host1
+            host2
+            host3
 ```
 
-> **Note**: In your self-hosted DataFlux Func, when writing custom inspection handling functions, you can also add filtering conditions (refer to sample code configurations). However, parameters configured in the Guance Studio will override those set in the custom inspection handling function.
+> **Note**: In your self-hosted DataFlux Func, when writing custom security check processing functions, you can also add filtering conditions (refer to sample code configuration). Note that parameters configured in <<< custom_key.brand_name >>> Studio will override those set in the custom security check processing function.
 
-### Configuring Inspection in DataFlux Func
+### Configuration in DataFlux Func
 
-After configuring the necessary filtering conditions in DataFlux Func, you can test by selecting the `run()` method on the page and clicking Run. After publishing, the script will execute normally. You can also view or change the configuration in the Guance "Monitoring / Intelligent Inspection".
+After configuring the necessary filtering conditions in DataFlux Func, you can test the configuration by clicking the `run()` method directly on the page. After publishing, the script will run normally. You can also view or modify the configuration in <<< custom_key.brand_name >>> "Monitoring / Intelligent Security Check".
 
 ```python
 from guance_monitor__register import self_hosted_monitor
@@ -72,7 +72,7 @@ import guance_monitor_mysql_performance__main as main
 # Support for using filtering functions to filter the objects being inspected, for example:
 def filter_host(host):
     '''
-    Filter host, define conditions for matching hosts, return True if matched, False otherwise.
+    Filter host, define conditions for matching hosts, return True if matched, False otherwise
     return True｜False
     '''
     if host in ['iZuf6aq9gu32lpgvx8ynhbZ']:
@@ -80,52 +80,52 @@ def filter_host(host):
   
   
 @self_hosted_monitor(account['api_key_id'], account['api_key'])
-@DFF.API('Self-Hosted MySQL Performance Inspection', fixed_crontab='*/30 * * * *', timeout=900)
+@DFF.API('MySQL Performance Self-hosted Security Check', fixed_crontab='*/30 * * * *', timeout=900)
 def run(configs=None):
     '''
     Optional parameters:
       configs : 
-              List of hosts to inspect (optional; if not configured, it defaults to all hosts in the current workspace running MySQL services).
-        	  Multiple hosts can be specified (separated by line breaks); if not specified, all hosts running MySQL services will be inspected.
-      Example configuration:
+              List of hosts to monitor (optional, defaults to all hosts in the current workspace running Mysql services)
+              Multiple hosts can be specified (separated by new lines), unspecified means monitoring all hosts.
+      configs Configuration Example:
               host1
               host2
               host3
     '''
     checkers = [
-        main.MysqlChecker(configs=configs, filters=[filter_host]), # Supports user-configured multiple filtering functions that are executed in sequence.
+        main.MysqlChecker(configs=configs, filters=[filter_host]), # Support for user-configured multiple filtering functions that are executed in sequence.
     ]
 
     Runner(checkers, debug=False).run()
 ```
 
-## Viewing Events
+## View Events
 
-This inspection scans memory usage over the past 6 hours. If it predicts that usage will exceed the warning threshold within the next 2 hours, it generates corresponding events. Click the **View Related Events** button in the operation menu on the right side of the intelligent inspection list to view related anomaly events.
+This security check scans memory usage information for the past 6 hours. If it predicts that the threshold will be exceeded within the next 2 hours, it will generate corresponding events. Click the **View Related Events** button in the operation menu on the right side of the intelligent security check list to view related anomaly events.
 
 ![image](../img/mysql-performance04.png)
 
 ### Event Details Page
 
-Click **Event** to view the detailed page of the intelligent inspection event, including event status, time of anomaly occurrence, anomaly name, basic attributes, event details, alert notifications, historical records, and associated events.
+Click **Event** to view the details page of the intelligent security check event, including event status, anomaly occurrence time, anomaly name, basic attributes, event details, alert notifications, historical records, and related events.
 
-* Click the small icon labeled "View Monitor Configuration" in the top-right corner of the details page to view and edit the current intelligent inspection configuration.
+* Click the small icon labeled "View Monitor Configuration" in the upper right corner of the details page to view and edit the current intelligent security check configuration.
 
 #### Basic Attributes
 
-* Detection Dimensions: Based on the filtering conditions configured in the intelligent inspection, support copying, adding to filters, and viewing related logs, containers, processes, security checks, traces, RUM, Synthetic Tests, and CI data in `key/value` format.
-* Extended Attributes: Select extended attributes to copy in `key/value` format and perform forward/reverse filtering.
+* Detection Dimensions: Based on the filtering conditions configured in the intelligent security check, it supports copying, adding to filters, and viewing related logs, containers, processes, security checks, traces, user access monitoring, synthetic tests, and CI data in `key/value` format.
+* Extended Attributes: Selecting extended attributes allows copying and filtering in `key/value` format.
 
 ![image](../img/mysql-performance05.png)
 
 #### Event Details
 
-* Event Overview: Describes the object and content of the abnormal inspection event.
-* CPU Utilization Line Chart: View the CPU utilization rate of the current abnormal host over the past 30 minutes.
-* Memory Utilization Line Chart: View the memory utilization rate of the current abnormal host over the past 30 minutes.
-* SQL Execution Count Line Chart: View the execution counts of replace, update, delete, insert, and select statements on the current abnormal host over the past 30 minutes.
-* Slow SQL Line Chart: View the number of slow SQL queries detected on the current abnormal host over the past 30 minutes.
-* Top 5 Slow SQL Ranking: Display the top 5 slow SQL queries and related information for the abnormal MySQL, allowing navigation to related logs via digest.
+* Event Overview: Describes the object and content of the anomaly security check event.
+* CPU Utilization Line Chart: View the CPU utilization of the current anomaly host over the past 30 minutes.
+* Memory Utilization Line Chart: View the memory utilization of the current anomaly host over the past 30 minutes.
+* SQL Execution Count Line Chart: View the execution counts of replace, update, delete, insert, and select statements over the past 30 minutes.
+* Slow SQL Line Chart: View the occurrences of slow SQL queries over the past 30 minutes.
+* SQL Execution Time Ranking: Display the top 5 slow SQL queries and related information for the abnormal MySQL instance, which can be viewed via digest links.
 
 ![image](../img/mysql-performance06.png)
 
@@ -135,38 +135,38 @@ Click **Event** to view the detailed page of the intelligent inspection event, i
 
 #### Historical Records
 
-Supports viewing the detection object, anomaly/recovery times, and duration.
+Supports viewing detected objects, anomaly/recovery times, and duration.
 
 ![image](../img/mysql-performance08.png)
 
-#### Associated Events
+#### Related Events
 
-Supports viewing associated events through filtered fields and selected time components.
+Supports viewing related events through selected fields and time component information.
 
 ![image](../img/mysql-performance09.png)
 
-## Common Issues
+## FAQs
 
-**1. How to Configure the Inspection Frequency for MySQL Performance**
+**1. How to configure the detection frequency of MySQL Performance Security Check**
 
-* In your self-hosted DataFlux Func, add `fixed_crontab='*/30 * * * *', timeout=900` in the decorator when writing custom inspection handling functions, and configure it in "Management / Automatic Trigger Configuration".
+* In your self-hosted DataFlux Func, add `fixed_crontab='*/30 * * * *', timeout=900` in the decorator when writing custom security check processing functions, then configure it in "Management / Automatic Trigger Configuration".
 
-**2. Why Might There Be No Anomaly Analysis When the Inspection Triggers**
+**2. Why might there be no anomaly analysis in the MySQL Performance Security Check report**
 
-If no anomaly analysis appears in the inspection report, check the data collection status of the current `datakit`.
+If the security check report lacks anomaly analysis, check the data collection status of the current `datakit`.
 
-**3. Under What Circumstances Will MySQL Performance Inspection Events Be Generated**
+**3. Under what circumstances will MySQL Performance Security Check events be generated**
 
-Events are generated if the configured hosts experience CPU utilization consistently exceeding 95% for 10 minutes, memory utilization consistently exceeding 95% for 10 minutes, SQL execution counts increasing fivefold compared to the previous period, or slow SQL occurrences increasing fivefold compared to the previous period.
+Events are generated if the CPU utilization of the configured host exceeds 95% for 10 consecutive minutes, memory utilization exceeds 95% for 10 consecutive minutes, SQL execution count increases fivefold compared to the previous period, or slow SQL occurrences increase fivefold compared to the previous period.
 
-**4. What to Do If Previously Normal Scripts Fail During Inspection**
+**4. What should I do if a previously working script encounters errors during the security check**
 
-Update the referenced script sets in the DataFlux Func Script Market. Refer to the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to check the update history of the script market for timely updates.
+Update the referenced script set in the DataFlux Func Script Market. You can view the update history of the script market through the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate timely updates.
 
-**5. What to Do If the Script Set in Startup Does Not Change During Upgrade**
+**5. Why does the script set in Startup not change during the upgrade of the security check script**
 
-Delete the corresponding script set first, then click the upgrade button and configure the corresponding Guance API Key to complete the upgrade.
+First, delete the corresponding script set, then click the upgrade button and configure the <<< custom_key.brand_name >>> API key to complete the upgrade.
 
-**6. How to Verify That the Inspection Has Taken Effect After Enabling**
+**6. How to determine if the security check has taken effect after enabling**
 
-Check the inspection status in "Management / Automatic Trigger Configuration". It should be enabled, and you can verify the script by executing it. If it shows "Executed Successfully xx Minutes Ago," the inspection is functioning correctly.
+Check the corresponding security check status in "Management / Automatic Trigger Configuration". The status should be enabled first, and you can verify if the security check script works properly by clicking execute. If it shows "Executed Successfully X minutes ago," the security check is running normally and has taken effect.

@@ -1,4 +1,4 @@
-# 4516-nginx-browserSecurity - Recommendation to Add Browser Security Configuration
+# 4516-nginx-browserSecurity - It is recommended to add browser security configuration
 ---
 
 ## Rule ID
@@ -8,46 +8,56 @@
 
 ## Category
 
-- Nginx
+- nginx
 
 
 ## Level
 
-- Info
+- info
 
 
 ## Compatible Versions
 
+
 - Linux
+
+
 
 
 ## Description
 
-- The `X-Frame-Options` header should be set to allow or disallow specific websites from embedding your site as an object within their own sites, depending on your organization's policy and application requirements.
 
-- The `X-Content-Type-Options` header is used to force supporting user agents to respect the content type specified in the HTTP response headers rather than inferring it from the request target.
+- The X-Frame-Options header should be set to allow specific websites or no websites to embed your site as an object within their own sites, depending on your organizational policy and application requirements.
 
-- The `X-XSS-Protection` header allows you to leverage browser-based protection against cross-site scripting (XSS). This should be implemented on your web server to protect users and enhance trust in the site. Your policy should set this to blocking mode whenever possible to ensure that the browser blocks the page when XSS is detected.
+- The X-Content-Type-Options header should be used to force supporting user agents to check the content type header of the HTTP response against the expected content from the request target.
+
+- The X-XSS-Protection header allows you to leverage browser-based protection against cross-site scripting. This should be implemented on your web server to protect users and enhance trust in the site. Your policy should set this to blocking mode whenever possible to ensure that the browser blocks the page when cross-site scripting is detected.
+
 
 
 ## Scan Frequency
-
 - 0 */30 * * *
-
 
 ## Theoretical Basis
 
-- Setting `X-Frame-Options`, `X-Content-Type-Options`, and `X-XSS-Protection` helps secure your website. Please modify according to the actual needs of your application!
+
+- Setting X-Frame-Options, X-Content-Type-Options, and X-XSS-Protection helps secure your website. Please modify according to the actual program requirements!
+
+
+
+
 
 
 ## Risk Items
 
-- Nginx Security
+
+- nginx security
+
 
 
 ## Audit Method
-
-To verify the current settings for the `X-Frame-Options`, `X-Content-Type-Options`, and `X-XSS-Protection` headers:
+- 
+To verify the current settings of the X-Frame-Options, X-Content-Type-Options, and X-XSS-Protection headers:
 ```bash
 grep -ir X-Xss-Protection /etc/nginx
 # Output should include
@@ -63,34 +73,45 @@ add_header X-Frame-Options "SAMEORIGIN";
 ```
 
 
-## Remediation
 
-Locate the HTTP or server block in the Nginx configuration and add the following headers based on your application and web system requirements:
+## Remediation
+- 
+Locate the HTTP or server block in the nginx configuration and add the necessary headers based on the specific application and web system requirements:
 ```bash
 # Prevent clickjacking
 add_header X-Frame-Options DENY;
 # Prevent MIME-type sniffing
 add_header X-Content-Type-Options nosniff;
 # Protect against XSS attacks
-add_header X-Xss-Protection "1; mode=block";
+add_header X-XSS-Protection "1; mode=block";
 ```
+
 
 
 ## Impact
 
-- If browser security headers are not configured or incorrectly configured, it can lead to vulnerabilities and attacks on the website.
+
+- If the browser security headers are not configured or not correctly configured, it can lead to vulnerabilities and attacks on the website.
+
+
 
 
 ## Default Value
 
+
 - By default, these headers are not set.
+
+
 
 
 ## References
 
+
 - None
 
 
+
 ## CIS Controls
+
 
 - None

@@ -37,7 +37,7 @@
 ## Theoretical Basis
 
 
-- The prelink feature may interfere with the operation of AIDE because it modifies binary files. If a malicious user can compromise common libraries such as libc, prelinking also increases system vulnerabilities.
+- Prelink functionality may interfere with AIDE operations because it modifies binary files. If a malicious user can compromise common libraries such as libc, prelink also increases system vulnerabilities.
 
 
 
@@ -95,9 +95,9 @@ yum remove prelink
 
 
 
-## CIS Control
+## CIS Controls
 
 
 - Version 7
->   14.9 Enforce detailed logging for access to or changes in sensitive data
-   Enforce detailed audit logging for access to or changes in sensitive data (using tools such as file integrity monitoring or security information and event monitoring).
+>   14.9 Enforce detailed logging of access to or changes of sensitive data
+   Enforce detailed audit logging for access to or changes of sensitive data (using tools like file integrity monitoring or security information and event monitoring).

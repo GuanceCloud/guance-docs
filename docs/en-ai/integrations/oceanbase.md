@@ -1,15 +1,15 @@
 ---
-title: 'OceanBase'
-summary: 'Collect metrics data from OceanBase'
+title     : 'OceanBase'
+summary   : 'Collect metrics data from OceanBase'
 tags:
   - 'Database'
-__int_icon: 'icon/oceanbase'
-dashboard:
-  - desc: 'OceanBase'
-    path: 'dashboard/en/oceanbase'
-monitor:
-  - desc: 'Not available'
-    path: '-'
+__int_icon      : 'icon/oceanbase'
+dashboard :
+  - desc  : 'OceanBase'
+    path  : 'dashboard/en/oceanbase'
+monitor   :
+  - desc  : 'Not available'
+    path  : '-'
 ---
 
 
@@ -17,7 +17,7 @@ monitor:
 
 ---
 
-Supports collecting monitoring Metrics from system tenants of OceanBase.
+Supports collecting monitoring metrics from OceanBase through system tenants.
 
 Tested versions:
 
@@ -44,7 +44,7 @@ GRANT SELECT ON *.* TO 'datakit'@'localhost';
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    - If you encounter the following error when using `localhost`, replace `localhost` with `::1` in the steps above.<br/>
+    - If you encounter the following error when using `localhost`, replace `localhost` with `::1` in the above steps:
     `Error 1045: Access denied for user 'datakit'@'localhost' (using password: YES)`
 
     - The above creation and authorization operations limit the `datakit` user to access only from the OceanBase host (`localhost`). For remote collection, it is recommended to replace `localhost` with `%` (indicating DataKit can access from any machine), or use a specific DataKit installation machine address.
@@ -95,7 +95,7 @@ GRANT SELECT ON *.* TO 'datakit'@'localhost';
       ## Set true to enable election
       election = true
     
-      ## Run a custom SQL query and collect corresponding Metrics.
+      ## Run a custom SQL query and collect corresponding metrics.
       # [[inputs.oceanbase.custom_queries]]
         # sql = '''
         #   select
@@ -126,11 +126,9 @@ GRANT SELECT ON *.* TO 'datakit'@'localhost';
 
 ## Slow Query Support {#slow}
 
-DataKit can report SQL statements that take longer than a user-defined time to Guance, displaying them in logs with the source name `oceanbase_log`.
+DataKit can report SQL statements that execute longer than a user-defined time threshold to Guance, displaying them in logs with the source name `oceanbase_log`.
 
-This feature is disabled by default. Users can enable it in the OceanBase configuration file as follows:
-
-Change the value after `slow_query_time` from `0s` to the desired threshold, with a minimum of 1 millisecond, typically recommended at 10 seconds.
+This feature is disabled by default. Users can enable it by changing the value after `slow_query_time` from `0s` to their desired threshold, with a minimum of 1 millisecond. It is generally recommended to set it to 10 seconds.
 
 ```conf
 
@@ -138,17 +136,17 @@ slow_query_time = "10s"
 
 ```
 
-???+ info "Field Description"
-    - `failed_obfuscate`: Reason for SQL obfuscation failure. This field appears only if SQL obfuscation fails. The original SQL statement will be reported if obfuscation fails.
+???+ info "Field Explanation"
+    - `failed_obfuscate`: Reason for SQL obfuscation failure. This appears only if SQL obfuscation fails. The original SQL statement will be reported if obfuscation fails.
     More field explanations can be found [here](https://www.oceanbase.com/docs/enterprise-oceanbase-database-cn-10000000000376688){:target="_blank"}.
 
 ???+ attention "Important Information"
-    - If the value is `0s`, empty, or less than 1 millisecond, the slow query feature of the OceanBase collector will not be enabled, which is the default state.
-    - SQL statements that have not completed execution will not be queried.
+    - If the value is `0s`, empty, or less than 1 millisecond, the slow query feature for the OceanBase collector will not be enabled, i.e., it remains in its default state.
+    - Uncompleted SQL statements will not be queried.
 
 ## Metrics {#metric}
 
-By default, all collected data will append global election tags. Additional tags can also be specified in the configuration through `[inputs.oceanbase.tags]`:
+By default, all collected data will append the global election tag. Additional tags can be specified in the configuration using `[inputs.oceanbase.tags]`:
 
 ``` toml
  [inputs.oceanbase.tags]
@@ -336,6 +334,14 @@ By default, all collected data will append global election tags. Additional tags
 
 
 ## Logs {#logging}
+
+
+
+
+
+
+
+
 
 ### `oceanbase_log`
 

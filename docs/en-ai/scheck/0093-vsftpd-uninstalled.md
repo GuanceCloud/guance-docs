@@ -34,13 +34,13 @@
 
 ## Theoretical Basis
 
-- FTP does not protect the confidentiality of data or authentication credentials. If file transfer is necessary, it is recommended to use SFTP. Unless the system needs to operate as an FTP server (e.g., allowing anonymous downloads), it is recommended to remove this package to reduce potential attack surfaces.
-> Note: There are other FTP servers that should also be removed if they are not needed.
+- FTP does not protect the confidentiality of data or authentication credentials. If file transfer is necessary, it is recommended to use SFTP. Unless running as an FTP server is required (e.g., allowing anonymous downloads), it is recommended to remove this package to reduce potential attack surfaces.
+> Note: There are other FTP servers that should be removed if they are not needed.
 
 
 ## Risk Items
 
-- Increased risk of being attacked
+- Increases the risk of being attacked
 
 
 ## Audit Method
@@ -62,7 +62,7 @@ package vsftpd is not installed
 
 ## Impact
 
-- If you are using this server for FTP, applications that rely on the FTP service may lose data storage.
+- If you are using this server for FTP services, applications that rely on FTP may lose their ability to store data.
 
 
 ## Default Value
@@ -79,4 +79,4 @@ package vsftpd is not installed
 
 - Version 7
   9.2 Ensure only approved ports, protocols, and services are running  
-  Ensure that network ports, protocols, and services listening on each system are running only when there is a validated business need.
+  Ensure that network ports, protocols, and services that are listening on each system have validated business needs before being allowed to run.

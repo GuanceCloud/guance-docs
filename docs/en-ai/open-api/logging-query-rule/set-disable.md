@@ -1,4 +1,4 @@
-# Disable a Single Data Access Rule
+# Modify a Single Data Access Rule
 
 ---
 
@@ -13,8 +13,8 @@ Disable a data access rule
 
 | Parameter Name        | Type     | Required | Description              |
 |:---------------------|:---------|:---------|:-------------------------|
-| loggingQueryRuleUuids | array    | Yes      | UUID of the data access rule<br>Allow null: False <br> |
-| isDisable            | boolean  | Yes      | Set the enabled status<br>Allow null: False <br> |
+| loggingQueryRuleUuids | array    | Y        | UUID of the data access rule<br>Nullable: False <br> |
+| isDisable            | boolean  | Y        | Set the enabled state<br>Nullable: False <br> |
 
 ## Additional Parameter Notes
 

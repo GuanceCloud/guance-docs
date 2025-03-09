@@ -2,7 +2,7 @@ nav:
   - index.md
   - changelog.md
 
-  - 'DataKit Introduction':
+  - 'Introduction to DataKit':
     - datakit-arch.md
 
   - 'DataKit Installation':
@@ -15,9 +15,9 @@ nav:
     - 'Batch Installation': datakit-batch-deploy.md
     - 'Offline Installation': datakit-offline-install.md
 
-  - 'DataKit Usage':
+  - 'Using DataKit':
     - Service Management: datakit-service-how-to.md
-    - Status View: datakit-monitor.md
+    - Status Check: datakit-monitor.md
     - 'Update': datakit-update.md
     - 'DQL Query': datakit-dql-how-to.md
     - 'Other Commands': datakit-tools-how-to.md

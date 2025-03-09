@@ -1,4 +1,4 @@
-# Notification Policy Retrieval
+# Get Notification Policy
 
 ---
 
@@ -11,9 +11,9 @@
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| issue_notification_policy_uuid | string | Y | Notification policy UUID<br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:-------------------------|
+| issue_notification_policy_uuid | string | Yes | Notification policy UUID<br> |
 
 
 ## Additional Parameter Notes

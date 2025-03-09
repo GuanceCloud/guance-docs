@@ -2,13 +2,13 @@
 
 ---
 
-After initializing RUM, use the `addAction('<NAME>', '<JSON_OBJECT>')` API to add custom Action metric data beyond the collected metrics.
+After initializing RUM, use the `addAction('<NAME>', '<JSON_OBJECT>')` API to add custom Action metric data outside of the collected data.
 
 ### Adding an Action
 
 === "CDN"
 
-    [Download file](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js) and include it locally.
+    [Download file](https://<<< custom_key.static_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js) and include it locally.
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -40,13 +40,13 @@ After initializing RUM, use the `addAction('<NAME>', '<JSON_OBJECT>')` API to ad
 
 ### How to Add Custom Actions Using the RUM SDK and Avoid Field Conflicts
 
-When using `window.DATAFLUX_RUM.addAction` to add custom data, it's important to avoid conflicts with predefined fields in the SDK. Conflicting fields can cause the data to be ignored. Below is an incorrect example and some guidelines:
+When adding custom data using `window.DATAFLUX_RUM.addAction`, it's important to avoid conflicts with predefined fields in the SDK. Conflicting fields can result in invalid data settings. Below is an incorrect example and some considerations:
 
 Example code (with field conflict)
 
 ```js
 window.DATAFLUX_RUM.addAction('test action', {
-  view_url: 'a', // Conflicts with the SDK's predefined field "view_url", making this field ineffective.
+  view_url: 'a', // Conflicts with the SDK's predefined "view_url" field, making this field invalid.
   b: 'b',
   c: 'c',
 })
@@ -54,27 +54,27 @@ window.DATAFLUX_RUM.addAction('test action', {
 
 Improved code and explanation
 
-To avoid conflicts, you can use custom field names or prefixes that differ from the SDK's predefined fields:
+To resolve conflicts, avoid using the same names as predefined SDK fields by using custom field names or prefixes:
 
 ```js
 // Recommended custom field naming to avoid conflicts
 window.DATAFLUX_RUM.addAction('test action', {
-  custom_view_url: 'a', // Use a custom field name to avoid conflict with the SDK
+  custom_view_url: 'a', // Use a custom field name to avoid conflicts with the SDK
   b: 'b',
   c: 'c',
 })
 ```
 
-Guidelines
+Considerations
 
 1. Field naming principles:
-   • Avoid using predefined SDK fields (such as `view_url`, `view_name`, etc.). These fields may be used by the SDK for internal logic, leading to conflicts.
+   • Avoid using predefined SDK fields (such as `view_url`, `view_name`, etc.). These fields may be used for internal logic by the SDK, leading to conflicts.
    • Add prefixes (such as `custom_`, `user_`) to distinguish custom data.
 2. Impact of field conflicts:
    • If field names conflict, the SDK will ignore the custom values for those fields.
-   • It's especially important to check for field name conflicts when the necessary data isn't being passed correctly.
+   • It is particularly important to check for field name conflicts when the required data is not being passed correctly.
 
-The following is a list of reserved fields:
+Below is a list of reserved fields:
 
 ```json
 [

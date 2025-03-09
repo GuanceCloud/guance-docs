@@ -1,5 +1,4 @@
-# Ensure Authorization Mode Parameter Is Not Set to AlwaysAllow
-
+# 0422-k8s-authorization-mode-kubelet Ensure Authorization Mode Parameter Is Not Set to: AlwaysAllow
 ---
 
 ## Rule ID
@@ -12,24 +11,19 @@
 - Container
 
 
-## Severity
+## Level
 
-- Warning
+- Warn
 
 
 ## Compatible Versions
 
-
 - Linux
-
-
 
 
 ## Description
 
-
-- If you are using a Kubelet configuration file, edit this file to set the authorization mode to Webhook
-
+- If using a Kubelet configuration file, edit the file to set the authorization mode to Webhook.
 
 
 ## Scan Frequency
@@ -37,19 +31,12 @@
 
 ## Theoretical Basis
 
-
-- By default, Kubelets allow all authenticated requests (even anonymous requests) without requiring explicit authorization checks from the sender. You should restrict this behavior and only allow explicitly authorized requests
-
-
-
-
+- By default, Kubelets allow all authenticated requests (even anonymous requests) without requiring explicit authorization checks from the sender. You should restrict this behavior and only allow explicitly authorized requests.
 
 
 ## Risk Items
 
-
 - Container Security
-
 
 
 ## Audit Method
@@ -59,48 +46,35 @@ ps -ef | grep kubelet |grep authorization-mode
 ```
 
 
-
 ## Remediation
-- Execute the following command:
+- Execute the following commands:
 ```bash
 #> vim /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 ```
-Set --authorization-mode=Webhook
-Note: If the --authorization-mode parameter exists, set it to Webhook.
-If this parameter does not exist, check the file configured by the -config parameter when starting kubelet,
-and check the configuration item: authorization: mode in the file and set it to Webhook.
-After setting these parameters and ensuring there are no errors, restart kubelet:
+Set --authorization-mode=Webhook.
+Note: If the --authorization-mode parameter exists, set it to Webhook. If this parameter does not exist, check the file configured by the -config parameter when starting kubelet, and ensure the configuration item: authorization: mode is set to Webhook.
+After setting these parameters and ensuring they are correct, restart kubelet:
 ```bash
 systemctl daemon-reload
 systemctl restart kubelet.service
 ```
 
 
-
 ## Impact
-
 
 - None
 
 
-
-
 ## Default Value
 
-
-- By default, the --authorization-mode parameter is set to AlwaysAllow
-
-
+- By default, the --authorization-mode parameter is set to AlwaysAllow.
 
 
 ## References
 
-
 - [kubelet](https://kubernetes.io/docs/admin/kubelet/)
 
 
-
 ## CIS Controls
-
 
 - None

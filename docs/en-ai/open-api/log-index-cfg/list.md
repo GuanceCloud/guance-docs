@@ -11,19 +11,19 @@ List index information
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:-----------------|:-------|:-----|:----------------|
+|:-------------------|:-------|:-----|:----------------|
 | targetWorkspaceUUID | string | No | Target workspace<br> |
-| isBindCustomStore | boolean | No | Whether to bind custom storage<br> |
+| isBindCustomStore | boolean | No | Whether it is bound to a custom store<br> |
 | queryType | commaArray | No | Storage query type<br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
-**Response Body Structure Description**
+**Response Body Structure Explanation**
 
 | Parameter Name                | Type  | Description          |
 |-----------------------|----------|------------------------|
-| isBindCustomStore         | int | 1: Index configuration bound to custom storage, 0: Default |
-| storeType         | string | Storage type, ('es': Elasticsearch storage, 'sls': SLS Logstore storage, 'opensearch': OpenSearch storage, 'beaver': LogEase storage) |
+|isBindCustomStore         |int | 1: Index configuration bound to a custom store 0: Default|
+|storeType         |string | Storage type, ('es': Elasticsearch storage , 'sls': SLS Logstore storage, 'opensearch': OpenSearch storage, 'beaver': LogEase storage) |
 
 
 ## Request Example

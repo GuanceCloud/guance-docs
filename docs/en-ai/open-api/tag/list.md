@@ -8,31 +8,32 @@
 Retrieve the global tag list
 
 
+
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:--------|:----------------------|
-| search | string | No | Search for tag names<br>Can be empty: False <br> |
-| filter | string | No | Filter conditions<br>Can be empty: False <br>Optional values: ['BoardRefTagObject', 'ViewerRefTagObject', 'CheckerRefTagObject', 'DialingRefTagObject'] <br> |
-| pageIndex | integer | No | Page number<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize | integer | No | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 10000 <br> |
+|:-------------------|:-------|:-----|:----------------|
+| search | string | No | Search for tag name<br>Can be empty: False <br> |
+| filter | string | No | Filter condition<br>Can be empty: False <br>Optional values: ['BoardRefTagObject', 'ViewerRefTagObject', 'CheckerRefTagObject', 'DialingRefTagObject'] <br> |
+| pageIndex | integer | Yes | Page number<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize | integer | Yes | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 10000 <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Descriptions
 
-Data Explanation
+Data Description
 
-- Request Parameter Explanation
+- Request Parameter Description
 
 | Parameter Name           | Type | Description                                                 |
-| ------------------------ | ---- | ---------------------------------------------------------- |
-| filter       | string | Enumerated values (Tags associated with dashboards: BoardRefTagObject, Tags associated with Explorers: ViewerRefTagObject, Tags associated with monitors: CheckerRefTagObject)|
+| ---------------- | ---- | ---------------------------------------------------- |
+| filter       | string | Enum values (Tags associated with dashboards: BoardRefTagObject, Tags associated with Explorers: ViewerRefTagObject, Tags associated with monitors: CheckerRefTagObject)|
 
 ------
 
-- Response Parameter Explanation
+- Response Parameter Description
 
 | Parameter Name           | Type | Description                                                 |
-| ------------------------ | ---- | ---------------------------------------------------------- |
+| ---------------- | ---- | ---------------------------------------------------- |
 | name       | string | Tag name |
 | description             | string | Field description information                                                 |
 | color    | string | Predefined color type, default, style_key1, style_key2 ~~                |

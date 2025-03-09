@@ -1,13 +1,12 @@
-# Resource（资源）
+# Resource (资源)
 ---
 
 View information about various resources loaded on the webpage, including status codes, request methods, resource addresses, and loading times.
 
 In the Resource Explorer, you can:
 
-- Track each user access request for resources, including status codes, request methods, resource addresses, and loading times;
-- Analyze user access performance data in conjunction with related resource requests, resource errors, logs, etc., to comprehensively evaluate the performance of business applications and help quickly identify and optimize code issues in the application.
-
+- Track each resource's user access requests, including status codes, request methods, resource addresses, and loading times;
+- Combine related resource requests, resource errors, logs, and other data to comprehensively analyze the performance of user access to business applications, helping to quickly identify and optimize code issues in the application.
 
 
 ## Details Page

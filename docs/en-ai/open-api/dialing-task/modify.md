@@ -8,136 +8,141 @@
 
 
 
+
 ## Route Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:------------------|:-------|:-----|:----------------|
-| task_uuid | string | Y | ID of the Dial Testing task<br> |
+|:---------------------|:---------|:-----------|:-------------------------|
+| task_uuid            | string   | Y          | ID of the Dial Testing task <br> |
 
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:------------------|:-------|:-----|:----------------|
-| regions | array | Y | List of regions<br>Allow null: False <br> |
-| task | json | Y | Task configuration<br>Allow null: False <br>$maxDictLength: 65536 <br> |
-| task.url | string |  | URL<br>Allow null: False <br> |
-| task.method | string |  | Method<br>Allow null: False <br> |
-| task.name | string | Y | Task name<br>Allow null: False <br>Maximum length: 256 <br> |
-| task.frequency | string | Y | Dial Testing frequency<br>Allow null: False <br>Options: ['1m', '5m', '15m', '30m', '1h', '6h', '12h', '24h'] <br> |
-| task.advance_options | json |  | Advanced options<br>Allow null: False <br> |
-| task.advance_options_headless | json |  | Browser's advanced options settings<br>Allow null: False <br> |
-| task.success_when_logic | string |  | Logical relationship within success_when conditions, default is `and`<br>Allow null: False <br>Options: ['and', 'or'] <br> |
-| task.success_when | array |  | success_when<br>Allow null: False <br> |
-| task.enable_traceroute | boolean |  | Traceroute<br>Allow null: False <br> |
-| task.packet_count | integer |  | Number of pings sent each time<br>Allow null: False <br> |
-| task.host | string |  | Required parameter when type=tcp/icmp<br>Allow null: False <br> |
-| task.port | string |  | Required parameter when type=tcp<br>Allow null: False <br> |
-| task.timeout | string |  | Optional parameter when type=tcp/icmp<br>Allow null: False <br> |
-| task.message | string |  | Required parameter when type=websocket<br>Allow null: False <br> |
-| tags | array |  | List of tag names<br>Allow null: False <br> |
+| Parameter Name                 | Type     | Required   | Description              |
+|:------------------------------|:---------|:-----------|:-------------------------|
+| regions                       | array    | Y          | List of regions <br> Allow empty: False <br> |
+| task                          | json     | Y          | Task configuration <br> Allow empty: False <br> $maxDictLength: 65536 <br> |
+| task.url                      | string   |            | URL <br> Allow empty: False <br> |
+| task.method                   | string   |            | Method <br> Allow empty: False <br> |
+| task.name                     | string   | Y          | Task name <br> Allow empty: False <br> Maximum length: 256 <br> |
+| task.frequency                | string   | Y          | Dial Testing frequency <br> Allow empty: False <br> Options: ['1m', '5m', '15m', '30m', '1h', '6h', '12h', '24h'] <br> |
+| task.advance_options          | json     |            | Advanced options <br> Allow empty: False <br> |
+| task.advance_options_headless  | json     |            | Browser's advanced options settings <br> Allow empty: False <br> |
+| task.success_when_logic        | string   |            | Logical relationship within success_when conditions, default is `and` <br> Allow empty: False <br> Options: ['and', 'or'] <br> |
+| task.success_when             | array    |            | Success_when <br> Allow empty: False <br> |
+| task.enable_traceroute        | boolean  |            | Traceroute <br> Allow empty: False <br> |
+| task.packet_count             | integer  |            | Number of pings sent each time <br> Allow empty: False <br> |
+| task.host                     | string   |            | Mandatory parameter when type=tcp/icmp <br> Allow empty: False <br> |
+| task.port                     | string   |            | Mandatory parameter when type=tcp <br> Allow empty: False <br> |
+| task.timeout                  | string   |            | Optional parameter when type=tcp/icmp <br> Allow empty: False <br> |
+| task.message                  | string   |            | Mandatory parameter when type=websocket <br> Allow empty: False <br> |
+| task.post_mode                | string   |            | Availability judgment mode Default-default Script mode-script <br> Allow empty: False <br> |
+| task.post_script              | string   |            | Script content <br> Allow empty: False <br> Allow empty string: True <br> |
+| tags                          | array    |            | List of tag names <br> Allow empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
-*Data Description.*
+*Data description.*
 
-| Parameter Name        | Type  | Required  | Description          |
-|-------------------|----------|----|------------------------|
-| type          | string  | Y | Dial Testing type, options: `http`,`tcp`,`dns`, `browser`,`icmp`, `websocket`  |
-| regions         | array  | Y | Task execution regions  |
-| task         | json  | Y | Task details  |
-| task.name       | string   | Y | Task name|
-| task.url       | string   | Y | URL|
-| task.method       | string   | Y | URL request method|
-| task.status       | string   | Y | Task status, options: `ok`,`stop`|
-| task.frequency       | string   | Y | Task frequency|
-| task.advance_options       | json   | N | |
-| task.success_when_logic       | enum   | N  | Options: [`and`, `or`], logical relationship within success_when parameters, default is `and`|
-| task.success_when       | array   | Y/N  | Required when type=http, optional when type=browser|
-| task.enable_traceroute  | boolean  | N  | Optional when type=tcp/icmp |
-| task.packet_count    | integer  | N  | Optional when type=icmp |
-| task.host  | string  | Y/N  | Required when type=tcp/icmp |
-| task.port  | string  | Y/N  | Required when type=tcp |
-| task.timeout  | string  | N  | Optional when type=tcp/icmp |
-| task.message  | string  | Y/N  | Required when type=websocket |
-| tags          | array  | N | Tag list |
+| Parameter Name           | Type    | Required | Description                              |
+|--------------------------|---------|----------|------------------------------------------|
+| type                     | string  | Y        | Dial Testing type, options: `http`, `tcp`, `dns`, `browser`, `tcp`, `icmp`, `websocket` |
+| regions                  | array   | Y        | Task execution regions                   |
+| task                     | json    | Y        | Task details                             |
+| task.name                | string  | Y        | Task name                                |
+| task.url                 | string  | Y        | URL                                      |
+| task.method              | string  | Y        | URL request method                       |
+| task.status              | string  | Y        | Task status, options: `ok`, `stop`       |
+| task.frequency           | string  | Y        | Task frequency                           |
+| task.advance_options     | json    |          |                                          |
+| task.success_when_logic  | enum    | N        | Options: [`and`, `or`], logical relationship within success_when parameters, default is `and` |
+| task.success_when        | array   | Y/N      | Mandatory for type=http, optional for type=browser |
+| task.enable_traceroute   | boolean | N        | Optional for type=tcp/icmp               |
+| task.packet_count        | integer | N        | Optional for type=icmp                   |
+| task.host                | string  | N        | Mandatory for type=tcp/icmp              |
+| task.port                | string  | N        | Mandatory for type=tcp                   |
+| task.timeout             | string  | N        | Optional for type=tcp/icmp               |
+| task.message             | string  | Y/N      | Mandatory for type=websocket             |
+| task.post_mode           | string  | N        | Availability judgment mode Default-default Script mode-script |
+| task.post_script         | string  | N        | Availability judgment script content     |
+| tags                     | array   | N        | Tag list                                 |
 
-*Note*: For specific details of the Dial Testing task parameters inside task, refer to [Custom Dial Testing](../../integrations/dialtesting_json.md)
+*Note*: For specific details about the dial testing task parameters, refer to [Custom Dial Testing](../../integrations/dialtesting_json.md)
 --------------
 
 ```json
 {
     "regions": ["hangzhou", "shanghai"],
-    "task":{
-        "url":"http://example.com/some/api",
-        "method":"POST",
-        "external_id":"ID defined by external system for this task",
-        "post_url":" Provided by Studio backend https://dataway.cn?token=tkn_xxx",
-        "status":"ok/stop",
-        "name":"Task Naming",
-        "frequency":"1m",
-        "regions":"beijing",
-        "advance_options":{
-              "request_options":{
-                  "follow_redirect":true,
-                  "headers":{
-                      "header1":"value1",
-                      "header2":"value2"
-                  },
-                  "cookies":"",
-                  "auth":{
-                      "username":"",
-                      "password":""
-                  }
-              },
-              "request_body":{
-                  "body_type":"text/plain|application/json|text/xml",
-                  "body":""
-              },
-              "certificate":{
-                  "ignore_server_certificate_error":false,
-                  "private_key":"",
-                  "certificate":""
-              },
-              "proxy":{
-                  "url":"",
-                  "headers":{
-                      "header1":"value1"
-                  }
-              }
-          },
+    "task": {
+        "url": "http://example.com/some/api",
+        "method": "POST",
+        "external_id": "ID defined by the external system for this task",
+        "post_url": "This parameter is provided by Studio backend https://dataway.cn?token=tkn_xxx",
+        "status": "ok/stop",
+        "name": "Task Naming",
+        "frequency": "1m",
+        "regions": "beijing",
+        "advance_options": {
+            "request_options": {
+                "follow_redirect": true,
+                "headers": {
+                    "header1": "value1",
+                    "header2": "value2"
+                },
+                "cookies": "",
+                "auth": {
+                    "username": "",
+                    "password": ""
+                }
+            },
+            "request_body": {
+                "body_type": "text/plain|application/json|text/xml",
+                "body": ""
+            },
+            "certificate": {
+                "ignore_server_certificate_error": false,
+                "private_key": "",
+                "certificate": ""
+            },
+            "proxy": {
+                "url": "",
+                "headers": {
+                    "header1": "value1"
+                }
+            }
+        },
         "success_when_logic": "and",
-        "success_when":[
+        "success_when": [
             {
-                "body":{
-                    "contains":"",
-                    "not_contains":"",
-                    "is":"",
-                    "is_not":"",
-                    "match_regex":"",
-                    "not_match_regex":""
+                "body": {
+                    "contains": "",
+                    "not_contains": "",
+                    "is": "",
+                    "is_not": "",
+                    "match_regex": "",
+                    "not_match_regex": ""
                 },
-                "header":{
-                    "header-name":{
-                        "contains":"",
-                        "not_contains":"",
-                        "is":"",
-                        "is_not":"",
-                        "match_regex":"",
-                        "not_match_regex":""
+                "header": {
+                    "header-name": {
+                        "contains": "",
+                        "not_contains": "",
+                        "is": "",
+                        "is_not": "",
+                        "match_regex": "",
+                        "not_match_regex": ""
                     },
-                    "another-header-name":"..."
+                    "another-header-name": "..."
                 },
-                "response_time":"100ms",
-                "status_code":[
-                    { "is":"200" },
-                    { "is_not":"400"},
-                    {"match_regex":"ok*"},
-                    {"not_match_regex":"*bad"}
+                "response_time": "100ms",
+                "status_code": [
+                    { "is": "200" },
+                    { "is_not": "400" },
+                    { "match_regex": "ok*" },
+                    { "not_match_regex": "*bad" }
                 ]
             },
             {
-                "AND_another_assert":"..."
+                "AND_another_assert": "..."
             }
         ]
     },
@@ -145,8 +150,8 @@
 }
 ```
 
-*** Explanation of task.frequency Parameter ***<br/>
-For Free Plan workspaces, the time frequency range is 30m/1h/6h/12h/24h
+*** Explanation of task.frequency parameter ***<br/>
+The time frequency range for Free Plan workspaces is 30m/1h/6h/12h/24h
 
 
 

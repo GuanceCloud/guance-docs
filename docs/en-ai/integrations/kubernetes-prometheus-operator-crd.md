@@ -9,25 +9,25 @@ __int_icon: 'icon/kubernetes'
 
 ## Introduction {#intro}
 
-This document explains how to enable Datakit to support Prometheus-Operator CRD and collect corresponding metrics.
+This document describes how to enable Datakit to support Prometheus-Operator CRD and collect corresponding metrics.
 
 ## Description {#description}
 
-Prometheus has a comprehensive Kubernetes application metric collection solution. The process is briefly described as follows:
+Prometheus has a comprehensive Kubernetes application metrics collection solution. The process is briefly described as follows:
 
-1. Create Prometheus-Operator in the Kubernetes cluster
-2. Based on requirements, create corresponding CRD instances. These instances must carry necessary configurations for collecting target metrics, such as `matchLabels`, `port`, `path`, etc.
-3. Prometheus-Operator listens to CRD instances and initiates metric collection based on their configurations.
+1. Create Prometheus-Operator in the Kubernetes cluster.
+2. Based on requirements, create the corresponding CRD instances. These instances must include necessary configurations for collecting target metrics, such as `matchLabels`, `port`, `path`, etc.
+3. Prometheus-Operator will monitor the CRD instances and start metric collection based on their configuration items.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    Prometheus-Operator [official link](https://github.com/prometheus-operator/prometheus-operator){:target="_blank"} and [application examples](https://alexandrev.medium.com/prometheus-concepts-servicemonitor-and-podmonitor-8110ce904908){:target="_blank"}.
+    [Official link for Prometheus-Operator](https://github.com/prometheus-operator/prometheus-operator){:target="_blank"} and [application examples](https://alexandrev.medium.com/prometheus-concepts-servicemonitor-and-podmonitor-8110ce904908){:target="_blank"}.
 <!-- markdownlint-enable -->
 
-Here, Datakit plays the role of step 3 by listening and discovering Prometheus-Operator CRDs, initiating metric collection based on configurations, and finally uploading the data to Guance.
+In this context, Datakit plays the role of step 3, monitoring and discovering Prometheus-Operator CRDs, initiating metric collection based on the configuration, and ultimately uploading them to Guance.
 
-Currently, Datakit supports two types of Prometheus-Operator CRD resources —— `PodMonitor` and `ServiceMonitor`, along with their required configurations, which include the following parts:
+Currently, Datakit supports two types of Prometheus-Operator CRD resources —— `PodMonitor` and `ServiceMonitor`, along with their required (require) configurations, including the following parts:
 
 ```markdown
 - PodMonitor [monitoring.coreos.com/v1]
@@ -59,9 +59,9 @@ Currently, Datakit supports two types of Prometheus-Operator CRD resources —�
         matchNames
 ```
 
-Note: `tlsConfig` does not currently support retrieving certificates from Kubernetes Secrets/ConfigMaps.
+Note: `tlsConfig` does not currently support obtaining certificates from Kubernetes Secret/ConfigMap.
 
-The `params` field supports specifying the data's Metrics set using the `measurement` field, for example:
+The `params` field supports specifying the data's Mearsurement using the `measurement` field, for example:
 
 ```yaml
 params:
@@ -71,7 +71,7 @@ params:
 
 ## Example {#example}
 
-Using an Nacos cluster as an example.
+Take a Nacos cluster as an example.
 
 Install Nacos:
 
@@ -105,9 +105,9 @@ containers:
 - Metrics interface: `$IP:8848/nacos/actuator/prometheus`
 - Metrics port: 8848
 
-Now there is an Nacos metrics service available for metric collection in the Kubernetes cluster.
+Now there is a Nacos metrics service in the Kubernetes cluster that can be used for metric collection.
 
-### Creating Prometheus-Operator CRD {#create-crd}
+### Create Prometheus-Operator CRD {#create-crd}
 
 - Install Prometheus-Operator
 
@@ -156,19 +156,19 @@ $ kubectl apply -f pod-monitor.yaml
 ```
 <!-- markdownlint-enable -->
 
-Several important configuration items need to be consistent with Nacos:
+Several important configuration items need to match those of Nacos:
 
 - namespace: default
 - app: `nacos`
 - port: client
 - path: `/nacos/actuator/prometheus`
 
-Refer to the [documentation](https://doc.crds.dev/github.com/prometheus-operator/kube-prometheus/monitoring.coreos.com/PodMonitor/v1@v0.7.0){:target="_blank"} for configuration parameters. Currently, Datakit only supports the required sections and does not support authentication configurations such as `baseAuth`, `bearerTokenSecret`, and `tlsConfig`.
+Refer to the [documentation](https://doc.crds.dev/github.com/prometheus-operator/kube-prometheus/monitoring.coreos.com/PodMonitor/v1@v0.7.0){:target="_blank"} for configuration parameters. Currently, Datakit only supports the require section and does not support authentication configurations such as `baseAuth`, `bearerTokenSecret`, and `tlsConfig`.
 
 ### Metrics Set and Tags {#measurement-and-tags}
 
-Refer to [this section](kubernetes-prom.md#measurement-and-tags) for more details.
+Refer to [this reference](kubernetes-prom.md#measurement-and-tags).
 
 ### Verification {#check}
 
-Start Datakit and use `datakit monitor -V` or check on the Guance page to find Metrics sets starting with `nacos_`. This indicates successful collection.
+Start Datakit and use `datakit monitor -V` or check on the Guance page to find metrics sets starting with `nacos_`. This indicates successful collection.

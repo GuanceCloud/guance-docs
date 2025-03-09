@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Swarm is an official part of the Ethereum project, primarily developed by the foundation. It allows mining pools to provide storage, bandwidth, and computational resources to support applications based on the Ethereum network. The team aims to create a decentralized peer-to-peer storage and service solution that never goes down, has zero failures, and is censorship-resistant. A system of economic incentives within Swarm promotes the exchange of resource value payments and transfers using different protocols and technologies from the Ethereum blockchain. Swarm provides decentralized content storage and distribution services, similar to a CDN, distributing content over the internet across computers. You can run a Swarm node like an Ethereum node and connect it to the Swarm network. This is similar to BitTorrent and can be compared to IPFS, with ETH as the reward incentive. Files are broken down into chunks, distributed, and stored by participating volunteers. Nodes that store and serve these chunks receive ETH as compensation from nodes that need storage and retrieval services. Unlike mining, Swarm does not have block rewards but instead rewards interaction between nodes. After interactions, nodes can earn checks, which can be exchanged for BZZ, making the network environment and node status of the BZZ cluster particularly important.
+Swarm is an official part of the Ethereum project, primarily developed by the foundation. It allows mining pools to provide storage, bandwidth, and computational resources to support applications based on the Ethereum network. The team aims to create a decentralized, peer-to-peer storage and service solution that is always available, fault-tolerant, and censorship-resistant. By creating an economic incentive system within Swarm, it facilitates the payment and transfer of value for resource exchanges using different protocols and technologies from the Ethereum blockchain. Swarm provides decentralized content storage and distribution services, which can be considered as a CDN, distributing content over the internet across computers. Similar to running an Ethereum node, you can run a Swarm node and connect it to the Swarm network. This is similar to BitTorrent and can be compared to IPFS, with ETH used as an incentive. Files are broken down into chunks, distributed, and stored by participating volunteers. Nodes that store and serve these chunks receive ETH from nodes that require storage and retrieval services. Unlike mining, Swarm does not offer block rewards but instead rewards interactions between nodes. After interactions, nodes can earn checks, which can be exchanged for BZZ, making the network environment and node status of the BZZ cluster particularly important.
 
 - **Bee**
 
@@ -24,14 +24,14 @@ Swarm is an official part of the Ethereum project, primarily developed by the fo
 
 ## Prerequisites
 
-- DataKit is installed ([DataKit Installation Documentation](/datakit/datakit-install/))
-- Docker is installed and Docker Swarm is initialized ([Docker Installation Reference](https://docs.docker.com/engine/install/))
+- DataKit installed ([DataKit Installation Documentation](/datakit/datakit-install/))
+- Docker installed and Docker Swarm initialized ([Docker Installation Reference](https://docs.docker.com/engine/install/))
 
 ## Configuration
 
 ### Configure Prom Exporter
 
-Enter the `conf.d/prom` directory under the DataKit installation directory, copy `prom.conf.sample`, and rename it to `prom.conf`. Example:
+Navigate to the `conf.d/prom` directory under the DataKit installation directory, copy `prom.conf.sample`, and rename it to `prom.conf`. Example configuration:
 
 ```yaml
  ## Exporter address
@@ -39,12 +39,12 @@ Enter the `conf.d/prom` directory under the DataKit installation directory, copy
 
   ## Metric type filtering, optional values are counter, gauge, histogram, summary
   # By default, only counter and gauge types of metrics are collected
-  # If empty, no filtering is performed
+  # If empty, no filtering is applied
   metric_types = ["counter", "gauge"]
 
   ## Metric name filtering
-  # Supports regex, multiple configurations can be set, satisfying any one condition is sufficient
-  # If empty, no filtering is performed
+  # Supports regular expressions, multiple configurations can be set, where satisfying any one condition is sufficient
+  # If empty, no filtering is applied
   # metric_name_filter = ["cpu"]
 
   ## Measurement name prefix
@@ -52,8 +52,8 @@ Enter the `conf.d/prom` directory under the DataKit installation directory, copy
   # measurement_prefix = "prom_"
 
   ## Measurement name
-  # By default, the first field after splitting the metric name by "_" is used as the measurement name, and the remaining fields as the current metric name
-  # If measurement_name is configured, no splitting of the metric name will occur
+  # By default, the measurement name is split by underscores "_", with the first field as the measurement name and the remaining fields as the current metric name
+  # If measurement_name is configured, no splitting of the metric name occurs
   # The final measurement name will include the measurement_prefix prefix
   # measurement_name = "prom"
 
@@ -68,7 +68,7 @@ Enter the `conf.d/prom` directory under the DataKit installation directory, copy
 
   ## Custom measurement names
   # Metrics containing the prefix can be grouped into one measurement
-  # Custom measurement name configuration takes precedence over measurement_name configuration
+  # Custom measurement name configuration takes precedence over the measurement_name option
   #[[inputs.prom.measurements]]
   #  prefix = "cpu_"
   #  name = "cpu"
@@ -89,7 +89,7 @@ Enter the `conf.d/prom` directory under the DataKit installation directory, copy
 
 #### Modify DataKit 
 
-Enter the `conf.d` directory under the DataKit installation directory and modify the `http_listen` in the `datakit.conf` file. Example:
+Navigate to the `conf.d` directory under the DataKit installation directory, modify the `datakit.conf` file to change `http_listen`. Example configuration:
 
 ```yaml
 http_listen = "0.0.0.0:9529"
@@ -127,26 +127,21 @@ disable_404page = false
   hosts = []
   inputs = []
 ```
-
 Save and restart DataKit:
 ```bash
 datakit --restart
 ```
-
 #### Install Func
-
-Download DataFlux Func dependencies:
+Download the DataFlux Func dependency files:
 ```yaml
 /bin/bash -c "$(curl -fsSL https://t.dataflux.cn/func-portable-download)"
 ```
+After executing the command, all required files will be saved in the newly created `dataflux-func-portable` directory under the current directory.
 
-After execution, all required files are saved in the newly created `dataflux-func-portable` directory under the current directory.
-
-In the downloaded `dataflux-func-portable` directory, run the following command to automatically configure and start the entire DataFlux Func:
+In the downloaded `dataflux-func-portable` directory, run the following command to automatically configure and start DataFlux Func:
 ```yaml
 sudo /bin/bash run-portable.sh
 ```
-
 Installation successful:
 ```systemverilog
 Please wait for the container to run, wait 30 seconds...
@@ -166,16 +161,14 @@ To uninstall:
 
 Now open http://<IP or Hostname>:8088/ and have fun!
 ```
-
-Access `http://<IP or Hostname>:8088` to see the following interface:
+Visit `http://<IP or Hostname>:8088` to see the following interface:
 
 ![image.png](../images/swarm-bee-3.png)
 
 #### Configure DataKit Data Source for Data Reporting
 
 ![image.png](../images/swarm-bee-4.png)
-
-#### Write Script for Peer Data Collection
+#### Write Script to Collect Peer Data
 
 ![image.png](../images/swarm-bee-5.png)
 ```python
@@ -194,53 +187,52 @@ def peer():
     print(res, "swap_peers: ", len(peers["peers"]), "    version: ", health["version"])
 
 ```
-
-> Since DataFlux Func runs via Docker Stack and bridges to the host's `docker0`, it is not directly connected to the host's local network. Therefore, even if DataFlux Func and DataFlux DataKit are installed on the same server, you cannot simply bind the DataFlux DataKit listening port to the local network (`127.0.0.1`).
+> Since DataFlux Func runs via Docker Stack and bridges to the host's `docker0`, it does not directly connect to the host's local network. Therefore, even if DataFlux Func and DataFlux DataKit are installed on the same server, you cannot simply bind the DataFlux DataKit listening port to the local network (`127.0.0.1`).
 >
-> At this time, you should modify the configuration to bind the listening port to `docker0` (`172.17.0.1`) or `0.0.0.0`.
+> At this point, you should modify the configuration to bind the listening port to `docker0` (`172.17.0.1`) or `0.0.0.0`.
 > Note to change the local listening port `:1635` to `0.0.0.0:1635` in the Swarm Bee configuration.
 
-Insert the data obtained through API requests into the corresponding measurement with appropriate tags for display in Studio.
-#### Create Automatic Triggers for Function Scheduling
+Insert data obtained through API requests into the corresponding measurement with appropriate tags for display in Studio.
+#### Create Automatic Trigger to Execute Function Scheduling
 
 ![image.png](../images/swarm-bee-6.png)
 
-Select the function you just wrote, set up a scheduled task, add an expiration date, and click save.
+Select the function just written, set up a scheduled task, add validity, and click save.
 
-> Scheduled tasks can trigger at least once per minute. For special needs, you can use while + sleep to increase the data collection frequency.
+> Scheduled tasks can trigger at least once every minute. For special requirements, you can use `while + sleep` to increase the data collection frequency.
 
-#### Check Function Execution Status via Automatic Triggers
+#### Check Function Execution Status via Automatic Trigger Configuration
 
 ![image.png](../images/swarm-bee-7.png)
 
-If it shows success, congratulations! You can now view the reported metrics in Studio.
+If it shows success, congratulations! You can now view your reported metrics in Studio.
 
 ## Monitoring Metrics Explanation
 
 ### 1. Bee
 
-Real-time monitoring of multiple hosts' Harvesters analyzes the availability, status, and earnings of different Harvesters, enhancing Chia users' control over their Harvesters.
+Monitor multiple Harvesters in real-time, analyzing their availability, status, and earnings, thereby enhancing Chia users' control over Harvesters.
 
 ![image.png](../images/swarm-bee-11.png)
 
 | **Metric Description** | **Name** | **Measurement Standard** |
 | --- | --- | --- |
-| Number of received checks | `bee.swap_cheques_received` | Earnings metric |
-| Number of rejected checks | `bee.swap_cheques_rejected` | Earnings metric |
-| Number of sent checks | `bee.swap_cheques_sent` | Earnings metric |
-| Number of linked peers | `bee.swap_peers` | Performance metric |
+| Number of received checks | `bee.swap_cheques_received` | Revenue metric |
+| Number of rejected checks | `bee.swap_cheques_rejected` | Revenue metric |
+| Number of sent checks | `bee.swap_cheques_sent` | Revenue metric |
+| Number of connected peers | `bee.swap_peers` | Performance metric |
 
 #### Number of Rejected Checks
 
-To ensure stable daily earnings, always monitor the number of rejected checks. When this number rises rapidly, promptly check the status of the Bee node and network to ensure stable daily earnings.
+To ensure stable daily earnings, please monitor the number of rejected checks. When the number of rejected checks rises rapidly, promptly check the status of the Bee node and network to maintain stable daily earnings.
 
-#### Number of Linked Peers
+#### Number of Connected Peers
 
-To ensure stable earnings and network stability, monitor the number of linked peers. Normally, when the network and node status are healthy, the number of linked peers remains stable within a certain range without significant fluctuations. When you notice significant fluctuations in the number of linked peers, promptly check the status of the Bee node and network to ensure stable earnings.
+To ensure stable earnings and network stability, monitor the number of connected peers. Normally, when the network and node statuses are healthy, the number of connected peers remains stable within a certain range without significant fluctuations. If you notice significant fluctuations in the number of connected peers, promptly check the status of the Bee node and network to ensure stable earnings.
 
 ### 2. CPU Monitoring
 
-CPU monitoring helps analyze CPU load peaks and identify excessive CPU usage. Through CPU monitoring metrics, you can improve CPU capacity or reduce load, find potential issues, and avoid unnecessary upgrade costs. CPU monitoring metrics also help identify unnecessary background processes running and determine process or application resource utilization and its impact on the entire network.
+CPU monitoring helps analyze CPU load peaks and identify excessive CPU usage. Through CPU monitoring metrics, you can improve CPU capacity or reduce load, find potential issues, and avoid unnecessary upgrade costs. CPU monitoring metrics also help identify unnecessary background processes and determine process or application resource utilization and its impact on the entire network.
 
 ![image.png](../images/swarm-bee-8.png)
 
@@ -251,19 +243,11 @@ CPU monitoring helps analyze CPU load peaks and identify excessive CPU usage. Th
 
 #### CPU Usage
 
-CPU usage can be divided into:
-- `User Time` (Percentage of time executing user processes)
-- `System Time` (Percentage of time executing kernel processes and interrupts)
-- `Idle Time` (Percentage of time CPU is idle)
-
-For CPU performance, the run queue for each CPU should not exceed 3. If the CPU is fully loaded:
-- `User Time` should be around 65%~70%
-- `System Time` should be around 30%~35%
-- `Idle Time` should be around 0%~5%
+CPU usage can be divided into: `User Time` (percentage of time spent executing user processes); `System Time` (time spent executing kernel processes and interrupts); `Idle Time` (time CPU is in Idle state). For CPU performance, first, ensure the run queue for each CPU does not exceed 3. Secondly, if the CPU is fully loaded, `User Time` should be around 65%~70%, `System Time` around 30%~35%, and `Idle Time` around 0%~5%.
 
 ### 3. Memory Monitoring
 
-Memory is one of the main factors affecting Linux performance. Adequate memory resources directly impact application system performance.
+Memory is one of the main factors affecting Linux performance, and the sufficiency of memory resources directly impacts the performance of application systems.
 
 ![image.png](../images/swarm-bee-9.png)
 
@@ -276,7 +260,7 @@ Memory is one of the main factors affecting Linux performance. Adequate memory r
 
 #### Memory Usage Rate
 
-Closely monitoring available memory usage is important because RAM contention inevitably leads to paging and performance degradation. To keep the machine running smoothly, ensure it has enough RAM to meet your workload. Persistent low memory availability can lead to segmentation faults and other serious issues. Remedies include increasing physical memory or enabling memory page merging if possible.
+Closely monitoring available memory usage is crucial because RAM contention inevitably leads to paging and performance degradation. To keep the machine running smoothly, ensure it has enough RAM to meet your workload. Persistent low memory availability can lead to segmentation faults and other serious issues. Remedial measures include increasing the physical memory capacity of the system, and if possible, enabling memory page merging.
 
 ### 4. Disk Monitoring
 
@@ -286,31 +270,24 @@ Closely monitoring available memory usage is important because RAM contention in
 | --- | --- | --- |
 | Disk Health Status | `disk.health`<br />`disk.pre_fail` | Availability |
 | Disk Space | `disk.free`<br />`disk.used` | Resource Utilization |
-| Disk Inodes | `disk.inodes_free`<br />`disk.inodes_used` | Resource Utilization |
+| Disk Inode | `disk.inodes_free`<br />`disk.inodes_used` | Resource Utilization |
 | Disk Read/Write | `diskio.read_bytes`<br />`diskio.write_bytes` | Resource Utilization |
 | Disk Temperature | `disk.temperature` | Availability |
 | Disk Model | `disk.device_model` | Basic Information |
 | Disk Read/Write Time | `diskio.read_time`<br />`disk.io.write_time` | Resource Utilization |
 
 #### Disk Space
-
-Maintaining sufficient free disk space is essential for any operating system. Core system processes store logs and other types of data on the disk. Set alerts when available disk space drops below 15% to ensure business continuity.
-
+Maintaining sufficient free disk space is necessary for any operating system. Besides regular processes requiring disk space, core system processes store logs and other types of data on the disk. Set alerts to notify when available disk space drops below 15% to ensure business continuity.
 #### Disk Read/Write Time
-
-These metrics track the average time spent on disk read/write operations. Set alerts for values greater than 50 milliseconds, indicating relatively high latency (ideally less than 10 milliseconds). Transferring workloads to faster disks is recommended to reduce latency. Different roles may have different acceptable thresholds.
-
+These metrics track the average time spent on disk read/write operations. Values greater than 50 milliseconds indicate relatively high latency (ideally less than 10 milliseconds), typically suggesting transferring business workloads to faster disks to reduce latency. You can set different alert thresholds based on the server role, as acceptable thresholds vary.
 #### Disk Read/Write
-
-If your server hosts resource-intensive applications, monitor disk I/O rates. Disk read/write metrics aggregate disk-marked read (`diskio.read_bytes`) and write (`diskio.write_bytes`) activities. Persistent high disk activity can degrade service performance and cause system instability, especially when combined with high RAM usage and swap files. Recommendations include increasing the number of disks, using faster disks, increasing RAM reserved for filesystem caching, or distributing workloads across more machines.
-
+If your server hosts high-demand applications, monitor disk I/O rates. Disk read/write metrics aggregate read (`diskio.read_bytes`) and write (`diskio.write_bytes`) activities marked by the disk. Persistent high disk activity can degrade services and cause system instability, especially when combined with high RAM and page files. During high disk activity, consider increasing the number of disks in use (especially if you see a large number of operations in the queue), using faster disks, increasing RAM reserved for file system caching, or distributing workloads across more machines if possible.
 #### Disk Temperature
-
-If your business requires high disk availability, set alerts to monitor disk working temperature. Temperatures above 65°C (SSD 75°C) require attention. If the disk overheats, it could damage the drive and result in data loss.
+If your business requires high disk availability, set alerts to monitor disk working temperature. Temperatures above 65°C (75°C for SSDs) are concerning. If your hard drive overheating protection or temperature control mechanisms fail, rising temperatures could damage the disk and result in data loss.
 
 ### 5. Network Monitoring
 
-Your applications and infrastructure components depend on increasingly complex architectures. Whether you run monolithic applications or microservices, whether deployed to cloud infrastructure, private data centers, or both, virtualized infrastructure enables developers to respond dynamically, creating network patterns that do not match traditional monitoring tools. Datadog introduces network performance monitoring tailored for the cloud era.
+Your applications and infrastructure components depend on increasingly complex architectures. Whether you run monolithic applications or microservices, whether deployed to cloud infrastructure, private data centers, or both, virtualized infrastructure enables developers to respond dynamically to arbitrary scale, creating network patterns that do not match traditional network monitoring tools. To provide visibility into each component and all connections within the environment, Datadog introduced network performance monitoring for the cloud era.
 
 ![image.png](../images/swarm-bee-13.png)
 
@@ -318,28 +295,26 @@ Your applications and infrastructure components depend on increasingly complex a
 | --- | --- | --- |
 | Network Traffic | `net.bytes_recv`<br />`net.bytes_sent` | Resource Utilization |
 | Network Packets | `net.packets_recv`<br />`net.packets_sent` | Resource Utilization |
-| Retransmissions | `net.tcp_retranssegs` | Availability |
+| Retransmission Count | `net.tcp_retranssegs` | Availability |
 
 #### Network Traffic
+Together, these two metrics measure total network throughput for a given network interface. For most consumer hardware, NIC transmission speeds are 1 Gbps or higher, so except in extreme cases, the network is unlikely to become a bottleneck. Set alerts when the interface bandwidth exceeds 80% utilization to prevent network saturation (for a 1 Gbps link, reaching 100 megabytes per second).
 
-Together, these two metrics measure the total network throughput of a given network interface. For most consumer hardware, NIC transmission speed is at least 1 Gbps. Except in extreme cases, the network is unlikely to become a bottleneck. Set alerts when the interface bandwidth exceeds 80% utilization to prevent network saturation (for a 1 Gbps link, reaching 100 MBps).
+#### Retransmission Count
+TCP retransmissions occur frequently but are not errors; however, their presence may indicate issues. Retransmissions are usually the result of network congestion and often correlate with high bandwidth consumption. Monitor this metric because excessive retransmissions can cause significant application delays. If the sender does not receive acknowledgment of transmitted packets, it will delay sending more packets (typically for about 1 second), increasing latency and congestion-related speed reductions.
 
-#### Retransmissions
-
-TCP retransmissions often occur but are not errors; however, they can indicate underlying issues. Retransmissions are usually due to network congestion and are associated with high bandwidth consumption. Monitor this metric because excessive retransmissions can cause significant application delays. If the sender does not receive acknowledgment of sent packets, it will delay sending more packets (typically for about 1 second), increasing latency and congestion-related speed.
-
-If not caused by network congestion, the source of retransmissions might be faulty network hardware. Few dropped packets and high retransmission rates can lead to excessive buffering. Regardless of the cause, tracking this metric helps understand seemingly random fluctuations in network application response times.
+If not caused by network congestion, the source of retransmissions may be faulty network hardware. A small number of dropped packets and high retransmission rates can lead to excessive buffering. Regardless of the cause, tracking this metric helps understand seemingly random fluctuations in network application response times.
 
 ## Conclusion
 
-In this article, we discussed some of the most useful metrics you can monitor to retain labels during mining. If you are conducting mining operations, monitoring the following list of metrics will give you a good understanding of the mine's operational status and availability:
+In this article, we mentioned some of the most useful metrics to monitor for maintaining labels during mining. If you are conducting mining operations, monitoring the metrics listed below will give you a good understanding of the mine's operational status and availability:
 
 - **Disk Read/Write Latency**
 
 - **Disk Temperature**
 - **Network Traffic**
 - **Daily Expected Earnings**
-- **Harvester Preliminary Screening Pass Rate**
+- **Harvester Screening Pass Rate**
 - **Processes**
 
-Ultimately, you will recognize other metrics relevant to your specific use case. Of course, you can also learn more through [Guance](http://guance.com).
+Ultimately, you will recognize other metrics relevant to your specific use case. Of course, you can also learn more through [<<< custom_key.brand_name >>>](http://guance.com).

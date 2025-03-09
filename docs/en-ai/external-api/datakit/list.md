@@ -12,15 +12,15 @@
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| workspaceUUID | string | Yes | Workspace UUID<br>Example: wksp_xxxxx <br>Allow empty: False <br> |
-| version | string | Yes | Datakit version<br>Example: xxx <br>Allow empty: False <br> |
-| search | string | Yes | Search for hostname, runtime ID, IP<br>Allow empty: False <br> |
-| searchKeys | string | Yes | Specify fields to search, default is `hostName,extend.ip,extend.runtime_id`<br>Example: xxx <br>Allow empty: False <br> |
-| isOnline | boolean | Yes | Whether active on the same day<br>Example: xxx <br>Allow empty: False <br> |
-| lastHeartbeatTime | integer | Yes | Time range of the last data report in seconds<br>Allow empty: False <br>Example: 600 <br>$minValue: 1 <br> |
-| pageIndex | integer | Yes | Page number<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize | integer | Yes | Number of items per page<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br> |
+|:-----------------|:-------|:-----|:----------------|
+| workspaceUUID | string | Yes | Workspace UUID<br>Example: wksp_xxxxx <br>Can be empty: False <br> |
+| version | string | Yes | Datakit version<br>Example: xxx <br>Can be empty: False <br> |
+| search | string | Yes | Search by hostname, runtime ID, or IP<br>Can be empty: False <br> |
+| searchKeys | string | Yes | Specify fields to search, default is `hostName,extend.ip,extend.runtime_id`<br>Example: xxx <br>Can be empty: False <br> |
+| isOnline | boolean | Yes | Whether active on the current day<br>Example: xxx <br>Can be empty: False <br> |
+| lastHeartbeatTime | integer | Yes | Time range of the last data report, in seconds<br>Can be empty: False <br>Example: 600 <br>$minValue: 1 <br> |
+| pageIndex | integer | Yes | Page number<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize | integer | Yes | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
 
 ## Additional Parameter Notes
 

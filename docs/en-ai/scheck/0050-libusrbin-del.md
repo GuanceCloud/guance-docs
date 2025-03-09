@@ -1,4 +1,4 @@
-# 0050-libusrbin-del-/usr/bin Directory Files Deleted
+# 0050-libusrbin-del-/usr/bin Directory Has Files Deleted
 ---
 
 ## Rule ID
@@ -8,12 +8,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -23,17 +23,16 @@
 
 ## Description
 
-- Monitor whether files under the `/usr/bin` directory are deleted.
+- Monitor whether files under the host directory /usr/bin have been deleted.
 
 
 ## Scan Frequency
 
-- Disable
-
+- disable
 
 ## Theoretical Basis
 
-- The `/usr/bin` directory contains essential executable files for system commands. If these files are deleted, it may cause the system to fail to operate normally.
+- The /usr/bin directory contains executable files of critical system commands. If these files are deleted, it may cause the system to fail to operate normally.
 
 
 ## Risk Items
@@ -48,7 +47,7 @@
 
 ## Remediation
 
-- If files under the `/sbin` directory are detected as deleted, check if they are critical system commands.
+- If files in the /sbin directory are detected to be deleted, check if they are critical system commands.
 
 
 ## Impact

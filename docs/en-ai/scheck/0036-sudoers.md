@@ -8,12 +8,12 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -27,17 +27,17 @@
 ## Description
 
 
-- Monitor whether the host /etc/sudoers has been modified
+- Monitor whether the host's /etc/sudoers has been modified.
 
 
 
 ## Scan Frequency
-- Disable
+- disable
 
 ## Theoretical Basis
 
 
-- In Linux, the /etc/sudoers file allows users to execute commands as superuser or other users according to specified security policies. Security policies determine the privileges a user must have to run sudo. The policy may require users to authenticate themselves using a password or other authentication mechanisms.
+- In Linux, the /etc/sudoers file allows users to execute commands as a superuser or other users according to specified security policies. Security policies determine the privileges a user must have to run sudo. The policy may require users to authenticate themselves using a password or other authentication mechanisms.
 
 
 
@@ -46,12 +46,14 @@
 
 - Hacker penetration
 
+
+
 - Data leakage
 
 
 
 ## Audit Method
-- Verify if the host /etc/sudoers exists. You can use the following command for verification:
+- Verify if the host's /etc/sudoers exists. You can verify it with the following command:
 
 ```bash
 cat /etc/sudoers
@@ -66,7 +68,7 @@ cat /etc/sudoers
 ## Impact
 
 
-- The system may fail to log in normally
+- The system may fail to log in properly.
 
 
 
@@ -86,7 +88,7 @@ cat /etc/sudoers
 
 
 
-## CIS Control
+## CIS Controls
 
 
 - None

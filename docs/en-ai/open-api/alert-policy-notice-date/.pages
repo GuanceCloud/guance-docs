@@ -1,6 +1,6 @@
 nav:
-  - 'Alert Policies - Custom Notification Date List': list.md
-  - 'Alert Policies - Custom Notification Date Create': add.md
-  - 'Alert Policies - Custom Notification Date Get': get.md
-  - 'Alert Policies - Custom Notification Date Modify': modify.md
-  - 'Alert Policies - Custom Notification Date Delete': delete.md
+  - 'Alert Strategies - Custom Notification Date List': list.md
+  - 'Alert Strategies - Custom Notification Date Create': add.md
+  - 'Alert Strategies - Custom Notification Date Get': get.md
+  - 'Alert Strategies - Custom Notification Date Modify': modify.md
+  - 'Alert Strategies - Custom Notification Date Delete': delete.md

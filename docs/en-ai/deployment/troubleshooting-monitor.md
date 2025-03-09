@@ -2,23 +2,23 @@
 
 ## Introduction
 
-This article will introduce how to troubleshoot common monitor issues:
+This document will guide you through troubleshooting common monitor issues:
 
 - The monitor does not generate events
-- The monitor has events, but no notification messages are sent
+- The monitor generates events but does not send notification messages
 
 
 ## Prerequisites
 
-- Requires account permissions to create monitors in Guance
-- Requires backend management permissions for Guance
+- You need an account with permissions to create monitors in <<< custom_key.brand_name >>>
+- You need backend management permissions for Guance
 
 ## Troubleshooting Steps
 
 ### Step One: Create a Test Monitor
 
-- Log in to the Guance console
-- Select "Monitoring" - "Create New Monitor" - "Threshold Detection"
+- Log in to the <<< custom_key.brand_name >>> console
+- Select "Monitoring" - "Create" - "Threshold Detection"
 
 - Detection Metrics:
 
@@ -42,7 +42,7 @@ This article will introduce how to troubleshoot common monitor issues:
 
 ### Step Two: Obtain the Automatic Trigger Configuration ID
 
-- Log in to the Guance console and select "Monitoring" - open browser debugging mode
+- Log in to the <<< custom_key.brand_name >>> console and select "Monitoring" - open browser debugging mode
 
   ![](img/faq-get-cron-id.png)
 
@@ -56,20 +56,20 @@ This article will introduce how to troubleshoot common monitor issues:
 
 ### Step Three: Log in to the Func Platform to Query Issues
 
-- Launcher to get the Func login URL
+- Launcher to get the Func login address
   ![](img/faq-cron-4.png)
 
   ![](img/faq-cron-5.png)
 
-- Log in to your Func platform
+- Log in to your func platform
 
   ![](img/faq-func.png)
 
-- "Management" - "Automatic Trigger Configurations" - "Show All" - "Enter the ID from Step Two" - "Confirm Search" - "Recent Executions"
+- "Manage" - "Automatic Trigger Configurations" - "Select Show All" - "Enter the ID from Step Two" - "Confirm Search" - "Recent Executions"
 
   ![](img/faq-get-info.png)
 
-- You can view detailed error information through "Recent Executions"
+- You can view detailed error information via "Recent Executions"
 
   ![](img/faq-get-error.png)
 
@@ -78,7 +78,7 @@ This article will introduce how to troubleshoot common monitor issues:
 ???+ warning "Note"
      It is recommended to execute `kubectl rollout restart -n middleware deploy message-desk-worker message-desk`, then proceed with testing and troubleshooting.
 
-The `message-desk-worker` service is the alert notification module of Guance, responsible for sending notifications via DingTalk bots, email, Feishu bots, etc.
+The message-desk-worker service is the alert notification module of <<< custom_key.brand_name >>>, responsible for sending notifications such as DingTalk bot notifications, email notifications, Lark bot notifications, etc.
 
 - namespace: middleware
 - deployment: message-desk-worker

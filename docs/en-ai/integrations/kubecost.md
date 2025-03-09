@@ -1,13 +1,13 @@
 ---
-title: 'KubeCost'
-summary: 'Collect KubeCost Metrics information'
+title     : 'KubeCost'
+summary   : 'Collect KubeCost Metrics information'
 __int_icon: 'icon/kubecost'
-dashboard:
-  - desc: 'KubeCost'
-    path: 'dashboard/en/kubecost'
-monitor:
-  - desc: 'Not Available'
-    path: '-'
+dashboard :
+  - desc  : 'KubeCost'
+    path  : 'dashboard/en/kubecost'
+monitor   :
+  - desc  : 'None'
+    path  : '-'
 ---
 
 
@@ -26,9 +26,9 @@ monitor:
 
 ### CRD Configuration
 
-KubeCost has exposed metrics, so only need to configure DataKit to discover and report these metrics.
+KubeCost has exposed metrics, so only configuration is needed to allow DataKit to discover and report these metrics.
 
-- Add `kubecost-serverMonitor.yaml`
+- Create `kubecost-serverMonitor.yaml`
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
@@ -48,7 +48,7 @@ spec:
 
 - Execute
 
-> kubectl apply -f `kubecost-serverMonitor.yaml`
+> kubectl apply  -f `kubecost-serverMonitor.yaml`
 
 #### DataKit Configuration
 
@@ -56,7 +56,7 @@ If already enabled, ignore this step.
 
 - Enable DataKit Service Monitor auto-discovery
 
-Add `env: ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_MONITORS`
+Add `env : ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_MONITORS`
 
 ```yaml
 apiVersion: apps/v1

@@ -1,48 +1,46 @@
 # DQL Query
 ---
 
-Click on the **Shortcut > Query Tool** in the Guance console to open the query Explorer, or you can use the shortcut keys `Alt+Q` or `option+Q` to directly open the query tool.
-
-![](img/3.dql_6.png)
-
-> Click the **[Simple Query](../scene/visual-chart/chart-query.md#simple)** and **[PromQL Query](../scene/visual-chart/chart-query.md#promql)** buttons to the right of **DQL Query** to switch query methods.
+Click <<< custom_key.brand_name >>> console's **Shortcut > Query Tool** to open the query explorer, or you can use the shortcut keys `Alt+Q` or `option+Q` to directly open the query tool.
 
 
-## Related Actions
+> Click the **[Simple Query](../scene/visual-chart/chart-query.md#simple)** and **[PromQL Query](../scene/visual-chart/chart-query.md#promql)** buttons on the right side of **DQL Query** to switch the query method.
+
+
+## Options
 
 ### Return Results
 
-In the DQL query window, input a DQL query statement and click **Execute** to view the query results in **Return Results**. The **Return Results** displays the query results in table format, with a default return of 1000 records. You can export the returned data as a CSV file.
+Enter a query statement in the DQL query window, click **Execute**, and you can view the query results in **Return Results**.
 
-**Note:** When using DQL query statements, you can use [limit](define.md#limit) or [slimit](define.md#slimit) to control the number of returned query results.
+The query results will be displayed in table format, with the system defaulting to returning a maximum of 2,000 data entries. You can also export these data as a CSV file.
+
+**Note:** When using DQL query statements, you can control the number of returned query results using the [slimit](define.md#slimit) parameter.
 
 ![](img/3.dql_1.png)
 
-If there is an error in the DQL query statement, you can also see the error message in **Return Results**.
-
-![](img/3.dql_7.png)
 
 ### JSON
 
-If the DQL query statement is correct, after returning the query results, you can view the JSON structured query results in **JSON**, which supports copying JSON. If the DQL query returns an error result, the error information will also be displayed in **JSON**.
+Query results support viewing in JSON format. If the DQL query returns an error result, the error message will be directly indicated in the JSON.
 
 ![](img/3.dql_3.png)
 
 ### Query History
 
-Query history supports viewing up to 100 query history records for the past 7 days by day, and supports fuzzy search of query statements.
+Query history supports viewing up to 100 query history records from the last 7 days by day, and it supports fuzzy searching for query statements.
 
 ![](img/3.dql_4.png)
 
-Click the execute button ![](img/3.dql_8.png) to the right of the query history data to directly display the corresponding query statement and query results.
+Click the execute button :octicons-play-16: on the right side of the query history data to directly display the corresponding query statement and its results.
 
 ![](img/3.dql_1.png)
 
 ## DQL Syntax
 
-DQL queries follow the syntax paradigm below, where the relative order between parts cannot be changed. From a syntactical perspective, `data-source` is mandatory (similar to the `FROM` clause in SQL), while other parts are optional.
+DQL queries follow the syntax paradigm below; the relative order between different parts cannot be changed. From a syntax perspective, `data-source` is mandatory (similar to the `FROM` clause in SQL), while other parts are optional.
 
-> For more details on DQL syntax, refer to the documentation [DQL Definition](../dql/define.md).
+> For more details about DQL syntax, refer to the document [DQL Definition](../dql/define.md).
 
 ```
 namespace::
@@ -59,69 +57,69 @@ namespace::
 
 ### <u>Example Explanation</u>
 
-Below is a simple example that uses DQL to query the `usage_idle` field (CPU idle rate) from the time series Metrics set `cpu`, filtering and grouping the results by host. Here, `#{host}` is a view variable set in the Guance dashboard for filtering.
+Below is a simple example that queries the field `usage_idle` (CPU idle rate) of the time series Metrics set `cpu` using DQL, filtering and grouping by host. Here, `#{host}` is a view variable set in the <<< custom_key.brand_name >>> dashboard used for filtering.
 
 ![](img/4.DQL_2.1.png)
 
-Applying the above statement to the chart query in the Guance scene dashboard, the following image combines expression queries and DQL queries to display CPU usage over the last 15 minutes.
+Applying the above statement to the chart query in the <<< custom_key.brand_name >>> scene dashboard, the following image combines expression queries and DQL queries to display CPU usage over the past 15 minutes.
 
 ![](img/4.DQL_2.png)
 
 ## DQL Functions
 
-In addition to using DQL queries in scene dashboards, we can also use DQL functions to query various data collected by DataKit, such as data sources, fields, tags, etc.
+In addition to using DQL queries in scene dashboards, we can also query various DataKit-collected data, such as data sources, fields, and tags, using DQL functions.
 
 ### SHOW Function
 
-The SHOW function is used to display various types of data. If you are not clear about the data sources, fields, tags, etc., collected by DataKit, you can use the SHOW function in the DQL query Explorer to query them.
+The SHOW function is used to display various types of data. If you do not have a clear understanding of the data sources, fields, and tags collected by DataKit, you can use the SHOW function in the DQL query explorer to query them.
 
-Below are examples of using the SHOW function to query sources, fields, etc., for "objects" and "logs".
+Below are examples of querying the sources, fields, etc., for "objects" and "logs" using the SHOW function.
 
-> For more details on functions, refer to the documentation [DQL Functions](../dql/funcs.md) and [DQL Outer Functions](../dql/out-funcs.md).
+> For more information about functions, refer to the documents [DQL Functions](../dql/funcs.md) and [DQL Outer Functions](../dql/out-funcs.md).
 
 #### show_object_source()
 
-Displays the Metrics set for `object` data.
+Displays the Metrics sets for `object` data.
 
 ![](img/3.dql_9.png)
 
 #### show_object_field()
 
-Displays the `fields` list for objects.
+Displays the list of fields for objects.
 
 ![](img/3.dql_10.png)
 
 #### show_object_label()
 
-Displays the label information included in objects.
+Displays the labels included in the object.
 
 ![](img/3.dql_11.png)
 
 #### show_logging_source()
 
-Displays the Metrics set for log data.
+Displays the Metrics sets for log data.
 
 ![](img/3.dql_12.png)
 
 #### show_logging_field()
 
-Displays all `fields` lists under a specified `source`.
+Displays all fields under a specified `source`.
 
 ![](img/3.dql_13.png)
 
 
-## Time Query {#query_time}
+## Time Queries {#query_time}
 
-In DQL query statements, you can specify time parameters like `[today]`, `[yesterday]`, `[this week]`, `[last week]`, `[this month]`, `[last month]`.
+In DQL query statements, you can specify `[today]`, `[yesterday]`, `[this week]`, `[last week]`, `[this month]`, `[last month]` time parameters.
 
-- today: from midnight today to the current time;
-- yesterday: from midnight yesterday to midnight today;
-- this week: from midnight Monday of this week to the current time;
-- last week: from midnight Monday of last week to midnight Monday of this week;
-- this month: from midnight on the 1st of this month to the current time;
-- last month: from midnight on the 1st of last month to midnight on the 1st of this month;
+- today: From midnight today to the current time;
+- yesterday: From midnight yesterday to midnight today;
+- this week: From midnight Monday of this week to the current time;
+- last week: From midnight Monday of last week to midnight Monday of this week;
+- this month: From midnight on the 1st of this month to the current time;
+- last month: From midnight on the 1st of last month to midnight on the 1st of this month;
 
-### Example Syntax
+### Example Writing
 
 
 To query data from midnight today until now without a time interval, returning one data point:
@@ -135,9 +133,10 @@ For example, to query data from midnight today until now with a 5-minute time in
 
 ```
 M::cpu:(avg(`usage`)) [today:5m]
+
 ```
 
-Expression calculations can also support querying data from two different time periods for final result calculation. If multiple different time parameters are defined in the expression, such as subquery A and subquery B defining time parameters as `[today]` and `[yesterday]` respectively, the final data return value's time will be filled according to the `now()` time at the time of the query, ultimately returning one data point.
+Expression calculations can also support querying data from two different time periods for final result calculations. If there are multiple different time parameters defined in the expression, such as `[today]` and `[yesterday]` in subqueries A and B, the final data return value will be filled according to the `now()` time when querying, ultimately returning one data point.
 
 
-If a time interval is defined in the expression and the query times of multiple queries do not align, such as subquery A and subquery B defining time parameters as `[today:5m]` and `[yesterday:5m]` respectively, the data points' times do not match, making it impossible to perform arithmetic operations. In this case, Guance will default to returning an empty value.
+If a time interval is defined in the expression and there are inconsistent query times across multiple queries, such as `[today:5m]` and `[yesterday:5m]` in subqueries A and B, the data points' times will not align, making it impossible to perform arithmetic operations. In this case, <<< custom_key.brand_name >>> will default to returning a null value.

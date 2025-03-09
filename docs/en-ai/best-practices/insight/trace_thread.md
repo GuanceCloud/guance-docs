@@ -1,15 +1,15 @@
 # Best Practices for Passing Trace in Multi-threaded Asynchronous Systems
 
-Common implementations of asynchronous threads in JAVA include:
+Common implementations of asynchronous threads in Java include:
 
 - `new Thread`
 - `ExecutorService`
 
-Of course, there are others like `fork-join`, which will be mentioned later. This document mainly focuses on these two scenarios in conjunction with DDTrace and Spring Boot.
+Of course, there are others like `fork-join`, which will be mentioned later. The following mainly focuses on these two scenarios combined with DDTrace and Spring Boot.
 
 ## Introducing the DDTrace SDK
 
-```xml
+```pom
 <properties>
     <java.version>1.8</java.version>
     <dd.version>1.21.0</dd.version>
@@ -49,11 +49,11 @@ Configure `logback` to output `traceId` and `spanId`. Apply the following `patte
 <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - [%method,%line] %X{dd.service} %X{dd.trace_id} %X{dd.span_id} - %msg%n" />
 ```
 
-If trace information is generated, it will appear in the logs.
+If tracing information is generated, it will be included in the logs.
 
-## `new Thread`
+## new Thread
 
-Implement a simple interface that uses `logback` to log information and observe the log output.
+Implement a simple interface using `logback` to output log information and observe the log output.
 
 ```java
 @RequestMapping("/thread")
@@ -64,7 +64,7 @@ public String threadTest(){
 }
 ```
 
-After making a request, the logs look like this:
+After making a request, the log output is as follows:
 
 ```txt
 2023-10-23 11:33:09.983 [http-nio-8086-exec-1] INFO  com.zy.observable.ddtrace.CalcFilter - [doFilter,28] springboot-server 7209831467195902001 958235974016818257 - START /thread
@@ -73,12 +73,12 @@ connection			Keep-Alive
 user-agent			Apache-HttpClient/4.5.14 (Java/17.0.7)
 accept-encoding			br,deflate,gzip,x-gzip
 2023-10-23 11:33:10.009 [http-nio-8086-exec-1] INFO  com.zy.observable.ddtrace.controller.IndexController - [threadTest,277] springboot-server 7209831467195902001 2587871298938674772 - this func is threadTest.
-2023-10-23 11:33:10.022 [http-nio-8086-exec-1] INFO  com.zy.observable.ddtrace.CalcFilter - [doFilter,34] springboot-server 7209831467195902001 958235974016818257 - END : /thread took 39ms
+2023-10-23 11:33:10.022 [http-nio-8086-exec-1] INFO  com.zy.observable.ddtrace.CalcFilter - [doFilter,34] springboot-server 7209831467195902001 958235974016818257 - END : /thread duration: 39 ms
 ```
 
-The logs contain trace information where `7209831467195902001` is the `traceId` and `2587871298938674772` is the `spanId`.
+The logs contain trace information, where `7209831467195902001` is the `traceId` and `2587871298938674772` is the `spanId`.
 
-Add `new Thread` to create a new thread.
+Adding a new thread to this interface:
 
 ```java
 @RequestMapping("/thread")
@@ -92,18 +92,20 @@ public String threadTest(){
 }
 ```
 
-Make a request and observe the log output.
+After making a request, observe the log output:
 
 ```txt
 2023-10-23 11:40:00.994 [http-nio-8086-exec-1] INFO  com.zy.observable.ddtrace.controller.IndexController - [threadTest,277] springboot-server 319673369251953601 5380270359912403278 - this func is threadTest.
 2023-10-23 11:40:00.995 [Thread-10] INFO  com.zy.observable.ddtrace.controller.IndexController - [lambda$threadTest$1,279] springboot-server   - this is new Thread.
 ```
 
-From the log output, it's clear that the `new Thread` method does not pass the `Trace` information.
+From the log output, we can see that using the `new Thread` method does not pass the `Trace` information.
+
+If we explicitly pass the `Trace` information, would it work? Let's try.
 
 ### Why ThreadLocal Does Not Work
 
-**ThreadLocal** provides local thread variables, unique to each thread.
+**ThreadLocal** is a thread-local variable, unique to the current thread.
 
 To facilitate usage, we create a utility class `ThreadLocalUtil`.
 
@@ -111,7 +113,7 @@ To facilitate usage, we create a utility class `ThreadLocalUtil`.
 public static final ThreadLocal<Span> THREAD_LOCAL = new ThreadLocal<>();
 ```
 
-Store the current Span information in `ThreadLocal`.
+Then store the current Span information in `ThreadLocal`.
 
 ```java
 @RequestMapping("/thread")
@@ -129,7 +131,7 @@ public String threadTest(){
 }
 ```
 
-Make a request and observe the log output.
+After making a request, observe the log output:
 
 ```txt
 2023-10-23 14:14:02.339 [http-nio-8086-exec-1] INFO  com.zy.observable.ddtrace.controller.IndexController - [threadTest,278] springboot-server 4492960774800816442 4097884453719637622 - this func is threadTest.
@@ -138,14 +140,14 @@ Make a request and observe the log output.
 2023-10-23 14:14:02.342 [Thread-9] INFO  com.zy.observable.ddtrace.controller.IndexController - [lambda$threadTest$1,284] springboot-server   - new Thread get span:null
 ```
 
-In the new thread, the value obtained from the parent thread's `ThreadLocal` is `null`.
+In the new thread, attempting to retrieve the external thread's `ThreadLocal` results in `null`.
 
-Analyzing the source code of `ThreadLocal`, when using the `set()` method, `Thread.currentThread()` is used as the key for storing data in `ThreadLocal`. When accessing the variable from a new thread, the key changes, hence no value is retrieved.
+By analyzing the source code of `ThreadLocal`, we find that when using the `set()` method, `Thread.currentThread()` is used as the key for storing data in `ThreadLocal`. When retrieving from a new thread, the key changes, so the value cannot be retrieved.
 
 ```java
 public class ThreadLocal<T> {
     ...
-   public void set(T value) {
+    public void set(T value) {
         Thread t = Thread.currentThread();
         ThreadLocalMap map = getMap(t);
         if (map != null) {
@@ -207,7 +209,7 @@ public String threadTest(){
 }
 ```
 
-Make a request and observe the log output.
+After making a request, observe the log output:
 
 ```
 2023-10-23 14:37:05.415 [http-nio-8086-exec-1] INFO  com.zy.observable.ddtrace.controller.IndexController - [threadTest,278] springboot-server 8754268856419787293 5276611939997441402 - this func is threadTest.
@@ -216,7 +218,7 @@ Make a request and observe the log output.
 2023-10-23 14:37:05.417 [Thread-9] INFO  com.zy.observable.ddtrace.controller.IndexController - [lambda$threadTest$1,284] springboot-server   - new Thread get span:datadog.trace.instrumentation.opentracing32.OTSpan@712ad7e2
 ```
 
-From the above log, the thread internal has obtained the `span` object address, but the log `pattern` part did not output `Trace` information. The reason lies in the fact that `DDTrace` instruments `logback`'s `getMDCPropertyMap()` and `getMdc()` methods, putting Trace information into `MDC`.
+From the above log information, the thread has obtained the `span` object address, but the log `pattern` part did not output `Trace` information. This is because DDTrace instruments `logback`'s `getMDCPropertyMap()` and `getMdc()` methods, putting Trace information into `MDC`.
 
 ```java
 @Advice.OnMethodExit(suppress = Throwable.class)
@@ -275,7 +277,7 @@ public static void onExit(
 }
 ```
 
-To ensure that the newly created thread's logs also obtain the parent thread's Trace information, you can create a `span` that acts as a child `span` of the parent thread to achieve continuity.
+To ensure that the newly created thread's logs also obtain the parent thread's Trace information, you can achieve this by creating a `span` that is a child of the parent thread's `span`.
 
 ```java
 new Thread(() -> {
@@ -298,7 +300,7 @@ new Thread(() -> {
 }).start();
 ```
 
-Make a request and observe the log output.
+After making a request, observe the log output:
 
 ```txt
 2023-10-23 14:51:28.969 [http-nio-8086-exec-1] INFO  com.zy.observable.ddtrace.controller.IndexController - [threadTest,278] springboot-server 2303424716416355903 7690232490489894572 - this func is threadTest.
@@ -309,7 +311,7 @@ Make a request and observe the log output.
 2023-10-23 14:51:28.971 [Thread-9] INFO  com.zy.observable.ddtrace.controller.IndexController - [lambda$threadTest$1,294] springboot-server 2303424716416355903 5766505477412800739 - thread:2303424716416355903
 ```
 
-Why are there two log lines in the thread without Trace information in the `pattern`? The reason is that the current thread's internal `span` is created after the log output. Simply place the log statements below the `span` creation.
+Why do some log entries in the thread lack Trace information? This is because the `span` inside the thread is created after the log output. Simply place the log statements after the `span` creation.
 
 ```java
 new Thread(() -> {
@@ -332,7 +334,7 @@ new Thread(() -> {
 }).start();
 ```
 
-Make a request and observe the log output.
+After making a request, observe the log output:
 
 ```
 2023-10-23 15:01:00.490 [http-nio-8086-exec-1] INFO  com.zy.observable.ddtrace.controller.IndexController - [threadTest,278] springboot-server 472828375731745486 6076606716618097397 - this func is threadTest.
@@ -359,16 +361,16 @@ public String ExecutorServiceTest(){
 }
 ```
 
-Make a request and observe the log output.
+After making a request, observe the log output:
 
 ```txt
 2023-10-23 15:24:41.828 [http-nio-8086-exec-1] INFO  com.zy.observable.ddtrace.controller.IndexController - [ExecutorServiceTest,309] springboot-server 2170215511602500482 4370366221958823908 - this func is ExecutorServiceTest.
 2023-10-23 15:24:41.832 [pool-2-thread-1] INFO  com.zy.observable.ddtrace.controller.IndexController - [lambda$ExecutorServiceTest$2,311] springboot-server 2170215511602500482 4370366221958823908 - this is executor Thread.
 ```
 
-`ExecutorService` thread pool automatically passes Trace information due to DDTrace instrumentation of the corresponding components.
+`ExecutorService` thread pool automatically passes Trace information. This automatic capability comes from DDTrace instrumenting the corresponding components.
 
-JAVA supports trace propagation for many thread component frameworks such as `ForkJoinTask`, `ForkJoinPool`, `TimerTask`, `FutureTask`, `ThreadPoolExecutor`, etc.
+JAVA supports many thread component frameworks for trace propagation, such as `ForkJoinTask`, `ForkJoinPool`, `TimerTask`, `FutureTask`, `ThreadPoolExecutor`, etc.
 
 ![Img](../images/trace_thread_1.png)
 

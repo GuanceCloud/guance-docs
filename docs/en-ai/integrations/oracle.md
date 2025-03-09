@@ -17,7 +17,7 @@ monitor   :
 
 ---
 
-Oracle metric collection has the following data collection capabilities:
+The Oracle metric collection has the following data collection functions:
 
 - Process related
 - Table Space related data
@@ -30,7 +30,7 @@ Tested versions:
 - [x] Oracle 12c
 - [x] Oracle 11g
 
-Since DataKit version [1.32.0](../datakit/changelog.md#cl-1.32.0), Oracle metrics can be collected directly through DataKit or via external collectors.
+Since DataKit version [1.32.0](../datakit/changelog.md#cl-1.32.0), it supports collecting Oracle metrics directly through DataKit or via an external collector.
 
 ## Configuration {#config}
 
@@ -38,7 +38,7 @@ Since DataKit version [1.32.0](../datakit/changelog.md#cl-1.32.0), Oracle metric
 
 - Create a monitoring account
 
-For single PDB or non-CDB instances, a local user is sufficient:
+If you are using a single PDB or non-CDB instance, a local user is sufficient:
 
 ```sql
 -- Create the datakit user. Replace the password placeholder with a secure password.
@@ -69,7 +69,7 @@ GRANT SELECT ON V_$SYSMETRIC TO datakit;
 GRANT SELECT ON V_$SYSTEM_PARAMETER TO datakit;
 ```
 
-If you want to monitor table spaces (Table Spaces) from CDB and all PDBs, a common user with appropriate privileges is required:
+If you want to monitor table spaces (Table Spaces) from CDB and all PDBs, you need a common user with appropriate permissions:
 
 ```sql
 -- Create the datakit user. Replace the password placeholder with a secure password.
@@ -101,13 +101,13 @@ GRANT SELECT ON DBA_TABLESPACE_USAGE_METRICS TO datakit;
 GRANT SELECT ON DBA_USERS TO datakit;
 ```
 
-> Note: Some SQL statements may result in errors like "table does not exist" due to Oracle version differences; these can be ignored.
+> Note: Some of the above SQL statements may result in errors like "table does not exist" due to Oracle version differences. These can be ignored.
 
 - Install dependencies
 
-This step can be skipped if using DataKit for direct collection.
+If you are using direct collection with DataKit, you can skip this step.
 
-Choose the appropriate installation package based on your operating system and Oracle version. Refer to [here](https://oracle.github.io/odpi/doc/installation.html){:target="_blank"}, for example:
+Choose and install the corresponding package based on your operating system and Oracle version, refer to [this link](https://oracle.github.io/odpi/doc/installation.html){:target="_blank"}, for example:
 
 <!-- markdownlint-disable MD046 -->
 
@@ -118,9 +118,9 @@ Choose the appropriate installation package based on your operating system and O
     unzip instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip
     ```
 
-    Add the unzipped directory path to the `LD_LIBRARY_PATH` environment variable.
+    Add the unzipped directory path to the `LD_LIBRARY_PATH` environment variable path in the configuration information below.
 
-    > Alternatively, you can download our pre-prepared dependency package:
+    > You can also download our pre-prepared dependency package directly:
 
     ```shell
     wget https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip \
@@ -136,9 +136,9 @@ Choose the appropriate installation package based on your operating system and O
     unzip instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip
     ```
 
-    Add the unzipped directory path to the `LD_LIBRARY_PATH` environment variable.
+    Add the unzipped directory path to the `LD_LIBRARY_PATH` environment variable path in the configuration information below.
 
-    > Alternatively, you can download our pre-prepared dependency package:
+    > You can also download our pre-prepared dependency package directly:
 
     ```shell
     wget https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip \
@@ -149,7 +149,7 @@ Choose the appropriate installation package based on your operating system and O
 
 <!-- markdownlint-enable -->
 
-Additional libraries are required on some systems:
+Some systems require additional libraries:
 
 ```shell
 apt-get install -y libaio-dev libaio1
@@ -161,7 +161,7 @@ apt-get install -y libaio-dev libaio1
 
 === "Host Installation"
 
-    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `oracle.conf.sample` and rename it to `oracle.conf`. Example configuration:
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `oracle.conf.sample` and rename it to `oracle.conf`. Example:
 
     ```toml
         
@@ -214,11 +214,11 @@ apt-get install -y libaio-dev libaio1
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by injecting the configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the configuration through [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
 === "External Collector"
 
-    External collector configuration example:
+    Example configuration for an external collector:
 
     ```toml
     [[inputs.external]]
@@ -275,7 +275,7 @@ apt-get install -y libaio-dev libaio1
 
     ???+ tip
 
-        The above configuration will be displayed in the process list as command-line arguments (including the password). To hide the password, you can set it as an environment variable `ENV_INPUT_ORACLE_PASSWORD`, for example:
+        The above configuration will be displayed in the process list as command-line arguments (including passwords). To hide the password, you can store it in the environment variable `ENV_INPUT_ORACLE_PASSWORD`, for example:
 
         ```toml
         envs = [
@@ -283,13 +283,13 @@ apt-get install -y libaio-dev libaio1
         ] 
         ```
 
-        This environment variable takes precedence when reading the password. If the password contains special characters, refer to [this](../datakit/datakit-input-conf.md#toml-raw-string) for handling.
+        This environment variable takes precedence when reading the password. If the password contains special characters, refer to [here](../datakit/datakit-input-conf.md#toml-raw-string) for handling.
 
 <!-- markdownlint-enable -->
 
 ## Metrics {#metric}
 
-By default, all collected data appends the global election tag. Additional tags can be specified via `[inputs.oracle.tags]` in the configuration:
+By default, all collected data will append the global election tag. Additional tags can be specified in the configuration using `[inputs.oracle.tags]`:
 
 ``` toml
  [inputs.oracle.tags]
@@ -326,6 +326,9 @@ By default, all collected data appends the global election tag. Additional tags 
 
 
 
+
+
+
 ### `oracle_tablespace`
 
 - Tags
@@ -344,10 +347,13 @@ By default, all collected data appends the global election tag. Additional tags 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`in_use`|Percentage of used space relative to the maximum possible Tablespace size|float|percent|
-|`off_use`|Total space consumed by the Tablespace, in database blocks|float|B|
+|`in_use`|Percentage of used space,as a function of the maximum possible Tablespace size|float|percent|
+|`off_use`|Total space consumed by the Tablespace,in database blocks|float|B|
 |`ts_size`|Table space size|float|B|
 |`used_space`|Used space|float|B|
+
+
+
 
 
 
@@ -406,48 +412,89 @@ By default, all collected data appends the global election tag. Additional tags 
 
 
 
+
+
+
+
 ## Custom Objects {#object}
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+### `database`
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on Oracle(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`|Connection IP of the Oracle|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- Metric List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current Oracle uptime|int|s|
+|`version`|Current version of Oracle|string|-|
+
+
+
+
 ## Slow Query Support {#slow}
 
-DataKit can report SQL statements that execute longer than a user-defined threshold to Guance, displaying them in logs with the source name `oracle_log`.
+DataKit can report SQL statements that take longer than a user-defined time to execute to Guance, displaying them in logs with the source name `oracle_log`.
 
-This feature is disabled by default. Users can enable it in the Oracle configuration file by setting the value of `slow_query_time` to a threshold greater than or equal to 1 millisecond. A typical recommendation is 10 seconds.
+This feature is disabled by default. Users can enable it in the Oracle configuration file by changing the value of `slow_query_time` from `0s` to a threshold value, with a minimum of 1 millisecond. It is generally recommended to set it to 10 seconds.
 
-???+ info "Field Descriptions"
+???+ info "Field Description"
     - `avg_elapsed`: Average execution time of the SQL statement.
     - `username`: Username executing the statement.
-    - `failed_obfuscate`: Reason for SQL obfuscation failure. Only appears if SQL obfuscation fails. The original SQL statement will be reported after obfuscation failure.
+    - `failed_obfuscate`: Reason for SQL obfuscation failure. This appears only if SQL obfuscation fails. The original SQL statement will be reported after obfuscation failure.
     For more field explanations, see [here](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/V-SQLAREA.html#GUID-09D5169F-EE9E-4297-8E01-8D191D87BDF7).
 
 ???+ attention "Important Information"
-    - If the value is `0s`, empty, or less than 1 millisecond, the slow query feature of the Oracle collector will not be enabled.
+    - If the value is `0s`, empty, or less than 1 millisecond, the slow query feature of the Oracle collector will not be enabled, which is the default state.
     - Uncompleted SQL statements will not be queried.
 
 ## FAQ {#faq}
 
 <!-- markdownlint-disable MD013 -->
-### :material-chat-question: How do I view the Oracle collector's runtime logs when using an external collector? {#faq-logging}
+### :material-chat-question: How to view the running logs of the Oracle collector when using an external collector? {#faq-logging}
 
-Since the Oracle collector is an external collector, its logs are stored separately in *[DataKit installation directory]/externals/oracle.log*.
+Since the Oracle collector is an external collector, its logs are stored separately in *[Datakit installation directory]/externals/oracle.log* by default.
 
 Alternatively, you can specify the log file location in the configuration file using the `--log` parameter.
 
-### :material-chat-question: Why is there no data shown in the monitor after configuring the external collector? {#faq-no-data}
+### :material-chat-question: Why is there no data in the monitor after configuring the external collector? {#faq-no-data}
 
-Possible reasons include:
+There could be several possible reasons:
 
-- Issues with Oracle dynamic library dependencies
+- Oracle dynamic library dependencies are problematic
 
-Even if you already have the corresponding Oracle packages installed locally, it is recommended to use the dependency packages specified in the documentation and ensure their installation paths match the `LD_LIBRARY_PATH` specified.
+Even if you already have the corresponding Oracle packages installed locally, it is still recommended to use the dependency packages specified in the documentation and ensure their installation path matches the path specified by `LD_LIBRARY_PATH`.
 
 - glibc version issues
 
-Since the Oracle collector is independently compiled with CGO enabled, it depends on glibc. You can check the glibc dependency on Linux with the following command:
+Since the Oracle collector is independently compiled and CGO is enabled, it requires glibc dependencies on Linux. You can check the current machine's glibc dependencies using the following command:
 
 ```shell
 $ ldd <DataKit installation directory>/externals/oracle
@@ -458,18 +505,18 @@ $ ldd <DataKit installation directory>/externals/oracle
     /lib64/ld-linux-x86-64.so.2 (0x00007f70144fc000)
 ```
 
-If you receive a message like the following, it indicates that the glibc version on your machine is too low:
+If you receive the following message, it usually indicates that the glibc version on the current machine is too low:
 
 ```shell
 externals/oracle: /lib64/libc.so.6: version  `GLIBC_2.14` not found (required by externals/oracle)
 ```
 
-- The Oracle collector only works on Linux x86_64/ARM64 architecture DataKit installations; other platforms are not supported
+- The Oracle collector can only be used with Linux x86_64/ARM64 architecture DataKit, other platforms are not supported
 
-This means the Oracle collector can only run on x86_64/ARM64 Linux systems. It cannot run on other platforms.
+This means the Oracle collector can only run on x86_64/ARM64 Linux, and it cannot run on other platforms.
 
-### :material-chat-question: Why can't I see the `oracle_system` Mearsurement? {#faq-no-system}
+### :material-chat-question: Why can't I see the `oracle_system` measurement set? {#faq-no-system}
 
-You need to wait one minute after the database starts up before you can see the `oracle_system` metrics.
+You need to wait one minute after the database starts up before you can see it.
 
 <!-- markdownlint-enable -->

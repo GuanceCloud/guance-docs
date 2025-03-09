@@ -1,4 +1,4 @@
-# 0028-fstab-fstab has been modified
+# 0028-fstab-fstab Modified
 ---
 
 ## Rule ID
@@ -8,85 +8,68 @@
 
 ## Category
 
-- System
+- system
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
 
-
 - Linux
-
-
 
 
 ## Description
 
-
-- Monitor the modification of the host's `/etc/fstab` file.
-
+- Monitor changes to the host's /etc/fstab file.
 
 
 ## Scan Frequency
-- Disable
+
+- disable
+
 
 ## Theoretical Basis
 
-
-- The file `/etc/fstab` contains information about the file systems in the system. If it is misconfigured or maliciously modified, it can prevent the host from booting properly.
-
+- The file /etc/fstab contains filesystem information for the system. Incorrect or malicious modifications can prevent the host from booting properly.
 
 
 ## Risk Items
 
-
 - Service Unavailability
 
 
-
 ## Audit Method
-- Verify whether the host's `/etc/fstab` has been illegally modified. You can use the following command to verify:
+
+- Verify whether /etc/fstab has been illegally modified. You can run the following command to check:
 
 ```bash
 ls -l /etc/fstab
 ```
 
 
-
 ## Remediation
-- If the host's `/etc/fstab` has been illegally modified, carefully inspect the host environment for signs of intrusion and change the host user passwords.
-If `/etc/fstab` is incorrect, the Linux system cannot be accessed; enter rescue mode and modify the `/etc/fstab` file.
 
+- If /etc/fstab has been illegally modified, carefully examine the host environment to ensure it has not been compromised and change the host user passwords. If /etc/fstab is incorrect and prevents access to the Linux system, enter rescue mode and correct the /etc/fstab file.
 
 
 ## Impact
 
-
 - None
-
-
 
 
 ## Default Value
 
-
 - None
-
-
 
 
 ## References
 
-
 - None
 
 
-
 ## CIS Controls
-
 
 - None

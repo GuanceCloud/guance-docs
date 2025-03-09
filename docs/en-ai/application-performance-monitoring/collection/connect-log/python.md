@@ -3,11 +3,11 @@
 
 To correlate Python application logs with trace data, follow these steps:
 
-1. Enable logging and tracing in the application;  
-2. Enable [trace data collection](../../../integrations/ddtrace.md) in Datakit, configure the log parsing [`Pipeline` script](../../../pipeline/use-pipeline/pipeline-quick-start.md), and start Datakit;  
+1. Enable logging and tracing features in the application;  
+2. Enable [trace data collection](../../../integrations/ddtrace.md) in Datakit and configure the log segmentation [`Pipeline` script](../../../pipeline/use-pipeline/pipeline-quick-start.md), then start Datakit;  
 3. Start the Python application.
 
-## Enabling Logs and Tracing in the Application
+## Enabling Logging and Tracing in the Application
 
 Consider the following `log_connect_trace.py` source file as an example:
 
@@ -22,7 +22,7 @@ os.environ["DD_ENV"] = "test"  # Set environment name
 os.environ["DD_VERSION"] = "v1"  # Set version number
 os.environ["DD_LOGS_INJECTION"] = "true"  # Enable log injection
 
-# Set the IP address and port for Datakit to receive trace data
+# Set the hostname and port for Datakit to receive trace data
 tracer.configure(
     hostname="127.0.0.1",
     port="9529",
@@ -60,7 +60,7 @@ ddtrace-run python log_connect_trace.py
 
 Accessing http://127.0.0.1:10001/a via a browser will generate corresponding trace and log data.
 
-Datakit receives the trace data and converts it into the following line protocol format before storing it uniformly:
+When Datakit receives the trace data, it converts it into the following line protocol format for unified storage:
 
 ```
 ddtrace,env=Testing,host=DESKTOP-7BK497S,http_method=GET,http_status_code=200,operation=flask.request,service=Python-App,span_type=entry,status=ok,type=web,version=V1.1 duration=5367i,message="{\"name\":\"flask.request\",\"service\":\"Python-App\",\"resource\":\"GET /a\",\"type\":\"web\",\"start\":1623982028783232000,\"duration\":5367000,\"meta\":{\"env\":\"Testing\",\"flask.endpoint\":\"index\",\"flask.url_rule\":\"/a\",\"flask.version\":\"1.1.2\",\"http.method\":\"GET\",\"http.status_code\":\"200\",\"http.url\":\"http://127.0.0.1:10001/a\",\"runtime-id\":\"dc06b9410fff47b78bef654495b54fa0\",\"version\":\"V1.1\"},\"metrics\":{\"_dd.agent_psr\":1,\"_dd.measured\":1,\"_dd.tracer_kr\":1,\"_sampling_priority_v1\":1,\"system.pid\":188},\"span_id\":18269734886327436313,\"trace_id\":16108321602917563239,\"parent_id\":0,\"error\":0}",parent_id="0",pid="188",resource="GET /a",span_id="18269734886327436313",start=1623982028783232i,trace_id="16108321602917563239" 1623982028783232000
@@ -79,7 +79,7 @@ The generated log data is as follows:
 2021-06-18 10:07:08,786 INFO [__main__] [lt.py:26] [dd.service.name=Python-App dd.env=Testing dd.version=V1.1 dd.trace_id=16108321602917563239 dd.span_id=12837828046733169079] - Hello, World!
 ```
 
-DDtrace configurations can be specified within the source file or injected via environment variables when starting the application:
+DDtrace configurations can also be set through environment variables when starting the application:
 
 ```shell
 DD_SERVICE="Python-App" \
@@ -91,9 +91,9 @@ DATADOG_TRACE_AGENT_PORT="9529" \
 ddtrace-run python log_connect_trace.py 
 ```
 
-## Configuring Pipeline Script
+## Configuring the Pipeline Script
 
-Log data needs to be parsed and transformed before correlating with trace data, which can be achieved by configuring a Pipeline script. The script is as follows:
+Log data needs to be segmented and transformed before it can be correlated with trace data. This can be achieved by configuring a Pipeline script, as shown below:
 
 ```shell
 grok(_, "%{TIMESTAMP_ISO8601:time}%{SPACE}%{WORD:level}%{SPACE}%{NOTSPACE}%{SPACE}%{NOTSPACE}%{SPACE}\\[%{GREEDYDATA:trace}\\]%{SPACE}-%{SPACE}%{GREEDYDATA:message}")
@@ -105,7 +105,7 @@ drop_key(trace)
 default_time(time)
 ```
 
-After processing with the Pipeline script, the data looks like this. By using fields such as `trace_id`, `span_id`, the log data is correlated with the trace data.
+After processing with the Pipeline script, the data appears as follows, correlating log data with trace data through fields like `trace_id`, `span_id`.
 
 ```json
 {

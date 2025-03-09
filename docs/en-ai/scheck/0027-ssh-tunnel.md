@@ -1,4 +1,4 @@
-# 0027-ssh-tunnel-Existence of SSH Tunnel
+# 0027-ssh-tunnel-Exist
 ---
 
 ## Rule ID
@@ -27,7 +27,7 @@
 ## Description
 
 
-- Monitor whether the host has an SSH tunnel
+- Monitor whether the host has an SSH tunnel.
 
 
 
@@ -37,7 +37,7 @@
 ## Theoretical Basis
 
 
-- An SSH tunnel, or SSH port forwarding, establishes a secure connection between an SSH client and an SSH server. Network data is forwarded through this tunnel to a specified port for communication. SSH tunnels automatically provide encryption and decryption services, ensuring secure data transmission. If unknown SSH tunnels exist on the host, there is a risk of data leakage, so this should be within the audit scope.
+- An SSH tunnel, or SSH port forwarding, establishes a tunnel between an SSH client and an SSH server, forwarding network data through this tunnel to a specified port to enable network communication. SSH tunnels automatically provide corresponding encryption and decryption services, ensuring the security of data transmission. If there is an unknown SSH tunnel on the host, the host may be at risk of data leakage, so it should be within the audit scope.
 
 
 
@@ -57,7 +57,7 @@
 
 
 ## Audit Method
-- Verify the host process list to check if there is a process with `cmdline` as `sshd: root@notty`. You can use the following command to verify:
+- Verify the host process list to check if there is a process with `cmdline` as `sshd: root@notty`. You can execute the following command for verification:
 
 ```bash
 ps -ef | grep -v grep| grep "sshd: root@notty"
@@ -66,7 +66,7 @@ ps -ef | grep -v grep| grep "sshd: root@notty"
 
 
 ## Remediation
-- If there is an unknown process with `cmdline` as `sshd: root@notty`, execute `kill -9 <tunnel_pid>` to terminate the risky process.
+- If there is an unknown process with `cmdline` as `sshd: root@notty`, please execute `kill -9 <tunnel_pid>` to terminate the dangerous process.
 
 
 
@@ -81,7 +81,7 @@ ps -ef | grep -v grep| grep "sshd: root@notty"
 ## Default Value
 
 
-- By default, processes with `cmdline` as `sshd: root@notty` are not allowed to exist.
+- By default, processes with `cmdline` as `sshd: root@notty` are not allowed.
 
 
 
@@ -89,9 +89,9 @@ ps -ef | grep -v grep| grep "sshd: root@notty"
 ## References
 
 
-- [Emergency Response and Investigation Process for Hacking (Unofficial)](https://www.sohu.com/a/236820450_99899618)
+- [Emergency Response Thoughts and Procedures for Hacker Intrusion (Unofficial)](https://www.sohu.com/a/236820450_99899618)
 
-- [Analysis of a Real Incident Involving Mining Malware Intrusion (Unofficial)](https://www.cnblogs.com/zsl-find/articles/11688640.html)
+- [Recording a Real Mining Intrusion Investigation Analysis (Unofficial)](https://www.cnblogs.com/zsl-find/articles/11688640.html)
 
 
 

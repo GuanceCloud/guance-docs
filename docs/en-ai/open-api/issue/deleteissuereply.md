@@ -11,12 +11,12 @@
 
 ## Route Parameters
 
-| Parameter Name   | Type    | Required | Description              |
-|:-------------|:------|:------|:----------------|
-| reply_uuid   | string | Yes  | reply_uuid<br> |
+| Parameter Name   | Type     | Required | Description              |
+|:--------------|:-------|:------|:----------------|
+| reply_uuid    | string | Y    | reply_uuid<br> |
 
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 

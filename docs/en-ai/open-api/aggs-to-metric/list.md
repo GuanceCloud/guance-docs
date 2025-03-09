@@ -1,21 +1,21 @@
-# 【Aggregation to Generate Metrics】List
+# 【Aggregation Generation Metrics】List
 
 ---
 
 <br />**GET /api/v1/aggs_to_metric/list**
 
 ## Overview
-List generated metrics rules
+List generation metrics rules
 
 
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| search | string | No  | Search by Mearsurement name, metric name<br>Allow null: False <br>Allow empty string: True <br> |
-| scriptType | string | No  | Type<br>Allow null: False <br>Optional values: ['rumToMetric', 'apmToMetric', 'logToMetric', 'securityToMetric', 'metricToMetric'] <br> |
-| pageIndex | integer | No  | Page number<br>Allow null: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | No  | Number of items per page<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| search | string | No | Search by Mearsurement name, metric name<br>Allow empty: False <br>Allow empty string: True <br> |
+| scriptType | string | No | Type<br>Allow empty: False <br>Optional values: ['rumToMetric', 'apmToMetric', 'logToMetric', 'securityToMetric', 'metricToMetric'] <br> |
+| pageIndex | integer | No | Page number<br>Allow empty: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize | integer | No | Number of items per page<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
 
@@ -27,6 +27,7 @@ curl 'https://openapi.guance.com/api/v1/aggs_to_metric/list?pageSize=100&pageInd
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
+
 
 
 ## Response

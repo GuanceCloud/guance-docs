@@ -43,41 +43,41 @@ cd C:\Program Files\datakit\conf.d\prom
     source = "active_directory"
     
     ## Output source for collected data
-    # Configure this to write collected data to a local file instead of sending it to the center
-    # You can then use the datakit --prom-conf /path/to/this/conf command to debug locally saved Metrics
-    # If the URL is configured as a local file path, the --prom-conf option will prioritize debugging the output path's data
+    # Configuring this will write the collected data to a local file instead of sending it to the center
+    # Later, you can use the datakit --prom-conf /path/to/this/conf command to debug the locally saved Metrics
+    # If the URL is already configured as a local file path, then the --prom-conf option takes precedence in debugging the output path data
     # output = "/abs/path/to/file"
     > 
-    ## Upper limit for the size of collected data, in bytes
-    # When outputting data to a local file, you can set an upper limit for the size of collected data
-    # If the size of collected data exceeds this limit, the data will be discarded
-    # The default upper limit for the size of collected data is 32MB
+    ## Maximum size of collected data, in bytes
+    # When outputting data to a local file, you can set a maximum size limit for the collected data
+    # If the size of the collected data exceeds this limit, the data will be discarded
+    # The default maximum size is set to 32MB
     # max_file_size = 0
     
-    ## Metric type filtering, optional values are counter, gauge, histogram, summary
+    ## Metric type filter, optional values are counter, gauge, histogram, summary
     # By default, only counter and gauge types of metrics are collected
-    # If empty, no filtering is applied
+    # If empty, no filtering is performed
     metric_types = ["counter", "gauge"]
     
-    ## Metric name filtering
-    # Supports regex, multiple configurations can be set, where meeting any one condition suffices
-    # If empty, no filtering is applied
+    ## Metric name filter
+    # Supports regular expressions, multiple configurations can be specified, satisfying any one is enough
+    # If empty, no filtering is performed
     # metric_name_filter = ["cpu"]
     
     ## Prefix for metric set names
-    # Configure this to add a prefix to metric set names
+    # Configuring this adds a prefix to the metric set names
     measurement_prefix = ""
     
     ## Metric set name
-    # By default, the first field after splitting the metric name by underscores "_" will be used as the metric set name, with the remaining fields as the current metric name
-    # If measurement_name is configured, no splitting of the metric name will occur
+    # By default, the metric name is split by underscores "_", with the first field becoming the metric set name and the remaining fields becoming the current metric name
+    # If measurement_name is configured, the metric name will not be split
     # The final metric set name will have the measurement_prefix prefix added
     # measurement_name = "prom"
     
     ## Collection interval "ns", "us" (or "µs"), "ms", "s", "m", "h"
     interval = "10s"
     
-    ## Tag filtering, multiple tags can be configured
+    ## Filter tags, multiple tags can be configured
     # Matching tags will be ignored
     # tags_ignore = ["xxxx"]
     
@@ -88,7 +88,7 @@ cd C:\Program Files\datakit\conf.d\prom
     # tls_key = "/tmp/peer.key"
     
     ## Custom authentication method, currently only supports Bearer Token
-    # Only one of token or token_file needs to be configured
+    # Only one of token and token_file needs to be configured
     # [inputs.prom.auth]
     # type = "bearer_token"
     # token = "xxxxxxxx"
@@ -96,7 +96,7 @@ cd C:\Program Files\datakit\conf.d\prom
     
     ## Custom metric set names
     # Metrics containing the prefix can be grouped into one metric set
-    # Custom metric set name configuration takes precedence over the measurement_name setting
+    # Custom metric set name configuration takes precedence over measurement_name
     #[[inputs.prom.measurements]]
     #  prefix = "cpu_"
     #  name = "cpu"
@@ -112,7 +112,7 @@ cd C:\Program Files\datakit\conf.d\prom
     ```
 <!-- markdownlint-enable -->
 
-- Restart DataKit (if logging needs to be enabled, configure log collection before restarting)
+- Restart DataKit (if you need to enable logging, configure log collection before restarting)
 
 ```bash
 systemctl restart datakit
@@ -149,18 +149,18 @@ dql > M::active_directory LIMIT 1
 1 rows, 1 series, cost 40.297037ms
 ```
 
-## Metric Details {#metric}
+## Detailed Metrics {#metric}
 
-| **Name**                                              | **Description**                                              | **Metric Meaning**                                                 | **Unit** | **Dimension** |
-| ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- | ------------- |
-| windows_ad_replication_pending_synchronizations       | Shows the number of directory synchronizations that are queued for this server but not yet processed. | Displays the number of directory synchronization requests queued for this server but not yet processed. | count    | host         |
-| windows_ad_replication_sync_requests_total            | Shows the number of sync requests made to neighbors.         | Displays the total number of synchronization requests made to neighboring servers. | count    | host         |
-| windows_ad_replication_sync_requests_success_total    | Shows the number of sync requests made to the neighbors that successfully returned. | Displays the number of synchronization requests made to neighboring servers that were successfully processed. | count    | host         |
-| windows_ad_ldap_active_threads                        | Shows the current number of threads in use by the LDAP subsystem of the local directory service. | Displays the current number of threads being used by the LDAP subsystem of the local directory service. | count    | host         |
-| windows_ad_ldap_last_bind_time_seconds                | Shows the time, in milliseconds, taken for the last successful LDAP bind. | Displays the time taken for the last successful LDAP bind operation in milliseconds. | seconds  | host         |
-| windows_ad_ldap_searches_total                        | Shows the number at which LDAP clients perform search operations. | Displays the total number of search operations performed by LDAP clients. | count    | host         |
-| windows_ad_ldap_writes_total                          | Shows the number at which LDAP clients perform write operations. | Displays the total number of write operations performed by LDAP clients. | count    | host         |
-| windows_ad_ldap_client_sessions                       | This is the number of sessions opened by LDAP clients at the time the data is taken. | Displays the number of sessions opened by LDAP clients when the data was collected. | count    | host         |
-| windows_ad_replication_inbound_sync_objects_remaining | Shows the number of objects remaining before full synchronization is complete (at setup). | Displays the number of objects remaining before full synchronization is completed (during setup). | count    | host         |
-| windows_ad_replication_inbound_objects_updated_total  | Shows the number of objects received from neighbors through inbound replication. A neighbor is a domain controller from which the local domain controller replicates locally. | Displays the number of objects received from neighboring domain controllers through inbound replication. | count    | host         |
-| windows_ad_replication_inbound_objects_filtered_total | Shows the number of objects received from inbound replication partners that contained no updates that needed to be applied. | Displays the number of objects received from inbound replication partners that did not contain any updates to apply. | count    | host         |
+| **Name**                                              | **Description**                                              | **Metric Meaning**                                                 | **Unit** | **Dimensions** |
+| ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- | -------------- |
+| windows_ad_replication_pending_synchronizations       | Shows the number of directory synchronizations that are queued for this server but not yet processed. | Displays the number of directory synchronizations queued for this server but not yet processed. | count    | host           |
+| windows_ad_replication_sync_requests_total            | Shows the number of sync requests made to neighbors.         | Displays the number of sync requests made to neighbors.         | count    | host           |
+| windows_ad_replication_sync_requests_success_total    | Shows the number of sync requests made to the neighbors that successfully returned. | Displays the number of sync requests made to the neighbors that successfully returned. | count    | host           |
+| windows_ad_ldap_active_threads                        | Shows the current number of threads in use by the LDAP subsystem of the local directory service. | Displays the current number of threads used by the LDAP subsystem of the local directory service. | count    | host           |
+| windows_ad_ldap_last_bind_time_seconds                | Shows the time, in milliseconds, taken for the last successful LDAP bind. | Displays the time taken for the last successful LDAP bind in milliseconds. | count    | host           |
+| windows_ad_ldap_searches_total                        | Shows the number at which LDAP clients perform search operations. | Displays the number of search operations performed by LDAP clients. | count    | host           |
+| windows_ad_ldap_writes_total                          | Shows the number at which LDAP clients perform write operations. | Displays the number of write operations performed by LDAP clients. | count    | host           |
+| windows_ad_ldap_client_sessions                       | This is the number of sessions opened by LDAP clients at the time the data is taken. | Displays the number of sessions opened by LDAP clients when the data is collected. | count    | host           |
+| windows_ad_replication_inbound_sync_objects_remaining | Shows the number of objects remaining before full synchronization is complete (at setup). | Displays the number of objects remaining before full synchronization is complete (at setup). | count    | host           |
+| windows_ad_replication_inbound_objects_updated_total  | Shows the number of objects received from neighbors through inbound replication. A neighbor is a domain controller from which the local domain controller replicates locally. | Displays the number of objects received from neighbors through inbound replication. Neighbors are domain controllers from which the local domain controller replicates locally. | count    | host           |
+| windows_ad_replication_inbound_objects_filtered_total | Shows the number of objects received from inbound replication partners that contained no updates that needed to be applied. | Displays the number of objects received from inbound replication partners that contained no updates that needed to be applied. | count    | host           |

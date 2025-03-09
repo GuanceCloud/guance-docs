@@ -1,11 +1,11 @@
 # Custom Addition of Error
 ---
 
-After initializing RUM, use the `addError('<NAME>', '<JSON_OBJECT>')` API to add custom Error Metrics data outside of the collected metrics.
+After initializing RUM, use the `addError('<NAME>', '<JSON_OBJECT>')` API to add custom Error Metrics data outside of the collected data.
 
 ### Add Error
 
-=== "CDN Synchronous"
+=== "CDN Sync"
 
     ```javascript
     // Send a custom error with context
@@ -29,7 +29,7 @@ After initializing RUM, use the `addError('<NAME>', '<JSON_OBJECT>')` API to add
 
     ```
 
-=== "CDN Asynchronous"
+=== "CDN Async"
 
     ```javascript
     // Send a custom error with context

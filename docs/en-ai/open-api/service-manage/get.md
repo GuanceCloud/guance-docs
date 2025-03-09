@@ -5,40 +5,40 @@
 <br />**GET /api/v1/service_manage/\{service_uuid\}/get**
 
 ## Overview
-Retrieve information for a single service entry
-
+Retrieve information for a single service list
 
 
 ## Route Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:----------------|:-------|:-----|:----------------|
+|:-----------------|:-------|:-----|:----------------|
 | service_uuid | string | Y | UUID corresponding to the service<br>Example: xxxx <br>Allow empty string: False <br> |
 
 
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:----------------|:-------|:-----|:----------------|
+|:-----------------|:-------|:-----|:----------------|
 | originStr | string |  | Pass 1 for raw string, pass 0 for structured data, default is 1<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
 
-**Request Body Structure Explanation**
+**Request Body Structure Description**
 
 | Parameter Name        | Type  | Required  | Description          |
 |---------------|----------|----|------------------------|
-| service_uuid    |  string  |  Y | Unique UUID of the Service List entry, prefixed with sman_ |
-| originStr |  string  |  N | Whether to return the serviceCatelog as a raw string. 1 for yes, 0 for no. Default is 1 |
+| service_uuid    | string  |  Y | Unique UUID of the service list, prefixed with sman_ |
+| originStr | string  |  N | Whether to return the serviceCatelog as a raw string, 1 for yes, 0 for no. Default is 1 |
 
-**Response Body Structure Explanation**
+**Response Body Structure Description**
 
 | Parameter Name                | Type  | Description          |
 |-----------------------|----------|------------------------|
-| serviceCatelog         | string, dict | Raw string or structured data of the Service List |
+| serviceCatelog         | string, dict | Raw string or structured data of the service list |
 | service         | string | Service name |
 | type         | string | Service type |
+
 
 
 
@@ -49,6 +49,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/sman_xxxx32/get?originStr
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed
 ```
+
 
 
 
@@ -63,7 +64,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/sman_xxxx32/get?originStr
             "acntWsNickname": "",
             "email": "xxx",
             "iconUrl": "",
-            "name": "AliCloud Monitoring Data Source",
+            "name": "Alibaba Cloud Monitoring Data Source",
             "username": "xxx"
         },
         "service": "test",
@@ -139,7 +140,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/sman_xxxx32/get?originStr
             "acntWsNickname": "",
             "email": "xxx",
             "iconUrl": "",
-            "name": "AliCloud Monitoring Data Source",
+            "name": "Alibaba Cloud Monitoring Data Source",
             "username": "xxx"
         },
         "uuid": "sman_xxxx32"

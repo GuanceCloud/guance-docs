@@ -2,7 +2,7 @@
 
 ---
 
-<br />**GET /api/v1/slo/\{slo_uuid\}/delete**
+<br />**GET /api/v1/slo/{slo_uuid}/delete**
 
 ## Overview
 

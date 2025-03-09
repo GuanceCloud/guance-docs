@@ -1,24 +1,25 @@
-# List Smart Inspection Items
+# List Self-built Checkers
 
 ---
 
 <br />**GET /api/v1/self_built_checker/list**
 
 ## Overview
-Paginate and list the user-defined inspection items in the current workspace
+Paginate and list the self-built checkers in the current workspace
+
 
 
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-------|:------------------------|
+|:-------------------|:-------|:--------|:----------------------|
 | monitorUUID | commaArray | No  | Alert group UUID<br>Can be empty: False <br> |
 | alertPolicyUUID | commaArray | No  | Alert policy UUID<br>Can be empty: False <br> |
-| checkerUUID | commaArray | No  | User-defined inspection UUID<br>Can be empty: False <br> |
-| refKey | commaArray | No  | RefKey, multiple values separated by commas<br>Can be empty: False <br> |
-| search | string | No  | Search for user-defined inspection name<br>Can be empty: False <br> |
+| checkerUUID | commaArray | No  | Self-built checker UUID<br>Can be empty: False <br> |
+| refKey | commaArray | No  | RefKey, multiple values separated by English commas<br>Can be empty: False <br> |
+| search | string | No  | Search for self-built checker name<br>Can be empty: False <br> |
 | pageIndex | integer | No  | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | No  | Number of items returned per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| pageSize | integer | No  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
 
@@ -31,7 +32,6 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/list?refKey=zyAy2l9v,
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed
 ```
-
 
 
 
@@ -48,11 +48,11 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/list?refKey=zyAy2l9v,
                         "uuid": "altpl_xxxe62"
                     },
                     {
-                        "name": "xxx's custom alert policy",
+                        "name": "xxx's alert policy - custom test",
                         "uuid": "altpl_xxx3b8"
                     },
                     {
-                        "name": "ll-alert policy-do not modify",
+                        "name": "ll-alert policy - do not touch",
                         "uuid": "altpl_xxx400"
                     }
                 ],
@@ -75,14 +75,14 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/list?refKey=zyAy2l9v,
                 "isLocked": 0,
                 "jsonScript": {
                     "callKwargs": {},
-                    "name": "SSL certificate expiration inspection",
+                    "name": "SSL certificate expiration check",
                     "refFuncInfo": {
                         "args": [
                             "name"
                         ],
                         "category": "general",
                         "definition": "run(name='')",
-                        "description": "zh-CN: SSL certificate validity period inspection\n    title: SSL certificate validity period inspection\n    doc: |\n        Parameters:\n            No configuration required by default for the entire workspace\nen:\n    title: SSL Check\n    doc: |\n        Parameters:\n            No configuration is required by default for the entire workspace",
+                        "description": "zh-CN: SSL certificate validity period check\n    title: SSL certificate validity period check\n    doc: |\n        Parameters:\n            No configuration is required by default for the entire workspace\nen:\n    title: SSL Check\n    doc: |\n        Parameters:\n            No configuration is required by default for the entire workspace",
                         "funcId": "guance_monitor_user_example_obs__ssl.run",
                         "kwargs": {
                             "name": {
@@ -90,7 +90,7 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/list?refKey=zyAy2l9v,
                             }
                         }
                     },
-                    "title": "SSL certificate expiration inspection",
+                    "title": "SSL certificate expiration check",
                     "type": "selfBuiltCheck"
                 },
                 "monitorName": "",

@@ -1,19 +1,19 @@
 # Volcano Engine TLS Index Binding 
 ---
 
-Select **Volcano Engine TLS**, and fill in the required information. After completion, you can click **Test** to verify the correctness of the username and password.
+Select **Volcano Engine TLS**, and fill in the required information. After completing the information, you can click **Test** to verify the correctness of the username and password.
 
 :material-numeric-1-circle-outline: Account Authorization:
 
 1. [Obtain TLS Authorization File](../authorize-tls.md).
-2. Fill in AccessKey ID / AccessKey Secret (referred to as AK / AKS).
+2. Enter AccessKey ID / AccessKey Secret (referred to as AK / AKS).
 
 :material-numeric-2-circle-outline: Resource Authorization:
 
 1. Select the region;
-2. Based on the AK / AKS entered above, Guance automatically retrieves Project, log project, and log topic.
-3. Guance Index: By default, it is consistent with the name of TLS, but you can also customize and edit the name.
-    - **Note**: This index name is unrelated to TLS and is used for data filtering in Guance.
+2. Based on the AK / AKS filled above, <<< custom_key.brand_name >>> automatically retrieves Project, log project, and log topic.
+3. <<< custom_key.brand_name >>> Index: By default, it is consistent with the name of the TLS, but you can also customize and edit the name.
+    - **Note**: This index name is unrelated to TLS and is used for data filtering in <<< custom_key.brand_name >>>.
 4. Access Type: To avoid configuration path errors that may result in data retrieval issues, choose either **Internal Network Access** or **Public Network Access** based on actual conditions.
 
 

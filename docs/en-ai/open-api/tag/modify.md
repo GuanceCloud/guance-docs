@@ -11,18 +11,18 @@ Modify an existing tag
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description        |
-|:--------------|:-------|:---------|:-------------------|
-| tag_uuid      | string | Y        | Tag UUID           |
+| Parameter Name    | Type     | Required | Description              |
+|:--------------|:-------|:-----|:----------------|
+| tag_uuid | string | Y | Tag UUID<br> |
 
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                                |
-|:--------------|:-------|:---------|:-------------------------------------------|
-| name          | string |          | Tag name<br>Allow null: False <br>Maximum length: 50 <br> |
-| description   | string |          | Tag description<br>Allow null: False <br>Maximum length: 100 <br> |
-| colour        | string |          | Tag color<br>Allow null: False <br>Maximum length: 50 <br> |
+| Parameter Name    | Type     | Required | Description              |
+|:--------------|:-------|:-----|:----------------|
+| name | string |  | Tag name<br>Can be empty: False <br>Maximum length: 50 <br> |
+| description | string |  | Tag description<br>Can be empty: False <br>Maximum length: 100 <br> |
+| colour | string |  | Tag color<br>Can be empty: False <br>Maximum length: 50 <br> |
 
 ## Additional Parameter Notes
 
@@ -30,13 +30,13 @@ Data Description
 
 - Request Parameter Explanation
 
-| Parameter Name | Type   | Description                               |
-| -------------- | ------ | ----------------------------------------- |
-| name           | string | Tag name                                  |
-| description    | string | Field description information             |
-| color          | string | Front-end and back-end agreed color type, default, style_key1, style_key2 ~~                |
+| Parameter Name   | Type | Description                                                 |
+| ---------------- | ---- | ---------------------------------------------------- |
+| name       | string | Tag name |
+| description             | string | Field description information                                                 |
+| color    | string | Predefined color type, default, style_key1, style_key2 ~~                |
 
-- Color `color` field type-color correspondence:
+- Color field type-color mapping:
 ```json
 {
     "default": {"background": "#CCE6FF", "color": "rgba(0,0,0,0.8)"},
@@ -69,6 +69,7 @@ Data Description
 
 
 
+
 ## Request Example
 ```shell
 curl 'https://openapi.guance.com/api/v1/tag/tag_xxxx32/modify' \
@@ -79,6 +80,7 @@ curl 'https://openapi.guance.com/api/v1/tag/tag_xxxx32/modify' \
 --data-raw '{"name":"test_15","description":"temp_test_modify","colour":"style_key3"}' \
 --compressed
 ```
+
 
 
 

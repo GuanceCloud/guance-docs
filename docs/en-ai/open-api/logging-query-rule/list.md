@@ -8,13 +8,12 @@
 List data access rules
 
 
-
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-------|:----------------|
-| pageSize | integer | No  | Number of items per page<br>Can be null: False <br>Example: 10 <br> |
-| pageIndex | integer | No  | Page number<br>Can be null: False <br>Example: 10 <br> |
+| Parameter Name | Type   | Required | Description                                      |
+|:--------------|:-------|:---------|:-------------------------------------------------|
+| pageSize      | integer| No       | Number of items per page<br>Can be null: False <br>Example: 10 <br> |
+| pageIndex     | integer| No       | Page number<br>Can be null: False <br>Example: 10 <br> |
 
 ## Additional Parameter Notes
 
@@ -26,6 +25,7 @@ curl 'https://openapi.guance.com/api/v1/logging_query_rule/list?pageIndex=1&page
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
+
 
 
 
@@ -179,5 +179,5 @@ curl 'https://openapi.guance.com/api/v1/logging_query_rule/list?pageIndex=1&page
     },
     "success": true,
     "traceId": "TRACE-78EEAF86-190D-4ADE-BA43-75962106F329"
-}
+} 
 ```

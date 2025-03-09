@@ -1,5 +1,5 @@
 nav:
-  - 'Deploy on Host': autowire_on_host.md
-  - 'Deploy on Kubernetes': 
+  - 'Deployment on Host': autowire_on_host.md
+  - 'Deployment on Kubernetes': 
     - 'Install Datakit Operator': apm_datakit_operator.md
     - 'Install Helm': helm.md

@@ -1,4 +1,4 @@
-# 0087-avahi-uninstalled-Avahi Installed
+# 0087-avahi-uninstalled-Avahi Uninstalled
 
 ---
 
@@ -24,11 +24,13 @@
 
 ## Description
 
-- Avahi is a free zeroconf implementation that includes a system for multicast DNS/DNS-SD service discovery. Avahi allows programs to publish and discover services and hosts running on the local network. For example, users can plug a computer into the network, and Avahi will automatically find printers to print, files to view, people to chat with, as well as network services running on the machine.
+- Avahi is a free zeroconf implementation that includes a system for multicast DNS/DNS-SD service discovery. Avahi allows programs to publish and discover services and hosts running on the local network. For example, users can plug their computer into a network, and Avahi will automatically find printers to print to, files to view, people to chat with, as well as network services running on the machine.
 
 
 ## Scan Frequency
+
 - 0 */30 * * *
+
 
 ## Theoretical Basis
 
@@ -41,7 +43,8 @@
 
 
 ## Audit Method
-- Run the following commands to verify that the corresponding components are not installed:
+
+- Run the following command to verify that the corresponding component is not installed:
 ```bash
 # rpm -q avahi-autoipd avahi
 package avahi-autoipd is not installed
@@ -50,6 +53,7 @@ package avahi is not installed
 
 
 ## Remediation
+
 - Run the following commands to remove the corresponding packages:
 ```bash
 # systemctl stop avahi-daemon.socket avahi-daemon.service
@@ -62,7 +66,7 @@ package avahi is not installed
 - Systems that rely on Avahi as an alternative to DNS may lose domain name resolution support.
 
 
-## Default Values
+## Default Value
 
 - None
 
@@ -72,8 +76,8 @@ package avahi is not installed
 - None
 
 
-## CIS Control
+## CIS Controls
 
 - Version 7
-    2.6 Address Unapproved Software
+    2.6 Address Unauthorized Software
     Ensure unauthorized software is removed or inventory is updated timely

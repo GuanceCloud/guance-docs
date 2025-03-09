@@ -10,9 +10,9 @@ Delete a Key
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description               |
-|:--------------|:-------|:---------|:--------------------------|
-| ak_uuid       | string | Y        | UUID of the access key     |
+| Parameter Name | Type   | Required | Description              |
+|:--------------|:-------|:--------|:-------------------------|
+| ak_uuid       | string | Y       | UUID of the access key<br> |
 
 
 ## Additional Parameter Notes

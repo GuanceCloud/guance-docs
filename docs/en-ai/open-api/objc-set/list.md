@@ -1,21 +1,21 @@
-# 【Object Classification Configuration】List
+# [Object Classification Configuration] List
 
 ---
 
 <br />**GET /api/v1/objc_cfg/list**
 
 ## Overview
-Retrieve the list of object classification configurations. This API does not support pagination.
+Retrieve the list of object classification configurations. The current API does not support pagination.
 
 ## Query Request Parameters
 
 | Parameter Name           | Type        | Required | Description                                                                 |
 |:---------------------|:----------|:-------|:---------------------------------------------------------------------------|
-| targetWorkspaceUUIDs  | commaArray | No    | Authorized workspaces, multiple workspaces separated by commas.<br>Can be empty: False <br>Can be an empty string: False <br> |
-| objcGroupUUID         | string     | No    | Business group UUID<br>Can be empty: False <br>Example: objcg_xxxx <br>Can be an empty string: True <br>Maximum length: 64 <br> |
-| sourceType            | string     | Yes   | Source type<br>Can be empty: False <br>Example: custom_object <br>Optional values: ['object', 'custom_object'] <br> |
-| search                | string     | No    | Search object classification name<br>Can be empty: False <br>Example: xxx <br> |
-| timeRange             | string     | No    | Time range<br>Example: [1734402721237, 1734575521237] <br>Can be empty: False <br> |
+| targetWorkspaceUUIDs | commaArray | No     | Authorized workspaces, multiple workspaces separated by commas.<br>Can be empty: False <br>Can be an empty string: False <br> |
+| objcGroupUUID         | string    | No     | Business group UUID<br>Can be empty: False <br>Example: objcg_xxxx <br>Can be an empty string: True <br>Maximum length: 64 <br> |
+| sourceType            | string    | Yes    | Source type<br>Can be empty: False <br>Example: custom_object <br>Possible values: ['object', 'custom_object'] <br> |
+| search                | string    | No     | Search for object classification name<br>Can be empty: False <br>Example: xxx <br> |
+| timeRange             | string    | No     | Time range<br>Example: [1734402721237, 1734575521237] <br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -27,7 +27,6 @@ curl 'https://openapi.guance.com/api/v1/objc_cfg/list?sourceType=custom_object&t
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
 
 
 ## Response

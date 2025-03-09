@@ -2,7 +2,7 @@
 
 ---
 
-<br />**GET /api/v1/issue/\{issue_uuid\}/get**
+<br />**GET /api/v1/issue/{issue_uuid}/get**
 
 ## Overview
 
@@ -11,9 +11,9 @@
 
 ## Route Parameters
 
-| Parameter Name   | Type     | Required | Description              |
-|:-------------|:-------|:-----|:----------------|
-| issue_uuid   | string | Y    | Issue UUID      |
+| Parameter Name | Type   | Required | Description          |
+|:--------------|:-------|:--------|:---------------------|
+| issue_uuid    | string | Y       | Issue UUID           |
 
 
 ## Additional Parameter Notes
@@ -49,7 +49,7 @@ curl 'https://openapi.guance.com/api/v1/issue/<issue_uuid>/get' \
                 "uuid": "att_xxxx32"
             },
             {
-                "fileName": "Guance Icon2.png",
+                "fileName": "<<< custom_key.brand_name >>> Icon2.png",
                 "fileSuffix": "png",
                 "uuid": "att_xxxx32"
             },
@@ -76,7 +76,7 @@ curl 'https://openapi.guance.com/api/v1/issue/<issue_uuid>/get' \
             "acntWsNickname": "",
             "email": "wsak_xxxx32",
             "iconUrl": "",
-            "name": "API Test",
+            "name": "Interface Test",
             "username": "wsak_xxxx32",
             "uuid": "wsak_xxxx32"
         },

@@ -15,41 +15,41 @@ skip: 'not-searchable-on-index-page'
 172.17.0.1 - - [06/Jan/2017:16:16:37 +0000] "GET /datadoghq/company?test=var1%20Pl HTTP/1.1" 401 612 "http://www.perdu.com/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36" "-"
 ```
 
-- Number of Logs: 100,000 lines
+- Number of Logs: 100k lines
 - Pipeline Used: See below
 
 ## Test Results {#result}
 
-| Test Conditions                                                                                                    | Time   |
-| :--                                                                                                         | ---    |
-| Without using a Pipeline, pure log text processing (including encoding, multiline detection, and field detection) | 3 seconds 63 milliseconds  |
-| Using the full version of the Pipeline (see Appendix I)                                                                           | 43 seconds 70 milliseconds |
-| Using a single-match Pipeline, discarding multiple match formats compared to the full version, e.g., NGINX error logs, only targeting *access.log* (see Appendix II) | 16 seconds 91 milliseconds |
-| Using an optimized single-match Pipeline, replacing performance-intensive patterns (see Appendix III)                                         | 4 seconds 40 milliseconds |
+| Test Conditions                                                                                                  | Time   |
+| :--                                                                                                              | ---    |
+| Without using Pipeline, pure log text processing (including encoding, multiline and field detection, etc.)       | 3.63 seconds |
+| Using the full version of the Pipeline (see Appendix I)                                                          | 43.70 seconds |
+| Using a single-match Pipeline, excluding various match formats such as NGINX error logs, only for *access.log* (see Appendix II) | 16.91 seconds |
+| Using an optimized single-match Pipeline, replacing performance-intensive patterns (see Appendix III)            | 4.40 seconds |
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    During the Pipeline processing time, a single CPU core was fully loaded with usage consistently around 100%. Once the 100,000 logs were processed, the CPU usage dropped back down. Memory consumption remained stable during the test without noticeable increases. The processing time is calculated by the DataKit program and may vary in different environments.
+    During the Pipeline processing time, a single CPU core was fully loaded with usage consistently around 100%. When the 100k logs were processed, the CPU usage dropped back down. During the test, memory consumption remained stable without significant increases. The time recorded is calculated by the DataKit program and may vary in different environments.
 <!-- markdownlint-enable -->
 
 ## Comparison {#compare}
 
-Using Fluentd to collect the same 100,000 log lines, the CPU usage increased from 43% to 77% within 3 seconds and then dropped, indicating that the processing had finished.
+Using Fluentd to collect the same 100k lines of logs, the CPU usage rose from 43% to 77% within 3 seconds and then dropped, indicating that the processing had finished.
 
-Due to Fluentd's Meta-Data caching mechanism, it outputs results in batches, making it difficult to accurately calculate the exact processing time.
+Due to Fluentd's Meta-Data caching mechanism, it outputs results in batches, so it is difficult to accurately calculate the total processing time.
 
-Fluentd’s Pipeline matching mode is singular and does not support multi-format Pipelines for the same data source (e.g., NGINX only supports access logs but not error logs).
+Fluentd's Pipeline matching pattern is singular and does not support multi-format Pipelines for the same data source (for example, nginx only supports access logs but not error logs).
 
 ## Conclusion {#conclusion}
 
-When using a single-match Pipeline, DataKit's log collection processing time is approximately 30% faster than Fluentd.
+When using a single-match Pipeline, DataKit log collection takes approximately 30% longer than Fluentd.
 
-However, if the full-version all-matching Pipeline is used, the processing time significantly increases.
+However, if the full version of the all-inclusive Pipeline is used, the processing time significantly increases.
 
 ## Appendix (Pipeline) {#appendix}
 
-### Full-Version/All-Match Pipeline {#full-match}
+### Full Version/All-Inclusive Pipeline {#full-match}
 
 ```python
 add_pattern("date2", "%{YEAR}[./]%{MONTHNUM}[./]%{MONTHDAY} %{TIME}")
@@ -99,7 +99,7 @@ default_time(time)
 
 ### Optimized Single-Match Pipeline {#optimized-pl}
 
-In this example, the highly performance-intensive `IPORHOST` is changed to `NOTSPACE`:
+In this example, the highly performance-consuming `IPORHOST` is changed to `NOTSPACE`:
 
 ```python
 # access log

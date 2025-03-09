@@ -8,7 +8,6 @@
 
 
 
-
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
@@ -20,16 +19,7 @@
 
 
 
-
-
-
-
 ## Response
 ```shell
  
 ```
-
-
-
-
-</input_content>

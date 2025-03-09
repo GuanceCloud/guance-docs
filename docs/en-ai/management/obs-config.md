@@ -2,25 +2,25 @@
 
 ## Specific Operations
 
-1. [Log in to the Huawei Cloud Console](https://auth.huaweicloud.com/authui/login.html?service=https://console.huaweicloud.com/console/#/login).
+1. [Log in to the Huawei Cloud console](https://auth.huaweicloud.com/authui/login.html?service=https://console.huaweicloud.com/console/#/login).
 
 2. On the **Service List** page, find **Object Storage Service**, enter the **Parallel File System** page, which is the bucket:
 
 ![](img/obs.png)
 
-3. Select the target file system and go to **Access Control > ACL**:
+3. Select the target file system, go to **Access Control > ACL**:
 
 ![](img/obs-1.png)
 
-4. Click **Add** to enter the **New Account Authorization** page.
+4. Click **Add**, enter the **New Account Authorization** page.
 
-4.1 Enter the authorized Huawei Cloud account ID provided by Guance: `f000ee4d7327428da2f53a081e7109bd`, check the bucket access permission and ACL access permission, then click OK:
+4.1 Enter the authorized Huawei Cloud account ID, check the bucket access permissions and ACL access permissions, and click OK:
 
-**Note**: The account ID here is the exclusive Huawei Cloud account ID provided by Guance.
+**Note**: The account ID here is the exclusive Huawei Cloud account ID provided by <<< custom_key.brand_name >>>: `f000ee4d7327428da2f53a081e7109bd`
 
 ![](img/obs-2.png)
 
-5. If download permission is not available, check the **Object Read Permission** and click **OK**.
+5. If download permission is not available, check the **Object Read Permission**, and click **OK**.
 
 ![](img/obs-3.png)
 
@@ -34,6 +34,6 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; How to Grant Read and Write Permissions for Other Accounts on Huawei Cloud?</font>](https://support.huaweicloud.com/perms-cfg-obs/obs_40_0025.html)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; How to Grant Read and Write Permissions for Other Accounts on a Bucket in Huawei Cloud?</font>](https://support.huaweicloud.com/perms-cfg-obs/obs_40_0025.html)
 
 </div>

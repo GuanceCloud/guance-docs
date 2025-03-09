@@ -2,7 +2,7 @@
 
 ---
 
-<br />**GET /api/v1/notes/\{notes_uuid\}/delete**
+<br />**GET /api/v1/notes/{notes_uuid}/delete**
 
 ## Overview
 Delete a note
@@ -11,12 +11,12 @@ Delete a note
 
 ## Route Parameters
 
-| Parameter Name   | Type     | Required | Description              |
-|:-------------|:-------|:-----|:----------------|
-| notes_uuid | string | Y | Note UUID<br> |
+| Parameter Name | Type   | Required | Description              |
+|:--------------|:-------|:---------|:-------------------------|
+| notes_uuid    | string | Y        | Note UUID<br> |
 
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 Parameter description:
 

@@ -1,6 +1,6 @@
 nav:
-  - 'Get Field Management List': list.md
-  - 'Get Field Management': get.md
-  - 'Add Field Management': add.md
-  - 'Modify Field Management': modify.md
-  - 'Delete Field Management': delete.md
+  - 'Get field management list': list.md
+  - 'Get field management': get.md
+  - 'Create field management': add.md
+  - 'Modify field management': modify.md
+  - 'Delete field management': delete.md

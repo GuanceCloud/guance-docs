@@ -11,9 +11,9 @@ Retrieve a single data access rule
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:-------------------------|
-| query_rule_uuid       | string   | Y        | UUID of the data access rule<br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:-------------------------|
+| query_rule_uuid       | string   | Yes        | Data access rule UUID    |
 
 
 ## Additional Parameter Notes
@@ -59,7 +59,7 @@ curl 'https://openapi.guance.com/api/v1/data_query_rule/lqrl_xxxx32/get' \
         "indexes": [],
         "logic": "and",
         "maskFields": "source",
-        "name": "RUM test",
+        "name": "rum test",
         "reExprs": [
             {
                 "enable": true,
@@ -74,7 +74,7 @@ curl 'https://openapi.guance.com/api/v1/data_query_rule/lqrl_xxxx32/get' \
                 "uuid": "role_a1e8215c25474f0bb3809f2d56749ed9"
             },
             {
-                "name": "Custom Quick Filter",
+                "name": "Shortcut Filter Customization",
                 "status": 0,
                 "uuid": "role_aa49795a5a5a4753a2a6350ab57f9497"
             }
@@ -94,13 +94,13 @@ curl 'https://openapi.guance.com/api/v1/data_query_rule/lqrl_xxxx32/get' \
                     "type": "web"
                 },
                 "wsInfo": {
-                    "name": "[Doris] Development Testing Together_",
+                    "name": "[Doris] Development and Testing Together",
                     "status": 0
                 }
             }
         },
         "status": 0,
-        "type": "RUM",
+        "type": "rum",
         "updateAt": 1730532376,
         "updator": "wsak_cd83804176e24ac18a8a683260ab0746",
         "uuid": "lqrl_dfe6330883ef4311afae5d380e2294a1",

@@ -4,17 +4,17 @@
 
 ## Environment Preparation
 
-An existing Kubernetes environment (referred to as K8s) is required. This practice is based on a self-built Kubernetes v1.23.1, Guance Datakit version 1.2.13, and Nginx 1.17.
+An existing Kubernetes environment (referred to as K8s). This practice is based on self-built Kubernetes v1.23.1, <<< custom_key.brand_name >>> Datakit version 1.2.13, and Nginx 1.17.
 
 Datakit has been deployed, and the Datakit configuration file `container.conf` is managed via ConfigMap.
 
-> **Note:** The configuration principles for Alibaba Cloud Container Service for Kubernetes or other cloud providers' Kubernetes services are similar.
+> **Note:** The configuration principles for Alibaba Cloud Container Service for Kubernetes or other cloud service providers' Kubernetes are similar.
 
 ## Prerequisites
 
-Nginx logs in the K8s environment are output via StdOut rather than files. After deploying Datakit as a DaemonSet, it defaults to collecting all StdOut log outputs within K8s, including those from cluster components such as CoreDNS (if logging is enabled). All logs mentioned in this article are output via Stdout.
+Nginx logs in the K8s environment are output via StdOut rather than files. <<< custom_key.brand_name >>> Datakit, when deployed as a DaemonSet, collects all StdOut log outputs within K8s by default, including those from cluster internal components like CoreDNS (if logging is enabled). All logs discussed in this article are output via Stdout.
 
-Note: StdOut is the output method chosen by developers when writing code to select the console for log output, such as:
+Note: StdOut is a method chosen by developers to output logs to the console, such as:
 
 ```
 <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
@@ -22,18 +22,18 @@ Note: StdOut is the output method chosen by developers when writing code to sele
 
 ## Whitelist Requirements
 
-After deploying Datakit, you can collect logs from specified business Pods and K8s cluster components. Logs from newly added, unspecified business Pods will not be collected. Additionally, for multiple containers within the same Pod, you can choose to collect logs from one or more containers.
+After deploying Datakit, you can selectively collect logs from specified business Pods and K8s cluster components. Logs from newly added, unspecified business Pods will not be collected. Additionally, for multiple containers within the same Pod, only one or more of them can be selected for log collection.
 
-This article achieves this using different log filtering methods with Guance's Datakit collector, combining annotations (including filtering logs from other containers within the Pod) and the `container_include_log = []` setting in `container.conf`.
+This article achieves this using different log filtering methods with <<< custom_key.brand_name >>> collector Datakit, combining adding annotations to logs (including filtering out logs from other containers within the Pod) and using `container_include_log = []` in `container.conf`.
 
-> For more detailed log processing principles, refer to [Datakit Log Processing Overview](../../integrations/datakit-logging-how.md).
+> For more detailed log processing principles, refer to <[Datakit Log Processing Overview](../../integrations/datakit-logging-how.md)>
 
 ## Implementation Methods
 
 ### Method One: Using `container_include_log = []`
 
-Collect logs only from cluster components CoreDNS and Nginx. Use regular expressions in `container_include_log` to specify image names.
-> Refer to [Configure Metrics and Logs Collection Based on Container Image](../../integrations/container.md) for specifics.
+Only collect logs from cluster components coredns and nginx. Use regular expressions to specify the image names in `container_include_log`.
+> Refer to <[Configuring Metrics and Log Collection Based on Container Image](../../integrations/container.md)>
 
 ```toml
       [inputs.container]
@@ -70,17 +70,17 @@ Collect logs only from cluster components CoreDNS and Nginx. Use regular express
 
 #### Implementation Effect
 
-This collects logs from Pods with specified image names, as shown in the following figure:
+This method collects logs from Pods with specified image names, as shown in the following figure:
 
 ![image](../images/stdout-log/1.png)
 
 ### Method Two: Combining `container_include_log = []` and Annotation Marking
 
-Collect logs only from cluster components CoreDNS and Nginx while marking Nginx with annotations. Even images not included in `container_include_log`, such as BusyBox, can be collected through annotation marking due to its higher priority.
+Collect logs only from cluster components coredns and nginx, while marking nginx with annotations. Even images not included in the `container_include_log` whitelist, such as busybox, can be marked via annotations for collection. This is because annotation marking has higher priority.
 
-> For more detailed log processing principles, refer to [Datakit Log Processing Overview](../../integrations/datakit-logging-how.md).
+> For more detailed log processing principles, refer to <[Datakit Log Processing Overview](../../integrations/datakit-logging-how.md)>
 
-Annotation marking for Nginx:
+Nginx's annotation marking:
 
 ```bash
       labels:
@@ -140,11 +140,11 @@ Annotation marking for Nginx:
 
 ### Method Three: Filtering Logs from Specific Containers within a Pod
 
-Collect logs only from cluster components CoreDNS and Nginx while marking Nginx with annotations that specify the `"only_images"` field to filter logs from specific container images within the Pod.
+Collect logs only from cluster components coredns and nginx, while marking nginx with annotations that specify `"only_images"` to filter logs from specific container images within the Pod, implementing a whitelist strategy internally.
 
 #### Before Enabling Pod Internal Whitelist
 
-As shown in the figure below, both Nginx and BusyBox logs are collected.
+As shown in the figure below, both nginx and busybox logs are collected.
 
 ![image](../images/stdout-log/3.png)
 
@@ -176,12 +176,12 @@ Only Nginx logs within the Pod are retained.<br />
 
 ## Summary
 
-It is generally not recommended to use whitelist strategies as they can cause many issues and are difficult to debug. Unexpected effects can occur, such as developers not seeing certain logs because a specific tag was not added. To filter log sources, blacklisting is safer; in the worst case, data is still collected. For example, blacklisting in Datakit's `container.conf`:
+Actually, it is not recommended to enable whitelist strategies. Whitelists can cause many issues and are difficult to debug. Unexpected effects may occur, such as developers not seeing certain logs because a specific tag was not added. To filter log sources, blacklists are safer; the worst-case scenario is that data is still collected, which can then be filtered out later. For example, in Datakit collector `container.conf`, you can use:
 
 ```bash
 container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*"]
 ```
 
-Method one does not use annotations but relies on built-in filtering in the `container.conf` file, which is a more low-level approach. However, this method is less flexible compared to method two, where annotations provide better tagging for log sources, making future analysis and filtering easier. Annotations can also be applied to business Pods, allowing for finer-grained control over log collection for a batch of business images.
+Method one does not use annotation marking but relies on built-in filtering methods in the collector's `container.conf`, which is a more fundamental approach. However, this method is less flexible compared to method two, as annotations allow better tagging of log sources, making future problem analysis and filtering easier. Additionally, annotations are applied to business Pods, enabling finer-grained control over log collection for a batch of business images.
 
-Method three combines specific business scenarios to filter out unnecessary Sidecar logs, reducing noise in log collection.
+Method three, combined with specific business scenarios, filters out unnecessary Sidecar logs, reducing noise in log collection.

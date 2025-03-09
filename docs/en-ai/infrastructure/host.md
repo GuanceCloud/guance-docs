@@ -1,18 +1,17 @@
-# Host
-
+# Hosts
 ---
 
-After successful host data collection, it will be reported to the Guance console. Enter **Infrastructure > Host**, and you can view all collected host data information.
+After host data collection is successful, it will be reported to the <<< custom_key.brand_name >>> console. Enter **Infrastructure > Hosts**, and you can view all collected host data information.
 
-Guance offers two viewing and analysis modes for host data. By switching the Explorer in the top-left corner of the page, you can view the following pages:
+<<< custom_key.brand_name >>> provides two modes for viewing and analyzing host data. By switching the Explorer in the top-left corner of the page, you can view the following pages:
 
-- **Host Object List**: You can view each host's data information within the last 24 hours in the current workspace, including host name and tags, CPU usage, MEM usage, and CPU load;
+- **Host Object List**: You can view data information for each host within the last 24 hours in the current workspace, including host name and labels, CPU usage, memory usage, and CPU load;
 
 - **Host Topology Map**: You can quickly view the size of host metrics in a topology map format and analyze the operational status of hosts under different systems, statuses, versions, and regions.
 
 ## Host Object List
 
-Through the host object list, you can view each host's data information within the last 24 hours in the current workspace, including host status, name, CPU usage, MEM usage, and CPU load. It supports setting labels for hosts and filtering hosts with the same label through added tags.
+Through the host object list, you can view data information for each host within the last 24 hours in the current workspace, including host status, host name, CPU usage, memory usage, and CPU load; supports setting tags for hosts and filtering hosts with the same tag through added tags.
 
 ![](img/7.host_detail_1.png)
 
@@ -20,121 +19,121 @@ Host object metric data supports ascending and descending sorting:
 
 <img src="../img/host-queue.png" width="60%" >
 
-**Note**: Due to data entry delays, these metrics are not updated in real-time. Data is aggregated every 5 minutes for the average value over the past 15 minutes, so there might be discrepancies.
+**Note**: Due to data entry delays, these metrics are not updated in real-time. Data is aggregated every 5 minutes for the average value over the past 15 minutes, so there may be some discrepancies.
 
-### Display Only Online Hosts {#online}
+### Show Only Online Hosts {#online}
 
-To help you quickly identify host status, Guance has added a "Display Only Online Hosts" filter switch. This allows you to choose between viewing all reported host objects or only online hosts.
+To help you quickly identify host status, <<< custom_key.brand_name >>> has added a "Show Only Online Hosts" switch filter. This allows you to choose between viewing all reported host objects or only online hosts.
 
-- **Display Only Online Hosts** enabled: Only lists hosts that have reported data within the last 10 minutes.
+- When **Show Only Online Hosts** is enabled, only hosts that have reported data within the last 10 minutes are listed.
 
 **Note**:
 
-- If a host does not report data for more than 10 minutes, CPU usage, MEM usage, and CPU load will not be displayed, and the values will be filled with “-”;
+- If a host does not report data for more than 10 minutes, its CPU usage, memory usage, and CPU load will not be displayed, and the values will be filled with “-”;
 
-- If a host does not report data for more than 24 hours, the host record will be removed from the list.
+- If a host does not report data for more than 24 hours, its record will be removed from the list.
 
 <img src="../img/host-status.png" width="60%" >
 
 ### Host Labels {#label}
 
-In a multi-host management environment, Guance supports custom labels for each host. Setting Label properties on hosts can be used for data classification and query filtering. By clicking on the host name in the host object list, you can add labels to the host in the [details page](#details).
+In environments managing multiple hosts, <<< custom_key.brand_name >>> supports custom labels for each host. Setting Label attributes on hosts can be used for data classification and filtering queries. By clicking the host name in the host object list, you can add labels to the host in the [details page](#details).
 
-Steps:
+Steps are as follows:
 
 ![](img/7.host_label_1.png)
 
 1) Click **Edit Label**;
 
-2) Input the Label tag, press Enter to confirm and continue adding;
+2) Input the Label tag and press Enter to confirm and continue adding;
 
 3) After completion, click Save;
 
 **Note**: Label configurations take effect after 1-5 minutes.
 
-4) After adding host Label tags, you can choose between two display formats: "1 line" and "all". In the host list, click **Show Columns** to switch the number of lines for Label display.
+4) After adding host Label tags, two display modes are supported: "1 line" and "All". In the host list, click **Display Columns** to switch the number of lines displayed for Labels.
 
 ![](img/7.host_label_3.png)
 
 ### Query and Analysis
 
-- [Time Control](../getting-started/function-details/explorer-search.md#time): The host object list defaults to displaying host data from the last 24 hours; you can refresh to the current time range and re-fetch the data list.
+- [Time Widget](../getting-started/function-details/explorer-search.md#time): The host object list defaults to displaying host data from the last 24 hours; it can be refreshed to the current time range to re-fetch the data list.
 
-- [Search and Filter](../getting-started/function-details/explorer-search.md): In the Explorer search bar, you can use keyword search, wildcard search, and other methods; you can also filter by `tags/attributes`, including positive and negative filtering.
+- [Search and Filter](../getting-started/function-details/explorer-search.md): In the search bar of the Explorer, various search methods are supported, including keyword search and wildcard search; you can filter values by `tags/attributes`, including forward and reverse filtering.
 
-- DQL supports **now() function** queries: You can get the current query time and compare the latest time with the current time using `+` and `-`.
+- DQL supports the **now() function** for query filtering: It retrieves the current query time and supports comparing the latest time with the current time using `+` and `-`.
 
-- [Quick Filters](../getting-started/function-details/explorer-search.md#quick-filter): Edit quick filters and add new filter fields. After adding, you can select field values for quick filtering.
+- [Quick Filter](../getting-started/function-details/explorer-search.md#quick-filter): Edit quick filters to add new filter fields. After adding, select field values for quick filtering.
 
 <img src="../img/quickfilter.png" width="60%" >
 
-- [Customize Display Columns](../getting-started/function-details/explorer-search.md#columns): Customize adding, editing, deleting, and dragging display columns via **Show Columns**.
+- [Custom Display Columns](../getting-started/function-details/explorer-search.md#columns): Customize columns by adding, editing, deleting, and dragging display columns via **Display Columns**.
 
-- [Analysis Mode](../getting-started/function-details/explorer-search.md#analysis): Supports multi-dimensional analysis statistics based on <u>1-3 tags</u>, reflecting data distribution characteristics across different dimensions. It supports various data chart analysis methods, including Top Lists, pie charts, and treemaps.
+- [Analysis Mode](../getting-started/function-details/explorer-search.md#analysis): Supports multi-dimensional analysis based on <u>1-3 tags</u>, reflecting data distribution characteristics across different dimensions. Multiple chart types are supported, including Top Lists, pie charts, and treemaps.
 
 <img src="../img/4.jichusheshi_1.png" width="60%" >
 
-- Settings: Click the :material-cog: settings icon in the upper-right corner of the Explorer. You can perform the following operations:
+- Settings: Click the :material-cog: settings icon in the upper-right corner of the Explorer to perform the following operations:
 
-    - Create a new monitor: If you find any anomalies in the current host data, you can create a monitor with one click;
+    - Create Monitor: If abnormal conditions are detected in the current host data, you can create a monitor with one click;
 
-    - Export to CSV file: Save the current list as a CSV file locally;
+    - Export to CSV File: Save the current list as a CSV file locally;
 
-    - Export to Dashboard/Notebook: Save the current list as a visual chart to a specified dashboard/notebook.
+    - Export to Dashboard/Notes: Save the current list as a visual chart to a specified dashboard/notes.
 
 <img src="../img/21.host_1.png" width="70%" >
 
 ## Host Details {#details}
 
-In the host object list, clicking on the host name slides out the host details page. On this page, you can view corresponding host basic information, extended attributes, associated information, and bound views.
+In the host object list, clicking the hostname slides out the host details page. On this page, you can view basic information, extended attributes, related information, and bound views for the corresponding host.
 
 ![](img/7.host_detail_6.png)
 
-If you need to export a specific host's data, click the :material-tray-arrow-up: icon in the upper-right corner.
+If you need to export specific host data, click the :material-tray-arrow-up: icon in the upper-right corner.
 
 ![](img/host-0809.png)
 
 ### Basic Information
 
-In the basic information section of the host details page, you can add [host labels](#label), view integration runtime conditions (including DataKit version), system information, and cloud vendor information.
+In the host details page's basic information section, you can add [host labels](#label), view integration operation status (including DataKit version), system information, and cloud vendor information.
 
-#### Integration Runtime Conditions
+#### Integration Operation Status
 
-**Integration Runtime Conditions** displays the installed DataKit version information and related collector runtime conditions. There are two states:
+The **Integration Operation Status** displays the installed DataKit version and related collector operational status, which has two states:
 
-- Collectors in normal running state are displayed in "light blue";
+- Collectors in normal operation are displayed in "light blue";
 
-- Collectors with errors are displayed in "red" and support viewing error information.
+- Collectors with errors are displayed in "red" and support clicking to view error information.
 
-Collectors with a view symbol :fontawesome-solid-chart-simple: support viewing monitoring views:
+Collectors with a :fontawesome-solid-chart-simple: symbol support viewing monitoring views:
 
 ![](img/7.host_detail_2.png)
 
 #### System Information
 
-On the host details page, you can view the host's system information, including host name, operating system, processor, memory, network, disk, connection tracking, files, etc.
+On the host details page, you can view system information for the host, including hostname, operating system, processor, memory, network, disk, connection tracking, files, etc.
 
 ![](img/7.host_detail_3.png)
 
 #### Cloud Vendor Information
 
-If the host is a cloud host and [cloud synchronization](../integrations/hostobject.md#cloudinfo) is configured, you can view information such as cloud platform, instance name, instance ID, instance specifications, region, availability zone, creation time, network type, billing type, IP address, etc.
+If the host is a cloud host and configured with [cloud synchronization](../integrations/hostobject.md#cloudinfo), you can view information such as cloud platform, instance name, instance ID, instance specifications, region, availability zone, creation time, network type, billing type, IP address, etc.
 
 ![](img/7.host_detail_4.png)
 
 ### Extended Attributes
 
-You can view all attributes of the relevant host; support searching and filtering by field name or value to narrow down the viewing scope.
+You can view all attributes of the associated host; supports searching and filtering by field name or value to narrow down the viewing scope.
 
 ![](img/7.host_detail_5.png)
 
-Hover over the value of the corresponding field to display its original format.
+Hovering over the value of a field shows its original format.
 
 <img src="../img/value.png" width="60%" >
 
 ### Associated Analysis
 
-Guance supports associated analysis for each infrastructure object. Besides the host's basic information, you can comprehensively understand the host's metrics, logs, processes, events, containers, network, Security Checks, etc., to monitor the host's operational status faster and more comprehensively.
+<<< custom_key.brand_name >>> supports associated analysis for each infrastructure object. Besides the host's basic information, you can comprehensively understand related metrics, logs, processes, events, containers, networks, security checks, etc., to monitor the host's operational status faster and more comprehensively.
 
 <img src="../img/9.host_4.png" width="60%" >
 
@@ -150,7 +149,7 @@ Guance supports associated analysis for each infrastructure object. Besides the 
 
     You can view logs and log counts related to the host within the last hour.
      
-    **Note**: For a smoother user experience, Guance saves your browsing settings (including "maximum display rows," "display columns") by default, ensuring consistency between **associated logs** and logs. However, custom adjustments made in associated logs are not saved when you exit the page.
+    **Note**: For a smoother user experience, <<< custom_key.brand_name >>> automatically saves your browsing settings (including "maximum displayed rows", "display columns") when viewing logs. Custom adjustments made in associated logs are not saved upon exiting the page.
 
     <img src="../img/host-log.png" width="60%" >
 
@@ -174,17 +173,17 @@ Guance supports associated analysis for each infrastructure object. Besides the 
     
     <img src="../img/host-container.png" width="60%" >
 
-=== "Security Check"
+=== "Security Checks"
 
-    You can view Security Check data related to the host within the last day.
+    You can view security check data related to the host within the last day.
 
     <img src="../img/host-intecheck.png" width="60%" >
 
 === "Network"
 
-    Host network supports viewing network traffic between hosts. It supports viewing source-to-target network traffic and data connections based on server and client endpoints, providing real-time visualization to help businesses understand their business system's network operation status, quickly analyze, track, and locate issues, and prevent or avoid business problems caused by network performance degradation or interruptions.
+    Host network supports viewing network traffic between hosts. It can visualize source-to-target network traffic and data connections based on server and client sides, helping businesses monitor network performance in real-time, quickly analyze, track, and locate issues, and prevent business problems due to network degradation or interruption.
     
-    After successful collection of host network data, it will be reported to the Guance console. You can view host network performance monitoring data information in the network section of the **Infrastructure > Host** details page in **Topology** and **Summary** formats.
+    After host network data collection is successful, it will be reported to the <<< custom_key.brand_name >>> console. You can view network performance monitoring data in two formats: **Topology** and **Overview** in the network section of the host details page.
     
     > For more details, refer to [Network](network.md).
 
@@ -194,51 +193,52 @@ Guance supports associated analysis for each infrastructure object. Besides the 
 
 ### Mute Host {#mute}
 
-On the host details page, clicking **Mute Host** sets the host to mute mode. Mute times include **Once** and **Repeat**, which can be selected as needed.
+In the host details page, click **Mute Host** to set the host to mute. Mute times include **Once** and **Repeat**, selectable as needed.
 
 ![](img/3.host_15.png)
 
-After configuration, return to the host list. During the set mute period, you will not receive alerts related to the host, but generated alert events will be stored in event management. All muted hosts can be viewed in **Monitoring > Mute Management**.
+After configuration, return to the host list. During the set mute period, you will not receive alerts related to this host, and generated alert events will be stored in event management. All muted hosts can be viewed in **Monitoring > Mute Management**.
 
 > For more details, refer to [Alert Settings](../monitoring/alert-setting.md).
 
-**Note**: If you set a host to mute in a specific host's details page and set the same mute rule in **Monitoring > [Mute Management](../monitoring/silent-management.md)**, the host will show a mute icon in the **Infrastructure > Host** list.
+**Note**: If you set a host to mute in its details page and also set the same mute rule for this host in **Monitoring > [Mute Management](../monitoring/silent-management.md)**, the host will show a mute icon in the **Infrastructure > Hosts** list.
 
 ![](img/mute.png)
 
 ### Bind Built-in Views {#view}
 
-Guance supports binding built-in views (user views) to the host details page. Click to bind built-in views and view the default associated fields. You can choose whether to retain these fields and add new `key:value` fields.
+<<< custom_key.brand_name >>> supports binding built-in views (user views) to the host details page. Click to bind built-in views to view default associated fields. You can choose whether to retain these fields and add new `key:value` fields.
 
 ![](img/view.png)
 
-In the bind built-in views > views section, you can add multiple views:
+In Bind Built-in Views > Views, you can choose to add multiple views:
 
 <img src="../img/view-2.png" width="60%" >
 
-After completing the binding of built-in views, you can view the bound built-in views in the host object details and jump to the corresponding built-in view page via the jump button :material-arrow-right-top-bold: to edit, copy, and export the built-in view.
+After completing the binding of built-in views, you can view the bound built-in views in the host object details and navigate to the corresponding built-in view page via the jump button :material-arrow-right-top-bold:, where you can edit, copy, and export the built-in view.
 
 ![](img/view-3.png)
 
-**Note**: When [binding built-in views](../scene/built-in-view/bind-view.md), if the current data does not contain fields associated with the view, it will not be displayed on the details page of that data. Otherwise, it will be displayed.
+**Note**: If [built-in views are bound](../scene/built-in-view/bind-view.md), if the currently opened data does not contain fields associated with the view, the view will not be displayed on the detail page of that data. Otherwise, it will be displayed.
 
-<!-- 
+<!--
 ![](img/4.view_bang_4.png)
- -->
+-->
+
 
 
 ## Host Topology Map
 
-Using the **Host Topology Map**, you can visually query the size of host metric data, quickly analyzing the operational status of hosts under different systems, statuses, versions, and regions with custom tags.
+Through the **Host Topology Map**, you can visually query the size of host metrics and quickly analyze the operational status of hosts under different systems, statuses, versions, and regions with custom tags.
 
 - [Search and Filter](../getting-started/function-details/explorer-search.md);
 
-- Analysis: You can re-aggregate host objects by adding one or more grouping tags;
+- Analysis: You can regroup host objects by adding one or more grouping tags;
 
-- Fill: You can customize filling metrics via **Fill**. The fill metric value will determine the color of the legend. You can choose CPU usage, MEM usage, and CPU load as fill metrics;
+- Fill: You can customize fill metrics via **Fill**. The size of the fill metric values determines the legend color. Supports filling with CPU usage, memory usage, and CPU load;
 
-- Custom Range: You can enable **Custom Range** to define custom color ranges for the selected fill metric. Legend colors will be divided into five intervals based on the maximum and minimum values, each automatically corresponding to a different color;
+- Custom Range: You can enable **Custom Range** to define the legend color intervals for the selected fill metric. The legend colors will be divided into five intervals based on the maximum and minimum values;
 
-- Mouse Hover: Hover over the host object to view the host name, CPU usage, and MEM usage.
+- Mouse Hover: Hover over a host object to view the host name, CPU usage, and memory usage.
 
 ![](img/3.host_2.2.png)

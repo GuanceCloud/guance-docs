@@ -1,19 +1,19 @@
 nav:
-  - 'Create a Dashboard': create.md
-  - 'Get Dashboard List': list.md
-  - 'Delete a Dashboard': delete.md
-  - 'Modify a Dashboard': modify.md
-  - 'Get a Dashboard': get.md
-  - 'Export a Dashboard': export.md
-  - 'Import a Dashboard': import.md
-  - 'Get Carousel List of Dashboards': carousel-list.md
-  - 'Get Configuration for a Single Dashboard Carousel': carousel-get.md
-  - 'Add Configuration for a Single Dashboard Carousel': carousel-add.md
-  - 'Modify Configuration for a Single Dashboard Carousel': carousel-modify.md
-  - 'Delete Configuration for Dashboard Carousel': carousel-delete.md
-  - 'Get Scheduled Report List': crontab-report-list.md
-  - 'Add a Scheduled Report': crontab-report-add.md
-  - 'Get a Scheduled Report': crontab-report-get.md
-  - 'Modify a Scheduled Report': crontab-report-modify.md
-  - 'Enable/Disable Scheduled Report': crontab-report-set-disable.md
-  - 'Delete Scheduled Report': crontab-report-delete.md
+  - 'Create a dashboard': create.md
+  - 'Get a list of dashboards': list.md
+  - 'Delete a dashboard': delete.md
+  - 'Modify a dashboard': modify.md
+  - 'Get a dashboard': get.md
+  - 'Export a dashboard': export.md
+  - 'Import a dashboard': import.md
+  - 'Get a carousel list of dashboards': carousel-list.md
+  - 'Get a single dashboard carousel configuration': carousel-get.md
+  - 'Create a single dashboard carousel configuration': carousel-add.md
+  - 'Modify a single dashboard carousel configuration': carousel-modify.md
+  - 'Delete a dashboard carousel configuration': carousel-delete.md
+  - 'Get a list of scheduled reports': crontab-report-list.md
+  - 'Create a single scheduled report': crontab-report-add.md
+  - 'Get a single scheduled report': crontab-report-get.md
+  - 'Modify a single scheduled report': crontab-report-modify.md
+  - 'Enable/Disable a scheduled report': crontab-report-set-disable.md
+  - 'Delete a scheduled report': crontab-report-delete.md

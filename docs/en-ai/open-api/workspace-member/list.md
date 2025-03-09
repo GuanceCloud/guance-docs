@@ -12,10 +12,10 @@ List all members in the current workspace
 ## Query Request Parameters
 
 | Parameter Name | Type   | Required | Description                                                                 |
-|:--------------|:-------|:---------|:----------------------------------------------------------------------------|
-| search        | string |          | Search by name/email<br>Example: supper_workspace <br>Allow empty: False <br> |
-| pageIndex     | integer|          | Page number<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br>      |
-| pageSize      | integer|          | Number of items per page<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+|:--------------|:-------|:--------|:---------------------------------------------------------------------------|
+| search        | string |         | Search by name/email<br>Example: supper_workspace <br>Can be empty: False <br> |
+| pageIndex     | integer|         | Page number<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>    |
+| pageSize      | integer|         | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
 

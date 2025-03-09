@@ -7,10 +7,10 @@ nav:
       - ddtrace-custom-traceId.md
       - ddtrace-instrumentation.md
       - 'JVM Observability Best Practices': jvm.md
-      - GraalVM and Spring Native Project to Achieve Trace Observability: spring-native.md
+      - Achieving Trace Observability with GraalVM and Spring Native Projects: spring-native.md
       - JAVA OOM Exception Observability Best Practices: java-oom.md
-      - Building Observability for Springcloud Services from 0 to 1 Using Guance: spring-cloud-sample.md
-      - Skywalking Collects JVM Observability Best Practices: skywalking-jvm.md
+      - Building Observability for Springcloud Services from Scratch Using Guance: spring-cloud-sample.md
+      - Skywalking Collecting JVM Observability Best Practices: skywalking-jvm.md
       - Injecting dd-java-agent Using datakit-operator: datakit-operator.md
       - trace-glame-graph.md
       - 'tomcat_ruoyi.md'
@@ -20,12 +20,12 @@ nav:
       - 'Kafka Observability Best Practices': kafka.md
       - 'Insights into MySQL': mysql.md
     - 'Performance Optimization (Profling)':
-      - 'Optimizing Application Performance with async-profiler': async-profiler.md
+      - 'Optimizing Application Performance Using async-profiler': async-profiler.md
 
-  - 'Real User Monitoring (RUM)':
+  - 'User Experience Monitoring (RUM)':
     - Web Application Monitoring (RUM) Best Practices: web.md
     - 'RUM Data Reporting DataKit Cluster Best Practices': rum-datakit-cluster.md
-    - 'Page Channel Diversion Observability Best Practices': page.md
+    - 'Page Channel Traffic Acquisition Observability Best Practices': page.md
 
   - 'IT Infrastructure Monitoring (ITIM)':
     - 'Host Observability Best Practices': host-linux.md

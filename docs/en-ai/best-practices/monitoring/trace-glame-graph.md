@@ -1,34 +1,34 @@
-# Clever Use of Flame Graphs to Analyze Trace Performance
+# Clever Use of Flame Graphs to Analyze Chain Performance
 
 ---
 
-This article aims to help you understand what full trace (Trace) is and how to use tools to analyze performance bottlenecks in the trace.
+This article aims to help you understand what full-chain tracing is and how to use tools to analyze performance bottlenecks in the chain.
 
 ## Basic Concepts and Tools
 
-- Full Trace (Trace) Tracking
+- Full Trace (Trace) Tracing
 - Analysis Tools
-  - Flame Graph
-  - Span List
-  - Service Call Relationship Diagram
+    - Flame Graph
+    - Span List
+    - Service Call Relationship Diagram
 - Duration / Execution Time
 
-## Full Trace Tracking
+## Full Trace Tracing
 
-Generally, a single trace (Trace) consists of various Spans, forming a tree or Directed Acyclic Graph (DAG). Each Span represents a named and timed continuous execution segment within the Trace. As shown in the following figure, since the core of Span is to record the start and end times of corresponding program execution segments, and there exists a parent-child relationship between these segments, Spans logically form a tree structure.
+In general, a single trace (Trace) is composed of various Spans, forming a tree or directed acyclic graph (DAG). Each Span represents a named and timed continuous execution segment within the Trace, as shown in the figure below. Since the core of a Span is recording the start and end times of corresponding program execution segments, and there exists a parent-child relationship between these execution segments, Spans logically form a tree structure.
 
-Note: The parent-child relationship of Spans can be associated by the child Span's `parent_id` equaling the parent Span's `span_id`.
+Note: The parent-child relationship of spans can be associated by the child span's `parent_id` equaling the parent Span's `span_id`.
 
 ![](../images/flame/flame_graph.001.png)
 
 ### Flame Graph
 
-A Flame Graph is a visualization chart invented by Linux performance optimization expert Brendan Gregg for analyzing performance bottlenecks. It provides a global view of time distribution, listing all Spans that may cause performance bottlenecks from top to bottom.
+A Flame Graph is a visualization chart invented by Linux performance optimization expert Brendan Gregg for analyzing performance bottlenecks. The Flame Graph provides a global view of time distribution, listing all potential performance bottleneck Spans from top to bottom.
 
 #### Drawing Logic
 
-- The vertical axis (Y-axis) represents the hierarchical depth of the called Spans, indicating the calling relationships between program execution segments: upper Spans are parent Spans of lower Spans (data can also be associated through `parent_id` and `span_id`).
-- The horizontal axis (X-axis) represents the duration of Spans under a single Trace. A wider block indicates a longer duration from start to finish, which could be a potential cause of performance bottlenecks.
+- The vertical axis (Y-axis) represents the hierarchical depth of called Spans, indicating the call relationship between program execution segments: Spans above are parent Spans of Spans below (data can also be associated through `child_span.parent_id` equaling `parent_Span.span_id`).
+- The horizontal axis (X-axis) represents the duration of Spans under a single Trace. The wider a block, the longer the duration from start to finish, potentially indicating a performance bottleneck.
 
 ![](../images/flame/flame_graph.002.png)
 
@@ -39,54 +39,54 @@ A Flame Graph is a visualization chart invented by Linux performance optimizatio
 - Each Span block on the Flame Graph corresponds to its service color.
 
 ```
-So it is very intuitive to perceive which service requests are executing in the current Trace from the Flame Graph. (Service color generation logic: when users log into the workspace to access the APM module, Guance automatically generates colors based on service names, and this color integration will be inherited on analysis pages such as the Explorer.)
+Thus, it is very intuitive to perceive which service requests are currently executing in the Trace from the Flame Graph. (Service color generation logic: when users log into the workspace to access the APM module, <<< custom_key.brand_name >>> automatically generates colors based on the service name, and this color integration will inherit to the link Explorer and other analysis pages)
 ```
 
-- By default, each Span block displays: resource (resource) or operation (operation), duration (duration), and whether an error exists (status = error).
-- Each Span tooltip shows the corresponding resource (resource), duration (duration), and overall time consumption percentage.
+- Span blocks default display: current Span resource (resource) or operation (operation), duration (duration), and whether there is an error (status = error).
+- Each Span tooltip displays the corresponding resource (resource), duration (duration), and overall time consumption ratio.
 
 **Service List**
 
-The service list on the right side of the Flame Graph displays the service names, colors, and the ratio of execution time to total execution time involved in the current Trace.
+The service list on the right side of the Flame Graph shows the service names, colors, and the ratio of execution time to total execution time for services involved in the current Trace.
 
-Note: If the service name is displayed as "None," it means that the current trace did not find a top-level Span with `parent_id = 0`.
+Note: If the service name is displayed as None, it indicates that the current trace did not find a top-level Span with `parent_id = 0`.
 
 #### Interaction Explanation
 
 ![](../images/flame/flame_graph.003.png)
 
-1. Full-screen View/Restore Default Size: Click the full-screen view icon in the upper-right corner of the trace details to expand the Flame Graph horizontally. Click the restore default size icon to return to the details page.
-2. Expand/Collapse Minimap: Click the expand/collapse minimap icon on the left side of the trace details to quickly view the Flame Graph by selecting intervals, dragging, or scrolling on the minimap.
-3. View Global Trace: Click the view global Trace icon on the left side of the trace details to see the global trace in the Flame Graph.
-4. Collapse Lower Tab Details: Click the collapse button to hide the display area of the lower tab details.
-5. Double-click Span: Amplify the display of the Span in the middle of the Flame Graph to quickly locate and view contextually related Spans.
-6. Click Service Name on the Right: Highlight the corresponding Span. Clicking the service name again restores the default selection of all Spans. You can quickly filter and view Spans corresponding to the service by clicking the service name.
+1. Full-screen viewing/restoring default size: Click the full-screen icon in the upper-right corner of the trace details to expand horizontally and view the flame graph. Click the restore default size icon to return to the details page.
+2. Expand/collapse mini-map: Click the expand/collapse mini-map icon on the left side of the trace details to quickly view the flame graph by selecting intervals, dragging, or scrolling in the mini-map.
+3. View global Trace: Click the view global Trace icon on the left side of the trace details to view the global trace in the flame graph.
+4. Collapse lower Tab details: Click the collapse button to hide the lower Tab details area.
+5. Double-click Span: Amplify the display of the selected Span in the middle of the flame graph to quickly locate and view contextually related Spans.
+6. Click service name on the right: Highlight the corresponding Span; clicking again restores the default selection of all Spans. You can click the service name to quickly filter and view Spans corresponding to the service.
 
 #### Special Notes
 
-Due to multi-threading or asynchronous tasks, Spans may overlap in actual drawing:
+Due to multi-threading or asynchronous tasks, spans may overlap in actual drawing:
 
-- Sibling Spans under the same parent may overlap.
+- Sibling spans under the same parent may overlap.
 
 ![](../images/flame/flame_graph.004.png)
 
-Because of Span overlaps, we have made some display adjustments in the front-end when drawing the Flame Graph to ensure each Span and sub-Span is displayed without obstruction based on time and space dimensions.
+Since spans may overlap, to more intuitively see each Span and its sub-Spans, we perform some display processing on the front end when drawing the flame graph. This involves calculating the position of Spans and their sub-Spans in both time and space dimensions to ensure they do not obscure each other.
 
 Example 1:
 
-In a normal Trace, sibling Spans at the same level do not overlap in time but may overlap with subordinate sub-Spans. Parent-child Span relationships are connected via lines, and the drawing logic is applied similarly for sub-Spans with connecting lines.
+Normal Trace, sibling Spans at the same level do not overlap in time but have overlapping durations with subordinate sub-Spans. Parent-child Span relationships are connected via lines. Sub-Spans with connections follow this logic during drawing.
 
 ![](../images/flame/flame_graph.005.png)
 
 Example 2:
 
-In an abnormal Trace, sibling Spans at the same level may still overlap in time, but the start time (`start`) of the top-level Span (`parent_id = 0`) is greater than the start time of the child Span.
+Abnormal Trace, sibling Spans at the same level still overlap in time, but the start time (`start`) of the top-level Span (`parent_id = 0`) is greater than the start time of the child Span.
 
 ![](../images/flame/flame_graph.006.gif)
 
 Analysis Logic:
 
-According to the parent-child relationship of program execution in the trace, the start time of the parent Span should always be less than the start time of the child Span. Therefore, if the parent Span and child Span belong to different services, it suggests that the system times of the servers hosting these services might be inconsistent. This needs to be verified and calibrated before analyzing the actual performance bottleneck.
+Based on the parent-child relationship in the chain according to program execution, the start time of the parent Span must be less than the start time of the child Span. Therefore, if the parent Span and child Span belong to different services, it suggests that the system times of the servers hosting these services may be inconsistent. Calibration should be performed before analyzing the actual performance bottleneck.
 
 ### Span List
 
@@ -96,26 +96,26 @@ According to the parent-child relationship of program execution in the trace, th
 
 ![](../images/flame/flame_graph.007.png)
 
-- Column 1: Displays service type, service name, service color, and whether there are any Spans with `status = error` under the current service.
+- Column 1: Displays service type, service name, service color, and whether there are any Spans with `status = error`.
 - Column 2: Displays the number of Spans under the current service.
-- Column 3: Displays the average duration (`duration`) of Spans under the current service.
+- Column 3: Displays the average duration of Spans under the current service.
 - Column 4: Displays the total execution time of Spans under the current service.
-- Column 5: Displays the ratio of the current service's execution time to the total execution time.
+- Column 5: Displays the ratio of the service's execution time to the total execution time.
 
 **Expanded Service Row Display**
 
 ![](../images/flame/flame_graph.008.png)
 
-- Column 1: Displays resource name (`resource`), corresponding service color, and whether the current Span has `status = error`.
+- Column 1: Displays resource name (resource), corresponding service color, and whether the current Span has `status = error`.
 - Column 2: Empty
-- Column 3: Displays the current Span's duration (`duration`).
-- Column 4: Displays the current Span's execution time.
+- Column 3: Displays the duration of the current Span.
+- Column 4: Displays the execution time of the current Span.
 - Column 5: Displays the ratio of the current Span's execution time to the total execution time.
 
 #### Interaction Explanation
 
-- Search: Supports fuzzy search by resource name (`resource`).
-- Supports switching to the Flame Graph to view the context relationship of the selected Span after selecting a Span.
+- Search: Supports fuzzy search by resource name (resource).
+- Supports switching to the flame graph to view the context relationship of the selected Span.
 
 ![](../images/flame/flame_graph.009.gif)
 
@@ -123,20 +123,20 @@ According to the parent-child relationship of program execution in the trace, th
 
 #### Display Explanation
 
-Displays the call topology between services in the current trace.
+Displays the topology of service call relationships within the current trace.
 
-- Supports fuzzy matching by resource name (`resource`) to locate upstream and downstream service call relationships.
-- When hovering over a service, it shows the number of Spans under the current service, the service execution time, and the ratio.
+- Supports fuzzy matching by resource name (resource) to locate upstream and downstream service call relationships.
+- Hovering over a service displays: number of Spans under the current service, service execution time, and ratio.
 
 ![](../images/flame/flame_graph.010.png)
 
 ### Duration
 
-The start and end times of the program execution segment corresponding to a Span are generally marked in the Trace data using the `duration` field.
+The start and end times of the program execution segment corresponding to a Span are generally marked with the `duration` field in the Trace data.
 
 ### Execution Time
 
-As mentioned in the special notes, there may be inconsistencies in the end times of parent and child Spans. Execution time is calculated according to the following logic.
+As mentioned in the special notes, the end times of parent and child Spans may differ. Execution time is calculated based on the following logic.
 
 #### Span Execution Time
 
@@ -144,7 +144,7 @@ As mentioned in the special notes, there may be inconsistencies in the end times
 
 ![](../images/flame/flame_graph.011.png)
 
-Child Span execution time = Children's `duration`
+Child Span execution time = Children's duration
 
 Total execution time = Children's end time - Parent's start time
 
@@ -154,7 +154,7 @@ Parent Span execution time = Total execution time - Child Span execution time
 
 ![](../images/flame/flame_graph.012.png)
 
-Child Span execution time = Children's `duration`
+Child Span execution time = Children's duration
 
 Total execution time = Children's end time - Parent's start time
 
@@ -170,11 +170,11 @@ Children 1 Span execution time = c1(1) + c1(2)
 
 Children 2 Span execution time = c2(1) + c2(2)
 
-Note: Because Children 1 Span and Children 2 Span partially overlap in actual execution, this overlapping time is evenly divided between the two Spans.
+Note: Because Children 1 Span and Children 2 Span partially overlap in actual execution time, this overlapping time is split equally between the two Spans.
 
 **Example Explanation**
 
-In synchronous tasks where Spans execute in the order "Span1 start -> Span1 end -> Span2 start -> Span2 end -> ...", the execution time of each Span and the corresponding parent Span's execution time are calculated as follows:
+For synchronous tasks, Spans execute in the order "Span1 start -> Span1 end -> Span2 start -> Span2 end -> ...". The execution time of each Span and the corresponding parent Span's execution time are calculated as follows:
 
 Example 1:
 
@@ -184,23 +184,23 @@ Child Spans = MyDQL SPAN2, MyDQL SPAN3, MyDQL SPAN4, MyDQL SPAN5, MyDQL SPAN6, M
 
 Analysis:
 
-Since none of the child Spans have further child Spans, the execution time of all child Spans equals their Span durations. The actual execution time of the parent Span is obtained by subtracting the sum of the execution times of all child Spans from the parent Span's duration.
+Since all child Spans do not have further child Spans, the execution time of all child Spans equals their Span duration. The actual execution time of the parent Span is obtained by subtracting the execution time of all child Spans from the parent Span's duration.
 
 ![](../images/flame/flame_graph.014.png)
 
 #### Service Execution Time
 
-Each service's execution time = Sum of the execution times of all Spans belonging to that service in the Trace.
+Each service's execution time = Sum of execution times of all Spans belonging to the service in the Trace.
 
 #### Total Execution Time
 
 Total execution time = Last end time of Spans in the Trace - First start time of Spans in the Trace.
 
-## Trace Analysis Scenarios
+## Chain Analysis Scenarios
 
 ### Collector Configuration (Host Installation)
 
-Enter the DataKit installation directory's `conf.d/ddtrace` directory, copy `ddtrace.conf.sample`, and rename it to `ddtrace.conf`. Example configuration:
+Enter the DataKit installation directory's `conf.d/ddtrace` directory, copy `ddtrace.conf.sample`, and rename it to `ddtrace.conf`. Example:
 
 ??? quote "`ddtrace.conf` Example"
 
@@ -217,7 +217,7 @@ Enter the DataKit installation directory's `conf.d/ddtrace` directory, copy `ddt
       # customer_tags = ["key1", "key2", ...]
 
       ## Keep rare tracing resources list switch.
-      ## If some resources are rare enough(not present in 1 hour), those resources will always send
+      ## If some resources are rare enough(not presend in 1 hour), those resource will always send
       ## to data center and do not consider samplers and filters.
       # keep_rare_resource = false
 
@@ -226,8 +226,8 @@ Enter the DataKit installation directory's `conf.d/ddtrace` directory, copy `ddt
       # omit_err_status = ["404"]
 
       ## Ignore tracing resources map like service:[resources...].
-      ## The service name is the full service name in the current application.
-      ## The resource list is regular expressions used to block resource names.
+      ## The service name is the full service name in current application.
+      ## The resource list is regular expressions uses to block resource names.
       ## If you want to block some resources universally under all services, you can set the
       ## service name as "*". Note: double quotes "" cannot be omitted.
       # [inputs.ddtrace.close_resource]
@@ -265,13 +265,13 @@ After configuration, [restart DataKit](../../datakit/datakit-service-how-to.md#m
 
 #### HTTP Settings
 
-If Trace data is sent across machines, configure [DataKit's HTTP settings](../../datakit/datakit-conf.md#config-http-server).
+If Trace data is sent across machines, then you need to configure [DataKit's HTTP settings](../../datakit/datakit-conf.md#config-http-server).
 
-If ddtrace data is sent to DataKit, it will appear on [DataKit's monitor](../../datakit/datakit-monitor.md):
+If ddtrace data is sent to DataKit, you will see it on [DataKit's monitor](../../datakit/datakit-monitor.md):
 
 ![](../images/flame/flame_graph.015.png)
 
-*DDtrace sends data to the `/v0.4/traces` endpoint*
+*DDtrace sends data to the /v0.4/traces endpoint*
 
 ### SDK Integration (Go Example)
 
@@ -283,15 +283,15 @@ Install the ddtrace golang library in your development directory:
 go get -v github.com/DataDog/dd-trace-go
 ```
 
-#### Set Up DataKit
+#### Configure DataKit
 
-Ensure you have [installed](../../datakit/datakit-install.md), [started DataKit](../../datakit/datakit-service-how-to.md), and enabled the [ddtrace collector](../../integrations/ddtrace.md#config).
+First [install](../../datakit/datakit-install.md), [start DataKit](../../datakit/datakit-service-how-to.md), and enable the [ddtrace collector](../../integrations/ddtrace.md#config).
 
 #### Code Example
 
-The following code demonstrates collecting trace data for a file opening operation.
+The following code demonstrates collecting trace data for a file open operation.
 
-In the main() entry point, set up basic trace parameters and start the trace:
+In the `main()` entry point, set up basic trace parameters and start the trace:
 
 ??? quote "Example Code"
 
@@ -315,13 +315,13 @@ In the main() entry point, set up basic trace parameters and start the trace:
             tracer.WithGlobalTag("project", "add-ddtrace-in-golang-project"),
         )
 
-        // Ensure tracer stops at app exit
+        // Ensure tracer stops at the end of app exit
         defer tracer.Stop()
 
         tick := time.NewTicker(time.Second)
         defer tick.Stop()
 
-        // Your app's main entry...
+        // your-app-main-entry...
         for {
             runApp()
             runAppWithError()
@@ -350,7 +350,7 @@ In the main() entry point, set up basic trace parameters and start the trace:
     }
     ```
 
-#### Compile and Run
+#### Compilation and Execution
 
 Linux/Mac Environment:
 
@@ -366,58 +366,58 @@ go build main.go -o my-app.exe
 $env:DD_AGENT_HOST="localhost"; $env:DD_TRACE_AGENT_PORT="9529"; .\my-app.exe
 ```
 
-After running the program for some time, you can view similar trace data in Guance:
+After running the program for a while, you can see similar trace data in <<< custom_key.brand_name >>>:
 
 ![](../images/flame/flame_graph.016.png)
 
-*Golang Program Trace Data Display*
+*Golang program trace data display*
 
 #### Supported Environment Variables
 
-The following environment variables support specifying ddtrace configuration parameters when starting the program. Their basic form is:
+The following environment variables support specifying some ddtrace configuration parameters when starting the program. Their basic form is:
 
 ```Shell
 DD_XXX=<env-value> DD_YYY=<env-value> ./my-app
 ```
 
-**Note**: These environment variables will be overridden by fields injected with WithXXX() in the code, so the code-injected configurations have higher priority. ENV only takes effect when the corresponding fields are not specified in the code.
+**Note**: These environment variables will be overridden by fields injected with WithXXX() in the code. Therefore, configurations injected in the code have higher priority, and these ENV only take effect when the corresponding fields are not specified in the code.
 
 | **Key**                 | **Default Value** | **Description**                                                     |
 | :---------------------- | :--------- | :----------------------------------------------------------- |
-| DD_VERSION              | -          | Set the application version, e.g., *1.2.3*, *2022.02.13*                   |
+| DD_VERSION              | -          | Set the application version, such as *1.2.3*, *2022.02.13*                   |
 | DD_SERVICE              | -          | Set the application service name                                               |
-| DD_ENV                  | -          | Set the current environment of the application, e.g., prod, pre-prod                     |
-| DD_AGENT_HOST           | localhost  | Set the IP address of DataKit, where the application's trace data will be sent to DataKit |
-| DD_TRACE_AGENT_PORT     | -          | Set the port for DataKit to receive trace data. Manually specify [DataKit's HTTP port](https://docs.guance.com/datakit/datakit-conf/#config-http-server) (usually 9529) |
-| DD_DOGSTATSD_PORT       | -          | If you need to receive statsd data generated by ddtrace, enable the [statsd collector on DataKit](https://docs.guance.com/datakit/statsd/) |
-| DD_TRACE_SAMPLING_RULES | -          | Use a JSON array to represent sampling settings (sampling rates apply in the order of the array), where `sample_rate` is the sampling rate, ranging from [0.0, 1.0]. **Example One**: Set a global sampling rate of 20%: `DD_TRACE_SAMPLE_RATE='[{"sample_rate": 0.2}]' ./my-app` **Example Two**: For services matching `app1.*` and Spans named `abc`, set the sampling rate to 10%, otherwise set it to 20%: `DD_TRACE_SAMPLE_RATE='[{"service": "app1.*", "name": "b", "sample_rate": 0.1}, {"sample_rate": 0.2}]' ./my-app` |
+| DD_ENV                  | -          | Set the current environment of the application, such as prod, pre-prod                     |
+| DD_AGENT_HOST           | localhost  | Set the IP address of DataKit, where the application-generated trace data will be sent to DataKit |
+| DD_TRACE_AGENT_PORT     | -          | Set the receiving port for DataKit trace data. Here, specify the [DataKit HTTP port](https://docs.guance.com/datakit/datakit-conf/#config-http-server) (usually 9529) |
+| DD_DOGSTATSD_PORT       | -          | If you want to receive statsd data generated by ddtrace, manually enable the [statsd collector on DataKit](https://docs.guance.com/datakit/statsd/) |
+| DD_TRACE_SAMPLING_RULES | -          | Sampling settings represented by a JSON array (sampling rates apply in array order), where `sample_rate` is the sampling rate, ranging from [0.0, 1.0]. **Example One**: Set global sampling rate to 20%: `DD_TRACE_SAMPLE_RATE='[{"sample_rate": 0.2}]' ./my-app` **Example Two**: For services matching `app1.*` and Spans named `abc`, set the sampling rate to 10%, otherwise set it to 20%: `DD_TRACE_SAMPLE_RATE='[{"service": "app1.*", "name": "b", "sample_rate": 0.1}, {"sample_rate": 0.2}]' ./my-app` |
 | DD_TRACE_SAMPLE_RATE    | -          | Enable the above sampling rate setting                                         |
-| DD_TRACE_RATE_LIMIT     | -          | Set the number of Spans sampled per second for each Go process. Defaults to 100 if `DD_TRACE_SAMPLE_RATE` is enabled |
-| DD_TAGS                 | -          | Inject a set of global tags, which will appear in each Span and profile data. Multiple tags can be separated by spaces and commas, e.g., `layer:api,team:intake` or `layer:api team:intake` |
+| DD_TRACE_RATE_LIMIT     | -          | Set the number of Spans sampled per second for each Go process. If `DD_TRACE_SAMPLE_RATE` is enabled, the default is 100 |
+| DD_TAGS                 | -          | Inject a set of global tags that appear in each Span and profile data. Multiple tags can be separated by spaces and commas, e.g., `layer:api,team:intake` or `layer:api team:intake` |
 | DD_TRACE_STARTUP_LOGS   | true       | Enable ddtrace configuration and diagnostic logs                            |
-| DD_TRACE_DEBUG          | false      | Enable ddtrace debug logs                                  |
-| DD_TRACE_ENABLED        | true       | Enable trace collection. If manually turned off, no trace data will be generated |
-| DD_SERVICE_MAPPING      | -          | Dynamically rename service names, separated by spaces and commas, e.g., `mysql:mysql-service-name,postgres:postgres-service-name` |
+| DD_TRACE_DEBUG          | false      | Enable ddtrace debugging logs                                  |
+| DD_TRACE_ENABLED        | true       | Enable the trace switch. If manually disabled, no trace data will be generated |
+| DD_SERVICE_MAPPING      | -          | Dynamically rename service names, separated by spaces and commas, e.g., `mysql:mysql-service-name,postgres:postgres-service-name`, `mysql:mysql-service-name postgres:postgres-service-name`
 
-### Actual Trace Data Analysis
+### Actual Chain Data Analysis
 
-1. Log in to the Guance workspace, view the service list in the APM module. From the service page, you can already see that the P90 response time for the browser service is relatively long.
+1. Log in to the <<< custom_key.brand_name >>> workspace, check the service list in the APM module. From the service page, you can already see that the P90 response time for the browser service is relatively long.
 
 ![](../images/flame/flame_graph.017.png)
 
-2. Click on the browser service name to view the overview analysis view of the service. It can be seen that the most critical resource affecting the current service's response time is the `query_data` interface. Since this is a data query interface of Guance, let's examine why it takes so long during the query process.
+2. Click the browser service name to view the overview analysis view of the service. It can be seen that the most critical resource affecting the current service response time is the `query_data` interface. Since this interface is a data query interface of <<< custom_key.brand_name >>>, let's see why it takes so long during the query process.
 
 ![](../images/flame/flame_graph.018.png)
 
-3. Click on the resource name, navigate to the Explorer, and sort by duration in descending order to view the maximum response time.
+3. Click the resource name and navigate to the Explorer. Sort by duration in descending order to view the maximum response time.
 
 ![](../images/flame/flame_graph.019.png)
 
-4. Click on the Span data to analyze the execution performance and other related information of the current Span within the entire trace.
+4. Click the Span data to view and analyze the execution performance and other relevant information of the current Span within the entire chain.
 
 ![](../images/flame/flame_graph.020.png)
 
-5. Click the [Full Screen] mode button in the upper-right corner to magnify and view the Flame Graph information. Combining the overall trace view, it can be observed that the browser service accounts for 96.26% of the execution time in the entire trace. From the Span list, this conclusion can also be drawn. Based on the Flame Graph ratio and the corresponding trace detail information, it can be summarized that the `query_data` Span of the browser took about 400 milliseconds for `resource_ttfb` (resource loading request response time) and 1.46 seconds for `resource_first_byte` (resource loading first byte time). Considering the geographical location of `province` is Singapore, while our site is deployed in Hangzhou, it can be concluded that the geographical distance led to longer data transmission times, thus affecting the overall latency.
+5. Click the [Full Screen] mode button in the upper-right corner to enlarge and view the flame graph information. Combining the overall chain view, it can be seen that the browser service accounts for 96.26% of the execution time in the entire chain. From the Span list, this conclusion can also be drawn. According to the proportion in the flame graph and the corresponding chain details, it can be summarized that for the `query_data` Span of the browser, the `resource_ttfb` (resource load request response time) took more than 400 milliseconds, and the `resource_first_byte` (resource load first byte time) took 1.46 seconds. Considering the geographical location of the province is Singapore, while our site is deployed in the Hangzhou node, it can be concluded that the data transmission time was prolonged due to geographical distance, affecting the overall latency.
 
 ![](../images/flame/flame_graph.021.png)
 

@@ -1,38 +1,35 @@
-# Schedule Modification
+# Modify Schedule
 
 ---
 
-<br />**POST /api/v1/notification_schedule/\{notification_schedule_uuid\}/modify**
+<br />**POST /api/v1/notification_schedule/{notification_schedule_uuid}/modify**
 
 ## Overview
-Modify a schedule
-
+Modify an existing schedule.
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------------|:-------|:-----|:----------------|
-| notification_schedule_uuid | string | Y | Schedule UUID<br> |
-
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:-------------------------|
+| notification_schedule_uuid | string | Yes | Schedule UUID<br> |
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------------|:-------|:-----|:----------------|
-| name | string | Y | Name<br>Allow null: False <br>Maximum length: 256 <br>Allow empty string: False <br> |
-| timezone | string |  | Time zone, default Asia/Shanghai<br>Example: Asia/Shanghai <br>Allow null: False <br>Maximum length: 48 <br> |
-| start | string | Y | Time period start time<br>Example: 00:00 <br>Allow null: False <br>Maximum length: 48 <br> |
-| end | string | Y | Time period end time<br>Example: 23:59 <br>Allow null: False <br>Maximum length: 48 <br> |
-| notifyTargets | array | Y | Notification targets, including account UUID, notification target UUID, email<br>Example: ['acnt_xxx', 'notify_', 'test@qq.com'] <br>Allow null: False <br> |
-| extend | json |  | Extended information, includes rotating notification target configuration<br>Allow null: False <br> |
-| extend.enableRotateNotification | boolean |  | Whether to enable rotation, default is disabled<br>Example: False <br>Allow null: False <br> |
-| extend.rotationCycle | string |  | Rotation cycle, day: day, week: week, month: month, workday: workDay, weekend: weekend<br>Example: day <br>Allow null: False <br>Possible values: ['day', 'week', 'month', 'workDay', 'weekend'] <br> |
-| extend.effectiveTime | json |  | Schedule validity period, default is permanent, start/end times are 11-digit timestamps<br>Example: {'start': 1719990196, 'end': 1729990196} <br>Allow null: False <br> |
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:-------------------------|
+| name | string | Yes | Name<br>Allow empty: False <br>Maximum length: 256 <br>Allow empty string: False <br> |
+| timezone | string | No | Time zone, default Asia/Shanghai<br>Example: Asia/Shanghai <br>Allow empty: False <br>Maximum length: 48 <br> |
+| start | string | Yes | Start time of the time period<br>Example: 00:00 <br>Allow empty: False <br>Maximum length: 48 <br> |
+| end | string | Yes | End time of the time period<br>Example: 23:59 <br>Allow empty: False <br>Maximum length: 48 <br> |
+| notifyTargets | array | Yes | Notification targets, including account UUID, notification target UUID, email<br>Example: ['acnt_xxx', 'notify_', 'test@qq.com'] <br>Allow empty: False <br> |
+| extend | json | No | Extended information, including rotating notification target configuration<br>Allow empty: False <br> |
+| extend.enableRotateNotification | boolean | No | Whether to enable rotation, default is disabled<br>Example: False <br>Allow empty: False <br> |
+| extend.rotationCycle | string | No | Rotation cycle, day: day, week: week, month: month, workday: workDay, weekend: weekend<br>Example: day <br>Allow empty: False <br>Allowed values: ['day', 'week', 'month', 'workDay', 'weekend'] <br> |
+| extend.effectiveTime | json | No | Validity period of the schedule, default is permanent, start/end times are 11-digit timestamps<br>Example: {'start': 1719990196, 'end': 1729990196} <br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
-Parameter description: Refer to the new addition interface
-
+Parameter descriptions: Refer to the create interface.
 
 ## Request Example
 ```shell
@@ -43,9 +40,8 @@ curl 'https://openapi.guance.com/api/v1/notification_schedule/nsche_3512c1f4d176
 --compressed
 ```
 
-
 ## Response
-```shell
+```json
 {
     "code": 200,
     "content": {
@@ -83,5 +79,5 @@ curl 'https://openapi.guance.com/api/v1/notification_schedule/nsche_3512c1f4d176
     "message": "",
     "success": true,
     "traceId": "TRACE-0AC2A410-36A0-4694-879B-732A416A673B"
-} 
+}
 ```

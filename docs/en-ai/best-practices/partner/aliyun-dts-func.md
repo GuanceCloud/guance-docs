@@ -1,4 +1,4 @@
-# Alibaba Cloud DTS Incremental Data Migration Best Practices (Function)
+# Best Practices for Alibaba Cloud DTS Incremental Data Migration (Function)
 
 ---
 
@@ -6,7 +6,7 @@
 
 ### Install Datakit
 
-1. Click the [**Integration**] module, [_Datakit_], and select the appropriate installation command based on your operating system and system type.
+1. Click the [**Integration**] module, [_Datakit_], and choose the appropriate installation command based on your operating system and system type.
 
 ![image.png](../images/aliyun-dts-func-1.png)
 
@@ -18,15 +18,15 @@
 
 ### Install Function
 
-1. Click the [**Integration**] module, [_Function_], download the installation package, and execute the installation command.
+1. Click the [**Integration**] module, [_Funciton_], download the installation package, and execute the installation command.
 
 ![image.png](../images/aliyun-dts-func-2.png)
 
-2. After installation, use a browser to access `http://Server IP Address:8088` for initialization of the operation interface.
+2. After installation is complete, use a browser to access `http://Server IP Address:8088` to perform initialization operations.
 
 ![image.png](../images/aliyun-dts-func-3.png)
 
-3. Log in with the default username/password `admin`.
+3. Log in with the default username/password: admin
 
 ![image.png](../images/aliyun-dts-func-4.png)
 
@@ -34,13 +34,13 @@
 
 1. Log in to the RAM console [https://ram.console.aliyun.com/users](https://ram.console.aliyun.com/users)
 
-2. Create a new user: Personnel Management - Users - Create User
+2. Create a new user: User Management - Users - Create User
 
 ![image.png](../images/aliyun-dts-func-5.png)
 
-3. Save or download the CSV file containing the AccessKey ID and AccessKey Secret (to be used in the configuration file).
+3. Save or download the AccessKey ID and AccessKey Secret CSV file (this will be used in the configuration).
 
-4. Authorize the user (read-only access to Data Transmission Service (DTS)).
+4. Authorize the user (read-only access to Data Transmission Service (DTS))
 
 ![image.png](../images/aliyun-dts-func-6.png)
 
@@ -48,27 +48,28 @@
 
 ### Alibaba Cloud DTS Incremental Data Migration
 
-1. Visit [[Alibaba Cloud DTS Product Documentation - New API - Query DTS Task Details](https://help.aliyun.com/document_detail/209702.html?spm=a2c4g.11186623.6.1002.d97c6436S5LXrz)], and enter debug mode.
+1. Visit [[Alibaba Cloud DTS Product Documentation - New API - Query DTS Task Details](https://help.aliyun.com/document_detail/209702.html?spm=a2c4g.11186623.6.1002.d97c6436S5LXrz)], enter debug mode.
 
 2. Find SDK dependency information - New SDK, copy the SDK installation command.
 
 ![image.png](../images/aliyun-dts-func-7.png)
 
-3. Enable the PIP tool module under Management - Experimental Features.
+3. Management - Experimental Features - Enable PIP Tool Module
 
 ![image.png](../images/aliyun-dts-func-8.png)
 
-4. Install Alibaba Cloud SDK dependencies.
+4. Install Alibaba Cloud SDK dependencies
 
 ![image.png](../images/aliyun-dts-func-9.png)
 
-5. Create a new script set and add scripts.
+5. Create a new script set, add script
 
 ![image.png](../images/aliyun-dts-func-10.png)
 
-6. Write code, filling in AccessKey ID, AccessKey Secret, and Region.
+6. Write code, fill in AccessKey ID, AccessKey Secret, Region
 
-Reference documents:
+Reference Documents:
+
 - [Alibaba Cloud DTS Product Documentation - New API - Query DTS Task Details](https://help.aliyun.com/document_detail/209702.html?spm=a2c4g.11186623.6.1002.d97c6436S5LXrz)
 - [Function DataKit Data Integration](/dataflux-func/development-guide/)
 
@@ -106,7 +107,7 @@ class Sample:
             # Your AccessKey Secret,
             access_key_secret=access_key_secret
         )
-        # Domain to visit
+        # Domain to access
         config.endpoint = 'dts.cn-hangzhou.aliyuncs.com'
         return Dts20200101Client(config)
 
@@ -127,7 +128,7 @@ def dts_demo():
         access_key_secret="AccessKey Secret"
     )
     describe_dts_jobs_request = dts_20200101_models.DescribeDtsJobsRequest(
-    # Task type of DTS instance. MIGRATION; SYNC; SUBSCRIBE.
+    # Type of DTS instance task. MIGRATION; SYNC; SUBSCRIBE.
             region='region', job_type='MIGRATION'
         )
     response = client.describe_dts_jobs(describe_dts_jobs_request).to_map()
@@ -153,21 +154,21 @@ def write_metrics(points: list):
     res = datakit.write_metric_many(points)
 ```
 
-7. Add a decorator before the main function (export the function as an HTTP API endpoint).
+7. Add a decorator before the main function (export the function as an HTTP API interface)
 
 ```python
 @DFF.API('name', timeout=300)
 ```
 
-8. Publish the script.
+8. Publish the script
 
 ![image.png](../images/aliyun-dts-func-11.png)
 
-9. Add a scheduled task (data collection frequency), Management - Automatic Trigger Configuration - Select schedule time.
+9. Add a scheduled task (data collection frequency), Management - Automatic Trigger Configuration - Select scheduled time
 
 ![image.png](../images/aliyun-dts-func-12.png)
 
-10. After adding, you can see all scheduled tasks.
+10. After adding, you can view all scheduled tasks
 
 ![image.png](../images/aliyun-dts-func-13.png)
 
@@ -175,10 +176,10 @@ def write_metrics(points: list):
 
 ![image.png](../images/aliyun-dts-func-14.png)
 
-12. Add an [_Incident Detection Library_] - DTS Migration Anomaly Rules
+12. Add _[Incident Library]_ - DTS Migration Incident Rules
 
 ![image.png](../images/aliyun-dts-func-15.png)
 
-13. Trigger an anomaly event when Alibaba Cloud DTS incremental data migration fails.
+13. Trigger an incident event when Alibaba Cloud DTS incremental data migration fails
 
 ![image.png](../images/aliyun-dts-func-16.png)

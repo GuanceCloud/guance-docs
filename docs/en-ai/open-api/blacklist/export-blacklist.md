@@ -1,21 +1,20 @@
-# Export One or More Blacklists
+# Export One or Multiple Blacklists
 
 ---
 
 <br />**POST /api/v1/blacklist/export**
 
 ## Overview
-Export one or more blacklists
-
+Export one or multiple blacklists
 
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| blacklistUUIDs | array | Y | Array of UUIDs for the blacklists<br>Allow null: False <br> |
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:-------------------------|
+| blacklistUUIDs        | array    | Y        | Array of UUIDs for blacklists<br>Allow null: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
@@ -27,7 +26,6 @@ curl 'https://openapi.guance.com/api/v1/blacklist/export' \
 --data-raw '{"blacklistUUIDs":["blist_xxxx32"]}' \
 --compressed
 ```
-
 
 
 ## Response

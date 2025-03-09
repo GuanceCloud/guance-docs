@@ -1,19 +1,18 @@
-# Delete an Index/Binding Index Configuration
+# Delete an Index/Unbind Index Configuration
 
 ---
 
 <br />**POST /api/v1/log_index_cfg/delete**
 
 ## Overview
-Delete an index/binding index configuration
-
+Delete an index/unbind index configuration
 
 
 ## Body Request Parameters
 
 | Parameter Name | Type   | Required | Description              |
-|:-----------|:-------|:-----|:----------------|
-| cfgUUID | string | Y | Configuration UUID<br>Allow null: False <br> |
+|:--------------|:-------|:---------|:-------------------------|
+| cfgUUID       | string | Y        | Configuration UUID<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -26,7 +25,6 @@ curl 'https://openapi.guance.com/api/v1/log_index_cfg/delete' \
 --data-raw '{"cfgUUID":"lgim_xxxx32"}' \
 --compressed 
 ```
-
 
 
 ## Response

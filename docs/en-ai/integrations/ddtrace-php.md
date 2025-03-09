@@ -11,15 +11,15 @@ __int_icon: 'icon/ddtrace'
 
 ## Install Dependencies {#dependence}
 
-For installing the PHP APM plugin, refer to the [Datadog PHP Integration Documentation](https://docs.datadoghq.com/tracing/trace_collection/automatic_instrumentation/dd_libraries/php/#install-the-extension){:target="_blank"}.
+For installing the PHP APM plugin, refer to the [Datadog PHP integration documentation](https://docs.datadoghq.com/tracing/trace_collection/automatic_instrumentation/dd_libraries/php/#install-the-extension){:target="_blank"}.
 
 ## Configuration {#config}
 
-The configuration varies depending on the actual PHP runtime environment (Apache/NGINX). For more details, see the [Datadog PHP Trace SDK Configuration Documentation](https://docs.datadoghq.com/tracing/trace_collection/library_config/php/){:target="_blank"}.
+The configuration varies depending on the actual PHP runtime environment (Apache/NGINX). For more details, see the [Datadog PHP trace SDK configuration documentation](https://docs.datadoghq.com/tracing/trace_collection/library_config/php/){:target="_blank"}.
 
 ## Environment Variable Support {#envs}
 
-Below are commonly used PHP APM parameter configurations. For a complete list of parameters, refer to the [Datadog Documentation](https://docs.datadoghq.com/tracing/trace_collection/library_config/php/){:target="_blank"}.
+Below are commonly used PHP APM configuration parameters. For a complete list of parameters, refer to the [Datadog documentation](https://docs.datadoghq.com/tracing/trace_collection/library_config/php/){:target="_blank"}.
 
 - **`DD_AGENT_HOST`**
 
@@ -27,7 +27,7 @@ Below are commonly used PHP APM parameter configurations. For a complete list of
 
     **Default Value**: `localhost`
 
-    Host address where Datakit listens
+    The host address where Datakit listens
 
 - **`DD_TRACE_AGENT_PORT`**
 
@@ -35,7 +35,7 @@ Below are commonly used PHP APM parameter configurations. For a complete list of
 
     **Default Value**: `8126`
 
-    Port number where Datakit listens. This should be manually set to 9529.
+    The port number where Datakit listens. This should be manually set to 9529.
 
 - **`DD_ENV`**
 
@@ -51,7 +51,7 @@ Below are commonly used PHP APM parameter configurations. For a complete list of
 
     **Default Value**: `null`
 
-    Sets the service name for the application
+    Sets the APP service name
 
 - **`DD_SERVICE_MAPPING`**
 
@@ -59,7 +59,7 @@ Below are commonly used PHP APM parameter configurations. For a complete list of
 
     **Default Value**: `null`
 
-    Renames APM services, e.g., `DD_SERVICE_MAPPING=pdo:payments-db,mysqli:orders-db`
+    Renames APM service names, e.g., `DD_SERVICE_MAPPING=pdo:payments-db,mysqli:orders-db`
 
 - **`DD_TRACE_AGENT_CONNECT_TIMEOUT`**
 
@@ -67,7 +67,7 @@ Below are commonly used PHP APM parameter configurations. For a complete list of
 
     **Default Value**: `100`
 
-    Agent connection timeout configuration to Datakit (in ms), default is 100
+    Agent connection timeout to Datakit (in ms), default is 100
 
 - **`DD_TAGS`**
 

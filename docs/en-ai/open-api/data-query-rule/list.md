@@ -12,12 +12,12 @@ List data access rules of various types
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:------------------|:-------|:-----|:----------------|
+|:---------------------|:---------|:----------|:------------------------|
 | type | string | Y | Filter field, type<br>Can be empty: True <br>Optional values: ['logging', 'rum', 'tracing', 'metric'] <br> |
 | roleUUIDs | commaArray |  | Filter field, role UUID, comma-separated<br>Can be empty: False <br> |
 | indexUUIDs | commaArray |  | Filter field, index UUID, comma-separated<br>Can be empty: False <br> |
 | sources | commaArray |  | Filter field, resource name, comma-separated<br>Can be empty: False <br> |
-| isMask | string |  | Filter field, whether to mask<br>Can be empty: False <br>Optional values: ['true', 'false'] <br> |
+| isMask | string |  | Filter field, whether masked<br>Can be empty: False <br>Optional values: ['true', 'false'] <br> |
 | search | string |  | Search name<br>Can be empty: True <br> |
 | pageSize | integer |  | Number of items per page<br>Can be empty: False <br>Example: 10 <br> |
 | pageIndex | integer |  | Page number<br>Can be empty: False <br>Example: 10 <br> |
@@ -32,6 +32,7 @@ curl 'https://openapi.guance.com/api/v1/data_query_rule/list?type=rum&pageIndex=
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
+
 
 
 
@@ -71,7 +72,7 @@ curl 'https://openapi.guance.com/api/v1/data_query_rule/list?type=rum&pageIndex=
                 "logic": "and",
                 "maskFields": "source",
                 "memberCount": 2,
-                "name": "RUM test",
+                "name": "rum test",
                 "reExprs": [
                     {
                         "enable": true,
@@ -110,7 +111,7 @@ curl 'https://openapi.guance.com/api/v1/data_query_rule/list?type=rum&pageIndex=
                         "uuid": "role_a1e8215c25474f0bb3809f2d56749ed9"
                     },
                     {
-                        "name": "Shortcut Selection Customization",
+                        "name": "Shortcut",
                         "status": 0,
                         "uuid": "role_aa49795a5a5a4753a2a6350ab57f9497"
                     }
@@ -130,7 +131,7 @@ curl 'https://openapi.guance.com/api/v1/data_query_rule/list?type=rum&pageIndex=
                             "type": "web"
                         },
                         "wsInfo": {
-                            "name": "[Doris] Development Testing Together",
+                            "name": "[Doris] Development and Testing Together",
                             "status": 0
                         }
                     }
@@ -272,7 +273,7 @@ curl 'https://openapi.guance.com/api/v1/data_query_rule/list?type=rum&pageIndex=
                         "email": "66@qq.com",
                         "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_e85847e7fe894ea9938dd29c22bc1f9b.png",
                         "mobile": "10345678901",
-                        "name": "I am 66 ya",
+                        "name": "I am 66",
                         "status": 0,
                         "username": "66",
                         "uuid": "acnt_e85847e7fe894ea9938dd29c22bc1f9b",
@@ -290,7 +291,7 @@ curl 'https://openapi.guance.com/api/v1/data_query_rule/list?type=rum&pageIndex=
                         "wsAccountStatus": 0
                     },
                     {
-                        "acntWsNickname": "Standard User No. 2",
+                        "acntWsNickname": "Standard User 2",
                         "email": "testd_standB@qq.com",
                         "iconUrl": "",
                         "mobile": "16332254353",
@@ -301,7 +302,7 @@ curl 'https://openapi.guance.com/api/v1/data_query_rule/list?type=rum&pageIndex=
                         "wsAccountStatus": 0
                     },
                     {
-                        "acntWsNickname": "Standard User No. 1",
+                        "acntWsNickname": "Standard User 1",
                         "email": "testd_standA@qq.com",
                         "iconUrl": "",
                         "mobile": "15435364654",
@@ -327,9 +328,9 @@ curl 'https://openapi.guance.com/api/v1/data_query_rule/list?type=rum&pageIndex=
                         "email": "jinlei940@guance.com",
                         "iconUrl": "",
                         "mobile": "17621725046",
-                        "name": "Jin Lei lll",
+                        "name": "Jinlei lll",
                         "status": 0,
-                        "username": "Jin Lei lll",
+                        "username": "Jinlei lll",
                         "uuid": "acnt_8b4bd2b8782646f3ba8f6554193f5997",
                         "wsAccountStatus": 0
                     },
@@ -388,7 +389,7 @@ curl 'https://openapi.guance.com/api/v1/data_query_rule/list?type=rum&pageIndex=
                             "type": "web"
                         },
                         "wsInfo": {
-                            "name": "[Doris] Development Testing Together",
+                            "name": "[Doris] Development and Testing Together",
                             "status": 0
                         }
                     }
@@ -398,11 +399,11 @@ curl 'https://openapi.guance.com/api/v1/data_query_rule/list?type=rum&pageIndex=
                 "updateAt": 1730084928,
                 "updator": "acnt_57a717791e094f35966907d4cf80b45f",
                 "updatorInfo": {
-                    "acntWsNickname": "Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nickname nicn Nickname nic Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nickname",
+                    "acntWsNickname": "Nickname repeated many times",
                     "email": "liuyl@guance.com",
                     "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_57a717791e094f35966907d4cf80b45f.png",
                     "mobile": "18511111112",
-                    "name": "Modify Modify Modify",
+                    "name": "Modified",
                     "status": 0,
                     "username": "liuyl@guance.com",
                     "uuid": "acnt_57a717791e094f35966907d4cf80b45f",

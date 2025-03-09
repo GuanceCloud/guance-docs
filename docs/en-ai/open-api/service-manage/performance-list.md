@@ -1,54 +1,51 @@
-# 【Service Performance】List
+# [Service Performance] List
 
 ---
 
 <br />**GET /api/v1/service_manage/performance/list**
 
 ## Overview
-List performance information of the service list
-
+List service performance information
 
 
 
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:------------------|:-------|:-----|:----------------|
-| start | integer | Y | Start time, unit ms<br> |
-| end | integer | Y | End time, unit ms<br> |
-| filters | json |  | Tag filtering, consistent with search and ES querydata interface<br> |
-| order | string |  | Sort by resource name, format`[{key:desc/asc}]`<br> |
-| pageIndex | integer |  | Page number<br>Cannot be null: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize | integer |  | Number of items per page<br>Cannot be null: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| Parameter Name | Type   | Required | Description               |
+|:--------------|:-------|:--------|:--------------------------|
+| start         | integer | Y       | Start time, unit ms<br>    |
+| end           | integer | Y       | End time, unit ms<br>      |
+| filters       | json   |         | Tag filter, consistent with the search and ES querydata interface<br> |
+| order         | string |         | Sort by resource name, format `[{key:desc/asc}]`<br> |
+| pageIndex     | integer|         | Page number<br>Not nullable: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize      | integer|         | Number of items per page<br>Not nullable: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
-## Additional Parameter Explanation
-
+## Additional Parameter Notes
 
 **Request Body Parameter Explanation**
 
-Example of filters, previous search fields are compatible with filters using regular expression `.*serviceName.*`
+The `filters` parameter example is as follows. The previous `search` field is compatible with `filters`, using the regular expression `.*serviceName.*`
 ```json
    {"tags":[{"name":"__tags.__isError.keyword","value":["true"],"operation":"=","condition":"and"},{"condition":"and","name":"__tags.__serviceName","operation":"=~","value":[".*04.*"]}]}
 ```
 
 **Optional Sorting Fields**
 
-| key      | Type   |
-| :------- | :----- |
-| key  | Service name |
-| total_count  | Total request count |
-| avg_resp_time  | Average response time |
-| avg_per_second   | Average requests per second |
-| error_count  | Error count |
-| error_rate  | Error rate |
-| sum_resp_time   | Total request duration |
-| max_duration   | Maximum request duration |
-| p50   | p50 |
-| p75   | p75 |
-| p90   | p90 |
-| p95   | p95 |
-| p99   | p99, default sorting field, descending order |
-
+| Key           | Type   |
+| :------------ | :----- |
+| key           | Service Name |
+| total_count   | Total Request Count |
+| avg_resp_time | Average Response Time |
+| avg_per_second| Average Requests Per Second |
+| error_count   | Error Count |
+| error_rate    | Error Rate |
+| sum_resp_time | Total Request Duration |
+| max_duration  | Longest Request Duration |
+| p50           | p50 |
+| p75           | p75 |
+| p90           | p90 |
+| p95           | p95 |
+| p99           | p99, default sorting field, descending order |
 
 
 

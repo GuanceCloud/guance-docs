@@ -10,6 +10,7 @@ monitor   :
     path  : '-'
 ---
 
+
 <!-- markdownlint-disable MD025 -->
 # Logstash
 <!-- markdownlint-enable -->
@@ -37,7 +38,7 @@ For a detailed introduction to the `logstreaming` collector, refer to the [offic
 
 ### Adjust Logstash Configuration
 
-DataKit uses the `logstreaming` collector to gather log information reported by Logstash, so Logstash needs to point its `output` address to the receiving address of the `logstreaming` collector.
+DataKit uses the `logstreaming` collector to collect log information reported by Logstash, so Logstash needs to point its `output` address to the receiving address of the `logstreaming` collector.
 
 ```yaml
     ....
@@ -51,9 +52,9 @@ output {
 }
 ```
 
-- `url`: The address should be the DataKit collector's address, adjust according to actual conditions.
-- `source`: Identifies the data source, which is the `measurement` of the line protocol. For example, `nginx` or `redis` (`/v1/write/logstreaming?source=nginx`)
+- `url`: The address should be the DataKit collector address, adjust according to actual conditions.
+- `source`: Identifies the data source, i.e., the `measurement` of the line protocol. For example, `nginx` or `redis` (`/v1/write/logstreaming?source=nginx`)
 
-For details on `logstreaming` collector parameters, refer to the [official documentation](logstreaming.md#args)
+For a detailed introduction to the parameters of the `logstreaming` collector, refer to the [official documentation](logstreaming.md#args)
 
-After making adjustments, restart Logstash to apply the new configuration.
+After making adjustments, restart Logstash to apply the configuration changes.

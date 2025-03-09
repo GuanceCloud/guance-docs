@@ -12,18 +12,19 @@ List all permission information
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:-----------|:-------------------------|
-| isSupportCustomRole   | boolean  |            | Filter the list of permissions that support custom role selection <br> Example: True <br> Can be empty: False |
+|:---------------------|:---------|:----------|:------------------------|
+| isSupportCustomRole   | boolean  |           | Filter the list of permissions that support custom role selection <br>Example: True <br>Can be empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Description
 
 **Parameter Description**
 
-| Parameter Name  | Type  | Required  | Default Value  | Description  |
-| :-------------- | :---- | :-------- | :------------- | :----------- |
-| isSupportCustomRole | boolean |  |  | Filter the list of permissions that support custom role selection |
+| Parameter Name        | Type     | Required   | Default Value | Description |
+| :-------------------- | :------- | :--------- | :------------ | :---------- |
+| isSupportCustomRole   | boolean  |            |               | Filter the list of permissions that support custom role selection |
 
-If you want to add permissions for custom roles, set `isSupportCustomRole = true` when querying the list of all permissions
+If you want to add permissions for custom roles, set isSupportCustomRole = true when querying all permission lists
+
 
 
 
@@ -33,6 +34,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
+
 
 
 
@@ -179,7 +181,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
             "isSupportReadOnly": 0,
             "isSupportWsAdmin": 1,
             "key": "dataRightsManage.*",
-            "name": "Data Permissions Management",
+            "name": "Data Rights Management",
             "subs": [
                 {
                     "desc": "",
@@ -310,7 +312,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
             "isSupportReadOnly": 0,
             "isSupportWsAdmin": 0,
             "key": "billing.*",
-            "name": "Billing Plan and Invoices",
+            "name": "Billing",
             "subs": [
                 {
                     "desc": "",
@@ -321,7 +323,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
                     "isSupportReadOnly": 0,
                     "isSupportWsAdmin": 1,
                     "key": "billing.billingRead",
-                    "name": "Read-only Access to Billing Plan and Invoices"
+                    "name": "Read-Only Billing Access"
                 }
             ]
         },
@@ -334,7 +336,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
             "isSupportReadOnly": 0,
             "isSupportWsAdmin": 1,
             "key": "scene.*",
-            "name": "Scenarios",
+            "name": "Scene",
             "subs": [
                 {
                     "desc": "",
@@ -345,7 +347,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
                     "isSupportReadOnly": 0,
                     "isSupportWsAdmin": 1,
                     "key": "scene.setManage",
-                    "name": "Scenario Configuration Management"
+                    "name": "Scene Configuration Management"
                 },
                 {
                     "desc": "",
@@ -380,7 +382,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
             "isSupportReadOnly": 0,
             "isSupportWsAdmin": 1,
             "key": "event.*",
-            "name": "Events",
+            "name": "Event",
             "subs": [
                 {
                     "desc": "",
@@ -445,12 +447,12 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
             "desc": "",
             "disabled": 0,
             "isSupportCustomRole": 1,
-            "isSupportGeneral": 0,
+            "isSupportGeneral": 1,
             "isSupportOwner": 1,
             "isSupportReadOnly": 0,
             "isSupportWsAdmin": 1,
             "key": "log.*",
-            "name": "Logs",
+            "name": "Log",
             "subs": [
                 {
                     "desc": "",
@@ -774,7 +776,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
                     "isSupportReadOnly": 0,
                     "isSupportWsAdmin": 1,
                     "key": "monitor.obsCfgManage",
-                    "name": "Intelligent Inspection Configuration Management"
+                    "name": "Security Check Configuration Management"
                 },
                 {
                     "desc": "",
@@ -807,7 +809,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
                     "isSupportReadOnly": 0,
                     "isSupportWsAdmin": 1,
                     "key": "monitor.alarmPolicyMange",
-                    "name": "Alert Policy Configuration Management"
+                    "name": "Alert Strategy Configuration Management"
                 },
                 {
                     "desc": "",
@@ -818,7 +820,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
                     "isSupportReadOnly": 0,
                     "isSupportWsAdmin": 1,
                     "key": "monitor.notifyObjCfgManage",
-                    "name": "Notification Targets Configuration Management"
+                    "name": "Notification Target Configuration Management"
                 }
             ]
         },
@@ -850,7 +852,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
             "desc": "",
             "disabled": 0,
             "isSupportCustomRole": 1,
-            "isSupportGeneral": 0,
+            "isSupportGeneral": 1,
             "isSupportOwner": 1,
             "isSupportReadOnly": 0,
             "isSupportWsAdmin": 1,

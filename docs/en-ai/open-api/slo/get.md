@@ -11,9 +11,9 @@
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:-----------|:-------|:-----|:----------------|
-| slo_uuid | string | Y | UUID of the SLO<br> |
+| Parameter Name | Type   | Required | Description               |
+|:--------------|:-------|:---------|:--------------------------|
+| slo_uuid      | string | Y        | UUID of the SLO<br>       |
 
 
 ## Additional Parameter Notes
@@ -39,20 +39,20 @@ curl 'https://openapi.guance.com/api/v1/slo/monitor_5ebbxxxx/get' \
     "content": {
         "alertPolicyInfos": [
             {
-                "name": "lwc SLO to Alert Policy Test",
+                "name": "lwc SLO to alert policy test",
                 "uuid": "altpl_xxx"
             }
         ],
         "config": {
             "checkRange": 604800,
-            "describe": "LWC Testing OpenAPI",
+            "describe": "LWC OpenAPI Test",
             "goal": 90.0,
             "interval": "10m",
             "minGoal": 60.0,
             "sli_infos": [
                 {
                     "id": "rul_xxxx",
-                    "name": "whytest-Feedback Issue Verification",
+                    "name": "whytest - feedback issue verification",
                     "status": 2
                 },
                 {
@@ -68,7 +68,7 @@ curl 'https://openapi.guance.com/api/v1/slo/monitor_5ebbxxxx/get' \
             "acntWsNickname": "",
             "email": "wsak_xxxxx",
             "iconUrl": "",
-            "name": "LWC Testing",
+            "name": "LWC Test",
             "status": 0,
             "username": "wsak_xxxxx",
             "uuid": "wsak_xxxxx"

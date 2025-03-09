@@ -23,16 +23,15 @@
 
 ## Description
 
-- If you are using Kubernetes API server on a machine managed by systemd, verify that the permissions for the kubernetes.service file are correctly set to 644 or more restrictive.
+- If you are using Kubernetes's apiserver on a computer managed by systemd, verify that the permissions for the kubernetes.service file are correctly set to 644 or more restrictive.
 
 
 ## Scan Frequency
 - 0 */30 * * *
 
-
 ## Theoretical Basis
 
-- The kubernetes.apiserver file contains sensitive parameters that can alter the behavior of the Kubernetes daemon. Therefore, to maintain the integrity of the file, no user other than root should have write access.
+- The kubernetes.apiserver file contains sensitive parameters that can alter the behavior of the Kubernetes daemon. Therefore, no user other than root should have write access to maintain the integrity of the file.
 
 
 ## Risk Items
@@ -41,15 +40,14 @@
 
 
 ## Audit Method
-
-- Execute the following command to verify that the file permissions are set to "644" or more restrictive:
+- Execute the following command to verify if the file permissions are set to "644" or more restrictive:
 
 ```bash
 stat -c %a /etc/kubernetes/manifests/kube-apiserver.yaml
 ```
 
-## Remediation
 
+## Remediation
 - Execute the following command to modify the permissions of the configuration file:
 ```bash
 #> chmod 644 /etc/kubernetes/manifests/kube-apiserver.yaml
@@ -64,12 +62,12 @@ This will set the file permissions to "644".
 
 ## Default Value
 
-- By default, the kube-apiserver.yaml permission is set to 640
+- By default, the kube-apiserver.yaml permissions are set to 640
 
 
 ## References
 
-- [Kubernetes API Server](https://kubernetes.io/docs/admin/kube-apiserver/)
+- [kubernetes-apiserver](https://kubernetes.io/docs/admin/kube-apiserver/)
 
 
 ## CIS Controls

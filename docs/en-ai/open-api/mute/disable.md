@@ -9,14 +9,17 @@ Disable a mute rule based on `mute_uuid`
 
 
 
+
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description          |
-|:-----------|:-------|:-----|:----------------|
+| Parameter Name    | Type     | Required | Description              |
+|:-------------|:-------|:-----|:----------------|
 | mute_uuid | string | Y | Mute rule UUID<br> |
 
 
 ## Additional Parameter Notes
+
+
 
 
 
@@ -28,6 +31,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/mute_xxxx32/disable' \
 --data-raw 'null' \
 --compressed 
 ```
+
 
 
 

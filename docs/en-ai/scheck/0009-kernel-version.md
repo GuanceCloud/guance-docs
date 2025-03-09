@@ -8,12 +8,12 @@
 
 ## Category
 
-- System
+- system
 
 
-## Level
+## Severity
 
-- Critical
+- critical
 
 
 ## Compatible Versions
@@ -33,7 +33,7 @@
 
 ## Theoretical Basis
 
-- The kernel is a collection of programs, including interrupt service routines that respond to interrupts, schedulers that manage multiple processes to share processor time, memory management programs responsible for managing address spaces, network services, and inter-process communication system services. The kernel manages the system's hardware devices. Modifying the kernel version can lead to instability and security issues in system services.
+- The kernel is composed of a series of programs, including interrupt service routines responsible for responding to interrupts, schedulers responsible for managing multiple processes to share processor time, memory management programs responsible for managing address spaces, network services, and inter-process communication system services. The kernel manages the system's hardware devices. Changes in the kernel version can cause instability and security issues in system services.
 
 
 ## Risk Items
@@ -43,7 +43,7 @@
 
 ## Audit Method
 
-- Verify if the kernel version has changed. You can run the following command to check:
+- Verify that the kernel version has changed. You can execute the following command to verify:
 
 ```bash
 uname -srm

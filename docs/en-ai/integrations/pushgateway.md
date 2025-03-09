@@ -2,7 +2,7 @@
 title: 'Prometheus Push Gateway'
 summary: 'Enable the Pushgateway API to receive Prometheus Metrics data'
 tags:
-  - 'External Data Integration'
+  - 'External Data Ingestion'
   - 'PROMETHEUS'
 __int_icon: 'icon/pushgateway'
 dashboard:
@@ -25,22 +25,22 @@ The Pushgateway collector will enable the corresponding API interface to receive
 
 === "Host Deployment"
 
-    Enter the `conf.d/pushgateway` directory under the DataKit installation directory, copy `pushgateway.conf.sample` and rename it to `pushgateway.conf`. An example is as follows:
+    Navigate to the `conf.d/pushgateway` directory under the DataKit installation directory, copy `pushgateway.conf.sample`, and rename it to `pushgateway.conf`. Example configuration:
 
     ```toml
         
     [[inputs.pushgateway]]
       ## Prefix for the internal routes of web endpoints. Defaults to empty.
       route_prefix = ""
-
+    
       ## Measurement name.
       ## If measurement_name is not empty, using this as Mearsurement set name.
       # measurement_name = "prom_pushgateway"
-
-      ## If job_as_measurement is true, use the job field for the Mearsurement name.
+    
+      ## If job_as_measurement is true, use the job field for the measurement name.
       ## The measurement_name configuration takes precedence.
       job_as_measurement = false
-
+    
       ## Keep Exist Metric Name.
       ## Split metric name by '_', the first field after split as Mearsurement set name, the rest as current metric name.
       ## If the keep_exist_metric_name is true, keep the raw value for field names.
@@ -52,13 +52,13 @@ The Pushgateway collector will enable the corresponding API interface to receive
 
 === "Kubernetes"
 
-    You can enable the collector via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or by [configuring `ENV_DATAKIT_INPUTS`](../datakit/datakit-daemonset-deploy.md#env-setting).
+    You can inject the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or configure `ENV_DATAKIT_INPUTS` to enable the collector.
 
-    It also supports modifying configuration parameters via environment variables (you need to add it to `ENV_DEFAULT_ENABLED_INPUTS` as a default collector):
+    It also supports modifying configuration parameters via environment variables (requires adding it to `ENV_DEFAULT_ENABLED_INPUTS` as a default collector):
 
     - **ENV_INPUT_PUSHGATEWAY_ROUTE_PREFIX**
     
-        Configure the endpoints route prefix
+        Configure the endpoint route prefix
     
         **Field Type**: String
     
@@ -100,12 +100,12 @@ The Pushgateway collector will enable the corresponding API interface to receive
 
 ## Example {#example}
 
-The Pushgateway collector adheres to the [Prometheus Pushgateway](https://github.com/prometheus/pushgateway?tab=readme-ov-file#prometheus-pushgateway) protocol but has some adjustments for DataKit's collection features. Currently, it supports the following functions:
+The Pushgateway collector adheres to the [Prometheus Pushgateway](https://github.com/prometheus/pushgateway?tab=readme-ov-file#prometheus-pushgateway) protocol and includes some adjustments specific to DataKit's collection features. Currently, it supports the following functionalities:
 
 - Receiving Prometheus text data and Protobuf data
-- Specifying string labels and base64 labels in URLs
+- Specifying string labels and base64 labels in the URL
 - Decoding gzip data
-- Specifying Mearsurement set names
+- Specifying the Mearsurement set name
 
 Here is a simple example deployed in a Kubernetes cluster:
 
@@ -120,7 +120,7 @@ Here is a simple example deployed in a Kubernetes cluster:
         - name: ENV_DEFAULT_ENABLED_INPUTS
           value: dk,cpu,container,pushgateway  # Add pushgateway to enable the collector
     - name: ENV_INPUT_PUSHGATEWAY_ROUTE_PREFIX
-      value: /v1/pushgateway               # Optional, specify the endpoints route prefix, target route becomes "/v1/pushgateway/metrics"
+      value: /v1/pushgateway               # Optional, specify the endpoint route prefix, the target route becomes "/v1/pushgateway/metrics"
     # ..other..
 ```
 
@@ -162,7 +162,7 @@ spec:
               fieldPath: metadata.namespace
         - name: PUSHGATEWAY_ENDPOINT
           value: http://datakit-service.datakit.svc:9529/v1/pushgateway/metrics/job@base64/aGVsbG8=/node/$(MY_NODE_NAME)/pod/$(MY_POD_NAME)/namespace/$(MY_POD_NAMESPACE)
-          ## job@base64 specifies the format as base64, using the command `echo -n hello | base64` to generate the value 'aGVsbG8='
+          ## job@base64 specifies the format as base64, use the command `echo -n hello | base64` to generate the value 'aGVsbG8='
         args:
         - /bin/bash
         - -c
@@ -170,14 +170,14 @@ spec:
           i=100;
           while true;
           do
-            ## Periodically use the cURL command to send data to the DataKit Pushgateway API
+            ## Periodically send data to the DataKit Pushgateway API using cURL
             echo -e "# TYPE pushgateway_count counter\npushgateway_count{name=\"client\"} $i" | curl --data-binary @- $PUSHGATEWAY_ENDPOINT;
             i=$((i+1));
             sleep 2;
           done
 ```
 
-- In the Guance page, you can see Metrics data with the Mearsurement set name `pushgateway` and the field `count`.
+- On the Guance page, you can see Metrics data with the Mearsurement set name `pushgateway` and the field `count`.
 
 ## Mearsurement Set and Tags {#measurement-and-tags}
 
@@ -187,4 +187,4 @@ Mearsurement set naming has two scenarios:
 
 1. Using the `measurement_name` configuration item to specify the Mearsurement set name
 2. Using the job label value as the Mearsurement set name
-3. Splitting the data field name by underscore `_`, the first field after splitting becomes the Mearsurement set name, and the remaining fields become the current metric name
+3. Splitting the data field name by underscore `_`, the first field after splitting as the Mearsurement set name, and the remaining fields as the current metric name

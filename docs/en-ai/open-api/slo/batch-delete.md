@@ -11,8 +11,8 @@
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                              |
-|:--------------|:-------|:--------|:----------------------------------------|
+| Parameter Name | Type   | Required | Description              |
+|:--------------|:-------|:--------|:-------------------------|
 | sloUUIDs      | array  | Y       | List of SLO UUIDs<br>Allow null: False <br> |
 
 ## Additional Parameter Notes

@@ -2,7 +2,7 @@
 
 ---
 
-<br />**POST /api/v1/snapshots/\{snapshot_uuid\}/delete**
+<br />**POST /api/v1/snapshots/{snapshot_uuid}/delete**
 
 ## Overview
 Delete the specified snapshot configuration based on `snapshot_uuid`
@@ -11,7 +11,7 @@ Delete the specified snapshot configuration based on `snapshot_uuid`
 
 ## Route Parameters
 
-| Parameter Name    | Type   | Required | Description              |
+| Parameter Name    | Type   | Required | Description          |
 |:-------------|:-----|:------|:----------------|
 | snapshot_uuid | string | Y | Snapshot UUID<br> |
 

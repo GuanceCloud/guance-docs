@@ -1,5 +1,5 @@
 nav:
-  - 'List Keys': list.md
+  - 'Get Key List': list.md
   - 'Get a Key': get.md
   - 'Delete a Key': delete.md
   - 'Create a Key': add.md

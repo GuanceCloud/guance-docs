@@ -1,6 +1,6 @@
 ---
 title     : 'Nginx Tracing'
-summary   : 'Collect Nginx tracing information'
+summary   : 'Collect Nginx trace information'
 __int_icon: 'icon/nginx'
 dashboard :
   - desc  : 'Not available'
@@ -26,9 +26,9 @@ monitor   :
 
 ### Install the Nginx OpenTracing Plugin
 
-The Nginx OpenTracing plugin is an open-source tracing plugin developed by the OpenTracing community using C++. It can work with `Jaeger`, `Zipkin`, `LightStep`, and `Datadog`.
+The Nginx OpenTracing plugin is an open-source tracing plugin for OpenTracing, written in C++, and can work with `Jaeger`, `Zipkin`, `LightStep`, and `Datadog`.
 
-- [Download](https://github.com/opentracing-contrib/nginx-opentracing/releases) the plugin that matches your current Nginx version. You can check the current Nginx version with the following command:
+- [Download](https://github.com/opentracing-contrib/nginx-opentracing/releases) the plugin corresponding to your current Nginx version. You can check your current Nginx version using the following command:
 
 ```shell
 $ nginx -v
@@ -52,7 +52,7 @@ load_module modules/ngx_http_opentracing_module.so;
 
 ### Install the DDAgent Nginx OpenTracing Plugin
 
-The DDAgent Nginx OpenTracing plugin is a vendor-specific implementation based on `Nginx OpenTracing`. Different APMs have their own encoding and decoding implementations.
+The DDAgent Nginx OpenTracing plugin is a vendor-specific implementation based on `Nginx OpenTracing`. Different APM providers have their own encoding and decoding implementations.
 
 - [Download `dd-opentracing-cpp`](https://github.com/DataDog/dd-opentracing-cpp/releases/latest), either `libdd_opentracing.so` or `linux-amd64-libdd_opentracing_plugin.so.gz`
 
@@ -67,12 +67,12 @@ opentracing_propagate_context;
 opentracing_operation_name nginx-$host;
 ```
 
-`opentracing_load_tracer` : Loads the `OpenTracing` `APM` plugin from the specified path  
-`opentracing_propagate_context;` : Propagates context across the trace chain
+`opentracing_load_tracer`: Loads the `OpenTracing` `APM` plugin path  
+`opentracing_propagate_context;`: Indicates that context propagation is required along the trace
 
 - Configure DDTrace
 
-The `dd.json` file configures `ddtrace` settings such as `service`, `agent_host`, etc. The content is as follows:
+The `dd.json` file configures `ddtrace` settings such as `service`, `agent_host`, etc., with the following content:
 
 ```json
 {
@@ -86,7 +86,7 @@ The `dd.json` file configures `ddtrace` settings such as `service`, `agent_host`
 
 - Nginx log configuration
 
-Inject trace information into Nginx logs. Edit the configuration as shown below:
+Inject Trace information into Nginx logs. You can edit as follows:
 
 ```nginx
 log_format with_trace_id '$remote_addr - $http_x_forwarded_user [$time_local] "$request" '
@@ -97,9 +97,9 @@ log_format with_trace_id '$remote_addr - $http_x_forwarded_user [$time_local] "$
 access_log /var/log/nginx/access-with-trace.log with_trace_id;
 ```
 
-> **Note:** The `log_format` keyword defines a logging rule in Nginx. `with_trace_id` is the name of the rule, which you can modify. Ensure you use the same name when specifying the log path to associate it with this rule. The path and filename in `access_log` can be changed. Typically, Nginx already has predefined log rules, so you can define multiple rules and output different log formats to different files while keeping the original `access_log` rule and path unchanged. Add a new log rule with trace information and write it to a different log file for various log tools to read.
+> **Note:** The `log_format` keyword tells Nginx that a logging rule is defined here. `with_trace_id` is the name of the rule, which you can modify. Ensure that the same name is used when specifying the log path below to associate it with this logging rule. The path and filename in `access_log` can be changed. Typically, the original Nginx has its own logging rules configured. You can configure multiple logging rules and output different log formats to different files, thus keeping the original `access_log` rule and path unchanged while adding a new log rule with trace information named as a different log file for different log tools to read.
 
-- Verify the plugin is working correctly
+- Verify the plugin is working properly
 
 Run the following command to verify:
 
@@ -112,11 +112,11 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 `info: DATADOG TRACER CONFIGURATION` indicates that DDTrace has been successfully loaded.
 
-### Service Trace Forwarding
+### Service Trace Propagation
 
-After Nginx generates trace information, relevant request headers need to be forwarded to the backend to establish a trace chain between Nginx and the backend.
+After Nginx generates trace information, it needs to forward relevant request header information to the backend to form a linked trace between Nginx and the backend.
 
-> *If the Nginx trace information does not match DDTrace, ensure this step is correctly configured.*
+> *If Nginx trace information does not match DDTrace, check if this step was performed correctly.*
 
 Add the following configuration under the corresponding `server` block's `location`:
 
@@ -131,7 +131,7 @@ location ^~ / {
 
 ### Load Nginx Configuration
 
-Apply the Nginx configuration changes with the following command:
+Run the following command to apply the Nginx configuration:
 
 ```shell
 root@liurui:/etc/nginx/tracer# nginx -s reload
@@ -147,7 +147,7 @@ info: DATADOG TRACER CONFIGURATION - {"agent_url":"http://localhost:9529","analy
 nginx: [warn] could not build optimal proxy_headers_hash, you should increase either proxy_headers_hash_max_size: 512 or proxy_headers_hash_bucket_size: 64; ignoring proxy_headers_hash_bucket_size
 ```
 
-You need to add the following configuration to the `http` block in `nginx.conf`:
+You need to add the following configuration to the `http` section of the `nginx.conf` file:
 
 ```shell
 http {

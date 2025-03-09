@@ -4,19 +4,19 @@ summary   : 'DDTrace Java Integration'
 tags      :
   - 'DDTRACE'
   - 'JAVA'
-  - 'Tracing'
+  - 'Trace Collection'
 __int_icon: 'icon/ddtrace'
 ---
 
 
-Java APM integration is very convenient, requiring no modification of business code; only the corresponding agent needs to be injected.
+APM integration for Java is straightforward and does not require modifying business code; only the corresponding agent needs to be injected.
 
 ## Install Dependencies {#dependence}
 
 <!-- markdownlint-disable MD046 -->
 === "Guance Version"
 
-    To support more middleware, Guance has enhanced the [DDTrace-Java implementation](ddtrace-ext-java.md).
+    To add more middleware support, Guance has enhanced the [DDTrace-Java implementation](ddtrace-ext-java.md).
 
     ```shell
     wget -O dd-java-agent.jar 'https://static.guance.com/dd-image/dd-java-agent.jar'
@@ -34,7 +34,7 @@ Java APM integration is very convenient, requiring no modification of business c
 <!-- markdownlint-disable MD046 -->
 === "Host Application"
 
-    You can run your Java Code through various means, such as IDE, Maven, Gradle, or directly via the `java -jar` command. Below is an example using the `java` command to start the application:
+    You can run your Java Code in various ways, such as IDE, Maven, Gradle, or directly via the `java -jar` command. Below is an example using the `java` command to start the application:
     
     ```shell hl_lines="2-7" linenums="1"
     java \
@@ -47,11 +47,11 @@ Java APM integration is very convenient, requiring no modification of business c
       -jar path/to/your/app.jar
     ```
     
-    Please fill in your various basic configuration parameters `<YOUR-...>` here. Additionally, there are some optional parameters:
+    Please fill in your various basic parameter configurations `<YOUR-...>`. Additionally, there are some optional parameters:
     
     ### Enable Profiling {#instrument-profiling}
 
-    > This requires enabling the [Profiling collector](profile.md).
+    > This requires enabling the [Profiling Collector](profile.md).
     
     After enabling Profiling, we can see more information about Java runtime:
     
@@ -76,7 +76,7 @@ Java APM integration is very convenient, requiring no modification of business c
 
     ### Enable JVM Metrics Collection {#instrument-jvm-metrics}
     
-    > This requires enabling the [statsd collector](statsd.md).
+    > This requires enabling the [StatsD Collector](statsd.md).
     
     ```shell hl_lines="3-6" linenums="1"
     java \
@@ -90,7 +90,7 @@ Java APM integration is very convenient, requiring no modification of business c
 
 === "Kubernetes"
 
-    In Kubernetes, you can inject the trace agent via the [Datakit Operator](../datakit/datakit-operator.md#datakit-operator-inject-lib) or manually mount the trace agent into the application container.
+    In Kubernetes, you can inject the trace agent via the [Datakit Operator](../datakit/datakit-operator.md#datakit-operator-inject-lib), or manually mount the trace agent into the application container.
 
     ```yaml hl_lines="10-19" linenums="1"
     apiVersion: apps/v1
@@ -114,165 +114,165 @@ Java APM integration is very convenient, requiring no modification of business c
                   value: "true"
     ```
 
-    For more parameter settings, refer to the corresponding ENV fields in [Parameter Explanation](ddtrace-java.md#start-options) below.
+    For more configuration settings, refer to the corresponding ENV fields in the [Parameter Explanation](ddtrace-java.md#start-options) section below.
 <!-- markdownlint-enable -->
 
 ## Parameter Explanation {#start-options}
 
-Below are explanations for each command-line parameter and their corresponding environment variable configurations. For complete parameter support, refer to the [DataDog official documentation](https://docs.datadoghq.com/tracing/trace_collection/library_config/java){:target="_blank"}.
+Below is an explanation of each command-line parameter and the corresponding environment variable configuration method. For a complete list of supported parameters, refer to the [Datadog official documentation](https://docs.datadoghq.com/tracing/trace_collection/library_config/java){:target="_blank"}.
 
 - **`dd.env`**
 
-    **ENV**：`DD_ENV`
+    **ENV**: `DD_ENV`
 
-    Sets environment information for the service, such as `testing/prod`.
+    Set environment information for the service, e.g., `testing/prod`.
 
 - **`dd.version`**
 
-    **ENV**：`DD_VERSION`
+    **ENV**: `DD_VERSION`
 
     APP version number
 
 - **`dd.service.name`**
 
-    Sets the service name
-    **ENV**：`DD_SERVICE`
+    Set service name
+    **ENV**: `DD_SERVICE`
 
 - **`dd.trace.agent.timeout`**
 
-    **ENV**：`DD_TRACE_AGENT_TIMEOUT`
+    **ENV**: `DD_TRACE_AGENT_TIMEOUT`
 
     Client network send timeout, default 10s
 
 - **`dd.logs.injection`**
 
-    **ENV**：`DD_LOGS_INJECTION`
+    **ENV**: `DD_LOGS_INJECTION`
 
-    Whether to enable Java application log injection to correlate logs with tracing data, default true
+    Whether to enable Java application log injection to correlate logs with trace data, default true
 
 - **`dd.tags`**
 
-    **ENV**：`DD_TAGS`
+    **ENV**: `DD_TAGS`
 
-    Adds default tags to each Span
+    Add default Tags to each Span
 
 - **`dd.agent.host`**
 
-    **ENV**：`DD_AGENT_HOST`
+    **ENV**: `DD_AGENT_HOST`
 
-    Datakit listening address, default localhost
+    Datakit listener address, default localhost
 
 - **`dd.trace.agent.port`**
 
-    **ENV**：`DD_TRACE_AGENT_PORT`
+    **ENV**: `DD_TRACE_AGENT_PORT`
 
-    Datakit listening port, default 9529
+    Datakit listener port, default 9529
 
 - **`dd.trace.sample.rate`**
 
-    **ENV**：`DD_TRACE_SAMPLE_RATE`
+    **ENV**: `DD_TRACE_SAMPLE_RATE`
 
     Set sampling rate from 0.0(0%) ~ 1.0(100%)
 
 - **`dd.jmxfetch.enabled`**
 
-    **ENV**：`DD_JMXFETCH_ENABLED`
+    **ENV**: `DD_JMXFETCH_ENABLED`
 
     Enable JMX metrics collection, default value true
 
 - **`dd.jmxfetch.config.dir`**
 
-    **ENV**：`DD_JMXFETCH_CONFIG_DIR`
+    **ENV**: `DD_JMXFETCH_CONFIG_DIR`
 
-    Additional JMX metrics collection configuration directory. The Java Agent will look for `jvm_direct:true` in the instance section of YAML configuration files to modify settings
+    Additional JMX metrics collection configuration directory. The Java Agent will look for `jvm_direct:true` in the instance section of the YAML configuration file to modify the configuration.
 
 - **`dd.jmxfetch.config`**
 
-    **ENV**：`DD_JMXFETCH_CONFIG`
+    **ENV**: `DD_JMXFETCH_CONFIG`
 
-    Additional JMX metrics collection configuration file. The Java Agent will look for `jvm_direct: true` in the instance section of YAML configuration files to modify settings
+    Additional JMX metrics collection configuration file. The Java Agent will look for `jvm_direct: true` in the instance section of the YAML configuration file to modify the configuration.
 
 - **`dd.jmxfetch.check-period`**
 
-    **ENV**：`DD_JMXFETCH_CHECK_PERIOD`
+    **ENV**: `DD_JMXFETCH_CHECK_PERIOD`
 
-    JMX metrics sending frequency (ms), default value 1500
+    JMX metrics send frequency (ms), default value 1500
 
 - **`dd.jmxfetch.refresh-beans-period`**
 
-    **ENV**：`DD_JMXFETCH_REFRESH_BEANS_PERIOD`
+    **ENV**: `DD_JMXFETCH_REFRESH_BEANS_PERIOD`
 
     Refresh JMX beans frequency (s), default value 600
 
 - **`dd.jmxfetch.statsd.host`**
 
-    **ENV**：`DD_JMXFETCH_STATSD_HOST`
+    **ENV**: `DD_JMXFETCH_STATSD_HOST`
 
-    Statsd host address to receive JMX metrics, use `unix://PATH_TO_UDS_SOCKET` for Unix Domain Socket. Default value same as `agent.host`
+    Statsd host address to receive JMX metrics, use `unix://PATH_TO_UDS_SOCKET` for Unix Domain Socket. Default same as `agent.host`
 
 - **`dd.jmxfetch.statsd.port`**
 
-    **ENV**：`DD_JMXFETCH_STATSD_PORT`
+    **ENV**: `DD_JMXFETCH_STATSD_PORT`
 
-    StatsD port number to receive JMX metrics, use 0 for Unix Domain Socket. Default value same as agent.port
+    StatsD port to receive JMX metrics, use 0 for Unix Domain Socket. Default same as `agent.port`
 
 - **`dd.profiling.enabled`**
 
-    **ENV**：`DD_PROFILING_ENABLED`
+    **ENV**: `DD_PROFILING_ENABLED`
 
-    Enable Profiling control. After enabling, Profiling information during Java application runtime will also be collected and reported to Datakit
+    Enable Profiling control. After enabling, Java application runtime Profiling information will also be collected and reported to Datakit.
 
 ## Trace Error Situations {#error}
 
-A span represents a single logical operation unit, which can be a database query, an HTTP request, or any other type of operation. When this operation encounters issues or does not execute as expected, the span's status will be marked as `error`.
+A span represents a single logical unit of work, which can be a database query, an HTTP request, or any other type of operation. When this operation encounters issues or does not execute as expected, the span's status is marked as `error`.
 
-### Reasons for Errors {#error_reason}
+### Causes of Errors {#error_reason}
 
-Specifically, spans will be marked as `error` under the following conditions:
+Specifically, a span is marked as `error` under the following conditions:
 
-1. **Exception Thrown**: If any exception is thrown (whether checked or runtime exceptions) during the execution of a span and is not properly handled by the application code (captured but not re-thrown), the span will be marked as `error`. This is the most common situation.
-1. **Manual Marking**: Developers can manually mark a span as `error` using the Datadog SDK. This is useful for certain logic errors or special conditions, even if these situations do not throw exceptions.
+1. **Exception Thrown**: If any exception is thrown during the execution of a span (whether checked or runtime exceptions), and this exception is not properly handled by the application code (captured but not rethrown), the span will be marked as `error`. This is the most common scenario.
+1. **Manual Marking**: Developers can manually mark a span as `error` using the Datadog SDK. This is useful for certain logical errors or special conditions, even if these situations do not throw exceptions.
 1. **HTTP Request Errors**: For HTTP client or server spans, if the response status code indicates an error (e.g., 4xx or 5xx), the span is typically marked as `error`. This depends on specific integrations and configurations.
-1. **Custom Error Conditions**: Through configuration or custom integrations, developers can define specific conditions or checks to mark spans as errors. For example, if a database query returns results that do not meet expected format or content, it can be marked as `error` even if no exception is thrown.
-1. **Timeouts**: Certain operations may fail due to timeouts, such as database queries or remote calls. If these operations are configured with timeout limits and the actual execution exceeds this limit, the span might be marked as `error`.
+1. **Custom Error Conditions**: Through configuration or custom integrations, developers can define specific conditions or checks to mark spans as errors. For example, if a database query returns results that do not match the expected format or content, it can be marked as `error` even without throwing an exception.
+1. **Timeouts**: Certain operations may fail due to timeouts, such as database queries or remote calls. If these operations are configured with timeout limits and exceed them, the span might be marked as `error`.
 
-Marking spans as `error` helps developers and operations personnel quickly identify and resolve issues within applications. By observing spans marked as errors, it becomes easier to detect performance bottlenecks, failed service calls, unhandled exceptions, and take appropriate optimization or corrective measures.
+Marking spans as `error` helps developers and operations personnel quickly identify and resolve issues within the application. By observing spans marked as errors, we can more easily discover performance bottlenecks, failed service calls, unhandled exceptions, and take appropriate optimization or corrective actions.
 
 ### Common Error Types {#error_type}
 
-In Java programming, exceptions (Exceptions) are problems that occur during program execution, disrupting normal program flow. Java exceptions can be categorized into two main types:
+In Java programming, exceptions (Exceptions) are problems that occur during program execution and interrupt the normal flow of the program. Java exceptions can be categorized into two major types:
 
 - Checked Exceptions
-- Unchecked Exceptions: Unchecked exceptions further divide into
+- Unchecked Exceptions: Unchecked exceptions are further divided into
 
     - Runtime Exceptions
     - Errors
 
 Here are some common exception types:
 
-Checked Exceptions: These exceptions must be explicitly handled in the code (caught or declared). If a method may throw such an exception but does not handle it (i.e., neither caught nor declared with `throws`), the compiler will report an error.
+Checked Exceptions: These exceptions must be explicitly handled in the code (caught or declared to be thrown). If a method can throw this type of exception but does not handle it (i.e., does not catch or declare it with the `throws` keyword), the compiler will report an error.
 
 - `IOException`: Thrown when input/output operations fail or are interrupted, such as file read/write failures.
-- `SQLException`: Thrown when handling database access errors or other database-related issues.
-- `ClassNotFoundException`: Thrown when the application tries to load a class by its string name but cannot find the corresponding class.
+- `SQLException`: Thrown when there are database access errors or other database-related issues.
+- `ClassNotFoundException`: Thrown when the application attempts to load a class by its string name but cannot find the corresponding class.
 
-Runtime Exceptions: These are a type of unchecked exception. Programs can choose to catch them, but it is not mandatory. They usually indicate programming logic errors and should be fixed during development.
+Runtime Exceptions: These are a type of unchecked exception. Programs can choose to catch them but are not required to do so. They usually indicate programming logic errors and should be fixed during development.
 
 - `NullPointerException`: Occurs when attempting to use a `null` object.
-- `ArrayIndexOutOfBoundsException`: Thrown when accessing an illegal index in an array.
-- `ClassCastException`: Thrown when attempting to cast an object to a class it is not an instance of.
-- `ArithmeticException`: Thrown for mathematical operation errors, like division by zero.
-- `IllegalArgumentException`: Thrown when passing an illegal or inappropriate argument to a method.
+- `ArrayIndexOutOfBoundsException`: Thrown when trying to access an illegal index of an array.
+- `ClassCastException`: Thrown when attempting to cast an object to a class that it is not an instance of.
+- `ArithmeticException`: Occurs during arithmetic operations, such as division by zero.
+- `IllegalArgumentException`: Thrown when an inappropriate argument is passed to a method.
 
-Errors: Errors represent serious problems that are not designed to be caught by applications. They usually relate to underlying resource issues, such as insufficient system resources or virtual machine problems.
+Errors: Errors represent serious problems that are not designed to be caught by applications. They are usually related to underlying resource issues, such as insufficient system resources or virtual machine problems.
 
-- `OutOfMemoryError`: Thrown when the Java Virtual Machine (JVM) does not have enough memory to allocate space for an object.
-- `StackOverflowError`: Thrown when recursive calls are too deep, causing stack overflow.
-- `NoClassDefFoundError`: Thrown when the Java Virtual Machine or `ClassLoader` instance tries to load a class definition but cannot find the corresponding class.
+- `OutOfMemoryError`: Occurs when the Java Virtual Machine (JVM) does not have enough memory to allocate space for objects.
+- `StackOverflowError`: Occurs when recursive calls are too deep, causing stack overflow.
+- `NoClassDefFoundError`: Occurs when the JVM or `ClassLoader` instance tries to load a class definition but cannot find the corresponding class.
 
-Understanding these common exceptions and their usage scenarios is crucial for writing robust and reliable Java applications. Properly handling exceptions can make your programs more stable and provide better user experiences.
+Understanding these common exceptions and their usage scenarios is crucial for writing robust and reliable Java applications. Properly handling exceptions can make your program more stable and provide a better user experience.
 
-### Example {error_exception}
+### Example {#error_exception}
 
 This is a Java code snippet that triggers a division-by-zero exception:
 
@@ -289,9 +289,9 @@ public AjaxResult billing(String tag) {
 }
 ```
 
-Requesting this interface triggers a division-by-zero exception: `http://localhost:8080/billing?tag=error`
+Triggering the division-by-zero exception by requesting the interface: `http://localhost:8080/billing?tag=error`
 
-At this point, you can see the span information on Guance: `error_message` `error_stack`:
+At this point, you can view the span information in Guance: `error_message` `error_stack`:
 
 ```txt
   error_message Request processing failed; nested exception is java.lang.ArithmeticException: / by zero
@@ -365,11 +365,11 @@ At this point, you can see the span information on Guance: `error_message` `erro
 }
 ```
 
-From `error_message`, you can see this is a `Request processing failed; nested exception is java.lang.ArithmeticException: / by zero` exception.
+From `error_message`, you can see that this is a `Request processing failed; nested exception is java.lang.ArithmeticException: / by zero` exception.
 
 The `error.type` is the exception class name, and `error_stack` is the exception stack trace.
 
-Again, modify the code and use try/catch to catch the exception:
+Again, modify the code and use try/catch to capture the exception information:
 
 ```java
  try {
@@ -381,4 +381,4 @@ Again, modify the code and use try/catch to catch the exception:
  }
 ```
 
-At this point, requesting the interface again will not produce exception information because the exception is caught and handled within the method and will not be propagated for the probe to capture.
+At this point, requesting the interface again will not produce an exception message because the exception is caught and handled within the method and will not be thrown out to be captured by the probe.

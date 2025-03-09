@@ -1,63 +1,68 @@
-# Issue Modification
+# Modify Issue
 
 ---
 
-<br />**POST /api/v1/issue/{issue_uuid}/modify**
+<br />**POST /api/v1/issue/\{issue_uuid\}/modify**
 
 ## Overview
 
+
+
+
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description          |
-|:--------------|:-------|:---------|:---------------------|
-| issue_uuid    | string | Y        | Issue UUID           |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:-------------------------|
+| issue_uuid           | string   | Y          | issueUUID<br>            |
+
 
 ## Body Request Parameters
 
-| Parameter Name  | Type   | Required | Description                                  |
-|:---------------|:-------|:---------|:---------------------------------------------|
-| name           | string | N        | Title name <br> Example: name <br> Allow empty: False <br> $maxCustomLength: 256 |
-| level          | string | N        | Level, corresponding to the level configuration UUID <br> Example: level <br> Allow empty: False <br> Allow empty string: True |
-| description    | string | N        | Description <br> Example: description <br> Allow empty: False |
-| statusType     | integer| N        | Status of the issue <br> Example: statusType <br> Allow empty: False <br> Optional values: [10, 20, 30] |
-| extend         | json   | Y        | Additional extended information, defaults to {} if no content <br> Example: {} <br> Allow empty: True |
-| attachmentUuids| array  | N        | List of attachment UUIDs <br> Example: [] <br> Allow empty: True |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:-------------------------|
+| name                 | string   |            | Title name<br>Example: name <br>Can be empty: False <br>$maxCustomLength: 256 <br> |
+| level                | string   |            | Level, corresponding to the configuration UUID of the level<br>Example: level <br>Can be empty: False <br>Can be an empty string: True <br> |
+| description          | string   |            | Description<br>Example: description <br>Can be empty: False <br> |
+| statusType           | integer  |            | Status of the issue<br>Example: statusType <br>Can be empty: False <br>Possible values: [10, 15, 20, 25, 30] <br> |
+| extend               | json     | Y          | Additional extended information, defaults to {} if no content<br>Example: {} <br>Can be empty: True <br> |
+| attachmentUuids      | array    |            | List of attachment UUIDs<br>Example: [] <br>Can be empty: True <br> |
 
-## Parameter Supplemental Explanation
+## Additional Parameter Explanation
+
 
 **Basic Parameter Explanation**
 
-| Parameter Name  | Parameter Type | Required | Parameter Description |
-|:---------------:|:--------------:|:--------:|:----------------------|
-| name            | string         | N        | Title name of the issue |
-| level           | string         | N        | Issue level corresponding to the configuration level UUID |
-| statusType      | integer        | N        | Issue status, 10: Open, 20: Resolved, 30: Pending |
-| description     | string         | N        | Issue description information |
-| attachmentUuids | array          | N        | List of attachment UUIDs, must be uploaded via the /api/v1/attachment/upload interface first |
-| extend          | json           | N        | Extended fields, default to {} |
+| Parameter Name       | Parameter Type | Required | Parameter Description |
+|:---------------------:|:--------------:|:--------:|:----------------------|
+| name                 | string         | N        | Title name of the issue |
+| level                | string         | N        | Issue level, corresponding to the configuration UUID of the level |
+| statusType           | integer        | N        | Issue status, 10: Open, 15: Working, 20: Resolved, 25: Closed, 30: Pending |
+| description          | string         | N        | Issue description information |
+| attachmentUuids      | array          | N        | List of attachment UUIDs, must be uploaded first via the /api/v1/attachment/upload interface |
+| extend               | json           | N        | Extended fields, default is {} |
 
 **Level Field Explanation**
-The level can be a system-defined level or a custom level (configurable in Configuration Management).
+Level can be system-defined or custom (configurable in Configuration Management)
 
-| Level  | Value             | Parameter Description |
-|:------:|:-----------------:|:---------------------:|
-| P0     | system_level_0    | Pass level: system_level_0, indicates system level P0 |
-| P1     | system_level_1    | Pass level: system_level_1, indicates system level P1 |
-| P2     | system_level_2    | Pass level: system_level_2, indicates system level P2 |
-| P3     | system_level_3    | Pass level: system_level_3, indicates system level P3 |
-| xxx    | issl_yyyyy        | Pass level: issl_yyyyy, indicates custom level xxx |
+| Level                | Value          | Parameter Description |
+|:---------------------:|:---------------:|:----------------------|
+| P0                    | system_level_0 | Pass level: system_level_0, indicates system level P0 |
+| P1                    | system_level_1 | Pass level: system_level_1, indicates system level P1 |
+| P2                    | system_level_2 | Pass level: system_level_2, indicates system level P2 |
+| P3                    | system_level_3 | Pass level: system_level_3, indicates system level P3 |
+| xxx                   | issl_yyyyy     | Pass level: issl_yyyyy, indicates custom level xxx |
 
-**Extended Field "extend" Explanation**
+**Extended Field `extend` Explanation**
 
 | Parameter Name | Parameter Type | Required | Parameter Description |
 |:--------------:|:--------------:|:--------:|:----------------------|
-| channels       | array          | N        | Resource list expected for issue delivery in the description content |
-| linkList       | array          | N        | Add issue links |
-| members        | array          | N        | Notification target members expected to be notified in the description content |
+| channels       | array          | N        | Channels in the description content, expected resource list for issue delivery |
+| linkList       | array          | N        | Add links to the issue |
+| members        | array          | N        | Notification target members in the description content |
 | manager        | array          | N        | User account UUID, email, team UUID |
-| extra          | json           | N        | Information about the updater/responsible person's email for frontend display |
+| extra          | json           | N        | Information such as updater/responsible person's email, used for frontend display |
 
-Example of the "extend" field:
+Example of the `extend` field:
 ```json
 {
     "members": [
@@ -83,13 +88,13 @@ Example of the "extend" field:
     "linkList": [
         {
             "name": "Resolve",
-            "link": "https://sd.com"
+            "link": "https://sd.com",
         }
     ],
-    "extra": {
+    "extra":{
               "updator": {
                   "name": "xxx",
-                  "email": "xxx@qq.com"
+                  "email": "xxx@qq.com",
               },
               "managerInfos": {
                   "111@qq.com": {"name": "111"},
@@ -99,6 +104,8 @@ Example of the "extend" field:
 }
 ```
 
+
+
 ## Request Example
 ```shell
 curl 'https://openapi.guance.com/api/v1/issue/issue_xxxx32/modify' \
@@ -107,6 +114,8 @@ curl 'https://openapi.guance.com/api/v1/issue/issue_xxxx32/modify' \
 --data-raw '{"statusType":20}'\
 --compressed
 ```
+
+
 
 ## Response
 ```shell

@@ -5,18 +5,17 @@
 <br />**POST /api/v1/rum_sourcemap/part_merge**
 
 ## Overview
-This is the fifth step in the sourcemap compressed file upload operation (chunked upload). It merges the uploaded shards into a single sourcemap compressed file.
-For more details, refer to: [SourceMap Chunked Upload Related API Usage Instructions](../../../studio-backend/sourcemap-multipart-upload-init/)
+This is the fifth step in the operation of uploading a compressed SourceMap file (uploading in shards). It involves merging the uploaded shards into a single compressed SourceMap file. For more details, refer to: [SourceMap Shard Upload Interface Usage Instructions](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
 
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| uploadId | string | Y | Chunked upload event ID<br>Can be null: False <br> |
-| chunkIndexs | array |  | List of chunks<br>Can be null: False <br>Can be empty string: False <br> |
+| Parameter Name    | Type   | Required | Description              |
+|:--------------|:-----|:-------|:----------------------|
+| uploadId     | string | Y      | Shard upload event ID<br>Allow empty: False <br> |
+| chunkIndexs  | array |        | List of shards<br>Allow empty: False <br>Allow empty strings: False <br> |
 
 ## Additional Parameter Notes
 

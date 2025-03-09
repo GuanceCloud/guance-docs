@@ -5,10 +5,10 @@ tags:
   - 'External Data Ingestion'
 __int_icon      : 'icon/statsd'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : 'None'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'None'
     path  : '-'
 ---
 
@@ -16,17 +16,17 @@ monitor   :
 
 ---
 
-Metrics data collected by the DDTrace Agent is sent to port 8125 of DK using the StatsD data type. This includes CPU, memory, thread, and class loading information from the JVM runtime, as well as various JMX metrics that are enabled, such as Kafka, Tomcat, RabbitMQ, etc.
+Metrics data collected by the DDTrace Agent will be sent to port 8125 of DK using the StatsD data type. This includes CPU, memory, thread, and class loading information from the JVM runtime, as well as various JMX metrics that are enabled, such as Kafka, Tomcat, RabbitMQ, etc.
 
 ## Configuration {#config}
 
 ### Prerequisites {#requirements}
 
-When running DDTrace as an agent, there's no need for users to specifically open the JMX port. If the port has not been opened, the agent will randomly open a local port.
+When running DDTrace as an agent, users do not need to specifically open the JMX port; if the port is not opened, the agent will randomly open a local port.
 
 DDTrace collects JVM information by default. By default, it sends data to `localhost:8125`.
 
-In a Kubernetes environment, you need to configure the StatsD host and port:
+If you are in a k8s environment, you need to configure the StatsD host and port:
 
 ```shell
 DD_JMXFETCH_STATSD_HOST=datakit_url
@@ -35,7 +35,7 @@ DD_JMXFETCH_STATSD_PORT=8125
 
 You can enable specific collectors using `dd.jmxfetch.<INTEGRATION_NAME>.enabled=true`.
 
-Before filling in `INTEGRATION_NAME`, you can check the [supported third-party software](https://docs.datadoghq.com/integrations/){:target="_blank"}.
+Before filling in `INTEGRATION_NAME`, you can first check the [default supported third-party software](https://docs.datadoghq.com/integrations/){:target="_blank"}
 
 For example, Tomcat or Kafka:
 
@@ -50,7 +50,7 @@ For example, Tomcat or Kafka:
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/statsd` directory under the DataKit installation directory, copy `statsd.conf.sample` and rename it to `statsd.conf`. Example configuration:
+    Navigate to the `conf.d/statsd` directory under the DataKit installation directory, copy `statsd.conf.sample` and rename it to `statsd.conf`. An example is shown below:
     
     ```toml
         
@@ -63,7 +63,7 @@ For example, Tomcat or Kafka:
     
       protocol = "udp"
     
-      ## Address and port for the UDP listener
+      ## Address and port for hosting the UDP listener
       service_address = ":8125"
     
       ## Tag request metric. Used to distinguish feed metric names.
@@ -71,7 +71,7 @@ For example, Tomcat or Kafka:
       ## e.g., -Ddd.tags=source_key:tomcat,host_key:cn-shanghai-sq5ei
       # statsd_source_key = "source_key"
       # statsd_host_key   = "host_key"
-      ## Indicate whether to report statsd_source_key and statsd_host_key tags.
+      ## Indicate whether to report tags statsd_source_key and statsd_host_key.
       # save_above_key    = false
     
       delete_gauges = true
@@ -79,7 +79,7 @@ For example, Tomcat or Kafka:
       delete_sets = true
       delete_timings = true
     
-      ## Counter metrics are float in new DataKit versions; set true if you want them to be integers.
+      ## Counter metrics are float in the new DataKit version, set true if you want them to be int.
       # set_counter_int = false
     
       ## Percentiles to calculate for timing & histogram stats
@@ -99,24 +99,27 @@ For example, Tomcat or Kafka:
       ## https://docs.datadoghq.com/developers/metrics/types/?tab=distribution#definition
       datadog_distributions = true
     
-      ## Tags that we do not need (they may create a large number of time series under InfluxDB's logic)
+      ## We do not need following tags (they may create a large number of time series under InfluxDB's logic)
       # Examples:
       # "runtime-id", "metric-type"
       drop_tags = [ ]
     
-      # All metric names prefixed with 'jvm_' are set to InfluxDB's measurement 'jvm'
-      # All metric names prefixed with 'stats_' are set to InfluxDB's measurement 'stats'
+      # All metric-names prefixed with 'jvm_' are set to InfluxDB's measurement 'jvm'
+      # All metric-names prefixed with 'stats_' are set to InfluxDB's measurement 'stats'
       # Examples:
       # "stats_:stats", "jvm_:jvm", "tomcat_:tomcat",
       metric_mapping = [ ]
     
-      ## Number of UDP messages allowed to queue up; once filled, the StatsD server will start dropping packets. Default is 128.
+      ## Number of UDP messages allowed to queue up, once filled,
+      ## the StatsD server will start dropping packets, default is 128.
       # allowed_pending_messages = 128
     
-      ## Number of timing/histogram values to track per-measurement in the calculation of percentiles. Increasing this limit improves accuracy but also increases memory usage and CPU time.
+      ## Number of timing/histogram values to track per-measurement in the
+      ## calculation of percentiles. Raising this limit increases the accuracy
+      ## of percentiles but also increases the memory usage and CPU time.
       percentile_limit = 1000
     
-      ## Maximum duration (TTL) for each metric to stay cached/reported without being updated.
+      ## Max duration (TTL) for each metric to stay cached/reported without being updated.
       #max_ttl = "1000h"
     
       [inputs.statsd.tags]
@@ -134,24 +137,24 @@ For example, Tomcat or Kafka:
 <!-- markdownlint-disable MD046 -->
 ???+ info
 
-    If logs show many Feed: io busy messages, you can set `interval = '1s'`, minimum 1 second.
+    If logs show a large amount of Feed: io busy, you can configure `interval = '1s'`, minimum 1s.
 <!-- markdownlint-enable -->
 
-### Marking Data Sources {#config-mark}
+### Tagging Data Sources {#config-mark}
 
-To mark hosts collected by DDTrace, you can inject tags:
+To tag hosts collected by DDTrace, you can use the method of injecting tags:
 
-- Use environment variables, i.e., [`DD_TAGS`](statsd.md#requirements), for example: `DD_TAGS=source_key:tomcat,host_key:cn-shanghai-sq5ei`
-- Use command-line options, i.e., [`dd.tags`](statsd.md#requirements), for example: `-Ddd.tags=source_key:tomcat,host_key:cn-shanghai-sq5ei`
+- You can use environment variables, i.e., [`DD_TAGS`](statsd.md#requirements), for example: `DD_TAGS=source_key:tomcat,host_key:cn-shanghai-sq5ei`
+- You can use command-line options, i.e., [`dd.tags`](statsd.md#requirements), for example: `-Ddd.tags=source_key:tomcat,host_key:cn-shanghai-sq5ei`
 
-In the above examples, specify the key for the source as `source_key` and the key for the host as `host_key` in the DataKit configuration. You can change these keys to other names, but ensure that the field names in the DataKit configuration match those in DDTrace.
+In the above examples, specify the source key as `source_key` and the host key as `host_key` in the DataKit configuration. You can change these to other names, but ensure that the field names in the DataKit configuration match those in DDTrace.
 
-The final effect is: when using `datakit monitor`, you can see `statsd/tomcat/cn-shanghai-sq5ei`, which distinguishes this data source from others reported to the StatsD collector. Without this configuration, `datakit monitor` shows the default display: `statsd/-/-`.
+The final effect is that when using `datakit monitor`, you will see `statsd/tomcat/cn-shanghai-sq5ei`, which helps distinguish this data source from others. Without this configuration, `datakit monitor` will display the default: `statsd/-/-`.
 
-Additionally, the configuration switch `save_above_key` determines whether to report the tags corresponding to `statsd_source_key` and `statsd_host_key` to the central system. The default is not to report (`false`).
+Additionally, there is a configuration switch `save_above_key` to decide whether to report the tags corresponding to `statsd_source_key` and `statsd_host_key` to the center. By default, it does not report (`false`).
 
 ## Metrics {#metric}
 
-StatsD does not have predefined metric sets; all metrics are based on the metrics sent over the network.
+StatsD does not have predefined metric sets; all metrics are based on those received over the network.
 
-Using the default metric set with the Agent, you can view all metric sets on [GitHub](https://docs.datadoghq.com/integrations/){:target="_blank"}.
+Using the default metric set provided by the Agent, you can view all metric sets on [GitHub](https://docs.datadoghq.com/integrations/){:target="_blank"}.

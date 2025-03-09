@@ -2,10 +2,10 @@
 --- 
 ## GitLab
 
-**GitLab** is developed by GitLabInc. and is licensed under the [MIT License](https://baike.baidu.com/item/MIT%E8%AE%B8%E5%8F%AF%E8%AF%81). It is a web-based Git repository management tool that includes wiki and issue tracking features. GitLab uses [Git](https://baike.baidu.com/item/Git) as its code management tool and is built as a web service on top of it.
+**GitLab** is developed by GitLabInc. and uses the [MIT License](https://en.wikipedia.org/wiki/MIT_License). It is a web-based [Git](https://git-scm.com/) repository management tool with [wiki](https://en.wikipedia.org/wiki/Wiki) and issue tracking features. GitLab uses [Git](https://git-scm.com/) as the code management tool and builds a web service on top of it.
 
 ## CI/CD 
-**CI/CD** stands for Continuous Integration (CI), Continuous Delivery (CD), and Continuous Deployment (CD).<br />**Continuous Integration** focuses on integrating the work of various developers into a single code repository multiple times a day, with the main goal of detecting integration issues early and fostering better team collaboration.<br />**Continuous Delivery** aims to minimize friction in the deployment or release process. Typically, this involves automating each step of the build and deployment process to ensure safe code releases at any time (ideally).<br />**Continuous Deployment** represents a higher level of automation where significant changes to the code trigger automatic builds/deployments.<br />Some popular CI/CD tools:
+**CI/CD** stands for Continuous Integration (CI), Continuous Delivery (CD), and Continuous Deployment (CD).<br />**Continuous Integration** focuses on integrating the work of various developers into a single code repository. Typically, this happens several times a day, with the main goal of detecting integration issues early, fostering tighter team collaboration.<br />**Continuous Delivery** aims to minimize friction inherent in deployment or release processes. Its implementation often automates each step of the build deployment process so that code releases can be safely completed at any time (ideally).<br />**Continuous Deployment** represents a higher level of automation where builds/deployments are automatically triggered whenever significant changes are made to the code.<br />Some popular CI/CD tools:
 
 > 1. Jenkins
 >
@@ -16,32 +16,34 @@
 
 ## GitLab CI
 
-GitLab CI/CD (hereinafter referred to as GitLab CI) is a CI/CD system based on GitLab. Although it is a relatively new player in the CI/CD field, it has already taken a leading position in Forrester Wave's continuous integration tools. Developers can configure CI/CD workflows using `.gitlab-ci.yml` files in their projects. After commits, the system can automatically or manually execute tasks to complete CI/CD operations. Its configuration is simple, and the CI Runner is written in Go, packaged into a single file, making it easy to run on platforms like bare metal + SSH, Docker, or Kubernetes. I recommend Docker because it is easy to set up.
+GitLab CI/CD (hereinafter referred to as GitLab CI) is a CI/CD system based on GitLab. Although it is a newcomer in the CI/CD field, it has taken the lead in Forrester Wave's continuous integration tools. Developers can configure CI/CD workflows using `.gitlab-ci.yml` files within their projects. After commits, the system can automatically or manually execute tasks to complete CI/CD operations. Moreover, its configuration is straightforward, with CI Runners written in Go and packaged as a single file. Therefore, only a Runner program and an execution platform (such as bare metal + SSH, Docker, or Kubernetes, with Docker recommended due to its ease of setup) are needed to run a complete CI/CD system.
 
-## Guance
+## <<< custom_key.brand_name >>>
 
-[Guance](https://guance.com/) is a cloud-native observability platform. The platform includes infrastructure, logs, metrics, events, APM, RUM, dial testing, security checks, and more. It provides full-stack data analysis and insights for Logging, Metrics, and Tracing data. It supports comprehensive coverage of H5, iOS, Android, and mini-programs, offering detailed user behavior tracking and real experience monitoring. It provides page performance, resource calls, error alerts, business visits, and other data and analysis views. Linked with tracing, it helps you gain real-time insights into application performance and the actual needs behind each request. Flexible layout options, rich chart choices, and drag-and-drop interactions make it easy to build your own dashboard. Unified data query methods support configuring various types of data, making it easy to use.
+“[<<< custom_key.brand_name >>>](https://guance.com/)” is a cloud-era observability platform. The platform includes infrastructure, logs, metrics, events, APM, RUM, synthetic tests, and system-level security checks among other feature modules. It provides comprehensive data analysis and insights for Logging, Metrics, and Tracing data. It covers H5, iOS, Android, and mini-programs, supporting the complete tracing of user access behavior and real experiences. It offers data and analysis views such as page performance, resource calls, error alerts, and business visits. Linked with trace analysis, it helps you gain real-time insights into application performance and the true needs behind every request. Flexible layout options, rich chart selections, and drag-and-drop interaction make it easy to build your own dashboard. A unified data query method supports configuring various types of data, making it simple and easy to use.
+
 ## DataKit
 
-DataKit is an open-source collection tool from Guance, available at: [https://github.com/DataFlux-cn/datakit](https://github.com/DataFlux-cn/datakit)
+DataKit is an open-source collection tool provided by <<< custom_key.brand_name >>>. The open-source address is: [https://github.com/DataFlux-cn/datakit](https://github.com/DataFlux-cn/datakit)
 
 ## Background Introduction
-With the rise of microservices, enterprises are transitioning from monolithic architectures to microservice architectures. Microservices feature numerous modules, which can complicate deployment. While CI/CD tools excel at integration, delivery, and deployment, they often struggle with statistical analysis during the deployment process. Using Guance's powerful observability and custom view capabilities can help you effectively monitor and analyze issues that arise during continuous deployment.
-## Architecture Flow
+With the increasing popularity of microservices, enterprises are transitioning from monolithic service architectures to microservice architectures. Microservices have many engineering modules and can be relatively complex to deploy. While CI/CD tools excel at integrating, delivering, and deploying, they often struggle with statistical analysis during the deployment process. Using <<< custom_key.brand_name >>>'s powerful observability and customizable view capabilities, you can effectively monitor and analyze issues that arise during continuous deployment.
+
+## Architecture Process
 
 ![image.png](../images/gitlab-ci.png)
 
-> 1. Developers commit & push code
+> 1. Developers commit & push code 
 >
-> 1. GitLabRunner registers with GitLab
-> 1. GitLab triggers execution of GitLab-CI
-> 1. After GitLab-CI completes, it triggers a webhook to send data to DataKit
-> 1. DataKit tags and pushes data to the Guance platform
+> 1. GitlabRunner registers with GitLab 
+> 1. GitLab triggers Gitlab-CI execution 
+> 1. After Gitlab-CI completes, it triggers a webhook to send data to DataKit
+> 1. DataKit tags and pushes the data to the <<< custom_key.brand_name >>> platform
 
 ## Prerequisites
 
 - <[Install DataKit](/datakit/datakit-install)>
-- DataKit version >=1.2.13
+- DataKit version >= 1.2.13
 
 ### Enabling gitlab-ci in DataKit
 
@@ -75,34 +77,34 @@ enable_ci_visibility = true
 # some_tag = "some_value"
 # more_tag = "some_other_value"
 ```
-Parameter explanations<br />enable_collect: false # Disable metric collection<br />prometheus_url ： Metric collection URL<br />enable_ci_visibility： true Enable gitlab-ci
+Parameter Explanation<br />enable_collect: false # Disable metric collection<br />prometheus_url: Metric collection URL<br />enable_ci_visibility: true Enable gitlab-ci
 
 #### Restart DataKit
 
 ```toml
 datakit --restart
 ```
+
 ### GitLab Installation and Configuration
 Ignore if already installed
 
 #### Install GitLab via Docker
 > docker run --name=gitlab -d -p 8899:8899 -p 2443:443 --restart always \ --volume /data/midsoftware/gitlab/config:/etc/gitlab \ --volume /data/midsoftware/gitlab/logs:/var/log/gitlab \ --volume /data/midsoftware/gitlab/data:/var/opt/gitlab  docker.io/gitlab/gitlab-ce
 
-Port descriptions
+Port Description
 
 | Port | Description |
 | --- | --- |
 | 8899 | GitLab UI port |
 | 2443 | GitLab SSL port |
 
-
-#### Modify configuration file: gitlab.rb
+#### Modify Configuration File: gitlab.rb
 
 ```
 # Access URL
 external_url 'http://192.168.91.11:8899'
 
-# Set timeout, default 10 (seconds)
+# Set timeout, default 10 (unit: seconds)
 gitlab_rails['webhook_timeout'] = 60
 ```
 
@@ -119,7 +121,7 @@ docker restart gitlab
 14.6.2
 ```
 
-#### Check GitLab Initial Password
+#### Check Initial GitLab Password
 
 ```shell
 [root@middle config]# docker exec -it gitlab cat /etc/gitlab/initial_root_password |grep Password
@@ -127,12 +129,12 @@ docker restart gitlab
 Password: yBY9toQ0SJ8fxh3mndHPzfWclVUDZ/J8e8O4bDsal2E=
 ```
 
-Account root, log in via browser at http://ip:8899 and change the password.
+Account: root, log in to http://ip:8899 via browser and change the password.
 
 ![2022-01-14-12-02-04-image.png](../images/gitlab-ci-2.png)
 
 #### Create the First Project
-menu -> Projects-> Your Projects -> New Project -> Select Create Blank Project. Fill in the project name
+menu -> Projects -> Your Projects -> New Project -> Select Create Blank Project. Fill in the project name
 
 ![image.png](../images/gitlab-ci-3.png)
 
@@ -146,8 +148,8 @@ docker run -d --name gitlab-runner --restart always \
     gitlab/gitlab-runner:latest
 ```
 
-### Register GitLab-Runner Authorization Token
-GitLab Runner does not support global configuration, so the token must be found within the project. Navigate to the project -> settings -> runners, copy the token, which will be used during registration.
+### GitLab-Runner Registration Key
+GitLab Runner does not support global configuration, so the registration token must be found within the project. Navigate to the recently created project -> settings -> runners, copy the token, which will be used during the next registration step.
 
 ![image.png](../images/gitlab-ci-4.png)
 
@@ -167,45 +169,45 @@ docker run --rm -v /data/midsoftware/gitlab-runner/config:/etc/gitlab-runner git
   --access-level="not_protected"
 ```
 
-Parameter descriptions
+Parameter Description
 
 | Parameter Name | Value | Description |
 | --- | --- | --- |
-| executor | docker | Can use others or omit this parameter; choose Docker if deploying to a Docker environment |
+| executor | docker | Can be other values or omitted; choose docker if deploying to Docker environment |
 | docker-image | alpine:latest | Docker image version, used with executor |
 | url | [http://192.168.91.11:8899](http://192.168.91.11:8899) | GitLab access URL |
 | registration-token | token | GitLab admin token |
 | description | gitlab-runner | Description information |
-| tag-list | docker,localMachine | Tags to select corresponding executor |
+| tag-list | docker,localMachine | Tags to select corresponding executors |
 
-For more parameters, refer to: [https://docs.gitlab.com/runner/configuration/advanced-configuration.html](https://docs.gitlab.com/runner/configuration/advanced-configuration.html)
+More parameters: [https://docs.gitlab.com/runner/configuration/advanced-configuration.html](https://docs.gitlab.com/runner/configuration/advanced-configuration.html)
 
 ### Configure GitLab Webhook
-Navigate to the created project, select Settings -> Webhooks, fill in the URL, check pipeline events, and save.
+Navigate to the recently created project, select Settings -> Webhooks, fill in the URL, check pipeline events, and save.
 
 ![image.png](../images/gitlab-ci-5.png)
 
 Explanation:
 
-> URL: http://<datakit address>/v1/gitlab
+> URL: http://<datakit_address>/v1/gitlab
 >
 > Enable Job events
 >
 > Enable Pipeline events
 
 
-You can also click Test -> Select Pipeline events, which will trigger a pipeline event and push data to the configured webhook URL. Check the status to verify if the process works correctly.
+You can also click Test -> select Pipeline events, which will trigger a pipeline event and push data to the configured webhook URL. Check the status to ensure the process works correctly.
 
 ![image.png](../images/gitlab-ci-6.png)
 
 ### Write .gitlab-ci.yml
-Navigate to the created project, select CI/CD -> Editor
+Navigate to the recently created project, select CI/CD -> Editor
 
 ![image.png](../images/gitlab-ci-7.png)
 
-Fill in the script content as follows:
+Enter the script content as follows:
 ```yaml
-# Set the execution image
+# Set execution image
 image: busybox:latest
 
 # The entire pipeline has two stages
@@ -234,18 +236,18 @@ test_job:
   script:
     - echo "Read content from cache"
 ```
-Click Save, which will automatically trigger CI/CD. After triggering, the process will be pushed to the previously configured webhook URL through the webhook.
+Click Save, which will automatically trigger the CI/CD process and push the results to the configured webhook URL.
 ### View Webhook Push Records
 ![image.png](../images/gitlab-ci-8.png)
 
 Status 200 indicates successful push
 
-## Guance
-After the pipeline pushes successfully, you can observe the overall execution status of the pipeline via the Guance platform using dashboards and explorers.
+## <<< custom_key.brand_name >>>
+After the pipeline pushes successfully, we can use the <<< custom_key.brand_name >>> platform to visualize and observe the overall pipeline execution through dashboards and explorers.
 ### CI Explorer
-View `gitlab_pipeline` and `gitlab_job` details through the menu `CI` explorer.
+View `gitlab_pipeline` and `gitlab_job` details via the `CI` explorer menu.
 
-gitlab_pipeline：
+gitlab_pipeline:
 
 ![image.png](../images/gitlab-ci-9.png)
 
@@ -253,6 +255,6 @@ gitlab_job
 
 ![image.png](../images/gitlab-ci-10.png)
 
-Clicking on details allows you to view flame graphs and job lists<br />Flame graph<br />![image.png](../images/gitlab-ci-11.png)
-### CI Summary
-The CI summary provides an overview of GitLab-CI pipeline and job execution, such as pipeline success rate, execution time, job success rate, execution time, etc.<br />![image.png](../images/gitlab-ci-12.png)
+Clicking on details allows viewing flame graphs and job lists<br />Flame graph<br />![image.png](../images/gitlab-ci-11.png)
+### CI Overview
+The CI overview displays the execution status of GitLab-CI pipelines and jobs, including success rates and execution times for both pipelines and jobs.<br />![image.png](../images/gitlab-ci-12.png)

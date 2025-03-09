@@ -18,9 +18,9 @@ monitor:
 
 ---
 
-The logfwdserver will enable WebSocket functionality, working alongside logfwd to receive and process data sent by logfwd.
+logfwdserver will enable the websocket function and work with logfwd to receive and process the data sent by logfwd.
 
-For using logfwd, refer to [this](logfwd.md).
+For the usage of logfwd, refer to [this link](logfwd.md).
 
 ## Configuration {#config}
 
@@ -44,5 +44,5 @@ For using logfwd, refer to [this](logfwd.md).
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by injecting collector configurations via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the collector configuration through [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->

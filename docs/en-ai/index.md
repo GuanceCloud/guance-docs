@@ -3,10 +3,10 @@ hide:
   - toc
 glightbox: false
 ---
-# <div class="homepage-title">Welcome to Guance</div>
+# <div class="homepage-title">Welcome to <<< custom_key.brand_name >>> </div>
 <div class="homepage">
   <div class="title">
-    【Guance】is a real-time data monitoring platform designed for development, operations, testing, and business teams. It can meet the monitoring needs of cloud, cloud-native, applications, and business operations, quickly achieving observability across infrastructure, middleware, application layers, and business layers. Infrastructure monitoring, log and metrics management, APM, RUM, Synthetic Tests, system-level Security Check, scenarios, and dashboards are all part of Guance's observability solutions. Through unified data collection, comprehensive data monitoring, seamless correlation analysis, customizable scenario building, high programmability, and agile member collaboration, Guance provides users with the fastest, easiest, most comprehensive, and freest system observability platform.
+    <<< custom_key.brand_name >>> is a real-time data monitoring platform designed for development, operations, testing, and business teams. It can uniformly meet the monitoring needs of cloud, cloud-native, applications, and business operations, quickly achieving observability in infrastructure, middleware, application layers, and business layers. Infrastructure monitoring, log and metrics management, APM, RUM, Synthetic Tests, system-level Security Check, scenarios, and dashboards are all part of <<< custom_key.brand_name >>>'s observability solutions. Through unified data collection, comprehensive data monitoring, seamless correlation analysis, customizable scenario building, high programmability, and agile member collaboration, it provides users with the fastest, easiest, most comprehensive, and freest system observability platform.
   </div>
   <div class="content">
     <div class="content-top">
@@ -89,7 +89,7 @@ glightbox: false
       <a href="/dataflux-func" class="content-item">
         <div class="item-content">
           <img src='assets/images/homepage/func.png' alt="" />
-          <span>DataFlux Func (Automata)</span>
+          <span>DataFlux Func</span>
         </div>
       </a>
     </div>

@@ -2,9 +2,9 @@
 
 ## Introduction
 
-nfs-subdir-external-provisioner can dynamically provide PV volumes for Kubernetes. It is a simple external NFS provisioner for Kubernetes, but it does not provide NFS itself; it requires an existing NFS server to provide storage. The naming convention for persistent volume directories is: ${namespace}-${pvcName}-${pvName}.
+nfs-subdir-external-provisioner can dynamically provide PV volumes for Kubernetes. It is a simple external NFS provisioner for Kubernetes, but it does not provide NFS itself; it requires an existing NFS server to provide storage. The naming rule for persistent volume directories is: ${namespace}-${pvcName}-${pvName}.
 
-For the deployment of the Kubernetes nfs subdir external provisioner component, refer to [https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)
+For deploying the Kubernetes nfs subdir external provisioner component, refer to [https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)
 
 ## Prerequisites
 
@@ -14,13 +14,13 @@ For the deployment of the Kubernetes nfs subdir external provisioner component, 
 
 ## Basic Information and Compatibility
 
-|     NFS IP      | NSF Path | storageClass name |              Description              |
-| :-------------: | :------: | :---------------: | :-----------------------------------: |
-| 192.168.100.105 | /nfsdata |  df-nfs-storage   | Modify configuration according to actual conditions |
+|     NFS IP      | NSF Path | storageClass name |              Description               |
+| :-------------: | :------: | :---------------: | :------------------------------------: |
+| 192.168.100.105 | /nfsdata |   df-nfs-storage  | Modify configuration according to actual conditions |
 
-|               Name                | Version | Offline Deployment Supported | Supported Architectures | Supported Cluster Versions |
-| :------------------------------: | :-----: | :--------------------------: | :----------------------: | :------------------------: |
-| nfs subdir external provisioner | 4.0.16  |             Yes              |         amd64/arm64     |           1.18+           |
+|                  Name                   | Version | Offline Deployment Supported | Supported Architectures | Supported Cluster Versions |
+| :-------------------------------------: | :-----: | :--------------------------: | :----------------------: | :-------------------------: |
+| nfs subdir external provisioner         | 4.0.16  |             Yes              |        amd64/arm64       |            1.18+           |
 
 ## Deployment Steps
 
@@ -47,11 +47,11 @@ For the deployment of the Kubernetes nfs subdir external provisioner component, 
     
     ???+ warning "Note"
     
-         Pay attention that `nfs.server` is the NFS address, and `nfs.path` is the path, do not confuse them.
+         Note that `nfs.server` is the NFS address and `nfs.path` is the path, do not confuse them.
 
 === "Yaml"
      
-    Modify the highlighted parts in the following YAML and deploy.
+    Modify the highlighted parts of the following YAML and deploy.
 
     ???- note "nfs-provisioner.yaml (Click to expand)"
         ```yaml hl_lines='103 105 109-110'
@@ -157,13 +157,13 @@ For the deployment of the Kubernetes nfs subdir external provisioner component, 
                     - name: PROVISIONER_NAME
                       value: k8s-sigs.io/nfs-subdir-external-provisioner
                     - name: NFS_SERVER
-                      value: 192.168.100.105   # Fill in the actual NFS server
+                      value: 192.168.100.105   # Replace with actual NFS server
                     - name: NFS_PATH
                       value: /nfsdata   # Actual shared directory       
               volumes:
                 - name: nfs-client-root
                   nfs:
-                    server: 192.168.100.105 # Fill in the actual NFS server address
+                    server: 192.168.100.105 # Replace with actual NFS server address
                     path: /nfsdata  # Actual shared directory
         ---
         apiVersion: storage.k8s.io/v1
@@ -224,7 +224,7 @@ $ kubectl get pvc | grep cfs-pvc001
 cfs-pvc001       Bound    pvc-a17a0e50-04d2-4ee0-908d-bacd8d53aaa4   1Gi        RWO            df-nfs-storage           3d7h
 ```
 
->`Bound` is the standard for successful deployment
+>`Bound` indicates successful deployment
 
 
 ## How to Uninstall

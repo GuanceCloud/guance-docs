@@ -23,7 +23,7 @@ Collection of Haproxy Metrics information.
 
 ### 1. Enable Haproxy Metrics
 
-Adjust the Haproxy configuration file by adding the following module configuration:
+Adjust the Haproxy configuration file to add the following module configuration:
 
 ```toml
 frontend prometheus
@@ -32,12 +32,11 @@ frontend prometheus
   http-request use-service prometheus-exporter if { path /metrics }
   no log
 ......
-
 ```
 
-Expose Metrics information via `prometheus-exporter` on port `8405` with path `/metrics`.
+Expose metrics information via `prometheus-exporter`, port `8405`, path `/metrics`.
 
-Restart the Haproxy service. Access port `8405` to retrieve Metrics information, as shown below:
+Restart the Haproxy service. Access port `8405` to obtain metrics information, as shown below:
 
 ```shell
 # HELP haproxy_process_nbthread Number of started threads (global.nbthread)
@@ -67,7 +66,7 @@ Navigate to the [DataKit installation directory](./datakit_dir.md) under `conf.d
 
 > `cp prom.conf.sample haproxy.conf`
 
-Modify the content of `haproxy.conf` as follows:
+Adjust the content of `haproxy.conf` as follows:
 
 ```toml
 
@@ -86,12 +85,13 @@ Modify the content of `haproxy.conf` as follows:
 <!-- markdownlint-disable MD033 -->
 <font color="red">*Other configurations can be adjusted as needed*</font>
 <!-- markdownlint-enable -->
-Parameter adjustment explanation:
+
+Parameter adjustment notes:
 
 <!-- markdownlint-disable MD004 -->
-- urls: The Metrics URL for `haproxy`, fill in the corresponding component's exposed Metrics URL
-- source: Alias for the collector, recommended for differentiation
-- keep_exist_metric_name: Keep the original metric name
+- urls: The metrics URL for `haproxy`, fill in the URL exposed by the corresponding component
+- source: Alias for the collector, recommended to differentiate
+- keep_exist_metric_name: Keep the metric name
 - interval: Collection interval
 
 <!-- markdownlint-enable -->
@@ -101,55 +101,55 @@ Parameter adjustment explanation:
 
 ## Metrics {#metric}
 
-### Haproxy Mearsurement Set
+### Haproxy Metrics Set
 
 | Metrics | Description | Unit |
 | -- | -- |-- |
-|`haproxy_backend_bytes_in_total` | Total bytes received by backend | byte |
-|`haproxy_backend_bytes_out_total` | Total bytes sent by backend | byte |
-|`haproxy_backend_client_aborts_total` | Total client aborts in backend | count |
-|`haproxy_backend_connect_time_average_seconds` | Average connection time in seconds for backend | seconds |
-|`haproxy_backend_connection_attempts_total` | Total connection attempts in backend | count |
-|`haproxy_backend_connection_errors_total` | Total connection errors in backend | count |
-|`haproxy_backend_connection_reuses_total` | Total reused connections in backend | count |
-|`haproxy_backend_current_queue` | Current queue size in backend | count |
-|`haproxy_backend_current_sessions` | Current sessions in backend | count |
-|`haproxy_backend_internal_errors_total` | Total internal errors in backend | count |
-|`haproxy_backend_loadbalanced_total` | Total load balanced requests in backend | count |
-|`haproxy_backend_max_queue` | Maximum queue size in backend | count |
-|`haproxy_backend_max_sessions` | Maximum sessions in backend | count |
-|`haproxy_backend_requests_denied_total` | Total denied requests in backend | count |
-|`haproxy_backend_response_errors_total` | Total response errors in backend | count |
-|`haproxy_backend_responses_denied_total` | Total denied responses in backend | count |
-|`haproxy_backend_retry_warnings_total` | Total retry warnings in backend | count |
-|`haproxy_backend_server_aborts_total` | Total server aborts in backend | count |
-|`haproxy_backend_sessions_total` | Total sessions in backend | count |
-|`haproxy_frontend_bytes_in_total` | Total bytes received by frontend | byte |
-|`haproxy_frontend_bytes_out_total` | Total bytes sent by frontend | byte |
-|`haproxy_frontend_connections_total` | Total connections in frontend | count |
-|`haproxy_frontend_current_sessions` | Current sessions in frontend | count |
-|`haproxy_frontend_denied_connections_total` | Total denied connections in frontend | count |
-|`haproxy_frontend_denied_sessions_total` | Total denied sessions in frontend | count |
-|`haproxy_frontend_intercepted_requests_total` | Total intercepted requests in frontend | count |
-|`haproxy_frontend_internal_errors_total` | Total internal errors in frontend | count |
-|`haproxy_frontend_limit_session_rate` | Session rate limit in frontend | count |
-|`haproxy_frontend_limit_sessions` | Session limit in frontend | count |
-|`haproxy_frontend_max_sessions` | Maximum sessions in frontend | count |
-|`haproxy_frontend_request_errors_total` | Total request errors in frontend | count |
-|`haproxy_frontend_requests_denied_total` | Total denied requests in frontend | count |
-|`haproxy_frontend_responses_denied_total` | Total denied responses in frontend | count |
-|`haproxy_frontend_sessions_total` | Total sessions in frontend | count |
-|`haproxy_server_bytes_in_total` | Total bytes received by server | byte |
-|`haproxy_server_bytes_out_total` | Total bytes sent by server | byte |
-|`haproxy_server_response_errors_total` | Total response errors in server | count |
-|`haproxy_server_response_time_average_seconds` | Average response time in seconds for server | seconds |
-|`haproxy_server_responses_denied_total` | Total denied responses in server | count |
-|`haproxy_server_retry_warnings_total` | Total retry warnings in server | count |
-|`haproxy_server_safe_idle_connections_current` | Current safe idle connections in server | count |
-|`haproxy_server_server_aborts_total` | Total server aborts in server | count |
-|`haproxy_server_sessions_total` | Total sessions in server | count |
-|`haproxy_server_used_connections_current` | Current used connections in server | count |
+|`haproxy_backend_bytes_in_total` | Total backend bytes in | byte |
+|`haproxy_backend_bytes_out_total` | Total backend bytes out | byte |
+|`haproxy_backend_client_aborts_total` | Total backend client aborts | count |
+|`haproxy_backend_connect_time_average_seconds` | Average backend connection time in seconds | seconds |
+|`haproxy_backend_connection_attempts_total` | Total backend connection attempts | count |
+|`haproxy_backend_connection_errors_total` | Total backend connection errors | count |
+|`haproxy_backend_connection_reuses_total` | Total backend connection reuses | count |
+|`haproxy_backend_current_queue` | Current backend queue | count |
+|`haproxy_backend_current_sessions` | Current backend sessions | count |
+|`haproxy_backend_internal_errors_total` | Total backend internal errors | count |
+|`haproxy_backend_loadbalanced_total` | Total backend load balanced | count |
+|`haproxy_backend_max_queue` | Maximum backend queue | count |
+|`haproxy_backend_max_sessions` | Maximum backend sessions | count |
+|`haproxy_backend_requests_denied_total` | Total backend requests denied | count |
+|`haproxy_backend_response_errors_total` | Total backend response errors | count |
+|`haproxy_backend_responses_denied_total` | Total backend responses denied | count |
+|`haproxy_backend_retry_warnings_total` | Total backend retry warnings | count |
+|`haproxy_backend_server_aborts_total` | Total backend server aborts | count |
+|`haproxy_backend_sessions_total` | Total backend sessions | count |
+|`haproxy_frontend_bytes_in_total` | Total frontend bytes in | byte |
+|`haproxy_frontend_bytes_out_total` | Total frontend bytes out | byte |
+|`haproxy_frontend_connections_total` | Total frontend connections | count |
+|`haproxy_frontend_current_sessions` | Current frontend sessions | count |
+|`haproxy_frontend_denied_connections_total` | Total frontend denied connections | count |
+|`haproxy_frontend_denied_sessions_total` | Total frontend denied sessions | count |
+|`haproxy_frontend_intercepted_requests_total` | Total frontend intercepted requests | count |
+|`haproxy_frontend_internal_errors_total` | Total frontend internal errors | count |
+|`haproxy_frontend_limit_session_rate` | Frontend session rate limit | count |
+|`haproxy_frontend_limit_sessions` | Frontend session limit | count |
+|`haproxy_frontend_max_sessions` | Maximum frontend sessions | count |
+|`haproxy_frontend_request_errors_total` | Total frontend request errors | count |
+|`haproxy_frontend_requests_denied_total` | Total frontend requests denied | count |
+|`haproxy_frontend_responses_denied_total` | Total frontend responses denied | count |
+|`haproxy_frontend_sessions_total` | Total frontend sessions | count |
+|`haproxy_server_bytes_in_total` | Total server bytes in | byte |
+|`haproxy_server_bytes_out_total` | Total server bytes out | byte |
+|`haproxy_server_response_errors_total` | Total server response errors | count |
+|`haproxy_server_response_time_average_seconds` | Average server response time in seconds | seconds |
+|`haproxy_server_responses_denied_total` | Total server responses denied | count |
+|`haproxy_server_retry_warnings_total` | Total server retry warnings | count |
+|`haproxy_server_safe_idle_connections_current` | Current safe idle server connections | count |
+|`haproxy_server_server_aborts_total` | Total server aborts | count |
+|`haproxy_server_sessions_total` | Total server sessions | count |
+|`haproxy_server_used_connections_current` | Current used server connections | count |
 |`haproxy_server_uweight` | Server unweighted | count |
 |`haproxy_server_weight` | Server weight | count |
 
-For more details on Metrics, refer to the [official Haproxy documentation](https://www.haproxy.com/documentation/haproxy-configuration-tutorials/alerts-and-monitoring/prometheus/#exported-metrics).
+For more details on these metrics, refer to the [official Haproxy documentation](https://www.haproxy.com/documentation/haproxy-configuration-tutorials/alerts-and-monitoring/prometheus/#exported-metrics).

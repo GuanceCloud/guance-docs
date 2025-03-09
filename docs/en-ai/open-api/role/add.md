@@ -13,9 +13,9 @@ Create a new role
 
 | Parameter Name | Type   | Required | Description                                                                 |
 |:--------------|:-------|:---------|:-----------------------------------------------------------------------------|
-| name          | string | Yes      | Role name<br>Example: Role No.1 <br>Allow empty: False <br>Maximum length: 256 <br> |
-| desc          | string | No       | Description of the role<br>Example: CUSTOM <br>Allow empty: False <br>Allow empty string: True <br>Maximum length: 3000 <br> |
-| keys          | array  | Yes      | Selected permission list<br>Example: [] <br>Allow empty: False <br> |
+| name          | string | Y        | Role name<br>Example: Role No.1 <br>Allow null: False <br>Maximum length: 256 <br> |
+| desc          | string | N        | Description of the role<br>Example: CUSTOM <br>Allow null: False <br>Allow empty string: True <br>Maximum length: 3000 <br> |
+| keys          | array  | Y        | List of selected permissions<br>Example: [] <br>Allow null: False <br> |
 
 
 ## Additional Parameter Notes

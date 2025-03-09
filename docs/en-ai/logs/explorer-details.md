@@ -2,25 +2,25 @@
 
 ---
 
-Click on the log list to pull out the details page of the current log and view detailed information about the log, including the time it was generated, host, source, service, content, extended fields, and multiple other pieces of information such as viewing context.
+Click on the log list to slide out the detail page of the current log to view detailed information about the log, including the time it was generated, host, source, service, content, extended fields, and multiple items such as viewing context.
 
-## View Complete Logs
+## View Complete Log
 
-When logs are reported to Guance, if the data exceeds 1MB in size, it will be split according to the 1MB standard. For example, a single log of 2.5MB would be divided into three parts (1MB/1MB/0.5MB). After splitting, you can use the following fields to check for completeness:
+When logs are reported to <<< custom_key.brand_name >>>, if the data exceeds 1M in size, it will be split according to the 1M standard. For example, a single log of 2.5M will be divided into 3 parts (1M/1M/0.5M). After splitting, you can use the following fields to check the integrity:
 
 | <div style="width: 160px">Field </div>              | Type   | Description                                                         |
 | ------------------ | ------ | ------------------------------------------------------------ |
-| `__truncated_id`     | string | Represents the unique identifier of the log; multiple split logs share the same `__truncated_id`, with the ID prefix being LT_xxx. |
+| `__truncated_id`     | string | Represents the unique identifier for the log. Split logs use the same `__truncated_id`, with an ID prefix of LT_xxx. |
 | `__truncated_count`  | number | Indicates the total number of split logs.                                       |
-| `__truncated_number` | number | Indicates the order of log splits, starting from 0, where 0 represents the first log.        |
+| `__truncated_number` | number | Indicates the order of the split log, starting from 0, where 0 represents the first log.        |
 
-On the log details page, if the current log has been split into multiple parts, a **View Complete Log** button will appear in the top right corner. Clicking **View Complete Log** opens a new page listing all related logs based on their split order, with the previously selected log highlighted in color to help locate upstream and downstream logs.
+On the log details page, if the current log is split into multiple parts, a **View Complete Log** button will appear in the upper right corner. Clicking **View Complete Log** opens a new page listing all related logs based on the split order, with the selected log highlighted in color to help locate upstream and downstream logs.
 
 ![](img/3.log_1.gif)
 
 ## Error Details
 
-If the current log contains `error_stack` or `error_message` field information, Guance provides error details related to that log entry.
+If the current log contains `error_stack` or `error_message` field information, <<< custom_key.brand_name >>> will provide you with error details related to that log.
 
 ![](img/error-detail.png)
 
@@ -29,49 +29,50 @@ If the current log contains `error_stack` or `error_message` field information, 
 
 ## Attribute Fields
 
-Click on attribute fields for quick filtering and viewing, allowing you to see related hosts, processes, traces, and container data.
+Click on attribute fields for quick filtering and viewing, which allows you to view related host, process, trace, and container data.
 
 
 ![](img/17.explorer_5.png)
 
 | Field      | Description        |
 | ----------- | ------------------- |
-| Filter Field Value      | Adds this field to the log Explorer to view all log data related to this field.        |
-| Inverse Filter Field Value      | Adds this field to the log Explorer to view all log data except those related to this field.        |
-| Add to Display Columns      | Adds this field to the Explorer list for viewing.        |
-| Copy      | Copies this field to the clipboard.         |
+| Filter Field Value      | Adds the field to the log viewer to view all log data related to this field.        |
+| Inverse Filter Field Value      | Adds the field to the log viewer to view all log data except those related to this field.        |
+| Add to Display Columns      | Adds the field to the viewer list for viewing.        |
+| Copy      | Copies the field to the clipboard.         |
 | View Related Containers      | Views all containers related to this host.        |
 | View Related Processes      | Views all processes related to this host.        |
 | View Related Traces      | Views all traces related to this host.        |
 | View Related Security Checks      | Views all security check data related to this host.        |
 
+
 ## Log Content {#content}
 
-- The log content is automatically displayed in JSON and text modes based on the `message` type. If there is no `message` field, the log content section will not be displayed. Log content supports expanding and collapsing, defaulting to an expanded state, and when collapsed, only one line height is shown;
+- The log content automatically displays in JSON and text modes based on the `message` type. If the log does not have a `message` field, the log content section will not be displayed. The log content supports expanding and collapsing, defaulting to expanded state; collapsed state shows only one line height;
 
-- For logs with `source = bpf_net_l4_log`, both JSON and packet viewing modes are available. Packet mode displays client, server, time, and other relevant information, supporting switching between absolute and relative times, with absolute time being the default. This configuration is saved locally in the browser after switching.
+- For logs with `source = bpf_net_l4_log`, it automatically displays in JSON and packet modes. Packet mode shows client, server, time, and other relevant information, supporting switching between absolute and relative times, defaulting to absolute time. This configuration is saved locally in the browser after switching.
 
 ![](img/explorer_001.png)
 
 ## Extended Fields
 
-- In the search bar, you can input field names or values to quickly search and locate;
+- In the search bar, you can quickly search and locate by entering field names or values;
 
-- Checking the alias for a field allows you to view it after the field name;
+- Check field aliases to view them after the field name;
 
 ![](img/extension.gif)
 
-- Hover over an extended field and click the dropdown icon to choose options like **Filter Field Value**, **Inverse Filter Field Value**, **Add to Display Columns**, and **Copy**.
+- Hover over an extended field, click the dropdown icon, and choose to **Filter Field Value**, **Inverse Filter Field Value**, **Add to Display Columns**, or **Copy**.
 
 ![](img/17.explorer_4.png)
 
-## View Contextual Logs {#up-down}
+## View Context Logs {#up-down}
 
-The contextual query feature of the log service helps you trace logs before and after a specific abnormal log using time clues. Through Guance's visualization of log context, it effectively assists in troubleshooting and problem location, enabling timely responses.
+The context query feature of the log service helps you trace log records before and after a specific abnormal log using time clues. Through <<< custom_key.brand_name >>>'s visualization of log context information, it effectively assists in troubleshooting and problem localization, allowing timely response.
 
-- On the log details page, you can directly view the **contextual logs** of that data;
-- The left dropdown box can select indexes to filter corresponding data;
-- Click :fontawesome-solid-arrow-up-right-from-square: to open a new page for contextual logs.
+- On the log details page, you can directly view the **context logs** of this data;
+- The left dropdown box allows you to select indices to filter corresponding data;
+- Click :fontawesome-solid-arrow-up-right-from-square: to open a new page for context logs.
 
 ![](img/2.log_updown_1.png)
 
@@ -81,9 +82,9 @@ The contextual query feature of the log service helps you trace logs before and 
 
     How is the returned data queried?
 
-    **Prerequisite**: Does the log have a `log_read_lines` field? If yes, follow logic a; if no, follow logic b.
+    **Prerequisite**: Does the log have a `log_read_lines` field? If it exists, follow logic a; if not, follow logic b.
 
-    a. Retrieve the `log_read_lines` value of the current log and filter using `log_read_lines >= {{log_read_lines.value-30}} and log_read_lines <= {{log_read_lines.value +30}}`
+    a. Get the `log_read_lines` value of the current log and use it to filter `log_read_lines >= {{log_read_lines.value-30}} and log_read_lines <= {{log_read_lines.value +30}}`
 
     DQL Example: Current log line number = 1354170
 
@@ -93,11 +94,11 @@ The contextual query feature of the log service helps you trace logs before and 
     L::RE(`.*`):(`message`) { `index` = 'default' and `host` = "ip-172-31-204-89.cn-northwest-1" AND `source` = "kodo-log" AND `service` = "kodo-inner" AND `filename` = "0.log" and `log_read_lines` >= 1354140 and `log_read_lines` <= 1354200}  sorder by log_read_lines
     ```
 
-    b. Get the current log time and calculate the start and end times for the query:
+    b. Get the current log time and derive the start and end times by moving forward/backward.
     - Start time: 5 minutes before the current log time;
-    - End time: Take the time of the 50th log entry after the current log. If the time equals the current log time, set the end time as `time+1 microsecond`; otherwise, set the end time as `time`.
+    - End time: Take the time of the 50th entry after the current log time. If the time equals the current log time, then use `time+1 microsecond` as the end time. If the time does not equal the current log time, use `time` as the end time.
 
-### Contextual Log Details Page
+### Context Log Details Page
 
 After clicking :fontawesome-solid-arrow-up-right-from-square:, you are redirected to the details page:
 
@@ -106,7 +107,7 @@ After clicking :fontawesome-solid-arrow-up-right-from-square:, you are redirecte
 You can manage all current data with the following operations:
 
 - Enter text in the search box to search and locate data;
-- Click the side :octicons-gear-24: button to change the system's default automatic line wrapping. Selecting **Content Overflow** ensures each log entry appears on one line, allowing horizontal scrolling as needed.
+- Click the side :octicons-gear-24: button to switch the system's default auto-wrap setting. Choose **Content Overflow** to display each log as a single line, allowing horizontal scrolling as needed.
 
 ![](img/context-1.gif)
 
@@ -116,24 +117,24 @@ You can manage all current data with the following operations:
 
 === "Host"
 
-    Below the details page, view the metrics and attribute views of related hosts (associated field: `host`).
+    Below the details page, under **Host**, view the metrics and attributes of the associated host (related field: `host`).
     
-    - Metrics View: You can view performance metrics of the related host **30 minutes before the log ends and 30 minutes after the log ends**, including CPU, memory, etc.
+    - Metrics View: You can view the performance metrics of the related host **from 30 minutes before the log ends to 30 minutes after the log ends**, including CPU, memory, and other performance metrics.
     
     ![](img/1.log_4.png)
     
-    - Attribute View: Helps you trace the actual situation of the host object at the time the log was generated, supporting viewing the latest object data produced by the related host **within the corresponding time period**, including basic host information and integration operation status. If cloud host collection is enabled, you can also view cloud provider information.
+    - Attributes View: Helps you trace back to the true situation of the host object when the log was generated. It supports viewing the latest object data **generated within the corresponding time frame**, including basic information about the host and integration runtime conditions. If cloud host collection is enabled, you can also view cloud provider information.
     
     ![](img/1.log_4.1.png)
 
-    **Note**: Guance defaults to saving the last 48 hours of historical host object data. If you cannot find the host's historical data corresponding to the current log time, you will not be able to view the associated host's attribute view.
+    **Note**: <<< custom_key.brand_name >>> defaults to saving the most recent 48 hours of historical data for host objects. If no historical data for the current log time is found, you will not be able to view the attributes view of the associated host.
     
 
 === "Trace"
 
-    Below the details page, view the flame graph and Span list of the related trace (associated field: `trace_id`). Clicking the jump button in the top right corner can take you directly to the corresponding trace details.
+    Below the details page, under **Trace**, view the flame graph and Span list of the current log (related field: `trace_id`). Click the jump button in the top-right corner to directly navigate to the trace details.
     
-    > For more information about trace flame graphs and Span lists, refer to [Trace Analysis](../application-performance-monitoring/explorer/explorer-analysis.md).
+    > For more information on trace flame graphs and Span lists, refer to [Trace Analysis](../application-performance-monitoring/explorer/explorer-analysis.md).
     
     - Flame Graph:
     
@@ -146,31 +147,31 @@ You can manage all current data with the following operations:
 
 === "Container"
 
-    Below the details page, view the basic information and performance metrics of the related container (associated field: `container_name`) within the selected time component range.
+    Below the details page, under **Container**, view the basic information and performance metrics status of the related container (related field: `container_name`) within the selected time range.
     
-    - Attribute View: Helps you trace the real situation of the container object at the time the log was generated, supporting viewing the latest object data produced by the related container **within the corresponding time period**, including basic and property information.
+    - Attributes View: Helps you trace back to the true situation of the container object when the log was generated. It supports viewing the latest object data **generated within the corresponding time frame**, including basic and attribute information of the container.
     
     ![](img/6.log_5.png)
     
-    - Metrics View: Supports viewing the performance metrics of the related container **30 minutes before the log ends and 30 minutes after the log ends**, including CPU, memory, etc.
+    - Metrics View: Supports viewing the performance metrics status of the related container **from 30 minutes before the log ends to 30 minutes after the log ends**, including CPU, memory, and other performance metrics.
     
     ![](img/6.log_6.png)
 
 === "Pod"
 
-    Below the details page, view the attribute and metrics views of the related Pod (associated field: `pod_name`).
+    Below the details page, under **Pod**, view the attributes and metrics of the related Pod (related field: `pod_name`).
     
-    - Attribute View: Helps you trace the real situation of the Pod object at the time the log was generated, supporting viewing the latest object data produced by the related Pod **within the corresponding time period**, including basic and property information.
+    - Attributes View: Helps you trace back to the true situation of the Pod object when the log was generated. It supports viewing the latest object data **generated within the corresponding time frame**, including basic and attribute information of the Pod.
     
     ![](img/6.log_pod_1.png)
     
-    - Metrics View: Supports viewing the performance metrics of the related Pod **30 minutes before the log ends and 30 minutes after the log ends**, including CPU, memory, etc.
+    - Metrics View: Supports viewing the performance metrics status of the related Pod **from 30 minutes before the log ends to 30 minutes after the log ends**, including CPU, memory, and other performance metrics.
     
     ![](img/6.log_pod_2.png)
 
 === "Metrics"
 
-    Log-associated metrics are divided into three views based on associated fields: `service`, `project`, `source`.
+    Logs associated with metrics are divided into three views based on related fields: `service`, `project`, `source`.
     
     - Service Metrics:
     
@@ -186,7 +187,7 @@ You can manage all current data with the following operations:
 
 === "Network"
 
-    Below the details page, view network connection data for the past 48 hours, including Host, Pod, Deployment, and Service.
+    Below the details page, under **Network**, view network connection data for the past 48 hours, including Host, Pod, Deployment, and Service.
     
     > For more details, refer to [Network](../infrastructure/network.md).
     
@@ -195,21 +196,21 @@ You can manage all current data with the following operations:
 
     **Matching Fields**:
     
-    To view related networks on the details page, matching associated fields are required during data collection. Otherwise, you cannot match and view related network views on the details page.
+    To view related networks in the details page, you need to match corresponding related fields, meaning you need to configure corresponding field labels during data collection; otherwise, you cannot match and view related network views in the details page.
 
-    - Host: Match field `host`.
-    - Pod: Match fields as follows.
+    - Host: Matches field `host`.
+    - Pod: Matching fields as follows.
 
-    | **Match Field Priority**  |
+    | **Matching Field Priority**  |
     | ------------------- |
     | namespace、pod_name |
     | namespace、pod      |
     | pod_name            |
     | pod                 |
 
-    - Deployment: Match fields as follows.
+    - Deployment: Matching fields as follows.
 
-    | **Match Field Priority**  |
+    | **Matching Field Priority**  |
     | ------------------- |
     | namespace、deployment_name |
     | namespace、deployment      |
@@ -218,9 +219,9 @@ You can manage all current data with the following operations:
 
     ???+ abstract "BPF Logs"
      
-        For logs with `source = bpf_net_l4_log` and `source:bpf_net_l7_log`, support viewing **related networks** (associated field: `host`).
+        For logs with `source = bpf_net_l4_log` and `source:bpf_net_l7_log`, you can view **associated networks** (related field: `host`).
         
-        Associate network logs through `inner_traceid` and `l7_trace_id`:
+        Associate network logs via `inner_traceid` and `l7_trace_id`:
      
         - `inner_traceid` field, associates layer 4 and layer 7 network logs on the same NIC;
 
@@ -228,13 +229,13 @@ You can manage all current data with the following operations:
     
         Associated network views:
 
-        1. `pod` matches `src_k8s_pod_name` field, displaying built-in Pod view.
+        1. `pod` matches `src_k8s_pod_name` field, displaying Pod built-in view.
 
-        2. `deployment` matches `src_k8s_deployment_name` field, displaying built-in Deployment view.
+        2. `deployment` matches `src_k8s_deployment_name` field, displaying Deployment built-in view.
 
-    - Service: Match fields as follows.
+    - Service: Matching fields as follows.
 
-    | **Match Field Priority**  |
+    | **Matching Field Priority**  |
     | ------------------- |
     | namespace、service_name |
     | namespace、service      |
@@ -242,13 +243,13 @@ You can manage all current data with the following operations:
     
     **Note**:
     
-    1. If Host, Pod, Deployment, and Service association fields are found simultaneously, network data will be displayed in this order when entering the details page;  
-    2. If no association fields are found, they will be displayed at the bottom in gray, with a click prompting **No Matching Network View**.
+    1. If associated fields for Host, Pod, Deployment, and Service are found simultaneously, the network data will be displayed in this order upon entering the details page;  
+    2. If no associated fields are found, they will be displayed at the end in gray, with a click prompt indicating **No matching network view**.
 
 </div>
 
 ## Bind Built-in Views
 
-Guance supports binding or deleting built-in views (user views) to the log details page. Clicking Bind Built-in View adds a new view to the current log details page.
+<<< custom_key.brand_name >>> supports binding or deleting built-in views (user views) to the log details page. Click to bind a built-in view to add a new view to the current log details page.
 
 <img src="../img/log-view.png" width="70%" >

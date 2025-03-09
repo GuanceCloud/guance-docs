@@ -10,7 +10,7 @@ Operating system support：:fontawesome-brands-linux: :fontawesome-brands-window
 
 ---
 
-DataKit can directly receive data from Security Checker. For specific usage of Security Checker, refer to [here](../scheck/scheck-install.md).
+Datakit can directly receive data from Security Checker. For specific usage of Security Checker, see [here](../scheck/scheck-install.md).
 
 ## Install Security Checker via DataKit {#install}
 
@@ -18,4 +18,4 @@ DataKit can directly receive data from Security Checker. For specific usage of S
 sudo datakit install --scheck
 ```
 
-After installation, Security Checker will send data to the DataKit interface `:9529/v1/write/security` by default.
+After installation, Security Checker will send data to the DataKit `:9529/v1/write/security` endpoint by default.

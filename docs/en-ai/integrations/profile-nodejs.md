@@ -13,15 +13,15 @@ Currently, DataKit supports one method to collect NodeJS profiling data, which i
 
 ## Pyroscope {#pyroscope}
 
-[Pyroscope](https://pyroscope.io/){:target="_blank"} is an open-source continuous profiling platform. DataKit already supports displaying the profiling data reported by Pyroscope on [Guance](https://www.guance.com/){:target="_blank"}.
+[Pyroscope](https://pyroscope.io/){:target="_blank"} is an open-source continuous profiling platform. DataKit already supports displaying the profiling data reported by it on [Guance](https://www.guance.com/){:target="_blank"}.
 
 Pyroscope uses a C/S architecture and operates in two modes: [Pyroscope Agent](https://pyroscope.io/docs/agent-overview/){:target="_blank"} and [Pyroscope Server](https://pyroscope.io/docs/server-overview/){:target="_blank"}. Both modes are integrated into a single binary file and are activated through different command-line commands.
 
-Here, we need the Pyroscope Agent mode. DataKit has already integrated the Pyroscope Server functionality, exposing an HTTP interface to receive profiling data reported by the Pyroscope Agent.
+Here, the Pyroscope Agent mode is required. DataKit has integrated the Pyroscope Server functionality and exposes an HTTP interface to receive profiling data from the Pyroscope Agent.
 
-Data flow for profiling data: "Pyroscope Agent collects profiling data -> DataKit -> Guance".
+Data flow for profiling: "Pyroscope Agent collects profiling data -> DataKit -> Guance".
 
-In this context, your NodeJS application acts as a Pyroscope Agent.
+In this case, your NodeJS application acts as a Pyroscope Agent.
 
 ### Prerequisites {#pyroscope-requirement}
 
@@ -58,7 +58,7 @@ Pyroscope.init({
 Pyroscope.start()
 ```
 
-- Ensure that [DataKit](https://www.guance.com/){:target="_blank"} is installed and the [profiler](profile.md#config) collector is enabled. The configuration should be as follows:
+- Install [DataKit](https://www.guance.com/){:target="_blank"} and enable the [profiling collector](profile.md#config). The configuration should be similar to the following:
 
 ```toml
 [[inputs.profile]]
@@ -89,11 +89,11 @@ Start DataKit, then start your NodeJS application.
 
 ## Viewing Profiles {#pyroscope-view}
 
-After performing the above steps, your NodeJS application will begin collecting profiling data and sending it to DataKit. DataKit will forward this data to Guance. After a few minutes, you can view the corresponding data in the Guance workspace under [APM -> Profile](https://console.guance.com/tracing/profile){:target="_blank"}.
+After performing the above steps, your NodeJS application will start collecting profiling data and send it to DataKit. DataKit will then report this data to Guance. After a few minutes, you can view the corresponding data in the Guance workspace under [APM -> Profile](https://console.guance.com/tracing/profile){:target="_blank"}.
 
 ## Pull Mode (Optional) {#pyroscope-pull}
 
-The integration of NodeJS applications also supports pull mode. You must ensure that your NodeJS application has profiling routes (`/debug/pprof/profile` and `/debug/pprof/heap`) and that they are enabled. You can use the `expressMiddleware` module or create custom route entry points:
+The integration of NodeJS applications also supports Pull mode. You must ensure that your NodeJS application has profiling routes (`/debug/pprof/profile` and `/debug/pprof/heap`) and they are enabled. For this, you can use the `expressMiddleware` module or create your own route entry points:
 
 ```js
 const Pyroscope, { expressMiddleware } = require('@pyroscope/nodejs');
@@ -109,7 +109,7 @@ app.use(expressMiddleware())
 
 ### How to Troubleshoot Pyroscope Issues {#pyroscope-troubleshooting}
 
-You can set the environment variable `DEBUG` to `pyroscope` and then check the debug information:
+You can set the environment variable `DEBUG` to `pyroscope`, then check the debug information:
 
 ```sh
 DEBUG=pyroscope node index.js

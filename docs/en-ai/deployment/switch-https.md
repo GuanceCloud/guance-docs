@@ -2,25 +2,25 @@
 
 ## Introduction
 
-This document only describes how to modify an already deployed Guance from HTTP access to support HTTPS.
+This document only describes how to modify the already deployed <<< custom_key.brand_name >>> from HTTP access to support HTTPS.
 
 ## Prerequisites
 
-- Before proceeding, verify the validity of the SSL certificate and ensure that the Ingress plugin supports HTTPS.
-- Guance has been successfully deployed and is accessible.
-- Permissions for the Guance cluster.
-- Access to the Guance Launcher page.
+- Verify the validity of the SSL certificate and Ingress plugin support for HTTPS before proceeding.
+- <<< custom_key.brand_name >>> has been successfully deployed and is accessible.
+- Cluster permissions for <<< custom_key.brand_name >>>.
+- <<< custom_key.brand_name >>> Launcher page.
 
 ## Impact Scope
 
-Guance Studio will experience a brief period of inaccessibility.
+<<< custom_key.brand_name >>> Studio will experience brief periods of inaccessibility.
 
-## Steps
+## Procedure
 
-### Step One: Modify Domain Name and Certificate in Launcher
+### Step One: Modify Domain Name and Certificate Name in Launcher
 
-- Open the settings in the top-right corner of the Launcher.
-- Click on "Update External Domain TLS Certificate".
+- Open the settings in the top-right corner of Launcher.
+- Click on "External Domain TLS Certificate Update".
 - Add certificate information and update the TLS certificate.
 
 ![](img/launcher-ssl-config.png)
@@ -29,7 +29,7 @@ Guance Studio will experience a brief period of inaccessibility.
 
 - Verification
 
-Using `dataflux.cn` as an example:
+For example, using `dataflux.cn`:
 
 ```shell
 kubectl get secret -A  | grep dataflux.cn
@@ -44,7 +44,7 @@ utils                         dataflux.cn                                       
 
 ### Step Two: Add TLS to Ingress
 
-- You can execute the following script to back up the configuration:
+- You can execute the following script to back up commands:
 
 ```shell
 NAMESPACE="forethought-core forethought-kodo forethought-webclient func2 middleware utils launcher"
@@ -99,11 +99,11 @@ for i in $NAMESPACE; do
 done
 ```
 
-### Step Three: Modify Guance Frontend Configuration
+### Step Three: Modify <<< custom_key.brand_name >>> Frontend Configuration
 
-- Open the settings in the top-right corner of the Launcher.
+- Open the settings in the top-right corner of Launcher.
 - Click on "Modify Application Configuration".
-- Modify the configurations for "Namespace: forethought-webclient" - "frontWeb (User Frontend)" and "managementWeb (Management Platform Frontend)", changing HTTP to HTTPS.
+- Modify the namespaces `forethought-webclient` for `frontWeb (User Frontend)` and `managementWeb (Management Platform Frontend)`, changing http to https.
 
 ![](img/frontweb-ssl.png)
 

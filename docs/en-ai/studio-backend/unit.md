@@ -10,7 +10,7 @@ Unit format: custom/["unit type","unit"], example: custom/["time","ms"]
 Custom unit format: custom/["custom","custom unit"], example: custom/["custom","tt"]
 <br/>
 
-Information on unit types and units is as follows:
+The information for unit types and units is as follows:
 ```json
 [
     {
@@ -315,24 +315,24 @@ Information on unit types and units is as follows:
     },
     {
         "value": "rmb",
-        "label": "RMB",
+        "label": "Chinese Yuan",
         "children": [
             {
                 "value": "yuan",
                 "label": "Yuan",
-                "__label": "RMB / Yuan",
+                "__label": "Chinese Yuan / Yuan",
                 "__value": "rmb,yuan"
             },
             {
                 "value": "wan_yuan",
                 "label": "Wan",
-                "__label": "RMB / Wan",
+                "__label": "Chinese Yuan / Wan",
                 "__value": "rmb,wan_yuan"
             },
             {
                 "value": "yi_yuan",
                 "label": "Yi",
-                "__label": "RMB / Yi",
+                "__label": "Chinese Yuan / Yi",
                 "__value": "rmb,yi_yuan"
             }
         ]
@@ -588,9 +588,9 @@ Information on unit types and units is as follows:
         "value": "number",
         "children": [
             {
-                "label": "Ten Thousand System",
+                "label": "Ten Thousand Scale",
                 "value": "default",
-                "__label": "Number / Ten Thousand System",
+                "__label": "Number / Ten Thousand Scale",
                 "__value": "number,default"
             },
             {

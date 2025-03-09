@@ -1,4 +1,4 @@
-# 【Custom Mapping Rules】Batch Delete Mapping Configuration
+# 【Custom Mapping Rules】Batch Delete Mapping Configurations
 
 ---
 
@@ -11,8 +11,8 @@
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description               |
-|:--------------|:-------|:---------|:--------------------------|
+| Parameter Name | Type   | Required | Description              |
+|:--------------|:-------|:---------|:-------------------------|
 | lgmpUUIDs     | array  | Y        | List of mapping configuration UUIDs<br>Example: ['fdmp_xxx1', 'fdmp_xxx2'] <br> |
 
 ## Additional Parameter Notes

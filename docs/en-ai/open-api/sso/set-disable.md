@@ -7,18 +7,14 @@
 ## Overview
 Enable/disable SAML mapping rules
 
-
-
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:---------|:-------------------------|
+| Parameter Name | Type   | Required | Description                              |
+|:--------------|:-------|:---------|:-----------------------------------------|
 | ssoUUID       | string | Y        | Identity provider, SSO configuration UUID<br>Example: sso_xxxx <br> |
-| isDisable     | boolean| Y        | Set enable status<br>Example: True <br>Allow null: False <br> |
+| isDisable     | boolean| Y        | Set the enabled state<br>Example: True <br>Nullable: False <br> |
 
 ## Additional Parameter Notes
-
-
 
 ## Request Example
 ```shell
@@ -28,8 +24,6 @@ curl 'https://openapi.guance.com/api/v1/saml/mapping/set_disable' \
 --data-raw '{"ssoUUID":"sso_xxxx32","isDisable":false}' \
 --compressed
 ```
-
-
 
 ## Response
 ```shell

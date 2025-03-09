@@ -1,4 +1,4 @@
-# Kubernetes Cluster Using ExternalName to Map DataKit Service
+# Using ExternalName in Kubernetes Cluster to Map DataKit Service
 
 ---
 
@@ -6,13 +6,13 @@
 
 In a Kubernetes cluster, after deploying DataKit as a DaemonSet, if an application previously pushed trace data to the zipkin service in the istio-system namespace on port 9411, i.e., the access address was `zipkin.istio-system.svc.cluster.local:9411`.
 
-What if you do not want to change the push address? This is where the Kubernetes ExternalName service type comes into play. By following these two steps, the application can be connected to DataKit:
+What if you do not want to change the push address? This is where the ExternalName service type of Kubernetes comes into play. By following these two steps, the application can be connected to DataKit:
 
-- First, define a ClusterIP service type to forward port 9529 to 9411.
+- First, define a ClusterIP service type to map port 9529 to 9411.
 
 - Second, use an ExternalName service to map the ClusterIP service to a DNS name.
 
-### Step 1: Define a ClusterIP Service
+### 1 Define the ClusterIP Service
 
 ```yaml
 apiVersion: v1
@@ -31,7 +31,7 @@ spec:
 
 After deployment, containers within the cluster can access DataKit's port 9529 using `datakit-service-ext.datakit.svc.cluster.local:9411`.
 
-### Step 2: Define an ExternalName Service
+### 2 Define the ExternalName Service
 
 ```yaml
 apiVersion: v1

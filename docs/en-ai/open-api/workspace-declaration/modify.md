@@ -12,8 +12,8 @@
 ## Body Request Parameters
 
 | Parameter Name | Type | Required | Description |
-|:--------------|:-----|:---------|:------------|
-| declaration   | json | Y        | Workspace attribute claims information<br>Example: {} <br>Allow null: False <br> |
+|:-----------|:-------|:-----|:----------------|
+| declaration | json | Y | Workspace attribute claims information<br>Example: {} <br>Allow null: False <br> |
 
 ## Additional Parameter Notes
 
@@ -27,7 +27,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/declaration/modify' \
   -H 'Accept: application/json, text/plain, */*' \
   -H 'Content-Type: application/json;charset=UTF-8' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
-  --data-raw $'{"declaration":{"aad12":["asdaf"],"business":["事业部","产业一部","产品组啊时"],"organization":"88"}}' \
+  --data-raw $'{"declaration":{"aad12":["asdaf"],"business":["Business Unit","Industry Department One","Product Group"],"organization":"88"}}' \
   --compressed
 ```
 

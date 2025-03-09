@@ -8,12 +8,12 @@
 
 ## Category
 
-- System
+- system
 
 
-## Severity
+## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
@@ -27,38 +27,38 @@
 ## Description
 
 
-- Monitors changes in the configuration files under the host's `/etc/yum.repos.d` directory.
+- Monitors whether the configuration in the `/etc/yum.repos.d` directory on the host has been modified.
 
 
 
 ## Scan Frequency
-- Disabled
+- disable
 
 ## Theoretical Basis
 
 
-- Repo files are configuration files for Fedora's yum repositories (software repositories). Typically, one repo file defines the details of one or more software repositories, such as where to download the required installation or upgrade packages from. The settings in the repo files will be read and applied by yum. Incorrect configurations can lead to service unavailability.
+- Repo files are configuration files for yum repositories (software repositories) in Fedora. Typically, one repo file defines the details of one or more software repositories, such as where we will download the required installation or upgrade packages from. The settings in the repo files are read and applied by yum. If configured incorrectly, it can lead to service unavailability.
 
 
 
 ## Risk Items
 
 
-- Service Unavailability
+- Service unusability
 
 
 
 ## Audit Method
-- Verify whether the `/etc/yum.repos.d` directory on the host has been illegally modified. You can run the following command to check:
+- Verify if the `/etc/yum.repos.d` directory on the host has been illegally modified. You can run the following command to verify:
 
 ```bash
-ls -l /etc/yum-repos.d
+ls -l /etc/yum.repos.d
 ```
 
 
 
 ## Remediation
-- If the `/etc/yum.repos.d` directory on the host has been illegally modified, carefully inspect the host environment for any signs of intrusion and change the host user passwords.
+- If the `/etc/yum.repos.d` directory on the host has been illegally modified, carefully examine the host environment to determine if there has been a breach, and change the host user passwords.
 
 
 

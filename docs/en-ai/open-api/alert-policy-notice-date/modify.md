@@ -1,41 +1,40 @@
-# Modify Alert Policy - Custom Notification Date
+# Modify Custom Notification Date for Alert Strategy
 
 ---
 
-<br />**POST /api/v1/notice/date/\{notice_date_uuid\}/modify**
+<br />**POST /api/v1/notice/date/{notice_date_uuid}/modify**
 
 ## Overview
-Modify Alert Policy - Custom Notification Date
+Modify custom notification date for alert strategy
 
 
 
 ## Route Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| notice_date_uuid | string | Y | Unique UUID for the custom notification date configuration of the alert policy<br>Allow empty string: False <br> |
+|:-------------------|:-------|:------|:----------------------|
+| notice_date_uuid | string | Y | Unique UUID of the custom notification date configuration for the alert strategy<br>Allow empty string: False <br> |
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
+|:-------------------|:-------|:------|:----------------------|
 | name | string | Y | Name<br>Allow empty: False <br>Maximum length: 256 <br> |
 | noticeDates | array |  | Date list<br>Example: ['2024/01/02', '2024/02/03'] <br>Allow empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
-Data Explanation.*
+Data explanation.*
 
 - Request body parameter explanation
 
 | Parameter Name           | Type | Description                                                 |
 | ---------------- | ---- | ---------------------------------------------------- |
-| name       | str | Name of the custom notification date configuration for the alert policy |
+| name       | str | Name of the custom notification date configuration for the alert strategy |
 | noticeDates    | list | Date list, example: ["2024/01/01","2024/05/01", "2024/10/01"]                               |
 
 ------
-
 
 
 
@@ -47,7 +46,6 @@ curl 'https://openapi.guance.com/api/v1/notice/date/ndate_xxxx32/modify' \
 --data-raw '{"name": "test002", "noticeDates": ["2025/01/01","2025/10/01"]}' \
 --compressed
 ```
-
 
 
 

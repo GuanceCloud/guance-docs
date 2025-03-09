@@ -8,19 +8,19 @@
 
 | Parameter Name | Description                                                                                                                   |
 |:---------------|:---------------------------------------------------------------------------------------------------------------------|
-| method         | HTTP request method, currently supported methods are `GET` and `POST`.                                                                                  |
-| nonce          | Random number, corresponding to the request header `X-Df-Nonce`.                                                                                          |
-| timestamp      | Timestamp of the request initiation time, in seconds, corresponding to the request header `X-Df-Timestamp`.                                                         |
-| path           | Original request path (including query string), for example: <br/> `GET request: /api/v1/account/list?pageIndex=1&pageSize=20` <br/> `POST request: /api/v1/account/add` |
-| body           | Original body information in the request; if there is no body, it defaults to an empty string and participates in the signature calculation. |
+| method         | Interface request method, currently supported request methods are `GET`, `POST`                                                                                       |
+| nonce          | Random number, corresponding to the request header `X-Df-Nonce`                                                                                              |
+| timestamp      | Timestamp corresponding to the time point when the request is initiated, in seconds, corresponding to the request header `X-Df-Timestamp`                                                                          |
+| path           | Original request path (including query string), for example: <br/> `GET request: /api/v1/account/list?pageIndex=1&pageSize=20` <br/> `POST request: /api/v1/account/add`|
+| body           | Original body information in the request, if there is no body, the body defaults to an empty string and participates in the signature calculation |
 
 ### Signature Calculation Logic
 
-Concatenate the uppercase `method`, `nonce` (random temporary code generated during the request), `path` (original request path and query string), `timestamp`, and `body` using a single space to form the original string for signing (`string_to_sign`). If there is no body, the body defaults to an empty string.
-Thus, the original string for signing is `string_to_sign = '{method} {nonce} {path} {timestamp} {body}'`.
-Use the `secretKey` described in the "Service Configuration" as the key to encrypt `string_to_sign` (HMAC SHA256) to obtain the authentication signature for each request, which is the value of the request header `X-Signature`.
+Concatenate `method` (uppercase), `nonce` (random temporary code generated during the request), `path` (original request path and query string), `timestamp`, and `body` with a single space to form the signature raw string (`string_to_sign`). When there is no body, the body defaults to an empty string.
+That is, the signature raw string `string_to_sign = '{method} {nonce} {path} {timestamp} {body}'`.
+Use the `secretKey` described in the "service configuration item" as the key to encrypt `string_to_sign` using HMAC SHA256 to get the authentication signature for each request, which is the value of the request header `X-Signature`.
 
-### Python Example of Signature Generation and API Request
+### Python Version of Signature and Interface Request Example
 ```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -42,7 +42,7 @@ class DFExternalAPI(object):
         self.debug = debug
 
     def get_sign(self, method, full_path, timestamp, nonce, body=None):
-        """Generate signature"""
+        """ Generate signature """
         if body is None:
             # If no body, set body to an empty string by default
             body = ""
@@ -57,7 +57,7 @@ class DFExternalAPI(object):
         return sign
 
     def get_auth_header(self, method, full_path, body, filepath):
-        """Generate relevant request headers"""
+        """ Generate request header information """
         # Current timestamp
         timestamp = str(int(time.time()))
         # Random number
@@ -74,18 +74,18 @@ class DFExternalAPI(object):
             'X-Df-Signature': sign,
         }
         if filepath:
-            # Note: File uploads are done via form data, so Content-Type is not specified here and is generated internally when making the request
+            # Note that file uploads are done via form data, so do not specify Content-Type here; it will be generated internally when creating the request
             auth_headers.pop("Content-Type", "")
         return auth_headers
 
     def run(self, method, path, query=None, body=None, headers=None, filepath=None, **kwargs):
-        """Execute request and extract response information"""
-        # Format the request method
+        """ Execute request and extract response information """
+        # Format request method
         method = method.upper()
         # Generate complete request path information
         if query:
             path = path + '?' + urlencode(query, encoding='utf-8')
-        # Ensure the body is unicode encoded (key sorting is not required, just ensure the final body is unicode encoded)
+        # Ensure body is unicode encoded (key sorting is not necessary, just ensure the final body is unicode encoded)
         if body:
             if isinstance(body, (tuple, list, dict)):
                 body = json.dumps(body, sort_keys=True, separators=(',', ':'), ensure_ascii=False)
@@ -218,6 +218,8 @@ def test_upload_logo_image(server, access_key, secret_key):
     workspace_uuid = "wksp_4b57c7bab38e4a2d9630f675dc20015d"
     filename = "logo.png"
     filepath = "/Users/luwenchang/Downloads/logo/parrot.jpeg"
+    filename = "favicon.ico"
+    filepath = "/Users/luwenchang/Downloads/logo/rabbit.jpeg"
     status_code, resp = dfapi.upload_logo_image(workspace_uuid, filename, filepath)
     print(f"======={__name__}====")
     print(f"status_code: {status_code}")
@@ -234,11 +236,11 @@ def test_get_logo_url(server, access_key, secret_key):
 
 
 if __name__ == '__main__':
-    # External API service domain address
+    # External API service domain name
     server = "http://127.0.0.1:5000"
-    # Configured visitor AK
+    # Configured visitor access key
     access_key = "abcd"
-    # Configured secret key SK
+    # Configured secret key
     secret_key = "Admin123"
     # test_get(server, access_key, secret_key)
     # test_post(server, access_key, secret_key)
@@ -248,7 +250,7 @@ if __name__ == '__main__':
 
 ```
 
-### Go Example of Signature Generation and API Request
+### Go Version of Signature and Interface Request Example
 
 ```golang
 package main
@@ -260,6 +262,7 @@ import (
     "encoding/json"
     "net/url"
  
+    //"encoding/base64"
     "encoding/hex"
     "fmt"
     "github.com/google/uuid"
@@ -301,11 +304,16 @@ func (api *DFExternalAPI) GetSign(method, fullPath string, timestamp, nonce stri
  
     stringToSign := fmt.Sprintf("%s %s %s %s %s", method, nonce, fullPath, timestamp, body)
     stringToSignBytes := []byte(stringToSign)
+    //
     secretKeyBytes := []byte(api.secretKey)
  
     h := hmac.New(sha256.New, secretKeyBytes)
     h.Write(stringToSignBytes)
     sign := hex.EncodeToString(h.Sum(nil))
+ 
+    //hmacGen := hmac.New(sha256.New, []byte(api.secretKey))
+    //hmacGen.Write([]byte(stringToSign))
+    //sign := base64.StdEncoding.EncodeToString(hmacGen.Sum(nil))
  
     return sign
 }
@@ -325,6 +333,7 @@ func eTestGet(server, accessKey, secretKey string) {
     // Generate a random UUID and format it as a string
     nonce := uuid.New().String()
     timestamp := strconv.FormatInt(time.Now().Unix(), 10)
+    //fullPath := "/api/v1/account/list?search=China&pageIndex=1&pageSize=10"
     v := url.Values{}
     v.Set("search", "China")
     v.Set("pageIndex", "1")
@@ -409,7 +418,7 @@ func eTestPost(server, accessKey, secretKey string) {
         fmt.Println("Failed to create request:", err)
         return
     }
-    // Set request headers
+    //// Set request headers
     api.SetDFHeaders(req, timestamp, nonce, sign)
     // Send the request
     client := &http.Client{}

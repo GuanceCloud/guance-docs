@@ -6,11 +6,11 @@ icon: zy/billing-method
 ---
 
 
-This includes all the billing items and pricing models of Guance, helping you fully understand the product prices of Guance and anticipate cloud costs in advance.
+This includes all billing items and pricing models for <<< custom_key.brand_name >>>, helping you fully understand the product pricing of <<< custom_key.brand_name >>> and anticipate cloud costs.
 
 ## Billing Items {#item}
 
-All billing items of Guance are **billed separately**. For example, log data you report will incur log storage fees, and application performance tracing data you report will incur APM Trace-related fees.
+All billing items for <<< custom_key.brand_name >>> are **billed separately**. For example, log data you report will incur log storage fees, and application performance trace data you report will incur APM Trace-related fees.
 
 <!--
 <img src="img/billing-1.png" width="70%" >
@@ -46,85 +46,85 @@ All billing items of Guance are **billed separately**. For example, log data you
 <tr >
 <td width="40%" rowspan="2">Sensitive Data Scan Traffic</td>
 <td>CN</td>
-<td>RMB 0.1</td>
+<td>￥0.1</td>
 
 </tr>
 
 <tr >
 <td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
-<td>RMB 0.2</td>
+<td>￥0.2</td>
 </tr>
 
 <tr >
 <td width="40%" rowspan="2">Scheduled Reports</td>
 <td>CN</td>
-<td>RMB 1</td>
+<td>￥1</td>
 </tr>
 
 <tr >
 <td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
-<td  bgcolor=#FBFBF9 >RMB 2</td>
+<td  bgcolor=#FBFBF9 >￥2</td>
 </tr>
 
 <tr >
 <td width="40%" rowspan="2">Data Forwarding</td>
 <td>CN</td>
-<td>RMB 0.35</td>
+<td>￥0.35</td>
 </tr>
 
 <tr >
 <td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
-<td  bgcolor=#FBFBF9 >RMB 0.7</td>
+<td  bgcolor=#FBFBF9 >￥0.7</td>
 </tr>
 
 <tr >
 <td width="40%" rowspan="2">Network</td>
 <td>CN</td>
-<td>RMB 2</td>
+<td>￥2</td>
 </tr>
 
 <tr >
 <td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
-<td  bgcolor=#FBFBF9 >RMB 4</td>
+<td  bgcolor=#FBFBF9 >￥4</td>
 </tr>
 
 <tr >
 <td width="40%" rowspan="2">Session Replay</td>
 <td>CN</td>
-<td>RMB 2.5</td>
+<td>￥2.5</td>
 </tr>
 
 <tr >
 <td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
-<td  bgcolor=#FBFBF9 >RMB 2.5</td>
+<td  bgcolor=#FBFBF9 >￥2.5</td>
 </tr>
 
 <tr >
 <td width="40%" rowspan="2">Synthetic Tests</td>
 <td>CN</td>
-<td>RMB 1</td>
+<td>￥1</td>
 </tr>
 
 <tr >
 <td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
-<td  bgcolor=#FBFBF9 >RMB 10</td>
+<td  bgcolor=#FBFBF9 >￥10</td>
 </tr>
 
 <tr >
 <td width="40%" rowspan="2">Triggers</td>
 <td>CN</td>
-<td>RMB 1</td>
+<td>￥1</td>
 </tr>
 
 <tr >
 <td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
-<td  bgcolor=#FBFBF9 >RMB 2</td>
+<td  bgcolor=#FBFBF9 >￥2</td>
 </tr>
 
 <tr >
 <td width="40%" rowspan="2">SMS</td>
 <td>CN</td>
-<td>RMB 1</td>
+<td>￥1</td>
 </tr>
 
 <tr >
@@ -135,12 +135,12 @@ All billing items of Guance are **billed separately**. For example, log data you
 <tr >
 <td width="40%" rowspan="2">Central Pipeline</td>
 <td>CN</td>
-<td>RMB 0.1</td>
+<td>￥0.1</td>
 </tr>
 
 <tr >
 <td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
-<td  bgcolor=#FBFBF9 >RMB 0.2</td>
+<td  bgcolor=#FBFBF9 >￥0.2</td>
 </tr>
 
 <tr >
@@ -162,45 +162,45 @@ All billing items of Guance are **billed separately**. For example, log data you
 <tr >
 <td rowspan="2">Time Series</td>
 <td>CN</td>
-<td>RMB 0.6</td>
-<td>RMB 0.7</td>
-<td>RMB 0.8</td>
-<td>RMB 1</td>
+<td>￥0.6</td>
+<td>￥0.7</td>
+<td>￥0.8</td>
+<td>￥1</td>
 <td>-</td>
-<td>RMB 4</td>
-<td>RMB 7</td>
+<td>￥4</td>
+<td>￥7</td>
 </tr>
 
 <tr >
 <td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
-<td  bgcolor=#FBFBF9 >RMB 1.6</td>
-<td  bgcolor=#FBFBF9 >RMB 1.8</td>
-<td  bgcolor=#FBFBF9 >RMB 2.2</td>
-<td  bgcolor=#FBFBF9 >RMB 2.4</td>
+<td  bgcolor=#FBFBF9 >￥1.6</td>
+<td  bgcolor=#FBFBF9 >￥1.8</td>
+<td  bgcolor=#FBFBF9 >￥2.2</td>
+<td  bgcolor=#FBFBF9 >￥2.4</td>
 <td  bgcolor=#FBFBF9 >-</td>
-<td  bgcolor=#FBFBF9 >RMB 8</td>
-<td  bgcolor=#FBFBF9 >RMB 14</td>
+<td  bgcolor=#FBFBF9 >￥8</td>
+<td  bgcolor=#FBFBF9 >￥14</td>
 </tr>
 
 <tr >
 <td rowspan="2" >Logs</td>
 <td>CN</td>
-<td>RMB 1</td>
-<td>RMB 1.2</td>
-<td>RMB 1.5</td>
-<td>RMB 2</td>
-<td>RMB 2.5</td>
+<td>￥1</td>
+<td>￥1.2</td>
+<td>￥1.5</td>
+<td>￥2</td>
+<td>￥2.5</td>
 <td>-</td>
 <td>-</td>
 </tr>
 
 <tr >
 <td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
-<td  bgcolor=#FBFBF9 >RMB 2</td>
-<td  bgcolor=#FBFBF9 >RMB 2.4</td>
-<td  bgcolor=#FBFBF9 >RMB 3</td>
-<td  bgcolor=#FBFBF9 >RMB 4</td>
-<td  bgcolor=#FBFBF9 >RMB 5</td>
+<td  bgcolor=#FBFBF9 >￥2</td>
+<td  bgcolor=#FBFBF9 >￥2.4</td>
+<td  bgcolor=#FBFBF9 >￥3</td>
+<td  bgcolor=#FBFBF9 >￥4</td>
+<td  bgcolor=#FBFBF9 >￥5</td>
 <td  bgcolor=#FBFBF9 >-</td>
 <td  bgcolor=#FBFBF9 >-</td>
 </tr>
@@ -208,22 +208,22 @@ All billing items of Guance are **billed separately**. For example, log data you
 <tr >
 <td rowspan="2" width="30%" >APM Trace</td>
 <td>CN</td>
-<td>RMB 2</td>
-<td>RMB 3</td>
-<td>RMB 6</td>
-<td>RMB 10.8</td>
-<td>RMB 19.44</td>
+<td>￥2</td>
+<td>￥3</td>
+<td>￥6</td>
+<td>￥10.8</td>
+<td>￥19.44</td>
 <td>-</td>
 <td>-</td>
 </tr>
 
 <tr >
 <td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
-<td  bgcolor=#FBFBF9 >RMB 6</td>
-<td  bgcolor=#FBFBF9 >RMB 10</td>
-<td  bgcolor=#FBFBF9 >RMB 20</td>
-<td  bgcolor=#FBFBF9 >RMB 36</td>
-<td  bgcolor=#FBFBF9 >RMB 64.8</td>
+<td  bgcolor=#FBFBF9 >￥6</td>
+<td  bgcolor=#FBFBF9 >￥10</td>
+<td  bgcolor=#FBFBF9 >￥20</td>
+<td  bgcolor=#FBFBF9 >￥36</td>
+<td  bgcolor=#FBFBF9 >￥64.8</td>
 <td  bgcolor=#FBFBF9 >-</td>
 <td  bgcolor=#FBFBF9 >-</td>
 </tr>
@@ -231,9 +231,9 @@ All billing items of Guance are **billed separately**. For example, log data you
 <tr >
 <td rowspan="2" width="30%" >APM Profile</td>
 <td>CN</td>
-<td>RMB 0.2</td>
-<td>RMB 0.3</td>
-<td>RMB 0.5</td>
+<td>￥0.2</td>
+<td>￥0.3</td>
+<td>￥0.5</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -242,9 +242,9 @@ All billing items of Guance are **billed separately**. For example, log data you
 
 <tr >
 <td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
-<td  bgcolor=#FBFBF9 >RMB 0.4</td>
-<td  bgcolor=#FBFBF9 >RMB 0.6</td>
-<td  bgcolor=#FBFBF9 >RMB 1</td>
+<td  bgcolor=#FBFBF9 >￥0.4</td>
+<td  bgcolor=#FBFBF9 >￥0.6</td>
+<td  bgcolor=#FBFBF9 >￥1</td>
 <td  bgcolor=#FBFBF9 >-</td>
 <td  bgcolor=#FBFBF9 >-</td>
 <td  bgcolor=#FBFBF9 >-</td>
@@ -252,24 +252,24 @@ All billing items of Guance are **billed separately**. For example, log data you
 </tr>
 
 <tr >
-<td rowspan="2">User Visit PV</td>
+<td rowspan="2">RUM PV</td>
 <td>CN</td>
-<td>RMB 0.7</td>
-<td>RMB 1</td>
-<td>RMB 2</td>
-<td>RMB 3.6</td>
-<td>RMB 6.48</td>
+<td>￥0.7</td>
+<td>￥1</td>
+<td>￥2</td>
+<td>￥3.6</td>
+<td>￥6.48</td>
 <td>-</td>
 <td>-</td>
 </tr>
 
 <tr >
 <td  bgcolor=#FBFBF9 >Intl(incl HK)</td> 
-<td  bgcolor=#FBFBF9 >RMB 2</td>
-<td  bgcolor=#FBFBF9 >RMB 3</td>
-<td  bgcolor=#FBFBF9 >RMB 5</td>
-<td  bgcolor=#FBFBF9 >RMB 9</td>
-<td  bgcolor=#FBFBF9 >RMB 16.2</td>
+<td  bgcolor=#FBFBF9 >￥2</td>
+<td  bgcolor=#FBFBF9 >￥3</td>
+<td  bgcolor=#FBFBF9 >￥5</td>
+<td  bgcolor=#FBFBF9 >￥9</td>
+<td  bgcolor=#FBFBF9 >￥16.2</td>
 <td  bgcolor=#FBFBF9 >-</td>
 <td  bgcolor=#FBFBF9 >-</td>
 </tr>
@@ -278,33 +278,35 @@ All billing items of Guance are **billed separately**. For example, log data you
 
 
 
+
+
 ### Sensitive Data Scan Traffic {#scanned-data}
 
-This is based on the original traffic size of sensitive data scanned according to scan rules (per GB per day).
+Calculated based on the size of the original traffic of sensitive data detected by scan rules (per GB/day).
 
-For example, if a log entry A needs to be scanned, and three fields within this data require desensitization rule processing, then each field's desensitization scan will be billed separately.
+For example, if a log entry A needs to be scanned for three fields, each field's desensitization scan will be billed separately.
 
-<font color=coral>**When settled in RMB**:</font>
+<font color=coral>**When settled in Renminbi**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    | China Site   | RMB 0.1 |
+    | China Sites   | ￥0.1 |
 
 === "Hong Kong and International Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong and International Sites | RMB 0.2 |
+    |  Hong Kong and International Sites | ￥0.2 |
 
-<font color=coral>**When settled in USD**:</font>
+<font color=coral>**When settled in US Dollars**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    | China Site   | $ 0.014 |
+    | China Sites   | $ 0.014 |
 
 === "Hong Kong and International Sites"
 
@@ -316,29 +318,29 @@ For example, if a log entry A needs to be scanned, and three fields within this 
 
 ### Scheduled Reports {#report}
 
-This refers to the number of scheduled reports sent daily within the workspace (per time per day).
+The number of scheduled reports sent daily within the workspace (per report/day).
 
-<font color=coral>**When settled in RMB**:</font>
+<font color=coral>**When settled in Renminbi**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    | China Site   | RMB 1 |
+    | China Sites   | ￥1 |
 
 === "Hong Kong and International Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong and International Sites | RMB 2 |
+    |  Hong Kong and International Sites | ￥2 |
 
-<font color=coral>**When settled in USD**:</font>
+<font color=coral>**When settled in US Dollars**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    | China Site   | $ 0.14 |
+    | China Sites   | $ 0.14 |
 
 === "Hong Kong and International Sites"
 
@@ -350,33 +352,33 @@ This refers to the number of scheduled reports sent daily within the workspace (
 
 ### Time Series {#timeline}
 
-This counts the number of unique label combinations for metrics reported through DataKit by users on that day (per thousand per day).
+Counts the number of unique label combinations for all metrics reported through DataKit on a given day (per thousand/day).
 
-<font color=coral>**When settled in RMB**:</font>
+<font color=coral>**When settled in Renminbi**:</font>
 
-=== "China Site"
+=== "China Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    | China Site   | RMB 0.6     | RMB 0.7 | RMB 0.8  |  RMB 1  |    RMB 4    |    RMB 7    |
+    | China Sites   | ￥0.6     | ￥0.7 | ￥0.8  |  ￥1  |    ￥4    |    ￥7    |
 
 === "Hong Kong and International Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  Hong Kong and International Sites | RMB 1.6     | RMB 1.8 | RMB 2.2  |  RMB 2.4  |    RMB 8    |    RMB 14    |
+    |  Hong Kong and International Sites | ￥1.6     | ￥1.8 | ￥2.2  |  ￥2.4  |    ￥8    |    ￥14    |
 
-<font color=coral>**When settled in USD**:</font>
+<font color=coral>**When settled in US Dollars**:</font>
 
-=== "China Site"
+=== "China Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    | China Site   | $ 0.09        | $ 0.1 | $ 0.12  |  $ 0.14  |    $ 0.58   |    $ 1   |
+    | China Sites   | $ 0.09        | $ 0.1 | $ 0.12  |  $ 0.14  |    $ 0.58   |    $ 1   |
 
 === "Hong Kong and International Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days |     180 days   |    360 days     |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- |
     |  Hong Kong and International Sites | $ 0.23        | $ 0.26 | $ 0.32  |  $ 0.35  |    $ 1.2   |    $ 2   |
 ---
@@ -394,42 +396,42 @@ This counts the number of unique label combinations for metrics reported through
 
 ### Logs {#logs}
 
-#### Charged by Data Volume
+#### Billed by Data Volume
 
-This includes data generated from features such as logs, events, security checks, synthetic tests (per million entries per day).
+Includes data generated by logs, events, security checks, synthetic tests, etc. (per million entries/day).
 
 ??? warning
 
-    - If logs have "Custom Multi-index" enabled, the data increment of different indexes will be counted, and the actual cost will be calculated based on the corresponding data retention policy price.
-    - Events include those generated by monitoring configurations (monitors, SLOs), intelligent inspections, and user-defined events.
-    - Synthetic tests are reported by user-defined nodes.
-    - The fees for events, security checks, and synthetic tests default to the price of the "default" index of logs.
+    - If the "Custom Multi-Index" feature is enabled for logs, the actual cost will be calculated based on different indexes' data increment and corresponding storage policy prices.
+    - Events include those generated by monitoring tasks, intelligent inspections, and user-defined reports.
+    - Synthetic test data is reported by user-defined nodes.
+    - The cost for events, security checks, and synthetic tests defaults to the price of the default log index's storage policy.
 
-<font color=coral>**When settled in RMB**:</font>
+<font color=coral>**When settled in Renminbi**:</font>
 
-=== "China Site"
+=== "China Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days | 60 days  |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    | China Site   | RMB 1        |   RMB 1.2 | RMB 1.5  | RMB 2  | RMB 2.5   |
+    | China Sites   | ￥1        |   ￥1.2 | ￥1.5  | ￥2  | ￥2.5   |
 
 === "Hong Kong and International Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days | 60 days  |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  Hong Kong and International Sites | RMB 2        |   RMB 2.4 | RMB 3 | RMB 4  | RMB 5   |
+    |  Hong Kong and International Sites | ￥2        |   ￥2.4 | ￥3 | ￥4  | ￥5   |
 
-<font color=coral>**When settled in USD**:</font>
+<font color=coral>**When settled in US Dollars**:</font>
 
-=== "China Site"
+=== "China Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days | 60 days  |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    | China Site   | $ 0.15       |   $ 0.17 | $ 0.22  | $ 0.28  | $ 0.36   |
+    | China Sites   | $ 0.15       |   $ 0.17 | $ 0.22  | $ 0.28  | $ 0.36   |
 
 === "Hong Kong and International Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days | 60 days  |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
     |  Hong Kong and International Sites | $ 0.3        |   $ 0.4 | $ 0.5  | $ 0.6  | $ 0.8   |
 ---
@@ -443,37 +445,37 @@ This includes data generated from features such as logs, events, security checks
 </div>
 
 <!--
-#### :material-numeric-2-circle-outline: Ingested Log Billing {#ingested-log}
+#### :material-numeric-2-circle-outline: Billed by Ingested Traffic {#ingested-log}
 
-This is based on the volume of raw log data ingested (per GB per day).
+Based on the volume of raw log data ingested (per GB/day).
 
-**Note**: Logs are charged by volume by default. If you need to switch to ingest-based billing, please contact your account manager.
+**Note**: By default, log data is billed by volume. To switch to ingestion-based billing, please contact your account manager.
 
-<font color=coral>**When settled in RMB**:</font>
+<font color=coral>**When settled in Renminbi**:</font>
 
-=== "China Site"
+=== "China Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days |    60 days   |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days |    60 days   |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    | China Site   | RMB 0.6     | RMB 0.85 | RMB 1 |  RMB 1.2  |    RMB 1.5    |
+    | China Sites   | ￥0.6     | ￥0.85 | ￥1 |  ￥1.2  |    ￥1.5    |
 
 === "Hong Kong and International Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days |    60 days   |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days |    60 days   |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  Hong Kong and International Sites | RMB 1.4     | RMB 2.1 | RMB 2.8  |  RMB 3.08  |    RMB 3.36    |
+    |  Hong Kong and International Sites | ￥1.4     | ￥2.1 | ￥2.8  |  ￥3.08  |    ￥3.36    |
 
-<font color=coral>**When settled in USD**:</font>
+<font color=coral>**When settled in US Dollars**:</font>
 
-=== "China Site"
+=== "China Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days |    60 days   |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days |    60 days   |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    | China Site   | $ 0.1        | $ 0.15 | $ 0.2  |  $ 0.22  |    $ 0.24   |
+    | China Sites   | $ 0.1        | $ 0.15 | $ 0.2  |  $ 0.22  |    $ 0.24   |
 
 === "Hong Kong and International Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days |    60 days   |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days |    60 days   |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
     |  Hong Kong and International Sites | $ 0.2        | $ 0.3 | $ 0.4  |  $ 0.44  |    $ 0.48   |
 ---
@@ -482,29 +484,29 @@ This is based on the volume of raw log data ingested (per GB per day).
 
 ### Data Forwarding {#backup}
 
-:material-numeric-1-circle: Based on the type of external archiving for data forwarding in the current workspace, it aggregates the forwarded traffic volume and bills based on the incremental data reported daily (per GB per day).
+:material-numeric-1-circle: Based on the type of external archival storage used in the current workspace, the forwarded traffic size is summarized and counted daily (per GB/day).
 
-<font color=coral>**When settled in RMB**:</font>
+<font color=coral>**When settled in Renminbi**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>   |     |
     | -------- | ---------- |
-    | China Site   | RMB 0.35        |
+    | China Sites   | ￥0.35        |
 
 === "Hong Kong and International Sites"
 
     | <font size=2>Details</font>   |     |
     | -------- | ---------- |
-    | Hong Kong and International Sites   | RMB 0.7        |
+    |  Hong Kong and International Sites   | ￥0.7        |
 
-<font color=coral>**When settled in USD**:</font>
+<font color=coral>**When settled in US Dollars**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    | China Site   |  $ 0.05 |
+    | China Sites   |  $ 0.05 |
 
 === "Hong Kong and International Sites"
 
@@ -513,29 +515,29 @@ This is based on the volume of raw log data ingested (per GB per day).
     |  Hong Kong and International Sites |  $ 0.1 |
 ---
 
-:material-numeric-2-circle: Based on the internal storage type of Guance for data forwarding in the current workspace, it aggregates the forwarded traffic volume and bills based on the total data reported (per GB per day).
+:material-numeric-2-circle: Based on the internal storage type within <<< custom_key.brand_name >>>, the forwarded traffic size is summarized and counted daily (per GB/day).
 
-<font color=coral>**When settled in RMB**:</font>
+<font color=coral>**When settled in Renminbi**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    | China Site   | RMB 0.007 |
+    | China Sites   | ￥0.007 |
 
 === "Hong Kong and International Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong and International Sites |  RMB 0.014 |
+    |  Hong Kong and International Sites |  ￥0.014 |
 
-<font color=coral>**When settled in USD**:</font>
+<font color=coral>**When settled in US Dollars**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    | China Site   |  $ 0.001 |
+    | China Sites   |  $ 0.001 |
 
 === "Hong Kong and International Sites"
 
@@ -556,29 +558,29 @@ This is based on the volume of raw log data ingested (per GB per day).
 
 ### Network {#network}
 
-The number of hosts reporting network data within the workspace (per host per day).
+Counts the number of hosts reporting network data within the workspace (per host/day).
 
-<font color=coral>**When settled in RMB**:</font>
+<font color=coral>**When settled in Renminbi**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    | China Site   | RMB 2 |
+    | China Sites   | ￥2 |
 
 === "Hong Kong and International Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong and International Sites |  RMB 4 |
+    |  Hong Kong and International Sites |  ￥4 |
 
-<font color=coral>**When settled in USD**:</font>
+<font color=coral>**When settled in US Dollars**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    | China Site   |  $ 0.29 |
+    | China Sites   |  $ 0.29 |
 
 === "Hong Kong and International Sites"
 
@@ -591,7 +593,7 @@ The number of hosts reporting network data within the workspace (per host per da
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Host Reporting Network Data Billing Logic</font>](../billing-method/billing-item.md#network)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Network Host Billing Logic</font>](../billing-method/billing-item.md#network)
 
 <br/>
 
@@ -600,33 +602,33 @@ The number of hosts reporting network data within the workspace (per host per da
 
 ### APM Trace {#trace}
 
-This counts the number of Traces in the reported trace data. Generally, if Span data has the same `trace_id`, these Spans are grouped under one Trace (per million Traces per day).
+Counts the number of Traces in the reported tracing data. Generally, if Span data has the same `trace_id`, these Spans are grouped under one Trace (per million Traces/day).
 
-<font color=coral>**When settled in RMB**:</font>
+<font color=coral>**When settled in Renminbi**:</font>
 
-=== "China Site"
+=== "China Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    | China Site   | RMB 2 |  RMB 3  |  RMB 6  |  RMB 10.8  |  RMB 19.44  |
+    | China Sites   | ￥2 |  ￥3  |  ￥6  |  ￥10.8  |  ￥19.44  |
 
 === "Hong Kong and International Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  Hong Kong and International Sites | RMB 6 |  RMB 10  |  RMB 20  |  RMB 36  |  RMB 64.8  |
+    |  Hong Kong and International Sites | ￥6 |  ￥10  |  ￥20  |  ￥36  |  ￥64.8  |
 
-<font color=coral>**When settled in USD**:</font>
+<font color=coral>**When settled in US Dollars**:</font>
 
-=== "China Site"
+=== "China Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    | China Site   | $ 0.29 |  $ 0.43 |  $ 0.86 |  $ 1.54 |  $ 2.78 |
+    | China Sites   | $ 0.29 |  $ 0.43 |  $ 0.86 |  $ 1.54 |  $ 2.78 |
 
 === "Hong Kong and International Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
     |  Hong Kong and International Sites | $ 0.9 |  $ 1.4 |  $ 2.8 |   $ 5.14 |  $ 9.26 |
 ---
@@ -643,33 +645,33 @@ This counts the number of Traces in the reported trace data. Generally, if Span 
 
 ### APM Profile {#profile}
 
-This counts the number of APM Profile data points reported (per ten thousand Profiles per day).
+Counts the number of APM Profile data entries reported (per ten thousand Profiles/day).
 
-<font color=coral>**When settled in RMB**:</font>
+<font color=coral>**When settled in Renminbi**:</font>
 
-=== "China Site"
+=== "China Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  |
     | -------- | ---------- | ---------- | ---------- |
-    | China Site   |RMB 0.2 |  RMB 0.3  |  RMB 0.5|
+    | China Sites   |￥0.2 |  ￥0.3  |  ￥0.5|
 
 === "Hong Kong and International Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  |
     | -------- | ---------- | ---------- | ---------- |
-    |  Hong Kong and International Sites |RMB 0.4 |  RMB 0.6  |  RMB 1|
+    |  Hong Kong and International Sites |￥0.4 |  ￥0.6  |  ￥1|
 
-<font color=coral>**When settled in USD**:</font>
+<font color=coral>**When settled in US Dollars**:</font>
 
-=== "China Site"
+=== "China Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  |
     | -------- | ---------- | ---------- | ---------- |
-    | China Site   |$ 0.03 |  $ 0.04  |  $ 0.07|
+    | China Sites   |$ 0.03 |  $ 0.04  |  $ 0.07|
 
 === "Hong Kong and International Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  |
     | -------- | ---------- | ---------- | ---------- |
     |  Hong Kong and International Sites |$ 0.06 |  $ 0.09  |  $ 0.14|
 ---
@@ -683,37 +685,37 @@ This counts the number of APM Profile data points reported (per ten thousand Pro
 
 </div>
 
-### User Visit PV {#pv}
+### RUM PV {#pv}
 
-This counts the number of page views from user visits, generally derived from the number of Resource, Long Task, Error, and Action data points reported daily (per ten thousand PVs per day).
+Counts the number of page views from user visits, generally derived from Resource, Long Task, Error, Action data (per ten thousand PVs/day).
 
-**Note**: Whether it's an SPA (Single Page Application) or MPA (Multi-page Application), each visit to a page (including refreshes or re-entry) counts as 1 PV.
+**Note**: Whether it's an SPA (Single Page Application) or MPA (Multi-Page Application), each visit to a page (including refreshes or re-entry) counts as one PV.
 
-<font color=coral>**When settled in RMB**:</font>
+<font color=coral>**When settled in Renminbi**:</font>
 
-=== "China Site"
+=== "China Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    | China Site   | RMB 0.7 | RMB 1  |  RMB 2| RMB 3.6  |  RMB 6.48|
+    | China Sites   | ￥0.7 | ￥1  |  ￥2| ￥3.6  |  ￥6.48|
 
 === "Hong Kong and International Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    |  Hong Kong and International Sites | RMB 2 | RMB 3  |  RMB 5| RMB 9  |  RMB 16.2 |
+    |  Hong Kong and International Sites | ￥2 | ￥3  |  ￥5| ￥9  |  ￥16.2 |
 
-<font color=coral>**When settled in USD**:</font>
+<font color=coral>**When settled in US Dollars**:</font>
 
-=== "China Site"
+=== "China Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
-    | China Site   | $ 0.1 | $ 0.14  |  $ 0.29| $ 0.51  |  $ 0.93 |
+    | China Sites   | $ 0.1 | $ 0.14  |  $ 0.29| $ 0.51  |  $ 0.93 |
 
 === "Hong Kong and International Sites"
 
-    | Data Retention Policy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
+    | Data Storage Policy |3 days         | 7 days   | 14 days  | 30 days   | 60 days  |
     | -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
     |  Hong Kong and International Sites | $ 0.29 | $ 0.43  |  $ 0.71 |  $ 1.29 |  $ 2.31 |
 ---
@@ -721,7 +723,7 @@ This counts the number of page views from user visits, generally derived from th
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; User Visit PV Billing Logic</font>](../billing-method/billing-item.md#pv)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; RUM PV Billing Logic</font>](../billing-method/billing-item.md#pv)
 
 <br/>
 
@@ -729,30 +731,30 @@ This counts the number of page views from user visits, generally derived from th
 
 ### Session Replay {#session}
 
-This counts the number of Sessions with actual session replay data. It is generally derived from the count of `session_id` where `has_replay: true` (per thousand Sessions per day).
+Counts the number of Sessions that have actual session replay data. This is generally derived from the count of `session_id` with `has_replay: true` (per thousand Sessions/day).
 
 
-<font color=coral>**When settled in RMB**:</font>
+<font color=coral>**When settled in Renminbi**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    | China Site   | RMB 2.5 |
+    | China Sites   | ￥2.5 |
 
 === "Hong Kong and International Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong and International Sites |  RMB 2.5 |
+    |  Hong Kong and International Sites |  ￥2.5 |
 
-<font color=coral>**When settled in USD**:</font>
+<font color=coral>**When settled in US Dollars**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    | China Site   | $ 0.35 |
+    | China Sites   | $ 0.35 |
 
 === "Hong Kong and International Sites"
 
@@ -774,29 +776,29 @@ This counts the number of Sessions with actual session replay data. It is genera
 
 ### Synthetic Tests {#st}
 
-This is the fee incurred from using the synthetic testing feature (per ten thousand API dial tests per day).
+Charges for using the Synthetic Tests feature (per ten thousand API tests/day).
 
-<font color=coral>**When settled in RMB**:</font>
+<font color=coral>**When settled in Renminbi**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    | China Site   | RMB 1 |
+    | China Sites   | ￥1 |
 
 === "Hong Kong and International Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong and International Sites | RMB 10 |
+    |  Hong Kong and International Sites | ￥10 |
 
-<font color=coral>**When settled in USD**:</font>
+<font color=coral>**When settled in US Dollars**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    | China Site   | $ 0.143 |
+    | China Sites   | $ 0.143 |
 
 === "Hong Kong and International Sites"
 
@@ -816,29 +818,29 @@ This is the fee incurred from using the synthetic testing feature (per ten thous
 
 ### Triggers {#trigger}
 
-This is the fee incurred from using anomaly detection, metric generation, and other features (per ten thousand times per day).
+Charges for using anomaly detection, metric generation, etc. (per ten thousand triggers/day).
 
-<font color=coral>**When settled in RMB**:</font>
+<font color=coral>**When settled in Renminbi**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    | China Site   | RMB 1 |
+    | China Sites   | ￥1 |
 
 === "Hong Kong and International Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong and International Sites |  RMB 2 |
+    |  Hong Kong and International Sites |  ￥2 |
 
-<font color=coral>**When settled in USD**:</font>
+<font color=coral>**When settled in US Dollars**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    | China Site   |  $ 0.14 |
+    | China Sites   |  $ 0.14 |
 
 === "Hong Kong and International Sites"
 
@@ -851,7 +853,7 @@ This is the fee incurred from using anomaly detection, metric generation, and ot
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Trigger Billing Logic</font>](../billing-method/billing-item.md#trigger)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Triggers Billing Logic</font>](../billing-method/billing-item.md#trigger)
 
 <br/>
 
@@ -859,13 +861,13 @@ This is the fee incurred from using anomaly detection, metric generation, and ot
 
 ### SMS {#sms}
 
-This counts the number of SMS messages sent on that day (per ten messages per day).
+Counts the number of SMS messages sent on a given day (per ten messages/day).
 
-<font color=coral>**When settled in RMB**:</font>
+<font color=coral>**When settled in Renminbi**:</font>
 
 | <font size=2>Details</font>  |    |   |
 |-------- | ---------- |---------- |
-| China Site  | RMB   |  RMB 1 |
+| China Sites  | RMB   |  ￥1 |
 
 <div class="grid cards" markdown>
 
@@ -877,29 +879,29 @@ This counts the number of SMS messages sent on that day (per ten messages per da
 
 ### Central Pipeline {#pipeline}
 
-This counts the size of raw log data processed by the central pipeline (per GB per day).
+Counts the size of the original log data processed by the central pipeline (per GB/day).
 
-<font color=coral>**When settled in RMB**:</font>
+<font color=coral>**When settled in Renminbi**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    | China Site   | RMB 0.1 |
+    | China Sites   | ￥0.1 |
 
 === "Hong Kong and International Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    |  Hong Kong and International Sites |  RMB 0.2 |
+    |  Hong Kong and International Sites |  ￥0.2 |
 
-<font color=coral>**When settled in USD**:</font>
+<font color=coral>**When settled in US Dollars**:</font>
 
-=== "China Site"
+=== "China Sites"
 
     | <font size=2>Details</font>  |  |
     | -------- | ---------- |
-    | China Site   |  $ 0.014 |
+    | China Sites   |  $ 0.014 |
 
 === "Hong Kong and International Sites"
 
@@ -907,7 +909,3 @@ This counts the size of raw log data processed by the central pipeline (per GB p
     | -------- | ---------- |
     |  Hong Kong and International Sites |  $ 0.028 |
 ---
-
-</input_content>
-<target_language>英语</target_language>
-</input>

@@ -8,7 +8,7 @@ dashboard:
   - desc: 'TDengine'
     path: 'dashboard/en/tdengine'
 monitor:
-  - desc: 'Not Available'
+  - desc: 'Not available'
     path: '-'
 ---
 
@@ -16,9 +16,9 @@ monitor:
 
 ---
 
-TDengine is a high-performance, distributed, SQL-supporting time-series database (Database). Before enabling the collector, please familiarize yourself with [TDengine Basic Concepts](https://docs.taosdata.com/concept/){:target="_blank"}
+TDengine is a high-performance, distributed, SQL-supported time series database (Database). Before enabling the collector, please familiarize yourself with [TDengine basic concepts](https://docs.taosdata.com/concept/){:target="_blank"}
 
-The TDengine collector requires a connection to `taos_adapter` to function properly. `taosAdapter` has been part of the TDengine server software starting from version v2.4.0.0. This document mainly provides a detailed introduction to the metrics set.
+The TDengine collector requires the connection to `taos_adapter` to function properly. The taosAdapter has been part of the TDengine server software starting from version v2.4.0.0. This document mainly provides a detailed introduction to the Mearsurement set.
 
 ## Configuration {#config}
 
@@ -27,8 +27,8 @@ The TDengine collector requires a connection to `taos_adapter` to function prope
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `tdengine.conf.sample`, and rename it to `tdengine.conf`. An example configuration is as follows:
-
+    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `tdengine.conf.sample` and rename it to `tdengine.conf`. Example:
+    
     ```toml
         
     [[inputs.tdengine]]
@@ -36,14 +36,14 @@ The TDengine collector requires a connection to `taos_adapter` to function prope
       adapter_endpoint = "http://<FQND>:6041"
       user = "<userName>"
       password = "<pw>"
-
+    
       ## log_files: TdEngine log file path or dirName (optional).
       ## log_files = ["tdengine_log_path.log"]
       ## pipeline = "tdengine.p"
-
+    
       ## Set true to enable election
       election = true
-
+    
       ## add tag (optional)
       [inputs.tdengine.tags]
       ## Different clusters can be distinguished by tag. Such as testing, product, local, default is 'testing'
@@ -52,7 +52,7 @@ The TDengine collector requires a connection to `taos_adapter` to function prope
       # more_tag = "some_other_value"
     ```
 
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
@@ -60,18 +60,23 @@ The TDengine collector requires a connection to `taos_adapter` to function prope
 
 ???+ tip
 
-    - Ensure that the port is open before connecting to taosAdapter. The connecting user needs read permission.
-    - If the connection still fails, [refer to this link](https://docs.taosdata.com/2.6/train-faq/faq/){:target="_blank"}.
+    - Ensure the port is open before connecting to taoAdapter. The connecting user must have read permissions.
+    - If connection still fails, [refer to this guide](https://docs.taosdata.com/2.6/train-faq/faq/){:target="_blank"}.
 <!-- markdownlint-enable -->
 
 ## Metrics {#metric}
 
+
+
 ### `tdengine`
+
+
 
 - Tags
 
+
 | Tag | Description |
-| ---- | --------|
+|  ----  | --------|
 |`client_ip`|Client IP|
 |`cluster_name`|Cluster name|
 |`database_name`|Database name|
@@ -82,11 +87,12 @@ The TDengine collector requires a connection to `taos_adapter` to function prope
 |`version`|Version|
 |`vgroup_id`|VGroup ID|
 
-- Metrics List
+- Metric List
+
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`client_ip_count`|Statistics of Client IP requests|float|count|
+|`client_ip_count`|Client IP request statistics|float|count|
 |`cpu_cores`|Total number of CPU cores per data node|float|count|
 |`cpu_engine`|CPU usage per data node|float|percent|
 |`cpu_percent`|Adapter occupies CPU usage|float|percent|
@@ -110,7 +116,7 @@ The TDengine collector requires a connection to `taos_adapter` to function prope
 |`mnodes_total`|Total number of mnodes(management nodes) in cluster|float|count|
 |`net_in`|IO rate of the ingress network|float|KB|
 |`net_out`|IO rate of egress network|float|KB|
-|`req_http`|Total number of HTTP requests|float|count|
+|`req_http`|Total number of requests via HTTP|float|count|
 |`req_http_rate`|HTTP request rate|float|count|
 |`req_insert_batch_rate`|Number of batch insertions divided by monitor interval|float|count|
 |`req_insert_rate`|Number of insert queries received per dnode divided by monitor interval|float|count|
@@ -129,5 +135,7 @@ The TDengine collector requires a connection to `taos_adapter` to function prope
 |`vnodes_alive`|Total number of vnode in ready state|float|count|
 |`vnodes_num`|Total number of virtual nodes per data node|float|count|
 |`vnodes_total`|Total number of vnode in cluster|float|count|
+
+
 
 > - Some tables in the database do not have a `ts` field; DataKit will use the current collection time.

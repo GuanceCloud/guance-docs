@@ -24,7 +24,7 @@
 
 ## Description
 
-- Monitor the host to ensure squashfs is not enabled.
+- Monitor the host to ensure that squashfs is not enabled.
 
 
 ## Scan Frequency
@@ -39,13 +39,14 @@
 
 ## Risk Items
 
-- Hacker penetration
-- Data leakage
+- Hacker Penetration
+
+- Data Breach
 
 
 ## Audit Method
 
-- Verify whether squashfs is enabled on the host. You can execute the following command to verify:
+- Verify whether squashfs is enabled on the host. You can run the following command to verify:
 
 ```bash
 lsmod | grep squashfs

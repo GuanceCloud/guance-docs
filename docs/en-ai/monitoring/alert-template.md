@@ -2,41 +2,41 @@
 
 ## Title
 
-> You have {N} {{severity}} alert notifications
+> You have {N} {{level}} alert notifications
 
 
 ## Content
 
 ### No Aggregation
 
-> You have N new Guance alerts
+> You have N new <<< custom_key.brand_name >>> alerts
 >
-> 1st / 2nd alert:
+> 1st / 2nd:
 >
 > Title
 >
 > Content
 >
-> <font color=#2F61CC> Go to Workspace </font>
+> <font color=#2F61CC> Go to Workspace to View </font>
 >
 > ---
 >
-> 2nd / 2nd alert:
+> 2nd / 2nd:
 >
 > Title
 >
 > Content
 >
-> <font color=#2F61CC> Go to Workspace </font>
+> <font color=#2F61CC> Go to Workspace to View </font>
 
 
-- Go to Workspace: Redirects to the Event Explorer to view current events (filter condition: `df_event_id`)
+- Go to Workspace to View: Redirects to the Event Viewer to view current events (filter condition: `df_event_id`)
 
 *Diagram:*
 
 <img src="../img/alert-template.png" width="70%" >
 
-### Rule-based Aggregation
+### Rule Aggregation
 
 #### All
 
@@ -66,9 +66,9 @@
 >
 > Aggregation Period: 2023/11/20 10:00 ~ 2023/11/20 10:05
 >
-> <font color=#2F61CC> Go to Workspace </font>
+> <font color=#2F61CC> Go to Workspace to View </font>
 
-- Redirects to the Explorer to view associated events of the current monitor (filter condition: `df_monitor_checker_id`)
+- Redirects to the Explorer to view associated events for the current monitor (filter condition: `df_monitor_checker_id`)
 
 *Diagram:*
 
@@ -87,9 +87,9 @@
 >
 > Aggregation Period: 2023/11/20 10:00 ~ 2023/11/20 10:05
 >
-> <font color=#2F61CC> Go to Workspace </font>
+> <font color=#2F61CC> Go to Workspace to View </font>
 
-- Redirects to the Explorer to view associated events of the current smart check rule (filter condition: `df_monitor_checker_id`)
+- Redirects to the Explorer to view associated events for the current smart check rule (filter condition: `df_monitor_checker_id`)
 
 *Diagram:*
 
@@ -107,9 +107,9 @@
 >
 > Aggregation Period: 2023/11/20 10:00 ~ 2023/11/20 10:05
 >
-> <font color=#2F61CC> Go to Workspace </font>
+> <font color=#2F61CC> Go to Workspace to View </font>
 
-- Redirects to the Explorer to view associated events of the current SLO (filter condition: `df_monitor_checker_id`)
+- Redirects to the Explorer to view associated events for the current SLO (filter condition: `df_monitor_checker_id`)
 
 *Diagram:*
 
@@ -127,8 +127,6 @@
 >
 > - {{Event Title}} <font color=#2F61CC> >>View  </font>
 
-*Diagram:*
-
 <img src="../img/alert-template-4.png" width="70%" >
 
 #### Tags
@@ -143,7 +141,7 @@
 >
 > - {{Event Title}} <font color=#2F61CC> >>View  </font>
 
-- Redirects to the Explorer to view associated events of the current detection rule (filter condition: `df_monitor_checker_id`)
+- Redirects to the Explorer to view associated events for the current detection rule (filter condition: `df_monitor_checker_id`)
 
 *Diagram:*
 
@@ -189,32 +187,32 @@
 
 ### AI Aggregation
 
-> Title: Summary of the alert information.
+> Title: Summary of this alert.
 
 > Handling Suggestions: Recommendations for handling the current alert.
         
-> {xxx related} Alert Aggregation: "summary": "Multiple hosts experienced CPU and memory anomalies, with the highest anomaly value being 98% (host 172.16.200.108). Host 1
+> Aggregated Alerts: "Summary": Multiple hosts experienced CPU and memory anomalies, with the highest anomaly value being 98% (host 172.16.200.108). Host 1
         
 > Related Detection Rules: df_monitor_checker_ids: Involved monitors (rule IDs).
         
-> {xxx related} Alert Aggregation: "summary": "Multiple hosts experienced CPU and memory anomalies, with the highest anomaly value being 98% (host 172.16.200.108). Host 1
+> Aggregated Alerts: "Summary": Multiple hosts experienced CPU and memory anomalies, with the highest anomaly value being 98% (host 172.16.200.108). Host 1
         
 > Related Detection Rules: df_monitor_checker_ids: Involved monitors (rule IDs).
 
 Example:
 
 ```
-Title: During the aggregation period, a total of 3 monitors triggered alert events, generating 19 alert notifications.
+Title: Within the aggregation period, a total of 3 monitors triggered alert events, generating 19 alert notifications.
 
-Handling Suggestions: Prioritize high-frequency alert hosts, such as host 172.16.200.101 involving CPU anomalies, memory anomalies, and communication issues, requiring comprehensive inspection. Check alert correlations; multiple monitors (rule IDs) involve host resources (CPU, memory) and module communications, possibly indicating systematic issues. Optimize monitoring strategies to reduce repeated alerts in short periods and apply alert noise reduction based on time windows.
+Handling Suggestions: Prioritize handling high-frequency alert hosts, such as host 172.16.200.101 involving CPU anomalies, memory anomalies, and communication issues, requiring a comprehensive inspection. Check alert correlations; multiple monitors (rule IDs) involve host resources (CPU, memory) and module communication, which may indicate a systemic issue. Optimize monitoring strategies to reduce repeated alerts within short time periods and apply alert noise reduction based on time windows.
 
-Host-related Alert Aggregation: Multiple hosts experienced CPU and memory anomalies, with the highest anomaly value being 98% (host 172.16.200.108). Host 172.16.200.101 simultaneously triggered CPU and memory alerts, requiring focused inspection.
+Aggregated Host Alerts: Multiple hosts experienced CPU and memory anomalies, with the highest anomaly value being 98% (host 172.16.200.108). Host 172.16.200.101 triggered both CPU and memory alerts and requires focused inspection.
         
-Related Detection Rules: title view("rul_e68e2d5e620b40c691128a399de3f479")
+Related Detection Rules: View title ("rul_e68e2d5e620b40c691128a399de3f479")
         
-Application-related Alert Aggregation: Multiple hosts experienced CPU and memory anomalies, with the highest anomaly value being 98% (host 172.16.200.108). Host 172.16.200.101 simultaneously triggered CPU and memory alerts, requiring focused inspection.
+Aggregated Application Alerts: Multiple hosts experienced CPU and memory anomalies, with the highest anomaly value being 98% (host 172.16.200.108). Host 172.16.200.101 triggered both CPU and memory alerts and requires focused inspection.
         
-Related Detection Rules: title view("rul_e68e2d5e620b40c691128a399de3f479")
+Related Detection Rules: View title ("rul_e68e2d5e620b40c691128a399de3f479")
 
 ```
 

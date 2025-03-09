@@ -10,16 +10,16 @@
 > 5. Direct buffer memory overflow - `java.lang.OutOfMemoryError: Direct buffer memory`.
 > 6. Excessive GC overhead - `java.lang.OutOfMemoryError: GC overhead limit exceeded`.
 
-## Garbage Collectors
-> Garbage collectors are the implementers of memory reclamation. Different vendors and different versions of virtual machines may have significant differences in their garbage collectors. Different virtual machines generally provide various parameters to allow users to combine collectors for each generation of memory based on their application characteristics and requirements —— *Understanding the Java Virtual Machine*.
+## Garbage Collector
+> The garbage collector is the implementer of memory recovery. Different vendors and different versions of virtual machines may have significantly different garbage collectors. Different virtual machines generally provide various parameters to allow users to combine collectors for each memory generation based on their application characteristics and requirements —— *Java Performance Tuning Guide*
 
-Regarding garbage collectors (also known as garbage collection), most of them are listed in the third edition of *Understanding the Java Virtual Machine*. As shown in the following figure:
+Regarding garbage collectors (also known as garbage collectors), in the third edition of *Java Performance Tuning Guide*, most garbage collectors are listed in the table of contents. As shown in the figure below:
 ![java_oom_1.png](../images/java_oom_1.png)
 
-### Viewing Local JVM Garbage Collector
-Use the command `java -XX:+PrintFlagsFinal -version | FINDSTR /i ":"` to check that the local garbage collector is `Parallel`.
+### Checking Local JVM Garbage Collector
+Use the command `java -XX:+PrintFlagsFinal -version | FINDSTR /i ":"` to check the local garbage collector, which is `Parallel`.
 ```shell
-C:\Users\lenovo>java -XX:+PrintFlagsFinal -version | FINDSTR /i ":"
+C:\Users\lenovo>java -XX:+PrintFlagsFinal -version |FINDSTR /i ":"
      intx CICompilerCount                          := 4                                   {product}
     uintx InitialHeapSize                          := 266338304                           {product}
     uintx MaxHeapSize                              := 4257218560                          {product}
@@ -37,8 +37,8 @@ Java(TM) SE Runtime Environment (build 1.8.0_101-b13)
 Java HotSpot(TM) 64-Bit Server VM (build 25.101-b13, mixed mode)
 ```
 
-### Viewing K8s Environment JVM Garbage Collector
-In K8s environments, `openjdk:8-jdk-alpine` or `openjdk:8u292` are commonly used as base images. After starting the service, no garbage collector was found to be enabled.
+### Checking K8s Environment JVM Garbage Collector
+In a K8s environment, `openjdk:8-jdk-alpine` or `openjdk:8u292` is typically used as the base image. After starting the service, no garbage collector was found to be enabled.
 ```shell
 root@ruoyi-system-c9c54dbd5-ltcvf:/data/app# 
 root@ruoyi-system-c9c54dbd5-ltcvf:/data/app# java -XX:+PrintCommandLineFlags -version
@@ -48,140 +48,135 @@ OpenJDK Runtime Environment (build 1.8.0_292-b10)
 OpenJDK 64-Bit Server VM (build 25.292-b10, mixed mode)
 root@ruoyi-system-c9c54dbd5-ltcvf:/data/app# 
 ```
+
 ## Prerequisites
-### 1. JDK Version 1.8, Also Known as JDK8
+### 1. JDK Version 1.8, also known as JDK8.
 
-Each JDK has a different garbage collection mechanism, and memory structures have changed significantly, especially between versions 1.6, 1.7, and 1.8. Most enterprises currently use JDK 1.8, so this best practice also uses JDK 1.8 as the basis. If you are using another version of JDK, you can adapt the ideas accordingly.
+Each JDK's garbage collection mechanism varies, and the memory structure has changed significantly, especially between versions 1.6, 1.7, and 1.8. Most enterprises currently use JDK 1.8, and this best practice also uses JDK 1.8 as the base. If you are using another version of JDK, you can adapt the approach accordingly.
 
-### 2. Integrate with JVM Observability.
+### 2. Integrate JVM Observability.
 
-Please first integrate with [JVM observability](). From the Guance view, we can see that the initial heap size is `80M`, which matches the specified startup parameter.
+Please integrate [JVM observability]() first. From the <<< custom_key.brand_name >>> view, we can see that the initial heap memory is `80 M`, consistent with the specified startup parameters.
 
 ![image.png](../images/java_oom_2.png)
 
-### 3. Integrate with Log Observability
+### 3. Integrate Log Observability
 
-**Refer to [Several Methods for Log Collection in Kubernetes Clusters](/best-practices/cloud-native/k8s-logs/)**. This time, we mainly use the socket method, but other methods can also be used.
+Refer to [**Log Collection Methods in Kubernetes Clusters**](/best-practices/cloud-native/k8s-logs/). This time, primarily using the socket method, but other methods can also be used.
 
 ## Heap Overflow - `java.lang.OutOfMemoryError: Java heap space`
 
-Heap overflow exceptions are quite common. When objects within the heap cannot be reclaimed and the heap memory continues to grow until it reaches its maximum capacity, an exception occurs. Here is an example code snippet. Set the maximum heap size to `-Xmx80m` to quickly reproduce the error.
+Heap overflow exceptions are common. When objects in the heap cannot be reclaimed, the heap memory continues to grow until it reaches its maximum capacity, causing an error. We will demonstrate this with a code sample. Set the maximum heap size to `-Xmx80m`. Running this will quickly produce an error.
 
 ### 1. Startup Parameters
 
-> -Xmx80m  
-> -javaagent:C:/"Program Files"/datakit/data/dd-java-agent.jar  
-> -Ddd.service.name=system  
-> -Ddd.agent.port=9529  
+> -Xmx80m
+> -javaagent:C:/"Program Files"/datakit/data/dd-java-agent.jar
+> -Ddd.service.name=system
+> -Ddd.agent.port=9529
 
 ### 2. Request
 
-Browser request to [http://localhost:9201/exec/heapOOM](http://localhost:9201/exec/heapOOM). You need to wait some time before seeing the exception output. Once the exception output appears, you can go to Guance to view the corresponding logs.
+Browser request to [http://localhost:9201/exec/heapOOM](http://localhost:9201/exec/heapOOM). You need to wait for some time to see the exception output. Once you see the exception output, you can go to <<< custom_key.brand_name >>> to view the corresponding logs.
 
-### 3. View Logs in Guance
+### 3. View Logs in <<< custom_key.brand_name >>>
 
 ![image.png](../images/java-oom-14.png)
 
 ## Stack Overflow - `java.lang.OutOfMemoryError`
 
-The thrown exception is as follows. If you really need to create threads, you should adjust the stack size `-Xss512k`. The default stack size is `1M`. If you set it too small, more threads can be created. If the stack space is insufficient, you need to understand where many threads are being created. In production, use the `jstack` command to export the current thread state to a file, then upload the file to fastthread.io for analysis. If the code indeed requires so many threads, you can reduce the heap memory or Xss according to the formula [JVM total memory - heap = n * Java virtual machine stack] to increase the number of allocatable threads.
+The thrown exception is as follows. If you really need to create threads, adjust the stack size `-Xss512k`. The default stack size is `1M`. If set too small, more threads can be created. If the stack is insufficient, use the `jstack` command to export the current thread state to a file, then upload it to fastthread.io for analysis. If the code indeed requires many threads, you can reduce the heap memory or Xss to increase the number of allocatable threads based on the formula `[JVM Total Memory - Heap = n*Java Virtual Machine Stack]`.
 
 ### 1. Startup Parameters
-
-> -Xmx80m  
-> -javaagent:C:/"Program Files"/datakit/data/dd-java-agent.jar  
-> -Ddd.service.name=system  
-> -Ddd.agent.port=9529  
+> -Xmx80m
+> -javaagent:C:/"Program Files"/datakit/data/dd-java-agent.jar
+> -Ddd.service.name=system
+> -Ddd.agent.port=9529
 
 ### 2. Request
 
-Browser access URL: [http://localhost:9201/exec/stackOOM](http://localhost:9201/exec/stackOOM)
+Visit [http://localhost:9201/exec/stackOOM](http://localhost:9201/exec/stackOOM).
 
-### 3. View Logs in Guance
+### 3. View Logs in <<< custom_key.brand_name >>>
 
-Instantaneous thread creation causes the JVM's built-in tools to stop reporting thread-related monitoring metrics, while Guance still reports the latest JVM monitoring metrics.
+Instantly creating threads causes JVM built-in tools to stop reporting thread-related monitoring metrics, while <<< custom_key.brand_name >>> continues to report the latest JVM monitoring metrics.
 
 ![image.png](../images/java_oom_3.png)
 
-After some time, the JVM's built-in tools report an error.
+After some time, JVM built-in tools report an error.
 
 ![image.png](../images/java_oom_4.png)
 
-Subsequently, the system will appear to freeze.
+Subsequently, the system becomes unresponsive.
 
 ![image.png](../images/java_oom_5.png)
 
 ## Stack Overflow - `java.lang.StackOverflowError`
 
-This primarily manifests in recursive calls and infinite loops. Whether due to large stack frames or insufficient virtual machine stack capacity, when new stack frame memory cannot be allocated, the HotSpot virtual machine throws a `StackOverflowError` exception. Each time a program recurses, it pushes data results onto the stack, including pointers, requiring larger stack frames to handle more recursive calls.
+This mainly occurs with recursive calls or infinite loops. Whether due to large stack frames or limited stack capacity, when new stack frame memory cannot be allocated, HotSpot throws a `StackOverflowError`. Each recursion pushes data onto the stack, including pointers, requiring larger stack frames to handle more recursive calls.
 
 ### 1. Startup Parameters
-
-> -Xmx80m  
-> -javaagent:C:/"Program Files"/datakit/data/dd-java-agent.jar  
-> -Ddd.service.name=system  
-> -Ddd.agent.port=9529  
+> -Xmx80m
+> -javaagent:C:/"Program Files"/datakit/data/dd-java-agent.jar
+> -Ddd.service.name=system
+> -Ddd.agent.port=9529
 
 ### 2. Request
-
 Browser request to [http://localhost:9201/exec/stackOFE](http://localhost:9201/exec/stackOFE)
 
-### 3. View Logs in Guance
-
+### 3. View Logs in <<< custom_key.brand_name >>>
 ![image.png](../images/java-oom-6.png)
 
 ## Metaspace Overflow - `java.lang.OutOfMemoryError: Metaspace`
 
-In JDK 8 and later, the permanent generation has been completely replaced by metaspace, which serves as the method area. It is difficult to force the virtual machine to produce a method area (metaspace) overflow under default settings. Storing class-related information, constant pools, method descriptors, field descriptors, and dynamically generating many classes can cause this region to overflow. Starting with small values for `XX:MetaspaceSize` and `XX:MaxMetaspaceSize` will result in immediate errors during startup.
+Since JDK 8, the permanent generation has been replaced by metaspace, which serves as the method area. It is difficult to force the JVM to throw a method area (metaspace) overflow under default settings. Storing class information, constant pools, method descriptors, field descriptors, and dynamically generated classes can cause this area to overflow. Starting with `XX:MetaspaceSize` and `XX:MaxMetaspaceSize` set too low results in immediate startup errors.
 
 ### 1. Startup Parameters
-
-> -Xmx80m  
-> -XX:MetaspaceSize=30M  
-> -XX:MaxMetaspaceSize=90M  
-> -javaagent:C:/"Program Files"/datakit/data/dd-java-agent.jar  
-> -Ddd.service.name=system  
-> -Ddd.agent.port=9529  
+> -Xmx80m
+> -XX:MetaspaceSize=30M
+> -XX:MaxMetaspaceSize=90M
+> -javaagent:C:/"Program Files"/datakit/data/dd-java-agent.jar
+> -Ddd.service.name=system
+> -Ddd.agent.port=9529
 
 ### 2. Request
-
 Enter [http://localhost:9201/exec/metaspaceOOM](http://localhost:9201/exec/metaspaceOOM) in the browser.
-3. View Logs
-After metaspace overflows, no further log entries or related operations are written.
 
+### 3. View Logs
 
+After metaspace overflow, no further log entries are written.
 
 ## Direct Buffer Memory Overflow - `java.lang.OutOfMemoryError: Direct buffer memory`
 
-Direct buffer memory overflow occurs when we use direct memory outside the heap. NIO improves performance by avoiding switching between Java Heap and native Heap, so it uses direct memory. By default, the size of direct memory is the same as heap memory. Off-heap memory is not restricted by the JVM but is limited by the overall machine memory. The following code sets the maximum heap size to 80m and direct memory to 70m, allocating 1M each time into a list. When 70 allocations (less than 70 for Springboot applications) occur, the next allocation will throw `nested exception is java.lang.OutOfMemoryError: Direct buffer memory`.
+Direct memory overflow can occur outside the heap memory. NIO uses direct memory to improve performance and avoid switching between Java Heap and native Heap. By default, direct memory size matches heap memory size. Off-heap memory is not limited by JVM but by the machine's total memory. Setting heap max memory to 80m and direct memory to 70m, allocating 1M per iteration, will result in `nested exception is java.lang.OutOfMemoryError: Direct buffer memory` after 70 iterations (Springboot applications may fail before 70 iterations).
 
 ### 1. Startup Parameters
-
-> -Xmx80m  
-> -javaagent:C:/"Program Files"/datakit/data/dd-java-agent.jar  
-> -Ddd.service.name=system  
-> -Ddd.agent.port=9529  
+> -Xmx80m
+> -javaagent:C:/"Program Files"/datakit/data/dd-java-agent.jar
+> -Ddd.service.name=system
+> -Ddd.agent.port=9529
 
 ### 2. Request
 
 Enter [http://localhost:9201/exec/directBufferOOM](http://localhost:9201/exec/directBufferOOM) in the browser.
 
-### 3. View Logs in Guance
+### 3. View Logs in <<< custom_key.brand_name >>>
 
 ![image.png](../images/java-oom-7.png)
 
-## Excessive GC Overhead - `java.lang.OutOfMemoryError: GC overhead limit exceeded`
+## GC Overhead Limit Exceeded - `java.lang.OutOfMemoryError: GC overhead limit exceeded`
 
-The previous three scenarios can all lead to excessive GC overhead. Added in JDK 1.6, this error type occurs if less than 2% of memory is reclaimed after 98% of GC cycles, indicating issues with minimum and maximum memory settings.
+The previous three scenarios can lead to excessive GC overhead. Introduced in JDK 1.6, if less than 2% of memory is reclaimed during 98% of GC cycles, this error is thrown.
 
-## Guance
-Regardless of the type of exception, clues can be found on the `JVM Monitoring View` in Guance, combined with log analysis, to optimize JVM parameters. Excessive or insufficient GC frequency, long GC times, sudden increases in threads or heap memory, etc., require attention.
+## <<< custom_key.brand_name >>>
+
+Regardless of the exception type, clues can be found in the <<< custom_key.brand_name >>> `JVM Monitoring View`, along with logs to optimize JVM parameters. Issues like excessive or insufficient GC cycles, prolonged GC times, sudden increases in threads or heap memory require attention.
 
 ![image.png](../images/java-oom-8.png)
 
-### Guance OOM Log Alerts
+### <<< custom_key.brand_name >>> OOM Log Alerts
 
-These OOM exception scenarios demonstrate how to trigger exceptions and how they manifest in Guance. In actual production processes, OOM exceptions can impact business logic and even cause system interruptions. Guance's alerting functionality can quickly notify relevant personnel for intervention.
+These OOM scenarios illustrate how exceptions occur and how they appear in <<< custom_key.brand_name >>>. In production, OOM exceptions can affect business logic and potentially cause system interruptions. Use <<< custom_key.brand_name >>> alert functionality to notify relevant personnel quickly.
 
 #### Configure StackOverflowError Detection
 
@@ -191,23 +186,22 @@ These OOM exception scenarios demonstrate how to trigger exceptions and how they
 
 ![image.png](../images/java-oom-10.png)
 
-
 #### Configure Alert Notifications
 
-Monitor list - Group, click the alert notification button
+In the Monitor List - Groups, click the Alert Notification button.
 
 ![image.png](../images/java-oom-11.png)
 
-Configure notification targets. Guance supports multiple notification methods; currently, email notifications are used.
+Configure notification targets; <<< custom_key.brand_name >>> supports multiple notification targets, currently using email notifications.
 
 ![image.png](../images/java-oom-12.png)
 
-After triggering an exception, you can receive an email notification, as follows:
+After triggering an exception, an email notification is received with the following content:
 
 ![image.png](../images/java-oom-13.png)
 
 ## Demonstration Code
-This code is demonstrated on the RuoYi microservice framework.
+This program code is demonstrated on the Ruoyi microservice framework.
 ```java
 package com.ruoyi.system.controller;
 
@@ -277,7 +271,7 @@ public class ExceptionController {
     }
 
     @GetMapping("/stackOFE")
-    public AjaxResult stackOFE() {
+    public AjaxResult StackOFE() {
         stackOverFlowErrorMethod();
         return AjaxResult.success();
     }

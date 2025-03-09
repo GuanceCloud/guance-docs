@@ -1,4 +1,4 @@
-# Workspace - Creation
+# Workspace - Create
 
 ---
 
@@ -7,42 +7,43 @@
 ## Overview
 Create a workspace.
 
-Use an existing workspace API Key to create a new workspace. The owner of the new workspace will default to the owner of the API Key used for this request.
+Using an existing workspace API Key, create a new workspace.
+The owner of the new workspace defaults to the owner of the space associated with the API Key used in this request.
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:------------------|:-------|:-----|:----------------|
-| name | string | Y | Name<br>Example: supper_workspace <br>Allow null: False <br>Maximum length: 256 <br> |
-| desc | string | N  | Description<br>Example: Workspace description <br>Allow null: True <br>Allow empty string: True <br> |
-| menuStyle | string | N  | Workspace menu style, options include Operations/Maintenance/Development<br>Example: Operations <br>Allow null: False <br>Allow empty string: True <br> |
-| needCreateAk | boolean | N  | Whether to create an API Key for the workspace<br>Example: True <br>Allow null: False <br> |
-| akName | string | N  | Name of the API Key for the workspace<br>Example: test_ak <br>Allow null: False <br> |
-| language | string | N  | Language of the workspace<br>Allow null: True <br>Allow empty string: True <br>Optional values: ['zh', 'en'] <br> |
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:------------------------|
+| name | string | Y | Name<br>Example: supper_workspace <br>Allow empty: False <br>Maximum length: 256 <br> |
+| desc | string | N | Description<br>Example: Workspace description <br>Allow empty: True <br>Allow empty string: True <br> |
+| menuStyle | string | N | Workspace menu style, Operations/Testing/Development<br>Example: Operations <br>Allow empty: False <br>Allow empty string: True <br> |
+| needCreateAk | boolean | N | Whether to create a workspace AK<br>Example: True <br>Allow empty: False <br> |
+| akName | string | N | Workspace AK name<br>Example: test_ak <br>Allow empty: False <br> |
+| language | string | N | Workspace language<br>Allow empty: True <br>Allow empty string: True <br>Optional values: ['zh', 'en'] <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
-Data explanation.*
+Data description.*
 
 - Request parameter explanation
 
 | Parameter Name           | Type | Description                                                 |
-| ---------------- | ---- | ---------------------------------------------------- |
+| ------------------------ | ---- | ----------------------------------------------------------- |
 | name       | string | Name of the new workspace |
 | desc             | string | Description of the new workspace                                                 |
-| needCreateAk       | boolean  | Whether to create an API Key in the new workspace     |
-| akName            | string  | Name of the API Key                                         |
+| needCreateAk       | boolean  | Whether to create an API KEY in the new workspace     |
+| akName            | string  | Name of the API KEY                                         |
 
 ------
 
 - Response parameter explanation
 
 | Parameter Name           | Type | Description                                                 |
-| ---------------- | ---- | ---------------------------------------------------- |
-| akInfo       | dict | Information about the API Key of the new workspace |
+| ------------------------ | ---- | ----------------------------------------------------------- |
+| akInfo       | dict | Information about the new workspace's API KEY |
 | ownerInfo             | dict | Information about the owner of the new workspace                                                 |
-| wsInfo    | dict | Relevant information about the workspace                  |
-| versionType    | string | Version type of the workspace                  |
+| wsInfo    | dict | Information about the workspace                  |
+| versionType    | string | Workspace version type                  |
 
 ------
 
@@ -123,7 +124,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/create' \
             "updateAt": 1672802266,
             "updator": "wsak_xxxxx",
             "uuid": "wksp_xxxx32",
-            "versionType": "free"
+            "versionType": "Free Plan"
         }
     },
     "errorCode": "",

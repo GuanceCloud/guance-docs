@@ -1,7 +1,7 @@
 ---
 title     : 'NodeJs'
 summary   : 'Collect metrics, trace data, and logs from NodeJs applications'
-__int_icon: 'icon/nodejs'
+__int_icon: 'icon/node_js'
 dashboard :
   - desc  : 'Not available'
     path  : '-'
@@ -17,7 +17,7 @@ monitor   :
 Report information from NodeJs applications to Guance:
 
 - Collect custom Metrics data from the application;
-- Collect tracing data from the application;
+- Collect trace data from the application;
 - Manage all logs from the application.
 
 ## Trace {#tracing}

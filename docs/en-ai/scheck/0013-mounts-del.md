@@ -8,22 +8,27 @@
 
 ## Category
 
-- Storage
+- storage
 
 
 ## Level
 
-- Warn
+- warn
 
 
 ## Compatible Versions
 
+
 - Linux
+
+
 
 
 ## Description
 
-- Monitors when a host path is unmounted.
+
+- Monitor the situation where a host path is unmounted.
+
 
 
 ## Scan Frequency
@@ -31,14 +36,18 @@
 
 ## Theoretical Basis
 
-- A bind mount provides an additional view of a related directory tree. Typically, mounts create a tree-like view for storage devices. Bind mounts, however, duplicate an existing directory tree under another mount point. Directories and files obtained through bind mounts are identical to the original directories and files. Changes made from either the mount directory or the original directory are immediately reflected on the other side. In short, this means that any mount point, regular directory, or file can be mounted elsewhere. If it is maliciously unmounted, it can cause data inconsistency and service unavailability.
+
+- A bind mount provides an additional view of a related directory tree. Typically, mounts create a tree-like view for storage devices. A bind mount duplicates an existing directory tree to another mount point. Directories and files obtained through a bind mount are identical to the original directories and files. Changes made from either the mounted directory or the original directory will immediately reflect on the other end. In short, it allows mounting any mount point, regular directory, or file to another location. If unmounted maliciously, it can lead to incomplete data and service unavailability.
+
 
 
 ## Risk Items
 
+
 - Data inconsistency
 
 - Service unavailability
+
 
 
 ## Audit Method
@@ -49,27 +58,38 @@ mount
 ```
 
 
+
 ## Remediation
-- If the main path was maliciously unmounted, carefully inspect the host environment to prevent service unavailability.
+- If the main path was maliciously unmounted, carefully examine the host environment to prevent service unavailability.
+
 
 
 ## Impact
 
+
 - None
+
+
 
 
 ## Default Value
 
+
 - None
+
+
 
 
 ## References
 
-- [Emergency Response and Investigation Process for Hacker Intrusion (Unofficial)](https://www.sohu.com/a/236820450_99899618)
 
-- [A Real Case Study of Cryptojacking Intrusion Investigation (Unofficial)](https://www.cnblogs.com/zsl-find/articles/11688640.html)
+- [Emergency Response Thought Process and Procedure for Hacker Intrusion (Unofficial)](https://www.sohu.com/a/236820450_99899618)
+
+- [A Real Case Study of Mining Malware Intrusion Analysis (Unofficial)](https://www.cnblogs.com/zsl-find/articles/11688640.html)
+
 
 
 ## CIS Controls
+
 
 - None

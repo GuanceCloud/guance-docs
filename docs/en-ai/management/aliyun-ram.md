@@ -1,4 +1,4 @@
-# Configure Guance RAM Policy in Alibaba Cloud
+# Configure <<< custom_key.brand_name >>> RAM Policy in Alibaba Cloud
 
 1. Add Authorization:
 
@@ -34,7 +34,7 @@
 
 ![](img/cn3.png)
 
-4. Complete Permission Policy Creation:
+4. Complete Creating Permission Policy:
 
 ![](img/cn4.png)
 

@@ -10,9 +10,9 @@ Get a team
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description                                      |
-|:--------------|:-------|:---------|:-------------------------------------------------|
-| groupUUID     | string | No       | Team UUID, if it's to get member information for a new team, this value should not be passed <br> |
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:-------------------------|
+| groupUUID            | string   | No       | Team UUID, if it is to get member information for a new team, this value should not be passed <br> |
 
 ## Additional Parameter Notes
 
@@ -24,6 +24,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/member_group/get?groupUUID=gro
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
+
 
 
 ## Response

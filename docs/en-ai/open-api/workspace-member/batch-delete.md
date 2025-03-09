@@ -8,11 +8,12 @@
 Delete one or multiple members
 
 
+
 ## Body Request Parameters
 
-| Parameter Name    | Type   | Required | Description              |
-|:-------------|:-----|:------|:----------------|
-| accountUUIDs | array | Y | List of accounts<br>Example: ['xxx', 'xxx'] <br>Can be empty: False <br> |
+| Parameter Name     | Type   | Required | Description              |
+|:-----------------|:------|:-------|:------------------------|
+| accountUUIDs | array | Y | List of account UUIDs<br>Example: ['xxx', 'xxx'] <br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -26,6 +27,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/member/batch_delete' \
 --data-raw '{"accountUUIDs": ["acnt_xxxx32"]}' \
 --compressed 
 ```
+
 
 
 ## Response

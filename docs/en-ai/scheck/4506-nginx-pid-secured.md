@@ -27,17 +27,17 @@
 ## Description
 
 
-- The nginx PID file stores the master process ID of the nginx process. This file must not be subject to unauthorized modifications.
+- The nginx PID file stores the master process ID of the nginx process. This file should not be subject to unauthorized modifications.
 
 
 
 ## Scan Frequency
 - 0 */30 * * *
 
-## Theoretical Basis
+## Theory
 
 
-- The PID file should be owned by the root user and group root. It should also be readable by everyone but writable only by the root user (permissions 644). This will prevent unauthorized modifications to the PID file, which could lead to a denial of service.
+- The PID file should be owned by root and group root. It should also be readable by everyone but writable only by root (permissions 644). This will prevent unauthorized modifications to the PID file, which could lead to a denial of service.
 
 
 
@@ -76,7 +76,7 @@ ls -l /var/run/nginx.pid
 
 
 
-## Default Values
+## Default Value
 
 
 - By default, the PID is owned by the root user

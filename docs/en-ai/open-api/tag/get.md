@@ -2,21 +2,21 @@
 
 ---
 
-<br />**GET /api/v1/tag/\{tag_uuid\}/get**
+<br />**GET /api/v1/tag/{tag_uuid}/get**
 
 ## Overview
-Retrieve detailed information about a tag
+Get detailed information about a tag
 
 
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description           |
-|:--------------|:-------|:---------|:----------------------|
-| tag_uuid      | string | Y        | Tag UUID              |
+| Parameter Name | Type   | Required | Description          |
+|:--------------|:-------|:---------|:---------------------|
+| tag_uuid      | string | Y        | Tag UUID             |
 
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 Data Description
 
@@ -25,8 +25,8 @@ Data Description
 | Parameter Name | Type   | Description                                                 |
 | -------------- | ------ | ----------------------------------------------------------- |
 | name          | string | Tag name                                                    |
-| description   | string | Field description                                           |
-| color         | string | Predefined color type, default, style_key1, style_key2, etc. |
+| description   | string | Field description information                                |
+| color         | string | Frontend and backend agreed color type, default, style_key1, style_key2 ~~                |
 
 - Color `color` field type-color mapping:
 ```json

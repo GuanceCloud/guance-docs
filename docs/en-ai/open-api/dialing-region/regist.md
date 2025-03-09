@@ -11,16 +11,16 @@ Create a user-defined node
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                                                                                   |
-|:--------------|:-------|:---------|:----------------------------------------------------------------------------------------------|
-| internal      | boolean| Y        | Country attribute (true for domestic, false for overseas)<br>Nullable: False                  |
-| isp           | string | Y        | Internet service provider<br>Nullable: False                                                  |
-| country       | string | Y        | Country<br>Nullable: False                                                                    |
-| province      | string |          | Province<br>Nullable: True                                                                    |
-| city          | string |          | City<br>Nullable: True                                                                        |
-| name          | string |          | 【Dial Testing Node】Nickname<br>Allows empty string: True <br>Nullable: True                 |
-| company       | string |          | Company information<br>Nullable: True                                                         |
-| keycode       | string | Y        | 【Dial Testing Node】Keycode (unique)<br>Nullable: False                                      |
+| Parameter Name | Type   | Required | Description                                                                                     |
+|:--------------|:-------|:---------|:------------------------------------------------------------------------------------------------|
+| internal      | boolean| Y        | Country attribute (true for domestic, false for overseas)<br>Allow null: False <br>               |
+| isp           | string | Y        | ISP<br>Allow null: False <br>                                                                    |
+| country       | string | Y        | Country<br>Allow null: False <br>                                                                |
+| province      | string |          | Province<br>Allow null: True <br>                                                                |
+| city          | string |          | City<br>Allow null: True <br>                                                                    |
+| name          | string |          | [Test Node] Nickname<br>Allow empty string: True <br>Allow null: True <br>                      |
+| company       | string |          | Company information<br>Allow null: True <br>                                                     |
+| keycode       | string | Y        | [Test Node] keycode (must be unique)<br>Allow null: False <br>                                  |
 
 ## Additional Parameter Notes
 

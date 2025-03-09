@@ -1,28 +1,28 @@
-# Use Alibaba Cloud ECI for Elastic Scaling of kodo-x
+# Using Alibaba Cloud ECI for Elastic Scaling of kodo-x
 
 ???+ warning "Note"
      ACK must be a Pro edition cluster.
 
 ## Introduction {#intro}
 
-This solution is suitable for scenarios with significant traffic fluctuations. With virtual nodes, when your ACK cluster needs to scale out, you no longer need to plan the computational capacity of nodes; instead, you can create ECI instances on-demand under virtual nodes. ECIs have network connectivity with Pods on real nodes within the cluster. It is recommended that you schedule the elastic traffic portion of long-running business workloads to ECI. This can shorten the time required for elastic scaling, reduce scaling costs, and fully utilize existing resources. When business traffic decreases, you can quickly release Pods deployed on ECI to lower usage costs. We use Kubernetes HPA technology to achieve kodo-x scaling.
+This solution is suitable for scenarios with significant traffic fluctuations. With virtual nodes, when your ACK cluster needs to scale out, you do not need to plan the computing capacity of the nodes; you can directly create ECI on demand under the virtual node. The network between ECI and Pods on real nodes in the cluster is interconnected. It is recommended that you schedule the elastic traffic part of long-running business loads to ECI, which can shorten the time for elastic scaling, reduce scaling costs, and make full use of existing resources. When business traffic decreases, you can quickly release Pods deployed on ECI, thereby reducing usage costs. We use Kubernetes' HPA technology to achieve kodo-x scaling.
 
 ## Prerequisites {#prerequisite}
 
-- The Kubernetes cluster must be ACK Pro and version 1.20.11 or higher. For upgrade instructions, see [Upgrading ACK Cluster K8s Version](https://help.aliyun.com/zh/ack/ack-managed-and-ack-dedicated/user-guide/configure-priority-based-resource-scheduling#:~:text=%E5%8D%87%E7%BA%A7%EF%BC%8C%E8%AF%B7%E5%8F%82%E8%A7%81-,%E5%8D%87%E7%BA%A7ACK%E9%9B%86%E7%BE%A4K8s%E7%89%88%E6%9C%AC,-%E3%80%82).
-- When using ECI resources, `ack-virtual-node` must be deployed. For specific operations, see [Using ECI in ACK](https://help.aliyun.com/zh/eci/use-ecis-in-ack-clusters#topic-1860167).
+- The Kubernetes cluster must be ACK Pro and version 1.20.11 or higher. For how to upgrade, please refer to [Upgrading ACK Cluster K8s Version](https://help.aliyun.com/zh/ack/ack-managed-and-ack-dedicated/user-guide/configure-priority-based-resource-scheduling#:~:text=%E5%8D%87%E7%BA%A7%EF%BC%8C%E8%AF%B7%E5%8F%82%E8%A7%81-,%E5%8D%87%E7%BA%A7ACK%E9%9B%86%E7%BE%A4K8s%E7%89%88%E6%9C%AC,-%E3%80%82).
+- When using ECI resources, `ack-virtual-node` must already be deployed. For specific operations, please refer to [Using ECI in ACK](https://help.aliyun.com/zh/eci/use-ecis-in-ack-clusters#topic-1860167).
 
 ## Environment Information {#info}
 
-| Name               | Description                                                   |      |
-| ------------------ | ------------------------------------------------------------- | ---- |
-| Number of kodo-x nodes | 3                                                            |      |
-| kodo-x configuration | 16C 32G                                                       |      |
-| kodo-x resource     | request:<br/>cpu: 15<br/>memory: 28G<br/>limit:<br/>cpu: 16<br/>memory: 28G |      |
-| kodo-x node label   | app: kodo-x                                                   |      |
-| HPA effect         | When Pod CPU reaches 85%, multiple kodo-x replicas are launched, up to a maximum of 10 |      |
+| Name                | Description                                                       |      |
+| ------------------- | ----------------------------------------------------------------- | ---- |
+| Number of kodo-x Nodes | 3                                                                 |      |
+| kodo-x Configuration | 16C 32G                                                          |      |
+| kodo-x Resource      | request: <br/>cpu: 15<br/>memory: 28G<br/>limit:<br/>cpu: 16<br/>memory: 28G |      |
+| kodo-x Node Labels   | app: kodo-x                                                      |      |
+| HPA Effect           | When pod CPU reaches 85%, multiple kodo-x replicas are launched, up to a maximum of 10 |      |
 
-## Procedures {#procedure}
+## Procedure {#procedure}
 
 ### Step One: Set ResourcePolicy {#Step-one}
 
@@ -39,16 +39,16 @@ spec:
   ignoreTerminatingPod: true
   preemptPolicy: AfterAllUnits
   selector:
-    app: deployment-forethought-kodo-kodo-x # No change needed if this is kodo-x
+    app: deployment-forethought-kodo-kodo-x # No changes needed if this is kodo-x
   strategy: prefer
   units:
     - nodeSelector:
-        app: kodo-x # Set the label for your exclusive machine here
+        app: kodo-x # Set the label of your exclusive machine here
       resource: ecs
     - resource: eci 
 ```
 
-Check status:
+Check the status:
 
 ```shell
 kubectl get ResourcePolicy -n forethought-kodo
@@ -87,7 +87,7 @@ spec:
     name: kodo-x
 ```
 
-Check status:
+Check the status:
 
 ```shell
 kubectl get hpa -n forethought-kodo
@@ -95,11 +95,11 @@ kubectl get hpa -n forethought-kodo
 
 ### Step Three: Configure kodo-x {#Step-three}
 
-- Modify kodo-x configmap parameters
+- Modify kodo-x ConfigMap parameters
 
-  Modify the cm `kodo-x` under `forethought-kodo`, adjust `workers`, `log_workers`, `tracing_workers`. Refer to more parameters in the [Application Service Configuration Guide](application-configuration-guide.md).
+  Modify the ConfigMap `kodo-x` under `forethought-kodo`, adjust `workers`, `log_workers`, `tracing_workers`. Refer to more parameters in the [Application Service Configuration Guide](application-configuration-guide.md).
 
-  ```shell
+  ```yaml
   global:
       workers: 16
       log_workers: 64
@@ -110,7 +110,7 @@ kubectl get hpa -n forethought-kodo
 
   Modify the `strategy` object
 
-  ```shell
+  ```yaml
   ...
     strategy:
       rollingUpdate:
@@ -119,11 +119,11 @@ kubectl get hpa -n forethought-kodo
   ...
   ```
 
-- Add ECI annotations
+- Add ECI annotation
 
   Add `alibabacloud.com/burst-resource: eci`
 
-  ```shell
+  ```yaml
   spec:
   	...
     template:
@@ -132,7 +132,7 @@ kubectl get hpa -n forethought-kodo
           alibabacloud.com/burst-resource: eci
   ```
 
-- Modify resource allocation
+- Modify resource configuration
 
   ```yaml
   spec:
@@ -171,7 +171,6 @@ kubectl get hpa -n forethought-kodo
   kodo-x-d89f78cf4-hrhpx   1/1     Running   0          3h8m   172.16.8.211   virtual-kubelet-cn-hangzhou-i   <none>           <none>
   kodo-x-d89f78cf4-s7zsd   1/1     Running   0          3h5m   10.103.4.171   cn-hangzhou.172.16.23.173       <none>           <none>
   kodo-x-d89f78cf4-txqh8   1/1     Running   0          3h5m   10.103.5.107   cn-hangzhou.172.16.23.174       <none>           <none>
-  
   
   ```
 

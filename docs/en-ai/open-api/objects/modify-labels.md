@@ -1,17 +1,17 @@
-# Modify One or More Labels for a Host
+# Modify One or More Labels for a Specific Host
 
 ---
 
 <br />**POST /api/v1/object/hosts/\{host\}/label/modify**
 
 ## Overview
-Modify one or more labels for a host. After a successful API call, there is typically a cache period of no more than 5 minutes.
+Modify one or more labels for a specific host. After a successful API call, there may be a cache of up to 5 minutes.
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description               |
-|:--------------|:-------|:---------|:--------------------------|
-| host          | string | Yes      | Hostname                  |
+| Parameter Name | Type   | Required | Description       |
+|:--------------|:-------|:---------|:------------------|
+| host          | string | Yes      | Hostname          |
 
 ## Body Request Parameters
 

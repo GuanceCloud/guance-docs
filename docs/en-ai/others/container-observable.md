@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Guance supports collecting object data, metrics data, and log data. After enabling container data reception service in DataKit, you can quickly view and analyze the health status of containers, CPU and memory resources, as well as network traffic usage through "Infrastructure" - "Container" - "Containers". You can also view collected container metrics data in "Metrics", build a container metrics visualization dashboard in "Scenarios", and create container monitors in "Monitoring". Alerts can be set up to get immediate notifications of any anomalies in container metrics.
+<<< custom_key.brand_name >>> supports collecting object data, metrics data, and log data. After enabling the container data reception service in DataKit, you can quickly view and analyze the health status of containers, CPU, memory resources, and network traffic usage through "Infrastructure" - "Containers" - "Containers". You can also view collected container metrics data in "Metrics", build container metrics visualization dashboards in "Scenarios", and create container monitors in "Monitoring" to get notified of any anomalies in container metrics immediately.
 
 ## Prerequisites
 
@@ -11,13 +11,13 @@ Guance supports collecting object data, metrics data, and log data. After enabli
 - Install DataKit ([DataKit installation documentation](../datakit/datakit-install.md))
 - Supported operating systems: `Linux`
 
-## Methods/Steps
+## Method/Steps
 
 ### Step 1: Enable Container Collector
 
 1. Navigate to the `conf.d/container` directory under the DataKit installation directory.
 2. Copy `container.conf.sample` and rename it to `container.conf`.
-3. Open `container.conf`, ensure the input is enabled. Example configuration:
+3. Open `container.conf` and ensure that input is enabled. Example configuration:
 
 ```toml
 [inputs.container]
@@ -42,8 +42,8 @@ Guance supports collecting object data, metrics data, and log data. After enabli
   ## Authorization level:
   ##   bearer_token -> bearer_token_string -> TLS
   ## Use bearer token for authorization. ('bearer_token' takes priority)
-  ## Linux at:   /run/secrets/kubernetes.io/serviceaccount/token
-  ## Windows at: C:\var\run\secrets\kubernetes.io\serviceaccount\token
+  ## Linux path: /run/secrets/kubernetes.io/serviceaccount/token
+  ## Windows path: C:\var\run\secrets\kubernetes.io\serviceaccount\token
   bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
   # bearer_token_string = "<your-token-string>"
 
@@ -52,13 +52,13 @@ Guance supports collecting object data, metrics data, and log data. After enabli
     # more_tag = "some_other_value"
 ```
 
-4. After completing the configuration, use the command `datakit --restart` to restart DataKit. The object data collection interval is 5 minutes, so you can view the container object data in the Guance workspace 5 minutes after enabling the container collector.
+4. After completing the configuration, use the command `datakit --restart` to restart DataKit for the changes to take effect. The object data collection interval is 5 minutes, so you can view the collected container object data in the <<< custom_key.brand_name >>> workspace 5 minutes after enabling container collection.
 
 ![](img/3.yaml_6.png)
 
-### Step 2: Enable Metrics Collection for Containers
+### Step 2: Enable Container Metrics Collection
 
-The DataKit container collection service does not enable metrics collection by default. To enable metrics collection, set `enable_metric` to `true` in `container.conf` and restart DataKit. You can customize the collection of metrics for `container`, `k8s`, and `pod` according to your needs.
+The DataKit container collection service does not enable metrics collection by default. If you need to enable metrics collection, set `enable_metric` to `true` in `container.conf` and restart DataKit. You can customize which metrics to collect (`container`, `k8s`, `pod`) based on your needs.
 
 ```toml
 [inputs.container]
@@ -72,7 +72,7 @@ The DataKit container collection service does not enable metrics collection by d
 ......
 ```
 
-After collecting metrics data, you can choose built-in views in the Guance scenario dashboard to create a container visualization dashboard with one click.
+After enabling metrics collection, you can choose built-in views in <<< custom_key.brand_name >>> scenario dashboards to create container visualization dashboards with one click.
 
 ![](img/4.container_1.png)
 

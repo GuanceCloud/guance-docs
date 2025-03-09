@@ -7,30 +7,30 @@
 ## Overview
 Modify a Pipeline
 
-When the type category is profiling, the field `CentralPLServiceSwitch` (returned by the `/workspace/get` interface) in the workspace configuration must be true for this rule to take effect.
+When the category type is `profiling`, the rule will only take effect if the field `CentralPLServiceSwitch` (returned by the `/workspace/get` interface) in the workspace configuration is `true`.
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description                 |
-|:--------------|:-------|:--------|:---------------------------|
-| pl_uuid       | string | Y       | ID of the Pipeline          |
+| Parameter Name | Type   | Required | Description               |
+|:--------------|:-------|:---------|:--------------------------|
+| pl_uuid       | string | Y        | ID of the Pipeline<br> |
 
 ## Body Request Parameters
 
-| Parameter Name     | Type   | Required | Description                                                                                                             |
-|:------------------|:-------|:--------|:-----------------------------------------------------------------------------------------------------------------------|
-| name              | string | Y       | Pipeline file name, also its source type value.<br>Allow null: False <br>Maximum length: 256 <br>$notSearchRegExp: [^a-zA-Z0-9_\u4e00-\u9fa5-]+ <br> |
-| type              | string | Y       | Pipeline file type<br>Allow null: False <br>Possible values: ['local', 'central'] <br>                                                               |
-| source            | array  |         | Selected source list<br>Allow null: False <br>                                                                                                       |
-| content           | string | Y       | Content of the pipeline file (base64 encoded)<br>Allow null: False <br>                                                                               |
-| testData          | string |         | Test data (base64 encoded)<br>Allow null: False <br>Allow empty string: True <br>                                                                    |
-| isForce           | boolean|         | Whether to replace when specific types have defaults<br>Allow null: False <br>                                                                        |
-| asDefault         | int    |         | Whether to set this as the default pipeline for the type, 1 means set as default<br>Allow null: False <br>                                            |
-| category          | string | Y       | Category<br>Allow null: False <br>Allow empty string: False <br>Possible values: ['logging', 'object', 'custom_object', 'network', 'tracing', 'rum', 'security', 'keyevent', 'metric', 'profiling', 'dialtesting', 'billing'] <br> |
-| extend            | json   |         | Extend information<br>Allow null: False <br>                                                                                                          |
-| extend.appID      | array  |         | App ID<br>Allow null: True <br>                                                                                                                       |
-| extend.measurement| array  |         | Source origin<br>Allow null: True <br>                                                                                                                 |
-| extend.loggingIndex| string|         | Log index<br>Allow null: True <br>                                                                                                                    |
+| Parameter Name | Type   | Required | Description               |
+|:--------------|:-------|:---------|:--------------------------|
+| name          | string | Y        | Name of the Pipeline file, which is also its source type value<br>Allow empty: False <br>Maximum length: 256 <br>$notSearchRegExp: [^a-zA-Z0-9_\u4e00-\u9fa5-]+ <br> |
+| type          | string | Y        | Type of the Pipeline file<br>Allow empty: False <br>Options: ['local', 'central'] <br> |
+| source        | array  |          | Selected source list<br>Allow empty: False <br> |
+| content       | string | Y        | Content of the pipeline file (base64 encoded)<br>Allow empty: False <br> |
+| testData      | string |          | Test data (base64 encoded)<br>Allow empty: False <br>Allow empty string: True <br> |
+| isForce       | boolean|          | Whether to replace when there exists a default for a specific type<br>Allow empty: False <br> |
+| asDefault     | int    |          | Whether to set this as the default pipeline for this type, 1 for setting as default<br>Allow empty: False <br> |
+| category      | string | Y        | Category<br>Allow empty: False <br>Allow empty string: False <br>Options: ['logging', 'object', 'custom_object', 'network', 'tracing', 'rum', 'security', 'keyevent', 'metric', 'profiling', 'dialtesting', 'billing'] <br> |
+| extend        | json   |          | Category<br>Allow empty: False <br> |
+| extend.appID  | array  |          | App ID<br>Allow empty: True <br> |
+| extend.measurement | array |      | Source origin<br>Allow empty: True <br> |
+| extend.loggingIndex | string |    | Log index<br>Allow empty: True <br> |
 
 ## Additional Parameter Notes
 
@@ -44,7 +44,7 @@ curl 'https://openapi.guance.com/api/v1/pipeline/pl_xxxx32/modify' \
 ```
 
 ## Response
-```json
+```shell
 {
     "code": 200,
     "content": {
@@ -70,5 +70,5 @@ curl 'https://openapi.guance.com/api/v1/pipeline/pl_xxxx32/modify' \
     "message": "",
     "success": true,
     "traceId": "TRACE-1EA80DD4-EB2C-4A9B-A146-D00606CC50E0"
-}
+} 
 ```

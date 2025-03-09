@@ -1,7 +1,8 @@
-# Network Data Monitoring
+# Network Data Detection
 ---
 
-A tool used to monitor network performance metrics within a workspace, allowing users to set threshold ranges and trigger alerts when metrics exceed these thresholds. Guance supports configuring alert rules for individual metrics and allows customization of alert severity levels.
+A tool used to monitor network performance metrics within a workspace, allowing users to set threshold ranges and trigger alerts when metrics exceed these thresholds. <<< custom_key.brand_name >>> supports configuring alert rules for individual metrics and allows customization of alert severity levels.
+
 
 ## Use Cases
 
@@ -13,11 +14,11 @@ Supports monitoring metric data from data sources such as `netflow`/`httpflow`. 
 
 ### Detection Frequency
 
-The execution frequency of detection rules; the default is 5 minutes.
+The frequency at which detection rules are executed; the default is 5 minutes.
 
 ### Detection Interval
 
-The time range for querying metrics each time the task is executed. This is influenced by the detection frequency, resulting in different selectable intervals.
+The time range over which metrics are queried each time the task is executed. This is influenced by the detection frequency, resulting in different available intervals.
 
 | Detection Frequency | Detection Interval (Dropdown Options) |
 | --- | --- |
@@ -32,52 +33,52 @@ The time range for querying metrics each time the task is executed. This is infl
 
 ### Detection Metrics
 
-Set the metrics for detecting data. Supports setting metrics for all or specific services within a certain time range in the workspace.
+Set the metrics for detecting data. Supports setting metrics for all or individual services within a specific time range in the workspace.
 
 | Field     | Description                                                         |
 | -------- | ------------------------------------------------------------ |
 | Data Source   | Supported: `netflow`, `httpflow`.                                 |
-| Metrics     | <li>`netflow`: Sent bytes, received bytes, TCP delay, TCP fluctuation, TCP connection count, TCP retransmission count, TCP close count;<br><li>`httpflow`: Request count, error count, error rate, average response time, P99 response time, P95 response time, P75 response time, P50 response time. |
-| Filter Conditions | Screen the data of detected metrics based on labels, limiting the scope of detected data. Supports adding one or more label filters, including fuzzy matching and non-matching conditions. |
-| Detection Dimensions | Any string type (`keyword`) fields in the configuration can be selected as detection dimensions. Currently, up to three fields are supported. By combining multiple detection dimension fields, a specific detection object can be determined. Guance will evaluate whether the statistical metrics of a specific detection object meet the threshold conditions for triggering events.<br />* (For example, selecting detection dimensions `host` and `host_ip` would result in a detection object like `{host: host1, host_ip: 127.0.0.1}`).*
+| Metrics     | <li>`netflow`: Sent bytes, received bytes, TCP delay, TCP jitter, TCP connections, TCP retransmissions, TCP closes;<br><li>`httpflow`: Request count, error count, error rate, average response time, P99 response time, P95 response time, P75 response time, P50 response time. |
+| Filter Conditions | Filter the detected metric data based on labels associated with the metrics, limiting the scope of the detected data. Supports adding one or multiple label filters, including fuzzy matching and non-matching conditions. |
+| Detection Dimensions     | Any string type (`keyword`) fields in the data can be selected as detection dimensions. Currently, up to three fields can be chosen. By combining multiple detection dimension fields, a specific detection object can be determined. <<< custom_key.brand_name >>> will evaluate whether the statistical metrics of a detection object meet the configured threshold conditions and generate an event if they do.<br />* (For example, selecting detection dimensions `host` and `host_ip` would result in a detection object like `{host: host1, host_ip: 127.0.0.1}`.) * |
 
 ### Trigger Conditions
 
 Set the trigger conditions for alert levels: you can configure any one of critical, major, minor, or normal.
 
-Configure trigger conditions and severity levels. When query results contain multiple values, an event is generated if any value meets the trigger condition.
+Configure trigger conditions and severity levels; when query results contain multiple values, an event is generated if any value meets the trigger condition.
 
 > For more details, refer to [Event Level Description](event-level-description.md).
 
-If **Continuous Trigger Judgment** is enabled, you can configure it to generate events again after multiple consecutive judgments meet the trigger conditions, with a maximum limit of 10 times.
+If **Continuous Trigger Judgment** is enabled, you can configure the rule to trigger events again after multiple consecutive evaluations meet the trigger conditions, with a maximum limit of 10 times.
 
 ???+ abstract "Alert Levels"
 
-	1. **Critical (Red), Major (Orange), Minor (Yellow)**: Based on configured conditional operators.
+	1. **Alert Levels Critical (Red), Major (Orange), Minor (Yellow)**: Based on the configured condition operators.
   
 
-    2. **Normal (Green)**: Based on configured detection counts, as follows:
+    2. **Alert Level Normal (Green)**: Based on the configured detection count, as follows:
 
-    - Each execution of a detection task counts as one detection, e.g., [Detection Frequency = 5 minutes], then 1 detection = 5 minutes;
-    - You can customize the detection count, e.g., [Detection Frequency = 5 minutes], then 3 detections = 15 minutes.
+    - Each execution of a detection task counts as 1 detection, e.g., if the **Detection Frequency = 5 minutes**, then 1 detection = 5 minutes;
+    - You can customize the detection count, e.g., if **Detection Frequency = 5 minutes**, then 3 detections = 15 minutes.
 
-    After the detection rule takes effect, if critical, major, or minor abnormal events occur, and the data returns to normal within the custom detection count, a recovery alert event is generated.
+    After the detection rule takes effect, if an abnormal event occurs (critical, major, or minor), and the data returns to normal within the configured detection count, a recovery alert event is generated.
 
-    **Note**: Recovery alert events are not subject to [Alert Muting](../alert-setting.md). If no recovery alert detection count is set, the alert event will not recover and will remain in the [**Events > Unrecovered Events List**](../../events/event-explorer/unrecovered-events.md).
+    **Note**: Recovery alert events are not subject to [Alert Mute](../alert-setting.md) restrictions. If no recovery alert detection count is set, the alert event will not recover and will remain in the [**Events > Unrecovered Events List**](../../events/event-explorer/unrecovered-events.md).
 
-### Data Gap Handling
+### Data Discontinuity
 
-You can configure seven strategies for handling data gaps.
+You can configure seven strategies for handling data discontinuity.
 
-1. Link the detection interval time range to judge the query results of the most recent minutes of the detected metrics, **do not trigger events**;
+1. In conjunction with the detection interval time range, determine the query results for the most recent minutes of the detection metrics, **do not trigger an event**;
 
-2. Link the detection interval time range to judge the query results of the most recent minutes of the detected metrics, **treat query results as 0**; at this point, the query results will be compared against the thresholds configured in the **Trigger Conditions** to determine if an anomaly event should be triggered.
+2. In conjunction with the detection interval time range, determine the query results for the most recent minutes of the detection metrics, **treat query results as 0**; these results will then be compared against the configured thresholds in the **Trigger Conditions** to determine if an abnormal event should be triggered.
 
-3. Customize fill-in values for the detection interval, **trigger data gap events, critical events, major events, minor events, and recovery events**; when choosing this strategy, it is recommended that the custom data gap time be **>= detection interval time**. If the configured time <= detection interval time, there may be simultaneous satisfaction of data gap and anomaly conditions, in which case only the data gap processing result will apply.
+3. Customize the fill-in value for the detection interval, **trigger data discontinuity events, critical events, major events, minor events, and recovery events**; if this configuration strategy is chosen, it is recommended that the custom data discontinuity time >= detection interval time. If the configured time <= detection interval time, there may be simultaneous satisfaction of data discontinuity and abnormal conditions, in which case only the data discontinuity handling result will be applied.
 
 
 ### Information Generation
 
-Enabling this option will generate "Information" events for detection results that do not match the above trigger conditions and write them into the system.
+Enabling this option will generate "Information" events for detection results that do not match any of the above trigger conditions.
 
-**Note**: If trigger conditions, data gap handling, and information generation are configured simultaneously, the priority order for triggering is: data gap handling > trigger conditions > information event generation.
+**Note**: If trigger conditions, data discontinuity, and information generation are configured simultaneously, the following priority applies: data discontinuity > trigger conditions > information event generation.

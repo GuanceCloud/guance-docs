@@ -2,29 +2,29 @@
 
 ## Introduction
 
-Since a locally deployed Kubernetes cluster cannot use `LoadBalancer` services, we can use `Nginx` or `Haproxy` for proxying.
+Since local Kubernetes clusters cannot use `LoadBalancer` services, we can use `Nginx` or `Haproxy` for proxying.
 
 ## Prerequisites
 
-- A Kubernetes cluster has been deployed. For deployment instructions, see [Kubernetes Deployment](infra-kubernetes.md)
-- The Ingress-nginx service has been deployed. For deployment instructions, see [Ingress-nginx Installation](ingress-nginx-install.md)
+- A deployed Kubernetes cluster. If not deployed, refer to [Kubernetes Deployment](infra-kubernetes.md)
+- Deployed Ingress-nginx service. If not deployed, refer to [Ingress-nginx Installation](ingress-nginx-install.md)
 
 ## Basic Information and Compatibility
 
-|     Name     |                   Description                   |
+| Name               | Description                                      |
 | :------------------: | :---------------------------------------------: |
-|     Configure Subdomain     |                   dataflux.cn                   |
-|      Cluster Node IPs      | 192.168.100.101,192.168.100.102,192.168.100.103 |
-| Ingress-nginx Port Number |                      32280                      |
-|    Offline Installation Support    |                       No                        |
-|       Supported Architectures       |                   amd64/arm64                   |
-|      Deployment Machine IP      |                 192.168.100.104                 |
+| Configure Subdomain | dataflux.cn                                      |
+| Cluster Node IPs    | 192.168.100.101,192.168.100.102,192.168.100.103   |
+| Ingress-nginx Port  | 32280                                            |
+| Supports Offline Installation | No                                         |
+| Supported Architectures | amd64/arm64                                    |
+| Deployment Machine IP | 192.168.100.104                                 |
 
 ## Installation Steps
 
-### 1. Query Port
+### 1. Query Ports
 
-Get the ingress-nginx NodePort port number
+Obtain the ingress-nginx NodePort port number
 
 ```shell
 kubectl get svc -n ingress-nginx
@@ -49,11 +49,11 @@ kubectl get svc -n ingress-nginx
     - Configuration
     
     ???+ warning "Note"
-         Please make sure to modify the IP addresses, port numbers, and domain names in the configuration. This configuration uses the domain `dataflux.cn`
+         Please make sure to modify the IP, port number, and domain name in the configuration. The domain name in this configuration is `dataflux.cn`
     
-    Modify the following configuration and save it under `/etc/nginx/conf.d`, named **`dataflux.conf`**
+    Modify the following configuration and save it to the `/etc/nginx/conf.d` directory with the name **`dataflux.conf`**
     
-    ???- note "dataflux.conf (click to expand)"
+    ???- note "dataflux.conf (Click to expand)"
          ```shell
          upstream httpbakend {
          server 192.168.100.101:32280;
@@ -83,7 +83,7 @@ kubectl get svc -n ingress-nginx
 
     - Installation
     
-      Deploy on the machine [`192.168.100.104`](#install-info)
+      Deploy on the [`192.168.100.104`](#install-info) machine
       ```shell
       ## Install
       yum install -y haproxy
@@ -92,10 +92,10 @@ kubectl get svc -n ingress-nginx
     - Configuration
     
     ???+ warning "Note"
-         Please make sure to modify the IP addresses, port numbers, and domain names in the configuration. This configuration uses the domain `dataflux.cn`
+         Please make sure to modify the IP, port number, and domain name in the configuration. The domain name in this configuration is `dataflux.cn`
     
-      Modify the following configuration and save it under `/etc/haproxy/`, named **`haproxy.cfg`**      
-    ???- note "haproxy.cfg (click to expand)"
+      Modify the following configuration and save it to the `/etc/haproxy/` directory with the name **`haproxy.cfg`**      
+    ???- note "haproxy.cfg (Click to expand)"
          ```shell
          #---------------------------------------------------------------------
          # Example configuration for a possible web application.  See the
@@ -156,7 +156,7 @@ kubectl get svc -n ingress-nginx
              timeout check           10s
              maxconn                 3000
     
-         # 443 https port configuration (optional)
+         # 443 https port configuration can be omitted if not required
          #frontend https_frontend
          #        bind *:443 ssl crt /etc/ssl/certs/dataflux.cn.pem # SSL certificate
          #        mode http
@@ -164,7 +164,7 @@ kubectl get svc -n ingress-nginx
          #        option forwardfor
          #        reqadd X-Forwarded-Proto:\ https
          #        #default_backend web_server
-         #        # do not route through ingress
+         #        # bypass ingress
          #        acl kodo           hdr(Host)  -i df-kodo.dataflux.cn
          #
          #        acl launcher       hdr(Host)  -i launcher.dataflux.cn
@@ -183,7 +183,7 @@ kubectl get svc -n ingress-nginx
          #        use_backend vip_1_servers if management
          #        use_backend vip_1_servers if management-api
          #
-         #       # do not route through ingress
+         #       # bypass ingress
          #        use_backend vip_2_servers if kodo
     
          # dynamic-static separation
@@ -193,7 +193,7 @@ kubectl get svc -n ingress-nginx
          #        redirect scheme https if !{ ssl_fc}
                  option httpclose
                  option forwardfor
-                 ###### Please modify your domain name from dataflux.cn to your domain
+                 ###### Please modify your domain dataflux.cn to your domain
                  acl kodo           hdr(Host)  -i df-kodo.dataflux.cn
                  acl test           hdr(Host)  -i test.dataflux.cn
                  acl launcher       hdr(Host)  -i launcher.dataflux.cn
@@ -216,7 +216,7 @@ kubectl get svc -n ingress-nginx
                  use_backend vip_1_servers if kodo
                  use_backend vip_1_servers if docs
                  use_backend vip_1_servers if test
-         # ingress port IP is the IP of the K8s cluster; please replace the IP
+         # ingress port IP is the K8S cluster's IP, please replace the IP
          backend vip_1_servers
                  balance roundrobin
                  server ingress_1 192.168.100.101:32280 check inter 1500 rise 3 fall 3
@@ -279,7 +279,7 @@ Commercial support is available at
 </html>
 ```
 
-#### 3.3 Clean Up Test Service
+#### 3.3 Cleanup Test Service
 ```shell
 kubectl delete deployment ingress-test
 kubectl delete svc ingress-test

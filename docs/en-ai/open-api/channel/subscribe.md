@@ -1,4 +1,4 @@
-# Subscribe Channel
+# Subscribe to Channel
 
 ---
 
@@ -8,27 +8,26 @@
 
 
 
-
 ## Route Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:------------------|:-------|:-----|:----------------|
+|:-------------------|:-------|:-----|:----------------|
 | channel_uuid | string | Y | Channel UUID<br> |
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:------------------|:-------|:-----|:----------------|
-| type | string | Y | Subscription type<br>Example: responsible <br>Allow empty: False <br>Options: ['responsible', 'participate', 'attention', 'cancel'] <br> |
+|:-------------------|:-------|:-----|:----------------|
+| type | string | Y | Subscription type<br>Example: responsible <br>Allow empty: False <br>Optional values: ['responsible', 'participate', 'attention', 'cancel'] <br> |
 
 ## Additional Parameter Explanation
 
 **Request Body Structure Explanation**
 
-| Parameter Name                |   Type  |          Description          |
+| Parameter Name                | Type  | Description          |
 |-----------------------|----------|------------------------|
-|type         |string |  Enum value (Responsible: responsible, Participate: participate, Attention: attention, Cancel: cancel)|
+|type         |string | Enum values (Responsible: responsible, Participate: participate, Attention: attention, Cancel: cancel)|
 
 
 

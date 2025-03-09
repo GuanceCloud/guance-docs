@@ -1,111 +1,110 @@
-# Preemptible Instance Survival Inspection for Alibaba Cloud
-
+# Alibaba Cloud Preemptible Instance Survival Inspection
 ---
 
 ## Background
 
-Due to the fluctuating market price of preemptible instances based on supply and demand, it is necessary to specify a bidding model when creating a preemptible instance. A preemptible instance can only be successfully created if the real-time market price of the specified instance type is lower than the bid and there is sufficient inventory. Therefore, inspecting preemptible instances is crucial for cloud assets. Through inspections, when a preemptible instance is about to be released, it will prompt the latest prices of all available zones for the current instance type and provide appropriate handling recommendations.
+Due to the fluctuating market price of preemptible instances based on supply and demand, it is necessary to specify a bidding model when creating a preemptible instance. A preemptible instance can only be successfully created if the real-time market price for the specified instance specification is lower than the bid and there is sufficient inventory. Therefore, inspecting preemptible instances is crucial for cloud assets. Through inspections, if a preemptible instance is about to be released, it will prompt the latest prices of all available zones for the current specification and provide appropriate handling recommendations.
 
 ## Prerequisites
 
-1. Set up [DataFlux Func (Guance Special Edition)](https://func.guance.com/#/) or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
-2. Create an [API Key](../../management/api-key/open-api.md) in Guance under "Management / API Key Management"
+1. Self-host [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/), or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
+3. Create an API Key for operations in <<< custom_key.brand_name >>> "Management / API Key Management" [API Key](../../management/api-key/open-api.md)
 
-> **Note**: If you plan to use a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and region as the currently used Guance SaaS deployment [in the same location](../../../getting-started/necessary-for-beginners/select-site/).
+> **Note**: If considering using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and region as the current SaaS deployment of <<< custom_key.brand_name >>>.
 
-## Enabling Inspections
+## Enable Inspection
 
-In your self-hosted DataFlux Func, install "Guance Integration (Alibaba Cloud-ECS Collection)" and "Guance Self-Hosted Inspection (Alibaba Cloud Preemptible Instance Survival Detection)" via the "Script Market" and configure the Guance API Key to enable the inspection.
+In the self-hosted DataFlux Func, install the "<<< custom_key.brand_name >>> Integration (Alibaba Cloud-ECS Collection)" and "<<< custom_key.brand_name >>> Custom Inspection (Alibaba Cloud Preemptible Instance Survival Detection)" from the script market, and configure the <<< custom_key.brand_name >>> API Key to complete the activation.
 
-In the DataFlux Func Script Market, select the inspection scenario you want to enable, click Install, configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose Deploy to start the script.
+In the DataFlux Func script market, select the inspection scenario you want to enable, click install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/) then choose to deploy and start the script.
 
 ![image](../img/create_checker.png)
 
-After the deployment script is successfully started, it will automatically create the startup script and auto-trigger configuration. You can directly jump to view the corresponding configuration through the link.
+After the startup script deployment is successful, it will automatically create the startup script and auto-trigger configuration. You can directly jump to view the corresponding configuration via the link.
 
 ![image](../img/success_checker.png)
 
-## Configuring Inspections
+## Configure Inspection
 
-### Configuring Inspections in Guance
+### Configuration in <<< custom_key.brand_name >>>
 
 ![image](../img/spot_alive02.png)
 
 #### Enable/Disable
-The Alibaba Cloud preemptible instance survival inspection is enabled by default but can be manually disabled. Once enabled, it will inspect the configured list of preemptible instances.
+The Alibaba Cloud Preemptible Instance Survival Inspection is enabled by default. It can be manually disabled. Once enabled, it will inspect the configured list of preemptible instances.
 
-#### Editing
-The "Alibaba Cloud Preemptible Instance Survival Inspection" supports manual addition of filter conditions. Click the **Edit** button in the operation menu on the right side of the intelligent inspection list to edit the inspection template.
+#### Edit
+The "Alibaba Cloud Preemptible Instance Survival Inspection" supports manual addition of filtering conditions. In the operation menu on the right side of the smart inspection list, click the **Edit** button to edit the inspection template.
 
-* Filter Conditions: Configure `instance_type` and `spot_with_price_limit` for accepted discounts.
-* Alert Notifications: Supports selecting and editing alert policies, including event levels, notification targets, and alert mute periods.
+* Filtering Conditions: Configure `instance_type` and `spot_with_price_limit` acceptance discounts.
+* Alert Notifications: Supports selecting and editing alert strategies, including event levels, notification targets, and alert mute periods.
 
-To configure entry parameters, click Edit, fill in the corresponding detection objects in the parameter configuration, and save to start the inspection:
+To configure entry parameters, click edit and fill in the corresponding detection objects in the parameter configuration, then save to start the inspection:
 
 ![image](../img/spot_alive03.png)
 
-You can refer to the following JSON configuration to set multiple application information:
+You can refer to the following JSON configuration for multiple applications:
 
 ```json
-// Configuration Example: Can configure multiple groups or single configurations
-configs = [
-    {"instance_type": "xxx1", "spot_with_price_limit": "xxx2"},
-    {"instance_type": "xxx3", "spot_with_price_limit": "xxx4"}
-]
+ // Configuration Example: Can configure multiple groups or single
+    configs = [
+        {"instance_type": "xxx1", "spot_with_price_limit": "xxx2"},
+        {"instance_type": "xxx3", "spot_with_price_limit": "xxx4"}
+    ]
 ```
 
-## Viewing Events
-Guance will inspect the status of preemptible instances and generate events when an instance is about to be released. In the intelligent inspection list, click the **View Related Events** button to view corresponding anomaly events.
+## View Events
+<<< custom_key.brand_name >>> will inspect the status of preemptible instances and generate corresponding events when detecting that they are about to be released. In the operation menu on the right side of the smart inspection list, click the **View Related Events** button to view the corresponding anomaly events.
 
 ![image](../img/spot_alive04.png)
 
 ### Event Details Page
-Click **Event** to view the detailed page of the intelligent inspection event, including event status, anomaly occurrence time, anomaly name, basic attributes, event details, alert notifications, history, and related events.
+Click **Event**, to view the details page of the smart inspection event, including event status, anomaly occurrence time, anomaly name, basic attributes, event details, alert notifications, history, and related events.
 
-* Click the "View Monitor Configuration" icon in the upper-right corner of the detail page to view and edit the current intelligent inspection configuration.
+* Click the small icon labeled "View Monitor Configuration" in the top-right corner of the details page to view and edit the current smart inspection configuration.
 
 #### Basic Attributes
-* Detection Dimensions: Based on the configured filter conditions, supports copying `key/value`, adding filters, and viewing related logs, containers, processes, security checks, traces, RUM, Synthetic Tests, and CI data.
-* Extended Attributes: After selecting extended attributes, supports copying `key/value` and forward/reverse filtering.
+* Detection Dimensions: Based on the filtering conditions configured in the smart inspection, support copying `key/value`, adding to filters, and viewing related logs, containers, processes, Security Check, trace, RUM PV, Synthetic Tests, and CI data.
+* Extended Attributes: After selecting extended attributes, support copying in `key/value` format, forward/reverse filtering.
 
 ![image](../img/spot_alive05.png)
 
 #### Event Details
 * Event Overview: Describes the object and content of the anomaly inspection event.
-* Preemptible Instance Details: View detailed information about the current instance, including name, ID, region, and availability zone.
-* Preemptible Instance Type Price: View the prices of all available zones for the current specification to help users bid.
-* Historical Prices for Preemptible Instance Types: View historical prices for the current specification across different availability zones to track price changes.
-* Warm Suggestions: Provides operational recommendations for the current anomaly scenario.
+* Preemptible Instance Details: View detailed information about the current instance, including instance name, ID, region, and availability zone.
+* Preemptible Instance Type Price: View the prices of all available zones under the current specification to assist users in bidding.
+* Preemptible Instance Type Historical Price: View historical prices of preemptible instances across different availability zones for tracking price changes.
+* Warm Suggestions: Provide operational suggestions for the current anomaly scenario.
 
 ![image](../img/spot_alive06.png)
 
-#### History
-Supports viewing the detection object, anomaly/recovery times, and duration.
+#### History Records
+Support viewing detection objects, anomaly/recovery times, and duration.
 
 ![image](../img/spot_alive07.png)
 
 #### Related Events
-Supports viewing related events through filtered fields and selected time component information.
+Support viewing related events through filtering fields and selected time component information.
 
 ![image](../img/spot_alive08.png)
 
-## Common Issues
-**1. How to configure the detection frequency for Alibaba Cloud preemptible instance survival inspection**
+## FAQs
+**1. How to configure the detection frequency for Alibaba Cloud Preemptible Instance Survival Inspection**
 
-* In your self-hosted DataFlux Func, add `fixed_crontab='*/2 * * * *', timeout=60` in the decorator when writing the custom inspection handler function, and configure it in "Management / Auto Trigger Configuration".
+* In the self-hosted DataFlux Func, add `fixed_crontab='*/2 * * * *', timeout=60` in the decorator when writing the custom inspection processing function, then configure it in "Management / Auto Trigger Configuration".
 
-**2. No anomaly analysis in the inspection report**
+**2. Why might there be no anomaly analysis when Alibaba Cloud Preemptible Instance Survival Inspection triggers**
 
-If no anomaly analysis appears in the inspection report, check the data collection status of the current `datakit`.
+If there is no anomaly analysis in the inspection report, check the data collection status of the current `datakit`.
 
-**3. Previously running scripts fail during inspection**
+**3. Script errors occur during inspection that previously ran normally**
 
-Update the referenced script sets in the DataFlux Func Script Market. You can view the update records via the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate timely updates.
+Update the referenced script set in the DataFlux Func script market. You can view the update records of the script market via the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate timely script updates.
 
-**4. Startup script set does not change during upgrade**
+**4. No changes in the script set in Startup during the upgrade of inspection scripts**
 
-Delete the corresponding script set first, then click Upgrade and configure the corresponding Guance API key to complete the upgrade.
+Delete the corresponding script set first, then click the upgrade button and configure the corresponding <<< custom_key.brand_name >>> API key to complete the upgrade.
 
-**5. How to verify if the inspection is effective after enabling**
+**5. How to determine if the inspection has taken effect after enabling**
 
-In "Management / Auto Trigger Configuration," check the inspection status. It should be enabled, and you can validate the inspection script by clicking Execute. If it shows "Executed Successfully xxx minutes ago," the inspection is running normally.
+In "Management / Auto Trigger Configuration," check the inspection status. First, it should be enabled, then verify the inspection script by clicking execute. If it shows executed successfully xxx minutes ago, the inspection is running normally.

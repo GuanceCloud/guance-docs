@@ -4,7 +4,7 @@ nav:
   - 'Public Response Structure': public-response-params.md
   - 'Signature Authentication': signature-certification.md
   - 'Frontend Account': account
-  - 'Admin Backend Account': manage-account
+  - 'Backend Management Account': manage-account
   - 'Workspace Members': workspace-account
   - 'Workspace': workspace
   - 'Workspace API Key': workspace-ak

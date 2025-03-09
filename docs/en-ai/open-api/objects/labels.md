@@ -5,17 +5,19 @@
 <br />**POST /api/v1/object/hosts/label/list**
 
 ## Overview
-Retrieve the list of `labels` (labels are cached, with a typical cache duration not exceeding 5 minutes).
+Retrieve the list of `labels` (labels are cached, with a cache duration generally not exceeding 5 minutes).
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:---------|:-------------------------|
-| source        | string | Yes      | Data source<br>Can be empty: False <br> |
-| names         | array  | No       | List of object names<br>Can be empty: False <br> |
-| timeRange     | array  | No       | Time range<br>Can be empty: False <br> |
+| Parameter Name | Type   | Required | Description                  |
+|:-------------|:-------|:--------|:-----------------------------|
+| source       | string | Y       | Data source<br>Can be empty: False <br> |
+| names        | array  |         | List of object names<br>Can be empty: False <br> |
+| timeRange    | array  |         | Time range<br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
+
+
 
 ## Request Example
 ```shell
@@ -25,6 +27,8 @@ curl 'https://openapi.guance.com/api/v1/object/hosts/label/list' \
 --data-raw '{"source": "HOST"}' \
 --compressed
 ```
+
+
 
 ## Response
 ```shell
@@ -82,7 +86,7 @@ curl 'https://openapi.guance.com/api/v1/object/hosts/label/list' \
         "zy-dataflux-func-demo": {
             "labels": [
                 "test",
-                "terwei"
+                "teerwei"
             ]
         }
     },
@@ -92,9 +96,3 @@ curl 'https://openapi.guance.com/api/v1/object/hosts/label/list' \
     "traceId": "TRACE-5EFC56C8-F4E7-4E55-BDCE-B128B81B4DCA"
 } 
 ```
-
-### Note on Translated Labels:
-- "哈哈" was translated to "haha".
-- "特尔为" was translated to "terwei". 
-
-If these labels are specific terms or names that should remain in their original form, please retain them as is.

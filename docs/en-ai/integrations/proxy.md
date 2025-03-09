@@ -16,15 +16,15 @@ monitor   :
 
 ---
 
-Proxy the requests from Datakit, forwarding its data from the internal network to the public network.
+Proxy Datakit’s requests, sending its data from an internal network to the public network.
 
-<!-- TODO: A network traffic topology diagram for the proxy is missing here -->
+<!-- TODO: A proxy network traffic topology diagram is missing here -->
 
 ## Configuration {#config}
 
 ### Collector Configuration {#input-config}
 
-Select a DataKit in the network that can access the internet and configure it as a proxy by setting up its proxy settings.
+Select a DataKit in the network that can access the internet as a proxy and configure its proxy settings.
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
@@ -34,10 +34,13 @@ Select a DataKit in the network that can access the internet and configure it as
     ```toml
         
     [[inputs.proxy]]
-      ## default bind ip address
-      bind = "0.0.0.0"
+      ## choose some inner IP address
+      bind = "127.0.0.1"
       ## default bind port
       port = 9530
+    
+      # allowed client IP address(in CIDR format)
+      allowed_client_cidrs = []
     
       # verbose mode will show more info during proxying.
       verbose = false
@@ -47,23 +50,45 @@ Select a DataKit in the network that can access the internet and configure it as
     
     ```
 
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, you can enable the collector via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+
+---
+
+???+ attention "Security-related Configuration"
+
+    In some cases, it may be necessary to expose this proxy on the public network. At this point, we need to take some necessary security measures to prevent the proxy from being exploited by attackers.
+
+    1. Enable client whitelist control (`allowed_client_cidrs`): Only proxy requests from specified clients, for example:
+
+    ```toml
+    # IPv6 CIDR configuration supported here
+    allowed_client_cidrs = ["10.0.0.0/8", "2001:db8::/32"]
+    ```
+
+    1. If deployed on a public cloud, set up internal network CIDR access on VPC. You can also add iptables rules on the corresponding host:
+
+    ```shell
+    # Example of OS-level firewall (using Linux iptables)
+    iptables -A INPUT -p tcp --dport 9530 -s 10.0.0.0/8 -j ACCEPT  # Allow only internal network access
+    iptables -A INPUT -p tcp --dport 9530 -j DROP
+    ```
+
 <!-- markdownlint-enable -->
 
 ## Network Topology {#network-topo}
 
-If an internal Datakit points its Proxy to another Datakit with Proxy enabled:
+If an internal Datakit points its Proxy to a Datakit with a Proxy collector enabled:
 
 ```toml
 [dataway]
   http_proxy = "http://some-datakit-with-proxy-ip:port"
 ```
 
-The request traffic from various internal Datakits will be routed through the Proxy (assuming the Proxy binds to port 9530):
+Then the request traffic from various internal Datakits will go through the Proxy (assuming the Proxy binds to port 9530):
 
 ``` mermaid
 flowchart LR;
@@ -80,7 +105,7 @@ dk_C --> dk_X_proxy;
 end
 
 subgraph "Public Network"
-dk_X_proxy ==> |https://openway.guance.com|dw;
+dk_X_proxy --> |https://openway.guance.com|dw;
 end
 ```
 
@@ -88,49 +113,40 @@ end
 
 Enabling MITM mode facilitates collecting more detailed metrics from the Proxy. The principle is as follows:
 
-- When an internal Datakit connects to the Proxy, it must trust the HTTPS certificate provided by the Proxy collector (this certificate is inherently insecure; the source [is here](https://github.com/elazarl/goproxy/blob/master/certs.go){:target="_blank"}).
-- Once the Datakit trusts this HTTPS certificate, the Proxy collector can inspect the contents of HTTPS packets and record more detailed request metrics.
-- After recording the metrics, the Proxy forwards the request to Dataway using Guance's secure HTTPS certificate.
+- When an internal Datakit connects to the Proxy, it must trust the HTTPS certificate provided by the Proxy collector (this certificate is definitely not secure, and its source is [here](https://github.com/elazarl/goproxy/blob/master/certs.go){:target="_blank"}).
+- Once Datakit trusts this HTTPS certificate, the Proxy collector can sniff the content of HTTPS packets and record more request-related metrics.
+- After recording the metrics, the Proxy collector forwards the request to Dataway using Guance’s secure HTTPS certificate.
 
-Although an insecure certificate is used between Datakit and Proxy within the internal network, the Proxy forwards traffic to the public Dataway using a secure HTTPS certificate.
+The Datakit and Proxy use an insecure certificate only within the internal network. When the Proxy forwards traffic to the public Dataway, it still uses a secure HTTPS certificate.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    Enabling MITM mode significantly degrades Proxy performance; see the performance test results below.
+    Enabling MITM mode significantly reduces the performance of the Proxy. See the performance test results below.
 <!-- markdownlint-enable -->
 
 ## Metrics {#metric}
 
-The Proxy collector exposes the following Prometheus metrics:
-
-
-| POSITION                        | TYPE    | NAME                                      | LABELS              | HELP                            |
-| ---                             | ---     | ---                                       | ---                 | ---                             |
-| *internal/plugins/inputs/proxy* | COUNTER | `datakit_input_proxy_connect`             | `client_ip`         | Proxy connect(method CONNECT) |
-| *internal/plugins/inputs/proxy* | COUNTER | `datakit_input_proxy_api_total`           | `api,method`        | Proxy API total               |
-| *internal/plugins/inputs/proxy* | SUMMARY | `datakit_input_proxy_api_latency_seconds` | `api,method,status` | Proxy API latency             |
-
-If these metrics are enabled in Datakit's own metric reporting, they will appear in the built-in views related to the Proxy collector.
+Refer to the [Datakit Metrics](../datakit/datakit-metrics.md) section, search for `proxy` to get related metrics.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    If MITM is not enabled, the `datakit_input_proxy_api_total` and `datakit_input_proxy_api_latency_seconds` metrics will not be available.
+    If MITM functionality is not enabled, there will be no `datakit_input_proxy_api_total` and `datakit_input_proxy_api_latency_seconds` metrics.
 <!-- markdownlint-enable -->
 
 ## Performance Testing {#benchmark}
 
-Using simple HTTP server/client programs, the basic environment parameters are:
+Using simple HTTP server/client programs, the basic environment parameters are as follows:
 
 - Hardware: Apple M1 Pro/16GB
 - OS: macOS Ventura 13
-- Server: An empty-running HTTPS service that accepts POST requests to `/v1/write/` and returns 200 immediately.
-- Client: POSTs a 170KB text file (*metric.data*) to the server.
-- Proxy: A locally running Datakit Proxy collector (`http://localhost:19530`)
-- Request volume: 16 clients, each sending 100 requests
+- Server: An empty-running HTTPS service that accepts POST requests to `/v1/write/` and immediately returns 200
+- Client: POST a text file of about 170KB (*metric.data*) to the server
+- Proxy: A local Datakit Proxy collector running on `http://localhost:19530`
+- Request volume: 16 clients in total, each sending 100 requests
 
-Command:
+Command used:
 
 ```shell
 $ ./cli -c 16 -r 100 -f metric.data -proxy http://localhost:19530
@@ -138,9 +154,9 @@ $ ./cli -c 16 -r 100 -f metric.data -proxy http://localhost:19530
 ...
 ```
 
-Performance test results:
+The performance test results are as follows:
 
-- Without MITM enabled:
+- Performance without enabling MITM:
 
 ```not-set
 Benchmark metrics:
@@ -159,7 +175,7 @@ api_latency_seconds_count{api="/v1/write/xxx",status="200 OK"} 1600
 api_post_bytes_total{api="/v1/write/xxx",status="200 OK"} 2.764592e+08
 ```
 
-- With MITM enabled, performance drops significantly (~100X):
+- Performance after enabling MITM (~100X slower):
 
 ``` not-set
 Benchmark metrics:
@@ -180,7 +196,7 @@ api_post_bytes_total{api="/v1/write/xxx",status="200 OK"} 2.764592e+08
 
 Conclusion:
 
-- Without MITM enabled, TPS is approximately 1600/0.249329709 = 6417/s.
-- With MITM enabled, TPS drops to 1600/29.454341333 = 54/s.
+- Without MITM enabled, TPS is approximately 1600/0.249329709 = 6417/s
+- With MITM enabled, TPS drops to 1600/29.454341333 = 54/s
 
-Therefore, **it is not recommended** to enable MITM in production environments; use it only for debugging or testing.
+Therefore, **it is not recommended** to enable MITM in a production environment, use it only for debugging or testing.

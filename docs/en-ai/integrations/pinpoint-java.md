@@ -5,10 +5,10 @@ __int_icon: 'icon/pinpoint'
 tags      :
   - 'PINPOINT'
   - 'JAVA'
-  - 'Trace Linking'
+  - 'Trace Analysis'
 ---
 
-Pinpoint Java Agent [Download Address](https://github.com/pinpoint-apm/pinpoint/releases){:target="_blank"}
+Pinpoint Java Agent [Download Link](https://github.com/pinpoint-apm/pinpoint/releases){:target="_blank"}
 
 ---
 
@@ -30,16 +30,16 @@ java -javaagent:/path-to-pinpoint-agent-path/pinpoint-bootstrap.jar \
 
 Basic parameter descriptions:
 
-- pinpoint.profiler.profiles.active               : Pinpoint profiler working mode (release/local), related to log output
+- pinpoint.profiler.profiles.active               : Pinpoint profiler operating mode (release/local), related to log output
 - pinpoint.applicationName                        : Service name
 - pinpoint.agentId                                : Agent ID
 - pinpoint.agentName                              : Agent name
 - profiler.transport.module                       : Transport protocol (gRPC/Thrift)
-- profiler.transport.grpc.collector.ip            : Collector IP address (i.e., the host address where Datakit is started)
-- profiler.transport.grpc.agent.collector.port    : Agent collector port (i.e., the listening port of Pinpoint Agent in Datakit)
-- profiler.transport.grpc.metadata.collector.port : Metadata collector port (i.e., the listening port of Pinpoint Agent in Datakit)
-- profiler.transport.grpc.stat.collector.port     : Stat collector port (i.e., the listening port of Pinpoint Agent in Datakit)
-- profiler.transport.grpc.span.collector.port     : Span collector port (i.e., the listening port of Pinpoint Agent in Datakit)
+- profiler.transport.grpc.collector.ip            : Collector IP address (i.e., the host address where Datakit is running)
+- profiler.transport.grpc.agent.collector.port    : Agent collector port (i.e., the listening port of the Pinpoint Agent in Datakit)
+- profiler.transport.grpc.metadata.collector.port : Metadata collector port (i.e., the listening port of the Pinpoint Agent in Datakit)
+- profiler.transport.grpc.stat.collector.port     : Stat collector port (i.e., the listening port of the Pinpoint Agent in Datakit)
+- profiler.transport.grpc.span.collector.port     : Span collector port (i.e., the listening port of the Pinpoint Agent in Datakit)
 - profiler.sampling.enable                        : Whether to enable sampling
 - profiler.sampling.type                          : Sampling algorithm
 - profiler.sampling.counting.sampling-rate        : Sampling rate
@@ -63,9 +63,9 @@ Basic parameter descriptions:
 
 ## Compatibility {#compatibility}
 
-The current version of Pinpoint Agent used by Datakit is [pinpoint-go-agent](https://github.com/pinpoint-apm/pinpoint-go-agent){:target="_blank"}-v1.3.2
+The current version of the Pinpoint Agent used by Datakit is [pinpoint-go-agent](https://github.com/pinpoint-apm/pinpoint-go-agent){:target="_blank"}-v1.3.2
 
-The tested versions of Pinpoint Agent include:
+The tested versions of the Pinpoint Agent include:
 
 - pinpoint-agent-2.2.1
 - pinpoint-agent-2.3.1

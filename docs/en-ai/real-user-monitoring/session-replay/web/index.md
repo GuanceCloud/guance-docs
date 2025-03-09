@@ -13,13 +13,13 @@
 
 ## View Session Replay {#view_replay}
 
-After configuring session replay, you can view session replays in the RUM Session Explorer list and all RUM Explorer detail pages.
+After configuring session replay, you can view session replays in the RUM PV Session Explorer list and on all RUM PV Explorer detail pages.
 
-**Note**: The data retention policy for Session Replay aligns with RUM. RUM data is retained for 3 days, and so is the Session Replay data. If the RUM data retention policy is modified, the retention period for Session Replay will also be adjusted accordingly.
+**Note**: The data retention policy for Session Replay aligns with that of RUM. If RUM data is retained for 3 days, Session Replay data is also retained for 3 days. If the RUM data retention policy is changed, the retention period for Session Replay will be adjusted accordingly.
 
 ### Viewing in the Session Explorer List
 
-In the Session Explorer list, click the **Play** button to view the session replay.
+In the Session Explorer list, a **Play** button is displayed. Click it to view the session replay.
 
 ![](../../img/16.session_replay_1.png)
 
@@ -27,25 +27,25 @@ In the Session Explorer list, click the **Play** button to view the session repl
 
 - In the Session, View, Error Explorer detail pages, click the **View Replay** button in the top-right corner to view the current user session's operation replay.
 - In the **Source** section of the View, Error, Resource, Action, Long Task Explorer detail pages, you can view the current user session's operation replay.
-    - More: Click the **More** button to support **View Session Details**, **Filter by Current Session ID**, and **Copy Session ID**
+    - More: Click the **More** button to support **View Session Details**, **Filter Current Session ID**, and **Copy Session ID**
     - Play: Click the **Play** button to view the session replay
 
 ![](../../img/16.session_replay_8.png)
 
 ## View Session Replay Effects {#view_display_effect_of_replay}
 
-On the session replay page, you can view the entire process of a user's session, including visited pages, operation records, and error data. Click to play the user's operation process.
+On the session replay page, you can view the entire process of a user session, including visited pages, operation records, and error data. Click to play back the user's operation process.
 
-On the left-hand list, you can:
+On the left panel, you can:
 
 - Share Link: Click :octicons-share-android-16: to copy the share link and share it with other team members for viewing and analysis;
-- View Details: Click :material-text-search: to slide out the corresponding detail page;
-- Collapse Left List: Click :fontawesome-solid-angle-left: to collapse the left-hand list and view the session replay.
+- View Details: Click :material-text-search: to slide open the corresponding details page;
+- Collapse Left Panel: Click :fontawesome-solid-angle-left: to collapse the left panel and view the session replay.
 
 At the bottom of the player, you can:
 
-- Skip Inactive Periods: Enabled by default, this option skips segments where no activity occurred for more than 1 minute;
-- Playback Speed: Choose from 1x, 1.5x, 2x, or 4x speed to view the session replay;
-- Fullscreen Playback: Click the fullscreen playback button to expand and view the session replay in full screen.
+- Skip Inactive: Enabled by default, this skips segments where no action occurred for over 1 minute;
+- Playback Speed: Choose from 1x, 1.5x, 2x, 4x speeds for viewing;
+- Full Screen Playback: Click the full screen playback button to view the session replay in full screen.
 
 ![](../../img/16.session_replay_9.1.png)

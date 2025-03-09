@@ -5,18 +5,18 @@
 <br />**POST /api/v1/events/create**
 
 ## Overview
-Create an event and specify its content. Events written via this API have `df_source=custom`.
+Create an event and specify its content. Events written via this interface have `df_source=custom`.
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                                                                                   |
-|:--------------|:-------|:--------|:----------------------------------------------------------------------------------------------|
-| date          | integer| Y       | Event timestamp. Unix timestamp in milliseconds.<br>Allow null: False <br>                    |
-| status        | string | Y       | Event status (options: critical/error/warning/ok/info/nodata)<br>Allow null: False <br>Optional values: ['critical', 'error', 'warning', 'ok', 'info', 'nodata'] <br> |
-| title         | string | Y       | Event title<br>Allow null: False <br>                                                         |
-| message       | string |         | Detailed description of the event<br>Allow null: False <br>                                   |
-| origin        | string |         | Source of the event<br>Allow null: False <br>                                                 |
-| customTags    | json   |         | User-defined fields for events<br>Allow null: False <br>                                      |
+| Parameter Name        | Type     | Required   | Description              |
+|:------------------|:-------|:-----|:----------------|
+| date | integer | Y | Event time. Unix timestamp, unit: milliseconds<br>Allow null: False <br> |
+| status | string | Y | Event status (options: critical/error/warning/ok/info/nodata)<br>Allow null: False <br>Options: ['critical', 'error', 'warning', 'ok', 'info', 'nodata'] <br> |
+| title | string | Y | Event title<br>Allow null: False <br> |
+| message | string |  | Detailed event description<br>Allow null: False <br> |
+| origin | string |  | Event source<br>Allow null: False <br> |
+| customTags | json |  | User-defined event fields<br>Allow null: False <br> |
 
 ## Additional Parameter Notes
 
@@ -27,9 +27,10 @@ Create an event and specify its content. Events written via this API have `df_so
 curl 'https://openapi.guance.com/api/v1/events/create' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
-  --data-raw $'{"date":1668141576000,"status":"info","title":"Test Custom Event 01","message":"Test Custom Event - message","customTags":{"server":"Custom Service"}}' \
+  --data-raw $'{"date":1668141576000,"status":"info","title":"Test Custom Event 01","message":"Test Custom Event - Message","customTags":{"server":"Custom Service"}}' \
   --compressed
 ```
+
 
 
 

@@ -8,18 +8,20 @@
 Export a single user view
 
 
+
+
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
+| Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
 | dashboard_uuid | string | Y | View UUID<br> |
 
 
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
+| Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| title | string |  | Template Name<br>Allow Null: False <br> |
+| title | string |  | Template Name<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -29,9 +31,11 @@ Export a single user view
 |-----------------------|----------|------------------------|
 |chartGroupPos         |list |  Chart group position information |
 |chartPos         |list |  Chart position information |
-|createdWay             |string |  The creation method of this built-in view, manually created: manual, imported: import |
-|dashboardBidding         |dict |   Dashboard binding information |
+|createdWay             |string |  This built-in view creation method, manually created: manual, imported: import |
+|dashboardBidding         |dict |   Dashboard binding information|
 |name         |string |  Dashboard name |
+
+
 
 
 ## Request Example
@@ -40,6 +44,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/export' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
+
 
 
 
@@ -266,7 +271,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/export' \
                     "group": {
                         "name": null
                     },
-                    "name": "Process by Database",
+                    "name": "Process by db",
                     "pos": {
                         "h": 17,
                         "w": 12,
@@ -985,7 +990,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/export' \
                             "units": [
                                 {
                                     "key": "max(event_timer_wait)",
-                                    "name": "max(event_timer_wait)",
+                                    "name": "Max Event Execution Time",
                                     "unit": "",
                                     "units": [
                                         "time",
@@ -1080,5 +1085,5 @@ curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/export' \
     "message": "",
     "success": true,
     "traceId": "TRACE-A35365F3-6744-4C2B-8817-AAFDD8D55758"
-}
+} 
 ```

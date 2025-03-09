@@ -8,16 +8,14 @@
 Delete a single user view
 
 
-
 ## Route Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:-------------------------|
-| dashboard_uuid        | string   | Y        | View ID                  |
+|:-------------------|:-------|:-----|:----------------|
+| dashboard_uuid | string | Y | View ID<br> |
 
 
 ## Additional Parameter Notes
-
 
 
 
@@ -30,13 +28,12 @@ curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/delete' \
 
 
 
-
 ## Response
 ```shell
 {
     "code": 200,
     "content": [
-        "test_Redis monitoring view"
+        "test_Redis Monitoring View"
     ],
     "errorCode": "",
     "message": "",

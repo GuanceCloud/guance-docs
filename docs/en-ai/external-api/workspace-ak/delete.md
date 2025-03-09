@@ -1,8 +1,8 @@
-# 【Workspace API Key】Delete
+# Delete 【Workspace API Key】
 
 ---
 
-<br />**POST /api/v1/workspace/accesskey/\{ak_uuid\}/delete**
+<br />**POST /api/v1/workspace/accesskey/{ak_uuid}/delete**
 
 ## Overview
 
@@ -12,8 +12,8 @@
 ## Route Parameters
 
 | Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:--------|:-------------------------|
-| ak_uuid       | string | Y       | UUID of the API Key<br> |
+|:--------------|:-------|:---------|:-------------------------|
+| ak_uuid       | string | Yes      | UUID of the API Key<br> |
 
 
 ## Additional Parameter Notes
@@ -33,31 +33,30 @@
 
 
 </input_content>
-</target_language>
-</input>
-translated_content:
-# 【Workspace API Key】Delete
+<translation>
+translated_content: # Delete 【Workspace API Key】
 
 ---
 
-<br />**POST /api/v1/workspace/accesskey/\{ak_uuid\}/delete**
+<br />**POST /api/v1/workspace/accesskey/{ak_uuid}/delete**
 
 ## Overview
 
 
 
-This API endpoint is used to delete an API Key associated with a workspace.
+This API is used to delete an API Key for a workspace.
 
 ## Route Parameters
 
 | Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:--------|:-------------------------|
-| ak_uuid       | string | Y       | UUID of the API Key<br> |
+|:--------------|:-------|:---------|:-------------------------|
+| ak_uuid       | string | Yes      | UUID of the API Key<br> |
 
 
 ## Additional Parameter Notes
 
-None.
+No additional parameters are required for this request.
+
 
 
 ## Response
@@ -65,4 +64,31 @@ None.
  
 ```
 
-The response for this API call will be empty if successful.
+The response will be empty upon successful deletion of the API Key.
+</translation>
+translated_content: # Delete Workspace API Key
+
+---
+
+<br />**POST /api/v1/workspace/accesskey/{ak_uuid}/delete**
+
+## Overview
+
+This API is used to delete an API Key for a workspace.
+
+## Route Parameters
+
+| Parameter Name | Type   | Required | Description              |
+|:--------------|:-------|:---------|:-------------------------|
+| ak_uuid       | string | Yes      | UUID of the API Key<br> |
+
+## Additional Parameter Notes
+
+No additional parameters are required for this request.
+
+## Response
+```shell
+ 
+```
+
+The response will be empty upon successful deletion of the API Key.
