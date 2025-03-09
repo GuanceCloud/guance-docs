@@ -28,9 +28,9 @@ execute_update_integration()
 ![success.jpg](img/update-success.png)
 
 ### 离线环境如何更新指标字典 json
-1. 下载最新的指标字典 JSON 文件：[https://<<< custom_key.static_domain >>>/datakit/measurements-meta.json](https://<<< custom_key.static_domain >>>/datakit/measurements-meta.json)
+1. 下载最新的指标字典 JSON 文件：[https://static.<<< custom_key.brand_main_domain >>>/datakit/measurements-meta.json](https://static.<<< custom_key.brand_main_domain >>>/datakit/measurements-meta.json)
 2. 在路径为：forethought-core命名空间-->inner容器-->/config/cloudcare-forethought-backend/sysconfig/staticFolder/metric的文件夹下新建metric_config.json文件，将链接中的内容粘贴进去
 
 ### 离线环境如何更新官方 Pipeline 库
-1. 下载最新的指标字典 JSON 文件：[https://<<< custom_key.static_domain >>>/datakit/internal-pipelines.json](https://<<< custom_key.static_domain >>>/datakit/internal-pipelines.json)
+1. 下载最新的指标字典 JSON 文件：[https://static.<<< custom_key.brand_main_domain >>>/datakit/internal-pipelines.json](https://static.<<< custom_key.brand_main_domain >>>/datakit/internal-pipelines.json)
 2. 在路径为：forethought-core命名空间-->inner容器-->/config/cloudcare-forethought-backend/sysconfig/staticFolder的文件夹下新建 internal-pipelines.json文件，将链接中的内容粘贴进去

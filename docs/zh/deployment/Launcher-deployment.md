@@ -19,13 +19,13 @@
 最新的<<< custom_key.brand_name >>>镜像包下载地址：
 === "amd64"
 
-    [https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-latest.tar.gz](https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-latest.tar.gz)
+    [https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-latest.tar.gz](https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-latest.tar.gz)
     
 
 === "arm64"
 
     
-    [https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-latest.tar.gz](https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-latest.tar.gz)
+    [https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-latest.tar.gz](https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-latest.tar.gz)
     
 Containterd 环境导入镜像命令
 ```shell
@@ -47,7 +47,7 @@ $ ctr -n=k8s.io images import guance-xxx-latest.tar
     --set storageClassName=managed-nfs-storage
   ```
 
->launcher chart 下载 [Download](https://<<< custom_key.static_domain >>>/dataflux/package/launcher-helm-latest.tgz)
+>launcher chart 下载 [Download](https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/launcher-helm-latest.tgz)
 
 - Launcher 卸载
 

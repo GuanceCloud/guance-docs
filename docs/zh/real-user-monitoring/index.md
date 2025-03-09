@@ -4,8 +4,8 @@ icon: zy/real-user-monitoring
 # 用户访问监测
 ---
 
-<video controls="controls" poster="https://<<< custom_key.static_domain >>>/dataflux/help/video/rum.png" >
-      <source id="mp4" src="https://<<< custom_key.static_domain >>>/dataflux/help/video/rum.mp4" type="video/mp4">
+<video controls="controls" poster="https://static.<<< custom_key.brand_main_domain >>>/dataflux/help/video/rum.png" >
+      <source id="mp4" src="https://static.<<< custom_key.brand_main_domain >>>/dataflux/help/video/rum.mp4" type="video/mp4">
 </video>
 
 

@@ -251,7 +251,7 @@ repeatTimeSet 为 1, 重复静默, 示例:
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/monitor/mute/create' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/monitor/mute/create' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   -H 'Content-Type: application/json;charset=UTF-8' \
   --data-raw '{"name":"名称A","description":"描述A","startTime":"2023/08/23 14:00:07","endTime":"2023/08/23 14:31:07","notifyTargets":[{"to":["acnt_xxxx32"],"type":"mail"}],"tags":{},"muteRanges":[{"name":"Aerospike 集群【{{cluster_name}}】空间【{{ ns }}】 的 Memory 使用率过高","checkerUUID":"rul_xxxx32","type":"监控器"}],"type":"checker","timezone":"Asia/Shanghai","notifyMessage":"cjkackcnkjcklasc","notifyTimeStr":"2023/08/23 13:45:07","repeatTimeSet":0}' \

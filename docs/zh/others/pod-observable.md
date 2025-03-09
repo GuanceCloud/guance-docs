@@ -75,7 +75,7 @@ DataKit 部署状态正常，即可在<<< custom_key.brand_name >>>工作空间�
 开启 Kubernetes 资源采集前，需要使用终端工具登录到服务器执行下面的脚本命令来下载 yaml 文件。
 
 ```
-wget https://<<< custom_key.static_domain >>>/datakit/datakit.yaml
+wget https://static.<<< custom_key.brand_main_domain >>>/datakit/datakit.yaml
 ```
 
 ![](img/3.yaml_3.png)

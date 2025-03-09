@@ -103,7 +103,7 @@ ssh-copy-id $IP
 
 ### 2.1 资源包下载
 
-  基础环境离线资源包下载地址  [Download]( https://<<< custom_key.static_domain >>>/dataflux/package/k8s_offline.tar.gz)
+  基础环境离线资源包下载地址  [Download]( https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/k8s_offline.tar.gz)
 
 ### 2.2 离线资源包结构说明
 

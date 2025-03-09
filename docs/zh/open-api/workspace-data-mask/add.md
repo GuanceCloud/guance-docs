@@ -27,7 +27,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/data_mask_rule/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_mask_rule/add' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw '{"name":"lwcTest","type":"logging","reExpr":"\\b(?:[0-9A-Fa-f]{2}[:-]){5}(?:[0-9A-Fa-f]{2})\\b","roleUUIDs":["readOnly"],"field":"message"}' \

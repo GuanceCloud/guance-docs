@@ -19,11 +19,11 @@
 
     如果是离线网络环境下安装，需要先手工下载最新的<<< custom_key.brand_name >>>镜像包，通过  docker load  命令将所有镜像导入到各个 kubernetes 工作节点上后，再进行后续的引导安装。
 
-    最新的<<< custom_key.brand_name >>> Docker 镜像包下载地址：[https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-latest.tar.gz](https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-latest.tar.gz)
+    最新的<<< custom_key.brand_name >>> Docker 镜像包下载地址：[https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-latest.tar.gz](https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-latest.tar.gz)
 
     1. 通过以下命令，将 Docker 镜像包下载到本地：
     ```shell
-    $ wget https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-latest.tar.gz
+    $ wget https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-latest.tar.gz
     ```
 
     2. 下载后，将 Docker 镜像包上传到 kubernetes 的每一个 node 主机上后，执行以下命令，导入 Docker 镜像：
@@ -41,11 +41,11 @@
 
     如果是离线网络环境下安装，需要先手工下载最新的<<< custom_key.brand_name >>>镜像包，通过  docker load  命令将所有镜像导入到各个 kubernetes 工作节点上后，再进行后续的引导安装。
 
-    最新的<<< custom_key.brand_name >>> Docker 镜像包下载地址：[https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-latest.tar.gz](https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-latest.tar.gz)
+    最新的<<< custom_key.brand_name >>> Docker 镜像包下载地址：[https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-latest.tar.gz](https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-latest.tar.gz)
 
     1. 通过以下命令，将 Docker 镜像包下载到本地：
     ```shell
-    $ wget https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-latest.tar.gz
+    $ wget https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-latest.tar.gz
     ```
 
     2. 下载后，将 Docker 镜像包上传到 kubernetes 的每一个 node 主机上后，执行以下命令，导入 Docker 镜像：
@@ -102,7 +102,7 @@
 
     - 安装
 
-      Launcher YAML 下载：[https://<<< custom_key.static_domain >>>/launcher/launcher.yaml](https://<<< custom_key.static_domain >>>/launcher/launcher.yaml)
+      Launcher YAML 下载：[https://static.<<< custom_key.brand_main_domain >>>/launcher/launcher.yaml](https://static.<<< custom_key.brand_main_domain >>>/launcher/launcher.yaml)
       
       将上面的 YAML 内容保存为 **launcher.yaml** 文件，放到**运维操作机**上，然后替换文档内的变量部分：
     

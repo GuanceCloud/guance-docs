@@ -88,7 +88,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue/notification_policy/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/notification_policy/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"api_add test","notificationScheduleUUIDs":["nsche_a15990d7e6ec4514842dbee74e26a1cf"],"extend":{"notifyTypes":["issue.add","issue.modify","issueUpgrade.noManager","issueReply.add","issueReply.modify"],"upgradeCfg":{"noManager":{"duration":1200},"processTimeout":{}}}}' \

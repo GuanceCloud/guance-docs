@@ -11,7 +11,7 @@
 如果已经安装了 DataKit，则只需要升级即可，使用下面的命令进行升级操作。
 
 ```
-DK_APM_INSTRUMENTATION_ENABLED=host DK_DEF_INPUTS="ddtrace" DK_UPGRADE=1 bash -c "$(curl -L https://<<< custom_key.static_domain >>>/datakit/install.sh)"
+DK_APM_INSTRUMENTATION_ENABLED=host DK_DEF_INPUTS="ddtrace" DK_UPGRADE=1 bash -c "$(curl -L https://static.<<< custom_key.brand_main_domain >>>/datakit/install.sh)"
 ```
 
 ## 检验

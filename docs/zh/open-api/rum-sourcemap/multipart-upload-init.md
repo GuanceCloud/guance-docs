@@ -31,7 +31,7 @@ sourcemap 压缩文件上传(分片上传)操作中的第一步操作。初始�
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/rum_sourcemap/multipart_upload_init' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/rum_sourcemap/multipart_upload_init' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw $'{\n  "needCover": true,\n  "appId": "app_demo",\n "version": "1.0.2",\n "env": "daily"\n}' \
