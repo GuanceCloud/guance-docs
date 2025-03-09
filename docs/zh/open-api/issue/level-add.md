@@ -26,7 +26,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue-level/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue-level/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name": "custom-1","color": "#E94444","description": "自定义等级描述2"}'\

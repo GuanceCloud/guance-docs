@@ -4,8 +4,8 @@ icon: zy/logs
 # 日志
 ---
 
-<video controls="controls" poster="https://<<< custom_key.static_domain >>>/dataflux/help/video/log.png" >
-      <source id="mp4" src="https://<<< custom_key.static_domain >>>/dataflux/help/video/log.mp4" type="video/mp4">
+<video controls="controls" poster="https://static.<<< custom_key.brand_main_domain >>>/dataflux/help/video/log.png" >
+      <source id="mp4" src="https://static.<<< custom_key.brand_main_domain >>>/dataflux/help/video/log.mp4" type="video/mp4">
 </video>
 
 在现代基础设施中，每分钟可能产生数千条日志事件，这些日志遵循特定格式，通常包含时间戳，并由服务器生成。它们被输出到不同的文件中，如系统日志、应用日志和安全日志等。然而，这些日志目前分散存储在各个服务器上，导致在系统发生故障时，需要分别登录到每个服务器去查阅日志，以确定故障原因，这一过程增加了故障排查的复杂性。

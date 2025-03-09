@@ -481,14 +481,14 @@ window.DEPLOYCONFIG = {
     innerAppProfile: 'https://cn4-auth.guance.com/redirectpage/profile',
     innerAppCreateworkspace: 'https://cn4-auth.guance.com/redirectpage/createworkspace',
     staticFileUrl: 'https://cn4-static-res.guance.com',
-    staticDatakit: 'https://<<< custom_key.static_domain >>>',
+    staticDatakit: 'https://static.<<< custom_key.brand_main_domain >>>',
     cloudDatawayUrl: '',
     isSaas: '1',
     showHelp: 1,
     rumEnable: 1,                                                                              ## 0是关闭，1是开启，此处开启
     rumDatakitUrl: "",                                                                         ## 修改成deployment的datakit地址
     rumApplicationId: "",                                                                      ## 修改成实际appid
-    rumJsUrl: "https://<<< custom_key.static_domain >>>/browser-sdk/v2/dataflux-rum.js",
+    rumJsUrl: "https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v2/dataflux-rum.js",
     rumDataEnv: 'prod',
     shrineApiUrl: '',
     upgradeUrl: '',

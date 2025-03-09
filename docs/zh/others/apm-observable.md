@@ -177,7 +177,7 @@ def after_request(response):
 2）在前端页面 index.html 的 head 中增加以下用户访问可观测配置（在<<< custom_key.brand_name >>>工作空间用户访问监测创建应用获取）。
 
 ```
-<script src="https://<<< custom_key.static_domain >>>/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({

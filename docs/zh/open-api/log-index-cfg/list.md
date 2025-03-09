@@ -32,7 +32,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/log_index_cfg/list' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/log_index_cfg/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```

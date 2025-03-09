@@ -31,7 +31,7 @@
 ### 1 安装 Scheck
 
 ```sh
-sudo -- bash -c "$(curl -L https://<<< custom_key.static_domain >>>/security-checker/install.sh)"
+sudo -- bash -c "$(curl -L https://static.<<< custom_key.brand_main_domain >>>/security-checker/install.sh)"
 ```
 
 

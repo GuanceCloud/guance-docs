@@ -19,14 +19,14 @@ Helm基于go模板语言，用户只要提供规定的目录结构和模板文�
 === "Amd"
 
     ```shell
-    wget https://<<< custom_key.static_domain >>>/dataflux/package/helm-v3.8.0-linux-amd64.tar.gz && tar -xvf helm-v3.8.0-linux-amd64.tar.gz && mv linux-amd64/helm /bin
+    wget https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/helm-v3.8.0-linux-amd64.tar.gz && tar -xvf helm-v3.8.0-linux-amd64.tar.gz && mv linux-amd64/helm /bin
     ```
 
 === "Arm"
 
 
     ```shell
-    wget https://<<< custom_key.static_domain >>>/dataflux/package/helm-v3.10.2-linux-arm64.tar.gz && tar -xvf helm-v3.10.2-linux-arm64.tar.gz && mv linux-arm64/helm /bin
+    wget https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/helm-v3.10.2-linux-arm64.tar.gz && tar -xvf helm-v3.10.2-linux-arm64.tar.gz && mv linux-arm64/helm /bin
     ```
 
 

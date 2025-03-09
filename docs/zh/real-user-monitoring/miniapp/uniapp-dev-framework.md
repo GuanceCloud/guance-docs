@@ -78,7 +78,7 @@
 
 === "VUE 2" 
 
-	下载文件本地方式引入([下载地址](https://<<< custom_key.static_domain >>>/miniapp-sdk/v2/dataflux-rum-uniapp.js))
+	下载文件本地方式引入([下载地址](https://static.<<< custom_key.brand_main_domain >>>/miniapp-sdk/v2/dataflux-rum-uniapp.js))
 	
 	```javascript
 	...
@@ -101,7 +101,7 @@
 	```
 === "VUE 3" 
 
-	下载文件本地方式引入([下载地址](https://<<< custom_key.static_domain >>>/miniapp-sdk/v2/dataflux-rum-uniapp.js))
+	下载文件本地方式引入([下载地址](https://static.<<< custom_key.brand_main_domain >>>/miniapp-sdk/v2/dataflux-rum-uniapp.js))
 	
 	```javascript hl_lines="5"
 	...

@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/objc_cfg_template/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/objc_cfg_template/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"sourceType":"custom_object","objc_name":"test"}' \

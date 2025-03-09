@@ -86,7 +86,7 @@ systemctl restart datakit
 这里 `172.16.0.245` 即是上步中安装的 DataKit 的主机 IP，此步骤即是通过 DataKit 代理来安装的，命令中使用到的 token 与上面提到的 token 相同。
 
 ```shell
-export HTTPS_PROXY=http://172.16.0.245:9530;  DK_DATAWAY=https://openway.guance.com?token=tkn_9a1111123412341234123412341113bb bash -c "$(curl -L https://<<< custom_key.static_domain >>>/datakit/install.sh)"
+export HTTPS_PROXY=http://172.16.0.245:9530;  DK_DATAWAY=https://openway.guance.com?token=tkn_9a1111123412341234123412341113bb bash -c "$(curl -L https://static.<<< custom_key.brand_main_domain >>>/datakit/install.sh)"
 ```
 
 执行如下命令，测试是否能上报数据到<<< custom_key.brand_name >>>。

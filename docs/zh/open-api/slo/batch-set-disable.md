@@ -24,7 +24,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/slo/batch_set_disable' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/slo/batch_set_disable' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data '{

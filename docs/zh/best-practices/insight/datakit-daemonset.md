@@ -203,7 +203,7 @@ helm install my-datakit datakit/datakit-n datakit --set dataway_url="https://ope
 
 ### yaml 启用git 部署
 
-先下载 [datakit.yaml](https://<<< custom_key.static_domain >>>/datakit/datakit.yaml)
+先下载 [datakit.yaml](https://static.<<< custom_key.brand_main_domain >>>/datakit/datakit.yaml)
 
 - 使用密码管理git
 
