@@ -63,6 +63,7 @@ extra:
   custom_key:
     brand_key: guance
     brand_name: Guance
+    brand_main_domain: guance.com
     static_domain: static.guance.com
   alternate:
     - name: 中文
