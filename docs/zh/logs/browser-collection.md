@@ -57,7 +57,7 @@ datafluxLogs.init({
     d.src = n
     n = o.getElementsByTagName(u)[0]
     n.parentNode.insertBefore(d, n)
-  })(window, document, 'script', 'https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-logs.js', 'DATAFLUX_LOGS')
+  })(window, document, 'script', 'https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-logs.js', 'DATAFLUX_LOGS')
   DATAFLUX_LOGS.onReady(function () {
     DATAFLUX_LOGS.init({
       datakitOrigin: '<DataKit的域名或IP>', // DK方式接入时需要配置
@@ -73,7 +73,7 @@ datafluxLogs.init({
 #### CDN 同步加载
 
 ```html
-<script src="https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-logs.js" type="text/javascript"></script>
+<script src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-logs.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_LOGS &&
     window.DATAFLUX_LOGS.init({

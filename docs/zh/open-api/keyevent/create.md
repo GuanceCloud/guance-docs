@@ -29,7 +29,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/events/create' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/events/create' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --data-raw $'{"date":1668141576000,"status":"info","title":"测试自定义事件01","message":"测试自定义事件-message","customTags":{"server":"自定义服务"}}' \

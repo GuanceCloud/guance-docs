@@ -74,7 +74,7 @@ content 字段示列
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/snapshots/create' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/snapshots/create' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"jj_test1","type":"Log","content":{"routeParams":{"source":"all"},"routeName":"Log","routeQuery":{"w":"wksp_4b57c7bab38e4a2d9630f675dc20015d","time":"45m","query":"host:izbp152ke14timzud0du15z","cols":"time,message,app_id","viewType":"view","index":"default,keyongxing","snapshotName":"jj_test1"}}}' \

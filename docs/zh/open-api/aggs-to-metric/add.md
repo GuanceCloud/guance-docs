@@ -165,7 +165,7 @@ extend 字段中 的所有字段 , 只做为前端回显 展示使用, 实际生
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/objc_cfg/create' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/objc_cfg/create' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"extend":{"filters":[],"groupBy":["host_ip"],"funcName":"count","fieldKey":"*","index":"default","source":"*","filterString":"host:hangzhou123 region:guanzhou"},"jsonScript":{"type":"logToMetric","metricInfo":{"every":"1m","metric":"test","metricField":"001-test","unit":"custom/[\"timeStamp\",\"ms\"]","desc":""},"query":{"q":"L('default')::RE(`.*`):(count(`*`)) { `host`='hangzhou123' and `region`='guanzhou'  } BY `host_ip`","qtype":"dql"}}}' \

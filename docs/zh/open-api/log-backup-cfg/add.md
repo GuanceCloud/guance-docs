@@ -47,7 +47,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/log_backup_cfg/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/log_backup_cfg/add' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \

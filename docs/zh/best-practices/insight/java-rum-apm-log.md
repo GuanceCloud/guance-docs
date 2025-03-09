@@ -68,7 +68,7 @@ Datakit 安装好后，默认会对如下内容进行采集，可直接在 「<<
 在前端页面 `/usr/local/ruoyi/dist/index.html` 的 head 中粘贴 JS
 
 ```javascript
-<script src="https://<<< custom_key.static_domain >>>/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({

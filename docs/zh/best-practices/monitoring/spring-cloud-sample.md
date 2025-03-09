@@ -440,7 +440,7 @@ $ vim index.html
 ```
 
 ```javascript
-<script src="https://<<< custom_key.static_domain >>>/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({
@@ -519,10 +519,10 @@ $ vim index.html
 
 ```shell
 ##  安装
-$ bash -c "$(curl https://<<< custom_key.static_domain >>>/security-checker/install.sh)"
+$ bash -c "$(curl https://static.<<< custom_key.brand_main_domain >>>/security-checker/install.sh)"
 ## 或者执行   sudo datakit --install scheck
 ## 更新
-$ bash -c "$(curl https://<<< custom_key.static_domain >>>/security-checker/install.sh) --upgrade"
+$ bash -c "$(curl https://static.<<< custom_key.brand_main_domain >>>/security-checker/install.sh) --upgrade"
 ## 启停命令
 $ systemctl start/stop/restart/status scheck
 ## 或者
