@@ -13,6 +13,9 @@ monitor:
   - desc: 'AWS OpenSearch 监控器'
     path: 'monitor/zh/aws_opensearch'
 
+cloudCollector:
+  desc: '云采集器'
+  path: 'cloud-collector/zh/aws_opensearch'
 ---
 
 <!-- markdownlint-disable MD025 -->

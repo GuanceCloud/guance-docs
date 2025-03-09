@@ -13,6 +13,9 @@ monitor:
   - desc: 'AWS Neptune Cluster 监控器'
     path: 'monitor/zh/aws_neptune_cluster'
 
+cloudCollector:
+  desc: '云采集器'
+  path: 'cloud-collector/zh/aws_neptune_cluster'
 ---
 
 

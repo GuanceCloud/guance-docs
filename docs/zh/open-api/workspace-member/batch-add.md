@@ -40,7 +40,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/member/batch_add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/member/batch_add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"accountUUIDs": ["acnt_xxxx32"], "roleUUIDs": ["general","role_xxxx32"]}' \

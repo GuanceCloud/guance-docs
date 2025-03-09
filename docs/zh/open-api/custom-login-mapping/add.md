@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/login_mapping/field/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/login_mapping/field/add' \
   -H 'Content-Type: application/json;charset=UTF-8' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --data-raw '{"sourceField":"name","sourceValue":"lisa","targetValues":["wsAdmin","role_xxxx32"]}' \

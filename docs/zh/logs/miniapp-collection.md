@@ -36,7 +36,7 @@ datafluxLogs.init({
 //#endif
 ```
 
-### CDN 下载文件本地方式引入([下载地址](https://<<< custom_key.static_domain >>>/miniapp-sdk/v1/dataflux-rum-miniapp-logs.js))
+### CDN 下载文件本地方式引入([下载地址](https://static.<<< custom_key.brand_main_domain >>>/miniapp-sdk/v1/dataflux-rum-miniapp-logs.js))
 
 ```javascript
 //#ifndef H5 || APP-PLUS || APP-NVUE || APP-PLUS-NVUE

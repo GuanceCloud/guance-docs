@@ -6,10 +6,10 @@ summary: 'Use the「Guance  Synchronization」series script package in the scrip
 __int_icon: 'icon/aws_s3'
 dashboard:
   - desc: 'AWS S3 Monitoring View'
-    path: 'dashboard/zh/aws_s3'
+    path: 'dashboard/en/aws_s3'
 monitor:
   - desc: 'AWS S3 Monitor'
-    path: 'monitor/zh/aws_s3'
+    path: 'monitor/en/aws_s3'
 
 cloudCollector:
   desc: 'cloud collector'
@@ -36,7 +36,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of AWS S3, install the corresponding collection script:「Guance Integration（AWS-S3Collect）」(ID：`guance_aws_s3`)
+To synchronize the monitoring data of AWS S3, install the corresponding collection script: `ID:guance_aws_s3`
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
 

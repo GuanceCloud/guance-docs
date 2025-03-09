@@ -6,11 +6,14 @@ summary: 'Use the「Guance   Synchronization」series script package in the scri
 __int_icon: 'icon/aws_eventbridge'
 dashboard:
   - desc: 'AWS EventBridge Monitoring View'
-    path: 'dashboard/zh/aws_eventbridge'
+    path: 'dashboard/en/aws_eventbridge'
 monitor:
   - desc: 'AWS EventBridge Monitor'
-    path: 'monitor/zh/aws_eventbridge'
+    path: 'monitor/en/aws_eventbridge'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aws_eventbridge'
 ---
 
 
@@ -33,7 +36,7 @@ If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guan
 
 > Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
 
-To synchronize the monitoring data of AWS EventBridge cloud resources, we install the corresponding collection script：「Guance Integration（AWS-EventBridge Collect）」(ID：`guance_awsguance_aws_eventbridge_gateway`)
+To synchronize the monitoring data of AWS EventBridge cloud resources, we install the corresponding collection script: `ID:guance_awsguance_aws_eventbridge_gateway`
 
 
 Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.

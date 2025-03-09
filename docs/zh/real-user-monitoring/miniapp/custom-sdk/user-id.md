@@ -16,7 +16,7 @@ SDK 默认情况下，自动会给用户生成一个唯一标识 ID。这个 ID 
 
 === "CDN" 
 
-    [下载文件](https://<<< custom_key.static_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
+    [下载文件](https://static.<<< custom_key.brand_main_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -44,7 +44,7 @@ SDK 默认情况下，自动会给用户生成一个唯一标识 ID。这个 ID 
 
 === "CDN" 
 
-    [下载文件](https://<<< custom_key.static_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
+    [下载文件](https://static.<<< custom_key.brand_main_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js)本地方式引入
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')

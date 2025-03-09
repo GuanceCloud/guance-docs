@@ -43,7 +43,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/log_index_cfg/bind' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/log_index_cfg/bind' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --data-raw '{"accessCfg":{"url":"aa.com","password":"test","username":"test"},"exterStoreName":"aa_uuid","fields":[{"field":"time","originalField":"time"},{"field":"__docid","originalField":"__docid"},{"field":"message","originalField":"message"}],"storeType":"es","name":"openapi_test"}' \

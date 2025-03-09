@@ -116,7 +116,7 @@ Python
 支持在文本文档中插入网络图片，格式如下：
 
 ```
-![avatar](https://<<< custom_key.static_domain >>>/dataflux-icon/official/community-code.png)
+![avatar](https://static.<<< custom_key.brand_main_domain >>>/dataflux-icon/official/community-code.png)
 ```
 
 效果如下：

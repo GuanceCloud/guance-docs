@@ -93,7 +93,7 @@ maxPointCount > interval > density > dql语句中的控制参数
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/df/query_data?body=\{%22queries%22:\[\{%22uuid%22:%2205ea25f0-2fa3-11ee-aa03-57233270ef0c%22,%22qtype%22:%22dql%22,%22query%22:\{%22q%22:%22L::re(`.*`):(`*`)\{+`index`+IN+\[%27default%27\]+\}%22,%22highlight%22:true,%22limit%22:50,%22orderby%22:\[\{%22time%22:%22desc%22\}\],%22_funcList%22:\[\],%22funcList%22:\[\],%22disableMultipleField%22:false,%22align_time%22:false,%22is_optimized%22:true,%22offset%22:0,%22search_after%22:\[1690808645037,538070,%22L_1690808645037_cj3r2itnel8fnfu5tlag%22\],%22timeRange%22:\[1690807857000,1690808757999\],%22tz%22:%22Asia/Shanghai%22\}\}\],%22expensiveQueryCheck%22:true\}' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/df/query_data?body=\{%22queries%22:\[\{%22uuid%22:%2205ea25f0-2fa3-11ee-aa03-57233270ef0c%22,%22qtype%22:%22dql%22,%22query%22:\{%22q%22:%22L::re(`.*`):(`*`)\{+`index`+IN+\[%27default%27\]+\}%22,%22highlight%22:true,%22limit%22:50,%22orderby%22:\[\{%22time%22:%22desc%22\}\],%22_funcList%22:\[\],%22funcList%22:\[\],%22disableMultipleField%22:false,%22align_time%22:false,%22is_optimized%22:true,%22offset%22:0,%22search_after%22:\[1690808645037,538070,%22L_1690808645037_cj3r2itnel8fnfu5tlag%22\],%22timeRange%22:\[1690807857000,1690808757999\],%22tz%22:%22Asia/Shanghai%22\}\}\],%22expensiveQueryCheck%22:true\}' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```

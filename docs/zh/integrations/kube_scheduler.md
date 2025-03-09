@@ -2,6 +2,9 @@
 title     : 'Kube Scheduler'
 summary   : '通过监控 Kube Scheduler 指标,帮助配置和优化Kube Scheduler，可以提高集群的资源利用率和应用程序的性能'
 __int_icon: 'icon/kube_scheduler'
+tags      :
+  - 'PROMETHEUS'
+  - 'KUBERNETES'
 dashboard :
   - desc  : 'Kube Schedule'
     path  : 'dashboard/zh/kube_scheduler'

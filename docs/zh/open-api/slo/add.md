@@ -33,7 +33,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/slo/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/slo/add' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY:  <DF-API-KEY>' \
 --data '{"name":"LWC-Test-2024-08-06-002","interval":"10m","goal":90,"minGoal":60,"sliUUIDs":["rul_xxxxx","rul_9eb745xx"],"describe":"LWC测试OpenAPI","tags":[],"alertPolicyUUIDs":["altpl_d8db4xxxx"]}'
