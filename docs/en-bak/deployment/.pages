@@ -1,0 +1,25 @@
+nav:
+  - index.md
+  - 'Product Deployment': 
+    - "Product Depolyment Description": deployment-description.md
+    - "Cloud Depolyment Manual": cloud-deployment-manual.md
+    - "Offline Depolyment Manual": offline-deployment-manual.md
+    - "Version Upgrade": version-upgrade.md
+    - "Security Depolyment": security-deployment.md
+    - "Hybrid Cloud Depolyment": hybrid-cloud-deployment.md
+    - "How to Select Deployment Version": how-to-select-deployment-version.md
+    - "DataWay":
+      - 'Changelog': dataway-changelog.md
+      - 'Dataway Install and Usage': dataway.md
+      - 'Sink': dataway-sink.md
+  - 'Product Usage':
+    - "How to Start": how-to-start.md
+    - "Upgrade Commercial Version": upgrade-version.md
+  - 'FAQ': faq.md
+  - 'Manage Background': 
+    - "Workspace Management": space.md
+    - "User Management": user.md
+    - "Template Management": integration.md
+    - "Field Management": field.md
+    - "Dataway": dataway.md
+    - "Settings": setting.md

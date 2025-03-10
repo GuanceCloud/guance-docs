@@ -1,14 +1,14 @@
 ---
-title     : 'Hardware Sensors'
-summary   : 'Collect hardware temperature indicators through Sensors command'
+title     : 'Hardware Sensors Data Collection'
+summary   : 'Collect hardware temperature metrics using the Sensors command'
 tags:
-  - 'HOST'
+  - 'Host'
 __int_icon      : 'icon/sensors'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -16,22 +16,22 @@ monitor   :
 
 ---
 
+Computer chip temperature data collection using the `lm-sensors` command (currently only supported on the `Linux` operating system)
+
 ## Configuration {#config}
 
-Computer chip temperature data acquisition using the `lm-sensors` command (currently only support `Linux` operating system).
+### Prerequisites {#requirements}
 
-### Preconditions {#requrements}
-
-- Run the install command `apt install lm-sensors -y`
-- Run the scan command `sudo sensors-detect` enter `Yes` for each question
-- After running the scan, you will see 'service kmod start' to load the scanned sensors, which may vary depending on your operating system.
+- Run the installation command `apt install lm-sensors -y`
+- Run the scan command `sudo sensors-detect` and input `Yes` for each question.
+- After the scan completes, you will see `service kmod start` to load the detected Sensors. This command may vary depending on your operating system.
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/sensors` directory under the DataKit installation directory, copy `sensors.conf.sample` and name it `sensors.conf`. Examples are as follows:
+    Navigate to the `conf.d/sensors` directory under the DataKit installation directory, copy `sensors.conf.sample` and rename it to `sensors.conf`. Example configuration is as follows:
 
     ```toml
         
@@ -52,28 +52,31 @@ Computer chip temperature data acquisition using the `lm-sensors` command (curre
     
     ```
 
-    After configuration, restart DataKit.
+    After configuring, restart DataKit.
 
 === "Kubernetes"
 
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+---
 
-### Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.sensors.tags]`:
+By default, all collected data will append a global tag named `host` (tag value is the hostname where DataKit resides). You can also specify other tags in the configuration using `[inputs.sensors.tags]`:
 
 ```toml
 [inputs.sensors.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-  # ...
+ # some_tag = "some_value"
+ # more_tag = "some_other_value"
+ # ...
 ```
 
 
 
 ### `sensors`
+
+
 
 - Tags
 
@@ -81,11 +84,11 @@ For all of the following data collections, a global tag named `host` is appended
 | Tag | Description |
 |  ----  | --------|
 |`adapter`|Device adapter|
-|`chip`|Chip id|
+|`chip`|Chip ID|
 |`feature`|Gathering target|
 |`hostname`|Host name|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -94,5 +97,3 @@ For all of the following data collections, a global tag named `host` is appended
 |`temp*_input`|Current input temperature of this chip, '*' is the order number in the chip list.|int|C|
 |`tmep*_crit`|Critical temperature of this chip, '*' is the order number in the chip list.|int|C|
 |`tmep*_max`|Max temperature of this chip, '*' is the order number in the chip list.|int|C|
-
-

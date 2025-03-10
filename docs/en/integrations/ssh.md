@@ -1,23 +1,22 @@
 ---
-title     : 'SSH'
-summary   : 'Collect SSH metrics'
+title: 'SSH'
+summary: 'Collect metrics data from SSH'
 tags:
-  - 'HOST'
-__int_icon      : 'icon/ssh'
-dashboard :
-  - desc  : 'SSH'
-    path  : 'dashboard/en/ssh'
-monitor   :
-  - desc  : 'SSH'
-    path  : 'monitor/en/ssh'
+  - 'Host'
+__int_icon: 'icon/ssh'
+dashboard:
+  - desc: 'SSH'
+    path: 'dashboard/en/ssh'
+monitor:
+  - desc: 'SSH'
+    path: 'monitor/en/ssh'
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-Monitor SSH/SFTP services and report data to Guance Cloud.
+Monitor SSH/SFTP services and report data to Guance.
 
 ## Configuration {#config}
 
@@ -26,7 +25,7 @@ Monitor SSH/SFTP services and report data to Guance Cloud.
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/ssh` directory under the DataKit installation directory, copy `ssh.conf.sample` and name it `ssh.conf`. Examples are as follows:
+    Navigate to the `conf.d/ssh` directory under the DataKit installation directory, copy `ssh.conf.sample` and rename it to `ssh.conf`. An example is shown below:
     
     ```toml
         ### You need to configure an [[inputs.ssh]] for each ssh/sftp to be monitored.
@@ -52,44 +51,38 @@ Monitor SSH/SFTP services and report data to Guance Cloud.
       # ...
     ```
     
-    After configuration, restart DataKit.
+    After configuring, restart DataKit to apply changes.
 
 === "Kubernetes"
 
-    The collector can now be turned on by [configMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.ssh.tags]`:
+By default, all collected data will append a global tag named `host` (the tag value is the hostname where DataKit resides). You can also specify other tags in the configuration using `[inputs.ssh.tags]`:
 
-``` toml
+```toml
  [inputs.ssh.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
   # ...
 ```
 
-
-
 ### `ssh`
 
 - Tags
 
-
 | Tag | Description |
-|  ----  | --------|
-|`host`|The host of ssh|
+| ---- | --------|
+|`host`|The host of SSH|
 
-- Metrics
-
+- Metric List
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`sftp_check`|SFTP service status|bool|-|
-|`sftp_err`|Fail reason of connect sftp service|string|-|
-|`sftp_response_time`|Response time of sftp service|float|ms|
+|`sftp_err`|Fail reason of connecting SFTP service|string|-|
+|`sftp_response_time`|Response time of SFTP service|float|ms|
 |`ssh_check`|SSH service status|bool|-|
-|`ssh_err`|Fail reason of connect ssh service|string|-|
-
-
+|`ssh_err`|Fail reason of connecting SSH service|string|-|

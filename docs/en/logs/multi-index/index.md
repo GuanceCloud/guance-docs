@@ -1,86 +1,86 @@
-# Indexes
-
+# Log Indexing
 ---
 
-Guance features advanced log indexing capabilities, allowing you to create and manage multiple indexes. The system automatically archives log data into the corresponding indexes based on predefined filtering conditions. Additionally, you can customize data storage strategies for each index to effectively control and reduce storage costs, achieving a dual optimization of data management flexibility and economic efficiency.
+<<< custom_key.brand_name >>> offers advanced log indexing capabilities. By creating and managing multiple indexes, the system automatically archives log data into the corresponding indexes based on predefined filtering conditions. Additionally, you can customize data retention policies for each index to effectively control and reduce storage costs, achieving flexibility in data management and economic efficiency.
 
 Under log indexing, you can:
 
-:material-numeric-1-circle: [Create a New Index](#create);    
-:material-numeric-2-circle: [Bind External Indexes](#binding-index).
-
-**Note**: By default, the creation of multiple log indexes is not available, **please contact your Guance account manager to request this feature**.
-
-## Create a New Index {#create}
-
-In the Guance workspace, click on **Logs > Indexes > Create New Index**.
-
-<img src="../img/5.log_4.png" width="60%" >
-
-
-1. Index Name: Customize the name of the index;  
-2. Add Filtering Conditions: Support filtering methods such as `in`, `not in`, `match`, `not match`, etc.;
-3. Equip Data Storage Strategy: Support selection of 3 days, 7 days, 14 days, 30 days, and 60 days.
-    - Note: Users of the Deployment Plan can customize the data storage strategy duration here, range: 1d ~ 1800d. 
+:material-numeric-1-circle: [Create an Index](#create);  
+:material-numeric-2-circle: [Bind External Index](#binding-index).
 
 ???+ warning "Note"
 
-    1. The index name must be unique, must start with a letter, and can only contain lowercase letters, numbers, or "_" characters; it cannot be modified, and deleted index names cannot be recreated;
-    2. By default, all logs are stored in a default index named `default`, and the default index cannot be modified or deleted;  
-    3. After setting up multiple log indexes, logs will flow into the first matching index, and the same log will not be saved repeatedly across indexes;  
-    4. Including the `default` index, there can be a maximum of 6 log indexes, meaning a maximum of 5 custom indexes can be created;
-    5. Standard members and read-only members only have viewing permissions, while administrators and owners can edit, delete, and drag to sort.
+    By default, multi-log indexing cannot be created. **Please contact <<< custom_key.brand_name >>> customer manager to apply for this feature**.
 
-### Example {#example}
+## Create an Index {#create}
 
-In the log index, configure the index filtering condition to be `source` in `gin`. After the index is successfully created, log data that matches this filtering condition will flow into the first index `rp70` upon reporting.
+In the <<< custom_key.brand_name >>> workspace, click **Logs > Indexes > Create Index**.
 
 <img src="../img/6.index_2.png" width="70%" >
 
-In the index list, clicking on the index will take you directly to the log explorer to view the corresponding log data. Alternatively, you can go directly to **Logs > Explorer** to select different indexes and view the corresponding log content.
+1. Index Name: Customize the name of the index;  
+2. Add Filter Conditions: Supports `in`, `not in` and other filtering methods;
+3. Set Data Retention Policy: Options include 3 days, 7 days, 14 days, 30 days, and 60 days.
+    - Note: Deployment Plan users can customize the data retention period here, ranging from 1 day to 1800 days.
 
-<img src="../img/5.log_5.png" width="60%" >
 
+???+ warning "Note"
+
+    1. The index name must be unique, start with a letter, and only contain lowercase letters, numbers, or "_" characters; it cannot be modified, and deleted index names cannot be reused;
+    2. By default, all logs exist in a default index named `default`. The default index cannot be modified or deleted;  
+    3. After setting up multi-log indexes, logs will flow into the first matching index, and the same log will not be saved across multiple indexes;  
+    4. Multi-log indexes, including the `default` index, can have a maximum of 6 indexes, meaning up to 5 custom indexes can be created;
+    5. Standard members and read-only members have view-only permissions, while administrators and owners can edit, delete, and reorder indexes.
+
+
+### Example {#example}
+
+In the log index, configure the index filter condition as `container_name` equals `dataflux`. After successfully creating the index, logs that match this filter condition will be routed to the first matching index `test_1`.
+
+<img src="../img/5.log_4.png" width="60%" >
+
+Clicking on the index in the index list will redirect you to the log Explorer to view the corresponding log data. Alternatively, you can go directly to **Logs > Explorer** to choose different indexes to view the corresponding log content.
+
+![](../img/create_log_example.png)
 
 
 ## Bind External Index {#binding-index}
 
-![](../img/log01.png)
+![](../img/external_log.png)
 
-Guance supports binding external index data. Once bound, you can query and analyze external index data in the Guance workspace.
+<<< custom_key.brand_name >>> supports binding external index data. After successful binding, you can query and analyze external index data within the <<< custom_key.brand_name >>> workspace.
 
 Currently supported external indexes include:
 
-:material-numeric-1-circle: [SLS Logstore](./sls.md)           
-:material-numeric-2-circle: [Elasticsearch](./elasticsearch.md)        
-:material-numeric-3-circle: [OpenSearch](./opensearch.md)       
-:material-numeric-4-circle: [LogEase](./logease.md)        
-:material-numeric-5-circle: [Volcengine TLS](./tls.md)       
+:material-numeric-1-circle: [SLS Logstore](./sls.md)  
+:material-numeric-2-circle: [Elasticsearch](./elasticsearch.md)  
+:material-numeric-3-circle: [OpenSearch](./opensearch.md)  
+:material-numeric-4-circle: [LogEase](./logease.md)  
+:material-numeric-5-circle: [VolcEngine TLS](./tls.md)  
 
 **Note**:
 
 - Bound indexes only support deletion (deletion means unbinding), and after unbinding, you cannot query logs under that index;
-- Other indexes cannot have the same name as the log index, nor can they have the same name as historical log indexes.
+- Other indexes cannot have the same name as log indexes or historical log indexes.
 
 ## Field Mapping {#mapping}
 
-Due to potential inconsistencies between standard fields in Guance and external indexes, missing some fields in Guance may cause some functions to not work properly.
+Due to potential inconsistencies between <<< custom_key.brand_name >>> and external index standard fields, missing fields in <<< custom_key.brand_name >>> may cause some features to not function properly.
 
-To quickly view and analyze external index log data in Guance, Guance provides a field mapping feature. You can map log fields directly when binding an external index.
+To facilitate quick viewing and analysis of external index log data in <<< custom_key.brand_name >>>, field mapping is provided during external index binding.
 
-1. `time`: The reporting time of the log. SLS Logstore defaults to mapping the `date` field as `time`. Elasticsearch, OpenSearch can be filled in according to the actual log data; if this field is not present, the data will be displayed out of order in the log explorer.
-2. `_docid`: The unique ID of the log. After mapping, you can view the details of the bound log, for example: You can map the original field `logid` as `_docid`. If in this part of the log, the `value` of `logid` is not unique, at this time if you do not refresh the details page, there will be no impact; if you refresh the details page, the log with the earliest time will be displayed. If this field is not present, some content will be missing on the log details page. If the mapped field is not unique, when opening the details page, the log with the earliest time corresponding to this ID will be displayed.
+1. `time`: Log reporting time. SLS Logstore defaults to mapping the `date` field to `time`, Elasticsearch and OpenSearch can be customized according to actual log data; if this field does not exist, data in the log Explorer will display out of order.
+2. `_docid`: Unique ID of the log. Mapping allows you to view details of the bound logs. For example, you can map the original field `logid` to `_docid`. If `logid` is not unique in these logs, refreshing the detail page will not affect it; however, refreshing the detail page will display the earliest log entry. Without this field, parts of the log detail page may be missing. If the mapped field is not unique, opening the detail page will display the earliest log entry corresponding to that ID.
+3. `message`: Content of the log. Mapping allows you to view the content of the bound logs and perform cluster analysis on log data.
 
-3. `message`: The content of the log. After mapping, you can view the content of the bound log and cluster analyze log data through the `message` field.
+> For more details, refer to [Log Explorer Cluster Analysis](../explorer.md).
 
-> For more details, see [Log Explorer Cluster Analysis](../explorer.md#cluster).
-
-You can also go to External Index list, select the index you need to modify the field mapping for, click **Edit**, and modify the mapping fields for that index.
+You can also modify field mappings by clicking **Edit** in the external index list and entering the index whose mappings need to be changed.
 
 ???+ warning "Note"
 
-    - The mapping rules for each index are not interconnected and are saved independently;
-    - If a log contains a `_docid` field and another field is mapped with the same name, the original `_docid` in the log will not take effect.
+    - Each index's mapping rules are independent and stored separately;
+    - If a log already has a `_docid` field and another identical field is mapped, the original `_docid` in the log will not take effect.
 
 ## Manage Indexes {#manag}
 
@@ -88,48 +88,44 @@ You can manage the index list through the following operations.
 
 :material-numeric-1-circle: Disable/Enable
 
-- After disabling an index, subsequent logs will no longer enter that index and will continue to match and be saved in other indexes. If there are no other matching indexes, they will be saved in the default `default` index;
-    
-- After enabling an index, subsequent logs will be saved in that index again.
+- Disabling an index prevents subsequent logs from being saved to it. Logs will continue to flow into other indexes for storage, or if no other indexes match, they will be saved in the default `default` index;
+
+- Enabling an index allows subsequent logs to be saved to it again.
 
 :material-numeric-2-circle: Edit
 
-Click the **Edit** icon under the **Options** menu on the right side of the log index to edit the created log index. In the figure below, after the current index `index.da` is successfully created, log data reported by `source` as `datakit` will match and be saved in the first matching index.
+Click the **Edit** icon to modify an existing log index. In the figure below, after successfully creating the current index `index.da`, logs with `source` as `datakit` will be routed to the first matching index for storage.
 
-**Note**: Changing the storage strategy will delete the data in the index, please proceed with caution.
+**Note**: Changing the retention policy will delete data in the index, so proceed with caution.
 
 <img src="../img/6.index_3.png" width="60%" >
 
-:material-numeric-3-circle: Delete
+:material-numeric-3-circle: Audit Operations: Click to view all operation logs for the index.
 
-Click the :fontawesome-regular-trash-can: icon under the **Options** menu on the right side of the log index to delete the created log index.
+:material-numeric-4-circle: Delete
 
-**Note**: Deleting an index will also delete the log data in that index. If there are no other matching indexes, subsequent reported log data will be saved in the default index `default`.
+Click the :fontawesome-regular-trash-can: icon to delete an existing log index.
+
+**Note**: Deleting an index will also delete the logs within it. If there are no other matching indexes, subsequent logs will be saved in the default `default` index.
+
+![](../img/6.index_4.png)
+
+If the deleted index was authorized for querying by other workspaces, deleting it will prevent those workspaces from continuing to query the index.
 
 <img src="../img/6.index_5.png" width="60%" >
 
+After deleting a log index, you can create an index with the same name as needed.
 
-If the index being deleted has been authorized for query by other workspaces, they will no longer be able to query that index after deletion.
+:material-numeric-5-circle: Drag
 
-<img src="../img/6.index_4.png" width="60%" >
+Click the :fontawesome-solid-grip-vertical: icon to drag and reorder existing log indexes.
 
-After deleting the log index, you can create an index with the same name as needed.
+**Note**: Logs will flow into the first matching index. Changing the order of indexes may alter the log flow.
 
-:material-numeric-4-circle: Audit: Click to view all audit logs for this index.
-
-
-
-:material-numeric-5-circle: Drag and Drop
-
-Click the :fontawesome-solid-grip-vertical: icon under the **Options** menu on the right side of the log index to drag and drop the created log index up and down.
-
-**Note**: Logs will flow into the first matching index, and changing the index order may cause logs to change their flow direction.
+## Further Reading
 
 
-## More Reading
-
-
-<font size=3>
+<font size=2>
 
 <div class="grid cards" markdown>
 
@@ -160,7 +156,7 @@ Click the :fontawesome-solid-grip-vertical: icon under the **Options** menu on t
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Bind Volcengine TLS Index**</font>](./tls.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Bind VolcEngine TLS Index**</font>](./tls.md)
 
 </div>
 
@@ -170,6 +166,7 @@ Click the :fontawesome-solid-grip-vertical: icon under the **Options** menu on t
 - [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Log Explorer Cluster Analysis**</font>](../explorer.md#cluster)
 
 </div>
+
 
 
 </font>

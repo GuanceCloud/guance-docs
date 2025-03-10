@@ -1,34 +1,34 @@
 ---
 title     : 'NodeJs'
-summary   : 'Obtain metrics, link tracking, and log information for NodeJs applications'
+summary   : 'Collect metrics, trace data, and logs from NodeJs applications'
 __int_icon: 'icon/node_js'
 dashboard :
-  - desc  : 'No'
-    path  : -
+  - desc  : 'Not available'
+    path  : '-'
 monitor   :
-  - desc  : 'No'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
 <!-- markdownlint-disable MD025 -->
 # NodeJs
-<!-- markdownlint enable -->
+<!-- markdownlint-enable -->
 
-Report NodeJs application related information to the Observation Cloud:
+Report information from NodeJs applications to Guance:
 
-- Collect custom metric data from the application;
-- Collect link tracking data from the application;
-- Manage all logs for the application.
+- Collect custom Metrics data from the application;
+- Collect trace data from the application;
+- Manage all logs from the application.
 
 ## Trace {#tracing}
 
-PHP provides a invasive way to inject probe information.
+NodeJs provides an intrusive method to inject probe information.
 
-[DDTrace NodeJs integration](ddtrace-nodejs.md)
+
+[NodeJs DDTrace Integration](ddtrace-nodejs.md)
 
 ## Profiling {#profiling}
 
 NodeJs Profiling can be used to collect performance data during program execution.
 
-[DDTrace NodeJs profiling integration](profile-nodejs.md)
-
+[DDTrace NodeJs Profiling](profile-nodejs.md)

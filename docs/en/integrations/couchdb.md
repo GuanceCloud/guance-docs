@@ -1,8 +1,8 @@
 ---
 title     : 'CouchDB'
-summary   : 'Collect CouchDB server metrics'
+summary   : 'Collect Metrics Data from CouchDB'
 tags:
-  - 'DATA STORES'
+  - 'Database'
 __int_icon      : 'icon/couchdb'
 dashboard :
   - desc  : 'CouchDB'
@@ -17,29 +17,29 @@ monitor   :
 
 ---
 
-CouchDB collector is used to collect metric data related to CouchDB, and currently it only supports data in Prometheus format.
+The CouchDB collector is used to collect metrics data related to CouchDB, currently only supporting data in Prometheus format.
 
-Already tested version:
+Tested versions:
 
 - [x] CouchDB 3.3.2
 - [x] CouchDB 3.2
-- [ ] CouchDB 3.1 this and versions earlier than this do not support
+- [ ] CouchDB 3.1 and below versions are not supported
 
 ## Configuration {#config}
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
-- Install CouchDB server
+- Install the CouchDB service
   
-See [official document](https://docs.couchdb.org/en/stable/install/index.html){:target="_blank"}
+Refer to the [official installation documentation](https://docs.couchdb.org/en/stable/install/index.html){:target="_blank"}
 
-- Verify correct installation
+- Verify the installation
 
-  Visit URL in browser `<ip>:5984/_utils/` can open CouchDB manage UI.
+  Access `<ip>:5984/_utils/` in your browser to enter the CouchDB management interface.
 
-- Open CouchDB Prometheus port
+- Enable the CouchDB Prometheus port
   
-  Search CouchDB start config file, usually `/opt/couchdb/etc/local.ini`
+  Find and edit the CouchDB startup configuration file, usually located at `/opt/couchdb/etc/local.ini`
 
   ```ini
   [prometheus]
@@ -48,7 +48,7 @@ See [official document](https://docs.couchdb.org/en/stable/install/index.html){:
   port = 17986
   ```
 
-  Change as
+  Change to
 
   ```ini
   [prometheus]
@@ -57,15 +57,15 @@ See [official document](https://docs.couchdb.org/en/stable/install/index.html){:
   port = 17986
   ```
 
-  See [official document](https://docs.couchdb.org/en/stable/config/misc.html#configuration-of-prometheus-endpoint){:target="_blank"}
+  Refer to the [official configuration documentation](https://docs.couchdb.org/en/stable/config/misc.html#configuration-of-prometheus-endpoint){:target="_blank"}
   
-- Restart CouchDB
+- Restart the CouchDB service
 
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    - To collect data, several ports `5984` `17986` need to be used. When collecting data remotely, these ports need to be opened.
-    - bind_address = 127.0.0.1 If it is a local collection, there is no need to modify it.
+    - The ports `5984` and `17986` are required for data collection. When collecting remotely, these ports need to be open on the server being monitored.
+    - If `bind_address = 127.0.0.1`, no changes are needed for local collection.
 <!-- markdownlint-enable -->
 
 ### Collector Configuration {#input-config}
@@ -73,7 +73,7 @@ See [official document](https://docs.couchdb.org/en/stable/install/index.html){:
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/couchdb` directory under the DataKit installation directory, copy `couchdb.conf.sample` and name it `couchdb.conf`. Examples are as follows:
+    Navigate to the `conf.d/couchdb` directory under the DataKit installation directory, copy `couchdb.conf.sample` and rename it to `couchdb.conf`. Example configuration:
     
     ```toml
         
@@ -103,15 +103,15 @@ See [official document](https://docs.couchdb.org/en/stable/install/index.html){:
     
     ```
 
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
 
 
@@ -122,16 +122,16 @@ See [official document](https://docs.couchdb.org/en/stable/install/index.html){:
 
 | Tag | Description |
 |  ----  | --------|
-|`code`|Code of HTTP responses, in 200 201 202 204 206 301 304 400 403 404 405 406 409 412 414 415 416 417 500 501 503.|
+|`code`|HTTP response codes, such as 200, 201, 202, 204, 206, 301, 304, 400, 403, 404, 405, 406, 409, 412, 414, 415, 416, 417, 500, 501, 503.|
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
-|`level`|Log lever, in `alert` `critical` `debug` `emergency` `error` `info` `notice` `warning`.|
-|`memory_type`|Erlang memory type, in `total` `processes` `processes_used` `system` `atom` `atom_used` `binary` `code` `ets`|
-|`method`|HTTP requests type, in `COPY` `DELETE` `GET` `HEAD` `OPTIONS` `POST` `PUT`.|
+|`level`|Log level, such as `alert`, `critical`, `debug`, `emergency`, `error`, `info`, `notice`, `warning`.|
+|`memory_type`|Erlang memory type, such as `total`, `processes`, `processes_used`, `system`, `atom`, `atom_used`, `binary`, `code`, `ets`|
+|`method`|HTTP request method, such as `COPY`, `DELETE`, `GET`, `HEAD`, `OPTIONS`, `POST`, `PUT`.|
 |`quantile`|Histogram `quantile`.|
 |`stage`|`Rexi` stream stage, like `init_stream`.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -149,7 +149,7 @@ See [official document](https://docs.couchdb.org/en/stable/install/index.html){:
 |`couch_replicator_changes_read_failures_total`|Number of failed replicator changes read failures.|float|count|
 |`couch_replicator_changes_reader_deaths_total`|Number of failed replicator changes readers.|float|count|
 |`couch_replicator_checkpoints_failure_total`|Number of failed checkpoint saves.|float|count|
-|`couch_replicator_checkpoints_total`|Number of checkpoints successfully saves.|float|count|
+|`couch_replicator_checkpoints_total`|Number of checkpoints successfully saved.|float|count|
 |`couch_replicator_cluster_is_stable`|1 if cluster is stable, 0 if unstable.|float|count|
 |`couch_replicator_connection_acquires_total`|Number of times connections are shared.|float|count|
 |`couch_replicator_connection_closes_total`|Number of times a worker is gracefully shut down.|float|count|
@@ -167,7 +167,7 @@ See [official document](https://docs.couchdb.org/en/stable/install/index.html){:
 |`couch_replicator_failed_starts_total`|Number of replications that have failed to start.|float|count|
 |`couch_replicator_jobs_adds_total`|Number of jobs added to replicator scheduler.|float|count|
 |`couch_replicator_jobs_crashed`|Replicator scheduler crashed jobs.|float|count|
-|`couch_replicator_jobs_crashes_total`|Number of job crashed noticed by replicator scheduler.|float|count|
+|`couch_replicator_jobs_crashes_total`|Number of job crashes noticed by replicator scheduler.|float|count|
 |`couch_replicator_jobs_duplicate_adds_total`|Number of duplicate jobs added to replicator scheduler.|float|count|
 |`couch_replicator_jobs_pending`|Replicator scheduler pending jobs.|float|count|
 |`couch_replicator_jobs_removes_total`|Number of jobs removed from replicator scheduler.|float|count|
@@ -187,12 +187,12 @@ See [official document](https://docs.couchdb.org/en/stable/install/index.html){:
 |`database_reads_total`|Number of times a document was read from a database.|float|count|
 |`database_writes_total`|Number of times a database was changed.|float|count|
 |`db_open_time_seconds`|Milliseconds required to open a database.|float|ms|
-|`dbinfo_seconds`|Milliseconds required to DB info.|float|ms|
+|`dbinfo_seconds`|Milliseconds required to get DB info.|float|ms|
 |`ddoc_cache_hit_total`|Number of design doc cache hits.|float|count|
 |`ddoc_cache_miss_total`|Number of design doc cache misses.|float|count|
 |`ddoc_cache_recovery_total`|Number of design doc cache recoveries.|float|count|
-|`ddoc_cache_requests_failures_total`|Number of design doc cache requests failures.|float|count|
-|`ddoc_cache_requests_recovery_total`|Number of design doc cache requests recoveries.|float|count|
+|`ddoc_cache_requests_failures_total`|Number of design doc cache request failures.|float|count|
+|`ddoc_cache_requests_recovery_total`|Number of design doc cache request recoveries.|float|count|
 |`ddoc_cache_requests_total`|Number of design doc cache requests.|float|count|
 |`document_inserts_total`|Number of documents inserted.|float|count|
 |`document_purges_failure_total`|Number of failed document purge operations.|float|count|
@@ -294,8 +294,8 @@ See [official document](https://docs.couchdb.org/en/stable/install/index.html){:
 |`nouveau_search_latency`|Distribution of overall search request latency as experienced by the end user.|float|ms|
 |`open_databases_total`|Number of open databases.|float|count|
 |`open_os_files_total`|Number of file descriptors CouchDB has open.|float|count|
-|`pread_exceed_eof_total`|Number of the attempts to read beyond end of db file.|float|count|
-|`pread_exceed_limit_total`|Number of the attempts to read beyond set limit.|float|count|
+|`pread_exceed_eof_total`|Number of attempts to read beyond the end of the db file.|float|count|
+|`pread_exceed_limit_total`|Number of attempts to read beyond set limit.|float|count|
 |`query_server_acquired_processes_total`|Number of acquired external processes.|float|count|
 |`query_server_process_errors_total`|Number of OS error process exits.|float|count|
 |`query_server_process_exists_total`|Number of OS normal process exits.|float|count|
@@ -304,7 +304,7 @@ See [official document](https://docs.couchdb.org/en/stable/install/index.html){:
 |`query_server_process_starts_total`|Number of OS process starts.|float|count|
 |`query_server_vdu_process_time_seconds`|Duration of validate_doc_update function calls.|float|ms|
 |`query_server_vdu_rejects_total`|Number of rejections by validate_doc_update function.|float|count|
-|`request_time_seconds`|Length of a request inside CouchDB without `MochiWeb`.|float|d|
+|`request_time_seconds`|Length of a request inside CouchDB without `MochiWeb`.|float|s|
 |`rexi_buffered_total`|Number of `rexi` messages buffered.|float|count|
 |`rexi_down_total`|Number of `rexi_DOWN` messages handled.|float|count|
 |`rexi_dropped_total`|Number of `rexi` messages dropped from buffers.|float|count|
@@ -312,5 +312,3 @@ See [official document](https://docs.couchdb.org/en/stable/install/index.html){:
 |`rexi_streams_timeout_total`|Number of `rexi` stream initialization timeouts.|float|count|
 |`rexi_streams_timeout_wait_for_ack_total`|Number of `rexi` stream timeouts while waiting for `acks`.|float|count|
 |`uptime_seconds`|CouchDB uptime.|float|s|
-
-

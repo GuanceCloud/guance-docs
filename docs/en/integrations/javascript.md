@@ -1,68 +1,59 @@
 ---
 title     : 'JavaScript'
-summary   : 'Monitoring browser usage behavior through JavaScript (Web)'
+summary   : 'Monitor browser user behavior using JavaScript (Web)'
 __int_icon: 'icon/javascript'
 dashboard :
-  - desc  : 'No'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'No'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
-
-<!-- markdownlint-disable MD025-->
+<!-- markdownlint-disable MD025 -->
 # JavaScript
 <!-- markdownlint-enable -->
 
-JavaScript belongs to the category of [RUM (User Access Detection)](../real-user-monitoring/) and is mainly used to detect browser user access behavior and report it to the observation cloud.
+JavaScript falls under the [RUM (Real User Monitoring)](../real-user-monitoring/) category and is primarily used to monitor browser user behavior and report it to Guance.
 
 
+## Configuration {#config}
 
-## Configure {#config}
-
-
-### Starting the RUM collector with DataKit
-
+### Enable RUM Collector in DataKit
 
 [Enable RUM Collector](rum.md)
 
+### Web Application Integration
 
-### Web application access
+There are three methods for integrating web applications: NPM integration, asynchronous loading, and synchronous loading.
 
+| Integration Method | Description                                                                                                                                                             |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NPM                | By bundling the SDK code into your frontend project, this method ensures no impact on frontend page performance but may miss requests and errors before SDK initialization. |
+| CDN Asynchronous Loading | Through CDN caching, introducing the SDK script asynchronously ensures that the SDK script download does not affect page load performance but may miss requests and errors before SDK initialization. |
+| CDN Synchronous Loading | Through CDN caching, introducing the SDK script synchronously ensures capturing all errors, resources, requests, and performance metrics. However, it may affect page load performance. |
 
-There are three ways to access web applications: NPM access, synchronous loading, and asynchronous loading.
-
-
-| Access Method | Introduction|
-|-------- | --------|
-|NPM | By packaging SDK code together into your front-end project, this method can ensure that there is no impact on the performance of front-end pages, but it may miss requests and error collection before SDK initialization|
-|CDN Asynchronous Loading | By accelerating caching through CDN, SDK scripts are introduced in an asynchronous manner. This method ensures that downloading SDK scripts does not affect page loading performance, but may miss requests and error collection before SDK initialization|
-|CDN synchronous loading | By accelerating caching through CDN and introducing SDK scripts through synchronous scripts, this method ensures that all errors, resources, requests, and performance metrics can be collected. However, it may affect the loading performance of the page|
-
-
-<!--markdownlint-disable MD046 MD009 MD051-->
-
+<!-- markdownlint-disable MD046 -->
 === "NPM"
-    
+
     ```javascript
     import { datafluxRum } from '@cloudcare/browser-rum'
     
     datafluxRum.init({
       applicationId: 'guance',
-      datakitOrigin: '<DATAKIT ORIGIN>', //protocol (including://), domain name (or IP address) [and port number]
+      datakitOrigin: '<DATAKIT ORIGIN>', // Protocol (including: //), domain name (or IP address) [and port number]
       env: 'production',
       version: '1.0.0',
       sessionSampleRate: 100,
       sessionReplaySampleRate: 70,
       trackInteractions: true,
-      traceType: 'ddtrace', //Not required, defaults to ddtrace. Currently supports ddtrace, zipkin, and skywalking_V3, jaeger, zipkin_Single_Header, w3c_6 types of traceparent
-      allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  //Not mandatory, allows injection of all request lists in the header header required by the trace collector. It can be the origin of the request or it can be a regular
+      traceType: 'ddtrace', // Optional, default is ddtrace. Currently supports ddtrace, zipkin, skywalking_v-jaeger, zipkin_single_header, w3c_traceparent (6 types)
+      allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  // Optional, list of origins or regex patterns for requests where tracing headers can be injected
     })
     ```
 
-=== "CDN asynchronous loading"
-    
+=== "CDN Asynchronous Loading"
+
     ```javascript
     <script>
      (function (h, o, u, n, d) {
@@ -87,41 +78,41 @@ There are three ways to access web applications: NPM access, synchronous loading
       DATAFLUX_RUM.onReady(function () {
         DATAFLUX_RUM.init({
           applicationId: 'guance',
-          datakitOrigin: '<DATAKIT ORIGIN>', //protocol (including://), domain name (or IP address) [and port number]
+          datakitOrigin: '<DATAKIT ORIGIN>', // Protocol (including: //), domain name (or IP address) [and port number]
           env: 'production',
           version: '1.0.0',
           sessionSampleRate: 100,
           sessionReplaySampleRate: 70,
           trackInteractions: true,
-          traceType: 'ddtrace', //Not required, defaults to ddtrace. Currently supports ddtrace, zipkin, and skywalking_V3, jaeger, zipkin_Single_Header, w3c_6 types of traceparent
-          allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  //Not mandatory, allows injection of all request lists in the header header required by the trace collector. It can be the origin of the request or it can be a regular
+          traceType: 'ddtrace', // Optional, default is ddtrace. Currently supports ddtrace, zipkin, skywalking_v-jaeger, zipkin_single_header, w3c_traceparent (6 types)
+          allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  // Optional, list of origins or regex patterns for requests where tracing headers can be injected
         })
       })
     </script>
     ```
 
-=== "CDN synchronous loading"
-    
+=== "CDN Synchronous Loading"
+
     ```javascript
     <script src="https://static.guance.com/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
     <script>
       window.DATAFLUX_RUM &&
         window.DATAFLUX_RUM.init({
           applicationId: 'guance',
-          datakitOrigin: '<DATAKIT ORIGIN>', //protocol (including://), domain name (or IP address) [and port number]
+          datakitOrigin: '<DATAKIT ORIGIN>', // Protocol (including: //), domain name (or IP address) [and port number]
           env: 'production',
           version: '1.0.0',
           sessionSampleRate: 100,
           sessionReplaySampleRate: 70,
           trackInteractions: true,
-          traceType: 'ddtrace', //Not required, defaults to ddtrace. Currently supports ddtrace, zipkin, and skywalking_V3, jaeger, zipkin_Single_Header, w3c_6 types of traceparent
-          allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  //Not mandatory, allows injection of all request lists in the header header required by the trace collector. It can be the origin of the request or it can be a regular
+          traceType: 'ddtrace', // Optional, default is ddtrace. Currently supports ddtrace, zipkin, skywalking_v-jaeger, zipkin_single_header, w3c_traceparent (6 types)
+          allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  // Optional, list of origins or regex patterns for requests where tracing headers can be injected
         })
     </script>
     ```
-
 <!-- markdownlint-enable -->
 
-### Parameter configuration
+### Parameter Configuration
 
-JavaScript provides many parameters to achieve personalized [configuration](../real-user-monitoring/web/app-access.md#config) of web monitoring.
+JavaScript provides many parameters for customizing the [configuration](../real-user-monitoring/web/app-access.md#config) of web monitoring.
+</input_content>

@@ -1,9 +1,9 @@
 ---
 title     : 'Exchange'
-summary   : 'Collect Exchange related metric information'
+summary   : 'Collect metrics related to Exchange'
 __int_icon: 'icon/exchange'
 dashboard :
-  - desc  : 'exchange monitoring view'
+  - desc  : 'Exchange monitoring view'
     path  : 'dashboard/zh/exchange'
 ---
 
@@ -14,70 +14,70 @@ dashboard :
 
 ## Installation and Deployment {#config}
 
-Note: Example [Exchange exporter](https://github.com/prometheus-community/windows_exporter) version is 0.24.0 (Windows)
+Note: The example [Exchange exporter](https://github.com/prometheus-community/windows_exporter) version is 0.24.0 (Windows)
 
-### Turn on the DataKit collector
+### Enable DataKit Collector
 
-- Turn on the DataKit Prom plugin and copy the sample file
+- Enable the DataKit Prom plugin and copy the sample file
 
 ```cmd
 cd C:\Program Files\datakit\conf.d\prom
-# Copy prom.conf.sample as prom.conf
+# Copy prom.conf.sample to prom.conf
 ```
 
 - Modify the `prom.conf` configuration file
 
 <!-- markdownlint-disable MD046 -->
 
-??? Quote "The configuration is as follows"
+??? quote "Configuration as follows"
 
     ```toml
     [[inputs.prom]]
     ## Exporter URLs
     urls = ["http://127.0.0.1:9182/metrics"]
     
-    ## Ignore request errors for the url
+    ## Ignore request errors for URLs
     ignore_req_err = false
     
     ## Collector alias
     source = "exchange"
     
-    ## Data collection output source
-    # Configuring this item can write the collected data to a local file instead of sending the data to the center
-    # You can then directly use the datakit --prom-conf /path/to/this/conf command to debug the locally saved metric set
-    # If the url is configured as a local file path, --prom-conf will preferentially debug the data of the output path
+    ## Data output source for collected data
+    # Configuring this option can write collected data to a local file instead of sending it to the center
+    # Later, you can use the datakit --prom-conf /path/to/this/conf command to debug the locally saved Measurement
+    # If the URL has already been configured as a local file path, then the --prom-conf option takes precedence in debugging the output path data
     # output = "/abs/path/to/file"
     > 
     ## Maximum size of collected data, in bytes
-    # When outputting data to a local file, you can set the maximum size of collected data
-    # If the size of the collected data exceeds this limit, the collected data will be discarded
-    # The maximum size of collected data is set to 32MB by default
+    # When outputting data to a local file, you can set a maximum size limit for the collected data
+    # If the size of the collected data exceeds this limit, the data will be discarded
+    # The default maximum data size is set to 32MB
     # max_file_size = 0
     
-    ## Filter metric types, optional values are counter, gauge, histogram, summary
-    # By default, only counter and gauge type metrics are collected
-    # If it is empty, no filtering is performed
+    ## Metric type filter, optional values are counter, gauge, histogram, summary
+    # By default, only counter and gauge types of metrics are collected
+    # If empty, no filtering is performed
     metric_types = ["counter", "gauge"]
     
-    ## Filter metric names
-    # Support regex, can configure multiple, i.e., satisfaction of one is sufficient
-    # If it is empty, no filtering is performed
+    ## Metric name filter
+    # Supports regex, multiple configurations can be made, satisfying any one condition is sufficient
+    # If empty, no filtering is performed
     # metric_name_filter = ["cpu"]
     
-    ## Metric set name prefix
-    # Configuring this item can add a prefix to the metric set name
+    ## Prefix for Measurement names
+    # Configuring this option adds a prefix to the Measurement name
     measurement_prefix = ""
     
-    ## Metric set name
-    # By default, the metric name will be split with an underscore "_", and the first field after the split will be used as the metric set name, and the remaining fields as the current metric name
-    # If measurement_name is configured, the metric name will not be split
-    # The final metric set name will add the measurement_prefix prefix
+    ## Measurement name
+    # By default, the metric name is split by underscores "_", with the first segment becoming the Measurement name and the rest forming the current metric name
+    # If measurement_name is configured, no splitting of the metric name occurs
+    # The final Measurement name will have the measurement_prefix added as a prefix
     # measurement_name = "prom"
     
     ## Collection interval "ns", "us" (or "µs"), "ms", "s", "m", "h"
     interval = "10s"
     
-    ## Filter tags, you can configure multiple tags
+    ## Filter tags, multiple tags can be configured
     # Matching tags will be ignored
     # tags_ignore = ["xxxx"]
     
@@ -88,15 +88,15 @@ cd C:\Program Files\datakit\conf.d\prom
     # tls_key = "/tmp/peer.key"
     
     ## Custom authentication method, currently only supports Bearer Token
-    # token and token_file: only one of them needs to be configured
+    # Only one of token or token_file needs to be configured
     # [inputs.prom.auth]
     # type = "bearer_token"
     # token = "xxxxxxxx"
     # token_file = "/tmp/token"
     
-    ## Custom metric set name
-    # You can group metrics with the prefix prefix into one type of metric set
-    # The custom metric set name configuration takes precedence over the measurement_name configuration item
+    ## Custom Measurement names
+    # Metrics containing the prefix can be grouped into a single Measurement
+    # Custom Measurement name configuration takes precedence over the measurement_name setting
     #[[inputs.prom.measurements]]
     #  prefix = "cpu_"
     #  name = "cpu"
@@ -112,13 +112,13 @@ cd C:\Program Files\datakit\conf.d\prom
     ```
 <!-- markdownlint-enable -->
 
-- Restart DataKit (if you need to turn on the log, please configure the log collection and restart)
+- Restart DataKit (if logging needs to be enabled, configure log collection before restarting)
 
 ```bash
 systemctl restart datakit
 ```
 
-- DQL verification
+- DQL Verification
 
 ```bash
 [root@df-solution-ecs-018 prom]# datakit -Q
@@ -149,32 +149,32 @@ dql > M::exchange LIMIT 1
 1 rows, 1 series, cost 40.297037ms
 ```
 
-## Detailed Explanation of Metrics {#metric}
+## Metrics Details {#metric}
 
-### General Classification
+### General Category
 
-| Metric Set | Metric                                        | Meaning                                                     | Metric Meaning                                               |
-| ---------- | --------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| exchange   | windows_exchange_owa_current_unique_users     | Number of unique users currently logged on to Outlook Web App | Monitor the number of active users using OWA                 |
-| exchange   | windows_net_packets_outbound_errors_total     | The number of errors in the host network card outbound      | Normally, the network card should not have an error package number, if this number is not 0, it means there are errors at the network level |
-| exchange   | windows_exchange_workload_active_tasks        | Number of active tasks currently running in the background for workload management | The number of active tasks for Workload                      |
-| exchange   | windows_exchange_workload_queued_tasks        | Number of workload management tasks that are currently queued up waiting to be processed | Shows the number of workload management tasks currently **queued up for processing**. |
-| exchange   | usage_total                                   | CPU utilization                                             | Reflects the load                                            |
-| exchange   | available                                     | The amount of available memory                              | Reflects the load                                            |
+| Measurement | Metric                                      | Meaning                                                         | Significance                                                     |
+| ------------ | ------------------------------------------- | --------------------------------------------------------------- | ---------------------------------------------------------------- |
+| exchange     | windows_exchange_owa_current_unique_users   | Number of unique users currently logged on to Outlook Web App   | Monitor the number of active users using OWA                    |
+| exchange     | windows_net_packets_outbound_errors_total   | Number of outbound packet errors on the host NIC                | Under normal circumstances, NIC should not have packet errors; non-zero values indicate network issues |
+| exchange     | windows_exchange_workload_active_tasks      | Number of active tasks currently running in the background      | Number of active tasks for workload management                  |
+| exchange     | windows_exchange_workload_queued_tasks      | Number of workload management tasks queued waiting to be processed | Shows the number of workload management tasks **queued for processing** |
+| exchange     | usage_total                                 | CPU utilization                                                 | Reflects system load                                            |
+| exchange     | available                                   | Available memory                                                | Reflects system load                                            |
 
-### Web Classification
+### Web Category
 
-| Metric Set | Metric                                    | Meaning                                                     | Monitoring Meaning                                           |
-| ---------- | ----------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| exchange   | windows_exchange_owa_current_unique_users  | Number of unique users currently logged on to Outlook Web App | Monitor the number of active users using OWA, same as above  |
-| exchange   | windows_exchange_owa_requests_total        | Number of requests handled by Outlook Web App per second     | The number of requests per second handled by OWA, reflecting the busyness of OWA |
-| exchange   | windows_exchange_activesync_requests_total | Num HTTP requests received from the client via ASP.NET per sec. Shows Current user load | Shows the number of HTTP requests received per second from the client via ASP.NET. Determines the current Exchange ActiveSync request rate |
+| Measurement | Metric                                       | Meaning                                                         | Monitoring Significance                                         |
+| ------------ | -------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| exchange     | windows_exchange_owa_current_unique_users    | Number of unique users currently logged on to Outlook Web App   | Monitor the number of active users using OWA, same as above     |
+| exchange     | windows_exchange_owa_requests_total          | Number of requests handled by Outlook Web App per second        | Reflects the busyness of OWA                                    |
+| exchange     | windows_exchange_activesync_requests_total   | Number of HTTP requests received from clients via ASP.NET per second | Shows the rate of HTTP requests received from clients via ASP.NET |
 
-### RPC Classification
+### RPC Category
 
-| Metric Set | Metric                               | Meaning                                                | Monitoring Meaning                                           |
-| ---------- | ------------------------------------ | ------------------------------------------------------- | ------------------------------------------------------------ |
-| exchange   | windows_exchange_rpc_connection_count | Total number of client connections maintained           | Shows the total number of client connections maintained      |
-| exchange   | windows_exchange_rpc_user_count       | Number of users                                        | Shows the number of users connected to the service.          |
-| exchange   | windows_exchange_rpc_avg_latency_sec  | The latency (sec), averaged for the past 1024 packets  | Shows the average latency (milliseconds) of the past 1,024 packets. Should be less than 250ms. Higher RPC response values will affect user experience and Outlook processing time |
-| exchange   | windows_exchange_rpc_operations_total | The rate at which RPC operations occur                  | The rate of RPC operations                                    |
+| Measurement | Metric                                  | Meaning                                                  | Monitoring Significance                                         |
+| ------------ | --------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------- |
+| exchange     | windows_exchange_rpc_connection_count   | Total number of client connections maintained             | Shows the total number of client connections                    |
+| exchange     | windows_exchange_rpc_user_count         | Number of users connected to the service                 | Shows the number of users connected to the service              |
+| exchange     | windows_exchange_rpc_avg_latency_sec    | Average latency (seconds) for the past 1024 packets      | Shows the average latency for the past 1,024 packets; should be less than 250ms. Higher RPC response times affect user experience and Outlook processing time |
+| exchange     | windows_exchange_rpc_operations_total   | Rate at which RPC operations occur                       | Shows the rate of RPC operations                                |

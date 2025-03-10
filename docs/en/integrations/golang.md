@@ -1,52 +1,48 @@
 ---
 title     : 'Golang'
-summary   : 'Obtain metrics, link tracking, and log information for Golang applications'
+summary   : 'Collect metrics, trace data, and log information from Golang applications'
 __int_icon: 'icon/go'
 dashboard :
-  - desc  : 'No'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'No'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
 <!-- markdownlint-disable MD025 -->
 # Golang
-<!-- markdownlint enable -->
+<!-- markdownlint-enable -->
 
-Report relevant information about the Golang application to the Observation Cloud:
+Report information related to Golang applications to Guance:
 
-- Collect custom metric data from the application;
-- Collect link tracking data from the application;
-- Manage all logs for the application.
+- Collect custom Metrics data from the application;
+- Collect trace data from the application;
+- Manage all logs of the application.
 
 ## Trace {#tracing}
 
+Golang provides an intrusive method to inject probe information.
 
-Golang provides invasive injection of probe information.
-
-
-<!-- markdownlint-disable MD046 MD009 MD051 -->
-
+<!-- markdownlint-disable MD046 -->
 === "OpenTelemetry"
 
-    [OpenTelemetry](opentelemetry-go.md)
+    [OpenTelemetry Integration](opentelemetry-go.md)
 
 === "DDTrace"
 
-    [DDTrace](ddtrace-golang.md)
+    [DDTrace Integration](ddtrace-golang.md)
 
 <!-- markdownlint-enable -->
 
-
 ## Profiling {#profiling}
 
-Golang Profiling can be used to collect performance data during program operation.
+Golang Profiling can be used to collect performance data during program execution.
 
-<!-- markdownlint-disable MD046 MD009 MD051-->
+<!-- markdownlint-disable MD046 -->
 
 === "DDTrace"
 
-    [DDTrace Go profiling](profile-go.md)
+    [DDTrace Go Profiling](profile-go.md)
 
-<!--markdownlint-enable -->
+<!-- markdownlint-enable -->

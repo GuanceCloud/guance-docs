@@ -2,16 +2,16 @@
 title: 'Tencent Cloud Memcached'
 tags: 
   - Tencent Cloud
-summary: 'Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud'
+summary: 'Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance'
 __int_icon: 'icon/tencent_memcached'
 dashboard:
 
-  - desc: 'Tencent Cloud Memcached Monitoring View'
-    path: 'dashboard/zh/tencent_memcached'
+  - desc: 'Tencent Cloud Memcached built-in views'
+    path: 'dashboard/en/tencent_memcached'
 
 monitor:
-  - desc: 'Tencent Cloud Memcached Monitor'
-    path: 'monitor/zh/tencent_memcached'
+  - desc: 'Tencent Cloud Memcached monitor'
+    path: 'monitor/en/tencent_memcached'
 
 ---
 
@@ -19,56 +19,54 @@ monitor:
 # Tencent Cloud Memcached
 <!-- markdownlint-enable -->
 
-Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud
+Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling the Guance Integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Deploy Func Yourself](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-### Installation script
+### Install Script
 
-> Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Note: Please prepare a Tencent Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize the monitoring data of ECS cloud resources, we install the corresponding collection script：「Guance Integration（Tencent Cloud - Memcached Collect）」(ID：`guance_tencentcloud_memcached`)
+To synchronize the monitoring data of Memcached cloud resources, we install the corresponding collection script: "Guance Integration (Tencent Cloud-Memcached Collection)" (ID: `guance_tencentcloud_memcached`)
 
-Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.。
+After clicking 【Install】, enter the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+Click 【Deploy Startup Script】. The system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
+After enabling, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
 
-> If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
+By default, we collect some configurations. For more details, see [Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-memcached/){:target="_blank"}
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-memcached/){:target="_blank"}
+### Verification
 
-### Verify
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and check the task records and logs for any abnormalities.
+2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+## Metrics {#metric}
 
-## Metric {#metric}
+After configuring Tencent Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration [Tencent Cloud Cloud Monitoring Metric Details](https://cloud.tencent.com/document/product/248/62458){:target="_blank"}
 
-Configure Tencent Cloud OSS monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/62458){:target="_blank"}
+| Metric Name | Meaning | Unit | Dimensions |
+|-------------|---------|------|------------|
+| `allocsize` | Allocated capacity space | MBytes | InstanceName (Instance Name) |
+| `usedsize`  | Used capacity space | MBytes | InstanceName (Instance Name) |
+| `get`       | GET command execution count per second | Count/s | InstanceName (Instance Name) |
+| `set`       | SET command execution count per second | Count/s | InstanceName (Instance Name) |
+| `delete`    | DELETE command execution count per second | Count/s | InstanceName (Instance Name) |
+| `error`     | Error commands | Count/s | InstanceName (Instance Name) |
+| `latency`   | Average access latency | ms | InstanceName (Instance Name) |
+| `qps`       | Total request count | Count/s | InstanceName (Instance Name) |
 
+## Objects {#object}
 
-| Metric Name  | meaning                                 |   unit  | Dimension                 |
-|-----------------|-----------------------------------------|  ----- |--------------------|
-| `allocsize`     | Allocated capacity space                |  MBytes    | InstanceName(Instance Name) |
-| `usedsize`      | Used capacity space                     |  MBytes    |InstanceName(Instance Name)）      |
-| `get`           | GET command execution times per second  |   Count/s   | InstanceName(Instance Name)     |
-| `set`           | SETT command execution times per second | Count/s   | InstanceName(Instance Name)     |
-| `delete`        | Number of times the DELETE command is executed per second                        |   Count/s   | InstanceName(Instance Name)     |
-| `error`         | bad command                                   |       Count/s   | InstanceName(Instance Name)    |
-| `latency`       | Average access latency                                 |  ms   | InstanceName(Instance Name)   |
-| `qps`           | Total number of requests                                  |    Count/s | InstanceName(Instance Name)     |
-## Object {#object}
-
-The collected Tencent Cloud Memcached object data structure can be seen from the "Infrastructure - Custom" object data
+The collected Tencent Cloud Memcached object data structure can be viewed from "Infrastructure - Custom"
 
 ```json
 {
@@ -85,4 +83,4 @@ The collected Tencent Cloud Memcached object data structure can be seen from the
 }
 ```
 
-> *Note: The fields in `tags` may change with subsequent updates*
+> *Note: The fields in `tags` may change with subsequent updates.*

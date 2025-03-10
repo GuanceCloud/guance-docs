@@ -1,149 +1,150 @@
 ---
-title: 'Volcengine ALB'
+title: 'VolcEngine ALB'
 tags: 
-  - Volcengine
-summary: 'Collect ALB metrics data of Volcengine'
+  - VolcEngine
+summary: 'Collect VolcEngine ALB Metrics Data'
 __int_icon: 'icon/volcengine_alb'
 dashboard:
 
-  - desc: 'Volcengine ALB Built in View'
+  - desc: 'VolcEngine ALB Built-in Views'
     path: 'dashboard/en/volcengine_alb'
 
 monitor:
-  - desc: 'Volcengine ALB Monitor'
+  - desc: 'VolcEngine ALB Monitor'
     path: 'monitor/en/volcengine_alb'
 ---
 
-Collect ALB metrics data of Volcengine
+Collect VolcEngine ALB Metrics Data
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling the Guance Integration - Extensions - Managed Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-### Installation script
+### Install Script
 
-> Tip：Please prepare `Volcenine`  AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Note: Prepare a qualified VolcEngine AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize the monitoring data of ALB cloud resources, we install the corresponding collection script：「Guance Integration（Volcengine ALB Collect）」(ID：`guance_volcengine_alb`)
+To synchronize ALB cloud resource monitoring data, install the corresponding collection script: "Guance Integration (VolcEngine-ALB Collection)" (ID: `guance_volcengine_alb`)
 
-Click【Install】and enter the corresponding parameters: Volcenine AK, Volcenine account name, Volcenine regions.
+After clicking 【Install】, enter the corresponding parameters: VolcEngine AK, VolcEngine account name, regions.
 
-Tap 【Deploy startup Script】, The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
+Click 【Deploy Startup Script】 and the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click "Run"，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
+Once enabled, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】 to run it immediately without waiting for the scheduled time. Wait a moment, then check the execution task records and corresponding logs.
 
-### Verify
+### Verification
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task. In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure - Resource Catalog」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+1. Confirm in 「Manage / Automatic Trigger Configuration」 that the corresponding task has an automatic trigger configuration. You can also view the task records and logs to check for any anomalies.
+2. In the Guance platform, under 「Infrastructure - Resource Catalog」, check if asset information exists.
+3. In the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
 
-## Metric  {#metric}
+## Metrics {#metric}
 
-Configure the Volcengine ALB monitoring metric to collect more metrics through configuration [Volcengine ALB metric Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_ALB){:target="_blank"}
+Configure VolcEngine ALB monitoring metrics. You can collect more metrics through configuration [VolcEngine ALB Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_ALB){:target="_blank"}
 
-|`MetricName` |`Subnamespace` | MetricName |MetricUnit | Dimension|
+| `MetricName` | `Subnamespace` | Metric Name | Metric Unit | Dimension |
 | ----------- |---------------| :----: |:--------: |:-------: |
-| `listener_max_conn` | `listener` | Number of concurrent connections | Count | ResourceID,ListenerID |
-| `listener_new_conn` | `listener` | Number of New Connections | Count/Second | ResourceID,ListenerID |
-| `listener_active_conn` | `listener` | Number of active connections | Count | ResourceID,ListenerID |
-| `listener_inactive_conn` | `listener` | Number of concurrent connections | Count | ResourceID,ListenerID |
-| `listener_lost_conn` | `listener` | Number of lost connections | Count/Second | ResourceID,ListenerID |
-| `listener_in_packets` | `listener` | Number of incoming data packets | Packet/Second | ResourceID,ListenerID |
-| `listener_out_packets` | `listener` | Number of outbound data packets | Packet/Second | ResourceID,ListenerID |
-| `listener_in_drop_packets` | `listener` | Number of incoming packet losses | Packet/Second | ResourceID,ListenerID |
-| `listener_out_drop_packets` | `listener` | Number of outbound packet losses | Packet/Second | ResourceID,ListenerID |
-| `listener_in_bytes` | `listener` | Entering direction bandwidth | Bits/Second(SI) | ResourceID,ListenerID |
-| `listener_out_bytes` | `listener` | Output bandwidth | Bits/Second(SI) | ResourceID,ListenerID |
-| `listener_in_drop_bytes` | `listener` | Discard bandwidth in the incoming direction | Bits/Second(SI) | ResourceID,ListenerID |
-| `listener_out_drop_bytes` | `listener` | Discard bandwidth in the outgoing direction | Bits/Second(SI) | ResourceID,ListenerID |
-| `listener_healthy_rs_count` | `listener` | Number of healthy backend servers | Count | ResourceID,ListenerID |
-| `listener_unhealthy_rs_count` | `listener` | Number of backend server exceptions | Count | ResourceID,ListenerID |
-| `listener_http_2xx_send_count` | `listener` | 2xx status code sent | Count/Second | ResourceID,ListenerID |
-| `listener_http_3xx_send_count` | `listener` | 3xx status code sent | Count/Second | ResourceID,ListenerID |
-| `listener_http_4xx_send_count` | `listener` | 4xx status code sent | Count/Second | ResourceID,ListenerID |
-| `listener_http_5xx_send_count` | `listener` | 5xx status code sent| Count/Second | ResourceID,ListenerID |
-| `listener_http_other_send_count` | `listener` | other status code sent | Count/Second | ResourceID,ListenerID |
-| `listener_http_404_send_count` | `listener` | 404 status code sent | Count/Second | ResourceID,ListenerID |
-| `listener_http_502_send_count` | `listener` | 502 status code sent | Count/Second | ResourceID,ListenerID |
-| `listener_http_2xx_recv_count` | `listener` | Received 2xx status codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_3xx_recv_count` | `listener` | Received 3xx status codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_4xx_recv_count` | `listener` | Received 4xx status codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_5xx_recv_count` | `listener` | Received 5xx status codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_other_recv_count` | `listener` | Received other status codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_404_recv_count` | `listener` | Received 404 status codes | Count/Second | ResourceID,ListenerID |
-| `listener_http_502_recv_count` | `listener` | Received 502 status codes | Count/Second | ResourceID,ListenerID |
-| `listener_qps` | `listener` | QPS | Count/Second | ResourceID,ListenerID |
-| `listener_response_time` | `listener` | Average response time | Millisecond | ResourceID,ListenerID |
-| `listener_http_500_send_count` | `listener` | 500 status code sent | Count/Second | ResourceID |
-| `listener_http_503_send_count` | `listener` | 503 status code sent | Count/Second | ResourceID |
-| `listener_http_504_send_count` | `listener` | 504 status code sent | Count/Second | ResourceID |
-| `load_balancer_max_conn` | `loadbalancer` | Number of concurrent connections | Count | ResourceID |
-| `load_balancer_new_conn` | `loadbalancer` | Number of New Connections | Count | ResourceID |
-| `load_balancer_active_conn` | `loadbalancer` | Number of active connections | Count | ResourceID |
-| `load_balancer_inactive_conn` | `loadbalancer` | Number of inactive connections | Count | ResourceID |
-| `load_balancer_lost_conn` | `loadbalancer` | Number of lost connections | Count/Second | ResourceID |
-| `load_balancer_in_packets` | `loadbalancer` | Number of incoming data packets | Packet/Second | ResourceID |
-| `load_balancer_out_packets` | `loadbalancer` | Number of outbound data packets | Packet/Second | ResourceID |
-| `load_balancer_in_drop_packets` | `loadbalancer` | Number of incoming packet losses | Packet/Second | ResourceID |
-| `load_balancer_out_drop_packets` | `loadbalancer` | Number of outbound packet losses | Packet/Second | ResourceID |
-| `load_balancer_in_bytes` | `loadbalancer` | Entering direction bandwidth | Bits/Second(SI) | ResourceID |
-| `load_balancer_out_bytes` | `loadbalancer` | Output bandwidth | Bits/Second(SI) | ResourceID |
-| `load_balancer_in_drop_bytes` | `loadbalancer` | Discard bandwidth in the incoming direction | Bits/Second(SI) | ResourceID |
-| `load_balancer_out_drop_bytes` | `loadbalancer` | Discard bandwidth in the outgoing direction | Bits/Second(SI) | ResourceID |
-| `load_balancer_http_2xx_send_count` | `loadbalancer` | 2xx status code sent | Count/Second | ResourceID |
-| `load_balancer_http_3xx_send_count` | `loadbalancer` | 3xx status code sent | Count/Second | ResourceID |
-| `load_balancer_http_4xx_send_count` | `loadbalancer` | 4xx status code sent | Count/Second | ResourceID |
-| `load_balancer_http_5xx_send_count` | `loadbalancer` | 5xx status code sent | Count/Second | ResourceID |
-| `load_balancer_http_other_send_count` | `loadbalancer` | other status code sent | Count/Second | ResourceID |
-| `load_balancer_http_404_send_count` | `loadbalancer` | 404 status code sent | Count/Second | ResourceID |
-| `load_balancer_http_502_send_count` | `loadbalancer` | 502 status code sent | Count/Second | ResourceID |
-| `load_balancer_http_2xx_recv_count` | `loadbalancer` | Received 2xx status codes| Count/Second | ResourceID |
-| `load_balancer_http_3xx_recv_count` | `loadbalancer` | Received 3xx status codes | Count/Second | ResourceID |
-| `load_balancer_http_4xx_recv_count` | `loadbalancer` | Received 4xx status codes | Count/Second | ResourceID |
-| `load_balancer_http_5xx_recv_count` | `loadbalancer` | Received 5xx status codes | Count/Second | ResourceID |
-| `load_balancer_http_other_recv_count` | `loadbalancer` | Received other status codes | Count/Second | ResourceID |
-| `load_balancer_http_404_recv_count` | `loadbalancer` | Received 404 status codes | Count/Second | ResourceID |
-| `load_balancer_http_502_recv_count` | `loadbalancer` | Received 502 status codes | Count/Second | ResourceID |
+| `listener_max_conn` | `listener` | Concurrent Connections | Count | ResourceID, ListenerID |
+| `listener_new_conn` | `listener` | New Connections | Count/Second | ResourceID, ListenerID |
+| `listener_active_conn` | `listener` | Active Connections | Count | ResourceID, ListenerID |
+| `listener_inactive_conn` | `listener` | Inactive Connections | Count | ResourceID, ListenerID |
+| `listener_lost_conn` | `listener` | Lost Connections | Count/Second | ResourceID, ListenerID |
+| `listener_in_packets` | `listener` | Incoming Packets | Packet/Second | ResourceID, ListenerID |
+| `listener_out_packets` | `listener` | Outgoing Packets | Packet/Second | ResourceID, ListenerID |
+| `listener_in_drop_packets` | `listener` | Dropped Incoming Packets | Packet/Second | ResourceID, ListenerID |
+| `listener_out_drop_packets` | `listener` | Dropped Outgoing Packets | Packet/Second | ResourceID, ListenerID |
+| `listener_in_bytes` | `listener` | Incoming Bandwidth | Bits/Second(SI) | ResourceID, ListenerID |
+| `listener_out_bytes` | `listener` | Outgoing Bandwidth | Bits/Second(SI) | ResourceID, ListenerID |
+| `listener_in_drop_bytes` | `listener` | Dropped Incoming Bandwidth | Bits/Second(SI) | ResourceID, ListenerID |
+| `listener_out_drop_bytes` | `listener` | Dropped Outgoing Bandwidth | Bits/Second(SI) | ResourceID, ListenerID |
+| `listener_healthy_rs_count` | `listener` | Healthy Backend Servers | Count | ResourceID, ListenerID |
+| `listener_unhealthy_rs_count` | `listener` | Unhealthy Backend Servers | Count | ResourceID, ListenerID |
+| `listener_http_2xx_send_count` | `listener` | Sent 2xx Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_3xx_send_count` | `listener` | Sent 3xx Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_4xx_send_count` | `listener` | Sent 4xx Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_5xx_send_count` | `listener` | Sent 5xx Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_other_send_count` | `listener` | Sent Other Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_404_send_count` | `listener` | Sent 404 Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_502_send_count` | `listener` | Sent 502 Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_2xx_recv_count` | `listener` | Received 2xx Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_3xx_recv_count` | `listener` | Received 3xx Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_4xx_recv_count` | `listener` | Received 4xx Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_5xx_recv_count` | `listener` | Received 5xx Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_other_recv_count` | `listener` | Received Other Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_404_recv_count` | `listener` | Received 404 Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_http_502_recv_count` | `listener` | Received 502 Status Codes | Count/Second | ResourceID, ListenerID |
+| `listener_qps` | `listener` | QPS | Count/Second | ResourceID, ListenerID |
+| `listener_response_time` | `listener` | Average Response Time | Millisecond | ResourceID, ListenerID |
+| `listener_ups_response_time` | `listener` | Average Request Time | Millisecond | ResourceID, ListenerID |
+| `listener_http_500_send_count` | `listener` | Sent 500 Status Codes | Count/Second | ResourceID |
+| `listener_http_503_send_count` | `listener` | Sent 503 Status Codes | Count/Second | ResourceID |
+| `listener_http_504_send_count` | `listener` | Sent 504 Status Codes | Count/Second | ResourceID |
+| `load_balancer_max_conn` | `loadbalancer` | Concurrent Connections | Count | ResourceID |
+| `load_balancer_new_conn` | `loadbalancer` | New Connections | Count | ResourceID |
+| `load_balancer_active_conn` | `loadbalancer` | Active Connections | Count | ResourceID |
+| `load_balancer_inactive_conn` | `loadbalancer` | Inactive Connections | Count | ResourceID |
+| `load_balancer_lost_conn` | `loadbalancer` | Lost Connections | Count/Second | ResourceID |
+| `load_balancer_in_packets` | `loadbalancer` | Incoming Packets | Packet/Second | ResourceID |
+| `load_balancer_out_packets` | `loadbalancer` | Outgoing Packets | Packet/Second | ResourceID |
+| `load_balancer_in_drop_packets` | `loadbalancer` | Dropped Incoming Packets | Packet/Second | ResourceID |
+| `load_balancer_out_drop_packets` | `loadbalancer` | Dropped Outgoing Packets | Packet/Second | ResourceID |
+| `load_balancer_in_bytes` | `loadbalancer` | Incoming Bandwidth | Bits/Second(SI) | ResourceID |
+| `load_balancer_out_bytes` | `loadbalancer` | Outgoing Bandwidth | Bits/Second(SI) | ResourceID |
+| `load_balancer_in_drop_bytes` | `loadbalancer` | Dropped Incoming Bandwidth | Bits/Second(SI) | ResourceID |
+| `load_balancer_out_drop_bytes` | `loadbalancer` | Dropped Outgoing Bandwidth | Bits/Second(SI) | ResourceID |
+| `load_balancer_http_2xx_send_count` | `loadbalancer` | Sent 2xx Status Codes | Count/Second | ResourceID |
+| `load_balancer_http_3xx_send_count` | `loadbalancer` | Sent 3xx Status Codes | Count/Second | ResourceID |
+| `load_balancer_http_4xx_send_count` | `loadbalancer` | Sent 4xx Status Codes | Count/Second | ResourceID |
+| `load_balancer_http_5xx_send_count` | `loadbalancer` | Sent 5xx Status Codes | Count/Second | ResourceID |
+| `load_balancer_http_other_send_count` | `loadbalancer` | Sent Other Status Codes | Count/Second | ResourceID |
+| `load_balancer_http_404_send_count` | `loadbalancer` | Sent 404 Status Codes | Count/Second | ResourceID |
+| `load_balancer_http_502_send_count` | `loadbalancer` | Sent 502 Status Codes | Count/Second | ResourceID |
+| `load_balancer_http_2xx_recv_count` | `loadbalancer` | Received 2xx Status Codes | Count/Second | ResourceID |
+| `load_balancer_http_3xx_recv_count` | `loadbalancer` | Received 3xx Status Codes | Count/Second | ResourceID |
+| `load_balancer_http_4xx_recv_count` | `loadbalancer` | Received 4xx Status Codes | Count/Second | ResourceID |
+| `load_balancer_http_5xx_recv_count` | `loadbalancer` | Received 5xx Status Codes | Count/Second | ResourceID |
+| `load_balancer_http_other_recv_count` | `loadbalancer` | Received Other Status Codes | Count/Second | ResourceID |
+| `load_balancer_http_404_recv_count` | `loadbalancer` | Received 404 Status Codes | Count/Second | ResourceID |
+| `load_balancer_http_502_recv_count` | `loadbalancer` | Received 502 Status Codes | Count/Second | ResourceID |
 | `load_balancer_qps` | `loadbalancer` | QPS | Count/Second | ResourceID |
-| `load_balancer_qps_utilization` | `loadbalancer` | QPS utilization rate | Count/Second | ResourceID |
-| `load_balancer_response_time` | `loadbalancer` | Average response time | Millisecond | ResourceID |
-| `load_balancer_ups_response_time` | `loadbalancer` | Average request time | Millisecond | ResourceID |
-| `load_balancer_http_500_send_count` | `loadbalancer` | 500 status code sent | Count/Second | ResourceID |
-| `load_balancer_http_503_send_count` | `loadbalancer` | 503 status code sent | Count/Second | ResourceID |
-| `load_balancer_http_504_send_count` | `loadbalancer` | 504 status code sent | Count/Second | ResourceID |
+| `load_balancer_qps_utilization` | `loadbalancer` | QPS Utilization | Count/Second | ResourceID |
+| `load_balancer_response_time` | `loadbalancer` | Average Response Time | Millisecond | ResourceID |
+| `load_balancer_ups_response_time` | `loadbalancer` | Average Request Time | Millisecond | ResourceID |
+| `load_balancer_http_500_send_count` | `loadbalancer` | Sent 500 Status Codes | Count/Second | ResourceID |
+| `load_balancer_http_503_send_count` | `loadbalancer` | Sent 503 Status Codes | Count/Second | ResourceID |
+| `load_balancer_http_504_send_count` | `loadbalancer` | Sent 504 Status Codes | Count/Second | ResourceID |
 
-## Object  {#object}
+## Object {#object}
 
-The collected Volcengine ALB object data structure can see the object data from 「Infrastructure - Resource Catalog」
+The structure of collected VolcEngine ALB object data can be seen in 「Infrastructure - Resource Catalog」
 
 ``` json
-  {
-    "measurement": "volcengine_alb",
-    "tags": {
-    "RegionId"        : "cn-guangzhou",
-    "ProjectName"     : "default",
-    "AccountId"       : "2102598xxxx",
-    "LoadBalancerId"  : "LoadBalancerId:alb-3rfdnib02lzpc16nf3olxxxx",
+{
+  "measurement": "volcengine_alb",
+  "tags": {
+    "RegionId": "cn-guangzhou",
+    "ProjectName": "default",
+    "AccountId": "2102598xxxx",
+    "LoadBalancerId": "LoadBalancerId:alb-3rfdnib02lzpc16nf3olxxxx",
     "LoadBalancerName": "ALB",
-    "Type"            : "public",
-    "Status"          : "Active"
-    },
-    "fileds": {
-      "Listeners": "[{JSON 数据}]",
-      "VpcId": "vpc-11vrlrg75588w40yrhbxxxx",
-      "EniAddress": "172.31.0.xx",
-      "EipAddress": "118.145.xxx.170",
-      "LoadBalancerBillingType": "2",
-      "Description": "xxxxxx",
-      "CreateTime": "2024-12-12T02:43:11Z",
-      "UpdateTime": "2024-12-12T06:33:36Z",
-      "ExpiredTime": "xxxxxxxx",
-      "Tags": "[]"
-    }
+    "Type": "public",
+    "Status": "Active"
+  },
+  "fields": {
+    "Listeners": "[{JSON Data}]",
+    "VpcId": "vpc-11vrlrg75588w40yrhbxxxx",
+    "EniAddress": "172.31.0.xx",
+    "EipAddress": "118.145.xxx.170",
+    "LoadBalancerBillingType": "2",
+    "Description": "xxxxxx",
+    "CreateTime": "2024-12-12T02:43:11Z",
+    "UpdateTime": "2024-12-12T06:33:36Z",
+    "ExpiredTime": "xxxxxxxx",
+    "Tags": "[]"
   }
+}
 ```

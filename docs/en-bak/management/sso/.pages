@@ -1,0 +1,8 @@
+nav:
+  - index.md
+  - 'Configuration FAQs': configuration-faq.md
+  - 'Azure Active Directory': azure-ad.md
+  - 'Authing': authing.md
+  - 'Okta': okta.md
+  - 'Keycloak': keycloak.md
+  - 'Alibaba Cloud IDaaS': aliyun-idaas.md

@@ -4,4 +4,8 @@ nav:
   - 'DQL Definition': define.md
   - 'DQL Functions': funcs.md
   - 'DQL Outer Functions': out-funcs.md
-  - 'DQL vs. Other Query Languages': dql-vs-others.md
+  - 'DQL VS Other Query Languages':
+    - dql-vs-others.md
+    - 'PromQL Quick Start': promql.md
+  - 'Advanced Functions': advanced-funcs
+  - 'Rollup Functions': rollup-func.md

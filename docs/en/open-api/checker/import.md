@@ -1,42 +1,43 @@
-# Import One/More Monitors
+# Import One or Multiple Monitors
 
 ---
 
-<br />**post /api/v1/monitor/check/import**
+<br />**POST /api/v1/checker/import**
 
 ## Overview
-Import one/more monitor configurations.
+Import configuration for one or multiple monitors
 
 
-
-
-## Body Request Parameter
+## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| checkers | array | Y | Rule configuration list<br>Allow null: False <br> |
-| uChoose | string |  | User selection action<br>Allow null: False <br>Optional value: ['rewrite', 'skip'] <br> |
+|:---------------------|:---------|:-----------|:-------------------------|
+| checkers             | array    | Y          | List of rule configurations <br> Can be empty: False <br> |
+| type                 | string   |            | For smart monitoring import, use `smartMonitor`; default is regular monitor `trigger` <br> Can be empty: False <br> Can be an empty string: False <br> Allowed values: ['smartMonitor', 'trigger'] <br> |
+| skipRepeatNameCheck  | boolean  |            | Whether to skip duplicate name checks; `false` performs duplicate name checks, `true` skips duplicate name checks <br> Example: False <br> Can be empty: False <br> |
+| skipRepeatNameCreate | boolean  |            | `true` skips creation for duplicates, creates only non-duplicates; `false` creates all imported information <br> Example: False <br> Can be empty: False <br> |
 
-## Supplementary Description of Parameters
+## Additional Parameter Explanation
 
+**Refer to the [Checker Export Interface] for monitor template configurations.**
 
-**For monitor template configuration, see "Monitor Export Interface"**.
+*Explanation of relevant parameters.*
+If `repeat_name` exists in the response content, it indicates a duplicate name. Use the `skipRepeatNameCreate` parameter to choose whether to skip or create duplicates.
 
-
-
+| Parameter Name         | Type | Required | Description |
+| :-------------------- | :--- | :------- | :---------- |
+| checker               | array | Required | List of rule configurations |
+| skipRepeatNameCheck   | boolean | Required | Whether to skip duplicate name checks; if not skipped (`false`): returns a list of duplicate monitor names on failure |
+| skipRepeatNameCreate  | boolean | Required | Whether to skip creation for duplicates; if not skipped (`false`): creates monitors with duplicate names |
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/monitor/check/import' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/checker/import' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"checkers": [{"extend": {"funcName": "", "noDataInterval": null, "querylist": [{"datasource": "dataflux", "qtype": "dql", "query": {"alias": "", "code": "Result", "dataSource": "aliyun_acs_rds_dashboard", "field": "IOPSUsage_Average", "fieldFunc": "last", "fieldType": "float", "funcList": [], "groupBy": ["instanceId"], "groupByTime": "", "namespace": "metric", "q": "M::`aliyun_acs_rds_dashboard`:(LAST(`IOPSUsage_Average`))  BY `instanceId`", "type": "simple"}, "uuid": "7d4f9ff1-5f7f-4cdb-85c2-9b8f0dd8ceed"}], "recoverNeedPeriodCount": 1, "rules": [{"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": ["90"], "operator": ">="}], "status": "critical"}, {"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": ["80", "90"], "operator": "between"}], "status": "error"}, {"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": [], "operator": ">="}], "status": "warning"}]}, "is_disable": false, "jsonScript": {"checkerOpt": {"rules": [{"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": ["90"], "operator": ">="}], "status": "critical"}, {"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": ["80", "90"], "operator": "between"}], "status": "error"}]}, "every": "1m", "groupBy": ["instanceId"], "interval": 300, "message": ">等级：{{df_status}}  \n>实例：{{instanceId}}  \n>内容：RDS Mysql IOPS 使用率为 {{ Result |  to_fixed(2) }}%  \n>建议：登录阿里云控制台查看 RDS 是否有异常", "name": "阿里云 RDS Mysql IOPS 使用率过高", "noDataInterval": 0, "recoverNeedPeriodCount": 1, "targets": [{"alias": "Result", "dql": "M::`aliyun_acs_rds_dashboard`:(LAST(`IOPSUsage_Average`))  BY `instanceId`"}], "title": "阿里云 RDS Mysql 实例 ID 为 {{instanceId}} IOPS 使用率过高", "type": "simpleCheck"}, "monitorName": "BmUgtnAV"}, {"extend": {"funcName": "", "noDataInterval": null, "querylist": [{"datasource": "dataflux", "qtype": "dql", "query": {"alias": "", "code": "Result", "dataSource": "df_celery", "field": "events_total", "fieldFunc": "last", "fieldType": "float", "funcList": [], "groupBy": ["worker"], "groupByTime": "", "namespace": "metric", "q": "M::`df_celery`:(LAST(`events_total`)) BY `worker`", "type": "simple"}, "uuid": "1fae3947-1f0b-4b9b-8b30-654546d15cde"}], "recoverNeedPeriodCount": null, "rules": [{"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": ["50"], "operator": ">="}], "status": "critical"}, {"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": ["30"], "operator": ">="}], "status": "error"}, {"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": [], "operator": ">="}], "status": "warning"}]}, "is_disable": false, "jsonScript": {"checkerOpt": {"rules": [{"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": ["50"], "operator": ">="}], "status": "critical"}, {"conditionLogic": "and", "conditions": [{"alias": "Result", "operands": ["30"], "operator": ">="}], "status": "error"}]}, "every": "1m", "groupBy": ["worker"], "interval": 300, "message": "超过{{ Result }}", "name": "测试用的", "noDataInterval": 0, "recoverNeedPeriodCount": 0, "targets": [{"alias": "Result", "dql": "M::`df_celery`:(LAST(`events_total`)) BY `worker`"}], "title": "df_celery触发", "type": "simpleCheck"}, "monitorName": "BmUgtnAV"}], "uChoose": "skip"}' \
---compressed \
---insecure
+--data-raw '{"checkers":[{"extend":{"funcName":"","isNeedCreateIssue":false,"issueLevelUUID":"","needRecoverIssue":false,"querylist":[{"datasource":"dataflux","qtype":"dql","query":{"alias":"","code":"Result","dataSource":"ssh","field":"ssh_check","fieldFunc":"count","fieldType":"float","funcList":[],"groupBy":["host"],"groupByTime":"","namespace":"metric","q":"M::`ssh`:(count(`ssh_check`)) BY `host`","type":"simple"},"uuid":"aada629a-672e-46f9-9503-8fd61065c382"}],"rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["90"],"operator":">="}],"status":"critical"},{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["0"],"operator":">="}],"status":"error"}]},"is_disable":false,"jsonScript":{"atAccounts":[],"atNoDataAccounts":[],"channels":[],"checkerOpt":{"infoEvent":false,"rules":[{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["90"],"operator":">="}],"status":"critical"},{"conditionLogic":"and","conditions":[{"alias":"Result","operands":["0"],"operator":">="}],"status":"error"}]},"disableCheckEndTime":false,"every":"1m","groupBy":["host"],"interval":300,"message":">等级：{status}  \n>主机：{host}  \n>内容：主机 SSH 状态 {{ Result |  to_fixed(2) }}%  \n>建议：检查主机 SSH 服务状态","noDataMessage":"","noDataTitle":"","recoverNeedPeriodCount":2,"targets":[{"alias":"Result","dql":"M::`ssh`:(count(`ssh_check`)) BY `host`","qtype":"dql"}],"title":"主机 {{ host }} SSH 服务异常","type":"simpleCheck"},"monitorName":"default","secret":"","tagInfo":[],"type":"trigger"}]}' \
+--compressed 
 ```
-
-
-
 
 ## Response
 ```shell
@@ -46,7 +47,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/check/import' \
         "rule": [
             {
                 "createAt": 1642581539.6646779,
-                "creator": "wsak_9c2d4d998d9548949ce05680552254af",
+                "creator": "wsak_xxxxx",
                 "crontabInfo": {
                     "crontab": "*/1 * * * *",
                     "id": "cron-ABxzYMCHK2kj"
@@ -158,8 +159,8 @@ curl 'https://openapi.guance.com/api/v1/monitor/check/import' \
                         "instanceId"
                     ],
                     "interval": 300,
-                    "message": ">等级：{{df_status}}  \n>实例：{{instanceId}}  \n>内容：RDS Mysql 每秒慢查询数为 {{ Result }}%  \n>建议：登录阿里云控制台查看 RDS 是否有异常",
-                    "name": "阿里云 RDS Mysql 每秒慢查询数过高",
+                    "message": ">等级：{df_status}  \n>实例：{instanceId}  \n>内容：RDS Mysql 每秒慢查询数为 {{ Result }}%  \n>建议：登录阿里云控制台查看 RDS 是否有异常",
+                    "name": "Alibaba Cloud RDS Mysql 每秒慢查询数过高",
                     "noDataInterval": 0,
                     "recoverNeedPeriodCount": 1,
                     "targets": [
@@ -168,16 +169,16 @@ curl 'https://openapi.guance.com/api/v1/monitor/check/import' \
                             "dql": "M::`aliyun_acs_rds_dashboard`:(LAST(`MySQL_SlowQueries_Average`))  BY `instanceId`"
                         }
                     ],
-                    "title": "阿里云 RDS Mysql 实例 ID 为 {{instanceId}} 每秒慢查询数过高",
+                    "title": "Alibaba Cloud RDS Mysql 实例 ID 为 {instanceId} 每秒慢查询数过高",
                     "type": "simpleCheck"
                 },
-                "monitorUUID": "monitor_84cbb7c18f964771b8153fbca1013615",
+                "monitorUUID": "monitor_xxxx32",
                 "status": 0,
                 "type": "trigger",
                 "updateAt": 1642581539.6647239,
                 "updator": "",
-                "uuid": "rul_f630a344df6c44a0a6f61b22752c6cd9",
-                "workspaceUUID": "wksp_2dc431d6693711eb8ff97aeee04b54af"
+                "uuid": "rul_xxxx32",
+                "workspaceUUID": "wksp_xxxx32"
             }
         ]
     },
@@ -185,9 +186,5 @@ curl 'https://openapi.guance.com/api/v1/monitor/check/import' \
     "message": "",
     "success": true,
     "traceId": "TRACE-8A8119CE-4EFA-4278-B3EF-33F29EDB38CE"
-} 
+}
 ```
-
-
-
-

@@ -2,17 +2,19 @@
 title: 'AWS S3'
 tags: 
   - AWS
-summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud'
+summary: 'Use the script packages in the script market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance'
 __int_icon: 'icon/aws_s3'
 dashboard:
-  - desc: 'AWS S3 Monitoring View'
+
+  - desc: 'Built-in views for AWS S3'
     path: 'dashboard/en/aws_s3'
+
 monitor:
   - desc: 'AWS S3 Monitor'
     path: 'monitor/en/aws_s3'
 
 cloudCollector:
-  desc: 'cloud collector'
+  desc: 'Cloud Collector'
   path: 'cloud-collector/en/aws_s3'
 ---
 
@@ -21,152 +23,151 @@ cloudCollector:
 # AWS S3
 <!-- markdownlint-enable -->
 
-Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
+Use the script packages in the script market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance.
 
 
-## config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable the hosted version of Func under Guance Integration - Extension: all prerequisites are automatically installed. Please proceed with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-### Installation script
-
-> Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
-
-To synchronize the monitoring data of AWS S3, install the corresponding collection script: `ID:guance_aws_s3`
-
-Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
-
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
-
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+### Install Script
+
+> Note: Prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant read-only permissions `ReadOnlyAccess`)
+
+To synchronize AWS S3 monitoring data, install the corresponding collection script: "Guance Integration (AWS-S3 Collection)" (ID: `guance_aws_s3`)
+
+After clicking [Install], enter the corresponding parameters: Amazon AK, Amazon account name.
+
+Click [Deploy Startup Script], and the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
+
+Additionally, you can see the corresponding automatic trigger configuration in "Management / Automatic Trigger Configuration". Click [Execute] to immediately execute it without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
+
+By default, we collect some configurations. For more details, see [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+
+
+### Verification
+
+1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding tasks have corresponding automatic trigger configurations, and check the corresponding task records and logs for any anomalies.
+2. On the Guance platform, in "Infrastructure / Custom", check if there is asset information.
+3. On the Guance platform, in "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
+After configuring Amazon CloudWatch, the default metric set is as follows. You can collect more metrics through configuration. [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/metrics-dimensions.html){:target="_blank"}
 
-After configuring Amazon CloudWatch, the default metric set includes the following metrics. You can collect more metrics by configuring it [Amazon S3 CloudWatch Metrics Details](https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/metrics-dimensions.html){:target="_blank"}
+### Daily Storage Metrics for Amazon S3 Buckets in CloudWatch
 
-<!-- markdownlint-disable MD013 -->
-### Amazon S3 daily storage metrics for buckets in CloudWatch
-<!-- markdownlint-enable -->
+The `AWS/S3` namespace contains the following daily storage metrics for buckets.
 
-The `AWS/S3` namespace includes the following daily storage metrics for buckets.
+| Metric              | Description                                                         |
+| :------------------ | :------------------------------------------------------------------- |
+| `BucketSizeBytes`   | The amount of data stored in the bucket across the following storage classes (in bytes): S3 Standard (`STANDARD`), S3 Intelligent-Tiering (`INTELLIGENT_TIERING`), S3 Standard-Infrequent Access (`STANDARD_IA`), S3 OneZone-Infrequent Access (`ONEZONE_IA`), Reduced Redundancy Storage (RRS) (`REDUCED_REDUNDANCY`), S3 Glacier Instant Retrieval (`GLACIER_IR`), S3 Glacier Deep Archive (`DEEP_ARCHIVE`), S3 Glacier Flexible Retrieval (`GLACIER`). This value is calculated by aggregating the size of all objects and metadata (both current and non-current objects) in the bucket, including all parts of multipart uploads that have not been completed. Valid storage type filter conditions: `StandardStorage`, `IntelligentTieringFAStorage`, `IntelligentTieringIAStorage`, `IntelligentTieringAAStorage`, `IntelligentTieringAIAStorage`, `IntelligentTieringDAAStorage`, `StandardIAStorage`, `StandardIASizeOverhead`, `StandardIAObjectOverhead`, `OneZoneIAStorage`, `OneZoneIASizeOverhead`, `ReducedRedundancyStorage`, `GlacierInstantRetrievalSizeOverhead`, `GlacierInstantRetrievalStorage`, `GlacierStorage`, `GlacierStagingStorage`, `GlacierObjectOverhead`, `GlacierS3ObjectOverhead`, `DeepArchiveStorage`, `DeepArchiveObjectOverhead`, `DeepArchiveS3ObjectOverhead`, and `DeepArchiveStagingStorage` (see `StorageType` dimension). Unit: bytes Valid statistics: Average |
+| `NumberOfObjects`   | The total number of objects stored in all storage classes in the bucket. This value is calculated by counting all objects (including current and non-current objects), delete markers, and all parts of multipart uploads that have not been completed. Valid storage type filter condition: `AllStorageTypes` (see `StorageType` dimension). Unit: count Valid statistics: Average |
 
-| Metric            | Description                                                  |
-| :---------------- | :----------------------------------------------------------- |
-| `BucketSizeBytes` | The amount of data in bytes that is stored in a bucket in the following storage classes:S3 Standard (`STANDARD`)S3 Intelligent-Tiering (`INTELLIGENT_TIERING`)S3 Standard-Infrequent Access (`STANDARD_IA`)S3 OneZone-Infrequent Access (`ONEZONE_IA`)Reduced Redundancy Storage (RRS) (`REDUCED_REDUNDANCY`)S3 Glacier Instant Retrieval (`GLACIER_IR`)S3 Glacier Deep Archive (`DEEP_ARCHIVE`)S3 Glacier Flexible Retrieval (`GLACIER`)This value is calculated by summing the size of all objects and metadata in the bucket (both current and noncurrent objects), including the size of all parts for all incomplete multipart uploads to the bucket.Valid storage-type filters: `StandardStorage`, `IntelligentTieringFAStorage`, `IntelligentTieringIAStorage`, `IntelligentTieringAAStorage`, `IntelligentTieringAIAStorage`, `IntelligentTieringDAAStorage`, `StandardIAStorage`, `StandardIASizeOverhead`, `StandardIAObjectOverhead`, `OneZoneIAStorage`, `OneZoneIASizeOverhead`, `ReducedRedundancyStorage`, `GlacierInstantRetrievalSizeOverhead` `GlacierInstantRetrievalStorage`, `GlacierStorage`, `GlacierStagingStorage`, `GlacierObjectOverhead`, `GlacierS3ObjectOverhead`, `DeepArchiveStorage`, `DeepArchiveObjectOverhead`, `DeepArchiveS3ObjectOverhead`, and `DeepArchiveStagingStorage` (see the `StorageType` dimension)Units: BytesValid statistics: Average |
-| `NumberOfObjects` | The total number of objects stored in a bucket for all storage classes. This value is calculated by counting all objects in the bucket, which includes current and noncurrent objects, delete markers, and the total number of parts for all incomplete multipart uploads to the bucket.Valid storage type filters: `AllStorageTypes` (see the `StorageType` dimension)Units: CountValid statistics: Average |
+### Request Metrics for Amazon S3 in CloudWatch
 
-### Amazon S3 request metrics in CloudWatch
+The `AWS/S3` namespace contains the following request metrics. These metrics include non-billable requests (such as GET requests from COPY and Replication).
 
-The `AWS/S3` namespace includes the following request metrics. These metrics include non-billable requests (in the case of GET requests from COPY and Replication).
+| Metric                  | Description                                                         |
+| :---------------------- | :------------------------------------------------------------------- |
+| `AllRequests`           | The total number of HTTP requests made to an Amazon S3 bucket regardless of type. If a metric is configured for a specific filter, it will only return HTTP requests that meet the filter criteria. Unit: count Valid statistics: Sum |
+| `GetRequests`           | The number of HTTP GET requests made to objects in an Amazon S3 bucket. This does not include list operations. For each COPY object request source, this metric increments. Unit: count Valid statistics: Sum Note Requests facing paginated lists (e.g., [List Multipart Uploads](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadListMPUpload.html){:target="_blank"}, [List Parts](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadListParts.html){:target="_blank"}, [GET Bucket Object Version](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETVersion.html){:target="_blank"} and other requests) are not included in this metric. |
+| `PutRequests`           | The number of HTTP PUT requests made to objects in an Amazon S3 bucket. For each COPY object request destination, this metric increments. Unit: count Valid statistics: Sum |
+| `DeleteRequests`        | The number of HTTP `DELETE` requests made to objects in an Amazon S3 bucket. This metric includes [delete multiple objects](https://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html){:target="_blank"} requests. It shows the number of requests issued, not the number of objects deleted. Unit: count Valid statistics: Sum |
+| `HeadRequests`          | The number of HTTP `HEAD` requests made to an Amazon S3 bucket. Unit: count Valid statistics: Sum |
+| `PostRequests`          | The number of HTTP `POST` requests made to an Amazon S3 bucket. Unit: count Valid statistics: Sum Note [delete multiple objects](https://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html){:target="_blank"} and [SELECT Object Content](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html){:target="_blank"} requests are not included in this metric. |
+| `SelectRequests`        | The number of Amazon S3 [SELECT Object Content](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html){:target="_blank"} requests made for objects in an Amazon S3 bucket. Unit: count Valid statistics: Sum |
+| `SelectBytesScanned`    | The number of bytes scanned using Amazon S3 [SELECT Object Content](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html){:target="_blank"} requests in an Amazon S3 bucket. Unit: bytes Valid statistics: Average (bytes per request), Sum (bytes per period), Sample Count, Min, Max (same as p100), any percentile between p0.0 and p99.9 |
+| `SelectBytesReturned`   | The number of bytes returned using Amazon S3 [SELECT Object Content](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html){:target="_blank"} requests in an Amazon S3 bucket. Unit: bytes Valid statistics: Average (bytes per request), Sum (bytes per period), Sample Count, Min, Max (same as p100), any percentile between p0.0 and p99.9 |
+| `ListRequests`          | The number of HTTP requests listing bucket contents. Unit: count Valid statistics: Sum |
+| `BytesDownloaded`       | The number of bytes downloaded for requests made to an Amazon S3 bucket (the response includes the body). Unit: bytes Valid statistics: Average (bytes per request), Sum (bytes per period), Sample Count, Min, Max (same as p100), any percentile between p0.0 and p99.9 |
+| `BytesUploaded`         | The number of bytes uploaded for requests made to an Amazon S3 bucket (the request includes the body). Unit: bytes Valid statistics: Average (bytes per request), Sum (bytes per period), Sample Count, Min, Max (same as p100), any percentile between p0.0 and p99.9 |
+| `4xxErrors`             | The number of HTTP 4xx client error status code requests made to an Amazon S3 bucket with values of 0 or 1. Average statistics show the error rate, Sum statistics show the count of this type of error per period. Unit: count Valid statistics: Average (number reported per request), Sum (number reported per period), Min, Max, Sample Count |
+| `5xxErrors`             | The number of HTTP 5xx server error status code requests made to an Amazon S3 bucket with values of 0 or 1. Average statistics show the error rate, Sum statistics show the count of this type of error per period. Unit: count Valid statistics: Average (number reported per request), Sum (number reported per period), Min, Max, Sample Count |
+| `FirstByteLatency`      | The time taken per request from when Amazon S3 bucket receives a complete request until it starts returning a response. Unit: milliseconds Valid statistics: Average, Sum, Min, Max (same as p100), Sample Count, any percentile between p0.0 and p100 |
+| `TotalRequestLatency`   | The time taken per request from receiving the first byte to sending the last byte to an Amazon S3 bucket. This metric includes the time taken to receive the request body and send the response body (not included in `FirstByteLatency`). Unit: milliseconds Valid statistics: Average, Sum, Min, Max (same as p100), Sample Count, any percentile between p0.0 and p100 |
 
-| Metric                | Description                                                  |
-| :-------------------- | :----------------------------------------------------------- |
-| `AllRequests`         | The total number of HTTP requests made to an Amazon S3 bucket, regardless of type. If you're using a metrics configuration with a filter, then this metric returns only the HTTP requests that meet the filter's requirements.Units: CountValid statistics: Sum |
-| `GetRequests`         | The number of HTTP GET requests made for objects in an Amazon S3 bucket. This doesn't include list operations. This metric is incremented for the source of each COPY object request.Units: CountValid statistics: SumNotePaginated list-oriented requests, such as [List Multipart Uploads](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadListMPUpload.html), [List Parts](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadListParts.html), [Get Bucket Object versions](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETVersion.html), and others, are not included in this metric. |
-| `PutRequests`         | The number of HTTP PUT requests made for objects in an Amazon S3 bucket. This metric is incremented for the destination of each COPY object request.Units: CountValid statistics: Sum |
-| `DeleteRequests`      | The number of HTTP `DELETE` requests made for objects in an Amazon S3 bucket. This metric also includes [Delete Multiple Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html){:target="_blank"} requests. This metric shows the number of requests made, not the number of objects deleted.Units: CountValid statistics: Sum |
-| `HeadRequests`        | The number of HTTP `HEAD` requests made to an Amazon S3 bucket.Units: CountValid statistics: Sum |
-| `PostRequests`        | The number of HTTP `POST` requests made to an Amazon S3 bucket.Units: CountValid statistics: SumNote[Delete Multiple Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html){:target="_blank"} and [SELECT Object Content](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html){:target="_blank"} requests are not included in this metric. |
-| `SelectRequests`      | The number of Amazon S3 [SELECT Object Content](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html){:target="_blank"} requests made for objects in an Amazon S3 bucket.Units: CountValid statistics: Sum |
-| `SelectBytesScanned`  | The number of bytes of data scanned with Amazon S3 [SELECT Object Content](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html){:target="_blank"} requests in an Amazon S3 bucket.Units: BytesValid statistics: Average (bytes per request), Sum (bytes per period), Sample Count, Min, Max (same as p100), any percentile between p0.0 and p99.9 |
-| `SelectBytesReturned` | The number of bytes of data returned with Amazon S3 [SELECT Object Content](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html){:target="_blank"} requests in an Amazon S3 bucket.Units: BytesValid statistics: Average (bytes per request), Sum (bytes per period), Sample Count, Min, Max (same as p100), any percentile between p0.0 and p99.9 |
-| `ListRequests`        | The number of HTTP requests that list the contents of a bucket.Units: CountValid statistics: Sum |
-| `BytesDownloaded`     | The number of bytes downloaded for requests made to an Amazon S3 bucket, where the response includes a body.Units: BytesValid statistics: Average (bytes per request), Sum (bytes per period), Sample Count, Min, Max (same as p100), any percentile between p0.0 and p99.9 |
-| `BytesUploaded`       | The number of bytes uploaded for requests made to an Amazon S3 bucket, where the request includes a body.Units: BytesValid statistics: Average (bytes per request), Sum (bytes per period), Sample Count, Min, Max (same as p100), any percentile between p0.0 and p99.9 |
-| `4xxErrors`           | The number of HTTP 4xx client error status code requests made to an Amazon S3 bucket with a value of either 0 or 1. The Average statistic shows the error rate, and the Sum statistic shows the count of that type of error, during each period.Units: CountValid statistics: Average (reports per request), Sum (reports per period), Min, Max, Sample Count |
-| `5xxErrors`           | The number of HTTP 5xx server error status code requests made to an Amazon S3 bucket with a value of either 0 or 1. The Average statistic shows the error rate, and the Sum statistic shows the count of that type of error, during each period.Units: CountValid statistics: Average (reports per request), Sum (reports per period), Min, Max, Sample Count |
-| `FirstByteLatency`    | The per-request time from the complete request being received by an Amazon S3 bucket to when the response starts to be returned.Units: MillisecondsValid statistics: Average, Sum, Min, Max (same as p100), Sample Count, any percentile between p0.0 and p100 |
-| `TotalRequestLatency` | The elapsed per-request time from the first byte received to the last byte sent to an Amazon S3 bucket. This metric includes the time taken to receive the request body and send the response body, which is not included in `FirstByteLatency`.Units: MillisecondsValid statistics: Average, Sum, Min, Max (same as p100), Sample Count, any percentile between p0.0 and p100 |
+### S3 Replication Metrics in CloudWatch
 
-### S3 Replication metrics in CloudWatch
+You can use S3 replication metrics to monitor replication progress by tracking pending bytes, pending operations, and replication latency. For more information, see [Monitoring Progress Using Replication Metrics](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-metrics.html){:target="_blank"}.
 
-You can monitor the progress of replication with S3 Replication metrics by tracking bytes pending, operations pending, and replication latency. For more information, see [Monitoring progress with replication metrics](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-metrics.html){:target="_blank"}.
+Note:
 
-Note
+You can enable alerts for replication metrics in Amazon CloudWatch. When setting up alerts for replication metrics, set the **Missing data treatment (丢失数据处理)** field to **Treat missing data as ignore (maintain the alarm state) [将丢失的数据视为忽略（保持警报状态）]**.
 
-You can enable alarms for your replication metrics in Amazon CloudWatch. When you set up alarms for your replication metrics, set the **Missing data treatment** field to **Treat missing data as ignore (maintain the alarm state)**.
+| Metric                           | Description                                                         |
+| :------------------------------- | :------------------------------------------------------------------- |
+| `ReplicationLatency`             | The maximum number of seconds the replication target AWS region lags behind the source AWS region for a given replication rule. Unit: seconds Valid statistics: Max |
+| `BytesPendingReplication`        | The total number of bytes of objects pending replication for a given replication rule. Unit: bytes Valid statistics: Max |
+| `OperationsPendingReplication`   | The number of operations pending replication for a given replication rule. Unit: count Valid statistics: Max |
+| `OperationsFailedReplication`    | The number of failed replication operations for a given replication rule. Unit: count Valid statistics: Sum (total failed operations), Average (failure rate), Sample Count (total replication operations) |
 
-| Metric                         | Description                                                  |
-| :----------------------------- | :----------------------------------------------------------- |
-| `ReplicationLatency`           | The maximum number of seconds by which the replication destination AWS Region is behind the source AWS Region for a given replication rule.Units: SecondsValid statistics: Max |
-| `BytesPendingReplication`      | The total number of bytes of objects pending replication for a given replication rule.Units: BytesValid statistics: Max |
-| `OperationsPendingReplication` | The number of operations pending replication for a given replication rule.Units: CountValid statistics: Max |
-| `OperationsFailedReplication`  | The number of operations that failed to replicate for a given replication rule.Units: CountValid statistics: Sum (total number of failed operations), Average (failure rate), Sample Count (total number of replication operations) |
+### S3 Storage Lens Usage and Activity Metrics in CloudWatch
 
-### S3 Storage Lens metrics in CloudWatch
+You can publish S3 Storage Lens usage and activity metrics to Amazon CloudWatch to create a unified operational view on CloudWatch [dashboards](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Dashboards.html){:target="_blank"}. S3 Storage Lens metrics are published to the `AWS/S3/Storage-Lens` namespace in CloudWatch. CloudWatch publishing options are available for S3 Storage Lens dashboards upgraded to advanced metrics and recommendations.
 
-You can publish S3 Storage Lens usage and activity metrics to Amazon CloudWatch to create a unified view of your operational health in [CloudWatch dashboards](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Dashboards.html){:target="_blank"}. S3 Storage Lens metrics are published to the `AWS/S3/Storage-Lens` namespace in CloudWatch. The CloudWatch publishing option is available for S3 Storage Lens dashboards that have been upgraded to advanced metrics and recommendations.
+For a list of S3 Storage Lens metrics published to CloudWatch, see [Amazon S3 Storage Lens Metrics Glossary](https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html){:target="_blank"}. For a complete list of dimensions, see [Dimensions](https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/storage-lens-cloudwatch-metrics-dimensions.html#storage-lens-cloudwatch-dimensions){:target="_blank"}.
 
-For a list of S3 Storage Lens metrics that are published to CloudWatch, see [Amazon S3 Storage Lens metrics glossary](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html){:target="_blank"}. For a complete list of dimensions, see [Dimensions](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-cloudwatch-metrics-dimensions.html#storage-lens-cloudwatch-dimensions){:target="_blank"}.
-
-### S3 Object Lambda request metrics in CloudWatch
+### S3 Object Lambda Request Metrics in CloudWatch
 
 S3 Object Lambda includes the following request metrics.
 
-| Metric                   | Description                                                  |
-| :----------------------- | :----------------------------------------------------------- |
-| `AllRequests`            | The total number of HTTP requests made to an Amazon S3 bucket by using an Object Lambda Access Point.Units: CountValid statistics: Sum |
-| `GetRequests`            | The number of HTTP `GET` requests made for objects by using an Object Lambda Access Point. This metric does not include list operations.Units: CountValid statistics: Sum |
-| `BytesUploaded`          | The number of bytes uploaded to an Amazon S3 bucket by using an Object Lambda Access Point, where the request includes a body.Units: BytesValid statistics: Average (bytes per request), Sum (bytes per period), Sample Count, Min, Max (same as p100), any percentile between p0.0 and p99.9 |
-| `PostRequests`           | The number of HTTP `POST` requests made to an Amazon S3 bucket by using an Object Lambda Access Point.Units: CountValid statistics: Sum |
-| `PutRequests`            | The number of HTTP `PUT` requests made for objects in an Amazon S3 bucket by using an Object Lambda Access Point.Units: CountValid statistics: Sum |
-| `DeleteRequests`         | The number of HTTP `DELETE` requests made for objects in an Amazon S3 bucket by using an Object Lambda Access Point. This metric includes [Delete Multiple Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html) requests. This metric shows the number of requests made, not the number of objects deleted.Units: CountValid statistics: Sum |
-| `BytesDownloaded`        | The number of bytes downloaded for requests made to an Amazon S3 bucket by using an Object Lambda Access Point, where the response includes a body.Units: BytesValid statistics: Average (bytes per request), Sum (bytes per period), Sample Count, Min, Max (same as p100), any percentile between p0.0 and p99.9 |
-| `FirstByteLatency`       | The per-request time from the complete request being received by an Amazon S3 bucket through an Object Lambda Access Point to when the response starts to be returned. This metric is dependent on the AWS Lambda function's running time to transform the object before the function returns the bytes to the Object Lambda Access Point.Units: MillisecondsValid statistics: Average, Sum, Min, Max (same as p100), Sample Count, any percentile between p0.0 and p100 |
-| `TotalRequestLatency`    | The elapsed per-request time from the first byte received to the last byte sent to an Object Lambda Access Point. This metric includes the time taken to receive the request body and send the response body, which is not included in `FirstByteLatency`.Units: MillisecondsValid statistics: Average, Sum, Min, Max (same as p100), Sample Count, any percentile between p0.0 and p100 |
-| `HeadRequests`           | The number of HTTP `HEAD` requests made to an Amazon S3 bucket by using an Object Lambda Access Point.Units: CountValid statistics: Sum |
-| `ListRequests`           | The number of HTTP `GET` requests that list the contents of an Amazon S3 bucket. This metric includes both `List` and `ListV2` operations.Units: CountValid statistics: Sum |
-| `4xxErrors`              | The number of HTTP 4xx server error status code requests made to an Amazon S3 bucket by using an Object Lambda Access Point with a value of either 0 or 1. The Average statistic shows the error rate, and the Sum statistic shows the count of that type of error, during each period.Units: CountValid statistics: Average (reports per request), Sum (reports per period), Min, Max, Sample Count |
-| `5xxErrors`              | The number of HTTP 5xx server error status code requests made to an Amazon S3 bucket by using an Object Lambda Access Point with a value of either 0 or 1. The Average statistic shows the error rate, and the Sum statistic shows the count of that type of error, during each period.Units: CountValid statistics: Average (reports per request), Sum (reports per period), Min, Max, Sample Count |
-| `ProxiedRequests`        | The number of HTTP requests to an Object Lambda Access Point that return the standard Amazon S3 API response. (Such requests do not have a Lambda function configured.)Units: CountValid statistics: Sum |
-| `InvokedLambda`          | The number of HTTP requests to an S3 object where a Lambda function was invoked.Units: CountValid statistics: Sum |
-| `LambdaResponseRequests` | The number of `WriteGetObjectResponse` requests made by the Lambda function. This metric applies only to `GetObject` requests. |
-| `LambdaResponse4xx`      | The number of HTTP 4xx client errors that occur when calling `WriteGetObjectResponse` from a Lambda function. This metric provides the same information as `4xxErrors`, but only for `WriteGetObjectResponse` calls. |
-| `LambdaResponse5xx`      | The number of HTTP 5xx server errors that occur when calling `WriteGetObjectResponse` from a Lambda function. This metric provides the same information as `5xxErrors`, but only for `WriteGetObjectResponse` calls. |
+| Metric                     | Description                                                         |
+| :------------------------- | :------------------------------------------------------------------- |
+| `AllRequests`              | The total number of HTTP requests made to an Amazon S3 bucket using an Object Lambda access point. Unit: count Valid statistics: Sum |
+| `GetRequests`              | The number of HTTP `GET` requests made to objects using an Object Lambda access point. This metric does not include list operations. Unit: count Valid statistics: Sum |
+| `BytesUploaded`            | The number of bytes uploaded to an Amazon S3 bucket using an Object Lambda access point (the request includes the body). Unit: bytes Valid statistics: Average (bytes per request), Sum (bytes per period), Sample Count, Min, Max (same as p100), any percentile between p0.0 and p99.9 |
+| `PostRequests`             | The number of HTTP `POST` requests made to an Amazon S3 bucket using an Object Lambda access point. Unit: count Valid statistics: Sum |
+| `PutRequests`              | The number of HTTP `PUT` requests made to objects in an Amazon S3 bucket using an Object Lambda access point. Unit: count Valid statistics: Sum |
+| `DeleteRequests`           | The number of HTTP `DELETE` requests made to objects in an Amazon S3 bucket using an Object Lambda access point. This metric includes [delete multiple objects](https://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html){:target="_blank"} requests. It shows the number of requests issued, not the number of objects deleted. Unit: count Valid statistics: Sum |
+| `BytesDownloaded`          | The number of bytes downloaded for requests made to an Amazon S3 bucket using an Object Lambda access point (the response includes the body). Unit: bytes Valid statistics: Average (bytes per request), Sum (bytes per period), Sample Count, Min, Max (same as p100), any percentile between p0.0 and p99.9 |
+| `FirstByteLatency`         | The time taken per request from when an Amazon S3 bucket receives a complete request via an Object Lambda access point until it starts returning a response. This metric depends on the run time of the function transforming the object before returning bytes to the Object Lambda access point. Unit: milliseconds Valid statistics: Average, Sum, Min, Max (same as p100), Sample Count, any percentile between p0.0 and p100 |
+| `TotalRequestLatency`      | The time taken per request from receiving the first byte to sending the last byte to an Object Lambda access point. This metric includes the time taken to receive the request body and send the response body (not included in `FirstByteLatency`). Unit: milliseconds Valid statistics: Average, Sum, Min, Max (same as p100), Sample Count, any percentile between p0.0 and p100 |
+| `HeadRequests`             | The number of HTTP `HEAD` requests made to an Amazon S3 bucket using an Object Lambda access point. Unit: count Valid statistics: Sum |
+| `ListRequests`             | The number of HTTP `GET` requests listing Amazon S3 bucket contents. This metric includes both `List` and `ListV2` operations. Unit: count Valid statistics: Sum |
+| `4xxErrors`                | The number of HTTP 4xx server error status code requests made to an Amazon S3 bucket using an Object Lambda access point with values of 0 or 1. Average statistics show the error rate, Sum statistics show the count of this type of error per period. Unit: count Valid statistics: Average (number reported per request), Sum (number reported per period), Min, Max, Sample Count |
+| `5xxErrors`                | The number of HTTP 5xx server error status code requests made to an Amazon S3 bucket using an Object Lambda access point with values of 0 or 1. Average statistics show the error rate, Sum statistics show the count of this type of error per period. Unit: count Valid statistics: Average (number reported per request), Sum (number reported per period), Min, Max, Sample Count |
+| `ProxiedRequests`          | The number of HTTP requests made to an Object Lambda access point that returns standard Amazon S3 API responses (these requests do not have a Lambda function configured). Unit: count Valid statistics: Sum |
+| `InvokedLambda`            | The number of HTTP requests made to S3 objects where a Lambda function is invoked. Unit: count Valid statistics: Sum |
+| `LambdaResponseRequests`   | The number of `WriteGetObjectResponse` requests made by the Lambda function. This metric applies only to `GetObject` requests. |
+| `LambdaResponse4xx`        | The number of HTTP 4xx client errors that occur when calling `WriteGetObjectResponse` from a Lambda function. This metric provides the same information as `4xxErrors` but applies only to `WriteGetObjectResponse` calls. |
+| `LambdaResponse5xx`        | The number of HTTP 5xx server errors that occur when calling `WriteGetObjectResponse` from a Lambda function. This metric provides the same information as `5xxErrors` but applies only to `WriteGetObjectResponse` calls. |
 
-### Amazon S3 on Outposts metrics in CloudWatch
+### Amazon S3 on Outposts Metrics in CloudWatch
 
-For a list of metrics in CloudWatch that are used for S3 on Outposts buckets, see [CloudWatch metrics](https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsCapacity.html#S3OutpostsCloudWatchMetrics){:target="_blank"}.
+For a list of metrics used for S3 on Outposts in CloudWatch, see [CloudWatch metrics (CloudWatch 指标)](https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/S3OutpostsCapacity.html#S3OutpostsCloudWatchMetrics){:target="_blank"}.
 
-### Amazon S3 dimensions in CloudWatch
+### Amazon S3 Dimensions in CloudWatch
 
 The following dimensions are used to filter Amazon S3 metrics.
 
-| Dimension     | Description                                                  |
-| :------------ | :----------------------------------------------------------- |
-| `BucketName`  | This dimension filters the data that you request for the identified bucket only. |
-| `StorageType` | This dimension filters the data that you have stored in a bucket by the following types of storage:`StandardStorage` – The number of bytes used for objects in the `STANDARD` storage class.`IntelligentTieringAAStorage` – The number of bytes used for objects in the Archive Access tier of the `INTELLIGENT_TIERING` storage class.`IntelligentTieringAIAStorage` – The number of bytes used for objects in the Archive Instant Access tier of the `INTELLIGENT_TIERING` storage class.`IntelligentTieringDAAStorage` – The number of bytes used for objects in the Deep Archive Access tier of the `INTELLIGENT_TIERING` storage class.`IntelligentTieringFAStorage` – The number of bytes used for objects in the Frequent Access tier of the `INTELLIGENT_TIERING` storage class.`IntelligentTieringIAStorage` – The number of bytes used for objects in the Infrequent Access tier of the `INTELLIGENT_TIERING` storage class.`StandardIAStorage` – The number of bytes used for objects in the Standard-Infrequent Access (`STANDARD_IA`) storage class.`StandardIASizeOverhead` – The number of bytes used for objects smaller than 128 KB in the `STANDARD_IA` storage class.`IntAAObjectOverhead` – For each object in the `INTELLIGENT_TIERING` storage class in the Archive Access tier, S3 Glacier adds 32 KB of storage for index and related metadata. This extra data is necessary to identify and restore your object. You are charged S3 Glacier rates for this additional storage.`IntAAS3ObjectOverhead` – For each object in the `INTELLIGENT_TIERING` storage class in the Archive Access tier, Amazon S3 uses 8 KB of storage for the name of the object and other metadata. You are charged S3 Standard rates for this additional storage.`IntDAAObjectOverhead` – For each object in the `INTELLIGENT_TIERING` storage class in the Deep Archive Access tier, S3 Glacier adds 32 KB of storage for index and related metadata. This extra data is necessary to identify and restore your object. You are charged S3 Glacier Deep Archive storage rates for this additional storage.`IntDAAS3ObjectOverhead` – For each object in the `INTELLIGENT_TIERING` storage class in the Deep Archive Access tier, Amazon S3 adds 8 KB of storage for index and related metadata. This extra data is necessary to identify and restore your object. You are charged S3 Standard rates for this additional storage.`OneZoneIAStorage` – The number of bytes used for objects in the S3 One Zone-Infrequent Access (`ONEZONE_IA`) storage class.`OneZoneIASizeOverhead` – The number of bytes used for objects smaller than 128 KB in the `ONEZONE_IA` storage class.`ReducedRedundancyStorage` – The number of bytes used for objects in the Reduced Redundancy Storage (RRS) class.`GlacierInstantRetrievalSizeOverhead` – The number of bytes used for objects smaller than 128 KB in the S3 Glacier Instant Retrieval storage class.`GlacierInstantRetrievalStorage` – The number of bytes used for objects in the S3 Glacier Instant Retrieval storage class.`GlacierStorage` – The number of bytes used for objects in the S3 Glacier Flexible Retrieval storage class.`GlacierStagingStorage` – The number of bytes used for parts of multipart objects before the `CompleteMultipartUpload` request is completed on objects in the S3 Glacier Flexible Retrieval storage class.`GlacierObjectOverhead` – For each archived object, S3 Glacier adds 32 KB of storage for index and related metadata. This extra data is necessary to identify and restore your object. You are charged S3 Glacier Flexible Retrieval rates for this additional storage.`GlacierS3ObjectOverhead` – For each object archived to S3 Glacier Flexible Retrieval, Amazon S3 uses 8 KB of storage for the name of the object and other metadata. You are charged S3 Standard rates for this additional storage.`DeepArchiveStorage` – The number of bytes used for objects in the S3 Glacier Deep Archive storage class.`DeepArchiveObjectOverhead` – For each archived object, S3 Glacier adds 32 KB of storage for index and related metadata. This extra data is necessary to identify and restore your object. You are charged S3 Glacier Deep Archive rates for this additional storage.`DeepArchiveS3ObjectOverhead` – For each object archived to S3 Glacier Deep Archive, Amazon S3 uses 8 KB of storage for the name of the object and other metadata. You are charged S3 Standard rates for this additional storage.`DeepArchiveStagingStorage` – The number of bytes used for parts of multipart objects before the `CompleteMultipartUpload` request is completed on objects in the S3 Glacier Deep Archive storage class. |
-| `FilterId`    | This dimension filters metrics configurations that you specify for the request metrics on a bucket. When you create a metrics configuration, you specify a filter ID (for example, a prefix, a tag, or an access point). For more information, see [Creating a metrics configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/metrics-configurations.html){:target="_blank"}. |
+| Dimension          | Description                                                         |
+| :----------------- | :------------------------------------------------------------------- |
+| `BucketName`       | Filters data only for identified buckets.                           |
+| `StorageType`      | Filters data stored in the bucket based on the following storage types: `StandardStorage` – Number of bytes for objects in the `STANDARD` storage class. `IntelligentTieringAAStorage` – Number of bytes for objects in the archive access tier of the `INTELLIGENT_TIERING` storage class. `IntelligentTieringAIAStorage` – Number of bytes for objects in the instant access tier of the `INTELLIGENT_TIERING` storage class. `IntelligentTieringDAAStorage` – Number of bytes for objects in the deep archive access tier of the `INTELLIGENT_TIERING` storage class. `IntelligentTieringFAStorage` – Number of bytes for objects in the frequent access tier of the `INTELLIGENT_TIERING` storage class. `IntelligentTieringIAStorage` – Number of bytes for objects in the infrequent access tier of the `INTELLIGENT_TIERING` storage class. `StandardIAStorage` – Number of bytes for objects in the "standard-infrequent access" (`STANDARD_IA`) storage class. `StandardIASizeOverhead` – Number of bytes for objects smaller than 128KB in the `STANDARD_IA` storage class. `IntAAObjectOverhead` – For each object in the archive access tier of the `INTELLIGENT_TIERING` storage class, S3 Glacier adds 32KB of storage for indexing and related metadata. This additional data is required to identify and restore objects. Additional storage is charged at S3 Glacier rates. `IntAAS3ObjectOverhead` – For each object in the archive access tier of the `INTELLIGENT_TIERING` storage class, Amazon S3 uses 8KB of storage for the object's name and other metadata. Additional storage is charged at S3 Standard rates. `IntDAAObjectOverhead` – For each object in the deep archive access tier of the `INTELLIGENT_TIERING` storage class, S3 Glacier adds 32KB of storage for indexing and related metadata. This additional data is required to identify and restore objects. Additional storage is charged at S3 Glacier Deep Archive rates. `IntDAAS3ObjectOverhead` – For each object in the deep archive access tier of the `INTELLIGENT_TIERING` storage class, Amazon S3 adds 8KB of storage for indexing and related metadata. This additional data is required to identify and restore objects. Additional storage is charged at S3 Standard rates. `OneZoneIAStorage` – Number of bytes for objects in the "S3 One Zone-Infrequent Access" (`ONEZONE_IA`) storage class. `OneZoneIASizeOverhead` – Number of bytes for objects smaller than 128KB in the `ONEZONE_IA` storage class. `ReducedRedundancyStorage` – Number of bytes for objects in the low redundancy storage (RRS) class. `GlacierInstantRetrievalSizeOverhead` – Number of bytes for objects smaller than 128KB in the S3 Glacier Instant Retrieval storage class. `GlacierInstantRetrievalStorage` – Number of bytes for objects in the S3 Glacier Instant Retrieval storage class. `GlacierStorage` – Number of bytes for objects in the S3 Glacier Flexible Retrieval storage class. `GlacierStagingStorage` – Number of bytes for multipart objects' parts before completing a `CompleteMultipartUpload` request in the S3 Glacier Flexible Retrieval storage class. `GlacierObjectOverhead` – For each archive object, S3 Glacier adds 32KB of storage for indexing and related metadata. This additional data is required to identify and restore objects. Additional storage is charged at S3 Glacier Flexible Retrieval rates. `GlacierS3ObjectOverhead` – For each object archived to S3 Glacier Flexible Retrieval, Amazon S3 uses 8KB of storage for the object's name and other metadata. Additional storage is charged at S3 Standard rates. `DeepArchiveStorage` – Number of bytes for objects in the S3 Glacier Deep Archive storage class. `DeepArchiveObjectOverhead` – For each archive object, S3 Glacier adds 32KB of storage for indexing and related metadata. This additional data is required to identify and restore objects. Additional storage is charged at S3 Glacier Deep Archive rates. `DeepArchiveS3ObjectOverhead` – For each object archived to S3 Glacier Deep Archive, Amazon S3 uses 8KB of storage for the object's name and other metadata. Additional storage is charged at S3 Standard rates. `DeepArchiveStagingStorage` – Number of bytes for multipart objects' parts before completing a `CompleteMultipartUpload` request in the S3 Glacier Deep Archive storage class. |
+| `FilterId`         | Filters the metric configuration specified for request metrics on the bucket. When creating a metric configuration, you need to specify a filter ID (e.g., prefix, tag, or access point). For more information, see [Creating a Metric Configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/metrics-configurations.html){:target="_blank"}. |
 
-### S3 Storage Lens dimensions in CloudWatch
+### S3 Storage Lens Dimensions in CloudWatch
 
-For a list of dimensions that are used to filter S3 Storage Lens metrics in CloudWatch, see [Dimensions](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-cloudwatch-metrics-dimensions.html#storage-lens-cloudwatch-dimensions){:target="_blank"}.
+For a list of dimensions used to filter S3 Storage Lens metrics in CloudWatch, see [Dimensions](https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/storage-lens-cloudwatch-metrics-dimensions.html#storage-lens-cloudwatch-dimensions){:target="_blank"}.
 
-### S3 Object Lambda request dimensions in CloudWatch
+### S3 Object Lambda Request Dimensions in CloudWatch
 
-The following dimensions are used to filter data from an Object Lambda Access Point.
+The following dimensions are used to filter data from Object Lambda access points.
 
-| Dimension         | Description                                                  |
-| :---------------- | :----------------------------------------------------------- |
-| `AccessPointName` | The name of the access point of which requests are being made. |
-| `DataSourceARN`   | The source the Object Lambda Access Point is retrieving the data from. If the request invokes a Lambda function this refers to the Lambda ARN. Otherwise this refers to the access point ARN. |
+| Dimension              | Description                                                         |
+| :--------------------- | :------------------------------------------------------------------- |
+| `AccessPointName`      | The name of the access point being requested.                       |
+| `DataSourceARN`        | The source from which Object Lambda access point retrieves data. If the request invokes a Lambda function, this refers to the Lambda ARN. Otherwise, it refers to the access point ARN. |
 
-## Object {#object}
+## Objects {#object}
 
-The collected AWS S3 object data structure can be viewed in "Infrastructure - Custom" under the object data.
+The structure of collected AWS S3 object data can be viewed in "Infrastructure - Custom".
 
 ```json
 {
@@ -180,15 +181,15 @@ The collected AWS S3 object data structure can be viewed in "Infrastructure - Cu
   "fields": {
     "CreationDate": "2022-03-09T06:13:31Z",
     "Grants"      : "{JSON data}",
-    "message"     : "{Instance JSON data}"
+    "message"     : "{instance JSON data}"
   }
 }
 ```
 
-> *Note: The fields in `tags` and `fields` may be subject to changes in subsequent updates.*
+> *Note: Fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tip 1: The value of `tags.name` is the instance name and serves as a unique identifier.
+> Tip 1: `tags.name` value is the instance name, used as unique identification.
 >
-> Tip 2: `fields.message` is a JSON-serialized string.
+> Tip 2: `fields.message` is a JSON serialized string.
 >
-> Tip 3: `fields.Grants` represents the bucket access control list.
+> Tip 3: `fields.Grants` is the bucket access control list.

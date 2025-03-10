@@ -9,14 +9,11 @@ dashboard:
 monitor:
   - desc: 'VMware'
     path: 'monitor/en/vmware/'
-
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-
 # VMware
-
 <!-- markdownlint-enable -->
 
 VMware displays metrics such as cluster status, host status, VM status, etc.
@@ -27,17 +24,17 @@ VMware displays metrics such as cluster status, host status, VM status, etc.
 
 ### Preparation
 
-* A machine with `Datakit` and Python 3+ environment installed that can access VMware
+* An internal network machine that can access VMware with `Datakit` and Python 3+ environment installed.
 * The following dependencies are required:
     * requests
     * **pyvmomi** == 7.0
     * **openssl** == 1.1.1w
 
-> Note: Using different package versions will cause package conflicts
+> Note: Using different package versions may cause conflicts.
 
-### Deployment process
+### Deployment Process
 
-1. Turn on the `python.d` collector of `Datakit`, enter the *conf.d/pythond* directory under the DataKit installation directory, copy *pythond.conf.sample* and rename it to *pythond.conf*. The example is as follows:
+1. Enable the `python.d` collector in `Datakit`, go to the *conf.d/pythond* directory under the DataKit installation directory, copy *pythond.conf.sample* and rename it to *pythond.conf*. Example:
 
     ```toml
     # {"version": "1.16.0", "desc": "do NOT edit this line"}
@@ -49,16 +46,16 @@ VMware displays metrics such as cluster status, host status, VM status, etc.
       # System environments to run Python
       #envs = ['LD_LIBRARY_PATH=/path/to/lib:$LD_LIBRARY_PATH',]
 
-      # Python path(recomment abstract Python path)
+      # Python path (recommended abstract Python path)
       cmd = "/root/anaconda3/envs/py3.9/bin/python" # required. python3 is recommended.
 
       # Python scripts relative path
       dirs = ["vm"]
     ```
 
-    > Note: Here cmd needs to be changed to your own Python environment address, which is used to execute Python scripts, and `dirs` is the directory where the scripts are stored.
+    > Note: Change the `cmd` to your own Python environment path for executing Python scripts, and `dirs` refers to the script storage directory.
 
-2. Create a directory named after the "Python package name" under the `datakit/python.d` directory, and then create a Python script (`.py`) in this directory. For example, the package name `vm`, its path structure is as follows. Where `demo.py` is a Python script, the file name of the Python script can be customized:
+2. Create a directory named after the "Python package name" under the `datakit/python.d` directory, then create a Python script (`*.py`) within this directory. For example, using the package name `vm`, the directory structure would be as follows. Here, `demo.py` is the Python script, and the filename can be customized:
 
     ```shell
     datakit
@@ -67,10 +64,10 @@ VMware displays metrics such as cluster status, host status, VM status, etc.
            │   ├── vm.py
     ```
 
-3. Write the `vm.py` script, fill in the following script example and change `vcenter_host`, `vcenter_port`, `vcenter_user`, `vcenter_password` to fill in the corresponding VMware host, port and user information.
+3. Write the `vm.py` script, fill in the following script example, and change `vcenter_host`, `vcenter_port`, `vcenter_user`, and `vcenter_password` to the corresponding VMware host, port, and user information.
 
     <!-- markdownlint-disable MD046 -->
-    ???- note "Python script example"
+    ???- note "Python Script Example"
 
     ```python
     from datakit_framework import DataKitFramework
@@ -80,8 +77,8 @@ VMware displays metrics such as cluster status, host status, VM status, etc.
     import ssl
     import datetime
     import time
-
-
+    
+    
     class vm(DataKitFramework):
         name = "vm"
         interval = 10
@@ -89,32 +86,35 @@ VMware displays metrics such as cluster status, host status, VM status, etc.
             print("vm")
             s = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
             s.verify_mode = ssl.CERT_NONE
-
-            vcenter_host = "{your vcenter host}"
-            vcenter_port = "{your vcenter port}"
-            vcenter_user = "{your vcenter username}"
-            vcenter_password = "{your vcenter password}"
-
-            # The data is reported to Datakit in json format, so the POST request needs to add a head
+    
+            datakit_url_object = 'http://0.0.0.0:9529/v1/write/custom_object'
+            datakit_url_metric = 'http://0.0.0.0:9529/v1/write/metric'
+            vcenter_host = "10.200.14.20"
+            vcenter_port = 443
+            vcenter_user = "reader@zy.ops"
+            vcenter_password = "Zhuyun@0906"
+    
+            # Data is reported to Datakit in JSON format, so a header needs to be added to the POST request
             header = {
                 "Content-Type": "application/json"
             }
-
-            # Report data
+    
+            # Reporting data
             dk_object = []
             dk_metric = []
-
+    
             # Connect to the vCenter Server
             c = SmartConnect(host=vcenter_host, user=vcenter_user, pwd=vcenter_password, port=vcenter_port, sslContext=s)
-
+    
             content = c.RetrieveContent()
-
+    
             container = content.rootFolder  # starting point to look into
             viewType = [vim.HostSystem, vim.VirtualMachine]  # object types to look for
             recursive = True  # whether we should look into it recursively
-
-            # Get the number and details of vCenter
+    
+            # Get the number and details of vCenters
             vcenter_data = content.rootFolder.childEntity
+            print("Number of vCenters: ", len(vcenter_data))
             for i in vcenter_data:
                 dk_metric.append({
                     "measurement": "vmware",
@@ -126,9 +126,9 @@ VMware displays metrics such as cluster status, host status, VM status, etc.
                     },
                     "time": int(time.time())
                 })
-
-
-            # Get the number and details of datastore
+    
+    
+            # Get the number and details of datastores
             datastores = content.rootFolder.childEntity[0].datastore
             for ds in datastores:
                 dk_metric.append({
@@ -144,10 +144,11 @@ VMware displays metrics such as cluster status, host status, VM status, etc.
                     },
                     "time": int(time.time())
                 })
-
+    
             containerView = content.viewManager.CreateContainerView(container, viewType, recursive)
-
+    
             children = containerView.view
+            print("Number of Clusters: ", len(children))
             for child in children:
                 if isinstance(child, vim.HostSystem):
                     boot_time = child.runtime.bootTime
@@ -166,7 +167,7 @@ VMware displays metrics such as cluster status, host status, VM status, etc.
                             "memory": str(child.hardware.memorySize)
                         },
                         "time": int(time.time())
-
+    
                     })
                     dk_metric.append({
                         "measurement": "vmware",
@@ -202,7 +203,7 @@ VMware displays metrics such as cluster status, host status, VM status, etc.
                                 "memory": str(child.config.hardware.memoryMB)
                             },
                             "time": int(time.time())
-
+    
                         })
                         dk_metric.append({
                             "measurement": "vmware",
@@ -222,10 +223,11 @@ VMware displays metrics such as cluster status, host status, VM status, etc.
                             },
                             "time": int(time.time())
                         })
-
-
+    
+    
             containerView.Destroy()      
-
+     #       response_object = requests.post(datakit_url_object,  headers=header, json=dk_object)
+     #       response_metric = requests.post(datakit_url_metric,  headers=header, json=dk_metric)
             in_data = {
                 'CO': dk_object,
                 'input': 'vmware_esxi,vmware_vm'
@@ -238,33 +240,31 @@ VMware displays metrics such as cluster status, host status, VM status, etc.
             self.report(in_data2)
             Disconnect(c)
             print("--------------Success---------------")
-
+    
     ```
-
     <!-- markdownlint-enable -->
 
-4. Restart DataKit
+4. Restart DataKit:
 
     ```shell
     sudo datakit service -R
     ```
 
 ## Metrics {#metric}
+After configuring VMware monitoring, the default metric set is as follows:
 
-After configuring VMware monitoring, the default set of metrics is as follows
-
-| Metric                               |              Metric Name              | Unit |
-| ------------------------------------ | :-----------------------------------: | ---- |
-| `vcenter_total`                      |           Number of centers           | pcs  |
-| `vcenter_datastore_total_capacity`   |   Total disk capacity of the center   | B    |
-| `vcenter_datastore_total_free_space` | Remaining disk capacity of the center | B    |
-| `vcenter_datastore_total`            |        Number of center disks         | pcs  |
-| `cpu_cores`                          |          Number of CPU cores          | pcs  |
-| `memory`                             |              Memory size              | MB   |
-| `cpu_usage`                          |               CPU usage               | MHz  |
-| `mem_usage`                          |             Memory usage              | MB   |
-| `uptime`                             |             Running time              | sec  |
-| `disk_usage`                         |              Disk usage               | B    |
+| Metric         |        Metric Name        | Unit         |
+| ---- | :----: | ---- |
+| `vcenter_total` |         Number of Centers        | Count       |
+| `vcenter_datastore_total_capacity` |     Total Capacity of Center Disk     | B      |
+| `vcenter_datastore_total_free_space` | Free Space of Center Disk | B      |
+| `vcenter_datastore_total` | Number of Center Disks | Count           |
+| `cpu_cores` | Number of CPU Cores   | Count      |
+| `memory` | Memory Size   | MB      |
+| `cpu_usage` |      CPU Usage      | MHz     |
+| `mem_usage` |       Memory Usage       | MB       |
+| `uptime` | Uptime | Seconds       |
+| `disk_usage` |     Disk Usage     | B        |
 
 ## Objects {#object}
 
@@ -297,15 +297,15 @@ After configuring VMware monitoring, the default set of metrics is as follows
                 }
 ```
 
-Some field descriptions are as follows:
+Explanation of some fields:
 
-| Field        | Type   | Description                        |
-| :----------- | :----- | :--------------------------------- |
-| `name`       | String | Host name                          |
-| `model`      | String | Hardware model.                    |
-| `vendor`     | String | Hardware vendor                    |
-| `uptime`     | String | Running time                       |
-| `guest_os`   | String | Version of the virtual machine.    |
-| `ip_address` | String | IP address of the virtual machine. |
-| `cpu_cores`  | String | Number of CPU cores.               |
-| `memory`     | String | Memory size ( Byte).               |
+| Field         | Type   | Description                |
+| :----------- | :----- | :------------------ |
+| `name`       | String | Hostname              |
+| `model`      | String | Hardware model.          |
+| `vendor`     | String | Hardware vendor          |
+| `uptime`     | String | Uptime            |
+| `guest_os`   | String | Version of the virtual machine.      |
+| `ip_address` | String | IP address of the virtual machine.    |
+| `cpu_cores`  | String | Number of CPU cores.      |
+| `memory`     | String | Memory size (in Byte). |

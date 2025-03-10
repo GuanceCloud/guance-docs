@@ -1,6 +1,0 @@
-nav:
-  - index.md
-  - 'Metrics Collection': collection.md
-  - 'Explorer': explorer.md
-  - 'Metrics Management': dictionary.md
-  - 'Generate Metrics': generate-metrics.md

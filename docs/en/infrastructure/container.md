@@ -2,414 +2,429 @@
 
 ---
 
-After the successful collection of container data, it will be reported to the console. Go to **Infrastructure > Containers** to view the data information of various containers.
+After container data collection succeeds, it will be reported to the console. Enter **Infrastructure > Containers**, and you can view various object data information of containers within the workspace.
 
 ## Explorer
 
-There are two modes for viewing and analyzing container data. You can switch between them using the icons on the top left corner of the page: :octicons-list-unordered-24: and :material-hexagon-multiple-outline:. You can view:
+Container data has two viewing and analysis modes. By switching at the top-left corner of the page :octicons-list-unordered-24: and :material-hexagon-multiple-outline:, you can view:
 
-- [View list](#object);
-- [View map](#distribution).
+- [Container Object List](#object);
+- [Container Honeycomb Chart](#distribution).
 
-### Container List {#object}
+### Container Object List {#object}
 
-You can view the container data collected in the current workspace in a collection form and further query and analyze the container data. You can also set tags for containers to filter and display a list of containers with the same tag.
+For container object data collected within the <u>last ten minutes</u> in the current workspace, you can view them in a set form and further query and analyze container data; you can also set labels for containers and filter and display container lists with the same label through labels.
 
-- **[Containers](#containers)**: You can view all the container information collected in the workspace.
+- **[Containers](#containers)**: You can view all Containers information collected within the workspace;
 
-- **Kubernetes Collection**: You can view information about Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs, Cron Jobs and Daemonsets collected in the workspace.
+- **Kubernetes Collection**: You can view Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs, Cron Jobs, Daemonsets information collected within the workspace.
 
 ![](img/contra_01.png)
 
 #### Query and Analysis 
 
-- Time Widget: The container list supports viewing data collected in the last ten minutes. You can refresh the data list to the current time range by clicking the :material-refresh: button.
+- Time Widget: The container object list supports viewing data collected within the <u>last ten minutes</u>. Through the :material-refresh: button, you can refresh to the current time range and re-fetch the data list.
 
-- [Search and Filter](../getting-started/function-details/explorer-search.md): You can use various search methods such as keyword search and wildcard search. You can also filter values by `tags/attributes`, including forward and reverse filtering, fuzzy and reverse fuzzy matching, existence and non-existence.
+- [Search and Filter](../getting-started/function-details/explorer-search.md): In the Explorer search bar, it supports keyword search, wildcard search, and multiple search methods; it supports filtering values through `labels/attributes`, including positive and negative filtering methods.
 
-- [Quick Filter](../getting-started/function-details/explorer-search.md#quick-filter): Edit in the quick filter to add new filtering fields and then you can select them for quick filtering.
+- [Quick Filter](../getting-started/function-details/explorer-search.md#quick-filter): Edit quick filters and add new filter fields. After adding, you can choose field values for quick filtering.
 
-- [Columns](../getting-started/function-details/explorer-search.md#columns): On the host object list page, you can customize the display columns by adding, editing, deleting and dragging the display columns.
+- [Custom Display Columns](../getting-started/function-details/explorer-search.md#columns): Customize adding, editing, deleting, and dragging display columns through **Display Columns**.
 
-- [Analysis Mode](../getting-started/function-details/explorer-search.md#analysis): You can perform multidimensional analysis and statistics based on <u>1-3 tags</u> to reflect the distribution characteristics of data in different dimensions. It supports various data chart analysis methods, including toplist, pie charts and treemaps.
+- [Analysis Mode](../getting-started/function-details/explorer-search.md#analysis): Supports multi-dimensional statistical analysis based on <u>1-3 labels</u>, reflecting data distribution characteristics under different dimensions. It supports multiple data chart analysis methods, including Top Lists, pie charts, and treemaps.
 
-- Sorting: You can click on the list menu, such as CPU Usage, MEM Usage, to sort based on the selected tag.        
+- Sorting: Click on menu items in the list, such as CPU usage rate, MEM usage rate, you can sort the selected tags in ascending or descending order.
 
-- Data Export: click :material-cog:, you can:
-    
-    - Export to CSV file: Save the current list as a CSV file locally.
-    
-    - Export to Dashboard/Note: Save the current list as visual charts to a specified dashboard/note.
+- Data Export: At the top-right corner of the Explorer :material-cog: icon, you can:
 
-To export a specific data entry, open the details page of that data and click the :material-tray-arrow-up: in the upper right corner.   
+    - Export to CSV File: Save the current list as a CSV file locally;
+    - Export to Dashboard: Save the current list as a **visualization chart** to a specified **dashboard**;
+    - Export to Notebook: Save the current list as a **visualization chart** to a specified **notebook**.
 
+If you need to export a specific piece of data, open the details page of that data and click the :material-tray-arrow-up: icon at the top-right corner.
 
-#### Containers List {#containers}
+#### Containers {#containers}
 
-You can view all the container information collected in the workspace, including container name, related host, running status, CPU usage, MEM usage, etc.
+Supports viewing all container information collected within the workspace, including container name, related host, running status, CPU usage rate, MEM usage rate, etc.
 
 ##### Details Page
 
-Clicking on the container name in the Containers list will slide out the details page to view detailed information about the container, including container status, container name, container ID, container image, associated host, Pod, logs, processes, and label attributes.
+Clicking on an object in the list pulls out a details page to view detailed container information, including container status, container name, container ID, container image, associated host, Pod, logs, processes, and Label attributes.
 
 ![](img/6.container_3.png)
 
-##### Label
+##### Label Attributes {#label}
 
-The container labels are automatically uploaded with the container information. After adding container labels, you can filter and display a list of containers with the added labels in the container list.
+Uploaded automatically by default with container information. After adding container labels, you can filter and display container lists with added labels through the container object list.
 
+##### Associated Analysis {#association-analysis}
 
-##### Association Analysis {#association-analysis}
-
-Guance supports association analysis for each infrastructure type. In the details page of the container, in addition to the basic information of the container, you can also have a one-stop understanding of the associated metrics, hosts, Pods, logs, and processes related to the container, enabling you to monitor the container's running status faster and more comprehensively.
+<<< custom_key.brand_name >>> supports associated analysis for each infrastructure object. On the details page of the container object, besides basic container information, you can comprehensively understand associated metrics, hosts, Pods, logs, processes, etc., to monitor container operations faster and more comprehensively.
 
 <div class="grid" markdown>
 
 === "Metrics"
 
-    You can monitor the performance status of the container in real-time for the last 24 hours. You can select different time ranges for viewing. Click the icon in the upper right corner to customize and save the container view in the inner view.
+    You can monitor the performance status of containers within the last 24 hours in real-time, and you can choose different time ranges for viewing. Click the icon at the top-right corner to customize edit and save the bound container view in the built-in view.
 
-    **Note**: If the container is associated with the fields `service`, `project`, `namespace`, you can view the views corresponding to these three fields in the container details.
+    **Note**: If the container is associated with fields `service`, `project`, `namespace`, then you can view the views corresponding to these three fields in the container details.
 
 === "Host"
 
-    You can view the basic information and performance metrics of the associated host (`host`) within the selected time range in the container details.
+    You can view the basic information and performance metric status of related hosts (associated field: `host`) within the selected time component range.
 
-    **Note**: To view the associated host in the container details, the field `host` needs to be matched, otherwise, you will not be able to view the page of the associated host in the container details.
+    **Note**: To view related hosts in container details, the `host` field must match; otherwise, you cannot see the related host page in container details.
 
-    - Attribute View: Includes basic host information, integration status, and cloud provider information if cloud host collection is enabled;
-
-    - Metrics View: You can view the performance metrics of the associated host, such as CPU and memory, for the default last 24 hours. Click **Open this view** to go to the [inner view](../scene/built-in-view/bind-view.md) to customize and save the host view as a user view. The user view can be viewed by binding it in the container details.
-
-    In addition, by clicking the **Host** label on the container details page, you can perform the following operations:
-
-    | Operate | Description |
+    - Attribute View: Includes basic host information, integrated runtime conditions. If cloud host collection is enabled, you can also view cloud provider information.
+    
+    - Metrics View: You can view the CPU, memory, and other performance metric views of related hosts for the default 24 hours. Click **Open this view** to [Built-in View](../scene/built-in-view/bind-view.md), and you can customize modify the host view through cloning and save it as a user view, which can be viewed by binding it to the container details page.
+    
+    Additionally, by clicking the tag **Host** on the container details page, you can perform the following operations:
+    
+    | Action | Description |
     | --- | --- |
-    | Filter field value | Add the field to the explorer to view all the data related to the field. |
-    | Reverse filter field value | Add this field to the explorer to view other data besides this field. |
-    | Add to display column | Add the field to the explorer list for viewing. |
-    | Copy | Copy the field to the clipboard.  |
-    | View related logs/containers/processes/links/inspection | view all logs/containers/processes/links/inspection related to this host. |
-
+    | Filter Field Value | Add the field to the Explorer to view all data related to the field. |
+    | Negative Filter Field Value | Add the field to the Explorer to view data other than the field. |
+    | Add to Display Columns | Add the field to the Explorer list for viewing. |
+    | Copy | Copy the field to the clipboard. |
+    | View Related Logs | View all logs related to the host. |
+    | View Related Containers | View all containers related to the host. |
+    | View Related Processes | View all processes related to the host. |
+    | View Related Traces | View all traces related to the host. |
+    | View Related Inspections | View all inspection data related to the host. |
     
     ![Image title](img/21.container_1.png)
 
 === "Logs"
 
-    You can view the logs of the container for the last hour and the number of logs. You can perform keyword search, multi-tag filtering, and time sorting on these related logs.
+    You can view logs and log counts related to the container within the last hour and perform keyword searches, multi-label filtering, and time sorting on these related logs.
 
-    - To view more detailed log information: You can click on the log content to jump to the corresponding log details page or click to jump to **Logs** to view all logs related to the host;
-
-    - To view more log fields or complete log content: You can customize the "Maximum Display Rows" and "Display Columns" through the associated log viewer **Display Columns**.
-
-    **Note**: To provide a smoother user query experience, Guance saves the user's browsing settings in **Logs** in real-time (including "Maximum Display Rows" and "Display Columns") to keep the **Associated Logs** consistent with **Logs**. However, any customizations made in **Associated Logs** will not be saved after leaving the page.
-
+    - To view more detailed log information: Click on the log content to jump to the corresponding log details page, or click to jump to **Logs** to view all logs related to the host.
+  
+    - To view more log fields or complete log content: Customize adjust “Maximum Rows” and “Display Columns” through the associated log Explorer **Display Columns**.
+  
+    **Note**: For a smoother user query experience, <<< custom_key.brand_name >>> defaults to saving user browsing settings in **Logs** (including “Maximum Rows” and “Display Columns”) instantly, so that **Associated Logs** and **Logs** remain consistent. However, custom adjustments made in **Associated Logs** are not saved after exiting the page.
 
 === "Processes"
 
-    You can quickly view all the processes currently running in the container.
-
-    To view more detailed process information, you can click on the process content to jump to the corresponding process details page or click to jump to the processes page to view all processes related to the container.
-
+    You can view the basic information and performance metric status of related processes (associated field: `container_id`) within the selected time component range.
 
 === "Associated Pods"
 
-    You can view the basic information and performance metrics of the associated Pods (`pod_name`) within the selected time range in the container details.
+    You can view the basic information and performance metric status of related Pods (associated field: `pod_name`) within the selected time component range.
 
-    **Note**: To view the associated Pods in the container details, the field `pod_name` needs to be matched, otherwise, you will not be able to view the page of the associated Pods in the container details.
+    **Note**: To view related Pods in container details, the `pod_name` field must match; otherwise, you cannot see the related Pods page in container details.
 
 </div>
 
 
-#### Pods List {#pods}
+#### Pods {#pods}
 
-By clicking on the Pods in the upper left corner, you can switch to Pods and view all the information about the Pods retained in the workspace, including the Pod name, running status, restart count and start time.
+Through the **Pods** object in the top-left corner, you can view all Pods' information retained in the space, including Pod names, running status, restart count, start time, etc.
 
-##### Details Page
+##### Pods Details Page
 
-Clicking on the Pods name in the Pods list will slide out the details page to view detailed information about the Pods, including running status, Pods name, associated node, attributes, associated metrics, associated containers, associated logs, YAML file, network connection status, associated server running status and associated kubernetes.
+Clicking on an object in the list pulls out a details page to view detailed information about Pods, including running status, Pod name, associated node Node, Label attributes, associated metrics, associated containers, associated logs, YAML files, network connection status, associated server runtime status, and associated Kubernetes.
 
-By clicking the **Host** label on the Pods details page, you can query the logs, containers, processes, links, and inspections related to that host.
+By clicking the tag **Host**, you can query related logs, containers, processes, traces, inspections, etc., for the host.
 
-| Operate | Description |
+| Action | Description |
 | --- | --- |
-| Filter field value | Add the field to the explorer to view all the data related to the field. |
-| Reverse filter field value | Add this field to the explorer to view other data besides this field. |
-| Add to display column | Add the field to the explorer list for viewing. |
-| Copy | Copy the field to the clipboard.  |
-| View related logs/containers/processes/links/inspection | view all logs/containers/processes/links/inspection related to this host. |
+| Filter Field Value | Add the field to the Explorer to view all data related to the field. |
+| Negative Filter Field Value | Add the field to the Explorer to view data other than the field. |
+| Add to Display Columns | Add the field to the Explorer list for viewing. |
+| Copy | Copy the field to the clipboard. |
+| View Related Logs | View all logs related to the host. |
+| View Related Containers | View all containers related to the host. |
+| View Related Processes | View all processes related to the host. |
+| View Related Traces | View all traces related to the host. |
+| View Related Inspections | View all inspection data related to the host. |
 
 ![](img/7.pod_2.png)
 
+##### Label Attributes
 
+**Label Attributes** are uploaded automatically by default with Pods information. Existing Pod labels can be used to display Pods data with the same label via quick filtering in the Pods object list.
 
-##### Label
+##### Associated Analysis
 
-**Labels** are automatically uploaded with the Pods information. Existing Pods labels can be used to filter and display Pods data with the same tag in the Pods object list.
+<<< custom_key.brand_name >>> supports associated analysis for each infrastructure object. On the details page of the Pods object, you can not only understand the basic information of Pods but also comprehensively associate corresponding Pods’ metrics, containers, logs, networks, hosts, etc., for faster and more comprehensive monitoring of Pods' operation.
 
+Kubernetes Logs/Events: Click Kubernetes Logs/Events to view data associated with `namespace`, `source`, `kind`, `name`.
 
-##### Association Analysis
-
-In the Pods object details page, you can not only understand the basic information of the Pods but also have a one-stop association with the corresponding Pods. You can quickly and comprehensively monitor the Pods running status by viewing the associated metrics, containers, logs, network, and hosts related to the Pods.
-
-Clicking on kubernetes logs/events allows you to view the corresponding data associated with `namespace`, `source`, `kind` and `name`.
-
-Clicking on the time widget in the upper right corner allows you to customize the time range to filter the data.
-
+Click the time widget at the top-right corner to customize the time range for data filtering.
 
 ![](img/0810-pods.png)
 
-#### Services List
+#### Services
 
-By clicking on Services in the upper left corner, you can view all the information about the Services retained in the workspace, including the Services name, service type, Cluster IP, External IP, running time, etc.
+Through the **Services** object in the top-left corner, you can view all Services' information retained in the space, including Service names, service types, Cluster IP, External IP, uptime, etc.
 
-##### Details Page
+##### Services Details Page
 
-Clicking on the Services name in the list will slide out the details page to view detailed information, including the name, basic information, label attributes, YAML file, etc.
+Clicking on an object in the list pulls out a details page to view detailed information about Services, including name, basic information, Label attributes, YAML files, etc.
 
-**Note**: If Services are associated with the field `namespace`, you can view the corresponding metric view for this field in the Services details.
+**Note**: If Services are associated with the field `namespace`, then you can view the metric view corresponding to this field in the Services details page.
 
 ![](img/8.services_1.png)
 
-##### Label
+##### Label Attributes
 
-Labels are automatically uploaded with the Services information. Existing labels can be used to filter and display Services data with the same labels in the Services object list.
+**Label Attributes** are uploaded automatically by default with Services information. Existing labels can be used to display Services data with the same label via quick filtering in the Services object list.
 
-##### kubernetes Events
+##### Kubernetes Events
 
-Clicking on the kubernetes events allows you to view the corresponding data associated with `namespace`, `source`, `kind` and `name`.
+Click Kubernetes events to view data associated with `namespace`, `source`, `kind`, `name`.
 
-Clicking on the time widget in the upper right corner allows you to customize the time range to filter the data.
+Click the time widget at the top-right corner to customize the time range for data filtering.
 
 ![](img/0810-pods.png)
 
-#### Deployments List
+#### Deployments
 
-By selecting Deployments in the upper left corner, you can view detailed information about all the Deployments in the workspace, including Deployment name, available replicas, upgraded replicas, runtime, etc.
+Through the **Deployments** object in the top-left corner, you can view all detailed information of Deployments retained in the space, including Deployment names, available replicas, upgraded replicas, readiness, uptime, etc.
 
-##### Details Page
+##### Deployments Details Page
 
-Clicking on the Deployment name in the list will bring up the details page where you can view detailed information about the Deployment, including name, basic information, label properties, and other field properties. You can view associated logs, Replica Sets, Pods, network data and related Kubernetes information.
+Clicking on an object in the list pulls out a details page to view detailed information about Deployments, including name, basic information, Label attributes, and other field attributes. Support viewing associated logs, Replica Set, Pods, network data, and associated Kubernetes.
 
-**Note**: If the Deployment is associated with the field `namespace`, you can view the corresponding metric view of that field on the details page.
+**Note**: If Deployments are associated with the field `namespace`, then you can view the metric view corresponding to this field in the Services details page.
 
-![](img/8.deploument_2.png)
+![](img/8.deployment_2.png)
 
-##### Label
+##### Label Attributes
 
-The Label is automatically uploaded with the Deployment information. Existing labels can be displayed in the Deployments list by using the quick filter to show Deployments with the same labels.
+**Label Attributes** are uploaded automatically by default with Deployments information. Existing labels can be used to display Deployments data with the same label via quick filtering in the Deployments object list.
 
 
 ##### Associated Analysis 
 
-<div class="grid" markdown>
-
 === "YAML"
 
-    You can view the YAML file corresponding to the Deployment. On the details page, click YAML to view the corresponding YAML file.
+    Supports viewing the YAML file corresponding to Deployments. In the Infrastructure Deployments details page, click **YAML** to view the corresponding YAML file.
 
 
-=== "日志"
+=== "Logs"
 
-    通过详情页下方的**日志**，您可以查看与该 Deployments 相关的<u>最近 1 小时</u>的日志及日志数量，并对这些相关日志进行关键字搜索、多标签筛选和时间排序等。
+    Through the **Logs** section below the details page, you can view logs and log counts related to Deployments within the last hour and perform keyword searches, multi-label filtering, and time sorting on these related logs.
 
-    - 如您需查看更详细的日志信息：可点击日志内容跳转到对应日志详情页面，或点击跳转至**日志**查看与该主机相关的全部日志;
+    - To view more detailed log information: Click on the log content to jump to the corresponding log details page, or click to jump to **Logs** to view all logs related to the host;
     
-    - 如需查看更多的日志字段或更完整的日志内容：可通过关联日志查看器**显示列**自定义调整“最大显示行数”、“显示列”。
+    - To view more log fields or complete log content: Customize adjust “Maximum Rows” and “Display Columns” through the associated log Explorer **Display Columns**.
     
-    **注意**：为了更流畅的用户查询体验，观测云默认即时保存用户在**日志**的浏览设置（包括“最大显示行数”、“显示列”），以使**关联日志**与**日志**保持一致。然而，在**关联日志**进行的自定义调整，在退出页面后不做保存。
+    **Note**: For a smoother user query experience, <<< custom_key.brand_name >>> defaults to saving user browsing settings in **Logs** (including “Maximum Rows” and “Display Columns”) instantly, so that **Associated Logs** and **Logs** remain consistent. However, custom adjustments made in **Associated Logs** are not saved after exiting the page.
 
 === "Pods"
 
-    支持查看 Deployments 对应 Pods 的准备状态、重启次数、运行时长等，点击 Pods 或点击跳转按钮至 Pods 查看与本 Deployments 相关的全部 Pods。
+    Supports viewing the readiness state, restart count, uptime, etc., of Pods associated with Deployments. Click Pods or the jump button to Pods to view all Pods related to this Deployment.
 
 === "Replica Set"
 
-    支持查看 Deployments 对应 Replica Sets 的准备状态、运行时长等，点击 Replica Sets 或点击跳转按钮至 Replica Sets 查看与本 Deployments 相关的全部 Replica Set。
+    Supports viewing the readiness state, uptime, etc., of Replica Sets associated with Deployments. Click Replica Sets or the jump button to Replica Sets to view all Replica Sets related to this Deployment.
 
-=== "网络"
+=== "Network"
 
-    Deployments 网络支持查看 Deployments 之间的网络流量。支持基于 IP/端口查看源 IP 到目标 IP 之间的网络流量和数据连接情况，通过可视化的方式进行实时展示，帮助企业实时了解业务系统的网络运行状态，快速分析、追踪和定位问题故障，预防或避免因网络性能下降或中断而导致的业务问题。
+    Deployment network supports viewing network traffic between Deployments. It supports viewing source IP to target IP network traffic and data connections based on IP/port, visualizing the real-time display to help businesses understand the network operation status of their business systems, quickly analyze, track, and locate issues, and prevent or avoid business problems caused by network performance degradation or interruption.
     
-    Deployments 网络数据采集成功后会上报到观测云控制台，您可以在**基础设施 > 容器 > Pods**详情页中的**[网络](network.md)**，查看当前 Deployments 的网络性能监测数据信息。
+    Network data collected from Deployments is reported to the <<< custom_key.brand_name >>> console. You can view the network performance monitoring data of the current Deployment in the **[Network](network.md)** section of the **Infrastructure > Containers > Pods** details page.
 
-=== "kubernetes 日志/事件"
+=== "Kubernetes Logs/Events"
 
-    点击 kubernetes 日志/事件点击 kubernetes 事件可查看 `namespace`、`source`、`kind`、`name` 关联的对应数据。
+    Click Kubernetes logs/events to view data associated with `namespace`, `source`, `kind`, `name`.
 
-    点击右上角时间控件，可自定义时间范围筛选数据。
+    Click the time widget at the top-right corner to customize the time range for data filtering.
 
     ![](img/0810-pods.png)
 
-#### Clusters 列表
+#### Clusters
 
-通过左上角的对象 **Clusters** ，您可以切换至 **Clusters** 查看空间内留存的全部 Clusters 的信息，包括 Clusters 名称、运行时间、kubernetes 注释等。
+Through the **Clusters** object in the top-left corner, you can view all Clusters' information retained in the space, including Cluster names, runtime, Kubernetes annotations, etc.
 
-##### Clusters 详情页
+##### Clusters Details Page
 
-点击 Clusters 列表中的 Clusters 名称即可划出详情页查看 Clusters 的详细信息，包括名称、基础属性信息、Label 属性和其他字段属性。
+Clicking on an object in the list pulls out a details page to view detailed information about Clusters, including name, basic attribute information, Label attributes, and other field attributes.
 
 ![](img/10.clusters_2.png)
 
+##### Label Attributes
 
+**Label Attributes** are uploaded automatically by default with Clusters information. Existing labels can be used to display Clusters data with the same label via quick filtering in the Clusters object list.
 
-##### Label
+#### Nodes
 
-**Label 属性**随 Clusters 信息默认自动上传。已有的标签，可在 Clusters 对象列表通过快捷筛选展示相同标签的 Clusters 数据。
+Through the **Nodes** object in the top-left corner, you can view all Nodes' information retained in the space, including Node names, status, version, runtime.
 
+##### Nodes Details Page
 
-#### Nodes 列表
-
-通过左上角的对象 **Nodes** ，您可以切换至 **Nodes** 查看空间内留存的全部 Nodes 的信息，包括 Nodes 名称、状态、版本、运行时间。
-
-##### Nodes 详情页
-
-点击 Nodes 列表中的 Nodes 名称即可划出详情页查看 Nodes 的详细信息，包括名称、基础属性信息、Label 属性和其他字段属性。支持查看关联的 Pods 数据。
+Clicking on an object in the list pulls out a details page to view detailed information about Nodes, including name, basic attribute information, Label attributes, and other field attributes. Supports viewing associated Pods data.
 
 ![](img/11.nodes_2.png)
 
-其中，点击 kubernetes 事件可查看 `namespace`、`source`、`kind`、`name` 关联的对应数据。右上角时间控件支持自定义时间范围筛选数据。
+Among them, clicking Kubernetes events can view data associated with `namespace`, `source`, `kind`, `name`. The time widget at the top-right corner supports customizing the time range for data filtering.
 
 ![](img/0810-pods.png)
 
+##### Label Attributes
 
-##### Label
+**Label Attributes** are uploaded automatically by default with Nodes information. Existing labels can be used to display Nodes data with the same label via quick filtering in the Nodes object list.
 
-**Label 属性**随 Nodes 信息默认自动上传。已有的标签，可在 Nodes 对象列表通过快捷筛选展示相同标签的 Nodes 数据。
+#### Replica Sets
 
+Through the **Replica Sets** object in the top-left corner, you can view all detailed information of Replica Sets retained in the space, including Replica Set names, runtime, cluster, etc.
 
-#### Replica Sets 列表
+##### Replica Sets Details Page
 
-通过左上角的对象 **Replica Sets** ，您可以切换至 **Replica Sets** 查看空间内留存的全部 Replica Sets 的详尽信息，包括 Replica Sets 名称、运行时间长，集群等。
+Clicking on an object in the list pulls out a Replica Sets details page to view Replica Sets information, including name, basic attribute information, Label attributes, and other field attributes. Supports viewing associated Pods data.
 
-##### Replica Sets 详情页
-
-点击 Replica Sets 列表中的 Replica Sets 名称即可划出 Replica Sets 详情页查看 Replica Sets 的信息，包括名称、基础属性信息、 Label 属性和其他字段属性。支持查看关联的 Pods 数据。
-
-**注意**：若 Replica Sets 关联字段 `namespace`，则可以在 Services 详情页查看该字段对应的指标视图。
-
+**Note**: If Replica Sets are associated with the field `namespace`, then you can view the metric view corresponding to this field in the Services details page.
 
 ![](img/12.sets_2.png)
 
-其中，点击 kubernetes 事件可查看 `namespace`、`source`、`kind`、`name` 关联的对应数据。右上角时间控件支持自定义时间范围筛选数据。
+Among them, clicking Kubernetes events can view data associated with `namespace`, `source`, `kind`, `name`. The time widget at the top-right corner supports customizing the time range for data filtering.
 
 ![](img/0810-pods.png)
 
+##### Label Attributes
 
-##### Label
+**Label Attributes** are uploaded automatically by default with Replica Sets information. Existing labels can be used to display Replica Sets data with the same label via quick filtering in the Replica Sets object list.
 
-**Label 属性**随 Replica Sets 信息默认自动上传。已有的标签，可在 Replica Sets 对象列表通过快捷筛选展示相同标签的 Replica Sets 数据。
+#### Jobs
 
+Through the **Jobs** object in the top-left corner, you can view all Jobs' information retained in the space, including Job names, parallel count, active number, runtime, etc.
 
-#### Jobs 列表
+##### Jobs Details Page
 
-通过左上角的对象 **Jobs**，您可以切换至 **Jobs** 查看空间内留存的全部 Jobs 的信息，包括 Jobs 名称、并行数量、活跃数、运行时间等。
-
-##### Jobs 详情页
-
-点击 Jobs 列表中的 Jobs 名称即可划出详情页查看 Jobs 的详细信息，包括名称、基础属性信息、Label 属性和其他字段属性。
+Clicking on an object in the list pulls out a details page to view detailed information about Jobs, including name, basic attribute information, Label attributes, and other field attributes.
 
 ![](img/13.jobs_2.png)
 
+##### Label Attributes
 
+**Label Attributes** are uploaded automatically by default with Jobs information. Existing labels can be used to display Jobs data with the same label via quick filtering in the Jobs object list.
 
-##### Label
+#### Cron Jobs
 
-**Label 属性**随 Jobs 信息默认自动上传。已有的标签，可在 Jobs 对象列表通过快捷筛选展示相同标签的 Jobs 数据。
+Through the **Cron Jobs** object in the top-left corner, you can view all Cron Jobs' information retained in the space, including Cron Job names, schedule, pause status, active job count, runtime, etc.
 
+##### Cron Jobs Details Page
 
-#### Cron Jobs 列表
-
-通过左上角的对象 **Cron Jobs** ，您可以切换至 **Cron Jobs** 查看空间内留存的全部 Cron Jobs 的信息，包括 Cron Jobs 名称、运行日程、是否暂停、Jobs 活跃数量、运行时间等。
-
-##### Cron Jobs 详情页
-
-点击 Cron Jobs 列表中的 Cron Jobs 名称即可划出详情页查看 Cron Jobs 的详细信息，包括名称、基础属性信息、 Label 属性和其他字段属性。
+Clicking on an object in the list pulls out a details page to view detailed information about Cron Jobs, including name, basic attribute information, Label attributes, and other field attributes.
 
 ![](img/14.cronjobs_2.png)
 
-其中，点击 kubernetes 事件可查看 `namespace`、`source`、`kind`、`name` 关联的对应数据。右上角时间控件支持自定义时间范围筛选数据。
+Among them, clicking Kubernetes events can view data associated with `namespace`, `source`, `kind`, `name`. The time widget at the top-right corner supports customizing the time range for data filtering.
 
 ![](img/0810-pods.png)
 
-##### Label
+##### Label Attributes
 
-**Label 属性**随 Cron Jobs 信息默认自动上传。已有的标签，可在 Cron Jobs 对象列表通过快捷筛选展示相同标签的 Jobs 数据。
+**Label Attributes** are uploaded automatically by default with Cron Jobs information. Existing labels can be used to display Cron Jobs data with the same label via quick filtering in the Cron Jobs object list.
 
+#### Daemonsets
 
-#### Daemonsets 列表
+Through the **Daemonsets** object in the top-left corner, you can view all Daemonsets information retained in the space, displaying Daemonset names, expected node count, updated node count, ready node count, runtime, etc. by default.
 
-通过左上角的对象 **Daemonsets**，您可以切换至 **Daemonsets** 查看空间内留存的全部 Daemonsets 的信息，默认显示 Daemonsets 名称、期望节点数、更新节点数、准备就绪节点数、运行时长等。
+##### Daemonsets Details Page {#daemonsets}
 
-##### Daemonsets 详情页 {#daemonsets}
-
-点击 Daemonsets 列表中的 Daemonsets 名称即可划出详情页查看 Daemonsets 更新节点数、准备就绪节点数和其他字段属性。
+Clicking on an object in the list pulls out a details page to view Daemonsets updated node count, ready node count, and other field attributes.
 
 ![](img/daemonsets.png)
 
-其中，点击 kubernetes 事件可查看 `namespace`、`source`、`kind`、`name` 关联的对应数据。右上角时间控件支持自定义时间范围筛选数据。
+Among them, clicking Kubernetes events can view data associated with `namespace`, `source`, `kind`, `name`. The time widget at the top-right corner supports customizing the time range for data filtering.
 
 ![](img/0810-pods.png)
 
-##### Label
+##### Label Attributes
 
-**Label 属性**随 Daemonsets 信息默认自动上传。已有的标签，可在 Daemonsets 对象列表通过快捷筛选展示相同标签的 Daemonsets 数据。
+**Label Attributes** are uploaded automatically by default with Daemonsets information. Existing labels can be used to display Daemonsets data with the same label via quick filtering in the Daemonsets object list.
 
+#### Statefulset {#statefulset}
 
+Through the **Statefulset** object in the top-left corner, you can view all Statefulset information retained in the space, displaying Statefulset names, cluster, namespace, runtime, prepared replica count, running replica count, and desired replica count by default.
 
-### 蜂窝图 {#distribution}
+##### Statefulset Details Page 
 
-在**基础设施 > 容器**，切换查看器至容器蜂窝图时，您可以对工作空间的 **Containers** 和 **Kubernetes > Pods** 数据以蜂窝图形式进行查看。
+Clicking on an object in the list pulls out a details page to view Statefulset associated prepared replica count, runtime, and other field attributes.
 
-- **Containers** 蜂窝图：可快速查看容器指标值（CPU 使用率、MEM 使用率）的大小，并分析不同项目、不同服务、不同主机、不同镜像下的容器性能状态；
+![](img/statefulset.png)
 
-- **Pods** 蜂窝图：可快速查看 Pods 的重启次数，并分析不同项目、不同服务、不同主机、不同 Nodes 名称、不同命名空间下的 Pods 性能状态。
+Among them, clicking Kubernetes events can automatically view data associated with `source`, `involved_kind`, `involved_namespace`, `involved_name`. The time widget at the top-right corner supports customizing the time range for data filtering.
+
+![](img/statefulset-1.png)
+
+#### Persistent Volumes {#persistent-volumes}
+
+Through the **Persistent Volumes** object in the top-left corner, you can view all Persistent Volumes information retained in the space, displaying Persistent Volumes names, cluster, namespace, available count, idle nodes, and capacity by default.
+
+##### Persistent Volumes Details Page 
+
+Clicking on an object in the list pulls out a details page to view Persistent Volumes associated Pod names and available space.
+
+![](img/persistent-volumes.png)
+
+<!--
+Among them, clicking Kubernetes events can automatically view data associated with `source`, `involved_kind`, `involved_namespace`, `involved_name`. The time widget at the top-right corner supports customizing the time range for data filtering.
+
+![](img/persistent-volumes-1.png)
+-->
+
+### Honeycomb Chart {#distribution}
+
+In **Infrastructure > Containers**, when switching the Explorer to the container honeycomb chart, you can view **Containers** and **Kubernetes > Pods** data in a honeycomb chart format.
+
+- **Containers** Honeycomb Chart: Quickly view the size of container metric values [CPU usage rate, MEM usage rate, standardized CPU usage rate, and standardized MEM usage rate] and analyze the performance status of containers under different projects, services, hosts, images;
+
+- **Pods** Honeycomb Chart: Quickly view the restart count of Pods and analyze the performance status of Pods under different projects, services, hosts, Nodes names, namespaces.
 
 ![](img/6.container_1.png)
 
-| 操作      | 说明                 |
-| ----------- | ---------------- |
-| [搜索和筛选](../getting-started/function-details/explorer-search.md)      |                  |
-| 分析      | 您可以通过添加一个或多个分组标签重新组合 Containers/Pods 对象。                 |
-| 填充      | 您可以自定义选择填充指标，填充指标值的大小将决定填充的图例颜色。您可以选择 CPU 使用率和 MEM 使用率两种指标填充方式。                 |
-| 自定义区间      | 您可以通过 **图例设置** 开启自定义图例范围。图例的颜色将依据图例的最大和最小值等分为 5 个区间，每个区间将自动对应五个不同的颜色。                 |
-| 鼠标悬停      | 悬停鼠标至容器对象，可查看容器名称、CPU 使用率和 MEM 使用率。                 |
+| Action      | Description                 |
+| ----------- | ------------------------- |
+| [Search and Filter](../getting-started/function-details/explorer-search.md)      |                  |
+| Analysis      | You can reorganize Containers/Pods objects by adding one or more grouping labels.                 |
+| Fill      | You can customize the selection of fill metrics, where the size of the fill metric value will determine the color of the legend. Includes four types of fill metrics: CPU usage rate, MEM usage rate, standardized CPU usage rate, and standardized MEM usage rate.                 |
+| Custom Range      | You can enable custom legend ranges through **Legend Settings**. The legend colors will be divided into five intervals based on the maximum and minimum values of the legend, with each interval automatically corresponding to five different colors.                 |
+| Hover      | Hovering over a container object with the mouse allows you to view the container name, CPU usage rate, MEM usage rate, standardized CPU usage rate, and standardized MEM usage rate.                 |
 
-## 分析看板 {#analyse}
+## Analysis Dashboard {#analyse}
 
-在**基础设施 > 容器**，可切换查看器至**分析看板**。
+In **Infrastructure > Containers**, you can switch the Explorer to the **Analysis Dashboard**.
 
-分析看板将 Kubernetes 集合相关的概览图表同时展示在同一界面，通过多维度数据分析构建数据洞察场景。借助视图切换、时间控件、集群名称/命名空间过滤等方式全面监控不同容器集合的数据指标。
+The Analysis Dashboard displays overview charts related to Kubernetes collections simultaneously on the same interface, building data insight scenarios through multidimensional data analysis. Comprehensive monitoring of different container collection data metrics is achieved using view switching, time widgets, cluster name/namespace filtering, etc.
 
 ![](img/contra_02.png)
 
-### 切换
+### Switching
 
-默认查看工作空间 Kubernetes 总览视图，支持下拉切换查看其他对象相关分析看板：
+Default view is the Kubernetes Overview View, supporting dropdown switching to view other object-related analysis dashboards:
 
-- **Kubernetes 总览视图**：可查看 Kubernetes 集群下的总览系统视图；
+- **Kubernetes Overview View**: View the system overview view under the Kubernetes cluster;
 
-- **Kubernetes Services 监控视图**：可查看 Kubernetes 集群下的 Services 相关的系统视图；
+- **Kubernetes Services Monitoring View**: View the system overview view related to Services under the Kubernetes cluster;
 
-- **Kubernetes Nodes 监控视图**：可查看 Kubernetes 集群下的 Nodes 相关的系统视图；
+- **Kubernetes Nodes Monitoring View**: View the system overview view related to Nodes under the Kubernetes cluster;
 
-- **Kubernetes Pods 监控视图**：可查看 Kubernetes 集群下的 Pods 相关的系统视图；
+- **Kubernetes Pods Monitoring View**: View the system overview view related to Pods under the Kubernetes cluster;
 
-- **Kubernetes Event 监控视图**：可查看 Kubernetes 集群下的容器相关的事件，包括 Warnning 事件、事件 Top 10 等相关信息；支持查看事件详情信息，包括节点不可用、节点重启、节点 OOM、镜像拉取失败、卷挂载失败、调度失败等异常事件的统计视图。
+- **Kubernetes Event Monitoring View**: View container-related events under the Kubernetes cluster, including Warning events, Top 10 events, etc. Supports viewing event details, including node unavailability, node restarts, node OOM, image pull failures, volume mount failures, scheduling failures, etc., in statistical views.
 
-**注意**：支持与系统视图同名的内置视图（用户视图）优先显示。
+**Note**: Built-in views (user views) with the same name as system views have priority display.
 
+## Further Reading
 
-## 更多阅读
+<font size=3>
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 视图</font>](../scene/built-in-view/index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; View</font>](../scene/built-in-view/index.md)
 
 </div>
 
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; 仪表板</font>](../scene/dashboard.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Dashboard</font>](../scene/dashboard/index.md)
 
+</div>
+
+</font>

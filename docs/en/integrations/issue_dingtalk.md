@@ -1,39 +1,39 @@
 ---
-title: 'Guance Exception Tracking (issue) - Dingtalk'
-summary: 'Guance anomaly tracking is integrated with DingTalk depth, making it convenient to send anomaly tracking information to DingTalk, reply through DingTalk, and send it back to the Guance'
+title: 'Incident - DingTalk'
+summary: 'Guance Incident is deeply integrated with DingTalk, making it easy to send incident information to DingTalk and reply through DingTalk, which will be transmitted back to Guance'
 __int_icon: 'icon/dingtalk'
 dashboard:
-  - desc: 'No'
+  - desc: 'None'
     path: ''
 monitor:
-  - desc: 'No'
+  - desc: 'None'
     path: ''
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Guance Exception Tracking (issue) - Dingtalk
+# Incident - DingTalk
 <!-- markdownlint-enable -->
 
-Guance anomaly tracking is integrated with DingTalk depth, making it convenient to send anomaly tracking information to DingTalk, reply through DingTalk, and send it back to the Guance.
+Guance Incident is deeply integrated with DingTalk, making it easy to send incident information to DingTalk and reply through DingTalk, which will be transmitted back to Guance.
 
 ---
 
 ## Configuration {#config}
 
-### Precondition {#reqirement}
+### Prerequisites
 
-Require management permissions for the [Guance workspace] and the [DingTalk Open Platform].
+You need management permissions for both the "Guance Workspace" and the "DingTalk Open Platform".
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically,Please continue with the script installation
+It is recommended to enable the hosted version of Func under Guance Integrations - Extensions: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-hosted Func Deployment](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
+> It is recommended to deploy the GSE version.
 
-### Installation script
+### Install Script
 
-In the script market, install the corresponding collection script: "Guance Integration (Guance Exception Tracking - DingTalk)" (ID: 'guiance_issue_dingtalk') to activate.
+In the script market, install the corresponding collection script: "Guance Integration (Guance Incident - DingTalk)" (ID: `guance_issue_dingtalk`) to enable it.
 
-For the convenience of document maintenance, please redirect to [DingTalk Integration Configuration](https://func.guance.com/doc/script-market-guance-issue-dingtalk-integration/) Perform the operation.
-
+For easier maintenance of this documentation, please perform the operation at [DingTalk Integration Configuration](https://func.guance.com/doc/script-market-guance-issue-dingtalk-integration/)

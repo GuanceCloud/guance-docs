@@ -1,42 +1,38 @@
 ---
 icon: zy/private
 ---
-# Privatization Deployment 
+# Private Deployment
 
 ---
 
-According to the actual usage scenes and characteristics of customer application systems, Guance Cloud provides a variety of deployment schemes to choose from, including commercial deployment version and community version. 
+<<< custom_key.brand_name >>> provides the Deployment Plan based on the actual use cases and characteristics of customer application systems. It supports users in installing <<< custom_key.brand_name >>> system software and running services in their local infrastructure environment or private cloud environment.
 
-- Commercial deployment version: Supports users to install Guance Cloud system software and run services on their own local infrastructure environment or private cloud environment. 
-- Community version: It provides a simple, easy-to-get and fully functional local deployment platform for community users such as teachers, students and cloud computing enthusiasts, and supports free application, download and trial. 
+## Deployment Plan
 
-## Commercial Deployment Version 
+The Deployment Plan is obtained through subscription or purchasing a license, providing you with the local installation package and authorization for <<< custom_key.brand_name >>> to create your Exclusive Plan <<< custom_key.brand_name >>>. During the service period, <<< custom_key.brand_name >>> will continuously provide upgrade packages and online support services to ensure your platform can be upgraded to the latest version.
 
-Guance Cloud community version can be upgraded to Commercial deployment version by version upgrade. The commercial deployment version is to obtain the local installation package and license of the Guance Cloud platform by subscribing or purchasing licenses, so as to create your exclusive version of the Guance Cloud. During the service period, Guance Cloud would continue to provide upgrade packages and online support services to ensure that your platform can be upgraded to the latest version.  
 ![](/Users/wendy/dataflux-doc/docs/deployment/img/6.deployment_10.png)
 
-### Pay-as-you-go Version
+### Pay-As-You-Go Plan
 
-End users obtain the authorization to use Guance Cloud software by subscription on a daily basis, and the authorization unit is the maximum number of online active access collectors counted on that day. During the subscription period, users can always get the latest version upgrade of Guance Cloud software and enjoy standard support services. 
+End-users obtain <<< custom_key.brand_name >>> software usage authorization through daily subscription, with the authorization unit being the maximum number of active collectors online on that day. Within the subscription period, users can always receive the latest version upgrades of <<< custom_key.brand_name >>> software and enjoy standard support services.
 
-Note: The pay-as-you-go version needs to report the usage data to the gateway of Guance Cloud in the public network in real time. 
+**Note:** The Pay-As-You-Go Plan requires real-time reporting of usage data to <<< custom_key.brand_name >>>'s public gateway.
 
-### Subscription Version
+### Subscription Plan
 
-End users are authorized to use Guance Cloud software by annual subscription, and the authorized unit is the number of collectors supporting access. During the subscription period, users can always get the latest version upgrade of Guance Cloud software and enjoy standard support services. 
+End-users obtain <<< custom_key.brand_name >>> software usage authorization through annual subscription, with the authorization unit being the number of supported collectors. Within the subscription period, users can always receive the latest version upgrades of <<< custom_key.brand_name >>> software and enjoy standard support services.
 
-Note: The minimum subscription period is 1 year. 
+**Note:** The minimum subscription period for the Subscription Plan is 1 year.
 
-### License Version
+### License Plan
 
-End users can obtain the permanent use right of the designated version of the Guance Cloud by paying a one-time fee, and the authorized unit is the number of collectors supporting access. Buy the default one-year maintenance service, and users can pay annual to renew the maintenance service. During the validity period of maintenance service, users can always get the latest version upgrade of Guance Cloud software and enjoy standard support services. 
+End-users can obtain permanent usage rights for a specified version of <<< custom_key.brand_name >>> by paying a one-time fee, with the authorization unit being the number of supported collectors. A default one-year maintenance service is included with the purchase, and users can renew the maintenance service annually. Within the effective period of the maintenance service, users can always receive the latest version upgrades of <<< custom_key.brand_name >>> software and enjoy standard support services.
 
-## Version Comparison 
+## Version Comparison
 
-| Version       |            | Available Time                          | Upgrade Service            | Technical Support               | Installation Package Acquisition Method      | License |
-| ---------- | ---------- | -------------------------------- | ------------------ | --------------------- | ------------------ | ----------------- |
-| Commercial Deployment Version  | Subscription   | Starting from 1 year and renewed annually.                | Subscription can be upgraded within the validity period  | Subscription period: 5*8 hours  | Any supported access path  | Required              |
-|            | License Version | Permanent, give away one-year maintenance, and the maintenance would be renewed annually  | It can be upgraded within the validity period of maintenance. | Maintenance period: 5*8 hours  | Any supported access path  | Required              |
-|            | Pay-as-you-go Version  | Starting from 1 day and renewing on a daily basis                 | Subscription can be upgraded within the validity period. | Subscription period: 5*8 hours  | Any supported access path  | Required              |
-| Community Version      |            | Each version can be used within 180 days from the release date.  | Self-upgrading            | Community support               | Any supported access path  | Required              |
-
+| Version       |            | Availability Duration                         | Upgrade Service           | Technical Support              | Installation Package Acquisition Method     | Authorization License (License) |
+| ------------- | ---------- | --------------------------------------------- | ------------------------- | ------------------------------ | ------------------------------------------ | ------------------------------- |
+| Commercial Deployment Plan | Subscription Plan   | Minimum 1 year, renewable annually                | Upgradable during subscription period | 5*8 hours during subscription period | Any supported acquisition path | Required              |
+|               | License Plan | Permanent, with one-year complimentary maintenance, renewable annually | Upgradable during maintenance period | 5*8 hours during maintenance period | Any supported acquisition path | Required              |
+|               | Pay-As-You-Go Plan | Minimum 1 day, renewable daily                | Upgradable during subscription period | 5*8 hours during subscription period | Any supported acquisition path | Required              |

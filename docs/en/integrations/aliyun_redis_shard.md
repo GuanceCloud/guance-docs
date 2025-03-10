@@ -1,97 +1,96 @@
 ---
-title: 'Aliyun Redis Shard'
+title: 'Alibaba Cloud Redis Cluster Edition'
 tags: 
   - Alibaba Cloud
-summary: 'Aliyun Redis Shard Metric display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc.'
+summary: 'Display of Alibaba Cloud Redis Cluster Edition metrics, including CPU usage, memory usage, disk read/write, network traffic, and requests per second.'
 __int_icon: icon/aliyun_redis
 dashboard:
-  - desc: 'Aliyun Redis Shard Built-in Dashboard'
-    path: 'dashboard/zh/aliyun_redis_shard/'
+  - desc: 'Built-in views for Alibaba Cloud Redis Cluster Edition'
+    path: 'dashboard/en/aliyun_redis_shard/'
 monitor:
-  - desc: 'Aliyun Redis Shard Monitor'
-    path: 'monitor/zh/aliyun_redis_shard/'
+  - desc: 'Monitors for Alibaba Cloud Redis Cluster Edition'
+    path: 'monitor/en/aliyun_redis_shard/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Aliyun Redis Shard
+# Alibaba Cloud Redis Cluster Edition
 <!-- markdownlint-enable -->
 
-Aliyun Redis Shard Metric display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc.
+Display of Alibaba Cloud Redis Cluster Edition metrics, including CPU usage, memory usage, disk read/write, network traffic, and requests per second.
 
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling Guance integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
+### Installation Script
 
-### Installation script
+> Note: Prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-> Tip：Please prepare Aliyun AK that meets the requirements in advance (For simplicity's sake,，You can directly grant the global read-only permission `ReadOnlyAccess`)
+To synchronize monitoring data from Alibaba Cloud Redis Cluster Edition, install the corresponding collection script: 「Guance Integration (Alibaba Cloud - Redis Collection)」(ID: `guance_aliyun_redis`)
 
-To synchronize the monitoring data of Aliyun Redis Shard resources,we install the corresponding collection script:「Guance Integration（Aliyun - RedisCollect）」(ID：`guance_aliyun_redis`)
+After clicking 【Install】, enter the required parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
-Click "Install" and enter the corresponding parameters: Aliyun AK, Aliyun account name.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the startup script accordingly.
 
-Tap "Deploy startup Script"，The system automatically creates Startup script sets，And automatically configure the corresponding startup script.
+Additionally, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. Wait a moment, then check the execution task records and corresponding logs.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」. Click "Run", you can immediately execute once, without waiting for a regular time. After a while, you can view task execution records and corresponding logs.
-
-We have collected some configurations by default, see the index column for details
+We collect some default configurations; for more details, see the Metrics section.
 
 [Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
-### Verify
+### Verification
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On Guance platform, press 「Metrics」 to check whether monitoring data exists
+1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding task has the automatic trigger configuration, and check the task records and logs for any anomalies.
+2. On the Guance platform, in 「Infrastructure / Custom」, check if asset information exists.
+3. On the Guance platform, in 「Metrics」, check if there is corresponding monitoring data.
 
-## Metric {#metric}
-Configure Ali Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Aliyun Monitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+## Metrics {#metric}
+After configuring Alibaba Cloud Cloud Monitor, the default metric set is as follows. You can collect more metrics through configuration. [Alibaba Cloud Cloud Monitor Metric Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
 | Metric Id                       | Metric Name               | Dimensions               | Statistics      | Unit     |
 | ---- | ---- | ---- | ---- | ---- |
-| ShardingAdminClients            | Proxy to DB connections           | userId,instanceId,nodeId | Average,Maximum | Count    |
-| ShardingAvgRt                   | Average response time              | userId,instanceId,nodeId | Average,Maximum | us       |
-| ShardingBlockedClients          | Number of blocked client connections          | userId,instanceId,nodeId | Average,Maximum | Count    |
-| ShardingConnectionUsage         | Connection usage              | userId,instanceId,nodeId | Average,Maximum | %        |
-| ShardingCpuUsage                | CPU usage                 | userId,instanceId,nodeId | Average,Maximum | %        |
-| ShardingHitRate                 | Hit rate                    | userId,instanceId,nodeId | Average,Maximum | %        |
-| ShardingInstProxyIntranetIn     | Proxy instance inflow bandwidth         | userId,instanceId        | Value           | KBytes/s |
-| ShardingInstProxyIntranetOut    | Proxy instance outbound bandwidth        | userId,instanceId        | Value           | KBytes/s |
-| ShardingInstProxyTotalQps       | Proxy instance total number of requests per second     | userId,instanceId        | Value           | Count/s  |
-| ShardingInstProxyUsedConnection | Proxy instance used connections     | userId,instanceId        | Value           | Count    |
-| ShardingIntranetIn              | Inbound traffic                | userId,instanceId,nodeId | Average,Maximum | KBytes/s |
-| ShardingIntranetInRatio         | Incoming Bandwidth Utilization            | userId,instanceId,nodeId | Average,Maximum | %        |
-| ShardingIntranetOut             | Outbound traffic                | userId,instanceId,nodeId | Average,Maximum | KBytes/s |
-| ShardingIntranetOutRatio        | Outgoing bandwidth usage            | userId,instanceId,nodeId | Average,Maximum | %        |
-| ShardingKeys                    | Number of keys in the cache           | userId,instanceId,nodeId | Average,Maximum | Count    |
-| ShardingMemoryUsage | Memory usage | userId,instanceId,nodeId | Average,Maximum | % |
-| ShardingProxyAvgRequestSize | Proxy Average per request size | userId,instanceId,nodeId | Average,Maximum | Byte |
-| ShardingProxyAvgResponseSize | ProxyAverage per response size | userId,instanceId,nodeId | Average,Maximum | Byte |
-| ShardingProxyAvgRt | Proxy average delay | userId,instanceId,nodeId | Average,Maximum | us |
-| ShardingProxyConnectionUsage | Proxy connection usage | userId,instanceId,nodeId | Average,Maximum | % |
-| ShardingProxyCpuUsage | Proxy CPU usage | userId,instanceId,nodeId | Average,Maximum | % |
-| ShardingProxyIntranetIn | Proxy inflow rate | userId,instanceId,nodeId | Average,Maximum | KBytes/s |
-| ShardingProxyIntranetOut | Proxy outflow rate | userId,instanceId,nodeId | Average,Maximum | KBytes/s |
-| ShardingProxyMaxRequestSize | Proxy per request max size | userId,instanceId,nodeId | Average,Maximum | Byte |
-| ShardingProxyMaxResponseSize | Proxy per response max size | userId,instanceId,nodeId | Average,Maximum | Byte |
-| ShardingProxyTotalQps | Proxy total qps per second | userId,instanceId,nodeId | Average,Maximum | Count/s |
-| ShardingProxyUsedConnection | Proxy used connections | userId,instanceId,nodeId | Average,Maximum | Count |
-| ShardingSyncDelayTime | Multi-active synchronization delay | userId,instanceId,nodeId | Maximum,Average | seconds |
-| ShardingUsedConnection | Used connections | userId,instanceId,nodeId | Average,Maximum | Count |
-| ShardingUsedMemory | Memory usage | userId,instanceId,nodeId | Average,Maximum | Bytes |
-| ShardingUsedQPS | Average used qps per second | userId,instanceId,nodeId | Average,Maximum | Count |
+| ShardingAdminClients            | Number of Proxy-to-DB connections | userId,instanceId,nodeId | Average,Maximum | Count    |
+| ShardingAvgRt                   | Average Response Time      | userId,instanceId,nodeId | Average,Maximum | us       |
+| ShardingBlockedClients          | Number of Blocked Client Connections | userId,instanceId,nodeId | Average,Maximum | Count    |
+| ShardingConnectionUsage         | Connection Usage Rate      | userId,instanceId,nodeId | Average,Maximum | %        |
+| ShardingCpuUsage                | CPU Usage Rate             | userId,instanceId,nodeId | Average,Maximum | %        |
+| ShardingHitRate                 | Hit Rate                   | userId,instanceId,nodeId | Average,Maximum | %        |
+| ShardingInstProxyIntranetIn     | Proxy Instance Inbound Bandwidth | userId,instanceId        | Value           | KBytes/s |
+| ShardingInstProxyIntranetOut    | Proxy Instance Outbound Bandwidth | userId,instanceId        | Value           | KBytes/s |
+| ShardingInstProxyTotalQps       | Total QPS of Proxy Instance | userId,instanceId        | Value           | Count/s  |
+| ShardingInstProxyUsedConnection | Used Connections of Proxy Instance | userId,instanceId        | Value           | Count    |
+| ShardingIntranetIn              | Inbound Traffic            | userId,instanceId,nodeId | Average,Maximum | KBytes/s |
+| ShardingIntranetInRatio         | Inbound Bandwidth Usage Rate | userId,instanceId,nodeId | Average,Maximum | %        |
+| ShardingIntranetOut             | Outbound Traffic           | userId,instanceId,nodeId | Average,Maximum | KBytes/s |
+| ShardingIntranetOutRatio        | Outbound Bandwidth Usage Rate | userId,instanceId,nodeId | Average,Maximum | %        |
+| ShardingKeys                    | Number of Keys in Cache    | userId,instanceId,nodeId | Average,Maximum | Count    |
+| ShardingMemoryUsage | Memory Usage Rate | userId,instanceId,nodeId | Average,Maximum | % |
+| ShardingProxyAvgRequestSize | Average Request Size of Proxy | userId,instanceId,nodeId | Average,Maximum | Byte |
+| ShardingProxyAvgResponseSize | Average Response Size of Proxy | userId,instanceId,nodeId | Average,Maximum | Byte |
+| ShardingProxyAvgRt | Average Latency of Proxy | userId,instanceId,nodeId | Average,Maximum | us |
+| ShardingProxyConnectionUsage | Proxy Connection Usage Rate | userId,instanceId,nodeId | Average,Maximum | % |
+| ShardingProxyCpuUsage | Proxy CPU Usage Rate | userId,instanceId,nodeId | Average,Maximum | % |
+| ShardingProxyIntranetIn | Proxy Inbound Traffic Rate | userId,instanceId,nodeId | Average,Maximum | KBytes/s |
+| ShardingProxyIntranetOut | Proxy Outbound Traffic Rate | userId,instanceId,nodeId | Average,Maximum | KBytes/s |
+| ShardingProxyMaxRequestSize | Maximum Request Size of Proxy | userId,instanceId,nodeId | Average,Maximum | Byte |
+| ShardingProxyMaxResponseSize | Maximum Response Size of Proxy | userId,instanceId,nodeId | Average,Maximum | Byte |
+| ShardingProxyTotalQps | Total QPS of Proxy | userId,instanceId,nodeId | Average,Maximum | Count/s |
+| ShardingProxyUsedConnection | Used Connections of Proxy | userId,instanceId,nodeId | Average,Maximum | Count |
+| ShardingSyncDelayTime | Multi-active Sync Delay | userId,instanceId,nodeId | Maximum,Average | seconds |
+| ShardingUsedConnection | Used Connections | userId,instanceId,nodeId | Average,Maximum | Count |
+| ShardingUsedMemory | Memory Usage | userId,instanceId,nodeId | Average,Maximum | Bytes |
+| ShardingUsedQPS | Average Requests Per Second | userId,instanceId,nodeId | Average,Maximum | Count |
 
-## Object {#object}
+## Objects {#object}
 
-The collected Aliyun redis  object data structure can see the object data from「Infrastructure-Custom」
+The object data structure of Alibaba Cloud Redis collected can be viewed in 「Infrastructure - Custom」
 
 ```json
 {
@@ -116,33 +115,34 @@ The collected Aliyun redis  object data structure can see the object data from�
     "Capacity"  : "1024",
     "EndTime"   : "2022-12-13T16:00:00Z",
     "CreateTime": "2021-01-11T09:35:51Z",
-    "Accounts"  : "[{Account JSON data}]",
-    "message"   : "{Instance JSON data}"
+    "Accounts"  : "[{Account JSON Data}]",
+    "message"   : "{Instance JSON Data}"
   }
 }
 
 ```
 
-## Logging {#logging}
+## Logs {#logging}
 
-### **Longquery**
+### Slow Queries
 
-#### Prerequisite
+#### Prerequisites
 
-> Tip：The code operation of this script depends on the collection of Redis instance objects. If the custom object collection of Redis is not configured, the slow log script cannot collect slow log data
-
+> Note: The code execution of this script depends on the Redis instance object collection. If Redis custom object collection is not configured, the slow log script cannot collect slow log data.
 
 <!-- markdownlint-disable MD024 -->
-#### Installation script
+
+#### Installation Script
+
 <!-- markdownlint-enable -->
 
-On the previous basis, you need to install **Redis Script for longquery log**
+On top of the previous setup, you need to install another script for **Redis Slow Query Log Collection**
 
-Click and install the corresponding script package in [Management / Script Market]:「Guance Integration（Aliyun - Redis Slow Query Log Collect）」(ID：`guance_aliyun_redis_slowlog`)
+In 「Manage / Script Market」, click and install the corresponding script package: 「Guance Integration (Alibaba Cloud - Redis Slow Query Log Collection)」(ID: `guance_aliyun_redis_slowlog`)
 
-After the data is synchronized normally, you can view the data in the [log] of Guance platform.
+After data synchronization is normal, you can view the data in the 「Logs」section of Guance.
 
-An example of reported data is as follows:
+Example of reported data:
 
 ```json
 {
@@ -170,20 +170,20 @@ An example of reported data is as follows:
     "Command"    : "latency:eventloop",
     "ElapsedTime": 192000,
     "ExecuteTime": "2022-07-26T03:18:36Z",
-    "message"    : "{Instance JSON data}"
+    "message"    : "{Instance JSON Data}"
   }
 }
 
 ```
 
-Some parameters are described as follows:
+Parameter descriptions are as follows:
 
 | Field          | Type | Description                 |
 | :------------ | :--- | :------------------- |
-| `ElapsedTime` | int  | Execution time, in milliseconds |
+| `ElapsedTime` | int  | Execution duration, unit is milliseconds |
 | `ExecuteTime` | str  | Execution start time         |
-| `IPAddress`   | str  | Client ip address     |
+| `IPAddress`   | str  | Client IP address     |
 
-> *Notice：The fields in `tags` and `fields` may change with subsequent updates*
+> *Note: Fields in `tags`, `fields` may change with subsequent updates.*
 >
-> Tip：The `fields.message` is JSON serialized string
+> Note: `fields.message` is a JSON serialized string.

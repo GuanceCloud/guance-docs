@@ -1,0 +1,5 @@
+nav:
+  - index.md
+  - 'Access to Session Replay': replay.md
+  - 'Troubleshooting': faq.md
+

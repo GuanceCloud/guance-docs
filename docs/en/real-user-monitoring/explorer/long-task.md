@@ -1,21 +1,18 @@
-# Long Task
+# Long Task (Long Tasks)
 ---
 
-![](../img/1.rum_longtask_2.png)
-
-You can view long tasks that block the main thread for more than 50ms while the user is using the application. This includes the page address and task duration.
+View long tasks that block the main thread for more than 50ms during user interactions with the application, including page addresses and task durations.
 
 In the Long Task Explorer, you can:
 
-- Track each long task that users encounter, including the type of operation, operation name and duration.
-- Analyze the performance of user interactions with the business application by combining associated resource requests, resource errors, logs and other data. This helps quickly identify and optimize code issues in the application.
+- Track each long task associated with user visits, including operation types, operation names, and operation durations;
+- Combine related resource requests, resource errors, and log data to comprehensively analyze the performance of user interactions with business applications, helping to quickly identify and optimize code issues in the application.
 
 
 ### Details Page
 
-Click on the data you need to view in the list, in the row out details page, you can view the long task details accessed by users, including properties, performance details, associated links, associated errors, associated logs, etc., and support viewing performance details by filtering and searching. 
+By clicking on the details page of the data in the list, you can view detailed performance information about user operations, including sources, extended fields, performance details, associated traces, related errors, and related logs.
 
-> For more details page introduction, see [Options in Details Page](view.md).
+> For more details, refer to [Details Page Operations](view.md).
 
-
-
+![](../img/longtask.gif)

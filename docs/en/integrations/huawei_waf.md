@@ -2,10 +2,10 @@
 title: 'Huawei Cloud WAF Web Application Firewall'
 tags: 
   - Huawei Cloud
-summary: 'Collect Huawei Cloud WAF metric data'
+summary: 'Collect Huawei Cloud WAF Metrics Data'
 __int_icon: 'icon/huawei_waf'
 dashboard:
-  - desc: 'Huawei Cloud WAF Built in View'
+  - desc: 'Huawei Cloud WAF Built-in Views'
     path: 'dashboard/en/huawei_waf/'
 
 monitor:
@@ -13,79 +13,79 @@ monitor:
     path: 'monitor/en/huawei_waf/'
 ---
 
-Collect Huawei Cloud WAF metric data.
+Collect Huawei Cloud WAF metrics data
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically,Please continue with the script installation
+It is recommended to enable the Guance Integration - Extension - Managed Func: All prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/)
 
-> Recommend deploying GSE (Game Server Engine) edition translation.
+> We recommend deploying the GSE version
 
-### Installation script
+### Install Script
 
-> Tip:Please prepare a Huawei Cloud AK that meets the requirements in advance (For simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
+> Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize the monitoring data of Huawei Cloud WAF, we install the corresponding collection script: 「Guance Cloud Integration (Huawei Cloud WAF Collection)」 (ID: `guance_huaweicloud_waf`)
+To synchronize Huawei Cloud WAF monitoring data, we install the corresponding collection script: 「Guance Integration (Huawei Cloud-WAF Collection)」(ID: `guance_huaweicloud_waf`)
 
-Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
+Click 【Install】, then enter the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
 
-Tap【Deploy startup Script】, the system automatically creates `Startup` script sets, and automatically configure the corresponding startup script.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-After installing the script, find the script 「Guance Cloud Integration (Huawei Cloud WAF Collection)」 in the 「Development」 section of Func. Expand and modify the script, find collector_configs and monitor_configs, and edit the content in region_projects below. Change the region and Project ID to the actual region and Project ID, and then click save and publish.
+After the script is installed, find the script 「Guance Integration (Huawei Cloud-WAF Collection)」 under "Development" in Func, expand and modify this script, edit the contents of `collector_configs` and `monitor_configs` for `region_projects`, changing the region and Project ID to the actual ones, then click Save and Publish.
 
-In addition, in「Management / Automatic Trigger Configuration」 you can see the corresponding automatic trigger configuration. Click 【Execute】 to run it immediately, without waiting for the scheduled time. After a short moment, you can check the execution task records and corresponding logs.
+Additionally, in 「Management / Automatic Trigger Configuration」, you can see the corresponding automatic trigger configuration. Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-### Verify
+### Verification
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the guance cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the guance cloud platform, press 「Metrics」 to check whether monitoring data exists
+1. In 「Management / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and check the task records and logs for any abnormalities.
+2. On the Guance platform, in 「Infrastructure / Custom」, check if there is asset information.
+3. On the Guance platform, in 「Metrics」, check if there are corresponding monitoring data.
 
-## Metric {#metric}
+## Metrics {#metric}
 
-Collect Huawei Cloud WAF metrics to collect more metrics through configuration [Huawei Cloud WAF Metric Details](https://support.huaweicloud.com/usermanual-waf/waf_01_0372.html){:target="_blank"}
+Collect Huawei Cloud WAF metrics, which can be configured to collect more metrics [Huawei Cloud WAF Metrics Details](https://support.huaweicloud.com/usermanual-waf/waf_01_0372.html){:target="_blank"}
 
-| **MetricID**            |          **MetricName**   | **MetricMeaning** | **ValueRange**      | **Measurement object** | **Monitoring Period (Raw Metric)** |
+| **Metric ID**            |          **Metric Name**   | **Metric Meaning** | **Value Range**      | **Measurement Object** | **Monitoring Period (Original Metric)** |
 | ---- | :----: | ------ | ------ | ---- | ---- |
-| `requests`            |  Request quantity   | This metric is used to count the total number of requests returned by WAF in the past 5 minutes for the measured object. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `waf_http_2xx`            |  WAF return code (2XX)   | This metric is used to count the number of 2XX status codes returned by WAF in the past 5 minutes for the measured object. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `waf_http_3xx`            |  WAF return code (3XX)   | This metric is used to count the number of 3XX status codes returned by WAF in the past 5 minutes for the measured object. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `waf_http_4xx`            |  WAF return code (4XX)   | This metric is used to count the number of 4XX status codes returned by WAF in the past 5 minutes for the measured object. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `waf_http_5xx`            |  WAF return code (5XX)   | This metric is used to count the number of 5XX status codes returned by WAF in the past 5 minutes for the measured object. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `waf_fused_counts`            |  WAF circuit breaker amount   | This metric is used to count the number of requests for WAF meltdown protection of the measured object in the past 5 minutes. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `inbound_traffic`            |  Total network traffic   | This metric is used to calculate the total bandwidth of the measured object in the past 5 minutes. Unit: Mbit  | ≥0 Mbit | Protecting Domain Names | 5 minutes             |
-| `outbound_traffic`            |  Total outbound traffic   | This metric is used to calculate the total bandwidth output of the measured object in the past 5 minutes. Unit: Mbit  | ≥0 Mbit | Protecting Domain Names | 5 minutes             |
-| `waf_process_time_0`            |  WAF processing latency - interval [0-10ms)   | This metric is used to calculate the total number of WAF processing delays within the interval of [0-10ms) in the past 5 minutes for the measured object. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `waf_process_time_10`            |  WAF processing latency - interval [10-20ms)   | This metric is used to calculate the total number of WAF processing delays within the interval of [10-20ms) in the past 5 minutes for the measured object. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `waf_process_time_20`            |  WAF processing latency - interval [20-50ms)   | This metric is used to calculate the total number of WAF processing delays within the interval of [20-50ms) in the past 5 minutes for the measured object. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `waf_process_time_50`            | WAF processing latency - interval [50-100ms)   | This metric is used to calculate the total number of WAF processing delays within the interval of [50-100ms) in the past 5 minutes for the measured object. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `waf_process_time_100`            |  WAF processing latency - interval [100-1000ms)   | This metric is used to calculate the total number of WAF processing delays within the interval of [100-1000ms in the past 5 minutes for the measured object. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `waf_process_time_1000`            |  WAF processing latency - interval [1000+ms)   | This metric is used to calculate the total number of WAF processing delays within the interval of [1000+ms) in the past 5 minutes for the measured object. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `qps_peak`            |  QPS peak value   | This metric is used to calculate the QPS peak of Protecting Domain Names in the past 5 minutes. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `qps_mean`            |  QPS mean   | This metric is used to calculate the QPS mean of Protecting Domain Names in the past 5 minutes. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `waf_http_0`            |  No WAF status code returned   | This metric is used to count the number of WAF status response codes that have not been returned by the measurement object in the past 5 minutes. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `upstream_code_2xx`            |  Business return code (2XX)   | This metric is used to count the number of 2XX series status response codes returned by the measurement object in the past 5 minutes. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `upstream_code_3xx`            |  Business return code (3XX)   | This metric is used to count the number of 3XX series status response codes returned by the measurement object in the past 5 minutes. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `upstream_code_4xx`            |  Business return code (4XX)   | This metric is used to count the number of 4XX series status response codes returned by the measurement object in the past 5 minutes. Unit: times  | ≥0 times  |  Protecting Domain Names | 5 minutes            |
-| `upstream_code_5xx`            |  Business return code (5XX)   | This metric is used to count the number of 5XX series status response codes returned by the measurement object in the past 5 minutes. Unit: times | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `upstream_code_0`              |  No WAF status code returned   | This metric is used to count the number of WAF status response codes that have not been returned by the measurement object in the past 5 minutes. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `inbound_traffic_peak`            |  Peak of network traffic  | This metric is used to calculate the peak network traffic of Protecting Domain Names in the past 5 minutes. Unit: Mbit/s  | ≥0 Mbit/s  | Protecting Domain Names | 5 minutes             |
-| `inbound_traffic_mean`            |  Mean of network traffic  | This metric is used to calculate the average network traffic of Protecting Domain Names in the past 5 minutes. Unit: Mbit/s  | ≥0 Mbit/s  | Protecting Domain Names | 5 minutes             |
-| `outbound_traffic_peak`            |  Peak of outbound traffic  | This metric is used to calculate the peak outbound traffic of Protecting Domain Names in the past 5 minutes. Unit: Mbit/s  | ≥0 Mbit/s  | Protecting Domain Names | 5 minutes             |
-| `outbound_traffic_mean`            |  Mean of outbound traffic  | This metric is used to calculate the average outbound traffic of Protecting Domain Names in the past 5 minutes. Unit: Mbit/s | ≥0 Mbit/s  | Protecting Domain Names | 5 minutes             |
-| `attacks`            |  Total number of attacks  | This metric is used to count the total number of Protection Domain Names attack requests in the past 5 minutes. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `crawlers`            |  Number of crawler attacks  |This metric is used to count the total number of requests for Protecting Domain Names crawler attacks in the past 5 minutes. Unit: times  |  ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `base_protection_counts`            |  Number of basic web protection attempts  | This metric is used to count the number of attacks protected by web basic protection rules in the past 5 minutes. Unit: times  | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `precise_protection_counts`            |  Precision protection frequency  | This metric is used to count the number of attacks protected by precision protection rules in the past 5 minutes. Unit: times | ≥0 times  | Protecting Domain Names | 5 minutes             |
-| `cc_protection_counts`            |  CC protection frequency  | This metric is used to count the number of attacks protected by CC protection rules in the past 5 minutes. Unit: times | ≥0 times | Protecting Domain Names | 5 minutes             |
+| `requests`            |  Request Volume   | This metric counts the total number of requests returned by WAF in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `waf_http_2xx`            |  WAF Response Code (2XX)   | This metric counts the number of 2XX status codes returned by WAF in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `waf_http_3xx`            |  WAF Response Code (3XX)   | This metric counts the number of 3XX status codes returned by WAF in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `waf_http_4xx`            |  WAF Response Code (4XX)   | This metric counts the number of 4XX status codes returned by WAF in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `waf_http_5xx`            |  WAF Response Code (5XX)   | This metric counts the number of 5XX status codes returned by WAF in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `waf_fused_counts`            |  WAF Circuit Breaker Count   | This metric counts the number of requests protected by WAF circuit breaker in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `inbound_traffic`            |  Inbound Total Traffic   | This metric counts the total inbound bandwidth size in the past 5 minutes. Unit: Mbit  | ≥0 Mbit | Protected Domain | 5 minutes             |
+| `outbound_traffic`            |  Outbound Total Traffic   | This metric counts the total outbound bandwidth size in the past 5 minutes. Unit: Mbit  | ≥0 Mbit | Protected Domain | 5 minutes             |
+| `waf_process_time_0`            |  WAF Processing Latency - Interval [0-10ms)   | This metric counts the total number of WAF processing latencies within the interval [0-10ms) in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `waf_process_time_10`            |  WAF Processing Latency - Interval [10-20ms)   | This metric counts the total number of WAF processing latencies within the interval [10-20ms) in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `waf_process_time_20`            |  WAF Processing Latency - Interval [20-50ms)   | This metric counts the total number of WAF processing latencies within the interval [20-50ms) in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `waf_process_time_50`            | WAF Processing Latency - Interval [50-100ms)   | This metric counts the total number of WAF processing latencies within the interval [50-100ms) in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `waf_process_time_100`            |  WAF Processing Latency - Interval [100-1000ms)   | This metric counts the total number of WAF processing latencies within the interval [100-1000ms) in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `waf_process_time_1000`            |  WAF Processing Latency - Interval [1000+ms)   | This metric counts the total number of WAF processing latencies within the interval [1000+ms) in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `qps_peak`            |  QPS Peak   | This metric counts the QPS peak of the protected domain in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `qps_mean`            |  QPS Mean   | This metric counts the QPS mean of the protected domain in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `waf_http_0`            |  No WAF Response Code   | This metric counts the number of state response codes not returned by WAF in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `upstream_code_2xx`            |  Business Response Code (2XX)   | This metric counts the number of 2XX series status response codes returned by the business in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `upstream_code_3xx`            |  Business Response Code (3XX)   | This metric counts the number of 3XX series status response codes returned by the business in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `upstream_code_4xx`            |  Business Response Code (4XX)   | This metric counts the number of 4XX series status response codes returned by the business in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `upstream_code_5xx`            |  Business Response Code (5XX)   | This metric counts the number of 5XX series status response codes returned by the business in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `upstream_code_0`            |  No WAF Response Code   | This metric counts the number of state response codes not returned by WAF in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `inbound_traffic_peak`            |  Peak Inbound Traffic   | This metric counts the peak inbound traffic of the protected domain in the past 5 minutes. Unit: Mbit/s  | ≥0 Mbit/s  | Protected Domain | 5 minutes             |
+| `inbound_traffic_mean`            |  Mean Inbound Traffic   | This metric counts the mean inbound traffic of the protected domain in the past 5 minutes. Unit: Mbit/s  | ≥0 Mbit/s  | Protected Domain | 5 minutes             |
+| `outbound_traffic_peak`            |  Peak Outbound Traffic   | This metric counts the peak outbound traffic of the protected domain in the past 5 minutes. Unit: Mbit/s  | ≥0 Mbit/s  | Protected Domain | 5 minutes             |
+| `outbound_traffic_mean`            |  Mean Outbound Traffic   | This metric counts the mean outbound traffic of the protected domain in the past 5 minutes. Unit: Mbit/s  | ≥0 Mbit/s  | Protected Domain | 5 minutes             |
+| `attacks`            |  Total Attack Attempts   | This metric counts the total number of attack requests on the protected domain in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `crawlers`            |  Crawler Attack Attempts   | This metric counts the total number of crawler attack requests on the protected domain in the past 5 minutes. Unit: times  |  ≥0 times  | Protected Domain | 5 minutes             |
+| `base_protection_counts`            |  Web Basic Protection Counts   | This metric counts the number of attacks defended by Web basic protection rules in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `precise_protection_counts`            |  Precise Protection Counts   | This metric counts the number of attacks defended by precise protection rules in the past 5 minutes. Unit: times  | ≥0 times  | Protected Domain | 5 minutes             |
+| `cc_protection_counts`            |  CC Protection Counts   | This metric counts the number of attacks defended by CC protection rules in the past 5 minutes. Unit: times  | ≥0 times | Protected Domain | 5 minutes             |
 
-## Object {#object}
+## Objects {#object}
 
-The collected Huawei Cloud WAF object data structure can be viewed in the 「Infrastructure - Customization」 section for object data.
+The collected Huawei Cloud WAF object data structure can be viewed in 「Infrastructure - Custom」.
 
 ```json
 {
@@ -98,7 +98,7 @@ The collected Huawei Cloud WAF object data structure can be viewed in the 「Inf
     "project_id"        : "756ada1aa17e4049b2a16ea41912e52d"
   },
   "fields": {
-    "flag"              : "[JSON data]",
+    "flag"              : "[JSON Data]",
     "proxy"             : "False",
     "timestamp"         : "1731653371361",
     "protect_status"    : "1",
@@ -109,6 +109,6 @@ The collected Huawei Cloud WAF object data structure can be viewed in the 「Inf
 }
 ```
 
-> *notice：`tags`、`fields`The fields in this section may change with subsequent updates*
+> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tip : The `id` value is the protected domain ID, which serves as a unique identifier
+> Hint: The `id` value is the protected domain ID, used as a unique identifier

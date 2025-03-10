@@ -1,20 +1,22 @@
 ---
-title     : 'OpenTelemetry Exportor for Guance Cloud'
-summary   : 'Export OpenTelemetry data to GuanCe Cloud directly'
-__int_icon: 'icon/opentelemetry'
-tags      :
+title      : 'Guance OpenTelemetry Exporter'
+summary    : 'Directly export OpenTelemetry data to Guance'
+__int_icon : 'icon/opentelemetry'
+tags       :
   - 'OTEL'
 ---
 
-GuanCe Cloud has added a `guance-exporter` in the OTEL JAVA Agent, which can send traces and metrics directly to the GuanCe Cloud Center.
+> *Author: Longqi Song*
 
-[guance-exporter](https://github.com/GuanceCloud/guance-java-exporter){:target="_blank"} is open source on GitHub and is integrated into the Guance Cloud's secondarily developed [otel-java-agent](https://github.com/GuanceCloud/opentelemetry-java-instrumentation){:target="_blank"}.
+Guance has added a `guance-exporter` in the OTEL JAVA agent, which can send traces and metrics directly to the Guance center.
 
-The `guance-exporter` can send data directly to GuanCe Cloud, that is, the endpoint, and the format of the sent data is InfluxDB point.
+The [guance-exporter](https://github.com/GuanceCloud/guance-java-exporter){:target="_blank"} is open-source on GitHub and integrated into the Guance-modified [otel-java-agent](https://github.com/GuanceCloud/opentelemetry-java-instrumentation){:target="_blank"}.
+
+The `guance-exporter` can send data directly to Guance, specifically to the `endpoint`, with the data format being InfluxDB point.
 
 ## Download {#download}
 
-Download from [GitHub-Release](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/release){:target="_blank"}, the version is **not lower than** v1.26.3-guance.
+Download from [GitHub-Release](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/release){:target="_blank"}, version ***not lower than*** `v1.26.3-guance`
 
 ### Agent Usage {#agent}
 
@@ -27,7 +29,7 @@ java  -javaagent:/usr/local/opentelemetry-javaagent-1.26.3-guance.jar \
 -jar app.jar
 ```
 
-for k8s:
+For k8s:
 
 ```shell
 export OTEL_TRACES_EXPORTER=guance
@@ -36,17 +38,17 @@ export OTEL_EXPORTER_GUANCE_ENDPOINT=https://openway.guance.com
 export OTEL_EXPORTER_GUANCE_TOKEN=<TOKEN>
 ```
 
-Parameter Description:
+Parameter descriptions:
 
 - `guance` exporter name.
-- `endpoint` GuanCe Cloud Center address, usually `https://openway.guance.com`.
-- `token` GuanCe Cloud user space token.
+- `endpoint` Guance center address, usually `https://openway.guance.com`.
+- `token` Guance user space token.
 
-Note: If `otel.metrics.exporter` is not configured, metrics will not be uploaded, the same for `otel.traces.exporter`. However, `endpoint` and `token` are required.
+Note: If `otel.metrics.exporter` is not configured, metrics will not be uploaded; similarly for `otel.traces.exporter`. However, both `endpoint` and `token` are required.
 
-### Integration {#code-integration}
+### Integration Method {#code-integration}
 
-Reference the jar package, the pom.xml section is as follows:
+Reference this jar package, with the following *pom.xml* section:
 
 ```xml
 <dependencies>
@@ -71,24 +73,24 @@ Reference the jar package, the pom.xml section is as follows:
     <dependency>
         <groupId>com.guance</groupId>
         <artifactId>guance-exporter</artifactId>
-        <!--  Please confirm the version!! -->
+        <!-- Confirm the version!! -->
        <version>1.4.0</version>
     </dependency>
 </dependencies>
 ```
 
-The version can be used in the maven2 repository with the latest version: [maven2-guance-exporter](https://repo1.maven.org/maven2/com/guance/guance-exporter/){:target="_blank"}
+You can find the latest version in the maven2 repository: [maven2-guance-exporter](https://repo1.maven.org/maven2/com/guance/guance-exporter/){:target="_blank"}
 
-To initialize a global OpenTelemetry object in a SpringBoot project, you can create a singleton class to manage it. Here is an example:
+To initialize a global OpenTelemetry object in a `SpringBoot` project, you can create a singleton class to manage it. Here is an example:
 
-First, create a class named OpenTelemetryManager:
+First, create a class named `OpenTelemetryManager`:
 
 ```java
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.trace.Tracer;
 
 public class OpenTelemetryManager {
-    private static final OpenTelemetry OPEN_TELEMETRY = OpenTelemetryInitializer.initialize();
+    private static final OpenTelemetry OPEN_TELEMETRY = OpenTelemetryInitializer.initialize(); // Initialize OpenTelemetry
 
     public static OpenTelemetry getOpenTelemetry() {
         return OPEN_TELEMETRY;
@@ -100,7 +102,7 @@ public class OpenTelemetryManager {
 }
 ```
 
-Then, in the OpenTelemetryInitializer class, perform the initialization and configuration of OpenTelemetry:
+Then, in the `OpenTelemetryInitializer` class, perform the initialization and configuration of `OpenTelemetry`:
 
 ```java
 import com.guance.exporter.guance.trace.GuanceSpanExporter;
@@ -135,7 +137,7 @@ public class OpenTelemetryInitializer {
 }
 ```
 
-Finally, in your Java files, you can directly obtain the global OpenTelemetry object through the `OpenTelemetryManager` class:
+Finally, in your Java files, you can directly obtain the global `OpenTelemetry` object through the `OpenTelemetryManager` class:
 
 ```java
 import io.opentelemetry.api.OpenTelemetry;
@@ -146,13 +148,13 @@ public class YourClass {
     private static final Tracer tracer = OpenTelemetryManager.getTracer("your-tracer-name");
 
     public void yourMethod() {
-        // use tracer for tracing
+        // Use tracer for tracing
         tracer.spanBuilder("your-span").startSpan().end();
         // ...
     }
 }
 ```
 
-## Metric {#metrics}
+## Metrics {#metrics}
 
-`guance-exporter` supports sending metric data to GuanCe Cloud, and the name of the metric set is `otel_service`.
+The `guance-exporter` supports sending metric data to Guance, with the measurement set name being `otel_service`.

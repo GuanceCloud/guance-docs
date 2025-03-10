@@ -1,34 +1,30 @@
-# Get a List of Notes
+# Get Notes List
 
 ---
 
-<br />**get /api/v1/notes/list**
+<br />**GET /api/v1/notes/list**
 
 ## Overview
-Lists all eligible notes. There is no paging in the current interface.
+List all notes that meet the specified conditions. This API does not support pagination.
 
+## Query Request Parameters
 
+| Parameter Name | Type   | Required | Description              |
+|:--------------|:-------|:---------|:-------------------------|
+| search        | string | No       | Search by note name<br>Allow empty: False <br> |
 
+## Additional Parameter Notes
 
-## Query Request Parameter
-
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| search | string |  | Note name search<br>Allow null: False <br> |
-
-## Supplementary Description of Parameters
-
-Parameter description:
+Parameter descriptions:
 
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/notes/list' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notes/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed \
---insecure
+--compressed 
 ```
 
 
@@ -42,31 +38,31 @@ curl 'https://openapi.guance.com/api/v1/notes/list' \
         "data": [
             {
                 "createAt": 1642588739,
-                "creator": "acnt_5fc5bb139e474911b6d3d300863f0c8b",
+                "creator": "acnt_xxxx32",
                 "creatorInfo": {
-                    "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_5fc5bb139e474911b6d3d300863f0c8b.png",
+                    "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                     "name": "66",
                     "username": "66@qq.com"
                 },
                 "deleteAt": -1,
                 "id": 185,
                 "isFavourited": false,
-                "name": "我的笔记",
+                "name": "My Note",
                 "pos": [
                     {
-                        "chartUUID": "chrt_dc6c1f939f5541bf8302c6d79f5f9800"
+                        "chartUUID": "chrt_xxxx32"
                     }
                 ],
                 "status": 0,
                 "updateAt": 1642588739,
-                "updator": "acnt_5fc5bb139e474911b6d3d300863f0c8b",
+                "updator": "acnt_xxxx32",
                 "updatorInfo": {
-                    "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_5fc5bb139e474911b6d3d300863f0c8b.png",
+                    "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                     "name": "66",
                     "username": "66@qq.com"
                 },
-                "uuid": "notes_35018053b8864ec190b3a6dbd5b44ab0",
-                "workspaceUUID": "wksp_c4201f4ef30c4a86b01a998e7544f822"
+                "uuid": "notes_xxxx32",
+                "workspaceUUID": "wksp_xxxx32"
             }
         ]
     },
@@ -76,7 +72,3 @@ curl 'https://openapi.guance.com/api/v1/notes/list' \
     "traceId": "TRACE-123ADCD7-95F0-4EDC-A27A-649885FAF9CD"
 } 
 ```
-
-
-
-

@@ -1,12 +1,15 @@
 ---
 title     : 'KubeCost'
-summary   : 'Collect KubeCost metrics'
+summary   : 'Collect KubeCost Metrics information'
 __int_icon: 'icon/kubecost'
+tags      :
+  - 'PROMETHEUS'
+  - 'KUBERNETES'
 dashboard :
   - desc  : 'KubeCost'
     path  : 'dashboard/en/kubecost'
 monitor   :
-  - desc  : 'No'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -15,20 +18,20 @@ monitor   :
 # KubeCost
 <!-- markdownlint-enable -->
 
-## Installation Configuration{#config}
+## Configuration {#config}
 
-### Preconditions
+### Prerequisites
 
-- [x] Installed K8S
-- [x] Installed [KubeCost](https://docs.kubecost.com/install-and-configure/install)
-- [x] Installed [DataKit](../datakit/datakit-daemonset-deploy.md)
-- [x] Installed Prometheus Operator
+- [x] Install K8S environment
+- [x] Install [KubeCost](https://docs.kubecost.com/install-and-configure/install)
+- [x] Install [DataKit](../datakit/datakit-daemonset-deploy.md)
+- [x] Install Prometheus Operator
 
-### CRD configure
+### CRD Configuration
 
-KubeCost has exposed the metrics, just let DataKit discover the metrics and report them.
+KubeCost has exposed metrics, so we only need to ensure that DataKit can discover and report these metrics.
 
-- Add `kubecost-serverMonitor.yaml`
+- Create `kubecost-serverMonitor.yaml`
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
@@ -46,16 +49,15 @@ spec:
   - port: metrics
 ```
 
-- Run
+- Execute
 
 > kubectl apply  -f `kubecost-serverMonitor.yaml`
 
-#### DataKit configure
+#### DataKit Configuration
 
-If enabled, please ignore.
+If already enabled, ignore this step.
 
-
-- Enable DataKit Service Monitor automatic discovery
+- Enable DataKit Service Monitor auto-discovery
 
 Add `env : ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_MONITORS`
 
@@ -81,21 +83,21 @@ spec:
         ...
 ```
 
-### Restart DataKit
+- Restart DataKit
 
 [Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
-## Metric {#metric}
+## Metrics {#metric}
 
 ### `kubecost-cost-analyzer`
 
 | Metric | Description |
-| -- | -- |
-| container_cpu_allocation | container CPU allocation |
-| container_gpu_allocation | container GPU allocation |
-| container_memory_allocation_bytes | container memory allocation |
-| pv_hourly_cost | PersistentVolume hourly cost  |
-| node_total_hourly_cost | Total hourly cost of nodes |
+| --- | --- |
+| container_cpu_allocation | Container CPU allocation |
+| container_gpu_allocation | Container GPU allocation |
+| container_memory_allocation_bytes | Container memory allocation |
+| pv_hourly_cost | PersistentVolume hourly cost |
+| node_total_hourly_cost | Node total hourly cost |
 | node_cpu_hourly_cost | Node CPU hourly cost |
 | node_ram_hourly_cost | Node RAM hourly cost |
 | node_gpu_hourly_cost | Node GPU hourly cost |

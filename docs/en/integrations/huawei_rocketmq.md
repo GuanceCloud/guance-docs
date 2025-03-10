@@ -1,91 +1,94 @@
 ---
-title: 'HUAWEI DMS RocketMQ'
+title: 'Huawei Cloud DMS RocketMQ'
 tags: 
   - Huawei Cloud
-summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
+summary: 'Use the script packages in the script market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance.'
 __int_icon: 'icon/huawei_rocketmq'
 dashboard:
-  - desc: 'HUAWEI CLOUD RocketMQ Monitoring View'
-    path: 'dashboard/zh/huawei_rocketmq/'
+  - desc: 'Huawei Cloud RocketMQ built-in view'
+    path: 'dashboard/en/huawei_rocketmq/'
 
 monitor:
-  - desc: 'HUAWEI CLOUD RocketMQ Monitor'
-    path: 'monitor/zh/huawei_rocketmq/'
+  - desc: 'Huawei Cloud RocketMQ monitor'
+    path: 'monitor/en/huawei_rocketmq/'
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# HUAWEI CLOUD DMS RocketMQ
+# Huawei Cloud DMS RocketMQ
 <!-- markdownlint-enable -->
 
-Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
+Use the script packages in the script market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance.
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable Guance Integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation
 
-If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/)
+
+> It is recommended to deploy the GSE version
+
+### Install Script
+
+> Note: Please prepare a qualified Huawei Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
+
+To synchronize the monitoring data of RocketMQ cloud resources, we install the corresponding collection script: "Guance Integration (Huawei Cloud - RocketMQ)" (ID: `guance_huaweicloud_rocketmq`)
+
+After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
+
+Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and configure the corresponding startup script automatically.
+
+After the script is installed, find the script "Guance Integration (Huawei Cloud - RocketMQ)" under "Development" in Func, expand and modify this script. Find `collector_configs` and `monitor_configs` and edit the content of `region_projects`, changing the region and Project ID to the actual region and Project ID, then click Save and Publish.
+
+Additionally, you can see the corresponding automatic trigger configuration under "Management / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. Wait a moment, you can check the execution task records and corresponding logs.
+
+We default to collecting some configurations, see the Metrics section for details.
+
+[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-rocketmq/){:target="_blank"}
 
 
-### Installation script
+### Verification
 
-> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and check the corresponding task records and logs for any anomalies.
+2. On the Guance platform, in "Infrastructure / Custom", check if there is asset information.
+3. On the Guance platform, in "Metrics", check if there is corresponding monitoring data.
 
-To synchronize the monitoring data of  HUAWEI CLOUD RocketMQ cloud resources, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD- RocketMQ Collect）」(ID：`guance_huaweicloud_rocketmq`)
+## Metrics {#metric}
+After configuring Huawei Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration [Huawei Cloud Cloud Monitoring Metric Details](https://support.huaweicloud.com/usermanual-hrm/hrm-ug-018.html){:target="_blank"}
 
-Click [Install] and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
-
-tap[Deploy startup Script]，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
-
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」.Click[Run]，you can immediately execute once, without waiting for a regular time.After a while, you can view task execution records and corresponding logs.
-
-> If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-rocketmq/){:target="_blank"}
-
-
-### Verify
-
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
-
-## Metric {#metric}
-Configure HUAWEI CLOUD - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/usermanual-hrm/hrm-ug-018.html){:target="_blank"}
-
-| **MetricID**            |          **Metric Name**   | **Metric Meaning** | **Value Range**      | **Measured Object** | **Monitoring Period (Raw Metric)** |
+| **Metric ID**            |          **Metric Name**   | **Metric Meaning** | **Value Range**      | **Measurement Object** | **Monitoring Period (Original Metric)** |
 | ---- | :----: | ------ | ------ | ---- | ---- |
-| `nstance_produce_msg` |        Message Production Count        | Instance Messages Received per Minute, Unit：Count | >0 | RocketMQ Instance | 1minute |
-| `instance_consume_msg` | Message Consumption Count | Instance Messages Consumed per Minute, Unit：Count | >0 | RocketMQ Instance | 1minute |
-| `current_topics` | Number of Topics | The number of topics in the instance. Unit：Count  **Note:** This metric is supported for instances purchased on or after May 16, 2022. | >=0 | RocketMQ Instance | 1minute |
-| `current_queues` | Number of Queues | The number of queues in the instance. Unit：Count  **Note:** This metric is supported for instances purchased on or after May 16, 2022. | >=0 | RocketMQ Instance | 1minute |
-| `instance_accumulation` | Number of Accumulated Messages | The total number of accumulated messages for all consumer groups in the instance. Unit：Count  **Note:** This metric is supported for instances purchased on or after May 16, 2022. | >=0 | RocketMQ Instance | 1minute |
-| `broker_produce_msg` | Message Production Count | The number of messages received by the node in one minute.  Unit：Count | >0 | RocketMQ Instance node | 1minute |
-| `broker_consume_msg` | Message Consumption Count | The number of messages consumed from the node in one minute. Unit：Count | >0 | RocketMQ Instance node | 1minute |
-| `broker_produce_rate` | Message Production Rate | The number of messages received by the node per second. Unit：Count/s | >0 | RocketMQ Instance node | 1minute |
-| `broker_consume_rate` | Message Consumption Rate | The number of messages consumed by the node per second. Unit：Count/s | >0 | RocketMQ Instance node | 1minute |
-| `broker_total_bytes_in_rate` | Incoming Network Traffic | The amount of incoming network traffic to the node per second. Unit：Byte/s | >0 | RocketMQ Instance node | 1minute |
-| `broker_total_bytes_out_rate` | Outgoing Network Traffic | The amount of outgoing network traffic from the node per second. Unit：Byte/s | >0 | RocketMQ Instance node | 1minute |
-| `broker_cpu_core_load` | Average CPU Load per Core | This metric is used to calculate the average load on each core of the node's virtual machine CPU. | >0 | RocketMQ Instance node | 1minute |
-| `broker_disk_usage` | Disk Capacity Usage Rate | This metric is used to monitor the disk capacity usage rate of the node's virtual machine. Unit：% | 0~100 | RocketMQ Instance node | 1minute |
-| `broker_memory_usage` | Memory Usage Rate | This metric is used to monitor the memory usage rate of the node's virtual machine.  Unit：% | 0~100 | RocketMQ Instance node | 1minute |
-| `broker_alive` | Node Alive Status | Node's health status  **Note:** This metric is supported for instances purchased on or after May 16, 2022. | 1:Survival 0:off-line | RocketMQ Instance node | 1minute |
-| `broker_connections` | Connection Count | Number of connections used by the virtual machine. Unit：Count  **Note:** This metric is supported for instances purchased on or after May 16, 2022. | >=0 | RocketMQ Instance node | 1minute |
-| `broker_cpu_usage` | CPU Usage Rate | Virtual machine's CPU usage rate. Unit：%  **Note:** This metric is supported for instances purchased on or after May 16, 2022. | >=0 | RocketMQ Instance node | 1minute |
-| `broker_disk_read_rate` | Disk Read Traffic | Disk read operation traffic. Unit：Byte/s  **Note:** This metric is supported for instances purchased on or after May 16, 2022. | >=0 | RocketMQ Instance node | 1minute |
-| `broker_disk_write_rate` | Disk Write Traffic | Disk write operation traffic. Unit：Byte/s  **Note:** This metric is supported for instances purchased on or after May 16, 2022. | >=0 | RocketMQ Instance node | 1minute |
-| `topic_produce_msg` | Message Production Count | The number of messages received by the topic in one minute. Unit：Count | >0 | RocketMQ Instance queue | 1minute |
-| `topic_consume_msg` | Message Consumption Count | The number of messages consumed from the topic in one minute. Unit：Count | >0 | RocketMQ Instance queue | 1minute |
-| `topic_produce_rate` | Message Production Rate | The number of messages received per second for the topic. Unit：Count/s | >0 | RocketMQ Instance queue | 1minute |
-| `topic_consume_rate` | Message Consumption Rate | The number of messages consumed per second for the topic.  Unit：Count/s | >0 | RocketMQ Instance queue | 1minute |
-| `topic_bytes_in_rate` | Production Traffic | The production traffic of the current topic.  Unit：Byte/s   **Note:** This metric is supported for instances purchased on or after May 16, 2022. | >=0 | RocketMQ Instance queue | 1minute |
-| `topic_bytes_out_rate` | Consumption Traffic | The consumption traffic of the current topic.  Unit：Byte/s   **Note:** This metric is supported for instances purchased on or after May 16, 2022. | >=0 | RocketMQ Instance queue | 1minute |
+| instance_produce_msg |        Message Production Count        | Number of messages received by the instance per minute unit: Count | >0 | RocketMQ Instance     | 1 minute    |
+| instance_consume_msg | Message Consumption Count | Number of messages consumed by the instance per minute unit: Count | >0 | RocketMQ Instance     | 1 minute |
+| current_topics | Topic Count | Number of topics in the instance unit: Count![img](https://res-static.hc-cdn.cn/aem/content/dam/cloudbu-site/archive/hk/en-us/support/resource/framework/v3/images/support-doc-en-note.png)**Note:** Instances purchased on or after May 16, 2022 support this monitoring item. | >=0 | RocketMQ Instance     | 1 minute |
+| current_queues | Queue Count | Number of queues in the instance unit: Count![img](https://res-static.hc-cdn.cn/aem/content/dam/cloudbu-site/archive/hk/en-us/support/resource/framework/v3/images/support-doc-en-note.png)**Note:** Instances purchased on or after May 16, 2022 support this monitoring item. | >=0 | RocketMQ Instance     | 1 minute |
+| instance_accumulation | Accumulated Message Count | Sum of accumulated messages across all consumer groups in the instance unit: Count![img](https://res-static.hc-cdn.cn/aem/content/dam/cloudbu-site/archive/hk/en-us/support/resource/framework/v3/images/support-doc-en-note.png)**Note:** Instances purchased on or after May 16, 2022 support this monitoring item. | >=0 | RocketMQ Instance     | 1 minute |
+| broker_produce_msg | Message Production Count | Number of messages received by the node per minute unit: Count | >0 | RocketMQ Instance Node | 1 minute |
+| broker_consume_msg | Message Consumption Count | Number of messages consumed by the node per minute unit: Count | >0 | RocketMQ Instance Node | 1 minute |
+| broker_produce_rate | Message Production Rate | Number of messages received by the node per second unit: Count/s | >0 | RocketMQ Instance Node | 1 minute |
+| broker_consume_rate | Message Consumption Rate | Number of messages consumed by the node per second unit: Count/s | >0 | RocketMQ Instance Node | 1 minute |
+| broker_total_bytes_in_rate | Network Inbound Traffic | Network access inbound traffic per second unit: Byte/s | >0 | RocketMQ Instance Node | 1 minute |
+| broker_total_bytes_out_rate | Network Outbound Traffic | Network access outbound traffic per second unit: Byte/s | >0 | RocketMQ Instance Node | 1 minute |
+| broker_cpu_core_load | Average CPU Core Load | This metric is used to calculate the average load of each core of the virtual machine's CPU | >0 | RocketMQ Instance Node | 1 minute |
+| broker_disk_usage | Disk Usage | This metric is used to calculate the disk usage percentage of the virtual machine unit: % | 0~100 | RocketMQ Instance Node | 1 minute |
+| broker_memory_usage | Memory Usage | This metric is used to calculate the memory usage percentage of the virtual machine unit: % | 0~100 | RocketMQ Instance Node | 1 minute |
+| broker_alive | Node Status | Node status![img](https://res-static.hc-cdn.cn/aem/content/dam/cloudbu-site/archive/hk/en-us/support/resource/framework/v3/images/support-doc-en-note.png)**Note:** Instances purchased on or after May 16, 2022 support this monitoring item. | 1: Alive 0: Offline | RocketMQ Instance Node | 1 minute |
+| broker_connections | Connection Count | Number of connections used by the virtual machine unit: Count![img](https://res-static.hc-cdn.cn/aem/content/dam/cloudbu-site/archive/hk/en-us/support/resource/framework/v3/images/support-doc-en-note.png)**Note:** Instances purchased on or after May 16, 2022 support this monitoring item. | >=0 | RocketMQ Instance Node | 1 minute |
+| broker_cpu_usage | CPU Usage | Virtual machine CPU usage percentage unit: %![img](https://res-static.hc-cdn.cn/aem/content/dam/cloudbu-site/archive/hk/en-us/support/resource/framework/v3/images/support-doc-en-note.png)**Note:** Instances purchased on or after May 16, 2022 support this monitoring item. | >=0 | RocketMQ Instance Node | 1 minute |
+| broker_disk_read_rate | Disk Read Throughput | Disk read operation throughput unit: Byte/s![img](https://res-static.hc-cdn.cn/aem/content/dam/cloudbu-site/archive/hk/en-us/support/resource/framework/v3/images/support-doc-en-note.png)**Note:** Instances purchased on or after May 16, 2022 support this monitoring item. | >=0 | RocketMQ Instance Node | 1 minute |
+| broker_disk_write_rate | Disk Write Throughput | Disk write operation throughput unit: Byte/s![img](https://res-static.hc-cdn.cn/aem/content/dam/cloudbu-site/archive/hk/en-us/support/resource/framework/v3/images/support-doc-en-note.png)**Note:** Instances purchased on or after May 16, 2022 support this monitoring item. | >=0 | RocketMQ Instance Node | 1 minute |
+| topic_produce_msg | Message Production Count | Number of messages received by the topic per minute unit: Count | >0 | RocketMQ Instance Queue | 1 minute |
+| topic_consume_msg | Message Consumption Count | Number of messages consumed by the topic per minute unit: Count | >0 | RocketMQ Instance Queue | 1 minute |
+| topic_produce_rate | Message Production Rate | Number of messages received by the topic per second unit: Count/s | >0 | RocketMQ Instance Queue | 1 minute |
+| topic_consume_rate | Message Consumption Rate | Number of messages consumed by the topic per second unit: Count/s | >0 | RocketMQ Instance Queue | 1 minute |
+| topic_bytes_in_rate | Production Throughput | Current topic production throughput unit: Byte/s![img](https://res-static.hc-cdn.cn/aem/content/dam/cloudbu-site/archive/hk/en-us/support/resource/framework/v3/images/support-doc-en-note.png)**Note:** Instances purchased on or after May 16, 2022 support this monitoring item. | >=0 | RocketMQ Instance Queue | 1 minute |
+| topic_bytes_out_rate | Consumption Throughput | Current topic consumption throughput unit: Byte/s![img](https://res-static.hc-cdn.cn/aem/content/dam/cloudbu-site/archive/hk/en-us/support/resource/framework/v3/images/support-doc-en-note.png)**Note:** Instances purchased on or after May 16, 2022 support this monitoring item. | >=0 | RocketMQ Instance Queue | 1 minute |
 
-**## Object {#**object}
+## Objects {#object}
 
-The collected HUAWEI CLOUD ELB object data structure can see the object data from 「Infrastructure-custom-defined」
+After data synchronization is normal, you can view the data in the "Infrastructure / Custom (Objects)" section of Guance.
 
 ```json
 {
@@ -112,25 +115,27 @@ The collected HUAWEI CLOUD ELB object data structure can see the object data fro
     "storage_space"      : 250,
     "total_storage_space": 300,
     "used_storage_space" : 0,
-    "message"            : "{Instance JSON data}"
+    "message"            : "{Instance JSON Data}"
   }
 }
 ```
 
-| field                 | type   |  description                                                         |
-| :------------------- | :----- | :----------------------------------------------------------- |
-| `specification`      | String | instance type.                                                   |
-| `charging_mode`      | String | Payment mode, where 1 represents pay-as-you-go (on-demand billing) and 0 represents subscription billing (annual/monthly billing).                |
-| `created_at`         | String | Completion creation time. The format is a timestamp, indicating the total number of milliseconds since January 1, 1970, 00:00:00 GMT to the specified time. |
-| `resource_spec_code` | String | Resource specification or resource size.                                                    |
-| `maintain_begin`     | String | Maintenance time window start time in the format HH:mm:ss.                          |
-| `maintain_end`       | String | Maintenance time window end time in the format HH:mm:ss.                          |
+Descriptions of some fields are as follows:
 
-> *notice：`tags`,`fields`The fields in this section may change with subsequent updates*
+| Field                 | Type   | Description                                                         |
+| :------------------- | :----- | :----------------------------------------------------------- |
+| `specification`      | String | Instance specification.                                                   |
+| `charging_mode`      | String | Billing mode, 1 indicates pay-as-you-go, 0 indicates subscription billing.                |
+| `created_at`         | String | Completion creation time. Format is timestamp, indicating the total milliseconds since January 1, 1970, 00:00:00 GMT. |
+| `resource_spec_code` | String | Resource specification                                                     |
+| `maintain_begin`     | String | Maintenance window start time, format HH:mm:ss                           |
+| `maintain_end`       | String | Maintenance window end time, format HH:mm:ss                           |
+
+> *Note: Fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tips 1：`tags.name`The value is the instance ID for unique identification
+> Tip 1: The value of `tags.name` is the instance ID, used as a unique identifier.
 >
-> Tips 2：
+> Tip 2:
 >
-> - `fields.message`,`fields.listeners` are JSON-serialized strings.
-> - `tags.operating_status`represents the operating status of the load balancer. It can have the values "ONLINE" and "FROZEN".
+> - `fields.message`, `fields.listeners` are serialized JSON strings.
+> - `tags.operating_status` represents the operational status of the load balancer. Possible values: ONLINE, FROZEN.

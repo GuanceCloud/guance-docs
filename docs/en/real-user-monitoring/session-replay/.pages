@@ -1,5 +1,3 @@
 nav:
-  - index.md
-  - 'Access to Session Replay': replay.md
-  - 'Troubleshooting': faq.md
-
+  - 'Web': web
+  - 'Mobile': mobile

@@ -1,74 +1,92 @@
-# Inner Views
-
+# Built-in Views
 ---
 
-Inner views are view templates recorded on the Guance platform, including **[System Views](#system)** and **[User Views](#user)**. You can directly apply system views to scenes or customize them into new inner views.
+Built-in views are view templates recorded in the <<< custom_key.brand_name >>> platform, including [**system views**](#system) and [**user views**](#user). You can directly apply system views to scenarios or customize them as new built-in views.
+
 
 ## System Views {#system}
 
-System views are official view templates provided by Guance, including Docker Monitoring Views, JVM Monitoring Views, Kafka Monitoring Views, etc. They allow you to create with one click and start data insights for monitoring targets instantly.
+System views are official view templates provided by <<< custom_key.brand_name >>>, including Docker monitoring views, JVM monitoring views, Kafka monitoring views, Mysql Activity monitoring views, Alibaba Cloud Redis monitoring views, etc. These templates support one-click creation, enabling immediate insights into the data of monitored objects.
 
-System views can be created in **Scenes** through the **Inner Template Library**. If you need to customize the template, you can modify the system view that has been added to the dashboard.
+    
+![](../img/4.view_1_1.png)
 
-In the Guance workspace **Management > Inner Views**, you can export views, clone views as user views for editing and use.
+System views support creating a new system view template as a dashboard directly through the **built-in template library** within a **scenario**. If you need to customize this template, you can modify the system view that has been added to the dashboard.
 
-**Note**: In addition to the system views bound by Guance itself, if other system views have been bound as explorer views, you can click **Delete** to unbind the relationship.
+- Click to enter the **Scenario > Built-in Views > System Views** page, where you can use the **Clone** button to create a new dashboard or a new user view from the current view.
+
+<img src="../img/4.view_1.png" width="60%" >
+
+- In **Scenario > Built-in Views > System Views**, you can export a specific view.
+
+
+
+**Note**: Apart from the system views bound to the Explorer by <<< custom_key.brand_name >>> itself, if any other system views have been previously bound as Explorer views, the binding relationship can be deleted.
+    
 
 
 ## User Views {#user}
 
-User views are views saved as templates after users customize them. They support creation, modification, export, cloning, and deletion, and allow editing binding services, applications, log sources, projects, tags, etc., associated with explorer-bound views.
+User views are templates created by users for saving customized views. They support creation, modification, export, cloning, and deletion, as well as editing linked services, applications, log sources, projects, tags, etc., associated with the Explorer-bound views.
 
-> For specific operations, see [Binding Inner Views](../../scene/built-in-view/bind-view.md).
+> For specific operations, refer to [Binding Built-in Views](../../scene/built-in-view/bind-view.md).
 
-**Note**: Currently, Guance only supports manual binding of user views as explorer views. If you need to bind system views, you need to clone system views as user views first. If system views and user views have the same name, user views are displayed first in the explorer.
-
+**Note**: Currently, <<< custom_key.brand_name >>> only supports manually binding user views as Explorer views. If you need to bind system views, you must first clone them as user views. If a system view and a user view have the same name, the user view will take precedence in the Explorer display.
+    
 ![](../img/4.view_3.png)
 
-- Create: Click **Create** to create a user-customized view template;
-- Edit: User views support re-editing names or binding services, applications, log sources, projects, etc. Click the dropdown button in the upper right corner of the view and choose **Edit**;
-- Clone: User views support cloning into a new **User View**. Select the user view to be cloned, click the dropdown button in the upper right corner of the view, select "Clone view", enter the user view name to generate a new view with the same content and different name under the current list;
-- Export: Supports exporting created user views. Click **Export View** to directly export as a JSON file for different workspace scenes or inner view imports;
-- Delete: Select the user view to be deleted, click the dropdown button in the upper right corner of the view, choose **Delete** to remove the view.
+- Creating a user view: Click **Create User View** to create a user-defined view template;
+- Editing: User views support re-editing names or linking services, applications, log sources, projects, etc. Click the dropdown button in the top-right corner of the view and select **Edit**;
+- Cloning: User views can be cloned into a new **user view**. Select the user view to clone, click the dropdown button in the top-right corner, choose "Clone View", input a new user view name, and a new view with identical content but a different name will be generated in the current list;
+- Exporting: Supports exporting created user views. Click **Export View** to directly export as a JSON file for importing into different workspace scenarios or built-in views;
+- Deleting: Select the user view to delete, click the dropdown button in the top-right corner, and choose **Delete** to remove the view.
 
-**Notes**:
+**Note**:
 
-- User views under the same workspace cannot have the same name;
-- Only standard members, administrators, and owners support operations such as adding, modifying, cloning, and deleting user views.
+- User views within the same workspace cannot have duplicate names;
+- Operations such as adding, modifying, cloning, and deleting user views are only supported by standard members, administrators, and owners.
+
 
 ## Related Operations
 
 ### Export View JSON
 
-Guance can directly export as a JSON file through **Export View JSON**. The exported JSON file can be used for the import of scene dashboards or user views in different workspaces. 
+<<< custom_key.brand_name >>> can export views directly as JSON files, which can be used to import into scenario dashboards or user views in different workspaces.
 
-In Guance workspace **Management > Inner Views > System Views/User Views**, select **Export View JSON** under settings to generate a JSON file;
+In <<< custom_key.brand_name >>> workspace **Management > Built-in Views > System Views/User Views**, select **Export View JSON** under settings to generate a JSON file;
 
 ![](../img/3.view_2.png)
 
 
 ### Import View JSON
 
-When customizing user views, Guance supports importing JSON files as new view templates. click **Import View JSON**.
+When customizing user views, <<< custom_key.brand_name >>> supports importing JSON files as new view templates. Click **Import View JSON**:
 
 ![](../img/3.view_4.png)
 
-
 **Note**:
 
-- Importing view JSON files will overwrite the original view, and once overwritten, it cannot be recovered. Please operate carefully;
-- Importing view JSON only supports user views, system views cannot import view JSON files.
+- Importing a JSON file will overwrite existing views. Once overwritten, recovery is not possible; please proceed with caution;
+- Importing JSON files is only supported for user views, not system views.
 
 
 ### Export to Dashboard
 
-User views of Guance can directly export views to the scene dashboard. Select **Export to Dashboard** under Settings;
-
+<<< custom_key.brand_name >>> user views can be directly exported to scenario dashboards. Under settings, select **Export to Dashboard**;
 
 ![](../img/3.view_3.png)
 
-Enter the dashboard name, choose custom tags (to filter dashboards), click Confirm.
+Input the dashboard name, select custom tags (for filtering dashboards), and click OK.
 
 ![](../img/3.view_6.png)
 
 
+### Pin
+
+If authorized to view data from several other workspaces in the current workspace, you can choose to pin workspace A, making it the default workspace for querying view data.
+
+<img src="../img/view-pin.png" width="60%" >
+
+At the same time, if the Explorer detail page is bound to this user view, it will default to querying and displaying data from the pinned workspace. As shown below:
+
+![](../img/pin-example.png)

@@ -1,81 +1,82 @@
 ---
-title: 'Aliyun Tair Standard'
+title: 'Alibaba Cloud Tair Community Edition'
 tags: 
   - Alibaba Cloud
-summary: 'Aliyun Tair Standard Metric display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc.'
+summary: 'Alibaba Cloud Tair Community Edition metrics display, including CPU usage, memory usage, total proxy QPS, network traffic, hit rate, etc.'
 __int_icon: 'icon/aliyun_tair'
 dashboard:
-  - desc: 'Aliyun Tair Standard Built-in Dashboard'
-    path: 'dashboard/zh/aliyun_tair/'
+  - desc: 'Alibaba Cloud Tair Community Edition built-in views'
+    path: 'dashboard/en/aliyun_tair'
 monitor:
-  - desc: 'Aliyun Tair Standard Monitor'
-    path: 'monitor/zh/aliyun_tair/'
+  - desc: 'Alibaba Cloud Tair monitor'
+    path: 'monitor/en/aliyun_tair'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Aliyun **Tair** Standard
+# Alibaba Cloud **Tair** Community Edition
 <!-- markdownlint-enable -->
 
-Aliyun **Tair** Standard Metric display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc.
+Alibaba Cloud **Tair** Community Edition metrics display, including CPU usage, memory usage, total proxy QPS, network traffic, hit rate, etc.
 
 
-## config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with script installation.
 
-If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-
-### Installation script
-
-> Tip：Please prepare Aliyun AK that meets the requirements in advance (For simplicity's sake,，You can directly grant the global read-only permission `ReadOnlyAccess`)
-
-To synchronize the monitoring data of Aliyun **Tair** Standard resources,we install the corresponding collection script:「Guance Integration（Aliyun - **Tair** Collect）」(ID：`startup__guance_aliyun_tair`)
-
-Click "Install" and enter the corresponding parameters: Aliyun AK, Aliyun account name.
-
-Tap "Deploy startup Script"，The system automatically creates Startup script sets，And automatically configure the corresponding startup script.
-
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」. Click "Run", you can immediately execute once, without waiting for a regular time. After a while, you can view task execution records and corresponding logs.
-
-We have collected some configurations by default, see the index column for details
-
-[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
+### Install Script
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On Guance platform, press 「Metrics」 to check whether monitoring data exists
+> Note: Prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-## Metric {#metric}
-Configure Ali Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Aliyun Monitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+Synchronize monitoring data for Alibaba Cloud `tair` Community Edition by installing the corresponding collection script: Guance Integration (Alibaba Cloud - `tair` Collection) (ID: `startup__guance_aliyun_tair`)
+
+After clicking 【Install】, enter the required parameters: Alibaba Cloud AK and Alibaba Cloud account name.
+
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script.
+
+Additionally, you can view the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short while, you can check the execution task records and corresponding logs.
+
+We default collect some configurations; see the metrics section for details.
+
+[Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+
+
+### Verification
+
+1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding tasks have been configured with automatic triggers, and check the task records and logs for any anomalies.
+2. In the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
+3. In the Guance platform, under 「Metrics」, check if the corresponding monitoring data exists.
+
+## Metrics {#metric}
+After configuring Alibaba Cloud CloudMonitor, the default metric set is as follows. You can collect more metrics through configuration. [Alibaba Cloud CloudMonitor Metric Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
 | Metric Id                | Metric Name      | Dimensions        | Statistics      | Unit     |
 | ---- | ---- | ---- | ---- | ---- |
-| ShardingAvgRt | Average response time     | userId,instanceId | Average,Maximum | us       |
-| ShardingProxyUsedConnection | Number of blocked client connections | userId,instanceId | Average,Maximum | Count    |
-| StandardConnectionUsage | Connection usage     | userId,instanceId | Average,Maximum | %        |
-| ShardingCpuUsage | Cpu usage        | userId,instanceId | Average,Maximum | %        |
-| ShardingHitRate | Hit rate           | userId,instanceId | Average,Maximum | %        |
-| ShardingIntranetIn | Inbound traffic       | userId,instanceId | Average,Maximum | KBytes/s |
-| ShardingIntranetInRatio | Incoming bandwidth utilization   | userId,instanceId | Average,Maximum | %        |
-| ShardingIntranetOut | Outbound traffic       | userId,instanceId | Average,Maximum | KBytes/s |
-| ShardingIntranetOutRatio | Outgoing bandwidth usage   | userId,instanceId | Average,Maximum | %        |
-| ShardingKeys | Number of keys in the cache  | userId,instanceId | Average,Maximum | Count    |
-| ShardingMemoryUsage | Memory usage       | userId,instanceId | Average,Maximum | %        |
-| ShardingSyncDelayTime | Multi-active synchronization delay     | userId,instanceId | Average,Maximum | seconds  |
-| ShardingUsedConnection | Used connections       | userId,instanceId | Average,Maximum | Count    |
-| ShardingUsedMemory | Used memory       | userId,instanceId | Average,Maximum | Bytes    |
-| StandingUsedQPS       | Average Used QPS | userId,instanceId | Average,Maximum | Count    |
+| ShardingAvgRt | Average Response Time     | userId,instanceId | Average,Maximum | us       |
+| ShardingProxyUsedConnection | Shard Proxy Connection Usage | userId,instanceId | Average,Maximum | Count    |
+| StandardConnectionUsage  | Connection Usage Rate     | userId,instanceId | Average,Maximum | %        |
+| ShardingCpuUsage | CPU Usage        | userId,instanceId | Average,Maximum | %        |
+| ShardingHitRate  | Hit Rate           | userId,instanceId | Average,Maximum | %        |
+| ShardingIntranetIn | Inbound Traffic       | userId,instanceId | Average,Maximum | KBytes/s |
+| ShardingIntranetInRatio | Inbound Bandwidth Usage   | userId,instanceId | Average,Maximum | %        |
+| ShardingIntranetOut | Outbound Traffic       | userId,instanceId | Average,Maximum | KBytes/s |
+| ShardingIntranetOutRatio | Outbound Bandwidth Usage   | userId,instanceId | Average,Maximum | %        |
+| ShardingKeys     | Number of Keys in Cache  | userId,instanceId | Average,Maximum | Count    |
+| ShardingMemoryUsage | Memory Usage       | userId,instanceId | Average,Maximum | %        |
+| ShardingSyncDelayTime | Multi-Live Sync Delay     | userId,instanceId | Average,Maximum | seconds  |
+| ShardingUsedConnection      | Used Connections       | userId,instanceId | Average,Maximum | Count    |
+| ShardingUsedMemory          | Memory Usage Amount       | userId,instanceId | Average,Maximum | Bytes    |
+| ShardingUsedQPS             | Average Queries Per Second | userId,instanceId | Average,Maximum | Count    |
+
+
 
 ## Object {#object}
 
-The collected Aliyun **Tair** object data structure can see the object data from「Infrastructure-Custom」
+The object data structure collected from Alibaba Cloud Redis can be viewed in 「Infrastructure - Custom」
 
 ```json
 "measurement": "aliyun_acs_kvstore",
@@ -200,68 +201,4 @@ The collected Aliyun **Tair** object data structure can see the object data from
     "timestamp": 1692338533
   }
 ]
-
 ```
-
-## Logging {#logging}
-
-### **Longquery**
-
-#### Prerequisite
-
-> Tip：The code operation of this script depends on the collection of **Tair** instance objects. If the custom object collection of **Tair** is not configured, the slow log script cannot collect slow log data
-
-<!-- markdownlint-disable MD024 -->
-#### Installation script
-<!-- markdownlint-enable -->
-On the previous basis, you need to install **Tair Script for longquery log**
-
-Click and install the corresponding script package in [Management / Script Market]:「Guance Integration（Aliyun - **Tair** Slow Log Collect）」(ID：`guance_aliyun_Tair_slowlog`)
-
-After the data is synchronized normally, you can view the data in the [log] of Guance platform.
-
-An example of reported data is as follows:
-
-```json
-{
-  "measurement": "aliyun_Tair_slowlog",
-  "tags": {
-      "name"            : "r-bp1c4xxxxxxxofy2vm",
-      "Account"         : "(null)",
-      "IPAddress"       : "172.xx.x.201",
-      "AccountName"     : "(null)",
-      "DBName"          : "3",
-      "NodeId"          : "(null)",
-      "ChargeType"      : "PrePaid",
-      "ConnectionDomain": "r-bpxxxxxxxxxxy2vm.Tair.rds.aliyuncs.com",
-      "EngineVersion"   : "4.0",
-      "InstanceClass"   : "Tair.master.small.default",
-      "InstanceId"      : "r-bpxxxxxxxxxxxxxxx2vm",
-      "InstanceName"    : "xx3.0-xx System",
-      "NetworkType"     : "VPC",
-      "Port"            : "6379",
-      "PrivateIp"       : "172.xxx.xx.200",
-      "RegionId"        : "cn-hangzhou",
-      "ZoneId"          : "cn-hangzhou-h"
-  },
-  "fields": {
-    "Command"    : "latency:eventloop",
-    "ElapsedTime": 192000,
-    "ExecuteTime": "2022-07-26T03:18:36Z",
-    "message"    : "{Instance JSON data}"
-  }
-}
-
-```
-
-Some parameters are described as follows:
-
-| Field          | Type | Description                 |
-| :------------ | :--- | :------------------- |
-| `ElapsedTime` | int  | Execution time, in milliseconds |
-| `ExecuteTime` | str  | Execution start time         |
-| `IPAddress`   | str  | Client ip address     |
-
-> *Notice：The fields in `tags` and `fields` may change with subsequent updates*
->
-> Tip：The `fields.message` is JSON serialized string

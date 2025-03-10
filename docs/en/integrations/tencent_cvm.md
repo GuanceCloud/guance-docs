@@ -2,16 +2,16 @@
 title: 'Tencent Cloud CVM'
 tags: 
   - Tencent Cloud
-summary: 'Use the "Watch Cloud Sync" script package in the script market to synchronize the data of the cloud monitoring cloud assets to the watch cloud'
+summary: 'Use the script packages in the script market of Guance series to synchronize cloud monitoring and cloud asset data to Guance'
 __int_icon: 'icon/tencent_cvm'
 dashboard:
 
-  - desc: 'Tencent Cloud CVM Dashboard'
-    path: 'dashboard/zh/tencent_cvm'
+  - desc: 'Built-in View for Tencent Cloud CVM'
+    path: 'dashboard/en/tencent_cvm'
 
 monitor:
   - desc: 'Tencent Cloud CVM Monitor'
-    path: 'monitor/zh/tencent_cvm'
+    path: 'monitor/en/tencent_cvm'
 
 ---
 
@@ -19,118 +19,118 @@ monitor:
 <!-- markdownlint-disable MD025 -->
 # Tencent Cloud CVM
 <!-- markdownlint-enable -->
-Use the "Watch Cloud Sync" script package in the script market to synchronize the data of the cloud monitoring cloud assets to the watch cloud
+Use the script packages in the script market of Guance series to synchronize cloud monitoring and cloud asset data to Guance
 
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-It is recommended to open Observation Cloud Integration-Extension-hosted Func: all preconditions are automatically installed, please continue with the script installation
+It is recommended to enable Guance Integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed, please proceed with the script installation
 
-If you want to deploy Func yourself refer to [deploy Func yourself](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-### Install scripts
-
-> Tip: Please prepare the required Ali Cloud AK in advance (for simplicity, you can directly grant global read-only permissions`ReadOnlyAccess`）
-
-To synchronize the monitoring data of ECS cloud resources, we install the corresponding acquisition script:「Guance Integration（Tencent Cloud-CVMCollect）」(ID：`guance_tencentcloud_cvm`)
-
-After clicking 【Install】, input the corresponding parameters: Ali Cloud AK, Ali cloud account name.
-
-Click to【Deploy startup Script】，It will be created automatically `Startup` script set, and automatically configure the corresponding startup script.
-
-It can be opened in「Management / Crontab Config」to see the corresponding auto-trigger configuration in. Click to【Run】, can be executed immediately once, without waiting for a regular time. After a few moments, you can review the execution of the task and the corresponding log.
-
-> If you want to collect the corresponding log, you also need to start the corresponding log collection script. If you want to collect a bill, start the cloud bill collection script.
+If you deploy Func on your own, refer to [Deploy Func on Your Own](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-We collect some configurations by default, as described in the metrics column.
+### Install Script
 
-[Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+> Note: Please prepare a qualified Alibaba Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
+
+To synchronize CVM monitoring data, we install the corresponding collection script: "Guance Integration (Tencent Cloud-CVM Collection)" (ID: `guance_tencentcloud_cvm`)
+
+After clicking [Install], enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
+
+Click [Deploy Startup Script], the system will automatically create a `Startup` script set and configure the corresponding startup script.
+
+Once enabled, you can see the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Click [Execute] to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+
+> If you need to collect corresponding logs, you should also enable the corresponding log collection script. If you need to collect billing information, enable the cloud billing collection script.
+
+
+We default to collecting some configurations; see the Metrics section for details.
+
+[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
 
 
 ### Verification
 
-1. Into「Management / Crontab Config」to confirm whether the corresponding task has the corresponding automatic trigger configuration, and you can view the corresponding task record and log to check whether there is an exception.
-2. At the Guance cloud platform, at the「Infrastructure / Custom」to see if the asset information exists.
-3. At the Guance cloud platform, at the「Metrics」check to see if there is any monitoring data.
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configurations. You can also check the corresponding task records and logs to ensure there are no anomalies.
+2. On the Guance platform, under "Infrastructure / Custom", check if asset information exists.
+3. On the Guance platform, under "Metrics", check if the corresponding monitoring data exists.
 
 ## Metrics {#metric}
-Configuring Tencent Cloud-cloud monitoring, the default metric set is as follows, and more metrics can be collected through configuration [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/6843){:target="_blank"}
+After configuring Tencent Cloud Cloud Monitoring, the default metric sets are as follows. You can collect more metrics through configuration [Tencent Cloud Cloud Monitoring Metric Details](https://cloud.tencent.com/document/product/248/6843){:target="_blank"}
 
-### CPU Monitor
+### CPU Monitoring
 
-| Metric Name   | Illustrate                                                         | Unit | Dimension       | Statistical granularity                      |
-| ------------- | ----------------------------------------------------------  | ---- | ---------- | ----------------------------- |
-| `CpuUsage`     | Percentage of CPU occupied in real time while the machine is running      | %    | InstanceId | 10s、60s、300s、3600s、86400s |
-| `CpuLoadavg`    | Average number of tasks using and waiting for CPU in 1 minute (Windows machines do not have this metric) | -    | InstanceId | 10s、60s、300s、3600s、86400s |
-| `Cpuloadavg5m`  | Average number of tasks using and waiting for CPU in 5 minutes (not available on Windows machines) | -    | InstanceId | 60s、300s、3600s              |
-| `Cpuloadavg15m` | Average number of tasks using and waiting for CPU in 15 minutes (not available on Windows machines) | -    | InstanceId | 60s、300s、3600s              |
-| `BaseCpuUsage`  | The basic CPU utilization rate is collected and reported through the host machine, and the data can be viewed without installing the monitoring component. The data can still be collected and reported under the high load of the child machine | %    | InstanceId | 10s、60s、300s、3600s、86400s |
+| Metric English Name | Metric Chinese Name | Description                                                     | Unit | Dimension     | Statistical Granularity                    |
+| ------------------- | ------------------- | --------------------------------------------------------------- | ---- | ------------- | ------------------------------------------ |
+| `CpuUsage`          | CPU Utilization     | Real-time percentage of CPU usage during machine operation      | %    | `InstanceId`  | 10s、60s、300s、3600s、86400s             |
+| `CpuLoadavg`        | 1-Minute Average Load | Average number of tasks using or waiting for CPU within 1 minute (Windows machines do not have this metric) | -    | `InstanceId`  | 10s、60s、300s、3600s、86400s             |
+| `Cpuloadavg5m`      | 5-Minute Average Load | Average number of tasks using or waiting for CPU within 5 minutes (Windows machines do not have this metric) | -    | `InstanceId`  | 60s、300s、3600s                          |
+| `Cpuloadavg15m`     | 15-Minute Average Load | Average number of tasks using or waiting for CPU within 15 minutes (Windows machines do not have this metric) | -    | `InstanceId`  | 60s、300s、3600s                          |
+| `BaseCpuUsage`      | Base CPU Usage      | Base CPU usage reported by the host machine without installing monitoring components, still collects data under high load conditions | %    | `InstanceId`  | 10s、60s、300s、3600s、86400s             |
 
-### GPU Monitor
+### GPU Monitoring
 
-| Metric Name       | Illustrate                                       | Unit | Dimension       | Statistical granularity                          |
-| ----------------  | ------------------------------------------ | ---- | ---------- | --------------------------------- |
-| GpuMemTotal       | GPU Total memory                               | MB   | InstanceId | 10s、 60s、 300s、 3600s、 86400s |
-| GpuMemUsage       | GPU memory usage                             | %    | InstanceId | 10s、60s、300s、3600s、86400s     |
-| GpuMemUsed        | Evaluate the memory footprint of the load                        | MB   | InstanceId | 10s、 60s、 300s、 3600s、 86400s |
-| GpuPowDraw        | GPU Power consumption usage                             | W    | InstanceId | 10s、 60s、 300s、 3600s、 86400s |
-| GpuPowLimit       | GPU Total power consumption                               | W    | InstanceId | 10s、 60s、 300s、 3600s、 86400s |
-| GpuPowUsage       | GPU Power usage                             | %    | InstanceId | 10s、 60s、 300s、 3600s、 86400s |
-| GpuTemp           | Evaluate the GPU heat dissipation status                          | °C   | InstanceId | 10s、 60s、 300s、 3600s、 86400s |
-| GpuUtil           | Evaluate the computational power consumed by the load, the percentage of non-idle states | %    | InstanceId | 10s、 60s、 300s、 3600s、 86400s |
+| Metric English Name | Metric Chinese Name | Description                                             | Unit | Dimension     | Statistical Granularity                      |
+| ------------------- | ------------------- | ------------------------------------------------------- | ---- | ------------- | -------------------------------------------- |
+| `GpuMemTotal`       | Total GPU Memory    | Total GPU memory                                        | MB   | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `GpuMemUsage`       | GPU Memory Usage    | GPU memory usage rate                                    | %    | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `GpuMemUsed`        | GPU Memory Used     | Assess memory usage                                      | MB   | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `GpuPowDraw`        | GPU Power Draw      | GPU power consumption                                    | W    | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `GpuPowLimit`       | Total GPU Power     | Total GPU power                                          | W    | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `GpuPowUsage`       | GPU Power Usage Rate | GPU power consumption rate                               | %    | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `GpuTemp`           | GPU Temperature     | Evaluate GPU cooling status                              | °C   | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `GpuUtil`           | GPU Utilization     | Evaluate computational power consumed by load, non-idle state percentage | %    | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
 
-### Network Monitor
+### Network Monitoring
 
-| Metric Name    | Illustrate                                                      | Unit  | Dimension       | Statistical granularity                      |
-| -------------  | ------------------------------------------------------------ | ----- | ---------- | ----------------------------- |
-| `LanOuttraffic`  | The average traffic per second of an internal network card               | Mbps  | InstanceId | 10s、60s、300s、3600s、86400s |
-| `LanIntraffic`   | The average incoming traffic per second of an internal network card      | Mbps  | InstanceId | 10s、60s、300s、3600s、86400s |
-| `LanOutpkg`      | The average number of packets per second of an internal network card     | individual per second | InstanceId | 10s、60s、300s、3600s、86400s |
-| `LanInpkg`       | The average incoming packets per second of the internal network card     | individual per second| InstanceId | 10s、60s、300s、3600s、86400s |
-| `WanOuttraffic`  | The average outgoing traffic rate of the external network per second, the minimum granularity data is calculated as 10 seconds total traffic /10 seconds, which is the sum of outgoing/incoming bandwidth of the external network of EIP+CLB+CVM | Mbps  | InstanceId | 10s、60s、300s、3600s、86400s |
-| `WanIntraffic`   | The average incoming traffic rate of the external network per second, the minimum granularity data is calculated as 10 seconds total traffic /10 seconds, which is the sum of outgoing/incoming bandwidth of the external network of EIP+CLB+CVM | Mbps  | InstanceId | 10s、60s、300s、3600s、86400s |
-| `WanOutpkg`      | The average number of outgoing packets per second of the external network card   | individual per second | InstanceId | 10s、60s、300s、3600s、86400s |
-| `WanInpkg`       | The average incoming packets per second of the external network card    | individual per second | InstanceId | 10s、60s、300s、3600s、86400s |
-| `AccOuttraffic`  | The average traffic per second of the external network card   | MB    | InstanceId | 10s、60s、300s、3600s、86400s |
-| `TcpCurrEstab`   | The number of TCP connections in the ESTABLISHED state     | individual  | InstanceId | 10s、60s、300s、3600s、86400s |
-| `TimeOffset`     | The difference between utc time and ntp time of the child      | second    | InstanceId | 60s、300s、3600s、86400s      |
+| Metric English Name | Metric Chinese Name | Description                                                                 | Unit  | Dimension     | Statistical Granularity                      |
+| ------------------- | ------------------- | --------------------------------------------------------------------------- | ----- | ------------- | -------------------------------------------- |
+| `LanOuttraffic`     | Internal Outbound Bandwidth | Average outbound traffic per second on internal network interface           | Mbps  | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `LanIntraffic`      | Internal Inbound Bandwidth | Average inbound traffic per second on internal network interface            | Mbps  | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `LanOutpkg`         | Internal Outbound Packets | Average number of packets sent per second on internal network interface     | pkts/s | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `LanInpkg`          | Internal Inbound Packets | Average number of packets received per second on internal network interface | pkts/s | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `WanOuttraffic`     | External Outbound Bandwidth | Average external outbound traffic per second, minimum granularity data is total 10-second traffic divided by 10 seconds, this data is the sum of EIP+CLB+CVM external bandwidth | Mbps  | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `WanIntraffic`      | External Inbound Bandwidth | Average external inbound traffic per second, minimum granularity data is total 10-second traffic divided by 10 seconds, this data is the sum of EIP+CLB+CVM external bandwidth | Mbps  | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `WanOutpkg`         | External Outbound Packets | Average number of packets sent per second on external network interface     | pkts/s | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `WanInpkg`          | External Inbound Packets | Average number of packets received per second on external network interface | pkts/s | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `AccOuttraffic`     | External Outbound Traffic | Average external outbound traffic per second on external network interface | MB    | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `TcpCurrEstab`      | TCP Connections     | Number of TCP connections in ESTABLISHED state                             | count | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `TimeOffset`        | Submachine UTC Time Difference | Difference between submachine UTC time and NTP time                        | sec   | `InstanceId`  | 60s、300s、3600s、86400s                     |
 
-### Memory Monitor
+### Memory Monitoring
 
-| Metric Name   | Illustrate                                                         | Unit | Dimension       | Statistical granularity                      |
-| ---------- | ------------------------------------------------------------ | ---- | ---------- | ----------------------------- |
-| MemUsed     | The actual amount of memory used by the user, excluding the memory occupied by buffers and system caches, the total memory-available memory (including buffers and cached) gets the memory usage value. Do not include the buffers and cached | MB | InstanceId | 10 s, 60 s and 300 s, 3600 s and 86400 s |
+| Metric English Name | Metric Chinese Name | Description                                                                 | Unit | Dimension     | Statistical Granularity                      |
+| ------------------- | ------------------- | --------------------------------------------------------------------------- | ---- | ------------- | -------------------------------------------- |
+| `MemUsed`           | Memory Used         | Actual user memory usage excluding buffer and system cache                 | MB   | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
+| `MemUsage`          | Memory Usage Rate   | Actual user memory usage rate excluding buffer and system cache             | %    | `InstanceId`  | 10s、60s、300s、3600s、86400s               |
 
-| MemUsage | user actual memory usage, not including the buffer cache memory, and system to remove the cache, buffer, and rest, Users actually use the memory and the ratio of the total memory | % | InstanceId | 10 s, 60 s and 300 s, 3600 s and 86400 s |
+### Disk Monitoring
 
-### Disk Monitor
+| Metric English Name | Metric Chinese Name | Description                                           | Unit | Dimension     | Statistical Granularity |
+| ------------------- | ------------------- | ----------------------------------------------------- | ---- | ------------- | ----------------------- |
+| `CvmDiskUsage`      | Disk Usage Rate     | Percentage of used disk capacity out of total capacity | %    | `InstanceId`  | 60s、300s              |
 
-| Metric Name   | Illustrate                                     | Unit | Dimension       | Statistical granularity  |
-| ------------  | ---------------------------------------- | ---- | ---------- | --------- |
-| CvmDiskUsage  | Disk used capacity as a percentage of total capacity (all disks) | %    | InstanceId | 60s、300s |
+### **RDMA** Monitoring
 
-### **RDMA Monitor**
+| Metric English Name | Metric Chinese Name | Metric Description (Optional) | Unit  | Dimension     | Statistical Granularity                    |
+| ------------------- | ------------------- | ---------------------------- | ----- | ------------- | ------------------------------------------ |
+| `RdmaIntraffic`     | RDMA NIC Receive Bandwidth | RDMA NIC receive bandwidth  | Mbps  | `InstanceId`  | 60s、300s、3600s、86400s                  |
+| `RdmaOuttraffic`    | RDMA NIC Send Bandwidth    | RDMA NIC send bandwidth     | Mbps  | `InstanceId`  | 60s、300s、3600s、86400s                  |
+| `RdmaInpkt`         | RDMA NIC Inbound Packets   | RDMA NIC inbound packets    | pkts/s | `InstanceId`  | 60s、300s、3600s、86400s                  |
+| `RdmaOutpkt`        | RDMA NIC Outbound Packets  | RDMA NIC outbound packets   | pkts/s | `InstanceId`  | 60s、300s、3600s、86400s                  |
+| `CnpCount`          | CNP Statistics       | Congestion notification packet statistics | pkts/s | `InstanceId`  | 60s、300s、3600s、86400s                  |
+| `EcnCount`          | ECN Statistics       | Explicit congestion notification statistics | pkts/s | `InstanceId`  | 60s、300s、3600s、86400s                  |
+| `RdmaPktDiscard`    | Packet Drop Count    | Packet drop count at endpoint | pkts/s | `InstanceId`  | 60s、300s、3600s、86400s                  |
+| `RdmaOutOfSequence` | Out-of-Order Errors  | Receiver-side out-of-order errors | pkts/s | `InstanceId`  | 60s、300s、3600s、86400s                  |
+| `RdmaTimeoutCount`  | Sender Timeout Errors | Sender-side timeout errors | pkts/s | `InstanceId`  | 60s、300s、3600s、86400s                  |
+| `TxPfcCount`        | TX PFC Statistics    | TX PFC statistics | pkts/s | `InstanceId`  | 60s、300s、3600s、86400s                  |
+| `RxPfcCount`        | RX PFC Statistics    | RX PFC statistics | pkts/s | `InstanceId`  | 60s、300s、3600s、86400s                  |
 
-| Metric Name        | Illustrate         | Unit  | Dimension       | Statistical granularity                    |
-| -----------------  | ------------------ | ----- | ---------- | --------------------------- |
-| `RdmaIntraffic`      | **RDMA** network cards receive bandwidth  | Mbps  | InstanceId | 60s、 300s、 3600s、 86400s |
-| `RdmaOuttraffic`     | **RDMA** network card send bandwidth | Mbps  | InstanceId | 60s、 300s、 3600s、 86400s |
-| `RdmaInpkt`          | **RDMA** network card packet size    | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
-| `RdmaOutpkt`         | **RDMA** network card output packets   | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
-| `CnpCount`           | Congestion notification packet statistics   | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
-| `EcnCount`           | Display congestion notification statistics   | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
-| `RdmaPktDiscard`     | End measurement of packet loss        | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
-| `RdmaOutOfSequence`  | The amount of out-of-order error at the receiver   | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
-| `RdmaTimeoutCount`   | The amount of sender timeout error   | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
-| `TxPfcCount`         | TX PFC statistics     | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
-| `RxPfcCount`        | RX PFC statistics     | individual per second | InstanceId | 60s、 300s、 3600s、 86400s |
+## Objects {#object}
 
-## Object {#object}
-You could see the object data structure of the collected Tencent Cloud CVM objects obtained .
+The collected Tencent Cloud CVM object data structure can be viewed from "Infrastructure - Custom".
 
 ```json
 {
@@ -148,14 +148,13 @@ You could see the object data structure of the collected Tencent Cloud CVM objec
     "CPU"               : 2,
     "Memory"            : 2,
     "InstanceState"     : "RUNNING",
-    "PublicIpAddresses" : "{Public network IP data}",
-    "PrivateIpAddresses": "{Private network IP data}",
-    "SystemDisk"        : "{System disk JSON data}",
+    "PublicIpAddresses" : "{public IP data}",
+    "PrivateIpAddresses": "{private IP data}",
+    "SystemDisk"        : "{system disk JSON data}",
     "DataDisks"         : "{data disk JSON data}",
-    "Placement"         : "{Region JSON data}",
+    "Placement"         : "{region JSON data}",
     "ExpiredTime"       : "2022-05-07T01:51:38Z",
-    "message"           : "{Instance JSON data}"
+    "message"           : "{instance JSON data}"
   }
 }
 ```
-

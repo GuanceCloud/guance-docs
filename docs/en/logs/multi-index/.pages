@@ -4,4 +4,4 @@ nav:
   - 'Elasticsearch': elasticsearch.md
   - 'OpenSearch': opensearch.md
   - 'LogEase': logease.md
-  - 'Volcengine TLS': tls.md
+  - 'Volcano Engine TLS': tls.md

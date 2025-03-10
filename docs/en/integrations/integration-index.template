@@ -2,11 +2,10 @@
 icon: zy/integrations
 ---
 
-# Integrations
+# 集成
 
 ---
 
-Guance has the ability of full stack data collection, and now supports about {{.NIDocs}} integrations.
 
 <!-- markdownlint-disable MD046 MD037 MD009 MD010 -->
 <html lang="en">
@@ -92,11 +91,11 @@ Guance has the ability of full stack data collection, and now supports about {{.
             position: relative;
   		}
         .fth-integration-list-content .fth-integration-list-item .integration-list-item-left .glightbox {
-            display: flex;
+           display: flex;
         }
   		.fth-integration-list-content .fth-integration-list-item .integration-list-item-left img {
   			width: 32px;
-            min-width: 32px;
+  			min-width: 32px;
   			height: 32px;
   			border-style: none;
   		}
@@ -200,8 +199,8 @@ Guance has the ability of full stack data collection, and now supports about {{.
   	</div>
   	<script>
   		!(function () {
-            const limitTags = ['Alibaba Cloud', 'Tencent Cloud', 'Huawei Cloud', 'Volcengine' ,'GCP', 'AWS', 'AZURE', 'MIDDLEWARE', 'HOST', 'IPMI', 'KUBERNETES', 'CONTAINERS', 'NETWORK', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', 'CACHING', 'MESSAGE QUEUES', 'DATA STORES', 'LANGUAGE', 'TRACING、APM', 'PROFILE', 'LOG', 'TESTING', 'WEB', 'MOBILE', 'CI/CD', 'JENKINS', 'GITLAB', 'SESSION REPLAY'];
-            const tagAll = { label: 'All', value: '' };
+            const limitTags = ['阿里云', '腾讯云', '华为云', '火山引擎','谷歌云', 'AWS', 'AZURE', '中间件', '主机', 'IPMI', 'KUBERNETES', '容器', '网络', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', '缓存', '消息队列', '数据库', '语言', '链路追踪', 'PROFILE', '日志', '拨测', 'WEB', '移动端', 'CI/CD', 'JENKINS', 'GITLAB', '会话重放', 'WINDOWS'];
+            const tagAll = { label: '全部', value: '' };
   			const debounce = (fn, delay, immediate) => {
   				let timeout = null;
   				let result = undefined;
@@ -245,7 +244,7 @@ Guance has the ability of full stack data collection, and now supports about {{.
   				if (e.target.classList.contains('integration-tags-group-item')) {
   					const curTag = e.target;
   					const activeTag = header.querySelector('.integration-tags-group-item.tag-active');
-  					const tagAllContainer = header.querySelector('.integration-tags-group-item');
+                    const tagAllContainer = header.querySelector('.integration-tags-group-item');
   					if (curTag !== activeTag) {
   						tagValue = curTag.dataset.tag;
   						curTag.classList.add('tag-active');

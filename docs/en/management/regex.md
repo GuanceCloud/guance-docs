@@ -1,42 +1,43 @@
 # Regular Expressions
 
-Regular expressions are one of the effective means to achieve data security. In Guance, you can apply regular expressions to use cases such as snapshot sharing and data desensitization. Guance not only provides a out-of-box library of regular expression templates, but also supports custom creation of new regular expressions, which can be saved as rule libraries for convenient future use.
+Regular expressions are one of the effective means to achieve data security. In <<< custom_key.brand_name >>>, you can apply them to scenarios such as snapshot sharing and sensitive data masking. <<< custom_key.brand_name >>> not only provides a built-in regular expression template library but also supports custom creation of regular expressions, which can be saved as rule libraries for easy future use.
 
-## Custom {#diy}
+## Customization {#diy}
 
-Go to **Management > Regular Expressions > Custom**, and click **Create** on the right:
+Navigate to **Manage > Regular Expressions > Custom**, and click **Create Regular Expression** on the right side:
 
 ![](img/regrex.png)
 
-Enter the current rule name and regular expression, and click Preview to preview the desensitization effect in advance. The original text will be desensitized with `***` according to the matching results of the left regular expression.
+Enter the current rule name and the regular expression, then click Preview to view the masking effect in advance. The original text will be masked with `***` based on the matching results from the regular expression on the left.
 
 <img src="../img/regrex-3.png" width="60%" >
 
-After entering the name, press Enter to create a rule; click Confirm to successfully create the current rule.
+After entering the name and pressing Enter, a rule is created; clicking Confirm will finalize the creation of the current rule.
 
 On the customization page, you can view all custom regular expressions. You can perform the following operations on the list:
 
-1. Filter: Filter the rules based on the rule library.
-2. Search: Quickly search and locate based on the rule name.
-3. Clone: Quickly copy the current rule.
-4. Edit: Edit the current rule again.
-5. Delete: Support direct deletion or batch deletion.
+1. Filter: Filter rules based on the rule library;
+2. Search: Quickly search and locate rules by name;
+3. Clone: Click to quickly duplicate the current rule;
+4. Edit: Click to edit the current rule again;
+5. Delete: Supports direct deletion or batch deletion.
 
 ![](img/regrex-1.png)
 
-## Templates
+## Template Library
 
-In **Management > Regular Expressions > Templates**, you can see all the built-in regular expression templates in the system. Click the Clone button on the right to use them.
+In **Manage > Regular Expressions > Template Library**, you can see all the built-in regular expression templates provided by the system. Click the clone button under the operations on the right to use them.
 
 You can perform the following operations on the list:
 
-1. Filter: Filter the rules based on the rule library.
-2. Search: Quickly search and locate based on the rule name.
+1. Filter: Filter rules based on the rule library;
+2. Search: Quickly search and locate rules by name;
 
 ![](img/regrex-2.png)
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: View All Rules within the templates</font>](./regex-template.md)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Click to view all rules in the template library</font>](./regex-template.md)
+
 
 </div>

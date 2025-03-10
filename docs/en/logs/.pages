@@ -3,9 +3,12 @@ nav:
   - 'Log Collection': collection.md
   - 'Browser Log Collection': browser-collection.md
   - 'Miniapp Log Collection': miniapp-collection.md
-  - 'Log Explorer': explorer.md
+  - 'Log Explorer':
+    - explorer.md
+    - Log List: manag-explorer.md
+    - Log Details: explorer-details.md
   - 'BPF Network Logs': bpf-log.md
-  - 'Generate Metrics': generate-metrics.md
-  - 'Indexes': multi-index
+  - 'Error Tracing': log-tracing.md
+  - 'Log Index': multi-index
   - 'Cross-Workspace Index Query': cross-workspace-index.md
-  - 'Data Access': logdata-access.md
+  - 'FAQ': faq.md

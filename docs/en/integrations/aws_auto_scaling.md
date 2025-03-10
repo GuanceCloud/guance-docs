@@ -2,86 +2,75 @@
 title: 'AWS Auto Scaling'
 tags: 
   - AWS
-summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance'
+summary: 'AWS Auto Scaling, including instance counts, capacity units, warm pools, etc.'
 __int_icon: 'icon/aws_auto_scaling'
 dashboard:
 
-  - desc: 'AWS Auto Scaling Monitoring View'
+  - desc: 'Built-in views for AWS Auto Scaling'
     path: 'dashboard/en/aws_auto_scaling'
 
 monitor:
-  - desc: 'AWS Auto Scaling Monitor'
+  - desc: 'Monitors for AWS Auto Scaling'
     path: 'monitor/en/aws_auto_scaling'
 
 cloudCollector:
-  desc: 'cloud collector'
+  desc: 'Cloud Collector'
   path: 'cloud-collector/en/aws_auto_scaling'
 ---
 
-<!-- markdownlint-disable MD025 -->
 # AWS Auto Scaling
-<!-- markdownlint-enable -->
 
+AWS Auto Scaling, including instance counts, capacity units, warm pools, etc.
 
-AWS Auto Scaling includes metrics such as connection count, request count, latency, and slow queries for automatic scaling.
-
-
-## config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling the Guance integration - Extensions - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
+### Install Script
 
+> Note: Prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-### Installation script
+To synchronize monitoring data from AWS Auto Scaling, install the corresponding collection script: "Guance Integration (AWS-Auto Scaling Collection)" (ID: `guance_aws_auto_scaling`).
 
-> Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+After clicking 【Install】, enter the required parameters: Amazon AK and Amazon account name.
 
-To synchronize the monitoring data of AWS Auto Scaling, we install the corresponding collection script: `ID:guance_aws_auto_scaling`
+Click 【Deploy Startup Script】. The system will automatically create a `Startup` script set and configure the startup scripts accordingly.
 
-Click 【Install】 and enter the corresponding parameters: Aws AK, Aws account name.。
+Additionally, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】 to run it immediately without waiting for the scheduled time. Wait a moment, and you can view the execution task records and corresponding logs.
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+### Verification
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
+1. Confirm in 「Manage / Automatic Trigger Configuration」 whether the corresponding tasks have the automatic trigger configurations, and check the task records and logs for any anomalies.
+2. In the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
+3. In the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
 
-> If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
+## Metrics {#metric}
+After configuring AWS Auto Scaling, the default metric set is as follows. You can collect more metrics by configuring them. Refer to [AWS Cloud Monitoring Metrics Details](https://docs.aws.amazon.com/zh_cn/autoscaling/ec2/userguide/viewing-monitoring-graphs.html){:target="_blank"}
 
-
-### Verify
-
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
-
-## Metric {#metric}
-Configure AWS Auto Scaling monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Aws Cloud Monitor Metrics Details](https://docs.aws.amazon.com/autoscaling/ec2/userguide/viewing-monitoring-graphs.html){:target="_blank"}
-
-
-
-| Metric                                                         | Metric Description                                                     |
-| :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `GroupMinSize`                                        | The minimum size of the auto scaling group |
-| `GroupMaxSize`                                        | The maximum size of the auto scaling group |
-| `GroupDesiredCapacity`                                          | The number of instances that the Auto Scaling group attempts to maintain |
-| `GroupInServiceInstances`                                              | The number of instances running as part of the Auto Scaling group. This metric does not include instances in a suspended or terminated state      |
-| `GroupPendingInstances`                                        | The number of instances in a suspended state. Suspended instances are not yet available. This metric does not include instances in an available or terminated state |
-| `GroupStandbyInstances`                                   | The number of instances in Standby state. Instances in this state are still running but cannot be effectively used |
-| `GroupTerminatingInstances`                                       | The number of instances currently in the termination process. This metric does not include instances in an available or suspended state                    |
-| `GroupTotalInstances`                                  | The total number of instances in the Auto Scaling group. This metric is used to identify the count of instances in available, suspended, and terminated states             |
-| `GroupTotalCapacity`                                          | The total capacity units in the Auto Scaling group                     |
-| `GroupPendingCapacity`                                                      | The number of pending capacity units |
-| `GroupStandbyCapacity`                                        | The number of capacity units in Standby state |
-| `GroupTerminatingCapacity`                                             | The number of capacity units currently in the termination process |
-| `GroupTotalCapacity`                                           | The total number of capacity units in the Auto Scaling group |
-| `WarmPoolMinSize`                                     | The minimum size of the warm pool |
-| `GroupAndWarmPoolDesiredCapacity`                                                 | The combined desired capacity of the Auto Scaling group and the warm pool |
-| `WarmPoolPendingCapacity`                                          | The number of pending capacity units in the warm pool. This metric does not include instances in running, suspended, or terminated states |
-| `WarmPoolTerminatingCapacity`                                  | The number of capacity units in the warm pool that are currently in the termination process. This metric does not include instances in running, stopped, or suspended states |
-| `WarmPoolWarmedCapacity`                                     | The number of capacity units that can enter the Auto Scaling group during horizontal scaling. This metric does not include instances in a suspended or terminated state |
-| `WarmPoolTotalCapacity`                                   | The total capacity of the warm pool, including instances in running, stopped, suspended, or terminated states |
-| `GroupAndWarmPoolDesiredCapacity`                                    | The combined desired capacity of the Auto Scaling group and the warm pool |
-| `GroupAndWarmPoolTotalCapacity`                           | The total combined capacity of the Auto Scaling group and the warm pool. This includes instances in running, stopped, suspended, terminated, or in-service states |
+| Metric                                                        | Description                                                         |
+| :------------------------------------------------------------ | :------------------------------------------------------------------ |
+| `GroupMinSize`                                                | Minimum size of the Auto Scaling group                              |
+| `GroupMaxSize`                                                | Maximum size of the Auto Scaling group                              |
+| `GroupDesiredCapacity`                                        | Number of instances the Auto Scaling group attempts to maintain     |
+| `GroupInServiceInstances`                                     | Number of instances running as part of the Auto Scaling group. This metric does not include instances in pending or terminating states |
+| `GroupPendingInstances`                                       | Number of instances in the pending state. Pending instances are not yet available. This metric does not include instances in available or terminating states |
+| `GroupStandbyInstances`                                       | Number of instances in the Standby state. Instances in this state are still running but cannot be effectively used |
+| `GroupTerminatingInstances`                                   | Number of instances currently in the termination process. This metric does not include instances in available or pending states |
+| `GroupTotalInstances`                                         | Total number of instances in the Auto Scaling group. This metric identifies instances in available, pending, and terminating states |
+| `GroupTotalCapacity`                                          | Total number of capacity units in the Auto Scaling group            |
+| `GroupPendingCapacity`                                        | Number of capacity units pending processing                         |
+| `GroupStandbyCapacity`                                        | Number of capacity units in the Standby state                       |
+| `GroupTerminatingCapacity`                                    | Number of capacity units currently in the termination process       |
+| `WarmPoolMinSize`                                             | Minimum size of the warm pool                                       |
+| `GroupAndWarmPoolDesiredCapacity`                             | Desired capacity combining the Auto Scaling group and warm pool     |
+| `WarmPoolPendingCapacity`                                     | Number of capacities pending in the warm pool. This metric does not include instances in running, pending, or terminating states |
+| `WarmPoolTerminatingCapacity`                                 | Number of capacities in the termination process in the warm pool. This metric does not include instances in running, stopped, or pending states |
+| `WarmPoolWarmedCapacity`                                      | Number of capacities that can enter the Auto Scaling group during horizontal scaling. This metric does not include instances in pending or terminating states |
+| `WarmPoolTotalCapacity`                                       | Total capacity of the warm pool, including instances in running, stopped, pending, or terminating states |
+| `GroupAndWarmPoolDesiredCapacity`                             | Desired capacity combining the Auto Scaling group and warm pool     |
+| `GroupAndWarmPoolTotalCapacity`                               | Total capacity combining the Auto Scaling group and warm pool. This includes instances in running, stopped, pending, terminating, or in-service states |
+</table>

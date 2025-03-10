@@ -2,22 +2,21 @@
 
 ---
 
-<br />**post /api/v1/monitor/mute/\{mute_uuid\}/delete**
+<br />**POST /api/v1/monitor/mute/\{mute_uuid\}/delete**
 
 ## Overview
-Delete a mute rule according to `mute_uuid`.
+Delete a mute rule based on `mute_uuid`
 
 
 
+## Route Parameters
 
-## Routing Parameters
-
-| Parameter Name        | Type     | Required   | Description              |
+| Parameter Name | Type   | Required | Description              |
 |:-----------|:-------|:-----|:----------------|
-| mute_uuid | string | Y | mute rule UUID<br> |
+| mute_uuid | string | Y | Mute rule UUID<br> |
 
 
-## Supplementary Description of Parameters
+## Additional Parameter Notes
 
 
 
@@ -25,12 +24,11 @@ Delete a mute rule according to `mute_uuid`.
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/monitor/mute/None/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/monitor/mute/mute_xxxx/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw 'null' \
---compressed \
---insecure
+--compressed 
 ```
 
 
@@ -47,7 +45,3 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/None/delete' \
     "traceId": "TRACE-0ABCD3FC-9441-4617-9301-A95299460890"
 } 
 ```
-
-
-
-

@@ -1,33 +1,32 @@
 ---
-title     : 'Windows Event'
-summary   : 'Collect event logs in Windows'
+title     : 'Windows Events'
+summary   : 'Collecting event logs from Windows'
 tags:
   - 'WINDOWS'
 __int_icon      : 'icon/winevent'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
-
 
 :fontawesome-brands-windows:
 
 ---
 
-Windows Event Log Collection is used to collect applications, security, systems and so on.
+The collection of Windows Event Logs involves gathering application, security, system, and other types of Windows event logs.
 
 ## Configuration {#config}
 
-### Preconditions {#requrements}
+### Prerequisites {#requirements}
 
 - Windows version >= Windows Server 2008 R2
 
 ### Collector Configuration {#input-config}
 
-Go to the `conf.d/windows` directory under the DataKit installation directory, copy `windows_event.conf.sample` and name it `windows_event.conf`. Examples are as follows:
+Navigate to the `conf.d/windows` directory under the DataKit installation directory, copy `windows_event.conf.sample`, and rename it to `windows_event.conf`. An example is shown below:
 
 ```toml
 
@@ -62,11 +61,11 @@ Go to the `conf.d/windows` directory under the DataKit installation directory, c
   # ...
 ```
 
-After configuration, restart DataKit.
+After configuring, restart DataKit to apply changes.
 
 ## Logging {#logging}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration through `[inputs.windows_event.tags]`:
+By default, all data collected will append a global tag named `host` (the tag value is the hostname where DataKit resides). You can also specify additional tags in the configuration using `[inputs.windows_event.tags]`:
 
 ``` toml
  [inputs.windows_event.tags]
@@ -98,10 +97,10 @@ For all of the following data collections, a global tag named `host` is appended
 |`total_message`|Full text of the event|
 |`version`|Version|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 
-
+Please note that the metrics list currently does not contain any specific entries.

@@ -1,508 +1,290 @@
 ---
 icon: zy/release-notes
 ---
-# Release Notes (2024)
+
+# Release Notes (2025)
+
 ---
 
-This document records the update content description released by Guance each time.
+This document records the update content of <<< custom_key.brand_name >>> for each release.
 
-## September 4, 2024
+<div class="grid cards" markdown>
 
-### New Features
+- :fontawesome-regular-clipboard:{ .lg .middle }
 
-#### Logs
+    ***
 
-1. New interactive log explorer: Holding the Ctrl key allows for "Add to Query," "Exclude from Query," and "Copy" operations on the text tokens in the explorer list, facilitating quick search and addition of target data. Similarly, the log details page content area also supports this interaction.
-2. Support for binding [Volcengine TLS External Index](../logs/multi-index/tls.md): External indexes can be bound to view and analyze Volcengine log data directly on the Guance platform.
-3. Logs > [Data Access](../logs/logdata-access.md) optimization:
-   - A new data access navigation page is added, with a help document link in the upper right corner of the page;
-   - The data access rule adds a "Name" field as a unique ID, and a new rule "Description" field, allowing custom names and descriptions to differentiate rule usage cases.
-4. Log explorer filter optimization: The "Log Index" filter in the log explorer list supports search, allowing keyword search of indexes and selection.
-5. Log [Status Customization](../logs/explorer.md#status-color): Support for customizing log status values and setting colors for each status value in the console, adapting to different log access scenes, while making the log status display more personalized and intuitive.
+    <table>
+      <tr>
+        <th><a href="https://docs.guance.com/datakit/changelog/" target="_blank">DataKit</a></th>
+      </tr>
+    </table>
 
-#### Scenes
+    ***
 
-1. New chart type [Heatmap](../scene/visual-chart/heatmap_scene.md): Users can intuitively view the distribution and trends of data through color shades, helping to better understand the data.
-2. [Chart Link Redirection](https://www.guance.com/learn/articles/Chart-Links): Link redirection in conjunction with dashboard data using Function.
-3. [Alert Statistics Chart](../scene/visual-chart/alert-statistics.md) component upgrade: The listing logic is changed, and the listing effect of the new version of the alert statistics chart is consistent with the unresolved event explorer, unifying the user viewing experience.
-   - Note: The "Create Issue" and "Manual Recovery" operations are not supported when listing across workspaces.
-4. Custom display columns in grouped table charts: In grouped table charts, a new feature is added to customize display columns, supporting the display or hiding of returned columns, providing a more flexible data presentation method.
-5. Optimization of chart cross-space authorization query interaction: After enabling the space authorization feature, you can directly select the authorized space list above the query, making the operation more intuitive and convenient.
+    <table>
+      <tr>
+        <th colspan="5">SDK</th>
+      </tr>
+      <tr>
+        <td><a href="https://docs.guance.com/real-user-monitoring/web/sdk-changelog/" target="_blank">Web</a></td>
+        <td><a href="https://docs.guance.com/real-user-monitoring/miniapp/sdk-changelog/" target="_blank">Mini Program</a></td>
+        <td><a href="https://docs.guance.com/real-user-monitoring/android/sdk-changelog/" target="_blank">Android</a></td>
+        <td><a href="https://docs.guance.com/real-user-monitoring/ios/sdk-changelog/" target="_blank">iOS</a></td>
+        <td><a href="https://docs.guance.com/real-user-monitoring/react-native/sdk-changelog/" target="_blank">React Native</a></td>
+      </tr>
+    </table>
 
-#### Incidents
+</div>
 
-Issue and monitor events: If the content contains `@ member` configuration, the Issue or event will synchronize and carry the account attribute information of `@ member` when delivered externally through Webhook.
+## February 27, 2025 {#20250227}
+
+### OpenAPI Update {#openapi0227}
+
+Metrics: Added [Measurement and Tag Information Retrieval](../open-api/metric/metric-info-get.md).
+
+### Feature Updates {#feature0227}
+
+#### Synthetic Tests
+
+1. HTTP Test: Supports [Script Mode](../usability-monitoring/request-task/http.md#script). By writing Pipeline scripts, you can flexibly customize the judgment conditions and data processing logic of the test tasks.
+2. Added [Multi-step Test](../usability-monitoring/request-task/multistep_test.md): Allows using multiple API connection response data to create tests and link multiple task requests through local variable passing.
+
+#### Use Cases
+
+1. Dashboard > Visibility Scope: Added "Custom" configuration, allowing configuration of "Operation" and "View" permissions for this dashboard. A new option "All Members" has also been added under this configuration.
+2. Charts:
+    - Added AI-generated chart titles and descriptions;
+    - Log Stream Chart added "Rule Mapping" feature;
+    - Optimized column display in Table Chart;
+    - Grouped Table Chart: Expression results support sorting;
+    - Time Series Chart, Pie Chart, and other tables support exporting data as CSV files.
+
+#### Metrics
+
+1. [Metric Analysis > Table Chart](../metrics/explorer.md#table): When query results exceed 2,000 entries, three modes add a "Query Result Count" display.
+2. [Metric Management](../metrics/dictionary.md): Supports one-click navigation to metric analysis.
+3. [Generate Metrics](../metrics/generate-metrics.md#manage): Supports import creation method and batch export.
+
+#### Infrastructure
+
+Container/Pod Explorer: Object data added four new fields `cpu_usage_by_limit`, `cpu_usage_by_request`, `mem_used_percent_base_limit`, `mem_used_percent_base_request`.
+
+#### APM
+
+1. Profiling > Flame Graph Interaction Optimization: Selecting a single search method name can directly focus and locate.
+2. ServiceMap Interaction Optimization: In upstream/downstream pages, supports searching nodes on the current canvas.
+
+### New Integrations {#inte0227}
+
+- Added [AWS Cloud Billing](../integrations/aws_billing.md);
+- Added [Kube Scheduler](../integrations/kube_scheduler.md);
+- Added [MQTT](../integrations/mqtt.md);
+- Rewrote [APISIX](../integrations/apisix.md);
+- Updated [TiDB](../integrations/tidb.md) English documentation and views;
+- Updated [Zookeeper](../integrations/zookeeper.md) views, added integration icons;
+- Fixed English translation issues in some component mainfest.yaml files.
+
+### Bug Fixes {#bug0227}
+
+1. Fixed an issue where clicking on the APM > Trace Details tab page displayed incorrectly;
+2. Fixed an issue with @mentioning members incorrectly in Incident replies;
+3. Fixed incorrect temperature unit display in charts.
+
+
+## February 19, 2025
+
+### Breaking Changes {#breakingchanges0219}
+
+The `df_meta` within [Events](../events/index.md) will no longer retain `alert_info` related information. Users who previously relied on this information to obtain notification targets should switch to using the newly added `df_alert_info` (event alert notifications), `df_is_silent` (whether muted), and `df_sent_target_types` (event notification object types) fields to achieve the corresponding functionality.
+
+Possible affected scenarios:
+
+1. Custom use cases for interfacing events with external systems via OpenAPI
+2. Custom use cases for forwarding events to external systems via Webhook notifications
+
+### Feature Updates {#feature0116}
+
+#### PromQL Query
+
+Added query type: Instant Query, which queries a single time point.
 
 #### Monitoring
 
-1. External event detection: Support for custom event occurrence time and tag attribute addition. Note:
-   - Field values are uniformly used as string types;
-   - Field names do not support starting with an underscore `_` or prefix `df_` and cannot have the same name as the current event default fields;
-   - Custom tag field names cannot have the same name as the fields defined in `dimension_tags`.
-2. Terminology adjustment: "No Data" is officially updated to "Data Gap" to ensure a unified page configuration and viewing experience.
+Monitor Configuration Page:
+
+1. Added `not between` option in logical match conditions for trigger criteria;
+2. Supports directly modifying monitor status ("Enabled" or "Disabled").
+
+#### APM
+
+Trace: Added [Service Context](../application-performance-monitoring/explorer/explorer-analysis.md#context) tab page in detail view.
+
+#### Events
+
+Event Detail Page: Added support for binding [Built-in Views](../events/event-explorer/event-details.md#inner_view);
+
+#### Incident
+
+1. Issue added [`working`, `closed` states](../exception/issue.md#concepts);  
+2. For timeouts in `open` state and unassigned responsible parties and handling timeouts, [Issue Escalation](../exception/config-manag/strategy.md#upgrade) added repeat notification configurations;  
+3. Adjusted UI display of system comments and channel notifications for Issues;
+4. Analysis Dashboard: Added Time Widget.
+
+#### Use Cases
+
+1. [Chart Links](../scene/visual-chart/chart-link.md): Added "View Host Monitoring View", default off.
+2. Explorer: Supports deleting fixed `name` column, users can customize list display.
+3. Cloud Billing Analysis View: Supports viewing detailed billing information.
+
+#### Management
+
+[Role Management](../management/role-list.md): Session Replay viewing, audit events added custom permission addition capabilities.
+
+#### Metrics
+
+Generate Metrics: Metric names no longer support hyphens `-`.
+
+#### Integrations
+
+Integration Cards added description information.
+
+### Deployment Plan Updates {#deployment0219}
+
+1. Template Management: Supports uploading infrastructure explorer templates;
+2. Index Configuration: Deprecated "Backup Logs" item; configure corresponding storage policies at "Edit Workspace > Data Storage Policy > Data Forwarding - Default Storage".
+
+### New Integrations {#inte0219}
+
+1. Added [Milvus](../integrations/milvus.md);
+2. Added [Volcengine Public IP](../integrations/volcengine_eip.md);
+3. Added [opentelemetry-python](../integrations/opentelemetry-python.md);
+4. Added [OpenLIT Integration](../integrations/openlit.md);
+5. Updated k8s/es/mongodb/rabbitmq/oracle/coredns/sqlserver monitors & views in English and Chinese.
+
+### Bug Fixes {#bug0219}
+
+1. Fixed special characters causing abnormal results in AI aggregated notification messages;
+2. Fixed compatibility issues for Servicemap deployment version;
+3. Fixed issues with hidden view variables not configurable in composite charts;
+4. Fixed display issues in the "Unresolved Issues List" in the Incident Analysis Dashboard;
+5. Fixed inconsistencies between P75 results in RUM PV analysis dashboard and DQL query results;
+6. Fixed issues with the search box in the RUM Explorer;
+7. Fixed partial effectiveness of field mapping using Resource Catalog in dashboards;
+8. Fixed UI display issues in Monitor > Event Content;
+9. Fixed unsatisfactory quick filter results for unresolved events in the Event Viewer.
+
+## January 16, 2025
+
+### Feature Updates {#feature0116}
+
+#### RUM
+
+1. Added [Funnel Analysis](../real-user-monitoring/user_insight_funnel.md) function: Users can define conversion steps to create funnels, view conversion data, and perform in-depth analysis;
+2. Integrated User Analysis module: Added User Analysis module, integrating heatmaps and funnel analysis for comprehensive user behavior analysis tools;
+3. Added mobile SourceMap restoration: Android and iOS applications support uploading SourceMap files and viewing restored data in error viewers.
+
+#### APM
+
+When adding services in APM, added [Automatic Host Injection](../application-performance-monitoring/explorer/auto_wire/autowire_on_host.md) installation guide, simplifying the installation process.
+
+#### Integrations
+
+1. DataKit (data collection tool): DataKit installation page added Docker installation guidance, providing more diverse installation options;
+2. External Data Source Optimization: Added query specification prompts when querying SLS data sources, helping users query data more accurately.
+
+#### Use Cases
+
+[Composite Charts](../scene/visual-chart/index.md#conbine) Optimization: Composite charts now support view variable configuration, allowing selection of view variables from the current dashboard to apply to the composite chart, enhancing flexible data filtering and analysis.
+
+#### Monitoring
+
+Anomaly Detection Monitors: Added support for week-over-week and month-over-month comparisons in query periods.
+
+#### AI Assistant
+
+Added DataFlux Func knowledge base.
 
 #### Pipeline
 
-Separate processing of probe data and log data, and add a new "Synthetic Tests" data type. Avoid mutual interference during data processing to ensure the accuracy and efficiency of data processing.
+Optimized Auto-generated Pipeline: Supports interactive retrieval of Pipeline parsing using structured and natural language simultaneously.
 
-Note: Only the central Pipeline supports the "Synthetic Tests" data type, and the DataKit version of the test node must be >= 1.28.0.
+### Bug Fixes {#bug0116}
 
-#### Others
+1. Fixed display issues in log stacking mode;
+2. Fixed input box misalignment in log monitoring monitors;
+3. Fixed metric calculation errors;
+4. Fixed unsupported `having` statement in Volcengine;
+5. Fixed errors selecting "Request Error Rate" and "Average Requests per Second" metrics in APM metrics monitoring;
+6. Fixed ineffective `not in` statement in Volcengine base;
+7. Fixed large event list data affecting page load speed;
+8. Fixed unexpected behavior of one-click recovery in Hangzhou site events.
 
-1. Workspace list display optimization: For the list operation bar, a new display of the creator's avatar is added, with mouse hover tips for the creator, creation time, updater, and update time; at the same time, the overall display of the operation items is optimized.
-2. New audit event jump link in the list: A new audit event jump link is added to the list operation bar, and you can click to view the corresponding audit event.
-3. Account management display adjustment: The password item is not displayed under the single sign-on user's "Account Management" menu.
+## January 8, 2025
 
-### Bug Fixes {#bugs0904}
+### OpenAPI Updates {#openapi0108}
 
-1. Resolved the issue where the local Function as a data source did not link the time range to the time widget when querying.
-2. Resolved the issue where the display order of the PromQL data query results was incorrect.
-3. Resolved the issue where the filter components for monitor and chart queries were not unified.
-4. Resolved the issue where clicking on the smart monitoring-related events from the incidents entry would display them in the non-smart monitoring event list, resulting in no query results.
-5. Resolved the issue where the Lark incidents Webhook integration had no data and no callback.
-6. Resolved the issue of the decimal unit display number.
-7. Resolved the issue where the explorer analysis mode could not search for fields when adding filter conditions.
-8. Resolved the issue where creating an Issue from a monitoring event had no source link.
-9. Resolved the issue of log export to CSV failure.
-10. Resolved the issue of not receiving high consumption warning email notifications.
-11. Resolved the issue where switching channels in incidents did not change the Issue list.
-12. Resolved the issue where the log explorer would report an error when selecting indexes a and b with the same field names (case insensitive) in the log index.
+1. Field Management: Supports retrieving field management lists, and supports [adding](../open-api/field-cfg/add.md)/[modifying](../open-api/field-cfg/modify.md)/[deleting](../open-api/field-cfg/delete.md) field management.
+2. Synthetic Tests: Supports [modifying](../open-api/dialing-task/modify.md) dial testing tasks.
+3. Incident > Schedule: Supports retrieving schedule lists, and supports [creating](../open-api/notification-schedule/add.md)/[modifying](../open-api/notification-schedule/modify.md)/[deleting](../open-api/notification-schedule/delete.md) schedules.
+4. Incident > Configuration Management: Supports retrieving notification policy lists, and supports [adding](../open-api/issue-notification-policy/add.md)/[modifying](../open-api/issue-notification-policy/modify.md)/[deleting](../open-api/issue-notification-policy/delete.md) notification policies; supports retrieving Issue discovery lists, and supports [adding](../open-api/issue-auto-discovery/add.md)/[modifying](../open-api/issue-auto-discovery/modify.md)/[enabling/disabling](../open-api/issue-auto-discovery/set-disable.md)/[deleting](../open-api/issue-auto-discovery/delete.md) Issue discovery configurations.
 
-### Deployment Plan Updates
+### Feature Updates {#feature0108}
 
-1. Customizable return quantity for charts: Time series charts, pie charts, table charts, toplists, tree maps, and China/World maps support customizable return data quantities, with no maximum limit, to meet different data presentation needs.
-2. Management backend > Datakit management: support for exporting Datakit inventory.
+#### Logs
 
-## August 21, 2024
+1. Log Index Optimization:
+    - When accessing built-in log views or the log context tab page, it will default to selecting the index containing the current log and the `default` index respectively. Both tabs support multi-selection of indices. Additionally, after enabling cross-workspace queries and selecting authorized workspaces in the menu, it supports directly querying index data from the corresponding workspace. This helps users view associated log data on a single page, optimizing log query interaction.
+    - When listing log indices, except for `default` being top-priority, the rest are listed alphabetically from A-Z.
+2. Log Viewer added Stacking [View Mode](../logs/manag-explorer.md#mode): Fields are consolidated into a single column and presented as rows within cells. Log information is displayed more compactly and clearly, facilitating quick browsing and analysis.
+3. Log Pipeline Optimization: Test samples for log pipelines now retrieve all log fields and must be entered in line protocol format. Manually entered logs must also follow this format.
 
-### Breaking Changes {#breakingchanges0821}
+#### Use Cases
 
-- OpenAPI / Global API: The data source for "Events" unresolved events has been changed from `UE` to `E`.
+1. [Table Chart](../scene/visual-chart/table-chart.md) Optimization:
+    - Multi-metric query sorting support: When using a single DQL for multi-metric queries, table charts now support sorting.
+    - Table Pagination Selection: Added pagination selection for users to choose appropriate page sizes based on data volume and viewing needs.
+2. Composite Charts: Supports adjusting the order of charts.
+3. Chart Optimization: Adjusted the function order in DQL query components, emphasizing Rollup function usage scenarios to help users better utilize Rollup functions for data aggregation and analysis.
 
-### New Features {#new0821}
+#### Management
 
-- Management: A new [Client Token](../management/client-token.md) management portal has been added, allowing users to replace the system's default-generated Token with a custom-created Token when using the public DataWay to access RUM applications.
+1. Events support configuring [Data Forwarding](../management/backup/index.md): Supports configuring data forwarding rules for event types, saving filtered event data to <<< custom_key.brand_name >>> object storage and forwarding to external storage, providing flexible event data management.
+2. Workspace added DataKit [Environment Variables](../management/env_variable.md): Workspaces support managing DataKit environment variables, allowing easy configuration and updates for remote synchronization of DataKit collection settings.
+3. Query [Audit Events](../management/audit-event.md) Optimization: Added multiple fields to record query information, including query time ranges in event content for better tracking and analysis of query behavior.
 
-![](img/overall-token.png)
+#### Pipeline
 
-### Continuous Optimization {#consistent0821}
+Optimized Auto-generated Pipeline: Changed the way hints appear, improving product experience.
 
-- Incidents:
-    - A new [Issue Discovery](../exception/config-manag.md#auto-issue) page has been added. With this feature, you can customize the specific rules for Issue discovery, manage and filter the exceptions detected by the monitor rules and related data. Treat a series of events as caused by a single reason, set filter conditions for these events, and then select aggregation dimensions to further refine the data. After refinement, the data will be aggregated according to the detection frequency you set. Finally, the system will automatically push this information to the specified channel based on the preset Issue title and description, ensuring that all relevant parties can receive and effectively handle these Issues in a timely manner.
-    - Configuration > Strategy: The strategy list now displays creation/update information.
+#### AI Assistant
 
-### Regular Updates {#usual0821}
+AI Assistant added [Chart Generation](../guance-ai/index.md#chart): Automatically analyzes user input text data using large models to generate appropriate charts, solving issues with manual chart creation and difficulty in chart selection.
 
-- Data Retention Policy:
-    - The original "Application Performance" item is split into "Application Performance-Trace" and "Application Performance-Profile", allowing users to configure the retention policy for Trace data and Profile data separately;
-    - The original "Data Forwarding" name is changed to "Data Forwarding-Guance".
+#### Monitoring
 
-- [Unrecovered Event Explorer](../events/event-explorer/unrecovered-events.md):
-    - The data source is changed to query event data, aggregated by `df_fault_id` as the unique identifier, and the latest data result is returned for display.
-    - Overall UI transformation of the page.
-- Application Performance Monitoring (APM) > Trace: [Service Map](../application-performance-monitoring/explorer/explorer-analysis.md#call) adds the ability to bind built-in views, and by clicking on the service card, you can quickly view the related user views associated with the service.
-- Management:
-    - New "Workspace Description" added;
-    - In edit mode, the interaction changes to open a new window;
-    - The workspace list now supports searching for and locating workspaces by name or description.
-- Logs > BPF Logs > Layer 7 BPF Network Logs: The UI of the network request topology diagram is optimized, highlighting the distinction between the server and client sides.
-- Synthetic Tests > HTTP Monitoring > Advanced Settings > Request Settings now include `Accept-Encoding: identity` by default.
+[Alert Policies](../monitoring/alert-setting.md#member): Supports appending names for purpose descriptions when configuring notification rules by member.
 
-### Deployment Plan Updates
+### Deployment Plan Updates {#deployment0108}
 
-- A new [Test Node Management](../deployment/task.md) portal has been added, supporting the creation of platform-level test nodes and unified management of all nodes through the node list. Test nodes created through this portal support configuring both Chinese and English node names, adapting to the display and reporting data results of domestic and foreign sites of Guance.
+1. Management Backend > Workspace Menu Optimization:
+    - Workspace list added primary storage engine and business filtering options for easier workspace selection;
+    - Optimized workspace list pagination return logic, staying on the current page when modifying/deleting workspaces or changing data reporting limits to enhance query experience.
+2. Deployment Plan added parameter: `alertPolicyFixedNotifyTypes`, supporting configuration of whether to display "Email" notification methods in alert policies [Configuration Reference](/deployment/application-configuration-guide/#studio-backend).
 
-![](img/task.png)
+### New Integrations {#inte0108}
 
-- Data Retention Policy:
+1. Added [AWS Gateway Classic ELB](../integrations/aws_elb.md);
+2. Added [Volcengine TOS Object Storage](../integrations/volcengine_tos.md);
+3. Modified AWS Classic collector name;
+4. Added [MinIO V3](../integrations/minio_v3.md) integration;
+5. Updated elasticsearch, solr, nacos, influxdb_v2, mongodb integrations (views, documents, monitors);
+6. Updated kubernetes monitoring views.
 
-    - Considering users' storage cost factors, they may need to customize the retention duration of this data. The deployment plan management backend now includes a new "Session Replay" configuration item.
-    - The original "Data Forwarding" name is changed to "Data Forwarding-Default Storage";
-    - The original "Application Performance" item is split into "Application Performance-Trace" and "Application Performance-Profile",
+### Bug Fixes {#bug0108}
 
-## August 7, 2024
-
-### New Features {#new0807}
-
-- Real User Monitoring (RUM): Added [Heatmap](../real-user-monitoring/heatmap.md). Visually present the interaction between visitors and the website, capturing click data and positions on page elements to understand user focus points.
-
-- Application Performance Monitoring (APM) > Traces: Added a [Setup Guide](../application-performance-monitoring/explorer/index.md) page.
-
-- Monitoring: Added a new detection type — [Interval Detection V2](../monitoring/monitor/interval-detection-v2.md), which uses the historical data of monitoring metrics to establish a confidence interval for predicting the normal fluctuation range.
-
-### Continuous Optimization {#consistent0807}
-
-- Incidents:
-    - Configuration > Strategy: Added an [Audit and Execution Log](../exception/config-manag.md#check-events) viewing portal. When receiving Issue notifications, if there are issues with notifications not being sent properly or doubts about the notification policy, you can check the current notification policy's operation audit events and execution log data for judgment.
-    - APM / RUM > [Issue Auto Discovery](../application-performance-monitoring/error.md#issue) supports adding filter conditions;
-    - For the deployment plan, added a [Unified Management of Incidents Levels](../deployment/setting.md#global-settings) portal;
-    - Schedule:
-        - On the schedule editing page, different notification targets will automatically generate colors;
-        - In schedule management: Added statistical counts for My Schedule and All Schedules.
-
-### Regular Updates {#usual0807}
-
-- Monitoring > [SLO](../monitoring/slo.md#slo):
-    - Added tag configuration, which ultimately affects the event data information generated;
-    - Configuration optimization: By setting the range of the 7-day achievement rate for Target and Minimum Target, determine the generation of warning or emergency events;
-    - Support sending alarm notifications through associated Alerting Policies.
-- Synthetic Tests:
-    - Added tag configuration for probe tasks;
-    - Optimized the [Test Module](../usability-monitoring/request-task/http.md#test) on the probe task configuration page;
-    - Added a [Quick Filter](../usability-monitoring/request-task/index.md#manag) module to the list;
-- Explorer: Support exporting CSV files in analysis mode.
-- Infrastructure > Containers: Added a process association page display.
-
-### Bug Fixes {#bugs0807}
-
-- Resolved the issue where the billing count for "Task Call" was not displayed;
-- Resolved the "Left * Match" issue during chart queries;
-- Resolved the issue where BPF network log data did not include container-related information;
-- Resolved the central Pipeline failure issue.
-
-### Breaking Changes {#breakingchanges0807}
-
-- OpenAPI:
-    - The SLO creation/modification interface adds `tags`, `alertPolicyUUIDs`, and deprecates the `alertOpt` parameter;
-    - The SLO detail and list interface return results, adding `tagInfo`, `alertPolicyInfos` fields, discarding the `alertOpt` field.
-
-## July 24, 2024
-
-### Guance Updates
-
-- Incidents:
-    - Added an [Analysis Dashboard](../exception/issue-view.md): Visually display different metrics data.
-    - Added [Schedule](../exception/calendar.md) management and [Strategy](../exception/config-manag.md#notify-strategy): Further allocate notifications based on the content scope of Issues.
-- Scenes:
-    - Charts: Added a [Time Offset](../scene/visual-chart/timeseries-chart.md#advanced-setting) setting. After enabling the time offset, when querying a relative time range, the actual query time range is shifted forward by 1 minute to prevent data retrieval gaps due to delays in data warehousing.
-    - Dashboards: Added a [Historical Snapshot](../scene/dashboard.md#historial-snapshot) entry.
-    - Snapshots: When saving snapshots, automatically capture the selected time range on the current page; when sharing snapshots, you can choose to allow explorers to change the time range.
-
-- Monitoring:
-    - Infrastructure Uptime Detection V2: Added [Additional Information](../monitoring/monitor/infrastructure-detection.md#config). After selecting fields, the system will perform additional queries, but they will not be used for triggering condition judgments.
-    - Notification Targets: Added an "Operation Permission" option configuration, controlled by a switch to manage the operations (edit, delete) of notification targets.
-
-## July 10, 2024
-
-### Guance Updates
-
-- Scenes:
-    - [View Variables](../scene/view-variable.md#add):
-        - Added a configuration item switch: Including `*` options.
-        - When hiding view variables, the list adds a hidden identifier.
-    - Dashboards: [Grouping](../scene/dashboard.md#group) components support color configuration.
-    - Charts: Alias functionality covers leaderboards, tree maps and Sankey diagrams.
-    - Dashboards/Explorers/Built-in Views: Added [Card Metadata](../scene/dashboard.md#metadata) information, optimizing editing configuration.
-- Monitoring:
-    - Notification Targets: Configure [Webhook Notification targets](../monitoring/notify-object.md#custom-webhook), supporting the addition of member information.
-    - Application Intelligent Detection: Added tracking of historical changes, filtering periodic abnormal data mutations; added the number of users affected by abnormal service associations.
-- Events > [Event List Explorer](../events/event-explorer/event-list.md): Added alert notification status identifiers to the display columns.
-- Logs:
-    - Indexes: When binding [SLS External Indexes](../logs/multi-index/index.md#sls), added access type selection, supporting custom public or internal network access;
-    - Log Explorers: [Cluster Analysis](../logs/explorer.md#cluster) mode supports exporting displayed column data and associated log page data.
-
-### Guance Deployment Plan Updates
-
-- Added a global [Function Menu](../deployment/menu.md), supporting custom console display menu scope, and synchronization to the workspace function menu bar.
-- [Templates](../deployment/integration.md): Optimized the upload logic of custom template management.
-
-## June 26, 2024
-
-### Guance Updates
-
-- [Pipelines](../pipeline/index.md): Support selecting the central Pipeline to execute scripts.
-- Billing: Added a [Central Pipeline Billing Item](../billing/billing-method/index.md#pipeline), tallying the data size of all raw logs processed by the central Pipeline.
-- Monitoring:
-    - Notification Targets: Added [Permission Control](../monitoring/notify-object.md#permission). After configuring operational permissions, only targets with granted permissions can edit or delete this notification target.
-    - Intelligent Monitoring > Log Intelligent Detection: Added tracking of historical changes, filtering periodic abnormal data mutations.
-- Logs:
-    - [Data Access](../logs/logdata-access.md#config): Added access permission configuration for logs indexes authorized for viewing.
-    - Log Explorers: Display column expansion, supporting [adding JSON object field content](../logs/explorer.md#json-content) to the first-level return display.
-    - [BPF Network Logs](../logs/bpf-log.md):
-        - Optimized connection display effects;
-        - Support direct jumping to the detail page;
-        - Support custom adding of display columns.
-- Scenes:
-    - Time Series Charts: Line charts and area charts added [Breakpoint Connection](../scene/visual-chart/timeseries-chart.md#breakpoint) settings, bar charts added a [Show Return Value] button.
-- [Synthetic Tests](../usability-monitoring/request-task/index.md#manag): Added column header sorting to the task list.
-- DataFlux Func: Support the integration of Guance incidents scripts with [DingTalk Applications](https://func.guance.com/doc/script-market-guance-issue-dingtalk-integration/).
-
-### Guance Deployment Plan Updates
-
-- Profile: Through configuration parameters, supports two types of storage: file storage and object storage.
-
-## June 13, 2024
-
-### Guance Updates
-
-- [BPF Network Logs](../logs/bpf-log.md): Enhanced BPF networking capabilities, strengthening L4/L7 network interconnectivity.
-- APM/RUM: Introduced the new feature [Issue Auto Discovery](../application-performance-monitoring/error.md#issue). Once this configuration is enabled, Guance will automatically create Issues for error data records that meet the specified rules.
-- Monitoring:
-    - Intelligent Monitoring: Added [Kubernetes Intelligent Detection](../monitoring/intelligent-monitoring/k8s.md): Automatically detect anomalies in Kubernetes through intelligent algorithms, with detection metrics including total number of Pods, Pod restarts, APIServer QPS, etc.
-    - Alert Strategies:
-        - Added new [Filtering](../monitoring/alert-setting.md#filter) capabilities. When configuring alert rules, this feature allows for more granular filtering conditions on top of the existing severity levels, ensuring that only events matching both the severity level and filter conditions are sent to the corresponding notification targets.
-        - Support for selecting external email addresses as notification targets.
-    - Monitors > Event Content: Support custom input of external email addresses.
-- Scenes:
-    - Topology Diagrams: Added new link configurations.
-    - Sankey Diagrams: Increased the number of supported node configurations from a maximum of 4 to 6.
-- Pipelines: Added display of filtering conditions in lists.
-- Logs > Indexes: Optimized list display.
-
-### Guance Deployment Plan Updates
-
-- Profile: File size has been changed from a fixed 5MB to support custom sizes. See [How to Configure](../deployment/application-configuration-guide.md#studio-front).
-
-## June 3, 2024
-
-### Guance Updates
-
-- Management > [Cross-Workspace Authorization](../management/data-authorization.md#site): Added a new Data Scope section in the addition page, supporting multi-select data types.
-- Logs > Log Explorer: Support [Cross-Workspace Index Queries](../logs/cross-workspace-index.md), enabling quick access to log data from other spaces, thereby breaking through the limitations of log data storage locations and significantly enhancing the efficiency of data analysis and fault localization.
-
-## May 29, 2024
-
-### Guance Updates
-
-- [DCA](../dca/index.md)
-    - Support private deployment, with direct access to the DCA console via the workspace page button.
-    - Support batch management capabilities.
-- Incidents:
-    - Webhook Reception Channel: Support new and modified notifications for Issue replies.
-    - Support selecting teams or adding external email addresses as Issue handlers.
-- Logs > [Contextual Logs](../logs/explorer.md#up-down): Modified query logic; support further query management of related data through the contextual log details page.
-- Scenes:
-    - View Variables: Group titles/chart titles support configuration to display `#{View Variable}`.
-    - Time Series Charts > Analysis Mode: Support adjusting the time interval.
-    - Dashboards/Custom Explorers: Display a search box when there are more than 20 tags; display colors before tag names.
-- Monitoring:
-    - Monitors/Intelligent Monitoring/Mute Management > Quick Filters: A search box appears when there are more than 20 values, supporting search and location.
-    - Monitors: For PromQL query detection, automatically list available template variables in event notifications.
-- Infrastructure > Networking: Network detail pages > Network analysis supports displaying statistics in two dimensions: `ip:port` and `ip`.
-- Application Performance Monitoring > Services > Create/Modify Service Inventory: Increased format validation when filling in repository links and documentation links.
-
-#### Breaking Changes
-
-- Management > Attribute Declaration: Custom attribute field values are adjusted to be stored as string types.
-
-### Guance Deployment Plan Updates
-
-- [Templates](../deployment/integration.md): Added an import template entry, with template scope including view templates, monitor templates, custom explorer templates, and Pipelines. Support deployment users to change custom templates to platform-level templates for use by other workspaces.
-- Users: Optimized batch operation interactions.
-
-## May 15, 2024
-
-### Guance Updates
-
-- Monitoring:
-    - Monitors > [Mutation Detection](../monitoring/monitor/mutation-detection.md) > Detection Metrics: Support for the "compared to the previous period" option, enabling final comparison of data within a fixed time frame.
-    - [Mute Management](../monitoring/silent-management.md): Added "Additional Information" feature, supporting the addition of explanatory notes for silent rules, thereby identifying the reasons or sources of silence, etc.
-    - Intelligent Monitoring > Host Intelligent Monitoring: Added two new detection dimensions: network traffic and disk IO.
-- Scenes > Dashboards:
-    - [View Variables](../scene/view-variable.md): Optimized editing page styles, supporting the definition of drop-down single-select and multi-select.
-    - Grouped Table Charts, Metric Analysis > Table Charts support multi-column query result display adaptation, such as
-    ```
-    L::RE(`.*`):(count(*),message,host) {index = 'default' and status = 'error'} BY source,service
-    ```
-- Explorers:
-    - Log Explorers > [Contextual Logs](../logs/explorer.md#up-down) support microsecond-level data query filtering, solving the issue of multiple data entries at the same moment (milliseconds), preventing accurate positioning and display of a specific log context.
-    - All explorers support selecting to [export](../getting-started/function-details/explorer-search.md#csv) data quantities as CSV files.
-    - Added explorer search query audit events, i.e., manually initiated query operations by users are recorded in audit event logs.
-- Services: Moved from the original path [Scenes] to "Application Performance Monitoring", optimizing the user experience.
-- Metric Generation: Support configuring multiple by groupings without quantity restrictions.
-- DQL Queries: Expression queries support specified value filling, supporting result filling for sub-queries and final value filling.
-- Real User Monitoring > Android: Optimized application configuration display.
-- Events: Added a new associated view jump entry on the detail page. In cases where there is no detection dimension data, you can jump to the explorer from the detail page for review.
-
-### Guance Deployment Plan Updates
-
-- Added a [DataKit Inventory Management](../deployment/setting.md#datakit) page.
-- When configuring single sign-on for deployment, support customizing login [display titles, descriptions and logos](../deployment/azure-ad-pass.md#config).
-- Users: Added extended attribute configuration.
-    - Support for local users to directly configure attributes on the edit page.
-    - Support for automatically appending third-party user attribute configurations to Guance via the userinfo interface during single sign-on.
-
-## April 24, 2024
-
-### Guance Updates
-
-- Management:
-    - Introduced [Cloud Account Management](../management/cloud-account-manag.md): Centralize all enterprise cloud service accounts for unified management, distinguished by the uniqueness of certain configurations under the accounts. By configuring integrated collectors, each cloud service under the account can be managed independently, achieving refined control over business data.
-    - Account Management: Adjusted the [Account Login Expiry Time](../management/index.md#login-hold-time).
-- Added a [Quick Search](../management/index.md#quick-entry) pop-up, allowing for quick viewing of recently visited pages within the current workspace and pages related to various features.
-- Infrastructure > Containers: Added two new object explorers: Statefulset and Persistent Volumes.
-- Incidents:
-    - Added Issue owner configuration, with Guance sending email notifications to the owner.
-    - Channels: Support [Upgrade Configuration](../exception/channel.md#upgrade). That is, if a new Issue remains unassigned for a specific number of minutes, an upgrade notification is sent to the corresponding notification target.
-- Monitoring:
-    - Monitors: Detection configuration: Support triggering event generation again after multiple consecutive trigger conditions are met.
-    - [Mute Management](../monitoring/silent-management.md):
-        - Optimized display of silent rule list pages: Support listing all silent rules in the current workspace, with quick filtering to display target rules.
-        - Event attribute matching supports inverse selection, with selection formats as follows: `attribute:value`, `attribute:*value*`, `‑attribute:value`, `‑attribute:*value*`, where different field combinations relate as AND, and multiple values for the same field relate as OR.
-- The meaning of the DQL `match` function has been changed to `exact match`. This change only applies to the new engine, used in both the explorer and monitor scenes.
-    - Explorer scenario example: `host:~cn_hangzhou`.
-    - Monitor scenario example:
-    ```
-    window("M::`cpu`:(avg(`load5s`)) { `host` = match('cn-hangzhou.172.16.*') } BY `host`", '1m')
-    ```
-- Scenes > Dashboards [Charts](../scene/visual-chart/index.md#download) can now be directly downloaded as PNG images, and table charts can also be exported as CSV files.
-- Logs > Index Binding: The Field Mapping has been changed to an optional field.
-- Integrated/Built-in Views: New tag management added to templates.
-- Service Map Cross-Workspace Node [Style Display Adjustment](../application-performance-monitoring/service-manag.md#servicemap).
-
-### Guance Deployment Plan Updates
-
-- Management > Basic Information > License Information: DataKit quantity limits support adjustment according to data statistics scope, changed to the number of hosts or DKs with a survival time >= 12 hours.
-- Support for configuring a blacklist, customizing the selection of imported Guance integrations, view templates, and monitor templates.
-
-### OpenAPI Updates
-
-- Pipelines [Add](../open-api/pipeline/add.md)/[Modify](../open-api/pipeline/modify.md): Added profiling type;
-- User Views [Add](../open-api/inner-dashboard/add.md)/[Modify](../open-api/inner-dashboard/modify.md): Support binding to dashboard configurations.
-
-## April 10, 2024
-
-### Guance Updates
-
-- Monitoring > Monitor > New: Added Data Gap and Information Generation configuration areas to better distinguish between abnormal data and data gaps.
-- Management: Added a System Notifications page, which displays abnormal status messages for all configurations in the current workspace under the current account.
-- Scenes:
-    - Chart Queries: Added Rollup Function, which is also applicable to Metric Analysis and Query Tools;
-    - Dashboards/User Views: Added Pin feature. Under the premise that the current workspace is authorized to view data from several other workspaces, it supports setting the query of other workspace data as the default option.
-    - System Views: Support cloning to create dashboards or user views;
-    - Custom Explorers: Optimized search mode; when not in edit mode, hovering over Data Range displays all filter conditions.
-- Explorers > [Quick Filters](../getting-started/function-details/explorer-search.md#quick-filter):
-    - Added Dimension Analysis button, which quickly switches to the explorer analysis mode upon clicking;
-    - Support directly adding the current field to the display column or removing it from the display column by clicking external buttons.
-- [Experience Plan](../plans/trail.md#upgrade-entry): Added an Upgrade Now button.
-- Infrastructure > Containers > Honeycomb Chart: Added two new metric filling methods: CPU Usage Rate (standardized) and MEM Usage Rate (standardized).
-
-### Guance Deployment Plan Updates
-
-- Workspace Management: Added Data Reporting Restrictions to help stakeholders save on resource usage costs.
-
-## March 27, 2024
-
-### Guance Updates
-
-- Monitoring:
-    - Alert Strategies: Each notification rule (including default and custom notifications) configuration adds Support for Upgrade Notification Conditions.
-    - Monitors > Event Content: Added Custom Advanced Configuration, supporting the addition of associated logs and error stacks;
-    - Host Intelligent Monitoring: Changed the current mutation display to a predictive method based on cycles for abnormal alerts, with trend charts showing current metrics and confidence interval boundaries, highlighting abnormalities exceeding the confidence interval in red.
-- Scenes > Charts: Added Topology Maps.
-- APM > Trace Detail Page > [Service Call Relationship](../application-performance-monitoring/explorer/explorer-analysis.md#call): Adjusted to service topology display, showing the number of calls between services.
-- Data Retention Policy: The data retention policy for Session Replay is linked with the RUM policy, meaning if RUM data is saved for 3 days, Session Replay data is also saved for 3 days.
-- Explorers:
-    - Event Explorer > Basic Properties: Added configuration for whether to display detection metrics, cached locally for global adaptation;
-    - APM > Error Tracking > Cluster Analysis > Detail Page: Support creating incidents Issues;
-    - RUM > Error > Cluster Analysis > Detail Page: Support creating incidents Issues;
-    - RUM > View > Detail Page:
-        - Performance: Added an All Entries option, listing all associated data under the current View;
-        - Fetch/XHR: Clicking on a data row supports opening the corresponding trace detail page or Resource detail page.
-    - Time Widget: When obtaining the "current time," it is accurate to milliseconds.
-- Management > [Tickets](../management/work-order-management.md):
-    - Added star ratings and reviews;
-    - Adjusted feedback tickets to automatically close if there is no customer feedback within 7 days;
-    - Support for exporting ticket lists;
-    - Tickets in Completed or Revoked status can be restarted;
-    - After account deactivation, tickets submitted under it that are still open will be automatically closed.
-- Optimized the overall process for cloud market access.
-
-### Guance Deployment Plan Updates
-
-- Data Retention Policy: Support configuration of data retention policies by workspace owners, including custom input of retention durations. Use cases include:
-    - Metric Management > Measurements;
-    - Logs > Indexes > New.
-- Users: Support inviting members via email account.
-
-
-
-## March 13, 2024
-
-### Guance Updates
-
-- Monitoring > Monitors: Monitor type [Composite Detection](../monitoring/monitor/composite-detection.md) was launched. It supported combining the results of multiple monitors into one through expressions, and finally alerting based on the combined results.
-- Service > Service Map: [Cross-workspace Servicemap query](../scene/service-manag.md#servicemap) was supported.
-
-### Deployment Plan Updates
-
-- Management > Basic Information: "Used DK Quantity" display was added;
-- Management > Users: The page [Group](../deployment/user.md#team) was added, based on group can configure associated workspace and role, users can get access to corresponding workspace through group.
-
-## March 6, 2024
-
-### Guance Updates
-
-- Monitoring
-    - Monitor > Detection Frequency: [Crontab Custom Input](../monitoring/monitor/detection-frequency.md) was enabled, meeting the need for detection only at specific times;
-    - Mutation Detection: "Last 1 Minute" and "Last 5 Minutes" detection intervals were added;
-    - Mute Management: When selecting a mute range, "Event attributes" was not required, and users could configure more granular matching rules as needed.
-- DataFlux Func: [External Functions](../dql/dql-out-func.md) were added. Allowed third-party users to fully utilize Function's local cache and local file management service interface to write functions, and execute data analysis queries within the workspace.
-- APM > [Traces](../application-performance-monitoring/explorer.md):
-    - Title area UI display was optimized;
-    - For flame graphs, waterfall charts, and Span lists with more than 10,000 Span results, users could view unshown Spans through Offset settings;
-    - Error Span filtering entry was added; support for entering the resource name or Span ID corresponding to Span for search matching was supported.
-- Scene
-    - Charts: [Sankey diagram](../scene/visual-chart/sankey.md) was launched;
-    - View Variables: Selected button was added, checked by default to select all current values, can be unchecked as needed.
-- Account Management: [Account Deletion](../management/index.md#cancel) entry was added.
-- Explorers:
-    - UI display was optimized;
-    - Regular match / reverse regular match mode were added in the filter function;
-    - Wildcard filter and search supported Left * match.
-- Events > Detail Page: "Alert Notification" tab page UI display was optimized.
-
-### Guance Deployment Plan Updates
-
-- [Login method selection](../deployment/setting.md#login-method) for unified management of login methods was added;
-- [Delete](../deployment/user.md#delete) operation for local accounts and single sign-on accounts was added.
-
-## January 31, 2024
-
-### Guance Update
-
-- Monitoring:
-    - [Intelligent Monitoring](../monitoring/intelligent-monitoring/index.md):
-        - The intelligent detection frequency of hosts, logs, and applications was adjusted to once every 10 minutes, and each detection calculation counted as 10 call costs;
-        - To improve the accuracy of the algorithm, logs and application intelligent detections used the method of data rollover. After an intelligent monitor was turned on, the corresponding measurement and metric data were generated. This adjustment generated additional timelines, the specific number was the number of detection dimensions (service, source) * detection metric number filtered by the current monitor configuration. Since there was no storage of the monitor's filter conditions, if the monitor filter condition configuration was modified, an equal amount of new timelines was generated, so there was a situation of duplicate timeline billing on the day of modifying the monitor filter condition configuration, and it returned to normal the next day.
-    - Alert Strategies:
-        - Added [custom notification time configuration](../monitoring/alert-setting.md#custom), refine alert notification configuration by cycle, time interval;
-        - Added new event option "Permanent" in Renotification.
-    - Monitors
-        - Alert Configuration: multiple alert strategies was supported; if multiple were configured, `df_monitor_name` and `df_monitor_id` were presented in multiple forms, separated by `;`;
-        - Related issues: Added "Synchronously create Issue" switch, when an exception event recovers, it synchronously recovers the incidents issue;
-        - Added [Clone Button](../monitoring/monitor/index.md#options) in Monitor List.
-    - Notification Targets: Added [Simple HTTP Notification Type](../monitoring/notify-object.md#http), directly receive alert notifications through the Webhook address;
-- Scenes:
-    - Charts: Added Currency option; Advanced Configuration > Same Period Comparison changed to `YoY`;
-    - Service Management > Resource Call: Added TOP / Bottom quantity selection in the ranking.
-- Explorers: Added "Time Column" switch in Display Column > Settings.
-- Billing:
-    - Added [New Workspace](../billing/cost-center/workspace-management.md#lock) Entry in Workspace Lock popup page;
-    - Optimized AWS Registration Process.
-
-### Guance Deployment Plan Updates
-
-- Supported [LDAP Single Sign-On](../deployment/ldap.md);
-- Workspace Management > Data Storage Strategy: Added Custom Option, with its range less than 1800 Days (5 Years); Among them, the metric added optional items 720 days, 1080 days and other storage durations;
-- Users: Supported one-click configuration assignment of workspace and role for user accounts;
-- Added Audit Event Viewing Entry, enabling to view all workspace related operation audits;
-- Added Management Background MFA Authentication.
-
-## January 11, 2024
-
-### Guance Updates
-
-- Logs:
-    - Added BPF Network Log Collection and Log Detail Page; JSON Format conversion was supported; Readable Display Mode was enabled in details page;
-    - You could bind "Related Network Log";
-    - Data Access: Batch Operation was added.
-- Regular Reports: Added optional sharing method "Public Sharing" or "Encrypted Sharing".
-- Dashboards:
-    - View Variable: Added "All Variable Values" parameter option was added;
-    - Time Series Chart: Added sorting logic (new engine only); support sorting returned results.
-- Generate Metrics: Supported Batch Operation; standard and above permissions members supported cloning.
-- Monitors:
-    - Notification Targets: adapt New DingTalk Robot; "secret" option was not required when creating, quickly associating DingTalk Robot.
-    - Optimized SLO deduction logic was optimized.
-- RUM: Public network Dataway supports IP conversion to geographic location information.
+1. Resolved unauthorized cross-space event data access issues;
+2. Resolved trace_id carrying issues when jumping from log association to trace viewer unable to query data;
+3. Resolved value filling issues in view expression queries;
+4. Resolved lack of operation audit records when changing alert policies in external event detection monitors;
+5. Resolved non-adjustable column widths in event display lists.

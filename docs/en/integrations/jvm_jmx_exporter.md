@@ -1,46 +1,46 @@
 ---
 title     : 'JMX Exporter'
-summary   : 'JVM performance metrics display: heap and non heap memory, threads, class load count, etc.'
+summary   : 'JVM performance Metrics display: heap and non-heap memory, threads, class loading count, etc.'
 __int_icon: 'icon/jvm'
 dashboard :
-  - desc  : 'JVM by JMX Exporter Monitoring View'
-    path  : 'dashboard/zh/jvm_jmx_exporter'
+  - desc  : 'JVM monitoring view by JMX Exporter'
+    path  : 'dashboard/en/jvm_jmx_exporter'
 monitor   :
-  - desc  : 'No'
+  - desc  : 'None'
     path  : '-'
 ---
 
 <!-- markdownlint-disable MD025 MD046-->
 # JVM (JMX Exporter)
 
-???+ info "Notice"
 
-    The current article mainly collects JVM related metric information through the JMX Exporter method.
+???+ info "Tip"
+
+    This article mainly describes how to collect JVM-related Metrics information using JMX Exporter.
 
 <!-- markdownlint-enable -->
 
 ## Configuration {#config}
 
-Description: Enable the `jvm collector` to collect `jvm` metric information through the `jvm collector`.
+Note: Enable the `JVM collector` to collect JVM Metrics information through it.
 
-### Application access to JMX Exporter
+### Application Integration with JMX Exporter
 
-
-The following are all examples of `jar` running mode.
+The following examples are based on the `jar` runtime method.
 
 - Download
 
-Choose the download version according to actual needs [https://github.com/prometheus/jmx_exporter/releases](https://github.com/prometheus/jmx_exporter/releases),Select version `0.18.0` here.
+Choose the appropriate version based on actual needs from [https://github.com/prometheus/jmx_exporter/releases](https://github.com/prometheus/jmx_exporter/releases). Here we select version 0.18.0.
 
-- Boot Configuration `javaagent`
+- Start configuration for `javaagent`
 
 ```shell
 java -javaagent:jmx_prometheus_javaagent-0.18.0.jar=8080:config.yaml -jar yourJar.jar
 ```
 
-### DataKit opens the `prom` collector
+### DataKit Enable `prom` Collector
 
-The directory where the collector is located is `datakit/conf.d/prom`. After entering the directory, copy `prom.conf.sample` and rename the new file to `jvm_prom.conf`, mainly configuring `urls`, `sources`, and `measurements_prefix`, other parameters can be adjusted as needed.
+The collector is located in the directory `datakit/conf.d/prom`. After entering the directory, copy `prom.conf.sample` and rename the new file to `jvm-prom.conf`. Main configurations include url, source, and measurement_prefix, while other parameters can be adjusted as needed.
 
 ```toml
 urls =["http://localhost:8080/metrics"]
@@ -50,7 +50,7 @@ measurement_prefix = "jvm_"
   server="server"  
 ```
 
-The above configuration will generate `jvm_` The metric set at the beginning.
+The above configuration will generate Mearsurements starting with `jvm_`.
 
 - Restart DataKit
 

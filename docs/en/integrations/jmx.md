@@ -1,12 +1,12 @@
 ---
 title     : 'JMX'
-summary   : 'JVM performance metrics display: heap and non heap memory, threads, class load count, etc.'
+summary   : 'Display JVM performance Metrics: heap and non-heap memory, threads, class loading counts, etc.'
 __int_icon: 'icon/jvm'
 dashboard :
-  - desc  : 'No'
+  - desc  : 'None available'
     path  : '-'
 monitor   :
-  - desc  : 'No'
+  - desc  : 'None available'
     path  : '-'
 ---
 
@@ -19,90 +19,90 @@ monitor   :
 <!-- markdownlint-disable MD046 -->
 ???+ info "JMX Definition"
 
-    The Java Virtual Machine (JVM) provides a complete framework for operation management and monitoring, known as JMX (Java Management Extensions). JMX is an abbreviation for Java Management Extensions and an extension framework for managing Java. JMX technology defines a complete set of architecture and design patterns to monitor and manage Java applications. The foundation of JMX is managed beans (commonly referred to as MBeans in the industry), which are various classes that are instantiated through dependency injection and represent resources in the JVM. Since MBeans represent resources within the JVM, we can use them to manage specific aspects of the application, or more commonly, to collect statistical data related to the use of these resources.
+    The Java Virtual Machine (JVM) provides a complete framework for operation management and monitoring, known as JMX (Java Management Extensions). JMX is the abbreviation of Java Management Extensions, an extension framework for managing Java applications. JMX technology defines a comprehensive set of architectures and design patterns to monitor and manage Java applications. The foundation of JMX is managed beans (MBeans), which are instantiated through dependency injection and represent resources within the JVM. Since MBeans represent resources in the JVM, they can be used to manage specific aspects of an application or, more commonly, to collect statistics related to the usage of these resources.
 
 <!-- markdownlint-enable -->
 
-The core of JMX is an MBean server, which can serve as a medium to connect MBeans, applications within the same JVM, and the external world. Any interaction with MBeans is completed through this server. Generally speaking, only Java code can directly access the JMX API, but there are some adapters that can convert the API to a standard protocol, such as Jolokia that can convert it to HTTP.
+The core of JMX is the MBean server, which acts as a mediator connecting MBeans, applications within the same JVM, and the external world. Any interaction with MBeans is done through this server. Typically, only Java code can directly access the JMX API, but some adapters can convert this API to standard protocols, such as Jolokia converting it to HTTP.
 
-JMX can achieve external export of the internal runtime data state of VMs. We encapsulate the runtime data into MBeans, manage it uniformly through JMX Server, and allow external programs to obtain data through RMI.
+JMX enables the export of runtime data status from within the VM to the outside by encapsulating runtime data into MBeans, which are then managed uniformly by the JMX Server, allowing external programs to retrieve data via RMI.
 
-In summary, JMX allows runtime data to be obtained by external programs through the RMI protocol. This provides a window for us to monitor and manipulate the internal data of the VM.
+In summary, JMX allows runtime data to be obtained by external programs through the RMI protocol, providing a window for monitoring and manipulating internal VM data.
 
-## Common methods for collecting JVM metrics
 
-1. [Statsd collect](jmx.md#statsd)
-2. [JMX Exporter collect](jmx.md#jmx-exporter)
-3. [Jolokia collect](jmx.md#jolokia)
-4. [Micrometer collect](jmx.md#micrometer)
-5. APM Agent: SkyWalking、OpenTelemetry etc.
+## Common JVM Metrics Collection Methods
+
+1. [StatsD Collection](jmx.md#statsd)
+2. [JMX Exporter Collection](jmx.md#jmx-exporter)
+3. [Jolokia Collection](jmx.md#jolokia)
+4. [Micrometer Collection](jmx.md#micrometer)
+5. APM Agents: SkyWalking, OpenTelemetry, etc.
 
 ![jvm_collector_1](./imgs/jvm_collector_1.png)
 
-### StatsD collect
+### StatsD Collection
 
-StatsD is actually a daemon that listens to UDP (default) or TCP, collects data sent by Statsd clients based on a simple protocol, aggregates it, and periodically pushes it to the backend, such as Graphite and Influxdb, before displaying it through the observability platform.
+StatsD is essentially a daemon that listens on UDP (default) or TCP, collecting data sent by StatsD clients according to a simple protocol, aggregating it, and periodically pushing it to backends like Graphite and InfluxDB, which can then be displayed through an observability platform.
 
-Nowadays, it usually refers to the StatsD system, which includes three parts: client, server, and backend. The client is embedded in the application code and reports the corresponding metrics to the StatsD server.
+Nowadays, StatsD typically refers to the entire StatsD system, including the client, server, and backend. The client is embedded in the application code, reporting the corresponding metrics to the StatsD server.
 
-DataKit can serve as a StatsD server to receive data sent by clients.
+DataKit can act as a StatsD server to receive data sent by clients.
 
 ![jvm_statsd](./imgs/jvm_statsd_1.png)
 
 
-[StatsD collect](jvm_statsd.md)
+[StatsD Integration](jvm_statsd.md)
 
-### JMX Exporter collect
+### JMX Exporter Collection
 
-The JMX Exporter utilizes Java's JMX mechanism to read some monitoring data from the JVM runtime, and then converts it into the Metrics format recognized by Prometheus, so that Prometheus can monitor and collect it.
+JMX Exporter uses Java's JMX mechanism to read monitoring data from the JVM runtime and converts it into Prometheus-compatible Metrics format for collection by Prometheus.
 
 <!-- markdownlint-disable MD046 -->
 ???+ info "JMX Exporter"
 
-    The JMX Exporter runs as a Java agent, exposing local JVM metrics through the HTTP port. It can also run as an independent HTTP service and obtain remote JMX targets, but this has many drawbacks, such as difficulty in configuration and inability to expose process metrics (such as memory and CPU usage). Therefore, it is strongly recommended to run JMX Exporter as a Java Agent.
-
+    JMX Exporter runs as a Java Agent, exposing local JVM metrics via an HTTP port. It can also run as a standalone HTTP service and fetch remote JMX targets, but this approach has many drawbacks, such as difficulty in configuration and inability to expose process metrics (e.g., memory and CPU usage). Therefore, it is strongly recommended to run JMX Exporter as a Java Agent.
 <!-- markdownlint-enable -->
 
-[JMX Exporter collect](jvm_jmx_exporter.md)
+[JMX Exporter Collection](jvm_jmx_exporter.md)
 
-### Jolokia collect
+### Jolokia Collection
 
-Jolokia, as the most mainstream JMX monitoring component currently, is adopted by the Spring community (SpringBoot, MVC, cloud) and mainstream middleware services as JMX monitoring. Jolokia is untyped data and uses JSON, a lightweight serialization scheme, to replace the RMI scheme.
+Jolokia is currently one of the most popular JMX monitoring components, adopted by the Spring community (SpringBoot, MVC, cloud) and mainstream middleware services. Jolokia uses JSON, a lightweight serialization scheme, instead of RMI.
 
-Jolokia is fully compatible and supports JMX components. It can be embedded as an 'agent' in any JAVA program, especially in web applications. It transforms complex and difficult to understand MBean Filter query statements into an HTTP request paradigm that is easier to implement and operate. Not only does Jolokia shield the development difficulties of RMI, but it also achieves transparency in external monitoring components and is easier to test and use.
+Jolokia fully supports JMX components and can be embedded into any JAVA program, especially web applications. It converts complex and difficult-to-understand MBean filter queries into easier-to-implement and operate HTTP request paradigms, not only shielding the complexity of RMI development but also achieving transparency for external monitoring components, making it easier to test and use.
 
 <!-- markdownlint-disable MD046 -->
 ???+ info "Jolokia"
 
-    Jolokia is used to solve the problems encountered in JMX data acquisition, such as RMI protocol complexity, inconvenient MBean queries, database serialization, and hosting of MBeanServer. We only need to use HTTP requests to directly access the same port as the WEB service to obtain JMX data.
+    Jolokia solves issues encountered when obtaining JMX data, such as the complexity of the RMI protocol, inconvenience of MBean queries, database serialization, and MBeanServer management. By using HTTP requests, you can directly access JMX data on the same port as the web service.
 
 <!-- markdownlint-enable -->
 
 Jolokia provides two ways to obtain JMX data.
 
-> Load with application startup through the 'javaagent' method
+> Through the `javaagent` method, loaded when the application starts.
 
 ![jvm_jolokia_1](./imgs/jvm_jolokia_1.png)
 
-> Run the agent independently through an agent
+> Through a proxy method, running the Agent independently.
 
 ![jvm_jolokia_2](./imgs/jvm_jolokia_2.png)
 
-[Jolokia JVM collect](jvm.md#jvm-jolokia)
 
-### Micrometer collect
+[Jolokia JVM Collection](jvm.md#jvm-jolokia)
 
-The above solutions do not support defining business metric exposure. Business metric definition needs to be encoded and defined before it can be exposed, that is, it needs to be completed through SDK.
+### Micrometer Collection
 
-[JVM Micrometer collect](jvm_micrometer.md)
+None of the above methods support exposing business-defined metrics without coding definitions. Business metrics need to be defined through SDKs.
+
+[JVM Micrometer Collection](jvm_micrometer.md)
 
 
-### APM Agent
+### APM Vendor Integration
 
-**The APM Agent** is based on APM and introduces Metric as an observable part. Taking SkyWalking as an example, metric information is exposed through docking with JMX.
+**APM Vendors** use APM as the foundation, introducing Metrics as part of observability. For example, SkyWalking integrates with JMX to expose Metric information.
 
-<!-- TODO: page 404
-[SkyWalking collects JVM observable best practices](../best-practices/monitoring/skywalking-jvm.md)
--->
+[SkyWalking JVM Observability Best Practices](../best-practices/monitoring/skywalking-jvm.md)
 
-[OpenTelemetry metrics collect](opentelemetry.md#opentelemetry_1)
+
+[OpenTelemetry Metrics Collection](opentelemetry.md#opentelemetry_1)

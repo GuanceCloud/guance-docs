@@ -1,51 +1,66 @@
-# Build a Custom Log Explorer
+# Quick Setup of Custom Explorer
 ---
 
-Log explorer is an important tool for log observation, supporting us to quickly locate the problem by searching and filtering. Based on the original log observation explorer, Guance supports creating a custom log explorer at the scene.
+The Explorer, as an important tool for observability, supports us in quickly locating issues through search, filtering, and other methods. <<< custom_key.brand_name >>>, based on the existing Explorer, **supports creating custom Explorers within scenes**.
 
-The custom explorer applies a new unified layout, responsive configuration mode and more scientific data association configuration. The following will *take the Redis log custom explorer as an example*, in which you can experience the following operations:
+Custom Explorers adopt a brand-new unified layout, responsive configuration mode, and more scientific data association settings. You can experience the following features in a custom Explorer:
 
-- Multiple custom chart display settings
-- Customizable shortcut filter fields
-- Customize the list to display columns by default
-- Bind the inner dashboard for viewing associations
+- Multiple custom chart display settings;
+- Custom quick filter fields;
+- Custom default columns for list display;
+- Binding with associated built-in views.
 
-## Start Creating
+## Getting Started
 
-### Create a new Redis log explorer
+1. Navigate to the **Scene > Explorer** page, click **Create**, and enter the creation page.
 
-Go to **Scene > Explorer** page, click **New Explorer** to create a new custom explorer. As shown in the following figure.
+**Note**: If you set indexes under **Logs > Index**, you can choose different log contents corresponding to various indexes in the custom Explorer.
 
-Note: If after setting the index in **Log > Index**, it supports to select different indexes corresponding to the log content in the custom explorer. For more details, please refer to the document [log index](../../logs/multi-index/index.md).
+<img src="../../img/1111.png" width="60%" >
 
-![](../img/1111.gif)
+> For more details, refer to [Log Index](../../logs/multi-index/index.md).
 
-### Configure Redis statistics charts
-In edit mode, you can add up to 3 statistical charts. As shown in the figure below.
+2. Configure charts:
+
+In edit mode, you can add up to 3 statistical charts.
 
 ![](../img/2222.gif)
 
-### Configure shortcut filter fields
-Click the **Quick Filter** edit button to add fields and aliases. As shown in the figure below.
+3. Configure quick filter fields:
+
+Click the **Quick Filter** edit button to add fields and aliases.
 
 ![](../img/3333.gif)
 
-### Configure list default display fields
-Click the **List** Edit button to edit and update the default display fields and aliases. As shown in the figure below.
+4. Configure data list display fields:
+
+Click the **List** edit button to update the default display fields and aliases.
 
 ![](../img/4444.gif)
 
-### Bind inner dashboard display
-Go to **Administration > Inner dashboards > System Views**, search for "redis", and edit **Redis Monitor View** to add a binding relationship. As shown below.
+5. After creation, view your Explorer from the Explorer list.
 
-![](../img/5555.gif)
+In non-edit mode, hover over the **Data Range** to view all filter conditions.
 
-### View Redis log explorer
+<img src="../../img/range.png" width="60%" >
 
-![](../img/6666.gif)
+## Further Reading
 
-## More Reading
+<font size=3>
 
-- [Scene > Explorer help documentation](index.md)
-- [Bind inner dashboard](../../scene/built-in-view/bind-view.md)
+<div class="grid cards" markdown>
 
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Customize Your Viewing Needs with Custom Log Explorer</font>](./index.md)
+
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; How to Bind Built-in Views</font>](../built-in-view/bind-view.md)
+
+
+</div>
+
+
+</font>

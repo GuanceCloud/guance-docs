@@ -1,14 +1,14 @@
 ---
-title     : 'Log Collector'
-summary   : 'Collect log data on the host'
+title     : 'Log Collection'
+summary   : 'Collect log data from hosts'
 tags:
-  - 'LOG'
+  - 'Logs'
 __int_icon      : 'icon/logging'
 dashboard :
-  - desc  : 'Log'
+  - desc  : 'Logs'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -16,86 +16,84 @@ monitor   :
 
 ---
 
-This document focuses on local disk log collection and Socket log collection:
+This document primarily introduces local disk log collection and Socket log collection:
 
-- Disk log collection: Collect data at the end of the file (similar to command line `tail -f`）
-- Socket port collection: Send log to DataKit via TCP/UDP
+- Disk Log Collection: Collects data from the end of files (similar to the command line `tail -f`)
+- Socket Port Collection: Sends logs to DataKit via TCP/UDP methods
 
 ## Configuration {#config}
 
-### Collector Configuration {#input-config}
-
 <!-- markdownlint-disable MD046 -->
-=== "Host deployment"
+=== "Host Deployment"
 
-    Go to the `conf.d/log` directory under the DataKit installation directory, copy `logging.conf.sample` and name it `logging.conf`. Examples are as follows:
+    Enter the `conf.d/log` directory under the DataKit installation directory, copy `logging.conf.sample` and rename it to `logging.conf`. An example is as follows:
     
     ``` toml
     [[inputs.logging]]
-      # Log file list, you can specify absolute path, support batch specification using glob rules
-      # It is recommended to use the absolute path and specify the file type suffix
-      # Please reduce the scope and do not capture to zip file or binary file
+      # List of log files; absolute paths can be specified, supporting glob rules for batch designation
+      # It is recommended to use absolute paths with file extensions specified
+      # Try to narrow the scope to avoid collecting compressed package files or binary files
       logfiles = [
-        "/var/log/*.log",            # All files of the log
-        "/var/log/*.txt",            # All files of the txt
-        "/var/log/sys*",             # All files prefixed with sys under the file path
-        "/var/log/syslog",           # Unix format file path
-        '''C:\\path\\log\\*.txt''',  # Windows-style file path, where the path separator is a double backslash \\, and there are three single quotes on both sides.
+        "/var/log/*.log",                          # All log files in the file path
+        "/var/log/*.txt",                          # All txt files in the file path
+        "/var/log/sys*",                           # All files with the sys prefix in the file path
+        "/var/log/syslog",                         # Unix format file path
+        '''C:\\path\\space 空格中文路径\\*.txt''', # Windows style file path, path separator is double backslash \\, and three single quotes on each side
       ]
     
-      ## socket currently supports two protocols: tcp/udp. It is recommended to open the intranet port to prevent potential safety hazards
-      ## socket and log can only be selected at present, and can not be collected by both file and socket
+      ## Sockets currently support two protocols: tcp/udp. It is recommended to enable internal network ports to prevent security risks
+      ## Sockets and logs can only choose one; file-based collection and socket-based collection cannot be used simultaneously
       socket = [
        "tcp://0.0.0.0:9540"
        "udp://0.0.0.0:9541"
       ]
     
-      # File path filtering, using glob rules, meet any one of the filtering conditions will not be collected for the file
+      # File path filtering using glob rules; files matching any filter condition will not be collected
       ignore = [""]
       
-      # Data source, if empty, 'default' is used by default
+      # Data source; if empty, defaults to 'default'
       source = ""
       
-      # Add tag. If it is empty, $source is used by default
+      # Add tag, if empty, defaults to $source
       service = ""
       
-      # if pipeline script path is empty, then $source.p will be used; and if $source.p does not exist, then pipeline will be used
+      # Pipeline script path; if empty, uses $source.p, if $source.p does not exist, no pipeline is used
       pipeline = ""
       
-      # Filter corresponding status:
+      # Filter corresponding status
       #   `emerg`,`alert`,`critical`,`error`,`warning`,`info`,`debug`,`OK`
       ignore_status = []
       
-      # Select the code, if there is a misunderstanding in the code, the data cannot be viewed. Default to null:
+      # Select encoding; incorrect encoding can make data unreadable. Default is empty
       #    `utf-8`, `utf-16le`, `utf-16le`, `gbk`, `gb18030` or ""
       character_encoding = ""
       
-      ## Set regular expressions, such as ^\d{4}-\d{2}-\d{2} line headers to match the YYYY-MM-DD time format
-      ## Data that matches this regular match will be considered valid, otherwise it will be cumulatively appended to the end of the last valid data
-      ## Use three single quotation marks '''this-regexp''' to avoid escaping
+      ## Set regular expression, e.g., ^\d{4}-\d{2}-\d{2} matches lines starting with YYYY-MM-DD time format
+      ## Data matching this regex will be considered valid; otherwise, it will be appended to the end of the previous valid data
+      ## Use three single quotes '''this-regexp''' to avoid escaping
       ## Regular expression link: https://golang.org/pkg/regexp/syntax/#hdr-Syntax
       # multiline_match = '''^\S'''
-    
-      ## Whether to turn on automatic multiline mode, it will match the applicable multiline rule in the pattern list
+
+      ## Whether to enable automatic multiline mode; when enabled, it matches applicable multiline rules in the patterns list
       auto_multiline_detection = true
-      ## Configure the automatic multiline patterns list, which is an array of multiline rules, i.e. multiple multiline_matches. If it is empty, use the default rule. See the document for details
+      ## Configure additional patterns for automatic multiline detection, content is an array of multiline rules, i.e., multiple multiline_match entries; if empty, default rules are used, see documentation
       auto_multiline_extra_patterns = []
 
-      ## Removes ANSI escape codes from text strings.
+      ## Whether to remove ANSI escape codes, such as text colors in standard output
       remove_ansi_escape_codes = false
 
-      ## The maximum number of open files allowed, default is 500.
-      ## This is a global configuration, and if there are multiple values, the maximum value will be used.
+      ## Limit the maximum number of open files, default is 500
+      ## This is a global configuration; if multiple collectors configure this item, the highest value will be used
       # max_open_files = 500
 
-      ## Ignore inactive files. For example, files that were last modified 20 minutes ago and more than 10m ago will be ignored
-      ## Time unit supports "ms", "s", "m", "h"
+      ## Ignore inactive files, e.g., if the file was last modified more than 20 minutes ago and has been inactive for over 10m, it will be ignored
+      ## Time units supported: "ms", "s", "m", "h"
       ignore_dead_log = "1h"
 
-      ## Read file from beginning.
+      ## Whether to start reading from the beginning of the file
       from_beginning = false
     
-      ## Custom tags
+      # Custom tags
       [inputs.logging.tags]
       # some_tag = "some_value"
       # more_tag = "some_other_value"
@@ -104,51 +102,51 @@ This document focuses on local disk log collection and Socket log collection:
 
 === "Kubernetes/Docker/Containerd"
 
-    In Kubernetes, once the container collector (container.md) is started, the stdout/stderr logs of each container (including the container under Pod) will be crawled by default. The container logs are mainly configured in the following ways:
-    
-    - [Adjust container log collection via Annotation/Label](container.md#logging-with-annotation-or-label)
+    In Kubernetes, once the [container collector](container.md) starts, it will default to capturing stdout/stderr logs from various containers (including containers within Pods). There are several configuration methods for container logs:
+
+    - [Adjust container log collection through Annotation/Label](container.md#logging-with-annotation-or-label)
     - [Configure log collection based on container image](container.md#logging-with-image-config)
-    - [Collect Pod internal logs in Sidecar form](logfwd.md)
+    - [Collect Pod internal logs via Sidecar](logfwd.md)
 
-???+ Note "Notes on `ignore_dead_log`"
+???+ Note "Explanation about `ignore_dead_log`"
 
-    If the file is already being collected, but no new log is written within 1 hour, DataKit will close the collection of the file. During this period (1h), the file **cannot** be physically deleted (for example, after `rm`, the file is only marked for deletion, and the file will not be actually deleted until DataKit closes it).
+    If a file is being collected but no new logs have been written within 1h, DataKit will stop collecting that file. During this period (1h), the file **cannot** be physically deleted (e.g., using `rm`). The file is only marked for deletion, and DataKit will delete it after closing.
 <!-- markdownlint-enable -->
 
-### socket Collection Log {#socket}
+### Socket Log Collection {#socket}
 
-Comment out `logfiles` in conf and configure `sockets`. Take log4j2 as an example:
+Comment out `logfiles` in the conf and configure `sockets`. For example, with log4j2:
 
 ``` xml
- <!-- The socket configuration log is transmitted to the local port 9540, the protocol defaults to tcp -->
+ <!-- Configure log transmission to port 9540 on localhost, protocol defaults to tcp -->
  <Socket name="name1" host="localHost" port="9540" charset="utf8">
-     <!-- Output format Sequence layout-->
+     <!-- Output format sequence layout-->
      <PatternLayout pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
 
-     <!--Note: Do not enable serialization for transmission to the socket collector. Currently, DataKit cannot deserialize. Please use plain text for transmission-->
+     <!-- Note: Do not enable serialized transmission to the socket collector; currently, DataKit cannot deserialize. Use plain text format instead -->
      <!-- <SerializedLayout/>-->
  </Socket>
 ```
 
-More: For configuration and code examples of Java Go Python mainstream logging components, see: [socket client configuration](logging_socket.md)
+For more configurations and code examples of mainstream logging components in Java, Go, Python, please refer to [Socket client configuration](logging_socket.md).
 
 ### Multiline Log Collection {#multiline}
 
-It can be judged whether a line of logs is a new log by identifying the characteristics of the first line of multi-line logs. If this characteristic is not met, we consider that the current row log is only an append to the previous multi-row log.
+By identifying the first line feature of multiline logs, we can determine if a line of log is a new entry. If it does not match this feature, it is considered an appendage to the previous multiline log.
 
-For example, logs are written in the top grid in general, but some log texts are not written in the top grid, such as the call stack log when the program crashes. Then, it is a multi-line log for this log text.
+For instance, logs are usually written at the beginning of the line, but some logs, like stack traces during program crashes, are not. These are multiline logs.
 
-In DataKit, we identify multi-line log characteristics through regular expressions. The log line on regular matching is the beginning of a new log, and all subsequent unmatched log lines are considered as appends to this new log until another new log matching regular is encountered.
+In DataKit, we use regular expressions to identify multiline log features. Lines matching the regex are considered the start of a new log entry. Subsequent lines that do not match the regex are treated as appendages until another line matches the regex.
 
 In `logging.conf`, modify the following configuration:
 
 ```toml
-multiline_match = '''Fill in the specific regular expression here''' # Note that it is recommended to add three "English single quotation marks" to the regular sides here
+multiline_match = ''' Here specify the exact regular expression ''' # Note: The regex should be enclosed by three single quotes on each side
 ```
 
-Regular expression style used in log collector [reference](https://golang.org/pkg/regexp/syntax/#hdr-Syntax){:target="_blank"}
+Refer to the [regular expression style](https://golang.org/pkg/regexp/syntax/#hdr-Syntax){:target="_blank"}
 
-Assume that the original data is:
+Assuming the original data is:
 
 ```not-set
 2020-10-23 06:41:56,688 INFO demo.py 1.0
@@ -160,9 +158,9 @@ ZeroDivisionError: division by zero
 2020-10-23 06:41:56,688 INFO demo.py 5.0
 ```
 
-`multiline_match` is configured to `^\\d{4}-\\d{2}-\\d{2}.*` (meaning to match a line header of the form `2020-10-23`)
+When `multiline_match` is configured as `^\\d{4}-\\d{2}-\\d{2}.*` (i.e., matching lines starting with `2020-10-23`):
 
-The cut out three line protocol points are as follows (line numbers are 1/2/8 respectively). You can see that the `Traceback ...` paragraph (lines 3-6) does not form a single log, but is appended to the `message` field of the previous log (line 2).
+The three parsed log entries (line numbers are 1/2/8) are as follows. Notice that the `Traceback ...` section (lines 3 to 6) does not form a separate log entry but is appended to the previous log entry (line 2) in the `message` field.
 
 ```not-set
 testing,filename=/tmp/094318188 message="2020-10-23 06:41:56,688 INFO demo.py 1.0" 1611746438938808642
@@ -177,16 +175,16 @@ testing,filename=/tmp/094318188 message="2020-10-23 06:41:56,688 INFO demo.py 5.
 
 #### Automatic Multiline Mode {#auto-multiline}
 
-When this function is turned on, each row of log data will be matched in the multi-row list. If the match is successful, the weight of the current multi-line rule is added by one, so that it can be matched more quickly, and then the matching cycle is exited; If there is no match at the end of the whole list, the match is considered to have failed.
+Enabling this feature causes each line of log data to match against the multiline list. If a match is successful, the current multiline rule's weight is incremented for faster future matching, then the loop exits; if no match is found after checking the entire list, it is considered a failed match.
 
-Matching success and failure, subsequent operation and normal multi-line log collection are the same: if matching is successful, the existing multi-line data will be sent out and this data will be filled in; If the match fails, it will be appended to the end of the existing data.
+Whether a match succeeds or fails, subsequent operations are similar to normal multiline log collection: a successful match sends existing multiline data and adds the current line; a failed match appends the line to the end of existing data.
 
-Because there are multiple multi-row configurations for the log, their priorities are as follows:
+Because there can be multiple multiline configurations, their priorities are as follows:
 
-1. `multiline_match` is not empty, only the current rule is used
-2. Use source to `multiline_match` mapping configuration (`logging_source_multiline_map` exists only in the container log), using only this rule if the corresponding multiline rule can be found using source
-3. Turn on `auto_multiline_detection`, which matches in these multiline rules if `auto_multiline_extra_patterns` is not empty
-4. Turn on `auto_multiline_detection` and, if `auto_multiline_extra_patterns` is empty, use the default automatic multiline match rule list, namely:
+1. If `multiline_match` is not empty, only the current rule is used
+1. Use the mapping configuration from `source` to `multiline_match` (only exists in container logs with `logging_source_multiline_map`); if a multiline rule can be found using `source`, only this rule is used
+1. Enable `auto_multiline_detection`; if `auto_multiline_extra_patterns` is not empty, it matches these multiline rules
+1. Enable `auto_multiline_detection`; if `auto_multiline_extra_patterns` is empty, it uses the default automatic multiline matching rule list, which includes:
 
 ```not-set
 // time.RFC3339, "2006-01-02T15:04:05Z07:00"
@@ -225,43 +223,41 @@ Because there are multiple multi-row configurations for the log, their prioritie
 // Default java logging SimpleFormatter date format
 `^[A-Za-z_]+ \d+, \d+ \d+:\d+:\d+ (AM|PM)`,
 
-// 2021-01-31 - with stricter matching around the months/days
+// 2021-01-31 - stricter matching around the months/days
 `^\d{4}-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])`,
 ```
 
-<!-- markdownlint-disable MD013 -->
-#### Restrictions on Processing Very Long Multi-line Logs {#too-long-logs}
-<!-- markdownlint-enable -->
+#### Handling Extremely Long Multiline Logs {#too-long-logs}
 
-At present, a single multi-line log of no more than 32MiB can be processed at most. If the actual multi-line log exceeds 32MiB, DataKit will recognize it as multiple. For example, let's assume that there are several lines of logs as follows, and we want to identify them as a single log:
+Currently, DataKit can handle multiline logs up to 32MiB. If the actual multiline log exceeds 32MiB, DataKit will split it into multiple logs. For example, consider the following multiline log that we want to treat as a single log:
 
 ```log
 2020-10-23 06:54:20,164 ERROR /usr/local/lib/python3.6/dist-packages/flask/app.py Exception on /0 [GET]
 Traceback (most recent call last):
   File "/usr/local/lib/python3.6/dist-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
-      ...                                 <---- Omitting 32MiB here - 800 bytes, plus the 4 lines above, is just over 32MiB
+      ...                                 <---- Omitting 32MiB - 800 bytes, plus the above 4 lines, just exceeding 32MiB
         File "/usr/local/lib/python3.6/dist-packages/flask/app.py", line 2447, in wsgi_app
           response = self.full_dispatch_request()
              ZeroDivisionError: division by zero
-2020-10-23 06:41:56,688 INFO demo.py 5.0  <---- A new multi-line log
+2020-10-23 06:41:56,688 INFO demo.py 5.0  <---- A brand new multiline log
 Traceback (most recent call last):
  ...
 ```
 
-Here, because of the super-long multi-line log, the first log exceeds 32MiB, DataKit ends this multi-line early, and finally gets three logs:
+Here, due to extremely long multiline logs, the first log exceeds 32MiB, causing DataKit to prematurely end the multiline. Ultimately, three logs are obtained:
 
-Number 1: 32MiB of the head
+First log: The first 32MiB
 
 ```log
 2020-10-23 06:54:20,164 ERROR /usr/local/lib/python3.6/dist-packages/flask/app.py Exception on /0 [GET]
 Traceback (most recent call last):
   File "/usr/local/lib/python3.6/dist-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
-      ...                                 <---- Omitting 32MiB here - 800 bytes, plus the 4 lines above, is just over 32MiB
+      ...                                 <---- Omitting 32MiB - 800 bytes, plus the above 4 lines, just exceeding 32MiB
 ```
 
-Number 2: Remove the 32MiB in the header, and the rest will become a log independently
+Second log: Remaining part after the first 32MiB becomes a separate log
 
 ```log
         File "/usr/local/lib/python3.6/dist-packages/flask/app.py", line 2447, in wsgi_app
@@ -269,41 +265,41 @@ Number 2: Remove the 32MiB in the header, and the rest will become a log indepen
              ZeroDivisionError: division by zero
 ```
 
-Number 3: The following is a brand-new log:
+Third log: A new log entry below:
 
 ```log
-2020-10-23 06:41:56,688 INFO demo.py 5.0  <---- A new multi-line log
+2020-10-23 06:41:56,688 INFO demo.py 5.0  <---- A brand new multiline log
 Traceback (most recent call last):
  ...
 ```
 
-#### Maximum Log Single Line Length {#max-log}
+#### Maximum Length of Single Log Line {#max-log}
 
-The maximum length of a single line (including after `multiline_match`) is 32MB, whether read from a file or from a socket, and the excess is truncated and discarded.
+Regardless of whether logs are read from files or sockets, the maximum length of a single line (including those processed by `multiline_match`) is 32MB. Excess parts will be truncated and discarded.
 
-### Pipeline Configuring and Using {#pipeline}
+### Pipeline Configuration and Usage {#pipeline}
 
-[Pipeline](../pipeline/index.md) is used primarily to cut unstructured text data, or to extract parts of information from structured text, such as JSON.
+[Pipeline](../pipeline/use-pipeline/index.md) is mainly used to parse unstructured text data or extract partial information from structured text (such as JSON).
 
-For log data, there are two main fields to extract:
+For log data, the main extracted fields are:
 
-- `time`: When the log is generated, if the `time` field is not extracted or parsing this field fails, the current system time is used by default
-- `status`: The level of the log, with `stauts` set to `unknown` by default if the `status` field is not extracted
+- `time`: The generation time of the log. If the `time` field is not extracted or parsing fails, the system's current time is used by default.
+- `status`: The log level. If the `status` field is not extracted, it defaults to `unknown`.
 
 #### Available Log Levels {#status}
 
-Valid `status` field values are as follows (case-insensitive):
+Valid `status` field values (case-insensitive) are as follows:
 
-| Log Availability Level          | Abbreviation    | Studio Display value |
-| ------------          | :----   | ----          |
-| `alert`               | `a`     | `alert`       |
-| `critical`            | `c`     | `critical`    |
-| `error`               | `e`     | `error`       |
-| `warning`             | `w`     | `warning`     |
-| `notice`              | `n`     | `notice`      |
-| `info`                | `i`     | `info`        |
-| `debug/trace/verbose` | `d`     | `debug`       |
-| `OK`                  | `o`/`s` | `OK`          |
+| Available Log Level | Abbreviation | Studio Display Value |
+| ------------        | :----        | ----                 |
+| `alert`             | `a`          | `alert`              |
+| `critical`          | `c`          | `critical`           |
+| `error`             | `e`          | `error`              |
+| `warning`           | `w`          | `warning`            |
+| `notice`            | `n`          | `notice`             |
+| `info`              | `i`          | `info`               |
+| `debug/trace/verbose` | `d`         | `debug`             |
+| `OK`                | `o`/`s`      | `OK`                 |
 
 Example: Assume the text data is as follows:
 
@@ -335,39 +331,62 @@ Final result:
 }
 ```
 
-A few considerations for Pipeline:
+Key points for Pipeline:
 
-- Default to `<source-name>.p` if `pipeline` is empty in the logging.conf configuration file (default to `nginx` assuming `source` is `nginx.p`)
-- If `<source-name.p>` does not exist, the Pipeline feature will not be enabled
-- All Pipeline script files are stored in the Pipeline directory under the DataKit installation path
-- If the log file is configured with a wildcard directory, the logging collector will automatically discover new log files to ensure that new log files that meet the rules can be collected as soon as possible
+- If `pipeline` is empty in the `logging.conf` configuration file, `<source-name>.p` is used by default (assuming `source` is `nginx`, then `nginx.p` is used by default)
+- If `<source-name.p>` does not exist, the Pipeline feature is not enabled
+- All Pipeline script files are stored uniformly in the Pipeline directory under the Datakit installation path
+- If the log file configuration uses wildcard directories, the logging collector automatically discovers new log files to ensure that new log files conforming to the rules are collected as soon as possible
 
-### Introduction of Glob Rules {#grok-rules}
+### Glob Rule Summary {#glob-rules}
 
-Use glob rules to specify log files more conveniently, as well as automatic discovery and file filtering.
+Using glob rules makes it easier to specify log files and automatically discover and filter files.
 
-| Wildcard character | Description                                                         | Regular Example | Matching Sample           | Mismatch                    |
-| :--                | ---                                                                 | ---             | ---                       |-----------------------------|
-| `*`                | Match any number of any characters, including none                  | `Law*`          | Law, Laws, Lawyer         | GrokLaw, La, aw             |
-| `?`                | Match any single character                                          | `?at`           | Cat, cat, Bat, bat        | at                          |
-| `[abc]`            | Match a character given in parentheses                              | `[CB]at`        | Cat, Bat                  | cat, bat                    |
-| `[a-z]`            | Match a character in the range given in parentheses                 | `Letter[0-9]`   | Letter0, Letter1, Letter9 | Letters, Letter, Letter10   |
-| `[!abc]`           | Match a character not given in parentheses                          | `[!C]at`        | Bat, bat, cat             | Cat                         |
-| `[!a-z]`           | Match a character that is not within the given range in parentheses | `Letter[!3-5]`  | Letter1…                  | Letter3 … Letter5, Letter x |
+| Wildcard | Description                                | Regex Example | Match Examples                  | Non-Match Examples              |
+| :--      | ---                                        | ---           | ---                             | ----                            |
+| `*`      | Matches any number of any characters, including none | `Law*`        | `Law, Laws, Lawyer`             | `GrokLaw, La, aw`               |
+| `?`      | Matches any single character               | `?at`         | `Cat, cat, Bat, bat`            | `at`                            |
+| `[abc]`  | Matches one character given in brackets    | `[CB]at`      | `Cat, Bat`                      | `cat, bat`                      |
+| `[a-z]`  | Matches one character within the range     | `Letter[0-9]` | `Letter0, Letter1, Letter9`     | `Letters, Letter, Letter10`     |
+| `[!abc]` | Matches one character not given in brackets| `[!C]at`      | `Bat, bat, cat`                 | `Cat`                           |
+| `[!a-z]` | Matches one character outside the range    | `Letter[!3-5]`| `Letter1…`                      | `Letter3 … Letter5, Letterxx`   |
 
-Also, in addition to the glob standard rules described above, the collector also supports `**` recursive file traversal, as shown in the sample configuration. For more information on Grok, see [here](https://rgb-24bit.github.io/blog/2018/glob.html){:target="_blank"}。
+Additionally, the collector supports `**` for recursive file traversal, as shown in the sample configuration. More Grok introduction, see [here](https://rgb-24bit.github.io/blog/2018/glob.html){:target="_blank"}.
 
-### Special Bytecode Filtering for Logs {#ansi-decode}
+### File Read Offset Position {#read-position}
 
-The log may contain some unreadable bytecode (such as the color of terminal output, etc.), which can be deleted and filtered by setting `remove_ansi_escape_codes` to true.
+*Supported by Datakit [:octicons-tag-24: Version-1.5.5](../datakit/changelog.md#cl-1.5.5) and above.*
+
+File read offset refers to where to start reading after opening the file. Generally, it is either "head" or "tail".
+
+In Datakit, there are mainly three scenarios, prioritized as follows:
+
+- Prefer using the position cache of the file. If the position value can be obtained and is less than or equal to the file size (indicating that the file has not been truncated), this position is used as the read offset.
+- Next, if `from_beginning` is set to `true`, it reads from the head of the file.
+- Finally, the default `tail` mode reads from the tail of the file.
+
+<!-- markdownlint-disable MD046 -->
+???+ Note "About `position cache`"
+
+    `position cache` is a built-in feature of log collection. It consists of multiple K/V pairs stored in the `cahce/logtail.history` file:
+
+    - Key is a unique value generated based on the log file path, inode, etc.
+    - Value is the read offset (position) of this file, updated in real-time.
+
+    When the log collector starts, it retrieves the position as the read offset to avoid missing or duplicate collections.
+<!-- markdownlint-enable -->
+
+### Special Byte Code Handling in Logs {#ansi-decode}
+
+Logs may contain unreadable byte codes (like terminal color codes). Setting `remove_ansi_escape_codes` to `true` removes these codes.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    For such color characters, it is usually recommended that they be turned off in the log output frame rather than filtered by Datakit. Filtering and filtering of special characters is handled by regular expressions, which may not provide comprehensive coverage and have some performance overhead.
+    It is generally recommended to disable color codes in the log output framework rather than having Datakit filter them. Filtering special characters using regular expressions might not cover all cases comprehensively and incurs performance overhead.
 <!-- markdownlint-enable -->
 
-The benchmark results are for reference only:
+Benchmark results for processing performance, for reference:
 
 ```text
 goos: linux
@@ -377,38 +396,38 @@ BenchmarkStrip
 BenchmarkStrip-2          653751              1775 ns/op             272 B/op          3 allocs/op
 BenchmarkStrip-4          673238              1801 ns/op             272 B/op          3 allocs/op
 PASS
+ok      ansi      2.422s
 ```
 
-The processing time of each text increases by 1700 ns. If this function is not turned on, there will be no extra loss.
+Each line of text processing increases by approximately 1700 ns. Not enabling this function incurs no additional overhead.
 
-### Retain Specific Fields Based on Whitelist {#field-whitelist}
+### Retain Specified Fields Based on Whitelist {#field-whitelist}
 
-Container logs collection includes the following basic fields:
+Container log collection includes the following basic fields:
 
-| Field Name           |
-| -------------------- |
-| `service`            |
-| `status`             |
-| `filepath`           |
-| `log_read_lines`     |
+| Field Name      |
+| -----------     |
+| `service`       |
+| `status`        |
+| `filepath`      |
+| `log_read_lines`|
 
-In specific scenarios, many of the basic fields are not necessary. A whitelist feature is provided to retain only the specified fields.
+In specific scenarios, many basic fields may not be necessary. Now a whitelist (whitelist) function is provided to retain only specified fields.
 
-The field whitelist configuration such as `'["service", "filepath"]'`. The details are as follows:
+Field whitelist configuration, for example, `'["service", "filepath"]'`, details as follows:
 
-- If the whitelist is empty, all basic fields will be included.
-- If the whitelist is not empty and the value is valid, such as `["service", "filepath"]`, only these two fields will be retained.
-- If the whitelist is not empty and all fields are invalid, such as `["no-exist"]` or `["no-exist-key1", "no-exist-key2"]`, the data will be discarded.
+- If the whitelist is empty, all basic fields are added
+- If the whitelist is not empty and valid, e.g., `["service", "filepath"]`, only these fields are retained
+- If the whitelist is not empty but contains invalid fields, e.g., `["no-exist"]` or `["no-exist-key1", "no-exist-key2"]`, the data is discarded
 
-For tags from other sources, the following situations apply:
+For other source tags, there are the following situations:
 
-- The whitelist does not work on Datakit's `global tags`.
-- Debug fields enabled via `ENV_ENABLE_DEBUG_FIELDS = "true"` are not affected, including the `log_read_offset` and `log_file_inode` fields for log collection, as well as the debug fields in the `pipeline`.
+- The whitelist does not apply to Datakit's global tags (`global tags`)
+- Debug fields enabled by `ENV_ENABLE_DEBUG_FIELDS = "true"` are unaffected, including `log_read_offset` and `log_file_inode` for log collection, and debug fields for `pipeline`
 
+## Logs {#logging}
 
-## Metric {#metric}
-
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.logging.tags]`:
+All data collection defaults to appending a global tag named `host` (tag value is the hostname where DataKit resides). Other tags can be specified in the configuration using `[inputs.logging.tags]`:
 
 ``` toml
  [inputs.logging.tags]
@@ -421,7 +440,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `logging collect`
 
-Use the `source` of the config，if empty then use `default`
+Use the `source` from the config, if empty then use `default`
 
 - Tags
 
@@ -430,9 +449,9 @@ Use the `source` of the config，if empty then use `default`
 |  ----  | --------|
 |`filename`|The base name of the file.|
 |`host`|Host name|
-|`service`|Use the `service` of the config.|
+|`service`|Use the `service` from the config.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -452,77 +471,78 @@ Use the `source` of the config，if empty then use `default`
 
 
 
+<!-- markdownlint-disable MD053 -->
+[^1]: In early Pipeline implementations, only fields could be parsed, and most statuses were derived from Pipeline parsing, hence they were categorized as fields. Semantically, however, they belong to the tag category.
+<!-- markdownlint-enable -->
+
+<!-- markdownlint-disable MD013 -->
 ## FAQ {#faq}
 
-### Why can't you see log data on the page? {#why-no-data}
+### :material-chat-question: Why can't I see log data on the page? {#why-no-data}
 
-After DataKit is started, the log file configured in `logfiles` ==will be collected only when new logs are generated, and the old log data will not be collected==.
+After DataKit starts, **new logs must be generated in the log files configured in `logfiles` for collection**. Old log data will not be collected.
 
-In addition, once a log file is collected, a log will be automatically triggered, which reads as follows:
+Additionally, once DataKit starts collecting a particular log file, it will automatically trigger a log entry with content similar to:
 
-```not-set
+``` not-set
 First Message. filename: /some/path/to/new/log ...
 ```
 
-If you see such information, prove that the specified file ==has started to be collected, but no new log data has been generated at present==. In addition, there is a certain delay in uploading, processing and warehousing log data, and even if new data is generated, it needs to wait for a certain time (< 1min).
+If you see such a message, it means the specified file has started being collected, but no new log data has been generated yet. Also, uploading, processing, and storing log data take some time, so even if new data is generated, it will take some time (< 1min).
 
-<!-- markdownlint-disable MD013 -->
-### Mutex of Disk Log Collection and Socket Log Collection {#exclusion}
-<!-- markdownlint-enable -->
+### :material-chat-question: Exclusivity Between Disk Log Collection and Socket Log Collection {#exclusion}
 
-The two collection methods are mutually exclusive at present. When collecting logs in Socket mode, the `logfiles` field in the configuration should be left blank: `logfiles=[]`
+These two collection methods are mutually exclusive. When collecting logs via Socket, the `logfiles` field in the configuration should be set to empty: `logfiles=[]`
 
-### Remote File Collection Scheme {#remote-ntfs}
+### :material-chat-question: Remote File Collection Solution {#remote-ntfs}
 
-On Linux, you can mount the file path of the host where the log is located to the DataKit host by [NFS mode](https://linuxize.com/post/how-to-mount-an-nfs-share-in-linux/){:target="_blank"}, and the logging collector can configure the corresponding log path.
+On Linux, you can use the [NFS method](https://linuxize.com/post/how-to-mount-an-nfs-share-in-linux/){:target="_blank"} to mount the log file path from the log host to the DataKit host. The logging collector can then be configured with the corresponding log path.
 
-<!-- markdownlint-disable MD013 -->
-### MacOS Log Collector Error `operation not permitted` {#mac-no-permission}
-<!-- markdownlint-enable -->
+### :material-chat-question: MacOS Log Collector Error `operation not permitted` {#mac-no-permission}
 
-In MacOS, because of system security policy, the DataKit log collector may fail to open files, error `operation not permitted`, refer to [apple developer doc](https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection){:target="_blank"}.
+On MacOS, due to system security policies, the DataKit log collector may not be able to open files, reporting an `operation not permitted` error. Refer to the [Apple Developer Documentation](https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection){:target="_blank"} for solutions.
 
-### How to Estimate the Total Amount of Logs {#log-size}
+### :material-chat-question: How to Estimate Total Log Volume {#log-size}
 
-The charge of the log is according to the number of charges, but most of the logs are written to the disk by the program in general, and only the size of the disk occupied (such as 100GB logs per day) can be seen.
+Since log costs are charged per entry, but most logs are written to disk by programs, you can only see the disk usage size (e.g., 100GB of logs per day).
 
-A feasible way can be judged by the following simple shell:
+One feasible way to estimate is to use the following simple shell command:
 
 ```shell
-# Count the number of rows in 1GB log
+# Count the number of lines in 1GB of logs
 head -c 1g path/to/your/log.txt | wc -l
 ```
 
-Sometimes, it is necessary to estimate the possible traffic consumption caused by log collection:
+Sometimes, you need to estimate the potential traffic consumption of log collection:
 
 ```shell
-# Count the compressed size of 1GB log (bytes)
+# Calculate the compressed size (bytes) of 1GB of logs
 head -c 1g path/to/your/log.txt | gzip | wc -c
 ```
 
-What we get here is the compressed bytes. According to the calculation method of network bits (x8), the calculation method is as follows, so that we can get the approximate bandwidth consumption:
+The result here is the compressed byte count. Using the network bit calculation method (x8), the bandwidth consumption can be calculated as follows:
 
-```not-set
+``` not-set
 bytes * 2 * 8 /1024/1024 = xxx MBit
 ```
 
-But in fact, the compression ratio of DataKit will not be so high, because DataKit will not send 1GB of data at one time, and it will be sent several times, and this compression ratio is about 85% (that is, 100MB is compressed to 15MB), so a general calculation method is:
+However, DataKit's compression ratio is not this high because DataKit does not send 1GB of data at once but in multiple batches. The compression ratio is around 85% (i.e., 100MB compresses to 15MB), so a rough calculation would be:
 
-```not-set
+``` not-set
 1GB * 2 * 8 * 0.15/1024/1024 = xxx MBit
 ```
 
 <!-- markdownlint-disable MD046 -->
 ??? info
 
-    Here `*2` takes into account the actual data inflation caused by [Pipeline cutting](../pipeline/index.md) and the original data should be brought after cutting in general, so according to the worst case, the calculation here is doubled.
+    The `*2` accounts for [Pipeline parsing](../pipeline/use-pipeline/index.md) leading to actual data expansion. Generally, the parsed data retains the original data, so the worst-case scenario doubles the data volume.
 <!-- markdownlint-enable -->
 
-## Extended reading {#more-reading}
+## Further Reading {#more-reading}
 
-- [DataKit Log Collection Overview](datakit-logging.md)
-- [Pipeline: Text Data Processing](../pipeline/index.md)
-- [Pipeline debugging](../pipeline/use-pipeline/pipeline-quick-start.md#debug)
-- [Pipeline Performance Test and Comparison](logging-pipeline-bench.md)
-- [Collect container internal logs via Sidecar (logfwd)](logfwd.md)
-- [Configure correctly with regular expressions](../datakit/datakit-input-conf.md#debug-regex)
+- [Overview of DataKit Log Collection](datakit-logging.md)
+- [Pipeline: Text Data Processing](../pipeline/use-pipeline/index.md)
+- [Pipeline Debugging](../developers/datakit-pl-how-to.md)
+- [Pipeline Performance Testing and Comparison](logging-pipeline-bench.md)
+- [Collect Container Internal Logs via Sidecar(logfwd)](logfwd.md)
+- [Properly Configuring Regular Expressions](../datakit/datakit-input-conf.md#debug-regex)

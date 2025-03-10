@@ -1,81 +1,84 @@
 ---
-title: 'Aliyun PolarDB Oracle'
+title: 'Alibaba Cloud PolarDB Oracle'
 tags: 
   - Alibaba Cloud
-summary: 'Aliyun PolarDB Oracle Metrics Display, including CPU usage, memory usage, network traffic, connection count, IOPS (Input/Output Operations Per Second), TPS (Transactions Per Second), and data disk size.'
-__int_icon: icon/aliyun_polardb_oracle
+summary: 'Alibaba Cloud PolarDB Oracle Metrics display, including CPU usage, memory usage, network traffic, connection count, IOPS, TPS, data disk size, etc.'
+__int_icon: 'icon/aliyun_polardb'
 dashboard:
-  - desc: 'Aliyun PolarDB Oracle Monitoring View'
+  - desc: 'Alibaba Cloud PolarDB Oracle built-in views'
     path: 'dashboard/en/aliyun_polardb_oracle/'
 
 monitor:
-  - desc: 'Aliyun PolarDB Oracle Monitor'
+  - desc: 'Alibaba Cloud PolarDB Oracle monitor'
     path: 'monitor/en/aliyun_polardb_oracle/' 
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Aliyun PolarDB Oracle
+# Alibaba Cloud PolarDB Oracle
 <!-- markdownlint-enable -->
 
-Aliyun PolarDB Oracle Metrics Display, including CPU usage, memory usage, network traffic, connection count, IOPS (Input/Output Operations Per Second), TPS (Transactions Per Second), and data disk size.
+Alibaba Cloud PolarDB Oracle Metrics display, including CPU usage, memory usage, network traffic, connection count, IOPS, TPS, data disk size, etc.
 
-## config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-> Recommend deploying GSE (Game Server Engine) edition translation.
+> It is recommended to deploy the GSE version.
 
-### Installation script
+### Installation Script
 
-> Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-To synchronize the monitoring data of PolarDB Oracle cloud resources, we install the corresponding collection script：「Guance Integration（Aliyun -PolarDB Oracle Collect）」(ID：`guance_aliyun_polardb_oracle`)
+To synchronize Alibaba Cloud PolarDB Oracle monitoring data, install the corresponding collection script:「Guance Integration (Alibaba Cloud-PolarDB Oracle Collection)」(ID: `guance_aliyun_polardb_oracle`)
 
-Click "Install" and enter the corresponding parameters: Aliyun AK, Aliyun account name.。
+After clicking 【Install】, enter the required parameters: Alibaba Cloud AK and Alibaba Cloud account name.
 
-tap "Deploy startup Script"，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click "Run"，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
+Once enabled, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. Wait a moment, and you can view the execution task records and corresponding logs.
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+> If you need to collect corresponding logs, you also need to enable the corresponding log collection script. If you need to collect billing data, you need to enable the cloud billing collection script.
 
+We default to collecting some configurations; for details, see the Metrics section.
 
-### Verify
+[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure - Resource Catalog」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+### Verification
 
-## Metric {#metric}
-Configure Ali Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Aliyun Monitor Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_ecs_dashboard/ecs){:target="_blank"}
+1. In 「Manage / Automatic Trigger Configuration」confirm whether the corresponding task has the corresponding automatic trigger configuration, and check the task records and logs for any abnormalities.
+2. On the Guance platform, in 「Infrastructure - Resource Catalog」check if asset information exists.
+3. On the Guance platform, in 「Metrics」check if there is corresponding monitoring data.
 
-| Metric Id            | Metric Name    | Dimensions                  | Statistics | Unit      |
+## Metrics {#metric}
+After configuring Alibaba Cloud Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration. [Alibaba Cloud Cloud Monitoring Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+
+| Metric Id            | Metric Name         | Dimensions                  | Statistics | Unit      |
 | ---- | ------ | ---- | ---- | ---- |
-| `active_connections`   | Active connections     | userId,clusterId,instanceId | Average    | count     |
-| `blks_read_delta`      | data block reads   | userId,clusterId,instanceId | Average    | count     |
-| `conn_usage`           | connection usage rate     | userId,clusterId,instanceId | Average    | %         |
-| `cpu_total`            | CPU usage      | userId,clusterId,instanceId | Average    | %         |
-| `db_age`               | Database maximum age | userId,clusterId,instanceId | Average    | **xids**      |
-| `mem_usage`            | memory usage rate     | userId,clusterId,instanceId | Average    | %         |
-| `pls_data_size`        | data disk size     | userId,clusterId,instanceId | Value      | **Mbyte**     |
-| `pls_iops`             | IOPS           | userId,clusterId,instanceId | Average    | frequency |
-| `pls_iops_read`        | read IOPS         | userId,clusterId,instanceId | Average    | frequency |
-| `pls_iops_write`       | write IOPS         | userId,clusterId,instanceId | Average    | frequency |
-| `pls_pg_wal_dir_size`  | WAL log size    | userId,clusterId,instanceId | Value      | **Mbyte**     |
-| `pls_throughput`       | IO throughput         | userId,clusterId,instanceId | Average    | **Mbyte/s**   |
-| `pls_throughput_read`  | read IO throughput       | userId,clusterId,instanceId | Average    | **Mbyte/s**   |
-| `pls_throughput_write` | write IO throughput       | userId,clusterId,instanceId | Average    | **Mbyte/s**   |
-| `rollback_ratio`       | transaction rollback rate     | userId,clusterId,instanceId | Average    | %         |
-| `swell_time`           | bloat point         | userId,clusterId,instanceId | Average    | s         |
-| `tps`                  | TPS            | userId,clusterId,instanceId | Average    | frequency |
+| `active_connections` | Active Connections  | userId,clusterId,instanceId | Average    | `count`   |
+| `blks_read_delta`    | Blocks Read         | userId,clusterId,instanceId | Average    | `count`   |
+| `conn_usage`         | Connection Usage    | userId,clusterId,instanceId | Average    | `%`       |
+| `cpu_total`          | CPU Usage           | userId,clusterId,instanceId | Average    | `%`       |
+| `db_age`             | Database Age        | userId,clusterId,instanceId | Average    | `xids`    |
+| `mem_usage`          | Memory Usage        | userId,clusterId,instanceId | Average    | `%`       |
+| `pls_data_size`      | Data Disk Size      | userId,clusterId,instanceId | Value      | `Mbyte`   |
+| `pls_iops`           | IOPS                | userId,clusterId,instanceId | Average    | `frequency` |
+| `pls_iops_read`      | Read IOPS           | userId,clusterId,instanceId | Average    | `frequency` |
+| `pls_iops_write`     | Write IOPS          | userId,clusterId,instanceId | Average    | `frequency` |
+| `pls_pg_wal_dir_size`| WAL Log Size        | userId,clusterId,instanceId | Value      | `Mbyte`   |
+| `pls_throughput`     | IO Throughput       | userId,clusterId,instanceId | Average    | `Mbyte/s` |
+| `pls_throughput_read`| Read IO Throughput  | userId,clusterId,instanceId | Average    | `Mbyte/s` |
+| `pls_throughput_write`| Write IO Throughput | userId,clusterId,instanceId | Average    | `Mbyte/s` |
+| `rollback_ratio`     | Rollback Ratio      | userId,clusterId,instanceId | Average    | `%`       |
+| `swell_time`         | Swell Time          | userId,clusterId,instanceId | Average    | `s`       |
+| `tps`                | TPS                 | userId,clusterId,instanceId | Average    | `frequency` |
 
-## Object {#object}
+## Objects {#object}
 
-The collected Aliyun PolarDB object data structure can be viewed in 「Infrastructure - Resource Catalog」 under the object data.
+The collected Alibaba Cloud PolarDB object data structure can be viewed in the 「Infrastructure - Resource Catalog」
 
 ```json
 {
@@ -95,16 +98,15 @@ The collected Aliyun PolarDB object data structure can be viewed in 「Infrastru
     "CreateTime"          : "2022-06-17T06:07:19Z",
     "DBClusterNetworkType": "VPC",
     "DBNodeClass"         : "polar.mysql.g1.tiny.c",
-    "DBNodes"             : "{Node List JSON Data}",
+    "DBNodes"             : "{JSON data of node list}",
     "DBVersion"           : "8.0",
-    "Database"            : "[Database Details JSON Data]",
+    "Database"            : "[JSON data of database details]",
     "ExpireTime"          : "",
     "LockMode"            : "Unlock",
     "PayType"             : "Postpaid",
     "Tags"                : "{"Tag": []}",
     "VpcId"               : "vpc-bp16f7**********3p3",
-    "message"             : "{Instance JSON data}"
+    "message"             : "{JSON data of instance}"
   }
 }
-
 ```

@@ -1,7 +1,0 @@
-nav:
-  - 'List Mute Rules': list.md
-  - 'Create a Mute Rule': create.md
-  - 'Modify a Mute Rule': modify.md
-  - 'Disable a Mute Rule': disable.md
-  - 'Enable a Mute Rule': enable.md
-  - 'Delete a Mute Rule': delete.md

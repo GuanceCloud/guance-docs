@@ -1,6 +1,7 @@
 nav:
   - index.md
-  - 'Tasks': request-task
+  - 'Test': request-task
   - 'Overview': overview.md
-  - 'Explorers': explorer.md
-  - 'Self-built Node Management': self-node.md
+  - 'Explorer': explorer.md
+  - 'User-defined Node Management': self-node.md
+  - 'FAQ': faq.md

@@ -1,7 +1,9 @@
 # Alibaba Cloud Cross-Account Authorization
 
-1. Click on **Object Storage Service (OSS) > Buckets** to enter, and select the corresponding bucket;
-2. Click on **Bucket Policy** and click on **Authorize**;
-3. In the **Authorize** section, select **Other Accounts**, enter the Account ID, and grant **Read/Write**.
+1. Click to enter **Object Storage OSS > Bucket List**, and select the corresponding Bucket;
+   
+2. Click on **Bucket Authorization Policy** on the left, select **Bucket Authorization Policy**, and click **Create Authorization**;
+   
+3. In **Authorized User**, select **Other Account**, enter the Account ID and grant **Read/Write Permissions**.
 
 ![](img/bucket.png)

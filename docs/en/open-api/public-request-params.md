@@ -1,13 +1,12 @@
-# Common Request Parameter
+# Common Request Parameters
 
 ---
 
-This article introduces the public Request Parameter for the Open API.
+This document describes the common request parameters for the Open API.
 
-## Common Header
+## Common Request Header (Header)
 
-| Parameter Name        | Type      | Description                                                                |
-|:-----------|:--------|:------------------------------------------------------------------|
-| Content-Type | string  | application/json                                                  |
-| DF-API-KEY | string  | Please refer to [API Key management](../management/api-key/open-api.md) for caller identification and obtaining method|
-
+| Parameter Name | Type   | Description                                                                |
+|:--------------|:-------|:---------------------------------------------------------------------------|
+| Content-Type  | string | application/json                                                          |
+| DF-API-KEY    | string | Caller identifier, see [API Key Management](../management/api-key/open-api.md) for obtaining methods |

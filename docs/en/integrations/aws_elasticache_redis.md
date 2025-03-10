@@ -2,17 +2,19 @@
 title: 'AWS ElastiCache Redis'
 tags: 
   - AWS
-summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
+summary: 'Use the script market "Guance Cloud Sync" series script packages to synchronize cloud monitoring and cloud asset data to Guance'
 __int_icon: 'icon/aws_elasticache_redis'
 dashboard:
-  - desc: 'AWS ElastiCache Redis Monitoring View'
+
+  - desc: 'Built-in views for AWS ElastiCache Redis'
     path: 'dashboard/en/aws_elasticache_redis'
+
 monitor:
-  - desc: 'AWS ElastiCache RedisMonitor'
+  - desc: 'AWS ElastiCache Redis monitor'
     path: 'monitor/en/aws_elasticache_redis'
 
 cloudCollector:
-  desc: 'cloud collector'
+  desc: 'Cloud Collector'
   path: 'cloud-collector/en/aws_elasticache_redis'
 ---
 
@@ -22,78 +24,76 @@ cloudCollector:
 <!-- markdownlint-enable -->
 
 
-Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
+Use the script market "Guance Cloud Sync" series script packages to synchronize cloud monitoring and cloud asset data to Guance
 
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,[Refer to](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-
-### Installation script
-
-> Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
-
-To synchronize the monitoring data of ElastiCache Redis cloud resources, we install the corresponding collection script: `ID:guance_aws_elasticache`
-
-Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
-
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
-
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」.Click[Run],you can immediately execute once, without waiting for a regular time.After a while,you can view task execution records and corresponding logs.
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
+### Install Script
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+> Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-## Metric {#metric}
+To synchronize monitoring data of AWS ElastiCache Redis cloud resources, install the corresponding collection script: "Guance Integration (AWS-ElastiCache Collection)" (ID: `guance_aws_elasticache`)
 
-Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/AmazonElastiCache/latest/red-ug/CacheMetrics.html){:target="_blank"}
+After clicking [Install], enter the corresponding parameters: Amazon AK, Amazon account name.
 
-### Host-level metrics
+Click [Deploy Startup Script], and the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-| metric name | descriptive | unit | dimension |
+Additionally, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click [Execute] to immediately execute it once without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+
+By default, we collect some configurations; for more details, see [Custom Cloud Object Metrics Configuration](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+
+
+### Verification
+
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and check the task records and logs for any abnormalities.
+2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
+
+## Metrics {#metric}
+After configuring Amazon CloudWatch, the default metric set is as follows. You can collect more metrics through configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/AmazonElastiCache/latest/red-ug/CacheMetrics.html){:target="_blank"}
+
+### Host-level Metrics
+
+| Metric Name | Description | Unit | Dimensions |
 | :---: | :---: | :---: | :---: |
-| CPUUtilization | Percentage of CPU utilization for the entire host | % | name |
-| FreeableMemory | The amount of free memory available on the host. This is derived from the RAM, buffers, and caches reported as free by the operating system. | byte | name |
-| SwapUsage | The amount of switching zone usage on the host. | byte | name |
-| NetworkBytesIn | The number of bytes the host has read from the network. | byte | name |
-| NetworkBytesOut | The number of bytes sent by the instance on all network interfaces. | byte | name |
-| NetworkPacketsIn | The number of packets received by the instance on all network interfaces. This metric identifies the amount of incoming traffic based on the number of packets on a single instance. | count | name |
-| NetworkPacketsOut | The number of packets sent by the instance on all network interfaces. This metric identifies the amount of outgoing traffic based on the number of packets on a single instance. | count | name |
+| CPUUtilization | The percentage of CPU utilization across the host | % | name |
+| FreeableMemory | The amount of available idle memory on the host. This is derived from RAM reported as free by the operating system, buffers, and caches. | byte | name |
+| SwapUsage | The amount of swap space used on the host. | byte | name |
+| NetworkBytesIn | The number of bytes read from the network by the host. | byte | name |
+| NetworkBytesOut | The number of bytes sent over all network interfaces by the instance. | byte | name |
+| NetworkPacketsIn | The number of packets received over all network interfaces by the instance. This metric identifies the volume of incoming traffic based on the number of packets on a single instance. | count | name |
+| NetworkPacketsOut | The number of packets sent over all network interfaces by the instance. This metric identifies the volume of outgoing traffic based on the number of packets on a single instance. | count | name |
 
-### Metrics for Redis
+### Redis Metrics
 
-| metric name | descriptive | unit | dimension |
+| Metric Name | Description | Unit | Dimensions |
 | :---: | :---: | :---: | :---: |
-| `ActiveDefragHits` | The number of value reassignments per minute performed by the active defragmentation process. | count | name |
-| BytesUsedForCache | The total number of bytes in memory used for caching. | byte | name |
-| CacheHits | The number of successful read-only key lookups in the main dictionary. | count | name |
-| CacheMisses | The number of failed read-only key lookups in the main dictionary. | count | name |
-| `CurrConnections` | The number of client connections, excluding connections from read-only copies. | count | name |
+| `ActiveDefragHits` | The number of value reassignments performed per minute by the active defragmentation process. | count | name |
+| `BytesUsedForCache` | The total number of bytes used for caching in memory. | byte | name |
+| `CacheHits` | The number of successful read-only key lookups in the main dictionary. | count | name |
+| `CacheMisses` | The number of failed read-only key lookups in the main dictionary. | count | name |
+| `CurrConnections` | The number of client connections, excluding connections from read-only replicas. | count | name |
 | `CurrItems` | The number of items in the cache. | count | name |
-| `CurrVolatileItems` | The total number of keys with ttl sets in all databases. | count | name |
-| DatabaseCapacityUsagePercentage | The percentage of the cluster's total data capacity that is in use. | % | name |
-| DatabaseMemoryUsagePercentage | The percentage of memory being used in the cluster. | % | name |
-| EngineCPUUtilization | Provides the CPU utilization of the Redis engine threads. | % | name |
-| Evictions | The number of keys evicted due to max memory limitations. | count | name |
-| IsMaster | Indicates whether the node is the master node of the current slice/cluster. The metric can be 0 (non-master node) or 1 (master node). | count | name |
-| MasterLinkHealthStatus | This status has two values: 0 or 1. A value of 0 means that the data in the Elasticache master node is not synchronized with Redis on EC2. A value of 1 means that the data has been synchronized. | count | name |
-| MemoryFragmentationRatio | Indicates the efficiency of the Redis engine's memory allocation. | count | name |
+| `CurrVolatileItems` | The total number of keys with TTL set across all databases. | count | name |
+| `DatabaseCapacityUsagePercentage` | The percentage of the cluster's total data capacity currently in use. | % | name |
+| `DatabaseMemoryUsagePercentage` | The percentage of memory currently in use within the cluster. | % | name |
+| `EngineCPUUtilization` | Provides the CPU utilization of the Redis engine threads. | % | name |
+| `Evictions` | The number of keys evicted due to the `maxmemory` limit. | count | name |
+| `IsMaster` | Indicates whether the node is the master node for the current shard/cluster. The metric can be 0 (not master) or 1 (master). | count | name |
+| `MasterLinkHealthStatus` | This status has two values: 0 or 1. A value of 0 indicates that the data in the Elasticache master node has not synchronized with Redis on EC2. A value of 1 indicates that the data has been synchronized. | count | name |
+| `MemoryFragmentationRatio` | Indicates the efficiency of memory allocation by the Redis engine. | count | name |
 
-## Object {#object}
+## Objects {#object}
 
-Collected AWS ElastiCache Redis object data structure, you can see the object data from the "Infrastructure - Customize"
+The structure of collected AWS ElastiCache Redis object data can be viewed in "Infrastructure - Custom"
 
 ```json
 {
@@ -110,14 +110,15 @@ Collected AWS ElastiCache Redis object data structure, you can see the object da
     "RegionId"                 : "cn-north-1"
   },
   "fields": {
-    "SecurityGroups": "{SecurityGroups JSON data}}",
+    "SecurityGroups": "{JSON security group data}",
     "NumCacheNodes" : "1",
-    "message"       : "{Instance JSON data}"
+    "message"       : "{JSON instance data}"
   }
 }
 ```
 
-> *Note: Fields in `tags`, `fields` are subject to change with subsequent updates.*
+> *Note: Fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tip 1: The `tags.name` value is the instance ID, which serves as a unique identifier.
-> Tip 2: `fields.message`, `fields.NetworkInterfaces`, and `fields.BlockDeviceMappings` are JSON serialized strings.
+> Note 1: The value of `tags.name` is the instance ID, used as a unique identifier.
+>
+> Note 2: `fields.message`, `fields.network_interfaces`, `fields.blockdevicemappings` are JSON serialized strings.

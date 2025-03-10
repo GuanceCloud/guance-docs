@@ -1,19 +1,24 @@
-# Event Association
+# Event Correlation
 ---
 
-## Introduction
+<<< custom_key.brand_name >>> supports adding filter fields to match incidents related to selected fields, associating queried data with events. This helps in understanding whether any related events occur during data fluctuations while viewing trends, aiding in multi-perspective problem localization.
 
-Guance supports "add filter field" to match the abnormal events associated with the selected field, so as to achieve the purpose of displaying data in association with events.This feature helps users to view trends while sensing if there are relevant events generated during data fluctuations to help them locate problems from another perspective.
-
-Currently, only time series and histograms are supported.
+**Note**: This feature is currently supported only for time series charts and histograms.
 
 ## Example
 
-The query object of the timing diagram is "host CPU IOwait". When "host:DESKTOP-NEN89U3" is added as a filter for event association, users can check whether "host:DESKTOP-NEN89U3" has an alarm event by shading the color block while viewing the timing diagram. alarm event exists.For more filters, please refer to [Explorer Description](../../getting-started/necessary-for-beginners/explorer-search.md)
+In the chart below, the filter condition is:
 
-![](../img/11.chart_1.3.png)
+```
+M::`system`:(last(`cpu_total_usage`) AS `5m`) BY `host`
+```
 
-The timeseries diagram with the completed event association configuration will be shown with shaded blocks on the timeseries if there are event records; in analysis mode, click on the highlighted shaded blocks to view the abnormal events associated with the selected field (e.g. "host:DESKTOP-NEN89U3").
+This means querying the latest CPU usage rates of all hosts within the past 15 minutes in the current workspace.
 
-![](../img/11.chart_1.4.png)
+The added event correlation filter conditions are `-host:ivan-centos`, `df_status:critical`. This filters out all hosts except `ivan-centos` and correlates events with a severity level of `critical`.
 
+<img src="../../img/event_related_case.png" width="70%" >
+
+On the time series, if there are event records, they will be marked with shaded blocks. Clicking on a query highlighted under a shaded block allows you to view incidents related to the current field.
+
+<img src="../../img/event_related_case-1.png" width="70%" >

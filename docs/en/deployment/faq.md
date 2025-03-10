@@ -1,77 +1,25 @@
 # FAQ
 
-## 1 How to Update Various Offline Packages Manually
-This section describes how to manually update the **view template package**, **metric dictionary**, **official Pipeline package** in an offline environment without upgrading the guance version.
-### 1.1 How to Update the View Template Package in an Offline Environment 
+## 1 What to do if you encounter issues during the first installation and need to clean up before reinstalling!
+**Note: This is only for scenarios where problems occur during the initial installation and a complete reinstallation is required. Please confirm carefully before proceeding with the following cleanup steps!**
 
-1.Download the Latest View Template Package: 
-
-[https://gitee.com/dataflux/dataflux-template](https://gitee.com/dataflux/dataflux-template)
-
-2.Upload to Container Persistence: 
-
-The upload directory is in the persistent storage directory corresponding to the /config/cloudcare-forethought-backend/sysconfig/staticFolder directory mounted by the forethought-core => inner container. The upload directory structure is as follows: 
-
-![](img/14.deployment_1.tiff)
-
-3.Enter the forethought-core => inner container to the default working directory: /config/cloudcare-forethought-backend
-
-4.Execute the Python command to enter the Python environment:
-
-![](img/14.deployment_2.png)
-
-5.Execute the following two Python commands:
-
-from forethought.tasks.timed_sync_integration import execute_update_integration
-execute_update_integration()
-
-**The following prompt indicates successful execution:**
-
-![](img/14.deployment_3.png)
-
-### 1.2 How to Update Metrics Dictionary json in Offline Environment
-
-1.Download the latest metrics dictionary JSON file
-
-[https://static.guance.com/datakit/measurements-meta.json](https://static.guance.com/datakit/measurements-meta.json)
-
-2.Upload to container persistence
-
-上传目录为forethought-core => inner 容器挂载的 /config/cloudcare-forethought-backend/sysconfig/staticFolder/metric 目录对应的持久化存储目录中，文件名为 metric_config.json ，上传的目录结构如下：
-
-![](img/14.deployment_4.png)
-
-### 1.3 How to Update the Official Pipeline Library in Offline Environment
-
-1.Download the latest metrics dictionary JSON file
-
-[https://static.guance.com/datakit/internal-pipelines.json](https://static.guance.com/datakit/internal-pipelines.json)
-
-2.Upload to container persistence
-
-The upload directory is in the persistent storage directory corresponding to the /config/cloudcare-forethought-backend/sysconfig/staticFolder/ metric directory mounted by the forethought-core => inner container. The file name is metric_config.json, and the upload directory structure is as follows:
-![](img/14.deployment_5.png)
-
-## 2 There is a problem in the initial installation. What should I do if I need to clean it up and reinstall it?
-**Note: If there is a problem during the initial installation and you need to eliminate the reinstallation scene, please confirm carefully before performing the following cleaning steps!**
-
-If installation problems occur, you need to remove them all and reinstall them. And you need to clean up the following three places before you can reinstall the Guance from Launcher:
-### 2.1 Clean up the installed Guance application service
-To clean up various Guance application services installed in Kubernetes, you can enter the Launcher container on the operation and maintenance operator and execute the cleaning script provided by Launcher:
+If an installation issue occurs and you need to completely remove everything before reinstalling, you must clean up the following three areas to reinstall <<< custom_key.brand_name >>> from the Launcher:
+### 1.1 Clean up installed <<< custom_key.brand_name >>> application services
+Clean up various <<< custom_key.brand_name >>> application services installed in Kubernetes. You can enter the Launcher container on your operations machine and execute the built-in cleanup script of Launcher:
 ```
 kubectl exec -it launcher-xxxxxxxx-xxx -n launcher /bin/bash
 ```
-**launcher-xxxxxxxx-xxx is your launcher service pod name!**
-When you enter the container, you can see the k8s-clear.sh（version after 1.47.103 , this script is in the /config/tools directory) script that comes with the Launcher service. Executing this script will clean up all the resources of Guance application service and k8s:
+**launcher-xxxxxxxx-xxx is the name of your Launcher service pod!**
+Once inside the container, you will see the k8s-clear.sh script (for versions after 1.47.103, this script is located in the /config/tools directory). Executing this script will clean up all <<< custom_key.brand_name >>> application services and Kubernetes resources:
 
 ![](img/14.deployment_6.png)
 
-### 2.2 Cleaning up automatically created databases in MySQL
-You can enter the Launcher container, which comes with the MySQL client tool, and connect to Guance MySQL instance using the following command:
+### 1.2 Clean up automatically created databases in MySQL
+You can enter the Launcher container, which has a built-in MySQL client tool, and use the following command to connect to the <<< custom_key.brand_name >>> MySQL instance:
 ```
-mysql -h <mysql 实例 host> -u root -P <mysql 端口> -p  
+mysql -h <MySQL instance host> -u root -P <MySQL port> -p  
 ```
-You need to use MySQL administrator account to connect. After connecting, execute the following 6 MySQL database and user cleaning commands:
+You need to connect using the MySQL administrator account. After connecting, execute the following six MySQL database and user cleanup commands:
 ```
 drop database df_core;
 drop user df_core;
@@ -79,51 +27,53 @@ drop database df_message_desk;
 drop user df_message_desk;
 drop database df_func;
 drop user df_func;
+drop database df_dialtesting;
+drop user df_dialtesting;
 ```
-### 2.3 Cleaning up Automatically Created Users in InfuxDB
-Using the infux client tool, connect to InfuxDB and execute the following two user cleanup commands:
+### 1.3 Clean up automatically created users in InfluxDB
+Use the influx client tool to connect to InfluxDB and execute the following two user cleanup commands:
 ```
 drop user user_wr;
 drop user user_ro;
 ```
-## 3 Deployment Considerations
-### 3.1 After deployment, can we manually modify the Kubernetes resources automatically generated by Setup?
-**You can't modify manually**, because after the next new version is released, when you upgrade and install with Launcher, resources such as **Deployment, Service and Ingress** will be regenerated according to the configuration information filled in during installation (except Configmap, the information in Configmap configuration items can be modified manually at will, but random modification may cause abnormal program operation).
+## 2 Deployment Precautions
+### 2.1 Can manually modify Kubernetes resources automatically generated by the installation program after deployment?
+**Manual modifications are not allowed**, because when upgrading using Launcher after a new version release, it will regenerate **Deployment, Service, Ingress** resources based on the configuration information provided during installation (except for Configmap, where the configuration items can be modified arbitrarily, but arbitrary modifications may cause abnormal program operation).
 
-## 4 Stand-alone container Rancher Server certificate update
-### 4.1 How to deal with certificates that have not expired
-The rancher server works properly. After upgrading to Rancher v2.0.14+, v2.1.9+, v2.2.2+, the validity period of the certificate will be automatically checked, and if it is found that the certificate is about to expire, a new certificate will be automatically generated. Therefore, rancher Server running in a stand-alone container only needs to upgrade the rancher version to a version that supports automatic updating of ssl certificates before the certificate expires, and no other operations are needed.
-### 4.2 What should I do if the certificate has expired
- The rancher server is not functioning properly. Even if you upgrade to Rancher v2.0. 14 +, v2.1. 9 +, v2.2. 2 +, you may be prompted with a certificate error. If this happens, you can handle it by doing the following:
+## 3 Independent Container Rancher Server Certificate Update
+### 3.1 How to handle if the certificate has not expired
+Rancher server can run normally. Upgrading to Rancher v2.0.14+, v2.1.9+, or v2.2.2+ will automatically check the certificate validity period. If it detects that the certificate is about to expire, it will automatically generate a new certificate. Therefore, for independently running Rancher Server containers, you only need to upgrade the Rancher version to one that supports automatic SSL certificate updates before the certificate expires, no additional actions are required.
+### 3.2 How to handle if the certificate has expired
+Rancher server cannot run normally. Even upgrading to Rancher v2.0.14+, v2.1.9+, or v2.2.2+ may result in certificate errors. If this happens, follow these steps to handle the issue:
 
-1.Upgrade the rancher version to v2.0.14+, v2.1.9+ and v2.2.2+ normally;
+1. Upgrade Rancher to version v2.0.14+, v2.1.9+, or v2.2.2+;
 
-2.Execute the following orders:
+2. Execute the following commands:
 
-- 2.0 or 2.1 version
+- For version 2.0 or 2.1
 
 ```shell
-docker exec -ti <rancher_server_id>mv /var/lib/rancher/management-state/certs/bundle.json /var/lib/rancher/management-state/certs/bundle.json-bak
+docker exec -ti <rancher_server_id> mv /var/lib/rancher/management-state/certs/bundle.json /var/lib/rancher/management-state/certs/bundle.json-bak
 ```
 
-- 2.2 +
+- For version 2.2+
 
 ```shell
-docker exec -ti <rancher_server_id>mv /var/lib/rancher/management-state/tls/localhost.crt /var/lib/rancher/management-state/tls/localhost.crt-bak
+docker exec -ti <rancher_server_id> mv /var/lib/rancher/management-state/tls/localhost.crt /var/lib/rancher/management-state/tls/localhost.crt-bak
 ```
 
-- 2.3 +
+- For version 2.3+
 
 ```shell
- docker exec -ti <rancher_server_id>mv /var/lib/rancher/k3s/server/tls /var/lib/rancher/k3s/server/tlsbak
+ docker exec -ti <rancher_server_id> mv /var/lib/rancher/k3s/server/tls /var/lib/rancher/k3s/server/tlsbak
  
- # Execute both sides, the first time is used to apply for a certificate, and the second time is used to load the certificate and start
+ # Execute twice, the first time for requesting certificates, the second time for loading certificates and starting
  docker restart <rancher_server_id>
 ```
 
-- 2.4 +
+- For version 2.4+
 
-​       a. exec to rancher server
+​       a. Exec into rancher server
 
 ```shell
 kubectl --insecure-skip-tls-verify -n kube-system delete secrets k3s-serving
@@ -131,57 +81,111 @@ kubectl --insecure-skip-tls-verify delete secret serving-cert -n cattle-system
 rm -f /var/lib/rancher/k3s/server/tls/dynamic-cert.json
 ```
 
-​      b. restart rancher-server
+​      b. Restart rancher-server
 
 ```shell
 docker restart <rancher_server_id>
 ```
 
-​      c. Execute the following command to refresh the parameters
+​      c. Execute the following command to refresh parameters
 
 ```shell
 curl --insecure -sfL https://server-url/v3
 ```
 
-3.restart Rancher Server container
+3. Restart the Rancher Server container
 
 ```shell
 docker restart <rancher_server_id>
 ```
-## 5 The rancher server certificate has expired and cannot handle k8s cluster processing
-If the cluster certificate has expired, you cannot rotate the certificate even if you upgrade to Rancher v2.0.14, v2.1.9, and later. Rancher is through the Agent to update the certificate if the certificate expires will not be able to connect with the Agent.
-### 5.1 Solutions
-You can manually set the time of nodes and adjust the time back. Because the Agent only communicates with the K8S master and the Rancher Server, if the Rancher Server certificate does not expire, then only the K8S master node time needs to be adjusted.
-Adjustment command:
+## 4 Handling Rancher Server Certificate Expiration Leading to K8s Cluster Management Issues
+If the cluster certificate has expired, even upgrading to Rancher v2.0.14, v2.1.9, or higher versions cannot rotate the certificate. Rancher uses Agents to update certificates, and if the certificate expires, it cannot communicate with Agents.
+### 4.1 Solution
+Manually set the node's time forward. Since Agents only communicate with K8S master and Rancher Server, if the Rancher Server certificate has not expired, you only need to adjust the K8S master node time.
+Adjustment commands:
 ```shell
-# Turn off ntp synchronization or the time will be updated automatically
+# Disable NTP synchronization to prevent automatic time updates
 timedatectl set-ntp false
-# Modify Node Time
+# Modify node time
 timedatectl set-time '2019-01-01 00:00:00'
 ```
 
-Then upgrade Rancher Server and wait until the certificate rotation is complete before synchronizing the time back.
+Then upgrade Rancher Server, wait for the certificate rotation to complete, and then resynchronize the time.
 ```shell
 timedatectl set-ntp true
 ```
-Check the validity period of the certificate
+Check the certificate validity period
 ```shell
 openssl x509 -in /etc/kubernetes/ssl/kube-apiserver.pem -noout -dates
 ```
 
-## 6 Why can't you see the created DataWay in the foreground
-### 6.1 Common Cause Analysis
+## 5 Why DataWay Is Not Visible in the Frontend After Creation
+### 5.1 Common Cause Analysis
 
--       The Dataway service does not function properly after being deployed to the server.
--       Data service configuration file error, not configured for correct listening, workspace token information.
--       The dataway service is running incorrectly, which can be located by looking at the dataway log.
--       The server where Dataway is deployed cannot communicate with the kodo service. (Including the correct parsing of the df-kodo service that the dataway server did not add to the hosts)
--       kodo service exception, which can be confirmed by viewing kodo service log.
--       The-df-kodo ingress service is not configured correctly. The specific performance is that it cannot be accessed `http|https://df-kodo.<xxxx>:<port>`
-# 7 Why can't you use the dial test service
-## 7.1 Cause analysis
+- The Dataway service did not start normally after being deployed on the server.
+- The Dataway service configuration file is incorrect, not configured with the correct listening and workspace token information.
+- The Dataway service runtime configuration is incorrect, specifically check the Dataway logs for troubleshooting.
+- The server where Dataway is deployed cannot communicate with the kodo service. (Including not adding the correct df-kodo service resolution in hosts)
+- The kodo service is abnormal, specifically check the kodo service logs for confirmation.
+- The df-kodo ingress service is not correctly configured. Specifically, it cannot access `http|https://df-kodo.<xxxx>:<port>`.
 
--       The deployed Guance application is in an offline environment, and the physical node network environment cannot leave the network. (More common)
--       Self-built detection node network anomaly.
--       Regional vendor network exception.
--       Error in creating dialing test task.
+## 6 Why Dial Testing Services Cannot Be Used
+### 6.1 Cause Analysis
+
+- The <<< custom_key.brand_name >>> application deployed is in an offline environment, and the physical nodes cannot access the internet. (Common scenario)
+- Self-built test node network anomaly.
+- Regional provider network anomaly.
+- Dial testing task creation error.
+
+## 7 Common Deployment Issues and Solutions
+
+### 7.1 `describe pods` reports `unbound immediate PersistentVolumeClaims` error
+
+- Check PVC 
+
+```shell
+NAMESPACE    NAME                                     STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS       AGE
+default      opensearch-single-opensearch-single-0    Bound     pvc-0da2cb6f-1cb9-4630-b0ab-512ce57743a8   16Gi       RWO            openebs-hostpath   19d
+launcher     persistent-data                          Pending                                                                        df-nfs-storage     6m3s
+middleware   data-es-cluster-0                        Bound     pvc-36e48f5a-37b3-4c28-ad14-059265ee3009   50Gi       RWO            openebs-hostpath   18d
+```
+
+Notice that the status of `persistent-data` is `Pending`.
+
+- Check the status of the nfs-subdir-external-provisioner container
+
+```shell
+kubectl get pods -n kube-system  | grep nfs-subdir-external-provisioner
+nfs-provisioner-nfs-subdir-external-provisioner-58b7cdf6f5dr5vr   0/1     ContainerCreating   0             7h7m
+```
+
+- Check the information of `nfs-provisioner-nfs-subdir-external-provisioner-58b7cdf6f5dr5vr`
+
+```shell
+kubectl describe  -n kube-system pods nfs-provisioner-nfs-subdir-external-provisioner-58b7cdf6f5dr5vr
+....
+  Type     Reason       Age                     From     Message
+  ----     ------       ----                    ----     -------
+  Warning  FailedMount  30m (x49 over 6h53m)    kubelet  Unable to attach or mount volumes: unmounted volumes=[nfs-subdir-external-provisioner-root], unattached volumes=[kube-api-access-5p4qn nfs-subdir-external-provisioner-root]: timed out waiting for the condition
+  Warning  FailedMount  5m27s (x136 over 7h4m)  kubelet  Unable to attach or mount volumes: unmounted volumes=[nfs-subdir-external-provisioner-root], unattached volumes=[nfs-subdir-external-provisioner-root kube-api-access-5p4qn]: timed out waiting for the condition
+  Warning  FailedMount  74s (x217 over 7h6m)    kubelet  MountVolume.SetUp failed for volume "nfs-subdir-external-provisioner-root" : mount failed: exit status 32
+Mounting command: mount
+Mounting arguments: -t nfs 10.200.14.112:/nfsdata /var/lib/kubelet/pods/3970ff5f-5dbf-419e-a6af-3080508d2524/volumes/kubernetes.io~nfs/nfs-subdir-external-provisioner-root
+Output: mount: wrong fs type, bad option, bad superblock on 10.200.14.112:/nfsdata,
+       missing codepage or helper program, or other error
+       (for several filesystems (e.g. nfs, cifs) you might
+       need a /sbin/mount.<type> helper program)
+
+       In some cases useful info is found in syslog - try
+       dmesg | tail or so.
+```
+
+The cause of `wrong fs type, bad option` is that `nfs-utils` is not installed.
+
+- Install `nfs-utils`
+
+Execute the following command on the host:
+
+```shell
+yum install nfs-utils 
+```

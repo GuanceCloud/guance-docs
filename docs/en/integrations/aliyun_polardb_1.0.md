@@ -1,76 +1,73 @@
 ---
-title: 'Aliyun  PolarDB 1.0'
+title: 'Alibaba Cloud PolarDB Distributed 1.0'
 tags: 
   - Alibaba Cloud
-summary: 'Aliyun PolarDB Distributed 1.0 displays metrics including CPU utilization, memory utilization, network bandwidth, and disk IOPS.'   
-__int_icon: 'icon/aliyun_polardb_1.0'
+summary: 'Alibaba Cloud PolarDB Distributed 1.0 displays Metrics including CPU utilization, memory utilization, network bandwidth, and disk IOPS.'
+__int_icon: 'icon/aliyun_polardb'
 dashboard:
-  - desc: 'Aliyun PolarDB Distributed 1.0 Monitoring View'
-    path: 'dashboard/zh/aliyun_polardb_1.0/'
+  - desc: 'Built-in Views for Alibaba Cloud PolarDB Distributed 1.0'
+    path: 'dashboard/en/aliyun_polardb_1.0/'
 
 monitor:
-  - desc: 'Aliyun PolarDB Distributed 1.0 Monitor'
-    path: 'monitor/zh/aliyun_polardb_1.0/'
+  - desc: 'Monitors for Alibaba Cloud PolarDB Distributed 1.0'
+    path: 'monitor/en/aliyun_polardb_1.0/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Aliyun  PolarDB 1.0
+# Alibaba Cloud PolarDB Distributed 1.0
 <!-- markdownlint-enable -->
 
-Aliyun PolarDB Distributed 1.0 displays metrics including CPU utilization, memory utilization, network bandwidth, and disk IOPS.
+Alibaba Cloud PolarDB Distributed 1.0 displays Metrics including CPU utilization, memory utilization, network bandwidth, and disk IOPS.
 
-## config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling the Guance Integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
+### Install Script
 
+> Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-### Installation script
+To synchronize the monitoring data of PolarDB Distributed 1.0, we install the corresponding collection script: 「Guance Integration (Alibaba Cloud-PolarDB-X 1.0 Collection)」(ID: `guance_aliyun_polardbx_1`)
 
-> Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+After clicking 【Install】, enter the required parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
-To synchronize the monitoring data of ECS cloud resources, we install the corresponding collection script：「Guance Integration（Aliyun -PolarDB-X 1.0Collect）」(ID：`guance_aliyun_polardbx_1`)
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-Click "Install" and enter the corresponding parameters: Aliyun AK, Aliyun account name.。
+Once enabled, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-tap "Deploy startup Script"，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+By default, we collect some configurations; for more details, see [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-polardbx-1/){:target="_blank"}
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click "Run"，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
+### Verification
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-polardbx-1){:target="_blank"}
+1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the corresponding automatic trigger configurations. You can also check the task records and logs for any anomalies.
+2. On the Guance platform, go to 「Infrastructure / Custom」 to check if asset information exists.
+3. On the Guance platform, go to 「Metrics」 to check if there is corresponding monitoring data.
 
+## Metrics {#metric}
+After configuring Alibaba Cloud PolarDB Distributed 1.0, the default Measurement sets are as follows. More Metrics can be collected through configuration [Alibaba Cloud Monitoring Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_drds/drds){:target="_blank"}
 
-### Verify
+| Metric | Description                  |       Statistics        |     Unit     |
+| ---- |------------------------------|:-----------------------:|:------------:|
+|`LogicQPS`| Average logical requests per second|         Average         |    count     |
+|`PhysicsQPS`| Average physical requests per second|         Average         |    count     |
+|`NetworkInputTraffic`| Network input traffic|         Average         |    bit/s     |
+|`NetworkOutputTraffic`| Network output traffic|         Average         |    bit/s     |
+|`ConnectionCount`| Number of connections|     Average,Maximum     |    count     |
+|`MemoryUtilization`| Memory usage      |         Average         |      %       |
+|`CPUUtilization`| CPU usage                    |     Average,Maximum     |      %       |
+|`cpu_usage`| Private RDS_MySQL CPU utilization                   |     Average,Maximum     |      %       |
+|`disk_usage`| Private RDS_MySQL disk usage                   |     Average,Maximum     |      %       |
+|`mem_usage`| Private RDS_MySQL memory utilization|     Average,Maximum     |      %       |
+|`iops_usage`| Private RDS_MySQL IOPS utilization|         Average         |      %       |
+|`input_traffic_ps`| Private RDS_MySQL inbound bandwidth |         Average         |    bits/s    |
+|`output_traffic_ps`| Private RDS_MySQL outbound bandwidth|    Average              |  bits/s      |
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
-
-## Metric {#metric}
-Configure Ali Cloud - PolarDB. The default metric set is as follows. You can collect more metrics by configuring them [Aliyun Monitor Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_drds/drds){:target="_blank"}
-
-| Metric | Description                                |       Statistics        |     Unit     |
-| ---- |--------------------------------------------|:-----------------------:|:------------:|
-|`LogicQPS`| Average number of logical requests per second |         Average         |    count     |
-|`PhysicsQPS`| Average number of physical requests per second |         Average         |    count     |
-|`NetworkInputTraffic`| Network input quantity                     |         Average         |    bit/s     |
-|`NetworkOutputTraffic`| Network output                             |         Average         |    bit/s     |
-|`ConnectionCount`| Number of connections                      |     Average,Maximum     |    count     |
-|`MemoryUtilization`| Memory usage rate                          |         Average         |      %       |
-|`CPUUtilization`| CPU usage rate                             |     Average,Maximum     |      %       |
-|`cpu_usage`| Private RDS_ MySQL CPU utilization|     Average,Maximum     |      %       |
-|`disk_usage`| Private RDS_ MySQL disk usage rate|     Average,Maximum     |      %       |
-|`mem_usage`| Private RDS_ MySQL memory utilization|     Average,Maximum     |      %       |
-|`iops_usage`| Private RDS_ MySQL IOPS utilization rate|         Average         |      %       |
-|`input_traffic_ps`| Private RDS_ MySQL network inflow bandwidth|         Average         |    bits/s    |
-|`output_traffic_ps`| Private RDS_ MySQL network outflow bandwidth|    Average              |  bits/s      |
-
-## Object {#object}
-The collected Aliyun PolarDB 1.0 object data structure can see the object data from 「Infrastructure-Custom」
+## Objects {#object}
+The object data structure of Alibaba Cloud PolarDB Distributed 1.0 can be viewed from 「Infrastructure-Custom」
 
 ``` json
 {
@@ -90,4 +87,3 @@ The collected Aliyun PolarDB 1.0 object data structure can see the object data f
   }
 }
 ```
-

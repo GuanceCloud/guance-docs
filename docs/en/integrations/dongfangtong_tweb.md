@@ -1,28 +1,28 @@
 ---
-title     : 'Dongfangtong TWeb（TongWeb）'
-summary   : 'Collect information about Dongfangtong TWeb（TongWeb） metrics and tracing'
+title     : 'TongWeb'
+summary   : 'Collect TongWeb runtime Metrics and tracing information'
 __int_icon: 'icon/dongfangtong'
 dashboard :
-  - desc  : 'Dongfangtong TWeb（TongWeb）Monitoring View'
-    path  : 'dashboard/zh/dongfangtong_tweb'
+  - desc  : 'TongWeb monitoring view'
+    path  : 'dashboard/en/dongfangtong_tweb'
 monitor   :
-  - desc  : 'No'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# `Dongfangtong` TWeb（TongWeb）
+# TongWeb
 <!-- markdownlint-enable -->
 
-## Installation Configuration{#config}
+## Installation and Configuration {#config}
 
 ### Download `ddtrace`
 
-Download [`ddtrace` agent](https://github.com/GuanceCloud/dd-trace-java/releases)
+Download the [`ddtrace` agent](https://github.com/GuanceCloud/dd-trace-java/releases)
 
 ### Configure Agent
 
-Adjust the `external.vmoptions` file in the `bin` directory and add the following variable information to the `server_options` :
+In the bin directory, modify the `external.vmoptions` file by adding the following variable information under `server_options`:
 
 ```shell
 ......
@@ -38,13 +38,11 @@ Adjust the `external.vmoptions` file in the `bin` directory and add the followin
 ......
 ```
 
-`dd-java-agent` ersion can be adjusted according to the actual situation. It is not recommended to add the variable `-Ddd.service.name`，here. If added, it will result in all projects using the same serviceName.
+Adjust the `dd-java-agent` version according to your actual situation. It is not recommended to add the variable `-Ddd.service.name`, as it would cause all projects to use the same serviceName.
 
-The `dd-java-agent` version can be adjusted according to the actual situation. It is not recommended to add the variable `-Ddd.service.name` here. If added, it will result in all projects using the same serviceName.
+### Enable `Statsd` Collector in DataKit
 
-### DataKit enabled `Statsd` collector
-
-The Statsd collector is used to collect metric related information. Go to the `datakit/conf.d/statsd` directory and copy `statsd.conf.sample` to `statsd.conf`.
+The Statsd collector is used to collect Metrics-related information. Go to the `datakit/conf.d/statsd` directory and copy `statsd.conf.sample` to `statsd.conf`.
 
 ```shell
 root:/usr/local/datakit/conf.d/statsd$ ll
@@ -55,11 +53,11 @@ drwxr-xr-x 53 root root 4096 Oct  9 08:32 ../
 -rwxr-xr-x  1 root root 2233 Oct  9 08:32 statsd.conf.sample
 ```
 
-For more parameter adjustments, refer to the [Statsd](statsd.md) collector integration document.
+Refer to the [Statsd](statsd.md) collector integration documentation for more parameter adjustments.
 
-### DataKit enabled `ddtrace` collector
+### Enable `ddtrace` Collector in DataKit
 
-The `ddtrace` collector is used to collect information related to the `ddtrace` tracing. Enter the `datakit/conf.d/ddtrace` directory and copy `ddtrace.conf.sample` to `ddtrace.conf`.
+The `ddtrace` collector is used to collect `ddtrace` tracing-related information. Go to the `datakit/conf.d/ddtrace` directory and copy `ddtrace.conf.sample` to `ddtrace.conf`.
 
 ```shell
 root:/usr/local/datakit/conf.d/ddtrace$ ll
@@ -70,7 +68,7 @@ drwxr-xr-x 53 root root 4096 Oct  9 08:32 ../
 -rwxr-xr-x  1 root root 2474 Oct  9 08:32 ddtrace.conf.sample
 ```
 
-For more parameter adjustments, refer to the [`ddtrace`](ddtrace.md) collector integration document.
+Refer to the [`ddtrace`](ddtrace.md) collector integration documentation for more parameter adjustments.
 
 ### Restart DataKit
 
@@ -83,13 +81,13 @@ bin/startserver.sh restart
 ```
 
 
-## Metric {#metric}
+## Metrics {#metric}
 
-Global Tag
+Global Tags
 
 | Tag | Description |
-| -- | -- |
-| component | component name：`tongweb` |
-| env | env |
+| --- | --- |
+| component | Component name: `tongweb` |
+| env | Environment: env |
 
-JVM reference [JVM metrics](jvm.md#metric)
+For JVM metrics, refer to [JVM Metrics](jvm.md#metric).

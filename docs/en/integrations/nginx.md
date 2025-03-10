@@ -1,30 +1,31 @@
 ---
 title     : 'Nginx'
-summary   : 'Collect metrics of Nginx'
+summary   : 'Collect metrics data from Nginx'
 tags:
   - 'WEB SERVER'
-  - 'MIDDLEWARE'
+  - 'Middleware'
 __int_icon      : 'icon/nginx'
 dashboard :
   - desc  : 'Nginx'
     path  : 'dashboard/en/nginx'
+  - desc  : 'Nginx(VTS) Monitoring View'
+    path  : 'dashboard/en/nginx_vts'
 monitor   :
-  - desc  : 'None'
+  - desc  : 'Not Available'
     path  : '-'
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-NGINX collector can take many metrics from NGINX instances, such as the total number of requests, connections, cache and other metrics, and collect the metrics into Guance Cloud to help monitor and analyze various abnormal situations of NGINX.
+The NGINX collector can collect many metrics from NGINX instances, such as total number of connections, cache statistics, and more. It sends these metrics to Guance to help monitor and analyze various anomalies in NGINX.
 
-## Config {#config}
+## Configuration {#config}
 
-### Requirements {#requirements}
+### Prerequisites {#requirements}
 
-- NGINX version >= `1.8.0`; Already tested version:
+- NGINX version >= `1.8.0`; tested versions:
     - [x] 1.23.2
     - [x] 1.22.1
     - [x] 1.21.6
@@ -32,49 +33,48 @@ NGINX collector can take many metrics from NGINX instances, such as the total nu
     - [x] 1.14.2
     - [x] 1.8.0
 
-- NGINX collects the data of `http_stub_status_module` by default. When the `http_stub_status_module` is opened, see [here](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html){:target="_blank"}, which will report the data of NGINX measurements later.
+- NGINX collects data by default from the `http_stub_status_module`. To enable the `http_stub_status_module`, refer to [this link](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html){:target="_blank"}. Once enabled, it will report NGINX measurement data;
 
-- If you are using [VTS](https://github.com/vozlt/nginx-module-vts){:target="_blank"} or want to monitor more data, it is recommended to turn on VTS-related data collection by setting the option `use_vts` to `true` in `nginx.conf`. For how to start VTS, see [here](https://github.com/vozlt/nginx-module-vts#synopsis){:target="_blank"}.
+- If you are using [VTS](https://github.com/vozlt/nginx-module-vts){:target="_blank"} or want to monitor more data, it is recommended to enable VTS-related data collection. Set the option `use_vts` to `true` in the `nginx.conf`. For instructions on how to enable VTS, see [here](https://github.com/vozlt/nginx-module-vts#synopsis){:target="_blank"};
 
-- After VTS function is turned on, the following measurements can be generated:
+- After enabling the VTS feature, it can generate the following measurements:
 
     - `nginx`
     - `nginx_server_zone`
-    - `nginx_upstream_zone` (NGINX needs to configure [`upstream` related configuration](http://nginx.org/en/docs/http/ngx_http_upstream_module.html){:target="_blank"})
-    - `nginx_cache_zone`    (NGINX needs to configure [`cache` related configuration](https://docs.nginx.com/nginx/admin-guide/content-cache/content-caching/){:target="_blank"})
+    - `nginx_upstream_zone` (NGINX needs to configure [`upstream`](http://nginx.org/en/docs/http/ngx_http_upstream_module.html){:target="_blank"})
+    - `nginx_cache_zone` (NGINX needs to configure [`cache`](https://docs.nginx.com/nginx/admin-guide/content-cache/content-caching/){:target="_blank"})
 
-- Take the example of generating the `nginx_upstream_zone` measurements. An example of NGINX-related configuration is as follows:
-
-```nginx
-    ...
-    http {
-       ...
-       upstream your-upstreamname {
-         server upstream-ip:upstream-port;
-      }
-       server {
-       ...
-       location / {
-       root  html;
-       index  index.html index.htm;
-       proxy_pass http://yourupstreamname;
-     }}}
-
-```
-
-- After the VTS function has been turned on, it is no longer necessary to collect the data of the `http_stub_status_module` module, because the data of the VTS module will include the data of the `http_stub_status_module` module.
-
-- NGINX Plus users can still use the `http_stub_status_module` to collect basic data. Additionally, `http_api_module` should be enabled in the NGINX configuration file ([Reference](https://nginx.org/en/docs/http/ngx_http_api_module.html){:target="_blank"}) and set status_zone in the server blocks you want to monitor. The configuration example is as follows:
+- As an example to generate the `nginx_upstream_zone` measurement set, the relevant NGINX configuration is as follows:
 
 ``` nginx
-# enable http_api_module
+...
+http {
+   ...
+   upstream your-upstreamname {
+     server upstream-ip:upstream-port;
+  }
+   server {
+   ...
+   location / {
+   root  html;
+   index  index.html index.htm;
+   proxy_pass http://yourupstreamname;
+}}}
+```
+
+- Once the VTS feature is enabled, there is no need to collect data from the `http_stub_status_module` module again because the VTS module's data includes the `http_stub_status_module` data.
+
+- NGINX Plus users can still use the `http_stub_status_module` to collect basic data. Additionally, they need to enable the `http_api_module` in the NGINX configuration file ([reference](https://nginx.org/en/docs/http/ngx_http_api_module.html){:target="_blank"}) and set `status_zone` in the `server` they want to monitor. Example configuration:
+
+``` nginx
+# Enable http_api_module
 server {
   listen 8080;
   location /api {
      api write=on;
   }
 }
-# monitor more detailed metrics
+# Monitor more metrics
 server {
   listen 80;
   status_zone <ZONE_NAME>;
@@ -82,28 +82,28 @@ server {
 }
 ```
 
-- To enable NGINX Plus collection, you need to set the option `use_plus_api` to true in the `nginx.conf` file and uncomment the `plus_api_url` option. (Note: VTS does not support NGINX Plus).
+- To enable NGINX Plus collection, set the option `use_plus_api` to `true` in the `nginx.conf` and uncomment `plus_api_url`. Note that the VTS feature is not supported for NGINX Plus.
 
-- NGINX Plus can generate the following measurements:
+- NGINX Plus additionally generates the following measurement sets:
 
     - `nginx_location_zone`
 
-### Configuration {#input-config}
+### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "Host"
+=== "Host Installation"
 
-    Go to the `conf.d/nginx` directory under the DataKit installation directory, copy `nginx.conf.sample` and name it `nginx.conf`. Examples are as follows:
-
+    Enter the `conf.d/nginx` directory under the DataKit installation directory, copy `nginx.conf.sample` and rename it to `nginx.conf`. An example is as follows:
+    
     ```toml
         
     [[inputs.nginx]]
       ## Nginx status URL.
-      ## (Default) If not use with VTS, the formula is like this: "http://localhost:80/basic_status".
-      ## If using with VTS, the formula is like this: "http://localhost:80/status/format/json".
+      ## (Default) If not using VTS, the formula is like this: "http://localhost:80/basic_status".
+      ## If using VTS, the formula is like this: "http://localhost:80/status/format/json".
       url = "http://localhost:80/basic_status"
       # If using Nginx Plus, this formula is like this: "http://localhost:8080/api/<api_version>".
-      # Note: Nginx Plus not support VTS and should be used with http_stub_status_module (Default)
+      # Note: Nginx Plus does not support VTS and should be used with http_stub_status_module (Default)
       # plus_api_url = "http://localhost:8080/api/9"
     
       ## Optional Can set ports as [<form>,<to>], Datakit will collect all ports.
@@ -134,29 +134,29 @@ server {
       # more_tag = "some_other_value"
     
     ```
-
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    [Inject collector configuration through ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) to enable the collector
+    Currently, you can inject the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) to enable the collector.
 
 ???+ attention
 
-    The `url` address is subject to the specific configuration of nginx. The common usage is to use the `/basic_status` route.
+    The `url` address depends on the specific NGINX configuration, commonly using `/basic_status`.
+
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.nginx.tags]` if needed:
+All collected data defaults to appending global election tags. You can also specify other tags through `[inputs.nginx.tags]` in the configuration:
 
 ``` toml
 [inputs.nginx.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-  # ...
+ # some_tag = "some_value"
+ # more_tag = "some_other_value"
+ # ...
 ```
-
 
 
 
@@ -167,27 +167,28 @@ For all of the following data collections, the global election tags will added a
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|Host name which installed nginx|
-|`nginx_port`|Nginx server port|
-|`nginx_server`|Nginx server host|
-|`nginx_version`|Nginx version, exist when using vts|
+|`host`|Host name where NGINX is installed|
+|`nginx_port`|NGINX server port|
+|`nginx_server`|NGINX server host|
+|`nginx_version`|NGINX version, exists when using vts|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`connection_accepts`|The total number of accepts client connections|int|count|
-|`connection_active`|The current number of active client connections|int|count|
-|`connection_dropped`|The total number of dropped client connections|int|count|
-|`connection_handled`|The total number of handled client connections|int|count|
-|`connection_reading`|The total number of reading client connections|int|count|
-|`connection_requests`|The total number of requests client connections|int|count|
-|`connection_waiting`|The total number of waiting client connections|int|count|
-|`connection_writing`|The total number of writing client connections|int|count|
-|`load_timestamp`|Nginx process load time in milliseconds, exist when using vts|int|msec|
-|`pid`|The pid of nginx process (only for Nginx plus)|int|count|
-|`ppid`|The ppid of nginx process (only for Nginx plus)|int|count|
+|`connection_accepts`|Total number of accepted client connections|int|count|
+|`connection_active`|Current number of active client connections|int|count|
+|`connection_dropped`|Total number of dropped client connections|int|count|
+|`connection_handled`|Total number of handled client connections|int|count|
+|`connection_reading`|Total number of reading client connections|int|count|
+|`connection_requests`|Total number of client requests|int|count|
+|`connection_waiting`|Total number of waiting client connections|int|count|
+|`connection_writing`|Total number of writing client connections|int|count|
+|`load_timestamp`|NGINX process load time in milliseconds, exists when using vts|int|msec|
+|`pid`|Process ID of NGINX (only for NGINX Plus)|int|count|
+|`ppid`|Parent Process ID of NGINX (only for NGINX Plus)|int|count|
+
 
 
 
@@ -200,32 +201,33 @@ For all of the following data collections, the global election tags will added a
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|host name which installed nginx|
-|`nginx_port`|nginx server port|
-|`nginx_server`|nginx server host|
-|`nginx_version`|nginx version|
-|`server_zone`|server zone|
+|`host`|Host name where NGINX is installed|
+|`nginx_port`|NGINX server port|
+|`nginx_server`|NGINX server host|
+|`nginx_version`|NGINX version|
+|`server_zone`|Server zone|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`code_200`|The number of responses with status code 200 (only for Nginx plus)|int|count|
-|`code_301`|The number of responses with status code 301 (only for Nginx plus)|int|count|
-|`code_404`|The number of responses with status code 404 (only for Nginx plus)|int|count|
-|`code_503`|The number of responses with status code 503 (only for Nginx plus)|int|count|
-|`discarded`|The number of requests being discarded (only for Nginx plus)|int|count|
-|`processing`|The number of requests being processed (only for Nginx plus)|int|count|
-|`received`|The total amount of data received from clients.|int|B|
-|`requests`|The total number of client requests received from clients.|int|count|
-|`response_1xx`|The number of responses with status codes 1xx|int|count|
-|`response_2xx`|The number of responses with status codes 2xx|int|count|
-|`response_3xx`|The number of responses with status codes 3xx|int|count|
-|`response_4xx`|The number of responses with status codes 4xx|int|count|
-|`response_5xx`|The number of responses with status codes 5xx|int|count|
-|`responses`|The total number of responses (only for Nginx plus)|int|count|
-|`send`|The total amount of data sent to clients.|int|B|
+|`code_200`|Number of responses with status code 200 (only for NGINX Plus)|int|count|
+|`code_301`|Number of responses with status code 301 (only for NGINX Plus)|int|count|
+|`code_404`|Number of responses with status code 404 (only for NGINX Plus)|int|count|
+|`code_503`|Number of responses with status code 503 (only for NGINX Plus)|int|count|
+|`discarded`|Number of discarded requests (only for NGINX Plus)|int|count|
+|`processing`|Number of processing requests (only for NGINX Plus)|int|count|
+|`received`|Total amount of data received from clients.|int|B|
+|`requests`|Total number of client requests received from clients.|int|count|
+|`response_1xx`|Number of responses with status codes 1xx|int|count|
+|`response_2xx`|Number of responses with status codes 2xx|int|count|
+|`response_3xx`|Number of responses with status codes 3xx|int|count|
+|`response_4xx`|Number of responses with status codes 4xx|int|count|
+|`response_5xx`|Number of responses with status codes 5xx|int|count|
+|`responses`|Total number of responses (only for NGINX Plus)|int|count|
+|`send`|Total amount of data sent to clients.|int|B|
+
 
 
 
@@ -238,32 +240,33 @@ For all of the following data collections, the global election tags will added a
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|host name which installed nginx|
-|`nginx_port`|nginx server port|
-|`nginx_server`|nginx server host|
-|`nginx_version`|nginx version|
-|`upstream_server`|upstream server|
-|`upstream_zone`|upstream zone|
+|`host`|Host name where NGINX is installed|
+|`nginx_port`|NGINX server port|
+|`nginx_server`|NGINX server host|
+|`nginx_version`|NGINX version|
+|`upstream_server`|Upstream server|
+|`upstream_zone`|Upstream zone|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`active`|The number of active connections (only for Nginx plus)|int|count|
-|`backup`|Whether it is configured as a backup server (only for Nginx plus)|int|count|
-|`fails`|The number of failed requests (only for Nginx plus)|int|count|
-|`received`|The total number of bytes received from this server.|int|B|
-|`request_count`|The total number of client requests received from server.|int|count|
-|`response_1xx`|The number of responses with status codes 1xx|int|count|
-|`response_2xx`|The number of responses with status codes 2xx|int|count|
-|`response_3xx`|The number of responses with status codes 3xx|int|count|
-|`response_4xx`|The number of responses with status codes 4xx|int|count|
-|`response_5xx`|The number of responses with status codes 5xx|int|count|
-|`send`|The total number of bytes sent to clients.|int|B|
-|`state`|The current state of the server (only for Nginx plus)|int|count|
-|`unavail`|The number of unavailable server (only for Nginx plus)|int|count|
-|`weight`|Weights used when load balancing (only for Nginx plus)|int|count|
+|`active`|Number of active connections (only for NGINX Plus)|int|count|
+|`backup`|Whether configured as a backup server (only for NGINX Plus)|int|count|
+|`fails`|Number of failed requests (only for NGINX Plus)|int|count|
+|`received`|Total number of bytes received from this server.|int|B|
+|`request_count`|Total number of client requests received from server.|int|count|
+|`response_1xx`|Number of responses with status codes 1xx|int|count|
+|`response_2xx`|Number of responses with status codes 2xx|int|count|
+|`response_3xx`|Number of responses with status codes 3xx|int|count|
+|`response_4xx`|Number of responses with status codes 4xx|int|count|
+|`response_5xx`|Number of responses with status codes 5xx|int|count|
+|`send`|Total number of bytes sent to clients.|int|B|
+|`state`|Current state of the server (only for NGINX Plus)|int|count|
+|`unavail`|Number of unavailable servers (only for NGINX Plus)|int|count|
+|`weight`|Weights used when load balancing (only for NGINX Plus)|int|count|
+
 
 
 
@@ -276,29 +279,30 @@ For all of the following data collections, the global election tags will added a
 
 | Tag | Description |
 |  ----  | --------|
-|`cache_zone`|cache zone|
-|`host`|host name which installed nginx|
-|`nginx_port`|nginx server port|
-|`nginx_server`|nginx server host|
-|`nginx_version`|nginx version|
+|`cache_zone`|Cache zone|
+|`host`|Host name where NGINX is installed|
+|`nginx_port`|NGINX server port|
+|`nginx_server`|NGINX server host|
+|`nginx_version`|NGINX version|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`max_size`|The limit on the maximum size of the cache specified in the configuration|int|B|
-|`received`|The total number of bytes received from the cache.|int|B|
-|`responses_bypass`|The number of cache bypass|int|count|
-|`responses_expired`|The number of cache expired|int|count|
-|`responses_hit`|The number of cache hit|int|count|
-|`responses_miss`|The number of cache miss|int|count|
-|`responses_revalidated`|The number of cache revalidated|int|count|
-|`responses_scarce`|The number of cache scarce|int|count|
-|`responses_stale`|The number of cache stale|int|count|
-|`responses_updating`|The number of cache updating|int|count|
-|`send`|The total number of bytes sent from the cache.|int|B|
-|`used_size`|The current size of the cache.|int|B|
+|`max_size`|Limit on the maximum size of the cache specified in the configuration|int|B|
+|`received`|Total number of bytes received from the cache.|int|B|
+|`responses_bypass`|Number of cache bypasses|int|count|
+|`responses_expired`|Number of expired caches|int|count|
+|`responses_hit`|Number of cache hits|int|count|
+|`responses_miss`|Number of cache misses|int|count|
+|`responses_revalidated`|Number of revalidated caches|int|count|
+|`responses_scarce`|Number of scarce caches|int|count|
+|`responses_stale`|Number of stale caches|int|count|
+|`responses_updating`|Number of updating caches|int|count|
+|`send`|Total number of bytes sent from the cache.|int|B|
+|`used_size`|Current size of the cache.|int|B|
+
 
 
 
@@ -311,38 +315,39 @@ For all of the following data collections, the global election tags will added a
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|host name which installed nginx|
-|`location_zone`|cache zone|
-|`nginx_port`|nginx server port|
-|`nginx_server`|nginx server host|
-|`nginx_version`|nginx version|
+|`host`|Host name where NGINX is installed|
+|`location_zone`|Location zone|
+|`nginx_port`|NGINX server port|
+|`nginx_server`|NGINX server host|
+|`nginx_version`|NGINX version|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`code_200`|The number of 200 code (only for Nginx plus)|int|count|
-|`code_301`|The number of 301 code (only for Nginx plus)|int|count|
-|`code_404`|The number of 404 code (only for Nginx plus)|int|count|
-|`code_503`|The number of 503 code (only for Nginx plus)|int|count|
-|`discarded`|The total number of discarded request (only for Nginx plus)|int|B|
-|`received`|The total number of received bytes (only for Nginx plus)|int|B|
-|`requests`|The number of requests (only for Nginx plus)|int|B|
-|`response`|The number of response (only for Nginx plus)|int|B|
-|`response_1xx`|The number of 1xx response (only for Nginx plus)|int|count|
-|`response_2xx`|The number of 2xx response (only for Nginx plus)|int|count|
-|`response_3xx`|The number of 3xx response (only for Nginx plus)|int|count|
-|`response_4xx`|The number of 4xx response (only for Nginx plus)|int|count|
-|`response_5xx`|The number of 5xx response (only for Nginx plus)|int|count|
-|`sent`|The total number of send bytes (only for Nginx plus)|int|count|
+|`code_200`|Number of 200 status codes (only for NGINX Plus)|int|count|
+|`code_301`|Number of 301 status codes (only for NGINX Plus)|int|count|
+|`code_404`|Number of 404 status codes (only for NGINX Plus)|int|count|
+|`code_503`|Number of 503 status codes (only for NGINX Plus)|int|count|
+|`discarded`|Total number of discarded requests (only for NGINX Plus)|int|B|
+|`received`|Total number of received bytes (only for NGINX Plus)|int|B|
+|`requests`|Number of requests (only for NGINX Plus)|int|B|
+|`response`|Number of responses (only for NGINX Plus)|int|B|
+|`response_1xx`|Number of 1xx responses (only for NGINX Plus)|int|count|
+|`response_2xx`|Number of 2xx responses (only for NGINX Plus)|int|count|
+|`response_3xx`|Number of 3xx responses (only for NGINX Plus)|int|count|
+|`response_4xx`|Number of 4xx responses (only for NGINX Plus)|int|count|
+|`response_5xx`|Number of 5xx responses (only for NGINX Plus)|int|count|
+|`sent`|Total number of sent bytes (only for NGINX Plus)|int|count|
 
 
 
 
 
 
-## Custom Object {#object}
+
+## Custom Objects {#custom_object}
 
 
 
@@ -377,146 +382,144 @@ For all of the following data collections, the global election tags will added a
 
 | Tag | Description |
 |  ----  | --------|
-|`col_co_status`|Current status of collector on Nginx(`OK/NotOK`)|
-|`host`|The server host address|
-|`ip`|Connection IP of the Nginx|
-|`name`|Object uniq ID|
+|`col_co_status`|Current status of collector on NGINX (`OK/NotOK`)|
+|`host`|Server host address|
+|`ip`|Connection IP of the NGINX|
+|`name`|Object unique ID|
 |`reason`|If status not ok, we'll get some reasons about the status|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`display_name`|Displayed name in UI|string|-|
-|`uptime`|Current Nginx uptime|int|s|
-|`version`|Current version of Nginx|string|-|
+|`uptime`|Current NGINX uptime|int|s|
+|`version`|Current version of NGINX|string|-|
 
 
 
 
-## Log {#logging}
+## Logging {#logging}
 
-To collect NGINX logs, open `files` in nginx.conf and write to the absolute path of the NGINX log file. For example:
+To collect logs from NGINX, you can open `files` in `nginx.conf` and write the absolute path of the NGINX log files. For example:
 
 ```toml
-    [[inputs.nginx]]
-      ...
-      [inputs.nginx.log]
+[[inputs.nginx]]
+  ...
+  [inputs.nginx.log]
     files = ["/var/log/nginx/access.log","/var/log/nginx/error.log"]
 ```
 
-When log collection is turned on, logs with a log `source` of `nginx` are generated by default.
+After enabling log collection, logs with source (`source`) as `nginx` will be generated by default.
 
->Note: DataKit must be installed on the NGINX host to collect NGINX logs.
+> **Note:** DataKit must be installed on the same host as NGINX to collect NGINX logs.
 
-### Log Pipeline Feature Cut Field Description {#pipeline}
+### Log Pipeline Field Parsing Explanation {#pipeline}
 
-- NGINX error log cutting
+- NGINX Error Log Parsing
 
-Example error log text:
+Error log text example:
 
 ```log
 2021/04/21 09:24:04 [alert] 7#7: *168 write() to "/var/log/nginx/access.log" failed (28: No space left on device) while logging request, client: 120.204.196.129, server: localhost, request: "GET / HTTP/1.1", host: "47.98.103.73"
 ```
 
-The list of cut fields is as follows:
+Parsed field list:
 
-| Field Name       | Field Value                                   | Description                         |
-| ---          | ---                                      | ---                          |
-| status       | error                                    | Log level (alert changed to error)   |
-| client_ip    | 120.204.196.129                          | client ip address            |
-| server       | localhost                                | server address                  |
-| http_method  | GET                                      | http request mode                |
-| http_url     | /                                        | http request url                 |
-| http_version | 1.1                                      | http version                 |
-| ip_or_host   | 47.98.103.73                             | requestor ip or host             |
-| msg          | 7#7: *168 write()...host: \"47.98.103.73 | Log content                     |
-| time         | 1618968244000000000                      | Nanosecond timestamp (as line protocol time) |
+| Field Name       | Field Value                                   | Description                           |
+| ---          | ---                                      | ---                            |
+| status       | error                                    | Log level (alert converted to error) |
+| client_ip    | 120.204.196.129                          | Client IP address                 |
+| server       | localhost                                | Server address                    |
+| http_method  | GET                                      | HTTP request method                  |
+| http_url     | /                                        | HTTP request URL                      |
+| http_version | 1.1                                      | HTTP version                       |
+| ip_or_host   | 47.98.103.73                             | Requesting party IP or host            |
+| msg          | 7#7: *168 write()...host: \"47.98.103.73 | Log content                       |
+| time         | 1618968244000000000                      | Nanosecond timestamp (as line protocol time)   |
 
-Example of error log text:
+Error log text example:
 
 ```log
 2021/04/29 16:24:38 [emerg] 50102#0: unexpected ";" in /usr/local/etc/nginx/nginx.conf:23
 ```
 
-The list of cut fields is as follows:
+Parsed field list:
 
-| Field Name | Field Value                                                          | Description                         |
-| ---    | ---                                                             | ---                          |
-| `status` | `error`                                                           | Log level (`emerg` changed to `error`)   |
-| `msg`    | `50102#0: unexpected \";\" in /usr/local/etc/nginx/nginx.conf:23` | log content                     |
-| `time`   | `1619684678000000000`                                             | Nanosecond timestamp (as row protocol time) |
+| Field Name   | Field Value                                                            | Description                               |
+| ---      | ---                                                               | ---                                |
+| `status` | `error`                                                           | Log level (`emerg` converted to `error`) |
+| `msg`    | `50102#0: unexpected \";\" in /usr/local/etc/nginx/nginx.conf:23` | Log content                           |
+| `time`   | `1619684678000000000`                                             | Nanosecond timestamp (as line protocol time)       |
 
-- NGINX access log cutting
+- NGINX Access Log Parsing
 
-Example of access log text:
+Access log text example:
 
 ```log
 127.0.0.1 - - [24/Mar/2021:13:54:19 +0800] "GET /basic_status HTTP/1.1" 200 97 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.72 Safari/537.36"
 ```
 
-The list of cut fields is as follows:
+Parsed field list:
 
-| Field Name       | Field Value                       | Description                         |
-| ---          | ---                          | ---                          |
-| `client_ip`    | `127.0.0.1`                    | Log level (`emerg` changed to `error`)   |
-| `status`       | `ok`                           | log level                     |
-| `status_code`  | `200`                          | http code                    |
-| `http_method`  | `GET`                          | http request method                |
-| `http_url`     | `/basic_status`                | http request url                 |
-| `http_version` | `1.1`                          | http version                 |
-| `agent`        | `Mozilla/5.0... Safari/537.36` | User-Agent                   |
-| `browser`      | `Chrome`                       | browser                       |
-| `browserVer`   | `89.0.4389.72`                 | browser version                   |
-| `isMobile`     | `false`                        | Is it a cell phone                     |
-| `engine`       | `AppleWebKit`                  | engine                         |
-| `os`           | `Intel Mac OS X 11_1_0`        | system                         |
-| `time`         | `1619243659000000000`          | Nanosecond timestamp (as line protocol time) |
-
+| Field Name         | Field Value                         | Description                               |
+| ---            | ---                            | ---                                |
+| `client_ip`    | `127.0.0.1`                    | Client IP address                   |
+| `status`       | `ok`                           | Log level                           |
+| `status_code`  | `200`                          | HTTP Code                          |
+| `http_method`  | `GET`                          | HTTP request method                      |
+| `http_url`     | `/basic_status`                | HTTP request URL                      |
+| `http_version` | `1.1`                          | HTTP Version                       |
+| `agent`        | `Mozilla/5.0... Safari/537.36` | User-Agent                         |
+| `browser`      | `Chrome`                       | Browser                             |
+| `browserVer`   | `89.0.4389.72`                 | Browser version                         |
+| `isMobile`     | `false`                        | Whether mobile                           |
+| `engine`       | `AppleWebKit`                  | Engine                               |
+| `os`           | `Intel Mac OS X 11_1_0`        | Operating system                               |
+| `time`         | `1619243659000000000`          | Nanosecond timestamp (as line protocol time)       |
 
 ## Tracing {#tracing}
 
-### Requirements {#trace-requirements}
+### Prerequisites {#trace-requirements}
 
 - [x] Install nginx (>=1.9.13)
 
-***This module only supports the Linux operating system***
-
+***This module only supports Linux operating systems***
 
 ### Install Nginx OpenTracing Plugin {#install-otp}
 
-The Nginx OpenTracing plugin is an open-source link tracking plugin for `OpenTracing`, written in C++，It's work for `Jaeger`、`Zipkin`、`LightStep`、`Datadog`.
+The Nginx OpenTracing plugin is an open-source tracing plugin based on C++ that works with `Jaeger`, `Zipkin`, `LightStep`, `Datadog`.
 
-- [Download](https://github.com/opentracing-contrib/nginx-opentracing/releases){:target="_blank"} the plugin corresponding to the current Nginx version, and use the following command to view the current Nginx version
+- [Download](https://github.com/opentracing-contrib/nginx-opentracing/releases){:target="_blank"} the plugin corresponding to your current NGINX version. You can check the current NGINX version with the following command:
 
 ```shell
 $ nginx -v
 nginx version: nginx/1.18.0 (Ubuntu)
 ```
 
-- Extract
+- Extract the archive:
 
 ```shell
 tar zxf linux-amd64-nginx-ot16-ngx_http_module.so.tgz -C /usr/lib/nginx/modules
 ```
 
-- Install plugin
+- Configure the plugin
 
-Add the following information at the top of the `nginx.conf` file
+Add the following information at the top of the `nginx.conf` file:
 
 ```nginx
 load_module modules/ngx_http_opentracing_module.so;
 ```
 
 
-### Install DDAgent Nginx OpenTracing plugin {#install-ddp}
+### Install DDAgent Nginx OpenTracing Plugin {#install-ddp}
 
-The DDAgent Nginx OpenTracing plugin is a set of vendor implementations based on `Nginx OpenTracing`, with different APMs having their own encoding and decoding implementations.
+DDAgent Nginx OpenTracing plugin is an implementation by vendors based on `Nginx OpenTracing`. Different APMs have their own encoding and decoding implementations.
 
-- [Download `dd-opentracing-cpp`](https://github.com/DataDog/dd-opentracing-cpp/releases/latest){:target="_blank"},`libdd_opentracing.so` or `linux-amd64-libdd_opentracing_plugin.so.gz`
+- [Download `dd-opentracing-cpp`](https://github.com/DataDog/dd-opentracing-cpp/releases/latest){:target="_blank"}, either `libdd_opentracing.so` or `linux-amd64-libdd_opentracing_plugin.so.gz`
 
-- Configure Nginx
+- Configure NGINX
 
 ```nginx
 
@@ -529,12 +532,12 @@ opentracing_operation_name nginx-$host;
 
 ```
 
-`opentracing_load_tracer` ： load `opentracing` tracer
-`opentracing_propagate_context;` : Indicates that the link context needs to be passed
+`opentracing_load_tracer` : Load the `opentracing` `apm` plugin path  
+`opentracing_propagate_context;` : Indicates that the context needs to be propagated along the trace
 
 - Configure DDTrace
 
-`dd.json` is used to configure `ddtrace` ，such as：`service`、`agent_host`, etc., the content is as follows：
+`dd.json` is used to configure `ddtrace` information such as `service`, `agent_host`, etc. Its content is as follows:
 
 ```json
 {
@@ -546,9 +549,9 @@ opentracing_operation_name nginx-$host;
 }
 ```
 
-- Nginx logging configuration
+- NGINX log configuration
 
-Inject Trace information into Nginx logs. You can edit as follows:
+Inject Trace information into NGINX logs. Edit as follows:
 
 ```nginx
 log_format with_trace_id '$remote_addr - $http_x_forwarded_user [$time_local] "$request" '
@@ -559,12 +562,11 @@ log_format with_trace_id '$remote_addr - $http_x_forwarded_user [$time_local] "$
 access_log /var/log/nginx/access-with-trace.log with_trace_id;
 ```
 
-> **Note:** The `log_format` keyword tells Nginx that there is a set of logging rules defined here, The `with_trace_id` is the rule name and can be modified by yourself. Please use the same name to associate the rules of the log when specifying the log path below  The path and file name in `access_log` can be changed. Usually, the original Nginx is equipped with log rules. We can configure multiple rules and output different log formats to different files, that is, keep the original  The `access_log` rule and path remain unchanged, and a new log rule containing trace information is added, named as a different log file for different logging tools to read.
+> **Note:** The `log_format` keyword tells NGINX that a set of log rules is being defined here. `with_trace_id` is the rule name, which can be modified. Ensure that the same name is used when specifying the log path below to associate the log rule. The path and filename in `access_log` can be changed. Typically, the original NGINX has configured log rules, so multiple rules can be configured, outputting different log formats to different files—retaining the original `access_log` rule and path unchanged while adding a new log rule with trace information, named a different log file for different log tools to read.
 
-- Verify whether the plugin is working properly
+- Verify if the plugin is working properly
 
-
-Execute the following command to verify
+Run the following command to verify:
 
 ```shell
 $:/etc/nginx# nginx -t
@@ -573,15 +575,15 @@ nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
 
-`info: DATADOG TRACER CONFIGURATION` Indicates that DDTrace has been successfully loaded 。
+`info: DATADOG TRACER CONFIGURATION` indicates that DDTrace has been successfully loaded.
 
-### Service tracing propagate {#trace-propagate}
+### Service Trace Propagation {#trace-propagate}
 
-After Nginx generates link information, it needs to forward the relevant request header information to the backend, which can form a link concatenation operation between Nginx and the backend.
+After NGINX generates trace information, related request headers need to be forwarded to the backend to form a linked trace between NGINX and the backend.
 
-> *If there is a mismatch between Nginx link information and DDTrace, it is necessary to check if this step is standardized.*
+> *If there is a mismatch between NGINX trace information and DDTrace, check whether this step was performed correctly.*
 
-The following configuration needs to be added to the `location` under the corresponding `server`
+Add the following configuration under the corresponding `server`'s `location`:
 
 ```nginx
 location ^~ / {
@@ -593,9 +595,9 @@ location ^~ / {
 
 ```
 
-### Load nginx configure {#load-config}
+### Load NGINX Configuration {#load-config}
 
-Execute the following command to make the Nginx configuration effective:
+Run the following command to apply the NGINX configuration:
 
 ```shell
 root@liurui:/etc/nginx/tracer# nginx -s reload
@@ -604,7 +606,7 @@ root@liurui:/etc/nginx/tracer#
 ```
 
 
-If the following error occurs:
+If you encounter the following error:
 
 ```shell
 root@liurui:/etc/nginx/conf.d# nginx -s reload
@@ -613,7 +615,7 @@ nginx: [warn] could not build optimal proxy_headers_hash, you should increase ei
 
 ```
 
-The following configuration needs to be added to the `http` module of `nginx.conf`:
+Then add the following configuration to the `http` module in `nginx.conf`:
 
 ```shell
 http {

@@ -1,19 +1,18 @@
-# Customized User Identification
+# Custom User Identifiers
+
 ---
 
-By default, the SDK automatically generates a unique ID for the user, which does not have any identifying attributes and can only distinguish between different user attributes.
+By default, the SDK automatically generates a unique identifier ID for users. This ID does not carry any identifying attributes and can only distinguish between different user properties. Therefore, we provide additional APIs to add different identifying attributes to the current user.
 
-For this reason we provide an additional API to add different identification attributes to the current user.
+| Property       | Type   | Description               |
+| -------------- | ------ | ------------------------- |
+| user.id        | string | User ID                   |
+| user.name      | string | User nickname or username |
+| user.email     | string | User email                |
 
-| Properties | Type   | Description               |
-| ---------- | ------ | ------------------------- |
-| user.id    | string | User ID                   |
-| user.name  | string | User nickname or username |
-| user.email | string | User Email                |
+**Note**: The following properties are optional, but it is recommended to provide at least one of them.
 
-The following attributes are optional, but it is recommended that at least one of them be provided.
-
-### Adding User Identification
+### Adding User Identifiers
 
 === "CDN Sync"
 
@@ -48,19 +47,19 @@ The following attributes are optional, but it is recommended that at least one o
     })
     ```
 
-### Remove User Identification
+### Removing User Identifiers
 
 === "CDN Sync"
 
     ```javascript
-    window.DATAFLUX_RUM && window.DATAFLUX_RUM.removeUser()
+    window.DATAFLUX_RUM && window.DATAFLUX_RUM.clearUser()
     ```
 
 === "CDN Async"
 
     ```javascript
     DATAFLUX_RUM.onReady(function() {
-        DATAFLUX_RUM.removeUser()
+        DATAFLUX_RUM.clearUser()
     })
     ```
 
@@ -68,6 +67,5 @@ The following attributes are optional, but it is recommended that at least one o
 
     ```javascript
     import { datafluxRum } from '@cloudcare/browser-rum'
-    datafluxRum.removeUser()
+    datafluxRum.clearUser()
     ```
-

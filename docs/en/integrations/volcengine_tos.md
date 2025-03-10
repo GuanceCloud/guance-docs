@@ -1,76 +1,81 @@
 ---
-title: 'Volcengine TOS Object Storage'
-tags:
-  - Volcengine
-summary: 'Collect Volcengine TOS metric data'
+title: 'VolcEngine TOS Object Storage'
+tags: 
+  - VolcEngine
+summary: 'Collect VolcEngine TOS Metrics data'
 __int_icon: 'icon/volcengine_tos'
 dashboard:
 
-  - desc: 'Volcengine TOS Built in View'
+  - desc: 'VolcEngine TOS Built-in Views'
     path: 'dashboard/en/volcengine_tos'
-
 monitor:
-  - desc: 'Volcengine TOS Monitor'
+
+  - desc: 'VolcEngine TOS Monitor'
     path: 'monitor/en/volcengine_tos'
 ---
 
-Collect Volcengine TOS metric data
+Collect VolcEngine TOS Metrics data
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable the Guance integration - Extensions - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-### Installation script
+### Install Script
 
-> Tip：Please prepare `Volcenine`  AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Note: Please prepare a qualified VolcEngine AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize the monitoring data of TOS cloud resources, we install the corresponding collection script：「Guance Integration（Volcengine TOS Collect）」(ID：`guance_volcengine_tos`)
+To synchronize TOS resource monitoring data, we install the corresponding collection script: 「Guance Integration (VolcEngine-TOS Collection)」(ID: `guance_volcengine_tos`)
 
-Click【Install】and enter the corresponding parameters: Volcenine AK, Volcenine account name, Volcenine regions.
+After clicking 【Install】, enter the corresponding parameters: VolcEngine AK, VolcEngine account name, and Regions.
 
-Tap 【Deploy startup Script】, The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click "Run"，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
+Once enabled, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-### Verify
+### Verification
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task. In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure - Resource Catalog」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+1. In 「Manage / Automatic Trigger Configuration」, confirm that the corresponding task has an automatic trigger configuration, and check the task records and logs for any anomalies.
+2. On the Guance platform, under 「Infrastructure - Resource Catalog」, check if asset information exists.
+3. On the Guance platform, under 「Metrics」, check if the corresponding monitoring data exists.
 
-## Metric {#metric}
+## Metrics {#metric}
 
-Configure the Volcengine TOS monitoring metric to collect more metrics through configuration [Volcengine TOS metric Details](https://console.volcengine.com/cloud_monitor/docs?namespace=TOS){:target="_blank"}
+To configure VolcEngine TOS monitoring metrics, you can collect more metrics by configuring them [VolcEngine TOS Extreme Speed Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_TOS){:target="_blank"}
 
-|`MetricName` |`Subnamespace` | MetricName |MetricUnit | Dimension|
-| ----------- |---------------| :----: |:--------: |:-------: |
-| `AccountTotalStorage` | `account_overview` | Total billing capacity for user storage | Gibibytes | - |
-| `AccountStandardStorage` | `account_overview` | User standard storage billing capacity | Gibibytes | - |
-| `AccountIAStorage` | `account_overview` | User low-frequency storage billing capacity | Gibibytes | - |
-| `AccountITStdStorage` | `account_overview` | User intelligent layered high-frequency access layer capacity | Gibibytes | - |
-| `AccountITAchiveFrStorage` | `account_overview` | User intelligent layered archiving flashback access layer capacity | Gibibytes | - |
-| `AccountStandardMultiAZStorage` | `account_overview` | User standard storage (multi AZ) billing capacity | Gibibytes | - |
-| `TotalUploadBandwidthV2` | `bandwidth` | Total incoming bandwidth | Megabytes/Second | ResourceID |
-| `InternetUploadBandwidthV2` | `bandwidth` | Internal network bandwidth inflow | Megabytes/Second | ResourceID |
-| `TotalDownloadBandwidthV2` | `bandwidth` | Total bandwidth outflow from the public network | Megabytes/Second | ResourceID |
-| `InternetDownloadBandwidthV2` | `bandwidth` | Public network outflow bandwidth | Megabits/Second | ResourceID |
-| `GetRequestFirstByteP95Latency` | `bucket_latency` | GET request first byte P95 latency | Millisecond | ResourceID |
-| `PutRequestFirstByteP95Latency` | `bucket_latency` | PUT request first byte P95 latency | Millisecond | ResourceID |
-| `BucketTotalStorage` | `bucket_overview` | Total capacity of bucket objects | Gibibytes | ResourceID |
-| `BucketITStdStorage` | `bucket_overview` | Bucket intelligent layered high-frequency access layer capacity | Gibibytes | ResourceID |
-| `BucketArchiveStorage` | `bucket_overview` | Bucket archive storage billing capacity | Gibibytes | ResourceID |
-| `ErrorRatio` | `bucket_status_code` | error rate | Gibibytes | ResourceID |
-| `GetObjectQps` | `qps` | GetObject requests QPS | Gibibytes | ResourceID |
-| `PutObjectQps` | `qps` | PutObject requests QPS | Gibibytes | ResourceID |
-| `ListObjectsQps` | `qps` | ListObjects requests QPS | Gibibytes | ResourceID |
-| `UploadPartQps` | `qps` |UploadPart requests QPS | Gibibytes | ResourceID |
-| `DeleteObjectQps` | `qps` | DeleteObject requests QPS | Gibibytes | ResourceID |
-| `PostObjectQps` | `qps` | PostObject requests QPS | Gibibytes | ResourceID |
-| `DeleteObjectsQps` | `qps` | DeleteObjects requests QPS | Gibibytes | ResourceID |
-| `TotalStorage` | `storage` | Total storage capacity | Gibibytes | ResourceID |
-| `StandardStorage` | `storage` | Standard storage capacity | Gibibytes | ResourceID |
-| `InfrequentAccessStorage` | `storage` | Low frequency storage capacity | Gibibytes | ResourceID |
+### VolcEngine TOS Monitoring Metrics
+
+|`MetricName` |`Subnamespace` | Metric Name | MetricUnit | Dimension|
+| ----------- |---------------| :----: |:--------:  |:-------: |
+| `AccountTotalStorage` | `account_overview` | Total User Storage Billing Capacity | Gibibytes | - |
+| `AccountStandardStorage` | `account_overview` | Standard User Storage Billing Capacity | Gibibytes | - |
+| `AccountIAStorage` | `account_overview` | Infrequent Access User Storage Billing Capacity | Gibibytes | - |
+| `AccountITStdStorage` | `account_overview` | Intelligent Tiering High-Frequency Access Layer Capacity | Gibibytes | - |
+| `AccountITAchiveFrStorage` | `account_overview` | Intelligent Tiering Archive Flashback Access Layer Capacity | Gibibytes | - |
+| `AccountStandardMultiAZStorage` | `account_overview` | Multi-AZ Standard User Storage Billing Capacity | Gibibytes | - |
+| `TotalUploadBandwidthV2` | `bandwidth` | Total Inbound Bandwidth | Megabytes/Second | ResourceID |
+| `InternetUploadBandwidthV2` | `bandwidth` | Internal Network Inbound Bandwidth | Megabytes/Second | ResourceID |
+| `TotalDownloadBandwidthV2` | `bandwidth` | Public Network Outbound Total Bandwidth | Megabytes/Second | ResourceID |
+| `InternetDownloadBandwidthV2` | `bandwidth` | Public Network Outbound Bandwidth | Megabits/Second | ResourceID |
+| `GetRequestFirstByteP95Latency` | `bucket_latency` | P95 Latency of First Byte for GET Requests | Millisecond | ResourceID |
+| `PutRequestFirstByteP95Latency` | `bucket_latency` | P95 Latency of First Byte for PUT Requests | Millisecond | ResourceID |
+| `BucketTotalStorage` | `bucket_overview` | Total Bucket Object Capacity | Gibibytes | ResourceID |
+| `BucketITStdStorage` | `bucket_overview` | Intelligent Tiering High-Frequency Access Layer Capacity for Buckets | Gibibytes | ResourceID |
+| `BucketArchiveStorage` | `bucket_overview` | Archive Storage Billing Capacity for Buckets | Gibibytes | ResourceID |
+| `ErrorRatio` | `bucket_status_code` | Error Rate | Percentage | ResourceID |
+| `GetObjectQps` | `qps` | GetObject Request QPS | Requests/Second | ResourceID |
+| `PutObjectQps` | `qps` | PutObject Request QPS | Requests/Second | ResourceID |
+| `ListObjectsQps` | `qps` | ListObjects Request QPS | Requests/Second | ResourceID |
+| `UploadPartQps` | `qps` | UploadPart Request QPS | Requests/Second | ResourceID |
+| `DeleteObjectQps` | `qps` | DeleteObject Request QPS | Requests/Second | ResourceID |
+| `PostObjectQps` | `qps` | PostObject Request QPS | Requests/Second | ResourceID |
+| `DeleteObjectsQps` | `qps` | DeleteObjects Request QPS | Requests/Second | ResourceID |
+| `TotalStorage` | `storage` | Total Storage Capacity | Gibibytes | ResourceID |
+| `StandardStorage` | `storage` | Standard Storage Capacity | Gibibytes | ResourceID |
+| `InfrequentAccessStorage` | `storage` | Infrequent Access Storage Capacity | Gibibytes | ResourceID |
+| `ErrorRatio` | `bucket_status_code` | Error Rate | Percentage | ResourceID |
+
+Note: The unit for `ErrorRatio` was incorrectly listed as `Gibibytes`. It should be `Percentage`.

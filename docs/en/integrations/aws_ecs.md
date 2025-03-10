@@ -2,7 +2,7 @@
 title: 'AWS ECS'
 tags: 
   - AWS
-summary: 'The Amazon ECS feature is integrated with the Amazon Cloud Technology Fargate serverless computing engine, using observation clouds to monitor the operational status of its services.'
+summary: 'Amazon ECS features integrated with the Amazon Web Services Fargate serverless computing engine, monitored using Guance for service runtime.'
 __int_icon: 'icon/aws_ecs'
 dashboard:
   - desc: 'AWS ECS'
@@ -12,7 +12,7 @@ monitor:
     path: '-'
 
 cloudCollector:
-  desc: 'cloud collector'
+  desc: 'Cloud Collector'
   path: 'cloud-collector/en/aws_ecs'
 ---
 
@@ -20,54 +20,51 @@ cloudCollector:
 # AWS ECS
 <!-- markdownlint-enable -->
 
-The Amazon ECS feature is integrated with the Amazon Cloud Technology `Fargate` serverless computing engine, using observation clouds to monitor the operational status of its services.
+Amazon ECS features integrated with the Amazon Web Services `Fargate` serverless computing engine, monitored using Guance for service runtime.
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,[Refer to](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-### Installation script
+### Installation Script
 
-> Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only access `ReadOnlyAccess`).
 
-To synchronize the monitoring data of ElastiCache Redis cloud resources, we install the corresponding collection script: `ID:guance_aws_ecs`
+To synchronize monitoring data from EC2 cloud resources, we install the corresponding collection script: 「Guance Integration (AWS-ECS Collection)」(ID: `guance_aws_ecs`)
 
-Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
+After clicking 【Install】, enter the corresponding parameters: Amazon AK and Amazon account name.
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」.Click[Run],you can immediately execute once, without waiting for a regular time.After a while,you can view task execution records and corresponding logs.
+Additionally, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+By default, we collect some configurations; for more details, see [Custom Cloud Object Metrics Configuration](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
+### Verification
 
-### Verify
+1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the automatic trigger configuration, and check the corresponding task records and logs for any anomalies.
+2. On the Guance platform, in 「Infrastructure / Custom」, check if asset information exists.
+3. On the Guance platform, in 「Metrics」, check if there is corresponding monitoring data.
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+## Metrics {#metric}
+After configuring Amazon CloudWatch, the default metric set is as follows. More metrics can be collected through configuration. [Amazon CloudWatch Metrics Details](https://docs.amazonaws.cn/AmazonECS/latest/developerguide/viewing_cloudwatch_metrics.html){:target="_blank"}
 
-## Metric {#metric}
+### Instance Metrics
 
-Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Amazon CloudWatch Metrics Details](https://docs.amazonaws.cn/AmazonECS/latest/developerguide/viewing_cloudwatch_metrics.html){:target="_blank"}
+Metrics related to `AWS/ECS`.
 
-### Service Metrics
-
-`AWS/ECS` 。
-
-| Metrics                    | dimension                                                         |
+| Metric                    | Description                                                         |
 | :---------------------- | :----------------------------------------------------------- |
-| `CPUUtilization`    | Service CPU utilization (metrics that are filtered by ClusterName and ServiceName) is measured as the total CPU units in use by the tasks that belong to the service, divided by the total number of CPU units that are reserved for the tasks that belong to the service. Service CPU utilization metrics are used for tasks using both the `Fargate` and the EC2 launch type. Unit: Percent.|
-| `MemoryUtilization`       | Service memory utilization (metrics that are filtered by ClusterName and ServiceName) is measured as the total memory in use by the tasks that belong to the service, divided by the total memory that is reserved for the tasks that belong to the service. Service memory utilization metrics are used for tasks using both the `Fargate` and EC2 launch types.Unit: Percent. |
+| `CPUUtilization`    | Service CPU utilization (filtered by ClusterName and ServiceName) is calculated by dividing the total number of CPU units used by tasks belonging to the service by the total number of CPU units reserved for tasks belonging to the service. This metric applies to tasks using `Fargate` and EC2 launch types. Unit: Percentage |
+| `MemoryUtilization`       | Service memory utilization (filtered by ClusterName and ServiceName) is calculated by dividing the total amount of memory used by tasks belonging to the service by the total amount of memory reserved for tasks belonging to the service. This metric applies to tasks using `Fargate` and EC2 launch types. Unit: Percentage |
 
+## Objects {#object}
 
-## Object {#object}
-
-Collected AWS ElastiCache Redis object data structure, you can see the object data from the "Infrastructure - Customize"
+The structure of AWS ECS object data collected can be viewed in 「Infrastructure - Custom」
 
 ```json
 {
@@ -82,7 +79,7 @@ Collected AWS ElastiCache Redis object data structure, you can see the object da
   "fields": {
     "activeServicesCount": 1,
     "configuration": "{}",
-    "message"            : "{}",
+    "message"            : "{instance JSON data}",
     "pendingTasksCount": 0,
     "registeredContainerInstancesCount": 0,
     "runningTasksCount": 1,
@@ -91,4 +88,4 @@ Collected AWS ElastiCache Redis object data structure, you can see the object da
 }
 ```
 
-> *Note: Fields in `tags`, `fields` are subject to change with subsequent updates.*
+> *Note: The fields in `tags` and `fields` may change with subsequent updates*

@@ -7,58 +7,60 @@ icon: zy/datakit
 
 ## Overview {#intro}
 
-DataKit is an open source and integrated data collection Agent, which provides full-platform operating system (Linux/Windows/macOS) support and has comprehensive data collection capabilities, covering various scenarios such as host, container, middleware, Tracing, log and security inspection.
+DataKit is an open-source, all-in-one data collection Agent that supports all major operating systems (Linux/Windows/macOS). It offers comprehensive data collection capabilities covering various scenarios such as hosts, containers, middleware, Tracing, logs, and Security Check.
 
 ## Main Features {#features}
 
-- Support data collection of metrics, logs and Tracing in host, middleware, log, APM and other fields
-- Complete support for Kubernetes cloud native ecology
-- [Pipeline](../pipeline/index.md): Easy structured data extraction
-- Support access to other third-party data collection
+- Supports metrics, logs, and Tracing data collection across hosts, middleware, logs, APM, and other domains.
+- Fully supports the Kubernetes cloud-native ecosystem.
+- [Pipeline](../pipeline/use-pipeline/index.md): Simplified structured data extraction.
+- Supports integration with other third-party data collectors:
     - [Telegraf](../integrations/telegraf.md)
     - [Prometheus](../integrations/prom.md)
     - [Statsd](../integrations/statsd.md)
     - [Fluentd](../integrations/logstreaming.md)
     - [Filebeat](../integrations/beats_output.md)
     - [Function](https://func.guance.com/doc/practice-write-data-via-datakit/){:target="_blank"}
-    - Tracing
+    - Tracing-related:
         - [OpenTelemetry](../integrations/opentelemetry.md)
         - [DDTrace](../integrations/ddtrace.md)
         - [Zipkin](../integrations/zipkin.md)
         - [Jaeger](../integrations/jaeger.md)
         - [SkyWalking](../integrations/skywalking.md)
+        - [Pinpoint](../integrations/pinpoint.md)
 
-## Description {#spec}
+## Notes {#spec}
 
-### Experimental Functionality {#experimental}
+### Experimental Features {#experimental}
 
-When DataKit is released, it will bring some experimental functions. These functions are often new functions released for the first time. The implementation of these functions may be lacking in consideration or imprecise. Therefore, when using experimental functions, the following possible situations should be considered:
+When DataKit is released, it includes some experimental features. These are often new features being introduced for the first time, which may have some limitations or issues. Therefore, when using experimental features, consider the following:
 
-- The function is unstable.
-- For some functional configurations, compatibility is not guaranteed during subsequent iterations.
-- The functionality may be removed due to its limitations, but there will be other corresponding measures to meet the corresponding requirements.
+- The feature might be unstable.
+- Some configuration options may not be compatible in future iterations.
+- Due to their limitations, these features might be removed, but alternative solutions will be provided to meet the corresponding needs.
 
-For this part of the function, please use it carefully.
+Please use these features with caution.
 
-In the process of using the experimental function, related questions can be submitted to issue
+If you encounter any issues while using experimental features, you can submit them to the following issue trackers:
 
 - [GitLab](https://gitlab.jiagouyun.com/cloudcare-tools/datakit/-/issues/new?issue%5Bmilestone_id%5D=){:target="_blank"}
-- [Github](https://github.com/GuanceCloud/datakit/issues/new){:target="_blank"}
-- [JihuLab](https://jihulab.com/guance-cloud/datakit/-/issues/new){:target="_blank"}
+- [GitHub](https://github.com/GuanceCloud/datakit/issues/new){:target="_blank"}
+- [JiHuLab](https://jihulab.com/guance-cloud/datakit/-/issues/new){:target="_blank"}
 
-### Legend Description {#legends}
+### Legend {#legends}
 
-| Legend                                                                                                                       | Description                                                          |
-| ---                                                                                                                        | ---                                                           |
-| :fontawesome-solid-flag-checkered:                                                                                         | Indicates that the collector supports election                                          |
-| :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker: | Examples are used to represent Linux, Windows, macOS, Kubernetes, and Docker respectively |
+| Legend                                                                                                                       | Description                                                            |
+| ---                                                                                                                          | ---                                                                    |
+| :fontawesome-solid-flag-checkered:                                                                                           | Indicates that the collector supports leader election.                 |
+| :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:   | Represents Linux, Windows, macOS, Kubernetes, and Docker respectively.  |
+| :octicons-beaker-24:                                                                                                         | Indicates experimental features (see [Experimental Features](index.md#experimental)). |
 
 ## Precautions {#disclaimer}
 
-When using Datakit, there may be some impacts on existing systems as follows:
+Using DataKit may have the following impacts on existing systems:
 
-1. Log collection can lead to high-speed disk reads; the larger the volume of logs, the higher the IOPS.
-1. If the RUM SDK is integrated into Web/App applications, there will be continuous uploads of RUM-related data. If there are bandwidth limitations on the uploads, it may cause Web/App pages to become unresponsive.
-1. After enabling eBPF, due to the large amount of data collected, it will consume a certain amount of memory and CPU resources. In particular, when bpf-netlog is enabled, it generates a large number of logs based on all TCP packets from the host and container network interfaces.
-1. During periods of high Datakit activity (when configured with large number of log/tracing collection, etc.), it will occupy a significant amount of CPU and memory resources. It is recommended to set reasonable cgroup limits on Datakit.
-1. When Datakit is deployed in Kubernetes, it will exert a certain amount of request pressure on the API server.
+1. Log collection can cause high disk read speeds; the larger the log volume, the higher the IOPS.
+2. If RUM SDK is added to Web/App applications, continuous RUM-related data uploads may occur. If there are bandwidth limits for uploads, this could lead to Web/App page lag.
+3. After enabling eBPF, due to the large amount of collected data, it will consume a certain amount of memory and CPU. Specifically, after enabling bpf-netlog, it will generate a large number of logs based on all TCP packets from host and container network interfaces.
+4. When DataKit is busy (processing a large amount of logs/Traces and importing external data), it will consume a significant amount of CPU and memory resources. It is recommended to set up reasonable cgroups for control.
+5. When DataKit is deployed in Kubernetes, it will put some pressure on the API server.

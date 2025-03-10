@@ -1,33 +1,33 @@
 # Quick Start
 ---
 
-## First Script {#first-script}
+## First Script {#fist-script}
 
-- To configure Pipeline in DataKit, write the following Pipeline file, which is assumed to be named *nginx.p*. Store it in the *[Datakit installation directory]/pipeline* directory.
+- Configure Pipeline in DataKit by writing a Pipeline file as shown below, assuming the name is *nginx.p*. Save it in the *[Datakit installation directory]/pipeline* directory.
 
 ```python
-# Assume input is an Nginx log
-# Note that scripts can be commented
+# Assume the input is an Nginx log
+# Note: comments can be added to scripts
 
 grok(_, "some-grok-patterns")  # Perform grok extraction on the input text
 rename('client_ip', ip)        # Rename the ip field to client_ip
-rename("network_protocol", protocol)   # Rename the protocol field to "network_protocol"
+rename("网络协议", protocol)   # Rename the protocol field to "network_protocol"
 
-# Replace timestamp (eg 1610967131) with RFC3339 date format: 2006-01-02T15:04:05Z07:00
+# Convert timestamps (like 1610967131) to RFC3339 date format: 2006-01-02T15:04:05Z07:00
 datetime(access_time, "s", "RFC3339")
 
-url_decode(request_url)      # Translate HTTP request routing into clear text
+url_decode(request_url)      # Decode the HTTP request route to plain text
 
-# When the status_code is between 200 and 300, create a new http_status = "HTTP_OK" field
+# When status_code is between 200 and 300, create a new field http_status = "HTTP_OK"
 group_between(status_code, [200, 300], "HTTP_OK", "http_status")
 
-# Drop original content
+# Discard the original content
 drop_origin_data()
 ```
 
-- Configure the corresponding collector to use the above script
+- Configure the corresponding collector to use the above Pipeline.
 
-Take the logging collector as an example, just configure the field `pipeline_path`. Note that the script name of the Pipeline is configured here, not the path. All the Pipeline scripts referenced here must be stored in the `<DataKit installation directory/pipeline>` directory:
+For example, with the logging collector, configure the `pipeline_path` field. Note that here you specify the script name of the pipeline, not the path. All referenced pipeline scripts must be placed in the `<DataKit installation directory/pipeline>` directory:
 
 ```python
 [[inputs.logging]]
@@ -36,37 +36,39 @@ Take the logging collector as an example, just configure the field `pipeline_pat
     # required
     source = "nginx"
 
-    # All scripts must be placed in the/path/to/datakit/pipeline directory.
-    # If gitrepos functionality is turned on, the file with the same name in gitrepos takes precedence.
-    # If the pipeline is not configured, look for the same name as source in the pipeline directory.
-    # As its default pipeline configuration, the script for (such as nginx -> nginx.p).
+    # All scripts must be placed in /path/to/datakit/pipeline directory
+    # If the gitrepos feature is enabled, prioritize the same-named files in gitrepos
+    # If no pipeline is configured, look for a script with the same name as the source
+    # (e.g., nginx -> nginx.p) in the pipeline directory as its default pipeline configuration
     pipeline = "nginx.p"
 
-    ... # other configuration
+    ... # Other configurations
 ```
 
-Restart the collector to cut the corresponding log.
+Restart the collector to process the corresponding logs.
 
-## Debug grok and Pipeline {#debug}
+## Debugging Grok and Pipeline {#debug}
 
-Specify the Pipeline script name and enter a piece of text to determine whether the extraction is successful or not.
+Writing Pipelines can be complex, so DataKit includes a simple debugging tool to assist in writing Pipeline scripts.
 
-> The Pipeline script must be placed in the `[DataKit installation path]/pipeline` directory.
+Specify the Pipeline script name and input some text to determine if extraction is successful.
+
+> The Pipeline script must be placed in the *[Datakit installation directory]/pipeline* directory.
 
 ```shell
 $ datakit pipeline -P your_pipeline.p -T '2021-01-11T17:43:51.887+0800  DEBUG io  io/io.go:458  post cost 6.87021ms'
-Extracted data(cost: 421.705µs): # Indicate successful cutting
+Extracted data(cost: 421.705µs): # Indicates successful extraction
 {
-    "code"   : "io/io.go: 458",       # Corresponding code position
+    "code"   : "io/io.go: 458",       # Corresponding code location
     "level"  : "DEBUG",               # Corresponding log level
     "module" : "io",                  # Corresponding code module
-    "msg"    : "post cost 6.87021ms", # Pure log attributes
+    "msg"    : "post cost 6.87021ms", # Pure log content
     "time"   : 1610358231887000000    # Log time (Unix nanosecond timestamp)
     "message": "2021-01-11T17:43:51.887+0800  DEBUG io  io/io.g o:458  post cost 6.87021ms"
 }
 ```
 
-Extraction failure example (only `message` is left, indicating that other fields have not been extracted):
+Example of failed extraction (only `message` remains, indicating other fields were not extracted):
 
 ```shell
 $ datakit pipeline -P other_pipeline.p -T '2021-01-11T17:43:51.887+0800  DEBUG io  io/io.g o:458  post cost 6.87021ms'
@@ -83,37 +85,39 @@ datakit pipeline -P your_pipeline.p -F sample.log
 
 For more Pipeline debugging commands, see `datakit help pipeline`.
 
-### Grok Wildcard Search {#grokq}
+### Grok Pattern Search {#grokq}
 
-Manual matching is troublesome due to the large number of Grok patterns. Datakit provides an interactive command-line tool, `grokq`（grok query）：
+Given the numerous Grok patterns, manual matching can be cumbersome. DataKit provides an interactive command-line tool `grokq` (grok query):
 
 ```Shell
 datakit tool --grokq
 grokq > Mon Jan 25 19:41:17 CST 2021   # Enter the text you want to match here
-        2 %{DATESTAMP_OTHER: ?}        # The tool will give corresponding suggestions, and the more accurate the matching month is (the greater the weight is). The previous figures indicate the weights.
+        2 %{DATESTAMP_OTHER: ?}        # The tool suggests matches; higher numbers indicate more precise matches (and greater weight). The number before the pattern indicates its weight.
         0 %{GREEDYDATA: ?}
 
 grokq > 2021-01-25T18:37:22.016+0800
-        4 %{TIMESTAMP_ISO8601: ?}      # Here ? indicates that you need to name the matching text with a field
+        4 %{TIMESTAMP_ISO8601: ?}      # The '?' means you need to name the matched text with a field
         0 %{NOTSPACE: ?}
         0 %{PROG: ?}
         0 %{SYSLOGPROG: ?}
-        0 %{GREEDYDATA: ?}             # A wide range of patterns like GREEDYDATA have low weights
-                                       # The higher the weight, the greater the matching accuracy
+        0 %{GREEDYDATA: ?}             # Patterns like GREEDYDATA have lower weights due to their broad range
+                                       # Higher weights mean more precise matches
 
-grokq > Q                              # Q or exit 
+grokq > Q                              # Type Q or exit to quit
 Bye!
 ```
+
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    In Windows environment, debug in Powershell.
+    On Windows, execute the debugging in Powershell.
 <!-- markdownlint-enable -->
-### How to Handle with Multiple Lines {#multiline}
 
-When dealing with some call stack related logs, the logs of the following situations cannot be handled directly with the pattern `GREEDYDATA` since the number of log lines is not fixed:
+### Handling Multi-line Logs {#multiline}
 
-```txt
+When processing call stack-related logs where the number of lines is not fixed, using the `GREEDYDATA` pattern directly cannot handle such cases:
+
+``` log
 2022-02-10 16:27:36.116 ERROR 1629881 --- [scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
 
     java.lang.NullPointerException: null
@@ -128,23 +132,23 @@ When dealing with some call stack related logs, the logs of the following situat
     at java.util.stream.ReferencePipeline.collect(xxxxxxxxxxxxxxxxx.java:499)
 ```
 
-Here you can use the `GREEDYLINES` rule for generalization, such as (*/usr/local/datakit/pipeline/test.p*):
+Here, the `GREEDYLINES` rule can be used for matching, such as in (*/usr/local/datakit/pipeline/test.p*):
 
 ```python
 add_pattern('_dklog_date', '%{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{HOUR}:%{MINUTE}:%{SECOND}%{INT}')
 grok(_, '%{_dklog_date:log_time}\\s+%{LOGLEVEL:Level}\\s+%{NUMBER:Level_value}\\s+---\\s+\\[%{NOTSPACE:thread_name}\\]\\s+%{GREEDYDATA:Logger_name}\\s+(\\n)?(%{GREEDYLINES:stack_trace})')
 
-# Remove the message field here for easy debugging
+# Remove the message field for easier debugging
 drop_origin_data()
 ```
 
-Save the above multi-line log as *multi-line.log* and debug it:
+Save the multi-line log as *multi-line.log* and debug it:
 
 ```shell
 datakit pipeline -P test.p -T "$(<multi-line.log)"
 ```
 
-The following cutting results are obtained:
+The result of the extraction is as follows:
 
 ```json
 {
@@ -157,78 +161,79 @@ The following cutting results are obtained:
 }
 ```
 
-### Pipeline Field Naming Notes {#naming}
+### Pipeline Field Naming Considerations {#naming}
 
-In all the fields cut out by Pipeline, they are a field rather than a tag. We should not cut out any fields with the same name as tag due to the [line protocol constraint](../../datakit/apis.md#lineproto-limitation). These tags include the following categories:
+All fields extracted by the Pipeline are metrics (fields), not tags. Due to [line protocol constraints](../../datakit/apis.md#point-limitation), we should not extract any fields with the same names as tags. These tags include:
 
-- [Global Tag](../../datakit/datakit-conf.md#set-global-tag) in Datakit
-- [Custom Tag](../../datakit/logging.md#measurements) in Log Collector
+- Global Tags in DataKit [Global Tag settings](../../datakit/datakit-conf.md#set-global-tag)
+- Custom Tags in the logging collector [Custom Tags](../../integrations/logging.md#measurements)
 
-In addition, all collected logs have the following reserved fields. We should not override these fields, otherwise the data may not appear properly on the observer page.
+Additionally, all collected logs contain multiple reserved fields. **We should not overwrite these fields**, as this may cause issues with data display on the Explorer page.
 
-| Field Name | Type          | Description                                                                 |
-| ---        | ----          | ----                                                                        |
-| `source`   | string(tag)   | Log source                                                                  |
-| `service`  | string(tag)   | The service corresponding to the log is the same as the `source` by default |
-| `status`   | string(tag)   | The [level](../../datakit/logging.md#status)  corresponding to the log      |
-| `message`  | string(field) | Original log                                                                |
-| `time`     | int           | Timestamp corresponding to log                                              |
+| Field Name | Type          | Description                                                     |
+| ---        | ----          | ----                                                            |
+| `source`   | string(tag)   | Log source                                                      |
+| `service`  | string(tag)   | Service corresponding to the log, defaults to `source`         |
+| `status`   | string(tag)   | Log [level](../../integrations/logging.md#status)              |
+| `message`  | string(field) | Original log                                                   |
+| `time`     | int           | Timestamp corresponding to the log                             |
 
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    Of course, we can override the values of these tags by [specific Pipeline function](pipeline-built-in-function.md#fn-set-tag).
+    We can override the values of these tags using specific Pipeline functions.
 <!-- markdownlint-enable -->
 
-Once the Pipeline cut-out field has the same name as the existing Tag (case sensitive), it will cause the following data error. Therefore, it is recommended to bypass these field naming in Pipeline cutting.
+### Complete Pipeline Example {#example}
 
-```shell
-# This error is visible in the Datakit monitor
-same key xxx in tag and field
-```
+This example uses DataKit's own logs. DataKit's log format is as follows:
 
-### Complete Pipeline Sample {#example}
-
-Take Datakit's own log cutting as an example. Datakit's own log form is as follows:
-
-```txt
+``` log
 2021-01-11T17:43:51.887+0800  DEBUG io  io/io.go:458  post cost 6.87021ms
 ```
 
-Write the corresponding Pipeline：
+Write the corresponding Pipeline:
 
 ```python
-# pipeline for datakit log
+# Pipeline for DataKit logs
 # Mon Jan 11 10:42:41 CST 2021
 # auth: tanb
 
 grok(_, '%{_dklog_date:log_time}%{SPACE}%{_dklog_level:level}%{SPACE}%{_dklog_mod:module}%{SPACE}%{_dklog_source_file:code}%{SPACE}%{_dklog_msg:msg}')
-rename("time", log_time) # rename log_time to time
-default_time(time)       # use the time field as the timestamp of the output data
-drop_origin_data()       # discard the original log text (not recommended)
+rename("time", log_time) # Rename log_time to time
+default_time(time)       # Use the time field as the output data timestamp
+drop_origin_data()       # Discard the original log text (not recommended)
 ```
 
-Several user-defined patterns are referenced, such as `_dklog_date`、`_dklog_level`. We put these rules under `<DataKit installation path>/pipeline/pattern` .
+Several user-defined patterns are referenced here, such as `_dklog_date`, `_dklog_level`. Place these rules in *<DataKit installation directory>/pipeline/pattern*.
 
-> Note that the user-defined pattern must be placed in the *[Datakit installation path]/pipeline/pattern/* directory) if it needs to be globally effective (that is, applied in other Pipeline scripts):
+<!-- markdownlint-disable MD046 -->
+???+ attention
+
+    User-defined patterns that need to be globally effective (i.e., applied in other Pipeline scripts) must be placed in *[DataKit installation directory]/pipeline/pattern/*:
+
+    ```Shell
+    $ cat pipeline/pattern/datakit
+    # Note: It's best to prefix custom patterns to avoid conflicts with built-in names
+    # Built-in pattern names cannot be overridden
+    #
+    # Custom pattern format:
+    #    <pattern-name><space><specific pattern combination>
+    #
+    _dklog_date %{YEAR}-%{MONTHNUM}-%{MONTHDAY}T%{HOUR}:%{MINUTE}:%{SECOND}%{INT}
+    _dklog_level (DEBUG|INFO|WARN|ERROR|FATAL)
+    _dklog_mod %{WORD}
+    _dklog_source_file (/?[\w_%!$@:.,-]?/?)(\S+)?
+    _dklog_msg %{GREEDYDATA}
+    ```
+<!-- markdownlint-enable -->
+
+Now that both the Pipeline and its referenced patterns are ready, we can use DataKit's built-in Pipeline debugging tool to parse this line of log:
 
 ```Shell
-$ cat pipeline/pattern/datakit
-# Note: For these custom patterns, it is best to add a specific prefix to the name so as not to conflict with the built-in naming (the built-in pattern name is not allowed to be overwritten)
-# Custom pattern format is:
-#    <pattern-name><空格><具体 pattern 组合>
-_dklog_date %{YEAR}-%{MONTHNUM}-%{MONTHDAY}T%{HOUR}:%{MINUTE}:%{SECOND}%{INT}
-_dklog_level (DEBUG|INFO|WARN|ERROR|FATAL)
-_dklog_mod %{WORD}
-_dklog_source_file (/?[\w_%!$@:.,-]?/?)(\S+)?
-_dklog_msg %{GREEDYDATA}
-```
+# Successful extraction example
+datakit pipeline -P dklog_pl.p -T '2021-01-11T17:43:51.887+0800  DEBUG io  io/io.go:458  post cost 6.87021ms'
 
-Now that you have the Pipeline and its referenced pattern, you can cut this line of logs through Datakit's built-in Pipeline debugging tool:
-
-```Shell
-# Extract successful examples
-$ ./datakit pipeline -P dklog_pl.p -T '2021-01-11T17:43:51.887+0800  DEBUG io  io/io.go:458  post cost 6.87021ms'
 Extracted data(cost: 421.705µs):
 {
     "code": "io/io.go:458",
@@ -240,107 +245,110 @@ Extracted data(cost: 421.705µs):
 ```
 
 ## FAQ {#faq}
-<!-- markdownlint-disable MD013 -->
-### :material-chat-question: Why can't variables be referenced when Pipeline is debugging? {#ref-variables}
-<!-- markdownlint-enable -->
-Pipeline:
 
-```python
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: Why Can't Variables Be Referenced During Pipeline Debugging? {#ref-variables}
+<!-- markdownlint-enable -->
+
+Consider the following Pipeline:
+
+```py linenums="1"
 json(_, message, "message")
 json(_, thread_name, "thread")
 json(_, level, "status")
 json(_, @timestamp, "time")
 ```
 
-The error reported is as follows:
+It produces the following error:
 
-```txt
+``` not-set
 [E] new piepline failed: 4:8 parse error: unexpected character: '@'
 ```
 
----
-
-A: For variables with special characters, you need to decorate them with two `` ` ``:
+This is because the variable name (`@timestamp`) contains special characters. In such cases, we need to use backticks to make it a valid identifier:
 
 ```python
 json(_, `@timestamp`, "time")
 ```
 
-See [Basic syntax rules of Pipeline](pipeline-platypus-grammar.md)
+Refer to [Basic Pipeline Syntax Rules](pipeline-platypus-grammar.md)
+
 <!-- markdownlint-disable MD013 -->
-### :material-chat-question: When debugging Pipeline, why can't you find the corresponding Pipeline script? {#pl404}
+### :material-chat-question: Why Can't the Corresponding Pipeline Script Be Found During Pipeline Debugging? {#pl404}
 <!-- markdownlint-enable -->
-The order is as follows:
+
+Command:
 
 ```shell
 $ datakit pipeline -P test.p -T "..."
 [E] get pipeline failed: stat /usr/local/datakit/pipeline/test.p: no such file or directory
 ```
 
----
+This occurs because the Pipeline script being debugged is not in the correct location. The Pipeline script for debugging must be placed in the *[DataKit installation directory]/pipeline/* directory.
 
-A: Pipeline scripts for debugging. Place them in *[Datakit installation path]/pipeline* Directory.
 <!-- markdownlint-disable MD013 -->
-### :material-chat-question: How to cut logs in many different formats in one Pipeline? {#if-else}
+### :material-chat-question: How to Parse Multiple Different Formats of Logs in One Pipeline? {#if-else}
 <!-- markdownlint-enable -->
-In daily logs, because of different services, logs will take on various forms. At this time, multiple Grok cuts need to be written. In order to improve the running efficiency of Grok, you can give priority to matching the Grok with higher frequency according to the frequency of logs, so that high probability logs can be matched in the previous Groks, avoiding invalid matching.
-<!-- markdownlint-disable MD046 -->
-???+ attention
 
-    In log cutting, Grok matching is the most expensive part, so avoiding repeated Grok matching can greatly improve the cutting performance of Grok.
+In daily logs, different business processes can produce various formats. To improve Grok performance, **match the most frequent Grok patterns first**. This way, the majority of logs will likely match within the first few Groks, avoiding unnecessary matches.
+
+<!-- markdownlint-disable MD046 -->
+???+ tip
+
+    Grok matching is the most resource-intensive part of log parsing, so avoiding redundant Grok matches significantly improves performance.
 
     ```python
     grok(_, "%{NOTSPACE:client_ip} %{NOTSPACE:http_ident} ...")
     if client_ip != nil {
-        # Prove that the above grok has matched at this time, then continue the subsequent processing according to the log
+        # This means the above Grok has matched, proceed with subsequent processing based on this log
         ...
     } else {
-        # Here shows that there is a different log, and the above grok does not match the current log
+        # This indicates a different log type where the previous Grok did not match
         grok(_, "%{date2:time} \\[%{LOGLEVEL:status}\\] %{GREEDYDATA:msg} ...")
     
         if status != nil {
-            # Here you can check whether the grok above matches...
+            # Check if the current Grok has matched
         } else {
-            # Unrecognized logs, or a grok can be added here to process them, so as to step by step
+            # Unrecognized log or add another Grok for further processing
         }
     }
     ```
 <!-- markdownlint-enable -->
-<!-- markdownlint-disable MD013 -->
-### :material-chat-question: How to discard field cut? {#drop-keys}
-<!-- markdownlint-enable -->
-In some cases, all we need is a few fields in the middle of log, but it is difficult to skip the previous parts, such as:
 
-```txt
+### :material-chat-question: How to Drop Fields During Parsing? {#drop-keys}
+
+Sometimes, we only need a few fields from the middle of a log, but skipping parts is difficult, e.g.,
+
+``` not-set
 200 356 1 0 44 30032 other messages
 ```
 
-Where we only need the value of `44` , which may be code response delay, we can cut it like this (that is, the `:some_field` part is not included in Grok):
+Here, we only need `44`, which might represent response delay. We can parse it like this (without attaching `:some_field` in Grok):
 
 ```python
 grok(_, "%{INT} %{INT} %{INT} %{INT:response_time} %{GREEDYDATA}")
 ```
-<!-- markdownlint-disable MD013 -->
-### :material-chat-question: `add_pattern()` Escape Problem {#escape}
-<!-- markdownlint-enable -->
-When you use `add_pattern()` to add local patterns, you are prone to escape problems, such as the following pattern (used to match file paths and file names):
 
-```txt
+### :material-chat-question: Escaping Issue with `add_pattern()` {#escape}
+
+When using `add_pattern()` to add local patterns, escaping issues can arise. For example, consider this pattern (used to match file paths and filenames):
+
+``` not-set
 (/?[\w_%!$@:.,-]?/?)(\S+)?
 ```
 
-If we put it in the global pattern directory (that is, *pipeline/pattern* directory), we can write this:
+If placed in the global pattern directory (*pipeline/pattern*), it can be written as:
 
-```txt
+``` not-set
 # my-test
 source_file (/?[\w_%!$@:.,-]?/?)(\S+)?
 ```
 
-If you use `add_pattern()`, you need to write this:
+Using `add_pattern()`, it needs to be written as:
 
-```python
+``` python
 # my-test.p
 add_pattern('source_file', '(/?[\\w_%!$@:.,-]?/?)(\\S+)?')
 ```
 
-That is, the backslash needs to be escaped.
+That is, backslashes need to be escaped.

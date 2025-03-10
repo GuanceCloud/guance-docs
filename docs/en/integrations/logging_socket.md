@@ -1,62 +1,65 @@
 ---
 title     : 'Socket Logging'
-summary   : 'Accept Java/Go/Python logging framework remotely'
+summary   : 'This document mainly describes how to configure Socket in Java/Go/Python logging frameworks to send logs to the Datakit log collector.'
 tags:
-  - 'LOG'
+  - 'Logging'
 __int_icon      : 'icon/socket'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
-This article focuses on how the Java Go Python logging framework configures socket output to the Datakit socket log collector.
+This document primarily introduces how to configure Socket in Java/Go/Python logging frameworks to send logs to the Datakit log collector.
 
-> File collection and socket are mutually exclusive. Please close file collection before opening socket. Please configure `logging.conf` [specific configuration instructions](logging.md).  
+> File collection and Socket collection are mutually exclusive. Before enabling Socket collection, please ensure file collection is disabled. Refer to [Log Collection Configuration](logging.md)  
 
-## Java {#java}
+## Configuration {#config}
 
-When configuring log4j, it should be noted that log4j v1 is configured by default using *. properties* file; log4j v2 is currently configured using the *. xml* file.
+### Java {#java}
 
-Although there are differences in file names, when log4j looks for configuration files, it always goes to the class path directory. According to the specification, v1 is configured in resources/log4j. properties, and v2 is configured in resources/log4j. xml.
+When configuring log4j, note that log4j v1 defaults to using *.properties* files for configuration, while log4j-v2 uses XML files.
 
-### log4j(v2) {#log4j-v2}
+Although the filenames differ, log4j looks for configuration files in the Class Path directory. According to conventions: v1 configurations should be placed in *resources/log4j.properties*, and v2 configurations in *resources/log4j.xml*.
 
-Import the log4j 2. x jar package in the configuration of maven:
+#### log4j(v2) {#log4j-v2}
+
+In Maven configuration, import the log4j 2.x JAR packages:
 
 ``` xml
- <dependency>
-    <groupId>org.apache.logging.log4j</groupId>
-    <artifactId>log4j-api</artifactId>
-    <version>2.6.2</version>
- </dependency>
+<dependency>
+   <groupId>org.apache.logging.log4j</groupId>
+   <artifactId>log4j-api</artifactId>
+   <version>2.6.2</version>
+</dependency>
 
- <dependency>
-    <groupId>org.apache.logging.log4j</groupId>
-    <artifactId>log4j-core</artifactId>
-    <version>2.6.2</version>
-  </dependency>
+<dependency>
+   <groupId>org.apache.logging.log4j</groupId>
+   <artifactId>log4j-core</artifactId>
+   <version>2.6.2</version>
+</dependency>
 ```
 
-Configure log4j. xml in resources and add `Socket Appender`:
+Configure *log4j.xml* in the *resources* directory and add `Socket Appender`:
 
 ``` xml
- <!-- Socket appender socket 配置日志传输到本机 9540 端口，protocol 默认 tcp -->
- <Socket name="socketname" host="localHost" port="9540" charset="utf8">
-     <!-- 自定义 输出格式  序列布局-->
-     <PatternLayout pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+ <!-- Socket appender configured to send logs to localhost on port 9530, protocol defaults to TCP -->
+ <Socket name="socketname" host="localhost" port="9530" charset="utf8">
+     <!-- Custom output format and layout -->
+     <PatternLayout pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z} %-5level [traceId=%X{trace_id} spanId=%X{span_id}] %class{36} %L %M - %msg%xEx%n"/>
 
-     <!--注意：不要开启序列化传输到 socket 采集器上，目前 DataKit 无法反序列化，请使用纯文本形式传输-->
+     <!-- Note: Do not enable serialized transmission to the socket collector as DataKit cannot deserialize it. Use plain text format instead -->
      <!-- <SerializedLayout/>-->
 
-     <!-- 注意：配置 compact eventEol 一定要是 true  这样单条日志输出为一行-->
-     <!-- 将日志发送到观测云上后会自动将 json 展开 所以在这里建议您将日志单条单行输出 -->
+     <!-- Alternative JSON output format -->
+     <!-- Note: Ensure compact and eventEol are set to true to output each log entry on a single line -->
+     <!-- The JSON will be automatically expanded after sending to Guance, so it's recommended to output each log entry on a single line -->
      <!-- <JsonLayout  properties="true" compact="true" complete="false" eventEol="true"/>-->
  </Socket>
 
- <!-- 然后定义 logger，只有定义了 logger 并引入的 appender，appender 才会生效 -->
+ <!-- Define logger to reference the appender for it to take effect -->
  <loggers>
       <root level="trace">
           <appender-ref ref="Console"/>
@@ -79,12 +82,12 @@ public class logdemo {
     public static void main(String[] args) throws InterruptedException {
         Logger logger = LogManager.getLogger(logdemo.class);
        for (int i = 0; i < 5; i++) {
-            logger.debug("this is log msg to  datakt");
+            logger.debug("this is log msg to datakt");
         }
 
         try {
             int i = 0;
-            int a = 5 / i; // 除 0 异常
+            int a = 5 / i; // Division by zero exception
         } catch (Exception e) {
             StringWriter sw = new StringWriter();
             e.printStackTrace(new PrintWriter(sw));
@@ -93,12 +96,11 @@ public class logdemo {
         }
     }
 }
-
 ```
 
-### log4j(v1) {#log4j-v1}
+#### log4j(v1) {#log4j-v1}
 
-Import log4j 1. x jar package in maven configuration
+In Maven configuration, import the log4j 1.x JAR package
 
 ``` xml
  <dependency>
@@ -108,7 +110,7 @@ Import log4j 1. x jar package in maven configuration
  </dependency>
 ```
 
-Create the log4j. properties file in the resources directory
+Create a *log4j.properties* file in the *resources* directory
 
 ``` text
 log4j.rootLogger=INFO,server
@@ -119,41 +121,40 @@ log4j.appender.server.Port=<dk socket port>
 log4j.appender.server.RemoteHost=<dk socket ip>
 log4j.appender.server.ReconnectionDelay=10000
 
-# Configurable to json format
+# Can be configured to JSON format
 # log4j.appender.server.layout=net.logstash.log4j.JSONEventLayout
 ...
 ```
 
-### Logback {#logback}
+#### Logback {#logback}
 
-`SocketAppender` in Logback cannot send plain text to socket [doc](https://logback.qos.ch/manual/appenders.html#SocketAppender){:target="_blank"}
+The `SocketAppender` in Logback [cannot send plain text over Socket](https://logback.qos.ch/manual/appenders.html#SocketAppender){:target="_blank"}.
 
-> The problem is that the `SocketAppender` sends serialized Java objects instead of plain text. You can use log4j for input, but I do not recommend replacing the logging component. Rather, I rewrite an `Appender` that sends log data as plain text, and you use it with JSON formatting.
+> The issue is that `SocketAppender` sends serialized Java objects rather than plain text. You can use `log4j` input, but it is not recommended to switch logging components. Instead, rewrite an `Appender` that sends log data as plain text and use it with JSON formatting.
+
+Alternative solution: [Best Practices for Logback Logstash Plugin](../best-practices/cloud-native/k8s-logback-socket.md#spring-boot){:target="_blank"}
 
 
-<!-- TODO: Alternative plan: [Logback Logstash](../best-practices/cloud-native/k8s-logback-socket.md#spring-boot){:target="_blank"} -->
+### Golang {#golang}
 
-## Golang {#golang}
+#### Zap {#zap}
 
-### zap {#zap}
+The most commonly used logging framework in Golang is Uber’s open-source Zap, which supports custom Output injection.
 
-Most commonly used in Golang is Uber's zap open source logging framework, which supports custom output injection
+Customize a log outputter and inject it into `zap.core`:
 
-Customize the log exporter and inject it into `zap.core`
-
-``` go
-
-type soceketOutput struct {
+``` golang
+type socketOutput struct {
     conn net.Conn
 }
 
-func (s *soceketOutput) Write(b []byte) (int, error) {
+func (s *socketOutput) Write(b []byte) (int, error) {
     return s.conn.Write(b)
 }
 
 func zapcal() {
-    conn, _ := net.DialTCP("tcp", nil, DK_LOG_PORT)
-    socket := &soceketOutput{
+    conn, _ := net.DialTCP("tcp", nil, <<<DK_LOG_PORT>>>) // <<<DK_LOG_PORT>>> should be replaced with actual port
+    socket := &socketOutput{
         conn: conn,
     }
 
@@ -180,16 +181,15 @@ func zapcal() {
 
     l.Info("======= message =======")
 }
-
 ```
 
-## Python  {#python}
+### Python  {#python}
 
-### logging.handlers.SocketHandler {#socket-handler}
+#### logging.handlers.SocketHandler {#socket-handler}
 
-The native socketHandler sends a log object through the socket, not plain text, so you need to customize the handler and override the `makePickle(slef,record)` method in the socketHandler.
+The native `SocketHandler` sends log objects via socket, not in plain text form, so you need to customize a Handler and override the `makePickle(self, record)` method of `SocketHandler`.
 
-The code is for reference only:
+Code for reference:
 
 ```python
 import logging
@@ -197,9 +197,9 @@ import logging.handlers
 
 logger = logging.getLogger("") # Instantiate logging
 
-#Customize the class and override the makePickle method
+# Customize class and override makePickle method
 class PlainTextTcpHandler(logging.handlers.SocketHandler):
-    """ Sends plain text log message over TCP channel """
+    """ Sends plain text log messages over TCP channel """
 
     def makePickle(self, record):
      message = self.formatter.format(record) + "\r\n"
@@ -207,30 +207,29 @@ class PlainTextTcpHandler(logging.handlers.SocketHandler):
 
 
 def logging_init():
-    # Creat file handler
+    # Create file handler
     fh = logging.FileHandler("test.log", encoding="utf-8")
-    #Creat custom handler
+    # Create custom handler
     plain = PlainTextTcpHandler("10.200.14.226", 9540)
 
-    # Setting logger log levels
+    # Set logger log level
     logger.setLevel(logging.INFO)
 
-    # Setting output log format
+    # Set log format
     formatter = logging.Formatter(
         fmt="%(asctime)s - %(filename)s line:%(lineno)d - %(levelname)s: %(message)s"
     )
 
-    # Specify the output format for the handler, paying attention to the case
+    # Specify output format for handlers
     fh.setFormatter(formatter)
     plain.setFormatter(formatter)
   
     
-    # Log handler added for logger
+    # Add log handlers to logger
     logger.addHandler(fh)
     logger.addHandler(plain)
     
     return True
-    
 
 if __name__ == '__main__':
     logging_init()
@@ -243,4 +242,4 @@ if __name__ == '__main__':
     
 ```
 
-TODO: The log framework of other languages will be supplemented later to use socket to send logs to DataKit.
+TODO: We will gradually add configurations for other language logging frameworks to use socket to send logs to DataKit.

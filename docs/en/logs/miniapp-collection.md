@@ -1,74 +1,74 @@
-# Miniapp Log collection
+# Mini Program Log Collection
+
 ---
 
+The mini program actively sends log data of different levels (`corresponding source: browser_log` Metrics type log data) to [<<< custom_key.brand_name >>>](https://www.guance.com/).
 
-Miniapp sends different levels of log data (`corresponding source: browser_log` metric type log data) to [Guance](https://www.guance.com/).
+## Feature Overview
 
-## Feature List
+- Custom log data collection: Integrate the SDK into client applications to collect different log data for various scenarios.
+- Automatically collect error information from the application end (including network errors, console errors, and JS errors) and report it to DataFlux.
+- Customize error levels (`debug`, `critical`, `error`, `info`, `warn`), custom Logger objects, and custom Log fields.
+- Automatically collect [RUM](../real-user-monitoring/miniapp/app-access.md) related data and associate it with RUM business scenarios (requires updating rum,sdk to the latest version).
 
-- Custom log data collection is applied to client through sdk and then collect different log data for different scenarios. 
-- Automatically collect application-side error messages (including network errors, console errors and js errors) and report them to DataFlux. 
-- Custom error levels (`debug`, `critical`, `error`, `info`, `warn`), custom Logger objects and custom log fields.  
-- You can automatically collect [RUM](../real-user-monitoring/miniapp/app-access.md) related data to correlate RUM business scenarios (rum sdk needs to be updated to the latest version). 
+## Getting Started
 
+### Prerequisites
 
-## Get Started
+- **DataKit**: Send log data to the DataFlux platform via the DataKit Log Collection API.
 
-### Preconditions
+- **Integrate SDK**: You can introduce the SDK into your application via `NPM` or `CDN`. After initialization, you can store it in a global variable for easy reference by other pages.
 
-**DataKit:** Send log data to Guance through datakit log collection API.
+- **Support for Mini Program Clients**: WeChat, Baidu, Alipay, Toutiao, and most other mini program clients.
 
-**import SDK:** SDK can be introduced into application by `NPM` and `CDN`. After initialization, it can be stored in global variables, which is convenient for other pages to refer to.
-
-**Support Miniapp Clients**: WeChat, Baidu, Alipay, Toutiao and other miniapp terminals.
-
-### Npm Introduction
+### NPM Integration
 
 ```javascript
 //#ifndef H5 || APP-PLUS || APP-NVUE || APP-PLUS-NVUE
-const { datafluxRum } = require('@cloudcare/dataflux-rum-miniapp-logs')
-// Initialization Rum
-datafluxRum.init({
-	datakitOrigin: '<DATAKIT ORIGIN>'
-  service: 'minapp',
-  env: 'prod',
-  version: '1.0.0'
+const { datafluxLogs } = require('@cloudcare/dataflux-rum-miniapp-logs')
+// Initialize Rum
+datafluxLogs.init({
+	datakitOrigin: '<DATAKIT ORIGIN>',
+	service: 'minapp',
+	env: 'prod',
+	version: '1.0.0'
 })
 //#endif
 ```
 
-### CDN Download File Introduce ([URL](https://static.guance.com/miniapp-sdk/v1/dataflux-rum-miniapp-logs.js)) Locally
+### CDN Local File Integration ([Download Link](https://static.<<< custom_key.brand_main_domain >>>/miniapp-sdk/v1/dataflux-rum-miniapp-logs.js))
 
 ```javascript
 //#ifndef H5 || APP-PLUS || APP-NVUE || APP-PLUS-NVUE
-const { datafluxRum } = require('@cloudcare/dataflux-rum-miniapp-logs')
-// Initialization Rum
-datafluxRum.init({
-	datakitOrigin: '<DATAKIT ORIGIN>'
-  service: 'miniapp',
-  env: 'prod',
-  version: '1.0.0'
+const { datafluxLogs } = require('@cloudcare/dataflux-rum-miniapp-logs')
+// Initialize Rum
+datafluxLogs.init({
+	datakitOrigin: '<DATAKIT ORIGIN>',
+	service: 'miniapp',
+	env: 'prod',
+	version: '1.0.0'
 })
 //#endif
 ```
+
 ## Configuration
 
-### Initialization Parameter
+### Initialization Parameters
 
-| **Parameter**              | **Type** | **Option** | **Default** | **Description**                                                                                                                           |
-| --------------------- | -------- | ------------ | ---------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `datakitOrigin`       | String   | Required           |            | datakit data report origin note: ` Protocol (including://), domain name (or IP address) [and port number] ` For example: https://www.datakit.com, http://100.20.34.3:8088 |
-| `service`             | String   | Optional           | `browser`  | service name in log                                                                                                                    |
-| `env`                 | String   | Optional           |            | Current environment of web application, such as prod: online environment; Grey: Grayscale environment; pre: pre-release environment command: daily environment; local: The local environment;                          |
-| `version`             | String   | Optional           |            | web application version                                                                                                                   |
-| `sampleRate`          | Number   | Optional           | `100`      | Percentage of metric data collection: ` 100 ` for full collection, ` 0 ` for no collection                                                                                  |
-| `forwardErrorsToLogs` | Boolean  | Optional           | `true`     | Set to ` false `  to stop collecting console.error, js and report network errors to DataFlux log data                                                 |
-| `silentMultipleInit`  | Boolean  | Optional           | `false`    | Do not allowed  initialize multiple log objects                                                                                                     |
+| Parameter            | Type   | Required | Default Value | Description                                                                                                                                                                                                 |
+| -------------------- | ------ | -------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `datakitOrigin`      | String | Yes      |               | DataKit data reporting Origin. Format: `protocol (including: //), domain name (or IP address) [and port number]`<br>Example: [https://www.datakit.com](https://www.datakit.com), [http://100.20.34.3:8088](http://100.20.34.3:8088) |
+| `clientToken`        | String | Yes      |               | Data token for reporting data in openway mode, obtained from the <<< custom_key.brand_name >>> console (required for public openway access).                                                                 |
+| `site`               | String | Yes      |               | Data reporting URL for public openway mode, obtained from the <<< custom_key.brand_name >>> console (required for public openway access).                                                                   |
+| `service`            | String | No       | `browser`     | Name of the log Service.                                                                                                                                                                                    |
+| `env`                | String | No       |               | Current environment of the web application, e.g., Prod: production environment; Gray: gray release environment; Pre: pre-release environment; Common: daily environment; Local: local environment.             |
+| `version`            | String | No       |               | Version number of the web application.                                                                                                                                                                      |
+| `sampleRate`         | Number | No       | `100`         | Percentage of Metrics data collection: `100` means full collection, `0` means no collection.                                                                                                                 |
+| `forwardErrorsToLogs`| Boolean| No       | `true`        | Set to `false` to stop collecting console.error, JS, and network errors into DataFlux log data.                                                                                                             |
 
+## Usage
 
-## Use
-
-After the SDK is initialized in the application, you can customize the configuration log data through the exposed SDK API. 
+After initializing the SDK in the application, you can customize log data through exposed SDK APIs.
 
 ```javascript
 logger.debug | info | warn | error | critical (message: string, messageContext = Context)
@@ -82,81 +82,80 @@ import { datafluxLogs } from '@cloudcare/dataflux-rum-miniapp-logs'
 datafluxLogs.logger.info('Button clicked', { name: 'buttonName', id: 123 })
 ```
 
-## Return Data Structure
+## Returned Data Structure
 
 ```json
 {
-    "service": "miniapp",
-    "session": {
-        "id": "c549c2b8-4955-4f74-b7f8-a5f42fc6e79b"
-    },
-    "type": "logger",
-    "_dd": {
-        "sdk_name": "miniapp LOG SDK",
-        "sdk_version": "1.0.0",
-        "env": "",
-        "version": ""
-    },
-    "device": {
-        "platform_version": "8.0.5",
-        "model": "iPhone 6/7/8 Plus",
-        "app_framework_version":"2.23.3",
-        "os": "OS",
-        "os_version": "10.14.6",
-        "os_version_major": "10",
-        "screen_size": "414*736",
-        "network_type": "3g",
-        "divice": "devtools"
-    },
-    "user": {},
-    "date": 1621321916756,
-    "view": {
-        "referrer": "",
-        "name": "pages/index/index",
-        "id": "5dce64f4-8d6d-411a-af84-c41653ccd94a"
-    },
-    "application": {
-        "id": "app_idxxxxxx"
-    },
-    "message": "XHR error get http://testing-ft2x-api.cloudcare.cn/api/v1/workspace/xxx",
-    "status": "error",
-    "error": {
-        "source": "network",
-        "stack": "Failed to load"
-    },
-    "resource": {
-        "method": "get",
-        "status": 0,
-        "status_group": 0,
-        "url": "http://testing-ft2x-api.cloudcare.cn/api/v1/workspace/xxx",
-        "url_host": "testing-ft2x-api.cloudcare.cn",
-        "url_path": "/api/v1/workspace/xxx",
-        "url_path_group": "/api/?/workspace/xxx"
-    }
+  "service": "miniapp",
+  "session": {
+    "id": "c549c2b8-4955-4f74-b7f8-a5f42fc6e79b"
+  },
+  "type": "logger",
+  "_dd": {
+    "sdk_name": "miniapp LOG SDK",
+    "sdk_version": "1.0.0",
+    "env": "",
+    "version": ""
+  },
+  "device": {
+    "platform_version": "8.0.5",
+    "model": "iPhone 6/7/8 Plus",
+    "app_framework_version": "2.23.3",
+    "os": "OS",
+    "os_version": "10.14.6",
+    "os_version_major": "10",
+    "screen_size": "414*736",
+    "network_type": "3g",
+    "divice": "devtools"
+  },
+  "user": {},
+  "date": 1621321916756,
+  "view": {
+    "referrer": "",
+    "name": "pages/index/index",
+    "id": "5dce64f4-8d6d-411a-af84-c41653ccd94a"
+  },
+  "application": {
+    "id": "app_idxxxxxx"
+  },
+  "message": "XHR error get http://testing-ft2x-api.cloudcare.cn/api/v1/workspace/xxx",
+  "status": "error",
+  "error": {
+    "source": "network",
+    "stack": "Failed to load"
+  },
+  "resource": {
+    "method": "get",
+    "status": 0,
+    "status_group": 0,
+    "url": "http://testing-ft2x-api.cloudcare.cn/api/v1/workspace/xxx",
+    "url_host": "testing-ft2x-api.cloudcare.cn",
+    "url_path": "/api/v1/workspace/xxx",
+    "url_path_group": "/api/?/workspace/xxx"
+  }
 }
 ```
 
 ## Status Parameter
 
-After the SDk is initialized, you can define different types of states using the `log` API provided.
+After initializing the SDK, you can use the provided `log` API to define different types of statuses.
 
 ```javascript
 log (message: string, messageContext: Context, status? = 'debug' | 'info' | 'warning' | 'error' | 'critical')
 ```
 
-### Use
+### Usage
 
 ```javascript
 import { datafluxLogs } from '@cloudcare/dataflux-rum-miniapp-logs'
 
-datafluxLogs.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<STATUS>);
+datafluxLogs.logger.log(<MESSAGE>, <JSON_ATTRIBUTES>, <STATUS>);
 ```
 
 ## Parameter Description
 
-| **Parameter**            | **Description**                                                   |
-| ------------------- | ---------------------------------------------------------- |
-| `<MESSAGE>`         | message field in Guance Log                             |
-| `<JSON_ATTRIBUTES>` | The additional data that describes the message is a json object                      |
-| `<STATUS>`          | status，option:`debug`,`info`,`warn`,`error`,`critical` |
-
+| Parameter          | Description                                                                 |
+| ------------------ | --------------------------------------------------------------------------- |
+| `<MESSAGE>`        | The Message field in Dataflux logs.                                         |
+| `<JSON_ATTRIBUTES>`| Additional data describing the Message, represented as a JSON object.       |
+| `<STATUS>`         | Log level, optional values: `debug`, `info`, `warning`, `error`, `critical`.|

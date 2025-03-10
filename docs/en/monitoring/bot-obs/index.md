@@ -1,147 +1,119 @@
-# Change Log
-
-
+# Changelog
 
 ---
 
 ## July 11, 2023
 
-### Function optimization
+### Feature Optimization
 
-* **APM Intelligent Inspection**: Added a default detection threshold change entry. Now when the inspection is turned on, the trigger value of the service that needs to be changed can be synchronized.
-
-
+* **APM Inspection**: Added a default detection threshold change entry. Now when starting an inspection, the trigger values for services to be detected can be modified simultaneously.
 
 ## July 4, 2023
 
-### Function optimization
+### Feature Optimization
 
-* **RUM performance Intelligent Inspection**: Optimize the root cause display logic in the page details module, and now the root cause location is more accurate.
-
-- **Workspace asset Intelligent Inspection**: Added default configuration (7 days), now you can run the inspection without parameters
-
-
+* **RUM Performance Inspection**: Optimized the root cause display logic in the page details module, making root cause identification more accurate.
+- **Workspace Asset Inspection**: Added a default configuration (7 days). Now inspections can run without parameters.
 
 ## June 20, 2023
 
-### New Inspection
+### New Inspections
 
-* **AWS Cloudtrail Exception Event Intelligent Inspection**: AWS CloudTrail is a service used to track, log, and monitor activity in an AWS account. It records various actions performed within the AWS account, including management console access, API calls, and resource changes. By monitoring CloudTrail for error events, potential security issues can be promptly identified. For example, unauthorized API calls, access to denied resources, and abnormal authentication attempts. This helps protect your AWS account and resources from unauthorized access and malicious activities. It also provides insights into the types, frequency, and scope of failures occurring in the system. This enables you to quickly identify issues and take appropriate corrective measures, reducing service downtime and minimizing the impact on your business.
-
-
+* **AWS CloudTrail Anomaly Event Inspection**: AWS CloudTrail is a service that tracks, logs, and monitors activities in AWS accounts. It records operations performed within AWS accounts, including management console access, API calls, resource changes, etc. By monitoring CloudTrail error events, potential security issues can be identified promptly. For example, unauthorized API calls, denied resource access, abnormal authentication attempts, etc. This helps protect your AWS account and resources from unauthorized access and malicious activities; it also helps understand the types, frequency, and impact scope of system failures. This aids in quickly identifying issues and taking appropriate corrective measures to reduce downtime and business impact.
 
 ## June 6, 2023
 
-### New Inspection
+### New Inspections
 
-* **Workspace Asset Intelligent Inspection**: For service inspections, it is essential to ensure the normal operation of the service, detect faults or abnormalities in a timely manner, and reduce business losses. Secondly, inspections help improve service availability and stability, identify and resolve potential problems. Inspections can also enhance operational efficiency, accelerate problem diagnosis and resolution, and optimize resource allocation. Ensuring business security is of utmost importance. By regularly inspecting services such as hosts, K8s, and containers, operations personnel can ensure that these services can efficiently and stably support the business, providing a continuously reliable operating environment for the enterprise.
-
-
+* **Workspace Asset Inspection**: Ensures services operate normally, detects faults or anomalies promptly to minimize business losses. Additionally, inspections help improve service availability and stability by identifying and resolving potential issues. They enhance operational efficiency, accelerate problem diagnosis and resolution, and optimize resource allocation to ensure business safety. Regular inspections of hosts, K8s, containers, etc., allow IT personnel to ensure these services support business efficiently and stably, providing a continuously reliable operating environment for enterprises.
 
 ## May 18, 2023
 
-### New Inspection
+### New Inspections
 
-* **Cloud Idle Resources Intelligent Inspection**: Cloud computing, as a rapidly developing new IT service method, provides enterprises and individuals with convenient, fast, and flexible IT infrastructure and application services, bringing extremely high efficiency and cost-effectiveness. However, as cloud resources gradually become a major part of enterprise data centers, the problem of massive waste of resources in the cloud becomes more significant. Especially within the enterprise scope, due to factors such as demand fluctuations and isolation between departments, some cloud resources cannot be fully utilized, resulting in a large amount of idle resources. This situation leads to a linear increase in the cost of enterprise cloud services, a decrease in resource efficiency, and a potential reduction in security and performance levels. In order to better manage and optimize idle resources in the cloud, and to improve the usage benefits and resource utilization of cloud computing, it is essential to inspect idle resources in the cloud. Through inspection, unnecessary resources in the current cloud services can be discovered and processed promptly, avoiding problems such as cost overhead, data leakage, and poor performance due to long-term unnecessary resource usage.
-* **Host Restart Intelligent Inspection**: Host abnormal restart monitoring is an important aspect of modern internet system operation and maintenance. On the one hand, the stability and reliability of computer systems are crucial for the smooth operation of businesses and the user experience. When a host experiences abnormal restarts or other issues, it may lead to system crashes, service interruptions, and data loss, which in turn affect business operations and user satisfaction. On the other hand, with the increasing number and scale of hosts in cloud computing and virtualization environments, system complexity is also constantly increasing, as is the probability of problems occurring. This requires system administrators to use relevant system monitoring tools for real-time monitoring and promptly discover and resolve abnormal restarts and other issues. Therefore, implementing host abnormal restart monitoring in a reasonable manner can help enterprises quickly diagnose problems, reduce business risks, improve operation and maintenance efficiency, and enhance user experience.
+* **Cloud Idle Resource Inspection**: As cloud computing rapidly develops as a new IT service model, it provides convenient, fast, and elastic IT infrastructure and application services for enterprises and individuals, bringing high efficiency and economy. However, with cloud resources becoming a major part of enterprise data centers, significant waste of cloud resources has become increasingly prominent. Especially within enterprises, due to demand fluctuations and departmental isolation, some cloud resources are not fully utilized, forming a large number of idle resources. This situation can lead to rising cloud service costs, decreased resource efficiency, and reduced security and performance levels. To better manage and optimize idle cloud resources and improve the utilization and efficiency of cloud computing, conducting idle resource inspections is essential. Through inspections, unnecessary resources in current cloud services can be discovered and handled promptly, avoiding unnecessary expenses, data leaks, poor performance, etc.
 
-### Function Optimization
+* **Host Reboot Inspection**: Host abnormal reboot monitoring is an important aspect of modern internet system operations. On one hand, the stability and reliability of computer systems are crucial for smooth business operations and user experience. When hosts experience abnormal reboots, risks such as system crashes, service interruptions, and data loss arise, affecting business operations and user satisfaction. On the other hand, with the increasing number and scale of hosts in cloud computing and virtualization environments, system complexity and the probability of issues increase. System administrators need to use relevant monitoring tools for real-time monitoring and timely discovery and resolution of abnormal reboots. Thus, properly implementing host abnormal reboot monitoring helps businesses diagnose problems quickly, reduce business risks, enhance operational efficiency, and improve user experience.
 
-* **Idle Resources Intelligent Inspection**: Added cost-related information to the association of cloud server types.
+### Feature Optimization
 
-
+* **Idle Host Inspection**: Added cost-related information for cloud host types.
 
 ## April 13, 2023
 
-### Functional Optimization
+### Feature Optimization
 
-- **Disk Usage Intelligent Inspection**: Optimized the trend judgment algorithm for disk usage inspection to provide users with more accurate problem localization.
-- **Intelligent Inspection**: Optimized the overall opening logic of intelligent inspection, making it easier for users to enable intelligent inspection.
-
-
+* **Disk Usage Rate Inspection**: Optimized the trend judgment algorithm for disk usage rate inspections, providing users with more precise issue localization.
+* **Smart Inspection**: Simplified the overall logic for enabling smart inspections, making it easier to start.
 
 ## March 30, 2023
 
-### Functional Optimization
+### Feature Optimization
 
-- **Memory Leak Intelligent Inspection**: Optimized the trend judgment algorithm for memory leak inspection to provide users with more accurate problem localization.
-- **Cloud Billing Intelligent Inspection**: Cloud billing inspection has been merged into the cloud account instance dimension billing inspection.
-
-
+* **Memory Leak Inspection**: Optimized the trend judgment algorithm for memory leak inspections, providing users with more precise issue localization.
+* **Cloud Account Billing Inspection**: Merged into instance-level billing inspections for cloud accounts.
 
 ## March 23, 2023
 
 ### New Inspections
 
-* **Idle Resources Intelligent Inspection**: As the business grows, the amount of resource usage also increases, making enterprise data centers larger and larger, and the problem of waste from idle servers becomes more significant. Especially within the enterprise scope, due to factors such as demand fluctuations and isolation between departments, some servers cannot be fully utilized, resulting in a large amount of idle resources. This situation leads to a linear increase in the cost of enterprise cloud services, a decrease in resource efficiency, and a potential reduction in security and performance levels.
+* **Idle Host Inspection**: With business growth, resource usage increases, leading to larger data centers. The significant waste of idle hosts becomes more apparent. Within enterprises, due to demand fluctuations and departmental isolation, some hosts are underutilized, forming idle resources. This can lead to increased cloud service costs, decreased resource efficiency, and lower security and performance levels.
 
-### Functional optimization
+### Feature Optimization
 
-- **APM Intelligent Inspection**: Change the positioning of application access latency from P75 to P99, providing users with more accurate problem localization.
-
-
+* **APM Inspection**: Changed the P75 positioning of application access latency to P99 for more precise issue localization.
 
 ## March 2, 2023
 
-### Functional optimization
+### Feature Optimization
 
-- **APM Intelligent Inspection**: Optimize the sensitivity of application performance error inspections, so that performance errors that occur can be detected more quickly.
-
-
+* **APM Inspection**: Enhanced sensitivity for detecting application performance errors, making them more immediately discoverable.
 
 ## February 16, 2023
 
-### Functional optimization
+### Feature Optimization
 
-- **RUM Performance Intelligent Integration**: Supports jumping to view Session with the affected user's session ID to provide more professional optimization methods in the inspection event report.
-- **Cloud Account Billing Inspection Intelligent Integration**: Added support for AWS account instance billing inspection at the instance level.
+* **RUM Performance Inspection**: Added support for jumping to session IDs affected by users in inspection event reports, providing more professional optimization methods.
 
-
+* **Instance-Level Billing Inspection for Cloud Accounts**: Added support for AWS account instance-level billing inspections.
 
 ## February 9, 2023
 
 ### New Inspections
 
-* **RUM Performance Intelligent Integration**: Real User Monitoring (RUM) is an application performance monitoring technology designed to evaluate website performance by simulating the behavior of real users browsing the site. The goal of RUM is to understand website performance from the user's perspective, including website load times, page rendering effects, page element loading status, and interaction response. The main use case of RUM performance inspection is for client-side websites, such as e-commerce websites, financial websites, entertainment websites, and so on, which all need to provide users with a fast and smooth browsing experience. By analyzing the results of RUM performance, developers can quickly understand the user's actual experience and improve website performance.
-* **Kubernetes Health Intelligent Integration**: Nowadays, Kubernetes has taken over the entire container ecosystem and acts as the brain for distributed container deployment, aiming to manage service-oriented applications using containers distributed across clusters of hosts. Kubernetes provides mechanisms for application deployment, scheduling, updates, service discovery, and scaling. However, how to ensure the health of Kubernetes nodes? Through smart inspections, information retrieval and problem discovery based on the current node's resource status, application performance management, service failure logs, etc. can be used to speed up event investigation, reduce engineers' pressure, decrease average repair time, and improve the end-user experience.
-
-
+* **RUM Performance Inspection**: Real User Monitoring (RUM) is a technology for evaluating website performance by simulating real user behavior while browsing websites. RUM aims to understand website performance from the user's perspective, including load times, page rendering effects, element loading conditions, and interaction responses. RUM performance inspections are primarily used for client-side websites like e-commerce, finance, and entertainment sites, which require presenting a fast and smooth user experience. Analyzing RUM performance results helps developers understand actual user experiences and quickly improve website performance.
+* **Kubernetes Health Inspection**: Kubernetes has swept through the container ecosystem, acting as the brain for distributed container deployments. It manages service-oriented applications using containers distributed across host clusters. To ensure Kubernetes node health, intelligent inspections analyze current node resource status, APM, service fault logs, etc., accelerating incident investigation, reducing engineer stress, decreasing mean time to repair (MTTR), and improving end-user experience.
 
 ## December 29, 2022
 
-### New inspection
+### New Inspections
 
-* **Cloud Account Billing Inspection Intelligent Integration**：Cloud (now only suport alibaba cloud) Account Billing Inspection helps subscribers manage budget alerts, abnormal cost alerts, forecast costs for cloud services and provides subscribers with the ability to visualize and support multi-dimensional visualization of consumption of cloud service resources.
-
-* **Alibaba Cloud Preemptible Instance Survival Intelligent Inspection**：Since the market price of the preemptible instances fluctuates with the change of supply and demand, it is necessary to specify the bid mode when creating the preemptible instance, and only when the real-time market price of the specified instance specification is lower than the bid price and the inventory is sufficient can the preemptible instance be successfully created. Therefore, it is particularly important to inspect the preemptible instance of cloud assets. When the preemptible instance is found to be about to be released through inspection, the latest price of all available zones of the current specification of the preemptible instance and the historical price of the changed preemptible instance will be indicated and appropriate treatment advice will be given.
-
-
+* **Instance-Level Billing Inspection for Cloud Accounts**: Helps users manage anomaly alerts for cloud service instances, predict costs, and provide high-growth, high-consumption instance alerts and bill visualization capabilities. Supports multi-dimensional visualizations of cloud service resource consumption.
+* **Alibaba Cloud Spot Instance Survival Inspection**: Given the fluctuating market prices of spot instances, specifying a bidding mode is required during creation. When the real-time price of specified instance specifications is below the bid and inventory is sufficient, spot instances can be created successfully. Therefore, inspecting spot instances is crucial. When a spot instance is about to be released, it will prompt the latest prices for all available zones of the current specification and historical prices, along with appropriate handling suggestions.
 
 ## December 1, 2022
 
-### New inspection
+### New Inspections
 
-* **Kubernetes Pod Abnormal Restart Intelligent Inspection**：Kubernetes helps users automatically schedule and expand containerized applications, but modern Kubernetes environments are becoming more and more complex. When platform and application engineers need to investigate events in dynamic and containerized environments, finding the most meaningful signals may involve many trial and error steps. Intelligent Inspection can filter exceptions according to the current search context, thus speeding up incident investigation, reducing the pressure on engineers, reducing the average repair time and improving the end-user experience.
-* **MySQL Performance Inspection**：For increasingly complex application architectures, the current trend is for more and more customers to adopt maintenance-free cloud databases, so patrolling MySQL performance patrols are a top priority, and intelligent patrols are performed on MySQL on a regular basis to alert abnormalities by finding MySQL performance problems.
-* **Server Application Error Intelligent Inspection**：When server-side operation errors occur, we need to find early and timely warning to allow development and operation maintenance to troubleshoot and confirm whether the error has a potential impact on the application in a timely manner. The content of the server-side application error patrol event report is to remind the development and operation of the maintenance in the past hour there is a new application error and locate the specific place of error will be associated with the diagnostic clues provided to the user.
-* **Memory leak Intelligent Inspection**：「Memory leak Intelligent Inspection」is based on memory abnormality analysis detector, which performs intelligent inspection of hosts on a regular basis, conducts root cause analysis by the hosts with memory abnormalities, determines the process and pod information corresponding to the abnormal time point, and analyzes whether the current workspace hosts have memory leakage problems.
-* **Disk utilization Intelligent Inspection**：「Disk utilization Intelligent Inspection」 is based on the disk exception analysis detector. It regularly performs intelligent patrols on the host disk. It analyzes the root cause of the host with disk exceptions, determines the disk mount point and disk information corresponding to the time point of the exception, and analyzes whether the current workspace host has disk usage problems.
-* **APM Intelligent Inspection**：「APM Intelligent Inspection」is based on APM root cause analysis detector, select the `service` 、 `resource` 、 `project` 、 `env` information to be tested, and perform intelligent inspection of APM on a regular basis to automatically analyze the upstream and downstream information of the service through application service index exceptions, and confirm the root cause of the abnormal problem for the application.
+* **Kubernetes Pod Abnormal Restart Inspection**: Kubernetes helps users automatically schedule and scale containerized applications, but modern Kubernetes environments are becoming increasingly complex. When platform and application engineers need to investigate events in dynamic, containerized environments, finding meaningful signals may involve many trial-and-error steps. Intelligent inspections filter anomalies based on current search context, accelerating incident investigation, reducing engineer stress, decreasing MTTR, and improving end-user experience.
+* **MySQL Performance Inspection**: As application architectures become more complex, more customers adopt managed cloud databases. Therefore, MySQL performance inspections are critical. Regular intelligent inspections detect MySQL performance issues for anomaly alerts.
+* **Server-Side Application Error Inspection**: When server-side errors occur, early detection and timely alerts are necessary to alert development and operations teams for troubleshooting. The content of reported incidents includes reminders about new errors in the past hour and specific error locations with associated diagnostic clues.
+* **Memory Leak Inspection**: Based on memory anomaly analysis detectors, regular intelligent inspections identify hosts with memory anomalies, perform root cause analysis to determine process and pod information at corresponding anomaly timestamps, and analyze whether current workspace hosts have memory leak issues.
+* **Disk Usage Rate Inspection**: Based on disk anomaly analysis detectors, regular intelligent inspections identify hosts with disk anomalies, perform root cause analysis to determine mount points and disk information at corresponding anomaly timestamps, and analyze whether current workspace hosts have disk usage issues.
+* **APM Inspection**: Based on APM anomaly root cause analysis detectors, select `service`, `resource`, `project`, `env` information for regular intelligent inspections. Automatically analyze upstream and downstream information of application service metrics to confirm root cause anomalies.
 
-### Functional optimization
+### Feature Optimization
 
-* **RUM Log Error Intelligent Inspection**：Web error log inspection event report newly shows front-end user impact.
-
-
+* **Frontend Application Log Error Inspection**: Added frontend user impact display in inspection event reports.
 
 ## November 3, 2022
 
-### New inspection
+### New Inspections
 
-* **Cloud Account Billing Intelligent Inspection**：Cloud ( Alibaba Cloud, Tecent Cloud, Huawei Cloud ) Account Billing Inspection helps subscribers manage budget alerts, abnormal cost alerts, forecast costs for cloud services and provides subscribers with the ability to visualize and support multi-dimensional visualization of consumption of cloud service resources.
-* **RUM Log Error Intelligent Inspection**：RUM error log inspection will help discover new error messages (Error Message after clustering) of the front-end application in the past hour, helping development and operation and maintenance to fix the code in time to avoid continuous harm to customer experience with the accumulation of time.
-* **Alibaba Cloud Asset Intelligent Inspection**：It provides additional data access capability for Guance, which is convenient for users to have a better understanding of the product performance status of cloud suppliers.
+* **Cloud Account Billing Inspection**: Helps users manage budget alerts, anomaly alerts, and cost predictions for cloud services, providing visualization capabilities. Supports multi-dimensional visualizations of cloud service resource consumption.
+* **Frontend Application Log Error Inspection**: Helps identify new error messages in frontend applications over the past hour (clustered Error Messages), assisting developers and operations teams in timely code fixes to avoid long-term damage to customer experience.
+* **Alibaba Cloud Asset Inspection**: Provides additional data integration capabilities for <<< custom_key.brand_name >>>, allowing users to gain more insights into the performance status of cloud vendor products.
 
-### Issue Fix
+### Bug Fixes
 
-* **Disk utilization Intelligent Inspection**：The repair event line chart shows abnormal problems.
+* **Disk Usage Rate Inspection**: Fixed an issue with the event line chart display.

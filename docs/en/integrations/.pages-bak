@@ -1,7 +1,9 @@
 nav:
   - integration-index.md
-  - Public Cloud:
-    - Aliyun:
+  - 公有云:
+    - 阿里云:
+      - 'AnalyticDB PostgresSQL': aliyun_analyticdb_postgresql.md
+      - 'CDN': aliyun_cdn.md
       - 'ClickHouse': aliyun_clickhouse_community.md
       - 'ECS': aliyun_ecs.md
       - 'EIP': aliyun_eip.md
@@ -22,11 +24,13 @@ nav:
       - 'Redis': aliyun_redis.md
       - 'RocketMQ4' : aliyun_rocketmq4.md
       - 'RocketMQ5' : aliyun_rocketmq5.md
+      - 'SLB': aliyun_slb.md
+      - 'SLS': aliyun_sls.md
       - 'SQLServer': aliyun_rds_sqlserver.md
       - 'Tair': aliyun_tair.md
-      - 'Site Monitor': aliyun_site.md
+      - '站点监控': aliyun_site.md
 
-    - Huawei: 
+    - 华为云: 
       - 'ASM': huawei_asm.md
       - 'DCS': huawei_dcs.md
       - 'CCE': huawei_cce.md
@@ -46,7 +50,7 @@ nav:
       - 'RDS(PostgreSQL)': huawei_rds_postgresql.md
       - 'AS': huawei_SYS.AS.md
       - 'CBR': huawei_SYS.CBR.md
-      - 'DDMS': huawei_SYS_DDMS.md
+      - 'DDM': huawei_SYS_DDMS.md
       - 'ROMA': huawei_roma.md
 
     - AWS: 
@@ -59,9 +63,10 @@ nav:
       - 'EventBridge': aws_eventbridge.md
       - 'Lambda':
         - aws_lambda.md
-        - 'Lambda Extention': awslambda.md
+        - 'Lambda 扩展': awslambda.md
       - 'MediaConvert': aws_mediaconvert.md
       - 'MemoryDB': aws_memorydb.md
+      - 'MSK': aws_msk.md
       - 'MySQL': aws_rds_mysql.md
       - 'Neptune Cluster': aws_neptune_cluster.md
       - 'OpenSearch': aws_opensearch.md
@@ -73,7 +78,7 @@ nav:
       - 'RabbitMQ': aws_mq_rabbitmq.md
       - 'ElastiCache Serverless': aws_elasticache_serverless.md
 
-    - Tencent:
+    - 腾讯云:
       - 'CDB': tencent_cdb.md
       - 'CLB(Private)': tencent_clb_private.md
       - 'CLB(Public)': tencent_clb_public.md
@@ -86,7 +91,7 @@ nav:
       - 'Redis': tencent_redis_mem.md
       - 'Tdsql-C': tencent_tdsql_c_mysql.md
 
-    - Volcengine:
+    - 火山云:
       - 'ECS': volcengine_ecs.md
       - 'Mysql': volcengine_mysql.md
       - 'MongoDB  Replica Set': volcengine_mongodb_replica_set.md
@@ -94,9 +99,9 @@ nav:
       - 'VKE': volcengine_vke.md
       - 'Redis': volcengine_redis.md
 
-  - Host:
-    - Default Collection:
-      - 'DataKit': dk.md 
+  - 主机:
+    - 默认采集:
+      - 'DataKit': dk.md
       - cpu.md
       - disk.md
       - diskio.md
@@ -106,24 +111,25 @@ nav:
       - net.md
       - host_processes.md
       - hostobject.md
-    - Network:
+    - 网络:
+      - 'Socket': socket.md
       - netstat.md
-      - socket.md
       - eBPF:
         - ebpf.md
         - 'eBPF Tracing': ebpftrace.md
+    - chrony.md
     - hostdir.md
     - host_healthcheck.md
     - ssh.md
     - gpu_smi.md
-    - About Windows:
-      - 'Windows Event': windows_event.md
+    - Windows 相关:
+      - 'Windows 事件': windows_event.md
       - iis.md
       - active_directory.md
       - exchange.md
 
-  - Middleware:
-    - 'Storage':
+  - 中间件:
+    - '存储':
       - 'MySQL': mysql.md
       - cassandra.md
       - clickhousev1.md
@@ -155,7 +161,7 @@ nav:
       - dongfangtong_ths.md
       - opengauss.md
 
-    - 'Messaging Queue':
+    - '消息队列':
       - emqx.md
       - 'Kafka': kafka.md
       - automq.md
@@ -163,7 +169,7 @@ nav:
       - rabbitmq.md
       - rocketmq.md
 
-    - 'Web Server':
+    - 'Web 服务器':
       - 'Nginx': nginx.md
       - apache.md
       - resin.md
@@ -175,25 +181,21 @@ nav:
       - 'JVM': jvm.md
       - tomcat.md
 
-    - 'Others':
+    - '其它':
       - apollo.md
-      - 'Flink': flinkv1.md
       - consul.md
       - coredns.md
+      - 'Flink': flinkv1.md
       - 'Jira': monitor_jira.md
       - nacos.md
-      - jenkins.md
-      - gitlab.md
-      - 'PagerDuty': pagerduty.md
       - snmp.md
-      - seata.md
       - netflow.md
       - seata.md
       - zookeeper.md
       - 'Zadigx': zadigx.md
-      - 'openai': openai.md
+      - 'OpenAI': openai.md
+      - 'PagerDuty': pagerduty.md
       - external.md
-      - zookeeper.md
       - argocd.md
       - langchain.md
       - issue_dingtalk.md
@@ -203,57 +205,58 @@ nav:
       - 'Jenkins': jenkins.md
       - gitlab.md
 
-  - Cloud Native:
-    - 'Metric Collection': container.md
-    - 'Log Collection':
+  - 云原生:
+    - 'Ingress Nginx': ingress-nginx-prom.md
+    - '指标采集': container.md
+    - '日志采集':
       - container-log.md
-      - 'Sidecar Log Collection': logfwd.md
+      - 'Sidecar 日志采集': logfwd.md
     - 'CRD': kubernetes-crd.md
     - 'Prometheus':
       - 'Discovery': kubernetesprometheus.md
-      - 'Exportor': kubernetes-prom.md
+      - 'Exporter': kubernetes-prom.md
       - 'CRD': kubernetes-prometheus-operator-crd.md
     - 'NPD': npd.md
     - kubecost.md
     - kubernetes_audit.md
 
-  - APM:
+  - 应用性能监测（APM）:
     - 'DDTrace':
       - ddtrace.md
-      - 'SDK Integration':
+      - 'SDK 接入':
         - 'Java':
           - ddtrace-java.md
-          - 'DDTrace Injection': ddtrace-attach.md
-          - 'JMX Fetch Metrics': ddtrace-jmxfetch.md
-          - 'DDTrace Extensions':
+          - 'DDTrace 注入': ddtrace-attach.md
+          - 'JMX Fetch 指标': ddtrace-jmxfetch.md
+          - 'DDTrace 扩展':
             - ddtrace-ext-java.md
-            - 'Changelog': ddtrace-ext-changelog.md
-            - 'OTEL and DDTrace Trace Correlation': ddtrace-128-trace-id.md
+            - '更新历史': ddtrace-ext-changelog.md
+            - 'OTEL 和 DDTrace 链路串联': ddtrace-128-trace-id.md
         - 'Golang': ddtrace-golang.md
         - 'Python': ddtrace-python.md
         - 'PHP': ddtrace-php.md
         - 'NodeJS': ddtrace-nodejs.md
         - 'C++': ddtrace-cpp.md
         - 'Ruby': ddtrace-ruby.md
-  
+
     - 'SkyWalking': skywalking.md
-  
+
     - 'OpenTelemetry':
       - opentelemetry.md
-      - 'SDK Integration':
+      - 'SDK 接入':
         - 'Golang': opentelemetry-go.md
         - 'Java': opentelemetry-java.md
-      - 'OpenTelemetry Extensions':
-        - 'Changelog': otel-ext-changelog.md
-        - 'SQL Obfuscation': otel-sql-obfuscation.md
+      - 'OpenTelemetry 扩展':
+        - '更新历史': otel-ext-changelog.md
+        - 'SQL 脱敏': otel-sql-obfuscation.md
         - 'Java Exporter': otel-guance-exporter.md
-  
+
     - 'Zipkin': zipkin.md
     - 'Jaeger': jaeger.md
     - 'CAT': cat.md
     - 'Pinpoint':
       - pinpoint.md
-      - 'SDK Integration':
+      - 'SDK 接入':
         - 'Java': pinpoint-java.md
         - 'Golang': pinpoint-go.md
     - 'New Relic': newrelic.md
@@ -266,16 +269,13 @@ nav:
       - 'NodeJS': profile-nodejs.md
       - '.NET': profile-dotnet.md
       - 'PHP': profile-php.md
-  
-    - 'Tracing Overview':
+
+    - 'Tracing 综述':
       - datakit-tracing.md
-      - 'Tracing Data Structure': datakit-tracing-struct.md
-      - 'Trace Correlation Tools': tracing-propagator.md
+      - 'Tracing 数据结构': datakit-tracing-struct.md
+      - '链路工具及串联': tracing-propagator.md
 
-  - RUM:
-    - rum.md
-
-  - 'Languages':
+  - '语言':
     - 'Java': 
       - java.md
       - jmx.md
@@ -283,34 +283,39 @@ nav:
       - jvm_jolokia.md
       - jvm_micrometer.md
       - jvm_statsd.md
+
     - dotnet.md
     - golang.md
     - nodejs.md
     - php.md
 
-  - Logs:
-    - 'Log Collection Overview': datakit-logging.md
-    - 'Log Process Overview': datakit-logging-how.md
-    - 'Log Collection':
+
+  - 用户访问监测（RUM）:
+    - rum.md
+
+  - 日志（LOG）:
+    - '日志采集综述': datakit-logging.md
+    - '日志处理综述': datakit-logging-how.md
+    - '日志采集':
       - logging.md
       - ilogtail.md
-      - 'Socket Access Example': logging_socket.md
+      - 'Socket 接入示例': logging_socket.md
       - fluentd.md
       - logstash.md
-    - 'Other Log Access':
+    - '其它日志接入':
       - 'LogStreaming': logstreaming.md
 
-  - 'Synthetic Tests':
+  - '网络拨测':
     - dialtesting.md
-    - 'Customize Request Tasks': dialtesting_json.md
+    - '自定义拨测': dialtesting_json.md
 
-  - 'Third-party Data Access':
+  - '其它数据接入':
     - "Prometheus":
-      - "Exportor": prom.md
+      - "Exporter": prom.md
       - "Remote Write": prom_remote_write.md
       - "Push Gateway": pushgateway.md
     - 'Graphite': graphite.md
-    - 'Kafka Subscribe': kafkamq.md
+    - 'Kafka 订阅': kafkamq.md
     - 'Zabbix': zabbix_exporter.md
     - 'Promtail': promtail.md
     - 'Statsd': statsd.md
@@ -319,7 +324,7 @@ nav:
     - 'Telegraf': telegraf.md
     - 'Scheck': sec-checker.md
 
-  - 'Other Collectors':
+  - '其它采集器':
     - Sensors: sensors.md
     - smart.md
     - ipmi.md

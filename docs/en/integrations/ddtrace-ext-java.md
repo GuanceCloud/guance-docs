@@ -1,166 +1,173 @@
 ---
-title     : 'DDTrace Extensions'
-summary   : 'GuanceCloud Extensions on DDTrace'
+title     : 'DDTrace Extension'
+summary   : 'Guance extends DDTrace support for components'
 __int_icon: 'icon/ddtrace'
 tags      :
   - 'DDTRACE'
-  - 'APM'
-  - 'TRACING'
+  - 'Trace Analysis'
 ---
 
 ## Introduction {#intro}
 
-Here we mainly introduce some extended functions of DDTrace-Java. List of main features:
+This section mainly introduces some extended features of DDTrace-Java. The main feature list includes:
 
-- JDBC SQL obfuscation
-- xxl-jobs
-- Dubbo 2/3
-- Thrift
-- RocketMQ
-- log pattern
-- hsf
-- Support Alibaba Cloud RocketMQ 5.0
-- redis trace parameters
-- Get the input parameter information of a specific function
-- MongoDB obfuscation
-- Supported DM8 Database
-- Supported `trace-128-bit-id`
-- Supported Apache Pulsar MQ
-- Support placing `trace_id` in the response header
-- Support putting the requested header information into the span tags
-- Support add HTTP `Response Body` information in the trace data
-- Support add HTTP `Request Body` information in the trace data
-- Use `-Ddd.http.error.enabled=true` to change the HTTP 4xx request link status to error
-- Support `Mybatis-plus:batch`
-- Support Redis tag:peer_ip
+- `JDBC SQL` obfuscation
+- `xxl-jobs` support
+- `Dubbo 2/3` support
+- `Thrift` framework support
+- `RocketMQ` support
+- `Log Pattern` customization
+- Alibaba RPC framework `HSF` probe support
+- Alibaba Cloud `RocketMQ` 5.0 support
+- Additional parameters for Redis tracing
+- Retrieval of specific function input parameters
+- Support for `MongoDB` obfuscation
+- Support for domestic Dameng database
+- [Support for 128-bit trace-id](ddtrace-128-trace-id.md){:target="_blank"}
+- Support for `PowerJob` framework
+- Support for `Apache Pulsar` message queue
+- Support for adding trace ID to response headers
+- Support for adding request header information `Header` to trace tags
+- Support for adding request body `Response Body` to trace tags
+- Support for adding request body `Request Body` to trace tags
+- HTTP 4xx related traces are set as error, enable parameter: `-Ddd.http.error.enabled=true`
+- Support for `Mybatis-plus:batch` usage.
+- Redis cluster support for obtaining peer_ip
 
+## Adding Response and Request Body Information to Trace Data {#response_body}
 
-## HTTP Response,Request Body in the trace {#response_body}
+Enable parameter: `-Ddd.trace.response.body.enabled=true` corresponding environment variable is `DD_TRACE_RESPONSE_BODY_ENABLED=true`, default value is `false`.
 
-The command line opening parameter is `-Ddd.trace.response.body.enabled=true`, the corresponding environment variable is `DD_TRACE_RESPONSE_BODY_ENABLED=true`, and the default value is `false`.
+Enable parameter: `-Ddd.trace.request.body.enabled=true` corresponding environment variable is `DD_TRACE_REQUEST_BODY_ENABLED=true`, default value is `false`.
 
-The command line opening parameter is `-Ddd.trace.request.body.enabled=true`, the corresponding environment variable is `DD_TRACE_REQUEST_BODY_ENABLED=true`, and the default value is `false`.
+Since retrieving `response body` can disrupt the `response`, the default encoding for `response body` is `utf-8`. If adjustment is needed, use `-Ddd.trace.response.body.encoding=gbk`.
 
-Since getting `response body` causes damage to `response`, the encoding adjustment of `response body` defaults to `utf-8`. If you need to adjust it, use `-Ddd.trace.response.body.encoding=gbk`.
+Retrieving the response body requires reading the response stream, which consumes Java memory space. It is recommended to add URLs with large response bodies (such as file download interfaces) to a blacklist to prevent OOM. URLs on the blacklist will not parse the response body content.
+Blacklist configuration:
 
-Obtaining the response body requires reading the response stream, which will occupy a certain amount of Java memory space. It is recommended to add blacklist processing to requests with large response bodies (such as file download interfaces) to prevent OOM. The URLs on the blacklist will not be Then parse the response body content.
-The blacklist configuration is as follows:
-
-- Command
+- Parameter method
 
 > -Ddd.trace.response.body.blacklist.urls="/auth,/download/file"
 
-- ENV
+- Environment variable method
 
 > DD_TRACE_RESPONSE_BODY_BLACKLIST_URLS
 
-## Tracing Header {#trace_header}
 
-The link information will put the header information of the request and response into the tag.The default state is off. If it needs to be turned on, add the parameter `-Ddd.trace.headers.enabled=true`  during startup.
+## Adding HTTP Header Information to Trace Data {#trace_header}
 
-DDTrace supported version: [v1.25.2](ddtrace-ext-changelog.md#cl-1.25.2-guance)
+The trace details will include request and response header information in the tags. By default, this feature is disabled. To enable it, add the startup parameter `-Ddd.trace.headers.enabled=true`. After enabling, you can see the request header information in `servlet_request_header` and response header information in `servlet_response_header` in the trace details.
 
-## supported trace-128-id {#trace_128_bit_id}
+Minimum supported DDTrace version: [v1.25.2](ddtrace-ext-changelog.md#cl-1.25.2-guance)
 
-[:octicons-tag-24: Datakit-1.8.0](../datakit/changelog.md#cl-1.8.0)
-[:octicons-tag-24: DDTrace-1.4.0-guance](ddtrace-ext-changelog.md#cl-1.14.0-guance)
+## MongoDB Database Obfuscation Support {#mongo-obfuscation}
+Use startup parameter `-Ddd.mongo.obfuscation=true` or environment variable `DD_MONGO_OBFUSCATION=TRUE` to enable obfuscation. This allows viewing specific commands from Guance.
 
-The default trace-id of the DDTrace agent is 64 bit, and the Datakit also supports 64 bit trace-id in the received link data.
-Starting from `v1.11.0`, it supports the `W3C protocol` and supports receiving 128 bit trace-id. However, the trace id sent to the link is still 64 bit.
+Currently supported obfuscation types: Int32/Int64/Boolean/Double/String. Other types are not meaningful and are not supported.
 
-To this end, secondary development was carried out on the Guance Cloud, which incorporated `trace_128_bit_id` is placed in the link data and sent to the Datakit, the DDTrace and OTEL links can be concatenated.
-
-how to config:
-
-```shell
-# open trace.128.bit, and use W3C propagation.
--Ddd.trace.128.bit.traceid.generation.enabled=true -Ddd.trace.propagation.style=tracecontext
-```
-
-This is  [GitHub issue](https://github.com/GuanceCloud/dd-trace-java/issues/37){:target="_blank"}
-
-At present, only DDTrace and OTEL are connected in series, and there is currently no testing with other APM manufacturers.
-
-
-## supported MongoDB obfuscation {#mongo-obfuscation}
-
-Use startup parameter `-DDd.mongo.obfuscation=true` or environment variable `DD_MONGO_OBFUSION` Turn on desensitization. This way, a specific command can be seen from the Guance Cloud.
-
-Currently, the types that can achieve desensitization include Int32, Int64, Boolean, Double, and String. The remaining ones have no reference significance, so they are currently not supported.
-
-supported version：
+Supported versions:
 
 - [x] all
 
-DDTrace supported version: [v1.12.1](ddtrace-ext-changelog.md#cl-1.12.1-guance)
+Minimum supported DDTrace version: [v1.12.1](ddtrace-ext-changelog.md#cl-1.12.1-guance)
 
-## supported DM8 Database {#dameng-db}
-Add DM8 Database trace information.
-supported version：
+## Domestic Dameng Database Support {#dameng-db}
+Supported versions:
 
 - [x] v8
 
-<!-- markdownlint-disable MD013 -->
-## Get the input parameter information of a specific function {#dd_trace_methods}
-<!-- markdownlint-enable -->
-**Specific function** mainly refers to the function specified by the business to obtain the corresponding input parameters.
+Minimum supported DDTrace version: [v1.12.1](ddtrace-ext-changelog.md#cl-1.12.1-guance)
 
-**Specific functions** need to be defined and declared through specific parameters. Currently, ddtrace provides two ways to trace specific functions:
+## Retrieving Specific Function Input Parameters {#dd-trace-methods}
 
-1. Marked by startup parameters: -Ddd.trace.methods ，reference documents： [Class or method injection Trace](https://docs.guance.com/integrations/apm/ddtrace/ddtrace-skill-param/#5-trace){:target="_blank"}
+Specific functions refer to business-defined functions to retrieve corresponding input parameters. These functions need to be defined through specific parameters. Currently, DDTrace provides two ways to declare specific functions for tracing:
 
-2. By introducing the SDK, use @Trace to mark, refer to the document [function level burying point](https://docs.guance.com/integrations/apm/ddtrace/ddtrace-skill-api/#2){:target="_blank"}
+1. Using startup parameter `-Ddd.trace.methods` or by introducing SDK using `@Trace` annotation, refer to [Class or Method Injection Trace](https://docs.guance.com/best-practices/insight/ddtrace-skill-param/#trace){:target="_blank"}
 
-After the declaration is made in the above way, the corresponding method will be marked as trace, and the corresponding Span information will be generated at the same time, including the input parameter information of the function (input parameter name, type, value).
+After declaring via the above methods, the corresponding methods will be marked for tracing, generating corresponding Span information that includes function (method) input parameters (parameter name, type, value).
 
 <!-- markdownlint-disable MD046 -->
-???+ info
+???+ attention
 
-    Since the data type cannot be converted and JSON serialization requires additional dependencies and overhead, so far only `toString()` processing is done for the parameter value, and secondary processing is done for the result of `toString()`, the length of the field value It cannot exceed <font color="red">1024 characters</font>, and the excess part is discarded.
-
+    Since data type conversion and JSON serialization require additional dependencies and overhead, only `toString()` processing is currently performed on parameter values, and the result of `toString()` is further processed. Field value lengths cannot exceed 1024 characters, and any excess part is discarded.
 <!-- markdownlint-enable -->
 
-DDTrace supported version： [v1.12.1](ddtrace-ext-changelog.md#cl-1.12.1-guance)
+## Default Remote Port for DDTrace Agent {#agent-port}
 
-## ddtrace agent default port {#agent_port}
+DDTrace secondary development changes the default remote port from 8126 to 9529.
 
-ddtrace changes the default remote port 8126 to 9529.
+## Viewing Parameters in Redis Traces {#redis-command-args}
 
-## redis command args {#redis-command-args}
-The Resource in the redis link will only display redis.command information, and will not display parameter information.
+In Redis traces, the Resource only shows `redis.command` information and does not display parameter (args) information. To view parameters in each statement, enable this feature.
 
-Enable this function: start the command to add the environment variable `-Ddd.redis.command.args`, and a tag will be added in the details of the Guance Cloud link: `redis.command.args=key val`.
+To enable this feature, add the following environment variable to the startup command:
 
-Supported version:
+```shell
+-Ddd.redis.command.args=true
+```
 
-- [x] `Jedis1.4.0` and above
+For k8s:
+
+```shell
+DD_REDIS_COMMAND_ARGS=TRUE
+```
+
+In the detailed trace information on Guance, an additional Tag will be added: `redis.command.args=key val...`. Here, `key val ...` corresponds to the parameters in the Redis command `jedis.set(key,val)`.
+
+> Note: `val` may contain sensitive information, so be cautious when enabling this feature.
+
+Supported versions:
+
+- [x] Jedis 1.4.0 and above
 - [x] Lettuce
 - [x] Redisson
 
-## log pattern {#log-pattern}
-By modifying the default log pattern, application logs and links are correlated, thereby reducing deployment costs. The logging framework `log4j2` is currently supported, but `logback` is not currently supported.
+Minimum supported DDTrace version: [v1.3.2](ddtrace-ext-changelog.md#cl-1.3.2)
 
-`-Ddd.logs.pattern` like `-Ddd.logs.pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %X{dd.service} %X{dd.trace_id} %X{dd.span_id} - %msg%n"`
+## Customizable Log Pattern {#log-pattern}
 
-supported version： log4j2
+By modifying the default log pattern, application logs can be correlated with trace data, reducing deployment costs. Currently supports the Log4j2 logging framework, but not Logback.
 
-## SQL obfuscation {#jdbc-sql-obfuscation}
+Adjust the default Pattern using `-Ddd.logs.pattern`:
 
-By default, DDTrace converts parameters in SQL to `?`, which prevents users from obtaining more accurate information when troubleshooting. The new probe will extract the parameters into the Trace data separately in Key-Value mode, which is convenient for users to view.
+``` not-set
+-Ddd.logs.pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %X{dd.service} %X{dd.trace_id} %X{dd.span_id} - %msg%n"`
+```
 
-In the Java startup command, add the following command line parameters to enable this function:
+Supported versions:
+
+- [x] log4j2
+
+Minimum supported DDTrace version: [v1.3.0](ddtrace-ext-changelog.md#cl-1.3.0)
+
+## HSF {#hsf}
+
+[HSF](https://help.aliyun.com/document_detail/100087.html){:target="_blank"} is a widely used distributed RPC service framework at Alibaba.
+
+Supported versions:
+
+- [x] 2.2.8.2--2019-06-stable
+
+Minimum supported DDTrace version: [v1.3.0](ddtrace-ext-changelog.md#cl-1.3.0)
+
+## SQL Obfuscation {#jdbc-sql-obfuscation}
+
+DDTrace defaults to converting SQL parameters to `?`, making it difficult for users to get accurate information when troubleshooting. The new probe extracts placeholder parameters separately into Trace data as Key-Value pairs, making it easier for users to view.
+
+To enable this feature, add the following command-line parameter to the Java startup command:
 
 ```shell
+# Add parameter during ddtrace startup, default is false
 -Ddd.jdbc.sql.obfuscation=true
 ```
 
-### Display of results {#show}
+### Effect Example {#show}
 
-Take setString() as an example. The location of the new probe is at `java.sql.PreparedStatement/setString(key, value)`。
+Using `setString()` as an example. The new probe position is at `java.sql.PreparedStatement/setString(key, value)`.
 
-There are two parameters here, the first one is the subscript of the placeholder parameter (starting from 1), the second one is the string type, after calling the `setString(index, value)` method, the corresponding string value will be stored into the span.
+There are two parameters here; the first is the placeholder parameter index (starting from 1), and the second is a string type. After calling the `setString(index, value)` method, the corresponding string value is stored in the span.
 
-After the SQL is executed, this map will be filled into the Span. The final data structure format is as follows:
+After executing the SQL, this map is filled into the Span. The final data structure format is as follows:
 
 ```json hl_lines="17 26 27 28 29 30 31 32"
 "meta": {
@@ -171,15 +178,15 @@ After the SQL is executed, this map will be filled into the Span. The final data
   "db.operation":"INSERT",
 
   "db.sql.origin":"INSERT product
-    (product_id,
-     product_name,
-     product_title,
-     product_price,
-     product_sale_price,
-     product_create_date,
-     product_isEnabled,
-     product_category_id)
-    VALUES(null, ?, ?, ?, ?, ?, ?, ?)",
+      (product_id,
+       product_name,
+       product_title,
+       product_price,
+       product_sale_price,
+       product_create_date,
+       product_isEnabled,
+       product_category_id)
+      VALUES(null, ?, ?, ?, ?, ?, ?, ?)",
 
   "db.type":"mysql",
   "db.user":"root",
@@ -197,40 +204,50 @@ After the SQL is executed, this map will be filled into the Span. The final data
   "sql.params.index_7":"16"
 }
 ```
-<!-- markdownlint-disable MD046 -->
-???+ question "Why is it not filled into the span？"
 
-    The meta information here is actually for the relevant developers to check the specific content of the SQL statement. 
-    After getting the specific details of the placeholder parameters, by replacing the `?` in `db.sql.origin`, the placeholder parameters can actually be The value is filled in, 
-    but the correct replacement cannot be accurately found through string replacement (rather than SQL precise parsing) (may lead to wrong replacement), so **try to keep the original SQL** here, and the details of placeholder parameters are listed separately Listed, here `index_1` means the first placeholder parameter, and so on.
+<!-- markdownlint-disable MD046 -->
+???+ question "Why are they not filled into `db.sql.origin`?"
+
+    This meta information is intended for developers to debug the actual SQL statements. After getting the placeholder parameter details, replacing `?` in `db.sql.origin` theoretically fills in the placeholder parameter values. However, string replacement (rather than precise SQL parsing) may lead to incorrect replacements, so **the original SQL is retained**, and placeholder parameter details are listed separately. Here, `index_1` indicates the first placeholder parameter, and so on.
 <!-- markdownlint-enable -->
 
-supported version： Version 2.3 and above are currently supported.
+Minimum supported DDTrace version: [v0.113.0](ddtrace-ext-changelog.md#cl-0.113.0-new)
 
-DDTrace supported version：[v0.113.0](ddtrace-ext-changelog.md#ccl-0.113.0-new)
+## xxl-jobs Support {#xxl-jobs}
 
-## Dubbo supported {#dubbo}
+[xxl-jobs](https://github.com/xuxueli/xxl-job){:target="_blank"} is a distributed task scheduling framework developed in Java.
 
-Dubbo is an open source framework of Alibaba Cloud, which currently supports Dubbo2 and Dubbo3.
+Supported versions:
 
-supported version: Dubbo2: 2.7.0 and above, Dubbo3 has no version restrictions.
+- [x] Version 2.3 and above
+
+## Dubbo Support {#dubbo}
+
+Dubbo is an open-source framework from Alibaba Cloud, supporting both Dubbo2 and Dubbo3.
+
+Supported versions:
+
+- [x] Dubbo2: 2.7.0+
+- [x] Dubbo3: Full support
 
 ## RocketMQ {#rocketmq}
 
-RocketMQ is an open source message queuing framework contributed by Alibaba Cloud to the Apache Foundation. Note: Alibaba Cloud RocketMQ 5.0 and the Apache Foundation are two different libraries.
+RocketMQ is an open-source message queue framework contributed by Alibaba Cloud to the Apache Foundation. Note: Alibaba Cloud RocketMQ 5.0 and Apache Foundation's RocketMQ are two different libraries.
 
-There is a difference when referencing the library, the apache RocketMQ artifactId: `rocketmq-client`, and the artifactId of Alibaba Cloud RocketMQ 5.0: `rocketmq-client-java`
+When referencing libraries, there are differences: `apache rocketmq artifactId: rocketmq-client`, while Alibaba Cloud RocketMQ 5.0 has `artifactId: rocketmq-client-java`.
 
-supported version: Currently supports version 4.8.0 and above. Alibaba Cloud RocketMQ service supports version 5.0 and above.
+Version support: Currently supports version 4.8.0 and above. Alibaba Cloud RocketMQ service supports version 5.0 and above.
 
-## Thrift supported {#thrift}
+## Thrift Support {#thrift}
 
-Thrift is an apache project. Some customers use thrift RPC for communication in the project, and we support it.
+Thrift is an Apache project. Some customers use thrift RPC for communication in their projects, so we have provided support.
 
-supported version: 0.9.3 and above.
+Supported versions:
 
-## batch injection DDTrace-Java Agent {#java-attach}
+- [x] Version 0.9.3 and above
 
-The native DDTrace-Java batch injection method has certain flaws, and does not support dynamic parameter injection (such as `-Ddd.agent=xxx, -Ddd.agent.port=yyy`, etc.).
+## Batch Injection of DDTrace-Java Agent {#java-attach}
 
-The extended DDTrace-Java adds dynamic parameter injection. For specific usage, see [here](ddtrace-attach.md)
+The native DDTrace-Java batch injection method has certain limitations, such as not supporting dynamic parameter injection (e.g., `-Ddd.agent=xxx, -Ddd.agent.port=yyy`).
+
+The extended DDTrace-Java adds dynamic parameter injection functionality. For specific usage, refer to [here](ddtrace-attach.md){:target="_blank"}

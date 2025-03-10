@@ -1,26 +1,25 @@
-# Associate Web Application Access
+# Web Application Access Correlation
 
 ---
 
+APM through collectors such as `DDTrace`, `Zipkin`, `Skywalking`, `Jaeger`, and `Opentelemetry` can trace the entire request data from frontend to backend for a web application.
 
-APM tracks the complete front-end to back-end request data of a web-side application through `ddtrace`, `zipkin`, `skywalking`, `jaeger` and `opentelemetry` collectors.
+Using RUM data from the frontend along with the injected `trace_id` in the backend, you can quickly locate the call stack.
 
-Using RUM data from the front end and `trace_id` injected into the back end, you can quickly locate the call stack.
+## Prerequisites
 
-## Preconditions
+- Configure [DDTrace](../../integrations/ddtrace.md), [Skywalking](../../integrations/skywalking.md), [Opentelemetry](../../integrations/opentelemetry.md), [Jaeger](../../integrations/jaeger.md), and [Zipkin](../../integrations/zipkin.md) on the target servers of the corresponding web applications;
+- For front-end applications separated from the backend (under cross-origin conditions), configure the target server to allow tracking of frontend requests by setting a Header whitelist in the response headers.
 
-- Configure [ddtrace](../../integrations/ddtrace.md), [skywalking](../../integrations/skywalking.md), [opentelemetry](../../integrations/opentelemetry.md), [jaeger](../../integrations/jaeger.md) and [zipkin](../../integrations/zipkin.md) on the corresponding web application target server.
-- For separate front-end applications (with cross-domain conditions), a header whitelist is required for front-end request response headers that are allowed to be tracked by the target server.
+For different APM tools, the specific keys for the `Access-Control-Allow-Headers` header are as follows:
 
-Corresponding to different APM tools, the key corresponding to the request header of Access-Control-Allow-Headers is as follows:
-
-- ddtrace: `x-datadog-parent-id`, `x-datadog-sampled`, `x-datadog-sampling-priority`, `x-datadog-trace-id`.
+- ddtrace: `x-datadog-parent-id`, `x-datadog-origin`, `x-datadog-sampling-priority`, `x-datadog-trace-id`.
 - skywalking: `sw8`.
 - jaeger: `uber-trace-id`.
 - zipkin: `X-B3-TraceId`, `X-B3-SpanId`, `X-B3-ParentSpanId`, `X-B3-Sampled`, `X-B3-Flags`.
 - zipkin_single_header: `b3`.
 - w3c_traceparent: `traceparent`.
-- opentelemetry: This type supports three types of configuration: `zipkin_single_header`, `w3c_traceparent`, `zipkin`, `jaeger`, adding corresponding headers based on the traceType type configured in RUM SDK.
+- opentelemetry: This type supports configurations for `zipkin_single_header`, `w3c_traceparent`, `zipkin`, and `jaeger`. Add the corresponding headers based on the `traceType` configured in the RUM SDK.
 
 *Python Example:*
 
@@ -29,19 +28,19 @@ app = Flask(__name__)
 api = Api(app)
 @app.after_request
 def after_request(response):
- ...
- response.headers.add('Access-Control-Allow-Headers', 'x-datadog-parent-id,x-datadog-sampled,x-datadog-sampling-priority,x-datadog-trace-id')
- ....
- return response
- ....
+    ...
+    response.headers.add('Access-Control-Allow-Headers', 'x-datadog-parent-id,x-datadog-sampled,x-datadog-sampling-priority,x-datadog-trace-id')
+    ...
+    return response
+    ...
 ```
 
-**Note**: The target server needs to use the HTTP service.
+**Note:** The target server must be an HTTP service.
 
-### Front End RUM Setup Steps
+### Frontend RUM Configuration Steps
 
-1. Introduce the RUM SDK into the front-end application [RUM Introducing](../../real-user-monitoring/web/app-access.md).
-2. Add the `allowedTracingOrigins` parameter to the initialization configuration to configure the whitelist of front-end request origins that allow tracing, which can be either a string array or a regular expression.*(Definition of origin: `<scheme> "://" <hostname> [ ":" <port> ]`.)*
+1. Integrate the [RUM SDK](../../real-user-monitoring/web/app-access.md) into your frontend application;
+2. Add the `allowedTracingOrigins` parameter in the initialization configuration to set up a whitelist of origins allowed for tracing frontend requests. This can be an array of strings or a regular expression. *(`origin` definition: `<scheme> "://" <hostname> [ ":" <port> ]`)*
 
 *Example:*
 
@@ -51,7 +50,7 @@ import { datafluxRum } from '@cloudcare/browser-rum'
 datafluxRum.init({
   applicationId: '<DATAFLUX_APPLICATION_ID>',
   datakitOrigin: '<DATAKIT ORIGIN>',
-  traceType: 'ddtrace', // ddtrace、zipkin、skywalking_v3、jaeger、zipkin_single_header、w3c_traceparent
+  traceType: 'ddtrace', // ddtrace, zipkin, skywalking_v3, jaeger, zipkin_single_header, w3c_traceparent
   ... // other configurations
   allowedTracingOrigins: ["https://api.example.com", /https:\/\/.*\.my-api-domain\.com/]
 })

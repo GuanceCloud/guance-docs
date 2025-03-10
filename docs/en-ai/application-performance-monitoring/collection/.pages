@@ -1,5 +1,0 @@
-nav:
-  - index.md
-  - 'Connect Web Application Access': connect-web-app.md
-  - 'How to Configure APM Sampling': sampling.md
-  - 'APM Connect Logs': connect-log

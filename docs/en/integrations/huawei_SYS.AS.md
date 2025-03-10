@@ -2,74 +2,74 @@
 title: 'HUAWEI AS'
 tags: 
   - Huawei Cloud
-summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
-__int_icon: 'icon/huawei_SYS.AS'
+summary: 'The core performance metrics of HUAWEI AS include CPU utilization, memory usage, disk I/O, network throughput, and system load. These are key indicators for evaluating and optimizing the performance of an auto-scaling system.'
+__int_icon: 'icon/huawei_sys_as'
 dashboard:
 
-  - desc: 'HUAWEI CLOUD AS Dashboard'
-    path: 'dashboard/zh/huawei_SYS.AS'
+  - desc: 'Built-in views for HUAWEI AS'
+    path: 'dashboard/en/huawei_SYS.AS'
 
 monitor:
-  - desc: 'HUAWEI CLOUD AS Monitor'
-    path: 'monitor/zh/huawei_SYS.AS'
+  - desc: 'HUAWEI AS monitors'
+    path: 'monitor/en/huawei_SYS.AS'
 
 ---
 
-
 <!-- markdownlint-disable MD025 -->
-# HUAWEI CLOUD AS
+
+# Huawei Cloud AS
 <!-- markdownlint-enable -->
 
-Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
+Huawei Cloud AS (Auto Scaling) core performance metrics include CPU utilization, memory usage, disk I/O, network throughput, and system load. These are key indicators for evaluating and optimizing the performance of an auto-scaling system.
 
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable the Guance integration - Extension - DataFlux Func (Automata): all prerequisites will be automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-
-### Installation script
-
-> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,,You can directly grant the global read-only permission`ReadOnlyAccess`）
-
-To synchronize the monitoring data of  HUAWEI CLOUD SYS.CBR, we install the corresponding collection script：「Guance Integration (HUAWEI CLOUD AS Collect)」(ID：`guance_huaweicloud_as`)
-
-Click [Install] and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
-
-tap[Deploy startup Script],The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
-
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」.Click [Run],you can immediately execute once, without waiting for a regular time.After a while, you can view task execution records and corresponding logs.
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-cbr/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
+### Installation Script
 
-### Verify
+> Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+To synchronize the monitoring data of HUAWEI SYS.AS, we install the corresponding collection script: "Guance Integration (Huawei Cloud-AS Collection)" (ID: `guance_huaweicloud_as`)
 
-## Metric {#metric}
-Configure HUAWEI CLOUD SYS.CBR monitoring. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/usermanual-as/as_06_0105.html){:target="_blank"}
+After clicking 【Install】, enter the required parameters: Huawei Cloud AK and Huawei Cloud account name.
 
-| Metric Name | Descriptive | Unit | Dimension |
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script.
+
+Once enabled, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can check the execution task records and corresponding logs.
+
+We default to collecting some configurations; see the Metrics section for details.
+
+[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-cbr/){:target="_blank"}
+
+
+### Verification
+
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration. You can also view the task records and logs to check for any anomalies.
+2. On the Guance platform, go to "Infrastructure / Custom" to check if asset information exists.
+3. On the Guance platform, go to "Metrics" to check if the corresponding monitoring data exists.
+
+## Metrics {#metric}
+After configuring HUAWEI SYS.AS, the default metric set is as follows. More metrics can be collected through configuration. [Huawei Cloud Monitoring Metrics Details](https://support.huaweicloud.com/usermanual-as/as_06_0105.html){:target="_blank"}
+
+| Metric Name | Description | Unit | Dimension |
 | :---: | :---: | :---: | :---: |
-| cpu_util | This metric is used to count the CPU utilization of the elastic scaling group | % | AutoScalingGroup |
-| instance_num | This metric is used to count the number of cloud servers cloud hosts available in an elastic scaling group | count | AutoScalingGroup |
-| disk_read_bytes_rate | This metric is used to count the amount of data read from the elastic scaling group per second | Byte/s | AutoScalingGroup |
-| disk_write_bytes_rate | This metric is used to count the amount of data written to the elastic scaling group per second | Byte/s | AutoScalingGroup |
-| mem_usedPercent | This metric is used to count the (Agent) memory utilization of the elastic scaling group | % | AutoScalingGroup |
-| cpu_usage | This metric is used to count the (Agent) CPU utilization of the elastic scaling group | % | AutoScalingGroup |
+| cpu_util | This metric measures the CPU utilization of the auto-scaling group | % | AutoScalingGroup |
+| instance_num | This metric counts the number of available cloud servers in the auto-scaling group | count | AutoScalingGroup |
+| disk_read_bytes_rate | This metric measures the amount of data read per second from the auto-scaling group | Byte/s | AutoScalingGroup |
+| disk_write_bytes_rate | This metric measures the amount of data written per second to the auto-scaling group | Byte/s | AutoScalingGroup |
+| mem_usedPercent | This metric measures the (Agent) memory utilization of the auto-scaling group | % | AutoScalingGroup |
+| cpu_usage | This metric measures the (Agent) CPU utilization of the auto-scaling group | % | AutoScalingGroup |
 
-## Object {#object}
+## Objects {#object}
 
-AS object data structure collected, you can see the object data from "Infrastructure-Customize".
+The structure of the collected HUAWEI SYS.AS object data can be viewed in "Infrastructure - Custom".
 
 ``` json
 {
@@ -82,16 +82,15 @@ AS object data structure collected, you can see the object data from "Infrastruc
   },
   "fields": {
     "created_time"    : "2022-06-21T06:17:27+0000",
-    "instance_config" : "{Instance Configuration Information}",
+    "instance_config" : "{Instance configuration information}",
     "message"         : "{Instance JSON data}"
   }
 }
 
 ```
 
-> *notice：`tags`,`fields`The fields in this section may change with subsequent updates*
+> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tips 1：`tags.name`The value serves as the instance ID for unique identification
+> Tip 1: The value of `tags.name` is the instance ID, used as a unique identifier.
 >
-> Tips 2：`fields.message`,`fields.billing`,`fields.bind_rules`,`fields.message`,`fields.resources`,are all JSON-serialized string representations.
-
+> Tip 2: `fields.message`, `fields.billing`, `fields.bind_rules`, `fields.message`, `fields.resources` are all JSON serialized strings.

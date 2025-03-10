@@ -1,49 +1,49 @@
-# ICMP Tests
+# Create ICMP Test Task
 ---
 
-## Introduction
+ICMP testing can be used to monitor the network communication status of a host. By sending one or more ICMP requests (Ping), you can check packet connectivity, packet loss rate, and round-trip time (RTT). If route tracing (Traceroute) or network hops are configured, the system will return route tracing results, showing the number of network hops required to connect to the target host and detailed information for each hop.
 
-ICMP test allows you to monitor network communication problems on your host. By setting one or more pings, you can help detect packet connections, packet loss rates and round trip times. If you configure Route Trace or Network Hops, a route trace result is returned that tracks the number of network hops required to connect to the host, as well as the details of each network hop.
+## Start Creating
 
-## Create ICMP test Task
+Click **Create > Synthetic Tests**, and select **ICMP Protocol**.
 
-In the Guance workspace, click "New"-"API test" and select "ICMP Protocol" to create a new ICMP test task.
+![API Test ICMP](../../img/api_test_icmp.png)
 
-![](../img/4.dailtesting_icmp_1.png)
 
-### Define Request Format
+### 1. Define Request Format
 
-- Host: Enter the Host in the format `www.example.com` or directly enter the gateway number such as `192.186.0.1`。
-- Name: Custom ICMP task name. Duplicate names are not supported in the current space.
-- Route tracing: A route tracing probe (**traceroute**) opens to discover all gateways on the destination path to the host when turned on.
-- Send pings per test: support to select any number from 1 to 10.
+1. Host: Enter the host address, supporting domain format (e.g., `www.example.com`) or directly enter an IP address (e.g., `192.186.0.1`);
+2. Route Tracing: When enabled, it will start a route tracing probe (`traceroute`) to discover all gateways on the path to the target host;
+3. Pings per Test: Choose to send 1 to 10 ICMP packets;
+4. Name: Customize the name of the ICMP test task; duplicate names are not allowed within the current workspace.
 
-### Available Judgment
+### 2. Availability Judgment {#test}
 
-It supports adding judgment condition matching data. When multiple judgment conditions are selected, the relationship between multiple judgment conditions can be judged as "all and" or "all or" by selecting "all" or "any".
+You can add judgment conditions based on filtering criteria to match data. When multiple judgment conditions are selected, you can define AND or OR logical relationships using "All" or "Any".
 
-Note:
+After defining the request format and adding judgment conditions, click the "Test" button to the right of the URL to verify if the test connection configuration is successful. The test will return the number of sent/received packets based on the Pings sent during each test. If route tracing or network hops are configured, it will also return route tracing results.
 
-- Configure "Network Hop Count" when available, similar to turning on route tracing, which will return route tracing data.
-- If there is no ping in the current task, the round trip time is set to 0, that is, there is no round trip time.
+**Note**:
 
-![](../img/4.dailtesting_icmp_2.png)
+- If "Network Hops" is chosen as a judgment condition, the system will return route tracing data similar to the Traceroute function;
+- If the test task fails to successfully Ping the target, the round-trip time will display as 0, indicating no valid round-trip time;
+- Test results are independent of the selected nodes.
 
-### Select test Node
 
-At present, Guance has covered 16 nodes in the world, and it supports selecting one or more nodes in China and overseas regions (only commercial and above users are supported), so as to quickly start the service quality monitoring of the site.
+### 3. Select Test Nodes
 
-![](../img/4.dailtesting_http_4.png)
+Currently <<< custom_key.brand_name >>> covers 14 global test nodes. You can choose one or more nodes from China or overseas regions (for Commercial Plan users and above) to quickly start site service quality monitoring.
 
-### Select Dial Frequency
 
-Select the data return frequency of cloud automated testing, which supports 8 choices, such as 1 minute (only commercial version and above users), 5 minutes (only commercial version and above users), 15 minutes (only commercial version and above users), 30 minutes, 1 hour, 6 hours, 12 hours and 24 hours.
+### 4. Select Test Frequency
 
-![](../img/4.dailtesting_http_5.png)
+Choose the execution frequency for the test task, with the following options available:
 
-### Test
-
-After the configuration is completed, click the "Test" button to confirm whether the configuration is successful, and return the number of data packets sent/received based on the selected "Send pings per test". If "Route Tracking" or "Network Hop Count" is configured, the route tracking result will be returned at the same time.
-
-![](../img/4.dailtesting_icmp_3.png)
-
+- 1 minute (Commercial Plan users and above)
+- 5 minutes (Commercial Plan users and above)
+- 15 minutes (Commercial Plan users and above)
+- 30 minutes
+- 1 hour
+- 6 hours
+- 12 hours
+- 24 hours

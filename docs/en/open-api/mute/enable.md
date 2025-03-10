@@ -2,22 +2,22 @@
 
 ---
 
-<br />**post /api/v1/monitor/mute/\{mute_uuid\}/enable**
+<br />**POST /api/v1/monitor/mute/\{mute_uuid\}/enable**
 
 ## Overview
-Enable a mute rule according to `mute_uuid`.
+Enable a mute rule based on the `mute_uuid`
 
 
 
 
-## Routing Parameters
+## Route Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| mute_uuid | string | Y | mute rule UUID<br> |
+| Parameter Name    | Type     | Required | Description              |
+|:-------------|:-------|:-----|:----------------|
+| mute_uuid | string | Y | Mute rule UUID<br> |
 
 
-## Supplementary Description of Parameters
+## Additional Parameter Notes
 
 
 
@@ -25,12 +25,11 @@ Enable a mute rule according to `mute_uuid`.
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/monitor/mute/mute_d0736e059fd74d859cdcdce102687378/enable' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/monitor/mute/mute_xxxx32/enable' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw 'null' \
---compressed \
---insecure
+--compressed 
 ```
 
 
@@ -47,7 +46,3 @@ curl 'https://openapi.guance.com/api/v1/monitor/mute/mute_d0736e059fd74d859cdcdc
     "traceId": "TRACE-5191E0CC-076F-42D4-80C6-16A3FC9E0A09"
 } 
 ```
-
-
-
-

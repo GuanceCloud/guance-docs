@@ -1,17 +1,16 @@
 ---
-title     : 'Zabbix Export'
-summary   : 'Zabbix real-time data exporter'
+title     : 'Zabbix Data Ingestion'
+summary   : 'Zabbix real-time data ingestion'
 tags:
-  - 'THIRD PARTY'
+  - 'External Data Ingestion'
 __int_icon      : 'icon/zabbix'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
-
 
 :fontawesome-brands-linux:
 
@@ -21,19 +20,20 @@ monitor   :
 
 ---
 
-Collect real-time data from the Zabbix service and send it to the GuanCe cloud center. Currently, Zabbix supports writing real-time data to files from version 4.0 to 7.0.
-ExportType allows to specify which entity types (events, history, trends) will be exported.
+Collect real-time data from the Zabbix service and send it to the Guance center.
 
-## Config {#config}
+Zabbix versions from 4.0 to 7.0 support writing real-time data to files. There are three types of data formats in real-time data: `events/history/trends`, where `history` and `trends` are displayed as Metrics. The `events` can be sent to Guance via [Webhook](https://www.zabbix.com/documentation/5.4/en/manual/config/notifications/media/webhook?hl=Webhook%2Cwebhook){:target="_blank"}.
 
-### Requirements Config {#requirements}
+## Configuration {#config}
 
-Zabbix config file: */etc/zabbix/zabbix_server.conf* :
+### Prerequisites {#requirements}
+
+Modify the configuration file, typically located at */etc/zabbix/zabbix_server.conf* :
 
 ```toml
   ### Option: ExportDir
-  #       Directory for real time export of events, history and trends in newline delimited JSON format.
-  #       If set, enables real time export.
+  #       Directory for real-time export of events, history, and trends in newline-delimited JSON format.
+  #       If set, enables real-time export.
   #
   # Mandatory: no
   ExportDir=/data/zbx/datakit
@@ -45,9 +45,9 @@ Zabbix config file: */etc/zabbix/zabbix_server.conf* :
   # Mandatory: no
   # Range: 1M-1G
   ExportFileSize=32M
-  
+
   ### Option: ExportType
-  #       List of comma delimited types of real time export - allows to control export entities by their
+  #       List of comma-delimited types of real-time export - allows control over export entities by their
   #       type (events, history, trends) individually.
   #       Valid only if ExportDir is set.
   #
@@ -56,14 +56,14 @@ Zabbix config file: */etc/zabbix/zabbix_server.conf* :
   # ExportType=events,history,trends
 ```
 
-Modify the configuration items:
+Modify the configuration items as follows:
 
 ```toml
 ExportDir=/data/zbx/datakit
 ExportFileSize=32M
 ```
 
-Permission to modify files:
+Change the file permissions:
 
 ```shell
 mkdir -p /data/zbx/datakit
@@ -71,34 +71,34 @@ chown zabbix:zabbix -R /data/zbx/datakit
 chmod u+rw -R /data/zbx/datakit/
 ```
 
-Attention: When the size of the configuration file is small, it is measured based on the host configuration. Files that are too large can easily cause insufficient disk space. And the `.old` files should be deleted regularly.
+Note: When setting the file size, consider the host configuration to avoid excessive disk space usage. Old `.old` files should be deleted periodically. Setting this to 32M considers the file system load.
 
-Restart server:
+After configuration, restart the service:
 
 ```shell
 systemctl restart zabbix-server
 ```
 
-### DataKit Config {#config}
+### Collector Configuration {#input-config}
 
-Go to the `conf.d/zabbix_exporter` directory under the DataKit installation directory, copy `zabbix_exporter.conf.sample` and name it `zabbix_exporter.conf`. Examples are as follows:
+Navigate to the `conf.d/zabbix_exporter` directory under the DataKit installation directory, copy `zabbix_exporter.conf.sample` and rename it to `zabbix_exporter.conf`. Example:
 
 ```toml
        
     [[inputs.zabbix_exporter]]
-      ## zabbix server web.
+      ## Zabbix server web address.
       localhostAddr = "http://localhost/zabbix/api_jsonrpc.php"
       user_name = "Admin"
       user_pw = "zabbix"
       
-      ## measurement yaml Dir
+      ## measurement YAML directory
       measurement_config_dir = "/data/zbx/yaml"
     
-      ## exporting object.default is item. all is <trigger,item,trends>. 
+      ## exporting object. Default is item. All options are <trigger,item,trends>. 
       objects = "item"
     
       ## update items and interface data.
-      ## like this: All data is updated at 2 o'clock every day.
+      ## For example: All data is updated at 2 AM every day.
       crontab = "0 2 * * *"
     
       # [inputs.zabbix_exporter.tags]
@@ -106,7 +106,7 @@ Go to the `conf.d/zabbix_exporter` directory under the DataKit installation dire
         # key2 = "value2"
         # ...
     
-      ## mysql database:zabbix , tables: items,interface.
+      ## MySQL database: zabbix, tables: items,interface.
       #[inputs.zabbix_exporter.mysql]
       #  db_host = "192.168.10.12"
       #  db_port = "3306"
@@ -115,7 +115,7 @@ Go to the `conf.d/zabbix_exporter` directory under the DataKit installation dire
     
       # Zabbix server version 4.x - 7.x
       [inputs.zabbix_exporter.export_v5]
-        # zabbix realTime exportDir path
+        # Zabbix real-time exportDir path
         export_dir = "/data/zbx/datakit/"
         # 4.0~4.9 is v4
         # 5.0~7.x is v5
@@ -123,33 +123,33 @@ Go to the `conf.d/zabbix_exporter` directory under the DataKit installation dire
     
 ```
 
-Precautions when configuring:
+Configuration notes:
 
-1. Since the data in the collection file is collected, it must be the local machine, and the Zabbix server should be configured as `localhost`.
-2. `measurement_config_dir` is a YAML configuration.
-3. `objects`: There are three types of data exported by Zabbix, and currently only the item access is the most complete.
-4. `crontab`: A required field, the time expression for full - scale data update.
-5. `mysql`: A required field, full-scale item table data needs to be obtained from the database.
-6. `module_version`: A required field. For versions from 5.0 to 7.0+ it is `v5`, and when the Zabbix version is lower than 5.0, it is `v4`.
+1. Since the data in the collection file must be local, the Zabbix server should be configured as `localhost`.
+2. `measurement_config_dir` is for YAML configuration.
+3. `objects`: Zabbix exports three types of data; currently, only `item` is fully supported.
+4. `crontab`: Required field, specifying the cron expression for full data updates.
+5. `mysql`: Required field, fetches all item table data from the database.
+6. `module_version`: Required field, versions 5.0 to 7.0+ are `v5`; Zabbix versions below 5.0 are `v4`.
 
-Restart DataKit server.
+After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 ## Data Caching {#cache}
 
-1 Retrieve the entire `items` table from MySQL and store it in memory. After exporting data from Zabbix, you need to query the `items` table using the item ID. Therefore, the entire table is stored using `map[itemid]itemc`.
+1. Fetch the entire `items` table from MySQL and store it in memory. After exporting data from Zabbix, use the `itemid` to query the `items` table, so the entire table is stored using `map[itemid]itemc`.
 
 ```text
-mysql> select itemid, name, type, key_, hostid, units from items where itemid=29167;
+mysql> select itemid,name,type,key_,hostid,units from items where itemid=29167;
 +--------+--------------------+--------+-----------------------------+--------+-------+
-| itemid | name               | type   | key_                        | hostid | units |
+| itemid | name               |   type | key_                        | hostid | units |
 +--------+--------------------+--------+-----------------------------+--------+-------+
-|  29167 | CPU interrupt time | 4      | system.cpu.util[,interrupt] |  10084 | %     |
+|  29167 | CPU interrupt time |   4    | system.cpu.util[,interrupt] |  10084 | %     |
 +--------+--------------------+--------+-----------------------------+--------+-------+
 ```
 
-There is a mapping table for `type`, using `item_type` as the key for the tag.
+The `type` has a mapping table. Use `item_type` as the tag key.
 
-2 Retrieve the `interface` table from MySQL and store it in memory.
+2. Fetch the `interface` table from MySQL and store it in memory.
 
 ```text
 mysql> select * from zabbix.interface;
@@ -160,41 +160,41 @@ mysql> select * from zabbix.interface;
 |           2 |  10438 |    1 |    1 |     1 | 10.200.14.226 |     | 10050 |
 +-------------+--------+------+------+-------+---------------+-----+-------+
 
-Field Meanings:
-main 0: Default network interface, 1: Non-default network interface
+Field meanings:
+main 0: default network card, 1: non-default network card
 type 1: "Agent", 2: "SNMP", 3: "IPMI", 4: "JMX",
 ```
 
-The IP can be retrieved based on the host ID, so the storage format for the `interface` table is `map[hostid]interfaceC`.
+Based on the host ID, the IP can be retrieved, so the storage format for the `interface` table is `map[hostid]interfaceC`.
 
-There is also a mapping table for `type`.
+`type` also has a mapping table.
 
-3 Measurement Caching
+3. Measurement caching
 
-Read all files ending in `.yaml` from the `measurement_config_dir` directory and load them into memory.
+Read all YAML files from the `measurement_config_dir` directory and load them into memory.
 
 ## Data Assembly {#Assembly}
 
-***Using itemid = 29167 as an example***
+***Using `itemid = 29167` as an example***
 
-A line of data retrieved from the exporter file is as follows:
+A line of data fetched from the exporter file looks like this:
 
 ```json
 {"host":{"host":"Zabbix server","name":"Zabbix server"},"groups":["Zabbix servers"],"applications":["CPU"],"itemid":29167,"name":"CPU interrupt time","clock":1728611707,"ns":570308079,"value":0.000000,"type":0}
 ```
 
-Data retrieved from the `items` table:
+Data fetched from the `items` table:
 
 ```text
-itemid, name, key_, units
-29167, CPU interrupt time, "system.cpu.util[,interrupt]", %
+itemid , name , key_ , units
+29167,CPU interrupt time,"system.cpu.util[,interrupt]",%
 ```
 
-Assembly Steps:
+Assembly steps:
 
-Use the item ID to query the `items` table (already cached in memory) to obtain `name`, `key_`, and `units`. At this point: `name="CPU interrupt time"`, `key_ = "system.cpu.util[,interrupt]"`, `units=%` (percentage format).
+Query the `items` table (already cached in memory) using the `itemid` to obtain `name`, `key_`, and `units`. At this point: `name="CPU interrupt time"`, `key_ = "system.cpu.util[,interrupt]"`, `units=%` (percentage format).
 
-Then, retrieve the data for this `name` from the measurement table:
+Retrieve the data for this `name` from the `measurement` table:
 
 ```yaml
 - measurement: System
@@ -212,15 +212,13 @@ Then, retrieve the data for this `name` from the measurement table:
     - logical
 ```
 
-Based on the string after the key in the `items` table (brackets removed), the data is found in the measurement. The corresponding relationship in the brackets indicates the following tags: `cpu=""`, `type="interrupt"`, `mode="avg1"`, `logical_or_physical="logical"`.
+Based on the string after removing the brackets from the `key` in the `item` table, find this data in the `measurement`. According to the corresponding relationship within the brackets, the following tags are obtained: `cpu=""`, `type="interrupt"`, `mode="avg1"`, `logical_or_physical="logical"`.
 
-Finally, the final form of the metric is:
+Finally, the final form of this metric is:
 
 ```text
-Metric Set: zabbix-server
-Metric Name: system_cpu_util
-Value: 0.000000
-Tags:
+Measurement Set zabbix_server
+Metric Name: system_cpu_util Value: 0.000000 Tags:
 
 cpu=""
 type="interrupt"
@@ -230,27 +228,26 @@ measurement="System"
 applications="CPU"
 groups="Zabbix servers"
 host="Zabbix server"
-item_type="Zabbix agent"
-interface_type="Agent"
-interface_main="default"
-ip="127.0.0.1"
+item_type = "Zabbix agent"
+interface_type = "Agent"
+interface_main = "default"
+ip = "127.0.0.1"
 hostname="Zabbix server"
 time=1728611707570308079
 ```
 
-## Zabbix Service API {#zabbix_api}
+## Zabbix Service API {#api}
 
-Obtain data through the API interfaces exposed by Zabbix.
+Request data through the API exposed by Zabbix.
 
-First, obtain a token through the login interface. The token is used for authentication in subsequent requests.
+Step one, obtain a token through the login interface. The token is required for authentication in subsequent requests.
 
-Second, use the `itemid` to retrieve the `name`, `key_`, `type`, `hostid`, and `unit` information for that item. The returned data is in string format and needs to be converted to the corresponding format.
+Step two, retrieve the `name`, `key_`, `type`, `hostid`, and `unit` information for the item using the `itemid`. The returned data is in string format and needs to be converted to the appropriate format.
 
-Note: The returned format is not **fixed**. If a single item is returned, it is in string format; if multiple items are requested, it is in array format.
+Note: The return format is **not fixed**. If a single item is returned, it will be in string format. If multiple items are requested, it will be in array format.
 
+## Reference Documentation {#documents}
 
-## Docs {#documents}
-
-- Zabbix Documentations: [5.0 real_time_export](https://www.zabbix.com/documentation/5.0/en/manual/appendix/install/real_time_export?hl=export){:target="_blank"}
-- [6.0 real_time_export](https://www.zabbix.com/documentation/6.0/en/manual/appendix/install/real_time_export){:target="_blank"}
-- [7.0 real_time_export](https://www.zabbix.com/documentation/current/en/manual/config/export/files){:target="_blank"}
+- Official configuration documentation: [5.0 Data Export Configuration](https://www.zabbix.com/documentation/5.0/en/manual/appendix/install/real_time_export?hl=export){:target="_blank"}
+- [6.0 Data Export](https://www.zabbix.com/documentation/6.0/en/manual/appendix/install/real_time_export){:target="_blank"}
+- [7.0 Data Export](https://www.zabbix.com/documentation/current/en/manual/config/export/files){:target="_blank"}

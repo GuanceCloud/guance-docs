@@ -1,69 +1,69 @@
 ---
-title: 'Volcengine EIP'
+title: 'Volc Engine EIP'
 tags: 
-  - Volcengine
-summary: 'Collect EIP metrics data of Volcengine'
+  - Volc Engine
+summary: 'Collect Volc Engine EIP metrics data'
 __int_icon: 'icon/volcengine_eip'
 dashboard:
 
-  - desc: 'Volcengine EIP Built in View'
+  - desc: 'Volc Engine EIP built-in view'
     path: 'dashboard/en/volcengine_eip'
 
 monitor:
-  - desc: 'Volcengine EIP Monitor'
+  - desc: 'Volc Engine EIP monitor'
     path: 'monitor/en/volcengine_eip'
 ---
 
-Collect EIP metrics data of Volcengine
+Collect Volc Engine EIP metrics data
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-### Installation script
+### Install Script
 
-> Tip：Please prepare `Volcenine`  AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Note: Please prepare a Volc Engine AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize the monitoring data of EIP cloud resources, we install the corresponding collection script：「Guance Integration（Volcengine EIP Collect）」(ID：`guance_volcengine_eip`)
+To synchronize the monitoring data of EIP cloud resources, we install the corresponding collection script: "Guance Integration (Volc Engine-EIP Collection)" (ID: `guance_volcengine_eip`)
 
-Click【Install】and enter the corresponding parameters: Volcenine AK, Volcenine account name, Volcenine regions.
+After clicking 【Install】, enter the corresponding parameters: Volc Engine AK, Volc Engine account name, regions.
 
-Tap 【Deploy startup Script】, The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click "Run"，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
+Once enabled, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. Wait a moment, then check the execution task records and corresponding logs.
 
-### Verify
+### Verification
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task. In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure - Resource Catalog」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+1. In 「Manage / Automatic Trigger Configuration」confirm whether the corresponding task has an automatic trigger configuration, and check the corresponding task records and logs for any anomalies.
+2. On the Guance platform, in 「Infrastructure - Resource Catalog」check if asset information exists.
+3. On the Guance platform, in 「Metrics」check if there is corresponding monitoring data.
 
-## Metric  {#metric}
+## Metrics {#metric}
 
-Configure the Volcengine EIP monitoring metric to collect more metrics through configuration [Volcengine EIP metric Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_EIP){:target="_blank"}
+Configure Volc Engine EIP monitoring metrics. You can collect more metrics by configuring them. [Volc Engine EIP Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_EIP){:target="_blank"}
 
-|`MetricName` |`Subnamespace` | MetricName |MetricUnit | Dimension|
+|`MetricName` |`Subnamespace` |Metric Name |MetricUnit | Dimension|
 | ----------- |---------------| :----: |:--------: |:-------: |
-| `InTraffic` | `Instance` | Incoming flow rate | Bytes | ResourceID |
-| `OutTraffic` | `Instance` | Outbound flow rate | Bytes | ResourceID |
-| `InPackets` | `Instance` | Number of incoming data packets | Count | ResourceID |
-| `OutPackets` | `Instance` | Number of outbound data packets | Count | ResourceID |
-| `InBPS` | `Instance` | Entering direction bandwidth | Bits/Second | ResourceID |
-| `OutBPS` | `Instance` | Output bandwidth | Bits/Second | ResourceID |
-| `InPacketsRate` | `Instance` | Entering direction packet speed | Packet/Second | ResourceID |
-| `OutPacketsRate` | `Instance` | Outbound package speed | Packet/Second | ResourceID |
-| `OutPacketsDropRate` | `Instance` | Outbound speed limit and packet loss rate | Packet/Second | ResourceID |
-| `OutRatePercentage` | `Instance` | Network outflow bandwidth utilization rate | Percent | ResourceID |
-| `InRatePercentage` | `Instance` | Network inflow bandwidth utilization rate | Percent | ResourceID |
-| `InPacketsDropRate` | `Instance` | Speed limit and packet loss rate in the incoming direction | Packet/Second | ResourceID |
+| `InTraffic` | `Instance` | Incoming Traffic | Bytes | ResourceID |
+| `OutTraffic` | `Instance` | Outgoing Traffic | Bytes | ResourceID |
+| `InPackets` | `Instance` | Incoming Packets | Count | ResourceID |
+| `OutPackets` | `Instance` | Outgoing Packets | Count | ResourceID |
+| `InBPS` | `Instance` | Incoming Bandwidth | Bits/Second | ResourceID |
+| `OutBPS` | `Instance` | Outgoing Bandwidth | Bits/Second | ResourceID |
+| `InPacketsRate` | `Instance` | Incoming Packet Rate | Packet/Second | ResourceID |
+| `OutPacketsRate` | `Instance` | Outgoing Packet Rate | Packet/Second | ResourceID |
+| `OutPacketsDropRate` | `Instance` | Outgoing Dropped Packet Rate | Packet/Second | ResourceID |
+| `OutRatePercentage` | `Instance` | Network Outbound Bandwidth Utilization | Percent | ResourceID |
+| `InRatePercentage` | `Instance` | Network Inbound Bandwidth Utilization | Percent | ResourceID |
+| `InPacketsDropRate` | `Instance` | Incoming Dropped Packet Rate | Packet/Second | ResourceID |
 
-## Object  {#object}
+## Objects {#object}
 
-The collected Volcengine EIP object data structure can see the object data from 「Infrastructure - Resource Catalog」
+The collected Volc Engine EIP object data structure can be viewed in 「Infrastructure - Resource Catalog」
 
 ``` json
   {
@@ -74,13 +74,13 @@ The collected Volcengine EIP object data structure can see the object data from 
     "EipAddress"      : "14.103.xx.xx",
     "RegionId"        : "cn-guangzhou",
     "ProjectName"     : "default",
-    "name"            : "5gwfnylsmpds73inqkqixxxxx"
+    "name"            : "url-5gwfnylsmpds73inqkxxxx"
     },
     "fileds": {
       "AllocationTime": "2024-12-08T21:42:17+08:00",
       "Bandwidth"     : 115,
       "ExpiredTime"   : "",
-      "ISP"           : "BGP",
+      "ISP"           : "BGP"
       "InstanceId"    : "i-ydkgzgx14wwuxjsfi06q",
       "InstanceType"  : "EcsInstance",
       "IsBlocked"     : false,

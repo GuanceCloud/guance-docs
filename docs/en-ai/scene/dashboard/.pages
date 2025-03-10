@@ -1,5 +1,0 @@
-nav:
-  - index.md
-  - 'List Management': config_list.md
-  - 'Page Management': config_page.md
-  - 'Historical Versions': history-version.md
