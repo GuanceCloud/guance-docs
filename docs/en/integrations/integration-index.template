@@ -6,7 +6,6 @@ icon: zy/integrations
 
 ---
 
-Guance has the ability of full stack data collection, and now supports about {{.NIDocs}} integrations.
 
 <!-- markdownlint-disable MD046 MD037 MD009 MD010 -->
 <html lang="en">
@@ -92,11 +91,11 @@ Guance has the ability of full stack data collection, and now supports about {{.
             position: relative;
   		}
         .fth-integration-list-content .fth-integration-list-item .integration-list-item-left .glightbox {
-            display: flex;
+           display: flex;
         }
   		.fth-integration-list-content .fth-integration-list-item .integration-list-item-left img {
   			width: 32px;
-            min-width: 32px;
+        min-width: 32px;
   			height: 32px;
   			border-style: none;
   		}
@@ -245,7 +244,7 @@ Guance has the ability of full stack data collection, and now supports about {{.
   				if (e.target.classList.contains('integration-tags-group-item')) {
   					const curTag = e.target;
   					const activeTag = header.querySelector('.integration-tags-group-item.tag-active');
-  					const tagAllContainer = header.querySelector('.integration-tags-group-item');
+            const tagAllContainer = header.querySelector('.integration-tags-group-item');
   					if (curTag !== activeTag) {
   						tagValue = curTag.dataset.tag;
   						curTag.classList.add('tag-active');
