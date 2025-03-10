@@ -1,11 +1,11 @@
-# Feature Menu Acquisition (new, supports secondary menus)
+# Function Menu Acquisition (new, supports secondary menus)
 
 ---
 
 <br />**GET /api/v1/workspace/menu_v2/get**
 
 ## Overview
-Retrieve the current workspace feature menu
+Retrieve the current workspace function menu
 
 
 
@@ -16,7 +16,7 @@ Retrieve the current workspace feature menu
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/menu_v2/get' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 ```
@@ -63,11 +63,11 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/get' \
                 "value": 1
             },
             {
-                "key": "Dial Testing",
+                "key": "CloudDial",
                 "value": 1
             },
             {
-                "key": "Security Check",
+                "key": "Security",
                 "value": 1
             },
             {

@@ -11,8 +11,8 @@ Delete a SAML SSO login configuration
 ## Route Parameters
 
 | Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:---------|:-------------------------|
-| sso_uuid      | string | Y        | ID of the SSO configuration item<br> |
+|:-----------|:-------|:-----|:----------------|
+| sso_uuid | string | Y | ID of the SSO configuration item<br> |
 
 
 ## Additional Parameter Notes
@@ -21,7 +21,7 @@ Delete a SAML SSO login configuration
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/sso/saml_delete/sso_xxxx32' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/sso/saml_delete/sso_xxxx32' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```

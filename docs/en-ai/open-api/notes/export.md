@@ -11,42 +11,42 @@ Export the note specified by `notes_uuid` as a template structure.
 
 | Parameter Name        | Type     | Required | Description              |
 |:------------------|:-------|:-----|:----------------|
-| notes_uuid | string | Y | Note UUID |
+| notes_uuid | string | Y | Note UUID<br> |
 
-## Additional Parameter Information
+## Additional Parameter Notes
 
-Note template structure description:
+### Note Template Structure Explanation:
 
-The basic structure of the template includes: view structure (only contains chart structure)
+The basic structure of the template includes: view structure (containing only chart structures)
 
-**Main structure description of `templateInfo`:**
+#### **Explanation of the main structure of `templateInfo`**
 
-| Parameter Name                | Type  | Required | Description          |
-|-----------------------|----------|----|------------------------|
-| name             | string | Yes | Note title |
-| main             | json | No | Main structure of the exported content |
-| main.charts             | array | No | List of chart template structures |
-| main.charts[#]             | json | No | Chart template structure |
+| Parameter Name                | Type   | Required | Description          |
+|-------------------------------|----------|----|------------------------|
+| name             | string | Required | Note title |
+| main             | json |  | Main structure of exported content |
+| main.charts             | array |  | List of chart template structures |
+| main.charts[#]             | json |  | Chart template structure |
 
-**Structure description of `main.charts[#]`:**
+#### **Structure explanation for `main.charts[#]`**
 
-| Parameter Name                | Type  | Required | Description          |
-|-----------------------|----------|----|------------------------|
-| name             | string | Yes | Chart name |
-| type             | string | Yes | Chart type |
-| queries             | array[json] | Yes | List of query statements for the chart |
+| Parameter Name                | Type   | Required | Description          |
+|-------------------------------|----------|----|------------------------|
+| name             | string | Required | Chart name |
+| type             | string | Required | Chart type |
+| queries             | array[json] | Required | List of query statements for the chart |
 
-**For `Time Series Chart` structure where `type=sequence`, the main structure parameters are as follows:**
+#### **For `Time Series Chart` with `type=sequence`, its main structure parameters are as follows:**
 
-| Parameter Name                | Type  | Required | Description          |
-|-----------------------|----------|----|------------------------|
-| name             | string | Yes | Chart name |
-| type             | string | Yes | Chart type |
-| queries             | array[json] | Yes | List of query statements for the chart |
+| Parameter Name                | Type   | Required | Description          |
+|-------------------------------|----------|----|------------------------|
+| name             | string | Required | Chart name |
+| type             | string | Required | Chart type |
+| queries             | array[json] | Required | List of query statements for the chart |
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/notes/notes_xxxx32/export' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notes/notes_xxxx32/export' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
@@ -64,7 +64,7 @@ curl 'https://openapi.guance.com/api/v1/notes/notes_xxxx32/export' \
                     "queries": [
                         {
                             "query": {
-                                "content": "note content"
+                                "content": "Note content"
                             }
                         }
                     ],

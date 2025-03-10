@@ -8,12 +8,11 @@
 Delete one or multiple members
 
 
-
 ## Body Request Parameters
 
-| Parameter Name     | Type   | Required | Description              |
-|:-----------------|:------|:-------|:------------------------|
-| accountUUIDs | array | Y | List of account UUIDs<br>Example: ['xxx', 'xxx'] <br>Can be empty: False <br> |
+| Parameter Name   | Type   | Required | Description              |
+|:-------------|:-----|:------|:----------------|
+| accountUUIDs | array | Y | List of accounts<br>Example: ['xxx', 'xxx'] <br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -21,13 +20,12 @@ Delete one or multiple members
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/member/batch_delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/member/batch_delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"accountUUIDs": ["acnt_xxxx32"]}' \
 --compressed 
 ```
-
 
 
 ## Response

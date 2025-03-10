@@ -1,4 +1,4 @@
-# [Service Performance] Export
+# 【Service Performance】Export
 
 ---
 
@@ -16,13 +16,13 @@ Service performance export
 | start | integer | Y | Time start, unit ms<br> |
 | end | integer | Y | Time end, unit ms<br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/service_manage/performance/export?end=1693810693999&start=1693767493000' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage/performance/export?end=1693810693999&start=1693767493000' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   -o 'servicePerformanceInfo.csv'
   --compressed

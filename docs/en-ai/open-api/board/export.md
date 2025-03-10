@@ -2,22 +2,22 @@
 
 ---
 
-<br />**GET /api/v1/dashboards/{dashboard_uuid}/export**
+<br />**GET /api/v1/dashboards/\{dashboard_uuid\}/export**
 
 ## Overview
-Export the specified dashboard as a view template structure based on `dashboard_uuid`.
+Export the specified dashboard as a view template structure based on the `dashboard_uuid`.
 
 ## Route Parameters
 
-| Parameter Name      | Type   | Required | Description              |
-|:-----------------|:------|:-------|:----------------|
-| dashboard_uuid | string | Y | View UUID<br> |
+| Parameter Name       | Type   | Required | Description              |
+|:-------------------|:------|:-------|:-------------------------|
+| dashboard_uuid     | string | Y      | View UUID                |
 
 ## Additional Parameter Notes
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboards/dsbd_xxxx32/export' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboards/dsbd_xxxx32/export' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```

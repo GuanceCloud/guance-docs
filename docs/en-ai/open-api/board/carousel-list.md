@@ -11,9 +11,9 @@
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description               |
-|:------------|:------|:-------|:------------------------|
-| search | string |  | Search for carousel dashboard names<br>Allow empty: False <br> |
+| Parameter Name | Type   | Required | Description              |
+|:-----------|:-------|:-----|:----------------|
+| search | string | No  | Search by carousel dashboard name<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -23,7 +23,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboard/carousel/list' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboard/carousel/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```

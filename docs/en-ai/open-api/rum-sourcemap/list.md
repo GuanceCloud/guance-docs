@@ -5,27 +5,25 @@
 <br />**GET /api/v1/rum_sourcemap/list**
 
 ## Overview
-List all existing sourcemap information for the specified application
-
+List all existing SourceMap information for a specified application
 
 
 ## Query Request Parameters
 
 | Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:--------|:-------------------------|
-| appId         | string | Y       | appId<br>Allow empty: False <br> |
+|:--------------|:-------|:---------|:-------------------------|
+| appId         | string | Yes      | appId<br>Can be empty: False <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/rum_sourcemap/list?appId=app_demo' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/rum_sourcemap/list?appId=app_demo' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>'
 ```
-
 
 
 ## Response

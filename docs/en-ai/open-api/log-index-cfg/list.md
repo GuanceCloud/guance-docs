@@ -10,28 +10,31 @@ List index information
 
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
+| Parameter Name        | Type     | Required   | Description              |
+|:------------------|:-------|:-----|:----------------|
 | targetWorkspaceUUID | string | No | Target workspace<br> |
-| isBindCustomStore | boolean | No | Whether it is bound to a custom store<br> |
+| isBindCustomStore | boolean | No | Whether to bind custom storage<br> |
 | queryType | commaArray | No | Storage query type<br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
-**Response Body Structure Explanation**
+**Response Body Structure Description**
 
 | Parameter Name                | Type  | Description          |
 |-----------------------|----------|------------------------|
-|isBindCustomStore         |int | 1: Index configuration bound to a custom store 0: Default|
-|storeType         |string | Storage type, ('es': Elasticsearch storage , 'sls': SLS Logstore storage, 'opensearch': OpenSearch storage, 'beaver': LogEase storage) |
+| isBindCustomStore         | int | 1: Index configuration bound to custom storage 0: Default |
+| storeType         | string | Storage type, ('es': Elasticsearch storage, 'sls': SLS Logstore storage, 'opensearch': OpenSearch storage, 'beaver': Beaver storage) |
+
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/log_index_cfg/list' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/log_index_cfg/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
+
+
 
 
 ## Response

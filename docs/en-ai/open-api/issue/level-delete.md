@@ -8,24 +8,28 @@
 
 
 
+
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                                |
-|:--------------|:-------|:---------|:-------------------------------------------|
-| uuids         | array  | Y        | Custom issue level UUIDs<br>Example: ['uuid1', 'uuid2'] <br>Allow empty: False <br> |
+| Parameter Name | Type   | Required | Description                             |
+|:--------------|:-------|:---------|:----------------------------------------|
+| uuids         | array  | Y        | Custom level UUIDs<br>Example: ['uuid1', 'uuid2'] <br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
 
 
+
+
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue-level/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue-level/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"uuids": []}'\
 --compressed
 ```
+
 
 
 

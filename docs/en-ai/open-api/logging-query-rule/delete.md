@@ -8,6 +8,7 @@
 Delete data access rule
 
 
+
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required | Description              |
@@ -20,13 +21,14 @@ Delete data access rule
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/logging_query_rule/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/logging_query_rule/delete' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw $'{"loggingQueryRuleUuids":["lqrl_xxxx32", "lqrl_xxxx32"]}' \
 --compressed
 ```
+
 
 
 ## Response

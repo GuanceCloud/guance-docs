@@ -10,10 +10,10 @@ Enable or disable a checker
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:-----------|:-------|:-----|:----------------|
-| isDisable | boolean | Y | Set the enable status<br>Allow null: False <br> |
-| ruleUUIDs | array | Y | List of UUIDs for the check items<br>Allow null: False <br> |
+| Parameter Name | Type   | Required | Description               |
+|:-------------|:------|:-------|:-------------------------|
+| isDisable | boolean | Y | Set the enable status<br>Can be null: False <br> |
+| ruleUUIDs | array | Y | List of UUIDs for the check items<br>Can be null: False <br> |
 
 ## Additional Parameter Notes
 
@@ -21,7 +21,7 @@ Enable or disable a checker
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/checker/set_disable' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/checker/set_disable' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"ruleUUIDs":["rul_xxxx32"],"isDisable":true}' \

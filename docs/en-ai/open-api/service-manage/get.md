@@ -1,50 +1,51 @@
-# 【Service List】Get
+# 【Service List】Retrieve
 
 ---
 
 <br />**GET /api/v1/service_manage/\{service_uuid\}/get**
 
 ## Overview
-Retrieve information for a single service list
+Retrieve information for a single service list entry
+
 
 
 ## Route Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------------|:-------|:-----|:----------------|
+|:------------------|:-------|:-----|:----------------|
 | service_uuid | string | Y | UUID corresponding to the service<br>Example: xxxx <br>Allow empty string: False <br> |
 
 
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------------|:-------|:-----|:----------------|
-| originStr | string |  | Pass 1 for raw string, pass 0 for structured data, default is 1<br>Allow empty: False <br> |
+|:------------------|:-------|:-----|:----------------|
+| originStr | string |  | Pass 1 for raw string, 0 for structured data, defaults to 1<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
 
-**Request Body Structure Description**
+**Request Body Structure Explanation**
 
-| Parameter Name        | Type  | Required  | Description          |
-|---------------|----------|----|------------------------|
-| service_uuid    | string  |  Y | Unique UUID of the service list, prefixed with sman_ |
-| originStr | string  |  N | Whether to return the serviceCatelog as a raw string, 1 for yes, 0 for no. Default is 1 |
+|  Parameter Name        |   Type  | Required  |          Description          |
+|----------------------|----------|----|------------------------|
+| service_uuid    |  string  |  Y | Unique UUID of the service list entry, prefixed with sman_ |
+| originStr |  string  |  N | Whether to return the serviceCatelog as a raw string, 1 for yes, 0 for no. Defaults to 1 |
 
-**Response Body Structure Description**
+**Response Body Structure Explanation**
 
-| Parameter Name                | Type  | Description          |
-|-----------------------|----------|------------------------|
-| serviceCatelog         | string, dict | Raw string or structured data of the service list |
-| service         | string | Service name |
-| type         | string | Service type |
+|  Parameter Name                |   Type  |          Description          |
+|-------------------------------|----------|------------------------|
+| serviceCatelog         | string, dict |  Raw string or structured data of the service list entry |
+| service         | string |  Service name |
+| type         | string |  Service type |
 
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/service_manage/sman_xxxx32/get?originStr=0' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage/sman_xxxx32/get?originStr=0' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed

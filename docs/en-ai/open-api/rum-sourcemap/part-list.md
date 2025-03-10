@@ -1,12 +1,12 @@
-# List the Uploaded Parts Corresponding to a Sharded Upload Event
+# List the uploaded chunks corresponding to a multipart upload event
 
 ---
 
 <br />**POST /api/v1/rum_sourcemap/part_list**
 
 ## Overview
-This is an optional fourth step in the sourcemap compressed file upload (sharded upload) operation. It lists the parts that have already been uploaded. This is generally used for resuming interrupted uploads or checking shards.
-For more details, refer to: [SourceMap Sharded Upload Related Interface Usage Instructions](../../../studio-backend/sourcemap-multipart-upload-init/)
+This is the optional fourth step in the SourceMap compressed file upload (multipart upload) operation. It lists the already uploaded chunks. This is generally used for resuming interrupted uploads or chunk verification.
+For more details, refer to: [SourceMap Multipart Upload Related API Usage Instructions](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
 
@@ -14,8 +14,8 @@ For more details, refer to: [SourceMap Sharded Upload Related Interface Usage In
 ## Body Request Parameters
 
 | Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:---------|:------------------------|
-| uploadId      | string | Y        | Sharded upload event ID<br>Allow null: False <br> |
+|:-----------|:-------|:-----|:----------------|
+| uploadId | string | Y | ID of the multipart upload event<br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -25,7 +25,7 @@ For more details, refer to: [SourceMap Sharded Upload Related Interface Usage In
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/rum_sourcemap/part_list' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/rum_sourcemap/part_list' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw $'{\n  "uploadId": "65ef45944fac157005cb73de48e81f161Lfv5UOs"\n}' \

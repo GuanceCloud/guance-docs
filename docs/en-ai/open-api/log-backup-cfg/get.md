@@ -15,27 +15,27 @@ Retrieve a single data forwarding rule
 | cfg_uuid | string | Y | UUID of the forwarding rule<br> |
 
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
-**Response Body Structure Explanation**
+**Response Body Structure Description**
 
 | Parameter Name                | Type  | Description          |
-|-------------------------------|-------|----------------------|
+|-------------------------------|----------|------------------------|
 | accessCfg         | dict | Third-party storage configuration information |
-| name         | string | Name of the forwarding rule |
+| name         | string | Forwarding rule name |
 | uuid             | string | Unique UUID of the forwarding rule |
 | status         | string | Status of the forwarding rule, 0: Enabled, 2: Disabled |
 | dataType         | string | Data type |
-| conditions         | string | Filtering conditions in DQL format |
+| conditions         | string | Filter conditions in DQL format |
 | storeType         | string | Storage type |
-| externalResourceAccessCfgUUID         | string | UUID of external resource access configuration |
-| workspaceUUID             | string | UUID of the workspace where the forwarding rule resides |
+| externalResourceAccessCfgUUID         | string | External resource access configuration UUID |
+| workspaceUUID             | string | UUID of the space where the forwarding rule resides |
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/log_backup_cfg/lgbp_xxxx32/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/log_backup_cfg/lgbp_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```

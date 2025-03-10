@@ -10,7 +10,7 @@
 
 ## Enable DDTrace Collector
 
-Edit the datakit.yaml file and append DDTrace to the list of default enabled collectors.
+Edit the datakit.yaml file to append DDTrace to the default enabled collectors.
 
 ```
  - name: ENV_DEFAULT_ENABLED_INPUTS
@@ -25,19 +25,19 @@ kubectl apply -f datakit.yaml
 
 ## Install DataKit Operator
 
-The Datakit Operator automates the deployment of applications and services, automatically injects the DDTrace SDK, and monitors them when they start.
+The Datakit Operator can automate the deployment of applications and services, automatically inject the DDTrace SDK, and monitor them when they start.
 
 
 Click to download the latest `datakit-operator.yaml` file:
 
 ```
 $ kubectl create namespace datakit
-$ wget https://<<< custom_key.static_domain >>>/datakit-operator/datakit-operator.yaml
+$ wget https://static.<<< custom_key.brand_main_domain >>>/datakit-operator/datakit-operator.yaml
 ```
 
 ### Update Configuration File
 
-The Datakit Operator configuration is in JSON format and is stored as a ConfigMap in Kubernetes, loaded into the container as environment variables.
+The Datakit Operator configuration is in JSON format and is stored separately as a ConfigMap in Kubernetes, loaded into the container via environment variables.
 
 
 ```
@@ -77,8 +77,8 @@ Configuration parameters:
 
 1. `service`: Service name;
 2. `env`: Environment information for the application service;
-3. Custom DataKit listening address; if not set, it follows the default address;
-4. Collect Profiling data: When enabled, you can see more runtime information about the application;
+3. Customize the DataKit listening address; if not set, it follows the default address;
+4. Collect Profiling data: Enabling this allows you to see more runtime information about the application;
 5. Configure `namespaces`;
 6. Configure `selectors`.
 
@@ -91,4 +91,4 @@ kubectl apply -f datakit-operator.yaml
 
 ## Restart Application
 
-After installation is complete, restart the application Pod.
+After installation, restart the application Pod.

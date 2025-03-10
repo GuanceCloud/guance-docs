@@ -5,40 +5,39 @@
 <br />**GET /api/v1/tag/list**
 
 ## Overview
-Retrieve the global tag list
-
+Get the global tag list
 
 
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| search | string | No | Search for tag name<br>Can be empty: False <br> |
-| filter | string | No | Filter condition<br>Can be empty: False <br>Optional values: ['BoardRefTagObject', 'ViewerRefTagObject', 'CheckerRefTagObject', 'DialingRefTagObject'] <br> |
-| pageIndex | integer | Yes | Page number<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize | integer | Yes | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 10000 <br> |
+| search | string | No  | Search tag name<br>Can be empty: False <br> |
+| filter | string | No  | Filter condition<br>Can be empty: False <br>Optional values: ['BoardRefTagObject', 'ViewerRefTagObject', 'CheckerRefTagObject', 'DialingRefTagObject'] <br> |
+| pageIndex | integer | Yes  | Page number<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize | integer | Yes  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 10000 <br> |
 
-## Additional Parameter Descriptions
+## Additional Parameter Explanation
 
-Data Description
+Data description
 
-- Request Parameter Description
+- Request parameter explanation
 
 | Parameter Name           | Type | Description                                                 |
 | ---------------- | ---- | ---------------------------------------------------- |
-| filter       | string | Enum values (Tags associated with dashboards: BoardRefTagObject, Tags associated with Explorers: ViewerRefTagObject, Tags associated with monitors: CheckerRefTagObject)|
+| filter       | string | Enum values (Dashboard associated tags: BoardRefTagObject, Viewer associated tags: ViewerRefTagObject, Checker associated tags: CheckerRefTagObject)|
 
 ------
 
-- Response Parameter Description
+- Response parameter explanation
 
 | Parameter Name           | Type | Description                                                 |
 | ---------------- | ---- | ---------------------------------------------------- |
 | name       | string | Tag name |
 | description             | string | Field description information                                                 |
-| color    | string | Predefined color type, default, style_key1, style_key2 ~~                |
+| color    | string | Front-end and back-end agreed color type, default, style_key1, style_key2 ~~                |
 
-- Color `color` field type-color mapping:
+- Color field type-color mapping:
 ```json
 {
     "default": {"background": "#CCE6FF", "color": "rgba(0,0,0,0.8)"},
@@ -74,7 +73,7 @@ Data Description
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/tag/list?pageIndex=1&pageSize=2' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/tag/list?pageIndex=1&pageSize=2' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```

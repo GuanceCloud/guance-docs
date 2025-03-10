@@ -4,17 +4,17 @@
 
 Download docker-nginx.tar.gz 
 
-Resource package download address [Download](https://<<< custom_key.static_domain >>>/dataflux/package/docker-nginx.tar.gz)
+Resource package download link: [Download]( https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/docker-nginx.tar.gz)
 
 ## Install Docker
 
-### 1. Extract the installation package
+### 1. Extract the Installation Package
 
 ```shell
 tar -xvf docker-nginx.tar.gz
 ```
 
-### 2. Installation
+### 2. Install
 
 ```shell
 cp -rf docker/* /usr/bin
@@ -74,7 +74,7 @@ docker load -i nginx.tar
 
 ## Configure Nginx
 
-Modify the following configuration and save it to the `/data/nginx/conf.d` directory, with the name **`dataflux.conf`**:
+Modify the following configuration and save it to the `/data/nginx/conf.d` directory, named **`dataflux.conf`**
 ???+ example ""
     ```shell
     upstream httpbakend {

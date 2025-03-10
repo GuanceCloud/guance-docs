@@ -2,7 +2,7 @@
 
 ---
 
-<br />**GET /api/v1/notification_schedule/{notification_schedule_uuid}/get**
+<br />**GET /api/v1/notification_schedule/\{notification_schedule_uuid\}/get**
 
 ## Overview
 
@@ -11,12 +11,12 @@
 
 ## Route Parameters
 
-| Parameter Name               | Type   | Required | Description             |
-|:--------------------------|:-----|:-------|:----------------------|
-| notification_schedule_uuid | string | Y      | Schedule UUID<br> |
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:------------------------|
+| notification_schedule_uuid | string | Y | Schedule UUID<br> |
 
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
@@ -24,7 +24,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/notification_schedule/nsche_3512c1f4d176433484676225b547ef7a/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notification_schedule/nsche_3512c1f4d176433484676225b547ef7a/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --compressed

@@ -1,34 +1,31 @@
-# Get Custom Notification Date for Alert Strategy
+# Alert Strategies - Custom Notification Date Retrieval
 
 ---
 
 <br />**GET /api/v1/notice/date/\{notice_date_uuid\}/get**
 
 ## Overview
-Get custom notification date for alert strategy
+Retrieve custom notification dates for alert strategies
 
 
 
 ## Route Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| notice_date_uuid | string | Y | Unique UUID of the custom notification date configuration for the alert strategy<br>Allow empty string: False <br> |
+|:---------------------|:---------|:---------|:-------------------------|
+| notice_date_uuid      | string   | Yes      | Unique UUID of the custom notification date configuration for alert strategies<br>Allow empty string: False <br> |
 
 
-## Additional Parameter Explanation
-
-
+## Additional Parameter Notes
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/notice/date/ndate_xxxx32/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notice/date/ndate_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
 
 
 

@@ -2,7 +2,7 @@
 
 ---
 
-<br />**GET /api/v1/slo/\{slo_uuid\}/get**
+<br />**GET /api/v1/slo/{slo_uuid}/get**
 
 ## Overview
 
@@ -11,12 +11,12 @@
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description               |
-|:--------------|:-------|:---------|:--------------------------|
-| slo_uuid      | string | Y        | UUID of the SLO<br>       |
+| Parameter Name | Type   | Required | Description          |
+|:--------------|:-------|:---------|:---------------------|
+| slo_uuid      | string | Y        | UUID of the SLO<br>  |
 
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
@@ -24,7 +24,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/slo/monitor_5ebbxxxx/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/slo/monitor_5ebbxxxx/get' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 ```
@@ -39,7 +39,7 @@ curl 'https://openapi.guance.com/api/v1/slo/monitor_5ebbxxxx/get' \
     "content": {
         "alertPolicyInfos": [
             {
-                "name": "lwc SLO to alert policy test",
+                "name": "lwc SLO Alert Policy Test",
                 "uuid": "altpl_xxx"
             }
         ],
@@ -52,12 +52,12 @@ curl 'https://openapi.guance.com/api/v1/slo/monitor_5ebbxxxx/get' \
             "sli_infos": [
                 {
                     "id": "rul_xxxx",
-                    "name": "whytest - feedback issue verification",
+                    "name": "whytest-Feedback Issue Verification",
                     "status": 2
                 },
                 {
                     "id": "rul_xxxxx",
-                    "name": "lml-tes",
+                    "name": "lml-test",
                     "status": 0
                 }
             ]

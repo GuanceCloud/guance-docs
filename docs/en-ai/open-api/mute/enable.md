@@ -9,6 +9,7 @@ Enable a mute rule based on the `mute_uuid`
 
 
 
+
 ## Route Parameters
 
 | Parameter Name    | Type     | Required | Description              |
@@ -24,7 +25,7 @@ Enable a mute rule based on the `mute_uuid`
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/monitor/mute/mute_xxxx32/enable' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/monitor/mute/mute_xxxx32/enable' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw 'null' \

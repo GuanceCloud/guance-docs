@@ -8,23 +8,27 @@
 Delete a team
 
 
+
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:--------|:-------------------------|
-| group_uuid    | string | Y       | Team                     |
+| Parameter Name | Type   | Required | Description             |
+|:--------------|:-------|:---------|:------------------------|
+| group_uuid    | string | Y        | Team                    |
 
 
 ## Additional Parameter Notes
 
 
 
+
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/member_group/group_xxxx32/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/member_group/group_xxxx32/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
+
+
 
 
 ## Response

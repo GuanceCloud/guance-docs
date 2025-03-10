@@ -10,6 +10,10 @@ dashboard:
 monitor:
   - desc: 'No'
     path: '-'
+
+cloudCollector:
+  desc: 'Cloud Collector'
+  path: 'cloud-collector/en/aws_ecs'
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -28,26 +32,26 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 ### Installation Script
 
-> Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
+> Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only access `ReadOnlyAccess`).
 
-To synchronize monitoring data from EC2 cloud resources, install the corresponding collection script: "Guance Integration (AWS-ECS Collection)" (ID: `guance_aws_ecs`).
+To synchronize monitoring data from EC2 cloud resources, we install the corresponding collection script: 「Guance Integration (AWS-ECS Collection)」(ID: `guance_aws_ecs`)
 
-After clicking 【Install】, enter the required parameters: Amazon AK and Amazon account name.
+After clicking 【Install】, enter the corresponding parameters: Amazon AK and Amazon account name.
 
-Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
 
-Additionally, you can see the corresponding automatic trigger configuration in "Management / Automatic Trigger Configuration". Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can check the execution task records and corresponding logs.
+Additionally, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
 By default, we collect some configurations; for more details, see [Custom Cloud Object Metrics Configuration](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 ### Verification
 
-1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding tasks have the automatic trigger configuration, and view the task records and logs to check for any anomalies.
-2. On the Guance platform, under "Infrastructure / Custom", check if asset information exists.
-3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
+1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the automatic trigger configuration, and check the corresponding task records and logs for any anomalies.
+2. On the Guance platform, in 「Infrastructure / Custom」, check if asset information exists.
+3. On the Guance platform, in 「Metrics」, check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Amazon CloudWatch, the default metric set is as follows. You can collect more metrics through configuration. [Amazon CloudWatch Metrics Details](https://docs.amazonaws.cn/AmazonECS/latest/developerguide/viewing_cloudwatch_metrics.html){:target="_blank"}
+After configuring Amazon CloudWatch, the default metric set is as follows. More metrics can be collected through configuration. [Amazon CloudWatch Metrics Details](https://docs.amazonaws.cn/AmazonECS/latest/developerguide/viewing_cloudwatch_metrics.html){:target="_blank"}
 
 ### Instance Metrics
 
@@ -60,7 +64,7 @@ Metrics related to `AWS/ECS`.
 
 ## Objects {#object}
 
-The collected AWS ECS object data structure can be viewed in "Infrastructure - Custom".
+The structure of AWS ECS object data collected can be viewed in 「Infrastructure - Custom」
 
 ```json
 {
@@ -75,7 +79,7 @@ The collected AWS ECS object data structure can be viewed in "Infrastructure - C
   "fields": {
     "activeServicesCount": 1,
     "configuration": "{}",
-    "message"            : "{Instance JSON data}",
+    "message"            : "{instance JSON data}",
     "pendingTasksCount": 0,
     "registeredContainerInstancesCount": 0,
     "runningTasksCount": 1,
@@ -84,4 +88,4 @@ The collected AWS ECS object data structure can be viewed in "Infrastructure - C
 }
 ```
 
-> *Note: Fields in `tags` and `fields` may change with subsequent updates.*
+> *Note: The fields in `tags` and `fields` may change with subsequent updates*

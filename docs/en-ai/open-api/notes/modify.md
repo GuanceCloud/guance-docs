@@ -17,15 +17,15 @@ Modify a note. `chartUUIDs` contains the chart information bound to this note.
 
 | Parameter Name | Type   | Required | Description              |
 |:--------------|:-------|:---------|:-------------------------|
-| name          | string | Y        | Note name<br>Allow empty: False <br>Maximum length: 128 <br> |
-| chartUUIDs    | array  |          | Note type, default is CUSTOM<br>Example: CUSTOM <br>Allow empty: False <br>Maximum length: 32 <br> |
-| extend        | json   |          | Additional data of the note, default is {}<br>Example: {} <br>Allow empty: False <br> |
+| name          | string | Y        | Note name<br>Allow null: False <br>Maximum length: 128 <br> |
+| chartUUIDs    | array  |          | Note type, default is CUSTOM<br>Example: CUSTOM <br>Allow null: False <br>Maximum length: 32 <br> |
+| extend        | json   |          | Additional data for the note, default is {}<br>Example: {} <br>Allow null: False <br> |
 
 ## Additional Parameter Notes
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/notes/notes_xxxx32/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notes/notes_xxxx32/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"modify_openapi","chartUUIDs":["chrt_xxxx32","chrt_xxxx32"],"extend":{"fixedTime":"15m"}}' \

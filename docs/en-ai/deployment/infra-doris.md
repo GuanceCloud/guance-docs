@@ -6,59 +6,59 @@
 ## Description
 ### Component Description
 * Doris Manager: Used for deployment, upgrade, and configuration changes of the Doris cluster.
-* Doris FE: Primarily responsible for handling user requests, query parsing and planning, metadata management, and node management.
-* Doris BE: Primarily responsible for data storage and execution of query plans.
-* guance-insert: Receives line protocol formatted data, accumulates locally (usually using tmpfs due to low space usage), and writes in batches to Doris BE.
+* Doris FE: Mainly responsible for user request access, query parsing planning, metadata management, and node-related tasks.
+* Doris BE: Mainly responsible for data storage and execution of query plans.
+* guance-insert: Receives line protocol formatted data, accumulates it locally (usually using tmpfs due to lower space usage), and writes it in batches to Doris BE.
 * guance-select: Translates DQL queries into SQL; most queries use Doris FE, while a few use the Doris BE Thrift interface.
 * VictoriaMetrics: Stores write volume metrics at the index level, providing auxiliary information for sampling queries and other functions.
 
 ### Server Description
-Typically, the following three groups of machines are used. Small clusters can also be co-located, with the server system OS preferably being Ubuntu.
+Typically, the following three groups of machines are used. Small clusters can be mixed deployments, and the server system OS is preferably Ubuntu.
 
-* doris-fe: CPU to memory ratio 1:2, one data disk of over 20GB for metadata storage, the first machine can deploy Doris Manager.
-* doris-be: CPU to memory ratio 1:8, adjust disk configuration to maximize disk throughput (number of disks).
+* doris-fe: CPU to memory ratio 1:2, one data disk of more than 20GB for metadata storage, the first machine can deploy Doris Manager.
+* doris-be: CPU to memory ratio 1:8, adjust disk configuration (number) to maximize disk throughput.
 * guancedb-logs: CPU to memory ratio 1:2, can be deployed on hosts or containers; the first machine needs a data disk to deploy VictoriaMetrics for storing some Doris metadata metrics.
-* CPUs must support the AVX2 instruction set.
-* Other machines should not preempt resources (CPU steal should not be too high).
+* CPU must support the AVX2 instruction set.
+* Resources should not be preempted by other machines (CPU steal should not be too high).
 
 ### Network Description
-* Doris Manager is typically deployed on the doris-fe-01 server, which needs SSH access to all Doris machines and access to port 8004.
-* The guancedb-logs machine needs to install supervisor via the system package manager (APT).
-* MySQL protocol access to port 9030 on the FE machine is required, usually by installing mysql-client on the machine where Doris Manager is located.
-* The guancedb-logs machine needs access to ports 8030 and 9030 on the doris-fe machines; ports 8040 and 9060 on the doris-be machines; and port 8428 on the first guancedb-logs machine.
-* Provided accounts need full permissions for the S3 bucket.
+* Doris Manager is typically deployed on the doris-fe-01 server, which needs to communicate with all Doris machines via SSH and access port 8004.
+* The guancedb-logs machine needs to install supervisor through the system package manager (APT).
+* MySQL protocol access is required on port 9030 of the FE machine, usually installing mysql-client on the Doris Manager machine.
+* The guancedb-logs machine needs to access ports 8030 and 9030 of the doris-fe machines; ports 8040 and 9060 of the doris-be machines; and port 8428 of the first guancedb-logs machine.
+* The provided account needs full permissions for the S3 bucket.
 
 ### Deployment Description
-* Once configured, the S3 bucket cannot be modified. If modification is needed, data must be cleared and the Doris cluster reinstalled.
-* Doris is deployed via **hosts**. Regardless of network availability, the package must first be placed in the designated location.
+* Once configured, the S3 bucket cannot be modified. If modification is needed, only clearing the data and reinstalling the Doris cluster is possible.
+* Doris is deployed **on hosts**. Regardless of network conditions, the installation package must first be placed in the designated location.
 
-| Category           | Description                                           |
-|--------------|----------------------------------------------| 
-| **Components Deployed on Hosts**  | be + fe + manager + guancedb-logs            | | 
-| **Prerequisites for Deployment**   | 1. Provide root password and support passwordless SSH login as root<br/>2. CPU architecture supports AVX2 instruction set |
+| Category         | Description                                           |
+|------------------|-------------------------------------------------------|
+| **Host Deployment Components** | be + fe + manager + guancedb-logs            | 
+| **Prerequisites**   | 1. Provide root password and support passwordless SSH login as root<br/>2. CPU architecture supports AVX2 instruction set |
 
-## Default Deployment Configuration Information
-| Category          | Description              |
-|-------------|-----------------| 
-| **Host Deployment**    | Refer to **Host Deployment Instructions** below | |
+## Default Configuration Information for Deployment
+| Category        | Description              |
+|-----------------|--------------------------|
+| **Host Deployment** | Refer to **Host Deployment Instructions** below |
 
 ???+ warning "Host Deployment Instructions"
 
-    There is only one guancedb-logs machine, providing <<< custom_key.brand_name >>> business services at host IP:8480/8481;
-    
-    Multiple guancedb-logs machines:
-    
-    a. If ELB capability is available, use ELB to listen on multiple guancedb-logs 8480/8481 ports, and the business service address will be ELB IP:8480/8481;
-    
-    b. If ELB capability is not available, create a service within the business cluster, and the business service address will be:
-    
+    For <<< custom_key.brand_name >>> business services, if there is only one guancedb-logs machine, the address used is host IP:8480/8481;
+
+    If there are multiple guancedb-logs machines:
+
+    a. ELB capability can be provided, using ELB to listen on multiple guancedb-logs 8480/8481 ports, and the service address used is ELB IP:8480/8481;
+
+    b. If ELB capability cannot be provided, a service can be created in the business cluster, and the service address used is:
+
     Write: internal-doris-insert.middleware:8480
-    
+
     Read: internal-doris-select.middleware:8481
-    
+
     Refer to the following YAML to create the service
 
-???- note "doris-service.yaml (click to open)"
+???- note "doris-service.yaml (click to expand)"
     ```yaml
 
     ---
@@ -123,44 +123,44 @@ Typically, the following three groups of machines are used. Small clusters can a
 
 ## Doris Deployment
 
-### Pre-deployment Preparation
-#### Downloading the Package
+### Preparations
+#### Download Installation Package
 Install the tool package. Place the installation package on the fe-01 machine.
 ```shell
-https://<<< custom_key.static_domain >>>/guancedb/guancedb-doris-deploy-latest.tar.gz
+https://static.<<< custom_key.brand_main_domain >>>/guancedb/guancedb-doris-deploy-latest.tar.gz
 ```
 
-After extracting the downloaded package, it contains SelectDB + manager installation packages. Place the installation package on the fe-01 machine, in the folder path configured in inventory/doris-manager.vars.yaml.
+After decompressing the downloaded package, it contains the SelectDB + manager installation package. Place the installation package on the fe-01 machine, in the directory specified in inventory/doris-manager.vars.yaml.
 ```shell
-https://<<< custom_key.static_domain >>>/guancedb/selectdb-latest.tar.gz
+https://static.<<< custom_key.brand_main_domain >>>/guancedb/selectdb-latest.tar.gz
 ```
 
-After extracting the downloaded package, it contains GuanceDB installation packages. Place the installation package on all guancedb-logs machines, in the folder path configured in inventory/guancedb-logs-doris.vars.yaml.
+After decompressing the downloaded package, it contains the GuanceDB installation package. Place the installation package on all guancedb-logs machines, in the directory specified in inventory/guancedb-logs-doris.vars.yaml.
 ```shell
-https://<<< custom_key.static_domain >>>/guancedb/guancedb-cluster-linux-amd64-latest.tar.gz
+https://static.<<< custom_key.brand_main_domain >>>/guancedb/guancedb-cluster-linux-amd64-latest.tar.gz
 ```
 
-After extracting the downloaded package, it contains VictoriaMetrics + vmutils installation packages. Place the installation package on all guancedb-logs machines, in the folder path configured in inventory/guancedb-logs-doris.vars.yaml.
+After decompressing the downloaded package, it contains the victoria-metrics + vmutils installation package. Place the installation package on all guancedb-logs machines, in the directory specified in inventory/guancedb-logs-doris.vars.yaml.
 ```shell
-https://<<< custom_key.static_domain >>>/guancedb/vmutils-latest.tar.gz
+https://static.<<< custom_key.brand_main_domain >>>/guancedb/vmutils-latest.tar.gz
 ```
 
 #### Configure Passwordless SSH Login Between Machines
-On the jump server (usually on fe-01), check if the current user has a public key in ~/.ssh. If no public key exists, generate it and send it remotely to other role machines.
+On the jump server (usually fe-01), check if the current user has an SSH public key in ~/.ssh. If no public key has been generated, generate it and send it remotely to other role machines using the following commands:
 ```shell
 ssh-keygen -t rsa
 ssh-copy-id -i ~/.ssh/id_rsa.pub  root@192.168.xxx.xxx
 ```
 ???+ warning "Deployment Checkpoints"
      
-     Verify that the be and fe machine configurations are identical;
+     Verify that the configurations of be and fe machines are the same;
     
-     Network ping between be and fe machines should not exceed 1ms;
+     Network ping between be and fe machines does not exceed 1ms;
     
-     Ensure that the provided data disks are raw (not partitioned or formatted).
+     The provided data disks should be raw disks (not partitioned or formatted).
 
-### Preparing the hosts File
-The inventory directory requires five hosts files:
+### Prepare Hosts File
+The inventory directory requires 5 hosts files:
 
 * doris-be.hosts.yaml
 * doris-fe.hosts.yaml
@@ -170,7 +170,7 @@ The inventory directory requires five hosts files:
 
 Each host file format is as follows:
 
-The name field must be in the format xxx-doris-fe-01 or xxx-doris-be-01
+The name format must be xxx-doris-fe-01 or xxx-doris-be-01
 
 ```shell
 clusters:
@@ -189,18 +189,18 @@ clusters:
         vars:
           default_ipv4: xxx
 
-# name:          Marks the cluster, can be poc or prd
-# hosts.name:    Marks the server role, can be xxx-doris-be-01, xxx can be poc or prd
-# hosts.port:    SSH port, generally 22
+# name:          Mark the cluster, can be poc or prd
+# hosts.name:    Mark the server role, can be xxx-doris-be-01, xxx can be poc or prd
+# hosts.port:    SSH port, usually 22
 # hosts.host:    SSH target machine's IP
-# hosts.user:    SSH target machine's user, generally root
+# hosts.user:    SSH target machine's user, usually root
 # vars.default_ipv4: IP address of be-01
 ```
-???+ warning "Notes"
+???+ warning "Note"
 
-    Typically, manager is deployed together with fe, so the content of doris-manager.hosts.yaml is the same as doris-fe.hosts.yaml. If doris-fe.hosts.yaml contains multiple fe hosts, only fill in fe-01 in doris-manager.hosts.yaml.
-    
-    The content of guancedb-logs-doris-vm.hosts.yaml is the same as guancedb-logs-doris.hosts.yaml. If guancedb-logs-doris.hosts.yaml contains multiple hosts, only fill in one in guancedb-logs-doris-vm.hosts.yaml.
+    Generally, the manager is deployed together with fe, so the content of doris-manager.hosts.yaml is the same as doris-fe.hosts.yaml. If doris-fe.hosts.yaml has multiple fe hosts, doris-manager.hosts.yaml only needs to fill in fe-01.
+
+    The content of guancedb-logs-doris-vm.hosts.yaml is the same as guancedb-logs-doris.hosts.yaml. If guancedb-logs-doris.hosts.yaml has multiple hosts, guancedb-logs-doris-vm.hosts.yaml only needs to fill in one.
 
 ### Configure Variables
 Modify the inventory/doris-manager.vars.yaml file
@@ -208,17 +208,17 @@ Modify the inventory/doris-manager.vars.yaml file
 clusters:
   - name: xxx
     vars:
-      # Fill in the path to the Doris installation package on the machine; e.g., /root/packages/xxx.tar.gz
+      # Path to the Doris installation package on the machine; e.g., /root/packages/xxx.tar.gz
       doris_local_path: 
-      # Fill in the path to the Doris Manager installation package on the machine; e.g., /root/packages/xxx.tar.gz
+      # Path to the Doris Manager installation package on the machine; e.g., /root/packages/xxx.tar.gz
       manager_local_path:
 
-      # Not required if cold storage is not used
+      # Leave blank if cold storage is not used
       oss_endpoint:
       oss_bucket:
-      # Optional
+      # Can be left blank
       oss_region:
-      # Generally not required when using cloud provider object storage; required when using self-built object storage or endpoint is an IP, fill in 'path'
+      # When using cloud provider object storage, usually not filled; when using self-built object storage or endpoint is an IP, fill in 'path'
       addressing_style:
 ```
 Modify the inventory/doris.vars.yaml file
@@ -226,7 +226,7 @@ Modify the inventory/doris.vars.yaml file
 clusters:
   - name: xxx
     vars:
-      # Number of replicas
+      # Replication factor
       replication_factor:
       # FE machine memory GB
       fe_host_mem_gb:
@@ -242,16 +242,16 @@ clusters:
       be_data_disk_gb:
       # FE log retention time
       fe_log_retention: 3d
-      # Internal network segment for FE and BE machines
+      # Internal network segment of FE and BE machines
       cidr: 
 ```
 Modify the inventory/guancedb-logs-doris.vars.yaml file
 ```shell
   - name: xxx
     vars:
-      # Version number is no longer used, leave blank
+      # Version number is no longer used, leave empty
       version: ""
-      # Fill in the directory where the installation package is located on the machine; e.g., /root/packages
+      # Directory where the installation package is located on the machine; e.g., /root/packages
       local_dir:
 ```
 Modify the inventory/secrets.yaml file
@@ -259,21 +259,21 @@ Modify the inventory/secrets.yaml file
 clusters:
   - name: xxx
     vars:
-      # zyadmin user password for the operating system, recommended to use a strong password for security
+      # zyadmin user password for the operating system, recommend using a strong password
       os_zyadmin_password:
-      # doris user password for the operating system, recommended to use a strong password for security
+      # doris user password for the operating system, recommend using a strong password
       os_doris_password:
-      # root database user password, recommended to use a strong password
+      # root database user password, recommend using a strong password
       doris_root_password:
-      # user_read database user password, recommended to use a strong password
+      # user_read database user password, recommend using a strong password
       doris_user_read_password:
-      # Object storage access key, not required if cold storage is not used
+      # Object storage access key, leave blank if cold storage is not used
       oss_ak:
-      # Object storage secret key, not required if cold storage is not used
+      # Object storage secret key, leave blank if cold storage is not used
       oss_sk:
-      # URLs for self-monitoring data reporting, usually only one entry is needed, optional
+      # Used for reporting self-monitoring data, usually only one entry is needed, can be left blank
       dataway_urls: []
-      # Whether to set hostname, set to false for co-location
+      # Whether to set hostname, set to false for mixed deployments
       set_hostname: false
 ```
 ### Install Python Dependencies
@@ -282,19 +282,19 @@ pip3 install -r requirements.txt
 ```
 
 ### Deploy Doris Manager
-Initialize the machines, then check disk mounting.
+Initialize the machine, then check disk mounting after completion.
 ```shell
-python3 deployer.py -l clusrer_name -i 'inventory/doris-?e.*.yaml' -p playbooks/doris/initialize-machine.yaml
+python3 deployer.py -l cluster_name -i 'inventory/doris-?e.*.yaml' -p playbooks/doris/initialize-machine.yaml
 ```
 ???+ warning "Deployment Checkpoints"
      
-     Verify correct disk mounting on servers;
+     Verify correct disk mounting on the server;
     
-     Ensure swap is permanently disabled on servers;
+     Ensure swap is permanently disabled on the server;
     
-     Ensure the vm.max_map_count parameter on servers is set to 2000000.
+     Ensure the server's vm.max_map_count parameter is set to 2000000.
 
-Update Datakit configuration for self-monitoring data reporting.
+Update Datakit configuration for reporting self-monitoring data.
 ```shell
 python3 deployer.py -l cluster_name -i 'inventory/doris-?e.*.yaml' -p playbooks/doris/update-datakit.yaml
 ```
@@ -306,13 +306,13 @@ python3 deployer.py -l cluster_name -i 'inventory/doris-manager.*.yaml' -p playb
 
 Configure cgroup for be nodes
 
-Determine whether the server supports cgroup v1 or v2.
+Determine whether the server supports cgroup v1 or v2
 
 ```shell
-If this path exists, it indicates that cgroup v1 is currently active
+If this path exists, cgroup v1 is currently effective
 ls /sys/fs/cgroup/cpu/
 
-If this path exists, it indicates that cgroup v2 is currently active
+If this path exists, cgroup v2 is currently effective
 ls /sys/fs/cgroup/cgroup.controllers
 ```
 
@@ -342,7 +342,7 @@ ls /sys/fs/cgroup/cgroup.controllers
 	WantedBy=multi-user.target
 	# Reload systemd configuration
 	sudo systemctl daemon-reload
-	# Enable service on boot
+	# Enable service at boot
 	sudo systemctl enable doris-cgroup-v1.service
 	# Start service
 	sudo systemctl start doris-cgroup-v1.service
@@ -376,7 +376,7 @@ ls /sys/fs/cgroup/cgroup.controllers
 	WantedBy=multi-user.target
 	# Reload systemd configuration
 	sudo systemctl daemon-reload
-	# Enable service on boot
+	# Enable service at boot
 	sudo systemctl enable doris-cgroup-v2.service
 	# Start service
 	sudo systemctl start doris-cgroup-v2.service
@@ -428,7 +428,7 @@ Access URL: http://doris-fe-01:8004
 
 
 - BE installation path: /home/doris/
-- BE data storage directories: Each data disk corresponds to one input box, /data1/doris/data, /data2/doris/data, etc.
+- BE data storage directory: Enter one input box per data disk, e.g., /data1/doris/data, /data2/doris/data, etc.
 
 ![](img/doris-3.png)
 ![](img/doris-4.png)
@@ -443,22 +443,22 @@ Modify segmentation configuration, parameters need to be changed to the cluster 
 ```shell
 python3 deployer.py -l cluster_name -i 'inventory/doris-be.*.yaml' -p playbooks/doris/update-be.yaml
 ```
-Render Doris configuration in the doris-conf directory, check if cluster_name-be.conf and cluster_name-fe.conf are generated under the doris-conf directory
+Render Doris configuration in the doris-conf directory, check if cluster_name-be.conf and cluster_name-fe.conf are generated under the doris-conf folder
 ```shell
 python3 deployer.py -l cluster_name -i 'inventory/doris.vars.yaml' -p playbooks/doris/render-config.yaml
 ```
 ???+ warning "Deployment Checkpoints"
 
-     Verify that the storage_path in the configuration file is correctly configured;
+     Verify that storage_path is correctly configured in the configuration file;
     
-     Verify that the priority_networks in the configuration file is correctly configured.
+     Verify that priority_networks is correctly configured in the configuration file.
 
-Modify BE configuration: In the Doris Manager cluster page, click the «…» button in the top right corner -> «Parameter Configuration» -> Select all BE nodes -> Click «Edit Configuration» in the top right corner -> Paste the generated be.conf -> Check «Please confirm...» -> «Confirm»
+Modify BE configuration: Doris Manager cluster page top right «…» button -> «Parameter Configuration» -> Select all BE nodes -> Top right «Edit Configuration» -> Paste the generated be.conf -> Check «Confirm...» -> «OK»
 
 ![](img/be-conf-1.png)
 ![](img/be-conf-3.png)
 
-Modify FE configuration: In the Doris Manager cluster page, click the «…» button in the top right corner -> «Parameter Configuration» -> Select all FE nodes -> Click «Edit Configuration» in the top right corner -> Paste the generated fe.conf -> Check «Please confirm...» -> «Confirm»
+Modify FE configuration: Doris Manager cluster page top right «…» button -> «Parameter Configuration» -> Select all FE nodes -> Top right «Edit Configuration» -> Paste the generated fe.conf -> Check «Confirm...» -> «OK»
 
 ![](img/be-conf-2.png)
 
@@ -467,13 +467,13 @@ Modify database configuration
 python3 deployer.py -l cluster_name -i 'inventory/doris-manager.*.yaml' -p playbooks/doris/exec-init-sql.yaml
 ```
 
-This step configures the S3 bucket. You can verify if files can be uploaded to the bucket using the following method:
+In this step, the S3 bucket will be configured. You can verify if files can be uploaded to the bucket as follows:
 
-Switch to the root user on the fe machine and log in to the cluster.
+Switch to the root user on the fe machine and log into the cluster
 ```shell
 mysql -uroot -h127.0.0.1 -P 9030
 ```
-Execute the following SQL to check if files with the prefix `result_` are created in the `default_resource` folder of the S3 bucket. If no files are generated, check the permissions.
+Execute the following SQL and check if files with the prefix `result_` are generated in the default_resource folder of the S3 bucket. If no files are generated, check the permissions.
 ```shell
 use information_schema;
 SELECT * FROM files
@@ -487,12 +487,12 @@ PROPERTIES(
 ```
 ???+ warning "Deployment Checkpoints"
 
-     Ensure that the S3 storage can be used and that the configuration cannot be changed after setup;
+     Confirm that the S3 storage can be used and cannot be modified after configuration;
     
      The S3 endpoint address must be an internal network address.
 
 ### Deploy guance-insert, guance-select, and VictoriaMetrics
-Initialize machines
+Initialize the machine
 ```shell
 python3 deployer.py -l cluster_name -i 'inventory/guancedb-logs-doris.*.yaml' -p playbooks/guancedb/initialize-machine.yaml 
 ```
@@ -505,9 +505,10 @@ Deploy guance-insert and guance-select
 python3 deployer.py -l cluster_name -i 'inventory/guancedb-logs-doris.*.yaml' -p playbooks/guancedb/update-config.yaml
 ```
 
+
 ### Check Cluster Status
 
-Check VictoriaMetrics status, IP is the machine where guance-select is deployed.
+Check VictoriaMetrics status, IP is the guance-select deployment machine
 ```shell
 guancedb-logs-doris-api-test -ip xxx -ip yyy -ip zzz
 ```

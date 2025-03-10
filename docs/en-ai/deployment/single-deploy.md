@@ -1,58 +1,58 @@
-#### Single-Node Deployment
+#### Single Machine Deployment
 ???+ warning "Note"
-     Single-node deployment is only suitable for POC environments, not for production environments.
+     Single machine deployment is only suitable for POC environments, not for production environments.
 
 ##### 1. Prerequisites
 
-###### 1.1 Prerequisites for Using Sealos
+###### 1.1 Prerequisites for Using sealos
 
-- You can configure the hostname; do not include underscores in the hostname.
+- You can configure the hostname; do not use underscores in the hostname.
 - Node time synchronization.
-- Run the `sealos run` command on the first node of the Kubernetes cluster; currently, nodes outside the cluster are not supported for cluster installation.
+- Run the `sealos run` command on the first node of the Kubernetes cluster; currently, external nodes are not supported for cluster installation.
 - It is recommended to use a clean operating system to create the cluster. Do not install Docker manually.
 - Supports most Linux distributions, such as Ubuntu, CentOS, Rocky Linux.
-- Supported Kubernetes versions that have been released.
+- Published supported Kubernetes versions.
 - Supports using containerd as the container runtime.
 - Use private IPs on public clouds.
 
 ##### 2. Installation and Deployment
 
-###### 2.1 Configure Installation Packages
+###### 2.1 Configure Installation Package
 
-2.1.1 Download Installation Packages
+2.1.1 Download Installation Package
 
 === "arm64"
     
-    Package URL: https://<<< custom_key.static_domain >>>/dataflux/package/guance-middleware-arm64.tar.gz
-    Extract the package:
+    Installation package URL: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-middleware-arm64.tar.gz
+    Extract the installation package:
     ```shell
     tar -zvxf guance-middleware-arm64.tar.gz
     ```
 
 === "amd64"
     
-    Package URL: https://<<< custom_key.static_domain >>>/dataflux/package/guance-middleware-amd64.tar.gz
-    Extract the package:
+    Installation package URL: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-middleware-amd64.tar.gz
+    Extract the installation package:
     ```shell
     tar -zvxf guance-middleware-amd64.tar.gz
     ```
 
-###### 2.2 Install Sealos
+###### 2.2 Install sealos
 
-2.2.1 Install Sealos
+2.2.1 Install sealos
 
 ```shell
 tar zxvf sealos_4.3.0_linux.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin && sealos -h
 ```
-Summary of common Sealos commands:
+Commonly used sealos commands summary
 ```shell
 sealos save            Save cluster images to a file
 sealos load            Load a cluster image from a file
 sealos images          List images
 sealos rmi             Remove local images
-sealos run imageId     Run an application based on the image
-sealos version         Show Sealos version
-sealos help            Display Sealos help documentation
+sealos run imageId     Run an application based on an image
+sealos version         Check the sealos version
+sealos help            Sealos help documentation
 ```
 
 
@@ -65,13 +65,13 @@ sealos load -i calico_3.22.1.tar.gz && sealos load -i helm_3.8.2.tar.gz && sealo
 
 sealos run pubrepo.guance.com/googleimages/kubernetes:v1.24.0 pubrepo.guance.com/googleimages/helm:v3.8.2 pubrepo.guance.com/googleimages/calico:v3.22.1 --single
 
-# Verification
+# Verify
 kubectl get nodes 
 ```
 
-2.3.2 Modify Containerd Data Directory
+2.3.2 Modify containerd Data Directory
 
-By default, the containerd data directory is under `/`. In Kubernetes 1.16 and later versions, if the root directory's usage reaches 85%, pods will be evicted from the node. To avoid pod eviction, switch the containerd data directory to a data disk.
+By default, the containerd data directory is under `/`. In Kubernetes versions 1.16 and later, if the root directory threshold reaches 85%, pods on the node will be evicted. To avoid pod eviction, switch the containerd data directory to the data disk.
 ```shell
 # After all nodes are Ready, modify the containerd data directory
 vim /etc/containerd/config.toml
@@ -107,7 +107,7 @@ sudo systemctl restart containerd
 
 2.4.2 Install NFS Service
 
-If the server can access the internet, you can deploy NFS using the following commands:
+If the server can access the internet, deploy NFS with the following commands:
 
 === "CentOS"
 
@@ -123,7 +123,7 @@ If the server can access the internet, you can deploy NFS using the following co
     apt-get install nfs-kernel-server -y
     ```
 
-If the server cannot access the internet, find the `nfs-package` folder in the extracted files, locate the offline package for the corresponding version, and install it using the following commands:
+If the server cannot access the internet, find the offline package in the extracted files, then install it with the following commands:
 
 === "CentOS"
 
@@ -149,22 +149,22 @@ Create a shared directory
 ```shell
 mkdir /nfsdata
 ```
-Execute the command `vim /etc/exports`, create the `exports` file with the following content:
+Execute the command `vim /etc/exports`, create the exports file, with the following content:
 
 ```shell
 #/nfsdata *(insecure,rw,async,no_root_squash)
 /nfsdata *(rw,no_root_squash,no_all_squash,insecure) 
 ```
 
-> Note: The `/nfsdata` directory is configured as the NFS shared directory, which is generally mounted on a separate data disk like `/data/nfsdata`.
+> Note: The `/nfsdata` directory is configured as the NFS shared directory, generally located on a separately mounted data disk, such as `/data/nfsdata`
 
 2.4.4 Start NFS Service
 
-Execute the following commands to start the NFS service:
+Execute the following commands to start the NFS service
 
 === "CentOS"
 
-    CentOS startup command
+    CentOS start command
     ```shell
     systemctl enable rpcbind
     systemctl enable nfs-server
@@ -174,7 +174,7 @@ Execute the following commands to start the NFS service:
 
 === "Ubuntu"
 
-    Ubuntu startup command
+    Ubuntu start command
     ```shell
     service nfs-kernel-server start   
     ```
@@ -194,12 +194,12 @@ showmount -e localhost
 
 ```shell
 sealos load -i nfs_4.0.2.tar.gz
-# Get the image ID of the NFS cluster image
+# Get the imageId of the NFS cluster image
 sealos images
-# Replace the `imagesId` value below with the obtained cluster image ID
+# Replace the imageId value below with the obtained cluster image ID
 sealos run imagesId -e nfs_server=192.168.0.41,nfs_path=/nfsdata
 ```
-> Note: For other components mentioned later, the `imageId` can be obtained and replaced in the same manner.
+> Note: For other components mentioned below, you can obtain and replace the imageId in the same way
 
 Parameter Explanation:
 
@@ -219,7 +219,7 @@ sealos load -i ingress_1.3.0.tar.gz
 sealos run imagesId
 ```
 
-> Note: If the domain directly resolves to the server, add `hostNetwork: true` to the ingress deployment configuration.
+> Note: If the domain directly resolves to the server, add the `hostNetwork: true` configuration to the ingress deployment
 
 
 
@@ -232,7 +232,7 @@ sealos load -i localpv-provisioner_3.3.0.tar.gz
 sealos run imagesId
 ```
 
-> Note: Installing OpenEBS is optional; using local storage provides better performance than NFS.
+> Note: Installing OpenEBS is optional; using local storage offers better performance than NFS
 
 
 ###### 2.8 Create Middleware Namespace
@@ -249,10 +249,10 @@ kubectl create ns middleware
 
 2.9.1 Install MySQL
 
-Sealos installation of MySQL
+Install MySQL using sealos
 ```shell
 sealos load -i mysql_8.0.tar.gz 
-# Example 1: Disk type is NFS, storage class name is df-nfs-storage
+# Example 1: Disk type is NFS, storageclass name is df-nfs-storage
 sealos run imageId -e storageclass_type=nfs,openebs_localpath='',nfs_name=df-nfs-storage
 # Example 2: Disk type is OpenEBS, local shared path is /data/mysql_data
 sealos run imageId -e storageclass_type=openebs,openebs_localpath='/data/mysql_data',nfs_name=''
@@ -262,9 +262,9 @@ Parameter Explanation:
 
 | Name              | Description                                                  | Value                                                        |
 | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| storageclass_type | Type of storage class used, options are `nfs` or `openebs`   | `nfs` or `openebs` (required)                                |
-| openebs_localpath | Specify the local path when choosing OpenEBS                 | e.g., `/data/mysql_data` (required if sc type is OpenEBS)     |
-| nfs_name          | Set the storage class name for PVC binding if sc type is NFS | e.g., `df-nfs-storage` (required if sc type is NFS)           |
+| storageclass_type | Type of storage class to use, options are nfs or openebs     | nfs or openebs (required)                                     |
+| openebs_localpath | Specify the local path when choosing openebs                 | e.g., /data/mysql_data                                        (required when sc type is openebs) |
+| nfs_name          | If sc type is set to nfs, specify the storageclass name for PVC binding | e.g., df-nfs-storage                                          (required when sc type is nfs) |
 
 2.9.2 Create MySQL Configuration User
 
@@ -274,7 +274,7 @@ kubectl -n middleware exec -it podname bash
 # Enter password rootPassw0rd
 mysql -uroot -p 
 create user 'guance_setup_user'@'%' identified by 'Aa123456';
--- WITH GRANT OPTION allows this user to grant its own permissions to others
+-- WITH GRANT OPTION allows this user to grant permissions to others
 GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, ALTER, INDEX, LOCK TABLES, CREATE TEMPORARY TABLES, TRIGGER, EXECUTE, CREATE VIEW, SHOW VIEW, EVENT, GRANT OPTION, PROCESS, REFERENCES, RELOAD, CREATE USER, USAGE on *.* TO 'guance_setup_user'@'%' with GRANT OPTION;
 FLUSH PRIVILEGES;
 
@@ -323,9 +323,9 @@ Parameter Explanation:
 
 | Name              | Description                                                  | Value                                                        |
 | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| storageclass_type | Type of storage class used, options are `nfs` or `openebs`   | `nfs` or `openebs` (required)                                |
-| openebs_localpath | Specify the local path when choosing OpenEBS                 | e.g., `/data/mysql_data` (required if sc type is OpenEBS)     |
-| nfs_name          | Set the storage class name for PVC binding if sc type is NFS | e.g., `df-nfs-storage` (required if sc type is NFS)           |
+| storageclass_type | Type of storage class to use, options are nfs or openebs     | nfs or openebs (required)                                     |
+| openebs_localpath | Specify the local path when choosing openebs                 | e.g., /data/mysql_data                                        (required when sc type is openebs) |
+| nfs_name          | If sc type is set to nfs, specify the storageclass name for PVC binding | e.g., df-nfs-storage                                          (required when sc type is nfs) |
 
 
 
@@ -337,13 +337,13 @@ Parameter Explanation:
 sealos load -i opensearch_2.3.0.tar.gz
 sealos run imagesId -e nfs_name=df-nfs-storage
 ```
-> Note: Currently, OpenSearch disk types only support NFS.
+> Note: Currently, OpenSearch disk type only supports NFS
 
 Parameter Explanation:
 
 | Name     | Description                                                  | Value                      |
 | -------- | ------------------------------------------------------------ | -------------------------- |
-| nfs_name | Set the storage class name for PVC binding if sc type is NFS | e.g., `df-nfs-storage` (required) |
+| nfs_name | If sc type is set to nfs, specify the storageclass name for PVC binding | e.g., df-nfs-storage        (required) |
 
 2.12.2 Change Default OpenSearch Password
 
@@ -375,13 +375,13 @@ Password: 4dIv4VJQG5t5dcJOL8R5
 sealos load -i guancedb.tar.gz
 sealos run imagesId -e nfs_name=df-nfs-storage
 ```
-> Note: Currently, GuanceDB disk types only support NFS.
+> Note: Currently, GuanceDB disk type only supports NFS
 
 Parameter Explanation:
 
 | Name     | Description                                                  | Value                      |
 | -------- | ------------------------------------------------------------ | -------------------------- |
-| nfs_name | Set the storage class name for PVC binding if sc type is NFS | e.g., `df-nfs-storage` (required) |
+| nfs_name | If sc type is set to nfs, specify the storageclass name for PVC binding | e.g., df-nfs-storage        (required) |
 
 
 
@@ -391,21 +391,21 @@ Parameter Explanation:
 
 === "arm64"
     
-    Image package download URL: https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-latest.tar.gz
+    Image package download URL: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-latest.tar.gz
 
 === "amd64"
     
-    Image package download URL: https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-latest.tar.gz
+    Image package download URL: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-latest.tar.gz
 
 
 2.14.2 Download Launcher Chart Package
 
-Chart package download URL: https://<<< custom_key.static_domain >>>/dataflux/package/launcher-helm-latest.tgz
+Chart package download URL: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/launcher-helm-latest.tgz
 
 2.14.3 Import Business Service Images
 
 ```shell
-# For containerd environment
+# For containerd environment import
 gunzip guance-amd64-latest.tar.gz
 ctr -n=k8s.io images import guance-amd64-latest.tar
 ```
@@ -418,9 +418,9 @@ helm install launcher launcher-*.tgz -n launcher --create-namespace  \
   --set storageClassName=df-nfs-storage
 ```
 
-2.14.5 Configure Single Replica for Business Services (Optional)
+2.14.5 Configure Business Service Single Replica (Optional)
 
-For POC environments where you want to use a single replica, configure as follows:
+If you want to use a single replica in a POC environment, configure as follows:
 ```shell
 kubectl edit cm launcher-settings -n launcher
 # Add the following configuration
@@ -432,9 +432,9 @@ kubectl -n launcher rollout restart deploy launcher
 2.14.6 Access Launcher
 
 ```shell
-# Modify the network method of ingress, add to ingress deployment
+# Modify the network mode of ingress, add to ingress deployment
 hostNetwork: true
-# After successful modification, configure local settings. 8.130.126.215 is the server IP, and port 80 needs to be opened externally
+# After modification, configure the local host file with the server IP (e.g., 8.130.126.215) and open port 80 externally
 8.130.126.215 launcher.dataflux.cn
 ```
 
@@ -442,4 +442,4 @@ hostNetwork: true
 
 ###### 2.15 Deploy Business Services via Launcher
 
-After completing the launcher deployment, refer to [Start Installation](launcher-install.md) for deploying business services.
+After deploying the launcher, refer to [Start Installation](launcher-install.md) to deploy business services

@@ -9,7 +9,6 @@ Delete a role
 
 
 
-
 ## Route Parameters
 
 | Parameter Name | Type   | Required | Description              |
@@ -25,7 +24,7 @@ Delete a role
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/role/role_xxxx32/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/role/role_xxxx32/delete' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw '{}' \

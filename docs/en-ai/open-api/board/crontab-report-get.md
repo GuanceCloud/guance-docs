@@ -2,7 +2,7 @@
 
 ---
 
-<br />**GET /api/v1/crontab_report/\{report_uuid\}/get**
+<br />**GET /api/v1/crontab_report/{report_uuid}/get**
 
 ## Overview
 
@@ -11,9 +11,9 @@
 
 ## Route Parameters
 
-| Parameter Name   | Type   | Required | Description              |
-|:-------------|:------|:-------|:--------------------------|
-| report_uuid  | string | Y     | Scheduled report UUID<br> |
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:-------------------------|
+| report_uuid           | string   | Yes      | UUID of the scheduled report<br> |
 
 
 ## Additional Parameter Notes
@@ -24,7 +24,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/crontab_report/cron_xxxx32/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report/cron_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```

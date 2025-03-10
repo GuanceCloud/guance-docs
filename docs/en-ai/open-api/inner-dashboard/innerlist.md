@@ -11,19 +11,19 @@
 
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| search | string | No | Search by view name<br>Allow empty: False <br> |
+| Parameter Name        | Type     | Required | Description              |
+|:------------------|:-------|:-----|:----------------|
+| search | string | No | Search by view name<br>Can be empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
-**Response Body Structure Description**
+**Response Body Structure Explanation**
 
-| Parameter Name                | Type  | Description          |
+| Parameter Name                | Type   | Description          |
 |-----------------------|----------|------------------------|
 | chartGroupPos         | list | Chart group position information |
 | chartPos         | list | Chart position information |
-| createdWay             | string | The creation method of this built-in view, manually created: manual, imported: import |
+| createdWay             | string | The creation method of this built-in view, manually created: manual, imported created: import |
 | dashboardBindSet         | dict | Dashboard binding information |
 | name         | string | Dashboard name |
 
@@ -32,7 +32,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboard/inner_list' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboard/inner_list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -159,7 +159,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/inner_list' \
                 "innerTemplate": null,
                 "isPublic": 1,
                 "mapping": [],
-                "name": "Mysql Activity Monitoring View111111",
+                "name": "Mysql Activity Monitoring View 111111",
                 "ownerType": "inner",
                 "status": 0,
                 "type": "CUSTOM",

@@ -15,7 +15,7 @@ Retrieve information about the workspace associated with the current API Key
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
@@ -147,7 +147,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/get' \
         "makeResourceExceptionCode": "",
         "memberCount": "79",
         "menuStyle": "",
-        "name": "[Doris] Development and Testing Together_",
+        "name": "[Doris] Development and Testing Together",
         "note": "",
         "noviceGuide": true,
         "rpName": "rp1",

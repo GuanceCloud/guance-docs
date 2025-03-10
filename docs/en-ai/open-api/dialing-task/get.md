@@ -12,11 +12,11 @@
 ## Route Parameters
 
 | Parameter Name | Type   | Required | Description               |
-|:-------------|:------|:-------|:-------------------------|
-| task_uuid    | string | Y     | ID of the dial testing task<br> |
+|:--------------|:-------|:---------|:--------------------------|
+| task_uuid     | string | Y        | ID of the dial testing task<br> |
 
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
@@ -24,7 +24,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dialing_task/dial_xxxx32/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dialing_task/dial_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --compressed

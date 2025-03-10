@@ -9,20 +9,18 @@ Retrieve the blacklist.
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description                                                                                             |
-|:--------------|:-------|:--------|:-------------------------------------------------------------------------------------------------------|
-| type          | string | Y       | Blacklist type. For querying log blacklists, set `type` to `logging`. To query all blacklists under management submenu, set `type` to `all`. <br> Can be null: False <br> Example: logging/all <br> |
-| search        | string |         | Search term <br> Can be null: False <br>                                                               |
-| pageIndex     | integer|         | Page number <br> Can be null: False <br> Example: 1 <br> $minValue: 1 <br>                            |
-| pageSize      | integer|         | Number of items per page <br> Can be null: False <br> Example: 10 <br> $minValue: 1 <br>               |
+| Parameter Name | Type   | Required | Description                                                                 |
+|:--------------|:-------|:--------|:-----------------------------------------------------------------------------|
+| type          | string | Y       | Blacklist type. For querying log blacklists, set `type` to logging. To query all blacklists under management submenu, set `type` to "all".<br>Can be empty: False <br>Example: logging/all <br> |
+| search        | string |         | Search term.<br>Can be empty: False <br>                                    |
+| pageIndex     | integer|         | Page number.<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br>    |
+| pageSize      | integer|         | Number of items per page.<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
 
 ## Additional Parameter Notes
 
-None
-
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/blacklist/list?type=all&pageIndex=1&pageSize=20' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/blacklist/list?type=all&pageIndex=1&pageSize=20' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```

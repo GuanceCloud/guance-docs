@@ -10,9 +10,9 @@ Retrieve a SAML configuration information
 
 ## Route Parameters
 
-| Parameter Name    | Type     | Required | Description              |
-|:-------------|:-------|:-----|:----------------|
-| sso_uuid | string | Y | SSO configuration item ID<br> |
+| Parameter Name | Type   | Required | Description              |
+|:--------------|:-------|:--------|:-------------------------|
+| sso_uuid      | string | Y       | ID of the SSO configuration item<br> |
 
 
 ## Additional Parameter Notes
@@ -21,11 +21,10 @@ Retrieve a SAML configuration information
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/sso/saml_get/sso_xxxx32' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/sso/saml_get/sso_xxxx32' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
 
 
 
@@ -41,7 +40,7 @@ curl 'https://openapi.guance.com/api/v1/sso/saml_get/sso_xxxx32' \
         "emails": [
             "qq.com"
         ],
-        "entityID": "None/saml/metadata.xml",
+        "entiryID": "None/saml/metadata.xml",
         "id": 7,
         "idpMd5": "54a3b7441fba3bdb555ae854745f576f",
         "idpName": "",
@@ -66,6 +65,3 @@ curl 'https://openapi.guance.com/api/v1/sso/saml_get/sso_xxxx32' \
     "traceId": "TRACE-58D8B077-66A7-4C80-9748-46FD1E19000D"
 } 
 ```
-
-### Notes:
-- The term "entiryID" in the response JSON has been corrected to "entityID".

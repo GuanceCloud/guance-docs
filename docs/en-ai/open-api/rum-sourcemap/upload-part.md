@@ -1,26 +1,26 @@
-# Upload a Single Chunk
+# Upload a Single Shard
 
 ---
 
 <br />**POST /api/v1/rum_sourcemap/upload_part**
 
 ## Overview
-This is the second step in the sourcemap compressed file upload (multipart upload) operation. It involves uploading a single chunk.
-For more details, refer to: [SourceMap Multipart Upload Associated API Usage Instructions](../../../studio-backend/sourcemap-multipart-upload-init/)
+This is the second step in the operation of uploading a compressed SourceMap file (shard upload). It involves uploading a single shard.
+For more details, refer to: [SourceMap Shard Upload Related Interface Usage Instructions](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
 
 
 ## Additional Parameter Notes
 
-Note 1: The size of a single chunk should be controlled within 10MB.
+Note 1: The size of a single shard file should be controlled within 10MB.
 
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/rum_sourcemap/upload_part' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/rum_sourcemap/upload_part' \
 -H 'Content-Type: multipart/form-data' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -F 'uploadId="65ef45944fac157005cb73de48e81f161Lfv5UOs"' \

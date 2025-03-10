@@ -1,4 +1,4 @@
-# Create Issue-Reply
+# Create Issue Reply
 
 ---
 
@@ -12,37 +12,37 @@
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:----------|:------------------------|
-| issueUUID | string | Y | UUID of the issue to reply to<br>Example: issueUUID <br>Can be empty: False <br> |
-| attachmentUuids | array | N | List of UUIDs for uploaded attachments<br>Example: [] <br>Can be empty: True <br> |
-| content | string | N | Reply content<br>Example: answer_xxx <br>Can be empty: True <br>Can be an empty string: True <br>$maxCustomLength: 65535 <br> |
-| extend | json | Y | Additional extended information, defaults to {} if no content<br>Example: {} <br>Can be empty: True <br> |
+|:---------------------|:---------|:-----------|:-------------------------|
+| issueUUID            | string   | Y          | UUID of the issue to reply to<br>Example: issueUUID <br>Nullable: False <br> |
+| attachmentUuids      | array    |            | List of UUIDs for uploaded attachments<br>Example: [] <br>Nullable: True <br> |
+| content              | string   |            | Reply content<br>Example: answer_xxx <br>Nullable: True <br>Empty string allowed: True <br>$maxCustomLength: 65535 <br> |
+| extend               | json     | Y          | Additional extension information, defaults to {} if empty<br>Example: {} <br>Nullable: True <br> |
 
-## Supplementary Parameter Explanation
+## Additional Parameter Explanation
 
 
-**Basic Parameter Description**
+**Basic Parameter Explanation**
 
-| Parameter Name      | Parameter Type | Required | Parameter Description                   |
-|:--------------------|:---------------|:---------|:---------------------------------------|
+| Parameter Name      | Parameter Type | Required | Parameter Description |
+|:--------------------|:---------------|:---------|:----------------------|
 | issueUUID           | string         | Y        | UUID of the issue to reply to                |
-| attachmentUuids     | array          | N        | List of UUIDs for uploaded attachments, must first be uploaded via the /api/v1/attachment/upload interface        |
+| attachmentUuids     | array          | N        | List of UUIDs for attachments of the issue, must be uploaded via /api/v1/attachment/upload interface        |
 | content             | string         | N        | Content of the reply                      |
 | attachmentUuids     | array          | N        | List of UUIDs for uploaded attachments               |
-| extend              | json           | Y        | Extended fields, default is {}                  |
+| extend              | json           | Y        | Extension fields, default to {}                  |
 
 
-**Explanation of the extend Field**
+**Explanation of Extend Field**
 
-**In update scenarios, channels and channelUUIDs will be associated with the default channels and additional channels by default. If an empty array `[]` is passed, it will only exist in the default workspace channel.**
+**In update scenarios, channels and channelUUIDs are used to associate with default and additional channels. If an empty array `[]` is passed, it will only exist in the default channel of the workspace**
 
-| Parameter Name | Parameter Type | Required | Parameter Description         |
-|:--------------:|:--------------:|:--------:|:-----------------------------:|
+| Parameter Name | Parameter Type | Required | Parameter Description |
+|:--------------:|:--------------:|:--------:|:---------------------:|
 | channels       | array          | N        | List of resources where the issue should be delivered |
-| members        | array          | N        | Members to notify for the issue notification    |
-| extra          | json           | N        | Information related to the creator of the reply, used for frontend display    |
+| members        | array          | N        | List of notification target members for the issue notification |
+| extra          | json           | N        | Information related to the creator of the reply, used for front-end display |
 
-Example of the extend field:
+Example of extend field:
 ```json
 {
     "members": [
@@ -70,16 +70,14 @@ Example of the extend field:
 
 
 
-
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue/reply/create' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/reply/create' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"issueUUID":"issue_xxxx32","content":"aaa","attachmentUuids":[],"extend":{"members":[],"channels":[],"linkList":[]}}'\
 --compressed
 ```
-
 
 
 

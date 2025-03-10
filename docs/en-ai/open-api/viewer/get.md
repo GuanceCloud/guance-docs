@@ -9,12 +9,11 @@ Retrieve details of a viewer
 
 
 
-
 ## Route Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:-----------|:-------------------------|
-| viewer_uuid           | string   | Y          | Viewer UUID<br>          |
+| Parameter Name     | Type   | Required | Description              |
+|:---------------|:-----|:------|:----------------|
+| viewer_uuid | string | Y | Viewer UUID<br> |
 
 
 ## Additional Parameter Notes
@@ -25,7 +24,7 @@ Retrieve details of a viewer
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/viewer/dsbd_xxxx32/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/viewer/dsbd_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```

@@ -11,7 +11,7 @@ Delete a tag
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description              |
+| Parameter Name | Type   | Required | Description               |
 |:-----------|:-------|:-----|:----------------|
 | tagUUIDs | array | Y | Tag UUIDs<br>Allow null: False <br> |
 
@@ -21,7 +21,7 @@ Delete a tag
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/tag/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/tag/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Accept-Language: en' \

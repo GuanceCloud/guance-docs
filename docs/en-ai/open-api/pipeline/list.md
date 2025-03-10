@@ -5,17 +5,17 @@
 <br />**GET /api/v1/pipeline/list**
 
 ## Overview
-Get the list of Pipelines
+Retrieve the list of Pipelines
 
 
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description               |
-|:--------------|:-------|:---------|:--------------------------|
-| search        | string | No       | File name (source value)<br>Can be empty: False <br> |
-| type          | string | No       | Pipeline file type<br>Can be empty: False <br>Optional values: ['local', 'central'] <br> |
-| categories    | commaArray | No      | Category list, separated by commas<br>Can be empty: False <br> |
+| Parameter Name | Type   | Required | Description                            |
+|:--------------|:-------|:--------|:--------------------------------------|
+| search        | string | No      | File name (source value)<br>Can be empty: False <br> |
+| type          | string | No      | Pipeline file type<br>Can be empty: False <br>Possible values: ['local', 'central'] <br> |
+| categories    | commaArray | No     | Category list, separated by commas<br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -23,7 +23,7 @@ Get the list of Pipelines
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/pipeline/list' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/pipeline/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```

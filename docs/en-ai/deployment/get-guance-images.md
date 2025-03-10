@@ -3,9 +3,9 @@
 
 ## Online Deployment Method {#online-image}
 
-Online deployment refers to a Kubernetes environment that can access the public network, allowing Kubernetes to automatically download images from the official <<< custom_key.brand_name >>> public image repository during deployment.
+Online deployment refers to a Kubernetes environment that can access the public internet, allowing Kubernetes to automatically download images from <<< custom_key.brand_name >>>'s official public image repository during deployment.
 
-To obtain the public address of <<< custom_key.brand_name >>> images, visit the [<<< custom_key.brand_name >>> version history](changelog.md).
+To obtain the public address for <<< custom_key.brand_name >>> images, visit the [<<< custom_key.brand_name >>> Version History](changelog.md).
 
 
 ## Offline Deployment Method {#offline-image}
@@ -13,48 +13,48 @@ To obtain the public address of <<< custom_key.brand_name >>> images, visit the 
 ### Downloading and Importing <<< custom_key.brand_name >>> Offline Image Packages
 
 ???+ warning "Note"
-     If Kubernetes node hosts can access the public network, there is no need to import images using the above offline method; the installation program will automatically download the images.
+     If Kubernetes nodes can access the public internet, there is no need to import images using the offline method described above; the installation program will automatically download the images.
 
 === "amd64"
 
-    For installations in an offline network environment, you need to manually download the latest <<< custom_key.brand_name >>> image package first. After importing all images into each Kubernetes worker node using the `docker load` command, proceed with subsequent guided installation.
+    For installations in an offline network environment, you need to manually download the latest <<< custom_key.brand_name >>> image package first. Afterward, use the `docker load` command to import all images onto each Kubernetes worker node before proceeding with subsequent installation steps.
 
-    Latest <<< custom_key.brand_name >>> Docker image package download URL: [https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-latest.tar.gz](https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-latest.tar.gz)
+    Latest <<< custom_key.brand_name >>> Docker image package download link: [https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-latest.tar.gz](https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-latest.tar.gz)
 
     1. Use the following command to download the Docker image package to your local machine:
     ```shell
-    $ wget https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-latest.tar.gz
+    $ wget https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-latest.tar.gz
     ```
 
-    2. After downloading, upload the Docker image package to each Kubernetes node host and execute the following commands to import the Docker image:
-    - **Docker Environment Image Import Command:**
+    2. After downloading, upload the Docker image package to each Kubernetes node host and execute the following commands to import the Docker images:
+    - **Command to import images in a Docker environment:**
     ```shell
     $ gunzip -c guance-amd64-latest.tar.gz | docker load
     ```
 
-    - **Containerd Environment Image Import Command:**
+    - **Command to import images in a Containerd environment:**
     ```shell
     $ gunzip guance-amd64-latest.tar.gz
     $ ctr -n=k8s.io images import guance-amd64-latest.tar
     ```
 === "arm64"
 
-    For installations in an offline network environment, you need to manually download the latest <<< custom_key.brand_name >>> image package first. After importing all images into each Kubernetes worker node using the `docker load` command, proceed with subsequent guided installation.
+    For installations in an offline network environment, you need to manually download the latest <<< custom_key.brand_name >>> image package first. Afterward, use the `docker load` command to import all images onto each Kubernetes worker node before proceeding with subsequent installation steps.
 
-    Latest <<< custom_key.brand_name >>> Docker image package download URL: [https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-latest.tar.gz](https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-latest.tar.gz)
+    Latest <<< custom_key.brand_name >>> Docker image package download link: [https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-latest.tar.gz](https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-latest.tar.gz)
 
     1. Use the following command to download the Docker image package to your local machine:
     ```shell
-    $ wget https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-latest.tar.gz
+    $ wget https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-latest.tar.gz
     ```
 
-    2. After downloading, upload the Docker image package to each Kubernetes node host and execute the following commands to import the Docker image:
-    - **Docker Environment Image Import Command:**
+    2. After downloading, upload the Docker image package to each Kubernetes node host and execute the following commands to import the Docker images:
+    - **Command to import images in a Docker environment:**
     ```shell
     $ gunzip -c guance-arm64-latest.tar.gz | docker load
     ```
 
-    - **Containerd Environment Image Import Command:**
+    - **Command to import images in a Containerd environment:**
     ```shell
     $ gunzip guance-arm64-latest.tar.gz
     $ ctr -n=k8s.io images import guance-arm64-latest.tar
@@ -64,16 +64,16 @@ To obtain the public address of <<< custom_key.brand_name >>> images, visit the 
 ### Configuration of Self-built Image Repository for Launcher {#registry-key-change}
 
 ???+ warning "Note"
-     If the downloaded offline image packages are imported into a self-built image repository, please configure as follows.
+     If the downloaded offline image packages are imported into a self-built image repository for use, please perform the following configuration.
 
-     This operation must be performed before deploying launcher.
+     This operation must be done before deploying launcher.
 
 === "helm"
     
     When installing launcher, add the `imageSecrets.url`, `imageSecrets.username`, and `imageSecrets.password` parameters.
 
     ```shell hl_lines='4'
-    helm install launcher launcher --repo https://pubrepo.guance.com/chartrepo/launcher -n launcher \
+    helm install launcher launcher  --repo https://pubrepo.guance.com/chartrepo/launcher -n launcher \
     --create-namespace  \
     --set ingress.hostName=<Hostname>,storageClassName=<Stroageclass> \
     --set imageSecrets.url=<warehouseaddress>,imageSecrets.username=<warehouse username>,imageSecrets.password=<warehouse passwd>
@@ -87,7 +87,7 @@ To obtain the public address of <<< custom_key.brand_name >>> images, visit the 
       ```shell
       kubectl create secret docker-registry dataflux-test --docker-server='<Repo Server>' --docker-username='<Repo Username>' --docker-password='<Repo Password>'
       ```
-      > Replace the values of `docker-server`, `docker-username`, and `docker-password` with your image repository address, account, and password.
+      > Replace the values of `docker-server`, `docker-username`, and `docker-password` with your image repository address, account, and password respectively.
 
     - Retrieve the secret
     
@@ -102,15 +102,15 @@ To obtain the public address of <<< custom_key.brand_name >>> images, visit the 
 
     - Installation
 
-      Download Launcher YAML from: [https://<<< custom_key.static_domain >>>/launcher/launcher.yaml](https://<<< custom_key.static_domain >>>/launcher/launcher.yaml)
+      Download the Launcher YAML file: [https://static.<<< custom_key.brand_main_domain >>>/launcher/launcher.yaml](https://static.<<< custom_key.brand_main_domain >>>/launcher/launcher.yaml)
       
-      Save the above YAML content as a **launcher.yaml** file on your **operations machine**, then replace the variable parts in the document:
+      Save the content of the YAML file as **launcher.yaml** on the **operations machine**, then replace the variable parts within the document:
     
-      - Replace `{{ launcher_image }}` with the latest Launcher application image address, which can be obtained from the [deployment image](changelog.md) documentation.
-      - Replace `{{ domain }}` with the main domain, such as dataflux.cn.
-      - Replace `{{ storageClassName }}` with the storage class name, such as alicloud-nas.
+      - Replace `{{ launcher_image }}` with the latest Launcher application image address, which can be found in the [Deployment Image](changelog.md) documentation.
+      - Replace `{{ domain }}` with the main domain, such as `dataflux.cn`.
+      - Replace `{{ storageClassName }}` with the storage class name, such as `alicloud-nas`.
 
-      Replace the `.dockerconfigjson` content with the secret.
+      Replace the `.dockerconfigjson` content with the secret obtained earlier.
 
       ![](img/registry-key.png)
 

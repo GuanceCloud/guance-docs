@@ -9,31 +9,35 @@ Create a user-defined node
 
 
 
+
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                                                                                     |
-|:--------------|:-------|:---------|:------------------------------------------------------------------------------------------------|
-| internal      | boolean| Y        | Country attribute (true for domestic, false for overseas)<br>Allow null: False <br>               |
-| isp           | string | Y        | ISP<br>Allow null: False <br>                                                                    |
-| country       | string | Y        | Country<br>Allow null: False <br>                                                                |
-| province      | string |          | Province<br>Allow null: True <br>                                                                |
-| city          | string |          | City<br>Allow null: True <br>                                                                    |
-| name          | string |          | [Test Node] Nickname<br>Allow empty string: True <br>Allow null: True <br>                      |
-| company       | string |          | Company information<br>Allow null: True <br>                                                     |
-| keycode       | string | Y        | [Test Node] keycode (must be unique)<br>Allow null: False <br>                                  |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:-------------------------|
+| internal | boolean | Y | Country attribute (true for domestic, false for overseas)<br>Nullable: False <br> |
+| isp | string | Y | Internet service provider<br>Nullable: False <br> |
+| country | string | Y | Country<br>Nullable: False <br> |
+| province | string |  | Province<br>Nullable: True <br> |
+| city | string |  | City<br>Nullable: True <br> |
+| name | string |  | 【Test Node】Nickname<br>Empty string allowed: True <br>Nullable: True <br> |
+| company | string |  | Company information<br>Nullable: True <br> |
+| keycode | string | Y | 【Test Node】Keycode (unique)<br>Nullable: False <br> |
 
 ## Additional Parameter Notes
 
 
 
+
+
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dialing_region/regist' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dialing_region/regist' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"internal":false,"isp":"telecom","country":"Afghanistan","city":"Shahrak","keycode":"Afghanistan-Shahrak-telecom","name":"test"}' \
 --compressed
 ```
+
 
 
 

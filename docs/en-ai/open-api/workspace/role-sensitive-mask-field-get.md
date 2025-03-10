@@ -5,7 +5,8 @@
 <br />**GET /api/v1/workspace/role/sensitive_mask_fields**
 
 ## Overview
-Retrieve the current workspace feature menu
+Get the current workspace feature menu
+
 
 
 
@@ -13,13 +14,16 @@ Retrieve the current workspace feature menu
 
 
 
+
+
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/role/sensitive_mask_fields' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/role/sensitive_mask_fields' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
+
 
 
 
@@ -48,3 +52,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/role/sensitive_mask_fields' \
     "traceId": "TRACE-22B58595-D7B9-45FE-BB5C-42EDC1CFDAD1"
 } 
 ```
+
+
+
+In this translation, specific terms such as "工作空间" are translated to "workspace," and "敏感数据脱敏字段" is translated to "sensitive data masking fields." The API endpoint and response structure are kept intact to ensure compatibility and accuracy.

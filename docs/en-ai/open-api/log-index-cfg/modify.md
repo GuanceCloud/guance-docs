@@ -20,12 +20,12 @@ Modify the configuration of a single default storage index
 
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| extend | json |  | Custom data from frontend<br>Optional: True <br> |
-| duration | string |  | Data retention duration<br>Optional: False <br>Example: 7d <br> |
-| setting | json |  | Configuration information<br>Optional: False <br> |
-| setting.hot_retention | int |  | Volc Engine Storage, Standard Storage - Hot Storage<br>Optional: False <br> |
-| setting.cold_retention | int |  | Volc Engine Storage, Infrequent Access Storage - Cold Data<br>Optional: False <br> |
-| setting.archive_retention | int |  | Volc Engine Storage, Archive Storage - Archived Data<br>Optional: False <br> |
+| extend | json |  | Custom data from frontend<br>Can be empty: True <br> |
+| duration | string |  | Data retention period<br>Can be empty: False <br>Example: 7d <br> |
+| setting | json |  | Configuration information<br>Can be empty: False <br> |
+| setting.hot_retention | int |  | Volcengine storage, standard storage - hot data<br>Can be empty: False <br> |
+| setting.cold_retention | int |  | Volcengine storage, infrequent storage - cold data<br>Can be empty: False <br> |
+| setting.archive_retention | int |  | Volcengine storage, archive storage - archived data<br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -33,7 +33,7 @@ Modify the configuration of a single default storage index
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/log_index_cfg/lgim_xxxx32/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/log_index_cfg/lgim_xxxx32/modify' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Accept-Language: en' \
 -H 'Content-Type: application/json;charset=UTF-8' \

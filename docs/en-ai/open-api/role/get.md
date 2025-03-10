@@ -9,10 +9,11 @@ Retrieve a role
 
 
 
+
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description             |
-|:-----------|:-------|:-----|:----------------|
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:--------|:----------------------|
 | role_uuid | string | Yes | Role UUID<br> |
 
 
@@ -20,12 +21,15 @@ Retrieve a role
 
 
 
+
+
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/role/role_xxxx32/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/role/role_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
+
 
 
 
@@ -88,6 +92,3 @@ curl 'https://openapi.guance.com/api/v1/role/role_xxxx32/get' \
     "traceId": "TRACE-BC3B2F08-DEC1-4EDA-9958-4391F976A981"
 } 
 ```
-
-### Note:
-- The term "付费计划与账单" has been translated to "Billing" based on the provided dictionary.

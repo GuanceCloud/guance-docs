@@ -13,7 +13,7 @@
 
 | Parameter Name | Type | Required | Description |
 |:-----------|:-------|:-----|:----------------|
-| declaration | json | Y | Workspace attribute claims information<br>Example: {} <br>Allow null: False <br> |
+| declaration | json | Y | Workspace attribute claims information<br>Example: {} <br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -23,7 +23,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/declaration/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/declaration/modify' \
   -H 'Accept: application/json, text/plain, */*' \
   -H 'Content-Type: application/json;charset=UTF-8' \
   -H 'DF-API-KEY: <DF-API-KEY>' \

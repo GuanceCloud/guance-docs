@@ -11,35 +11,30 @@
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| name | string | Y | SLO name<br>Allow null: False <br>Maximum length: 256 <br> |
-| interval | string | Y | Detection frequency<br>Allow null: False <br>Optional values: ['5m', '10m'] <br>Example: 5m <br> |
-| goal | float | Y | SLO expected target, value range: 0-100, excluding 0 and 100<br>Allow null: False <br>Value greater than: 0 <br>Value less than: 100 <br>Example: 90.0 <br> |
-| minGoal | float | Y | SLO minimum target, value range: 0-100, excluding 0 and 100, and less than goal<br>Allow null: False <br>Value greater than: 0 <br>Value less than: 100 <br>Example: 85.0 <br> |
-| sliUUIDs | array | Y | List of SLI UUIDs<br>Allow null: False <br>Example: ['rul-aaaaaa', 'rul-bbbbbb'] <br> |
-| describe | string |  | SLO group description information<br>Example: This is an example <br>Allow null: False <br>Allow empty string: True <br>Maximum length: 3000 <br> |
-| alertPolicyUUIDs | array |  | Alert policy UUID<br>Allow null: False <br> |
-| tags | array |  | Tag names used for filtering<br>Allow null: False <br>Example: ['xx', 'yy'] <br> |
+| Parameter Name | Type   | Required | Description                                                                                         |
+|:--------------|:-------|:---------|:----------------------------------------------------------------------------------------------------|
+| name          | string | Y        | SLO name<br>Allow null: False <br>Maximum length: 256 <br>                                          |
+| interval      | string | Y        | Detection frequency<br>Allow null: False <br>Possible values: ['5m', '10m'] <br>Example: 5m <br>  |
+| goal          | float  | Y        | Expected SLO target, range: 0-100, excluding 0 and 100<br>Allow null: False <br>Possible value greater than: 0 <br>Possible value less than: 100 <br>Example: 90.0 <br> |
+| minGoal       | float  | Y        | Minimum SLO target, range: 0-100, excluding 0 and 100, and less than goal<br>Allow null: False <br>Possible value greater than: 0 <br>Possible value less than: 100 <br>Example: 85.0 <br> |
+| sliUUIDs      | array  | Y        | List of SLI UUIDs<br>Allow null: False <br>Example: ['rul-aaaaaa', 'rul-bbbbbb'] <br>              |
+| describe      | string |          | SLO group description<br>Example: This is an example <br>Allow null: False <br>Allow empty string: True <br>Maximum length: 3000 <br> |
+| alertPolicyUUIDs | array |         | Alert policy UUID<br>Allow null: False <br>                                                        |
+| tags          | array  |          | Tag names for filtering<br>Allow null: False <br>Example: ['xx', 'yy'] <br>                        |
 
 ## Additional Parameter Notes
 
-
-- sliUUIDs, list of SLI UUIDs. Reference: Monitoring - Monitors - Get monitor list (you can specify the search parameter to search by monitor name, other parameters omitted) take the uuid field of the monitor
-- alertOpt[#].alertTarget, alert notification target. Reference: Monitoring - Notification Targets Management - Get notification targets list
-
-
+- sliUUIDs, list of SLI UUIDs. Reference: Monitoring - Monitors - Get monitor list (you can specify the search parameter to search by monitor name, other parameters omitted) take the uuid field of the monitor.
+- alertOpt[#].alertTarget, notification targets for alerts. Reference: Monitoring - Notification Targets Management - Get notification targets list
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/slo/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/slo/add' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY:  <DF-API-KEY>' \
---data '{"name":"LWC-Test-2024-08-06-002","interval":"10m","goal":90,"minGoal":60,"sliUUIDs":["rul_xxxxx","rul_9eb745xx"],"describe":"LWC Testing OpenAPI","tags":[],"alertPolicyUUIDs":["altpl_d8db4xxxx"]}'
+--data '{"name":"LWC-Test-2024-08-06-002","interval":"10m","goal":90,"minGoal":60,"sliUUIDs":["rul_xxxxx","rul_9eb745xx"],"describe":"LWC Test OpenAPI","tags":[],"alertPolicyUUIDs":["altpl_d8db4xxxx"]}'
 ```
-
-
 
 
 ## Response
@@ -50,7 +45,7 @@ curl 'https://openapi.guance.com/api/v1/slo/add' \
         "alertOpt": {},
         "config": {
             "checkRange": 604800,
-            "describe": "LWC Testing OpenAPI",
+            "describe": "LWC Test OpenAPI",
             "goal": 90,
             "interval": "10m",
             "minGoal": 60,
@@ -62,7 +57,7 @@ curl 'https://openapi.guance.com/api/v1/slo/add' \
                 },
                 {
                     "id": "rul_9xxxx",
-                    "name": "whytest-Feedback Issue Verification",
+                    "name": "whytest-feedback issue verification",
                     "status": 2
                 }
             ]

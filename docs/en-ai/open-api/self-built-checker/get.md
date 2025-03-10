@@ -1,24 +1,24 @@
-# Get Self-built Checker Information
+# Get Intelligent Inspection Information
 
 ---
 
 <br />**GET /api/v1/self_built_checker/get**
 
 ## Overview
-Retrieve the details of a self-built checker based on the provided identifier.
+Retrieve the details of a user-defined inspection based on the provided identifier.
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description                          |
-|:--------------|:-------|:--------|:------------------------------------|
-| ruleUUID      | string |         | UUID of the self-built checker<br>Example: rul_xxxxx <br>Can be empty: False <br> |
-| refKey        | string |         | Associated key of the self-built checker<br>Example: xxx <br>Can be empty: False <br> |
+| Parameter Name | Type   | Required | Description |
+|:--------------|:-------|:---------|:------------|
+| ruleUUID      | string | Yes      | UUID of the user-defined inspection <br>Example: rul_xxxxx <br>Can be empty: False <br> |
+| refKey        | string | Yes      | Associated key of the user-defined inspection <br>Example: xxx <br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/self_built_checker/get?refKey=zyAy2l9v' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/self_built_checker/get?refKey=zyAy2l9v' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed
@@ -36,7 +36,7 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/get?refKey=zyAy2l9v' 
         "extend": {},
         "id": 88,
         "jsonScript": {
-            "name": "self-built check-20220907T162421bymvlx",
+            "name": "User-defined Inspection-20220907T162421bymvlx",
             "type": "selfBuiltCheck"
         },
         "monitorUUID": "monitor_xxxx32",

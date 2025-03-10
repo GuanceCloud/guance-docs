@@ -2,15 +2,14 @@
 
 ---
 
-This article lists some Open API request examples. 
-
+This article lists some request examples for Open API.
 
 ## GET Request
 
 ### Example of Getting the Dashboard List Interface
 Request as follows:
 ```bash
-curl "https://openapi.guance.com/api/v1/dashboards/list?pageIndex=1&pageSize=10" \
+curl "https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboards/list?pageIndex=1&pageSize=10" \
   -H "Content-Type: application/json" \
   -H "DF-API-KEY: ${DF_API_KEY}" \
   --compressed \
@@ -42,7 +41,7 @@ Response result as follows:
 ### Example of Deleting a Dashboard Interface
 Request as follows:
 ```bash
-curl "https://openapi.guance.com/api/v1/dashboards/${dashboard_uuid}/delete" \
+curl "https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboards/${dashboard_uuid}/delete" \
   -X "POST" \
   -H "Content-Type: application/json" \
   -H "DF-API-KEY: ${DF_API_KEY}" \
@@ -63,7 +62,6 @@ Response result as follows:
 ```
 
 
-
 ## Notes
 
-${DF_API_KEY}: Represents the caller's API KEY, see [API Key Management](../management/api-key/open-api.md) for obtaining methods.
+${DF_API_KEY}: Represents the caller's API KEY. For obtaining methods, see [API Key Management](../management/api-key/open-api.md)

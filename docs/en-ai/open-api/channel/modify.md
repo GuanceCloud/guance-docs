@@ -1,4 +1,4 @@
-# Modify a Channel Information
+# Modify Channel Information
 
 ---
 
@@ -11,20 +11,20 @@
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:--------|:----------------|
+| Parameter Name        | Type     | Required | Description              |
+|:-------------------|:-------|:-----|:----------------|
 | channel_uuid | string | Y | Channel UUID<br> |
 
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:--------|:----------------|
-| name | string |  | Channel name<br>Example: Channel 1 <br>Can be empty: False <br>Maximum length: 256 <br> |
+| Parameter Name        | Type     | Required | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| name | string |  | Channel name<br>Example: Channel No.1 <br>Can be empty: False <br>Maximum length: 256 <br> |
 | description | string |  | Channel description<br>Example: CUSTOM <br>Can be empty: False <br>Can be an empty string: True <br>Maximum length: 256 <br> |
 | notifyTarget | array |  | List of notification target UUIDs<br>Example: [] <br>Can be empty: False <br> |
 | notifyUpgradeCfg | json |  | Rule configuration<br>Can be empty: False <br> |
-| notifyUpgradeCfg.triggerTime | integer | Y | Time in seconds after which to trigger upgrade notification<br>Example: simpleCheck <br>Can be empty: False <br> |
+| notifyUpgradeCfg.triggerTime | integer | Y | After how many seconds to trigger upgrade notification, unit s<br>Example: simpleCheck <br>Can be empty: False <br> |
 | notifyUpgradeCfg.notifyTarget | array | Y | List of upgrade notification target UUIDs<br>Example: [] <br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
@@ -33,7 +33,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/channel/chan_xxxx32/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/channel/chan_xxxx32/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"description":"dasdgahjsdgashjgdhajsgdasjhgdhjasgdajhsgzxvchv @sadddddd","notifyTarget":["notify_xxxx32"]}' \

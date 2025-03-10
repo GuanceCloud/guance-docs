@@ -9,22 +9,19 @@ Service list export
 
 
 
-
 ## Query Request Parameters
 
-| Parameter Name    | Type     | Required | Description              |
-|:-----------------|:-------|:-----|:----------------|
-| originStr        | string | No   | Pass `1` for raw string, pass `0` for structured data, default is `1`<br>Allow empty: False <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:--------|:--------------------------|
+| originStr          | string | No      | Pass 1 for raw string, pass 0 for structured data, default is 1<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
 
 
-
-
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage/export?originStr=0' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   -o 'serviceInfo.json'
   --compressed
@@ -32,9 +29,8 @@ curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
 
 
 
-
 ## Response
-```shell
+```json
 [
     {
         "colour": "#40C922",
@@ -54,7 +50,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
             "Docs": [
                 {
                     "link": "https://www.docs.guance.com",
-                    "name": "guance",
+                    "name": "Guance",
                     "provider": "Guance"
                 },
                 {
@@ -75,7 +71,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
             "Repos": [
                 {
                     "link": "https://www.guance.com",
-                    "name": "guance",
+                    "name": "Guance",
                     "provider": "Guance"
                 },
                 {
@@ -159,5 +155,5 @@ curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
         },
         "uuid": "sman_xxxx32"
     }
-] 
+]
 ```

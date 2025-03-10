@@ -1,4 +1,4 @@
-# Export Single User View
+# Export a Single User View
 
 ---
 
@@ -8,30 +8,28 @@
 Export a single user view
 
 
-
-
 ## Route Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
+|:-----------------|:-------|:-----|:----------------|
 | dashboard_uuid | string | Y | View UUID<br> |
 
 
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
+|:-----------------|:-------|:-----|:----------------|
 | title | string |  | Template Name<br>Allow empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 **Response Body Structure Explanation**
 
-| Parameter Name                |   Type  |          Description          |
+| Parameter Name                | Type  |          Description          |
 |-----------------------|----------|------------------------|
 |chartGroupPos         |list |  Chart group position information |
 |chartPos         |list |  Chart position information |
-|createdWay             |string |  This built-in view creation method, manually created: manual, imported: import |
+|createdWay             |string |  The creation method of this built-in view, manually created: manual, imported: import |
 |dashboardBidding         |dict |   Dashboard binding information|
 |name         |string |  Dashboard name |
 
@@ -40,7 +38,7 @@ Export a single user view
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/export' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboard/dsbd_xxxx32/export' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -767,7 +765,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/export' \
                             "name": "",
                             "qtype": "dql",
                             "query": {
-                                "alias": "Schema",
+                                "alias": "schema",
                                 "code": "E",
                                 "dataSource": "mysql_dbm_activity",
                                 "field": "current_schema",
@@ -794,7 +792,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/export' \
                                 "groupByTime": "",
                                 "indexFilter": "default",
                                 "namespace": "logging",
-                                "q": "L::`mysql_dbm_activity`:(COUNT(`current_schema`) AS `Schema`) { `index` = 'default' and  `host` = '#{host}'  } BY `processlist_id`, `processlist_user`",
+                                "q": "L::`mysql_dbm_activity`:(COUNT(`current_schema`) AS `schema`) { `index` = 'default' and  `host` = '#{host}'  } BY `processlist_id`, `processlist_user`",
                                 "queryFuncs": [],
                                 "search": "",
                                 "type": "simple"
@@ -990,7 +988,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/export' \
                             "units": [
                                 {
                                     "key": "max(event_timer_wait)",
-                                    "name": "Max Event Execution Time",
+                                    "name": "max(event_timer_wait)",
                                     "unit": "",
                                     "units": [
                                         "time",
@@ -1003,7 +1001,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/export' \
                     "group": {
                         "name": null
                     },
-                    "name": "Max Event Execution Time",
+                    "name": "Maximum Event Execution Time",
                     "pos": {
                         "h": 8,
                         "w": 6,

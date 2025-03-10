@@ -1,4 +1,4 @@
-# Modify Single Dashboard Carousel Configuration
+# Modify Individual Dashboard Carousel Configuration
 
 ---
 
@@ -11,18 +11,18 @@
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
+| Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
 | carousel_uuid | string | Y | Carousel UUID<br> |
 
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
+| Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| dashboardUUIDs | array | Y | List of dashboard UUIDs for the carousel<br>Allow null: False <br> |
-| name | string | Y | Name of the dashboard carousel<br>Allow null: False <br>Maximum length: 256 <br> |
-| intervalTime | string | Y | Carousel interval<br>Allow null: False <br> |
+| dashboardUUIDs | array | Y | List of Dashboard UUIDs for the carousel<br>Allow empty: False <br> |
+| name | string | Y | Name of the dashboard carousel<br>Allow empty: False <br>Maximum length: 256 <br> |
+| intervalTime | string | Y | Carousel interval time<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -32,7 +32,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboard/carousel/csel_xxxx32/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboard/carousel/csel_xxxx32/modify' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Accept-Language: en' \
 -H 'Content-Type: application/json;charset=UTF-8' \

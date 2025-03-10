@@ -1,4 +1,4 @@
-# Manually Restore an Event
+# Manual Restoration of an Event
 
 ---
 
@@ -12,8 +12,8 @@ Restore a specified event based on `monitorCheckerEventRef`
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:-------------------------|
-| monitorCheckerEventRef | string   | Y        | Unique identifier for the triggering object (df_monitor_checker_event_ref)<br>Allow empty: False <br> |
+|:-------------------|:-------|:-----|:----------------|
+| monitorCheckerEventRef | string | Y | Unique identifier for the triggering object (df_monitor_checker_event_ref)<br>Allow null: False <br> |
 
 ## Additional Parameter Notes
 
@@ -21,7 +21,7 @@ Restore a specified event based on `monitorCheckerEventRef`
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/keyevent/restore?monitorCheckerEventRef=09e6fdaa5235f1e49014254f7b1653fc' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/keyevent/restore?monitorCheckerEventRef=09e6fdaa5235f1e49014254f7b1653fc' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```

@@ -2,7 +2,7 @@
 
 ---
 
-<br />**GET /api/v1/saml/mapping/field/\{fdmp_uuid\}/delete**
+<br />**GET /api/v1/saml/mapping/field/{fdmp_uuid}/delete**
 
 ## Overview
 Delete a SAML mapping
@@ -15,18 +15,16 @@ Delete a SAML mapping
 | fdmp_uuid     | string | Y       | Mapping configuration ID |
 
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/saml/mapping/field/fdmp_xxxx32/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/saml/mapping/field/fdmp_xxxx32/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
-
-
 
 
 ## Response

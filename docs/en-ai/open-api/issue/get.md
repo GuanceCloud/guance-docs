@@ -2,33 +2,29 @@
 
 ---
 
-<br />**GET /api/v1/issue/{issue_uuid}/get**
+<br />**GET /api/v1/issue/\{issue_uuid\}/get**
 
 ## Overview
 
 
 
-
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description          |
-|:--------------|:-------|:--------|:---------------------|
-| issue_uuid    | string | Y       | Issue UUID           |
+| Parameter Name | Type   | Required | Description             |
+|:--------------|:------|:-------|:----------------------|
+| issue_uuid    | string | Y     | issueUUID<br>         |
 
 
-## Additional Parameter Notes
-
-
+## Additional Parameter Explanation
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue/<issue_uuid>/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/<issue_uuid>/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
 
 
 
@@ -44,12 +40,12 @@ curl 'https://openapi.guance.com/api/v1/issue/<issue_uuid>/get' \
                 "uuid": "att_xxxx32"
             },
             {
-                "fileName": "\\Icon\\1.png",
+                "fileName": "\\icon\\1.png",
                 "fileSuffix": "png",
                 "uuid": "att_xxxx32"
             },
             {
-                "fileName": "<<< custom_key.brand_name >>> Icon2.png",
+                "fileName": "<<< custom_key.brand_name >>> icon2.png",
                 "fileSuffix": "png",
                 "uuid": "att_xxxx32"
             },
@@ -76,7 +72,7 @@ curl 'https://openapi.guance.com/api/v1/issue/<issue_uuid>/get' \
             "acntWsNickname": "",
             "email": "wsak_xxxx32",
             "iconUrl": "",
-            "name": "Interface Test",
+            "name": "API Test",
             "username": "wsak_xxxx32",
             "uuid": "wsak_xxxx32"
         },

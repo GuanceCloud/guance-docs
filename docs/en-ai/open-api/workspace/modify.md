@@ -5,20 +5,20 @@
 <br />**POST /api/v1/workspace/modify**
 
 ## Overview
-Modify the workspace information associated with the current API Key.
+Modify the information of the workspace associated with the current API Key.
 
 ## Body Request Parameters
 
 | Parameter Name | Type   | Required | Description                                                                 |
 |:--------------|:-------|:---------|:----------------------------------------------------------------------------|
-| name          | string | No       | Name<br>Example: supper_workspace <br>Can be empty: False <br>Maximum length: 256 <br> |
-| desc          | string | No       | Remarks<br>Example: ccc <br>Can be empty: False <br>Allows empty string: True <br> |
+| name          | string | No       | Name<br>Example: supper_workspace <br>Allow null: False <br>Maximum length: 256 <br> |
+| desc          | string | No       | Remarks<br>Example: ccc <br>Allow null: False <br>Allow empty string: True <br> |
 
 ## Additional Parameter Notes
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/modify' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
@@ -72,7 +72,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/modify' \
         "leftExpensiveQuery": true,
         "loggingCutSize": 10240,
         "makeResourceExceptionCode": "",
-        "name": "Development and Testing Together 22",
+        "name": "Development and Testing Shared 22",
         "rpName": "rp1",
         "status": 0,
         "supportJsonMessage": 1,

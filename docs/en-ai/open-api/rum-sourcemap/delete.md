@@ -11,11 +11,11 @@ Delete an existing sourcemap for a specified application
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                              |
-|:------------|:-----|:-------|:----------------------------------------|
-| appId       | string | Y     | appId<br>Can be empty: False <br>      |
-| version     | string |        | Version<br>Can be empty: False <br>Can be an empty string: True <br> |
-| env         | string |        | Environment<br>Can be empty: False <br>Can be an empty string: True <br> |
+| Parameter Name | Type   | Required | Description                        |
+|:-----------|:-------|:-----|:----------------|
+| appId      | string | Y    | appId<br>Can be empty: False <br> |
+| version    | string |      | Version<br>Can be empty: False <br>Can be an empty string: True <br> |
+| env        | string |      | Environment<br>Can be empty: False <br>Can be an empty string: True <br> |
 
 ## Additional Parameter Notes
 
@@ -23,7 +23,7 @@ Delete an existing sourcemap for a specified application
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/rum_sourcemap/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/rum_sourcemap/delete' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw $'{\n "appId": "app_demo",\n "version": "1.0.2",\n "env": "daily"\n}' \

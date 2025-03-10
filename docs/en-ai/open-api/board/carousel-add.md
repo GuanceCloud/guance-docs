@@ -11,11 +11,11 @@
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:----------|:------------------------|
-| dashboardUUIDs | array | Y | List of dashboard UUIDs for the carousel<br>Allow null: False <br> |
-| name | string | Y | Name of the dashboard carousel<br>Allow null: False <br>Maximum length: 256 <br> |
-| intervalTime | string | Y | Carousel interval time<br>Allow null: False <br> |
+| Parameter Name        | Type     | Required | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| dashboardUUIDs | array | Y | List of dashboard UUIDs for carousel<br>Allow empty: False <br> |
+| name | string | Y | Name of the dashboard carousel<br>Allow empty: False <br>Maximum length: 256 <br> |
+| intervalTime | string | Y | Carousel interval time<br>Allow empty: False <br> |
 
 ## Additional Parameter Explanation
 
@@ -25,7 +25,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboard/carousel/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboard/carousel/add' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Accept-Language: en' \
 -H 'Content-Type: application/json;charset=UTF-8' \

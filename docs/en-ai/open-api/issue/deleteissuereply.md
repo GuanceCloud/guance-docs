@@ -11,12 +11,12 @@
 
 ## Route Parameters
 
-| Parameter Name   | Type     | Required | Description              |
-|:--------------|:-------|:------|:----------------|
-| reply_uuid    | string | Y    | reply_uuid<br> |
+| Parameter Name  | Type    | Required | Description              |
+|:--------------|:-------|:-------|:----------------|
+| reply_uuid    | string | Y      | reply_uuid<br> |
 
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
 
 
@@ -24,7 +24,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue/reply/repim_xxxx32/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/reply/repim_xxxx32/delete' \
 -X 'DELETE' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \

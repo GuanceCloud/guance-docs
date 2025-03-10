@@ -16,13 +16,13 @@ DQL data query
 | queries | array |  | Multi-command query, its content is a list composed of query objects<br>Allow null: False <br> |
 | fieldTagDescNeeded | boolean |  | Whether field or tag description information is needed<br>Allow null: False <br> |
 
-## Additional Parameter Description
+## Additional Parameter Explanation
 
 *Query Description*
 
 --------------
 
-1. Parameter Description
+1. Parameter Explanation
 
 | Parameter Name  | Type  | Required  | Description  |
 | :------------ | :------------ | :------------ | :------------ |
@@ -30,41 +30,41 @@ DQL data query
 |  fieldTagDescNeeded  | boolean |   | Whether field or tag description information is needed |
 
 
-2. Structure Description for Members of `queries[*]`
+2. Structure Explanation for `queries[*]` Member Parameters
 
 | Parameter Name  | Type  | Required  | Description  |
 | :------------ | :------------ | :------------ | :------------ |
-|  qtype | string  |  Y |  Query statement type <br/> dql: Indicates a DQL type query statement; <br/> promql: Indicates a PromQL type query statement   |
+|  qtype | string  |  Y |  Query statement type <br/> dql: indicates a DQL type query statement; <br/> promql: indicates a PromQl type query statement   |
 |  query | json  |  Y |  Query structure |
-|  query.q  | string |   | Query statement consistent with the qtype, such as DQL or PromQL query statements |
-|  query.promqlType  | enum |   | Effective when qtype=promql, PromQL query type, optional values are `instantQuery` and `rangeQuery`, default value is `rangeQuery` |
+|  query.q  | string |   | Query statement consistent with the `qtype`, e.g., DQL or PromQL query statement |
+|  query.promqlType  | enum |   | Effective when `qtype=promql`, PromQL query type, optional values `instantQuery` and `rangeQuery`, default value is `rangeQuery` |
 |  query.highlight  | boolean |   | Whether to display highlighted data |
-|  query.timeRange  | array  |   | List of timestamps for the time range |
-|  query.disableMultipleField  | bool  |   | Whether to enable single-column mode, default is `true` |
-|  query.showLabel  | bool  |   | Whether to display object labels, default is none |
-|  query.funcList  | array  |   | Re-aggregates DQL return values, note that this parameter is invalid when disableMultipleField=False |
-|  query.slimit  | integer  |   | Time series grouping size, only valid for metrics queries |
-|  query.soffset  | integer  |   | Time series grouping offset |
+|  query.timeRange  | array  |   | List of timestamps for time range |
+|  query.disableMultipleField  | bool  |   | Whether single-column mode is enabled, default is `true` |
+|  query.showLabel  | bool  |   | Whether to show object labels, default is none |
+|  query.funcList  | array  |   | Re-aggregates DQL return values, note that this parameter is invalid when `disableMultipleField=False` |
+|  query.slimit  | integer  |   | Group size for time series, only effective for metrics queries |
+|  query.soffset  | integer  |   | Offset for time series groups |
 |  query.limit  | integer  |   | Page size |
 |  query.offset  | integer  |   | Page offset |
-|  query.orderby  | array  |   | Sorting list, `{fieldName:method}`, note that sorting for metrics queries only supports fieldName=time; method in ["desc", "asc"]; note that sorting for metrics queries only supports fieldName=time |
-|  query.sorderby  | array  |   | Sorting list, sorderby's column is an expression supporting all aggregation functions that return a single value min max last avg p90 p95 count, `{fieldName:method}`, structure is the same as orderby |
-|  query.order_by  | array  |   | Sorting list, structure is `[{"column": "field", "order": "DESC"}]`, compatible with Doris engine fields |
-|  query.sorder_by  | array  |   | Sorting list, structure is `[{"column": "field", "order": "DESC"}]`, compatible with Doris engine fields |
-|  query.density  | string  |   | Response point density, priority is less than autoDensity and greater than density set in DQL statement |
-|  query.interval  | integer  |   | Unit is seconds, time slice interval used to calculate response points; if the calculated number of points is less than or equal to the number of points when density=high, it is effective, otherwise it is ineffective |
-|  query.search_after  | array  |   | Pagination query marker. The search_after value from the previous request's response should be used as the parameter for this request. |
+|  query.orderby  | array  |   | Sorting list, `{fieldName:method}`, note that sorting for Mearsurement queries only supports `fieldName=time`; method in ["desc", "asc"]; note that sorting for Mearsurement queries only supports `fieldName=time` |
+|  query.sorderby  | array  |   | Sorting list, `sorderby` column is an expression supporting all single-value aggregation functions min max last avg p90 p95 count, `{fieldName:method}`, structure is consistent with orderby |
+|  query.order_by  | array  |   | Sorting list, structure is `[{"column": "field", "order": "DESC"}]`, compatible field for Doris engine |
+|  query.sorder_by  | array  |   | Sorting list, structure is `[{"column": "field", "order": "DESC"}]`, compatible field for Doris engine |
+|  query.density  | string  |   | Response point density, lower priority than `autoDensity` but higher than density set in DQL statement |
+|  query.interval  | integer  |   | Unit is seconds, time slice interval used to calculate response points; if calculated point count is less than or equal to point count when `density=high`, it is valid, otherwise invalid |
+|  query.search_after  | array  |   | Pagination query marker. Use the `search_after` value from the previous response as the parameter for the current request. |
 |  query.maxPointCount  | integer  |   | Maximum number of points |
-|  query.workspaceUUID  | string  |   | UUID of the workspace to query |
-|  query.workspaceUUIDs  | array  |   | UUIDs of the workspaces to query, higher priority than query.workspaceUUID. |
-|  query.output_format  | string  |   | lineprotocol: Line protocol output, defaults to maintaining the existing output format if not specified |
-|  query.cursor_time  | integer  |   | Segment query threshold: For the first segment query, set cursor_time to end_time; for subsequent segment queries, set cursor_time to next_cursor_time from the response |
-|  query.disable_sampling  | bool  |   | Sampling disable switch, default is false |
+|  query.workspaceUUID  | string  |   | UUID of the workspace to be queried |
+|  query.workspaceUUIDs  | array  |   | UUIDs of workspaces to be queried, higher priority than `query.workspaceUUID`. |
+|  query.output_format  | string  |   | lineprotocol: row protocol output, default is existing output format unchanged if not specified |
+|  query.cursor_time  | integer  |   | Segment query threshold: For the first segment query, set `cursor_time` to `end_time`; for subsequent segment queries, set `cursor_time` to `next_cursor_time` from the response |
+|  query.disable_sampling  | bool  |   | Sampling disable switch, default value is false |
 
 
-3. Explanation of Possible Values for the Response Point Density `density` Parameter
+3. Explanation of Response Point Density `density` Parameter Values
 
-| Possible Value  | Description  |
+| Optional Value  | Description  |
 | :------------ | :------------ |
 |  lower |  Low, 60 points  |
 |  low   |  Low, 180 points |
@@ -74,18 +74,17 @@ DQL data query
 * Note the priority of the point density parameter, maximum density `density[high]` * </br>
 maxPointCount > interval > density > control parameters in DQL statement   
 
-4. Common Query Descriptions
+4. Common Query Explanations
 
   - [Unrecovered Event Query](../../../studio-backend/unrecovered-event-query/)
 
       </br>
-Note: When performing data queries using the openapi interface, the default role is Administrator. Be aware of possible restrictions due to data access rules.
-
+Note: When performing data queries via openapi interface, the default role is Administrator. Be aware that it may be subject to data access rule restrictions.
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/df/query_data_v1' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/df/query_data_v1' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw $'{"queries":[{"qtype":"dql","query":{"q":"M::`cpu`:(avg(`usage_idle`))","_funcList":[],"funcList":[],"maxPointCount":720,"interval":10,"align_time":true,"sorder_by":[{"column":"`#1`","order":"DESC"}],"slimit":20,"disable_sampling":false,"timeRange":[1708911106000,1708912906999],"tz":"Asia/Shanghai"}}]}' \

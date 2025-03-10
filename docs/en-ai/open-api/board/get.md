@@ -9,11 +9,10 @@ Retrieve the specified dashboard information based on `dashboard_uuid`
 
 
 
-
 ## Route Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-------|:----------------|
+| Parameter Name        | Type     | Required | Description              |
+|:-------------------|:-------|:-----|:----------------|
 | dashboard_uuid | string | Y | View UUID<br> |
 
 
@@ -21,15 +20,12 @@ Retrieve the specified dashboard information based on `dashboard_uuid`
 
 
 
-
-
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboards/dsbd_xxxx32/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboards/dsbd_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
-
 
 
 

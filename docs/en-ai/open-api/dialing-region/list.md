@@ -20,7 +20,7 @@ Get the list of user-defined nodes
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dialing_region/list' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dialing_region/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```

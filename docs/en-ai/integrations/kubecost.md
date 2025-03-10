@@ -2,11 +2,14 @@
 title     : 'KubeCost'
 summary   : 'Collect KubeCost Metrics information'
 __int_icon: 'icon/kubecost'
+tags      :
+  - 'PROMETHEUS'
+  - 'KUBERNETES'
 dashboard :
   - desc  : 'KubeCost'
     path  : 'dashboard/en/kubecost'
 monitor   :
-  - desc  : 'None'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -26,7 +29,7 @@ monitor   :
 
 ### CRD Configuration
 
-KubeCost has exposed metrics, so only configuration is needed to allow DataKit to discover and report these metrics.
+KubeCost has exposed metrics, so we only need to ensure that DataKit can discover and report these metrics.
 
 - Create `kubecost-serverMonitor.yaml`
 

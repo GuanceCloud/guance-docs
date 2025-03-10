@@ -9,43 +9,42 @@ Create field management
 
 
 
-
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:------------------|:-------|:-----|:----------------|
-| name | string | Y | Field name, under the same field source (fieldSource), the field name cannot be repeated<br>Allow null: False <br>Allow empty string: False <br>Maximum length: 256 <br> |
+|:-------------------|:-------|:-----|:----------------|
+| name | string | Y | Field name, within the same field source (fieldSource), field names cannot be duplicated<br>Allow null: False <br>Allow empty string: False <br>Maximum length: 256 <br> |
 | alias | string | Y | Field alias<br>Allow null: False <br>Allow empty string: False <br>Maximum length: 256 <br> |
 | unit | string |  | Unit information, when fieldType is string, the unit will be set to null<br>Allow null: False <br>Maximum length: 256 <br>Allow empty string: True <br> |
 | fieldType | string |  | Field type<br>Example: time <br>Allow null: False <br>Allow empty string: True <br>Possible values: ['int', 'float', 'boolean', 'string', 'long'] <br> |
 | fieldSource | string |  | Field source<br>Example: time <br>Allow null: False <br>Allow empty string: True <br>Possible values: ['logging', 'object', 'custom_object', 'keyevent', 'tracing', 'rum', 'security', 'network', 'billing'] <br> |
 | desc | string |  | Field description<br>Example: Hostname <br>Allow null: False <br>Allow empty string: True <br>Maximum length: 3000 <br> |
-| coverInner | boolean |  | Whether to overwrite if the added field name is the same as a system-built-in field, true for overwrite, false for not overwriting<br>Example: True <br>Allow null: False <br> |
+| coverInner | boolean |  | Whether to overwrite system-built-in fields with the same name as the added field name, true for overwrite, false for not overwrite<br>Example: True <br>Allow null: False <br> |
 
 ## Additional Parameter Explanation
 
 
-**1. Request Parameter Description**
+**1. Request Parameter Explanation**
 
 | Parameter Name                | Type  | Required  | Description          |
 |-----------------------|----------|----|------------------------|
-|name                   |String|Required| Field name, under the same field source (fieldSource), the field name cannot be repeated|
+|name                   |String|Required| Field name, within the same field source (fieldSource), field names cannot be duplicated|
 |alias                   |String|Required| Field alias|
 |desc                   |String|| Description|
 |unit                   |String|| Unit information, when fieldType is string, the unit will be set to null|
 |fieldType                   |String|| Field type|
-|fieldSource                   |String|| Field source, generic types use an empty string to indicate|
-|coverInner                   |String|| Whether to overwrite if the field name is the same as a system-built-in field, true for overwrite, false for not overwriting|
+|fieldSource                   |String|| Field source, generic types use an empty string|
+|coverInner                   |String|| Whether to overwrite system-built-in fields with the same name as the added field name, true for overwrite, false for not overwrite|
 
 For adding unit information, refer to [Unit Description](../../../studio-backend/unit/)
 
 --------------
 
-**2. Response Parameter Description**
+**2. Response Parameter Explanation**
 
-When the content returned by this interface is `need_confirm`, it indicates that there already exists a built-in field with the same source and name.
+When the returned content of this interface is need_confirm, it indicates that there already exists a built-in field with the same source and name.
       <br/>
-To continue creating, you need to specify `coverInner` as true, and the existing built-in field with the same name will be hidden.
+If you wish to continue creating, you must specify coverInner as true, and the existing built-in field with the same name will be hidden.
 
 --------------
 
@@ -53,11 +52,11 @@ To continue creating, you need to specify `coverInner` as true, and the existing
 
 3.1. Field management provides field descriptions for field queries.
                   <br/>
-When performing the following function queries, if you need to return field descriptions, you must specify `fieldTagDescNeeded` (at the same level as `queries`) as true.
+When performing the following function queries, if you need to return field descriptions, you should specify fieldTagDescNeeded (at the same level as queries) as true.
             <br/>
-The `series` returned will add the `value_desc` field (at the same level as `values`, `columns`).
+The series in the response will add a value_desc field (at the same level as values and columns).
 
-| Function                | Field Source / fieldSource  |
+| Function                | Field Source/fieldSource  |
 |-----------------------|----------|
 |SHOW_TAG_KEY       |  ""  |
 |SHOW_OBJECT_HISTORY_FIELD       |  "object"  |
@@ -77,24 +76,24 @@ The `series` returned will add the `value_desc` field (at the same level as `val
 |SHOW_RUM_METRIC_FIELD       |  "rum"  |
 |SHOW_NETWORK_METRIC_FIELD       |  "network"  |
 
-Note: The field description for `SHOW_FIELD_KEY` uses custom metric configurations and the `measurements-meta.json` from DataKit.
+Note: The field description for SHOW_FIELD_KEY uses custom metric configuration and datakit side measurements-meta.json
 
 3.2. Field management provides unit information for queries
 
-dql query unit loading (adding units in the series of query_data results):
+dql query unit loading (adding units to the series in the query_data result):
                   <br/>
-When querying `Metrics` data, the loaded unit information is based on custom metric fields, overriding the official metric fields (`measurements-meta.json`)
+When querying Metrics data, the loaded unit information is from custom metric fields, overriding official metric fields (measurements-meta.json)
                   <br/>
-When querying `non-Metrics` data, the loaded unit information is defined in the field management
+When querying non-Metrics data, the loaded unit information is defined in field management
                   <br/>
 
-3.3. Query function explanations when field management provides unit information
+3.3. Query function explanation when field management provides unit information
 
-During dql queries, if the used functions are not within the configured `unitWhiteFuncs` range, no units will be added, such as `count`
+During dql queries, if the used function is not within the configured unitWhiteFuncs functions, no unit is added, for example: count
                         <br/>
-`unitWhiteFuncs` contains two types of functions: `normal`, `special`. When using `special` functions, units have a fixed suffix `/s`, unit = {"unit": unit, "suffix": "/s"}
+unitWhiteFuncs contains two types of functions: normal and special. When using special functions, a fixed suffix "/s" is added to the unit, unit = {"unit": unit, "suffix": "/s"}
                         <br/>
-Function explanations for `unitWhiteFuncs` are as follows:
+unitWhiteFuncs function explanation:
 ```yaml
 unitWhiteFuncs:
   normal:
@@ -141,7 +140,7 @@ unitWhiteFuncs:
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/field_cfg/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/field_cfg/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Accept-Language: en' \

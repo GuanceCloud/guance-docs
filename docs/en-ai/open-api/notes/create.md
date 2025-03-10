@@ -12,17 +12,17 @@ Create a note. `chartUUIDs` contains the chart information associated with this 
 
 | Parameter Name | Type   | Required | Description                                      |
 |:--------------|:-------|:---------|:-------------------------------------------------|
-| name          | string | Y        | Note name<br>Allow null: False <br>Max length: 128 <br> |
-| chartUUIDs    | array  |          | Note type, default is CUSTOM<br>Example: CUSTOM <br>Allow null: False <br>Max length: 32 <br> |
-| extend        | json   |          | Additional data for the note, default is {}<br>Example: {} <br>Allow null: False <br> |
+| name          | string | Y        | Note name<br>Allow empty: False <br>Max length: 128 <br> |
+| chartUUIDs    | array  |          | Note type, default is CUSTOM<br>Example: CUSTOM <br>Allow empty: False <br>Max length: 32 <br> |
+| extend        | json   |          | Additional data for the note, default is {}<br>Example: {} <br>Allow empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/notes/create' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notes/create' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"openapi_note","chartUUIDs":["chrt_xxxx32","chrt_xxxx32"],"extend":{"fixedTime":"15m"}}' \

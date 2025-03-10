@@ -8,11 +8,12 @@
 Delete Service List configuration
 
 
+
 ## Body Request Parameters
 
 | Parameter Name    | Type   | Required | Description              |
-|:-------------|:-----|:------|:----------------|
-| serviceUUIDs | array | Y | Service List<br>Example: ['ss', 'yy'] <br>Allow empty: False <br> |
+|:--------------|:-----|:------|:----------------|
+| serviceUUIDs | array | Y | Service List<br>Example: ['ss', 'yy'] <br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -20,7 +21,7 @@ Delete Service List configuration
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/service_manage/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage/delete' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --data-binary '{"serviceUUIDs":["sman_xxxx32", "sman_xxxx32"]}' \

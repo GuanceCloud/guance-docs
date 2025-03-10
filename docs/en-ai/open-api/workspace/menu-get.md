@@ -1,4 +1,4 @@
-# Get Function Menu (old)
+# Get Function Menu (Old)
 
 ---
 
@@ -18,7 +18,7 @@ Retrieve the current workspace function menu
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/menu/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/menu/get' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
@@ -42,7 +42,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu/get' \
                 "value": 1
             },
             {
-                "key": "Incident",
+                "key": "ExceptionsTracking",
                 "value": 0
             },
             {
@@ -50,7 +50,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu/get' \
                 "value": 0
             },
             {
-                "key": "Metrics",
+                "key": "MetricQuery",
                 "value": 1
             },
             {
@@ -62,15 +62,15 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu/get' \
                 "value": 1
             },
             {
-                "key": "RUM",
+                "key": "Rum",
                 "value": 1
             },
             {
-                "key": "Dial Testing",
+                "key": "CloudDial",
                 "value": 1
             },
             {
-                "key": "Security Check",
+                "key": "Security",
                 "value": 1
             },
             {
@@ -111,3 +111,21 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu/get' \
     "traceId": "13205984800302747785"
 } 
 ```
+
+### Explanation of Configuration Keys
+
+- **Scene**: Indicates whether the scene feature is enabled.
+- **Events**: Indicates whether the events feature is enabled.
+- **ExceptionsTracking**: Indicates whether exception tracking is enabled.
+- **Objectadmin**: Indicates whether object administration is enabled.
+- **MetricQuery**: Indicates whether metric queries are enabled.
+- **LogIndi**: Indicates whether log indicators are enabled.
+- **Tracing**: Indicates whether tracing features are enabled.
+- **Rum**: Indicates whether RUM features are enabled.
+- **CloudDial**: Indicates whether cloud dial testing is enabled.
+- **Security**: Indicates whether security features are enabled.
+- **GitLabCI**: Indicates whether GitLab CI integration is enabled.
+- **Monitor**: Indicates whether monitoring features are enabled.
+- **Integration**: Indicates whether integrations are enabled.
+- **Workspace**: Indicates whether workspace management features are enabled.
+- **Billing**: Indicates whether billing features are enabled.

@@ -5,154 +5,150 @@
 <br />**POST /api/v1/objc_cfg/\{objc_name\}/modify**
 
 ## Overview
-Modify the object classification configuration
-
+Modify the object classification configuration.
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------------|:-------|:-----|:----------------|
-| objc_name | string | Y | Name of the object classification configuration<br> |
-
+| Parameter Name        | Type     | Required | Description              |
+|:------------------|:-------|:-----|:----------------|
+| objc_name         | string | Y    | Object classification configuration name |
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------------|:-------|:-----|:----------------|
-| sourceType | string | Y | Source type, default value is `custom_object`<br>Allow empty: False <br>Options: ['object', 'custom_object'] <br> |
-| objcGroupUUID | string |  | Business group UUID<br>Allow empty: False <br>Example: haha <br>Allow empty string: True <br>Maximum length: 64 <br> |
-| fields | array |  | Custom attribute fields (data reported must include these fields, otherwise the data will be discarded)<br>Allow empty: False <br>Example: [{'name': 'ak', 'alias': 'machine_gun'}] <br> |
-| templateInfo | json |  | Template configuration details<br>Allow empty: False <br>Example: {} <br> |
+| Parameter Name        | Type     | Required | Description              |
+|:------------------|:-------|:-----|:----------------|
+| sourceType        | string | Y    | Source type, default value is `custom_object`<br>Allow null: False <br>Options: ['object', 'custom_object'] <br> |
+| objcGroupUUID     | string |      | Business group UUID<br>Allow null: False <br>Example: Haha <br>Allow empty string: True <br>Maximum length: 64 <br> |
+| fields            | array  |      | Custom attribute fields (the reported data must contain these fields; otherwise, the reported data will be discarded)<br>Allow null: False <br>Example: [{'name': 'ak', 'alias': 'machine gun'}] <br> |
+| templateInfo      | json   |      | Template configuration details<br>Allow null: False <br>Example: {} <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Descriptions
 
 --------------
 
-*Explanation for `fields` parameter*</br>
+*Description of `fields` parameter*</br>
 This parameter stores bound field information in list form. The list member parameters are as follows:
 
 | Parameter Name  | Type     | Description   |
 |:----------------|:----------------|:---------|
-| name     | string | Field name |
-| alias     | string | Field alias |
+| name            | string | Field name |
+| alias           | string | Field alias |
 
 --------------
 
-*Explanation for `templateInfo` parameter*</br>
+*Description of `templateInfo` parameter*</br>
 
-For detailed structure explanation, please refer to [Create Resource Explorer - JSON Configuration - Template Configuration Explanation]
+For detailed structure description, please refer to [Create Resource Explorer - JSON Configuration - Template Configuration Description]
 
-**1. Explanation for `source` parameter**</br>
-Defines the resource's classification and the text content that needs to be displayed on the UI page. The list member parameters are as follows:
+**1. source parameter description**</br>
+Defines the resource category and the text content that needs to be displayed on the UI page. List member parameters are as follows:
 
 | Parameter Name  | Type     | Description   |
 |:----------------|:----------------|:---------|
-| key     | string | Resource class |
-| name     | string | Resource class alias |
+| key             | string | Resource class |
+| name            | string | Resource class alias |
 
-**2. Explanation for `filters` parameter**</br>
-Defines the default fields displayed in the quick filter section of the resource explorer. Format is shown below:
+**2. filters parameter description**</br>
+Defines the default display fields for quick filtering in the resource explorer. Format is as follows:
 
-```
+```json
 "filters":[
   {
-    "key":"field_name"
+    "key":"field name"
   },
   {
-    "key":"field_name"
+    "key":"field name"
   }
 ]
 ```
 
-**3. Explanation for `columns` parameter**</br>
-Defines the default fields displayed in the list of the resource explorer. Format is shown below:
+**3. columns parameter description**</br>
+Defines the default display fields in the resource explorer's list. Format is as follows:
 
-```
+```json
 "columns":[
   {
-    "key":"field_name",
+    "key":"field name",
   },
   {
-    "key":"field_name",
+    "key":"field name",
   }
 ]
 ```
 
-**4. Explanation for `views` parameter**
+**4. views parameter description**
 
-| Parameter        | Required      | Description                                                                                                                                                                   | Example Usage                                                                                                                                                                                                                   |
-| --------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| title     | /       | Tab display title                                                                                                                                                             | "text"                                                                                                                                                                                                                   |
-| required  | false   | Whether the tab page should not be displayed, fixed values: true, false.<ul><li>true: Not displayed by default, linked with keys configuration to determine if data matches; if matched, it displays</li><li>false: Displayed by default</li></ul>                                                                  | "false"                                                                                                                                                                                                                |
-| keys      | /       | Linked with `required` parameter, can configure key fields and matching logic. If matched, it displays. Note: This parameter applies only when the `required` parameter value is true                                                                                                 | <ul><li>{"key":"*"}</li><li>{"key":"value"} : Data contains key field and its value must be value</li><li>{"key1":"value1","key2":"value2"} : Data contains key1 field value is value1 and key2 field value is value2 combination</li></ul>                                    |
-| timerange | default | Definition of time range for interface data queries. Basic format:<ul><li>default: Follows platform time widget default settings, usually 15m (i.e., query data from the last 15 minutes)</li><li>Relative time: Custom relative time range, units include m(minutes), h(hours), d(days)</li><li>Data time field offset ["before_offset", "after_offset"]</li></ul> | <ul><li>"default" : Last 15 minutes</li><li>"15m" : Last 15 minutes</li><li>"1h" : Last 1 hour</li><li>"1d" : Last 1 day</li><li>["15m","15m"] : Offset 15 minutes before and after based on current data time</li><li>["5m","30m"] : Offset 5 minutes before and 30 minutes after based on current data time</li></ul> |
-| viewType  | /       | Page type. Currently supports two types: "built-in page" and "built-in view", corresponding to "component" and "dashboard".                                                                                                           | /                                                                                                                                                                                                                      |
-| viewName  | /       | Page name. If the page type is built-in page, fill in the relative path address of the page; if the page type is built-in view, just fill in the view name. Refer to the following [Associated Built-in Page][Associated Built-in View] explanations                                                                                           | /                                                                                                                                                                                                                      
+| Parameter        | Required | Description                                                                                                                                                                   | Example Syntax                                                                                                                                                                                                                   |
+| -------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| title          | /       | Tab display title                                                                                                                                                             | "text"                                                                                                                                                                                                                   |
+| required       | false   | Whether the tab page is hidden, fixed values: true, false.<ul><li>true: Hidden by default, linked with keys configuration to determine if data matches; if it does, it shows</li><li>false: Shown by default</li></ul>                                                                  | "false"                                                                                                                                                                                                                |
+| keys           | /       | Linked with the `required` parameter, configure key fields and matching logic for field values, show if matched. Note: In this case, the value of the `required` parameter must be true                                                                                                 | <ul><li>{"key":"*"} : Data satisfies the key field</li><li>{"key":"value"} : Data contains the key field and its value must be value</li><li>{"key1":"value1","key2":"value2"} : Data contains key1 with value1 and key2 with value2 combination</li></ul>                                    |
+| timerange      | default | Definition of the time range for querying interface data. Basic format:<ul><li>default: Follows the platform's default time widget settings, usually 15m (i.e., query data from the last 15 minutes)</li><li>Relative time: Custom relative time range, units include m(minutes), h(hours), d(days)</li><li>Data linkage with time field configuration ["offset before", "offset after"]</li></ul> | <ul><li>"default" : Last 15 minutes</li><li>"15m" : Last 15 minutes</li><li>"1h" : Last 1 hour</li><li>"1d" : Last 1 day</li><li>["15m","15m"] : Offset 15 minutes before and after the current data time</li><li>["5m","30m"] : Offset 5 minutes before and 30 minutes after the current data time</li></ul> |
+| viewType       | /       | Page type. Currently supports two types: "built-in page" and "built-in view", corresponding to "component" and "dashboard".                                                                                                           | /                                                                                                                                                                                                                      |
+| viewName       | /       | Page name. If the page type is a built-in page, fill in the relative path address of the page; if the page type is a built-in view, fill in the view name only. Refer to the following [Link Built-in Pages][Link Built-in Views] descriptions                                                                                           | /
 
-**5. Example for `templateInfo` parameter**
+**5. templateInfo parameter example**
 
-```
+```json
 {
   "main": [
     {
       "class":"custom_object",
       "source": {
-        "key":"resource_class",
-        "name":"resource_class_alias"
+        "key":"resource classification",
+        "name":"resource classification alias"
       },
       "filters":[
         {
-          "key":"field_name"
+          "key":"field name"
         },
         {
-          "key":"field_name"
+          "key":"field name"
         }
       ],
       "table":{
         "columns":[
           {
-            "key":"field_name",
+            "key":"field name",
           },
           {
-            "key":"field_name",
+            "key":"field name",
           }
         ],
       },
       "detail":{
         "views":[
           {
-            "title":"Tab Title",
+            "title":"Tab title",
             "required":"false",
             "keys":{},
             "view_type": "component",
-            "viewName":"built-in_page"
+            "viewName":"built-in page"
           },
           {
-            "title":"Tab Title",
+            "title":"Tab title",
             "required":"false",
             "keys":{},
             "timerange":"default",
             "view_type": "dashboard",
-            "viewName":"built-in_view"
+            "viewName":"built-in view"
           }
         ]
       }
     }
   ],
-  "title": "Resource Class or Alias"
+  "title": "Resource classification or alias"
 }
 ```
 
-
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/objc_cfg/test/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/objc_cfg/test/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"sourceType":"custom_object","objcGroupUUID":"objcg_xxxx","fields":[{"name":"name"}],"templateInfo":{"iconSet":{},"main":[{"class":"custom_object","source":{"key":"test","name":""},"filters":[],"fills":[],"groups":[],"table":{"columns":[],"detail":{"views":[{"keys":{},"viewType":"dashboard","viewName":"NtpQ Monitoring View","title":"viewer","required":true,"timerange":"default"}]}}}],"title":"test"}}' \
 --compressed
 ```
-
 
 ## Response
 ```shell

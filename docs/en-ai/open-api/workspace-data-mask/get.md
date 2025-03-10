@@ -11,12 +11,12 @@
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
+| Parameter Name        | Type     | Required | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| data_mask_rule_uuid | string | Y | UUID of the data masking rule<br> |
+| data_mask_rule_uuid | string | Y | The UUID of the data masking rule<br> |
 
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
 
 
@@ -24,7 +24,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/data_mask_rule/wdmk_xxxx/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_mask_rule/wdmk_xxxx/get' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed

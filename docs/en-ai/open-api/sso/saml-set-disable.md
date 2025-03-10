@@ -21,13 +21,13 @@ Enable/Disable SAML SSO login
 |:-----------|:-------|:-----|:----------------|
 | isDisable | boolean | Y | Set the enabled status<br>Example: True <br>Allow null: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/sso/sso_xxxx32/set_disable' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/sso/sso_xxxx32/set_disable' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw '{"isDisable":true}' \

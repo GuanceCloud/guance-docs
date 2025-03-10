@@ -12,12 +12,12 @@
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:-----------|:-------------------------|
-| name                 | string   | Y          | Channel name<br>Example: Channel No.1 <br>Allow null: False <br>Maximum length: 256 <br> |
-| description          | string   |            | Description of the channel<br>Example: CUSTOM <br>Allow null: False <br>Allow empty string: True <br>Maximum length: 256 <br> |
-| notifyTarget         | array    |            | List of notification target UUIDs<br>Example: [] <br>Allow null: False <br> |
-| notifyUpgradeCfg     | json     |            | Rule configuration<br>Allow null: False <br> |
-| notifyUpgradeCfg.triggerTime | integer | Y | After how many seconds to trigger an upgrade notification, unit s<br>Example: simpleCheck <br>Allow null: False <br> |
+|:---------------------|:---------|:----------|:------------------------|
+| name | string | Y | Channel name<br>Example: Channel 1 <br>Allow null: False <br>Maximum length: 256 <br> |
+| description | string | N | Channel description<br>Example: CUSTOM <br>Allow null: False <br>Allow empty string: True <br>Maximum length: 256 <br> |
+| notifyTarget | array | N | List of notification target UUIDs<br>Example: [] <br>Allow null: False <br> |
+| notifyUpgradeCfg | json | N | Rule configuration<br>Allow null: False <br> |
+| notifyUpgradeCfg.triggerTime | integer | Y | After how many seconds to trigger an upgrade notification, unit is seconds<br>Example: simpleCheck <br>Allow null: False <br> |
 | notifyUpgradeCfg.notifyTarget | array | Y | List of upgrade notification target UUIDs<br>Example: [] <br>Allow null: False <br> |
 
 ## Additional Parameter Notes
@@ -28,7 +28,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/channel/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/channel/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"aaada"}' \

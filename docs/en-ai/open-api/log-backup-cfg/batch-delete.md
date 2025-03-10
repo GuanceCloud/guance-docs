@@ -10,9 +10,9 @@ Delete data forwarding rules
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                          |
-|:--------------|:-------|:---------|:-------------------------------------|
-| cfgUUIDs      | array  | Y        | List of forwarding configuration UUIDs<br>Allow null: False <br> |
+| Parameter Name | Type   | Required | Description                                      |
+|:--------------|:-------|:---------|:-------------------------------------------------|
+| cfgUUIDs      | array  | Y        | List of forwarding configuration UUIDs<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -20,7 +20,7 @@ Delete data forwarding rules
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/log_backup_cfg/batch_delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/log_backup_cfg/batch_delete' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \

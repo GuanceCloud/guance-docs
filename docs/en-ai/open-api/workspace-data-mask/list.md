@@ -12,12 +12,12 @@
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
+|:---------------------|:---------|:-----------|:-------------------------|
 | search | string | No  | Search rule name<br>Can be empty: False <br> |
 | pageIndex | integer | No  | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
 | pageSize | integer | No  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
-## Additional Parameter Information
+## Additional Parameter Notes
 
 
 
@@ -25,7 +25,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/data_mask_rule/list' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_mask_rule/list' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed

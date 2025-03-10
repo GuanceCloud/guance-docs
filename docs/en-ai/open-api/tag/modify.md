@@ -9,6 +9,7 @@ Modify an existing tag
 
 
 
+
 ## Route Parameters
 
 | Parameter Name    | Type     | Required | Description              |
@@ -20,9 +21,9 @@ Modify an existing tag
 
 | Parameter Name    | Type     | Required | Description              |
 |:--------------|:-------|:-----|:----------------|
-| name | string |  | Tag name<br>Can be empty: False <br>Maximum length: 50 <br> |
-| description | string |  | Tag description<br>Can be empty: False <br>Maximum length: 100 <br> |
-| colour | string |  | Tag color<br>Can be empty: False <br>Maximum length: 50 <br> |
+| name | string |  | Tag name<br>Allow null: False <br>Maximum length: 50 <br> |
+| description | string |  | Tag description<br>Allow null: False <br>Maximum length: 100 <br> |
+| colour | string |  | Tag color<br>Allow null: False <br>Maximum length: 50 <br> |
 
 ## Additional Parameter Notes
 
@@ -30,13 +31,13 @@ Data Description
 
 - Request Parameter Explanation
 
-| Parameter Name   | Type | Description                                                 |
+| Parameter Name           | Type | Description                                                 |
 | ---------------- | ---- | ---------------------------------------------------- |
 | name       | string | Tag name |
 | description             | string | Field description information                                                 |
-| color    | string | Predefined color type, default, style_key1, style_key2 ~~                |
+| color    | string | Front-end and back-end agreed color type, default, style_key1, style_key2 ~~                |
 
-- Color field type-color mapping:
+- Color field type-color correspondence:
 ```json
 {
     "default": {"background": "#CCE6FF", "color": "rgba(0,0,0,0.8)"},
@@ -72,7 +73,7 @@ Data Description
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/tag/tag_xxxx32/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/tag/tag_xxxx32/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Accept-Language: en' \

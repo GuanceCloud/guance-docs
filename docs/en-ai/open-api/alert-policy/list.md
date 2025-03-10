@@ -10,11 +10,11 @@ Retrieve a paginated list of alert strategies
 
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| search | string | No  | Search for alert strategy names<br>Can be empty: True <br> |
-| pageIndex | integer | Yes  | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | Yes  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| Parameter Name    | Type      | Required | Description                                      |
+|:--------------|:-------|:-----|:---------------------------------------------|
+| search     | string | No   | Search for alert strategy names<br>Allow empty: True <br> |
+| pageIndex  | integer | Yes  | Page number<br>Allow empty: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize   | integer | Yes  | Number of items per page<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
 
@@ -22,7 +22,7 @@ Retrieve a paginated list of alert strategies
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/alert_policy/list?pageIndex=1&pageSize=10' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/alert_policy/list?pageIndex=1&pageSize=10' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```

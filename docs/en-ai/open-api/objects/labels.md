@@ -5,15 +5,15 @@
 <br />**POST /api/v1/object/hosts/label/list**
 
 ## Overview
-Retrieve the list of `labels` (labels are cached, with a cache duration generally not exceeding 5 minutes).
+Retrieve the list of `labels` (labels are cached, usually with a cache duration not exceeding 5 minutes)
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                  |
-|:-------------|:-------|:--------|:-----------------------------|
-| source       | string | Y       | Data source<br>Can be empty: False <br> |
-| names        | array  |         | List of object names<br>Can be empty: False <br> |
-| timeRange    | array  |         | Time range<br>Can be empty: False <br> |
+| Parameter Name | Type   | Required | Description             |
+|:--------------|:-------|:--------|:-----------------------|
+| source        | string | Y       | Data source<br>Can be empty: False <br> |
+| names         | array  |         | List of object names<br>Can be empty: False <br> |
+| timeRange     | array  |         | Time range<br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -21,13 +21,12 @@ Retrieve the list of `labels` (labels are cached, with a cache duration generall
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/object/hosts/label/list' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/object/hosts/label/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"source": "HOST"}' \
 --compressed
 ```
-
 
 
 ## Response
@@ -86,7 +85,7 @@ curl 'https://openapi.guance.com/api/v1/object/hosts/label/list' \
         "zy-dataflux-func-demo": {
             "labels": [
                 "test",
-                "teerwei"
+                "terwei"
             ]
         }
     },

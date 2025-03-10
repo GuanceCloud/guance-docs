@@ -10,9 +10,9 @@ Delete a Key
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:--------|:-------------------------|
-| ak_uuid       | string | Y       | UUID of the access key<br> |
+| Parameter Name | Type   | Required | Description               |
+|:--------------|:-------|:--------|:--------------------------|
+| ak_uuid       | string | Y       | UUID of the access key     |
 
 
 ## Additional Parameter Notes
@@ -21,7 +21,7 @@ Delete a Key
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/accesskey/wsak_xxxxx/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/accesskey/wsak_xxxxx/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```

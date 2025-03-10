@@ -8,16 +8,15 @@
 List the Func functions that can be executed via OpenAPI
 
 
-
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:-----------|:-------------------------|
-| _fuzzySearch         | string   | No         | Fuzzy search query field<br>Example: Super VIP template <br>Can be empty: False <br> |
-| funcId               | string   | No         | Search by function ID<br>Example: Super VIP template <br>Can be empty: False <br> |
-| funcTitle            | string   | No         | Search by function title using LIKE query<br>Example: Super VIP template <br>Can be empty: False <br> |
-| funcTags             | commaarray | No       | Function tags, used to filter functions by tags<br>Example:  <br>Can be empty: False <br> |
-| funcScriptId         | string   | No         | Script set ID<br>Example:  <br> |
+| Parameter Name | Type | Required | Description |
+|:-----------|:-------|:-----|:----------------|
+| _fuzzySearch | string | No | Fuzzy search query field<br>Example: Super VIP Template <br>Allow empty: False <br> |
+| funcId | string | No | Search by function ID<br>Example: Super VIP Template <br>Allow empty: False <br> |
+| funcTitle | string | No | Search by function title using LIKE query<br>Example: Super VIP Template <br>Allow empty: False <br> |
+| funcTags | commaarray | No | Function tags for filtering functions by tag<br>Example:  <br>Allow empty: False <br> |
+| funcScriptId | string | No | Script set ID<br>Example:  <br> |
 
 ## Additional Parameter Notes
 
@@ -25,7 +24,7 @@ List the Func functions that can be executed via OpenAPI
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/outer_function/list' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/outer_function/list' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed
@@ -46,7 +45,7 @@ curl 'https://openapi.guance.com/api/v1/outer_function/list' \
             ],
             "category": "openapi",
             "definition": "test(workspace_uuid, workspace_token, your_name='OpenAPI User')",
-            "description": "Test interface, mainly for users to test whether they can invoke DataFlux Func via OpenAPI",
+            "description": "Test interface, mainly to facilitate user testing of whether they can connect DataFlux Func through OpenAPI",
             "extraConfigJSON": null,
             "id": "guance__openapi.test",
             "integration": null,
@@ -76,7 +75,7 @@ curl 'https://openapi.guance.com/api/v1/outer_function/list' \
             ],
             "category": "openapi",
             "definition": "report_event(workspace_uuid, workspace_token, data)",
-            "description": "Report events, implemented through DataFlux Func\nSupports self-built inspections and all alert handling logic accompanying monitors\n\nParameters:\n    data {dict,list} Event data or its list to report, structured as follows:\n                        {\n                            \"title\"         : {str}      Event title, single-line text only\n                            \"message\"       : {str}      Event content, supports Markdown\n                            \"status\"        : {str}      Event level, options are: ok, info, warning, error, critical\n                            \"dimension_tags\": {str,dict} Event dimensions, e.g., { 'host': 'web001' } or its serialized string\n                        }",
+            "description": "Report event, implemented through DataFlux Func for event writing\nSupports self-built inspections and all alert handling logic accompanying monitors\n\nParameters:\n    data {dict,list} Event data or its list to report, structured as follows:\n                        {\n                            \"title\"         : {str}      Event title, supports single-line text only\n                            \"message\"       : {str}      Event content, supports Markdown\n                            \"status\"        : {str}      Event level, optional values: ok, info, warning, error, critical\n                            \"dimension_tags\": {str,dict} Event dimensions, e.g., { 'host': 'web001' } or its serialized string\n                        }",
             "extraConfigJSON": null,
             "id": "guance__openapi.report_event",
             "integration": null,

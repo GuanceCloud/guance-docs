@@ -12,11 +12,11 @@
 ## Route Parameters
 
 | Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:---------|:-------------------------|
-| cfg_uuid      | string | Y        | Issue auto discovery configuration UUID<br> |
+|:-----------|:-------|:-----|:----------------|
+| cfg_uuid | string | Y | Issue auto discovery configuration UUID<br> |
 
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
 
 
@@ -24,7 +24,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue_auto_discovery/iatdc_xxxxxx/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue_auto_discovery/iatdc_xxxxxx/delete' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --insecure

@@ -5,14 +5,14 @@
 <br />**GET /api/v1/viewer/\{viewer_uuid\}/export**
 
 ## Overview
-Export the viewer specified by `viewer_uuid` as a template structure.
+Export the viewer specified by `viewer_uuid` as a template structure
 
 
 ## Route Parameters
 
-| Parameter Name    | Type   | Required | Description              |
-|:-------------|:-----|:-------|:----------------|
-| viewer_uuid  | string | Y     | Viewer UUID<br> |
+| Parameter Name     | Type   | Required | Description              |
+|:-----------------|:------|:-------|:-------------------------|
+| viewer_uuid      | string| Y     | Viewer UUID<br>          |
 
 
 ## Additional Parameter Notes
@@ -21,10 +21,11 @@ Export the viewer specified by `viewer_uuid` as a template structure.
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/viewer/dsbd_xxxx32/export' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/viewer/dsbd_xxxx32/export' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
+
 
 
 ## Response

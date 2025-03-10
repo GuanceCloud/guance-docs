@@ -11,24 +11,26 @@
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description                           |
-|:--------------|:-------|:---------|:--------------------------------------|
-| cfg_uuid      | string | Y        | Issue auto discovery configuration UUID<br> |
+| Parameter Name | Type   | Required | Description                         |
+|:--------------|:-------|:--------|:------------------------------------|
+| cfg_uuid      | string | Y       | UUID of the Issue auto discovery configuration<br> |
 
 
 ## Body Request Parameters
 
-| Parameter Name | Type      | Required | Description                                          |
-|:--------------|:----------|:---------|:----------------------------------------------------|
-| isDisable     | boolean   | Y        | Set the enabled status<br>Allow null: False <br> |
+| Parameter Name | Type      | Required | Description                                      |
+|:--------------|:---------|:--------|:-------------------------------------------------|
+| isDisable     | boolean  | Y       | Set the enable status<br>Allow null: False <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
+
+
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue_auto_discovery/iatdc_xxxxxx/set_disable' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue_auto_discovery/iatdc_xxxxxx/set_disable' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw $'{"isDisable": false}' \

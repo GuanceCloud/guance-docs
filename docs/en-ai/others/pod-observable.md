@@ -23,9 +23,9 @@ There are two methods to install DataKit via DaemonSet in Kubernetes:
 - Kubernetes >= 1.14
 - Helm >= 3.0+
 
-#### Step1: Add the DataKit Helm Repository
+#### Step 1: Add the DataKit Helm Repository
 
-To install DataKit for collecting Kubernetes resources using Helm, you need to [install Helm](https://helm.sh/docs/intro/install/) on your server first. After completing the Helm installation, you can add the DataKit Helm repository.
+To install DataKit using Helm for collecting Kubernetes resources, you need to install Helm on your server first as described [here](https://helm.sh/docs/intro/install/). After Helm is installed, you can add the DataKit Helm repository.
 
 Note: After adding the DataKit Helm repository, you must run the upgrade command `helm repo update`.
 
@@ -36,7 +36,7 @@ $ helm repo update
 
 ![](img/2.helm_1.png)
 
-#### Step2: Install DataKit with Helm
+#### Step 2: Install DataKit Using Helm
 
 Modify the token data in the `datakit.dataway_url` field of the Helm installation command for DataKit.
 
@@ -44,7 +44,7 @@ Modify the token data in the `datakit.dataway_url` field of the Helm installatio
 $ helm install datakit datakit/datakit -n datakit --set datakit.dataway_url="https://openway.guance.com?token=<your-token>" --create-namespace 
 ```
 
-The token can be obtained from the workspace's "Management" - "Basic Settings" in <<< custom_key.brand_name >>>.
+The token can be obtained from the workspace's "Manage" - "Basic Settings" section in <<< custom_key.brand_name >>>.
 
 ![](img/1.contrainer_2.png)
 
@@ -52,40 +52,40 @@ After replacing the token, execute the Helm installation command for DataKit.
 
 ![](img/2.helm_2.png)
 
-#### Step3: Check Deployment Status
+#### Step 3: Check Deployment Status
 
-After DataKit is installed, you can check the deployment status using `$ helm -n datakit list`.
+Once DataKit is installed, you can check the deployment status with `$ helm -n datakit list`.
 
 ![](img/2.helm_3.png)
 
-#### Step4: View and Analyze Collected Pod Data in <<< custom_key.brand_name >>> Workspace
+#### Step 4: View and Analyze Collected Pod Data in <<< custom_key.brand_name >>> Workspace
 
-Once the DataKit deployment status is normal, you can view and analyze the collected K8S data in the <<< custom_key.brand_name >>> workspace under "Infrastructure" - "Containers".
+If the DataKit deployment status is normal, you can view and analyze the collected K8S data in the <<< custom_key.brand_name >>> workspace under "Infrastructure" - "Containers".
 
 ![](img/3.yaml_7.png)
 
 ### Yaml Installation
 
-#### Step1: Download the Yaml File
+#### Step 1: Download the Yaml File
 
-Before enabling Kubernetes resource collection, use a terminal tool to log into the server and execute the following script command to download the yaml file.
+Before enabling Kubernetes resource collection, you need to log in to the server using a terminal tool and execute the following script command to download the yaml file.
 
 ```
-wget https://<<< custom_key.static_domain >>>/datakit/datakit.yaml
+wget https://static.<<< custom_key.brand_main_domain >>>/datakit/datakit.yaml
 ```
 
 ![](img/3.yaml_3.png)
 
-#### Step2: Modify the datakit.yaml File
+#### Step 2: Modify the datakit.yaml File
 
-Edit the datakit.yaml file to configure the data gateway (dataway), replacing the token with the token from your workspace.
+Edit the datakit.yaml file to configure the data gateway (dataway) and replace the token with the workspace token.
 
 ```
 	- name: ENV_DATAWAY
-		value: https://openway.guance.com?token=<your-token> # Replace this with your workspace token
+		value: https://openway.guance.com?token=<your-token> # Replace with your workspace token
 ```
 
-The token can be obtained from the workspace's "Management" - "Basic Settings" in <<< custom_key.brand_name >>>.
+The token can be obtained from the workspace's "Manage" - "Basic Settings" section in <<< custom_key.brand_name >>>.
 
 ![](img/1.contrainer_2.png)
 
@@ -93,21 +93,21 @@ After replacing the token, save the datakit.yaml file.
 
 ![](img/3.yaml_2.png)
 
-#### Step3: Install the Yaml File
+#### Step 3: Install the Yaml File
 
-After modifying the data gateway configuration in the datakit.yaml file, use the command `kubectl apply -f datakit.yaml` to install the yaml file. Note that `datakit.yaml` should be replaced with the actual filename you saved.
+After modifying the data gateway configuration in the datakit.yaml file, use the command `kubectl apply -f datakit.yaml` to install the yaml file. Ensure that `datakit.yaml` matches the filename you saved it as.
 
 ![](img/3.yaml_4.png)
 
-#### Step4: Check DataKit Running Status
+#### Step 4: Check DataKit Running Status
 
 After installing the yaml file, a DataKit DaemonSet deployment will be created. You can check the running status of DataKit using the command `kubectl get pod -n datakit`.
 
 ![](img/3.yaml_5.png)
 
-#### Step5: View and Analyze Collected K8S Data in <<< custom_key.brand_name >>> Workspace
+#### Step 5: View and Analyze Collected K8S Data in <<< custom_key.brand_name >>> Workspace
 
-Once the DataKit running status is normal, you can view and analyze the collected K8S data in the <<< custom_key.brand_name >>> workspace under "Infrastructure" - "Containers".
+If the DataKit running status is normal, you can view and analyze the collected K8S data in the <<< custom_key.brand_name >>> workspace under "Infrastructure" - "Containers".
 
 ![](img/3.yaml_7.png)
 

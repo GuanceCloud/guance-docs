@@ -15,8 +15,8 @@ Return parameter description:
 
 **Key Fields**
 
-| Parameter Name                | Description          |
-|-----------------------|----------------|
+|  Parameter Name                |   Parameter Description  |
+|-----------------------|----------|
 |cashBalance            | Cash account balance |
 |couponBalance          | Coupon balance |
 |storedCardBalance      | Stored card balance |
@@ -26,7 +26,7 @@ Return parameter description:
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/billing/balance/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/billing/balance/get' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed

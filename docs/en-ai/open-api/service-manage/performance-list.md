@@ -11,47 +11,48 @@ List service performance information
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description               |
-|:--------------|:-------|:--------|:--------------------------|
-| start         | integer | Y       | Start time, unit ms<br>    |
-| end           | integer | Y       | End time, unit ms<br>      |
-| filters       | json   |         | Tag filter, consistent with the search and ES querydata interface<br> |
-| order         | string |         | Sort by resource name, format `[{key:desc/asc}]`<br> |
-| pageIndex     | integer|         | Page number<br>Not nullable: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize      | integer|         | Number of items per page<br>Not nullable: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| Parameter Name | Type   | Required | Description              |
+|:-----------|:-------|:-----|:----------------|
+| start | integer | Y | Start time, unit ms<br> |
+| end | integer | Y | End time, unit ms<br> |
+| filters | json |  | Tag filter, consistent with the search of es querydata interface<br> |
+| order | string |  | Sort by resource name, format `[{"key": "desc/asc"}]`<br> |
+| pageIndex | integer |  | Page number<br>Cannot be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize | integer |  | Number of items per page<br>Cannot be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
+
 
 **Request Body Parameter Explanation**
 
-The `filters` parameter example is as follows. The previous `search` field is compatible with `filters`, using the regular expression `.*serviceName.*`
+Example of filters, the previous search field is compatible with filters using regular expression `.*serviceName.*`
 ```json
    {"tags":[{"name":"__tags.__isError.keyword","value":["true"],"operation":"=","condition":"and"},{"condition":"and","name":"__tags.__serviceName","operation":"=~","value":[".*04.*"]}]}
 ```
 
 **Optional Sorting Fields**
 
-| Key           | Type   |
-| :------------ | :----- |
-| key           | Service Name |
-| total_count   | Total Request Count |
-| avg_resp_time | Average Response Time |
-| avg_per_second| Average Requests Per Second |
-| error_count   | Error Count |
-| error_rate    | Error Rate |
-| sum_resp_time | Total Request Duration |
-| max_duration  | Longest Request Duration |
-| p50           | p50 |
-| p75           | p75 |
-| p90           | p90 |
-| p95           | p95 |
-| p99           | p99, default sorting field, descending order |
+| key      | Type   |
+| :------- | :----- |
+| key  | Service name |
+| total_count  | Total request count |
+| avg_resp_time  | Average response time |
+| avg_per_second   | Average requests per second |
+| error_count  | Error count |
+| error_rate  | Error rate |
+| sum_resp_time   | Total request duration |
+| max_duration   | Longest request duration |
+| p50   | p50 |
+| p75   | p75 |
+| p90   | p90 |
+| p95   | p95 |
+| p99   | p99, default sorting field, and sorted in descending order |
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/service_manage/performance/list?end=1693810693999&start=1693767493000' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage/performance/list?end=1693810693999&start=1693767493000' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed

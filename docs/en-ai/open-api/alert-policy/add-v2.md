@@ -5,184 +5,184 @@
 <br />**POST /api/v1/alert_policy/add_v2**
 
 ## Overview
-Create an alert strategy, supporting synchronized updates for associated monitors.
+Create an alert strategy, supporting synchronized updates of associated monitors.
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
 |:---------------------|:---------|:----------|:------------------------|
 | name                 | string   | Y         | Alert strategy name<br>Can be empty: False <br> |
-| desc                 | string   |           | Description<br>Can be empty: False <br>Can be an empty string: True <br>Maximum length: 256 <br> |
-| openPermissionSet    | boolean  |           | Enable custom permission configuration (default false: not enabled), after enabling, the operation permissions of this rule are based on permissionSet<br>Can be empty: False <br> |
-| permissionSet        | array    |           | Operation permission configuration, can configure (roles except owner, member UUID, team UUID)<br>Example: ['wsAdmin', 'acnt_xxxx', 'group_yyyy'] <br>Can be empty: False <br> |
-| checkerUUIDs         | array    |           | Monitor/Smart Monitor/Smart Inspection/SLO UUID (added in iteration on 2024-12-11)<br>Example: ['rule_xxx', 'monitor_xxx'] <br>Can be empty: False <br> |
+| desc                 | string   |           | Description<br>Can be empty: False <br>Can be empty string: True <br>Maximum length: 256 <br> |
+| openPermissionSet    | boolean  |           | Enable custom permission configuration (default false: not enabled), after enabling, the operation permissions for this rule are based on permissionSet<br>Can be empty: False <br> |
+| permissionSet        | array    |           | Operation permission configuration, configurable (role except owner, member UUID, team UUID)<br>Example: ['wsAdmin', 'acnt_xxxx', 'group_yyyy'] <br>Can be empty: False <br> |
+| checkerUUIDs         | array    |           | Monitor/Smart Monitor/Smart Check/SLO UUID (added in iteration 2024-12-11)<br>Example: ['rule_xxx', 'monitor_xxx'] <br>Can be empty: False <br> |
 | ruleTimezone         | str      | Y         | Time zone for the alert strategy<br>Example: Asia/Shanghai <br>Can be empty: False <br> |
 | alertOpt             | json     |           | Alert settings<br>Can be empty: False <br> |
-| alertOpt.aggType     | string   |           | Alert aggregation type, defaults to old version logic if not passed (added in iteration on 2024-12-25)<br>Can be empty: True <br>Options: ['byFields', 'byCluster', 'byAI'] <br> |
-| alertOpt.alertType   | string   |           | Alert notification type, level(status)/member, default is level<br>Can be empty: False <br>Options: ['status', 'member'] <br> |
-| alertOpt.alertTarget | array    |           | Trigger actions, pay attention to trigger times and parameter handling<br>Example: [{'name': 'Notification Configuration 1', 'targets': [{'to': ['acnt_xxxx32'], 'status': 'critical', 'tags': {'pod_name': ['coredns-7769b554cf-w95fk']}, 'upgradeTargets': [{'to': ['acnt_xxxx32'], 'duration': 600}, {'to': ['group_xxxx32'], 'duration': 6000}]}], 'crontabDuration': 600, 'crontab': '0 9 * * 0,1,2,3,4'}, {'name': 'Notification Configuration 2', 'targets': [{'status': 'error', 'to': ['group_xxxx32'], 'upgradeTargets': [{'to': ['acnt_xxxx32'], 'duration': 600}, {'to': ['group_xxxx32'], 'duration': 6000}]}], 'customDateUUIDs': ['ndate_xxxx32'], 'customStartTime': '09:30:10', 'crontabDuration': 600}] <br>Can be empty: False <br> |
+| alertOpt.aggType     | string   |           | Alert aggregation type, defaults to old version logic if not passed (iteration added on 2024-12-25)<br>Can be empty: True <br>Options: ['byFields', 'byCluster', 'byAI'] <br> |
+| alertOpt.alertType   | string   |           | Notification type for the alert strategy, level (status)/member, default is level<br>Can be empty: False <br>Options: ['status', 'member'] <br> |
+| alertOpt.alertTarget | array    |           | Trigger actions, note handling of trigger time parameters<br>Example: [{'name': 'Notification Configuration 1', 'targets': [{'to': ['acnt_xxxx32'], 'status': 'critical', 'tags': {'pod_name': ['coredns-7769b554cf-w95fk']}, 'upgradeTargets': [{'to': ['acnt_xxxx32'], 'duration': 600}, {'to': ['group_xxxx32'], 'duration': 6000}]}], 'crontabDuration': 600, 'crontab': '0 9 * * 0,1,2,3,4'}, {'name': 'Notification Configuration 2', 'targets': [{'status': 'error', 'to': ['group_xxxx32'], 'upgradeTargets': [{'to': ['acnt_xxxx32'], 'duration': 600}, {'to': ['group_xxxx32'], 'duration': 6000}]}], 'customDateUUIDs': ['ndate_xxxx32'], 'customStartTime': '09:30:10', 'crontabDuration': 600}] <br>Can be empty: False <br> |
 | alertOpt.silentTimeout | integer | Y       | Alert settings<br>Can be empty: False <br> |
-| alertOpt.aggInterval | integer | Y       | Alert aggregation interval, in seconds, 0 means no aggregation<br>Can be empty: False <br>$minValue: 0 <br>$maxValue: 1800 <br> |
-| alertOpt.aggFields | array |           | Aggregation field list, keep an empty list [] to represent "Aggregate All", df_monitor_checker_id: monitor/smart inspection/SLO, df_dimension_tags: detection dimension, df_label: label, CLUSTER: smart aggregation<br>Example: ['CLUSTER'] <br>Can be empty: False <br> |
-| alertOpt.aggLabels | array |           | Label value list for aggregation by label, only effective when df_label is specified in aggFields<br>Can be empty: False < br> |
-| alertOpt.aggClusterFields | array |       | Field list for smart aggregation, only effective when CLUSTER is specified in aggFields, options "df_title": title, "df_message": content<br>Example: ['df_title'] <br>Can be empty: False < br> |
+| alertOpt.aggInterval  | integer  | Y        | Alert aggregation interval in seconds, 0 means no aggregation<br>Can be empty: False <br>$minValue: 0 <br>$maxValue: 1800 <br> |
+| alertOpt.aggFields    | array    |           | Aggregation field list, an empty list [] indicates "Aggregation Rule: All", df_monitor_checker_id: monitor/smart check/SLO, df_dimension_tags: detection dimension, df_label: label, CLUSTER: smart aggregation<br>Example: ['CLUSTER'] <br>Can be empty: False <br> |
+| alertOpt.aggLabels    | array    |           | Label value list when aggregating by labels, effective only if df_label is specified in aggFields<br>Can be empty: False <br> |
+| alertOpt.aggClusterFields | array |           | Field list for smart aggregation, effective only if CLUSTER is specified in aggFields, options "df_title": title, "df_message": content<br>Example: ['df_title'] <br>Can be empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 --------------
-*Data Description.*
+*Data Explanation.*
 
-**1. alertOpt Parameter Description**
+### 1. alertOpt Parameter Explanation
 
 | Parameter Name | Type | Required | Description |
 | :---- | :-- | :--- | :------- |
 | name   | string | Required | Rule name |
 | desc   | string |  | Description |
 | type   | string | Required | Checker type |
-| ruleTimezone   | string | Required | Time zone for the alert strategy (parameter added in iteration on 2024-01-31) |
+| ruleTimezone | string | Required | Time zone for the alert strategy (parameter added in iteration on 2024-01-31) |
 | alertOpt  | Dict | Required | Alert settings |
-| alertOpt[#].silentTimeout | integer | Required | How long the same alert will not be sent again (i.e., silent time), in seconds, 0 means permanent |
-| alertOpt[#].aggInterval | integer |  | Alert aggregation interval, in seconds, 0 means no aggregation, unit seconds/s range [0,1800] |
-| alertOpt[#].aggFields | array |  | Aggregation field list, keep an empty list [] to represent "Aggregate All", df_monitor_checker_id: monitor/smart inspection/SLO, df_dimension_tags: detection dimension, df_label: label, CLUSTER: smart aggregation |
-| alertOpt[#].aggLabels | array |  | Label value list for aggregation by label, only effective when df_label is specified in aggFields |
-| alertOpt[#].aggClusterFields | array |  | Field list for smart aggregation, only effective when CLUSTER is specified in aggFields, options "df_title": title, "df_message": content |
-| alertOpt[#].alertTarget       | Array[Dict] |  | Alert action |
-| alertOpt[#].alertType       | string |  | Alert notification type, level(status)/member, default is level, added in iteration on 2024-11-06 |
-| alertOpt[#].aggType       | string |  | Defaults to old version logic if not passed, byFields: rule aggregation, byCluster: smart aggregation, byAI: AI aggregation, new field added on 2024-12-25 |
-| openPermissionSet   | boolean |  | Whether to enable custom permission configuration, default false, added in iteration on 2024-11-06 |
-| permissionSet       | array   |  | Operation permission configuration, added in iteration on 2024-11-06 |
-| checkerUUIDs       | array   |  | Associated monitor/smart monitor/smart inspection/SLO UUID, added in iteration on 2024-12-11 |
+| alertOpt[#].silentTimeout | integer | Required | Duration before repeating the same alert (i.e., mute duration), unit seconds/s, 0 means permanent |
+| alertOpt[#].aggInterval | integer | | Alert aggregation interval in seconds, 0 means no aggregation, unit seconds/s range [0,1800] |
+| alertOpt[#].aggFields | array | | Aggregation field list, an empty list [] indicates "Aggregation Rule: All", df_monitor_checker_id: monitor/smart check/SLO, df_dimension_tags: detection dimension, df_label: label, CLUSTER: smart aggregation |
+| alertOpt[#].aggLabels | array | | List of label values when aggregating by labels, effective only if df_label is specified in aggFields |
+| alertOpt[#].aggClusterFields | array | | Field list for smart aggregation, effective only if CLUSTER is specified in aggFields, options "df_title": title, "df_message": content |
+| alertOpt[#].alertTarget | Array[Dict] | | Alert action |
+| alertOpt[#].alertType | string | | Notification type for the alert strategy, level (status)/member, default is level, added in iteration on 2024-11-06 |
+| alertOpt[#].aggType | string | | Defaults to old version logic if not passed, byFields: rule aggregation, byCluster: smart aggregation, byAI: AI aggregation, new field added on 2024-12-25 |
+| openPermissionSet | boolean | | Whether to enable custom permission configuration, default false, added in iteration on 2024-11-06 |
+| permissionSet | array | | Operation permission configuration, added in iteration on 2024-11-06 |
+| checkerUUIDs | array | | Associated monitor/smart monitor/smart check/SLO UUID, added in iteration on 2024-12-11 |
 
 --------------
-**1.1 alertOpt.aggType Parameter Description**
+### 1.1 alertOpt.aggType Parameter Explanation
 2024-12-25
-Alert aggregation type
-　null: no aggregation
-　"byFields": rule aggregation
-　"byCluster": smart aggregation
+Alert aggregation type:
+　null: No aggregation
+　"byFields": Rule aggregation
+　"byCluster": Smart aggregation
 　"byAI": AI aggregation
 <br/>
-Since the aggType field did not exist in the old data structure, it was determined by the content of aggFields. After adding the aggType field, compatibility is handled as follows:
+Since the old data structure did not have the aggType field and instead determined the aggregation type based on the contents of aggFields, after adding the aggType field, it will be handled as follows for compatibility:
 <br/>
 If aggType is specified, aggregate according to the method specified by aggType
 <br/>
-If aggType is not specified or aggType=None (following the old logic)
+If aggType is not specified or aggType=None (following old logic)
 <br/>
-If aggFields contains "CLUSTER", aggregate using smart aggregation
+If aggFields includes "CLUSTER", aggregate using smart aggregation
 <br/>
-If aggFields does not contain "CLUSTER", aggregate using rule aggregation
+If aggFields does not include "CLUSTER", aggregate using rule aggregation
 <br/>
 Derived rules:
 
 Specifying aggInterval=0 or aggInterval=null still indicates "no aggregation"
 <br/>
-Specifying aggType="byCluster" allows omitting "CLUSTER" in aggFields (whether it is passed or not does not affect the result)
+Specifying aggType="byCluster" allows aggFields to omit "CLUSTER" (whether it is passed does not affect the result)
 <br/>
-Specifying aggType="byFields" but including "CLUSTER" in aggFields ignores "CLUSTER" (aggType has higher priority)
+Specifying aggType="byFields" but including "CLUSTER" in aggFields will ignore "CLUSTER" (aggType has higher priority)
 <br/>
 
 --------------
 
-**2. When the alert strategy is of type level, `alertOpt.alertTarget` Parameter Description**
+### 2. When the Alert Strategy is Level Type `alertOpt.alertTarget` Parameter Explanation
 
 | Key | Type | Required | Description |
 | :---- | :--- | :---- | :---- |
 | name | string |  | Configuration name |
-| targets | Array[dict] | Required | Notification object configuration (note the position of this field when the alert strategy is level/member type) |
-| crontab | String |  | Choose repeat time period, start Crontab (Crontab syntax) |
-| crontabDuration | integer |  | Choose repeat time, duration from Crontab start (seconds) |
-| customDateUUIDs | Array[String] |  | Choose custom time period, list of custom notification date UUIDs, example: ['ndate_xxxx32', 'ndate_xxxx32'], refer to (Monitoring - Alert Strategy - Custom Notification Date, API) |
-| customStartTime | String |  | Choose custom time period, daily start time, format: HH:mm:ss |
-| customDuration | integer |  | Choose custom time period, duration from customStartTime (seconds) |
+| targets | Array[dict] | Required | Notification target configuration (note the position of this field depending on whether the alert strategy is level/member type) |
+| crontab | String |  | Start Crontab (Crontab syntax) when selecting repeated time periods |
+| crontabDuration | integer |  | Duration from Crontab start when selecting repeated time periods (seconds) |
+| customDateUUIDs | Array[String] |  | Custom notification date UUID list when selecting custom time periods, e.g., ['ndate_xxxx32', 'ndate_xxxx32'], reference (Monitoring - Alert Strategy - Custom Notification Date, API) |
+| customStartTime | String |  | Daily start time when selecting custom time periods, format HH:mm:ss |
+| customDuration | integer |  | Duration from customStartTime when selecting custom time periods (seconds) |
 
 -------------- 
 
-**3. When the alert strategy is of type member, `alertOpt.alertTarget` Parameter Description**
+### 3. When the Alert Strategy is Member Type `alertOpt.alertTarget` Parameter Explanation
 
 | Key | Type | Required | Description |
 | :---- | :--- | :---- | :---- |
 | name | string |  | Configuration name |
-| crontab | String |  | Choose repeat time period, start Crontab (Crontab syntax) |
-| crontabDuration | integer |  | Choose repeat time, duration from Crontab start (seconds) |
-| customDateUUIDs | Array[String] |  | Choose custom time period, list of custom notification date UUIDs, example: ['ndate_xxxx32', 'ndate_xxxx32'], refer to (Monitoring - Alert Strategy - Custom Notification Date, API) |
-| customStartTime | String |  | Choose custom time period, daily start time, format: HH:mm:ss |
-| customDuration | integer |  | Choose custom time period, duration from customStartTime (seconds) |
-| alertInfo | Array[dict] | Required | Notification related information configuration for member-type alert strategy, added in iteration on 2024-11-27 |
+| crontab | String |  | Start Crontab (Crontab syntax) when selecting repeated time periods |
+| crontabDuration | integer |  | Duration from Crontab start when selecting repeated time periods (seconds) |
+| customDateUUIDs | Array[String] |  | Custom notification date UUID list when selecting custom time periods, e.g., ['ndate_xxxx32', 'ndate_xxxx32'], reference (Monitoring - Alert Strategy - Custom Notification Date, API) |
+| customStartTime | String |  | Daily start time when selecting custom time periods, format HH:mm:ss |
+| customDuration | integer |  | Duration from customStartTime when selecting custom time periods (seconds) |
+| alertInfo | Array[dict] | Required | Notification information configuration for member-type alert strategies, added in iteration on 2024-11-27 |
 
 -------------- 
 
-**4. When the alert strategy is of type member, `alertOpt.alertTarget.alertInfo` Parameter Description**
+### 4. When the Alert Strategy is Member Type `alertOpt.alertTarget.alertInfo` Parameter Explanation
 
 | Key | Type | Required | Description |
 | :---- | :--- | :---- | :---- |
 | name | string |  | Configuration name |
-| targets | Array[dict] | Required | Notification object configuration (note the position of this field when the alert strategy is level/member type) |
-| filterString  | string |  | Used when alertType is member, original string of filtering conditions, added in iteration on 2024-11-27 |
-| memberInfo | array |  | Used when alertType is member (team UUID, member UUID), example: [`group_xxxx`,`acnt_xxxx`], added in iteration on 2024-11-27 |
+| targets | Array[dict] | Required | Notification target configuration (note the position of this field depending on whether the alert strategy is level/member type) |
+| filterString | string |  | Used when alertType is member, filter condition raw string, added in iteration on 2024-11-27 |
+| memberInfo | array |  | Used when alertType is member (team UUID, member UUID), e.g., [`group_xxxx`,`acnt_xxxx`], added in iteration on 2024-11-27 |
 
 -------------- 
 
-**5. Time Configuration Related Notes**
+### 5. Time Configuration Related Explanation
 
-If a repeat time period is selected, crontab and crontabDuration fields are required.
+If choosing repeated time periods, crontab and crontabDuration fields are required.
 <br/>
-If a custom time period is selected, customDateUUIDs, customDuration, and customStartTime fields are required.
+If choosing custom time periods, customDateUUIDs, customDuration, and customStartTime fields are required.
 <br/>
-If other moments are selected, none of crontab, crontabDuration, customDateUUIDs, customStartTime, or customDuration need to be passed.
+If choosing other times, none of crontab, crontabDuration, customDateUUIDs, customStartTime, or customDuration need to be passed.
 <br/>
-Note: Each alert strategy includes a fallback notification rule with no time configuration.
+Note: Each alert strategy will have a fallback notification rule without time configuration, i.e., notifications with no time configuration.
 
 --------------
 
-**6. Notification Object Field `targets` Description**
-When alertType is status, targets are located at alertOpt.alertTarget.targets
+### 6. Notification Target Field `targets` Explanation
+When alertType is status, targets location is alertOpt.alertTarget.targets
 <br/>
-When alertType is member, targets are located at alertOpt.alertTarget.alertInfo.targets
+When alertType is member, targets location is alertOpt.alertTarget.alertInfo.targets
 <br/>
-targets is a list, internal elements are dicts, internal field descriptions are as follows
+targets is a list, internal elements are dictionaries, internal field explanations are as follows:
 
 | Key | Type | Required | Description |
 | :---- | :--- | :---- | :---- |
-| to | Array[String] | Required | Notification objects/members/teams, example: [`group_xxxx`,`acnt_xxxx`,`notify_xxxx`]. (When alertType is member, only notification objects and fixed fields email, sms (supported by SaaS versions) can be chosen, example: [`email`,`notify_xxxx`], added in iteration on 2024-11-06) |
-| status | Enum | Required | Status values of events that need to send alerts, multiple statuses can be separated by commas, `critical`,`error`,`warning`,`nodata`,`info` |
-| upgradeTargets | Array |  | Upgrade notifications for each alert configuration status |
-| tags | dict |  | Filtering conditions |
-| filterString | dict |  | Original string of filtering conditions, can replace tags, filterString has higher priority than tags, added in iteration on 2024-11-27 |
+| to | Array[String] | Required | Notification target/member/team, example: [`group_xxxx`,`acnt_xxxx`,`notify_xxxx`]. (When alertType is member, only notification target and fixed fields email, sms (supported in SaaS versions) can be selected, example: [`email`,`notify_xxxx`], added in iteration on 2024-11-06) |
+| status | Enum | Required | Status value of events requiring alerts, multiple statuses can be separated by commas, `critical`,`error`,`warning`,`nodata`,`info` |
+| upgradeTargets | Array | | Upgrade notifications for each alert configuration's status |
+| tags | dict | | Filter conditions |
+| filterString | dict | | Raw filter condition string that can replace tags, filterString takes precedence over tags, added in iteration on 2024-11-27 |
 
 --------------
 
-**7. Notification Object Field `upgradeTargets` Description**
-When alertType is status, targets are located at alertOpt.alertTarget.targets.upgradeTargets
+### 7. Notification Target Field `upgradeTargets` Explanation
+When alertType is status, targets location is alertOpt.alertTarget.targets.upgradeTargets
 <br/>
-When alertType is member, targets are located at alertOpt.alertTarget.alertInfo.targets.upgradeTargets
+When alertType is member, targets location is alertOpt.alertTarget.alertInfo.targets.upgradeTargets
 <br/>
-upgradeTargets is a list, internal elements are dicts, internal field descriptions are as follows
+upgradeTargets is a list, internal elements are dictionaries, internal field explanations are as follows:
 
 | Key | Type | Required | Description |
 | :---- | :--- | :---- | :---- |
-| to | Array[String] | Required | Notification objects/members/teams, example: [`group_xxxx`,`acnt_xxxx`,`notify_xxxx`]. (When alertType is member, only members and teams can be chosen, added in iteration on 2024-11-06) |
-| status | Enum | Required | Status values of events that need to send alerts, `critical`,`error`,`warning`,`nodata`,`info` |
-| duration | integer |  | Duration, continuous generation of events at this level triggers upgrade notification |
-| toWay | Array[String] |  | Used when alertType is member type, only notification objects and fixed fields email, sms (supported by SaaS versions) can be chosen, example: [`email`,`notify_xxxx`], added in iteration on 2024-11-06 |
+| to | Array[String] | Required | Notification target/member/team, example: [`group_xxxx`,`acnt_xxxx`,`notify_xxxx`]. (When alertType is member, only members and teams can be selected, added in iteration on 2024-11-06) |
+| status | Enum | Required | Status value of events requiring alerts, `critical`,`error`,`warning`,`nodata`,`info` |
+| duration | integer | | Duration in seconds during which events of this status level occur to trigger upgrade notifications |
+| toWay | Array[String] | | Used when alertType is member, only notification targets and fixed fields email, sms (supported in SaaS versions) can be selected, example: [`email`,`notify_xxxx`], added in iteration on 2024-11-06 |
 
 --------------
 
-**8. Operation Permission Configuration Parameter Description**
+### 8. Operation Permission Configuration Parameter Explanation
 
 | Parameter Name        | Type   | Description          |
 |---------------|----------|------------------------|
 | openPermissionSet   | boolean | Whether to enable custom permission configuration, default false |
 | permissionSet       | array   | Operation permission configuration |
 
-**permissionSet, openPermissionSet Field Description (fields added in iteration on 2024-06-26):**
+### permissionSet, openPermissionSet Field Explanation (Added in iteration on 2024-06-26):
 
-When openPermissionSet is enabled, only the workspace owner and roles, teams, and members specified in the permissionSet configuration can edit/enable/disable/delete.
+When openPermissionSet is enabled, only workspace owners and roles, teams, and members specified in permissionSet can edit/enable/disable/delete.
 <br/>
-When openPermissionSet is disabled (default), deletion/enabling/disabling/editing permissions follow the original interface editing/enabling/disabling/deleting permissions.
+When openPermissionSet is disabled (default), delete/enable/disable/edit permissions follow the original interface permissions.
 <br/>
 
-The permissionSet field can configure role UUIDs (wsAdmin, general, readOnly, role_xxxxx), team UUIDs (group_yyyy), and member UUIDs (acnt_xxx).
-Example:
+permissionSet field can configure role UUIDs (wsAdmin, general, readOnly, role_xxxxx), team UUIDs (group_yyyy), and member UUIDs (acnt_xxx).
+permissionSet field example:
 ```
   ["wsAdmin", "general", "group_yyyy", "acnt_xxxx"]
 ```
@@ -191,7 +191,7 @@ Example:
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/alert_policy/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/alert_policy/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"jj_test","ruleTimezone":"Asia/Shanghai","alertOpt":{"alertTarget":[{"name":"Notification Configuration 1","targets":[{"status":"critical","tags":{"pod_name":["coredns-7769b554cf-w95fk"]},"to":["acnt_xxxx32"]}],"crontabDuration":600,"crontab":"0 9 * * 0,1,2,3,4"},{"name":"Notification Configuration 2","targets":[{"status":"error","to":["group_xxxx32"]}],"customDateUUIDs":["ndate_xxxx32"],"customStartTime":"09:30:10","customDuration":600},{"targets":[{"status":"warning","to":["notify_xxxx32"]}]}],"silentTimeout":21600,"aggInterval":120,"aggFields":["df_monitor_checker_id"]}}' \
@@ -280,5 +280,5 @@ curl 'https://openapi.guance.com/api/v1/alert_policy/add' \
     "message": "",
     "success": true,
     "traceId": "TRACE-148B6846-6180-4594-BD26-8A2077F0E911"
-}
+} 
 ```

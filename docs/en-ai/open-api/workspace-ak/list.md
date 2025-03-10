@@ -10,17 +10,17 @@ Get the list of keys
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description               |
-|:--------------|:-------|:--------|:-------------------------|
-| search        | string |         | Search by name<br>Example: supper_workspace <br>Allow empty: False <br> |
+| Parameter Name | Type   | Required | Description              |
+|:--------------|:-------|:--------|:------------------------|
+| search        | string | No      | Search by name<br>Example: supper_workspace <br>Allow empty: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/accesskey/list' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/accesskey/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```

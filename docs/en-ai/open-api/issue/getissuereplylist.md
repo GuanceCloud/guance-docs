@@ -11,14 +11,14 @@
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
+| Parameter Name        | Type     | Required | Description              |
 |:-------------------|:-------|:-----|:----------------|
 | issue_uuid | string | Y | Issue UUID<br> |
 
 
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
+| Parameter Name        | Type     | Required | Description              |
 |:-------------------|:-------|:-----|:----------------|
 | ordering | string |  | Sorting method, e.g., ordering=-createAt<br>Can be empty: False <br> |
 | pageSize | integer |  | Number of items per page<br>Can be empty: False <br>Example: 10 <br> |
@@ -32,7 +32,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue/reply/issue_xxxx32/list?ordering=-createAt' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/reply/issue_xxxx32/list?ordering=-createAt' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -47,14 +47,14 @@ curl 'https://openapi.guance.com/api/v1/issue/reply/issue_xxxx32/list?ordering=-
     "content": [
         {
             "attachmentsList": [],
-            "content": "A member created the Issue.",
+            "content": "Member created an Issue.",
             "createAt": 1690278285,
             "creator": "acnt_xxxx32",
             "creatorInfo": {
                 "acntWsNickname": "",
                 "email": "88@qq.com",
                 "iconUrl": "http://testing-static-res.cloudcare.cn/icon/acnt_xxxx32.png",
-                "name": "88 Test",
+                "name": "Test 88",
                 "username": "Test"
             },
             "deleteAt": -1,
@@ -71,7 +71,7 @@ curl 'https://openapi.guance.com/api/v1/issue/reply/issue_xxxx32/list?ordering=-
                 "acntWsNickname": "",
                 "email": "88@qq.com",
                 "iconUrl": "http://testing-static-res.cloudcare.cn/icon/acnt_xxxx32.png",
-                "name": "88 Test",
+                "name": "Test 88",
                 "username": "Test"
             },
             "uuid": "repim_xxxx32",

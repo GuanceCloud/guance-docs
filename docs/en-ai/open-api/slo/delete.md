@@ -12,8 +12,8 @@
 ## Route Parameters
 
 | Parameter Name | Type   | Required | Description              |
-|:-----------|:-------|:-----|:----------------|
-| slo_uuid | string | Y | UUID of an SLO<br> |
+|:--------------|:-------|:---------|:-------------------------|
+| slo_uuid      | string | Y        | UUID of the SLO to delete<br> |
 
 
 ## Additional Parameter Notes
@@ -24,7 +24,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/slo/monitor_xxxx32/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/slo/monitor_xxxx32/delete' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 ```

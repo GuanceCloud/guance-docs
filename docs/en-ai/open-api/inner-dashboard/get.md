@@ -8,36 +8,33 @@
 
 
 
-
 ## Route Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:------------------|:-------|:-----|:----------------|
+|:-------------------|:-------|:-----|:----------------|
 | dashboard_uuid | string | Y | View UUID<br> |
 
 
 ## Additional Parameter Notes
 
-**Response Body Structure Explanation**
+**Response Body Structure Description**
 
-| Parameter Name                |   Type  |          Description          |
+| Parameter Name                | Type  | Description          |
 |-----------------------|----------|------------------------|
 | chartGroupPos         | list | Chart group position information |
 | chartPos         | list | Chart position information |
-| createdWay             | string | Built-in view creation method, manually created: manual, imported created: import |
+| createdWay             | string | Built-in view creation method, manually created: manual, created by import: import |
 | dashboardBidding         | dict | Dashboard binding information |
 | name         | string | Dashboard name |
 
 
 
-
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboard/dsbd_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
 
 
 

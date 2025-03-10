@@ -10,17 +10,17 @@
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                             |
-|:--------------|:-------|:---------|:----------------------------------------|
-| taskUUIDs     | array  | Y        | List of UUIDs for dial testing tasks<br>Allow null: False <br> |
+| Parameter Name | Type   | Required | Description                           |
+|:--------------|:-------|:--------|:--------------------------------------|
+| taskUUIDs     | array  | Y       | List of UUIDs for the dial testing tasks<br>Allow null: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dialing_task/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dialing_task/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"taskUUIDs":["dial_xxxx32"]}' \

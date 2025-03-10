@@ -1,33 +1,33 @@
-# Feature Menu Settings (new, supports secondary menus)
+# Feature Menu Settings (new, supports second-level menus)
 
 ---
 
 <br />**POST /api/v1/workspace/menu_v2/set**
 
 ## Overview
-Set the feature menu for the current workspace. The new version involves changes to secondary menus.
+Set the feature menu for the current workspace. The new version involves changes to second-level menus.
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                                                                                   |
-|:--------------|:-------|:--------|:----------------------------------------------------------------------------------------------|
-| menu          | array  | Y       | List of configured menu items <br>Example: [{'key': 'Scene', 'isShow': True, 'children': [{'key': 'DashboardList', 'isShow': True}, {'key': 'SceneDashboardCreate', 'isShow': True}, {'key': 'LinkToTrackService', 'isShow': True}, {'key': 'RegularReportList', 'isShow': True}, {'key': 'NotesList', 'isShow': True}, {'key': 'CreateNote', 'isShow': True}, {'key': 'ViewerList', 'isShow': True}, {'key': 'BuiltInViewList', 'isShow': True}]}, {'key': 'Events', 'isShow': True, 'children': [{'key': 'KeyEventsMonitorChart', 'isShow': True}, {'key': 'KeyEventsSmartMonitor', 'isShow': True}]}, {'key': 'ExceptionsTracking', 'isShow': True, 'children': [{'key': 'ExceptionsTrackingConf', 'isShow': True}]}, {'key': 'Objectadmin', 'isShow': True, 'children': [{'key': 'ObjectadminHost', 'isShow': True}, {'key': 'ObjectadminHostTopology', 'isShow': True}, {'key': 'ObjectadminDocker', 'isShow': True}, {'key': 'ObjectadminProcesses', 'isShow': True}, {'key': 'HostNetwork', 'isShow': True}, {'key': 'ObjectadminOther', 'isShow': True}, {'key': 'WorkspacePipelineList', 'isShow': True}]}, {'key': 'MetricQuery', 'isShow': True, 'children': [{'key': 'MetricAnalysis', 'isShow': True}, {'key': 'MetricMap', 'isShow': True}, {'key': 'WorkspacePipelineList', 'isShow': True}]}, {'key': 'LogIndi', 'isShow': True, 'children': [{'key': 'Log', 'isShow': True}, {'key': 'LogPipelineList', 'isShow': True}, {'key': 'Indicator', 'isShow': True}, {'key': 'LogIndexList', 'isShow': True}, {'key': 'LogFilterRuleList', 'isShow': True}, {'key': 'LogBackupExplorer', 'isShow': True}, {'key': 'LogQueryRuleList', 'isShow': True}]}, {'key': 'Tracing', 'isShow': True, 'children': [{'key': 'LinkToTrackService', 'isShow': True}, {'key': 'LinkToTrackServiceDirected', 'isShow': True}, {'key': 'LinkToTrackDashboard', 'isShow': True}, {'key': 'LinkToTrackLink', 'isShow': True}, {'key': 'LinkToTrackError', 'isShow': True}, {'key': 'LinkToTrackProfile', 'isShow': True}, {'key': 'ApmIndicator', 'isShow': True}, {'key': 'WorkspacePipelineList', 'isShow': True}, {'key': 'LogBackupExplorer', 'isShow': True}]}, {'key': 'Rum', 'isShow': True, 'children': [{'key': 'RumList', 'isShow': True}, {'key': 'RumViewer', 'isShow': True}, {'key': 'RumDashboard', 'isShow': True}, {'key': 'RumTrack', 'isShow': True}, {'key': 'RumIndicator', 'isShow': True}, {'key': 'WorkspacePipelineList', 'isShow': True}, {'key': 'RumHosted', 'isShow': True}, {'key': 'LogBackupExplorer', 'isShow': True}]}, {'key': 'CloudDial', 'isShow': True, 'children': [{'key': 'CloudDialList', 'isShow': True}, {'key': 'CloudDialDashboard', 'isShow': True}, {'key': 'CloudDialExplorer', 'isShow': True}, {'key': 'CloudDialSelfNodeList', 'isShow': True}]}, {'key': 'Security', 'isShow': True, 'children': [{'key': 'SecurityExplorer', 'isShow': True}, {'key': 'SecurityDashboard', 'isShow': True}, {'key': 'SecurityIndicator', 'isShow': True}, {'key': 'WorkspacePipelineList', 'isShow': True}]}, {'key': 'GitLabCI', 'isShow': True, 'children': [{'key': 'GitLabCIExplorer', 'isShow': True}, {'key': 'GitLabCIDashboard', 'isShow': True}]}, {'key': 'Monitor', 'isShow': True, 'children': [{'key': 'CheckerRuleList', 'isShow': True}, {'key': 'SmartCheckerRuleList', 'isShow': True}, {'key': 'IntelligentInspectionList', 'isShow': True}, {'key': 'SLOList', 'isShow': True}, {'key': 'SilenceList', 'isShow': True}, {'key': 'CheckerRuleGroupList', 'isShow': True}, {'key': 'AlertToList', 'isShow': True}]}, {'key': 'Integration', 'isShow': True, 'children': [{'key': 'IntegrationList', 'isShow': True}, {'key': 'Datakit', 'isShow': True}, {'key': 'FunctionDetail', 'isShow': True}, {'key': 'DCA', 'isShow': True}, {'key': 'Mobile', 'isShow': True}]}, {'key': 'Workspace', 'isShow': True, 'children': [{'key': 'WorkspaceDetail', 'isShow': True}, {'key': 'WorkspaceAttrDetail', 'isShow': True}, {'key': 'WorkspaceFieldsList', 'isShow': True}, {'key': 'WorkspaceTagsList', 'isShow': True}, {'key': 'WorkspaceMembers', 'isShow': True}, {'key': 'WorkspaceRoles', 'isShow': True}, {'key': 'APIManage', 'isShow': True}, {'key': 'MemberInviteList', 'isShow': True}, {'key': 'WorkspaceFilterRuleList', 'isShow': True}, {'key': 'WorkspacePipelineList', 'isShow': True}, {'key': 'LogBackupExplorer', 'isShow': True}, {'key': 'RegexpList', 'isShow': True}, {'key': 'CloudAccountList', 'isShow': True}, {'key': 'KeyEventsAudit', 'isShow': True}, {'key': 'EmbeddedSharing', 'isShow': True}, {'key': 'CrossNamespacedataAuth', 'isShow': True}, {'key': 'DataAuthorization', 'isShow': True}, {'key': 'DataScanerList', 'isShow': True}]}, {'key': 'Billing', 'isShow': True, 'children': []}] <br>Allow null: False <br> |
+| Parameter Name | Type   | Required | Description |
+|:--------------|:-------|:--------|:------------|
+| menu | array | Y | List of configured menu items <br>Example: [{'key': 'Scene', 'isShow': True, 'children': [{'key': 'DashboardList', 'isShow': True}, {'key': 'SceneDashboardCreate', 'isShow': True}, {'key': 'LinkToTrackService', 'isShow': True}, {'key': 'RegularReportList', 'isShow': True}, {'key': 'NotesList', 'isShow': True}, {'key': 'CreateNote', 'isShow': True}, {'key': 'ViewerList', 'isShow': True}, {'key': 'BuiltInViewList', 'isShow': True}]}, {'key': 'Events', 'isShow': True, 'children': [{'key': 'KeyEventsMonitorChart', 'isShow': True}, {'key': 'KeyEventsSmartMonitor', 'isShow': True}]}, {'key': 'Incident', 'isShow': True, 'children': [{'key': 'ExceptionsTrackingConf', 'isShow': True}]}, {'key': 'Objectadmin', 'isShow': True, 'children': [{'key': 'ObjectadminHost', 'isShow': True}, {'key': 'ObjectadminHostTopology', 'isShow': True}, {'key': 'ObjectadminDocker', 'isShow': True}, {'key': 'ObjectadminProcesses', 'isShow': True}, {'key': 'HostNetwork', 'isShow': True}, {'key': 'ObjectadminOther', 'isShow': True}, {'key': 'WorkspacePipelineList', 'isShow': True}]}, {'key': 'Metrics', 'isShow': True, 'children': [{'key': 'MetricAnalysis', 'isShow': True}, {'key': 'MetricMap', 'isShow': True}, {'key': 'WorkspacePipelineList', 'isShow': True}]}, {'key': 'LogIndi', 'isShow': True, 'children': [{'key': 'Log', 'isShow': True}, {'key': 'LogPipelineList', 'isShow': True}, {'key': 'Indicator', 'isShow': True}, {'key': 'LogIndexList', 'isShow': True}, {'key': 'LogFilterRuleList', 'isShow': True}, {'key': 'LogBackupExplorer', 'isShow': True}, {'key': 'LogQueryRuleList', 'isShow': True}]}, {'key': 'APM', 'isShow': True, 'children': [{'key': 'LinkToTrackService', 'isShow': True}, {'key': 'LinkToTrackServiceDirected', 'isShow': True}, {'key': 'LinkToTrackDashboard', 'isShow': True}, {'key': 'LinkToTrackLink', 'isShow': True}, {'key': 'LinkToTrackError', 'isShow': True}, {'key': 'LinkToTrackProfile', 'isShow': True}, {'key': 'ApmIndicator', 'isShow': True}, {'key': 'WorkspacePipelineList', 'isShow': True}, {'key': 'LogBackupExplorer', 'isShow': True}]}, {'key': 'RUM', 'isShow': True, 'children': [{'key': 'RumList', 'isShow': True}, {'key': 'RumViewer', 'isShow': True}, {'key': 'RumDashboard', 'isShow': True}, {'key': 'RumTrack', 'isShow': True}, {'key': 'RumIndicator', 'isShow': True}, {'key': 'WorkspacePipelineList', 'isShow': True}, {'key': 'RumHosted', 'isShow': True}, {'key': 'LogBackupExplorer', 'isShow': True}]}, {'key': 'Synthetic Tests', 'isShow': True, 'children': [{'key': 'CloudDialList', 'isShow': True}, {'key': 'CloudDialDashboard', 'isShow': True}, {'key': 'CloudDialExplorer', 'isShow': True}, {'key': 'CloudDialSelfNodeList', 'isShow': True}]}, {'key': 'Security Check', 'isShow': True, 'children': [{'key': 'SecurityExplorer', 'isShow': True}, {'key': 'SecurityDashboard', 'isShow': True}, {'key': 'SecurityIndicator', 'isShow': True}, {'key': 'WorkspacePipelineList', 'isShow': True}]}, {'key': 'GitLabCI', 'isShow': True, 'children': [{'key': 'GitLabCIExplorer', 'isShow': True}, {'key': 'GitLabCIDashboard', 'isShow': True}]}, {'key': 'Monitor', 'isShow': True, 'children': [{'key': 'CheckerRuleList', 'isShow': True}, {'key': 'SmartCheckerRuleList', 'isShow': True}, {'key': 'IntelligentInspectionList', 'isShow': True}, {'key': 'SLOList', 'isShow': True}, {'key': 'SilenceList', 'isShow': True}, {'key': 'CheckerRuleGroupList', 'isShow': True}, {'key': 'AlertToList', 'isShow': True}]}, {'key': 'Integration', 'isShow': True, 'children': [{'key': 'IntegrationList', 'isShow': True}, {'key': 'Datakit', 'isShow': True}, {'key': 'FunctionDetail', 'isShow': True}, {'key': 'DCA', 'isShow': True}, {'key': 'Mobile', 'isShow': True}]}, {'key': 'Workspace', 'isShow': True, 'children': [{'key': 'WorkspaceDetail', 'isShow': True}, {'key': 'WorkspaceAttrDetail', 'isShow': True}, {'key': 'WorkspaceFieldsList', 'isShow': True}, {'key': 'WorkspaceTagsList', 'isShow': True}, {'key': 'WorkspaceMembers', 'isShow': True}, {'key': 'WorkspaceRoles', 'isShow': True}, {'key': 'APIManage', 'isShow': True}, {'key': 'MemberInviteList', 'isShow': True}, {'key': 'WorkspaceFilterRuleList', 'isShow': True}, {'key': 'WorkspacePipelineList', 'isShow': True}, {'key': 'LogBackupExplorer', 'isShow': True}, {'key': 'RegexpList', 'isShow': True}, {'key': 'CloudAccountList', 'isShow': True}, {'key': 'KeyEventsAudit', 'isShow': True}, {'key': 'EmbeddedSharing', 'isShow': True}, {'key': 'CrossNamespacedataAuth', 'isShow': True}, {'key': 'DataAuthorization', 'isShow': True}, {'key': 'DataScanerList', 'isShow': True}]}, {'key': 'Billing', 'isShow': True, 'children': []}] <br>Allow null: False <br> |
 
-## Additional Parameter Explanation
+## Parameter Supplemental Explanation
 
-### Request Parameter Explanation
+### Request Parameter Description
 
-| Parameter Name | Type        | Required | Description              |
-| :------------- | :---------- | :------- | :----------------------- |
-| menu           | array[json] | Y        | Menu configuration       |
+| Parameter Name | Type        | Required | Description       |
+| :------------- | :---------- | :------- | :---------------- |
+| menu           | array[json] | Y        | Menu configuration |
 
 ### Internal Structure of `menu`
 
-| Parameter Name | Type         | Required | Description              |
-| :------------- | :----------- | :------- | :----------------------- |
-| key            | string       | Y        | Primary menu configuration |
-| isShow         | string       | Y        | Whether to display        |
-| children       | array[dict]  | Y        | Secondary menu configuration |
+| Parameter Name | Type         | Required | Description     |
+| :------------- | :----------- | :------- | :-------------- |
+| key            | string       | Y        | First-level menu configuration |
+| isShow         | string       | Y        | Whether to display |
+| children       | array[dict]  | Y        | Second-level menu configuration |
 
 <br/>
 Example:
@@ -35,40 +35,40 @@ Example:
 [{"key":"Scene","isShow":true,"children":[{"key":"DashboardList","isShow":true},{"key":"SceneDashboardCreate","isShow":true},{"key":"LinkToTrackService","isShow":true},{"key":"RegularReportList","isShow":true},{"key":"NotesList","isShow":true},{"key":"CreateNote","isShow":true},{"key":"ViewerList","isShow":true},{"key":"BuiltInViewList","isShow":true}]},{"key":"Billing","isShow":true,"children":[]}]
 ```
 
-### Primary Menu Item Descriptions
+### First-Level Menu Item Description
 
-| Key                | Description     |
-| :----------------- | :--------------- |
-| Scene              | Scenarios        |
-| Events             | Events           |
-| ExceptionsTracking | Incident         |
-| Objectadmin        | Infrastructure   |
-| MetricQuery        | Metrics          |
-| LogIndi            | Logs             |
-| Tracing            | APM              |
-| Rum                | RUM              |
-| CloudDial          | Synthetic Tests  |
-| Security           | Security Check   |
+| Key                | Description    |
+| :------------------ | :------------- |
+| Scene              | Scenarios      |
+| Events             | Events         |
+| ExceptionsTracking | Incident       |
+| Objectadmin        | Infrastructure |
+| MetricQuery        | Metrics        |
+| LogIndi            | Logs           |
+| Tracing            | APM            |
+| Rum                | RUM            |
+| CloudDial          | Synthetic Tests |
+| Security           | Security Check |
 | GitLabCI           | CI Visualization |
-| Monitor            | Monitoring       |
-| Integration        | Integration      |
-| Workspace          | Management       |
-| Billing            | Billing          |
+| Monitor            | Monitoring     |
+| Integration        | Integration    |
+| Workspace          | Management     |
+| Billing            | Billing        |
 
-### Secondary Menu Configuration Corresponding to Primary Menus
+### Second-Level Menu Configuration Corresponding to First-Level Menus
 ```json
 {"Scene": ["DashboardList", "SceneDashboardCreate", "LinkToTrackService", "RegularReportList", "NotesList", "CreateNote", "ViewerList", "BuiltInViewList"], "Events": ["KeyEventsMonitorChart", "KeyEventsSmartMonitor"], "ExceptionsTracking": ["ExceptionsTrackingConf"], "Objectadmin": ["ObjectadminHost", "ObjectadminHostTopology", "ObjectadminDocker", "ObjectadminProcesses", "HostNetwork", "ObjectadminOther", "WorkspacePipelineList"], "MetricQuery": ["MetricAnalysis", "MetricMap", "WorkspacePipelineList"], "LogIndi": ["Log", "LogPipelineList", "Indicator", "LogIndexList", "LogFilterRuleList", "LogBackupExplorer", "LogQueryRuleList"], "Tracing": ["LinkToTrackService", "LinkToTrackServiceDirected", "LinkToTrackDashboard", "LinkToTrackLink", "LinkToTrackError", "LinkToTrackProfile", "ApmIndicator", "WorkspacePipelineList", "LogBackupExplorer"], "Rum": ["RumList", "RumViewer", "RumDashboard", "RumTrack", "RumIndicator", "WorkspacePipelineList", "RumHosted", "LogBackupExplorer"], "CloudDial": ["CloudDialList", "CloudDialDashboard", "CloudDialExplorer", "CloudDialSelfNodeList"], "Security": ["SecurityExplorer", "SecurityDashboard", "SecurityIndicator", "WorkspacePipelineList"], "GitLabCI": ["GitLabCIExplorer", "GitLabCIDashboard"], "Monitor": ["CheckerRuleList", "SmartCheckerRuleList", "IntelligentInspectionList", "SLOList", "SilenceList", "CheckerRuleGroupList", "AlertToList"], "Integration": ["IntegrationList", "Datakit", "FunctionDetail", "DCA", "Mobile"], "Workspace": ["WorkspaceDetail", "WorkspaceAttrDetail", "WorkspaceFieldsList", "WorkspaceTagsList", "WorkspaceMembers", "WorkspaceRoles", "APIManage", "MemberInviteList", "WorkspaceFilterRuleList", "WorkspacePipelineList", "LogBackupExplorer", "RegexpList", "CloudAccountList", "KeyEventsAudit", "EmbeddedSharing", "CrossNamespacedataAuth", "DataAuthorization", "DataScanerList"], "Billing": []}
 ```
 
 Note:
 <br/>
-1. If not configured, the frontend treats it as a new menu and opens it by default.
+1. If not configured, the frontend will treat it as a new menu and open it by default.
 <br/>
-2. The menu configuration in the management backend affects the final display effect of the space configuration.
+2. The configuration in the management backend affects the final display effect of the space configuration.
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/set' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/menu_v2/set' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw '{"menu":[{"key":"Scene","value":1},{"key":"Events","value":1},{"key":"ExceptionsTracking","value":1},{"key":"Objectadmin","value":1},{"key":"MetricQuery","value":1},{"key":"LogIndi","value":1},{"key":"Tracing","value":1},{"key":"Rum","value":1},{"key":"CloudDial","value":1},{"key":"Security","value":1},{"key":"GitLabCI","value":1},{"key":"Monitor","value":1},{"key":"Integration","value":1},{"key":"Workspace","value":1},{"key":"Billing","value":1}]}' \
@@ -140,7 +140,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/set' \
                     }
                 ],
                 "isShow": true,
-                "key": "ExceptionsTracking"
+                "key": "Incident"
             },
             {
                 "children": [
@@ -174,7 +174,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/set' \
                     }
                 ],
                 "isShow": true,
-                "key": "Objectadmin"
+                "key": "Infrastructure"
             },
             {
                 "children": [
@@ -192,7 +192,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/set' \
                     }
                 ],
                 "isShow": true,
-                "key": "MetricQuery"
+                "key": "Metrics"
             },
             {
                 "children": [
@@ -226,7 +226,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/set' \
                     }
                 ],
                 "isShow": true,
-                "key": "LogIndi"
+                "key": "Logs"
             },
             {
                 "children": [
@@ -268,7 +268,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/set' \
                     }
                 ],
                 "isShow": true,
-                "key": "Tracing"
+                "key": "APM"
             },
             {
                 "children": [
@@ -306,7 +306,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/set' \
                     }
                 ],
                 "isShow": true,
-                "key": "Rum"
+                "key": "RUM"
             },
             {
                 "children": [
@@ -328,7 +328,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/set' \
                     }
                 ],
                 "isShow": true,
-                "key": "CloudDial"
+                "key": "Synthetic Tests"
             },
             {
                 "children": [
@@ -350,7 +350,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/set' \
                     }
                 ],
                 "isShow": true,
-                "key": "Security"
+                "key": "Security Check"
             },
             {
                 "children": [
@@ -398,7 +398,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/set' \
                     }
                 ],
                 "isShow": true,
-                "key": "Monitor"
+                "key": "Monitoring"
             },
             {
                 "children": [
@@ -502,7 +502,7 @@ curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/set' \
                     }
                 ],
                 "isShow": true,
-                "key": "Workspace"
+                "key": "Management"
             },
             {
                 "children": [],

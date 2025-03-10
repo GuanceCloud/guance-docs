@@ -8,29 +8,25 @@
 
 
 
-
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-------|:----------------|
-| search | string | No  | Search, default searches role name, source field name, and source field value<br>Example: supper_workspace <br>Can be empty: False <br> |
-| pageIndex | integer | No  | Page number<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize | integer | No  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| Parameter Name | Type   | Required | Description |
+|:--------------|:-------|:---------|:------------|
+| search        | string | No       | Search, default search for role name, source field name, and source field value<br>Example: supper_workspace <br>Allow empty: False <br> |
+| pageIndex     | integer| No       | Page number<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize      | integer| No       | Number of items per page<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
-## Additional Parameter Explanation
-
-
+## Additional Parameter Notes
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/login_mapping/field/list?pageIndex=1&pageSize=10&search=lisa-new' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/login_mapping/field/list?pageIndex=1&pageSize=10&search=lisa-new' \
   -H 'Content-Type: application/json;charset=UTF-8' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed
 ```
-
 
 
 

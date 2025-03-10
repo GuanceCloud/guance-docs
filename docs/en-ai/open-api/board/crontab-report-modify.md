@@ -2,63 +2,71 @@
 
 ---
 
-<br />**POST /api/v1/crontab_report/\{report_uuid\}/modify**
+<br />**POST /api/v1/crontab_report/{report_uuid}/modify**
 
 ## Overview
 
+
+
+
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:-------------------------|
-| report_uuid          | string   | Y        | UUID of the scheduled report<br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| report_uuid | string | Y | UUID of the scheduled report<br> |
+
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:-------------------------|
-| title                | string   | Y        | Name of the scheduled report<br>Allow empty: True <br>Maximum length: 200 <br> |
-| content              | string   | N        | Content of the scheduled report<br>Allow empty: True <br>Maximum length: 1000 <br>Allow empty string: True <br> |
-| dashboardUUID        | string   | Y        | UUID of the dashboard<br>Allow empty: False <br> |
-| recipient            | array    | Y        | Recipient information<br>Example: [acnt_xxxx, 22@qq.com, acnt_yyy] <br>Allow empty: False <br> |
-| variables            | json     | N        | View variable information<br>Allow empty: True <br> |
-| timeRange            | string   | Y        | Query time range<br>Example: 1d <br>Allow empty: True <br> |
-| crontab              | string   | N        | Crontab for the scheduled task<br>Example: 1 2 * * * <br>Allow empty: True <br>Allow empty string: True <br> |
-| singleExecuteTime    | int      | N        | Timestamp for single execution<br>Allow empty: True <br> |
-| extend               | json     | N        | Additional information<br>Allow empty: True <br> |
-| timezone             | string   | Y        | Timezone for the scheduled report<br>Example: Asia/Shanghai <br>Allow empty: True <br> |
-| notifyType           | string   | Y        | Notification type for the scheduled report<br>Example: email <br>Allow empty: True <br>Possible values: ['email', 'dingTalkRobot', 'wechatRobot', 'feishuRobot'] <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| title | string | Y | Name of the scheduled report<br>Allow null: True <br>Maximum length: 200 <br> |
+| content | string |  | Content of the scheduled report<br>Allow null: True <br>Maximum length: 1000 <br>Allow empty string: True <br> |
+| dashboardUUID | string | Y | Dashboard UUID<br>Allow null: False <br> |
+| recipient | array | Y | Recipient information<br>Example: [acnt_xxxx, 22@qq.com, acnt_yyy] <br>Allow null: False <br> |
+| variables | json |  | View variable information<br>Allow null: True <br> |
+| timeRange | string | Y | Query time range<br>Example: 1d <br>Allow null: True <br> |
+| crontab | string |  | Crontab for the scheduled task<br>Example: 1 2 * * * <br>Allow null: True <br>Allow empty string: True <br> |
+| singleExecuteTime | int |  | Timestamp for single execution<br>Allow null: True <br> |
+| extend | json |  | Additional information<br>Allow null: True <br> |
+| timezone | string | Y | Timezone for the scheduled report<br>Example: Asia/Shanghai <br>Allow null: True <br> |
+| notifyType | string | Y | Notification type for the scheduled report<br>Example: email <br>Allow null: True <br>Possible values: ['email', 'dingTalkRobot', 'wechatRobot', 'feishuRobot'] <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
-### Data Explanation
 
-- Request Parameter Explanation
+Data Explanation.*
 
-| Parameter Name           | Type | Description                                                 |
-| ------------------------ | ---- | ----------------------------------------------------------- |
-| title                    | string | Name of the scheduled report |
-| content                  | string | Content of the scheduled report                                                 |
-| dashboardUUID            | string | UUID of the dashboard for the scheduled report     |
-| recipient                | list  | List of recipient information for the scheduled report, including user accounts (acnt_/email/notification target uuid)                                         |
-| variables                | json  | View variable information                                         |
-| timeRange                | string | Query time range, in the format of integer + d/h/m, e.g., 3d, 15m, 2h                                       |
-| crontab                  | string | Crontab for repeated execution of the scheduled task                                         |
-| singleExecuteTime        | int   | Timestamp for single execution                                         |
-| extend                   | json  | Extended information, used for displaying information on the front-end interface                                         |
-| timezone                 | string | Timezone                                         |
-| notifyType               | string | Notification type, enumerated values (email, dingTalkRobot, wechatRobot, feishuRobot)                                         |
+- Request parameter explanation
 
-- Extend Field Explanation
+| Parameter Name           | type | Description                                                 |
+| ---------------- | ---- | ---------------------------------------------------- |
+| title       | string | Name of the scheduled report |
+| content             | string | Content of the scheduled report                                                 |
+| dashboardUUID       | string  | Dashboard UUID of the scheduled report     |
+| recipient            | list  | List of recipient information for the scheduled report, user account acnt_/email/notification target UUID                                         |
+| variables            | json  | View variable information                                         |
+| timeRange            | string  | Query time range, integer plus d/h/m format, e.g., 3d, 15m, 2h                                       |
+| crontab            | string  | Crontab for repeating scheduled tasks                                         |
+| singleExecuteTime            | int  | Timestamp for single execution                                         |
+| extend            | json  | Extended information used for front-end interface display                                         |
+| timezone            | string  | Timezone                                         |
+| notifyType            | string  | Notification type, enumerated values (email, dingTalkRobot, wechatRobot, feishuRobot)                                         |
 
-| Parameter Name           | Type | Description                                                 |
-| ------------------------ | ---- | ----------------------------------------------------------- |
-| shareConfig              | json | Sharing configuration for the scheduled report | 
-| shareConfig.shareMethod  | string | Sharing method for the scheduled report: public or encipher (default is public)                           |
-| shareConfig.password     | string | Password for encrypted sharing of the scheduled report                         |
+- Extend extended field explanation
+
+| Parameter Name           | type | Description                                                 |
+| ---------------- | ---- | ---------------------------------------------------- |
+| shareConfig       | json | Share configuration for the scheduled report |    ｜
+| shareConfig.shareMethod  | string | Share method for the scheduled report public or enciphered, default is public                           |
+| shareConfig.password     | string | Password for sharing the scheduled report, encrypted share password                         |
+
+
+
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/crontab_report/cron_xxxx32/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report/cron_xxxx32/modify' \
 -H 'Accept-Language: en' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'Accept: application/json, text/plain, */*' \
@@ -66,6 +74,9 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/cron_xxxx32/modify' \
 --data-raw '{"title":"test3","content":"","dashboardUUID":"dsbd_xxxx32","recipient":["notify_xxxx32"],"timeRange":"1d","singleExecuteTime":-1,"crontab":"10 10 03,14,13 * *","variables":{},"extend":{"cycleTimeType":"day","hour":"10","minutes":"10","dashboardInfo":{}},"timezone":"Asia/Shanghai","notifyType":"dingTalkRobot"}' \
 --compressed
 ```
+
+
+
 
 ## Response
 ```shell

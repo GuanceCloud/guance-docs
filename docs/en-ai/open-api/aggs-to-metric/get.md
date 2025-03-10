@@ -1,4 +1,4 @@
-# 【Aggregation to Metrics】Get
+# [Aggregation to Metrics] Get
 
 ---
 
@@ -11,8 +11,8 @@ Retrieve the aggregation to metrics rule
 ## Route Parameters
 
 | Parameter Name | Type   | Required | Description               |
-|:------------|:------|:-------|:-------------------------|
-| rule_uuid  | string | Y      | ID of the aggregation to metrics rule<br> |
+|:--------------|:-------|:--------|:--------------------------|
+| rule_uuid     | string | Y       | ID of the aggregation to metrics rule<br> |
 
 
 ## Additional Parameter Notes
@@ -21,7 +21,7 @@ Retrieve the aggregation to metrics rule
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/aggs_to_metric/rul_xxxx/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/aggs_to_metric/rul_xxxx/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```

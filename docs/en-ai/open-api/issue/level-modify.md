@@ -33,7 +33,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue-level/<issue_level_uuid>/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue-level/<issue_level_uuid>/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name": "custom-1","color": "#E94444","description": "Custom level description 2"}'\

@@ -5,7 +5,7 @@
 <br />**POST /api/v1/rum_sourcemap/multipart_upload_init**
 
 ## Overview
-This is the first step in the operation of uploading a compressed SourceMap file (multipart upload). It initializes a multipart upload event. The subsequent multipart uploads and file merging will use this event identifier (uploadId).
+The first step in the operation of uploading a compressed SourceMap file (multipart upload). This initializes a multipart upload event. The subsequent multipart uploads and file merging will use this event identifier (uploadId).
 For more details, refer to: [SourceMap Multipart Upload Interface Usage Instructions](../../../studio-backend/sourcemap-multipart-upload-init/)
 
 
@@ -13,23 +13,24 @@ For more details, refer to: [SourceMap Multipart Upload Interface Usage Instruct
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                                                                 |
-|:--------------|:-------|:--------|:---------------------------------------------------------------------------|
-| needCover     | boolean | No      | Whether to forcibly overwrite an existing file. Default is false, meaning no overwrite.<br>Can be null: False <br> |
-| appId         | string  | Yes     | App ID<br>Can be null: False <br> |
-| version       | string  | No      | Version<br>Can be null: False <br>Can be an empty string: True <br> |
-| env           | string  | No      | Environment<br>Can be null: False <br>Can be an empty string: True <br> |
+| Parameter Name | Type   | Required | Description              |
+|:-----------|:-------|:-----|:----------------|
+| needCover | boolean | No | Whether to forcibly overwrite an existing file. Default is false, meaning no overwrite.<br>Allow null: False <br> |
+| appId | string | Yes | appId<br>Allow null: False <br> |
+| version | string | No | Version<br>Allow null: False <br>Allow empty string: True <br> |
+| env | string | No | Environment<br>Allow null: False <br>Allow empty string: True <br> |
 
 ## Additional Parameter Notes
 
-Note 1: Only one SourceMap with the same `version` and `env` can exist under the same application. You can overwrite an existing SourceMap using the `needCover` parameter. If you do not overwrite it, the `uploadId` will return as an empty string.
+Note 1: Only one SourceMap with the same `version` and `env` can exist under the same application. You can overwrite an existing SourceMap using the `needCover` parameter.
+If not overwritten, `uploadId` will be returned as an empty string.
 
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/rum_sourcemap/multipart_upload_init' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/rum_sourcemap/multipart_upload_init' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw $'{\n  "needCover": true,\n  "appId": "app_demo",\n "version": "1.0.2",\n "env": "daily"\n}' \

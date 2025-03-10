@@ -11,8 +11,8 @@ Delete an index/unbind index configuration
 ## Body Request Parameters
 
 | Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:---------|:-------------------------|
-| cfgUUID       | string | Y        | Configuration UUID<br>Allow empty: False <br> |
+|:-----------|:-------|:-----|:----------------|
+| cfgUUID | string | Y | Configuration UUID<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -20,7 +20,7 @@ Delete an index/unbind index configuration
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/log_index_cfg/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/log_index_cfg/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw '{"cfgUUID":"lgim_xxxx32"}' \
 --compressed 

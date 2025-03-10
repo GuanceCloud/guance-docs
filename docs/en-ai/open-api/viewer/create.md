@@ -1,29 +1,30 @@
-# Create an Explorer
+# Create a Viewer
 
 ---
 
 <br />**POST /api/v1/viewer/add**
 
 ## Overview
-Create an Explorer
+Create a viewer
+
 
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:-----------|:-------------------------|
-| ownerType            | string   | No         | View classification type, defaults to Explorer<br>Example: Explorer <br>Can be empty: False <br> |
-| templateUUID         | string   | No         | View template UUID<br>Can be empty: False <br>Can be empty string: True <br>Max length: 128 <br> |
-| sourceDashboardUUID  | string   | No         | Source view ID<br>Can be empty: False <br>Can be empty string: True <br>Max length: 128 <br> |
-| name                 | string   | Yes        | Explorer name<br>Can be empty: False <br>Max length: 64 <br> |
-| desc                 | string   | No         | Description<br>Example: Description1 <br>Can be empty: False <br>Can be empty string: True <br>Max length: 2048 <br> |
-| type                 | string   | No         | Type, defaults to CUSTOM<br>Example: CUSTOM <br>Can be empty: False <br>Max length: 32 <br> |
-| extend               | json     | No         | Additional data for the Explorer, defaults to {}<br>Example: {} <br>Can be empty: False <br> |
-| templateInfos        | json     | No         | Custom template data<br>Example: {} <br>Can be empty: False <br>Can be empty string: False <br> |
-| isImport             | boolean  | No         | Whether it is an imported Explorer<br>Can be empty: False <br> |
-| tagNames             | array    | No         | Names of tags<br>Can be empty: False <br> |
-| tagNames[*]          | string   | No         | Tag name<br>Can be empty: False <br>Max length: 128 <br> |
+|:---------------------|:--------|:----------|:-------------------------|
+| ownerType            | string  |           | View classification type, defaults to viewer<br>Example: viewer <br>Can be empty: False <br> |
+| templateUUID         | string  |           | View template UUID<br>Can be empty: False <br>Can be an empty string: True <br>Maximum length: 128 <br> |
+| sourceDashboardUUID  | string  |           | Source view ID<br>Can be empty: False <br>Can be an empty string: True <br>Maximum length: 128 <br> |
+| name                 | string  | Y         | Viewer name<br>Can be empty: False <br>Maximum length: 64 <br> |
+| desc                 | string  |           | Description<br>Example: Description1 <br>Can be empty: False <br>Can be an empty string: True <br>Maximum length: 2048 <br> |
+| type                 | string  |           | Type, defaults to CUSTOM<br>Example: CUSTOM <br>Can be empty: False <br>Maximum length: 32 <br> |
+| extend               | json    |           | Additional data for the viewer, defaults to {}<br>Example: {} <br>Can be empty: False <br> |
+| templateInfos        | json    |           | Custom template data<br>Example: {} <br>Can be empty: False <br>Can be an empty string: False <br> |
+| isImport             | boolean |           | Whether it is an imported viewer<br>Can be empty: False <br> |
+| tagNames             | array   |           | Names of tags<br>Can be empty: False <br> |
+| tagNames[*]          | string  |           | Tag name<br>Can be empty: False <br>Maximum length: 128 <br> |
 
 ## Additional Parameter Notes
 
@@ -31,12 +32,13 @@ Create an Explorer
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/viewer/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/viewer/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"add_viewer","templateInfos":{},"isImport":false,"tagNames":[],"extend":{"index":"tracing"}}' \
 --compressed 
 ```
+
 
 
 
@@ -93,7 +95,7 @@ curl 'https://openapi.guance.com/api/v1/viewer/add' \
             },
             {
                 "id": "tag_xxxx32",
-                "name": "for"
+                "name": "For"
             },
             {
                 "id": "tag_xxxx32",
@@ -109,15 +111,15 @@ curl 'https://openapi.guance.com/api/v1/viewer/add' \
             },
             {
                 "id": "tag_xxxx32",
-                "name": "Logs"
+                "name": "Log"
             },
             {
                 "id": "tag_xxxx32",
-                "name": "RUM PV"
+                "name": "User Analysis"
             },
             {
                 "id": "tag_xxxx32",
-                "name": "Ali"
+                "name": "Alibaba"
             },
             {
                 "id": "tag_xxxx32",

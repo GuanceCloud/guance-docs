@@ -1,4 +1,4 @@
-# List SLOs in a Workspace
+# List SLOs in the Workspace
 
 ---
 
@@ -8,14 +8,15 @@
 
 
 
+
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description                                      |
-|:--------------|:-------|:--------|:------------------------------------------------|
-| refSli        | string |         | Specifies the SLI UUID, returns SLOs containing this SLI<br>Can be empty: True <br> |
-| search        | string |         | SLO name<br>Can be empty: True <br>             |
-| pageIndex     | integer|         | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize      | integer|         | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 10000 <br> |
+| Parameter Name | Type   | Required | Description |
+|:--------------|:------|:--------|:----------------|
+| refSli | string | No  | Specifies the SLI UUID, returns SLOs containing this SLI<br>Allow null: True <br> |
+| search | string | No  | SLO name<br>Allow null: True <br> |
+| pageIndex | integer | Yes | Page number<br>Allow null: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize | integer | Yes | Number of items per page<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 10000 <br> |
 
 ## Additional Parameter Notes
 
@@ -23,10 +24,11 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/slo/list?pageIndex=1&pageSize=2' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/slo/list?pageIndex=1&pageSize=2' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 ```
+
 
 
 
@@ -45,7 +47,7 @@ curl 'https://openapi.guance.com/api/v1/slo/list?pageIndex=1&pageSize=2' \
                 ],
                 "config": {
                     "checkRange": 604800,
-                    "describe": "LWC OpenAPI Test",
+                    "describe": "LWC OpenAPI test",
                     "goal": 90.0,
                     "interval": "10m",
                     "minGoal": 60.0,

@@ -5,27 +5,29 @@
 <br />**GET /api/v1/dashboards/list**
 
 ## Overview
-Retrieve a list of dashboards, sorted by update time in descending order by default.
+Retrieve the list of dashboards, sorted by update time in descending order by default
 
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description |
-|:--------------|:-------|:---------|:------------|
-| search        | string | No       | Search by name<br>Allow empty: False <br> |
-| tagNames      | json   | No       | Tag names for filtering<br>Allow empty: False <br>Example: [] <br> |
-| pageIndex     | integer| No       | Page number<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize      | integer| No       | Number of items per page<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| Parameter Name | Type   | Required | Description                          |
+|:--------------|:-------|:---------|:-------------------------------------|
+| search        | string |          | Search by name<br>Allow empty: False <br> |
+| tagNames      | json   |          | Tag names for filtering<br>Allow empty: False <br>Example: [] <br> |
+| pageIndex     | integer|          | Page number<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize      | integer|          | Number of items per page<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
 
 
+
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboards/list?pageIndex=1&pageSize=10' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboards/list?pageIndex=1&pageSize=10' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
+
 
 
 ## Response

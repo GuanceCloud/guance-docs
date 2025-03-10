@@ -9,11 +9,11 @@ Workspace sensitive data masking rule test
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                                                                                           |
-|:--------------|:-------|:---------|:------------------------------------------------------------------------------------------------------|
-| roleUUIDs     | array  | Y        | Account roles associated<br>Can be empty: False <br>Example: ['general', 'role_43f57c813b034c4b806a1a647b4ee387'] <br> |
-| namespace     | string | Y        | Masking type<br>Can be empty: False <br>Can be an empty string: False <br>Example: logging <br>Possible values: ['logging', 'metric', 'object', 'custom_object', 'keyevent', 'tracing', 'rum', 'security', 'network', 'profiling', 'billing'] <br> |
-| data          | array  | Y        | Email headers<br>Can be empty: False <br>Example: [{'host': 'hangzhou_127', 'message': 'xxxL, id: 234887209348'}, {'host': 'xihu', 'message': 'xxxL, id: 234234234'}] <br> |
+| Parameter Name | Type   | Required | Description                                                                                             |
+|:--------------|:-------|:--------|:------------------------------------------------------------------------------------------------------|
+| roleUUIDs     | array  | Y       | Account roles associated<br>Allow empty: False <br>Example: ['general', 'role_43f57c813b034c4b806a1a647b4ee387'] <br> |
+| namespace     | string | Y       | Masking type<br>Allow empty: False <br>Allow empty string: False <br>Example: logging <br>Possible values: ['logging', 'metric', 'object', 'custom_object', 'keyevent', 'tracing', 'rum', 'security', 'network', 'profiling', 'billing'] <br> |
+| data          | array  | Y       | Email headers<br>Allow empty: False <br>Example: [{'host': 'hangzhou_127', 'message': 'xxxL, id: 234887209348'}, {'host': 'xihu', 'message': 'xxxL, id: 234234234'}] <br> |
 
 ## Additional Parameter Notes
 
@@ -21,7 +21,7 @@ Workspace sensitive data masking rule test
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/sensitive_mask_rule/test' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/sensitive_mask_rule/test' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw '{"namespace":"logging","roleUUIDs":["readOnly"],"data":[{"host":"jinlei","message":"sakldfu93w4urfjsndf / GET"},{"host":"hangzhou1234","message":"tokenUUID: 9083hsdf"}]}' \

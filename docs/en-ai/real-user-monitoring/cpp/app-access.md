@@ -2,25 +2,27 @@
 ---
 ## Prerequisites
 
-**Note**: If you have enabled the [RUM Headless](../../dataflux-func/headless.md) service, the prerequisites have been automatically configured for you, and you can directly integrate the application.
+**Note**: If you have enabled the [RUM Headless](../../dataflux-func/headless.md) service, the prerequisites have been automatically configured for you. You can directly integrate your application.
 
 - Install [DataKit](../../datakit/datakit-install.md);
-- Configure [RUM Collector](../../integrations/rum.md);
-- Configure DataKit to be [publicly accessible and install the IP geolocation database](../../datakit/datakit-tools-how-to.md#install-ipdb).
+- Configure the [RUM Collector](../../integrations/rum.md);
+- Ensure DataKit is [publicly accessible and has the IP geolocation database installed](../../datakit/datakit-tools-how-to.md#install-ipdb).
 
 ## Application Integration {#integration}
 
-The current CPP version supports Windows and Linux platforms. Log in to the <<< custom_key.brand_name >>> console, go to the **Synthetic Tests** page, click the top-left **[Create Application](../index.md#create)**, and start creating a new application.
+The current CPP version supports Windows and Linux platforms. Log in to the <<< custom_key.brand_name >>> console, navigate to the **User Analysis** page, click the top-left **[Create Application](../index.md#create)**, and start creating a new application.
+
 
 ![](../img/image_14.png)
 
 ## Installation {#install}
-![](https://img.shields.io/badge/dynamic/json?label=github&color=orange&query=$.version&uri=https://<<< custom_key.static_domain >>>/ft-sdk-package/badge/cpp/version.json) ![](https://img.shields.io/badge/dynamic/json?label=cpp&color=blue&query=$.cpp_version&uri=https://<<< custom_key.static_domain >>>/ft-sdk-package/badge/cpp/info.json) ![](https://img.shields.io/badge/dynamic/json?label=gcc&color=blue&query=$.gcc_support&uri=https://<<< custom_key.static_domain >>>/ft-sdk-package/badge/cpp/info.json) ![](https://img.shields.io/badge/dynamic/json?label=cmake&color=blue&query=$.cmake&uri=https://<<< custom_key.static_domain >>>/ft-sdk-package/badge/cpp/info.json) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://<<< custom_key.static_domain >>>/ft-sdk-package/badge/cpp/info.json)
+![](https://img.shields.io/badge/dynamic/json?label=github&color=orange&query=$.version&uri=https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/badge/cpp/version.json) ![](https://img.shields.io/badge/dynamic/json?label=cpp&color=blue&query=$.cpp_version&uri=https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/badge/cpp/info.json) ![](https://img.shields.io/badge/dynamic/json?label=gcc&color=blue&query=$.gcc_support&uri=https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/badge/cpp/info.json) ![](https://img.shields.io/badge/dynamic/json?label=cmake&color=blue&query=$.cmake&uri=https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/badge/cpp/info.json) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/badge/cpp/info.json)
 
 
 **Source Code Location**: [https://github.com/GuanceCloud/datakit-cpp](https://github.com/GuanceCloud/datakit-cpp)
 
 **Demo Location**: [https://github.com/GuanceCloud/datakit-cpp/ft-sdk-sample](https://github.com/GuanceCloud/datakit-cpp/blob/develop/src/datakit-sdk-cpp/ft-sdk-sample/ft-sdk-sample.cpp)
+
 
 === "Windows"
 	
@@ -29,8 +31,8 @@ The current CPP version supports Windows and Linux platforms. Log in to the <<< 
 	git clone https://github.com/microsoft/vcpkg
 	cd vcpkg
 	
-	# Download custom configuration registries file
-	curl -o vcpkg-configuration.json https://<<< custom_key.static_domain >>>/ft-sdk-package/vcpkg_config/vcpkg-configuration.json 
+	# Download custom registries configuration file
+	curl -o vcpkg-configuration.json https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/vcpkg_config/vcpkg-configuration.json 
 	
 	bootstrap-vcpkg.bat
 	vcpkg install datakit-sdk-cpp:x64-windows
@@ -43,21 +45,21 @@ The current CPP version supports Windows and Linux platforms. Log in to the <<< 
 	
 	git clone https://github.com/microsoft/vcpkg
 	
-	# apt install ninja-build
-	# apt install pkg-config
+	#apt install ninja-build
+	#apt install pkg-config
 	
 	./vcpkg/bootstrap-vcpkg.sh
 	cd vcpkg
 	
-	# Download custom configuration registries file
-	curl -o vcpkg-configuration.json https://<<< custom_key.static_domain >>>/ft-sdk-package/vcpkg_config/vcpkg-configuration.json 
+	# Download custom registries configuration file
+	curl -o vcpkg-configuration.json https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/vcpkg_config/vcpkg-configuration.json 
 	
-	# If using ARM 64, add VCPKG_FORCE_SYSTEM_BINARIES
-	# export VCPKG_FORCE_SYSTEM_BINARIES=1
+	# If it's arm64, add VCPKG_FORCE_SYSTEM_BINARIES
+	#export VCPKG_FORCE_SYSTEM_BINARIES=1
 	
 	./vcpkg install datakit-sdk-cpp:x64-linux
 	
-	# In the build environment, reference the VCPKG_ROOT variable
+	# In the compilation environment, reference the VCPKG_ROOT variable
 	export VCPKG_ROOT= [ your_vcpkg_root_dir ]
 	
 	```
@@ -112,15 +114,15 @@ sdk->init();
 
 | **Field** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| FTSDKFactory::get | string | No | Specifies the configuration file, default is `ft_sdk_config.json`| 
+| FTSDKFactory::get | string | No | Specifies the configuration file, default is `ft_sdk_config.json`|
 
 ### Starting JSON File Configuration
-You can configure the SDK debug log via a `json` file using `FTSDKFactory`.
+You can configure the `json` file using `FTSDKFactory` to enable SDK debug logs.
 
 ```json
 {    
     "general_config": {
-        "enable_sdk_log": true  // Enable debug log, default is off
+        "enable_sdk_log": true  // Enable debug logs, default is off
     }
 }
 ```
@@ -141,10 +143,10 @@ sdk->install(gc)
 | --- | --- | --- | --- |
 | setServerUrl | string | Yes | DataKit access URL, example: http://10.0.0.1:9529, default port is 9529. **Note: The device installing the SDK must be able to access this address** |
 | setEnv | enum | No | Environment configuration, default is `EnvType::PROD` |
-| setAppVersion | enum | No | Automatically retrieved on Windows, needs manual assignment on Linux |
-| setEnableFileDBCache | Bool | No | Whether to enable local database cache, default is false|
-| addGlobalContext | dictionary | No | Adds global properties to the SDK, refer to [here](#key-conflict) for rules |
-| setServiceName| string | No | Affects the `service` field data in Logs and RUM, default is `df_rum_windows` for Windows and `df_rum_linux` for Linux |
+| setAppVersion | enum | No | Automatically retrieved on Windows, needs manual setting on Linux |
+| setEnableFileDBCache | Bool | No | Whether to enable local database, default is false |
+| addGlobalContext | dictionary | No | Add global attributes to the SDK, refer to [here](#key-conflict) for rules |
+| setServiceName | string | No | Affects the `service` field data in Logs and RUM, defaults to `df_rum_windows` on Windows and `df_rum_linux` on Linux |
 
 ### RUM Configuration
 ```cpp
@@ -155,10 +157,10 @@ sdk->initRUMWithConfig(rc);
 
 | **Field** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| setRumAppId | string | Yes | Sets the RUM `appid`, required to enable RUM collection, see [how to get appid](#integration) |
+| setRumAppId | string | Yes | Sets the RUM `appid`, enabling RUM collection. Refer to [method to obtain appid](#integration) |
 | setSamplingRate | float | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default is 1. Applies to all View, Action, LongTask, Error data under the same session_id |
-| setExtraMonitorTypeWithError | ErrorMonitorType | No | Adds additional monitoring data to RUM crash data, `ErrorMonitorType::MEMORY` for memory usage, `ErrorMonitorType::CPU` for CPU usage, `ErrorMonitorType::ALL` for all |
-| addGlobalContext | dictionary | No | Adds label data for user monitoring data source differentiation; if tracking is needed, use `track_id` as key and any value as value. Refer to [here](#key-conflict) for rules |
+| setExtraMonitorTypeWithError | ErrorMonitorType | No | Adds additional monitoring data to RUM crash data, e.g., `ErrorMonitorType::MEMORY` for memory usage, `ErrorMonitorType::CPU` for CPU usage, `ErrorMonitorType::ALL` for all |
+| addGlobalContext | dictionary | No | Adds label data for distinguishing user monitoring sources. If tracking functionality is needed, use `track_id` as key and any value as value. Refer to [here](#key-conflict) for rules |
 
 ### Log Configuration
 ```cpp
@@ -172,12 +174,12 @@ lpc.setEnableCustomLog(true)
 
 | **Field** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| setSamplingRate | float | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default is 1. |
+| setSamplingRate | float | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default is 1 |
 | addGlobalContext | dictionary | No | Adds label data, refer to [here](#key-conflict) for rules |
 | setLogLevelFilters | array | No | Sets log level filters, default is none |
 | setEnableCustomLog | bool | No | Whether to upload custom logs, default is `false` |
 | setEnableLinkRUMData | bool | No | Whether to link with RUM data, default is `false` |
-| setLogCacheDiscardStrategy | LogCacheDiscard | No | Default is `LogCacheDiscard::DISCARD`, `DISCARD` discards appended data, `DISCARD_OLDEST` discards old data |
+| setLogCacheDiscardStrategy | LogCacheDiscard | No | Default is `LogCacheDiscard::DISCARD`, `DISCARD` discards appended data, `DISCARD_OLDEST` discards oldest data |
 
 ### Trace Configuration
 ```cpp
@@ -188,8 +190,8 @@ tc.setTraceType(TraceType::DDTRACE)
 
 | **Field** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| setSamplingRate | float | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default is 1.|
-| setTraceType | enum | No | Default is `DDTrace`, currently supports `Zipkin`, `Jaeger`, `DDTrace`, `Skywalking` (8.0+), `TraceParent` (W3C). When integrating with OpenTelemetry, please check supported types and agent configurations |
+| setSamplingRate | float | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default is 1 |
+| setTraceType | enum | No | Default is `DDTrace`, currently supports `Zipkin`, `Jaeger`, `DDTrace`, `Skywalking` (8.0+), `TraceParent` (W3C). When integrating with OpenTelemetry, choose the appropriate trace type and check supported types and agent configurations |
 | setEnableLinkRUMData | bool | No | Whether to link with RUM data, default is `false` |
 
 ## RUM User Data Tracking
@@ -208,7 +210,7 @@ void startAction(std::string actionName, std::string actionType);
 
 
 /**
- * End an action
+ * Stop an action
  * 
  */
 void stopAction();
@@ -231,7 +233,7 @@ sdk->startAction("just4test", "click");
 void startView(std::string viewName);
 
 /**
- * End a view.
+ * Stop a view.
  * 
  */
 void stopView();
@@ -250,16 +252,16 @@ sdk->stopView();
 ```cpp
 	
 /**
- * Start a resource
+ * Start resource
  * 
- * @param resourceId Resource ID
+ * @param resourceId Resource Id
  */
 void startResource(std::string resourceId);
 	
 /**
- * Stop a resource
+ * Stop resource
  * 
- * @param resourceId Resource ID
+ * @param resourceId Resource Id
  */
 void stopResource(std::string resourceId);
 
@@ -267,7 +269,7 @@ void stopResource(std::string resourceId);
 /**
  * Set network transmission content
  * 
- * @param resourceId Resource ID
+ * @param resourceId Resource Id
  * @param params Network transmission parameters
  * @param netStatusBean Network status statistics
  */
@@ -346,7 +348,7 @@ RestClient::disable();
  * @param log Log
  * @param message Message
  * @param errorType Error type
- * @param state Program running state
+ * @param state Program state
  */
 void addError(std::string log, std::string message, RUMErrorType errorType, AppState state);
 ```
@@ -363,7 +365,7 @@ sdk->addError("test error 2", "second error", RUMErrorType::network_error, AppSt
 
 ```cpp
 /**
- * Add a long-running task
+ * Add long-running task
  * 
  * @param log Log
  * @param duration Duration (ns)
@@ -394,12 +396,12 @@ sdk->addLog("this\\is a \"test\" log", LogLevel::info);
 ```
 
 ## Tracer Network Trace
-Tracing is achieved by generating a Trace Header and adding it to the HTTP request headers.
+Tracing is implemented by generating a Trace Header and adding it to the HTTP request headers.
 
 ### Usage
 ```cpp
 /**
- * Generate trace header based on configuration
+ * Generate trace header according to configuration
  * 
  * @param url Network address
  * @return Trace data
@@ -461,13 +463,14 @@ sdk->unbindUserData();
 ## Closing the SDK
 ```cpp
 /**
- * Close the SDK and perform related resource cleanup operations
+ * Close the SDK and perform cleanup operations 
  */
 sdk->deinit();
 
 ```
 
-## Common Issues {#FAQ}
-### Adding Prefixes to Avoid Conflicting Fields {#key-conflict}
 
-To avoid conflicts between custom fields and SDK data, it is recommended to prefix tag names with a **project abbreviation**, such as `df_tag_name`. You can [check the source code](https://github.com/GuanceCloud/datakit-cpp/blob/develop/src/datakit-sdk-cpp/ft-sdk/FTSDKConstants.h) for keys used in the project. If global variables in the SDK conflict with RUM or Log variables, RUM or Log will override the SDK's global variables.
+## Common Issues {#FAQ}
+### Adding Prefixes to Avoid Conflict Fields {#key-conflict}
+
+To avoid conflicts between custom fields and SDK data, it is recommended to prefix tags with a **project abbreviation**, such as `df_tag_name`. For more details on used `key` values, refer to the [source code](https://github.com/GuanceCloud/datakit-cpp/blob/develop/src/datakit-sdk-cpp/ft-sdk/FTSDKConstants.h). If there are conflicting variables in SDK global variables with RUM or Log, RUM or Log will override the SDK global variables.

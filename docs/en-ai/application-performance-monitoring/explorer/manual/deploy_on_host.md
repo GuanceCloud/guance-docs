@@ -3,11 +3,11 @@
 
 ## Install DataKit Agent
 
-Before performing link data analysis for systems and applications, it is necessary to [deploy <<< custom_key.brand_name >>> DataKit collector](../../../datakit/datakit-install.md) on each target host to collect the required tracing data.
+Before performing link data analysis for systems and applications, you need to [deploy <<< custom_key.brand_name >>> DataKit collector](../../../datakit/datakit-install.md) on each target host to collect necessary tracing data.
 
 ## Enable DDTrace Collector
 
-DDTrace is used to receive, process, and analyze Tracing protocol data. Execute the following command to enable the DDTrace collector. For configurations of other third-party tracing collectors, refer to [Integration](../../../integrations/integration-index.md).
+DDTrace is used to receive, process, and analyze Tracing protocol data. Run the following command to enable the DDTrace collector. For other third-party tracing collector configurations, refer to [Integration](../../../integrations/integration-index.md).
 
 ```
 cp /usr/local/datakit/conf.d/ddtrace/ddtrace.conf.sample /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
@@ -27,12 +27,12 @@ datakit service -R
 Install dependencies:
 
 ```
-wget -O dd-java-agent.jar 'https://<<< custom_key.static_domain >>>/dd-image/dd-java-agent.jar'
+wget -O dd-java-agent.jar 'https://static.<<< custom_key.brand_main_domain >>>/dd-image/dd-java-agent.jar'
 ```
 
 Run the application:
 
-You can run your Java code through various methods, such as IDE, Maven, Gradle, or directly using the `java -jar` command. Below is an example using the `java` command to start the application:
+You can run your Java code through various methods, such as IDE, Maven, Gradle, or directly via the `java -jar` command. The following starts the application using the `java` command:
 
 ```
 java \ 
@@ -48,9 +48,9 @@ Parameter configuration:
 1. `service.name`: Service name;
 2. `env`: Environment information of the application service;
 3. `version`: Version number;
-4. Set sampling rate: After enabling, this can reduce the actual amount of data generated; the range is from 0.0(0%) ~ 1.0(100%);
+4. Set sampling rate: After enabling, it can reduce the actual amount of generated data; the range is from 0.0(0%) ~ 1.0(100%);
 5. Collect Profiling data: After enabling, you can see more runtime information about the application;
-6. Enable JVM Metrics collection: Requires enabling the [statsd collector](../../integrations/statsd.md) simultaneously.
+6. Enable JVM metrics collection: Requires enabling the [statsd collector](../../integrations/statsd.md) simultaneously.
 
 > For more parameter configurations, refer to [here](../../../integrations/ddtrace-java.md#start-options).
 
@@ -64,7 +64,7 @@ pip install ddtrace
 
 Run the application:
 
-You can run your Java code through various methods, such as IDE, Maven, Gradle, or directly using the `java -jar` command. Below is an example using the `java` command to start the application:
+You can run your Java code through various methods, such as IDE, Maven, Gradle, or directly via the `java -jar` command. The following starts the application using the `java` command:
 
 ```
 DD_LOGS_INJECTION=true \ 
@@ -78,9 +78,9 @@ Parameter configuration:
 1. `service.name`: Service name;
 2. `env`: Environment information of the application service;
 3. `version`: Version number;
-4. Set sampling rate: After enabling, this can reduce the actual amount of data generated; the range is from 0.0(0%) ~ 1.0(100%);
+4. Set sampling rate: After enabling, it can reduce the actual amount of generated data; the range is from 0.0(0%) ~ 1.0(100%);
 5. Collect Profiling data: After enabling, you can see more runtime information about the application;
-6. Enable Python Metrics collection: Requires enabling the [statsd collector](../../integrations/statsd.md) simultaneously.
+6. Enable Python metrics collection: Requires enabling the [statsd collector](../../integrations/statsd.md) simultaneously.
 
 > For more parameter configurations, refer to [here](../../../integrations/ddtrace-java.md#start-options).
 
@@ -94,9 +94,9 @@ go get gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer
 
 Run the application:
 
-You can run your Java code through various methods, such as IDE, Maven, Gradle, or directly using the `java -jar` command. Below is an example using the `java` command to start the application:
+You can run your Java code through various methods, such as IDE, Maven, Gradle, or directly via the `java -jar` command. The following starts the application using the `java` command:
 
-```go
+```
 package main 
 
 import ( 
@@ -129,7 +129,7 @@ Parameter configuration:
 1. `service.name`: Service name;
 2. `env`: Environment information of the application service;
 3. `version`: Version number;
-4. Set sampling rate: After enabling, this can reduce the actual amount of data generated; the range is from 0.0(0%) ~ 1.0(100%);
+4. Set sampling rate: After enabling, it can reduce the actual amount of generated data; the range is from 0.0(0%) ~ 1.0(100%);
 5. Collect Profiling data: After enabling, you can see more runtime information about the application.
 
 > For more parameter configurations, refer to [here](../../../integrations/ddtrace-java.md#start-options).

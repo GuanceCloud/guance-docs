@@ -8,24 +8,28 @@
 Export one or multiple blacklists
 
 
+
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:-------------------------|
-| blacklistUUIDs        | array    | Y        | Array of UUIDs for blacklists<br>Allow null: False <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:----------|:------------------------|
+| blacklistUUIDs       | array    | Y         | Array of UUIDs for blacklists<br>Allow null: False <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
+
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/blacklist/export' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/blacklist/export' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"blacklistUUIDs":["blist_xxxx32"]}' \
 --compressed
 ```
+
+
 
 
 ## Response

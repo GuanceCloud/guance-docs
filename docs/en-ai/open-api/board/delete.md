@@ -11,18 +11,20 @@ Delete a dashboard based on the specified `dashboard_uuid`
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:-------------------------|
-| dashboard_uuid        | string   | Yes      | View ID<br> |
+| Parameter Name      | Type   | Required | Description              |
+|:-----------------|:-----|:-------|:----------------|
+| dashboard_uuid | string | Y | View ID<br> |
 
 
 ## Additional Parameter Notes
 
 
 
+
+
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboards/dsbd_xxxx32/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboards/dsbd_xxxx32/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw 'null' \

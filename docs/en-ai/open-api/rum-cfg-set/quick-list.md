@@ -9,25 +9,29 @@ List all simple configuration information for applications
 
 
 
+
 ## Query Request Parameters
 
-| Parameter Name | Type       | Required | Description               |
-|:--------------|:----------|:-------|:----------------------|
-| appId         | commaArray |        | App ID<br>Allow empty: False <br>Example: app_xxx <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-----------------|:-------|:-----|:----------------|
+| appId | commaArray | No | App ID<br>Can be empty: False <br>Example: app_xxx <br> |
 
 ## Additional Parameter Notes
+
 
 *Data Description.*
 
 
 
+
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/rum_cfg/quick_list?appId=appid_xxx1,appid_xxx2' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/rum_cfg/quick_list?appId=appid_xxx1,appid_xxx2' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed
 ```
+
 
 
 

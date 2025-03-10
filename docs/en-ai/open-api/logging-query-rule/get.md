@@ -10,9 +10,9 @@ Retrieve a single data access rule
 
 ## Route Parameters
 
-| Parameter Name            | Type   | Required | Description              |
-|:---------------------|:------|:-------|:----------------|
-| logging_query_rule_uuid | string | Yes  | Data access rule UUID<br> |
+| Parameter Name            | Type   | Required | Description                |
+|:----------------------|:-----|:-------|:------------------------|
+| logging_query_rule_uuid | string | Y      | Data access rule UUID <br> |
 
 
 ## Additional Parameter Notes
@@ -21,10 +21,11 @@ Retrieve a single data access rule
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_xxxx32/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/logging_query_rule/lqrl_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
+
 
 
 ## Response
@@ -58,7 +59,7 @@ curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_xxxx32/get' \
                     "status": 0
                 },
                 "wsInfo": {
-                    "name": "[Doris] Development and Testing Shared",
+                    "name": "[Doris] Development and Testing Together_",
                     "status": 0
                 }
             }
@@ -72,7 +73,7 @@ curl 'https://openapi.guance.com/api/v1/logging_query_rule/lqrl_xxxx32/get' \
         "reExprs": [
             {
                 "enable": true,
-                "name": "Mask QQ Email Addresses",
+                "name": "Mask QQ Email",
                 "reExpr": "[a-zA-Z0-9_]+@qq.com"
             }
         ],

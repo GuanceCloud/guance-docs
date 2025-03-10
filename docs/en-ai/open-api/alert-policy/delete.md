@@ -10,7 +10,7 @@ Delete an alert strategy
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
+| Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
 | alertPolicyUUIDs | array | Y | Alert strategy UUIDs<br>Allow null: False <br> |
 
@@ -20,7 +20,7 @@ Delete an alert strategy
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/alert_policy/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/alert_policy/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"alertPolicyUUIDs": ["altpl_xxxx32"]}' \

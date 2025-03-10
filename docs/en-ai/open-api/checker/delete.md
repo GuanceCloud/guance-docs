@@ -11,22 +11,21 @@ Delete one or multiple monitors
 ## Body Request Parameters
 
 | Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:---------|:-------------------------|
-| ruleUUIDs     | array  | Y        | List of checker UUIDs<br>Allow null: False <br> |
+|:-----------|:-------|:-----|:----------------|
+| ruleUUIDs | array | Y | List of UUIDs for the monitors<br>Allow null: False <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/checker/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/checker/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"ruleUUIDs": ["rul_xxxx32", "rul_xxxx32"]}' \
 --compressed 
 ```
-
 
 
 ## Response

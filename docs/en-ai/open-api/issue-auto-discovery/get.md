@@ -1,4 +1,4 @@
-# Get Auto Discovery Configuration
+# Get Auto-Discovery Configuration
 
 ---
 
@@ -12,8 +12,8 @@
 ## Route Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:-------------------------|
-| cfg_uuid             | string   | Y        | Issue auto discovery configuration UUID<br> |
+|:-------------------|:-------|:-----|:----------------|
+| cfg_uuid | string | Y | Issue auto-discovery configuration UUID<br> |
 
 
 ## Additional Parameter Notes
@@ -24,7 +24,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue_auto_discovery/iatdc_xxxxx/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue_auto_discovery/iatdc_xxxxx/get' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --insecure
@@ -59,7 +59,7 @@ curl 'https://openapi.guance.com/api/v1/issue_auto_discovery/iatdc_xxxxx/get' \
             "organization": "xxx"
         },
         "deleteAt": -1,
-        "description": "This is an example of creating a new issue auto discovery rule",
+        "description": "This is an example for creating an issue auto-discovery rule",
         "dimensions": [
             "name"
         ],

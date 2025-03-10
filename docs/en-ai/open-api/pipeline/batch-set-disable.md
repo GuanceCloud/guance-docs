@@ -5,16 +5,15 @@
 <br />**POST /api/v1/pipeline/batch_set_disable**
 
 ## Overview
-Enable or disable Pipeline rules
-
+Enable/Disable Pipeline rules
 
 
 ## Body Request Parameters
 
 | Parameter Name | Type   | Required | Description              |
 |:-----------|:-------|:-----|:----------------|
-| isDisable | boolean | Y | Set the enable status<br>Allow null: False <br> |
-| plUUIDs | array | Y | UUIDs of pipelines<br>Allow null: False <br> |
+| isDisable | boolean | Y | Set the enabled status<br>Nullable: False <br> |
+| plUUIDs | array | Y | UUID of the pipeline<br>Nullable: False <br> |
 
 ## Additional Parameter Notes
 
@@ -22,7 +21,7 @@ Enable or disable Pipeline rules
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/pipeline/batch_set_disable' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/pipeline/batch_set_disable' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Accept-Language: en' \
@@ -30,7 +29,6 @@ curl 'https://openapi.guance.com/api/v1/pipeline/batch_set_disable' \
 --data-raw '{"plUUIDs":["pl_xxxx32","pl_xxxx32"],"isDisable":false}' \
 --compressed
 ```
-
 
 
 ## Response

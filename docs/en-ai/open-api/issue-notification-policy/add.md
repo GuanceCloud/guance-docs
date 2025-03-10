@@ -9,16 +9,15 @@ Create a new notification policy
 
 
 
-
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| name | string | Y | Notification policy name<br>Allow empty: False <br>Maximum length: 256 <br>Allow empty string: False <br> |
-| notificationScheduleUUIDs | array |  | List of notification schedule UUIDs<br>Example: ['nsche_xxx', 'nsche_yyy'] <br>Allow empty: False <br> |
-| extend | json |  | Extended information, including notification scope and upgrade configuration<br>Allow empty: False <br> |
-| extend.notifyTypes | array |  | Notification types<br>Example: ['issue.add', 'issue.modify', 'issueUpgrade.noManager', 'issueUpgrade.processTimeout', 'issueReply.add', 'issueReply.modify', 'issueReply.delete', 'dailySummary'] <br>Allow empty: False <br> |
-| extend.upgradeCfg | json |  | Upgrade configuration<br>Allow empty: False <br> |
+| name | string | Y | Notification policy name<br>Allow null: False <br>Maximum length: 256 <br>Allow empty string: False <br> |
+| notificationScheduleUUIDs | array |  | List of notification schedule UUIDs<br>Example: ['nsche_xxx', 'nsche_yyy'] <br>Allow null: False <br> |
+| extend | json |  | Extended information, including notification scope and upgrade configuration<br>Allow null: False <br> |
+| extend.notifyTypes | array |  | Notification types<br>Example: ['issue.add', 'issue.modify', 'issueUpgrade.noManager', 'issueUpgrade.processTimeout', 'issueReply.add', 'issueReply.modify', 'issueReply.delete', 'dailySummary'] <br>Allow null: False <br> |
+| extend.upgradeCfg | json |  | Upgrade configuration<br>Allow null: False <br> |
 
 ## Additional Parameter Explanation
 
@@ -37,7 +36,7 @@ Create a new notification policy
 
 | Parameter Name                | Type  | Required  | Description          |
 |-----------------------|----------|----|------------------------|
-|notifyTypes                   |Array|| Notification trigger types, options: "issue.add","issue.modify","issueUpgrade.noManager","issueUpgrade.processTimeout","issueReply.add","issueReply.modify","issueReply.delete","dailySummary" |
+|notifyTypes                   |Array|| Notification trigger types, options: "issue.add", "issue.modify", "issueUpgrade.noManager", "issueUpgrade.processTimeout", "issueReply.add", "issueReply.modify", "issueReply.delete", "dailySummary" |
 |upgradeCfg                   |Json|| Upgrade time configuration when upgrade notifications exist|
 
 --------------
@@ -46,22 +45,22 @@ Create a new notification policy
 
 | Parameter Name                | Type  | Required  | Description          |
 |-----------------------|----------|----|------------------------|
-|noManager                   |Json|| Configure this field when issueUpgrade.noManager is enabled in extend.notifyTypes|
-|processTimeout                   |json|| Configure this field when issueUpgrade.processTimeout is enabled in extend.notifyTypes|
-|openProcessTimeout                   |Json|| Configure this field when issueUpgrade.processTimeout is enabled in extend.notifyTypes, added in iteration on 2025-02-19|
+|noManager                   |Json|| Configure this field when "issueUpgrade.noManager" is enabled in extend.notifyTypes|
+|processTimeout                   |json|| Configure this field when "issueUpgrade.processTimeout" is enabled in extend.notifyTypes|
+|openProcessTimeout                   |Json|| Configure this field when "issueUpgrade.processTimeout" is enabled in extend.notifyTypes, added in iteration on 2025-02-19|
 
-**3.1 Internal Structure of noManager, processTimeout, openProcessTimeout within `extend.upgradeCfg`, Parameter Description**
+**3.1 Internal Structure of `noManager`, `processTimeout`, and `openProcessTimeout` within `extend.upgradeCfg`**
 
 | Parameter Name                | Type  | Required  | Description          |
 |-----------------------|----------|----|------------------------|
 |duration                   |integer|| Trigger interval, unit: seconds|
-|notifyType                 |string|| Notification type, single: once, loop: cycle, default single, added in iteration on 2025-02-19|
-|cycleDuration              |integer|| Loop notification frequency, unit: seconds, added in iteration on 2025-02-19|
-|cycleTimes                 |integer|| Number of notifications in loop, 1-30, added in iteration on 2025-02-19|
+|notifyType                 |string|| Notification type, single: once, cyclic: cycle, default is single, added in iteration on 2025-02-19|
+|cycleDuration              |integer|| Notification frequency for cyclic notifications, unit: seconds, added in iteration on 2025-02-19|
+|cycleTimes                 |integer|| Number of notifications for cyclic notifications, range: 1-30, added in iteration on 2025-02-19|
 
-Note: When issueUpgrade.processTimeout is enabled in extend.notifyTypes, both processTimeout and openProcessTimeout can be configured simultaneously in extend.upgradeCfg.
+Note: When "issueUpgrade.processTimeout" is enabled in extend.notifyTypes, both processTimeout and openProcessTimeout within extend.upgradeCfg can be configured simultaneously.
 
-**Example of `extend.upgradeCfg` Fields:**
+**Example of `extend.upgradeCfg` fields:**
 ```json
 {
     "noManager": {
@@ -80,15 +79,11 @@ Note: When issueUpgrade.processTimeout is enabled in extend.notifyTypes, both pr
 }
 ```
 
-
 --------------
-
-
-
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue/notification_policy/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/notification_policy/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"api_add test","notificationScheduleUUIDs":["nsche_a15990d7e6ec4514842dbee74e26a1cf"],"extend":{"notifyTypes":["issue.add","issue.modify","issueUpgrade.noManager","issueReply.add","issueReply.modify"],"upgradeCfg":{"noManager":{"duration":1200},"processTimeout":{}}}}' \

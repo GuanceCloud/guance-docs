@@ -7,10 +7,10 @@ Before performing link data analysis for systems and applications, you need to [
 
 Add the command `DK_APM_INSTRUMENTATION_ENABLED=host` before the installation instructions to enable APM auto-injection.
 
-If DataKit is already installed, you only need to upgrade it. Use the following command to perform the upgrade operation.
+If DataKit is already installed, you only need to upgrade it. Use the following command for the upgrade operation.
 
 ```
-DK_APM_INSTRUMENTATION_ENABLED=host DK_DEF_INPUTS="ddtrace" DK_UPGRADE=1 bash -c "$(curl -L https://<<< custom_key.static_domain >>>/datakit/install.sh)"
+DK_APM_INSTRUMENTATION_ENABLED=host DK_DEF_INPUTS="ddtrace" DK_UPGRADE=1 bash -c "$(curl -L https://static.<<< custom_key.brand_main_domain >>>/datakit/install.sh)"
 ```
 
 ## Verification
@@ -33,5 +33,5 @@ datakit service -R
 After installation, restart the application. The following is an example of restarting a Java application:
 
 ```
-java -jar springboot-server.jar
+java -jar  springboot-server.jar
 ```

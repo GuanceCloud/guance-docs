@@ -10,19 +10,19 @@ List all notes that meet the specified conditions. This API does not support pag
 ## Query Request Parameters
 
 | Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:--------|:-------------------------|
-| search        | string | No      | Search by note name<br>Can be empty: False <br> |
+|:--------------|:-------|:---------|:-------------------------|
+| search        | string | No       | Search by note name<br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
-Parameter description:
+Parameter descriptions:
 
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/notes/list' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notes/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```

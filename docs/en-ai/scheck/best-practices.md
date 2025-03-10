@@ -7,25 +7,25 @@
 
 # Introduction
 
-    In general, one of the most important tasks in operations and maintenance is to inspect the status of systems, software, and logs. Traditional solutions often involve engineers writing shell (bash) scripts for similar tasks and using remote script management tools to manage clusters. However, this method can be very risky due to the high-level permissions required for system inspection operations, which are often run as root. If a malicious script is executed, the consequences can be disastrous. There are two types of malicious scripts: one type involves malicious commands like `rm -rf`, and the other involves data theft, such as leaking data through network IO. Therefore, Security Checker aims to provide a new secure scripting method (restricting command execution, local IO, and network IO) to ensure all actions are safe and controllable. Additionally, Security Checker will collect inspection events via a unified network model in log format. Security Checker will also provide a vast, updatable rule library for system, container, network, and security inspections.
+    In general, one of the most important tasks in operations and maintenance is to inspect the status of systems, software, logs, etc. Traditional solutions often involve engineers writing shell (bash) scripts for such tasks and using remote script management tools to manage clusters. However, this method is actually very risky because system inspection operations often require high privileges, usually running with root permissions. If a malicious script is executed, the consequences can be disastrous. In practice, there are two types of malicious scripts: one is a malicious command, such as `rm -rf`, and the other involves data theft, such as leaking data via network I/O. Therefore, Security Checker aims to provide a new type of secure scripting method (limiting command execution, local I/O, and network I/O) to ensure all actions are safe and controllable. Moreover, Security Checker will collect inspection events through a unified network model in log format. At the same time, Security Checker will provide a vast, updatable rule library, including system, container, network, security, and other inspections.
 
 > scheck is the abbreviation for Security Checker.
 >
-> scheck only pushes security inspection events and does not provide recovery notifications.
+> scheck only pushes security check events and does not provide recovery notifications.
 
 # Prerequisites
 
-| Service Name | Version                                                         | Required Installation | Purpose            |
-| ------------ | --------------------------------------------------------------- | --------------------- | ------------------ |
-| Datakit      | 1.1.6 or later [Installation Method](../datakit/datakit-install.md) | Required              | Accept scheck signals |
-| DataFlux     | [DataFlux SaaS](https://guance.com) or other private deployment versions | Required              | View security inspection |
+| Service Name | Version                                                         | Must Be Installed | Purpose            |
+| ------------ | --------------------------------------------------------------- | ----------------- | ------------------ |
+| Datakit      | 1.1.6 or later [Installation Method](../datakit/datakit-install.md) | Required          | Accept scheck signals |
+| DataFlux     | [DataFlux SaaS](https://guance.com) or other private deployment versions | Required          | View security checks |
 
 # Configuration
 
 ### 1 Install Scheck
 
 ```sh
-sudo -- bash -c "$(curl -L https://<<< custom_key.static_domain >>>/security-checker/install.sh)"
+sudo -- bash -c "$(curl -L https://static.<<< custom_key.brand_main_domain >>>/security-checker/install.sh)"
 ```
 
 ### 2 Check Installation Status and Datakit Running Status
@@ -55,13 +55,13 @@ $ systemctl status datakit
            └─27371 /usr/local/datakit/datakit
 ```
 
-### 3 Log in to the DataFlux Console to View Security Inspection Records ([SaaS Platform](https://dataflux.cn))
+### 3 Log in to the DataFlux Console to View Security Check Records ([SaaS Platform](https://dataflux.cn))
 
-- Select the left sidebar - Security Inspection to view inspection content
+- Select Security Check from the left sidebar to view inspection content
 
   ![](img/bestpractices-2.png)
 
-# Related Commands
+# Relevant Commands
 > Security Checker cmd
 - View help
 ```sh
@@ -88,14 +88,14 @@ Usage of scheck:
   -dir
         Use with `-doc` `-tpl` to output files to a specified directory
   -luastatus
-        Display all Lua runtime statuses and output them to the current directory in Markdown format.
+        Show all Lua runtime statuses and output to the current directory in Markdown format.
   -sort
-        Use with `-luastatus`. Sorting parameters: name, time, count. Default sorting by count
+        Use with `-luastatus`. Sorting parameters include: name, time, count. Default sorting is by count.
      ./scheck -luastatus -sort=time
   -check
         Precompile all Lua files in the user directory once to check for syntax errors.
   -box
-        Display all files loaded into the binary
+        Show all files loaded into the binary
 ```
 
 - Start/Stop Commands

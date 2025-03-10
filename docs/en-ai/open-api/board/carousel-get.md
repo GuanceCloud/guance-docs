@@ -2,7 +2,7 @@
 
 ---
 
-<br />**GET /api/v1/dashboard/carousel/\{carousel_uuid\}/get**
+<br />**GET /api/v1/dashboard/carousel/{carousel_uuid}/get**
 
 ## Overview
 
@@ -11,9 +11,9 @@
 
 ## Route Parameters
 
-| Parameter Name     | Type   | Required | Description           |
-|:-----------------|:------|:-------|:---------------------|
-| carousel_uuid    | string | Y      | Carousel UUID<br>    |
+| Parameter Name     | Type   | Required | Description          |
+|:-----------------|:------|:-------|:-------------------|
+| carousel_uuid | string | Y  | Carousel UUID<br> |
 
 
 ## Additional Parameter Notes
@@ -24,7 +24,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboard/carousel/csel_xxxx32/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboard/carousel/csel_xxxx32/get' \
 -H 'Accept-Language: en' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed

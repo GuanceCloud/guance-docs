@@ -12,18 +12,19 @@ Retrieve information about a Pipeline
 ## Route Parameters
 
 | Parameter Name | Type   | Required | Description               |
-|:------------|:------|:-------|:------------------------|
-| pl_uuid    | string | Y      | ID of the Pipeline<br>  |
+|:-----------|:-------|:-----|:----------------|
+| pl_uuid | string | Y | ID of the Pipeline<br> |
 
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
+
 
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/pipeline/pl_xxxx32/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/pipeline/pl_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```

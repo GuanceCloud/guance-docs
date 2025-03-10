@@ -1,4 +1,4 @@
-# Issue Reply Modification
+# Issue-Reply Modification
 
 ---
 
@@ -12,41 +12,41 @@
 ## Route Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
+|:-------------------|:-------|:--------|:----------------|
 | reply_uuid | string | Y | reply_uuid<br> |
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
+|:-------------------|:-------|:--------|:----------------|
 | issueUUID | string | Y | UUID of the issue<br>Example: issueUUID <br>Can be empty: False <br> |
-| attachmentUuids | array |  | List of UUIDs for uploaded attachments<br>Example: [] <br>Can be empty: True <br> |
-| content | string |  | Content of the reply<br>Example: answer_xxx <br>Can be empty: True <br>Can be an empty string: True <br> |
+| attachmentUuids | array |  | List of UUIDs for uploaded reply attachments<br>Example: [] <br>Can be empty: True <br> |
+| content | string |  | Reply content<br>Example: answer_xxx <br>Can be empty: True <br>Can be an empty string: True <br> |
 | extend | json | Y | Additional extended information, defaults to {} if no content<br>Example: {} <br>Can be empty: True <br> |
 
-## Parameter Explanation
+## Additional Parameter Notes
 
 
 **Basic Parameter Explanation**
 
 | Parameter Name      | Parameter Type | Required | Parameter Description                   |
 |:---------------:|:--------:|:--------:|:-------------------------------------------:|
-| issueUUID       | string  | Y     | UUID corresponding to the issue being replied to                |
-| attachmentUuids      | array  | N     | List of UUIDs for attachments related to the issue, must be uploaded via the /api/v1/attachment/upload interface             |
-| content    | string  | N     | Content of the reply                      |
-| extend      | json   | Y     | Extended fields, default is {}                  |
+| issueUUID       |  string  |    Y     | UUID of the issue corresponding to the reply                |
+| attachmentUuids      | array  |    N     | List of UUIDs for attachments corresponding to the issue reply; must be uploaded via the /api/v1/attachment/upload interface             |
+| content    |  string  |    N     | Content of the reply                      |
+| extend      |   json   |    Y     | Extended fields, default is {}                  |
 
 
-**Explanation of the extend Field**
+**Explanation of the Extend Field**
 
-**In update scenarios, channels and channelUUIDs are used to associate with the default channels and additional channels. If [] is passed, it will only exist in the default space channel by default.**
+**In update scenarios, channels and channelUUIDs will be associated with the default channels and additional channels by default. If an empty array `[]` is passed, it will only exist in the default space channel**
 
 | Parameter Name  | Parameter Type | Required | Parameter Description         |
 |:--------:|:--------:|:--------:|:-----------------------:|
-| channels | array   | N     | List of resources where the issue should be delivered |
-| members  | array     | N     | Members to notify for the issue    |
-| extra  | json     | N     | Information about the updater, used for frontend display |
+| channels |  array   |    N     | List of resources where the issue should be delivered |
+| members  |     array     |     N     | Members who should receive notifications for the issue    |
+| extra  |     json     |     N     | Information related to the updater, used for frontend display    |
 
 Example of the extend field:
 ```json
@@ -78,7 +78,7 @@ Example of the extend field:
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue/reply/repim_xxxx32/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/reply/repim_xxxx32/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"issueUUID":"issue_xxxx32","content":"aaaaas","attachmentUuids":[],"extend":{"channels":[],"linkList":[],"members":[],"text":"aaaaas"}}'\

@@ -5,35 +5,29 @@
 <br />**GET /api/v1/checker/list**
 
 ## Overview
-List checkers with pagination
-
-
+Lists checkers in pages.
 
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-------|:--------------------------|
-| type | string | No | List checkers, specify `smartMonitor` for intelligent monitoring.<br>Can be empty: False <br>Can be an empty string: False <br>Optional values: ['smartMonitor'] <br> |
-| monitorUUID | commaArray | No | Monitor group UUID<br>Can be empty: False <br> |
-| alertPolicyUUID | commaArray | No | Alert strategy UUID<br>Can be empty: False <br> |
-| checkerUUID | commaArray | No | Checker UUID list<br>Can be empty: False <br> |
-| sloUUID | string | No | SLO UUID<br>Can be empty: False <br> |
-| search | string | No | Search rule name<br>Can be empty: False <br> |
-| pageIndex | integer | No | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | No | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+|:------------------|:-------|:-----|:----------------|
+| type | string | No | Lists checkers, specify `smartMonitor` for intelligent monitoring.<br>Allow null: False <br>Allow empty string: False <br>Optional values: ['smartMonitor'] <br> |
+| monitorUUID | commaArray | No | Monitor group UUID.<br>Allow null: False <br> |
+| alertPolicyUUID | commaArray | No | Alert policy UUID.<br>Allow null: False <br> |
+| checkerUUID | commaArray | No | Checker UUID list.<br>Allow null: False <br> |
+| sloUUID | string | No | SLO UUID.<br>Allow null: False <br> |
+| search | string | No | Search rule name.<br>Allow null: False <br> |
+| pageIndex | integer | No | Page number.<br>Allow null: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize | integer | No | Number of items per page.<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
 
-
-
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/checker/list?pageIndex=1&pageSize=2' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/checker/list?pageIndex=1&pageSize=2' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
-
-
 
 ## Response
 ```shell
@@ -155,7 +149,7 @@ curl 'https://openapi.guance.com/api/v1/checker/list?pageIndex=1&pageSize=2' \
                     "instanceId"
                 ],
                 "interval": 300,
-                "message": ">Level: {df_status}  \n>Instance: {instanceId}  \n>Content: RDS Mysql disk usage is {{ Result |  to_fixed(2) }}%  \n>Suggestion: Log in to the Alibaba Cloud console to check if there are any anomalies in RDS",
+                "message": ">Level: {df_status}  \n>Instance: {instanceId}  \n>Content: RDS Mysql disk usage is {{ Result |  to_fixed(2) }}%  \n>Suggestion: Log in to the Alibaba Cloud console to check if there are any anomalies with RDS",
                 "name": "Alibaba Cloud RDS Mysql Disk Usage Too High",
                 "noDataInterval": 0,
                 "recoverNeedPeriodCount": 1,
@@ -188,5 +182,5 @@ curl 'https://openapi.guance.com/api/v1/checker/list?pageIndex=1&pageSize=2' \
     },
     "success": true,
     "traceId": "TRACE-F9E5478C-D157-4CD0-883D-2B2E7AE5A50F"
-}
+} 
 ```

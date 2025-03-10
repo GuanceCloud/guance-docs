@@ -9,7 +9,7 @@
 
 
 
-## Additional Parameter Information
+## Additional Parameter Notes
 
 
 
@@ -17,7 +17,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue-level/config/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue-level/config/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -42,4 +42,5 @@ curl 'https://openapi.guance.com/api/v1/issue-level/config/get' \
 
 
 
-</input_content>
+## Response Explanation
+The response indicates whether the default configuration for Issue is enabled or disabled. In this case, `"isDisabled": false` means that the default configuration is not disabled (i.e., it is enabled).

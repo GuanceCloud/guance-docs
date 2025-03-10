@@ -1,19 +1,19 @@
 # WeChat Mini Program Application Integration
 ---
 
-<<< custom_key.brand_name >>> application monitoring can collect metric data from various mini programs. By introducing the SDK file, it monitors the performance metrics, error logs, and resource request data of mini programs. After reporting this data to the <<< custom_key.brand_name >>> platform, it analyzes the performance of each mini program in a visual manner.
+<<< custom_key.brand_name >>> application monitoring can collect metrics data from various mini programs. By introducing the SDK file, it monitors mini program performance metrics, error logs, and resource request data, which are reported to the <<< custom_key.brand_name >>> platform. The platform then analyzes the performance of each mini program in a visual manner.
 
 ## Prerequisites
 
-**Note**: If you have enabled the [RUM Headless](../../dataflux-func/headless.md) service, the prerequisites are automatically configured for you, so you can directly integrate the application.
+**Note**: If you have enabled the [RUM Headless](../../dataflux-func/headless.md) service, the prerequisites have been automatically configured for you, and you can directly integrate the application.
 
 - Install [DataKit](../../datakit/datakit-install.md);
 - Configure the [RUM Collector](../../integrations/rum.md);
-- Ensure DataKit is [accessible over the public network and has the IP geolocation database installed](../../datakit/datakit-tools-how-to.md#install-ipdb).
+- Ensure DataKit is [publicly accessible and has the IP geolocation database installed](../../datakit/datakit-tools-how-to.md#install-ipdb).
 
 ## Application Integration
 
-Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis** page, click on **[Create](../index.md#create)** in the top-left corner to start creating a new application.
+Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis** page, click on **[Create Application](../index.md#create)** in the top-left corner to start creating a new application.
 
 ![](../img/6.rum_miniapp.png)
 
@@ -21,7 +21,7 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis**
 
 Introduce the code into the app.js file of the mini program as follows:
 
-**Note**: The introduction position must be before the App() initialization.
+**Note**: The introduction must be before the initialization of `App()`.
 
 === "NPM"
 
@@ -37,14 +37,14 @@ Introduce the code into the app.js file of the mini program as follows:
       version: '1.0.0', // Optional, version of the mini program
       service: 'miniapp', // Service name of the current application
       trackInteractions: true,
-      traceType: 'ddtrace', // Not required, defaults to ddtrace; currently supports 6 types: ddtrace, zipkin, skywalking_v3, jaeger, zipkin_single_header, w3c_traceparent
-      allowedTracingOrigins: ['https://api.example.com',/https:\/\/.*\.my-api-domain\.com/],  // Not required, list of origins or regex patterns for requests that allow trace headers
+      traceType: 'ddtrace', // Not required, defaults to ddtrace; currently supports ddtrace, zipkin, skywalking_v3, jaeger, zipkin_single_header, w3c_traceparent 6 types
+      allowedTracingOrigins: ['https://api.example.com',/https:\/\/.*\.my-api-domain\.com/],  // Not required, list of all origins allowed to inject trace collector headers. Can be an origin or a regex
     })
 	```
 
 === "CDN"
 
-	[Download file](https://<<< custom_key.static_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js) for local inclusion
+	[Download file](https://static.<<< custom_key.brand_main_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js) for local introduction
 	
 	```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -56,8 +56,8 @@ Introduce the code into the app.js file of the mini program as follows:
       version: '1.0.0', // Optional, version of the mini program
       service: 'miniapp', // Service name of the current application
       trackInteractions: true,
-      traceType: 'ddtrace', // Not required, defaults to ddtrace; currently supports 6 types: ddtrace, zipkin, skywalking_v3, jaeger, zipkin_single_header, w3c_traceparent
-      allowedTracingOrigins: ['https://api.example.com',/https:\/\/.*\.my-api-domain\.com/],  // Not required, list of origins or regex patterns for requests that allow trace headers
+      traceType: 'ddtrace', // Not required, defaults to ddtrace; currently supports ddtrace, zipkin, skywalking_v3, jaeger, zipkin_single_header, w3c_traceparent 6 types
+      allowedTracingOrigins: ['https://api.example.com',/https:\/\/.*\.my-api-domain\.com/],  // Not required, list of all origins allowed to inject trace collector headers. Can be an origin or a regex
     })
 	```
 
@@ -65,25 +65,25 @@ Introduce the code into the app.js file of the mini program as follows:
 
 ### Initialization Parameters
 
-| Parameter                        | Type    | Required | Default Value | Description                                                         |
-| --------------------------------- | ------- | -------- | ------------- | ------------------------------------------------------------------- |
-| `applicationId`                  | String  | Yes      |               | Application ID created in <<< custom_key.brand_name >>>.            |
-| `datakitOrigin`                  | String  | Yes      |               | DataKit Origin for data reporting;<br/>:warning: must be added to the request whitelist in the mini program management backend. |
-| `env`                            | String  | No       |               | Current environment of the mini program, e.g., prod: production; gray: gray release; pre: pre-release; common: daily; local: local. |
-| `version`                        | String  | No       |               | Version number of the mini program.                                 |
-| `service`                        | String  | No       | `miniapp`     | Service name of the current application, default is `miniapp`, supports custom configuration. |
-| `sampleRate`                     | Number  | No       | `100`         | Percentage of metric data collection: `100` means full collection, `0` means no collection. |
-| `trackInteractions`              | Boolean | No       | `false`       | Whether to enable user interaction tracking.                        |
-| `traceType`                      | Enum    | No       | `ddtrace`     | Tracing tool type, defaults to `ddtrace`. Currently supports 6 types: `ddtrace`, `zipkin`, `skywalking_v3`, `jaeger`, `zipkin_single_header`, `w3c_traceparent`.<br> :warning: <br>1. `opentelemetry` supports 4 types: `zipkin_single_header`, `w3c_traceparent`, `zipkin`, `jaeger`.<br>2. Configuring different `traceType` requires setting different `Access-Control-Allow-Headers` for corresponding API services; see [How APM Connects with RUM](../../application-performance-monitoring/collection/connect-web-app.md). |
-| `traceId128Bit`                  | Boolean | No       | `false`       | Whether to generate `traceID` using 128 bits, corresponding to `traceType`; currently supports `zipkin`, `jaeger`. |
-| `allowedTracingOrigins`          | Array   | No       | `[]`          | 【New】List of origins or regex patterns for requests that allow trace headers. Can be origin (protocol://domain[:port]) or regex, e.g., `["https://api.example.com", /https:\\/\\/.*\\.my-api-domain\\.com/]`. |
-| `isIntakeUrl`                    | Function | No       | `function(url) {return false}` | Custom method to determine if resource data should be collected based on the URL. Returns `false` to collect, `true` to skip.<br>:warning: <br>1. The return value must be Boolean, otherwise it's considered invalid.<br>2. Requires version 2.1.10 or higher. |
+| Parameter                       | Type   | Required | Default Value | Description                                                                 |
+| ------------------------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------- |
+| `applicationId`                 | String | Yes      |               | Application ID created from <<< custom_key.brand_name >>>.                  |
+| `datakitOrigin`                 | String | Yes      |               | DataKit Origin for data reporting;<br/>:warning: Must be added to the request whitelist in the mini program management backend. |
+| `env`                           | String | No       |               | Current environment of the mini program, such as prod (production), gray (gray release), pre (pre-release), common (daily), local (local). |
+| `version`                       | String | No       |               | Version number of the mini program.                                         |
+| `service`                       | String | No       | `miniapp`     | Service name of the current application, default is `miniapp`, supports custom configuration. |
+| `sampleRate`                    | Number | No       | `100`         | Percentage of metrics data collection: `100` means full collection, `0` means no collection. |
+| `trackInteractions`             | Boolean| No       | `false`       | Whether to enable user interaction tracking.                                |
+| `traceType`                     | Enum   | No       | `ddtrace`     | Configuration for tracing tool type, defaults to `ddtrace`. Currently supports `ddtrace`, `zipkin`, `skywalking_v3`, `jaeger`, `zipkin_single_header`, `w3c_traceparent` 6 types.<br>:warning:<br>1. `opentelemetry` supports `zipkin_single_header`, `w3c_traceparent`, `zipkin`, `jaeger` 4 types.<br>2. Configuring corresponding `traceType` requires setting different `Access-Control-Allow-Headers` for the API service, refer to [How APM Connects with RUM](../../application-performance-monitoring/collection/connect-web-app.md). |
+| `traceId128Bit`                 | Boolean| No       | `false`       | Whether to generate `traceID` in 128-bit format, corresponding to `traceType`, currently supports `zipkin`, `jaeger`. |
+| `allowedTracingOrigins`         | Array  | No       | `[]`          | 【New】List of all origins allowed to inject `ddtrace` collector headers. Can be an origin or a regex, origin:`protocol (including: //), domain (or IP address)[and port]`. *Example: `["https://api.example.com", /https:\\/\\/.*\\.my-api-domain\\.com/]`* |
+| `isIntakeUrl`                   | Function| No       | `function(url) {return false}` | Custom method to determine whether to collect data for requested resources based on URL. Returns `false` to collect, `true` not to collect.<br>:warning:<br>1. The return value of this parameter method must be Boolean, otherwise it is considered invalid.<br>2. Requires version 2.1.10 or higher. |
 
 ## Notes
 
 1. The DataKit domain corresponding to `datakitOrigin` must be added to the request whitelist in the mini program management backend.
-2. Due to limitations in the current WeChat Mini Program API (`wx.request`, `wx.downloadFile`), the `profile` field in the returned data is not supported on iOS systems, leading to incomplete collection of timing-related data. There is currently no solution: [request](https://developers.weixin.qq.com/miniprogram/dev/api/network/request/wx.request.html), [downloadFile](https://developers.weixin.qq.com/miniprogram/dev/api/network/download/wx.downloadFile.html), [API Support Status](https://developers.weixin.qq.com/community/develop/doc/000ecaa8b580c80601cac8e6f56000?highLine=%2520request%2520profile).
-3. When `trackInteractions` is enabled, due to WeChat Mini Program restrictions, it cannot capture control content and structure data. Therefore, we use declarative programming in the mini program SDK by setting the `data-name` attribute in the WXML file to add names to interactive elements for easier statistical analysis and operation record location, for example:
+1. Due to the current limitations of WeChat Mini Program's request resource APIs `wx.request`, `wx.downloadFile`, the `profile` field in returned data is not supported on iOS systems, leading to incomplete collection of resource information related to timing data. There is currently no solution: [request](https://developers.weixin.qq.com/miniprogram/dev/api/network/request/wx.request.html), [downloadFile](https://developers.weixin.qq.com/miniprogram/dev/api/network/download/wx.downloadFile.html), [API Support Status](https://developers.weixin.qq.com/community/develop/doc/000ecaa8b580c80601cac8e6f56000?highLine=%2520request%2520profile).
+1. After enabling `trackInteractions`, due to WeChat Mini Program restrictions, it cannot collect content and structure data of controls. Therefore, in the mini program SDK, we use declarative programming by setting the `data-name` attribute in the wxml files to add names to interactive elements, making it easier to track operation records, for example:
 
 ```javascript
  <button bindtap="bindSetData" data-name="setData">setData</button>

@@ -1,28 +1,29 @@
-# Batch Delete Smart Inspection
+# Bulk Delete Smart Security Checks
 
 ---
 
 <br />**POST /api/v1/self_built_checker/batch_delete**
 
 ## Overview
-Delete self-built inspections based on `checker_uuid`
+Delete self-built security checks based on `checker_uuid`
 
 
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description               |
-|:-----------|:-------|:-----|:----------------|
-| ruleUUIDs | array | Yes  | UUID of the self-built inspection<br>Example: rul_xxxxx <br>Can be empty: False <br> |
-| refKey | string | Yes  | Associated key of the self-built inspection<br>Example: xxx <br>Can be empty: False <br> |
+| Parameter Name | Type   | Required | Description              |
+|:--------------|:-------|:---------|:------------------------|
+| ruleUUIDs     | array  |          | UUID of the self-built security check<br>Example: rul_xxxxx <br>Allow empty: False <br> |
+| refKey        | string |          | Associated key of the self-built security check<br>Example: xxx <br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
 
 
+
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/self_built_checker/batch_delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/self_built_checker/batch_delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"ruleUUIDs":["rul_xxxx32","rul_xxxx32"]}' \

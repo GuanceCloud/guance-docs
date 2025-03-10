@@ -1,4 +1,4 @@
-# [Logmine] Get Logmine Query Task Results
+# 【Logmine】Get Logmine Query Task Results
 
 ---
 
@@ -10,17 +10,17 @@ Query log pattern analysis results
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description          |
-|:--------------|:-------|:---------|:---------------------|
-| taskId        | string | Y        | Task ID              |
+| Parameter Name | Type   | Required | Description             |
+|:--------------|:-------|:---------|:------------------------|
+| taskId        | string | Y        | Task ID<br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/logmine/query_task?taskId=task_xxxxxx' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/logmine/query_task?taskId=task_xxxxxx' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```

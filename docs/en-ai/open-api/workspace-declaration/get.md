@@ -9,7 +9,7 @@
 
 
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
@@ -17,7 +17,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/declaration/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/declaration/get' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
@@ -32,10 +32,10 @@ curl 'https://openapi.guance.com/api/v1/workspace/declaration/get' \
 {
     "code": 200,
     "content": {
-        "subdepartment": "subdepartment1",
+        "sub-department": "Sub-department 1",
         "business": [
-            "business unit",
-            "industry department one"
+            "Business Unit",
+            "Industry Department One"
         ],
         "declaration": null,
         "organization": "88"

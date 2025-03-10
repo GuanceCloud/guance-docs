@@ -11,11 +11,11 @@
 
 ## Body Request Parameters
 
-| Parameter Name   | Type    | Required | Description                          |
-|:-------------|:------|:-------|:------------------------------------|
-| reportUUIDs  | array | Y      | UUIDs of the scheduled reports<br>Allow empty: False <br> |
+| Parameter Name  | Type   | Required | Description               |
+|:--------------|:------|:-------|:-------------------------|
+| reportUUIDs | array | Y     | UUIDs of scheduled reports<br>Allow null: False <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
@@ -23,7 +23,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/crontab_report/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Accept-Language: en' \
 -H 'Content-Type: application/json;charset=UTF-8' \

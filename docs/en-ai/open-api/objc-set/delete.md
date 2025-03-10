@@ -10,18 +10,18 @@ Delete object classification configuration
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                                      |
-|:--------------|:-------|:--------|:------------------------------------------------|
-| sourceType    | string | Y       | Source type, default value is `custom_object`<br>Can be empty: False <br>Optional values: ['custom_object'] <br> |
-| objc_name     | string | Y       | Object classification configuration name<br>Can be empty: False <br> |
+| Parameter Name | Type   | Required | Description                                                                 |
+|:--------------|:-------|:---------|:----------------------------------------------------------------------------|
+| sourceType    | string | Y        | Source type, default value is `custom_object`<br>Can be empty: False <br>Optional values: ['custom_object'] <br> |
+| objc_name     | string | Y        | Object classification configuration name<br>Can be empty: False <br>       |
 
-## Additional Parameter Notes
+## Additional Parameter Explanation
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/objc_cfg_template/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/objc_cfg_template/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"sourceType":"custom_object","objc_name":"test"}' \

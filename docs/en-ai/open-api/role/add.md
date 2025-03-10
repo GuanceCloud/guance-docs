@@ -12,11 +12,10 @@ Create a new role
 ## Body Request Parameters
 
 | Parameter Name | Type   | Required | Description                                                                 |
-|:--------------|:-------|:---------|:-----------------------------------------------------------------------------|
-| name          | string | Y        | Role name<br>Example: Role No.1 <br>Allow null: False <br>Maximum length: 256 <br> |
-| desc          | string | N        | Description of the role<br>Example: CUSTOM <br>Allow null: False <br>Allow empty string: True <br>Maximum length: 3000 <br> |
-| keys          | array  | Y        | List of selected permissions<br>Example: [] <br>Allow null: False <br> |
-
+|:--------------|:-------|:---------|:----------------------------------------------------------------------------|
+| name          | string | Y        | Role name<br>Example: Role 1<br>Allow empty: False <br>Maximum length: 256 <br> |
+| desc          | string | N        | Description of the role<br>Example: CUSTOM <br>Allow empty: False <br>Allow empty string: True <br>Maximum length: 3000 <br> |
+| keys          | array  | Y        | Selected permission list<br>Example: [] <br>Allow empty: False <br> |
 
 ## Additional Parameter Notes
 
@@ -24,7 +23,7 @@ Create a new role
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/role/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/role/add' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \

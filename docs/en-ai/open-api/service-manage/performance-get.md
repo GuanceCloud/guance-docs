@@ -1,20 +1,21 @@
-# [Service Performance] Get
+# 【Service Performance】Get
 
 ---
 
 <br />**GET /api/v1/service_manage/performance/get**
 
 ## Overview
-Retrieve performance information for a single service
+Retrieve information about a single service performance
+
 
 
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| start | integer | Y | Start time, unit ms<br> |
-| end | integer | Y | End time, unit ms<br> |
-| serviceName | string | Y | Service name<br>Allow empty: False <br>Allow empty string: False <br> |
+|:------------------|:-------|:------|:----------------|
+| start | integer | Y | Time start, unit ms<br> |
+| end | integer | Y | Time end, unit ms<br> |
+| serviceName | string | Y | Service name<br>Allow null: False <br>Allow empty string: False <br> |
 
 ## Additional Parameter Notes
 
@@ -22,7 +23,7 @@ Retrieve performance information for a single service
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/service_manage/performance/get?end=1693810693999&start=1693767493000&serviceName=anypath' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage/performance/get?end=1693810693999&start=1693767493000&serviceName=anypath' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed
@@ -45,7 +46,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/performance/get?end=16938
                 "uuid": "rul_xxxx32"
             },
             {
-                "name": "Host {host} High",
+                "name": "High Host {host}",
                 "type": "simpleCheck",
                 "uuid": "rul_xxxx32"
             },

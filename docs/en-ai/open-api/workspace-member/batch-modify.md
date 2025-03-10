@@ -8,38 +8,39 @@
 Modify one or more members
 
 
+
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| accountUUIDs | array | Y | List of account UUIDs<br>Example: ['Account UUID1 not in workspace', 'Account UUID2 not in workspace'] <br>Can be empty: True <br> |
-| roleUUIDs | array | Y | List of user role UUIDs<br>Example: None <br>Can be empty: False <br> |
-| onlyModifyRoles | boolean | Y | Whether to only modify member roles, True does not modify team information<br>Example: True <br>Can be empty: False <br> |
-| memberGroupUUIDs | array |  | List of teams<br>Example: ['xxx', 'xxx'] <br>Can be empty: True <br> |
-| acntWsNickname | string |  | Nickname of the account in this workspace<br>Example: NicknameAAA <br>Can be empty: True <br>$maxCustomLength: 128 <br> |
+|:---------------------|:---------|:----------|:------------------------|
+| accountUUIDs         | array    | Y         | List of account UUIDs<br>Example: ['Account UUID1 not in the workspace', 'Account UUID2 not in the workspace'] <br>Can be empty: True <br> |
+| roleUUIDs            | array    | Y         | List of user role UUIDs<br>Example: None <br>Can be empty: False <br> |
+| onlyModifyRoles       | boolean  | Y         | Whether to only modify member roles, True does not change team information<br>Example: True <br>Can be empty: False <br> |
+| memberGroupUUIDs      | array    |           | List of teams<br>Example: ['xxx', 'xxx'] <br>Can be empty: True <br> |
+| acntWsNickname        | string   |           | Nickname of the account in this workspace<br>Example: NicknameAAA <br>Can be empty: True <br>$maxCustomLength: 128 <br> |
 
 ## Additional Parameter Notes
 
 Data notes.*
 
-When modifying member roles, if any roles in roleUUIDs require Token review (SaaS Free Plan and PaaS do not require Billing Center review), then non-reviewed role UUIDs must be included.
+When modifying member roles, if `roleUUIDs` contains roles that require token review (no billing center review required for SaaS Free Plan and PaaS versions), it must include role UUIDs that do not require review.
 
-- Request parameter explanation
+- Request parameter description
 
-| Parameter Name           | type | Description                                                 |
-| ---------------- | ---- | ---------------------------------------------------- |
-| accountUUIDs       | list | Member account UUIDs |
-| roleUUIDs             | list | Role UUIDs                                              |
-| onlyModifyRoles    | boolean | Whether to only change role information (true for batch modification, false for single modification)                 |
-| memberGroupUUIDs       | list  | Team information is required when making a single modification     |
-| acntWsNickname       | string  | Nickname of the account in the workspace     |
+| Parameter Name           | Type | Description                                                 |
+| ------------------------ | ---- | ----------------------------------------------------------- |
+| accountUUIDs             | list | Member account UUIDs                                        |
+| roleUUIDs                | list | Role UUIDs                                                  |
+| onlyModifyRoles          | boolean | Whether to only change role information (true for batch modification, false for individual modification) |
+| memberGroupUUIDs         | list  | Team information is required when modifying a single member |
+| acntWsNickname           | string  | Nickname of the account in the workspace                    |
 ------
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/member/batch_modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/member/batch_modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"accountUUIDs": ["acnt_xxxx32"], "onlyModifyRoles": true, "roleUUIDs": ["general","wsAdmin"]}' \

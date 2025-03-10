@@ -12,7 +12,7 @@
 ## Query Request Parameters
 
 | Parameter Name | Type   | Required | Description              |
-|:-----------|:-------|:-----|:----------------|
+|:--------------|:------|:-------|:----------------|
 | search | string | No | Search scheduled report name<br>Can be empty: True <br> |
 | pageIndex | integer | Yes | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
 | pageSize | integer | Yes | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 10000 <br> |
@@ -25,7 +25,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
@@ -177,7 +177,7 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
                     "acntWsNickname": "",
                     "email": "66@qq.com",
                     "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
-                    "name": "I am 66",
+                    "name": "I am 66 ya",
                     "username": "66"
                 }
             },
@@ -235,7 +235,7 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/list' \
                     "acntWsNickname": "",
                     "email": "sunhui@jiagouyun.com",
                     "iconUrl": "",
-                    "name": "Sun Shuhua",
+                    "name": "Sun Hui",
                     "username": "sunhui"
                 }
             },

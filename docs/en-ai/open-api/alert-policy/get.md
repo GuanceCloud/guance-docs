@@ -2,29 +2,32 @@
 
 ---
 
-<br />**GET /api/v1/alert_policy/{alert_policy_uuid}/get**
+<br />**GET /api/v1/alert_policy/\{alert_policy_uuid\}/get**
 
 ## Overview
 Retrieve an alert strategy
 
 
+
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:-------------------------|
-| alert_policy_uuid     | string   | Y        | Alert strategy UUID      |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-------|:----------------|
+| alert_policy_uuid | string | Y | Alert strategy UUID<br> |
 
 
 ## Additional Parameter Notes
 
 
 
+
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/alert_policy/altpl_xxxx32/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/alert_policy/altpl_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
+
 
 
 
@@ -59,7 +62,7 @@ curl 'https://openapi.guance.com/api/v1/alert_policy/altpl_xxxx32/get' \
         "id": 4100,
         "name": "jj_modify",
         "notifyObjectName": {
-            "notify_xxxx32": "Jinlei Test No Secret Key"
+            "notify_xxxx32": "Jinlei test without key"
         },
         "ruleTimezone": "Asia/Shanghai",
         "score": 0,

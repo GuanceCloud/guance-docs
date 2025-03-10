@@ -2,49 +2,42 @@
 
 ---
 
-<br />**POST /api/v1/rum_cfg/{appid}/modify**
+<br />**POST /api/v1/rum_cfg/\{appid\}/modify**
 
 ## Overview
-
 
 
 
 ## Route Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-------|:----------------|
-| appid | string | Y | appId<br> |
-
+|:-------------------|:-------|:-----|:----------------|
+| appid | string | Y | App ID<br> |
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-------|:----------------|
-| newAppId | string |  | New AppId<br>Allow null: False <br>Allow empty string: True <br>$maxCharacterLength: 48 <br> |
-| dashboardUuids | array |  | Built-in view UUIDs<br>Allow null: False <br> |
+|:-------------------|:-------|:-----|:----------------|
+| newAppId | string |  | New App ID<br>Allow null: False <br>Allow empty string: True <br>$maxCharacterLength: 48 <br> |
+| dashboardUuids | array |  | Built-in View UUIDs<br>Allow null: False <br> |
 | jsonContent | json |  | JSON formatted content<br> |
 | jsonContent.name | string |  | Application name<br>Allow null: False <br>Maximum length: 256 <br> |
-| jsonContent.type | string |  | Application type, not modifiable for existing business scenarios<br>Allow null: False <br>Options: ['web', 'miniapp', 'android', 'ios', 'custom', 'reactnative'] <br> |
-| jsonContent.extend | json |  | Other settings (please inform if additional fields are needed)<br>Allow null: False <br> |
-| clientToken | string |  | clientToken<br>Allow null: False <br>Allow empty string: True <br> |
+| jsonContent.type | string |  | Application type, not editable for existing use cases<br>Allow null: False <br>Options: ['web', 'miniapp', 'android', 'ios', 'custom', 'reactnative'] <br> |
+| jsonContent.extend | json |  | Additional settings (please inform if you need to add fields at the same level)<br>Allow null: False <br> |
+| clientToken | string |  | Client token<br>Allow null: False <br>Allow empty string: True <br> |
 
 ## Additional Parameter Notes
 
 
 
-
-
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/rum_cfg/fe52be60_xxx_0ffb4a4ef591/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/rum_cfg/fe52be60_xxx_0ffb4a4ef591/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"newAppId":"fe52be60_xxx_0ffb4a4ef591","jsonContent":{"name":"assddd"}, "clientToken":"xxx"}' \
 --compressed
 ```
-
-
-
 
 ## Response
 ```shell

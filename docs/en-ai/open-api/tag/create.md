@@ -9,28 +9,27 @@ Create a new tag
 
 
 
-
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:----------|:------------------------|
-| name | string | Y | Tag name<br>Allow empty: False <br>Maximum length: 50 <br> |
-| description | string |  | Tag description<br>Allow empty: False <br>Maximum length: 100 <br> |
-| colour | string |  | Tag color<br>Allow empty: False <br>Maximum length: 50 <br> |
+| Parameter Name | Type   | Required | Description                                          |
+|:--------------|:-------|:--------|:----------------------------------------------------|
+| name          | string | Y       | Tag name<br>Allow null: False <br>Maximum length: 50 <br> |
+| description   | string |         | Tag description<br>Allow null: False <br>Maximum length: 100 <br> |
+| colour        | string |         | Tag color<br>Allow null: False <br>Maximum length: 50 <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Information
 
 Data Description
 
-- Request Parameter Description
+- Request Parameter Explanation
 
-| Parameter Name           | Type | Description                                                 |
-| ------------------------ | ---- | ----------------------------------------------------------- |
-| name       | string | Tag name |
-| description             | string | Field description information                                                 |
-| color    | string | Predefined color type, default, style_key1, style_key2 ~~                |
+| Parameter Name | Type   | Description                                                 |
+| -------------- | ------ | ----------------------------------------------------------- |
+| name           | string | Tag name                                                    |
+| description    | string | Field description information                               |
+| color          | string | Front-end and back-end agreed color type, default, style_key1, style_key2 ~~                |
 
-- Color color field type-color mapping:
+- Color `color` field type-color correspondence:
 ```json
 {
     "default": {"background": "#CCE6FF", "color": "rgba(0,0,0,0.8)"},
@@ -63,10 +62,9 @@ Data Description
 
 
 
-
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/tag/create' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/tag/create' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Accept-Language: en' \
@@ -74,7 +72,6 @@ curl 'https://openapi.guance.com/api/v1/tag/create' \
 --data-raw '{"name":"test_1","description":"temp_test","colour":"style_key3"}' \
 --compressed
 ```
-
 
 
 

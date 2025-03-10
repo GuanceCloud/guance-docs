@@ -2,31 +2,30 @@
 
 ---
 
-<br />**GET /api/v1/tag/{tag_uuid}/get**
+<br />**GET /api/v1/tag/\{tag_uuid\}/get**
 
 ## Overview
 Get detailed information about a tag
 
 
-
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description          |
-|:--------------|:-------|:---------|:---------------------|
-| tag_uuid      | string | Y        | Tag UUID             |
+| Parameter Name | Type   | Required | Description              |
+|:--------------|:-------|:--------|:-------------------------|
+| tag_uuid      | string | Y       | Tag UUID                 |
 
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
 Data Description
 
-- Response Parameter Explanation
+- Response Parameter Description
 
-| Parameter Name | Type   | Description                                                 |
-| -------------- | ------ | ----------------------------------------------------------- |
+| Parameter Name | Type  | Description                                                 |
+| -------------- | ----- | ----------------------------------------------------------- |
 | name          | string | Tag name                                                    |
-| description   | string | Field description information                                |
-| color         | string | Frontend and backend agreed color type, default, style_key1, style_key2 ~~                |
+| description   | string | Field description                                           |
+| color         | string | Predefined color types, default, style_key1, style_key2, etc. |
 
 - Color `color` field type-color mapping:
 ```json
@@ -59,14 +58,12 @@ Data Description
 ```
 
 
-
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/tag/tag_xxxx32/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/tag/tag_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
 
 
 ## Response

@@ -11,8 +11,8 @@ Delete a single user view
 ## Route Parameters
 
 | Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| dashboard_uuid | string | Y | View ID<br> |
+|:---------------------|:---------|:---------|:-------------------------|
+| dashboard_uuid        | string   | Y        | View ID<br>              |
 
 
 ## Additional Parameter Notes
@@ -21,11 +21,10 @@ Delete a single user view
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboard/dsbd_xxxx32/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
 
 
 ## Response
@@ -33,7 +32,7 @@ curl 'https://openapi.guance.com/api/v1/dashboard/dsbd_xxxx32/delete' \
 {
     "code": 200,
     "content": [
-        "test_Redis Monitoring View"
+        "test_Redis monitoring view"
     ],
     "errorCode": "",
     "message": "",

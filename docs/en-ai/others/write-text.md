@@ -1,11 +1,11 @@
 # How to Write a Text Document
 ---
 
-Text documents are edited using Markdown, a lightweight markup language with simple syntax that is easy to read and write. This article will introduce how to write documents using Markdown.
+Text documents are edited using Markdown, a lightweight markup language with simple syntax that is easy to read and write, used for creating text documents. This article will introduce how to write documents using Markdown.
 
 ## 1. Headings
 
-Markdown supports up to six levels of headings. The format is as follows:
+Markdown supports six levels of headings. The format is as follows:
 
 ```
 # Heading 1
@@ -16,25 +16,25 @@ Markdown supports up to six levels of headings. The format is as follows:
 ###### Heading 6
 ```
 
-Effect:
+Effect as shown below:
 
 ![](img/1.markdown_1.1.png)
 
 ## 2. Text Formatting
 
-Markdown supports text formatting such as italics, bold, strikethrough, and underline, which can be combined. The format is as follows:
+Markdown supports formatting text in italics, bold, strikethrough, underline, and these effects can be combined. The format is as follows:
 
 ```
 *Italic text*
 **Bold text**
 ***Bold and italic text***
 ~~Strikethrough text~~ 
-~~**Bold strikethrough text**~~ 
-~~*Italic strikethrough text*~~ 
+~~**Bold and strikethrough text**~~ 
+~~*Italic and strikethrough text*~~ 
 <u>Underlined text</u>
 ```
 
-Effect:
+Effect as shown below:
 
 ![](img/1.markdown_2.png)
 
@@ -47,13 +47,13 @@ Markdown supports adding horizontal rules using three consecutive `*` or `-`. Th
 ---
 ```
 
-Effect:
+Effect as shown below:
 
 ![](img/1.markdown_3.png)
 
 ## 4. Code Blocks
 
-Markdown supports displaying code blocks using backticks ``` (the key above the Tab key). The format is as follows:
+Markdown supports displaying code using backticks ``` (the key above the Tab key). The format is as follows:
 
 C
 ```
@@ -70,7 +70,7 @@ Python
 # Python code
 ```
 
-Effect:
+Effect as shown below:
 
 ![](img/1.markdown_4.png)
 
@@ -85,29 +85,29 @@ Default | Left-aligned | Center-aligned | Right-aligned |
 | Table content | Table content | Table content | Table content |
 ```
 
-Effect:
+Effect as shown below:
 
 ![](img/1.markdown_5.1.png)
 
 ## 6. Hyperlinks
 
-Markdown supports hyperlinks using square brackets `[]` and parentheses `()`. The `description` goes inside the square brackets, and the `URL` goes inside the parentheses. The format is as follows:
+Markdown supports creating hyperlinks using square brackets `[]` and parentheses `()`. The link description is placed inside the square brackets, and the URL is placed inside the parentheses. The format is as follows:
 
 ```
 [<<< custom_key.brand_name >>>](https://www.guance.com)
 ```
 
-Effect:
+Effect as shown below:
 
 [<<< custom_key.brand_name >>>](https://www.guance.com)
 
-Markdown also supports using angle brackets `<>` to directly display a URL. The format is as follows:
+Markdown also supports directly displaying URLs using angle brackets `<>`. The format is as follows:
 
 ```
 <https://www.guance.com>
 ```
 
-Effect:
+Effect as shown below:
 
 [https://www.guance.com](https://www.guance.com)
 
@@ -116,9 +116,9 @@ Effect:
 Markdown supports inserting web images into text documents. The format is as follows:
 
 ```
-![avatar](https://<<< custom_key.static_domain >>>/dataflux-icon/official/community-code.png)
+![avatar](https://static.<<< custom_key.brand_main_domain >>>/dataflux-icon/official/community-code.png)
 ```
 
-Effect:
+Effect as shown below:
 
 ![](img/1.picture_1.png)

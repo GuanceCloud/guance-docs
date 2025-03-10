@@ -13,8 +13,8 @@ Disable a user-defined security check based on `checker_uuid`
 
 | Parameter Name | Type   | Required | Description                                      |
 |:--------------|:-------|:---------|:-------------------------------------------------|
-| ruleUUIDs     | array  |          | UUID of the user-defined security check<br>Example: rul_xxxxx <br>Can be empty: False <br> |
-| refKey        | string |          | Associated key of the user-defined security check<br>Example: xxx <br>Can be empty: False <br> |
+| ruleUUIDs     | array  |          | UUID of the user-defined security check<br>Example: rul_xxxxx <br>Nullable: False <br> |
+| refKey        | string |          | Associated key of the user-defined security check<br>Example: xxx <br>Nullable: False <br> |
 
 ## Additional Parameter Notes
 
@@ -22,7 +22,7 @@ Disable a user-defined security check based on `checker_uuid`
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/self_built_checker/disable' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/self_built_checker/disable' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"ruleUUIDs":["rul_xxxx32","rul_xxxx32"]}' \

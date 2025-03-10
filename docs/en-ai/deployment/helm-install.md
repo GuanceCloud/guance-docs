@@ -2,28 +2,28 @@
 
 ## Introduction
 
-Helm is based on Go template language, and users only need to provide the specified directory structure and template files. During actual deployment, the Helm template engine renders them into real K8s resource configuration files and deploys them to nodes in the correct order.
+Helm is based on Go template language. Users only need to provide the specified directory structure and template files. During actual deployment, the Helm template engine can render them into true Kubernetes resource configuration files and deploy them to nodes in the correct order.
 
 ## Basic Information and Compatibility
 
-| Name        | Description                        |
-| :---------- | :--------------------------------- |
-| Helm Version | 3.8                               |
-| Offline Installation Support | Yes                           |
-| Supported Architectures | amd64/arm64                     |
+| Name         | Description                       |
+| :-----------:| :-------------------------------- |
+| Helm Version | 3.8                              |
+| Offline Installation Supported | Yes                             |
+| Supported Architectures | amd64/arm64                   |
 
 ## Installation
 
 === "Amd"
 
     ```shell
-    wget https://<<< custom_key.static_domain >>>/dataflux/package/helm-v3.8.0-linux-amd64.tar.gz && tar -xvf helm-v3.8.0-linux-amd64.tar.gz && mv linux-amd64/helm /bin
+    wget https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/helm-v3.8.0-linux-amd64.tar.gz && tar -xvf helm-v3.8.0-linux-amd64.tar.gz && mv linux-amd64/helm /bin
     ```
 
 === "Arm"
 
     ```shell
-    wget https://<<< custom_key.static_domain >>>/dataflux/package/helm-v3.10.2-linux-arm64.tar.gz && tar -xvf helm-v3.10.2-linux-arm64.tar.gz && mv linux-arm64/helm /bin
+    wget https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/helm-v3.10.2-linux-arm64.tar.gz && tar -xvf helm-v3.10.2-linux-arm64.tar.gz && mv linux-arm64/helm /bin
     ```
 
 ## Verify Installation
@@ -148,7 +148,7 @@ rm -f /bin/helm
 
 ## Related Commands
 
-### Add Repository
+### Add Helm Repository
 
 ```shell
 helm repo add stable https://charts.helm.sh/stable
@@ -169,8 +169,8 @@ helm repo list
 Output:
 
 ```shell
-NAME           URL
-stable         https://charts.helm.sh/stable
+NAME          	URL
+stable        	https://charts.helm.sh/stable
 ```
 
 ### Search Charts in Repository
@@ -182,13 +182,13 @@ helm search repo stable
 Output:
 
 ```shell
-NAME                                  CHART VERSION APP VERSION             DESCRIPTION
-stable/acs-engine-autoscaler          2.2.2         2.1.1                   DEPRECATED Scales worker nodes within agent pools
-stable/aerospike                      0.3.5         v4.5.0.5                DEPRECATED A Helm chart for Aerospike in Kubernetes...
-stable/airflow                        7.13.3        1.10.12                 DEPRECATED - please use: https://github.com/air...
-stable/ambassador                     5.3.2         0.86.1                  DEPRECATED A Helm chart for Datawire Ambassador
-stable/anchore-engine                 1.7.0         0.7.3                   Anchore container analysis and policy evaluation...
-stable/apm-server                     2.1.7         7.0.0                   DEPRECATED The server receives data from the Ela...
+NAME                                  CHART VERSION	APP VERSION             DESCRIPTION
+stable/acs-engine-autoscaler          2.2.2        	2.1.1                   DEPRECATED Scales worker nodes within agent pools
+stable/aerospike                      0.3.5        	v4.5.0.5                DEPRECATED A Helm chart for Aerospike in Kubernetes...
+stable/airflow                        7.13.3       	1.10.12                 DEPRECATED - please use: https://github.com/air...
+stable/ambassador                     5.3.2        	0.86.1                  DEPRECATED A Helm chart for Datawire Ambassador
+stable/anchore-engine                 1.7.0        	0.7.3                   Anchore container analysis and policy evaluation...
+stable/apm-server                     2.1.7        	7.0.0                   DEPRECATED The server receives data from the El...
 ...
 ```
 
@@ -214,11 +214,11 @@ helm search repo redis
 Output:
 
 ```shell
-NAME                             CHART VERSION APP VERSION DESCRIPTION
-stable/prometheus-redis-exporter 3.5.1         1.3.4       DEPRECATED Prometheus exporter for Redis metrics
-stable/redis                     10.5.7        5.0.7       DEPRECATED Open source, advanced key-value store...
-stable/redis-ha                  4.4.6         5.0.6       DEPRECATED - Highly available Kubernetes implement...
-stable/sensu                     0.2.5         0.28        DEPRECATED Sensu monitoring framework backed by...
+NAME                            	CHART VERSION	APP VERSION	DESCRIPTION
+stable/prometheus-redis-exporter	3.5.1        	1.3.4      	DEPRECATED Prometheus exporter for Redis metrics
+stable/redis                    	10.5.7       	5.0.7      	DEPRECATED Open source, advanced key-value store...
+stable/redis-ha                 	4.4.6        	5.0.6      	DEPRECATED - Highly available Kubernetes implement...
+stable/sensu                    	0.2.5        	0.28       	DEPRECATED Sensu monitoring framework backed by...
 ```
 
 ### View Redis Chart Details
@@ -248,7 +248,7 @@ sources:
 version: 10.5.7
 ```
 
-### View Redis Values (Values: Equivalent to Chart Configuration File)
+### View Redis Values (Values: Equivalent to the chart's configuration file)
 
 ```shell
 helm show values stable/redis
@@ -267,13 +267,13 @@ global:
 
 ### Debugging
 
-Run `--dry-run` to check if the generated YAML file has any issues
+Run `--dry-run` to check if the generated YAML file has any issues.
 
 ```shell
 helm install redis-demo stable/redis -n test --create-namespace --dry-run
 ```
 
-### Install Redis
+### Install Redis Using Helm
 
 ```shell
 helm install redis-demo stable/redis -n test --create-namespace
@@ -292,7 +292,7 @@ TEST SUITE: None
 NOTES:
 This Helm chart is deprecated
 
-....
+...
 
 To get your password run:
 
@@ -316,12 +316,12 @@ To connect to your database from outside the cluster execute the following comma
     redis-cli -h 127.0.0.1 -p 6379 -a $REDIS_PASSWORD
 ```
 
-### Upgrade/Uninstall Application
+### Upgrade or Uninstall Application
 
 ```shell
 # Upgrade
 helm upgrade redis-demo stable/redis -n test
 
 # Uninstall
-helm uninstall redis-demo -n test
+helm uninstall redis-demo stable/redis -n test
 ```

@@ -5,27 +5,29 @@
 <br />**GET /api/v1/sso/saml_list**
 
 ## Overview
-Retrieve the list of SAML SSO login configurations.
+Retrieve the list of SAML SSO login configurations
+
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description              |
+| Parameter Name | Type   | Required | Description               |
 |:--------------|:-------|:--------|:-------------------------|
-| type          | string | No      | Type<br>Example: <br>Allow empty: False <br>Optional values: ['saml', 'oidc'] |
+| type          | string |         | Type<br>Example: <br>Can be empty: False <br>Optional values: ['saml', 'oidc'] <br> |
 
 ## Additional Parameter Notes
 
-None
+
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/sso/saml_list' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/sso/saml_list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
 
+
 ## Response
-```json
+```shell
 {
     "code": 200,
     "content": [
@@ -88,5 +90,5 @@ curl 'https://openapi.guance.com/api/v1/sso/saml_list' \
     "message": "",
     "success": true,
     "traceId": "TRACE-4E238298-4DD2-4CA3-94A0-6F27F68F0C5F"
-}
+} 
 ```

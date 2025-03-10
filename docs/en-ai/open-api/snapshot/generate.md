@@ -8,44 +8,47 @@
 Create a snapshot
 
 
+
+
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                       |
-|:--------------|:-------|:--------|:----------------------------------|
-| name          | string | Y       | Snapshot name<br>Can be empty: False <br> |
-| type          | string | Y       | Type of snapshot<br>Can be empty: False <br> |
-| content       | json   | Y       | User configuration data<br>Can be empty: False <br> |
-| isForce       | boolean|         | Force overwrite if names exist<br>Can be empty: False <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:------------------|:-------|:-----|:----------------|
+| name | string | Y | Snapshot name<br>Can be empty: False <br> |
+| type | string | Y | Type of snapshot<br>Can be empty: False <br> |
+| content | json | Y | User configuration data<br>Can be empty: False <br> |
+| isForce | boolean |  | Force overwrite if names exist<br>Can be empty: False <br> |
 
 ## Additional Parameter Explanation
 
+
 *1. Request parameter explanation*
 
-| Parameter Name  | Type    | Required | Description                          |
-|-----------------|---------|----------|--------------------------------------|
-| name            | string  | Y        | Snapshot name                        |
-| type            | String  | Y        | Type of snapshot, Log Viewer: Log    |
-| content         | dict    | Y        | Snapshot content configuration       |
-| isForce         | boolean | N        | Whether to force overwrite if names exist |
+|  Parameter Name                |   Type  | Required  |          Description          |
+|-----------------------|----------|----|------------------------|
+|name             |string|Y| Snapshot name|
+|type   |String     |Y| Type of snapshot, Log Explorer: Log|
+|content   |dict     |Y| Snapshot content configuration |
+|isForce |boolean     |N| Whether to force overwrite if names exist|
 
 --------------
 
 *2. Content parameter explanation*
 
-| Parameter Name             | Type   | Description                                             |
-|----------------------------|--------|---------------------------------------------------------|
-| routeParams.source          | string | Log Viewer: all                                         |
-| routeName                   | string | Route name, Log Viewer: Log                             |
-| routeQuery.w                | string | Query workspace                                         |
-| routeQuery.workspaceUUID    | string | Multi-workspace query space ID, not passing this parameter defaults to the current workspace |
-| routeQuery.time             | string | Query time, example 1: "15m", example 2: "1730697199573,1730698099573" |
-| routeQuery.query            | string | Viewer query statement                                  |
-| routeQuery.cols             | string | Columns displayed by viewer                             |
-| routeQuery.viewType         | string | Display mode of viewer. List mode view or analysis mode analyze |
-| routeQuery.index            | string | Index for log queries                                   |
-| routeQuery.snapshotName     | string | Snapshot name                                           |
+|  Parameter Name                |   Type  |          Description          |
+|-----------------------|----------|------------------------|
+|routeParams.source             |string| Log Explorer: all|
+|routeName   |string     | Route name, Log Explorer: Log|
+|routeQuery.w   |string     | Query workspace |
+|routeQuery.workspaceUUID   |string     | Multi-workspace query workspace ID, not passing this parameter defaults to the current workspace |
+|routeQuery.time   |string     | Query time, example1: "15m", example2: "1730697199573,1730698099573"|
+|routeQuery.query   |string     | Explorer query statement|
+|routeQuery.cols   |string     | Explorer display columns|
+|routeQuery.viewType   |string     | Explorer display mode. List mode view, or analysis mode analyze|
+|routeQuery.index   |string     | Log query index|
+|routeQuery.snapshotName   |string     | Snapshot name|
 
-Example of the content field
+Content field example
 ```json
 {
   "routeParams": {
@@ -66,14 +69,20 @@ Example of the content field
 ```
 --------------
 
+
+
+
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/snapshots/create' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/snapshots/create' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"jj_test1","type":"Log","content":{"routeParams":{"source":"all"},"routeName":"Log","routeQuery":{"w":"wksp_4b57c7bab38e4a2d9630f675dc20015d","time":"45m","query":"host:izbp152ke14timzud0du15z","cols":"time,message,app_id","viewType":"view","index":"default,keyongxing","snapshotName":"jj_test1"}}}' \
 --compressed
 ```
+
+
+
 
 ## Response
 ```shell

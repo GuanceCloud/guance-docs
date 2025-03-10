@@ -3,19 +3,19 @@
 ## 0. Introduction
 
 <u>After successfully deploying Kubernetes according to this document, the following tasks are completed by default</u>
-???+ info  "**Feature Component Coverage**"
+???+ info  "**Coverage of Functional Components**"
 
     - [x] High availability deployment of Kubernetes 1.24.2
 
-    - [x] Installation of CoreDNS component
+    - [x] Installation of the CoreDNS component
 
-    - [x] Installation of node-local-dns component
+    - [x] Installation of the Node-Local-DNS component
 
-    - [x] Installation of ingress-nginx component
+    - [x] Installation of the Ingress-Nginx component
 
-    - [x] Installation of metrics-server component
+    - [x] Installation of the Metrics-Server component
 
-    - [x] Installation of OpenEBS provisioner driver
+    - [x] Installation of the OpenEBS-Provisioner component driver
 
   
 
@@ -24,8 +24,8 @@
   Resource List
 
   ```shell
-  1. "Minimum configuration" is suitable for POC scenarios, only for functional verification, not suitable for production environments.
-  2. For production deployment, evaluate based on actual data volume接入的数据量越多，TDengine、OpenSearch 的存储与规格配置相应也需要越高。  
+  1. "Minimum configuration" is suitable for POC scenarios and is only used for functional verification, not recommended for production environments.
+  2. For production deployments, evaluate based on actual data volume接入; the more data volume connected, the higher the storage and specification configurations required for TDengine and OpenSearch.  
   ```
   
 
@@ -33,18 +33,18 @@
 
 
 
-| **Purpose**                   | **Resource Type**           | **Minimum Specifications**   | **Recommended Specifications**         | **Quantity** | **Notes**                                                     |
+| **Purpose**                   | **Resource Type**           | **Minimum Specification**   | **Recommended Specification**         | **Quantity** | **Notes**                                                     |
 | -------------------------- | ---------------------- | -------------- | -------------------- | -------- | ------------------------------------------------------------ |
-| **Kubernetes Master**      | Physical server&#124;virtual machine | 4C8GB 100GB    | 8C16GB  100GB        | 3        | Version: 1.24.2 **Note: If it's a virtual machine, increase resource specifications appropriately, reuse one master node as the deployment node** |
-| **Kubernetes workerload**  | Physical server&#124;virtual machine | 4C8GB 100GB    | 8C16GB  100GB        | 4        | k8s cluster worker nodes, hosting <<< custom_key.brand_name >>> applications, k8s components, and basic services like MySQL 5.7.18, Redis 6.0.6 |
-| **<<< custom_key.brand_name >>> Proxy Service**         | Physical server&#124;virtual machine | 2C4GB  100GB   | 4C8GB    200GB       | 1        | Used for deploying Nginx reverse proxy servers, proxying to ingress edge nodes **Note: For security reasons, do not expose cluster edge nodes directly** |
-| **<<< custom_key.brand_name >>> Network File System Service** | Physical server&#124;virtual machine | 2C4GB 200G     | 4C8GB 1TB high-performance disk | 1        | Deploy network file system and network storage service, default NFS (if an existing NFS service exists, this machine can be canceled) |
-| **DataWay**                | Physical server&#124;virtual machine | 2C4GB  100GB   | 4C8GB    100GB       | 1        | User deploys DataWay                                             |
-| **OpenSearch**             | Physical server&#124;virtual machine | 4C8GB 1TB      | 8C16G   1TB          | 3        | OpenSearch version: 2.2.1 **Note: Enable password authentication, install matching version analysis-ik plugin** |
-| **TDengine**               | Physical server&#124;virtual machine | 4C8GB  500GB   | 8C16G 1TB            | 3        | TDengine version: 2.6.0.18                |
-| **Others**                   | Email server/SMS        | -              | -                    | 1        | SMS gateway, email server, alert channels                               |
-|                            | Officially registered wildcard domain   | -              | -                    | 1        | Main domain must be registered                                                 |
-|                            | SSL/TLS certificate            | Wildcard domain certificate | Wildcard domain certificate       | 1        | Ensures site security                                                 |
+| **Kubernetes Master**      | Physical server or virtual machine | 4C8GB 100GB    | 8C16GB  100GB        | 3        | Version: 1.24.2 **Note: If it's a virtual machine, appropriately increase the resource specifications, reuse one master node as the deployment node** |
+| **Kubernetes workerload**  | Physical server or virtual machine | 4C8GB 100GB    | 8C16GB  100GB        | 4        | k8s cluster worker nodes, hosting <<< custom_key.brand_name >>> applications, k8s components, basic service Mysql 5.7.18, Redis 6.0.6 |
+| **<<< custom_key.brand_name >>> Proxy Service**         | Physical server or virtual machine | 2C4GB  100GB   | 4C8GB    200GB       | 1        | Used to deploy an Nginx reverse proxy server, proxying to ingress edge nodes **Note: For security reasons, do not directly expose the cluster edge nodes** |
+| **<<< custom_key.brand_name >>> Network File System Service** | Physical server or virtual machine | 2C4GB 200G     | 4C8GB 1TB high-performance disk | 1        | Deploy network file system, network storage service, default NFS (if an existing NFS service exists, this machine can be canceled) |
+| **DataWay**                | Physical server or virtual machine | 2C4GB  100GB   | 4C8GB    100GB       | 1        | User-deployed DataWay                                             |
+| **OpenSearch**             | Physical server or virtual machine | 4C8GB 1TB      | 8C16G   1TB          | 3        | OpenSearch version: 2.2.1 **Note: Password authentication must be enabled, install matching version analysis plugin analysis-ik** |
+| **TDengine**               | Physical server or virtual machine | 4C8GB  500GB   | 8C16G 1TB            | 3        | TDengine version: 2.6.0.18                |
+| **Other**                   | Email server/SMS        | -              | -                    | 1        | SMS gateway, email server, alert channel                               |
+|                            | Officially registered wildcard domain   | -              | -                    | 1        | The main domain needs to be registered                                                 |
+|                            | SSL/TLS certificate            | Wildcard domain certificate | Wildcard domain certificate       | 1        | To secure the site                                               |
 
   
 
@@ -56,7 +56,7 @@
       - **<<< custom_key.brand_name >>> platform offline resource package uploaded to all cluster nodes and imported into the container runtime environment (containerd)**
       
       ```shell
-      # Extract downloaded <<< custom_key.brand_name >>> image package and import into containerd
+      # Extract the downloaded <<< custom_key.brand_name >>> image package and import it into containerd
          
       gunzip xxx.tar.gz
       ctr -n k8s.io images import xxx.tar
@@ -67,7 +67,7 @@
 
 ```shell
 # Log in to the deployment machine and execute the command
-# Generate public key pair 
+# Generate public/private key pair 
 [root@k8s-node01 ~]# ssh-keygen
 Generating public/private rsa key pair.
 Enter file in which to save the key (/root/.ssh/id_rsa):
@@ -90,48 +90,48 @@ The key's randomart image is:
 |       o=+       |
 +----[SHA256]-----+
 
-# $IP is the address of all nodes including itself, enter yes and the root password as prompted
+# $IP is the address of all nodes including itself, follow the prompts to input yes and the root password
 ssh-copy-id $IP 
 
-# Set up Python symbolic link for each node, default is not required 【For certain versions using Python 3, this operation needs to be performed】
+# Set up a Python symlink for each node, default not required 【Specific versions using Python 3 may require this action】
 # ssh $IP ln -s /usr/bin/python3 /usr/bin/python
 ```
 
 
 
-## 2. Deployment Preparation
+## 2. Pre-deployment Preparation
 
-### 2.1 Download Resource Package
+### 2.1 Resource Package Download
 
-  Offline resource package download address  [Download]( https://<<< custom_key.static_domain >>>/dataflux/package/k8s_offline.tar.gz)
+  Basic environment offline resource package download link [Download]( https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/k8s_offline.tar.gz)
 
 ### 2.2 Offline Resource Package Structure Description
 
-  Brief description of the offline package contents
+  Brief description of the offline package content
 
 - `/etc/kubeasz` is the main kubeasz directory 
 - `/etc/kubeasz/example ` contains sample configuration files
--  `/etc/kubeasz/clusters ` contains configuration files related to created clusters
-- ` /etc/kubeasz/guance` contains <<< custom_key.brand_name >>> related charts, YAML, etc.
-- `/etc/kubeasz/bin` contains k8s/etcd/docker/CNI binary files
+-  `/etc/kubeasz/clusters ` contains cluster-related configuration files
+- ` /etc/kubeasz/guance` contains <<< custom_key.brand_name >>> related charts, yaml, etc.
+- `/etc/kubeasz/bin` contains k8s/etcd/docker/cni binary files
 - `/etc/kubeasz/down` contains offline container image packages needed for cluster installation
 - `/etc/kubeasz/down/packages` contains system base software needed for cluster installation
 
 
 
-## 3. Install Cluster
+## 3. Cluster Installation
 
-### 3.1 Precautions
+### 3.1 Important Notes
 ???+ warning "Important"
-    - Ensure time zones are set consistently across all nodes and time synchronization is done
+    - Ensure that the time zone settings and time synchronization are consistent across all nodes
 
-    - Commands in the document need root privileges by default
+    - Commands in the document require root privileges by default
     
-    - Ensure installation starts on a clean system without any previous installations of kubeadm or other Kubernetes distributions
+    - Ensure you start installation on a clean system, do not use systems with pre-installed kubeadm or other k8s distributions
     
-    - Before executing one-click installation, configure and check the custom-generated cluster configuration files. Mainly `/etc/kubease/clusters/xxx/hosts` and `/etc/kubeasz/clusters/config.yaml`
+    - Before executing the one-click installation, configure and check the custom-generated cluster configuration files. Mainly `/etc/kubease/clusters/xxx/hosts` and `/etc/kubeasz/clusters/config.yaml`
     
-    - Modify hostnames for easier identification【Optional】
+    - Modify hostnames for easy identification 【optional】
     
     ```shell
     # xxx is the hostname to be set
@@ -144,51 +144,51 @@ ssh-copy-id $IP
 
 ### 3.2 Cluster Role Planning
 
-High availability cluster requires the following node configurations:
+Configuration for nodes in a highly available cluster:
 
 | Role               | Quantity | Description                                                    |
 | :----------------- | :--- | :------------------------------------------------------ |
-| deploy（deployment）node | 1    | Runs ansible/ezctl commands, generally reuses the first master node         |
-| etcd nodes           | 3    | Note that an etcd cluster requires 1, 3, 5,... odd number of nodes, generally reusing master nodes |
-| master nodes         | 3    | High availability cluster requires at least 2 master nodes                             |
-| node nodes           | N    | Nodes running application workloads, machine configurations can be upgraded or more nodes added as needed   |
+| Deploy node | 1    | Runs ansible/ezctl commands, typically reuses the first master node         |
+| etcd node           | 3    | Note that etcd clusters need an odd number of nodes (1, 3, 5,...), generally reusing master nodes |
+| Master node         | 3    | A highly available cluster requires at least 2 master nodes                             |
+| Node node           | N    | Nodes running application workloads, can upgrade machine configurations/increase node count as needed   |
 
-???+ note "Description"
-    By default, the container runtime and kubelet will occupy disk space under `/var`. If the disk partition is special, you can set the container runtime and kubelet data directories in the `example/config.yml` before creating the cluster configuration: `CONTAINERD_STORAGE_DIR` `DOCKER_STORAGE_DIR` `KUBELET_ROOT_DIR`
+???+ note "Explanation"
+    By default, the container runtime and kubelet will occupy disk space under `/var`. If the disk partition is special, you can set the directories for the container runtime and kubelet data before creating the cluster configuration: `CONTAINERD_STORAGE_DIR` `DOCKER_STORAGE_DIR` `KUBELET_ROOT_DIR`
 
 ### 3.3 Deployment Steps
 
-#### 3.3.1 Orchestrate k8s Installation on Deployment Node
+#### 3.3.1 Orchestrating k8s Installation on the Deployment Node
 
 Log in to the deployment node server
-Navigate to the `/etc/kueasz` directory and execute the following commands
+Navigate to the `/etc/kueasz` directory and run the following commands
 
 ```shell
 # Install Docker service on the deployment machine
-# Start the local registry repository
-# Load the necessary offline environment image packages and push them to the registry repository
+# Start the local registry
+# Load the required image packages for the offline environment and push them to the registry repository
 
 ./ezdown -D    
 ./ezdown -X 
 ```
 
-More information about ezdown parameters can be obtained by running ezdown.
+For more information about ezdown parameters, run `ezdown`.
 
 ???+ tip "Tip"
 
-    If unable to run, navigate to the `/etc/kubeasz` directory and execute `./ezdwon -h`
+    If it does not run, navigate to the `/etc/kubeasz` directory and execute `./ezdwon -h` to view
 
 
-#### 3.3.2 Create Cluster Configuration Instance
+#### 3.3.2 Creating Cluster Configuration Instances
 
 ```shell
-# Run kubeasz container
+# Run the kubeasz container
 ./ezdown -S
 
-# Create a new cluster guancecloud 
-# The cluster name can be customized, and corresponding directories will be generated
+# Create a new cluster named guancecloud 
+# The cluster name can be customized as needed, and a corresponding directory will be generated
 docker exec -it kubeasz ezctl new guancecloud
-# Result display example
+# Result output example
 2022-10-19 10:48:23 DEBUG generate custom cluster files in /etc/kubeasz/clusters/guancecloud
 2022-10-19 10:48:23 DEBUG set version of common plugins
 2022-10-19 10:48:23 DEBUG cluster k8s-01: files successfully created.
@@ -200,17 +200,17 @@ Then modify the cluster configuration files according to the prompts
 
 
 ```shell
-# Modify hosts file according to the previously planned cluster roles
+# Modify the hosts file according to the previous cluster role planning
 '/etc/kubeasz/clusters/xxx/hosts'  
 
-# Other main cluster-level configuration options can be modified in the config.yml file【It is recommended to use the default unless you are very clear about the parameters being modified】
+# Other major cluster-level configuration options can be modified in the `config.yml` file 【Use defaults unless you are very clear about the parameters being modified】
 '/etc/kubeasz/clusters/xxx/config.yml'
 
 ```
 
-Example configuration file content
-???+ note "Description"
-    For custom configuration items, please refer to the example configuration file
+Sample configuration file content
+???+ note "Explanation"
+    Refer to the sample configuration file for custom configuration items
 
 ???+ example "Sample Configuration File"
     ```shell
@@ -220,10 +220,10 @@ Example configuration file content
     # prepare
     ############################
     # Optional offline installation of system software packages (offline|online)
-    # Default is "offline" for offline environments
+    # Default to "offline" in an offline environment
     INSTALL_SOURCE: "offline"
 
-    # Optional system hardening with github.com/dev-sec/ansible-collection-hardening
+    # Optional perform system security hardening github.com/dev-sec/ansible-collection-hardening
     OS_HARDEN: false
 
 
@@ -235,7 +235,7 @@ Example configuration file content
     CA_EXPIRY: "876000h"
     CERT_EXPIRY: "438000h"
 
-    # Kubeconfig configuration parameters
+    # kubeconfig configuration parameters
     CLUSTER_NAME: "cluster1"
     CONTEXT_NAME: "context-{{ CLUSTER_NAME }}"
 
@@ -247,7 +247,7 @@ Example configuration file content
     ############################
     # Set different WAL directories to avoid disk I/O contention and improve performance 
 
-    # It is recommended to modify to a directory with larger disk space, depending on the actual situation
+    # It is recommended to modify to a directory with larger disk space, specific to actual conditions
     ETCD_DATA_DIR: "/var/lib/etcd"
     ETCD_WAL_DIR: ""
 
@@ -264,13 +264,13 @@ Example configuration file content
 
     # [containerd] Container persistent storage directory
 
-    # It is recommended to modify to a directory with larger disk space, depending on the actual situation
+    # It is recommended to modify to a directory with larger disk space, specific to actual conditions
     CONTAINERD_STORAGE_DIR: "/var/lib/containerd" 
 
     # ------------------------------------------- docker
     # [docker] Container storage directory
-    # It is recommended to modify to a directory with larger disk space, depending on the actual situation 
-    # Only deployment machines have Docker services
+    # It is recommended to modify to a directory with larger disk space, specific to actual conditions 
+    # Only the deployment machine has the Docker service
     DOCKER_STORAGE_DIR: "/var/lib/docker"
 
     # [docker] Enable Restful API
@@ -283,14 +283,14 @@ Example configuration file content
     ############################
     # role:kube-master
     ############################
-    # k8s cluster master node certificate configuration, multiple IPs and domains can be added (such as adding public IPs and domains)
+    # k8s cluster master node certificate configuration, multiple IPs and domains can be added (such as adding public IP and domain)
     MASTER_CERT_HOSTS:
       - "10.1.1.1"
       - "k8s.easzlab.io"
       #- "www.test.com"
 
-    # Pod subnet mask length on node (determines the maximum number of pod IP addresses per node)
-    # If flannel uses --kube-subnet-mgr parameter, it will read this setting to allocate pod subnets for each node
+    # CIDR length for pod subnet mask on node (determines the maximum number of pod IP addresses each node can allocate)
+    # If flannel uses the --kube-subnet-mgr parameter, it will read this setting to allocate pod subnets for each node
     # https://github.com/coreos/flannel/issues/847
     NODE_CIDR_LEN: 24
 
@@ -299,20 +299,20 @@ Example configuration file content
     # role:kube-node
     ############################
     # Kubelet root directory
-    # It is recommended to modify to a directory with larger disk space, depending on the actual situation 
+    # It is recommended to modify to a directory with larger disk space, specific to actual conditions 
     KUBELET_ROOT_DIR: "/var/lib/kubelet"
 
-    # Maximum number of pods on node
+    # Maximum number of pods on a node
     MAX_PODS: 110
 
     # Configure resources reserved for kube components (kubelet, kube-proxy, dockerd, etc.)
-    # Values are set as per templates/kubelet-config.yaml.j2
+    # Specific values refer to templates/kubelet-config.yaml.j2
     KUBE_RESERVED_ENABLED: "no"
 
-    # k8s does not recommend enabling system-reserved lightly unless you understand the system's resource usage through long-term monitoring;
-    # And with system runtime, appropriate increases in resource reservation are needed, values are set as per templates/kubelet-config.yaml.j2
-    # System reservation settings are based on 4c/8g VMs with minimal installed system services, if using high-performance physical machines, reservations can be increased appropriately
-    # Additionally, during cluster installation, apiserver resources consume significantly, so it is recommended to reserve at least 1GB of memory
+    # k8s officially does not recommend casually enabling system-reserved unless you have long-term monitoring and understand the system's resource usage;
+    # And as the system runs over time, appropriate increases in resource reservations are needed, specific values refer to templates/kubelet-config.yaml.j2
+    # System reservation settings are based on 4c/8g VMs with minimal system services installed, if using high-performance physical machines, you can appropriately increase the reservation
+    # Additionally, during cluster installation, apiserver and other resources consume a lot of memory temporarily, it is recommended to reserve at least 1G of memory
     SYS_RESERVED_ENABLED: "no"
 
 
@@ -320,7 +320,7 @@ Example configuration file content
     # role:network [flannel,calico,cilium,kube-ovn,kube-router]
     ############################
     # ------------------------------------------- flannel
-    # [flannel] Set flannel backend "host-gw","vxlan", etc.
+    # [flannel] Set flannel backend "host-gw", "vxlan", etc.
     FLANNEL_BACKEND: "vxlan"
     DIRECT_ROUTING: false
 
@@ -329,19 +329,20 @@ Example configuration file content
     flanneld_image: "easzlab.io.local:5000/easzlab/flannel:{{ flannelVer }}"
 
     # ------------------------------------------- calico
-    # [calico] Setting CALICO_IPV4POOL_IPIP="off" can improve network performance, see restrictions in docs/setup/calico.md
+    # [calico] Setting CALICO_IPV4POOL_IPIP="off" can improve network performance, see docs/setup/calico.md for restrictions
     CALICO_IPV4POOL_IPIP: "Always"
 
-    # [calico] Specify the host IP used by calico-node, bgp neighbors establish connections via this address, can be manually specified or auto-detected
+    # [calico] Set the host IP used by calico-node, BGP neighbors establish connections through this address, can be manually specified or automatically discovered
     IP_AUTODETECTION_METHOD: "can-reach={{ groups['kube_master'][0] }}"
 
     # [calico] Set calico network backend: brid, vxlan, none
     CALICO_NETWORKING_BACKEND: "brid"
 
-    # [calico] Enable route reflectors if the cluster size exceeds 50 nodes
+    # [calico] Whether calico uses route reflectors
+    # If the cluster scale exceeds 50 nodes, it is recommended to enable this feature
     CALICO_RR_ENABLED: false
 
-    # CALICO_RR_NODES configure route reflector nodes, defaults to master nodes if not set
+    # CALICO_RR_NODES configure route reflector nodes, if not set, default to cluster master nodes
     # CALICO_RR_NODES: ["192.168.1.1", "192.168.1.2"]
     CALICO_RR_NODES: []
 
@@ -359,14 +360,14 @@ Example configuration file content
     cilium_hubble_ui_enabled: false
 
     # ------------------------------------------- kube-ovn
-    # [kube-ovn] Select OVN DB and OVN Control Plane nodes, defaults to the first master node
+    # [kube-ovn] Select OVN DB and OVN Control Plane nodes, default to the first master node
     OVN_DB_NODE: "{{ groups['kube_master'][0] }}"
 
     # [kube-ovn] Offline image tarball
     kube_ovn_ver: "__kube_ovn__"
 
     # ------------------------------------------- kube-router
-    # [kube-router] Public clouds have limitations, ipinip should always be enabled; private environments can set to "subnet"
+    # [kube-router] Public clouds have restrictions, generally ipinip should always be enabled; self-hosted environments can set to "subnet"
     OVERLAY_TYPE: "full"
 
     # [kube-router] NetworkPolicy support switch
@@ -380,7 +381,7 @@ Example configuration file content
     ############################
     # role:cluster-addon
     ############################
-    # coredns automatic installation
+    # Automatic installation of coredns
     dns_install: "yes"
     corednsVer: "__coredns__"
     ENABLE_LOCAL_DNS_CACHE: true
@@ -388,22 +389,22 @@ Example configuration file content
     # Set local DNS cache address
     LOCAL_DNS_CACHE: "169.254.20.10"
 
-    # metric server automatic installation
+    # Automatic installation of metric server
     metricsserver_install: "yes"
     metricsVer: "__metrics__"
 
-    # dashboard automatic installation
+    # Automatic installation of dashboard
     dashboard_install: "no"
     dashboardVer: "__dashboard__"
     dashboardMetricsScraperVer: "__dash_metrics__"
 
-    # prometheus automatic installation
+    # Automatic installation of prometheus
     prom_install: "no"
     prom_namespace: "monitor"
     prom_chart_ver: "__prom_chart__"
 
-    # nfs-provisioner automatic installation
-    # If an existing NFS must be configured as "yes" and correct server information provided
+    # Automatic installation of nfs-provisioner
+    # If there is an existing nfs, it must be configured as "yes" and correct server information must be configured
     nfs_provisioner_install: "no"
     nfs_provisioner_namespace: "kube-system"
     nfs_provisioner_ver: "__nfs_provisioner__"
@@ -411,19 +412,19 @@ Example configuration file content
     nfs_server: "192.168.1.10"
     nfs_path: "/data/nfs"
 
-    # network-check automatic installation
+    # Automatic installation of network-check
     network_check_enabled: false
     network_check_schedule: "*/5 * * * *"
 
     ############################
     # role:harbor
     ############################
-    # harbor version, full version number
+    # Harbor version, full version number
     HARBOR_VER: "__harbor__"
     HARBOR_DOMAIN: "harbor.easzlab.io.local"
     HARBOR_TLS_PORT: 8443
 
-    # If set to 'false', you need to place certificates named harbor.pem and harbor-key.pem in the 'down' directory
+    # If set to 'false', you need to put certificates named harbor.pem and harbor-key.pem in the 'down' directory
     HARBOR_SELF_SIGNED_CERT: true
 
     # Install extra components
@@ -432,7 +433,7 @@ Example configuration file content
     HARBOR_WITH_CLAIR: false
     HARBOR_WITH_CHARTMUSEUM: true
 
-    # ingress-nginx related configuration
+    # ingress-nginx related configurations
     ingress_nginx_install: "yes"
     ingressnginxVer: v1.4.0
     certgenVer: v20220916-gd32f8c343
@@ -442,20 +443,20 @@ Configure Hosts
 ???+ example "Host Configuration Example"
     ```shell
     # 'etcd' cluster should have odd members (1,3,5,...)
-    # Must replace IP according to actual planning
+    # Must replace IPs according to actual planning
     [etcd]
     192.168.1.1
     192.168.1.2
     192.168.1.3
 
     # master nodes
-    # Must replace IP according to actual planning
+    # Must replace IPs according to actual planning
     [kube_master]
     192.168.1.1
     192.168.1.2
 
     # work nodes
-    # Must replace IP according to actual planning
+    # Must replace IPs according to actual planning
     [kube_node]
     192.168.1.3
     192.168.1.4
@@ -476,7 +477,7 @@ Configure Hosts
 
     [all:vars]
     # --------- Main Variables ---------------
-    # Secure port for APIservers
+    # Secure port for apiservers
     SECURE_PORT="6443"
 
     # Cluster container-runtime supported: docker, containerd
@@ -484,18 +485,18 @@ Configure Hosts
     CONTAINER_RUNTIME="containerd"
 
     # Network plugins supported: calico, flannel, kube-router, cilium, kube-ovn
-    # Suggest using the default value or change to "flannel"
+    # It is recommended to use this default value or change to "flannel"
     CLUSTER_NETWORK="calico"
 
     # Service proxy mode of kube-proxy: 'iptables' or 'ipvs'
     PROXY_MODE="ipvs"
 
     # K8S Service CIDR, must not overlap with node(host) networking
-    # Must not conflict with host IP segments
+    # Cannot conflict with the host IP segment
     SERVICE_CIDR="10.68.0.0/16"
 
     # Cluster CIDR (Pod CIDR), must not overlap with node(host) networking
-    # Must not conflict with host IP segments
+    # Cannot conflict with the host IP segment
     CLUSTER_CIDR="172.20.0.0/16"
 
     # NodePort Range
@@ -522,18 +523,18 @@ Configure Hosts
 
 #### 3.3.3 One-click Deployment
 
-After confirming the above operations are correct, execute the following commands for quick deployment
+After confirming that the above operations are correctly executed, run the following commands for quick deployment
 
 ???+ tip "Tip"
     ```shell
-    # It is recommended to configure command aliases for convenience
+    # Suggest configuring an alias for convenience
 
     echo "alias dk='docker exec -it kubeasz'" >> /root/.bashrc
 
     source /root/.bashrc
     ```
     ```shell
-    # It is recommended to configure command completion. If helm command is not found, exit and log back in to the server to check environment variables and confirm helm execution
+    # Suggest configuring command completion, if helm command is not found, please exit and re-login via SSH to the server, check environment variables, and confirm helm command execution
 
     echo "source <(/etc/kubeasz/bin/helm completion bash)"  >> /root/.bashrc
    
@@ -545,14 +546,14 @@ After confirming the above operations are correct, execute the following command
 # xxx represents the created cluster name
 dk ezctl setup guancecloud all
 
-# Or install step-by-step, see step-by-step installation help information using dk ezctl help setup
+# Or step-by-step installation, use dk ezctl help setup to view step-by-step installation help information
 # dk ezctl setup guancecloud 01
 # dk ezctl setup guancecloud 02
 # dk ezctl setup guancecloud 03
 # dk ezctl setup guancecloud 04
 ```
 ```shell
-# After the command runs, there should be no errors in the task
+# After the command completes, tasks should not have errors
 TASK [cluster-addon : Prepare DNS deployment files] *********************************************
 changed: [10.200.14.144]
 
@@ -607,9 +608,9 @@ localhost                  : ok=33   changed=30   unreachable=0    failed=0    s
 ```
 ???+ warning "Important"
     
-    -   All returned information must be successful, otherwise reset the system and reinstall
+    -   All return information must be successful, otherwise reset the system and re-execute the installation
 
-    -   Clean up the cluster `docker exec -it kubeasz ezctl destroy xxx` where xxx is the cluster name
+    -   Clean up the cluster with `docker exec -it kubeasz ezctl destroy xxx`, where `xxx` represents the cluster name
 
     -   Restart nodes to ensure cleanup of residual virtual NICs, routes, etc.
     
@@ -621,11 +622,11 @@ localhost                  : ok=33   changed=30   unreachable=0    failed=0    s
         10.200.14.146              : ok=93   changed=83   unreachable=0    failed=0    skipped=148  rescued=0    ignored=0
         localhost                  : ok=33   changed=30   unreachable=0    failed=0    skipped=11   rescued=0    ignored=0
         ```
-For more ezctl parameters, run ezctl. If it cannot be executed, navigate to the `/etc/kubeasz` directory and run `./ezctl`.
+More information about ezctl parameters can be viewed by running `ezctl`. If it cannot run, enter the `/etc/kubeasz` directory and execute `./ezctl`.
 
 
 
-## 4. Verify Installation
+## 4. Verification of Installation
 
 ### 4.1 Cluster Component Status
 ???+ success "Cluster Components"
@@ -640,7 +641,7 @@ For more ezctl parameters, run ezctl. If it cannot be executed, navigate to the 
     etcd-1               Healthy   {"health":"true","reason":""}
     ```
 
-Confirm all returned results have no ERROR
+Confirm that all returned results have no ERROR
 
 ### 4.2 Cluster Node Status
 ???+ success "Cluster Nodes"
@@ -653,9 +654,9 @@ Confirm all returned results have no ERROR
     10.200.14.114   Ready    node     22h   v1.24.2
     ```
 
-Confirm all returned results show nodes in Ready status
+Confirm that all returned results show nodes in Ready status
 
-### 4.3 Default Cluster Pod Status
+### 4.3 Cluster Default Pod Status
 ???+ success "Initial Cluster Pods"
     ```shell
     [root@k8s-node01 ~]# kubectl  get pods -A
@@ -679,7 +680,7 @@ Confirm all returned results show nodes in Ready status
 
     ```
 
-Confirm all pods are in Running status and nodes are Ready
+Confirm all pods are in Running status and nodes are in Ready status
 
 4.4 Confirm Cluster Info
 ???+ success "Cluster Information"
@@ -709,9 +710,9 @@ Confirm normal return of cluster resource usage
 
 ## 5. Common Issues
 ???+ Tips "Tips"
-    If the installation verification stage prompts `kubectl: command not found`, exit and log back in via SSH, environment variables will take effect
+    If prompted with `kubectl: command not found` during the verification stage, log out and re-login via SSH to make the environment variables effective.
 
-    If helm command is not found, exit and log back in to the server, check environment variables, and confirm helm execution
+    If the helm command is not found, log out and re-login via SSH to the server, check the environment variables, and confirm the execution of the helm command
 
 ```shell
 [root@k8s-node01 ~]# echo PATH=$PATH

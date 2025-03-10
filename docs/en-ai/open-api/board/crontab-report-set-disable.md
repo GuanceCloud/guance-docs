@@ -8,20 +8,23 @@
 
 
 
+
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                                                                 |
-|:--------------|:-------|:---------|:-----------------------------------------------------------------------------|
-| isDisable     | boolean| Y        | Set the enabled status<br>Nullable: False <br>                              |
-| reportUUIDs   | array  | Y        | UUIDs of scheduled reports<br>Nullable: False <br>                          |
+| Parameter Name | Type   | Required | Description                          |
+|:-----------|:-------|:-----|:----------------|
+| isDisable | boolean | Y | Set the enable status<br>Can be null: False <br> |
+| reportUUIDs | array | Y | UUIDs of scheduled reports<br>Can be null: False <br> |
 
 ## Additional Parameter Notes
 
 
 
+
+
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/crontab_report/set_disable' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report/set_disable' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Accept-Language: en' \
 -H 'Content-Type: application/json;charset=UTF-8' \
@@ -29,6 +32,8 @@ curl 'https://openapi.guance.com/api/v1/crontab_report/set_disable' \
 --data-raw '{"isDisable":true,"reportUUIDs":["cron_xxxx32"]}' \
 --compressed
 ```
+
+
 
 
 ## Response

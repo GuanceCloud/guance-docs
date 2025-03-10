@@ -1,12 +1,13 @@
 # Trace Data Collection
 ---
 
-<<< custom_key.brand_name >>> currently supports collectors using the Opentracing protocol for trace data collection. After enabling the trace data reception service in DataKit, by completing the instrumentation in the code, DataKit will automatically handle data format conversion and collection, and finally report it to <<< custom_key.brand_name >>>.
+<<< custom_key.brand_name >>> currently supports collectors using the Opentracing protocol for trace data collection. After enabling the trace data reception service in DataKit, by completing the instrumentation in the code, DataKit will automatically complete the data format conversion and collection, and finally report it to <<< custom_key.brand_name >>>.
 
 
 ## Data Collection
 
-DataKit currently supports collecting Tracing data from third parties such as `DDTrace`, `Apache Jaeger`, `OpenTelemetry`, `Skywalking`, and `Zipkin`.
+DataKit currently supports collecting tracing data from third-party sources such as `DDTrace`, `Apache Jaeger`, `OpenTelemetry`, `Skywalking`, `Zipkin`, etc.
+
 
 
 ### Prerequisites for Collection
@@ -70,6 +71,7 @@ DataKit currently supports collecting Tracing data from third parties such as `D
 
 === "Others"
 
+    - [Host Instrumentation](../../datakit/datakit-install.md#apm-instrumentation)
     - [Skywalking](../../integrations/skywalking.md)    
     - [Jaeger](../../integrations/jaeger.md)     
     - [Zipkin](../../integrations/zipkin.md)    
@@ -81,24 +83,38 @@ DataKit currently supports collecting Tracing data from third parties such as `D
 
 </div>
 
+
+
 ## Field Description
 
-DataKit converts the reported data into <<< custom_key.brand_name >>> trace data format based on different collectors while retaining labels and metrics. Below are descriptions of commonly used fields:
+DataKit converts the collected data into <<< custom_key.brand_name >>> trace data format while preserving tags and metrics based on the collector used. Below are descriptions of commonly used fields:
 
-| Field Name | Description |
+
+| Field Name | Description                                                         |
 | --------- | ------------------------------------------------------------ |
-| `host`      | Hostname, default global tag. |
-| `source`    | Source of the trace, if collected via Zipkin, this value is `zipkin`; if via Jaeger, this value is `jaeger`, and so on. |
+| `host`      | Hostname, default global tag.                                         |
+| `source`    | Source of the trace, if collected via Zipkin, this value is `zipkin`, if collected via Jaeger, this value is `jaeger`, and so on. |
 | `service`   | Service name, it is recommended that users specify the name of the business system generating this trace data through this tag. |
-| `parent_id` | ID of the previous `span` for the current `span`. |
-| `operation` | Operation name of the current `span`, can also be understood as Span name. |
-| `span_id`   | Unique ID of the current `span`. |
-| `trace_id`  | Unique ID representing the current trace. |
-| `span_type` | Type of Span, currently supports: `entry`, `local`, `exit`, `unknow`. <br><li>`entry span` indicates a span created when entering a service, i.e., the endpoint where this service provides calls to other services; most spans should be entry spans. Only calls with `entry` type spans are independent requests. <br><li>`local span` indicates that this span has no relation to remote calls and is created during local method invocation, such as an ordinary Java method. <br><li>`exit span` indicates a span created when exiting a service, for example, when initiating a remote call or when a message queue produces messages. <br><li>`unknow span` indicates an unknown Span. |
+| `parent_id` | ID of the previous `span` for the current `span`.                             |
+| `operation` | Operation name of the current `span`, can also be understood as the Span name.                     |
+| `span_id`   | Unique ID of the current `span`.                                        |
+| `trace_id`  | Unique ID representing the current trace.                                        |
+| `span_type` | Type of Span, currently supports: `entry`, `local`, `exit`, `unknow`.<br><li>`entry span` indicates a span created when entering a service, i.e., the endpoint where the service provides calls to other services; most spans should be entry spans. Only calls of `entry` type spans represent an independent request. <br><li>`local span` indicates that the span has no relation to remote calls and is created during local method invocation, such as a regular Java method.<br><li>`exit span` indicates a span created when exiting a service, such as initiating a remote call or when a message queue generates a message.<br><li>`unknow span` indicates an unknown Span. |
 | `endpoint`  | Target address of the request, the network address used by the client to access the target service, e.g., `127.0.0.1:8080`, default: `null`. |
-| `message`   | Original data collected before trace transformation. |
-| `duration`  | Duration of the current trace span. |
-| `status`    | Status of the trace, info: informational, warning: warning, error: error, critical: critical, ok: success. |
+| `message`   | Raw data collected before trace transformation.                                 |
+| `duration`  | Duration of the current trace span.                                      |
+| `status`    | Trace status, info: informational, warning: warning, error: error, critical: critical, ok: success. |
 | `env`       | Environment to which the trace belongs, for example, dev for development environment, prod for production environment, user-defined. |
 
 > For more field lists, refer to [DataKit Tracing Data Structure](../../integrations/datakit-tracing-struct.md#point-proto).
+
+<!--
+## Further Reading
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Best Practices for Distributed Tracing (APM)**</font>](../../best-practices/monitoring/apm.md)
+
+</div>
+
+-->

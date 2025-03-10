@@ -8,11 +8,10 @@
 Delete data access rule
 
 
-
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:----------|:------------------------|
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:------------------------|
 | queryRuleUuids | array | Y | UUID of the data access rule<br>Allow null: False <br> |
 
 ## Additional Parameter Explanation
@@ -21,7 +20,7 @@ Delete data access rule
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/data_query_rule/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_query_rule/delete' \
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \

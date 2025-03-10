@@ -1,21 +1,21 @@
-# 【Aggregation Generation Metrics】List
+# [Aggregation to Metrics] List
 
 ---
 
 <br />**GET /api/v1/aggs_to_metric/list**
 
 ## Overview
-List generation metrics rules
+List aggregation to metrics rules
 
 
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| search | string | No | Search by Mearsurement name, metric name<br>Allow empty: False <br>Allow empty string: True <br> |
-| scriptType | string | No | Type<br>Allow empty: False <br>Optional values: ['rumToMetric', 'apmToMetric', 'logToMetric', 'securityToMetric', 'metricToMetric'] <br> |
-| pageIndex | integer | No | Page number<br>Allow empty: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | No | Number of items per page<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| Parameter Name | Type   | Required | Description                                                                 |
+|:--------------|:-------|:---------|:----------------------------------------------------------------------------|
+| search        | string |          | Search by Mearsurement name or metric name<br>Allow null: False <br>Allow empty string: True <br> |
+| scriptType    | string |          | Type<br>Allow null: False <br>Optional values: ['rumToMetric', 'apmToMetric', 'logToMetric', 'securityToMetric', 'metricToMetric'] <br> |
+| pageIndex     | integer|          | Page number<br>Allow null: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize      | integer|          | Number of items per page<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
 
@@ -23,11 +23,10 @@ List generation metrics rules
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/aggs_to_metric/list?pageSize=100&pageIndex=1&scriptType=logToMetric' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/aggs_to_metric/list?pageSize=100&pageIndex=1&scriptType=logToMetric' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
 
 
 ## Response

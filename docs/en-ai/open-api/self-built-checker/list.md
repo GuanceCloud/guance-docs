@@ -11,15 +11,15 @@ Paginate and list the self-built checkers in the current workspace
 
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:--------|:----------------------|
-| monitorUUID | commaArray | No  | Alert group UUID<br>Can be empty: False <br> |
-| alertPolicyUUID | commaArray | No  | Alert policy UUID<br>Can be empty: False <br> |
-| checkerUUID | commaArray | No  | Self-built checker UUID<br>Can be empty: False <br> |
-| refKey | commaArray | No  | RefKey, multiple values separated by English commas<br>Can be empty: False <br> |
-| search | string | No  | Search for self-built checker name<br>Can be empty: False <br> |
-| pageIndex | integer | No  | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | No  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| Parameter Name        | Type     | Required | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| monitorUUID | commaArray | No | Alert group UUID<br>Can be empty: False <br> |
+| alertPolicyUUID | commaArray | No | Alert strategy UUID<br>Can be empty: False <br> |
+| checkerUUID | commaArray | No | Self-built checker UUID<br>Can be empty: False <br> |
+| refKey | commaArray | No | refKey, multiple values separated by English commas<br>Can be empty: False <br> |
+| search | string | No | Search for self-built checker name<br>Can be empty: False <br> |
+| pageIndex | integer | No | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize | integer | No | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
 
@@ -27,7 +27,7 @@ Paginate and list the self-built checkers in the current workspace
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/self_built_checker/list?refKey=zyAy2l9v,zyAy897f' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/self_built_checker/list?refKey=zyAy2l9v,zyAy897f' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed
@@ -48,11 +48,11 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/list?refKey=zyAy2l9v,
                         "uuid": "altpl_xxxe62"
                     },
                     {
-                        "name": "xxx's alert policy - custom test",
+                        "name": "xxx's alert strategy - custom test",
                         "uuid": "altpl_xxx3b8"
                     },
                     {
-                        "name": "ll-alert policy - do not touch",
+                        "name": "ll-alert strategy - do not modify",
                         "uuid": "altpl_xxx400"
                     }
                 ],
@@ -82,7 +82,7 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/list?refKey=zyAy2l9v,
                         ],
                         "category": "general",
                         "definition": "run(name='')",
-                        "description": "zh-CN: SSL certificate validity period check\n    title: SSL certificate validity period check\n    doc: |\n        Parameters:\n            No configuration is required by default for the entire workspace\nen:\n    title: SSL Check\n    doc: |\n        Parameters:\n            No configuration is required by default for the entire workspace",
+                        "description": "zh-CN: SSL certificate validity period check\n    title: SSL certificate validity period check\n    doc: |\n        Parameters:\n            No configuration required by default for the entire workspace\nen:\n    title: SSL Check\n    doc: |\n        Parameters:\n            No configuration is required by default for the entire workspace",
                         "funcId": "guance_monitor_user_example_obs__ssl.run",
                         "kwargs": {
                             "name": {

@@ -12,29 +12,28 @@ List all permission information
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:----------|:------------------------|
-| isSupportCustomRole   | boolean  |           | Filter the list of permissions that support custom role selection <br>Example: True <br>Can be empty: False <br> |
+|:---------------------|:---------|:-----------|:-------------------------|
+| isSupportCustomRole   | boolean  |            | Filter the list of permissions that support custom role selection <br>Example: True <br>Can be empty: False <br> |
 
-## Additional Parameter Description
+
+## Additional Parameter Notes
 
 **Parameter Description**
 
-| Parameter Name        | Type     | Required   | Default Value | Description |
-| :-------------------- | :------- | :--------- | :------------ | :---------- |
+| Parameter Name        | Type     | Required   | Default Value | Description  |
+| :-------------------- | :------- | :--------- | :------------ | :----------- |
 | isSupportCustomRole   | boolean  |            |               | Filter the list of permissions that support custom role selection |
 
-If you want to add permissions for custom roles, set isSupportCustomRole = true when querying all permission lists
-
+If you want to add permissions for a custom role, set `isSupportCustomRole = true` when querying all permission lists
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/permission/list?isSupportCustomRole=true' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
 
 
 
@@ -63,7 +62,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
                     "isSupportReadOnly": 0,
                     "isSupportWsAdmin": 1,
                     "key": "routine.viewerManage",
-                    "name": "Explorer - Shortcut Management"
+                    "name": "Explorer - Quick Filter Management"
                 },
                 {
                     "desc": "",
@@ -181,7 +180,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
             "isSupportReadOnly": 0,
             "isSupportWsAdmin": 1,
             "key": "dataRightsManage.*",
-            "name": "Data Rights Management",
+            "name": "Data Permissions Management",
             "subs": [
                 {
                     "desc": "",
@@ -323,7 +322,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
                     "isSupportReadOnly": 0,
                     "isSupportWsAdmin": 1,
                     "key": "billing.billingRead",
-                    "name": "Read-Only Billing Access"
+                    "name": "Billing Read-Only Access"
                 }
             ]
         },
@@ -447,7 +446,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
             "desc": "",
             "disabled": 0,
             "isSupportCustomRole": 1,
-            "isSupportGeneral": 1,
+            "isSupportGeneral": 0,
             "isSupportOwner": 1,
             "isSupportReadOnly": 0,
             "isSupportWsAdmin": 1,
@@ -673,7 +672,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
             "isSupportReadOnly": 0,
             "isSupportWsAdmin": 1,
             "key": "rum.*",
-            "name": "RUM",
+            "name": "RUM PV",
             "subs": [
                 {
                     "desc": "",
@@ -684,7 +683,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
                     "isSupportReadOnly": 1,
                     "isSupportWsAdmin": 1,
                     "key": "rum.Query",
-                    "name": "RUM Data Query"
+                    "name": "RUM PV Data Query"
                 },
                 {
                     "desc": "",
@@ -809,7 +808,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
                     "isSupportReadOnly": 0,
                     "isSupportWsAdmin": 1,
                     "key": "monitor.alarmPolicyMange",
-                    "name": "Alert Strategy Configuration Management"
+                    "name": "Alert Strategies Configuration Management"
                 },
                 {
                     "desc": "",
@@ -820,7 +819,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
                     "isSupportReadOnly": 0,
                     "isSupportWsAdmin": 1,
                     "key": "monitor.notifyObjCfgManage",
-                    "name": "Notification Target Configuration Management"
+                    "name": "Notification Targets Configuration Management"
                 }
             ]
         },
@@ -852,7 +851,7 @@ curl 'https://openapi.guance.com/api/v1/permission/list?isSupportCustomRole=true
             "desc": "",
             "disabled": 0,
             "isSupportCustomRole": 1,
-            "isSupportGeneral": 1,
+            "isSupportGeneral": 0,
             "isSupportOwner": 1,
             "isSupportReadOnly": 0,
             "isSupportWsAdmin": 1,

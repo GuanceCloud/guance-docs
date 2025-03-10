@@ -8,12 +8,13 @@
 Create a team
 
 
+
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
+|:---------------------|:---------|:----------|:------------------------|
 | name | string | Y | Team name<br>Allow null: False <br>Maximum length: 48 <br> |
-| accountUUIDs | array |  | Account list<br>Example: ['xxxx', 'xxx'] <br>Allow null: True <br> |
+| accountUUIDs | array | N | Account list<br>Example: ['xxxx', 'xxx'] <br>Allow null: True <br> |
 
 ## Additional Parameter Explanation
 
@@ -21,14 +22,13 @@ Create a team
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/member_group/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/member_group/add' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   -H 'Content-Type: application/json;charset=UTF-8' \
   --data-raw '{"name": "Test","accountUUIDs": ["acnt_xxxx32"]}' \
   --compressed \
   --insecure
 ```
-
 
 
 

@@ -9,27 +9,23 @@ Retrieve the configuration of a user-defined node
 
 
 
-
 ## Route Parameters
 
-| Parameter Name   | Type     | Required | Description              |
-|:------------|:-------|:-----|:----------------|
-| region_uuid | string | Y   | ID of the 【User-defined Node】<br> |
+| Parameter Name    | Type   | Required | Description              |
+|:--------------|:-----|:-------|:----------------|
+| region_uuid | string | Y | ID of the **User-defined Node**<br> |
 
 
-## Additional Parameter Notes
-
-
+## Additional Parameter Explanation
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dialing_region/reg_xxxx20/info' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dialing_region/reg_xxxx20/info' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
-
 
 
 

@@ -11,10 +11,10 @@
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                              |
-|:-------------|:------|:-------|:----------------------------------------|
-| isDisable   | boolean | Y     | Enable/disable, false: enable, true: disable<br>Can be null: False <br> |
-| sloUUIDs    | array  | Y     | List of SLO UUIDs<br>Can be null: False <br> |
+| Parameter Name | Type   | Required | Description              |
+|:--------------|:-------|:--------|:-------------------------|
+| isDisable    | boolean | Y       | Enable/disable, false: enable, true: disable<br>Allow null: False <br> |
+| sloUUIDs     | array  | Y       | List of SLO UUIDs<br>Allow null: False <br> |
 
 ## Additional Parameter Explanation
 
@@ -24,7 +24,7 @@
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/slo/batch_set_disable' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/slo/batch_set_disable' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data '{

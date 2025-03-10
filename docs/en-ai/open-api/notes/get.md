@@ -2,7 +2,7 @@
 
 ---
 
-<br />**GET /api/v1/notes/{notes_uuid}/get**
+<br />**GET /api/v1/notes/\{notes_uuid\}/get**
 
 ## Overview
 Retrieve note details
@@ -10,18 +10,18 @@ Retrieve note details
 
 ## Route Parameters
 
-| Parameter Name   | Type     | Required | Description              |
-|:------------|:-------|:-----|:----------------|
-| notes_uuid  | string | Yes  | Note UUID<br> |
+| Parameter Name    | Type   | Required | Description              |
+|:--------------|:-----|:------|:----------------|
+| notes_uuid | string | Y  | Note UUID<br> |
 
 
-## Additional Parameter Explanation
+## Additional Parameter Information
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/notes/notes_xxxx32/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notes/notes_xxxx32/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
