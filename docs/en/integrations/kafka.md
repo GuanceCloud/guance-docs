@@ -1532,4 +1532,4 @@ By following these steps, you can ensure that DataKit is correctly collecting an
 
 ---
 
-This guide should cover most common questions and issues related to collecting Kafka metrics and logs with DataKit. If you have further questions or need assistance, please refer to the [DataKit Support Resources](../datakit/support.md) or contact the support team at Guance.
+This guide should cover most common questions and issues related to collecting Kafka metrics and logs with DataKit. If you have further questions or need assistance, please refer to the DataKit Support Resources or contact the support team at Guance.
