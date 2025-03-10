@@ -148,7 +148,7 @@ data:
 
             [inputs.kubernetesprometheus.instances.custom]
               measurement        = "kube_nodeexporter"       # Optional Guance Metrics name, defaults to the first letter of the Metrics underscore
-              job_as_measurement = false             # Optional Whether to use the job label value in the data as the Mearsurement name
+              job_as_measurement = false             # Optional Whether to use the job label value in the data as the Measurement name
               [inputs.kubernetesprometheus.instances.custom.tags]
                 instance         = "__kubernetes_mate_instance"    # Optional Metrics tag
                 host             = "__kubernetes_mate_host"        # Optional Metrics tag
@@ -177,9 +177,9 @@ kubectl apply -f datakit.yaml
 
 ## Metrics {#metric}
 
-### node Mearsurement
+### node Measurement
 
-Node Exporter Metrics are located under the node Mearsurement. Here we introduce related explanations for Node Exporter Metrics.
+Node Exporter Metrics are located under the node Measurement. Here we introduce related explanations for Node Exporter Metrics.
 
 | Metrics | Description | Unit |
 |:--------|:------------|:-----|

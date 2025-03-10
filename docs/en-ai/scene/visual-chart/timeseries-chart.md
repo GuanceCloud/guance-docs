@@ -165,8 +165,8 @@ Viewing similar trend metrics queries similar metric trends within the selected 
 
 Based on the selected absolute time range, the query result list includes:
 
-- Source: Mearsurement sets with similar trends;
-- Similar Count: Number of charts under the "Mearsurement set" with similar trends;
+- Source: Measurement sets with similar trends;
+- Similar Count: Number of charts under the "Measurement set" with similar trends;
 - Preview: Preview images of similar trend charts.
 
 ![](../img/18.shixutu_2.png)

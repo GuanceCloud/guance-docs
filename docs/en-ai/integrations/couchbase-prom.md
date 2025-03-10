@@ -94,7 +94,7 @@ Parameter descriptions:
     
     ## Output source for collected data
     # Configure this to write collected data to a local file instead of sending it to the center
-    # You can then use the `datakit --prom-conf /path/to/this/conf` command to debug locally saved Mearsurement
+    # You can then use the `datakit --prom-conf /path/to/this/conf` command to debug locally saved Measurement
     # If the URL is configured as a local file path, the `--prom-conf` command will prioritize debugging the data in the output path
     # output = "/abs/path/to/file"
     > 

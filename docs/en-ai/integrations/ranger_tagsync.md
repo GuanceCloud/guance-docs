@@ -69,9 +69,9 @@ Adjust the content of `ranger-tagsync.conf` as follows:
 
 ## Metrics {#metric}
 
-### Hadoop Mearsurement Set
+### Hadoop Measurement Set
 
-Ranger Tagsync metrics are located under the Hadoop Mearsurement set. Below is an introduction to the relevant metrics for Ranger Tagsync.
+Ranger Tagsync metrics are located under the Hadoop Measurement set. Below is an introduction to the relevant metrics for Ranger Tagsync.
 
 | Metrics | Description | Unit |
 |:--------|:------------|:-----|

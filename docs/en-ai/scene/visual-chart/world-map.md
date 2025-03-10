@@ -12,7 +12,7 @@ Used to display the distribution of data across different geographic locations, 
 
 ## Chart Query
 
-**Prerequisites:** The Mearsurement query dataset must include a tag that represents "Country," and the query conditions must include grouping by "Country." Otherwise, the chart cannot be added successfully.
+**Prerequisites:** The Measurement query dataset must include a tag that represents "Country," and the query conditions must include grouping by "Country." Otherwise, the chart cannot be added successfully.
 
 Default simple queries are added. Multiple queries can be added, but the Tag for by (grouping) must be consistent. Modifying one will automatically synchronize changes to others.
 

@@ -58,7 +58,7 @@ We default collect some configurations, for details see the Metrics section [Cus
 3. On the Guance platform, in "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Amazon CloudWatch, the default Mearsurement sets are as follows. You can collect more Metrics through configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/eventbridge/latest/userguide/eb-monitoring.html){:target="_blank"}
+After configuring Amazon CloudWatch, the default Measurement sets are as follows. You can collect more Metrics through configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/eventbridge/latest/userguide/eb-monitoring.html){:target="_blank"}
 
 ### Instance Metrics
 

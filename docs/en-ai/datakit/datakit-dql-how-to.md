@@ -52,7 +52,7 @@ mem,2014437376,2077097984,24.18060302734375,73502720,achen.local,1635242544382
 
 Note:
 
-- The first column is the name of the queried Mearsurement.
+- The first column is the name of the queried Measurement.
 - Subsequent columns represent the corresponding data fields of the collector.
 - If a field is empty, the corresponding column will also be empty.
 

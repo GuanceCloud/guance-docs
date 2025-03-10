@@ -19,7 +19,7 @@ Create a metrics generation rule
 | jsonScript.query | json | Y | DQL query related information<br>Can be empty: False <br> |
 | jsonScript.metricInfo | json | Y | Metrics configuration information<br>Can be empty: False <br> |
 | jsonScript.metricInfo.every | string | Y | Frequency<br>Example: 5m <br>Can be an empty string: False <br> |
-| jsonScript.metricInfo.metric | string | Y | Mearsurement name<br>Example: cpu <br>Can be an empty string: False <br> |
+| jsonScript.metricInfo.metric | string | Y | Measurement name<br>Example: cpu <br>Can be an empty string: False <br> |
 | jsonScript.metricInfo.metricField | string | Y | Metric name<br>Example: load5s <br>Can be an empty string: False <br> |
 | jsonScript.metricInfo.unit | string |  | Unit<br>Example: load5s <br>Can be an empty string: True <br> |
 | jsonScript.metricInfo.desc | string |  | Description<br>Example: xxx <br>Can be an empty string: True <br> |
@@ -35,7 +35,7 @@ Create a metrics generation rule
 |-----------------------|----------|----|------------------------|
 |type                   |String|Required| Data source type, enumerated type|
 |query                  |Json|Required| Query information|
-|metricInfo             |Json|Required| Mearsurement configuration information|
+|metricInfo             |Json|Required| Measurement configuration information|
 
 --------------
 
@@ -56,7 +56,7 @@ Create a metrics generation rule
 | Parameter Name                | Type  | Required  | Description          |
 |-----------------------|----------|----|------------------------|
 |every                  |String|Required| Frequency, options are 1m, 5m, 15m, unit is (minutes/m)|
-|metric                 |String     |Required| Mearsurement name |
+|metric                 |String     |Required| Measurement name |
 |metricField            |String     |Required| Metric name |
 |unit                   |String     || Unit |
 |desc                   |String     || Description |
@@ -92,7 +92,7 @@ Standard unit types, refer to [ Unit Documentation ](../../../studio-backend/uni
 |funcName                  |string|Required| Aggregation function (must be passed when qmode is selector mode, used for front-end echo), enumerated values ("count", "avg", "max", "sum", "min", "count_distinct", "p75", "p95", "p99") |
 |fieldKey                  |string|Required| Aggregation field (must be passed when qmode is selector mode, used for front-end echo)|
 |index                     |string|| Index name when log type|
-|source                    |string|| This field represents different meanings in different types: log type: source source, application performance type: service service, user access type: application app_id, metrics type: mearsurement, security check: category category|
+|source                    |string|| This field represents different meanings in different types: log type: source source, application performance type: service service, user access type: application app_id, metrics type: measurement, security check: category category|
 |filterString              |string|| Filter condition when log type, original filter string, example: 'host:hangzhou123 -service:coredns internal:true'|
 
 Note: 

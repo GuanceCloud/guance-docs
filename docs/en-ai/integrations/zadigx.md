@@ -54,7 +54,7 @@ By default, we collect some configurations; see the Metrics section for details.
 2. On the Guance platform, under 「Metrics」check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Zadigx monitoring, the default Mearsurement set is as follows
+After configuring Zadigx monitoring, the default Measurement set is as follows
 
 | Metric         |        Metric Name        | Unit         |
 | ---- | :----: | ---- |

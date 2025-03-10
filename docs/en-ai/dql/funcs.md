@@ -7,7 +7,7 @@ Below is a list of supported DQL functions. All function names are case-insensit
 
 | Method      | Description                          |
 | ----------- | ------------------------------------ |
-| `M`       | Refers to the Mearsurement in time series data.    |
+| `M`       | Refers to the Measurement in time series data.    |
 | `L`       | Log data, logically classified by the `source` field. |
 | `BL`    | Backup log data, logically classified by the `source` field. |
 | `O`      | Object data, logically classified by the `class` field.                          |
@@ -26,7 +26,7 @@ Below is a list of supported DQL functions. All function names are case-insensit
 
 ### show_object_source() 
 
-- Description: Displays the Mearsurement set of `object` data; this function does not require parameters.
+- Description: Displays the Measurement set of `object` data; this function does not require parameters.
 - Example:
 
 ```python
@@ -60,7 +60,7 @@ show_object_source()
 
 ### show_object_class() 
 
-- Description: Displays the Mearsurement set of object data; this function does not require parameters,
+- Description: Displays the Measurement set of object data; this function does not require parameters,
 
 **Note:** This function will be deprecated, use `show_object_source()` instead.
 
@@ -177,7 +177,7 @@ show_custom_object_history_field()
 
 ### show_logging_source()
 
-- Description: Displays the Mearsurement set of log data; this function does not require parameters.
+- Description: Displays the Measurement set of log data; this function does not require parameters.
 - Example: `show_logging_source()`, returns the same structure as `show_object_source()`
 
 ### show_logging_field()
@@ -197,12 +197,12 @@ show_backup_log_field()
 
 ### show_event_source()
 
-- Description: Displays the Mearsurement set of Keyevent data; this function does not require parameters.
+- Description: Displays the Measurement set of Keyevent data; this function does not require parameters.
 - Example: `show_event_source()`, returns the same structure as `show_object_source()`
 
 ### show_event_field() 
 
-- Description: Displays all fields under the specified `source` Mearsurement.
+- Description: Displays all fields under the specified `source` Measurement.
 
 - Example: `show_event_field('datafluxTrigger')`, returns the same structure as `show_object_field()`
 
@@ -210,13 +210,13 @@ show_backup_log_field()
 
 ### show_tracing_source()
 
-- Description: Displays the Mearsurement set of tracing data; this function does not require parameters.
+- Description: Displays the Measurement set of tracing data; this function does not require parameters.
 
 - Example: `show_tracing_source()`, returns the same structure as `show_object_source()`
 
 ### show_tracing_service()
 
-- Description: Displays the Mearsurement set of tracing data; this function does not require parameters
+- Description: Displays the Measurement set of tracing data; this function does not require parameters
 
 > Note: This function will be deprecated, use `show_tracing_source()` instead
 
@@ -229,7 +229,7 @@ show_backup_log_field()
 
 ### show_profiling_source()
 
-- Description: Displays the Mearsurement set of profiling data; this function does not require parameters
+- Description: Displays the Measurement set of profiling data; this function does not require parameters
 
 - Example: `show_profiling_source()`, returns the same structure as `show_object_source()`
 
@@ -242,18 +242,18 @@ show_backup_log_field()
 
 ### show_rum_source()
 
-- Description: Displays the Mearsurement set of RUM data; this function does not require parameters
+- Description: Displays the Measurement set of RUM data; this function does not require parameters
 - Example: `show_rum_source()`, returns the same structure as `show_object_source()`
 
 ### show_rum_type()
 
-- Description: Displays the Mearsurement set of RUM data; this function does not require parameters
+- Description: Displays the Measurement set of RUM data; this function does not require parameters
 
 > Note: This function will be deprecated, use `show_rum_source()` instead
 
 ### show_rum_field() 
 
-- Description: Displays all fields under the specified `source_value` Mearsurement
+- Description: Displays all fields under the specified `source_value` Measurement
 
 - Example: `show_rum_field('js_error')`, returns the same structure as `show_object_field()`
 
@@ -261,7 +261,7 @@ show_backup_log_field()
 
 ### show_cobject_source() 
 
-- Description: Displays the Mearsurement set of custom object data; this function does not require parameters
+- Description: Displays the Measurement set of custom object data; this function does not require parameters
 - Example:
 
 ```python
@@ -294,7 +294,7 @@ show_custom_object_source()
 
 ### show_custom_object_class() 
 
-- Description: Displays the Mearsurement set of custom object data; this function does not require parameters,
+- Description: Displays the Measurement set of custom object data; this function does not require parameters,
 
 > Note: Deprecated, use `show_custom_object_source()` instead
 
@@ -338,7 +338,7 @@ show_cobject_field('servers')
 
 ### show_network_source()
 
-- Description: Displays the Mearsurement set of network data; this function does not require parameters
+- Description: Displays the Measurement set of network data; this function does not require parameters
 - Example: `show_network_source()`, returns the same structure as `show_object_source()`
 
 ### show_network_field() 
@@ -350,12 +350,12 @@ show_cobject_field('servers')
 
 ### show_measurement()  
 
-- Description: Displays the Mearsurement set of time series data
+- Description: Displays the Measurement set of time series data
 - Example: `show_measurement()`, returns the same structure as `show_object_source()`
 
 ### show_tag_key()
 
-- Description: View tag key list of the Mearsurement, can specify a specific Mearsurement
+- Description: View tag key list of the Measurement, can specify a specific Measurement
 - Example:
 
 ```python
@@ -430,7 +430,7 @@ show_tag_value(from=['cpu'], keyin=['host'],field=['usage_total'])
 
 ### show_field_key()    
 
-- Description: View field key list of the Mearsurement
+- Description: View field key list of the Measurement
 - Example: `show_field_key(from=['cpu'])`, returns the same structure as `show_object_field()`
 
 ## Workspace Information

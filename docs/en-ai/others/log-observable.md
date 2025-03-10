@@ -73,7 +73,7 @@ In the <<< custom_key.brand_name >>> workspace's log section, select the nginx l
 
 ![](img/13.log_9.png)
 
-Generated metrics can be viewed uniformly in the <<< custom_key.brand_name >>> "Metrics" section or by clicking "View Metrics" next to the rule in the "Generate Metrics" page to navigate to the "Metrics" page and view the corresponding Mearsurement and metrics.
+Generated metrics can be viewed uniformly in the <<< custom_key.brand_name >>> "Metrics" section or by clicking "View Metrics" next to the rule in the "Generate Metrics" page to navigate to the "Metrics" page and view the corresponding Measurement and metrics.
 
 ![](img/13.log_9.1.png)
 

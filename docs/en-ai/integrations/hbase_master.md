@@ -69,9 +69,9 @@ Modify the content of `master.conf` as follows:
 
 ## Metrics {#metric}
 
-### Hadoop Mearsurement Set
+### Hadoop Measurement Set
 
-HBase Master metrics are located under the Hadoop Mearsurement set. Below is an introduction to the relevant metrics for HBase Master.
+HBase Master metrics are located under the Hadoop Measurement set. Below is an introduction to the relevant metrics for HBase Master.
 
 | Metrics | Description | Unit |
 |:--------|:------------|:-----|

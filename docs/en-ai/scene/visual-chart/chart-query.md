@@ -32,7 +32,7 @@ Data comes from a series of combinations including Metrics, logs, basic objects,
 
 | Source | Description |
 | --- | --- |
-| Metrics | You need to select **Mearsurement** and **Metrics**, one Mearsurement can contain multiple metrics. |
+| Metrics | You need to select **Measurement** and **Metrics**, one Measurement can contain multiple metrics. |
 | Other Types | Basic objects, resource catalog, security checks: Need to select **Resource Class** and **Properties/Labels**; <br /> Logs, events, APM, RUM: Need to select **Source** and **Properties/Labels**. |
 
 ???- warning "When Logs are Used as Data Source"

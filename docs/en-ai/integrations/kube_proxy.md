@@ -81,9 +81,9 @@ datakit service -R
 
 ## Metrics {#metric}
 
-### Kube-proxy Mearsurement Set
+### Kube-proxy Measurement Set
 
-Kube Proxy metrics are located under the kubeproxy Mearsurement set. Here is an introduction to the relevant Kube Proxy metrics.
+Kube Proxy metrics are located under the kubeproxy Measurement set. Here is an introduction to the relevant Kube Proxy metrics.
 
 | Metrics | Description | Unit |
 |:--------|:------------|:-----|

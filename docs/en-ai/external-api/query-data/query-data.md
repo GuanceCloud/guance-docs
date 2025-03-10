@@ -62,7 +62,7 @@
 | query.soffset   | integer  |          | Time series grouping offset |
 | query.limit     | integer  |          | Page size |
 | query.offset    | integer  |          | Page offset |
-| query.orderby   | array    |          | Sort list, `{fieldName:method}`, note that sorting for Mearsurement queries only supports fieldName=time; method in ["desc", "asc"]; note that sorting for Mearsurement queries only supports fieldName=time |
+| query.orderby   | array    |          | Sort list, `{fieldName:method}`, note that sorting for Measurement queries only supports fieldName=time; method in ["desc", "asc"]; note that sorting for Measurement queries only supports fieldName=time |
 | query.sorderby  | array    |          | Sort list, sorderby column is an expression supporting all single-value aggregation functions min max last avg p90 p95 count, `{fieldName:method}`, same structure as orderby |
 | query.order_by  | array    |          | Sort list, structure `[{"column": "field", "order": "DESC"}]`, compatible field for Doris engine |
 | query.sorder_by | array    |          | Sort list, structure `[{"column": "field", "order": "DESC"}]`, compatible field for Doris engine |

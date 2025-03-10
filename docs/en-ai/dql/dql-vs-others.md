@@ -28,7 +28,7 @@ The following sections will explain the differences between these query language
 | PromQL | `Metrics {filter conditions} [start_time:end_time]` |
 | LogQL | `{stream-selector} log-pipeline` |
 | SQL | `SELECT <column-clause> <FROM-clause> <WHERE-clause> <GROUP-BY-clause> ...` |
-| DQL | `namespace::Mearsurement:(column-clause) [time-range-clause] { WHERE-clause } GROUP-BY-clause ORDER-BY-clause` |
+| DQL | `namespace::Measurement:(column-clause) [time-range-clause] { WHERE-clause } GROUP-BY-clause ORDER-BY-clause` |
 
 Below, we provide detailed explanations.
 
@@ -93,7 +93,7 @@ For example:
 metric::cpu:(usage_system, usage_user) { usage_idle > 0.9 } [2d:1d:1h] BY hostname
 ```
 
-Here, `metric` specifies the time series data to be queried (similar to a DB in MySQL), and `cpu` is a type of Mearsurement (similar to a Table in MySQL), specifying two fields `usage_system` and `usage_user`. The `{...}` indicates filter conditions, and `[...]` specifies the time range for the query: from two days ago to yesterday, aggregated every hour.
+Here, `metric` specifies the time series data to be queried (similar to a DB in MySQL), and `cpu` is a type of Measurement (similar to a Table in MySQL), specifying two fields `usage_system` and `usage_user`. The `{...}` indicates filter conditions, and `[...]` specifies the time range for the query: from two days ago to yesterday, aggregated every hour.
 
 More examples:
 

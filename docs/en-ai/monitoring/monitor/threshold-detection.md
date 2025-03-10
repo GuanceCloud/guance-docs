@@ -41,7 +41,7 @@ This refers to the time range for querying detection metrics. Depending on the d
 | Field | Description |
 | --- | --- |
 | Data Type | The type of data currently being detected, supporting types such as metrics, logs, infrastructure, resource catalogs, events, APM, RUM, security checks, and network data. |
-| Mearsurement | The measurement set where the current detection metric resides (for "metrics" data type). |
+| Measurement | The measurement set where the current detection metric resides (for "metrics" data type). |
 | Metric | The specific metric targeted for detection (for "metrics" data type). |
 | Aggregation Algorithm | Includes Avg by (average value), Min by (minimum value), Max by (maximum value), Sum by (sum), Last (last value), First by (first value), Count by (number of data points), Count_distinct by (number of distinct data points), p50 (median value), p75 (value at 75% position), p90 (value at 90% position), p99 (value at 99% position). |
 | Detection Dimensions | String type (`keyword`) fields in the configuration can be selected as detection dimensions. Currently, up to three fields are supported. By combining multiple detection dimension fields, a specific detection object can be determined. <<< custom_key.brand_name >>> will determine whether the statistical metric of a certain detection object meets the threshold conditions. If the conditions are met, an event is generated.<br />* (For example, selecting detection dimensions `host` and `host_ip`, the detection object could be {host: host1, host_ip: 127.0.0.1}. When the detection object is "logs," the default detection dimensions are `status`, `host`, `service`, `source`, `filename`.) |

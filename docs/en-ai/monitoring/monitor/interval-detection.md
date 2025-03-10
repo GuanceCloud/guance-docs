@@ -36,7 +36,7 @@ Monitored metrics data.
 | Field | Description |
 | --- | --- |
 | Data Type | The current data type being detected, including Metrics, Logs, Infrastructure, Resource Catalog, Events, APM, RUM, Security Check, Network, and Profile. |
-| Mearsurement | The Mearsurement set where the current detected metric resides. |
+| Measurement | The Measurement set where the current detected metric resides. |
 | Metric | The specific metric being detected. |
 | Aggregation Algorithm | Includes Avg by (average), Min by (minimum), Max by (maximum), Sum by (sum), Last (last value), First by (first value), Count by (number of data points), Count_distinct by (number of unique data points), p50 (median), p75 (75th percentile), p90 (90th percentile), p99 (99th percentile). |
 | Detection Dimensions | Any string type (`keyword`) fields in the configuration can be selected as detection dimensions. Currently, up to three fields can be chosen. By combining multiple detection dimension fields, a specific detection object can be determined. <<< custom_key.brand_name >>> will evaluate whether the statistical metrics of a specific detection object meet the threshold conditions for triggering events.<br />* (For example, selecting detection dimensions `host` and `host_ip` would result in a detection object like `{host: host1, host_ip: 127.0.0.1}`). * |

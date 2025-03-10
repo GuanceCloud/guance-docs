@@ -80,9 +80,9 @@ Adjust the content of `resourcemanager.conf` as follows:
 
 ## Metrics {#metric}
 
-### Hadoop Mearsurement Set
+### Hadoop Measurement Set
 
-ResourceManager metrics are located under the Hadoop Mearsurement set. Here we mainly introduce the relevant metrics of ResourceManager.
+ResourceManager metrics are located under the Hadoop Measurement set. Here we mainly introduce the relevant metrics of ResourceManager.
 
 | Metrics | Description | Unit |
 |:--------|:------------|:-----|

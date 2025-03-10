@@ -59,7 +59,7 @@ We default collect some configurations, details can be found in the Metrics sect
 3. On the Guance platform, go to 「Metrics」to check if the corresponding monitoring data exists.
 
 ## Metrics {#metric}
-After configuring Amazon CloudWatch, the default Mearsurement set is as follows. More Metrics can be collected via configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/redshift/latest/mgmt/metrics-listing.html){:target="_blank"}
+After configuring Amazon CloudWatch, the default Measurement set is as follows. More Metrics can be collected via configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/redshift/latest/mgmt/metrics-listing.html){:target="_blank"}
 
 ### Redshift Metrics
 

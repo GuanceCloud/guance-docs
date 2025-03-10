@@ -25,7 +25,7 @@ Modify the aggregation to metric rule
 | jsonScript.query | json | Y | DQL query related information<br>Allow null: False <br> |
 | jsonScript.metricInfo | json | Y | Metric configuration information<br>Allow null: False <br> |
 | jsonScript.metricInfo.every | string | Y | Frequency<br>Example: 5m <br>Allow empty string: False <br> |
-| jsonScript.metricInfo.metric | string | Y | Mearsurement name<br>Example: cpu <br>Allow empty string: False <br> |
+| jsonScript.metricInfo.metric | string | Y | Measurement name<br>Example: cpu <br>Allow empty string: False <br> |
 | jsonScript.metricInfo.metricField | string | Y | Metric name<br>Example: load5s <br>Allow empty string: False <br> |
 | jsonScript.metricInfo.unit | string |  | Unit<br>Example: load5s <br>Allow empty string: True <br> |
 | jsonScript.metricInfo.desc | string |  | Description<br>Example: xxx <br>Allow empty string: True <br> |
@@ -41,7 +41,7 @@ Modify the aggregation to metric rule
 |-----------------------|----------|----|------------------------|
 |type                   |String|Required| Data source type, enum type|
 |query                  |Json|Required| Query information|
-|metricInfo             |Json|Required| Mearsurement configuration information|
+|metricInfo             |Json|Required| Measurement configuration information|
 
 --------------
 
@@ -62,7 +62,7 @@ Modify the aggregation to metric rule
 | Parameter Name | Type  | Required | Description          |
 |-----------------------|----------|----|------------------------|
 |every                  |String|Required| Frequency, options 1m, 5m, 15m, unit is (minutes/m)|
-|metric                 |String|Required| Mearsurement name |
+|metric                 |String|Required| Measurement name |
 |metricField            |String|Required| Metric name |
 |unit                   |String|| Unit |
 |desc                   |String|| Description |
@@ -98,7 +98,7 @@ Standard unit types, refer to [Unit Documentation](../../../studio-backend/unit/
 |funcName               |string|Required| Aggregation function, enum values("count", "avg", "max", "sum", "min", "count_distinct", "p75", "p95", "p99") |
 |fieldKey               |string|Required| Aggregation field|
 |index                  |string|| Index name for log types|
-|source                 |string|| This field represents different meanings for different types: log type: source, APM type: service, RUM type: app_id, Metrics type: mearsurement, Security Check: category|
+|source                 |string|| This field represents different meanings for different types: log type: source, APM type: service, RUM type: app_id, Metrics type: measurement, Security Check: category|
 |filterString           |string|| Filter condition for log types, original filter string, example: 'host:hangzhou123 -service:coredns internal:true'|
 
 Note:

@@ -1,11 +1,11 @@
-# 【Mearsurement】Metrics and Label Information Retrieval
+# 【Measurement】Metrics and Label Information Retrieval
 
 ---
 
 <br />**GET /api/v1/metric_info/get**
 
 ## Overview
-Retrieve the Mearsurement and label information corresponding to the Metrics
+Retrieve the Measurement and label information corresponding to the Metrics
 
 
 
@@ -13,7 +13,7 @@ Retrieve the Mearsurement and label information corresponding to the Metrics
 
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-------|:----------------|
-| metric | string | Y | Mearsurement name<br>Example: cpu <br>Nullable: False <br>Empty String Allowed: False <br> |
+| metric | string | Y | Measurement name<br>Example: cpu <br>Nullable: False <br>Empty String Allowed: False <br> |
 
 
 ## Additional Parameter Notes

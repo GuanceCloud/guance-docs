@@ -66,7 +66,7 @@ Pipelines can perform the following operations on data collected by DataKit:
 
 - Convert `field` to `tag`;
 
-- Modify the name of the Mearsurement;
+- Modify the name of the Measurement;
 
 - Discard current data (`drop()`);
 

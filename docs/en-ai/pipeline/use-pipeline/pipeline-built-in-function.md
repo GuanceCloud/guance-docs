@@ -158,11 +158,11 @@ After using `adjust_timezone`:
 
 Function prototype: `fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil, category: str = "M")`
 
-Function description: Create a Mearsurement for aggregation, set the aggregation period using `on_interval` or `on_count`. After aggregation, upload aggregated data, choosing whether to retain the last aggregation data; this function is not applicable to central Pipelines.
+Function description: Create a Measurement for aggregation, set the aggregation period using `on_interval` or `on_count`. After aggregation, upload aggregated data, choosing whether to retain the last aggregation data; this function is not applicable to central Pipelines.
 
 Function parameters:
 
-- `bucket`: String type, as the name of the Mearsurement for the aggregated metrics. If this bucket has already been created, the function does nothing.
+- `bucket`: String type, as the name of the Measurement for the aggregated metrics. If this bucket has already been created, the function does nothing.
 - `on_interval`: Default value `60s`, sets the aggregation period based on time, unit `s`, effective when the value is greater than `0`; cannot be used simultaneously with `on_count` less than or equal to 0.
 - `on_count`: Default value `0`, sets the aggregation period based on the number of processed points, effective when the value is greater than `0`.
 - `keep_value`: Default value `false`.
@@ -184,7 +184,7 @@ Function description: Automatically takes the value of the specified field name 
 
 Function parameters:
 
-- `bucket`: String type, the bucket corresponding to the Mearsurement created by the `agg_create` function. If this bucket has not been created, the function does nothing.
+- `bucket`: String type, the bucket corresponding to the Measurement created by the `agg_create` function. If this bucket has not been created, the function does nothing.
 - `new_field`: Metric name in the aggregated data, whose data type is `float`.
 - `agg_fn`: Aggregation function, can be one of `"avg"`,`"sum"`,`"min"`,`"max"`,`"set"`.
 - `agg_by`: Field names from the input data, which will be used as tags for the aggregated data; these fields' values can only be string data.
@@ -461,7 +461,7 @@ Function description: Create new data and output it. This function is not applic
 
 Function parameters:
 
-- `name`: Point name, considered as the name of the Mearsurement or log source
+- `name`: Point name, considered as the name of the Measurement or log source
 - `tags`: Data tags
 - `fields`: Data fields
 - `ts`: Optional parameter, Unix nanosecond timestamp, defaults to current time
@@ -1199,7 +1199,7 @@ Mapping relationship between line protocol name and various types of data storag
 | custom_object     | class      | -          |
 | keyevent          | -          | -          |
 | logging           | source     | -          |
-| metric            | -          | Mearsurement name |
+| metric            | -          | Measurement name |
 | network           | source     | -          |
 | object            | class      | -          |
 | profiling         | source     | -          |
@@ -2669,7 +2669,7 @@ Mapping relationship between line protocol name and various types of data storag
 | custom_object     | class      | -          |
 | keyevent          | -          | -          |
 | logging           | source     | -          |
-| metric            | -          | Mearsurement name |
+| metric            | -          | Measurement name |
 | network           | source     | -          |
 | object            | class      | -          |
 | profiling         | source     | -          |
@@ -4197,7 +4197,7 @@ Mapping relationship between line protocol name and various types of data storag
 | custom_object     | class      | -          |
 | keyevent          | -          | -          |
 | logging           | source     | -          |
-| metric            | -          | Mearsurement name |
+| metric            | -          | Measurement name |
 | network           | source     | -          |
 | object            | class      | -          |
 | profiling         | source     | -          |
@@ -5721,7 +5721,7 @@ Mapping relationship between line protocol name and various types of data storag
 | custom_object     | class      | -          |
 | keyevent          | -          | -          |
 | logging           | source     | -          |
-| metric            | -          | Mearsurement name |
+| metric            | -          | Measurement name |
 | network           | source     | -          |
 | object            | class      | -          |
 | profiling         | source     | -          |
@@ -7182,7 +7182,7 @@ Mapping relationship between line protocol name and various types of data storag
 | custom_object     | class      | -          |
 | keyevent          | -          | -          |
 | logging           | source     | -          |
-| metric            | -          | Mearsurement name |
+| metric            | -          | Measurement name |
 | network           | source     | -          |
 | object            | class      | -          |
 | profiling         | source     | -          |
@@ -8687,7 +8687,7 @@ Mapping relationship between line protocol name and various types of data storag
 | custom_object     | class      | -          |
 | keyevent          | -          | -          |
 | logging           | source     | -          |
-| metric            | -          | Mearsurement name |
+| metric            | -          | Measurement name |
 | network           | source     | -          |
 | object            | class      | -          |
 | profiling         | source     | -          |
@@ -10183,7 +10183,7 @@ Mapping relationship between line protocol name and various types of data storag
 | custom_object     | class      | -          |
 | keyevent          | -          | -          |
 | logging           | source     | -          |
-| metric            | -          | Mearsurement name |
+| metric            | -          | Measurement name |
 | network           | source     | -          |
 | object            | class      | -          |
 | profiling         | source     | -          |
@@ -11691,7 +11691,7 @@ Mapping relationship between line protocol name and various types of data storag
 | custom_object     | class      | -          |
 | keyevent          | -          | -          |
 | logging           | source     | -          |
-| metric            | -          | Mearsurement name |
+| metric            | -          | Measurement name |
 | network           | source     | -          |
 | object            | class      | -          |
 | profiling         | source     | -          |
@@ -13174,7 +13174,7 @@ Mapping relationship between line protocol name and various types of data storag
 | custom_object     | class      | -          |
 | keyevent          | -          | -          |
 | logging           | source     | -          |
-| metric            | -          | Mearsurement name |
+| metric            | -          | Measurement name |
 | network           | source     | -          |
 | object            | class      | -          |
 | profiling         | source     | -          |

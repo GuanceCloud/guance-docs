@@ -48,7 +48,7 @@ By default, we collect some configurations; for more details, see [Customize Clo
 3. On the Guance platform, go to 「Metrics」 to check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Alibaba Cloud PolarDB Distributed 1.0, the default Mearsurement sets are as follows. More Metrics can be collected through configuration [Alibaba Cloud Monitoring Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_drds/drds){:target="_blank"}
+After configuring Alibaba Cloud PolarDB Distributed 1.0, the default Measurement sets are as follows. More Metrics can be collected through configuration [Alibaba Cloud Monitoring Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_drds/drds){:target="_blank"}
 
 | Metric | Description                  |       Statistics        |     Unit     |
 | ---- |------------------------------|:-----------------------:|:------------:|

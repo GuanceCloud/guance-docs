@@ -43,7 +43,7 @@ Data description.*
 | desc                          | string | N         | Description          |
 | type                          | string | Y         | Type (logging, rum, tracing, metric) |
 | indexes                       | array  | Y         | Required when type is logging. For non-workspace indices (which must be authorized by workspace), use workspaceUUID:indexUUID, e.g., ["wksp_111:lgim_222", "wksp_333:lgim_444"] |
-| sources                       | array  | Y         | Required when type is not logging. When type is rum, it is a list of app IDs; when type is tracing, it is a list of service names; when type is metric, it is a list of Mearsurement |
+| sources                       | array  | Y         | Required when type is not logging. When type is rum, it is a list of app IDs; when type is tracing, it is a list of service names; when type is metric, it is a list of Measurement |
 | roleUUIDs                     | array  | Y         | List of role UUIDs   |
 | conditions                    | string | N         | Actual filter conditions used for the data range, e.g., "`device` IN ['PC'] and `session_has_replay` IN ['1']" |
 | extend                        | dict   | Y         | Extended fields, storing the structure content of conditions for frontend display, e.g., {"device": ["PC"], "session_has_replay": [1]} |

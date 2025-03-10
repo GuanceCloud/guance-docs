@@ -53,7 +53,7 @@ By default, we collect some configurations; for more details, see [Customize Clo
 3. On the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Amazon Cloud Monitoring, the default Mearsurement set is as follows. You can collect more metrics by configuring [Amazon Cloud Monitoring Metric Details](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/viewing-cloudfront-metrics.html#monitoring-console.distributions-additional){:target="_blank"}
+After configuring Amazon Cloud Monitoring, the default Measurement set is as follows. You can collect more metrics by configuring [Amazon Cloud Monitoring Metric Details](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/viewing-cloudfront-metrics.html#monitoring-console.distributions-additional){:target="_blank"}
 
 ### Monitoring Metrics
 

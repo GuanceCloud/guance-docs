@@ -39,7 +39,7 @@ Where `conditions` can also be a combination of various other conditions. Here a
 
 Since most of the data collected by DataKit is reported as data points, all filters operate on data points. Filters support data screening on the following data:
 
-- Mearsurement Name: For different types of data, the business affiliation of mearsurements varies, as follows:
+- Measurement Name: For different types of data, the business affiliation of mearsurements varies, as follows:
 
     - For Time Series data (M), when the filter runs, a `measurement` tag is injected into its tag list, so you can write a filter based on mearsurements like this: `{measurement = re('abc.*') AND ( tag1='def' and field2 = 3.14)}`
     - For Object data (O), when the filter runs, a `class` tag is injected into its tag list, so you can write an object-based filter like this: `{class = re('abc.*') AND ( tag1='def' and field2 = 3.14)}`

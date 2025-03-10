@@ -23,7 +23,7 @@ nav:
   - 'Logs - Index': log-index-cfg
   - 'Logs - Data Forwarding': log-backup-cfg
   - 'Logs - Data Access': logging-query-rule
-  - 'Metrics - Get Mearsurement Information': metric
+  - 'Metrics - Get Measurement Information': metric
   - 'Metrics - Aggregate and Generate Metrics': aggs-to-metric
   - 'RUM PV - Application': rum-cfg-set
   - 'RUM PV - SourceMap': rum-sourcemap

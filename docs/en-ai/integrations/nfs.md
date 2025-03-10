@@ -149,7 +149,7 @@ To enable, modify the configuration file.
 
 ### Enabling Detailed Statistics for NFS Mount Points {#nfs-mountstats}
 
-By default, the enabled `nfs_mountstats` Mearsurement set only displays statistics on mount point disk usage and NFS runtime. To view R/W, Transport, Event, Operations information of NFS mount points, modify the configuration file.
+By default, the enabled `nfs_mountstats` Measurement set only displays statistics on mount point disk usage and NFS runtime. To view R/W, Transport, Event, Operations information of NFS mount points, modify the configuration file.
 
 ```toml
 [[inputs.nfs]]

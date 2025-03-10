@@ -435,7 +435,7 @@ It can also output in JSON format:
 ```shell
 datakit tool --parse-lp /path/to/file --json
 {
-  "measurements": {  # Mearsurement list
+  "measurements": {  # Measurement list
     "testing": {
       "points": 7,
       "time_series": 6

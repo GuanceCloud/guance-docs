@@ -41,7 +41,7 @@ This document records the update content of <<< custom_key.brand_name >>> for ea
 
 ### OpenAPI Update {#openapi0227}
 
-Metrics: Added [Mearsurement and Tag Information Retrieval](../open-api/metric/metric-info-get.md).
+Metrics: Added [Measurement and Tag Information Retrieval](../open-api/metric/metric-info-get.md).
 
 ### Feature Updates {#feature0227}
 

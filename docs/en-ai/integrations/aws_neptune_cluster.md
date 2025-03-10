@@ -60,7 +60,7 @@ By default, we collect some configurations. For more details, see [Custom Cloud 
 3. In the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Amazon Cloud Monitoring, the default Mearsurement set is as follows. More Metrics can be collected via configuration:
+After configuring Amazon Cloud Monitoring, the default Measurement set is as follows. More Metrics can be collected via configuration:
 
 [Amazon Cloud Monitoring Neptune Cluster Metrics Details](https://docs.aws.amazon.com/zh_cn/neptune/latest/userguide/cw-metrics.html){:target="_blank"}
 

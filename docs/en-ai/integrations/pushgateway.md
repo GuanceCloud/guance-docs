@@ -34,7 +34,7 @@ The Pushgateway collector will enable the corresponding API interface to receive
       route_prefix = ""
     
       ## Measurement name.
-      ## If measurement_name is not empty, using this as Mearsurement set name.
+      ## If measurement_name is not empty, using this as Measurement set name.
       # measurement_name = "prom_pushgateway"
     
       ## If job_as_measurement is true, use the job field for the measurement name.
@@ -42,7 +42,7 @@ The Pushgateway collector will enable the corresponding API interface to receive
       job_as_measurement = false
     
       ## Keep Exist Metric Name.
-      ## Split metric name by '_', the first field after split as Mearsurement set name, the rest as current metric name.
+      ## Split metric name by '_', the first field after split as Measurement set name, the rest as current metric name.
       ## If the keep_exist_metric_name is true, keep the raw value for field names.
       keep_exist_metric_name = true
     
@@ -68,7 +68,7 @@ The Pushgateway collector will enable the corresponding API interface to receive
     
     - **ENV_INPUT_PUSHGATEWAY_MEASUREMENT_NAME**
     
-        Configure the Mearsurement set name
+        Configure the Measurement set name
     
         **Field Type**: String
     
@@ -76,7 +76,7 @@ The Pushgateway collector will enable the corresponding API interface to receive
     
     - **ENV_INPUT_PUSHGATEWAY_JOB_AS_MEASUREMENT**
     
-        Whether to use the job label value as the Mearsurement set name
+        Whether to use the job label value as the Measurement set name
     
         **Field Type**: Boolean
     
@@ -105,7 +105,7 @@ The Pushgateway collector adheres to the [Prometheus Pushgateway](https://github
 - Receiving Prometheus text data and Protobuf data
 - Specifying string labels and base64 labels in the URL
 - Decoding gzip data
-- Specifying the Mearsurement set name
+- Specifying the Measurement set name
 
 Here is a simple example deployed in a Kubernetes cluster:
 
@@ -177,14 +177,14 @@ spec:
           done
 ```
 
-- On the Guance page, you can see Metrics data with the Mearsurement set name `pushgateway` and the field `count`.
+- On the Guance page, you can see Metrics data with the Measurement set name `pushgateway` and the field `count`.
 
-## Mearsurement Set and Tags {#measurement-and-tags}
+## Measurement Set and Tags {#measurement-and-tags}
 
 The Pushgateway collector does not add any tags.
 
-Mearsurement set naming has two scenarios:
+Measurement set naming has two scenarios:
 
-1. Using the `measurement_name` configuration item to specify the Mearsurement set name
-2. Using the job label value as the Mearsurement set name
-3. Splitting the data field name by underscore `_`, the first field after splitting as the Mearsurement set name, and the remaining fields as the current metric name
+1. Using the `measurement_name` configuration item to specify the Measurement set name
+2. Using the job label value as the Measurement set name
+3. Splitting the data field name by underscore `_`, the first field after splitting as the Measurement set name, and the remaining fields as the current metric name

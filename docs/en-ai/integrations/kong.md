@@ -67,7 +67,7 @@ Execute the following command:
 datakit service -R
 ```
 
-### 3. Kong Mearsurement
+### 3. Kong Measurement
 
 | Metric Name | Unit | Description |
 | --- | --- | --- |

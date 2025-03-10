@@ -95,9 +95,9 @@ datakit service -R
 
 ## Metrics {#metric}
 
-### Milvus Mearsurement Set
+### Milvus Measurement Set
 
-Milvus metrics are located under the Milvus mearsurement set. Here is an introduction to Milvus metrics
+Milvus metrics are located under the Milvus measurement set. Here is an introduction to Milvus metrics
 
 | Metrics | Description | Unit |
 |:--------|:------------|:-----|

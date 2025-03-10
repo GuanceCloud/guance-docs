@@ -156,9 +156,9 @@ kubectl apply -f datakit.yaml
 
 ## Metrics {#metric}
 
-### Kube-state-metrics Mearsurement Set
+### Kube-state-metrics Measurement Set
 
-Metrics collected by kube-state-metrics are located under the kube-state-metrics mearsurement set. Here is an explanation of related metrics
+Metrics collected by kube-state-metrics are located under the kube-state-metrics measurement set. Here is an explanation of related metrics
 
 | Metrics | Description | Unit |
 |:--------|:------------|:-----|

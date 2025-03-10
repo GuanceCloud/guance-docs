@@ -54,7 +54,7 @@ We default to collecting some configurations; see the Metrics section for detail
 3. On the Guance platform, under "Metrics", check if the corresponding monitoring data exists.
 
 ## Metrics {#metric}
-After configuring Alibaba Cloud Cloud Monitoring, the default Mearsurement set is as follows. You can collect more Metrics through configuration. [Alibaba Cloud Cloud Monitoring Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+After configuring Alibaba Cloud Cloud Monitoring, the default Measurement set is as follows. You can collect more Metrics through configuration. [Alibaba Cloud Cloud Monitoring Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
 | Metric Id                    |          Metric Name           | Dimensions        | Statistics              | Unit        |
 | ---- | :----: | ------ | ------ | ---- |

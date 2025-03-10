@@ -131,7 +131,7 @@ measurement_2,<tag-list> <field-list> timestamp
 
 Where:
 
-- `measurement` is the name of the Mearsurement set, representing a collection of Metrics, such as `disk` might have `free/used/total`, etc.,
+- `measurement` is the name of the Measurement set, representing a collection of Metrics, such as `disk` might have `free/used/total`, etc.,
 - `<tag-list>` is a list of tags, separated by `,`. A single tag format is `key=value`, where `value` is treated as a string. In the line protocol, `<tag-list>` is **optional**
 - `<field-list>` is a list of fields, separated by `,`. In the line protocol, `<field-list>` is **required**. Single field format is `key=value`, with `value` depending on its type:
     - int example: `some_int=42i`, i.e., append `i` after the integer value
@@ -181,7 +181,7 @@ Compared to line protocol, JSON-formatted bodies require less escaping. A simple
 ```json
 [
     {
-        "measurement": "Mearsurement set name",
+        "measurement": "Measurement set name",
 
         "tags": {
             "key": "value",
@@ -257,7 +257,7 @@ Due to the limitations of simple JSON, it is recommended to use another JSON for
 ```json
 [
   {
-    "name": "point-1", # Mearsurement set name
+    "name": "point-1", # Measurement set name
     "fields": [...], # Specific field list, including Field and Tag
     "time": "1709523668830398000"
   },
@@ -775,7 +775,7 @@ HTTP/1.``` http
         "plresults": [                         # Since logs can be multi-line, multiple split results are returned here
             {
                 "point": {
-                  "name" : "can be Mearsurement set name, log source, etc.",
+                  "name" : "can be Measurement set name, log source, etc.",
                   "tags": { "key": "val", "other-key": "other-val"},
                   "fields": { "f1": 1, "f2": "abc", "f3": 1.2 }
                   "time": 1644380607,   # Unix timestamp (seconds), frontend can convert it to a readable date

@@ -1,11 +1,11 @@
 # Metrics Management
 ---
 
-After completing the collection of metrics data, you can view all reported Mearsurement and related Metrics, labels, Time Series quantity, and data storage policies in **Workspace > Metrics Management**.
+After completing the collection of metrics data, you can view all reported Measurement and related Metrics, labels, Time Series quantity, and data storage policies in **Workspace > Metrics Management**.
 
-## Mearsurement
+## Measurement
 
-Mearsurement refers to a collection of metrics of the same type. A Mearsurement can contain multiple Metrics and labels. Clicking on a Mearsurement allows you to view all available [Metrics](#metrics) and [labels](#labels) under that Mearsurement on the details page, and you can quickly locate the required content using fuzzy search.
+Measurement refers to a collection of metrics of the same type. A Measurement can contain multiple Metrics and labels. Clicking on a Measurement allows you to view all available [Metrics](#metrics) and [labels](#labels) under that Measurement on the details page, and you can quickly locate the required content using fuzzy search.
 
 ![](img/11.metrics_3.png)
 
@@ -13,7 +13,7 @@ Mearsurement refers to a collection of metrics of the same type. A Mearsurement 
 
 Metrics help you quickly understand the overall operation status of the system, such as server CPU usage, website loading time, remaining disk space, etc.
 
-Metrics consist of **Metric names** and **Metric values**, where the Metric name is an alias for the metric, and the Metric value is the specific numerical value collected. In Workspace > Metrics Management, clicking on the Mearsurement name will display the corresponding list of Metrics, including Metric names, field types, units, and other detailed information.
+Metrics consist of **Metric names** and **Metric values**, where the Metric name is an alias for the metric, and the Metric value is the specific numerical value collected. In Workspace > Metrics Management, clicking on the Measurement name will display the corresponding list of Metrics, including Metric names, field types, units, and other detailed information.
 
 - Use :octicons-search-24: to search for related Metrics based on keywords;
 - Use :material-export-variant: to export the Metrics list as a CSV file to your local machine.
@@ -43,7 +43,7 @@ When querying Metrics, you can more easily perform data queries and analysis by 
 
 Labels help you correlate data from different sources. <<< custom_key.brand_name >>> supports unified reporting of all Metrics, logs, and trace data to the workspace. By tagging collected data with the same labels, you can perform correlation analysis to quickly identify and resolve potential risks.
 
-Labels are collections of attributes used to identify the properties of data points, consisting of **label names** and **label values**. A data point can have multiple labels. In Workspace > Metrics Management, clicking on the Mearsurement name will display the corresponding list of labels, including label names, statistics of label values, and descriptions.
+Labels are collections of attributes used to identify the properties of data points, consisting of **label names** and **label values**. A data point can have multiple labels. In Workspace > Metrics Management, clicking on the Measurement name will display the corresponding list of labels, including label names, statistics of label values, and descriptions.
 
 - Click :octicons-search-24: to search for related labels based on keywords;
 - Click :material-export-variant: to export the label list as a CSV file to your local machine;
@@ -63,7 +63,7 @@ In the current workspace, the number of combinations of Metrics data based on la
 | Term           | Description                                               |
 | --------------- | ----------------------------------------------------------- |
 | Database       | The database.  |
-| Measurement    | Refers to Mearsurement, similar to tables in MySQL.        |
+| Measurement    | Refers to Measurement, similar to tables in MySQL.        |
 | Field          | Refers to Metrics, key-value pairs recording actual data in InfluxDB (mandatory in InfluxDB, not indexed). |
 | Field Set      | A set of Field key-value pairs.                             |
 | Field Key      | The key in the Field key-value pair.                        |
@@ -85,14 +85,14 @@ Metrics storage policies are divided into two types:
 
 ### Modify Policies
 
-Custom settings for Mearsurements take precedence over global settings. That is, after setting custom data retention policies for a Mearsurement, changing the global settings does not affect the data retention policy for that Mearsurement.
+Custom settings for Mearsurements take precedence over global settings. That is, after setting custom data retention policies for a Measurement, changing the global settings does not affect the data retention policy for that Measurement.
 
 **Note**:
 
-- After modifying the data retention policy for a Mearsurement in Metrics Management, the corresponding Mearsurement data stored in the global workspace policy will be deleted and cannot be recovered. Be cautious when performing this operation. If you modify the data retention policy for a Mearsurement again, the data under the previous policy will also be deleted.
-- After modifying the data retention policy for a Mearsurement, its data will be stored separately. At this point, changing the global data retention policy for workspace Metrics will not alter the retention policy for that Mearsurement.
-- After modifying the data retention policy for a Mearsurement, if you revert it to the global default retention policy, the Mearsurement will be re-stored in the global database. At this point, modifying the global data retention policy for workspace Metrics will synchronize the retention policy for that Mearsurement.
-- After modifying the data retention policy for a Mearsurement, even if the global and Mearsurement retention policies are set to the same duration, the Mearsurement data will still be stored separately and will not be stored in the global database.
+- After modifying the data retention policy for a Measurement in Metrics Management, the corresponding Measurement data stored in the global workspace policy will be deleted and cannot be recovered. Be cautious when performing this operation. If you modify the data retention policy for a Measurement again, the data under the previous policy will also be deleted.
+- After modifying the data retention policy for a Measurement, its data will be stored separately. At this point, changing the global data retention policy for workspace Metrics will not alter the retention policy for that Measurement.
+- After modifying the data retention policy for a Measurement, if you revert it to the global default retention policy, the Measurement will be re-stored in the global database. At this point, modifying the global data retention policy for workspace Metrics will synchronize the retention policy for that Measurement.
+- After modifying the data retention policy for a Measurement, even if the global and Measurement retention policies are set to the same duration, the Measurement data will still be stored separately and will not be stored in the global database.
 
 #### Global Settings for Metrics
 
@@ -106,14 +106,14 @@ In **Manage > Settings > Risky Operations**, you can view the global data retent
 
 In Metrics Management, you can view and customize the data retention policy for Mearsurements.
 
-Click the :octicons-gear-24: button in the action bar to customize the data retention policy for a Mearsurement. Options include: 3 days, 7 days, 14 days, 30 days, 180 days, and 360 days. If no custom settings are applied, it defaults to the global data retention policy for Metrics.
+Click the :octicons-gear-24: button in the action bar to customize the data retention policy for a Measurement. Options include: 3 days, 7 days, 14 days, 30 days, 180 days, and 360 days. If no custom settings are applied, it defaults to the global data retention policy for Metrics.
 
 ![](img/19.metrics_6.png)
 
 **Note**:
 
 - Only workspace owners can configure data retention policies for Mearsurements, and the Free Plan does not support custom data retention policies;
-- After modifying the data retention period for a Mearsurement, the data under the previous policy will also be deleted and cannot be recovered.
+- After modifying the data retention period for a Measurement, the data under the previous policy will also be deleted and cannot be recovered.
 
 ???+ abstract "For Deployment Plan"
 

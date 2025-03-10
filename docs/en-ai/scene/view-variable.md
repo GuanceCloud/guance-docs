@@ -64,9 +64,9 @@ Below are explanations of value ranges for different data sources:
 
 === "Metrics"
 
-    | Data Type | Mearsurement   | Tag   | Default Value   |
+    | Data Type | Measurement   | Tag   | Default Value   |
     | ------  | -------- | -------- | -------- |
-    | Metrics     | SHOW_MEASUREMENT() function;<br>This function does not support time filtering;<br>Value range: all mearsurements in the current workspace. | SHOW_TAG_KEY(from=['mearsurement_name']) function;<br>This function does not support time filtering;<br>Value range: tags under the selected mearsurement in the current workspace. | SHOW_TAG_VALUE(from=['mearsurement_name'], keyin=['tag_name']);<br>This function does not support time filtering. |
+    | Metrics     | SHOW_MEASUREMENT() function;<br>This function does not support time filtering;<br>Value range: all mearsurements in the current workspace. | SHOW_TAG_KEY(from=['mearsurement_name']) function;<br>This function does not support time filtering;<br>Value range: tags under the selected measurement in the current workspace. | SHOW_TAG_VALUE(from=['mearsurement_name'], keyin=['tag_name']);<br>This function does not support time filtering. |
 
 === "Base Object"
 
@@ -150,8 +150,8 @@ When using DQL queries, you can use the Show function to return corresponding da
 | Syntax | Description |
 | --- | --- |
 | `show_measurement()` | Returns all mearsurements in the current workspace. |
-| `show_tag_key(from=["cpu"])` | Returns tags under the `cpu` mearsurement in the current workspace. |
-| `show_tag_key(from=["cpu"],keyin=["host"])` | Queries the list of `host` tag values under the `cpu` mearsurement in the current workspace.
+| `show_tag_key(from=["cpu"])` | Returns tags under the `cpu` measurement in the current workspace. |
+| `show_tag_key(from=["cpu"],keyin=["host"])` | Queries the list of `host` tag values under the `cpu` measurement in the current workspace.
 
 #### PromQL Query {#promql}
 

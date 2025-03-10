@@ -80,9 +80,9 @@ Parameter adjustment explanation:
 
 ## Metrics {#metric}
 
-### Hadoop Mearsurement Set
+### Hadoop Measurement Set
 
-DataNode Metrics are located under the Hadoop Mearsurement set. This section mainly introduces the relevant Metrics of the DataNode.
+DataNode Metrics are located under the Hadoop Measurement set. This section mainly introduces the relevant Metrics of the DataNode.
 
 | Metrics | Description | Unit |
 |:--------|:------------|:-----|

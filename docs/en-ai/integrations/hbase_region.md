@@ -69,9 +69,9 @@ Adjust the content of `region.conf` as follows:
 
 ## Metrics {#metric}
 
-### Hadoop Mearsurement Set
+### Hadoop Measurement Set
 
-HBase Region metrics are located under the Hadoop Mearsurement set. This section mainly introduces the relevant metrics for HBase Region.
+HBase Region metrics are located under the Hadoop Measurement set. This section mainly introduces the relevant metrics for HBase Region.
 
 | Metrics | Description | Unit |
 |:--------|:------------|:-----|

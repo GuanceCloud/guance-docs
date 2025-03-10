@@ -14,7 +14,7 @@ Used to observe the distribution and aggregation of data. For example, you can v
 
 Define filtering conditions for the X-axis and Y-axis separately. You can switch to expression queries, PromQL queries, or other data source queries.
 
-The Mearsurement sets and Metrics can differ, but the by (grouping) Tags must be consistent. Modifying one query condition automatically updates the other.
+The Measurement sets and Metrics can differ, but the by (grouping) Tags must be consistent. Modifying one query condition automatically updates the other.
 
 > For more detailed information on chart query conditions, refer to [Chart Query](chart-query.md).
 

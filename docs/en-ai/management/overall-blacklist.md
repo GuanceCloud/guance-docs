@@ -35,7 +35,7 @@ After entering field names, field values, etc., the rules will take effect once 
 | RUM           | Application (`app_id`)                                      |
 | Security Check | Category (`category`), e.g., `system`                      |
 | Events        | Source (`source`), e.g., `monitor`                          |
-| Metrics       | Mearsurement, e.g., `cpu`                                   |
+| Metrics       | Measurement, e.g., `cpu`                                   |
 | Profile       | Service (`service`)                                         |
 
 ### Filtering

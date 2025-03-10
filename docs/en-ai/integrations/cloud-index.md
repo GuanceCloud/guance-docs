@@ -21,7 +21,7 @@ After [installing DataKit](../datakit/datakit-install.md) and [installing DataFl
 
     ---
 
-    Guides for monitoring [`CDN`](aliyun_cdn.md) [`ECS`](aliyun_ecs.md) [`MongoDB`](aliyun_mongodb.md) [`NAT`](aliyun_nat.md) [`OSS`](aliyun_oss.md) [`PolarDB Mysql`](aliyun_polardb_mysql.md) [`Redis`](aliyun_redis.md) [`SLB`](aliyun_slb.md) [`SLS`](aliyun_sls.md) Mearsurement data
+    Guides for monitoring [`CDN`](aliyun_cdn.md) [`ECS`](aliyun_ecs.md) [`MongoDB`](aliyun_mongodb.md) [`NAT`](aliyun_nat.md) [`OSS`](aliyun_oss.md) [`PolarDB Mysql`](aliyun_polardb_mysql.md) [`Redis`](aliyun_redis.md) [`SLB`](aliyun_slb.md) [`SLS`](aliyun_sls.md) Measurement data
 
     <br/>
     [**:octicons-arrow-right-24: Official Script Market**](https://func.guance.com/doc/intro-script-market/)
@@ -30,7 +30,7 @@ After [installing DataKit](../datakit/datakit-install.md) and [installing DataFl
 
     ---
 
-    Guides for monitoring [`EC2`](aws_ec2.md) [`ELB`](aws_elb.md) [`ElastiCache Redis`](aws_elasticache_redis.md) [`MSK`](aws_msk.md) [`OpenSearch`](aws_opensearch.md) [`RDS MySQL`](aws_rds_mysql.md) [`S3`](aws_s3.md) Mearsurement data
+    Guides for monitoring [`EC2`](aws_ec2.md) [`ELB`](aws_elb.md) [`ElastiCache Redis`](aws_elasticache_redis.md) [`MSK`](aws_msk.md) [`OpenSearch`](aws_opensearch.md) [`RDS MySQL`](aws_rds_mysql.md) [`S3`](aws_s3.md) Measurement data
 
     <br/>
     [**:octicons-arrow-right-24: Official Script Market**](https://func.guance.com/doc/intro-script-market/)
@@ -39,7 +39,7 @@ After [installing DataKit](../datakit/datakit-install.md) and [installing DataFl
 
     ---
 
-    Guides for monitoring [`CDB`](tencent_cdb.md) [`COS`](tencent_cos.md) [`CLB`](tencent_clb_public.md) [`CVM`](tencent_cvm.md) [`MongoDB`](tencent_mongodb.md) [`Redis Memory Edition`](tencent_redis_mem.md) Mearsurement data
+    Guides for monitoring [`CDB`](tencent_cdb.md) [`COS`](tencent_cos.md) [`CLB`](tencent_clb_public.md) [`CVM`](tencent_cvm.md) [`MongoDB`](tencent_mongodb.md) [`Redis Memory Edition`](tencent_redis_mem.md) Measurement data
 
     <br/>
     [**:octicons-arrow-right-24: Official Script Market**](https://func.guance.com/doc/intro-script-market/)
@@ -48,7 +48,7 @@ After [installing DataKit](../datakit/datakit-install.md) and [installing DataFl
 
     ---
 
-    Guides for monitoring [`DCS`](huawei_dcs.md) [`ECS`](huawei_ecs.md) [`ELB`](huawei_elb.md) [`OBS`](huawei_obs.md) [`RDS MySQL`](huawei_rds_mysql.md) Mearsurement data
+    Guides for monitoring [`DCS`](huawei_dcs.md) [`ECS`](huawei_ecs.md) [`ELB`](huawei_elb.md) [`OBS`](huawei_obs.md) [`RDS MySQL`](huawei_rds_mysql.md) Measurement data
 
     <br/>
     <br/>

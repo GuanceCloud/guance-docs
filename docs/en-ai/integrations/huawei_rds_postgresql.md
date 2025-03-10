@@ -56,7 +56,7 @@ By default, we collect some configurations; for more details, see [Customize Clo
 3. On the Guance platform, in 「Metrics」check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Huawei Cloud Cloud Monitoring, the default Mearsurement sets are as follows. You can collect more Metrics through configuration [Huawei Cloud Cloud Monitoring Metrics Details](https://support.huaweicloud.com/usermanual-rds/rds_pg_06_0001.html){:target="_blank"}
+After configuring Huawei Cloud Cloud Monitoring, the default Measurement sets are as follows. You can collect more Metrics through configuration [Huawei Cloud Cloud Monitoring Metrics Details](https://support.huaweicloud.com/usermanual-rds/rds_pg_06_0001.html){:target="_blank"}
 
 ### Instance Monitoring Metrics
 

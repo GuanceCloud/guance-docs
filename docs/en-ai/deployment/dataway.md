@@ -548,7 +548,7 @@ Response example:
 Explanation of the response results:
 
 - Real data is located in the inner `series` field
-- `name` indicates the Mearsurement name (for this query, it is the CPU metric; if it is log data, this field does not exist)
+- `name` indicates the Measurement name (for this query, it is the CPU metric; if it is log data, this field does not exist)
 - `columns` indicate the names of the returned result columns
 - `values` contain the column results corresponding to `columns`
 

@@ -556,7 +556,7 @@ Parameter Explanation
 - url: Exporter address
 - source: Collector name
 - metric_types: Metric type filtering
-- measurement_name: Name of the collected Mearsurement
+- measurement_name: Name of the collected Measurement
 - interval: Collection frequency in seconds
 - $IP: Wildcard for Pod internal IP
 - $NAMESPACE: Namespace where the Pod resides

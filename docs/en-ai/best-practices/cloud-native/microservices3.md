@@ -186,7 +186,7 @@ kubectl replace -f virtual-service-reviews.yaml
 
 # Metrics
 
-When deploying Bookinfo, custom configuration was used to start Pods, and `measurement_name = "istio_prom"` was added in the annotations configuration. This collects metrics into the **istio_prom** Mearsurement set. Log in to '<<< custom_key.brand_name >>>' -> 'Metrics', and view the istio_prom Mearsurement set.
+When deploying Bookinfo, custom configuration was used to start Pods, and `measurement_name = "istio_prom"` was added in the annotations configuration. This collects metrics into the **istio_prom** Measurement set. Log in to '<<< custom_key.brand_name >>>' -> 'Metrics', and view the istio_prom Measurement set.
 
 ![image](../images/microservices/77.png)	
 

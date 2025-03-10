@@ -53,7 +53,7 @@ By default, we collect some configurations; see the Metrics section for details.
 3. On the Guance platform, under "Metrics", check if the corresponding monitoring data exists.
 
 ## Metrics {#metric}
-After configuring VolcEngine Cloud Monitoring, the default Mearsurement set is as follows. You can collect more Metrics through configuration. [VolcEngine Cloud Monitoring Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_ECS){:target="_blank"}
+After configuring VolcEngine Cloud Monitoring, the default Measurement set is as follows. You can collect more Metrics through configuration. [VolcEngine Cloud Monitoring Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_ECS){:target="_blank"}
 
 > Note: The monitoring plugin needs to be installed in the VolcEngine ECS console.
 

@@ -44,7 +44,7 @@ cd C:\Program Files\datakit\conf.d\prom
     
     ## Data output source for collected data
     # Configuring this option can write collected data to a local file instead of sending it to the center
-    # Later, you can use the datakit --prom-conf /path/to/this/conf command to debug the locally saved Mearsurement
+    # Later, you can use the datakit --prom-conf /path/to/this/conf command to debug the locally saved Measurement
     # If the URL has already been configured as a local file path, then the --prom-conf option takes precedence in debugging the output path data
     # output = "/abs/path/to/file"
     > 
@@ -64,14 +64,14 @@ cd C:\Program Files\datakit\conf.d\prom
     # If empty, no filtering is performed
     # metric_name_filter = ["cpu"]
     
-    ## Prefix for Mearsurement names
-    # Configuring this option adds a prefix to the Mearsurement name
+    ## Prefix for Measurement names
+    # Configuring this option adds a prefix to the Measurement name
     measurement_prefix = ""
     
-    ## Mearsurement name
-    # By default, the metric name is split by underscores "_", with the first segment becoming the Mearsurement name and the rest forming the current metric name
+    ## Measurement name
+    # By default, the metric name is split by underscores "_", with the first segment becoming the Measurement name and the rest forming the current metric name
     # If measurement_name is configured, no splitting of the metric name occurs
-    # The final Mearsurement name will have the measurement_prefix added as a prefix
+    # The final Measurement name will have the measurement_prefix added as a prefix
     # measurement_name = "prom"
     
     ## Collection interval "ns", "us" (or "µs"), "ms", "s", "m", "h"
@@ -94,9 +94,9 @@ cd C:\Program Files\datakit\conf.d\prom
     # token = "xxxxxxxx"
     # token_file = "/tmp/token"
     
-    ## Custom Mearsurement names
-    # Metrics containing the prefix can be grouped into a single Mearsurement
-    # Custom Mearsurement name configuration takes precedence over the measurement_name setting
+    ## Custom Measurement names
+    # Metrics containing the prefix can be grouped into a single Measurement
+    # Custom Measurement name configuration takes precedence over the measurement_name setting
     #[[inputs.prom.measurements]]
     #  prefix = "cpu_"
     #  name = "cpu"
@@ -153,7 +153,7 @@ dql > M::exchange LIMIT 1
 
 ### General Category
 
-| Mearsurement | Metric                                      | Meaning                                                         | Significance                                                     |
+| Measurement | Metric                                      | Meaning                                                         | Significance                                                     |
 | ------------ | ------------------------------------------- | --------------------------------------------------------------- | ---------------------------------------------------------------- |
 | exchange     | windows_exchange_owa_current_unique_users   | Number of unique users currently logged on to Outlook Web App   | Monitor the number of active users using OWA                    |
 | exchange     | windows_net_packets_outbound_errors_total   | Number of outbound packet errors on the host NIC                | Under normal circumstances, NIC should not have packet errors; non-zero values indicate network issues |
@@ -164,7 +164,7 @@ dql > M::exchange LIMIT 1
 
 ### Web Category
 
-| Mearsurement | Metric                                       | Meaning                                                         | Monitoring Significance                                         |
+| Measurement | Metric                                       | Meaning                                                         | Monitoring Significance                                         |
 | ------------ | -------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | exchange     | windows_exchange_owa_current_unique_users    | Number of unique users currently logged on to Outlook Web App   | Monitor the number of active users using OWA, same as above     |
 | exchange     | windows_exchange_owa_requests_total          | Number of requests handled by Outlook Web App per second        | Reflects the busyness of OWA                                    |
@@ -172,7 +172,7 @@ dql > M::exchange LIMIT 1
 
 ### RPC Category
 
-| Mearsurement | Metric                                  | Meaning                                                  | Monitoring Significance                                         |
+| Measurement | Metric                                  | Meaning                                                  | Monitoring Significance                                         |
 | ------------ | --------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------- |
 | exchange     | windows_exchange_rpc_connection_count   | Total number of client connections maintained             | Shows the total number of client connections                    |
 | exchange     | windows_exchange_rpc_user_count         | Number of users connected to the service                 | Shows the number of users connected to the service              |

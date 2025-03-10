@@ -47,7 +47,7 @@ DQL data query
 |  query.soffset  | integer  |   | Offset for time series groups |
 |  query.limit  | integer  |   | Page size |
 |  query.offset  | integer  |   | Page offset |
-|  query.orderby  | array  |   | Sorting list, `{fieldName:method}`, note that sorting for Mearsurement queries only supports `fieldName=time`; method in ["desc", "asc"]; note that sorting for Mearsurement queries only supports `fieldName=time` |
+|  query.orderby  | array  |   | Sorting list, `{fieldName:method}`, note that sorting for Measurement queries only supports `fieldName=time`; method in ["desc", "asc"]; note that sorting for Measurement queries only supports `fieldName=time` |
 |  query.sorderby  | array  |   | Sorting list, `sorderby` column is an expression supporting all single-value aggregation functions min max last avg p90 p95 count, `{fieldName:method}`, structure is consistent with orderby |
 |  query.order_by  | array  |   | Sorting list, structure is `[{"column": "field", "order": "DESC"}]`, compatible field for Doris engine |
 |  query.sorder_by  | array  |   | Sorting list, structure is `[{"column": "field", "order": "DESC"}]`, compatible field for Doris engine |

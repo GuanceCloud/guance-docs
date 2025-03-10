@@ -73,7 +73,7 @@ After starting the program, DDTrace will periodically collect data (default is e
 
 ### Generating Performance Metrics {#metrics}
 
-Starting from [:octicons-tag-24: Version-1.39.0](../datakit/changelog.md#cl-1.39.0), DataKit supports extracting a set of Python runtime-related metrics from the output information of `dd-trace-py`. This set of metrics is placed under the `profiling_metrics` Mearsurement. Below are some of the metrics listed with explanations:
+Starting from [:octicons-tag-24: Version-1.39.0](../datakit/changelog.md#cl-1.39.0), DataKit supports extracting a set of Python runtime-related metrics from the output information of `dd-trace-py`. This set of metrics is placed under the `profiling_metrics` Measurement. Below are some of the metrics listed with explanations:
 
 | Metric Name                                  | Description                                                     | Unit         |
 |---------------------------------------|--------------------------------------------------------|------------|

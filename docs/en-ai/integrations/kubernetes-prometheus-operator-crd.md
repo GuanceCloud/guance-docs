@@ -61,7 +61,7 @@ Currently, Datakit supports two types of Prometheus-Operator CRD resources â€”â€
 
 Note: `tlsConfig` does not currently support obtaining certificates from Kubernetes Secret/ConfigMap.
 
-The `params` field supports specifying the data's Mearsurement using the `measurement` field, for example:
+The `params` field supports specifying the data's Measurement using the `measurement` field, for example:
 
 ```yaml
 params:

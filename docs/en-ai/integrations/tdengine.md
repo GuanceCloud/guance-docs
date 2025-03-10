@@ -18,7 +18,7 @@ monitor:
 
 TDengine is a high-performance, distributed, SQL-supported time series database (Database). Before enabling the collector, please familiarize yourself with [TDengine basic concepts](https://docs.taosdata.com/concept/){:target="_blank"}
 
-The TDengine collector requires the connection to `taos_adapter` to function properly. The taosAdapter has been part of the TDengine server software starting from version v2.4.0.0. This document mainly provides a detailed introduction to the Mearsurement set.
+The TDengine collector requires the connection to `taos_adapter` to function properly. The taosAdapter has been part of the TDengine server software starting from version v2.4.0.0. This document mainly provides a detailed introduction to the Measurement set.
 
 ## Configuration {#config}
 

@@ -64,7 +64,7 @@ cp prom.conf.sample redis-sentinel-prom.conf
 
     ## Output source for collected data
     # Configuring this option allows you to write collected data to a local file instead of sending it to the center.
-    # You can then use the command `datakit --prom-conf /path/to/this/conf` to debug locally saved Mearsurement.
+    # You can then use the command `datakit --prom-conf /path/to/this/conf` to debug locally saved Measurement.
     # If the URL is configured as a local file path, the `--prom-conf` command will prioritize debugging the output path data.
     # output = "/abs/path/to/file"
 
@@ -84,14 +84,14 @@ cp prom.conf.sample redis-sentinel-prom.conf
     # If empty, no filtering is performed.
     # metric_name_filter = ["cpu"]
 
-    ## Prefix for Mearsurement names
-    # Configuring this option adds a prefix to the Mearsurement names.
+    ## Prefix for Measurement names
+    # Configuring this option adds a prefix to the Measurement names.
     # measurement_prefix = "redis_sentinel_"
 
-    ## Mearsurement name
-    # By default, the metric name is split by underscores "_", with the first field after splitting used as the Mearsurement name, and the remaining fields as the current metric name.
+    ## Measurement name
+    # By default, the metric name is split by underscores "_", with the first field after splitting used as the Measurement name, and the remaining fields as the current metric name.
     # If `measurement_name` is configured, the metric name will not be split.
-    # The final Mearsurement name will have the `measurement_prefix` prefix added.
+    # The final Measurement name will have the `measurement_prefix` prefix added.
     measurement_name = "redis_sentinel"
 
     ## Collection interval "ns", "us" (or "µs"), "ms", "s", "m", "h"
@@ -114,9 +114,9 @@ cp prom.conf.sample redis-sentinel-prom.conf
     # token = "xxxxxxxx"
     # token_file = "/tmp/token"
 
-    ## Custom Mearsurement names
-    # Metrics containing the prefix `prefix` can be grouped into a single Mearsurement.
-    # Custom Mearsurement name configuration takes precedence over the `measurement_name` option.
+    ## Custom Measurement names
+    # Metrics containing the prefix `prefix` can be grouped into a single Measurement.
+    # Custom Measurement name configuration takes precedence over the `measurement_name` option.
     #[[inputs.prom.measurements]]
     #  prefix = "cpu_"
     #  name = "cpu"

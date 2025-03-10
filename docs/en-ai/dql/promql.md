@@ -24,11 +24,11 @@ node_network_receive_bytes_total{device="eth2"}
 
 Different labels are enclosed in curly braces: `{device="eth0"}`, `{device="eth1"}`, `{device="eth2"}`.
 
-## Mearsurement
+## Measurement
 
-All metrics in <<< custom_key.brand_name >>> belong to a Mearsurement, and we manage the lifecycle of metrics at the Mearsurement level. The concept of Mearsurement does not exist in Prometheus; it can be manually configured or automatically generated based on prefixes when reporting through Datakit. For more details, refer to the [Datakit documentation](../integrations/prom.md).
+All metrics in <<< custom_key.brand_name >>> belong to a Measurement, and we manage the lifecycle of metrics at the Measurement level. The concept of Measurement does not exist in Prometheus; it can be manually configured or automatically generated based on prefixes when reporting through Datakit. For more details, refer to the [Datakit documentation](../integrations/prom.md).
 
-Continuing with the `node_network_receive_bytes_total` metric as an example, if we use automatic rules in Datakit to generate this metric, it will be split into a Mearsurement and Field, namely `node` and `network_receive_bytes_total`.
+Continuing with the `node_network_receive_bytes_total` metric as an example, if we use automatic rules in Datakit to generate this metric, it will be split into a Measurement and Field, namely `node` and `network_receive_bytes_total`.
 
 In queries, this changes slightly. Continuing with the different network interfaces mentioned earlier:
 
@@ -82,11 +82,11 @@ Label filters are combined using the `and` operator, meaning "return time series
 node:network_receive_bytes_total{device=~"eth1|lo"}
 ```
 
-## Filtering Metrics or Mearsurement Names by Regular Expressions
+## Filtering Metrics or Measurement Names by Regular Expressions
 
 Mearsurements and metric names are actually ordinary labels with special names: `__measurement__` and `__field__`. Therefore, you can apply regular expressions to these labels to filter the data you want.
 
-For example, to query all time series in the `node` Mearsurement with metric names `network_receive_bytes_total` or `network_transmit_bytes_total`:
+For example, to query all time series in the `node` Measurement with metric names `network_receive_bytes_total` or `network_transmit_bytes_total`:
 
 ```
 {__measurement__="node", __field__=~"network_(receive|transmit)_bytes_total"}

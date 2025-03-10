@@ -12,7 +12,7 @@ List aggregation to metrics rules
 
 | Parameter Name | Type   | Required | Description                                                                 |
 |:--------------|:-------|:---------|:----------------------------------------------------------------------------|
-| search        | string |          | Search by Mearsurement name or metric name<br>Allow null: False <br>Allow empty string: True <br> |
+| search        | string |          | Search by Measurement name or metric name<br>Allow null: False <br>Allow empty string: True <br> |
 | scriptType    | string |          | Type<br>Allow null: False <br>Optional values: ['rumToMetric', 'apmToMetric', 'logToMetric', 'securityToMetric', 'metricToMetric'] <br> |
 | pageIndex     | integer|          | Page number<br>Allow null: False <br>Example: 1 <br>$minValue: 1 <br> |
 | pageSize      | integer|          | Number of items per page<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |

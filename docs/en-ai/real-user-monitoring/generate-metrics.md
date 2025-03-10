@@ -47,7 +47,7 @@ Navigate to the **User Access Detection > Generate Metrics** page,
 | Field | Description |
 | --- | --- |
 | Frequency | The execution cycle for generating metrics, default is 1 minute, i.e., new metric data is generated every 1 minute; the selected frequency also serves as the aggregation time, so if the frequency is 1 minute, then metrics are aggregated and generated every 1 minute, with each aggregation covering a 1-minute time range. |
-| Mearsurement | Set the name of the metric set where the metrics will be stored. |
+| Measurement | Set the name of the metric set where the metrics will be stored. |
 | Metric | Set the name of the metric, which must be unique, multiple metrics can be added. |
 | Tags | Automatically generated based on the dimensions selected in the query. |
 | Unit | Optional, set the unit for the metric, which can be used in chart queries after setting. |
